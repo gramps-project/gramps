@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps50\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 10:54+0300\n"
-"PO-Revision-Date: 2016-11-16 11:50+0300\n"
+"POT-Creation-Date: 2016-11-30 13:13+0300\n"
+"PO-Revision-Date: 2016-11-30 13:50+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -1149,12 +1149,12 @@ msgstr ""
 msgid "OK to overwrite?"
 msgstr "Перезаписать?"
 
-#: ../gramps/cli/arghandler.py:294 ../gramps/cli/clidbman.py:433
+#: ../gramps/cli/arghandler.py:294 ../gramps/cli/clidbman.py:434
 msgid "no"
 msgstr "нет"
 
 #: ../gramps/cli/arghandler.py:294 ../gramps/cli/arghandler.py:295
-#: ../gramps/cli/clidbman.py:433
+#: ../gramps/cli/clidbman.py:434
 msgid "yes"
 msgstr "да"
 
@@ -1177,7 +1177,7 @@ msgstr "Путь к базе данных с семейным древом\n"
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
 msgstr "%(full_DB_path)s под именем \"%(f_t_name)s\""
 
-#: ../gramps/cli/arghandler.py:428 ../gramps/cli/clidbman.py:183
+#: ../gramps/cli/arghandler.py:428 ../gramps/cli/clidbman.py:184
 msgid "Gramps Family Trees:"
 msgstr "Семейные древа Gramps:"
 
@@ -1190,8 +1190,8 @@ msgstr "Семейные древа Gramps:"
 #. -------------------------------------------------------------------------
 #: ../gramps/cli/arghandler.py:434 ../gramps/cli/arghandler.py:436
 #: ../gramps/cli/arghandler.py:441 ../gramps/cli/arghandler.py:442
-#: ../gramps/cli/arghandler.py:444 ../gramps/cli/clidbman.py:68
-#: ../gramps/cli/clidbman.py:171 ../gramps/cli/clidbman.py:192
+#: ../gramps/cli/arghandler.py:444 ../gramps/cli/clidbman.py:69
+#: ../gramps/cli/clidbman.py:172 ../gramps/cli/clidbman.py:193
 #: ../gramps/gui/clipboard.py:970 ../gramps/gui/configure.py:1466
 msgid "Family Tree"
 msgstr "Семейное древо"
@@ -1580,7 +1580,7 @@ msgstr ""
 "Чтобы использовать режим командной строки укажите по крайней мере один "
 "входной файл."
 
-#: ../gramps/cli/clidbman.py:81
+#: ../gramps/cli/clidbman.py:82
 #, python-format
 msgid ""
 "ERROR: %(title)s \n"
@@ -1589,13 +1589,13 @@ msgstr ""
 "ОШИБКА: %(title)s \n"
 "       %(message)s"
 
-#: ../gramps/cli/clidbman.py:168 ../gramps/cli/clidbman.py:170
+#: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:171
 #: ../gramps/gui/clipboard.py:186 ../gramps/gui/clipboard.py:187
 #: ../gramps/gui/plug/_windows.py:488
 msgid "Unavailable"
 msgstr "Недоступно"
 
-#: ../gramps/cli/clidbman.py:172 ../gramps/gen/lib/media.py:195
+#: ../gramps/cli/clidbman.py:173 ../gramps/gen/lib/media.py:195
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:66
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:90
 #: ../gramps/gui/glade/editmedia.glade:289
@@ -1604,48 +1604,48 @@ msgstr "Недоступно"
 msgid "Path"
 msgstr "Путь"
 
-#: ../gramps/cli/clidbman.py:173 ../gramps/gen/plug/_pluginreg.py:88
+#: ../gramps/cli/clidbman.py:174 ../gramps/gen/plug/_pluginreg.py:88
 msgid "Database"
 msgstr "База данных"
 
-#: ../gramps/cli/clidbman.py:174 ../gramps/gui/dbman.py:395
+#: ../gramps/cli/clidbman.py:175 ../gramps/gui/dbman.py:396
 msgid "Last accessed"
 msgstr "Последний доступ"
 
-#: ../gramps/cli/clidbman.py:175
+#: ../gramps/cli/clidbman.py:176
 msgid "Locked?"
 msgstr "Заблокировано?"
 
-#: ../gramps/cli/clidbman.py:192
+#: ../gramps/cli/clidbman.py:193
 #, python-format
 msgid "Family Tree \"%s\":"
 msgstr "Семейное древо \"%s\":"
 
 #. translators: needed for French, ignore otherwise
-#: ../gramps/cli/clidbman.py:196
+#: ../gramps/cli/clidbman.py:197
 #, python-format
 msgid "   %(item)s: %(summary)s"
 msgstr "   %(item)s: %(summary)s"
 
-#: ../gramps/cli/clidbman.py:282
+#: ../gramps/cli/clidbman.py:283
 #, python-format
 msgid "Starting Import, %s"
 msgstr "Импорт %s"
 
-#: ../gramps/cli/clidbman.py:288
+#: ../gramps/cli/clidbman.py:289
 msgid "Import finished..."
 msgstr "Импорт завершён..."
 
 #. Create a new database
-#: ../gramps/cli/clidbman.py:375 ../gramps/plugins/importer/importcsv.py:342
+#: ../gramps/cli/clidbman.py:376 ../gramps/plugins/importer/importcsv.py:342
 msgid "Importing data..."
 msgstr "Импортируются данные..."
 
-#: ../gramps/cli/clidbman.py:429
+#: ../gramps/cli/clidbman.py:430
 msgid "Remove family tree warning"
 msgstr "Предупреждение об удалении семейного древа"
 
-#: ../gramps/cli/clidbman.py:430
+#: ../gramps/cli/clidbman.py:431
 #, python-format
 msgid ""
 "Are you sure you want to remove the family tree named\n"
@@ -1654,15 +1654,15 @@ msgstr ""
 "Вы уверены, что хотите удалить семейное древо\n"
 "\"%s\"?"
 
-#: ../gramps/cli/clidbman.py:440 ../gramps/gui/dbman.py:717
+#: ../gramps/cli/clidbman.py:441 ../gramps/gui/dbman.py:718
 msgid "Could not delete Family Tree"
 msgstr "Не удалось удалить семейное древо"
 
-#: ../gramps/cli/clidbman.py:454
+#: ../gramps/cli/clidbman.py:455
 msgid "Could not rename Family Tree"
 msgstr "Не удалось переименовать семейное древо"
 
-#: ../gramps/cli/clidbman.py:487
+#: ../gramps/cli/clidbman.py:488
 #, python-format
 msgid ""
 "\n"
@@ -1681,18 +1681,18 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../gramps/cli/clidbman.py:539 ../gramps/gui/configure.py:1357
+#: ../gramps/cli/clidbman.py:540 ../gramps/gui/configure.py:1357
 msgid "Never"
 msgstr "Никогда"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/cli/clidbman.py:555
+#: ../gramps/cli/clidbman.py:556
 #, python-format
 msgid "Locked by %s"
 msgstr "Заблокировано %s"
 
 #. allow deferred translation of attribute UI strings
-#: ../gramps/cli/clidbman.py:557 ../gramps/gen/lib/attrtype.py:62
+#: ../gramps/cli/clidbman.py:558 ../gramps/gen/lib/attrtype.py:62
 #: ../gramps/gen/lib/childreftype.py:73 ../gramps/gen/lib/eventroletype.py:52
 #: ../gramps/gen/lib/eventtype.py:162 ../gramps/gen/lib/familyreltype.py:47
 #: ../gramps/gen/lib/grampstype.py:33 ../gramps/gen/lib/nameorigintype.py:73
@@ -1703,7 +1703,7 @@ msgstr "Заблокировано %s"
 #: ../gramps/gen/utils/lds.py:86 ../gramps/gen/utils/unknown.py:119
 #: ../gramps/gen/utils/unknown.py:121 ../gramps/gen/utils/unknown.py:125
 #: ../gramps/gen/utils/unknown.py:131 ../gramps/gen/utils/unknown.py:136
-#: ../gramps/gui/clipboard.py:183 ../gramps/gui/dbman.py:978
+#: ../gramps/gui/clipboard.py:183 ../gramps/gui/dbman.py:979
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:125
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:143
 #: ../gramps/gui/editors/editmedia.py:180
@@ -1746,7 +1746,7 @@ msgstr "Заблокировано %s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:811
 #: ../gramps/plugins/textreport/indivcomplete.py:86
 #: ../gramps/plugins/textreport/indivcomplete.py:913
-#: ../gramps/plugins/tool/check.py:2278 ../gramps/plugins/tool/check.py:2304
+#: ../gramps/plugins/tool/check.py:2281 ../gramps/plugins/tool/check.py:2307
 #: ../gramps/plugins/tool/dumpgenderstats.py:65
 #: ../gramps/plugins/view/geoclose.py:521
 #: ../gramps/plugins/view/geofamclose.py:271
@@ -1767,22 +1767,22 @@ msgstr "Заблокировано %s"
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: ../gramps/cli/grampscli.py:83
+#: ../gramps/cli/grampscli.py:84
 #, python-format
 msgid "WARNING: %s"
 msgstr "ВНИМАНИЕ: %s"
 
-#: ../gramps/cli/grampscli.py:90 ../gramps/cli/grampscli.py:249
+#: ../gramps/cli/grampscli.py:91 ../gramps/cli/grampscli.py:250
 #, python-format
 msgid "ERROR: %s"
 msgstr "ОШИБКА: %s"
 
-#: ../gramps/cli/grampscli.py:104 ../gramps/cli/user.py:199
+#: ../gramps/cli/grampscli.py:105 ../gramps/cli/user.py:199
 #: ../gramps/gui/dialog.py:217
 msgid "Low level database corruption detected"
 msgstr "Обнаружена ошибка низкого уровня в базе данных"
 
-#: ../gramps/cli/grampscli.py:106 ../gramps/cli/user.py:200
+#: ../gramps/cli/grampscli.py:107 ../gramps/cli/user.py:200
 #: ../gramps/gui/dialog.py:218
 msgid ""
 "Gramps has detected a problem in the underlying Berkeley database. This can "
@@ -1793,44 +1793,44 @@ msgstr ""
 "возможно, устранима через диалог «Управление семейными древами». Выберите "
 "базу данных и нажмите кнопку «Исправить»"
 
-#: ../gramps/cli/grampscli.py:151 ../gramps/gui/dbloader.py:305
+#: ../gramps/cli/grampscli.py:152 ../gramps/gui/dbloader.py:306
 msgid "Read only database"
 msgstr "База данных только для чтения"
 
-#: ../gramps/cli/grampscli.py:152 ../gramps/gui/dbloader.py:246
-#: ../gramps/gui/dbloader.py:306
+#: ../gramps/cli/grampscli.py:153 ../gramps/gui/dbloader.py:247
+#: ../gramps/gui/dbloader.py:307
 msgid "You do not have write access to the selected file."
 msgstr "У вас нет доступа для записи выбранного файла."
 
-#: ../gramps/cli/grampscli.py:178 ../gramps/cli/grampscli.py:181
-#: ../gramps/cli/grampscli.py:184 ../gramps/cli/grampscli.py:187
-#: ../gramps/cli/grampscli.py:190 ../gramps/cli/grampscli.py:193
-#: ../gramps/cli/grampscli.py:196 ../gramps/cli/grampscli.py:199
-#: ../gramps/cli/grampscli.py:202 ../gramps/gui/dbloader.py:409
-#: ../gramps/gui/dbloader.py:412 ../gramps/gui/dbloader.py:415
-#: ../gramps/gui/dbloader.py:418 ../gramps/gui/dbloader.py:421
+#: ../gramps/cli/grampscli.py:179 ../gramps/cli/grampscli.py:182
+#: ../gramps/cli/grampscli.py:185 ../gramps/cli/grampscli.py:188
+#: ../gramps/cli/grampscli.py:191 ../gramps/cli/grampscli.py:194
+#: ../gramps/cli/grampscli.py:197 ../gramps/cli/grampscli.py:200
+#: ../gramps/cli/grampscli.py:203 ../gramps/gui/dbloader.py:410
+#: ../gramps/gui/dbloader.py:413 ../gramps/gui/dbloader.py:416
+#: ../gramps/gui/dbloader.py:419 ../gramps/gui/dbloader.py:422
 msgid "Cannot open database"
 msgstr "Ошибка открытия базы данных"
 
-#: ../gramps/cli/grampscli.py:206 ../gramps/gui/dbloader.py:202
-#: ../gramps/gui/dbloader.py:425
+#: ../gramps/cli/grampscli.py:207 ../gramps/gui/dbloader.py:203
+#: ../gramps/gui/dbloader.py:426
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Ошибка открытия файла: %s"
 
-#: ../gramps/cli/grampscli.py:262
+#: ../gramps/cli/grampscli.py:263
 msgid "Could not load a recent Family Tree."
 msgstr "Не могу загрузить недавно использованное семейное древо."
 
-#: ../gramps/cli/grampscli.py:263
+#: ../gramps/cli/grampscli.py:264
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr "Семейное древо не существует, так как оно было удалено."
 
-#: ../gramps/cli/grampscli.py:268
+#: ../gramps/cli/grampscli.py:269
 msgid "The database is locked."
 msgstr "База данных заблокирована."
 
-#: ../gramps/cli/grampscli.py:269
+#: ../gramps/cli/grampscli.py:270
 msgid ""
 "Use the --force-unlock option if you are sure that the database is not in "
 "use."
@@ -1839,17 +1839,17 @@ msgstr ""
 "используется."
 
 #. already errors encountered. Show first one on terminal and exit
-#: ../gramps/cli/grampscli.py:349
+#: ../gramps/cli/grampscli.py:350
 #, python-format
 msgid "Error encountered: %s"
 msgstr "Произошла ошибка: %s"
 
-#: ../gramps/cli/grampscli.py:351 ../gramps/cli/grampscli.py:359
+#: ../gramps/cli/grampscli.py:352 ../gramps/cli/grampscli.py:360
 #, python-format
 msgid "  Details: %s"
 msgstr "  Подробности: %s"
 
-#: ../gramps/cli/grampscli.py:356
+#: ../gramps/cli/grampscli.py:357
 #, python-format
 msgid "Error encountered in argument parsing: %s"
 msgstr "При разборе параметров возникла ошибка: %s"
@@ -2017,27 +2017,27 @@ msgstr ""
 "заполните сообщение об ошибке на странице %(gramps_bugtracker_url)s\n"
 "\n"
 
-#: ../gramps/gen/config.py:326
+#: ../gramps/gen/config.py:331
 msgid "Imported %Y/%m/%d %H:%M:%S"
 msgstr "Импортировано %Y/%m/%d %H:%M:%S"
 
-#: ../gramps/gen/config.py:340
+#: ../gramps/gen/config.py:345
 msgid "Missing Given Name"
 msgstr "Имя отсутствует"
 
-#: ../gramps/gen/config.py:341
+#: ../gramps/gen/config.py:346
 msgid "Missing Record"
 msgstr "Запись отсутствует"
 
-#: ../gramps/gen/config.py:342
+#: ../gramps/gen/config.py:347
 msgid "Missing Surname"
 msgstr "Фамилия отсутствует"
 
-#: ../gramps/gen/config.py:349 ../gramps/gen/config.py:351
+#: ../gramps/gen/config.py:354 ../gramps/gen/config.py:356
 msgid "[Living]"
 msgstr "[Живой]"
 
-#: ../gramps/gen/config.py:350
+#: ../gramps/gen/config.py:355
 msgid "Private Record"
 msgstr "Приватная запись"
 
@@ -2856,7 +2856,7 @@ msgstr "Пятница"
 msgid "Saturday"
 msgstr "Суббота"
 
-#: ../gramps/gen/db/base.py:1760 ../gramps/gui/widgets/fanchart.py:1806
+#: ../gramps/gen/db/base.py:1760 ../gramps/gui/widgets/fanchart.py:1761
 msgid "Add child to family"
 msgstr "Добавить ребёнка в семью"
 
@@ -3118,27 +3118,27 @@ msgstr ""
 "и %(wiki_backup_html_start)sсоздайте резервную копию%(html_end)s вашего "
 "древа из неё."
 
-#: ../gramps/gen/db/generic.py:160 ../gramps/gen/db/generic.py:199
-#: ../gramps/gen/db/generic.py:824 ../gramps/plugins/db/bsddb/undoredo.py:245
+#: ../gramps/gen/db/generic.py:161 ../gramps/gen/db/generic.py:207
+#: ../gramps/gen/db/generic.py:2056 ../gramps/plugins/db/bsddb/undoredo.py:245
 #: ../gramps/plugins/db/bsddb/undoredo.py:282
 #: ../gramps/plugins/db/bsddb/write.py:2326
 #, python-format
 msgid "_Undo %s"
 msgstr "_Откатить %s"
 
-#: ../gramps/gen/db/generic.py:166 ../gramps/gen/db/generic.py:205
+#: ../gramps/gen/db/generic.py:167 ../gramps/gen/db/generic.py:213
 #: ../gramps/plugins/db/bsddb/undoredo.py:251
 #: ../gramps/plugins/db/bsddb/undoredo.py:288
 #, python-format
 msgid "_Redo %s"
 msgstr "Ве_рнуть %s"
 
-#: ../gramps/gen/db/generic.py:1892 ../gramps/plugins/db/bsddb/read.py:2114
+#: ../gramps/gen/db/generic.py:2489 ../gramps/plugins/db/bsddb/read.py:2081
 #: ../gramps/plugins/db/bsddb/write.py:2517
 msgid "Number of people"
 msgstr "Количество людей"
 
-#: ../gramps/gen/db/generic.py:1893 ../gramps/plugins/db/bsddb/read.py:2115
+#: ../gramps/gen/db/generic.py:2490 ../gramps/plugins/db/bsddb/read.py:2082
 #: ../gramps/plugins/db/bsddb/write.py:2518
 #: ../gramps/plugins/gramplet/statsgramplet.py:117
 #: ../gramps/plugins/webreport/narrativeweb.py:8108
@@ -3146,65 +3146,65 @@ msgstr "Количество людей"
 msgid "Number of families"
 msgstr "Количество семей"
 
-#: ../gramps/gen/db/generic.py:1894 ../gramps/plugins/db/bsddb/read.py:2116
+#: ../gramps/gen/db/generic.py:2491 ../gramps/plugins/db/bsddb/read.py:2083
 #: ../gramps/plugins/db/bsddb/write.py:2519
 #: ../gramps/plugins/webreport/narrativeweb.py:8135
 #: ../gramps/plugins/webreport/narrativeweb.py:8186
 msgid "Number of sources"
 msgstr "Количество источников"
 
-#: ../gramps/gen/db/generic.py:1895 ../gramps/plugins/db/bsddb/read.py:2117
+#: ../gramps/gen/db/generic.py:2492 ../gramps/plugins/db/bsddb/read.py:2084
 #: ../gramps/plugins/db/bsddb/write.py:2520
 #: ../gramps/plugins/webreport/narrativeweb.py:8139
 #: ../gramps/plugins/webreport/narrativeweb.py:8189
 msgid "Number of citations"
 msgstr "Количество цитат"
 
-#: ../gramps/gen/db/generic.py:1896 ../gramps/plugins/db/bsddb/read.py:2118
+#: ../gramps/gen/db/generic.py:2493 ../gramps/plugins/db/bsddb/read.py:2085
 #: ../gramps/plugins/db/bsddb/write.py:2521
 #: ../gramps/plugins/webreport/narrativeweb.py:8128
 #: ../gramps/plugins/webreport/narrativeweb.py:8180
 msgid "Number of events"
 msgstr "Количество событий"
 
-#: ../gramps/gen/db/generic.py:1897 ../gramps/plugins/db/bsddb/read.py:2119
+#: ../gramps/gen/db/generic.py:2494 ../gramps/plugins/db/bsddb/read.py:2086
 #: ../gramps/plugins/db/bsddb/write.py:2522
 msgid "Number of media"
 msgstr "Количество документов"
 
-#: ../gramps/gen/db/generic.py:1898 ../gramps/plugins/db/bsddb/read.py:2120
+#: ../gramps/gen/db/generic.py:2495 ../gramps/plugins/db/bsddb/read.py:2087
 #: ../gramps/plugins/db/bsddb/write.py:2523
 #: ../gramps/plugins/webreport/narrativeweb.py:8131
 #: ../gramps/plugins/webreport/narrativeweb.py:8183
 msgid "Number of places"
 msgstr "Количество мест"
 
-#: ../gramps/gen/db/generic.py:1899 ../gramps/plugins/db/bsddb/read.py:2121
+#: ../gramps/gen/db/generic.py:2496 ../gramps/plugins/db/bsddb/read.py:2088
 #: ../gramps/plugins/db/bsddb/write.py:2524
 #: ../gramps/plugins/webreport/narrativeweb.py:8143
 #: ../gramps/plugins/webreport/narrativeweb.py:8192
 msgid "Number of repositories"
 msgstr "Количество хранилищ"
 
-#: ../gramps/gen/db/generic.py:1900 ../gramps/plugins/db/bsddb/read.py:2122
+#: ../gramps/gen/db/generic.py:2497 ../gramps/plugins/db/bsddb/read.py:2089
 #: ../gramps/plugins/db/bsddb/write.py:2525
 msgid "Number of notes"
 msgstr "Количество заметок"
 
-#: ../gramps/gen/db/generic.py:1901 ../gramps/plugins/db/bsddb/read.py:2123
+#: ../gramps/gen/db/generic.py:2498 ../gramps/plugins/db/bsddb/read.py:2090
 #: ../gramps/plugins/db/bsddb/write.py:2526
 msgid "Number of tags"
 msgstr "Количество меток"
 
-#: ../gramps/gen/db/generic.py:1902 ../gramps/plugins/db/bsddb/write.py:2527
+#: ../gramps/gen/db/generic.py:2499 ../gramps/plugins/db/bsddb/write.py:2527
 msgid "Data version"
 msgstr "Версия базы данных"
 
-#: ../gramps/gen/db/generic.py:1903
+#: ../gramps/gen/db/generic.py:2500
 msgid "Backups, count"
 msgstr "Резервное копирование, количество"
 
-#: ../gramps/gen/db/generic.py:1904
+#: ../gramps/gen/db/generic.py:2501
 msgid "Backups, last"
 msgstr "Резервное копирование, последнее"
 
@@ -3339,12 +3339,12 @@ msgstr "прозвище"
 msgid "familynick"
 msgstr "семпрозвище"
 
-#: ../gramps/gen/display/name.py:1099
+#: ../gramps/gen/display/name.py:1117
 #, python-format
 msgid "Wrong name format string %s"
 msgstr "Неверная строка формата имени «%s»"
 
-#: ../gramps/gen/display/name.py:1103
+#: ../gramps/gen/display/name.py:1121
 msgid "ERROR, Edit Name format in Preferences"
 msgstr "ОШИБКА, Установите строку формата в меню «Настройки»"
 
@@ -6368,7 +6368,7 @@ msgstr "Время"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:176
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:171
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:154
-#: ../gramps/plugins/tool/check.py:2332
+#: ../gramps/plugins/tool/check.py:2335
 msgid "None"
 msgstr "Нет"
 
@@ -6606,7 +6606,7 @@ msgstr "События"
 #: ../gramps/gui/configure.py:534
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
-#: ../gramps/gui/editors/editfamily.py:501 ../gramps/gui/editors/editlink.py:91
+#: ../gramps/gui/editors/editfamily.py:499 ../gramps/gui/editors/editlink.py:91
 #: ../gramps/gui/editors/filtereditor.py:294
 #: ../gramps/gui/glade/editldsord.glade:269
 #: ../gramps/plugins/export/exportcsv.py:515
@@ -6645,7 +6645,7 @@ msgid "Legal"
 msgstr "Правовое"
 
 #: ../gramps/gen/lib/eventtype.py:153 ../gramps/gen/lib/eventtype.py:195
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:443
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:460
 #: ../gramps/plugins/webreport/narrativeweb.py:3081
 #: ../gramps/plugins/webreport/narrativeweb.py:7929
 msgid "Residence"
@@ -7219,12 +7219,12 @@ msgid "Checksum"
 msgstr "Контрольная сумма"
 
 #: ../gramps/gen/lib/media.py:199 ../gramps/gen/lib/person.py:225
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:569
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:583
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:597
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:611
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:625
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:639
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:586
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:600
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:614
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:628
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:642
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:656
 #: ../gramps/plugins/textreport/indivcomplete.py:458
 #: ../gramps/plugins/textreport/indivcomplete.py:677
 #: ../gramps/plugins/webreport/narrativeweb.py:798
@@ -7235,27 +7235,27 @@ msgstr "Атрибуты"
 
 #: ../gramps/gen/lib/media.py:200 ../gramps/gen/lib/name.py:201
 #: ../gramps/gen/lib/person.py:228
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:765
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:779
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:793
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:807
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:821
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:782
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:796
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:810
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:824
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:838
 #: ../gramps/plugins/textreport/tagreport.py:802
-#: ../gramps/plugins/view/view.gpr.py:266
-#: ../gramps/plugins/view/view.gpr.py:274
+#: ../gramps/plugins/view/view.gpr.py:281
+#: ../gramps/plugins/view/view.gpr.py:289
 msgid "Citations"
 msgstr "Цитаты"
 
 #: ../gramps/gen/lib/media.py:201 ../gramps/gen/lib/name.py:202
 #: ../gramps/gen/lib/person.py:229
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:653
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:667
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:681
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:695
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:709
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:723
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:737
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:751
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:670
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:684
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:698
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:712
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:726
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:740
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:754
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:768
 #: ../gramps/plugins/quickview/filterbyname.py:112
 #: ../gramps/plugins/quickview/filterbyname.py:137
 #: ../gramps/plugins/textreport/indivcomplete.py:260
@@ -7309,7 +7309,7 @@ msgstr "Последнее изменение"
 #: ../gramps/plugins/export/exportcsv.py:473
 #: ../gramps/plugins/gramplet/ageondategramplet.py:66
 #: ../gramps/plugins/gramplet/events.py:87
-#: ../gramps/plugins/gramplet/locations.py:86
+#: ../gramps/plugins/gramplet/locations.py:87
 #: ../gramps/plugins/gramplet/personresidence.py:60
 #: ../gramps/plugins/importer/importcsv.py:219
 #: ../gramps/plugins/quickview/onthisday.py:80
@@ -7429,7 +7429,7 @@ msgstr "Личное"
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:104
 #: ../gramps/gui/plug/_guioptions.py:1165 ../gramps/gui/plug/_windows.py:126
 #: ../gramps/gui/plug/_windows.py:1094
-#: ../gramps/gui/plug/report/_bookdialog.py:371
+#: ../gramps/gui/plug/report/_bookdialog.py:377
 #: ../gramps/gui/selectors/selectperson.py:94
 #: ../gramps/gui/selectors/selectplace.py:71
 #: ../gramps/gui/views/bookmarks.py:240 ../gramps/gui/views/tags.py:402
@@ -7438,7 +7438,7 @@ msgstr "Личное"
 #: ../gramps/plugins/gramplet/ancestor.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:56
 #: ../gramps/plugins/gramplet/descendant.py:62
-#: ../gramps/plugins/gramplet/locations.py:84
+#: ../gramps/plugins/gramplet/locations.py:85
 #: ../gramps/plugins/gramplet/placedetails.py:122
 #: ../gramps/plugins/importer/importcsv.py:222
 #: ../gramps/plugins/lib/libpersonview.py:98
@@ -7525,8 +7525,8 @@ msgstr "Название"
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:105
 #: ../gramps/gui/merge/mergeperson.py:242 ../gramps/gui/plug/_windows.py:119
 #: ../gramps/gui/plug/_windows.py:235 ../gramps/gui/plug/_windows.py:1093
-#: ../gramps/gui/plug/report/_bookdialog.py:372
-#: ../gramps/gui/plug/report/_bookdialog.py:376
+#: ../gramps/gui/plug/report/_bookdialog.py:378
+#: ../gramps/gui/plug/report/_bookdialog.py:382
 #: ../gramps/gui/selectors/selectevent.py:70
 #: ../gramps/gui/selectors/selectnote.py:77
 #: ../gramps/gui/selectors/selectobject.py:82
@@ -7534,7 +7534,7 @@ msgstr "Название"
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/backlinks.py:55
 #: ../gramps/plugins/gramplet/events.py:85
-#: ../gramps/plugins/gramplet/locations.py:85
+#: ../gramps/plugins/gramplet/locations.py:86
 #: ../gramps/plugins/gramplet/placedetails.py:123
 #: ../gramps/plugins/importer/importcsv.py:223
 #: ../gramps/plugins/lib/libplaceview.py:87
@@ -8056,7 +8056,7 @@ msgstr "Сейф"
 msgid "Audio"
 msgstr "Звук"
 
-#: ../gramps/gen/lib/srcmediatype.py:59 ../gramps/gui/glade/book.glade:9
+#: ../gramps/gen/lib/srcmediatype.py:59 ../gramps/gui/glade/book.glade:7
 msgid "Book"
 msgstr "Книга"
 
@@ -8170,11 +8170,11 @@ msgstr "Поиск в сети"
 msgid "FTP"
 msgstr "FTP"
 
-#: ../gramps/gen/merge/diff.py:188
+#: ../gramps/gen/merge/diff.py:100
 msgid "Family Tree Differences"
 msgstr "Отличия в семейном древе"
 
-#: ../gramps/gen/merge/diff.py:189
+#: ../gramps/gen/merge/diff.py:101
 msgid "Searching..."
 msgstr "Ведётся поиск..."
 
@@ -8845,7 +8845,7 @@ msgstr "Допустимые значения: "
 #.
 #. ------------------------------------------------------------------------
 #: ../gramps/gen/plug/report/_book.py:71 ../gramps/gui/plug/_dialogs.py:59
-#: ../gramps/gui/plug/report/_bookdialog.py:86 ../gramps/gui/viewmanager.py:110
+#: ../gramps/gui/plug/report/_bookdialog.py:84 ../gramps/gui/viewmanager.py:110
 msgid "Unsupported"
 msgstr "Не поддерживаемые"
 
@@ -10155,7 +10155,7 @@ msgstr "Источник"
 msgid "Repository"
 msgstr "Хранилище"
 
-#: ../gramps/gui/clipboard.py:967 ../gramps/gui/dbman.py:126
+#: ../gramps/gui/clipboard.py:967 ../gramps/gui/dbman.py:127
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:63
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:64
 #: ../gramps/plugins/gramplet/attributes.py:57
@@ -10200,7 +10200,7 @@ msgstr "Перетаскивайте столбцы с помощью мыши, 
 
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1507
 #: ../gramps/gui/configure.py:1530 ../gramps/gui/plug/_dialogs.py:124
-#: ../gramps/gui/viewmanager.py:1409
+#: ../gramps/gui/viewmanager.py:1414
 #: ../gramps/plugins/lib/maps/geography.py:1007
 #: ../gramps/plugins/lib/maps/geography.py:1261
 msgid "_Apply"
@@ -10235,7 +10235,7 @@ msgstr "Показать «Редактор имён»"
 
 #. self.window.connect('response', self.close)
 #: ../gramps/gui/configure.py:105 ../gramps/gui/configure.py:179
-#: ../gramps/gui/glade/book.glade:469 ../gramps/gui/glade/book.glade:543
+#: ../gramps/gui/glade/book.glade:466 ../gramps/gui/glade/book.glade:540
 #: ../gramps/gui/glade/clipboard.glade:73 ../gramps/gui/glade/dialog.glade:20
 #: ../gramps/gui/glade/dialog.glade:140
 #: ../gramps/gui/glade/displaystate.glade:25
@@ -10499,10 +10499,10 @@ msgstr "Пример"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:122
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:129
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:115
-#: ../gramps/gui/editors/editfamily.py:149
-#: ../gramps/gui/plug/report/_bookdialog.py:650 ../gramps/gui/views/tags.py:416
-#: ../gramps/gui/widgets/fanchart.py:1757
-#: ../gramps/gui/widgets/fanchart.py:1799
+#: ../gramps/gui/editors/editfamily.py:148
+#: ../gramps/gui/plug/report/_bookdialog.py:657 ../gramps/gui/views/tags.py:416
+#: ../gramps/gui/widgets/fanchart.py:1712
+#: ../gramps/gui/widgets/fanchart.py:1754
 #: ../gramps/plugins/view/pedigreeview.py:1613
 msgid "_Add"
 msgstr "До_бавить"
@@ -10516,9 +10516,9 @@ msgstr "До_бавить"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:130
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:116
 #: ../gramps/gui/glade/editlink.glade:223
-#: ../gramps/gui/plug/report/_bookdialog.py:624
+#: ../gramps/gui/plug/report/_bookdialog.py:631
 #: ../gramps/gui/viewmanager.py:481 ../gramps/gui/views/tags.py:417
-#: ../gramps/gui/widgets/fanchart.py:1575
+#: ../gramps/gui/widgets/fanchart.py:1511
 #: ../gramps/plugins/view/pedigreeview.py:1648
 #: ../gramps/plugins/view/pedigreeview.py:1876
 msgid "_Edit"
@@ -10530,8 +10530,8 @@ msgstr "_Правка"
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:130
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:124
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:117
-#: ../gramps/gui/editors/editfamily.py:153
-#: ../gramps/gui/plug/report/_bookdialog.py:619
+#: ../gramps/gui/editors/editfamily.py:151
+#: ../gramps/gui/plug/report/_bookdialog.py:626
 #: ../gramps/gui/views/bookmarks.py:254 ../gramps/gui/views/listview.py:212
 #: ../gramps/gui/views/tags.py:418 ../gramps/plugins/lib/libpersonview.py:388
 msgid "_Remove"
@@ -10648,9 +10648,9 @@ msgstr "Язык"
 #: ../gramps/plugins/quickview/filterbyname.py:100
 #: ../gramps/plugins/quickview/filterbyname.py:125
 #: ../gramps/plugins/textreport/tagreport.py:403
-#: ../gramps/plugins/view/view.gpr.py:204
-#: ../gramps/plugins/view/view.gpr.py:212
+#: ../gramps/plugins/view/view.gpr.py:219
 #: ../gramps/plugins/view/view.gpr.py:227
+#: ../gramps/plugins/view/view.gpr.py:242
 #: ../gramps/plugins/webreport/narrativeweb.py:1877
 #: ../gramps/plugins/webreport/narrativeweb.py:1940
 #: ../gramps/plugins/webreport/narrativeweb.py:2006
@@ -10902,7 +10902,7 @@ msgid "Select media directory"
 msgstr "Выбрать каталог документов"
 
 #: ../gramps/gui/configure.py:1505 ../gramps/gui/configure.py:1528
-#: ../gramps/gui/dbloader.py:145 ../gramps/gui/editors/edittaglist.py:117
+#: ../gramps/gui/dbloader.py:146 ../gramps/gui/editors/edittaglist.py:117
 #: ../gramps/gui/glade/addmedia.glade:22
 #: ../gramps/gui/glade/baseselector.glade:24
 #: ../gramps/gui/glade/configure.glade:23 ../gramps/gui/glade/dialog.glade:416
@@ -10948,7 +10948,7 @@ msgstr "Выбрать каталог документов"
 #: ../gramps/gui/plug/_guioptions.py:1728 ../gramps/gui/plug/_windows.py:432
 #: ../gramps/gui/plug/report/_fileentry.py:64
 #: ../gramps/gui/plug/report/_reportdialog.py:161 ../gramps/gui/utils.py:172
-#: ../gramps/gui/viewmanager.py:1407 ../gramps/gui/views/listview.py:1010
+#: ../gramps/gui/viewmanager.py:1412 ../gramps/gui/views/listview.py:1010
 #: ../gramps/gui/views/navigationview.py:362 ../gramps/gui/views/tags.py:635
 #: ../gramps/gui/widgets/progressdialog.py:437
 #: ../gramps/plugins/lib/maps/geography.py:1006
@@ -10963,11 +10963,11 @@ msgstr "_Отменить"
 msgid "Select database directory"
 msgstr "Выбрать каталог базы данных"
 
-#: ../gramps/gui/dbloader.py:129 ../gramps/gui/plug/tool.py:108
+#: ../gramps/gui/dbloader.py:130 ../gramps/gui/plug/tool.py:108
 msgid "Undo history warning"
 msgstr "Предупреждение отката"
 
-#: ../gramps/gui/dbloader.py:130
+#: ../gramps/gui/dbloader.py:131
 msgid ""
 "Proceeding with import will erase the undo history for this session. In "
 "particular, you will not be able to revert the import or any changes made "
@@ -10982,23 +10982,23 @@ msgstr ""
 "Если вы думаете, что может понадобиться откат импорта, пожалуйста, "
 "остановитесь и сохраните копию вашей базы данных."
 
-#: ../gramps/gui/dbloader.py:135
+#: ../gramps/gui/dbloader.py:136
 msgid "_Proceed with import"
 msgstr "_Продолжить импорт"
 
-#: ../gramps/gui/dbloader.py:135 ../gramps/gui/plug/tool.py:115
+#: ../gramps/gui/dbloader.py:136 ../gramps/gui/plug/tool.py:115
 msgid "_Stop"
 msgstr "С_топ"
 
-#: ../gramps/gui/dbloader.py:142
+#: ../gramps/gui/dbloader.py:143
 msgid "Gramps: Import Family Tree"
 msgstr "Gramps: Импортировать древо"
 
-#: ../gramps/gui/dbloader.py:147
+#: ../gramps/gui/dbloader.py:148
 msgid "Import"
 msgstr "Импорт"
 
-#: ../gramps/gui/dbloader.py:203
+#: ../gramps/gui/dbloader.py:204
 #, python-format
 msgid ""
 "File type \"%s\" is unknown to Gramps.\n"
@@ -11011,28 +11011,28 @@ msgstr ""
 "Известные типы: база данных GRAMPS, GRAMPS XML, пакет GRAMPS, GEDCOM и "
 "другие."
 
-#: ../gramps/gui/dbloader.py:227 ../gramps/gui/dbloader.py:234
+#: ../gramps/gui/dbloader.py:228 ../gramps/gui/dbloader.py:235
 msgid "Cannot open file"
 msgstr "Не могу открыть файл"
 
-#: ../gramps/gui/dbloader.py:228
+#: ../gramps/gui/dbloader.py:229
 msgid "The selected file is a directory, not a file.\n"
 msgstr "Выбранное имя является каталогом, а не файлом.\n"
 
-#: ../gramps/gui/dbloader.py:235
+#: ../gramps/gui/dbloader.py:236
 msgid "You do not have read access to the selected file."
 msgstr "У вас нет доступа для чтения выбранного файла."
 
-#: ../gramps/gui/dbloader.py:245
+#: ../gramps/gui/dbloader.py:246
 msgid "Cannot create file"
 msgstr "Не могу создать файл"
 
-#: ../gramps/gui/dbloader.py:268
+#: ../gramps/gui/dbloader.py:269
 #, python-format
 msgid "Could not import file: %s"
 msgstr "Ошибка импорта файла %s"
 
-#: ../gramps/gui/dbloader.py:269
+#: ../gramps/gui/dbloader.py:270
 msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
@@ -11040,31 +11040,31 @@ msgstr ""
 "В этом файле неверно указана кодировка символов и он не может быть правильно "
 "импортирован. Пожалуйста, исправьте кодировку и импортируйте снова"
 
-#: ../gramps/gui/dbloader.py:347 ../gramps/gui/dbloader.py:362
-#: ../gramps/gui/dbloader.py:392
+#: ../gramps/gui/dbloader.py:348 ../gramps/gui/dbloader.py:363
+#: ../gramps/gui/dbloader.py:393
 msgid "Are you sure you want to upgrade this Family Tree?"
 msgstr "Вы уверены, что хотите обновить формат этого древа?"
 
-#: ../gramps/gui/dbloader.py:350 ../gramps/gui/dbloader.py:365
-#: ../gramps/gui/dbloader.py:395
+#: ../gramps/gui/dbloader.py:351 ../gramps/gui/dbloader.py:366
+#: ../gramps/gui/dbloader.py:396
 msgid ""
 "I have made a backup,\n"
 "please upgrade my Family Tree"
 msgstr "У меня есть резервная копия, моё древо можно обновить"
 
-#: ../gramps/gui/dbloader.py:352 ../gramps/gui/dbloader.py:367
-#: ../gramps/gui/dbloader.py:382 ../gramps/gui/dbloader.py:397
-#: ../gramps/gui/plug/report/_bookdialog.py:244
-#: ../gramps/gui/plug/report/_bookdialog.py:731
+#: ../gramps/gui/dbloader.py:353 ../gramps/gui/dbloader.py:368
+#: ../gramps/gui/dbloader.py:383 ../gramps/gui/dbloader.py:398
+#: ../gramps/gui/plug/report/_bookdialog.py:242
+#: ../gramps/gui/plug/report/_bookdialog.py:743
 #: ../gramps/gui/viewmanager.py:782
 msgid "Cancel"
 msgstr "Отменить"
 
-#: ../gramps/gui/dbloader.py:377
+#: ../gramps/gui/dbloader.py:378
 msgid "Are you sure you want to downgrade this Family Tree?"
 msgstr "Вы действительно хотите откатить версию этого древа на более старую?"
 
-#: ../gramps/gui/dbloader.py:380
+#: ../gramps/gui/dbloader.py:381
 msgid ""
 "I have made a backup,\n"
 "please downgrade my Family Tree"
@@ -11072,43 +11072,43 @@ msgstr ""
 "Да, я сделал резервную копию.\n"
 "Откатить версию моего древа"
 
-#: ../gramps/gui/dbloader.py:466
+#: ../gramps/gui/dbloader.py:467
 msgid "All files"
 msgstr "Все файлы"
 
-#: ../gramps/gui/dbloader.py:507
+#: ../gramps/gui/dbloader.py:508
 msgid "Automatically detected"
 msgstr "Автоматически"
 
-#: ../gramps/gui/dbloader.py:516
+#: ../gramps/gui/dbloader.py:517
 msgid "Select file _type:"
 msgstr "Выбрать _тип файла:"
 
-#: ../gramps/gui/dbman.py:95
+#: ../gramps/gui/dbman.py:96
 #, python-format
 msgid "%s_-_Manage_Family_Trees"
 msgstr "%s_-_Управление_семейными_древами"
 
-#: ../gramps/gui/dbman.py:96
+#: ../gramps/gui/dbman.py:97
 msgid "Family_Trees_manager_window"
 msgstr "Окно_управление_семейными_древами"
 
-#: ../gramps/gui/dbman.py:110 ../gramps/gui/glade/dbman.glade:352
+#: ../gramps/gui/dbman.py:111 ../gramps/gui/glade/dbman.glade:352
 msgid "_Archive"
 msgstr "_Архивировать"
 
-#: ../gramps/gui/dbman.py:110
+#: ../gramps/gui/dbman.py:111
 msgid "_Extract"
 msgstr "_Извлечь"
 
-#: ../gramps/gui/dbman.py:117 ../gramps/gui/dbman.py:142
+#: ../gramps/gui/dbman.py:118 ../gramps/gui/dbman.py:143
 msgid "Database Information"
 msgstr "Информация о базе данных"
 
-#: ../gramps/gui/dbman.py:119 ../gramps/gui/editors/edittaglist.py:118
+#: ../gramps/gui/dbman.py:120 ../gramps/gui/editors/edittaglist.py:118
 #: ../gramps/gui/glade/addmedia.glade:38
-#: ../gramps/gui/glade/baseselector.glade:40 ../gramps/gui/glade/book.glade:485
-#: ../gramps/gui/glade/book.glade:559 ../gramps/gui/glade/configure.glade:39
+#: ../gramps/gui/glade/baseselector.glade:40 ../gramps/gui/glade/book.glade:482
+#: ../gramps/gui/glade/book.glade:556 ../gramps/gui/glade/configure.glade:39
 #: ../gramps/gui/glade/dbman.glade:24 ../gramps/gui/glade/editaddress.glade:36
 #: ../gramps/gui/glade/editattribute.glade:37
 #: ../gramps/gui/glade/editchildref.glade:38
@@ -11154,17 +11154,17 @@ msgstr "Информация о базе данных"
 msgid "_OK"
 msgstr "_OK"
 
-#: ../gramps/gui/dbman.py:125
+#: ../gramps/gui/dbman.py:126
 msgid "Setting"
 msgstr "Применяются настройки"
 
-#: ../gramps/gui/dbman.py:366
+#: ../gramps/gui/dbman.py:367
 msgid "Family Tree name"
 msgstr "Название семейного древа"
 
 #. icon_column = Gtk.TreeViewColumn(_('Status'), render,
 #. icon_name=ICON_COL)
-#: ../gramps/gui/dbman.py:379
+#: ../gramps/gui/dbman.py:380
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../gramps/gui/plug/_windows.py:123 ../gramps/gui/plug/_windows.py:180
@@ -11177,16 +11177,16 @@ msgstr "Название семейного древа"
 msgid "Status"
 msgstr "Статус"
 
-#: ../gramps/gui/dbman.py:386
+#: ../gramps/gui/dbman.py:387
 msgid "Database Type"
 msgstr "Тип базы данных"
 
-#: ../gramps/gui/dbman.py:492
+#: ../gramps/gui/dbman.py:493
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Снять блокировку с базы данных '%s'?"
 
-#: ../gramps/gui/dbman.py:493
+#: ../gramps/gui/dbman.py:494
 msgid ""
 "Gramps believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -11199,15 +11199,15 @@ msgstr ""
 "Однако, если вы снимете блокировку, когда другой пользователь редактирует "
 "базу, вы можете испортить её."
 
-#: ../gramps/gui/dbman.py:499
+#: ../gramps/gui/dbman.py:500
 msgid "Break lock"
 msgstr "Снять блокировку"
 
-#: ../gramps/gui/dbman.py:589
+#: ../gramps/gui/dbman.py:590
 msgid "Rename failed"
 msgstr "Переименование не удалось"
 
-#: ../gramps/gui/dbman.py:590
+#: ../gramps/gui/dbman.py:591
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -11218,54 +11218,54 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dbman.py:608
+#: ../gramps/gui/dbman.py:609
 msgid "Could not rename the Family Tree."
 msgstr "Не удалось переименовать это семейное древо."
 
-#: ../gramps/gui/dbman.py:609
+#: ../gramps/gui/dbman.py:610
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Семейное древо уже существует, выберите уникальное имя."
 
-#: ../gramps/gui/dbman.py:653
+#: ../gramps/gui/dbman.py:654
 msgid "Extracting archive..."
 msgstr "Распаковываю архив..."
 
-#: ../gramps/gui/dbman.py:658
+#: ../gramps/gui/dbman.py:659
 msgid "Importing archive..."
 msgstr "импортирую архив..."
 
-#: ../gramps/gui/dbman.py:674
+#: ../gramps/gui/dbman.py:675
 #, python-format
 msgid "Remove the '%s' Family Tree?"
 msgstr "Удалить семейное древо «%s»?"
 
-#: ../gramps/gui/dbman.py:675
+#: ../gramps/gui/dbman.py:676
 msgid "Removing this Family Tree will permanently destroy the data."
 msgstr "Удаление данного семейного древа безвозвратно сотрёт данные."
 
-#: ../gramps/gui/dbman.py:677
+#: ../gramps/gui/dbman.py:678
 msgid "Remove Family Tree"
 msgstr "Удалить семейное древо"
 
-#: ../gramps/gui/dbman.py:682
+#: ../gramps/gui/dbman.py:683
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Удалить версию '%(revision)s' базы данных '%(database)s'"
 
-#: ../gramps/gui/dbman.py:686
+#: ../gramps/gui/dbman.py:687
 msgid ""
 "Removing this version will prevent you from extracting it in the future."
 msgstr "Удаление данной версии не позволит вам открыть её в будущем."
 
-#: ../gramps/gui/dbman.py:688
+#: ../gramps/gui/dbman.py:689
 msgid "Remove version"
 msgstr "Удалить версию"
 
-#: ../gramps/gui/dbman.py:743
+#: ../gramps/gui/dbman.py:744
 msgid "Deletion failed"
 msgstr "Удаление не удалось"
 
-#: ../gramps/gui/dbman.py:744
+#: ../gramps/gui/dbman.py:745
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -11276,59 +11276,59 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dbman.py:761
+#: ../gramps/gui/dbman.py:762
 #, python-format
 msgid "Convert the '%s' database?"
 msgstr "Преобразовать базу данных '%s'?"
 
-#: ../gramps/gui/dbman.py:762
+#: ../gramps/gui/dbman.py:763
 msgid "You wish to convert this database into the new DB-API format?"
 msgstr "Хотите преобразовать бузу данных в новый DB-API формат?"
 
-#: ../gramps/gui/dbman.py:763
+#: ../gramps/gui/dbman.py:764
 msgid "Convert"
 msgstr "Преобразовать"
 
-#: ../gramps/gui/dbman.py:773
+#: ../gramps/gui/dbman.py:774
 #, python-format
 msgid "Opening the '%s' database"
 msgstr "Открывается база данных '%s'"
 
-#: ../gramps/gui/dbman.py:774
+#: ../gramps/gui/dbman.py:775
 msgid "An attempt to convert the database failed. Perhaps it needs updating."
 msgstr ""
 "Попытка преобразования базы данных не удалась. Возможно необходимо "
 "обновление."
 
-#: ../gramps/gui/dbman.py:785 ../gramps/gui/dbman.py:810
+#: ../gramps/gui/dbman.py:786 ../gramps/gui/dbman.py:811
 #, python-format
 msgid "Converting the '%s' database"
 msgstr "Проводится преобразование базы данных '%s'"
 
-#: ../gramps/gui/dbman.py:786
+#: ../gramps/gui/dbman.py:787
 msgid "An attempt to export the database failed."
 msgstr "Попытка экспорта базы данных не удалась."
 
-#: ../gramps/gui/dbman.py:790
+#: ../gramps/gui/dbman.py:791
 msgid "Converting data..."
 msgstr "Преобразование данных..."
 
-#: ../gramps/gui/dbman.py:795 ../gramps/gui/dbman.py:798
+#: ../gramps/gui/dbman.py:796 ../gramps/gui/dbman.py:799
 #, python-format
 msgid "(Converted #%d)"
 msgstr "(Преобразовано #%d)"
 
-#: ../gramps/gui/dbman.py:811
+#: ../gramps/gui/dbman.py:812
 msgid "An attempt to import into the database failed."
 msgstr "Попытка импорта в базу данных не удалась."
 
-#: ../gramps/gui/dbman.py:868
+#: ../gramps/gui/dbman.py:869
 msgid "Repair Family Tree?"
 msgstr "Починить семейное древо?"
 
 # !!!FIXME!!!
 # проверить, что действительно файл называется need_recover в русской версии
-#: ../gramps/gui/dbman.py:869
+#: ../gramps/gui/dbman.py:870
 #, python-format
 msgid ""
 "If you click %(bold_start)sProceed%(bold_end)s, Gramps will attempt to "
@@ -11379,31 +11379,31 @@ msgstr ""
 "можете убрать кнопку «Восстановить», удалив файл %(recover_file)s из папки с "
 "семейным древом."
 
-#: ../gramps/gui/dbman.py:900
+#: ../gramps/gui/dbman.py:901
 msgid "Proceed, I have taken a backup"
 msgstr "Продолжить, ведь я сделал резервную копию"
 
-#: ../gramps/gui/dbman.py:901
+#: ../gramps/gui/dbman.py:902
 msgid "Stop"
 msgstr "Стоп"
 
-#: ../gramps/gui/dbman.py:924
+#: ../gramps/gui/dbman.py:925
 msgid "Rebuilding database from backup files"
 msgstr "Восстанавливаю базу данных из резервной копии"
 
-#: ../gramps/gui/dbman.py:929
+#: ../gramps/gui/dbman.py:930
 msgid "Error restoring backup data"
 msgstr "Ошибка восстановления резервной копии"
 
-#: ../gramps/gui/dbman.py:968
+#: ../gramps/gui/dbman.py:969
 msgid "Could not create Family Tree"
 msgstr "Ошибка при создании семейного древа"
 
-#: ../gramps/gui/dbman.py:1096
+#: ../gramps/gui/dbman.py:1097
 msgid "Retrieve failed"
 msgstr "Извлечение не удалось"
 
-#: ../gramps/gui/dbman.py:1097
+#: ../gramps/gui/dbman.py:1098
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -11414,11 +11414,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dbman.py:1135 ../gramps/gui/dbman.py:1161
+#: ../gramps/gui/dbman.py:1136 ../gramps/gui/dbman.py:1162
 msgid "Archiving failed"
 msgstr "Архивирование не удалось"
 
-#: ../gramps/gui/dbman.py:1136
+#: ../gramps/gui/dbman.py:1137
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -11429,15 +11429,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dbman.py:1141
+#: ../gramps/gui/dbman.py:1142
 msgid "Creating data to be archived..."
 msgstr "Собираю данные для архивации..."
 
-#: ../gramps/gui/dbman.py:1150
+#: ../gramps/gui/dbman.py:1151
 msgid "Saving archive..."
 msgstr "Сохраняю архив..."
 
-#: ../gramps/gui/dbman.py:1162
+#: ../gramps/gui/dbman.py:1163
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -11638,7 +11638,7 @@ msgstr "Атрибуты"
 #: ../gramps/gui/selectors/selectsource.py:72
 #: ../gramps/gui/views/bookmarks.py:240
 #: ../gramps/gui/views/navigationview.py:357
-#: ../gramps/plugins/gramplet/locations.py:87
+#: ../gramps/plugins/gramplet/locations.py:88
 #: ../gramps/plugins/lib/libpersonview.py:99
 #: ../gramps/plugins/lib/libplaceview.py:85
 #: ../gramps/plugins/tool/eventcmp.py:251
@@ -12178,7 +12178,7 @@ msgstr "Альтернативные имена"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:69
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:108
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1282
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1299
 msgid "Enclosed By"
 msgstr "Входит в"
 
@@ -12642,25 +12642,25 @@ msgstr "Дети"
 msgid "Edit child"
 msgstr "Редактировать ребёнка"
 
-#: ../gramps/gui/editors/editfamily.py:150
+#: ../gramps/gui/editors/editfamily.py:149
 msgid "Add an existing child"
 msgstr "Добавить ребёнка из существующих людей"
 
-#: ../gramps/gui/editors/editfamily.py:151
+#: ../gramps/gui/editors/editfamily.py:150
 msgid "Edit relationship"
 msgstr "Редактировать родство"
 
-#: ../gramps/gui/editors/editfamily.py:219
-#: ../gramps/gui/editors/editfamily.py:234
+#: ../gramps/gui/editors/editfamily.py:217
+#: ../gramps/gui/editors/editfamily.py:232
 #: ../gramps/plugins/view/relview.py:1569
 msgid "Select Child"
 msgstr "Выберите ребёнка"
 
-#: ../gramps/gui/editors/editfamily.py:367
+#: ../gramps/gui/editors/editfamily.py:365
 msgid "Adding parents to a person"
 msgstr "Добавляю родителей к лицу"
 
-#: ../gramps/gui/editors/editfamily.py:368
+#: ../gramps/gui/editors/editfamily.py:366
 msgid ""
 "It is possible to accidentally create multiple families with the same "
 "parents. To help avoid this problem, only the buttons to select parents are "
@@ -12671,11 +12671,11 @@ msgstr ""
 "избежания этой проблемы, только кнопки выбора родителей доступны при "
 "создании новой семьи. Остальные поля станут доступны после выбора родителей."
 
-#: ../gramps/gui/editors/editfamily.py:463
+#: ../gramps/gui/editors/editfamily.py:461
 msgid "Family has changed"
 msgstr "Изменения в семье"
 
-#: ../gramps/gui/editors/editfamily.py:464
+#: ../gramps/gui/editors/editfamily.py:462
 #, python-format
 msgid ""
 "The %(object)s you are editing has changed outside this editor. This can be "
@@ -12691,60 +12691,60 @@ msgstr ""
 "Чтобы быть уверенным что отображаемая информация верна, отображаемые данные "
 "будут обновлены. Некоторые ваши изменения вероятно будут потеряны."
 
-#: ../gramps/gui/editors/editfamily.py:469
+#: ../gramps/gui/editors/editfamily.py:467
 #: ../gramps/plugins/importer/importcsv.py:210
 #: ../gramps/plugins/view/familyview.py:260
 msgid "family"
 msgstr "семья"
 
-#: ../gramps/gui/editors/editfamily.py:500
-#: ../gramps/gui/editors/editfamily.py:503
+#: ../gramps/gui/editors/editfamily.py:498
+#: ../gramps/gui/editors/editfamily.py:501
 msgid "New Family"
 msgstr "Новая семья"
 
-#: ../gramps/gui/editors/editfamily.py:507
-#: ../gramps/gui/editors/editfamily.py:1136
+#: ../gramps/gui/editors/editfamily.py:505
+#: ../gramps/gui/editors/editfamily.py:1134
 #: ../gramps/plugins/view/geofamily.py:422
 msgid "Edit Family"
 msgstr "Редактировать семью"
 
-#: ../gramps/gui/editors/editfamily.py:540
+#: ../gramps/gui/editors/editfamily.py:538
 msgid "Select a person as the mother"
 msgstr "Выберите лицо в качестве матери"
 
-#: ../gramps/gui/editors/editfamily.py:541
+#: ../gramps/gui/editors/editfamily.py:539
 msgid "Add a new person as the mother"
 msgstr "Добавить новое лицо в качестве матери"
 
-#: ../gramps/gui/editors/editfamily.py:542
+#: ../gramps/gui/editors/editfamily.py:540
 msgid "Remove the person as the mother"
 msgstr "Удалить лицо в качестве матери"
 
-#: ../gramps/gui/editors/editfamily.py:555
+#: ../gramps/gui/editors/editfamily.py:553
 msgid "Select a person as the father"
 msgstr "Выберите лицо в качестве отца"
 
-#: ../gramps/gui/editors/editfamily.py:556
+#: ../gramps/gui/editors/editfamily.py:554
 msgid "Add a new person as the father"
 msgstr "Добавить новое лицо в качестве отца"
 
-#: ../gramps/gui/editors/editfamily.py:557
+#: ../gramps/gui/editors/editfamily.py:555
 msgid "Remove the person as the father"
 msgstr "Удалить лицо в качестве отца"
 
-#: ../gramps/gui/editors/editfamily.py:838
+#: ../gramps/gui/editors/editfamily.py:836
 msgid "Select Mother"
 msgstr "Выберите мать"
 
-#: ../gramps/gui/editors/editfamily.py:883
+#: ../gramps/gui/editors/editfamily.py:881
 msgid "Select Father"
 msgstr "Выберите отца"
 
-#: ../gramps/gui/editors/editfamily.py:907
+#: ../gramps/gui/editors/editfamily.py:905
 msgid "Duplicate Family"
 msgstr "Дубликат семьи"
 
-#: ../gramps/gui/editors/editfamily.py:908
+#: ../gramps/gui/editors/editfamily.py:906
 msgid ""
 "A family with these parents already exists in the database. If you save, you "
 "will create a duplicate family. It is recommended that you cancel the "
@@ -12753,43 +12753,43 @@ msgstr ""
 "Семья с этими родителями уже есть в базе данных. Сохранив, вы создадите "
 "дубликат семьи. Рекомендуется отменить правку и выбрать существующую семью"
 
-#: ../gramps/gui/editors/editfamily.py:956
+#: ../gramps/gui/editors/editfamily.py:954
 #, python-format
 msgid "Edit %s"
 msgstr "Редактирование %s"
 
-#: ../gramps/gui/editors/editfamily.py:1065
+#: ../gramps/gui/editors/editfamily.py:1063
 msgid "A father cannot be his own child"
 msgstr "Отец не может быть своим ребёнком"
 
-#: ../gramps/gui/editors/editfamily.py:1066
+#: ../gramps/gui/editors/editfamily.py:1064
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s является одновременно отцом и ребёнком в семье."
 
-#: ../gramps/gui/editors/editfamily.py:1076
+#: ../gramps/gui/editors/editfamily.py:1074
 msgid "A mother cannot be her own child"
 msgstr "Мать не может быть своим ребёнком"
 
-#: ../gramps/gui/editors/editfamily.py:1077
+#: ../gramps/gui/editors/editfamily.py:1075
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s является одновременно матерью и ребёнком в семье."
 
-#: ../gramps/gui/editors/editfamily.py:1085
+#: ../gramps/gui/editors/editfamily.py:1083
 msgid "Cannot save family"
 msgstr "Сохранение семьи невозможно"
 
-#: ../gramps/gui/editors/editfamily.py:1086
+#: ../gramps/gui/editors/editfamily.py:1084
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr ""
 "Нет данных об этой семье. Пожалуйста введите данные или отмените правку."
 
-#: ../gramps/gui/editors/editfamily.py:1094
+#: ../gramps/gui/editors/editfamily.py:1092
 msgid "Cannot save family. ID already exists."
 msgstr "Сохранение семьи невозможно: такой ID уже существует."
 
-#: ../gramps/gui/editors/editfamily.py:1095
+#: ../gramps/gui/editors/editfamily.py:1093
 #: ../gramps/gui/editors/editnote.py:323
 #: ../gramps/gui/editors/editreference.py:294
 #, python-format
@@ -12802,7 +12802,7 @@ msgstr ""
 "значение уже используется. Пожалуйста введите другой ID или оставьте поля "
 "ввода пустым чтобы выбрать следующее свободное значение ID."
 
-#: ../gramps/gui/editors/editfamily.py:1110
+#: ../gramps/gui/editors/editfamily.py:1108
 msgid "Add Family"
 msgstr "Добавить семью"
 
@@ -13673,15 +13673,15 @@ msgstr "Комментарий"
 #: ../gramps/plugins/drawreport/calendarreport.py:472
 #: ../gramps/plugins/drawreport/statisticschart.py:988
 #: ../gramps/plugins/drawreport/timeline.py:417
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:989
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1003
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1017
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1031
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1045
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1059
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1073
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1087
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1101
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1006
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1020
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1034
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1048
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1062
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1076
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1090
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1104
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1118
 #: ../gramps/plugins/graph/gvrelgraph.py:669
 #: ../gramps/plugins/quickview/quickview.gpr.py:127
 #: ../gramps/plugins/textreport/birthdayreport.py:422
@@ -13970,49 +13970,49 @@ msgstr "Преобразовать в относительный путь"
 msgid "Show all"
 msgstr "Показать всех"
 
-#: ../gramps/gui/glade/book.glade:54
+#: ../gramps/gui/glade/book.glade:51
 msgid "Book _name:"
 msgstr "_Название книги:"
 
-#: ../gramps/gui/glade/book.glade:93
-#: ../gramps/gui/plug/report/_bookdialog.py:621
+#: ../gramps/gui/glade/book.glade:90
+#: ../gramps/gui/plug/report/_bookdialog.py:628
 msgid "Clear the book"
 msgstr "Очистить книгу"
 
 # !!!FIXME!!!
-#: ../gramps/gui/glade/book.glade:115
+#: ../gramps/gui/glade/book.glade:112
 msgid "Save current set of configured selections"
 msgstr "Сохранить текущий набор настроек"
 
-#: ../gramps/gui/glade/book.glade:138
+#: ../gramps/gui/glade/book.glade:135
 msgid "Open previously created book"
 msgstr "Открыть существующую книгу"
 
-#: ../gramps/gui/glade/book.glade:160
+#: ../gramps/gui/glade/book.glade:157
 msgid "Manage previously created books"
 msgstr "Редактировать существующие книги"
 
-#: ../gramps/gui/glade/book.glade:330
+#: ../gramps/gui/glade/book.glade:327
 msgid "Add an item to the book"
 msgstr "Добавить элемент в книгу"
 
-#: ../gramps/gui/glade/book.glade:353
+#: ../gramps/gui/glade/book.glade:350
 msgid "Remove currently selected item from the book"
 msgstr "Удалить выделенный элемент из книги"
 
-#: ../gramps/gui/glade/book.glade:375
+#: ../gramps/gui/glade/book.glade:372
 msgid "Move current selection one step up in the book"
 msgstr "Переместить текущий элемент книги на один шаг вверх"
 
-#: ../gramps/gui/glade/book.glade:397
+#: ../gramps/gui/glade/book.glade:394
 msgid "Move current selection one step down in the book"
 msgstr "Переместить текущий элемент книги на один шаг вниз"
 
-#: ../gramps/gui/glade/book.glade:419
+#: ../gramps/gui/glade/book.glade:416
 msgid "Configure currently selected item"
 msgstr "Настроить выделенный элемент"
 
-#: ../gramps/gui/glade/book.glade:527 ../gramps/gui/glade/dbman.glade:272
+#: ../gramps/gui/glade/book.glade:524 ../gramps/gui/glade/dbman.glade:272
 msgid "_Delete"
 msgstr "_Удалить"
 
@@ -14187,7 +14187,7 @@ msgstr "Закрыть _без сохранения"
 
 #. widget
 #: ../gramps/gui/glade/dialog.glade:856
-#: ../gramps/gui/plug/report/_bookdialog.py:622
+#: ../gramps/gui/plug/report/_bookdialog.py:629
 #: ../gramps/gui/views/listview.py:1011
 #: ../gramps/gui/widgets/grampletpane.py:578
 #: ../gramps/plugins/tool/eventcmp.py:398
@@ -16600,8 +16600,8 @@ msgid "Alternate Names"
 msgstr "Альтернативные имена"
 
 #: ../gramps/gui/merge/mergeperson.py:203
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:457
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:471
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:474
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:488
 #: ../gramps/plugins/quickview/filterbyname.py:97
 #: ../gramps/plugins/quickview/filterbyname.py:122
 #: ../gramps/plugins/textreport/tagreport.py:320
@@ -16619,7 +16619,7 @@ msgstr "События"
 #. Go over parents and build their menu
 #. don't show rest
 #: ../gramps/gui/merge/mergeperson.py:218
-#: ../gramps/gui/widgets/fanchart.py:1724
+#: ../gramps/gui/widgets/fanchart.py:1679
 #: ../gramps/plugins/quickview/all_relations.py:305
 #: ../gramps/plugins/tool/notrelated.py:126
 #: ../gramps/plugins/view/pedigreeview.py:1776
@@ -16643,7 +16643,7 @@ msgstr "Родители не найдены"
 
 #. Go over spouses and build their menu
 #: ../gramps/gui/merge/mergeperson.py:229
-#: ../gramps/gui/widgets/fanchart.py:1614
+#: ../gramps/gui/widgets/fanchart.py:1551
 #: ../gramps/plugins/textreport/kinshipreport.py:132
 #: ../gramps/plugins/view/pedigreeview.py:1663
 msgid "Spouses"
@@ -16757,7 +16757,7 @@ msgid "Save As"
 msgstr "Сохранить как"
 
 #: ../gramps/gui/plug/_guioptions.py:1730 ../gramps/gui/plug/_windows.py:434
-#: ../gramps/gui/plug/report/_bookdialog.py:623
+#: ../gramps/gui/plug/report/_bookdialog.py:630
 #: ../gramps/gui/plug/report/_fileentry.py:66
 msgid "_Open"
 msgstr "_Открыть"
@@ -17270,8 +17270,8 @@ msgstr "Веб содержимое"
 #: ../gramps/gui/plug/quick/_textbufdoc.py:75
 #: ../gramps/gui/plug/quick/_textbufdoc.py:155
 #: ../gramps/gui/plug/quick/_textbufdoc.py:157
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:196
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:203
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:213
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:220
 #: ../gramps/plugins/lib/libpersonview.py:379
 #: ../gramps/plugins/lib/libplaceview.py:152
 #: ../gramps/plugins/view/citationlistview.py:182
@@ -17294,20 +17294,20 @@ msgstr "Копировать всё"
 msgid "See data not in Filter"
 msgstr "Смотреть данные, неподходящие под фильтр"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:168
+#: ../gramps/gui/plug/report/_bookdialog.py:166
 msgid "Available Books"
 msgstr "Доступные книги"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:241
+#: ../gramps/gui/plug/report/_bookdialog.py:239
 msgid "Discard Unsaved Changes"
 msgstr "Отменить несохранённые изменения"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:242
+#: ../gramps/gui/plug/report/_bookdialog.py:240
 msgid "You have made changes which have not been saved."
 msgstr "Изменения, сделанные вами, ещё не были сохранены."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:243
-#: ../gramps/gui/plug/report/_bookdialog.py:730
+#: ../gramps/gui/plug/report/_bookdialog.py:241
+#: ../gramps/gui/plug/report/_bookdialog.py:742
 msgid "Proceed"
 msgstr "Запустить"
 
@@ -17319,36 +17319,36 @@ msgstr "Название книги. ОБЯЗАТЕЛЬНО"
 msgid "Manage Books"
 msgstr "Управление книгами"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:360
+#: ../gramps/gui/plug/report/_bookdialog.py:366
 msgid "New Book"
 msgstr "Новая книга"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:363
+#: ../gramps/gui/plug/report/_bookdialog.py:369
 msgid "_Available items"
 msgstr "_Доступные элементы"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:367
+#: ../gramps/gui/plug/report/_bookdialog.py:373
 msgid "Current _book"
 msgstr "Текущая _книга"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:375
+#: ../gramps/gui/plug/report/_bookdialog.py:381
 #: ../gramps/plugins/drawreport/statisticschart.py:307
 msgid "Item name"
 msgstr "Название элемента"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:378
+#: ../gramps/gui/plug/report/_bookdialog.py:384
 msgid "Subject"
 msgstr "Заголовок"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:392
+#: ../gramps/gui/plug/report/_bookdialog.py:398
 msgid "Book selection list"
 msgstr "Список выбора книги"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:444
+#: ../gramps/gui/plug/report/_bookdialog.py:450
 msgid "Different database"
 msgstr "Другая база данных"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:445
+#: ../gramps/gui/plug/report/_bookdialog.py:451
 #, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -17365,41 +17365,43 @@ msgstr ""
 "Поэтому, за центральное лицо каждого элемента берётся активное лицо в "
 "текущей базе данных."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:550
+#: ../gramps/gui/plug/report/_bookdialog.py:557
 msgid "No selected book item"
 msgstr "Не выбран элемент книги"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:551
+#: ../gramps/gui/plug/report/_bookdialog.py:558
 msgid "Please select a book item to configure."
 msgstr "Выберите элемент книги для настройки."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:616
+#: ../gramps/gui/plug/report/_bookdialog.py:623
 #: ../gramps/gui/views/bookmarks.py:252 ../gramps/gui/views/tags.py:414
 msgid "_Up"
 msgstr "_Вверх"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:617
+#: ../gramps/gui/plug/report/_bookdialog.py:624
 #: ../gramps/gui/views/bookmarks.py:253 ../gramps/gui/views/tags.py:415
 msgid "_Down"
 msgstr "В_низ"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:618
+#: ../gramps/gui/plug/report/_bookdialog.py:625
 msgid "Setup"
 msgstr "Настроить"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:707
+#: ../gramps/gui/plug/report/_bookdialog.py:714
+#: ../gramps/gui/plug/report/_bookdialog.py:725
 msgid "No items"
 msgstr "Нет элементов"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:708
+#: ../gramps/gui/plug/report/_bookdialog.py:715
+#: ../gramps/gui/plug/report/_bookdialog.py:726
 msgid "This book has no items."
 msgstr "В этой книге нет элементов."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:720
+#: ../gramps/gui/plug/report/_bookdialog.py:732
 msgid "No book name"
 msgstr "Нет название книги"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:721
+#: ../gramps/gui/plug/report/_bookdialog.py:733
 msgid ""
 "You are about to save away a book with no name.\n"
 "\n"
@@ -17409,19 +17411,19 @@ msgstr ""
 "\n"
 "Пожалуйста, дайте ей имя перед сохранением."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:727
+#: ../gramps/gui/plug/report/_bookdialog.py:739
 msgid "Book name already exists"
 msgstr "Книга с таким названием уже имеется"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:728
+#: ../gramps/gui/plug/report/_bookdialog.py:740
 msgid "You are about to save away a book with a name which already exists."
 msgstr "Вы пытаетесь сохранить книгу с названием, которое уже используется."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:919
+#: ../gramps/gui/plug/report/_bookdialog.py:930
 msgid "Generate Book"
 msgstr "Создать книгу"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:962
+#: ../gramps/gui/plug/report/_bookdialog.py:973
 msgid "Gramps Book"
 msgstr "Книга Gramps"
 
@@ -18177,45 +18179,45 @@ msgstr "Мб"
 msgid "Exclude"
 msgstr "Исключить"
 
-#: ../gramps/gui/viewmanager.py:1368
+#: ../gramps/gui/viewmanager.py:1373
 msgid "Backup file already exists! Overwrite?"
 msgstr "Файл с резервной копией уже существует! Перезаписать?"
 
-#: ../gramps/gui/viewmanager.py:1369
+#: ../gramps/gui/viewmanager.py:1374
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Файл «%s» уже существует."
 
-#: ../gramps/gui/viewmanager.py:1370
+#: ../gramps/gui/viewmanager.py:1375
 msgid "Proceed and overwrite"
 msgstr "Продолжить и перезаписать"
 
-#: ../gramps/gui/viewmanager.py:1371
+#: ../gramps/gui/viewmanager.py:1376
 msgid "Cancel the backup"
 msgstr "Отменить резервное копирование"
 
-#: ../gramps/gui/viewmanager.py:1379
+#: ../gramps/gui/viewmanager.py:1384
 msgid "Making backup..."
 msgstr "Создание резервной копии..."
 
-#: ../gramps/gui/viewmanager.py:1392
+#: ../gramps/gui/viewmanager.py:1397
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Резервная копия сохранена в '%s'"
 
-#: ../gramps/gui/viewmanager.py:1395
+#: ../gramps/gui/viewmanager.py:1400
 msgid "Backup aborted"
 msgstr "Резервное копирование прервано"
 
-#: ../gramps/gui/viewmanager.py:1404
+#: ../gramps/gui/viewmanager.py:1409
 msgid "Select backup directory"
 msgstr "Выберите каталог для резервного копирования"
 
-#: ../gramps/gui/viewmanager.py:1628
+#: ../gramps/gui/viewmanager.py:1634
 msgid "Failed Loading View"
 msgstr "Не удалось загрузить вид"
 
-#: ../gramps/gui/viewmanager.py:1629
+#: ../gramps/gui/viewmanager.py:1635
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -18240,11 +18242,11 @@ msgstr ""
 "Если вы не хотите, чтобы Gramps пыталась загрузить этот вид в следующий раз, "
 "спрячьте его,с помощью «Справка / Управление модулями»."
 
-#: ../gramps/gui/viewmanager.py:1721
+#: ../gramps/gui/viewmanager.py:1727
 msgid "Failed Loading Plugin"
 msgstr "Ошибка загрузки модуля"
 
-#: ../gramps/gui/viewmanager.py:1722
+#: ../gramps/gui/viewmanager.py:1728
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -18606,22 +18608,22 @@ msgstr "Развернуть"
 msgid "Collapse this section"
 msgstr "Свернуть"
 
-#: ../gramps/gui/widgets/fanchart.py:1582 ../gramps/plugins/view/relview.py:801
+#: ../gramps/gui/widgets/fanchart.py:1519 ../gramps/plugins/view/relview.py:801
 msgid "Edit family"
 msgstr "Редактировать семью"
 
-#: ../gramps/gui/widgets/fanchart.py:1598 ../gramps/plugins/view/relview.py:802
+#: ../gramps/gui/widgets/fanchart.py:1535 ../gramps/plugins/view/relview.py:802
 msgid "Reorder families"
 msgstr "Упорядочить семьи"
 
-#: ../gramps/gui/widgets/fanchart.py:1604
+#: ../gramps/gui/widgets/fanchart.py:1541
 #: ../gramps/plugins/view/pedigreeview.py:1653
 #: ../gramps/plugins/view/pedigreeview.py:1881
 msgid "_Copy"
 msgstr "_Копировать"
 
 #. Go over siblings and build their menu
-#: ../gramps/gui/widgets/fanchart.py:1648
+#: ../gramps/gui/widgets/fanchart.py:1585
 #: ../gramps/plugins/quickview/quickview.gpr.py:316
 #: ../gramps/plugins/view/pedigreeview.py:1697
 #: ../gramps/plugins/view/relview.py:904
@@ -18629,9 +18631,9 @@ msgid "Siblings"
 msgstr "Братья/Сёстры"
 
 #. Go over children and build their menu
-#: ../gramps/gui/widgets/fanchart.py:1689
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:835
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:849
+#: ../gramps/gui/widgets/fanchart.py:1644
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:852
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:866
 #: ../gramps/plugins/textreport/familygroup.py:639
 #: ../gramps/plugins/textreport/indivcomplete.py:663
 #: ../gramps/plugins/view/pedigreeview.py:1739
@@ -18641,20 +18643,20 @@ msgid "Children"
 msgstr "Дети"
 
 #. Go over parents and build their menu
-#: ../gramps/gui/widgets/fanchart.py:1766
+#: ../gramps/gui/widgets/fanchart.py:1721
 #: ../gramps/plugins/view/pedigreeview.py:1824
 msgid "Related"
 msgstr "Связанные"
 
-#: ../gramps/gui/widgets/fanchart.py:1814
+#: ../gramps/gui/widgets/fanchart.py:1769
 msgid "Add partner to person"
 msgstr "Добавляю партнёра к лицу"
 
-#: ../gramps/gui/widgets/fanchart.py:1821
+#: ../gramps/gui/widgets/fanchart.py:1776
 msgid "Add a person"
 msgstr "Добавить новое лицо"
 
-#: ../gramps/gui/widgets/fanchart.py:1896
+#: ../gramps/gui/widgets/fanchart.py:1851
 #: ../gramps/plugins/view/relview.py:1551
 msgid "Add Child to Family"
 msgstr "Добавить ребёнка в семью"
@@ -20142,7 +20144,7 @@ msgstr "Строит графическое древо потомков для �
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:172
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:118
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:127
-#: ../gramps/plugins/view/fanchartview.py:71
+#: ../gramps/plugins/view/fanchartview.py:73
 #: ../gramps/plugins/view/view.gpr.py:141
 msgid "Fan Chart"
 msgstr "Веерная карта"
@@ -21084,8 +21086,8 @@ msgid "Mother - Child Age Diff Distribution"
 msgstr "Распределение разницы в возрасте матери и ребёнка"
 
 #: ../gramps/plugins/gramplet/agestats.py:238
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:242
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:249
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:259
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:266
 #: ../gramps/plugins/webreport/narrativeweb.py:1886
 #: ../gramps/plugins/webreport/narrativeweb.py:8063
 msgid "Statistics"
@@ -21187,8 +21189,8 @@ msgstr "Применить"
 msgid "Double-click on a row to edit the selected event."
 msgstr "Щёлкните на строке дважды для правки выбранного события."
 
-#: ../gramps/plugins/gramplet/fanchartdescgramplet.py:62
-#: ../gramps/plugins/gramplet/fanchartgramplet.py:65
+#: ../gramps/plugins/gramplet/fanchartdescgramplet.py:64
+#: ../gramps/plugins/gramplet/fanchartgramplet.py:67
 msgid ""
 "Click to expand/contract person\n"
 "Right-click for options\n"
@@ -21440,7 +21442,7 @@ msgid "Ancestors"
 msgstr "Предки"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:102
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:180
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:197
 msgid "Gramplet showing active person's ancestors"
 msgstr "Грамплет показывает предков активного лица"
 
@@ -21449,7 +21451,7 @@ msgid "Gramplet showing active person's direct ancestors as a fanchart"
 msgstr "Грамплет показывает предков активного лица в виде веерной карты"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:135
-#: ../gramps/plugins/view/fanchartdescview.py:72
+#: ../gramps/plugins/view/fanchartdescview.py:75
 msgid "Descendant Fan Chart"
 msgstr "Веерная карта потомков"
 
@@ -21463,174 +21465,191 @@ msgid "Descendant Fan"
 msgstr "Веерная карта потомков"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:152
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:158
+msgid "2-Way Fan Chart"
+msgstr "Двусторонняя веерная карта"
+
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:153
+msgid ""
+"Gramplet showing active person's direct ancestors and descendants as a "
+"fanchart"
+msgstr ""
+"Грамплет показывает прямых предков и потомков активного лица в виде веерной "
+"карты"
+
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:161
+#: ../gramps/plugins/view/view.gpr.py:171
+msgid "2-Way Fan"
+msgstr "Двусторонняя веерная карта"
+
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:169
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:175
 msgid "FAQ"
 msgstr "ЧАВО"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:153
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:170
 msgid "Gramplet showing frequently asked questions"
 msgstr "Грамплет показывает часто задаваемые вопросы"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:165
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:172
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:182
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:189
 msgid "Given Name Cloud"
 msgstr "Облако имён"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:166
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:183
 msgid "Gramplet showing all given names as a text cloud"
 msgstr "Грамплет показывает имена в виде текстового облака"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:179
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:185
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:196
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:202
 #: ../gramps/plugins/view/pedigreeview.py:528
 #: ../gramps/plugins/view/view.gpr.py:125
 #: ../gramps/plugins/webreport/narrativeweb.py:7172
 msgid "Pedigree"
 msgstr "Родословная"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:197
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:214
 msgid "Gramplet showing an active item Quick View"
 msgstr ""
 "Грамплет показывает содержимое меню «Быстрый просмотр» для выбранного "
 "элемента"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:212
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:218
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:229
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:235
 msgid "Relatives"
 msgstr "Ближайшие родственники"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:213
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:230
 msgid "Gramplet showing active person's relatives"
 msgstr "Грамплет показывает ближайших родственников активного лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:228
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:235
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:245
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:252
 msgid "Session Log"
 msgstr "Журнал сессии"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:229
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:246
 msgid "Gramplet showing all activity for this session"
 msgstr "Грамплет показывает все действия пользователя в этом сеансе работы"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:243
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:260
 msgid "Gramplet showing summary data of the Family Tree"
 msgstr "Грамплет показывает сводную информацию о семейном древе"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:256
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:263
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:273
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:280
 msgid "Surname Cloud"
 msgstr "Облако фамилий"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:257
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:274
 msgid "Gramplet showing all surnames as a text cloud"
 msgstr "Грамплет показывает фамилии в виде текстового облака"
 
 # Что делать? Кто виноват?
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:270
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:277
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1131
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1145
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1159
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1173
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1187
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1201
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1215
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1229
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:287
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:294
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1148
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1162
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1176
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1190
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1204
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1218
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1232
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1246
 msgid "gramplet|To Do"
 msgstr "Задачи"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:271
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:288
 msgid "Gramplet for displaying a To Do list"
 msgstr "Грамплет показывает список задач"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:285
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:291
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:302
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:308
 msgid "Top Surnames"
 msgstr "Топ-10 фамилий"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:286
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:303
 msgid "Gramplet showing most frequent surnames in this tree"
 msgstr ""
 "Грамплет показывает наиболее часто встречающиеся в семейном древе фамилии"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:298
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:315
 msgid "Welcome"
 msgstr "Добро пожаловать"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:299
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:316
 msgid "Gramplet showing a welcome message"
 msgstr "Грамплет показывает приветственное сообщение"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:305
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:322
 msgid "Welcome to Gramps!"
 msgstr "Добро пожаловать в Gramps!"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:312
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:329
 msgid "What's Next"
 msgstr "Что дальше?"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:313
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:330
 msgid "Gramplet suggesting items to research"
 msgstr "Грамплет предлагающий направления для исследования"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:319
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:336
 msgid "What's Next?"
 msgstr "Что дальше?"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:329
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:346
 msgid "Person Details"
 msgstr "Детали лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:330
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:347
 msgid "Gramplet showing details of a person"
 msgstr "Грамплет, показывающий детали о лице"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:337
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:351
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:365
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:354
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:368
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:382
 msgid "Details"
 msgstr "Подробности"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:343
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:360
 msgid "Repository Details"
 msgstr "Детали хранилища"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:344
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:361
 msgid "Gramplet showing details of a repository"
 msgstr "Грамплет, показывающий детали о хранилище"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:357
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:374
 msgid "Place Details"
 msgstr "Детали местоположения"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:358
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:375
 msgid "Gramplet showing details of a place"
 msgstr "Грамплет, показывающий детали о местоположении"
 
 # !!!FIXME!!!
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:371
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:379
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:388
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:396
 msgid "Media Preview"
 msgstr "Предпросмотр документов"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:372
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:389
 msgid "Gramplet showing a preview of a media object"
 msgstr "Грамплет показывает предпросмотр документа"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:399
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:407
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:416
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:424
 msgid "Image Metadata"
 msgstr "Метаданные изображения"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:400
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:417
 msgid "Gramplet showing metadata for a media object"
 msgstr "Грамплет, отображающий детали о документе"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:421
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:438
 msgid "GExiv2 module not loaded."
 msgstr "Модуль GExiv2 не загружен."
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:422
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:439
 #, python-format
 msgid ""
 "Image metadata functionality will not be available.\n"
@@ -21641,274 +21660,274 @@ msgstr ""
 "Инструкция по сборке этого модуля доступна на "
 "%(gramps_wiki_build_gexiv2_url)s"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:435
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:452
 msgid "Person Residence"
 msgstr "Место жительства лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:436
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:453
 msgid "Gramplet showing residence events for a person"
 msgstr "Грамплет отображает события о месте жительства лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:449
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:466
 msgid "Person Events"
 msgstr "События лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:450
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1303
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:467
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1320
 msgid "Gramplet showing the events for a person"
 msgstr "Грамплет отображает события лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:463
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:480
 msgid "Family Events"
 msgstr "Семейные события"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:464
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:481
 msgid "Gramplet showing the events for a family"
 msgstr "Грамплет отображает события семьи"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:477
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:494
 msgid "Person Gallery"
 msgstr "Галерея лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:478
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:495
 msgid "Gramplet showing media objects for a person"
 msgstr "Отображает документы для выбранного лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:485
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:499
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:513
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:527
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:541
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:555
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:502
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:516
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:530
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:544
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:558
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:572
 msgid "Gallery"
 msgstr "Галерея"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:491
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:508
 msgid "Family Gallery"
 msgstr "Галерея семьи"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:492
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:509
 msgid "Gramplet showing media objects for a family"
 msgstr "Грамплет, показывающий документы для семьи"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:505
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:522
 msgid "Event Gallery"
 msgstr "Галерея события"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:506
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:523
 msgid "Gramplet showing media objects for an event"
 msgstr "Отображает документы для выбранного события"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:519
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:536
 msgid "Place Gallery"
 msgstr "Галерея местоположения"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:520
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:537
 msgid "Gramplet showing media objects for a place"
 msgstr "Отображает документы для выбранного местоположения"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:533
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:550
 msgid "Source Gallery"
 msgstr "Галерея источника"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:534
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:551
 msgid "Gramplet showing media objects for a source"
 msgstr "Отображает документы для выбранного источника"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:547
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:564
 msgid "Citation Gallery"
 msgstr "Галерея цитаты"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:548
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:565
 msgid "Gramplet showing media objects for a citation"
 msgstr "Отображает документы для выбранной цитаты"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:561
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:578
 msgid "Person Attributes"
 msgstr "Атрибуты лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:562
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:579
 msgid "Gramplet showing the attributes of a person"
 msgstr "Грамплет отображает атрибуты лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:575
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:592
 msgid "Event Attributes"
 msgstr "Атрибуты события"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:576
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:593
 msgid "Gramplet showing the attributes of an event"
 msgstr "Отображает атрибуты для выбранного события"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:589
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:606
 msgid "Family Attributes"
 msgstr "Атрибуты семьи"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:590
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:607
 msgid "Gramplet showing the attributes of a family"
 msgstr "Отображает атрибуты для выбранной семьи"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:603
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:620
 msgid "Media Attributes"
 msgstr "Атрибуты документа"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:604
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:621
 msgid "Gramplet showing the attributes of a media object"
 msgstr "Отображает атрибуты для выбранного документа"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:617
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:634
 msgid "Source Attributes"
 msgstr "Атрибуты источника"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:618
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:635
 msgid "Gramplet showing the attributes of a source object"
 msgstr "Отображает атрибуты для исходного документа"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:631
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:648
 msgid "Citation Attributes"
 msgstr "Атрибуты цитаты"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:632
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:649
 msgid "Gramplet showing the attributes of a citation object"
 msgstr "Отображает атрибуты для документа цитаты"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:645
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:662
 msgid "Person Notes"
 msgstr "Заметки о лице"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:646
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:663
 msgid "Gramplet showing the notes for a person"
 msgstr "Отображает заметки для выбранного лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:659
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:676
 msgid "Event Notes"
 msgstr "Заметки о событии"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:660
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:677
 msgid "Gramplet showing the notes for an event"
 msgstr "Отображает заметки для выбранного события"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:673
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:690
 #: ../gramps/plugins/textreport/familygroup.py:775
 msgid "Family Notes"
 msgstr "Заметки о семье"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:674
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:691
 msgid "Gramplet showing the notes for a family"
 msgstr "Отображает заметки для выбранной семьи"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:687
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:704
 msgid "Place Notes"
 msgstr "Заметки о местоположении"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:688
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:705
 msgid "Gramplet showing the notes for a place"
 msgstr "Отображает заметки для выбранного местоположения"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:701
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:718
 msgid "Source Notes"
 msgstr "Заметки об источнике"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:702
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:719
 msgid "Gramplet showing the notes for a source"
 msgstr "Отображает заметки для выбранного источника"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:715
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:732
 msgid "Citation Notes"
 msgstr "Заметка о цитате"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:716
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:733
 msgid "Gramplet showing the notes for a citation"
 msgstr "Отображает заметки для выбранной цитаты"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:729
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:746
 msgid "Repository Notes"
 msgstr "Заметки о хранилище"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:730
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:747
 msgid "Gramplet showing the notes for a repository"
 msgstr "Отображает заметки для выбранного хранилища"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:743
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:760
 msgid "Media Notes"
 msgstr "Заметки о документе"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:744
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:761
 msgid "Gramplet showing the notes for a media object"
 msgstr "Отображает заметки для выбранного документа"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:757
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:774
 msgid "Person Citations"
 msgstr "Цитаты для лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:758
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:775
 msgid "Gramplet showing the citations for a person"
 msgstr "Отображает все цитаты для выбранного лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:771
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:788
 msgid "Event Citations"
 msgstr "Цитаты для события"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:772
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:789
 msgid "Gramplet showing the citations for an event"
 msgstr "Отображает все цитаты для выбранного события"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:785
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:802
 msgid "Family Citations"
 msgstr "Семейные цитаты"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:786
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:803
 msgid "Gramplet showing the citations for a family"
 msgstr "Отображает все цитаты для выбранной семьи"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:799
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:816
 msgid "Place Citations"
 msgstr "Цитаты для местоположения"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:800
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:817
 msgid "Gramplet showing the citations for a place"
 msgstr "Отображает все цитаты для выбранного местоположения"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:813
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:830
 msgid "Media Citations"
 msgstr "Цитаты"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:814
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:831
 msgid "Gramplet showing the citations for a media object"
 msgstr "Отображает все цитаты, ссылающиеся на выбранный документ"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:827
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:844
 msgid "Person Children"
 msgstr "Дети лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:828
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:845
 msgid "Gramplet showing the children of a person"
 msgstr "Отображает детей для выбранного лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:841
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:858
 msgid "Family Children"
 msgstr "Дети в семье"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:842
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:859
 msgid "Gramplet showing the children of a family"
 msgstr "Отображает детей для выбранной семьи"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:855
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:872
 msgid "Person References"
 msgstr "Ссылки на лицо"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:856
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:873
 msgid "Gramplet showing the backlink references for a person"
 msgstr "Отображает все записи, ссылающиеся на выбранное лицо"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:863
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:877
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:891
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:905
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:919
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:933
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:947
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:961
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:975
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:880
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:894
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:908
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:922
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:936
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:950
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:964
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:978
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:992
 #: ../gramps/plugins/webreport/narrativeweb.py:2670
 #: ../gramps/plugins/webreport/narrativeweb.py:3166
 #: ../gramps/plugins/webreport/narrativeweb.py:5734
@@ -21916,262 +21935,262 @@ msgstr "Отображает все записи, ссылающиеся на в
 msgid "References"
 msgstr "Ссылки"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:869
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:886
 msgid "Event References"
 msgstr "Ссылки на событие"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:870
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:887
 msgid "Gramplet showing the backlink references for an event"
 msgstr "Отображает все записи, ссылающиеся на выбранное событие"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:883
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:900
 msgid "Family References"
 msgstr "Ссылки на семью"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:884
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:901
 msgid "Gramplet showing the backlink references for a family"
 msgstr "Отображает все записи, ссылающиеся на выбранную семью"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:897
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:914
 msgid "Place References"
 msgstr "Ссылки на местоположение"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:898
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:915
 msgid "Gramplet showing the backlink references for a place"
 msgstr "Отображает все записи, ссылающиеся на выбранное местоположение"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:911
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:928
 #: ../gramps/plugins/webreport/narrativeweb.py:2553
 msgid "Source References"
 msgstr "Ссылки на источники"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:912
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:929
 msgid "Gramplet showing the backlink references for a source"
 msgstr "Отображает все записи, ссылающиеся на выбранный источник"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:925
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:942
 msgid "Citation References"
 msgstr "Ссылки на цитату"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:926
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:943
 msgid "Gramplet showing the backlink references for a citation"
 msgstr "Отображает все записи, ссылающиеся на выбранную цитату"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:939
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:956
 #: ../gramps/plugins/quickview/quickview.gpr.py:248
 msgid "Repository References"
 msgstr "Ссылки на хранилище"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:940
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:957
 msgid "Gramplet showing the backlink references for a repository"
 msgstr "Отображает все записи, ссылающиеся на выбранное хранилище"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:953
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:970
 msgid "Media References"
 msgstr "Ссылки на документ"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:954
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:971
 msgid "Gramplet showing the backlink references for a media object"
 msgstr "Отображает все записи, ссылающиеся на выбранный документ"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:967
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:984
 msgid "Note References"
 msgstr "Ссылки на заметку"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:968
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:985
 msgid "Gramplet showing the backlink references for a note"
 msgstr "Отображает все записи, ссылающиеся на выбранную заметку"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:981
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:998
 msgid "Person Filter"
 msgstr "Фильтр лиц"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:982
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:999
 msgid "Gramplet providing a person filter"
 msgstr "Грамплет, осуществляющий отбор лиц по заданным критериям"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:995
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1012
 msgid "Family Filter"
 msgstr "Фильтр семей"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:996
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1013
 msgid "Gramplet providing a family filter"
 msgstr "Грамплет, осуществляющий отбор семей по заданным критериям"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1009
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1026
 msgid "Event Filter"
 msgstr "Фильтр событий"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1010
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1027
 msgid "Gramplet providing an event filter"
 msgstr "Грамплет, осуществляющий отбор событий по заданным критериям"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1023
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1040
 msgid "Source Filter"
 msgstr "Фильтр источников"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1024
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1041
 msgid "Gramplet providing a source filter"
 msgstr "Грамплет, осуществляющий отбор источников по заданным критериям"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1037
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1054
 msgid "Citation Filter"
 msgstr "Фильтр цитат"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1038
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1055
 msgid "Gramplet providing a citation filter"
 msgstr "Грамплет, осуществляющий отбор цитат по заданным критериям"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1051
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1068
 msgid "Place Filter"
 msgstr "Фильтр местоположений"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1052
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1069
 msgid "Gramplet providing a place filter"
 msgstr "Грамплет, осуществляющий отбор мест по заданным критериям"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1065
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1082
 msgid "Media Filter"
 msgstr "Фильтр документов"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1066
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1083
 msgid "Gramplet providing a media filter"
 msgstr "Грамплет, осуществляющий отбор документов по заданным критериям"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1079
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1096
 msgid "Repository Filter"
 msgstr "Фильтр хранилищ"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1080
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1097
 msgid "Gramplet providing a repository filter"
 msgstr "Грамплет, осуществляющий отбор хранилищ по заданным критериям"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1093
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1110
 msgid "Note Filter"
 msgstr "Фильтр заметок"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1094
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1111
 msgid "Gramplet providing a note filter"
 msgstr "Грамплет, осуществляющий отбор заметок по заданным критериям"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1107
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1118
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1124
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1135
 #: ../gramps/plugins/textreport/recordsreport.py:119
 msgid "Records"
 msgstr "Рекорды"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1108
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1125
 #: ../gramps/plugins/textreport/textplugins.gpr.py:413
 msgid "Shows some interesting records about people and families"
 msgstr "Показывает некоторые интересные рекорды лиц и семей"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1123
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1140
 msgid "Person To Do"
 msgstr "Задачи для лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1124
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1141
 msgid "Gramplet showing the To Do notes for a person"
 msgstr "Отображает задачи для лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1137
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1154
 msgid "Event To Do"
 msgstr "Задачи для события"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1138
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1155
 msgid "Gramplet showing the To Do notes for an event"
 msgstr "Отображает задачи для события"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1151
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1168
 msgid "Family To Do"
 msgstr "Задачи для семьи"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1152
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1169
 msgid "Gramplet showing the To Do notes for a family"
 msgstr "Отображает задачи для семьи"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1165
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1182
 msgid "Place To Do"
 msgstr "Задачи для места"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1166
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1183
 msgid "Gramplet showing the To Do notes for a place"
 msgstr "Отображает задачи для места"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1179
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1196
 msgid "Source To Do"
 msgstr "Задачи для источника"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1180
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1197
 msgid "Gramplet showing the To Do notes for a source"
 msgstr "Отображает задачи для источника"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1193
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1210
 msgid "Citation To Do"
 msgstr "Задачи для цитат"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1194
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1211
 msgid "Gramplet showing the To Do notes for a citation"
 msgstr "Отображает задачи для цитат"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1207
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1224
 msgid "Repository To Do"
 msgstr "Задачи для хранилища"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1208
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1225
 msgid "Gramplet showing the To Do notes for a repository"
 msgstr "Отображает задачи для хранилища"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1221
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1238
 msgid "Media To Do"
 msgstr "Задачи для документа"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1222
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1239
 msgid "Gramplet showing the To Do notes for a media object"
 msgstr "Отображает задачи для документа"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1261
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1269
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1278
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1286
 msgid "SoundEx"
 msgstr "Код SoundEx"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1262
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1279
 msgid "Gramplet to generate SoundEx codes"
 msgstr "Генерирует SoundEx коды"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1274
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1291
 msgid "Place Enclosed By"
 msgstr "Место входит в"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1275
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1292
 msgid "Gramplet showing the places enclosed by the active place"
 msgstr "Отображает места входящие в выбранное местоположение"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1288
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1305
 msgid "Place Encloses"
 msgstr "Место включает"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1289
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1306
 msgid "Gramplet showing the places that the active place encloses"
 msgstr "Отображает места, которые входят в выбранное местоположение"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1296
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1313
 msgid "Encloses"
 msgstr "Включает"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1302
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1319
 msgid "Geography coordinates for Person Events"
 msgstr "Географические координаты для событий лица"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1310
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1324
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1327
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1341
 msgid "Events Coordinates"
 msgstr "Координаты событий"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1316
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1333
 msgid "Geography coordinates for Family Events"
 msgstr "Географические координаты для событий семьи"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1317
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1334
 msgid "Gramplet showing the events for all the family"
 msgstr "Грамплет отображает события всей семьи"
 
@@ -22200,7 +22219,7 @@ msgstr "%d ссылается на этот объект"
 msgid "Uncollected Objects: %s"
 msgstr "Неуничтоженные объекты: %s"
 
-#: ../gramps/plugins/gramplet/locations.py:80
+#: ../gramps/plugins/gramplet/locations.py:81
 msgid "Double-click on a row to edit the selected place."
 msgstr "Щёлкните на строке дважды для правки выбранного места."
 
@@ -22218,8 +22237,8 @@ msgstr "Наведите курсор на имя для дополнитель�
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:58
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:67
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:78
-#: ../gramps/plugins/view/fanchartdescview.py:274
-#: ../gramps/plugins/view/fanchartview.py:272
+#: ../gramps/plugins/view/fanchartdescview.py:280
+#: ../gramps/plugins/view/fanchartview.py:276
 msgid "Max generations"
 msgstr "Максимальное число поколений"
 
@@ -28552,8 +28571,8 @@ msgid "Bottom Right"
 msgstr "Внизу справа"
 
 #: ../gramps/plugins/lib/maps/geography.py:308
-#: ../gramps/plugins/view/fanchartdescview.py:166
-#: ../gramps/plugins/view/fanchartview.py:164
+#: ../gramps/plugins/view/fanchartdescview.py:172
+#: ../gramps/plugins/view/fanchartview.py:168
 msgid "_Print..."
 msgstr "Напечатать..."
 
@@ -29104,18 +29123,18 @@ msgstr "Объект"
 #: ../gramps/plugins/quickview/filterbyname.py:91
 #: ../gramps/plugins/quickview/filterbyname.py:116
 #: ../gramps/plugins/textreport/tagreport.py:143
-#: ../gramps/plugins/view/view.gpr.py:180
-#: ../gramps/plugins/view/view.gpr.py:188
-#: ../gramps/plugins/view/view.gpr.py:197
+#: ../gramps/plugins/view/view.gpr.py:195
+#: ../gramps/plugins/view/view.gpr.py:203
+#: ../gramps/plugins/view/view.gpr.py:212
 msgid "People"
 msgstr "Люди"
 
 #: ../gramps/plugins/quickview/filterbyname.py:103
 #: ../gramps/plugins/quickview/filterbyname.py:128
 #: ../gramps/plugins/view/sourceview.py:115
-#: ../gramps/plugins/view/view.gpr.py:250
-#: ../gramps/plugins/view/view.gpr.py:258
-#: ../gramps/plugins/view/view.gpr.py:289
+#: ../gramps/plugins/view/view.gpr.py:265
+#: ../gramps/plugins/view/view.gpr.py:273
+#: ../gramps/plugins/view/view.gpr.py:304
 #: ../gramps/plugins/webreport/narrativeweb.py:994
 #: ../gramps/plugins/webreport/narrativeweb.py:1311
 #: ../gramps/plugins/webreport/narrativeweb.py:1486
@@ -29133,8 +29152,8 @@ msgstr "Источники"
 #: ../gramps/plugins/quickview/filterbyname.py:131
 #: ../gramps/plugins/textreport/tagreport.py:637
 #: ../gramps/plugins/view/repoview.py:129
-#: ../gramps/plugins/view/view.gpr.py:235
-#: ../gramps/plugins/view/view.gpr.py:243
+#: ../gramps/plugins/view/view.gpr.py:250
+#: ../gramps/plugins/view/view.gpr.py:258
 #: ../gramps/plugins/webreport/narrativeweb.py:1879
 #: ../gramps/plugins/webreport/narrativeweb.py:2008
 #: ../gramps/plugins/webreport/narrativeweb.py:3025
@@ -31519,24 +31538,24 @@ msgstr "Поиск сломанных ссылок на метки"
 msgid "Looking for media source reference problems"
 msgstr "Поиск сломанных ссылок на документы"
 
-#: ../gramps/plugins/tool/check.py:2022
+#: ../gramps/plugins/tool/check.py:2025
 msgid "Looking for Duplicated Gramps ID problems"
 msgstr "Поиск проблем связанных с дублированными Gramps ID"
 
-#: ../gramps/plugins/tool/check.py:2253
+#: ../gramps/plugins/tool/check.py:2256
 msgid "No errors were found"
 msgstr "Ошибок не найдено"
 
-#: ../gramps/plugins/tool/check.py:2254
+#: ../gramps/plugins/tool/check.py:2257
 msgid "The database has passed internal checks"
 msgstr "База данных прошла все внутренние проверки успешно"
 
-#: ../gramps/plugins/tool/check.py:2257
+#: ../gramps/plugins/tool/check.py:2260
 msgid "No errors were found: the database has passed internal checks."
 msgstr "База данных прошла все внутренние проверки успешно."
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2264
+#: ../gramps/plugins/tool/check.py:2267
 #, python-brace-format
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
@@ -31545,18 +31564,18 @@ msgstr[1] "{quantity} нарушенные связи ребенок/семья 
 msgstr[2] "{quantity} нарушенных связей ребенок/семья было исправлено\n"
 
 # !!!FIXME!!!
-#: ../gramps/plugins/tool/check.py:2272
+#: ../gramps/plugins/tool/check.py:2275
 msgid "Non existing child"
 msgstr "Несуществующий ребёнок"
 
 # !!!FIXME!!!
-#: ../gramps/plugins/tool/check.py:2283
+#: ../gramps/plugins/tool/check.py:2286
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "%(person)s был(а) удален(а) из семьи %(family)s\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2290
+#: ../gramps/plugins/tool/check.py:2293
 #, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
@@ -31564,17 +31583,17 @@ msgstr[0] "{quantity} нарушенная связь супруги/семья 
 msgstr[1] "{quantity} нарушенные связи супруги/семья были исправлены\n"
 msgstr[2] "{quantity} нарушенных связей супруги/семья было исправлено\n"
 
-#: ../gramps/plugins/tool/check.py:2298 ../gramps/plugins/tool/check.py:2326
+#: ../gramps/plugins/tool/check.py:2301 ../gramps/plugins/tool/check.py:2329
 msgid "Non existing person"
 msgstr "Несуществующее лицо"
 
-#: ../gramps/plugins/tool/check.py:2309 ../gramps/plugins/tool/check.py:2337
+#: ../gramps/plugins/tool/check.py:2312 ../gramps/plugins/tool/check.py:2340
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s был(а) восстановлен(а) в семье %(family)s\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2316
+#: ../gramps/plugins/tool/check.py:2319
 #, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
@@ -31583,7 +31602,7 @@ msgstr[1] "{quantity} дублированные связи супруги/се�
 msgstr[2] "{quantity} дублированных связей супруги/семья было найдено\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2344
+#: ../gramps/plugins/tool/check.py:2347
 #, python-brace-format
 msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
@@ -31593,7 +31612,7 @@ msgstr[1] "Удалены {quantity} семьи без родителей или
 msgstr[2] "Удалено {quantity} семей без родителей или детей.\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2356
+#: ../gramps/plugins/tool/check.py:2359
 #, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
@@ -31602,7 +31621,7 @@ msgstr[1] "Исправлено {quantity} нарушенных семейных
 msgstr[2] "Исправлено {quantity} нарушенных семейных отношений\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2364
+#: ../gramps/plugins/tool/check.py:2367
 #, python-brace-format
 msgid "{quantity} place alternate name fixed\n"
 msgid_plural "{quantity} place alternate names fixed\n"
@@ -31610,7 +31629,7 @@ msgstr[0] "{quantity} альтернативное название места �
 msgstr[1] "{quantity} альтернативных названия мест исправлено\n"
 msgstr[2] "{quantity} альтернативных названий мест исправлено\n"
 
-#: ../gramps/plugins/tool/check.py:2373
+#: ../gramps/plugins/tool/check.py:2376
 #, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
@@ -31620,7 +31639,7 @@ msgstr[2] "{quantity} лиц на которые ссылаются не най�
 
 # !!!FIXME!!!
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2381
+#: ../gramps/plugins/tool/check.py:2384
 #, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
@@ -31629,7 +31648,7 @@ msgstr[1] "{quantity} семьи на которые ссылаются не н�
 msgstr[2] "{quantity} семей на которые ссылаются не найдены\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2391
+#: ../gramps/plugins/tool/check.py:2394
 #, python-brace-format
 msgid "{quantity} date was corrected\n"
 msgid_plural "{quantity} dates were corrected\n"
@@ -31638,7 +31657,7 @@ msgstr[1] "{quantity} даты исправлены\n"
 msgstr[2] "{quantity} дат исправлено\n"
 
 # !!!FIXME!!!
-#: ../gramps/plugins/tool/check.py:2400
+#: ../gramps/plugins/tool/check.py:2403
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
@@ -31648,7 +31667,7 @@ msgstr[2] "{quantity} хранилищ на которые ссылаются н
 
 # !!!FIXME!!!
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2410 ../gramps/plugins/tool/check.py:2497
+#: ../gramps/plugins/tool/check.py:2413 ../gramps/plugins/tool/check.py:2500
 #, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
@@ -31656,7 +31675,7 @@ msgstr[0] "{quantity} документ на который ссылаются н
 msgstr[1] "{quantity} документа на которые ссылаются не найдены\n"
 msgstr[2] "{quantity} документов на которые ссылаются не найдены\n"
 
-#: ../gramps/plugins/tool/check.py:2421
+#: ../gramps/plugins/tool/check.py:2424
 #, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} media objects were kept\n"
@@ -31665,7 +31684,7 @@ msgstr[1] "Ссылки на {quantity} отсутствующих докуме�
 msgstr[2] "Ссылки на {quantity} отсутствующих документов были сохранены\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2429
+#: ../gramps/plugins/tool/check.py:2432
 #, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
@@ -31674,7 +31693,7 @@ msgstr[1] "{quantity} отсутствующих документа замене
 msgstr[2] "{quantity} отсутствующих документов заменено\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2437
+#: ../gramps/plugins/tool/check.py:2440
 #, python-brace-format
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
@@ -31684,7 +31703,7 @@ msgstr[2] "{quantity} отсутствующих документов удале
 
 # !!!FIXME!!!
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2445
+#: ../gramps/plugins/tool/check.py:2448
 #, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
@@ -31693,7 +31712,7 @@ msgstr[1] "{quantity} события на которые ссылаются не
 msgstr[2] "{quantity} событий на которые ссылаются не найдены\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2453
+#: ../gramps/plugins/tool/check.py:2456
 #, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
@@ -31702,7 +31721,7 @@ msgstr[1] "{quantity} неверных названия событий рожд�
 msgstr[2] "{quantity} неверных названия событий рождения исправлено\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2461
+#: ../gramps/plugins/tool/check.py:2464
 #, python-brace-format
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
@@ -31712,7 +31731,7 @@ msgstr[2] "{quantity} неверных названий события смер�
 
 # !!!FIXME!!!
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2469
+#: ../gramps/plugins/tool/check.py:2472
 #, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
@@ -31720,7 +31739,7 @@ msgstr[0] "{quantity} место на которое ссылаются не н�
 msgstr[1] "{quantity} места на которые ссылаются не найдены\n"
 msgstr[2] "{quantity} мест на которые ссылаются не найдены\n"
 
-#: ../gramps/plugins/tool/check.py:2478
+#: ../gramps/plugins/tool/check.py:2481
 #, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
@@ -31728,7 +31747,7 @@ msgstr[0] "{quantity} цитата на которую ссылаются не �
 msgstr[1] "{quantity} цитаты на которые ссылаются не найдены\n"
 msgstr[2] "{quantity} цитат на которые ссылаются не найдены\n"
 
-#: ../gramps/plugins/tool/check.py:2488
+#: ../gramps/plugins/tool/check.py:2491
 #, python-brace-format
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
@@ -31737,7 +31756,7 @@ msgstr[1] "{quantity} источника на которые ссылаются 
 msgstr[2] "{quantity} источников на которые ссылаются не найдены\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2506
+#: ../gramps/plugins/tool/check.py:2509
 #, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
@@ -31746,7 +31765,7 @@ msgstr[1] "{quantity} заметки на которые ссылаются не
 msgstr[2] "{quantity} заметкок на которые ссылаются не найдены\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2516 ../gramps/plugins/tool/check.py:2526
+#: ../gramps/plugins/tool/check.py:2519 ../gramps/plugins/tool/check.py:2529
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
@@ -31755,7 +31774,7 @@ msgstr[1] "{quantity} метки на которые ссылаются не н�
 msgstr[2] "{quantity} меток на которые ссылаются не найдены\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2536
+#: ../gramps/plugins/tool/check.py:2539
 #, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
@@ -31763,7 +31782,7 @@ msgstr[0] "{quantity} неверная ссылка на формат имён �
 msgstr[1] "{quantity} неверные ссылки на формат имён удалены\n"
 msgstr[2] "{quantity} неверных ссылок на формат имён удалено\n"
 
-#: ../gramps/plugins/tool/check.py:2547
+#: ../gramps/plugins/tool/check.py:2550
 #, python-brace-format
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
@@ -31772,7 +31791,7 @@ msgstr[1] "{quantity} неверных источника цитат испра�
 msgstr[2] "{quantity} неверных источников цитат исправлено\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2556
+#: ../gramps/plugins/tool/check.py:2559
 #, python-brace-format
 msgid "{quantity} Duplicated Gramps ID fixed\n"
 msgid_plural "{quantity} Duplicated Gramps IDs fixed\n"
@@ -31781,7 +31800,7 @@ msgstr[1] "{quantity} дублированных Gramps ID исправлено\
 msgstr[2] "{quantity} дублированных Gramps ID исправлено\n"
 
 # need proper plural
-#: ../gramps/plugins/tool/check.py:2563
+#: ../gramps/plugins/tool/check.py:2566
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -31804,11 +31823,11 @@ msgstr ""
 "   %(repo)d хранилищ\n"
 "   %(note)d заметок\n"
 
-#: ../gramps/plugins/tool/check.py:2610
+#: ../gramps/plugins/tool/check.py:2613
 msgid "Integrity Check Results"
 msgstr "Результаты проверки целостности"
 
-#: ../gramps/plugins/tool/check.py:2615
+#: ../gramps/plugins/tool/check.py:2618
 msgid "Check and Repair"
 msgstr "Проверка и коррекция"
 
@@ -33577,127 +33596,137 @@ msgstr ""
 "быть выбрана нажатием и удержанием клавиши Control в момент щелчка по строке "
 "с желаемой семьёй."
 
-#: ../gramps/plugins/view/fanchartdescview.py:168
-#: ../gramps/plugins/view/fanchartview.py:166
+#: ../gramps/plugins/view/fanchartdescview.py:174
+#: ../gramps/plugins/view/fanchartview.py:170
 msgid "Print or save the Fan Chart View"
 msgstr "Напечатать или сохранить Fan Chart View"
 
-#: ../gramps/plugins/view/fanchartdescview.py:278
-#: ../gramps/plugins/view/fanchartview.py:276
+#: ../gramps/plugins/view/fanchartdescview.py:284
+#: ../gramps/plugins/view/fanchartview.py:280
 msgid "Text Font"
 msgstr "Шрифт текста"
 
-#: ../gramps/plugins/view/fanchartdescview.py:282
-#: ../gramps/plugins/view/fanchartview.py:280
+#: ../gramps/plugins/view/fanchartdescview.py:288
+#: ../gramps/plugins/view/fanchartview.py:284
 msgid "Gender colors"
 msgstr "Расцветка по половому признаку"
 
-#: ../gramps/plugins/view/fanchartdescview.py:283
-#: ../gramps/plugins/view/fanchartview.py:281
+#: ../gramps/plugins/view/fanchartdescview.py:289
+#: ../gramps/plugins/view/fanchartview.py:285
 msgid "Generation based gradient"
 msgstr "Градиентная заливка, зависит от поколения"
 
-#: ../gramps/plugins/view/fanchartdescview.py:284
-#: ../gramps/plugins/view/fanchartview.py:282
+#: ../gramps/plugins/view/fanchartdescview.py:290
+#: ../gramps/plugins/view/fanchartview.py:286
 msgid "Age (0-100) based gradient"
 msgstr "Градиентная заливка, зависит от возраста (0-100)"
 
-#: ../gramps/plugins/view/fanchartdescview.py:286
-#: ../gramps/plugins/view/fanchartview.py:284
+#: ../gramps/plugins/view/fanchartdescview.py:292
+#: ../gramps/plugins/view/fanchartview.py:288
 msgid "Single main (filter) color"
 msgstr "Одиночный цвет фильтра"
 
-#: ../gramps/plugins/view/fanchartdescview.py:287
-#: ../gramps/plugins/view/fanchartview.py:285
+#: ../gramps/plugins/view/fanchartdescview.py:293
+#: ../gramps/plugins/view/fanchartview.py:289
 msgid "Time period based gradient"
 msgstr "Градиентная заливка, зависит от периода времени"
 
-#: ../gramps/plugins/view/fanchartdescview.py:288
-#: ../gramps/plugins/view/fanchartview.py:286
+#: ../gramps/plugins/view/fanchartdescview.py:294
+#: ../gramps/plugins/view/fanchartview.py:290
 msgid "White"
 msgstr "Белый"
 
-#: ../gramps/plugins/view/fanchartdescview.py:289
-#: ../gramps/plugins/view/fanchartview.py:287
+#: ../gramps/plugins/view/fanchartdescview.py:295
+#: ../gramps/plugins/view/fanchartview.py:291
 msgid "Color scheme classic report"
 msgstr "Цветовая схема классического отчёта"
 
-#: ../gramps/plugins/view/fanchartdescview.py:290
-#: ../gramps/plugins/view/fanchartview.py:288
+#: ../gramps/plugins/view/fanchartdescview.py:296
+#: ../gramps/plugins/view/fanchartview.py:292
 msgid "Color scheme classic view"
 msgstr "Цветовая схема классического вида"
 
-#: ../gramps/plugins/view/fanchartdescview.py:299
-#: ../gramps/plugins/view/fanchartview.py:297
+#: ../gramps/plugins/view/fanchartdescview.py:305
+#: ../gramps/plugins/view/fanchartview.py:301
 msgid "Background"
 msgstr "Цвет фона"
 
 #. colors, stored as hex values
-#: ../gramps/plugins/view/fanchartdescview.py:306
-#: ../gramps/plugins/view/fanchartview.py:303
+#: ../gramps/plugins/view/fanchartdescview.py:312
+#: ../gramps/plugins/view/fanchartview.py:307
 msgid "Start gradient/Main color"
 msgstr "Начало градиента / основной цвет"
 
-#: ../gramps/plugins/view/fanchartdescview.py:308
-#: ../gramps/plugins/view/fanchartview.py:305
+#: ../gramps/plugins/view/fanchartdescview.py:314
+#: ../gramps/plugins/view/fanchartview.py:309
 msgid "End gradient/2nd color"
 msgstr "Завершение градиента / второй цвет"
 
-#: ../gramps/plugins/view/fanchartdescview.py:310
+#: ../gramps/plugins/view/fanchartdescview.py:316
 msgid "Color for duplicates"
 msgstr "Цвет для дубликатов"
 
 #. form of the fan
-#: ../gramps/plugins/view/fanchartdescview.py:313
-#: ../gramps/plugins/view/fanchartview.py:308
+#: ../gramps/plugins/view/fanchartdescview.py:319
+#: ../gramps/plugins/view/fanchartview.py:312
 msgid "Fan chart type"
 msgstr "Форма веерной карты"
 
-#: ../gramps/plugins/view/fanchartdescview.py:315
-#: ../gramps/plugins/view/fanchartview.py:310
+#: ../gramps/plugins/view/fanchartdescview.py:321
+#: ../gramps/plugins/view/fanchartview.py:314
 msgid "Full Circle"
 msgstr "полный круг"
 
-#: ../gramps/plugins/view/fanchartdescview.py:316
-#: ../gramps/plugins/view/fanchartview.py:310
+#: ../gramps/plugins/view/fanchartdescview.py:322
+#: ../gramps/plugins/view/fanchartview.py:314
 msgid "Half Circle"
 msgstr "полукруг"
 
-#: ../gramps/plugins/view/fanchartdescview.py:317
-#: ../gramps/plugins/view/fanchartview.py:311
+#: ../gramps/plugins/view/fanchartdescview.py:323
+#: ../gramps/plugins/view/fanchartview.py:315
 msgid "Quadrant"
 msgstr "Квадрант"
 
 #. algo for the fan angle distribution
-#: ../gramps/plugins/view/fanchartdescview.py:320
+#: ../gramps/plugins/view/fanchartdescview.py:326
 msgid "Fan chart distribution"
 msgstr "Распределение по веерной карте"
 
-#: ../gramps/plugins/view/fanchartdescview.py:323
+#: ../gramps/plugins/view/fanchartdescview.py:329
 msgid "Homogeneous children distribution"
 msgstr "Равномерное распределение детей"
 
-#: ../gramps/plugins/view/fanchartdescview.py:325
+#: ../gramps/plugins/view/fanchartdescview.py:331
 msgid "Size  proportional to number of descendants"
 msgstr "Установить размер пропорционально числу потомков"
+
+#: ../gramps/plugins/view/fanchartdescview.py:337
+#: ../gramps/plugins/view/fanchartview.py:320
+msgid "Show names on two lines"
+msgstr "Показывать имена в две строки"
+
+#: ../gramps/plugins/view/fanchartdescview.py:342
+#: ../gramps/plugins/view/fanchartview.py:325
+msgid "Flip name on the left of the fan"
+msgstr "Разворачивать имена относительно левого края карты"
 
 #. options we don't show on the dialog
 #. #configdialog.add_checkbox(table,
 #. #        _('Allow radial text'),
 #. #        ??, 'interface.fanview-radialtext')
-#: ../gramps/plugins/view/fanchartdescview.py:329
-#: ../gramps/plugins/view/fanchartview.py:323
+#: ../gramps/plugins/view/fanchartdescview.py:345
+#: ../gramps/plugins/view/fanchartview.py:337
 #: ../gramps/plugins/view/pedigreeview.py:2038
 #: ../gramps/plugins/view/relview.py:1699
 msgid "Layout"
-msgstr "Расположение"
+msgstr "Представление"
 
-#: ../gramps/plugins/view/fanchartdescview.py:502
-#: ../gramps/plugins/view/fanchartview.py:511
+#: ../gramps/plugins/view/fanchartdescview.py:536
+#: ../gramps/plugins/view/fanchartview.py:543
 msgid "No preview available"
 msgstr "Предварительный просмотр недоступен"
 
-#: ../gramps/plugins/view/fanchartview.py:316
+#: ../gramps/plugins/view/fanchartview.py:330
 msgid "Show children ring"
 msgstr "Отображать кольцо детей"
 
@@ -34610,6 +34639,7 @@ msgstr "Определяет число предков выделенного л
 #: ../gramps/plugins/view/view.gpr.py:133
 #: ../gramps/plugins/view/view.gpr.py:142
 #: ../gramps/plugins/view/view.gpr.py:157
+#: ../gramps/plugins/view/view.gpr.py:172
 msgid "Charts"
 msgstr "Графики"
 
@@ -34621,47 +34651,51 @@ msgstr "Отображает родителей веерной картой"
 msgid "Showing descendants through a fanchart"
 msgstr "Отображает потомков в виде веерной карты"
 
-#: ../gramps/plugins/view/view.gpr.py:171
+#: ../gramps/plugins/view/view.gpr.py:173
+msgid "Showing ascendants and descendants through a fanchart"
+msgstr "Отображает предков и потомков в виде веерной карты"
+
+#: ../gramps/plugins/view/view.gpr.py:186
 msgid "Grouped People"
 msgstr "Сгруппированный список"
 
-#: ../gramps/plugins/view/view.gpr.py:172
+#: ../gramps/plugins/view/view.gpr.py:187
 msgid "The view showing all people in the Family Tree grouped per family name"
 msgstr "Показ всех людей в семейном древе, сгруппированных по фамилии"
 
-#: ../gramps/plugins/view/view.gpr.py:189
+#: ../gramps/plugins/view/view.gpr.py:204
 msgid "The view showing all people in the Family Tree in a flat list"
 msgstr "Показ всех людей в семейном древе общим списком"
 
-#: ../gramps/plugins/view/view.gpr.py:205
+#: ../gramps/plugins/view/view.gpr.py:220
 msgid "The view showing all the places of the Family Tree"
 msgstr "Вид, отображающий все места, связанные с данным семейным древом"
 
-#: ../gramps/plugins/view/view.gpr.py:219
+#: ../gramps/plugins/view/view.gpr.py:234
 msgid "Place Tree"
 msgstr "Иерархия мест"
 
-#: ../gramps/plugins/view/view.gpr.py:220
+#: ../gramps/plugins/view/view.gpr.py:235
 msgid "A view displaying places in a tree format."
 msgstr "Вид, показывающий список мест в виде дерева."
 
-#: ../gramps/plugins/view/view.gpr.py:236
+#: ../gramps/plugins/view/view.gpr.py:251
 msgid "The view showing all the repositories"
 msgstr "Вид, отображающий все хранилища"
 
-#: ../gramps/plugins/view/view.gpr.py:251
+#: ../gramps/plugins/view/view.gpr.py:266
 msgid "The view showing all the sources"
 msgstr "Вид, отображающий все источники"
 
-#: ../gramps/plugins/view/view.gpr.py:267
+#: ../gramps/plugins/view/view.gpr.py:282
 msgid "The view showing all the citations"
 msgstr "Вид, отображающий все цитаты"
 
-#: ../gramps/plugins/view/view.gpr.py:281
+#: ../gramps/plugins/view/view.gpr.py:296
 msgid "Citation Tree"
 msgstr "Древо цитат"
 
-#: ../gramps/plugins/view/view.gpr.py:282
+#: ../gramps/plugins/view/view.gpr.py:297
 msgid "A view displaying citations and sources in a tree format."
 msgstr "Вид, показывающий список цитат и источников в виде дерева."
 
