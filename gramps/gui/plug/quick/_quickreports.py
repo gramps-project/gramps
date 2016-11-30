@@ -193,7 +193,8 @@ def run_quick_report_by_name(dbstate, uistate, report_name, handle,
             break
     if report:
         return run_report(dbstate, uistate, report.category,
-                          handle, report, container=container, **kwargs)
+                          handle, report, container=container,
+                          **kwargs)
     else:
         raise AttributeError("No such quick report '%s'" % report_name)
 

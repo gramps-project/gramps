@@ -408,6 +408,9 @@ class DisplayState(Callback):
         self.disprel_defpers = None
         self.disprel_active = None
         self.set_relationship_class()
+        self.export = False
+        self.modal_window = None
+        self.modal_list = []
 
         formatter = logging.Formatter('%(levelname)s %(name)s: %(message)s')
         warnbtn = status.get_warning_button()
@@ -526,6 +529,39 @@ class DisplayState(Callback):
             return name
         else:
             return ""
+
+    def set_modal_mode(self, window, value):
+        """
+         We must have only one modal window. Only the last one will be modal.
+        """
+        if value and not self.modal_list:
+            self.modal_window = window
+        if value:
+            if self.modal_list:
+                self.modal_list[-1].set_modal(False)
+            window.set_modal(True)
+            window.present() # force the window to be on top
+            self.modal_list.append(window)
+        elif self.modal_list:
+            self.modal_list.pop()
+            if self.modal_list:
+                self.modal_list[-1].set_modal(True)
+                self.modal_list[-1].present() # force the window to be on top
+            if not self.modal_list:
+                self.modal_window = None
+
+    def get_modal_window(self):
+        return self.modal_window
+
+    def set_export_mode(self, value):
+        self.set_busy_cursor(value)
+        if value == self.export:
+            return
+        else:
+            self.export = value
+
+    def get_export_mode(self):
+        return self.export
 
     def set_busy_cursor(self, value):
         if value == self.busy:
