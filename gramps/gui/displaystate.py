@@ -260,6 +260,9 @@ class RecentDocsMenu:
         self.state = state
 
     def load(self, item):
+        # avoid to load another database if busy in operation
+        if self.uistate.busy:
+            return
         filename = item.get_path()
         self.fileopen(filename)
 
