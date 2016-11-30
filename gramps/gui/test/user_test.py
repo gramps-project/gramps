@@ -23,7 +23,6 @@
 
 import unittest
 from .. import user
-from ...gen.test.user_test import TestUser
 import sys
 
 try:
@@ -38,6 +37,12 @@ except:
     MOCKING = False
     print ("Mocking disabled", sys.exc_info()[0:2])
 
+class TestUser:
+    TITLE = "Testing prompt"
+    MSG = "Choices are hard. Nevertheless, please choose!"
+    ACCEPT = "To be"
+    REJECT = "Not to be"
+
 class TestUser_prompt(unittest.TestCase):
     def setUp(self):
         self.user = user.User()
@@ -46,9 +51,10 @@ class TestUser_prompt(unittest.TestCase):
     def test_prompt_runs_QuestionDialog2(self):
         with patch('gramps.gui.user.QuestionDialog2') as MockQD:
             self.user.prompt(TestUser.TITLE, TestUser.MSG,
-                             TestUser.ACCEPT, TestUser.REJECT, None)
+                             TestUser.ACCEPT, TestUser.REJECT, parent=None)
         MockQD.assert_called_once_with(TestUser.TITLE, TestUser.MSG,
-                                       TestUser.ACCEPT, TestUser.REJECT, None)
+                                       TestUser.ACCEPT, TestUser.REJECT,
+                                       parent=None)
         MockQD.return_value.run.assert_called_once_with()
         # TODO test that run's return is the one returned by prompt()...
 

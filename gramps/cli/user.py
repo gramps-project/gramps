@@ -152,7 +152,7 @@ class User(user.User):
             reply = ""
         ### Trun response into True/False:
         if reply == "":
-            return default
+            return default == accept_label
         elif reply == accept_label:
             return True
         else:
