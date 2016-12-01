@@ -88,10 +88,12 @@ class MergeEvent(ManagedWindow):
             for widget_name in ('date1', 'date2', 'date_btn1', 'date_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)
 
-        place1 = database.get_place_from_handle(
-                self.ev1.get_place_handle())
-        place2 = database.get_place_from_handle(
-                self.ev2.get_place_handle())
+        place1 = self.ev1.get_place_handle()
+        if place1:
+            place1 = database.get_place_from_handle(place1)
+        place2 = self.ev2.get_place_handle()
+        if place2:
+            place2 = database.get_place_from_handle(place2)
         place1 = place1.get_title() if place1 else ""
         place2 = place2.get_title() if place2 else ""
         entry1 = self.get_widget("place1")
