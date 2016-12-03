@@ -1021,10 +1021,10 @@ class BookDialog(DocReportDialog):
             (msg1, msg2) = msg.messages()
             msg2 += ' (%s)' % name # which report has the error?
             ErrorDialog(msg1, msg2, parent=self.uistate.window)
+            return
         except FilterError as msg:
             (msg1, msg2) = msg.messages()
             ErrorDialog(msg1, msg2, parent=self.uistate.window)
-        finally:
             return
 
         if self.open_with_app.get_active():
