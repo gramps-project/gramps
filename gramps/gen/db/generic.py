@@ -26,12 +26,10 @@
 #------------------------------------------------------------------------
 import random
 import pickle
-import base64
 import time
 import re
 import os
 import logging
-import shutil
 import bisect
 import ast
 import sys
@@ -43,19 +41,14 @@ import glob
 # Gramps Modules
 #
 #------------------------------------------------------------------------
-import gramps
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-from gramps.gen.db import (DbReadBase, DbWriteBase, DbTxn, DbUndo,
-                           KEY_TO_NAME_MAP, KEY_TO_CLASS_MAP,
-                           CLASS_TO_KEY_MAP, TXNADD, TXNUPD, TXNDEL,
+from gramps.gen.db import (DbReadBase, DbWriteBase, DbUndo, DBLOGNAME,
+                           DBUNDOFN, KEY_TO_CLASS_MAP, REFERENCE_KEY,
                            PERSON_KEY, FAMILY_KEY, CITATION_KEY,
                            SOURCE_KEY, EVENT_KEY, MEDIA_KEY,
                            PLACE_KEY, REPOSITORY_KEY, NOTE_KEY, TAG_KEY)
 from gramps.gen.errors import HandleError
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
-from gramps.gen.db.dbconst import *
 from gramps.gen.db.bookmarks import DbBookmarks
 from gramps.gen.db import exceptions
 
@@ -65,6 +58,8 @@ from gramps.gen.lib import (Tag, Media, Person, Family, Source, Citation, Event,
                             Place, Repository, Note, NameOriginType)
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.config import config
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 LOG = logging.getLogger(DBLOGNAME)
 
@@ -149,8 +144,7 @@ class DbGenericUndo(DbUndo):
                 if key == REFERENCE_KEY:
                     self.undo_reference(new_data, handle)
                 else:
-                    self.undo_data(new_data, handle, key,
-                                        db.emit, SIGBASE[key])
+                    self.undo_data(new_data, handle, key, db.emit, SIGBASE[key])
             self.db.transaction_backend_commit()
         except:
             self.db.transaction_backend_abort()
@@ -158,14 +152,13 @@ class DbGenericUndo(DbUndo):
 
         # Notify listeners
         if db.undo_callback:
-            db.undo_callback(_("_Undo %s")
-                                   % transaction.get_description())
+            db.undo_callback(_("_Undo %s") % transaction.get_description())
 
         if db.redo_callback:
             if self.redo_count > 1:
                 new_transaction = self.redoq[-2]
                 db.redo_callback(_("_Redo %s")
-                                   % new_transaction.get_description())
+                                 % new_transaction.get_description())
             else:
                 db.redo_callback(None)
 
@@ -205,13 +198,13 @@ class DbGenericUndo(DbUndo):
         if db.undo_callback:
             if self.undo_count > 0:
                 db.undo_callback(_("_Undo %s")
-                                   % self.undoq[-1].get_description())
+                                 % self.undoq[-1].get_description())
             else:
                 db.undo_callback(None)
 
         if db.redo_callback:
             db.redo_callback(_("_Redo %s")
-                                   % transaction.get_description())
+                             % transaction.get_description())
 
         if update_history and db.undo_history_callback:
             db.undo_history_callback()
@@ -293,18 +286,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     """
     __signals__ = dict((obj+'-'+op, signal)
                        for obj in
-                       ['person', 'family', 'event', 'place',
-                        'source', 'citation', 'media', 'note', 'repository', 'tag']
+                       ['person', 'family', 'event', 'place', 'repository',
+                        'source', 'citation', 'media', 'note', 'tag']
                        for op, signal in zip(
-                               ['add',   'update', 'delete', 'rebuild'],
-                               [(list,), (list,),  (list,),   None]
+                           ['add', 'update', 'delete', 'rebuild'],
+                           [(list,), (list,), (list,), None]
                        )
-                   )
+                      )
 
     # 2. Signals for long operations
     __signals__.update(('long-op-'+op, signal) for op, signal in zip(
-        ['start',  'heartbeat', 'end'],
-        [(object,), None,       None]
+        ['start', 'heartbeat', 'end'],
+        [(object,), None, None]
         ))
 
     # 3. Special signal for change in home person
@@ -321,7 +314,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         DbReadBase.__init__(self)
         DbWriteBase.__init__(self)
         Callback.__init__(self)
-        self.__tables =  {
+        self.__tables = {
             'Person':
             {
                 "handle_func": self.get_person_from_handle,
@@ -537,7 +530,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.undo_callback = None
         self.redo_callback = None
         self.undo_history_callback = None
-        self.modified   = 0
+        self.modified = 0
         self.transaction = None
         self.abort_possible = False
         self._bm_changes = 0
@@ -547,6 +540,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.owner = Researcher()
         if directory:
             self.load(directory)
+
+    def initialize_backend(self, directory):
+        """
+        Initialize database backend.
+        """
+        raise NotImplementedError
 
     def load(self, directory, callback=None, mode=None,
              force_schema_upgrade=False,
@@ -560,9 +559,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         db_python_version = self.get_python_version(directory)
         current_python_version = sys.version_info[0]
         if db_python_version != current_python_version:
-                raise exceptions.DbPythonError(str(db_python_version),
-                                               str(current_python_version),
-                                               str(current_python_version))
+            raise exceptions.DbPythonError(str(db_python_version),
+                                           str(current_python_version),
+                                           str(current_python_version))
         db_schema_version = self.get_schema_version(directory)
         current_schema_version = self.VERSION[0]
         if db_schema_version != current_schema_version:
@@ -641,6 +640,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         self.load(self._directory)
 
+    def close_backend(self):
+        """
+        Close database backend.
+        """
+        raise NotImplementedError
+
     def close(self, update=True, user=None):
         """
         Close the database.
@@ -650,10 +655,11 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             if update:
                 if config.get('database.autobackup'):
                     self.autobackup(user)
-                # This is just a dummy file to indicate last modified time of the
-                # database for gramps.cli.clidbman:
+                # This is just a dummy file to indicate last modified time of
+                # the database for gramps.cli.clidbman:
                 filename = os.path.join(self._directory, "meta_data.db")
                 touch(filename)
+
                 # Save metadata
                 self.transaction_backend_begin()
                 self.set_metadata('name_formats', self.name_formats)
@@ -661,13 +667,16 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
                 # Bookmarks
                 self.set_metadata('bookmarks', self.bookmarks.get())
-                self.set_metadata('family_bookmarks', self.family_bookmarks.get())
+                self.set_metadata('family_bookmarks',
+                                  self.family_bookmarks.get())
                 self.set_metadata('event_bookmarks', self.event_bookmarks.get())
-                self.set_metadata('source_bookmarks', self.source_bookmarks.get())
-                self.set_metadata('citation_bookmarks', self.citation_bookmarks.get())
-                self.set_metadata('repo_bookmarks', self.repo_bookmarks.get())
-                self.set_metadata('media_bookmarks', self.media_bookmarks.get())
                 self.set_metadata('place_bookmarks', self.place_bookmarks.get())
+                self.set_metadata('repo_bookmarks', self.repo_bookmarks.get())
+                self.set_metadata('source_bookmarks',
+                                  self.source_bookmarks.get())
+                self.set_metadata('citation_bookmarks',
+                                  self.citation_bookmarks.get())
+                self.set_metadata('media_bookmarks', self.media_bookmarks.get())
                 self.set_metadata('note_bookmarks', self.note_bookmarks.get())
 
                 # Custom type values, sets
@@ -717,7 +726,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Return true if there are no [primary] records in the database
         """
         for table in self.get_table_func():
-            if len(self.get_table_func(table,"handles_func")()) > 0:
+            if len(self.get_table_func(table, "handles_func")()) > 0:
                 return False
         return True
 
@@ -756,11 +765,25 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 with open(filepath, "r", encoding='utf-8') as name_file:
                     version = name_file.readline().strip()
             except (OSError, IOError) as msg:
-                self.__log_error()
+                LOG.error(str(msg))
                 version = "(0, 0, 0)"
             return ast.literal_eval(version)
         else:
             return (0, 0, 0)
+
+    def get_python_version(self, directory=None):
+        """
+        Get the version of python that the database was created
+        under. Assumes 3, if not found.
+        """
+        raise NotImplementedError
+
+    def get_schema_version(self, directory=None):
+        """
+        Get the version of the schema that the database was created
+        under. Assumes 18, if not found.
+        """
+        raise NotImplementedError
 
     def get_table_func(self, table=None, func=None):
         """
@@ -813,6 +836,25 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.transaction = transaction
         return transaction
 
+    def get_metadata(self, key, default=[]):
+        """
+        Get an item from the database.
+
+        Default is an empty list, which is a mutable and
+        thus a bad default (pylint will complain).
+
+        However, it is just used as a value, and not altered, so
+        its use here is ok.
+        """
+        raise NotImplementedError
+
+    def set_metadata(self, key, value):
+        """
+        key: string
+        value: item, will be serialized here
+        """
+        raise NotImplementedError
+
     ################################################################
     #
     # set_*_id_prefix methods
@@ -843,7 +885,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         pattern_match = re.match(r"(.*)%[0 ](\d+)[diu]$", id_pattern)
         if pattern_match:
             str_prefix = pattern_match.group(1)
-            nr_width = int(pattern_match.group(2))
+            #nr_width = int(pattern_match.group(2))
             def closure_func(gramps_id):
                 if gramps_id and gramps_id.startswith(str_prefix):
                     id_number = gramps_id[len(str_prefix):]
@@ -1089,6 +1131,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
+    def get_number_of(self, obj_key):
+        """
+        Return the number of objects currently in the database.
+        """
+        raise NotImplementedError
+
     def get_number_of_people(self):
         """
         Return the number of people currently in the database.
@@ -1155,31 +1203,74 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
+    def get_gramps_ids(self, obj_key):
+        """
+        Return a list of Gramps IDs, one ID for each object in the
+        database.
+        """
+        raise NotImplementedError
+
     def get_person_gramps_ids(self):
+        """
+        Return a list of Gramps IDs, one ID for each Person in the
+        database.
+        """
         return self.get_gramps_ids(PERSON_KEY)
 
     def get_family_gramps_ids(self):
+        """
+        Return a list of Gramps IDs, one ID for each Family in the
+        database.
+        """
         return self.get_gramps_ids(FAMILY_KEY)
 
     def get_source_gramps_ids(self):
+        """
+        Return a list of Gramps IDs, one ID for each Source in the
+        database.
+        """
         return self.get_gramps_ids(SOURCE_KEY)
 
     def get_citation_gramps_ids(self):
+        """
+        Return a list of Gramps IDs, one ID for each Citation in the
+        database.
+        """
         return self.get_gramps_ids(CITATION_KEY)
 
     def get_event_gramps_ids(self):
+        """
+        Return a list of Gramps IDs, one ID for each Event in the
+        database.
+        """
         return self.get_gramps_ids(EVENT_KEY)
 
     def get_media_gramps_ids(self):
+        """
+        Return a list of Gramps IDs, one ID for each Media in the
+        database.
+        """
         return self.get_gramps_ids(MEDIA_KEY)
 
     def get_place_gramps_ids(self):
+        """
+        Return a list of Gramps IDs, one ID for each Place in the
+        database.
+        """
         return self.get_gramps_ids(PLACE_KEY)
 
     def get_repository_gramps_ids(self):
+        """
+        Return a list of Gramps IDs, one ID for each Repository in the
+        database.
+        """
         return self.get_gramps_ids(REPOSITORY_KEY)
 
     def get_note_gramps_ids(self):
+        """
+        Return a list of Gramps IDs, one ID for each Note in the
+        database.
+        """
         return self.get_gramps_ids(NOTE_KEY)
 
     ################################################################
@@ -1366,6 +1457,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
+    def has_handle(self, obj_key, handle):
+        """
+        Return True if the handle exists in the database.
+        """
+        raise NotImplementedError
+
     def has_person_handle(self, handle):
         return self.has_handle(PERSON_KEY, handle)
 
@@ -1401,6 +1498,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     # has_*_gramps_id methods
     #
     ################################################################
+
+    def has_gramps_id(self, obj_key, gramps_id):
+        raise NotImplementedError
 
     def has_person_gramps_id(self, gramps_id):
         return self.has_gramps_id(PERSON_KEY, gramps_id)
@@ -1474,6 +1574,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
+    def _iter_handles(self, obj_key):
+        raise NotImplementedError
+
     def iter_person_handles(self):
         """
         Return an iterator over handles for Persons in the database
@@ -1545,7 +1648,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         Iterate over items in a class.
         """
-        cursor = self.get_table_func(class_.__name__,"cursor_func")
+        cursor = self.get_table_func(class_.__name__, "cursor_func")
         for data in cursor():
             yield class_.create(data[1])
 
@@ -1584,6 +1687,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     # _iter_raw_*_data methods
     #
     ################################################################
+
+    def _iter_raw_data(self, obj_key):
+        raise NotImplementedError
 
     def _iter_raw_person_data(self):
         """
@@ -1645,11 +1751,23 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         return self._iter_raw_data(TAG_KEY)
 
+    def _iter_raw_place_tree_data(self):
+        """
+        Return an iterator over raw data in the place hierarchy.
+        """
+        raise NotImplementedError
+
     ################################################################
     #
     # get_raw_*_data methods
     #
     ################################################################
+
+    def get_raw_data(self, obj_key, handle):
+        """
+        Return raw (serialized and pickled) object from handle.
+        """
+        raise NotImplementedError
 
     def get_raw_person_data(self, handle):
         return self.get_raw_data(PERSON_KEY, handle)
@@ -1686,6 +1804,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     # get_raw_*_from_id_data methods
     #
     ################################################################
+
+    def _get_raw_from_id_data(self, obj_key, gramps_id):
+        raise NotImplementedError
 
     def _get_raw_person_from_id_data(self, gramps_id):
         return self._get_raw_from_id_data(PERSON_KEY, gramps_id)
@@ -1725,7 +1846,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             person.handle = create_id()
         if (not person.gramps_id) and set_gid:
             person.gramps_id = self.find_next_person_gramps_id()
-        if (not person.gramps_id):
+        if not person.gramps_id:
             # give it a random value for the moment:
             person.gramps_id = str(random.random())
         self.commit_person(person, trans)
@@ -1736,7 +1857,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             family.handle = create_id()
         if (not family.gramps_id) and set_gid:
             family.gramps_id = self.find_next_family_gramps_id()
-        if (not family.gramps_id):
+        if not family.gramps_id:
             # give it a random value for the moment:
             family.gramps_id = str(random.random())
         self.commit_family(family, trans)
@@ -1747,7 +1868,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             citation.handle = create_id()
         if (not citation.gramps_id) and set_gid:
             citation.gramps_id = self.find_next_citation_gramps_id()
-        if (not citation.gramps_id):
+        if not citation.gramps_id:
             # give it a random value for the moment:
             citation.gramps_id = str(random.random())
         self.commit_citation(citation, trans)
@@ -1758,7 +1879,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             source.handle = create_id()
         if (not source.gramps_id) and set_gid:
             source.gramps_id = self.find_next_source_gramps_id()
-        if (not source.gramps_id):
+        if not source.gramps_id:
             # give it a random value for the moment:
             source.gramps_id = str(random.random())
         self.commit_source(source, trans)
@@ -1769,7 +1890,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             repository.handle = create_id()
         if (not repository.gramps_id) and set_gid:
             repository.gramps_id = self.find_next_repository_gramps_id()
-        if (not repository.gramps_id):
+        if not repository.gramps_id:
             # give it a random value for the moment:
             repository.gramps_id = str(random.random())
         self.commit_repository(repository, trans)
@@ -1780,7 +1901,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             note.handle = create_id()
         if (not note.gramps_id) and set_gid:
             note.gramps_id = self.find_next_note_gramps_id()
-        if (not note.gramps_id):
+        if not note.gramps_id:
             # give it a random value for the moment:
             note.gramps_id = str(random.random())
         self.commit_note(note, trans)
@@ -1791,7 +1912,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             place.handle = create_id()
         if (not place.gramps_id) and set_gid:
             place.gramps_id = self.find_next_place_gramps_id()
-        if (not place.gramps_id):
+        if not place.gramps_id:
             # give it a random value for the moment:
             place.gramps_id = str(random.random())
         self.commit_place(place, trans)
@@ -1802,7 +1923,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             event.handle = create_id()
         if (not event.gramps_id) and set_gid:
             event.gramps_id = self.find_next_event_gramps_id()
-        if (not event.gramps_id):
+        if not event.gramps_id:
             # give it a random value for the moment:
             event.gramps_id = str(random.random())
         self.commit_event(event, trans)
@@ -1825,7 +1946,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             obj.handle = create_id()
         if (not obj.gramps_id) and set_gid:
             obj.gramps_id = self.find_next_media_gramps_id()
-        if (not obj.gramps_id):
+        if not obj.gramps_id:
             # give it a random value for the moment:
             obj.gramps_id = str(random.random())
         self.commit_media(obj, transaction)
@@ -1836,6 +1957,13 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     # commit_* methods
     #
     ################################################################
+
+    def _commit_base(self, obj, obj_key, trans, change_time):
+        """
+        Commit the specified object to the database, storing the changes as
+        part of the transaction.
+        """
+        raise NotImplementedError
 
     def commit_person(self, person, trans, change_time=None):
         """
@@ -2064,6 +2192,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     # remove_* methods
     #
     ################################################################
+
+    def _do_remove(self, handle, transaction, obj_key):
+        raise NotImplementedError
 
     def remove_person(self, handle, transaction):
         """
@@ -2369,6 +2500,16 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if name in self.surname_list:
             self.surname_list.remove(name)
 
+    def get_gender_stats(self):
+        """
+        Returns a dictionary of
+        {given_name: (male_count, female_count, unknown_count)}
+        """
+        raise NotImplementedError
+
+    def save_gender_stats(self, gstats):
+        raise NotImplementedError
+
     def get_researcher(self):
         return self.owner
 
@@ -2398,7 +2539,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
         """
         if table_name in self.get_table_func() and handle:
-            return self.get_table_func(table_name,"handle_func")(handle)
+            return self.get_table_func(table_name, "handle_func")(handle)
         return None
 
     def get_from_name_and_gramps_id(self, table_name, gramps_id):
@@ -2413,7 +2554,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         >>> self.get_from_name_and_gramps_id("Media", "M00012")
         """
         if table_name in self.get_table_func():
-            return self.get_table_func(table_name,"gramps_id_func")(gramps_id)
+            return self.get_table_func(table_name, "gramps_id_func")(gramps_id)
         return None
 
     def get_save_path(self):
@@ -2509,11 +2650,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         order_by = ""
         if person.primary_name:
-            order_by_list = [surname.surname + " " + person.primary_name.first_name
+            order_by_list = [surname.surname + " " +
+                             person.primary_name.first_name
                              for surname in person.primary_name.surname_list
-                             if not (int(surname.origintype) in
-                                     [NameOriginType.PATRONYMIC,
-                                      NameOriginType.MATRONYMIC])]
+                             if (int(surname.origintype) not in
+                                 [NameOriginType.PATRONYMIC,
+                                  NameOriginType.MATRONYMIC])]
             order_by = " ".join(order_by_list)
         return glocale.sort_key(order_by)
 
