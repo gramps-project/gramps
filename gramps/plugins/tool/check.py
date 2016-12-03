@@ -1923,6 +1923,76 @@ class CheckIntegrity(object):
                     elif item[1] not in known_handles:
                         self.invalid_tag_references.add(item[1])
 
+        for bhandle in self.db.get_event_handles():
+            self.progress.step()
+            event = self.db.get_event_from_handle(bhandle)
+            handle_list = event.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == 'Tag':
+                    if item[1] is None:
+                        new_handle = create_id()
+                        event.replace_tag_references(None, new_handle)
+                        self.db.commit_event(event, self.trans)
+                        self.invalid_tag_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_tag_references.add(item[1])
+
+        for bhandle in self.db.get_citation_handles():
+            self.progress.step()
+            citation = self.db.get_citation_from_handle(bhandle)
+            handle_list = citation.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == 'Tag':
+                    if item[1] is None:
+                        new_handle = create_id()
+                        citation.replace_tag_references(None, new_handle)
+                        self.db.commit_citation(citation, self.trans)
+                        self.invalid_tag_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_tag_references.add(item[1])
+
+        for bhandle in self.db.get_source_handles():
+            self.progress.step()
+            source = self.db.get_source_from_handle(bhandle)
+            handle_list = source.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == 'Tag':
+                    if item[1] is None:
+                        new_handle = create_id()
+                        source.replace_tag_references(None, new_handle)
+                        self.db.commit_source(source, self.trans)
+                        self.invalid_tag_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_tag_references.add(item[1])
+
+        for bhandle in self.db.get_place_handles():
+            self.progress.step()
+            place = self.db.get_place_from_handle(bhandle)
+            handle_list = place.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == 'Tag':
+                    if item[1] is None:
+                        new_handle = create_id()
+                        place.replace_tag_references(None, new_handle)
+                        self.db.commit_place(place, self.trans)
+                        self.invalid_tag_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_tag_references.add(item[1])
+
+        for bhandle in self.db.get_repository_handles():
+            self.progress.step()
+            repository = self.db.get_repository_from_handle(bhandle)
+            handle_list = repository.get_referenced_handles_recursively()
+            for item in handle_list:
+                if item[0] == 'Tag':
+                    if item[1] is None:
+                        new_handle = create_id()
+                        repository.replace_tag_references(None, new_handle)
+                        self.db.commit_repository(repository, self.trans)
+                        self.invalid_tag_references.add(new_handle)
+                    elif item[1] not in known_handles:
+                        self.invalid_tag_references.add(item[1])
+
         for bad_handle in self.invalid_tag_references:
             make_unknown(bad_handle, None, self.class_tag,
                                self.commit_tag, self.trans)
