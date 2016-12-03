@@ -20,7 +20,8 @@
 
 from gramps.plugins.db.dbapi.dbapi import DBAPI
 from gramps.plugins.db.dbapi.sqlite import Sqlite
-from gramps.gen.db.generic import DbGeneric, DBBACKEND, LOG
+from gramps.gen.db import DBBACKEND
+from gramps.gen.db.generic import DbGeneric, LOG
 import os
 import glob
 
@@ -45,7 +46,7 @@ class InMemoryDB(DBAPI):
 
     def write_version(self, directory):
         """Write files for a newly created DB."""
-        versionpath = os.path.join(directory, str(DBBACKEND))
+        versionpath = os.path.join(directory, DBBACKEND)
         LOG.debug("Write database backend file to 'inmemorydb'")
         with open(versionpath, "w") as version_file:
             version_file.write("inmemorydb")
