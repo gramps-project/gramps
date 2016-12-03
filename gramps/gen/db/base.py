@@ -341,6 +341,17 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def get_place_tree_cursor(self):
+        """
+        Return a reference to a cursor that iterates over Place objects in the
+        order they appear in the place hierarchy.  Example use::
+
+            with get_place_tree_cursor() as cursor:
+                for handle, place in cursor:
+                    # process place object pointed to by the handle
+        """
+        raise NotImplementedError
+
     def get_repository_cursor(self):
         """
         Return a reference to a cursor over Repository objects.  Example use::
@@ -1106,6 +1117,12 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def has_citation_handle(self, handle):
+        """
+        Return True if the handle exists in the current Citation database.
+        """
+        raise NotImplementedError
+
     def has_tag_handle(self, handle):
         """
         Return True if the handle exists in the current Tag database.
@@ -1732,6 +1749,18 @@ class DbWriteBase(DbReadBase):
     def transaction_abort(self, transaction):
         """
         Revert the changes made to the database so far during the transaction.
+        """
+        raise NotImplementedError
+
+    def undo(self, update_history=True):
+        """
+        Undo last transaction.
+        """
+        raise NotImplementedError
+
+    def redo(self, update_history=True):
+        """
+        Redo last transaction.
         """
         raise NotImplementedError
 
