@@ -569,7 +569,7 @@ class ManagedWindow:
         """
         Set the dimensions of the window
         """
-        # self.width_key is set in the subclass, typically in its _local_init
+        # self.width_key is set in the subclass (or in setup_configs)
         if self.width_key is not None:
             width = config.get(self.width_key)
             height = config.get(self.height_key)
@@ -579,7 +579,7 @@ class ManagedWindow:
         """
         Save the dimensions of the window to the config file
         """
-        # self.width_key is set in the subclass, typically in its _local_init
+        # self.width_key is set in the subclass (or in setup_configs)
         if self.width_key is not None:
             (width, height) = self.window.get_size()
             config.set(self.width_key, width)
@@ -590,7 +590,7 @@ class ManagedWindow:
         """
         Set the position of the window
         """
-        # self.horiz_position_key is set in the subclass
+        # self.horiz_position_key is set in the subclass (or in setup_configs)
         if self.horiz_position_key is not None:
             horiz_position = config.get(self.horiz_position_key)
             vert_position = config.get(self.vert_position_key)
@@ -600,11 +600,36 @@ class ManagedWindow:
         """
         Save the window's position to the config file
         """
+        # self.horiz_position_key is set in the subclass (or in setup_configs)
         if self.horiz_position_key is not None:
             (horiz_position, vert_position) = self.window.get_position()
             config.set(self.horiz_position_key, horiz_position)
             config.set(self.vert_position_key, vert_position)
             config.save()
+
+    def setup_configs(self, config_base,
+                      default_width, default_height,
+                      default_horiz_position, default_vert_position):
+        """
+        Helper method to setup the window's configuration settings
+
+        @param config_base: the common config name, e.g. 'interface.clipboard'
+        @type config_base: str
+        @param default_width, default_height: the default width and height
+        @type default_width, default_height: int
+        @param default_horiz_position, default_vert_position: the defaults
+        @type default_horiz_position, default_vert_position: int
+        """
+        self.width_key = config_base + '-width'
+        self.height_key = config_base + '-height'
+        self.horiz_position_key = config_base + '-horiz-position'
+        self.vert_position_key = config_base + '-vert-position'
+        config.register(self.width_key, default_width)
+        config.register(self.height_key, default_height)
+        config.register(self.horiz_position_key, default_horiz_position)
+        config.register(self.vert_position_key, default_vert_position)
+        self._set_size()
+        self._set_position()
 
     def track_ref_for_deletion(self, ref):
         """

@@ -329,12 +329,7 @@ class BookSelector(ManagedWindow):
 
         title_label = self.xml.get_object('title')
         self.set_window(window, title_label, self.title)
-        self.height_key = 'interface.book-selector-height'
-        self.width_key = 'interface.book-selector-width'
-        self._set_size()
-        self.horiz_position_key = 'interface.book-selector-horiz-position'
-        self.vert_position_key = 'interface.book-selector-vert-position'
-        self._set_position()
+        self.setup_configs('interface.book-selector', 700, 600, 100, 200)
         window.show()
         self.xml.connect_signals({
             "on_add_clicked"        : self.on_add_clicked,

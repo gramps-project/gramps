@@ -1383,15 +1383,9 @@ class ClipboardWindow(ManagedWindow):
         self.database_changed(self.dbstate.db)
         self.dbstate.connect('database-changed', self.database_changed)
 
-        self.width_key = 'interface.clipboard-width'
-        self.height_key = 'interface.clipboard-height'
-        self.horiz_position_key = 'interface.clipboard-horiz-position'
-        self.vert_position_key = 'interface.clipboard-vert-position'
-
         self.top = Glade()
         self.set_window(self.top.toplevel, None, None, msg=_("Clipboard"))
-        self._set_size()
-        self._set_position()
+        self.setup_configs('interface.clipboard', 500, 300, 100, 200)
 
         self.clear_all_btn = self.top.get_object("btn_clear_all")
         self.clear_btn = self.top.get_object("btn_clear")
