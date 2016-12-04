@@ -46,7 +46,7 @@ _ = glocale.translation.gettext
 from ..lib.childreftype import ChildRefType
 from ..lib.childref import ChildRef
 from .txn import DbTxn
-from .exceptions import DbTransactionCancel
+from .exceptions import DbTransactionCancel, DbException
 
 _LOG = logging.getLogger(DBLOGNAME)
 
