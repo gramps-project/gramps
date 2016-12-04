@@ -198,6 +198,8 @@ register('interface.citation-sel-height', 450)
 register('interface.citation-sel-width', 600)
 register('interface.citation-width', 600)
 register('interface.clipboard-height', 300)
+register('interface.clipboard-horiz-position', 100)
+register('interface.clipboard-vert-position', 200)
 register('interface.clipboard-width', 300)
 register('interface.dont-ask', False)
 register('interface.view-categories',
