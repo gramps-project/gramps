@@ -571,6 +571,20 @@ class PedigreeView(NavigationView):
         self.show_unknown_people = self._config.get(
                                 'interface.pedview-show-unknown-people')
 
+        self.func_list.update({
+            '<PRIMARY>J' : self.jump,
+            })
+
+    def get_handle_from_gramps_id(self, gid):
+        """
+        returns the handle of the specified object
+        """
+        obj = self.dbstate.db.get_person_from_gramps_id(gid)
+        if obj:
+            return obj.get_handle()
+        else:
+            return None
+
     def change_page(self):
         """Called when the page changes."""
         NavigationView.change_page(self)
