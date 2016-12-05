@@ -146,7 +146,7 @@ class DBAPI(DbGeneric):
         shutil.copy2(settings_py, directory)
         shutil.copy2(settings_ini, directory)
 
-    def initialize_backend(self, directory):
+    def _initialize(self, directory):
         # Run code from directory
         from gramps.gen.utils.configmanager import ConfigManager
         config_file = os.path.join(directory, 'settings.ini')
@@ -312,10 +312,10 @@ class DBAPI(DbGeneric):
                            'ON reference(obj_handle)')
 
 
-    def close_backend(self):
+    def _close(self):
         self.dbapi.close()
 
-    def transaction_backend_begin(self):
+    def _txn_begin(self):
         """
         Lowlevel interface to the backend transaction.
         Executes a db BEGIN;
@@ -323,7 +323,7 @@ class DBAPI(DbGeneric):
         _LOG.debug("    DBAPI %s transaction begin", hex(id(self)))
         self.dbapi.begin()
 
-    def transaction_backend_commit(self):
+    def _txn_commit(self):
         """
         Lowlevel interface to the backend transaction.
         Executes a db END;
@@ -331,7 +331,7 @@ class DBAPI(DbGeneric):
         _LOG.debug("    DBAPI %s transaction commit", hex(id(self)))
         self.dbapi.commit()
 
-    def transaction_backend_abort(self):
+    def _txn_abort(self):
         """
         Lowlevel interface to the backend transaction.
         Executes a db ROLLBACK;

@@ -37,7 +37,7 @@ class InMemoryDB(DBAPI):
         })
         return summary
 
-    def initialize_backend(self, directory):
+    def _initialize(self, directory):
         """
         Create an in-memory sqlite database.
         """

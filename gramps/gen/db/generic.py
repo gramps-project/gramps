@@ -136,7 +136,7 @@ class DbGenericUndo(DbUndo):
 
         # Process all records in the transaction
         try:
-            self.db.transaction_backend_begin()
+            self.db._txn_begin()
             for record_id in subitems:
                 (key, trans_type, handle, old_data, new_data) = \
                     pickle.loads(self.undodb[record_id])
@@ -145,9 +145,9 @@ class DbGenericUndo(DbUndo):
                     self.undo_reference(new_data, handle)
                 else:
                     self.undo_data(new_data, handle, key, db.emit, SIGBASE[key])
-            self.db.transaction_backend_commit()
+            self.db._txn_commit()
         except:
-            self.db.transaction_backend_abort()
+            self.db._txn_abort()
             raise
 
         # Notify listeners
@@ -179,7 +179,7 @@ class DbGenericUndo(DbUndo):
 
         # Process all records in the transaction
         try:
-            self.db.transaction_backend_begin()
+            self.db._txn_begin()
             for record_id in subitems:
                 (key, trans_type, handle, old_data, new_data) = \
                         pickle.loads(self.undodb[record_id])
@@ -189,9 +189,9 @@ class DbGenericUndo(DbUndo):
                 else:
                     self.undo_data(old_data, handle, key, db.emit, SIGBASE[key])
 
-            self.db.transaction_backend_commit()
+            self.db._txn_commit()
         except:
-            self.db.transaction_backend_abort()
+            self.db._txn_abort()
             raise
 
         # Notify listeners
@@ -541,7 +541,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if directory:
             self.load(directory)
 
-    def initialize_backend(self, directory):
+    def _initialize(self, directory):
         """
         Initialize database backend.
         """
@@ -569,7 +569,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                             str(current_schema_version),
                                             str(current_schema_version))
         # run backend-specific code:
-        self.initialize_backend(directory)
+        self._initialize(directory)
 
         # Load metadata
         self.name_formats = self.get_metadata('name_formats')
@@ -640,7 +640,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         self.load(self._directory)
 
-    def close_backend(self):
+    def _close(self):
         """
         Close database backend.
         """
@@ -661,7 +661,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 touch(filename)
 
                 # Save metadata
-                self.transaction_backend_begin()
+                self._txn_begin()
                 self.set_metadata('name_formats', self.name_formats)
                 self.set_metadata('researcher', self.owner)
 
@@ -712,9 +712,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 self.set_metadata('omap_index', self.omap_index)
                 self.set_metadata('rmap_index', self.rmap_index)
                 self.set_metadata('nmap_index', self.nmap_index)
-                self.transaction_backend_commit()
+                self._txn_commit()
 
-            self.close_backend()
+            self._close()
         self.db_is_open = False
         self._directory = None
 
@@ -808,21 +808,21 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             return self.get_table_func(table_name)
         return None
 
-    def transaction_backend_begin(self):
+    def _txn_begin(self):
         """
         Lowlevel interface to the backend transaction.
         Executes a db BEGIN;
         """
         pass
 
-    def transaction_backend_commit(self):
+    def _txn_commit(self):
         """
         Lowlevel interface to the backend transaction.
         Executes a db END;
         """
         pass
 
-    def transaction_backend_abort(self):
+    def _txn_abort(self):
         """
         Lowlevel interface to the backend transaction.
         Executes a db ROLLBACK;
