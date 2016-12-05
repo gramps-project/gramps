@@ -609,7 +609,7 @@ class ManagedWindow:
 
     def setup_configs(self, config_base,
                       default_width, default_height,
-                      default_horiz_position, default_vert_position):
+                      default_horiz_position=None, default_vert_position=None):
         """
         Helper method to setup the window's configuration settings
 
@@ -617,13 +617,20 @@ class ManagedWindow:
         @type config_base: str
         @param default_width, default_height: the default width and height
         @type default_width, default_height: int
-        @param default_horiz_position, default_vert_position: the defaults
-        @type default_horiz_position, default_vert_position: int
+        @param default_horiz_position, default_vert_position: if either is None
+            then that position is centered on the parent, else explicitly set
+        @type default_horiz_position, default_vert_position: int or None
         """
         self.width_key = config_base + '-width'
         self.height_key = config_base + '-height'
         self.horiz_position_key = config_base + '-horiz-position'
         self.vert_position_key = config_base + '-vert-position'
+        (p_width, p_height) = self.parent_window.get_size()
+        (p_horiz, p_vert) = self.parent_window.get_position()
+        if default_horiz_position is None:
+            default_horiz_position = p_horiz + ((p_width - default_width) // 2)
+        if default_vert_position is None:
+            default_vert_position = p_vert + ((p_height - default_height) // 2)
         config.register(self.width_key, default_width)
         config.register(self.height_key, default_height)
         config.register(self.horiz_position_key, default_horiz_position)
