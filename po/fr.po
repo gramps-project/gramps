@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-24 08:09+0100\n"
-"PO-Revision-Date: 2016-11-24 08:12+0100\n"
+"POT-Creation-Date: 2016-12-05 09:38+0100\n"
+"PO-Revision-Date: 2016-12-05 09:43+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -1548,7 +1548,7 @@ msgstr "Verrouillé par %s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:750
 #: ../gramps/plugins/textreport/indivcomplete.py:82
 #: ../gramps/plugins/textreport/indivcomplete.py:826
-#: ../gramps/plugins/tool/check.py:2135
+#: ../gramps/plugins/tool/check.py:2208
 #: ../gramps/plugins/tool/dumpgenderstats.py:65
 #: ../gramps/plugins/view/geoclose.py:507
 #: ../gramps/plugins/view/geofamclose.py:260
@@ -3156,7 +3156,11 @@ msgstr ""
 
 # trunk
 #. translators: needed for Arabic, ignore otherwise
-#: ../gramps/gen/display/name.py:350 ../gramps/plugins/lib/libtreebase.py:707
+#. need for spacing on the french translation
+#. translators: needed for Arabic, ignore otherwise
+#: ../gramps/gen/display/name.py:350
+#: ../gramps/gui/views/treemodels/placemodel.py:130
+#: ../gramps/plugins/lib/libtreebase.py:707
 msgid ","
 msgstr ", "
 
@@ -6529,7 +6533,7 @@ msgstr "Heure"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:172
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:167
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:154
-#: ../gramps/plugins/tool/check.py:2185
+#: ../gramps/plugins/tool/check.py:2258
 msgid "None"
 msgstr "Aucun"
 
@@ -7518,7 +7522,7 @@ msgstr "ID Gramps fusionné"
 #: ../gramps/gen/lib/placetype.py:70 ../gramps/gui/configure.py:515
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:76
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:59
-#: ../gramps/gui/views/treemodels/placemodel.py:282
+#: ../gramps/gui/views/treemodels/placemodel.py:283
 #: ../gramps/plugins/lib/maps/placeselection.py:144
 #: ../gramps/plugins/tool/extractcity.py:392
 #: ../gramps/plugins/view/repoview.py:93
@@ -7530,7 +7534,7 @@ msgstr "Pays "
 # province (Canada, Belgique)
 #: ../gramps/gen/lib/placetype.py:71
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:58
-#: ../gramps/gui/views/treemodels/placemodel.py:282
+#: ../gramps/gui/views/treemodels/placemodel.py:283
 #: ../gramps/plugins/lib/maps/placeselection.py:145
 #: ../gramps/plugins/tool/extractcity.py:390
 #: ../gramps/plugins/webreport/narrativeweb.py:3446
@@ -7540,7 +7544,7 @@ msgstr "Province (Région)"
 # comté (Canada)
 #: ../gramps/gen/lib/placetype.py:72
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:57
-#: ../gramps/gui/views/treemodels/placemodel.py:282
+#: ../gramps/gui/views/treemodels/placemodel.py:283
 #: ../gramps/plugins/lib/maps/placeselection.py:146
 #: ../gramps/plugins/webreport/narrativeweb.py:371
 msgid "County"
@@ -9690,7 +9694,7 @@ msgstr "Événement "
 #: ../gramps/gui/glade/editevent.glade:270
 #: ../gramps/gui/plug/_guioptions.py:1320
 #: ../gramps/gui/selectors/selectevent.py:73
-#: ../gramps/gui/views/treemodels/placemodel.py:282
+#: ../gramps/gui/views/treemodels/placemodel.py:283
 #: ../gramps/plugins/export/exportcsv.py:285
 #: ../gramps/plugins/export/exportcsv.py:473
 #: ../gramps/plugins/gramplet/events.py:81
@@ -19051,10 +19055,10 @@ msgstr "Nom de l'étiquette :"
 msgid "Pick a Color"
 msgstr "Choix de la couleur"
 
-#: ../gramps/gui/views/treemodels/placemodel.py:136
-#: ../gramps/gui/views/treemodels/placemodel.py:144
-#: ../gramps/gui/views/treemodels/placemodel.py:152
-#: ../gramps/gui/views/treemodels/placemodel.py:160
+#: ../gramps/gui/views/treemodels/placemodel.py:137
+#: ../gramps/gui/views/treemodels/placemodel.py:145
+#: ../gramps/gui/views/treemodels/placemodel.py:153
+#: ../gramps/gui/views/treemodels/placemodel.py:161
 msgid "Error in format"
 msgstr "Erreur dans le format"
 
@@ -30960,7 +30964,7 @@ msgstr "Adresse : "
 #: ../gramps/plugins/textreport/detdescendantreport.py:851
 #, python-format
 msgid "%s, "
-msgstr ""
+msgstr "%s, "
 
 #. translators: needed for French, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:412
@@ -31003,7 +31007,7 @@ msgstr "%(event_name)s : %(event_text)s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:469
 #: ../gramps/plugins/textreport/familygroup.py:127
 msgid "; "
-msgstr ""
+msgstr "; "
 
 #: ../gramps/plugins/textreport/detancestralreport.py:567
 #: ../gramps/plugins/textreport/detdescendantreport.py:618
@@ -32527,21 +32531,21 @@ msgid "Looking for tag reference problems"
 msgstr "Recherche de problèmes dans la référence de l'étiquette"
 
 # Substantif (GNOME fr)
-#: ../gramps/plugins/tool/check.py:1943
+#: ../gramps/plugins/tool/check.py:2013
 msgid "Looking for media source reference problems"
 msgstr "Recherche de problèmes dans la référence de la source des media"
 
-#: ../gramps/plugins/tool/check.py:2110
+#: ../gramps/plugins/tool/check.py:2183
 msgid "No errors were found"
 msgstr "Aucune erreur trouvée"
 
 # avec succès
-#: ../gramps/plugins/tool/check.py:2111
+#: ../gramps/plugins/tool/check.py:2184
 msgid "The database has passed internal checks"
 msgstr "Test de la base de données terminé"
 
 # avec succès
-#: ../gramps/plugins/tool/check.py:2114
+#: ../gramps/plugins/tool/check.py:2187
 msgid "No errors were found: the database has passed internal checks."
 msgstr ""
 "Aucune erreur trouvée : la base de données a passé les vérifications "
@@ -32549,54 +32553,54 @@ msgstr ""
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2121
+#: ../gramps/plugins/tool/check.py:2194
 #, python-brace-format
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
 msgstr[0] "{quantity} lien enfant/famille a été réparé\n"
 msgstr[1] "{quantity} liens enfant/famille ont été réparés\n"
 
-#: ../gramps/plugins/tool/check.py:2130
+#: ../gramps/plugins/tool/check.py:2203
 msgid "Non existing child"
 msgstr "Enfant non-existant"
 
-#: ../gramps/plugins/tool/check.py:2138
+#: ../gramps/plugins/tool/check.py:2211
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "%(person)s a été supprimé(e) de la famille de %(family)s\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2145
+#: ../gramps/plugins/tool/check.py:2218
 #, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
 msgstr[0] "{quantity} lien conjoint/famille a été réparé\n"
 msgstr[1] "{quantity} liens conjoint/famille ont été réparés\n"
 
-#: ../gramps/plugins/tool/check.py:2154 ../gramps/plugins/tool/check.py:2180
+#: ../gramps/plugins/tool/check.py:2227 ../gramps/plugins/tool/check.py:2253
 msgid "Non existing person"
 msgstr "Individu non-existant"
 
-#: ../gramps/plugins/tool/check.py:2162 ../gramps/plugins/tool/check.py:2188
+#: ../gramps/plugins/tool/check.py:2235 ../gramps/plugins/tool/check.py:2261
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s a été restitué(e) dans la famille de %(family)s\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2169
+#: ../gramps/plugins/tool/check.py:2242
 #, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
 msgstr[0] "{quantity} lien conjoint/famille en double a été trouvé\n"
 msgstr[1] "{quantity} liens conjoint/famille en double ont été trouvés\n"
 
-#: ../gramps/plugins/tool/check.py:2194
+#: ../gramps/plugins/tool/check.py:2267
 msgid "1 family with no parents or children found, removed.\n"
 msgstr "1 famille sans parent ni enfant a été trouvée et effacée.\n"
 
-#: ../gramps/plugins/tool/check.py:2199
+#: ../gramps/plugins/tool/check.py:2272
 #, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
 msgstr ""
@@ -32604,7 +32608,7 @@ msgstr ""
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2206
+#: ../gramps/plugins/tool/check.py:2279
 #, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
@@ -32612,7 +32616,7 @@ msgstr[0] "{quantity} relation familiale corrompue a été corrigée\n"
 msgstr[1] "{quantity} relations familiales corrompues ont été corrigées\n"
 
 # trunk
-#: ../gramps/plugins/tool/check.py:2215
+#: ../gramps/plugins/tool/check.py:2288
 #, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
@@ -32621,7 +32625,7 @@ msgstr[1] "{quantity} lieux ont été référencés, mais non-trouvés\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2223
+#: ../gramps/plugins/tool/check.py:2296
 #, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
@@ -32630,7 +32634,7 @@ msgstr[1] "{quantity} familles ont été référencées, mais non-trouvées\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2233
+#: ../gramps/plugins/tool/check.py:2306
 #, python-brace-format
 msgid "{quantity} date was corrected\n"
 msgid_plural "{quantity} dates were corrected\n"
@@ -32638,7 +32642,7 @@ msgstr[0] "{quantity} date a été corrigée\n"
 msgstr[1] "{quantity} dates ont été corrigées\n"
 
 # trunk
-#: ../gramps/plugins/tool/check.py:2242
+#: ../gramps/plugins/tool/check.py:2315
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
@@ -32647,7 +32651,7 @@ msgstr[1] "{quantity} dépôts ont été référencés, mais non-trouvés\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2252 ../gramps/plugins/tool/check.py:2340
+#: ../gramps/plugins/tool/check.py:2325 ../gramps/plugins/tool/check.py:2413
 #, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
@@ -32655,7 +32659,7 @@ msgstr[0] "{quantity} support medium a été référencé, mais non-trouvé\n"
 msgstr[1] "{quantity} supports media ont été référencés, mais non-trouvés\n"
 
 # trunk
-#: ../gramps/plugins/tool/check.py:2263
+#: ../gramps/plugins/tool/check.py:2336
 #, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} media objects were kept\n"
@@ -32666,7 +32670,7 @@ msgstr[1] ""
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2271
+#: ../gramps/plugins/tool/check.py:2344
 #, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
@@ -32675,7 +32679,7 @@ msgstr[1] "{quantity} supports media manquants ont été remplacés\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2279
+#: ../gramps/plugins/tool/check.py:2352
 #, python-brace-format
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
@@ -32684,7 +32688,7 @@ msgstr[1] "{quantity} supports media manquants ont été supprimés\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2287
+#: ../gramps/plugins/tool/check.py:2360
 #, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
@@ -32693,7 +32697,7 @@ msgstr[1] "{quantity} événements ont été référencés, mais non-trouvés\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2295
+#: ../gramps/plugins/tool/check.py:2368
 #, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
@@ -32702,7 +32706,7 @@ msgstr[1] "{quantity} naissances invalides ont été réparées\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2303
+#: ../gramps/plugins/tool/check.py:2376
 #, python-brace-format
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
@@ -32711,7 +32715,7 @@ msgstr[1] "{quantity} décès invalides ont été réparés\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2311
+#: ../gramps/plugins/tool/check.py:2384
 #, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
@@ -32720,7 +32724,7 @@ msgstr[1] "{quantity} lieux ont été référencés, mais non-trouvés\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2319
+#: ../gramps/plugins/tool/check.py:2392
 #, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
@@ -32729,7 +32733,7 @@ msgstr[1] "{quantity} citations ont été référencées, mais non-trouvées\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2330
+#: ../gramps/plugins/tool/check.py:2403
 #, python-brace-format
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
@@ -32738,7 +32742,7 @@ msgstr[1] "{quantity} sources ont été référencées, mais non-trouvées\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2350
+#: ../gramps/plugins/tool/check.py:2423
 #, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
@@ -32747,7 +32751,7 @@ msgstr[1] "{quantity} notes ont été référencées, mais non-trouvées\n"
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2360 ../gramps/plugins/tool/check.py:2370
+#: ../gramps/plugins/tool/check.py:2433 ../gramps/plugins/tool/check.py:2443
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
@@ -32756,7 +32760,7 @@ msgstr[1] "{quantity} étiquettes ont été référencées, mais non-trouvées\n
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2380
+#: ../gramps/plugins/tool/check.py:2453
 #, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
@@ -32766,14 +32770,14 @@ msgstr[1] ""
 
 # trunk
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2390
+#: ../gramps/plugins/tool/check.py:2463
 #, python-brace-format
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
 msgstr[0] "{quantity} source invalide a été réparée\n"
 msgstr[1] "{quantity} sources invalides ont été réparées\n"
 
-#: ../gramps/plugins/tool/check.py:2397
+#: ../gramps/plugins/tool/check.py:2470
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -32796,11 +32800,11 @@ msgstr ""
 "   %(repo)d dépôts\n"
 "   %(note)d notes\n"
 
-#: ../gramps/plugins/tool/check.py:2443
+#: ../gramps/plugins/tool/check.py:2516
 msgid "Integrity Check Results"
 msgstr "Résultats de la vérification de l'intégrité"
 
-#: ../gramps/plugins/tool/check.py:2448
+#: ../gramps/plugins/tool/check.py:2521
 msgid "Check and Repair"
 msgstr "Vérifier et réparer"
 
