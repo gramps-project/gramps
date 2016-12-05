@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-03 11:19+0100\n"
+"POT-Creation-Date: 2016-12-05 09:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1565,27 +1565,27 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../gramps/gen/config.py:331
+#: ../gramps/gen/config.py:325
 msgid "Imported %Y/%m/%d %H:%M:%S"
 msgstr ""
 
-#: ../gramps/gen/config.py:345
+#: ../gramps/gen/config.py:339
 msgid "Missing Given Name"
 msgstr ""
 
-#: ../gramps/gen/config.py:346
+#: ../gramps/gen/config.py:340
 msgid "Missing Record"
 msgstr ""
 
-#: ../gramps/gen/config.py:347
+#: ../gramps/gen/config.py:341
 msgid "Missing Surname"
 msgstr ""
 
-#: ../gramps/gen/config.py:354 ../gramps/gen/config.py:356
+#: ../gramps/gen/config.py:348 ../gramps/gen/config.py:350
 msgid "[Living]"
 msgstr ""
 
-#: ../gramps/gen/config.py:355
+#: ../gramps/gen/config.py:349
 msgid "Private Record"
 msgstr ""
 
@@ -2394,31 +2394,31 @@ msgstr ""
 msgid "Saturday"
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1760 ../gramps/gui/widgets/fanchart.py:1761
+#: ../gramps/gen/db/base.py:1789 ../gramps/gui/widgets/fanchart.py:1761
 msgid "Add child to family"
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1774 ../gramps/gen/db/base.py:1780
+#: ../gramps/gen/db/base.py:1803 ../gramps/gen/db/base.py:1809
 msgid "Remove child from family"
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1856 ../gramps/gen/db/base.py:1860
+#: ../gramps/gen/db/base.py:1885 ../gramps/gen/db/base.py:1889
 msgid "Remove Family"
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1902
+#: ../gramps/gen/db/base.py:1931
 msgid "Remove father from family"
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1904
+#: ../gramps/gen/db/base.py:1933
 msgid "Remove mother from family"
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1979
+#: ../gramps/gen/db/base.py:2008
 msgid "Autobackup..."
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1983
+#: ../gramps/gen/db/base.py:2012
 msgid "Error saving backup data"
 msgstr ""
 
@@ -2559,27 +2559,27 @@ msgid ""
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
 
-#: ../gramps/gen/db/generic.py:161 ../gramps/gen/db/generic.py:207
-#: ../gramps/gen/db/generic.py:2056 ../gramps/plugins/db/bsddb/undoredo.py:245
+#: ../gramps/gen/db/generic.py:155 ../gramps/gen/db/generic.py:200
+#: ../gramps/gen/db/generic.py:2184 ../gramps/plugins/db/bsddb/undoredo.py:245
 #: ../gramps/plugins/db/bsddb/undoredo.py:282
 #: ../gramps/plugins/db/bsddb/write.py:2326
 #, python-format
 msgid "_Undo %s"
 msgstr ""
 
-#: ../gramps/gen/db/generic.py:167 ../gramps/gen/db/generic.py:213
+#: ../gramps/gen/db/generic.py:160 ../gramps/gen/db/generic.py:206
 #: ../gramps/plugins/db/bsddb/undoredo.py:251
 #: ../gramps/plugins/db/bsddb/undoredo.py:288
 #, python-format
 msgid "_Redo %s"
 msgstr ""
 
-#: ../gramps/gen/db/generic.py:2489 ../gramps/plugins/db/bsddb/read.py:2081
+#: ../gramps/gen/db/generic.py:2630 ../gramps/plugins/db/bsddb/read.py:2081
 #: ../gramps/plugins/db/bsddb/write.py:2517
 msgid "Number of people"
 msgstr ""
 
-#: ../gramps/gen/db/generic.py:2490 ../gramps/plugins/db/bsddb/read.py:2082
+#: ../gramps/gen/db/generic.py:2631 ../gramps/plugins/db/bsddb/read.py:2082
 #: ../gramps/plugins/db/bsddb/write.py:2518
 #: ../gramps/plugins/gramplet/statsgramplet.py:117
 #: ../gramps/plugins/webreport/narrativeweb.py:8108
@@ -2587,70 +2587,74 @@ msgstr ""
 msgid "Number of families"
 msgstr ""
 
-#: ../gramps/gen/db/generic.py:2491 ../gramps/plugins/db/bsddb/read.py:2083
+#: ../gramps/gen/db/generic.py:2632 ../gramps/plugins/db/bsddb/read.py:2083
 #: ../gramps/plugins/db/bsddb/write.py:2519
 #: ../gramps/plugins/webreport/narrativeweb.py:8135
 #: ../gramps/plugins/webreport/narrativeweb.py:8186
 msgid "Number of sources"
 msgstr ""
 
-#: ../gramps/gen/db/generic.py:2492 ../gramps/plugins/db/bsddb/read.py:2084
+#: ../gramps/gen/db/generic.py:2633 ../gramps/plugins/db/bsddb/read.py:2084
 #: ../gramps/plugins/db/bsddb/write.py:2520
 #: ../gramps/plugins/webreport/narrativeweb.py:8139
 #: ../gramps/plugins/webreport/narrativeweb.py:8189
 msgid "Number of citations"
 msgstr ""
 
-#: ../gramps/gen/db/generic.py:2493 ../gramps/plugins/db/bsddb/read.py:2085
+#: ../gramps/gen/db/generic.py:2634 ../gramps/plugins/db/bsddb/read.py:2085
 #: ../gramps/plugins/db/bsddb/write.py:2521
 #: ../gramps/plugins/webreport/narrativeweb.py:8128
 #: ../gramps/plugins/webreport/narrativeweb.py:8180
 msgid "Number of events"
 msgstr ""
 
-#: ../gramps/gen/db/generic.py:2494 ../gramps/plugins/db/bsddb/read.py:2086
+#: ../gramps/gen/db/generic.py:2635 ../gramps/plugins/db/bsddb/read.py:2086
 #: ../gramps/plugins/db/bsddb/write.py:2522
 msgid "Number of media"
 msgstr ""
 
-#: ../gramps/gen/db/generic.py:2495 ../gramps/plugins/db/bsddb/read.py:2087
+#: ../gramps/gen/db/generic.py:2636 ../gramps/plugins/db/bsddb/read.py:2087
 #: ../gramps/plugins/db/bsddb/write.py:2523
 #: ../gramps/plugins/webreport/narrativeweb.py:8131
 #: ../gramps/plugins/webreport/narrativeweb.py:8183
 msgid "Number of places"
 msgstr ""
 
-#: ../gramps/gen/db/generic.py:2496 ../gramps/plugins/db/bsddb/read.py:2088
+#: ../gramps/gen/db/generic.py:2637 ../gramps/plugins/db/bsddb/read.py:2088
 #: ../gramps/plugins/db/bsddb/write.py:2524
 #: ../gramps/plugins/webreport/narrativeweb.py:8143
 #: ../gramps/plugins/webreport/narrativeweb.py:8192
 msgid "Number of repositories"
 msgstr ""
 
-#: ../gramps/gen/db/generic.py:2497 ../gramps/plugins/db/bsddb/read.py:2089
+#: ../gramps/gen/db/generic.py:2638 ../gramps/plugins/db/bsddb/read.py:2089
 #: ../gramps/plugins/db/bsddb/write.py:2525
 msgid "Number of notes"
 msgstr ""
 
-#: ../gramps/gen/db/generic.py:2498 ../gramps/plugins/db/bsddb/read.py:2090
+#: ../gramps/gen/db/generic.py:2639 ../gramps/plugins/db/bsddb/read.py:2090
 #: ../gramps/plugins/db/bsddb/write.py:2526
 msgid "Number of tags"
 msgstr ""
 
-#: ../gramps/gen/db/generic.py:2499 ../gramps/plugins/db/bsddb/write.py:2527
+#: ../gramps/gen/db/generic.py:2640 ../gramps/plugins/db/bsddb/write.py:2527
 msgid "Data version"
 msgstr ""
 
-#: ../gramps/gen/db/generic.py:2500
+#: ../gramps/gen/db/generic.py:2641
 msgid "Backups, count"
 msgstr ""
 
-#: ../gramps/gen/db/generic.py:2501
+#: ../gramps/gen/db/generic.py:2642
 msgid "Backups, last"
 msgstr ""
 
 #. translators: needed for Arabic, ignore otherwise
-#: ../gramps/gen/display/name.py:349 ../gramps/plugins/lib/libtreebase.py:707
+#. need for spacing on the french translation
+#. translators: needed for Arabic, ignore otherwise
+#: ../gramps/gen/display/name.py:349
+#: ../gramps/gui/views/treemodels/placemodel.py:130
+#: ../gramps/plugins/lib/libtreebase.py:707
 msgid ","
 msgstr ""
 
@@ -6734,7 +6738,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:104
 #: ../gramps/gui/plug/_guioptions.py:1165 ../gramps/gui/plug/_windows.py:126
 #: ../gramps/gui/plug/_windows.py:1094
-#: ../gramps/gui/plug/report/_bookdialog.py:377
+#: ../gramps/gui/plug/report/_bookdialog.py:372
 #: ../gramps/gui/selectors/selectperson.py:94
 #: ../gramps/gui/selectors/selectplace.py:71
 #: ../gramps/gui/views/bookmarks.py:240 ../gramps/gui/views/tags.py:402
@@ -6830,8 +6834,8 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:105
 #: ../gramps/gui/merge/mergeperson.py:242 ../gramps/gui/plug/_windows.py:119
 #: ../gramps/gui/plug/_windows.py:235 ../gramps/gui/plug/_windows.py:1093
-#: ../gramps/gui/plug/report/_bookdialog.py:378
-#: ../gramps/gui/plug/report/_bookdialog.py:382
+#: ../gramps/gui/plug/report/_bookdialog.py:373
+#: ../gramps/gui/plug/report/_bookdialog.py:377
 #: ../gramps/gui/selectors/selectevent.py:70
 #: ../gramps/gui/selectors/selectnote.py:77
 #: ../gramps/gui/selectors/selectobject.py:82
@@ -7201,7 +7205,7 @@ msgstr ""
 #: ../gramps/gen/lib/placetype.py:65 ../gramps/gui/configure.py:518
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:76
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:59
-#: ../gramps/gui/views/treemodels/placemodel.py:282
+#: ../gramps/gui/views/treemodels/placemodel.py:283
 #: ../gramps/plugins/lib/maps/placeselection.py:132
 #: ../gramps/plugins/view/geoplaces.py:558
 #: ../gramps/plugins/view/repoview.py:93
@@ -7214,7 +7218,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/placetype.py:66
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:58
-#: ../gramps/gui/views/treemodels/placemodel.py:282
+#: ../gramps/gui/views/treemodels/placemodel.py:283
 #: ../gramps/plugins/lib/maps/placeselection.py:133
 #: ../gramps/plugins/view/geoplaces.py:561
 msgid "State"
@@ -7222,7 +7226,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/placetype.py:67
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:57
-#: ../gramps/gui/views/treemodels/placemodel.py:282
+#: ../gramps/gui/views/treemodels/placemodel.py:283
 #: ../gramps/plugins/lib/maps/placeselection.py:134
 #: ../gramps/plugins/view/geoplaces.py:564
 #: ../gramps/plugins/webreport/narrativeweb.py:1479
@@ -9231,7 +9235,7 @@ msgstr ""
 #: ../gramps/gui/glade/editevent.glade:270
 #: ../gramps/gui/plug/_guioptions.py:1343
 #: ../gramps/gui/selectors/selectevent.py:73
-#: ../gramps/gui/views/treemodels/placemodel.py:282
+#: ../gramps/gui/views/treemodels/placemodel.py:283
 #: ../gramps/plugins/export/exportcsv.py:285
 #: ../gramps/plugins/export/exportcsv.py:473
 #: ../gramps/plugins/gramplet/coordinates.py:93
@@ -9397,26 +9401,26 @@ msgstr ""
 msgid "Value"
 msgstr ""
 
-#: ../gramps/gui/clipboard.py:1390 ../gramps/gui/clipboard.py:1396
-#: ../gramps/gui/clipboard.py:1434 ../gramps/gui/clipboard.py:1478
+#: ../gramps/gui/clipboard.py:1387 ../gramps/gui/clipboard.py:1393
+#: ../gramps/gui/clipboard.py:1431 ../gramps/gui/clipboard.py:1475
 #: ../gramps/gui/glade/clipboard.glade:7
 msgid "Clipboard"
 msgstr ""
 
 #. Now add more items to popup menu, if available
 #. See details (edit, etc):
-#: ../gramps/gui/clipboard.py:1522 ../gramps/gui/plug/quick/_quicktable.py:141
+#: ../gramps/gui/clipboard.py:1519 ../gramps/gui/plug/quick/_quicktable.py:141
 #, python-format
 msgid "the object|See %s details"
 msgstr ""
 
 #. ---------------------------
-#: ../gramps/gui/clipboard.py:1528 ../gramps/gui/plug/quick/_quicktable.py:149
+#: ../gramps/gui/clipboard.py:1525 ../gramps/gui/plug/quick/_quicktable.py:149
 #, python-format
 msgid "the object|Make %s active"
 msgstr ""
 
-#: ../gramps/gui/clipboard.py:1544
+#: ../gramps/gui/clipboard.py:1541
 #, python-format
 msgid "the object|Create Filter from %s selected..."
 msgstr ""
@@ -9468,7 +9472,7 @@ msgstr ""
 #. self.window.connect('response', self.close)
 #: ../gramps/gui/configure.py:105 ../gramps/gui/configure.py:179
 #: ../gramps/gui/glade/book.glade:466 ../gramps/gui/glade/book.glade:540
-#: ../gramps/gui/glade/clipboard.glade:73 ../gramps/gui/glade/dialog.glade:20
+#: ../gramps/gui/glade/clipboard.glade:71 ../gramps/gui/glade/dialog.glade:20
 #: ../gramps/gui/glade/dialog.glade:140
 #: ../gramps/gui/glade/displaystate.glade:25
 #: ../gramps/gui/glade/plugins.glade:24 ../gramps/gui/glade/rule.glade:26
@@ -9698,7 +9702,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:129
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:115
 #: ../gramps/gui/editors/editfamily.py:148
-#: ../gramps/gui/plug/report/_bookdialog.py:657
+#: ../gramps/gui/plug/report/_bookdialog.py:652
 #: ../gramps/gui/views/tags.py:416 ../gramps/gui/widgets/fanchart.py:1712
 #: ../gramps/gui/widgets/fanchart.py:1754
 #: ../gramps/plugins/view/pedigreeview.py:1613
@@ -9714,7 +9718,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:130
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:116
 #: ../gramps/gui/glade/editlink.glade:223
-#: ../gramps/gui/plug/report/_bookdialog.py:631
+#: ../gramps/gui/plug/report/_bookdialog.py:626
 #: ../gramps/gui/viewmanager.py:481 ../gramps/gui/views/tags.py:417
 #: ../gramps/gui/widgets/fanchart.py:1511
 #: ../gramps/plugins/view/pedigreeview.py:1648
@@ -9729,7 +9733,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:124
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:117
 #: ../gramps/gui/editors/editfamily.py:151
-#: ../gramps/gui/plug/report/_bookdialog.py:626
+#: ../gramps/gui/plug/report/_bookdialog.py:621
 #: ../gramps/gui/views/bookmarks.py:254 ../gramps/gui/views/listview.py:212
 #: ../gramps/gui/views/tags.py:418 ../gramps/plugins/lib/libpersonview.py:388
 msgid "_Remove"
@@ -10224,7 +10228,7 @@ msgstr ""
 #: ../gramps/gui/dbloader.py:353 ../gramps/gui/dbloader.py:368
 #: ../gramps/gui/dbloader.py:383 ../gramps/gui/dbloader.py:398
 #: ../gramps/gui/plug/report/_bookdialog.py:242
-#: ../gramps/gui/plug/report/_bookdialog.py:743
+#: ../gramps/gui/plug/report/_bookdialog.py:738
 #: ../gramps/gui/viewmanager.py:782
 msgid "Cancel"
 msgstr ""
@@ -12471,14 +12475,14 @@ msgid "Tag selection"
 msgstr ""
 
 #. pylint: disable-msg=E1101
-#: ../gramps/gui/editors/edittaglist.py:99
+#: ../gramps/gui/editors/edittaglist.py:100
 #: ../gramps/gui/views/bookmarks.py:227 ../gramps/gui/views/tags.py:387
 #: ../gramps/gui/views/tags.py:611 ../gramps/gui/views/tags.py:627
 #, python-format
 msgid "%(title)s - Gramps"
 msgstr ""
 
-#: ../gramps/gui/editors/edittaglist.py:99
+#: ../gramps/gui/editors/edittaglist.py:100
 msgid "Edit Tags"
 msgstr ""
 
@@ -12501,7 +12505,7 @@ msgstr ""
 #: ../gramps/gui/editors/edittaglist.py:116
 #: ../gramps/gui/glade/addmedia.glade:55
 #: ../gramps/gui/glade/baseselector.glade:56
-#: ../gramps/gui/glade/clipboard.glade:23 ../gramps/gui/glade/dbman.glade:157
+#: ../gramps/gui/glade/clipboard.glade:21 ../gramps/gui/glade/dbman.glade:157
 #: ../gramps/gui/glade/editaddress.glade:55
 #: ../gramps/gui/glade/editattribute.glade:54
 #: ../gramps/gui/glade/editchildref.glade:58
@@ -12870,7 +12874,7 @@ msgid "_Find"
 msgstr ""
 
 #: ../gramps/gui/filters/_searchbar.py:57
-#: ../gramps/gui/glade/clipboard.glade:56 ../gramps/gui/undohistory.py:88
+#: ../gramps/gui/glade/clipboard.glade:54 ../gramps/gui/undohistory.py:88
 msgid "_Clear"
 msgstr ""
 
@@ -13019,7 +13023,7 @@ msgid "Book _name:"
 msgstr ""
 
 #: ../gramps/gui/glade/book.glade:90
-#: ../gramps/gui/plug/report/_bookdialog.py:628
+#: ../gramps/gui/plug/report/_bookdialog.py:623
 msgid "Clear the book"
 msgstr ""
 
@@ -13059,7 +13063,7 @@ msgstr ""
 msgid "_Delete"
 msgstr ""
 
-#: ../gramps/gui/glade/clipboard.glade:40
+#: ../gramps/gui/glade/clipboard.glade:38
 msgid "Clear _All"
 msgstr ""
 
@@ -13216,7 +13220,7 @@ msgstr ""
 
 #. widget
 #: ../gramps/gui/glade/dialog.glade:856
-#: ../gramps/gui/plug/report/_bookdialog.py:629
+#: ../gramps/gui/plug/report/_bookdialog.py:624
 #: ../gramps/gui/views/listview.py:1011
 #: ../gramps/gui/widgets/grampletpane.py:578
 #: ../gramps/plugins/tool/eventcmp.py:398
@@ -15524,7 +15528,7 @@ msgid "Save As"
 msgstr ""
 
 #: ../gramps/gui/plug/_guioptions.py:1730 ../gramps/gui/plug/_windows.py:434
-#: ../gramps/gui/plug/report/_bookdialog.py:630
+#: ../gramps/gui/plug/report/_bookdialog.py:625
 #: ../gramps/gui/plug/report/_fileentry.py:66
 msgid "_Open"
 msgstr ""
@@ -16031,7 +16035,7 @@ msgid "You have made changes which have not been saved."
 msgstr ""
 
 #: ../gramps/gui/plug/report/_bookdialog.py:241
-#: ../gramps/gui/plug/report/_bookdialog.py:742
+#: ../gramps/gui/plug/report/_bookdialog.py:737
 msgid "Proceed"
 msgstr ""
 
@@ -16043,36 +16047,36 @@ msgstr ""
 msgid "Manage Books"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:366
+#: ../gramps/gui/plug/report/_bookdialog.py:361
 msgid "New Book"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:369
+#: ../gramps/gui/plug/report/_bookdialog.py:364
 msgid "_Available items"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:373
+#: ../gramps/gui/plug/report/_bookdialog.py:368
 msgid "Current _book"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:381
+#: ../gramps/gui/plug/report/_bookdialog.py:376
 #: ../gramps/plugins/drawreport/statisticschart.py:307
 msgid "Item name"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:384
+#: ../gramps/gui/plug/report/_bookdialog.py:379
 msgid "Subject"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:398
+#: ../gramps/gui/plug/report/_bookdialog.py:393
 msgid "Book selection list"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:450
+#: ../gramps/gui/plug/report/_bookdialog.py:445
 msgid "Different database"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:451
+#: ../gramps/gui/plug/report/_bookdialog.py:446
 #, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -16083,62 +16087,62 @@ msgid ""
 "person of the currently opened database."
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:557
+#: ../gramps/gui/plug/report/_bookdialog.py:552
 msgid "No selected book item"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:558
+#: ../gramps/gui/plug/report/_bookdialog.py:553
 msgid "Please select a book item to configure."
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:623
+#: ../gramps/gui/plug/report/_bookdialog.py:618
 #: ../gramps/gui/views/bookmarks.py:252 ../gramps/gui/views/tags.py:414
 msgid "_Up"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:624
+#: ../gramps/gui/plug/report/_bookdialog.py:619
 #: ../gramps/gui/views/bookmarks.py:253 ../gramps/gui/views/tags.py:415
 msgid "_Down"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:625
+#: ../gramps/gui/plug/report/_bookdialog.py:620
 msgid "Setup"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:714
-#: ../gramps/gui/plug/report/_bookdialog.py:725
+#: ../gramps/gui/plug/report/_bookdialog.py:709
+#: ../gramps/gui/plug/report/_bookdialog.py:720
 msgid "No items"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:715
-#: ../gramps/gui/plug/report/_bookdialog.py:726
+#: ../gramps/gui/plug/report/_bookdialog.py:710
+#: ../gramps/gui/plug/report/_bookdialog.py:721
 msgid "This book has no items."
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:732
+#: ../gramps/gui/plug/report/_bookdialog.py:727
 msgid "No book name"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:733
+#: ../gramps/gui/plug/report/_bookdialog.py:728
 msgid ""
 "You are about to save away a book with no name.\n"
 "\n"
 "Please give it a name before saving it away."
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:739
+#: ../gramps/gui/plug/report/_bookdialog.py:734
 msgid "Book name already exists"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:740
+#: ../gramps/gui/plug/report/_bookdialog.py:735
 msgid "You are about to save away a book with a name which already exists."
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:930
+#: ../gramps/gui/plug/report/_bookdialog.py:925
 msgid "Generate Book"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_bookdialog.py:973
+#: ../gramps/gui/plug/report/_bookdialog.py:968
 msgid "Gramps Book"
 msgstr ""
 
@@ -17231,10 +17235,10 @@ msgstr ""
 msgid "Pick a Color"
 msgstr ""
 
-#: ../gramps/gui/views/treemodels/placemodel.py:136
-#: ../gramps/gui/views/treemodels/placemodel.py:144
-#: ../gramps/gui/views/treemodels/placemodel.py:152
-#: ../gramps/gui/views/treemodels/placemodel.py:160
+#: ../gramps/gui/views/treemodels/placemodel.py:137
+#: ../gramps/gui/views/treemodels/placemodel.py:145
+#: ../gramps/gui/views/treemodels/placemodel.py:153
+#: ../gramps/gui/views/treemodels/placemodel.py:161
 msgid "Error in format"
 msgstr ""
 
