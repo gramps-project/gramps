@@ -160,6 +160,16 @@ class RelationshipView(NavigationView):
         self.theme = self._config.get('preferences.relation-display-theme')
         self.toolbar_visible = config.get('interface.toolbar-on')
 
+    def get_handle_from_gramps_id(self, gid):
+        """
+        returns the handle of the specified object
+        """
+        obj = self.dbstate.db.get_person_from_gramps_id(gid)
+        if obj:
+            return obj.get_handle()
+        else:
+            return None
+
     def _connect_db_signals(self):
         """
         implement from base class DbGUIElement
