@@ -105,7 +105,7 @@ class FanChart2WayView(fanchart2way.FanChart2WayGrampsGUI, NavigationView):
         self.allfonts = [x for x in enumerate(SystemFonts().get_system_fonts())]
 
         self.func_list.update({
-            '<PRIMARY>J' : self.jump, 
+            '<PRIMARY>J' : self.jump,
             })
 
     def navigation_type(self):
