@@ -104,8 +104,22 @@ class FanChart2WayView(fanchart2way.FanChart2WayGrampsGUI, NavigationView):
         self.additional_uis.append(self.additional_ui())
         self.allfonts = [x for x in enumerate(SystemFonts().get_system_fonts())]
 
+        self.func_list.update({
+            '<PRIMARY>J' : self.jump, 
+            })
+
     def navigation_type(self):
         return 'Person'
+
+    def get_handle_from_gramps_id(self, gid):
+        """
+        returns the handle of the specified object
+        """
+        obj = self.dbstate.db.get_person_from_gramps_id(gid)
+        if obj:
+            return obj.get_handle()
+        else:
+            return None
 
     def build_widget(self):
         self.set_fan(fanchart2way.FanChart2WayWidget(self.dbstate, self.uistate,
