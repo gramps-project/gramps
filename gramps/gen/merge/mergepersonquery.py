@@ -93,10 +93,11 @@ class MergePersonQuery:
         family_father_handle = family.get_father_handle()
         spouse_handle = family.get_mother_handle() if \
                 new_handle == family_father_handle else family_father_handle
-        spouse = self.database.get_person_from_handle(spouse_handle)
-        if spouse:
-            spouse.remove_family_handle(family_handle)
-            self.database.commit_person(spouse, trans)
+        if spouse_handle:
+            spouse = self.database.get_person_from_handle(spouse_handle)
+            if spouse:
+                spouse.remove_family_handle(family_handle)
+                self.database.commit_person(spouse, trans)
         # replace the family in lds ordinances
         for (dummy, person_handle) in self.database.find_backlink_handles(
                 family_handle, ['Person']):

@@ -399,7 +399,10 @@ class ImportOpenFileContextManager:
 
     def __enter__(self):
         if self.filename == '-':
-            self.filehandle = sys.stdin.buffer
+            try:
+                self.filehandle = sys.stdin.buffer
+            except:
+                self.filehandle = sys.stdin
         else:
             self.filehandle = self.open_file(self.filename)
         return self.filehandle

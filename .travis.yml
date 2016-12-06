@@ -89,8 +89,8 @@ before_script:
  - export PYTHONPATH=meta
 # set module exclusions. --exclude=TestUser because of older version of mock
 # without configure_mock
- - export EXCLUDE="--exclude=TestcaseGenerator --exclude=vcard
-   --exclude=merge_ref_test"
+ - export EXCLUDE="--exclude=TestcaseGenerator --exclude=vcard"
+#   --exclude=merge_ref_test"
 # set GRAMPS_RESOURCES for locale, data,image and documentation
  - export GRAMPS_RESOURCES=.
 
