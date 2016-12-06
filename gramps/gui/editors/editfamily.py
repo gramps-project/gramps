@@ -505,11 +505,9 @@ class EditFamily(EditPrimary):
         return (_('Edit Family'), self.get_menu_title())
 
     def build_interface(self):
-        self.width_key = 'interface.family-width'
-        self.height_key = 'interface.family-height'
-
         self.top = Glade()
         self.set_window(self.top.toplevel, None, self.get_menu_title())
+        self.setup_configs('interface.family', 700, 500)
 
         # HACK: how to prevent hidden items from showing
         #       when you use show_all?

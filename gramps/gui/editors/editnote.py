@@ -174,13 +174,11 @@ class EditNote(EditPrimary):
         and overridden here.
 
         """
-        self.width_key = 'interface.note-width'
-        self.height_key = 'interface.note-height'
-
         self.top = Glade()
 
         win = self.top.toplevel
         self.set_window(win, None, self.get_menu_title())
+        self.setup_configs('interface.note', 700, 500)
 
 
         vboxnote =  self.top.get_object('vbox131')

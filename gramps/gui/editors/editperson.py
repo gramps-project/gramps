@@ -176,8 +176,6 @@ class EditPerson(EditPrimary):
         This is called by the base class of EditPrimary, and overridden here.
 
         """
-        self.width_key = 'interface.person-width'
-        self.height_key = 'interface.person-height'
         self.pname = self.obj.get_primary_name()
         self.should_guess_gender = (not self.obj.get_gramps_id() and
                                     self.obj.get_gender () ==
@@ -191,6 +189,7 @@ class EditPerson(EditPrimary):
 
         self.set_window(self.top.toplevel, None,
                         self.get_menu_title())
+        self.setup_configs('interface.person', 750, 550)
 
         self.obj_photo = self.top.get_object("personPix")
         self.frame_photo = self.top.get_object("frame5")

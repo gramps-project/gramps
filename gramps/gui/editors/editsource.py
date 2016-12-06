@@ -89,13 +89,12 @@ class EditSource(EditPrimary):
         return title
 
     def _local_init(self):
-        self.width_key = 'interface.source-width'
-        self.height_key = 'interface.source-height'
         assert(self.obj)
 
         self.glade = Glade()
         self.set_window(self.glade.toplevel, None,
                         self.get_menu_title())
+        self.setup_configs('interface.source', 600, 450)
 
     def _connect_signals(self):
         self.define_ok_button(self.glade.get_object('ok'),self.save)

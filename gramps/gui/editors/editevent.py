@@ -105,12 +105,10 @@ class EditEvent(EditPrimary):
                       key=lambda s: s.lower())
 
     def _local_init(self):
-        self.width_key = 'interface.event-width'
-        self.height_key = 'interface.event-height'
-
         self.top = Glade()
         self.set_window(self.top.toplevel, None,
                         self.get_menu_title())
+        self.setup_configs('interface.event', 600, 450)
 
         self.place = self.top.get_object('place')
         self.share_btn = self.top.get_object('select_place')

@@ -82,13 +82,11 @@ class EditRepository(EditPrimary):
         return title
 
     def _local_init(self):
-        self.width_key = 'interface.repo-width'
-        self.height_key = 'interface.repo-height'
-
         self.glade = Glade()
 
         self.set_window(self.glade.toplevel, None,
                         self.get_menu_title())
+        self.setup_configs('interface.repo', 650, 450)
 
     def build_menu_names(self, source):
         return (_('Edit Repository'), self.get_menu_title())

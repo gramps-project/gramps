@@ -103,12 +103,10 @@ class EditMedia(EditPrimary):
 
     def _local_init(self):
         assert(self.obj)
-        self.width_key = 'interface.media-width'
-        self.height_key = 'interface.media-height'
-
         self.glade = Glade()
         self.set_window(self.glade.toplevel,
                         None, self.get_menu_title())
+        self.setup_configs('interface.media', 650, 450)
 
     def _connect_signals(self):
         self.define_cancel_button(self.glade.get_object('button91'))
