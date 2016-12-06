@@ -73,8 +73,10 @@ class MergeFamily(ManagedWindow):
         # Detailed selection widgets
         father1 = self.fy1.get_father_handle()
         father2 = self.fy2.get_father_handle()
-        father1 = self.database.get_person_from_handle(father1)
-        father2 = self.database.get_person_from_handle(father2)
+        if father1:
+            father1 = self.database.get_person_from_handle(father1)
+        if father2:
+            father2 = self.database.get_person_from_handle(father2)
         father_id1 = father1.get_gramps_id() if father1 else ""
         father_id2 = father2.get_gramps_id() if father2 else ""
         father1 = name_displayer.display(father1) if father1 else ""
@@ -101,8 +103,10 @@ class MergeFamily(ManagedWindow):
 
         mother1 = self.fy1.get_mother_handle()
         mother2 = self.fy2.get_mother_handle()
-        mother1 = self.database.get_person_from_handle(mother1)
-        mother2 = self.database.get_person_from_handle(mother2)
+        if mother1:
+            mother1 = self.database.get_person_from_handle(mother1)
+        if mother2:
+            mother2 = self.database.get_person_from_handle(mother2)
         mother_id1 = mother1.get_gramps_id() if mother1 else ""
         mother_id2 = mother2.get_gramps_id() if mother2 else ""
         mother1 = name_displayer.display(mother1) if mother1 else ""
