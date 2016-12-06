@@ -572,38 +572,38 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self._initialize(directory)
 
         # Load metadata
-        self.name_formats = self.get_metadata('name_formats')
-        self.owner = self.get_metadata('researcher', default=Researcher())
+        self.name_formats = self._get_metadata('name_formats')
+        self.owner = self._get_metadata('researcher', default=Researcher())
 
         # Load bookmarks
-        self.bookmarks.set(self.get_metadata('bookmarks'))
-        self.family_bookmarks.set(self.get_metadata('family_bookmarks'))
-        self.event_bookmarks.set(self.get_metadata('event_bookmarks'))
-        self.source_bookmarks.set(self.get_metadata('source_bookmarks'))
-        self.citation_bookmarks.set(self.get_metadata('citation_bookmarks'))
-        self.repo_bookmarks.set(self.get_metadata('repo_bookmarks'))
-        self.media_bookmarks.set(self.get_metadata('media_bookmarks'))
-        self.place_bookmarks.set(self.get_metadata('place_bookmarks'))
-        self.note_bookmarks.set(self.get_metadata('note_bookmarks'))
+        self.bookmarks.set(self._get_metadata('bookmarks'))
+        self.family_bookmarks.set(self._get_metadata('family_bookmarks'))
+        self.event_bookmarks.set(self._get_metadata('event_bookmarks'))
+        self.source_bookmarks.set(self._get_metadata('source_bookmarks'))
+        self.citation_bookmarks.set(self._get_metadata('citation_bookmarks'))
+        self.repo_bookmarks.set(self._get_metadata('repo_bookmarks'))
+        self.media_bookmarks.set(self._get_metadata('media_bookmarks'))
+        self.place_bookmarks.set(self._get_metadata('place_bookmarks'))
+        self.note_bookmarks.set(self._get_metadata('note_bookmarks'))
 
         # Custom type values
-        self.event_names = self.get_metadata('event_names', set())
-        self.family_attributes = self.get_metadata('fattr_names', set())
-        self.individual_attributes = self.get_metadata('pattr_names', set())
-        self.source_attributes = self.get_metadata('sattr_names', set())
-        self.marker_names = self.get_metadata('marker_names', set())
-        self.child_ref_types = self.get_metadata('child_refs', set())
-        self.family_rel_types = self.get_metadata('family_rels', set())
-        self.event_role_names = self.get_metadata('event_roles', set())
-        self.name_types = self.get_metadata('name_types', set())
-        self.origin_types = self.get_metadata('origin_types', set())
-        self.repository_types = self.get_metadata('repo_types', set())
-        self.note_types = self.get_metadata('note_types', set())
-        self.source_media_types = self.get_metadata('sm_types', set())
-        self.url_types = self.get_metadata('url_types', set())
-        self.media_attributes = self.get_metadata('mattr_names', set())
-        self.event_attributes = self.get_metadata('eattr_names', set())
-        self.place_types = self.get_metadata('place_types', set())
+        self.event_names = self._get_metadata('event_names', set())
+        self.family_attributes = self._get_metadata('fattr_names', set())
+        self.individual_attributes = self._get_metadata('pattr_names', set())
+        self.source_attributes = self._get_metadata('sattr_names', set())
+        self.marker_names = self._get_metadata('marker_names', set())
+        self.child_ref_types = self._get_metadata('child_refs', set())
+        self.family_rel_types = self._get_metadata('family_rels', set())
+        self.event_role_names = self._get_metadata('event_roles', set())
+        self.name_types = self._get_metadata('name_types', set())
+        self.origin_types = self._get_metadata('origin_types', set())
+        self.repository_types = self._get_metadata('repo_types', set())
+        self.note_types = self._get_metadata('note_types', set())
+        self.source_media_types = self._get_metadata('sm_types', set())
+        self.url_types = self._get_metadata('url_types', set())
+        self.media_attributes = self._get_metadata('mattr_names', set())
+        self.event_attributes = self._get_metadata('eattr_names', set())
+        self.place_types = self._get_metadata('place_types', set())
 
         # surname list
         self.surname_list = self.get_surname_list()
@@ -621,15 +621,15 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.genderStats = GenderStats(gstats)
 
         # Indexes:
-        self.cmap_index = self.get_metadata('cmap_index', 0)
-        self.smap_index = self.get_metadata('smap_index', 0)
-        self.emap_index = self.get_metadata('emap_index', 0)
-        self.pmap_index = self.get_metadata('pmap_index', 0)
-        self.fmap_index = self.get_metadata('fmap_index', 0)
-        self.lmap_index = self.get_metadata('lmap_index', 0)
-        self.omap_index = self.get_metadata('omap_index', 0)
-        self.rmap_index = self.get_metadata('rmap_index', 0)
-        self.nmap_index = self.get_metadata('nmap_index', 0)
+        self.cmap_index = self._get_metadata('cmap_index', 0)
+        self.smap_index = self._get_metadata('smap_index', 0)
+        self.emap_index = self._get_metadata('emap_index', 0)
+        self.pmap_index = self._get_metadata('pmap_index', 0)
+        self.fmap_index = self._get_metadata('fmap_index', 0)
+        self.lmap_index = self._get_metadata('lmap_index', 0)
+        self.omap_index = self._get_metadata('omap_index', 0)
+        self.rmap_index = self._get_metadata('rmap_index', 0)
+        self.nmap_index = self._get_metadata('nmap_index', 0)
 
         self.db_is_open = True
 
@@ -662,56 +662,56 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
                 # Save metadata
                 self._txn_begin()
-                self.set_metadata('name_formats', self.name_formats)
-                self.set_metadata('researcher', self.owner)
+                self._set_metadata('name_formats', self.name_formats)
+                self._set_metadata('researcher', self.owner)
 
                 # Bookmarks
-                self.set_metadata('bookmarks', self.bookmarks.get())
-                self.set_metadata('family_bookmarks',
+                self._set_metadata('bookmarks', self.bookmarks.get())
+                self._set_metadata('family_bookmarks',
                                   self.family_bookmarks.get())
-                self.set_metadata('event_bookmarks', self.event_bookmarks.get())
-                self.set_metadata('place_bookmarks', self.place_bookmarks.get())
-                self.set_metadata('repo_bookmarks', self.repo_bookmarks.get())
-                self.set_metadata('source_bookmarks',
+                self._set_metadata('event_bookmarks', self.event_bookmarks.get())
+                self._set_metadata('place_bookmarks', self.place_bookmarks.get())
+                self._set_metadata('repo_bookmarks', self.repo_bookmarks.get())
+                self._set_metadata('source_bookmarks',
                                   self.source_bookmarks.get())
-                self.set_metadata('citation_bookmarks',
+                self._set_metadata('citation_bookmarks',
                                   self.citation_bookmarks.get())
-                self.set_metadata('media_bookmarks', self.media_bookmarks.get())
-                self.set_metadata('note_bookmarks', self.note_bookmarks.get())
+                self._set_metadata('media_bookmarks', self.media_bookmarks.get())
+                self._set_metadata('note_bookmarks', self.note_bookmarks.get())
 
                 # Custom type values, sets
-                self.set_metadata('event_names', self.event_names)
-                self.set_metadata('fattr_names', self.family_attributes)
-                self.set_metadata('pattr_names', self.individual_attributes)
-                self.set_metadata('sattr_names', self.source_attributes)
-                self.set_metadata('marker_names', self.marker_names)
-                self.set_metadata('child_refs', self.child_ref_types)
-                self.set_metadata('family_rels', self.family_rel_types)
-                self.set_metadata('event_roles', self.event_role_names)
-                self.set_metadata('name_types', self.name_types)
-                self.set_metadata('origin_types', self.origin_types)
-                self.set_metadata('repo_types', self.repository_types)
-                self.set_metadata('note_types', self.note_types)
-                self.set_metadata('sm_types', self.source_media_types)
-                self.set_metadata('url_types', self.url_types)
-                self.set_metadata('mattr_names', self.media_attributes)
-                self.set_metadata('eattr_names', self.event_attributes)
-                self.set_metadata('place_types', self.place_types)
+                self._set_metadata('event_names', self.event_names)
+                self._set_metadata('fattr_names', self.family_attributes)
+                self._set_metadata('pattr_names', self.individual_attributes)
+                self._set_metadata('sattr_names', self.source_attributes)
+                self._set_metadata('marker_names', self.marker_names)
+                self._set_metadata('child_refs', self.child_ref_types)
+                self._set_metadata('family_rels', self.family_rel_types)
+                self._set_metadata('event_roles', self.event_role_names)
+                self._set_metadata('name_types', self.name_types)
+                self._set_metadata('origin_types', self.origin_types)
+                self._set_metadata('repo_types', self.repository_types)
+                self._set_metadata('note_types', self.note_types)
+                self._set_metadata('sm_types', self.source_media_types)
+                self._set_metadata('url_types', self.url_types)
+                self._set_metadata('mattr_names', self.media_attributes)
+                self._set_metadata('eattr_names', self.event_attributes)
+                self._set_metadata('place_types', self.place_types)
 
                 # Save misc items:
                 if self.has_changed:
                     self.save_gender_stats(self.genderStats)
 
                 # Indexes:
-                self.set_metadata('cmap_index', self.cmap_index)
-                self.set_metadata('smap_index', self.smap_index)
-                self.set_metadata('emap_index', self.emap_index)
-                self.set_metadata('pmap_index', self.pmap_index)
-                self.set_metadata('fmap_index', self.fmap_index)
-                self.set_metadata('lmap_index', self.lmap_index)
-                self.set_metadata('omap_index', self.omap_index)
-                self.set_metadata('rmap_index', self.rmap_index)
-                self.set_metadata('nmap_index', self.nmap_index)
+                self._set_metadata('cmap_index', self.cmap_index)
+                self._set_metadata('smap_index', self.smap_index)
+                self._set_metadata('emap_index', self.emap_index)
+                self._set_metadata('pmap_index', self.pmap_index)
+                self._set_metadata('fmap_index', self.fmap_index)
+                self._set_metadata('lmap_index', self.lmap_index)
+                self._set_metadata('omap_index', self.omap_index)
+                self._set_metadata('rmap_index', self.rmap_index)
+                self._set_metadata('nmap_index', self.nmap_index)
                 self._txn_commit()
 
             self._close()
@@ -836,7 +836,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.transaction = transaction
         return transaction
 
-    def get_metadata(self, key, default=[]):
+    def _get_metadata(self, key, default=[]):
         """
         Get an item from the database.
 
@@ -848,7 +848,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         raise NotImplementedError
 
-    def set_metadata(self, key, value):
+    def _set_metadata(self, key, value):
         """
         key: string
         value: item, will be serialized here
@@ -2435,7 +2435,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     ################################################################
 
     def get_default_handle(self):
-        return self.get_metadata("default-person-handle", None)
+        return self._get_metadata("default-person-handle", None)
 
     def get_default_person(self):
         handle = self.get_default_handle()
@@ -2445,14 +2445,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             return None
 
     def set_default_person_handle(self, handle):
-        self.set_metadata("default-person-handle", handle)
+        self._set_metadata("default-person-handle", handle)
         self.emit('home-person-changed')
 
     def get_mediapath(self):
-        return self.get_metadata("media-path", None)
+        return self._get_metadata("media-path", None)
 
     def set_mediapath(self, mediapath):
-        return self.set_metadata("media-path", mediapath)
+        return self._set_metadata("media-path", mediapath)
 
     def get_surname_list(self):
         """

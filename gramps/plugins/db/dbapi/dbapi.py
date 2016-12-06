@@ -400,7 +400,7 @@ class DBAPI(DbGeneric):
         txn.last = None
         self._after_commit(txn)
 
-    def get_metadata(self, key, default=[]):
+    def _get_metadata(self, key, default=[]):
         """
         Get an item from the database.
 
@@ -420,7 +420,7 @@ class DBAPI(DbGeneric):
         else:
             return default
 
-    def set_metadata(self, key, value):
+    def _set_metadata(self, key, value):
         """
         key: string
         value: item, will be serialized here

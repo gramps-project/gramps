@@ -709,16 +709,16 @@ class DbEmptyTest(unittest.TestCase):
     ################################################################
 
     def test_metadata(self):
-        self.db.set_metadata('test-key', 'test-value')
-        value = self.db.get_metadata('test-key')
+        self.db._set_metadata('test-key', 'test-value')
+        value = self.db._get_metadata('test-key')
         self.assertEqual(value, 'test-value')
 
     def test_metadata_missing(self):
-        value = self.db.get_metadata('missing-key')
+        value = self.db._get_metadata('missing-key')
         self.assertEqual(value, [])
 
     def test_metadata_default(self):
-        value = self.db.get_metadata('missing-key', default='default-value')
+        value = self.db._get_metadata('missing-key', default='default-value')
         self.assertEqual(value, 'default-value')
 
     ################################################################
