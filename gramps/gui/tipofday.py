@@ -66,6 +66,7 @@ class TipOfDay(ManagedWindow):
                         xml.get_object("title"),
                         _("Tip of the Day"),
                         _("Tip of the Day"))
+        self.setup_configs('interface.tipofday', 550, 350)
 
         self.tip = xml.get_object("tip")
         self.use = xml.get_object('usetips')

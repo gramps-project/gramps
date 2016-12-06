@@ -116,11 +116,10 @@ class Information(ManagedWindow):
         super().__init__(uistate, [], self)
         self.window = Gtk.Dialog()
         self.set_window(self.window, None, _("Database Information"))
+        self.setup_configs('interface.information', 600, 400)
         self.window.set_modal(True)
         self.ok = self.window.add_button(_('_OK'), Gtk.ResponseType.OK)
         self.ok.connect('clicked', self.on_ok_clicked)
-        self.window.set_position(Gtk.WindowPosition.CENTER)
-        self.window.set_default_size(600, 400)
         s = Gtk.ScrolledWindow()
         titles = [
             (_('Setting'), 0, 150),

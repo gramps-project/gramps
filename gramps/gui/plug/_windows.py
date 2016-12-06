@@ -101,7 +101,7 @@ class PluginStatus(ManagedWindow):
                                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                    (_('_Close'), Gtk.ResponseType.CLOSE)),
                         None, self.title)
-        self.window.set_size_request(750, 400)
+        self.setup_configs('interface.pluginstatus', 750, 400)
         self.window.connect('response', self.close)
 
         notebook = Gtk.Notebook()
@@ -681,7 +681,7 @@ class PluginTrace(ManagedWindow):
                                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                    (_('_Close'), Gtk.ResponseType.CLOSE)),
                         None, title)
-        self.window.set_size_request(600, 400)
+        self.setup_configs('interface.plugintrace', 600, 400)
         self.window.connect('response', self.close)
 
         scrolled_window = Gtk.ScrolledWindow()

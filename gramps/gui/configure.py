@@ -104,6 +104,7 @@ class DisplayNameEditor(ManagedWindow):
             Gtk.Dialog(_('Display Name Editor'),
                        buttons=(_('_Close'), Gtk.ResponseType.CLOSE)),
             None, _('Display Name Editor'), None)
+        self.setup_configs('interface.displaynameeditor', 820, 550)
         grid = self.dialog._build_custom_name_ui()
         label = Gtk.Label(label=_("""The following keywords are replaced with the appropriate name parts:<tt>
   <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames (with prefix and connectors)
@@ -126,7 +127,6 @@ UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. Other
         label.set_use_markup(True)
         self.window.vbox.pack_start(label, False, True, 0)
         self.window.vbox.pack_start(grid, True, True, 0)
-        self.window.set_default_size(600, 550)
         self.window.connect('response', self.close)
         self.show()
     def close(self, *obj):
@@ -178,6 +178,7 @@ class ConfigureDialog(ManagedWindow):
             Gtk.Dialog(dialogtitle,
                        buttons=(_('_Close'), Gtk.ResponseType.CLOSE)),
                        None, dialogtitle, None)
+        self.setup_configs('interface.configuredialog', 920, 450)
         self.panel = Gtk.Notebook()
         self.panel.set_scrollable(True)
         self.window.vbox.pack_start(self.panel, True, True, 0)
