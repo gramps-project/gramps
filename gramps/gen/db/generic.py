@@ -721,15 +721,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def is_open(self):
         return self.db_is_open
 
-    def is_empty(self):
-        """
-        Return true if there are no [primary] records in the database
-        """
-        for table in self.get_table_func():
-            if len(self.get_table_func(table, "handles_func")()) > 0:
-                return False
-        return True
-
     def get_dbid(self):
         """
         We use the file directory name as the unique ID for

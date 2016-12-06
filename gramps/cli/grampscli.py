@@ -316,7 +316,7 @@ class CLIManager:
         # database is empty, then copy default researcher to DB owner
         if (res.is_empty()
                 and not owner.is_empty()
-                and self.dbstate.db.is_empty()):
+                and self.dbstate.db.get_total() == 0):
             self.dbstate.db.set_researcher(owner)
 
         name_displayer.set_name_format(self.dbstate.db.name_formats)
