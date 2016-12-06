@@ -646,8 +646,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         if self._directory:
             if update:
-                if config.get('database.autobackup'):
-                    self.autobackup(user)
                 # This is just a dummy file to indicate last modified time of
                 # the database for gramps.cli.clidbman:
                 filename = os.path.join(self._directory, "meta_data.db")
@@ -2575,20 +2573,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def redo(self, update_history=True):
         return self.undodb.redo(update_history)
-
-    def backup(self, user=None):
-        """
-        If you wish to support an optional backup routine, put it here.
-        """
-        from gramps.plugins.export.exportxml import XmlWriter
-        from gramps.cli.user import User
-        if user is None:
-            user = User()
-        compress = config.get('database.compress-backup')
-        writer = XmlWriter(self, user, strip_photos=0, compress=compress)
-        timestamp = '{0:%Y-%m-%d-%H-%M-%S}'.format(datetime.datetime.now())
-        filename = os.path.join(self._directory, "backup-%s.gramps" % timestamp)
-        writer.write(filename)
 
     def get_summary(self):
         """

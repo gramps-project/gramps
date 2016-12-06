@@ -1995,23 +1995,3 @@ class DbWriteBase(DbReadBase):
 
         person.birth_ref_index = birth_ref_index
         person.death_ref_index = death_ref_index
-
-    def autobackup(self, user=None):
-        """
-        Backup the current file as a backup file.
-        """
-        from gramps.cli.user import User
-        if user is None:
-            user = User()
-        if self.is_open() and self.has_changed:
-            if user.uistate:
-                user.uistate.set_busy_cursor(True)
-                user.uistate.progress.show()
-                user.uistate.push_message(user.dbstate, _("Autobackup..."))
-            try:
-                self.backup(user=user)
-            except DbException as msg:
-                user.notify_error(_("Error saving backup data"), msg)
-            if user.uistate:
-                user.uistate.set_busy_cursor(False)
-                user.uistate.progress.hide()

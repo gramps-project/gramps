@@ -1507,7 +1507,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         if not self.db_is_open:
             return
-        self.autobackup(user)
         if self.txn:
             self.transaction_abort(self.transaction)
         self.env.txn_checkpoint()

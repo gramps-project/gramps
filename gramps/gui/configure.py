@@ -1239,6 +1239,11 @@ class GrampsPreferences(ConfigureDialog):
     def date_calendar_changed(self, obj):
         config.set('preferences.calendar-format-report', obj.get_active())
 
+    def autobackup_changed(self, obj):
+        active = obj.get_active()
+        config.set('database.autobackup', active)
+        self.uistate.set_autobackup_timer()
+
     def add_date_panel(self, configdialog):
         grid = Gtk.Grid()
         grid.set_border_width(12)
@@ -1464,6 +1469,33 @@ class GrampsPreferences(ConfigureDialog):
                 current_line, 'behavior.autoload')
         current_line += 1
 
+        self.backup_path_entry = Gtk.Entry()
+        self.add_path_box(grid,
+                _('Backup path'),
+                current_line, self.backup_path_entry,
+                config.get('database.backup-path'),
+                self.set_backup_path, self.select_backup_path)
+        current_line += 1
+
+        self.add_checkbox(grid,
+                _('Backup on exit'),
+                current_line, 'database.backup-on-exit')
+        current_line += 1
+
+        # Check for updates:
+        obox = Gtk.ComboBoxText()
+        formats = [_("Never"),
+                   _("Every 15 minutes"),
+                   _("Every 30 minutes"),
+                   _("Every hour")]
+        list(map(obox.append_text, formats))
+        active = config.get('database.autobackup')
+        obox.set_active(active)
+        obox.connect('changed', self.autobackup_changed)
+        lwidget = BasicLabel("%s: " % _('Autobackup'))
+        grid.attach(lwidget, 1, current_line, 1, 1)
+        grid.attach(obox, 2, current_line, 1, 1)
+
         return _('Family Tree'), grid
 
     def __create_backend_combo(self):
@@ -1541,6 +1573,31 @@ class GrampsPreferences(ConfigureDialog):
             val = f.get_filename()
             if val:
                 self.dbpath_entry.set_text(val)
+        f.destroy()
+
+    def set_backup_path(self, *obj):
+        path = self.backup_path_entry.get_text().strip()
+        config.set('database.backup-path', path)
+
+    def select_backup_path(self, *obj):
+        f = Gtk.FileChooserDialog(title=_("Select backup directory"),
+                                    parent=self.window,
+                                    action=Gtk.FileChooserAction.SELECT_FOLDER,
+                                    buttons=(_('_Cancel'),
+                                                Gtk.ResponseType.CANCEL,
+                                                _('_Apply'),
+                                                Gtk.ResponseType.OK)
+                                    )
+        backup_path = config.get('database.backup-path')
+        if not backup_path:
+            backup_path = config.get('database.path')
+        f.set_current_folder(os.path.dirname(backup_path))
+
+        status = f.run()
+        if status == Gtk.ResponseType.OK:
+            val = f.get_filename()
+            if val:
+                self.backup_path_entry.set_text(val)
         f.destroy()
 
     def update_idformat_entry(self, obj, constant):

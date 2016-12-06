@@ -54,13 +54,6 @@ class InMemoryDB(DBAPI):
         with open(versionpath, "w") as version_file:
             version_file.write(str(self.VERSION))
 
-    def autobackup(self, user=None):
-        """
-        Nothing to do, as we write it out anyway.
-        No backups for inmemory databases.
-        """
-        pass
-
     def load(self, directory, callback=None, mode=None,
              force_schema_upgrade=False,
              force_bsddb_upgrade=False,
