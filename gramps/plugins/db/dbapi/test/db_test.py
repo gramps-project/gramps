@@ -687,6 +687,16 @@ class DbRandomTest(unittest.TestCase):
         person = self.db.find_initial_person()
         self.assertEqual(person.handle, default_handle)
 
+    ################################################################
+    #
+    # Test get_total method
+    #
+    ################################################################
+    def test_get_total(self):
+        total = sum([len(self.handles[obj_type])
+                     for obj_type in self.handles.keys()])
+        self.assertEqual(self.db.get_total(), total)
+
 #-------------------------------------------------------------------------
 #
 # DbEmptyTest class
@@ -775,6 +785,14 @@ class DbEmptyTest(unittest.TestCase):
 
         mapping = self.db.get_name_group_mapping('Clark')
         self.assertEqual(mapping, 'Clarke')
+
+    ################################################################
+    #
+    # Test get_total method
+    #
+    ################################################################
+    def test_get_total(self):
+        self.assertEqual(self.db.get_total(), 0)
 
 #-------------------------------------------------------------------------
 #

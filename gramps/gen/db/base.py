@@ -1960,17 +1960,19 @@ class DbWriteBase(DbReadBase):
         """
         Get the total of primary objects.
         """
-        # TODO: should this include tags and citations?
         person_len = self.get_number_of_people()
         family_len = self.get_number_of_families()
         event_len = self.get_number_of_events()
-        source_len = self.get_number_of_sources()
         place_len = self.get_number_of_places()
         repo_len = self.get_number_of_repositories()
-        obj_len = self.get_number_of_media()
+        source_len = self.get_number_of_sources()
+        citation_len = self.get_number_of_citations()
+        media_len = self.get_number_of_media()
+        note_len = self.get_number_of_notes()
+        tag_len = self.get_number_of_tags()
 
-        return person_len + family_len + event_len + \
-               place_len + source_len + obj_len + repo_len
+        return (person_len + family_len + event_len + place_len + repo_len +
+                source_len + citation_len + media_len + note_len + tag_len)
 
     def set_birth_death_index(self, person):
         """
