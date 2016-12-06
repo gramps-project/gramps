@@ -181,6 +181,9 @@ register('geography.show_cross', False)
 register('geography.path', "")
 register('geography.use-keypad', True)
 
+# note that other calls to "register" are done in realtime (when
+# needed), for instance to four 'interface.clipboard' variables --
+# so do a recursive grep for "setup_configs" to see all the (base) names
 register('interface.addmedia-height', 500)
 register('interface.addmedia-width', 700)
 register('interface.address-height', 450)
@@ -198,10 +201,6 @@ register('interface.view-categories',
          ["Dashboard", "People", "Relationships", "Families",
           "Ancestry", "Events", "Places", "Geography", "Sources",
           "Citations", "Repositories", "Media", "Notes"])
-register('interface.edit-filter-width', 500)
-register('interface.edit-filter-height', 420)
-register('interface.edit-rule-width', 600)
-register('interface.edit-rule-height', 450)
 register('interface.event-height', 450)
 register('interface.event-ref-height', 450)
 register('interface.event-ref-width', 600)
@@ -213,8 +212,6 @@ register('interface.family-sel-height', 450)
 register('interface.family-sel-width', 600)
 register('interface.family-width', 700)
 register('interface.filter', False)
-register('interface.filter-editor-width', 400)
-register('interface.filter-editor-height', 350)
 register('interface.fullscreen', False)
 register('interface.grampletbar-close', False)
 register('interface.ignore-gexiv2', False)
