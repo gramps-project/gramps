@@ -938,28 +938,6 @@ class DBAPI(DbGeneric):
             surname_list.append(row[0])
         return surname_list
 
-    def drop_tables(self):
-        """
-        Useful in testing, reseting. If the test is unsure whether the tables
-        already exist, then the caller will need to catch the appropriate
-        exception
-        """
-        self.dbapi.execute("DROP TABLE  person")
-        self.dbapi.execute("DROP TABLE  family")
-        self.dbapi.execute("DROP TABLE  source")
-        self.dbapi.execute("DROP TABLE  citation")
-        self.dbapi.execute("DROP TABLE  event")
-        self.dbapi.execute("DROP TABLE  media")
-        self.dbapi.execute("DROP TABLE  place")
-        self.dbapi.execute("DROP TABLE  repository")
-        self.dbapi.execute("DROP TABLE  note")
-        self.dbapi.execute("DROP TABLE  tag")
-        # Secondary:
-        self.dbapi.execute("DROP TABLE  reference")
-        self.dbapi.execute("DROP TABLE  name_group")
-        self.dbapi.execute("DROP TABLE  metadata")
-        self.dbapi.execute("DROP TABLE  gender_stats")
-
     def _sql_type(self, python_type):
         """
         Given a schema type, return the SQL type for

@@ -633,13 +633,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         self.db_is_open = True
 
-    def reload(self):
-        """
-        Reload, and recreate tables (if necessary).
-        Useful after db.drop_tables()
-        """
-        self.load(self._directory)
-
     def _close(self):
         """
         Close database backend.
