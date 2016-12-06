@@ -87,6 +87,7 @@ from gramps.gen.utils.file import media_path_full
 from .dbloader import DbLoader
 from .display import display_help, display_url
 from .configure import GrampsPreferences
+from .addonmanager import AddonManagerPreferences
 from .aboutdialog import GrampsAboutDialog
 from .navigator import Navigator
 from .views.tags import Tags
@@ -167,6 +168,9 @@ UIDEFAULT = '''<ui>
   </menu>
   <menu action="WindowsMenu">
     <placeholder name="WinMenu"/>
+  </menu>
+  <menu action="AddonMenu">
+    <menuitem action="AddonManager"/>
   </menu>
   <menu action="HelpMenu">
     <menuitem action="UserManual"/>
@@ -481,6 +485,9 @@ class ViewManager(CLIManager):
             ('EditMenu', None, _('_Edit')),
             ('Preferences', 'preferences-system', _('_Preferences...'), None,
              None, self.preferences_activate),
+            ('AddonMenu', None, _('_Addons')),
+            ('AddonManager', None, _('Addon Manager'), None, None,
+             self.addonmanager_activate),
             ('HelpMenu', None, _('_Help')),
             ('HomePage', None, _('Gramps _Home Page'), None, None,
              home_page_activate),
@@ -862,6 +869,15 @@ class ViewManager(CLIManager):
         """
         from .tipofday import TipOfDay
         TipOfDay(self.uistate)
+
+    def addonmanager_activate(self, obj):
+        """
+        Open the addon manager dialog.
+        """
+        try:
+            AddonManagerPreferences(self.uistate, self.dbstate)
+        except WindowActiveError:
+            return
 
     def __plugin_status(self, obj=None, data=None):
         """

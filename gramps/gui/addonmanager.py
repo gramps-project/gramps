@@ -104,7 +104,6 @@ class DisplayNameEditor(ManagedWindow):
             Gtk.Dialog(_('Display Name Editor'),
                        buttons=(_('_Close'), Gtk.ResponseType.CLOSE)),
             None, _('Display Name Editor'), None)
-        self.setup_configs('interface.displaynameeditor', 820, 550)
         grid = self.dialog._build_custom_name_ui()
         label = Gtk.Label(label=_("""The following keywords are replaced with the appropriate name parts:<tt>
   <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames (with prefix and connectors)
@@ -127,6 +126,7 @@ UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. Other
         label.set_use_markup(True)
         self.window.vbox.pack_start(label, False, True, 0)
         self.window.vbox.pack_start(grid, True, True, 0)
+        self.window.set_default_size(600, 550)
         self.window.connect('response', self.close)
         self.show()
     def close(self, *obj):
@@ -152,7 +152,7 @@ class ConfigureDialog(ManagedWindow):
     """
     def __init__(self, uistate, dbstate, configure_page_funcs, configobj,
                  configmanager,
-                 dialogtitle=_("Preferences"), on_close=None):
+                 dialogtitle=_("Addon Manager"), on_close=None):
         """
         Set up a configuration dialog
         :param uistate: a DisplayState instance
@@ -178,7 +178,6 @@ class ConfigureDialog(ManagedWindow):
             Gtk.Dialog(dialogtitle,
                        buttons=(_('_Close'), Gtk.ResponseType.CLOSE)),
                        None, dialogtitle, None)
-        self.setup_configs('interface.configuredialog', 920, 450)
         self.panel = Gtk.Notebook()
         self.panel.set_scrollable(True)
         self.window.vbox.pack_start(self.panel, True, True, 0)
@@ -482,141 +481,20 @@ class ConfigureDialog(ManagedWindow):
 
 #-------------------------------------------------------------------------
 #
-# GrampsPreferences
+# AddonManagerPreferences
 #
 #-------------------------------------------------------------------------
-class GrampsPreferences(ConfigureDialog):
+class AddonManagerPreferences(ConfigureDialog):
 
     def __init__(self, uistate, dbstate):
         page_funcs = (
-            self.add_behavior_panel,
-            self.add_famtree_panel,
-            self.add_formats_panel,
-            self.add_places_panel,
-            self.add_text_panel,
-            self.add_prefix_panel,
-            self.add_date_panel,
-            self.add_researcher_panel,
-            self.add_advanced_panel,
-            self.add_color_panel
+            self.add_addoncheckupdates_panel,
+            self.addon_listing,
             )
         ConfigureDialog.__init__(self, uistate, dbstate, page_funcs,
-                                 GrampsPreferences, config,
+                                 AddonManagerPreferences, config,
                                  on_close=update_constants)
 
-    def add_researcher_panel(self, configdialog):
-        grid = Gtk.Grid()
-        grid.set_border_width(12)
-        grid.set_column_spacing(6)
-        grid.set_row_spacing(6)
-        self.add_text(grid, _('Enter your information so people can contact you when you'
-                        ' distribute your Family Tree'), 0, line_wrap=False)
-        self.add_entry(grid, _('Name'), 1, 'researcher.researcher-name')
-        self.add_entry(grid, _('Address'), 2, 'researcher.researcher-addr')
-        self.add_entry(grid, _('Locality'), 3, 'researcher.researcher-locality')
-        self.add_entry(grid, _('City'), 4, 'researcher.researcher-city')
-        self.add_entry(grid, _('State/County'), 5, 'researcher.researcher-state')
-        self.add_entry(grid, _('Country'), 6, 'researcher.researcher-country')
-        self.add_entry(grid, _('ZIP/Postal Code'), 7, 'researcher.researcher-postal')
-        self.add_entry(grid, _('Phone'), 8, 'researcher.researcher-phone')
-        self.add_entry(grid, _('Email'), 9, 'researcher.researcher-email')
-        return _('Researcher'), grid
-
-    def add_prefix_panel(self, configdialog):
-        """
-        Add the ID prefix tab to the preferences.
-        """
-        grid = Gtk.Grid()
-        grid.set_border_width(12)
-        grid.set_column_spacing(6)
-        grid.set_row_spacing(6)
-        self.add_entry(grid, _('Person'), 0, 'preferences.iprefix',
-                       self.update_idformat_entry)
-        self.add_entry(grid, _('Family'), 1, 'preferences.fprefix',
-                       self.update_idformat_entry)
-        self.add_entry(grid, _('Place'), 2, 'preferences.pprefix',
-                       self.update_idformat_entry)
-        self.add_entry(grid, _('Source'), 3, 'preferences.sprefix',
-                       self.update_idformat_entry)
-        self.add_entry(grid, _('Citation'), 4, 'preferences.cprefix',
-                       self.update_idformat_entry)
-        self.add_entry(grid, _('Media Object'), 5, 'preferences.oprefix',
-                       self.update_idformat_entry)
-        self.add_entry(grid, _('Event'), 6, 'preferences.eprefix',
-                       self.update_idformat_entry)
-        self.add_entry(grid, _('Repository'), 7, 'preferences.rprefix',
-                       self.update_idformat_entry)
-        self.add_entry(grid, _('Note'), 8, 'preferences.nprefix',
-                       self.update_idformat_entry)
-        return _('ID Formats'), grid
-
-    def add_color_panel(self, configdialog):
-        """
-        Add the tab to set defaults colors for graph boxes
-        """
-        grid = Gtk.Grid()
-        grid.set_border_width(12)
-        grid.set_column_spacing(6)
-        grid.set_row_spacing(6)
-        self.add_text(grid, _('Set the colors used for boxes in the graphical views'),
-                        0, line_wrap=False)
-        self.add_color(grid, _('Gender Male Alive'), 1,
-                        'preferences.color-gender-male-alive')
-        self.add_color(grid, _('Border Male Alive'), 2,
-                        'preferences.bordercolor-gender-male-alive')
-        self.add_color(grid, _('Gender Male Death'), 3,
-                        'preferences.color-gender-male-death')
-        self.add_color(grid, _('Border Male Death'), 4,
-                        'preferences.bordercolor-gender-male-death')
-        self.add_color(grid, _('Gender Female Alive'), 1,
-                        'preferences.color-gender-female-alive', col=4)
-        self.add_color(grid, _('Border Female Alive'), 2,
-                        'preferences.bordercolor-gender-female-alive', col=4)
-        self.add_color(grid, _('Gender Female Death'), 3,
-                        'preferences.color-gender-female-death', col=4)
-        self.add_color(grid, _('Border Female Death'), 4,
-                        'preferences.bordercolor-gender-female-death', col=4)
-##        self.add_color(grid, _('Gender Other Alive'), 5,
-##                        'preferences.color-gender-other-alive')
-##        self.add_color(grid, _('Border Other Alive'), 6,
-##                        'preferences.bordercolor-gender-other-alive')
-##        self.add_color(grid, _('Gender Other Death'), 7,
-##                        'preferences.color-gender-other-death')
-##        self.add_color(grid, _('Border Other Death'), 8,
-##                        'preferences.bordercolor-gender-other-death')
-        self.add_color(grid, _('Gender Unknown Alive'), 5,
-                        'preferences.color-gender-unknown-alive', col=4)
-        self.add_color(grid, _('Border Unknown Alive'), 6,
-                        'preferences.bordercolor-gender-unknown-alive', col=4)
-        self.add_color(grid, _('Gender Unknown Death'), 7,
-                        'preferences.color-gender-unknown-death', col=4)
-        self.add_color(grid, _('Border Unknown Death'), 8,
-                        'preferences.bordercolor-gender-unknown-death', col=4)
-        return _('Colors'), grid
-
-    def add_advanced_panel(self, configdialog):
-        grid = Gtk.Grid()
-        grid.set_border_width(12)
-        grid.set_column_spacing(6)
-        grid.set_row_spacing(6)
-        self.add_checkbox(
-            grid, _('Suppress warning when adding parents to a child.'),
-            0, 'preferences.family-warn')
-
-        self.add_checkbox(
-            grid, _('Suppress warning when canceling with changed data.'),
-            1, 'interface.dont-ask')
-
-        self.add_checkbox(
-            grid, _('Suppress warning about missing researcher when'
-                     ' exporting to GEDCOM.'),
-            2, 'behavior.owner-warn')
-
-        self.add_checkbox(
-            grid, _('Show plugin status dialog on plugin load error.'),
-            3, 'behavior.pop-plugin-status')
-
-        return _('Warnings'), grid
 
     def _build_name_format_model(self, active):
         """
@@ -933,232 +811,6 @@ class GrampsPreferences(ConfigureDialog):
         """
         self.uistate.emit('grampletbar-close-changed')
 
-    def add_formats_panel(self, configdialog):
-        row = 0
-        grid = Gtk.Grid()
-        grid.set_border_width(12)
-        grid.set_column_spacing(6)
-        grid.set_row_spacing(6)
-
-        # Display name:
-        self.examplename = Name()
-        examplesurname = Surname()
-        examplesurnamesecond = Surname()
-        examplesurnamepat = Surname()
-        self.examplename.set_title('Dr.')
-        self.examplename.set_first_name('Edwin Jose')
-        examplesurname.set_prefix('von der')
-        examplesurname.set_surname('Smith')
-        examplesurname.set_connector('and')
-        self.examplename.add_surname(examplesurname)
-        examplesurnamesecond.set_surname('Weston')
-        self.examplename.add_surname(examplesurnamesecond)
-        examplesurnamepat.set_surname('Wilson')
-        examplesurnamepat.set_origintype(
-                                    NameOriginType(NameOriginType.PATRONYMIC))
-        self.examplename.add_surname(examplesurnamepat)
-        self.examplename.set_primary_surname(0)
-        self.examplename.set_suffix('Sr')
-        self.examplename.set_call_name('Jose')
-        self.examplename.set_nick_name('Ed')
-        self.examplename.set_family_nick_name('Underhills')
-        # get the model for the combo and the treeview
-        active = _nd.get_default_format()
-        self.fmt_model, active = self._build_name_format_model(active)
-        # set up the combo to choose the preset format
-        self.fmt_obox = Gtk.ComboBox()
-        cell = Gtk.CellRendererText()
-        self.fmt_obox.pack_start(cell, True)
-        self.fmt_obox.add_attribute(cell, 'text', 1)
-        self.fmt_obox.set_model(self.fmt_model)
-        # set the default value as active in the combo
-        self.fmt_obox.set_active(active)
-        self.fmt_obox.connect('changed', self.cb_name_changed)
-        # label for the combo
-        lwidget = BasicLabel("%s: " % _('Name format'))
-        lwidget.set_use_underline(True)
-        lwidget.set_mnemonic_widget(self.fmt_obox)
-        hbox = Gtk.Box()
-        btn = Gtk.Button("%s..." % _('Edit') )
-        btn.connect('clicked', self.cb_name_dialog)
-        hbox.pack_start(self.fmt_obox, True, True, 0)
-        hbox.pack_start(btn, False, False, 0)
-        grid.attach(lwidget, 0, row, 1, 1)
-        grid.attach(hbox, 1, row, 2, 1)
-        row += 1
-
-        # Pa/Matronymic surname handling
-        self.add_checkbox(grid,
-                          _("Consider single pa/matronymic as surname"),
-                          row, 'preferences.patronimic-surname', stop=3,
-                          extra_callback=self.cb_pa_sur_changed)
-        row += 1
-
-        # Date format:
-        obox = Gtk.ComboBoxText()
-        formats = get_date_formats()
-        list(map(obox.append_text, formats))
-        active = config.get('preferences.date-format')
-        if active >= len(formats):
-            active = 0
-        obox.set_active(active)
-        obox.connect('changed', self.date_format_changed)
-        lwidget = BasicLabel("%s: " % _('Date format'))
-        grid.attach(lwidget, 0, row, 1, 1)
-        grid.attach(obox, 1, row, 2, 1)
-        row += 1
-
-        # Age precision:
-        # precision=1 for "year", 2: "year, month" or 3: "year, month, days"
-        obox = Gtk.ComboBoxText()
-        age_precision = [_("Years"),
-                         _("Years, Months"),
-                         _("Years, Months, Days")]
-        list(map(obox.append_text, age_precision))
-        # Combo_box active index is from 0 to 2, we need values from 1 to 3
-        active = config.get('preferences.age-display-precision') - 1
-        if active >= 0 and active <= 2:
-            obox.set_active(active)
-        else:
-            obox.set_active(0)
-        obox.connect('changed',
-                     lambda obj: config.set('preferences.age-display-precision',
-                                            obj.get_active() + 1))
-        lwidget = BasicLabel("%s: "
-                             % _('Age display precision (requires restart)'))
-        grid.attach(lwidget, 0, row, 1, 1)
-        grid.attach(obox, 1, row, 2, 1)
-        row += 1
-
-        # Calendar format on report:
-        obox = Gtk.ComboBoxText()
-        list(map(obox.append_text, Date.ui_calendar_names))
-        active = config.get('preferences.calendar-format-report')
-        if active >= len(formats):
-            active = 0
-        obox.set_active(active)
-        obox.connect('changed', self.date_calendar_changed)
-        lwidget = BasicLabel("%s: " % _('Calendar on reports'))
-        grid.attach(lwidget, 0, row, 1, 1)
-        grid.attach(obox, 1, row, 2, 1)
-        row += 1
-
-        # Surname guessing:
-        obox = Gtk.ComboBoxText()
-        formats = _surname_styles
-        list(map(obox.append_text, formats))
-        obox.set_active(config.get('behavior.surname-guessing'))
-        obox.connect('changed',
-                     lambda obj: config.set('behavior.surname-guessing',
-                                            obj.get_active()))
-        lwidget = BasicLabel("%s: " % _('Surname guessing'))
-        grid.attach(lwidget, 0, row, 1, 1)
-        grid.attach(obox, 1, row, 2, 1)
-        row += 1
-
-        # Default Family Relationship
-        obox = Gtk.ComboBoxText()
-        formats = FamilyRelType().get_standard_names()
-        list(map(obox.append_text, formats))
-        obox.set_active(config.get('preferences.family-relation-type'))
-        obox.connect('changed',
-                     lambda obj: config.set('preferences.family-relation-type',
-                                            obj.get_active()))
-        lwidget = BasicLabel("%s: " % _('Default family relationship'))
-        grid.attach(lwidget, 0, row, 1, 1)
-        grid.attach(obox, 1, row, 2, 1)
-        row += 1
-
-        #height multiple surname table
-        self.add_pos_int_entry(grid,
-                _('Height multiple surname box (pixels)'),
-                row, 'interface.surname-box-height', self.update_surn_height,
-                col_attach=0)
-        row += 1
-
-        # Status bar:
-        obox = Gtk.ComboBoxText()
-        formats = [_("Active person's name and ID"),
-                   _("Relationship to home person")]
-        list(map(obox.append_text, formats))
-        active = config.get('interface.statusbar')
-        if active < 2:
-            obox.set_active(0)
-        else:
-            obox.set_active(1)
-        obox.connect('changed',
-                     lambda obj: config.set('interface.statusbar', 2*obj.get_active()))
-        lwidget = BasicLabel("%s: " % _('Status bar'))
-        grid.attach(lwidget, 0, row, 1, 1)
-        grid.attach(obox, 1, row, 2, 1)
-        row += 1
-
-        # Text in sidebar:
-        self.add_checkbox(grid,
-                          _("Show text label beside Navigator buttons (requires restart)"),
-                          row, 'interface.sidebar-text', stop=3)
-        row += 1
-
-        # Gramplet bar close buttons:
-        self.add_checkbox(grid,
-                          _("Show close button in gramplet bar tabs"),
-                          row, 'interface.grampletbar-close', stop=3,
-                          extra_callback=self.cb_grampletbar_close)
-        row += 1
-        return _('Display'), grid
-
-    def add_places_panel(self, configdialog):
-        grid = Gtk.Grid()
-        grid.set_border_width(12)
-        grid.set_column_spacing(6)
-        grid.set_row_spacing(6)
-
-        auto = self.add_checkbox(grid,
-                                _("Enable automatic place title generation"),
-                                0, 'preferences.place-auto',
-                                extra_callback=self.auto_title_changed)
-
-        row = 0
-        grid2 = Gtk.Grid()
-        grid2.set_border_width(12)
-        grid2.set_column_spacing(6)
-        grid2.set_row_spacing(6)
-        grid.attach(grid2, 1, 1, 1, 1)
-
-        self.place_widgets = []
-        cbox = self.add_checkbox(grid2, _("Suppress comma after house number"),
-                                 row, 'preferences.place-number', start=0)
-        self.place_widgets.append(cbox)
-        row += 1
-
-        cbox = self.add_checkbox(grid2, _("Reverse display order"),
-                                 row, 'preferences.place-reverse', start=0)
-        self.place_widgets.append(cbox)
-        row += 1
-
-        # Place restriction
-        obox = Gtk.ComboBoxText()
-        formats = [_("Full place name"),
-                   _("-> Hamlet/Village/Town/City"),
-                   _("Hamlet/Village/Town/City ->")]
-        list(map(obox.append_text, formats))
-        active = config.get('preferences.place-restrict')
-        obox.set_active(active)
-        obox.connect('changed', self.place_restrict_changed)
-        lwidget = BasicLabel("%s: " % _('Restrict'))
-        grid2.attach(lwidget, 0, row, 1, 1)
-        grid2.attach(obox, 1, row, 2, 1)
-        self.place_widgets.append(obox)
-        row += 1
-
-        entry = self.add_entry(grid2, _("Language"),
-                               row, 'preferences.place-lang')
-        self.place_widgets.append(entry)
-        row += 1
-
-        self.auto_title_changed(auto)
-
-        return _('Places'), grid
 
     def auto_title_changed(self, obj):
         """
@@ -1167,34 +819,6 @@ class GrampsPreferences(ConfigureDialog):
         active = obj.get_active()
         for widget in self.place_widgets:
             widget.set_sensitive(active)
-
-    def add_text_panel(self, configdialog):
-        row = 0
-        grid = Gtk.Grid()
-        grid.set_border_width(12)
-        grid.set_column_spacing(6)
-        grid.set_row_spacing(6)
-        self.add_entry(grid, _('Missing surname'), row,
-                       'preferences.no-surname-text')
-        row += 1
-        self.add_entry(grid, _('Missing given name'), row,
-                       'preferences.no-given-text')
-        row += 1
-        self.add_entry(grid, _('Missing record'), row,
-                       'preferences.no-record-text')
-        row += 1
-        self.add_entry(grid, _('Private surname'), row,
-                       'preferences.private-surname-text',
-                       localized_config=False)
-        row += 1
-        self.add_entry(grid, _('Private given name'), row,
-                       'preferences.private-given-text',
-                       localized_config=False)
-        row += 1
-        self.add_entry(grid, _('Private record'), row,
-                       'preferences.private-record-text')
-        row += 1
-        return _('Text'), grid
 
     def cb_name_dialog(self, obj):
         the_list = self.fmt_obox.get_model()
@@ -1239,122 +863,83 @@ class GrampsPreferences(ConfigureDialog):
     def date_calendar_changed(self, obj):
         config.set('preferences.calendar-format-report', obj.get_active())
 
-    def add_date_panel(self, configdialog):
-        grid = Gtk.Grid()
-        grid.set_border_width(12)
-        grid.set_column_spacing(6)
-        grid.set_row_spacing(6)
-
-        self.add_spinner(grid,
-                _('Date about range'),
-                0, 'behavior.date-about-range', (1, 9999))
-        self.add_spinner(grid,
-                _('Date after range'),
-                1, 'behavior.date-after-range', (1, 9999))
-        self.add_spinner(grid,
-                _('Date before range'),
-                2, 'behavior.date-before-range', (1, 9999))
-        self.add_spinner(grid,
-                _('Maximum age probably alive'),
-                3, 'behavior.max-age-prob-alive', (80, 140))
-        self.add_spinner(grid,
-                _('Maximum sibling age difference'),
-                4, 'behavior.max-sib-age-diff', (10, 30))
-        self.add_spinner(grid,
-                _('Minimum years between generations'),
-                5, 'behavior.min-generation-years', (5, 20))
-        self.add_spinner(grid,
-                _('Average years between generations'),
-                6, 'behavior.avg-generation-gap', (10, 30))
-        self.add_pos_int_entry(grid,
-                _('Markup for invalid date format'),
-                7, 'preferences.invalid-date-format',
-                self.update_markup_entry,
-                helptext = _('Convenience markups are:\n'
-                '<b>&lt;b&gt;Bold&lt;/b&gt;</b>\n'
-                '<big>&lt;big&gt;Makes font relatively larger&lt;/big&gt;</big>\n'
-                '<i>&lt;i&gt;Italic&lt;/i&gt;</i>\n'
-                '<s>&lt;s&gt;Strikethrough&lt;/s&gt;</s>\n'
-                '<sub>&lt;sub&gt;Subscript&lt;/sub&gt;</sub>\n'
-                '<sup>&lt;sup&gt;Superscript&lt;/sup&gt;</sup>\n'
-                '<small>&lt;small&gt;Makes font relatively smaller&lt;/small&gt;</small>\n'
-                '<tt>&lt;tt&gt;Monospace font&lt;/tt&gt;</tt>\n'
-                '<u>&lt;u&gt;Underline&lt;/u&gt;</u>\n\n'
-                'For example: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n'
-                'will display <u><b>Underlined bold date</b></u>.\n')
-                )
-
-        return _('Dates'), grid
-
-    def add_behavior_panel(self, configdialog):
+    def addon_listing(self, configdialog):
         grid = Gtk.Grid()
         grid.set_border_width(12)
         grid.set_column_spacing(6)
         grid.set_row_spacing(6)
 
         current_line = 0
-        if win():
-            self.add_checkbox(grid,
-                    _('Use alternate Font handler for GUI and Reports '
-                      '(requires restart)'),
-                    current_line, 'preferences.alternate-fonthandler')
+        self.add_text(grid, _('**Placeholder***  Listing here for Third-party Addons. (display all third-party addons. Installed addons could be marked with a tick.) \n \n'
+                              ), 0, line_wrap=False)
+        current_line += 1
 
-            current_line += 1
-        self.add_checkbox(grid,
-                _('Add default source on GEDCOM import'),
-                current_line, 'preferences.default-source')
+        return _('Listing'), grid
+
+    def add_addoncheckupdates_panel(self, configdialog):
+        grid = Gtk.Grid()
+        grid.set_border_width(12)
+        grid.set_column_spacing(6)
+        grid.set_row_spacing(6)
+
+        current_line = 0
+        self.add_text(grid, _('Have Gramps check for and download Third-party Addon updates. \n \n'
+                              'Third-party Addons unless stated are not officially part of Gramps \n \n'
+                              'Please use carefully on Family Trees that are backed up. \n \n'
+                              'Note: Some Addons have prerequisites that need to be installed '
+                              'before they can be used.\n \n'
+                              'https://gramps-project.org/wiki/index.php?title=Third-party_Plugins'
+                              ), 0, line_wrap=False)
+        current_line += 9
+
+        # Check for addon updates:
+        obox = Gtk.ComboBoxText()
+        formats = [_("Never"),
+                   _("Once a month"),
+                   _("Once a week"),
+                   _("Once a day"),
+                   _("Always"), ]
+        list(map(obox.append_text, formats))
+        active = config.get('behavior.check-for-updates')  #TODO change this key to ??? and upgrade older keys that reference "behavior.check-for-updates"
+        obox.set_active(active)
+        obox.connect('changed', self.check_for_updates_changed)
+        lwidget = BasicLabel("%s: " % _('Check for addon updates')) # TODO Because we don't have a check for new Gramps release yet
+        grid.attach(lwidget, 1, current_line, 1, 1)
+        grid.attach(obox, 2, current_line, 1, 1)
 
         current_line += 1
-        checkbutton = Gtk.CheckButton(label=_("Add tag on import"))
-        checkbutton.set_active(config.get('preferences.tag-on-import'))
-        checkbutton.connect("toggled", self.toggle_tag_on_import)
+        self.whattype_box = Gtk.ComboBoxText()
+        formats = [_("Updated addons only"),
+                   _("New addons only"),
+                   _("New and updated addons"),]
+        list(map(self.whattype_box.append_text, formats))
+        whattype = config.get('behavior.check-for-update-types')   #TODO change this key to ??? and upgrade older keys that reference "behavior.check-for-update-types"
+        if "new" in whattype and "update" in whattype:
+            self.whattype_box.set_active(2)
+        elif "new" in whattype:
+            self.whattype_box.set_active(1)
+        elif "update" in whattype:
+            self.whattype_box.set_active(0)
+        self.whattype_box.connect('changed', self.check_for_type_changed)
+        lwidget = BasicLabel("%s: " % _('What to check'))
+        grid.attach(lwidget, 1, current_line, 1, 1)
+        grid.attach(self.whattype_box, 2, current_line, 1, 1)
+
+        current_line += 1
+        self.add_entry(grid, _('Where to check'), current_line, 'behavior.addons-url', col_attach=1)
+
+        current_line += 1
+        checkbutton = Gtk.CheckButton(
+            label=_("Do not ask about previously notified addons"))
+        checkbutton.set_active(config.get('behavior.do-not-show-previously-seen-updates'))  #TODO change this key to ???
+        checkbutton.connect("toggled", self.toggle_hide_previous_addons)
+
         grid.attach(checkbutton, 1, current_line, 1, 1)
-        self.tag_format_entry = self.add_entry(grid, None, current_line,
-                                               'preferences.tag-on-import-format',
-                                               col_attach=2)
-        self.tag_format_entry.set_sensitive(config.get('preferences.tag-on-import'))
+        button = Gtk.Button(label=_("Check now"))
+        button.connect("clicked", self.check_for_updates)
+        grid.attach(button, 3, current_line, 1, 1)
 
-        current_line += 1
-        obj = self.add_checkbox(grid,
-                _('Enable spelling checker'),
-                current_line, 'behavior.spellcheck')
-        if not HAVE_GTKSPELL:
-            obj.set_sensitive(False)
-            spell_dict = { 'gramps_wiki_build_spell_url' :
-                               URL_WIKISTRING +
-                                   "GEPS_029:_GTK3-GObject_introspection"
-                                   "_Conversion#Spell_Check_Install" }
-            obj.set_tooltip_text(
-                _("GtkSpell not loaded. "
-                  "Spell checking will not be available.\n"
-                  "To build it for Gramps see "
-                  "%(gramps_wiki_build_spell_url)s") % spell_dict )
-
-        current_line += 1
-        self.add_checkbox(grid,
-                _('Display Tip of the Day'),
-                current_line, 'behavior.use-tips')
-
-        current_line += 1
-        self.add_checkbox(grid,
-                _('Remember last view displayed'),
-                current_line, 'preferences.use-last-view')
-
-        current_line += 1
-        self.add_spinner(grid,
-                _('Max generations for relationships'),
-                current_line, 'behavior.generation-depth', (5, 50), self.update_gendepth)
-
-        current_line += 1
-        self.path_entry = Gtk.Entry()
-        self.add_path_box(grid,
-                _('Base path for relative media paths'),
-                current_line, self.path_entry, self.dbstate.db.get_mediapath(),
-                self.set_mediapath, self.select_mediapath)
-
-        current_line += 1
-
-        return _('General'), grid
+        return _('Updates'), grid
 
     def check_for_updates(self, button):
         try:
@@ -1387,38 +972,6 @@ class GrampsPreferences(ConfigureDialog):
         the_iter = obj.get_active_iter()
         db_choice = the_list.get_value(the_iter, 2)
         config.set('database.backend', db_choice)
-
-    def add_famtree_panel(self, configdialog):
-        grid = Gtk.Grid()
-        grid.set_border_width(12)
-        grid.set_column_spacing(6)
-        grid.set_row_spacing(6)
-
-        current_line = 0
-
-        if __debug__:
-            lwidget = BasicLabel("%s: " % _('Database backend'))
-            grid.attach(lwidget, 1, current_line, 1, 1)
-            obox = self.__create_backend_combo()
-            grid.attach(obox, 2, current_line, 1, 1)
-            current_line += 1
-
-        self.dbpath_entry = Gtk.Entry()
-        self.add_path_box(grid,
-                _('Family Tree Database path'),
-                current_line, self.dbpath_entry, config.get('database.path'),
-                self.set_dbpath, self.select_dbpath)
-        current_line += 1
-
-        #self.add_entry(grid,
-        #        _('Family Tree Database path'),
-        #        0, 'database.path')
-        self.add_checkbox(grid,
-                _('Automatically load last Family Tree'),
-                current_line, 'behavior.autoload')
-        current_line += 1
-
-        return _('Family Tree'), grid
 
     def __create_backend_combo(self):
         """
