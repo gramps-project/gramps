@@ -58,10 +58,10 @@ from gramps.gen.filters import (GenericFilterFactory, FilterList,
 from gramps.gen.filters.rules._matchesfilterbase import MatchesFilterBase
 from ..listmodel import ListModel
 from ..managedwindow import ManagedWindow
-from ..dialog import QuestionDialog
+from ..dialog import QuestionDialog, ErrorDialog
 from gramps.gen.const import RULE_GLADE, URL_MANUAL_PAGE
 from ..display import display_help
-from gramps.gen.errors import WindowActiveError
+from gramps.gen.errors import WindowActiveError, FilterError
 from gramps.gen.lib import (AttributeType, EventType, FamilyRelType,
                             NameOriginType, NameType, NoteType, PlaceType)
 from gramps.gen.filters import rules
@@ -1167,7 +1167,12 @@ class FilterEditor(ManagedWindow):
         store, node = self.clist.get_selected()
         if node:
             filt = self.clist.get_object(node)
-            handle_list = filt.apply(self.db, self.get_all_handles())
+            try:
+                handle_list = filt.apply(self.db, self.get_all_handles())
+            except FilterError as msg:
+                (msg1, msg2) = msg.messages()
+                ErrorDialog(msg1, msg2, parent=self.window)
+                return
             ShowResults(self.db, self.uistate, self.track, handle_list,
                         filt.get_name(),self.namespace)
 
