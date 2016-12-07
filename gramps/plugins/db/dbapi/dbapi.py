@@ -68,12 +68,6 @@ class DBAPI(DbGeneric):
         }
         return summary
 
-    def restore(self):
-        """
-        If you wish to support an optional restore routine, put it here.
-        """
-        pass
-
     def get_python_version(self, directory=None):
         """
         Get the version of python that the database was created
