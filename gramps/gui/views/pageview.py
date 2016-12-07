@@ -592,6 +592,7 @@ class ViewConfigureDialog(ConfigureDialog):
         ConfigureDialog.__init__(self, uistate, dbstate, configure_page_funcs,
                                  configobj, configmanager,
                                  dialogtitle=dialogtitle, on_close=on_close)
+        self.setup_configs('interface.viewconfiguredialog', 420, 500)
 
     def build_menu_names(self, obj):
         return (_('Configure %s View') % self.ident, None)

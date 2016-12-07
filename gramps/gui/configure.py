@@ -178,7 +178,6 @@ class ConfigureDialog(ManagedWindow):
             Gtk.Dialog(dialogtitle,
                        buttons=(_('_Close'), Gtk.ResponseType.CLOSE)),
                        None, dialogtitle, None)
-        self.setup_configs('interface.configuredialog', 920, 450)
         self.panel = Gtk.Notebook()
         self.panel.set_scrollable(True)
         self.window.vbox.pack_start(self.panel, True, True, 0)
@@ -503,6 +502,7 @@ class GrampsPreferences(ConfigureDialog):
         ConfigureDialog.__init__(self, uistate, dbstate, page_funcs,
                                  GrampsPreferences, config,
                                  on_close=update_constants)
+        self.setup_configs('interface.grampspreferences', 920, 450)
 
     def add_researcher_panel(self, configdialog):
         grid = Gtk.Grid()
