@@ -40,6 +40,7 @@ import collections
 from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
+from gi.repository import Pango
 
 #-------------------------------------------------------------------------
 #
@@ -968,6 +969,7 @@ class GrampsPreferences(ConfigureDialog):
         # set up the combo to choose the preset format
         self.fmt_obox = Gtk.ComboBox()
         cell = Gtk.CellRendererText()
+        cell.set_property('ellipsize', Pango.EllipsizeMode.END)
         self.fmt_obox.pack_start(cell, True)
         self.fmt_obox.add_attribute(cell, 'text', 1)
         self.fmt_obox.set_model(self.fmt_model)
