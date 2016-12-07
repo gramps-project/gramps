@@ -49,7 +49,7 @@ from gi.repository import Pango
 #-------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.const import HOME_DIR, URL_WIKISTRING
+from gramps.gen.const import HOME_DIR, URL_WIKISTRING, DATA_DIR
 from gramps.gen.datehandler import get_date_formats
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.name import NameDisplayError
@@ -498,12 +498,47 @@ class GrampsPreferences(ConfigureDialog):
             self.add_date_panel,
             self.add_researcher_panel,
             self.add_advanced_panel,
-            self.add_color_panel
+            self.add_color_panel,
+            self.add_Keybindings_panel
             )
         ConfigureDialog.__init__(self, uistate, dbstate, page_funcs,
                                  GrampsPreferences, config,
                                  on_close=update_constants)
         self.setup_configs('interface.grampspreferences', 920, 450)
+
+    def add_Keybindings_panel(self, configdialog):
+        """
+        Save current (Keybindings/Shortcuts) Gtk.AccelMap to file
+
+        Saves to:
+        data/gramps-tmg.accel
+        """
+        grid = Gtk.Grid()
+        grid.set_border_width(12)
+        grid.set_column_spacing(6)
+        grid.set_row_spacing(6)
+        self.add_text(grid, _('Save your Keyboard shortcuts'), 0, line_wrap=False)
+        current_line = 0
+
+        filename_keymap = "gramps-tmg.accel"
+        print('filename_keymap', filename_keymap, 'DATA_DIR', DATA_DIR)
+        print(os.path.exists(os.path.join(DATA_DIR, filename_keymap)))
+#        if os.path.exists(os.path.join(DATA_DIR, filename_keymap)):
+        Gtk.AccelMap.save(os.path.join(DATA_DIR, filename_keymap))
+
+        current_line += 1
+        button = Gtk.Button(label=_("Save"))
+        button.connect("clicked", self.save_accelmap)
+        grid.attach(button, 3, current_line, 1, 1)
+
+        return _('Keybindings'), grid
+
+    def save_accelmap(self, button):
+        filename_keymap = "gramps-tmg.accel"
+
+        if os.path.exists(os.path.join(DATA_DIR, filename_keymap)):
+            Gtk.AccelMap.save(os.path.join(DATA_DIR, filename_keymap))
+        return
 
     def add_researcher_panel(self, configdialog):
         grid = Gtk.Grid()
