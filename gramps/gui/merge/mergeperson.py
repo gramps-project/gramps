@@ -87,9 +87,7 @@ class MergePerson(ManagedWindow):
         self.set_window(self._gladeobj.toplevel,
                         self.get_widget("person_title"),
                         _("Merge People"))
-        self.height_key = 'interface.merge-person-height'
-        self.width_key = 'interface.merge-person-width'
-        self._set_size()
+        self.setup_configs('interface.merge-person', 700, 400)
 
         # Detailed selection widgets
         name1 = name_displayer.display_name(self.pr1.get_primary_name())
