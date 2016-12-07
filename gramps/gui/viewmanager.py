@@ -1280,7 +1280,7 @@ class ViewManager(CLIManager):
         window = Gtk.Dialog(_("Gramps XML Backup"),
                             self.uistate.window,
                             Gtk.DialogFlags.DESTROY_WITH_PARENT, None)
-        window.set_size_request(400, -1)
+        window.set_size_request(700, -1)
         ok_button = window.add_button(_('_OK'),
                                       Gtk.ResponseType.APPLY)
         close_button = window.add_button(_('_Close'),
