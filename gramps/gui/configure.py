@@ -503,7 +503,7 @@ class GrampsPreferences(ConfigureDialog):
         ConfigureDialog.__init__(self, uistate, dbstate, page_funcs,
                                  GrampsPreferences, config,
                                  on_close=update_constants)
-        self.setup_configs('interface.grampspreferences', 920, 450)
+        self.setup_configs('interface.grampspreferences', 700, 450)
 
     def add_researcher_panel(self, configdialog):
         grid = Gtk.Grid()
