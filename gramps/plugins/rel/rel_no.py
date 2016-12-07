@@ -44,7 +44,7 @@ _cousin_level = [ "", "", #brother/sister, fetter/kusine -- these are taken care
 "nimenning", "timenning", "ellevemenning", 
 "tolvmenning", "tretenmenning", "fjortenmenning",
 "femtenmenning", "sekstenmenning", "syttenmenning",
-"attenmenning", "nittenmenning", "tyvemenning" ] 
+"attenmenning", "nittenmenning", "tjuemenning" ] 
 
 _cousin_terms = _cousin_level + ["fetter", "kusine"]
 #-------------------------------------------------------------------------
