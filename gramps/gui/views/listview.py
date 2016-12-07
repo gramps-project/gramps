@@ -57,7 +57,7 @@ from .navigationview import NavigationView
 from ..actiongroup import ActionGroup
 from ..columnorder import ColumnOrder
 from gramps.gen.config import config
-from gramps.gen.errors import WindowActiveError, FilterError
+from gramps.gen.errors import WindowActiveError, FilterError, HandleError
 from ..filters import SearchBar
 from ..widgets.menuitem import add_menuitem
 from gramps.gen.const import CUSTOM_FILTERS
@@ -707,7 +707,13 @@ class ListView(NavigationView):
         """
         selected_ids = self.selected_handles()
         if len(selected_ids) > 0:
-            self.change_active(selected_ids[0])
+            # In certain cases the tree models do row updates which result in a
+            # selection changed signal to a handle in progress of being
+            # deleted.  In these cases we don't want to change the active to
+            # non-existant handles.
+            if hasattr(self.model, "dont_change_active"):
+                if not self.model.dont_change_active:
+                    self.change_active(selected_ids[0])
 
         if len(selected_ids) == 1:
             if self.drag_info():
@@ -804,10 +810,15 @@ class ListView(NavigationView):
             lookup_handle = self.dbstate.db.get_table_metadata(nav_type)['handle_func']
             for handle in selected_ids:
                 # Still exist?
-                if lookup_handle(handle):
+                # should really use db.has_handle(nav_type, handle) but doesn't
+                # exist for bsddb
+                try:
+                    lookup_handle(handle)
                     # Select it, and stop selecting:
-                    self.change_active(handle)
-                    break
+                except HandleError:
+                    continue
+                self.change_active(handle)
+                break
 
     def _button_press(self, obj, event):
         """

@@ -212,7 +212,12 @@ class CitationTreeView(ListView):
 
     def _source_row_update(self, handle_list):
         self._print_handles("source row update", handle_list)
-        self.row_update(handle_list)
+        # if the source update changes the title or other item being sorted
+        # then it may change position on tree; it's easier to just rebuild the
+        # whole tree.  row_update cannot fix changes to first level of tree
+        #self.row_update(handle_list)
+        self.dirty = True
+        self.build_tree()
 
     def _source_row_delete(self, handle_list):
         self._print_handles("source row delete", handle_list)
@@ -224,6 +229,25 @@ class CitationTreeView(ListView):
 
     def navigation_type(self):
         return 'Citation'
+
+    def object_build(self, *args):
+        """
+        Called when the tree must be rebuilt and bookmarks redrawn.
+        """
+        self.dirty = True
+        if self.active:
+            # Save the currently selected handles, if any:
+            selected_ids = self.selected_handles()
+            self.bookmarks.redraw()
+            self.build_tree()
+            # Reselect one, if it still exists after rebuild:
+            for handle in selected_ids:
+                # Still exist?  It might be either a source or citation handle.
+                if (self.dbstate.db.has_citation_handle(handle) or
+                        self.dbstate.db.has_source_handle(handle)):
+                    # Select it, and stop selecting:
+                    self.change_active(handle)
+                    break
 
     def drag_info(self):
         # Since drag only needs to work when just one row is selected, ideally,
