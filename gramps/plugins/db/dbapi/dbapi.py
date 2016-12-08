@@ -68,24 +68,6 @@ class DBAPI(DbGeneric):
         }
         return summary
 
-    def get_python_version(self, directory=None):
-        """
-        Get the version of python that the database was created
-        under. Assumes 3, if not found.
-        """
-        if directory is None:
-            directory = self._directory
-        version = 3
-        if directory:
-            versionpath = os.path.join(directory, "pythonversion.txt")
-            if os.path.exists(versionpath):
-                with open(versionpath, "r") as version_file:
-                    version = version_file.read()
-                version = int(version)
-            else:
-                LOG.info("Missing '%s'. Assuming version 3.", versionpath)
-        return version
-
     def get_schema_version(self, directory=None):
         """
         Get the version of the schema that the database was created
@@ -106,21 +88,6 @@ class DBAPI(DbGeneric):
 
     def write_version(self, directory):
         """Write files for a newly created DB."""
-        versionpath = os.path.join(directory, "bdbversion.txt")
-        _LOG.debug("Write bsddb version %s", str(self.VERSION))
-        with open(versionpath, "w") as version_file:
-            version_file.write(str(self.VERSION))
-
-        versionpath = os.path.join(directory, "pythonversion.txt")
-        _LOG.debug("Write python version file to %s", str(sys.version_info[0]))
-        with open(versionpath, "w") as version_file:
-            version_file.write(str(sys.version_info[0]))
-
-        versionpath = os.path.join(directory, "pickleupgrade.txt")
-        _LOG.debug("Write pickle version file to %s", "Yes")
-        with open(versionpath, "w") as version_file:
-            version_file.write("YES")
-
         _LOG.debug("Write schema version file to %s", str(self.VERSION[0]))
         versionpath = os.path.join(directory, "schemaversion.txt")
         with open(versionpath, "w") as version_file:

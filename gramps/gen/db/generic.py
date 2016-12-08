@@ -556,12 +556,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         If update is False: then don't update any files
         """
-        db_python_version = self.get_python_version(directory)
-        current_python_version = sys.version_info[0]
-        if db_python_version != current_python_version:
-            raise exceptions.DbPythonError(str(db_python_version),
-                                           str(current_python_version),
-                                           str(current_python_version))
         db_schema_version = self.get_schema_version(directory)
         current_schema_version = self.VERSION[0]
         if db_schema_version != current_schema_version:
@@ -736,29 +730,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def version_supported(self):
         """Return True when the file has a supported version."""
         return True
-
-    def get_version(self):
-        """
-        Return the version number of the schema.
-        """
-        if self._directory:
-            filepath = os.path.join(self._directory, "bdbversion.txt")
-            try:
-                with open(filepath, "r", encoding='utf-8') as name_file:
-                    version = name_file.readline().strip()
-            except (OSError, IOError) as msg:
-                LOG.error(str(msg))
-                version = "(0, 0, 0)"
-            return ast.literal_eval(version)
-        else:
-            return (0, 0, 0)
-
-    def get_python_version(self, directory=None):
-        """
-        Get the version of python that the database was created
-        under. Assumes 3, if not found.
-        """
-        raise NotImplementedError
 
     def get_schema_version(self, directory=None):
         """
