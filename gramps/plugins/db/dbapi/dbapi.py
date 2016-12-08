@@ -662,7 +662,7 @@ class DBAPI(DbGeneric):
                                 pickle.dumps(obj.serialize())])
         self.update_secondary_values(obj)
         if not trans.batch:
-            self.update_backlinks(obj, trans)
+            self._update_backlinks(obj, trans)
             if old_data:
                 trans.add(obj_key, TXNUPD, obj.handle,
                           old_data,
@@ -674,7 +674,7 @@ class DBAPI(DbGeneric):
 
         return old_data
 
-    def update_backlinks(self, obj, transaction):
+    def _update_backlinks(self, obj, transaction):
 
         # Find existing references
         sql = ("SELECT ref_class, ref_handle " +
