@@ -56,8 +56,7 @@ class SelectEvent(BaseSelector):
         """
         Perform local initialisation for this class
         """
-        self.width_key = 'interface.event-sel-width'
-        self.height_key = 'interface.event-sel-height'
+        self.setup_configs('interface.event-sel', 600, 450)
 
     def get_window_title(self):
         return _("Select Event")

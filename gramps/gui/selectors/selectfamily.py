@@ -56,8 +56,7 @@ class SelectFamily(BaseSelector):
         """
         Perform local initialisation for this class
         """
-        self.width_key = 'interface.family-sel-width'
-        self.height_key = 'interface.family-sel-height'
+        self.setup_configs('interface.family-sel', 600, 450)
 
     def get_window_title(self):
         return _("Select Family")
