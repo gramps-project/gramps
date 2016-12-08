@@ -2058,16 +2058,6 @@ class DbBsddbRead(DbReadBase, Callback):
             name = None
         return name
 
-    def get_version(self):
-        filepath = os.path.join(self.path, "bdbversion.txt")
-        try:
-            with open(filepath, "r", encoding='utf-8') as name_file:
-                version = name_file.readline().strip()
-        except (OSError, IOError) as msg:
-            self.__log_error()
-            version = "(0, 0, 0)"
-        return ast.literal_eval(version)
-
     def get_summary(self):
         """
         Returns dictionary of summary item.
