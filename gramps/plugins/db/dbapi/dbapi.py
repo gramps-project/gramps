@@ -965,28 +965,6 @@ class DBAPI(DbGeneric):
                 LOG.info("Table %s is being committed, "
                          "rebuilt, and indexed...", table)
                 self.update_secondary_values_table(table)
-                self.create_secondary_indexes_table(table)
-
-    def create_secondary_indexes(self):
-        """
-        Create the indexes for the secondary fields.
-        """
-        for table in self.get_table_func():
-            if not hasattr(self.get_table_func(table, "class_func"),
-                           "get_index_fields"):
-                continue
-            self.create_secondary_indexes_table(table)
-
-    def create_secondary_indexes_table(self, table):
-        """
-        Create secondary indexes for just this table.
-        """
-        table_name = table.lower()
-        for field in self.get_table_func(
-                table, "class_func").get_index_fields():
-            field = self._hash_name(table, field)
-            self.dbapi.execute("CREATE INDEX %s_%s ON %s(%s)"
-                                   % (table, field, table_name, field))
 
     def update_secondary_values_all(self):
         """
