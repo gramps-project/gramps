@@ -627,7 +627,7 @@ class DBAPI(DbGeneric):
             self.dbapi.execute(sql,
                                [obj.handle,
                                 pickle.dumps(obj.serialize())])
-        self.update_secondary_values(obj)
+        self._update_secondary_values(obj)
         if not trans.batch:
             self._update_backlinks(obj, trans)
             if old_data:
@@ -822,7 +822,7 @@ class DBAPI(DbGeneric):
         Rebuild secondary indices
         """
         # First, expand blob to individual fields:
-        self.update_secondary_values()
+        self._update_secondary_values()
         # Next, rebuild stats:
         gstats = self.get_gender_stats()
         self.genderStats = GenderStats(gstats)
@@ -918,31 +918,14 @@ class DBAPI(DbGeneric):
 
     def _create_secondary_columns(self):
         """
-        Add secondary fields, update, and create indexes.
+        Create secondary columns.
         """
-        LOG.info("Rebuilding secondary fields...")
+        LOG.info("Creating secondary columns...")
         for table in self.get_table_func():
             if not hasattr(self.get_table_func(table, "class_func"),
                            "get_secondary_fields"):
                 continue
-            # do a select on all; if it works, then it is ok;
-            # else, check them all
             table_name = table.lower()
-            try:
-                fields = [self._hash_name(table, field)
-                          for (field, ptype)
-                          in self.get_table_func(
-                              table, "class_func").get_secondary_fields()]
-                if fields:
-                    self.dbapi.execute("select %s from %s limit 1"
-                                       % (", ".join(fields), table_name))
-                # if no error, continue
-                LOG.info("Table %s is up to date", table)
-                continue
-            except:
-                pass # got to add missing ones, so continue
-            LOG.info("Table %s needs rebuilding...", table)
-            altered = False
             for field_pair in self.get_table_func(
                     table, "class_func").get_secondary_fields():
                 field, python_type = field_pair
@@ -960,25 +943,8 @@ class DBAPI(DbGeneric):
                              table, field)
                     self.dbapi.execute("ALTER TABLE %s ADD COLUMN %s %s"
                                        % (table_name, field, sql_type))
-                    altered = True
-            if altered:
-                LOG.info("Table %s is being committed, "
-                         "rebuilt, and indexed...", table)
-                self.update_secondary_values_table(table)
 
-    def update_secondary_values_table(self, table):
-        """
-        Go through all items in a table, and update their secondary
-        field values.
-        table - "Person", "Place", "Media", etc.
-        """
-        if not hasattr(self.get_table_func(table, "class_func"),
-                       "get_secondary_fields"):
-            return
-        for item in self.get_table_func(table, "iter_func")():
-            self.update_secondary_values(item)
-
-    def update_secondary_values(self, obj):
+    def _update_secondary_values(self, obj):
         """
         Given a primary object update its secondary field values
         in the database.
