@@ -41,15 +41,10 @@ else:
     user = config.get('database.user')
     password = config.get('database.password')
     port = config.get('database.port')
-    if dbtype == "mysql":
-        from gramps.plugins.db.dbapi.mysql import MySQL
-        dbapi = MySQL(host, user, password, dbname,
-                      charset='utf8', use_unicode=True)
-    elif dbtype == "postgresql":
+    if dbtype == "postgresql":
         from gramps.plugins.db.dbapi.postgresql import Postgresql
         dbapi = Postgresql(dbname=dbname, user=user,
                            host=host, password=password)
     else:
         raise AttributeError(("invalid DB-API dbtype: '%s'. " +
-                              "Should be 'sqlite', 'mysql', " +
-                              "or 'postgresql'") % dbtype)
+                              "Should be 'sqlite' or 'postgresql'") % dbtype)
