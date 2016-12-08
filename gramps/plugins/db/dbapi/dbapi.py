@@ -230,7 +230,7 @@ class DBAPI(DbGeneric):
                            'unknown INTEGER'
                            ')')
 
-        self.rebuild_secondary_fields()
+        self._create_secondary_columns()
 
         ## Indices:
         self.dbapi.execute('CREATE INDEX person_gramps_id '
@@ -822,7 +822,7 @@ class DBAPI(DbGeneric):
         Rebuild secondary indices
         """
         # First, expand blob to individual fields:
-        self.rebuild_secondary_fields()
+        self.update_secondary_values()
         # Next, rebuild stats:
         gstats = self.get_gender_stats()
         self.genderStats = GenderStats(gstats)
@@ -916,7 +916,7 @@ class DBAPI(DbGeneric):
         else:
             return "BLOB"
 
-    def rebuild_secondary_fields(self):
+    def _create_secondary_columns(self):
         """
         Add secondary fields, update, and create indexes.
         """
