@@ -166,9 +166,9 @@ class DBAPI(DbGeneric):
         # We use the existence of the person table as a proxy for the database
         # being new
         if not self.dbapi.table_exists("person"):
-            self.update_schema()
+            self._create_schema()
 
-    def update_schema(self):
+    def _create_schema(self):
         """
         Create and update schema.
         """

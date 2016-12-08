@@ -42,7 +42,7 @@ class InMemoryDB(DBAPI):
         Create an in-memory sqlite database.
         """
         self.dbapi = Sqlite(":memory:")
-        self.update_schema()
+        self._create_schema()
 
     def write_version(self, directory):
         """Write files for a newly created DB."""
