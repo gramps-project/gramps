@@ -53,13 +53,12 @@ class EditRepoRef(EditReference):
                                source_ref, update)
 
     def _local_init(self):
-        self.width_key = 'interface.repo-ref-width'
-        self.height_key = 'interface.repo-ref-height'
 
         self.top = Glade()
         self.set_window(self.top.toplevel,
                         self.top.get_object('repo_title'),
                         _('Repository Reference Editor'))
+        self.setup_configs('interface.repo-ref', 600, 450)
 
         self.define_warn_box(self.top.get_object("warn_box"))
         self.define_expander(self.top.get_object("src_expander"))

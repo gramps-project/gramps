@@ -21,8 +21,7 @@
 #
 
 """
-The EditPersonRef module provides the EditPersonRef class. This provides a
-mechanism for the user to edit address information.
+The EditPersonRef module provides the EditPersonRef class.
 """
 
 #-------------------------------------------------------------------------
@@ -77,24 +76,23 @@ class EditPersonRef(EditSecondary):
     Displays a dialog that allows the user to edit a person reference.
     """
 
-    def __init__(self, dbstate, uistate, track, addr, callback):
+    def __init__(self, dbstate, uistate, track, personref, callback):
         """
         Displays the dialog box.
 
-        parent - The class that called the PersonRef editor.
-        addr - The address that is to be edited
+        personref - The person reference that is to be edited
         """
-        EditSecondary.__init__(self, dbstate, uistate, track, addr, callback)
+        EditSecondary.__init__(self, dbstate, uistate, track,
+                               personref, callback)
 
     def _local_init(self):
-        self.width_key = 'interface.person-ref-width'
-        self.height_key = 'interface.person-ref-height'
 
         self.top = Glade()
-
         self.set_window(self.top.toplevel,
                         self.top.get_object("title"),
                         _('Person Reference Editor'))
+        self.setup_configs('interface.person-ref', 600, 350)
+
         self.person_label = self.top.get_object('person')
 
         #allow for drop:
@@ -226,7 +224,7 @@ class EditPersonRef(EditSecondary):
     def save(self,*obj):
         """
         Called when the OK button is pressed. Gets data from the
-        form and updates the Address data structure.
+        form and updates the data structure.
         """
 
         if self.obj.ref:

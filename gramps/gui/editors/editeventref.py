@@ -69,13 +69,13 @@ class EditEventRef(EditReference):
         self._init_event()
 
     def _local_init(self):
-        self.width_key = 'interface.event-ref-width'
-        self.height_key = 'interface.event-ref-height'
 
         self.top = Glade()
         self.set_window(self.top.toplevel,
                         self.top.get_object('eer_title'),
                         _('Event Reference Editor'))
+        self.setup_configs('interface.event-ref', 600, 450)
+
         self.define_warn_box(self.top.get_object("eer_warning"))
         self.define_expander(self.top.get_object("eer_expander"))
         self.share_btn = self.top.get_object('share_place')

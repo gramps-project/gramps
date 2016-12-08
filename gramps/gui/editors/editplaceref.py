@@ -53,10 +53,11 @@ class EditPlaceRef(EditReference):
                                update)
 
     def _local_init(self):
-        self.width_key = 'interface.place-ref-width'
-        self.height_key = 'interface.place-ref-height'
+
         self.top = Glade()
         self.set_window(self.top.toplevel, None, _('Place Reference Editor'))
+        self.setup_configs('interface.place-ref', 600, 450)
+
         self.define_warn_box(self.top.get_object("warning"))
         self.define_expander(self.top.get_object("expander"))
         #self.place_name_label = self.top.get_object('place_name_label')

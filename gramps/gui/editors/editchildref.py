@@ -21,8 +21,7 @@
 #
 
 """
-The EditChildRef module provides the EditChildRef class. This provides a
-mechanism for the user to edit address information.
+The EditChildRef module provides the EditChildRef class.
 """
 
 #-------------------------------------------------------------------------
@@ -78,28 +77,27 @@ _RIGHT_BUTTON = 3
 #-------------------------------------------------------------------------
 class EditChildRef(EditSecondary):
     """
-    Displays a dialog that allows the user to edit an address.
+    Displays a dialog that allows the user to edit a child reference.
     """
+
     def __init__(self, name, dbstate, uistate, track, childref, callback):
         """
         Displays the dialog box.
 
-        parent - The class that called the ChildRef editor.
-        addr - The address that is to be edited
+        childref - The child reference that is to be edited
         """
         self.name = name
         EditSecondary.__init__(self, dbstate, uistate, track,
                                childref, callback)
 
     def _local_init(self):
-        self.width_key = 'interface.child-ref-width'
-        self.height_key = 'interface.child-ref-height'
 
         self.top = Glade()
         self.set_window(self.top.toplevel,
                         self.top.get_object("title"),
                         self.name,
                         _('Child Reference Editor'))
+        self.setup_configs('interface.child-ref', 600, 450)
 
         self.ok_button = self.top.get_object('ok')
         self.edit_button = self.top.get_object('edit')
