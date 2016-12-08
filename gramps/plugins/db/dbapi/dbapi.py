@@ -966,14 +966,6 @@ class DBAPI(DbGeneric):
                          "rebuilt, and indexed...", table)
                 self.update_secondary_values_table(table)
 
-    def update_secondary_values_all(self):
-        """
-        Go through all items in all tables, and update their secondary
-        field values.
-        """
-        for table in self.get_table_func():
-            self.update_secondary_values_table(table)
-
     def update_secondary_values_table(self, table):
         """
         Go through all items in a table, and update their secondary
@@ -1028,19 +1020,6 @@ class DBAPI(DbGeneric):
         in the appropriate type.
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
-
-    def _sql_repr(self, value):
-        """
-        Given a Python value, turn it into a SQL value.
-        """
-        if value is True:
-            return "1"
-        elif value is False:
-            return "0"
-        elif isinstance(value, list):
-            return repr(tuple(value))
-        else:
-            return repr(value)
 
     def get_summary(self):
         """
