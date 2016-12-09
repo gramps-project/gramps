@@ -36,7 +36,7 @@ _LOG = logging.getLogger(".widgets.interactivesearch")
 # GTK modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject, Gtk, Gdk
+from gi.repository import Gtk, Gdk, GLib
 
 #-------------------------------------------------------------------------
 #
@@ -124,8 +124,8 @@ class InteractiveSearchBox:
     def _preedit_changed(self, im_context, tree_view):
         self.__imcontext_changed = 1
         if(self._entry_flush_timeout):
-            GObject.source_remove(self._entry_flush_timeout)
-            self._entry_flush_timeout = GObject.timeout_add(
+            GLib.source_remove(self._entry_flush_timeout)
+            self._entry_flush_timeout = GLib.timeout_add(
                 self._SEARCH_DIALOG_TIMEOUT, self.cb_entry_flush_timeout)
 
     def ensure_interactive_directory(self):
@@ -140,7 +140,7 @@ class InteractiveSearchBox:
             self._search_window.set_screen(screen)
             return
 
-        self._search_window = Gtk.Window(Gtk.WindowType.POPUP)
+        self._search_window = Gtk.Window(type=Gtk.WindowType.POPUP)
         self._search_window.set_screen(screen)
         if toplevel.has_group():
             toplevel.get_group().add_window(self._search_window)
@@ -222,8 +222,8 @@ class InteractiveSearchBox:
         self._renew_flush_timeout()
         # renew search timeout
         if self._entry_launchsearch_timeout:
-            GObject.source_remove(self._entry_launchsearch_timeout)
-        self._entry_launchsearch_timeout = GObject.timeout_add(
+            GLib.source_remove(self._entry_launchsearch_timeout)
+        self._entry_launchsearch_timeout = GLib.timeout_add(
             self._SEARCH_DIALOG_LAUNCH_TIMEOUT, self.search_init)
 
     def search_init(self):
@@ -239,7 +239,7 @@ class InteractiveSearchBox:
         selection = self._treeview.get_selection()
         # disable flush timeout while searching
         if self._entry_flush_timeout:
-            GObject.source_remove(self._entry_flush_timeout)
+            GLib.source_remove(self._entry_flush_timeout)
             self._entry_flush_timeout = 0
         # search
         # cursor_path = self._treeview.get_cursor()[0]
@@ -252,8 +252,8 @@ class InteractiveSearchBox:
 
     def _renew_flush_timeout(self):
         if self._entry_flush_timeout:
-            GObject.source_remove(self._entry_flush_timeout)
-        self._entry_flush_timeout = GObject.timeout_add(
+            GLib.source_remove(self._entry_flush_timeout)
+        self._entry_flush_timeout = GLib.timeout_add(
             self._SEARCH_DIALOG_TIMEOUT, self.cb_entry_flush_timeout)
 
     def _move(self, up=False):
@@ -268,7 +268,7 @@ class InteractiveSearchBox:
         selection = self._treeview.get_selection()
         # disable flush timeout while searching
         if self._entry_flush_timeout:
-            GObject.source_remove(self._entry_flush_timeout)
+            GLib.source_remove(self._entry_flush_timeout)
             self._entry_flush_timeout = 0
         # search
         start_count = self.__selected_search_result + (-1 if up else 1)
@@ -314,7 +314,7 @@ class InteractiveSearchBox:
         menu.connect("hide", self._enable_popdown)
 
     def _enable_popdown(self, obj):
-        self._timeout_enable_popdown = GObject.timeout_add(
+        self._timeout_enable_popdown = GLib.timeout_add(
             self._SEARCH_DIALOG_TIMEOUT, self._real_search_enable_popdown)
 
     def _real_search_enable_popdown(self):
@@ -351,7 +351,7 @@ class InteractiveSearchBox:
         # Launch search
         if (event.keyval in [Gdk.KEY_Return, Gdk.KEY_KP_Enter]):
             if self._entry_launchsearch_timeout:
-                GObject.source_remove(self._entry_launchsearch_timeout)
+                GLib.source_remove(self._entry_launchsearch_timeout)
                 self._entry_launchsearch_timeout = 0
             self.search_init()
             retval = True
@@ -388,10 +388,10 @@ class InteractiveSearchBox:
             self._search_entry.disconnect(self._search_entry_changed_id)
             self._search_entry_changed_id = 0
         if self._entry_flush_timeout:
-            GObject.source_remove(self._entry_flush_timeout)
+            GLib.source_remove(self._entry_flush_timeout)
             self._entry_flush_timeout = 0
         if self._entry_launchsearch_timeout:
-            GObject.source_remove(self._entry_launchsearch_timeout)
+            GLib.source_remove(self._entry_launchsearch_timeout)
             self._entry_launchsearch_timeout = 0
         if self._search_window.get_visible():
             # send focus-in event
