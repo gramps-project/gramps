@@ -76,8 +76,8 @@ class MergePerson(ManagedWindow):
     Displays a dialog box that allows the persons to be combined into one.
     """
     def __init__(self, dbstate, uistate, handle1, handle2, cb_update=None,
-            expand_context_info=True):
-        ManagedWindow.__init__(self, uistate, [], self.__class__)
+            expand_context_info=True, track=[]):
+        ManagedWindow.__init__(self, uistate, track, self.__class__)
         self.database = dbstate.db
         self.pr1 = self.database.get_person_from_handle(handle1)
         self.pr2 = self.database.get_person_from_handle(handle2)

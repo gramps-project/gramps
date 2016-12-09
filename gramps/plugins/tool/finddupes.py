@@ -580,7 +580,7 @@ class DuplicatePeopleToolMatches(ManagedWindow):
         self.show()
 
     def build_menu_names(self, obj):
-        return (_("Merge candidates"),None)
+        return (_("Merge candidates"), _("Merge persons"))
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -617,7 +617,7 @@ class DuplicatePeopleToolMatches(ManagedWindow):
 
         (self.p1,self.p2) = self.list.get_object(iter)
         MergePerson(self.dbstate, self.uistate, self.p1, self.p2,
-                    self.on_update, True)
+                    self.on_update, True, track=self.track)
 
     def on_update(self):
         if self.db.has_person_handle(self.p1):
