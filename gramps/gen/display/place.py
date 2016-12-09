@@ -65,13 +65,18 @@ class PlaceDisplay:
                     else:
                         places = places[index:]
 
-            names = [item[0] for item in places]
-
             if config.get('preferences.place-number'):
-                if len(places) > 1 and int(places[0][1]) == PlaceType.NUMBER:
-                    names = names[1:]
-                    names[0] = places[0][0] + ' ' + names[0]
+                types = [item[1] for item in places]
+                try:
+                    idx = types.index(PlaceType.NUMBER)
+                except ValueError:
+                    idx = None
+                if idx is not None and len(places) > idx+1:
+                    combined = (places[idx][0] + ' ' + places[idx+1][0],
+                                places[idx+1][1])
+                    places = places[:idx] + [combined] + places[idx+2:]
 
+            names = [item[0] for item in places]
             if config.get('preferences.place-reverse'):
                 names.reverse()
 
