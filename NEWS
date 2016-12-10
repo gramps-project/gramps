@@ -1,3 +1,29 @@
+2016-12-
+Version 4.2.5
+* Use latest valid date rather than today
+* Modify endonym handling in place displayer
+* Fix house number concatenation
+* Allow merging of families with one or more parents in common
+* Jump to Gramps ID functionality doesn't work
+* Ability to search alternate place names when selecting place
+* Fix clear map action on Geography
+* Database repair tool always edit all source objects
+* Database repair tool ignored some objects with tag
+* "Enclosing" gramplet includes places outside valid date ranges
+* Fix icon and tooltip in LDS editor
+* CSV import fails
+* Fix duplicated Gramps IDs on Gedcom import
+* Unexpected error Preferences > Dates > Markup for invalid date format
+* Fix Import Vcard, can create multiple surnames with all selected as 'Primary'
+* Fix Gedcom import in some alternate languages; improper date parsing
+* Export options 'Preview' buttons create hidden quickreport
+* Alignment radio buttons in the style editor do not work
+* Select Place search & Source/Citation hierarchy should NOT be expanded
+* Wrong parsing Numeric date format for cs_CZ locale
+* Fix Norwegian relationship calculator
+* Fix Icelandic translation
+* Update translations: cs, de, fi, fr, hu, is, nb, ru
+
 2016-09-04
 Version 4.2.4
 * fixes for the PHON, FAX, EMAIL and WWW Gedcom tags to support Gedcom v5.5.1
