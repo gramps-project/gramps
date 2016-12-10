@@ -798,16 +798,6 @@ class DetAncestorOptions(MenuReportOptions):
         gen.set_help(_("The number of generations to include in the report"))
         addopt("gen", gen)
 
-        pagebbg = BooleanOption(_("Page break between generations"), False)
-        pagebbg.set_help(
-            _("Whether to start a new page after each generation."))
-        addopt("pagebbg", pagebbg)
-
-        pageben = BooleanOption(_("Page break before end notes"), False)
-        pageben.set_help(
-            _("Whether to start a new page before the end notes."))
-        addopt("pageben", pageben)
-
         stdoptions.add_localization_option(menu, category)
 
         # Content options
@@ -846,6 +836,16 @@ class DetAncestorOptions(MenuReportOptions):
         desref.set_help(
             _("Whether to add descendant references in child list."))
         addopt("desref", desref)
+
+        pagebbg = BooleanOption(_("Page break between generations"), False)
+        pagebbg.set_help(
+            _("Whether to start a new page after each generation."))
+        addopt("pagebbg", pagebbg)
+
+        pageben = BooleanOption(_("Page break before end notes"), False)
+        pageben.set_help(
+            _("Whether to start a new page before the end notes."))
+        addopt("pageben", pageben)
 
         # What to include
 
