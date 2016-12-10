@@ -821,7 +821,7 @@ class FamilyGroupOptions(MenuReportOptions):
         if filter_value == 1: # "Entire Database" (as "include_single=True")
             self.__fid.set_available(False)
         else:
-            # The other filters need a center family (assume custom ones do)
+            # The other filters need a center family (assume custom ones too)
             self.__fid.set_available(True)
 
         # only allow recursion if the center family is the only family

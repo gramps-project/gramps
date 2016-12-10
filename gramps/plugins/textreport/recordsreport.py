@@ -293,7 +293,7 @@ class RecordsReportOptions(MenuReportOptions):
         if filter_value == 0: # "Entire Database" (as "include_single=False")
             self.__pid.set_available(False)
         else:
-            # The other filters need a center person (assume custom ones do)
+            # The other filters need a center person (assume custom ones too)
             self.__pid.set_available(True)
 
     def make_default_style(self, default_style):

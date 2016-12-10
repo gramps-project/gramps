@@ -829,8 +829,8 @@ class RelGraphOptions(MenuReportOptions):
         person = self.__db.get_person_from_gramps_id(gid)
         nfv = self._nf.get_value()
         filter_list = utils.get_person_filters(person,
-                                                     include_single=False,
-                                                     name_format=nfv)
+                                               include_single=False,
+                                               name_format=nfv)
         self.__filter.set_filters(filter_list)
 
     def __filter_changed(self):
@@ -838,15 +838,14 @@ class RelGraphOptions(MenuReportOptions):
         Handle filter change. If the filter is not specific to a person,
         disable the person option
         """
+        if self.__show_relships and self.__show_relships.get_value():
+            self.__pid.set_available(True)
         filter_value = self.__filter.get_value()
-        if filter_value in [1, 2, 3, 4]:
-            # Filters 1, 2, 3 and 4 rely on the center person
-            self.__pid.set_available(True)
-        elif self.__show_relships and self.__show_relships.get_value():
-            self.__pid.set_available(True)
-        else:
-            # The rest don't
+        if filter_value == 0: # "Entire Database" (as "include_single=False")
             self.__pid.set_available(False)
+        else:
+            # The other filters need a center person (assume custom ones too)
+            self.__pid.set_available(True)
 
     def __image_changed(self):
         """
