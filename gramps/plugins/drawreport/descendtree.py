@@ -1517,7 +1517,7 @@ class DescendTreeOptions(MenuReportOptions):
         Add options to the menu for the descendant report.
         """
         ##################
-        category_name = _("Tree Options")
+        category_name = _("Report Options")
 
         if self.name.split(",")[0] == _RPT_NAME:
             self.__pid = PersonOption(_("Report for"))
@@ -1534,14 +1534,10 @@ class DescendTreeOptions(MenuReportOptions):
 
         stdoptions.add_living_people_option(menu, category_name)
 
-        self.showparents = BooleanOption(
-            _('Start with the parent(s) of the selected first'),
-            False)
-        self.showparents.set_help(
-            _("Will show the parents, brother and sisters of the "
-              "selected person.")
-            )
-        menu.add_option(category_name, "show_parents", self.showparents)
+        stdoptions.add_localization_option(menu, category_name)
+
+        ##################
+        category_name = _("Tree Options")
 
         max_gen = NumberOption(_("Generations"), 10, 1, 50)
         max_gen.set_help(_("The number of generations to include in the tree"))
@@ -1552,12 +1548,19 @@ class DescendTreeOptions(MenuReportOptions):
                               "Spouses of the spouse, etc"))
         menu.add_option(category_name, "maxspouse", max_spouse)
 
+        self.showparents = BooleanOption(
+            _('Start with the parent(s) of the selected first'),
+            False)
+        self.showparents.set_help(
+            _("Will show the parents, brother and sisters of the "
+              "selected person.")
+            )
+        menu.add_option(category_name, "show_parents", self.showparents)
+
         compresst = BooleanOption(_('Compress tree'), False)
         compresst.set_help(_("Whether to move people up, where possible, "
                              "resulting in a smaller tree"))
         menu.add_option(category_name, "compress_tree", compresst)
-
-        stdoptions.add_localization_option(menu, category_name)
 
         ##################
         category_name = _("Display")
