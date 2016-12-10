@@ -69,6 +69,7 @@ class SoundGen(Gramplet):
         self.autocomp = Gtk.ComboBox.new_with_entry()
         grid.attach(self.autocomp, 1, 0, 1, 1)
         self.value = Gtk.Label(halign=Gtk.Align.START)
+        self.value.set_selectable(True)
         grid.attach(self.value, 1, 1, 1, 1)
         self.name = self.autocomp.get_child()
 
