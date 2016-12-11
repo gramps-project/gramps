@@ -59,8 +59,6 @@ class EditUrl(EditSecondary):
                                url, callback)
 
     def _local_init(self):
-        self.width_key = 'interface.url-width'
-        self.height_key = 'interface.url-height'
 
         self.top = Glade()
         self.jump = self.top.get_object('jump')
@@ -68,6 +66,7 @@ class EditUrl(EditSecondary):
         self.set_window(self.top.toplevel,
                         self.top.get_object("title"),
                         _('Internet Address Editor'))
+        self.setup_configs('interface.url', 600, 150)
 
     def _connect_signals(self):
         self.jump.connect('clicked', self.jump_to)

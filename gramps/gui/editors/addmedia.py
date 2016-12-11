@@ -102,9 +102,7 @@ class AddMedia(ManagedWindow):
             self.glade.toplevel,
             self.glade.get_object('title'),
             _('Select a media object'))
-        self.height_key = 'interface.addmedia-height'
-        self.width_key = 'interface.addmedia-width'
-        self._set_size()
+        self.setup_configs('interface.addmedia', 700, 500)
 
         self.description = self.glade.get_object("photoDescription")
         self.image = self.glade.get_object("image")

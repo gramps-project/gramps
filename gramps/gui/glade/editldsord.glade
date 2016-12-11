@@ -23,8 +23,6 @@
   </object>
   <object class="GtkDialog" id="editldsord">
     <property name="can_focus">False</property>
-    <property name="default_width">600</property>
-    <property name="default_height">450</property>
     <property name="type_hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox9">

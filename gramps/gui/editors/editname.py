@@ -114,12 +114,11 @@ class EditName(EditSecondary):
                                track, name, callback)
 
     def _local_init(self):
-        self.width_key = 'interface.name-width'
-        self.height_key = 'interface.name-height'
 
         self.top = Glade()
 
         self.set_window(self.top.toplevel, None, _("Name Editor"))
+        self.setup_configs('interface.name', 600, 350)
 
         tblgnam =  self.top.get_object('table23')
         notebook = self.top.get_object('notebook')

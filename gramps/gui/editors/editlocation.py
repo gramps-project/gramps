@@ -43,11 +43,10 @@ class EditLocation(EditSecondary):
                                location, callback)
 
     def _local_init(self):
-        self.width_key = 'interface.location-width'
-        self.height_key = 'interface.location-height'
         self.top = Glade()
         self.set_window(self.top.toplevel, None,
                         _('Location Editor'))
+        self.setup_configs('interface.location', 600, 250)
 
     def _setup_fields(self):
         self.street = MonitoredEntry(

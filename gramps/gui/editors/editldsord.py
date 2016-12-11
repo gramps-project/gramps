@@ -151,13 +151,13 @@ class EditLdsOrd(EditSecondary):
         EditSecondary.__init__(self, state, uistate, track, attrib, callback)
 
     def _local_init(self):
-        self.width_key = 'interface.lds-width'
-        self.height_key = 'interface.lds-height'
 
         self.top = Glade()
         self.set_window(self.top.toplevel,
                         self.top.get_object('title'),
                         _('LDS Ordinance Editor'))
+        self.setup_configs('interface.lds', 600, 450)
+
         self.share_btn = self.top.get_object('share_place')
         self.add_del_btn = self.top.get_object('add_del_place')
 
