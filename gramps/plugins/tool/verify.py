@@ -332,6 +332,7 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
 
         window = self.top.toplevel
         self.set_window(window, self.top.get_object('title'), self.label)
+        self.setup_configs('interface.verify', 650, 400)
 
         o_dict = self.options.handler.options_dict
         for option in o_dict:
@@ -503,6 +504,7 @@ class VerifyResults(ManagedWindow):
         self.top = Glade(toplevel="verify_result")
         window = self.top.toplevel
         self.set_window(window, self.top.get_object('title2'), self.title)
+        self.setup_configs('interface.verifyresults', 500, 300)
 
         self.top.connect_signals({
             "destroy_passed_object"  : self.close,

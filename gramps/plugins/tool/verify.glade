@@ -784,8 +784,6 @@
   </object>
   <object class="GtkDialog" id="verify_result">
     <property name="can_focus">False</property>
-    <property name="default_width">500</property>
-    <property name="default_height">300</property>
     <property name="type_hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox2">

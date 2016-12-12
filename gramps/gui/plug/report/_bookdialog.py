@@ -329,7 +329,7 @@ class BookSelector(ManagedWindow):
 
         title_label = self.xml.get_object('title')
         self.set_window(window, title_label, self.title)
-        self.setup_configs('interface.book-selector', 700, 600)
+        self.setup_configs('interface.bookselector', 700, 600)
         window.show()
         self.xml.connect_signals({
             "on_add_clicked"        : self.on_add_clicked,
