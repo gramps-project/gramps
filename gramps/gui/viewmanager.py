@@ -91,6 +91,11 @@ from .aboutdialog import GrampsAboutDialog
 from .navigator import Navigator
 from .views.tags import Tags
 from .actiongroup import ActionGroup
+from gramps.gen.lib import (Person, Surname, Family, Media, Note, Place,
+                            Source, Repository, Citation, Event, EventType)
+from gramps.gui.editors import (EditPerson, EditFamily, EditMedia, EditNote,
+                                EditPlace, EditSource, EditRepository,
+                                EditCitation, EditEvent)
 from gramps.gen.db.exceptions import DbWriteFailure
 
 #-------------------------------------------------------------------------
@@ -125,6 +130,44 @@ UIDEFAULT = '''<ui>
     <separator/>
     <menuitem action="Abandon"/>
     <menuitem action="Quit"/>
+  </menu>
+  <menu action="AddMenu">
+    <menu action="AddNewMenu">
+    <separator/>
+    <placeholder name="ExistingActivePerson"/>
+    <separator/>
+    <menuitem action="PersonAdd"/>
+    <separator/>
+    <menuitem action="FamilyAdd"/>
+    <separator/>
+    <menuitem action="EventAdd"/>
+    <menuitem action="BirthAdd"/>
+    <menuitem action="MarriageAdd"/>
+    <menuitem action="DeathAdd"/>
+    <menuitem action="BurialAdd"/>
+    <separator/>
+    <menuitem action="PlaceAdd"/>
+    <menuitem action="SourceAdd"/>
+    <menuitem action="CitationAdd"/>
+    <menuitem action="RepositoryAdd"/>
+    <menuitem action="MediaAdd"/>
+    <menuitem action="NoteAdd"/>
+    </menu>
+    <separator/>
+    <menuitem action="SpouseAdd"/>
+    <separator/>
+    <menuitem action="ParentsAdd"/>
+    <menuitem action="FatherAdd"/>
+    <menuitem action="MotherAdd"/>
+    <separator/>
+    <menuitem action="BrotherAdd"/>
+    <menuitem action="SisterAdd"/>
+    <menuitem action="SiblingAdd"/>
+    <separator/>
+    <menuitem action="SonAdd"/>
+    <menuitem action="DaughterAdd"/>
+    <menuitem action="ChildAdd"/>
+    <separator/>
   </menu>
   <menu action="EditMenu">
     <menuitem action="Undo"/>
@@ -569,6 +612,32 @@ class ViewManager(CLIManager):
         self._action_action_list = [
             ('Clipboard', 'edit-paste', _('Clip_board'), "<PRIMARY>b",
              _("Open the Clipboard dialog"), self.clipboard),
+            ('AddMenu', None, _('_Add')),
+            ('AddNewMenu', None, _('_New')),
+            ('PersonAdd', None, _('_Person'), "<Alt>p", None, self.add_person),
+            ('SpouseAdd', None, _('Sp_ouse(Partner)'), "<Alt>o", None, self.add_spouse),
+            ('ParentsAdd', None, _('Paren_ts'), "<Alt>t", None, self.__keypress),
+            ('FatherAdd', None, _('_Father'), "<Alt>f", None, self.__keypress),
+            ('MotherAdd', None, _('_Mother'), "<Alt>m", None, self.__keypress),
+            ('BrotherAdd', None, _('_Brother'), "<Alt>b", None, self.__keypress),
+            ('SisterAdd', None, _('Sis_ter'), "<Alt>t", None, self.__keypress),
+            ('SiblingAdd', None, _('Siblin_g'), "<Alt>g", None, self.__keypress),
+            ('SonAdd', None, _('_Son'), "<Alt>s", None, self.__keypress),
+            ('DaughterAdd', None, _('_Daughter'), "<Alt>d", None, self.__keypress),
+            ('ChildAdd', None, _('_Child'), "<Alt>c", None, self.__keypress),
+            ('FamilyAdd', None, _('Famil_y'), "<Alt>y", None, self.add_family),
+            ('EventAdd', None, _('_Event'), "<shift>e", None, self.add_event),
+            ('BirthAdd', None, _('_Birth'), "<shift>b", None, self.add_birth_event),
+            ('MarriageAdd', None, _('_Marriage'), "<shift>m", None, self.add_marriage_event),
+            ('DeathAdd', None, _('Death'), "<shift>d", None, self.add_death_event),
+            ('BurialAdd', None, _('B_urial'), "<shift>u", None, self.add_burial_event),
+            ('PlaceAdd', None, _('_Place'), "<shift><Alt>p", None, self.add_place),
+            ('SourceAdd', None, _('_Source'), "<shift><Alt>s", None, self.add_source),
+            ('CitationAdd', None, _('_Citation'), "<shift><Alt>c", None, self.add_citation),
+            ('RepositoryAdd', None, _('Repositor_y'), "<shift><Alt>y", None, self.add_repository),
+            ('MediaAdd', None, _('_Media'), "<shift><Alt>m", None, self.add_media),
+            ('NoteAdd', None, _('_Note'), "<shift><Alt>n", None, self.add_note),
+            #--------------------------------------
             ('Import', 'gramps-import', _('_Import...'), "<PRIMARY>i", None,
              self.import_data),
             ('Tools', 'gramps-tools', _('_Tools'), None,
@@ -1506,6 +1575,156 @@ class ViewManager(CLIManager):
             ClipboardWindow(self.dbstate, self.uistate)
         except WindowActiveError:
             return
+
+    def add_person(self, obj):
+        """
+        Add a new person to the database.  (Global keybinding)
+        """
+        person = Person()
+        #the editor requires a surname
+        person.primary_name.add_surname(Surname())
+        person.primary_name.set_primary_surname(0)
+
+        try:
+            EditPerson(self.dbstate, self.uistate, [], person)
+        except WindowActiveError:
+            pass
+
+    def add_spouse(self, obj):
+        """
+        Add a spouse/partner to the active person
+        (selected in the Person list view /not the other active person?)
+        """
+        handle = self.uistate.get_history('Person').present()
+
+        if not handle:
+            #print("No active person selected")
+            return
+
+        family = Family()
+
+        person = self.dbstate.db.get_person_from_handle(handle)
+
+        if not person:
+            return
+
+        if person.gender == Person.MALE:
+            family.set_father_handle(person.handle)
+        else:
+            family.set_mother_handle(person.handle)
+
+        try:
+            EditFamily(self.dbstate, self.uistate, [], family)
+        except WindowActiveError:
+            pass
+
+    def add_family(self, obj):
+        """
+        Add a new family to the database.  (Global keybinding)
+        """
+        family = Family()
+        try:
+            EditFamily(self.dbstate, self.uistate, [], family)
+        except WindowActiveError:
+            pass
+
+    def add_media(self, obj):
+        """Add a new media object to the media list"""
+        try:
+            EditMedia(self.dbstate, self.uistate, [], Media())
+        except WindowActiveError:
+            pass
+
+    def add_note(self, obj):
+        """Add a new note to the note list"""
+        try:
+            EditNote(self.dbstate, self.uistate, [], Note())
+        except WindowActiveError:
+            pass
+
+    def add_place(self, obj):
+        """Add a new place to the place list"""
+        try:
+            EditPlace(self.dbstate, self.uistate, [], Place())
+        except WindowActiveError:
+            pass
+
+    def add_source(self, obj):
+        """Add a new source to the source list"""
+        try:
+            EditSource(self.dbstate, self.uistate, [], Source())
+        except WindowActiveError:
+            pass
+
+    def add_repository(self, obj):
+        """Add a new repository to the repository list"""
+        try:
+            EditRepository(self.dbstate, self.uistate, [], Repository())
+        except WindowActiveError:
+            pass
+
+    def add_citation(self, obj):
+        """
+        Add a new citation
+        """
+        try:
+            EditCitation(self.dbstate, self.uistate, [], Citation())
+        except WindowActiveError:
+            pass
+
+    def add_event(self, obj):
+        """
+        Add a new default event  eg: currently "birth"
+        #TODO Use selector for all events including custom (use keyboard arrows and enter key)
+        """
+        try:
+            EditEvent(self.dbstate, self.uistate, [], Event())
+        except WindowActiveError:
+            pass
+
+    def add_birth_event(self, obj):
+        """
+        Add a new birth event
+        """
+        try:
+            event = Event()
+            event.set_type(EventType.BIRTH)
+            EditEvent(self.dbstate, self.uistate, [], event)
+        except WindowActiveError:
+            pass
+
+    def add_marriage_event(self, obj):
+        """
+        Add a new marriage event
+        """
+        try:
+            event = Event()
+            event.set_type(EventType.MARRIAGE)
+            EditEvent(self.dbstate, self.uistate, [], event)
+        except WindowActiveError:
+            pass
+
+    def add_death_event(self, obj):
+        """
+        Add a new death event
+        """
+        try:
+            event = Event()
+            event.set_type(EventType.DEATH)
+            EditEvent(self.dbstate, self.uistate, [], event)
+        except WindowActiveError:
+            pass
+
+    def add_burial_event(self, obj):
+        """
+        Add a new burial event
+        """
+        try:
+            event = Event()
+            event.set_type(EventType.BURIAL)
+            EditEvent(self.dbstate, self.uistate, [], event)
+        except WindowActiveError:
+            pass
 
     def config_view(self, obj):
         """
