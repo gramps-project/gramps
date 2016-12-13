@@ -122,7 +122,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         #set_window is present in both parent classes
         ManagedWindow.set_window(self, self, None,
             self.top_title, isWindow=True)
-        self.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
+        self.setup_configs('interface.exportassistant', 760, 500)
 
         #set up callback method for the export plugins
         self.callback = self.pulse_progressbar
@@ -172,7 +172,6 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         image.set_from_file(SPLASH)
 
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        box.set_size_request(600, -1) # wide enough it won't have to expand
         box.pack_start(image, False, False, 5)
         box.pack_start(label, False, False, 5)
 
@@ -234,7 +233,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
     def create_page_options(self):
         # as we do not know yet what to show, we create an empty page
         page = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        page.set_border_width(12)
+        page.set_border_width(0)
         page.set_spacing(12)
 
         page.show_all()
@@ -531,7 +530,11 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
 
     def close(self, *obj) :
         #clean up ManagedWindow menu, then destroy window, bring forward parent
+        real_width, real_height = self.get_size() # "destroy" changes them
+        real_x_pos, real_y_pos = self.get_position() # "destroy" changes them
         Gtk.Assistant.destroy(self)
+        self.move(real_x_pos, real_y_pos) # "close" calls self._save_position()
+        self.resize(real_width, real_height) # "close" calls self._save_size()
         ManagedWindow.close(self,*obj)
 
     def get_intro_text(self):
