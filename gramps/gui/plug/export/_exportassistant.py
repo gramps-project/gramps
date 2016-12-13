@@ -79,7 +79,7 @@ _ExportAssistant_pages = {
             'summary'                : 5,
             }
 
-class ExportAssistant(Gtk.Assistant, ManagedWindow) :
+class ExportAssistant(ManagedWindow, Gtk.Assistant):
     """
     This class creates a GTK assistant to guide the user through the various
     Save as/Export options.
@@ -120,8 +120,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         ManagedWindow.__init__(self, uistate, [], self.__class__, modal=True)
 
         #set_window is present in both parent classes
-        ManagedWindow.set_window(self, self, None,
-            self.top_title, isWindow=True)
+        self.set_window(self, None, self.top_title, isWindow=True)
         self.setup_configs('interface.exportassistant', 760, 500)
 
         #set up callback method for the export plugins
@@ -155,7 +154,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         self.set_forward_page_func(self.forward_func, None)
 
         #ManagedWindow show method
-        ManagedWindow.show(self)
+        self.show()
 
     def build_menu_names(self, obj):
         """Override ManagedWindow method."""
@@ -528,15 +527,6 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         #remember previous page for next time
         self.__previous_page = page_number
 
-    def close(self, *obj) :
-        #clean up ManagedWindow menu, then destroy window, bring forward parent
-        real_width, real_height = self.get_size() # "destroy" changes them
-        real_x_pos, real_y_pos = self.get_position() # "destroy" changes them
-        Gtk.Assistant.destroy(self)
-        self.move(real_x_pos, real_y_pos) # "close" calls self._save_position()
-        self.resize(real_width, real_height) # "close" calls self._save_size()
-        ManagedWindow.close(self,*obj)
-
     def get_intro_text(self):
         return _('Under normal circumstances, Gramps does not require you '
                  'to directly save your changes. All changes you make are '
@@ -625,20 +615,17 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         self.writestarted = False
 
     def set_busy_cursor(self,value):
-        """Set or unset the busy cursor while saving data.
-
-            Note : self.get_window() is the Gtk.Assistant Gtk.Window, not
-                   a part of ManagedWindow
-
+        """
+        Set or unset the busy cursor while saving data.
         """
         BUSY_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
                                                  Gdk.CursorType.WATCH)
 
         if value:
-            self.get_window().set_cursor(BUSY_CURSOR)
+            Gtk.Assistant.get_window(self).set_cursor(BUSY_CURSOR)
             #self.set_sensitive(0)
         else:
-            self.get_window().set_cursor(None)
+            Gtk.Assistant.get_window(self).set_cursor(None)
             #self.set_sensitive(1)
 
         while Gtk.events_pending():
