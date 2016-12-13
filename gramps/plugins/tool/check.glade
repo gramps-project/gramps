@@ -4,8 +4,6 @@
   <requires lib="gtk+" version="3.10"/>
   <object class="GtkDialog" id="check">
     <property name="can_focus">False</property>
-    <property name="default_width">450</property>
-    <property name="default_height">400</property>
     <property name="type_hint">dialog</property>
     <signal name="delete-event" handler="on_delete_event" swapped="no"/>
     <child internal-child="vbox">

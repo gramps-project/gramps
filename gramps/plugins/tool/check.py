@@ -173,7 +173,7 @@ class Check(tool.BatchTool):
         # We only do this for the dbdir backend.
         if self.db.__class__.__name__ == 'DbBsddb':
             if cross_table_duplicates(self.db, uistate):
-                Report(uistate, _(
+                CheckReport(uistate, _(
                     "Your Family Tree contains cross table duplicate handles."
                     "\n "
                     "This is bad and can be fixed by making a backup of your\n"
@@ -229,7 +229,7 @@ class Check(tool.BatchTool):
 
         errs = checker.build_report(uistate)
         if errs:
-            Report(uistate, checker.text.getvalue(), cli)
+            CheckReport(uistate, checker.text.getvalue(), cli)
 
 
 # -------------------------------------------------------------------------
@@ -2667,7 +2667,7 @@ class CheckIntegrity:
 # Display the results
 #
 # -------------------------------------------------------------------------
-class Report(ManagedWindow):
+class CheckReport(ManagedWindow):
     """ Report out the results """
     def __init__(self, uistate, text, cli=0):
         if cli:
@@ -2686,6 +2686,7 @@ class Report(ManagedWindow):
                             # topdialog.get_widget("title"),
                             topdialog.get_object("title"),
                             _("Integrity Check Results"))
+            self.setup_configs('interface.checkreport', 450, 400)
 
             self.show()
 
