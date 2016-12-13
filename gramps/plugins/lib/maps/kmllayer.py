@@ -63,6 +63,8 @@ from .libkml import Kml
 #-------------------------------------------------------------------------
 
 try:
+    import gi
+    gi.require_version('OsmGpsMap', '1.0')
     from gi.repository import OsmGpsMap as osmgpsmap
 except:
     raise
