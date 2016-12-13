@@ -652,7 +652,7 @@ class BasePage(object):
         @param: place_lat_long -- for use in Family Map Pages. This will be None
         if called from Family pages, which do not create a Family Map
         """
-        family_list = sorted(individual.get_family_handle_list())
+        family_list = individual.get_family_handle_list()
         if not family_list:
             return None
 
@@ -3195,7 +3195,7 @@ class FamilyPages(BasePage):
                     for person_handle in sorted(handle_list, key=lambda x: sort_on_name_and_grampsid(x, self.dbase_)):
                         person = self.dbase_.get_person_from_handle(person_handle)
                         if person:
-                            family_list = sorted(pers_fam_dict[person_handle], key=lambda x:x.get_gramps_id())
+                            family_list = pers_fam_dict[person_handle]
                             first_family = True
                             for family in family_list:
                                 trow = Html("tr")
