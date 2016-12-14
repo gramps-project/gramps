@@ -79,7 +79,7 @@ _ExportAssistant_pages = {
             'summary'                : 5,
             }
 
-class ExportAssistant(Gtk.Assistant, ManagedWindow) :
+class ExportAssistant(ManagedWindow, Gtk.Assistant):
     """
     This class creates a GTK assistant to guide the user through the various
     Save as/Export options.
@@ -120,9 +120,8 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         ManagedWindow.__init__(self, uistate, [], self.__class__, modal=True)
 
         #set_window is present in both parent classes
-        ManagedWindow.set_window(self, self, None,
-            self.top_title, isWindow=True)
-        self.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
+        self.set_window(self, None, self.top_title, isWindow=True)
+        self.setup_configs('interface.exportassistant', 760, 500)
 
         #set up callback method for the export plugins
         self.callback = self.pulse_progressbar
@@ -155,7 +154,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         self.set_forward_page_func(self.forward_func, None)
 
         #ManagedWindow show method
-        ManagedWindow.show(self)
+        self.show()
 
     def build_menu_names(self, obj):
         """Override ManagedWindow method."""
@@ -172,7 +171,6 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         image.set_from_file(SPLASH)
 
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        box.set_size_request(600, -1) # wide enough it won't have to expand
         box.pack_start(image, False, False, 5)
         box.pack_start(label, False, False, 5)
 
@@ -234,7 +232,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
     def create_page_options(self):
         # as we do not know yet what to show, we create an empty page
         page = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        page.set_border_width(12)
+        page.set_border_width(0)
         page.set_spacing(12)
 
         page.show_all()
@@ -529,11 +527,6 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         #remember previous page for next time
         self.__previous_page = page_number
 
-    def close(self, *obj) :
-        #clean up ManagedWindow menu, then destroy window, bring forward parent
-        Gtk.Assistant.destroy(self)
-        ManagedWindow.close(self,*obj)
-
     def get_intro_text(self):
         return _('Under normal circumstances, Gramps does not require you '
                  'to directly save your changes. All changes you make are '
@@ -622,20 +615,17 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         self.writestarted = False
 
     def set_busy_cursor(self,value):
-        """Set or unset the busy cursor while saving data.
-
-            Note : self.get_window() is the Gtk.Assistant Gtk.Window, not
-                   a part of ManagedWindow
-
+        """
+        Set or unset the busy cursor while saving data.
         """
         BUSY_CURSOR = Gdk.Cursor.new_for_display(Gdk.Display.get_default(),
                                                  Gdk.CursorType.WATCH)
 
         if value:
-            self.get_window().set_cursor(BUSY_CURSOR)
+            Gtk.Assistant.get_window(self).set_cursor(BUSY_CURSOR)
             #self.set_sensitive(0)
         else:
-            self.get_window().set_cursor(None)
+            Gtk.Assistant.get_window(self).set_cursor(None)
             #self.set_sensitive(1)
 
         while Gtk.events_pending():

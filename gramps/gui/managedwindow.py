@@ -545,8 +545,8 @@ class ManagedWindow:
 
         Takes care of closing children and removing itself from menu.
         """
+        self._save_position(save_config=False) # the next line will save it
         self._save_size()
-        self._save_position()
         self.clean_up()
         self.uistate.gwm.close_track(self.track)
         self.opened = False
@@ -596,16 +596,19 @@ class ManagedWindow:
             vert_position = config.get(self.vert_position_key)
             self.window.move(horiz_position, vert_position)
 
-    def _save_position(self):
+    def _save_position(self, save_config=True):
         """
         Save the window's position to the config file
+
+        (You can set save_config False if a _save_size() will instantly follow)
         """
         # self.horiz_position_key is set in the subclass (or in setup_configs)
         if self.horiz_position_key is not None:
             (horiz_position, vert_position) = self.window.get_position()
             config.set(self.horiz_position_key, horiz_position)
             config.set(self.vert_position_key, vert_position)
-            config.save()
+            if save_config:
+                config.save()
 
     def setup_configs(self, config_base,
                       default_width, default_height,

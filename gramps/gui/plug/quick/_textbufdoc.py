@@ -61,7 +61,8 @@ class DisplayBuf(ManagedWindow):
                                    buttons=(_('_Close'),
                                              Gtk.ResponseType.CLOSE)),
                         None, title, True)
-        self.window.set_size_request(600,400)
+        self.setup_configs('interface.' + title.lower().replace(' ', ''),
+                           600, 400)
         scrolled_window = Gtk.ScrolledWindow()
         scrolled_window.set_policy(Gtk.PolicyType.AUTOMATIC,Gtk.PolicyType.AUTOMATIC)
         document.text_view = Gtk.TextView()

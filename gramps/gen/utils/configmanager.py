@@ -327,33 +327,29 @@ class ConfigManager:
             filename = self.filename
         if filename:
             try:
-                head = os.path.split( filename )[0]
-                os.makedirs( head )
+                head = os.path.split(filename)[0]
+                os.makedirs(head)
             except OSError as exp:
                 if exp.errno != errno.EEXIST:
                     raise
             try:
                 with open(filename, "w", encoding="utf-8") as key_file:
                     key_file.write(";; Gramps key file\n")
-                    key_file.write((";; Automatically created at %s" %
-                              time.strftime("%Y/%m/%d %H:%M:%S")) + "\n\n")
-                    sections = sorted(self.data)
-                    for section in sections:
-                        key_file.write(("[%s]\n") % section)
-                        keys = sorted(self.data[section])
-                        for key in keys:
+                    key_file.write(";; Automatically created at %s" %
+                                   time.strftime("%Y/%m/%d %H:%M:%S") + "\n\n")
+                    for section in sorted(self.data):
+                        key_file.write("[%s]\n" % section)
+                        for key in sorted(self.data[section]):
                             value = self.data[section][key]
-                            # If it has a default:
+                            default = "" # might be a third-party setting
                             if self.has_default("%s.%s" % (section, key)):
-                                if value == self.get_default("%s.%s" % (section, key)):
+                                if value == self.get_default("%s.%s"
+                                                             % (section, key)):
                                     default = ";;"
-                                else:
-                                    default = ""
-                                if isinstance(value, int):
-                                    value = int(value)
-                                key_file.write(("%s%s=%s\n")% (default,
-                                                               key,
-                                                               repr(value)))
+                            if isinstance(value, int):
+                                value = int(value) # TODO why is this needed?
+                            key_file.write("%s%s=%s\n" % (default, key,
+                                                          repr(value)))
                         key_file.write("\n")
                 # else, no filename given; nothing to save so do nothing quietly
             except IOError as err:
