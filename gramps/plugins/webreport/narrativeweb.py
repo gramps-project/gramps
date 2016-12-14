@@ -3533,9 +3533,11 @@ class FamilyPages(BasePage):
                             handle_list, key=self.sort_on_name_and_grampsid):
                         person = self.r_db.get_person_from_handle(person_handle)
                         if person:
-                            family_list = pers_fam_dict[person_handle]
+                            family_list = person.get_family_handle_list()
                             first_family = True
-                            for family in family_list:
+                            for family_handle in family_list:
+                                get_family = self.r_db.get_family_from_handle
+                                family = get_family(family_handle)
                                 trow = Html("tr")
                                 tbody += trow
 
