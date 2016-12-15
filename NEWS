@@ -1,5 +1,9 @@
-2016-12-
+2016-12-15
 Version 4.2.5
+* The configparser is assuming the wrong encoding
+* Sorting in family tab of narrated web report
+* Silence remaining PyGIWarning
+* Sorting of relationships in family tab of narrated web report
 * Use latest valid date rather than today
 * Modify endonym handling in place displayer
 * Fix house number concatenation
@@ -19,9 +23,11 @@ Version 4.2.5
 * Export options 'Preview' buttons create hidden quickreport
 * Alignment radio buttons in the style editor do not work
 * Select Place search & Source/Citation hierarchy should NOT be expanded
+* Tweak improvement on Tag editor
+* Support for Windows Python3 pythonw.exe
 * Wrong parsing Numeric date format for cs_CZ locale
 * Fix Norwegian relationship calculator
-* Fix Icelandic translation
+* Fix Icelandic and German translations
 * Update translations: cs, de, fi, fr, hu, is, nb, ru
 
 2016-09-04
