@@ -124,6 +124,7 @@ class EditDate(ManagedWindow):
             self.top.toplevel,
             self.top.get_object('title'),
             _('Date selection'))
+        self.setup_configs('interface.editdate', 620, 320)
 
         self.statusbar = self.top.get_object('statusbar')
         self.ok_button = self.top.get_object('ok_button')

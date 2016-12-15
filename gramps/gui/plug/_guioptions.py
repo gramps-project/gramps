@@ -80,7 +80,7 @@ class LastNameDialog(ManagedWindow):
         self.__dlg = Gtk.Dialog(None, uistate.window, flags, buttons)
         self.__dlg.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
         self.set_window(self.__dlg, None, _('Select surname'))
-        self.window.set_default_size(400, 400)
+        self.setup_configs('interface.lastnamedialog', 400, 400)
 
         # build up a container to display all of the people of interest
         self.__model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_INT)
