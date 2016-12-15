@@ -180,7 +180,7 @@ class GrampletBar(Gtk.Notebook):
         if filename and os.path.exists(filename):
             cp = configparser.ConfigParser()
             try:
-                cp.read(filename)
+                cp.read(filename, encoding='utf-8')
             except:
                 pass
             for sec in cp.sections():
