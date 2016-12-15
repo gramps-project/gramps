@@ -628,7 +628,7 @@ class EditTag(object):
         hbox.pack_start(self.color, False, False, 5)
 
         top.add_button(_('_Help'), Gtk.ResponseType.HELP)
-        top.add_button(_('_OK'), Gtk.ResponseType.OK)
         top.add_button(_('_Cancel'), Gtk.ResponseType.CANCEL)
+        top.add_button(_('_OK'), Gtk.ResponseType.OK)
         top.show_all()
         return top
