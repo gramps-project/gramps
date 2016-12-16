@@ -210,16 +210,6 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
 
     __signals__ = {}
 
-    @classmethod
-    def get_class_summary(cls):
-        """
-        Return a diction of information about this database.
-        """
-        summary = {
-            "Database type": cls.__name__,
-        }
-        return summary
-
     def __init__(self):
         """
         Create a new DummyDb instance.

@@ -57,17 +57,6 @@ class DBAPI(DbGeneric):
     """
     Database backends class for DB-API 2.0 databases
     """
-    @classmethod
-    def get_class_summary(cls):
-        """
-        Return a diction of information about this database.
-        """
-        summary = {
-            "DB-API version": "2.0",
-            "Database type": cls.__name__,
-        }
-        return summary
-
     def get_schema_version(self, directory=None):
         """
         Get the version of the schema that the database was created

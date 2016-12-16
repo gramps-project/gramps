@@ -29,14 +29,6 @@ class InMemoryDB(DBAPI):
     """
     A DB-API 2.0 In-memory SQL database.
     """
-    @classmethod
-    def get_class_summary(cls):
-        summary = DBAPI.get_class_summary()
-        summary.update({
-            "Database location": "in memory",
-        })
-        return summary
-
     def _initialize(self, directory):
         """
         Create an in-memory sqlite database.

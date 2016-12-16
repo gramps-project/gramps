@@ -209,27 +209,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     Gramps database write access object.
     """
 
-    @classmethod
-    def get_class_summary(cls):
-        """
-        Return a diction of information about this database.
-        """
-        try:
-            import bsddb3 as bsddb
-            bsddb_str = bsddb.__version__
-            bsddb_db_str = str(bsddb.db.version()).replace(', ', '.')\
-                                                  .replace('(', '').replace(')', '')
-        except:
-            bsddb_str = 'not found'
-            bsddb_db_str = 'not found'
-        summary = {
-            "DB-API version": "n/a",
-            "Database type": cls.__name__,
-            'Database version': bsddb_str,
-            'Database db version': bsddb_db_str
-        }
-        return summary
-
     # Set up dictionary for callback signal handler
     # ---------------------------------------------
     # 1. Signals for primary objects
