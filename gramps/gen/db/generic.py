@@ -2554,17 +2554,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         _("Version")
         _("Data version")
         """
-        last_backup = "n/a"
-        backups = sorted(glob.glob(os.path.join(
-            self._directory, "backup-*.gramps")), reverse=True)
-        if backups:
-            path, filename = os.path.split(backups[0])
-            filename, ext = os.path.splitext(filename)
-            if filename.count("-") == 6:
-                backup, year, month, day, hour, minute, second = filename.split("-")
-                last_backup = time.strftime('%x %X', time.localtime(time.mktime(
-                    (int(year), int(month), int(day), int(hour), int(minute), int(second),
-                     0, 0, 0))))
         return {
             _("Number of people"): self.get_number_of_people(),
             _("Number of families"): self.get_number_of_families(),
@@ -2577,8 +2566,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             _("Number of notes"): self.get_number_of_notes(),
             _("Number of tags"): self.get_number_of_tags(),
             _("Data version"): ".".join([str(v) for v in self.VERSION]),
-            _("Backups, count"): str(len(backups)),
-            _("Backups, last"): last_backup,
         }
 
     def _order_by_person_key(self, person):
