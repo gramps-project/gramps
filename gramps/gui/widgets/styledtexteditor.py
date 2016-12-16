@@ -105,14 +105,15 @@ FORMAT_TOOLBAR = '''
 FONT_SIZES = [8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 22,
               24, 26, 28, 32, 36, 40, 48, 56, 64, 72]
 
-USERCHARS = "-A-Za-z0-9"
-PASSCHARS = "-A-Za-z0-9,?;.:/!%$^*&~\"#'"
-HOSTCHARS = "-A-Za-z0-9"
-PATHCHARS = "-A-Za-z0-9_$.+!*(),;:@&=?/~#%"
+USERCHARS = r"-\w"
+PASSCHARS = r"-\w,?;.:/!%$^*&~\"#'"
+HOSTCHARS = r"-\w"
+PATHCHARS = r"-\w$.+!*(),;:@&=?/~#%"
 #SCHEME = "(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
 SCHEME = "(file:/|https?:|ftps?:|webcal:)"
 USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
-URLPATH = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
+HOST = r"([-\w.]+|\[[0-9A-F:]+\])?"
+URLPATH = "(/[" + PATHCHARS + "]*)?[^]'.:}> \t\r\n,\\\"]"
 
 (GENURL, HTTP, MAIL, LINK) = list(range(4))
 
@@ -546,14 +547,14 @@ class StyledTextEditor(Gtk.TextView):
         self.textbuffer.create_tag('hyperlink',
                                    underline=Pango.Underline.SINGLE,
                                    foreground=self.linkcolor)
-        self.textbuffer.match_add(SCHEME + "//(" + USER + "@)?[" +
-                                  HOSTCHARS + ".]+" + "(:[0-9]+)?(" +
-                                  URLPATH + ")?/?", GENURL)
-        self.textbuffer.match_add("(www|ftp)[" + HOSTCHARS + "]*\\.[" +
-                                  HOSTCHARS + ".]+" + "(:[0-9]+)?(" +
-                                  URLPATH + ")?/?", HTTP)
-        self.textbuffer.match_add("(mailto:)?[a-z0-9][a-z0-9.-]*@[a-z0-9]"
-                                  "[a-z0-9-]*(\\.[a-z0-9][a-z0-9-]*)+", MAIL)
+        self.textbuffer.match_add(SCHEME + "//(" + USER + "@)?" +
+                                  HOST + "(:[0-9]+)?" +
+                                  URLPATH, GENURL)
+        self.textbuffer.match_add(r"(www\.|ftp\.)[" + HOSTCHARS + r"]*\.[" +
+                                  HOSTCHARS + ".]+" + "(:[0-9]+)?" +
+                                  URLPATH, HTTP)
+        self.textbuffer.match_add(r"(mailto:)?[\w][-.\w]*@[\w]"
+                                  r"[-\w]*(\.[\w][-.\w]*)+", MAIL)
 
     def _create_spell_menu(self):
         """
