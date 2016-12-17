@@ -696,8 +696,8 @@ class EditPerson(EditPrimary):
                     None, None, self._make_home_person),
                 ])
 
-        self.all_action.set_visible(True)
-        self.home_action.set_visible(True)
+        self.all_action.set_visible(not self.added)
+        self.home_action.set_visible(not self.added)
 
         ui_top_cm = '''
             <menuitem action="ActivePerson"/>
