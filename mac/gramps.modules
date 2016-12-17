@@ -67,9 +67,9 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </distutils>
 
   <distutils id="gramps" supports-non-srcdir-builds="no">
-    <branch module="gramps-project/gramps/archive/v4.2.4.tar.gz"
-	    repo="github-tarball" version="4.2.4"
-	    checkoutdir="gramps-gramps-4.2.4"/>
+    <branch module="gramps-project/gramps/archive/v4.2.5.tar.gz"
+	    repo="github-tarball" version="4.2.5"
+	    checkoutdir="gramps-gramps-4.2.5"/>
     <dependencies>
       <dep package="meta-python2-modules"/>
       <dep package="meta-python3-modules"/>
@@ -136,8 +136,8 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   <autotools id="gexiv2" autogen-sh="configure" supports-non-srcdir-builds="no"
 	     autogenargs="--enable-introspection --with-libtool=libtool"
 	     autogen-template="%(srcdir)s/%(autogen-sh)s --prefix=%(prefix)s %(autogenargs)s">
-    <branch module="gexiv2/0.7/gexiv2-0.7.0.tar.xz"
-	    repo="ftp.gnome.org" version="0.7.0">
+    <branch module="gexiv2/0.10/gexiv2-0.10.4.tar.xz"
+	    repo="ftp.gnome.org" version="0.10.0">
     </branch>
     <dependencies>
       <dep package="exiv2"/>

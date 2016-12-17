@@ -1,0 +1,310 @@
+2016-12-15  romjerome <romjerome@users.noreply.github.com>
+
+	* gramps/gen/const.py: make official 4.2.5 release
+
+2016-12-15  romjerome <romjerome@users.noreply.github.com>
+
+	* NEWS: update News file
+
+2016-12-15  romjerome <romjerome@users.noreply.github.com>
+
+	* gramps/plugins/importer/importprogen.py: fix a missing import
+
+2016-12-15  romjerome <romjerome@users.noreply.github.com>
+
+	* gramps/gui/views/tags.py: Tag editor: Tweak improvement on buttons
+	order
+
+2016-12-15  SNoiraud <serge.noiraud@laposte.net>
+
+	* gramps/gui/widgets/grampletbar.py: 9340: The configparser is
+	assuming the wrong encoding.
+
+2016-12-14  SNoiraud <serge.noiraud@laposte.net>
+
+	* gramps/plugins/webreport/narrativeweb.py: 9563: Sorting in family
+	tab of narrated web report
+
+2016-12-13  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: fix 0009696
+
+2016-12-14  Sam Manzi <manzi.sam@gmail.com>
+
+	* gramps/grampsapp.py, gramps/plugins/gramplet/gramplet.gpr.py,
+	gramps/plugins/lib/libmetadata.py,
+	gramps/plugins/lib/maps/constants.py,
+	gramps/plugins/lib/maps/datelayer.py,
+	gramps/plugins/lib/maps/dummylayer.py,
+	gramps/plugins/lib/maps/dummynogps.py,
+	gramps/plugins/lib/maps/geography.py,
+	gramps/plugins/lib/maps/kmllayer.py,
+	gramps/plugins/lib/maps/lifewaylayer.py,
+	gramps/plugins/lib/maps/markerlayer.py,
+	gramps/plugins/lib/maps/messagelayer.py,
+	gramps/plugins/lib/maps/osmgps.py,
+	gramps/plugins/lib/maps/selectionlayer.py,
+	gramps/plugins/view/geography.gpr.py: 9801 Silence remaining
+	PyGIWarning
+
+2016-12-13  SNoiraud <serge.noiraud@laposte.net>
+
+	* gramps/plugins/webreport/narrativeweb.py: 9563: Sorting of
+	relationships in family tab of narrated web report
+
+2016-12-10  Josip <bpisoj@gmail.com>
+
+	* gramps/grampsapp.py: Support for Windows Python3 pythonw.exe
+
+2016-12-10  romjerome <romjerome@users.noreply.github.com>
+
+	* NEWS: start to update NEWS
+
+2016-12-09  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/utils/location.py: 9799: Use latest valid date rather
+	than today This is useful for historic places when an event date is not
+	available.
+
+2016-12-09  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/utils/location.py: 9813: Modify endonym handling in
+	place displayer If no language code is matched, the default name is now the first in
+	the list, rather than a name with no language code.
+
+2016-12-09  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/display/place.py: 9737: Fix house number concatenation
+
+2016-12-07  Espen Berg <espenbe@gmail.com>
+
+	* gramps/plugins/rel/rel_no.py: Corrected another typo in
+	relationship calculator, Norwegian
+
+2016-12-07  Espen Berg <espenbe@gmail.com>
+
+	* gramps/plugins/rel/rel_no.py: Language correction in Norwegian
+	locale relationship calculator
+
+2016-12-06  prculley <paulr2787@gmail.com>
+
+	* gramps/gen/merge/mergefamilyquery.py: bug 9818 allow merging of
+	families with one or more parents in common
+
+2016-12-06  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2016-12-05  SNoiraud <serge.noiraud@laposte.net>
+
+	* gramps/gui/views/navigationview.py: 7309: Jump to Gramps ID
+	functionality doesn't work
+
+2016-12-05  romjerome <romjerome@users.noreply.github.com>
+
+	* po/fr.po: update french translation
+
+2016-12-05  romjerome <romjerome@users.noreply.github.com>
+
+	* po/gramps.pot: 9276: update translation strings template No new entry, update references and comments
+
+2016-12-05  romjerome <romjerome@users.noreply.github.com>
+
+	* gramps/gui/views/treemodels/placemodel.py: 9276: ability to search
+	alternate place names when selecting place
+
+2016-12-05  romjerome <romjerome@users.noreply.github.com>
+
+	* po/fr.po: typo on french translation
+
+2016-12-04  Espen Berg <espenbe@gmail.com>
+
+	* po/nb.po: Cleaned out one more line in nb.po
+
+2016-12-04  Espen Berg <espenbe@gmail.com>
+
+	* po/nb.po: The unlocking message is on one loooong line. Inserted
+	line breaks in Norwegian translation for cleanliness
+
+2016-12-03  Espen Berg <espenbe@gmail.com>
+
+	* po/nb.po: Revising Norwegian bokmål language file (at last)
+
+2016-12-03  Espen Berg <espenbe@gmail.com>
+
+	* po/nb.po: Revising Norwegian bokmål language file (at last)
+
+2016-12-03  romjerome <romjerome@users.noreply.github.com>
+
+	* gramps/plugins/tool/check.py: 9812: 'Check and Repair' tool
+	ignores some objects with tag support
+
+2016-11-30  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2016-11-29  romjerome <romjerome@users.noreply.github.com>
+
+	* gramps/plugins/lib/maps/geography.py: 9815: Fix clear map action
+	on Geography
+
+2016-11-29  Matti Niemelä <matti.u.niemela@gmail.com>
+
+	* po/fi.po: Update finnish translation
+
+2016-11-28  Zdeněk Hataš <zdenek.hatas@gmail.com>
+
+	* po/cs.po: czech translation update
+
+2016-11-26  romjerome <romjerome@users.noreply.github.com>
+
+	* debian/control: 9801: recommend 'gir1.2-goocanvas-2.0' on debian
+	package
+
+2016-11-26  romjerome <romjerome@users.noreply.github.com>
+
+	* gramps/plugins/tool/check.py: 8555: Database repair tool always
+	modify all source objects
+
+2016-11-24  romjerome <romjerome@users.noreply.github.com>
+
+	* po/fr.po: Update french translation
+
+2016-11-24  romjerome <romjerome@users.noreply.github.com>
+
+	* po/gramps.pot: Update translation strings template
+
+2016-11-24  romjerome <romjerome@users.noreply.github.com>
+
+	* po/fr.po: typo on french translation
+
+2016-11-22  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/plugins/gramplet/locations.py: 9534: Exclude places outside
+	valid date ranges
+
+2016-11-10  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: update German translation
+
+2016-11-01  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gui/glade/editldsord.glade: 9767: Fix icon and tooltip in
+	LDS editor The icon on the family selection button was removed by mistake in
+	commit 75009f0.
+
+2016-10-30  prculley <paulr2787@gmail.com>
+
+	* gramps/plugins/lib/libgedcom.py: bug 9755, fix duplicated Gramps
+	IDs on Gedcom import
+
+2016-10-29  Sam Manzi <manzi.sam@gmail.com>
+
+	* gramps/gui/configure.py: 9685 Fix Unicode error - Markup for
+	invalid date format
+
+2016-10-25  prculley <paulr2787@gmail.com>
+
+	* gramps/plugins/importer/importcsv.py: Fix bug 9733, CSV import
+	Fails, 9676, failure for certain types of cross references etc.
+
+2016-10-24  prculley <paulr2787@gmail.com>
+
+	* gramps/plugins/importer/importvcard.py: bug 9458, fix Import Vcard
+	can create multiple surnames with all selected as 'Primary'
+
+2016-10-16  prculley <paulr2787@gmail.com>
+
+	* gramps/plugins/lib/libgedcom.py: bug 8993; fix Gedcom import in
+	some alternate languages; improper date parsing
+
+2016-10-23  romjerome <romjerome@users.noreply.github.com>
+
+	* po/fr.po: typo on the french translation
+
+2016-10-21  SNoiraud <serge.noiraud@laposte.net>
+
+	* gramps/gui/plug/export/_exportassistant.py,
+	gramps/gui/plug/quick/_textbufdoc.py: 8250 and 9736 : remove patchs.
+	need to found another solution.
+
+2016-10-18  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update russian translation
+
+2016-10-16  SNoiraud <serge.noiraud@laposte.net>
+
+	* gramps/gui/plug/quick/_textbufdoc.py: 9736: Export options
+	'Preview' buttons create hidden quickreport.
+
+2016-10-12  Paul Franklin <pf.98052@gmail.com>
+
+	* gramps/gen/datehandler/_date_cs.py,
+	gramps/gen/datehandler/_dateparser.py: 9739: Wrong parsing Numeric
+	date format for cs_CZ locale
+
+2016-10-11  SNoiraud <serge.noiraud@laposte.net>
+
+	* gramps/gui/plug/quick/_textbufdoc.py: 9736: Export options
+	'Preview' buttons create hidden quickreport.
+
+2016-10-04  Matti Niemelä <matti.u.niemela@gmail.com>
+
+	* po/fi.po: Update finnish translation
+
+2016-10-03  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: update German translation
+
+2016-10-01  Zdeněk Hataš <zdenek.hatas@gmail.com>
+
+	* po/cs.po: czech translation update
+
+2016-09-28  romjerome <romjerome@users.noreply.github.com>
+
+	* data/man/en.rst: typo, Change FICHIER to File
+
+2016-09-28  Lajos Nemeséri <nemeseril@gmail.com>
+
+	* po/hu.po: Update Hungarian translation
+
+2016-09-25  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gui/glade/styleeditor.glade: 9721: Fix alignment radio
+	buttons in style editor
+
+2016-09-16  SNoiraud <serge.noiraud@laposte.net>
+
+	* gramps/gui/editors/displaytabs/citationembedlist.py,
+	gramps/gui/selectors/baseselector.py: 9700: Select Place search &
+	Source/Citation hierarchy should NOT be expanded
+
+2016-09-13  Sveinn í Felli <sv1@fellsnet.is>
+
+	* po/is.po: Add 9693: Icelandic translation update(msgfmt error
+	fixed)
+
+2016-09-12  Sveinn í Felli <sv1@fellsnet.is>
+
+	* po/is.po: Add 9693: Icelandic translation update
+
+2016-09-10  John Ralls <jralls@ceridwen.us>
+
+	* mac/Info.plist, mac/gramps.bundle, mac/gramps.modules: Add gir
+	files to bundle.  Enables change of library paths in the typelibs to point at
+	@executable_path by gtk-mac-bundler.
+
+2016-08-18  John Ralls <jralls@ceridwen.us>
+
+	* mac/gramps.bundle: Revert "Remove pango modules from bundle, pango
+	no longer uses them." This reverts commit e311de19649371d59c2ab535d4564ee725963b4f because
+	for the moment we have to build with an older Pango.
+
+2016-08-18  John Ralls <jralls@ceridwen.us>
+
+	* mac/gramps.bundle: escape illegal '--' in comment.
+
+2016-09-04  romjerome <romjerome@users.noreply.github.com>
+
+	* bump to '4.2.5'
+

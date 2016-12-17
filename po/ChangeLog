@@ -1,0 +1,90 @@
+2016-12-13  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: fix 0009696
+
+2016-12-06  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2016-12-05  romjerome <romjerome@users.noreply.github.com>
+
+	* po/fr.po: update french translation
+
+2016-12-05  romjerome <romjerome@users.noreply.github.com>
+
+	* po/fr.po: typo on french translation
+
+2016-12-04  Espen Berg <espenbe@gmail.com>
+
+	* po/nb.po: Cleaned out one more line in nb.po
+
+2016-12-04  Espen Berg <espenbe@gmail.com>
+
+	* po/nb.po: The unlocking message is on one loooong line. Inserted
+	line breaks in Norwegian translation for cleanliness
+
+2016-12-03  Espen Berg <espenbe@gmail.com>
+
+	* po/nb.po: Revising Norwegian bokmål language file (at last)
+
+2016-12-03  Espen Berg <espenbe@gmail.com>
+
+	* po/nb.po: Revising Norwegian bokmål language file (at last)
+
+2016-11-30  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2016-11-29  Matti Niemelä <matti.u.niemela@gmail.com>
+
+	* po/fi.po: Update finnish translation
+
+2016-11-28  Zdeněk Hataš <zdenek.hatas@gmail.com>
+
+	* po/cs.po: czech translation update
+
+2016-11-24  romjerome <romjerome@users.noreply.github.com>
+
+	* po/fr.po: Update french translation
+
+2016-11-24  romjerome <romjerome@users.noreply.github.com>
+
+	* po/fr.po: typo on french translation
+
+2016-11-10  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: update German translation
+
+2016-10-23  romjerome <romjerome@users.noreply.github.com>
+
+	* po/fr.po: typo on the french translation
+
+2016-10-18  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update russian translation
+
+2016-10-04  Matti Niemelä <matti.u.niemela@gmail.com>
+
+	* po/fi.po: Update finnish translation
+
+2016-10-03  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: update German translation
+
+2016-10-01  Zdeněk Hataš <zdenek.hatas@gmail.com>
+
+	* po/cs.po: czech translation update
+
+2016-09-28  Lajos Nemeséri <nemeseril@gmail.com>
+
+	* po/hu.po: Update Hungarian translation
+
+2016-09-13  Sveinn í Felli <sv1@fellsnet.is>
+
+	* po/is.po: Add 9693: Icelandic translation update(msgfmt error
+	fixed)
+
+2016-09-12  Sveinn í Felli <sv1@fellsnet.is>
+
+	* Add 9693: Icelandic translation update
+
