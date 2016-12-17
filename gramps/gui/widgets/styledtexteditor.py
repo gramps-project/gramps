@@ -292,20 +292,18 @@ class StyledTextEditor(Gtk.TextView):
             iter_at_location = iter_at_location[1]
         self.match = self.textbuffer.match_check(iter_at_location.get_offset())
         tooltip = None
-        if not self.match:
-            for tag in (tag for tag in iter_at_location.get_tags()
-                        if tag.get_property('name').startswith("link")):
-                self.match = (x, y, LINK, tag.data, tag)
-                tooltip = self.make_tooltip_from_link(tag)
-                break
+        for tag in (tag for tag in iter_at_location.get_tags()
+                    if tag.get_property('name').startswith("link")):
+            self.match = (x, y, LINK, tag.data, tag)
+            tooltip = self.make_tooltip_from_link(tag)
+            break
 
         if self.match != self.last_match:
             self.emit('match-changed', self.match)
 
         self.last_match = self.match
-        self.get_root_window().get_pointer()
-        if tooltip:
-            self.set_tooltip_text(tooltip)
+        # self.get_root_window().get_pointer()  # Doesn't seem to do anythhing!
+        self.set_tooltip_text(tooltip)
         return False
 
     def make_tooltip_from_link(self, link_tag):
