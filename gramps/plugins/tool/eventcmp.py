@@ -138,6 +138,7 @@ class EventComparison(tool.Tool,ManagedWindow):
         self.label = _('Event comparison filter selection')
         self.set_window(window,self.filterDialog.get_object('title'),
                         self.label)
+        self.setup_configs('interface.eventcomparison', 640, 220)
 
         self.on_filters_changed('Person')
         uistate.connect('filters-changed', self.on_filters_changed)
@@ -193,7 +194,7 @@ class EventComparison(tool.Tool,ManagedWindow):
             WarningDialog(_("No matches were found"),
                           parent=self.window)
         else:
-            DisplayChart(self.dbstate,self.uistate,plist,self.track)
+            EventComparisonResults(self.dbstate, self.uistate, plist, self.track)
 
 #-------------------------------------------------------------------------
 #
@@ -217,7 +218,7 @@ def fix(line):
 #
 #
 #-------------------------------------------------------------------------
-class DisplayChart(ManagedWindow):
+class EventComparisonResults(ManagedWindow):
     def __init__(self,dbstate,uistate,people_list,track):
         self.dbstate = dbstate
         self.uistate = uistate
@@ -241,6 +242,7 @@ class DisplayChart(ManagedWindow):
         window = self.topDialog.toplevel
         self.set_window(window, self.topDialog.get_object('title'),
                         _('Event Comparison Results'))
+        self.setup_configs('interface.eventcomparisonresults', 750, 400)
 
         self.eventlist = self.topDialog.get_object('treeview')
         self.sort = Sort(self.db)
@@ -307,7 +309,7 @@ class DisplayChart(ManagedWindow):
 
     def build_row_data(self):
         self.progress_bar = ProgressMeter(
-            _('Comparing Events'), '', parent=self.window)
+            _('Comparing Events'), '', parent=self.uistate.window)
         self.progress_bar.set_pass(_('Building data'),len(self.my_list))
         for individual_id in self.my_list:
             individual = self.db.get_person_from_handle(individual_id)

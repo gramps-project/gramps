@@ -131,7 +131,8 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
 #                        _('Merge citations'))
         self.set_window(window, top.get_object('title2'),
                         _("Notes, media objects and data-items of matching "
-                        "citations will be combined."))
+                          "citations will be combined."))
+        self.setup_configs('interface.mergecitations', 700, 230)
 
         top.connect_signals({
             "on_merge_ok_clicked"   : self.on_merge_ok_clicked,
@@ -182,7 +183,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
         self.options.handler.save_options()
 
         self.progress = ProgressMeter(_('Checking Sources'), '',
-                                      parent=self.user.uistate.window)
+                                      parent=self.window)
         self.progress.set_pass(_('Looking for citation fields'),
                                self.db.get_number_of_citations())
 
@@ -234,7 +235,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
                  ngettext("{number_of} citation merged",
                           "{number_of} citations merged", num_merges
                          ).format(number_of=num_merges),
-                 parent=self.user.uistate.window)
+                 parent=self.window)
         self.close(obj)
 
 #------------------------------------------------------------------------

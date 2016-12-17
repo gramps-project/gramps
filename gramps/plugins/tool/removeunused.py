@@ -130,6 +130,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
         self.top = Glade()
         window = self.top.toplevel
         self.set_window(window, self.top.get_object('title'), self.title)
+        self.setup_configs('interface.removeunused', 400, 520)
 
         self.events_box = self.top.get_object('events_box')
         self.sources_box = self.top.get_object('sources_box')

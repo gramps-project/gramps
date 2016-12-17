@@ -93,6 +93,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
         window = topDialog.toplevel
         title = topDialog.get_object("title")
         self.set_window(window, title, self.title)
+        self.setup_configs('interface.notrelated', 450, 400)
 
         self.tagcombo = topDialog.get_object("tagcombo")
         tagmodel = Gtk.ListStore(str)
@@ -108,7 +109,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
 
         # start the progress indicator
         self.progress = ProgressMeter(self.title, _('Starting'),
-                                      parent=self.window)
+                                      parent=self.uistate.window)
 
         # setup the columns
         self.model = Gtk.TreeStore(

@@ -186,6 +186,7 @@ class ChangeNames(tool.BatchTool, ManagedWindow):
 
         self.list = self.top.get_object("list")
         self.set_window(window,self.top.get_object('title'),self.label)
+        self.setup_configs('interface.changenames', 500, 450)
 
         self.model = Gtk.ListStore(GObject.TYPE_BOOLEAN, GObject.TYPE_STRING,
                                    GObject.TYPE_STRING)

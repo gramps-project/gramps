@@ -336,7 +336,7 @@ class ManagedWindow:
 
         from .managedwindow import ManagedWindow
         class SomeWindowClass(ManagedWindow):
-            def __init__(self, uistate, dbstate, track, modal):
+            def __init__(self, uistate, track, obj, modal):
                 window_id = self        # Or e.g. window_id = person.handle
                 ManagedWindow.__init__(self,
                                        uistate,
@@ -354,10 +354,11 @@ class ManagedWindow:
         :param track:    {list of parent windows, [] if the main GRAMPS window
                             is the parent}
         :param obj:      The object that is used to id the managed window,
-                            The inheriting object needs a method build_menu_names(self, obj)
+                            The inheriting object needs a method
+                            build_menu_names(self, obj)
                             which works on this obj and creates menu labels
                             for use in the Gramps Window Menu.
-                            If self.submenu_label ='' then leaf, otherwise branch
+                            If self.submenu_label ='' then leaf, else branch
         :param modal:    True/False, if True, this window is made modal
                             (always on top, and always has focus).  Any child
                             windows are also automatically made modal by moving
@@ -425,8 +426,10 @@ class ManagedWindow:
         """
         Set the window that is managed.
 
-        :param window:   if isWindow=False window must be a Gtk.Window() object, otherwise None
-        :param title:    a label widget in which to write the title, None if not needed
+        :param window:   if isWindow=False window must be a Gtk.Window() object
+                         (or a subclass such as Gtk.Dialog), otherwise None
+        :param title:    a label widget in which to write the title,
+                         else None if not needed
         :param text:     text to use as title of window and in title param
         :param msg:      if not None, use msg as title of window instead of text
         :param isWindow: {if isWindow than self is the window

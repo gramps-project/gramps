@@ -84,7 +84,7 @@ def is_initial(name):
 # The Actual tool.
 #
 #-------------------------------------------------------------------------
-class Merge(tool.Tool,ManagedWindow):
+class DuplicatePeopleTool(tool.Tool, ManagedWindow):
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
@@ -124,6 +124,7 @@ class Merge(tool.Tool,ManagedWindow):
         window = top.toplevel
         self.set_window(window, top.get_object('title'),
                         _('Find Possible Duplicate People'))
+        self.setup_configs('interface.duplicatepeopletool', 350, 220)
 
         top.connect_signals({
             "on_do_merge_clicked"   : self.__dummy,
@@ -178,8 +179,9 @@ class Merge(tool.Tool,ManagedWindow):
                 parent=self.window)
         else:
             try:
-                ShowMatches(self.dbstate,self.uistate,self.track,
-                            self.list,self.map,self.update)
+                DuplicatePeopleToolMatches(self.dbstate, self.uistate,
+                                           self.track, self.list, self.map,
+                                           self.update)
             except WindowActiveError:
                 pass
 
@@ -533,7 +535,7 @@ class Merge(tool.Tool,ManagedWindow):
         pass
 
 
-class ShowMatches(ManagedWindow):
+class DuplicatePeopleToolMatches(ManagedWindow):
 
     def __init__(self, dbstate, uistate, track, the_list, the_map, callback):
         ManagedWindow.__init__(self,uistate,track,self.__class__)
@@ -551,6 +553,7 @@ class ShowMatches(ManagedWindow):
         window = top.toplevel
         self.set_window(window, top.get_object('title'),
                         _('Potential Merges'))
+        self.setup_configs('interface.duplicatepeopletoolmatches', 500, 350)
 
         self.mlist = top.get_object("mlist")
         top.connect_signals({
@@ -665,7 +668,7 @@ def get_surnames(name):
 #
 #
 #------------------------------------------------------------------------
-class MergeOptions(tool.ToolOptions):
+class DuplicatePeopleToolOptions(tool.ToolOptions):
     """
     Defines options and provides handling interface.
     """

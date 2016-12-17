@@ -157,8 +157,8 @@ fname = 'finddupes.py',
 authors = ["Donald N. Allingham"],
 authors_email = ["don@gramps-project.org"],
 category = TOOL_DBPROC,
-toolclass = 'Merge',
-optionclass = 'MergeOptions',
+toolclass = 'DuplicatePeopleTool',
+optionclass = 'DuplicatePeopleToolOptions',
 tool_modes = [TOOL_MODE_GUI]
   )
 

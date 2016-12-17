@@ -94,6 +94,7 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
 
         window = self.glade.toplevel
         self.set_window(window,self.glade.get_object('title'),self.title)
+        self.setup_configs('interface.changetypes', 640, 260)
 
         self.glade.connect_signals({
             "on_close_clicked"  : self.close,

@@ -883,7 +883,7 @@ class ToolManagedWindowBase(ManagedWindow):
     def pre_run(self):
         from ..utils import ProgressMeter
         self.progress = ProgressMeter(self.get_title(),
-                                      parent=self.uistate.window)
+                                      parent=self.window)
 
     def run(self):
         raise NotImplementedError("tool needs to define a run() method")
