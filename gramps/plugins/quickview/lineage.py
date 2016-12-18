@@ -134,17 +134,19 @@ def make_details(gender, person, sa, sd, database, stab) :
             family_id = parent_handle_list[0]
             family = database.get_family_from_handle(family_id)
             childrel = [(ref.get_mother_relation(),
-                            ref.get_father_relation()) for ref in
-                            family.get_child_ref_list()
-                            if ref.ref == person_handle]
-            if gender == Person.MALE :
-                person = database.get_person_from_handle(
-                            family.get_father_handle())
-                refnr  = 1
-            else :
-                person = database.get_person_from_handle(
-                            family.get_mother_handle())
-                refnr  = 0
+                        ref.get_father_relation()) for ref in
+                        family.get_child_ref_list()
+                        if ref.ref == person_handle]
+            if gender == Person.MALE:
+                parent_handle = family.get_father_handle()
+                refnr = 1
+            else:
+                parent_handle = family.get_mother_handle()
+                refnr = 0
+            if parent_handle:
+                person = database.get_person_from_handle(parent_handle)
+            else:
+                person = None
 
             #We do not allow for same sex marriages when going up
             # that would complicate the code
