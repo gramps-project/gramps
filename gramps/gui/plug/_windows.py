@@ -674,7 +674,7 @@ class PluginTrace(ManagedWindow):
 
     def __init__(self, uistate, track, data, name):
         self.name = name
-        title = "%s: %s" % (_("Plugin Error"), name)
+        title = _("%s: %s") % (_("Plugin Error"), name)
         ManagedWindow.__init__(self, uistate, track, self)
 
         self.set_window(Gtk.Dialog("", uistate.window,

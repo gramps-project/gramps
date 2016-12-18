@@ -132,7 +132,7 @@ class EditAttributeRoot(EditSecondary):
             label = str(attrib.get_type())
         if not label.strip():
             label = _("New Attribute")
-        label = "%s: %s" % (_('Attribute'),label)
+        label = _("%s: %s") % (_('Attribute'), label)
         return (label, _('Attribute Editor'))
 
     def save(self,*obj):

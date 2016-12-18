@@ -80,7 +80,8 @@ class LogGramplet(Gramplet):
                 continue
             self.last_log = (ltype, action, handle)
             self.timestamp()
-            self.append_text("%s: " % _(action))
+            # translators: needed for French, ignore otherwise
+            self.append_text(_("%s: ") % _(action))
             if action == 'Deleted':
                 transaction = self.dbstate.db.transaction
                 if ltype == 'Person':

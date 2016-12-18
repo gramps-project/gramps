@@ -176,17 +176,17 @@ class MergePerson(ManagedWindow):
         title.set_property('weight', Pango.Weight.BOLD)
         title.set_property('scale', 1.2)
         self.add(tobj, title, name_displayer.display(person))
-        self.add(tobj, normal, "%s:\t%s" % (_('ID'),
+        self.add(tobj, normal, _("%s:\t%s") % (_('ID'),
                  person.get_gramps_id()))
-        self.add(tobj, normal, "%s:\t%s" % (_('Gender'),
+        self.add(tobj, normal, _("%s:\t%s") % (_('Gender'),
                  sex[person.get_gender()]))
         bref = person.get_birth_ref()
         if bref:
-            self.add(tobj, normal, "%s:\t%s" % (_('Birth'),
+            self.add(tobj, normal, _("%s:\t%s") % (_('Birth'),
                      self.get_event_info(bref.ref)))
         dref = person.get_death_ref()
         if dref:
-            self.add(tobj, normal, "%s:\t%s" % (_('Death'),
+            self.add(tobj, normal, _("%s:\t%s") % (_('Death'),
                      self.get_event_info(dref.ref)))
 
         nlist = person.get_alternate_names()
@@ -205,7 +205,8 @@ class MergePerson(ManagedWindow):
                 name = str(
                     self.database.get_event_from_handle(event_handle).get_type())
                 if role.is_primary():
-                    self.add(tobj, normal, "%s:\t%s" %
+                    # translators: needed for French, ignore otherwise
+                    self.add(tobj, normal, _("%s:\t%s") %
                                 (name, self.get_event_info(event_handle)))
                 else:
                     self.add(tobj, normal, "%s (%s):\t%s" %
@@ -216,11 +217,11 @@ class MergePerson(ManagedWindow):
             self.add(tobj, title, _("Parents"))
             for fid in person.get_parent_family_handle_list():
                 (fname, mname, gid) = self.get_parent_info(fid)
-                self.add(tobj, normal, "%s:\t%s" % (_('Family ID'), gid))
+                self.add(tobj, normal, _("%s:\t%s") % (_('Family ID'), gid))
                 if fname:
-                    self.add(tobj, indent, "%s:\t%s" % (_('Father'), fname))
+                    self.add(tobj, indent, _("%s:\t%s") % (_('Father'), fname))
                 if mname:
-                    self.add(tobj, indent, "%s:\t%s" % (_('Mother'), mname))
+                    self.add(tobj, indent, _("%s:\t%s") % (_('Mother'), mname))
         else:
             self.add(tobj, normal, _("No parents found"))
 
@@ -230,22 +231,22 @@ class MergePerson(ManagedWindow):
             for fid in slist:
                 (fname, mname, pid) = self.get_parent_info(fid)
                 family = self.database.get_family_from_handle(fid)
-                self.add(tobj, normal, "%s:\t%s" % (_('Family ID'), pid))
+                self.add(tobj, normal, _("%s:\t%s") % (_('Family ID'), pid))
                 spouse_id = utils.find_spouse(person, family)
                 if spouse_id:
                     spouse = self.database.get_person_from_handle(spouse_id)
-                    self.add(tobj, indent, "%s:\t%s" % (_('Spouse'),
+                    self.add(tobj, indent, _("%s:\t%s") % (_('Spouse'),
                              name_of(spouse)))
                 relstr = str(family.get_relationship())
-                self.add(tobj, indent, "%s:\t%s" % (_('Type'), relstr))
+                self.add(tobj, indent, _("%s:\t%s") % (_('Type'), relstr))
                 event = utils.find_marriage(self.database, family)
                 if event:
-                    self.add(tobj, indent, "%s:\t%s" % (
+                    self.add(tobj, indent, _("%s:\t%s") % (
                             _('Marriage'),
                             self.get_event_info(event.get_handle())))
                 for child_ref in family.get_child_ref_list():
                     child = self.database.get_person_from_handle(child_ref.ref)
-                    self.add(tobj, indent, "%s:\t%s" % (_('Child'),
+                    self.add(tobj, indent, _("%s:\t%s") % (_('Child'),
                              name_of(child)))
         else:
             self.add(tobj, normal, _("No spouses or children found"))

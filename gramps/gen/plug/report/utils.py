@@ -156,7 +156,7 @@ def insert_image(database, doc, photo, user,
                           crop=photo.get_rectangle())
         else:
             user.warn(_("Could not add photo to page"),
-                      "%s: %s" % (filename, _('File does not exist')))
+                      _("%s: %s") % (filename, _('File does not exist')))
 
 #-------------------------------------------------------------------------
 #
