@@ -440,6 +440,8 @@ class InteractiveSearchBox:
         search_column = self._treeview.get_search_column()
         is_tree = not (model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY)
         while True:
+            if not cur_iter:    # can happen on empty list
+                return False
             if (self.search_equal_func(model, search_column,
                                        text, cur_iter)):
                 count += 1
