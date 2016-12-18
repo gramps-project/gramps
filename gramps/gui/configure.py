@@ -510,8 +510,9 @@ class GrampsPreferences(ConfigureDialog):
         grid.set_border_width(12)
         grid.set_column_spacing(6)
         grid.set_row_spacing(6)
-        self.add_text(grid, _('Enter your information so people can contact you when you'
-                        ' distribute your Family Tree'), 0, line_wrap=False)
+        self.add_text(grid, _('Enter your information so people can contact '
+                              'you when you distribute your Family Tree'),
+                      0, line_wrap=True)
         self.add_entry(grid, _('Name'), 1, 'researcher.researcher-name')
         self.add_entry(grid, _('Address'), 2, 'researcher.researcher-addr')
         self.add_entry(grid, _('Locality'), 3, 'researcher.researcher-locality')
