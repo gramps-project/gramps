@@ -56,11 +56,9 @@ class DisplayBuf(ManagedWindow):
     def __init__(self, title, document, track=[]):
         self.title = title
         ManagedWindow.__init__(self, document.uistate, track, document)
-        self.set_window(Gtk.Dialog(title="",
-                                   flags=Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                   buttons=(_('_Close'),
-                                             Gtk.ResponseType.CLOSE)),
-                        None, title, True)
+        dialog = Gtk.Dialog(title="", destroy_with_parent=True)
+        dialog.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
+        self.set_window(dialog, None, title, True)
         self.setup_configs('interface.' + title.lower().replace(' ', ''),
                            600, 400)
         scrolled_window = Gtk.ScrolledWindow()
