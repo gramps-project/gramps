@@ -1210,16 +1210,17 @@ class EditFamily(EditPrimary):
             child = self.db.get_person_from_handle(ref.ref)
             if child:
                 pname = child.get_primary_name()
-                preset_name(child, name)
-                if len(name.get_surname_list()) < 2:
+                preset_name(child, name) # add the known family surnames, etc.
+                surnames = name.get_surname_list()
+                if len(surnames) < 2:
                     return name
                 else:
                     #return first for the father, and last for the mother
                     if parent == 'father':
-                        name.set_surname_list(name.get_surname_list()[0])
+                        name.set_surname_list([surnames[0]])
                         return name
                     else:
-                        name.set_surname_list(name.get_surname_list()[-1])
+                        name.set_surname_list([surnames[-1]])
                         return name
         return name
 
