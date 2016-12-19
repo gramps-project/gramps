@@ -592,6 +592,8 @@ class DuplicatePeopleToolMatches(ManagedWindow):
             if p1key in self.dellist:
                 continue
             (p2key,c) = p1data
+            if p2key in self.dellist:
+                continue
             if p1key == p2key:
                 continue
             list.append((c,p1key,p2key))
