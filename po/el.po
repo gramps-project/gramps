@@ -2422,180 +2422,6 @@ msgstr ""
 msgid "today"
 msgstr ""
 
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection to be used in your localized
-#. DateDisplayer code!
-#: ../gramps/gen/datehandler/_datestrings.py:79
-msgid "localized lexeme inflections||January"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:80
-msgid "localized lexeme inflections||February"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:81
-msgid "localized lexeme inflections||March"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:82
-msgid "localized lexeme inflections||April"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:83
-msgid "localized lexeme inflections||May"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:84
-msgid "localized lexeme inflections||June"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:85
-msgid "localized lexeme inflections||July"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:86
-msgid "localized lexeme inflections||August"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:87
-msgid "localized lexeme inflections||September"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:88
-msgid "localized lexeme inflections||October"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:89
-msgid "localized lexeme inflections||November"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:90
-msgid "localized lexeme inflections||December"
-msgstr ""
-
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection to be used in your localized
-#. DateDisplayer code!
-#: ../gramps/gen/datehandler/_datestrings.py:97
-msgid "localized lexeme inflections - short month form||Jan"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:98
-msgid "localized lexeme inflections - short month form||Feb"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:99
-msgid "localized lexeme inflections - short month form||Mar"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:100
-msgid "localized lexeme inflections - short month form||Apr"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:101
-msgid "localized lexeme inflections - short month form||May"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:102
-msgid "localized lexeme inflections - short month form||Jun"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:103
-msgid "localized lexeme inflections - short month form||Jul"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:104
-msgid "localized lexeme inflections - short month form||Aug"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:105
-msgid "localized lexeme inflections - short month form||Sep"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:106
-msgid "localized lexeme inflections - short month form||Oct"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:107
-msgid "localized lexeme inflections - short month form||Nov"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:108
-msgid "localized lexeme inflections - short month form||Dec"
-msgstr ""
-
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to add proper alternatives to be recognized in your localized
-#. DateParser code!
-#: ../gramps/gen/datehandler/_datestrings.py:116
-#, fuzzy
-msgid "alternative month names for January||"
-msgstr "Η σημείωση για το μήνα Ιανουάριο"
-
-#: ../gramps/gen/datehandler/_datestrings.py:117
-#, fuzzy
-msgid "alternative month names for February||"
-msgstr "Η σημείωση για το μήνα Φεβρουάριο"
-
-# ή "ονομασίες";
-#: ../gramps/gen/datehandler/_datestrings.py:118
-#, fuzzy
-msgid "alternative month names for March||"
-msgstr "Εναλλακτικά ονόματα"
-
-# ή "ονομασίες";
-#: ../gramps/gen/datehandler/_datestrings.py:119
-#, fuzzy
-msgid "alternative month names for April||"
-msgstr "Εναλλακτικά ονόματα"
-
-# ή "ονομασίες";
-#: ../gramps/gen/datehandler/_datestrings.py:120
-#, fuzzy
-msgid "alternative month names for May||"
-msgstr "Εναλλακτικά ονόματα"
-
-# ή "ονομασίες";
-#: ../gramps/gen/datehandler/_datestrings.py:121
-#, fuzzy
-msgid "alternative month names for June||"
-msgstr "Εναλλακτικά ονόματα"
-
-# ή "ονομασίες";
-#: ../gramps/gen/datehandler/_datestrings.py:122
-#, fuzzy
-msgid "alternative month names for July||"
-msgstr "Εναλλακτικά ονόματα"
-
-# ή "ονομασίες";
-#: ../gramps/gen/datehandler/_datestrings.py:123
-#, fuzzy
-msgid "alternative month names for August||"
-msgstr "Εναλλακτικά ονόματα"
-
-#: ../gramps/gen/datehandler/_datestrings.py:124
-#, fuzzy
-msgid "alternative month names for September||"
-msgstr "Η σημείωση για το μήνα Σεπτέμβριο"
-
-#: ../gramps/gen/datehandler/_datestrings.py:125
-#, fuzzy
-msgid "alternative month names for October||"
-msgstr "Η σημείωση για το μήνα Οκτώβριο"
-
-#: ../gramps/gen/datehandler/_datestrings.py:126
-#, fuzzy
-msgid "alternative month names for November||"
-msgstr "Η σημείωση για το μήνα Νοέμβριο"
-
-#: ../gramps/gen/datehandler/_datestrings.py:127
-#, fuzzy
-msgid "alternative month names for December||"
-msgstr "Η σημείωση για το μήνα Δεκέμβριο"
-
 #. Must appear in the order indexed by Date.CAL_... numeric constants
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:602
 msgid "calendar|Gregorian"
@@ -2624,6 +2450,115 @@ msgstr "Ισλαμικό"
 #: ../gramps/gen/datehandler/_datestrings.py:137 ../gramps/gen/lib/date.py:608
 msgid "calendar|Swedish"
 msgstr "Σουηδικό"
+
+
+msgid "localized lexeme inflections||January"
+msgstr "Ιανουάριος"
+
+msgid "localized lexeme inflections||February"
+msgstr "Φεβρουάριος"
+
+msgid "localized lexeme inflections||March"
+msgstr "Μάρτιος"
+
+msgid "localized lexeme inflections||April"
+msgstr "Απρίλιος"
+
+msgid "localized lexeme inflections||May"
+msgstr "Μάιος"
+
+msgid "localized lexeme inflections||June"
+msgstr "Ιούνιος"
+
+msgid "localized lexeme inflections||July"
+msgstr "Ιούλιος"
+
+msgid "localized lexeme inflections||August"
+msgstr "Αύγουστος"
+
+msgid "localized lexeme inflections||September"
+msgstr "Σεπτέμβριος"
+
+msgid "localized lexeme inflections||October"
+msgstr "Οκτώβριος"
+
+msgid "localized lexeme inflections||November"
+msgstr "Νοέμβριος"
+
+msgid "localized lexeme inflections||December"
+msgstr "Δεκέμβριος"
+
+msgid "localized lexeme inflections - short month form||Jan"
+msgstr "Ιαν"
+
+msgid "localized lexeme inflections - short month form||Feb"
+msgstr "Φεβ"
+
+msgid "localized lexeme inflections - short month form||Mar"
+msgstr "Μαρ"
+
+msgid "localized lexeme inflections - short month form||Apr"
+msgstr "Απρ"
+
+msgid "localized lexeme inflections - short month form||May"
+msgstr "Μάι"
+
+msgid "localized lexeme inflections - short month form||Jun"
+msgstr "Ιουν"
+
+msgid "localized lexeme inflections - short month form||Jul"
+msgstr "Ιουλ"
+
+msgid "localized lexeme inflections - short month form||Aug"
+msgstr "Αύγ"
+
+msgid "localized lexeme inflections - short month form||Sep"
+msgstr "Σεπ"
+
+msgid "localized lexeme inflections - short month form||Oct"
+msgstr "Οκτ"
+
+msgid "localized lexeme inflections - short month form||Nov"
+msgstr "Νοε"
+
+msgid "localized lexeme inflections - short month form||Dec"
+msgstr "Δεκ"
+
+msgid "date modifier|before "
+msgstr "προ του "
+
+msgid "date modifier|after "
+msgstr "μετά το "
+
+msgid "date modifier|about "
+msgstr "γύρω στο "
+
+msgid "date quality|estimated "
+msgstr "εκτιμώμενη "
+
+msgid "date quality|calculated "
+msgstr "υπολογισμένη "
+
+msgid "Sunday"
+msgstr "Κυριακή"
+
+msgid "Monday"
+msgstr "Δευτέρα"
+
+msgid "Tuesday"
+msgstr "Τρίτη"
+
+msgid "Wednesday"
+msgstr "Τετάρτη"
+
+msgid "Thursday"
+msgstr "Πέμπτη"
+
+msgid "Friday"
+msgstr "Παρασκευή"
+
+msgid "Saturday"
+msgstr "Σάββατο"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2839,60 +2774,6 @@ msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:219
 msgid "Persian month lexeme|Esfand"
-msgstr ""
-
-#. TRANSLATORS: if the modifier is after the date
-#. put the space ahead of the word instead of after it
-#: ../gramps/gen/datehandler/_datestrings.py:225
-msgid "date modifier|before "
-msgstr ""
-
-#. TRANSLATORS: if the modifier is after the date
-#. put the space ahead of the word instead of after it
-#: ../gramps/gen/datehandler/_datestrings.py:228
-msgid "date modifier|after "
-msgstr ""
-
-#. TRANSLATORS: if the modifier is after the date
-#. put the space ahead of the word instead of after it
-#: ../gramps/gen/datehandler/_datestrings.py:231
-msgid "date modifier|about "
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:235
-msgid "date quality|estimated "
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:236
-msgid "date quality|calculated "
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:242
-msgid "Sunday"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:243
-msgid "Monday"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:244
-msgid "Tuesday"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:245
-msgid "Wednesday"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:246
-msgid "Thursday"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:247
-msgid "Friday"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:248
-msgid "Saturday"
 msgstr ""
 
 #: ../gramps/gen/db/base.py:1873 ../gramps/gui/widgets/fanchart.py:1831
