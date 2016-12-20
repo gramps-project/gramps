@@ -77,6 +77,9 @@ def display_message(message):
     """
     print(message)
 
+RELOAD = 777    # A custom Gtk response_type for the Reload button
+
+
 #-------------------------------------------------------------------------
 #
 # PluginStatus: overview of all plugins
@@ -97,12 +100,13 @@ class PluginStatus(ManagedWindow):
 
         self.__pmgr = GuiPluginManager.get_instance()
         self.__preg = PluginRegister.get_instance()
-        self.set_window(Gtk.Dialog("", uistate.window,
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                   (_('_Close'), Gtk.ResponseType.CLOSE)),
-                        None, self.title)
+        dialog = Gtk.Dialog(title="", transient_for=uistate.window,
+                            destroy_with_parent=True)
+        dialog.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
+        self.set_window(dialog, None, self.title)
+
         self.setup_configs('interface.pluginstatus', 750, 400)
-        self.window.connect('response', self.close)
+        self.window.connect('response', self.__on_dialog_button)
 
         notebook = Gtk.Notebook()
 
@@ -282,9 +286,7 @@ class PluginStatus(ManagedWindow):
         if __debug__:
             # Only show the "Reload" button when in debug mode
             # (without -O on the command line)
-            self.__reload_btn = Gtk.Button(label=_("Reload"))
-            self.window.action_area.add(self.__reload_btn)
-            self.__reload_btn.connect('clicked', self.__reload)
+            self.window.add_button(_("Reload"), RELOAD)
 
         #obtain hidden plugins from the pluginmanager
         self.hidden = self.__pmgr.get_hidden_plugin_ids()
@@ -292,6 +294,12 @@ class PluginStatus(ManagedWindow):
         self.window.show_all()
         self.__populate_lists()
         self.list_reg.columns_autosize()
+
+    def __on_dialog_button(self, dialog, response_id):
+        if response_id == Gtk.ResponseType.CLOSE:
+            self.close(dialog)
+        else:   # response_id == RELOAD
+            self.__reload(dialog)
 
     def __refresh_addon_list(self, obj):
         """
