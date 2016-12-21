@@ -154,7 +154,7 @@ class LinkLabel(Gtk.EventBox):
                 format = 'underline="single" foreground="' + self.color + '" '\
                          'weight="heavy"'
             else:
-                raise AttributeError("invalid theme: '%s'" % theme)
+                raise AttributeError("invalid theme: '%s'" % self.theme)
         elif self.emph is None:
             # no link, no change on enter_text
             if self.theme == "CLASSIC":
@@ -162,7 +162,7 @@ class LinkLabel(Gtk.EventBox):
             elif self.theme == "WEBPAGE":
                 format = 'weight="heavy"'
             else:
-                raise AttributeError("invalid theme: '%s'" % theme)
+                raise AttributeError("invalid theme: '%s'" % self.theme)
         else:
             #no emphasize, a link
             if self.theme == "CLASSIC":
@@ -170,7 +170,7 @@ class LinkLabel(Gtk.EventBox):
             elif self.theme == "WEBPAGE":
                 format = 'underline="single" foreground="' + self.color + '"'
             else:
-                raise AttributeError("invalid theme: '%s'" % theme)
+                raise AttributeError("invalid theme: '%s'" % self.theme)
 
         text = '<span %s>%s</span>' % (format, self.orig_text)
         self.label.set_text(text)
