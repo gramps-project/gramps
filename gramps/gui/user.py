@@ -49,9 +49,11 @@ class User(user.User):
     This class provides a means to interact with the user via GTK.
     It implements the interface in :class:`.gen.user.User`
     """
-    def __init__(self, callback=None, error=None, uistate=None, dbstate=None):
+    def __init__(self, callback=None, error=None, parent=None,
+                 uistate=None, dbstate=None): # TODO User API: gen==cli==gui
         user.User.__init__(self, callback, error, uistate, dbstate)
         self._progress = None
+        self.parent = parent
 
     def begin_progress(self, title, message, steps):
         """
@@ -144,10 +146,14 @@ class User(user.User):
         :type error: str
         :returns: none
         """
-        if self.error_function:
+        if self.error_function and self.parent: # if parent is set, use it
+            self.error_function(title, error, parent=self.parent)
+        elif self.error_function:
             self.error_function(title, error)
         elif self.uistate:
             ErrorDialog(title, error, parent=self.uistate.window)
+        elif self.user.uistate:
+            ErrorDialog(title, error, parent=self.user.uistate.window)
         else:
             ErrorDialog(title, error, parent=None)
 

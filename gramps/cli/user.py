@@ -49,7 +49,8 @@ class User(user.User):
     This class provides a means to interact with the user via CLI.
     It implements the interface in :class:`.gen.user.User`
     """
-    def __init__(self, callback=None, error=None, auto_accept=False, quiet=False,
+    def __init__(self, callback=None, error=None,
+                 auto_accept=False, quiet=False,
                  uistate=None, dbstate=None):
         """
         Init.

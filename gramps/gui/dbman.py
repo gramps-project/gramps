@@ -191,7 +191,7 @@ class DbManager(CLIDbManager):
         self.before_change = ""
         self.after_change = ""
         self._select_default()
-        self.user = User(error=ErrorDialog,
+        self.user = User(error=ErrorDialog, parent=self.parent,
                          callback=self.uistate.pulse_progressbar,
                          uistate=self.uistate)
 

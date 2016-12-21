@@ -298,6 +298,7 @@ class ViewManager(CLIManager):
         self.__build_main_window() # sets self.uistate
         if self.user is None:
             self.user = User(error=ErrorDialog,
+                             parent=self.window,
                              callback=self.uistate.pulse_progressbar,
                              uistate=self.uistate,
                              dbstate=self.dbstate)
