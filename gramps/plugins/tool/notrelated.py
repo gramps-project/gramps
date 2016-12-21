@@ -40,6 +40,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.errors import WindowActiveError
 from gramps.gui.plug import tool
 from gramps.gen.plug.report import utils
 from gramps.gui.editors import EditPerson, EditFamily
