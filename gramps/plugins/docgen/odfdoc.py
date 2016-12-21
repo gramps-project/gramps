@@ -410,6 +410,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         BaseDoc.__init__(self, styles, ftype)
         self.media_list = []
         self.init_called = False
+        self.index_title = None
+        self.toc_title = None
         self.cntnt = None
         self.cntnt1 = None
         self.cntnt2 = None
