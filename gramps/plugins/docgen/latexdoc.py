@@ -703,6 +703,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
             if self.in_multrow_cell: #   cols of rows: convert to rows of cols
                 self.repack_row()
             else:
+                self.tabmem = TabMem(text)
                 self.tabmem.rows.append(self.tabrow)
         elif tab_state == TAB_BEG: # text: \\begin{longtable}[l]{
             self._backend.write(''.join(('\\grinittab{\\textwidth}{',
