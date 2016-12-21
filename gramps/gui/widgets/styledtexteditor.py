@@ -678,7 +678,7 @@ class StyledTextEditor(Gtk.TextView):
             self.textbuffer.apply_style(style, value)
         except ValueError:
             _LOG.debug("unable to convert '%s' to '%s'" %
-                       (text, StyledTextTagType.STYLE_TYPE[style]))
+                       (value, StyledTextTagType.STYLE_TYPE[style]))
 
     def _format_clear_cb(self, action):
         """
