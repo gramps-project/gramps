@@ -21,11 +21,14 @@
 ## Removed from clidbman.py
 ## specific to bsddb
 
-from bsddb3 import dbshelve, db
 import os
+from bsddb3 import dbshelve, db
 
 from gramps.gen.db import META, PERSON_TBL
 from  gramps.gen.db.dbconst import BDBVERSFN
+
+import logging
+LOG = logging.getLogger(".dbsummary")
 
 def get_dbdir_summary(dirpath, name):
     """
