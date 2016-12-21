@@ -63,6 +63,7 @@ from gramps.gen.lib.eventroletype import EventRoleType
 from gramps.gen.config import config
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.utils.libformatting import ImportInfo
+from gramps.gen.errors import GrampsImportError as Error
 
 #-------------------------------------------------------------------------
 #
