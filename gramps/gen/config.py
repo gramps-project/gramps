@@ -300,6 +300,9 @@ register('researcher.researcher-state', '')
 register('plugin.hiddenplugins', [])
 register('plugin.addonplugins', [])
 
+if __debug__: # enable a simple CLI test to see if the datestrings exist
+    register('test.january', _("localized lexeme inflections||January"))
+
 #---------------------------------------------------------------
 #
 # Upgrade Conversions go here.
