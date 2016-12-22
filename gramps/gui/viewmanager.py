@@ -1409,37 +1409,6 @@ class ViewManager(CLIManager):
             self.uistate.push_message(self.dbstate, _("Backup aborted"))
         window.destroy()
 
-    def autobackup(self):
-        """
-        Backup the current family tree.
-        """
-        if self.dbstate.db.is_open() and self.dbstate.db.has_changed:
-            self.uistate.set_busy_cursor(True)
-            self.uistate.progress.show()
-            self.uistate.push_message(self.dbstate, _("Autobackup..."))
-            try:
-                self.__backup()
-            except DbWriteFailure as msg:
-                self.uistate.push_message(self.dbstate,
-                                          _("Error saving backup data"))
-            self.uistate.set_busy_cursor(False)
-            self.uistate.progress.hide()
-
-    def __backup(self):
-        """
-        Backup database to a Gramps XML file.
-        """
-        from gramps.plugins.export.exportxml import XmlWriter
-        backup_path = config.get('database.backup-path')
-        compress = config.get('database.compress-backup')
-        writer = XmlWriter(self.dbstate.db, self.user, strip_photos=0,
-                           compress=compress)
-        timestamp = '{0:%Y-%m-%d-%H-%M-%S}'.format(datetime.datetime.now())
-        backup_name = "%s-%s.gramps" % (self.dbstate.db.get_dbname(),
-                                        timestamp)
-        filename = os.path.join(backup_path, backup_name)
-        writer.write(filename)
-
     def select_backup_path(self, widget, path_entry):
         """
         Choose a backup folder. Make sure there is one highlighted in
@@ -1479,6 +1448,37 @@ class ViewManager(CLIManager):
             file_entry.set_text("%s.%s" % (base, extension))
         else:
             file_entry.set_text("%s.%s" % (filename, extension))
+
+    def autobackup(self):
+        """
+        Backup the current family tree.
+        """
+        if self.dbstate.db.is_open() and self.dbstate.db.has_changed:
+            self.uistate.set_busy_cursor(True)
+            self.uistate.progress.show()
+            self.uistate.push_message(self.dbstate, _("Autobackup..."))
+            try:
+                self.__backup()
+            except DbWriteFailure as msg:
+                self.uistate.push_message(self.dbstate,
+                                          _("Error saving backup data"))
+            self.uistate.set_busy_cursor(False)
+            self.uistate.progress.hide()
+
+    def __backup(self):
+        """
+        Backup database to a Gramps XML file.
+        """
+        from gramps.plugins.export.exportxml import XmlWriter
+        backup_path = config.get('database.backup-path')
+        compress = config.get('database.compress-backup')
+        writer = XmlWriter(self.dbstate.db, self.user, strip_photos=0,
+                           compress=compress)
+        timestamp = '{0:%Y-%m-%d-%H-%M-%S}'.format(datetime.datetime.now())
+        backup_name = "%s-%s.gramps" % (self.dbstate.db.get_dbname(),
+                                        timestamp)
+        filename = os.path.join(backup_path, backup_name)
+        writer.write(filename)
 
     def reports_clicked(self, obj):
         """
