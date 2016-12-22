@@ -616,8 +616,8 @@ class DuplicatePeopleToolMatches(ManagedWindow):
             return
 
         (self.p1,self.p2) = self.list.get_object(iter)
-        MergePerson(self.dbstate, self.uistate, self.p1, self.p2,
-                    self.on_update, True, track=self.track)
+        MergePerson(self.dbstate, self.uistate, self.track, self.p1, self.p2,
+                    self.on_update, True)
 
     def on_update(self):
         if self.db.has_person_handle(self.p1):
