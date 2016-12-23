@@ -45,7 +45,7 @@ from gramps.gen.const import URL_MANUAL_SECT3
 from ..display import display_help
 from gramps.gen.datehandler import get_date
 from gramps.gen.errors import MergeError
-from ..dialog import ErrorDialog
+from ..dialog import ErrorDialog, WarningDialog
 from ..managedwindow import ManagedWindow
 from gramps.gen.merge import MergePersonQuery
 
@@ -337,7 +337,15 @@ class MergePerson(ManagedWindow):
 
         try:
             query = MergePersonQuery(self.database, phoenix, titanic)
-            query.execute()
+            family_merge_ok = query.execute()
+            if not family_merge_ok:
+                WarningDialog(
+                    _("Warning"),
+                    _("The persons have been merged.\nHowever, the families "
+                      "for this merge were too complex to automatically "
+                      "handle.  We recommend that you go to Relationships "
+                      "view and see if additional manual merging of families "
+                      "is necessary."), parent=self.uistate.window)
         except MergeError as err:
             ErrorDialog(_("Cannot merge people"), str(err),
                         parent=self.uistate.window)

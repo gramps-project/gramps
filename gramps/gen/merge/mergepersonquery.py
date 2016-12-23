@@ -116,13 +116,15 @@ class MergePersonQuery:
         """
         if trans is None:
             with DbTxn(_('Merge Person'), self.database) as trans:
-                self.__execute(family_merger, trans)
+                return self.__execute(family_merger, trans)
         else:
-            self.__execute(family_merger, trans)
+            return self.__execute(family_merger, trans)
 
     def __execute(self, family_merger, trans):
         """
         Merges two persons into a single person; trans is compulsory.
+        Returns True if all went well, False if we did not complete a full
+                family merge, because of complex families
         """
         new_handle = self.phoenix.get_handle()
         old_handle = self.titanic.get_handle()
@@ -147,32 +149,38 @@ class MergePersonQuery:
         family_merge_guard = False
         parent_list = []
         parent_list_orig = []
+        family_merge_ok = True
         family_handle_list = self.phoenix.get_family_handle_list()[:]
         for family_handle in family_handle_list:
             family = self.database.get_family_from_handle(family_handle)
             parents = (family.get_father_handle(), family.get_mother_handle())
             parent_list_orig.append(parents)
             if family.has_handle_reference('Person', old_handle):
+                family.replace_handle_reference('Person', old_handle,
+                                                new_handle)
                 if family_merger and parent_list_orig.count(parents) > 1:
-                    raise MergeError(_("A person with multiple relations with "
-                        "the same spouse is about to be merged. This is beyond "
-                        "the capabilities of the merge routine. The merge is "
-                        "aborted."))
-                family.replace_handle_reference('Person', old_handle,new_handle)
+                    # A person with multiple relations with the same spouse is
+                    # about to be merged. This is beyond the capabilities of
+                    # the merge routine. The family merge is skipped.
+                    family_merge_ok = False
                 parents = (family.get_father_handle(),
                            family.get_mother_handle())
                 # prune means merging families in this case.
-                if family_merger and parents in parent_list:
+                if (family_merger and parents in parent_list and
+                        family_merge_ok):
                     # also merge when father_handle or mother_handle == None!
                     if family_merge_guard:
-                        raise MergeError(_("Multiple families get merged. "
-                            "This is unusual, the merge is aborted."))
-                    idx = parent_list.index(parents)
-                    main_family_handle = family_handle_list[idx]
-                    self.merge_families(main_family_handle, family, trans)
-                    family_merge_guard = True
-                    continue
+                        # Multiple families get merged.
+                        # This is unusual, the merge is skipped.
+                        family_merge_ok = False
+                    else:
+                        idx = parent_list.index(parents)
+                        main_family_handle = family_handle_list[idx]
+                        self.merge_families(main_family_handle, family, trans)
+                        family_merge_guard = True
+                        continue
                 self.database.commit_family(family, trans)
             parent_list.append(parents)
 
         self.database.remove_person(old_handle, trans)
+        return family_merge_ok
