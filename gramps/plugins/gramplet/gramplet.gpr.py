@@ -328,6 +328,20 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET,
+         id="WelStartRelview",
+         name=_("StartRelview"),
+         description = _("Gramplet showing a welcome message"),
+         status = STABLE,
+         fname="welcomerelview.py",
+         height=300,
+         expand=True,
+         gramplet = 'WelcomeRelview',
+         gramplet_title=_("Start here - Welcome to Gramps!"),
+         version="1.0.0",
+         gramps_target_version=MODULE_VERSION,
+         )
+
+register(GRAMPLET,
          id = "What's Next",
          name =_("What's Next"),
          description = _("Gramplet suggesting items to research"),

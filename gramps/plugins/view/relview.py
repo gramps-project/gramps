@@ -1769,7 +1769,7 @@ class RelationshipView(NavigationView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Welcome",),
+        return (("WelStartRelview",),
                 ())
 
 #-------------------------------------------------------------------------

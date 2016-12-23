@@ -610,6 +610,7 @@ gramps/plugins/gramplet/todo.py
 gramps/plugins/gramplet/todogramplet.py
 gramps/plugins/gramplet/topsurnamesgramplet.py
 gramps/plugins/gramplet/welcomegramplet.py
+gramps/plugins/gramplet/welcomerelview.py
 gramps/plugins/gramplet/whatsnext.py
 gramps/plugins/graph/graphplugins.gpr.py
 gramps/plugins/graph/gvfamilylines.py
