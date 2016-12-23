@@ -360,6 +360,7 @@ class RelationshipView(NavigationView):
               </placeholder>
             </menu>
             <menu action="EditMenu">
+              <menuitem action="AddNewPerson"/>
               <menuitem action="Edit"/>
               <menuitem action="AddParentsMenu"/>
               <menuitem action="ShareFamilyMenu"/>
@@ -383,6 +384,7 @@ class RelationshipView(NavigationView):
               <toolitem action="HomePerson"/>
             </placeholder>
             <placeholder name="CommonEdit">
+              <toolitem action="AddNewPerson"/>
               <toolitem action="Edit"/>
               <toolitem action="AddParents"/>
               <toolitem action="ShareFamily"/>
@@ -409,6 +411,8 @@ class RelationshipView(NavigationView):
 
         self.family_action = ActionGroup(name=self.title + '/Family')
         self.family_action.add_actions([
+            ('AddNewPerson', 'gramps-spouse', _('Add Person'), None ,
+                _("Add a new person"), self.add_new_person),
             ('Edit', 'gtk-edit', _('Edit...'), "<PRIMARY>Return",
                 _("Edit the active person"), self.edit_active),
             ('AddSpouse', 'gramps-spouse', _('Partner'), None ,
@@ -1493,6 +1497,20 @@ class RelationshipView(NavigationView):
                 EditFamily(self.dbstate, self.uistate, [], family)
             except WindowActiveError:
                 pass
+
+    def add_new_person(self, obj):
+        """
+        Add a new person to the database.
+        """
+        person = Person()
+        #the editor requires a surname
+        person.primary_name.add_surname(Surname())
+        person.primary_name.set_primary_surname(0)
+
+        try:
+            EditPerson(self.dbstate, self.uistate, [], person)
+        except WindowActiveError:
+            pass
 
     def add_family(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
