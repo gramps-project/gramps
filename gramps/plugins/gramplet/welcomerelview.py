@@ -117,12 +117,12 @@ class WelcomeRelview(Gramplet):
             ' (the selected person). Specifically, it shows the parents,'
             ' siblings, spouses, and children of that person.\n\n'
             'You can click the configuration icon in the toolbar to configure'
-            ' additional options.'
+            ' additional options.\n\n'
         )
-        welcome += boldst(_('Online help Link')) + '\n\n'
+        welcome += boldst(_('Online help Link')) + '\n'
         welcome += linkst(_('Relationships Category view'),
                           URL_WIKISTRING + WIKI_HELP_PAGE + WIKI_HELP_SEC +
-                          _('locale_suffix|')) + '\n'
+                          _('locale_suffix|')) + '\n\n'
 
         welcome += boldst(_('What is Gramps?')) + '\n\n'
         welcome += _(
