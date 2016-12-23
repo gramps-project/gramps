@@ -56,8 +56,8 @@ class MergeFamily(ManagedWindow):
     Merges two families into a single family. Displays a dialog box that allows
     the families to be combined into one.
     """
-    def __init__(self, dbstate, uistate, handle1, handle2):
-        ManagedWindow.__init__(self, uistate, [], self.__class__)
+    def __init__(self, dbstate, uistate, track, handle1, handle2):
+        ManagedWindow.__init__(self, uistate, track, self.__class__)
         self.database = dbstate.db
         self.fy1 = self.database.get_family_from_handle(handle1)
         self.fy2 = self.database.get_family_from_handle(handle2)

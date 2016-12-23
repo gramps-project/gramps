@@ -232,7 +232,7 @@ class SourceView(ListView):
                      "control key while clicking on the desired source.")
             ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
-            MergeSource(self.dbstate, self.uistate, mlist[0], mlist[1])
+            MergeSource(self.dbstate, self.uistate, [], mlist[0], mlist[1])
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_source_from_gramps_id(gid)

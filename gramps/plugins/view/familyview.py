@@ -308,7 +308,7 @@ class FamilyView(ListView):
                      "control key while clicking on the desired family.")
             ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
-            MergeFamily(self.dbstate, self.uistate, mlist[0], mlist[1])
+            MergeFamily(self.dbstate, self.uistate, [], mlist[0], mlist[1])
 
     def _make_father_active(self, obj):
         """

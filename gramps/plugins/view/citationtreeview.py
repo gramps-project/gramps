@@ -546,10 +546,10 @@ class CitationTreeView(ListView):
                     ErrorDialog(msg, msg2,
                                 parent=self.uistate.window)
                 else:
-                    MergeCitation(self.dbstate, self.uistate,  mlist[0],
+                    MergeCitation(self.dbstate, self.uistate, [], mlist[0],
                                   mlist[1])
             elif source1 and source2:
-                MergeSource(self.dbstate, self.uistate, mlist[0], mlist[1])
+                MergeSource(self.dbstate, self.uistate, [], mlist[0], mlist[1])
             else:
                 msg = _("Cannot perform merge.")
                 msg2 = _("Both objects must be of the same type, either "

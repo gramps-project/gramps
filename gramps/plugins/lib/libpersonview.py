@@ -430,7 +430,7 @@ class BasePersonView(ListView):
                         "holding down the control key while clicking on "
                         "the desired person."), parent=self.uistate.window)
         else:
-            MergePerson(self.dbstate, self.uistate, mlist[0], mlist[1])
+            MergePerson(self.dbstate, self.uistate, [], mlist[0], mlist[1])
 
     def tag_updated(self, handle_list):
         """

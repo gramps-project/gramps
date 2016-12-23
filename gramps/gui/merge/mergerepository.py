@@ -54,8 +54,8 @@ class MergeRepository(ManagedWindow):
     """
     Displays a dialog box that allows two repositories to be combined into one.
     """
-    def __init__(self, dbstate, uistate, handle1, handle2):
-        ManagedWindow.__init__(self, uistate, [], self.__class__)
+    def __init__(self, dbstate, uistate, track, handle1, handle2):
+        ManagedWindow.__init__(self, uistate, track, self.__class__)
         self.dbstate = dbstate
         database = dbstate.db
         self.rp1 = database.get_repository_from_handle(handle1)

@@ -244,7 +244,7 @@ class NoteView(ListView):
                     "control key while clicking on the desired note.")
             ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
-            MergeNote(self.dbstate, self.uistate, mlist[0], mlist[1])
+            MergeNote(self.dbstate, self.uistate, [], mlist[0], mlist[1])
 
     def tag_updated(self, handle_list):
         """

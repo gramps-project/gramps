@@ -415,7 +415,7 @@ class PlaceBaseView(ListView):
                          "place hierarchy.")
                 ErrorDialog(msg, msg2, parent=self.uistate.window)
             else:
-                MergePlace(self.dbstate, self.uistate, mlist[0], mlist[1],
+                MergePlace(self.dbstate, self.uistate, [], mlist[0], mlist[1],
                            self.merged)
 
     def merged(self):

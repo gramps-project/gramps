@@ -53,8 +53,8 @@ class MergeNote(ManagedWindow):
     """
     Displays a dialog box that allows two notes to be combined into one.
     """
-    def __init__(self, dbstate, uistate, handle1, handle2):
-        ManagedWindow.__init__(self, uistate, [], self.__class__)
+    def __init__(self, dbstate, uistate, track, handle1, handle2):
+        ManagedWindow.__init__(self, uistate, track, self.__class__)
         self.dbstate = dbstate
         database = dbstate.db
         self.no1 = database.get_note_from_handle(handle1)
