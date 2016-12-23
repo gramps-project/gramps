@@ -225,13 +225,13 @@ class MergePerson(ManagedWindow):
             for fid in person.get_parent_family_handle_list():
                 (fname, mname, gid) = self.get_parent_info(fid)
                 self.add(tobj, normal,
-                         KEYVAL % {'key': _('Family ID'), 'value': gid)}
+                         KEYVAL % {'key': _('Family ID'), 'value': gid})
                 if fname:
                     self.add(tobj, indent,
-                             KEYVAL % {'key': _('Father'), 'value': fname}
+                             KEYVAL % {'key': _('Father'), 'value': fname})
                 if mname:
                     self.add(tobj, indent,
-                             KEYVAL % {'key': _('Mother'), 'value': mname}
+                             KEYVAL % {'key': _('Mother'), 'value': mname})
         else:
             self.add(tobj, normal, _("No parents found"))
 
@@ -247,7 +247,7 @@ class MergePerson(ManagedWindow):
                 if spouse_id:
                     spouse = self.database.get_person_from_handle(spouse_id)
                     self.add(tobj, indent, KEYVAL % {'key': _('Spouse'),
-                                                     'value': name_of(spouse)))
+                                                     'value': name_of(spouse)})
                 relstr = str(family.get_relationship())
                 self.add(tobj, indent,
                          KEYVAL % {'key': _('Type'), 'value': relstr})
