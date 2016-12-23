@@ -187,10 +187,21 @@ register('geography.use-keypad', True)
 # needed), for instance to four 'interface.clipboard' variables --
 # so do a recursive grep for "setup_configs" to see all the (base) names
 register('interface.dont-ask', False)
+#Default Navigator views (sets order shown)
+#register('interface.view-categories',
+#         ["Dashboard", "People", "Relationships", "Families",
+#          "Ancestry", "Events", "Places", "Geography", "Sources",
+#          "Citations", "Repositories", "Media", "Notes"])
+# New order 1
+#register('interface.view-categories',
+#         ["Dashboard", "Relationships", "Ancestry","Geography",
+#          "People", "Families", "Events", "Places", "Notes",
+#          "Media", "Citations", "Sources", "Repositories",])
+# New order 2
 register('interface.view-categories',
-         ["Dashboard", "People", "Relationships", "Families",
-          "Ancestry", "Events", "Places", "Geography", "Sources",
-          "Citations", "Repositories", "Media", "Notes"])
+         ["Relationships", "Dashboard", "Ancestry","Geography",
+          "People", "Families", "Events", "Places", "Notes",
+          "Media", "Citations", "Sources", "Repositories",])
 register('interface.filter', False)
 register('interface.fullscreen', False)
 register('interface.grampletbar-close', False)
