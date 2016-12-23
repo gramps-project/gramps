@@ -197,9 +197,12 @@ register('interface.dont-ask', False)
 #         ["Dashboard", "Relationships", "Ancestry","Geography",
 #          "People", "Families", "Events", "Places", "Notes",
 #          "Media", "Citations", "Sources", "Repositories",])
-# New order 2
+# New order 2 (Make relationships the default view #Todo work out how to keep
+#              dashboard 1st | Group list views below non list views eg
+#              Geography etc # Todo add separator or label btwn list & non list
+#              views
 register('interface.view-categories',
-         ["Relationships", "Dashboard", "Ancestry","Geography",
+         ["Dashboard", "Relationships", "Ancestry","Geography",
           "People", "Families", "Events", "Places", "Notes",
           "Media", "Citations", "Sources", "Repositories",])
 register('interface.filter', False)
@@ -276,8 +279,8 @@ register('preferences.private-record-text', "[%s]" % _("Private Record"))
 register('preferences.private-surname-text', "%s" % _T_("[Living]"))
 register('preferences.rprefix', 'R%04d')
 register('preferences.sprefix', 'S%04d')
-register('preferences.use-last-view', False)
-register('preferences.last-view', '')
+register('preferences.use-last-view', True)
+register('preferences.last-view', 'relview')
 register('preferences.last-views', [])
 register('preferences.family-relation-type', 3) # UNKNOWN
 register('preferences.age-display-precision', 1)
