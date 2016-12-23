@@ -69,4 +69,4 @@ def run(database, document, person):
     if document.has_data:
         stab.write(sdoc)
     else:
-        sdoc.header1(_("Not found\n"))
+        sdoc.header1(_("Not found") + "\n")

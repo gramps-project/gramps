@@ -117,7 +117,7 @@ def run_fam(database, document, family):
     if document.has_data:
         stab.write(sdoc)
     else:
-        sdoc.header1(_("Not found\n"))
+        sdoc.header1(_("Not found") + "\n")
 
     stab = QuickTable(sdb)
     sdoc.header1(_("Personal events of the children"))
@@ -131,4 +131,4 @@ def run_fam(database, document, family):
     if document.has_data:
         stab.write(sdoc)
     else:
-        sdoc.header1(_("Not found\n"))
+        sdoc.header1(_("Not found") + "\n")
