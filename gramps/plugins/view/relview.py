@@ -518,6 +518,7 @@ class RelationshipView(NavigationView):
         if not person:
             self.family_action.set_sensitive(False)
             self.order_action.set_sensitive(False)
+            #self.write_no_family_tree_message()
             self.redrawing = False
             return
         self.family_action.set_sensitive(True)
@@ -564,6 +565,25 @@ class RelationshipView(NavigationView):
         self.dirty = False
 
         return True
+
+    def write_no_family_tree_message(self):
+        """No Family Tree open - mention how to create one"""
+        #TODO not working
+        grid = Gtk.Grid()
+        grid.set_column_spacing(12)
+        grid.set_row_spacing(0)
+
+        # name and edit button
+        name = "xxxxxxxxxxxxxxxxxxx"
+        fmt = '<span size="larger" weight="bold">%s</span>'
+        text = fmt % escape(name)
+        label = widgets.BasicLabel(text)
+        eventbox = Gtk.EventBox()
+        eventbox.set_visible_window(False)
+        hbox = widgets.LinkBox(label)
+        eventbox.add(hbox)
+
+        grid.attach(eventbox, 0, 0, 2, 1)
 
     def write_title(self, person):
 
