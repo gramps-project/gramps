@@ -411,7 +411,7 @@ class RelationshipView(NavigationView):
 
         self.family_action = ActionGroup(name=self.title + '/Family')
         self.family_action.add_actions([
-            ('AddNewPerson', 'gramps-spouse', _('Add Person'), None ,
+            ('AddNewPerson', 'gramps-person', _('Add new Person'), None ,
                 _("Add a new person"), self.add_new_person),
             ('Edit', 'gtk-edit', _('Edit...'), "<PRIMARY>Return",
                 _("Edit the active person"), self.edit_active),
