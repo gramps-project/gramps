@@ -1286,10 +1286,27 @@ class ViewManager(CLIManager):
         """
         Make a quick XML back with or without media.
         """
-        window = Gtk.Dialog(_("Gramps XML Backup"),
+        try:
+            QuickBackup(self.dbstate, self.uistate, self.user)
+        except WindowActiveError:
+            return
+
+from .managedwindow import ManagedWindow # only temporarily down here, inline
+class QuickBackup(ManagedWindow): # class temporarily inline, for a better diff
+
+    def __init__(self, dbstate, uistate, user):
+        """
+        Make a quick XML back with or without media.
+        """
+        self.dbstate = dbstate
+        self.user = user
+
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
+        window = Gtk.Dialog('',
                             self.uistate.window,
                             Gtk.DialogFlags.DESTROY_WITH_PARENT, None)
-        window.set_size_request(700, -1)
+        self.set_window(window, None, _("Gramps XML Backup"))
+        self.setup_configs('interface.quick-backup', 500, 150)
         ok_button = window.add_button(_('_OK'),
                                       Gtk.ResponseType.APPLY)
         close_button = window.add_button(_('_Close'),
@@ -1369,9 +1386,8 @@ class ViewManager(CLIManager):
         hbox.pack_start(include, False, True, 0)
         hbox.pack_end(exclude, False, True, 0)
         vbox.pack_start(hbox, False, True, 0)
-        window.show_all()
+        self.show()
         dbackup = window.run()
-        window.hide()
         if dbackup == Gtk.ResponseType.APPLY:
             # if file exists, ask if overwrite; else abort
             basefile = file_entry.get_text()
@@ -1386,7 +1402,11 @@ class ViewManager(CLIManager):
                     parent=self.window)
                 yes_no = question.run()
                 if not yes_no:
+                    self.close()
                     return
+            position = self.window.get_position() # crock
+            window.hide()
+            self.window.move(position[0], position[1])
             self.uistate.set_busy_cursor(True)
             self.uistate.pulse_progressbar(0)
             self.uistate.progress.show()
@@ -1407,7 +1427,7 @@ class ViewManager(CLIManager):
             config.set('paths.quick-backup-directory', path_entry.get_text())
         else:
             self.uistate.push_message(self.dbstate, _("Backup aborted"))
-        window.destroy()
+        self.close()
 
     def select_backup_path(self, widget, path_entry):
         """
