@@ -1701,8 +1701,8 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
         label.set_halign(Gtk.Align.START)
         hbox.pack_start(label, False, True, 0)
         path_entry = Gtk.Entry()
-        text = config.get('paths.quick-backup-directory')
-        path_entry.set_text(text)
+        dirtext = config.get('paths.quick-backup-directory')
+        path_entry.set_text(dirtext)
         hbox.pack_start(path_entry, True, True, 0)
         file_entry = Gtk.Entry()
         button = Gtk.Button()
@@ -1784,6 +1784,9 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
                     parent=self.window)
                 yes_no = question.run()
                 if not yes_no:
+                    current_dir = path_entry.get_text()
+                    if current_dir != dirtext:
+                        config.set('paths.quick-backup-directory', current_dir)
                     self.close()
                     return
             position = self.window.get_position() # crock
