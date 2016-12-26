@@ -714,6 +714,8 @@ class ListView(NavigationView):
             if hasattr(self.model, "dont_change_active"):
                 if not self.model.dont_change_active:
                     self.change_active(selected_ids[0])
+            else:
+                self.change_active(selected_ids[0])
 
         if len(selected_ids) == 1:
             if self.drag_info():
