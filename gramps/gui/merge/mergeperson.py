@@ -345,10 +345,10 @@ class MergePerson(ManagedWindow):
                       "for this merge were too complex to automatically "
                       "handle.  We recommend that you go to Relationships "
                       "view and see if additional manual merging of families "
-                      "is necessary."), parent=self.uistate.window)
+                      "is necessary."), parent=self.window)
         except MergeError as err:
             ErrorDialog(_("Cannot merge people"), str(err),
-                        parent=self.uistate.window)
+                        parent=self.window)
         self.uistate.set_busy_cursor(False)
         self.close()
         if self.update:
