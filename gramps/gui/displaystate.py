@@ -317,13 +317,14 @@ from .logger import RotateHandler
 
 class WarnHandler(RotateHandler):
 
-    def __init__(self, capacity, button):
+    def __init__(self, capacity, button, parent=None):
         RotateHandler.__init__(self, capacity)
         self.setLevel(logging.WARN)
         self.button = button
         button.on_clicked(self.display)
         self.timer = None
         self.last_line = '-1'
+        self.parent = parent
 
     def emit(self, record):
         if self.timer is None:
@@ -354,12 +355,14 @@ class WarnHandler(RotateHandler):
 
     def display(self, obj):
         obj.hide()
-        self.glade = Glade()
+        self.glade = Glade(toplevel='displaystate')
         top = self.glade.toplevel
         msg = self.glade.get_object('msg')
         buf = msg.get_buffer()
         for i in self.get_formatted_log():
             buf.insert_at_cursor(i + '\n')
+        if self.parent:
+            top.set_transient_for(self.parent)
         top.run()
         top.destroy()
 
@@ -414,7 +417,7 @@ class DisplayState(Callback):
 
         formatter = logging.Formatter('%(levelname)s %(name)s: %(message)s')
         warnbtn = status.get_warning_button()
-        self.rhandler = WarnHandler(capacity=400, button=warnbtn)
+        self.rhandler = WarnHandler(capacity=400, button=warnbtn, parent=window)
         self.rhandler.setFormatter(formatter)
         self.rhandler.setLevel(logging.WARNING)
         self.log = logging.getLogger()

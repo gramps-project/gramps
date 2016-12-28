@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.20.0 -->
 <interface>
-  <requires lib="gtk+" version="3.0"/>
+  <requires lib="gtk+" version="3.10"/>
   <object class="GtkDialog" id="displaystate">
-    <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Gramps Warnings</property>
-    <property name="window_position">center-always</property>
     <property name="default_width">650</property>
     <property name="default_height">500</property>
     <property name="type_hint">dialog</property>
@@ -23,7 +21,6 @@
             <child>
               <object class="GtkButton" id="close">
                 <property name="label" translatable="yes">_Close</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
@@ -59,7 +56,7 @@
           <packing>
             <property name="expand">True</property>
             <property name="fill">True</property>
-            <property name="position">2</property>
+            <property name="position">1</property>
           </packing>
         </child>
       </object>
