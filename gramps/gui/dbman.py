@@ -168,9 +168,9 @@ class DbManager(CLIDbManager, ManagedWindow):
         self.set_window(self.top, None, None)
         self.viewmanager = viewmanager
 
-        for attr in ['connect', 'cancel', 'new', 'remove', 'info',
-                     'dblist', 'rename', 'convert', 'repair', 'rcs',
-                     'msg', 'close']:
+        for attr in ['connect_btn', 'cancel_btn', 'new_btn', 'remove_btn',
+                     'info_btn', 'dblist', 'rename_btn', 'convert_btn',
+                     'repair_btn', 'rcs_btn', 'msg', 'close_btn']:
             setattr(self, attr, self.glade.get_object(attr))
 
         self.model = None
@@ -221,13 +221,13 @@ class DbManager(CLIDbManager, ManagedWindow):
                    ddtarget.app_id)
         self.top.drag_dest_set_target_list(tglist)
 
-        self.remove.connect('clicked', self.__remove_db)
-        self.new.connect('clicked', self.__new_db)
-        self.rename.connect('clicked', self.__rename_db)
-        self.convert.connect('clicked', self.__convert_db_ask)
-        self.info.connect('clicked', self.__info_db)
-        self.close.connect('clicked', self.__close_db)
-        self.repair.connect('clicked', self.__repair_db)
+        self.remove_btn.connect('clicked', self.__remove_db)
+        self.new_btn.connect('clicked', self.__new_db)
+        self.rename_btn.connect('clicked', self.__rename_db)
+        self.convert_btn.connect('clicked', self.__convert_db_ask)
+        self.info_btn.connect('clicked', self.__info_db)
+        self.close_btn.connect('clicked', self.__close_db)
+        self.repair_btn.connect('clicked', self.__repair_db)
         self.selection.connect('changed', self.__selection_changed)
         self.dblist.connect('button-press-event', self.__button_press)
         self.dblist.connect('key-press-event', self.__key_press)
@@ -235,10 +235,10 @@ class DbManager(CLIDbManager, ManagedWindow):
         self.top.connect('drag_motion', drag_motion)
         self.top.connect('drag_drop', drop_cb)
         self.define_help_button(
-            self.glade.get_object('help'), WIKI_HELP_PAGE, WIKI_HELP_SEC)
+            self.glade.get_object('help_btn'), WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
         if _RCS_FOUND:
-            self.rcs.connect('clicked', self.__rcs)
+            self.rcs_btn.connect('clicked', self.__rcs)
 
     def define_help_button(self, button, webpage='', section=''):
         button.connect('clicked', lambda x: display_help(webpage, section))
@@ -250,7 +250,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         to make sure that an item was selected first.
         """
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
-            if self.connect.get_property('sensitive'):
+            if self.connect_btn.get_property('sensitive'):
                 self.top.response(Gtk.ResponseType.OK)
                 return True
         return False
@@ -261,7 +261,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         like double click instead
         """
         if event.keyval in (_RETURN, _KP_ENTER):
-            if self.connect.get_property('sensitive'):
+            if self.connect_btn.get_property('sensitive'):
                 self.top.response(Gtk.ResponseType.OK)
                 return True
         return False
@@ -285,18 +285,18 @@ class DbManager(CLIDbManager, ManagedWindow):
         store, node = selection.get_selected()
 
         if not __debug__:
-            self.convert.set_visible(False)
+            self.convert_btn.set_visible(False)
 
         # if nothing is selected
         if not node:
-            self.connect.set_sensitive(False)
-            self.rename.set_sensitive(False)
-            self.convert.set_sensitive(False)
-            self.info.set_sensitive(False)
-            self.close.set_sensitive(False)
-            self.rcs.set_sensitive(False)
-            self.repair.set_sensitive(False)
-            self.remove.set_sensitive(False)
+            self.connect_btn.set_sensitive(False)
+            self.rename_btn.set_sensitive(False)
+            self.convert_btn.set_sensitive(False)
+            self.info_btn.set_sensitive(False)
+            self.close_btn.set_sensitive(False)
+            self.rcs_btn.set_sensitive(False)
+            self.repair_btn.set_sensitive(False)
+            self.remove_btn.set_sensitive(False)
             return
 
         path = self.model.get_path(node)
@@ -304,40 +304,40 @@ class DbManager(CLIDbManager, ManagedWindow):
             return
 
         is_rev = len(path.get_indices()) > 1
-        self.rcs.set_label(RCS_BUTTON[is_rev])
+        self.rcs_btn.set_label(RCS_BUTTON[is_rev])
 
         if store.get_value(node, ICON_COL) == 'document-open':
-            self.close.set_sensitive(True)
-            self.convert.set_sensitive(False)
-            self.connect.set_sensitive(False)
+            self.close_btn.set_sensitive(True)
+            self.convert_btn.set_sensitive(False)
+            self.connect_btn.set_sensitive(False)
             if _RCS_FOUND:
-                self.rcs.set_sensitive(True)
+                self.rcs_btn.set_sensitive(True)
         else:
-            self.close.set_sensitive(False)
+            self.close_btn.set_sensitive(False)
             backend_name = self.get_backend_name_from_dbid("bsddb")
             if (store.get_value(node, ICON_COL) in [None, ""] and
                     store.get_value(node,
                                     BACKEND_COL).startswith(backend_name)):
-                self.convert.set_sensitive(True)
+                self.convert_btn.set_sensitive(True)
             else:
-                self.convert.set_sensitive(False)
-            self.connect.set_sensitive(not is_rev)
+                self.convert_btn.set_sensitive(False)
+            self.connect_btn.set_sensitive(not is_rev)
             if _RCS_FOUND and is_rev:
-                self.rcs.set_sensitive(True)
+                self.rcs_btn.set_sensitive(True)
             else:
-                self.rcs.set_sensitive(False)
+                self.rcs_btn.set_sensitive(False)
 
         if store.get_value(node, ICON_COL) == 'dialog-error':
             path = store.get_value(node, PATH_COL)
             backup = os.path.join(path, "person.gbkp")
-            self.repair.set_sensitive(os.path.isfile(backup))
+            self.repair_btn.set_sensitive(os.path.isfile(backup))
         else:
-            self.repair.set_sensitive(False)
+            self.repair_btn.set_sensitive(False)
 
-        self.rename.set_sensitive(True)
-        self.info.set_sensitive(True)
-        self.remove.set_sensitive(True)
-        self.new.set_sensitive(True)
+        self.rename_btn.set_sensitive(True)
+        self.info_btn.set_sensitive(True)
+        self.remove_btn.set_sensitive(True)
+        self.new_btn.set_sensitive(True)
 
     def __build_interface(self):
         """
@@ -360,7 +360,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         # Put some help on the buttons:
         dbid = config.get('database.backend')
         backend_type = self.get_backend_name_from_dbid(dbid)
-        self.new.set_tooltip_text(backend_type)
+        self.new_btn.set_tooltip_text(backend_type)
 
         # build the database name column
         render = Gtk.CellRendererText()
@@ -475,15 +475,15 @@ class DbManager(CLIDbManager, ManagedWindow):
                 if len(store.get_path(node).get_indices()) > 1:
                     continue
                 if node:
-                    self.top.destroy()
                     del self.selection
                     del self.name_renderer
+                    self.close()
                     path = store.get_value(node, PATH_COL)
                     return (path, store.get_value(node, NAME_COL))
             else:
-                self.top.destroy()
                 del self.selection
                 del self.name_renderer
+                self.close()
                 return None
 
     def __ask_to_break_lock(self, store, node):
@@ -532,14 +532,14 @@ class DbManager(CLIDbManager, ManagedWindow):
         the action of renaming. Hack around the fact that clicking button
         sends a 'editing-canceled' signal loosing the new name
         """
-        self.connect.set_sensitive(False)
-        self.rename.set_sensitive(False)
-        self.convert.set_sensitive(False)
-        self.info.set_sensitive(False)
-        self.rcs.set_sensitive(False)
-        self.repair.set_sensitive(False)
-        self.remove.set_sensitive(False)
-        self.new.set_sensitive(False)
+        self.connect_btn.set_sensitive(False)
+        self.rename_btn.set_sensitive(False)
+        self.convert_btn.set_sensitive(False)
+        self.info_btn.set_sensitive(False)
+        self.rcs_btn.set_sensitive(False)
+        self.repair_btn.set_sensitive(False)
+        self.remove_btn.set_sensitive(False)
+        self.new_btn.set_sensitive(False)
 
     def __change_name(self, renderer_sel, path, new_text):
         """
@@ -967,7 +967,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         new database. Catch OSError and IOError and display a warning
         message.
         """
-        self.new.set_sensitive(False)
+        self.new_btn.set_sensitive(False)
         dbid = config.get('database.backend')
         if dbid:
             try:
@@ -976,7 +976,7 @@ class DbManager(CLIDbManager, ManagedWindow):
                 ErrorDialog(_("Could not create Family Tree"),
                             str(msg),
                             parent=self.top)
-        self.new.set_sensitive(True)
+        self.new_btn.set_sensitive(True)
 
     def get_backend_name_from_dbid(self, dbid):
         pmgr = GuiPluginManager.get_instance()
