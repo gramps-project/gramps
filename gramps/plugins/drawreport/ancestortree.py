@@ -144,11 +144,11 @@ class CalcItems(object):
         __gui = GUIConnect()
 
         #calculate the printed lines for each box
-        #display_repl = [] #Not used in this report
         #str = ""
         #if self.get_val('miss_val'):
         #    str = "_____"
-        self.__calc_l =  CalcLines(dbase, [], __gui._locale, __gui._nd)
+        display_repl = __gui.get_val("replace_list")
+        self.__calc_l = CalcLines(dbase, display_repl, __gui._locale, __gui._nd)
 
         self.__blank_father = None
         self.__blank_mother = None
