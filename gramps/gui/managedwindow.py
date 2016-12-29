@@ -344,8 +344,16 @@ class ManagedWindow:
                                        window_id,
                                        modal=False)
                 # Proceed with the class.
+                window = Gtk.Dialog()  # Some Gtk window object to manage
+                self.set_window(window, None, None)  # See set_window def below
                 ...
+
             def build_menu_names(self, obj):
+                ''' Define menu labels.  If your ManagedWindow can have
+                ManagedWindow children, you must include a submenu_label
+                string; However, if modal, that string is never seen and can
+                be ' '.
+                '''
                 submenu_label = None    # This window cannot have children
                 menu_label = 'Menu label for this window'
                 return (menu_label, submenu_label)
@@ -368,8 +376,20 @@ class ManagedWindow:
         If a modal window is used and has children, its and any child 'track'
         parameters must properly be set to the parents 'self.track'.
         Only one modal window can be supported by Gtk without potentially
-        hiding of a modal window while it has focus.  So don't use direct
-        non managed Gtk windows as children and set them modal.
+        hiding of a modal window while it has focus.  So don't use
+        non-managed Gtk windows as children and set them modal.
+
+        If you use the 'Gtk.Dialog.run()' within your ManagedWindow, Gtk makes
+        the dialog modal.  Accordingly you MUST also set the ManagedWindow
+        modal for proper operation of any child windows.
+
+        You must use 'self.show()' in order for your ManagedWindow to work
+        properly, this in turn calls the Gtk.Window.show_all() for you.
+
+        The ManagedWindow uses 'track' to properly do a
+        Gtk.Window.set_transient_for() for you; you don't have to do it
+        yourself.  If you need a 'parent=' to call an unmanaged window,
+        self.window is available.
 
         """
         window_key = self.build_window_key(obj)
@@ -431,6 +451,7 @@ class ManagedWindow:
         :param title:    a label widget in which to write the title,
                          else None if not needed
         :param text:     text to use as title of window and in title param
+                         can also be None if Glade defines title
         :param msg:      if not None, use msg as title of window instead of text
         :param isWindow: {if isWindow than self is the window
                             (so self inherits from Gtk.Window and
@@ -514,6 +535,9 @@ class ManagedWindow:
 
     def  modal_call(self, after_ok_func=None):
         """
+        This is deprecated; use the 'modal=True' on the ManagedWindow
+        initialization for new work.
+
             Method to do modal run of the ManagedWindow.
             Connect the OK button to a method that checks if all is ok,
                 Do not call close, close is called here.
@@ -676,6 +700,6 @@ def set_titles(window, title, text, msg=None):
         title.set_use_markup(True)
     if msg:
         window.set_title('%s - Gramps' % msg)
-    else:
+    elif text:
         window.set_title('%s - Gramps' % text)
     window.set_icon_from_file(ICON)

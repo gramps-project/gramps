@@ -113,12 +113,11 @@ RCS_BUTTON = {True : _('_Extract'), False : _('_Archive')}
 
 class Information(ManagedWindow):
 
-    def __init__(self, uistate, data, parent):
-        super().__init__(uistate, [], self)
+    def __init__(self, uistate, data, track):
+        super().__init__(uistate, track, self, modal=True)
         self.window = Gtk.Dialog()
         self.set_window(self.window, None, _("Database Information"))
         self.setup_configs('interface.information', 600, 400)
-        self.window.set_modal(True)
         self.ok = self.window.add_button(_('_OK'), Gtk.ResponseType.OK)
         self.ok.connect('clicked', self.on_ok_clicked)
         s = Gtk.ScrolledWindow()
@@ -132,8 +131,6 @@ class Information(ManagedWindow):
             model.add((key, str(value),), key)
         s.add(treeview)
         self.window.vbox.pack_start(s, True, True, 0)
-        if parent:
-            self.window.set_transient_for(parent)
         self.show()
 
     def on_ok_clicked(self, obj):
@@ -142,7 +139,8 @@ class Information(ManagedWindow):
     def build_menu_names(self, obj):
         return (_('Database Information'), None)
 
-class DbManager(CLIDbManager):
+
+class DbManager(CLIDbManager, ManagedWindow):
     """
     Database Manager. Opens a database manager window that allows users to
     create, rename, delete and open databases.
@@ -162,14 +160,13 @@ class DbManager(CLIDbManager):
         Create the top level window from the glade description, and extracts
         the GTK widgets that are needed.
         """
-        self.uistate = uistate
+        window_id = self
+        ManagedWindow.__init__(self, uistate, [], window_id, modal=True)
         CLIDbManager.__init__(self, dbstate)
         self.glade = Glade(toplevel='dbmanager')
         self.top = self.glade.toplevel
+        self.set_window(self.top, None, None)
         self.viewmanager = viewmanager
-        self.parent = parent
-        if parent:
-            self.top.set_transient_for(parent)
 
         for attr in ['connect', 'cancel', 'new', 'remove', 'info',
                      'dblist', 'rename', 'convert', 'repair', 'rcs',
@@ -191,9 +188,16 @@ class DbManager(CLIDbManager):
         self.before_change = ""
         self.after_change = ""
         self._select_default()
-        self.user = User(error=ErrorDialog, parent=self.parent,
+        self.user = User(error=ErrorDialog, parent=parent,
                          callback=self.uistate.pulse_progressbar,
                          uistate=self.uistate)
+
+    def build_menu_names(self, obj):
+        ''' This window can have children, but they are modal so no submenu
+        is visible'''
+        submenu_label = " "
+        menu_label = _('Family Trees')
+        return (menu_label, submenu_label)
 
     def _select_default(self):
         """
@@ -458,6 +462,7 @@ class DbManager(CLIDbManager):
         Runs the dialog, returning None if nothing has been chosen,
         or the path and name if something has been selected
         """
+        self.show()
         while True:
             value = self.top.run()
             if value == Gtk.ResponseType.OK:
@@ -856,7 +861,7 @@ class DbManager(CLIDbManager):
         dirname = store[node][1]
         # if this is open, get info from there, otherwise, temp open?
         summary = self.get_dbdir_summary(dirname, name)
-        Information(self.uistate, summary, parent=self.top)
+        Information(self.uistate, summary, track=self.track)
 
     def __repair_db(self, obj):
         """
