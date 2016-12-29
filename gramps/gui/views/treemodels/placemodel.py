@@ -48,6 +48,7 @@ from gramps.gen.lib import Place, PlaceType
 from gramps.gen.datehandler import format_time
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.config import config
 from .flatbasemodel import FlatBaseModel
 from .treebasemodel import TreeBaseModel
 
@@ -126,8 +127,10 @@ class PlaceBaseModel:
         return value
 
     def column_name(self, data):
-        # need for spacing on the french translation
-        return _(',').join([data[6][0]] + [name[0] for name in data[7]])
+        if config.get("preferences.place-name-column"):
+            return '|'.join([data[6][0]] + [name[0] for name in data[7]])
+        else:
+            return data[6][0]
 
     def column_longitude(self, data):
         if not data[3]:
