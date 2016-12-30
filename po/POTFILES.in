@@ -358,6 +358,7 @@ gramps/gen/utils/string.py
 gramps/gen/utils/unknown.py
 gramps/grampsapp.py
 gramps/gui/aboutdialog.py
+gramps/gui/addonmanager.py
 gramps/gui/autocomp.py
 gramps/gui/clipboard.py
 gramps/gui/columnorder.py

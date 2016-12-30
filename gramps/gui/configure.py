@@ -64,7 +64,6 @@ from .widgets import MarkupLabel, BasicLabel
 from .dialog import ErrorDialog, QuestionDialog2, OkDialog
 from .glade import Glade
 from gramps.gen.plug.utils import available_updates
-from .plug import PluginWindows
 from gramps.gen.errors import WindowActiveError
 from .spell import HAVE_GTKSPELL
 from gramps.gen.constfunc import win
@@ -178,7 +177,6 @@ class ConfigureDialog(ManagedWindow):
         self.set_window(
             Gtk.Dialog(title=dialogtitle),
                        None, dialogtitle, None)
-        self.window.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
         self.panel = Gtk.Notebook()
         self.panel.set_scrollable(True)
         self.window.vbox.pack_start(self.panel, True, True, 0)
@@ -186,6 +184,8 @@ class ConfigureDialog(ManagedWindow):
         self.window.connect('response', self.done)
 
         self.__setup_pages(configure_page_funcs)
+        close_btn = self.window.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
+        close_btn.get_parent().set_child_non_homogeneous(close_btn, True)
 
         self.show()
 
@@ -1205,28 +1205,10 @@ class GrampsPreferences(ConfigureDialog):
         self.old_format = the_list.get_value(the_iter, COL_FMT)
         win = DisplayNameEditor(self.uistate, self.dbstate, self.track, self)
 
-    def check_for_type_changed(self, obj):
-        active = obj.get_active()
-        if active == 0:  # update
-            config.set('behavior.check-for-addon-update-types', ["update"])
-        elif active == 1:  # update
-            config.set('behavior.check-for-addon-update-types', ["new"])
-        elif active == 2:  # update
-            config.set('behavior.check-for-addon-update-types', ["update", "new"])
-
-    def toggle_hide_previous_addons(self, obj):
-        active = obj.get_active()
-        config.set('behavior.do-not-show-previously-seen-addon-updates',
-                   bool(active))
-
     def toggle_tag_on_import(self, obj):
         active = obj.get_active()
         config.set('preferences.tag-on-import', bool(active))
         self.tag_format_entry.set_sensitive(bool(active))
-
-    def check_for_updates_changed(self, obj):
-        active = obj.get_active()
-        config.set('behavior.check-for-addon-updates', active)
 
     def place_restrict_changed(self, obj):
         active = obj.get_active()
@@ -1361,82 +1343,8 @@ class GrampsPreferences(ConfigureDialog):
                 self.set_mediapath, self.select_mediapath)
 
         current_line += 1
-        # Check for addon updates:
-        obox = Gtk.ComboBoxText()
-        formats = [_("Never"),
-                   _("Once a month"),
-                   _("Once a week"),
-                   _("Once a day"),
-                   _("Always"), ]
-        list(map(obox.append_text, formats))
-        active = config.get('behavior.check-for-addon-updates')
-        obox.set_active(active)
-        obox.connect('changed', self.check_for_updates_changed)
-        lwidget = BasicLabel(_("%s: ") % _('Check for addon updates'))
-        grid.attach(lwidget, 1, current_line, 1, 1)
-        grid.attach(obox, 2, current_line, 1, 1)
-
-        current_line += 1
-        self.whattype_box = Gtk.ComboBoxText()
-        formats = [_("Updated addons only"),
-                   _("New addons only"),
-                   _("New and updated addons"),]
-        list(map(self.whattype_box.append_text, formats))
-        whattype = config.get('behavior.check-for-addon-update-types')
-        if "new" in whattype and "update" in whattype:
-            self.whattype_box.set_active(2)
-        elif "new" in whattype:
-            self.whattype_box.set_active(1)
-        elif "update" in whattype:
-            self.whattype_box.set_active(0)
-        self.whattype_box.connect('changed', self.check_for_type_changed)
-        lwidget = BasicLabel(_("%s: ") % _('What to check'))
-        grid.attach(lwidget, 1, current_line, 1, 1)
-        grid.attach(self.whattype_box, 2, current_line, 1, 1)
-
-        current_line += 1
-        self.add_entry(grid, _('Where to check'), current_line, 'behavior.addons-url', col_attach=1)
-
-        current_line += 1
-        checkbutton = Gtk.CheckButton(
-            label=_("Do not ask about previously notified addons"))
-        checkbutton.set_active(config.get('behavior.do-not-show-previously-seen-addon-updates'))
-        checkbutton.connect("toggled", self.toggle_hide_previous_addons)
-
-        grid.attach(checkbutton, 1, current_line, 1, 1)
-        button = Gtk.Button(label=_("Check for updated addons now"))
-        button.connect("clicked", self.check_for_updates)
-        grid.attach(button, 3, current_line, 1, 1)
 
         return _('General'), grid
-
-    def check_for_updates(self, button):
-        try:
-            addon_update_list = available_updates()
-        except:
-            OkDialog(_("Checking Addons Failed"),
-                     _("The addon repository appears to be unavailable. "
-                       "Please try again later."),
-                     parent=self.window)
-            return
-
-        if len(addon_update_list) > 0:
-            rescan = PluginWindows.UpdateAddons(self.uistate, self.track,
-                                                addon_update_list).rescan
-            self.uistate.viewmanager.do_reg_plugins(self.dbstate, self.uistate,
-                                                    rescan=rescan)
-        else:
-            check_types = config.get('behavior.check-for-addon-update-types')
-            OkDialog(
-                _("There are no available addons of this type"),
-                _("Checked for '%s'") %
-                      _("' and '").join([_(t) for t in check_types]),
-                parent=self.window)
-
-        # List of translated strings used here
-        # Dead code for l10n
-        _('new'), _('update')
-
 
     def database_backend_changed(self, obj):
         the_list = obj.get_model()

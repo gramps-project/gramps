@@ -68,7 +68,7 @@ from .plug import tool
 from gramps.gen.plug import START
 from gramps.gen.plug import REPORT
 from gramps.gen.plug.report._constants import standalone_categories
-from .plug import (PluginWindows, ReportPluginDialog, ToolPluginDialog)
+from .plug import (ReportPluginDialog, ToolPluginDialog)
 from .plug.report import report, BookSelector
 from .utils import AvailableUpdates
 from .pluginmanager import GuiPluginManager
@@ -87,6 +87,7 @@ from gramps.gen.utils.file import media_path_full
 from .dbloader import DbLoader
 from .display import display_help, display_url
 from .configure import GrampsPreferences
+from .addonmanager import AddonManager, UpdateAddons
 from .aboutdialog import GrampsAboutDialog
 from .navigator import Navigator
 from .views.tags import Tags
@@ -139,6 +140,9 @@ UIDEFAULT = '''<ui>
     <menuitem action="Clipboard"/>
     <separator/>
     <menuitem action="Preferences"/>
+    <separator/>
+    <menuitem action="AddonManager"/>
+    <separator/>
   </menu>
   <menu action="ViewMenu">
     <menuitem action="ConfigView"/>
@@ -175,7 +179,6 @@ UIDEFAULT = '''<ui>
     <menuitem action="FAQ"/>
     <menuitem action="KeyBindings"/>
     <menuitem action="TipOfDay"/>
-    <menuitem action="PluginStatus"/>
     <separator/>
     <menuitem action="HomePage"/>
     <menuitem action="MailingLists"/>
@@ -345,8 +348,7 @@ class ViewManager(CLIManager):
         """
         Called when add-on updates are available.
         """
-        rescan = PluginWindows.UpdateAddons(self.uistate, [],
-                                            addon_update_list).rescan
+        UpdateAddons(self.uistate, [], addon_update_list).rescan
         self.do_reg_plugins(self.dbstate, self.uistate, rescan=rescan)
 
     def _errordialog(self, title, errormessage):
@@ -489,6 +491,8 @@ class ViewManager(CLIManager):
             ('EditMenu', None, _('_Edit')),
             ('Preferences', 'preferences-system', _('_Preferences...'), None,
              None, self.preferences_activate),
+            ('AddonManager', None, _('A_ddon Manager...'), None, None,
+             self.addonmanager_activate),
             ('HelpMenu', None, _('_Help')),
             ('HomePage', None, _('Gramps _Home Page'), None, None,
              home_page_activate),
@@ -500,8 +504,6 @@ class ViewManager(CLIManager):
              extra_plugins_activate),
             ('About', 'help-about', _('_About'), None, None,
              self.display_about_box),
-            ('PluginStatus', None, _('_Plugin Manager'), None, None,
-             self.__plugin_status),
             ('FAQ', None, _('_FAQ'), None, None, faq_activate),
             ('KeyBindings', None, _('_Key Bindings'), None, None, key_bindings),
             ('UserManual', 'help-browser', _('_User Manual'), 'F1', None,
@@ -741,7 +743,7 @@ class ViewManager(CLIManager):
 
         #  get to see if we need to open the plugin status window
         if error and config.get('behavior.pop-plugin-status'):
-            self.__plugin_status()
+            self.addonmanager_activate(None)
 
         self.uistate.push_message(self.dbstate, _('Ready'))
 
@@ -876,14 +878,14 @@ class ViewManager(CLIManager):
         from .tipofday import TipOfDay
         TipOfDay(self.uistate)
 
-    def __plugin_status(self, obj=None, data=None):
+    def addonmanager_activate(self, obj):
         """
-        Display plugin status dialog
+        Open the addon manager dialog.
         """
         try:
-            PluginWindows.PluginStatus(self.dbstate, self.uistate, [])
+            AddonManager(self.uistate, self.dbstate)
         except WindowActiveError:
-            pass
+            return
 
     def navigator_toggle(self, obj, data=None):
         """
