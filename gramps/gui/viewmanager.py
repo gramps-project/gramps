@@ -322,11 +322,11 @@ class ViewManager(CLIManager):
         """
         Check for add-on updates.
         """
-        howoften = config.get("behavior.check-for-updates")
+        howoften = config.get("behavior.check-for-addon-updates")
         update = False
         if howoften != 0: # update never if zero
             year, mon, day = list(map(
-                int, config.get("behavior.last-check-for-updates").split("/")))
+                int, config.get("behavior.last-check-for-addon-updates").split("/")))
             days = (datetime.date.today() - datetime.date(year, mon, day)).days
             if howoften == 1 and days >= 30: # once a month
                 update = True
