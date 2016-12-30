@@ -1179,9 +1179,9 @@ class UpdateAddons:
                              ("Title", self.window, Gtk.DialogFlags.MODAL))
         pm.add_op(longop)
         count = 0
-        if not config.get('behavior.do-not-show-previously-seen-updates'):
+        if not config.get('behavior.do-not-show-previously-seen-addon-updates'):
             # reset list
-            config.get('behavior.previously-seen-updates')[:] = []
+            config.get('behavior.previously-seen-addon-updates')[:] = []
 
         iter = model.get_iter_first()
         errors = []
@@ -1198,8 +1198,8 @@ class UpdateAddons:
                     else:
                         errors.append(row[2])
                 else: # add to list of previously seen, but not installed
-                    if row[5] not in config.get('behavior.previously-seen-updates'):
-                        config.get('behavior.previously-seen-updates').append(row[5])
+                    if row[5] not in config.get('behavior.previously-seen-addon-updates'):
+                        config.get('behavior.previously-seen-addon-updates').append(row[5])
                 longop.heartbeat()
                 pm._get_dlg()._process_events()
             iter = model.iter_next(iter)

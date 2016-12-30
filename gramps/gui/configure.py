@@ -1208,15 +1208,15 @@ class GrampsPreferences(ConfigureDialog):
     def check_for_type_changed(self, obj):
         active = obj.get_active()
         if active == 0:  # update
-            config.set('behavior.check-for-update-types', ["update"])
+            config.set('behavior.check-for-addon-update-types', ["update"])
         elif active == 1:  # update
-            config.set('behavior.check-for-update-types', ["new"])
+            config.set('behavior.check-for-addon-update-types', ["new"])
         elif active == 2:  # update
-            config.set('behavior.check-for-update-types', ["update", "new"])
+            config.set('behavior.check-for-addon-update-types', ["update", "new"])
 
     def toggle_hide_previous_addons(self, obj):
         active = obj.get_active()
-        config.set('behavior.do-not-show-previously-seen-updates',
+        config.set('behavior.do-not-show-previously-seen-addon-updates',
                    bool(active))
 
     def toggle_tag_on_import(self, obj):
@@ -1226,7 +1226,7 @@ class GrampsPreferences(ConfigureDialog):
 
     def check_for_updates_changed(self, obj):
         active = obj.get_active()
-        config.set('behavior.check-for-updates', active)
+        config.set('behavior.check-for-addon-updates', active)
 
     def place_restrict_changed(self, obj):
         active = obj.get_active()
@@ -1361,7 +1361,7 @@ class GrampsPreferences(ConfigureDialog):
                 self.set_mediapath, self.select_mediapath)
 
         current_line += 1
-        # Check for updates:
+        # Check for addon updates:
         obox = Gtk.ComboBoxText()
         formats = [_("Never"),
                    _("Once a month"),
@@ -1369,10 +1369,10 @@ class GrampsPreferences(ConfigureDialog):
                    _("Once a day"),
                    _("Always"), ]
         list(map(obox.append_text, formats))
-        active = config.get('behavior.check-for-updates')
+        active = config.get('behavior.check-for-addon-updates')
         obox.set_active(active)
         obox.connect('changed', self.check_for_updates_changed)
-        lwidget = BasicLabel(_("%s: ") % _('Check for updates'))
+        lwidget = BasicLabel(_("%s: ") % _('Check for addon updates'))
         grid.attach(lwidget, 1, current_line, 1, 1)
         grid.attach(obox, 2, current_line, 1, 1)
 
@@ -1382,7 +1382,7 @@ class GrampsPreferences(ConfigureDialog):
                    _("New addons only"),
                    _("New and updated addons"),]
         list(map(self.whattype_box.append_text, formats))
-        whattype = config.get('behavior.check-for-update-types')
+        whattype = config.get('behavior.check-for-addon-update-types')
         if "new" in whattype and "update" in whattype:
             self.whattype_box.set_active(2)
         elif "new" in whattype:
@@ -1400,11 +1400,11 @@ class GrampsPreferences(ConfigureDialog):
         current_line += 1
         checkbutton = Gtk.CheckButton(
             label=_("Do not ask about previously notified addons"))
-        checkbutton.set_active(config.get('behavior.do-not-show-previously-seen-updates'))
+        checkbutton.set_active(config.get('behavior.do-not-show-previously-seen-addon-updates'))
         checkbutton.connect("toggled", self.toggle_hide_previous_addons)
 
         grid.attach(checkbutton, 1, current_line, 1, 1)
-        button = Gtk.Button(label=_("Check now"))
+        button = Gtk.Button(label=_("Check for updated addons now"))
         button.connect("clicked", self.check_for_updates)
         grid.attach(button, 3, current_line, 1, 1)
 
@@ -1423,7 +1423,7 @@ class GrampsPreferences(ConfigureDialog):
         if len(addon_update_list) > 0:
             PluginWindows.UpdateAddons(addon_update_list, self.window)
         else:
-            check_types = config.get('behavior.check-for-update-types')
+            check_types = config.get('behavior.check-for-addon-update-types')
             OkDialog(
                 _("There are no available addons of this type"),
                 _("Checked for '%s'") %
