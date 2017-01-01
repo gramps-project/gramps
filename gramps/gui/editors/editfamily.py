@@ -1129,7 +1129,7 @@ class EditFamily(EditPrimary):
                     self.db.commit_person(child, trans)
 
                 self.db.add_family(self.obj, trans)
-        elif original.serialize() != self.obj.serialize():
+        elif self.data_has_changed():
 
             with DbTxn(_("Edit Family"), self.db) as trans:
 

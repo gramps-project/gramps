@@ -195,16 +195,17 @@ class EditRepository(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        with DbTxn('', self.db) as trans:
-            if not self.obj.get_handle():
+        if not self.obj.handle:
+            with DbTxn(_("Add Repository (%s)") % self.obj.get_name(),
+                       self.db) as trans:
                 self.db.add_repository(self.obj, trans)
-                msg = _("Add Repository (%s)") % self.obj.get_name()
-            else:
-                if not self.obj.get_gramps_id():
-                    self.obj.set_gramps_id(self.db.find_next_repository_gramps_id())
-                self.db.commit_repository(self.obj, trans)
-                msg = _("Edit Repository (%s)") % self.obj.get_name()
-            trans.set_description(msg)
+        else:
+            if self.data_has_changed():
+                with DbTxn(_("Edit Repository (%s)") % self.obj.get_name(),
+                           self.db) as trans:
+                    if not self.obj.get_gramps_id():
+                        self.obj.set_gramps_id(self.db.find_next_repository_gramps_id())
+                    self.db.commit_repository(self.obj, trans)
 
         self._do_close()
 

@@ -301,17 +301,18 @@ class EditPlace(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        with DbTxn('', self.db) as trans:
-            place_title = place_displayer.display(self.db, self.obj)
-            if not self.obj.get_handle():
+        place_title = place_displayer.display(self.db, self.obj)
+        if not self.obj.handle:
+            with DbTxn(_("Add Place (%s)") % place_title,
+                       self.db) as trans:
                 self.db.add_place(self.obj, trans)
-                msg = _("Add Place (%s)") % place_title
-            else:
-                if not self.obj.get_gramps_id():
-                    self.obj.set_gramps_id(self.db.find_next_place_gramps_id())
-                self.db.commit_place(self.obj, trans)
-                msg = _("Edit Place (%s)") % place_title
-            trans.set_description(msg)
+        else:
+            if self.data_has_changed():
+                with DbTxn(_("Edit Place (%s)") % place_title,
+                           self.db) as trans:
+                    if not self.obj.get_gramps_id():
+                        self.obj.set_gramps_id(self.db.find_next_place_gramps_id())
+                    self.db.commit_place(self.obj, trans)
 
         self._do_close()
         if self.callback:

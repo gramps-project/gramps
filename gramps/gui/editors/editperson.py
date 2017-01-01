@@ -856,19 +856,19 @@ class EditPerson(EditPrimary):
 
         self.db.set_birth_death_index(self.obj)
 
-        with DbTxn('', self.db) as trans:
-            self._update_family_ids()
-            if not self.obj.get_handle():
+        if not self.obj.handle:
+            with DbTxn(_("Add Person (%s)") % \
+                        self.name_displayer.display(self.obj),
+                       self.db) as trans:
                 self.db.add_person(self.obj, trans)
-                msg = _("Add Person (%s)") % \
-                        self.name_displayer.display(self.obj)
-            else:
-                if not self.obj.get_gramps_id():
-                    self.obj.set_gramps_id(self.db.find_next_person_gramps_id())
-                self.db.commit_person(self.obj, trans)
-                msg = _("Edit Person (%s)") % \
-                        self.name_displayer.display(self.obj)
-            trans.set_description(msg)
+        else:
+            if self.data_has_changed():
+                with DbTxn(_("Edit Person (%s)") % \
+                            self.name_displayer.display(self.obj),
+                           self.db) as trans:
+                    if not self.obj.get_gramps_id():
+                        self.obj.set_gramps_id(self.db.find_next_person_gramps_id())
+                    self.db.commit_person(self.obj, trans)
 
         self._do_close()
         if self.callback:
