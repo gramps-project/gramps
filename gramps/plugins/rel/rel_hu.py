@@ -156,9 +156,10 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     #
     #---------------------------------------------
 
-    def is_fathermother_in_law(self, orig, other):
+    # FIXME: is it still used?
+    def is_fathermother_in_law(self, db, orig, other):
         for f in other.get_family_handle_list():
-            family = self.db.get_family_from_handle(f)
+            family = db.get_family_from_handle(f)
             sp_id = None
             if family:
                 if other == family.get_father_handle():
@@ -166,7 +167,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 elif other == family.get_mother_handle():
                     sp_id = family.get_father_handle()
                 for g in orig.get_family_handle_list():
-                    family = self.db.get_family_from_handle(g)
+                    family = db.get_family_from_handle(g)
                     if family:
                         if sp_id in family.get_child_handle_list():
                             return 1
@@ -179,9 +180,10 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     #
     #------------------------------------------------------------------------
 
-    def is_brothersister_in_law(self, orig, other):
+    # FIXME: is it still used?
+    def is_brothersister_in_law(self, db, orig, other):
         for f in orig.get_family_handle_list():
-            family = self.db.get_family_from_handle(f)
+            family = db.get_family_from_handle(f)
             sp_id = None
             if family:
                 if orig ==  family.get_father_handle():
@@ -190,7 +192,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                     sp_id = family.get_father_handler()
 
                 p = other.get_main_parents_family_handle()
-                family = self.db.get_family_from_handle(p)
+                family = db.get_family_from_handle(p)
                 if family:
                     c = family.get_child_handle_list()
                     if (other.get_handle() in c) and (sp_id in c):

@@ -502,7 +502,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                                         self._get_father(removed,step,inlaw))
 
         else:
-            return "%s %scousin%s (%d-%d)" % (_level_name[level],
+            return "%s %scousin%s (%d-%d)" % (_level_name_male[level],
                                         step, inlaw,
                                         removed, lower)
 
@@ -543,7 +543,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                                         self._get_father(removed,step,inlaw))
 
         else:
-            return "%s %sprima%s (%d-%d)" % (_level_name[level],
+            return "%s %sprima%s (%d-%d)" % (_level_name_female[level],
                                         step, inlaw,
                                         removed, lower)
 
@@ -709,16 +709,16 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             elif gender_b == Person.FEMALE:
                 rel_str = self._get_distant_aunt(Gb, step, inlaw)
             else:
-                rel_str = "%s o %s" % (self._get_distant_uncle(Gb, 0, step=step, inlaw=inlaw),
-                                       self._get_distant_aunt(Gb, 0, step=step, inlaw=inlaw))
+                rel_str = "%s o %s" % (self._get_distant_uncle(Gb, step, inlaw),
+                                       self._get_distant_aunt(Gb, step, inlaw))
         elif Ga+1 == Gb:
             if gender_b == Person.MALE:
                 rel_str = self._get_distant_nephew(Gb-1, step, inlaw)
             elif gender_b == Person.FEMALE:
                 rel_str = self._get_distant_niece(Gb-1, step, inlaw)
             else:
-                rel_str = "%s o %s" % (self._get_distant_nephew(Gb-1, 0, step=step, inlaw=inlaw),
-                                       self._get_distant_niece(Gb-1, 0, step=step, inlaw=inlaw))
+                rel_str = "%s o %s" % (self._get_distant_nephew(Gb-1, step, inlaw),
+                                       self._get_distant_niece(Gb-1, step, inlaw))
         elif Ga > Gb:
             # These are cousins in different generations with the second person
             # being in a higher generation from the common ancestor than the
