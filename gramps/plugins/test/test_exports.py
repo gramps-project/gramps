@@ -127,6 +127,9 @@ def gedfilt(line):
         elif token == "FILE" and "tests" in line:
             # probably have a media with file name
             retval = False
+        elif token == "COPR" and "Copyright (c) " in line:
+            # probably have a copyright line with year
+            retval = False
     else:   # this is an addition
         if token == "VERS" and gedfilt.prev[gedfilt.indx-1][0] == "VERS":
             # we must have a header with Gramps version
@@ -144,6 +147,9 @@ def gedfilt(line):
             retval = False
         elif token == "FILE" and "tests" in line:
             # probably have a media with file name
+            retval = False
+        elif token == "COPR" and "Copyright (c) " in line:
+            # probably have a copyright line with year
             retval = False
     return retval
 
