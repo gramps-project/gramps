@@ -458,6 +458,44 @@
                       </packing>
                     </child>
                     <child>
+                      <object class="GtkLabel" id="label2">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">Tags:</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="tag_label">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="valign">center</property>
+                        <property name="hexpand">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="tag_button">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="margin_right">1</property>
+                        <property name="image_position">right</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="top_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
                       <object class="UndoableEntry" id="eer_description">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -511,7 +549,7 @@
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
-                        <property name="top_attach">5</property>
+                        <property name="top_attach">6</property>
                         <property name="width">3</property>
                       </packing>
                     </child>

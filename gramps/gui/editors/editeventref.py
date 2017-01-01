@@ -40,7 +40,7 @@ from ..glade import Glade
 from .displaytabs import (CitationEmbedList, NoteTab, GalleryTab,
                          EventBackRefList, AttrEmbedList)
 from ..widgets import (PrivacyButton, MonitoredEntry,
-                     MonitoredDate, MonitoredDataType)
+                     MonitoredDate, MonitoredDataType, MonitoredTagList)
 from .editreference import RefTab, EditReference
 
 from .objectentries import PlaceEntry
@@ -137,6 +137,15 @@ class EditEventRef(EditReference):
             self.top.get_object("gid"),
             self.source.set_gramps_id,
             self.source.get_gramps_id,
+            self.db.readonly)
+
+        self.tags = MonitoredTagList(
+            self.top.get_object("tag_label"),
+            self.top.get_object("tag_button"),
+            self.source.set_tag_list,
+            self.source.get_tag_list,
+            self.db,
+            self.uistate, self.track,
             self.db.readonly)
 
         self.place_field = PlaceEntry(
