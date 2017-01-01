@@ -152,6 +152,12 @@ class ProgressMeter:
         self.__dialog.vbox.set_spacing(10)
         self.__dialog.vbox.set_border_width(24)
         self.__dialog.set_size_request(400, 125)
+        if not parent:  # if we don't have an explicit parent, try to find one
+            for win in Gtk.Window.list_toplevels():
+                if win.is_active():
+                    parent = win
+                    break
+        # if we still don't have a parent, give up
         if parent:
             self.__dialog.set_transient_for(parent)
             self.__dialog.set_modal(True)

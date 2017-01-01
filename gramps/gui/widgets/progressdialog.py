@@ -494,13 +494,17 @@ class GtkProgressDialog(Gtk.Dialog):
         :type title: string
         """
         Gtk.Dialog.__init__(self)
+        parent = None
         if len(window_params) >= 2:
-            self.set_transient_for(window_params[1])
-        else:
+            parent = window_params[1]   # we got an explicit parent
+        else:                           # try to find an active window
             for win in Gtk.Window.list_toplevels():
                 if win.is_active():
-                    self.set_transient_for(win)
+                    parent = win
                     break
+        # if we still don't have a parent, give up
+        if parent:
+            self.set_transient_for(parent)
         if len(window_params) >= 3:
             flags = window_params[2]
             if Gtk.DialogFlags.MODAL & flags:
