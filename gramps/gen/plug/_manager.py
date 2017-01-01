@@ -140,7 +140,7 @@ class BasePluginManager:
                     continue
                 plugins_to_load.append(plugin)
             # next, sort on dependencies
-            # Probably a more effecient method to get dependency graph:
+            # Probably a more efficient method to get dependency graph:
             plugins_sorted = []
             count = 0
             max_count = len(plugins_to_load)
