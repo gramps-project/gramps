@@ -391,13 +391,11 @@ class GrampsImportFileDialog(ManagedWindow):
 
         pmgr = GuiPluginManager.get_instance()
 
-        import_dialog = Gtk.FileChooserDialog('',
-                                       self.uistate.window,
-                                       Gtk.FileChooserAction.OPEN,
-                                       (_('_Cancel'),
-                                            Gtk.ResponseType.CANCEL,
-                                        _('Import'),
-                                            Gtk.ResponseType.OK))
+        import_dialog = Gtk.FileChooserDialog(
+            title='', transient_for=self.uistate.window,
+            action=Gtk.FileChooserAction.OPEN)
+        import_dialog.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                                  _('Import'), Gtk.ResponseType.OK)
         self.set_window(import_dialog, None, self.title)
         self.setup_configs('interface.grampsimportfiledialog', 780, 630)
         import_dialog.set_local_only(False)
