@@ -147,7 +147,7 @@ class BookListDisplay:
     Allows the user to select and/or delete a book from the list.
     """
 
-    def __init__(self, booklist, nodelete=False, dosave=False):
+    def __init__(self, booklist, nodelete=False, dosave=False, parent=None):
         """
         Create a BookListDisplay object that displays the books in BookList.
 
@@ -191,6 +191,7 @@ class BookListDisplay:
 
         self.redraw()
         self.selection = None
+        self.top.set_transient_for(parent)
         self.top.run()
 
     def redraw(self):
@@ -330,7 +331,7 @@ class BookSelector(ManagedWindow):
         title_label = self.xml.get_object('title')
         self.set_window(window, title_label, self.title)
         self.setup_configs('interface.bookselector', 700, 600)
-        window.show()
+        self.show()
         self.xml.connect_signals({
             "on_add_clicked"        : self.on_add_clicked,
             "on_remove_clicked"     : self.on_remove_clicked,
@@ -764,8 +765,8 @@ class BookSelector(ManagedWindow):
         """
         Run the BookListDisplay dialog to present the choice of books to open.
         """
-        booklistdisplay = BookListDisplay(self.book_list,
-                                          nodelete=True, dosave=False)
+        booklistdisplay = BookListDisplay(self.book_list, nodelete=True,
+                                          dosave=False, parent=self.window)
         booklistdisplay.top.destroy()
         book = booklistdisplay.selection
         if book:
@@ -777,8 +778,8 @@ class BookSelector(ManagedWindow):
         """
         Run the BookListDisplay dialog to present the choice of books to delete.
         """
-        booklistdisplay = BookListDisplay(self.book_list,
-                                          nodelete=False, dosave=True)
+        booklistdisplay = BookListDisplay(self.book_list, nodelete=False,
+                                          dosave=True, parent=self.window)
         booklistdisplay.top.destroy()
         book = booklistdisplay.selection
         if book:
