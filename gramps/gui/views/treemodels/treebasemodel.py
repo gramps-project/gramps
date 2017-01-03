@@ -295,6 +295,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         self.prev_handle = None
         self.prev_data = None
 
+        self.uistate = uistate
         self.__reverse = (order == Gtk.SortType.DESCENDING)
         self.scol = scol
         self.nrgroups = nrgroups
@@ -581,13 +582,11 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         Rebuild the data map for a single Gramps object type, where a filter
         is applied.
         """
-        pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog,
-                                            popup_time=2)
-        status = progressdlg.LongOpStatus(msg=_("Building View"),
-                              total_steps=3, interval=1)
-        pmon.add_op(status)
-        status_ppl = progressdlg.LongOpStatus(msg=_("Loading items..."),
-                        total_steps=items, interval=items//10)
+        pmon = progressdlg.ProgressMonitor(
+            progressdlg.StatusProgress, (self.uistate,), popup_time=2,
+            title=_("Loading items..."))
+        status_ppl = progressdlg.LongOpStatus(total_steps=items,
+                                              interval=items // 20)
         pmon.add_op(status_ppl)
 
         self.__total += items
@@ -606,7 +605,6 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
                     self.__displayed += 1
 
         status_ppl.end()
-        status.end()
 
     def add_node(self, parent, child, sortkey, handle, add_parent=True,
                  secondary=False):
