@@ -108,18 +108,6 @@ class DbLoader(CLIDbLoader):
                           parent=self.uistate.window)
             _LOG.error(str(msg) +"\n" + exc)
 
-    def _begin_progress(self):
-        self.uistate.set_busy_cursor(True)
-        self.uistate.progress.show()
-        self.uistate.pulse_progressbar(0)
-
-    def _pulse_progress(self, value):
-        self.uistate.pulse_progressbar(value)
-
-    def _end_progress(self):
-        self.uistate.set_busy_cursor(False)
-        self.uistate.progress.hide()
-
     def import_file(self):
         self.import_info = None
         # First thing first: import is a batch transaction
@@ -138,15 +126,33 @@ class DbLoader(CLIDbLoader):
             if not warn_dialog.run():
                 return False
 
+        GrampsImportFileDialog(self.dbstate, self.uistate)
+
+from .managedwindow import ManagedWindow
+class GrampsImportFileDialog(ManagedWindow):
+
+    def __init__(self, dbstate, uistate):
+        """
+        A dialog to import a file into Gramps
+        """
+        self.dbstate = dbstate
+
+        self.title = _("Import Family Tree")
+        ManagedWindow.__init__(self, uistate, [], self.__class__, modal=True)
+        # the import_dialog.run() below makes it modal, so any change to
+        # the previous line's "modal" would require that line to be changed
+
         pmgr = GuiPluginManager.get_instance()
 
-        import_dialog = Gtk.FileChooserDialog(_('Gramps: Import Family Tree'),
+        import_dialog = Gtk.FileChooserDialog('',
                                        self.uistate.window,
                                        Gtk.FileChooserAction.OPEN,
                                        (_('_Cancel'),
                                             Gtk.ResponseType.CANCEL,
                                         _('Import'),
                                             Gtk.ResponseType.OK))
+        self.set_window(import_dialog, None, self.title)
+        self.setup_configs('interface.grampsimportfiledialog', 780, 630)
         import_dialog.set_local_only(False)
 
         # Always add automatic (match all files) filter
@@ -172,6 +178,8 @@ class DbLoader(CLIDbLoader):
 
         import_dialog.set_current_folder(default_dir)
         while True:
+            # the import_dialog.run() makes it modal, so any change to that
+            # line would require the ManagedWindow.__init__ to be changed also
             response = import_dialog.run()
             if response in (Gtk.ResponseType.CANCEL, Gtk.ResponseType.DELETE_EVENT):
                 break
@@ -196,7 +204,8 @@ class DbLoader(CLIDbLoader):
                         self.do_import(import_dialog,
                                        plugin.get_import_function(),
                                        filename)
-                        return True
+                        self.close()
+                        return
 
                 # Finally, we give up and declare this an unknown format
                 ErrorDialog(
@@ -206,8 +215,7 @@ class DbLoader(CLIDbLoader):
                       'Gramps package, GEDCOM, and others.') % extension,
                     parent=self.uistate.window)
 
-        import_dialog.destroy()
-        return False
+        self.close()
 
     def check_errors(self, filename):
         """
@@ -252,7 +260,9 @@ class DbLoader(CLIDbLoader):
 
     def do_import(self, dialog, importer, filename):
         self.import_info = None
-        dialog.destroy()
+        position = self.window.get_position() # crock
+        dialog.hide()
+        self.window.move(position[0], position[1])
         self._begin_progress()
 
         try:
@@ -274,6 +284,22 @@ class DbLoader(CLIDbLoader):
         except Exception:
             _LOG.error("Failed to import database.", exc_info=True)
         self._end_progress()
+
+    def build_menu_names(self, obj): # this is meaningless since it's modal
+        return (self.title, None)
+
+    def _begin_progress(self):
+        self.uistate.set_busy_cursor(True)
+        self.uistate.progress.show()
+        self.uistate.pulse_progressbar(0)
+
+    def _pulse_progress(self, value):
+        self.uistate.pulse_progressbar(value)
+
+    def _end_progress(self):
+        self.uistate.set_busy_cursor(False)
+        self.uistate.progress.hide()
+################################ LAST LINE OF THE NEW CLASS ##################
 
     def import_info_text(self):
         """
