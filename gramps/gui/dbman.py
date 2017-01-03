@@ -166,6 +166,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         self.glade = Glade(toplevel='dbmanager')
         self.top = self.glade.toplevel
         self.set_window(self.top, None, None)
+        self.setup_configs('interface.dbmanager', 780, 350)
         self.viewmanager = viewmanager
 
         for attr in ['connect_btn', 'cancel_btn', 'new_btn', 'remove_btn',
