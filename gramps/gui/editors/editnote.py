@@ -303,6 +303,11 @@ class EditNote(EditPrimary):
             self.obj.set_styledtext(text)
             _LOG.debug(str(text))
 
+    def close(self, *obj):
+        """Called when cancel button clicked."""
+        self.update_note()
+        super().close()
+
     def save(self, *obj):
         """Save the data."""
         self.ok_button.set_sensitive(False)
