@@ -307,17 +307,17 @@ class EditCitation(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        with DbTxn('', self.db) as trans:
-            if not self.obj.get_handle():
+        if not self.obj.handle:
+            with DbTxn(_("Add Citation (%s)") % self.obj.get_page(),
+                       self.db) as trans:
                 self.db.add_citation(self.obj, trans)
-                msg = _("Add Citation (%s)") % self.obj.get_page()
-            else:
-                if not self.obj.get_gramps_id():
-                    self.obj.set_gramps_id(
-                                    self.db.find_next_citation_gramps_id())
-                self.db.commit_citation(self.obj, trans)
-                msg = _("Edit Citation (%s)") % self.obj.get_page()
-            trans.set_description(msg)
+        else:
+            if self.data_has_changed():
+                with DbTxn(_("Edit Citation (%s)") % self.obj.get_page(),
+                           self.db) as trans:
+                    if not self.obj.get_gramps_id():
+                        self.obj.set_gramps_id(self.db.find_next_citation_gramps_id())
+                    self.db.commit_citation(self.obj, trans)
 
         if self.callback:
             self.callback(self.obj.get_handle())

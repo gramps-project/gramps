@@ -320,16 +320,17 @@ class EditMedia(EditPrimary):
 
         self.obj.set_path(path)
 
-        with DbTxn('', self.db) as trans:
-            if not self.obj.get_handle():
+        if not self.obj.handle:
+            with DbTxn(_("Add Media Object (%s)") % self.obj.get_description(),
+                       self.db) as trans:
                 self.db.add_media(self.obj, trans)
-                msg = _("Add Media Object (%s)") % self.obj.get_description()
-            else:
-                if not self.obj.get_gramps_id():
-                    self.obj.set_gramps_id(self.db.find_next_media_gramps_id())
-                self.db.commit_media(self.obj, trans)
-                msg = _("Edit Media Object (%s)") % self.obj.get_description()
-            trans.set_description(msg)
+        else:
+            if self.data_has_changed():
+                with DbTxn(_("Edit Media Object (%s)") % self.obj.get_description(),
+                           self.db) as trans:
+                    if not self.obj.get_gramps_id():
+                        self.obj.set_gramps_id(self.db.find_next_media_gramps_id())
+                    self.db.commit_media(self.obj, trans)
 
         if self.callback:
             self.callback(self.obj)

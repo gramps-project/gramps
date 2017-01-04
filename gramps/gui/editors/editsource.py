@@ -216,16 +216,17 @@ class EditSource(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        with DbTxn('', self.db) as trans:
-            if not self.obj.get_handle():
+        if not self.obj.handle:
+            with DbTxn(_("Add Source (%s)") % self.obj.get_title(),
+                       self.db) as trans:
                 self.db.add_source(self.obj, trans)
-                msg = _("Add Source (%s)") % self.obj.get_title()
-            else:
-                if not self.obj.get_gramps_id():
-                    self.obj.set_gramps_id(self.db.find_next_source_gramps_id())
-                self.db.commit_source(self.obj, trans)
-                msg = _("Edit Source (%s)") % self.obj.get_title()
-            trans.set_description(msg)
+        else:
+            if self.data_has_changed():
+                with DbTxn(_("Edit Source (%s)") % self.obj.get_title(),
+                           self.db) as trans:
+                    if not self.obj.get_gramps_id():
+                        self.obj.set_gramps_id(self.db.find_next_source_gramps_id())
+                    self.db.commit_source(self.obj, trans)
 
         self._do_close()
         if self.callback:
