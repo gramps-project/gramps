@@ -333,7 +333,7 @@ def get_child_unknown(level, inlaw=""):
     else:
         return "un descendant lointain%s" % inlaw
 
-def get_sibling_unknown(Ga, inlaw=""):
+def get_sibling_unknown(inlaw=""):
     """
     sibling of an ancestor, gender = unknown
     """
@@ -480,8 +480,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
                 # %ss for plural
 
-                rel_str = "les %ss cousins et cousines" % _LEVEL_NAME[Ga -
-                        2]
+                rel_str = "les %ss cousins et cousines" % _LEVEL_NAME[Ga - 2]
             else:
 
             # security
@@ -496,14 +495,12 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
             if Ga == 3 and Gb == 2:
                 desc = " (cousins germains d'un parent)"
-                rel_str = "les oncles et tantes à la mode de Bretagne" + \
-                    desc
+                rel_str = "les oncles et tantes à la mode de Bretagne" + desc
             elif Gb <= len(_LEVEL_NAME) and Ga - Gb < len(_REMOVED_LEVEL) and \
                 Ga + Gb + 1 < len(_REMOVED_LEVEL):
                 can = " du %s au %s degré (canon)" % (_REMOVED_LEVEL[Gb],
-                        _REMOVED_LEVEL[Ga])
-                civ = " et au %s degré (civil)" % _REMOVED_LEVEL[Ga + Gb +
-                        1]
+                                                      _REMOVED_LEVEL[Ga])
+                civ = " et au %s degré (civil)" % _REMOVED_LEVEL[Ga + Gb + 1]
                 rel_str = "les oncles et tantes" + can + civ
             elif Ga < len(_LEVEL_NAME):
                 rel_str = "les grands-oncles et grands-tantes" + bygen % \
@@ -523,14 +520,13 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             elif Ga <= len(_LEVEL_NAME) and Gb - Ga < len(_REMOVED_LEVEL) and \
                 Ga + Gb + 1 < len(_REMOVED_LEVEL):
                 can = " du %s au %s degré (canon)" % (_REMOVED_LEVEL[Gb],
-                        _REMOVED_LEVEL[Ga])
-                civ = " et au %s degré (civil)" % _REMOVED_LEVEL[Ga + Gb +
-                        1]
+                                                      _REMOVED_LEVEL[Ga])
+                civ = " et au %s degré (civil)" % _REMOVED_LEVEL[Ga + Gb + 1]
                 rel_str = "les neveux et nièces" + can + civ
             elif Ga < len(_LEVEL_NAME):
                 rel_str = "les neveux et nièces" + bygen % Gb
 
-        if in_law_b == True:
+        if in_law_b:
             rel_str = "les conjoints pour %s" % rel_str
 
         return rel_str
@@ -538,16 +534,16 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 # quick report (missing on RelCalc tool - Status Bar)
 
     def get_single_relationship_string(
-        self,
-        Ga,
-        Gb,
-        gender_a,
-        gender_b,
-        reltocommon_a,
-        reltocommon_b,
-        only_birth=True,
-        in_law_a=False,
-        in_law_b=False,
+            self,
+            Ga,
+            Gb,
+            gender_a,
+            gender_b,
+            reltocommon_a,
+            reltocommon_b,
+            only_birth=True,
+            in_law_a=False,
+            in_law_b=False,
         ):
         """
        voir relationship.py
@@ -653,7 +649,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 elif gender_b == Person.FEMALE:
                     rel_str = "la tante lointaine" + bygen % (Ga + 1)
                 elif gender_b == Person.UNKNOWN:
-                    rel_str = get_sibling_unknown(Ga, inlaw)
+                    rel_str = get_sibling_unknown(inlaw)
                 else:
                     return rel_str
         elif Ga == 1:
@@ -672,7 +668,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                     rel_str = "la nièce lointaine%s (%dème génération)" % \
                         (inlaw, Gb)
                 elif gender_b == Person.UNKNOWN:
-                    rel_str = get_sibling_unknown(Ga, inlaw)
+                    rel_str = get_sibling_unknown(inlaw)
                 else:
                     return rel_str
         elif Ga == Gb:
@@ -684,7 +680,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             elif gender_b == Person.FEMALE:
                 rel_str = get_cousine(Ga - 1, 0, inlaw=inlaw)
             elif gender_b == Person.UNKNOWN:
-                rel_str = get_sibling_unknown(Ga, inlaw)
+                rel_str = get_sibling_unknown(inlaw)
             else:
                 return rel_str
         elif Ga > 1 and Ga > Gb:
@@ -701,21 +697,20 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                     desc = " (cousine germaine d'un parent)"
                     rel_str = "la tante à la mode de Bretagne" + desc
                 elif gender_b == Person.UNKNOWN:
-                    return get_sibling_unknown(Ga, inlaw)
+                    return get_sibling_unknown(inlaw)
                 else:
                     return rel_str
             elif Gb <= len(_LEVEL_NAME) and Ga - Gb < len(_REMOVED_LEVEL) and \
                 Ga + Gb + 1 < len(_REMOVED_LEVEL):
                 can = " du %s au %s degré (canon)" % (_REMOVED_LEVEL[Gb],
-                        _REMOVED_LEVEL[Ga])
-                civ = " et au %s degré (civil)" % _REMOVED_LEVEL[Ga + Gb +
-                        1]
+                                                      _REMOVED_LEVEL[Ga])
+                civ = " et au %s degré (civil)" % _REMOVED_LEVEL[Ga + Gb + 1]
                 if gender_b == Person.MALE:
                     rel_str = "l'oncle" + can + civ
                 elif gender_b == Person.FEMALE:
                     rel_str = "la tante" + can + civ
                 elif gender_b == Person.UNKNOWN:
-                    rel_str = get_sibling_unknown(Ga, inlaw)
+                    rel_str = get_sibling_unknown(inlaw)
                 else:
                     return rel_str
             else:
@@ -724,7 +719,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 elif gender_b == Person.FEMALE:
                     rel_str = get_aunt(Ga, inlaw)
                 elif gender_b == Person.UNKNOWN:
-                    rel_str = get_sibling_unknown(Ga, inlaw)
+                    rel_str = get_sibling_unknown(inlaw)
                 else:
                     return rel_str
         elif Gb > 1 and Gb > Ga:
@@ -740,21 +735,20 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 elif gender_b == Person.FEMALE:
                     rel_str = "la nièce à la mode de Bretagne" + info
                 elif gender_b == Person.UNKNOWN:
-                    rel_str = get_sibling_unknown(Ga, inlaw)
+                    rel_str = get_sibling_unknown(inlaw)
                 else:
                     return rel_str
             elif Ga <= len(_LEVEL_NAME) and Gb - Ga < len(_REMOVED_LEVEL) and \
                 Ga + Gb + 1 < len(_REMOVED_LEVEL):
                 can = " du %s au %s degré (canon)" % (_REMOVED_LEVEL[Gb],
-                        _REMOVED_LEVEL[Ga])
-                civ = " et au %s degré (civil)" % _REMOVED_LEVEL[Ga + Gb +
-                        1]
+                                                      _REMOVED_LEVEL[Ga])
+                civ = " et au %s degré (civil)" % _REMOVED_LEVEL[Ga + Gb + 1]
                 if gender_b == Person.MALE:
                     rel_str = "le neveu" + can + civ
                 if gender_b == Person.FEMALE:
                     rel_str = "la nièce" + can + civ
                 elif gender_b == Person.UNKNOWN:
-                    rel_str = get_sibling_unknown(Ga, inlaw)
+                    rel_str = get_sibling_unknown(inlaw)
                 else:
                     return rel_str
             elif Ga > len(_LEVEL_NAME):
@@ -765,7 +759,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 elif gender_b == Person.FEMALE:
                     rel_str = get_niece(Ga, inlaw)
                 elif gender_b == Person.UNKNOWN:
-                    rel_str = get_sibling_unknown(Ga, inlaw)
+                    rel_str = get_sibling_unknown(inlaw)
                 else:
                     return rel_str
         return rel_str
@@ -773,7 +767,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 # RelCalc tool - Status Bar
 
     def get_sibling_relationship_string(self, sib_type, gender_a,
-            gender_b, in_law_a=False, in_law_b=False):
+                                        gender_b, in_law_a=False, in_law_b=False):
         """
         voir relationship.py
         """
