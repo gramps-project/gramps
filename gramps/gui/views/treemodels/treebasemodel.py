@@ -591,16 +591,20 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         pmon.add_op(status_ppl)
 
         self.__total += items
+        assert not skip
+        if dfilter:
+            for handle in dfilter.apply(self.db,
+                                        cb_progress=status_ppl.heartbeat):
+                data = data_map(handle)
+                add_func(handle, data)
+                self.__displayed += 1
+        else:
+            with gen_cursor() as cursor:
+                for handle, data in cursor:
+                    status_ppl.heartbeat()
+                    add_func(handle, data)
+                    self.__displayed += 1
 
-        with gen_cursor() as cursor:
-            for handle, data in cursor:
-                if not isinstance(handle, str):
-                    handle = handle.decode('utf-8')
-                status_ppl.heartbeat()
-                if not handle in skip:
-                    if not dfilter or dfilter.match(handle, self.db):
-                        add_func(handle, data)
-                        self.__displayed += 1
         status_ppl.end()
         status.end()
 
