@@ -274,12 +274,9 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
                       secondary object type.
     """
 
-    def __init__(self, db,
-                    search=None, skip=set(),
-                    scol=0, order=Gtk.SortType.ASCENDING, sort_map=None,
-                    nrgroups = 1,
-                    group_can_have_handle = False,
-                    has_secondary=False):
+    def __init__(self, db, uistate, search=None, skip=set(), scol=0,
+                 order=Gtk.SortType.ASCENDING, sort_map=None, nrgroups = 1,
+                 group_can_have_handle = False, has_secondary=False):
         cput = time.clock()
         GObject.GObject.__init__(self)
         BaseModel.__init__(self)

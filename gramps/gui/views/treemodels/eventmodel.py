@@ -71,8 +71,8 @@ INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 #-------------------------------------------------------------------------
 class EventModel(FlatBaseModel):
 
-    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
-                 skip=set(), sort_map=None):
+    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
+                 search=None, skip=set(), sort_map=None):
         self.gen_cursor = db.get_event_cursor
         self.map = db.get_raw_event_data
 
@@ -100,8 +100,8 @@ class EventModel(FlatBaseModel):
             self.column_participant,
             self.column_tag_color
            ]
-        FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
-                               sort_map=sort_map)
+        FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,
+                               skip=skip, sort_map=sort_map)
 
     def destroy(self):
         """

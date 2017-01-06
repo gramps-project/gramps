@@ -450,7 +450,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             so as to have localized sort
     """
 
-    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING,
+    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
                  search=None, skip=set(),
                  sort_map=None):
         cput = time.clock()

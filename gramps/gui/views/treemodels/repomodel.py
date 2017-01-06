@@ -49,8 +49,8 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 #-------------------------------------------------------------------------
 class RepositoryModel(FlatBaseModel):
 
-    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
-                 skip=set(), sort_map=None):
+    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
+                 search=None, skip=set(), sort_map=None):
         self.gen_cursor = db.get_repository_cursor
         self.get_handles = db.get_repository_handles
         self.map = db.get_raw_repository_data
@@ -92,8 +92,8 @@ class RepositoryModel(FlatBaseModel):
             self.column_tag_color
             ]
 
-        FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
-                               sort_map=sort_map)
+        FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,
+                               skip=skip, sort_map=sort_map)
 
     def destroy(self):
         """

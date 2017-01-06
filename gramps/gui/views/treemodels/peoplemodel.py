@@ -573,11 +573,11 @@ class PersonListModel(PeopleBaseModel, FlatBaseModel):
     """
     Listed people model.
     """
-    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
-                 skip=set(), sort_map=None):
+    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
+                 search=None, skip=set(), sort_map=None):
         PeopleBaseModel.__init__(self, db)
-        FlatBaseModel.__init__(self, db, search=search, skip=skip, scol=scol,
-                               order=order, sort_map=sort_map)
+        FlatBaseModel.__init__(self, db, uistate, search=search, skip=skip,
+                               scol=scol, order=order, sort_map=sort_map)
 
     def destroy(self):
         """
@@ -590,11 +590,11 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
     """
     Hierarchical people model.
     """
-    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
-                 skip=set(), sort_map=None):
+    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
+                 search=None, skip=set(), sort_map=None):
         PeopleBaseModel.__init__(self, db)
-        TreeBaseModel.__init__(self, db, search=search, skip=skip, scol=scol,
-                               order=order, sort_map=sort_map)
+        TreeBaseModel.__init__(self, db, uistate, search=search, skip=skip,
+                               scol=scol, order=order, sort_map=sort_map)
 
     def destroy(self):
         """

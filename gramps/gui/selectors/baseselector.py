@@ -268,11 +268,10 @@ class BaseSelector(ManagedWindow):
 
         #reset the model with correct sorting
         self.clear_model()
-        self.model = self.get_model_class()(self.db, self.sort_col,
-                                            self.sortorder,
-                                            sort_map=self.column_order(),
-                                            skip=self.skip_list,
-                                            search=filter_info)
+        self.model = self.get_model_class()(
+            self.db, self.uistate, self.sort_col, self.sortorder,
+            sort_map=self.column_order(), skip=self.skip_list,
+            search=filter_info)
 
         self.tree.set_model(self.model)
 
@@ -317,11 +316,10 @@ class BaseSelector(ManagedWindow):
     def show_toggle(self, obj):
         filter_info = None if obj.get_active() else self.filter
         self.clear_model()
-        self.model = self.get_model_class()(self.db, self.sort_col,
-                                            self.sortorder,
-                                            sort_map=self.column_order(),
-                                            skip=self.skip_list,
-                                            search=filter_info)
+        self.model = self.get_model_class()(
+            self.db, self.uistate, self.sort_col, self.sortorder,
+            sort_map=self.column_order(), skip=self.skip_list,
+            search=filter_info)
         self.tree.set_model(self.model)
         self.tree.grab_focus()
 

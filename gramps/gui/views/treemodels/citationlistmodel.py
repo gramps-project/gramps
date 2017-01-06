@@ -56,8 +56,8 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
     """
     Flat citation model.  (Original code in CitationBaseModel).
     """
-    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
-                 skip=set(), sort_map=None):
+    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
+                 search=None, skip=set(), sort_map=None):
         self.map = db.get_raw_citation_data
         self.gen_cursor = db.get_citation_cursor
         self.fmap = [
@@ -94,8 +94,8 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
             self.citation_src_chan,
             self.citation_tag_color
             ]
-        FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
-                               sort_map=sort_map)
+        FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,
+                               skip=skip, sort_map=sort_map)
 
     def destroy(self):
         """

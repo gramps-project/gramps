@@ -65,8 +65,8 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
     """
     Hierarchical citation model.
     """
-    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
-                 skip=set(), sort_map=None):
+    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
+                 search=None, skip=set(), sort_map=None):
         self.db = db
         self.number_items = self.db.get_number_of_sources
         self.map = self.db.get_raw_source_data
@@ -100,7 +100,7 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
             self.source_src_tag_color
             ]
 
-        TreeBaseModel.__init__(self, self.db, scol=scol, order=order,
+        TreeBaseModel.__init__(self, self.db, uistate, scol=scol, order=order,
                                search=search, skip=skip, sort_map=sort_map,
                                nrgroups=1,
                                group_can_have_handle=True,

@@ -320,9 +320,9 @@ class ListView(NavigationView):
                 if self.model:
                     self.list.set_model(None)
                     self.model.destroy()
-                self.model = self.make_model(self.dbstate.db, self.sort_col,
-                                             search=filter_info,
-                                             sort_map=self.column_order())
+                self.model = self.make_model(
+                    self.dbstate.db, self.uistate, self.sort_col,
+                    search=filter_info, sort_map=self.column_order())
             else:
                 #the entire data to show is already in memory.
                 #run only the part that determines what to show
@@ -647,10 +647,9 @@ class ListView(NavigationView):
                 self.model.reverse_order()
                 self.list.set_model(self.model)
         else:
-            self.model = self.make_model(self.dbstate.db, self.sort_col,
-                                         self.sort_order,
-                                         search=filter_info,
-                                         sort_map=self.column_order())
+            self.model = self.make_model(
+                self.dbstate.db, self.uistate, self.sort_col, self.sort_order,
+                search=filter_info, sort_map=self.column_order())
 
             self.list.set_model(self.model)
 
