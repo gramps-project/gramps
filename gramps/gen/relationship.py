@@ -2680,6 +2680,8 @@ Select a test:
   5 - Test sibling types
   6 - Test partner types
 
+Letter 'f' means Father, 'm' means Mother
+
 Please enter a test number and press Enter for continue:
     """)
         test_num = sys.stdin.readline().strip()
