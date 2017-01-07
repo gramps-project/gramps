@@ -23,6 +23,10 @@
 """
 Debugging utilities
 """
+import cProfile
+import pstats
+import sys
+
 
 #-------------------------------------------------------------------------
 #
@@ -30,15 +34,13 @@ Debugging utilities
 #
 #-------------------------------------------------------------------------
 def profile(func, *args, **kwargs):
-    import hotshot.stats
 
-    prf = hotshot.Profile('mystats.profile')
+    prf = cProfile.Profile()
     print("Start")
     r = prf.runcall(func, *args, **kwargs)
     print("Finished")
-    prf.close()
     print("Loading profile")
-    stats = hotshot.stats.load('mystats.profile')
+    stats = pstats.Stats(prf, stream=sys.stdout)
     print("done")
     stats.strip_dirs()
     stats.sort_stats('time', 'calls')
