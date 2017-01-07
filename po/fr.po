@@ -1672,7 +1672,7 @@ msgid ""
 "\"%s\"?"
 msgstr ""
 "Voulez-vous vraiment supprimer cet arbre  nommé\n"
-"\"%s\" ?"
+"« %s » ?"
 
 # objet sélectionné
 #: ../gramps/cli/clidbman.py:441 ../gramps/gui/dbman.py:726
@@ -6667,8 +6667,8 @@ msgstr "Correspond aux sources ayant un nombre de références de dépôt"
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:44
 msgid "Sources with repository reference containing <text> in \"Call Number\""
 msgstr ""
-"Sources dont la référence du dépôt contient le <texte> dans le \"Numéro "
-"d'identifiant\""
+"Sources dont la référence du dépôt contient le <texte> dans le « Numéro "
+"d'identifiant »"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:45
 msgid ""
@@ -14937,7 +14937,7 @@ msgstr "Date de naissance"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:132
 #, python-format
 msgid "example: \"%(msg1)s\" or \"%(msg2)s\""
-msgstr "exemple: \"%(msg1)s\" or \"%(msg2)s\""
+msgstr "exemple: « %(msg1)s » ou « %(msg2)s »"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:131
 #: ../gramps/plugins/export/exportcsv.py:358
@@ -20391,7 +20391,7 @@ msgid ""
 "active in the database."
 msgstr ""
 "Une seconde transaction a été débutée alors qu'il y avait déjà une "
-"transaction active dans la base de données : \"%s\". "
+"transaction active dans la base de données : « %s ». "
 
 # master
 #: ../gramps/plugins/db/bsddb/write.py:2462
@@ -21782,7 +21782,7 @@ msgstr "Le style de base pour afficher le texte par défaut."
 #: ../gramps/plugins/drawreport/fanchart.py:781
 #, python-format
 msgid "The style used for the text display of generation \"%d\""
-msgstr "Le style utilisé pour l'affichage de la génération \"%d\"."
+msgstr "Le style utilisé pour l'affichage de la génération « %d »."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:306
 msgid "Item count"
@@ -24544,7 +24544,7 @@ msgstr "Remplissage avec des couleurs"
 # master
 #: ../gramps/plugins/graph/gvfamilylines.py:118
 msgid "Follow parents to determine \"family lines\""
-msgstr "Suivre les parents pour déterminer les \"lignées familiales\""
+msgstr "Suivre les parents pour déterminer les « lignées familiales »"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:120
 msgid ""
@@ -30577,7 +30577,7 @@ msgstr "Couple avec la plus grande différence d'âge"
 #: ../gramps/plugins/lib/librecords.py:451
 #, python-format
 msgid "\"%(callname)s\" (%(firstname)s)"
-msgstr "\"%(callname)s\" (%(firstname)s)"
+msgstr "« %(callname)s » (%(firstname)s)"
 
 #: ../gramps/plugins/lib/libtreebase.py:756
 msgid "Top Left"
@@ -32149,7 +32149,7 @@ msgstr "%(event_role)s à %(event_name)s de %(primary_person)s : %(event_text)s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:521
 #: ../gramps/plugins/textreport/familygroup.py:133
 msgid "; "
-msgstr "; "
+msgstr " ; "
 
 #: ../gramps/plugins/textreport/detancestralreport.py:585
 #: ../gramps/plugins/textreport/detdescendantreport.py:676
