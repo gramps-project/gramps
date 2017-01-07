@@ -14014,7 +14014,7 @@ msgstr "Individu : %(name)s"
 #: ../gramps/gui/editors/editperson.py:161
 #, python-format
 msgid "New Person: %(name)s"
-msgstr "Nouvel individu: %(name)s"
+msgstr "Nouvel individu : %(name)s"
 
 #: ../gramps/gui/editors/editperson.py:163
 msgid "New Person"
@@ -14937,7 +14937,7 @@ msgstr "Date de naissance"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:132
 #, python-format
 msgid "example: \"%(msg1)s\" or \"%(msg2)s\""
-msgstr "exemple: « %(msg1)s » ou « %(msg2)s »"
+msgstr "exemple : « %(msg1)s » ou « %(msg2)s »"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:131
 #: ../gramps/plugins/export/exportcsv.py:358
@@ -15641,7 +15641,7 @@ msgstr "Sélecteur"
 # trunk
 #: ../gramps/gui/glade/editevent.glade:292
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
-msgstr "Le type d'événement, par exemple: inhumation, baptême, ... . "
+msgstr "Le type d'événement, par exemple : inhumation, baptême, ... . "
 
 # trunk
 #: ../gramps/gui/glade/editevent.glade:326
@@ -16370,7 +16370,7 @@ msgstr ""
 #: ../gramps/gui/glade/editplace.glade:311
 #: ../gramps/gui/glade/editplaceref.glade:330
 msgid "What type of place this is. Eg 'Country', 'City', ... ."
-msgstr "Le type de lieu, par exemple: 'pays', 'ville'... . "
+msgstr "Le type de lieu, par exemple : 'pays', 'ville'... . "
 
 # trunk
 #: ../gramps/gui/glade/editplace.glade:374
@@ -16465,7 +16465,7 @@ msgstr ""
 #: ../gramps/gui/glade/editreporef.glade:424
 #: ../gramps/gui/glade/editrepository.glade:144
 msgid "Type of repository, eg., 'Library', 'Album', ..."
-msgstr "Le type de dépôt, par exemple: une bibliothèque, une archive..."
+msgstr "Le type de dépôt, par exemple : une bibliothèque, une archive..."
 
 #: ../gramps/gui/glade/editsource.glade:112
 msgid "_Author:"
@@ -16519,7 +16519,7 @@ msgstr "De_scription :"
 
 #: ../gramps/gui/glade/editurl.glade:170
 msgid "Type of internet address, eg. E-mail, Web Page, ..."
-msgstr "Le type d'adresse internet, par exemple: courriel, page internet, ..."
+msgstr "Le type d'adresse internet, par exemple : courriel, page internet, ..."
 
 #: ../gramps/gui/glade/editurl.glade:189
 msgid ""
