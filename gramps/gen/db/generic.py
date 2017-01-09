@@ -244,7 +244,7 @@ class DbGenericUndo(DbUndo):
                 sql = "INSERT INTO %s (handle, blob_data) VALUES (?, ?)" % table
                 self.db.dbapi.execute(sql, [handle, pickle.dumps(data)])
             obj = self.db.get_table_func(cls)["class_func"].create(data)
-            self.db.update_secondary_values(obj)
+            self.db._update_secondary_values(obj)
             emit(signal, ([handle],))
 
 class Cursor:

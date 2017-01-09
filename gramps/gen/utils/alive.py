@@ -459,7 +459,7 @@ class ProbablyAlive:
             # then assume our person must be dead too.
             date1, date2, explain, other = ancestors_too_old (person, - self.AVG_GENERATION_GAP)
         except RuntimeError:
-            raise Errors.DatabaseError(
+            raise DatabaseError(
                 _("Database error: loop in %s's ancestors") %
                 name_displayer.display(person))
         if date1 and date2:
