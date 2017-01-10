@@ -73,6 +73,9 @@ class SaveDialog:
         label2.set_use_markup(True)
         if parent:
             self.top.set_transient_for(parent)
+            parent_modal = parent.get_modal()
+            if parent_modal:
+                parent.set_modal(False)
         self.top.show()
         response = self.top.run()
         if response == Gtk.ResponseType.NO:
@@ -82,6 +85,8 @@ class SaveDialog:
 
         config.set('interface.dont-ask', self.dontask.get_active())
         self.top.destroy()
+        if parent and parent_modal:
+            parent.set_modal(True)
 
 class QuestionDialog:
     def __init__(self, msg1, msg2, label, task, parent=None):
@@ -103,9 +108,14 @@ class QuestionDialog:
 
         if parent:
             self.top.set_transient_for(parent)
+            parent_modal = parent.get_modal()
+            if parent_modal:
+                parent.set_modal(False)
         self.top.show()
         response = self.top.run()
         self.top.destroy()
+        if parent and parent_modal:
+            parent.set_modal(True)
         if response == Gtk.ResponseType.ACCEPT:
             task()
 
@@ -138,13 +148,19 @@ class QuestionDialog2:
         self.xml.get_object('no').set_label(label_msg2)
         self.xml.get_object('no').set_use_underline(True)
 
+        self.parent = parent
         if parent:
             self.top.set_transient_for(parent)
+            self.parent_modal = parent.get_modal()
+            if self.parent_modal:
+                parent.set_modal(False)
         self.top.show()
 
     def run(self):
         response = self.top.run()
         self.top.destroy()
+        if self.parent and self.parent_modal:
+            self.parent.set_modal(True)
         return (response == Gtk.ResponseType.ACCEPT)
 
 class OptionDialog:
@@ -167,6 +183,9 @@ class OptionDialog:
         self.xml.get_object('option2').set_label(btnmsg2)
         if parent:
             self.top.set_transient_for(parent)
+            parent_modal = parent.get_modal()
+            if parent_modal:
+                parent.set_modal(False)
         self.top.show()
         self.response = self.top.run()
         if self.response == Gtk.ResponseType.NO:
@@ -176,6 +195,8 @@ class OptionDialog:
             if task2:
                 task2()
         self.top.destroy()
+        if parent and parent_modal:
+            parent.set_modal(True)
 
     def get_response(self):
         return self.response
@@ -191,9 +212,15 @@ class ErrorDialog(Gtk.MessageDialog):
         self.format_secondary_text(msg2)
         self.set_icon(ICON)
         self.set_title("%s - Gramps" % str(msg1))
+        if parent:
+            parent_modal = parent.get_modal()
+            if parent_modal:
+                parent.set_modal(False)
         self.show()
         self.run()
         self.destroy()
+        if parent and parent_modal:
+            parent.set_modal(True)
 
 class RunDatabaseRepair(ErrorDialog):
     def __init__(self, msg, parent=None):
@@ -236,9 +263,15 @@ class WarningDialog(Gtk.MessageDialog):
         # <WarningDialog object at 0x4880300 (GtkMessageDialog at 0x5686010)>: unknown signal name: activate-link
         self.set_icon(ICON)
         self.set_title("%s - Gramps" % msg1)
+        if parent:
+            parent_modal = parent.get_modal()
+            if parent_modal:
+                parent.set_modal(False)
         self.show()
         self.run()
         self.destroy()
+        if parent and parent_modal:
+            parent.set_modal(True)
 
 class OkDialog(Gtk.MessageDialog):
     def __init__(self, msg1, msg2="", parent=None):
@@ -251,9 +284,15 @@ class OkDialog(Gtk.MessageDialog):
         self.format_secondary_text(msg2)
         self.set_icon(ICON)
         self.set_title("%s - Gramps" % msg1)
+        if parent:
+            parent_modal = parent.get_modal()
+            if parent_modal:
+                parent.set_modal(False)
         self.show()
         self.run()
         self.destroy()
+        if parent and parent_modal:
+            parent.set_modal(True)
 
 class InfoDialog:
     """
@@ -312,6 +351,9 @@ class MissingMediaDialog:
 
         if parent:
             self.top.set_transient_for(parent)
+            parent_modal = parent.get_modal()
+            if parent_modal:
+                parent.set_modal(False)
         self.top.show()
         self.top.connect('delete_event', self.warn)
         response = Gtk.ResponseType.DELETE_EVENT
@@ -333,6 +375,8 @@ class MissingMediaDialog:
         else:
             self.default_action = 0
         self.top.destroy()
+        if parent and parent_modal:
+            parent.set_modal(True)
 
     def warn(self, obj, obj2):
         WarningDialog(
@@ -367,6 +411,9 @@ class MultiSelectDialog:
 
         if parent:
             self.top.set_transient_for(parent)
+            parent_modal = parent.get_modal()
+            if parent_modal:
+                parent.set_modal(False)
         self.top.connect('delete_event', self.warn)
 
         default_action = 0
@@ -406,6 +453,8 @@ class MultiSelectDialog:
                 if self.yes_func:
                     self.yes_func(item)
         self.top.destroy()
+        if parent and parent_modal:
+            parent.set_modal(True)
 
     def warn(self, obj, obj2):
         WarningDialog(
@@ -436,8 +485,13 @@ class MessageHideDialog:
         dont_show.connect('toggled', self.update_checkbox, key)
         if parent:
             self.top.set_transient_for(parent)
+            parent_modal = parent.get_modal()
+            if parent_modal:
+                parent.set_modal(False)
         self.top.run()
         self.top.destroy()
+        if parent and parent_modal:
+            parent.set_modal(True)
 
     def update_checkbox(self, obj, constant):
         config.set(constant, obj.get_active())

@@ -237,8 +237,15 @@ class DbUndo:
             if key == REFERENCE_KEY:
                 self.undo_reference(old_data, handle, self.mapbase[key])
             else:
-                self.undo_data(old_data, handle, self.mapbase[key],
-                                db.emit, _SIGBASE[key])
+                self.undo_data(old_data, handle, self.mapbase[key])
+        # now emit the signals
+        for record_id in subitems:
+            (key, trans_type, handle, old_data, new_data) = \
+                    pickle.loads(self.undodb[record_id])
+
+            if key != REFERENCE_KEY:
+                self.undo_signals(old_data, handle, self.mapbase[key],
+                                  db.emit, _SIGBASE[key])
         # Notify listeners
         if db.undo_callback:
             if self.undo_count > 0:
@@ -275,8 +282,15 @@ class DbUndo:
             if key == REFERENCE_KEY:
                 self.undo_reference(new_data, handle, self.mapbase[key])
             else:
-                self.undo_data(new_data, handle, self.mapbase[key],
-                                    db.emit, _SIGBASE[key])
+                self.undo_data(new_data, handle, self.mapbase[key])
+        # Process all signals in the transaction
+        for record_id in subitems:
+            (key, trans_type, handle, old_data, new_data) = \
+                pickle.loads(self.undodb[record_id])
+
+            if key != REFERENCE_KEY:
+                self.undo_signals(new_data, handle, self.mapbase[key],
+                                  db.emit, _SIGBASE[key])
         # Notify listeners
         if db.undo_callback:
             db.undo_callback(_("_Undo %s")
@@ -308,21 +322,33 @@ class DbUndo:
             self.db._log_error()
             raise DbError(msg)
 
-    def undo_data(self, data, handle, db_map, emit, signal_root):
+    def undo_data(self, data, handle, db_map):
+        """
+        Helper method to undo/redo the changes made
+        """
+        try:
+            if data is None:
+                db_map.delete(handle, txn=self.txn)
+            else:
+                db_map.put(handle, data, txn=self.txn)
+
+        except DBERRS as msg:
+            self.db._log_error()
+            raise DbError(msg)
+
+    def undo_signals(self, data, handle, db_map, emit, signal_root):
         """
         Helper method to undo/redo the changes made
         """
         try:
             if data is None:
                 emit(signal_root + '-delete', ([handle.decode('utf-8')],))
-                db_map.delete(handle, txn=self.txn)
             else:
                 ex_data = db_map.get(handle, txn=self.txn)
                 if ex_data:
                     signal = signal_root + '-update'
                 else:
                     signal = signal_root + '-add'
-                db_map.put(handle, data, txn=self.txn)
                 emit(signal, ([handle.decode('utf-8')],))
 
         except DBERRS as msg:
