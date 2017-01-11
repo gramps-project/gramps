@@ -344,7 +344,7 @@ class ViewManager(CLIManager):
         """
         Called when add-on updates are available.
         """
-        PluginWindows.UpdateAddons(addon_update_list, self.window)
+        PluginWindows.UpdateAddons(self.uistate, [], addon_update_list)
         self.do_reg_plugins(self.dbstate, self.uistate)
 
     def _errordialog(self, title, errormessage):

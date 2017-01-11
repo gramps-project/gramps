@@ -1421,7 +1421,7 @@ class GrampsPreferences(ConfigureDialog):
             return
 
         if len(addon_update_list) > 0:
-            PluginWindows.UpdateAddons(addon_update_list, self.window)
+            PluginWindows.UpdateAddons(self.uistate, self.track, addon_update_list)
         else:
             check_types = config.get('behavior.check-for-addon-update-types')
             OkDialog(

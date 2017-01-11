@@ -1072,16 +1072,16 @@ class ToolManagedWindow(tool.Tool, ToolManagedWindowBase):
 # UpdateAddons
 #
 #-------------------------------------------------------------------------
-class UpdateAddons:
+class UpdateAddons(ManagedWindow):
 
-    def __init__(self, addon_update_list, parent_window):
+    def __init__(self, uistate, track, addon_update_list):
         self.title = _('Available Gramps Updates for Addons')
 
+        ManagedWindow.__init__(self, uistate, track, self, modal=True)
         glade = Glade("updateaddons.glade")
-        self.window = glade.toplevel
+        self.set_window(glade.toplevel, None, None)
         self.window.set_title(self.title)
-        self.window.set_size_request(750, 400)
-        self.window.set_transient_for(parent_window)
+        self.setup_configs("interface.updateaddons", 750, 400)
 
         apply_button = glade.get_object('apply')
         cancel_button = glade.get_object('cancel')
@@ -1135,13 +1135,11 @@ class UpdateAddons:
                 pos = iter
         if pos:
             self.list.selection.select_iter(pos)
-        self.window.run()
 
-    def close(self, widget):
-        """
-        Close the dialog.
-        """
-        self.window.destroy()
+        self.show()
+
+    def build_menu_names(self, obj):
+        return (self.title, " ")
 
     def select_all_clicked(self, widget):
         """
@@ -1176,7 +1174,7 @@ class UpdateAddons:
             length, 1, # total, increment-by
             can_cancel=True)
         pm = ProgressMonitor(GtkProgressDialog,
-                             ("Title", self.window, Gtk.DialogFlags.MODAL))
+                             ("Title", self.parent_window, Gtk.DialogFlags.MODAL))
         pm.add_op(longop)
         count = 0
         if not config.get('behavior.do-not-show-previously-seen-addon-updates'):
@@ -1210,7 +1208,7 @@ class UpdateAddons:
             OkDialog(_("Installation Errors"),
                      _("The following addons had errors: ") +
                      ", ".join(errors),
-                     parent=self.window)
+                     parent=self.parent_window)
         if count:
             OkDialog(_("Done downloading and installing addons"),
                      # translators: leave all/any {...} untranslated
@@ -1218,12 +1216,12 @@ class UpdateAddons:
                                          "{number_of} addons were installed.",
                                          count).format(number_of=count),
                         _("If you have installed a 'Gramps View', you will need to restart Gramps.")),
-                     parent=self.window)
+                     parent=self.parent_window)
         else:
             OkDialog(_("Done downloading and installing addons"),
                      _("No addons were installed."),
-                     parent=self.window)
-        self.window.destroy()
+                     parent=self.parent_window)
+        self.close()
 
 #-------------------------------------------------------------------------
 #
