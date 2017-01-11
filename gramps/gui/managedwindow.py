@@ -154,6 +154,16 @@ class GrampsWindowManager:
                 return self.id2item[key]
         return None
 
+    def find_modal_window(self, window):
+        """ This finds a ManagedWindow that is modal, if any, excluding the
+        'window' that is a parameter.  There should be only one.
+        If no ManagedWindow is modal, returns None.
+        """
+        for dummy, item in self.id2item.items():
+            if item.window != window and item.window.get_modal():
+                return item.window
+        return None
+
     def close_track(self, track):
         # This is called when item needs to be closed
         # Closes all its children and then removes the item from the tree.
@@ -256,7 +266,7 @@ class GrampsWindowManager:
         if not isinstance(item, list):
             def func(obj):
                 if item.window_id and self.id2item.get(item.window_id):
-                    self.id2item[item.window_id].present()
+                    self.id2item[item.window_id].__present()
         else:
             def func(obj):
                 pass
@@ -346,7 +356,10 @@ class ManagedWindow:
                 # Proceed with the class.
                 window = Gtk.Dialog()  # Some Gtk window object to manage
                 self.set_window(window, None, None)  # See set_window def below
+                # setup window size, position tracking configuration
+                self.setup_configs(self, "interface.mywindow", 680, 400)
                 ...
+                self.close()
 
             def build_menu_names(self, obj):
                 ''' Define menu labels.  If your ManagedWindow can have
@@ -402,9 +415,10 @@ class ManagedWindow:
         self.vert_position_key = None
         self.__refs_for_deletion = []
         self.modal = modal
+        self.other_modal_window = None
 
         if uistate and uistate.gwm.get_item_from_id(window_key):
-            uistate.gwm.get_item_from_id(window_key).present()
+            uistate.gwm.get_item_from_id(window_key).__present()
             raise WindowActiveError('This window is already active')
         else:
             self.window_id = window_key
@@ -433,10 +447,8 @@ class ManagedWindow:
                 managed_parent = self.uistate.gwm.get_item_from_track(
                     parent_item_track)
                 self.parent_window = managed_parent.window
-                self.parent_modal = managed_parent.modal
             else:
                 # On the top level: we use gramps top window
-                self.parent_modal = False
                 if self.uistate:
                     self.parent_window = self.uistate.window
                 else:
@@ -474,10 +486,14 @@ class ManagedWindow:
             self.window.connect('delete-event', self.close)
         if self.modal:
             self.window.set_modal(True)
-        if self.parent_modal:
-            self.parent_window.set_modal(False)
+        # The following makes sure that we only have one modal window open;
+        # if more the older ones get temporarily made non-modal.
+        self.other_modal_window = self.uistate.gwm.find_modal_window(window)
+        if self.other_modal_window:
+            self.other_modal_window.set_modal(False)
             self.window.set_modal(True)
             self.modal = True
+
 
     def get_window(self):
         """
@@ -522,16 +538,19 @@ class ManagedWindow:
         self.get_widget(button_name).connect('clicked', function)
 
     def show(self):
-        if self.isWindow :
-            self.set_transient_for(self.parent_window)
-            self.opened = True
-            self.show_all()
-
-        else :
-            assert self.window, "ManagedWindow: self.window does not exist!"
+        """ The following covers a case where there are multiple modal windows
+        to be open; possibly not in parent child relation.  If this occurs,
+        we use most recent modal window as parent.  This occurs during startup
+        when both the 'Available Gramps Updates for Addons' and 'Family Trees'
+        windows are started by the viewmanager.
+        """
+        assert self.window, "ManagedWindow: self.window does not exist!"
+        if self.other_modal_window:
+            self.window.set_transient_for(self.other_modal_window)
+        else:
             self.window.set_transient_for(self.parent_window)
-            self.opened = True
-            self.window.show_all()
+        self.opened = True
+        self.window.show_all()
 
     def close(self, *obj):
         """
@@ -544,20 +563,18 @@ class ManagedWindow:
         self.clean_up()
         self.uistate.gwm.close_track(self.track)
         self.opened = False
-        if self.parent_modal:
-            self.parent_window.set_modal(True)
+        # put a previously modal window back to modal, now that we are closing
+        if self.other_modal_window:
+            self.other_modal_window.set_modal(True)
         self.parent_window.present()
 
-    def present(self):
+    def __present(self):
         """
         Present window (unroll/unminimize/bring to top).
         """
-        if self.isWindow :
-            self.present(self)
-        else :
-            assert hasattr(self, 'window'), \
-                   "ManagedWindow: self.window does not exist!"
-            self.window.present()
+        assert hasattr(self, 'window'), \
+               "ManagedWindow: self.window does not exist!"
+        self.window.present()
 
     def _set_size(self):
         """
