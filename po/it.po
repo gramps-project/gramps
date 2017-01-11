@@ -57,20 +57,20 @@
 #
 # Marco Molteni <molter@gufi.org>, 2001-2002;.
 # Lorenzo Cappelletti <lorenzo.cappelletti@email.it>, 2003.
-# Luigi Toscano <luigi.toscano@tiscali.it>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016.
+# Luigi Toscano <luigi.toscano@tiscali.it>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-05 09:38+0100\n"
-"PO-Revision-Date: 2016-01-11 01:40+0100\n"
+"PO-Revision-Date: 2017-01-11 01:55+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 2.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -1608,6 +1608,7 @@ msgid ""
 "Use the --force-unlock option if you are sure that the database is not in "
 "use."
 msgstr ""
+"Usare l'opzione --force-unlock se si è certi che il database non sia in uso."
 
 #. already errors encountered. Show first one on terminal and exit
 #: ../gramps/cli/grampscli.py:332
@@ -1639,7 +1640,7 @@ msgstr "=nomefile"
 
 #: ../gramps/cli/plug/__init__.py:265
 msgid "Output file name. MANDATORY"
-msgstr ""
+msgstr "Nome del file di output. RICHIESTO."
 
 #: ../gramps/cli/plug/__init__.py:266
 msgid "=format"
@@ -1718,7 +1719,7 @@ msgstr ""
 "accettabili"
 
 #: ../gramps/cli/plug/__init__.py:484
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s="
 "%(notranslate3)s'."
@@ -1729,7 +1730,7 @@ msgstr ""
 #: ../gramps/cli/plug/__init__.py:490
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
-msgstr "Usare «%(notranslate)s» per vedere i valori validi."
+msgstr "Usare «%(notranslate)s» per vedere valori validi."
 
 #: ../gramps/cli/plug/__init__.py:509
 #, python-format
@@ -2103,9 +2104,8 @@ msgstr ""
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "calculated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:482
-#, fuzzy
 msgid "calculated-date|"
-msgstr "calcolata"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:501
 #, python-brace-format
@@ -3496,17 +3496,16 @@ msgid "Matches a citation with a source with a specified Gramps ID"
 msgstr "Estrae le citazioni con fonte avente un ID Gramps specifico"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:52
-#, fuzzy
 msgid "Citations having source notes containing <text>"
-msgstr "Citazioni con note fonte contenenti <sottostringa>"
+msgstr "Citazioni con note fonte contenenti <testo>"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:53
-#, fuzzy
 msgid ""
 "Matches citations whose source notes contain a substring or match a regular "
 "expression"
 msgstr ""
-"Estrae le citazioni le cui note contengono testo corrispondente ad "
+"Estrae le citazioni le cui note fonte contengono una sotto-stringa o"
+" corrispondono ad "
 "un'espressione regolare"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:48
@@ -3545,7 +3544,7 @@ msgstr "Citazioni con volume/pagina contenenti <testo>"
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:44
 msgid "Matches citations whose Volume/Page contains a certain substring"
 msgstr ""
-"Estrae le citazioni il cui volume/pagina contiene una certa sottostringa"
+"Estrae le citazioni il cui volume/pagina contiene una certa sotto-stringa"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:45
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:43
@@ -5040,17 +5039,17 @@ msgstr ""
 "persona specificata"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:47
-#, fuzzy
 msgid "Descendant family members of <filter> match"
-msgstr "Membri della famiglia discendenti da <persona>"
+msgstr ""
+"Membri della famiglia discendenti dalle persone corrispondenti a <filtro>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:49
-#, fuzzy
 msgid ""
 "Matches people that are descendants or the spouse of anybody matched by a "
 "filter"
 msgstr ""
-"Estrae le persone che discendono da qualcuno corrispondente ad un filtro"
+"Estrae le persone che discendono da o sono coniugi di qualcuno corrispondente"
+" ad un filtro"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:46
 msgid "Descendants of <person>"
@@ -5426,9 +5425,8 @@ msgstr "Nome:"
 #: ../gramps/gen/filters/rules/place/_hasdata.py:49
 #: ../gramps/gui/editors/filtereditor.py:112
 #: ../gramps/gui/editors/filtereditor.py:557
-#, fuzzy
 msgid "Place type:"
-msgstr "Tipo nome"
+msgstr "Tipo luogo:"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:50
 #: ../gramps/gui/glade/editplace.glade:213
@@ -5570,14 +5568,12 @@ msgid "Matches places with the particular tag"
 msgstr "Estrae i luoghi con una particolare etichetta"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:49
-#, fuzzy
 msgid "Places matching a title"
-msgstr "Luoghi corrispondenti al <filtro>"
+msgstr "Luoghi corrispondenti ad un titolo"
 
 #: ../gramps/gen/filters/rules/place/_hastitle.py:50
-#, fuzzy
 msgid "Matches places with a particular title"
-msgstr "Estrae i luoghi con una particolare etichetta"
+msgstr "Estrae i luoghi con un titolo particolare"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:49
 #: ../gramps/gui/glade/editplaceref.glade:244
@@ -5873,18 +5869,16 @@ msgid "Matches sources with a certain number of repository references"
 msgstr "Estrae le fonti con un certo numero di riferimenti a depositi"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:44
-#, fuzzy
 msgid "Sources with repository reference containing <text> in \"Call Number\""
-msgstr "Fonti con contenenti <sottostringa>"
+msgstr "Fonti con riferimento a deposito contente <testo> in «Segnatura»"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:45
-#, fuzzy
 msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
 msgstr ""
-"Estrae le fonti le cui note contengono testo corrispondente ad una "
-"sottostringa"
+"Estrae le fonti con riferimenti a deposito contenti\n"
+"una sottostringa nella «Segnatura»"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:49
 msgid "Sources with the <tag>"
@@ -5903,17 +5897,17 @@ msgid "Matches sources matched by the specified filter name"
 msgstr "Estrae le fonti che corrispondono al filtro indicato"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:44
-#, fuzzy
 msgid "Sources with repository reference matching the <repository filter>"
-msgstr "Eventi con fonti che corrispondono al <filtro fonti>"
+msgstr ""
+"Fonti con riferimenti a deposito che corrispondono al <filtro depositi>"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:45
-#, fuzzy
 msgid ""
 "Matches sources with a repository reference that match a certain\n"
 "repository filter"
 msgstr ""
-"Estrae le persone che hanno eventi corrispondenti ad un certo filtro eventi"
+"Estrae le fonti con riferimenti a deposito che corrispondono\n"
+"ad un certo filtro per depositi"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:43
 msgid "Sources with title containing <text>"
@@ -7083,7 +7077,7 @@ msgstr "Distretto"
 
 #: ../gramps/gen/lib/placetype.py:82
 msgid "Borough"
-msgstr ""
+msgstr "Circoscrizione"
 
 #: ../gramps/gen/lib/placetype.py:83
 msgid "Municipality"
@@ -8197,10 +8191,10 @@ msgid "Private"
 msgstr "Privato"
 
 #: ../gramps/gen/recentfiles.py:236
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Unable to open list of recent DBs file {fname}: {error}"
 msgstr ""
-"Impossibile aprire l'elenco di file di banche dati recenti {file}: {error}"
+"Impossibile aprire l'elenco di file di banche dati recenti {fname}: {error}"
 
 #: ../gramps/gen/recentfiles.py:240
 #, python-brace-format
@@ -8210,6 +8204,11 @@ msgid ""
 "If you're sure there is no problem with other files, delete it, and restart "
 "Gramps."
 msgstr ""
+"Errore analizzando l'elenco di banche dati recenti dal file {fname}:"
+" {error}.\n"
+"Questo potrebbe indicare un danno nei file.\n"
+"Se si è sicuri dell'assenza di problemi in altri file, allora lo si può"
+" eliminare e riavviare Gramps."
 
 #: ../gramps/gen/relationship.py:827
 #: ../gramps/plugins/view/pedigreeview.py:1496
@@ -8656,22 +8655,20 @@ msgid "the filter"
 msgstr "il filtro"
 
 #: ../gramps/gen/utils/grampslocale.py:849
-#, fuzzy
 msgid "the citation"
-msgstr "Ogni citazione"
+msgstr "la citazione"
 
 #: ../gramps/gen/utils/grampslocale.py:851
 msgid "See details"
 msgstr "Vedere i dettagli"
 
 #: ../gramps/gen/utils/image.py:124
-#, fuzzy
 msgid ""
 "WARNING: PIL module not loaded.  Image cropping in report files will be "
 "impaired."
 msgstr ""
-"ATTENZIONE: il modulo PIL non è caricato. Le funzionalità relative al "
-"ritaglio di immagini nei resoconti non saranno funzionanti."
+"ATTENZIONE: il modulo PIL non è caricato. Il ritaglio delle immagini nei file"
+" dei resoconti non sarà funzionante."
 
 #: ../gramps/gen/utils/keyword.py:54
 msgid "Person|TITLE"
@@ -10239,7 +10236,7 @@ msgstr ""
 #: ../gramps/gui/dbloader.py:330 ../gramps/gui/dbloader.py:344
 #: ../gramps/gui/dbloader.py:372
 msgid "Are you sure you want to upgrade this Family Tree?"
-msgstr "Si desidera aggiornare davvero questo albero genealogico?"
+msgstr "Si vuole davvero aggiornare questo albero genealogico?"
 
 #: ../gramps/gui/dbloader.py:333 ../gramps/gui/dbloader.py:347
 #: ../gramps/gui/dbloader.py:375
@@ -10259,16 +10256,18 @@ msgid "Cancel"
 msgstr "Annulla"
 
 #: ../gramps/gui/dbloader.py:358
-#, fuzzy
 msgid "Are you sure you want to downgrade this Family Tree?"
 msgstr ""
-"Si desidera tornare alla versione precedente di questo albero genealogico?"
+"Si vuole davvero tornare alla versione precedente di questo albero"
+" genealogico?"
 
 #: ../gramps/gui/dbloader.py:361
 msgid ""
 "I have made a backup,\n"
 "please downgrade my Family Tree"
 msgstr ""
+"La copia di sicurezza è stata effettuata, ripristinare\n"
+"la versione una versione precedente dell'albero genealogico."
 
 #: ../gramps/gui/dbloader.py:442
 msgid "All files"
@@ -11315,22 +11314,18 @@ msgid "Create and add a new place name"
 msgstr "Crea e aggiunge un nuovo nome di luogo"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:54
-#, fuzzy
 msgid "Remove the existing place name"
 msgstr "Rimuove il nome esistente del luogo"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:55
-#, fuzzy
 msgid "Edit the selected place name"
 msgstr "Modifica il nome del luogo selezionato"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:56
-#, fuzzy
 msgid "Move the selected place name upwards"
 msgstr "Sposta in alto il nome del luogo selezionato"
 
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:57
-#, fuzzy
 msgid "Move the selected place name downwards"
 msgstr "Sposta in basso il nome del luogo selezionato"
 
@@ -11541,6 +11536,11 @@ msgid ""
 "location of the information referenced within the source in the 'Volume/"
 "Page' field."
 msgstr ""
+"Una fonte è qualsiasi cosa (testimonianza personale, registrazione video,"
+" fotografia, rubrica di giornale, lapide,...) da cui possono essere estratte"
+" delle informazioni. Per creare una citazione, selezionare per prima cosa la"
+" fonte selezionata, e quindi registrare la posizione delle informazioni a cui"
+" fa riferimento la fonte nel campo «Volume/pagina»."
 
 #: ../gramps/gui/editors/editcitation.py:303
 msgid "Cannot save citation. ID already exists."
@@ -12466,7 +12466,6 @@ msgstr "Il nome del luogo non può essere vuoto"
 
 #: ../gramps/gui/editors/editplaceref.py:59
 #: ../gramps/gui/editors/editplaceref.py:98
-#, fuzzy
 msgid "Place Reference Editor"
 msgstr "Editor riferimento luogo"
 
@@ -12818,9 +12817,8 @@ msgstr ""
 "senza fonti."
 
 #: ../gramps/gui/editors/filtereditor.py:562
-#, fuzzy
 msgid "Include selected Gramps ID"
-msgstr "Includi gli ID Gramps"
+msgstr "Includi gli ID Gramps selezionati"
 
 #: ../gramps/gui/editors/filtereditor.py:564
 msgid "Use exact case of letters"
@@ -12978,7 +12976,7 @@ msgstr "Per selezionare una fonte, trascinare oppure usare i pulsanti"
 
 #: ../gramps/gui/editors/objectentries.py:343
 msgid "First add a source using the button"
-msgstr ""
+msgstr "Per prima cosa aggiungere una fonte usando il pulsante"
 
 #: ../gramps/gui/editors/objectentries.py:344
 msgid "Edit source"
@@ -13388,6 +13386,8 @@ msgid ""
 "If you check this button, your next answer will apply to the rest of the "
 "selected items"
 msgstr ""
+"Se il pulsante viene premuto, la risposta successiva si applicherà al resto"
+" degli elementi selezionati"
 
 #: ../gramps/gui/glade/dialog.glade:762 ../gramps/gui/glade/dialog.glade:778
 #: ../gramps/gui/glade/dialog.glade:889
@@ -13978,7 +13978,7 @@ msgstr "Con_tea:"
 msgid "Third level of place division. Eg., in the USA a county."
 msgstr ""
 "Terzo livello della suddivisione di un luogo. Ad esempio, una contea negli "
-"USA"
+"USA."
 
 #: ../gramps/gui/glade/editlocation.glade:193
 msgid "_State:"
@@ -14105,11 +14105,10 @@ msgid "Double click image to view in an external viewer"
 msgstr "Doppio clic sull'immagine per aprirla in un visualizzatore esterno"
 
 #: ../gramps/gui/glade/editmediaref.glade:533
-#, fuzzy
 msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
 msgstr ""
-"Tipo dell'oggetto multimediale come indicato dal computer, ad es. Immagine, "
-"Video, ..."
+"Tipo dell'oggetto multimediale come indicato dal computer, ad es. immagine, "
+"video, ..."
 
 #: ../gramps/gui/glade/editmediaref.glade:650
 msgid "Select a file"
@@ -14142,7 +14141,6 @@ msgid "Suffi_x:"
 msgstr "S_uffisso:"
 
 #: ../gramps/gui/glade/editname.glade:236
-#, fuzzy
 msgid "C_all Name:"
 msgstr "Ps_eudonimo:"
 
@@ -14188,7 +14186,7 @@ msgstr "Un nome descrittivo dato al luogo o in aggiunta al nome ufficiale."
 #: ../gramps/gui/glade/editname.glade:334
 #, fuzzy
 msgid "Given Name(s) "
-msgstr "Nome"
+msgstr "Nome/i"
 
 #: ../gramps/gui/glade/editname.glade:385
 msgid "_Family Nick Name:"
@@ -14278,7 +14276,7 @@ msgstr ""
 #: ../gramps/gui/glade/editnote.glade:103
 #, fuzzy
 msgid "Styled Text Editor"
-msgstr "Editor stile"
+msgstr "Editor di testo con stile"
 
 #: ../gramps/gui/glade/editnote.glade:148
 msgid "A type to classify the note."
@@ -14400,12 +14398,19 @@ msgid ""
 "occasions. Events can be shared between people, each indicating their role "
 "in the event."
 msgstr ""
+"Descrizione dell'associazione, ad es. padrino, amica, ...\n"
+"\n"
+"Nota: usare invece gli eventi per le relazioni che collegano un intervalli"
+" temporali od occasioni specifiche. Gli eventi possono essere condivisi tra"
+" le persone, e per ognuna si può indicare il relativo role nell'evento."
 
 #: ../gramps/gui/glade/editpersonref.glade:176
 msgid ""
 "Use the select button to choose a person that has an association to the "
 "edited person."
 msgstr ""
+"Usare il pulsante selezionato per scegliere una persona che ha"
+" un'associazione con la persona che viene modificata."
 
 #: ../gramps/gui/glade/editpersonref.glade:193
 msgid "Select a person that has an association to the edited person."
@@ -14502,6 +14507,8 @@ msgid ""
 "Language in which the name is written. Valid values are two character ISO "
 "codes. For example:  en, fr, de, nl ..."
 msgstr ""
+"Lingua in cui il nome è scritto. I valori validi sono i codici ISO a due"
+" caratteri. Ad esempio: en, fr, de, nl, it, ..."
 
 #: ../gramps/gui/glade/editplaceref.glade:280
 msgid ""
@@ -15528,6 +15535,15 @@ msgid ""
 "See the Gramps README documentation for installation prerequisites,\n"
 "typically located in /usr/share/doc/gramps.\n"
 msgstr ""
+"Le traduzioni di GTK per la lingua attuale (%(language)s) non sono"
+" disponibili.\n"
+"%(bold_start)sGramps%(bold_end)s continuerà comunque.\n"
+"Di conseguenza l'interfaccia sarà probabilmente non perfettamente"
+" funzionante, specialmente per le lingue scritte da destra verso sinistra.\n"
+"\n"
+"Consultare la documentazione di Gramps README per i prerequisiti di"
+" installazione,\n"
+"il file si trova normalmente in /usr/share/doc/gramps.\n"
 
 #: ../gramps/gui/grampsgui.py:230 ../gramps/guiQML/grampsqml.py:99
 msgid "Error parsing arguments"
@@ -16576,9 +16592,8 @@ msgid "Name of the book. MANDATORY"
 msgstr "Nome del libro. RICHIESTO"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:374
-#, fuzzy
 msgid "Your database is empty."
-msgstr "Il file GEDCOM è vuoto."
+msgstr "Il database è vuoto"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:416
 msgid "New Book"
@@ -16970,7 +16985,6 @@ msgstr "Seleziona fonte o citazione"
 
 #: ../gramps/gui/selectors/selectcitation.py:75
 #: ../gramps/plugins/view/citationtreeview.py:93
-#, fuzzy
 msgid "Source: Title or Citation: Volume/Page"
 msgstr "Fonte: titolo o citazione: volume/pagina"
 
@@ -17065,6 +17079,8 @@ msgid ""
 "You have no installed dictionaries. Either install one or disable spell "
 "checking"
 msgstr ""
+"Non ci sono dizionari installati. Bisogna installarne almeno uno o"
+" disabilitare il controllo ortografico"
 
 #: ../gramps/gui/spell.py:151
 #, python-format
@@ -17093,7 +17109,7 @@ msgstr ""
 
 #: ../gramps/gui/undohistory.py:57
 msgid "11"
-msgstr ""
+msgstr "11"
 
 #: ../gramps/gui/undohistory.py:73
 msgid "Undo History"
@@ -27782,15 +27798,15 @@ msgstr "Sostituisci «%(map)s» con =>"
 #: ../gramps/plugins/lib/maps/geography.py:384
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
-msgstr "Pulisci la cache dei taselli di «%(map)s»"
+msgstr "Pulisci la cache dei taselli di «%(map)s»."
 
 #: ../gramps/plugins/lib/maps/geography.py:824
 msgid "You can't use the print functionality"
-msgstr ""
+msgstr "Non è possibile usare la funzione di stampa."
 
 #: ../gramps/plugins/lib/maps/geography.py:825
 msgid "Your Gtk version is too old."
-msgstr ""
+msgstr "La versione di Gtk è troppo vecchia."
 
 #: ../gramps/plugins/lib/maps/geography.py:866
 #: ../gramps/plugins/view/geoclose.py:535
@@ -32716,7 +32732,7 @@ msgstr "Carattere del testo"
 #: ../gramps/plugins/view/fanchartview.py:280
 #, fuzzy
 msgid "Gender colors"
-msgstr "Colori per il sesso"
+msgstr "Colori del sesso"
 
 #: ../gramps/plugins/view/fanchartdescview.py:283
 #: ../gramps/plugins/view/fanchartview.py:281
@@ -32732,7 +32748,7 @@ msgstr "Gradiente in base all'età (0-100)"
 #: ../gramps/plugins/view/fanchartview.py:284
 #, fuzzy
 msgid "Single main (filter) color"
-msgstr "Colore principale singolo (filtro)"
+msgstr "Colore principale (per filtro) singolo"
 
 #: ../gramps/plugins/view/fanchartdescview.py:287
 #: ../gramps/plugins/view/fanchartview.py:285
@@ -32745,14 +32761,16 @@ msgid "White"
 msgstr "Bianco"
 
 #: ../gramps/plugins/view/fanchartdescview.py:289
+#, fuzzy
 #: ../gramps/plugins/view/fanchartview.py:287
 msgid "Color scheme classic report"
-msgstr ""
+msgstr "Schema di colore classico per resconto"
 
 #: ../gramps/plugins/view/fanchartdescview.py:290
+#, fuzzy
 #: ../gramps/plugins/view/fanchartview.py:288
 msgid "Color scheme classic view"
-msgstr ""
+msgstr "Schema di colore classico per la vista"
 
 #: ../gramps/plugins/view/fanchartdescview.py:299
 #: ../gramps/plugins/view/fanchartview.py:297
@@ -32825,9 +32843,8 @@ msgid "No preview available"
 msgstr "Anteprima non disponibile"
 
 #: ../gramps/plugins/view/fanchartview.py:316
-#, fuzzy
 msgid "Show children ring"
-msgstr "Figli mancanti"
+msgstr "Mostrare l'anello dei figli"
 
 #: ../gramps/plugins/view/geoclose.py:140
 #: ../gramps/plugins/view/geography.gpr.py:149
@@ -32836,7 +32853,7 @@ msgstr "Hanno avuto la possibilità di incontrarsi?"
 
 #: ../gramps/plugins/view/geoclose.py:171
 msgid "GeoClose"
-msgstr ""
+msgstr "GeoVicinanza"
 
 #: ../gramps/plugins/view/geoclose.py:223
 #, python-format
@@ -32857,10 +32874,13 @@ msgid "You must choose one reference person."
 msgstr "Bisogna scegliere una persona di riferimento."
 
 #: ../gramps/plugins/view/geoclose.py:240
+#, fuzzy
 msgid ""
 "Go to the person view and select the people you want to compare. Return to "
 "this view and use the history."
 msgstr ""
+"Va alla vista delle persone e seleziona le persone da confrontare. Tornando a"
+" questa vista si può usare la cronologia."
 
 #: ../gramps/plugins/view/geoclose.py:289
 msgid "reference _Person"
@@ -32872,9 +32892,8 @@ msgid "Select the person which is the reference for life ways"
 msgstr "Seleziona la persona di riferimento per il modo di vita"
 
 #: ../gramps/plugins/view/geoclose.py:305
-#, fuzzy
 msgid "Select the person which will be our reference."
-msgstr "Selezionare la persona che sarà il riferimento."
+msgstr "Seleziona la persona che sarà il riferimento."
 
 #: ../gramps/plugins/view/geoclose.py:399
 #: ../gramps/plugins/view/geofamclose.py:462
@@ -32898,6 +32917,12 @@ msgid ""
 "The value 1 means about 4.6 miles or 7.5 kms.\n"
 "The value is in tenth of degree."
 msgstr ""
+"Il raggio di probabilità della zona di incontro.\n"
+"La zona colorata è approssimativa.\n"
+"La zona di incontro è mostrata solo per la persona di riferimento.\n"
+"Il valore 9 indica circa 42 miglia o 67 km.\n"
+"Il valore 1 indica circa 4,6 miglia o 7,5 km.\n"
+"Il valore è in decimi di grado."
 
 #: ../gramps/plugins/view/geoclose.py:586
 #: ../gramps/plugins/view/geofamclose.py:731
@@ -32929,7 +32954,6 @@ msgstr "Mostra tutti gli eventi"
 #: ../gramps/plugins/view/geoevents.py:392
 #: ../gramps/plugins/view/geoplaces.py:382
 #: ../gramps/plugins/view/geoplaces.py:387
-#, fuzzy
 msgid "Centering on Place"
 msgstr "Centrare su un luogo"
 
@@ -32939,9 +32963,8 @@ msgid "Have these two families been able to meet?"
 msgstr "Hanno mai avuto la possibilità di incontrarsi, queste due famiglie?"
 
 #: ../gramps/plugins/view/geofamclose.py:169
-#, fuzzy
 msgid "GeoFamClose"
-msgstr "GeoFamiglia"
+msgstr "GeoVicinanzaFamiglia"
 
 #: ../gramps/plugins/view/geofamclose.py:206
 #: ../gramps/plugins/view/geofamily.py:279
@@ -33016,13 +33039,18 @@ msgid ""
 "The value 1 means about 4.6 miles or 7.5 kms.\n"
 "The value is in tenth of degree."
 msgstr ""
+"Il raggio di probabilità della zona di incontro.\n"
+"La zona colorata è approssimativa.\n"
+"La zona di incontro è mostrata solo per la famiglia di riferimento.\n"
+"Il valore 9 indica circa 42 miglia o 67 km.\n"
+"Il valore 1 indica circa 4,6 miglia o 7,5 km.\n"
+"Il valore è in decimi di grado."
 
 #: ../gramps/plugins/view/geofamily.py:119
 msgid "Family places map"
 msgstr "Mappa luoghi familiari"
 
 #: ../gramps/plugins/view/geofamily.py:140
-#, fuzzy
 msgid "GeoFamily"
 msgstr "GeoFamiglia"
 
@@ -33135,7 +33163,7 @@ msgstr "Discendenza della persona attiva."
 
 #: ../gramps/plugins/view/geomoves.py:172
 msgid "GeoMoves"
-msgstr ""
+msgstr "GeoSpostamenti"
 
 #: ../gramps/plugins/view/geomoves.py:470
 #, python-format
@@ -33163,7 +33191,6 @@ msgid "Person places map"
 msgstr "Mappa luoghi persona"
 
 #: ../gramps/plugins/view/geoperson.py:171
-#, fuzzy
 msgid "GeoPerson"
 msgstr "GeoPersona"
 
@@ -33202,7 +33229,6 @@ msgid "Places map"
 msgstr "Mappa dei luoghi"
 
 #: ../gramps/plugins/view/geoplaces.py:142
-#, fuzzy
 msgid "GeoPlaces"
 msgstr "GeoLuoghi"
 
@@ -33230,7 +33256,7 @@ msgstr "È possibile cambiare questo valore nelle opzioni geografiche."
 #: ../gramps/plugins/view/geoplaces.py:307
 msgid "In this case, it may take time to show all markers."
 msgstr ""
-"In questo caso, mostrare tutti i marcatori potrebbe richiedere del tempo"
+"In questo caso, mostrare tutti i marcatori potrebbe richiedere del tempo."
 
 #: ../gramps/plugins/view/geoplaces.py:339
 #: ../gramps/plugins/view/geoplaces.py:363
@@ -33798,11 +33824,9 @@ msgid "Narrative"
 msgstr "Narrazione"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1609
-#, fuzzy, python-format
+#, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
-msgstr ""
-"Generato da %(gramps_home_html_start)sGramps%(html_end)s %(version)s il "
-"%(date)s"
+msgstr "Generato da %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1618
 #, python-format
@@ -33810,9 +33834,9 @@ msgid "Last change was the %(date)s"
 msgstr "Ultima modifica il %(date)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1620
-#, fuzzy, python-format
+#, python-format
 msgid " on %(date)s"
-msgstr "%(date)s"
+msgstr " il %(date)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1632
 #, python-format
@@ -34225,7 +34249,6 @@ msgid "Not siblings"
 msgstr "Non fratelli/sorelle"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6539
-#, fuzzy
 msgid "Relation to main person"
 msgstr "Relazione con la persona principale"
 
@@ -34540,8 +34563,9 @@ msgid "Whether to include a gallery of media objects"
 msgstr "Indica se includere una galleria di oggetti multimediali"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8285
+#, fuzzy
 msgid "Create and only use thumbnail- sized images"
-msgstr ""
+msgstr "Crea ed usa solo immagini di dimensione miniatura"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8287
 msgid ""
@@ -34810,6 +34834,9 @@ msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
 msgstr ""
+"Se aggiungere o meno una singola pagina della mappa che mostri tutti i luoghi"
+" in questa pagina. Questo permette di vedere come la famiglia ha viaggiato"
+" attraverso la nazione."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8483
 #, fuzzy
@@ -34833,6 +34860,8 @@ msgid ""
 "Select which option that you would like to have for the Google Maps Family "
 "Map pages..."
 msgstr ""
+"Selezionare quali opzioni abilitare per le pagine delle mappe familiari di"
+" Google Maps..."
 
 #. adding title to hyperlink menu for screen readers and braille writers
 #: ../gramps/plugins/webreport/narrativeweb.py:8949
