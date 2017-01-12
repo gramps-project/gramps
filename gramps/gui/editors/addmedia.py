@@ -88,7 +88,7 @@ class AddMedia(ManagedWindow):
         The media is updated with the information, and on save, the
         callback function is called
         """
-        ManagedWindow.__init__(self, uistate, track, self)
+        ManagedWindow.__init__(self, uistate, track, self, modal=True)
 
         self.dbase = dbstate.db
         self.obj = media
@@ -140,7 +140,6 @@ class AddMedia(ManagedWindow):
                                              section=WIKI_HELP_SEC))
         self.cancel_button.connect('clicked', self.close)
         self.show()
-        self.modal_call()
 
     def build_menu_names(self, obj):
         """
@@ -192,6 +191,7 @@ class AddMedia(ManagedWindow):
         self._cleanup_on_exit()
         if self.callback:
             self.callback(self.obj)
+        self.close()
 
     def on_name_changed(self, *obj):
         """
