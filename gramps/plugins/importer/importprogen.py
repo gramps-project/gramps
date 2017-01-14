@@ -4,7 +4,7 @@
 #
 # Copyright (C) 2008-2011  Kees Bakker
 # Copyright (C) 2008       Brian G. Matherly
-# Copyright (C) 2013-2016  Alois Poettker <alois.poettker@gmx.de>
+# Copyright (C) 2013-2017  Alois Poettker <alois.poettker@gmx.de>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -101,6 +101,7 @@ def _find_from_handle(progen_id, table):
     if not intid:
         intid = create_id()
         table[progen_id] = intid
+
     return intid
 
 def _read_mem(bname):
@@ -118,23 +119,24 @@ def _read_mem(bname):
     else:
         fname = bname + '.mem'
 
-    file_ = open(fname, "rb")
-    LOG.debug("The current system is %s-endian", sys.byteorder)
+    with open(fname, "rb") as file_:
+        LOG.debug("The current system is %s-endian", sys.byteorder)
 
-    # The input file comes from [what was originally] a DOS machine so will be
-    # little-endian, regardless of the 'native' byte order of the host system
-    recfmt = "<i28s"
-    reclen = struct.calcsize(str(recfmt))
-    # print("# reclen = %d" % reclen)
+        # The input file comes from [what was originally] a DOS machine so will
+        # be little-endian, regardless of the 'native' byte order of the host
+        recfmt = "<i28s"
+        reclen = struct.calcsize(str(recfmt))
+        # print("# reclen = %d" % reclen)
 
-    mems = []
-    while 1:
-        buf = file_.read(reclen)
-        if not buf:
-            break
-        (recno, text) = struct.unpack(recfmt, buf)
-        mems.append([recno, text])
-    return mems
+        mems = []
+        while 1:
+            buf = file_.read(reclen)
+            if not buf:
+                break
+            (recno, text) = struct.unpack(recfmt, buf)
+            mems.append([recno, text])
+
+        return mems
 
 def _read_recs(table, bname):
     """
@@ -145,23 +147,23 @@ def _read_recs(table, bname):
     else:
         fname = bname + table.fileext.lower()
 
-    file_ = open(fname, "rb")
-    recfmt = table.recfmt
-    LOG.info("# %s - recfmt = %s" % (table['name1'], recfmt))
-    reclen = struct.calcsize(str(recfmt))
-    LOG.info("# %s - reclen = %d" % (table['name1'], reclen))
+    with open(fname, "rb") as file_:
+        recfmt = table.recfmt
+        LOG.info("# %s - recfmt = %s" % (table['name1'], recfmt))
+        reclen = struct.calcsize(str(recfmt))
+        LOG.info("# %s - reclen = %d" % (table['name1'], reclen))
 
-    recs = []
-    while 1:
-        buf = file_.read(reclen)
-        if not buf:
-            break
-        tups = struct.unpack(recfmt, buf)
-        recs.append(tups)
+        recs = []
+        while 1:
+            buf = file_.read(reclen)
+            if not buf:
+                break
+            tups = struct.unpack(recfmt, buf)
+            recs.append(tups)
 
-    LOG.info("# length %s.recs[] = %d" % (table['name1'], len(recs)))
+        LOG.info("# length %s.recs[] = %d" % (table['name1'], len(recs)))
 
-    return recs
+        return recs
 
 def _get_defname(fname):
     """
@@ -175,7 +177,8 @@ def _get_defname(fname):
     # We will strip the C: and convert the rest to a native pathname. Next, this
     # pathname is compared with <fname>.
 
-    lines = open(fname).readlines()
+    with open(fname) as file_:
+        lines = file_.readlines()
     if not lines[0].startswith(r'\0') or len(lines) < 2:
         raise ProgenError(_("Not a Pro-Gen file"))
 
@@ -214,10 +217,11 @@ def _get_mem_text(mems, i):
         return
 
     i -= 1
-    recno = mems[i][0]
+    recno = mems[i][0] - 1
     text = mems[i][1].decode('cp850')
-    if recno > 0:
-        text += _get_mem_text(mems, recno)
+    while recno >= 0:
+        text += mems[recno][1].decode('cp850')
+        recno = mems[recno][0] - 1
 
     text = text.replace('\033\r', '\n')   # ESC-^M is newline
     text = ESC_CTRLZ.sub('', text)   # ESC-^Z is end of string
@@ -364,6 +368,7 @@ class PG30DefTable(object):
                 fmt += 'i'
             else:
                 pass   # ???? Do we want to know?
+
         return fmt
 
     def get_fields(self):
@@ -813,7 +818,6 @@ class ProgenParser(UpdateCallback):
         """
         Finds or creates a Citation based on Source, Name, Date, Page, Note, Attribute.
         """
-
         if not source_title:
             return None
 
@@ -858,7 +862,7 @@ class ProgenParser(UpdateCallback):
             citation.set_page('%s' % page)
 
             # process Note
-            note = self.__create_note(note_text, NoteType.CUSTOM, "Pro-Gen Export")
+            note = self.__create_note(note_text, NoteType.CUSTOM, "Pro-Gen Import")
             if note and note.handle:
                 citation.add_note(note.handle)
 
@@ -879,6 +883,9 @@ class ProgenParser(UpdateCallback):
         """
         if not note_text:
             return None
+
+        if isinstance(note_text, list):
+            note_text = '\n'.join(note_text)
 
         note = Note()
         note.set(note_text)
@@ -1264,10 +1271,10 @@ class ProgenParser(UpdateCallback):
                 if event_ref:
                     person.add_event_ref(event_ref)
 
-            # process F16 Person Note, F17 Person Info
-            note = recflds[person_ix[16]]   # F16: INDI _COMM / INDI COMM
-            info = recflds[person_ix[17]]   # F17: INDI NOTE
-            note_text = [_f for _f in [info, note] if _f]
+            # process F16 Person Comment, F17 Person Note
+            comm = recflds[person_ix[16]]   # F16: INDI _COMM / INDI COMM
+            note = recflds[person_ix[17]]   # F17: INDI NOTE
+            note_text = [_f for _f in [comm, note] if _f]
             note = self.__create_note(note_text, NoteType.PERSON)
             if note and note.handle:
                 person.add_note(note.handle)
@@ -1290,11 +1297,16 @@ class ProgenParser(UpdateCallback):
                 address = Address()
                 if date:
                     address.set_date_object(date)
-                address.set_street(street)
-                address.set_city(recflds[person_ix[21]])
-                address.set_postal_code(postal_code)
-                address.set_country(country)
-                address.set_phone(phone)
+                if street:
+                    address.set_street(street)
+                if recflds[person_ix[21]]:
+                    address.set_city(recflds[person_ix[21]])
+                if postal_code:
+                    address.set_postal_code(postal_code)
+                if country:
+                    address.set_country(country)
+                if phone:
+                    address.set_phone(phone)
 
                 # Option 1: add Notes to Address
                 note = self.__create_note(info, NoteType.ADDRESS)
@@ -1600,7 +1612,7 @@ class ProgenParser(UpdateCallback):
 
                 if date or place or info or citation:
                     desc = source_text
-                    desc = [_f for _f in [info, source_text] if _f]
+                    desc = [_f for _f in [source_text, info] if _f]
                     desc = desc and '; '.join(desc) or None
                     event, marl_ref = self.__create_event_and_ref \
                         (EventType.MARR_BANNS, desc, date, place, citation, '',
@@ -1687,9 +1699,9 @@ class ProgenParser(UpdateCallback):
                         if attr:
                             family.add_attribute(attr)
 
-                note = recflds[family_ix[6]]   # F06: FAM _COMM/FAM COMM
-                info = recflds[family_ix[7]]   # F07: FAM NOTE
-                note_text = [_f for _f in [info, note] if _f]
+                comm = recflds[family_ix[6]]   # F06: FAM _COMM/FAM COMM
+                note = recflds[family_ix[7]]   # F07: FAM NOTE
+                note_text = [_f for _f in [comm, note] if _f]
                 if note_text:
                     cnt = None
                     if len(note_text) > 0:
