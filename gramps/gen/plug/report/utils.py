@@ -411,7 +411,7 @@ def parents_labels(db, family, glocale):
         if father.gender == 0:
             rel_father = rel_mother
         if mother.gender == 1:
-            rel_mother = _('Father')
+            rel_mother = rel_father
     else:
         rc = get_relationship_calculator(True, glocale)
         rel_father = rc.get_one_relationship(db, mother, father)
