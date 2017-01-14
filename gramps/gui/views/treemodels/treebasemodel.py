@@ -528,11 +528,11 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         Rebuild the data map for a single Gramps object type, where a search
         condition is applied.
         """
-        pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog,
-                                            popup_time=2)
-        status = progressdlg.LongOpStatus(msg=_("Building View"),
-                            total_steps=items, interval=items//20,
-                            can_cancel=True)
+        pmon = progressdlg.ProgressMonitor(
+            progressdlg.StatusProgress, (self.uistate,), popup_time=2,
+            title=_("Loading items..."))
+        status = progressdlg.LongOpStatus(total_steps=items,
+                                          interval=items // 20)
         pmon.add_op(status)
         with gen_cursor() as cursor:
             for handle, data in cursor:
@@ -540,16 +540,13 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
                 if not isinstance(handle, str):
                     handle = handle.decode('utf-8')
                 status.heartbeat()
-                if status.should_cancel():
-                    break
                 self.__total += 1
                 if not (handle in skip or (dfilter and not
                                         dfilter.match(handle, self.db))):
                     _LOG.debug("    add %s %s" % (handle, data))
                     self.__displayed += 1
                     add_func(handle, data)
-        if not status.was_cancelled():
-            status.end()
+        status.end()
 
     def _rebuild_filter(self, dfilter, dfilter2, skip):
         """
