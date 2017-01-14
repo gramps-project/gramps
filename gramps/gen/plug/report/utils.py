@@ -40,10 +40,12 @@ import os
 #------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gen.config import config
 from ...datehandler import get_date
 from ...display.place import displayer as _pd
 from ...utils.file import media_path_full
 from ..docgen import IndexMark, INDEX_TYPE_ALP
+from ...relationship import get_relationship_calculator
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 def _T_(value):
@@ -392,3 +394,27 @@ def get_family_filters(database, family,
         the_filters = [all_families, d_fams, ans]
     the_filters.extend(CustomFilters.get_filters('Family'))
     return the_filters
+
+def parents_labels(db, family, glocale):
+    """
+    Get the label for parent
+    """
+    father = db.get_person_from_handle(family.get_father_handle())
+    mother = db.get_person_from_handle(family.get_mother_handle())
+
+    rel_father = config.get("preferences.father-label")
+    rel_mother = config.get("preferences.mother-label")
+
+    if len(family.get_child_ref_list()) > 0:
+        rel_father = _('Father')
+        rel_mother = _('Mother')
+        if father.gender == 0:
+            rel_father = rel_mother
+        if mother.gender == 1:
+            rel_mother = rel_father
+    else:
+        rc = get_relationship_calculator(True, glocale)
+        rel_father = rc.get_one_relationship(db, mother, father)
+        rel_mother = rc.get_one_relationship(db, father, mother)
+
+    return [rel_father[0].upper()+rel_father[1:].lower(), rel_mother[0].upper()+rel_mother[1:].lower()]

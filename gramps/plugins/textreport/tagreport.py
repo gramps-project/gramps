@@ -245,13 +245,13 @@ class TagReport(Report):
 
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(self._("Father"))
+        self.doc.write_text(self._("Father, Partner, Spouse"))
         self.doc.end_paragraph()
         self.doc.end_cell()
 
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(self._("Mother"))
+        self.doc.write_text(self._("Mother, Partner, Spouse"))
         self.doc.end_paragraph()
         self.doc.end_cell()
 
