@@ -296,7 +296,43 @@ class DateDisplaySR_Base(DateDisplay):
         else:
             return value
 
-    display = DateDisplay.display_formatted
+    def display(self, date):
+        """
+        Return a text string representing the date.
+        """
+        mod = date.get_modifier()
+        cal = date.get_calendar()
+        qual = date.get_quality()
+        start = date.get_start_date()
+        newyear = date.get_new_year()
+
+        qual_str = self._qual_str[qual]
+        span1 = self._span1
+        span2 = self._span2
+        range1 = self._range1
+        range2 = self._range2
+
+        if mod == Date.MOD_TEXTONLY:
+            return date.get_text()
+        elif start == Date.EMPTY:
+            return ""
+        elif mod == Date.MOD_SPAN:
+            d_1 = self.display_cal[cal](start)
+            d_2 = self.display_cal[cal](date.get_stop_date())
+            scal = self.format_extras(cal, newyear)
+            return "%s%s %s %s %s%s" % (qual_str, span1, d_1, span2, d_2,
+                                                            scal)
+        elif mod == Date.MOD_RANGE:
+            d_1 = self.display_cal[cal](start)
+            d_2 = self.display_cal[cal](date.get_stop_date())
+            scal = self.format_extras(cal, newyear)
+            return "%s%s %s %s %s%s" % (qual_str, range1, d_1, range2, d_2,
+                                                            scal)
+        else:
+            text = self.display_cal[date.get_calendar()](start)
+            scal = self.format_extras(cal, newyear)
+            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text,
+                                                scal)
 
 class DateDisplaySR_Latin(DateDisplaySR_Base):
     """
