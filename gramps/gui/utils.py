@@ -700,9 +700,9 @@ def parents_labels(db, family):
     if len(family.get_child_ref_list()) > 0:
         rel_father = _('Father')
         rel_mother = _('Mother')
-        if father.gender == Person.FEMALE:
+        if father.gender == 0:
             rel_father = rel_mother
-        if mother.gender == Person.MALE:
+        if mother.gender == 1:
             rel_mother = _('Father')
     else:
         rc = RelationshipCalculator()
