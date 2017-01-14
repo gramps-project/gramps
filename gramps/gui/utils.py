@@ -703,7 +703,7 @@ def parents_labels(db, family):
         if father.gender == 0:
             rel_father = rel_mother
         if mother.gender == 1:
-            rel_mother = rel_father
+            rel_mother = _('Father')
     else:
         rc = RelationshipCalculator()
         rel_father = rc.get_one_relationship(db, mother, father)
