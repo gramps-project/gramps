@@ -38,7 +38,6 @@ from gi.repository import Pango
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from gramps.gen.config import config
 from gramps.gen.plug.report import utils
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.display.place import displayer as place_displayer
@@ -229,10 +228,10 @@ class MergePerson(ManagedWindow):
                          KEYVAL % {'key': _('Family ID'), 'value': gid})
                 if fname:
                     self.add(tobj, indent,
-                             KEYVAL % {'key': config.get("preferences.father-label"), 'value': fname})
+                             KEYVAL % {'key': _('Father'), 'value': fname})
                 if mname:
                     self.add(tobj, indent,
-                             KEYVAL % {'key': config.get("preferences.mother-label"), 'value': mname})
+                             KEYVAL % {'key': _('Mother'), 'value': mname})
         else:
             self.add(tobj, normal, _("No parents found"))
 

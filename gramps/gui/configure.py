@@ -1072,14 +1072,6 @@ class GrampsPreferences(ConfigureDialog):
         grid.attach(obox, 1, row, 2, 1)
         row += 1
 
-        father_entry = self.add_entry(grid, _("Label for parent male"),
-                               row, 'preferences.father-label')
-        row += 1
-
-        mother_entry = self.add_entry(grid, _("Label for parent female"),
-                               row, 'preferences.mother-label')
-        row += 1
-
         #height multiple surname table
         self.add_pos_int_entry(grid,
                 _('Height multiple surname box (pixels)'),

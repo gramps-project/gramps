@@ -67,7 +67,7 @@ from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.alive import probably_alive
-from gramps.gui.utils import open_file_with_default_application, parents_labels
+from gramps.gui.utils import open_file_with_default_application
 from gramps.gen.datehandler import displayer, get_date
 from gramps.gen.utils.thumbnails import get_thumbnail_image
 from gramps.gen.config import config
@@ -896,9 +896,8 @@ class RelationshipView(NavigationView):
             self.row += 1 # now advance it
         else:
             self.write_label(_("%s:") % _('Parents'), family, True, person)
-            parents = parents_labels(self.dbstate.db, family)
-            self.write_person(parents[0][0].upper()+parents[0][1:].lower(), family.get_father_handle())
-            self.write_person(parents[1][0].upper()+parents[1][1:].lower(), family.get_mother_handle())
+            self.write_person(_('Father'), family.get_father_handle())
+            self.write_person(_('Mother'), family.get_mother_handle())
 
             if self.show_siblings:
                 active = self.get_active()

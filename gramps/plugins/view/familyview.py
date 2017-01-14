@@ -77,8 +77,8 @@ class FamilyView(ListView):
     # column definitions
     COLUMNS = [
         (_('ID'), TEXT, None),
-        (config.get("preferences.father-label"), TEXT, None),
-        (config.get("preferences.mother-label"), TEXT, None),
+        (_('Father'), TEXT, None),
+        (_('Mother'), TEXT, None),
         (_('Relationship'), TEXT, None),
         (_('Marriage Date'), MARKUP, None),
         (_('Private'), ICON, 'gramps-lock'),
@@ -202,9 +202,9 @@ class FamilyView(ListView):
 
         self.all_action = Gtk.ActionGroup(name=self.title + "/FamilyAll")
         self.all_action.add_actions([
-                ('MakeFatherActive', None, _("Make %s Active Person") % config.get("preferences.father-label"),
+                ('MakeFatherActive', None, _("Make Father Active Person"),
                  None, None, self._make_father_active),
-                ('MakeMotherActive', None, _("Make %s Active Person") % config.get("preferences.mother-label"),
+                ('MakeMotherActive', None, _("Make Mother Active Person"),
                  None, None, self._make_mother_active),
                 ('QuickReport', None, _("Quick View"), None, None, None),
                 ])

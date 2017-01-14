@@ -157,6 +157,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="halign">start</property>
+                                    <property name="label" translatable="yes">Father/partner1</property>
                                     <attributes>
                                       <attribute name="weight" value="bold"/>
                                     </attributes>
@@ -188,7 +189,7 @@
                                     </child>
                                     <child internal-child="accessible">
                                       <object class="AtkObject" id="fbutton_index-atkobject">
-                                        <property name="AtkObject::accessible-name" translatable="yes">Father, Partner, Spouse</property>
+                                        <property name="AtkObject::accessible-name" translatable="yes">Father</property>
                                       </object>
                                     </child>
                                   </object>
@@ -434,6 +435,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="halign">start</property>
+                                    <property name="label" translatable="yes">Mother/partner2</property>
                                     <attributes>
                                       <attribute name="weight" value="bold"/>
                                     </attributes>
@@ -465,7 +467,7 @@
                                     </child>
                                     <child internal-child="accessible">
                                       <object class="AtkObject" id="mbutton_index-atkobject">
-                                        <property name="AtkObject::accessible-name" translatable="yes">Mother, Partner, Spouse</property>
+                                        <property name="AtkObject::accessible-name" translatable="yes">Mother</property>
                                       </object>
                                     </child>
                                   </object>

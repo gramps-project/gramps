@@ -7436,7 +7436,7 @@ class PersonPages(BasePage):
                 # The parent may not be birth father in ths family, because it
                 # may be a step family. However, it will be odd to display the
                 # parent as anything other than "Father"
-                reln = self._("Father, Partner, Spouse")
+                reln = self._("Father")
             else:
                 # Stepfather may not always be quite right (for example, it may
                 # actually be StepFather-in-law), but it is too expensive to
@@ -7450,7 +7450,7 @@ class PersonPages(BasePage):
         mother_handle = family.get_mother_handle()
         if mother_handle:
             if mother_handle == birthmother:
-                reln = self._("Mother, Partner, Spouse"")
+                reln = self._("Mother")
             else:
                 reln = self._("Stepmother")
             trow = Html("tr") + (self.display_parent(mother_handle, reln, None))

@@ -38,7 +38,6 @@ from functools import partial
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from gramps.gen.config import config
 from gramps.gen.lib import EventRoleType, EventType, NoteType, Person
 from gramps.gen.plug.menu import BooleanOption, FamilyOption, FilterOption
 from gramps.gen.plug.report import Report
@@ -617,26 +616,8 @@ class FamilyGroup(Report):
         self.doc.end_paragraph()
 
         family = self.db.get_family_from_handle(family_handle)
-        parents = utils.parents_labels(self.db, family, self._locale)
 
-        rel_father = config.get("preferences.father-label")
-        rel_mother = config.get("preferences.mother-label")
-
-        nb_children = len(family.get_child_ref_list())
-        father = self.db.get_person_from_handle(family.get_father_handle())
-        mother = self.db.get_person_from_handle(family.get_mother_handle())
-        if nb_children > 0:
-            rel_father = self._("Father")
-            rel_mother = self._("Mother")
-            if father.gender == 0:
-                rel_father = rel_mother
-            if mother.gender == 1:
-                rel_mother = rel_father
-        else:
-            rel_father = parents[0]
-            rel_mother = parents[1]
-
-        self.dump_parent(rel_father, family.get_father_handle())
+        self.dump_parent(self._("Husband"), family.get_father_handle())
         self.doc.start_paragraph("FGR-blank")
         self.doc.end_paragraph()
 
@@ -645,7 +626,7 @@ class FamilyGroup(Report):
             self.doc.start_paragraph("FGR-blank")
             self.doc.end_paragraph()
 
-        self.dump_parent(rel_mother, family.get_mother_handle())
+        self.dump_parent(self._("Wife"), family.get_mother_handle())
 
         length = len(family.get_child_ref_list())
         if length > 0:

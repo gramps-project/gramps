@@ -79,7 +79,6 @@ from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
                           get_marriage_or_fallback, preset_name, family_name)
 from ..selectors import SelectorFactory
 from gramps.gen.utils.id import create_id
-from ..utils import parents_labels
 from gramps.gen.const import URL_MANUAL_SECT1
 
 #-------------------------------------------------------------------------
@@ -516,9 +515,6 @@ class EditFamily(EditPrimary):
         # FIXME: remove if we can use show()
         self.window.show_all = self.window.show
 
-        self.father_label = self.top.get_object('label589')
-        self.mother_label = self.top.get_object('label574')
-
         self.fbirth  = self.top.get_object('fbirth')
         self.fdeath  = self.top.get_object('fdeath')
         self.fbirth_label = self.top.get_object('label578')
@@ -537,9 +533,9 @@ class EditFamily(EditPrimary):
         self.mbutton_del = self.top.get_object('mbutton_del')
         self.mbutton_edit = self.top.get_object('mbutton_edit')
 
-        self.mbutton_index.set_tooltip_text(_("Select a woman"))
-        self.mbutton_add.set_tooltip_text(_("Add a woman"))
-        self.mbutton_del.set_tooltip_text(_("Remove the person as woman"))
+        self.mbutton_index.set_tooltip_text(_("Select a person as the mother"))
+        self.mbutton_add.set_tooltip_text(_("Add a new person as the mother"))
+        self.mbutton_del.set_tooltip_text(_("Remove the person as the mother"))
 
         self.mbutton_edit.connect('button-press-event', self.edit_mother)
         self.mbutton_edit.connect('key-press-event', self.edit_mother)
@@ -552,9 +548,9 @@ class EditFamily(EditPrimary):
         self.fbutton_del = self.top.get_object('fbutton_del')
         self.fbutton_edit = self.top.get_object('fbutton_edit')
 
-        self.fbutton_index.set_tooltip_text(_("Select a man"))
-        self.fbutton_add.set_tooltip_text(_("Add a man"))
-        self.fbutton_del.set_tooltip_text(_("Remove the person as man"))
+        self.fbutton_index.set_tooltip_text(_("Select a person as the father"))
+        self.fbutton_add.set_tooltip_text(_("Add a new person as the father"))
+        self.fbutton_del.set_tooltip_text(_("Remove the person as the father"))
 
         self.fbutton_edit.connect('button-press-event', self.edit_father)
         self.fbutton_edit.connect('key-press-event', self.edit_father)
@@ -682,12 +678,6 @@ class EditFamily(EditPrimary):
         self.phandles.extend(x.ref for x in self.obj.get_child_ref_list())
 
         self.phandles = [_f for _f in self.phandles if _f]
-
-        parents = parents_labels(self.db, self.obj)
-        self.father_label.set_label(parents[0][0].upper()+parents[0][1:].lower())
-        self.fbutton_del.set_tooltip_text(_("Remove %s") % parents[0].lower())
-        self.mother_label.set_label(parents[1][0].upper()+parents[1][1:].lower())
-        self.mbutton_del.set_tooltip_text(_("Remove %s") % parents[1].lower())
 
     def get_start_date(self):
         """

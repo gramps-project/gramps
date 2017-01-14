@@ -271,8 +271,6 @@ register('preferences.use-last-view', False)
 register('preferences.last-view', '')
 register('preferences.last-views', [])
 register('preferences.family-relation-type', 3) # UNKNOWN
-register('preferences.father-label', "%s" % _("Father"))
-register('preferences.mother-label', "%s" % _("Mother"))
 register('preferences.age-display-precision', 1)
 register('preferences.color-gender-male-alive', '#b8cee6')
 register('preferences.color-gender-male-death', '#b8cee6')
