@@ -57,7 +57,7 @@ from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef, Citatio
                             Name, NameType, NameOriginType, Note, NoteType, Person,
                             Place, PlaceName, Source, SrcAttribute, Surname, Tag)
 from gramps.gen.utils.id import create_id
-from gramps.gui.utils import ProgressMeter
+from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.utils.libformatting import ImportInfo
 
 class ProgenError(Exception):
@@ -484,7 +484,7 @@ class PG30Def(object):
 
 
 TAGOBJECTS = ['Person', 'Family', 'Event', 'Place', 'Citation', 'Source', 'Note']
-class ProgenParser:
+class ProgenParser(UpdateCallback):
     """
     Main class to import and parse Pro-Gen files.
     """
@@ -511,13 +511,12 @@ class ProgenParser:
             self.user.notify_error(_("Pro-Gen data error"), str(error_msg))
             return
 
-        self.progress = ProgressMeter( # TODO no-parent
-                                      _("Import from Pro-Gen"), '')
-        self.progress.set_pass(_('Initializing'))
-
         self.mems = _read_mem(self.bname)
         self.pers = _read_recs(self.def_['Table_1'], self.bname)
         self.rels = _read_recs(self.def_['Table_2'], self.bname)
+
+        self.set_total(2 * len(self.pers) + len(self.rels))
+        # self.reset(_("Import from Pro-Gen"))  # non-functional for now
 
         with DbTxn(_("Pro-Gen import"), self.dbase, batch=True) as self.trans:
             self.dbase.disable_signals()
@@ -530,12 +529,11 @@ class ProgenParser:
             self.dbase.enable_signals()
             self.dbase.request_rebuild()
 
-        self.progress.close()
-
-    def __init__(self, data_base, file_name, user_handle):
+    def __init__(self, data_base, file_name, user):
         """
         Pro-Gen defines his own set of (static) person and family identifiers.
         """
+        UpdateCallback.__init__(self, user.callback)
         # Sometime their match the GRAMPS localisation, sometimes not. To be on
         # a safe and uniform path person and family identifiers for (alphabetical)
         # German (de), English (en) and Dutch (nl) language defined here.
@@ -544,7 +542,7 @@ class ProgenParser:
             file_name = self.bname + '.def'
         self.dbase = data_base
         self.fname = file_name
-        self.user = user_handle
+        self.user = user
         self.language = 0
 
         self.mems = None   # Memory area
@@ -567,7 +565,6 @@ class ProgenParser:
         self.opt_death_info2cause = True   # Death info to Death cause
 
         # Miscalaneous
-        self.progress = None   # Prgress bar
         self.trans = None   # Transaction identifier
         self.def_ = None   # PG30 definitions
         self.high_fam_id = -1
@@ -1114,8 +1111,7 @@ class ProgenParser:
             pix = table.get_record_field_index(pid)
             person_ix.append(pix)
 
-        # The records are numbered 1..N
-        self.progress.set_pass(_('Importing individuals'), len(self.pers))
+        # self.set_text(_('Importing individuals'))  # non-functional for now
 
         # Male / Female symbols
         male_sym = self.def_.tables['Genealogical'].parms['male']
@@ -1123,8 +1119,8 @@ class ProgenParser:
 
         ind_id = self.opt_ind_id -1   # Option: Individuals IDs interator
         for i, rec in enumerate(self.pers):
-            # Progress at the begin due to approx. ton's of 'not recflds[1]'
-            self.progress.step()
+            # Update at the begin due to approx. ton's of 'not recflds[1]'
+            self.update()
 
             recflds = table.convert_record_to_list(rec, self.mems)
             if not recflds[1]:
@@ -1498,12 +1494,11 @@ class ProgenParser:
             family_ix.append(fix)
 
         # The records are numbered 1..N
-        self.progress.set_pass(_('Importing families'), len(self.rels))
-
+        # self.set_text(_('Importing families'))  # non-functional for now
         fam_id = self.opt_fam_id -1   # Option: Family IDs interator
         for i, rec in enumerate(self.rels):
-            # Progress at the begin
-            self.progress.step()
+            # Update at the begin
+            self.update()
 
             husband = rec[family_ix[3]]   # F03: FAM HUSB
             wife = rec[family_ix[4]]   # F04: FAM WIFE
@@ -1765,11 +1760,10 @@ class ProgenParser:
             (self.person_identifier[14][self.language].lower())   # F14: Mother
 
         # The records are numbered 1..N
-        self.progress.set_pass(_('Adding children'), len(self.pers))
-
+        # self.set_text(_('Adding children'))  # non-functional for now
         for i, rec in enumerate(self.pers):
-            # Progress at the begin
-            self.progress.step()
+            # Update at the begin
+            self.update()
 
             ind_id = i +1
             # print(("Person ID %d  " % ind_id) + " ".join(("%s" % r) for r in rec))
