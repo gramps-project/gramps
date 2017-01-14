@@ -63,7 +63,7 @@ class TagReport(Report):
     def __init__(self, database, options, user):
         """
         Create the TagReport object that produces the report.
-        
+
         The arguments are:
 
         database        - the GRAMPS database instance
@@ -72,7 +72,7 @@ class TagReport(Report):
 
         This report needs the following parameters (class variables)
         that come in the options class.
-        
+
         tag             - The tag each object must match to be included.
         name_format     - Preferred format to display names of people
         incl_private    - Whether to include private data
@@ -86,7 +86,7 @@ class TagReport(Report):
         if not self.tag:
             raise ReportError(_('Tag Report'),
                 _('You must first create a tag before running this report.'))
-       
+
         self.set_locale(menu.get_option_by_name('trans').get_value())
 
         stdoptions.run_name_format_option(self, menu)
@@ -98,7 +98,7 @@ class TagReport(Report):
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
-        
+
         self.write_people()
         self.write_families()
         self.write_events()
@@ -115,10 +115,10 @@ class TagReport(Report):
         filter = FilterClass()
         filter.add_rule(rules.person.HasTag([self.tag]))
         ind_list = filter.apply(self.database, plist)
-        
+
         if not ind_list:
             return
-        
+
         self.doc.start_paragraph("TR-Heading")
         header = self._("People")
         mark = IndexMark(header, INDEX_TYPE_TOC, 2)
@@ -126,9 +126,9 @@ class TagReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_table('PeopleTable','TR-Table')
-        
+
         self.doc.start_row()
-        
+
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
         self.doc.write_text(self._("Id"))
@@ -140,26 +140,26 @@ class TagReport(Report):
         self.doc.write_text(self._("Name"))
         self.doc.end_paragraph()
         self.doc.end_cell()
-        
+
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
         self.doc.write_text(self._("Birth"))
         self.doc.end_paragraph()
         self.doc.end_cell()
-        
+
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
         self.doc.write_text(self._("Death"))
         self.doc.end_paragraph()
         self.doc.end_cell()
-        
+
         self.doc.end_row()
 
         for person_handle in ind_list:
             person = self.database.get_person_from_handle(person_handle)
 
             self.doc.start_row()
-            
+
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
             self.doc.write_text(person.get_gramps_id())
@@ -173,7 +173,7 @@ class TagReport(Report):
             self.doc.write_text(name, mark)
             self.doc.end_paragraph()
             self.doc.end_cell()
-            
+
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
             birth_ref = person.get_birth_ref()
@@ -182,7 +182,7 @@ class TagReport(Report):
                 self.doc.write_text(get_date( event ))
             self.doc.end_paragraph()
             self.doc.end_cell()
-            
+
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
             death_ref = person.get_death_ref()
@@ -191,21 +191,21 @@ class TagReport(Report):
                 self.doc.write_text(get_date( event ))
             self.doc.end_paragraph()
             self.doc.end_cell()
-            
+
             self.doc.end_row()
-            
+
         self.doc.end_table()
-            
+
     def write_families(self):
         flist = self.database.iter_family_handles()
         FilterClass = GenericFilterFactory('Family')
         filter = FilterClass()
         filter.add_rule(rules.family.HasTag([self.tag]))
         fam_list = filter.apply(self.database, flist)
-        
+
         if not fam_list:
             return
-        
+
         self.doc.start_paragraph("TR-Heading")
         header = self._("Families")
         mark = IndexMark(header,INDEX_TYPE_TOC, 2)
@@ -213,9 +213,9 @@ class TagReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_table('FamilyTable','TR-Table')
-        
+
         self.doc.start_row()
-        
+
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
         self.doc.write_text(self._("Id"))
@@ -227,26 +227,26 @@ class TagReport(Report):
         self.doc.write_text(self._("Father"))
         self.doc.end_paragraph()
         self.doc.end_cell()
-        
+
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
         self.doc.write_text(self._("Mother"))
         self.doc.end_paragraph()
         self.doc.end_cell()
-        
+
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
         self.doc.write_text(self._("Relationship"))
         self.doc.end_paragraph()
         self.doc.end_cell()
-        
+
         self.doc.end_row()
 
         for family_handle in fam_list:
             family = self.database.get_family_from_handle(family_handle)
-            
+
             self.doc.start_row()
-            
+
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
             self.doc.write_text(family.get_gramps_id())
@@ -262,7 +262,7 @@ class TagReport(Report):
                 self.doc.write_text(self._name_display.display(father), mark)
             self.doc.end_paragraph()
             self.doc.end_cell()
-            
+
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
             mother_handle = family.get_mother_handle()
@@ -272,16 +272,16 @@ class TagReport(Report):
                 self.doc.write_text(self._name_display.display(mother), mark)
             self.doc.end_paragraph()
             self.doc.end_cell()
-            
+
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
             relation = family.get_relationship()
             self.doc.write_text(str(relation) )
             self.doc.end_paragraph()
             self.doc.end_cell()
-            
+
             self.doc.end_row()
-            
+
         self.doc.end_table()
 
     def write_events(self):
@@ -290,10 +290,10 @@ class TagReport(Report):
         filter = FilterClass()
         filter.add_rule(rules.event.HasTag([self.tag]))
         event_list = filter.apply(self.database, elist)
-        
+
         if not event_list:
             return
-        
+
         self.doc.start_paragraph("TR-Heading")
         header = self._("Events")
         mark = IndexMark(header, INDEX_TYPE_TOC, 2)
@@ -301,9 +301,9 @@ class TagReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_table('EventTable','TR-Table')
-        
+
         self.doc.start_row()
-        
+
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
         self.doc.write_text(self._("Id"))
@@ -315,32 +315,32 @@ class TagReport(Report):
         self.doc.write_text(self._("Type"))
         self.doc.end_paragraph()
         self.doc.end_cell()
-        
+
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
         self.doc.write_text(self._("Participants"))
         self.doc.end_paragraph()
         self.doc.end_cell()
-        
+
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
         self.doc.write_text(self._("Date"))
         self.doc.end_paragraph()
         self.doc.end_cell()
-        
+
         self.doc.end_row()
 
         for event_handle in event_list:
             event = self.database.get_event_from_handle(event_handle)
-            
+
             self.doc.start_row()
-            
+
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
             self.doc.write_text(event.get_gramps_id())
             self.doc.end_paragraph()
-            self.doc.end_cell()            
-            
+            self.doc.end_cell()
+
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
             self.doc.write_text(str(event.get_type()))
@@ -432,7 +432,7 @@ class TagReport(Report):
 
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
-            self.doc.write_text(place.get_name())
+            self.doc.write_text(place.get_name().get_value())
             self.doc.end_paragraph()
             self.doc.end_cell()
 
@@ -452,10 +452,10 @@ class TagReport(Report):
         filter = FilterClass()
         filter.add_rule(rules.note.HasTag([self.tag]))
         note_list = filter.apply(self.database, nlist)
-        
+
         if not note_list:
             return
-        
+
         self.doc.start_paragraph("TR-Heading")
         header = self._("Notes")
         mark = IndexMark(header, INDEX_TYPE_TOC, 2)
@@ -463,9 +463,9 @@ class TagReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_table('NoteTable','TR-Table')
-        
+
         self.doc.start_row()
-        
+
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
         self.doc.write_text(self._("Id"))
@@ -477,33 +477,33 @@ class TagReport(Report):
         self.doc.write_text(self._("Type"))
         self.doc.end_paragraph()
         self.doc.end_cell()
-        
+
         self.doc.start_cell('TR-TableCell', 2)
         self.doc.start_paragraph('TR-Normal-Bold')
         self.doc.write_text(self._("Text"))
         self.doc.end_paragraph()
         self.doc.end_cell()
-        
+
         self.doc.end_row()
 
         for note_handle in note_list:
             note = self.database.get_note_from_handle(note_handle)
-            
+
             self.doc.start_row()
-            
+
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
             self.doc.write_text(note.get_gramps_id())
             self.doc.end_paragraph()
-            self.doc.end_cell()            
-            
+            self.doc.end_cell()
+
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
             type = note.get_type()
             self.doc.write_text(str(type))
             self.doc.end_paragraph()
             self.doc.end_cell()
-            
+
             self.doc.start_cell('TR-TableCell', 2)
             self.doc.write_styled_note(note.get_styledtext(),
                                        note.get_format(), 'TR-Note',
@@ -511,9 +511,9 @@ class TagReport(Report):
                                                         == NoteType.HTML_CODE)
                                       )
             self.doc.end_cell()
-            
+
             self.doc.end_row()
-            
+
         self.doc.end_table()
 
     def write_media(self):
@@ -522,10 +522,10 @@ class TagReport(Report):
         filter = FilterClass()
         filter.add_rule(rules.media.HasTag([self.tag]))
         media_list = filter.apply(self.database, mlist)
-        
+
         if not media_list:
             return
-        
+
         self.doc.start_paragraph("TR-Heading")
         header = self._("Media")
         mark = IndexMark(header, INDEX_TYPE_TOC, 2)
@@ -533,9 +533,9 @@ class TagReport(Report):
         self.doc.end_paragraph()
 
         self.doc.start_table('MediaTable','TR-Table')
-        
+
         self.doc.start_row()
-        
+
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
         self.doc.write_text(self._("Id"))
@@ -547,46 +547,46 @@ class TagReport(Report):
         self.doc.write_text(self._("Title"))
         self.doc.end_paragraph()
         self.doc.end_cell()
-        
+
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
         self.doc.write_text(self._("Type"))
         self.doc.end_paragraph()
         self.doc.end_cell()
-        
+
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
         self.doc.write_text(self._("Date"))
         self.doc.end_paragraph()
         self.doc.end_cell()
-        
+
         self.doc.end_row()
 
         for media_handle in media_list:
             media = self.database.get_object_from_handle(media_handle)
 
             self.doc.start_row()
-            
+
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
             self.doc.write_text(media.get_gramps_id())
             self.doc.end_paragraph()
-            self.doc.end_cell()            
-            
+            self.doc.end_cell()
+
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
             title = media.get_description()
             self.doc.write_text(str(title))
             self.doc.end_paragraph()
             self.doc.end_cell()
-            
+
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
             mime_type = media.get_mime_type()
             self.doc.write_text(str(mime_type))
             self.doc.end_paragraph()
             self.doc.end_cell()
-            
+
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
             date = get_date(media)
@@ -596,7 +596,7 @@ class TagReport(Report):
             self.doc.end_cell()
 
             self.doc.end_row()
-            
+
         self.doc.end_table()
 
     def write_repositories(self):
@@ -855,7 +855,7 @@ class TagOptions(MenuReportOptions):
     def __init__(self, name, dbase):
         self.__db = dbase
         MenuReportOptions.__init__(self, name, dbase)
-        
+
     def add_menu_options(self, menu):
         """
         Add options to the menu for the tag report.
@@ -900,7 +900,7 @@ class TagOptions(MenuReportOptions):
         p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
         default_style.add_paragraph_style("TR-Title", p)
-        
+
         font = FontStyle()
         font.set(face=FONT_SANS_SERIF, size=14, italic=1)
         para = ParagraphStyle()
@@ -910,7 +910,7 @@ class TagOptions(MenuReportOptions):
         para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the section headers.'))
         default_style.add_paragraph_style("TR-Heading", para)
-        
+
         font = FontStyle()
         font.set_size(12)
         p = ParagraphStyle()
@@ -920,7 +920,7 @@ class TagOptions(MenuReportOptions):
         p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("TR-Normal", p)
-        
+
         font = FontStyle()
         font.set_size(12)
         font.set_bold(True)
@@ -931,14 +931,14 @@ class TagOptions(MenuReportOptions):
         p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_description(_('The basic style used for table headings.'))
         default_style.add_paragraph_style("TR-Normal-Bold", p)
-        
+
         para = ParagraphStyle()
         p.set(first_indent=-0.75, lmargin=.75)
         para.set_top_margin(ReportUtils.pt2cm(3))
         para.set_bottom_margin(ReportUtils.pt2cm(3))
         para.set_description(_('The basic style used for the note display.'))
         default_style.add_paragraph_style("TR-Note",para)
- 
+
         #Table Styles
         cell = TableCellStyle()
         default_style.add_cell_style('TR-TableCell', cell)
