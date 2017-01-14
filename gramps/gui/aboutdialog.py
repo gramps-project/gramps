@@ -132,19 +132,22 @@ class GrampsAboutDialog(Gtk.AboutDialog):
             operatingsystem = sys.platform
             distribution = " "
 
+        sqlite = ''
+        if __debug__:
+            sqlite = "sqlite: %s (%s)\n" % (sqlite3_version_str,
+                                            sqlite3_py_version_str)
+
         return (("\n\n" +
                  "GRAMPS: %s \n" +
                  "Python: %s \n" +
                  "BSDDB: %s \n" +
-                 "sqlite: %s (%s)\n" +
+                 sqlite +
                  "LANG: %s\n" +
                  "OS: %s\n" +
                  "Distribution: %s")
                 % (ellipses(str(VERSION)),
                    ellipses(str(sys.version).replace('\n','')),
                    BSDDB_STR,
-                   sqlite3_version_str,
-                   sqlite3_py_version_str,
                    ellipses(get_env_var('LANG','')),
                    ellipses(operatingsystem),
                    ellipses(distribution)))

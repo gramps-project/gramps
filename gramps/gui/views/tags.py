@@ -51,6 +51,7 @@ from ..display import display_help
 from ..dialog import ErrorDialog, QuestionDialog2
 import gramps.gui.widgets.progressdialog as progressdlg
 from ..actiongroup import ActionGroup
+from ..managedwindow import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
@@ -245,9 +246,7 @@ class Tags(DbGUIElement):
         """
         Display the Organize Tags dialog.
         """
-        organize_dialog = OrganizeTagsDialog(self.db,
-                                             self.uistate.window)
-        organize_dialog.run()
+        OrganizeTagsDialog(self.db, self.uistate, [])
 
     def cb_new_tag(self, action):
         """
@@ -255,8 +254,7 @@ class Tags(DbGUIElement):
         """
         tag = Tag()
         tag.set_priority(self.db.get_number_of_tags())
-        new_dialog = EditTag(self.db, self.uistate.window, tag)
-        new_dialog.run()
+        EditTag(self.db, self.uistate, [], tag)
 
         if tag.get_handle():
             self.tag_selected_rows(tag.get_handle())
@@ -313,16 +311,28 @@ def make_callback(func, tag_handle):
 # Organize Tags Dialog
 #
 #-------------------------------------------------------------------------
-class OrganizeTagsDialog:
+class OrganizeTagsDialog(ManagedWindow):
     """
     A dialog to enable the user to organize tags.
     """
-    def __init__(self, db, parent_window):
+    def __init__(self, db, uistate, track):
+        ManagedWindow.__init__(self, uistate, track, self.__class__, modal=True)
+        # the self.top.run() below makes Gtk make it modal, so any change to
+        # the previous line's "modal" would require that line to be changed
         self.db = db
-        self.parent_window = parent_window
         self.namelist = None
         self.namemodel = None
         self.top = self._create_dialog()
+        self.set_window(self.top, None, _('Organize Tags'))
+        self.setup_configs('interface.organizetagsdialog', 400, 350)
+        self.show()
+        self.run()
+        self.close()
+
+    # this is meaningless while it's modal, but since this ManagedWindow can
+    # have an EditTag ManagedWindow child it needs a non-None second argument
+    def build_menu_names(self, obj):
+        return (_('Organize Tags'), ' ')
 
     def run(self):
         """
@@ -330,6 +340,8 @@ class OrganizeTagsDialog:
         """
         self._populate_model()
         while True:
+            # the self.top.run() makes Gtk make it modal, so any change to that
+            # line would require the ManagedWindow.__init__ to be changed also
             response = self.top.run()
             if response == Gtk.ResponseType.HELP:
                 display_help(webpage=WIKI_HELP_PAGE,
@@ -341,8 +353,6 @@ class OrganizeTagsDialog:
         if self.__priorities_changed():
             with DbTxn(_('Change Tag Priority'), self.db) as trans:
                 self.__change_tag_priority(trans)
-
-        self.top.destroy()
 
     def __priorities_changed(self):
         """
@@ -384,11 +394,7 @@ class OrganizeTagsDialog:
         Create a dialog box to organize tags.
         """
         # pylint: disable-msg=E1101
-        title = _("%(title)s - Gramps") % {'title': _("Organize Tags")}
-        top = Gtk.Dialog(title)
-        top.set_default_size(400, 350)
-        top.set_modal(True)
-        top.set_transient_for(self.parent_window)
+        top = Gtk.Dialog(parent=self.parent_window)
         top.vbox.set_spacing(5)
         label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>'
                           % _("Organize Tags"))
@@ -429,7 +435,6 @@ class OrganizeTagsDialog:
         bbox.add(edit)
         bbox.add(remove)
         box.pack_start(bbox, 0, 0, 5)
-        top.show_all()
         return top
 
     def cb_up_clicked(self, obj):
@@ -452,8 +457,7 @@ class OrganizeTagsDialog:
         """
         tag = Tag()
         tag.set_priority(self.db.get_number_of_tags())
-        edit_dialog = EditTag(self.db, top, tag)
-        edit_dialog.run()
+        EditTag(self.db, self.uistate, self.track, tag)
 
         if tag.get_handle():
             self.namemodel.add((tag.get_priority(),
@@ -470,8 +474,7 @@ class OrganizeTagsDialog:
             return
 
         tag = self.db.get_tag_from_handle(store.get_value(iter_, 1))
-        edit_dialog = EditTag(self.db, top, tag)
-        edit_dialog.run()
+        EditTag(self.db, self.uistate, self.track, tag)
 
         store.set_value(iter_, 2, tag.get_name())
         store.set_value(iter_, 3, tag.get_color())
@@ -492,7 +495,7 @@ class OrganizeTagsDialog:
               "removed from all objects in the database."),
             _("Yes"),
             _("No"),
-            parent=self.parent_window)
+            parent=self.window)
         prompt = yes_no.run()
         if prompt:
 
@@ -543,23 +546,39 @@ class OrganizeTagsDialog:
 # Tag editor
 #
 #-------------------------------------------------------------------------
-class EditTag:
+class EditTag(ManagedWindow):
     """
     A dialog to enable the user to create a new tag.
     """
-    def __init__(self, db, parent_window, tag):
-        self.parent_window = parent_window
-        self.db = db
+    def __init__(self, db, uistate, track, tag):
         self.tag = tag
+        if self.tag.get_handle():
+            self.title = _('Tag: %s') % self.tag.get_name()
+        else:
+            self.title = _('New Tag')
+        ManagedWindow.__init__(self, uistate, track, self.__class__, modal=True)
+        # the self.top.run() below makes Gtk make it modal, so any change to
+        # the previous line's "modal" would require that line to be changed
+        self.db = db
         self.entry = None
         self.color = None
         self.top = self._create_dialog()
+        self.set_window(self.top, None, self.title)
+        self.setup_configs('interface.edittag', 320, 100)
+        self.show()
+        self.run()
+        self.close()
+
+    def build_menu_names(self, obj): # this is meaningless while it's modal
+        return (self.title, None)
 
     def run(self):
         """
         Run the dialog and return the result.
         """
         while True:
+            # the self.top.run() makes Gtk make it modal, so any change to that
+            # line would require the ManagedWindow.__init__ to be changed also
             response = self.top.run()
             if response == Gtk.ResponseType.HELP:
                 display_help(webpage=WIKI_HELP_PAGE,
@@ -569,7 +588,6 @@ class EditTag:
 
         if response == Gtk.ResponseType.OK:
             self._save()
-        self.top.destroy()
 
     def _save(self):
         """
@@ -585,7 +603,7 @@ class EditTag:
         if not self.tag.get_name():
             ErrorDialog(_("Cannot save tag"),
                         _("The tag name cannot be empty"),
-                        parent=self.parent_window)
+                        parent=self.window)
             return
 
         if not self.tag.get_handle():
@@ -604,14 +622,7 @@ class EditTag:
         Create a dialog box to enter a new tag.
         """
         # pylint: disable-msg=E1101
-        if self.tag.get_handle():
-            title = _('Tag: %s')  % self.tag.get_name()
-        else:
-            title = _('New Tag')
-        top = Gtk.Dialog(_("%(title)s - Gramps") % {'title': title})
-        top.set_default_size(300, 100)
-        top.set_modal(True)
-        top.set_transient_for(self.parent_window)
+        top = Gtk.Dialog(parent=self.parent_window)
         top.vbox.set_spacing(5)
 
         hbox = Gtk.Box()
@@ -633,5 +644,4 @@ class EditTag:
         top.add_button(_('_Help'), Gtk.ResponseType.HELP)
         top.add_button(_('_Cancel'), Gtk.ResponseType.CANCEL)
         top.add_button(_('_OK'), Gtk.ResponseType.OK)
-        top.show_all()
         return top

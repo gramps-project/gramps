@@ -45,6 +45,7 @@ _LOG = logging.getLogger("gui.widgets.reorderfam")
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
+from gramps.gen.config import config
 from gramps.gen.db import DbTxn
 from ..listmodel import ListModel
 from ..managedwindow import ManagedWindow
@@ -81,8 +82,8 @@ class Reorder(ManagedWindow):
 
         self.ptree = xml.get_object('ptree')
         self.pmodel = ListModel(self.ptree,
-                               [(_('Father'), -1, 200),
-                                (_('Mother'), -1, 200),
+                               [(config.get("preferences.father-label"), -1, 200),
+                                (config.get("preferences.mother-label"), -1, 200),
                                 ('', -1, 0)])
 
         self.ftree = xml.get_object('ftree')

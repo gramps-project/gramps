@@ -35,6 +35,7 @@ from gi.repository import GLib
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gen.config import config
 from gramps.gen.lib import Event, EventRef, EventRoleType, EventType
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
@@ -57,8 +58,8 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
     _WORKGROUP = EventRefModel._ROOTINDEX
 
     _WORKNAME = _("Family")
-    _FATHNAME = _("Father")
-    _MOTHNAME = _("Mother")
+    _FATHNAME = config.get("preferences.father-label")
+    _MOTHNAME = config.get("preferences.mother-label")
 
     _MSG = {
         'add'   : _('Add a new family event'),

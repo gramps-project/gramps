@@ -399,10 +399,11 @@ def show_settings():
     print('     version     : %s' % bsddb_str)
     print('     db version  : %s' % bsddb_db_str)
     print('     location    : %s' % bsddb_location_str)
-    print(' sqlite3   :')
-    print('     version     : %s' % sqlite3_version_str)
-    print('     py version  : %s' % sqlite3_py_version_str)
-    print('     location    : %s' % sqlite3_location_str)
+    if __debug__:
+        print(' sqlite3   :')
+        print('     version     : %s' % sqlite3_version_str)
+        print('     py version  : %s' % sqlite3_py_version_str)
+        print('     location    : %s' % sqlite3_location_str)
     print('')
 
 def run():

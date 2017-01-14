@@ -225,6 +225,6 @@ class MergeFamily(ManagedWindow):
             query.execute()
         except MergeError as err:
             ErrorDialog(_("Cannot merge people"), str(err),
-                        parent=self.uistate.window)
+                        parent=self.window)
         self.uistate.set_busy_cursor(False)
         self.close()

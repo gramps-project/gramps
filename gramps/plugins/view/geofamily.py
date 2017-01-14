@@ -342,7 +342,8 @@ class GeoFamily(GeoGraphyView):
                 if handle:
                     father = dbstate.db.get_person_from_handle(handle)
                 if father:
-                    comment = _("Father : %(id)s : %(name)s") % {
+                    comment = _("%(father)s : %(id)s : %(name)s") % {
+                                                   'father': config.get("preferences.father-label"),
                                                    'id': father.gramps_id,
                                                    'name': _nd.display(father)}
                     self._createpersonmarkers(dbstate, father,
@@ -351,7 +352,8 @@ class GeoFamily(GeoGraphyView):
                 if handle:
                     mother = dbstate.db.get_person_from_handle(handle)
                 if mother:
-                    comment = _("Mother : %(id)s : %(name)s") % {
+                    comment = _("%(mother)s : %(id)s : %(name)s") % {
+                                                   'mother': config.get("preferences.mother-label"),
                                                    'id': mother.gramps_id,
                                                    'name': _nd.display(mother)}
                     self._createpersonmarkers(dbstate, mother,

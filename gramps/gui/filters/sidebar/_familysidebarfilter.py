@@ -40,6 +40,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from ... import widgets
+from gramps.gen.config import config
 from gramps.gen.lib import Event, EventType, Family, FamilyRelType
 from .. import build_filter_model
 from . import SidebarFilter
@@ -109,8 +110,8 @@ class FamilySidebarFilter(SidebarFilter):
         self.rtype.get_child().set_width_chars(5)
 
         self.add_text_entry(_('ID'), self.filter_id)
-        self.add_text_entry(_('Father'), self.filter_father)
-        self.add_text_entry(_('Mother'), self.filter_mother)
+        self.add_text_entry(config.get("preferences.father-label"), self.filter_father)
+        self.add_text_entry(config.get("preferences.mother-label"), self.filter_mother)
         self.add_text_entry(_('Child'), self.filter_child)
         self.add_entry(_('Relationship'), self.rtype)
         self.add_entry(_('Family Event'), self.etype)

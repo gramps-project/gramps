@@ -32,6 +32,7 @@
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
+from gramps.gen.config import config
 from ..views.treemodels import FamilyModel
 from .baseselector import BaseSelector
 from gramps.gui.display import display_help
@@ -67,8 +68,8 @@ class SelectFamily(BaseSelector):
     def get_column_titles(self):
         return [
             (_('ID'),      75, BaseSelector.TEXT, 0),
-            (_('Father'), 200, BaseSelector.TEXT, 1),
-            (_('Mother'), 200, BaseSelector.TEXT, 2),
+            (config.get("preferences.father-label"), 200, BaseSelector.TEXT, 1),
+            (config.get("preferences.mother-label"), 200, BaseSelector.TEXT, 2),
             (_('Last Change'), 150, BaseSelector.TEXT, 7),
             ]
 

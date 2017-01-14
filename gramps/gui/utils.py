@@ -57,6 +57,7 @@ from gramps.gen.constfunc import has_display, is_quartz, mac, win
 from gramps.gen.config import config
 from gramps.gen.plug.utils import available_updates
 from gramps.gen.errors import WindowActiveError
+from gramps.gen.relationship import RelationshipCalculator
 
 #-------------------------------------------------------------------------
 #
@@ -152,6 +153,12 @@ class ProgressMeter:
         self.__dialog.vbox.set_spacing(10)
         self.__dialog.vbox.set_border_width(24)
         self.__dialog.set_size_request(400, 125)
+        if not parent:  # if we don't have an explicit parent, try to find one
+            for win in Gtk.Window.list_toplevels():
+                if win.is_active():
+                    parent = win
+                    break
+        # if we still don't have a parent, give up
         if parent:
             self.__dialog.set_transient_for(parent)
             self.__dialog.set_modal(True)
@@ -679,3 +686,27 @@ def text_to_clipboard(text):
     clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(),
                                               Gdk.SELECTION_CLIPBOARD)
     clipboard.set_text(text, -1)
+
+def parents_labels(db, family):
+    """
+    Get the label for parent
+    """
+    father = db.get_person_from_handle(family.get_father_handle())
+    mother = db.get_person_from_handle(family.get_mother_handle())
+
+    rel_father = config.get("preferences.father-label")
+    rel_mother = config.get("preferences.mother-label")
+
+    if len(family.get_child_ref_list()) > 0:
+        rel_father = _('Father')
+        rel_mother = _('Mother')
+        if father.gender == Person.FEMALE:
+            rel_father = rel_mother
+        if mother.gender == Person.MALE:
+            rel_mother = _('Father')
+    else:
+        rc = RelationshipCalculator()
+        rel_father = rc.get_one_relationship(db, mother, father)
+        rel_mother = rc.get_one_relationship(db, father, mother)
+
+    return [rel_father.split()[-1], rel_mother.split()[-1]]
