@@ -1217,7 +1217,7 @@ class UpdateAddons:
                      "%s %s" % (ngettext("{number_of} addon was installed.",
                                          "{number_of} addons were installed.",
                                          count).format(number_of=count),
-                        _("You need to restart Gramps to use the new addons.")),
+                        _("If you have installed a 'Gramps View', you will need to restart Gramps.")),
                      parent=self.window)
         else:
             OkDialog(_("Done downloading and installing addons"),
