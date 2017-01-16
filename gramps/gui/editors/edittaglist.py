@@ -61,7 +61,9 @@ class EditTagList(ManagedWindow):
         """
         Initiate and display the dialog.
         """
-        ManagedWindow.__init__(self, uistate, track, self)
+        ManagedWindow.__init__(self, uistate, track, self, modal=True)
+        # the self.window.run() below makes Gtk make it modal, so any change
+        # to the previous line's "modal" would require that line to be changed
 
         self.namemodel = None
         top = self._create_dialog()
@@ -78,6 +80,8 @@ class EditTagList(ManagedWindow):
         self.show()
 
         while True:
+            # the self.window.run() makes Gtk make it modal, so any change to
+            # that line means the ManagedWindow.__init__ must be changed also
             response = self.window.run()
             if response == Gtk.ResponseType.HELP:
                 display_help(webpage=WIKI_HELP_PAGE,
@@ -97,9 +101,7 @@ class EditTagList(ManagedWindow):
         Create a dialog box to select tags.
         """
         # pylint: disable-msg=E1101
-        title = _("%(title)s - Gramps") % {'title': _("Edit Tags")}
-        top = Gtk.Dialog(title, self.uistate.window)
-        top.set_modal(True)
+        top = Gtk.Dialog(parent=self.uistate.window)
         top.vbox.set_spacing(5)
 
         columns = [('', -1, 300),
@@ -116,10 +118,9 @@ class EditTagList(ManagedWindow):
         top.add_button(_('_Help'), Gtk.ResponseType.HELP)
         top.add_button(_('_Cancel'), Gtk.ResponseType.CANCEL)
         top.add_button(_('_OK'), Gtk.ResponseType.OK)
-        top.show_all()
         return top
 
-    def build_menu_names(self, obj):
+    def build_menu_names(self, obj): # meaningless while it's modal
         """
         Define the menu entry for the ManagedWindows.
         """
