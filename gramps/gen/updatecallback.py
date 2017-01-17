@@ -76,6 +76,13 @@ class UpdateCallback:
         self.oldtime = 0
         self.text = text
 
+    def set_text(self, text):
+        """
+        Set the text.
+        """
+        self.text = text
+        self.oldval = -1
+
     def set_total(self, total):
         """
         Set the total.
