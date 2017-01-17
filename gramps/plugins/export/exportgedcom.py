@@ -129,6 +129,7 @@ PEDIGREE_TYPES = {
     ChildRefType.FOSTER:    'Foster',
     }
 
+NOTES_PER_PERSON = 104  # fudge factor to make progress meter a bit smoother
 #-------------------------------------------------------------------------
 #
 # sort_handles_by_id
@@ -217,15 +218,10 @@ class GedcomWriter(UpdateCallback):
 
     def __init__(self, database, user, option_box=None):
         UpdateCallback.__init__(self, user.callback)
-        self.total = 100
         self.dbase = database
         self.dirname = None
         self.gedcom_file = None
-
-        # The number of different stages other than any of the optional filters
-        # which the write_gedcom_file method will call.
-        self.progress_cnt = 5
-
+        self.progress_cnt = 0
         self.setup(option_box)
 
     def setup(self, option_box):
@@ -245,6 +241,15 @@ class GedcomWriter(UpdateCallback):
 
         self.dirname = os.path.dirname (filename)
         with open(filename, "w", encoding='utf-8') as self.gedcom_file:
+            person_len = self.dbase.get_number_of_people()
+            family_len = self.dbase.get_number_of_families()
+            source_len = self.dbase.get_number_of_sources()
+            repo_len = self.dbase.get_number_of_repositories()
+            note_len = self.dbase.get_number_of_notes() / NOTES_PER_PERSON
+
+            total_steps = (person_len + family_len + source_len + repo_len +
+                           note_len)
+            self.set_total(total_steps)
             self._header(filename)
             self._submitter()
             self._individuals()
@@ -391,9 +396,7 @@ class GedcomWriter(UpdateCallback):
         people will be confused when the progress bar is idle.
 
         """
-        self.reset(_("Writing individuals"))
-        self.progress_cnt += 1
-        self.update(self.progress_cnt)
+        self.set_text(_("Writing individuals"))
         phandles = self.dbase.iter_person_handles()
 
         sorted_list = []
@@ -405,6 +408,7 @@ class GedcomWriter(UpdateCallback):
         sorted_list.sort()
 
         for data in sorted_list:
+            self.update()
             self._person(self.dbase.get_person_from_handle(data[1]))
 
     def _person(self, person):
@@ -797,9 +801,7 @@ class GedcomWriter(UpdateCallback):
         """
         Write out the list of families, sorting by Gramps ID.
         """
-        self.reset(_("Writing families"))
-        self.progress_cnt += 1
-        self.update(self.progress_cnt)
+        self.set_text(_("Writing families"))
         # generate a list of (GRAMPS_ID, HANDLE) pairs. This list
         # can then be sorted by the sort routine, which will use the
         # first value of the tuple as the sort key.
@@ -809,6 +811,7 @@ class GedcomWriter(UpdateCallback):
         # loop through the sorted list, pulling of the handle. This list
         # has already been sorted by GRAMPS_ID
         for family_handle in [hndl[1] for hndl in sorted_list]:
+            self.update()
             self._family(self.dbase.get_family_from_handle(family_handle))
 
     def _family(self, family):
@@ -963,13 +966,12 @@ class GedcomWriter(UpdateCallback):
         """
         Write out the list of sources, sorting by Gramps ID.
         """
-        self.reset(_("Writing sources"))
-        self.progress_cnt += 1
-        self.update(self.progress_cnt)
+        self.set_text(_("Writing sources"))
         sorted_list = sort_handles_by_id(self.dbase.get_source_handles(),
                                          self.dbase.get_source_from_handle)
 
         for (source_id, handle) in sorted_list:
+            self.update()
             source = self.dbase.get_source_from_handle(handle)
             if source is None: continue
             self._writeln(0, '@%s@' % source_id, 'SOUR')
@@ -998,13 +1000,16 @@ class GedcomWriter(UpdateCallback):
         """
         Write out the list of notes, sorting by Gramps ID.
         """
-        self.reset(_("Writing notes"))
-        self.progress_cnt += 1
-        self.update(self.progress_cnt)
+        self.set_text(_("Writing notes"))
+        note_cnt = 0
         sorted_list = sort_handles_by_id(self.dbase.get_note_handles(),
                                          self.dbase.get_note_from_handle)
 
         for note_handle in [hndl[1] for hndl in sorted_list]:
+            # the following makes the progress bar a bit smoother
+            if not note_cnt % NOTES_PER_PERSON:
+                self.update()
+            note_cnt += 1
             note = self.dbase.get_note_from_handle(note_handle)
             if note is None: continue
             self._note_record(note)
@@ -1036,15 +1041,14 @@ class GedcomWriter(UpdateCallback):
         +1 RIN <AUTOMATED_RECORD_ID> {0:1}
         +1 <<CHANGE_DATE>> {0:1}
         """
-        self.reset(_("Writing repositories"))
-        self.progress_cnt += 1
-        self.update(self.progress_cnt)
+        self.set_text(_("Writing repositories"))
         sorted_list = sort_handles_by_id(self.dbase.get_repository_handles(),
                                          self.dbase.get_repository_from_handle)
 
         # GEDCOM only allows for a single repository per source
 
         for (repo_id, handle) in sorted_list:
+            self.update()
             repo = self.dbase.get_repository_from_handle(handle)
             if repo is None: continue
             self._writeln(0, '@%s@' % repo_id, 'REPO' )
