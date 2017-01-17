@@ -154,7 +154,7 @@ class MergePlace(ManagedWindow):
         rbutton_label1 = self.get_widget("label_handle_btn1")
         rbutton_label2 = self.get_widget("label_handle_btn2")
         rbutton_label1.set_label(title1 + " [" + gramps1 + "] " + str(self.pl1.place_type))
-        rbutton_label2.set_label(title2 + " [" + gramps2 + "] " + str(self.pl1.place_type))
+        rbutton_label2.set_label(title2 + " [" + gramps2 + "] " + str(self.pl2.place_type))
         rbutton1.connect("toggled", self.on_handle1_toggled)
 
         self.connect_button('place_help', self.cb_help)
