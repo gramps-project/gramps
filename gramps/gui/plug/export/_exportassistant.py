@@ -274,7 +274,8 @@ class ExportAssistant(ManagedWindow, Gtk.Assistant):
         # add new content
         if config_box_class:
             self.option_box_instance = config_box_class(
-                self.person, self.dbstate, self.uistate, track=self.track)
+                self.person, self.dbstate, self.uistate, track=self.track,
+                window=self.window)
             box = self.option_box_instance.get_option_box()
             vbox.add(box)
         else:
