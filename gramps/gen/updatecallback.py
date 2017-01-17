@@ -72,7 +72,7 @@ class UpdateCallback:
         Reset the count to zero.
         """
         self.count = 0
-        self.oldval = 0
+        self.oldval = -1
         self.oldtime = 0
         self.text = text
 
@@ -96,7 +96,7 @@ class UpdateCallback:
         Called when the count is updated.
         """
         self.count += 1
-        if not count:
+        if count is None:
             count = self.count
         newval = int(100 * count/self.total)
         newtime = time.time()
