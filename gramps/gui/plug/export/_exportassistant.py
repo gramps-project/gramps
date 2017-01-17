@@ -640,6 +640,9 @@ class ExportAssistant(ManagedWindow, Gtk.Assistant):
         self.progressbar.set_fraction(min(value/100.0, 1.0))
         if text:
             self.progressbar.set_text("%s: %d%%" % (text, value))
+            self.confirm.set_label(
+                _("Please wait while your data is selected and exported") +
+                "\n" + text)
         else:
             self.progressbar.set_text("%d%%" % value)
         while Gtk.events_pending():
