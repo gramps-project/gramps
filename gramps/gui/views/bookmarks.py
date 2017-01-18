@@ -50,6 +50,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from ..display import display_help
 from ..listmodel import ListModel
+from ..managedwindow import ManagedWindow
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -97,14 +98,6 @@ class Bookmarks(metaclass=ABCMeta):
             self.connect_signals()
         self.dbstate.connect('database-changed', self.db_changed)
         self.dbstate.connect("no-database", self.undisplay)
-
-        # initialise attributes
-        self.namemodel = None
-        self.namemodel_cols = None
-        self.top = None
-        self.modified = None
-        self.response = None
-        self.namelist = None
 
     def db_changed(self, data):
         """
@@ -222,13 +215,50 @@ class Bookmarks(metaclass=ABCMeta):
         if modified:
             self.redraw_and_report_change()
 
+    def edit(self):
+        """
+        Display the bookmark editor.
+
+        The current bookmarked people are inserted into the namelist,
+        attaching the person object to the corresponding row. The currently
+        selected row is attached to the name list. This is either 0 if the
+        list is not empty, or -1 if it is.
+        """
+        BookmarksDialog(self)
+
+class BookmarksDialog(ManagedWindow):
+    """
+    A dialog to enable the user to organize bookmarks.
+    """
+
+    def __init__(self, bm_class):
+
+        self.bm_class = bm_class
+        self.bookmarks = bm_class.bookmarks
+        self.dbstate = bm_class.dbstate
+        self.make_label = bm_class.make_label
+        uistate = bm_class.uistate
+
+        self.namemodel = None
+        self.top = None
+        self.modified = None
+        self.response = None
+        self.namelist = None
+
+        ManagedWindow.__init__(self, uistate, [], self.__class__, modal=True)
+        # the self.top.run() below makes Gtk make it modal, so any change to
+        # the previous line's "modal" would require that line to be changed
+
+        self.draw_window()
+        self.set_window(self.top, None, _("Organize Bookmarks"))
+        self.setup_configs('interface.bookmarksdialog', 400, 350)
+        self.show()
+        self.edit()
+        self.close()
+
     def draw_window(self):
         """Draw the bookmark dialog box."""
-        title = _("%(title)s - Gramps") % {'title': _("Organize Bookmarks")}
-        self.top = Gtk.Dialog(title)
-        self.top.set_default_size(400, 350)
-        self.top.set_modal(True)
-        self.top.set_transient_for(self.uistate.window)
+        self.top = Gtk.Dialog(parent=self.parent_window)
         self.top.vbox.set_spacing(5)
         label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>'
                           % _("Organize Bookmarks"))
@@ -240,7 +270,6 @@ class Bookmarks(metaclass=ABCMeta):
         name_titles = [(_('Name'), -1, 200), (_('ID'), -1, 50), ('', -1, 0)]
         self.namelist = Gtk.TreeView()
         self.namemodel = ListModel(self.namelist, name_titles)
-        self.namemodel_cols = len(name_titles)
 
         slist = Gtk.ScrolledWindow()
         slist.add(self.namelist)
@@ -262,11 +291,6 @@ class Bookmarks(metaclass=ABCMeta):
         bbox.add(down)
         bbox.add(delete)
         box.pack_start(bbox, 0, 0, 5)
-        self.top.show_all()
-
-    def close(self, widget, event):
-        """Stop the bookmark organizer"""
-        self.top.response(Gtk.ResponseType.CLOSE)
 
     def edit(self):
         """
@@ -277,7 +301,6 @@ class Bookmarks(metaclass=ABCMeta):
         selected row is attached to the name list. This is either 0 if the
         list is not empty, or -1 if it is.
         """
-        self.draw_window()
         for handle in self.bookmarks.get():
             name, obj = self.make_label(handle)
             if obj:
@@ -287,13 +310,14 @@ class Bookmarks(metaclass=ABCMeta):
 
         self.modified = False
         while True:
+            # the self.top.run() makes Gtk make it modal, so any change to that
+            # line would require the ManagedWindow.__init__ to be changed also
             self.response = self.top.run()
             if self.response == Gtk.ResponseType.HELP:
                 self.help_clicked()
             elif self.response == Gtk.ResponseType.CLOSE:
                 if self.modified:
-                    self.redraw_and_report_change()
-                self.top.destroy()
+                    self.bm_class.redraw_and_report_change()
                 break
 
     def delete_clicked(self, obj):
@@ -328,6 +352,9 @@ class Bookmarks(metaclass=ABCMeta):
     def help_clicked(self):
         """Display the relevant portion of GRAMPS manual."""
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
+
+    def build_menu_names(self, obj): # this is meaningless while it's modal
+        return (_('Organize Bookmarks'), None)
 
 class ListBookmarks(Bookmarks):
     """ Derived class from which all the specific type bookmark handlers are in
