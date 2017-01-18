@@ -257,14 +257,12 @@ def run_report(dbstate, uistate, category, handle, pdata, container=None,
                 elif category == CATEGORY_QR_CITATION :
                     obj = dbstate.db.get_citation_from_handle(handle)
                 elif category == CATEGORY_QR_SOURCE_OR_CITATION :
-                    source = dbstate.db.get_source_from_handle(handle)
-                    citation = dbstate.db.get_citation_from_handle(handle)
-                    if (not source and not citation) or (source and citation):
-                        raise ValueError("selection must be either source or citation")
-                    if citation:
-                        obj = citation
+                    if dbstate.db.has_source_handle(handle):
+                        obj = dbstate.db.get_source_from_handle(handle)
+                    elif dbstate.db.has_citation_handle(handle):
+                        obj = dbstate.db.get_citation_from_handle(handle)
                     else:
-                        obj = source
+                        raise ValueError("selection must be either source or citation")
                 elif category == CATEGORY_QR_PLACE :
                     obj = dbstate.db.get_place_from_handle(handle)
                 elif category == CATEGORY_QR_MEDIA :
