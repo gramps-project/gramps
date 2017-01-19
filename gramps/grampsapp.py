@@ -33,8 +33,6 @@ import signal
 
 import logging
 
-LOG = logging.getLogger(".")
-
 from subprocess import Popen, PIPE
 
 #-------------------------------------------------------------------------
@@ -118,15 +116,17 @@ if win():
         elif not os.path.isdir(HOME_DIR):
             os.makedirs(HOME_DIR)
         sys.stdout = sys.stderr = open(logfile, "w")
+
 stderrh = logging.StreamHandler(sys.stderr)
 stderrh.setFormatter(form)
 stderrh.setLevel(logging.DEBUG)
 
 # Setup the base level logger, this one gets
 # everything.
-l = logging.getLogger()
-l.setLevel(logging.WARNING)
-l.addHandler(stderrh)
+
+LOG = logging.getLogger(".")
+LOG.setLevel(logging.WARNING)
+LOG.addHandler(stderrh)
 
 # put a hook on to catch any completely unhandled exceptions.
 def exc_hook(type, value, tb):
@@ -155,13 +155,13 @@ from .gen.mime import mime_type_is_defined
 
 MIN_PYTHON_VERSION = (3, 2, 0, '', 0)
 if not sys.version_info >= MIN_PYTHON_VERSION:
-    logging.warning(_("Your Python version does not meet the "
-             "requirements. At least python %(v1)d.%(v2)d.%(v3)d is needed to"
-             " start Gramps.\n\n"
-             "Gramps will terminate now.") % {
-             'v1': MIN_PYTHON_VERSION[0],
-             'v2': MIN_PYTHON_VERSION[1],
-             'v3': MIN_PYTHON_VERSION[2]})
+    LOG.warning(_("Your Python version does not meet the "
+         "requirements. At least python %(v1)d.%(v2)d.%(v3)d is needed to"
+         " start Gramps.\n\n"
+         "Gramps will terminate now.") % {
+         'v1': MIN_PYTHON_VERSION[0],
+         'v2': MIN_PYTHON_VERSION[1],
+         'v3': MIN_PYTHON_VERSION[2]})
     sys.exit(1)
 
 #-------------------------------------------------------------------------
