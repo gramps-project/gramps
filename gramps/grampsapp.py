@@ -116,14 +116,12 @@ if win():
         elif not os.path.isdir(HOME_DIR):
             os.makedirs(HOME_DIR)
         sys.stdout = sys.stderr = open(logfile, "w")
-
 stderrh = logging.StreamHandler(sys.stderr)
 stderrh.setFormatter(form)
 stderrh.setLevel(logging.DEBUG)
 
 # Setup the base level logger, this one gets
 # everything.
-
 LOG = logging.getLogger(".")
 LOG.setLevel(logging.WARNING)
 LOG.addHandler(stderrh)
