@@ -438,24 +438,24 @@ def run():
     argpars = ArgParser(argv_copy)
 
     # Calls to LOG must be after setup_logging() and ArgParser()
-    LOG = logging.getLogger(".locale")
-    LOG.debug("Encoding: %s", glocale.encoding)
-    LOG.debug("Translating Gramps to %s", glocale.language[0])
-    LOG.debug("Collation Locale: %s", glocale.collation)
-    LOG.debug("Date/Time Locale: %s", glocale.calendar)
-    LOG.debug("Currency Locale: %s", glocale.currency)
-    LOG.debug("Number-format Locale: %s", glocale.numeric)
+    LOG_LOCALE = logging.getLogger(".locale")
+    LOG_LOCALE.debug("Encoding: %s", glocale.encoding)
+    LOG_LOCALE.debug("Translating Gramps to %s", glocale.language[0])
+    LOG_LOCALE.debug("Collation Locale: %s", glocale.collation)
+    LOG_LOCALE.debug("Date/Time Locale: %s", glocale.calendar)
+    LOG_LOCALE.debug("Currency Locale: %s", glocale.currency)
+    LOG_LOCALE.debug("Number-format Locale: %s", glocale.numeric)
 
     if 'LANG' in os.environ:
-        LOG.debug('Using LANG: %s' %
+        LOG_LOCALE.debug('Using LANG: %s' %
                          get_env_var('LANG'))
     else:
-        LOG.debug('environment: LANG is not defined')
+        LOG_LOCALE.debug('environment: LANG is not defined')
     if 'LANGUAGE' in os.environ:
-        LOG.debug('Using LANGUAGE: %s' %
+        LOG_LOCALE.debug('Using LANGUAGE: %s' %
                          get_env_var('LANGUAGE'))
     else:
-        LOG.debug('environment: LANGUAGE is not defined')
+        LOG_LOCALE.debug('environment: LANGUAGE is not defined')
 
     if argpars.need_gui():
         LOG.debug("A GUI is needed, set it up")
