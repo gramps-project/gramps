@@ -909,7 +909,7 @@ class GeneWebParser:
                 LOG.warning(_(
                     "Invalid date {date} in {gw_snippet}, "
                     "preserving date as text."
-                    ).format(date=e.date.to_struct(), gw_snippet=field))
+                    ).format(date=e.date.__dict__, gw_snippet=field))
                 date.set(modifier=Date.MOD_TEXTONLY, text=field)
             return date
         else:

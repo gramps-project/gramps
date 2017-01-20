@@ -30,7 +30,7 @@ from unittest.mock import patch
 #import logging
 
 from gramps.gen.db.utils import import_as_dict
-from gramps.gen.merge.diff import diff_dbs
+from gramps.gen.merge.diff import diff_dbs, to_struct
 from gramps.gen.simple import SimpleAccess
 from gramps.gen.utils.id import set_det_id
 from gramps.cli.user import User
@@ -75,8 +75,8 @@ class CompleteCheck(unittest.TestCase):
         if diffs:
             for diff in diffs:
                 obj_type, item1, item2 = diff
-                msg = self._report_diff(obj_type, item1.to_struct(),
-                                        item2.to_struct())
+                msg = self._report_diff(obj_type, to_struct(item1),
+                                        to_struct(item2))
                 if msg != "":
                     if hasattr(item1, "gramps_id"):
                         self.msg += "%s: %s  handle=%s\n" % \

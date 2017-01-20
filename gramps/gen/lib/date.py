@@ -1652,7 +1652,7 @@ class Date:
                     self.__compare(sanity.dateval, value, year_delta)
                 except DateError as err:
                     LOG.debug("Sanity check failed - self: {}, sanity: {}".
-                              format(self.to_struct(), sanity.to_struct()))
+                              format(self.__dict__, sanity.__dict__))
                     err.date = self
                     raise
 

@@ -22,10 +22,19 @@
 This package implements an object difference engine.
 """
 
+import json
+
 from gramps.cli.user import User
 from ..db.utils import import_as_dict
+from ..lib.serialize import to_json
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+
+def to_struct(obj):
+    """
+    Convert an object into a struct.
+    """
+    return json.loads(to_json(obj))
 
 def diff_dates(json1, json2):
     """
@@ -110,7 +119,7 @@ def diff_dbs(db1, db2, user=None):
                 if handles1[p1] == handles2[p2]: # in both
                     item1 = db1.get_table_func(item,"handle_func")(handles1[p1])
                     item2 = db2.get_table_func(item,"handle_func")(handles2[p2])
-                    diff = diff_items(item, item1.to_struct(), item2.to_struct())
+                    diff = diff_items(item, to_struct(item1), to_struct(item2))
                     if diff:
                         diffs += [(item, item1, item2)]
                     # else same!
