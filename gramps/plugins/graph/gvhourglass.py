@@ -41,7 +41,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.errors import ReportError
 from gramps.gen.plug.menu import (PersonOption, BooleanOption, NumberOption,
-                                  EnumeratedListOption)
+                                  EnumeratedListOption, ColorOption)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
@@ -99,28 +99,12 @@ class HourGlassReport(Report):
         if self.center_person is None:
             raise ReportError(_("Person %s is not in the Database") % pid)
 
-        # Would be nice to get rid of these 2 hard-coded arrays of colours
-        # and instead allow the user to pick-and-choose whatever colour they
-        # want.  When/if this is done, take a look at the colour-selection
-        # widget and code used in the FamilyLines graph.  FIXME
-        colored = {
-            'male': 'dodgerblue4',
-            'female': 'deeppink',
-            'unknown': 'black',
-            'family': 'darkgreen'
-        }
-        filled = {
-            'male': 'lightblue',
-            'female': 'lightpink',
-            'unknown': 'lightgray',
-            'family': 'lightyellow'
-        }
-
         self.colorize = menu.get_option_by_name('color').get_value()
-        if self.colorize == 'colored':
-            self.colors = colored
-        elif self.colorize == 'filled':
-            self.colors = filled
+        self.colors = {'male': menu.get_option_by_name('colormales').get_value(),
+            'female': menu.get_option_by_name('colorfemales').get_value(),
+            'unknown': menu.get_option_by_name('colorunknown').get_value(),
+            'family': menu.get_option_by_name('colorfamilies').get_value()
+        }
         self.roundcorners = menu.get_option_by_name('roundcorners').get_value()
 
         self.includeid = menu.get_option_by_name('incid').get_value()
@@ -345,6 +329,23 @@ class HourGlassOptions(MenuReportOptions):
                          "with red.  If the sex of an individual "
                          "is unknown it will be shown with gray."))
         menu.add_option(category_name, "color", color)
+
+        color_males = ColorOption(_('Males'), '#e0e0ff')
+        color_males.set_help(_('The color to use to display men.'))
+        menu.add_option(category_name, 'colormales', color_males)
+
+        color_females = ColorOption(_('Females'), '#ffe0e0')
+        color_females.set_help(_('The color to use to display women.'))
+        menu.add_option(category_name, 'colorfemales', color_females)
+
+        color_unknown = ColorOption(_('Unknown'), '#e0e0e0')
+        color_unknown.set_help(_('The color to use '
+                                 'when the gender is unknown.'))
+        menu.add_option(category_name, 'colorunknown', color_unknown)
+
+        color_family = ColorOption(_('Families'), '#ffffe0')
+        color_family.set_help(_('The color to use to display families.'))
+        menu.add_option(category_name, 'colorfamilies', color_family)
 
         roundedcorners = BooleanOption(_("Use rounded corners"), False) # 2180
         roundedcorners.set_help(
