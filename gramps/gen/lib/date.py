@@ -671,55 +671,6 @@ class Date:
         return (self.calendar, self.modifier, self.quality,
                 self.dateval, text, self.sortval, self.newyear)
 
-    def to_struct(self):
-        """
-        Convert the data held in this object to a structure (eg,
-        struct) that represents all the data elements.
-
-        This method is used to recursively convert the object into a
-        self-documenting form that can easily be used for various
-        purposes, including diffs and queries.
-
-        These structures may be primitive Python types (string,
-        integer, boolean, etc.) or complex Python types (lists,
-        tuples, or dicts). If the return type is a dict, then the keys
-        of the dict match the fieldname of the object. If the return
-        struct (or value of a dict key) is a list, then it is a list
-        of structs. Otherwise, the struct is just the value of the
-        attribute.
-
-        :returns: Returns a struct containing the data of the object.
-        :rtype: dict
-        """
-        return {"_class": "Date",
-                "calendar": self.calendar,
-                "modifier": self.modifier,
-                "quality": self.quality,
-                "dateval": self.dateval,
-                "text": self.text,
-                "sortval": self.sortval,
-                "newyear": self.newyear}
-
-    @classmethod
-    def from_struct(cls, struct, full=False):
-        """
-        Given a struct data representation, return a serialized object.
-
-        :returns: Returns a serialized object
-        """
-        default = Date()
-        retval = (struct.get("calendar", default.calendar),
-                  struct.get("modifier", default.modifier),
-                  struct.get("quality", default.quality),
-                  struct.get("dateval", default.dateval),
-                  struct.get("text", default.text),
-                  struct.get("sortval", default.sortval),
-                  struct.get("newyear", default.newyear))
-        if not full and retval == (0, 0, 0, (0, 0, 0, False), '', 0, 0):
-            return None
-        else:
-            return retval
-
     def unserialize(self, data):
         """
         Load from the format created by serialize.

@@ -118,41 +118,6 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase,
                 TagBase.serialize(self),
                 self.private)
 
-    def to_struct(self):
-        """
-        Convert the data held in this object to a structure (eg,
-        struct) that represents all the data elements.
-
-        This method is used to recursively convert the object into a
-        self-documenting form that can easily be used for various
-        purposes, including diffs and queries.
-
-        These structures may be primitive Python types (string,
-        integer, boolean, etc.) or complex Python types (lists,
-        tuples, or dicts). If the return type is a dict, then the keys
-        of the dict match the fieldname of the object. If the return
-        struct (or value of a dict key) is a list, then it is a list
-        of structs. Otherwise, the struct is just the value of the
-        attribute.
-
-        :returns: Returns a struct containing the data of the object.
-        :rtype: dict
-        """
-        return {"_class": "Media",
-                "handle": Handle("Media", self.handle),
-                "gramps_id": self.gramps_id,
-                "path": self.path,
-                "mime": self.mime,
-                "desc": self.desc,
-                "checksum": self.checksum,
-                "attribute_list": AttributeBase.to_struct(self),
-                "citation_list": CitationBase.to_struct(self),
-                "note_list": NoteBase.to_struct(self),
-                "change": self.change,
-                "date": DateBase.to_struct(self),
-                "tag_list": TagBase.to_struct(self),
-                "private": self.private}
-
     @classmethod
     def get_schema(cls):
         """
@@ -204,28 +169,6 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase,
             "tag_list": _("Tags"),
             "private": _("Private"),
         }
-
-    @classmethod
-    def from_struct(cls, struct):
-        """
-        Given a struct data representation, return a serialized object.
-
-        :returns: Returns a serialized object
-        """
-        default = Media()
-        return (Handle.from_struct(struct.get("handle", default.handle)),
-                struct.get("gramps_id", default.gramps_id),
-                struct.get("path", default.path),
-                struct.get("mime", default.mime),
-                struct.get("desc", default.desc),
-                struct.get("checksum", default.checksum),
-                AttributeBase.from_struct(struct.get("attribute_list", default.attribute_list)),
-                CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
-                NoteBase.from_struct(struct.get("note_list", default.note_list)),
-                struct.get("change", default.change),
-                DateBase.from_struct(struct.get("date", {})),
-                TagBase.from_struct(struct.get("tag_list", default.tag_list)),
-                struct.get("private", default.private))
 
     def unserialize(self, data):
         """

@@ -67,49 +67,6 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
                 DateBase.serialize(self),
                 LocationBase.serialize(self))
 
-    def to_struct(self):
-        """
-        Convert the data held in this object to a structure (eg,
-        struct) that represents all the data elements.
-
-        This method is used to recursively convert the object into a
-        self-documenting form that can easily be used for various
-        purposes, including diffs and queries.
-
-        These structures may be primitive Python types (string,
-        integer, boolean, etc.) or complex Python types (lists,
-        tuples, or dicts). If the return type is a dict, then the keys
-        of the dict match the fieldname of the object. If the return
-        struct (or value of a dict key) is a list, then it is a list
-        of structs. Otherwise, the struct is just the value of the
-        attribute.
-
-        :returns: Returns a struct containing the data of the object.
-        :rtype: dict
-        """
-        return {"_class": "Address",
-                "private": PrivacyBase.serialize(self),
-                "citation_list": CitationBase.to_struct(self),
-                "note_list": NoteBase.to_struct(self),
-                "date": DateBase.to_struct(self),
-                "location": LocationBase.to_struct(self)
-               }
-
-    @classmethod
-    def from_struct(cls, struct):
-        """
-        Given a struct data representation, return a serialized object.
-
-        :returns: Returns a serialized object
-        """
-        default = Address()
-        return (PrivacyBase.from_struct(struct.get("private", default.private)),
-                CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
-                NoteBase.from_struct(struct.get("note_list", default.note_list)),
-                DateBase.from_struct(struct.get("date", {})),
-                LocationBase.from_struct(struct.get("location", {}))
-               )
-
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
