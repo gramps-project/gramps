@@ -372,14 +372,29 @@ class StyledText:
         """
         return self._tags
 
+    def set_tags(self, tags):
+        """
+        Set the list of formatting tags.
+
+        :param tags: The formatting tags applied on the text.
+        :type tags: list of 0 or more :py:class:`.StyledTextTag` instances.
+        """
+        self._tags = tags
+
     def get_string(self):
         """
         Accessor for the associated string.
         """
         return self._string
 
-    tags = property(get_tags)
-    string = property(get_string)
+    def set_string(self, string):
+        """
+        Setter for the associated string.
+        """
+        self._string = string
+
+    tags = property(get_tags, set_tags)
+    string = property(get_string, set_string)
 
 if __name__ == '__main__':
     from .styledtexttagtype import StyledTextTagType
