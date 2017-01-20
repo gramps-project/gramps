@@ -366,6 +366,7 @@ class ViewManager(CLIManager):
         vert_position = config.get('interface.main-window-vert-position')
 
         self.window = Gtk.Window()
+        self.window.gramps_main = True
         self.window.set_icon_from_file(ICON)
         self.window.set_default_size(width, height)
         self.window.move(horiz_position, vert_position)

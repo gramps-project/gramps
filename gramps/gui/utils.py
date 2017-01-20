@@ -139,7 +139,18 @@ class ProgressMeter:
         else:
             self.__cancel_callback = self.handle_cancel
 
-        if has_display():
+        # if we don't have an explicit parent, try to find one
+        if has_display() and not parent:
+            gramps_main = None
+            for win in Gtk.Window.list_toplevels():
+                if win.is_active():
+                    parent = win
+                    break
+                if hasattr(win, 'gramps_main'):
+                    gramps_main = win
+        parent = parent if parent else gramps_main
+        # if we still don't have a parent (cli), give up
+        if has_display() and parent:
             self.__dialog = Gtk.Dialog()
         else:
             self.__dialog = CLIDialog()
@@ -152,12 +163,6 @@ class ProgressMeter:
         self.__dialog.vbox.set_spacing(10)
         self.__dialog.vbox.set_border_width(24)
         self.__dialog.set_size_request(400, 125)
-        if not parent:  # if we don't have an explicit parent, try to find one
-            for win in Gtk.Window.list_toplevels():
-                if win.is_active():
-                    parent = win
-                    break
-        # if we still don't have a parent, give up
         if parent:
             self.__dialog.set_transient_for(parent)
             self.__dialog.set_modal(True)
