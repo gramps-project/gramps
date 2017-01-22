@@ -39,7 +39,7 @@ import os
 import sys
 import re
 import logging
-LOG = logging.getLogger('.' + __name__)
+LOG = logging.getLogger('._manager')
 LOG.progagate = True
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -100,8 +100,8 @@ class BasePluginManager:
         self.__modules           = {}
 
         self.__pgr = PluginRegister.get_instance()
-        self.__registereddir_set = set()
         self.__loaded_plugins = {}
+        self.__scanned_dirs = []
 
     def reg_plugins(self, direct, dbstate=None, uistate=None,
                     load_on_reg=False):
@@ -112,23 +112,24 @@ class BasePluginManager:
         If a relationship calculator for env var LANG is present, it is
         immediately loaded so it is available for all.
         """
-        # if the directory does not exist, do nothing
-        if not os.path.isdir(direct):
-            return False # return value is True for error
+        # if we've already scanned this directory or if the directory does not
+        # exist, we are done.  Should only happen in tests.
 
-        for (dirpath, dirnames, filenames) in os.walk(direct):
-            root, subdir = os.path.split(dirpath)
-            if subdir.startswith("."):
-                dirnames[:] = []
-                continue
-            for dirname in dirnames:
-                # Skip hidden and system directories:
-                if dirname.startswith(".") or dirname in ["po", "locale"]:
-                    dirnames.remove(dirname)
-            # if the path has not already been loaded, save it in the
-            # registereddir_list list for use on reloading.
-            self.__registereddir_set.add(dirpath)
-            self.__pgr.scan_dir(dirpath, uistate=uistate)
+        # LOG.warning("\nPlugin manager registration: %s, load_on_reg=%s,"
+        #             " been_here=%s, pahte exists:%s", direct, load_on_reg,
+        #             direct in self.__scanned_dirs, os.path.isdir(direct))
+
+        if os.path.isdir(direct) and direct not in self.__scanned_dirs:
+            self.__scanned_dirs.append(direct)
+            for (dirpath, dirnames, filenames) in os.walk(direct,
+                                                          topdown=True):
+                for dirname in dirnames[:]:
+                    # Skip hidden and system directories:
+                    if dirname.startswith(".") or dirname in ["po", "locale",
+                                                              "__pycache__"]:
+                        dirnames.remove(dirname)
+                # LOG.warning("Plugin dir scanned: %s", dirpath)
+                self.__pgr.scan_dir(dirpath, filenames, uistate=uistate)
 
         if load_on_reg:
             # Run plugins that request to be loaded on startup and
@@ -136,6 +137,7 @@ class BasePluginManager:
             # first, remove hidden
             plugins_to_load = []
             for plugin in self.__pgr.filter_load_on_reg():
+                # LOG.warning("\nFound %s at registration", plugin.id)
                 if plugin.id in config.get("plugin.hiddenplugins"):
                     continue
                 plugins_to_load.append(plugin)
@@ -146,6 +148,8 @@ class BasePluginManager:
             max_count = len(plugins_to_load)
             while plugins_to_load:
                 for plugin in plugins_to_load[:]: # copy of list
+                    # LOG.warning("\nDependencies for %s at registration",
+                    #             plugin.id)
                     delay = False
                     for depend in plugin.depends_on:
                         if depend not in [p.id for p in plugins_sorted]:
@@ -167,8 +171,12 @@ class BasePluginManager:
                     break
             # now load them:
             for plugin in plugins_sorted:
+                # next line shouldn't be necessary, but this gets called a lot
+                # of times during Travis test; so avoid multiple copies
+                plugin.data = []
                 mod = self.load_plugin(plugin)
                 if hasattr(mod, "load_on_reg"):
+                    # LOG.warning("\nRun %s at registration", plugin.id)
                     try:
                         results = mod.load_on_reg(dbstate, uistate, plugin)
                     except:
@@ -496,6 +504,8 @@ class BasePluginManager:
                     retval.extend(data)
                 except:
                     retval.append(data)
+        # LOG.warning("Process plugin data=%s, %s, items=%s",
+        #             process is not None, category, len(retval))
         if process:
             return process(retval)
         return retval
