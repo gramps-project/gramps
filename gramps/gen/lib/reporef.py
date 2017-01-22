@@ -69,51 +69,6 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
             PrivacyBase.serialize(self),
             )
 
-    def to_struct(self):
-        """
-        Convert the data held in this object to a structure (eg,
-        struct) that represents all the data elements.
-
-        This method is used to recursively convert the object into a
-        self-documenting form that can easily be used for various
-        purposes, including diffs and queries.
-
-        These structures may be primitive Python types (string,
-        integer, boolean, etc.) or complex Python types (lists,
-        tuples, or dicts). If the return type is a dict, then the keys
-        of the dict match the fieldname of the object. If the return
-        struct (or value of a dict key) is a list, then it is a list
-        of structs. Otherwise, the struct is just the value of the
-        attribute.
-
-        :returns: Returns a struct containing the data of the object.
-        :rtype: dict
-        """
-        return {
-            "_class": "RepositoryRef",
-            "note_list": NoteBase.to_struct(self),
-            "ref": Handle("Repository", self.ref),
-            "call_number": self.call_number,
-            "media_type": self.media_type.to_struct(),
-            "private": PrivacyBase.serialize(self),
-            }
-
-    @classmethod
-    def from_struct(cls, struct):
-        """
-        Given a struct data representation, return a serialized object.
-
-        :returns: Returns a serialized object
-        """
-        default = RepoRef()
-        return (
-            NoteBase.from_struct(struct.get("note_list", default.note_list)),
-            RefBase.from_struct(struct.get("ref", default.ref)),
-            struct.get("call_number", default.call_number),
-            SourceMediaType.from_struct(struct.get("media_type", {})),
-            struct.get("private", default.private),
-            )
-
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

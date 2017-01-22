@@ -63,7 +63,7 @@ class DateHandlerTest(unittest.TestCase):
         self.assertTrue(test_date.is_equal(new_date),
                 "{} -> {}\n{} -> {}".format(
                     test_date, new_date,
-                    test_date.to_struct(), new_date.to_struct()))
+                    test_date.__dict__, new_date.__dict__))
 
     def test_simple(self):
 

@@ -288,47 +288,6 @@ class StyledText:
 
         return (self._string, the_tags)
 
-    def to_struct(self):
-        """
-        Convert the data held in this object to a structure (eg,
-        struct) that represents all the data elements.
-
-        This method is used to recursively convert the object into a
-        self-documenting form that can easily be used for various
-        purposes, including diffs and queries.
-
-        These structures may be primitive Python types (string,
-        integer, boolean, etc.) or complex Python types (lists,
-        tuples, or dicts). If the return type is a dict, then the keys
-        of the dict match the fieldname of the object. If the return
-        struct (or value of a dict key) is a list, then it is a list
-        of structs. Otherwise, the struct is just the value of the
-        attribute.
-
-        :return: Returns a struct containing the data of the object.
-        :rtype: dict
-        """
-        if self._tags:
-            the_tags = [tag.to_struct() for tag in self._tags]
-        else:
-            the_tags = []
-
-        return {"_class": "StyledText",
-                "string": self._string,
-                "tags": the_tags}
-
-    @classmethod
-    def from_struct(cls, struct):
-        """
-        Given a struct data representation, return a serialized object.
-
-        :return: Returns a serialized object
-        """
-        default = StyledText()
-        return (struct.get("string", default.string),
-                [StyledTextTag.from_struct(t)
-                 for t in struct.get("tags", default.tags)])
-
     @classmethod
     def get_schema(cls):
         """
@@ -372,14 +331,29 @@ class StyledText:
         """
         return self._tags
 
+    def set_tags(self, tags):
+        """
+        Set the list of formatting tags.
+
+        :param tags: The formatting tags applied on the text.
+        :type tags: list of 0 or more :py:class:`.StyledTextTag` instances.
+        """
+        self._tags = tags
+
     def get_string(self):
         """
         Accessor for the associated string.
         """
         return self._string
 
-    tags = property(get_tags)
-    string = property(get_string)
+    def set_string(self, string):
+        """
+        Setter for the associated string.
+        """
+        self._string = string
+
+    tags = property(get_tags, set_tags)
+    string = property(get_string, set_string)
 
 if __name__ == '__main__':
     from .styledtexttagtype import StyledTextTagType

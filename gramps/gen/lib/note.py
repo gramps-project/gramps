@@ -95,36 +95,6 @@ class Note(BasicPrimaryObject):
                 self.type.serialize(), self.change, TagBase.serialize(self),
                 self.private)
 
-    def to_struct(self):
-        """
-        Convert the data held in this object to a structure (eg,
-        struct) that represents all the data elements.
-
-        This method is used to recursively convert the object into a
-        self-documenting form that can easily be used for various
-        purposes, including diffs and queries.
-
-        These structures may be primitive Python types (string,
-        integer, boolean, etc.) or complex Python types (lists,
-        tuples, or dicts). If the return type is a dict, then the keys
-        of the dict match the fieldname of the object. If the return
-        struct (or value of a dict key) is a list, then it is a list
-        of structs. Otherwise, the struct is just the value of the
-        attribute.
-
-        :returns: Returns a struct containing the data of the object.
-        :rtype: dict
-        """
-        return {"_class": "Note",
-                "handle": Handle("Note", self.handle),
-                "gramps_id": self.gramps_id,
-                "text": self.text.to_struct(),
-                "format": self.format,
-                "type": self.type.to_struct(),
-                "change": self.change,
-                "tag_list": TagBase.to_struct(self),
-                "private": self.private}
-
     @classmethod
     def get_schema(cls):
         """
@@ -153,23 +123,6 @@ class Note(BasicPrimaryObject):
             "tag_list": _("Tags"),
             "private": _("Private"),
         }
-
-    @classmethod
-    def from_struct(cls, struct):
-        """
-        Given a struct data representation, return a serialized object.
-
-        :returns: Returns a serialized object
-        """
-        default = Note()
-        return (Handle.from_struct(struct.get("handle", default.handle)),
-                struct.get("gramps_id", default.gramps_id),
-                StyledText.from_struct(struct.get("text", {})),
-                struct.get("format", default.format),
-                NoteType.from_struct(struct.get("type", {})),
-                struct.get("change", default.change),
-                TagBase.from_struct(struct.get("tag_list", default.tag_list)),
-                struct.get("private", default.private))
 
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object.

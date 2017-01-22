@@ -53,15 +53,6 @@ class RefBase(metaclass=ABCMeta):
         """
         return self.ref
 
-    @classmethod
-    def from_struct(cls, struct):
-        """
-        Given a struct data representation, return a serialized object.
-
-        :returns: Returns a serialized object
-        """
-        return str(struct)
-
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

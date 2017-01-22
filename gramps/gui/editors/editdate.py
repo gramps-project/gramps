@@ -258,7 +258,7 @@ class EditDate(ManagedWindow):
                 newyear=the_newyear)
             # didn't throw yet?
             self.validated_date = d
-            LOG.debug("validated_date set to: {0}".format(d.to_struct()))
+            LOG.debug("validated_date set to: {0}".format(d.__dict__))
             self.ok_button.set_sensitive(1)
             self.calendar_box.set_sensitive(1)
             return True
