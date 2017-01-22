@@ -496,6 +496,11 @@ class GtkProgressDialog(Gtk.Dialog):
         Gtk.Dialog.__init__(self)
         if len(window_params) >= 2:
             self.set_transient_for(window_params[1])
+        else:
+            for win in Gtk.Window.list_toplevels():
+                if win.is_active():
+                    self.set_transient_for(win)
+                    break
         if len(window_params) >= 3:
             flags = window_params[2]
             if Gtk.DialogFlags.MODAL & flags:

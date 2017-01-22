@@ -53,6 +53,16 @@ addons:
     - python3-mock
     - python3-pyicu
     - python3-coverage
+    # lxml dependencies.  for merge_ref_test to work
+    # - libxml2-dev
+    # - libxslt1-dev
+    - libxml2-utils
+    - python3-lxml
+    - python-libxml2
+# ubuntu 14.04 requires this in addition to libxml2-dev and
+# libxslt1-dev for compiling lxml.
+# https://github.com/deanmalmgren/textract/issues/19
+    - zlib1g-dev
 
 before_install:
 
@@ -79,8 +89,8 @@ before_script:
  - export PYTHONPATH=meta
 # set module exclusions. --exclude=TestUser because of older version of mock
 # without configure_mock
- - export EXCLUDE="--exclude=TestcaseGenerator --exclude=vcard
-   --exclude=merge_ref_test --exclude=user_test"
+ - export EXCLUDE="--exclude=TestcaseGenerator --exclude=vcard"
+#   --exclude=merge_ref_test"
 # set GRAMPS_RESOURCES for locale, data,image and documentation
  - export GRAMPS_RESOURCES=.
 

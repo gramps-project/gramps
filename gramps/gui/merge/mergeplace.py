@@ -63,8 +63,9 @@ class MergePlace(ManagedWindow):
     """
     Displays a dialog box that allows the places to be combined into one.
     """
-    def __init__(self, dbstate, uistate, handle1, handle2, callback=None):
-        ManagedWindow.__init__(self, uistate, [], self.__class__)
+    def __init__(self, dbstate, uistate, track, handle1, handle2,
+                 callback=None):
+        ManagedWindow.__init__(self, uistate, track, self.__class__)
         self.dbstate = dbstate
         database = dbstate.db
         self.callback = callback
@@ -75,6 +76,7 @@ class MergePlace(ManagedWindow):
         self.set_window(self._gladeobj.toplevel,
                         self.get_widget('place_title'),
                         _("Merge Places"))
+        self.setup_configs('interface.merge-place', 500, 250)
 
         # Detailed selection widgets
         if not config.get('preferences.place-auto'):

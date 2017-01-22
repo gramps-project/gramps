@@ -77,4 +77,7 @@ def run(database, document, repo):
 
                 stab.row(src.get_title(), media, call)
                 document.has_data = True
-    stab.write(sdoc)
+    if document.has_data:
+        stab.write(sdoc)
+    else:
+        sdoc.header1(_("Not found"))

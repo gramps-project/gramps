@@ -105,14 +105,15 @@ FORMAT_TOOLBAR = '''
 FONT_SIZES = [8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 22,
               24, 26, 28, 32, 36, 40, 48, 56, 64, 72]
 
-USERCHARS = "-A-Za-z0-9"
-PASSCHARS = "-A-Za-z0-9,?;.:/!%$^*&~\"#'"
-HOSTCHARS = "-A-Za-z0-9"
-PATHCHARS = "-A-Za-z0-9_$.+!*(),;:@&=?/~#%"
+USERCHARS = r"-\w"
+PASSCHARS = r"-\w,?;.:/!%$^*&~\"#'"
+HOSTCHARS = r"-\w"
+PATHCHARS = r"-\w$.+!*(),;:@&=?/~#%"
 #SCHEME = "(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
 SCHEME = "(file:/|https?:|ftps?:|webcal:)"
 USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
-URLPATH = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
+HOST = r"([-\w.]+|\[[0-9A-F:]+\])?"
+URLPATH = "(/[" + PATHCHARS + "]*)?[^]'.:}> \t\r\n,\\\"]"
 
 (GENURL, HTTP, MAIL, LINK) = list(range(4))
 
@@ -291,20 +292,18 @@ class StyledTextEditor(Gtk.TextView):
             iter_at_location = iter_at_location[1]
         self.match = self.textbuffer.match_check(iter_at_location.get_offset())
         tooltip = None
-        if not self.match:
-            for tag in (tag for tag in iter_at_location.get_tags()
-                        if tag.get_property('name').startswith("link")):
-                self.match = (x, y, LINK, tag.data, tag)
-                tooltip = self.make_tooltip_from_link(tag)
-                break
+        for tag in (tag for tag in iter_at_location.get_tags()
+                    if tag.get_property('name').startswith("link")):
+            self.match = (x, y, LINK, tag.data, tag)
+            tooltip = self.make_tooltip_from_link(tag)
+            break
 
         if self.match != self.last_match:
             self.emit('match-changed', self.match)
 
         self.last_match = self.match
-        self.get_root_window().get_pointer()
-        if tooltip:
-            self.set_tooltip_text(tooltip)
+        # self.get_root_window().get_pointer()  # Doesn't seem to do anythhing!
+        self.set_tooltip_text(tooltip)
         return False
 
     def make_tooltip_from_link(self, link_tag):
@@ -546,14 +545,14 @@ class StyledTextEditor(Gtk.TextView):
         self.textbuffer.create_tag('hyperlink',
                                    underline=Pango.Underline.SINGLE,
                                    foreground=self.linkcolor)
-        self.textbuffer.match_add(SCHEME + "//(" + USER + "@)?[" +
-                                  HOSTCHARS + ".]+" + "(:[0-9]+)?(" +
-                                  URLPATH + ")?/?", GENURL)
-        self.textbuffer.match_add("(www|ftp)[" + HOSTCHARS + "]*\\.[" +
-                                  HOSTCHARS + ".]+" + "(:[0-9]+)?(" +
-                                  URLPATH + ")?/?", HTTP)
-        self.textbuffer.match_add("(mailto:)?[a-z0-9][a-z0-9.-]*@[a-z0-9]"
-                                  "[a-z0-9-]*(\\.[a-z0-9][a-z0-9-]*)+", MAIL)
+        self.textbuffer.match_add(SCHEME + "//(" + USER + "@)?" +
+                                  HOST + "(:[0-9]+)?" +
+                                  URLPATH, GENURL)
+        self.textbuffer.match_add(r"(www\.|ftp\.)[" + HOSTCHARS + r"]*\.[" +
+                                  HOSTCHARS + ".]+" + "(:[0-9]+)?" +
+                                  URLPATH, HTTP)
+        self.textbuffer.match_add(r"(mailto:)?[\w][-.\w]*@[\w]"
+                                  r"[-\w]*(\.[\w][-.\w]*)+", MAIL)
 
     def _create_spell_menu(self):
         """
@@ -679,7 +678,7 @@ class StyledTextEditor(Gtk.TextView):
             self.textbuffer.apply_style(style, value)
         except ValueError:
             _LOG.debug("unable to convert '%s' to '%s'" %
-                       (text, StyledTextTagType.STYLE_TYPE[style]))
+                       (value, StyledTextTagType.STYLE_TYPE[style]))
 
     def _format_clear_cb(self, action):
         """

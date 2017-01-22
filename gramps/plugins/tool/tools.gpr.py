@@ -17,6 +17,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
+from gramps.gen.plug._pluginreg import *
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 """
 GRAMPS registration file
@@ -157,8 +160,8 @@ fname = 'finddupes.py',
 authors = ["Donald N. Allingham"],
 authors_email = ["don@gramps-project.org"],
 category = TOOL_DBPROC,
-toolclass = 'Merge',
-optionclass = 'MergeOptions',
+toolclass = 'DuplicatePeopleTool',
+optionclass = 'DuplicatePeopleToolOptions',
 tool_modes = [TOOL_MODE_GUI]
   )
 

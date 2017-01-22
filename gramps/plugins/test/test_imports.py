@@ -25,9 +25,12 @@ import unittest
 import os
 import sys
 import re
+from time import localtime, strptime
+from unittest.mock import patch
 #import logging
 
-from gramps.gen.merge.diff import diff_dbs, import_as_dict
+from gramps.gen.db.utils import import_as_dict
+from gramps.gen.merge.diff import diff_dbs
 from gramps.gen.simple import SimpleAccess
 from gramps.gen.utils.id import set_det_id
 from gramps.cli.user import User
@@ -45,6 +48,17 @@ TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 #  Local Functions
 # ------------------------------------------------------------------
 
+def mock_time(*args):
+    """
+    Mock up a dummy to replace the varying 'time string results'
+    """
+    return 946101600.
+
+def mock_localtime(*args):
+    """
+    Mock up a dummy to replace the varying 'time string results'
+    """
+    return strptime("25 Dec 1999", "%d %b %Y")
 
 class CompleteCheck(unittest.TestCase):
     """The test class cases will be dynamically created at import time from
@@ -174,16 +188,27 @@ def make_tst_function(tstfile, file_name):
     """ This is here to support the dynamic function creation.  This creates
     the test function (a method, to be precise).
     """
-    def tst(self):
+
+    @patch('gramps.plugins.db.dbapi.dbapi.time')
+    @patch('gramps.plugins.db.bsddb.write.time')
+    @patch('gramps.gen.utils.unknown.localtime')
+    @patch('gramps.gen.utils.unknown.time')
+    def tst(self, mocktime, mockltime, mockwtime, mockdtime):
         """ This compares the import file with the expected result '.gramps'
         file.
         """
+        mocktime.side_effect = mock_time
+        mockltime.side_effect = mock_localtime
+        mockwtime.side_effect = mock_time
+        mockdtime.side_effect = mock_time
         fn1 = os.path.join(TEST_DIR, tstfile)
         fn2 = os.path.join(TEST_DIR, (file_name + ".gramps"))
         fres = os.path.join(TEMP_DIR, (file_name + ".difs"))
         fout = os.path.join(TEMP_DIR, (file_name + ".gramps"))
         if "_dfs" in tstfile:
             config.set('preferences.default-source', True)
+            config.set('preferences.tag-on-import-format', "Imported")
+            config.set('preferences.tag-on-import', True)
             skp_imp_adds = False
         else:
             skp_imp_adds = True

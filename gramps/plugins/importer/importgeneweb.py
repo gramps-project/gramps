@@ -1152,8 +1152,7 @@ class GeneWebParser:
             except UnicodeDecodeError:
                 pass
 
-        return( s)
+        return(s)
 
-    def debug( self, txt):
-        if enable_debug:
-            print(txt)
+    def debug(self, txt):
+        LOG.debug(txt)

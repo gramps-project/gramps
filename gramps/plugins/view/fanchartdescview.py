@@ -58,6 +58,9 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
     CONFIGSETTINGS = (
         ('interface.fanview-maxgen', 9),
         ('interface.fanview-background', fanchart.BACKGROUND_GRAD_GEN),
+        ('interface.fanview-radialtext', True),
+        ('interface.fanview-twolinename', True),
+        ('interface.fanview-flipupsidedownname', True),
         ('interface.fanview-font', 'Sans'),
         ('interface.fanview-form', fanchart.FORM_CIRCLE),
         ('interface.color-start-grad', '#ef2929'),
@@ -77,6 +80,9 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         #set needed values
         self.maxgen = self._config.get('interface.fanview-maxgen')
         self.background = self._config.get('interface.fanview-background')
+        self.radialtext = self._config.get('interface.fanview-radialtext')
+        self.twolinename = self._config.get('interface.fanview-twolinename')
+        self.flipupsidedownname = self._config.get('interface.fanview-flipupsidedownname')
         self.fonttype = self._config.get('interface.fanview-font')
 
         self.grad_start =  self._config.get('interface.color-start-grad')
@@ -93,8 +99,22 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self.additional_uis.append(self.additional_ui())
         self.allfonts = [x for x in enumerate(SystemFonts().get_system_fonts())]
 
+        self.func_list.update({
+            '<PRIMARY>J' : self.jump,
+            })
+
     def navigation_type(self):
         return 'Person'
+
+    def get_handle_from_gramps_id(self, gid):
+        """
+        returns the handle of the specified object
+        """
+        obj = self.dbstate.db.get_person_from_gramps_id(gid)
+        if obj:
+            return obj.get_handle()
+        else:
+            return None
 
     def build_widget(self):
         self.set_fan(fanchartdesc.FanChartDescWidget(self.dbstate, self.uistate,
@@ -265,7 +285,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         """
         Function that builds the widget in the configuration dialog
         """
-        nrentry = 8
+        nrentry = 9
         grid = Gtk.Grid()
         grid.set_border_width(12)
         grid.set_column_spacing(6)
@@ -326,6 +346,16 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
                         ),
                         callback=self.cb_update_anglealgo)
 
+        # show names one two line
+        configdialog.add_checkbox(grid,
+                _('Show names on two lines'),
+                8, 'interface.fanview-twolinename')
+
+        # Flip names
+        configdialog.add_checkbox(grid,
+                _('Flip name on the left of the fan'),
+                9, 'interface.fanview-flipupsidedownname')
+
         return _('Layout'), grid
 
     def config_connect(self):
@@ -340,10 +370,21 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
                           self.cb_update_color)
         self._config.connect('interface.duplicate-color',
                           self.cb_update_color)
+        self._config.connect('interface.fanview-flipupsidedownname',
+                          self.cb_update_flipupsidedownname)
+        self._config.connect('interface.fanview-twolinename',
+                          self.cb_update_twolinename)
 
     def cb_update_maxgen(self, spinbtn, constant):
         self.maxgen = spinbtn.get_value_as_int()
         self._config.set(constant, self.maxgen)
+        self.update()
+
+    def cb_update_twolinename(self, client, cnxn_id, entry, data):
+        """
+        Called when the configuration menu changes the twolinename setting.
+        """
+        self.twolinename = (entry == 'True')
         self.update()
 
     def cb_update_background(self, obj, constant):
@@ -374,6 +415,13 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self.grad_start = self._config.get('interface.color-start-grad')
         self.grad_end = self._config.get('interface.color-end-grad')
         self.dupcolor = self._config.get('interface.duplicate-color')
+        self.update()
+
+    def cb_update_flipupsidedownname(self, client, cnxn_id, entry, data):
+        """
+        Called when the configuration menu changes the flipupsidedownname setting.
+        """
+        self.flipupsidedownname = (entry == 'True')
         self.update()
 
     def cb_update_font(self, obj, constant):

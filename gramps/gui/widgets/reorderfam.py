@@ -23,8 +23,6 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
@@ -45,6 +43,8 @@ _LOG = logging.getLogger("gui.widgets.reorderfam")
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from gramps.gen.db import DbTxn
 from ..listmodel import ListModel
 from ..managedwindow import ManagedWindow
@@ -77,6 +77,7 @@ class Reorder(ManagedWindow):
         fenable = len(self.family_list) > 1
 
         self.set_window(top, None, _("Reorder Relationships"))
+        self.setup_configs('interface.reorder', 500, 400)
 
         self.ptree = xml.get_object('ptree')
         self.pmodel = ListModel(self.ptree,

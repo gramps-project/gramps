@@ -414,31 +414,36 @@ class BirthdayOptions(MenuReportOptions):
         """ Add the options for the text birthday report """
         category_name = _("Report Options")
 
-        year = NumberOption(_("Year of report"), time.localtime()[0],
-                            1000, 3000)
-        year.set_help(_("Year of report"))
-        menu.add_option(category_name, "year", year)
-
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
-               _("Select filter to restrict people that appear on report"))
+            _("Select the filter to be applied to the report."))
         menu.add_option(category_name, "filter", self.__filter)
+        self.__filter.connect('value-changed', self.__filter_changed)
 
-        self.__pid = PersonOption(_("Center Person"))
-        self.__pid.set_help(_("The center person for the report"))
+        self.__pid = PersonOption(_("Filter Person"))
+        self.__pid.set_help(_("The center person for the filter."))
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
 
         self._nf = stdoptions.add_name_format_option(menu, category_name)
         self._nf.connect('value-changed', self.__update_filters)
 
-        self.__update_filters()
-
         stdoptions.add_private_data_option(menu, category_name)
 
         alive = BooleanOption(_("Include only living people"), True)
         alive.set_help(_("Include only living people in the report"))
         menu.add_option(category_name, "alive", alive)
+
+        self.__update_filters()
+
+        stdoptions.add_localization_option(menu, category_name)
+
+        category_name = _("Content")
+
+        year = NumberOption(_("Year of report"), time.localtime()[0],
+                            1000, 3000)
+        year.set_help(_("Year of report"))
+        menu.add_option(category_name, "year", year)
 
         country = EnumeratedListOption(_("Country for holidays"), 0)
         holiday_table = libholiday.HolidayTable()
@@ -482,8 +487,6 @@ class BirthdayOptions(MenuReportOptions):
         option.set_help(_("Include relationships to center person (slower)"))
         menu.add_option(category_name, "relationships", option)
 
-        stdoptions.add_localization_option(menu, category_name)
-
         category_name = _("Text Options")
 
         titletext = StringOption(_("Title text"), _(_TITLE0))
@@ -510,9 +513,21 @@ class BirthdayOptions(MenuReportOptions):
         person = self.__db.get_person_from_gramps_id(gid)
         nfv = self._nf.get_value()
         filter_list = utils.get_person_filters(person,
-                                                     include_single=False,
-                                                     name_format=nfv)
+                                               include_single=False,
+                                               name_format=nfv)
         self.__filter.set_filters(filter_list)
+
+    def __filter_changed(self):
+        """
+        Handle filter change. If the filter is not specific to a person,
+        disable the person option
+        """
+        filter_value = self.__filter.get_value()
+        if filter_value == 0: # "Entire Database" (as "include_single=False")
+            self.__pid.set_available(False)
+        else:
+            # The other filters need a center person (assume custom ones too)
+            self.__pid.set_available(True)
 
     def make_my_style(self, default_style, name, description,
                       size=9, font=FONT_SERIF, justified ="left",

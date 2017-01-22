@@ -431,6 +431,16 @@ class PlaceOptions(MenuReportOptions):
         """
         category_name = _("Report Options")
 
+        stdoptions.add_name_format_option(menu, category_name)
+
+        stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
+
+        stdoptions.add_localization_option(menu, category_name)
+
+        category_name = _("Content")
+
         # Reload filters to pick any new ones
         CustomFilters = None
         from gramps.gen.filters import CustomFilters, GenericFilter
@@ -447,18 +457,10 @@ class PlaceOptions(MenuReportOptions):
         self.__places.set_help(_("List of places to report on"))
         menu.add_option(category_name, "places", self.__places)
 
-        stdoptions.add_private_data_option(menu, category_name)
-
-        stdoptions.add_living_people_option(menu, category_name)
-
-        stdoptions.add_name_format_option(menu, category_name)
-
         center = EnumeratedListOption(_("Center on"), "Event")
         center.set_items([("Event", _("Event")), ("Person", _("Person"))])
         center.set_help(_("If report is event or person centered"))
         menu.add_option(category_name, "center", center)
-
-        stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self, default_style):
         """

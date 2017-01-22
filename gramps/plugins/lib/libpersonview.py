@@ -139,6 +139,9 @@ class BasePersonView(ListView):
             'person-rebuild' : self.object_build,
             'person-groupname-rebuild' : self.object_build,
             'no-database': self.no_database,
+            'family-update'  : self.object_build,
+            'family-add'     : self.object_build,
+            'family-delete'  : self.object_build,
             }
 
         ListView.__init__(
@@ -427,7 +430,7 @@ class BasePersonView(ListView):
                         "holding down the control key while clicking on "
                         "the desired person."), parent=self.uistate.window)
         else:
-            MergePerson(self.dbstate, self.uistate, mlist[0], mlist[1])
+            MergePerson(self.dbstate, self.uistate, [], mlist[0], mlist[1])
 
     def tag_updated(self, handle_list):
         """

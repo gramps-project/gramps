@@ -1383,12 +1383,9 @@ class ClipboardWindow(ManagedWindow):
         self.database_changed(self.dbstate.db)
         self.dbstate.connect('database-changed', self.database_changed)
 
-        self.width_key = 'interface.clipboard-width'
-        self.height_key = 'interface.clipboard-height'
-
         self.top = Glade()
         self.set_window(self.top.toplevel, None, None, msg=_("Clipboard"))
-        self._set_size()
+        self.setup_configs('interface.clipboard', 500, 300)
 
         self.clear_all_btn = self.top.get_object("btn_clear_all")
         self.clear_btn = self.top.get_object("btn_clear")
@@ -1479,7 +1476,7 @@ class MultiTreeView(Gtk.TreeView):
         Gtk.TreeView.__init__(self)
         self.connect('button_press_event', self.on_button_press)
         self.connect('button_release_event', self.on_button_release)
-        self.connect('grab_broken_event', self.on_grab_broken)
+        self.connect('drag-end', self.on_drag_end)
         self.connect('key_press_event', self.key_press_event)
         self.defer_select = False
 
@@ -1581,7 +1578,7 @@ class MultiTreeView(Gtk.TreeView):
 
         self.defer_select=False
 
-    def on_grab_broken(self, widget, event):
+    def on_drag_end(self, widget, event):
         # re-enable selection
         self.get_selection().set_select_function(lambda *ignore: True, None)
         self.defer_select=False

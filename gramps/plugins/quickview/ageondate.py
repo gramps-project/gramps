@@ -81,7 +81,8 @@ def run(database, document, date):
     sdoc.paragraph(_("\nLiving matches: %(alive)d, "
                      "Deceased matches: %(dead)d\n") %
                          {'alive' : alive_matches, 'dead' : dead_matches})
-    stab.write(sdoc)
+    if document.has_data:
+        stab.write(sdoc)
     sdoc.paragraph("")
 
 def get_event_date_from_ref(database, ref):

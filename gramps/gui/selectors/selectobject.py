@@ -87,8 +87,7 @@ class SelectObject(BaseSelector):
         """
         Perform local initialisation for this class
         """
-        self.width_key = 'interface.media-sel-width'
-        self.height_key = 'interface.media-sel-height'
+        self.setup_configs('interface.media-sel', 600, 450)
         self.preview = Gtk.Image()
         self.preview.set_size_request(int(THUMBSCALE),
                                     int(THUMBSCALE))

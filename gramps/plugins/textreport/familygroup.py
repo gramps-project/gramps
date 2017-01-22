@@ -733,18 +733,12 @@ class FamilyGroupOptions(MenuReportOptions):
         stdoptions.add_localization_option(menu, category_name)
 
         ##########################
-        add_option = partial(menu.add_option, _("Include"))
+        add_option = partial(menu.add_option, _("Include 1"))
         ##########################
 
         gramps_ids = BooleanOption(_('Gramps ID'), False)
         gramps_ids.set_help(_("Whether to include Gramps ID next to names."))
         add_option("gramps_ids", gramps_ids)
-
-        generations = BooleanOption(_("Generation numbers "
-                                      "(recursive only)"), True)
-        generations.set_help(_("Whether to include the generation on each "
-                               "report (recursive only)."))
-        add_option("generations", generations)
 
         inc_par_events = BooleanOption(_("Parent Events"), False)
         inc_par_events.set_help(_("Whether to include events for parents."))
@@ -772,6 +766,10 @@ class FamilyGroupOptions(MenuReportOptions):
             _("Whether to include marriage information for parents."))
         add_option("incParMar", inc_par_mar)
 
+        ##########################
+        add_option = partial(menu.add_option, _("Include 2"))
+        ##########################
+
         inc_fam_notes = BooleanOption(_("Family Notes"), False)
         inc_fam_notes.set_help(_("Whether to include notes for families."))
         add_option("incFamNotes", inc_fam_notes)
@@ -785,6 +783,12 @@ class FamilyGroupOptions(MenuReportOptions):
         inc_chi_mar.set_help(
             _("Whether to include marriage information for children."))
         add_option("incChiMar", inc_chi_mar)
+
+        generations = BooleanOption(_("Generation numbers "
+                                      "(recursive only)"), False)
+        generations.set_help(_("Whether to include the generation on each "
+                               "report (recursive only)."))
+        add_option("generations", generations) # TODO make insensitive if ...
 
         ##########################
         add_option = partial(menu.add_option, _("Missing Information"))
@@ -804,8 +808,8 @@ class FamilyGroupOptions(MenuReportOptions):
         family = self.__db.get_family_from_gramps_id(fid)
         nfv = self._nf.get_value()
         filter_list = utils.get_family_filters(self.__db, family,
-                                                     include_single=True,
-                                                     name_format=nfv)
+                                               include_single=True,
+                                               name_format=nfv)
         self.__filter.set_filters(filter_list)
 
     def __filter_changed(self):
@@ -814,10 +818,11 @@ class FamilyGroupOptions(MenuReportOptions):
         If the filter is not family-specific, disable the family option
         """
         filter_value = self.__filter.get_value()
-        if filter_value in [0, 2, 3]: # filters that rely on the center family
-            self.__fid.set_available(True)
-        else: # filters that don't
+        if filter_value == 1: # "Entire Database" (as "include_single=True")
             self.__fid.set_available(False)
+        else:
+            # The other filters need a center family (assume custom ones too)
+            self.__fid.set_available(True)
 
         # only allow recursion if the center family is the only family
         if self.__recursive and filter_value == 0:

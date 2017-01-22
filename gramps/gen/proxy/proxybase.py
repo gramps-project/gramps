@@ -35,7 +35,7 @@ import types
 # Gramps libraries
 #
 #-------------------------------------------------------------------------
-from ..db.base import DbReadBase, DbWriteBase, sort_objects
+from ..db.base import DbReadBase, DbWriteBase
 from ..lib import (Citation, Event, Family, Media, Note, Person, Place,
                    Repository, Source, Tag)
 
@@ -498,85 +498,82 @@ class ProxyDbBase(DbReadBase):
         """
         return filter(self.include_tag, self.db.iter_tag_handles())
 
-    def __iter_object(self, selector, method, order_by=None):
+    def __iter_object(self, selector, method):
         """ Helper function to return an iterator over an object class """
         retval = filter(lambda obj:
                         ((selector is None) or selector(obj.handle)),
                         method())
-        if order_by:
-            return sort_objects([item for item in retval], order_by, self)
-        else:
-            return retval
+        return retval
 
-    def iter_people(self, order_by=None):
+    def iter_people(self):
         """
         Return an iterator over Person objects in the database
         """
         return self.__iter_object(self.include_person,
-                                  self.db.iter_people, order_by)
+                                  self.db.iter_people)
 
-    def iter_families(self, order_by=None):
+    def iter_families(self):
         """
         Return an iterator over Family objects in the database
         """
         return self.__iter_object(self.include_family,
-                                  self.db.iter_families, order_by)
+                                  self.db.iter_families)
 
-    def iter_events(self, order_by=None):
+    def iter_events(self):
         """
         Return an iterator over Event objects in the database
         """
         return self.__iter_object(self.include_event,
-                                  self.db.iter_events, order_by)
+                                  self.db.iter_events)
 
-    def iter_places(self, order_by=None):
+    def iter_places(self):
         """
         Return an iterator over Place objects in the database
         """
         return self.__iter_object(self.include_place,
-                                  self.db.iter_places, order_by)
+                                  self.db.iter_places)
 
-    def iter_sources(self, order_by=None):
+    def iter_sources(self):
         """
         Return an iterator over Source objects in the database
         """
         return self.__iter_object(self.include_source,
-                                  self.db.iter_sources, order_by)
+                                  self.db.iter_sources)
 
-    def iter_citations(self, order_by=None):
+    def iter_citations(self):
         """
         Return an iterator over Citation objects in the database
         """
         return self.__iter_object(self.include_citation,
-                                  self.db.iter_citations, order_by)
+                                  self.db.iter_citations)
 
-    def iter_media(self, order_by=None):
+    def iter_media(self):
         """
         Return an iterator over Media objects in the database
         """
         return self.__iter_object(self.include_media,
-                                  self.db.iter_media, order_by)
+                                  self.db.iter_media)
 
-    def iter_repositories(self, order_by=None):
+    def iter_repositories(self):
         """
         Return an iterator over Repositories objects in the database
         """
         return self.__iter_object(self.include_repository,
-                                  self.db.iter_repositories, order_by)
+                                  self.db.iter_repositories)
 
-    def iter_notes(self, order_by=None):
+    def iter_notes(self):
         """
         Return an iterator over Note objects in the database
         """
         return self.__iter_object(self.include_note,
-                                  self.db.iter_notes, order_by)
+                                  self.db.iter_notes)
 
-    def iter_tags(self, order_by=None):
+    def iter_tags(self):
         """
         Return an iterator over Tag objects in the database
         """
         return self.__iter_object(self.include_tag,
-                                  self.db.iter_tags, order_by)
+                                  self.db.iter_tags)
 
     @staticmethod
     def gfilter(predicate, obj):

@@ -183,8 +183,17 @@ class Book:
                 self.item_list = obj.item_list
             else:
                 for item in obj.get_item_list():
-                    self.item_list.append(BookItem(item.dbase,
-                                                   item.get_name()))
+                    new_item = BookItem(item.dbase, item.get_name())
+                    orig_opt_dict = item.option_class.handler.options_dict
+                    new_opt_dict = new_item.option_class.handler.options_dict
+                    menu = new_item.option_class.menu
+                    for optname in orig_opt_dict:
+                        new_opt_dict[optname] = orig_opt_dict[optname]
+                        menu_option = menu.get_option_by_name(optname)
+                        if menu_option:
+                            menu_option.set_value(new_opt_dict[optname])
+                    new_item.set_style_name(item.get_style_name())
+                    self.item_list.append(new_item)
 
     def set_name(self, name):
         """

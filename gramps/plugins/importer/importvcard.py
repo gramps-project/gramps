@@ -316,8 +316,8 @@ class VCardParser:
                 # Included cause VCards made by Gramps have this prop.
                 pass
             else:
-                self.__add_msg(_("Token >%s< unknown. line skipped: %s") %
-                               (fields[0], line), self.line_num - 1)
+                self.__add_msg(_("Token >%(token)s< unknown. line skipped: %(line)s") %
+                               {"token": (fields[0], line), "line": self.line_num - 1})
 
     def finish_person(self):
         """All info has been collected, write to database."""
@@ -384,6 +384,7 @@ class VCardParser:
                 surname.set_surname(sname.strip())
                 surname.set_prefix(prefix.strip())
                 name.add_surname(surname)
+            name.set_primary_surname()
 
         if len(data_fields) > 1 and data_fields[1].strip():
             given_name = ' '.join(self.unesc(

@@ -60,7 +60,7 @@ from ...ddtargets import DdTargets
 from .buttontab import ButtonTab
 from gramps.gen.const import THUMBSCALE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
@@ -69,7 +69,6 @@ _ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 def make_launcher(path, uistate):
     return lambda x: open_file_with_default_application(path, uistate)
-
 #-------------------------------------------------------------------------
 #
 # GalleryTab
@@ -125,26 +124,25 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
     def right_click(self, obj, event):
         itemlist = [
-            (True, True, 'list-add', self.add_button_clicked),
-            (True, False, _('Share'), self.share_button_clicked),
-            (False,True, 'gtk-edit', self.edit_button_clicked),
-            (True, True, 'list-remove', self.del_button_clicked),
+            (True, _('_Add'), self.add_button_clicked),
+            (True, _('Share'), self.share_button_clicked),
+            (False, _('_Edit'), self.edit_button_clicked),
+            (True, _('_Remove'), self.del_button_clicked),
             ]
 
         self.menu = Gtk.Menu()
+        self.menu.set_reserve_toggle_size(False)
 
         ref_obj = self.dbstate.db.get_media_from_handle(obj.ref)
         media_path = media_path_full(self.dbstate.db, ref_obj.get_path())
         if media_path:
-            item = Gtk.ImageMenuItem(_('View'))
-            img = Gtk.Image()
-            img.set_from_icon_name("gramps-viewmedia", Gtk.IconSize.MENU)
-            item.set_image(img)
+            # Translators: _View means "to look at this"
+            item = Gtk.MenuItem.new_with_mnemonic(_('verb:look at this|_View'))
             item.connect('activate', make_launcher(media_path, self.uistate))
             item.show()
             self.menu.append(item)
             mfolder, mfile = os.path.split(media_path)
-            item = Gtk.MenuItem(label=_('Open Containing _Folder'))
+            item = Gtk.MenuItem.new_with_mnemonic(_('Open Containing _Folder'))
             item.connect('activate', make_launcher(mfolder, self.uistate))
             item.show()
             self.menu.append(item)
@@ -152,7 +150,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             item.show()
             self.menu.append(item)
 
-            item = Gtk.MenuItem(_('Make Active Media'))
+            item = Gtk.MenuItem.new_with_mnemonic(_('_Make Active Media'))
             item.connect('activate', lambda obj: self.uistate.set_active(ref_obj.handle, "Media"))
             item.show()
             self.menu.append(item)
@@ -160,13 +158,8 @@ class GalleryTab(ButtonTab, DbGUIElement):
             item.show()
             self.menu.append(item)
 
-        for (needs_write_access, image, title, func) in itemlist:
-            if image:
-                item = Gtk.ImageMenuItem()
-                img = Gtk.Image.new_from_icon_name(title, Gtk.IconSize.MENU)
-                item.set_image(img)
-            else:
-                item = Gtk.MenuItem(label=title)
+        for (needs_write_access, title, func) in itemlist:
+            item = Gtk.MenuItem.new_with_mnemonic(title)
             item.connect('activate', func)
             if needs_write_access and self.dbstate.db.readonly:
                 item.set_sensitive(False)

@@ -639,7 +639,7 @@ class BasePage:
         @param: place_lat_long -- for use in Family Map Pages. This will be None
         if called from Family pages, which do not create a Family Map
         """
-        family_list = sorted(individual.get_family_handle_list())
+        family_list = individual.get_family_handle_list()
         if not family_list:
             return None
 
@@ -3533,11 +3533,11 @@ class FamilyPages(BasePage):
                             handle_list, key=self.sort_on_name_and_grampsid):
                         person = self.r_db.get_person_from_handle(person_handle)
                         if person:
-                            family_list = sorted(pers_fam_dict[person_handle],
-                                                 key=lambda x: x.get_gramps_id()
-                                                )
+                            family_list = person.get_family_handle_list()
                             first_family = True
-                            for family in family_list:
+                            for family_handle in family_list:
+                                get_family = self.r_db.get_family_from_handle
+                                family = get_family(family_handle)
                                 trow = Html("tr")
                                 tbody += trow
 
@@ -9605,10 +9605,13 @@ class NavWebOptions(MenuReportOptions):
         @param: menu -- The menu for which we add options
         """
         self.__add_report_options(menu)
+        self.__add_report_options_2(menu)
         self.__add_page_generation_options(menu)
+        self.__add_images_generation_options(menu)
         self.__add_privacy_options(menu)
         self.__add_download_options(menu)
         self.__add_advanced_options(menu)
+        self.__add_advanced_options_2(menu)
         self.__add_place_map_options(menu)
         self.__add_others_options(menu)
 
@@ -9657,6 +9660,15 @@ class NavWebOptions(MenuReportOptions):
         self.__update_filters()
 
         stdoptions.add_name_format_option(menu, category_name)
+
+        stdoptions.add_localization_option(menu, category_name)
+
+    def __add_report_options_2(self, menu):
+        """
+        Continue Options on the "Report Options" tab.
+        """
+        category_name = _("Report Options (2)")
+        addopt = partial( menu.add_option, category_name )
 
         ext = EnumeratedListOption(_("File extension"), ".html")
         for etype in _WEB_EXT:
@@ -9718,9 +9730,11 @@ class NavWebOptions(MenuReportOptions):
         self.__graphgens.set_help(_("The number of generations to include in "
                                     "the ancestor graph"))
         addopt("graphgens", self.__graphgens)
-
-        stdoptions.add_localization_option(menu, category_name)
         self.__graph_changed()
+
+        nogid = BooleanOption(_('Suppress Gramps ID'), False)
+        nogid.set_help(_('Whether to include the Gramps ID of objects'))
+        addopt( "nogid", nogid )
 
     def __add_page_generation_options(self, menu):
         """
@@ -9767,6 +9781,13 @@ class NavWebOptions(MenuReportOptions):
         footernote.set_help(_("A note to be used as the page footer"))
         addopt("footernote", footernote)
 
+    def __add_images_generation_options(self, menu):
+        """
+        Options on the "Page Generation" tab.
+        """
+        category_name = _("Images Generation")
+        addopt = partial(menu.add_option, category_name)
+
         self.__gallery = BooleanOption(_("Include images and media objects"),
                                        True)
         self.__gallery.set_help(_('Whether to include '
@@ -9806,10 +9827,6 @@ class NavWebOptions(MenuReportOptions):
         addopt("maxinitialimageheight", self.__maxinitialimageheight)
 
         self.__gallery_changed()
-
-        nogid = BooleanOption(_('Suppress Gramps ID'), False)
-        nogid.set_help(_('Whether to include the Gramps ID of objects'))
-        addopt("nogid", nogid)
 
     def __add_privacy_options(self, menu):
         """
@@ -9908,6 +9925,13 @@ class NavWebOptions(MenuReportOptions):
             _("Whether to include half and/ or "
               "step-siblings with the parents and siblings"))
         addopt('showhalfsiblings', showallsiblings)
+
+    def __add_advanced_options_2(self, menu):
+        """
+        Continue options on the "Advanced" tab.
+        """
+        category_name = _("Advanced Options (2)")
+        addopt = partial(menu.add_option, category_name)
 
         birthorder = BooleanOption(
             _('Sort all children in birth order'), False)
@@ -10073,7 +10097,7 @@ class NavWebOptions(MenuReportOptions):
         """
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
-        filter_list = utils.get_person_filters(person, False)
+        filter_list = utils.get_person_filters(person, include_single=False)
         self.__filter.set_filters(filter_list)
 
     def __filter_changed(self):
@@ -10082,12 +10106,11 @@ class NavWebOptions(MenuReportOptions):
         disable the person option
         """
         filter_value = self.__filter.get_value()
-        if filter_value in [1, 2, 3, 4]:
-            # Filters 1, 2, 3 and 4 rely on the center person
-            self.__pid.set_available(True)
-        else:
-            # The rest don't
+        if filter_value == 0: # "Entire Database" (as "include_single=False")
             self.__pid.set_available(False)
+        else:
+            # The other filters need a center person (assume custom ones too)
+            self.__pid.set_available(True)
 
     def __stylesheet_changed(self):
         """

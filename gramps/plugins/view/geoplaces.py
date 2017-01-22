@@ -264,6 +264,7 @@ class GeoPlaces(GeoGraphyView):
                                         None, # family.gramps_id
                                         color=self.plc_color[int(place.get_type())+1]
                                        )
+            self.load_kml_files(place)
 
     def _createmap(self, place_x):
         """
@@ -287,6 +288,7 @@ class GeoPlaces(GeoGraphyView):
         self.nbplaces = 0
         self.message_layer.clear_messages()
         self.message_layer.clear_font_attributes()
+        self.kml_layer.clear()
         self.no_show_places_in_status_bar = False
         _col = self._config.get
         self.plc_color  = [

@@ -631,7 +631,7 @@ def retrieve():
     # additional keywords must always be kept in sync with those in genpot.sh
     os.system('''%(xgettext)s -F -c -j --directory=./ -d gramps '''
               '''-L Python -o gramps.pot --files-from=python.txt '''
-              '''--keyword=_ --keyword=ngettext '''
+              '''--debug --keyword=_ --keyword=ngettext '''
               '''--keyword=_T_ --keyword=trans_text '''
               '''--keyword=sgettext --from-code=UTF-8''' % {'xgettext': xgettextCmd}
              )

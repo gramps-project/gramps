@@ -24,8 +24,6 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import abc
 
 #-------------------------------------------------------------------------
@@ -40,6 +38,8 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from ..managedwindow import ManagedWindow
 from gramps.gen.datehandler import displayer, parser
 from gramps.gen.display.name import displayer as name_displayer
@@ -84,7 +84,7 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
             self.original = self.get_from_handle(self.obj.handle)
 
         self._local_init()
-        self._set_size()
+        # self.set_size() is called by self._local_init()'s self.setup_configs
         self._create_tabbed_pages()
         self._setup_fields()
         self._connect_signals()

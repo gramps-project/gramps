@@ -433,6 +433,9 @@ class NameDisplay:
         self.set_default_format(self.get_default_format())
 
     def add_name_format(self, name, fmt_str):
+        for num in self.name_formats:
+            if fmt_str in self.name_formats.get(num):
+                return num
         num = -1
         while num in self.name_formats:
             num -= 1
@@ -888,6 +891,24 @@ class NameDisplay:
         """
         name = person.get_primary_name()
         return self.display_name(name)
+
+    def display_format(self, person, num):
+        """
+        Return a text string representing the L{gen.lib.Person} instance's
+        L{Name} using num format.
+
+        @param person: L{gen.lib.Person} instance that contains the
+        L{Name} that is to be displayed. The primary name is used for
+        the display.
+        @type person: L{gen.lib.Person}
+        @param num: num of the format to be used, as return by
+        name_displayer.add_name_format('name','format')
+        @type num: int
+        @returns: Returns the L{gen.lib.Person} instance's name
+        @rtype: str
+        """
+        name = person.get_primary_name()
+        return self.name_formats[num][_F_FN](name)
 
     def display_formal(self, person):
         """

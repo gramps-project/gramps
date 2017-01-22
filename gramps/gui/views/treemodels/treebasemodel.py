@@ -283,6 +283,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         cput = time.clock()
         GObject.GObject.__init__(self)
         BaseModel.__init__(self)
+
         #We create a stamp to recognize invalid iterators. From the docs:
         #Set the stamp to be equal to your model's stamp, to mark the
         #iterator as valid. When your model's structure changes, you should
@@ -300,6 +301,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         self.group_can_have_handle = group_can_have_handle
         self.has_secondary = has_secondary
         self.db = db
+        self.dont_change_active = False
 
         self._set_base_data()
 
@@ -796,17 +798,25 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
     def update_row_by_handle(self, handle):
         """
         Update a row in the model.
+
+        We have to do delete/add because sometimes row position changes when
+        object name changes.
+        A delete action causes the listview module to set a prior row to
+        active.  In some cases (merge) the prior row may have been already
+        removed from the db.  To avoid invalid handle exceptions in gramplets
+        at the change active, we tell listview not to change active.
+        The add_row below changes to current active again so we end up in right
+        place.
         """
         assert isinstance(handle, str)
         self.clear_cache(handle)
         if self._get_node(handle) is None:
-            return # row not currently displayed
+            return  # row not currently displayed
 
+        self.dont_change_active = True
         self.delete_row_by_handle(handle)
+        self.dont_change_active = False
         self.add_row_by_handle(handle)
-
-        # If the node hasn't moved, all we need is to call row_changed.
-        #self.row_changed(path, node)
 
     def _new_iter(self, nodeid):
         """

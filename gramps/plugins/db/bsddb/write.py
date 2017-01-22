@@ -209,27 +209,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     Gramps database write access object.
     """
 
-    @classmethod
-    def get_class_summary(cls):
-        """
-        Return a diction of information about this database.
-        """
-        try:
-            import bsddb3 as bsddb
-            bsddb_str = bsddb.__version__
-            bsddb_db_str = str(bsddb.db.version()).replace(', ', '.')\
-                                                  .replace('(', '').replace(')', '')
-        except:
-            bsddb_str = 'not found'
-            bsddb_db_str = 'not found'
-        summary = {
-            "DB-API version": "n/a",
-            "Database type": cls.__name__,
-            'Database version': bsddb_str,
-            'Database db version': bsddb_db_str
-        }
-        return summary
-
     # Set up dictionary for callback signal handler
     # ---------------------------------------------
     # 1. Signals for primary objects
@@ -1507,7 +1486,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         if not self.db_is_open:
             return
-        self.autobackup(user)
         if self.txn:
             self.transaction_abort(self.transaction)
         self.env.txn_checkpoint()
@@ -1836,7 +1814,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.emit('person-groupname-rebuild', (name, grouppar))
 
     @catch_db_error
-    def build_surname_list(self):
+    def __build_surname_list(self):
         """
         Build surname list for use in autocompletion
         This is a list of unicode objects, which are decoded from the utf-8 in
@@ -2317,7 +2295,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                                              find_referenced_handle, DBFLAGS_O)
 
             # Only build surname list after surname index is surely back
-            self.build_surname_list()
+            self.__build_surname_list()
 
         # Reset callbacks if necessary
         if transaction.batch or not len(transaction):
@@ -2463,38 +2441,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         return self.brief_name
 
-    def backup(self, user=None):
-        """
-        Exports the database to a set of backup files. These files consist
-        of the pickled database tables, one file for each table.
-
-        The heavy lifting is done by the private :py:func:`__do__export` function.
-        The purpose of this function is to catch any exceptions that occur.
-
-        :param database: database instance to backup
-        :type database: DbDir
-        """
-        try:
-            do_export(self)
-        except (OSError, IOError) as msg:
-            raise DbException(str(msg))
-
-    def restore(self):
-        """
-        Restores the database to a set of backup files. These files consist
-        of the pickled database tables, one file for each table.
-
-        The heavy lifting is done by the private :py:func:`__do__restore` function.
-        The purpose of this function is to catch any exceptions that occur.
-
-        :param database: database instance to restore
-        :type database: DbDir
-        """
-        try:
-            do_restore(self)
-        except (OSError, IOError) as msg:
-            raise DbException(str(msg))
-
     def get_summary(self):
         """
         Returns dictionary of summary item.
@@ -2527,113 +2473,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             _("Data version"): schema_version,
             _("Database db version"): bsddb_version,
         }
-
-def mk_backup_name(database, base):
-    """
-    Return the backup name of the database table
-
-    :param database: database instance
-    :type database: DbDir
-    :param base: base name of the table
-    :type base: str
-    """
-    return os.path.join(database.get_save_path(), base + ".gbkp")
-
-def mk_tmp_name(database, base):
-    """
-    Return the temporary backup name of the database table
-
-    :param database: database instance
-    :type database: DbDir
-    :param base: base name of the table
-    :type base: str
-    """
-    return os.path.join(database.get_save_path(), base + ".gbkp.new")
-
-def do_export(database):
-    """
-    Loop through each table of the database, saving the pickled data
-    a file.
-
-    :param database: database instance to backup
-    :type database: DbDir
-    """
-    try:
-        for (base, tbl) in build_tbl_map(database):
-            backup_name = mk_tmp_name(database, base)
-            with open(backup_name, 'wb') as backup_table:
-
-                cursor = tbl.cursor()
-                data = cursor.first()
-                while data:
-                    pickle.dump(data, backup_table, 2)
-                    data = cursor.next()
-                cursor.close()
-    except (IOError,OSError):
-        return
-
-    for (base, tbl) in build_tbl_map(database):
-        new_name = mk_backup_name(database, base)
-        old_name = mk_tmp_name(database, base)
-        if os.path.isfile(new_name):
-            os.unlink(new_name)
-        os.rename(old_name, new_name)
-
-def do_restore(database):
-    """
-    Loop through each table of the database, restoring the pickled data
-    to the appropriate database file.
-
-    :param database: database instance to backup
-    :type database: DbDir
-    """
-    for (base, tbl) in build_tbl_map(database):
-        backup_name = mk_backup_name(database, base)
-        with open(backup_name, 'rb') as backup_table:
-            load_tbl_txn(database, backup_table, tbl)
-
-    database.rebuild_secondary()
-
-def load_tbl_txn(database, backup_table, tbl):
-    """
-    Return the temporary backup name of the database table
-
-    :param database: database instance
-    :type database: DbDir
-    :param backup_table: file containing the backup data
-    :type backup_table: file
-    :param tbl: Berkeley db database table
-    :type tbl: Berkeley db database table
-    """
-    try:
-        while True:
-            data = pickle.load(backup_table)
-            txn = database.env.txn_begin()
-            tbl.put(data[0], data[1], txn=txn)
-            txn.commit()
-    except EOFError:
-        backup_table.close()
-
-def build_tbl_map(database):
-    """
-    Builds a table map of names to database tables.
-
-    :param database: database instance to backup
-    :type database: DbDir
-    """
-    return [
-        ( PERSON_TBL,  database.person_map.db),
-        ( FAMILY_TBL,  database.family_map.db),
-        ( PLACES_TBL,  database.place_map.db),
-        ( SOURCES_TBL, database.source_map.db),
-        ( CITATIONS_TBL, database.citation_map.db),
-        ( REPO_TBL,    database.repository_map.db),
-        ( NOTE_TBL,    database.note_map.db),
-        ( MEDIA_TBL,   database.media_map.db),
-        ( EVENTS_TBL,  database.event_map.db),
-        ( TAG_TBL,     database.tag_map.db),
-        ( META,        database.metadata.db),
-        ]
 
 def _mkname(path, name):
     return os.path.join(path, name + DBEXT)

@@ -353,7 +353,7 @@ class MediaView(ListView):
             "control key while clicking on the desired object.")
             ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
-            MergeMedia(self.dbstate, self.uistate, mlist[0], mlist[1])
+            MergeMedia(self.dbstate, self.uistate, [], mlist[0], mlist[1])
 
     def get_handle_from_gramps_id(self, gid):
         """

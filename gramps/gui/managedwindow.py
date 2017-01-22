@@ -139,6 +139,21 @@ class GrampsWindowManager:
         # Return None if the ID is not found
         return self.id2item.get(item_id, None)
 
+    def get_item_from_window(self, window):
+        """ This finds a ManagedWindow from a Gtk top_level object (typicaly
+        a window).
+
+        For example, to find my managedwindow track within a class of Gtk
+        widget:
+            mywindow = self.get_toplevel()  # finds top level Gtk object
+            managed_window = self.uistate.gwm.get_item_from_window(mywindow)
+            track = managed_window.track
+        """
+        for key, item in self.id2item.items():
+            if item.window == window:
+                return self.id2item[key]
+        return None
+
     def close_track(self, track):
         # This is called when item needs to be closed
         # Closes all its children and then removes the item from the tree.
@@ -311,7 +326,7 @@ class ManagedWindow:
     menu, keeping track of child windows, closing them on close/delete
     event, and presenting itself when selected or attempted to create again.
     """
-    def __init__(self, uistate, track, obj):
+    def __init__(self, uistate, track, obj, modal=False):
         """
         Create child windows and add itself to menu, if not there already.
 
@@ -321,28 +336,60 @@ class ManagedWindow:
 
         from .managedwindow import ManagedWindow
         class SomeWindowClass(ManagedWindow):
-            def __init__(self,uistate,dbstate,track):
+            def __init__(self, uistate, track, obj, modal):
                 window_id = self        # Or e.g. window_id = person.handle
-                submenu_label = None    # This window cannot have children
-                menu_label = 'Menu label for this window'
                 ManagedWindow.__init__(self,
                                        uistate,
                                        track,
                                        window_id,
-                                       submenu_label,
-                                       menu_label)
+                                       modal=False)
                 # Proceed with the class.
+                window = Gtk.Dialog()  # Some Gtk window object to manage
+                self.set_window(window, None, None)  # See set_window def below
                 ...
+
+            def build_menu_names(self, obj):
+                ''' Define menu labels.  If your ManagedWindow can have
+                ManagedWindow children, you must include a submenu_label
+                string; However, if modal, that string is never seen and can
+                be ' '.
+                '''
+                submenu_label = None    # This window cannot have children
+                menu_label = 'Menu label for this window'
+                return (menu_label, submenu_label)
 
         :param uistate:  gramps uistate
         :param track:    {list of parent windows, [] if the main GRAMPS window
                             is the parent}
         :param obj:      The object that is used to id the managed window,
-                            The inheriting object needs a method build_menu_names(self, obj)
+                            The inheriting object needs a method
+                            build_menu_names(self, obj)
                             which works on this obj and creates menu labels
                             for use in the Gramps Window Menu.
-                            If self.submenu_label ='' then leaf, otherwise branch
+                            If self.submenu_label ='' then leaf, else branch
+        :param modal:    True/False, if True, this window is made modal
+                            (always on top, and always has focus).  Any child
+                            windows are also automatically made modal by moving
+                            the modal flag to the child.  On close of a child
+                            the modal flag is sent back to the parent.
 
+        If a modal window is used and has children, its and any child 'track'
+        parameters must properly be set to the parents 'self.track'.
+        Only one modal window can be supported by Gtk without potentially
+        hiding of a modal window while it has focus.  So don't use
+        non-managed Gtk windows as children and set them modal.
+
+        If you use the 'Gtk.Dialog.run()' within your ManagedWindow, Gtk makes
+        the dialog modal.  Accordingly you MUST also set the ManagedWindow
+        modal for proper operation of any child windows.
+
+        You must use 'self.show()' in order for your ManagedWindow to work
+        properly, this in turn calls the Gtk.Window.show_all() for you.
+
+        The ManagedWindow uses 'track' to properly do a
+        Gtk.Window.set_transient_for() for you; you don't have to do it
+        yourself.  If you need a 'parent=' to call an unmanaged window,
+        self.window is available.
 
         """
         window_key = self.build_window_key(obj)
@@ -351,7 +398,10 @@ class ManagedWindow:
         self.isWindow = None
         self.width_key = None
         self.height_key = None
+        self.horiz_position_key = None
+        self.vert_position_key = None
         self.__refs_for_deletion = []
+        self.modal = modal
 
         if uistate and uistate.gwm.get_item_from_id(window_key):
             uistate.gwm.get_item_from_id(window_key).present()
@@ -380,10 +430,13 @@ class ManagedWindow:
                     parent_item_track.append(0)
 
                 # Based on the track, get item and then window object
-                self.parent_window = self.uistate.gwm.get_item_from_track(
-                    parent_item_track).window
+                managed_parent = self.uistate.gwm.get_item_from_track(
+                    parent_item_track)
+                self.parent_window = managed_parent.window
+                self.parent_modal = managed_parent.modal
             else:
                 # On the top level: we use gramps top window
+                self.parent_modal = False
                 if self.uistate:
                     self.parent_window = self.uistate.window
                 else:
@@ -393,9 +446,12 @@ class ManagedWindow:
         """
         Set the window that is managed.
 
-        :param window:   if isWindow=False window must be a Gtk.Window() object, otherwise None
-        :param title:    a label widget in which to write the title, None if not needed
+        :param window:   if isWindow=False window must be a Gtk.Window() object
+                         (or a subclass such as Gtk.Dialog), otherwise None
+        :param title:    a label widget in which to write the title,
+                         else None if not needed
         :param text:     text to use as title of window and in title param
+                         can also be None if Glade defines title
         :param msg:      if not None, use msg as title of window instead of text
         :param isWindow: {if isWindow than self is the window
                             (so self inherits from Gtk.Window and
@@ -410,11 +466,18 @@ class ManagedWindow:
         self.titlelabel = title
         if self.isWindow :
             set_titles(self, title, text, msg)
+            self.window = self
         else :
             set_titles(window, title, text, msg)
             #closing the Gtk.Window must also close ManagedWindow
             self.window = window
             self.window.connect('delete-event', self.close)
+        if self.modal:
+            self.window.set_modal(True)
+        if self.parent_modal:
+            self.parent_window.set_modal(False)
+            self.window.set_modal(True)
+            self.modal = True
 
     def get_window(self):
         """
@@ -472,6 +535,9 @@ class ManagedWindow:
 
     def  modal_call(self, after_ok_func=None):
         """
+        This is deprecated; use the 'modal=True' on the ManagedWindow
+        initialization for new work.
+
             Method to do modal run of the ManagedWindow.
             Connect the OK button to a method that checks if all is ok,
                 Do not call close, close is called here.
@@ -506,10 +572,13 @@ class ManagedWindow:
 
         Takes care of closing children and removing itself from menu.
         """
+        self._save_position(save_config=False) # the next line will save it
         self._save_size()
         self.clean_up()
         self.uistate.gwm.close_track(self.track)
         self.opened = False
+        if self.parent_modal:
+            self.parent_window.set_modal(True)
         self.parent_window.present()
 
     def present(self):
@@ -527,7 +596,7 @@ class ManagedWindow:
         """
         Set the dimensions of the window
         """
-        # self.width_key is set in the subclass, typically in its _local_init
+        # self.width_key is set in the subclass (or in setup_configs)
         if self.width_key is not None:
             width = config.get(self.width_key)
             height = config.get(self.height_key)
@@ -537,12 +606,67 @@ class ManagedWindow:
         """
         Save the dimensions of the window to the config file
         """
-        # self.width_key is set in the subclass, typically in its _local_init
+        # self.width_key is set in the subclass (or in setup_configs)
         if self.width_key is not None:
             (width, height) = self.window.get_size()
             config.set(self.width_key, width)
             config.set(self.height_key, height)
             config.save()
+
+    def _set_position(self):
+        """
+        Set the position of the window
+        """
+        # self.horiz_position_key is set in the subclass (or in setup_configs)
+        if self.horiz_position_key is not None:
+            horiz_position = config.get(self.horiz_position_key)
+            vert_position = config.get(self.vert_position_key)
+            self.window.move(horiz_position, vert_position)
+
+    def _save_position(self, save_config=True):
+        """
+        Save the window's position to the config file
+
+        (You can set save_config False if a _save_size() will instantly follow)
+        """
+        # self.horiz_position_key is set in the subclass (or in setup_configs)
+        if self.horiz_position_key is not None:
+            (horiz_position, vert_position) = self.window.get_position()
+            config.set(self.horiz_position_key, horiz_position)
+            config.set(self.vert_position_key, vert_position)
+            if save_config:
+                config.save()
+
+    def setup_configs(self, config_base,
+                      default_width, default_height,
+                      default_horiz_position=None, default_vert_position=None):
+        """
+        Helper method to setup the window's configuration settings
+
+        @param config_base: the common config name, e.g. 'interface.clipboard'
+        @type config_base: str
+        @param default_width, default_height: the default width and height
+        @type default_width, default_height: int
+        @param default_horiz_position, default_vert_position: if either is None
+            then that position is centered on the parent, else explicitly set
+        @type default_horiz_position, default_vert_position: int or None
+        """
+        self.width_key = config_base + '-width'
+        self.height_key = config_base + '-height'
+        self.horiz_position_key = config_base + '-horiz-position'
+        self.vert_position_key = config_base + '-vert-position'
+        (p_width, p_height) = self.parent_window.get_size()
+        (p_horiz, p_vert) = self.parent_window.get_position()
+        if default_horiz_position is None:
+            default_horiz_position = p_horiz + ((p_width - default_width) // 2)
+        if default_vert_position is None:
+            default_vert_position = p_vert + ((p_height - default_height) // 2)
+        config.register(self.width_key, default_width)
+        config.register(self.height_key, default_height)
+        config.register(self.horiz_position_key, default_horiz_position)
+        config.register(self.vert_position_key, default_vert_position)
+        self._set_size()
+        self._set_position()
 
     def track_ref_for_deletion(self, ref):
         """
@@ -576,6 +700,6 @@ def set_titles(window, title, text, msg=None):
         title.set_use_markup(True)
     if msg:
         window.set_title('%s - Gramps' % msg)
-    else:
+    elif text:
         window.set_title('%s - Gramps' % text)
     window.set_icon_from_file(ICON)

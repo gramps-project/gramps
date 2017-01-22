@@ -100,6 +100,7 @@ class OwnerEditor(tool.Tool, ManagedWindow):
         self.set_window(window,
                         topDialog.get_object("title"),
                         _("Database Owner Editor"))
+        self.setup_configs('interface.ownereditor', 500, 400)
 
         # move help button to the left side
         action_area = topDialog.get_object("action_area")

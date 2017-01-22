@@ -1130,8 +1130,8 @@ class IndivCompleteOptions(MenuReportOptions):
         person = self.__db.get_person_from_gramps_id(gid)
         nfv = self._nf.get_value()
         filter_list = utils.get_person_filters(person,
-                                                     include_single=True,
-                                                     name_format=nfv)
+                                               include_single=True,
+                                               name_format=nfv)
         self.__filter.set_filters(filter_list)
 
     def __filter_changed(self):
@@ -1140,12 +1140,11 @@ class IndivCompleteOptions(MenuReportOptions):
         disable the person option
         """
         filter_value = self.__filter.get_value()
-        if filter_value in [0, 2, 3, 4, 5]:
-            # Filters 0, 2, 3, 4 and 5 rely on the center person
-            self.__pid.set_available(True)
-        else:
-            # The rest don't
+        if filter_value == 1: # "Entire Database" (as "include_single=True")
             self.__pid.set_available(False)
+        else:
+            # The other filters need a center person (assume custom ones too)
+            self.__pid.set_available(True)
 
     def __sources_changed(self):
         """

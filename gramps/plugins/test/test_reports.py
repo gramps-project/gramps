@@ -24,7 +24,7 @@ import os
 import shutil
 
 from gramps.test.test_util import Gramps
-from gramps.gen.db import open_database
+from gramps.gen.db.utils import open_database
 
 ddir = os.path.dirname(__file__)
 example = os.path.join(ddir, "..", "..", "..",

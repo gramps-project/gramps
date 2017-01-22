@@ -22,6 +22,7 @@
 
 import unittest
 import sys
+import os
 try:
     if sys.version_info < (3,3):
         from mock import Mock, patch
@@ -35,7 +36,7 @@ from  gramps.gen.lib import (Person, Family, Event, Source, Place, Citation,
                              Repository, Media, Note, Tag)
 from gramps.cli.user import User
 from gramps.gen.dbstate import DbState
-from gramps.gen.merge.diff import *
+from gramps.gen.db.utils import make_database
 from gramps.gui.editors.editreference import EditReference
 
 class MockWindow:
@@ -55,7 +56,7 @@ class TestEditReference(unittest.TestCase):
     @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_editreference(self):
         dbstate = DbState()
-        db = dbstate.make_database("bsddb")
+        db = make_database("bsddb")
         path = "/tmp/edit_ref_test"
         try:
             os.mkdir(path)

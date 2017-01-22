@@ -1066,24 +1066,3 @@ class SimpleAccess:
         if object_class in self.dbase.get_table_names():
             return self.dbase.get_table_metadata(object_class) \
                 [prop + "_func"](value)
-
-def by_date(event1, event2):
-    """
-    Sort function that will compare two events by their dates.
-
-    :param event1: first event
-    :type event1: :py:class:`.Event`
-    :param event2: second event
-    :type event2: :py:class:`.Event`
-    :return: Returns -1 if event1 < event2, 0 if they are equal, and
-       1 if they are the same.
-    :rtype: int
-    """
-    if event1 and event2:
-        return cmp(event1.get_date_object() , event2.get_date_object())
-    elif event1:
-        return -1
-    elif event2:
-        return 1
-    else:
-        return 0

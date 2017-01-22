@@ -35,6 +35,7 @@ from gramps.gui.editors import EditPlace
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gen.datehandler import get_date
+from gramps.gen.lib import Date
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -114,19 +115,19 @@ class Locations(Gramplet, DbGUIElement):
         if active_handle:
             active = self.dbstate.db.get_place_from_handle(active_handle)
             if active:
-                self.display_place(active, None, [active_handle])
+                self.display_place(active, None, [active_handle], DateRange())
             else:
                 self.set_has_data(False)
         else:
             self.set_has_data(False)
 
-    def display_place(self, place, node, visited):
+    def display_place(self, place, node, visited, drange):
         """
         Display the location hierarchy for the active place.
         """
         pass
 
-    def add_place(self, placeref, place, node, visited):
+    def add_place(self, placeref, place, node, visited, drange):
         """
         Add a place to the model.
         """
@@ -136,6 +137,9 @@ class Locations(Gramplet, DbGUIElement):
         place_type = str(place.get_type())
         place_id = place.get_gramps_id()
 
+        if drange.overlap:
+            place_date += ' *'
+
         new_node = self.model.add([place.handle,
                                    place_name,
                                    place_type,
@@ -144,7 +148,7 @@ class Locations(Gramplet, DbGUIElement):
                                    place_sort],
                                   node=node)
 
-        self.display_place(place, new_node, visited + [place.handle])
+        self.display_place(place, new_node, visited + [place.handle], drange)
 
     def edit_place(self, treeview):
         """
@@ -168,7 +172,7 @@ class EnclosedBy(Locations):
     """
     Gramplet showing the locations enclosed by the active place.
     """
-    def display_place(self, place, node, visited):
+    def display_place(self, place, node, visited, drange):
         """
         Display the location hierarchy for the active place.
         """
@@ -177,8 +181,12 @@ class EnclosedBy(Locations):
             if placeref.ref in visited:
                 continue
 
+            dr2 = drange.intersect(placeref.date)
+            if dr2.is_empty():
+                continue
+
             parent_place = self.dbstate.db.get_place_from_handle(placeref.ref)
-            self.add_place(placeref, parent_place, node, visited)
+            self.add_place(placeref, parent_place, node, visited, dr2)
 
         self.set_has_data(self.model.count > 0)
         self.model.tree.expand_all()
@@ -202,7 +210,7 @@ class Encloses(Locations):
     """
     Gramplet showing the locations which the active place encloses.
     """
-    def display_place(self, place, node, visited):
+    def display_place(self, place, node, visited, drange):
         """
         Display the location hierarchy for the active place.
         """
@@ -216,7 +224,12 @@ class Encloses(Locations):
             placeref = None
             for placeref in child_place.get_placeref_list():
                 if placeref.ref == place.handle:
-                    self.add_place(placeref, child_place, node, visited)
+
+                    dr2 = drange.intersect(placeref.date)
+                    if dr2.is_empty():
+                        continue
+
+                    self.add_place(placeref, child_place, node, visited, dr2)
 
         self.set_has_data(self.model.count > 0)
         self.model.tree.expand_all()
@@ -231,3 +244,71 @@ class Encloses(Locations):
                 place.handle, include_classes=['Place']):
             return True
         return False
+
+#-------------------------------------------------------------------------
+#
+# DateRange class
+#
+#-------------------------------------------------------------------------
+class DateRange:
+    """
+    A class that represents a date range.
+    """
+    def __init__(self, source=None):
+        self.start = None
+        self.stop = None
+        self.overlap = False
+        if source:
+            self.start = source.start
+            self.stop = source.stop
+            self.overlap = source.overlap
+
+    def intersect(self, date):
+        """
+        Return the intersection of the date range with a given Date object.
+        """
+        result = DateRange(self)
+        start, stop = self.__get_sortvals(date)
+        if start is not None:
+            if self.start is None or start > self.start:
+                result.start = start
+        if stop is not None:
+            if self.stop is None or stop < self.stop:
+                result.stop = stop
+
+        result.overlap = False
+        if result.start is not None:
+            if start is None or start < result.start:
+                result.overlap = True
+        if result.stop is not None:
+            if stop is None or stop > result.stop:
+                result.overlap = True
+
+        return result
+
+    def is_empty(self):
+        """
+        Return True if there are no dates in the range.
+        """
+        if self.start is None or self.stop is None:
+            return False
+        return True if self.start > self.stop else False
+
+    def __get_sortvals(self, date):
+        """
+        Get the sort values representing the start and end of a Date object.
+        """
+        start = None
+        stop = None
+        if date.modifier == Date.MOD_NONE:
+            start = date.sortval
+            stop = date.sortval
+        elif date.modifier == Date.MOD_AFTER:
+            start = date.sortval
+        elif date.modifier == Date.MOD_BEFORE:
+            stop = date.sortval
+        elif date.is_compound():
+            date1, date2 = date.get_start_stop_range()
+            start = Date(*date1).sortval
+            stop = Date(*date2).sortval
+        return (start, stop)

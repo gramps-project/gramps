@@ -1,43 +1,82 @@
 0 HEAD
-1 SOUR Gramps
+1 SOUR LEGACY
 2 VERS 3.3.0
-2 NAME Gramps
+2 NAME LEGACY
 1 DATE 27 DEC 2010
 2 TIME 15:35:24
 1 SUBM @SUBM@
-1 FILE gramps33/example/gedcom/sample.ged
+1 SUBN @SUBN@
+1 FILE sample.ged
 1 COPR Copyright (c) 2010 Alex Roitman,,,.
 1 GEDC
 2 VERS 5.5
 2 FORM LINEAGE-LINKED
+2 FORM NOT LINEAGE-LINKED
 1 CHAR UTF-8
+2 VERS 1.1
 1 LANG French
 0 @SUBM@ SUBM
 1 NAME Alex Roitman,,,
 1 ADDR Not Provided
 2 CONT Not Provided
 2 ADR1 Not Provided
+2 NOTE No address provided (note not supported)
+0 @SUBN@ SUBN
+1 TEMP Mormon Temple
+1 ANCE 4
+1 DESC 4
+1 ORDI Yes
+0 @F3@ FAM
+1 HUSB @I24@
+1 WIFE @I0@
+1 MARR
+2 TYPE Marriage of Gustaf Smith, Sr. and Anna Hansdotter
+2 DATE 27 NOV 1885
+2 PLAC Rønne, Bornholm, Denmark
+1 CHIL @I26@
+1 CHIL @I23@
+1 CHIL @I21@
+1 CHIL @I8@
+1 CHIL @I15@
+1 CHIL @I20@
+1 CHIL @I10@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35
+2 SOUR Not really allowed here
+1 RIN 987456321
+1 OBJE
+2 TITL No filename for this one 
 0 @I0@ INDI
 1 NAME Anna /Hansdotter/
 2 GIVN Anna
 2 SURN Hansdotter
+2 SPFX Vrow
+2 SURN Smith
+2 _AKA Anna Smith
+2 _AKA Hanna
+2 NOTE Hans daughter? N0000
 1 SEX F
 1 BIRT
 2 TYPE Birth of Anna Hansdotter
-2 DATE 2 OCT 1864
+2 DATE EST 2 OCT 1864
 2 PLAC Löderup, Malmöhus Län, Sweden
 1 DEAT
 2 TYPE Death of Anna Hansdotter
 2 DATE 29 SEP 1945
 2 PLAC Sparks, Washoe Co., NV
+2 NOTE Her eulogy was great! N0001
 1 FAMS @F3@
 1 CHAN
-2 DATE 21 DEC 2007
+2 DATE 21 DEC 1900
 3 TIME 01:35:26
+1 NOTE Inline note should get ID N0002
+1 _PHOTO @M1@
 0 @I1@ INDI
 1 NAME Keith Lloyd /Smith/
 2 GIVN Keith Lloyd
 2 SURN Smith
+2 NOTE @N7@
 1 SEX M
 1 BIRT
 2 TYPE Birth of Keith Lloyd Smith
@@ -47,6 +86,7 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 NOTE Keith Lloyd Smith inline N0003
 0 @I10@ INDI
 1 NAME Hans Peter /Smith/
 2 GIVN Hans Peter
@@ -66,6 +106,7 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 NOTE Hans Peter Smith inline N0004
 0 @I11@ INDI
 1 NAME Hanna /Smith/
 2 GIVN Hanna
@@ -79,6 +120,7 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 NOTE Hanna Smith inline N0005
 0 @I12@ INDI
 1 NAME Herman Julius /Nielsen/
 2 GIVN Herman Julius
@@ -95,6 +137,7 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 NOTE Herman Julius Nielsen N0006
 0 @I13@ INDI
 1 NAME Evelyn /Michaels/
 2 GIVN Evelyn
@@ -107,10 +150,13 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 NOTE Evelyn Michaels N0007
 0 @I14@ INDI
 1 NAME Marjorie Lee /Smith/
 2 GIVN Marjorie Lee
 2 SURN Smith
+1 NAME Margie
+2 TYPE Nickname
 1 SEX F
 1 BIRT
 2 TYPE Birth of Marjorie Lee Smith
@@ -151,6 +197,16 @@
 2 TYPE Death of Jennifer Anderson
 2 DATE 29 MAY 1985
 2 PLAC San Francisco, San Francisco Co., CA
+1 RESI
+2 DATE 1980
+2 ADDR 459 Main St., The Village, San Francisco, CA, USA
+3 ADR1 456 Main St
+3 ADR1 456 Main St again
+3 ADR2 The Village
+3 CITY San Francisco
+3 CTRY USA
+3 PHON 555-666-7777
+3 STAE CA
 1 FAMS @F14@
 1 CHAN
 2 DATE 21 DEC 2007
@@ -185,6 +241,11 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 SSN 987-555-4444
+2 TYPE first generaton
+2 SOUR @S999@
+3 PAGE SSN docs pg 999
+2 NOTE Person Attribute Note on SSN
 0 @I19@ INDI
 1 NAME Eric Lloyd /Smith/
 2 GIVN Eric Lloyd
@@ -246,18 +307,26 @@
 2 TYPE Birth of Hjalmar Smith
 2 DATE 31 JAN 1893
 2 PLAC Rønne, Bornholm, Denmark
+1 BIRT Y
 1 DEAT
 2 TYPE Death of Hjalmar Smith
 2 DATE 25 SEP 1894
 2 PLAC Rønne, Bornholm, Denmark
+1 DEAT Y
 1 FAMC @F3@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 ALIA @I22@
+1 ALIA James /Smith/
+1 NAME Jimmy Smith
+1 TITL Sir Jimmy Smith
+2 DATE 5 OCT 1874
+2 PLAC Rønne, Bornholm, Denmark
 0 @I22@ INDI
 1 NAME Martin /Smith/
-2 GIVN Martin
 2 SURN Smith
+2 GIVN Martin
 1 SEX M
 1 BIRT
 2 TYPE Birth of Martin Smith
@@ -275,17 +344,29 @@
 1 FAMS @F2@
 1 NOTE @N0002@
 1 CHAN
+1 RESN locked
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
 0 @I23@ INDI
+1 NAME Astrid Shermanna /Augusta/
+2 GIVN Astrid Shermanna
+2 SURN Augusta
+1 NAME Star /Augusta/
+2 GIVN Star
+2 SURN Augusta
+2 TYPE AKA
+2 DATE FROM 1889 TO 1898
 1 NAME Astrid Shermanna Augusta /Smith/
 2 GIVN Astrid Shermanna Augusta
 2 SURN Smith
+2 TYPE MARRIED
+2 NPFX Dr.
 1 SEX F
 1 BIRT
 2 TYPE Birth of Astrid Shermanna Augusta Smith
 2 DATE 31 JAN 1889
 2 PLAC Rønne, Bornholm, Denmark
+2 FAMC @F3@
 1 DEAT
 2 TYPE Death of Astrid Shermanna Augusta Smith
 2 DATE 21 DEC 1963
@@ -318,14 +399,21 @@
 2 DATE 7 DEC 1862
 2 PLAC Gladsax, Kristianstad Län, Sweden
 1 FAMC @F2@
+2 NOTE A FAMC note
+2 PEDI birth
+2 SOUR @S2@
 1 FAMS @F3@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 ASSO @I23@
+2 RELA Friend
+2 SOUR @S2@
 0 @I25@ INDI
 1 NAME Marta /Ericsdotter/
 2 GIVN Marta
 2 SURN Ericsdotter
+2 _MARN Smith
 1 SEX F
 1 BIRT
 2 TYPE Birth of Marta Ericsdotter
@@ -335,6 +423,20 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 FACT Housekeeper
+2 TYPE Skills
+1 CONL
+2 TEMP STOCK code
+2 DATE 1790
+1 ENDL
+2 TEMP Stockholm
+2 DATE 1795
+1 SLGC
+2 TEMP Stockholm, Sweden
+2 DATE 1796
+2 PLAC Sweden
+3 FORM Country
+2 FAMC @F1@
 0 @I26@ INDI
 1 NAME Kirsti Marie /Smith/
 2 GIVN Kirsti Marie
@@ -360,7 +462,7 @@
 1 SEX M
 1 BIRT
 2 TYPE Birth of Ingeman Smith
-2 DATE ABT 1770
+2 DATE ABT @#DGREGORIAN@ 1770
 2 PLAC Sweden
 1 FAMS @F1@
 1 CHAN
@@ -403,11 +505,13 @@
 1 NAME Magnes /Smith/
 2 GIVN Magnes
 2 SURN Smith
-1 SEX M
+1 SSN 987-654-3210
+1 SEX X
 1 BIRT
 2 TYPE Birth of Magnes Smith
 2 DATE 6 OCT 1858
 2 PLAC Simrishamn, Kristianstad Län, Sweden
+2 RIN 789654123
 1 DEAT
 2 TYPE Death of Magnes Smith
 2 DATE 20 FEB 1910
@@ -426,6 +530,8 @@
 2 TYPE Birth of Janice Ann Adams
 2 DATE 26 AUG 1965
 2 PLAC Fremont, Alameda Co., CA
+2 CAUS fooling around
+3 SOUR @S0@
 1 OCCU Retail Manager
 1 _DEG
 2 TYPE Business Management
@@ -495,6 +601,8 @@
 1 NAME Lars Peter /Smith/
 2 GIVN Lars Peter
 2 SURN Smith
+2 _ADPN Jones
+2 _ADPN Pete Jones
 1 SEX M
 1 BIRT
 2 TYPE Birth of Lars Peter Smith
@@ -532,6 +640,8 @@
 2 GIVN Edwin Michael
 2 SURN Smith
 2 SOUR @S1@
+3 DATA
+4 TEXT Record for Edwin Michael Smith
 1 SEX M
 1 BIRT
 2 TYPE Birth of Edwin Michael Smith
@@ -648,7 +758,7 @@
 1 SEX M
 1 BIRT
 2 TYPE Birth of Edwin Willard
-2 DATE ABT 1886
+2 DATE BET @#DHEBREW@ AAV 1886 AND @#DHEBREW@ ELUL 1897
 1 FAMS @F4@
 1 CHAN
 2 DATE 21 DEC 2007
@@ -706,12 +816,19 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 RESI At the boarding school
+2 DATE FROM @#DGREGORIAN@ 1873 TO 1878
+2 PLAC Oronoko, Berrien, Michigan, USA
+1 RESI At the hebrew boarding school
+2 DATE FROM 1873 TO @#DHEBREW@ 1878
+2 PLAC Shemps
+3 FORM home
 0 @F0@ FAM
 1 HUSB @I39@
 1 WIFE @I36@
 1 MARR
 2 TYPE Marriage of Martin Smith and Elna Jefferson
-2 DATE ABT 1816
+2 DATE BET @#DGREGORIAN@ 1816 AND 1817
 2 PLAC Gladsax, Kristianstad Län, Sweden
 1 CHIL @I11@
 1 CHIL @I7@
@@ -725,8 +842,12 @@
 1 WIFE @I25@
 1 MARR
 2 TYPE Marriage of Ingeman Smith and Marta Ericsdotter
-2 DATE ABT 1790
+2 DATE BET 1789 AND @#DHEBREW@ 1790
 2 PLAC Sweden
+2 HUSB
+3 AGE 17
+2 WIFE
+3 AGE 18
 1 CHIL @I39@
 1 CHAN
 2 DATE 21 DEC 2007
@@ -739,9 +860,11 @@
 2 DATE 12 JUL 1986
 2 PLAC Woodland, Yolo Co., CA
 1 CHIL @I35@
+2 _STAT
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 _STAT
 0 @F11@ FAM
 1 HUSB @I3@
 1 WIFE @I28@
@@ -749,9 +872,20 @@
 2 TYPE Marriage of Magnes Smith and Anna Streiffert
 2 DATE 24 AUG 1884
 2 PLAC Rønne, Bornholm, Denmark
+3 MAP
+4 LATI N55.1010
+4 LONG E14.7083
+3 OBJE
+4 FILE Magnes&Anna_smiths_marr_cert.jpg
+3 SOUR @S0@
+2 OBJE
+3 FILE Magnes&Anna_smiths_marr_cert.jpg
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 EVEN Celebration
+2 TYPE MARB
+2 DATE 24 AUG 1883
 0 @F12@ FAM
 1 HUSB @I18@
 1 WIFE @I34@
@@ -765,6 +899,11 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 SLGS
+2 PLAC Sparks, Washoe Co., NV
+1 NCHI 2
+1 OBJE
+2 FILE John&Alice_smiths_marr_cert.jpg
 0 @F13@ FAM
 1 HUSB @I37@
 1 WIFE @I30@
@@ -772,10 +911,18 @@
 2 TYPE Marriage of Edwin Michael Smith and Janice Ann Adams
 2 DATE 27 MAY 1995
 2 PLAC San Ramon, Conta Costa Co., CA
+2 _WITN @I18@
+3 TYPE WITNESS_OF_MARRIAGE
 1 ENGA
 2 TYPE Engagement of Edwin Michael Smith and Janice Ann Adams
 2 DATE 5 OCT 1994
+2 TIME 2:00pm
+2 AGNC Lovely ring presentation
+2 _WITN George Smorge
+2 _PRIV
+2 NOTE Description: Engagement of Edwin Michael Smith and Janice Ann Adams
 2 PLAC San Francisco, San Francisco Co., CA
+2 _UID 123456
 1 CHIL @I5@
 1 CHIL @I2@
 1 CHAN
@@ -787,32 +934,17 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 EVEN Common law marriage
+2 TYPE Civil
 0 @F2@ FAM
 1 HUSB @I22@
 1 WIFE @I38@
 1 MARR
 2 TYPE Marriage of Martin Smith and Kerstina Hansdotter
-2 DATE ABT 1856
+2 DATE FROM @#DGREGORIAN@ 1856 TO @#DGREGORIAN@ 1857
 1 CHIL @I3@
 1 CHIL @I9@
 1 CHIL @I24@
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @F3@ FAM
-1 HUSB @I24@
-1 WIFE @I0@
-1 MARR
-2 TYPE Marriage of Gustaf Smith, Sr. and Anna Hansdotter
-2 DATE 27 NOV 1885
-2 PLAC Rønne, Bornholm, Denmark
-1 CHIL @I26@
-1 CHIL @I23@
-1 CHIL @I21@
-1 CHIL @I8@
-1 CHIL @I15@
-1 CHIL @I20@
-1 CHIL @I10@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
@@ -850,7 +982,7 @@
 0 @F7@ FAM
 1 HUSB @I15@
 1 WIFE @I13@
-1 MARR
+1 MARR Civil Union
 2 TYPE Marriage of Gus Smith and Evelyn Michaels
 2 DATE ABT 1920
 1 CHAN
@@ -866,12 +998,15 @@
 1 CHIL @I19@
 1 CHIL @I1@
 1 CHIL @I29@
+2 ADOP
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 ADDR 123 Main st, Grantville, Virginia, USA
 0 @F9@ FAM
 1 HUSB @I10@
 1 WIFE @I17@
+1 MARR Unmarried
 1 CHIL @I33@
 1 CHAN
 2 DATE 21 DEC 2007
@@ -887,11 +1022,16 @@
 3 TIME 01:35:26
 0 @S1@ SOUR
 1 TITL Birth Certificate
+1 REPO Invalid REPO Name
+2 NOTE Invalid REPO (Name instead of xref)
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+1 TEXT Source text of Birth cert
 0 @S2@ SOUR
 1 TITL Birth Records
+1 REPO
+2 NOTE Invalid REPO (no name)
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
@@ -901,9 +1041,15 @@
 2 CALN CA-123-LL-456_Num/ber
 3 MEDI Film
 1 NOTE @N0005@
+1 ABBR goodstuff
+1 DATA
+2 AGNC NYC Public Library
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
+0 @S4@ SOUR
+1 PERI Our Family Tree
+1 RIN 987456321
 0 @R0002@ REPO
 1 NAME New York Public Library
 1 ADDR 5th Ave at 42 street
@@ -912,13 +1058,27 @@
 2 STAE New York
 2 POST 11111
 2 CTRY USA
+1 CHAN
+2 DATE 01 JAN 2000
+3 TIME 00:00:00
 0 @R0003@ REPO
 1 NAME Aunt Martha's Attic
-1 ADDR 123 Main St
+1 ADDR 123 Main St, Someville, ST, USA
 2 ADR1 123 Main St
+2 ADR2 LittleVillage
 2 CITY Someville
 2 STAE ST
 2 CTRY USA
+2 DATE 25 DEC 1971
+2 SOUR @S0@
+3 DATE 26 DEC 1971
+3 REFN blah blah
+4 TYPE who knows
+3 EVEN housecleaning
+4 ROLE sorter
+3 OBJE
+4 FILE Attic_photo.jpg
+2 NOTE A note on this address
 1 WWW http://library.gramps-project.org
 1 NOTE @N0006@
 0 @N0000@ NOTE Witness name: John Doe
@@ -943,4 +1103,10 @@
 0 @N0004@ NOTE But Aunt Martha still keeps the original!
 0 @N0005@ NOTE The repository reference from the source is important
 0 @N0006@ NOTE Some note on the repo
+0 XXX an unknown token at level 0
+0 SUBM @SUBM@
+0 @S4@ SOUR A weird source (one line) format
+1 @X1@ XXX and unknown token xref definition
 0 TRLR
+
+The end

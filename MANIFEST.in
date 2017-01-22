@@ -3,7 +3,6 @@ include COPYING
 include FAQ
 include Gramps.py
 include INSTALL
-include LICENSE
 include MANIFEST.in
 include NEWS
 include RELEASE_NOTES

@@ -85,13 +85,12 @@ class EditAddress(EditSecondary):
         EditSecondary.__init__(self, dbstate, uistate, track, addr, callback)
 
     def _local_init(self):
-        self.width_key = 'interface.address-width'
-        self.height_key = 'interface.address-height'
 
         self.top = Glade()
         self.set_window(self.top.toplevel,
                         self.top.get_object("title"),
                         _('Address Editor'))
+        self.setup_configs('interface.address', 650, 450)
 
     def _setup_fields(self):
         self.addr_start = MonitoredDate(

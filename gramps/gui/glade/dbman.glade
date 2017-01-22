@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
+<!-- Generated with glade 3.20.0 -->
 <interface>
   <requires lib="gtk+" version="3.10"/>
   <object class="GtkDialog" id="comment">
@@ -63,8 +63,6 @@
               <packing>
                 <property name="left_attach">1</property>
                 <property name="top_attach">0</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
               </packing>
             </child>
             <child>
@@ -78,8 +76,6 @@
               <packing>
                 <property name="left_attach">1</property>
                 <property name="top_attach">1</property>
-                <property name="width">1</property>
-                <property name="height">1</property>
               </packing>
             </child>
             <child>
@@ -105,9 +101,6 @@
     <property name="can_focus">False</property>
     <property name="border_width">6</property>
     <property name="title" translatable="yes">Family Trees - Gramps</property>
-    <property name="window_position">center-on-parent</property>
-    <property name="default_width">800</property>
-    <property name="default_height">350</property>
     <property name="type_hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox26">
@@ -121,7 +114,7 @@
             <property name="margin_top">6</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="cancel">
+              <object class="GtkButton" id="cancel_btn">
                 <property name="label" translatable="yes">_Close Window</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
@@ -137,7 +130,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="connect">
+              <object class="GtkButton" id="connect_btn">
                 <property name="label" translatable="yes">_Load Family Tree</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
@@ -153,7 +146,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="help">
+              <object class="GtkButton" id="help_btn">
                 <property name="label" translatable="yes">_Help</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
@@ -237,7 +230,7 @@
                 <property name="spacing">6</property>
                 <property name="layout_style">start</property>
                 <child>
-                  <object class="GtkButton" id="new">
+                  <object class="GtkButton" id="new_btn">
                     <property name="label" translatable="yes">_New</property>
                     <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
@@ -253,7 +246,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="info">
+                  <object class="GtkButton" id="info_btn">
                     <property name="label" translatable="yes">_Info</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -268,7 +261,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="remove">
+                  <object class="GtkButton" id="remove_btn">
                     <property name="label" translatable="yes">_Delete</property>
                     <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
@@ -284,7 +277,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="rename">
+                  <object class="GtkButton" id="rename_btn">
                     <property name="label" translatable="yes">_Rename</property>
                     <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
@@ -300,7 +293,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="close">
+                  <object class="GtkButton" id="close_btn">
                     <property name="label" translatable="yes">Close</property>
                     <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
@@ -316,7 +309,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="convert">
+                  <object class="GtkButton" id="convert_btn">
                     <property name="label" translatable="yes">Con_vert</property>
                     <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
@@ -332,7 +325,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="repair">
+                  <object class="GtkButton" id="repair_btn">
                     <property name="label" translatable="yes">Re_pair</property>
                     <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
@@ -348,7 +341,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="rcs">
+                  <object class="GtkButton" id="rcs_btn">
                     <property name="label" translatable="yes">_Archive</property>
                     <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
@@ -380,9 +373,9 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="-7">cancel</action-widget>
-      <action-widget response="-5">connect</action-widget>
-      <action-widget response="-11">help</action-widget>
+      <action-widget response="-7">cancel_btn</action-widget>
+      <action-widget response="-5">connect_btn</action-widget>
+      <action-widget response="-11">help_btn</action-widget>
     </action-widgets>
   </object>
 </interface>

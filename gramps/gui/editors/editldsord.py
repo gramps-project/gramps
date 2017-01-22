@@ -151,13 +151,13 @@ class EditLdsOrd(EditSecondary):
         EditSecondary.__init__(self, state, uistate, track, attrib, callback)
 
     def _local_init(self):
-        self.width_key = 'interface.lds-width'
-        self.height_key = 'interface.lds-height'
 
         self.top = Glade()
         self.set_window(self.top.toplevel,
                         self.top.get_object('title'),
                         _('LDS Ordinance Editor'))
+        self.setup_configs('interface.lds', 600, 450)
+
         self.share_btn = self.top.get_object('share_place')
         self.add_del_btn = self.top.get_object('add_del_place')
 
@@ -230,22 +230,21 @@ class EditLdsOrd(EditSecondary):
             self.db.readonly)
         self.track_ref_for_deletion('status_menu')
 
-        self.ord_type_changed()
         self.update_parent_label()
 
+    def _post_init(self):
+        self.ord_type_changed()
+
     def ord_type_changed(self):
-        if self.obj.get_type() == LdsOrd.BAPTISM:
-            self.parents.hide()
-            self.parents_label.hide()
-            self.parents_select.hide()
-        elif self.obj.get_type() == LdsOrd.ENDOWMENT:
-            self.parents.hide()
-            self.parents_label.hide()
-            self.parents_select.hide()
-        elif self.obj.get_type() == LdsOrd.SEAL_TO_PARENTS:
+        if self.obj.get_type() == LdsOrd.SEAL_TO_PARENTS:
             self.parents.show()
             self.parents_label.show()
             self.parents_select.show()
+        else:
+            self.parents.hide()
+            self.parents_label.hide()
+            self.parents_select.hide()
+
         new_data = [(item[1],item[0]) for item in LdsOrd._STATUS_MAP
                     if item[0] in _DATA_MAP[self.obj.get_type()] ]
         self.status_menu.change_menu(new_data)
@@ -353,6 +352,11 @@ class EditFamilyLdsOrd(EditSecondary):
                         _('LDS Ordinance Editor'))
         self.share_btn = self.top.get_object('share_place')
         self.add_del_btn = self.top.get_object('add_del_place')
+
+    def _post_init(self):
+        self.parents.hide()
+        self.parents_label.hide()
+        self.parents_select.hide()
 
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_object('cancel'))

@@ -48,6 +48,7 @@ from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.config import config
 from gramps.gen.const import PLUGINS_DIR, USER_PLUGINS
 from gramps.gen.db.dbconst import DBBACKEND
+from gramps.gen.db.utils import make_database
 from gramps.gen.errors import DbError
 from gramps.gen.dbstate import DbState
 from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
@@ -163,7 +164,7 @@ class CLIDbLoader:
         else:
             dbid = "bsddb"
 
-        db = self.dbstate.make_database(dbid)
+        db = make_database(dbid)
 
         self.dbstate.change_database(db)
         self.dbstate.db.disable_signals()
@@ -315,7 +316,7 @@ class CLIManager:
         # database is empty, then copy default researcher to DB owner
         if (res.is_empty()
                 and not owner.is_empty()
-                and self.dbstate.db.is_empty()):
+                and self.dbstate.db.get_total() == 0):
             self.dbstate.db.set_researcher(owner)
 
         name_displayer.set_name_format(self.dbstate.db.name_formats)

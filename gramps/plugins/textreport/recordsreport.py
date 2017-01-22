@@ -235,6 +235,10 @@ class RecordsReportOptions(MenuReportOptions):
 
         stdoptions.add_living_people_option(menu, category_name)
 
+        stdoptions.add_localization_option(menu, category_name)
+
+        category_name = _("Content")
+
         top_size = NumberOption(_("Number of ranks to display"), 3, 1, 100)
         menu.add_option(category_name, "top_size", top_size)
 
@@ -250,12 +254,20 @@ class RecordsReportOptions(MenuReportOptions):
         footer = StringOption(_("Footer text"), "")
         menu.add_option(category_name, "footer", footer)
 
-        stdoptions.add_localization_option(menu, category_name)
-
+        p_count = 0
+        for (text, varname, default) in RECORDS:
+            if varname.startswith('person'):
+                p_count += 1
+        p_half = p_count // 2
+        p_idx = 0
         for (text, varname, default) in RECORDS:
             option = BooleanOption(_(text), default)
             if varname.startswith('person'):
-                category_name = _("Person Records")
+                if p_idx >= p_half:
+                    category_name = _("Person Records 2")
+                else:
+                    category_name = _("Person Records 1")
+                p_idx += 1
             elif varname.startswith('family'):
                 category_name = _("Family Records")
             menu.add_option(category_name, varname, option)
@@ -268,8 +280,8 @@ class RecordsReportOptions(MenuReportOptions):
         person = self.__db.get_person_from_gramps_id(gid)
         nfv = self._nf.get_value()
         filter_list = utils.get_person_filters(person,
-                                                     include_single=False,
-                                                     name_format=nfv)
+                                               include_single=False,
+                                               name_format=nfv)
         self.__filter.set_filters(filter_list)
 
     def __filter_changed(self):
@@ -278,12 +290,11 @@ class RecordsReportOptions(MenuReportOptions):
         disable the person option
         """
         filter_value = self.__filter.get_value()
-        if filter_value in [1, 2, 3, 4]:
-            # Filters 1, 2, 3 and 4 rely on the center person
-            self.__pid.set_available(True)
-        else:
-            # The rest don't
+        if filter_value == 0: # "Entire Database" (as "include_single=False")
             self.__pid.set_available(False)
+        else:
+            # The other filters need a center person (assume custom ones too)
+            self.__pid.set_available(True)
 
     def make_default_style(self, default_style):
 

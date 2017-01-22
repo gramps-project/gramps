@@ -45,7 +45,7 @@ from gramps.gen.const import URL_MANUAL_SECT3
 from ..display import display_help
 from gramps.gen.datehandler import get_date
 from gramps.gen.errors import MergeError
-from ..dialog import ErrorDialog
+from ..dialog import ErrorDialog, WarningDialog
 from ..managedwindow import ManagedWindow
 from gramps.gen.merge import MergePersonQuery
 
@@ -57,6 +57,9 @@ from gramps.gen.merge import MergePersonQuery
 WIKI_HELP_PAGE = URL_MANUAL_SECT3
 WIKI_HELP_SEC = _("manual|Merge_People")
 _GLADE_FILE = "mergeperson.glade"
+
+# translators: needed for French, ignore otherwise
+KEYVAL = _("%(key)s:\t%(value)s")
 
 sex = ( _("female"), _("male"), _("unknown") )
 
@@ -75,9 +78,9 @@ class MergePerson(ManagedWindow):
     """
     Displays a dialog box that allows the persons to be combined into one.
     """
-    def __init__(self, dbstate, uistate, handle1, handle2, cb_update=None,
-            expand_context_info=True):
-        ManagedWindow.__init__(self, uistate, [], self.__class__)
+    def __init__(self, dbstate, uistate, track, handle1, handle2,
+                 cb_update=None, expand_context_info=True):
+        ManagedWindow.__init__(self, uistate, track, self.__class__)
         self.database = dbstate.db
         self.pr1 = self.database.get_person_from_handle(handle1)
         self.pr2 = self.database.get_person_from_handle(handle2)
@@ -87,6 +90,7 @@ class MergePerson(ManagedWindow):
         self.set_window(self._gladeobj.toplevel,
                         self.get_widget("person_title"),
                         _("Merge People"))
+        self.setup_configs('interface.merge-person', 700, 400)
 
         # Detailed selection widgets
         name1 = name_displayer.display_name(self.pr1.get_primary_name())
@@ -175,18 +179,20 @@ class MergePerson(ManagedWindow):
         title.set_property('weight', Pango.Weight.BOLD)
         title.set_property('scale', 1.2)
         self.add(tobj, title, name_displayer.display(person))
-        self.add(tobj, normal, "%s:\t%s" % (_('ID'),
-                 person.get_gramps_id()))
-        self.add(tobj, normal, "%s:\t%s" % (_('Gender'),
-                 sex[person.get_gender()]))
+        self.add(tobj, normal, KEYVAL % {'key': _('ID'),
+                                         'value': person.get_gramps_id()})
+        self.add(tobj, normal, KEYVAL % {'key': _('Gender'),
+                                         'value': sex[person.get_gender()]})
         bref = person.get_birth_ref()
         if bref:
-            self.add(tobj, normal, "%s:\t%s" % (_('Birth'),
-                     self.get_event_info(bref.ref)))
+            self.add(tobj, normal,
+                     KEYVAL % {'key': _('Birth'),
+                               'value': self.get_event_info(bref.ref)})
         dref = person.get_death_ref()
         if dref:
-            self.add(tobj, normal, "%s:\t%s" % (_('Death'),
-                     self.get_event_info(dref.ref)))
+            self.add(tobj, normal,
+                     KEYVAL % {'key': _('Death'),
+                               'value': self.get_event_info(dref.ref)})
 
         nlist = person.get_alternate_names()
         if len(nlist) > 0:
@@ -203,23 +209,29 @@ class MergePerson(ManagedWindow):
                 role = event_ref.get_role()
                 name = str(
                     self.database.get_event_from_handle(event_handle).get_type())
+                ev_info = self.get_event_info(event_handle)
                 if role.is_primary():
-                    self.add(tobj, normal, "%s:\t%s" %
-                                (name, self.get_event_info(event_handle)))
+                    self.add(tobj, normal,
+                             KEYVAL % {'key': name, 'value': ev_info})
                 else:
-                    self.add(tobj, normal, "%s (%s):\t%s" %
-                                (name, role, self.get_event_info(event_handle)))
+                    self.add(tobj, normal, # translators: needed for French
+                             "%(name)s (%(role)s):\t%(info)s"
+                                 % {'name': name, 'role': role,
+                                    'info': ev_info})
         plist = person.get_parent_family_handle_list()
 
         if len(plist) > 0:
             self.add(tobj, title, _("Parents"))
             for fid in person.get_parent_family_handle_list():
                 (fname, mname, gid) = self.get_parent_info(fid)
-                self.add(tobj, normal, "%s:\t%s" % (_('Family ID'), gid))
+                self.add(tobj, normal,
+                         KEYVAL % {'key': _('Family ID'), 'value': gid})
                 if fname:
-                    self.add(tobj, indent, "%s:\t%s" % (_('Father'), fname))
+                    self.add(tobj, indent,
+                             KEYVAL % {'key': _('Father'), 'value': fname})
                 if mname:
-                    self.add(tobj, indent, "%s:\t%s" % (_('Mother'), mname))
+                    self.add(tobj, indent,
+                             KEYVAL % {'key': _('Mother'), 'value': mname})
         else:
             self.add(tobj, normal, _("No parents found"))
 
@@ -229,23 +241,25 @@ class MergePerson(ManagedWindow):
             for fid in slist:
                 (fname, mname, pid) = self.get_parent_info(fid)
                 family = self.database.get_family_from_handle(fid)
-                self.add(tobj, normal, "%s:\t%s" % (_('Family ID'), pid))
+                self.add(tobj, normal,
+                         KEYVAL % {'key': _('Family ID'), 'value': pid})
                 spouse_id = utils.find_spouse(person, family)
                 if spouse_id:
                     spouse = self.database.get_person_from_handle(spouse_id)
-                    self.add(tobj, indent, "%s:\t%s" % (_('Spouse'),
-                             name_of(spouse)))
+                    self.add(tobj, indent, KEYVAL % {'key': _('Spouse'),
+                                                     'value': name_of(spouse)})
                 relstr = str(family.get_relationship())
-                self.add(tobj, indent, "%s:\t%s" % (_('Type'), relstr))
+                self.add(tobj, indent,
+                         KEYVAL % {'key': _('Type'), 'value': relstr})
                 event = utils.find_marriage(self.database, family)
                 if event:
-                    self.add(tobj, indent, "%s:\t%s" % (
-                            _('Marriage'),
-                            self.get_event_info(event.get_handle())))
+                    m_info = self.get_event_info(event.get_handle())
+                    self.add(tobj, indent,
+                             KEYVAL % {'key': _('Marriage'), 'value': m_info})
                 for child_ref in family.get_child_ref_list():
                     child = self.database.get_person_from_handle(child_ref.ref)
-                    self.add(tobj, indent, "%s:\t%s" % (_('Child'),
-                             name_of(child)))
+                    self.add(tobj, indent, KEYVAL % {'key': _('Child'),
+                                                     'value': name_of(child)})
         else:
             self.add(tobj, normal, _("No spouses or children found"))
 
@@ -323,10 +337,18 @@ class MergePerson(ManagedWindow):
 
         try:
             query = MergePersonQuery(self.database, phoenix, titanic)
-            query.execute()
+            family_merge_ok = query.execute()
+            if not family_merge_ok:
+                WarningDialog(
+                    _("Warning"),
+                    _("The persons have been merged.\nHowever, the families "
+                      "for this merge were too complex to automatically "
+                      "handle.  We recommend that you go to Relationships "
+                      "view and see if additional manual merging of families "
+                      "is necessary."), parent=self.window)
         except MergeError as err:
             ErrorDialog(_("Cannot merge people"), str(err),
-                        parent=self.uistate.window)
+                        parent=self.window)
         self.uistate.set_busy_cursor(False)
         self.close()
         if self.update:

@@ -71,7 +71,8 @@ from gramps.gen.lib.nameorigintype import NameOriginType
 
 from gramps.gen.utils.callback import Callback
 from . import BsddbBaseCursor
-from gramps.gen.db.base import DbReadBase, eval_order_by
+from gramps.gen.db.base import DbReadBase
+from gramps.gen.db.bookmarks import DbBookmarks
 from gramps.gen.utils.id import create_id
 from gramps.gen.errors import DbError, HandleError
 from gramps.gen.constfunc import get_env_var
@@ -163,40 +164,6 @@ def __index_surname(surn_list):
     else:
         surn = ""
     return surn
-
-
-#-------------------------------------------------------------------------
-#
-# class DbBookmarks
-#
-#-------------------------------------------------------------------------
-class DbBookmarks:
-    def __init__(self, default=[]):
-        self.bookmarks = list(default) # want a copy (not an alias)
-
-    def set(self, new_list):
-        self.bookmarks = list(new_list)
-
-    def get(self):
-        return self.bookmarks
-
-    def append(self, item):
-        self.bookmarks.append(item)
-
-    def append_list(self, blist):
-        self.bookmarks += blist
-
-    def remove(self, item):
-        self.bookmarks.remove(item)
-
-    def pop(self, item):
-        return self.bookmarks.pop(item)
-
-    def insert(self, pos, item):
-        self.bookmarks.insert(pos, item)
-
-    def close(self):
-        del self.bookmarks
 
 #-------------------------------------------------------------------------
 #
@@ -1260,34 +1227,12 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Closure that returns an iterator over objects in the database.
         """
-        def g(self, order_by=None):
-            """
-            order_by - [[field, DIRECTION], ...]
-            DIRECTION is "ASC" or "DESC"
-            """
-            if order_by is None:
-                with curs_(self) as cursor:
-                    for key, data in cursor:
-                        obj = obj_()
-                        obj.unserialize(data)
-                        yield obj
-            else:
-                # first build sort order:
-                sorted_items = []
-                with curs_(self) as cursor:
-                    for key, data in cursor:
-                        obj = obj_()
-                        obj.unserialize(data)
-                        # just use values and handle to keep small:
-                        sorted_items.append((eval_order_by(order_by, obj, self), obj.handle))
-                # next we sort by fields and direction
-                pos = len(order_by) - 1
-                for (field, order) in reversed(order_by): # sort the lasts parts first
-                    sorted_items.sort(key=itemgetter(pos), reverse=(order=="DESC"))
-                    pos -= 1
-                # now we will look them up again:
-                for (order_by_values, handle) in sorted_items:
-                    yield self.get_table_func(obj_.__name__,"handle_func")(handle)
+        def g(self):
+            with curs_(self) as cursor:
+                for key, data in cursor:
+                    obj = obj_()
+                    obj.unserialize(data)
+                    yield obj
         return g
 
     # Use closure to define iterators for each primary object type
@@ -2112,16 +2057,6 @@ class DbBsddbRead(DbReadBase, Callback):
             self.__log_error()
             name = None
         return name
-
-    def get_version(self):
-        filepath = os.path.join(self.path, "bdbversion.txt")
-        try:
-            with open(filepath, "r", encoding='utf-8') as name_file:
-                version = name_file.readline().strip()
-        except (OSError, IOError) as msg:
-            self.__log_error()
-            version = "(0, 0, 0)"
-        return ast.literal_eval(version)
 
     def get_summary(self):
         """

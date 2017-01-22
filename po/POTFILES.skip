@@ -55,11 +55,13 @@ gramps/gen/datehandler/_grampslocale.py
 #
 gramps/gen/db/__init__.py
 gramps/gen/db/backup.py
+gramps/gen/db/bookmarks.py
 gramps/gen/db/bsddbtxn.py
 gramps/gen/db/cursor.py
 gramps/gen/db/dbconst.py
 gramps/gen/db/test/db_test.py
 gramps/gen/db/txn.py
+gramps/gen/db/utils.py
 #
 # gen.display package
 #

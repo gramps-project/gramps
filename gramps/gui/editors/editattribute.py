@@ -87,13 +87,12 @@ class EditAttributeRoot(EditSecondary):
         EditSecondary.__init__(self, state, uistate, track, attrib, callback)
 
     def _local_init(self):
-        self.width_key = 'interface.attribute-width'
-        self.height_key = 'interface.attribute-height'
         self.top = Glade('editattribute.glade')
 
         self.set_window(self.top.toplevel,
                         self.top.get_object('title'),
                         _('Attribute Editor'))
+        self.setup_configs('interface.attribute', 600, 350)
 
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_object('cancel'))
@@ -133,7 +132,8 @@ class EditAttributeRoot(EditSecondary):
             label = str(attrib.get_type())
         if not label.strip():
             label = _("New Attribute")
-        label = "%s: %s" % (_('Attribute'),label)
+        label = _("%(str1)s: %(str2)s") % {'str1': _('Attribute'),
+                                           'str2': label}
         return (label, _('Attribute Editor'))
 
     def save(self,*obj):

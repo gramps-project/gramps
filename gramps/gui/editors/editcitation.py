@@ -142,12 +142,10 @@ class EditCitation(EditPrimary):
         and the glade interface. It is called by the base class L{EditPrimary},
         and overridden here.
         """
-        self.width_key = 'interface.citation-width'
-        self.height_key = 'interface.citation-height'
-
         self.glade = Glade()
         self.set_window(self.glade.toplevel, None,
                         self.get_menu_title())
+        self.setup_configs('interface.citation', 600, 450)
 
         self.share_btn = self.glade.get_object('select_source')
         self.add_del_btn = self.glade.get_object('add_del_source')

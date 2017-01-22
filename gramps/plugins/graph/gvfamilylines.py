@@ -791,7 +791,8 @@ class FamilyLinesReport(Report):
                 else:
                     birth_str = self._get_date(date)
 
-            # get birth place (one of:  city, state, or country) we can use
+            # get birth place (one of:  hamlet, village, town, city, parish,
+            # county, province, region, state or country)
             birthplace = None
             if bth_event and self._incplaces:
                 birthplace = self.get_event_place(bth_event)
@@ -805,7 +806,8 @@ class FamilyLinesReport(Report):
                 else:
                     death_str = self._get_date(date)
 
-            # get death place (one of:  city, state, or country) we can use
+            # get death place (one of:  hamlet, village, town, city, parish,
+            # county, province, region, state or country)
             deathplace = None
             if dth_event and self._incplaces:
                 deathplace = self.get_event_place(dth_event)
@@ -820,9 +822,9 @@ class FamilyLinesReport(Report):
                     media_mime_type = media.get_mime_type()
                     if media_mime_type[0:5] == "image":
                         image_path = get_thumbnail_path(
-                             media_path_full(self._db, media.get_path()),
-                             rectangle=media_list[0].get_rectangle(),
-                             size=self._imagesize)
+                            media_path_full(self._db, media.get_path()),
+                            rectangle=media_list[0].get_rectangle(),
+                            size=self._imagesize)
 
             # put the label together and output this person
             label = ""
@@ -1045,8 +1047,22 @@ class FamilyLinesReport(Report):
             place = self._db.get_place_from_handle(place_handle)
             if place:
                 location = get_main_location(self._db, place)
-                if location.get(PlaceType.CITY):
-                    place_text = location.get(PlaceType.CITY)
+                if location.get(PlaceType.HAMLET):
+                    place_text = location.get(PlaceType.HAMLET)
+                elif location.get(PlaceType.VILLAGE):
+                    place_text = location.get(PlaceType.VILLAGE)
+                elif location.get(PlaceType.TOWN):
+                    place_text = location.get(PlaceType.TOWN)
+                elif location.get(PlaceType.CITY):
+                     place_text = location.get(PlaceType.CITY)
+                elif location.get(PlaceType.PARISH):
+                    place_text = location.get(PlaceType.PARISH)
+                elif location.get(PlaceType.COUNTY):
+                    place_text = location.get(PlaceType.COUNTY)
+                elif location.get(PlaceType.PROVINCE):
+                    place_text = location.get(PlaceType.PROVINCE)
+                elif location.get(PlaceType.REGION):
+                    place_text = location.get(PlaceType.REGION)
                 elif location.get(PlaceType.STATE):
                     place_text = location.get(PlaceType.STATE)
                 elif location.get(PlaceType.COUNTRY):

@@ -139,25 +139,20 @@ class EmbeddedList(ButtonTab):
         """
         Create the list needed to populate the right popup action
         An entry is
-            ( needs_write_access, image, title, function)
-        If image == False, then only text label with title is shown
-        If image == True, and image is a tuple (stock_id, text), the image
-            of the stock id (eg 'gramps-family') is shown, and the label text
-            If image is not a tuple, then it should be a stock_id, and the
-            image is shown, with label the default stock_id label.
+            ( needs_write_access, title, function)
         """
         if self.share_btn:
             itemlist = [
-                (True, _('_Add'), 'list-add', self.add_button_clicked),
-                (True,  _('Share'), None, self.share_button_clicked),
-                (False, _('_Edit'), 'gtk-edit', self.edit_button_clicked),
-                (True, _('_Remove'), 'list-remove', self.del_button_clicked),
+                (True, _('_Add'), self.add_button_clicked),
+                (True,  _('Share'), self.share_button_clicked),
+                (False, _('_Edit'), self.edit_button_clicked),
+                (True, _('_Remove'), self.del_button_clicked),
                 ]
         else:
             itemlist = [
-                (True, _('_Add'), 'list-add', self.add_button_clicked),
-                (False, _('_Edit'), 'gtk-edit', self.edit_button_clicked),
-                (True, _('_Remove'), 'list-remove', self.del_button_clicked),
+                (True, _('_Add'), self.add_button_clicked),
+                (False, _('_Edit'), self.edit_button_clicked),
+                (True, _('_Remove'), self.del_button_clicked),
             ]
         return itemlist
 
@@ -171,13 +166,9 @@ class EmbeddedList(ButtonTab):
         """
         self.__store_menu = Gtk.Menu() #need to keep reference or menu disappears
         menu = self.__store_menu
-        for (need_write, title, icon_name, func) in self.get_popup_menu_items():
-            if icon_name:
-                item = Gtk.ImageMenuItem.new_with_mnemonic(title)
-                img = Gtk.Image.new_from_icon_name(icon_name, Gtk.IconSize.MENU)
-                item.set_image(img)
-            else:
-                item = Gtk.MenuItem.new_with_mnemonic(title)
+        menu.set_reserve_toggle_size(False)
+        for (need_write, title, func) in self.get_popup_menu_items():
+            item = Gtk.MenuItem.new_with_mnemonic(title)
             item.connect('activate', func)
             if need_write and self.dbstate.db.readonly:
                 item.set_sensitive(False)

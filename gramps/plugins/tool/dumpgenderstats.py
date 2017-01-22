@@ -68,16 +68,16 @@ class DumpGenderStats(tool.Tool, ManagedWindow):
 
             treeview = Gtk.TreeView()
             model = ListModel(treeview, titles)
-            for entry in stats_list:
+            for entry in sorted(stats_list):
                 model.add(entry, entry[0])
 
-            window = Gtk.Window()
-            window.set_default_size(400, 300)
+            window = Gtk.Window() # TODO there needs to be a way to "close" it
             s = Gtk.ScrolledWindow()
             s.add(treeview)
             window.add(s)
             window.show_all()
             self.set_window(window, None, self.label)
+            self.setup_configs('interface.dumpgenderstats', 400, 300)
             self.show()
 
         else:

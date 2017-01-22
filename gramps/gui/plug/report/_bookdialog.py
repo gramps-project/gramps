@@ -76,8 +76,6 @@ from gramps.gen.plug.report._options import ReportOptions
 from ._reportdialog import ReportDialog
 from ._docreportdialog import DocReportDialog
 
-from gramps.gen.display.name import displayer as _nd
-
 #------------------------------------------------------------------------
 #
 # Private Constants
@@ -149,7 +147,7 @@ class BookListDisplay:
     Allows the user to select and/or delete a book from the list.
     """
 
-    def __init__(self, booklist, nodelete=False, dosave=False):
+    def __init__(self, booklist, nodelete=False, dosave=False, parent=None):
         """
         Create a BookListDisplay object that displays the books in BookList.
 
@@ -193,6 +191,7 @@ class BookListDisplay:
 
         self.redraw()
         self.selection = None
+        self.top.set_transient_for(parent)
         self.top.run()
 
     def redraw(self):
@@ -296,6 +295,8 @@ class BookOptions(ReportOptions):
         self.options_dict = {
             'bookname'    : '',
         }
+        # TODO since the CLI code for the "book" generates its own "help" now,
+        # the GUI code would be faster if it didn't list all the possible books
         self.options_help = {
             'bookname'    : ("=name", _("Name of the book. MANDATORY"),
                              BookList('books.xml', dbase).get_book_names(),
@@ -329,7 +330,8 @@ class BookSelector(ManagedWindow):
 
         title_label = self.xml.get_object('title')
         self.set_window(window, title_label, self.title)
-        window.show()
+        self.setup_configs('interface.bookselector', 700, 600)
+        self.show()
         self.xml.connect_signals({
             "on_add_clicked"        : self.on_add_clicked,
             "on_remove_clicked"     : self.on_remove_clicked,
@@ -455,13 +457,14 @@ class BookSelector(ManagedWindow):
         for saved_item in book.get_item_list():
             name = saved_item.get_name()
             item = BookItem(self._db, name)
-            item.option_class = saved_item.option_class
 
             # The option values were loaded magically by the book parser.
             # But they still need to be applied to the menu options.
             opt_dict = item.option_class.handler.options_dict
+            orig_opt_dict = saved_item.option_class.handler.options_dict
             menu = item.option_class.menu
             for optname in opt_dict:
+                opt_dict[optname] = orig_opt_dict[optname]
                 menu_option = menu.get_option_by_name(optname)
                 if menu_option:
                     menu_option.set_value(opt_dict[optname])
@@ -613,28 +616,26 @@ class BookSelector(ManagedWindow):
         else:
             sensitivity = 0
         entries = [
-            (_('_Up'), 'go-up', self.on_up_clicked, sensitivity),
-            (_('_Down'), 'go-down', self.on_down_clicked, sensitivity),
-            (_("Setup"), None, self.on_setup_clicked, sensitivity),
-            (_('_Remove'), 'list-remove', self.on_remove_clicked, sensitivity),
-            ('', None, None, 0),
-            (_('_Clear'), 'edit-clear', self.on_clear_clicked, 1),
-            (_('_Save'), 'document-save', self.on_save_clicked, 1),
-            (_('_Open'), 'document-open', self.on_open_clicked, 1),
-            (_("Edit"), None, self.on_edit_clicked, 1),
+            (_('_Up'), self.on_up_clicked, sensitivity),
+            (_('_Down'), self.on_down_clicked, sensitivity),
+            (_("Setup"), self.on_setup_clicked, sensitivity),
+            (_('_Remove'), self.on_remove_clicked, sensitivity),
+            ('', None, 0),
+            (_('Clear the book'), self.on_clear_clicked, 1),
+            (_('_Save'), self.on_save_clicked, 1),
+            (_('_Open'), self.on_open_clicked, 1),
+            (_("_Edit"), self.on_edit_clicked, 1),
         ]
 
         self.menu1 = Gtk.Menu() # TODO could this be just a local "menu ="?
-        self.menu1.set_title(_('Book Menu'))
-        for title, icon_name, callback, sensitivity in entries:
-            if icon_name:
-                item = Gtk.ImageMenuItem.new_with_mnemonic(title)
-                img = Gtk.Image.new_from_icon_name(icon_name, Gtk.IconSize.MENU)
-                item.set_image(img)
-            else:
-                item = Gtk.MenuItem.new_with_mnemonic(title)
+        self.menu1.set_reserve_toggle_size(False)
+        for title, callback, sensitivity in entries:
+            item = Gtk.MenuItem.new_with_mnemonic(title)
+            Gtk.Label.new_with_mnemonic
             if callback:
                 item.connect("activate", callback)
+            else:
+                item = Gtk.SeparatorMenuItem()
             item.set_sensitive(sensitivity)
             item.show()
             self.menu1.append(item)
@@ -649,18 +650,13 @@ class BookSelector(ManagedWindow):
         else:
             sensitivity = 0
         entries = [
-            (_('_Add'), 'list-add', self.on_add_clicked, sensitivity),
+            (_('_Add'), self.on_add_clicked, sensitivity),
         ]
 
         self.menu2 = Gtk.Menu() # TODO could this be just a local "menu ="?
-        self.menu2.set_title(_('Available Items Menu'))
-        for title, icon_name, callback, sensitivity in entries:
-            if icon_name:
-                item = Gtk.ImageMenuItem.new_with_mnemonic(title)
-                img = Gtk.Image.new_from_icon_name(icon_name, Gtk.IconSize.MENU)
-                item.set_image(img)
-            else:
-                item = Gtk.MenuItem.new_with_mnemonic(title)
+        self.menu2.set_reserve_toggle_size(False)
+        for title, callback, sensitivity in entries:
+            item = Gtk.MenuItem.new_with_mnemonic(title)
             if callback:
                 item.connect("activate", callback)
             item.set_sensitive(sensitivity)
@@ -680,7 +676,7 @@ class BookSelector(ManagedWindow):
         """
         Run final BookDialog with the current book.
         """
-        if self.book.item_list:
+        if self.book.get_item_list():
             old_paper_name = self.book.get_paper_name() # from books.xml
             old_orientation = self.book.get_orientation()
             old_paper_metric = self.book.get_paper_metric()
@@ -721,6 +717,11 @@ class BookSelector(ManagedWindow):
         """
         Save the current book in the xml booklist file.
         """
+        if not self.book.get_item_list():
+            WarningDialog(_('No items'),
+                          _('This book has no items.'),
+                          parent=self.window)
+            return
         name = str(self.name_entry.get_text())
         if not name:
             WarningDialog(
@@ -745,7 +746,7 @@ class BookSelector(ManagedWindow):
         # booklist was saved into a file so everything was fine, but
         # this created a problem once the paper settings were added
         # to the Book object in the BookDialog, since those settings
-        # were retrieved from the Book object in Book.save, so mutiple
+        # were retrieved from the Book object in BookList.save, so mutiple
         # books (differentiated by their names) were assigned the
         # same paper values, so the solution is to make each Book be
         # unique in the booklist, so if multiple copies are saved away
@@ -764,8 +765,8 @@ class BookSelector(ManagedWindow):
         """
         Run the BookListDisplay dialog to present the choice of books to open.
         """
-        booklistdisplay = BookListDisplay(self.book_list,
-                                          nodelete=True, dosave=False)
+        booklistdisplay = BookListDisplay(self.book_list, nodelete=True,
+                                          dosave=False, parent=self.window)
         booklistdisplay.top.destroy()
         book = booklistdisplay.selection
         if book:
@@ -777,8 +778,8 @@ class BookSelector(ManagedWindow):
         """
         Run the BookListDisplay dialog to present the choice of books to delete.
         """
-        booklistdisplay = BookListDisplay(self.book_list,
-                                          nodelete=False, dosave=True)
+        booklistdisplay = BookListDisplay(self.book_list, nodelete=False,
+                                          dosave=True, parent=self.window)
         booklistdisplay.top.destroy()
         book = booklistdisplay.selection
         if book:
@@ -920,14 +921,13 @@ class BookDialog(DocReportDialog):
     def __init__(self, dbstate, uistate, book, options):
         self.format_menu = None
         self.options = options
-        self.is_from_saved_book = False
         self.page_html_added = False
         self.book = book
         self.title = _('Generate Book')
         self.database = dbstate.db
         DocReportDialog.__init__(self, dbstate, uistate, options,
                                  'book', self.title)
-        self.options.options_dict['bookname'] = self.book.name
+        self.options.options_dict['bookname'] = self.book.get_name()
 
         response = self.window.run()
         if response == Gtk.ResponseType.OK:
@@ -1017,10 +1017,10 @@ class BookDialog(DocReportDialog):
             (msg1, msg2) = msg.messages()
             msg2 += ' (%s)' % name # which report has the error?
             ErrorDialog(msg1, msg2, parent=self.uistate.window)
+            return
         except FilterError as msg:
             (msg1, msg2) = msg.messages()
             ErrorDialog(msg1, msg2, parent=self.uistate.window)
-        finally:
             return
 
         if self.open_with_app.get_active():
@@ -1032,8 +1032,7 @@ class BookDialog(DocReportDialog):
                 self.options = option_class(self.raw_name, self.database)
         except TypeError:
             self.options = option_class
-        if not self.is_from_saved_book:
-            self.options.load_previous_values()
+        self.options.load_previous_values()
         handler = self.options.handler
         if self.book.get_paper_name():
             handler.set_paper_name(self.book.get_paper_name())

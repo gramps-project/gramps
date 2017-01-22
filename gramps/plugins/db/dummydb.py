@@ -210,16 +210,6 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
 
     __signals__ = {}
 
-    @classmethod
-    def get_class_summary(cls):
-        """
-        Return a diction of information about this database.
-        """
-        summary = {
-            "Database type": cls.__name__,
-        }
-        return summary
-
     def __init__(self):
         """
         Create a new DummyDb instance.
@@ -1341,7 +1331,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         """
         return self.db_is_open
 
-    def iter_citations(self, order_by=None):
+    def iter_citations(self):
         """
         Return an iterator over objects for Citations in the database
         """
@@ -1357,7 +1347,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
             LOG.warning("database is closed")
         return []
 
-    def iter_events(self, order_by=None):
+    def iter_events(self):
         """
         Return an iterator over objects for Events in the database
         """
@@ -1365,7 +1355,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
             LOG.warning("database is closed")
         return []
 
-    def iter_families(self, order_by=None):
+    def iter_families(self):
         """
         Return an iterator over objects for Families in the database
         """
@@ -1389,7 +1379,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
             LOG.warning("database is closed")
         return []
 
-    def iter_media(self, order_by=None):
+    def iter_media(self):
         """
         Return an iterator over objects for Medias in the database
         """
@@ -1405,7 +1395,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
             LOG.warning("database is closed")
         return []
 
-    def iter_notes(self, order_by=None):
+    def iter_notes(self):
         """
         Return an iterator over objects for Notes in the database
         """
@@ -1413,7 +1403,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
             LOG.warning("database is closed")
         return []
 
-    def iter_people(self, order_by=None):
+    def iter_people(self):
         """
         Return an iterator over objects for Persons in the database
         """
@@ -1437,7 +1427,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
             LOG.warning("database is closed")
         return []
 
-    def iter_places(self, order_by=None):
+    def iter_places(self):
         """
         Return an iterator over objects for Places in the database
         """
@@ -1445,7 +1435,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
             LOG.warning("database is closed")
         return []
 
-    def iter_repositories(self, order_by=None):
+    def iter_repositories(self):
         """
         Return an iterator over objects for Repositories in the database
         """
@@ -1469,7 +1459,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
             LOG.warning("database is closed")
         return []
 
-    def iter_sources(self, order_by=None):
+    def iter_sources(self):
         """
         Return an iterator over objects for Sources in the database
         """
@@ -1485,7 +1475,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
             LOG.warning("database is closed")
         return []
 
-    def iter_tags(self, order_by=None):
+    def iter_tags(self):
         """
         Return an iterator over objects for Tags in the database
         """

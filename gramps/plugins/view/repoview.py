@@ -249,7 +249,7 @@ class RepositoryView(ListView):
                      "repository.")
             ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
-            MergeRepository(self.dbstate, self.uistate, mlist[0], mlist[1])
+            MergeRepository(self.dbstate, self.uistate, [], mlist[0], mlist[1])
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_repository_from_gramps_id(gid)

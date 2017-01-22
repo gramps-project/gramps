@@ -56,8 +56,7 @@ class SelectSource(BaseSelector):
         """
         Perform local initialisation for this class
         """
-        self.width_key = 'interface.source-sel-width'
-        self.height_key = 'interface.source-sel-height'
+        self.setup_configs('interface.source-sel', 600, 450)
 
     def get_window_title(self):
         return _("Select Source")

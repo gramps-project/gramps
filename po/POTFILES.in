@@ -542,6 +542,7 @@ gramps/plugins/db/bsddb/upgrade.py
 gramps/plugins/db/bsddb/write.py
 gramps/plugins/db/dbapi/inmemorydb.gpr.py
 gramps/plugins/db/dbapi/inmemorydb.py
+gramps/plugins/db/dummydb.gpr.py
 gramps/plugins/docgen/asciidoc.py
 gramps/plugins/docgen/docgen.gpr.py
 gramps/plugins/docgen/gtkprint.glade
@@ -580,9 +581,11 @@ gramps/plugins/gramplet/backlinks.py
 gramps/plugins/gramplet/calendargramplet.py
 gramps/plugins/gramplet/children.py
 gramps/plugins/gramplet/citations.py
+gramps/plugins/gramplet/coordinates.py
 gramps/plugins/gramplet/descendant.py
 gramps/plugins/gramplet/eval.py
 gramps/plugins/gramplet/events.py
+gramps/plugins/gramplet/fanchart2waygramplet.py
 gramps/plugins/gramplet/fanchartdescgramplet.py
 gramps/plugins/gramplet/fanchartgramplet.py
 gramps/plugins/gramplet/faqgramplet.py
@@ -717,6 +720,7 @@ gramps/plugins/view/citationtreeview.py
 gramps/plugins/view/dashboardview.py
 gramps/plugins/view/eventview.py
 gramps/plugins/view/familyview.py
+gramps/plugins/view/fanchart2wayview.py
 gramps/plugins/view/fanchartdescview.py
 gramps/plugins/view/fanchartview.py
 gramps/plugins/view/geoclose.py

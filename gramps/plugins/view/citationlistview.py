@@ -326,7 +326,8 @@ class CitationListView(ListView):
                          "sources first.")
                 ErrorDialog(msg, msg2, parent=self.uistate.window)
             else:
-                MergeCitation(self.dbstate, self.uistate, mlist[0], mlist[1])
+                MergeCitation(self.dbstate, self.uistate, [], mlist[0],
+                              mlist[1])
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_citation_from_gramps_id(gid)

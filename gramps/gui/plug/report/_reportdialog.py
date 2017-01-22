@@ -320,7 +320,7 @@ class ReportDialog(ManagedWindow):
             return
 
         # Styles Frame
-        label = Gtk.Label(label="%s:" % _("Style"))
+        label = Gtk.Label(label=_("%s:") % _("Style"))
         label.set_halign(Gtk.Align.START)
 
         self.style_menu = StyleComboBox()
@@ -372,7 +372,8 @@ class ReportDialog(ManagedWindow):
         for (text, widget) in self.widgets:
             widget.set_hexpand(True)
             if text:
-                text_widget = Gtk.Label(label="%s:" % text)
+                # translators: needed for French, ignore otherwise
+                text_widget = Gtk.Label(label=_("%s:") % text)
                 text_widget.set_halign(Gtk.Align.START)
                 grid.attach(text_widget, 1, row, 1, 1)
                 grid.attach(widget, 2, row, 1, 1)
@@ -396,7 +397,7 @@ class ReportDialog(ManagedWindow):
             for (text, widget) in flist:
                 widget.set_hexpand(True)
                 if text:
-                    text_widget = Gtk.Label(label='%s:' % text)
+                    text_widget = Gtk.Label(label=_('%s:') % text)
                     text_widget.set_halign(Gtk.Align.START)
                     grid.attach(text_widget, 1, row, 1, 1)
                     if isinstance(widget, GuiTextOption):
@@ -467,7 +468,7 @@ class ReportDialog(ManagedWindow):
         directory should be used."""
 
         # Save Frame
-        self.doc_label = Gtk.Label(label="%s:" % _("Filename"))
+        self.doc_label = Gtk.Label(label=_("%s:") % _("Filename"))
         self.doc_label.set_halign(Gtk.Align.START)
 
         self.grid.attach(self.doc_label, 1, self.row, 1, 1)
@@ -615,7 +616,7 @@ class ReportDialog(ManagedWindow):
             widget, has_label = make_gui_option(option, self.dbstate,
                                                 self.uistate, self.track)
             if has_label:
-                widget_text = Gtk.Label('%s:' % option.get_label())
+                widget_text = Gtk.Label(_('%s:') % option.get_label())
                 widget_text.set_halign(Gtk.Align.START)
                 self.grid.attach(widget_text, 1, self.row, 1, 1)
                 self.doc_widgets.append(widget_text)

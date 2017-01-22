@@ -225,7 +225,7 @@ class OsmGps:
             except:
                 ErrorDialog(_("Can't create "
                               "tiles cache directory for '%s'.") %
-                              constants.MAP_TITLE[map_type],
+                              constants.MAP_TITLE[self.current_map],
                             parent=self.uistate.window)
         http_proxy = get_env_var('http_proxy')
         if 0:

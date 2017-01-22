@@ -86,13 +86,13 @@ class EditMediaRef(EditReference):
                            self._update_addmedia)
 
     def _local_init(self):
-        self.width_key = 'interface.media-ref-width'
-        self.height_key = 'interface.media-ref-height'
-        self.top = Glade()
 
+        self.top = Glade()
         self.set_window(self.top.toplevel,
                         self.top.get_object('title'),
                         _('Media Reference Editor'))
+        self.setup_configs('interface.media-ref', 600, 450)
+
         self.define_warn_box(self.top.get_object("warn_box"))
         self.top.get_object("label427").set_text(_("Y coordinate|Y"))
         self.top.get_object("label428").set_text(_("Y coordinate|Y"))

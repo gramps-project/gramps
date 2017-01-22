@@ -85,6 +85,8 @@ class EditLink(ManagedWindow):
         self.set_window(self.top.toplevel,
                         self.top.get_object("title"),
                         _('Link Editor'))
+        self.setup_configs('interface.editlink', 600, 160)
+
         self.uri_list = self.top.get_object('link_type')
         for text in [_("Internet Address"),       # 0 this order range above
                      _("Event"),      # 1

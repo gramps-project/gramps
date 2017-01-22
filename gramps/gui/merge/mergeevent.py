@@ -54,8 +54,8 @@ class MergeEvent(ManagedWindow):
     """
     Displays a dialog box that allows the events to be combined into one.
     """
-    def __init__(self, dbstate, uistate, handle1, handle2):
-        ManagedWindow.__init__(self, uistate, [], self.__class__)
+    def __init__(self, dbstate, uistate, track, handle1, handle2):
+        ManagedWindow.__init__(self, uistate, track, self.__class__)
         self.dbstate = dbstate
         database = dbstate.db
         self.ev1 = database.get_event_from_handle(handle1)
@@ -65,6 +65,7 @@ class MergeEvent(ManagedWindow):
         self.set_window(self._gladeobj.toplevel,
                         self.get_widget("event_title"),
                         _("Merge Events"))
+        self.setup_configs('interface.merge-event', 500, 250)
 
         # Detailed selection widgets
         type1 = str(self.ev1.get_type())
@@ -85,10 +86,12 @@ class MergeEvent(ManagedWindow):
             for widget_name in ('date1', 'date2', 'date_btn1', 'date_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)
 
-        place1 = database.get_place_from_handle(
-                self.ev1.get_place_handle())
-        place2 = database.get_place_from_handle(
-                self.ev2.get_place_handle())
+        place1 = self.ev1.get_place_handle()
+        if place1:
+            place1 = database.get_place_from_handle(place1)
+        place2 = self.ev2.get_place_handle()
+        if place2:
+            place2 = database.get_place_from_handle(place2)
         place1 = place1.get_title() if place1 else ""
         place2 = place2.get_title() if place2 else ""
         entry1 = self.get_widget("place1")

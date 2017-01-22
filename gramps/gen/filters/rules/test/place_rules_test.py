@@ -24,7 +24,7 @@ Unittest that tests place-specific filter rules
 import unittest
 import os
 
-from gramps.gen.merge.diff import import_as_dict
+from gramps.gen.db.utils import import_as_dict
 from gramps.cli.user import User
 from gramps.gen.filters import GenericFilterFactory
 from gramps.gen.const import DATA_DIR

@@ -33,7 +33,6 @@ from ..lib import (Date, Person, Name, Surname, NameOriginType, Family, Source,
                    Citation, Event, Media, Place, Repository, Note, Tag)
 from ..utils.alive import probably_alive
 from ..config import config
-from gramps.gen.db.base import sort_objects
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
@@ -234,32 +233,18 @@ class LivingProxyDb(ProxyDbBase):
         family = self.__remove_living_from_family(family)
         return family
 
-    def iter_people(self, order_by=None):
+    def iter_people(self):
         """
         Protected version of iter_people
         """
-        if order_by:
-            retval = []
-            for person in filter(None, self.db.iter_people()):
-                if self.__is_living(person):
-                    if self.mode == self.MODE_EXCLUDE_ALL:
-                        continue
-                    else:
-                        retval.append(self.__restrict_person(person))
+        for person in filter(None, self.db.iter_people()):
+            if self.__is_living(person):
+                if self.mode == self.MODE_EXCLUDE_ALL:
+                    continue
                 else:
-                    retval.append(person)
-            retval = sort_objects(retval, order_by, self)
-            for item in retval:
-                yield item
-        else:
-            for person in filter(None, self.db.iter_people()):
-                if self.__is_living(person):
-                    if self.mode == self.MODE_EXCLUDE_ALL:
-                        continue
-                    else:
-                        yield self.__restrict_person(person)
-                else:
-                    yield person
+                    yield self.__restrict_person(person)
+            else:
+                yield person
 
     def get_person_from_gramps_id(self, val):
         """

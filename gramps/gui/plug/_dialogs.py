@@ -101,6 +101,12 @@ class PluginDialog(ManagedWindow):
         self.title = self.dialog.get_object("title")
 
         self.set_window(window, self.title, msg)
+        if content == _REPORTS:
+            self.setup_configs('interface.reportplugindialog', 600, 400)
+        elif content == _TOOLS:
+            self.setup_configs('interface.toolplugindialog', 600, 400)
+        else:
+            raise ValueError("PluginDialog selection must be a report or tool")
 
         self.store = Gtk.TreeStore(str)
         self.selection = self.tree.get_selection()

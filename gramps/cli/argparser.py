@@ -77,7 +77,6 @@ Application options
   -y, --yes                              Don't ask to confirm dangerous actions (non-GUI mode only)
   -q, --quiet                            Suppress progress indication output (non-GUI mode only)
   -v, --version                          Show versions
-  -b, --databases                        Show available database backends
 """)
 
 _USAGE = _("""
@@ -154,7 +153,6 @@ class ArgParser:
     -y, --yes                       Don't ask to confirm dangerous actions
     -q, --quiet                     Suppress progress indication output
     -v, --version                   Show versions
-    -b, --databases                 Show available database backends
     -h, --help                      Display the help
     --usage                         Display usage information
 
@@ -324,23 +322,6 @@ class ArgParser:
                         print("%s.%s=%s" % (sect, setting,
                                             repr(config.data[sect][setting])))
                     print()
-                sys.exit(0)
-            elif option in ['-b', '--databases']:
-                default = config.data["database"]["backend"]
-                pmgr = BasePluginManager.get_instance()
-                pmgr.reg_plugins(PLUGINS_DIR, self, None)
-                pmgr.reg_plugins(USER_PLUGINS, self, None, load_on_reg=True)
-                for plugin in pmgr.get_reg_databases():
-                    pdata = pmgr.get_plugin(plugin.id)
-                    mod = pmgr.load_plugin(pdata)
-                    if mod:
-                        database = getattr(mod, pdata.databaseclass)
-                        summary = database.get_class_summary()
-                        print("Database backend ID:",
-                              pdata.id,
-                              "(default)" if pdata.id == default else "")
-                        for key in sorted(summary.keys()):
-                            print("   ", _("%s:") % key, summary[key])
                 sys.exit(0)
             elif option in ['-c', '--config']:
                 cfg_name = value

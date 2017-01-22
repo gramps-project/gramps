@@ -3,182 +3,190 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2016-08-29" version="5.0.0-alpha1"/>
+    <created date="2016-10-23" version="5.0.0-alpha1"/>
     <researcher>
       <resname>John A. Tester</resname>
     </researcher>
   </header>
+  <tags>
+    <tag handle="_0000000500000005" change="1" name="Imported" color="#000000000000" priority="0"/>
+  </tags>
   <events>
-    <event handle="_0000000e0000000e" change="1472505121" id="E0000">
+    <event handle="_0000000f0000000f" change="1" id="E0000">
       <type>TEST</type>
       <description>person</description>
     </event>
-    <event handle="_0000000f0000000f" change="1472505121" id="E0001">
+    <event handle="_0000001000000010" change="1" id="E0001">
       <type>Birth</type>
       <dateval val="1900-06-15"/>
-      <place hlink="_0000001300000013"/>
-      <noteref hlink="_0000001000000010"/>
+      <place hlink="_0000001400000014"/>
+      <noteref hlink="_0000001100000011"/>
     </event>
-    <event handle="_0000001400000014" change="1472505121" id="E0002">
+    <event handle="_0000001500000015" change="1" id="E0002">
       <type>Death</type>
-      <noteref hlink="_0000001500000015"/>
+      <noteref hlink="_0000001600000016"/>
     </event>
-    <event handle="_0000001d0000001d" change="1472505121" id="E0003">
+    <event handle="_0000001e0000001e" change="1" id="E0003">
       <type>Who knows OBJE REFN TYPE</type>
       <description>REFN</description>
     </event>
-    <event handle="_0000002600000026" change="1472505121" id="E0004">
+    <event handle="_0000002700000027" change="1" id="E0004">
       <type>Birth</type>
       <dateval val="1901-06-15"/>
     </event>
-    <event handle="_0000002700000027" change="1472505121" id="E0005">
+    <event handle="_0000002800000028" change="1" id="E0005">
       <type>Death</type>
       <dateval val="1975-07-05"/>
     </event>
-    <event handle="_0000002d0000002d" change="1472505121" id="E0006">
+    <event handle="_0000002e0000002e" change="1" id="E0006">
       <type>Birth</type>
       <dateval val="1922-06-15"/>
     </event>
-    <event handle="_0000002e0000002e" change="1472505121" id="E0007">
+    <event handle="_0000002f0000002f" change="1" id="E0007">
       <type>Death</type>
       <dateval val="1994-07-05"/>
     </event>
-    <event handle="_0000003a0000003a" change="1472505122" id="E0008">
+    <event handle="_0000003b0000003b" change="1" id="E0008">
       <type>TEST</type>
       <description>family</description>
     </event>
   </events>
   <people>
-    <person handle="_0000000d0000000d" change="979250406" id="I0001">
+    <person handle="_0000000e0000000e" change="979250406" id="I0001">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Tom</first>
         <surname>Tester</surname>
       </name>
-      <eventref hlink="_0000000e0000000e" role="Primary"/>
       <eventref hlink="_0000000f0000000f" role="Primary"/>
-      <eventref hlink="_0000001400000014" role="Primary"/>
-      <eventref hlink="_0000001d0000001d" role="Primary"/>
-      <objref hlink="_0000001e0000001e"/>
+      <eventref hlink="_0000001000000010" role="Primary"/>
+      <eventref hlink="_0000001500000015" role="Primary"/>
+      <eventref hlink="_0000001e0000001e" role="Primary"/>
+      <objref hlink="_0000001f0000001f"/>
       <attribute type="RIN" value="123456 Person"/>
       <attribute type="REFN" value="98765 for PERSON"/>
       <url  href="http://homepages.rootsweb.com/~pmcbride/gedcom/55gctoc.htm" type="Web Home" description="GEDCOM 5.5 documentation web site"/>
-      <parentin hlink="_0000001600000016"/>
-      <noteref hlink="_0000001700000017"/>
+      <parentin hlink="_0000001700000017"/>
       <noteref hlink="_0000001800000018"/>
       <noteref hlink="_0000001900000019"/>
       <noteref hlink="_0000001a0000001a"/>
-      <noteref hlink="_0000002000000020"/>
-      <citationref hlink="_0000001f0000001f"/>
+      <noteref hlink="_0000001b0000001b"/>
+      <noteref hlink="_0000002100000021"/>
+      <citationref hlink="_0000002000000020"/>
+      <tagref hlink="_0000000500000005"/>
     </person>
-    <person handle="_0000002500000025" change="1472505121" id="I0002">
+    <person handle="_0000002600000026" change="1" id="I0002">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Mrs</first>
         <surname>Tester</surname>
       </name>
-      <eventref hlink="_0000002600000026" role="Primary"/>
       <eventref hlink="_0000002700000027" role="Primary"/>
-      <parentin hlink="_0000001600000016"/>
-      <noteref hlink="_0000002800000028"/>
-      <noteref hlink="_0000002a0000002a"/>
-      <citationref hlink="_0000002900000029"/>
+      <eventref hlink="_0000002800000028" role="Primary"/>
+      <parentin hlink="_0000001700000017"/>
+      <noteref hlink="_0000002900000029"/>
+      <noteref hlink="_0000002b0000002b"/>
+      <citationref hlink="_0000002a0000002a"/>
+      <tagref hlink="_0000000500000005"/>
     </person>
-    <person handle="_0000002b0000002b" change="1472505121" id="I0003">
+    <person handle="_0000002c0000002c" change="1" id="I0003">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Ed</first>
         <surname>Tester</surname>
         <nick>Eddie</nick>
-        <noteref hlink="_0000002c0000002c"/>
+        <noteref hlink="_0000002d0000002d"/>
       </name>
-      <eventref hlink="_0000002d0000002d" role="Primary"/>
       <eventref hlink="_0000002e0000002e" role="Primary"/>
+      <eventref hlink="_0000002f0000002f" role="Primary"/>
       <lds_ord type="baptism">
         <dateval val="-005-05-05"/>
         <temple val="SLAKE"/>
-        <place hlink="_0000002f0000002f"/>
-        <noteref hlink="_0000003000000030"/>
-        <noteref hlink="_0000003300000033"/>
-        <citationref hlink="_0000003200000032"/>
+        <place hlink="_0000003000000030"/>
+        <noteref hlink="_0000003100000031"/>
+        <noteref hlink="_0000003400000034"/>
+        <citationref hlink="_0000003300000033"/>
       </lds_ord>
-      <childof hlink="_0000001600000016"/>
-      <personref hlink="_0000003400000034" rel="">
-        <noteref hlink="_0000003500000035"/>
+      <childof hlink="_0000001700000017"/>
+      <personref hlink="_0000003500000035" rel="">
+        <noteref hlink="_0000003600000036"/>
       </personref>
-      <noteref hlink="_0000003700000037"/>
-      <citationref hlink="_0000003600000036"/>
+      <noteref hlink="_0000003800000038"/>
+      <citationref hlink="_0000003700000037"/>
+      <tagref hlink="_0000000500000005"/>
     </person>
-    <person handle="_0000003400000034" change="1472505121" id="I0004">
+    <person handle="_0000003500000035" change="1" id="I0004">
       <gender>U</gender>
       <name type="Birth Name">
         <first>George</first>
         <surname>Testee</surname>
-        <noteref hlink="_0000003800000038"/>
+        <noteref hlink="_0000003900000039"/>
       </name>
-      <citationref hlink="_0000003900000039"/>
+      <citationref hlink="_0000003a0000003a"/>
+      <tagref hlink="_0000000500000005"/>
     </person>
   </people>
   <families>
-    <family handle="_0000001600000016" change="1472505121" id="F0001">
+    <family handle="_0000001700000017" change="1" id="F0001">
       <rel type="Unknown"/>
-      <father hlink="_0000000d0000000d"/>
-      <mother hlink="_0000002500000025"/>
-      <eventref hlink="_0000003a0000003a" role="Family"/>
-      <childref hlink="_0000002b0000002b"/>
-      <noteref hlink="_0000003d0000003d"/>
+      <father hlink="_0000000e0000000e"/>
+      <mother hlink="_0000002600000026"/>
+      <eventref hlink="_0000003b0000003b" role="Family"/>
+      <childref hlink="_0000002c0000002c"/>
       <noteref hlink="_0000003e0000003e"/>
-      <noteref hlink="_0000004300000043"/>
-      <citationref hlink="_0000003c0000003c"/>
-      <citationref hlink="_0000004200000042"/>
+      <noteref hlink="_0000003f0000003f"/>
+      <noteref hlink="_0000004400000044"/>
+      <citationref hlink="_0000003d0000003d"/>
+      <citationref hlink="_0000004300000043"/>
+      <tagref hlink="_0000000500000005"/>
     </family>
   </families>
   <citations>
-    <citation handle="_0000001f0000001f" change="1472505121" id="C0000">
+    <citation handle="_0000002000000020" change="1" id="C0000">
       <confidence>2</confidence>
       <sourceref hlink="_0000000400000004"/>
     </citation>
-    <citation handle="_0000002300000023" change="1472505121" id="C0001">
+    <citation handle="_0000002400000024" change="1" id="C0001">
       <confidence>2</confidence>
       <sourceref hlink="_0000000400000004"/>
     </citation>
-    <citation handle="_0000002900000029" change="1472505121" id="C0002">
+    <citation handle="_0000002a0000002a" change="1" id="C0002">
       <confidence>2</confidence>
       <sourceref hlink="_0000000400000004"/>
     </citation>
-    <citation handle="_0000003200000032" change="1472505121" id="C0003">
+    <citation handle="_0000003300000033" change="1" id="C0003">
       <confidence>2</confidence>
-      <sourceref hlink="_0000003100000031"/>
+      <sourceref hlink="_0000003200000032"/>
     </citation>
-    <citation handle="_0000003600000036" change="1472505121" id="C0004">
-      <confidence>2</confidence>
-      <sourceref hlink="_0000000400000004"/>
-    </citation>
-    <citation handle="_0000003900000039" change="1472505121" id="C0005">
+    <citation handle="_0000003700000037" change="1" id="C0004">
       <confidence>2</confidence>
       <sourceref hlink="_0000000400000004"/>
     </citation>
-    <citation handle="_0000003c0000003c" change="1472505122" id="C0006">
+    <citation handle="_0000003a0000003a" change="1" id="C0005">
       <confidence>2</confidence>
-      <sourceref hlink="_0000003b0000003b"/>
+      <sourceref hlink="_0000000400000004"/>
     </citation>
-    <citation handle="_0000004200000042" change="1472505122" id="C0007">
+    <citation handle="_0000003d0000003d" change="1" id="C0006">
+      <confidence>2</confidence>
+      <sourceref hlink="_0000003c0000003c"/>
+    </citation>
+    <citation handle="_0000004300000043" change="1" id="C0007">
       <dateval val="1900-12-31"/>
       <page>42</page>
       <confidence>0</confidence>
-      <noteref hlink="_0000003f0000003f"/>
       <noteref hlink="_0000004000000040"/>
       <noteref hlink="_0000004100000041"/>
-      <sourceref hlink="_0000003b0000003b"/>
+      <noteref hlink="_0000004200000042"/>
+      <sourceref hlink="_0000003c0000003c"/>
     </citation>
   </citations>
   <sources>
-    <source handle="_0000000400000004" change="1472505121" id="S0000">
+    <source handle="_0000000400000004" change="1" id="S0000">
       <stitle>Import from imp_notetest.ged</stitle>
       <spubinfo>Tom Tester 2016</spubinfo>
       <noteref hlink="_0000000200000002"/>
-      <noteref hlink="_0000000500000005"/>
       <noteref hlink="_0000000600000006"/>
+      <noteref hlink="_0000000700000007"/>
       <srcattribute type="Approved system identification" value="GEDitCOM"/>
       <srcattribute type="Name of software product" value="GEDitCOM"/>
       <srcattribute type="Version number of software product" value="2.9.4"/>
@@ -192,71 +200,72 @@
       <srcattribute type="Submission: Submitter" value="@SUBMITTER@"/>
       <srcattribute type="Submission: Family file" value="NameOfFamilyFile"/>
       <reporef hlink="_0000000100000001" medium="Unknown"/>
-      <reporef hlink="_0000000b0000000b" medium="Unknown"/>
+      <reporef hlink="_0000000c0000000c" medium="Unknown"/>
     </source>
-    <source handle="_0000003100000031" change="1472505121" id="SOURCE1">
+    <source handle="_0000003200000032" change="1" id="SOURCE1">
       <stitle>@SOURCE1@</stitle>
     </source>
-    <source handle="_0000003b0000003b" change="1472505122" id="S0001">
+    <source handle="_0000003c0000003c" change="1" id="S0001">
       <stitle>Note Test file Source: Tester</stitle>
-      <noteref hlink="_0000004600000046"/>
       <noteref hlink="_0000004700000047"/>
-      <reporef hlink="_0000004400000044" medium="Book">
-        <noteref hlink="_0000004500000045"/>
+      <noteref hlink="_0000004800000048"/>
+      <reporef hlink="_0000004500000045" medium="Book">
+        <noteref hlink="_0000004600000046"/>
       </reporef>
     </source>
   </sources>
   <places>
-    <placeobj handle="_0000001300000013" change="1472505121" id="P0000" type="Address">
+    <placeobj handle="_0000001400000014" change="1" id="P0000" type="Address">
       <ptitle>123 main, Norwalk, Ohio, USA</ptitle>
       <pname value="123 main, Norwalk, Ohio, USA"/>
       <location street="123 main, Norwalk, Ohio, USA"/>
-      <noteref hlink="_0000001100000011"/>
       <noteref hlink="_0000001200000012"/>
+      <noteref hlink="_0000001300000013"/>
     </placeobj>
-    <placeobj handle="_0000002f0000002f" change="1472505121" id="P0001" type="Unknown">
+    <placeobj handle="_0000003000000030" change="1" id="P0001" type="Unknown">
       <ptitle>Salt Lake City</ptitle>
       <pname value="Salt Lake City"/>
     </placeobj>
   </places>
   <objects>
-    <object handle="_0000001e0000001e" change="979250406" id="M1">
+    <object handle="_0000001f0000001f" change="979250406" id="M1">
       <file src="photo.jpg" mime="image/jpeg" description="Tom Tester's photo"/>
       <attribute type="Media-Type" value="Film"/>
       <attribute type="RIN" value="123456"/>
       <attribute type="REFN" value="98765">
-        <noteref hlink="_0000002200000022"/>
+        <noteref hlink="_0000002300000023"/>
       </attribute>
-      <noteref hlink="_0000002400000024"/>
-      <citationref hlink="_0000002300000023"/>
+      <noteref hlink="_0000002500000025"/>
+      <citationref hlink="_0000002400000024"/>
+      <tagref hlink="_0000000500000005"/>
     </object>
   </objects>
   <repositories>
-    <repository handle="_0000000100000001" change="1472505121" id="R0000">
+    <repository handle="_0000000100000001" change="1" id="R0000">
       <rname>Business that produced the product: RSAC Software</rname>
       <type>GEDCOM data</type>
     </repository>
-    <repository handle="_0000000b0000000b" change="1472505121" id="R0001">
+    <repository handle="_0000000c0000000c" change="1" id="R0001">
       <rname>SUBM (Submitter): (@SUBMITTER@) John A. Tester</rname>
       <type>GEDCOM data</type>
       <address>
       </address>
-      <noteref hlink="_0000000900000009"/>
       <noteref hlink="_0000000a0000000a"/>
-      <noteref hlink="_0000000c0000000c"/>
+      <noteref hlink="_0000000b0000000b"/>
+      <noteref hlink="_0000000d0000000d"/>
     </repository>
-    <repository handle="_0000004400000044" change="1472505122" id="R0002">
+    <repository handle="_0000004500000045" change="1" id="R0002">
       <rname>The Testers repository</rname>
       <type>Library</type>
-      <noteref hlink="_0000004800000048"/>
       <noteref hlink="_0000004900000049"/>
+      <noteref hlink="_0000004a0000004a"/>
     </repository>
   </repositories>
   <notes>
-    <note handle="_0000000200000002" change="1472505121" id="N0000" type="Source Note">
+    <note handle="_0000000200000002" change="1" id="N0000" type="Source Note">
       <text>Header note</text>
     </note>
-    <note handle="_0000000300000003" change="1472505121" id="N0001" type="GEDCOM import">
+    <note handle="_0000000300000003" change="1" id="N0001" type="GEDCOM import">
       <text>Records not imported into HEAD (header):
 
 Line ignored as not understood                                      Line    18: 2 TEST Header Note
@@ -266,13 +275,14 @@ Skipped subordinate line                                            Line    20: 
         <range start="0" end="327"/>
       </style>
     </note>
-    <note handle="_0000000500000005" change="1472505121" id="N0002" type="Source Note">
+    <note handle="_0000000600000006" change="1" id="N0002" type="Source Note">
       <text>Submission Note</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000000600000006" change="979250406" id="N0003" type="Source Note">
+    <note handle="_0000000700000007" change="979250406" id="N0003" type="Source Note">
       <text>Submission xref note</text>
     </note>
-    <note handle="_0000000700000007" change="1472505121" id="N0004" type="GEDCOM import">
+    <note handle="_0000000800000008" change="1" id="N0004" type="GEDCOM import">
       <text>Records not imported into Top Level:
 
 Line ignored as not understood                                      Line    26: 2 TEST Submission Note
@@ -283,7 +293,7 @@ Line ignored as not understood                                      Line    29: 
         <range start="0" end="425"/>
       </style>
     </note>
-    <note handle="_0000000800000008" change="1472505121" id="N0005" type="GEDCOM import">
+    <note handle="_0000000900000009" change="1" id="N0005" type="GEDCOM import">
       <text>Records not imported into NOTE Gramps ID N0003:
 
 Tag recognized but not supported                                    Line    32: 1 RIN Submission Note RIN
@@ -295,13 +305,14 @@ Line ignored as not understood                                      Line    39: 
         <range start="0" end="586"/>
       </style>
     </note>
-    <note handle="_0000000900000009" change="1472505121" id="N0006" type="Repository Note">
+    <note handle="_0000000a0000000a" change="1" id="N0006" type="Repository Note">
       <text>Submitter Note</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000000a0000000a" change="1472505121" id="N0007" type="Repository Note">
+    <note handle="_0000000b0000000b" change="1" id="N0007" type="Repository Note">
       <text>Submitter xref note</text>
     </note>
-    <note handle="_0000000c0000000c" change="1472505121" id="N0008" type="GEDCOM import">
+    <note handle="_0000000d0000000d" change="1" id="N0008" type="GEDCOM import">
       <text>Records not imported into SUBM (Submitter): (@SUBMITTER@) John A. Tester:
 
 Line ignored as not understood                                      Line    43: 2 TEST Submitter Note
@@ -312,37 +323,44 @@ Line ignored as not understood                                      Line    46: 
         <range start="0" end="460"/>
       </style>
     </note>
-    <note handle="_0000001000000010" change="1472505121" id="N0009" type="Event Note">
+    <note handle="_0000001100000011" change="1" id="N0009" type="Event Note">
       <text>Birth Event note</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000001100000011" change="1472505121" id="N0010" type="Place Note">
+    <note handle="_0000001200000012" change="1" id="N0010" type="Place Note">
       <text>Location Note</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000001200000012" change="1472505121" id="N0011" type="Place Note">
+    <note handle="_0000001300000013" change="1" id="N0011" type="Place Note">
       <text>Location Note 2</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000001500000015" change="1472505121" id="N0012" type="Event Note">
+    <note handle="_0000001600000016" change="1" id="N0012" type="Event Note">
       <text>Death Event xref note</text>
     </note>
-    <note handle="_0000001700000017" change="1472505121" id="N0013" type="Person Note">
+    <note handle="_0000001800000018" change="1" id="N0013" type="Person Note">
       <text>FAMS Note</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000001800000018" change="1472505121" id="N0014" type="Person Note">
+    <note handle="_0000001900000019" change="1" id="N0014" type="Person Note">
       <text>FAMS Note 2</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000001900000019" change="1472505121" id="N0015" type="Person Note">
+    <note handle="_0000001a0000001a" change="1" id="N0015" type="Person Note">
       <text>Tom Tester xref note</text>
     </note>
-    <note handle="_0000001a0000001a" change="1472505121" id="N0016" type="Person Note">
+    <note handle="_0000001b0000001b" change="1" id="N0016" type="Person Note">
       <text>Tom Tester Note</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000001b0000001b" change="1472505121" id="N0017" type="Media Note">
+    <note handle="_0000001c0000001c" change="1" id="N0017" type="Media Note">
       <text>Media Note</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000001c0000001c" change="979250406" id="N0018" type="Media Note">
+    <note handle="_0000001d0000001d" change="979250406" id="N0018" type="Media Note">
       <text>Media xref note</text>
     </note>
-    <note handle="_0000002000000020" change="1472505121" id="N0019" type="GEDCOM import">
+    <note handle="_0000002100000021" change="1" id="N0019" type="GEDCOM import">
       <text>Records not imported into INDI (individual) Gramps ID I0001:
 
 Empty note ignored                                                  Line    54: 2 NOTE 
@@ -369,7 +387,7 @@ Skipped subordinate line                                            Line    91: 
         <range start="0" end="2009"/>
       </style>
     </note>
-    <note handle="_0000002100000021" change="1472505121" id="N0020" type="GEDCOM import">
+    <note handle="_0000002200000022" change="1" id="N0020" type="GEDCOM import">
       <text>Records not imported into NOTE Gramps ID N0018:
 
 Tag recognized but not supported                                    Line   103: 1 RIN 123456
@@ -383,10 +401,10 @@ Skipped subordinate line                                            Line   112: 
         <range start="0" end="741"/>
       </style>
     </note>
-    <note handle="_0000002200000022" change="1472505121" id="N0021" type="REFN-TYPE">
+    <note handle="_0000002300000023" change="1" id="N0021" type="REFN-TYPE">
       <text>Who knows REFN TYPE</text>
     </note>
-    <note handle="_0000002400000024" change="1472505121" id="N0022" type="GEDCOM import">
+    <note handle="_0000002500000025" change="1" id="N0022" type="GEDCOM import">
       <text>Records not imported into OBJE (multi-media object) Gramps ID M1:
 
 Could not import photo.jpg                                          Line   114: 1 FILE photo.jpg</text>
@@ -394,10 +412,11 @@ Could not import photo.jpg                                          Line   114: 
         <range start="0" end="164"/>
       </style>
     </note>
-    <note handle="_0000002800000028" change="979250406" id="N0023" type="Person Note">
+    <note handle="_0000002900000029" change="979250406" id="N0023" type="Person Note">
       <text>Family Spouse reference Note</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000002a0000002a" change="1472505121" id="N0024" type="GEDCOM import">
+    <note handle="_0000002b0000002b" change="1" id="N0024" type="GEDCOM import">
       <text>Records not imported into INDI (individual) Gramps ID I0002:
 
 Empty note ignored                                                  Line   132: 2 NOTE 
@@ -406,19 +425,22 @@ Skipped subordinate line                                            Line   133: 
         <range start="0" end="248"/>
       </style>
     </note>
-    <note handle="_0000002c0000002c" change="979250406" id="N0025" type="General">
+    <note handle="_0000002d0000002d" change="979250406" id="N0025" type="General">
       <text>Name note</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000003000000030" change="1472505121" id="N0026" type="LDS Note">
+    <note handle="_0000003100000031" change="1" id="N0026" type="LDS Note">
       <text>Place note</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000003300000033" change="1472505122" id="N0027" type="LDS Note">
+    <note handle="_0000003400000034" change="1" id="N0027" type="LDS Note">
       <text>LDS xref note</text>
     </note>
-    <note handle="_0000003500000035" change="979250406" id="N0028" type="Association Note">
+    <note handle="_0000003600000036" change="979250406" id="N0028" type="Association Note">
       <text>Association link note</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000003700000037" change="1472505121" id="N0029" type="GEDCOM import">
+    <note handle="_0000003800000038" change="1" id="N0029" type="GEDCOM import">
       <text>Records not imported into INDI (individual) Gramps ID I0003:
 
 Empty note ignored                                                  Line   141: 2 NOTE 
@@ -430,25 +452,29 @@ Skipped subordinate line                                            Line   168: 
         <range start="0" end="538"/>
       </style>
     </note>
-    <note handle="_0000003800000038" change="979250406" id="N0030" type="General">
+    <note handle="_0000003900000039" change="979250406" id="N0030" type="General">
       <text>Just for association</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000003d0000003d" change="1472505122" id="N0031" type="Family Note">
+    <note handle="_0000003e0000003e" change="1" id="N0031" type="Family Note">
       <text>Family xref note</text>
     </note>
-    <note handle="_0000003e0000003e" change="979250406" id="N0032" type="Family Note">
+    <note handle="_0000003f0000003f" change="979250406" id="N0032" type="Family Note">
       <text>Family note</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000003f0000003f" change="1472505122" id="N0033" type="Citation">
+    <note handle="_0000004000000040" change="1" id="N0033" type="Citation">
       <text>Citation Data Note</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000004000000040" change="1472505122" id="N0034" type="Source text">
+    <note handle="_0000004100000041" change="1" id="N0034" type="Source text">
       <text>A sample text from a source of this family</text>
     </note>
-    <note handle="_0000004100000041" change="979250406" id="N0035" type="Citation">
+    <note handle="_0000004200000042" change="979250406" id="N0035" type="Citation">
       <text>A note this citation is on the FAMILY record.</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000004300000043" change="1472505122" id="N0036" type="GEDCOM import">
+    <note handle="_0000004400000044" change="1" id="N0036" type="GEDCOM import">
       <text>Records not imported into FAM (family) Gramps ID F0001:
 
 Line ignored as not understood                                      Line   183: 2 TEST Family Note
@@ -461,13 +487,15 @@ Line ignored as not understood                                      Line   196: 
         <range start="0" end="645"/>
       </style>
     </note>
-    <note handle="_0000004500000045" change="979250406" id="N0037" type="Repository Reference Note">
+    <note handle="_0000004600000046" change="979250406" id="N0037" type="Repository Reference Note">
       <text>A short note about the repository link.</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000004600000046" change="979250406" id="N0038" type="Source Note">
+    <note handle="_0000004700000047" change="979250406" id="N0038" type="Source Note">
       <text>note embedded in the SOURCE Record</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000004700000047" change="1472505122" id="N0039" type="GEDCOM import">
+    <note handle="_0000004800000048" change="1" id="N0039" type="GEDCOM import">
       <text>Records not imported into SOUR (source) Gramps ID S0001:
 
 Line ignored as not understood                                      Line   206: 1 TEST source
@@ -479,10 +507,11 @@ Skipped subordinate line                                            Line   215: 
         <range start="0" end="524"/>
       </style>
     </note>
-    <note handle="_0000004800000048" change="1472505122" id="N0040" type="Repository Note">
+    <note handle="_0000004900000049" change="1" id="N0040" type="Repository Note">
       <text>Repository Note</text>
+      <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000004900000049" change="1472505122" id="N0041" type="GEDCOM import">
+    <note handle="_0000004a0000004a" change="1" id="N0041" type="GEDCOM import">
       <text>Records not imported into REPO (repository) Gramps ID R0002:
 
 Line ignored as not understood                                      Line   223: 1 TEST Repo

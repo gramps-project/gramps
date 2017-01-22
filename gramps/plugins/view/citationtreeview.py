@@ -51,7 +51,7 @@ from gramps.gui.views.listview import ListView
 from gramps.gen.utils.db import (get_source_and_citation_referents,
                                 get_citation_referents)
 from gramps.gui.views.bookmarks import CitationBookmarks
-from gramps.gen.errors import WindowActiveError
+from gramps.gen.errors import WindowActiveError, HandleError
 from gramps.gui.ddtargets import DdTargets
 from gramps.gui.dialog import ErrorDialog
 from gramps.gui.editors import EditCitation, DeleteCitationQuery, EditSource, \
@@ -157,9 +157,10 @@ class CitationTreeView(ListView):
     # Override change_active from NavigationView, so that only Citations can be
     # put in the history list for the CitationTreeView
     def change_active(self, handle):
-        if self.dbstate.db.get_citation_from_handle(handle):
+        try:
+            self.dbstate.db.get_citation_from_handle(handle)
             super(CitationTreeView, self).change_active(handle)
-        else:
+        except HandleError:
             # FIXME: See http://www.gramps-project.org/bugs/view.php?id=6352 a
             # more comprehensive solution is needed in the long term. See also
             # add in Bookmarks.CitationBookmarks
@@ -178,8 +179,7 @@ class CitationTreeView(ListView):
 
     def _print_handles(self, text, handle_list):
         for handle in handle_list:
-            source = self.dbstate.db.get_source_from_handle(handle)
-            citation = self.dbstate.db.get_citation_from_handle(handle)
+            source, citation = self.get_source_or_citation(handle, False)
             _LOG.debug("\n\n\n")
             if source:
                 _LOG.debug("---- %s -- source %s" %
@@ -212,7 +212,12 @@ class CitationTreeView(ListView):
 
     def _source_row_update(self, handle_list):
         self._print_handles("source row update", handle_list)
-        self.row_update(handle_list)
+        # if the source update changes the title or other item being sorted
+        # then it may change position on tree; it's easier to just rebuild the
+        # whole tree.  row_update cannot fix changes to first level of tree
+        #self.row_update(handle_list)
+        self.dirty = True
+        self.build_tree()
 
     def _source_row_delete(self, handle_list):
         self._print_handles("source row delete", handle_list)
@@ -224,6 +229,25 @@ class CitationTreeView(ListView):
 
     def navigation_type(self):
         return 'Citation'
+
+    def object_build(self, *args):
+        """
+        Called when the tree must be rebuilt and bookmarks redrawn.
+        """
+        self.dirty = True
+        if self.active:
+            # Save the currently selected handles, if any:
+            selected_ids = self.selected_handles()
+            self.bookmarks.redraw()
+            self.build_tree()
+            # Reselect one, if it still exists after rebuild:
+            for handle in selected_ids:
+                # Still exist?  It might be either a source or citation handle.
+                if (self.dbstate.db.has_citation_handle(handle) or
+                        self.dbstate.db.has_source_handle(handle)):
+                    # Select it, and stop selecting:
+                    self.change_active(handle)
+                    break
 
     def drag_info(self):
         # Since drag only needs to work when just one row is selected, ideally,
@@ -238,11 +262,13 @@ class CitationTreeView(ListView):
         # to return SOURCE_LINK.
 
         selection = self.selected_handles()
-        if len(selection) == 1 and \
-            self.dbstate.db.get_source_from_handle(selection[0]):
+        if len(selection) == 1:
+            try:
+                self.dbstate.db.get_source_from_handle(selection[0])
                 return DdTargets.SOURCE_LINK
-        else:
-            return DdTargets.CITATION_LINK
+            except HandleError:
+                pass
+        return DdTargets.CITATION_LINK
 
     def get_stock(self):
         return 'gramps-citation'
@@ -416,12 +442,10 @@ class CitationTreeView(ListView):
         """
         for handle in self.selected_handles():
             # The handle will either be a Source handle or a Citation handle
-            source = self.dbstate.db.get_source_from_handle(handle)
-            citation = self.dbstate.db.get_citation_from_handle(handle)
-            if (not source and not citation) or (source and citation):
-                raise ValueError("selection must be either source or citation")
+            source, citation = self.get_source_or_citation(handle)
             if not source:
-                source = self.dbstate.db.get_source_from_handle(citation.get_reference_handle())
+                source = self.dbstate.db.get_source_from_handle(
+                    citation.get_reference_handle())
             try:
                 EditCitation(self.dbstate, self.uistate, [],
                              Citation(), source)
@@ -436,27 +460,22 @@ class CitationTreeView(ListView):
 
     def remove_object_from_handle(self, handle):
         # The handle will either be a Source handle or a Citation handle
-        source = self.dbstate.db.get_source_from_handle(handle)
-        citation = self.dbstate.db.get_citation_from_handle(handle)
-        if (not source and not citation) or (source and citation):
-            raise ValueError("selection must be either source or citation")
+        source, citation = self.get_source_or_citation(handle)
         if citation:
             the_lists = get_citation_referents(handle, self.dbstate.db)
-            object = self.dbstate.db.get_citation_from_handle(handle)
-            query = DeleteCitationQuery(self.dbstate, self.uistate, object,
+            query = DeleteCitationQuery(self.dbstate, self.uistate, citation,
                                         the_lists)
             is_used = any(the_lists)
-            return (query, is_used, object)
+            return (query, is_used, citation)
         else:
             the_lists = get_source_and_citation_referents(handle,
-                                                                self.dbstate.db)
+                                                          self.dbstate.db)
             LOG.debug('the_lists %s' % [the_lists])
 
-            object = self.dbstate.db.get_source_from_handle(handle)
-            query = DeleteSrcQuery(self.dbstate, self.uistate, object,
+            query = DeleteSrcQuery(self.dbstate, self.uistate, source,
                                    the_lists)
             is_used = any(the_lists)
-            return (query, is_used, object)
+            return (query, is_used, source)
 
     def edit(self, obj):
         """
@@ -464,16 +483,13 @@ class CitationTreeView(ListView):
         """
         for handle in self.selected_handles():
             # The handle will either be a Source handle or a Citation handle
-            source = self.dbstate.db.get_source_from_handle(handle)
-            citation = self.dbstate.db.get_citation_from_handle(handle)
-            if (not source and not citation) or (source and citation):
-                raise ValueError("selection must be either source or citation")
+            source, citation = self.get_source_or_citation(handle)
             if citation:
                 try:
                     EditCitation(self.dbstate, self.uistate, [], citation)
                 except WindowActiveError:
                     pass
-            else: # FIXME need try block here
+            else:
                 try:
                     EditSource(self.dbstate, self.uistate, [], source)
                 except WindowActiveError:
@@ -516,15 +532,8 @@ class CitationTreeView(ListView):
                      "citation.")
             ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
-            source1 = self.dbstate.db.get_source_from_handle(mlist[0])
-            citation1 = self.dbstate.db.get_citation_from_handle(mlist[0])
-            if (not source1 and not citation1) or (source1 and citation1):
-                raise ValueError("selection must be either source or citation")
-
-            source2 = self.dbstate.db.get_source_from_handle(mlist[1])
-            citation2 = self.dbstate.db.get_citation_from_handle(mlist[1])
-            if (not source2 and not citation2) or (source2 and citation2):
-                raise ValueError("selection must be either source or citation")
+            source1, citation1 = self.get_source_or_citation(mlist[0])
+            source2, citation2 = self.get_source_or_citation(mlist[1])
 
             if citation1 and citation2:
                 if not citation1.get_reference_handle()  == \
@@ -537,16 +546,17 @@ class CitationTreeView(ListView):
                     ErrorDialog(msg, msg2,
                                 parent=self.uistate.window)
                 else:
-                    MergeCitation(self.dbstate, self.uistate,  mlist[0],
+                    MergeCitation(self.dbstate, self.uistate, [], mlist[0],
                                   mlist[1])
             elif source1 and source2:
-                MergeSource(self.dbstate, self.uistate, mlist[0], mlist[1])
+                MergeSource(self.dbstate, self.uistate, [], mlist[0], mlist[1])
             else:
                 msg = _("Cannot perform merge.")
                 msg2 = _("Both objects must be of the same type, either "
                          "both must be sources, or both must be "
                          "citations.")
                 ErrorDialog(msg, msg2, parent=self.uistate.window)
+            self.object_build()
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_citation_from_gramps_id(gid)
@@ -554,6 +564,23 @@ class CitationTreeView(ListView):
             return obj.get_handle()
         else:
             return None
+
+    def get_source_or_citation(self, handle, check=True):
+        """
+        Get one of source or citation from the passed handle.  There must be
+        exactly one, or we will rain an exception.
+        """
+        try:
+            source = self.dbstate.db.get_source_from_handle(handle)
+        except HandleError:
+            source = None
+        try:
+            citation = self.dbstate.db.get_citation_from_handle(handle)
+        except HandleError:
+            citation = None
+        if check and ((not source and not citation) or (source and citation)):
+            raise ValueError("selection must be either source or citation")
+        return source, citation
 
     def tag_updated(self, handle_list):
         """
@@ -571,12 +598,11 @@ class CitationTreeView(ListView):
         """
         Add the given tag to the given source or citation.
         """
-        citation = self.dbstate.db.get_citation_from_handle(handle)
+        source, citation = self.get_source_or_citation(handle)
         if citation:
             citation.add_tag(tag_handle)
             self.dbstate.db.commit_citation(citation, transaction)
         else:
-            source = self.dbstate.db.get_source_from_handle(handle)
             source.add_tag(tag_handle)
             self.dbstate.db.commit_source(source, transaction)
 

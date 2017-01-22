@@ -84,11 +84,9 @@ class EditPlace(EditPrimary):
         return Place()
 
     def _local_init(self):
-        self.width_key = 'interface.place-width'
-        self.height_key = 'interface.place-height'
-
         self.top = Glade()
         self.set_window(self.top.toplevel, None, self.get_menu_title())
+        self.setup_configs('interface.place', 650, 450)
         self.place_name_label = self.top.get_object('place_name_label')
         self.place_name_label.set_text(_('place|Name:'))
 

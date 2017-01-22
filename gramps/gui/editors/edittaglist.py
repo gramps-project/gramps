@@ -66,6 +66,7 @@ class EditTagList(ManagedWindow):
         self.namemodel = None
         top = self._create_dialog()
         self.set_window(top, None, _('Tag selection'))
+        self.setup_configs('interface.edittaglist', 360, 400)
 
         for tag in full_list:
             self.namemodel.add([tag[0], tag in tag_list, tag[1]])
@@ -98,7 +99,6 @@ class EditTagList(ManagedWindow):
         # pylint: disable-msg=E1101
         title = _("%(title)s - Gramps") % {'title': _("Edit Tags")}
         top = Gtk.Dialog(title, self.uistate.window)
-        top.set_default_size(360, 400)
         top.set_modal(True)
         top.vbox.set_spacing(5)
 

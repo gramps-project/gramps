@@ -221,14 +221,14 @@ def new_exit(edit_code=None):
     raise SystemExit()
 
 @contextlib.contextmanager
-def capture(stdin):
+def capture(stdin, bytesio=False):
     oldout, olderr = sys.stdout, sys.stderr
     oldexit = sys.exit
     if stdin:
         oldin = sys.stdin
         sys.stdin = stdin
     try:
-        output = [StringIO(), StringIO()]
+        output = [BytesIO() if bytesio else StringIO(), StringIO()]
         sys.stdout, sys.stderr = output
         sys.exit = new_exit
         yield output
@@ -252,8 +252,8 @@ class Gramps:
         self.climanager = CLIManager(self.dbstate, setloader=True, user=self.user)
         self.clidbmanager = CLIDbManager(self.dbstate)
 
-    def run(self, *args, stdin=None):
-        with capture(stdin) as output:
+    def run(self, *args, stdin=None, bytesio=False):
+        with capture(stdin, bytesio=bytesio) as output:
             #load the plugins
             self.climanager.do_reg_plugins(self.dbstate, uistate=None)
             # handle the arguments

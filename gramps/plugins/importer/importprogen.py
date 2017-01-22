@@ -4,6 +4,7 @@
 #
 # Copyright (C) 2008-2011  Kees Bakker
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2013-2016  Alois Poettker <alois.poettker@gmx.de>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,6 +32,7 @@ import re
 import os
 import struct
 import sys
+import time
 
 #------------------------------------------------------------------------
 #
@@ -38,7 +40,7 @@ import sys
 #
 #------------------------------------------------------------------------
 import logging
-log = logging.getLogger('.ImportProGen')
+LOG = logging.getLogger('.ImportProGen')
 
 #-------------------------------------------------------------------------
 #
@@ -47,17 +49,21 @@ log = logging.getLogger('.ImportProGen')
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gen.config import config
+from gramps.gen.datehandler import displayer
+from gramps.gen.db import DbTxn
+from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef, Citation,
+                            Date, Event, EventRef, EventType, Family, FamilyRelType,
+                            Name, NameType, NameOriginType, Note, NoteType, Person,
+                            Place, PlaceName, Source, SrcAttribute, Surname, Tag)
 from gramps.gen.utils.id import create_id
 from gramps.gui.utils import ProgressMeter
-from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Date, Event,
-                            EventRef, EventType, Family, FamilyRelType, Name,
-                            NameType, Note, NoteType, Person, Place, Source,
-                            Surname, Citation, Location, NameOriginType)
-from gramps.gen.db import DbTxn
 from gramps.gen.utils.libformatting import ImportInfo
 
 class ProgenError(Exception):
-    """Error used to report Progen errors."""
+    """
+    Error used to report Pro-Gen errors.
+    """
     def __init__(self, value=""):
         Exception.__init__(self)
         self.value = value
@@ -65,17 +71,18 @@ class ProgenError(Exception):
     def __str__(self):
         return self.value
 
-
 def _importData(database, filename, user):
-
+    """
+    Imports the files corresponding to the specified Database, Filename & User.
+    """
     try:
-        g = ProgenParser(database, filename)
+        data = ProgenParser(database, filename, user)
     except IOError as msg:
         user.notify_error(_("%s could not be opened") % filename, str(msg))
         return
 
     try:
-        status = g.parse_progen_file()
+        data.parse_progen_file()
     except ProgenError as msg:
         user.notify_error(_("Pro-Gen data error"), str(msg))
         return
@@ -84,111 +91,108 @@ def _importData(database, filename, user):
         return
     return ImportInfo({_("Results"): _("done")})
 
-
 def _find_from_handle(progen_id, table):
     """
     Find a handle corresponding to the specified Pro-Gen ID.
-
-    The passed table contains the mapping. If the value is found, we return
-    it, otherwise we create a new handle, store it, and return it.
-
     """
+    # The passed table contains the mapping. If the value is found, we return
+    # it, otherwise we create a new handle, store it, and return it.
     intid = table.get(progen_id)
     if not intid:
         intid = create_id()
         table[progen_id] = intid
     return intid
 
-
 def _read_mem(bname):
-    '''
-    Each record is 32 bytes. First a 4 byte reference to the next record
-    followed by 28 bytes of text.
-    The information forms a chain of records, that stops when a reference is 0
-    or smaller.
-    There are two special sequences:
-    <ESC> <CR> hard return
-    <ESC> <^Z> end of the memo field
-    '''
+    """
+    Read a Pro-Gen record.
+    """
+    # Each record is 32 bytes. First a 4 byte reference to the next record
+    # followed by 28 bytes of text. The information forms a chain of records,
+    # that stops when a reference is 0 or smaller. There are two special
+    # sequences:
+    # <ESC> <CR> hard return
+    # <ESC> <^Z> end of the memo field
     if os.path.exists(bname + '.MEM'):
         fname = bname + '.MEM'
     else:
         fname = bname + '.mem'
-    f = open(fname, "rb")
-    log.debug("The current system is %s-endian" % sys.byteorder)
-    # The input file comes from [what was originally] a DOS machine so will
-    # be little-endian, regardless of the 'native' byte order of the host
-    # system
+
+    file_ = open(fname, "rb")
+    LOG.debug("The current system is %s-endian", sys.byteorder)
+
+    # The input file comes from [what was originally] a DOS machine so will be
+    # little-endian, regardless of the 'native' byte order of the host system
     recfmt = "<i28s"
-    reclen = struct.calcsize( str(recfmt) )
-    #print("# reclen = %d" % reclen)
+    reclen = struct.calcsize(str(recfmt))
+    # print("# reclen = %d" % reclen)
 
     mems = []
     while 1:
-        buf = f.read(reclen)
+        buf = file_.read(reclen)
         if not buf:
             break
         (recno, text) = struct.unpack(recfmt, buf)
         mems.append([recno, text])
     return mems
 
-
 def _read_recs(table, bname):
-    'Read records from .PER or .REL file.'
+    """
+    Read records from .PER or .REL file.
+    """
     if os.path.exists(bname + table.fileext):
         fname = bname + table.fileext
     else:
         fname = bname + table.fileext.lower()
-    f = open(fname, "rb")
+
+    file_ = open(fname, "rb")
     recfmt = table.recfmt
-    log.info("# %s - recfmt = %s" % (table['name1'], recfmt))
+    LOG.info("# %s - recfmt = %s" % (table['name1'], recfmt))
     reclen = struct.calcsize(str(recfmt))
-    log.info("# %s - reclen = %d" % (table['name1'], reclen))
+    LOG.info("# %s - reclen = %d" % (table['name1'], reclen))
 
     recs = []
     while 1:
-        buf = f.read(reclen)
+        buf = file_.read(reclen)
         if not buf:
             break
         tups = struct.unpack(recfmt, buf)
         recs.append(tups)
 
-    log.info("# length %s.recs[] = %d" % (table['name1'], len(recs)))
-    return recs
+    LOG.info("# length %s.recs[] = %d" % (table['name1'], len(recs)))
 
+    return recs
 
 def _get_defname(fname):
     """
-    Get the name of the PG30 DEF file by looking at the user DEF file. And return
-    the name of the DEF file. fname is expected to be somewhere in the PG30 tree.
-
-    Contents of <fname> is something like:
-        => \\0
-        => C:\\PG30\\NL\\PG30-1.DEF
-
-    We will strip the C: and convert the rest to a native pathname. Next, this pathname
-    is compared with <fname>.
+    Get the name of the PG30.DEF file by looking at the user DEF file.
     """
+    # And return the name of the DEF file. <fname> is expected to be somewhere in
+    # the PG30 tree. Contents of <fname> is something like:
+    # => \\0
+    # => C:\\PG30\\NL\\PG30-1.DEF
+
+    # We will strip the C: and convert the rest to a native pathname. Next, this
+    # pathname is compared with <fname>.
+
     lines = open(fname).readlines()
     if not lines[0].startswith(r'\0') or len(lines) < 2:
         raise ProgenError(_("Not a Pro-Gen file"))
-        return None, '?'
 
     defname = lines[1]
     defname = defname.strip()
     # Strip drive, if any
-    defname = re.sub( r'^\w:', '', defname )
+    defname = re.sub(r'^\w:', '', defname)
     defname = defname.replace('\\', os.sep)
     # Strip leading slash, if any.
     if defname.startswith(os.sep):
         defname = defname[1:]
-    #log.warning('_get_defname: fname=%(fname)s => defname=%(defname)s' % vars())
+    # LOG.warning('_get_defname: fname=%(fname)s => defname=%(defname)s', vars())
 
-    # Using the directory of <fname>, go to the parent directory until
-    # the DEF is found.
-    dir_, f = os.path.split(os.path.abspath(fname))
+    # Using the directory of <fname>, go to parent directory until the DEF is found.
+    dir_, file_ = os.path.split(os.path.abspath(fname))
     while dir_ and dir_ != os.sep:
-        #log.warning('_get_defname: dir=%(dir_)s => defname=%(defname)s' % vars())
+        # LOG.warning('_get_defname: dir=%(dir_)s => defname=%(defname)s', vars())
         newdefname = os.path.join(dir_, defname)
 
         if os.path.exists(newdefname):
@@ -198,101 +202,89 @@ def _get_defname(fname):
             return newdefname, defname
 
         # One level up
-        dir_, f = os.path.split(dir_)
+        dir_, file_ = os.path.split(dir_)
 
     return None, defname
 
-
-esc_ctrlz_pat = re.compile(r'\033\032.*')
+ESC_CTRLZ = re.compile(r'\033\032.*')
 def _get_mem_text(mems, i):
-    'Notice that Pro-Gen starts the mem numbering at 1.'
+    """Normalize text."""
+    # Notice that Pro-Gen starts the mem numbering at 1.
     if i <= 0:
-        return ''
+        return
 
     i -= 1
     recno = mems[i][0]
     text = mems[i][1].decode('cp850')
-    if recno != 0:
+    if recno > 0:
         text += _get_mem_text(mems, recno)
-    # ESC-^M is newline
-    text = text.replace('\033\r', '\n')
-    # ESC-^Z is end of string
-    text = esc_ctrlz_pat.sub('', text)
 
-    # There can be nul bytes. Remove them.
-    text = text.replace('\0', '')
+    text = text.replace('\033\r', '\n')   # ESC-^M is newline
+    text = ESC_CTRLZ.sub('', text)   # ESC-^Z is end of string
+    text = text.replace('\0', '')   # There can be nul bytes. Remove them.
+    text = text.strip()   # Strip leading/trailing whitespace
 
-    # Strip leading/trailing whitespace
-    text = text.strip()
-
-    #print(text)
     return text
 
-month_values = {
-    'jan' : 1,
-    'feb' : 2,
-    'febr' : 2,
-    'maa' : 3,
-    'mar' : 3,
-    'march' : 3,
-    'mrt' : 3,
-    'maart' : 3,
-    'apr' : 4,
-    'april' : 4,
-    'mei' : 5,
-    'may' : 5,
-    'jun' : 6,
-    'juni' : 6,
-    'jul' : 7,
-    'juli' : 7,
-    'aug' : 8,
-    'sep' : 9,
-    'sept' : 9,
-    'ok' : 10,
-    'okt' : 10,
-    'oct' : 10,
-    'nov' : 11,
-    'dec' : 12,
+MONTHES = {
+    'jan' : 1,   # de, en, nl
+    'feb' : 2, 'febr' : 2,   # de, en, nl
+    'mrz' : 3,   # de
+    'mar' : 3, 'march' : 3,  # en
+    'maa' : 3, 'mrt' : 3, 'maart' : 3,   # nl
+    'apr' : 4, 'april' : 4,   # de, en, nl
+    'mai' : 5, 'may' : 5, 'mei' : 5,   # de, en, nl
+    'jun' : 6, 'june' : 6, 'juni' : 6,   # de, en, nl
+    'jul' : 7, 'july' : 7, 'juli' : 7,   # de, en, nl
+    'aug' : 8,   # de, en, nl
+    'sep' : 9, 'sept' : 9,   # de, en, nl
+    'okt' : 10, 'oct' : 10, 'ok' : 10,  # de, en, nl
+    'nov' : 11,   # de, en, nl
+    'dez' : 12,   # de, nl
+    'dec' : 12,   # en
 }
-def _cnv_month_to_int(m):
-    return month_values.get(m, 0)
+def _cnv_month_to_int(mnth):
+    """Converts monthnames to integer."""
 
+    return MONTHES.get(mnth, 0)
 
-# Split "van", "de" prefixes
-_surname_prefixes = [
-    "'t ",
-    'den ',
-    'der ',
-    'de ',
-    'het ',
-    'in den ',
-    'ten ',
-    'ter ',
-    'te ',
-    'van den ',
-    'van der ',
-    'van de ',
-    'van ',
+# Split surname prefixes
+PREFIXES = [
+    't ',   # nl
+    'den ', 'der ', 'de ',   # de, nl
+    'het ',   # nl
+    'in den ',   # nl
+    'ten ', 'ter ', 'te ',   # nl
+    'von ', 'von der ',   # de
+    'van ', 'van den ', 'van der ', 'van de ',   # nl
+    'zu '   # DE
 ]
 def _split_surname(surname):
-    for p in _surname_prefixes:
-        if surname.startswith(p):
-            return p.strip(), surname[len(p):].strip()
+    """Divides prefix from surname."""
+
+    for prefix in PREFIXES:
+        if surname.startswith(prefix):
+            return prefix.strip(), surname[len(prefix):].strip()
+
     return '', surname
 
+
 # Example field:
-# ['Voornaam', '47', '64', '4', '2', '15', '""', '""']
+# ['First name', '47', '64', '4', '2', '15', '""', '""']
 # item 0
 # item 1 is a number indicating the fieldtype
 # item 2
 # item 3 is the size of the field
-class PG30_Def_Table_Field:
-    'This class represents a field in one of the tables in the DEF file.'
+class PG30DefTableField(object):
+    """
+    This class represents a field in one of the tables in the DEF file.
+    """
     def __init__(self, name, value):
         self.fieldname = name
         self.fields = value.split(',')
         self.fields = [p.strip() for p in self.fields]
-        self.name = self.fields[0]
+        # We have seen some case insensitivity in DEF files ...
+        self.name = self.fields[0].lower()
         self.type_ = int(self.fields[1])
         self.size = int(self.fields[3])
 
@@ -300,24 +292,26 @@ class PG30_Def_Table_Field:
         return self.fieldname + ' -> ' + ', '.join(self.fields)
 
 
-class PG30_Def_Table:
-    'This class represents a table in the DEF file.'
+class PG30DefTable(object):
+    """
+    This class represents a table in the DEF file.
+    """
     def __init__(self, name, lines):
         self.name = name
+        self.flds = []
         self.parms = {}
         self.recfmt = None
+
         # Example line:
-        #f02=Persoon gewijzigd   ,32,10,10, 1,68,"","INDI CHAN DATE"
+        # f02=Person_last_change  ,32,10,10, 1,68,"","INDI CHAN DATE"
         line_pat = re.compile(r'(\w+) = (.*)', re.VERBOSE)
-        for l in lines:
-            #print(l)
-            m = line_pat.match(l)
-            if m:
+        for lne in lines:
+            mtch = line_pat.match(lne)
+            if mtch:
                 # TODO. Catch duplicates?
-                self.parms[m.group(1)] = m.group(2)
+                self.parms[mtch.group(1)] = mtch.group(2)
 
         self.fileext = self.parms.get('fileext', None)
-        #self.name1 = self.parms.get('name1', None)
 
         # If there is a n_fields entry then this is a table that
         # has details about the record format of another file (PER or REL).
@@ -326,209 +320,420 @@ class PG30_Def_Table:
             self.recfmt = self.get_recfmt()
             self.nam2fld = {}
             self.nam2idx = {}
-            self.recflds = []                          # list of fields that use up space in a record
+            self.recflds = []   # list of fields that use up space in a record
             j = 0
-            for i, f in enumerate(self.flds):
-                #print("# field %s" % f)
-                nam = f.name
-                self.nam2fld[nam] = f
-                if f.size != 0:
+            for fld in enumerate(self.flds):
+                # print("# field %s" % fld)
+                nam = fld[1].name
+                self.nam2fld[nam] = fld
+                # fld.size == 0: Field will not be acknowleged!
+                if fld[1].size != 0:
                     self.nam2idx[nam] = j
-                    #print("#       %s <= %d" % (f.fieldname, j))
-                    self.recflds.append(f)
-                    j = j + 1
+                    # print("#       %s <= %d" % (fld.fieldname, j))
+                    self.recflds.append(fld[1])
+                    j += 1
 
     def __getitem__(self, i):
         return self.parms.get(i, None)
 
     def get_recfmt(self):
-        'Get the record format for struct.unpack'
+        """Get the record format for struct.unpack"""
         # Example field:
-        # ['Voornaam', '47', '64', '4', '2', '15', '""', '""']
+        # ['First Name', '47', '64', '4', '2', '15', '""', '""']
         # item 0
         # item 1 is a number indicating the fieldtype
         # item 2
         # item 3 is the size of the field
         # ...
+
         flds = self.flds
         # The input file comes from [what was originally] a DOS machine so will
-        # be little-endian, regardless of the 'native' byte order of the host
-        # system
+        # be little-endian, regardless of 'native' byte order of the host system
         fmt = '<'
-        for f in flds:
-            fldtyp = f.type_
+        for fld in flds:
+            fldtyp = fld.type_
             if fldtyp == 2 or fldtyp == 3 or fldtyp == 22 or fldtyp == 23:
                 fmt += 'i'
             elif fldtyp == 31:
                 pass
             elif fldtyp == 32 or fldtyp == 44 or fldtyp == 45:
-                fmt += '%ds' % f.size
+                fmt += '%ds' % fld.size
             elif fldtyp == 41:
                 fmt += 'h'
             elif fldtyp == 42 or fldtyp == 43 or fldtyp == 46 or fldtyp == 47:
                 fmt += 'i'
             else:
-                pass                    # ???? Do we want to know?
+                pass   # ???? Do we want to know?
         return fmt
 
     def get_fields(self):
-        # For example from pg30-1.def
-        #n_fields=58
-        #f01=Persoon record      ,31, 6, 0, 1,17,"","INDI RFN"
-        #f02=Persoon gewijzigd   ,32,10,10, 1,68,"","INDI CHAN DATE"
-        #f03=Voornaam            ,47,64, 4, 2,15,"",""
+        """Get the fields."""
+        # For example from PG30-1.DEF
+        # n_fields=58
+        # f01=Person ID    , 31,  6, 0, 1, 17, "", "INDI RFN"
+        # f02=Person change, 32, 10,10, 1, 68, "", "INDI CHAN DATE"
+        # f03=First name   , 47, 64, 4, 2, 15, "", ""
 
         n_fields = int(self.parms['n_fields'])
         flds = []
         for i in range(n_fields):
             fld_name = 'f%02d' % (i+1)
             fld = self.parms.get(fld_name, None)
-            flds.append(PG30_Def_Table_Field(fld_name, fld))
+            flds.append(PG30DefTableField(fld_name, fld))
+
         self.flds = flds
 
     def get_record_field_index(self, fldname):
-        'Return the index number in the record tuple, based on the name.'
+        """Return the index number in the record tuple, based on the name."""
+
         if not fldname in self.nam2idx:
             raise ProgenError(_("Field '%(fldname)s' not found") % locals())
+
         return self.nam2idx[fldname]
 
     def convert_record_to_list(self, rec, mems):
+        """Convert records to list."""
+
         flds = []
         for i in range(len(rec)):
-            if self.field_ix_is_record_number(i):
+            typ = self.recflds[i].type_
+            if typ == 2 or typ == 3 or typ == 22 or typ == 23:
+                # Record field is record number
                 flds.append("%d" % rec[i])
-            elif self.field_ix_is_mem_type(i):
+            elif typ == 46 or typ == 47:
+                # Record field is memory type
                 flds.append(_get_mem_text(mems, rec[i]))
             else:
-                # Not a record number, not a mem number. It must be just text.
+                # Not a record number, not a memory type. It must be just text.
                 fld = rec[i].strip()
-                # Convert to unicode
-                fld = fld.decode('cp850')
+                fld = fld.decode('cp850')   # Convert to unicode
                 flds.append(fld)
-        #print(', '.join(flds))
+
+        # print(', '.join(flds))
         return flds
 
     def get_field_names(self):
+        """Return field names."""
+
         ret = []
-        for f in self.flds:
-            if f.size != 0:
-                ret.append(f.name)
+        for fld in self.flds:
+            if fld.size != 0:
+                ret.append(fld.name)
+
         return ret
 
-    def field_is_mem_type(self, fldname):
-        if not fldname in self.nam2fld:
-            return None
-        typ = self.nam2fld[fldname].type_
-        if typ == 46 or typ == 47:
-            return True
-        return False
-
-    # TODO. Integrate this into field_is_mem_type()
-    def field_ix_is_mem_type(self, ix):
-        typ = self.recflds[ix].type_
-        if typ == 46 or typ == 47:
-            return True
-        return False
-
-    def field_ix_is_record_number(self, ix):
-        typ = self.recflds[ix].type_
-        if typ == 2 or typ == 3 or typ == 22 or typ == 23:
-            return True
-        return False
-
     def diag(self):
+        """Diagnostic ..."""
+
         txt = self.name + '\n'
         if 'n_fields' in self.parms:
             txt += 'n_fields = %s\n' % self.parms['n_fields']
             # Just grab a field
-            f = self.flds[1]
-            txt += '"%s"\n' % f
-            txt += 'recfmt = %s (length=%d)' % (self.recfmt,
-                                                struct.calcsize(str(self.recfmt)))
+            txt += '"%s"\n' % self.flds[1]
+            txt += 'recfmt = %s (length=%d)' % \
+                   (self.recfmt, struct.calcsize(str(self.recfmt)))
+
         return txt
 
 
-class PG30_Def:
-    '''
-    Utility class to read PG30-1.DEF and to get certain information
-    from it.
+class PG30Def(object):
+    """
+    Utility class to read PG30-1.DEF and to get certain information from it.
+    """
+    # The contents of the DEF file is separated in sections that start
+    # with [<section name>]. For example:
+    # [general]
+    #    dateformat=DD-MM-YYYY
+    #    pointerlength=4
+    #    tables=2
 
-    The contents of the DEF file is separated in sections that start
-    with [<section name>]. For example:
-    [general]
-    dateformat=DD-MM-YYYY
-    pointerlength=4
-    tables=2
-
-    '''
     def __init__(self, fname):
-        #print fname
-        fname, deffname = _get_defname(fname)
+        # print(fname)
+        fname, dname = _get_defname(fname)
         if not fname:
-            raise ProgenError(_("Cannot find DEF file: %(deffname)s") % locals())
+            raise ProgenError(_("Cannot find DEF file: %(dname)s") % locals())
 
-        # This can throw a IOError
+        # Read the DEF file (maybe throw a IOError)
         lines = None
-        with open(fname, buffering=1, encoding='cp437', errors='strict') as f:
-            lines = f.readlines()
+        with open(fname, buffering=1,
+                  encoding='cp437', errors='strict') as frme:
+            lines = frme.readlines()
+
+        # Analyse the DEF lines
         lines = [l.strip() for l in lines]
-        content = '\n'.join(lines).encode('utf-8')
+        content = '\n'.join(lines)
         parts = re.split(r'\n(?=\[)', content)
         self.parts = {}
         self.tables = {}
-        for p in parts:
-            lines = p.splitlines()
-            # Get section name
+        for prts in parts:
+            lines = prts.splitlines()
+
+            # Get section names (typically "PRO-GEN", "general",
+            # "Table_1", "Table_2", "Genealogical")
             k = re.sub(r'\[(.*)\]', r'\1', lines[0])
+
             # Store section contents in a hashtable using that section name
             self.parts[k] = lines[1:]
-            self.tables[k] = PG30_Def_Table(k, self.parts[k])
-
-        # Some sections are special: Table_1 and Table_2
+            self.tables[k] = PG30DefTable(k, self.parts[k])
 
     def __getitem__(self, i):
         return self.tables.get(i, None)
 
-    # TODO. Maybe rename to __repr__
-    def diag(self):
-        return '\n\n'.join([self.tables[t].diag() for t in self.tables])
+    def __repr__(self):
+        return '\n'.join([self.tables[t].diag() for t in self.tables])
 
 
+TAGOBJECTS = ['Person', 'Family', 'Event', 'Place', 'Citation', 'Source', 'Note']
 class ProgenParser:
-    def __init__(self, dbase, file_):
-        self.bname, ext = os.path.splitext(file_)
-        if ext.lower() in ('.per', '.rel', '.mem'):
-            file_ = self.bname + '.def'
-        self.db = dbase
-        self.fname = file_
-
-        self.gid2id = {}                # Maps person id
-        self.fid2id = {}                # Maps family id
-        self.fm2fam = {}
-        self.pkeys = {}                 # Caching place handles
-        self.skeys = {}                 # Caching source handles
+    """
+    Main class to import and parse Pro-Gen files.
+    """
 
     def parse_progen_file(self):
-        self.def_ = PG30_Def(self.fname)
-        #print self.def_.diag()
+        """
+        Parse and analyse the Pro-Gen file.
+        """
+        self.def_ = PG30Def(self.fname)
+
+        # Check correct languages (only 'de', 'en' and 'nl' accepted)
+        male_text = self.def_.tables['Genealogical'].parms['field_father'].lower()
+        female_text = self.def_.tables['Genealogical'].parms['field_mother'].lower()
+        # Double check on keywords
+        if male_text == "vater" and female_text == "mutter":
+            self.language = 0   # language = 'de'
+        elif male_text == "father" and female_text == "mother":
+            self.language = 1   # language = 'en'
+        elif male_text == "vader" and female_text == "moeder":
+            self.language = 2   # language = 'nl'
+        else:
+            # Raise a error message
+            error_msg = ProgenError(_("Not a supported Pro-Gen import file language"))
+            self.user.notify_error(_("Pro-Gen data error"), str(error_msg))
+            return
+
         self.progress = ProgressMeter( # TODO no-parent
                                       _("Import from Pro-Gen"), '')
+        self.progress.set_pass(_('Initializing'))
 
         self.mems = _read_mem(self.bname)
         self.pers = _read_recs(self.def_['Table_1'], self.bname)
         self.rels = _read_recs(self.def_['Table_2'], self.bname)
 
-        with DbTxn(_("Pro-Gen import"), self.db, batch=True) as self.trans:
-            self.db.disable_signals()
+        with DbTxn(_("Pro-Gen import"), self.dbase, batch=True) as self.trans:
+            self.dbase.disable_signals()
 
+            self.create_tags()
             self.create_persons()
             self.create_families()
             self.add_children()
 
-        self.db.enable_signals()
-        self.db.request_rebuild()
+            self.dbase.enable_signals()
+            self.dbase.request_rebuild()
+
         self.progress.close()
 
+    def __init__(self, data_base, file_name, user_handle):
+        """
+        Pro-Gen defines his own set of (static) person and family identifiers.
+        """
+        # Sometime their match the GRAMPS localisation, sometimes not. To be on
+        # a safe and uniform path person and family identifiers for (alphabetical)
+        # German (de), English (en) and Dutch (nl) language defined here.
+        self.bname, ext = os.path.splitext(file_name)
+        if ext.lower() in ('.per', '.rel', '.mem'):
+            file_name = self.bname + '.def'
+        self.dbase = data_base
+        self.fname = file_name
+        self.user = user_handle
+        self.language = 0
+
+        self.mems = None   # Memory area
+        self.pers = []   # List for raw person data
+        self.rels = []   # List for raw relation data
+
+        self.gid2id = {}  # Maps person id to id
+        self.fid2id = {}  # Maps family id to id
+        self.fm2fam = {}  # Maps family id t0 family
+        self.pkeys = {}   # Caching place handles
+        self.skeys = {}   # Caching source handles
+        self.ckeys = {}   # Caching citation handles
+
+        # Additonal options to for data import
+        self.opt_ind_id = -1   # Individual ID start (-1 keeps Original IDs)
+        self.opt_fam_id = -1   # Family ID start (-1 keeps Original IDs)
+        self.opt_relation_code = 0   # Relation code contains one/two letters
+        self.opt_birth_time = False   # Birth time in description
+        self.opt_death_time = False   # Death time in description
+        self.opt_death_info2cause = True   # Death info to Death cause
+
+        # Miscalaneous
+        self.progress = None   # Prgress bar
+        self.trans = None   # Transaction identifier
+        self.def_ = None   # PG30 definitions
+        self.high_fam_id = -1
+
+        # Add Config import tag?
+        self.tagobject_list = {}
+
+        # Add Config import source?
+        self.source_title, self.citation_page, self.citation_attr = '', '', ''
+        self.default_source = config.get('preferences.default-source')
+        if self.default_source:
+            fname = os.path.basename(file_name).split('\\')[-1]
+            self.source_title = _("Import from Pro-Gen (%s)") % fname
+            self.citation_page = "Pro-Gen Import %s" % time.strftime("%Y-%m-%d")
+            self.citation_attr = "Pro-Gen Import (%s) %s" % (fname, time.strftime("%Y-%m-%d"))
+
+        # Records in the PER file using PG30-1.DEF contain the following fields:
+        self.person_identifier = [
+            # F00: None
+            ["", ""],    # F00
+
+            # F01 - F15: Person ID, Change, First / Last Name, Gender, Call Name,
+            #            Alias, Person Code, Titel 1/2/3, Father, Mother, Occupation
+            ["Person_ID", "Person_record", "Persoon record"],   # F01
+            ["Person_Änderung", "Person_last_change", "Persoon gewijzigd"],   # F02
+            ["Vorname", "Given_name", "Voornaam"],   # F03
+            ["Nachname", "Surname", "Achternaam"],   # F04
+            ["Geschlecht", "Sex", "Geslacht"],   # F05
+            ["Patronym", "Patronym", "Patroniem"],   # F06
+            ["Rufname", "Call_name", "Roepnaam"],   # F07
+            ["Alias", "Alias", "Alias"],   # F08
+            ["Person_Code", "Person_code", "Persoon code"],   # F09
+            ["Titel1", "Title1", "Titel1"],   # F10
+            ["Titel2", "Title2", "Titel2"],   # F11
+            ["Titel3", "Title3", "Titel3"],   # F12
+            ["Vater", "Father", "Vader"],   # F13
+            ["Mutter", "Mother", "Moeder"],   # F14
+            ["Beruf", "Occupation", "Beroep"],   # F15
+
+            # F15 - F17: Person Note, Info
+            ["Person_Notiz", "Person_scratch", "Persoon klad"],   # F16
+            ["Person_Info", "Person_info", "Persoon info"],   # F17
+
+            # F18 - F24: Address Date, Street, ZIP, Place, Country, Phone, Info
+            ["Anschrift_Datum", "Address_date", "Adres datum"],   # F18
+            ["Anschrift_Straße", "Address_street", "Adres straat"],   # F19
+            ["Anschrift_PLZ", "Address_zip", "Adres postcode"],   # F20
+            ["Anschrift_Ort", "Address_place", "Adres plaats"],   # F21
+            ["Anschrift_Land", "Address_country", "Adres land"],   # F22
+            ["Anschrift_Telefon", "Address_phone", "Adres telefoon"],   #
+            ["Anschrift_Info", "Address_info", "Adres info"],   # F24
+
+            # F25 - F31: Birth Date, Place, Time, Source, Reference, Text, Info
+            ["Geburt_Datum", "Birth_date", "Geboorte datum"],   # F25
+            ["Geburt_Ort", "Birth_place", "Geboorte plaats"],   # F26
+            ["Geburt_Zeit", "Birth_time", "Geboorte tijd"],   # F27
+            ["Geburt_Quelle", "Birth_source", "Geboorte bron"],   # F28
+            ["Geburt_Akte", "Birth_ref", "Geboorte akte"],   # F29
+            ["Geburt_Text", "Birth_text", "Geboorte brontekst"],   # F30
+            ["Geburt_Info", "Birth_info", "Geboorte info"],   # F31
+
+            # F32 - F39: Christening Date, Place, Religion, Witness, Source,
+            #                  Reference, Text, Info
+            ["Taufe_Datum", "Christening_date", "Doop datum"],   # F32
+            ["Taufe_Ort", "Christening_place", "Doop plaats"],   # F33
+            ["Religion", "Religion", "Gezindte"],   # F34
+            ["Taufe_Paten", "Christening_witness", "Doop getuigen"],   # F35
+            ["Taufe_Quelle", "Christening_source", "Doop bron"],   # F36
+            ["Taufe_Akte", "Christening_ref", "Doop akte"],   # F37
+            ["Taufe_Text", "Christening_text", "Doop brontekst"],   # F38
+            ["Taufe_Info", "Christening_info", "Doop info"],   # F39
+
+            # F40 - F46: Death Date, Place, Time, Source, Reference, Text, Info
+            ["Sterbe_Datum", "Death_date", "Overlijden datum"],   # F40
+            ["Sterbe_Ort", "Death_place", "Overlijden plaats"],   # F41
+            ["Sterbe_Zeit", "Death_time", "Overlijden tijd"],   # F42
+            ["Sterbe_Quelle", "Death_source", "Overlijden bron"],   # F43
+            ["Sterbe_Akte", "Death_ref", "Overlijden akte"],   # F44
+            ["Sterbe_Text", "Death_text", "Overlijden brontekst"],   # F45
+            ["Sterbe_Info", "Death_info", "Overlijden info"],   # F46
+
+            # F47 - F52: Cremation Date, Place, Source, Reference, Text, Info
+            ["Einäscherung_Datum", "Cremation_date", "Crematie datum"],   # F47
+            ["Einäscherung_Ort", "Cremation_place", "Crematie plaats"],   # F48
+            ["Einäscherung_Quelle", "Cremation_source", "Crematie bron"],   # F49
+            ["Einäscherung_Akte", "Cremation_ref", "Crematie akte"],   # F50
+            ["Einäscherung_Text", "Cremation_text", "Crematie brontekst"],   # F51
+            ["Einäscherung_Info", "Cremation_info", "Crematie info"],   # F52
+
+            # F53 - F58: Burial Date, Place, Source, Reference, Text, Info
+            ["Beerdigung_Datum", "Burial_date", "Begrafenis datum"],   # F53
+            ["Beerdigung_Ort", "Burial_place", "Begrafenis plaats"],   # F54
+            ["Beerdigung_Quelle", "Burial_source", "Begrafenis bron"],   # F55
+            ["Beerdigung_Akte", "Burial_ref", "Begrafenis akte"],   # F56
+            ["Beerdigung_Text", "Burial_text", "Begrafenis brontekst"],   # F57
+            ["Beerdigung_Info", "Burial_info", "Begrafenis info"],   # F58
+        ]
+
+        # Records in the REL file using PG30-1.DEF contain the following fields:
+        self.family_identifier = [
+            # F00: None
+            ["", ""],   # F00
+
+            # F01 - F07: Relation ID, Change, Husband, Wife, Code, Note, Info
+            ["Ehe_ID", "Relation_record", "Voordat record"],   # F01
+            ["Ehe_Änderung", "Relation_last_change", "Voordat gewijzigd"],   # F02
+            ["Ehemann", "Husband", "Man"],   # F03
+            ["Ehefrau", "Wife", "Vrouw"],   # F04
+            ["Ehe_Code", "Relation_code", "Relatie code"],   # F05
+            ["Ehe_Notiz", "Relation_scratch", "Relatie klad"],   # F06
+            ["Ehe_Info", "Relation_info", "Relatie info"],   # F07
+
+            # F08 - F13: Civil Union Date, Place, Source, Reference, Text, Info
+            ["Lebensgem_Datum", "Living_date", "Samenwonen datum"],   # F08
+            ["Lebensgem_Ort", "Living_place", "Samenwonen plaats"],   # F09
+            ["Lebensgem_Quelle", "Living_source", "Samenwonen bron"],   # F10
+            ["Lebensgem_Akte", "Living_ref", "Samenwonen akte"],   # F11
+            ["Lebensgem_Text", "Living_text", "Samenwonen brontekst"],   # F12
+            ["Lebensgem_Info", "Living_info", "Samenwonen info"],   # F13
+
+            # F14 - F20: Marriage License Date, Place, Witness, Source, Record,
+            #                     Text, Info
+            ["Aufgebot_Datum", "Banns_date", "Ondertrouw datum"],   # F14
+            ["Aufgebot_Ort", "Banns_place", "Ondertrouw plaats"],   # F15
+            ["Aufgebot_Zeugen", "Banns_witnesses", "Ondertrouw getuigen"],   # F16
+            ["Aufgebot_Quelle", "Banns_source", "Ondertrouw bron"],   # F17
+            ["Aufgebot_Akte", "Banns_ref", "Ondertrouw akte"],   # F18
+            ["Aufgebot_Text", "Banns_text", "Ondertrouw brontekst"],   # F19
+            ["Aufgebot_Info", "Banns_info", "Ondertrouw info"],   # F20
+
+            # F14 - F20: Civil Marriage Date, Place, Witness, Source, Record,
+            #                  Text, Info
+            ["Standesamt_Datum", "Civil_date", "Wettelijk datum"],   # F21
+            ["Standesamt_Ort", "Civil_place", "Wettelijk plaats"],   # F22
+            ["Standesamt_Zeugen", "Civil_witnesses", "Wettelijk getuigen"],   # F23
+            ["Standesamt_Quelle", "Civil_source", "Wettelijk bron"],   # F24
+            ["Standesamt_Akte", "Civil_ref", "Wettelijk akte"],   # F25
+            ["Standesamt_Text", "Civil_text", "Wettelijk brontekst"],   # F26
+            ["Standesamt_Info", "Civil_info", "Wettelijk info"],   # F27
+
+            # F28 - F35: Church Wedding Date, Place, Church Name, Witness,
+            #                  Source, Reference, Text, Info
+            ["Kirche_Datum", "Church_date", "Kerkelijk datum"],   # F28
+            ["Kirche_Ort", "Church_place", "Kerkelijk plaats"],   # F29
+            ["Kirche", "Church", "Kerk"],               # F30
+            ["Kirche_Zeugen", "Church_witnesses", "Kerkelijk getuigen"],   # F31
+            ["Kirche_Quelle", "Church_source", "Kerkelijk bron"],   # F32
+            ["Kirche_Akte", "Church_ref", "Kerkelijk akte"],   # F33
+            ["Kirche_Text", "Church_text", "Kerkelijk brontekst"],   # F34
+            ["Kirche_Info", "Church_info", "Kerkelijk info"],   # F35
+
+            # F36 - F41: Divorce Date, Place, Source, Reference, Text, Info
+            ["Scheidung_Datum", "Divorce_date", "Scheiding datum"],   # F36
+            ["Scheidung_Ort", "Divorce_place", "Scheiding plaats"],   # F37
+            ["Scheidung_Quelle", "Divorce_source", "Scheiding bron"],   # F38
+            ["Scheidung_Akte", "Divorce_ref", "Scheiding akte"],   # F39
+            ["Scheidung_Text", "Divorce_text", "Scheiding brontekst"],   # F40
+            ["Scheidung_Info", "Divorce_info", "Scheiding info"],   # F41
+        ]
+
+    def __add_tag(self, name, obj):
+        """
+        Add the default tag to the object.
+        """
+        if self.tagobject_list and name in self.tagobject_list:
+            obj.add_tag(self.tagobject_list[name].handle)
 
     def __find_person_handle(self, progen_id):
         """
@@ -544,100 +749,176 @@ class ProgenParser:
 
     def __find_or_create_person(self, progen_id):
         """
-        Finds or creates a person based on the Pro-Gen ID. If the ID is
-        already used (is in the db), we return the item in the db. Otherwise,
-        we create a new person, assign the handle and GRAMPS ID.
+        Finds or creates a Person based on the Pro-Gen ID.
         """
+        # If the ID is already used (= is in the database), we return the item in
+        # the DB. Otherwise, we create a new person, assign the handle and GRAMPS ID.
         person = Person()
         intid = self.gid2id.get(progen_id)
-        if self.db.has_person_handle(intid):
-            person.unserialize(self.db.get_raw_person_data(intid))
+        if self.dbase.has_person_handle(intid):
+            person.unserialize(self.dbase.get_raw_person_data(intid))
         else:
-            gramps_id = self.db.id2user_format("I%d" % progen_id)
-            if self.db.has_person_gramps_id(gramps_id):
-                gramps_id = self.db.find_next_person_gramps_id()
+            # create a new Person
+            gramps_id = self.dbase.id2user_format("I%05d" % progen_id)
+            # make sure that gramps_id are bytes ...
+            if self.dbase.has_person_gramps_id(gramps_id.encode('utf-8')):
+                gramps_id = self.dbase.find_next_person_gramps_id()
             intid = _find_from_handle(progen_id, self.gid2id)
             person.set_handle(intid)
             person.set_gramps_id(gramps_id)
+
         return person
 
     def __find_or_create_family(self, progen_id):
         """
-        Finds or creates a family based on the Pro-Gen ID. If the ID is
-        already used (is in the db), we return the item in the db. Otherwise,
-        we create a new family, assign the handle and GRAMPS ID.
+        Finds or creates a Family based on the Pro-Gen ID.
         """
         family = Family()
         intid = self.fid2id.get(progen_id)
-        if self.db.has_family_handle(intid):
-            family.unserialize(self.db.get_raw_family_data(intid))
+        if self.dbase.has_family_handle(intid):
+            family.unserialize(self.dbase.get_raw_family_data(intid))
         else:
-            gramps_id = self.db.fid2user_format("F%d" % progen_id)
-            if self.db.has_family_gramps_id(gramps_id):
-                gramps_id = self.db.find_next_family_gramps_id()
+            # create a new Family
+            gramps_id = self.dbase.fid2user_format("F%04d" % progen_id)
+            # make sure that gramps_id are bytes ...
+            if self.dbase.has_family_gramps_id(gramps_id.encode('utf-8')):
+                gramps_id = self.dbase.find_next_family_gramps_id()
             intid = _find_from_handle(progen_id, self.fid2id)
             family.set_handle(intid)
             family.set_gramps_id(gramps_id)
+
         return family
 
     def __get_or_create_place(self, place_name):
+        """
+        Finds or creates a Place based on the place name.
+        """
         if not place_name:
             return None
-        place = None
+
         if place_name in self.pkeys:
-            place = self.db.get_place_from_handle(self.pkeys[place_name])
+            place = self.dbase.get_place_from_handle(self.pkeys[place_name])
         else:
-            # Create a new Place
+            # create a new Place
             place = Place()
+            place.set_name(PlaceName(value=place_name))
             place.set_title(place_name)
-            self.db.add_place(place, self.trans)
-            self.db.commit_place(place, self.trans)
+            self.__add_tag('Place', place)   # add tag to 'Place' object
+            self.dbase.add_place(place, self.trans)
+            self.dbase.commit_place(place, self.trans)
+
             self.pkeys[place_name] = place.get_handle()
+
         return place
 
-    def __get_or_create_citation(self, source_name, aktenr=None,
-                                 source_text=None):
-        if not source_name:
+    def __get_or_create_citation(self, source_title, date_text, citation_attr='', page_ref='',
+                                 confidence=2, note_text=None, attr_text=None):
+        """
+        Finds or creates a Citation based on Source, Name, Date, Page, Note, Attribute.
+        """
+
+        if not source_title:
             return None
 
-        # Aktenr is something very special and it belongs with the source_name
-        if aktenr:
-            source_name = "%(source_name)s, aktenr: %(aktenr)s" % locals()
+        page = source_title
+        if citation_attr or page_ref:
+            page = '%s %s' % (citation_attr, page_ref)
 
-        if source_name in self.skeys:
-            source = self.db.get_source_from_handle(self.skeys[source_name])
-        else:
-            # Create a new Source
+        # process Source
+        if source_title in self.skeys:   # source exists
+            source = self.dbase.get_source_from_handle(self.skeys[source_title])
+        else:   # create a new source
             source = Source()
-            source.set_title(source_name)
-            self.db.add_source(source, self.trans)
-            self.db.commit_source(source, self.trans)
-            self.skeys[source_name] = source.get_handle()
+            source.set_title(source_title)
 
-        citation = Citation()
-        citation.set_reference_handle(source.get_handle())
-        if aktenr:
-            sattr = SrcAttribute()
-            sattr.set_type("REFN")
-            sattr.set_value(aktenr)
-            citation.add_attribute(sattr)
-        if source_text:
-            note = Note()
-            note_type = NoteType()
-            note_type.set((NoteType.CUSTOM, "Brontekst"))
-            note.set_type(note_type)
-            note.set(source_text)
-            self.db.add_note(note, self.trans)
-            citation.add_note(note.handle)
-        self.db.add_citation(citation, self.trans)
-        self.db.commit_citation(citation, self.trans)
+            self.__add_tag('Source', source)   # add tag to 'Source' object
+
+            self.dbase.add_source(source, self.trans)
+            self.dbase.commit_source(source, self.trans)
+
+            self.skeys[source_title] = source.get_handle()
+
+        # process Citation
+        if page in self.ckeys:   # citation exists
+            citation = self.dbase.get_citation_from_handle(self.ckeys[page])
+        else:   # create a new citation
+            citation = Citation()
+            citation.set_reference_handle(source.get_handle())
+            self.__add_tag('Citation', citation)   # add tag to 'Citation' object
+            self.dbase.add_citation(citation, self.trans)
+
+            self.ckeys[page] = citation.get_handle()
+
+            # process Date
+            date = self.__create_date_from_text(date_text)
+            if date:
+                citation.set_date_object(date)
+
+            # process Confidence
+            citation.set_confidence_level(confidence)
+
+            # process Page
+            citation.set_page('%s' % page)
+
+            # process Note
+            note = self.__create_note(note_text, NoteType.CUSTOM, "Pro-Gen Export")
+            if note and note.handle:
+                citation.add_note(note.handle)
+
+            # process Attribute
+            if attr_text:
+                sattr = SrcAttribute()
+                sattr.set_type(_("Source"))
+                sattr.set_value(attr_text)
+                citation.add_attribute(sattr)
+
+        self.dbase.commit_citation(citation, self.trans)
 
         return citation
 
+    def __create_note(self, note_text, note_type, note_cust=''):
+        """
+        Create an note base on Type and Text.
+        """
+        if not note_text:
+            return None
+
+        note = Note()
+        note.set(note_text)
+        note_type = NoteType()
+        note_type.set((note_type, note_cust))
+
+        self.__add_tag('Note', note)   # add tag to 'Note' object
+
+        self.dbase.add_note(note, self.trans)
+        self.dbase.commit_note(note, self.trans)
+
+        return note
+
+    def __create_attribute(self, attr_text, attr_type, attr_cust=''):
+        """
+        Creates an attribute base on (Custom-)Type and Text.
+        """
+        if not attr_text:
+            return None
+
+        attr = Attribute()
+        attr.set_type((attr_type, attr_cust))
+        attr.set_value(attr_text)
+
+        return attr
+
     def __create_event_and_ref(self, type_, desc=None, date=None, place=None,
-                               citation=None, note_text=None, time=None):
+                               citation=None, note_text=None,
+                               attr_text=None, attr_type=None, attr_cust=None):
+        """
+        Finds or creates an Event based on the Type, Description, Date, Place,
+        Citation, Note and Time.
+        """
         event = Event()
         event.set_type(EventType(type_))
+        self.__add_tag('Event', event)   # add tag to 'Event' object
+
         if desc:
             event.set_description(desc)
         if date:
@@ -646,679 +927,900 @@ class ProgenParser:
             event.set_place_handle(place.get_handle())
         if citation:
             event.add_citation(citation.handle)
-        if time:
-            attr = Attribute()
-            attr.set_type(AttributeType.TIME)
-            attr.set_value(time)
+
+        attr = self.__create_attribute(attr_text, attr_type, attr_cust)
+        if attr:
             event.add_attribute(attr)
-        if note_text:
-            note = Note()
-            note_type = NoteType()
-            note_type.set((NoteType.CUSTOM, "Info"))
-            note.set_type(note_type)
-            note.set(note_text)
-            self.db.add_note(note, self.trans)
+
+        note = self.__create_note(note_text, NoteType.CUSTOM, "Info")
+        if note and note.handle:
             event.add_note(note.handle)
 
-        self.db.add_event(event, self.trans)
-        self.db.commit_event(event, self.trans)
+        self.dbase.add_event(event, self.trans)
+        self.dbase.commit_event(event, self.trans)
+
         event_ref = EventRef()
         event_ref.set_reference_handle(event.get_handle())
+
         return event, event_ref
 
-    __date_pat1 = re.compile(r'(?P<day>\d{1,2}) (-|=) (?P<month>\d{1,2}) (-|=) (?P<year>\d{2,4})', re.VERBOSE)
-    __date_pat2 = re.compile(r'(?P<month>\d{1,2}) (-|=) (?P<year>\d{4})', re.VERBOSE)
+    __date_pat1 = re.compile(r'(?P<day>\d{1,2}) (.|-|=) (?P<month>\d{1,2}) (.|-|=) (?P<year>\d{2,4})',
+                             re.VERBOSE)
+    __date_pat2 = re.compile(r'(?P<month>\d{1,2}) (.|-|=) (?P<year>\d{4})',
+                             re.VERBOSE)
     __date_pat3 = re.compile(r'(?P<year>\d{3,4})', re.VERBOSE)
-    __date_pat4 = re.compile(r'(v|vóór|voor|na|circa|ca|rond|±) (\.|\s)* (?P<year>\d{3,4})', re.VERBOSE)
-    __date_pat5 = re.compile(r'(oo|OO) (-|=) (oo|OO) (-|=) (?P<year>\d{2,4})', re.VERBOSE)
-    __date_pat6 = re.compile(r'(?P<month>(%s)) (\.|\s)* (?P<year>\d{3,4})' % '|'.join(list(month_values.keys())), re.VERBOSE | re.IGNORECASE)
-    def __create_date_from_text(self, txt, diag_msg=None):
-        '''
-        Pro-Gen has a text field for the date. It can be anything. Mostly it will be dd-mm-yyyy,
-        but we have seen:
-        yyyy
-        mm-yyyy
-        voor yyyy
-        dd=mm-yyyy  (typo I guess)
-        00-00-yyyy
-        oo-oo-yyyy
-        dd-mm-00 (does this mean we do not know about the year?)
+    __date_pat4_de = re.compile(r'(v|vor|n|nach|ca|circa|etwa|in|um|±) (\.|\s)* (?P<year>\d{3,4})',
+                                re.VERBOSE)
+    __date_pat4_en = re.compile(r'(b|before|a|after|ab|about|between|±) (\.|\s)* (?P<year>\d{3,4})',
+                                re.VERBOSE)
+    __date_pat4_nl = re.compile(r'(v|voor|vóór|na|ca|circa|rond|±) (\.|\s)* (?P<year>\d{3,4})',
+                                re.VERBOSE)
+    __date_pat5 = re.compile(r'(oo|OO) (-|=) (oo|OO) (-|=) (?P<year>\d{2,4})',
+                             re.VERBOSE)
+    __date_pat6 = re.compile(r'(?P<month>(%s)) (\.|\s)* (?P<year>\d{3,4})' % \
+                             '|'.join(list(MONTHES.keys())),
+                             re.VERBOSE | re.IGNORECASE)
 
-        This function tries to parse the text and create a proper Gramps Date() object.
-        If all else fails we create a MOD_TEXTONLY Date() object.
-        '''
+    def __create_date_from_text(self, date_text, diag_msg=None):
+        """
+        Finds or creates a Date based on Text, an Offset and a Message.
+        """
+        # Pro-Gen has a text field for the date.
+        # It can be anything (it should be dd-mm-yyyy), but we have seen:
+        # yyyy
+        # mm-yyyy
+        # before yyyy
+        # dd=mm-yyyy  (typo I guess)
+        # 00-00-yyyy
+        # oo-oo-yyyy
+        # dd-mm-00 (does this mean we do not know about the year?)
 
-        if not txt or txt == 'onbekend' or txt == '??':
+        # This function tries to parse the text and create a proper Gramps Date()
+        # object. If all else fails we create a MOD_TEXTONLY Date() object.
+
+        dte_txt = date_text == _("Unknown")
+        if not (dte_txt or date_text) or date_text == '??':
             return None
 
         date = Date()
 
         # dd-mm-yyyy
-        m = self.__date_pat1.match(txt)
-        if m:
-            day = int(m.group('day'))
-            month = int(m.group('month'))
-            year = int(m.group('year'))
+        dte_mtch = self.__date_pat1.match(date_text)
+        if dte_mtch:
+            day = int(dte_mtch.group('day'))
+            month = int(dte_mtch.group('month'))
+            if month > 12:
+                month %= 12
+            year = int(dte_mtch.group('year'))
             if day and month and year:
                 date.set_yr_mon_day(year, month, day)
             else:
-                date.set(Date.QUAL_NONE, Date.MOD_ABOUT, Date.CAL_GREGORIAN, (day, month, year, None))
+                date.set(Date.QUAL_NONE, Date.MOD_ABOUT, Date.CAL_GREGORIAN,
+                         (day, month, year, 0))
             return date
 
         # mm-yyyy
-        m = self.__date_pat2.match(txt)
-        if m:
-            month = int(m.group('month'))
-            year = int(m.group('year'))
-            date.set(Date.QUAL_NONE, Date.MOD_ABOUT, Date.CAL_GREGORIAN, (0, month, year, None))
+        dte_mtch = self.__date_pat2.match(date_text)
+        if dte_mtch:
+            month = int(dte_mtch.group('month'))
+            year = int(dte_mtch.group('year'))
+            date.set(Date.QUAL_NONE, Date.MOD_ABOUT, Date.CAL_GREGORIAN,
+                     (0, month, year, 0))
             return date
 
         # yyy or yyyy
-        m = self.__date_pat3.match(txt)
-        if m:
-            year = int(m.group('year'))
-            date.set(Date.QUAL_NONE, Date.MOD_ABOUT, Date.CAL_GREGORIAN, (0, 0, year, None))
+        dte_mtch = self.__date_pat3.match(date_text)
+        if dte_mtch:
+            year = int(dte_mtch.group('year'))
+            date.set(Date.QUAL_NONE, Date.MOD_ABOUT, Date.CAL_GREGORIAN,
+                     (0, 0, year, 0))
             return date
 
-        # voor|na|... yyyy
-        m = self.__date_pat4.match(txt)
-        if m:
-            year = int(m.group('year'))
-            if m.group(1) == 'voor' or m.group(1) == 'v' or m.group(1) == 'vóór':
-                date.set(Date.QUAL_NONE, Date.MOD_BEFORE, Date.CAL_GREGORIAN, (0, 0, year, None))
-            elif m.group(1) == 'na':
-                date.set(Date.QUAL_NONE, Date.MOD_AFTER, Date.CAL_GREGORIAN, (0, 0, year, None))
+        # before|after|... yyyy
+        if self.language == 0:   # 'de' language
+            dte_mtch = self.__date_pat4_de.match(date_text)
+        elif self.language == 1:   # 'en' language
+            dte_mtch = self.__date_pat4_en.match(date_text)
+        elif self.language == 2:   # 'nl' language
+            dte_mtch = self.__date_pat4_nl.match(date_text)
+        if dte_mtch:
+            year = int(dte_mtch.group('year'))
+            if dte_mtch.group(1) == 'v' or dte_mtch.group(1) == 'vor' or \
+                dte_mtch.group(1) == 'before' or \
+                dte_mtch.group(1) == 'voor' or dte_mtch.group(1) == 'vóór':
+                date.set(Date.QUAL_NONE, Date.MOD_BEFORE, Date.CAL_GREGORIAN,
+                         (0, 0, year, 0))
+            elif dte_mtch.group(1) == 'n' or dte_mtch.group(1) == 'nach' or \
+                dte_mtch.group(1) == 'after' or \
+                dte_mtch.group(1) == 'na':
+                date.set(Date.QUAL_NONE, Date.MOD_AFTER, Date.CAL_GREGORIAN,
+                         (0, 0, year, 0))
             else:
-                date.set(Date.QUAL_NONE, Date.MOD_ABOUT, Date.CAL_GREGORIAN, (0, 0, year, None))
+                date.set(Date.QUAL_NONE, Date.MOD_ABOUT, Date.CAL_GREGORIAN,
+                         (0, 0, year, 0))
             return date
 
         # oo-oo-yyyy
-        m = self.__date_pat5.match(txt)
-        if m:
-            year = int(m.group('year'))
-            date.set(Date.QUAL_NONE, Date.MOD_ABOUT, Date.CAL_GREGORIAN, (0, 0, year, None))
+        dte_mtch = self.__date_pat5.match(date_text)
+        if dte_mtch:
+            year = int(dte_mtch.group('year'))
+            date.set(Date.QUAL_NONE, Date.MOD_ABOUT, Date.CAL_GREGORIAN,
+                     (0, 0, year, 0))
             return date
 
         # mmm yyyy (textual month)
-        m = self.__date_pat6.match(txt)
-        if m:
-            year = int(m.group('year'))
-            month = _cnv_month_to_int(m.group('month'))
-            date.set(Date.QUAL_NONE, Date.MOD_ABOUT, Date.CAL_GREGORIAN, (0, month, year, None))
+        dte_mtch = self.__date_pat6.match(date_text)
+        if dte_mtch:
+            year = int(dte_mtch.group('year'))
+            month = _cnv_month_to_int(dte_mtch.group('month'))
+            date.set(Date.QUAL_NONE, Date.MOD_ABOUT, Date.CAL_GREGORIAN,
+                     (0, month, year, 0))
             return date
 
-        log.warning(_("date did not match: '%(text)s' (%(msg)s)") % {
-            'text' : txt.encode('utf-8'), 'msg' : diag_msg or '' } )
         # Hmmm. Just use the plain text.
-        date.set_as_text(txt)
+        LOG.warning(_("Date did not match: '%(text)s' (%(msg)s)"), \
+                     {'text' : date_text.encode('utf-8'), 'msg' : diag_msg or ''})
+        date.set_as_text(date_text)
+
         return date
 
+    def __create_desc_from_text(self, desc_txt):
+        """
+        Creates a variation of a description depending on language
+        """
+        desc = None
+        if desc_txt:
+            if self.language == 0:   # 'de' language
+                desc = desc_txt + " Uhr"
+            elif self.language == 1:   # 'en' language
+                desc = "Time: " + desc_txt
+            elif self.language == 2:   # 'nl' language
+                desc = "Tijd: " + desc_txt
+        return desc
+
+    def create_tags(self):
+        """
+        Creates tags to objects (if provide)
+        """
+        default_tag = (config.get('preferences.tag-on-import-format') if
+                       config.get('preferences.tag-on-import') else None)
+        if default_tag:
+            tag_str = time.strftime(default_tag)
+            for tagobj in TAGOBJECTS:
+                tag_name = '%s %s' % (_(tagobj), tag_str)
+                tag = self.dbase.get_tag_from_name(tag_name)
+                if not tag:
+                    tag = Tag()
+                    tag.set_name(tag_name)
+                    self.dbase.add_tag(tag, self.trans)
+
+                self.tagobject_list[tagobj] = tag
+
+    __rel_pat = re.compile(r'(r|w|)', re.VERBOSE)
     def create_persons(self):
+        """
+        Method to import Persons
+        """
+
         table = self.def_['Table_1']
+        LOG.info(table.get_field_names())
 
-        # Records in the PER file using PG30-1.DEF contain the following fields:
-        # (Note. We want this to be computed just once.
-
-        #log.info(table.get_field_names())
-
-        # I'm sure I can find a better way to do this through the local() dict)
-        first_name_ix = table.get_record_field_index('Voornaam')
-        surname_ix = table.get_record_field_index('Achternaam')
-        gender_ix = table.get_record_field_index('Geslacht')
-        patron_ix = table.get_record_field_index('Patroniem')
-        call_name_ix = table.get_record_field_index('Roepnaam')
-        alias_ix = table.get_record_field_index('Alias')
-        per_code_ix = table.get_record_field_index('Persoon code')
-        title1_ix = table.get_record_field_index('Titel1')
-        title2_ix = table.get_record_field_index('Titel2')
-        title3_ix = table.get_record_field_index('Titel3')
-        father_ix = table.get_record_field_index('Vader')
-        mother_ix = table.get_record_field_index('Moeder')
-        occu_ix = table.get_record_field_index('Beroep')
-
-        per_klad_ix = table.get_record_field_index('Persoon klad')
-        per_info_ix = table.get_record_field_index('Persoon info')
-
-        addr_date_ix = table.get_record_field_index('Adres datum')
-        addr_street_ix = table.get_record_field_index('Adres straat')
-        addr_postal_ix = table.get_record_field_index('Adres postcode')
-        addr_place_ix = table.get_record_field_index('Adres plaats')
-        addr_country_ix = table.get_record_field_index('Adres land')
-        addr_telno_ix = table.get_record_field_index('Adres telefoon')
-        addr_info_ix = table.get_record_field_index('Adres info')
-
-        birth_date_ix = table.get_record_field_index('Geboorte datum')
-        birth_place_ix = table.get_record_field_index('Geboorte plaats')
-        birth_time_ix = table.get_record_field_index('Geboorte tijd')
-        birth_source_ix = table.get_record_field_index('Geboorte bron')
-        birth_aktenr_ix = table.get_record_field_index('Geboorte akte')
-        birth_source_text_ix = table.get_record_field_index('Geboorte brontekst')
-        birth_info_ix = table.get_record_field_index('Geboorte info')
-
-        bapt_date_ix = table.get_record_field_index('Doop datum')
-        bapt_place_ix = table.get_record_field_index('Doop plaats')
-        bapt_reli_ix = table.get_record_field_index('Gezindte')
-        bapt_witn_ix = table.get_record_field_index('Doop getuigen')
-        bapt_source_ix = table.get_record_field_index('Doop bron')
-        bapt_aktenr_ix = table.get_record_field_index('Doop akte')
-        bapt_source_text_ix = table.get_record_field_index('Doop brontekst')
-        bapt_info_ix = table.get_record_field_index('Doop info')
-
-        death_date_ix = table.get_record_field_index('Overlijden datum')
-        death_place_ix = table.get_record_field_index('Overlijden plaats')
-        death_time_ix = table.get_record_field_index('Overlijden tijd')
-        death_source_ix = table.get_record_field_index('Overlijden bron')
-        death_aktenr_ix = table.get_record_field_index('Overlijden akte')
-        death_source_text_ix = table.get_record_field_index('Overlijden brontekst')
-        death_info_ix = table.get_record_field_index('Overlijden info')
-
-        crem_date_ix = table.get_record_field_index('Crematie datum')
-        crem_place_ix = table.get_record_field_index('Crematie plaats')
-        crem_source_ix = table.get_record_field_index('Crematie bron')
-        crem_aktenr_ix = table.get_record_field_index('Crematie akte')
-        crem_source_text_ix = table.get_record_field_index('Crematie brontekst')
-        crem_info_ix = table.get_record_field_index('Crematie info')
-
-        bur_date_ix = table.get_record_field_index('Begrafenis datum')
-        bur_place_ix = table.get_record_field_index('Begrafenis plaats')
-        bur_source_ix = table.get_record_field_index('Begrafenis bron')
-        bur_aktenr_ix = table.get_record_field_index('Begrafenis akte')
-        bur_source_text_ix = table.get_record_field_index('Begrafenis brontekst')
-        bur_info_ix = table.get_record_field_index('Begrafenis info')
+        # We'll start with F02: Person last change
+        # Note: We like this to be computed just once.
+        person_ix = [0, 0]
+        for count in range(2, len(self.person_identifier)):
+            # We have seen some case insensitivity in DEF files ...
+            pid = self.person_identifier[count][self.language].lower()
+            pix = table.get_record_field_index(pid)
+            person_ix.append(pix)
 
         # The records are numbered 1..N
         self.progress.set_pass(_('Importing individuals'), len(self.pers))
+
+        # Male / Female symbols
+        male_sym = self.def_.tables['Genealogical'].parms['male']
+        female_sym = self.def_.tables['Genealogical'].parms['female']
+
+        ind_id = self.opt_ind_id -1   # Option: Individuals IDs interator
         for i, rec in enumerate(self.pers):
-            pers_id = i + 1
-            log.debug(("Person id %d  " % pers_id) + " ".join(("%s" % r) for r in rec))
-            father = rec[father_ix]
-            mother = rec[mother_ix]
-            if father >= 0 and mother >= 0:
-                recflds = table.convert_record_to_list(rec, self.mems)
-
-                gender = recflds[gender_ix]
-                if gender == 'M':
-                    gender = Person.MALE
-                elif gender == 'V':
-                    gender = Person.FEMALE
-                else:
-                    gender = Person.UNKNOWN
-
-                person = self.__find_or_create_person(pers_id)
-
-                first_name = recflds[first_name_ix]
-                surname_prefix, surname = _split_surname(recflds[surname_ix])
-                patronym = recflds[patron_ix]       # INDI _PATR
-                alias = recflds[alias_ix]           # INDI NAME _ALIA/INDI NAME COMM
-                title1 = recflds[title1_ix]         # INDI TITL
-                title2 = recflds[title2_ix]         # INDI _TITL2
-                title3 = recflds[title3_ix]         # INDI _TITL3
-
-                diag_msg = "%s: %s %s" % (person.gramps_id, first_name.encode('utf-8'), surname.encode('utf-8'))
-
-                # process the name/given name
-                name = Name()
-                name.set_type(NameType.BIRTH)
-                name.set_first_name(first_name)
-                if recflds[call_name_ix]:
-                    name.set_call_name(recflds[call_name_ix])
-                title = [_f for _f in [title1, title2, title3] if _f]
-                if title:
-                    name.set_title(", ".join(title))
-                # process the normal surname
-                sname = Surname()
-                sname.set_surname(surname)
-                if surname_prefix:
-                    sname.set_prefix(surname_prefix)
-                name.add_surname(sname)
-                # process the Patronymic
-                if patronym:
-                    pname = Surname()
-                    pname.set_surname(patronym)
-                    pname.set_origintype(NameOriginType.PATRONYMIC)
-                    name.add_surname(pname)
-
-                person.set_primary_name(name)
-                person.set_gender(gender)
-
-                per_code = recflds[per_code_ix]     # INDI REFN
-                if per_code:
-                    attr = Attribute()
-                    attr.set_type((AttributeType.CUSTOM, "REFN"))
-                    attr.set_value(per_code)
-                    person.add_attribute(attr)
-
-                per_klad = recflds[per_klad_ix]     # INDI _COMM/INDI COMM
-                per_info = recflds[per_info_ix]     # INDI NOTE
-
-                note_txt = [_f for _f in [per_info, per_klad] if _f]
-                if note_txt:
-                    note = Note()
-                    note.set('\n'.join(note_txt))
-                    note.set_type(NoteType.PERSON)
-                    self.db.add_note(note, self.trans)
-                    person.add_note(note.handle)
-
-                # Alias. Two possibilities: extra Name, or Attribute
-                if alias:
-                    aname = alias.split()
-                    if len(aname) == 1:
-                        attr = Attribute()
-                        attr.set_type(AttributeType.NICKNAME)
-                        attr.set_value(alias)
-                        person.add_attribute(attr)
-                    else:
-                        # ???? Don't know if this is OK.
-                        name = Name()
-                        sname = Surname()
-                        sname.set_surname(aname[-1].strip())
-                        name.add_surname(sname)
-                        name.set_first_name(' '.join(aname[0:-1]))
-                        name.set_type(NameType.AKA)
-                        person.add_alternate_name(name)
-
-                if recflds[occu_ix]:
-                    event, event_ref = self.__create_event_and_ref(EventType.OCCUPATION, recflds[occu_ix])
-                    person.add_event_ref(event_ref)
-
-                # Birth
-                date = self.__create_date_from_text(recflds[birth_date_ix], diag_msg)
-                place = self.__get_or_create_place(recflds[birth_place_ix])
-                time = recflds[birth_time_ix]
-                if time:
-                    time_text = "tijd: " + time
-                else:
-                    time_text = None
-                source_title  = recflds[birth_source_ix]
-                source_refn = recflds[birth_aktenr_ix]
-                source_text = recflds[birth_source_text_ix]
-                citation = self.__get_or_create_citation(source_title,
-                                                         source_refn,
-                                                         source_text)
-                info = recflds[birth_info_ix]
-                if date or place or info or citation:
-                    desc = [_f for _f in [info, time_text, source_text] if _f]
-                    desc = desc and '; '.join(desc) or None
-                    event, birth_ref = self.__create_event_and_ref(EventType.BIRTH, desc, date, place, citation, info, time)
-                    person.set_birth_ref(birth_ref)
-
-                # Baptism
-                date = self.__create_date_from_text(recflds[bapt_date_ix], diag_msg)
-                place = self.__get_or_create_place(recflds[bapt_place_ix])
-                reli = recflds[bapt_reli_ix]
-                witness = recflds[bapt_witn_ix]
-                source_title  = recflds[bapt_source_ix]
-                source_refn = recflds[bapt_aktenr_ix]
-                source_text = recflds[bapt_source_text_ix]
-                citation = self.__get_or_create_citation(source_title,
-                                                         source_refn,
-                                                         source_text)
-                info = recflds[bapt_info_ix]
-                if date or place or info or citation or reli or witness:
-                    desc = [_f for _f in [reli, info, source_text] if _f]
-                    desc = desc and '; '.join(desc) or None
-                    event, bapt_ref = self.__create_event_and_ref(EventType.BAPTISM, desc, date, place, citation, info)
-                    person.add_event_ref(bapt_ref)
-                    if witness:
-                        attr = Attribute()
-                        attr.set_type(AttributeType.WITNESS)
-                        attr.set_value(witness)
-                        event.add_attribute(attr)
-
-                # Death
-                date = self.__create_date_from_text(recflds[death_date_ix], diag_msg)
-                place = self.__get_or_create_place(recflds[death_place_ix])
-                time = recflds[death_time_ix]
-                if time:
-                    time = "tijd: " + time
-                source_title  = recflds[death_source_ix]
-                source_refn = recflds[death_aktenr_ix]
-                source_text = recflds[death_source_text_ix]
-                info = recflds[death_info_ix]
-                citation = self.__get_or_create_citation(source_title,
-                                                         source_refn,
-                                                         source_text)
-                if date or place or info or citation:
-                    desc = [_f for _f in [info, time, source_text] if _f]
-                    desc = desc and '; '.join(desc) or None
-                    event, death_ref = self.__create_event_and_ref(EventType.DEATH, desc, date, place, citation, info, time)
-                    person.set_death_ref(death_ref)
-
-                # Burial
-                date = self.__create_date_from_text(recflds[bur_date_ix], diag_msg)
-                place = self.__get_or_create_place(recflds[bur_place_ix])
-                source_title  = recflds[bur_source_ix]
-                source_refn = recflds[bur_aktenr_ix]
-                source_text = recflds[bur_source_text_ix]
-                citation = self.__get_or_create_citation(source_title,
-                                                         source_refn,
-                                                         source_text)
-                info = recflds[bur_info_ix]
-                if date or place or info or citation:
-                    desc = [_f for _f in [info, source_text] if _f]
-                    desc = desc and '; '.join(desc) or None
-                    event, burial_ref = self.__create_event_and_ref(EventType.BURIAL, desc, date, place, citation, info)
-                    person.add_event_ref(burial_ref)
-
-                # Cremation
-                date = self.__create_date_from_text(recflds[crem_date_ix], diag_msg)
-                place = self.__get_or_create_place(recflds[crem_place_ix])
-                source_title  = recflds[crem_source_ix]
-                source_refn = recflds[crem_aktenr_ix]
-                source_text = recflds[crem_source_text_ix]
-                citation = self.__get_or_create_citation(source_title,
-                                                         source_refn,
-                                                         source_text)
-                info = recflds[crem_info_ix]
-                if date or place or info or citation:
-                    # TODO. Check that not both burial and cremation took place.
-                    desc = [_f for _f in [info, source_text] if _f]
-                    desc = desc and '; '.join(desc) or None
-                    event, cremation_ref = self.__create_event_and_ref(EventType.CREMATION, desc, date, place, citation)
-                    person.add_event_ref(cremation_ref)
-
-                # TODO. Address
-                date = self.__create_date_from_text(recflds[addr_date_ix], diag_msg)
-                street = recflds[addr_street_ix]
-                postal = recflds[addr_postal_ix]
-                place = self.__get_or_create_place(recflds[addr_place_ix])
-                country = recflds[addr_country_ix]
-                telno = recflds[addr_telno_ix]
-                info = recflds[addr_info_ix]          # INDI RESI NOTE/INDI ADDR
-                if place:
-                    loc = Location()
-                    loc.set_street(street)
-                    loc.set_postal_code(postal)
-                    loc.set_country(country)
-                    loc.set_phone(telno)
-                    place.set_main_location(loc)
-                    self.db.commit_place(place, self.trans)
-                    desc = info or None
-                    event, resi_ref = self.__create_event_and_ref(EventType.RESIDENCE, desc, date, place)
-                    if info:
-                        note = Note()
-                        note.set(info)
-                        note.set_type(NoteType.EVENT)
-                        self.db.add_note(note, self.trans)
-                        event.add_note(note.handle)
-                        self.db.commit_event(event, self.trans)
-                    person.add_event_ref(resi_ref)
-
-                self.db.commit_person(person, self.trans)
+            # Progress at the begin due to approx. ton's of 'not recflds[1]'
             self.progress.step()
 
+            recflds = table.convert_record_to_list(rec, self.mems)
+            if not recflds[1]:
+                continue
+
+            ind_id += 1
+            # Option: Original Individuals IDs
+            if self.opt_ind_id < 0:
+                ind_id = i +1
+
+            # print(("Ind ID %d " % ind_id) + " ".join(("%s" % r) for r in rec))
+            person = self.__find_or_create_person(ind_id)
+
+            # process F03 Given Name, F07 Call Name
+            name = Name()
+            name.set_type(NameType.BIRTH)
+
+            first_name = recflds[person_ix[3]]   # F03:
+            if first_name:
+                # replace if neccessary separators with ' '
+                first_name = re.sub(r'[,;]', ' ', first_name)
+            else:
+                # default first name 'Nomen nominandum'
+                first_name = 'N.N.'
+            name.set_first_name(first_name)
+
+            # process F04 Last Name
+            sur_prefix, sur_name = '', ''
+            if recflds[person_ix[4]]:
+                sur_prefix, sur_name = _split_surname(recflds[person_ix[4]])   # F04: INDI NAME
+            if not sur_name:
+                # default surname 'Nomen nominandum'
+                sur_name = 'N.N.'
+            surname = Surname()
+            surname.set_surname(sur_name)
+            if sur_prefix:
+                surname.set_prefix(sur_prefix)
+            name.add_surname(surname)
+
+            # process F06 Patronym
+            patronym = recflds[person_ix[6]]   # F06: INDI _PATR
+            if patronym:
+                patronym_name = Surname()
+                patronym_name.set_surname(patronym)
+                patronym_name.set_origintype(NameOriginType.PATRONYMIC)
+                name.add_surname(patronym_name)
+
+            # process F10 - F12 Title(s)
+            title1 = recflds[person_ix[10]]   # F10: INDI TITL
+            title2 = recflds[person_ix[11]]   # F11: INDI _TITL2
+            title3 = recflds[person_ix[12]]   # F12: INDI _TITL3
+            title = [_f for _f in [title1, title2, title3] if _f]
+            if title:
+                name.set_title(", ".join(title))
+
+            # General config: addtional individual citation
+            if self.default_source:
+                # Original individual ID from source
+                pageref = '[ID: I%06d] %s, %s' % (i +1, sur_name, first_name)
+                citation = self.__get_or_create_citation \
+                    (self.source_title, recflds[person_ix[1]],   # F01: Last Change
+                     self.citation_page, pageref)
+                if citation and citation.handle:
+                    person.add_citation(citation.handle)
+
+            # add tag to 'Person' object
+            self.__add_tag('Person', person)
+
+            # create diagnose message
+            diag_msg = "%s: %s %s" % (person.gramps_id,
+                                      first_name.encode('utf-8'),
+                                      sur_name.encode('utf-8'))
+
+            # prcesss F25 Birth Date
+            birth_date = self.__create_date_from_text \
+                            (recflds[person_ix[25]], diag_msg)   # F25: ... DATE
+
+            # process F07 Call Name
+            if recflds[person_ix[7]]:
+                # F07: INDI NAME NICK/INDI NAME ALIA/INDI CHR NICK
+                name.set_call_name(recflds[person_ix[7]])
+            else:
+                nick_name = first_name.split(' ')
+                if birth_date and len(nick_name) > 1:   # Two or more firstname's
+                    number = 0   # Firstname number
+                    if birth_date.dateval[2] < 1900:   # 1900: Common knowledge edge date
+                        number = 1
+                    name.set_call_name(nick_name[number])
+
+            # set the Person in database
+            person.set_primary_name(name)
+
+            # process F05 Gender
+            gender = recflds[person_ix[5]]  # F05: INDI SEX
+            if gender == male_sym:
+                gender = Person.MALE
+            elif gender == female_sym:
+                gender = Person.FEMALE
+            else:
+                gender = Person.UNKNOWN
+            person.set_gender(gender)
+
+            # process F08 Alias
+            alias = recflds[person_ix[8]]   # F08: INDI NAME _ALIA / INDI NAME COMM
+            if alias:
+                # expand separator with ' '
+                alias = re.sub(r'\.', '. ', alias)
+                alias_text = alias.split()
+                # two ways: Attribute-Nickname or AKA-Name
+                if len(alias_text) == 1:
+                    attr = self.__create_attribute(alias, AttributeType.NICKNAME)
+                    if attr:
+                        person.add_attribute(attr)
+                else:
+                    name = Name()
+                    surname = Surname()
+                    surname.set_surname(alias_text[-1].strip())
+                    name.add_surname(surname)
+                    name.set_first_name(' '.join(alias_text[0:-1]))
+                    name.set_type(NameType.AKA)
+                    person.add_alternate_name(name)
+
+            # process F09 Person Code
+            per_code = recflds[person_ix[9]]   # F09: INDI REFN/INDI CODE
+            if per_code:
+                # We have seen some artefacts ...
+                per_cde = self.__rel_pat.match(per_code)
+                # Option: Relation code contains one/two letters
+                if not self.opt_relation_code and per_cde:
+                    pass
+                else:
+                    attr = self.__create_attribute(per_code, AttributeType.CUSTOM, "REFN")
+                    if attr:
+                        person.add_attribute(attr)
+
+            # process F15 Occupation
+            occupation = recflds[person_ix[15]]   # F15: INDI OCCU
+            if occupation:
+                event, event_ref = self.__create_event_and_ref \
+                    (EventType.OCCUPATION, occupation)
+                if event_ref:
+                    person.add_event_ref(event_ref)
+
+            # process F16 Person Note, F17 Person Info
+            note = recflds[person_ix[16]]   # F16: INDI _COMM / INDI COMM
+            info = recflds[person_ix[17]]   # F17: INDI NOTE
+            note_text = [_f for _f in [info, note] if _f]
+            note = self.__create_note(note_text, NoteType.PERSON)
+            if note and note.handle:
+                person.add_note(note.handle)
+
+            # process F18 - F24 Address Date, Place, Street, ZIP, Country, Phone, Info
+            # GEDCOM symbols: INDI RESI ...
+            date = self.__create_date_from_text \
+                (recflds[person_ix[18]], diag_msg)   # F18: ... DATE
+            street = recflds[person_ix[19]]   # F19: ... ADDR
+            postal_code = recflds[person_ix[20]]   # F20: ... ADDR POST/INDI RESI POST
+            place = self.__get_or_create_place \
+                (recflds[person_ix[21]])   # F21: ... ADDR CITY/INDI RESI PLAC
+            country = recflds[person_ix[22]]   # F22: ... ADDR CTRY/INDI RESI CTRY
+            phone = recflds[person_ix[23]]   # F23: ... PHON/INDI PHON
+            info = recflds[person_ix[24]]   # F24: I... NOTE / INDI ADDR
+
+            address = None
+            if street or postal_code or country or phone:
+                # Create address
+                address = Address()
+                if date:
+                    address.set_date_object(date)
+                address.set_street(street)
+                address.set_city(recflds[person_ix[21]])
+                address.set_postal_code(postal_code)
+                address.set_country(country)
+                address.set_phone(phone)
+
+                # Option 1: add Notes to Address
+                note = self.__create_note(info, NoteType.ADDRESS)
+                if note and note.handle:
+                    address.add_note(note.handle)
+                    info = None
+
+                person.add_address(address)
+
+            if place:
+                desc = ''
+                if address and date:
+                    if self.language == 0:   # 'de' language
+                        desc = 'siehe Adresse am '
+                    elif self.language == 1:   # 'en' language
+                        desc = 'see Address on '
+                    elif self.language == 2:   # 'nl' language
+                        desc = 'zie Adres op '
+                    desc += displayer.display(date)
+                elif address:
+                    if self.language == 0:   # 'de' language
+                        desc = 'siehe auch Adresse'
+                    elif self.language == 1:   # 'en' language
+                        desc = 'see also Address'
+                    elif self.language == 2:   # 'nl' language
+                        desc = 'zie ook Adres'
+                # Option 2: add Notes to Event
+                event, resi_ref = self.__create_event_and_ref \
+                    (EventType.RESIDENCE, desc, date, place, '', info)
+                if resi_ref:
+                    person.add_event_ref(resi_ref)
+
+            # process F25 - F31 Birth Date, Place, Time, Source, Reference, Text, Info
+            # GEDCOM symbols: INDI BIRT ...
+            # date = self.__create_date_from_text \   # Birth Date processed above
+            #     (recflds[person_ix[25]], diag_msg)   # F25: ... DATE
+            place = self.__get_or_create_place \
+                (recflds[person_ix[26]])   # F26: ... PLAC
+            birth_time = recflds[person_ix[27]]   # F27: ... TIME
+            source = recflds[person_ix[28]]   # F28: ... SOUR / ... SOUR TITL
+            source_refn = recflds[person_ix[29]]   # F29: ... SOUR REFN
+            source_text = recflds[person_ix[30]]   # F30: ... SOUR TEXT
+            info = recflds[person_ix[31]]   # F31: INDI ... NOTE
+            citation = self.__get_or_create_citation \
+                (source, recflds[person_ix[25]], source_refn, '', 3,
+                 '', self.citation_attr)
+
+            if birth_date or place or info or citation:
+                desc = source_text
+                # Option: Birth time in description
+                if self.opt_birth_time:
+                    time_text = self.__create_desc_from_text(birth_time)
+                    desc += '; %s' % time_text
+                event, birth_ref = self.__create_event_and_ref \
+                    (EventType.BIRTH, desc, birth_date, place, citation, info,
+                     birth_time, AttributeType.TIME)
+                if birth_ref:
+                    person.set_birth_ref(birth_ref)
+
+            # process F32 - F37 Baptism / Christening Date, Place, Religion,
+            #                   Source, Reference, Text, Info
+            # GEDCOM symbols: INDI CHR ...
+            date = self.__create_date_from_text \
+                (recflds[person_ix[32]], diag_msg)   # F32: ... DATE
+            place = self.__get_or_create_place \
+                (recflds[person_ix[33]])   # F33: ... PLAC
+            religion = recflds[person_ix[36]]   # F34: ... RELI / INDI RELI
+            witness = recflds[person_ix[35]]   # F35: ... _WITN / ... WITN
+            source = recflds[person_ix[36]]   # F36: ... SOUR / ... SOUR TITL
+            source_refn = recflds[person_ix[37]]   # F37: ... SOUR REFN
+            source_text = recflds[person_ix[38]]   # F38: ... SOUR TEXT
+            info = recflds[person_ix[39]]   # F39: ... NOTE
+            citation = self.__get_or_create_citation \
+                (source, recflds[person_ix[32]], source_refn, '', 3,
+                 '', self.citation_attr)
+
+            if date or place or info or citation:
+                event, chris_ref = self.__create_event_and_ref \
+                    (EventType.CHRISTEN, source_text, date, place, citation, info,
+                     witness, AttributeType.CUSTOM, _("Godfather"))
+                if chris_ref:
+                    person.add_event_ref(chris_ref)
+
+            # process F34 Religion
+            if religion:
+                citation = None
+                if source != religion:
+                    citation = self.__get_or_create_citation \
+                        (religion, recflds[person_ix[32]], source_refn, '', 3,
+                         '', self.citation_attr)
+                event, reli_ref = self.__create_event_and_ref \
+                    (EventType.RELIGION, '', date, '', citation)
+                if reli_ref:
+                    person.add_event_ref(reli_ref)
+
+            # process F40 - F46 Death Date, Place, Time, Source, Reference, Text, Info
+            # GEDCOM symbols: INDI DEAT ...
+            date = self.__create_date_from_text \
+                (recflds[person_ix[40]], diag_msg)   # F40: ... DATE
+            place = self.__get_or_create_place \
+                (recflds[person_ix[41]])   # F41: ... PLAC
+            death_time = recflds[person_ix[42]]   # F42: ... TIME
+            source = recflds[person_ix[43]]   # F43: ... SOUR / ... SOUR TITL
+            source_refn = recflds[person_ix[44]]   # F44: ... SOUR REFN
+            source_text = recflds[person_ix[45]]   # F45: ... SOUR TEXT
+            info = recflds[person_ix[46]]   # F46: ... NOTE
+            citation = self.__get_or_create_citation \
+                (source, recflds[person_ix[40]], source_refn, '', 3,
+                 '', self.citation_attr)
+
+            if date or place or info or citation:
+                desc = source_text
+                # Option: Death time in description
+                if self.opt_death_time:
+                    time_text = self.__create_desc_from_text(death_time)
+                    desc += '; %s' % time_text
+                if not self.opt_death_info2cause:
+                    desc = info
+                event, death_ref = self.__create_event_and_ref \
+                    (EventType.DEATH, desc, date, place, citation, None,
+                     death_time, AttributeType.TIME)
+                if death_ref:
+                    person.set_death_ref(death_ref)
+
+            # Option: Death info to Death cause
+            if source_text or (self.opt_death_info2cause and info):
+                desc = [_f for _f in [source_text, info] if _f]
+                desc = desc and '; '.join(desc) or None
+                if 'Todesursache:' in desc:   # DE only
+                    desc = desc[13:].strip()
+
+                event, event_ref = self.__create_event_and_ref \
+                    (EventType.CAUSE_DEATH, desc)
+                if event_ref:
+                    person.add_event_ref(event_ref)
+
+            # process F47 - F52 Cremation Date, Place, Source, Reference,
+            #                   Text, Info
+            # GEDCOM symbols: INDI CREM ...
+            date = self.__create_date_from_text \
+                (recflds[person_ix[47]], diag_msg)   # F47: ... DATE
+            place = self.__get_or_create_place \
+                (recflds[person_ix[48]])   # F48: ... PLAC
+            source = recflds[person_ix[49]]   # F49: ... SOUR / ... SOUR TITL
+            source_refn = recflds[person_ix[50]]   # F50: ... SOUR REFN
+            source_text = recflds[person_ix[51]]   # F51: ... SOUR TEXT
+            info = recflds[person_ix[52]]   # F52: ... INFO
+            citation = self.__get_or_create_citation \
+                (source, recflds[person_ix[47]], source_refn, '', 3,
+                 '', self.citation_attr)
+
+            if date or place or info or citation:
+                event, cremation_ref = self.__create_event_and_ref \
+                    (EventType.CREMATION, source_text, date, place, citation, info)
+                if cremation_ref:
+                    person.add_event_ref(cremation_ref)
+
+            # process F53 Burial Date, F54 Burial Place, F55 Burial Source,
+            # F56 Burial Reference, F57 Burial Text, F58 Burial Info
+            # GEDCOM symbols: INDI BURI ...
+            date = self.__create_date_from_text \
+                (recflds[person_ix[53]], diag_msg)   # F53: ... DATE
+            place = self.__get_or_create_place \
+                (recflds[person_ix[54]])   # F54: ... PLAC
+            source = recflds[person_ix[55]]   # F49: ... SOUR / ... SOUR TITL
+            source_refn = recflds[person_ix[56]]   # F50: ... SOUR REFN
+            source_text = recflds[person_ix[57]]   # F51: ... SOUR TEXT
+            info = recflds[person_ix[58]]   # F58: ... INFO
+            citation = self.__get_or_create_citation \
+                (source, recflds[person_ix[53]], source_refn, '', 3,
+                 '', self.citation_attr)
+
+            if date or place or info or citation:
+                event, buri_ref = self.__create_event_and_ref \
+                    (EventType.BURIAL, source_text, date, place, citation, info)
+                if buri_ref:
+                    person.add_event_ref(buri_ref)
+
+            # commit the Person
+            self.dbase.commit_person(person, self.trans)
+
     def create_families(self):
+        """
+        Method to import Families
+        """
+
         table = self.def_['Table_2']
+        LOG.info(table.get_field_names())
 
-        # Records in the REL file using PG30-1.DEF contain the following fields:
-        # (Note. We want this to be computed just once.
-
-        #log.info(table.get_field_names())
-
-        man_ix = table.get_record_field_index('Man')
-        vrouw_ix = table.get_record_field_index('Vrouw')
-
-        rel_code_ix = table.get_record_field_index('Relatie code')
-        rel_klad_ix = table.get_record_field_index('Relatie klad')
-        rel_info_ix = table.get_record_field_index('Relatie info')
-
-        civu_date_ix = table.get_record_field_index('Samenwonen datum')
-        civu_place_ix = table.get_record_field_index('Samenwonen plaats')
-        civu_source_ix = table.get_record_field_index('Samenwonen bron')
-        civu_aktenr_ix = table.get_record_field_index('Samenwonen akte')
-        civu_source_text_ix = table.get_record_field_index('Samenwonen brontekst')
-        civu_info_ix = table.get_record_field_index('Samenwonen info')
-
-        marl_date_ix = table.get_record_field_index('Ondertrouw datum')
-        marl_place_ix = table.get_record_field_index('Ondertrouw plaats')
-        marl_witn_ix = table.get_record_field_index('Ondertrouw getuigen')
-        marl_source_ix = table.get_record_field_index('Ondertrouw bron')
-        marl_aktenr_ix = table.get_record_field_index('Ondertrouw akte')
-        marl_source_text_ix = table.get_record_field_index('Ondertrouw brontekst')
-        marl_info_ix = table.get_record_field_index('Ondertrouw info')
-
-        mar_date_ix = table.get_record_field_index('Wettelijk datum')
-        mar_place_ix = table.get_record_field_index('Wettelijk plaats')
-        mar_witn_ix = table.get_record_field_index('Wettelijk getuigen')
-        mar_source_ix = table.get_record_field_index('Wettelijk bron')
-        mar_aktenr_ix = table.get_record_field_index('Wettelijk akte')
-        mar_source_text_ix = table.get_record_field_index('Wettelijk brontekst')
-        mar_info_ix = table.get_record_field_index('Wettelijk info')
-
-        marc_date_ix = table.get_record_field_index('Kerkelijk datum')
-        marc_place_ix = table.get_record_field_index('Kerkelijk plaats')
-        marc_reli_ix = table.get_record_field_index('Kerk')
-        marc_witn_ix = table.get_record_field_index('Kerkelijk getuigen')
-        marc_source_ix = table.get_record_field_index('Kerkelijk bron')
-        marc_aktenr_ix = table.get_record_field_index('Kerkelijk akte')
-        marc_source_text_ix = table.get_record_field_index('Kerkelijk brontekst')
-        marc_info_ix = table.get_record_field_index('Kerkelijk info')
-
-        div_date_ix = table.get_record_field_index('Scheiding datum')
-        div_place_ix = table.get_record_field_index('Scheiding plaats')
-        div_source_ix = table.get_record_field_index('Scheiding bron')
-        div_aktenr_ix = table.get_record_field_index('Scheiding akte')
-        div_source_text_ix = table.get_record_field_index('Scheiding brontekst')
-        div_info_ix = table.get_record_field_index('Scheiding info')
+        # We'll start with F03: Husband
+        # Note: We like this to be computed just once.
+        family_ix = [0, 0, 0]
+        for count in range(3, len(self.family_identifier)):
+            # We've seen some case insensitivity in DEF files ...
+            fid = self.family_identifier[count][self.language].lower()
+            fix = table.get_record_field_index(fid)
+            family_ix.append(fix)
 
         # The records are numbered 1..N
         self.progress.set_pass(_('Importing families'), len(self.rels))
-        for i, rec in enumerate(self.rels):
-            fam_id = i + 1
-            husband = rec[man_ix]
-            wife = rec[vrouw_ix]
-            if husband > 0 or wife > 0:
-                recflds = table.convert_record_to_list(rec, self.mems)
-                self.highest_fam_id = fam_id
 
-                fam = self.__find_or_create_family(fam_id)
+        fam_id = self.opt_fam_id -1   # Option: Family IDs interator
+        for i, rec in enumerate(self.rels):
+            # Progress at the begin
+            self.progress.step()
+
+            husband = rec[family_ix[3]]   # F03: FAM HUSB
+            wife = rec[family_ix[4]]   # F04: FAM WIFE
+
+            if husband > 0 or wife > 0:
+                fam_id += 1
+                # Option: Original family IDs
+                if self.opt_fam_id < 0:
+                    fam_id = i +1
+                # print(("Family ID %d  " % fam_id) + " ".join(("%s" % r) for r in rec))
+
+                recflds = table.convert_record_to_list(rec, self.mems)
+                self.high_fam_id = fam_id
+                family = self.__find_or_create_family(fam_id)
+
+                # process F03 / F04 Husband / Wife
                 husband_handle = None
                 if husband > 0:
                     husband_handle = self.__find_person_handle(husband)
-                    fam.set_father_handle(husband_handle)
-                    husband_person = self.db.get_person_from_handle(husband_handle)
-                    husband_person.add_family_handle(fam.get_handle())
-                    self.db.commit_person(husband_person, self.trans)
+                    family.set_father_handle(husband_handle)
+                    husband_person = self.dbase.get_person_from_handle(husband_handle)
+                    husband_person.add_family_handle(family.get_handle())
+                    self.dbase.commit_person(husband_person, self.trans)
                 wife_handle = None
                 if wife > 0:
                     wife_handle = self.__find_person_handle(wife)
-                    fam.set_mother_handle(wife_handle)
-                    wife_person = self.db.get_person_from_handle(wife_handle)
-                    wife_person.add_family_handle(fam.get_handle())
-                    self.db.commit_person(wife_person, self.trans)
-                diag_msg = "%s: %s %s" % (fam.gramps_id,
-                            husband_person.gramps_id if husband_handle else "",
-                            wife_person.gramps_id if wife_handle else "")
-                self.fm2fam[husband_handle, wife_handle] = fam
+                    family.set_mother_handle(wife_handle)
+                    wife_person = self.dbase.get_person_from_handle(wife_handle)
+                    wife_person.add_family_handle(family.get_handle())
+                    self.dbase.commit_person(wife_person, self.trans)
 
-                rel_code = recflds[rel_code_ix]
-                rel_klad = recflds[rel_klad_ix]
-                rel_info = recflds[rel_info_ix]
+                self.fm2fam[husband_handle, wife_handle] = family
+                diag_msg = "%s: %s %s" % \
+                    (family.gramps_id,
+                     husband_person.gramps_id if husband_handle else "",
+                     wife_person.gramps_id if wife_handle else "")
 
-                note_txt = [_f for _f in [rel_info, rel_klad] if _f]
-                if note_txt:
-                    note = Note()
-                    note.set('\n'.join(note_txt))
-                    note.set_type(NoteType.FAMILY)
-                    self.db.add_note(note, self.trans)
-                    fam.add_note(note.handle)
+                # Option: Addtional family citation
+                if self.default_source:
+                    husband_name = husband_person.get_primary_name().get_surname()
+                    wife_name = wife_person.get_primary_name().get_surname()
+                    # Original family ID from source
+                    pageref = '[ID: F%05d] %s -- %s' % (i +1, husband_name, wife_name)
+                    citation = self.__get_or_create_citation \
+                        (self.source_title, recflds[family_ix[1]],   # F01: Last Time Change
+                         self.citation_page, pageref)
+                    if citation and citation.handle:
+                        family.add_citation(citation.handle)
 
+                # add tag to 'Family' object
+                self.__add_tag('Family', family)
+
+                # process F08 - F13 Civil Union Date, Place, Source,
+                #                   Reference, Text, Info
+                # GEDCOM symbols: FAM _LIV ...
+                date = self.__create_date_from_text \
+                    (recflds[family_ix[8]], diag_msg)   # F08: ... DATE
+                place = self.__get_or_create_place \
+                    (recflds[family_ix[9]])   # F09: ... PLAC
+                source = recflds[family_ix[10]]   # F10: ... SOUR/FAM _LIV SOUR TITL
+                source_refn = recflds[family_ix[11]]   # F11: ... SOUR REFN
+                source_text = recflds[family_ix[12]]   # F12: ... SOUR TEXT
+                info = recflds[family_ix[13]]   # F13: ... NOTE
+                citation = self.__get_or_create_citation \
+                    (source, recflds[family_ix[8]], source_refn, '', 3,
+                     '', self.citation_attr)
+
+                if date or place or info or citation:
+                    if self.language == 0:   # 'de' language
+                        evt_type = 'Lebensgemeinschaft'
+                    elif self.language == 1:   # 'en' language
+                        evt_type = 'Civil union'
+                    elif self.language == 2:   # 'nl' language
+                        evt_type = 'Samenwonen'
+                    event, civu_ref = self.__create_event_and_ref \
+                        (EventType.UNKNOWN, source_text, date, place, citation, info)
+                    event.set_type((EventType.CUSTOM, evt_type))
+                    if civu_ref:
+                        family.add_event_ref(civu_ref)
+
+                    # Type of relation
+                    family.set_relationship(FamilyRelType(FamilyRelType.CIVIL_UNION))
+
+                # process F14 - F20 Marriage License Date, Place, Witness,
+                #                   Source, Reference, Text, Info
+                # GEDCOM symbols: FAM MARB ...
+                date = self.__create_date_from_text \
+                    (recflds[family_ix[14]], diag_msg)   # F14: ... DATE/FAM REGS DATE
+                place = self.__get_or_create_place \
+                    (recflds[family_ix[15]])   # F15: ... PLAC/FAM REGS PLAC
+                witness = recflds[family_ix[16]]   # F16: ... _WITN/FAM MARB WITN
+                source = recflds[family_ix[17]]   # F17: ... SOUR/FAM MARB SOUR TITL/FAM REGS SOUR
+                source_refn = recflds[family_ix[18]]   # F18: ... SOUR REFN/FAM REGS SOUR REFN
+                source_text = recflds[family_ix[19]]   # F19: ... SOUR TEXT
+                info = recflds[family_ix[20]]   # F20: ... NOTE
+                citation = self.__get_or_create_citation \
+                    (source, recflds[family_ix[14]], source_refn, '', 3,
+                     '', self.citation_attr)
+
+                if date or place or info or citation:
+                    desc = source_text
+                    desc = [_f for _f in [info, source_text] if _f]
+                    desc = desc and '; '.join(desc) or None
+                    event, marl_ref = self.__create_event_and_ref \
+                        (EventType.MARR_BANNS, desc, date, place, citation, '',
+                         witness, AttributeType.WITNESS)
+                    if marl_ref:
+                        family.add_event_ref(marl_ref)
+
+                # process F21 - F27 Civil Marriage Date, Place, Witness,
+                #                   Source, Reference, Text, Info
+                # GEDCOM symbols: FAM MARR(Civil) ...
+                date = self.__create_date_from_text \
+                    (recflds[family_ix[21]], diag_msg)   # F21: ... DATE/FAM MARR DATE
+                place = self.__get_or_create_place \
+                    (recflds[family_ix[22]])   # F22: ... PLAC/FAM MARR PLAC
+                witness = recflds[family_ix[23]]   # F23: ... _WITN/FAM MARR _WITN/FAM MARR WITN/FAM WITN
+                source = recflds[family_ix[24]]   # F24: ... SOUR/FAM MARR SOUR/FAM MARR SOUR TITL
+                source_refn = recflds[family_ix[25]]   # F25: ... SOUR REFN/FAM MARR SOUR REFN
+                source_text = recflds[family_ix[26]]   # F26: ... SOUR TEXT/FAM MARR SOUR TEXT
+                info = recflds[family_ix[27]]   # F27: ... NOTE
+                citation = self.__get_or_create_citation \
+                    (source, recflds[family_ix[21]], source_refn, '', 3,
+                     '', self.citation_attr)
+
+                if date or place or info or citation:
+                    desc = source_text
+                    if not desc:
+                        # 'Civil' is widely accepted and language independent
+                        desc = "Civil"
+                    event, mar_ref = self.__create_event_and_ref \
+                        (EventType.MARRIAGE, desc, date, place, citation, info,
+                         witness, AttributeType.WITNESS)
+                    if mar_ref:
+                        family.add_event_ref(mar_ref)
+
+                    # Type of relation
+                    family.set_relationship(FamilyRelType(FamilyRelType.MARRIED))
+
+                # process F28 - F35 Church Wedding Date, Place, Church, Witness,
+                #                   Source, Reference, Text, Info
+                # GEDCOM symbols: FAM MARR(Church) ...
+                wedding_date = self.__create_date_from_text \
+                    (recflds[family_ix[28]], diag_msg)   # F28: ... DATE / FAM ORDI DATE
+                place = self.__get_or_create_place \
+                    (recflds[family_ix[29]])   # F29: ... DATE / FAM ORDI PLACE
+                church = recflds[family_ix[30]]   # F30: ... _CHUR / FAM ORDI _CHUR / FAM ORDI RELI
+                witness = recflds[family_ix[31]]   # F31: ... _WITN / FAM ORDI _WITN / FAM ORDI WITN
+                source = recflds[family_ix[32]]   # F32: ... SOUR / FAM ORDI SOUR / FAM ORDI SOUR TITL
+                source_refn = recflds[family_ix[33]]   # F33: ... SOUR REFN / FAM ORDI SOUR REFN
+                source_text = recflds[family_ix[34]]   # F34: ... SOUR TEXT / FAM ORDI SOUR TEXT
+                info = recflds[family_ix[35]]   # F35 ... INFO
+                citation = self.__get_or_create_citation \
+                    (source, recflds[family_ix[28]], source_refn, '', 3,
+                     '', self.citation_attr)
+
+                if wedding_date or place or info or citation:
+                    desc = [_f for _f in [church, source_text] if _f]
+                    desc = desc and '; '.join(desc) or None
+                    if not desc:
+                        if self.language == 0:   # 'de' language
+                            desc = 'Trauung'
+                        elif self.language == 1:   # 'en' language
+                            desc = 'Wedding'
+                        elif self.language == 2:   # 'nl' language
+                            desc = 'Kerkelijk huwelijk'
+                    event, marc_ref = self.__create_event_and_ref \
+                        (EventType.MARRIAGE, desc, wedding_date, place, citation, info,
+                         witness, AttributeType.WITNESS)
+                    if marc_ref:
+                        family.add_event_ref(marc_ref)
+
+                    # Type of relation
+                    family.set_relationship(FamilyRelType(FamilyRelType.MARRIED))
+
+                # process F05 - F07 Relation Code, Note, Info
+                rel_code = recflds[family_ix[5]]   # F05: FAM REFN / FAM CODE
                 if rel_code:
-                    attr = Attribute()
-                    attr.set_type((AttributeType.CUSTOM, "REFN"))
-                    attr.set_value(rel_code)
-                    fam.add_attribute(attr)
+                    # We have seen some artefacts ...
+                    rel_cde = self.__rel_pat.match(rel_code)
+                    # Option: Relation code contains one/two letters
+                    if not self.opt_relation_code and rel_cde:
+                        pass
+                    else:
+                        attr = self.__create_attribute(rel_code, AttributeType.CUSTOM, "REFN")
+                        if attr:
+                            family.add_attribute(attr)
 
-                # Wettelijk => Marriage
-                date = self.__create_date_from_text(recflds[mar_date_ix], diag_msg)
-                place = self.__get_or_create_place(recflds[mar_place_ix])
-                witness = recflds[mar_witn_ix]
-                citation = self.__get_or_create_citation(recflds[mar_source_ix], recflds[mar_aktenr_ix])
-                source_title  = recflds[mar_source_ix]
-                source_refn = recflds[mar_aktenr_ix]
-                source_text = recflds[mar_source_text_ix]
-                citation = self.__get_or_create_citation(source_title,
-                                                         source_refn,
-                                                         source_text)
-                info = recflds[mar_info_ix]
+                note = recflds[family_ix[6]]   # F06: FAM _COMM/FAM COMM
+                info = recflds[family_ix[7]]   # F07: FAM NOTE
+                note_text = [_f for _f in [info, note] if _f]
+                if note_text:
+                    cnt = None
+                    if len(note_text) > 0:
+                        note_cont = (' '.join(note_text)).split(' ')
+                    else:
+                        note_cont = note_text.split(' ')
+                    if note_cont[0] == 'Wohnort:':   # only DE
+                        cnt = 1
+                    elif note_cont[0] == 'zukünftiger' and \
+                         note_cont[1] == 'Wohnort:':   # only DE
+                        cnt = 2
+                    else:
+                        note = self.__create_note(note_text, NoteType.FAMILY)
+                        if note and note.handle:
+                            family.add_note(note.handle)
+
+                    if cnt:
+                        if wedding_date:
+                            date_text = _('after') + ' ' + str(wedding_date.dateval[2])   # Wedding Year
+                            date = self.__create_date_from_text \
+                                (date_text, diag_msg)   # F28: ... DATE / FAM ORDI DATE
+                        place_text = ''
+                        for i in range(cnt, len(note_cont)):   # Add all elements of Note Content
+                            place_text += note_cont[i] + ' '
+                        place_text = place_text.rstrip()   # Strip whitespace
+                        place = self.__get_or_create_place(place_text)
+                        event, place_ref = self.__create_event_and_ref \
+                            (EventType.RESIDENCE, None, date, place, citation)
+                        if place_ref:
+                            family.add_event_ref(place_ref)
+
+                # process F36 - F41 Divorce Date, Place, Source, Text, Reference, Info
+                # GEDCOM symbols: FAM DIV ...
+                date = self.__create_date_from_text \
+                    (recflds[family_ix[36]], diag_msg)   # F36: ... DATE / FAM DIVO DATE
+                place = self.__get_or_create_place \
+                    (recflds[family_ix[37]])   # F37: ... PLAC / FAM DIVO PlAC
+                source = recflds[family_ix[38]]   # F38: ... SOUR / FAM DIV SOUR TITL
+                source_refn = recflds[family_ix[39]]   # F39: ... SOUR REFN
+                source_text = recflds[family_ix[40]]   # F40: ... SOUR TEXT
+                info = recflds[family_ix[41]]   # F41: ... INFO
+                citation = self.__get_or_create_citation \
+                    (source, recflds[family_ix[36]], source_refn, '', 3,
+                     '', self.citation_attr)
+
                 if date or place or info or citation:
-                    desc = [_f for _f in [info, source_text] if _f]
-                    desc = desc and '; '.join(desc) or None
-                    event, mar_ref = self.__create_event_and_ref(EventType.MARRIAGE, desc, date, place, citation, info)
-                    fam.add_event_ref(mar_ref)
-                    if witness:
-                        attr = Attribute()
-                        attr.set_type(AttributeType.WITNESS)
-                        attr.set_value(witness)
-                        event.add_attribute(attr)
-                        self.db.commit_event(event, self.trans)
+                    desc = source_text
+                    event, div_ref = self.__create_event_and_ref \
+                        (EventType.DIVORCE, desc, date, place, citation, info)
+                    if div_ref:
+                        family.add_event_ref(div_ref)
 
-                    # Type of relation
-                    fam.set_relationship(FamilyRelType(FamilyRelType.MARRIED))
-
-                # Kerkelijk => Marriage
-                date = self.__create_date_from_text(recflds[marc_date_ix], diag_msg)
-                place = self.__get_or_create_place(recflds[marc_place_ix])
-                reli = recflds[marc_reli_ix]
-                witness = recflds[marc_witn_ix]
-                citation = self.__get_or_create_citation(recflds[marc_source_ix], recflds[marc_aktenr_ix])
-                source_title  = recflds[marc_source_ix]
-                source_refn = recflds[marc_aktenr_ix]
-                source_text = recflds[marc_source_text_ix]
-                citation = self.__get_or_create_citation(source_title,
-                                                         source_refn,
-                                                         source_text)
-                info = recflds[marc_info_ix]
-                if date or place or info or citation:
-                    desc = [_f for _f in [reli, info, source_text] if _f]
-                    desc.insert(0, 'Kerkelijk huwelijk')
-                    desc = desc and '; '.join(desc) or None
-                    event, marc_ref = self.__create_event_and_ref(EventType.MARRIAGE, desc, date, place, citation, info)
-                    fam.add_event_ref(marc_ref)
-                    if witness:
-                        attr = Attribute()
-                        attr.set_type(AttributeType.WITNESS)
-                        attr.set_value(witness)
-                        event.add_attribute(attr)
-                        self.db.commit_event(event, self.trans)
-
-                    # Type of relation
-                    fam.set_relationship(FamilyRelType(FamilyRelType.MARRIED))
-
-                # Ondertrouw => Marriage License
-                date = self.__create_date_from_text(recflds[marl_date_ix], diag_msg)
-                place = self.__get_or_create_place(recflds[marl_place_ix])
-                witness = recflds[marl_witn_ix]
-                citation = self.__get_or_create_citation(recflds[marl_source_ix], recflds[marl_aktenr_ix])
-                source_title  = recflds[marl_source_ix]
-                source_refn = recflds[marl_aktenr_ix]
-                source_text = recflds[marl_source_text_ix]
-                citation = self.__get_or_create_citation(source_title,
-                                                         source_refn,
-                                                         source_text)
-                info = recflds[marl_info_ix]
-                if date or place or info or citation:
-                    desc = [_f for _f in [info, source_text] if _f]
-                    desc.insert(0, 'Ondertrouw')
-                    desc = desc and '; '.join(desc) or None
-                    event, marl_ref = self.__create_event_and_ref(EventType.MARR_LIC, desc, date, place, citation, info)
-                    fam.add_event_ref(marl_ref)
-                    if witness:
-                        attr = Attribute()
-                        attr.set_type(AttributeType.WITNESS)
-                        attr.set_value(witness)
-                        event.add_attribute(attr)
-                        self.db.commit_event(event, self.trans)
-
-                # Samenwonen => Civil Union
-                date = self.__create_date_from_text(recflds[civu_date_ix], diag_msg)
-                place = self.__get_or_create_place(recflds[civu_place_ix])
-                citation = self.__get_or_create_citation(recflds[civu_source_ix], recflds[civu_aktenr_ix])
-                source_title  = recflds[civu_source_ix]
-                source_refn = recflds[civu_aktenr_ix]
-                source_text = recflds[civu_source_text_ix]
-                citation = self.__get_or_create_citation(source_title,
-                                                         source_refn,
-                                                         source_text)
-                info = recflds[civu_info_ix]
-                if date or place or info or citation:
-                    desc = [_f for _f in [info, source_text] if _f]
-                    desc.insert(0, 'Samenwonen')
-                    desc = desc and '; '.join(desc) or None
-                    event, civu_ref = self.__create_event_and_ref(EventType.UNKNOWN, desc, date, place, citation, info)
-                    fam.add_event_ref(civu_ref)
-                    # Type of relation
-                    fam.set_relationship(FamilyRelType(FamilyRelType.CIVIL_UNION))
-
-                # Scheiding => Divorce
-                date = self.__create_date_from_text(recflds[div_date_ix], diag_msg)
-                place = self.__get_or_create_place(recflds[div_place_ix])
-                citation = self.__get_or_create_citation(recflds[div_source_ix], recflds[div_aktenr_ix])
-                source_title  = recflds[div_source_ix]
-                source_refn = recflds[div_aktenr_ix]
-                source_text = recflds[div_source_text_ix]
-                citation = self.__get_or_create_citation(source_title,
-                                                         source_refn,
-                                                         source_text)
-                info = recflds[div_info_ix]
-                if date or place or info or citation:
-                    desc = [_f for _f in [info, source_text] if _f]
-                    desc = desc and '; '.join(desc) or None
-                    event, div_ref = self.__create_event_and_ref(EventType.DIVORCE, desc, date, place, citation, info)
-                    fam.add_event_ref(div_ref)
-
-                self.db.commit_family(fam, self.trans)
-
-            self.progress.step()
+                # commit the Family
+                self.dbase.commit_family(family, self.trans)
 
     def add_children(self):
+        """
+        Method to add Children.
+        """
+
         # Once more to record the father and mother
         table = self.def_['Table_1']
 
-        father_ix = table.get_record_field_index('Vader')
-        mother_ix = table.get_record_field_index('Moeder')
+        # We have seen some case insensitivity in DEF files ...
+        person_F13 = table.get_record_field_index \
+            (self.person_identifier[13][self.language].lower())   # F13: Father
+        person_F14 = table.get_record_field_index \
+            (self.person_identifier[14][self.language].lower())   # F14: Mother
 
         # The records are numbered 1..N
         self.progress.set_pass(_('Adding children'), len(self.pers))
+
         for i, rec in enumerate(self.pers):
-            pers_id = i + 1
-            father = rec[father_ix]
-            mother = rec[mother_ix]
+            # Progress at the begin
+            self.progress.step()
+
+            ind_id = i +1
+            # print(("Person ID %d  " % ind_id) + " ".join(("%s" % r) for r in rec))
+
+            father = rec[person_F13]   # F13: Father
+            mother = rec[person_F14]   # F14: Mother
             if father > 0 or mother > 0:
-                # Find the family with this father and mother
-                person_handle = self.__find_person_handle(pers_id)
+                # Find the family with this Father and Mother
+                person_handle = self.__find_person_handle(ind_id)
                 father_handle = father > 0 and self.__find_person_handle(father) or None
                 mother_handle = mother > 0 and self.__find_person_handle(mother) or None
                 if father > 0 and not father_handle:
-                    log.warning(_("cannot find father for I%(person)s (father=%(id)d)") % {
-                        'person' : pers_id, 'id' : father } )
+                    LOG.warning(_("Cannot find father for I%(person)s (Father=%(id)d)"), \
+                                {'person' : ind_id, 'father' : father})
                 elif mother > 0 and not mother_handle:
-                    log.warning(_("cannot find mother for I%(person)s (mother=%(mother)d)") % {
-                        'person' : pers_id, 'mother' : mother } )
+                    LOG.warning(_("Cannot find mother for I%(person)s (Mother=%(mother)d)"), \
+                                {'person' : ind_id, 'mother' : mother})
                 else:
-                    fam = self.fm2fam.get((father_handle, mother_handle), None)
-                    if not fam:
+                    family = self.fm2fam.get((father_handle, mother_handle), None)
+                    if not family:
                         # Family not present in REL. Create a new one.
-                        self.highest_fam_id = self.highest_fam_id + 1
-                        fam_id = self.highest_fam_id
-                        fam = self.__find_or_create_family(fam_id)
-                        if father_handle:
-                            fam.set_father_handle(father_handle)
-                            father_person = self.db.get_person_from_handle(father_handle)
-                            father_person.add_family_handle(fam.get_handle())
-                            self.db.commit_person(father_person, self.trans)
-                        if mother_handle:
-                            fam.set_mother_handle(mother_handle)
-                            mother_person = self.db.get_person_from_handle(mother_handle)
-                            mother_person.add_family_handle(fam.get_handle())
-                            self.db.commit_person(mother_person, self.trans)
+                        self.high_fam_id += 1
+                        fam_id = self.high_fam_id
+                        family = self.__find_or_create_family(fam_id)
 
-                if fam:
+                        if father_handle:
+                            family.set_father_handle(father_handle)
+                            father_person = self.dbase.get_person_from_handle \
+                                (father_handle)
+                            father_person.add_family_handle(family.get_handle())
+                            # commit the Father
+                            self.dbase.commit_person(father_person, self.trans)
+
+                        if mother_handle:
+                            family.set_mother_handle(mother_handle)
+                            mother_person = self.dbase.get_person_from_handle \
+                                (mother_handle)
+                            mother_person.add_family_handle(family.get_handle())
+                            # commit the Mother
+                            self.dbase.commit_person(mother_person, self.trans)
+
+                if family:
                     childref = ChildRef()
                     childref.set_reference_handle(person_handle)
-                    fam.add_child_ref(childref)
-                    self.db.commit_family(fam, self.trans)
-                    person = self.db.get_person_from_handle(person_handle)
-                    person.add_parent_family_handle(fam.get_handle())
-                    self.db.commit_person(person, self.trans)
-            self.progress.step()
+                    if childref:
+                        family.add_child_ref(childref)
+                        # commit the Family
+                        self.dbase.commit_family(family, self.trans)
+
+                    person = self.dbase.get_person_from_handle(person_handle)
+                    if person:
+                        person.add_parent_family_handle(family.get_handle())
+                        # commit the Child
+                        self.dbase.commit_person(person, self.trans)

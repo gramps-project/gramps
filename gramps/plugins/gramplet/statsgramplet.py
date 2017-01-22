@@ -102,43 +102,43 @@ class StatsGramplet(Gramplet):
                   'Filter', 'all people')
         self.append_text(" %s" % database.get_number_of_people())
         self.append_text("\n")
-        self.link("%s:" % _("Males"), 'Filter', 'males')
+        self.link(_("%s:") % _("Males"), 'Filter', 'males')
         self.append_text(" %s" % males)
         self.append_text("\n")
-        self.link("%s:" % _("Females"), 'Filter', 'females')
+        self.link(_("%s:") % _("Females"), 'Filter', 'females')
         self.append_text(" %s" % females)
         self.append_text("\n")
-        self.link("%s:" % _("Individuals with unknown gender"),
+        self.link(_("%s:") % _("Individuals with unknown gender"),
                   'Filter', 'people with unknown gender')
         self.append_text(" %s" % unknowns)
         self.append_text("\n")
         self.append_text("\n%s\n" % _("Family Information"))
         self.append_text("----------------------------\n")
-        self.link("%s:" % _("Number of families"),
+        self.link(_("%s:") % _("Number of families"),
                   'Filter', 'all families')
         self.append_text(" %s" % database.get_number_of_families())
         self.append_text("\n")
         if hasattr(database, 'surname_list'):
-            self.link("%s:" % _("Unique surnames"),
+            self.link(_("%s:") % _("Unique surnames"),
                       'Filter', 'unique surnames')
             self.append_text(" %s" % len(set(database.surname_list)))
             self.append_text("\n")
         self.append_text("\n%s\n" % _("Media Objects"))
         self.append_text("----------------------------\n")
-        self.link("%s:" % _("Total number of media object references"),
+        self.link(_("%s:") % _("Total number of media object references"),
                   'Filter', 'media references')
         self.append_text(" %s" % total_media)
         self.append_text("\n")
-        self.link("%s:" % _("Number of unique media objects"),
+        self.link(_("%s:") % _("Number of unique media objects"),
                   'Filter', 'unique media')
         self.append_text(" %s" % mobjects)
         self.append_text("\n")
 
-        self.link("%s:" % _("Total size of media objects"),
+        self.link(_("%s:") % _("Total size of media objects"),
                   'Filter', 'media by size')
         self.append_text(" %s %s" % (mbytes, _("Megabyte|MB")))
         self.append_text("\n")
-        self.link("%s:" % _("Missing Media Objects"),
+        self.link(_("%s:") % _("Missing Media Objects"),
                   'Filter', 'missing media')
         self.append_text(" %s\n" % len(notfound))
         self.append_text("", scroll_to="begin")

@@ -183,9 +183,9 @@ class OptionDialog:
 class ErrorDialog(Gtk.MessageDialog):
     def __init__(self, msg1, msg2="", parent=None):
 
-        Gtk.MessageDialog.__init__(self, parent,
-                                   flags=Gtk.DialogFlags.MODAL,
-                                   type=Gtk.MessageType.ERROR,
+        Gtk.MessageDialog.__init__(self, transient_for=parent,
+                                   modal=True,
+                                   message_type=Gtk.MessageType.ERROR,
                                    buttons=Gtk.ButtonsType.CLOSE)
         self.set_markup('<span weight="bold" size="larger">%s</span>' % str(msg1))
         self.format_secondary_text(msg2)
@@ -223,9 +223,9 @@ class DBErrorDialog(ErrorDialog):
 class WarningDialog(Gtk.MessageDialog):
     def __init__(self, msg1, msg2="", parent=None):
 
-        Gtk.MessageDialog.__init__(self, parent,
-                                   flags=Gtk.DialogFlags.MODAL,
-                                   type=Gtk.MessageType.WARNING,
+        Gtk.MessageDialog.__init__(self, transient_for=parent,
+                                   modal=True,
+                                   message_type=Gtk.MessageType.WARNING,
                                    buttons=Gtk.ButtonsType.CLOSE)
         self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
         self.format_secondary_markup(msg2)
@@ -243,9 +243,9 @@ class WarningDialog(Gtk.MessageDialog):
 class OkDialog(Gtk.MessageDialog):
     def __init__(self, msg1, msg2="", parent=None):
 
-        Gtk.MessageDialog.__init__(self, parent,
-                                   flags=Gtk.DialogFlags.MODAL,
-                                   type=Gtk.MessageType.INFO,
+        Gtk.MessageDialog.__init__(self, transient_for=parent,
+                                   modal=True,
+                                   message_type=Gtk.MessageType.INFO,
                                    buttons=Gtk.ButtonsType.CLOSE)
         self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
         self.format_secondary_text(msg2)

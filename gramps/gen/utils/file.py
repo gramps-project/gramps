@@ -137,12 +137,16 @@ def relative_path(original, base):
     base_list = [_f for _f in base_list if _f]
     target_list = [_f for _f in target_list if _f]
     i = -1
+    # base path is normcase (lower case on Windows) so compare target in lower
+    # on Windows as well
     for i in range(min(len(base_list), len(target_list))):
-        if base_list[i] != target_list[i]: break
+        if base_list[i] != (target_list[i].lower() if win()
+                            else target_list[i]):
+            break
     else:
         #if break did not happen we are here at end, and add 1.
         i += 1
-    rel_list = [os.pardir] * (len(base_list)-i) + target_list[i:]
+    rel_list = [os.pardir] * (len(base_list) - i) + target_list[i:]
     return os.path.join(*rel_list)
 
 def expand_path(path, normalize = True):

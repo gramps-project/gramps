@@ -58,10 +58,10 @@ from gramps.gen.filters import (GenericFilterFactory, FilterList,
 from gramps.gen.filters.rules._matchesfilterbase import MatchesFilterBase
 from ..listmodel import ListModel
 from ..managedwindow import ManagedWindow
-from ..dialog import QuestionDialog
+from ..dialog import QuestionDialog, ErrorDialog
 from gramps.gen.const import RULE_GLADE, URL_MANUAL_PAGE
 from ..display import display_help
-from gramps.gen.errors import WindowActiveError
+from gramps.gen.errors import WindowActiveError, FilterError
 from gramps.gen.lib import (AttributeType, EventType, FamilyRelType,
                             NameOriginType, NameType, NoteType, PlaceType)
 from gramps.gen.filters import rules
@@ -439,8 +439,6 @@ class EditRule(ManagedWindow):
     def __init__(self, namespace, dbstate, uistate, track, filterdb, val,
                  label, update, filter_name):
         ManagedWindow.__init__(self, uistate, track, EditRule)
-        self.width_key = "interface.edit-rule-width"
-        self.height_key = "interface.edit-rule-height"
         self.namespace = namespace
         self.dbstate = dbstate
         self.db = dbstate.db
@@ -453,6 +451,7 @@ class EditRule(ManagedWindow):
 
         self.set_window(self.get_widget('rule_editor'),
                         self.get_widget('rule_editor_title'),label)
+        self.setup_configs('interface.edit-rule', 600, 450)
         self.window.hide()
         self.valuebox = self.get_widget('valuebox')
         self.rname_filter = self.get_widget('ruletreefilter')
@@ -798,8 +797,6 @@ class EditFilter(ManagedWindow):
                  filterdb, update=None, selection_callback=None):
 
         ManagedWindow.__init__(self, uistate, track, self)
-        self.width_key = "interface.edit-filter-width"
-        self.height_key = "interface.edit-filter-height"
         self.namespace = namespace
         self.update = update
         self.dbstate = dbstate
@@ -814,6 +811,7 @@ class EditFilter(ManagedWindow):
             self.get_widget('define_filter'),
             self.get_widget('definition_title'),
             _('Define filter'))
+        self.setup_configs('interface.edit-filter', 500, 420)
 
         self.rlist = ListModel(
             self.get_widget('rule_list'),
@@ -964,6 +962,7 @@ class ShowResults(ManagedWindow):
             self.get_widget('test'),
             self.get_widget('test_title'),
             _('Filter Test'))
+        self.setup_configs('interface.showresults', 450, 400)
 
         render = Gtk.CellRendererText()
 
@@ -1069,8 +1068,6 @@ class FilterEditor(ManagedWindow):
         self.db = dbstate.db
         self.filterdb = FilterList(filterdb)
         self.filterdb.load()
-        self.width_key = "interface.filter-editor-width"
-        self.height_key = "interface.filter-editor-height"
         self.namespace = namespace
 
         self.define_glade('filter_list', RULE_GLADE)
@@ -1088,6 +1085,7 @@ class FilterEditor(ManagedWindow):
         self.set_window(self.get_widget('filter_list'),
                         self.get_widget('filter_list_title'),
                         _TITLES[self.namespace])
+        self.setup_configs('interface.filter-editor', 400, 350)
 
         self.edit.connect('clicked', self.edit_filter)
         self.clone.connect('clicked', self.clone_filter)
@@ -1167,7 +1165,12 @@ class FilterEditor(ManagedWindow):
         store, node = self.clist.get_selected()
         if node:
             filt = self.clist.get_object(node)
-            handle_list = filt.apply(self.db, self.get_all_handles())
+            try:
+                handle_list = filt.apply(self.db, self.get_all_handles())
+            except FilterError as msg:
+                (msg1, msg2) = msg.messages()
+                ErrorDialog(msg1, msg2, parent=self.window)
+                return
             ShowResults(self.db, self.uistate, self.track, handle_list,
                         filt.get_name(),self.namespace)
 

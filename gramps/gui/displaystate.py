@@ -317,13 +317,14 @@ from .logger import RotateHandler
 
 class WarnHandler(RotateHandler):
 
-    def __init__(self, capacity, button):
+    def __init__(self, capacity, button, parent=None):
         RotateHandler.__init__(self, capacity)
         self.setLevel(logging.WARN)
         self.button = button
         button.on_clicked(self.display)
         self.timer = None
         self.last_line = '-1'
+        self.parent = parent
 
     def emit(self, record):
         if self.timer is None:
@@ -354,12 +355,14 @@ class WarnHandler(RotateHandler):
 
     def display(self, obj):
         obj.hide()
-        self.glade = Glade()
+        self.glade = Glade(toplevel='displaystate')
         top = self.glade.toplevel
         msg = self.glade.get_object('msg')
         buf = msg.get_buffer()
         for i in self.get_formatted_log():
             buf.insert_at_cursor(i + '\n')
+        if self.parent:
+            top.set_transient_for(self.parent)
         top.run()
         top.destroy()
 
@@ -371,6 +374,7 @@ class DisplayState(Callback):
         'nameformat-changed' : None,
         'grampletbar-close-changed' : None,
         'update-available' : (list, ),
+        'autobackup' : None,
         }
 
     #nav_type to message
@@ -408,10 +412,12 @@ class DisplayState(Callback):
         self.disprel_defpers = None
         self.disprel_active = None
         self.set_relationship_class()
+        self.export = False
+        self.backup_timer = None
 
         formatter = logging.Formatter('%(levelname)s %(name)s: %(message)s')
         warnbtn = status.get_warning_button()
-        self.rhandler = WarnHandler(capacity=400, button=warnbtn)
+        self.rhandler = WarnHandler(capacity=400, button=warnbtn, parent=window)
         self.rhandler.setFormatter(formatter)
         self.rhandler.setLevel(logging.WARNING)
         self.log = logging.getLogger()
@@ -419,6 +425,31 @@ class DisplayState(Callback):
         # This call has been moved one level up,
         # but this connection is still made!
         # self.dbstate.connect('database-changed', self.db_changed)
+
+    def set_backup_timer(self):
+        """
+        Set the backup timer.
+        """
+        interval = config.get('database.autobackup')
+        if self.backup_timer is not None:
+            GLib.source_remove(self.backup_timer)
+            self.backup_timer = None
+        if interval == 1:
+            minutes = 15
+        elif interval == 2:
+            minutes = 30
+        elif interval == 3:
+            minutes = 60
+        if interval > 0:
+            self.backup_timer = GLib.timeout_add_seconds(
+                minutes*60, self.__emit_autobackup)
+
+    def __emit_autobackup(self):
+        """
+        Emit an 'autobackup' signal.
+        """
+        self.emit('autobackup')
+        return True
 
     def screen_width(self):
         """
@@ -526,6 +557,16 @@ class DisplayState(Callback):
             return name
         else:
             return ""
+
+    def set_export_mode(self, value):
+        self.set_busy_cursor(value)
+        if value == self.export:
+            return
+        else:
+            self.export = value
+
+    def get_export_mode(self):
+        return self.export
 
     def set_busy_cursor(self, value):
         if value == self.busy:

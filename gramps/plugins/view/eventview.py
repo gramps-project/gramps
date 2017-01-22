@@ -266,7 +266,7 @@ class EventView(ListView):
                      "control key while clicking on the desired event.")
             ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
-            MergeEvent(self.dbstate, self.uistate, mlist[0], mlist[1])
+            MergeEvent(self.dbstate, self.uistate, [], mlist[0], mlist[1])
 
     def tag_updated(self, handle_list):
         """

@@ -4,6 +4,7 @@ PRODID:-//Gramps//NONSGML Gramps 5.0.0-alpha1//EN
 FN:Anna Hansdotter
 N:Hansdotter;Anna;;;
 SORT-STRING:Hansdotter               Anna                          
+NICKNAME:Annanana
 X-GENDER:Female
 BDAY:1864-10-02
 END:VCARD
@@ -439,6 +440,7 @@ N:Tester;The;;;
 SORT-STRING:Tester                   The                           
 X-GENDER:Male
 BDAY:1954-12-29
+ADR:;;;Akron;OH;44177;Cuyahoga
 END:VCARD
 
 BEGIN:VCARD
@@ -459,9 +461,58 @@ END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:-//Gramps//NONSGML Gramps 5.0.0-alpha1//EN
-FN:Tom Tester
-N:Tester;Tom;;;
+FN:Tom Von Tester y tested
+N:Von Tester y,tested;Tom;;;
 SORT-STRING:Tester                   Tom                           
+NICKNAME:TesterNickname
+X-GENDER:Male
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Gramps//NONSGML Gramps 5.0.0-alpha1//EN
+FN:Fake person Fake von Person\, I
+N:von Person;Person;Fake;Fake,person;I
+SORT-STRING:Person                   Fake                          I
+NICKNAME:Fake
+ADR:;;8888 Cliff Dr;Bay Village;Ohio;44140;Cuyahoga
+TEL:440-871-3400
+URL:ftp://whoknows.org
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Gramps//NONSGML Gramps 5.0.0-alpha1//EN
+FN:Mary Tester
+N:Tester;Mary;;;
+SORT-STRING:Tester                   Mary                          
+X-GENDER:Female
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Gramps//NONSGML Gramps 5.0.0-alpha1//EN
+FN:Martha Tester
+N:Tester;Martha;;;
+SORT-STRING:Tester                   Martha                        
+X-GENDER:Female
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Gramps//NONSGML Gramps 5.0.0-alpha1//EN
+FN:John Tester
+N:Tester;John;;;
+SORT-STRING:Tester                   John                          
+X-GENDER:Male
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Gramps//NONSGML Gramps 5.0.0-alpha1//EN
+FN:Mark Tester
+N:Tester;Mark;;;
+SORT-STRING:Tester                   Mark                          
 X-GENDER:Male
 END:VCARD
 
