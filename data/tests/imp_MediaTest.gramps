@@ -89,6 +89,7 @@
     </object>
     <object handle="_0000000900000009" change="1472500307" id="M5">
       <file src="test.jpg" mime="image/jpeg" description="Multimedia link to linked form FTM style file"/>
+      <datestr val="6/4/2016 9:33:57 AM"/>
       <noteref hlink="_0000001d0000001d"/>
       <noteref hlink="_0000001e0000001e"/>
       <noteref hlink="_0000001f0000001f"/>
