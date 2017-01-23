@@ -53,7 +53,7 @@ class BaseSelector(ManagedWindow):
     IMAGE  =  2
 
     def __init__(self, dbstate, uistate, track=[], filter=None, skip=set(),
-                 show_search_bar = True, default=None, expand=True):
+                 show_search_bar = True, default=None, expand=False):
         """Set up the dialog with the dbstate and uistate, track of parent
             windows for ManagedWindow, initial filter for the model, skip with
             set of handles to skip in the view, and search_bar to show the

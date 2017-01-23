@@ -1108,6 +1108,13 @@ class GrampsPreferences(ConfigureDialog):
                           row, 'interface.grampletbar-close', stop=3,
                           extra_callback=self.cb_grampletbar_close)
         row += 1
+
+        # When using Select <item>, do the trees expand by default?
+        self.add_checkbox(grid,
+                          _("Expand trees by default."),
+                          row, 'interface.expand-tree', stop=3)
+        row += 1
+
         return _('Display'), grid
 
     def add_places_panel(self, configdialog):

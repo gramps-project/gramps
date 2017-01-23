@@ -187,6 +187,7 @@ register('geography.use-keypad', True)
 # needed), for instance to four 'interface.clipboard' variables --
 # so do a recursive grep for "setup_configs" to see all the (base) names
 register('interface.dont-ask', False)
+register('interface.expand-tree', False)
 register('interface.view-categories',
          ["Dashboard", "People", "Relationships", "Families",
           "Ancestry", "Events", "Places", "Geography", "Sources",

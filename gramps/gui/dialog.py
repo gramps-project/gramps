@@ -61,6 +61,7 @@ class SaveDialog:
         self.top.set_title("%s - Gramps" % msg1)
 
         self.dontask = self.xml.get_object('dontask')
+        self.expandtree = self.xml.get_object('expandtree')
         self.task1 = task1
         self.task2 = task2
 
@@ -84,6 +85,7 @@ class SaveDialog:
             self.task2()
 
         config.set('interface.dont-ask', self.dontask.get_active())
+        config.set('interface.expand-tree', self.expandtree.get_active())
         self.top.destroy()
         if parent and parent_modal:
             parent.set_modal(True)
