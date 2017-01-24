@@ -1,0 +1,5 @@
+Mismatch on file: imp_vcard.vcf
+Person: I0019  handle=0000001800000018
+  Diff on: Person, primary_name, surname list #2, primary
+    <class 'bool'>: True
+    <class 'bool'>: False

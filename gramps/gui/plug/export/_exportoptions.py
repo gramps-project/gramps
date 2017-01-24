@@ -106,11 +106,10 @@ class WriterOptionBox:
     the options.
 
     """
-    def __init__(self, person, dbstate, uistate, track=[]):
+    def __init__(self, person, dbstate, uistate):
         self.person = person
         self.dbstate = dbstate
         self.uistate = uistate
-        self.track = track
         self.preview_dbase = None
         self.preview_button = None
         self.preview_proxy_button = {}
@@ -248,8 +247,7 @@ class WriterOptionBox:
         run_quick_report_by_name(dbstate,
                                  self.uistate,
                                  'filterbyname',
-                                 'all',
-                                 track=self.track)
+                                 'all')
 
     def preview(self, widget):
         """
@@ -275,14 +273,12 @@ class WriterOptionBox:
         button.set_size_request(107, -1)
         button.connect("clicked", self.show_preview_data)
         button.proxy_name = proxy_name
-        colon = _(':') # translators: needed for French, ignore otherwise
         if proxy_name == "person":
             # Frame Person:
             self.filter_obj = Gtk.ComboBox()
-            label = Gtk.Label(label=_('_Person Filter') + colon)
+            label = Gtk.Label(label=_('_Person Filter') + ": ")
             label.set_halign(Gtk.Align.START)
-            label.set_size_request(120, -1)
-            label.set_padding(5, 0)
+            label.set_size_request(150, -1)
             label.set_use_underline(True)
             label.set_mnemonic_widget(self.filter_obj)
             box = Gtk.Box()
@@ -297,10 +293,9 @@ class WriterOptionBox:
             # Frame Note:
             # Objects for choosing a Note filter:
             self.filter_note = Gtk.ComboBox()
-            label_note = Gtk.Label(label=_('_Note Filter') + colon)
+            label_note = Gtk.Label(label=_('_Note Filter') + ": ")
             label_note.set_halign(Gtk.Align.START)
-            label_note.set_size_request(120, -1)
-            label_note.set_padding(5, 0)
+            label_note.set_size_request(150, -1)
             label_note.set_use_underline(True)
             label_note.set_mnemonic_widget(self.filter_note)
             box = Gtk.Box()
@@ -313,20 +308,18 @@ class WriterOptionBox:
             button.set_tooltip_text(_("Click to see preview after note filter"))
         elif proxy_name == "privacy":
             # Frame 3:
-            label = Gtk.Label(label=_("Privacy Filter") + colon)
+            label = Gtk.Label(label=_("Privacy Filter") + ":")
             label.set_halign(Gtk.Align.START)
-            label.set_size_request(120, -1)
-            label.set_padding(5, 0)
+            label.set_size_request(150, -1)
             box = Gtk.Box()
             box.pack_start(label, False, True, 0)
             box.add(self.private_check)
             button.set_tooltip_text(_("Click to see preview after privacy filter"))
         elif proxy_name == "living":
             # Frame 4:
-            label = Gtk.Label(label=_("Living Filter") + colon)
+            label = Gtk.Label(label=_("Living Filter") + ":")
             label.set_halign(Gtk.Align.START)
-            label.set_size_request(120, -1)
-            label.set_padding(5, 0)
+            label.set_size_request(150, -1)
             box = Gtk.Box()
             box.pack_start(label, False, True, 0)
             self.restrict_option = Gtk.ComboBox()
@@ -335,10 +328,9 @@ class WriterOptionBox:
         elif proxy_name == "reference":
             # Frame 5:
             self.reference_filter = Gtk.ComboBox()
-            label = Gtk.Label(label=_('Reference Filter') + colon)
+            label = Gtk.Label(label=_('Reference Filter') + ": ")
             label.set_halign(Gtk.Align.START)
-            label.set_size_request(120, -1)
-            label.set_padding(5, 0)
+            label.set_size_request(150, -1)
             box = Gtk.Box()
             box.pack_start(label, False, True, 0)
             box.pack_start(self.reference_filter, True, True, 0)
@@ -666,7 +658,7 @@ class WriterOptionBox:
         else:
             the_filter = GenericFilterFactory(namespace)()
         if the_filter:
-            EditFilter(namespace, self.dbstate, self.uistate, self.track,
+            EditFilter(namespace, self.dbstate, self.uistate, [],
                        the_filter, filterdb,
                        lambda : self.edit_filter_save(filterdb, namespace))
         else: # can't edit this filter

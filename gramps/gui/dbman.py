@@ -36,7 +36,6 @@ import copy
 import subprocess
 from urllib.parse import urlparse
 import logging
-import re
 
 #-------------------------------------------------------------------------
 #
@@ -63,7 +62,6 @@ from .ddtargets import DdTargets
 from gramps.gen.recentfiles import rename_filename, remove_filename
 from .glade import Glade
 from gramps.gen.db.exceptions import DbException
-from gramps.gen.db.utils import make_database, open_database
 from gramps.gen.config import config
 from gramps.gui.listmodel import ListModel
 from gramps.gen.constfunc import win
@@ -113,13 +111,15 @@ RCS_BUTTON = {True : _('_Extract'), False : _('_Archive')}
 
 class Information(ManagedWindow):
 
-    def __init__(self, uistate, data, track):
-        super().__init__(uistate, track, self, modal=True)
+    def __init__(self, uistate, data, parent):
+        super().__init__(uistate, [], self)
         self.window = Gtk.Dialog()
         self.set_window(self.window, None, _("Database Information"))
-        self.setup_configs('interface.information', 600, 400)
+        self.window.set_modal(True)
         self.ok = self.window.add_button(_('_OK'), Gtk.ResponseType.OK)
         self.ok.connect('clicked', self.on_ok_clicked)
+        self.window.set_position(Gtk.WindowPosition.CENTER)
+        self.window.set_default_size(600, 400)
         s = Gtk.ScrolledWindow()
         titles = [
             (_('Setting'), 0, 150),
@@ -131,6 +131,8 @@ class Information(ManagedWindow):
             model.add((key, str(value),), key)
         s.add(treeview)
         self.window.vbox.pack_start(s, True, True, 0)
+        if parent:
+            self.window.set_transient_for(parent)
         self.show()
 
     def on_ok_clicked(self, obj):
@@ -139,8 +141,7 @@ class Information(ManagedWindow):
     def build_menu_names(self, obj):
         return (_('Database Information'), None)
 
-
-class DbManager(CLIDbManager, ManagedWindow):
+class DbManager(CLIDbManager):
     """
     Database Manager. Opens a database manager window that allows users to
     create, rename, delete and open databases.
@@ -160,18 +161,18 @@ class DbManager(CLIDbManager, ManagedWindow):
         Create the top level window from the glade description, and extracts
         the GTK widgets that are needed.
         """
-        window_id = self
-        ManagedWindow.__init__(self, uistate, [], window_id, modal=True)
+        self.uistate = uistate
         CLIDbManager.__init__(self, dbstate)
         self.glade = Glade(toplevel='dbmanager')
         self.top = self.glade.toplevel
-        self.set_window(self.top, None, None)
-        self.setup_configs('interface.dbmanager', 780, 350)
         self.viewmanager = viewmanager
+        self.parent = parent
+        if parent:
+            self.top.set_transient_for(parent)
 
-        for attr in ['connect_btn', 'cancel_btn', 'new_btn', 'remove_btn',
-                     'info_btn', 'dblist', 'rename_btn', 'convert_btn',
-                     'repair_btn', 'rcs_btn', 'msg', 'close_btn']:
+        for attr in ['connect', 'cancel', 'new', 'remove', 'info',
+                     'dblist', 'rename', 'convert', 'repair', 'rcs',
+                     'msg', 'close']:
             setattr(self, attr, self.glade.get_object(attr))
 
         self.model = None
@@ -189,16 +190,9 @@ class DbManager(CLIDbManager, ManagedWindow):
         self.before_change = ""
         self.after_change = ""
         self._select_default()
-        self.user = User(error=ErrorDialog, parent=parent,
+        self.user = User(error=ErrorDialog,
                          callback=self.uistate.pulse_progressbar,
                          uistate=self.uistate)
-
-    def build_menu_names(self, obj):
-        ''' This window can have children, but they are modal so no submenu
-        is visible'''
-        submenu_label = " "
-        menu_label = _('Family Trees')
-        return (menu_label, submenu_label)
 
     def _select_default(self):
         """
@@ -222,13 +216,13 @@ class DbManager(CLIDbManager, ManagedWindow):
                    ddtarget.app_id)
         self.top.drag_dest_set_target_list(tglist)
 
-        self.remove_btn.connect('clicked', self.__remove_db)
-        self.new_btn.connect('clicked', self.__new_db)
-        self.rename_btn.connect('clicked', self.__rename_db)
-        self.convert_btn.connect('clicked', self.__convert_db_ask)
-        self.info_btn.connect('clicked', self.__info_db)
-        self.close_btn.connect('clicked', self.__close_db)
-        self.repair_btn.connect('clicked', self.__repair_db)
+        self.remove.connect('clicked', self.__remove_db)
+        self.new.connect('clicked', self.__new_db)
+        self.rename.connect('clicked', self.__rename_db)
+        self.convert.connect('clicked', self.__convert_db_ask)
+        self.info.connect('clicked', self.__info_db)
+        self.close.connect('clicked', self.__close_db)
+        self.repair.connect('clicked', self.__repair_db)
         self.selection.connect('changed', self.__selection_changed)
         self.dblist.connect('button-press-event', self.__button_press)
         self.dblist.connect('key-press-event', self.__key_press)
@@ -236,10 +230,10 @@ class DbManager(CLIDbManager, ManagedWindow):
         self.top.connect('drag_motion', drag_motion)
         self.top.connect('drag_drop', drop_cb)
         self.define_help_button(
-            self.glade.get_object('help_btn'), WIKI_HELP_PAGE, WIKI_HELP_SEC)
+            self.glade.get_object('help'), WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
         if _RCS_FOUND:
-            self.rcs_btn.connect('clicked', self.__rcs)
+            self.rcs.connect('clicked', self.__rcs)
 
     def define_help_button(self, button, webpage='', section=''):
         button.connect('clicked', lambda x: display_help(webpage, section))
@@ -251,7 +245,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         to make sure that an item was selected first.
         """
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
-            if self.connect_btn.get_property('sensitive'):
+            if self.connect.get_property('sensitive'):
                 self.top.response(Gtk.ResponseType.OK)
                 return True
         return False
@@ -262,7 +256,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         like double click instead
         """
         if event.keyval in (_RETURN, _KP_ENTER):
-            if self.connect_btn.get_property('sensitive'):
+            if self.connect.get_property('sensitive'):
                 self.top.response(Gtk.ResponseType.OK)
                 return True
         return False
@@ -286,18 +280,18 @@ class DbManager(CLIDbManager, ManagedWindow):
         store, node = selection.get_selected()
 
         if not __debug__:
-            self.convert_btn.set_visible(False)
+            self.convert.set_visible(False)
 
         # if nothing is selected
         if not node:
-            self.connect_btn.set_sensitive(False)
-            self.rename_btn.set_sensitive(False)
-            self.convert_btn.set_sensitive(False)
-            self.info_btn.set_sensitive(False)
-            self.close_btn.set_sensitive(False)
-            self.rcs_btn.set_sensitive(False)
-            self.repair_btn.set_sensitive(False)
-            self.remove_btn.set_sensitive(False)
+            self.connect.set_sensitive(False)
+            self.rename.set_sensitive(False)
+            self.convert.set_sensitive(False)
+            self.info.set_sensitive(False)
+            self.close.set_sensitive(False)
+            self.rcs.set_sensitive(False)
+            self.repair.set_sensitive(False)
+            self.remove.set_sensitive(False)
             return
 
         path = self.model.get_path(node)
@@ -305,40 +299,40 @@ class DbManager(CLIDbManager, ManagedWindow):
             return
 
         is_rev = len(path.get_indices()) > 1
-        self.rcs_btn.set_label(RCS_BUTTON[is_rev])
+        self.rcs.set_label(RCS_BUTTON[is_rev])
 
         if store.get_value(node, ICON_COL) == 'document-open':
-            self.close_btn.set_sensitive(True)
-            self.convert_btn.set_sensitive(False)
-            self.connect_btn.set_sensitive(False)
+            self.close.set_sensitive(True)
+            self.convert.set_sensitive(False)
+            self.connect.set_sensitive(False)
             if _RCS_FOUND:
-                self.rcs_btn.set_sensitive(True)
+                self.rcs.set_sensitive(True)
         else:
-            self.close_btn.set_sensitive(False)
+            self.close.set_sensitive(False)
             backend_name = self.get_backend_name_from_dbid("bsddb")
             if (store.get_value(node, ICON_COL) in [None, ""] and
                     store.get_value(node,
                                     BACKEND_COL).startswith(backend_name)):
-                self.convert_btn.set_sensitive(True)
+                self.convert.set_sensitive(True)
             else:
-                self.convert_btn.set_sensitive(False)
-            self.connect_btn.set_sensitive(not is_rev)
+                self.convert.set_sensitive(False)
+            self.connect.set_sensitive(not is_rev)
             if _RCS_FOUND and is_rev:
-                self.rcs_btn.set_sensitive(True)
+                self.rcs.set_sensitive(True)
             else:
-                self.rcs_btn.set_sensitive(False)
+                self.rcs.set_sensitive(False)
 
         if store.get_value(node, ICON_COL) == 'dialog-error':
             path = store.get_value(node, PATH_COL)
             backup = os.path.join(path, "person.gbkp")
-            self.repair_btn.set_sensitive(os.path.isfile(backup))
+            self.repair.set_sensitive(os.path.isfile(backup))
         else:
-            self.repair_btn.set_sensitive(False)
+            self.repair.set_sensitive(False)
 
-        self.rename_btn.set_sensitive(True)
-        self.info_btn.set_sensitive(True)
-        self.remove_btn.set_sensitive(True)
-        self.new_btn.set_sensitive(True)
+        self.rename.set_sensitive(True)
+        self.info.set_sensitive(True)
+        self.remove.set_sensitive(True)
+        self.new.set_sensitive(True)
 
     def __build_interface(self):
         """
@@ -361,7 +355,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         # Put some help on the buttons:
         dbid = config.get('database.backend')
         backend_type = self.get_backend_name_from_dbid(dbid)
-        self.new_btn.set_tooltip_text(backend_type)
+        self.new.set_tooltip_text(backend_type)
 
         # build the database name column
         render = Gtk.CellRendererText()
@@ -463,7 +457,6 @@ class DbManager(CLIDbManager, ManagedWindow):
         Runs the dialog, returning None if nothing has been chosen,
         or the path and name if something has been selected
         """
-        self.show()
         while True:
             value = self.top.run()
             if value == Gtk.ResponseType.OK:
@@ -476,15 +469,15 @@ class DbManager(CLIDbManager, ManagedWindow):
                 if len(store.get_path(node).get_indices()) > 1:
                     continue
                 if node:
+                    self.top.destroy()
                     del self.selection
                     del self.name_renderer
-                    self.close()
                     path = store.get_value(node, PATH_COL)
                     return (path, store.get_value(node, NAME_COL))
             else:
+                self.top.destroy()
                 del self.selection
                 del self.name_renderer
-                self.close()
                 return None
 
     def __ask_to_break_lock(self, store, node):
@@ -533,14 +526,14 @@ class DbManager(CLIDbManager, ManagedWindow):
         the action of renaming. Hack around the fact that clicking button
         sends a 'editing-canceled' signal loosing the new name
         """
-        self.connect_btn.set_sensitive(False)
-        self.rename_btn.set_sensitive(False)
-        self.convert_btn.set_sensitive(False)
-        self.info_btn.set_sensitive(False)
-        self.rcs_btn.set_sensitive(False)
-        self.repair_btn.set_sensitive(False)
-        self.remove_btn.set_sensitive(False)
-        self.new_btn.set_sensitive(False)
+        self.connect.set_sensitive(False)
+        self.rename.set_sensitive(False)
+        self.convert.set_sensitive(False)
+        self.info.set_sensitive(False)
+        self.rcs.set_sensitive(False)
+        self.repair.set_sensitive(False)
+        self.remove.set_sensitive(False)
+        self.new.set_sensitive(False)
 
     def __change_name(self, renderer_sel, path, new_text):
         """
@@ -550,8 +543,6 @@ class DbManager(CLIDbManager, ManagedWindow):
         If the new string is empty, do nothing. Otherwise, renaming the
         database is simply changing the contents of the name file.
         """
-        # kill special characters so can use as file name in backup.
-        new_text = re.sub(r"[':<>|,;=\"\[\]\.\+\*\/\?\\]", "_", new_text)
         #path is a string, convert to TreePath first
         path = Gtk.TreePath(path=path)
         if len(new_text) > 0:
@@ -661,7 +652,7 @@ class DbManager(CLIDbManager, ManagedWindow):
 
         self.__start_cursor(_("Extracting archive..."))
 
-        dbase = make_database("bsddb")
+        dbase = self.dbstate.make_database("bsddb")
         dbase.load(new_path)
 
         self.__start_cursor(_("Importing archive..."))
@@ -777,7 +768,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         Actually convert the db from BSDDB to DB-API.
         """
         try:
-            db = open_database(name)
+            db = self.dbstate.open_database(name)
         except:
             ErrorDialog(_("Opening the '%s' database") % name,
                         _("An attempt to convert the database failed. "
@@ -807,7 +798,7 @@ class DbManager(CLIDbManager, ManagedWindow):
             new_text = "%s %s" % (name, _("(Converted #%d)") % count)
         new_path, newname = self._create_new_db(new_text, edit_entry=False)
         ## Create a new database of correct type:
-        dbase = make_database("dbapi")
+        dbase = self.dbstate.make_database("dbapi")
         dbase.write_version(new_path)
         dbase.load(new_path)
         ## import from XML
@@ -862,7 +853,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         dirname = store[node][1]
         # if this is open, get info from there, otherwise, temp open?
         summary = self.get_dbdir_summary(dirname, name)
-        Information(self.uistate, summary, track=self.track)
+        Information(self.uistate, summary, parent=self.top)
 
     def __repair_db(self, obj):
         """
@@ -923,10 +914,10 @@ class DbManager(CLIDbManager, ManagedWindow):
                 fname = os.path.join(dirname, filename)
                 os.unlink(fname)
 
-        newdb = make_database("bsddb")
+        newdb = self.dbstate.make_database("bsddb")
         newdb.write_version(dirname)
 
-        dbase = make_database("bsddb")
+        dbase = self.dbstate.make_database("bsddb")
         dbase.set_save_path(dirname)
         dbase.load(dirname, None)
 
@@ -968,7 +959,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         new database. Catch OSError and IOError and display a warning
         message.
         """
-        self.new_btn.set_sensitive(False)
+        self.new.set_sensitive(False)
         dbid = config.get('database.backend')
         if dbid:
             try:
@@ -977,7 +968,7 @@ class DbManager(CLIDbManager, ManagedWindow):
                 ErrorDialog(_("Could not create Family Tree"),
                             str(msg),
                             parent=self.top)
-        self.new_btn.set_sensitive(True)
+        self.new.set_sensitive(True)
 
     def get_backend_name_from_dbid(self, dbid):
         pmgr = GuiPluginManager.get_instance()

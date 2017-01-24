@@ -174,11 +174,13 @@ class EditNote(EditPrimary):
         and overridden here.
 
         """
+        self.width_key = 'interface.note-width'
+        self.height_key = 'interface.note-height'
+
         self.top = Glade()
 
         win = self.top.toplevel
         self.set_window(win, None, self.get_menu_title())
-        self.setup_configs('interface.note', 700, 500)
 
 
         vboxnote =  self.top.get_object('vbox131')
@@ -300,11 +302,6 @@ class EditNote(EditPrimary):
             text = self.texteditor.get_text()
             self.obj.set_styledtext(text)
             _LOG.debug(str(text))
-
-    def close(self, *obj):
-        """Called when cancel button clicked."""
-        self.update_note()
-        super().close()
 
     def save(self, *obj):
         """Save the data."""

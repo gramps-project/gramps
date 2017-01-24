@@ -40,7 +40,6 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.const import URL_MANUAL_PAGE
-from gramps.gen.errors import WindowActiveError
 from gramps.gui.plug import tool
 from gramps.gen.plug.report import utils
 from gramps.gui.editors import EditPerson, EditFamily
@@ -94,7 +93,6 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
         window = topDialog.toplevel
         title = topDialog.get_object("title")
         self.set_window(window, title, self.title)
-        self.setup_configs('interface.notrelated', 450, 400)
 
         self.tagcombo = topDialog.get_object("tagcombo")
         tagmodel = Gtk.ListStore(str)
@@ -110,7 +108,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
 
         # start the progress indicator
         self.progress = ProgressMeter(self.title, _('Starting'),
-                                      parent=self.uistate.window)
+                                      parent=self.window)
 
         # setup the columns
         self.model = Gtk.TreeStore(

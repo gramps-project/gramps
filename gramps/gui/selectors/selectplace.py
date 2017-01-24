@@ -57,7 +57,8 @@ class SelectPlace(BaseSelector):
         """
         Perform local initialisation for this class
         """
-        self.setup_configs('interface.place-sel', 600, 450)
+        self.width_key = 'interface.place-sel-width'
+        self.height_key = 'interface.place-sel-height'
 
     def get_window_title(self):
         return _("Select Place")

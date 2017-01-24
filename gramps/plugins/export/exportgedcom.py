@@ -122,12 +122,6 @@ QUALITY_MAP = {
     Citation.CONF_VERY_LOW  : "0",
     }
 
-PEDIGREE_TYPES = {
-    ChildRefType.BIRTH:     'birth',
-    ChildRefType.STEPCHILD: 'Step',
-    ChildRefType.ADOPTED:   'Adopted',
-    ChildRefType.FOSTER:    'Foster',
-    }
 
 #-------------------------------------------------------------------------
 #
@@ -716,29 +710,6 @@ class GedcomWriter(UpdateCallback):
         for family in family_list:
             if family:
                 self._writeln(1, 'FAMC', '@%s@' % family.get_gramps_id())
-                for child in family.get_child_ref_list():
-                    if child.get_reference_handle() == person.get_handle():
-                        if child.frel == ChildRefType.ADOPTED and \
-                                child.mrel == ChildRefType.ADOPTED:
-                            self._writeln(2, 'PEDI adopted')
-                        elif child.frel == ChildRefType.BIRTH and \
-                                child.mrel == ChildRefType.BIRTH:
-                            self._writeln(2, 'PEDI birth')
-                        elif child.frel == ChildRefType.STEPCHILD and \
-                                child.mrel == ChildRefType.STEPCHILD:
-                            self._writeln(2, 'PEDI stepchild')
-                        elif child.frel == ChildRefType.FOSTER and \
-                                child.mrel == ChildRefType.FOSTER:
-                            self._writeln(2, 'PEDI foster')
-                        elif child.frel == child.mrel:
-                            self._writeln(2, 'PEDI Unknown')
-                        else:
-                            self._writeln(2, '_FREL %s' %
-                                          PEDIGREE_TYPES.get(child.frel.value,
-                                                             "Unknown"))
-                            self._writeln(2, '_MREL %s' %
-                                          PEDIGREE_TYPES.get(child.mrel.value,
-                                                             "Unknown"))
 
     def _parent_families(self, person):
         """
@@ -784,7 +755,7 @@ class GedcomWriter(UpdateCallback):
             elif url.get_type() == _('Phone'):
                 self._writeln(level, 'PHON', url.get_path())
             elif url.get_type() == _('FAX'):
-                self._writeln(level, 'FAX', url.get_path())
+                self._writeln(level, 'PHON', url.get_path())
             else:
                 self._writeln(level, 'OBJE')
                 self._writeln(level+1, 'FORM', 'URL')
@@ -1112,7 +1083,7 @@ class GedcomWriter(UpdateCallback):
             +1 <<NOTE_STRUCTURE>>          # not used
         """
         self._writeln(level, 'CHAN')
-        time_val = time.gmtime(timeval)
+        time_val = time.localtime(timeval)
         self._writeln(level+1, 'DATE', '%d %s %d' % (
                 time_val[2], libgedcom.MONTH[time_val[1]], time_val[0]))
         self._writeln(level+2, 'TIME', '%02d:%02d:%02d' % (

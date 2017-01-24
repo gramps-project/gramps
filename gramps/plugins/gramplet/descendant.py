@@ -105,19 +105,17 @@ class Descendant(Gramplet):
         (model, iter_) = treeview.get_selection().get_selected()
         sensitivity = 1 if iter_ else 0
         menu = Gtk.Menu()
-        menu.set_reserve_toggle_size(False)
+        menu.set_title(_('Descendent Menu'))
         entries = [
             (_("Edit"), lambda obj: self.cb_double_click(treeview),
              sensitivity),
             (None, None, 0),
             (_("Copy all"), lambda obj: self.on_copy_all(treeview), 1),
         ]
-        for title, callback, sensitivity in entries:
-            item = Gtk.MenuItem(label=title)
+        for stock_id, callback, sensitivity in entries:
+            item = Gtk.ImageMenuItem(stock_id)
             if callback:
                 item.connect("activate", callback)
-            else:
-                item = Gtk.SeparatorMenuItem()
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)

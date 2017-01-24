@@ -179,7 +179,7 @@ def get_quick_report_list(qv_category=None):
     return names
 
 def run_quick_report_by_name(dbstate, uistate, report_name, handle,
-                             container=None, track=[], **kwargs):
+                             container=None, **kwargs):
     """
     Run a QuickView by name.
     **kwargs provides a way of passing special quick views additional
@@ -193,8 +193,7 @@ def run_quick_report_by_name(dbstate, uistate, report_name, handle,
             break
     if report:
         return run_report(dbstate, uistate, report.category,
-                          handle, report, container=container,
-                          track=track, **kwargs)
+                          handle, report, container=container, **kwargs)
     else:
         raise AttributeError("No such quick report '%s'" % report_name)
 
@@ -227,7 +226,7 @@ def run_quick_report_by_name_direct(report_name, database, document, handle):
         raise AttributeError("No such quick report id = '%s'" % report_name)
 
 def run_report(dbstate, uistate, category, handle, pdata, container=None,
-               track=[], **kwargs):
+               **kwargs):
         """
         Run a Quick Report.
         Optionally container can be passed, rather than putting the report
@@ -242,7 +241,7 @@ def run_report(dbstate, uistate, category, handle, pdata, container=None,
             return
         func =  eval('mod.' +  pdata.runfunc)
         if handle:
-            d = TextBufDoc(make_basic_stylesheet(), None, track=track)
+            d = TextBufDoc(make_basic_stylesheet(), None)
             d.dbstate = dbstate
             d.uistate = uistate
             if isinstance(handle, str): # a handle

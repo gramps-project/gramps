@@ -126,10 +126,7 @@ class GrampsXmlWriter(UpdateCallback):
         """
         if filename == '-':
             import sys
-            try:
-                g = sys.stdout.buffer
-            except:
-                g = sys.stdout
+            g = sys.stdout.buffer
             self.compress = False
         else:
             base = os.path.dirname(filename)

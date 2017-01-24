@@ -53,11 +53,10 @@ class EditPlaceRef(EditReference):
                                update)
 
     def _local_init(self):
-
+        self.width_key = 'interface.place-ref-width'
+        self.height_key = 'interface.place-ref-height'
         self.top = Glade()
         self.set_window(self.top.toplevel, None, _('Place Reference Editor'))
-        self.setup_configs('interface.place-ref', 600, 450)
-
         self.define_warn_box(self.top.get_object("warning"))
         self.define_expander(self.top.get_object("expander"))
         #self.place_name_label = self.top.get_object('place_name_label')
@@ -166,6 +165,26 @@ class EditPlaceRef(EditReference):
         self.latitude.connect("validate", self._validate_coordinate, "lat")
         #force validation now with initial entry
         self.top.get_object("lat_entry").validate(force=True)
+
+        self.latlon = MonitoredEntry(
+            self.top.get_object("latlon_entry"),
+            self.set_latlongitude, self.get_latlongitude,
+            self.db.readonly)
+
+    def set_latlongitude(self, value):
+        try:
+            coma = value.index(',')
+            self.longitude.set_text(value[coma+1:])
+            self.latitude.set_text(value[:coma])
+            self.top.get_object("lat_entry").validate(force=True)
+            self.top.get_object("lon_entry").validate(force=True)
+            self.obj.set_latitude(self.latitude.get_value())
+            self.obj.set_longitude(self.longitude.get_value())
+        except:
+            pass
+
+    def get_latlongitude(self):
+        return ""
 
     def _validate_coordinate(self, widget, text, typedeg):
         if (typedeg == 'lat') and not conv_lat_lon(text, "0", "ISO-D"):

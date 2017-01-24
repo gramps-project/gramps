@@ -32,8 +32,6 @@ import os
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
-import gi
-gi.require_version('GExiv2', '0.10')
 from gi.repository import GExiv2
 
 #-------------------------------------------------------------------------

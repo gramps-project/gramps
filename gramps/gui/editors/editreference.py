@@ -29,7 +29,7 @@ from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
-# Gramps modules
+# gramps modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale

@@ -173,7 +173,7 @@ class Check(tool.BatchTool):
         # We only do this for the dbdir backend.
         if self.db.__class__.__name__ == 'DbBsddb':
             if cross_table_duplicates(self.db, uistate):
-                CheckReport(uistate, _(
+                Report(uistate, _(
                     "Your Family Tree contains cross table duplicate handles."
                     "\n "
                     "This is bad and can be fixed by making a backup of your\n"
@@ -211,7 +211,6 @@ class Check(tool.BatchTool):
 
                 total = checker.family_errors()
 
-            checker.fix_duplicated_grampsid()
             checker.check_events()
             checker.check_person_references()
             checker.check_family_references()
@@ -229,7 +228,7 @@ class Check(tool.BatchTool):
 
         errs = checker.build_report(uistate)
         if errs:
-            CheckReport(uistate, checker.text.getvalue(), cli)
+            Report(uistate, checker.text.getvalue(), cli)
 
 
 # -------------------------------------------------------------------------
@@ -272,7 +271,6 @@ class CheckIntegrity:
         self.empty_objects = defaultdict(list)
         self.replaced_sourceref = []
         self.place_errors = 0
-        self.duplicated_gramps_ids = 0
         self.text = StringIO()
         self.last_img_dir = config.get('behavior.addmedia-image-dir')
         self.progress = ProgressMeter(_('Checking Database'), '',
@@ -1877,12 +1875,7 @@ class CheckIntegrity:
         total = (self.db.get_number_of_people() +
                  self.db.get_number_of_families() +
                  self.db.get_number_of_media() +
-                 self.db.get_number_of_notes() +
-                 self.db.get_number_of_events() +
-                 self.db.get_number_of_citations() +
-                 self.db.get_number_of_sources() +
-                 self.db.get_number_of_places() +
-                 self.db.get_number_of_repositories())
+                 self.db.get_number_of_notes())
 
         self.progress.set_pass(_('Looking for tag reference problems'),
                                total)
@@ -1944,76 +1937,6 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_tag_references.add(item[1])
 
-        for bhandle in self.db.get_event_handles():
-            self.progress.step()
-            event = self.db.get_event_from_handle(bhandle)
-            handle_list = event.get_referenced_handles_recursively()
-            for item in handle_list:
-                if item[0] == 'Tag':
-                    if item[1] is None:
-                        new_handle = create_id()
-                        event.replace_tag_references(None, new_handle)
-                        self.db.commit_event(event, self.trans)
-                        self.invalid_tag_references.add(new_handle)
-                    elif item[1] not in known_handles:
-                        self.invalid_tag_references.add(item[1])
-
-        for bhandle in self.db.get_citation_handles():
-            self.progress.step()
-            citation = self.db.get_citation_from_handle(bhandle)
-            handle_list = citation.get_referenced_handles_recursively()
-            for item in handle_list:
-                if item[0] == 'Tag':
-                    if item[1] is None:
-                        new_handle = create_id()
-                        citation.replace_tag_references(None, new_handle)
-                        self.db.commit_citation(citation, self.trans)
-                        self.invalid_tag_references.add(new_handle)
-                    elif item[1] not in known_handles:
-                        self.invalid_tag_references.add(item[1])
-
-        for bhandle in self.db.get_source_handles():
-            self.progress.step()
-            source = self.db.get_source_from_handle(bhandle)
-            handle_list = source.get_referenced_handles_recursively()
-            for item in handle_list:
-                if item[0] == 'Tag':
-                    if item[1] is None:
-                        new_handle = create_id()
-                        source.replace_tag_references(None, new_handle)
-                        self.db.commit_source(source, self.trans)
-                        self.invalid_tag_references.add(new_handle)
-                    elif item[1] not in known_handles:
-                        self.invalid_tag_references.add(item[1])
-
-        for bhandle in self.db.get_place_handles():
-            self.progress.step()
-            place = self.db.get_place_from_handle(bhandle)
-            handle_list = place.get_referenced_handles_recursively()
-            for item in handle_list:
-                if item[0] == 'Tag':
-                    if item[1] is None:
-                        new_handle = create_id()
-                        place.replace_tag_references(None, new_handle)
-                        self.db.commit_place(place, self.trans)
-                        self.invalid_tag_references.add(new_handle)
-                    elif item[1] not in known_handles:
-                        self.invalid_tag_references.add(item[1])
-
-        for bhandle in self.db.get_repository_handles():
-            self.progress.step()
-            repository = self.db.get_repository_from_handle(bhandle)
-            handle_list = repository.get_referenced_handles_recursively()
-            for item in handle_list:
-                if item[0] == 'Tag':
-                    if item[1] is None:
-                        new_handle = create_id()
-                        repository.replace_tag_references(None, new_handle)
-                        self.db.commit_repository(repository, self.trans)
-                        self.invalid_tag_references.add(new_handle)
-                    elif item[1] not in known_handles:
-                        self.invalid_tag_references.add(item[1])
-
         for bad_handle in self.invalid_tag_references:
             make_unknown(bad_handle, None, self.class_tag,
                          self.commit_tag, self.trans)
@@ -2037,7 +1960,6 @@ class CheckIntegrity:
             self.progress.step()
             source = self.db.get_source_from_handle(handle)
             new_media_ref_list = []
-            citation_changed = False
             for media_ref in source.get_media_list():
                 citation_list = media_ref.get_citation_list()
                 new_citation_list = []
@@ -2060,7 +1982,6 @@ class CheckIntegrity:
                         citation_handle = create_id()
                         new_citation.set_handle(citation_handle)
                         self.replaced_sourceref.append(handle)
-                        citation_changed = True
                         logging.warning('    FAIL: the source "%s" has a media'
                                         ' reference with a source citation '
                                         'which is invalid', (source.gramps_id))
@@ -2071,142 +1992,12 @@ class CheckIntegrity:
                 media_ref.set_citation_list(new_citation_list)
                 new_media_ref_list.append(media_ref)
 
-            if citation_changed:
-                source.set_media_list(new_media_ref_list)
-                self.db.commit_source(source, self.trans)
+            source.set_media_list(new_media_ref_list)
+            self.db.commit_source(source, self.trans)
 
         if len(self.replaced_sourceref) > 0:
             logging.info('    OK: no broken source citations on mediarefs '
                          'found')
-
-    def fix_duplicated_grampsid(self):
-        """
-        This searches for duplicated Gramps ID within each of the major
-        classes.  It does not check across classes.  If duplicates are
-        found, a new Gramps ID is assigned.
-        """
-        total = (
-            self.db.get_number_of_citations() +
-            self.db.get_number_of_events() +
-            self.db.get_number_of_families() +
-            self.db.get_number_of_media() +
-            self.db.get_number_of_notes() +
-            self.db.get_number_of_people() +
-            self.db.get_number_of_places() +
-            self.db.get_number_of_repositories() +
-            self.db.get_number_of_sources()
-            )
-
-        self.progress.set_pass(_('Looking for Duplicated Gramps ID '
-                                 'problems'), total)
-        logging.info('Looking for Duplicated Gramps ID problems')
-        gid_list = []
-        for citation in self.db.iter_citations():
-            self.progress.step()
-            ogid = gid = citation.get_gramps_id()
-            if gid in gid_list:
-                gid = self.db.find_next_citation_gramps_id()
-                citation.set_gramps_id(gid)
-                self.db.commit_citation(citation, self.trans)
-                logging.warning('    FAIL: Duplicated Gramps ID found, '
-                                'Original: "%s" changed to: "%s"', ogid, gid)
-                self.duplicated_gramps_ids += 1
-            gid_list.append(gid)
-        gid_list = []
-        for event in self.db.iter_events():
-            self.progress.step()
-            ogid = gid = event.get_gramps_id()
-            if gid in gid_list:
-                gid = self.db.find_next_event_gramps_id()
-                event.set_gramps_id(gid)
-                self.db.commit_event(event, self.trans)
-                logging.warning('    FAIL: Duplicated Gramps ID found, '
-                                'Original: "%s" changed to: "%s"', ogid, gid)
-                self.duplicated_gramps_ids += 1
-            gid_list.append(gid)
-        gid_list = []
-        for family in self.db.iter_families():
-            self.progress.step()
-            ogid = gid = family.get_gramps_id()
-            if gid in gid_list:
-                gid = self.db.find_next_family_gramps_id()
-                family.set_gramps_id(gid)
-                self.db.commit_family(family, self.trans)
-                logging.warning('    FAIL: Duplicated Gramps ID found, '
-                                'Original: "%s" changed to: "%s"', ogid, gid)
-                self.duplicated_gramps_ids += 1
-            gid_list.append(gid)
-        gid_list = []
-        for media in self.db.iter_media():
-            self.progress.step()
-            ogid = gid = media.get_gramps_id()
-            if gid in gid_list:
-                gid = self.db.find_next_media_gramps_id()
-                media.set_gramps_id(gid)
-                self.db.commit_media(media, self.trans)
-                logging.warning('    FAIL: Duplicated Gramps ID found, '
-                                'Original: "%s" changed to: "%s"', ogid, gid)
-                self.duplicated_gramps_ids += 1
-            gid_list.append(gid)
-        gid_list = []
-        for note in self.db.iter_notes():
-            ogid = gid = note.get_gramps_id()
-            if gid in gid_list:
-                gid = self.db.find_next_note_gramps_id()
-                note.set_gramps_id(gid)
-                self.db.commit_note(note, self.trans)
-                logging.warning('    FAIL: Duplicated Gramps ID found, '
-                                'Original: "%s" changed to: "%s"', ogid, gid)
-                self.duplicated_gramps_ids += 1
-            gid_list.append(gid)
-        gid_list = []
-        for person in self.db.iter_people():
-            self.progress.step()
-            ogid = gid = person.get_gramps_id()
-            if gid in gid_list:
-                gid = self.db.find_next_person_gramps_id()
-                person.set_gramps_id(gid)
-                self.db.commit_person(person, self.trans)
-                logging.warning('    FAIL: Duplicated Gramps ID found, '
-                                'Original: "%s" changed to: "%s"', ogid, gid)
-                self.duplicated_gramps_ids += 1
-            gid_list.append(gid)
-        gid_list = []
-        for place in self.db.iter_places():
-            self.progress.step()
-            ogid = gid = place.get_gramps_id()
-            if gid in gid_list:
-                gid = self.db.find_next_place_gramps_id()
-                place.set_gramps_id(gid)
-                self.db.commit_place(place, self.trans)
-                logging.warning('    FAIL: Duplicated Gramps ID found, '
-                                'Original: "%s" changed to: "%s"', ogid, gid)
-                self.duplicated_gramps_ids += 1
-            gid_list.append(gid)
-        gid_list = []
-        for repository in self.db.iter_repositories():
-            self.progress.step()
-            ogid = gid = repository.get_gramps_id()
-            if gid in gid_list:
-                gid = self.db.find_next_repository_gramps_id()
-                repository.set_gramps_id(gid)
-                self.db.commit_repository(repository, self.trans)
-                logging.warning('    FAIL: Duplicated Gramps ID found, '
-                                'Original: "%s" changed to: "%s"', ogid, gid)
-                self.duplicated_gramps_ids += 1
-            gid_list.append(gid)
-        gid_list = []
-        for source in self.db.iter_sources():
-            self.progress.step()
-            ogid = gid = source.get_gramps_id()
-            if gid in gid_list:
-                gid = self.db.find_next_source_gramps_id()
-                source.set_gramps_id(gid)
-                self.db.commit_source(source, self.trans)
-                logging.warning('    FAIL: Duplicated Gramps ID found, '
-                                'Original: "%s" changed to: "%s"', ogid, gid)
-                self.duplicated_gramps_ids += 1
-            gid_list.append(gid)
 
     def class_person(self, handle):
         person = Person()
@@ -2316,7 +2107,6 @@ class CheckIntegrity:
         tag_references = len(self.invalid_tag_references)
         name_format = len(self.removed_name_format)
         replaced_sourcerefs = len(self.replaced_sourceref)
-        dup_gramps_ids = self.duplicated_gramps_ids
         empty_objs = sum(len(obj) for obj in self.empty_objects.values())
 
         errors = (photos + efam + blink + plink + slink + rel +
@@ -2324,7 +2114,7 @@ class CheckIntegrity:
                   person_references + family_references + place_references +
                   citation_references + repo_references + media_references +
                   note_references + tag_references + name_format + empty_objs +
-                  invalid_dates + source_references + dup_gramps_ids)
+                  invalid_dates + source_references)
 
         if errors == 0:
             if uistate:
@@ -2441,7 +2231,7 @@ class CheckIntegrity:
                 # translators: leave all/any {...} untranslated
                 ngettext("{quantity} place alternate name fixed\n",
                          "{quantity} place alternate names fixed\n",
-                         self.place_errors).format(quantity=self.place_errors)
+                         rel).format(quantity=self.place_errors)
                 )
 
         if person_references:
@@ -2628,14 +2418,6 @@ class CheckIntegrity:
                     ).format(quantity=replaced_sourcerefs)
                 )
 
-        if dup_gramps_ids > 0:
-            self.text.write(
-                # translators: leave all/any {...} untranslated
-                ngettext("{quantity} Duplicated Gramps ID fixed\n",
-                         "{quantity} Duplicated Gramps IDs fixed\n",
-                         dup_gramps_ids).format(quantity=dup_gramps_ids)
-                )
-
         if empty_objs > 0:
             self.text.write(_(
                 "%(empty_obj)d empty objects removed:\n"
@@ -2667,7 +2449,7 @@ class CheckIntegrity:
 # Display the results
 #
 # -------------------------------------------------------------------------
-class CheckReport(ManagedWindow):
+class Report(ManagedWindow):
     """ Report out the results """
     def __init__(self, uistate, text, cli=0):
         if cli:
@@ -2686,7 +2468,6 @@ class CheckReport(ManagedWindow):
                             # topdialog.get_widget("title"),
                             topdialog.get_object("title"),
                             _("Integrity Check Results"))
-            self.setup_configs('interface.checkreport', 450, 400)
 
             self.show()
 

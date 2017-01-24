@@ -183,6 +183,7 @@ class DbTest(unittest.TestCase):
         "add_source",
         "add_tag",
         "add_to_surname_list",
+        "build_surname_list",
         "commit_event",
         "commit_family",
         "commit_media",

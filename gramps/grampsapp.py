@@ -74,13 +74,10 @@ try:
         _encoding = sys.stdout.encoding
 except:
     _encoding = "UTF-8"
-try:
-    sys.stdout = open(sys.stdout.fileno(), mode='w', encoding=_encoding,
+sys.stdout = open(sys.stdout.fileno(), mode='w', encoding=_encoding,
                   buffering=1, errors='backslashreplace')
-    sys.stderr = open(sys.stderr.fileno(), mode='w', encoding=_encoding,
+sys.stderr = open(sys.stderr.fileno(), mode='w', encoding=_encoding,
                   buffering=1, errors='backslashreplace')
-except:
-    pass
 
 #-------------------------------------------------------------------------
 #
@@ -103,7 +100,7 @@ form = logging.Formatter(fmt="%(asctime)s.%(msecs).03d: %(levelname)s: "
 # Create the log handlers
 if win():
     # If running in GUI mode redirect stdout and stderr to log file
-    if not sys.stdout:
+    if hasattr(sys.stdout, "fileno") and sys.stdout.fileno() < 0:
         logfile = os.path.join(HOME_DIR,
             "Gramps%s%s.log") % (VERSION_TUPLE[0],
             VERSION_TUPLE[1])

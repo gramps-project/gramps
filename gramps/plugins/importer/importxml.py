@@ -399,10 +399,7 @@ class ImportOpenFileContextManager:
 
     def __enter__(self):
         if self.filename == '-':
-            try:
-                self.filehandle = sys.stdin.buffer
-            except:
-                self.filehandle = sys.stdin
+            self.filehandle = sys.stdin.buffer
         else:
             self.filehandle = self.open_file(self.filename)
         return self.filehandle
@@ -487,7 +484,7 @@ class GrampsParser(UpdateCallback):
         # Similarly, if the data is imported into an empty family tree, we also
         # import the Researcher; if the tree was not empty, the existing
         # Researcher is retained
-        self.import_researcher = self.db.get_total() == 0
+        self.import_researcher = self.db.is_empty()
         self.ord = None
         self.objref = None
         self.object = None

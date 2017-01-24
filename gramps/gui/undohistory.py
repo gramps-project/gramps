@@ -91,7 +91,7 @@ class UndoHistory(ManagedWindow):
                                               Gtk.ResponseType.CLOSE)
 
         self.set_window(window, None, self.title)
-        self.setup_configs('interface.undohistory', 400, 200)
+        self.window.set_size_request(400, 200)
         self.window.connect('response', self._response)
 
         scrolled_window = Gtk.ScrolledWindow()

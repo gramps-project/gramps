@@ -41,10 +41,10 @@ import gramps.gen.relationship
 _cousin_level = [ "", "", #brother/sister, fetter/kusine -- these are taken care of separately
 "tremenning", "firemenning", "femmenning",
 "seksmenning", "sjumenning", "åttemenning",
-"nimenning", "timenning", "ellevemenning",
+"nimenning", "timenning", "elvemenning",
 "tolvmenning", "tretenmenning", "fjortenmenning",
 "femtenmenning", "sekstenmenning", "syttenmenning",
-"attenmenning", "nittenmenning", "tjuemenning" ]
+"attenmenning", "nittenmenning", "tyvemenning" ]
 
 _cousin_terms = _cousin_level + ["fetter", "kusine"]
 #-------------------------------------------------------------------------

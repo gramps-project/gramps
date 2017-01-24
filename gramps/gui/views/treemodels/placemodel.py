@@ -126,8 +126,7 @@ class PlaceBaseModel:
         return value
 
     def column_name(self, data):
-        # need for spacing on the french translation
-        return _(',').join([data[6][0]] + [name[0] for name in data[7]])
+        return data[6][0]
 
     def column_longitude(self, data):
         if not data[3]:

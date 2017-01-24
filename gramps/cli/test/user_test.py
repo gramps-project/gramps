@@ -23,6 +23,7 @@
 
 import unittest
 from .. import user
+from ...gen.test.user_test import TestUser
 import sys
 
 try:
@@ -36,12 +37,6 @@ try:
 except:
     MOCKING = False
     print ("Mocking disabled", sys.exc_info()[0:2])
-
-class TestUser:
-    TITLE = "Testing prompt"
-    MSG = "Choices are hard. Nevertheless, please choose!"
-    ACCEPT = "To be"
-    REJECT = "Not to be"
 
 class TestUser_prompt(unittest.TestCase):
     def setUp(self):

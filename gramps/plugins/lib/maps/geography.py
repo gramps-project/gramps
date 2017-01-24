@@ -451,7 +451,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         import shutil
 
         path = "%s%c%s" % (config.get('geography.path'), os.sep, the_map)
-        shutil.rmtree(path, ignore_errors=True)
+        shutil.rmtree(path)
 
     def add_specific_menu(self, menu, event, lat, lon):
         """

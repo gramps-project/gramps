@@ -49,8 +49,7 @@ class User(user.User):
     This class provides a means to interact with the user via CLI.
     It implements the interface in :class:`.gen.user.User`
     """
-    def __init__(self, callback=None, error=None,
-                 auto_accept=False, quiet=False,
+    def __init__(self, callback=None, error=None, auto_accept=False, quiet=False,
                  uistate=None, dbstate=None):
         """
         Init.
@@ -146,14 +145,14 @@ class User(user.User):
                 m = message,
                 y = accept_text,
                 n = reject_text)
-        print (text, file = self._fileout) # TODO: python 3.3 add flush=True
+        print (text, file = self._fileout) # TODO python3 add flush=True
         try:
             reply = self._input()
         except EOFError:
             reply = ""
-        ### Turn response into True/False:
+        ### Trun response into True/False:
         if reply == "":
-            return default == accept_label
+            return default
         elif reply == accept_label:
             return True
         else:
