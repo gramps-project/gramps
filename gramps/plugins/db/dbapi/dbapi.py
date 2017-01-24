@@ -128,6 +128,8 @@ class DBAPI(DbGeneric):
         """
         Create and update schema.
         """
+        self.dbapi.begin()
+
         # make sure schema is up to date:
         self.dbapi.execute('CREATE TABLE person '
                            '('
@@ -261,6 +263,7 @@ class DBAPI(DbGeneric):
         self.dbapi.execute('CREATE INDEX reference_obj_handle '
                            'ON reference(obj_handle)')
 
+        self.dbapi.commit()
 
     def _close(self):
         self.dbapi.close()

@@ -207,7 +207,7 @@ refitems = [(CATEGORY_QR_PERSON, 'person', _("Person")),
             (CATEGORY_QR_MEDIA, 'media', _("Media")),
             (CATEGORY_QR_NOTE, 'note', _("Note")),
             (CATEGORY_QR_CITATION, 'citation', _("Citation")),
-            (CATEGORY_QR_SOURCE_OR_CITATION, 'source or citation',
+            (CATEGORY_QR_SOURCE_OR_CITATION, 'source_or_citation',
                     _("Source or Citation"))
             ]
 

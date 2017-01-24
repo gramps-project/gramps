@@ -71,33 +71,6 @@ class Surname(SecondaryObject):
         return (self.surname, self.prefix, self.primary,
                 self.origintype.serialize(), self.connector)
 
-    def to_struct(self):
-        """
-        Convert the data held in this object to a structure (eg,
-        struct) that represents all the data elements.
-
-        This method is used to recursively convert the object into a
-        self-documenting form that can easily be used for various
-        purposes, including diffs and queries.
-
-        These structures may be primitive Python types (string,
-        integer, boolean, etc.) or complex Python types (lists,
-        tuples, or dicts). If the return type is a dict, then the keys
-        of the dict match the fieldname of the object. If the return
-        struct (or value of a dict key) is a list, then it is a list
-        of structs. Otherwise, the struct is just the value of the
-        attribute.
-
-        :returns: Returns a struct containing the data of the object.
-        :rtype: dict
-        """
-        return {"_class": "Surname",
-                "surname": self.surname,
-                "prefix": self.prefix,
-                "primary": self.primary,
-                "origintype": self.origintype.to_struct(),
-                "connector": self.connector}
-
     @classmethod
     def get_schema(cls):
         return {
@@ -118,20 +91,6 @@ class Surname(SecondaryObject):
             "origintype": _("Origin type"),
             "connector": _("Connector")
         }
-
-    @classmethod
-    def from_struct(cls, struct):
-        """
-        Given a struct data representation, return a serialized object.
-
-        :returns: Returns a serialized object
-        """
-        default = Surname()
-        return (struct.get("surname", default.surname),
-                struct.get("prefix", default.prefix),
-                struct.get("primary", default.primary),
-                NameOriginType.from_struct(struct.get("origintype", {})),
-                struct.get("connector", default.connector))
 
     def is_empty(self):
         """

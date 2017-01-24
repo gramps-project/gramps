@@ -57,6 +57,7 @@ from gramps.gen.utils.file import media_path_full, relative_path, media_path
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.mime import get_type, is_image_type
+from gramps.gui.managedwindow import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
@@ -71,23 +72,24 @@ WIKI_HELP_SEC = _('manual|Media_Manager...')
 # This is an Assistant implementation to guide the user
 #
 #-------------------------------------------------------------------------
-class MediaMan(tool.Tool):
+class MediaMan(ManagedWindow, tool.Tool):
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
 
         tool.Tool.__init__(self, dbstate, options_class, name)
-        self.uistate = uistate
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.callback = uistate.pulse_progressbar
 
         self.batch_ops = []
         self.build_batch_ops()
 
         self.assistant = Gtk.Assistant()
+        self.set_window(self.assistant, None, _('Media Manager'))
+        self.setup_configs('interface.mediaman', 780, 600)
 
-        self.assistant.set_title(_('Gramps Media Manager'))
-        self.assistant.connect('close', self.close)
-        self.assistant.connect('cancel', self.close)
+        self.assistant.connect('close', self.do_close)
+        self.assistant.connect('cancel', self.do_close)
         self.assistant.connect('apply', self.run)
         self.assistant.connect('prepare', self.prepare)
 
@@ -104,14 +106,21 @@ class MediaMan(tool.Tool):
         self.conclusion = ConclusionPage(self.assistant)
         self.add_page(self.conclusion, Gtk.AssistantPageType.SUMMARY)
 
-        self.assistant.show()
+        self.show()
         self.assistant.set_forward_page_func(self.forward_page, None)
 
-    def close(self, assistant):
+    def build_menu_names(self, obj):
+        """Override :class:`.ManagedWindow` method."""
+        return (_('Media Manager'), None)
+
+    def do_close(self, assistant):
         """
         Close the assistant.
         """
+        position = self.window.get_position() # crock
         self.assistant.hide()
+        self.window.move(position[0], position[1])
+        self.close()
 
     def forward_page(self, page, data):
         """

@@ -18,13 +18,14 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-""" Unittest for to_struct, from_struct """
+""" Unittest for to_json, from_json """
 
 import unittest
 import os
 
-from  .. import (Person, Family, Event, Source, Place, Citation,
-                 Repository, Media, Note, Tag)
+from .. import (Person, Family, Event, Source, Place, Citation,
+                Repository, Media, Note, Tag)
+from ..serialize import to_json, from_json
 from gramps.gen.db.utils import import_as_dict
 from gramps.cli.user import User
 from gramps.gen.const import DATA_DIR
@@ -33,14 +34,15 @@ TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
 
 class BaseCheck:
-    def test_from_struct(self):
-        struct = self.object.to_struct()
-        serialized = self.cls.from_struct(struct)
-        self.assertEqual(self.object.serialize(), serialized)
+    def test_from_json(self):
+        data = to_json(self.object)
+        obj = from_json(data)
+        self.assertEqual(self.object.serialize(), obj.serialize())
 
-    def test_from_empty_struct(self):
-        serialized = self.cls.from_struct({})
-        self.assertEqual(self.object.serialize(), serialized)
+    def test_from_empty_json(self):
+        data = '{"_class": "%s"}' % self.cls.__name__
+        obj = from_json(data)
+        self.assertEqual(self.object.serialize(), obj.serialize())
 
 class PersonCheck(unittest.TestCase, BaseCheck):
     def setUp(self):
@@ -99,10 +101,10 @@ def generate_case(obj):
     """
     Dynamically generate tests and attach to DatabaseCheck.
     """
-    struct = obj.to_struct()
-    serialized = obj.__class__.from_struct(struct)
+    data = to_json(obj)
+    obj2 = from_json(data)
     def test(self):
-        self.assertEqual(obj.serialize(), serialized)
+        self.assertEqual(obj.serialize(), obj2.serialize())
     name = "test_serialize_%s_%s" % (obj.__class__.__name__, obj.handle)
     setattr(DatabaseCheck, name, test)
     ####

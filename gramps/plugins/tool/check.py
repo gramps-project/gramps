@@ -116,7 +116,7 @@ def cross_table_duplicates(db, uistate):
         parent = uistate.window
     else:
         parent = None
-    progress = ProgressMeter(_('Checking Database'), '', parent)
+    progress = ProgressMeter(_('Checking Database'), '', parent=parent)
     progress.set_pass(_('Looking for cross table duplicates'), 9)
     logging.info('Looking for cross table duplicates')
     total_nr_handles = 0

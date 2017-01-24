@@ -164,6 +164,7 @@ gramps/gen/lib/repo.py
 gramps/gen/lib/reporef.py
 gramps/gen/lib/researcher.py
 gramps/gen/lib/secondaryobj.py
+gramps/gen/lib/serialize.py
 gramps/gen/lib/src.py
 gramps/gen/lib/srcbase.py
 gramps/gen/lib/srcref.py

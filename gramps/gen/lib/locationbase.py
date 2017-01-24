@@ -64,55 +64,6 @@ class LocationBase:
         return (self.street, self.locality, self.city, self.county, self.state,
                 self.country, self.postal, self.phone)
 
-    def to_struct(self):
-        """
-        Convert the data held in this object to a structure (eg,
-        struct) that represents all the data elements.
-
-        This method is used to recursively convert the object into a
-        self-documenting form that can easily be used for various
-        purposes, including diffs and queries.
-
-        These structures may be primitive Python types (string,
-        integer, boolean, etc.) or complex Python types (lists,
-        tuples, or dicts). If the return type is a dict, then the keys
-        of the dict match the fieldname of the object. If the return
-        struct (or value of a dict key) is a list, then it is a list
-        of structs. Otherwise, the struct is just the value of the
-        attribute.
-
-        :returns: Returns a struct containing the data of the object.
-        :rtype: dict
-        """
-        return {
-            "_class": "LocationBase",
-            "street": self.street,
-            "locality": self.locality,
-            "city": self.city,
-            "county": self.county,
-            "state": self.state,
-            "country": self.country,
-            "postal": self.postal,
-            "phone": self.phone
-        }
-
-    @classmethod
-    def from_struct(cls, struct):
-        """
-        Given a struct data representation, return a serialized object.
-
-        :returns: Returns a serialized object
-        """
-        default = LocationBase()
-        return (struct.get("street", default.street),
-                struct.get("locality", default.locality),
-                struct.get("city", default.city),
-                struct.get("county", default.county),
-                struct.get("state", default.state),
-                struct.get("country", default.country),
-                struct.get("postal", default.postal),
-                struct.get("phone", default.phone))
-
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

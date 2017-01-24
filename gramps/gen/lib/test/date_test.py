@@ -245,7 +245,8 @@ class ParserDateTest(BaseDateTest):
                                 "dateval fails is_equal in format %d:\n"
                                 "   '%s' != '%s'\n"
                                 "   '%s' != '%s'\n" %
-                                (date_format, dateval, ndate, dateval.to_struct(), ndate.to_struct()))
+                                (date_format, dateval, ndate,
+                                 dateval.__dict__, ndate.__dict__))
 
     def test_basic(self):
         self.do_case("basic test")
@@ -380,7 +381,7 @@ class MatchDateTest(BaseDateTest):
                              d1,
                              ("did not match" if expected else "matched"),
                              d2,
-                             date1.to_struct(), date2.to_struct()))
+                             date1.__dict__, date2.__dict__))
 
     def test_match(self):
         for testdata in self.tests:

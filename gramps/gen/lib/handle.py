@@ -53,7 +53,3 @@ def Handle(_classname, handle):
         classname = _classname
     h = MyHandleClass(handle)
     return h
-
-def __from_struct(struct):
-    return struct
-Handle.from_struct = __from_struct

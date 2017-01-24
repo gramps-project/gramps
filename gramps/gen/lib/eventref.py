@@ -79,35 +79,6 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
             self.__role.serialize()
             )
 
-    def to_struct(self):
-        """
-        Convert the data held in this object to a structure (eg,
-        struct) that represents all the data elements.
-
-        This method is used to recursively convert the object into a
-        self-documenting form that can easily be used for various
-        purposes, including diffs and queries.
-
-        These structures may be primitive Python types (string,
-        integer, boolean, etc.) or complex Python types (lists,
-        tuples, or dicts). If the return type is a dict, then the keys
-        of the dict match the fieldname of the object. If the return
-        struct (or value of a dict key) is a list, then it is a list
-        of structs. Otherwise, the struct is just the value of the
-        attribute.
-
-        :returns: Returns a struct containing the data of the object.
-        :rtype: dict
-        """
-        return {
-            "_class": "EventRef",
-            "private": PrivacyBase.to_struct(self),
-            "note_list": NoteBase.to_struct(self),
-            "attribute_list": AttributeBase.to_struct(self),
-            "ref": Handle("Event", self.ref),
-            "role": self.__role.to_struct()
-            }
-
     @classmethod
     def get_schema(cls):
         """
@@ -141,22 +112,6 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
             "ref": _("Event"),
             "role": _("Role"),
         }
-
-    @classmethod
-    def from_struct(cls, struct):
-        """
-        Given a struct data representation, return a serialized object.
-
-        :returns: Returns a serialized object
-        """
-        default = EventRef()
-        return (
-            PrivacyBase.from_struct(struct.get("private", default.private)),
-            NoteBase.from_struct(struct.get("note_list", default.note_list)),
-            AttributeBase.from_struct(struct.get("attribute_list", default.attribute_list)),
-            RefBase.from_struct(struct.get("ref", default.ref)),
-            EventRoleType.from_struct(struct.get("role", {}))
-        )
 
     def unserialize(self, data):
         """

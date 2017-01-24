@@ -96,7 +96,7 @@ class TipOfDay(ManagedWindow):
         self.index = 0
         self.next_tip_cb()
 
-        window.show_all()
+        self.show()
 
     def escape(self,text):
         text = text.replace('&','&amp;');       # Must be first

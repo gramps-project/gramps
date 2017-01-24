@@ -52,8 +52,8 @@ from gramps.gen.lib import (Note, NoteType, StyledText)
 class NoteModel(FlatBaseModel):
     """
     """
-    def __init__(self, db, scol=0, order=Gtk.SortType.ASCENDING, search=None,
-                 skip=set(), sort_map=None):
+    def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
+                 search=None, skip=set(), sort_map=None):
         """Setup initial values for instance variables."""
         self.gen_cursor = db.get_note_cursor
         self.map = db.get_raw_note_data
@@ -75,8 +75,8 @@ class NoteModel(FlatBaseModel):
             self.sort_change,
             self.column_tag_color
         ]
-        FlatBaseModel.__init__(self, db, scol, order, search=search, skip=skip,
-                               sort_map=sort_map)
+        FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,
+                               skip=skip, sort_map=sort_map)
 
     def destroy(self):
         """

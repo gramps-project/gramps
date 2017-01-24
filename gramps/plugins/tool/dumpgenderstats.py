@@ -24,12 +24,23 @@
 
     Tools/Debug/Dump Gender Statistics
 """
+
+#-------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+#-------------------------------------------------------------------------
+from gi.repository import Gtk
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gi.repository import Gtk
 from gramps.gui.listmodel import ListModel, INTEGER
 from gramps.gui.managedwindow import ManagedWindow
-
 from gramps.gui.plug import tool
 
 _GENDER = [ _('female'), _('male'), _('unknown') ]
@@ -45,9 +56,6 @@ class DumpGenderStats(tool.Tool, ManagedWindow):
         uistate = user.uistate
         self.label = _("Gender Statistics tool")
         tool.Tool.__init__(self, dbstate, options_class, name)
-        if uistate:
-            ManagedWindow.__init__(self,uistate,[],
-                                                 self.__class__)
 
         stats_list = []
         for name, value in dbstate.db.genderStats.stats.items():
@@ -58,33 +66,51 @@ class DumpGenderStats(tool.Tool, ManagedWindow):
                 )
 
         if uistate:
-            titles = [
-                (_('Name'),0,100),
-                (_('Male'),1,70,INTEGER),
-                (_('Female'),2,70,INTEGER),
-                (_('Unknown'),3,70,INTEGER),
-                (_('Guess'),4,70)
-                ]
+            ManagedWindow.__init__(self, uistate, [], self.__class__)
+
+            titles = [(_('Name'), 0, 100),
+                      (_('Male'), 1, 70, INTEGER),
+                      (_('Female'), 2, 70, INTEGER),
+                      (_('Unknown'), 3, 90, INTEGER),
+                      (_('Guess'), 4, 70)]
 
             treeview = Gtk.TreeView()
             model = ListModel(treeview, titles)
             for entry in sorted(stats_list):
                 model.add(entry, entry[0])
 
-            window = Gtk.Window() # TODO there needs to be a way to "close" it
             s = Gtk.ScrolledWindow()
             s.add(treeview)
-            window.add(s)
-            window.show_all()
-            self.set_window(window, None, self.label)
-            self.setup_configs('interface.dumpgenderstats', 400, 300)
+            dialog = Gtk.Dialog()
+            dialog.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
+            dialog.connect('response', self._response)
+            dialog.vbox.pack_start(s, expand=True, fill=True, padding=0)
+            self.set_window(dialog, None, self.label)
+            self.setup_configs('interface.dumpgenderstats', 420, 300)
             self.show()
 
         else:
-            print('\t%s'*5 % ('Name','Male','Female','Unknown','Guess'))
+            if len(_('Name')) < 16:
+                print('%s%s%s' % (_('Name'),
+                                  " " * (16 - len(_('Name'))),
+                                  _('Male')),
+                      '\t%s'*3 % (_('Female'), _('Unknown'), _('Guess')))
+            else:
+                print(_('Name'), '\t%s'*4 % (_('Male'), _('Female'),
+                                             _('Unknown'), _('Guess')))
             print()
-            for entry in stats_list:
-                print('\t%s'*5 % entry)
+            for entry in sorted(stats_list):
+                if len(entry[0]) < 16:
+                    print('%s%s%s' % (entry[0],
+                                      " " * (16 - len(entry[0])),
+                                      entry[1]),
+                          '\t%s'*3 % (entry[2:]))
+                else:
+                    print(entry[0], '\t%s'*4 % (entry[1:]))
+
+    def _response(self, obj, response_id):
+        if response_id == Gtk.ResponseType.CLOSE:
+            self.close()
 
     def build_menu_names(self, obj):
         return (self.label,None)

@@ -121,67 +121,6 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
             "private": bool
         }
 
-    def to_struct(self):
-        """
-        Convert the data held in this object to a structure (eg,
-        struct) that represents all the data elements.
-
-        This method is used to recursively convert the object into a
-        self-documenting form that can easily be used for various
-        purposes, including diffs and queries.
-
-        These structures may be primitive Python types (string,
-        integer, boolean, etc.) or complex Python types (lists,
-        tuples, or dicts). If the return type is a dict, then the keys
-        of the dict match the fieldname of the object. If the return
-        struct (or value of a dict key) is a list, then it is a list
-        of structs. Otherwise, the struct is just the value of the
-        attribute.
-
-        :returns: Returns a struct containing the data of the object.
-        :rtype: dict
-        """
-        return {"_class": "Source",
-                "handle": Handle("Source", self.handle),
-                "gramps_id": self.gramps_id,
-                "title": str(self.title),
-                "author": str(self.author),
-                "pubinfo": str(self.pubinfo),
-                "note_list": NoteBase.to_struct(self),
-                "media_list": MediaBase.to_struct(self),
-                "abbrev": str(self.abbrev),
-                "change": self.change,
-                "srcattr_list": SrcAttributeBase.to_struct(self),
-                "reporef_list": [rr.to_struct() for rr in self.reporef_list],
-                "tag_list": TagBase.to_struct(self),
-                "private": self.private}
-
-    @classmethod
-    def from_struct(cls, struct):
-        """
-        Given a struct data representation, return a serialized object.
-
-        :returns: Returns a serialized object
-        """
-        from .srcattribute import SrcAttribute
-        default = Source()
-        return (Handle.from_struct(struct.get("handle", default.handle)),
-                struct.get("gramps_id", default.gramps_id),
-                struct.get("title", default.title),
-                struct.get("author", default.author),
-                struct.get("pubinfo", default.pubinfo),
-                NoteBase.from_struct(struct.get("note_list",
-                                                default.note_list)),
-                MediaBase.from_struct(struct.get("media_list",
-                                                 default.media_list)),
-                struct.get("abbrev", default.abbrev),
-                struct.get("change", default.change),
-                SrcAttributeBase.from_struct(struct.get("srcattr_list", {})),
-                [RepoRef.from_struct(rr)
-                 for rr in struct.get("reporef_list", default.reporef_list)],
-                TagBase.from_struct(struct.get("tag_list", default.tag_list)),
-                struct.get("private", default.private))
-
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method

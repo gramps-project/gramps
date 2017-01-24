@@ -274,12 +274,9 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
                       secondary object type.
     """
 
-    def __init__(self, db,
-                    search=None, skip=set(),
-                    scol=0, order=Gtk.SortType.ASCENDING, sort_map=None,
-                    nrgroups = 1,
-                    group_can_have_handle = False,
-                    has_secondary=False):
+    def __init__(self, db, uistate, search=None, skip=set(), scol=0,
+                 order=Gtk.SortType.ASCENDING, sort_map=None, nrgroups = 1,
+                 group_can_have_handle = False, has_secondary=False):
         cput = time.clock()
         GObject.GObject.__init__(self)
         BaseModel.__init__(self)
@@ -295,6 +292,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         self.prev_handle = None
         self.prev_data = None
 
+        self.uistate = uistate
         self.__reverse = (order == Gtk.SortType.DESCENDING)
         self.scol = scol
         self.nrgroups = nrgroups
@@ -530,11 +528,11 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         Rebuild the data map for a single Gramps object type, where a search
         condition is applied.
         """
-        pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog,
-                                            popup_time=2)
-        status = progressdlg.LongOpStatus(msg=_("Building View"),
-                            total_steps=items, interval=items//20,
-                            can_cancel=True)
+        pmon = progressdlg.ProgressMonitor(
+            progressdlg.StatusProgress, (self.uistate,), popup_time=2,
+            title=_("Loading items..."))
+        status = progressdlg.LongOpStatus(total_steps=items,
+                                          interval=items // 20)
         pmon.add_op(status)
         with gen_cursor() as cursor:
             for handle, data in cursor:
@@ -542,16 +540,13 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
                 if not isinstance(handle, str):
                     handle = handle.decode('utf-8')
                 status.heartbeat()
-                if status.should_cancel():
-                    break
                 self.__total += 1
                 if not (handle in skip or (dfilter and not
                                         dfilter.match(handle, self.db))):
                     _LOG.debug("    add %s %s" % (handle, data))
                     self.__displayed += 1
                     add_func(handle, data)
-        if not status.was_cancelled():
-            status.end()
+        status.end()
 
     def _rebuild_filter(self, dfilter, dfilter2, skip):
         """
@@ -581,28 +576,29 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         Rebuild the data map for a single Gramps object type, where a filter
         is applied.
         """
-        pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog,
-                                            popup_time=2)
-        status = progressdlg.LongOpStatus(msg=_("Building View"),
-                              total_steps=3, interval=1)
-        pmon.add_op(status)
-        status_ppl = progressdlg.LongOpStatus(msg=_("Loading items..."),
-                        total_steps=items, interval=items//10)
+        pmon = progressdlg.ProgressMonitor(
+            progressdlg.StatusProgress, (self.uistate,), popup_time=2,
+            title=_("Loading items..."))
+        status_ppl = progressdlg.LongOpStatus(total_steps=items,
+                                              interval=items // 20)
         pmon.add_op(status_ppl)
 
         self.__total += items
+        assert not skip
+        if dfilter:
+            for handle in dfilter.apply(self.db,
+                                        cb_progress=status_ppl.heartbeat):
+                data = data_map(handle)
+                add_func(handle, data)
+                self.__displayed += 1
+        else:
+            with gen_cursor() as cursor:
+                for handle, data in cursor:
+                    status_ppl.heartbeat()
+                    add_func(handle, data)
+                    self.__displayed += 1
 
-        with gen_cursor() as cursor:
-            for handle, data in cursor:
-                if not isinstance(handle, str):
-                    handle = handle.decode('utf-8')
-                status_ppl.heartbeat()
-                if not handle in skip:
-                    if not dfilter or dfilter.match(handle, self.db):
-                        add_func(handle, data)
-                        self.__displayed += 1
         status_ppl.end()
-        status.end()
 
     def add_node(self, parent, child, sortkey, handle, add_parent=True,
                  secondary=False):

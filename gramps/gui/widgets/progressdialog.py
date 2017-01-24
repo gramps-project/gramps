@@ -591,6 +591,118 @@ class GtkProgressDialog(Gtk.Dialog):
     def close(self):
         self.destroy()
 
+
+#-------------------------------------------------------------------------
+#
+# Gramps main status bar Progress indicator
+#
+#-------------------------------------------------------------------------
+class StatusProgress:
+    """
+    A gtk progress in main Gramps window status bar to display the status
+    of a long running process.
+    """
+
+    def __init__(self, window_params, title):
+        """
+        :param title: The title to display on the top of the window.
+        :type title: string
+        """
+        # self.set_title(title)
+        self.uistate = window_params[0]
+        self.title = title
+        self._old_val = -1
+        self._progress_bars = False
+
+    def add(self, long_op_status):
+        """
+        Add a new status object to the statusbar progress.
+
+        :param long_op_status: the status object.
+        :type long_op_status: :class:`.LongOpStatus`
+        :returns: a key that can be used as the ``pbar_idx``  to the other
+                  methods.
+        :rtype: int
+        """
+        assert(not self._progress_bars)
+        self._pbar = self.uistate.progress
+
+        self._pbar_max = (long_op_status.get_total_steps() /
+                          long_op_status.get_interval())
+        self._pbar_index = 0.0
+        self._pbar.set_fraction(
+            ((100 / float(long_op_status.get_total_steps()) *
+              float(long_op_status.get_interval()))) / 100.0)
+
+        self.uistate.status.push(
+            self.uistate.status_id, self.title)
+        self._pbar.show()
+
+        return True
+
+    def remove(self, pbar_idx):
+        """
+        Remove the specified status object from the progress dialog.
+
+        :param pbar_idx: the index as returned from :meth:`add` (not used)
+        :type pbar_idx: int
+        """
+        self._progress_bars = False
+        self._pbar.hide()
+
+    def step(self, pbar_idx):
+        """
+        Click the progress bar over to the next value.  Be paranoid
+        and insure that it doesn't go over 100%.
+
+        :param pbar_idx: the index as returned from :meth:`add` (not used)
+        :type pbar_idx: int
+        """
+
+        self._pbar_index = self._pbar_index + 1.0
+
+        if self._pbar_index > self._pbar_max:
+            self._pbar_index = self._pbar_max
+
+        try:
+            val = int(100 * self._pbar_index / self._pbar_max)
+        except ZeroDivisionError:
+            val = 0
+
+        if val != self._old_val:
+            self._pbar.set_text("%d%%" % val)
+            self._pbar.set_fraction(val / 100.0)
+            self._pbar.old_val = val
+
+        self._process_events()
+
+    def _process_events(self):
+        while Gtk.events_pending():
+            Gtk.main_iteration()
+
+    def show(self):
+        """
+        Show the dialog and process any events.
+        """
+        self._pbar.show()
+        self._process_events()
+
+    def hide(self):
+        """
+        Hide the dialog and process any events.
+        """
+        self._pbar.hide()
+        self.uistate.status.pop(
+            self.uistate.status_id)
+        self._process_events()
+
+    def _warn(self, x, y):
+        return True
+
+    def close(self):
+        # self.destroy()
+        pass
+
 if __name__ == '__main__':
 
     def test(a, b):

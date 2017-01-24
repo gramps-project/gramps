@@ -266,7 +266,7 @@ class GrampsWindowManager:
         if not isinstance(item, list):
             def func(obj):
                 if item.window_id and self.id2item.get(item.window_id):
-                    self.id2item[item.window_id].__present()
+                    self.id2item[item.window_id]._present()
         else:
             def func(obj):
                 pass
@@ -418,7 +418,7 @@ class ManagedWindow:
         self.other_modal_window = None
 
         if uistate and uistate.gwm.get_item_from_id(window_key):
-            uistate.gwm.get_item_from_id(window_key).__present()
+            uistate.gwm.get_item_from_id(window_key)._present()
             raise WindowActiveError('This window is already active')
         else:
             self.window_id = window_key
@@ -568,7 +568,7 @@ class ManagedWindow:
             self.other_modal_window.set_modal(True)
         self.parent_window.present()
 
-    def __present(self):
+    def _present(self):
         """
         Present window (unroll/unminimize/bring to top).
         """

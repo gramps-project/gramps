@@ -67,45 +67,6 @@ class Url(SecondaryObject, PrivacyBase):
     def serialize(self):
         return (self.private, self.path, self.desc, self.type.serialize())
 
-    def to_struct(self):
-        """
-        Convert the data held in this object to a structure (eg,
-        struct) that represents all the data elements.
-
-        This method is used to recursively convert the object into a
-        self-documenting form that can easily be used for various
-        purposes, including diffs and queries.
-
-        These structures may be primitive Python types (string,
-        integer, boolean, etc.) or complex Python types (lists,
-        tuples, or dicts). If the return type is a dict, then the keys
-        of the dict match the fieldname of the object. If the return
-        struct (or value of a dict key) is a list, then it is a list
-        of structs. Otherwise, the struct is just the value of the
-        attribute.
-
-        :returns: Returns a struct containing the data of the object.
-        :rtype: dict
-        """
-        return {"_class": "Url",
-                "private": self.private,
-                "path": self.path,
-                "desc": self.desc,
-                "type": self.type.to_struct()}
-
-    @classmethod
-    def from_struct(cls, struct):
-        """
-        Given a struct data representation, return a serialized object.
-
-        :returns: Returns a serialized object
-        """
-        default = Url()
-        return (struct.get("private", default.private),
-                struct.get("path", default.path),
-                struct.get("desc", default.desc),
-                UrlType.from_struct(struct.get("type", {})))
-
     def unserialize(self, data):
         (self.private, self.path, self.desc, type_value) = data
         self.type.unserialize(type_value)
