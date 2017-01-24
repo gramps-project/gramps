@@ -693,10 +693,6 @@ class FanChartOptions(MenuReportOptions):
 
         stdoptions.add_living_people_option(menu, category_name)
 
-        stdoptions.add_localization_option(menu, category_name)
-
-        category_name = _("Content")
-
         max_gen = NumberOption(_("Generations"), 5, 1, self.max_generations)
         max_gen.set_help(_("The number of generations "
                            "to include in the report"))
@@ -733,6 +729,8 @@ class FanChartOptions(MenuReportOptions):
         same_style.set_help(_("You can customize font and color "
                               "for each generation in the style editor"))
         menu.add_option(category_name, "same_style", same_style)
+
+        stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Fan Chart report."""

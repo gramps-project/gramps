@@ -37,7 +37,6 @@ import sys
 from gramps.gen.dbstate import DbState
 from gramps.cli.clidbman import CLIDbManager
 from gramps.gen.db.base import DbTxn
-from gramps.gen.db.utils import make_database
 from gramps.gen.errors import DbError, HandleError
 import gramps.gen.const as const
 import gramps.gen.lib as RelLib
@@ -100,7 +99,7 @@ try:
     dbstate = DbState()
     dbman = CLIDbManager(dbstate)
     dirpath, name = dbman.create_new_db_cli(filename1, dbid="bsddb")
-    db = make_database("bsddb")
+    db = dbstate.make_database("bsddb")
     db.load(dirpath, None)
     print("Add person 1")
     add_person( db,"Anton", "Albers",True,False)
@@ -121,7 +120,7 @@ try:
     dbstate = DbState()
     dbman = CLIDbManager(dbstate)
     dirpath, name = dbman.create_new_db_cli(filename1, dbid="bsddb")
-    db = make_database("bsddb")
+    db = dbstate.make_database("bsddb")
     db.load(dirpath, None)
     print("Add person 4")
     add_person( db,"Felix", "Fowler",True,False)
@@ -136,7 +135,7 @@ try:
     dbstate = DbState()
     dbman = CLIDbManager(dbstate)
     dirpath, name = dbman.create_new_db_cli(filename2, dbid="bsddb")
-    db = make_database("bsddb")
+    db = dbstate.make_database("bsddb")
     db.load(dirpath, None)
 
     print("Add source")

@@ -2,7 +2,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2015-2016 Gramps Development Team
-# Copyright (C) 2016      Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,7 +15,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
 #------------------------------------------------------------------------
@@ -26,10 +25,12 @@
 #------------------------------------------------------------------------
 import random
 import pickle
+import base64
 import time
 import re
 import os
 import logging
+import shutil
 import bisect
 import ast
 import sys
@@ -41,15 +42,20 @@ import glob
 # Gramps Modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.db import (DbReadBase, DbWriteBase, DbUndo, DBLOGNAME,
-                           DBUNDOFN, KEY_TO_CLASS_MAP, REFERENCE_KEY,
+import gramps
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+from gramps.gen.db import (DbReadBase, DbWriteBase, DbTxn, DbUndo,
+                           KEY_TO_NAME_MAP, KEY_TO_CLASS_MAP,
+                           CLASS_TO_KEY_MAP, TXNADD, TXNUPD, TXNDEL,
                            PERSON_KEY, FAMILY_KEY, CITATION_KEY,
                            SOURCE_KEY, EVENT_KEY, MEDIA_KEY,
-                           PLACE_KEY, REPOSITORY_KEY, NOTE_KEY, TAG_KEY)
+                           PLACE_KEY, REPOSITORY_KEY, NOTE_KEY,
+                           TAG_KEY, eval_order_by)
 from gramps.gen.errors import HandleError
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
-from gramps.gen.db.bookmarks import DbBookmarks
+from gramps.gen.db.dbconst import *
 from gramps.gen.db import exceptions
 
 from gramps.gen.utils.id import create_id
@@ -58,8 +64,6 @@ from gramps.gen.lib import (Tag, Media, Person, Family, Source, Citation, Event,
                             Place, Repository, Note, NameOriginType)
 from gramps.gen.lib.genderstats import GenderStats
 from gramps.gen.config import config
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 LOG = logging.getLogger(DBLOGNAME)
 
@@ -136,29 +140,31 @@ class DbGenericUndo(DbUndo):
 
         # Process all records in the transaction
         try:
-            self.db._txn_begin()
+            self.db.transaction_backend_begin()
             for record_id in subitems:
                 (key, trans_type, handle, old_data, new_data) = \
                     pickle.loads(self.undodb[record_id])
 
                 if key == REFERENCE_KEY:
-                    self.undo_reference(new_data, handle)
+                    self.undo_reference(new_data, handle, self.mapbase[key])
                 else:
-                    self.undo_data(new_data, handle, key, db.emit, SIGBASE[key])
-            self.db._txn_commit()
+                    self.undo_data(new_data, handle, self.mapbase[key],
+                                        db.emit, SIGBASE[key])
+            self.db.transaction_backend_commit()
         except:
-            self.db._txn_abort()
+            self.db.transaction_backend_abort()
             raise
 
         # Notify listeners
         if db.undo_callback:
-            db.undo_callback(_("_Undo %s") % transaction.get_description())
+            db.undo_callback(_("_Undo %s")
+                                   % transaction.get_description())
 
         if db.redo_callback:
             if self.redo_count > 1:
                 new_transaction = self.redoq[-2]
                 db.redo_callback(_("_Redo %s")
-                                 % new_transaction.get_description())
+                                   % new_transaction.get_description())
             else:
                 db.redo_callback(None)
 
@@ -178,84 +184,135 @@ class DbGenericUndo(DbUndo):
         subitems = transaction.get_recnos(reverse=True)
 
         # Process all records in the transaction
-        try:
-            self.db._txn_begin()
-            for record_id in subitems:
-                (key, trans_type, handle, old_data, new_data) = \
-                        pickle.loads(self.undodb[record_id])
+        for record_id in subitems:
+            (key, trans_type, handle, old_data, new_data) = \
+                    pickle.loads(self.undodb[record_id])
 
-                if key == REFERENCE_KEY:
-                    self.undo_reference(old_data, handle)
-                else:
-                    self.undo_data(old_data, handle, key, db.emit, SIGBASE[key])
-
-            self.db._txn_commit()
-        except:
-            self.db._txn_abort()
-            raise
-
+            if key == REFERENCE_KEY:
+                self.undo_reference(old_data, handle, self.mapbase[key])
+            else:
+                self.undo_data(old_data, handle, self.mapbase[key],
+                                db.emit, SIGBASE[key])
         # Notify listeners
         if db.undo_callback:
             if self.undo_count > 0:
                 db.undo_callback(_("_Undo %s")
-                                 % self.undoq[-1].get_description())
+                                   % self.undoq[-1].get_description())
             else:
                 db.undo_callback(None)
 
         if db.redo_callback:
             db.redo_callback(_("_Redo %s")
-                             % transaction.get_description())
+                                   % transaction.get_description())
 
         if update_history and db.undo_history_callback:
             db.undo_history_callback()
         return True
 
-    def undo_reference(self, data, handle):
-        """
-        Helper method to undo a reference map entry
-        """
-        if data is None:
-            sql = ("DELETE FROM reference " +
-                   "WHERE obj_handle = ? AND ref_handle = ?")
-            self.db.dbapi.execute(sql, [handle[0], handle[1]])
+class Table:
+    """
+    Implements Table interface.
+    """
+    def __init__(self, db, table_name, funcs=None):
+        self.db = db
+        self.table_name = table_name
+        if funcs:
+            self.funcs = funcs
         else:
-            sql = ("INSERT INTO reference " +
-                   "(obj_handle, obj_class, ref_handle, ref_class) " +
-                   "VALUES(?, ?, ?, ?)")
-            self.db.dbapi.execute(sql, data)
+            self.funcs = db.get_table_func(table_name)
 
-    def undo_data(self, data, handle, obj_key, emit, signal_root):
+    def cursor(self):
         """
-        Helper method to undo/redo the changes made
+        Returns a Cursor for this Table.
         """
-        cls = KEY_TO_CLASS_MAP[obj_key]
-        table = cls.lower()
-        if data is None:
-            emit(signal_root + '-delete', ([handle],))
-            sql = "DELETE FROM %s WHERE handle = ?" % table
-            self.db.dbapi.execute(sql, [handle])
-        else:
-            if self.db.has_handle(obj_key, handle):
-                signal = signal_root + '-update'
-                sql = "UPDATE %s SET blob_data = ? WHERE handle = ?" % table
-                self.db.dbapi.execute(sql, [pickle.dumps(data), handle])
-            else:
-                signal = signal_root + '-add'
-                sql = "INSERT INTO %s (handle, blob_data) VALUES (?, ?)" % table
-                self.db.dbapi.execute(sql, [handle, pickle.dumps(data)])
-            obj = self.db.get_table_func(cls)["class_func"].create(data)
-            self.db.update_secondary_values(obj)
-            emit(signal, ([handle],))
+        return self.funcs["cursor_func"]()
+
+    def put(self, key, data, txn=None):
+        self.funcs["add_func"](data, txn)
+
+class Map:
+    """
+    Implements the map API for person_map, etc.
+
+    Takes a Table() as argument.
+    """
+    def __init__(self, table,
+                 keys_func="handles_func",
+                 contains_func="has_handle_func",
+                 raw_func="raw_func",
+                 *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.table = table
+        self.keys_func = keys_func
+        self.contains_func = contains_func
+        self.raw_func = raw_func
+        self.txn = DbGenericTxn("Dummy transaction",
+                                db=self.table.db, batch=True)
+
+    def keys(self):
+        return self.table.funcs[self.keys_func]()
+
+    def get(self, key):
+        return self[key]
+
+    def values(self):
+        return self.table.funcs["cursor_func"]()
+
+    def __contains__(self, key):
+        return self.table.funcs[self.contains_func](key)
+
+    def __getitem__(self, key):
+        return self.table.funcs[self.raw_func](key)
+
+    def __setitem__(self, key, value):
+        """
+        This is only done in a assignment via key.
+
+        value: serialized object
+        key: bytes key (ignored in this function)
+        """
+        obj = self.table.funcs["class_func"].create(value)
+        self.table.funcs["commit_func"](obj, self.txn)
+
+    def __len__(self):
+        return self.table.funcs["count_func"]()
+
+    def delete(self, key):
+        self.table.funcs["del_func"](key, self.txn)
+
+class MetaCursor:
+    def __init__(self):
+        pass
+    def __enter__(self):
+        return self
+    def __iter__(self):
+        return self.__next__()
+    def __next__(self):
+        yield None
+    def __exit__(self, *args, **kwargs):
+        pass
+    def iter(self):
+        yield None
+    def first(self):
+        self._iter = self.__iter__()
+        return self.next()
+    def next(self):
+        try:
+            return next(self._iter)
+        except:
+            return None
+    def close(self):
+        pass
 
 class Cursor:
-    def __init__(self, iterator):
-        self.iterator = iterator
+    def __init__(self, map):
+        self.map = map
         self._iter = self.__iter__()
     def __enter__(self):
         return self
     def __iter__(self):
-        for handle, data in self.iterator():
-            yield (handle, data)
+        for item in self.map.keys():
+            yield (item, self.map[item])
     def __next__(self):
         try:
             return self._iter.__next__()
@@ -264,8 +321,8 @@ class Cursor:
     def __exit__(self, *args, **kwargs):
         pass
     def iter(self):
-        for handle, data in self.iterator():
-            yield (handle, data)
+        for item in self.map.keys():
+            yield (item, self.map[item])
     def first(self):
         self._iter = self.__iter__()
         try:
@@ -280,24 +337,79 @@ class Cursor:
     def close(self):
         pass
 
+class TreeCursor(Cursor):
+
+    def __init__(self, db, map):
+        """
+        """
+        self.db = db
+        Cursor.__init__(self, map)
+
+    def __iter__(self):
+        """
+        Iterator
+        """
+        handles = self.db.get_place_handles(sort_handles=True)
+        for handle in handles:
+            yield (handle, self.db.get_raw_place_data(handle))
+
+class Bookmarks:
+    def __init__(self, default=[]):
+        self.handles = list(default)
+
+    def set(self, handles):
+        self.handles = list(handles)
+
+    def get(self):
+        return self.handles
+
+    def append(self, handle):
+        self.handles.append(handle)
+
+    def append_list(self, handles):
+        self.handles += handles
+
+    def remove(self, handle):
+        self.handles.remove(handle)
+
+    def pop(self, item):
+        return self.handles.pop(item)
+
+    def insert(self, pos, item):
+        self.handles.insert(pos, item)
+
+    def close(self):
+        del self.handles
+
+class DbGenericTxn(DbTxn):
+    """
+    Generic Transaction.
+    """
+    def __init__(self, message, db, batch=False):
+        """
+        Placeholder. This can probably be removed once it is
+        known that it is not needed.
+        """
+        DbTxn.__init__(self, message, db, batch)
+
 class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     """
     A Gramps Database Backend. This replicates the grampsdb functions.
     """
     __signals__ = dict((obj+'-'+op, signal)
                        for obj in
-                       ['person', 'family', 'event', 'place', 'repository',
-                        'source', 'citation', 'media', 'note', 'tag']
+                       ['person', 'family', 'event', 'place',
+                        'source', 'citation', 'media', 'note', 'repository', 'tag']
                        for op, signal in zip(
-                           ['add', 'update', 'delete', 'rebuild'],
-                           [(list,), (list,), (list,), None]
+                               ['add',   'update', 'delete', 'rebuild'],
+                               [(list,), (list,),  (list,),   None]
                        )
-                      )
+                   )
 
     # 2. Signals for long operations
     __signals__.update(('long-op-'+op, signal) for op, signal in zip(
-        ['start', 'heartbeat', 'end'],
-        [(object,), None, None]
+        ['start',  'heartbeat', 'end'],
+        [(object,), None,       None]
         ))
 
     # 3. Special signal for change in home person
@@ -314,7 +426,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         DbReadBase.__init__(self)
         DbWriteBase.__init__(self)
         Callback.__init__(self)
-        self.__tables = {
+        self.__tables =  {
             'Person':
             {
                 "handle_func": self.get_person_from_handle,
@@ -498,15 +610,15 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.db_is_open = False
         self.name_formats = []
         # Bookmarks:
-        self.bookmarks = DbBookmarks()
-        self.family_bookmarks = DbBookmarks()
-        self.event_bookmarks = DbBookmarks()
-        self.place_bookmarks = DbBookmarks()
-        self.citation_bookmarks = DbBookmarks()
-        self.source_bookmarks = DbBookmarks()
-        self.repo_bookmarks = DbBookmarks()
-        self.media_bookmarks = DbBookmarks()
-        self.note_bookmarks = DbBookmarks()
+        self.bookmarks = Bookmarks()
+        self.family_bookmarks = Bookmarks()
+        self.event_bookmarks = Bookmarks()
+        self.place_bookmarks = Bookmarks()
+        self.citation_bookmarks = Bookmarks()
+        self.source_bookmarks = Bookmarks()
+        self.repo_bookmarks = Bookmarks()
+        self.media_bookmarks = Bookmarks()
+        self.note_bookmarks = Bookmarks()
         self.set_person_id_prefix('I%04d')
         self.set_media_id_prefix('O%04d')
         self.set_family_id_prefix('F%04d')
@@ -527,10 +639,22 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.omap_index = 0
         self.rmap_index = 0
         self.nmap_index = 0
+        self.person_map = Map(Table(self, "Person"))
+        self.family_map = Map(Table(self, "Family"))
+        self.place_map  = Map(Table(self, "Place"))
+        self.citation_map = Map(Table(self, "Citation"))
+        self.source_map = Map(Table(self, "Source"))
+        self.repository_map  = Map(Table(self, "Repository"))
+        self.note_map = Map(Table(self, "Note"))
+        self.media_map  = Map(Table(self, "Media"))
+        self.event_map  = Map(Table(self, "Event"))
+        self.tag_map  = Map(Table(self, "Tag"))
+        self.metadata   = Map(Table(self, "Metadata", funcs={"cursor_func": lambda: MetaCursor()}))
         self.undo_callback = None
         self.redo_callback = None
         self.undo_history_callback = None
-        self.modified = 0
+        self.modified   = 0
+        self.txn = DbGenericTxn("DbGeneric Transaction", self)
         self.transaction = None
         self.abort_possible = False
         self._bm_changes = 0
@@ -541,11 +665,25 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if directory:
             self.load(directory)
 
-    def _initialize(self, directory):
+    def get_table_func(self, table=None, func=None):
         """
-        Initialize database backend.
+        Private implementation of get_table_func.
         """
-        raise NotImplementedError
+        if table is None:
+            return list(self.__tables.keys())
+        elif func is None:
+            return self.__tables[table] # dict of functions
+        elif func in self.__tables[table].keys():
+            return self.__tables[table][func]
+        else:
+            return super().get_table_func(table, func)
+
+    def reload(self):
+        """
+        Reload, and recreate tables (if necessary).
+        Useful after db.drop_tables()
+        """
+        self.load(self._directory)
 
     def load(self, directory, callback=None, mode=None,
              force_schema_upgrade=False,
@@ -556,6 +694,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         If update is False: then don't update any files
         """
+        db_python_version = self.get_python_version(directory)
+        current_python_version = sys.version_info[0]
+        if db_python_version != current_python_version:
+                raise exceptions.DbPythonError(str(db_python_version),
+                                               str(current_python_version),
+                                               str(current_python_version))
         db_schema_version = self.get_schema_version(directory)
         current_schema_version = self.VERSION[0]
         if db_schema_version != current_schema_version:
@@ -563,41 +707,41 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                             str(current_schema_version),
                                             str(current_schema_version))
         # run backend-specific code:
-        self._initialize(directory)
+        self.initialize_backend(directory)
 
         # Load metadata
-        self.name_formats = self._get_metadata('name_formats')
-        self.owner = self._get_metadata('researcher', default=Researcher())
+        self.name_formats = self.get_metadata('name_formats')
+        self.owner = self.get_metadata('researcher', default=Researcher())
 
         # Load bookmarks
-        self.bookmarks.set(self._get_metadata('bookmarks'))
-        self.family_bookmarks.set(self._get_metadata('family_bookmarks'))
-        self.event_bookmarks.set(self._get_metadata('event_bookmarks'))
-        self.source_bookmarks.set(self._get_metadata('source_bookmarks'))
-        self.citation_bookmarks.set(self._get_metadata('citation_bookmarks'))
-        self.repo_bookmarks.set(self._get_metadata('repo_bookmarks'))
-        self.media_bookmarks.set(self._get_metadata('media_bookmarks'))
-        self.place_bookmarks.set(self._get_metadata('place_bookmarks'))
-        self.note_bookmarks.set(self._get_metadata('note_bookmarks'))
+        self.bookmarks.set(self.get_metadata('bookmarks'))
+        self.family_bookmarks.set(self.get_metadata('family_bookmarks'))
+        self.event_bookmarks.set(self.get_metadata('event_bookmarks'))
+        self.source_bookmarks.set(self.get_metadata('source_bookmarks'))
+        self.citation_bookmarks.set(self.get_metadata('citation_bookmarks'))
+        self.repo_bookmarks.set(self.get_metadata('repo_bookmarks'))
+        self.media_bookmarks.set(self.get_metadata('media_bookmarks'))
+        self.place_bookmarks.set(self.get_metadata('place_bookmarks'))
+        self.note_bookmarks.set(self.get_metadata('note_bookmarks'))
 
         # Custom type values
-        self.event_names = self._get_metadata('event_names', set())
-        self.family_attributes = self._get_metadata('fattr_names', set())
-        self.individual_attributes = self._get_metadata('pattr_names', set())
-        self.source_attributes = self._get_metadata('sattr_names', set())
-        self.marker_names = self._get_metadata('marker_names', set())
-        self.child_ref_types = self._get_metadata('child_refs', set())
-        self.family_rel_types = self._get_metadata('family_rels', set())
-        self.event_role_names = self._get_metadata('event_roles', set())
-        self.name_types = self._get_metadata('name_types', set())
-        self.origin_types = self._get_metadata('origin_types', set())
-        self.repository_types = self._get_metadata('repo_types', set())
-        self.note_types = self._get_metadata('note_types', set())
-        self.source_media_types = self._get_metadata('sm_types', set())
-        self.url_types = self._get_metadata('url_types', set())
-        self.media_attributes = self._get_metadata('mattr_names', set())
-        self.event_attributes = self._get_metadata('eattr_names', set())
-        self.place_types = self._get_metadata('place_types', set())
+        self.event_names = self.get_metadata('event_names', set())
+        self.family_attributes = self.get_metadata('fattr_names', set())
+        self.individual_attributes = self.get_metadata('pattr_names', set())
+        self.source_attributes = self.get_metadata('sattr_names', set())
+        self.marker_names = self.get_metadata('marker_names', set())
+        self.child_ref_types = self.get_metadata('child_refs', set())
+        self.family_rel_types = self.get_metadata('family_rels', set())
+        self.event_role_names = self.get_metadata('event_roles', set())
+        self.name_types = self.get_metadata('name_types', set())
+        self.origin_types = self.get_metadata('origin_types', set())
+        self.repository_types = self.get_metadata('repo_types', set())
+        self.note_types = self.get_metadata('note_types', set())
+        self.source_media_types = self.get_metadata('sm_types', set())
+        self.url_types = self.get_metadata('url_types', set())
+        self.media_attributes = self.get_metadata('mattr_names', set())
+        self.event_attributes = self.get_metadata('eattr_names', set())
+        self.place_types = self.get_metadata('place_types', set())
 
         # surname list
         self.surname_list = self.get_surname_list()
@@ -615,141 +759,21 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.genderStats = GenderStats(gstats)
 
         # Indexes:
-        self.cmap_index = self._get_metadata('cmap_index', 0)
-        self.smap_index = self._get_metadata('smap_index', 0)
-        self.emap_index = self._get_metadata('emap_index', 0)
-        self.pmap_index = self._get_metadata('pmap_index', 0)
-        self.fmap_index = self._get_metadata('fmap_index', 0)
-        self.lmap_index = self._get_metadata('lmap_index', 0)
-        self.omap_index = self._get_metadata('omap_index', 0)
-        self.rmap_index = self._get_metadata('rmap_index', 0)
-        self.nmap_index = self._get_metadata('nmap_index', 0)
+        self.cmap_index = self.get_metadata('cmap_index', 0)
+        self.smap_index = self.get_metadata('smap_index', 0)
+        self.emap_index = self.get_metadata('emap_index', 0)
+        self.pmap_index = self.get_metadata('pmap_index', 0)
+        self.fmap_index = self.get_metadata('fmap_index', 0)
+        self.lmap_index = self.get_metadata('lmap_index', 0)
+        self.omap_index = self.get_metadata('omap_index', 0)
+        self.rmap_index = self.get_metadata('rmap_index', 0)
+        self.nmap_index = self.get_metadata('nmap_index', 0)
 
         self.db_is_open = True
-
-    def _close(self):
-        """
-        Close database backend.
-        """
-        raise NotImplementedError
-
-    def close(self, update=True, user=None):
-        """
-        Close the database.
-        if update is False, don't change access times, etc.
-        """
-        if self._directory:
-            if update:
-                # This is just a dummy file to indicate last modified time of
-                # the database for gramps.cli.clidbman:
-                filename = os.path.join(self._directory, "meta_data.db")
-                touch(filename)
-
-                # Save metadata
-                self._txn_begin()
-                self._set_metadata('name_formats', self.name_formats)
-                self._set_metadata('researcher', self.owner)
-
-                # Bookmarks
-                self._set_metadata('bookmarks', self.bookmarks.get())
-                self._set_metadata('family_bookmarks',
-                                  self.family_bookmarks.get())
-                self._set_metadata('event_bookmarks', self.event_bookmarks.get())
-                self._set_metadata('place_bookmarks', self.place_bookmarks.get())
-                self._set_metadata('repo_bookmarks', self.repo_bookmarks.get())
-                self._set_metadata('source_bookmarks',
-                                  self.source_bookmarks.get())
-                self._set_metadata('citation_bookmarks',
-                                  self.citation_bookmarks.get())
-                self._set_metadata('media_bookmarks', self.media_bookmarks.get())
-                self._set_metadata('note_bookmarks', self.note_bookmarks.get())
-
-                # Custom type values, sets
-                self._set_metadata('event_names', self.event_names)
-                self._set_metadata('fattr_names', self.family_attributes)
-                self._set_metadata('pattr_names', self.individual_attributes)
-                self._set_metadata('sattr_names', self.source_attributes)
-                self._set_metadata('marker_names', self.marker_names)
-                self._set_metadata('child_refs', self.child_ref_types)
-                self._set_metadata('family_rels', self.family_rel_types)
-                self._set_metadata('event_roles', self.event_role_names)
-                self._set_metadata('name_types', self.name_types)
-                self._set_metadata('origin_types', self.origin_types)
-                self._set_metadata('repo_types', self.repository_types)
-                self._set_metadata('note_types', self.note_types)
-                self._set_metadata('sm_types', self.source_media_types)
-                self._set_metadata('url_types', self.url_types)
-                self._set_metadata('mattr_names', self.media_attributes)
-                self._set_metadata('eattr_names', self.event_attributes)
-                self._set_metadata('place_types', self.place_types)
-
-                # Save misc items:
-                if self.has_changed:
-                    self.save_gender_stats(self.genderStats)
-
-                # Indexes:
-                self._set_metadata('cmap_index', self.cmap_index)
-                self._set_metadata('smap_index', self.smap_index)
-                self._set_metadata('emap_index', self.emap_index)
-                self._set_metadata('pmap_index', self.pmap_index)
-                self._set_metadata('fmap_index', self.fmap_index)
-                self._set_metadata('lmap_index', self.lmap_index)
-                self._set_metadata('omap_index', self.omap_index)
-                self._set_metadata('rmap_index', self.rmap_index)
-                self._set_metadata('nmap_index', self.nmap_index)
-                self._txn_commit()
-
-            self._close()
-        self.db_is_open = False
-        self._directory = None
-
-    def is_open(self):
-        return self.db_is_open
-
-    def get_dbid(self):
-        """
-        We use the file directory name as the unique ID for
-        this database on this computer.
-        """
-        return self.brief_name
-
-    def get_dbname(self):
-        """
-        In DbGeneric, the database is in a text file at the path
-        """
-        name = None
-        if self._directory:
-            filepath = os.path.join(self._directory, "name.txt")
-            try:
-                with open(filepath, "r") as name_file:
-                    name = name_file.readline().strip()
-            except (OSError, IOError) as msg:
-                LOG.error(str(msg))
-        return name
 
     def version_supported(self):
         """Return True when the file has a supported version."""
         return True
-
-    def get_schema_version(self, directory=None):
-        """
-        Get the version of the schema that the database was created
-        under. Assumes 18, if not found.
-        """
-        raise NotImplementedError
-
-    def get_table_func(self, table=None, func=None):
-        """
-        Private implementation of get_table_func.
-        """
-        if table is None:
-            return list(self.__tables.keys())
-        elif func is None:
-            return self.__tables[table] # dict of functions
-        elif func in self.__tables[table].keys():
-            return self.__tables[table][func]
-        else:
-            return super().get_table_func(table, func)
 
     def get_table_names(self):
         """Return a list of valid table names."""
@@ -761,21 +785,21 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             return self.get_table_func(table_name)
         return None
 
-    def _txn_begin(self):
+    def transaction_backend_begin(self):
         """
         Lowlevel interface to the backend transaction.
         Executes a db BEGIN;
         """
         pass
 
-    def _txn_commit(self):
+    def transaction_backend_commit(self):
         """
         Lowlevel interface to the backend transaction.
         Executes a db END;
         """
         pass
 
-    def _txn_abort(self):
+    def transaction_backend_abort(self):
         """
         Lowlevel interface to the backend transaction.
         Executes a db ROLLBACK;
@@ -789,30 +813,19 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.transaction = transaction
         return transaction
 
-    def _get_metadata(self, key, default=[]):
+    def _after_commit(self, transaction):
         """
-        Get an item from the database.
-
-        Default is an empty list, which is a mutable and
-        thus a bad default (pylint will complain).
-
-        However, it is just used as a value, and not altered, so
-        its use here is ok.
+        Post-transaction commit processing
         """
-        raise NotImplementedError
-
-    def _set_metadata(self, key, value):
-        """
-        key: string
-        value: item, will be serialized here
-        """
-        raise NotImplementedError
-
-    ################################################################
-    #
-    # set_*_id_prefix methods
-    #
-    ################################################################
+        # Reset callbacks if necessary
+        if transaction.batch or not len(transaction):
+            return
+        if self.undo_callback:
+            self.undo_callback(_("_Undo %s") % transaction.get_description())
+        if self.redo_callback:
+            self.redo_callback(None)
+        if self.undo_history_callback:
+            self.undo_history_callback()
 
     @staticmethod
     def _validated_id_prefix(val, default):
@@ -838,7 +851,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         pattern_match = re.match(r"(.*)%[0 ](\d+)[diu]$", id_pattern)
         if pattern_match:
             str_prefix = pattern_match.group(1)
-            #nr_width = int(pattern_match.group(2))
+            nr_width = int(pattern_match.group(2))
             def closure_func(gramps_id):
                 if gramps_id and gramps_id.startswith(str_prefix):
                     id_number = gramps_id[len(str_prefix):]
@@ -959,24 +972,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.note_prefix = self._validated_id_prefix(val, "N")
         self.nid2user_format = self.__id2user_format(self.note_prefix)
 
-    def set_prefixes(self, person, media, family, source, citation,
-                     place, event, repository, note):
-        self.set_person_id_prefix(person)
-        self.set_media_id_prefix(media)
-        self.set_family_id_prefix(family)
-        self.set_source_id_prefix(source)
-        self.set_citation_id_prefix(citation)
-        self.set_place_id_prefix(place)
-        self.set_event_id_prefix(event)
-        self.set_repository_id_prefix(repository)
-        self.set_note_id_prefix(note)
-
-    ################################################################
-    #
-    # find_next_*_gramps_id methods
-    #
-    ################################################################
-
     def _find_next_gramps_id(self, prefix, map_index, obj_key):
         """
         Helper function for find_next_<object>_gramps_id methods
@@ -1078,159 +1073,11 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                                          NOTE_KEY)
         return gid
 
-    ################################################################
-    #
-    # get_number_of_* methods
-    #
-    ################################################################
+    def get_mediapath(self):
+        return self.get_metadata("media-path", None)
 
-    def get_number_of(self, obj_key):
-        """
-        Return the number of objects currently in the database.
-        """
-        raise NotImplementedError
-
-    def get_number_of_people(self):
-        """
-        Return the number of people currently in the database.
-        """
-        return self.get_number_of(PERSON_KEY)
-
-    def get_number_of_events(self):
-        """
-        Return the number of events currently in the database.
-        """
-        return self.get_number_of(EVENT_KEY)
-
-    def get_number_of_places(self):
-        """
-        Return the number of places currently in the database.
-        """
-        return self.get_number_of(PLACE_KEY)
-
-    def get_number_of_tags(self):
-        """
-        Return the number of tags currently in the database.
-        """
-        return self.get_number_of(TAG_KEY)
-
-    def get_number_of_families(self):
-        """
-        Return the number of families currently in the database.
-        """
-        return self.get_number_of(FAMILY_KEY)
-
-    def get_number_of_notes(self):
-        """
-        Return the number of notes currently in the database.
-        """
-        return self.get_number_of(NOTE_KEY)
-
-    def get_number_of_citations(self):
-        """
-        Return the number of citations currently in the database.
-        """
-        return self.get_number_of(CITATION_KEY)
-
-    def get_number_of_sources(self):
-        """
-        Return the number of sources currently in the database.
-        """
-        return self.get_number_of(SOURCE_KEY)
-
-    def get_number_of_media(self):
-        """
-        Return the number of media objects currently in the database.
-        """
-        return self.get_number_of(MEDIA_KEY)
-
-    def get_number_of_repositories(self):
-        """
-        Return the number of source repositories currently in the database.
-        """
-        return self.get_number_of(REPOSITORY_KEY)
-
-    ################################################################
-    #
-    # get_*_gramps_ids methods
-    #
-    ################################################################
-
-    def get_gramps_ids(self, obj_key):
-        """
-        Return a list of Gramps IDs, one ID for each object in the
-        database.
-        """
-        raise NotImplementedError
-
-    def get_person_gramps_ids(self):
-        """
-        Return a list of Gramps IDs, one ID for each Person in the
-        database.
-        """
-        return self.get_gramps_ids(PERSON_KEY)
-
-    def get_family_gramps_ids(self):
-        """
-        Return a list of Gramps IDs, one ID for each Family in the
-        database.
-        """
-        return self.get_gramps_ids(FAMILY_KEY)
-
-    def get_source_gramps_ids(self):
-        """
-        Return a list of Gramps IDs, one ID for each Source in the
-        database.
-        """
-        return self.get_gramps_ids(SOURCE_KEY)
-
-    def get_citation_gramps_ids(self):
-        """
-        Return a list of Gramps IDs, one ID for each Citation in the
-        database.
-        """
-        return self.get_gramps_ids(CITATION_KEY)
-
-    def get_event_gramps_ids(self):
-        """
-        Return a list of Gramps IDs, one ID for each Event in the
-        database.
-        """
-        return self.get_gramps_ids(EVENT_KEY)
-
-    def get_media_gramps_ids(self):
-        """
-        Return a list of Gramps IDs, one ID for each Media in the
-        database.
-        """
-        return self.get_gramps_ids(MEDIA_KEY)
-
-    def get_place_gramps_ids(self):
-        """
-        Return a list of Gramps IDs, one ID for each Place in the
-        database.
-        """
-        return self.get_gramps_ids(PLACE_KEY)
-
-    def get_repository_gramps_ids(self):
-        """
-        Return a list of Gramps IDs, one ID for each Repository in the
-        database.
-        """
-        return self.get_gramps_ids(REPOSITORY_KEY)
-
-    def get_note_gramps_ids(self):
-        """
-        Return a list of Gramps IDs, one ID for each Note in the
-        database.
-        """
-        return self.get_gramps_ids(NOTE_KEY)
-
-    ################################################################
-    #
-    # get_*_from_handle methods
-    #
-    ################################################################
+    def set_mediapath(self, mediapath):
+        return self.set_metadata("media-path", mediapath)
 
     def get_event_from_handle(self, handle):
         if isinstance(handle, bytes):
@@ -1362,11 +1209,54 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             raise HandleError('Handle %s not found' % handle)
 
-    ################################################################
-    #
-    # get_*_from_gramps_id methods
-    #
-    ################################################################
+    def get_default_person(self):
+        handle = self.get_default_handle()
+        if handle:
+            return self.get_person_from_handle(handle)
+        else:
+            return None
+
+    def iter_items(self, order_by, class_):
+        """
+        Iterate over items in a class, possibly ordered by
+        a list of field names and direction ("ASC" or "DESC").
+        """
+        cursor = self.get_table_func(class_.__name__,"cursor_func")
+        if order_by is None:
+            for data in cursor():
+                yield class_.create(data[1])
+        else:
+            # first build sort order:
+            sorted_items = []
+            for data in cursor():
+                obj = class_.create(data[1])
+                # just use values and handle to keep small:
+                sorted_items.append((eval_order_by(order_by, obj, self), obj.handle))
+            # next we sort by fields and direction
+            def getitem(item, pos):
+                sort_items = item[0]
+                if isinstance(sort_items[pos], str):
+                    return sort_items[pos]
+                elif sort_items[pos] is None:
+                    return ""
+                else:
+                    # FIXME: should do something clever/recurive to
+                    # sort these meaningfully, and return a string:
+                    return str(sort_items[pos])
+            pos = len(order_by) - 1
+            for (field, order) in reversed(order_by): # sort the lasts parts first
+                sorted_items.sort(key=lambda item: getitem(item, pos),
+                                  reverse=(order=="DESC"))
+                pos -= 1
+            # now we will look them up again:
+            for (order_by_values, handle) in sorted_items:
+                yield self.get_table_func(class_.__name__,"handle_func")(handle)
+
+    def iter_people(self, order_by=None):
+        return self.iter_items(order_by, Person)
+
+    def iter_families(self, order_by=None):
+        return self.iter_items(order_by, Family)
 
     def get_person_from_gramps_id(self, gramps_id):
         data = self._get_raw_person_from_id_data(gramps_id)
@@ -1404,402 +1294,45 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         data = self._get_raw_note_from_id_data(gramps_id)
         return Note.create(data)
 
-    ################################################################
-    #
-    # has_*_handle methods
-    #
-    ################################################################
-
-    def has_handle(self, obj_key, handle):
-        """
-        Return True if the handle exists in the database.
-        """
-        raise NotImplementedError
-
-    def has_person_handle(self, handle):
-        return self.has_handle(PERSON_KEY, handle)
-
-    def has_family_handle(self, handle):
-        return self.has_handle(FAMILY_KEY, handle)
-
-    def has_source_handle(self, handle):
-        return self.has_handle(SOURCE_KEY, handle)
-
-    def has_citation_handle(self, handle):
-        return self.has_handle(CITATION_KEY, handle)
-
-    def has_event_handle(self, handle):
-        return self.has_handle(EVENT_KEY, handle)
-
-    def has_media_handle(self, handle):
-        return self.has_handle(MEDIA_KEY, handle)
-
-    def has_place_handle(self, handle):
-        return self.has_handle(PLACE_KEY, handle)
-
-    def has_repository_handle(self, handle):
-        return self.has_handle(REPOSITORY_KEY, handle)
-
-    def has_note_handle(self, handle):
-        return self.has_handle(NOTE_KEY, handle)
-
-    def has_tag_handle(self, handle):
-        return self.has_handle(TAG_KEY, handle)
-
-    ################################################################
-    #
-    # has_*_gramps_id methods
-    #
-    ################################################################
-
-    def has_gramps_id(self, obj_key, gramps_id):
-        raise NotImplementedError
-
-    def has_person_gramps_id(self, gramps_id):
-        return self.has_gramps_id(PERSON_KEY, gramps_id)
-
-    def has_family_gramps_id(self, gramps_id):
-        return self.has_gramps_id(FAMILY_KEY, gramps_id)
-
-    def has_source_gramps_id(self, gramps_id):
-        return self.has_gramps_id(SOURCE_KEY, gramps_id)
-
-    def has_citation_gramps_id(self, gramps_id):
-        return self.has_gramps_id(CITATION_KEY, gramps_id)
-
-    def has_event_gramps_id(self, gramps_id):
-        return self.has_gramps_id(EVENT_KEY, gramps_id)
-
-    def has_media_gramps_id(self, gramps_id):
-        return self.has_gramps_id(MEDIA_KEY, gramps_id)
-
-    def has_place_gramps_id(self, gramps_id):
-        return self.has_gramps_id(PLACE_KEY, gramps_id)
-
-    def has_repository_gramps_id(self, gramps_id):
-        return self.has_gramps_id(REPOSITORY_KEY, gramps_id)
-
-    def has_note_gramps_id(self, gramps_id):
-        return self.has_gramps_id(NOTE_KEY, gramps_id)
-
-    ################################################################
-    #
-    # get_*_cursor methods
-    #
-    ################################################################
-
     def get_place_cursor(self):
-        return Cursor(self._iter_raw_place_data)
+        return Cursor(self.place_map)
 
-    def get_place_tree_cursor(self):
-        return Cursor(self._iter_raw_place_tree_data)
+    def get_place_tree_cursor(self, *args, **kwargs):
+        return TreeCursor(self, self.place_map)
 
     def get_person_cursor(self):
-        return Cursor(self._iter_raw_person_data)
+        return Cursor(self.person_map)
 
     def get_family_cursor(self):
-        return Cursor(self._iter_raw_family_data)
+        return Cursor(self.family_map)
 
     def get_event_cursor(self):
-        return Cursor(self._iter_raw_event_data)
+        return Cursor(self.event_map)
 
     def get_note_cursor(self):
-        return Cursor(self._iter_raw_note_data)
+        return Cursor(self.note_map)
 
     def get_tag_cursor(self):
-        return Cursor(self._iter_raw_tag_data)
+        return Cursor(self.tag_map)
 
     def get_repository_cursor(self):
-        return Cursor(self._iter_raw_repository_data)
+        return Cursor(self.repository_map)
 
     def get_media_cursor(self):
-        return Cursor(self._iter_raw_media_data)
+        return Cursor(self.media_map)
 
     def get_citation_cursor(self):
-        return Cursor(self._iter_raw_citation_data)
+        return Cursor(self.citation_map)
 
     def get_source_cursor(self):
-        return Cursor(self._iter_raw_source_data)
-
-    ################################################################
-    #
-    # iter_*_handles methods
-    #
-    ################################################################
-
-    def _iter_handles(self, obj_key):
-        raise NotImplementedError
-
-    def iter_person_handles(self):
-        """
-        Return an iterator over handles for Persons in the database
-        """
-        return self._iter_handles(PERSON_KEY)
-
-    def iter_family_handles(self):
-        """
-        Return an iterator over handles for Families in the database
-        """
-        return self._iter_handles(FAMILY_KEY)
-
-    def iter_citation_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Citation
-        in the database.
-        """
-        return self._iter_handles(CITATION_KEY)
-
-    def iter_event_handles(self):
-        """
-        Return an iterator over handles for Events in the database
-        """
-        return self._iter_handles(EVENT_KEY)
-
-    def iter_media_handles(self):
-        """
-        Return an iterator over handles for Media in the database
-        """
-        return self._iter_handles(MEDIA_KEY)
-
-    def iter_note_handles(self):
-        """
-        Return an iterator over handles for Notes in the database
-        """
-        return self._iter_handles(NOTE_KEY)
-
-    def iter_place_handles(self):
-        """
-        Return an iterator over handles for Places in the database
-        """
-        return self._iter_handles(PLACE_KEY)
-
-    def iter_repository_handles(self):
-        """
-        Return an iterator over handles for Repositories in the database
-        """
-        return self._iter_handles(REPOSITORY_KEY)
-
-    def iter_source_handles(self):
-        """
-        Return an iterator over handles for Sources in the database
-        """
-        return self._iter_handles(SOURCE_KEY)
-
-    def iter_tag_handles(self):
-        """
-        Return an iterator over handles for Tags in the database
-        """
-        return self._iter_handles(TAG_KEY)
-
-    ################################################################
-    #
-    # iter_* methods
-    #
-    ################################################################
-
-    def _iter_objects(self, class_):
-        """
-        Iterate over items in a class.
-        """
-        cursor = self.get_table_func(class_.__name__, "cursor_func")
-        for data in cursor():
-            yield class_.create(data[1])
-
-    def iter_people(self):
-        return self._iter_objects(Person)
-
-    def iter_families(self):
-        return self._iter_objects(Family)
-
-    def iter_citations(self):
-        return self._iter_objects(Citation)
-
-    def iter_events(self):
-        return self._iter_objects(Event)
-
-    def iter_media(self):
-        return self._iter_objects(Media)
-
-    def iter_notes(self):
-        return self._iter_objects(Note)
-
-    def iter_places(self):
-        return self._iter_objects(Place)
-
-    def iter_repositories(self):
-        return self._iter_objects(Repository)
-
-    def iter_sources(self):
-        return self._iter_objects(Source)
-
-    def iter_tags(self):
-        return self._iter_objects(Tag)
-
-    ################################################################
-    #
-    # _iter_raw_*_data methods
-    #
-    ################################################################
-
-    def _iter_raw_data(self, obj_key):
-        raise NotImplementedError
-
-    def _iter_raw_person_data(self):
-        """
-        Return an iterator over raw Person data.
-        """
-        return self._iter_raw_data(PERSON_KEY)
-
-    def _iter_raw_family_data(self):
-        """
-        Return an iterator over raw Family data.
-        """
-        return self._iter_raw_data(FAMILY_KEY)
-
-    def _iter_raw_event_data(self):
-        """
-        Return an iterator over raw Event data.
-        """
-        return self._iter_raw_data(EVENT_KEY)
-
-    def _iter_raw_place_data(self):
-        """
-        Return an iterator over raw Place data.
-        """
-        return self._iter_raw_data(PLACE_KEY)
-
-    def _iter_raw_repository_data(self):
-        """
-        Return an iterator over raw Repository data.
-        """
-        return self._iter_raw_data(REPOSITORY_KEY)
-
-    def _iter_raw_source_data(self):
-        """
-        Return an iterator over raw Source data.
-        """
-        return self._iter_raw_data(SOURCE_KEY)
-
-    def _iter_raw_citation_data(self):
-        """
-        Return an iterator over raw Citation data.
-        """
-        return self._iter_raw_data(CITATION_KEY)
-
-    def _iter_raw_media_data(self):
-        """
-        Return an iterator over raw Media data.
-        """
-        return self._iter_raw_data(MEDIA_KEY)
-
-    def _iter_raw_note_data(self):
-        """
-        Return an iterator over raw Note data.
-        """
-        return self._iter_raw_data(NOTE_KEY)
-
-    def _iter_raw_tag_data(self):
-        """
-        Return an iterator over raw Tag data.
-        """
-        return self._iter_raw_data(TAG_KEY)
-
-    def _iter_raw_place_tree_data(self):
-        """
-        Return an iterator over raw data in the place hierarchy.
-        """
-        raise NotImplementedError
-
-    ################################################################
-    #
-    # get_raw_*_data methods
-    #
-    ################################################################
-
-    def get_raw_data(self, obj_key, handle):
-        """
-        Return raw (serialized and pickled) object from handle.
-        """
-        raise NotImplementedError
-
-    def get_raw_person_data(self, handle):
-        return self.get_raw_data(PERSON_KEY, handle)
-
-    def get_raw_family_data(self, handle):
-        return self.get_raw_data(FAMILY_KEY, handle)
-
-    def get_raw_source_data(self, handle):
-        return self.get_raw_data(SOURCE_KEY, handle)
-
-    def get_raw_citation_data(self, handle):
-        return self.get_raw_data(CITATION_KEY, handle)
-
-    def get_raw_event_data(self, handle):
-        return self.get_raw_data(EVENT_KEY, handle)
-
-    def get_raw_media_data(self, handle):
-        return self.get_raw_data(MEDIA_KEY, handle)
-
-    def get_raw_place_data(self, handle):
-        return self.get_raw_data(PLACE_KEY, handle)
-
-    def get_raw_repository_data(self, handle):
-        return self.get_raw_data(REPOSITORY_KEY, handle)
-
-    def get_raw_note_data(self, handle):
-        return self.get_raw_data(NOTE_KEY, handle)
-
-    def get_raw_tag_data(self, handle):
-        return self.get_raw_data(TAG_KEY, handle)
-
-    ################################################################
-    #
-    # get_raw_*_from_id_data methods
-    #
-    ################################################################
-
-    def _get_raw_from_id_data(self, obj_key, gramps_id):
-        raise NotImplementedError
-
-    def _get_raw_person_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(PERSON_KEY, gramps_id)
-
-    def _get_raw_family_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(FAMILY_KEY, gramps_id)
-
-    def _get_raw_source_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(SOURCE_KEY, gramps_id)
-
-    def _get_raw_citation_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(CITATION_KEY, gramps_id)
-
-    def _get_raw_event_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(EVENT_KEY, gramps_id)
-
-    def _get_raw_media_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(MEDIA_KEY, gramps_id)
-
-    def _get_raw_place_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(PLACE_KEY, gramps_id)
-
-    def _get_raw_repository_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(REPOSITORY_KEY, gramps_id)
-
-    def _get_raw_note_from_id_data(self, gramps_id):
-        return self._get_raw_from_id_data(NOTE_KEY, gramps_id)
-
-    ################################################################
-    #
-    # add_* methods
-    #
-    ################################################################
+        return Cursor(self.source_map)
 
     def add_person(self, person, trans, set_gid=True):
         if not person.handle:
             person.handle = create_id()
         if (not person.gramps_id) and set_gid:
             person.gramps_id = self.find_next_person_gramps_id()
-        if not person.gramps_id:
+        if (not person.gramps_id):
             # give it a random value for the moment:
             person.gramps_id = str(random.random())
         self.commit_person(person, trans)
@@ -1810,7 +1343,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             family.handle = create_id()
         if (not family.gramps_id) and set_gid:
             family.gramps_id = self.find_next_family_gramps_id()
-        if not family.gramps_id:
+        if (not family.gramps_id):
             # give it a random value for the moment:
             family.gramps_id = str(random.random())
         self.commit_family(family, trans)
@@ -1821,7 +1354,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             citation.handle = create_id()
         if (not citation.gramps_id) and set_gid:
             citation.gramps_id = self.find_next_citation_gramps_id()
-        if not citation.gramps_id:
+        if (not citation.gramps_id):
             # give it a random value for the moment:
             citation.gramps_id = str(random.random())
         self.commit_citation(citation, trans)
@@ -1832,7 +1365,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             source.handle = create_id()
         if (not source.gramps_id) and set_gid:
             source.gramps_id = self.find_next_source_gramps_id()
-        if not source.gramps_id:
+        if (not source.gramps_id):
             # give it a random value for the moment:
             source.gramps_id = str(random.random())
         self.commit_source(source, trans)
@@ -1843,7 +1376,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             repository.handle = create_id()
         if (not repository.gramps_id) and set_gid:
             repository.gramps_id = self.find_next_repository_gramps_id()
-        if not repository.gramps_id:
+        if (not repository.gramps_id):
             # give it a random value for the moment:
             repository.gramps_id = str(random.random())
         self.commit_repository(repository, trans)
@@ -1854,7 +1387,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             note.handle = create_id()
         if (not note.gramps_id) and set_gid:
             note.gramps_id = self.find_next_note_gramps_id()
-        if not note.gramps_id:
+        if (not note.gramps_id):
             # give it a random value for the moment:
             note.gramps_id = str(random.random())
         self.commit_note(note, trans)
@@ -1865,7 +1398,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             place.handle = create_id()
         if (not place.gramps_id) and set_gid:
             place.gramps_id = self.find_next_place_gramps_id()
-        if not place.gramps_id:
+        if (not place.gramps_id):
             # give it a random value for the moment:
             place.gramps_id = str(random.random())
         self.commit_place(place, trans)
@@ -1876,7 +1409,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             event.handle = create_id()
         if (not event.gramps_id) and set_gid:
             event.gramps_id = self.find_next_event_gramps_id()
-        if not event.gramps_id:
+        if (not event.gramps_id):
             # give it a random value for the moment:
             event.gramps_id = str(random.random())
         self.commit_event(event, trans)
@@ -1899,255 +1432,112 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             obj.handle = create_id()
         if (not obj.gramps_id) and set_gid:
             obj.gramps_id = self.find_next_media_gramps_id()
-        if not obj.gramps_id:
+        if (not obj.gramps_id):
             # give it a random value for the moment:
             obj.gramps_id = str(random.random())
         self.commit_media(obj, transaction)
         return obj.handle
 
-    ################################################################
-    #
-    # commit_* methods
-    #
-    ################################################################
-
-    def _commit_base(self, obj, obj_key, trans, change_time):
+    def add_to_surname_list(self, person, batch_transaction):
         """
-        Commit the specified object to the database, storing the changes as
-        part of the transaction.
+        Add surname to surname list
         """
-        raise NotImplementedError
-
-    def commit_person(self, person, trans, change_time=None):
-        """
-        Commit the specified Person to the database, storing the changes as
-        part of the transaction.
-        """
-        old_data = self._commit_base(person, PERSON_KEY, trans, change_time)
-
-        if old_data:
-            old_person = Person(old_data)
-            # Update gender statistics if necessary
-            if (old_person.gender != person.gender
-                    or (old_person.primary_name.first_name !=
-                        person.primary_name.first_name)):
-
-                self.genderStats.uncount_person(old_person)
-                self.genderStats.count_person(person)
-            # Update surname list if necessary
-            if (self._order_by_person_key(person) !=
-                    self._order_by_person_key(old_person)):
-                self.remove_from_surname_list(old_person)
-                self.add_to_surname_list(person, trans.batch)
-        else:
-            self.genderStats.count_person(person)
-            self.add_to_surname_list(person, trans.batch)
-
-        # Other misc update tasks:
-        self.individual_attributes.update(
-            [str(attr.type) for attr in person.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
-
-        self.event_role_names.update([str(eref.role)
-                                      for eref in person.event_ref_list
-                                      if eref.role.is_custom()])
-
-        self.name_types.update([str(name.type)
-                                for name in ([person.primary_name]
-                                             + person.alternate_names)
-                                if name.type.is_custom()])
-        all_surn = []  # new list we will use for storage
-        all_surn += person.primary_name.get_surname_list()
-        for asurname in person.alternate_names:
-            all_surn += asurname.get_surname_list()
-        self.origin_types.update([str(surn.origintype) for surn in all_surn
-                                  if surn.origintype.is_custom()])
-        all_surn = None
-        self.url_types.update([str(url.type) for url in person.urls
-                               if url.type.is_custom()])
-        attr_list = []
-        for mref in person.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
-        self.media_attributes.update(attr_list)
-
-    def commit_family(self, family, trans, change_time=None):
-        """
-        Commit the specified Family to the database, storing the changes as
-        part of the transaction.
-        """
-        self._commit_base(family, FAMILY_KEY, trans, change_time)
-
-        # Misc updates:
-        self.family_attributes.update(
-            [str(attr.type) for attr in family.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
-
-        rel_list = []
-        for ref in family.child_ref_list:
-            if ref.frel.is_custom():
-                rel_list.append(str(ref.frel))
-            if ref.mrel.is_custom():
-                rel_list.append(str(ref.mrel))
-        self.child_ref_types.update(rel_list)
-
-        self.event_role_names.update(
-            [str(eref.role) for eref in family.event_ref_list
-             if eref.role.is_custom()])
-
-        if family.type.is_custom():
-            self.family_rel_types.add(str(family.type))
-
-        attr_list = []
-        for mref in family.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
-        self.media_attributes.update(attr_list)
-
-    def commit_citation(self, citation, trans, change_time=None):
-        """
-        Commit the specified Citation to the database, storing the changes as
-        part of the transaction.
-        """
-        self._commit_base(citation, CITATION_KEY, trans, change_time)
-
-        # Misc updates:
-        attr_list = []
-        for mref in citation.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
-        self.media_attributes.update(attr_list)
-
-        self.source_attributes.update(
-            [str(attr.type) for attr in citation.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
-
-    def commit_source(self, source, trans, change_time=None):
-        """
-        Commit the specified Source to the database, storing the changes as
-        part of the transaction.
-        """
-        self._commit_base(source, SOURCE_KEY, trans, change_time)
-
-        # Misc updates:
-        self.source_media_types.update(
-            [str(ref.media_type) for ref in source.reporef_list
-             if ref.media_type.is_custom()])
-
-        attr_list = []
-        for mref in source.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
-        self.media_attributes.update(attr_list)
-        self.source_attributes.update(
-            [str(attr.type) for attr in source.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
-
-    def commit_repository(self, repository, trans, change_time=None):
-        """
-        Commit the specified Repository to the database, storing the changes
-        as part of the transaction.
-        """
-        self._commit_base(repository, REPOSITORY_KEY, trans, change_time)
-
-        # Misc updates:
-        if repository.type.is_custom():
-            self.repository_types.add(str(repository.type))
-
-        self.url_types.update([str(url.type) for url in repository.urls
-                               if url.type.is_custom()])
-
-    def commit_note(self, note, trans, change_time=None):
-        """
-        Commit the specified Note to the database, storing the changes as part
-        of the transaction.
-        """
-        self._commit_base(note, NOTE_KEY, trans, change_time)
-
-        # Misc updates:
-        if note.type.is_custom():
-            self.note_types.add(str(note.type))
-
-    def commit_place(self, place, trans, change_time=None):
-        """
-        Commit the specified Place to the database, storing the changes as
-        part of the transaction.
-        """
-        self._commit_base(place, PLACE_KEY, trans, change_time)
-
-        # Misc updates:
-        if place.get_type().is_custom():
-            self.place_types.add(str(place.get_type()))
-
-        self.url_types.update([str(url.type) for url in place.urls
-                               if url.type.is_custom()])
-
-        attr_list = []
-        for mref in place.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
-        self.media_attributes.update(attr_list)
-
-    def commit_event(self, event, trans, change_time=None):
-        """
-        Commit the specified Event to the database, storing the changes as
-        part of the transaction.
-        """
-        self._commit_base(event, EVENT_KEY, trans, change_time)
-
-        # Misc updates:
-        self.event_attributes.update(
-            [str(attr.type) for attr in event.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
-        if event.type.is_custom():
-            self.event_names.add(str(event.type))
-        attr_list = []
-        for mref in event.media_list:
-            attr_list += [str(attr.type) for attr in mref.attribute_list
-                          if attr.type.is_custom() and str(attr.type)]
-        self.media_attributes.update(attr_list)
-
-    def commit_tag(self, tag, trans, change_time=None):
-        """
-        Commit the specified Tag to the database, storing the changes as
-        part of the transaction.
-        """
-        self._commit_base(tag, TAG_KEY, trans, change_time)
-
-    def commit_media(self, media, trans, change_time=None):
-        """
-        Commit the specified Media to the database, storing the changes
-        as part of the transaction.
-        """
-        self._commit_base(media, MEDIA_KEY, trans, change_time)
-
-        # Misc updates:
-        self.media_attributes.update(
-            [str(attr.type) for attr in media.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
-
-    def _after_commit(self, transaction):
-        """
-        Post-transaction commit processing
-        """
-        # Reset callbacks if necessary
-        if transaction.batch or not len(transaction):
+        if batch_transaction:
             return
-        if self.undo_callback:
-            self.undo_callback(_("_Undo %s") % transaction.get_description())
-        if self.redo_callback:
-            self.redo_callback(None)
-        if self.undo_history_callback:
-            self.undo_history_callback()
+        name = None
+        primary_name = person.get_primary_name()
+        if primary_name:
+            surname_list = primary_name.get_surname_list()
+            if len(surname_list) > 0:
+                name = surname_list[0].surname
+        if name is None:
+            return
+        i = bisect.bisect(self.surname_list, name)
+        if 0 < i <= len(self.surname_list):
+            if self.surname_list[i-1] != name:
+                self.surname_list.insert(i, name)
+        else:
+            self.surname_list.insert(i, name)
 
-    ################################################################
-    #
-    # remove_* methods
-    #
-    ################################################################
+    def remove_from_surname_list(self, person):
+        """
+        Check whether there are persons with the same surname left in
+        the database.
 
-    def _do_remove(self, handle, transaction, obj_key):
-        raise NotImplementedError
+        If not then we need to remove the name from the list.
+        The function must be overridden in the derived class.
+        """
+        name = None
+        primary_name = person.get_primary_name()
+        if primary_name:
+            surname_list = primary_name.get_surname_list()
+            if len(surname_list) > 0:
+                name = surname_list[0].surname
+        if name is None:
+            return
+        if name in self.surname_list:
+            self.surname_list.remove(name)
+
+    def set_researcher(self, owner):
+        self.owner.set_from(owner)
+
+    def get_researcher(self):
+        return self.owner
+
+    def request_rebuild(self):
+        self.emit('person-rebuild')
+        self.emit('family-rebuild')
+        self.emit('place-rebuild')
+        self.emit('source-rebuild')
+        self.emit('citation-rebuild')
+        self.emit('media-rebuild')
+        self.emit('event-rebuild')
+        self.emit('repository-rebuild')
+        self.emit('note-rebuild')
+        self.emit('tag-rebuild')
+
+    def copy_from_db(self, db):
+        """
+        A (possibily) implementation-specific method to get data from
+        db into this database.
+        """
+        for key in db.get_table_func():
+            cursor = db.get_table_func(key,"cursor_func")
+            class_ = db.get_table_func(key,"class_func")
+            for (handle, data) in cursor():
+                map = getattr(self, "%s_map" % key.lower())
+                if isinstance(handle, bytes):
+                    handle = str(handle, "utf-8")
+                map[handle] = class_.create(data)
+
+    def get_from_name_and_handle(self, table_name, handle):
+        """
+        Returns a gen.lib object (or None) given table_name and
+        handle.
+
+        Examples:
+
+        >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
+        >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
+        """
+        if table_name in self.get_table_func() and handle:
+            return self.get_table_func(table_name,"handle_func")(handle)
+        return None
+
+    def get_from_name_and_gramps_id(self, table_name, gramps_id):
+        """
+        Returns a gen.lib object (or None) given table_name and
+        Gramps ID.
+
+        Examples:
+
+        >>> self.get_from_name_and_gramps_id("Person", "I00002")
+        >>> self.get_from_name_and_gramps_id("Family", "F056")
+        >>> self.get_from_name_and_gramps_id("Media", "M00012")
+        """
+        if table_name in self.get_table_func():
+            return self.get_table_func(table_name,"gramps_id_func")(gramps_id)
+        return None
 
     def remove_person(self, handle, transaction):
         """
@@ -2219,11 +1609,98 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         self._do_remove(handle, transaction, TAG_KEY)
 
-    ################################################################
-    #
-    # get_*_types methods
-    #
-    ################################################################
+    def is_empty(self):
+        """
+        Return true if there are no [primary] records in the database
+        """
+        for table in self.get_table_func():
+            if len(self.get_table_func(table,"handles_func")()) > 0:
+                return False
+        return True
+
+    def close(self, update=True, user=None):
+        """
+        Close the database.
+        if update is False, don't change access times, etc.
+        """
+        if self._directory:
+            if update:
+                if config.get('database.autobackup'):
+                    self.autobackup(user)
+                # This is just a dummy file to indicate last modified time of the
+                # database for gramps.cli.clidbman:
+                filename = os.path.join(self._directory, "meta_data.db")
+                touch(filename)
+                # Save metadata
+                self.transaction_backend_begin()
+                self.set_metadata('name_formats', self.name_formats)
+                self.set_metadata('researcher', self.owner)
+
+                # Bookmarks
+                self.set_metadata('bookmarks', self.bookmarks.get())
+                self.set_metadata('family_bookmarks', self.family_bookmarks.get())
+                self.set_metadata('event_bookmarks', self.event_bookmarks.get())
+                self.set_metadata('source_bookmarks', self.source_bookmarks.get())
+                self.set_metadata('citation_bookmarks', self.citation_bookmarks.get())
+                self.set_metadata('repo_bookmarks', self.repo_bookmarks.get())
+                self.set_metadata('media_bookmarks', self.media_bookmarks.get())
+                self.set_metadata('place_bookmarks', self.place_bookmarks.get())
+                self.set_metadata('note_bookmarks', self.note_bookmarks.get())
+
+                # Custom type values, sets
+                self.set_metadata('event_names', self.event_names)
+                self.set_metadata('fattr_names', self.family_attributes)
+                self.set_metadata('pattr_names', self.individual_attributes)
+                self.set_metadata('sattr_names', self.source_attributes)
+                self.set_metadata('marker_names', self.marker_names)
+                self.set_metadata('child_refs', self.child_ref_types)
+                self.set_metadata('family_rels', self.family_rel_types)
+                self.set_metadata('event_roles', self.event_role_names)
+                self.set_metadata('name_types', self.name_types)
+                self.set_metadata('origin_types', self.origin_types)
+                self.set_metadata('repo_types', self.repository_types)
+                self.set_metadata('note_types', self.note_types)
+                self.set_metadata('sm_types', self.source_media_types)
+                self.set_metadata('url_types', self.url_types)
+                self.set_metadata('mattr_names', self.media_attributes)
+                self.set_metadata('eattr_names', self.event_attributes)
+                self.set_metadata('place_types', self.place_types)
+
+                # Save misc items:
+                if self.has_changed:
+                    self.save_surname_list()
+                    self.save_gender_stats(self.genderStats)
+
+                # Indexes:
+                self.set_metadata('cmap_index', self.cmap_index)
+                self.set_metadata('smap_index', self.smap_index)
+                self.set_metadata('emap_index', self.emap_index)
+                self.set_metadata('pmap_index', self.pmap_index)
+                self.set_metadata('fmap_index', self.fmap_index)
+                self.set_metadata('lmap_index', self.lmap_index)
+                self.set_metadata('omap_index', self.omap_index)
+                self.set_metadata('rmap_index', self.rmap_index)
+                self.set_metadata('nmap_index', self.nmap_index)
+                self.transaction_backend_commit()
+
+            self.close_backend()
+        self.db_is_open = False
+        self._directory = None
+
+    def get_bookmarks(self):
+        return self.bookmarks
+
+    def get_citation_bookmarks(self):
+        return self.citation_bookmarks
+
+    def get_default_handle(self):
+        return self.get_metadata("default-person-handle", None)
+
+    def get_surname_list(self):
+        """
+        Return the list of locale-sorted surnames contained in the database.
+        """
+        return self.surname_list
 
     def get_event_attribute_types(self):
         """
@@ -2348,18 +1825,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         return list(self.place_types)
 
-    ################################################################
-    #
-    # get_*_bookmarks methods
-    #
-    ################################################################
-
-    def get_bookmarks(self):
-        return self.bookmarks
-
-    def get_citation_bookmarks(self):
-        return self.citation_bookmarks
-
     def get_event_bookmarks(self):
         return self.event_bookmarks
 
@@ -2378,140 +1843,50 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_repo_bookmarks(self):
         return self.repo_bookmarks
 
+    def get_save_path(self):
+        return self._directory
+
     def get_source_bookmarks(self):
         return self.source_bookmarks
 
-    ################################################################
-    #
-    # Other methods
-    #
-    ################################################################
+    def is_open(self):
+        return self.db_is_open
 
-    def get_default_handle(self):
-        return self._get_metadata("default-person-handle", None)
+    def iter_citations(self, order_by=None):
+        return self.iter_items(order_by, Citation)
 
-    def get_default_person(self):
-        handle = self.get_default_handle()
-        if handle:
-            return self.get_person_from_handle(handle)
-        else:
-            return None
+    def iter_events(self, order_by=None):
+        return self.iter_items(order_by, Event)
 
-    def set_default_person_handle(self, handle):
-        self._set_metadata("default-person-handle", handle)
-        self.emit('home-person-changed')
+    def iter_media(self, order_by=None):
+        return self.iter_items(order_by, Media)
 
-    def get_mediapath(self):
-        return self._get_metadata("media-path", None)
+    def iter_notes(self, order_by=None):
+        return self.iter_items(order_by, Note)
 
-    def set_mediapath(self, mediapath):
-        return self._set_metadata("media-path", mediapath)
+    def iter_places(self, order_by=None):
+        return self.iter_items(order_by, Place)
 
-    def get_surname_list(self):
-        """
-        Return the list of locale-sorted surnames contained in the database.
-        """
-        return self.surname_list
+    def iter_repositories(self, order_by=None):
+        return self.iter_items(order_by, Repository)
 
-    def add_to_surname_list(self, person, batch_transaction):
-        """
-        Add surname to surname list
-        """
-        if batch_transaction:
-            return
-        name = None
-        primary_name = person.get_primary_name()
-        if primary_name:
-            surname_list = primary_name.get_surname_list()
-            if len(surname_list) > 0:
-                name = surname_list[0].surname
-        if name is None:
-            return
-        i = bisect.bisect(self.surname_list, name)
-        if 0 < i <= len(self.surname_list):
-            if self.surname_list[i-1] != name:
-                self.surname_list.insert(i, name)
-        else:
-            self.surname_list.insert(i, name)
+    def iter_sources(self, order_by=None):
+        return self.iter_items(order_by, Source)
 
-    def remove_from_surname_list(self, person):
-        """
-        Check whether there are persons with the same surname left in
-        the database.
+    def iter_tags(self, order_by=None):
+        return self.iter_items(order_by, Tag)
 
-        If not then we need to remove the name from the list.
-        The function must be overridden in the derived class.
-        """
-        name = None
-        primary_name = person.get_primary_name()
-        if primary_name:
-            surname_list = primary_name.get_surname_list()
-            if len(surname_list) > 0:
-                name = surname_list[0].surname
-        if name is None:
-            return
-        if name in self.surname_list:
-            self.surname_list.remove(name)
-
-    def get_gender_stats(self):
-        """
-        Returns a dictionary of
-        {given_name: (male_count, female_count, unknown_count)}
-        """
-        raise NotImplementedError
-
-    def save_gender_stats(self, gstats):
-        raise NotImplementedError
-
-    def get_researcher(self):
-        return self.owner
-
-    def set_researcher(self, owner):
-        self.owner.set_from(owner)
-
-    def request_rebuild(self):
-        self.emit('person-rebuild')
-        self.emit('family-rebuild')
-        self.emit('place-rebuild')
-        self.emit('source-rebuild')
-        self.emit('citation-rebuild')
-        self.emit('media-rebuild')
-        self.emit('event-rebuild')
-        self.emit('repository-rebuild')
-        self.emit('note-rebuild')
-        self.emit('tag-rebuild')
-
-    def get_from_name_and_handle(self, table_name, handle):
-        """
-        Returns a gen.lib object (or None) given table_name and
-        handle.
-
-        Examples:
-
-        >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
-        >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
-        """
-        if table_name in self.get_table_func() and handle:
-            return self.get_table_func(table_name, "handle_func")(handle)
-        return None
-
-    def get_from_name_and_gramps_id(self, table_name, gramps_id):
-        """
-        Returns a gen.lib object (or None) given table_name and
-        Gramps ID.
-
-        Examples:
-
-        >>> self.get_from_name_and_gramps_id("Person", "I00002")
-        >>> self.get_from_name_and_gramps_id("Family", "F056")
-        >>> self.get_from_name_and_gramps_id("Media", "M00012")
-        """
-        if table_name in self.get_table_func():
-            return self.get_table_func(table_name, "gramps_id_func")(gramps_id)
-        return None
-
-    def get_save_path(self):
-        return self._directory
+    def set_prefixes(self, person, media, family, source, citation,
+                     place, event, repository, note):
+        self.set_person_id_prefix(person)
+        self.set_media_id_prefix(media)
+        self.set_family_id_prefix(family)
+        self.set_source_id_prefix(source)
+        self.set_citation_id_prefix(citation)
+        self.set_place_id_prefix(place)
+        self.set_event_id_prefix(event)
+        self.set_repository_id_prefix(repository)
+        self.set_note_id_prefix(note)
 
     def set_save_path(self, directory):
         self._directory = directory
@@ -2536,15 +1911,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         return self._bm_changes > 0
 
-    def get_undodb(self):
-        return self.undodb
-
-    def undo(self, update_history=True):
-        return self.undodb.undo(update_history)
-
-    def redo(self, update_history=True):
-        return self.undodb.redo(update_history)
-
     def get_summary(self):
         """
         Returns dictionary of summary item.
@@ -2554,6 +1920,17 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         _("Version")
         _("Data version")
         """
+        last_backup = "n/a"
+        backups = sorted(glob.glob(os.path.join(
+            self._directory, "backup-*.gramps")), reverse=True)
+        if backups:
+            path, filename = os.path.split(backups[0])
+            filename, ext = os.path.splitext(filename)
+            if filename.count("-") == 6:
+                backup, year, month, day, hour, minute, second = filename.split("-")
+                last_backup = time.strftime('%x %X', time.localtime(time.mktime(
+                    (int(year), int(month), int(day), int(hour), int(minute), int(second),
+                     0, 0, 0))))
         return {
             _("Number of people"): self.get_number_of_people(),
             _("Number of families"): self.get_number_of_families(),
@@ -2566,7 +1943,23 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             _("Number of notes"): self.get_number_of_notes(),
             _("Number of tags"): self.get_number_of_tags(),
             _("Data version"): ".".join([str(v) for v in self.VERSION]),
+            _("Backups, count"): str(len(backups)),
+            _("Backups, last"): last_backup,
         }
+
+    def get_dbname(self):
+        """
+        In DbGeneric, the database is in a text file at the path
+        """
+        name = None
+        if self._directory:
+            filepath = os.path.join(self._directory, "name.txt")
+            try:
+                with open(filepath, "r") as name_file:
+                    name = name_file.readline().strip()
+            except (OSError, IOError) as msg:
+                LOG.error(str(msg))
+        return name
 
     def _order_by_person_key(self, person):
         """
@@ -2576,14 +1969,58 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         order_by = ""
         if person.primary_name:
-            order_by_list = [surname.surname + " " +
-                             person.primary_name.first_name
+            order_by_list = [surname.surname + " " + person.primary_name.first_name
                              for surname in person.primary_name.surname_list
-                             if (int(surname.origintype) not in
-                                 [NameOriginType.PATRONYMIC,
-                                  NameOriginType.MATRONYMIC])]
+                             if not (int(surname.origintype) in
+                                     [NameOriginType.PATRONYMIC,
+                                      NameOriginType.MATRONYMIC])]
             order_by = " ".join(order_by_list)
         return glocale.sort_key(order_by)
+
+    def _order_by_place_key(self, place):
+        return glocale.sort_key(str(int(place.place_type)) + ", " + place.name.value)
+
+    def _order_by_source_key(self, source):
+        return glocale.sort_key(source.title)
+
+    def _order_by_citation_key(self, citation):
+        return glocale.sort_key(citation.page)
+
+    def _order_by_media_key(self, media):
+        return glocale.sort_key(media.desc)
+
+    def _order_by_tag_key(self, key):
+        return glocale.sort_key(key)
+
+    def backup(self, user=None):
+        """
+        If you wish to support an optional backup routine, put it here.
+        """
+        from gramps.plugins.export.exportxml import XmlWriter
+        from gramps.cli.user import User
+        if user is None:
+            user = User()
+        compress = config.get('database.compress-backup')
+        writer = XmlWriter(self, user, strip_photos=0, compress=compress)
+        timestamp = '{0:%Y-%m-%d-%H-%M-%S}'.format(datetime.datetime.now())
+        filename = os.path.join(self._directory, "backup-%s.gramps" % timestamp)
+        writer.write(filename)
+
+    def get_undodb(self):
+        return self.undodb
+
+    def undo(self, update_history=True):
+        return self.undodb.undo(update_history)
+
+    def redo(self, update_history=True):
+        return self.undodb.redo(update_history)
+
+    def get_dbid(self):
+        """
+        We use the file directory name as the unique ID for
+        this database on this computer.
+        """
+        return self.brief_name
 
     def _get_person_data(self, person):
         """
@@ -2602,11 +2039,28 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                         surname = surname_obj.surname
         return (given_name, surname)
 
-    def _get_place_data(self, place):
+    def set_default_person_handle(self, handle):
+        self.set_metadata("default-person-handle", handle)
+        self.emit('home-person-changed')
+
+    def add_table_funcs(self, table, funcs):
         """
-        Given a Place, return the first PlaceRef handle.
+        Add a new table and funcs to the database.
         """
-        enclosed_by = ""
-        for placeref in place.get_placeref_list():
-            enclosed_by = placeref.ref
-        return enclosed_by
+        self.__tables[table] = funcs
+
+    def get_version(self):
+        """
+        Return the version number of the schema.
+        """
+        if self._directory:
+            filepath = os.path.join(self._directory, "bdbversion.txt")
+            try:
+                with open(filepath, "r", encoding='utf-8') as name_file:
+                    version = name_file.readline().strip()
+            except (OSError, IOError) as msg:
+                self.__log_error()
+                version = "(0, 0, 0)"
+            return ast.literal_eval(version)
+        else:
+            return (0, 0, 0)

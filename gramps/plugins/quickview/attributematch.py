@@ -44,7 +44,4 @@ def run(database, document, attribute, value=None):
             matches += 1
     document.has_data = matches > 0
     sdoc.paragraph(_("There are %d people with a matching attribute name.\n") % matches)
-    if document.has_data:
-        stab.write(sdoc)
-    else:
-        sdoc.header1(_("Not found"))
+    stab.write(sdoc)

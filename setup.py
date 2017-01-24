@@ -401,7 +401,6 @@ for (dirpath, dirnames, filenames) in os.walk(basedir):
         #we add to data_list so glade , xml, files are found, we don't need the gramps/ part
         package_data_core.append(dirpath[7:] + '/' + dirname + '/*.glade')
         package_data_core.append(dirpath[7:] + '/' + dirname + '/*.xml')
-        package_data_core.append(dirpath[7:] + '/' + dirname + '/*.ini')
 
 package_data_core.append('gen/utils/resource-path')
 
@@ -415,8 +414,8 @@ package_data = package_data_core + package_data_gui
 #-------------------------------------------------------------------------
 data_files_core = [('share/mime-info', ['data/gramps.mime']),
                    ('share/icons', ['images/gramps.png'])]
-DOC_FILES = ['AUTHORS', 'COPYING', 'FAQ', 'INSTALL', 'NEWS', 'README.md',
-             'TODO']
+DOC_FILES = ['AUTHORS', 'COPYING', 'FAQ', 'INSTALL', 'LICENSE', 'NEWS',
+             'README.md', 'TODO']
 GEDCOM_FILES = glob.glob(os.path.join('example', 'gedcom', '*.*'))
 GRAMPS_FILES = glob.glob(os.path.join('example', 'gramps', '*.*'))
 IMAGE_WEB = glob.glob(os.path.join('images', 'webstuff', '*.png'))

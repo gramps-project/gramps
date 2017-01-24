@@ -398,10 +398,8 @@ class CommandLineReport:
                         father = self.database.get_person_from_handle(fhandle)
                         if father:
                             fname = name_displayer.display(father)
-                    # translators: needed for French, Hebrew and Arabic
-                    text = _("%(id)s:\t%(father)s, %(mother)s"
-                            ) % {'id': family.get_gramps_id(),
-                                 'father': fname, 'mother': mname}
+                    text = "%s:\t%s, %s" % (family.get_gramps_id(),
+                                            fname, mname)
                     id_list.append(text)
                 self.options_help[name].append(id_list)
             elif isinstance(option, NoteOption):

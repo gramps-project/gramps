@@ -167,17 +167,14 @@ class PlaceTreeView(PlaceBaseView):
 
         for handle in handle_list:
             # Rebuild the model if the primary parent has changed.
-            if self._significant_change(handle):
+            if self._parent_changed(handle):
                 self.build_tree()
                 break
 
-    def _significant_change(self, handle):
+    def _parent_changed(self, handle):
         """
         Return True if the primary parent is different from the parent
-        displayed in the tree, or if there are children.
-        The first occurs if a change moves a child to a different parent,
-        the second if a change to a parent occurs (a rename might shift
-        position in the tree).
+        displayed in the tree, else return False.
         """
         new_handle = None
         place = self.dbstate.db.get_place_from_handle(handle)
@@ -186,11 +183,10 @@ class PlaceTreeView(PlaceBaseView):
             new_handle = placeref_list[0].ref
 
         old_handle = None
-        children = False
         iter_ = self.model.get_iter_from_handle(handle)
         if iter_:
             parent_iter = self.model.iter_parent(iter_)
             if parent_iter:
                 old_handle = self.model.get_handle_from_iter(parent_iter)
-            children = self.model.get_node_from_iter(iter_).children
-        return new_handle != old_handle or children
+
+        return True if new_handle != old_handle else False

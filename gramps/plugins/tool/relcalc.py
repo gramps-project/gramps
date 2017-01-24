@@ -111,7 +111,6 @@ class RelCalc(tool.Tool, ManagedWindow):
                         _('Relationship to %(person_name)s'
                           ) % {'person_name' : name},
                         self.title)
-        self.setup_configs('interface.relcalc', 600, 400)
 
         self.tree = self.glade.get_object("peopleList")
         self.text = self.glade.get_object("text1")

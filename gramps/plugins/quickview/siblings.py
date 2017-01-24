@@ -66,7 +66,4 @@ def run(database, document, person):
                      sdb.birth_or_fallback(child),
                      rel_str)
             document.has_data = True
-    if document.has_data:
-        stab.write(sdoc)
-    else:
-        sdoc.header1(_("Not found") + "\n")
+    stab.write(sdoc)

@@ -77,9 +77,6 @@ def display_message(message):
     """
     print(message)
 
-RELOAD = 777    # A custom Gtk response_type for the Reload button
-
-
 #-------------------------------------------------------------------------
 #
 # PluginStatus: overview of all plugins
@@ -100,13 +97,12 @@ class PluginStatus(ManagedWindow):
 
         self.__pmgr = GuiPluginManager.get_instance()
         self.__preg = PluginRegister.get_instance()
-        dialog = Gtk.Dialog(title="", transient_for=uistate.window,
-                            destroy_with_parent=True)
-        dialog.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
-        self.set_window(dialog, None, self.title)
-
-        self.setup_configs('interface.pluginstatus', 750, 400)
-        self.window.connect('response', self.__on_dialog_button)
+        self.set_window(Gtk.Dialog("", uistate.window,
+                                   Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                   (_('_Close'), Gtk.ResponseType.CLOSE)),
+                        None, self.title)
+        self.window.set_size_request(750, 400)
+        self.window.connect('response', self.close)
 
         notebook = Gtk.Notebook()
 
@@ -286,7 +282,9 @@ class PluginStatus(ManagedWindow):
         if __debug__:
             # Only show the "Reload" button when in debug mode
             # (without -O on the command line)
-            self.window.add_button(_("Reload"), RELOAD)
+            self.__reload_btn = Gtk.Button(label=_("Reload"))
+            self.window.action_area.add(self.__reload_btn)
+            self.__reload_btn.connect('clicked', self.__reload)
 
         #obtain hidden plugins from the pluginmanager
         self.hidden = self.__pmgr.get_hidden_plugin_ids()
@@ -294,12 +292,6 @@ class PluginStatus(ManagedWindow):
         self.window.show_all()
         self.__populate_lists()
         self.list_reg.columns_autosize()
-
-    def __on_dialog_button(self, dialog, response_id):
-        if response_id == Gtk.ResponseType.CLOSE:
-            self.close(dialog)
-        else:   # response_id == RELOAD
-            self.__reload(dialog)
 
     def __refresh_addon_list(self, obj):
         """
@@ -682,15 +674,14 @@ class PluginTrace(ManagedWindow):
 
     def __init__(self, uistate, track, data, name):
         self.name = name
-        title = _("%(str1)s: %(str2)s"
-                 ) % {'str1': _("Plugin Error"), 'str2': name}
+        title = "%s: %s" % (_("Plugin Error"), name)
         ManagedWindow.__init__(self, uistate, track, self)
 
         self.set_window(Gtk.Dialog("", uistate.window,
                                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                    (_('_Close'), Gtk.ResponseType.CLOSE)),
                         None, title)
-        self.setup_configs('interface.plugintrace', 600, 400)
+        self.window.set_size_request(600, 400)
         self.window.connect('response', self.close)
 
         scrolled_window = Gtk.ScrolledWindow()
@@ -892,7 +883,7 @@ class ToolManagedWindowBase(ManagedWindow):
     def pre_run(self):
         from ..utils import ProgressMeter
         self.progress = ProgressMeter(self.get_title(),
-                                      parent=self.window)
+                                      parent=self.uistate.window)
 
     def run(self):
         raise NotImplementedError("tool needs to define a run() method")
@@ -1179,9 +1170,9 @@ class UpdateAddons:
                              ("Title", self.window, Gtk.DialogFlags.MODAL))
         pm.add_op(longop)
         count = 0
-        if not config.get('behavior.do-not-show-previously-seen-addon-updates'):
+        if not config.get('behavior.do-not-show-previously-seen-updates'):
             # reset list
-            config.get('behavior.previously-seen-addon-updates')[:] = []
+            config.get('behavior.previously-seen-updates')[:] = []
 
         iter = model.get_iter_first()
         errors = []
@@ -1198,8 +1189,8 @@ class UpdateAddons:
                     else:
                         errors.append(row[2])
                 else: # add to list of previously seen, but not installed
-                    if row[5] not in config.get('behavior.previously-seen-addon-updates'):
-                        config.get('behavior.previously-seen-addon-updates').append(row[5])
+                    if row[5] not in config.get('behavior.previously-seen-updates'):
+                        config.get('behavior.previously-seen-updates').append(row[5])
                 longop.heartbeat()
                 pm._get_dlg()._process_events()
             iter = model.iter_next(iter)
@@ -1217,7 +1208,7 @@ class UpdateAddons:
                      "%s %s" % (ngettext("{number_of} addon was installed.",
                                          "{number_of} addons were installed.",
                                          count).format(number_of=count),
-                        _("You need to restart Gramps to use the new addons.")),
+                                _("You need to restart Gramps to see new views.")),
                      parent=self.window)
         else:
             OkDialog(_("Done downloading and installing addons"),

@@ -49,7 +49,6 @@ from gramps.gen.plug import BasePluginManager
 from gramps.gen.config import config
 from gramps.gen.constfunc import win
 from gramps.gen.db.dbconst import DBLOGNAME
-from gramps.gen.db.utils import make_database
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -161,7 +160,7 @@ class CLIDbManager:
                 dbid = file.read().strip()
         if not self.is_locked(dirpath):
             try:
-                database = make_database(dbid)
+                database = self.dbstate.make_database(dbid)
                 database.load(dirpath, None, update=False)
                 retval = database.get_summary()
                 database.close(update=False)
@@ -308,7 +307,7 @@ class CLIDbManager:
             # write the version number into metadata
             if dbid is None:
                 dbid = "bsddb"
-            newdb = make_database(dbid)
+            newdb = self.dbstate.make_database(dbid)
             newdb.write_version(new_path)
 
         (tval, last) = time_val(new_path)
@@ -377,7 +376,7 @@ class CLIDbManager:
 
                 ## Use bsddb, for now, because we assumed that above.
                 dbid = "bsddb" ## config.get('database.backend')
-                dbase = make_database(dbid)
+                dbase = self.dbstate.make_database(dbid)
                 dbase.load(new_path, user.callback)
 
                 import_function = plugin.get_import_function()
