@@ -71,6 +71,7 @@ class FamilySidebarFilter(SidebarFilter):
         self.family_stub = Family()
         self.family_stub.set_relationship((FamilyRelType.CUSTOM, ''))
         self.rtype = Gtk.ComboBox(has_entry=True)
+        self.custom_types = dbstate.db.get_family_relation_types()
         
         self.event_menu = widgets.MonitoredDataType(
             self.etype,
@@ -80,7 +81,8 @@ class FamilySidebarFilter(SidebarFilter):
         self.rel_menu = widgets.MonitoredDataType(
             self.rtype,
             self.family_stub.set_relationship,
-            self.family_stub.get_relationship)
+            self.family_stub.get_relationship,
+            custom_values=self.custom_types)
         
         self.filter_note = widgets.BasicEntry()
 
