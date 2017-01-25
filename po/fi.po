@@ -5,10 +5,10 @@
 # Matti Niemelä <matti.u.niemela@gmail.com>, 2014, 2015.
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps425_fi_maintenance_POT_20161124\n"
+"Project-Id-Version: Gramps426_fi_maintenance_POT_20161124\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-24 18:34+0200\n"
-"PO-Revision-Date: 2016-11-28 22:10+0200\n"
+"PO-Revision-Date: 2017-01-24 08:13+0200\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: Matti Niemelä <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -237,7 +237,7 @@ msgid ""
 "narrow the results."
 msgstr ""
 "<b>Kuka syntyi ja milloin?</b><br/>&quot;Työkalut &gt; Analyysi ja tutkimus "
-"&gt; Vertaa yksittäisiä tapahtumia ...&quot; työkalu sallii sinun verrata "
+"&gt; Vertaa henkilöiden tapahtumia ...&quot; työkalu sallii sinun verrata "
 "tietokannan henkilöiden tietoja. Tästä on hyötyä, jos haluat esimerkiksi "
 "listata kaikkien tietokannassasi olevien henkilöiden syntymäajat. Mukautetun "
 "suotimen avulla voit rajata hakua."
@@ -31049,7 +31049,7 @@ msgstr "Käyttäjän suodin muokkain"
 # WIKI_HELP_SEC tools
 #: ../gramps/plugins/tool/eventcmp.py:70
 msgid "manual|Compare_Individual_Events"
-msgstr "Vertaa_yksitt.C3.A4isi.C3.A4_tapahtumia"
+msgstr "Vertaa_henkil.C3.B6iden_tapahtumia"
 
 #: ../gramps/plugins/tool/eventcmp.py:138
 msgid "Event comparison filter selection"
@@ -32074,7 +32074,7 @@ msgstr "Tarkistaa tietokannan eheyden ja korjaa osaamansa ongelmat"
 
 #: ../gramps/plugins/tool/tools.gpr.py:104
 msgid "Compare Individual Events"
-msgstr "Vertaa yksittäisiä tapahtumia"
+msgstr "Vertaa henkilöiden tapahtumia"
 
 #: ../gramps/plugins/tool/tools.gpr.py:105
 msgid ""
