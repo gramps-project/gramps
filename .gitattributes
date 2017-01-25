@@ -13,3 +13,6 @@
 *.ged -text
 *.GED -text
 *.csv -text
+*.DEF -text
+*.IXI -text
+*.REM -text

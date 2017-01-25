@@ -1,0 +1,20 @@
+File of remarks for GEDCOM import.
+
+GEDCOM file   : D:\Users\PRC\Documents\Gramps\data\tests\exp_sample_ged.ged
+PRO-GEN file  : C:\PG30\GB\DATA\SAMPLE
+Date          : 13/01/2017
+
+Rec.   Remarks (P=person, R=Marriage)
+--------------------------------------------------------------------------------
+    P1 (@I0000@) Surname (Anna Nana /Hansdotter/) has already been entered.
+2 FAMC @F0008@
+   P25 (@I0024@) Death_date (BEF 23 JUL 1930) too long.
+2 FAMC @F0010@
+   P43 (@I0042@) Surname (Frank /Neilsen/) has already been entered.
+2 FAMC @F0005@
+   P47 (@I0046@) Address_date (FROM 1 JAN 1964 TO 3 MAR 1970) too long.
+       (@I0046@) Address_date (I think 1970 to 1971) has already been entered.
+2 FAMC @F0016@
+2 FAMC @F0016@
+2 FAMC @F0016@
+--------------------------------------------------------------------------------
