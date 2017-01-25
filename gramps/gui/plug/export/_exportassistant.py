@@ -274,7 +274,8 @@ class ExportAssistant(ManagedWindow, Gtk.Assistant):
         # add new content
         if config_box_class:
             self.option_box_instance = config_box_class(
-                self.person, self.dbstate, self.uistate, track=self.track)
+                self.person, self.dbstate, self.uistate, track=self.track,
+                window=self.window)
             box = self.option_box_instance.get_option_box()
             vbox.add(box)
         else:
@@ -639,6 +640,9 @@ class ExportAssistant(ManagedWindow, Gtk.Assistant):
         self.progressbar.set_fraction(min(value/100.0, 1.0))
         if text:
             self.progressbar.set_text("%s: %d%%" % (text, value))
+            self.confirm.set_label(
+                _("Please wait while your data is selected and exported") +
+                "\n" + text)
         else:
             self.progressbar.set_text("%d%%" % value)
         while Gtk.events_pending():

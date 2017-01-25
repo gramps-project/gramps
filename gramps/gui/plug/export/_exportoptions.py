@@ -62,11 +62,11 @@ class Progress:
     Mirros the same interface that the ExportAssistant uses in the
     selection, but this is for the preview selection.
     """
-    def __init__(self, uistate):
+    def __init__(self, parent):
         from gi.repository import Gtk
         self.pm = ProgressMeter(_("Selecting Preview Data"),
                                 _('Selecting...'),
-                                parent=uistate.window)
+                                parent=parent)
         self.progress_cnt = 0
         self.title = _("Selecting...")
         while Gtk.events_pending():
@@ -106,11 +106,12 @@ class WriterOptionBox:
     the options.
 
     """
-    def __init__(self, person, dbstate, uistate, track=[]):
+    def __init__(self, person, dbstate, uistate, track=[], window=None):
         self.person = person
         self.dbstate = dbstate
         self.uistate = uistate
         self.track = track
+        self.window = window
         self.preview_dbase = None
         self.preview_button = None
         self.preview_proxy_button = {}
@@ -256,7 +257,7 @@ class WriterOptionBox:
         Calculate previews to see the selected data.
         """
         self.parse_options()
-        pm = Progress(self.uistate)
+        pm = Progress(self.window)
         self.preview_dbase = self.get_filtered_database(self.dbstate.db, pm, preview=True)
         pm.close()
         self.preview_button.set_sensitive(0)
@@ -586,8 +587,8 @@ class WriterOptionBox:
             if self.private:
                 if progress:
                     progress.reset(_("Filtering private data"))
-                    progress.progress_cnt += 1
                     progress.update(progress.progress_cnt)
+                    progress.progress_cnt += 1
                 dbase = PrivateProxyDb(dbase)
 
         # If the restrict flag is set, apply the LivingProxyDb
@@ -595,8 +596,8 @@ class WriterOptionBox:
             if self.restrict_num > 0:
                 if progress:
                     progress.reset(_("Filtering living persons"))
-                    progress.progress_cnt += 1
                     progress.update(progress.progress_cnt)
+                    progress.progress_cnt += 1
                 mode = [None, # include living
                         LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY,
                         LivingProxyDb.MODE_REPLACE_COMPLETE_NAME,
@@ -612,8 +613,8 @@ class WriterOptionBox:
             if self.cfilter != None and not self.cfilter.is_empty():
                 if progress:
                     progress.reset(_("Applying selected person filter"))
-                    progress.progress_cnt += 1
                     progress.update(progress.progress_cnt)
+                    progress.progress_cnt += 1
                 dbase = FilterProxyDb(
                     dbase, self.cfilter)
 
@@ -622,17 +623,17 @@ class WriterOptionBox:
             if self.nfilter != None and not self.nfilter.is_empty():
                 if progress:
                     progress.reset(_("Applying selected note filter"))
-                    progress.progress_cnt += 1
                     progress.update(progress.progress_cnt)
+                    progress.progress_cnt += 1
                 dbase = FilterProxyDb(
                     dbase, note_filter=self.nfilter)
 
         # Apply the ReferencedBySelection
         elif proxy_name == "reference":
-            if progress:
+            if self.reference_num > 0 and progress:
                 progress.reset(_("Filtering referenced records"))
-                progress.progress_cnt += 1
                 progress.update(progress.progress_cnt)
+                progress.progress_cnt += 1
             if self.reference_num == 0:
                 pass
             elif self.reference_num == 1:
@@ -673,7 +674,7 @@ class WriterOptionBox:
             from ...dialog import ErrorDialog
             ErrorDialog(_("Cannot edit a system filter"),
                         _("Please select a different filter to edit"),
-                        parent=self.uistate.window)
+                        parent=self.window)
 
     def edit_filter_save(self, filterdb, namespace):
         """
