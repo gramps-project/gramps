@@ -229,16 +229,15 @@ class MakeAncestorTree(AscendPerson):
         myself.text = self.calc_items.calc_person(
                             index, indi_handle, fams_handle)
 
-        if indi_handle:
-            myself.add_mark(self.database,
-                    self.database.get_person_from_handle(indi_handle))
+        myself.add_mark(self.database,
+                self.database.get_person_from_handle(indi_handle))
 
         self.canvas.add_box(myself)
 
         #make the lines
         indx = index[LVL_GEN]
         self.lines[indx] = myself
-        if 1 < indx < 8:
+        if indx > 1:
             if self.lines[indx-1].line_to is None:
                 line = LineBase(self.lines[indx-1])
                 self.lines[indx-1].line_to = line
