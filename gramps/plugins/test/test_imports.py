@@ -29,13 +29,14 @@ from time import localtime, strptime
 from unittest.mock import patch
 #import logging
 
+from gramps.gen.utils.config import config
+config.set('preferences.date-format', 0)
 from gramps.gen.db.utils import import_as_dict
 from gramps.gen.merge.diff import diff_dbs, to_struct
 from gramps.gen.simple import SimpleAccess
 from gramps.gen.utils.id import set_det_id
 from gramps.cli.user import User
 from gramps.gen.const import TEMP_DIR, DATA_DIR
-from gramps.gen.utils.config import config
 from gramps.test.test_util import capture
 from gramps.plugins.export.exportxml import XmlWriter
 
@@ -212,6 +213,8 @@ def make_tst_function(tstfile, file_name):
             skp_imp_adds = False
         else:
             skp_imp_adds = True
+            config.set('preferences.default-source', False)
+            config.set('preferences.tag-on-import', False)
         try:
             os.remove(fres)
             os.remove(fout)
@@ -288,8 +291,8 @@ else:
     _tstfiles = []
     for _tstfile in os.listdir(TEST_DIR):
         (fname, ext) = os.path.splitext(os.path.basename(_tstfile))
-        if ext in (".gramps", ".difs", ".bak") \
-                or not fname.startswith("imp_"):
+        if _tstfile != "SAMPLE.DEF" and (ext in (".gramps", ".difs", ".bak") \
+                or not fname.startswith("imp_")):
             continue
         test_func = make_tst_function(_tstfile, fname)
         clname = 'Import_{0}'.format(_tstfile)
