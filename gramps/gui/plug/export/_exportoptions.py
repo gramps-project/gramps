@@ -40,6 +40,7 @@ from gramps.gen.config import config
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.filters import GenericFilter, rules
 from ...utils import ProgressMeter
+from ...user import User
 from gramps.gen.proxy import (PrivateProxyDb,
                               LivingProxyDb,
                               FilterProxyDb,
@@ -615,8 +616,8 @@ class WriterOptionBox:
                     progress.reset(_("Applying selected person filter"))
                     progress.update(progress.progress_cnt)
                     progress.progress_cnt += 1
-                dbase = FilterProxyDb(
-                    dbase, self.cfilter)
+                dbase = FilterProxyDb(dbase, self.cfilter,
+                                      user=User())
 
         # Apply the Note Filter
         elif proxy_name == "note":
@@ -625,8 +626,8 @@ class WriterOptionBox:
                     progress.reset(_("Applying selected note filter"))
                     progress.update(progress.progress_cnt)
                     progress.progress_cnt += 1
-                dbase = FilterProxyDb(
-                    dbase, note_filter=self.nfilter)
+                dbase = FilterProxyDb(dbase, note_filter=self.nfilter,
+                                      user=User())
 
         # Apply the ReferencedBySelection
         elif proxy_name == "reference":

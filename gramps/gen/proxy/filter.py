@@ -42,7 +42,7 @@ class FilterProxyDb(ProxyDbBase):
     """
 
     def __init__(self, db, person_filter=None, event_filter=None,
-                 note_filter=None):
+                 note_filter=None, user=None):
         """
         Create a new FilterProxyDb instance.
         """
@@ -50,19 +50,19 @@ class FilterProxyDb(ProxyDbBase):
         self.person_filter = person_filter
         if person_filter:
             self.plist = set(person_filter.apply(
-                    self.db, self.db.iter_person_handles()))
+                    self.db, self.db.iter_person_handles(), user=user))
         else:
             self.plist = set(self.db.iter_person_handles())
 
         if event_filter:
             self.elist = set(event_filter.apply(
-                    self.db, self.db.iter_event_handles()))
+                    self.db, self.db.iter_event_handles(), user=user))
         else:
             self.elist = set(self.db.iter_event_handles())
 
         if note_filter:
             self.nlist = set(note_filter.apply(
-                    self.db, self.db.iter_note_handles()))
+                    self.db, self.db.iter_note_handles(), user=user))
         else:
             self.nlist = set(self.db.iter_note_handles())
 
