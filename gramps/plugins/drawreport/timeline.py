@@ -374,7 +374,8 @@ class TimeLine(Report):
     def name_size(self):
         """ get the length of the name """
         self.plist = self.filter.apply(self.database,
-                                       self.database.iter_person_handles())
+                                       self.database.iter_person_handles(),
+                                       user=self._user)
 
         style_sheet = self.doc.get_style_sheet()
         gstyle = style_sheet.get_draw_style('TLG-text')
