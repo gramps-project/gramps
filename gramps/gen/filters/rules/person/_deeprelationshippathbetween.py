@@ -45,7 +45,6 @@ def filter_database(db, progress, filter_name):
     """Returns a list of person handles"""
 
     filt = MatchesFilter([filter_name])
-    progress.set_header(_('Preparing sub-filter'))
     filt.requestprepare(db)
 
     progress.set_header(_('Retrieving all sub-filter matches'))
@@ -102,6 +101,8 @@ def find_deep_relations(db, progress, person, path, seen, target_people):
     if handle in seen:
         return []
     seen.append(handle)
+    if progress:
+        progress.step()
 
     return_paths = []
     person_path = path + [handle]
@@ -114,7 +115,6 @@ def find_deep_relations(db, progress, person, path, seen, target_people):
     for family_person in family_people:
         pers = db.get_person_from_handle(family_person)
         return_paths += find_deep_relations(db, progress, pers, person_path, seen, target_people)
-        if progress: progress.step()
 
     return return_paths
 
@@ -136,14 +136,16 @@ class DeepRelationshipPathBetween(Rule):
         from gramps.gui.utils import ProgressMeter
         root_person_id = self.list[0]
         root_person = db.get_person_from_gramps_id(root_person_id)
+        persons = db.get_number_of_people() * 2
 
-        progress = ProgressMeter( # TODO no-parent
+        progress = ProgressMeter(  # no-parent, but improved in ProgressMeter
                                  _('Finding relationship paths'))
-        progress.set_pass(header=_('Evaluating people'), mode=ProgressMeter.MODE_ACTIVITY)
+        progress.set_pass(header=_('Preparing sub-filter'), total=persons)
 
         filter_name = self.list[1]
         target_people = filter_database(db, progress, filter_name)
 
+        progress.set_header(_('Evaluating people'))
         paths = find_deep_relations(db, progress, root_person, [], [], target_people)
 
         progress.close()

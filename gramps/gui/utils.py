@@ -44,6 +44,9 @@ import gi
 gi.require_version('PangoCairo', '1.0')
 from gi.repository import PangoCairo
 from gi.repository import GLib
+from gi.repository import Gtk
+from gi.repository import Gdk
+
 
 #-------------------------------------------------------------------------
 #
@@ -127,7 +130,6 @@ class ProgressMeter:
         """
         Specify the title and the current pass header.
         """
-        from gi.repository import Gtk
         self.__mode = ProgressMeter.MODE_FRACTION
         self.__pbar_max = 100.0
         self.__pbar_index = 0.0
@@ -139,7 +141,18 @@ class ProgressMeter:
         else:
             self.__cancel_callback = self.handle_cancel
 
-        if has_display():
+        # if we don't have an explicit parent, try to find one
+        if has_display() and not parent:
+            gramps_main = None
+            for win in Gtk.Window.list_toplevels():
+                if win.is_active():
+                    parent = win
+                    break
+                if hasattr(win, 'gramps_main'):
+                    gramps_main = win
+        parent = parent if parent else gramps_main
+        # if we still don't have a parent (cli), give up
+        if has_display() and parent:
             self.__dialog = Gtk.Dialog()
         else:
             self.__dialog = CLIDialog()
@@ -152,12 +165,6 @@ class ProgressMeter:
         self.__dialog.vbox.set_spacing(10)
         self.__dialog.vbox.set_border_width(24)
         self.__dialog.set_size_request(400, 125)
-        if not parent:  # if we don't have an explicit parent, try to find one
-            for win in Gtk.Window.list_toplevels():
-                if win.is_active():
-                    parent = win
-                    break
-        # if we still don't have a parent, give up
         if parent:
             self.__dialog.set_transient_for(parent)
             self.__dialog.set_modal(True)
@@ -241,7 +248,6 @@ class ProgressMeter:
         of steps to be used.
         """
 
-        from gi.repository import Gtk
         self.__mode = mode
         self.__pbar_max = total
         self.__pbar_index = 0.0
@@ -268,7 +274,6 @@ class ProgressMeter:
         and insure that it doesn't go over 100%.
         """
 
-        from gi.repository import Gtk
         if self.__mode is ProgressMeter.MODE_FRACTION:
             self.__pbar_index = self.__pbar_index + 1.0
 
@@ -293,7 +298,6 @@ class ProgressMeter:
         return self.__cancelled
 
     def set_header(self, text):
-        from gi.repository import Gtk
         self.__lbl.set_text(text)
         while Gtk.events_pending():
             Gtk.main_iteration()
@@ -443,7 +447,6 @@ def open_file_with_default_application(path, uistate):
 
     proc = subprocess.Popen([utility, norm_path], stderr=subprocess.STDOUT)
 
-    from gi.repository import GLib
     GLib.timeout_add_seconds(1, poll_external, (proc, errstrings, uistate))
     return
 
@@ -451,7 +454,6 @@ def process_pending_events(max_count=10):
     """
     Process pending events, but don't get into an infinite loop.
     """
-    from gi.repository import Gtk
     count = 0
     while Gtk.events_pending():
         Gtk.main_iteration()
@@ -468,7 +470,6 @@ def is_right_click(event):
     """
     Returns True if the event is a button-3 or equivalent
     """
-    from gi.repository import Gdk
 
     if event.type == Gdk.EventType.BUTTON_PRESS:
         if is_quartz():
@@ -680,8 +681,6 @@ def text_to_clipboard(text):
     """
     Put any text into the clipboard
     """
-    from gi.repository import Gdk
-    from gi.repository import Gtk
     clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(),
                                               Gdk.SELECTION_CLIPBOARD)
     clipboard.set_text(text, -1)
