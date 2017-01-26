@@ -102,6 +102,7 @@ class BatchTool(Tool):
     """
 
     def __init__(self, dbstate, user, options_class, name, parent=None):
+        self._user = user
         if user.uistate:
             parent = user.uistate.window
         if not user.prompt(
