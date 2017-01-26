@@ -50,7 +50,7 @@ class IsEnclosedBy(Rule):
     description = _('Matches a place enclosed by a particular place')
     category    = _('General filters')
 
-    def prepare(self, db):
+    def prepare(self, db, user):
         self.handle = None
         place = db.get_place_from_gramps_id(self.list[0])
         if place:

@@ -48,7 +48,7 @@ class IsLessThanNthGenerationAncestorOf(Rule):
     description = _("Matches people that are ancestors "
                     "of a specified person not more than N generations away")
 
-    def prepare(self,db):
+    def prepare(self, db, user):
         self.db = db
         self.map = set()
         try:

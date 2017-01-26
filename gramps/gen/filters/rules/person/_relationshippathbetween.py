@@ -49,7 +49,7 @@ class RelationshipPathBetween(Rule):
                     "to a common ancestor, producing the relationship "
                     "path between two persons.")
 
-    def prepare(self, db):
+    def prepare(self, db, user):
         self.db = db
         self.map = set()
         try:

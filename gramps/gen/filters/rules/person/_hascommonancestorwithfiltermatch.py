@@ -54,7 +54,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
         HasCommonAncestorWith.__init__(self, list, use_regex)
         self.ancestor_cache = {}
 
-    def prepare(self, db):
+    def prepare(self, db, user):
         self.db = db
         # For each(!) person we keep track of who their ancestors
         # are, in a set(). So we only have to compute a person's
@@ -63,7 +63,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
         self.ancestor_cache = {}
         self.with_people = []
         filt = MatchesFilter(self.list)
-        filt.requestprepare(db)
+        filt.requestprepare(db, user)
         for handle in db.iter_person_handles():
             person = db.get_person_from_handle(handle)
             if person and filt.apply(db, person):

@@ -51,7 +51,7 @@ class HasTextMatchingSubstringOf(Rule):
     category    = _('General filters')
     allow_regex = True
 
-    def prepare(self,db):
+    def prepare(self, db, user):
         self.db = db
         self.person_map = set()
         self.event_map = set()

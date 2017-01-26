@@ -52,7 +52,7 @@ class IsDescendantFamilyOf(Rule):
     description = _("Matches people that are descendants or the spouse "
                     "of a descendant of a specified person")
 
-    def prepare(self,db):
+    def prepare(self, db, user):
         self.db = db
         self.matches = set()
         self.root_person = db.get_person_from_gramps_id(self.list[0])

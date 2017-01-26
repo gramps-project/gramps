@@ -8573,10 +8573,7 @@ class NavWebReport(Report):
             self.obj_dict[obj_class] = defaultdict(set)
 
         ind_list = self._db.iter_person_handles()
-        with self.user.progress(_("Narrated Web Site Report"),
-                                _('Applying Person Filter...'),
-                                self._db.get_number_of_people()) as step:
-            ind_list = self.filter.apply(self._db, ind_list, step)
+        ind_list = self.filter.apply(self._db, ind_list, user=self.user)
 
         with self.user.progress(_("Narrated Web Site Report"),
                                 _('Constructing list of other objects...'),

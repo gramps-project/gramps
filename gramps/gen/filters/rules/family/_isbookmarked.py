@@ -45,7 +45,7 @@ class IsBookmarked(Rule):
     category    = _('General filters')
     description = _("Matches the families on the bookmark list")
 
-    def prepare(self, db):
+    def prepare(self, db, user):
         self.bookmarks = db.get_family_bookmarks().get()
 
     def apply(self, db, family):

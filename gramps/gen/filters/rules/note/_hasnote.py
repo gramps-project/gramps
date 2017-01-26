@@ -51,7 +51,7 @@ class HasNote(Rule):
     category    = _('General filters')
     allow_regex = True
 
-    def prepare(self, dbase):
+    def prepare(self, db, user):
         if self.list[1]:
             self.ntype = NoteType()
             self.ntype.set_from_xml_str(self.list[1])

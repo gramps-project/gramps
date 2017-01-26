@@ -46,7 +46,7 @@ class IsAncestorOf(Rule):
     category    = _("Ancestral filters")
     description = _("Matches people that are ancestors of a specified person")
 
-    def prepare(self, db):
+    def prepare(self, db, user):
         """Assume that if 'Inclusive' not defined, assume inclusive"""
         self.db = db
         self.map = set()

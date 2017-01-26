@@ -54,7 +54,7 @@ class HasData(Rule):
     category    = _('General filters')
     allow_regex = True
 
-    def prepare(self, dbase):
+    def prepare(self, db, user):
         self.place_type = self.list[1]
 
         if self.place_type:

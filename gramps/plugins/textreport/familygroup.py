@@ -659,10 +659,7 @@ class FamilyGroup(Report):
         if not self.filter:
             fam_list = flist
         else:
-            with self._user.progress(_('Family Group Report'),
-                                     _('Applying filter...'),
-                                     self.db.get_number_of_families()) as step:
-                fam_list = self.filter.apply(self.db, flist, step)
+            fam_list = self.filter.apply(self.db, flist, user=self._user)
         if fam_list:
             with self._user.progress(_('Family Group Report'),
                                      _('Writing families'),

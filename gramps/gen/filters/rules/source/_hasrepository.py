@@ -48,7 +48,7 @@ class HasRepository(Rule):
     description = _("Matches sources with a certain number of repository references")
     category    = _('General filters')
 
-    def prepare(self, db):
+    def prepare(self, db, user):
         # things we want to do just once, not for every handle
         if self.list[1] == 'less than':
             self.count_type = 0

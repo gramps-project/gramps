@@ -51,7 +51,7 @@ class HasBirth(Rule):
     category    = _('Event filters')
     allow_regex = True
 
-    def prepare(self, db):
+    def prepare(self, db, user):
         if self.list[0]:
             self.date = parser.parse(self.list[0])
         else:

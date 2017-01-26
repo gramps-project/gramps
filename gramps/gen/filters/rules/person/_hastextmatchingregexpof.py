@@ -42,7 +42,7 @@ class HasTextMatchingRegexpOf(HasTextMatchingSubstringOf):
     def __init__(self, list, use_regex=False):
         HasTextMatchingSubstringOf.__init__(self, list, use_regex)
 
-    def prepare(self,db):
+    def prepare(self, db, user):
         self.db = db
         self.person_map = set()
         self.event_map = set()

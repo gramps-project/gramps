@@ -49,12 +49,12 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
     description = _("Matches people that are descendants or the spouse "
                     "of anybody matched by a filter")
 
-    def prepare(self,db):
+    def prepare(self, db, user):
         self.db = db
         self.matches = set()
 
         filt = MatchesFilter(self.list[0:1])
-        filt.requestprepare(db)
+        filt.requestprepare(db, user)
         for person in db.iter_people():
             if filt.apply(db, person):
                 self.add_matches(person)

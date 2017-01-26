@@ -129,12 +129,9 @@ class TimeLine(Report):
 
     def write_report(self):
         # Apply the filter
-        with self._user.progress(_('Timeline'),
-                                 _('Applying filter...'),
-                                 self.database.get_number_of_people()) as step:
-            self.plist = self.filter.apply(self.database,
-                                           self.database.iter_person_handles(),
-                                           step)
+        self.plist = self.filter.apply(self.database,
+                                       self.database.iter_person_handles(),
+                                       user=self._user)
 
         # Find the range of dates to include
         (low, high) = self.find_year_range()

@@ -49,7 +49,7 @@ class IsDuplicatedAncestorOf(Rule):
     description = _("Matches people that are ancestors twice or more "
                     "of a specified person")
 
-    def prepare(self, db):
+    def prepare(self, db, user):
         self.db = db
         self.map = set()
         self.map2 = set()

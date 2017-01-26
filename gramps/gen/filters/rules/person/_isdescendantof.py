@@ -47,7 +47,7 @@ class IsDescendantOf(Rule):
     category    = _('Descendant filters')
     description = _('Matches all descendants for the specified person')
 
-    def prepare(self, db):
+    def prepare(self, db, user):
         self.db = db
         self.map = set()
         try:

@@ -311,10 +311,7 @@ class Calendar(Report):
         """
         db = self.database
         people = db.iter_person_handles()
-        with self._user.progress(_('Calendar Report'),
-                                 _('Applying Filter...'),
-                                 db.get_number_of_people()) as step:
-            people = self.filter.apply(self.database, people, step)
+        people = self.filter.apply(self.database, people, user=self._user)
 
         ngettext = self._locale.translation.ngettext # to see "nearby" comments
 

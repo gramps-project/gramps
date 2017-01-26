@@ -637,13 +637,13 @@ class Extract:
                     chart[1][key] = 1
 
 
-    def collect_data(self, dbase, filter_func, menu, genders,
+    def collect_data(self, dbase, people, menu, genders,
                      year_from, year_to, no_years, cb_progress, rlocale):
         """goes through the database and collects the selected personal
         data persons fitting the filter and birth year criteria. The
         arguments are:
         dbase       - the GRAMPS database
-        filter_func - filtering function selected by the StatisticsDialog
+        people      - a list of filtered people
         options     - report options_dict which sets which methods are used
         genders     - which gender(s) to include into statistics
         year_from   - use only persons who've born this year of after
@@ -672,9 +672,7 @@ class Extract:
                 data.append((ext[name][1], {}, ext[name][2], ext[name][3]))
 
         # go through the people and collect data
-        for person_handle in filter_func.apply(dbase,
-                                               dbase.iter_person_handles(),
-                                               cb_progress):
+        for person_handle in people:
             cb_progress()
             person = dbase.get_person_from_handle(person_handle)
             # check whether person has suitable gender
@@ -795,11 +793,15 @@ class StatisticsChart(Report):
                                  "%(year_from)04d-%(year_to)04d"
                                 ) % mapping
 
+        people = self.filter.apply(self.database,
+                                   self.database.iter_person_handles(),
+                                   user=self._user)
+
         # extract requested items from the database and count them
         self._user.begin_progress(_('Statistics Charts'),
                                   _('Collecting data...'),
                                   self.database.get_number_of_people())
-        tables = _Extract.collect_data(self.database, self.filter, menu,
+        tables = _Extract.collect_data(self.database, people, menu,
                                        gender, year_from, year_to,
                                        get_value('no_years'),
                                        self._user.step_progress,

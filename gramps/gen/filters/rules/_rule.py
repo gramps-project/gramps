@@ -65,7 +65,7 @@ class Rule:
     def is_empty(self):
         return False
 
-    def requestprepare(self, dbase):
+    def requestprepare(self, db, user):
         """
         Request that the prepare method of the rule is executed if needed
 
@@ -86,10 +86,10 @@ class Rule:
                         except re.error:
                             self.regex[i] = re.compile('')
                 self.match_substring = self.match_regex
-            self.prepare(dbase)
+            self.prepare(db, user)
         self.nrprepare += 1
 
-    def prepare(self, dummy_db):
+    def prepare(self, db, user):
         """prepare so the rule can be executed efficiently"""
         pass
 

@@ -47,11 +47,11 @@ class IsSiblingOfFilterMatch(Rule):
     category    = _('Family filters')
     description = _("Matches siblings of anybody matched by a filter")
 
-    def prepare(self,db):
+    def prepare(self, db, user):
         self.db = db
         self.map = set()
         filt = MatchesFilter(self.list)
-        filt.requestprepare(db)
+        filt.requestprepare(db, user)
         for person in db.iter_people():
             if filt.apply (db, person):
                 self.init_list (person)

@@ -51,7 +51,7 @@ class HasData(Rule):
     category    = _('General filters')
     allow_regex = True
 
-    def prepare(self, dbase):
+    def prepare(self, db, user):
         self.event_type = self.list[0]
         self.date = self.list[1]
 

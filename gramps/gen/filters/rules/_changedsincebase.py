@@ -85,7 +85,7 @@ class ChangedSinceBase(Rule):
                   "accepted. %s does not satisfy.") % iso_date_time)
         return time_sec
 
-    def prepare(self, db):
+    def prepare(self, db, user):
         self.since = None
         self.before = None
         if self.list[0]:

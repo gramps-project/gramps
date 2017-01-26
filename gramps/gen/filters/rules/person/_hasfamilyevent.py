@@ -54,7 +54,7 @@ class HasFamilyEvent(Rule):
     category    = _('Event filters')
     allow_regex = True
 
-    def prepare(self,db):
+    def prepare(self, db, user):
         self.date = None
         try:
             if self.list[1]:

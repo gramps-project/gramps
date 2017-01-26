@@ -48,7 +48,7 @@ class HasRelType(Rule):
                     "of a particular value")
     category    = _('General filters')
 
-    def prepare(self, dbase):
+    def prepare(self, db, user):
         if self.list[0]:
             self.rtype = FamilyRelType()
             self.rtype.set_from_xml_str(self.list[0])

@@ -48,7 +48,7 @@ class HasCommonAncestorWith(Rule):
     description = _("Matches people that have a common ancestor "
                     "with a specified person")
 
-    def prepare(self, db):
+    def prepare(self, db, user):
         self.db = db
         # For each(!) person we keep track of who their ancestors
         # are, in a set(). So we only have to compute a person's

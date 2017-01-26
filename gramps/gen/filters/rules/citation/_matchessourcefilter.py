@@ -54,7 +54,7 @@ class MatchesSourceFilter(MatchesFilterBase):
     # we want to have this filter show source filters
     namespace   = 'Source'
 
-    def prepare(self, db):
+    def prepare(self, db, user):
         MatchesFilterBase.prepare(self, db)
         self.MRF_filt = self.find_filter()
 

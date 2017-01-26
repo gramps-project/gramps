@@ -53,7 +53,7 @@ class HasRepo(Rule):
     category    = _('General filters')
     allow_regex = True
 
-    def prepare(self, dummy_db):
+    def prepare(self, db, user):
         if self.list[1]:
             self.rtype = RepositoryType()
             self.rtype.set_from_xml_str(self.list[1])

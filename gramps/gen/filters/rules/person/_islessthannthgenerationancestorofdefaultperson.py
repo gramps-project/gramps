@@ -50,7 +50,7 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
     description = _("Matches ancestors of the default person "
                     "not more than N generations away")
 
-    def prepare(self,db):
+    def prepare(self, db, user):
         self.db = db
         self.map = set()
         p = db.get_default_person()

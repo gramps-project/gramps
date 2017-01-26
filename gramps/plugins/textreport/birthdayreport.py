@@ -255,11 +255,7 @@ class BirthdayReport(Report):
         and text.
         """
         people = self.database.iter_person_handles()
-        with self._user.progress(_('Birthday and Anniversary Report'),
-                                  _('Applying Filter...'),
-                                  self.database.get_number_of_people()) as step:
-            people = self.filter.apply(self.database, people,
-                                       step)
+        people = self.filter.apply(self.database, people, user=self._user)
 
         ngettext = self._locale.translation.ngettext # to see "nearby" comments
         rel_calc = get_relationship_calculator(reinit=True,

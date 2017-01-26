@@ -50,7 +50,7 @@ class MatchesRepositoryFilter(MatchesFilterBase):
     namespace = 'Repository'
 
 
-    def prepare(self, db):
+    def prepare(self, db, user):
         MatchesFilterBase.prepare(self, db)
         self.MRF_filt = self.find_filter()
 

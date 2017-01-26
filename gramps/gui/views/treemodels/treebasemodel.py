@@ -53,6 +53,7 @@ from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import gramps.gui.widgets.progressdialog as progressdlg
+from ...user import User
 from bisect import bisect_right
 from gramps.gen.filters import SearchFilter, ExactSearchFilter
 from .basemodel import BaseModel
@@ -586,8 +587,8 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         self.__total += items
         assert not skip
         if dfilter:
-            for handle in dfilter.apply(self.db,
-                                        cb_progress=status_ppl.heartbeat):
+            for handle in dfilter.apply(self.db, user=User()):
+                status_ppl.heartbeat()
                 data = data_map(handle)
                 add_func(handle, data)
                 self.__displayed += 1

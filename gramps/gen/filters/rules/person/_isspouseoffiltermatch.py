@@ -48,9 +48,9 @@ class IsSpouseOfFilterMatch(Rule):
     description = _("Matches people married to anybody matching a filter")
     category    = _('Family filters')
 
-    def prepare(self,db):
+    def prepare(self, db, user):
         self.filt = MatchesFilter (self.list)
-        self.filt.requestprepare(db)
+        self.filt.requestprepare(db, user)
 
     def apply(self,db,person):
         for family_handle in person.get_family_handle_list ():

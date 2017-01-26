@@ -29,7 +29,6 @@ Package providing filtering framework for GRAMPS.
 # Gramps imports
 #
 #------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
 from ..lib.person import Person
 from ..lib.family import Family
 from ..lib.src import Source
@@ -40,6 +39,8 @@ from ..lib.repo import Repository
 from ..lib.media import Media
 from ..lib.note import Note
 from ..lib.tag import Tag
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -129,16 +130,21 @@ class GenericFilter:
     def find_from_handle(self, db, handle):
         return db.get_person_from_handle(handle)
 
-    def check_func(self, db, id_list, task, cb_progress=None, tupleind=None):
-        final_list = []
+    def get_number(self, db):
+        return db.get_number_of_people()
 
+    def check_func(self, db, id_list, task, user=None, tupleind=None):
+        final_list = []
+        if user:
+            user.begin_progress(_('Filter'), _('Applying ...'),
+                                self.get_number(db))
         if id_list is None:
             with self.get_cursor(db) as cursor:
                 for handle, data in cursor:
                     person = self.make_obj()
                     person.unserialize(data)
-                    if cb_progress:
-                        cb_progress()
+                    if user:
+                        user.step_progress()
                     if task(db, person) != self.invert:
                         final_list.append(handle)
         else:
@@ -148,23 +154,27 @@ class GenericFilter:
                 else:
                     handle = data[tupleind]
                 person = self.find_from_handle(db, handle)
-                if cb_progress:
-                    cb_progress()
+                if user:
+                    user.step_progress()
                 if task(db, person) != self.invert:
                     final_list.append(data)
+        if user:
+            user.end_progress()
         return final_list
 
-    def check_and(self, db, id_list, cb_progress=None, tupleind=None):
+    def check_and(self, db, id_list, user=None, tupleind=None):
         final_list = []
         flist = self.flist
-
+        if user:
+            user.begin_progress(_('Filter'), _('Applying ...'),
+                                self.get_number(db))
         if id_list is None:
             with self.get_cursor(db) as cursor:
                 for handle, data in cursor:
                     person = self.make_obj()
                     person.unserialize(data)
-                    if cb_progress:
-                        cb_progress()
+                    if user:
+                        user.step_progress()
                     val = all(rule.apply(db, person) for rule in flist)
                     if val != self.invert:
                         final_list.append(handle)
@@ -175,24 +185,23 @@ class GenericFilter:
                 else:
                     handle = data[tupleind]
                 person = self.find_from_handle(db, handle)
-                if cb_progress:
-                    cb_progress()
+                if user:
+                    user.step_progress()
                 val = all(rule.apply(db, person) for rule in flist if person)
                 if val != self.invert:
                     final_list.append(data)
+        if user:
+            user.end_progress()
         return final_list
 
-    def check_or(self, db, id_list, cb_progress=None, tupleind=None):
-        return self.check_func(db, id_list, self.or_test, cb_progress,
-                                tupleind)
+    def check_or(self, db, id_list, user=None, tupleind=None):
+        return self.check_func(db, id_list, self.or_test, user, tupleind)
 
-    def check_one(self, db, id_list, cb_progress=None, tupleind=None):
-        return self.check_func(db, id_list, self.one_test, cb_progress,
-                                tupleind)
+    def check_one(self, db, id_list, user=None, tupleind=None):
+        return self.check_func(db, id_list, self.one_test, user, tupleind)
 
-    def check_xor(self, db, id_list, cb_progress=None, tupleind=None):
-        return self.check_func(db, id_list, self.xor_test, cb_progress,
-                                tupleind)
+    def check_xor(self, db, id_list, user=None, tupleind=None):
+        return self.check_func(db, id_list, self.xor_test, user, tupleind)
 
     def xor_test(self, db, person):
         test = False
@@ -222,19 +231,17 @@ class GenericFilter:
     def check(self, db, handle):
         return self.get_check_func()(db, [handle])
 
-    def apply(self, db, id_list=None, cb_progress=None, tupleind=None):
+    def apply(self, db, id_list=None, tupleind=None, user=None):
         """
         Apply the filter using db.
         If id_list given, the handles in id_list are used. If not given
         a database cursor will be used over all entries.
 
-        cb_progress is optional. If present it must be a function that takes no
-        parameters. If cb_progress given, it will be called occasionally to
-        indicate progress of the filtering.
-
         If tupleind is given, id_list is supposed to consist of a list of
         tuples, with the handle being index tupleind. So
         handle_0 = id_list[0][tupleind]
+
+        user is optional. If present it must be an instance of a User class.
 
         :Returns: if id_list given, it is returned with the items that
                 do not match the filter, filtered out.
@@ -243,8 +250,8 @@ class GenericFilter:
         """
         m = self.get_check_func()
         for rule in self.flist:
-            rule.requestprepare(db)
-        res = m(db, id_list, cb_progress, tupleind)
+            rule.requestprepare(db, user)
+        res = m(db, id_list, user, tupleind)
         for rule in self.flist:
             rule.requestreset()
         return res
@@ -263,6 +270,9 @@ class GenericFamilyFilter(GenericFilter):
     def find_from_handle(self, db, handle):
         return db.get_family_from_handle(handle)
 
+    def get_number(self, db):
+        return db.get_number_of_families()
+
 class GenericEventFilter(GenericFilter):
 
     def __init__(self, source=None):
@@ -276,6 +286,9 @@ class GenericEventFilter(GenericFilter):
 
     def find_from_handle(self, db, handle):
         return db.get_event_from_handle(handle)
+
+    def get_number(self, db):
+        return db.get_number_of_events()
 
 class GenericSourceFilter(GenericFilter):
 
@@ -291,6 +304,9 @@ class GenericSourceFilter(GenericFilter):
     def find_from_handle(self, db, handle):
         return db.get_source_from_handle(handle)
 
+    def get_number(self, db):
+        return db.get_number_of_sources()
+
 class GenericCitationFilter(GenericFilter):
 
     def __init__(self, source=None):
@@ -304,6 +320,9 @@ class GenericCitationFilter(GenericFilter):
 
     def find_from_handle(self, db, handle):
         return db.get_citation_from_handle(handle)
+
+    def get_number(self, db):
+        return db.get_number_of_citations()
 
 class GenericPlaceFilter(GenericFilter):
 
@@ -319,6 +338,9 @@ class GenericPlaceFilter(GenericFilter):
     def find_from_handle(self, db, handle):
         return db.get_place_from_handle(handle)
 
+    def get_number(self, db):
+        return db.get_number_of_places()
+
 class GenericMediaFilter(GenericFilter):
 
     def __init__(self, source=None):
@@ -332,6 +354,9 @@ class GenericMediaFilter(GenericFilter):
 
     def find_from_handle(self, db, handle):
         return db.get_media_from_handle(handle)
+
+    def get_number(self, db):
+        return db.get_number_of_media()
 
 class GenericRepoFilter(GenericFilter):
 
@@ -347,6 +372,9 @@ class GenericRepoFilter(GenericFilter):
     def find_from_handle(self, db, handle):
         return db.get_repository_from_handle(handle)
 
+    def get_number(self, db):
+        return db.get_number_of_repositories()
+
 class GenericNoteFilter(GenericFilter):
 
     def __init__(self, source=None):
@@ -360,6 +388,9 @@ class GenericNoteFilter(GenericFilter):
 
     def find_from_handle(self, db, handle):
         return db.get_note_from_handle(handle)
+
+    def get_number(self, db):
+        return db.get_number_of_notes()
 
 
 def GenericFilterFactory(namespace):

@@ -45,7 +45,7 @@ class ParamFilter(GenericFilter):
     def set_parameter(self, param):
         self.param_list = [param]
 
-    def apply(self, db, id_list=None):
+    def apply(self, db, id_list=None, user=None):
         for rule in self.flist:
             #rule.set_list(self.param_list)
             #
@@ -60,7 +60,7 @@ class ParamFilter(GenericFilter):
             if rule.nrprepare > 0:
                 raise FilterError('Custom filters can not twice be used' \
                                    ' in a parameter filter')
-            rule.requestprepare(db)
+            rule.requestprepare(db, user)
         result = GenericFilter.apply(self, db, id_list)
         for rule in self.flist:
             rule.requestreset()

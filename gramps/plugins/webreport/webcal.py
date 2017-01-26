@@ -1265,10 +1265,7 @@ class WebCalReport(Report):
         db = self.database
 
         people = db.iter_person_handles()
-        with self._user.progress(_("Web Calendar Report"),
-                                  _('Applying Filter...'),
-                                  db.get_number_of_people()) as step:
-            people = self.filter.apply(db, people, step)
+        people = self.filter.apply(db, people, user=self._user)
 
         with self._user.progress(_("Web Calendar Report"),
                 _("Reading database..."), len(people)) as step:

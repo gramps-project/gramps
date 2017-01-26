@@ -56,7 +56,7 @@ class MatchesPersonFilter(MatchesFilterBase):
     # we want to have this filter show person filters
     namespace   = 'Person'
 
-    def prepare(self, db):
+    def prepare(self, db, user):
         MatchesFilterBase.prepare(self, db)
 
         try :

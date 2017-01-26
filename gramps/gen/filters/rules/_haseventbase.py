@@ -56,7 +56,7 @@ class HasEventBase(Rule):
     category    = _('Event filters')
     allow_regex = True
 
-    def prepare(self, db):
+    def prepare(self, db, user):
         self.date = None
         if self.list[0]:
             self.etype = EventType()

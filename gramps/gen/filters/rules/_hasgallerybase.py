@@ -47,7 +47,7 @@ class HasGalleryBase(Rule):
     description = "Matches objects with certain number of items in the gallery"
     category    = _('General filters')
 
-    def prepare(self, db):
+    def prepare(self, db, user):
         # things we want to do just once, not for every handle
         if  self.list[1] == 'less than':
             self.count_type = 0

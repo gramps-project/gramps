@@ -46,7 +46,7 @@ class ProbablyAlive(Rule):
     description = _("Matches people without indications of death that are not too old")
     category    = _('General filters')
 
-    def prepare(self,db):
+    def prepare(self, db, user):
         try:
             self.current_date = parser.parse(str(self.list[0]))
         except:

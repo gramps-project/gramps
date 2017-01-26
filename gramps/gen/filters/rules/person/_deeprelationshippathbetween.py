@@ -41,25 +41,29 @@ from . import MatchesFilter
 #
 #-------------------------------------------------------------------------
 
-def filter_database(db, progress, filter_name):
+def filter_database(db, user, filter_name):
     """Returns a list of person handles"""
 
     filt = MatchesFilter([filter_name])
-    progress.set_header(_('Preparing sub-filter'))
-    filt.requestprepare(db)
+    filt.requestprepare(db, user)
 
-    progress.set_header(_('Retrieving all sub-filter matches'))
+    if user:
+        user.begin_progress(_('Finding relationship paths'),
+                            _('Retrieving all sub-filter matches'),
+                            db.get_number_of_people())
     matches = []
     for handle in db.iter_person_handles():
         person = db.get_person_from_handle(handle)
         if filt.apply(db, person):
             matches.append(handle)
-        progress.step()
+        if user:
+            user.step_progress()
+    if user:
+        user.end_progress()
 
     filt.requestreset()
 
     return matches
-
 
 def get_family_handle_people(db, exclude_handle, family_handle):
     people = set()
@@ -91,7 +95,7 @@ def get_person_family_people(db, person, person_handle):
 
     return people
 
-def find_deep_relations(db, progress, person, path, seen, target_people):
+def find_deep_relations(db, user, person, path, seen, target_people):
     if len(target_people) < 1:
         return []
 
@@ -113,8 +117,9 @@ def find_deep_relations(db, progress, person, path, seen, target_people):
     family_people = get_person_family_people(db, person, handle)
     for family_person in family_people:
         pers = db.get_person_from_handle(family_person)
-        return_paths += find_deep_relations(db, progress, pers, person_path, seen, target_people)
-        if progress: progress.step()
+        return_paths += find_deep_relations(db, user, pers, person_path, seen, target_people)
+        if user:
+            user.step_progress()
 
     return return_paths
 
@@ -131,23 +136,20 @@ class DeepRelationshipPathBetween(Rule):
                     " by marriage) between the specified person and the target people."
                     "  Each path is not necessarily the shortest path.")
 
-    def prepare(self, db):
-        # FIXME: this should use the User class
-        from gramps.gui.utils import ProgressMeter
+    def prepare(self, db, user):
         root_person_id = self.list[0]
         root_person = db.get_person_from_gramps_id(root_person_id)
 
-        progress = ProgressMeter( # TODO no-parent
-                                 _('Finding relationship paths'))
-        progress.set_pass(header=_('Evaluating people'), mode=ProgressMeter.MODE_ACTIVITY)
-
         filter_name = self.list[1]
-        target_people = filter_database(db, progress, filter_name)
+        target_people = filter_database(db, user, filter_name)
 
-        paths = find_deep_relations(db, progress, root_person, [], [], target_people)
-
-        progress.close()
-        progress = None
+        if user:
+            user.begin_progress(_('Finding relationship paths'),
+                                _('Evaluating people'),
+                                db.get_number_of_people())
+        paths = find_deep_relations(db, user, root_person, [], [], target_people)
+        if user:
+            user.end_progress()
 
         self.__matches = set()
         list(map(self.__matches.update, paths))

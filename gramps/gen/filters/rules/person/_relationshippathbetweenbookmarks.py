@@ -54,7 +54,7 @@ class RelationshipPathBetweenBookmarks(Rule):
                     "back to common ancestors, producing the relationship "
                     "path(s) between bookmarked persons.")
 
-    def prepare(self,db):
+    def prepare(self, db, user):
         self.db = db
         self.map = set()
         bookmarks = db.get_bookmarks().get()
