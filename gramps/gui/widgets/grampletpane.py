@@ -50,6 +50,7 @@ from ..editors import EditPerson, EditFamily
 from ..managedwindow import ManagedWindow
 from ..utils import is_right_click, rgb_to_hex
 from .menuitem import add_menuitem
+from ..plug import make_gui_option
 from ..plug.quick import run_quick_report_by_name
 from ..display import display_help, display_url
 from ..glade import Glade
@@ -345,6 +346,7 @@ class GuiGramplet:
         self.view = pane.pageview
         self.dbstate = dbstate
         self.uistate = uistate
+        self.track = []
         self.title = title
         self.detached_window = None
         self.force_update = False
@@ -548,6 +550,12 @@ class GuiGramplet:
 
     def get_container_widget(self):
         raise NotImplementedError
+
+    def add_gui_option(self, option):
+        """
+        Add an option to the GUI gramplet.
+        """
+        return make_gui_option(option, self.dbstate, self.uistate, self.track)
 
     def make_gui_options(self):
         if not self.pui: return

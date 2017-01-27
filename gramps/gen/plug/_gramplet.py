@@ -404,9 +404,7 @@ class Gramplet:
         """
         Add an option to the GUI gramplet.
         """
-        from gramps.gui.plug import make_gui_option
-        widget, label = make_gui_option(
-            option, self.dbstate, self.uistate, self.track)
+        widget, label = self.gui.add_gui_option(option)
         self.option_dict.update({option.get_label(): [widget, option]})
         self.option_order.append(option.get_label())
 
