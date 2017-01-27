@@ -57,7 +57,7 @@ class MatchesPersonFilter(MatchesFilterBase):
     namespace   = 'Person'
 
     def prepare(self, db, user):
-        MatchesFilterBase.prepare(self, db)
+        MatchesFilterBase.prepare(self, db, user)
 
         try :
             if int(self.list[1]):
