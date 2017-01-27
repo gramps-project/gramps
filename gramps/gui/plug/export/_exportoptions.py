@@ -617,7 +617,7 @@ class WriterOptionBox:
                     progress.update(progress.progress_cnt)
                     progress.progress_cnt += 1
                 dbase = FilterProxyDb(dbase, self.cfilter,
-                                      user=User())
+                                      user=User(parent=self.window))
 
         # Apply the Note Filter
         elif proxy_name == "note":
@@ -627,7 +627,7 @@ class WriterOptionBox:
                     progress.update(progress.progress_cnt)
                     progress.progress_cnt += 1
                 dbase = FilterProxyDb(dbase, note_filter=self.nfilter,
-                                      user=User())
+                                      user=User(parent=self.window))
 
         # Apply the ReferencedBySelection
         elif proxy_name == "reference":

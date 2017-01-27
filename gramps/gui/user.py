@@ -53,7 +53,13 @@ class User(user.User):
                  uistate=None, dbstate=None): # TODO User API: gen==cli==gui
         user.User.__init__(self, callback, error, uistate, dbstate)
         self._progress = None
-        self.parent = parent
+
+        if parent:
+            self.parent = parent
+        elif uistate:
+            self.parent = uistate.window
+        else:
+            self.parent = None
 
     def begin_progress(self, title, message, steps):
         """
@@ -69,11 +75,7 @@ class User(user.User):
         :type steps: int
         :returns: none
         """
-        if self.uistate:
-            self._progress = ProgressMeter(title,
-                                           parent=self.uistate.window)
-        else:
-            self._progress = ProgressMeter(title)
+        self._progress = ProgressMeter(title, parent=self.parent)
         if steps > 0:
             self._progress.set_pass(message, steps, ProgressMeter.MODE_FRACTION)
         else:
@@ -130,11 +132,7 @@ class User(user.User):
         :type warning: str
         :returns: none
         """
-        if self.uistate:
-            WarningDialog(title, warning,
-                          parent=self.uistate.window)
-        else:
-            WarningDialog(title, warning, parent=None)
+        WarningDialog(title, warning, parent=self.parent)
 
     def notify_error(self, title, error=""):
         """
@@ -146,16 +144,10 @@ class User(user.User):
         :type error: str
         :returns: none
         """
-        if self.error_function and self.parent: # if parent is set, use it
+        if self.error_function:
             self.error_function(title, error, parent=self.parent)
-        elif self.error_function:
-            self.error_function(title, error)
-        elif self.uistate:
-            ErrorDialog(title, error, parent=self.uistate.window)
-        elif self.user.uistate:
-            ErrorDialog(title, error, parent=self.user.uistate.window)
         else:
-            ErrorDialog(title, error, parent=None)
+            ErrorDialog(title, error, parent=self.parent)
 
     def notify_db_error(self, error):
         """
@@ -165,10 +157,7 @@ class User(user.User):
         :type error: str
         :returns: none
         """
-        if self.uistate:
-            DBErrorDialog(error, parent=self.uistate.window)
-        else:
-            DBErrorDialog(error, parent=None)
+        DBErrorDialog(error, parent=self.parent)
 
     def notify_db_repair(self, error):
         """
@@ -178,10 +167,7 @@ class User(user.User):
         :type error: str
         :returns: none
         """
-        if self.uistate:
-            RunDatabaseRepair(error, parent=self.uistate.window)
-        else:
-            RunDatabaseRepair(error, parent=None)
+        RunDatabaseRepair(error, parent=self.parent)
 
     def info(self, msg1, infotext, parent=None, monospaced=False):
         """
