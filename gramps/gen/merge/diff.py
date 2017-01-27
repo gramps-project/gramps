@@ -24,7 +24,6 @@ This package implements an object difference engine.
 
 import json
 
-from gramps.cli.user import User
 from ..db.utils import import_as_dict
 from ..lib.serialize import to_json
 from ..const import GRAMPS_LOCALE as glocale
@@ -91,7 +90,7 @@ def diff_items(path, json1, json2):
         #print("   new:", json2)
         return True
 
-def diff_dbs(db1, db2, user=None):
+def diff_dbs(db1, db2, user):
     """
     1. new objects => mark for insert
     2. deleted objects, no change locally after delete date => mark
@@ -101,8 +100,6 @@ def diff_dbs(db1, db2, user=None):
     4. updated objects => do a diff on differences, mark origin
        values as new data
     """
-    if user is None:
-        user = User()
     missing_from_old = []
     missing_from_new = []
     diffs = []
@@ -143,9 +140,7 @@ def diff_dbs(db1, db2, user=None):
                 p2 += 1
     return diffs, missing_from_old, missing_from_new
 
-def diff_db_to_file(old_db, filename, user=None):
-    if user is None:
-        user = User()
+def diff_db_to_file(old_db, filename, user):
     # First, get data as a InMemoryDB
     new_db = import_as_dict(filename, user, user)
     if new_db is not None:
