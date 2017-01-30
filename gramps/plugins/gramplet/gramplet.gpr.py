@@ -1271,7 +1271,7 @@ register(GRAMPLET,
          gramps_target_version=MODULE_VERSION,
          status = UNSTABLE,
          fname="leak.py",
-         height=200,
+         height=400,
          gramplet = 'Leak',
          gramplet_title="Uncollected Objects",
          )
