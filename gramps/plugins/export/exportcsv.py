@@ -116,7 +116,7 @@ class CSVWriterOptionBox(WriterOptionBox):
     """
     def __init__(self, person, dbstate, uistate, track=[], window=None):
         WriterOptionBox.__init__(self, person, dbstate, uistate, track=track,
-        window=window)
+                                 window=window)
         ## TODO: add place filter selection
         self.include_individuals = 1
         self.include_marriages = 1
