@@ -215,8 +215,9 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         """
         Create a new DummyDb instance.
         """
-        DbReadBase.__init__(self)
         Callback.__init__(self)
+        self.basedb = None
+        self.__feature = {} # {"feature": VALUE, ...}
         self.db_is_open = False
         self.readonly = True
         self.name_formats = []
