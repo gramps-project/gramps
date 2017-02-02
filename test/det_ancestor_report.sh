@@ -43,7 +43,6 @@ for desref in 'True' 'False'; do
 for incphotos in 'True' 'False'; do
 for omitda in 'True' 'False'; do
 for incsources in 'True' 'False'; do
-for usenick in 'True' 'False'; do
 for fulldates in 'True' 'False'; do
 for incnotes in 'True' 'False'; do
 for repplace in 'True' 'False'; do
@@ -52,10 +51,9 @@ for computeage in 'True' 'False'; do
 for incnames in 'True' 'False'; do
 for incevents in 'True' 'False'; do
 for listc in 'True' 'False'; do
-    output="$desref$incphotos$omitda$incsources$usenick$fulldates$incnotes$repplace$repdate$computeage$incnames$incevents$listc"
-    action="-a report -p name=$REP,off=$FMT,of=$REP_DIR/$output.$FMT,desref=$desref,incphotos=$incphotos,omitda=$omitda,incsources=$incsources,usenick=$usenick,fulldates=$fulldates,incnotes=$incnotes,repplace=$repplace,repdate=$repdate,computeage=$computeage,incnames=$incnames,incevents=$incevents,listc=$listc"
+    output="$desref$incphotos$omitda$incsources$fulldates$incnotes$repplace$repdate$computeage$incnames$incevents$listc"
+    action="-a report -p name=$REP,off=$FMT,of=$REP_DIR/$output.$FMT,desref=$desref,incphotos=$incphotos,omitda=$omitda,incsources=$incsources,fulldates=$fulldates,incnotes=$incnotes,repplace=$repplace,repdate=$repdate,computeage=$computeage,incnames=$incnames,incevents=$incevents,listc=$listc"
     (cd $SRC_DIR; $PRG $OPTS $action)
-done
 done
 done
 done
