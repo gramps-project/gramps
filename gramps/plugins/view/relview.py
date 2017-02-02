@@ -70,6 +70,7 @@ from gramps.gen.utils.alive import probably_alive
 from gramps.gui.utils import open_file_with_default_application
 from gramps.gen.datehandler import displayer, get_date
 from gramps.gen.utils.thumbnails import get_thumbnail_image
+from gramps.gen.utils.parents import parents
 from gramps.gen.config import config
 from gramps.gui import widgets
 from gramps.gui.widgets.reorderfam import Reorder
@@ -897,8 +898,9 @@ class RelationshipView(NavigationView):
             self.row += 1 # now advance it
         else:
             self.write_label(_("%s:") % _('Parents'), family, True, person)
-            self.write_person(_('Father'), family.get_father_handle())
-            self.write_person(_('Mother'), family.get_mother_handle())
+            parent = parents(self.dbstate.db, family, glocale)
+            self.write_person(_(parent[0]), family.get_father_handle())
+            self.write_person(_(parent[1]), family.get_mother_handle())
 
             if self.show_siblings:
                 active = self.get_active()

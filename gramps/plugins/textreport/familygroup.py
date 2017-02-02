@@ -52,6 +52,7 @@ from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.errors import ReportError
 from gramps.gen.utils.db import family_name
+from gramps.gen.utils.parents import parents
 
 #------------------------------------------------------------------------
 #
@@ -622,7 +623,10 @@ class FamilyGroup(Report):
         self.doc.write_text('', mark)
         self.doc.end_paragraph()
 
-        self.dump_parent(self._("Husband"), family.get_father_handle())
+        family = self.db.get_family_from_handle(family_handle)
+        parent = parents(self.db, family, self._locale)
+
+        self.dump_parent(self._(parent[0]), family.get_father_handle())
         self.doc.start_paragraph("FGR-blank")
         self.doc.end_paragraph()
 
@@ -631,7 +635,7 @@ class FamilyGroup(Report):
             self.doc.start_paragraph("FGR-blank")
             self.doc.end_paragraph()
 
-        self.dump_parent(self._("Wife"), family.get_mother_handle())
+        self.dump_parent(self._(parent[1]), family.get_mother_handle())
 
         length = len(family.get_child_ref_list())
         if length > 0:

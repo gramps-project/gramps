@@ -61,6 +61,7 @@ from gramps.gen.lib import ChildRef, Family, Name, NoteType, Person, Surname
 from gramps.gen.db import DbTxn
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.datehandler import displayer
+from gramps.gen.relationship import RelationshipCalculator
 from ..glade import Glade
 
 from .editprimary import EditPrimary
@@ -79,6 +80,7 @@ from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
                           get_marriage_or_fallback, preset_name, family_name)
 from ..selectors import SelectorFactory
 from gramps.gen.utils.id import create_id
+from gramps.gen.utils.parents import parents
 from gramps.gen.const import URL_MANUAL_SECT1
 
 #-------------------------------------------------------------------------
@@ -96,6 +98,14 @@ _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 _LEFT_BUTTON = 1
 _RIGHT_BUTTON = 3
+
+_GenderCode = {
+    Person.MALE    : '\u2642',
+    Person.FEMALE  : '\u2640',
+    Person.UNKNOWN : '\u2650',
+    }
+
+rc = RelationshipCalculator()
 
 class ChildEmbedList(EmbeddedList):
     """
@@ -486,11 +496,61 @@ class EditFamily(EditPrimary):
         self.update_mother(mhandle)
 
     def reload_people(self):
+        """
+        Used to reload people
+        """
         fhandle = self.obj.get_father_handle()
         self.update_father(fhandle)
+        log.debug('father label: %s' % self.father_label.get_label())
 
         mhandle = self.obj.get_mother_handle()
         self.update_mother(mhandle)
+        log.debug('mother label: %s' % self.mother_label.get_label())
+
+        if fhandle and mhandle:
+            one = self.db.get_person_from_handle(fhandle)
+            two = self.db.get_person_from_handle(mhandle)
+            rel_type = rc._get_spouse_type(self.db, one, two)
+            if rel_type == None: # first edition
+                rel_type = config.get('preferences.family-relation-type')
+            TYPE = [_("Married"),
+                   _("Unmarried"),
+                   _("Civil Union"),
+                   _("Unknown"),
+                   _("Custom"),
+                   ]
+            TYPE.sort()
+            log.debug('rel_type was "%s"' % self.obj.type)
+            if self.reltype.get_active_text() not in TYPE: # custom types
+                integer = -1
+                rel_type = -1
+            else:
+                integer = TYPE.index(self.reltype.get_active_text())
+                log.debug('rel_type is "%s" (%s)' % (self.reltype.get_active_text(), integer))
+            if TYPE[rel_type] != self.reltype.get_active_text():
+                vals = ["", "PARTNER_MARRIED",
+                        "PARTNER_UNMARRIED",
+                        "PARTNER_CIVIL_UNION",
+                        "PARTNER_UNKNOWN_REL",
+                        "PARTNER_CUSTOM"]
+                # only use second 'gender' argument, Person.FEMALE by default
+                rel_one = rc.get_partner_relationship_string(vals.index(vals[integer]),
+                                                             two.gender,
+                                                             one.gender
+                                                             )
+                rel_two = rc.get_partner_relationship_string(vals.index(vals[integer]),
+                                                             one.gender,
+                                                             two.gender
+                                                             )
+                self.father_label.set_label(rel_one)
+                self.mother_label.set_label(rel_two)
+        if fhandle and not mhandle:
+            self.father_label.set_label("")
+        if mhandle and not fhandle:
+            self.mother_label.set_label("")
+
+        self.father_label.show()
+        self.mother_label.show()
         self.child_tab.rebuild()
 
     def get_menu_title(self):
@@ -515,6 +575,9 @@ class EditFamily(EditPrimary):
         # FIXME: remove if we can use show()
         self.window.show_all = self.window.show
 
+        self.father_label = self.top.get_object('label589')
+        self.mother_label = self.top.get_object('label574')
+
         self.fbirth  = self.top.get_object('fbirth')
         self.fdeath  = self.top.get_object('fdeath')
         self.fbirth_label = self.top.get_object('label578')
@@ -533,9 +596,9 @@ class EditFamily(EditPrimary):
         self.mbutton_del = self.top.get_object('mbutton_del')
         self.mbutton_edit = self.top.get_object('mbutton_edit')
 
-        self.mbutton_index.set_tooltip_text(_("Select a person as the mother"))
-        self.mbutton_add.set_tooltip_text(_("Add a new person as the mother"))
-        self.mbutton_del.set_tooltip_text(_("Remove the person as the mother"))
+        self.mbutton_index.set_tooltip_text(_("Select a person"))
+        self.mbutton_add.set_tooltip_text(_("Add a person"))
+        self.mbutton_del.set_tooltip_text(_("Remove the person"))
 
         self.mbutton_edit.connect('button-press-event', self.edit_mother)
         self.mbutton_edit.connect('key-press-event', self.edit_mother)
@@ -548,9 +611,9 @@ class EditFamily(EditPrimary):
         self.fbutton_del = self.top.get_object('fbutton_del')
         self.fbutton_edit = self.top.get_object('fbutton_edit')
 
-        self.fbutton_index.set_tooltip_text(_("Select a person as the father"))
-        self.fbutton_add.set_tooltip_text(_("Add a new person as the father"))
-        self.fbutton_del.set_tooltip_text(_("Remove the person as the father"))
+        self.fbutton_index.set_tooltip_text(_("Select a person"))
+        self.fbutton_add.set_tooltip_text(_("Add a person"))
+        self.fbutton_del.set_tooltip_text(_("Remove the person"))
 
         self.fbutton_edit.connect('button-press-event', self.edit_father)
         self.fbutton_edit.connect('key-press-event', self.edit_father)
@@ -570,6 +633,10 @@ class EditFamily(EditPrimary):
         self.contexteventbox.drag_source_set_target_list(tglist)
         self.contexteventbox.drag_source_set_icon_name('gramps-family')
         self.contexteventbox.connect('drag_data_get', self.on_drag_data_get_family)
+
+        self.reltype = self.top.get_object('marriage_type')
+        self.origin = self.obj.get_relationship()
+        self.reltype.connect('changed', self._rebuild_parents_labels)
 
     def on_drag_data_get_family(self,widget, context, sel_data, info, time):
         if info == DdTargets.FAMILY_LINK.app_id:
@@ -633,6 +700,10 @@ class EditFamily(EditPrimary):
     def _can_be_replaced(self):
         pass
 
+    def _rebuild_parents_labels(self, combo):
+        if self.origin != combo.get_active_text():
+            self.reload_people()
+
     def _setup_fields(self):
 
         self.private = PrivacyButton(
@@ -670,14 +741,41 @@ class EditFamily(EditPrimary):
         """
         fhandle = self.obj.get_father_handle()
         self.update_father(fhandle)
+        if fhandle:
+            father_gender = self.db.get_person_from_handle(fhandle).gender
+        else:
+            father_gender = Person.MALE
 
         mhandle = self.obj.get_mother_handle()
         self.update_mother(mhandle)
+        if mhandle:
+            mother_gender = self.db.get_person_from_handle(mhandle).gender
+        else:
+            mother_gender = Person.FEMALE
 
         self.phandles = [mhandle, fhandle]
         self.phandles.extend(x.ref for x in self.obj.get_child_ref_list())
 
         self.phandles = [_f for _f in self.phandles if _f]
+
+        self.get_parents(father_gender, mother_gender)
+
+    def get_parents(self, father_gender, mother_gender):
+        """
+        Make labels and tooltips for parents.
+        """
+        one_gender = _GenderCode[father_gender]
+        two_gender = _GenderCode[mother_gender]
+        parent = parents(self.db, self.obj, glocale)
+        self.father_label.set_label(one_gender)
+        self.fbutton_del.set_tooltip_text(_("Remove %s") % _(parent[0]).lower())
+        self.mother_label.set_label(two_gender)
+        self.mbutton_del.set_tooltip_text(_("Remove %s") % _(parent[1]).lower())
+
+        # sorry, no 'real time' update
+        self.father_label.show()
+        self.mother_label.show()
+
 
     def get_start_date(self):
         """
@@ -761,6 +859,8 @@ class EditFamily(EditPrimary):
                                         self.obj.get_father_handle(),
                                         self.on_drag_fatherdata_get,
                                         self.on_drag_fatherdata_received)
+        self.fbutton_del.set_tooltip_text(_("Remove"))
+        self.father_label.hide()
 
     def update_mother(self, handle):
         self.load_parent(handle, self.mname, self.mbirth, self.mbirth_label,
@@ -771,6 +871,8 @@ class EditFamily(EditPrimary):
                                         self.obj.get_mother_handle(),
                                         self.on_drag_motherdata_get,
                                         self.on_drag_motherdata_received)
+        self.mbutton_del.set_tooltip_text(_("Remove"))
+        self.mother_label.hide()
 
     def add_mother_clicked(self, obj):
         person = Person()
@@ -811,12 +913,14 @@ class EditFamily(EditPrimary):
             i.set_sensitive(True)
         self.obj.set_mother_handle(person.handle)
         self.update_mother(person.handle)
+        self.mother_label.hide()
 
     def new_father_added(self, person):
         for i in self.hidden:
             i.set_sensitive(True)
         self.obj.set_father_handle(person.handle)
         self.update_father(person.handle)
+        self.father_label.hide()
 
     def del_mother_clicked(self, obj):
         for i in self.hidden:
@@ -824,6 +928,7 @@ class EditFamily(EditPrimary):
 
         self.obj.set_mother_handle(None)
         self.update_mother(None)
+        self.mother_label.hide()
 
     def sel_mother_clicked(self, obj):
         for i in self.hidden:
@@ -869,6 +974,7 @@ class EditFamily(EditPrimary):
 
         self.obj.set_father_handle(None)
         self.update_father(None)
+        self.father_label.hide()
 
     def sel_father_clicked(self, obj):
         for i in self.hidden:
