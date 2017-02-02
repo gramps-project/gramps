@@ -51,7 +51,7 @@ from .undoablebuffer import Stack
 
 class UndoableInsertEntry:
     """something that has been inserted into our Gtk.editable"""
-    def __init__(self, text, length, position, editable):
+    def __init__(self, text, length, position):
         self.offset = position
         self.text = text
         #unicode char can have length > 1 as it points in the buffer
@@ -80,7 +80,7 @@ class UndoableDeleteEntry:
         else:
             self.mergeable = True
 
-class UndoableEntry(Gtk.Entry):
+class UndoableEntry(Gtk.Entry, Gtk.Editable):
     """
     The UndoableEntry is an Entry subclass with additional features.
 
@@ -102,7 +102,6 @@ class UndoableEntry(Gtk.Entry):
         self.not_undoable_action = False
         self.undo_in_progress = False
 
-        self.connect('insert-text', self._on_insert_text)
         self.connect('delete-text', self._on_delete_text)
         self.connect('key-press-event', self._on_key_press_event)
 
@@ -134,7 +133,7 @@ class UndoableEntry(Gtk.Entry):
     def __empty_redo_stack(self):
         self.redo_stack = []
 
-    def _on_insert_text(self, editable, text, length, positionptr):
+    def do_insert_text(self, text, length, position):
         def can_be_merged(prev, cur):
             """
             see if we can merge multiple inserts here
@@ -159,26 +158,27 @@ class UndoableEntry(Gtk.Entry):
 
         if not self.undo_in_progress:
             self.__empty_redo_stack()
-        if self.not_undoable_action:
-            return
-        undo_action = self.insertclass(text, length, editable.get_position(),
-                                       editable)
-        try:
-            prev_insert = self.undo_stack.pop()
-        except IndexError:
-            self.undo_stack.append(undo_action)
-            return
-        if not isinstance(prev_insert, self.insertclass):
-            self.undo_stack.append(prev_insert)
-            self.undo_stack.append(undo_action)
-            return
-        if can_be_merged(prev_insert, undo_action):
-            prev_insert.length += undo_action.length
-            prev_insert.text += undo_action.text
-            self.undo_stack.append(prev_insert)
-        else:
-            self.undo_stack.append(prev_insert)
-            self.undo_stack.append(undo_action)
+        while not self.not_undoable_action:
+            undo_action = self.insertclass(text, length, self.get_position())
+            try:
+                prev_insert = self.undo_stack.pop()
+            except IndexError:
+                self.undo_stack.append(undo_action)
+                break
+            if not isinstance(prev_insert, self.insertclass):
+                self.undo_stack.append(prev_insert)
+                self.undo_stack.append(undo_action)
+                break
+            if can_be_merged(prev_insert, undo_action):
+                prev_insert.length += undo_action.length
+                prev_insert.text += undo_action.text
+                self.undo_stack.append(prev_insert)
+            else:
+                self.undo_stack.append(prev_insert)
+                self.undo_stack.append(undo_action)
+            break
+        self.get_buffer().insert_text(position, text, length)
+        return position + length
 
     def _on_delete_text(self, editable, start, end):
         def can_be_merged(prev, cur):
