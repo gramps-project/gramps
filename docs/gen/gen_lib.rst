@@ -53,14 +53,14 @@ CitationBase
    :members:
    :undoc-members:
    :show-inheritance:
-   
+
 IndirectCitationBase
 ====================================
 .. autoclass:: IndirectCitationBase
    :members:
    :undoc-members:
    :show-inheritance:
-   
+
 DateBase
 ====================================
 .. automodule:: gramps.gen.lib.datebase
@@ -68,7 +68,7 @@ DateBase
    :members:
    :undoc-members:
    :show-inheritance:
-   
+
 LdsOrdBase
 ====================================
 .. automodule:: gramps.gen.lib.ldsordbase
@@ -76,7 +76,7 @@ LdsOrdBase
    :members:
    :undoc-members:
    :show-inheritance:
-   
+
 LocationBase
 ====================================
 .. automodule:: gramps.gen.lib.locationbase
@@ -84,7 +84,7 @@ LocationBase
    :members:
    :undoc-members:
    :show-inheritance:
-   
+
 MediaBase
 ====================================
 .. automodule:: gramps.gen.lib.mediabase
@@ -116,7 +116,7 @@ PrivacyBase
    :members:
    :undoc-members:
    :show-inheritance:
-   
+
 RefBase
 ====================================
 .. automodule:: gramps.gen.lib.refbase
@@ -132,7 +132,7 @@ SurnameBase
    :members:
    :undoc-members:
    :show-inheritance:
-      
+
 TagBase
 ====================================
 .. automodule:: gramps.gen.lib.tagbase
@@ -216,7 +216,7 @@ Citation
    :undoc-members:
    :show-inheritance:
 
-Media Object
+Media
 ====================================
 .. automodule:: gramps.gen.lib.media
 .. autoclass:: Media
@@ -366,7 +366,7 @@ RepoRef
    :members:
    :undoc-members:
    :show-inheritance:
-   
+
 *****************************
 Table objects
 *****************************
@@ -487,7 +487,7 @@ EventType
    :members:
    :undoc-members:
    :show-inheritance:
-   
+
 EventRoleType
 ==============
 .. automodule:: gramps.gen.lib.eventroletype
@@ -543,7 +543,7 @@ RepositoryType
    :members:
    :undoc-members:
    :show-inheritance:
-   
+
 SourceMediaType
 ================
 .. automodule:: gramps.gen.lib.srcmediatype
@@ -557,7 +557,7 @@ StyledTextTagType
    :members:
    :undoc-members:
    :show-inheritance:
-   
+
 UrlType
 ========
 .. automodule:: gramps.gen.lib.urltype

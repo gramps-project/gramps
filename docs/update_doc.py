@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 #
 # update_po - a gramps tool to update translations
 #
@@ -102,8 +102,9 @@ def build():
     # testing stage
 
     os.system('''%(program)s -b html . _build/html''' % {'program': sphinxCmd})
-    os.system('''%(program)s -b changes . _build/changes''' % {'program': sphinxCmd})
-    os.system('''%(program)s -b linkcheck . _build/linkcheck''' % {'program': sphinxCmd})
+    #os.system('''%(program)s -b changes . _build/changes''' % {'program': sphinxCmd})
+    #os.system('''%(program)s -b linkcheck . _build/linkcheck''' % {'program': sphinxCmd})
+    #os.system('''%(program)s -b devhelp . _build/devhelp''' % {'program': sphinxCmd})
 
 if __name__ == "__main__":
     main()
