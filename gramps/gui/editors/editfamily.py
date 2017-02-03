@@ -215,7 +215,7 @@ class ChildEmbedList(EmbeddedList):
 
         sel = SelectPerson(self.dbstate, self.uistate, self.track,
                            _("Select Child"), skip=skip_list,
-                           expand=config.get('interface.expand-tree'))
+                           expand=config.get('interface.expand-selector'))
         person = sel.run()
 
         if person:
@@ -231,7 +231,7 @@ class ChildEmbedList(EmbeddedList):
         skip_list = [_f for _f in skip if _f]
         SelectPerson(self.dbstate, self.uistate, self.track,
                      _("Select Child"), skip=skip_list,
-                     expand=config.get('interface.expand-tree'))
+                     expand=config.get('interface.expand-selector'))
 
     def del_button_clicked(self, obj=None):
         ref = self.get_selected()
@@ -836,7 +836,7 @@ class EditFamily(EditPrimary):
                            _("Select Mother"),
                            filter=data_filter,
                            skip=[x.ref for x in self.obj.get_child_ref_list()],
-                           expand=config.get('interface.expand-tree'))
+                           expand=config.get('interface.expand-selector'))
         person = sel.run()
 
         if person:
@@ -882,7 +882,7 @@ class EditFamily(EditPrimary):
                            _("Select Father"),
                            filter=data_filter,
                            skip=[x.ref for x in self.obj.get_child_ref_list()],
-                           expand=config.get('interface.expand-tree'))
+                           expand=config.get('interface.expand-selector'))
         person = sel.run()
         if person:
             self.check_for_existing_family(person.handle,

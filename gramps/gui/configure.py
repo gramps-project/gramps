@@ -1111,8 +1111,8 @@ class GrampsPreferences(ConfigureDialog):
 
         # When using Select <item>, do the trees expand by default?
         self.add_checkbox(grid,
-                          _("Expand trees by default."),
-                          row, 'interface.expand-tree', stop=3)
+                          _("Expand selectors by default"),
+                          row, 'interface.expand-selector', stop=3)
         row += 1
 
         return _('Display'), grid
