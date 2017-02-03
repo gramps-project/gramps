@@ -55,63 +55,73 @@ from gramps.gen.plug.docgen import (StyleSheet, FONT_SERIF, FONT_SANS_SERIF,
             PARA_ALIGN_JUSTIFY, ParagraphStyle, TableStyle, TableCellStyle,
             GraphicsStyle)
 from ...listmodel import ListModel
-from ...managedwindow import set_titles
+from ...managedwindow import ManagedWindow
 from ...glade import Glade
+from ...dialog import ErrorDialog
 
 #------------------------------------------------------------------------
 #
 # StyleListDisplay class
 #
 #------------------------------------------------------------------------
-class StyleListDisplay:
+class StyleListDisplay(ManagedWindow):
     """
     Shows the available paragraph/font styles. Allows the user to select,
-    add, edit, and delete styles from a StyleSheet.
+    add, edit, and delete styles from a StyleSheetList.
     """
 
-    def __init__(self, stylesheetlist, callback, parent_window):
+    def __init__(self, stylesheetlist, uistate, track, callback=None):
         """
         Create a StyleListDisplay object that displays the styles in the
-        StyleSheet.
+        StyleSheetList.
 
-        stylesheetlist - styles that can be editied
-        callback - task called with an object has been added.
+        stylesheetlist - styles for editing: a :class:`.StyleSheetList` instance
+        callback - task called when an object has been added.
         """
+
+        ManagedWindow.__init__(self, uistate, track, self.__class__, modal=True)
+        # the self.window.run() below makes Gtk make it modal, so any change
+        # to the previous line's "modal" would require that line to be changed
+
         self.callback = callback
 
         self.sheetlist = stylesheetlist
 
-        self.parent_window = parent_window
-
         self.top = Glade(toplevel='styles')
-        self.window = self.top.toplevel
-
-        set_titles(self.window, self.top.get_object('title'),
-                   _('Document Styles'))
+        self.set_window(self.top.toplevel, self.top.get_object('title'),
+                        _('Document Styles'))
+        self.setup_configs('interface.stylelistdisplay', 400, 300)
+        self.show()
 
         self.top.connect_signals({
-            "destroy_passed_object" : self.__close,
             "on_ok_clicked" : self.on_ok_clicked,
             "on_add_clicked" : self.on_add_clicked,
             "on_delete_clicked" : self.on_delete_clicked,
             "on_button_press" : self.on_button_press,
             "on_edit_clicked" : self.on_edit_clicked,
+            "on_cancel_clicked" : self.__cancel,
+            "on_cancel_style_clicked" : dummy_callback,
             "on_save_style_clicked" : dummy_callback,
             })
 
         self.list = ListModel(self.top.get_object("list"),
                                         [(_('Style'), -1, 10)], )
         self.redraw()
-        if parent_window:
-            self.window.set_transient_for(parent_window)
+        # the self.window.run() makes Gtk make it modal, so any change to that
+        # line would require the ManagedWindow.__init__ to be changed also
         self.window.run()
-        self.window.destroy()
+        if self.opened:
+            self.close()
 
-    def __close(self, obj):
-        self.top.destroy()
+    def build_menu_names(self, obj): # meaningless while it's modal
+        """Override :class:`.ManagedWindow` method."""
+        return (_('Document Styles'), ' ')
+
+    def __cancel(self, obj):
+        pass
 
     def redraw(self):
-        """Redraws the list of styles that are current available"""
+        """Redraws the list of styles that are currently available"""
 
         self.list.model.clear()
         self.list.add([_("default")])
@@ -124,22 +134,21 @@ class StyleListDisplay:
             index += 1
 
     def on_add_clicked(self, obj):
-        """Called with the ADD button is clicked. Invokes the StyleEditor to
+        """Called when the ADD button is clicked. Invokes the StyleEditor to
         create a new style"""
         style = self.sheetlist.get_style_sheet("default")
         StyleEditor(_("New Style"), style, self)
 
     def on_ok_clicked(self, obj):
-        """Called with the OK button is clicked; Calls the callback task,
+        """Called when the OK button is clicked; Calls the callback task,
         then saves the stylesheet."""
         if self.callback is not None:
             self.callback()
         try:
             self.sheetlist.save()
         except IOError as msg:
-            from ...dialog import ErrorDialog
             ErrorDialog(_("Error saving stylesheet"), str(msg),
-                        parent=self.parent_window)
+                        parent=self.window)
         except:
             log.error("Failed to save stylesheet", exc_info=True)
 
@@ -149,11 +158,13 @@ class StyleListDisplay:
 
     def on_edit_clicked(self, obj):
         """
-        Called with the EDIT button is clicked.
+        Called when the EDIT button is clicked.
         Calls the StyleEditor to edit the selected style.
         """
         store, node = self.list.selection.get_selected()
         if not node:
+            ErrorDialog(_("Missing information"), _("Select a style"),
+                        parent=self.window)
             return
 
         name = str(self.list.model.get_value(node, 0))
@@ -166,6 +177,8 @@ class StyleListDisplay:
         """Deletes the selected style."""
         store, node = self.list.selection.get_selected()
         if not node:
+            ErrorDialog(_("Missing information"), _("Select a style"),
+                        parent=self.window)
             return
         name = str(self.list.model.get_value(node, 0))
         if name == _('default'): # the default style cannot be removed
@@ -178,7 +191,7 @@ class StyleListDisplay:
 # StyleEditor class
 #
 #------------------------------------------------------------------------
-class StyleEditor:
+class StyleEditor(ManagedWindow):
     """
     Edits the current style definition. Presents a dialog allowing the values
     of the paragraphs in the style to be altered.
@@ -189,20 +202,30 @@ class StyleEditor:
         Create the StyleEditor.
 
         name - name of the style that is to be edited
-        style - style object that is to be edited
+        style - style object to be edited: a :class:`.StyleSheet` instance
         parent - StyleListDisplay object that called the editor
         """
+
+        ManagedWindow.__init__(self, parent.uistate, parent.track,
+                               self.__class__, modal=True)
+        # the self.window.run() below makes Gtk make it modal, so any change
+        # to the previous line's "modal" would require that line to be changed
+
         self.current_style = None
         self.current_name = None
 
         self.style = StyleSheet(style)
         self.parent = parent
         self.top = Glade(toplevel='editor')
-        self.window = self.top.toplevel
+        self.set_window(self.top.toplevel, self.top.get_object('title'),
+                        _('Style editor'))
+        self.setup_configs('interface.styleeditor', 550, 610)
+        self.show()
 
         self.top.connect_signals({
             "on_save_style_clicked" : self.on_save_style_clicked,
-            "destroy_passed_object" : self.__close,
+            "on_cancel_style_clicked" : self.__cancel,
+            "on_cancel_clicked" : dummy_callback,
             "on_ok_clicked" : dummy_callback,
             "on_add_clicked" : dummy_callback,
             "on_delete_clicked" : dummy_callback,
@@ -226,8 +249,6 @@ class StyleEditor:
         self.line_style.pack_start(renderer_text, True)
         self.line_style.add_attribute(renderer_text, "text", 1)
 
-        set_titles(self.window, self.top.get_object('title'),
-                   _('Style editor'))
         self.top.get_object("label6").set_text(_("point size|pt"))
 
         titles = [(_('Style'), 0, 130)]
@@ -261,13 +282,18 @@ class StyleEditor:
             self.plist.add([d_name], self.style.get_draw_style(d_name))
         self.plist.select_row(0)
 
-        if self.parent:
-            self.window.set_transient_for(parent.window)
+        # the self.window.run() makes Gtk make it modal, so any change to that
+        # line would require the ManagedWindow.__init__ to be changed also
         self.window.run()
-        self.window.destroy()
+        if self.opened:
+            self.close()
 
-    def __close(self, obj):
-        self.window.destroy()
+    def build_menu_names(self, obj): # meaningless while it's modal
+        """Override :class:`.ManagedWindow` method."""
+        return (_('Style editor'), None)
+
+    def __cancel(self, obj):
+        pass
 
     def show_pages(self, show_pages):
         """
@@ -525,7 +551,6 @@ class StyleEditor:
         self.style.set_name(name)
         self.parent.sheetlist.set_style_sheet(name, self.style)
         self.parent.redraw()
-        self.window.destroy()
 
     def change_display(self, obj):
         """
