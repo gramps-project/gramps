@@ -52,9 +52,17 @@ class IsSiblingOfFilterMatch(Rule):
         self.map = set()
         filt = MatchesFilter(self.list)
         filt.requestprepare(db, user)
+        if user:
+            user.begin_progress(self.category,
+                                _('Retrieving all sub-filter matches'),
+                                db.get_number_of_people())
         for person in db.iter_people():
+            if user:
+                user.step_progress()
             if filt.apply (db, person):
                 self.init_list (person)
+        if user:
+            user.end_progress()
         filt.requestreset()
 
     def reset(self):
@@ -67,8 +75,9 @@ class IsSiblingOfFilterMatch(Rule):
         if not person:
             return
         fam_id = person.get_main_parents_family_handle()
-        fam = self.db.get_family_from_handle(fam_id)
-        if fam:
-            self.map.update(child_ref.ref
-                for child_ref in fam.get_child_ref_list()
+        if fam_id:
+            fam = self.db.get_family_from_handle(fam_id)
+            if fam:
+                self.map.update(
+                    child_ref.ref for child_ref in fam.get_child_ref_list()
                     if child_ref and child_ref.ref != person.handle)
