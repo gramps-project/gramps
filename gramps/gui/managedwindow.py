@@ -488,7 +488,9 @@ class ManagedWindow:
             self.window.set_modal(True)
         # The following makes sure that we only have one modal window open;
         # if more the older ones get temporarily made non-modal.
-        self.other_modal_window = self.uistate.gwm.find_modal_window(window)
+        if self.uistate:
+            self.other_modal_window = self.uistate.gwm.find_modal_window(
+                window)
         if self.other_modal_window:
             self.other_modal_window.set_modal(False)
             self.window.set_modal(True)
