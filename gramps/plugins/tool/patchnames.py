@@ -109,13 +109,13 @@ class PatchNames(tool.BatchTool, ManagedWindow):
 
         tool.BatchTool.__init__(self, dbstate, user, options_class, name)
         if self.fail:
+            self.close()
             return
 
-        winprefix = Gtk.Dialog(_("Default prefix and connector settings"),
-                                self.uistate.window,
-                                Gtk.DialogFlags.MODAL|Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                (_('_OK'), Gtk.ResponseType.ACCEPT))
-
+        winprefix = Gtk.Dialog(title=_("Default prefix and connector settings"),
+                               transient_for=self.uistate.window,
+                               modal=True, destroy_with_parent=True)
+        winprefix.add_button(_('_OK'), Gtk.ResponseType.ACCEPT)
         winprefix.vbox.set_spacing(5)
         hboxpref = Gtk.Box()
         label = Gtk.Label(label=_('Prefixes to search for:'))
@@ -138,8 +138,8 @@ class PatchNames(tool.BatchTool, ManagedWindow):
         self.connsbox.set_text(', '.join(CONNECTOR_LIST_NONSPLIT))
         hboxconns.pack_start(self.connsbox, True, True, 0)
         winprefix.vbox.pack_start(hboxconns, True, True, 0)
-        winprefix.show_all()
         winprefix.resize(700, 100)
+        winprefix.show_all()
 
         response = winprefix.run()
         self.prefix_list = self.prefixbox.get_text().split(',')
@@ -387,6 +387,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
 
         self.list = self.top.get_object("list")
         self.set_window(window, self.top.get_object('title'), self.label)
+        self.setup_configs("interface.patchnames", 680, 400)
 
         self.model = Gtk.ListStore(GObject.TYPE_BOOLEAN, GObject.TYPE_STRING,
                                    GObject.TYPE_STRING, GObject.TYPE_STRING,
