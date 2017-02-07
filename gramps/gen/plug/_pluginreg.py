@@ -43,6 +43,8 @@ from gramps.version import VERSION as GRAMPSVERSION, VERSION_TUPLE
 from ..const import IMAGE_DIR
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+import logging
+LOG = logging.getLogger('._manager')
 
 #-------------------------------------------------------------------------
 #
@@ -1104,11 +1106,16 @@ class PluginRegister:
         if __debug__:
             self.stable_only = False
         self.__plugindata  = []
+        self.__id_to_pdata = {}
 
     def add_plugindata(self, plugindata):
+        """ This is used to add an entry to the registration list.  The way it
+        is used, this entry is not yet filled in, so we cannot use the id to
+        add to the __id_to_pdata dict at this time. """
         self.__plugindata.append(plugindata)
 
-    def scan_dir(self, dir, uistate=None):
+
+    def scan_dir(self, dir, filenames, uistate=None):
         """
         The dir name will be scanned for plugin registration code, which will
         be loaded in :class:`PluginData` objects if they satisfy some checks.
@@ -1123,9 +1130,8 @@ class PluginRegister:
         extlen = -len(ext)
         pymod = re.compile(r"^(.*)\.py$")
 
-        for filename in os.listdir(dir):
-            name = os.path.split(filename)[1]
-            if not name[extlen:] == ext:
+        for filename in filenames:
+            if not filename[extlen:] == ext:
                 continue
             lenpd = len(self.__plugindata)
             full_filename = os.path.join(dir, filename)
@@ -1150,9 +1156,14 @@ class PluginRegister:
             else:
                 local_gettext = glocale.translation.gettext
             try:
-                #execfile(full_filename,
                 exec (compile(stream, filename, 'exec'),
                       make_environment(_=local_gettext), {'uistate': uistate})
+                for pdata in self.__plugindata[lenpd:]:
+                    # should not be duplicate IDs in different plugins
+                    assert pdata.id not in self.__id_to_pdata
+                    # if pdata.id in self.__id_to_pdata:
+                    #     print("Error: %s is duplicated!" % pdata.id)
+                    self.__id_to_pdata[pdata.id] = pdata
             except ValueError as msg:
                 print(_('ERROR: Failed reading plugin registration %(filename)s') % \
                             {'filename' : filename})
@@ -1170,6 +1181,7 @@ class PluginRegister:
             rmlist = []
             ind = lenpd-1
             for plugin in self.__plugindata[lenpd:]:
+                #LOG.warning("\nPlugin scanned %s at registration", plugin.id)
                 ind += 1
                 plugin.directory = dir
                 if not valid_plugin_version(plugin.gramps_target_version):
@@ -1211,19 +1223,20 @@ class PluginRegister:
                 module = match.groups()[0]
                 plugin.mod_name = module
                 plugin.fpath = dir
+                #LOG.warning("\nPlugin added %s at registration", plugin.id)
             rmlist.reverse()
             for ind in rmlist:
+                del self.__id_to_pdata[self.__plugindata[ind].id]
                 del self.__plugindata[ind]
 
     def get_plugin(self, id):
         """
         Return the :class:`PluginData` for the plugin with id
         """
-        matches = [x for x in self.__plugindata if x.id == id]
-        matches.sort(key=lambda x: version(x.version))
-        if len(matches) > 0:
-            return matches[-1]
-        return None
+        assert(len(self.__id_to_pdata) == len(self.__plugindata))
+        # if len(self.__id_to_pdata) != len(self.__plugindata):
+        #     print(len(self.__id_to_pdata), len(self.__plugindata))
+        return self.__id_to_pdata.get(id, None)
 
     def type_plugins(self, ptype):
         """

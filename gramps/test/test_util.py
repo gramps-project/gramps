@@ -36,6 +36,7 @@ from gramps.cli.user import User
 from gramps.cli.grampscli import CLIManager
 from gramps.cli.argparser import ArgParser
 from gramps.cli.arghandler import ArgHandler
+from gramps.gen.const import USER_DIRLIST
 
 # _caller_context is primarily here to support and document the process
 # of determining the test-module's directory.
@@ -254,21 +255,36 @@ class Gramps:
 
     def run(self, *args, stdin=None, bytesio=False):
         with capture(stdin, bytesio=bytesio) as output:
-            #load the plugins
-            self.climanager.do_reg_plugins(self.dbstate, uistate=None)
-            # handle the arguments
-            args = [sys.executable] + list(args)
-            argparser = ArgParser(args)
-            argparser.need_gui() # initializes some variables
-            if argparser.errors:
-                print(argparser.errors, file=sys.stderr)
-            argparser.print_help()
-            argparser.print_usage()
-            handler = ArgHandler(self.dbstate, argparser, self.climanager)
-            # create a manager to manage the database
-            handler.handle_args_cli()
-            if handler.dbstate.is_open():
-                handler.dbstate.db.close()
+            try:
+                try:    # make sure we have user directories
+                    for path in USER_DIRLIST:
+                        if not os.path.isdir(path):
+                            os.makedirs(path)
+                except OSError as msg:
+                    print("Error creating user directories: " + str(msg))
+                except:
+                    print("Error reading configuration.", exc_info=True)
+                #load the plugins
+                self.climanager.do_reg_plugins(self.dbstate, uistate=None)
+                # handle the arguments
+                args = [sys.executable] + list(args)
+                argparser = ArgParser(args)
+                argparser.need_gui()  # initializes some variables
+                if argparser.errors:
+                    print(argparser.errors, file=sys.stderr)
+                argparser.print_help()
+                argparser.print_usage()
+                handler = ArgHandler(self.dbstate, argparser, self.climanager)
+                # create a manager to manage the database
+                handler.handle_args_cli()
+                if handler.dbstate.is_open():
+                    handler.dbstate.db.close()
+            except:
+                print("Exception in test:")
+                print("-" * 60)
+                traceback.print_exc(file=sys.stdout)
+                print("-" * 60)
+
         return output
 
 #===eof===

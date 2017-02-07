@@ -43,7 +43,7 @@ from .proxy.proxybase import ProxyDbBase
 from .utils.callback import Callback
 from .config import config
 from gramps.gen.db.dbconst import DBLOGNAME
-from gramps.gen.db.utils import make_database
+from gramps.gen.db.dummydb import DummyDb
 
 #-------------------------------------------------------------------------
 #
@@ -69,7 +69,7 @@ class DbState(Callback):
         place holder until a real DB is assigned.
         """
         Callback.__init__(self)
-        self.db = make_database("dummydb")
+        self.db = DummyDb()
         self.open = False  #  Deprecated - use DbState.is_open()
         self.stack = []
 
@@ -135,7 +135,7 @@ class DbState(Callback):
         self.emit('no-database', ())
         if self.is_open():
             self.db.close()
-        self.db = make_database("dummydb")
+        self.db = DummyDb()
         self.open = False
         self.emit('database-changed', (self.db, ))
 
