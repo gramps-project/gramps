@@ -229,8 +229,9 @@ class MakeAncestorTree(AscendPerson):
         myself.text = self.calc_items.calc_person(
                             index, indi_handle, fams_handle)
 
-        myself.add_mark(self.database,
-                self.database.get_person_from_handle(indi_handle))
+        if indi_handle is not None: # None is legal for an empty box
+            myself.add_mark(self.database,
+                            self.database.get_person_from_handle(indi_handle))
 
         self.canvas.add_box(myself)
 
