@@ -518,11 +518,11 @@ class ManagedWindow:
     def build_window_key(self, obj):
         return id(obj)
 
-    def define_glade(self, top_module, glade_file=None):
+    def define_glade(self, top_module, glade_file=None, also_load=[]):
         if glade_file is None:
             raise TypeError("ManagedWindow.define_glade: no glade file")
             glade_file = GLADE_FILE
-        self._gladeobj = Glade(glade_file, None, top_module)
+        self._gladeobj = Glade(glade_file, None, top_module, also_load)
         return self._gladeobj
 
     def get_widget(self, name):

@@ -216,7 +216,12 @@ class StyleEditor(ManagedWindow):
 
         self.style = StyleSheet(style)
         self.parent = parent
-        self.top = Glade(toplevel='editor')
+        self.top = Glade(
+            toplevel='editor',
+            also_load=[
+                "adjustment1", "adjustment2", "adjustment3", "adjustment4",
+                "adjustment5", "adjustment6", "adjustment7", "adjustment8",
+                "adjustment9", "adjustment10", "adjustment11"])
         self.set_window(self.top.toplevel, self.top.get_object('title'),
                         _('Style editor'))
         self.setup_configs('interface.styleeditor', 550, 610)

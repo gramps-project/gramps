@@ -158,7 +158,7 @@ class BookListDisplay:
 
         self.booklist = booklist
         self.dosave = dosave
-        self.xml = Glade('book.glade')
+        self.xml = Glade('book.glade', toplevel='book')
         self.top = self.xml.toplevel
         self.unsaved_changes = False
 
@@ -233,7 +233,7 @@ class BookListDisplay:
         self.unsaved_changes = True
         self.top.run()
 
-    def on_booklist_cancel_clicked(self, obj):
+    def on_booklist_cancel_clicked(self, *obj):
         """ cancel the booklist dialog """
         if self.unsaved_changes:
             qqq = QuestionDialog2(

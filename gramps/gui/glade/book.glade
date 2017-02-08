@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 -->
+<!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.10"/>
   <object class="GtkWindow" id="top">
@@ -507,6 +507,7 @@
     <property name="height_request">300</property>
     <property name="can_focus">False</property>
     <property name="type_hint">normal</property>
+    <signal name="delete-event" handler="on_booklist_cancel_clicked" object="dialog-vbox1" swapped="yes"/>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox1">
         <property name="visible">True</property>
@@ -525,7 +526,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_booklist_delete_clicked" object="top" swapped="yes"/>
+                <signal name="clicked" handler="on_booklist_delete_clicked" object="book" swapped="yes"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -541,7 +542,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_booklist_cancel_clicked" object="top" swapped="yes"/>
+                <signal name="clicked" handler="on_booklist_cancel_clicked" object="book" swapped="yes"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -557,7 +558,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_booklist_ok_clicked" object="top" swapped="yes"/>
+                <signal name="clicked" handler="on_booklist_ok_clicked" object="book" swapped="yes"/>
               </object>
               <packing>
                 <property name="expand">False</property>

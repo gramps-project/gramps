@@ -804,7 +804,7 @@ class EditFilter(ManagedWindow):
         self.filterdb = filterdb
         self.selection_callback = selection_callback
 
-        self.define_glade('define_filter', RULE_GLADE)
+        self.define_glade('define_filter', RULE_GLADE, also_load=["model1"])
 
         self.set_window(
             self.get_widget('define_filter'),
