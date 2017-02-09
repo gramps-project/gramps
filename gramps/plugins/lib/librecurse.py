@@ -446,13 +446,13 @@ class AscendPerson(_StopRecurse, _PersonSeen):
         # Recursively call the function. It is okay if the handle is None,
         # since routine handles a handle of None
 
-        self.__fill(index*2, generation+1, mx_fill-1)
+        self.__fill(generation+1, index*2, mx_fill-1)
         if mx_fill > 1:  # marriage of parents
             self.add_marriage((generation+1, index*2), None, None)
             if not self.can_recurse():
                 self.continue_recursion()
                 return
-        self.__fill((index*2)+1, generation+1, mx_fill-1)
+        self.__fill(generation+1, (index*2)+1, mx_fill-1)
 
     def __iterate(self, person_handle, generation, index):
         """

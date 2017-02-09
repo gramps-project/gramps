@@ -142,6 +142,7 @@ class CalcItems(object):
     """
     def __init__(self, dbase):
         __gui = GUIConnect()
+        self._gui = __gui
 
         #calculate the printed lines for each box
         #str = ""
@@ -170,12 +171,14 @@ class CalcItems(object):
         working_lines = ""
         if index[1] % 2 == 0 or (index[1] == 1 and self.center_use == 0):
             if indi_handle == fams_handle == None:
-                working_lines = self.__blank_father
+                working_lines = self.__calc_l.calc_lines(
+                    None, None, self._gui.get_val("father_disp"))
             else:
                 working_lines = self.disp_father
         else:
             if indi_handle == fams_handle == None:
-                working_lines = self.__blank_mother
+                working_lines = self.__calc_l.calc_lines(
+                    None, None, self._gui.get_val("mother_disp"))
             else:
                 working_lines = self.disp_mother
 
@@ -228,9 +231,11 @@ class MakeAncestorTree(AscendPerson):
 
         myself.text = self.calc_items.calc_person(
                             index, indi_handle, fams_handle)
+        # myself.text[0] = myself.text[0] + ' ' + repr(index) # for debugging
 
-        myself.add_mark(self.database,
-                self.database.get_person_from_handle(indi_handle))
+        if indi_handle is not None: # None is legal for an empty box
+            myself.add_mark(self.database,
+                            self.database.get_person_from_handle(indi_handle))
 
         self.canvas.add_box(myself)
 
