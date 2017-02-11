@@ -400,9 +400,7 @@ class CSVWriter(object):
                         birth = self.db.get_event_from_handle(birth_ref.ref)
                         if birth:
                             birthdate = self.format_date( birth)
-                            place_handle = birth.get_place_handle()
-                            if place_handle:
-                                birthplace = _pd.display_event(self.db, birth)
+                            birthplace = self.format_place(birth)
                             birthsource = get_primary_source_title(self.db, birth)
                     # Baptism:
                     baptismdate = ""
@@ -414,9 +412,7 @@ class CSVWriter(object):
                         baptism = self.db.get_event_from_handle(baptism_ref.ref)
                         if baptism:
                             baptismdate = self.format_date( baptism)
-                            place_handle = baptism.get_place_handle()
-                            if place_handle:
-                                baptismplace = _pd.display_event(self.db, baptism)
+                            baptismplace = self.format_place(baptism)
                             baptismsource = get_primary_source_title(self.db, baptism)
                     # Death:
                     deathdate = ""
@@ -427,9 +423,7 @@ class CSVWriter(object):
                         death = self.db.get_event_from_handle(death_ref.ref)
                         if death:
                             deathdate = self.format_date( death)
-                            place_handle = death.get_place_handle()
-                            if place_handle:
-                                deathplace = _pd.display_event(self.db, death)
+                            deathplace = self.format_place(death)
                             deathsource = get_primary_source_title(self.db, death)
                     # Burial:
                     burialdate = ""
@@ -441,9 +435,7 @@ class CSVWriter(object):
                         burial = self.db.get_event_from_handle(burial_ref.ref)
                         if burial:
                             burialdate = self.format_date( burial)
-                            place_handle = burial.get_place_handle()
-                            if place_handle:
-                                burialplace = _pd.display_event(self.db, burial)
+                            burialplace = self.format_place(burial)
                             burialsource = get_primary_source_title(self.db, burial)
                     # Write it out:
                     self.write_csv(grampsid_ref, surname, first_name, callname,
@@ -501,10 +493,8 @@ class CSVWriter(object):
                         event = self.db.get_event_from_handle(event_ref.ref)
                         if event.get_type() == EventType.MARRIAGE:
                             mdate = self.format_date( event)
-                            place_handle = event.get_place_handle()
-                            if place_handle:
-                                mplace = _pd.display_event(self.db, event)
-                                source = get_primary_source_title(self.db, event)
+                            mplace = self.format_place(event)
+                            source = get_primary_source_title(self.db, event)
                     note = ''
                     self.write_csv(marriage_id, father_id, mother_id, mdate,
                                    mplace, source, note)
@@ -536,3 +526,18 @@ class CSVWriter(object):
     
     def format_date(self, date):
         return get_date(date)
+
+    def format_place(self, event):
+        """
+        If places are included in the export return a link, else return a
+        formatted place for the given event.
+        """
+        if self.include_places:
+            place_handle = event.get_place_handle()
+            if place_handle:
+                place = self.db.get_place_from_handle(place_handle)
+                if place:
+                    return "[%s]" % place.get_gramps_id()
+            return ""
+        else:
+            return _pd.display_event(self.db, event)
