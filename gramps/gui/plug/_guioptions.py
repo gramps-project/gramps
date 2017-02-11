@@ -1790,7 +1790,7 @@ class GuiDestinationOption(Gtk.Box):
 # GuiStyleOption class
 #
 #-------------------------------------------------------------------------
-class GuiStyleOption(GuiEnumeratedListOption):
+class GuiStyleOption(GuiEnumeratedListOption): # TODO this is likely dead code
     """
     This class displays a StyleOption.
     """
@@ -1808,6 +1808,8 @@ class GuiStyleOption(GuiEnumeratedListOption):
         self.__button.connect('clicked', self.__on_style_edit_clicked)
 
         self.pack_end(self.__button, False, False)
+        self.uistate = uistate
+        self.track = track
 
     def __on_style_edit_clicked(self, *obj):
         """The user has clicked on the 'Edit Styles' button.  Create a
@@ -1817,7 +1819,7 @@ class GuiStyleOption(GuiEnumeratedListOption):
         from .report._styleeditor import StyleListDisplay
         style_list = StyleSheetList(self.__option.get_style_file(),
                                     self.__option.get_default_style())
-        StyleListDisplay(style_list, None, None)
+        StyleListDisplay(style_list, self.uistate, self.track)
 
         new_items = []
         for style_name in style_list.get_style_names():

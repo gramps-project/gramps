@@ -299,7 +299,8 @@ class GeoEvents(GeoGraphyView):
                 progress.step()
             progress.close()
         elif self.generic_filter:
-            events_list = self.generic_filter.apply(dbstate.db)
+            user=self.uistate.viewmanager.user
+            events_list = self.generic_filter.apply(dbstate.db, user=user)
             progress = ProgressMeter(self.window_name,
                                      can_cancel=False,
                                      parent=self.uistate.window)

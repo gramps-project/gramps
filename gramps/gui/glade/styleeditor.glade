@@ -90,7 +90,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="destroy_passed_object" object="editor" swapped="yes"/>
+                <signal name="clicked" handler="on_cancel_style_clicked" object="editor" swapped="yes"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1705,8 +1705,6 @@
   </object>
   <object class="GtkDialog" id="styles">
     <property name="can_focus">False</property>
-    <property name="default_width">400</property>
-    <property name="default_height">300</property>
     <property name="type_hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox1">
@@ -1727,6 +1725,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_underline">True</property>
+                <signal name="clicked" handler="on_cancel_clicked" object="styles" swapped="yes"/>
               </object>
               <packing>
                 <property name="expand">False</property>

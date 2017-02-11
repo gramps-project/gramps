@@ -488,7 +488,9 @@ class ManagedWindow:
             self.window.set_modal(True)
         # The following makes sure that we only have one modal window open;
         # if more the older ones get temporarily made non-modal.
-        self.other_modal_window = self.uistate.gwm.find_modal_window(window)
+        if self.uistate:
+            self.other_modal_window = self.uistate.gwm.find_modal_window(
+                window)
         if self.other_modal_window:
             self.other_modal_window.set_modal(False)
             self.window.set_modal(True)
@@ -623,7 +625,8 @@ class ManagedWindow:
 
     def setup_configs(self, config_base,
                       default_width, default_height,
-                      default_horiz_position=None, default_vert_position=None):
+                      default_horiz_position=None, default_vert_position=None,
+                      p_width=None, p_height=None): # for fullscreen
         """
         Helper method to setup the window's configuration settings
 
@@ -634,13 +637,18 @@ class ManagedWindow:
         @param default_horiz_position, default_vert_position: if either is None
             then that position is centered on the parent, else explicitly set
         @type default_horiz_position, default_vert_position: int or None
+        @param p_width, p_height: the parent's width and height
+        @type p_width, p_height: int or None
         """
         self.width_key = config_base + '-width'
         self.height_key = config_base + '-height'
         self.horiz_position_key = config_base + '-horiz-position'
         self.vert_position_key = config_base + '-vert-position'
-        (p_width, p_height) = self.parent_window.get_size()
-        (p_horiz, p_vert) = self.parent_window.get_position()
+        if p_width is None and p_height is None: # default case
+            (p_width, p_height) = self.parent_window.get_size()
+            (p_horiz, p_vert) = self.parent_window.get_position()
+        else:
+            p_horiz = p_vert = 0 # fullscreen
         if default_horiz_position is None:
             default_horiz_position = p_horiz + ((p_width - default_width) // 2)
         if default_vert_position is None:

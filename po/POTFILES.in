@@ -542,7 +542,6 @@ gramps/plugins/db/bsddb/upgrade.py
 gramps/plugins/db/bsddb/write.py
 gramps/plugins/db/dbapi/inmemorydb.gpr.py
 gramps/plugins/db/dbapi/inmemorydb.py
-gramps/plugins/db/dummydb.gpr.py
 gramps/plugins/docgen/asciidoc.py
 gramps/plugins/docgen/docgen.gpr.py
 gramps/plugins/docgen/gtkprint.glade

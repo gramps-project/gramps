@@ -58,6 +58,11 @@ _COLORS = [{'name' : _("B&W outline"), 'value' : "outline"},
            {'name' : _("Colored outline"), 'value' : "colored"},
            {'name' : _("Color fill"), 'value' : "filled"}]
 
+_ARROWS = [ { 'name' : _("Center -> Others"),  'value' : 'o' },
+            { 'name' : _("Center <- Others"),  'value' : 'c' },
+            { 'name' : _("Center <-> Other"), 'value' : 'co' },
+            { 'name' : _("Center - Other"),   'value' : '' }]
+
 #------------------------------------------------------------------------
 #
 # HourGlassReport
@@ -109,6 +114,16 @@ class HourGlassReport(Report):
 
         self.includeid = menu.get_option_by_name('incid').get_value()
 
+        arrow_str = menu.get_option_by_name('arrow').get_value()
+        if 'o' in arrow_str:
+            self.arrowheadstyle = 'normal'
+        else:
+            self.arrowheadstyle = 'none'
+        if 'c' in arrow_str:
+            self.arrowtailstyle = 'normal'
+        else:
+            self.arrowtailstyle = 'none'
+
         stdoptions.run_name_format_option(self, menu)
 
     def write_report(self):
@@ -128,7 +143,9 @@ class HourGlassReport(Report):
         for family_handle in person.get_family_handle_list():
             family = self.__db.get_family_from_handle(family_handle)
             self.add_family(family)
-            self.doc.add_link(person.get_gramps_id(), family.get_gramps_id())
+            self.doc.add_link(person.get_gramps_id(), family.get_gramps_id(),
+                               head=self.arrowheadstyle,
+                               tail=self.arrowtailstyle)
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.get_reference_handle()
                 if child_handle not in self.__used_people:
@@ -137,7 +154,9 @@ class HourGlassReport(Report):
                     child = self.__db.get_person_from_handle(child_handle)
                     self.add_person(child)
                     self.doc.add_link(family.get_gramps_id(),
-                                      child.get_gramps_id())
+                                      child.get_gramps_id(),
+                                      head=self.arrowheadstyle,
+                                      tail=self.arrowtailstyle)
                     self.traverse_down(child, gen+1)
 
     def traverse_up(self, person, gen):
@@ -152,7 +171,8 @@ class HourGlassReport(Report):
             family_id = family.get_gramps_id()
             self.add_family(family)
             self.doc.add_link(family_id, person.get_gramps_id(),
-                              head='none', tail='normal')
+                              head=self.arrowtailstyle,
+                              tail=self.arrowheadstyle )
 
             # create link from family to father
             father_handle = family.get_father_handle()
@@ -162,7 +182,8 @@ class HourGlassReport(Report):
                 father = self.__db.get_person_from_handle(father_handle)
                 self.add_person(father)
                 self.doc.add_link(father.get_gramps_id(), family_id,
-                                  head='none', tail='normal')
+                                  head=self.arrowtailstyle,
+                                  tail=self.arrowheadstyle )
                 # no need to go up if he is a father in another family
                 if father_handle not in self.__used_people:
                     self.__used_people.append(father_handle)
@@ -176,7 +197,8 @@ class HourGlassReport(Report):
                 mother = self.__db.get_person_from_handle(mother_handle)
                 self.add_person(mother)
                 self.doc.add_link(mother.get_gramps_id(), family_id,
-                                  head='none', tail='normal')
+                                  head=self.arrowtailstyle,
+                                  tail=self.arrowheadstyle)
                 # no need to go up if she is a mother in another family
                 if mother_handle not in self.__used_people:
                     self.__used_people.append(mother_handle)
@@ -346,6 +368,12 @@ class HourGlassOptions(MenuReportOptions):
         color_family = ColorOption(_('Families'), '#ffffe0')
         color_family.set_help(_('The color to use to display families.'))
         menu.add_option(category_name, 'colorfamilies', color_family)
+
+        arrow = EnumeratedListOption(_("Arrowhead direction"), 'o')
+        for i in range( 0, len(_ARROWS) ):
+            arrow.add_item(_ARROWS[i]["value"], _ARROWS[i]["name"])
+        arrow.set_help(_("Choose the direction that the arrows point."))
+        menu.add_option(category_name, "arrow", arrow)
 
         roundedcorners = BooleanOption(_("Use rounded corners"), False) # 2180
         roundedcorners.set_help(

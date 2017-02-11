@@ -36,7 +36,7 @@ from ..docgen import StyleSheetList
 # StyleOption class
 #
 #-------------------------------------------------------------------------
-class StyleOption(EnumeratedListOption):
+class StyleOption(EnumeratedListOption): # TODO this is likely dead code
     """
     This class describes an option that allows the use to select a style sheet.
     """
