@@ -154,8 +154,7 @@ class Leak(Gramplet):
                 except:
                     print(sys.exc_info())
                 text += match
-            InfoDialog(_('Referrers of %d') % count, text,
-                       parent=self.gui.gvwin)
+            InfoDialog(_('Referrers of %d') % count, text, parent=self.parent)
 
     def refers_to(self):
         model, _iter = self.selection.get_selected()
@@ -178,8 +177,7 @@ class Leak(Gramplet):
                 except:
                     print(sys.exc_info())
                 text += match
-            InfoDialog(_('%d refers to') % count, text,
-                       parent=self.uistate.window)
+            InfoDialog(_('%d refers to') % count, text, parent=self.parent)
 
     def display(self):
         try:
@@ -189,8 +187,9 @@ class Leak(Gramplet):
                 """
                 Dummy.
                 """
+        self.parent = self.top.get_toplevel()
         progress = ProgressMeter(
-            _('Updating display...'), '', parent=self.gui.gvwin)
+            _('Updating display...'), '', parent=self.parent)
         self.model.clear()
         self.junk = []
         gc.collect(2)
@@ -236,7 +235,7 @@ class Leak(Gramplet):
                     print(sys.exc_info())
             except ReferenceError:
                 InfoDialog(_('Reference Error'), "Refresh to correct",
-                           parent=self.gui.gvwin)
+                           parent=self.parent)
         progress.close()
 
     def apply_clicked(self, obj):
