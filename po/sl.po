@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-24 16:59+0100\n"
-"PO-Revision-Date: 2017-02-09 22:25+0200\n"
+"PO-Revision-Date: 2017-02-12 11:50+0100\n"
 "Last-Translator: Bernard Banko <beernarrd at gmail.com>\n"
 "Language-Team: lugos.si\n"
 "Language: sl\n"
@@ -2393,7 +2393,7 @@ msgstr "i=avgust|r=avgusta|d=avgustu|t=avgust|m=avgustu|o=avgustom"
 #: ../gramps/gen/datehandler/_datestrings.py:87
 msgid "localized lexeme inflections||September"
 msgstr ""
-"i=september|r=semptembra|d=semptembru|t=semptember|m=septembru|o=septembrom"
+"i=september|r=septembra|d=septembru|t=september|m=septembru|o=septembrom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:88
 msgid "localized lexeme inflections||October"
@@ -9598,6 +9598,7 @@ msgstr "IMENA"
 #: ../gramps/gui/configure.py:660 ../gramps/gui/configure.py:662
 #: ../gramps/gui/configure.py:663 ../gramps/gui/configure.py:664
 #: ../gramps/gui/configure.py:665 ../gramps/gui/configure.py:666
+# translated in plural to avoid inclusion of "ime"; "given"
 msgid "SURNAME"
 msgstr "PRIIMKI"
 
