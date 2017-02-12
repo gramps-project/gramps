@@ -221,6 +221,20 @@
                       </packing>
                     </child>
                     <child>
+                      <object class="GtkLabel" id="comment1">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">Either use the two fields below to enter coordinates(latitude and longitude),</property>
+                        <property name="hexpand">True</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">3</property>
+                        <property name="width">5</property>
+                      </packing>
+                    </child>
+                    <child>
                       <object class="GtkLabel" id="label504">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -233,7 +247,7 @@
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
-                        <property name="top_attach">4</property>
+                        <property name="top_attach">7</property>
                       </packing>
                     </child>
                     <child>
@@ -246,7 +260,7 @@
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
-                        <property name="top_attach">3</property>
+                        <property name="top_attach">4</property>
                       </packing>
                     </child>
                     <child>
@@ -291,7 +305,7 @@
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
-                        <property name="top_attach">5</property>
+                        <property name="top_attach">8</property>
                         <property name="width">5</property>
                       </packing>
                     </child>
@@ -320,7 +334,59 @@
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
-                        <property name="top_attach">3</property>
+                        <property name="top_attach">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="copypaste">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkLabel" id="comment2">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="label" translatable="yes">or use copy/paste from your favorite map provider (format : latitude,longitude) in the following field:</property>
+                            <property name="use_underline">True</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">5</property>
+                        <property name="width">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="paste_field">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="ValidatableMaskedEntry" id="latlon_entry">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="tooltip_text" translatable="yes">Field used to paste info from a web page like google, openstreetmap, ... </property>
+                            <property name="hexpand">True</property>
+                            <property name="invisible_char">●</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">6</property>
+                        <property name="width">4</property>
                       </packing>
                     </child>
                     <child>
@@ -369,7 +435,7 @@
                       </object>
                       <packing>
                         <property name="left_attach">4</property>
-                        <property name="top_attach">3</property>
+                        <property name="top_attach">4</property>
                       </packing>
                     </child>
                     <child>
@@ -398,7 +464,7 @@ You can set these values via the Geography View by searching the place, or via a
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
-                        <property name="top_attach">3</property>
+                        <property name="top_attach">4</property>
                       </packing>
                     </child>
                     <child>
@@ -413,7 +479,7 @@ You can set these values via the Geography View by searching the place, or via a
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
-                        <property name="top_attach">3</property>
+                        <property name="top_attach">4</property>
                       </packing>
                     </child>
                     <child>
@@ -467,7 +533,7 @@ You can set these values via the Geography View by searching the place, or via a
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
-                        <property name="top_attach">4</property>
+                        <property name="top_attach">7</property>
                       </packing>
                     </child>
                     <child>
@@ -479,7 +545,7 @@ You can set these values via the Geography View by searching the place, or via a
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
-                        <property name="top_attach">4</property>
+                        <property name="top_attach">7</property>
                       </packing>
                     </child>
                     <child>
@@ -491,7 +557,7 @@ You can set these values via the Geography View by searching the place, or via a
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
-                        <property name="top_attach">4</property>
+                        <property name="top_attach">7</property>
                       </packing>
                     </child>
                     <child>
@@ -502,7 +568,7 @@ You can set these values via the Geography View by searching the place, or via a
                       </object>
                       <packing>
                         <property name="left_attach">4</property>
-                        <property name="top_attach">4</property>
+                        <property name="top_attach">7</property>
                       </packing>
                     </child>
                     <child>
