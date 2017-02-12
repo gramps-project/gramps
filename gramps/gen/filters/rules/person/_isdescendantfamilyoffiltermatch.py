@@ -55,8 +55,16 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
 
         filt = MatchesFilter(self.list[0:1])
         filt.requestprepare(db, user)
+        if user:
+            user.begin_progress(self.category,
+                                _('Retrieving all sub-filter matches'),
+                                db.get_number_of_people())
         for person in db.iter_people():
+            if user:
+                user.step_progress()
             if filt.apply(db, person):
                 self.add_matches(person)
+        if user:
+            user.end_progress()
         filt.requestreset()
 

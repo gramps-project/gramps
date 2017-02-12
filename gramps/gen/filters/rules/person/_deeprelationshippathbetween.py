@@ -106,6 +106,8 @@ def find_deep_relations(db, user, person, path, seen, target_people):
     if handle in seen:
         return []
     seen.append(handle)
+    if user:
+        user.step_progress()
 
     return_paths = []
     person_path = path + [handle]
@@ -118,8 +120,6 @@ def find_deep_relations(db, user, person, path, seen, target_people):
     for family_person in family_people:
         pers = db.get_person_from_handle(family_person)
         return_paths += find_deep_relations(db, user, pers, person_path, seen, target_people)
-        if user:
-            user.step_progress()
 
     return return_paths
 
