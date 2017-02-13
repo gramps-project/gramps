@@ -2598,7 +2598,11 @@ class BasePage:
                                           [self._("Page"), sref.page],
                                           [self._("Confidence"), conf]]:
                         if data:
-                            tmp += Html("li", "%s: %s" % (label, data))
+                            tmp += Html("li",
+                                        _("%(label)s: %(data)s") % {
+                                            'label' : label,
+                                            'data'  : data
+                                            })
                     if self.create_media:
                         for media_ref in sref.get_media_list():
                             media_handle = media_ref.get_reference_handle()
@@ -2643,12 +2647,12 @@ class BasePage:
                     for handle in sref.get_note_list():
                         this_note = self.r_db.get_note_from_handle(handle)
                         if this_note is not None:
+                            format = self.get_note_format(this_note, True)
                             tmp += Html("li",
-                                        "%s: %s" % (
-                                            str(this_note.get_type()),
-                                            self.get_note_format(this_note,
-                                                                 True)
-                                            ))
+                                        _("%(type)s: %(format)s") % {
+                                            'type' : str(this_note.get_type()),
+                                            'format' : format
+                                            })
                     if tmp:
                         cit_ref_li += tmp
                         ordered1 += cit_ref_li
