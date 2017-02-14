@@ -194,9 +194,9 @@ class CLIDbManager:
                 for item in sorted(summary):
                     if item != "Family Tree":
                         # translators: needed for French, ignore otherwise
-                        print(_("   %(item)s: %(summary)s") % {
-                            'item' : item,
-                            'summary' : summary[item]})
+                        print('   ' + _("%(str1)s: %(str2)s"
+                                       ) % {'str1' : item,
+                                            'str2' : summary[item]})
 
     def family_tree_summary(self, database_names=None):
         """

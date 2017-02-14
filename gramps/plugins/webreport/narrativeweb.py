@@ -1060,9 +1060,9 @@ class BasePage:
         attrlist.extend(event_ref.get_attribute_list())
         for attr in attrlist:
             htmllist.extend(Html("p",
-                                 _("%(type)s: %(value)s") % {
-                                     'type'  : Html("b", attr.get_type()),
-                                     'value' : attr.get_value()
+                                 _("%(str1)s: %(str2)s") % {
+                                     'str1' : Html("b", attr.get_type()),
+                                     'str2' : attr.get_value()
                                      }))
 
             #also output notes attached to the attributes
@@ -2599,9 +2599,9 @@ class BasePage:
                                           [self._("Confidence"), conf]]:
                         if data:
                             tmp += Html("li",
-                                        _("%(label)s: %(data)s") % {
-                                            'label' : label,
-                                            'data'  : data
+                                        _("%(str1)s: %(str2)s") % {
+                                            'str1' : label,
+                                            'str2' : data
                                             })
                     if self.create_media:
                         for media_ref in sref.get_media_list():
@@ -2649,9 +2649,9 @@ class BasePage:
                         if this_note is not None:
                             format = self.get_note_format(this_note, True)
                             tmp += Html("li",
-                                        _("%(type)s: %(format)s") % {
-                                            'type' : str(this_note.get_type()),
-                                            'format' : format
+                                        _("%(str1)s: %(str2)s") % {
+                                            'str1' : str(this_note.get_type()),
+                                            'str2' : format
                                             })
                     if tmp:
                         cit_ref_li += tmp

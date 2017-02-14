@@ -895,10 +895,10 @@ class DetDescendantReport(Report):
                 atype = self._get_type(alt_name.get_type())
                 aname = alt_name.get_regular_name()
                 self.doc.write_text_citation(
-                    self._('%(name_kind)s: %(name)s%(endnotes)s'
-                          ) % {'name_kind' : self._(atype),
-                               'name'      : aname,
-                               'endnotes'  : self.endnotes(alt_name)})
+                    self._('%(type)s: %(value)s%(endnotes)s'
+                          ) % {'type' : self._(atype),
+                               'value' : aname,
+                               'endnotes' : self.endnotes(alt_name)})
                 self.doc.end_paragraph()
 
         if self.inc_events:

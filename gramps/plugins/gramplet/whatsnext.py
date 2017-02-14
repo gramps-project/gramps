@@ -489,9 +489,10 @@ class WhatNextGramplet(Gramplet):
             missingbits.append(_("place unknown"))
 
         if missingbits:
-            return [_("%(type)s: %(list)s") % {
-                'type': event.get_type(),
-                'list': _(", ").join(missingbits)}]
+            # translators: needed for French, ignore otherwise
+            return [_("%(str1)s: %(str2)s"
+                     ) % {'str1' : event.get_type(),
+                          'str2' : _(", ").join(missingbits)}]
         else:
             return []
 
