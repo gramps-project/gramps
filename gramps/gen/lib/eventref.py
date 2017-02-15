@@ -5,6 +5,7 @@
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,7 +39,6 @@ from .refbase import RefBase
 from .eventroletype import EventRoleType
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from .citationbase import IndirectCitationBase
-from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -82,18 +82,26 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
     @classmethod
     def get_schema(cls):
         """
-        Returns the schema for EventRef.
+        Returns the JSON Schema for this class.
 
-        :returns: Returns a dict containing the fields to types.
+        :returns: Returns a dict containing the schema.
         :rtype: dict
         """
         from .attribute import Attribute
         return {
-            "private": bool,
-            "note_list": [Handle("Note", "NOTE-HANDLE")],
-            "attribute_list": [Attribute],
-            "ref": Handle("Event", "EVENT-HANDLE"),
-            "role": EventRoleType,
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "private": {"type": "boolean"},
+                "note_list": {"type": "array",
+                              "items": {"type": "string",
+                                        "maxLength": 50}},
+                "attribute_list": {"type": "array",
+                                   "items": Attribute.get_schema()},
+                "ref": {"type": "string",
+                        "maxLength": 50},
+                "role": EventRoleType.get_schema(),
+            }
         }
 
     @classmethod

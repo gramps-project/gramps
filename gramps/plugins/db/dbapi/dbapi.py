@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2015-2016 Douglas S. Blank <doug.blank@gmail.com>
-# Copyright (C) 2016      Nick Hall
+# Copyright (C) 2016-2017 Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -891,19 +891,19 @@ class DBAPI(DbGeneric):
             surname_list.append(row[0])
         return surname_list
 
-    def _sql_type(self, python_type):
+    def _sql_type(self, schema_type, max_length):
         """
         Given a schema type, return the SQL type for
         a new column.
         """
-        from gramps.gen.lib.handle import HandleClass
-        if isinstance(python_type, HandleClass):
-            return "VARCHAR(50)"
-        elif python_type == str:
-            return "TEXT"
-        elif python_type in [bool, int]:
+        if schema_type == 'string':
+            if max_length:
+                return "VARCHAR(%s)" % max_length
+            else:
+                return "TEXT"
+        elif schema_type in ['boolean', 'integer']:
             return "INTEGER"
-        elif python_type in [float]:
+        elif schema_type == 'number':
             return "REAL"
         else:
             return "BLOB"
@@ -918,11 +918,10 @@ class DBAPI(DbGeneric):
                            "get_secondary_fields"):
                 continue
             table_name = table.lower()
-            for field_pair in self.get_table_func(
+            for field, schema_type, max_length in self.get_table_func(
                     table, "class_func").get_secondary_fields():
-                field, python_type = field_pair
                 field = self._hash_name(table, field)
-                sql_type = self._sql_type(python_type)
+                sql_type = self._sql_type(schema_type, max_length)
                 try:
                     # test to see if it exists:
                     self.dbapi.execute("SELECT %s FROM %s LIMIT 1"
@@ -944,7 +943,7 @@ class DBAPI(DbGeneric):
         """
         table = obj.__class__.__name__
         fields = self.get_table_func(table, "class_func").get_secondary_fields()
-        fields = [field for (field, direction) in fields]
+        fields = [field for (field, schema_type, max_length) in fields]
         sets = []
         values = []
         for field in fields:

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2013       Benny Malengier
+# Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,3 +54,21 @@ class SrcAttribute(AttributeRoot):
         else:
             self.type = SrcAttributeType()
             self.value = ""
+
+    @classmethod
+    def get_schema(cls):
+        """
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
+        """
+        return {
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "private": {"type": "boolean"},
+                "type": SrcAttributeType.get_schema(),
+                "value": {"type": "string"}
+            }
+        }

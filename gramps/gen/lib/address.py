@@ -5,6 +5,7 @@
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -79,6 +80,38 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
         DateBase.unserialize(self, date)
         LocationBase.unserialize(self, location)
         return self
+
+    @classmethod
+    def get_schema(cls):
+        """
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
+        """
+        from .date import Date
+        return {
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "private": {"type": "boolean"},
+                "citation_list": {"type": "array",
+                                  "items": {"type": "string",
+                                            "maxLength": 50}},
+                "note_list": {"type": "array",
+                              "items": {"type": "string",
+                                        "maxLength": 50}},
+                "date": {"oneOf": [{"type": "null"}, Date.get_schema()]},
+                "street": {"type": "string"},
+                "locality": {"type": "string"},
+                "city": {"type": "string"},
+                "county": {"type": "string"},
+                "state": {"type": "string"},
+                "country": {"type": "string"},
+                "postal": {"type": "string"},
+                "phone": {"type": "string"}
+            }
+        }
 
     def get_text_data_list(self):
         """

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2010      Nick Hall
+# Copyright (C) 2010,2017 Nick Hall
 # Copyright (C) 2013      Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -195,14 +195,21 @@ class TableObject(BaseObject):
     @classmethod
     def get_secondary_fields(cls):
         """
-        Return all seconday fields and their types
+        Return all secondary fields and their types
         """
-        from .handle import HandleClass
-        return ([(key.lower(), value)
-                 for (key, value) in cls.get_schema().items()
-                 if value in [str, int, float, bool] or
-                 isinstance(value, HandleClass)] +
-                cls.get_extra_secondary_fields())
+        result = []
+        for (key, value) in cls.get_schema()["properties"].items():
+            schema_type = value.get("type")
+            if isinstance(schema_type, list):
+                schema_type.remove("null")
+                schema_type = schema_type[0]
+            elif isinstance(schema_type, dict):
+                schema_type = None
+            if schema_type in ("string", "integer", "number", "boolean"):
+                result.append((key.lower(),
+                               schema_type,
+                               value.get("maxLength")))
+        return result
 
     @classmethod
     def get_label(cls, field, _):
