@@ -920,7 +920,6 @@ class DBAPI(DbGeneric):
             table_name = table.lower()
             for field, schema_type, max_length in self.get_table_func(
                     table, "class_func").get_secondary_fields():
-                field = self._hash_name(table, field)
                 sql_type = self._sql_type(schema_type, max_length)
                 try:
                     # test to see if it exists:
@@ -947,10 +946,8 @@ class DBAPI(DbGeneric):
         sets = []
         values = []
         for field in fields:
-            value = obj.get_field(field, self, ignore_errors=True)
-            field = self._hash_name(obj.__class__.__name__, field)
             sets.append("%s = ?" % field)
-            values.append(value)
+            values.append(getattr(obj, field))
 
         # Derived fields
         if table == 'Person':

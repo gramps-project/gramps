@@ -1419,14 +1419,6 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def _hash_name(self, table, name):
-        """
-        Used in SQL functions to eval expressions involving selected
-        data.
-        """
-        name = self.get_table_func(table, "class_func").get_field_alias(name)
-        return name.replace(".", "__")
-
 
 class DbWriteBase(DbReadBase):
     """
