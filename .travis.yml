@@ -53,6 +53,7 @@ addons:
     - python3-mock
     - python3-pyicu
     - python3-coverage
+    - python3-jsonschema
     # lxml dependencies.  for merge_ref_test to work
     # - libxml2-dev
     # - libxslt1-dev
