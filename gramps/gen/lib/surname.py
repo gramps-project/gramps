@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2010       Benny Malengier
 # Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -73,12 +74,22 @@ class Surname(SecondaryObject):
 
     @classmethod
     def get_schema(cls):
+        """
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
+        """
         return {
-            "surname": str,
-            "prefix": str,
-            "primary": str,
-            "origintype": NameOriginType,
-            "connector": str
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "surname": {"type": "string"},
+                "prefix": {"type": "string"},
+                "primary": {"type": "boolean"},
+                "origintype": NameOriginType.get_schema(),
+                "connector": {"type": "string"}
+            }
         }
 
     @classmethod

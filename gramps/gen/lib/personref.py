@@ -5,6 +5,7 @@
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,7 +37,6 @@ from .citationbase import CitationBase
 from .notebase import NoteBase
 from .refbase import RefBase
 from .const import IDENTICAL, EQUAL, DIFFERENT
-from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -82,6 +82,31 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         NoteBase.unserialize(self, note_list)
         RefBase.unserialize(self, ref)
         return self
+
+    @classmethod
+    def get_schema(cls):
+        """
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
+        """
+        return {
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "private": {"type": "boolean"},
+                "citation_list": {"type": "array",
+                                  "items": {"type": "string",
+                                            "maxLength": 50}},
+                "note_list": {"type": "array",
+                              "items": {"type": "string",
+                                        "maxLength": 50}},
+                "ref": {"type": "string",
+                        "maxLength": 50},
+                "rel": {"type": "string"}
+            }
+        }
 
     def get_text_data_list(self):
         """

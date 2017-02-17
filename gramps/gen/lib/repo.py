@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,7 +36,6 @@ from .addressbase import AddressBase
 from .urlbase import UrlBase
 from .tagbase import TagBase
 from .repotype import RepositoryType
-from .handle import Handle
 from .citationbase import IndirectCitationBase
 
 #-------------------------------------------------------------------------
@@ -87,21 +87,35 @@ class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase,
     @classmethod
     def get_schema(cls):
         """
-        Return the schema as a dictionary for this class.
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
         """
         from .address import Address
         from .url import Url
         return {
-            "handle": Handle("Repository", "REPOSITORY-HANDLE"),
-            "gramps_id": str,
-            "type": RepositoryType,
-            "name": str,
-            "note_list": [Handle("Note", "NOTE-HANDLE")],
-            "address_list": [Address],
-            "urls": [Url],
-            "change": int,
-            "tag_list": [Handle("Tag", "TAG-HANDLE")],
-            "private": bool
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "handle": {"type": "string",
+                           "maxLength": 50},
+                "gramps_id": {"type": "string"},
+                "type": RepositoryType.get_schema(),
+                "name": {"type": "string"},
+                "note_list": {"type": "array",
+                              "items": {"type": "string",
+                                        "maxLength": 50}},
+                "address_list": {"type": "array",
+                                 "items": Address.get_schema()},
+                "urls": {"type": "array",
+                         "items": Url.get_schema()},
+                "change": {"type": "integer"},
+                "tag_list": {"type": "array",
+                             "items": {"type": "string",
+                                       "maxLength": 50}},
+                "private": {"type": "boolean"}
+            }
         }
 
     def unserialize(self, data):

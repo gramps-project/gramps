@@ -5,6 +5,7 @@
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -40,7 +41,6 @@ from .mediabase import MediaBase
 from .urlbase import UrlBase
 from .tagbase import TagBase
 from .location import Location
-from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -142,28 +142,48 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
     @classmethod
     def get_schema(cls):
         """
-        Return the schema as a dictionary for this class.
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
         """
         from .url import Url
+        from .mediaref import MediaRef
         return {
-            "handle": Handle("Place", "PLACE-HANDLE"),
-            "gramps_id": str,
-            "title": str,
-            "long": str,
-            "lat": str,
-            "placeref_list": [PlaceRef],
-            "name": PlaceName,
-            "alt_names": [PlaceName],
-            "place_type": PlaceType,
-            "code": str,
-            "alt_loc": [Location],
-            "urls": [Url],
-            "media_list": [Handle("Media", "MEDIA-HANDLE")],
-            "citation_list": [Handle("Citation", "CITATION-HANDLE")],
-            "note_list": [Handle("Note", "NOTE-HANDLE")],
-            "change": int,
-            "tag_list": [Handle("Tag", "TAG-HANDLE")],
-            "private": bool
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "handle": {"type": "string",
+                           "maxLength": 50},
+                "gramps_id": {"type": "string"},
+                "title": {"type": "string"},
+                "long": {"type": "string"},
+                "lat": {"type": "string"},
+                "placeref_list": {"type": "array",
+                                  "items": PlaceRef.get_schema()},
+                "name": PlaceName.get_schema(),
+                "alt_names": {"type": "array",
+                              "items": PlaceName.get_schema()},
+                "place_type": PlaceType.get_schema(),
+                "code": {"type": "string"},
+                "alt_loc": {"type": "array",
+                            "items": Location.get_schema()},
+                "urls": {"type": "array",
+                         "items": Url.get_schema()},
+                "media_list": {"type": "array",
+                               "items": MediaRef.get_schema()},
+                "citation_list": {"type": "array",
+                                  "items": {"type": "string",
+                                            "maxLength": 50}},
+                "note_list": {"type": "array",
+                              "items": {"type": "string",
+                                        "maxLength": 50}},
+                "change": {"type": "integer"},
+                "tag_list": {"type": "array",
+                             "items": {"type": "string",
+                                       "maxLength": 50}},
+                "private": {"type": "boolean"}
+            }
         }
 
     def unserialize(self, data):

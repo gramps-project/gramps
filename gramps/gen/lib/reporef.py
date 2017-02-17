@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,7 +36,6 @@ from .notebase import NoteBase
 from .refbase import RefBase
 from .srcmediatype import SourceMediaType
 from .const import IDENTICAL, EQUAL, DIFFERENT
-from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -80,6 +80,29 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         NoteBase.unserialize(self, note_list)
         RefBase.unserialize(self, ref)
         return self
+
+    @classmethod
+    def get_schema(cls):
+        """
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
+        """
+        return {
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "note_list": {"type": "array",
+                              "items": {"type": "string",
+                                        "maxLength": 50}},
+                "ref": {"type": "string",
+                        "maxLength": 50},
+                "call_number": {"type": "string"},
+                "media_type": SourceMediaType.get_schema(),
+                "private": {"type": "boolean"}
+            }
+        }
 
     def get_text_data_list(self):
         """

@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
-# Copyright (C) 2010       Nick Hall
+# Copyright (C) 2010,2017  Nick Hall
 # Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
@@ -45,7 +45,6 @@ from .notebase import NoteBase
 from .datebase import DateBase
 from .attrbase import AttributeBase
 from .tagbase import TagBase
-from .handle import Handle
 
 LOG = logging.getLogger(".citation")
 
@@ -121,27 +120,38 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase,
     @classmethod
     def get_schema(cls):
         """
-        Returns the schema for EventRef.
+        Returns the JSON Schema for this class.
 
-        :returns: Returns a dict containing the fields to types.
+        :returns: Returns a dict containing the schema.
         :rtype: dict
         """
         from .attribute import Attribute
         from .date import Date
         return {
-            "handle": Handle("Media", "MEDIA-HANDLE"),
-            "gramps_id": str,
-            "path": str,
-            "mime": str,
-            "desc": str,
-            "checksum": str,
-            "attribute_list": [Attribute],
-            "citation_list": [Handle("Citation", "CITATION-HANDLE")],
-            "note_list": [Handle("Note", "NOTE-HANDLE")],
-            "change": int,
-            "date": Date,
-            "tag_list": [Handle("Tag", "TAG-HANDLE")],
-            "private": bool,
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "handle": {"type": "string",
+                           "maxLength": 50},
+                "gramps_id": {"type": "string"},
+                "path": {"type": "string"},
+                "mime": {"type": "string"},
+                "desc": {"type": "string"},
+                "checksum": {"type": "string"},
+                "attribute_list": {"type": "array",
+                                   "items": Attribute.get_schema()},
+                "citation_list": {"type": "array",
+                                  "items": {"type": "string",
+                                            "maxLength": 50}},
+                "note_list": {"type": "array",
+                              "items": {"type": "string"}},
+                "change": {"type": "integer"},
+                "date": {"oneOf": [{"type": "null"}, Date.get_schema()]},
+                "tag_list": {"type": "array",
+                             "items": {"type": "string",
+                                       "maxLength": 50}},
+                "private": {"type": "boolean"}
+            }
         }
 
     @classmethod

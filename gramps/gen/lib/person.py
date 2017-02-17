@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
-# Copyright (C) 2010       Nick Hall
+# Copyright (C) 2010,2017  Nick Hall
 # Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
@@ -46,7 +46,6 @@ from .attrtype import AttributeType
 from .eventroletype import EventRoleType
 from .attribute import Attribute
 from .const import IDENTICAL, EQUAL, DIFFERENT
-from .handle import Handle
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -187,34 +186,62 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
     @classmethod
     def get_schema(cls):
         """
-        Return the schema as a dictionary for this class.
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
         """
         from .mediaref import MediaRef
         from .address import Address
         from .url import Url
         from .ldsord import LdsOrd
         return {
-            "handle":  Handle("Person", "PERSON-HANDLE"),
-            "gramps_id": str,
-            "gender": int,
-            "primary_name": Name,
-            "alternate_names": [Name],
-            "death_ref_index": int,
-            "birth_ref_index": int,
-            "event_ref_list": [EventRef],
-            "family_list": [Handle("Family", "FAMILY-HANDLE")],
-            "parent_family_list": [Handle("Family", "FAMILY-HANDLE")],
-            "media_list": [MediaRef],
-            "address_list": [Address],
-            "attribute_list": [Attribute],
-            "urls": [Url],
-            "lds_ord_list": [LdsOrd],
-            "citation_list": [Handle("Citation", "CITATION-HANDLE")],
-            "note_list": [Handle("Note", "NOTE-HANDLE")],
-            "change": int,
-            "tag_list": [Handle("Tag", "TAG-HANDLE")],
-            "private": bool,
-            "person_ref_list": [PersonRef]
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "handle": {"type": "string",
+                           "maxLength": 50},
+                "gramps_id": {"type": "string"},
+                "gender": {"type": "integer",
+                           "minimum": 0,
+                           "maximum": 2},
+                "primary_name": Name.get_schema(),
+                "alternate_names": {"type": "array",
+                                    "items": Name.get_schema()},
+                "death_ref_index": {"type": "integer"},
+                "birth_ref_index": {"type": "integer"},
+                "event_ref_list": {"type": "array",
+                                   "items": EventRef.get_schema()},
+                "family_list": {"type": "array",
+                                "items": {"type": "string",
+                                          "maxLength": 50}},
+                "parent_family_list": {"type": "array",
+                                       "items": {"type": "string",
+                                                 "maxLength": 50}},
+                "media_list": {"type": "array",
+                               "items": MediaRef.get_schema()},
+                "address_list": {"type": "array",
+                                 "items": Address.get_schema()},
+                "attribute_list": {"type": "array",
+                                   "items": Attribute.get_schema()},
+                "urls": {"type": "array",
+                         "items": Url.get_schema()},
+                "lds_ord_list": {"type": "array",
+                                 "items": LdsOrd.get_schema()},
+                "citation_list": {"type": "array",
+                                  "items": {"type": "string",
+                                            "maxLength": 50}},
+                "note_list": {"type": "array",
+                              "items": {"type": "string",
+                                        "maxLength": 50}},
+                "change": {"type": "integer"},
+                "tag_list": {"type": "array",
+                             "items": {"type": "string",
+                                       "maxLength": 50}},
+                "private": {"type": "boolean"},
+                "person_ref_list": {"type": "array",
+                                    "items": PersonRef.get_schema()}
+            }
         }
 
     def unserialize(self, data):

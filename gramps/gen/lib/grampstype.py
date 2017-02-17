@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -206,6 +207,22 @@ class GrampsType(object, metaclass=GrampsTypeMeta):
     def serialize(self):
         """Convert the object to a serialized tuple of data. """
         return (self.__value, self.__string)
+
+    @classmethod
+    def get_schema(cls):
+        """
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
+        """
+        return {
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "string":  {"type": "string"},
+            }
+        }
 
     @classmethod
     def get_labels(cls, _):

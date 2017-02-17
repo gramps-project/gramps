@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,7 +46,6 @@ from .datebase import DateBase
 from .placebase import PlaceBase
 from .tagbase import TagBase
 from .eventtype import EventType
-from .handle import Handle
 
 LOG = logging.getLogger(".citation")
 
@@ -121,28 +121,42 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
     @classmethod
     def get_schema(cls):
         """
-        Return the schema as a dictionary for this class.
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
         """
         from .attribute import Attribute
-        from .citation import Citation
-        from .note import Note
         from .date import Date
-        from .tag import Tag
-        from .media import Media
+        from .mediaref import MediaRef
         return {
-            "handle": Handle("Event", "EVENT-HANDLE"),
-            "gramps_id": str,
-            "type": EventType,
-            "date": Date,
-            "description": str,
-            "place": Handle("Place", "PLACE-HANDLE"),
-            "citation_list": [Citation],
-            "note_list": [Note],
-            "media_list": [Media],
-            "attribute_list": [Attribute],
-            "change": int,
-            "tag_list": [Tag],
-            "private": bool,
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "handle": {"type": "string",
+                           "maxLength": 50},
+                "gramps_id": {"type": "string"},
+                "type": EventType.get_schema(),
+                "date": {"oneOf": [{"type": "null"}, Date.get_schema()]},
+                "description": {"type": "string"},
+                "place": {"type": ["string", "null"],
+                          "maxLength": 50},
+                "citation_list": {"type": "array",
+                                  "items": {"type": "string",
+                                            "maxLength": 50}},
+                "note_list": {"type": "array",
+                              "items": {"type": "string",
+                                        "maxLength": 50}},
+                "media_list": {"type": "array",
+                               "items": MediaRef.get_schema()},
+                "attribute_list": {"type": "array",
+                                   "items": Attribute.get_schema()},
+                "change": {"type": "integer"},
+                "tag_list": {"type": "array",
+                             "items": {"type": "string",
+                                       "maxLength": 50}},
+                "private": {"type": "boolean"},
+            }
         }
 
     @classmethod

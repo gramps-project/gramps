@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
-# Copyright (C) 2010       Nick Hall
+# Copyright (C) 2010,2017  Nick Hall
 # Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
@@ -49,7 +49,6 @@ from .tagbase import TagBase
 from .childref import ChildRef
 from .familyreltype import FamilyRelType
 from .const import IDENTICAL, EQUAL, DIFFERENT
-from .handle import Handle
 
 LOG = logging.getLogger(".citation")
 
@@ -129,26 +128,50 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     @classmethod
     def get_schema(cls):
+        """
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
+        """
         from .mediaref import MediaRef
         from .ldsord import LdsOrd
         from .childref import ChildRef
         from .attribute import Attribute
         return {
-            "handle": Handle("Family", "FAMILY-HANDLE"),
-            "gramps_id": str,
-            "father_handle": Handle("Person", "PERSON-HANDLE"),
-            "mother_handle": Handle("Person", "PERSON-HANDLE"),
-            "child_ref_list": [ChildRef],
-            "type": FamilyRelType,
-            "event_ref_list": [EventRef],
-            "media_list": [MediaRef],
-            "attribute_list": [Attribute],
-            "lds_ord_list": [LdsOrd],
-            "citation_list": [Handle("Citation", "CITATION-HANDLE")],
-            "note_list": [Handle("Note", "NOTE-HANDLE")],
-            "change": int,
-            "tag_list": [Handle("Tag", "TAG-HANDLE")],
-            "private": bool
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "handle": {"type": "string",
+                           "maxLength": 50},
+                "gramps_id": {"type": "string"},
+                "father_handle": {"type": ["string", "null"],
+                                  "maxLength": 50},
+                "mother_handle": {"type": ["string", "null"],
+                                  "maxLength": 50},
+                "child_ref_list": {"type": "array",
+                                   "items": ChildRef.get_schema()},
+                "type": FamilyRelType.get_schema(),
+                "event_ref_list": {"type": "array",
+                                   "items": EventRef.get_schema()},
+                "media_list": {"type": "array",
+                               "items": MediaRef.get_schema()},
+                "attribute_list": {"type": "array",
+                                   "items": Attribute.get_schema()},
+                "lds_ord_list": {"type": "array",
+                                 "items": LdsOrd.get_schema()},
+                "citation_list": {"type": "array",
+                                  "items": {"type": "string",
+                                            "maxLength": 50}},
+                "note_list": {"type": "array",
+                              "items": {"type": "string",
+                                        "maxLength": 50}},
+                "change": {"type": "integer"},
+                "tag_list": {"type": "array",
+                             "items": {"type": "string",
+                                       "maxLength": 50}},
+                "private": {"type": "boolean"}
+            }
         }
 
     @classmethod

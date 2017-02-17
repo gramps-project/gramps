@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
-# Copyright (C) 2010       Nick Hall
+# Copyright (C) 2010,2017  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,7 +34,6 @@ from .tagbase import TagBase
 from .notetype import NoteType
 from .styledtext import StyledText
 from .styledtexttagtype import StyledTextTagType
-from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -98,17 +97,27 @@ class Note(BasicPrimaryObject):
     @classmethod
     def get_schema(cls):
         """
-        The schema for Note.
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
         """
         return {
-            "handle": Handle("Note", "NOTE-HANDLE"),
-            "gramps_id": str,
-            "text": StyledText,
-            "format": int,
-            "type": NoteType,
-            "change": int,
-            "tag_list": [Handle("Tag", "TAG-HANDLE")],
-            "private": bool,
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "handle": {"type": "string",
+                           "maxLength": 50},
+                "gramps_id": {"type": "string"},
+                "text": StyledText.get_schema(),
+                "format": {"type": "integer"},
+                "type": NoteType.get_schema(),
+                "change": {"type": "integer"},
+                "tag_list": {"type": "array",
+                             "items": {"type": "string",
+                                       "maxLength": 50}},
+                "private": {"type": "boolean"}
+            }
         }
 
     @classmethod

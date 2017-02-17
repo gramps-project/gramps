@@ -5,6 +5,7 @@
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,7 +38,6 @@ from .notebase import NoteBase
 from .refbase import RefBase
 from .attrbase import AttributeBase
 from .const import IDENTICAL, EQUAL, DIFFERENT
-from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -73,21 +73,33 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
     @classmethod
     def get_schema(cls):
         """
-        Returns the schema for MediaRef.
+        Returns the JSON Schema for this class.
 
-        :returns: Returns a dict containing the fields to types.
+        :returns: Returns a dict containing the schema.
         :rtype: dict
         """
         from .attribute import Attribute
-        from .citation import Citation
-        from .note import Note
         return {
-            "private": bool,
-            "citation_list": [Citation],
-            "note_list": [Note],
-            "attribute_list": [Attribute],
-            "ref": Handle("Media", "MEDIA-HANDLE"),
-            "rect": tuple, # or None if (0,0,0,0)
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "private": {"type": "boolean"},
+                "citation_list": {"type": "array",
+                                  "items": {"type": "string",
+                                            "maxLength": 50}},
+                "note_list": {"type": "array",
+                              "items": {"type": "string",
+                                        "maxLength": 50}},
+                "attribute_list": {"type": "array",
+                                   "items": Attribute.get_schema()},
+                "ref": {"type": "string",
+                        "maxLength": 50},
+                "rect": {"oneOf": [{"type": "null"},
+                                   {"type": "array",
+                                    "items": {"type": "integer"},
+                                    "minItems": 4,
+                                    "maxItems": 4}]}
+            }
         }
 
     def unserialize(self, data):
