@@ -63,7 +63,7 @@ class NoteSidebarFilter(SidebarFilter):
         self.note.set_type((NoteType.CUSTOM,''))
         self.ntype = Gtk.ComboBox(has_entry=True)
         if dbstate.is_open():
-            self.custom_types = dbstate.db.get_event_types()
+            self.custom_types = dbstate.db.get_note_types()
         else:
             self.custom_types = []
 
