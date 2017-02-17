@@ -190,7 +190,7 @@ class CLIDbManager:
                           dbname == name)
                          for dbname in database_names])):
                 summary = self.get_dbdir_summary(dirpath, name)
-                print(_("Family Tree \"%s\":") % summary[_("Family Tree")])
+                print(_('Family Tree "%s":') % summary[_("Family Tree")])
                 for item in sorted(summary):
                     if item != "Family Tree":
                         # translators: needed for French, ignore otherwise

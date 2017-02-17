@@ -537,6 +537,8 @@ class BasePage:
         lang = report.options['trans']
         self.rlocale = report.set_locale(lang)
         self._ = self.rlocale.translation.sgettext
+        self.COLON = self._(':') # translators: needed for French, else ignore
+
         if report.options['securesite']:
             self.secure_mode = HTTPS
         else:
@@ -8116,54 +8118,55 @@ class StatisticsPage(BasePage):
             sec11 += Html("h4", self._("Individuals"), inline=True)
         body += sec11
         with Html("div", class_="content", id='subsection narrative') as sec1:
-            sec1 += Html("br", self._("Number of individuals") + ":" +
+            sec1 += Html("br", self._("Number of individuals") + self.COLON +
                          "%d" % npersons, inline=True)
-            sec1 += Html("br", self._("Males") + ":" +
+            sec1 += Html("br", self._("Males") + self.COLON +
                          "%d" % males, inline=True)
-            sec1 += Html("br", self._("Females") + ":" +
+            sec1 += Html("br", self._("Females") + self.COLON +
                          "%d" % females, inline=True)
-            sec1 += Html("br", self._("Individuals with unknown gender") + ":" +
-                         "%d" % unknown, inline=True)
+            sec1 += Html("br", self._("Individuals with unknown gender") +
+                         self.COLON + "%d" % unknown, inline=True)
         body += sec1
         with Html("div", class_="content", id='subsection narrative') as sec2:
             sec2 += Html("h4", self._("Family Information"), inline=True)
-            sec2 += Html("br", self._("Number of families") + ":" +
+            sec2 += Html("br", self._("Number of families") + self.COLON +
                          "%d" % nfamilies, inline=True)
-            sec2 += Html("br", self._("Unique surnames") + ":" +
+            sec2 += Html("br", self._("Unique surnames") + self.COLON +
                          "%d" % nsurnames, inline=True)
         body += sec2
         with Html("div", class_="content", id='subsection narrative') as sec3:
             sec3 += Html("h4", self._("Media Objects"), inline=True)
             sec3 += Html("br",
                          self._("Total number of media object references") +
-                            ":" + "%d" % total_media, inline=True)
+                            self.COLON + "%d" % total_media, inline=True)
             sec3 += Html("br", self._("Number of unique media objects") +
-                            ":" + "%d" % mobjects, inline=True)
+                            self.COLON + "%d" % mobjects, inline=True)
             sec3 += Html("br", self._("Total size of media objects") +
-                            ":" + "%8s %s" % (mbytes, self._("Megabyte|MB")),
+                            self.COLON +
+                            "%8s %s" % (mbytes, self._("Megabyte|MB")),
                             inline=True)
             sec3 += Html("br", self._("Missing Media Objects") +
-                            ":" + "%d" % len(notfound), inline=True)
+                            self.COLON + "%d" % len(notfound), inline=True)
         body += sec3
         with Html("div", class_="content", id='subsection narrative') as sec4:
             sec4 += Html("h4", self._("Miscellaneous"), inline=True)
-            sec4 += Html("br", self._("Number of events") +
-                            ":" + "%d" % report.database.get_number_of_events(),
+            sec4 += Html("br", self._("Number of events") + self.COLON +
+                            "%d" % report.database.get_number_of_events(),
                             inline=True)
-            sec4 += Html("br", self._("Number of places") +
-                            ":" + "%d" % report.database.get_number_of_places(),
+            sec4 += Html("br", self._("Number of places") + self.COLON +
+                            "%d" % report.database.get_number_of_places(),
                             inline=True)
             nsources = report.database.get_number_of_sources()
             sec4 += Html("br", self._("Number of sources") +
-                            ":" + "%d" % nsources,
+                            self.COLON + "%d" % nsources,
                             inline=True)
             ncitations = report.database.get_number_of_citations()
             sec4 += Html("br", self._("Number of citations") +
-                            ":" + "%d" % ncitations,
+                            self.COLON + "%d" % ncitations,
                             inline=True)
             nrepo = report.database.get_number_of_repositories()
             sec4 += Html("br", self._("Number of repositories") +
-                            ":" + "%d" % nrepo,
+                            self.COLON + "%d" % nrepo,
                             inline=True)
         body += sec4
 
@@ -8181,38 +8184,38 @@ class StatisticsPage(BasePage):
         body += section
         with Html("div", class_="content", id='subsection narrative') as sec5:
             sec5 += Html("h4", self._("Individuals"), inline=True)
-            sec5 += Html("br", self._("Number of individuals") + ":" +
+            sec5 += Html("br", self._("Number of individuals") + self.COLON +
                             "%d" % len(self.report.bkref_dict[Person]),
                             inline=True)
-            sec5 += Html("br", self._("Males") + ":" +
+            sec5 += Html("br", self._("Males") + self.COLON +
                          "%d" % males, inline=True)
-            sec5 += Html("br", self._("Females") + ":" +
+            sec5 += Html("br", self._("Females") + self.COLON +
                          "%d" % females, inline=True)
-            sec5 += Html("br", self._("Individuals with unknown gender") + ":" +
-                         "%d" % unknown, inline=True)
+            sec5 += Html("br", self._("Individuals with unknown gender") +
+                               self.COLON + "%d" % unknown, inline=True)
         body += sec5
         with Html("div", class_="content", id='subsection narrative') as sec6:
             sec6 += Html("h4", self._("Family Information"), inline=True)
-            sec6 += Html("br", self._("Number of families") + ":" +
+            sec6 += Html("br", self._("Number of families") + self.COLON +
                             "%d" % len(self.report.bkref_dict[Family]),
                             inline=True)
         body += sec6
         with Html("div", class_="content", id='subsection narrative') as sec7:
             sec7 += Html("h4", self._("Miscellaneous"), inline=True)
-            sec7 += Html("br", self._("Number of events") +
-                            ":" + "%d" % len(self.report.bkref_dict[Event]),
+            sec7 += Html("br", self._("Number of events") + self.COLON +
+                            "%d" % len(self.report.bkref_dict[Event]),
                             inline=True)
-            sec7 += Html("br", self._("Number of places") +
-                            ":" + "%d" % len(self.report.bkref_dict[Place]),
+            sec7 += Html("br", self._("Number of places") + self.COLON +
+                            "%d" % len(self.report.bkref_dict[Place]),
                             inline=True)
-            sec7 += Html("br", self._("Number of sources") +
-                            ":" + "%d" % len(self.report.bkref_dict[Source]),
+            sec7 += Html("br", self._("Number of sources") + self.COLON +
+                            "%d" % len(self.report.bkref_dict[Source]),
                             inline=True)
-            sec7 += Html("br", self._("Number of citations") +
-                            ":" + "%d" % len(self.report.bkref_dict[Citation]),
+            sec7 += Html("br", self._("Number of citations") + self.COLON +
+                            "%d" % len(self.report.bkref_dict[Citation]),
                             inline=True)
-            sec7 += Html("br", self._("Number of repositories") +
-                           ":" + "%d" % len(self.report.bkref_dict[Repository]),
+            sec7 += Html("br", self._("Number of repositories") + self.COLON +
+                            "%d" % len(self.report.bkref_dict[Repository]),
                             inline=True)
         body += sec7
 

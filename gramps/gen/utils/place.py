@@ -720,7 +720,7 @@ if __name__ == '__main__':
         print(lat1, lon1, "in format", format8, "is", res1, res2, "\n")
 
     def test_formats_fail(lat1, lon1, text=''):
-        print("This test should make conv_lat_lon function fail, "+text+":")
+        print("This test should make conv_lat_lon function fail, %s:") % text
         res1, res2 = conv_lat_lon(lat1, lon1)
         print(lat1, lon1, " fails to convert, result=", res1, res2, "\n")
 

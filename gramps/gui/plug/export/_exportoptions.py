@@ -33,7 +33,7 @@
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.config import config
@@ -277,11 +277,10 @@ class WriterOptionBox:
         button.set_size_request(107, -1)
         button.connect("clicked", self.show_preview_data)
         button.proxy_name = proxy_name
-        colon = _(':') # translators: needed for French, ignore otherwise
         if proxy_name == "person":
             # Frame Person:
             self.filter_obj = Gtk.ComboBox()
-            label = Gtk.Label(label=_('_Person Filter') + colon)
+            label = Gtk.Label(label=_('_Person Filter') + COLON)
             label.set_halign(Gtk.Align.START)
             label.set_size_request(120, -1)
             label.set_padding(5, 0)
@@ -299,7 +298,7 @@ class WriterOptionBox:
             # Frame Note:
             # Objects for choosing a Note filter:
             self.filter_note = Gtk.ComboBox()
-            label_note = Gtk.Label(label=_('_Note Filter') + colon)
+            label_note = Gtk.Label(label=_('_Note Filter') + COLON)
             label_note.set_halign(Gtk.Align.START)
             label_note.set_size_request(120, -1)
             label_note.set_padding(5, 0)
@@ -315,7 +314,7 @@ class WriterOptionBox:
             button.set_tooltip_text(_("Click to see preview after note filter"))
         elif proxy_name == "privacy":
             # Frame 3:
-            label = Gtk.Label(label=_("Privacy Filter") + colon)
+            label = Gtk.Label(label=_("Privacy Filter") + COLON)
             label.set_halign(Gtk.Align.START)
             label.set_size_request(120, -1)
             label.set_padding(5, 0)
@@ -325,7 +324,7 @@ class WriterOptionBox:
             button.set_tooltip_text(_("Click to see preview after privacy filter"))
         elif proxy_name == "living":
             # Frame 4:
-            label = Gtk.Label(label=_("Living Filter") + colon)
+            label = Gtk.Label(label=_("Living Filter") + COLON)
             label.set_halign(Gtk.Align.START)
             label.set_size_request(120, -1)
             label.set_padding(5, 0)
@@ -337,7 +336,7 @@ class WriterOptionBox:
         elif proxy_name == "reference":
             # Frame 5:
             self.reference_filter = Gtk.ComboBox()
-            label = Gtk.Label(label=_('Reference Filter') + colon)
+            label = Gtk.Label(label=_('Reference Filter') + COLON)
             label.set_halign(Gtk.Align.START)
             label.set_size_request(120, -1)
             label.set_padding(5, 0)

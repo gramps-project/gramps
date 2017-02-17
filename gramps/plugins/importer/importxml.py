@@ -1766,11 +1766,11 @@ class GrampsParser(UpdateCallback):
             val = attrs['value']
             match = self.grampsuri.match(val)
             if match:
-                target = {"Person":"person", "Family":"family",
-                          "Event":"event", "Place":"place", "Source":"source",
-                          "Citation":"citation",
-                          "Repository":"repository", "Media":"media",
-                          "Note":"note"}[str(match.group('object_class'))]
+                target = {"Person" : "person", "Family" : "family",
+                          "Event" : "event", "Place" : "place",
+                          "Source" : "source", "Citation" : "citation",
+                          "Repository" : "repository", "Media" : "media",
+                          "Note" : "note"}[str(match.group('object_class'))]
                 if match.group('handle') in self.import_handles:
                     if target in self.import_handles[match.group('handle')]:
                         val = "gramps://%s/handle/%s" % (

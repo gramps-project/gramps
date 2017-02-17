@@ -32,7 +32,7 @@ from gramps.gen.plug import Gramplet
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.datehandler import get_date
 from gramps.gen.lib import Person
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
 #------------------------------------------------------------------------
@@ -98,7 +98,7 @@ class StatsGramplet(Gramplet):
         self.clear_text()
         self.append_text(_("Individuals") + "\n")
         self.append_text("----------------------------\n")
-        self.link(_("Number of individuals") + ":",
+        self.link(_("Number of individuals") + COLON,
                   'Filter', 'all people')
         self.append_text(" %s" % database.get_number_of_people())
         self.append_text("\n")

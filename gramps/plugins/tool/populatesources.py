@@ -40,7 +40,7 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gui.utils import ProgressMeter
 from gramps.gui.plug import tool
@@ -96,14 +96,14 @@ class PopulateSources(tool.Tool, ManagedWindow):
         label.set_line_wrap(True)
 
         hbox1 = Gtk.Box()
-        label_sources = Gtk.Label(label="Number of sources" + ":")
+        label_sources = Gtk.Label(label="Number of sources" + COLON)
         self.sources_entry = Gtk.Entry()
         self.sources_entry.set_text("%d" % num_sources)
         hbox1.pack_start(label_sources, False, True, 0)
         hbox1.pack_start(self.sources_entry, True, True, 0)
 
         hbox2 = Gtk.Box()
-        label_citations = Gtk.Label(label="Number of citations" + ":")
+        label_citations = Gtk.Label(label="Number of citations" + COLON)
         self.citations_entry = Gtk.Entry()
         self.citations_entry.set_text("%d" % num_citations)
         hbox2.pack_start(label_citations, False, True, 0)

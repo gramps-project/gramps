@@ -184,7 +184,7 @@ class IndivCompleteReport(Report):
             place_name = _pd.display_event(self._db, event)
             place_endnote = self._cite_endnote(place)
         # make sure it's translated, so it can be used below, in "combine"
-        ignore = _('%(str1)s in %(str2)s. ') % {'str1':'', 'str2':''}
+        ignore = _('%(str1)s in %(str2)s. ') % {'str1' : '', 'str2' : ''}
         date_place = self.combine('%(str1)s in %(str2)s. ', '%s. ',
                                   date, place_name)
 
@@ -195,7 +195,7 @@ class IndivCompleteReport(Report):
                 column_1 = column_1 + ' (' + self._(role.xml_str()) + ')'
             # translators: needed for Arabic, ignore otherwise
             # make sure it's translated, so it can be used below, in "combine"
-            ignore = _('%(str1)s, %(str2)s') % {'str1':'', 'str2':''}
+            ignore = _('%(str1)s, %(str2)s') % {'str1' : '', 'str2' : ''}
             column_2 = self.combine('%(str1)s, %(str2)s', '%s',
                                     description, date_place)
         else:
@@ -203,7 +203,7 @@ class IndivCompleteReport(Report):
             column_1 = date
             # translators: needed for Arabic, ignore otherwise
             # make sure it's translated, so it can be used below, in "combine"
-            ignore = _('%(str1)s, %(str2)s') % {'str1':'', 'str2':''}
+            ignore = _('%(str1)s, %(str2)s') % {'str1' : '', 'str2' : ''}
             column_2 = self.combine('%(str1)s, %(str2)s', '%s',
                                     description, place_name)
 
