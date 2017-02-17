@@ -1111,9 +1111,9 @@ class UpdateAddons(ManagedWindow):
         last_category = None
         for (status,plugin_url,plugin_dict) in addon_update_list:
             count = get_count(addon_update_list, plugin_dict["t"])
-            category = _("%(adjective)s: %(addon)s") % {
-                "adjective": status,
-                "addon": _(plugin_dict["t"])}
+            # translators: needed for French, ignore otherwise
+            category = _("%(str1)s: %(str2)s") % {'str1' : status,
+                                                  'str2' : _(plugin_dict["t"])}
             if last_category != category:
                 last_category = category
                 node = self.list.add([False, # initially selected?

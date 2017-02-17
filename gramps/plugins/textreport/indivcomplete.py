@@ -812,12 +812,21 @@ class IndivCompleteReport(Report):
             raise ReportError(_('Empty report'),
                               _('You did not specify anybody'))
 
+        if self._user:
+            self._user.begin_progress(_("Complete Individual Report"),
+                                      _("Generating report"),
+                                      len(ind_list))
         for count, person_handle in enumerate(ind_list):
+            if self._user:
+                self._user.step_progress()
             self.person = self._db.get_person_from_handle(person_handle)
             if self.person is None:
                 continue
             self.family_notes_list = []
             self.write_person(count)
+        if self._user:
+            self._user.end_progress()
+
 
     def write_person(self, count):
         """ write a person """

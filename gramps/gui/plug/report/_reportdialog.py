@@ -588,8 +588,8 @@ class ReportDialog(ManagedWindow):
         style sheet editor object and let them play.  When they are
         done, the previous routine will be called to update the dialog
         menu for selecting a style."""
-        StyleListDisplay(self.style_sheet_list, self.build_style_menu,
-                         self.window)
+        StyleListDisplay(self.style_sheet_list, self.uistate, self.track,
+                         callback=self.build_style_menu)
 
     #----------------------------------------------------------------------
     #

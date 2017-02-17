@@ -36,7 +36,7 @@ from gramps.gen.filters.rules.person import (
     IsDuplicatedAncestorOf, IsRelatedWith, HasIdOf, IsDefaultPerson, IsFemale,
     IsMale, MissingParent, MultipleMarriages, NeverMarried, NoBirthdate,
     NoDeathdate, PeoplePrivate, PeoplePublic, PersonWithIncompleteEvent,
-    RelationshipPathBetweenBookmarks)
+    RelationshipPathBetweenBookmarks, HasNameOf, HasSoundexName)
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
@@ -563,6 +563,22 @@ class BaseTest(unittest.TestCase):
             b'44WJQCLCQIPZUB0UH', b'35WJQC1B7T7NPV8OLV', b'AWFKQCJELLUWDY2PD3',
             b'D3WJQCCGV58IP8PNHZ', b'Q8HKQC3VMRM1M6M7ES',
             ]))
+
+    def test_hassoundexname(self):
+        """
+        Test HasSoundexName rule.
+        """
+        rule = HasSoundexName(['garner'])
+        self.assertEqual(len(self.filter_with_rule(rule)), 73)
+
+    def test_hasnameof(self):
+        """
+        Test HasNameOf rule.
+        """
+        rule = HasNameOf(['Lewis', 'Garner', 'Dr.', 'Sr', 'Anderson',
+                          'Big Louie', 'von', 'Zieliński', None, None, None])
+        self.assertEqual(self.filter_with_rule(rule), set([
+            b'GNUJQCL9MD64AM56OH']))
 
 
 if __name__ == "__main__":

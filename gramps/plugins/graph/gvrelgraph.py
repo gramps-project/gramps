@@ -193,8 +193,14 @@ class RelGraphReport(Report):
                                             self._db.iter_person_handles())
 
         if len(person_handles) > 1:
+            if self._user:
+                self._user.begin_progress(_("Relationship Graph"),
+                                          _("Generating report"),
+                                          len(person_handles) * 2)
             self.add_persons_and_families(person_handles)
             self.add_child_links_to_families(person_handles)
+            if self._user:
+                self._user.end_progress()
 
     def add_child_links_to_families(self, person_handles):
         """
@@ -205,6 +211,8 @@ class RelGraphReport(Report):
         person_dict = dict([handle, 1] for handle in person_handles)
 
         for person_handle in person_handles:
+            if self._user:
+                self._user.step_progress()
             person = self._db.get_person_from_handle(person_handle)
             p_id = person.get_gramps_id()
             for fam_handle in person.get_parent_family_handle_list():
@@ -261,6 +269,8 @@ class RelGraphReport(Report):
         # so we don't do it twice
         families_done = {}
         for person_handle in person_handles:
+            if self._user:
+                self._user.step_progress()
             # determine per person if we use HTML style label
             if self.includeimg:
                 self.use_html_output = True

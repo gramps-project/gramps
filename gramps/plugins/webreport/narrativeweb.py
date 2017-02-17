@@ -150,6 +150,9 @@ SORT_KEY = glocale.sort_key
 #------------------------------------------------
 # constants
 #------------------------------------------------
+HTTP = "http://"
+HTTPS = "https://"
+
 GOOGLE_MAPS = 'https://maps.googleapis.com/maps/'
 # javascript code for marker path
 MARKER_PATH = """
@@ -534,6 +537,10 @@ class BasePage:
         lang = report.options['trans']
         self.rlocale = report.set_locale(lang)
         self._ = self.rlocale.translation.sgettext
+        if report.options['securesite']:
+            self.secure_mode = HTTPS
+        else:
+            self.secure_mode = HTTP
 
     # Functions used when no Web Page plugin is provided
     def add_instance(self, *param):
@@ -1053,9 +1060,9 @@ class BasePage:
         attrlist.extend(event_ref.get_attribute_list())
         for attr in attrlist:
             htmllist.extend(Html("p",
-                                 _("%(type)s: %(value)s") % {
-                                     'type'  : Html("b", attr.get_type()),
-                                     'value' : attr.get_value()
+                                 _("%(str1)s: %(str2)s") % {
+                                     'str1' : Html("b", attr.get_type()),
+                                     'str2' : attr.get_value()
                                      }))
 
             #also output notes attached to the attributes
@@ -2481,7 +2488,8 @@ class BasePage:
                     elif _type == UrlType.WEB_HOME:
                         if not (uri.startswith("http://") or
                                 uri.startswith("https://")):
-                            uri = "http://%(website)s" % {"website" : uri}
+                            url = self.secure_mode
+                            uri = url + "%(website)s" % {"website" : uri}
 
                     # FTP server address
                     elif _type == UrlType.WEB_FTP:
@@ -2590,7 +2598,11 @@ class BasePage:
                                           [self._("Page"), sref.page],
                                           [self._("Confidence"), conf]]:
                         if data:
-                            tmp += Html("li", "%s: %s" % (label, data))
+                            tmp += Html("li",
+                                        _("%(str1)s: %(str2)s") % {
+                                            'str1' : label,
+                                            'str2' : data
+                                            })
                     if self.create_media:
                         for media_ref in sref.get_media_list():
                             media_handle = media_ref.get_reference_handle()
@@ -2635,12 +2647,12 @@ class BasePage:
                     for handle in sref.get_note_list():
                         this_note = self.r_db.get_note_from_handle(handle)
                         if this_note is not None:
+                            format = self.get_note_format(this_note, True)
                             tmp += Html("li",
-                                        "%s: %s" % (
-                                            str(this_note.get_type()),
-                                            self.get_note_format(this_note,
-                                                                 True)
-                                            ))
+                                        _("%(str1)s: %(str2)s") % {
+                                            'str1' : str(this_note.get_type()),
+                                            'str2' : format
+                                            })
                     if tmp:
                         cit_ref_li += tmp
                         ordered1 += cit_ref_li
@@ -4012,19 +4024,24 @@ class PlacePages(BasePage):
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
                     else:
-                        url = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                        url = self.secure_mode
+                        url += "maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
                         head += Html("link", href=url, type="text/javascript",
                                      rel="stylesheet")
-                        src_js = "http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+                        src_js = self.secure_mode
+                        src_js += "ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
-                        src_js = "http://openlayers.org/en/v3.17.1/build/ol.js"
+                        src_js = self.secure_mode
+                        src_js += "openlayers.org/en/v3.17.1/build/ol.js"
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
-                        url = "http://openlayers.org/en/v3.17.1/css/ol.css"
+                        url = self.secure_mode
+                        url += "openlayers.org/en/v3.17.1/css/ol.css"
                         head += Html("link", href=url, type="text/javascript",
                                      rel="stylesheet")
-                        src_js = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                        src_js = self.secure_mode
+                        src_js += "maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
 
@@ -6600,19 +6617,24 @@ class PersonPages(BasePage):
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
         else:
-            url = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            url = self.secure_mode
+            url += "maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
             head += Html("link", href=url, type="text/javascript",
                          rel="stylesheet")
-            src_js = "http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+            src_js = self.secure_mode
+            src_js += "ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
-            src_js = "http://openlayers.org/en/v3.17.1/build/ol.js"
+            src_js = self.secure_mode
+            src_js += "openlayers.org/en/v3.17.1/build/ol.js"
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
-            url = "http://openlayers.org/en/v3.17.1/css/ol.css"
+            url = self.secure_mode
+            url += "openlayers.org/en/v3.17.1/css/ol.css"
             head += Html("link", href=url, type="text/javascript",
                          rel="stylesheet")
-            src_js = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            src_js = self.secure_mode
+            src_js += "maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
 
@@ -8349,6 +8371,10 @@ class NavWebReport(Report):
         self.bkref_dict = None
         self.rel_class = None
         self.tab = None
+        if self.options['securesite']:
+            self.secure_mode = HTTPS
+        else:
+            self.secure_mode = HTTP
 
     def write_report(self):
         """
@@ -9659,6 +9685,11 @@ class NavWebOptions(MenuReportOptions):
         stdoptions.add_name_format_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
+
+        self.__securesite = BooleanOption(_("This is a secure site (https)"),
+                                          False)
+        self.__securesite.set_help(_('Whether to use http:// or https://'))
+        addopt("securesite", self.__securesite)
 
     def __add_report_options_2(self, menu):
         """

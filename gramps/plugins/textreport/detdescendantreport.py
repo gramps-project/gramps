@@ -15,6 +15,7 @@
 # Copyright (C) 2012      lcc <lcc@6zap.com>
 # Copyright (C) 2013-2014 Paul Franklin
 # Copyright (C) 2015      Craig J. Anderson
+# Copyright (C) 2017      Robert Carnell <bertcarnell_at_gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -98,6 +99,7 @@ class DetDescendantReport(Report):
         pageben       - Whether to include page break before End Notes.
         fulldates     - Whether to use full dates instead of just year.
         listc         - Whether to list children.
+        list_children_spouses - Whether to list the spouses of the children
         incnotes      - Whether to include notes.
         usecall       - Whether to use the call name as the first name.
         repplace      - Whether to replace missing Places with ___________.
@@ -151,6 +153,7 @@ class DetDescendantReport(Report):
         self.fulldate = get_value('fulldates')
         use_fulldate = self.fulldate
         self.listchildren = get_value('listc')
+        self.list_children_spouses = get_value('listc_spouses')
         self.inc_notes = get_value('incnotes')
         use_call = get_value('usecall')
         blankplace = get_value('repplace')
@@ -665,6 +668,8 @@ class DetDescendantReport(Report):
     def __write_children(self, family):
         """
         List the children for the given family.
+        :param family: Family
+        :return:
         """
         if not family.get_child_ref_list():
             return
@@ -724,6 +729,25 @@ class DetDescendantReport(Report):
             self.doc.write_text_citation(
                 self.__narrator.get_died_string() or
                 self.__narrator.get_buried_string())
+            # if the list_children_spouses option is selected:
+            if self.list_children_spouses:
+                # get the family of the child that contains the spouse
+                # of the child.  There may be more than one spouse for each
+                # child
+                family_handle_list = child.get_family_handle_list()
+                # for the first spouse, this is true.
+                # For subsequent spouses, make it false
+                is_first_family = True
+                for family_handle in family_handle_list:
+                    child_family = self.database.get_family_from_handle(
+                        family_handle
+                    )
+                    self.doc.write_text_citation(
+                        self.__narrator.get_married_string(
+                            child_family, is_first_family, self._name_display
+                        )
+                    )
+                    is_first_family = False
             self.doc.end_paragraph()
 
     def __write_family_notes(self, family):
@@ -871,10 +895,10 @@ class DetDescendantReport(Report):
                 atype = self._get_type(alt_name.get_type())
                 aname = alt_name.get_regular_name()
                 self.doc.write_text_citation(
-                    self._('%(name_kind)s: %(name)s%(endnotes)s'
-                          ) % {'name_kind' : self._(atype),
-                               'name'      : aname,
-                               'endnotes'  : self.endnotes(alt_name)})
+                    self._('%(type)s: %(value)s%(endnotes)s'
+                          ) % {'type' : self._(atype),
+                               'value' : aname,
+                               'endnotes' : self.endnotes(alt_name)})
                 self.doc.end_paragraph()
 
         if self.inc_events:
@@ -1028,6 +1052,11 @@ class DetDescendantOptions(MenuReportOptions):
         listc = BooleanOption(_("List children"), True)
         listc.set_help(_("Whether to list children."))
         add_option("listc", listc)
+
+        listc_spouses = BooleanOption(_("List Spouses of Children"), False)
+        listc_spouses.set_help(
+            _("Whether to list the spouses of the children."))
+        add_option("listc_spouses", listc_spouses)
 
         computeage = BooleanOption(_("Compute death age"), True)
         computeage.set_help(_("Whether to compute a person's age at death."))

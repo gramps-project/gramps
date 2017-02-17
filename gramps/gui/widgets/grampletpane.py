@@ -236,8 +236,9 @@ class GrampletWindow(ManagedWindow):
                                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                    (_('_Close'), Gtk.ResponseType.CLOSE)),
                         None, self.title)
-        self.window.set_size_request(gramplet.detached_width,
-                                     gramplet.detached_height)
+        cfg_name = gramplet.gname.replace(' ', '').lower() + '-gramplet'
+        self.setup_configs('interface.' + cfg_name,
+                           gramplet.detached_width, gramplet.detached_height)
         self.window.add_button(_('_Help'), Gtk.ResponseType.HELP)
         # add gramplet:
         if self.gramplet.pui:
@@ -1583,20 +1584,6 @@ class GrampletPane(Gtk.ScrolledWindow):
                 _('Height if not maximized'),
                 2,
                 "%s.height" % gramplet.title,
-                self._config.set,
-                config=self._config)
-            # Detached height
-            configdialog.add_pos_int_entry(grid,
-                _('Detached width'),
-                3,
-                "%s.detached_width" % gramplet.title,
-                self._config.set,
-                config=self._config)
-            # Detached width
-            configdialog.add_pos_int_entry(grid,
-                _('Detached height'),
-                4,
-                "%s.detached_height" % gramplet.title,
                 self._config.set,
                 config=self._config)
             # Options:

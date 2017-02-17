@@ -12,6 +12,7 @@
 # Copyright (C) 2011      Tim G L Lyons
 # Copyright (C) 2013-2014 Paul Franklin
 # Copyright (C) 2014      Gerald Kunzmann <g.kunzmann@arcor.de>
+# Copyright (C) 2017      Robert Carnell <bertcarnell_at_gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -96,6 +97,7 @@ class DetAncestorReport(Report):
         firstName     - Whether to use first names instead of pronouns.
         fulldate      - Whether to use full dates instead of just year.
         listchildren  - Whether to list children.
+        list_children_spouses - Whether to list the spouses of the children
         includenotes  - Whether to include notes.
         incattrs      - Whether to include attributes
         blankplace    - Whether to replace missing Places with ___________.
@@ -136,6 +138,7 @@ class DetAncestorReport(Report):
         self.fulldate = get_value('fulldates')
         use_fulldate = self.fulldate
         self.listchildren = get_value('listc')
+        self.list_children_spouses = get_value('listc_spouses')
         self.includenotes = get_value('incnotes')
         use_call = get_value('usecall')
         blankplace = get_value('repplace')
@@ -362,10 +365,10 @@ class DetAncestorReport(Report):
                 self.doc.start_paragraph('DAR-MoreDetails')
                 atype = self._get_type(alt_name.get_type())
                 self.doc.write_text_citation(
-                    self._('%(name_kind)s: %(name)s%(endnotes)s'
-                          ) % {'name_kind' : self._(atype),
-                               'name'      : alt_name.get_regular_name(),
-                               'endnotes'  : self.endnotes(alt_name)})
+                    self._('%(type)s: %(value)s%(endnotes)s'
+                          ) % {'type' : self._(atype),
+                               'value' : alt_name.get_regular_name(),
+                               'endnotes' : self.endnotes(alt_name)})
                 self.doc.end_paragraph()
 
         if self.inc_events:
@@ -556,7 +559,10 @@ class DetAncestorReport(Report):
                 is_first = False
 
     def write_children(self, family):
-        """ List children.
+        """
+        List children.
+        :param family: Family
+        :return:
         """
 
         if not family.get_child_ref_list():
@@ -614,6 +620,25 @@ class DetAncestorReport(Report):
             self.doc.write_text_citation(
                 self.__narrator.get_died_string() or
                 self.__narrator.get_buried_string())
+            # if the list_children_spouses option is selected:
+            if self.list_children_spouses:
+                # get the family of the child that contains the spouse
+                # of the child.  There may be more than one spouse for each
+                # child
+                family_handle_list = child.get_family_handle_list()
+                # for the first spouse, this is true.
+                # For subsequent spouses, make it false
+                is_first_family = True
+                for family_handle in family_handle_list:
+                    child_family = self.database.get_family_from_handle(
+                        family_handle
+                    )
+                    self.doc.write_text_citation(
+                        self.__narrator.get_married_string(
+                            child_family, is_first_family, self._name_display
+                        )
+                    )
+                    is_first_family = False
             self.doc.end_paragraph()
 
     def write_family_events(self, family):
@@ -692,7 +717,7 @@ class DetAncestorReport(Report):
                 if self.addimages and len(plist) > 0:
                     photo = plist[0]
                     utils.insert_image(self._db, self.doc,
-                                             photo, self._user)
+                                       photo, self._user)
 
                 name = self._nd.display(ind)
                 if not name:
@@ -773,6 +798,9 @@ class DetAncestorOptions(MenuReportOptions):
         return _nd.display(person)
 
     def add_menu_options(self, menu):
+        """
+        Add Menu Options
+        """
         from functools import partial
 
         # Report Options
@@ -817,6 +845,11 @@ class DetAncestorOptions(MenuReportOptions):
         listc = BooleanOption(_("List children"), True)
         listc.set_help(_("Whether to list children."))
         addopt("listc", listc)
+
+        listc_spouses = BooleanOption(_("List Spouses of Children"), False)
+        listc_spouses.set_help(
+            _("Whether to list the spouses of the children."))
+        addopt("listc_spouses", listc_spouses)
 
         computeage = BooleanOption(_("Compute death age"), True)
         computeage.set_help(_("Whether to compute a person's age at death."))
