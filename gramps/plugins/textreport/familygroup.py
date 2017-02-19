@@ -713,6 +713,16 @@ class FamilyGroupOptions(MenuReportOptions):
         add_option("family_id", self.__fid)
         self.__fid.connect('value-changed', self.__update_filters)
 
+        self.__recursive = BooleanOption(_('Recursive (down)'), False)
+        self.__recursive.set_help(_("Create reports for all descendants "
+                                    "of this family."))
+        add_option("recursive", self.__recursive)
+
+        ##########################
+        category_name = _("Report Options (2)")
+        add_option = partial(menu.add_option, category_name)
+        ##########################
+
         self._nf = stdoptions.add_name_format_option(menu, category_name)
         self._nf.connect('value-changed', self.__update_filters)
 
@@ -722,20 +732,16 @@ class FamilyGroupOptions(MenuReportOptions):
 
         stdoptions.add_living_people_option(menu, category_name)
 
-        self.__recursive = BooleanOption(_('Recursive (down)'), False)
-        self.__recursive.set_help(_("Create reports for all descendants "
-                                    "of this family."))
-        add_option("recursive", self.__recursive)
-
         stdoptions.add_localization_option(menu, category_name)
 
         ##########################
-        add_option = partial(menu.add_option, _("Include 1"))
+        add_option = partial(menu.add_option, _("Include"))
         ##########################
 
-        gramps_ids = BooleanOption(_('Gramps ID'), False)
-        gramps_ids.set_help(_("Whether to include Gramps ID next to names."))
-        add_option("gramps_ids", gramps_ids)
+        inc_par_mar = BooleanOption(_("Parent Marriage"), True)
+        inc_par_mar.set_help(
+            _("Whether to include marriage information for parents."))
+        add_option("incParMar", inc_par_mar)
 
         inc_par_events = BooleanOption(_("Parent Events"), False)
         inc_par_events.set_help(_("Whether to include events for parents."))
@@ -758,13 +764,8 @@ class FamilyGroupOptions(MenuReportOptions):
             _("Whether to include alternate names for parents."))
         add_option("incParNames", inc_par_names)
 
-        inc_par_mar = BooleanOption(_("Parent Marriage"), True)
-        inc_par_mar.set_help(
-            _("Whether to include marriage information for parents."))
-        add_option("incParMar", inc_par_mar)
-
         ##########################
-        add_option = partial(menu.add_option, _("Include 2"))
+        add_option = partial(menu.add_option, _("Include (2)"))
         ##########################
 
         inc_fam_notes = BooleanOption(_("Family Notes"), False)
@@ -781,15 +782,15 @@ class FamilyGroupOptions(MenuReportOptions):
             _("Whether to include marriage information for children."))
         add_option("incChiMar", inc_chi_mar)
 
+        gramps_ids = BooleanOption(_('Gramps ID'), False)
+        gramps_ids.set_help(_("Whether to include Gramps ID next to names."))
+        add_option("gramps_ids", gramps_ids)
+
         generations = BooleanOption(_("Generation numbers "
                                       "(recursive only)"), False)
         generations.set_help(_("Whether to include the generation on each "
                                "report (recursive only)."))
         add_option("generations", generations) # TODO make insensitive if ...
-
-        ##########################
-        add_option = partial(menu.add_option, _("Missing Information"))
-        ##########################
 
         missinginfo = BooleanOption(_("Print fields for missing "
                                       "information"), True)

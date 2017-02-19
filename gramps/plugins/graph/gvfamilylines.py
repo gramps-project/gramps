@@ -116,10 +116,6 @@ class FamilyLinesOptions(MenuReportOptions):
         add_option = partial(menu.add_option, category_name)
         # ---------------------
 
-        stdoptions.add_name_format_option(menu, category_name)
-
-        stdoptions.add_private_data_option(menu, category_name, default=False)
-
         followpar = BooleanOption(_('Follow parents to determine '
                                     '"family lines"'), True)
         followpar.set_help(_('Parents and their ancestors will be '
@@ -140,10 +136,11 @@ class FamilyLinesOptions(MenuReportOptions):
                                        '"family lines".'))
         add_option('removeextra', remove_extra_people)
 
-        use_roundedcorners = BooleanOption(_('Use rounded corners'), False)
-        use_roundedcorners.set_help(_('Use rounded corners to differentiate '
-                                      'between women and men.'))
-        add_option("useroundedcorners", use_roundedcorners)
+        arrow = EnumeratedListOption(_("Arrowhead direction"), 'd')
+        for i in range( 0, len(_ARROWS) ):
+            arrow.add_item(_ARROWS[i]["value"], _ARROWS[i]["name"])
+        arrow.set_help(_("Choose the direction that the arrows point."))
+        add_option("arrow", arrow)
 
         color = EnumeratedListOption(_("Graph coloring"), "filled")
         for i in range(len(_COLORS)):
@@ -154,11 +151,28 @@ class FamilyLinesOptions(MenuReportOptions):
                          "is unknown it will be shown with gray."))
         add_option("color", color)
 
-        arrow = EnumeratedListOption(_("Arrowhead direction"), 'd')
-        for i in range( 0, len(_ARROWS) ):
-            arrow.add_item(_ARROWS[i]["value"], _ARROWS[i]["name"])
-        arrow.set_help(_("Choose the direction that the arrows point."))
-        add_option("arrow", arrow)
+        roundedcorners = BooleanOption(_('Use rounded corners'), False)
+        roundedcorners.set_help(
+            _("Use rounded corners to differentiate between women and men."))
+        add_option("useroundedcorners", roundedcorners)
+
+        include_id = EnumeratedListOption(_('Gramps ID'), 0)
+        include_id.add_item(0, _('Do not include'))
+        include_id.add_item(1, _('Share an existing line'))
+        include_id.add_item(2, _('On a line of its own'))
+        include_id.set_help(_("Whether (and where) to include Gramps IDs"))
+        add_option("incid", include_id)
+
+        # ---------------------
+        category_name = _('Report Options (2)')
+        add_option = partial(menu.add_option, category_name)
+        # ---------------------
+
+        stdoptions.add_name_format_option(menu, category_name)
+
+        stdoptions.add_private_data_option(menu, category_name, default=False)
+
+        stdoptions.add_living_people_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
@@ -200,15 +214,6 @@ class FamilyLinesOptions(MenuReportOptions):
         category_name = _('Include')
         add_option = partial(menu.add_option, category_name)
         # --------------------
-
-        stdoptions.add_living_people_option(menu, category_name)
-
-        include_id = EnumeratedListOption(_('Include Gramps ID'), 0)
-        include_id.add_item(0, _('Do not include'))
-        include_id.add_item(1, _('Share an existing line'))
-        include_id.add_item(2, _('On a line of its own'))
-        include_id.set_help(_("Whether (and where) to include Gramps IDs"))
-        add_option("incid", include_id)
 
         self.include_dates = BooleanOption(_('Include dates'), True)
         self.include_dates.set_help(_('Whether to include dates for people '

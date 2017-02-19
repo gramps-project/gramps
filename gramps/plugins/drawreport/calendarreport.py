@@ -477,6 +477,23 @@ class CalendarOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
 
+        text1 = StringOption(_("Text Area 1"), _(_TITLE1))
+        text1.set_help(_("First line of text at bottom of calendar"))
+        add_option("text1", text1)
+
+        text2 = StringOption(_("Text Area 2"), _(_TITLE2))
+        text2.set_help(_("Second line of text at bottom of calendar"))
+        add_option("text2", text2)
+
+        text3 = StringOption(_("Text Area 3"), URL_HOMEPAGE)
+        text3.set_help(_("Third line of text at bottom of calendar"))
+        add_option("text3", text3)
+
+        ##########################
+        category_name = _("Report Options (2)")
+        add_option = partial(menu.add_option, category_name)
+        ##########################
+
         self._nf = stdoptions.add_name_format_option(menu, category_name)
         self._nf.connect('value-changed', self.__update_filters)
 
@@ -491,7 +508,7 @@ class CalendarOptions(MenuReportOptions):
         stdoptions.add_localization_option(menu, category_name)
 
         ##########################
-        category_name = _("Content Options")
+        category_name = _("Content")
         add_option = partial(menu.add_option, category_name)
         ##########################
 
@@ -517,42 +534,32 @@ class CalendarOptions(MenuReportOptions):
         start_dow = EnumeratedListOption(_("First day of week"), 1)
         long_days = date_displayer.long_days
         for count in range(1, 8):
-            # conversion between gramps numbering (sun=1) and iso numbering (mon=1) of weekdays below
-            start_dow.add_item((count+5) % 7 + 1, long_days[count].capitalize())
-        start_dow.set_help(_("Select the first day of the week for the calendar"))
+            # conversion between gramps numbering (sun=1)
+            # and iso numbering (mon=1) of weekdays below
+            start_dow.add_item((count + 5) % 7 + 1,
+                               long_days[count].capitalize())
+        start_dow.set_help(
+            _("Select the first day of the week for the calendar"))
         add_option("start_dow", start_dow)
 
         maiden_name = EnumeratedListOption(_("Birthday surname"), "own")
-        maiden_name.add_item("spouse_first", _("Wives use husband's surname (from first family listed)"))
-        maiden_name.add_item("spouse_last", _("Wives use husband's surname (from last family listed)"))
+        maiden_name.add_item(
+            "spouse_first",
+            _("Wives use husband's surname (from first family listed)"))
+        maiden_name.add_item(
+            "spouse_last",
+            _("Wives use husband's surname (from last family listed)"))
         maiden_name.add_item("own", _("Wives use their own surname"))
         maiden_name.set_help(_("Select married women's displayed surname"))
         add_option("maiden_name", maiden_name)
 
         birthdays = BooleanOption(_("Include birthdays"), True)
-        birthdays.set_help(_("Include birthdays in the calendar"))
+        birthdays.set_help(_("Whether to include birthdays"))
         add_option("birthdays", birthdays)
 
         anniversaries = BooleanOption(_("Include anniversaries"), True)
-        anniversaries.set_help(_("Include anniversaries in the calendar"))
+        anniversaries.set_help(_("Whether to include anniversaries"))
         add_option("anniversaries", anniversaries)
-
-        ##########################
-        category_name = _("Text Options")
-        add_option = partial(menu.add_option, _("Text Options"))
-        ##########################
-
-        text1 = StringOption(_("Text Area 1"), _(_TITLE1))
-        text1.set_help(_("First line of text at bottom of calendar"))
-        add_option("text1", text1)
-
-        text2 = StringOption(_("Text Area 2"), _(_TITLE2))
-        text2.set_help(_("Second line of text at bottom of calendar"))
-        add_option("text2", text2)
-
-        text3 = StringOption(_("Text Area 3"), URL_HOMEPAGE)
-        text3.set_help(_("Third line of text at bottom of calendar"))
-        add_option("text3", text3)
 
     def __update_filters(self):
         """

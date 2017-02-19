@@ -1052,15 +1052,6 @@ class IndivCompleteOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
 
-        self._nf = stdoptions.add_name_format_option(menu, category_name)
-        self._nf.connect('value-changed', self.__update_filters)
-
-        self.__update_filters()
-
-        stdoptions.add_private_data_option(menu, category_name)
-
-        stdoptions.add_living_people_option(menu, category_name)
-
         sort = BooleanOption(_("List events chronologically"), True)
         sort.set_help(_("Whether to sort events into chronological order."))
         menu.add_option(category_name, "sort", sort)
@@ -1070,11 +1061,28 @@ class IndivCompleteOptions(MenuReportOptions):
             _("Whether to start a new page before the end notes."))
         menu.add_option(category_name, "pageben", pageben)
 
+        ################################
+        category_name = _("Report Options (2)")
+        ################################
+
+        self._nf = stdoptions.add_name_format_option(menu, category_name)
+        self._nf.connect('value-changed', self.__update_filters)
+
+        self.__update_filters()
+
+        stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
+
         stdoptions.add_localization_option(menu, category_name)
 
         ################################
         category_name = _("Include")
         ################################
+
+        incl_notes = BooleanOption(_("Include Notes"), True)
+        incl_notes.set_help(_("Whether to include Person and Family Notes."))
+        menu.add_option(category_name, "incl_notes", incl_notes)
 
         self.__cites = BooleanOption(_("Include Source Information"), True)
         self.__cites.set_help(_("Whether to cite sources."))
@@ -1093,6 +1101,18 @@ class IndivCompleteOptions(MenuReportOptions):
         images.set_help(_("Whether to include images."))
         menu.add_option(category_name, "images", images)
 
+        ################################
+        category_name = _("Include (2)")
+        ################################
+
+        grampsid = BooleanOption(_("Gramps ID"), False)
+        grampsid.set_help(_("Whether to include Gramps ID next to names."))
+        menu.add_option(category_name, "grampsid", grampsid)
+
+        tags = BooleanOption(_("Include Tags"), True)
+        tags.set_help(_("Whether to include tags."))
+        menu.add_option(category_name, "incl_tags", tags)
+
         attributes = BooleanOption(_("Include Attributes"), True)
         attributes.set_help(_("Whether to include attributes."))
         menu.add_option(category_name, "incl_attrs", attributes)
@@ -1101,22 +1121,10 @@ class IndivCompleteOptions(MenuReportOptions):
         census.set_help(_("Whether to include Census Events."))
         menu.add_option(category_name, "incl_census", census)
 
-        grampsid = BooleanOption(_("Include Gramps ID"), False)
-        grampsid.set_help(_("Whether to include Gramps ID next to names."))
-        menu.add_option(category_name, "grampsid", grampsid)
-
-        incl_notes = BooleanOption(_("Include Notes"), True)
-        incl_notes.set_help(_("Whether to include Person and Family Notes."))
-        menu.add_option(category_name, "incl_notes", incl_notes)
-
-        tags = BooleanOption(_("Include Tags"), True)
-        tags.set_help(_("Whether to include tags."))
-        menu.add_option(category_name, "incl_tags", tags)
-
         self.__show_relships = BooleanOption(
             _("Include relationship to center person"), False)
-        self.__show_relships.set_help(_("Whether to show every person's "
-                                        "relationship to the center person"))
+        self.__show_relships.set_help(
+            _("Whether to include relationships to the center person"))
         menu.add_option(category_name, "incl_relname", self.__show_relships)
 
         ################################
@@ -1160,10 +1168,7 @@ class IndivCompleteOptions(MenuReportOptions):
         If Endnotes are not enabled, disable sources in the Endnotes.
         """
         cites_value = self.__cites.get_value()
-        if cites_value:
-            self.__incsrcnotes.set_available(True)
-        else:
-            self.__incsrcnotes.set_available(False)
+        self.__incsrcnotes.set_available(cites_value)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Individual Complete Report."""

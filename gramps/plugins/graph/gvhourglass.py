@@ -315,34 +315,21 @@ class HourGlassOptions(MenuReportOptions):
         pid.set_help(_("The Center person for the graph"))
         menu.add_option(category_name, "pid", pid)
 
-        stdoptions.add_name_format_option(menu, category_name)
-
-        stdoptions.add_private_data_option(menu, category_name)
-
-        stdoptions.add_living_people_option(menu, category_name)
-
-        max_gen = NumberOption(_('Max Descendant Generations'), 10, 1, 15)
-        max_gen.set_help(_("The number of generations of descendants to "
+        max_gen_d = NumberOption(_('Max Descendant Generations'), 10, 1, 15)
+        max_gen_d.set_help(_("The number of generations of descendants to "
                            "include in the graph"))
-        menu.add_option(category_name, "maxdescend", max_gen)
+        menu.add_option(category_name, "maxdescend", max_gen_d)
 
-        max_gen = NumberOption(_('Max Ancestor Generations'), 10, 1, 15)
-        max_gen.set_help(_("The number of generations of ancestors to "
+        max_gen_a = NumberOption(_('Max Ancestor Generations'), 10, 1, 15)
+        max_gen_a.set_help(_("The number of generations of ancestors to "
                            "include in the graph"))
-        menu.add_option(category_name, "maxascend", max_gen)
+        menu.add_option(category_name, "maxascend", max_gen_a)
 
-        include_id = EnumeratedListOption(_('Include Gramps ID'), 0)
-        include_id.add_item(0, _('Do not include'))
-        include_id.add_item(1, _('Share an existing line'))
-        include_id.add_item(2, _('On a line of its own'))
-        include_id.set_help(_("Whether (and where) to include Gramps IDs"))
-        menu.add_option(category_name, "incid", include_id)
-
-        stdoptions.add_localization_option(menu, category_name)
-
-        ################################
-        category_name = _("Graph Style")
-        ################################
+        arrow = EnumeratedListOption(_("Arrowhead direction"), 'o')
+        for i in range( 0, len(_ARROWS) ):
+            arrow.add_item(_ARROWS[i]["value"], _ARROWS[i]["name"])
+        arrow.set_help(_("Choose the direction that the arrows point."))
+        menu.add_option(category_name, "arrow", arrow)
 
         color = EnumeratedListOption(_("Graph coloring"), "filled")
         for i in range(0, len(_COLORS)):
@@ -351,6 +338,32 @@ class HourGlassOptions(MenuReportOptions):
                          "with red.  If the sex of an individual "
                          "is unknown it will be shown with gray."))
         menu.add_option(category_name, "color", color)
+
+        roundedcorners = BooleanOption(_("Use rounded corners"), False) # 2180
+        roundedcorners.set_help(
+            _("Use rounded corners to differentiate between women and men."))
+        menu.add_option(category_name, "roundcorners", roundedcorners)
+
+        include_id = EnumeratedListOption(_('Gramps ID'), 0)
+        include_id.add_item(0, _('Do not include'))
+        include_id.add_item(1, _('Share an existing line'))
+        include_id.add_item(2, _('On a line of its own'))
+        include_id.set_help(_("Whether (and where) to include Gramps IDs"))
+        menu.add_option(category_name, "incid", include_id)
+
+        category_name = _("Report Options (2)")
+
+        stdoptions.add_name_format_option(menu, category_name)
+
+        stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
+
+        stdoptions.add_localization_option(menu, category_name)
+
+        ################################
+        category_name = _("Graph Style")
+        ################################
 
         color_males = ColorOption(_('Males'), '#e0e0ff')
         color_males.set_help(_('The color to use to display men.'))
@@ -368,14 +381,3 @@ class HourGlassOptions(MenuReportOptions):
         color_family = ColorOption(_('Families'), '#ffffe0')
         color_family.set_help(_('The color to use to display families.'))
         menu.add_option(category_name, 'colorfamilies', color_family)
-
-        arrow = EnumeratedListOption(_("Arrowhead direction"), 'o')
-        for i in range( 0, len(_ARROWS) ):
-            arrow.add_item(_ARROWS[i]["value"], _ARROWS[i]["name"])
-        arrow.set_help(_("Choose the direction that the arrows point."))
-        menu.add_option(category_name, "arrow", arrow)
-
-        roundedcorners = BooleanOption(_("Use rounded corners"), False) # 2180
-        roundedcorners.set_help(
-            _("Use rounded corners to differentiate between women and men."))
-        menu.add_option(category_name, "roundcorners", roundedcorners)

@@ -1158,7 +1158,7 @@ class GuiPersonListOption(Gtk.Box):
         self.__db = dbstate.get_database()
         self.__uistate = uistate
         self.__track = track
-        self.set_size_request(150, 150)
+        self.set_size_request(150, 100)
 
         self.__model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING)
         self.__tree_view = Gtk.TreeView(self.__model)

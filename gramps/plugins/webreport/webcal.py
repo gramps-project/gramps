@@ -1595,6 +1595,7 @@ class WebCalOptions(MenuReportOptions):
         Add options to the menu for the web calendar.
         """
         self.__add_report_options(menu)
+        self.__add_report2_options(menu)
         self.__add_content_options(menu)
         self.__add_notes_options(menu)
         self.__add_advanced_options(menu)
@@ -1631,6 +1632,33 @@ class WebCalOptions(MenuReportOptions):
 
         self.__update_filters()
 
+        ext = EnumeratedListOption(_("File extension"), ".html")
+        for etype in _WEB_EXT:
+            ext.add_item(etype, etype)
+        ext.set_help(_("The extension to be used for the web files"))
+        menu.add_option(category_name, "ext", ext)
+
+        cright = EnumeratedListOption(_('Copyright'), 0)
+        for index, copt in enumerate(_COPY_OPTIONS):
+            cright.add_item(index, copt)
+        cright.set_help(_("The copyright to be used for the web files"))
+        menu.add_option(category_name, "cright", cright)
+
+        css_list = sorted([(CSS[key]["translation"], CSS[key]["id"])
+                            for key in list(CSS.keys())
+                            if CSS[key]["user"]])
+        css = EnumeratedListOption(_('StyleSheet'), css_list[0][1])
+        for css_item in css_list:
+            css.add_item(css_item[1], css_item[0])
+        css.set_help(_('The stylesheet to be used for the web pages'))
+        menu.add_option(category_name, "css", css)
+
+    def __add_report2_options(self, menu):
+        """
+        Options on the "Report Options (2)" tab.
+        """
+        category_name = _("Report Options (2)")
+
         # We must figure out the value of the first option before we can
         # create the EnumeratedListOption
         fmt_list = _nd.get_name_format()
@@ -1653,26 +1681,6 @@ class WebCalOptions(MenuReportOptions):
         alive.set_help(_("Include only living people in the calendar"))
         menu.add_option(category_name, "alive", alive)
 
-        ext = EnumeratedListOption(_("File extension"), ".html")
-        for etype in _WEB_EXT:
-            ext.add_item(etype, etype)
-        ext.set_help(_("The extension to be used for the web files"))
-        menu.add_option(category_name, "ext", ext)
-
-        cright = EnumeratedListOption(_('Copyright'), 0)
-        for index, copt in enumerate(_COPY_OPTIONS):
-            cright.add_item(index, copt)
-        cright.set_help(_("The copyright to be used for the web files"))
-        menu.add_option(category_name, "cright", cright)
-
-        css_list = sorted([(CSS[key]["translation"], CSS[key]["id"])
-                            for key in list(CSS.keys())
-                            if CSS[key]["user"]])
-        css = EnumeratedListOption(_('StyleSheet'), css_list[0][1])
-        for css_item in css_list:
-            css.add_item(css_item[1], css_item[0])
-        css.set_help(_('The stylesheet to be used for the web pages'))
-        menu.add_option(category_name, "css", css)
         stdoptions.add_localization_option(menu, category_name)
 
     def __add_content_options(self, menu):
