@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,7 +44,6 @@ from .datebase import DateBase
 from .tagbase import TagBase
 from .attrbase import SrcAttributeBase
 from .citationbase import IndirectCitationBase
-from .handle import Handle
 
 LOG = logging.getLogger(".citation")
 
@@ -82,23 +82,41 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
     @classmethod
     def get_schema(cls):
         """
-        Return the schema as a dictionary for this class.
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
         """
         from .srcattribute import SrcAttribute
+        from .mediaref import MediaRef
         from .date import Date
         return {
-            "handle": Handle("Citation", "CITATION-HANDLE"),
-            "gramps_id": str,
-            "date": Date,
-            "page": str,
-            "confidence": str,
-            "source_handle": Handle("Source", "SOURCE-HANDLE"),
-            "note_list": [Handle("Note", "NOTE-HANDLE")],
-            "media_list": [Handle("Media", "MEDIA-HANDLE")],
-            "srcattr_list": [SrcAttribute],
-            "change": int,
-            "tag_list": [Handle("Tag", "TAG-HANDLE")],
-            "private": bool,
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "handle": {"type": "string",
+                           "maxLength": 50},
+                "gramps_id": {"type": "string"},
+                "date": {"oneOf": [{"type": "null"}, Date.get_schema()]},
+                "page": {"type": "string"},
+                "confidence": {"type": "integer",
+                               "minimum": 0,
+                               "maximum": 4},
+                "source_handle": {"type": "string",
+                                  "maxLength": 50},
+                "note_list": {"type": "array",
+                              "items": {"type": "string",
+                                        "maxLength": 50}},
+                "media_list": {"type": "array",
+                               "items": MediaRef.get_schema()},
+                "srcattr_list": {"type": "array",
+                                  "items": SrcAttribute.get_schema()},
+                "change": {"type": "integer"},
+                "tag_list": {"type": "array",
+                             "items": {"type": "string",
+                                       "maxLength": 50}},
+                "private": {"type": "boolean"}
+            }
         }
 
     @classmethod

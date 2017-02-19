@@ -167,6 +167,26 @@ class EditPlaceRef(EditReference):
         #force validation now with initial entry
         self.top.get_object("lat_entry").validate(force=True)
 
+        self.latlon = MonitoredEntry(
+            self.top.get_object("latlon_entry"),
+            self.set_latlongitude, self.get_latlongitude,
+            self.db.readonly)
+
+    def set_latlongitude(self, value):
+        try:
+            coma = value.index(',')
+            self.longitude.set_text(value[coma+1:])
+            self.latitude.set_text(value[:coma])
+            self.top.get_object("lat_entry").validate(force=True)
+            self.top.get_object("lon_entry").validate(force=True)
+            self.obj.set_latitude(self.latitude.get_value())
+            self.obj.set_longitude(self.longitude.get_value())
+        except:
+            pass
+
+    def get_latlongitude(self):
+        return ""
+
     def _validate_coordinate(self, widget, text, typedeg):
         if (typedeg == 'lat') and not conv_lat_lon(text, "0", "ISO-D"):
             return ValidationError(_("Invalid latitude (syntax: 18\u00b09'") +

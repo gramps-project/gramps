@@ -29,7 +29,7 @@ on a particular date.
 from gramps.gen.plug import Gramplet
 from gramps.gen.datehandler import parser
 from gramps.gui.plug.quick import run_quick_report_by_name
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
 #------------------------------------------------------------------------
@@ -63,7 +63,7 @@ class AgeOnDateGramplet(Gramplet):
                           " that date. You can then sort by the age column,"
                           " and double-click the row to view or edit."))
         label = Gtk.Label()
-        label.set_text(_("Date") + ":")
+        label.set_text(_("Date") + COLON)
         self.entry = Gtk.Entry()
         button = Gtk.Button(label=_("Run"))
         button.connect("clicked", self.run)

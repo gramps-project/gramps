@@ -794,12 +794,6 @@ class AncestorTreeOptions(MenuReportOptions):
         self.__pid.set_help(_("The center person for the tree"))
         menu.add_option(category_name, "pid", self.__pid)
 
-        stdoptions.add_name_format_option(menu, category_name)
-
-        stdoptions.add_living_people_option(menu, category_name)
-
-        stdoptions.add_private_data_option(menu, category_name)
-
         siblings = BooleanOption(
             _('Include siblings of the center person'), False)
         siblings.set_help(
@@ -854,55 +848,6 @@ class AncestorTreeOptions(MenuReportOptions):
         prnnum.set_help(_("Whether to print page numbers on each page."))
         menu.add_option(category_name, "inc_pagenum", prnnum)
 
-        stdoptions.add_localization_option(menu, category_name)
-
-        ##################
-        category_name = _("Display")
-
-        disp = TextOption(_("Father\nDisplay Format"),
-                          ["$n",
-                           "%s $b" %_BORN,
-                           "-{%s $d}" %_DIED])
-        disp.set_help(_("Display format for the fathers box."))
-        menu.add_option(category_name, "father_disp", disp)
-
-        #Will add when libsubstkeyword supports it.
-        #missing = EnumeratedListOption(_("Replace missing\nplaces\\dates \
-        #                                 with"), 0)
-        #missing.add_item(0, _("Does not display anything"))
-        #missing.add_item(1, _("Displays '_____'"))
-        #missing.set_help(_("What will print when information is not known"))
-        #menu.add_option(category_name, "miss_val", missing)
-
-        #category_name = _("Secondary")
-
-        disp_mom = TextOption(_("Mother\nDisplay Format"),
-                              ["$n",
-                               "%s $b" %_BORN,
-                               "%s $m" %_MARR,
-                               "-{%s $d}" %_DIED])
-        disp_mom.set_help(_("Display format for the mothers box."))
-        menu.add_option(category_name, "mother_disp", disp_mom)
-
-        center_disp = EnumeratedListOption(_("Center person uses\n"
-                                             "which format"), 0)
-        center_disp.add_item(0, _("Use Fathers Display format"))
-        center_disp.add_item(1, _("Use Mothers display format"))
-        center_disp.set_help(_("Which Display format to use the center person"))
-        menu.add_option(category_name, "center_uses", center_disp)
-
-        incmarr = BooleanOption(_('Include Marriage box'), False)
-        incmarr.set_help(
-            _("Whether to include a separate marital box in the report"))
-        menu.add_option(category_name, "inc_marr", incmarr)
-
-        marrdisp = StringOption(_("Marriage\nDisplay Format"), "%s $m" % _MARR)
-        marrdisp.set_help(_("Display format for the marital box."))
-        menu.add_option(category_name, "marr_disp", marrdisp)
-
-        ##################
-        category_name = _("Size")
-
         self.scale = EnumeratedListOption(_("Scale tree to fit"), 0)
         self.scale.add_item(0, _("Do not scale tree"))
         self.scale.add_item(1, _("Scale tree to fit page width only"))
@@ -941,36 +886,76 @@ class AncestorTreeOptions(MenuReportOptions):
         else:
             self.__onepage = None
 
-        self.box_Y_sf = NumberOption(_("inter-box scale factor"),
-                                     1.00, 0.10, 2.00, 0.01)
-        self.box_Y_sf.set_help(
-            _("Make the inter-box spacing bigger or smaller"))
-        menu.add_option(category_name, "box_Yscale", self.box_Y_sf)
+        self.__blank = BooleanOption(_('Include Blank Pages'), True)
+        self.__blank.set_help(_("Whether to include pages that are blank."))
+        menu.add_option(category_name, "inc_blank", self.__blank)
 
-        self.box_shadow_sf = NumberOption(_("box shadow scale factor"),
-                                          1.00, 0.00, 2.00, 0.01) # down to 0
-        self.box_shadow_sf.set_help(_("Make the box shadow bigger or smaller"))
-        menu.add_option(category_name, "shadowscale", self.box_shadow_sf)
-
+        self.__check_blank()
 
         ##################
-        category_name = _("Replace")
+        category_name = _("Report Options (2)")
+
+        stdoptions.add_name_format_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
+
+        stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_localization_option(menu, category_name)
+
+        ##################
+        category_name = _("Display")
+
+        disp = TextOption(_("Father\nDisplay Format"),
+                          ["$n",
+                           "%s $b" %_BORN,
+                           "-{%s $d}" %_DIED])
+        disp.set_help(_("Display format for the fathers box."))
+        menu.add_option(category_name, "father_disp", disp)
+
+        #Will add when libsubstkeyword supports it.
+        #missing = EnumeratedListOption(_("Replace missing\nplaces\\dates \
+        #                                 with"), 0)
+        #missing.add_item(0, _("Does not display anything"))
+        #missing.add_item(1, _("Displays '_____'"))
+        #missing.set_help(_("What will print when information is not known"))
+        #menu.add_option(category_name, "miss_val", missing)
+
+        disp_mom = TextOption(_("Mother\nDisplay Format"),
+                              ["$n",
+                               "%s $b" %_BORN,
+                               "%s $m" %_MARR,
+                               "-{%s $d}" %_DIED])
+        disp_mom.set_help(_("Display format for the mothers box."))
+        menu.add_option(category_name, "mother_disp", disp_mom)
+
+        center_disp = EnumeratedListOption(_("Center person uses\n"
+                                             "which format"), 0)
+        center_disp.add_item(0, _("Use Fathers Display format"))
+        center_disp.add_item(1, _("Use Mothers display format"))
+        center_disp.set_help(_("The display format for the center person"))
+        menu.add_option(category_name, "center_uses", center_disp)
+
+        self.incmarr = BooleanOption(_('Include Marriage box'), False)
+        self.incmarr.set_help(
+            _("Whether to include a separate marital box in the report"))
+        menu.add_option(category_name, "inc_marr", self.incmarr)
+        self.incmarr.connect('value-changed', self._incmarr_changed)
+
+        self.marrdisp = StringOption(_("Marriage\nDisplay Format"),
+                                       "%s $m" % _MARR)
+        self.marrdisp.set_help(_("Display format for the marital box."))
+        menu.add_option(category_name, "marr_disp", self.marrdisp)
+        self._incmarr_changed()
+
+        ##################
+        category_name = _("Advanced")
 
         repldisp = TextOption(
             _("Replace Display Format:\n'Replace this'/' with this'"),
             [])
         repldisp.set_help(_("i.e.\nUnited States of America/U.S.A"))
         menu.add_option(category_name, "replace_list", repldisp)
-
-
-        ##################
-        category_name = _("Include")
-
-        self.__blank = BooleanOption(_('Include Blank Pages'), True)
-        self.__blank.set_help(_("Whether to include pages that are blank."))
-        menu.add_option(category_name, "inc_blank", self.__blank)
-
-        self.__check_blank()
 
         # TODO this code is never used and so I conclude it is for future use
         # self.__include_images = BooleanOption(
@@ -979,12 +964,10 @@ class AncestorTreeOptions(MenuReportOptions):
         #                       _("Whether to include thumbnails of people."))
         # menu.add_option(category_name, "includeImages", self.__include_images)
 
-        #category_name = _("Notes")
-
         self.usenote = BooleanOption(_('Include a note'), False)
-        self.usenote.set_help(_("Whether to include a note on "
-                                "the report."))
+        self.usenote.set_help(_("Whether to include a note on the report."))
         menu.add_option(category_name, "inc_note", self.usenote)
+        self.usenote.connect('value-changed', self._usenote_changed)
 
         self.notedisp = TextOption(_("Note"), [])
         self.notedisp.set_help(_("Add a note\n\n"
@@ -997,6 +980,32 @@ class AncestorTreeOptions(MenuReportOptions):
             self.notelocal.add_item(num, text)
         self.notelocal.set_help(_("Where to place the note."))
         menu.add_option(category_name, "note_place", self.notelocal)
+        self._usenote_changed()
+
+        self.box_Y_sf = NumberOption(_("inter-box scale factor"),
+                                     1.00, 0.10, 2.00, 0.01)
+        self.box_Y_sf.set_help(
+            _("Make the inter-box spacing bigger or smaller"))
+        menu.add_option(category_name, "box_Yscale", self.box_Y_sf)
+
+        self.box_shadow_sf = NumberOption(_("box shadow scale factor"),
+                                          1.00, 0.00, 2.00, 0.01) # down to 0
+        self.box_shadow_sf.set_help(_("Make the box shadow bigger or smaller"))
+        menu.add_option(category_name, "shadowscale", self.box_shadow_sf)
+
+    def _incmarr_changed(self):
+        """
+        If Marriage box is not enabled, disable Marriage Display Format box
+        """
+        value = self.incmarr.get_value()
+        self.marrdisp.set_available(value)
+
+    def _usenote_changed(self):
+        """
+        If Note box is not enabled, disable Note Location box
+        """
+        value = self.usenote.get_value()
+        self.notelocal.set_available(value)
 
     def __check_blank(self):
         if self.__onepage:

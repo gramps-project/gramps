@@ -150,6 +150,9 @@ SORT_KEY = glocale.sort_key
 #------------------------------------------------
 # constants
 #------------------------------------------------
+HTTP = "http://"
+HTTPS = "https://"
+
 GOOGLE_MAPS = 'https://maps.googleapis.com/maps/'
 # javascript code for marker path
 MARKER_PATH = """
@@ -534,6 +537,12 @@ class BasePage:
         lang = report.options['trans']
         self.rlocale = report.set_locale(lang)
         self._ = self.rlocale.translation.sgettext
+        self.COLON = self._(':') # translators: needed for French, else ignore
+
+        if report.options['securesite']:
+            self.secure_mode = HTTPS
+        else:
+            self.secure_mode = HTTP
 
     # Functions used when no Web Page plugin is provided
     def add_instance(self, *param):
@@ -1053,9 +1062,9 @@ class BasePage:
         attrlist.extend(event_ref.get_attribute_list())
         for attr in attrlist:
             htmllist.extend(Html("p",
-                                 _("%(type)s: %(value)s") % {
-                                     'type'  : Html("b", attr.get_type()),
-                                     'value' : attr.get_value()
+                                 _("%(str1)s: %(str2)s") % {
+                                     'str1' : Html("b", attr.get_type()),
+                                     'str2' : attr.get_value()
                                      }))
 
             #also output notes attached to the attributes
@@ -2481,7 +2490,8 @@ class BasePage:
                     elif _type == UrlType.WEB_HOME:
                         if not (uri.startswith("http://") or
                                 uri.startswith("https://")):
-                            uri = "http://%(website)s" % {"website" : uri}
+                            url = self.secure_mode
+                            uri = url + "%(website)s" % {"website" : uri}
 
                     # FTP server address
                     elif _type == UrlType.WEB_FTP:
@@ -2590,7 +2600,11 @@ class BasePage:
                                           [self._("Page"), sref.page],
                                           [self._("Confidence"), conf]]:
                         if data:
-                            tmp += Html("li", "%s: %s" % (label, data))
+                            tmp += Html("li",
+                                        _("%(str1)s: %(str2)s") % {
+                                            'str1' : label,
+                                            'str2' : data
+                                            })
                     if self.create_media:
                         for media_ref in sref.get_media_list():
                             media_handle = media_ref.get_reference_handle()
@@ -2635,12 +2649,12 @@ class BasePage:
                     for handle in sref.get_note_list():
                         this_note = self.r_db.get_note_from_handle(handle)
                         if this_note is not None:
+                            format = self.get_note_format(this_note, True)
                             tmp += Html("li",
-                                        "%s: %s" % (
-                                            str(this_note.get_type()),
-                                            self.get_note_format(this_note,
-                                                                 True)
-                                            ))
+                                        _("%(str1)s: %(str2)s") % {
+                                            'str1' : str(this_note.get_type()),
+                                            'str2' : format
+                                            })
                     if tmp:
                         cit_ref_li += tmp
                         ordered1 += cit_ref_li
@@ -4012,19 +4026,24 @@ class PlacePages(BasePage):
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
                     else:
-                        url = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                        url = self.secure_mode
+                        url += "maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
                         head += Html("link", href=url, type="text/javascript",
                                      rel="stylesheet")
-                        src_js = "http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+                        src_js = self.secure_mode
+                        src_js += "ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
-                        src_js = "http://openlayers.org/en/v3.17.1/build/ol.js"
+                        src_js = self.secure_mode
+                        src_js += "openlayers.org/en/v3.17.1/build/ol.js"
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
-                        url = "http://openlayers.org/en/v3.17.1/css/ol.css"
+                        url = self.secure_mode
+                        url += "openlayers.org/en/v3.17.1/css/ol.css"
                         head += Html("link", href=url, type="text/javascript",
                                      rel="stylesheet")
-                        src_js = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                        src_js = self.secure_mode
+                        src_js += "maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
 
@@ -6600,19 +6619,24 @@ class PersonPages(BasePage):
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
         else:
-            url = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            url = self.secure_mode
+            url += "maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
             head += Html("link", href=url, type="text/javascript",
                          rel="stylesheet")
-            src_js = "http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+            src_js = self.secure_mode
+            src_js += "ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
-            src_js = "http://openlayers.org/en/v3.17.1/build/ol.js"
+            src_js = self.secure_mode
+            src_js += "openlayers.org/en/v3.17.1/build/ol.js"
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
-            url = "http://openlayers.org/en/v3.17.1/css/ol.css"
+            url = self.secure_mode
+            url += "openlayers.org/en/v3.17.1/css/ol.css"
             head += Html("link", href=url, type="text/javascript",
                          rel="stylesheet")
-            src_js = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            src_js = self.secure_mode
+            src_js += "maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
 
@@ -8094,54 +8118,55 @@ class StatisticsPage(BasePage):
             sec11 += Html("h4", self._("Individuals"), inline=True)
         body += sec11
         with Html("div", class_="content", id='subsection narrative') as sec1:
-            sec1 += Html("br", self._("Number of individuals") + ":" +
+            sec1 += Html("br", self._("Number of individuals") + self.COLON +
                          "%d" % npersons, inline=True)
-            sec1 += Html("br", self._("Males") + ":" +
+            sec1 += Html("br", self._("Males") + self.COLON +
                          "%d" % males, inline=True)
-            sec1 += Html("br", self._("Females") + ":" +
+            sec1 += Html("br", self._("Females") + self.COLON +
                          "%d" % females, inline=True)
-            sec1 += Html("br", self._("Individuals with unknown gender") + ":" +
-                         "%d" % unknown, inline=True)
+            sec1 += Html("br", self._("Individuals with unknown gender") +
+                         self.COLON + "%d" % unknown, inline=True)
         body += sec1
         with Html("div", class_="content", id='subsection narrative') as sec2:
             sec2 += Html("h4", self._("Family Information"), inline=True)
-            sec2 += Html("br", self._("Number of families") + ":" +
+            sec2 += Html("br", self._("Number of families") + self.COLON +
                          "%d" % nfamilies, inline=True)
-            sec2 += Html("br", self._("Unique surnames") + ":" +
+            sec2 += Html("br", self._("Unique surnames") + self.COLON +
                          "%d" % nsurnames, inline=True)
         body += sec2
         with Html("div", class_="content", id='subsection narrative') as sec3:
             sec3 += Html("h4", self._("Media Objects"), inline=True)
             sec3 += Html("br",
                          self._("Total number of media object references") +
-                            ":" + "%d" % total_media, inline=True)
+                            self.COLON + "%d" % total_media, inline=True)
             sec3 += Html("br", self._("Number of unique media objects") +
-                            ":" + "%d" % mobjects, inline=True)
+                            self.COLON + "%d" % mobjects, inline=True)
             sec3 += Html("br", self._("Total size of media objects") +
-                            ":" + "%8s %s" % (mbytes, self._("Megabyte|MB")),
+                            self.COLON +
+                            "%8s %s" % (mbytes, self._("Megabyte|MB")),
                             inline=True)
             sec3 += Html("br", self._("Missing Media Objects") +
-                            ":" + "%d" % len(notfound), inline=True)
+                            self.COLON + "%d" % len(notfound), inline=True)
         body += sec3
         with Html("div", class_="content", id='subsection narrative') as sec4:
             sec4 += Html("h4", self._("Miscellaneous"), inline=True)
-            sec4 += Html("br", self._("Number of events") +
-                            ":" + "%d" % report.database.get_number_of_events(),
+            sec4 += Html("br", self._("Number of events") + self.COLON +
+                            "%d" % report.database.get_number_of_events(),
                             inline=True)
-            sec4 += Html("br", self._("Number of places") +
-                            ":" + "%d" % report.database.get_number_of_places(),
+            sec4 += Html("br", self._("Number of places") + self.COLON +
+                            "%d" % report.database.get_number_of_places(),
                             inline=True)
             nsources = report.database.get_number_of_sources()
             sec4 += Html("br", self._("Number of sources") +
-                            ":" + "%d" % nsources,
+                            self.COLON + "%d" % nsources,
                             inline=True)
             ncitations = report.database.get_number_of_citations()
             sec4 += Html("br", self._("Number of citations") +
-                            ":" + "%d" % ncitations,
+                            self.COLON + "%d" % ncitations,
                             inline=True)
             nrepo = report.database.get_number_of_repositories()
             sec4 += Html("br", self._("Number of repositories") +
-                            ":" + "%d" % nrepo,
+                            self.COLON + "%d" % nrepo,
                             inline=True)
         body += sec4
 
@@ -8159,38 +8184,38 @@ class StatisticsPage(BasePage):
         body += section
         with Html("div", class_="content", id='subsection narrative') as sec5:
             sec5 += Html("h4", self._("Individuals"), inline=True)
-            sec5 += Html("br", self._("Number of individuals") + ":" +
+            sec5 += Html("br", self._("Number of individuals") + self.COLON +
                             "%d" % len(self.report.bkref_dict[Person]),
                             inline=True)
-            sec5 += Html("br", self._("Males") + ":" +
+            sec5 += Html("br", self._("Males") + self.COLON +
                          "%d" % males, inline=True)
-            sec5 += Html("br", self._("Females") + ":" +
+            sec5 += Html("br", self._("Females") + self.COLON +
                          "%d" % females, inline=True)
-            sec5 += Html("br", self._("Individuals with unknown gender") + ":" +
-                         "%d" % unknown, inline=True)
+            sec5 += Html("br", self._("Individuals with unknown gender") +
+                               self.COLON + "%d" % unknown, inline=True)
         body += sec5
         with Html("div", class_="content", id='subsection narrative') as sec6:
             sec6 += Html("h4", self._("Family Information"), inline=True)
-            sec6 += Html("br", self._("Number of families") + ":" +
+            sec6 += Html("br", self._("Number of families") + self.COLON +
                             "%d" % len(self.report.bkref_dict[Family]),
                             inline=True)
         body += sec6
         with Html("div", class_="content", id='subsection narrative') as sec7:
             sec7 += Html("h4", self._("Miscellaneous"), inline=True)
-            sec7 += Html("br", self._("Number of events") +
-                            ":" + "%d" % len(self.report.bkref_dict[Event]),
+            sec7 += Html("br", self._("Number of events") + self.COLON +
+                            "%d" % len(self.report.bkref_dict[Event]),
                             inline=True)
-            sec7 += Html("br", self._("Number of places") +
-                            ":" + "%d" % len(self.report.bkref_dict[Place]),
+            sec7 += Html("br", self._("Number of places") + self.COLON +
+                            "%d" % len(self.report.bkref_dict[Place]),
                             inline=True)
-            sec7 += Html("br", self._("Number of sources") +
-                            ":" + "%d" % len(self.report.bkref_dict[Source]),
+            sec7 += Html("br", self._("Number of sources") + self.COLON +
+                            "%d" % len(self.report.bkref_dict[Source]),
                             inline=True)
-            sec7 += Html("br", self._("Number of citations") +
-                            ":" + "%d" % len(self.report.bkref_dict[Citation]),
+            sec7 += Html("br", self._("Number of citations") + self.COLON +
+                            "%d" % len(self.report.bkref_dict[Citation]),
                             inline=True)
-            sec7 += Html("br", self._("Number of repositories") +
-                           ":" + "%d" % len(self.report.bkref_dict[Repository]),
+            sec7 += Html("br", self._("Number of repositories") + self.COLON +
+                            "%d" % len(self.report.bkref_dict[Repository]),
                             inline=True)
         body += sec7
 
@@ -8349,6 +8374,10 @@ class NavWebReport(Report):
         self.bkref_dict = None
         self.rel_class = None
         self.tab = None
+        if self.options['securesite']:
+            self.secure_mode = HTTPS
+        else:
+            self.secure_mode = HTTP
 
     def write_report(self):
         """
@@ -9659,6 +9688,11 @@ class NavWebOptions(MenuReportOptions):
         stdoptions.add_name_format_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
+
+        self.__securesite = BooleanOption(_("This is a secure site (https)"),
+                                          False)
+        self.__securesite.set_help(_('Whether to use http:// or https://'))
+        addopt("securesite", self.__securesite)
 
     def __add_report_options_2(self, menu):
         """

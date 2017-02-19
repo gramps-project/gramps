@@ -998,22 +998,6 @@ class StatisticsChartOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
 
-        self._nf = stdoptions.add_name_format_option(menu, category_name)
-        self._nf.connect('value-changed', self.__update_filters)
-
-        self.__update_filters()
-
-        stdoptions.add_private_data_option(menu, category_name)
-
-        stdoptions.add_living_people_option(menu, category_name)
-
-        stdoptions.add_localization_option(menu, category_name)
-
-        ################################
-        category_name = _("Report Details")
-        add_option = partial(menu.add_option, category_name)
-        ################################
-
         sortby = EnumeratedListOption(_('Sort chart items by'),
                                       _options.SORT_VALUE)
         for item_idx in range(len(_options.opt_sorts)):
@@ -1057,8 +1041,26 @@ class StatisticsChartOptions(MenuReportOptions):
                              "used instead of a bar chart."))
         add_option("bar_items", bar_items)
 
-        # -------------------------------------------------
+        ################################
+        category_name = _("Report Options (2)")
+        add_option = partial(menu.add_option, category_name)
+        ################################
+
+        self._nf = stdoptions.add_name_format_option(menu, category_name)
+        self._nf.connect('value-changed', self.__update_filters)
+
+        self.__update_filters()
+
+        stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
+
+        stdoptions.add_localization_option(menu, category_name)
+
+        ################################
         # List of available charts on separate option tabs
+        ################################
+
         idx = 0
         third = (len(_Extract.extractors) + 1) // 3
         chart_types = []

@@ -98,7 +98,13 @@ class NoteLinkReport(Report):
 
         self.doc.end_row()
 
+        if self._user:
+            self._user.begin_progress(_("Note Link Check Report"),
+                                      _("Generating report"),
+                                      self.database.get_number_of_notes())
         for note in self.database.iter_notes():
+            if self._user:
+                self._user.step_progress()
             for (ldomain, ltype, lprop, lvalue) in note.get_links():
                     if ldomain == "gramps":
                         tagtype = _(ltype)
@@ -141,6 +147,8 @@ class NoteLinkReport(Report):
                     self.doc.end_cell()
 
                     self.doc.end_row()
+        if self._user:
+            self._user.end_progress()
 
         self.doc.end_table()
 

@@ -507,16 +507,6 @@ class DescendantOptions(MenuReportOptions):
         self.__pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", self.__pid)
 
-        stdoptions.add_name_format_option(menu, category_name)
-
-        stdoptions.add_private_data_option(menu, category_name)
-
-        stdoptions.add_living_people_option(menu, category_name)
-
-        stdoptions.add_localization_option(menu, category_name)
-
-        category_name = _("Content")
-
         numbering = EnumeratedListOption(_("Numbering system"), "Simple")
         numbering.set_items([
             ("Simple", _("Simple numbering")),
@@ -545,6 +535,16 @@ class DescendantOptions(MenuReportOptions):
         dups.set_help(
             _("Whether to show duplicate Family Trees in the report."))
         menu.add_option(category_name, "dups", dups)
+
+        category_name = _("Report Options (2)")
+
+        stdoptions.add_name_format_option(menu, category_name)
+
+        stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
+
+        stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Descendant Report."""

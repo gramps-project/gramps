@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -70,6 +71,30 @@ class Location(SecondaryObject, LocationBase):
         (lbase, self.parish) = data
         LocationBase.unserialize(self, lbase)
         return self
+
+    @classmethod
+    def get_schema(cls):
+        """
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
+        """
+        return {
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "street": {"type": "string"},
+                "locality": {"type": "string"},
+                "city": {"type": "string"},
+                "county": {"type": "string"},
+                "state": {"type": "string"},
+                "country": {"type": "string"},
+                "postal": {"type": "string"},
+                "phone": {"type": "string"},
+                "parish": {"type": "string"}
+            }
+        }
 
     def get_text_data_list(self):
         """

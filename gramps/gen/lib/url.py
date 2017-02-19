@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2009-2013  Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -71,6 +72,25 @@ class Url(SecondaryObject, PrivacyBase):
         (self.private, self.path, self.desc, type_value) = data
         self.type.unserialize(type_value)
         return self
+
+    @classmethod
+    def get_schema(cls):
+        """
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
+        """
+        return {
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "private": {"type": "boolean"},
+                "path": {"type": "string"},
+                "desc": {"type": "string"},
+                "type": UrlType.get_schema()
+            }
+        }
 
     def get_text_data_list(self):
         """

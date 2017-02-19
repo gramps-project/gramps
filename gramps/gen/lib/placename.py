@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2015       Nick Hall
+# Copyright (C) 2015,2017  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -78,6 +78,25 @@ class PlaceName(SecondaryObject, DateBase):
         (self.value, date, self.lang) = data
         DateBase.unserialize(self, date)
         return self
+
+    @classmethod
+    def get_schema(cls):
+        """
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
+        """
+        from .date import Date
+        return {
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "value": {"type": "string"},
+                "date": {"oneOf": [{"type": "null"}, Date.get_schema()]},
+                "lang": {"type": "string"}
+            }
+        }
 
     def get_text_data_list(self):
         """

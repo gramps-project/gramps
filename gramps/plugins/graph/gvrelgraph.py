@@ -58,7 +58,8 @@ from gramps.gen.lib import ChildRefType, EventRoleType, EventType
 from gramps.gen.utils.file import media_path_full, find_file
 from gramps.gen.utils.thumbnails import get_thumbnail_path
 from gramps.gen.relationship import get_relationship_calculator
-from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
+                                 find_parents)
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.errors import ReportError
@@ -192,9 +193,85 @@ class RelGraphReport(Report):
         person_handles = self._filter.apply(self._db,
                                             self._db.iter_person_handles())
 
+        person_handles = self.sort_persons(person_handles)
+
         if len(person_handles) > 1:
+            if self._user:
+                self._user.begin_progress(_("Relationship Graph"),
+                                          _("Generating report"),
+                                          len(person_handles) * 2)
             self.add_persons_and_families(person_handles)
             self.add_child_links_to_families(person_handles)
+            if self._user:
+                self._user.end_progress()
+
+    def sort_persons(self, person_handle_list):
+        "sort persons by close relations"
+
+        # first make a list of all persons who don't have any parents
+        root_nodes = list()
+        for person_handle in person_handle_list:
+            person = self.database.get_person_from_handle(person_handle)
+            has_parent = False
+            for parent_handle in find_parents(self.database, person):
+                if parent_handle not in person_handle_list:
+                    continue
+                has_parent = True
+            if not has_parent:
+                root_nodes.append(person_handle)
+
+        # now start from all root nodes we found and traverse their trees
+        outlist = list()
+        p_done = set()
+        for person_handle in root_nodes:
+            todolist = list()
+            todolist.append(person_handle)
+            while len(todolist) > 0:
+                # take the first person from todolist and do sanity check
+                cur = todolist.pop(0)
+                if cur in p_done:
+                    continue
+                if cur not in person_handle_list:
+                    p_done.add(cur)
+                    continue
+                person = self.database.get_person_from_handle(cur)
+
+                # first check whether both parents are added
+                missing_parents = False
+                for parent_handle in find_parents(self.database, person):
+                    if not parent_handle or parent_handle in p_done:
+                        continue
+                    if parent_handle not in person_handle_list:
+                        continue
+                    todolist.insert(0, parent_handle)
+                    missing_parents = True
+
+                # if one of the parents is still missing, wait for them
+                if missing_parents:
+                    continue
+
+                # add person to the sorted output
+                outlist.append(cur)
+                p_done.add(cur)
+
+                # add all spouses and children to the todo list
+                family_list = person.get_family_handle_list()
+                for fam_handle in family_list:
+                    family = self.database.get_family_from_handle(fam_handle)
+                    if family is None:
+                        continue
+                    if (family.get_father_handle() and
+                            family.get_father_handle() != cur):
+                        todolist.insert(0, family.get_father_handle())
+                    if (family.get_mother_handle() and
+                            family.get_mother_handle() != cur):
+                        todolist.insert(0, family.get_mother_handle())
+                    for child_ref in family.get_child_ref_list():
+                        todolist.append(child_ref.ref)
+
+        # finally store the result
+        assert len(person_handle_list) == len(outlist)
+        return outlist
 
     def add_child_links_to_families(self, person_handles):
         """
@@ -205,6 +282,8 @@ class RelGraphReport(Report):
         person_dict = dict([handle, 1] for handle in person_handles)
 
         for person_handle in person_handles:
+            if self._user:
+                self._user.step_progress()
             person = self._db.get_person_from_handle(person_handle)
             p_id = person.get_gramps_id()
             for fam_handle in person.get_parent_family_handle_list():
@@ -259,8 +338,10 @@ class RelGraphReport(Report):
 
         # The list of families for which we have output the node,
         # so we don't do it twice
-        families_done = {}
+        families_done = set()
         for person_handle in person_handles:
+            if self._user:
+                self._user.step_progress()
             # determine per person if we use HTML style label
             if self.includeimg:
                 self.use_html_output = True
@@ -288,7 +369,7 @@ class RelGraphReport(Report):
                     if family is None:
                         continue
                     if fam_handle not in families_done:
-                        families_done[fam_handle] = 1
+                        families_done.add(fam_handle)
                         self.__add_family(fam_handle)
                     # If subgraphs are not chosen then each parent is linked
                     # separately to the family. This gives Graphviz greater
@@ -677,6 +758,38 @@ class RelGraphOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
 
+        arrow = EnumeratedListOption(_("Arrowhead direction"), 'd')
+        for i in range(0, len(_ARROWS)):
+            arrow.add_item(_ARROWS[i]["value"], _ARROWS[i]["name"])
+        arrow.set_help(_("Choose the direction that the arrows point."))
+        add_option("arrow", arrow)
+
+        color = EnumeratedListOption(_("Graph coloring"), 'filled')
+        for i in range(0, len(_COLORS)):
+            color.add_item(_COLORS[i]["value"], _COLORS[i]["name"])
+        color.set_help(_("Males will be shown with blue, females "
+                         "with red.  If the sex of an individual "
+                         "is unknown it will be shown with gray."))
+        add_option("color", color)
+
+        # see bug report #2180
+        roundedcorners = BooleanOption(_("Use rounded corners"), False)
+        roundedcorners.set_help(_("Use rounded corners to differentiate "
+                                  "between women and men."))
+        add_option("useroundedcorners", roundedcorners)
+
+        include_id = EnumeratedListOption(_('Gramps ID'), 0)
+        include_id.add_item(0, _('Do not include'))
+        include_id.add_item(1, _('Share an existing line'))
+        include_id.add_item(2, _('On a line of its own'))
+        include_id.set_help(_("Whether (and where) to include Gramps IDs"))
+        add_option("incid", include_id)
+
+        ################################
+        category_name = _("Report Options (2)")
+        add_option = partial(menu.add_option, category_name)
+        ################################
+
         self._nf = stdoptions.add_name_format_option(menu, category_name)
         self._nf.connect('value-changed', self.__update_filters)
 
@@ -719,13 +832,6 @@ class RelGraphOptions(MenuReportOptions):
                        "to the files generated by the 'Narrated "
                        "Web Site' report."))
         add_option("url", url)
-
-        include_id = EnumeratedListOption(_('Include Gramps ID'), 0)
-        include_id.add_item(0, _('Do not include'))
-        include_id.add_item(1, _('Share an existing line'))
-        include_id.add_item(2, _('On a line of its own'))
-        include_id.set_help(_("Whether (and where) to include Gramps IDs"))
-        add_option("incid", include_id)
 
         self.__show_relships = BooleanOption(
             _("Include relationship to center person"), False)
@@ -772,14 +878,6 @@ class RelGraphOptions(MenuReportOptions):
         add_option = partial(menu.add_option, _("Graph Style"))
         ################################
 
-        color = EnumeratedListOption(_("Graph coloring"), 'filled')
-        for i in range(0, len(_COLORS)):
-            color.add_item(_COLORS[i]["value"], _COLORS[i]["name"])
-        color.set_help(_("Males will be shown with blue, females "
-                         "with red.  If the sex of an individual "
-                         "is unknown it will be shown with gray."))
-        add_option("color", color)
-
         color_males = ColorOption(_('Males'), '#e0e0ff')
         color_males.set_help(_('The color to use to display men.'))
         add_option('colormales', color_males)
@@ -797,18 +895,6 @@ class RelGraphOptions(MenuReportOptions):
         color_family = ColorOption(_('Families'), '#ffffe0')
         color_family.set_help(_('The color to use to display families.'))
         add_option('colorfamilies', color_family)
-
-        arrow = EnumeratedListOption(_("Arrowhead direction"), 'd')
-        for i in range(0, len(_ARROWS)):
-            arrow.add_item(_ARROWS[i]["value"], _ARROWS[i]["name"])
-        arrow.set_help(_("Choose the direction that the arrows point."))
-        add_option("arrow", arrow)
-
-        # see bug report #2180
-        roundedcorners = BooleanOption(_("Use rounded corners"), False)
-        roundedcorners.set_help(_("Use rounded corners to differentiate "
-                                  "between women and men."))
-        add_option("useroundedcorners", roundedcorners)
 
         dashed = BooleanOption(
             _("Indicate non-birth relationships with dotted lines"), True)

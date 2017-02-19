@@ -226,19 +226,6 @@ class RecordsReportOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
 
-        self._nf = stdoptions.add_name_format_option(menu, category_name)
-        self._nf.connect('value-changed', self.__update_filters)
-
-        self.__update_filters()
-
-        stdoptions.add_private_data_option(menu, category_name)
-
-        stdoptions.add_living_people_option(menu, category_name)
-
-        stdoptions.add_localization_option(menu, category_name)
-
-        category_name = _("Content")
-
         top_size = NumberOption(_("Number of ranks to display"), 3, 1, 100)
         menu.add_option(category_name, "top_size", top_size)
 
@@ -254,6 +241,19 @@ class RecordsReportOptions(MenuReportOptions):
         footer = StringOption(_("Footer text"), "")
         menu.add_option(category_name, "footer", footer)
 
+        category_name = _("Report Options (2)")
+
+        self._nf = stdoptions.add_name_format_option(menu, category_name)
+        self._nf.connect('value-changed', self.__update_filters)
+
+        self.__update_filters()
+
+        stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
+
+        stdoptions.add_localization_option(menu, category_name)
+
         p_count = 0
         for (text, varname, default) in RECORDS:
             if varname.startswith('person'):
@@ -264,12 +264,12 @@ class RecordsReportOptions(MenuReportOptions):
             option = BooleanOption(_(text), default)
             if varname.startswith('person'):
                 if p_idx >= p_half:
-                    category_name = _("Person Records 2")
+                    category_name = _("Person 2")
                 else:
-                    category_name = _("Person Records 1")
+                    category_name = _("Person 1")
                 p_idx += 1
             elif varname.startswith('family'):
-                category_name = _("Family Records")
+                category_name = _("Family")
             menu.add_option(category_name, varname, option)
 
     def __update_filters(self):

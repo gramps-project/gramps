@@ -484,7 +484,8 @@ class DbManager(CLIDbManager, ManagedWindow):
             else:
                 del self.selection
                 del self.name_renderer
-                self.close()
+                if value != Gtk.ResponseType.DELETE_EVENT:
+                    self.close()
                 return None
 
     def __ask_to_break_lock(self, store, node):

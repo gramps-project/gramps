@@ -5,6 +5,7 @@
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,7 +38,6 @@ from .tagbase import TagBase
 from .attrbase import SrcAttributeBase
 from .reporef import RepoRef
 from .const import DIFFERENT, EQUAL, IDENTICAL
-from .handle import Handle
 from .citationbase import IndirectCitationBase
 
 #-------------------------------------------------------------------------
@@ -100,25 +100,40 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
     @classmethod
     def get_schema(cls):
         """
-        Return the schema as a dictionary for this class.
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
         """
         from .srcattribute import SrcAttribute
         from .reporef import RepoRef
-        from .url import Url
+        from .mediaref import MediaRef
         return {
-            "handle": Handle("Source", "SOURCE-HANDLE"),
-            "gramps_id": str,
-            "title": str,
-            "author": str,
-            "pubinfo": str,
-            "note_list": [Handle("Note", "NOTE-HANDLE")],
-            "media_list": [Handle("Media", "MEDIA-HANDLE")],
-            "abbrev": str,
-            "change": int,
-            "srcattr_list": [SrcAttribute],
-            "reporef_list": [RepoRef],
-            "tag_list": [Handle("Tag", "")],
-            "private": bool
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "handle": {"type": "string",
+                           "maxLength": 50},
+                "gramps_id": {"type": "string"},
+                "title": {"type": "string"},
+                "author": {"type": "string"},
+                "pubinfo": {"type": "string"},
+                "note_list": {"type": "array",
+                              "items": {"type": "string",
+                                        "maxLength": 50}},
+                "media_list": {"type": "array",
+                               "items": MediaRef.get_schema()},
+                "abbrev": {"type": "string"},
+                "change": {"type": "integer"},
+                "srcattr_list": {"type": "array",
+                                 "items": SrcAttribute.get_schema()},
+                "reporef_list": {"type": "array",
+                                 "items": RepoRef.get_schema()},
+                "tag_list": {"type": "array",
+                             "items": {"type": "string",
+                                       "maxLength": 50}},
+                "private": {"type": "boolean"}
+            }
         }
 
     def unserialize(self, data):

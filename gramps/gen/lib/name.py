@@ -5,6 +5,7 @@
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,7 +38,6 @@ from .notebase import NoteBase
 from .datebase import DateBase
 from .surnamebase import SurnameBase
 from .nametype import NameType
-from .handle import Handle
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from .date import Date
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -152,23 +152,38 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
 
     @classmethod
     def get_schema(cls):
+        """
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
+        """
         from .surname import Surname
         return {
-            "private": bool,
-            "citation_list": [Handle("Citation", "CITATION-HANDLE")],
-            "note_list": [Handle("Note", "NOTE-HANDLE")],
-            "date": Date,
-            "first_name": str,
-            "surname_list": [Surname],
-            "suffix": str,
-            "title": str,
-            "type": NameType,
-            "group_as": str,
-            "sort_as": str,
-            "display_as": str,
-            "call": str,
-            "nick": str,
-            "famnick": str,
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "private": {"type": "boolean"},
+                "citation_list": {"type": "array",
+                                  "items": {"type": "string",
+                                            "maxLength": 50}},
+                "note_list": {"type": "array",
+                              "items": {"type": "string",
+                                        "maxLength": 50}},
+                "date": {"oneOf": [{"type": "null"}, Date.get_schema()]},
+                "first_name": {"type": "string"},
+                "surname_list": {"type": "array",
+                                 "items": Surname.get_schema()},
+                "suffix": {"type": "string"},
+                "title": {"type": "string"},
+                "type": NameType.get_schema(),
+                "group_as": {"type": "string"},
+                "sort_as": {"type": "integer"},
+                "display_as": {"type": "integer"},
+                "call": {"type": "string"},
+                "nick": {"type": "string"},
+                "famnick": {"type": "string"}
+            }
         }
 
     def is_empty(self):

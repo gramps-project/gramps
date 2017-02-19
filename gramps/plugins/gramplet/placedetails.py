@@ -35,7 +35,7 @@ from gramps.gui.widgets import Photo
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.display.place import displayer as place_displayer
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import COLON, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 class PlaceDetails(Gramplet):
@@ -69,7 +69,7 @@ class PlaceDetails(Gramplet):
         """
         Add a row to the table.
         """
-        label = Gtk.Label(label=title + ':', halign=Gtk.Align.END,
+        label = Gtk.Label(label=title + COLON, halign=Gtk.Align.END,
                           valign=Gtk.Align.START)
         label.show()
         value = Gtk.Label(label=value, halign=Gtk.Align.START)

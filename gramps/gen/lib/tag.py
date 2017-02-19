@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2010      Nick Hall
+# Copyright (C) 2010,2017 Nick Hall
 # Copyright (C) 2013      Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -29,7 +29,6 @@ Tag object for Gramps.
 #
 #-------------------------------------------------------------------------
 from .tableobj import TableObject
-from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -104,14 +103,24 @@ class Tag(TableObject):
     @classmethod
     def get_schema(cls):
         """
-        Return the schema for Tag
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
         """
         return {
-            "handle": Handle("Tag", "TAG-HANDLE"),
-            "name": str,
-            "color": str,
-            "priority": int,
-            "change": int,
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "handle": {"type": "string",
+                           "maxLength": 50},
+                "name": {"type": "string"},
+                "color": {"type": "string",
+                          "maxLength": 13},
+                "priority": {"type": "integer",
+                             "minimum": 0},
+                "change": {"type": "integer"}
+            }
         }
 
     @classmethod

@@ -1517,7 +1517,7 @@ class DescendTreeOptions(MenuReportOptions):
         Add options to the menu for the descendant report.
         """
         ##################
-        category_name = _("Report Options")
+        category_name = _("Tree Options")
 
         if self.name.split(",")[0] == _RPT_NAME:
             self.__pid = PersonOption(_("Report for"))
@@ -1527,17 +1527,6 @@ class DescendTreeOptions(MenuReportOptions):
             self.__pid = FamilyOption(_("Report for"))
             self.__pid.set_help(_("The main family for the report"))
             menu.add_option(category_name, "pid", self.__pid)
-
-        stdoptions.add_name_format_option(menu, category_name)
-
-        stdoptions.add_private_data_option(menu, category_name)
-
-        stdoptions.add_living_people_option(menu, category_name)
-
-        stdoptions.add_localization_option(menu, category_name)
-
-        ##################
-        category_name = _("Tree Options")
 
         max_gen = NumberOption(_("Generations"), 10, 1, 50)
         max_gen.set_help(_("The number of generations to include in the tree"))
@@ -1562,16 +1551,6 @@ class DescendTreeOptions(MenuReportOptions):
                              "resulting in a smaller tree"))
         menu.add_option(category_name, "compress_tree", compresst)
 
-        ##################
-        category_name = _("Display")
-
-        disp = TextOption(_("Descendant\nDisplay Format"),
-                          ["$n",
-                           "%s $b" %_BORN,
-                           "-{%s $d}" %_DIED])
-        disp.set_help(_("Display format for a descendant."))
-        menu.add_option(category_name, "descend_disp", disp)
-
         bold = BooleanOption(_('Bold direct descendants'), True)
         bold.set_help(
             _("Whether to bold those people that are direct "
@@ -1579,44 +1558,33 @@ class DescendTreeOptions(MenuReportOptions):
             )
         menu.add_option(category_name, "bolddirect", bold)
 
-        #bug 4767
-        #diffspouse = BooleanOption(
-        #    _("Use separate display format for spouses"),
-        #    True)
-        #diffspouse.set_help(_("Whether spouses can have a different format."))
-        #menu.add_option(category_name, "diffspouse", diffspouse)
-
         indspouce = BooleanOption(_('Indent Spouses'), True)
         indspouce.set_help(_("Whether to indent the spouses in the tree."))
         menu.add_option(category_name, "ind_spouse", indspouce)
 
-        sdisp = TextOption(_("Spousal\nDisplay Format"),
-                           ["$n",
-                            "%s $b" %_BORN,
-                            "-{%s $d}" %_DIED])
-        sdisp.set_help(_("Display format for a spouse."))
-        menu.add_option(category_name, "spouse_disp", sdisp)
-
-        incmarr = BooleanOption(_('Include Marriage box'), True)
-        incmarr.set_help(
-            _("Whether to include a separate marital box in the report"))
-        menu.add_option(category_name, "inc_marr", incmarr)
-
-        marrdisp = StringOption(_("Marriage\nDisplay Format"), "%s $m" % _MARR)
-        marrdisp.set_help(_("Display format for the marital box."))
-        menu.add_option(category_name, "marr_disp", marrdisp)
-
         ##################
-        category_name = _("Replace")
+        category_name = _("Report Options")
 
-        repldisp = TextOption(
-            _("Replace Display Format:\n'Replace this'/' with this'"),
-            [])
-        repldisp.set_help(_("i.e.\nUnited States of America/U.S.A"))
-        menu.add_option(category_name, "replace_list", repldisp)
+        self.title = EnumeratedListOption(_("Report Title"), 0)
+        self.title.add_item(0, _("Do not include a title"))
+        self.title.add_item(1, _("Descendant Chart for [selected person(s)]"))
+        if self.name.split(",")[0] != _RPT_NAME:
+            self.title.add_item(2,
+                                _("Family Chart for [names of chosen family]"))
+            if self.showparents.get_value():
+                self.title.add_item(3,
+                                    _("Cousin Chart for [names of children]"))
+        self.title.set_help(_("Choose a title for the report"))
+        menu.add_option(category_name, "report_title", self.title)
+        self.showparents.connect('value-changed', self.__Title_enum)
 
-        ##################
-        category_name = _("Size")
+        border = BooleanOption(_('Include a border'), False)
+        border.set_help(_("Whether to make a border around the report."))
+        menu.add_option(category_name, "inc_border", border)
+
+        prnnum = BooleanOption(_('Include Page Numbers'), False)
+        prnnum.set_help(_("Whether to include page numbers on each page."))
+        menu.add_option(category_name, "inc_pagenum", prnnum)
 
         self.scale = EnumeratedListOption(_("Scale tree to fit"), 0)
         self.scale.add_item(0, _("Do not scale tree"))
@@ -1656,6 +1624,84 @@ class DescendTreeOptions(MenuReportOptions):
         else:
             self.__onepage = None
 
+        self.__blank = BooleanOption(_('Include Blank Pages'), True)
+        self.__blank.set_help(_("Whether to include pages that are blank."))
+        menu.add_option(category_name, "inc_blank", self.__blank)
+
+        ##################
+        category_name = _("Report Options (2)")
+
+        stdoptions.add_name_format_option(menu, category_name)
+
+        stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_living_people_option(menu, category_name)
+
+        stdoptions.add_localization_option(menu, category_name)
+
+        ##################
+        category_name = _("Display")
+
+        disp = TextOption(_("Descendant\nDisplay Format"),
+                          ["$n",
+                           "%s $b" %_BORN,
+                           "-{%s $d}" %_DIED])
+        disp.set_help(_("Display format for a descendant."))
+        menu.add_option(category_name, "descend_disp", disp)
+
+        #bug 4767
+        #diffspouse = BooleanOption(
+        #    _("Use separate display format for spouses"),
+        #    True)
+        #diffspouse.set_help(_("Whether spouses can have a different format."))
+        #menu.add_option(category_name, "diffspouse", diffspouse)
+
+        sdisp = TextOption(_("Spousal\nDisplay Format"),
+                           ["$n",
+                            "%s $b" %_BORN,
+                            "-{%s $d}" %_DIED])
+        sdisp.set_help(_("Display format for a spouse."))
+        menu.add_option(category_name, "spouse_disp", sdisp)
+
+        self.incmarr = BooleanOption(_('Include Marriage box'), True)
+        self.incmarr.set_help(
+            _("Whether to include a separate marital box in the report"))
+        menu.add_option(category_name, "inc_marr", self.incmarr)
+        self.incmarr.connect('value-changed', self._incmarr_changed)
+
+        self.marrdisp = StringOption(_("Marriage\nDisplay Format"),
+                                       "%s $m" % _MARR)
+        self.marrdisp.set_help(_("Display format for the marital box."))
+        menu.add_option(category_name, "marr_disp", self.marrdisp)
+        self._incmarr_changed()
+
+        ##################
+        category_name = _("Advanced")
+
+        repldisp = TextOption(
+            _("Replace Display Format:\n'Replace this'/' with this'"),
+            [])
+        repldisp.set_help(_("i.e.\nUnited States of America/U.S.A"))
+        menu.add_option(category_name, "replace_list", repldisp)
+
+        self.usenote = BooleanOption(_('Include a note'), False)
+        self.usenote.set_help(_("Whether to include a note on the report."))
+        menu.add_option(category_name, "inc_note", self.usenote)
+        self.usenote.connect('value-changed', self._usenote_changed)
+
+        self.notedisp = TextOption(_("Note"), [])
+        self.notedisp.set_help(_("Add a note\n\n"
+                                 "$T inserts today's date"))
+        menu.add_option(category_name, "note_disp", self.notedisp)
+
+        locales = NoteType(0)
+        self.notelocal = EnumeratedListOption(_("Note Location"), 2)
+        for num, text in locales.note_locals():
+            self.notelocal.add_item(num, text)
+        self.notelocal.set_help(_("Where to place the note."))
+        menu.add_option(category_name, "note_place", self.notelocal)
+        self._usenote_changed()
+
         self.box_Y_sf = NumberOption(_("inter-box Y scale factor"),
                                      1.00, 0.10, 2.00, 0.01)
         self.box_Y_sf.set_help(_("Make the inter-box Y bigger or smaller"))
@@ -1666,54 +1712,19 @@ class DescendTreeOptions(MenuReportOptions):
         self.box_shadow_sf.set_help(_("Make the box shadow bigger or smaller"))
         menu.add_option(category_name, "shadowscale", self.box_shadow_sf)
 
+    def _incmarr_changed(self):
+        """
+        If Marriage box is not enabled, disable Marriage Display Format box
+        """
+        value = self.incmarr.get_value()
+        self.marrdisp.set_available(value)
 
-        ##################
-        category_name = _("Include")
-
-        self.title = EnumeratedListOption(_("Report Title"), 0)
-        self.title.add_item(0, _("Do not include a title"))
-        self.title.add_item(1, _("Descendant Chart for [selected person(s)]"))
-        if self.name.split(",")[0] != _RPT_NAME:
-            self.title.add_item(2,
-                                _("Family Chart for [names of chosen family]"))
-            if self.showparents.get_value():
-                self.title.add_item(3,
-                                    _("Cousin Chart for [names of children]"))
-        self.title.set_help(_("Choose a title for the report"))
-        menu.add_option(category_name, "report_title", self.title)
-        self.showparents.connect('value-changed', self.__Title_enum)
-
-        border = BooleanOption(_('Include a border'), False)
-        border.set_help(_("Whether to make a border around the report."))
-        menu.add_option(category_name, "inc_border", border)
-
-        prnnum = BooleanOption(_('Include Page Numbers'), False)
-        prnnum.set_help(_("Whether to include page numbers on each page."))
-        menu.add_option(category_name, "inc_pagenum", prnnum)
-
-        self.__blank = BooleanOption(_('Include Blank Pages'), True)
-        self.__blank.set_help(_("Whether to include pages that are blank."))
-        menu.add_option(category_name, "inc_blank", self.__blank)
-
-        #category_name = _("Notes")
-
-        self.usenote = BooleanOption(_('Include a note'), False)
-        self.usenote.set_help(
-            _("Whether to include a note on the report.")
-            )
-        menu.add_option(category_name, "inc_note", self.usenote)
-
-        self.notedisp = TextOption(_("Note"), [])
-        self.notedisp.set_help(_("Add a note"
-                                 "\n\n$T inserts today's date"))
-        menu.add_option(category_name, "note_disp", self.notedisp)
-
-        locals = NoteType(0)
-        notelocal = EnumeratedListOption(_("Note Location"), 2)
-        for num, text in locals.note_locals():
-            notelocal.add_item(num, text)
-        notelocal.set_help(_("Where to place the note."))
-        menu.add_option(category_name, "note_place", notelocal)
+    def _usenote_changed(self):
+        """
+        If Note box is not enabled, disable Note Location box
+        """
+        value = self.usenote.get_value()
+        self.notelocal.set_available(value)
 
     def __check_blank(self):
         """dis/enables the 'print blank pages' checkbox"""

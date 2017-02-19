@@ -5,6 +5,7 @@
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2017       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -154,6 +155,35 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         NoteBase.unserialize(self, note_list)
         DateBase.unserialize(self, date)
         return self
+
+    @classmethod
+    def get_schema(cls):
+        """
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
+        """
+        from .date import Date
+        return {
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "citation_list": {"type": "array",
+                                  "items": {"type": "string",
+                                            "maxLength": 50}},
+                "note_list": {"type": "array",
+                              "items": {"type": "string",
+                                        "maxLength": 50}},
+                "date": {"oneOf": [{"type": "null"}, Date.get_schema()]},
+                "type": {"type": "integer"},
+                "place": {"type": "string"},
+                "famc": {"type": ["null", "string"]},
+                "temple": {"type": "string"},
+                "status": {"type": "integer"},
+                "private": {"type": "boolean"}
+            }
+        }
 
     def get_text_data_list(self):
         """

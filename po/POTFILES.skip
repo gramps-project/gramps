@@ -177,6 +177,7 @@ gramps/gen/lib/tag.py
 gramps/gen/lib/test/date_test.py
 gramps/gen/lib/test/grampstype_test.py
 gramps/gen/lib/test/merge_test.py
+gramps/gen/lib/test/schema_test.py
 gramps/gen/lib/url.py
 gramps/gen/lib/urlbase.py
 #

@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2008  Zsolt Foldvari
 # Copyright (C) 2013  Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2017  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -84,3 +85,25 @@ class StyledTextTag:
         self.name = StyledTextTagType()
         self.name.unserialize(the_name)
         return self
+
+    @classmethod
+    def get_schema(cls):
+        """
+        Returns the JSON Schema for this class.
+
+        :returns: Returns a dict containing the schema.
+        :rtype: dict
+        """
+        return {
+            "type": "object",
+            "properties": {
+                "_class": {"enum": [cls.__name__]},
+                "name": StyledTextTagType.get_schema(),
+                "value": {"type": ["null", "string", "integer"]},
+                "ranges": {"type": "array",
+                           "items": {"type": "array",
+                                     "items": {"type": "integer"},
+                                     "minItems": 2,
+                                     "maxItems": 2}}
+            }
+        }

@@ -423,6 +423,16 @@ class TimeLineOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
 
+        sortby = EnumeratedListOption(_('Sort by'), 0)
+        idx = 0
+        for item in _get_sort_functions(Sort(self.__db)):
+            sortby.add_item(idx, _(item[0]))
+            idx += 1
+        sortby.set_help(_("Sorting method to use"))
+        menu.add_option(category_name, "sortby", sortby)
+
+        category_name = _("Report Options (2)")
+
         self._nf = stdoptions.add_name_format_option(menu, category_name)
         self._nf.connect('value-changed', self.__update_filters)
 
@@ -431,14 +441,6 @@ class TimeLineOptions(MenuReportOptions):
         stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_living_people_option(menu, category_name)
-
-        sortby = EnumeratedListOption(_('Sort by'), 0)
-        idx = 0
-        for item in _get_sort_functions(Sort(self.__db)):
-            sortby.add_item(idx, _(item[0]))
-            idx += 1
-        sortby.set_help(_("Sorting method to use"))
-        menu.add_option(category_name, "sortby", sortby)
 
         stdoptions.add_localization_option(menu, category_name)
 

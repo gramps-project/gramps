@@ -307,7 +307,8 @@ class EditName(EditSecondary):
     def build_menu_names(self, name):
         if name:
             ntext = name_displayer.display_name(name)
-            submenu_label = '%s: %s' % (_('Name'), ntext)
+            submenu_label = _('%(str1)s: %(str2)s') % {'str1' : _('Name'),
+                                                       'str2' : ntext}
         else:
             submenu_label = _('New Name')
         menu_label = _('Name Editor')

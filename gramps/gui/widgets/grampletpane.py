@@ -45,7 +45,7 @@ LOG = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError
-from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR
+from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR, COLON
 from ..editors import EditPerson, EditFamily
 from ..managedwindow import ManagedWindow
 from ..utils import is_right_click, rgb_to_hex
@@ -580,7 +580,7 @@ class GuiGramplet:
         hbox.pack_start(options, True, True, 0)
         topbox.pack_start(hbox, False, False, 0)
         for item in self.pui.option_order:
-            label = Gtk.Label(label=item + ":")
+            label = Gtk.Label(label=item + COLON)
             label.set_halign(Gtk.Align.END)
             labels.pack_start(label, True, True, 0)
             options.pack_start(self.pui.option_dict[item][0], True, True, 0) # widget
