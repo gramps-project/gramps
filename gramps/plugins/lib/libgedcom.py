@@ -4555,6 +4555,9 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
 
+        if not line.data:  # handles empty FAMC line
+            self.__not_recognized(line, state)
+            return
         sub_state = CurrentState()
         sub_state.person = state.person
         sub_state.level = state.level + 1
