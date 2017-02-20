@@ -41,24 +41,23 @@ import glob
 # Gramps Modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.db import (DbReadBase, DbWriteBase, DbUndo, DBLOGNAME,
-                           DBUNDOFN, KEY_TO_CLASS_MAP, REFERENCE_KEY,
-                           PERSON_KEY, FAMILY_KEY, CITATION_KEY,
-                           SOURCE_KEY, EVENT_KEY, MEDIA_KEY,
-                           PLACE_KEY, REPOSITORY_KEY, NOTE_KEY, TAG_KEY)
-from gramps.gen.errors import HandleError
-from gramps.gen.utils.callback import Callback
-from gramps.gen.updatecallback import UpdateCallback
-from gramps.gen.db.bookmarks import DbBookmarks
-from gramps.gen.db import exceptions
+from . import (DbReadBase, DbWriteBase, DbUndo, DBLOGNAME, DBUNDOFN,
+               KEY_TO_CLASS_MAP, REFERENCE_KEY, PERSON_KEY, FAMILY_KEY,
+               CITATION_KEY, SOURCE_KEY, EVENT_KEY, MEDIA_KEY, PLACE_KEY,
+               REPOSITORY_KEY, NOTE_KEY, TAG_KEY)
+from ..errors import HandleError
+from ..utils.callback import Callback
+from ..updatecallback import UpdateCallback
+from .bookmarks import DbBookmarks
+from . import exceptions
 
-from gramps.gen.utils.id import create_id
-from gramps.gen.lib.researcher import Researcher
-from gramps.gen.lib import (Tag, Media, Person, Family, Source, Citation, Event,
-                            Place, Repository, Note, NameOriginType)
-from gramps.gen.lib.genderstats import GenderStats
-from gramps.gen.config import config
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from ..utils.id import create_id
+from ..lib.researcher import Researcher
+from ..lib import (Tag, Media, Person, Family, Source, Citation, Event,
+                   Place, Repository, Note, NameOriginType)
+from ..lib.genderstats import GenderStats
+from ..config import config
+from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 LOG = logging.getLogger(DBLOGNAME)

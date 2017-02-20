@@ -37,7 +37,7 @@ try:
 except ImportError:
     USE_LOCK = False
 
-from gramps.gen.const import HOME_DIR, GRAMPS_LOCALE as glocale
+from .const import HOME_DIR, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------

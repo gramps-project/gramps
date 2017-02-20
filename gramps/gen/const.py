@@ -41,9 +41,9 @@ import uuid
 #-------------------------------------------------------------------------
 from .git_revision import get_git_revision
 from .constfunc import get_env_var
-from gramps.version import VERSION, VERSION_TUPLE, major_version
-from gramps.gen.utils.resourcepath import ResourcePath
-from gramps.gen.utils.grampslocale import GrampsLocale
+from ..version import VERSION, VERSION_TUPLE, major_version
+from .utils.resourcepath import ResourcePath
+from .utils.grampslocale import GrampsLocale
 
 #-------------------------------------------------------------------------
 #

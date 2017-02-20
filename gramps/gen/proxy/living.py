@@ -33,7 +33,7 @@ from ..lib import (Date, Person, Name, Surname, NameOriginType, Family, Source,
                    Citation, Event, Media, Place, Repository, Note, Tag)
 from ..utils.alive import probably_alive
 from ..config import config
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from ..const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #

@@ -47,13 +47,13 @@ LOG = logging.getLogger(".gen.plug")
 #-------------------------------------------------------------------------
 from ._pluginreg import make_environment
 from ..const import USER_PLUGINS
-from gramps.version import VERSION_TUPLE
+from ...version import VERSION_TUPLE
 from . import BasePluginManager
 from ..utils.configmanager import safe_eval
 from ..config import config
+from ..constfunc import mac
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from ..constfunc import mac
 
 #-------------------------------------------------------------------------
 #

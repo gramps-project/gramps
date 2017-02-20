@@ -37,7 +37,7 @@ import time
 #
 #-------------------------------------------------------------------------
 from .baseobj import BaseObject
-from gramps.gen.errors import HandleError
+from ..errors import HandleError
 
 #-------------------------------------------------------------------------
 #

@@ -27,8 +27,8 @@ class HandleClass(str):
 
     @classmethod
     def get_schema(cls):
-        from gramps.gen.lib import (Person, Family, Event, Place, Source,
-                                    Media, Repository, Note, Citation, Tag)
+        from . import (Person, Family, Event, Place, Source, Media, Repository,
+                       Note, Citation, Tag)
         tables = {
             "Person": Person,
             "Family": Family,

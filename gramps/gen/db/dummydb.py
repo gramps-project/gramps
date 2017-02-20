@@ -63,10 +63,10 @@ from functools import wraps
 # Gramps libraries
 #
 #-------------------------------------------------------------------------
-from gramps.gen.db.base import DbReadBase
-from gramps.gen.db.dbconst import DBLOGNAME
-from gramps.gen.errors import HandleError
-from gramps.gen.utils.callback import Callback
+from .base import DbReadBase
+from .dbconst import DBLOGNAME
+from ..errors import HandleError
+from ..utils.callback import Callback
 
 LOG = logging.getLogger(DBLOGNAME)
 

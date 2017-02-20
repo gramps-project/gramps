@@ -31,12 +31,12 @@ import copy
 import lxml.etree as ET
 
 from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
-from gramps.gen.const import DATA_DIR, USER_PLUGINS, TEMP_DIR
-from gramps.version import VERSION
-from gramps.gen.lib import Name, Surname
 from gramps.test.test_util import Gramps
 from gramps.cli.user import User
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from ...const import DATA_DIR, USER_PLUGINS, TEMP_DIR
+from ....version import VERSION
+from ...lib import Name, Surname
+from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
 HAS_CLIMERGE = os.path.isdir(os.path.join(USER_PLUGINS, 'CliMerge'))

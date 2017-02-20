@@ -172,7 +172,7 @@ def __index_surname(surn_list):
     pa/matronymic not as they change for every generation!
     returns a byte string
     """
-    from gramps.gen.lib import NameOriginType
+    from ..lib import NameOriginType
     if surn_list:
         surn = " ".join([x[0] for x in surn_list if not (x[3][0] in [
             NameOriginType.PATRONYMIC, NameOriginType.MATRONYMIC])])

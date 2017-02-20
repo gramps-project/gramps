@@ -26,9 +26,9 @@ import os
 from .. import (Person, Family, Event, Source, Place, Citation,
                 Repository, Media, Note, Tag)
 from ..serialize import to_json, from_json
-from gramps.gen.db.utils import import_as_dict
+from ...db.utils import import_as_dict
+from ...const import DATA_DIR
 from gramps.cli.user import User
-from gramps.gen.const import DATA_DIR
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")

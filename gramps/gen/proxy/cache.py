@@ -22,7 +22,7 @@
 Proxy class for the Gramps databases. Caches lookups from handles.
 """
 
-from gramps.gen.utils.lru import LRU
+from ..utils.lru import LRU
 
 class CacheProxyDb:
     """

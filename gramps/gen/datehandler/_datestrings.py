@@ -251,7 +251,7 @@ class DateStrings:
 if __name__ == '__main__':
     import sys
     from ..utils.grampslocale import GrampsLocale
-    from gramps.gen.const import GRAMPS_LOCALE as glocale
+    from ..const import GRAMPS_LOCALE as glocale
     from ._grampslocale import (_deprecated_long_months as old_long,
             _deprecated_short_months as old_short,
             _deprecated_long_days as old_days)

@@ -24,12 +24,12 @@ Unittest that tests place-specific filter rules
 import unittest
 import os
 
-from gramps.gen.db.utils import import_as_dict
+from ....db.utils import import_as_dict
+from ....filters import GenericFilterFactory
+from ....const import DATA_DIR
 from gramps.cli.user import User
-from gramps.gen.filters import GenericFilterFactory
-from gramps.gen.const import DATA_DIR
 
-from gramps.gen.filters.rules.place import (
+from ..place import (
     AllPlaces, HasCitation, HasGallery, HasIdOf, RegExpIdOf, HasNote,
     HasNoteRegexp, HasReferenceCountOf, HasSourceCount, HasSourceOf,
     PlacePrivate, MatchesSourceConfidence, HasData, HasNoLatOrLon,

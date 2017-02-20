@@ -22,8 +22,6 @@
 Package providing filtering framework for GRAMPS.
 """
 
-from gramps.gen.constfunc import win
-
 class SearchFilter:
     def __init__(self, func, text, invert):
         self.func = func

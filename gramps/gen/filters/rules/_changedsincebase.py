@@ -33,10 +33,10 @@ import time
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from . import Rule
+from ...errors import FilterError
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from . import Rule
-from gramps.gen.errors import FilterError
 
 #-------------------------------------------------------------------------
 #

@@ -46,7 +46,7 @@ from ._dateparser import DateParser
 from ._datedisplay import DateDisplay, DateDisplayEn
 from ..constfunc import win
 from ..const import GRAMPS_LOCALE as glocale
-from gramps.gen.utils.grampslocale import GrampsLocale
+from ..utils.grampslocale import GrampsLocale
 
 #-------------------------------------------------------------------------
 #

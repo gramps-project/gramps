@@ -28,13 +28,12 @@ Commonly used report options. Call the function, don't copy the code!
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from ...config import config
+from ...display.name import displayer as global_name_display
+from ..menu import EnumeratedListOption, BooleanOption, NumberOption
+from ...proxy import PrivateProxyDb, LivingProxyDb
+from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from gramps.gen.config import config
-from gramps.gen.display.name import displayer as global_name_display
-from gramps.gen.plug.menu import (EnumeratedListOption, BooleanOption,
-                                  NumberOption)
-from gramps.gen.proxy import PrivateProxyDb, LivingProxyDb
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)

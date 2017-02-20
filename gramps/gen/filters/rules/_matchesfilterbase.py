@@ -33,10 +33,10 @@ LOG = logging.getLogger(".filter")
 #-------------------------------------------------------------------------
 # we need global variableCustomFilters, so we need to query gramps.gen.filters
 # when we need this variable, not import it at the start!
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import gramps.gen.filters
 from . import Rule
+from ...const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
