@@ -23,7 +23,7 @@
 # (jgs: revised for embedded "test" subdirs as regrtest.py )
 
 """
-Testing framework for performing a variety of unttests for GRAMPS.
+Testing framework for performing a variety of unttests for Gramps.
 """
 
 # TODO: review whether logging is really useful for unittest

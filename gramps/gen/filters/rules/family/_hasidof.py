@@ -39,7 +39,7 @@ from .. import HasGrampsId
 #
 #-------------------------------------------------------------------------
 class HasIdOf(HasGrampsId):
-    """Rule that checks for a family with a specific GRAMPS ID"""
+    """Rule that checks for a family with a specific Gramps ID"""
 
     name        = _('Family with <Id>')
     description = _("Matches a family with a specified Gramps ID")

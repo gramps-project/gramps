@@ -79,7 +79,7 @@ class TimeLine(Report):
 
         The arguments are:
 
-        database        - the GRAMPS database instance
+        database        - the Gramps database instance
         options         - instance of the Options class for this report
         user            - instance of gen.user.User()
 

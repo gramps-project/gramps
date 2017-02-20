@@ -161,7 +161,7 @@ class EventComparison(tool.Tool,ManagedWindow):
             self.filters.set_active(0)
 
     def on_help_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
+        """Display the relevant portion of Gramps manual"""
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def build_menu_names(self, obj):
@@ -271,7 +271,7 @@ class EventComparisonResults(ManagedWindow):
         pass
 
     def on_help_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
+        """Display the relevant portion of Gramps manual"""
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def build_menu_names(self, obj):

@@ -20,7 +20,7 @@
 from gi.repository import GObject
 
 """
-Package providing filtering framework for GRAMPS.
+Package providing filtering framework for Gramps.
 """
 
 #-------------------------------------------------------------------------

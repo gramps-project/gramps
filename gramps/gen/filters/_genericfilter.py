@@ -21,7 +21,7 @@
 #
 
 """
-Package providing filtering framework for GRAMPS.
+Package providing filtering framework for Gramps.
 """
 
 #------------------------------------------------------------------------

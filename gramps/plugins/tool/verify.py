@@ -347,7 +347,7 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         return (_("Tool settings"), self.label)
 
     def on_help_clicked(self, obj):
-        """ Display the relevant portion of GRAMPS manual """
+        """ Display the relevant portion of Gramps manual """
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_apply_clicked(self, obj):

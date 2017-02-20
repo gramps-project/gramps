@@ -888,7 +888,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_person_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Person ID values.
+        Set the naming template for Gramps Person ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
@@ -899,7 +899,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_citation_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Citation ID values.
+        Set the naming template for Gramps Citation ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
@@ -910,7 +910,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_source_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Source ID values.
+        Set the naming template for Gramps Source ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
@@ -921,7 +921,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_media_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Media ID values.
+        Set the naming template for Gramps Media ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
@@ -932,7 +932,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_place_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Place ID values.
+        Set the naming template for Gramps Place ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
@@ -943,7 +943,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_family_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Family ID values. The string is
+        Set the naming template for Gramps Family ID values. The string is
         expected to be in the form of a simple text string, or in a format
         that contains a C/Python style format string using %d, such as F%d
         or F%04d.
@@ -953,7 +953,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_event_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Event ID values.
+        Set the naming template for Gramps Event ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
@@ -964,7 +964,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_repository_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Repository ID values.
+        Set the naming template for Gramps Repository ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
@@ -975,7 +975,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_note_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Note ID values.
+        Set the naming template for Gramps Note ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,

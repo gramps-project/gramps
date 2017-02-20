@@ -39,7 +39,7 @@ _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
-# Class for notes used throughout the majority of GRAMPS objects
+# Class for notes used throughout the majority of Gramps objects
 #
 #-------------------------------------------------------------------------
 class Note(BasicPrimaryObject):

@@ -41,7 +41,7 @@ from .._hasgrampsid import HasGrampsId
 #-------------------------------------------------------------------------
 class HasSourceIdOf(HasGrampsId):
     """Rule that checks for a citation with a source which has a specific
-    GRAMPS ID"""
+    Gramps ID"""
 
     name        = _('Citation with Source <Id>')
     description = _("Matches a citation with a source with a specified Gramps "

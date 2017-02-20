@@ -60,7 +60,7 @@ from ..actiongroup import ActionGroup
 #------------------------------------------------------------------------------
 class PageView(DbGUIElement, metaclass=ABCMeta):
     """
-    The PageView class is the base class for all Data Views in GRAMPS.  All
+    The PageView class is the base class for all Data Views in Gramps.  All
     Views should derive from this class. The ViewManager understands the public
     interface of this class
 

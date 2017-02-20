@@ -23,7 +23,7 @@
 """
 This module provides the flat treemodel that is used for all flat treeviews.
 
-For performance, GRAMPS does not use Gtk.TreeStore, as that would mean keeping
+For performance, Gramps does not use Gtk.TreeStore, as that would mean keeping
 the entire database table of an object in memory.
 Instead, it suffices to keep in memory the sortkey and the matching handle,
 as well as a map of sortkey,handle to treeview path, and vice versa.

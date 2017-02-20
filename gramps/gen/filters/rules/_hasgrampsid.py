@@ -40,7 +40,7 @@ from . import Rule
 #
 #-------------------------------------------------------------------------
 class HasGrampsId(Rule):
-    """Rule that checks for an object with a specific GRAMPS ID."""
+    """Rule that checks for an object with a specific Gramps ID."""
 
     labels      = [ _('ID:') ]
     name        = 'Object with <Id>'

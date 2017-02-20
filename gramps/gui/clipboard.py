@@ -1250,7 +1250,7 @@ class ClipboardListView:
         if mac():
             # context is empty on mac due to a bug, work around this
             # Note that this workaround code works fine in linux too as
-            # we know very well inside of GRAMPS what sel_data can be, so
+            # we know very well inside of Gramps what sel_data can be, so
             # we can anticipate on it, instead of letting the wrapper handle
             # it. This is less clean however !
             # See http://www.gramps-project.org/bugs/view.php?id=3089 for
@@ -1447,7 +1447,7 @@ class ClipboardWindow(ManagedWindow):
             self.clear_btn.set_sensitive(True)
 
     def on_help_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
+        """Display the relevant portion of Gramps manual"""
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_clear_clicked(self, obj):

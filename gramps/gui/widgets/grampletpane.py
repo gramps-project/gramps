@@ -275,7 +275,7 @@ class GrampletWindow(ManagedWindow):
 
     def build_menu_names(self, obj):
         """
-        Part of the GRAMPS window interface.
+        Part of the Gramps window interface.
         """
         return (self.title, 'Gramplet')
 
@@ -1143,7 +1143,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                                              gramplet.expand, True, 0)
             # set height on gramplet.scrolledwindow here:
             gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
-            # Can't minimize here, because GRAMPS calls show_all later:
+            # Can't minimize here, because Gramps calls show_all later:
             #if gramplet.gstate == "minimized": # starts max, change to min it
             #    gramplet.set_state("minimized") # minimize it
             # set minimized is called in page subclass hack (above)

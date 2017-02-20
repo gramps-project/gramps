@@ -217,7 +217,7 @@ class PluginData:
     .. attribute:: supported
        Bool value indicating if the plugin is still supported, default=True
     .. attribute:: load_on_reg
-       bool value, if True, the plugin is loaded on GRAMPS startup. Some
+       bool value, if True, the plugin is loaded on Gramps startup. Some
        plugins. Only set this value if for testing you want the plugin to be
        loaded immediately on startup. default=False
     .. attribute: icons

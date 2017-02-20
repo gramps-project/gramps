@@ -39,7 +39,7 @@ from .. import HasGrampsId
 #
 #-------------------------------------------------------------------------
 class HasIdOf(HasGrampsId):
-    """Rule that checks for a note with a specific GRAMPS ID"""
+    """Rule that checks for a note with a specific Gramps ID"""
 
     name        = _('Note with <Id>')
     description = _("Matches a note with a specified Gramps ID")

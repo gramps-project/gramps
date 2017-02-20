@@ -21,7 +21,7 @@
 #
 
 """
-SelectCitation class for GRAMPS.
+SelectCitation class for Gramps.
 """
 
 #-------------------------------------------------------------------------

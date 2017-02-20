@@ -267,7 +267,7 @@ class ViewManager(CLIManager):
 
     def __init__(self, dbstate, view_category_order, user=None):
         """
-        The viewmanager is initialised with a dbstate on which GRAMPS is
+        The viewmanager is initialised with a dbstate on which Gramps is
         working, and a fixed view_category_order, which is the order in which
         the view categories are accessible in the sidebar.
         """
@@ -1557,7 +1557,7 @@ def key_bindings(obj):
 
 def manual_activate(obj):
     """
-    Display the GRAMPS manual
+    Display the Gramps manual
     """
     display_help(webpage=WIKI_HELP_PAGE_MAN)
 
@@ -1569,7 +1569,7 @@ def report_bug_activate(obj):
 
 def home_page_activate(obj):
     """
-    Display the GRAMPS home page
+    Display the Gramps home page
     """
     display_url(URL_HOMEPAGE)
 

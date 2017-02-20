@@ -39,7 +39,7 @@ from .. import Rule
 #
 #-------------------------------------------------------------------------
 class MatchIdOf(Rule):
-    """Rule that checks for a person with a specific GRAMPS ID"""
+    """Rule that checks for a person with a specific Gramps ID"""
 
     labels      = [ _('ID:') ]
     name        = _('Person with <Id>')

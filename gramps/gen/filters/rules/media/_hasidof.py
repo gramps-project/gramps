@@ -39,7 +39,7 @@ from .. import HasGrampsId
 #
 #-------------------------------------------------------------------------
 class HasIdOf(HasGrampsId):
-    """Rule that checks for a media object with a specific GRAMPS ID"""
+    """Rule that checks for a media object with a specific Gramps ID"""
 
     name        = _('Media object with <Id>')
     description = _("Matches a media object with a specified Gramps ID")

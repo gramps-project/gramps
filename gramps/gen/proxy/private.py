@@ -264,7 +264,7 @@ class PrivateProxyDb(ProxyDbBase):
 
     def get_person_from_gramps_id(self, val):
         """
-        Finds a Person in the database from the passed GRAMPS ID.
+        Finds a Person in the database from the passed Gramps ID.
         If no such Person exists, None is returned.
         """
         person = self.db.get_person_from_gramps_id(val)
@@ -274,7 +274,7 @@ class PrivateProxyDb(ProxyDbBase):
 
     def get_family_from_gramps_id(self, val):
         """
-        Finds a Family in the database from the passed GRAMPS ID.
+        Finds a Family in the database from the passed Gramps ID.
         If no such Family exists, None is returned.
         """
         family = self.db.get_family_from_gramps_id(val)
@@ -284,7 +284,7 @@ class PrivateProxyDb(ProxyDbBase):
 
     def get_event_from_gramps_id(self, val):
         """
-        Finds an Event in the database from the passed GRAMPS ID.
+        Finds an Event in the database from the passed Gramps ID.
         If no such Event exists, None is returned.
         """
         event = self.db.get_event_from_gramps_id(val)

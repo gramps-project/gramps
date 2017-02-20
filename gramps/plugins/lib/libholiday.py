@@ -47,7 +47,7 @@ from gramps.gen.lib.gcalendar import (gregorian_ymd, hebrew_sdn)
 #
 #------------------------------------------------------------------------
 def g2iso(dow):
-    """ Converst GRAMPS day of week to ISO day of week """
+    """ Converst Gramps day of week to ISO day of week """
     # Gramps: SUN = 1
     # ISO: MON = 1
     return (dow + 5) % 7 + 1

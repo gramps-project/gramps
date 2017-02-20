@@ -151,7 +151,7 @@ class OwnerEditor(tool.Tool, ManagedWindow):
         self.close()
 
     def on_help_button_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
+        """Display the relevant portion of Gramps manual"""
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_button_press_event(self, obj, event):

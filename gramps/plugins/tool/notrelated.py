@@ -230,7 +230,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
                     pass
 
     def on_help_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
+        """Display the relevant portion of Gramps manual"""
         display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
 

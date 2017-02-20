@@ -40,7 +40,7 @@ from ._memberbase import child_base
 #
 #-------------------------------------------------------------------------
 class ChildHasIdOf(RegExpIdBase):
-    """Rule that checks for a person with a specific GRAMPS ID"""
+    """Rule that checks for a person with a specific Gramps ID"""
 
     labels      = [ _('Person ID:') ]
     name        = _('Families having child with Id containing <text>')

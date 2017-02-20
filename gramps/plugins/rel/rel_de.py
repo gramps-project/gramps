@@ -25,7 +25,7 @@
 # by Don Allingham and on valuable input from Dr. Martin Senftleben
 # Modified by Joachim Breitner to not use „Großcousine“, in accordance with
 # http://de.wikipedia.org/wiki/Verwandtschaftsbeziehung
-# Rewritten from scratch for GRAMPS 3 by Stefan Siegel,
+# Rewritten from scratch for Gramps 3 by Stefan Siegel,
 # loosely based on rel_fr.py
 """
 German-specific classes for relationships.

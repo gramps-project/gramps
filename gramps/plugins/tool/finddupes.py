@@ -143,7 +143,7 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
         return (_("Tool settings"),_("Find Duplicates tool"))
 
     def on_help_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
+        """Display the relevant portion of Gramps manual"""
 
         display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
@@ -583,7 +583,7 @@ class DuplicatePeopleToolMatches(ManagedWindow):
         return (_("Merge candidates"), _("Merge persons"))
 
     def on_help_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
+        """Display the relevant portion of Gramps manual"""
 
         display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
     def redraw(self):

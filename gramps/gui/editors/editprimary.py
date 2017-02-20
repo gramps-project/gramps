@@ -339,9 +339,9 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
 
     def _uses_duplicate_id(self):
         """
-        Check whether a changed or added GRAMPS ID already exists in the DB.
+        Check whether a changed or added Gramps ID already exists in the DB.
 
-        Return True if a duplicate GRAMPS ID has been detected.
+        Return True if a duplicate Gramps ID has been detected.
 
         """
         idval = self.obj.get_gramps_id()
