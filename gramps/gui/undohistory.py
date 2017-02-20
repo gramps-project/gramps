@@ -120,10 +120,11 @@ class UndoHistory(ManagedWindow):
         scrolled_window.add(self.tree)
         self.window.vbox.pack_start(scrolled_window, True, True, 0)
 
+        self.sel_chng_hndlr = self.selection.connect('changed',
+                                                     self._selection_changed)
         self._build_model()
         self._update_ui()
 
-        self.selection.connect('changed', self._selection_changed)
         self.show()
 
     def _selection_changed(self, obj):
@@ -226,6 +227,7 @@ class UndoHistory(ManagedWindow):
             )
 
     def _build_model(self):
+        self.selection.handler_block(self.sel_chng_hndlr)
         self.model.clear()
         fg = bg = None
 
@@ -243,6 +245,7 @@ class UndoHistory(ManagedWindow):
             mod_text = txn.get_description()
             self.model.append(row=[time_text, mod_text, fg, bg])
         path = (self.undodb.undo_count,)
+        self.selection.handler_unblock(self.sel_chng_hndlr)
         self.selection.select_path(path)
 
     def update(self):
