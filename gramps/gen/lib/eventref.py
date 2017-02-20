@@ -39,6 +39,8 @@ from .refbase import RefBase
 from .eventroletype import EventRoleType
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from .citationbase import IndirectCitationBase
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -90,35 +92,23 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         from .attribute import Attribute
         return {
             "type": "object",
+            "title": _("Event reference"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean"},
+                "private": {"type": "boolean",
+                            "title": _("Private")},
                 "note_list": {"type": "array",
                               "items": {"type": "string",
-                                        "maxLength": 50}},
+                                        "maxLength": 50},
+                              "title": _("Notes")},
                 "attribute_list": {"type": "array",
-                                   "items": Attribute.get_schema()},
+                                   "items": Attribute.get_schema(),
+                                   "title": _("Attributes")},
                 "ref": {"type": "string",
-                        "maxLength": 50},
+                        "maxLength": 50,
+                        "title": _("Event")},
                 "role": EventRoleType.get_schema(),
             }
-        }
-
-    @classmethod
-    def get_labels(cls, _):
-        """
-        Given a translation function, returns the labels for
-        each field of this object.
-
-        :returns: Returns a dict containing the fields to labels.
-        :rtype: dict
-        """
-        return {
-            "private": _("Private"),
-            "note_list": _("Notes"),
-            "attribute_list": _("Attributes"),
-            "ref": _("Event"),
-            "role": _("Role"),
         }
 
     def unserialize(self, data):

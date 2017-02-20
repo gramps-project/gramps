@@ -37,6 +37,8 @@ from .urlbase import UrlBase
 from .tagbase import TagBase
 from .repotype import RepositoryType
 from .citationbase import IndirectCitationBase
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -70,21 +72,6 @@ class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase,
                 self.change, TagBase.serialize(self), self.private)
 
     @classmethod
-    def get_labels(cls, _):
-        return {
-            "handle": _("Handle"),
-            "gramps_id": _("Gramps ID"),
-            "type": _("Type"),
-            "name": _("Name"),
-            "note_list": _("Notes"),
-            "address_list": _("Addresses"),
-            "urls": _("URLs"),
-            "change": _("Last changed"),
-            "tag_list": _("Tags"),
-            "private": _("Private")
-        }
-
-    @classmethod
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -96,25 +83,35 @@ class Repository(NoteBase, AddressBase, UrlBase, IndirectCitationBase,
         from .url import Url
         return {
             "type": "object",
+            "title": _("Repository"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
                 "handle": {"type": "string",
-                           "maxLength": 50},
-                "gramps_id": {"type": "string"},
+                           "maxLength": 50,
+                           "title": _("Handle")},
+                "gramps_id": {"type": "string",
+                              "title": _("Gramps ID")},
                 "type": RepositoryType.get_schema(),
-                "name": {"type": "string"},
+                "name": {"type": "string",
+                         "title": _("Name")},
                 "note_list": {"type": "array",
                               "items": {"type": "string",
-                                        "maxLength": 50}},
+                                        "maxLength": 50},
+                              "title": _("Notes")},
                 "address_list": {"type": "array",
-                                 "items": Address.get_schema()},
+                                 "items": Address.get_schema(),
+                                 "title": _("Addresses")},
                 "urls": {"type": "array",
-                         "items": Url.get_schema()},
-                "change": {"type": "integer"},
+                         "items": Url.get_schema(),
+                         "title": _("URLs")},
+                "change": {"type": "integer",
+                           "title": _("Last changed")},
                 "tag_list": {"type": "array",
                              "items": {"type": "string",
-                                       "maxLength": 50}},
-                "private": {"type": "boolean"}
+                                       "maxLength": 50},
+                             "title": _("Tags")},
+                "private": {"type": "boolean",
+                            "title": _("Private")}
             }
         }
 

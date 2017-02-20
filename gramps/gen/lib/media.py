@@ -45,6 +45,8 @@ from .notebase import NoteBase
 from .datebase import DateBase
 from .attrbase import AttributeBase
 from .tagbase import TagBase
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 LOG = logging.getLogger(".citation")
 
@@ -129,55 +131,43 @@ class Media(CitationBase, NoteBase, DateBase, AttributeBase,
         from .date import Date
         return {
             "type": "object",
+            "title": _("Media"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
                 "handle": {"type": "string",
-                           "maxLength": 50},
-                "gramps_id": {"type": "string"},
-                "path": {"type": "string"},
-                "mime": {"type": "string"},
-                "desc": {"type": "string"},
-                "checksum": {"type": "string"},
+                           "maxLength": 50,
+                           "title": _("Handle")},
+                "gramps_id": {"type": "string",
+                              "title": _("Gramps ID")},
+                "path": {"type": "string",
+                         "title": _("Path")},
+                "mime": {"type": "string",
+                         "title": _("MIME")},
+                "desc": {"type": "string",
+                         "title": _("Description")},
+                "checksum": {"type": "string",
+                             "title": _("Checksum")},
                 "attribute_list": {"type": "array",
-                                   "items": Attribute.get_schema()},
+                                   "items": Attribute.get_schema(),
+                                   "title": _("Attributes")},
                 "citation_list": {"type": "array",
                                   "items": {"type": "string",
-                                            "maxLength": 50}},
+                                            "maxLength": 50},
+                                  "title": _("Citations")},
                 "note_list": {"type": "array",
-                              "items": {"type": "string"}},
-                "change": {"type": "integer"},
-                "date": {"oneOf": [{"type": "null"}, Date.get_schema()]},
+                              "items": {"type": "string"},
+                              "title": _("Notes")},
+                "change": {"type": "integer",
+                           "title": _("Last changed")},
+                "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
+                         "title": _("Date")},
                 "tag_list": {"type": "array",
                              "items": {"type": "string",
-                                       "maxLength": 50}},
-                "private": {"type": "boolean"}
+                                       "maxLength": 50},
+                             "title": _("Tags")},
+                "private": {"type": "boolean",
+                            "title": _("Private")}
             }
-        }
-
-    @classmethod
-    def get_labels(cls, _):
-        """
-        Given a translation function, returns the labels for
-        each field of this object.
-
-        :returns: Returns a dict containing the fields to labels.
-        :rtype: dict
-        """
-        return {
-            "_class": _("Media"),
-            "handle": _("Media"),
-            "gramps_id": _("Gramps ID"),
-            "path": _("Path"),
-            "mime": _("MIME"),
-            "desc": _("Description"),
-            "checksum": _("Checksum"),
-            "attribute_list": _("Attributes"),
-            "citation_list": _("Citations"),
-            "note_list": _("Notes"),
-            "change": _("Last changed"),
-            "date": _("Date"),
-            "tag_list": _("Tags"),
-            "private": _("Private"),
         }
 
     def unserialize(self, data):

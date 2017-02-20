@@ -29,6 +29,8 @@ Tag object for Gramps.
 #
 #-------------------------------------------------------------------------
 from .tableobj import TableObject
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -110,30 +112,23 @@ class Tag(TableObject):
         """
         return {
             "type": "object",
+            "title": _("Tag"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
                 "handle": {"type": "string",
-                           "maxLength": 50},
-                "name": {"type": "string"},
+                           "maxLength": 50,
+                           "title": _("Handle")},
+                "name": {"type": "string",
+                         "title": _("Name")},
                 "color": {"type": "string",
-                          "maxLength": 13},
+                          "maxLength": 13,
+                          "title": _("Color")},
                 "priority": {"type": "integer",
-                             "minimum": 0},
-                "change": {"type": "integer"}
+                             "minimum": 0,
+                             "title": _("Priority")},
+                "change": {"type": "integer",
+                           "title": _("Last changed")}
             }
-        }
-
-    @classmethod
-    def get_labels(cls, _):
-        """
-        Return the label for fields
-        """
-        return {
-            "handle": _("Handle"),
-            "name": _("Name"),
-            "color": _("Color"),
-            "priority": _("Priority"),
-            "change": _("Last changed"),
         }
 
     def get_text_data_list(self):

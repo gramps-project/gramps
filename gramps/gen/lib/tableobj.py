@@ -149,13 +149,6 @@ class TableObject(BaseObject):
         return self.handle
 
     @classmethod
-    def get_labels(cls, _):
-        """
-        Return labels.
-        """
-        return {}
-
-    @classmethod
     def get_schema(cls):
         """
         Return schema.

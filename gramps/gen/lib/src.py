@@ -39,6 +39,8 @@ from .attrbase import SrcAttributeBase
 from .reporef import RepoRef
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from .citationbase import IndirectCitationBase
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -80,24 +82,6 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
                 self.private)                                      # 12
 
     @classmethod
-    def get_labels(cls, _):
-        return {
-            "handle": _("Handle"),
-            "gramps_id": _("Gramps ID"),
-            "title": _("Title"),
-            "author": _("Author"),
-            "pubinfo": _("Publication info"),
-            "note_list": _("Notes"),
-            "media_list": _("Media"),
-            "abbrev": _("Abbreviation"),
-            "change": _("Last changed"),
-            "srcattr_list": _("Source Attributes"),
-            "reporef_list": _("Repositories"),
-            "tag_list": _("Tags"),
-            "private": _("Private")
-        }
-
-    @classmethod
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -110,29 +94,43 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         from .mediaref import MediaRef
         return {
             "type": "object",
+            "title": _("Source"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
                 "handle": {"type": "string",
-                           "maxLength": 50},
-                "gramps_id": {"type": "string"},
-                "title": {"type": "string"},
-                "author": {"type": "string"},
-                "pubinfo": {"type": "string"},
+                           "maxLength": 50,
+                           "title": _("Handle")},
+                "gramps_id": {"type": "string",
+                              "title": _("Gramps ID")},
+                "title": {"type": "string",
+                          "title": _("Title")},
+                "author": {"type": "string",
+                           "title": _("Author")},
+                "pubinfo": {"type": "string",
+                            "title": _("Publication info")},
                 "note_list": {"type": "array",
                               "items": {"type": "string",
-                                        "maxLength": 50}},
+                                        "maxLength": 50},
+                              "title": _("Notes")},
                 "media_list": {"type": "array",
-                               "items": MediaRef.get_schema()},
-                "abbrev": {"type": "string"},
-                "change": {"type": "integer"},
+                               "items": MediaRef.get_schema(),
+                               "title": _("Media")},
+                "abbrev": {"type": "string",
+                           "title": _("Abbreviation")},
+                "change": {"type": "integer",
+                           "title": _("Last changed")},
                 "srcattr_list": {"type": "array",
-                                 "items": SrcAttribute.get_schema()},
+                                 "items": SrcAttribute.get_schema(),
+                                 "title": _("Source Attributes")},
                 "reporef_list": {"type": "array",
-                                 "items": RepoRef.get_schema()},
+                                 "items": RepoRef.get_schema(),
+                                 "title": _("Repositories")},
                 "tag_list": {"type": "array",
                              "items": {"type": "string",
-                                       "maxLength": 50}},
-                "private": {"type": "boolean"}
+                                       "maxLength": 50},
+                             "title": _("Tags")},
+                "private": {"type": "boolean",
+                            "title": _("Private")}
             }
         }
 
