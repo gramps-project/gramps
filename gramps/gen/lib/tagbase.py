@@ -22,8 +22,6 @@
 TagBase class for Gramps.
 """
 
-from .handle import Handle
-
 #-------------------------------------------------------------------------
 #
 # TagBase class

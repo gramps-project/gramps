@@ -23,8 +23,6 @@
 NoteBase class for Gramps.
 """
 
-from .handle import Handle
-
 #-------------------------------------------------------------------------
 #
 # NoteBase class
