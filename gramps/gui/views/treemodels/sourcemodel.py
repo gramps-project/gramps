@@ -99,7 +99,7 @@ class SourceModel(FlatBaseModel):
         return len(self.fmap)+1
 
     def column_title(self,data):
-        return data[2]
+        return data[2].replace('\n', ' ')
 
     def column_author(self,data):
         return data[3]
