@@ -84,7 +84,7 @@ LANG_TO_DISPLAY = {
     'en_GB'                 : DateDisplayEn,
     'English_United States' : DateDisplayEn,
     'ko_KR'                 : DateDisplay,
-    'nb_NO'                 : DateDisplay,
+    'nb_NO'                 : DateDisplay, # TODO this's in _data_nb, why here?
     }
 
 def register_datehandler(locales,parse_class,display_class):
