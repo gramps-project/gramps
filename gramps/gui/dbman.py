@@ -52,7 +52,7 @@ from gi.repository import Pango
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.display import display_help
+from .display import display_help
 from gramps.gen.const import URL_WIKISTRING, URL_MANUAL_PAGE
 from .user import User
 from .dialog import ErrorDialog, QuestionDialog, QuestionDialog2, ICON
@@ -65,7 +65,7 @@ from .glade import Glade
 from gramps.gen.db.exceptions import DbException
 from gramps.gen.db.utils import make_database, open_database
 from gramps.gen.config import config
-from gramps.gui.listmodel import ListModel
+from .listmodel import ListModel
 from gramps.gen.constfunc import win
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.const import GRAMPS_LOCALE as glocale

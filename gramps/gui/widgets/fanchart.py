@@ -91,7 +91,7 @@ from gramps.gen.const import (
     TYPE_BOX_NORMAL,
     TYPE_BOX_FAMILY)
 _ = glocale.translation.gettext
-from gramps.gui.utilscairo import warpPath
+from ..utilscairo import warpPath
 
 #-------------------------------------------------------------------------
 #

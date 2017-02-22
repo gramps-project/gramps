@@ -382,7 +382,7 @@ class ReportDialog(ManagedWindow):
             row += 1
 
     def setup_other_frames(self):
-        from gramps.gui.plug._guioptions import GuiTextOption
+        from .._guioptions import GuiTextOption
         for key in self.frame_names:
             flist = self.frames[key]
             grid = Gtk.Grid()

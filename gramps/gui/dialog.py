@@ -45,7 +45,8 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.const import ICON, URL_BUGHOME
 from gramps.gen.config import config
-from gramps.gui.glade import Glade
+from .glade import Glade
+from .display import display_url
 
 try:
     ICON = GdkPixbuf.Pixbuf.new_from_file(ICON)
@@ -119,7 +120,6 @@ class QuestionDialog:
         if response == Gtk.ResponseType.ACCEPT:
             task()
 
-from gramps.gui.display import display_url
 def on_activate_link(label, uri):
     # see aboutdialog.py _show_url()
     display_url(uri)

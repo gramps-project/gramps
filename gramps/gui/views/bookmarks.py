@@ -455,7 +455,7 @@ class CitationBookmarks(ListBookmarks):
             # FIXME: See http://www.gramps-project.org/bugs/view.php?id=6352 a
             # more comprehensive solution is needed in the long term. See also
             # change_active in CitatinTreeView
-            from gramps.gui.dialog import WarningDialog
+            from ..dialog import WarningDialog
             WarningDialog(
                 _("Cannot bookmark this reference"),
                 # FIXME should this next string be translated?

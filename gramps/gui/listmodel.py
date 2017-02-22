@@ -480,7 +480,7 @@ class ListModel:
         """
         Called when a button press is executed
         """
-        from gramps.gui.utils import is_right_click
+        from .utils import is_right_click
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             if self.double_click:
                 self.double_click(obj)

@@ -48,7 +48,7 @@ from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.thumbnails import get_thumbnail_image
 from ..views.treemodels import MediaModel
 from .baseselector import BaseSelector
-from gramps.gui.display import display_help
+from ..display import display_help
 from gramps.gen.const import URL_MANUAL_SECT1
 
 #-------------------------------------------------------------------------

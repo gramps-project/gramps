@@ -36,7 +36,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..views.treemodels import PeopleBaseModel, PersonTreeModel
 from .baseselector import BaseSelector
-from gramps.gui.display import display_help
+from ..display import display_help
 from gramps.gen.const import URL_MANUAL_SECT1
 
 #-------------------------------------------------------------------------

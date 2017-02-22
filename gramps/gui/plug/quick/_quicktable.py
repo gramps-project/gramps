@@ -48,7 +48,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.simple import SimpleTable
 from gramps.gen.errors import WindowActiveError
-from gramps.gui.utils import model_to_text, text_to_clipboard
+from ...utils import model_to_text, text_to_clipboard
 from ...widgets.multitreeview import MultiTreeView
 from ...ddtargets import DdTargets
 from ..quick import run_quick_report_by_name
