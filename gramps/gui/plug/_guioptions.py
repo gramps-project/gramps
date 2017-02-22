@@ -73,12 +73,11 @@ class LastNameDialog(ManagedWindow):
     """
     def __init__(self, database, uistate, track, surnames, skip_list=set()):
 
-        ManagedWindow.__init__(self, uistate, track, self)
+        ManagedWindow.__init__(self, uistate, track, self, modal=True)
         flags = Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT
         buttons = (_('_Cancel'), Gtk.ResponseType.REJECT,
                    _('_OK'), Gtk.ResponseType.ACCEPT)
         self.__dlg = Gtk.Dialog(None, uistate.window, flags, buttons)
-        self.__dlg.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
         self.set_window(self.__dlg, None, _('Select surname'))
         self.setup_configs('interface.lastnamedialog', 400, 400)
 
@@ -133,6 +132,9 @@ class LastNameDialog(ManagedWindow):
                 self.__model.append([key, surnames[key]])
 
         # keep the list sorted starting with the most popular last name
+        # (but after sorting the whole list alphabetically first, so
+        # that surnames with the same number of people will be alphabetical)
+        self.__model.set_sort_column_id(0, Gtk.SortType.ASCENDING)
         self.__model.set_sort_column_id(1, Gtk.SortType.DESCENDING)
 
         # the "OK" button should be enabled/disabled based on the selection of
@@ -150,11 +152,14 @@ class LastNameDialog(ManagedWindow):
         if response == Gtk.ResponseType.ACCEPT:
             (mode, paths) = self.__tree_selection.get_selected_rows()
             for path in paths:
-                iii = self.__model.get_iter(path)
-                surname = self.__model.get_value(iii, 0)
+                tree_iter = self.__model.get_iter(path)
+                surname = self.__model.get_value(tree_iter, 0)
                 surname_set.add(surname)
-        self.__dlg.destroy()
+        self.close() # ManagedWindow: set the parent dialog to be modal again
         return surname_set
+
+    def build_menu_names(self, obj):
+        return (_('Select surname'), None)
 
 #-------------------------------------------------------------------------
 #
