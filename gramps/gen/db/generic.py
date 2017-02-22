@@ -254,7 +254,7 @@ class DbGenericUndo(DbUndo):
             else:
                 sql = "INSERT INTO %s (handle, blob_data) VALUES (?, ?)" % table
                 self.db.dbapi.execute(sql, [handle, pickle.dumps(data)])
-            obj = self.db.get_table_func(cls)["class_func"].create(data)
+            obj = self.db._get_table_func(cls)["class_func"].create(data)
             self.db._update_secondary_values(obj)
 
     def undo_signals(self, data, handle, obj_key, emit, signal_root):
@@ -763,7 +763,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         raise NotImplementedError
 
-    def get_table_func(self, table=None, func=None):
+    def _get_table_func(self, table=None, func=None):
         """
         Private implementation of get_table_func.
         """
@@ -774,16 +774,45 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         elif func in self.__tables[table].keys():
             return self.__tables[table][func]
         else:
-            return super().get_table_func(table, func)
+            return None
 
     def get_table_names(self):
         """Return a list of valid table names."""
-        return list(self.get_table_func())
+        return list(self._get_table_func())
 
     def get_table_metadata(self, table_name):
         """Return the metadata for a valid table name."""
-        if table_name in self.get_table_func():
-            return self.get_table_func(table_name)
+        if table_name in self._get_table_func():
+            return self._get_table_func(table_name)
+        return None
+
+    def get_from_name_and_handle(self, table_name, handle):
+        """
+        Returns a gen.lib object (or None) given table_name and
+        handle.
+
+        Examples:
+
+        >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
+        >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
+        """
+        if table_name in self._get_table_func() and handle:
+            return self._get_table_func(table_name, "handle_func")(handle)
+        return None
+
+    def get_from_name_and_gramps_id(self, table_name, gramps_id):
+        """
+        Returns a gen.lib object (or None) given table_name and
+        Gramps ID.
+
+        Examples:
+
+        >>> self.get_from_name_and_gramps_id("Person", "I00002")
+        >>> self.get_from_name_and_gramps_id("Family", "F056")
+        >>> self.get_from_name_and_gramps_id("Media", "M00012")
+        """
+        if table_name in self._get_table_func():
+            return self._get_table_func(table_name, "gramps_id_func")(gramps_id)
         return None
 
     def _txn_begin(self):
@@ -1626,7 +1655,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         Iterate over items in a class.
         """
-        cursor = self.get_table_func(class_.__name__, "cursor_func")
+        cursor = self._get_table_func(class_.__name__, "cursor_func")
         for data in cursor():
             yield class_.create(data[1])
 
@@ -2505,35 +2534,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.emit('repository-rebuild')
         self.emit('note-rebuild')
         self.emit('tag-rebuild')
-
-    def get_from_name_and_handle(self, table_name, handle):
-        """
-        Returns a gen.lib object (or None) given table_name and
-        handle.
-
-        Examples:
-
-        >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
-        >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
-        """
-        if table_name in self.get_table_func() and handle:
-            return self.get_table_func(table_name, "handle_func")(handle)
-        return None
-
-    def get_from_name_and_gramps_id(self, table_name, gramps_id):
-        """
-        Returns a gen.lib object (or None) given table_name and
-        Gramps ID.
-
-        Examples:
-
-        >>> self.get_from_name_and_gramps_id("Person", "I00002")
-        >>> self.get_from_name_and_gramps_id("Family", "F056")
-        >>> self.get_from_name_and_gramps_id("Media", "M00012")
-        """
-        if table_name in self.get_table_func():
-            return self.get_table_func(table_name, "gramps_id_func")(gramps_id)
-        return None
 
     def get_save_path(self):
         return self._directory

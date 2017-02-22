@@ -188,19 +188,6 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             }
         }
 
-    def get_table_func(self, table=None, func=None):
-        """
-        Private implementation of get_table_func.
-        """
-        if table is None:
-            return list(self.__tables.keys())
-        elif func is None:
-            return self.__tables[table]
-        elif func in self.__tables[table].keys():
-            return self.__tables[table][func]
-        else:
-            return super().get_table_func(table, func)
-
     def queue_object(self, obj_type, handle, reference=True):
         self.queue.append((obj_type, handle, reference))
 

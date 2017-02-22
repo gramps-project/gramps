@@ -159,19 +159,6 @@ class PrivateProxyDb(ProxyDbBase):
             }
         }
 
-    def get_table_func(self, table=None, func=None):
-        """
-        Private implementation of get_table_func.
-        """
-        if table is None:
-            return list(self.__tables.keys())
-        elif func is None:
-            return self.__tables[table]
-        elif func in self.__tables[table].keys():
-            return self.__tables[table][func]
-        else:
-            return super().get_table_func(table, func)
-
     def get_person_from_handle(self, handle):
         """
         Finds a Person in the database from the passed Gramps ID.
