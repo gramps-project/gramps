@@ -37,7 +37,7 @@ from  gramps.gen.lib import (Person, Family, Event, Source, Place, Citation,
 from gramps.cli.user import User
 from gramps.gen.dbstate import DbState
 from gramps.gen.db.utils import make_database
-from ..editreference import EditReference
+from gramps.gui.editors.editreference import EditReference
 
 class MockWindow:
     def set_transient_for(self, *args, **kwargs):
