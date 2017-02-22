@@ -56,19 +56,28 @@ from gramps.gen.const import ICON, SPLASH, URL_BUGTRACKER
 from gramps.gen.constfunc import get_env_var
 from gramps.version import VERSION
 from ..display import display_help, display_url
+from ..managedwindow import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
 # ErrorReportAssistant
 #
 #-------------------------------------------------------------------------
-class ErrorReportAssistant(Gtk.Assistant):
+class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
     """
     Give the user an opportunity to report an error on the Gramps bug
     reporting system.
     """
-    def __init__(self, error_detail, rotate_handler, ownthread=False):
+    def __init__(self, error_detail, rotate_handler,
+                 ownthread=False, parent=None):
         Gtk.Assistant.__init__(self)
+        ManagedWindow.__init__(self, None, [], self.__class__, modal=True)
+        if parent is not None: # the next two will not be set in ManagedWindow
+            self.parent_window = parent
+            self.other_modal_window = parent
+        self.set_window(self, None, None, isWindow=True)
+        if self.parent_window is not None:
+            self.setup_configs('interface.errorreportassistant', 780, 520)
 
         try:
             # did we get a handler wrapping the error detail?
@@ -84,8 +93,8 @@ class ErrorReportAssistant(Gtk.Assistant):
         self._final_report_text_buffer = None
 
         self.set_title(_("Error Report Assistant"))
-        self.connect('close', self.close)
-        self.connect('cancel', self.close)
+        self.connect('close', self.do_close)
+        self.connect('cancel', self.do_close)
         self.connect('prepare', self.prepare)
 
         #create the assistant pages
@@ -97,23 +106,19 @@ class ErrorReportAssistant(Gtk.Assistant):
         self.build_page5()
         self.create_page_summary()
 
-        try:
-            self.set_transient_for(self.list_toplevels()[-2])
-        except IndexError:
-            self.set_position(Gtk.WindowPosition.CENTER)
-            self.set_urgency_hint(True)
-            self.set_keep_above(True)
-        self.set_default_size(800,-1)
-        self.show_all()
+        self.show() # ManagedWindow
 
         self.ownthread = ownthread
         if self.ownthread:
             Gtk.main()
 
-    def close(self, *obj):
+    def do_close(self, *obj):
         """
         Close the assistant.
         """
+        if self.parent_window is not None:
+            self._save_position(save_config=False) # the next line saves it
+            self._save_size()
         self.hide()
         if self.ownthread:
             Gtk.main_quit()

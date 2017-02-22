@@ -35,6 +35,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ._errorreportassistant import ErrorReportAssistant
 from ..display import display_help
+from ..managedwindow import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
@@ -44,7 +45,7 @@ from ..display import display_help
 WIKI_HELP_PAGE = '%s_-_Error_and_Warning_Reference' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Error_Report')
 
-class ErrorView:
+class ErrorView(ManagedWindow):
     """
     A Dialog for displaying errors.
     """
@@ -53,26 +54,49 @@ class ErrorView:
         """
         Initialize the handler with the buffer size.
         """
+        ManagedWindow.__init__(self, None, [], self.__class__, modal=True)
+        # the self.top.run() below makes Gtk make it modal, so any change to
+        # the previous line's "modal" would require that line to be changed
 
         self._error_detail = error_detail
         self._rotate_handler = rotate_handler
+        self.p_width = None # may or may not be changed in draw_window
+        self.p_height = None
 
         self.draw_window()
+        self.set_window(self.top, None, None)
+        if self.parent_window is not None:
+            self.setup_configs('interface.errorview', 600, 250,
+                               # these two may be None or may be real
+                               p_width=self.p_width, p_height=self.p_height)
+        if self.p_width is None and self.p_height is None:
+            self.show() # ManagedWindow
+        else:
+            self.top.show_all()
         self.run()
 
     def run(self):
         response = Gtk.ResponseType.HELP
         while response == Gtk.ResponseType.HELP:
+            # the self.top.run() makes Gtk make it modal, so any change to that
+            # line would require the ManagedWindow.__init__ to be changed also
             response = self.top.run()
+            if self.parent_window is not None:
+                self._save_position(save_config=False) # the next line saves it
+                self._save_size()
             if response == Gtk.ResponseType.HELP:
                 self.help_clicked()
             elif response == Gtk.ResponseType.YES:
-                self.top.destroy()
                 ErrorReportAssistant(error_detail = self._error_detail,
                                      rotate_handler = self._rotate_handler,
-                                     ownthread=True)
-            elif response == Gtk.ResponseType.CANCEL:
+                                     ownthread=True, parent=self.top)
                 self.top.destroy()
+            elif response in (Gtk.ResponseType.CANCEL,
+                              Gtk.ResponseType.DELETE_EVENT):
+                self.top.destroy()
+
+    def close(self, *obj):
+        pass # let "run" handle it (not ManagedWindow)
 
     def help_clicked(self):
         """Display the relevant portion of Gramps manual"""
@@ -82,15 +106,18 @@ class ErrorView:
     def draw_window(self):
         title = "%s - Gramps" % _("Error Report")
         self.top = Gtk.Dialog(title)
-        try:
-            self.top.set_transient_for(self.top.list_toplevels()[-2])
-            self.top.set_position(Gtk.WindowPosition.CENTER)
-            self.top.set_keep_above(True)
-        except IndexError:
+        for win in self.top.list_toplevels():
+            if win.is_active():
+                self.parent_window = win # for ManagedWindow
+        if self.parent_window is None: # but it is on some screen
+            self.parent_window = self.top.get_screen()
+            self.p_width = self.top.get_screen().get_width()
+            self.p_height = self.top.get_screen().get_height()
             self.top.set_position(Gtk.WindowPosition.CENTER)
             self.top.set_urgency_hint(True)
             self.top.set_keep_above(True)
-        self.top.set_default_size(600,-1)
+            self.top.set_default_size(600, -1)
+
         vbox = self.top.get_content_area()
         vbox.set_spacing(5)
         self.top.set_border_width(12)
@@ -141,6 +168,3 @@ class ErrorView:
         self.top.add_button(_('_Cancel'), Gtk.ResponseType.CANCEL)
         self.top.add_button(_("Report"), Gtk.ResponseType.YES)
         self.top.add_button(_('_Help'), Gtk.ResponseType.HELP)
-
-        self.top.show_all()
-
