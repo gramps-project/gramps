@@ -913,24 +913,21 @@ class DBAPI(DbGeneric):
         Create secondary columns.
         """
         LOG.info("Creating secondary columns...")
-        for table in self.get_table_func():
-            if not hasattr(self.get_table_func(table, "class_func"),
-                           "get_secondary_fields"):
-                continue
-            table_name = table.lower()
-            for field, schema_type, max_length in self.get_table_func(
-                    table, "class_func").get_secondary_fields():
+        for cls in (Person, Family, Event, Place, Repository, Source,
+                    Citation, Media, Note, Tag):
+            table_name = cls.__name__.lower()
+            for field, schema_type, max_length in cls.get_secondary_fields():
                 sql_type = self._sql_type(schema_type, max_length)
                 try:
                     # test to see if it exists:
                     self.dbapi.execute("SELECT %s FROM %s LIMIT 1"
                                        % (field, table_name))
                     LOG.info("    Table %s, field %s is up to date",
-                             table, field)
+                             table_name, field)
                 except:
                     # if not, let's add it
                     LOG.info("    Table %s, field %s was added",
-                             table, field)
+                             table_name, field)
                     self.dbapi.execute("ALTER TABLE %s ADD COLUMN %s %s"
                                        % (table_name, field, sql_type))
 
@@ -941,8 +938,7 @@ class DBAPI(DbGeneric):
         Does not commit.
         """
         table = obj.__class__.__name__
-        fields = self.get_table_func(table, "class_func").get_secondary_fields()
-        fields = [field for (field, schema_type, max_length) in fields]
+        fields = [field[0] for field in obj.get_secondary_fields()]
         sets = []
         values = []
         for field in fields:
@@ -965,10 +961,10 @@ class DBAPI(DbGeneric):
             table_name = table.lower()
             self.dbapi.execute("UPDATE %s SET %s where handle = ?"
                                % (table_name, ", ".join(sets)),
-                               self._sql_cast_list(table, sets, values)
+                               self._sql_cast_list(values)
                                + [obj.handle])
 
-    def _sql_cast_list(self, table, fields, values):
+    def _sql_cast_list(self, values):
         """
         Given a list of field names and values, return the values
         in the appropriate type.
