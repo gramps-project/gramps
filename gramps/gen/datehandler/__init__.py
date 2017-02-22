@@ -97,14 +97,20 @@ except:
 from ._dateutils import *
 from ._grampslocale import (codeset, tformat)
 
+# set GRAMPS_RESOURCES then: python3 -m gramps.gen.datehandler.__init__
 if __name__ == "__main__":
     from ._datedisplay import DateDisplay
     m = 0
-    for l,d in LANG_TO_DISPLAY.items():
-        if len(l) != 2:
+    date_handlers = sorted(LANG_TO_DISPLAY.items())
+    for l,d in date_handlers:
+        if len(l) != 2 and l not in ('zh_TW'): # Chinese has two date_handlers
             continue
+        if l.upper() == l and (l.lower(),d) in date_handlers:
+            continue # don't need to see the upper-case variant also
         m = max(m, len(d.formats))
-        print("{}: {} {} own dg: {}".format(
+        print("{}: {} {} own-f:{} own-dc:{} own-dg:{}".format(
             l, len(d.formats), d.formats,
+            d.formats != DateDisplay.formats,
+            d._display_calendar != DateDisplay._display_calendar,
             d._display_gregorian != DateDisplay._display_gregorian))
     print("MAX: ", m)
