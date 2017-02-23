@@ -72,7 +72,7 @@ class VCardCheck(unittest.TestCase):
 
         return ET.tostring(doc, encoding='utf-8')
 
-    def do_case(self, input_str, expect_doc, debug=True):
+    def do_case(self, input_str, expect_doc, debug=False):
         if debug:
             print(input_str)
 
@@ -218,9 +218,10 @@ class VCardCheck(unittest.TestCase):
         self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_check_version(self):
-        self.vcard.extend(["BEGIN:VCARD", "VERSION:3.7", "FN:Another",
-                             "N:Another;;;;", "END:VCARD"])
-        self.do_case("\r\n".join(self.vcard), self.gramps)
+        self.vcard = ["BEGIN:VCARD", "VERSION:3.7", "FN:Another",
+                      "N:Another;;;;", "END:VCARD"]
+        expected = ET.XML(self.header + "</database>")
+        self.do_case("\r\n".join(self.vcard), expected)
 
     def test_add_formatted_name_twice(self):
         self.vcard[2] = "FN:Lastname B A"
@@ -252,7 +253,9 @@ class VCardCheck(unittest.TestCase):
     def test_add_name_multisurname(self):
         self.vcard[2] = "FN:Lastname Lastname2"
         self.vcard[3] = "N:Lastname,Lastname2;;;;"
-        ET.SubElement(self.name, 'surname').text = 'Lastname2'
+        surname = ET.SubElement(self.name, 'surname')
+        surname.text = 'Lastname2'
+        surname.set('prim', '0')
         self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_name_prefixsurname(self):
