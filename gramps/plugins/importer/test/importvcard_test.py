@@ -25,6 +25,8 @@ Unittest of import of VCard
 # in case of a failing test, add True as last parameter to do_case to see the output.
 
 import unittest
+import sys
+import os
 import time
 import subprocess
 import xml.etree.ElementTree as ET
@@ -75,14 +77,16 @@ class VCardCheck(unittest.TestCase):
     def do_case(self, input_str, expect_doc, debug=False):
         if debug:
             print(input_str)
-
-        process = subprocess.Popen('python3 Gramps.py -d .Date -d .ImportVCard '
-                                   '--config=preferences.eprefix:DEFAULT '
-                                   '-i - -f vcf -e - -f gramps',
+        pyexec = sys.executable
+        gcmd = ('Gramps.py -d .Date -d .ImportVCard '
+                '--config=preferences.eprefix:DEFAULT '
+                '-i - -f vcf -e - -f gramps')
+        process = subprocess.Popen('%s %s' % (pyexec, gcmd),
                                    stdin=subprocess.PIPE,
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE,
-                                   shell=True)
+                                   shell=True,
+                                   env=os.environ)
         result_str, err_str = process.communicate(input_str.encode("utf-8"))
         if debug:
             print(err_str)
