@@ -34,7 +34,6 @@ import time
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
 from ..lib.date import Date
 from . import LANG_TO_DISPLAY, LANG, parser, displayer
 
@@ -43,22 +42,14 @@ from . import LANG_TO_DISPLAY, LANG, parser, displayer
 # Convenience functions
 #
 #--------------------------------------------------------------
-def get_date_formats(flocale=glocale):
+def get_date_formats():
     """
     Return the list of supported formats for date parsers and displayers.
-    The UI language formats will be used unless another locale is fed in.
-
-    :param flocale: allow deferred translation of date formats
-    :type flocale: a :class:`.GrampsLocale` instance
     """
-    # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
-    trans_text = flocale.translation.sgettext
     try:
-        return tuple(trans_text(fmt)
-                     for fmt in LANG_TO_DISPLAY[flocale.lang].formats)
+        return LANG_TO_DISPLAY[LANG].formats
     except:
-        return tuple(trans_text(fmt)
-                     for fmt in LANG_TO_DISPLAY['C'].formats)
+        return LANG_TO_DISPLAY["C"].formats
 
 def set_format(value):
     try:

@@ -44,10 +44,6 @@ from . import _grampslocale
 from ..utils.grampslocale import GrampsLocale
 from ._datestrings import DateStrings
 
-# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
-    return value
-
 #-------------------------------------------------------------------------
 #
 # DateDisplay
@@ -57,31 +53,33 @@ class DateDisplay:
     """
     Base date display class.
     """
+    _locale = GrampsLocale(lang='en_US', languages='en')
 
     _tformat = _grampslocale.tformat
 
+    _ = _grampslocale.glocale.translation.sgettext
     formats = (
         # format 0 - must always be ISO
-        _T_("YYYY-MM-DD (ISO)"),
+        _("YYYY-MM-DD (ISO)"),
 
         # format # 1 - must always be locale-preferred numerical format
         # such as YY.MM.DD, MM-DD-YY, or whatever your locale prefers.
         # This should be the format that is used under the locale by
         # strftime() for '%x'.
         # You may translate this as "Numerical", "System preferred", or similar.
-        _T_("date format|Numerical"),
+        _("date format|Numerical"),
 
         # Full month name, day, year
-        _T_("Month Day, Year"),
+        _("Month Day, Year"),
 
         # Abbreviated month name, day, year
-        _T_("MON DAY, YEAR"),
+        _("MON DAY, YEAR"),
 
         # Day, full month name, year
-        _T_("Day Month Year"),
+        _("Day Month Year"),
 
         # Day, abbreviated month name, year
-        _T_("DAY MON YEAR")
+        _("DAY MON YEAR")
         )
     """
     .. note:: Will be overridden if a locale-specific date displayer exists.
@@ -92,6 +90,7 @@ class DateDisplay:
     This ``formats`` must agree with
     :meth:`~_display_calendar`/:meth:`~_display_gregorian`.
     """
+    del _
 
     newyear = ("", "Mar1", "Mar25", "Sep1")
 
@@ -729,4 +728,4 @@ class DateDisplayEn(DateDisplay):
 
     display = DateDisplay.display_formatted
 
-    _locale = GrampsLocale(languages='en') # no register_datehandler here
+    _locale = DateDisplay._locale # normally set in register_datehandler
