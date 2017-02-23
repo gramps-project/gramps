@@ -30,8 +30,8 @@ from ...lib.date import Date
 
 class DateDisplayTest(unittest.TestCase):
     def setUp(self):
-        from .._datedisplay import DateDisplay
-        self.display = DateDisplay()
+        from .._datedisplay import DateDisplayEn
+        self.display = DateDisplayEn()
         self.display_RU = GrampsLocale(lang='ru').date_displayer
 
     def assert_map_key_val(self, m, k, v):
