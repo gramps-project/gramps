@@ -158,7 +158,7 @@ class IndivCompleteReport(Report):
         stdoptions.run_name_format_option(self, menu)
 
         self.home_person = self._db.get_default_person() # might be None
-        self.increlname = menu.get_option_by_name('incl_relname')
+        self.increlname = menu.get_option_by_name('incl_relname').get_value()
         if self.increlname and self.home_person:
             self.rel_calc = get_relationship_calculator(reinit=True,
                                                         clocale=self._locale)
