@@ -169,7 +169,7 @@ class User(user.User):
         :type warning: str
         :returns: none
         """
-        self._fileout.write("%s %s" % (title, warning))
+        self._fileout.write("%s\n%s\n" % (title, warning))
 
     def notify_error(self, title, error=""):
         """
