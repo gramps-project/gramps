@@ -30,12 +30,11 @@ def get_git_revision(path=""):
     Return the short commit hash of the latest commit.
     """
     stdout = ""
-    command = "git log -1 --format=%h"
+    command = ['git', 'log', '-1', '--format=%h', path]
     try:
-        proc = subprocess.Popen(
-            "{} \"{}\"".format(command, path),
-            shell=True,
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        proc = subprocess.Popen(command,
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE)
         (stdout, stderr) = proc.communicate()
     except OSError:
         return "" # subprocess failed

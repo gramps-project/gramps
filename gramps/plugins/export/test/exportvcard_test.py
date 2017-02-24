@@ -71,13 +71,13 @@ class VCardCheck(unittest.TestCase):
         if debug:
             print(ET.tostring(input_doc))
 
-        pyexec = sys.executable
-        gcmd = 'Gramps.py -i - -f gramps -e - -f vcf'
-        process = subprocess.Popen('%s %s' % (pyexec, gcmd),
+        gcmd = [sys.executable, 'Gramps.py',
+                '-i', '-', '-f', 'gramps',
+                '-e', '-', '-f', 'vcf']
+        process = subprocess.Popen(gcmd,
                                    stdin=subprocess.PIPE,
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE,
-                                   shell=True,
                                    env=os.environ)
         input_str = (self.header.encode('utf-8') +
                      ET.tostring(input_doc, encoding='utf-8'))

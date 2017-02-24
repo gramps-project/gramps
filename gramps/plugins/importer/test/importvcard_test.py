@@ -77,15 +77,16 @@ class VCardCheck(unittest.TestCase):
     def do_case(self, input_str, expect_doc, debug=False):
         if debug:
             print(input_str)
-        pyexec = sys.executable
-        gcmd = ('Gramps.py -d .Date -d .ImportVCard '
-                '--config=preferences.eprefix:DEFAULT '
-                '-i - -f vcf -e - -f gramps')
-        process = subprocess.Popen('%s %s' % (pyexec, gcmd),
+
+        gcmd = [sys.executable, 'Gramps.py',
+                '-d', '.Date', '-d', '.ImportVCard',
+                '--config=preferences.eprefix:DEFAULT',
+                '-i', '-', '-f', 'vcf',
+                '-e', '-', '-f', 'gramps']
+        process = subprocess.Popen(gcmd,
                                    stdin=subprocess.PIPE,
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE,
-                                   shell=True,
                                    env=os.environ)
         result_str, err_str = process.communicate(input_str.encode("utf-8"))
         if debug:
