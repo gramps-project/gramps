@@ -59,22 +59,37 @@ class Glade(Gtk.Builder):
     """
     __slots__ = ['__toplevel', '__filename', '__dirname']
 
-    def __init__(self, filename=None, dirname=None, toplevel=None):
+    def __init__(self, filename=None, dirname=None, toplevel=None,
+                 also_load=[]):
         """
         Class Constructor: Returns a new instance of the Glade class
 
-        :type  filename: string
+        :type  filename: string or None
         :param filename: The name of the glade file to be used. Defaults to None
-        :type  dirname: string
+        :type  dirname: string or None
         :param dirname: The directory to search for the glade file. Defaults to
                     None which will cause a search for the file in the default
                     directory followed by the directory of the calling module.
-        :type  toplevel: toplevel
+        :type  toplevel: string or None
         :param toplevel: The toplevel object to search for in the glade file.
                      Defaults to None, which will cause a search for a toplevel
-                     matching the file name.
+                     matching the supplied name.
+        :type  also_load: list of strings
+        :param also_load: Additional toplevel objects to load from the glade
+                     file.  These are typically liststore or other objects
+                     needed to operate the toplevel object.
+                     Defaults to [] (empty list), which will not load
+                     additional objects.
         :rtype:   object reference
         :returns:  reference to the newly-created Glade instance
+
+        This operates in two modes; when no toplevel parameter is supplied,
+        the entire Glade file is loaded. It is the responsibility of the user
+        to make sure ALL toplevel objects are destroyed.
+
+        When a toplevel parameter is supplied, only that object and any
+        additional objects requested in the also_load parameter are loaded.
+        The user only has to destroy the requested toplevel objects.
         """
         Gtk.Builder.__init__(self)
         self.set_translation_domain(glocale.get_localedomain())
@@ -120,14 +135,18 @@ class Glade(Gtk.Builder):
 
         # try to build Gtk objects from glade file.  Let exceptions happen
 
-        self.add_from_file(path)
         self.__dirname, self.__filename = os.path.split(path)
 
         # try to find the toplevel widget
 
-        if toplevel:                            # toplevel is given
+        # toplevel is given
+        if toplevel:
+            loadlist = [toplevel] + also_load
+            self.add_objects_from_file(path, loadlist)
             self.__toplevel = self.get_object(toplevel)
-        else:                                   # toplevel not given
+        # toplevel not given
+        else:
+            self.add_from_file(path)
             # first, use filename as possible toplevel widget name
             self.__toplevel = self.get_object(filename.rpartition('.')[0])
 

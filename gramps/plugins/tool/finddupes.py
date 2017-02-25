@@ -103,7 +103,7 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
         self.update = callback
         self.use_soundex = 1
 
-        top = Glade()
+        top = Glade(toplevel="finddupes", also_load=["liststore1"])
 
         # retrieve options
         threshold = self.options.handler.options_dict['threshold']

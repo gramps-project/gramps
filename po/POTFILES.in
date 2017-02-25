@@ -560,16 +560,11 @@ gramps/plugins/drawreport/fanchart.py
 gramps/plugins/drawreport/statisticschart.py
 gramps/plugins/drawreport/timeline.py
 gramps/plugins/export/export.gpr.py
-gramps/plugins/export/exportcsv.glade
 gramps/plugins/export/exportcsv.py
-gramps/plugins/export/exportftree.glade
 gramps/plugins/export/exportgedcom.py
-gramps/plugins/export/exportgeneweb.glade
 gramps/plugins/export/exportgeneweb.py
 gramps/plugins/export/exportpkg.py
-gramps/plugins/export/exportvcalendar.glade
 gramps/plugins/export/exportvcalendar.py
-gramps/plugins/export/exportvcard.glade
 gramps/plugins/export/exportvcard.py
 gramps/plugins/export/exportxml.py
 gramps/plugins/gramplet/ageondategramplet.py

@@ -106,7 +106,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
 
     def run(self):
 
-        top = Glade(toplevel="mergecitations")
+        top = Glade(toplevel="mergecitations",  also_load=["liststore1"])
 
         # retrieve options
         fields = self.options.handler.options_dict['fields']

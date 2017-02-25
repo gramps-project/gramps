@@ -647,7 +647,8 @@ class DbManager(CLIDbManager, ManagedWindow):
         else:
             base_path = self.dbstate.db.get_save_path()
             archive = os.path.join(base_path, ARCHIVE)
-            check_in(self.dbstate.db, archive, self.user, self.__start_cursor)
+            _check_in(self.dbstate.db, archive, self.user,
+                      self.__start_cursor, parent=self.window)
             self.__end_cursor()
 
         self.__populate()
@@ -1118,7 +1119,7 @@ def check_out(dbase, rev, path, user):
     rdr(dbase, xml_file, user)
     os.unlink(xml_file)
 
-def check_in(dbase, filename, user, cursor_func=None):
+def _check_in(dbase, filename, user, cursor_func=None, parent=None):
     """
     Checks in the specified file into RCS
     """
@@ -1129,6 +1130,7 @@ def check_in(dbase, filename, user, cursor_func=None):
     glade = Glade(toplevel='comment')
     top = glade.toplevel
     text = glade.get_object('description')
+    top.set_transient_for(parent)
     top.run()
     comment = text.get_text()
     top.destroy()
