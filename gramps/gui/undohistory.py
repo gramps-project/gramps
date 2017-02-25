@@ -76,8 +76,8 @@ class UndoHistory(ManagedWindow):
         self.undodb = self.db.undodb
         self.dbstate = dbstate
 
-        window = Gtk.Dialog("", uistate.window,
-                            Gtk.DialogFlags.DESTROY_WITH_PARENT, None)
+        window = Gtk.Dialog(title="", transient_for=uistate.window,
+                            destroy_with_parent=True)
 
         self.help_button = window.add_button(_('_Help'),
                                              Gtk.ResponseType.HELP)

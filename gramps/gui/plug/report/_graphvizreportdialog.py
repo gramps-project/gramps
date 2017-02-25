@@ -154,7 +154,8 @@ class GraphvizReportDialog(ReportDialog):
         self.grid.attach(self.format_menu, 2, self.row, 2, 1)
         self.row += 1
 
-        self.open_with_app = Gtk.CheckButton(_("Open with default viewer"))
+        self.open_with_app = Gtk.CheckButton(
+            label=_("Open with default viewer"))
         self.open_with_app.set_active(
             config.get('interface.open-with-default-viewer'))
         self.grid.attach(self.open_with_app, 2, self.row, 2, 1)
