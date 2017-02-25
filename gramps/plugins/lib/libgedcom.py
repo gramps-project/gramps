@@ -3058,6 +3058,8 @@ class GedcomParser(UpdateCallback):
         text = StyledText(message, [tag])
         new_note.set_styledtext(text)
         new_note.set_handle(create_id())
+        gramps_id = self.nid_map[""]
+        new_note.set_gramps_id(gramps_id)
         note_type = NoteType()
         note_type.set((NoteType.CUSTOM, _("GEDCOM import")))
         new_note.set_type(note_type)
@@ -4555,6 +4557,9 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
 
+        if not line.data:  # handles empty FAMC line
+            self.__not_recognized(line, state)
+            return
         sub_state = CurrentState()
         sub_state.person = state.person
         sub_state.level = state.level + 1
