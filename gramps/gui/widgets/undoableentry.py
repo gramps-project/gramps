@@ -177,8 +177,8 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
                 self.undo_stack.append(prev_insert)
                 self.undo_stack.append(undo_action)
             break
-        self.get_buffer().insert_text(position, text, length)
-        return position + length
+        self.get_buffer().insert_text(position, text, len(text))
+        return position + len(text)
 
     def _on_delete_text(self, editable, start, end):
         def can_be_merged(prev, cur):
