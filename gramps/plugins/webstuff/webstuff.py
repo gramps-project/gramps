@@ -185,7 +185,7 @@ def load_on_reg(dbstate, uistate, plugin):
                               os.path.join(USER_CSS,cssfile),
                               None, [], [] ])
         return CSS_FILES
-    except:
+    except FileNotFoundError:
         return CSS_FILES
 
 def process_list(data):
