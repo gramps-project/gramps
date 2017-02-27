@@ -64,6 +64,7 @@ addons:
 # libxslt1-dev for compiling lxml.
 # https://github.com/deanmalmgren/textract/issues/19
     - zlib1g-dev
+    - wget
 
 before_install:
 
@@ -94,6 +95,12 @@ before_script:
 #   --exclude=merge_ref_test"
 # set GRAMPS_RESOURCES for locale, data,image and documentation
  - export GRAMPS_RESOURCES=.
+# Install addons
+ - mkdir -p ~/.gramps/gramps50/plugins/
+ - wget https://github.com/gramps-project/addons/raw/master/gramps50/download/CliMerge.addon.tgz
+ - tar -C ~/.gramps/gramps50/plugins -xzf CliMerge.addon.tgz
+ - wget https://github.com/gramps-project/addons/raw/master/gramps50/download/ExportRaw.addon.tgz
+ - tar -C ~/.gramps/gramps50/plugins -xzf ExportRaw.addon.tgz
 
 script:
 # Ignore the virtualenv entirely. Use nosetests3, python3 (3.4.0) and coverage
