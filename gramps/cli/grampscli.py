@@ -331,11 +331,11 @@ class CLIManager:
         recent_files(filename, name)
         self.file_loaded = True
 
-    def do_reg_plugins(self, dbstate, uistate):
+    def do_reg_plugins(self, dbstate, uistate, rescan=False):
         """
         Register the plugins at initialization time.
         """
-        self._pmgr.reg_plugins(PLUGINS_DIR, dbstate, uistate)
+        self._pmgr.reg_plugins(PLUGINS_DIR, dbstate, uistate, rescan=rescan)
         self._pmgr.reg_plugins(USER_PLUGINS, dbstate, uistate, load_on_reg=True)
 
 def startcli(errors, argparser):

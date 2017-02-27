@@ -1421,7 +1421,10 @@ class GrampsPreferences(ConfigureDialog):
             return
 
         if len(addon_update_list) > 0:
-            PluginWindows.UpdateAddons(self.uistate, self.track, addon_update_list)
+            rescan = PluginWindows.UpdateAddons(self.uistate, self.track,
+                                                addon_update_list).rescan
+            self.uistate.viewmanager.do_reg_plugins(self.dbstate, self.uistate,
+                                                    rescan=rescan)
         else:
             check_types = config.get('behavior.check-for-addon-update-types')
             OkDialog(
@@ -1434,7 +1437,6 @@ class GrampsPreferences(ConfigureDialog):
         # Dead code for l10n
         _('new'), _('update')
 
-        self.uistate.viewmanager.do_reg_plugins(self.dbstate, self.uistate)
 
     def database_backend_changed(self, obj):
         the_list = obj.get_model()
