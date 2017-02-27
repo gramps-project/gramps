@@ -64,7 +64,6 @@ addons:
 # libxslt1-dev for compiling lxml.
 # https://github.com/deanmalmgren/textract/issues/19
     - zlib1g-dev
-    - wget
 
 before_install:
 
