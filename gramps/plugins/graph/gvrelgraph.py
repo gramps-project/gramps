@@ -191,7 +191,8 @@ class RelGraphReport(Report):
 
     def write_report(self):
         person_handles = self._filter.apply(self._db,
-                                            self._db.iter_person_handles())
+                                            self._db.iter_person_handles(),
+                                            user=self._user)
 
         person_handles = self.sort_persons(person_handles)
 
