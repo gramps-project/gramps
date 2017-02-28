@@ -178,11 +178,12 @@ def load_on_reg(dbstate, uistate, plugin):
          path_img_48x48("gramps-geo-mainmap.png"), None, [], [] ],
         ]
     # If we add css user files, we must restart gramps to use them.
-    list_files = os.listdir(USER_CSS)
-    for cssfile in list_files:
-        CSS_FILES.append([cssfile, 1, cssfile.replace('.css', ''),
-                          os.path.join(USER_CSS,cssfile),
-                          None, [], [] ])
+    if os.path.exists(USER_CSS):
+        list_files = os.listdir(USER_CSS)
+        for cssfile in list_files:
+            CSS_FILES.append([cssfile, 1, cssfile.replace('.css', ''),
+                              os.path.join(USER_CSS,cssfile),
+                              None, [], [] ])
     return CSS_FILES
 
 def process_list(data):
