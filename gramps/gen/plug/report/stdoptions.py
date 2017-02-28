@@ -182,9 +182,8 @@ def add_living_people_option(menu, category,
     living_people.connect('value-changed', living_people_changed)
     years_past_death = NumberOption(_("Years from death to consider living"),
                                       after_death_years, 0, 100)
-    years_past_death.set_help(_("This allows you to restrict "
-                                "information on people who have not "
-                                "been dead for very long"))
+    years_past_death.set_help(
+        _("Whether to restrict data on recently-dead people"))
     menu.add_option(category, "years_past_death", years_past_death)
     living_people_changed()
 
