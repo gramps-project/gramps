@@ -337,6 +337,8 @@ class CLIManager:
         """
         self._pmgr.reg_plugins(PLUGINS_DIR, dbstate, uistate, rescan=rescan)
         self._pmgr.reg_plugins(USER_PLUGINS, dbstate, uistate, load_on_reg=True)
+        if rescan:  # supports updated plugin installs
+            self._pmgr.reload_plugins()
 
 def startcli(errors, argparser):
     """
