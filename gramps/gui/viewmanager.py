@@ -274,6 +274,7 @@ class ViewManager(CLIManager):
         CLIManager.__init__(self, dbstate, setloader=False, user=user)
         if _GTKOSXAPPLICATION:
             self.macapp = QuartzApp.Application()
+            self.macapp.set_use_quartz_accelerators(False)
 
         self.view_category_order = view_category_order
 

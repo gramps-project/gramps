@@ -118,13 +118,14 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
         Handle formatting undo/redo key press.
 
         """
-        if ((Gdk.keyval_name(event.keyval) == 'Z') and
-            (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and
+        keymap = Gdk.Keymap.get_default();
+        primary = keymap.get_modifier_mask(Gdk.ModifierIntent.PRIMARY_ACCELERATO        if ((Gdk.keyval_name(event.keyval) == 'Z') and
+            (event.get_state() & primary) and
             (event.get_state() & Gdk.ModifierType.SHIFT_MASK)):
             self.redo()
             return True
         elif ((Gdk.keyval_name(event.keyval) == 'z') and
-              (event.get_state() & Gdk.ModifierType.CONTROL_MASK)):
+              (event.get_state() & primary)):
             self.undo()
             return True
 
