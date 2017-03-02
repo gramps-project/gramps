@@ -33,10 +33,10 @@ import lxml.etree as ET
 from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
 from gramps.test.test_util import Gramps
 from gramps.cli.user import User
-from ...const import DATA_DIR, USER_PLUGINS, TEMP_DIR
-from ....version import VERSION
-from ...lib import Name, Surname
-from ...const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import DATA_DIR, USER_PLUGINS, TEMP_DIR
+from gramps.version import VERSION
+from gramps.gen.lib import Name, Surname
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
 HAS_CLIMERGE = os.path.isdir(os.path.join(USER_PLUGINS, 'CliMerge'))
@@ -1471,11 +1471,38 @@ class FamilyPersonCheck(BaseMergeCheck):
         input_doc = ET.tostring(input_ctxt)
         self.do_case('I0000', 'I0002', input_doc, expect)
 
-    @unittest.skip('Not working')
     def test_multi_rel(self):
         """Merge two persons where titanic has multiple family relationships
         with his partner, this should raise an error."""
         input_ctxt = ET.fromstring(self.basedoc, parser=self.parser)
+        expect = copy.deepcopy(input_ctxt)
+        persons = expect.xpath("//g:person",
+                               namespaces={"g": NS_G})
+        altname = ET.SubElement(persons[0], NSP + 'name',
+                                alt='1', type='Birth Name')
+        ET.SubElement(altname, NSP + 'surname').text = 'Person 2'
+        attr = ET.SubElement(persons[0], NSP + 'attribute',
+                             type='Merged Gramps ID', value='I0002')
+        parentref = expect.xpath("//g:person[@handle='_i0000']/g:parentin",
+                                 namespaces={"g": NS_G})[0]
+        attr.addnext(parentref)  # restore order of elements
+        ET.SubElement(persons[0], NSP + 'parentin', hlink='_f0001')
+        ET.SubElement(persons[3], NSP + 'parentin', hlink='_f0001')
+        ET.SubElement(persons[0], NSP + 'parentin', hlink='_f0002')
+        ET.SubElement(persons[3], NSP + 'parentin', hlink='_f0002')
+        family = expect.xpath("//g:family[@handle='_f0001']",
+                              namespaces={"g": NS_G})[0]
+        ET.SubElement(family, NSP + 'father', hlink='_i0000')
+        ET.SubElement(family, NSP + 'mother', hlink='_i0003')
+        families = expect.xpath("//g:families",
+                                namespaces={"g": NS_G})[0]
+        family = ET.SubElement(families, NSP + 'family',
+                               handle='_f0002', id='F0002')
+        ET.SubElement(family, NSP + 'rel', type='Married')
+        ET.SubElement(family, NSP + 'father', hlink='_i0000')
+        ET.SubElement(family, NSP + 'mother', hlink='_i0003')
+        persons[2].getparent().remove(persons[2])
+
         persons = input_ctxt.xpath("//g:person",
                                    namespaces={"g": NS_G})
         ET.SubElement(persons[2], NSP + 'parentin', hlink='_f0001')
@@ -1493,12 +1520,9 @@ class FamilyPersonCheck(BaseMergeCheck):
         ET.SubElement(family, NSP + 'rel', type='Married')
         ET.SubElement(family, NSP + 'father', hlink='_i0002')
         ET.SubElement(family, NSP + 'mother', hlink='_i0003')
-        input_doc = expect = ET.tostring(input_ctxt)
+        input_doc = ET.tostring(input_ctxt)
         self.do_case('I0000', 'I0002', input_doc, expect,
-                     test_error_str="A person with multiple relations "
-                     "with the same spouse is about to be merged. This is "
-                     "beyond the capabilities of the merge routine. The "
-                     "merge is aborted.")
+                     test_error_str="")
 
     def test_merge_fam(self):
         """Merge two persons such that also the families in which they are
@@ -1859,7 +1883,6 @@ class FamilyMergeCheck(BaseMergeCheck):
         self.basedoc = bytes(bytearray(self.base_str + base_str,
                                        encoding='utf-8'))
 
-    @unittest.skip('Not working')
     def test_father_son_merge(self):
         """Merge two families where the fathers have a father-son relationship
         so that an error is raised."""
@@ -1877,7 +1900,6 @@ class FamilyMergeCheck(BaseMergeCheck):
                              "these people, you must first break the "
                              "relationship between them."))
 
-    @unittest.skip('Not working')
     def test_child_parent_merge_no_father(self):
         """Merge two families where the phoenix family has no father and
         the father of the titanic family is a child of the phoenix family.
@@ -1902,7 +1924,6 @@ class FamilyMergeCheck(BaseMergeCheck):
                              "these people, you must first break the "
                              "relationship between them."))
 
-    @unittest.skip('Not working')
     def test_child_parent_merge_no_father_swapped(self):
         """Merge two families where the phoenix family has no father and
         the father of the titanic family, which is the phoenix-father, is a
