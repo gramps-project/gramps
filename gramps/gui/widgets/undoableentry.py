@@ -119,7 +119,8 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
 
         """
         keymap = Gdk.Keymap.get_default();
-        primary = keymap.get_modifier_mask(Gdk.ModifierIntent.PRIMARY_ACCELERATO        if ((Gdk.keyval_name(event.keyval) == 'Z') and
+        primary = keymap.get_modifier_mask(Gdk.ModifierIntent.PRIMARY_ACCELERATOR)
+        if ((Gdk.keyval_name(event.keyval) == 'Z') and
             (event.get_state() & primary) and
             (event.get_state() & Gdk.ModifierType.SHIFT_MASK)):
             self.redo()
