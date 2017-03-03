@@ -378,6 +378,7 @@ class DBAPI(DbGeneric):
         key: string
         value: item, will be serialized here
         """
+        self._txn_begin()
         self.dbapi.execute("SELECT 1 FROM metadata WHERE setting = ?", [key])
         row = self.dbapi.fetchone()
         if row:
@@ -388,6 +389,7 @@ class DBAPI(DbGeneric):
             self.dbapi.execute(
                 "INSERT INTO metadata (setting, value) VALUES (?, ?)",
                 [key, pickle.dumps(value)])
+        self._txn_commit()
 
     def get_name_group_keys(self):
         """
@@ -871,6 +873,7 @@ class DBAPI(DbGeneric):
         return gstats
 
     def save_gender_stats(self, gstats):
+        self._txn_begin()
         self.dbapi.execute("DELETE FROM gender_stats")
         for key in gstats.stats:
             female, male, unknown = gstats.stats[key]
@@ -878,6 +881,7 @@ class DBAPI(DbGeneric):
                                "(given_name, female, male, unknown) "
                                "VALUES (?, ?, ?, ?)",
                                [key, female, male, unknown])
+        self._txn_commit()
 
     def get_surname_list(self):
         """
