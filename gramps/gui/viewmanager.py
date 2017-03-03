@@ -345,8 +345,9 @@ class ViewManager(CLIManager):
         """
         Called when add-on updates are available.
         """
-        PluginWindows.UpdateAddons(self.uistate, [], addon_update_list)
-        self.do_reg_plugins(self.dbstate, self.uistate)
+        rescan = PluginWindows.UpdateAddons(self.uistate, [],
+                                            addon_update_list).rescan
+        self.do_reg_plugins(self.dbstate, self.uistate, rescan=rescan)
 
     def _errordialog(self, title, errormessage):
         """
@@ -728,14 +729,15 @@ class ViewManager(CLIManager):
         if not self.dbstate.is_open() and show_manager:
             self.__open_activate(None)
 
-    def do_reg_plugins(self, dbstate, uistate):
+    def do_reg_plugins(self, dbstate, uistate, rescan=False):
         """
         Register the plugins at initialization time. The plugin status window
         is opened on an error if the user has requested.
         """
         # registering plugins
         self.uistate.status_text(_('Registering plugins...'))
-        error = CLIManager.do_reg_plugins(self, dbstate, uistate)
+        error = CLIManager.do_reg_plugins(self, dbstate, uistate,
+                                          rescan=rescan)
 
         #  get to see if we need to open the plugin status window
         if error and config.get('behavior.pop-plugin-status'):
