@@ -1761,116 +1761,67 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def add_person(self, person, trans, set_gid=True):
-        if not person.handle:
-            person.handle = create_id()
-        if (not person.gramps_id) and set_gid:
-            person.gramps_id = self.find_next_person_gramps_id()
-        if not person.gramps_id:
+    def _add_base(self, obj, trans, set_gid, find_func, commit_func):
+        if not obj.handle:
+            obj.handle = create_id()
+        if (not obj.gramps_id) and set_gid:
+            obj.gramps_id = find_func()
+        if (not obj.gramps_id):
             # give it a random value for the moment:
-            person.gramps_id = str(random.random())
-        self.commit_person(person, trans)
-        return person.handle
+            obj.gramps_id = str(random.random())
+        commit_func(obj, trans)
+        return obj.handle
+
+    def add_person(self, person, trans, set_gid=True):
+        return self._add_base(person, trans, set_gid,
+                              self.find_next_person_gramps_id,
+                              self.commit_person)
 
     def add_family(self, family, trans, set_gid=True):
-        if not family.handle:
-            family.handle = create_id()
-        if (not family.gramps_id) and set_gid:
-            family.gramps_id = self.find_next_family_gramps_id()
-        if not family.gramps_id:
-            # give it a random value for the moment:
-            family.gramps_id = str(random.random())
-        self.commit_family(family, trans)
-        return family.handle
-
-    def add_citation(self, citation, trans, set_gid=True):
-        if not citation.handle:
-            citation.handle = create_id()
-        if (not citation.gramps_id) and set_gid:
-            citation.gramps_id = self.find_next_citation_gramps_id()
-        if not citation.gramps_id:
-            # give it a random value for the moment:
-            citation.gramps_id = str(random.random())
-        self.commit_citation(citation, trans)
-        return citation.handle
-
-    def add_source(self, source, trans, set_gid=True):
-        if not source.handle:
-            source.handle = create_id()
-        if (not source.gramps_id) and set_gid:
-            source.gramps_id = self.find_next_source_gramps_id()
-        if not source.gramps_id:
-            # give it a random value for the moment:
-            source.gramps_id = str(random.random())
-        self.commit_source(source, trans)
-        return source.handle
-
-    def add_repository(self, repository, trans, set_gid=True):
-        if not repository.handle:
-            repository.handle = create_id()
-        if (not repository.gramps_id) and set_gid:
-            repository.gramps_id = self.find_next_repository_gramps_id()
-        if not repository.gramps_id:
-            # give it a random value for the moment:
-            repository.gramps_id = str(random.random())
-        self.commit_repository(repository, trans)
-        return repository.handle
-
-    def add_note(self, note, trans, set_gid=True):
-        if not note.handle:
-            note.handle = create_id()
-        if (not note.gramps_id) and set_gid:
-            note.gramps_id = self.find_next_note_gramps_id()
-        if not note.gramps_id:
-            # give it a random value for the moment:
-            note.gramps_id = str(random.random())
-        self.commit_note(note, trans)
-        return note.handle
-
-    def add_place(self, place, trans, set_gid=True):
-        if not place.handle:
-            place.handle = create_id()
-        if (not place.gramps_id) and set_gid:
-            place.gramps_id = self.find_next_place_gramps_id()
-        if not place.gramps_id:
-            # give it a random value for the moment:
-            place.gramps_id = str(random.random())
-        self.commit_place(place, trans)
-        return place.handle
+        return self._add_base(family, trans, set_gid,
+                              self.find_next_family_gramps_id,
+                              self.commit_family)
 
     def add_event(self, event, trans, set_gid=True):
-        if not event.handle:
-            event.handle = create_id()
-        if (not event.gramps_id) and set_gid:
-            event.gramps_id = self.find_next_event_gramps_id()
-        if not event.gramps_id:
-            # give it a random value for the moment:
-            event.gramps_id = str(random.random())
-        self.commit_event(event, trans)
-        return event.handle
+        return self._add_base(event, trans, set_gid,
+                              self.find_next_event_gramps_id,
+                              self.commit_event)
+
+    def add_place(self, place, trans, set_gid=True):
+        return self._add_base(place, trans, set_gid,
+                              self.find_next_place_gramps_id,
+                              self.commit_place)
+
+    def add_repository(self, repository, trans, set_gid=True):
+        return self._add_base(repository, trans, set_gid,
+                              self.find_next_repository_gramps_id,
+                              self.commit_repository)
+
+    def add_source(self, source, trans, set_gid=True):
+        return self._add_base(source, trans, set_gid,
+                              self.find_next_source_gramps_id,
+                              self.commit_source)
+
+    def add_citation(self, citation, trans, set_gid=True):
+        return self._add_base(citation, trans, set_gid,
+                              self.find_next_citation_gramps_id,
+                              self.commit_citation)
+
+    def add_media(self, media, trans, set_gid=True):
+        return self._add_base(media, trans, set_gid,
+                              self.find_next_media_gramps_id,
+                              self.commit_media)
+
+    def add_note(self, note, trans, set_gid=True):
+        return self._add_base(note, trans, set_gid,
+                              self.find_next_note_gramps_id,
+                              self.commit_note)
 
     def add_tag(self, tag, trans):
         if not tag.handle:
             tag.handle = create_id()
         self.commit_tag(tag, trans)
         return tag.handle
-
-    def add_media(self, obj, transaction, set_gid=True):
-        """
-        Add a Media to the database, assigning internal IDs if they have
-        not already been defined.
-
-        If not set_gid, then gramps_id is not set.
-        """
-        if not obj.handle:
-            obj.handle = create_id()
-        if (not obj.gramps_id) and set_gid:
-            obj.gramps_id = self.find_next_media_gramps_id()
-        if not obj.gramps_id:
-            # give it a random value for the moment:
-            obj.gramps_id = str(random.random())
-        self.commit_media(obj, transaction)
-        return obj.handle
 
     ################################################################
     #
