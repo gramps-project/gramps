@@ -104,7 +104,7 @@ _LOCALE_NAMES = {
     'sv': ('Swedish_Sweden', '1252', _("Swedish")),
     'tr': ('Turkish_Turkey', '1254', _("Turkish")),
     'uk': ('Ukrainian_Ukraine', '1251', _("Ukrainian")),
-    'vi': ('Vietnamese_Viet Nam', '1258', _("Vietnamese")),
+    'vi': ('Vietnamese_Vietnam', '1258', _("Vietnamese")),
     'zh_CN': ('Chinese_China', '936', _("Chinese (Simplified)")),
     'zh_HK': ('Chinese_Hong Kong', '950', _("Chinese (Hong Kong)")),
     'zh_TW': ('Chinese_Taiwan', '950', _("Chinese (Traditional)")),
