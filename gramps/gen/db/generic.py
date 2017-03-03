@@ -1286,135 +1286,48 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def get_event_from_handle(self, handle):
+    def _get_from_handle(self, obj_key, obj_class, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
         if handle is None:
             raise HandleError('Handle is None')
         if not handle:
             raise HandleError('Handle is empty')
-        data = self.get_raw_event_data(handle)
+        data = self.get_raw_data(obj_key, handle)
         if data:
-            return Event.create(data)
+            return obj_class.create(data)
         else:
             raise HandleError('Handle %s not found' % handle)
+
+    def get_event_from_handle(self, handle):
+        return self._get_from_handle(EVENT_KEY, Event, handle)
 
     def get_family_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_family_data(handle)
-        if data:
-            return Family.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(FAMILY_KEY, Family, handle)
 
     def get_repository_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_repository_data(handle)
-        if data:
-            return Repository.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(REPOSITORY_KEY, Repository, handle)
 
     def get_person_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_person_data(handle)
-        if data:
-            return Person.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(PERSON_KEY, Person, handle)
 
     def get_place_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_place_data(handle)
-        if data:
-            return Place.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(PLACE_KEY, Place, handle)
 
     def get_citation_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_citation_data(handle)
-        if data:
-            return Citation.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(CITATION_KEY, Citation, handle)
 
     def get_source_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_source_data(handle)
-        if data:
-            return Source.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(SOURCE_KEY, Source, handle)
 
     def get_note_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_note_data(handle)
-        if data:
-            return Note.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(NOTE_KEY, Note, handle)
 
     def get_media_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_media_data(handle)
-        if data:
-            return Media.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(MEDIA_KEY, Media, handle)
 
     def get_tag_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_tag_data(handle)
-        if data:
-            return Tag.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(TAG_KEY, Tag, handle)
 
     ################################################################
     #
