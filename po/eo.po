@@ -2276,33 +2276,29 @@ msgstr ""
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "after" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:467
-#, fuzzy
 msgid "after-date|"
-msgstr "post"
+msgstr ""
 
 #. If there is no special inflection for "about <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "about" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:472
-#, fuzzy
 msgid "about-date|"
-msgstr "pri"
+msgstr ""
 
 #. If there is no special inflection for "estimated <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "estimated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:477
-#, fuzzy
 msgid "estimated-date|"
-msgstr "Taksata"
+msgstr ""
 
 #. If there is no special inflection for "calculated <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "calculated" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:482
-#, fuzzy
 msgid "calculated-date|"
-msgstr "kalkulita"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:501
 #, python-brace-format
@@ -2742,27 +2738,27 @@ msgstr "Esfand"
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:225
 msgid "date modifier|before "
-msgstr "antaŭ"
+msgstr "antaŭ "
 
 #. TRANSLATORS: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:228
 msgid "date modifier|after "
-msgstr "post"
+msgstr "post "
 
 #. TRANSLATORS: if the modifier is after the date
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:231
 msgid "date modifier|about "
-msgstr "ĉirkaŭ"
+msgstr "ĉirkaŭ "
 
 #: ../gramps/gen/datehandler/_datestrings.py:235
 msgid "date quality|estimated "
-msgstr "taksata"
+msgstr "taksata "
 
 #: ../gramps/gen/datehandler/_datestrings.py:236
 msgid "date quality|calculated "
-msgstr "kalkulita"
+msgstr "kalkulita "
 
 #: ../gramps/gen/datehandler/_datestrings.py:242
 msgid "Sunday"
