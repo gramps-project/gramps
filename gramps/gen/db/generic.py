@@ -671,7 +671,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 touch(filename)
 
                 # Save metadata
-                self._txn_begin()
                 self._set_metadata('name_formats', self.name_formats)
                 self._set_metadata('researcher', self.owner)
 
@@ -722,7 +721,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 self._set_metadata('omap_index', self.omap_index)
                 self._set_metadata('rmap_index', self.rmap_index)
                 self._set_metadata('nmap_index', self.nmap_index)
-                self._txn_commit()
 
             self._close()
         self.db_is_open = False
