@@ -65,11 +65,10 @@ class TestCallback(unittest.TestCase):
 
         def borked(i):
             """
-            this intentionally raises a NameError exception
-            FIXME: could use an explanation
-              or perhaps some explicit Try/Except code
+            This intentionally raises a NameError exception
             """
-            rubish.append(i)
+            with self.assertRaises(NameError):
+                rubish.append(i)
 
         t = TestSignals()
 
@@ -87,7 +86,7 @@ class TestCallback(unittest.TestCase):
         log = _log
 
         self.assertEqual(len(rl), 1, "No signal emitted")
-        self.assertEqual(rl[0], 1, "Wrong argument recieved")
+        self.assertEqual(rl[0], 1, "Wrong argument received")
 
     def test_disconnect(self):
 
