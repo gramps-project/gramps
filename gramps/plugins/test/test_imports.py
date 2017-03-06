@@ -223,7 +223,7 @@ def make_tst_function(tstfile, file_name):
         #logger.info("\n**** %s ****", tstfile)
         set_det_id(True)
         with capture(None) as output:
-            self.user = User(quiet=True)
+            self.user = User()
             self.database1 = import_as_dict(fn1, self.user,
                                             skp_imp_adds=skp_imp_adds)
             set_det_id(True)
