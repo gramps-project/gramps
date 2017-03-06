@@ -210,7 +210,7 @@ def _display_translator_message(parent=None):
             # we are looking for a translator so leave this in English
             WarningDialog("This Gramps has an incomplete translation",
                           "The translation for the "
-                          "current language (%(language)s) is incomplete.\n"
+                          "current language (%(language)s) is incomplete.\n\n"
                           "%(bold_start)sGramps%(bold_end)s "
                           "will start anyway, but if you would like "
                           "to improve\nGramps by doing some translating, "
