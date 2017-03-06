@@ -32,7 +32,7 @@ import lxml.etree as ET
 
 from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
 from gramps.test.test_util import Gramps
-from gramps.cli.user import User
+from gramps.gen.user import User
 from gramps.gen.const import DATA_DIR, USER_PLUGINS, TEMP_DIR
 from gramps.version import VERSION
 from gramps.gen.lib import Name, Surname
@@ -93,7 +93,7 @@ class BaseMergeCheck(unittest.TestCase):
     def do_case(self, phoenix_id, titanic_id, input_doc, expect_doc,
                 test_error_str=''):
         """Do the merge and "assert" the result."""
-        gramps = Gramps(user=User(auto_accept=True, quiet=True))
+        gramps = Gramps(user=User())
         result_str, err_str = gramps.run(
             '-d', '.ImportXML', '--config=preferences.eprefix:DEFAULT',
             '-i', '-', '-f', 'gramps', '-a', 'tool', '-p',
@@ -154,7 +154,7 @@ class BaseMergeCheck(unittest.TestCase):
 
     def do_family_case(self, phoenix_id, titanic_id, father_h, mother_h,
                        input_doc, expect_doc, test_error_str=''):
-        gramps = Gramps(user=User(auto_accept=True, quiet=True))
+        gramps = Gramps(user=User())
         result_str, err_str = gramps.run(
             '-d', '.ImportXML', '--config=preferences.eprefix:DEFAULT',
             '-i', '-', '-f', 'gramps', '-a', 'tool', '-p',
@@ -166,7 +166,7 @@ class BaseMergeCheck(unittest.TestCase):
 
     def raw_contains(self, phoenix_id, titanic_id, input_doc, expect_str,
                      test_error_str=''):
-        gramps = Gramps(user=User(auto_accept=True, quiet=True))
+        gramps = Gramps(user=User())
         result_str, err_str = gramps.run(
             '-d', '.ImportXML', '--config=preferences.eprefix:DEFAULT',
             '-i', '-', '-f', 'gramps', '-a', 'tool', '-p',

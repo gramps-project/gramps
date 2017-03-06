@@ -27,7 +27,7 @@ import random
 
 from gramps.test.test_util import Gramps
 from gramps.gen.const import DATA_DIR
-from gramps.cli.user import User
+from gramps.gen.user import User
 from gramps.gen.utils.id import set_det_id
 from gramps.gen import const
 from gramps.gen.utils.config import config

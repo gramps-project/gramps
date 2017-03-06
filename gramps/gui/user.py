@@ -44,14 +44,14 @@ from .dialog import (WarningDialog, ErrorDialog, DBErrorDialog,
 # User class
 #
 #-------------------------------------------------------------------------
-class User(user.User):
+class User(user.UserBase):
     """
     This class provides a means to interact with the user via GTK.
-    It implements the interface in :class:`.gen.user.User`
+    It implements the interface in :class:`.gen.user.UserBase`
     """
     def __init__(self, callback=None, error=None, parent=None,
                  uistate=None, dbstate=None): # TODO User API: gen==cli==gui
-        user.User.__init__(self, callback, error, uistate, dbstate)
+        user.UserBase.__init__(self, callback, error, uistate, dbstate)
         self._progress = None
 
         if parent:

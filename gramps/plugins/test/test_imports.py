@@ -35,7 +35,7 @@ from gramps.gen.db.utils import import_as_dict
 from gramps.gen.merge.diff import diff_dbs, to_struct
 from gramps.gen.simple import SimpleAccess
 from gramps.gen.utils.id import set_det_id
-from gramps.cli.user import User
+from gramps.gen.user import User
 from gramps.gen.const import TEMP_DIR, DATA_DIR
 from gramps.test.test_util import capture
 from gramps.plugins.export.exportxml import XmlWriter

@@ -44,10 +44,10 @@ _SPINNER = ['|', '/', '-', '\\']
 # User class
 #
 #-------------------------------------------------------------------------
-class User(user.User):
+class User(user.UserBase):
     """
     This class provides a means to interact with the user via CLI.
-    It implements the interface in :class:`.gen.user.User`
+    It implements the interface in :class:`.gen.user.UserBase`
     """
     def __init__(self, callback=None, error=None,
                  auto_accept=False, quiet=False,
@@ -58,7 +58,7 @@ class User(user.User):
         :param error: If given, notify_error delegates to this callback
         :type error: function(title, error)
         """
-        user.User.__init__(self, callback, error, uistate, dbstate)
+        user.UserBase.__init__(self, callback, error, uistate, dbstate)
         self.steps = 0;
         self.current_step = 0;
         self._input = input

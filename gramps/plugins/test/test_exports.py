@@ -26,7 +26,7 @@ import difflib
 from gramps.test.test_util import Gramps
 from gramps.gen.const import TEMP_DIR, DATA_DIR
 from gramps.gen.datehandler import set_format
-from gramps.cli.user import User
+from gramps.gen.user import User
 from gramps.gen.utils.config import config
 
 TREE_NAME = "Test_exporttest"

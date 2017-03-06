@@ -27,7 +27,7 @@ import os
 from ....db.utils import import_as_dict
 from ....filters import GenericFilterFactory
 from ....const import DATA_DIR
-from gramps.cli.user import User
+from ....user import User
 
 from ..family import (
     AllFamilies, HasRelType, HasGallery, HasIdOf, HasLDS, HasNote, RegExpIdOf,
