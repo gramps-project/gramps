@@ -195,7 +195,10 @@ class User(UserBase):
     """
 
     def __init__(self, callback=None, error=None, uistate=None, dbstate=None):
-        UserBase.__init__(self, callback=lambda x: x)
+        UserBase.__init__(self, callback=self.__cb)
+
+    def __cb(self, percent, text=None):
+        return
 
     def begin_progress(self, title, message, steps):
         pass
