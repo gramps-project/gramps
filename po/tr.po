@@ -274,12 +274,12 @@ msgstr ""
 #: ../data/holidays.xml.in.h:46
 #, fuzzy
 msgid "Serbia"
-msgstr "波斯历"
+msgstr ""
 
 #: ../data/holidays.xml.in.h:47
 #, fuzzy
 msgid "Serbia (Latin)"
-msgstr "波斯历"
+msgstr ""
 
 #: ../data/tips.xml.in.h:1
 msgid ""
@@ -5777,11 +5777,11 @@ msgstr "Üvey Çocuk"
 
 #: ../gramps/gen/lib/childreftype.py:71
 msgid "Sponsored"
-msgstr "赞助"
+msgstr ""
 
 #: ../gramps/gen/lib/childreftype.py:72
 msgid "Foster"
-msgstr "收养"
+msgstr ""
 
 #. -------------------------------------------------------------------------
 #.
@@ -7260,7 +7260,7 @@ msgstr ""
 #: ../gramps/gen/lib/person.py:176
 #, fuzzy
 msgid "LDS ordinances"
-msgstr "<b>父母</b>"
+msgstr ""
 
 #: ../gramps/gen/lib/person.py:182
 #, fuzzy
@@ -7976,7 +7976,7 @@ msgstr ""
 #: ../gramps/gen/plug/docgen/graphdoc.py:182
 #, fuzzy
 msgid "Connecting lines"
-msgstr "姓"
+msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:185
 msgid "How the lines between objects will be drawn."
@@ -8199,7 +8199,7 @@ msgstr "Web Sayfaları"
 
 #: ../gramps/gen/plug/report/_constants.py:49
 msgid "Books"
-msgstr "书册"
+msgstr ""
 
 #: ../gramps/gen/plug/report/_constants.py:50
 msgid "Graphs"
@@ -8901,7 +8901,7 @@ msgstr "Arnavutça"
 
 #: ../gramps/gen/utils/grampslocale.py:103
 msgid "Serbian"
-msgstr "波斯历"
+msgstr ""
 
 #: ../gramps/gen/utils/grampslocale.py:104
 msgid "Swedish"
@@ -10654,7 +10654,7 @@ msgstr ""
 #: ../gramps/gui/dbman.py:795 ../gramps/gui/dbman.py:820
 #, fuzzy, python-format
 msgid "Converting the '%s' database"
-msgstr "姓"
+msgstr ""
 
 #: ../gramps/gui/dbman.py:796
 msgid "An attempt to export the database failed."
@@ -11756,7 +11756,7 @@ msgstr "Hesaplanmış"
 #: ../gramps/gui/editors/editdate.py:99
 #, fuzzy
 msgid "manual|Editing_dates"
-msgstr "姓"
+msgstr ""
 
 #: ../gramps/gui/editors/editdate.py:126 ../gramps/gui/editors/editdate.py:279
 msgid "Date selection"
@@ -12567,7 +12567,7 @@ msgstr "Yeri Düzenle"
 #: ../gramps/gui/editors/editplaceref.py:310
 #, fuzzy
 msgid "Add Place"
-msgstr "编辑此人"
+msgstr ""
 
 #: ../gramps/gui/editors/editprimary.py:238
 msgid "Save Changes?"
@@ -12767,11 +12767,11 @@ msgstr "_Yardım"
 #: ../gramps/gui/editors/editurl.py:47
 #, fuzzy
 msgid "manual|Internet_Address_Editor"
-msgstr "因特网址编辑器"
+msgstr ""
 
 #: ../gramps/gui/editors/editurl.py:68 ../gramps/gui/editors/editurl.py:103
 msgid "Internet Address Editor"
-msgstr "因特网址编辑器"
+msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:83
 msgid "manual|Add_Rule_dialog"
@@ -13478,7 +13478,7 @@ msgstr "Değişiklikleri kabul et ve pencereyi kapat"
 #: ../gramps/gui/glade/editplacename.glade:93
 #: ../gramps/gui/glade/editplaceref.glade:117
 msgid "_Date:"
-msgstr "日期(_D):"
+msgstr ""
 
 #: ../gramps/gui/glade/editaddress.glade:108
 msgid "St_reet:"
@@ -13501,7 +13501,7 @@ msgstr "_Eyalet/Ülke:"
 #: ../gramps/gui/glade/editaddress.glade:166
 #: ../gramps/gui/glade/editlocation.glade:248
 msgid "_ZIP/Postal code:"
-msgstr "邮编(_Z):"
+msgstr ""
 
 #: ../gramps/gui/glade/editaddress.glade:180
 msgid "Postal code"
@@ -13510,7 +13510,7 @@ msgstr "Posta kodu"
 #: ../gramps/gui/glade/editaddress.glade:194
 #: ../gramps/gui/glade/editlocation.glade:220
 msgid "Cou_ntry:"
-msgstr "国家(_N):"
+msgstr ""
 
 #: ../gramps/gui/glade/editaddress.glade:209
 #: ../gramps/gui/glade/editlocation.glade:274
@@ -14429,7 +14429,7 @@ msgstr ""
 #: ../gramps/gui/glade/editplacename.glade:169
 #, fuzzy
 msgid "The name of the place."
-msgstr "死亡日期"
+msgstr ""
 
 #: ../gramps/gui/glade/editplacename.glade:196
 msgid ""
@@ -17957,12 +17957,12 @@ msgstr ""
 #: ../gramps/plugins/db/dbapi/inmemorydb.gpr.py:27
 #, fuzzy
 msgid "In-_Memory Database"
-msgstr "检查数据库"
+msgstr ""
 
 #: ../gramps/plugins/db/dbapi/inmemorydb.gpr.py:28
 #, fuzzy
 msgid "In-Memory Database"
-msgstr "检查数据库"
+msgstr ""
 
 #: ../gramps/plugins/docgen/asciidoc.py:463
 msgid "Characters per line"
@@ -22706,7 +22706,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importgeneweb.py:129
 #, fuzzy
 msgid "No mention"
-msgstr "文化程度"
+msgstr ""
 
 #: ../gramps/plugins/importer/importgeneweb.py:132
 #, fuzzy
@@ -23275,7 +23275,7 @@ msgstr "İ_simler"
 #: ../gramps/plugins/lib/libgedcom.py:617
 #, fuzzy
 msgid "Ordinance"
-msgstr "<b>父母</b>"
+msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:619
 #, fuzzy
@@ -30200,7 +30200,7 @@ msgstr ""
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:183
 #, fuzzy
 msgid "Generating dates"
-msgstr "姓"
+msgstr ""
 
 #. test invalid dates
 #. dateval = (4,7,1789,False,5,8,1876,False)
@@ -31125,7 +31125,7 @@ msgstr "Cins"
 #: ../gramps/plugins/tool/testcasegenerator.py:299
 #, fuzzy
 msgid "Generate long names"
-msgstr "姓"
+msgstr ""
 
 #: ../gramps/plugins/tool/testcasegenerator.py:304
 msgid "Add special characters"
@@ -31152,7 +31152,7 @@ msgstr ""
 #: ../gramps/plugins/tool/testcasegenerator.py:391
 #, fuzzy
 msgid "Generating testcases"
-msgstr "姓"
+msgstr ""
 
 #: ../gramps/plugins/tool/testcasegenerator.py:376
 msgid "Generating low level database errors"
@@ -31166,7 +31166,7 @@ msgstr "Mevcut bir veritabanını aç"
 #: ../gramps/plugins/tool/testcasegenerator.py:392
 #, fuzzy
 msgid "Generating families"
-msgstr "姓"
+msgstr ""
 
 #. Create a family, that links to father and mother, but father does not
 #. link back
