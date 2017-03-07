@@ -121,6 +121,7 @@ class DateDisplay:
         self._mod_str = self._ds.modifiers
         self._qual_str = self._ds.qualifiers
         self.long_days = self._ds.long_days
+        self.short_days = self._ds.short_days # Icelandic needs this
 
         if format is None:
             self.format = 0
