@@ -32,6 +32,7 @@ class RotateHandlerTest(unittest.TestCase):
         rh = RotateHandler(10)
         l = logging.getLogger("RotateHandlerTest")
         l.setLevel(logging.DEBUG)
+        l.propagate = False
 
         l.addHandler(rh)
 
@@ -53,6 +54,7 @@ class RotateHandlerTest(unittest.TestCase):
         rh = RotateHandler(10)
         l = logging.getLogger("RotateHandlerTest")
         l.setLevel(logging.DEBUG)
+        l.propagate = False
 
         l.addHandler(rh)
 
