@@ -102,9 +102,9 @@ class DisplayNameEditor(ManagedWindow):
         self.dialog = dialog
         self.dbstate = dbstate
         self.set_window(
-            Gtk.Dialog(_('Display Name Editor'),
-                       buttons=(_('_Close'), Gtk.ResponseType.CLOSE)),
+            Gtk.Dialog(title=_('Display Name Editor')),
             None, _('Display Name Editor'), None)
+        self.window.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
         self.setup_configs('interface.displaynameeditor', 820, 550)
         grid = self.dialog._build_custom_name_ui()
         label = Gtk.Label(label=_("""The following keywords are replaced with the appropriate name parts:<tt>
@@ -176,9 +176,9 @@ class ConfigureDialog(ManagedWindow):
         self.__config = configmanager
         ManagedWindow.__init__(self, uistate, [], configobj)
         self.set_window(
-            Gtk.Dialog(dialogtitle,
-                       buttons=(_('_Close'), Gtk.ResponseType.CLOSE)),
+            Gtk.Dialog(title=dialogtitle),
                        None, dialogtitle, None)
+        self.window.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
         self.panel = Gtk.Notebook()
         self.panel.set_scrollable(True)
         self.window.vbox.pack_start(self.panel, True, True, 0)
@@ -817,7 +817,7 @@ class GrampsPreferences(ConfigureDialog):
         grid.set_row_spacing(6)
 
         # make a treeview for listing all the name formats
-        format_tree = Gtk.TreeView(self.fmt_model)
+        format_tree = Gtk.TreeView(model=self.fmt_model)
         name_renderer = Gtk.CellRendererText()
         name_column = Gtk.TreeViewColumn(_('Format'),
                                          name_renderer,
@@ -982,7 +982,7 @@ class GrampsPreferences(ConfigureDialog):
         lwidget.set_use_underline(True)
         lwidget.set_mnemonic_widget(self.fmt_obox)
         hbox = Gtk.Box()
-        btn = Gtk.Button("%s..." % _('Edit') )
+        btn = Gtk.Button(label=("%s..." % _('Edit')))
         btn.connect('clicked', self.cb_name_dialog)
         hbox.pack_start(self.fmt_obox, True, True, 0)
         hbox.pack_start(btn, False, False, 0)
@@ -1421,7 +1421,10 @@ class GrampsPreferences(ConfigureDialog):
             return
 
         if len(addon_update_list) > 0:
-            PluginWindows.UpdateAddons(self.uistate, self.track, addon_update_list)
+            rescan = PluginWindows.UpdateAddons(self.uistate, self.track,
+                                                addon_update_list).rescan
+            self.uistate.viewmanager.do_reg_plugins(self.dbstate, self.uistate,
+                                                    rescan=rescan)
         else:
             check_types = config.get('behavior.check-for-addon-update-types')
             OkDialog(
@@ -1434,7 +1437,6 @@ class GrampsPreferences(ConfigureDialog):
         # Dead code for l10n
         _('new'), _('update')
 
-        self.uistate.viewmanager.do_reg_plugins(self.dbstate, self.uistate)
 
     def database_backend_changed(self, obj):
         the_list = obj.get_model()
@@ -1559,13 +1561,10 @@ class GrampsPreferences(ConfigureDialog):
 
     def select_dbpath(self, *obj):
         f = Gtk.FileChooserDialog(title=_("Select database directory"),
-                                    parent=self.window,
-                                    action=Gtk.FileChooserAction.SELECT_FOLDER,
-                                    buttons=(_('_Cancel'),
-                                                Gtk.ResponseType.CANCEL,
-                                                _('_Apply'),
-                                                Gtk.ResponseType.OK)
-                                    )
+                                  transient_for=self.window,
+                                  action=Gtk.FileChooserAction.SELECT_FOLDER)
+        f.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                      _('_Apply'), Gtk.ResponseType.OK)
         dbpath = config.get('database.path')
         if not dbpath:
             dbpath = os.path.join(HOME_DIR,'grampsdb')

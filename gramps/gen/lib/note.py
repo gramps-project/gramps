@@ -34,10 +34,12 @@ from .tagbase import TagBase
 from .notetype import NoteType
 from .styledtext import StyledText
 from .styledtexttagtype import StyledTextTagType
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
-# Class for notes used throughout the majority of GRAMPS objects
+# Class for notes used throughout the majority of Gramps objects
 #
 #-------------------------------------------------------------------------
 class Note(BasicPrimaryObject):
@@ -104,33 +106,27 @@ class Note(BasicPrimaryObject):
         """
         return {
             "type": "object",
+            "title": _("Note"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
                 "handle": {"type": "string",
-                           "maxLength": 50},
-                "gramps_id": {"type": "string"},
+                           "maxLength": 50,
+                           "title": ("Handle")},
+                "gramps_id": {"type": "string",
+                              "title": _("Gramps ID")},
                 "text": StyledText.get_schema(),
-                "format": {"type": "integer"},
+                "format": {"type": "integer",
+                           "title": _("Format")},
                 "type": NoteType.get_schema(),
-                "change": {"type": "integer"},
+                "change": {"type": "integer",
+                           "title": _("Last changed")},
                 "tag_list": {"type": "array",
                              "items": {"type": "string",
-                                       "maxLength": 50}},
-                "private": {"type": "boolean"}
+                                       "maxLength": 50},
+                             "title": _("Tags")},
+                "private": {"type": "boolean",
+                            "title": _("Private")}
             }
-        }
-
-    @classmethod
-    def get_labels(cls, _):
-        return {
-            "handle": _("Handle"),
-            "gramps_id": _("Gramps ID"),
-            "text": _("Text"),
-            "format": _("Format"),
-            "type": _("Type"),
-            "change": _("Last changed"),
-            "tag_list": _("Tags"),
-            "private": _("Private"),
         }
 
     def unserialize(self, data):

@@ -95,7 +95,7 @@ def _find_death_date(db, person):
 
 def find_records(db, filter, top_size, callname,
                  trans_text=glocale.translation.sgettext, name_format=None,
-                 living_mode=LivingProxyDb.MODE_INCLUDE_ALL):
+                 living_mode=LivingProxyDb.MODE_INCLUDE_ALL, user=None):
     """
     @param trans_text: allow deferred translation of strings
     @type trans_text: a GrampsLocale sgettext instance
@@ -132,7 +132,7 @@ def find_records(db, filter, top_size, callname,
     person_handle_list = db.iter_person_handles()
 
     if filter:
-        person_handle_list = filter.apply(db, person_handle_list)
+        person_handle_list = filter.apply(db, person_handle_list, user=user)
 
     for person_handle in person_handle_list:
         person = db.get_person_from_handle(person_handle)
@@ -255,6 +255,7 @@ def find_records(db, filter, top_size, callname,
 
         # Test if either father or mother are in filter
         if filter:
+            # we don't want many progress reports popping up, so no user=user
             if not filter.apply(db, [father_handle, mother_handle]):
                 continue
 

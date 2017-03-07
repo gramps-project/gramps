@@ -40,7 +40,7 @@ from .surnamebase import SurnameBase
 from .nametype import NameType
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from .date import Date
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
@@ -130,27 +130,6 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
                 self.nick, self.famnick)
 
     @classmethod
-    def get_labels(cls, _):
-        return {
-            "_class": _("Name"),
-            "private": _("Private"),
-            "citation_list": _("Citations"),
-            "note_list": _("Notes"),
-            "date": _("Date"),
-            "first_name": _("Given name"),
-            "surname_list": _("Surnames"),
-            "suffix": _("Suffix"),
-            "title": _("Title"),
-            "type": _("Type"),
-            "group_as": _("Group as"),
-            "sort_as": _("Sort as"),
-            "display_as": _("Display as"),
-            "call": _("Call name"),
-            "nick": _("Nick name"),
-            "famnick": _("Family nick name"),
-        }
-
-    @classmethod
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -161,28 +140,43 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         from .surname import Surname
         return {
             "type": "object",
+            "title": _("Name"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean"},
+                "private": {"type": "boolean",
+                            "title": _("Private")},
                 "citation_list": {"type": "array",
                                   "items": {"type": "string",
-                                            "maxLength": 50}},
+                                            "maxLength": 50},
+                                  "title": _("Citations")},
                 "note_list": {"type": "array",
                               "items": {"type": "string",
-                                        "maxLength": 50}},
-                "date": {"oneOf": [{"type": "null"}, Date.get_schema()]},
-                "first_name": {"type": "string"},
+                                        "maxLength": 50},
+                              "title": _("Notes")},
+                "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
+                         "title": _("Date")},
+                "first_name": {"type": "string",
+                               "title": _("Given name")},
                 "surname_list": {"type": "array",
-                                 "items": Surname.get_schema()},
-                "suffix": {"type": "string"},
-                "title": {"type": "string"},
+                                 "items": Surname.get_schema(),
+                                 "title": _("Surnames")},
+                "suffix": {"type": "string",
+                           "title": _("Suffix")},
+                "title": {"type": "string",
+                          "title": _("Title")},
                 "type": NameType.get_schema(),
-                "group_as": {"type": "string"},
-                "sort_as": {"type": "integer"},
-                "display_as": {"type": "integer"},
-                "call": {"type": "string"},
-                "nick": {"type": "string"},
-                "famnick": {"type": "string"}
+                "group_as": {"type": "string",
+                             "title": _("Group as")},
+                "sort_as": {"type": "integer",
+                            "title": _("Sort as")},
+                "display_as": {"type": "integer",
+                               "title": _("Display as")},
+                "call": {"type": "string",
+                         "title": _("Call name")},
+                "nick": {"type": "string",
+                         "title": _("Nick name")},
+                "famnick": {"type": "string",
+                            "title": _("Family nick name")}
             }
         }
 

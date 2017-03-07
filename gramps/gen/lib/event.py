@@ -46,6 +46,8 @@ from .datebase import DateBase
 from .placebase import PlaceBase
 from .tagbase import TagBase
 from .eventtype import EventType
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 LOG = logging.getLogger(".citation")
 
@@ -131,51 +133,45 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         from .mediaref import MediaRef
         return {
             "type": "object",
+            "title": _("Event"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
                 "handle": {"type": "string",
-                           "maxLength": 50},
-                "gramps_id": {"type": "string"},
+                           "maxLength": 50,
+                           "title": _("Handle")},
+                "gramps_id": {"type": "string",
+                              "title": _("Gramps ID")},
                 "type": EventType.get_schema(),
-                "date": {"oneOf": [{"type": "null"}, Date.get_schema()]},
-                "description": {"type": "string"},
+                "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
+                         "title": _("Date")},
+                "description": {"type": "string",
+                                "title": _("Description")},
                 "place": {"type": ["string", "null"],
-                          "maxLength": 50},
+                          "maxLength": 50,
+                          "title": _("Place")},
                 "citation_list": {"type": "array",
                                   "items": {"type": "string",
-                                            "maxLength": 50}},
+                                            "maxLength": 50},
+                                  "title": _("Citations")},
                 "note_list": {"type": "array",
                               "items": {"type": "string",
-                                        "maxLength": 50}},
+                                        "maxLength": 50},
+                               "title": _("Notes")},
                 "media_list": {"type": "array",
-                               "items": MediaRef.get_schema()},
+                               "items": MediaRef.get_schema(),
+                               "title": _("Media")},
                 "attribute_list": {"type": "array",
-                                   "items": Attribute.get_schema()},
-                "change": {"type": "integer"},
+                                   "items": Attribute.get_schema(),
+                                   "title": _("Media")},
+                "change": {"type": "integer",
+                           "title": _("Last changed")},
                 "tag_list": {"type": "array",
                              "items": {"type": "string",
-                                       "maxLength": 50}},
-                "private": {"type": "boolean"},
+                                       "maxLength": 50},
+                             "title": _("Tags")},
+                "private": {"type": "boolean",
+                            "title": _("Private")},
             }
-        }
-
-    @classmethod
-    def get_labels(cls, _):
-        return {
-            "_class": _("Event"),
-            "handle":  _("Handle"),
-            "gramps_id": _("Gramps ID"),
-            "type": _("Type"),
-            "date": _("Date"),
-            "description": _("Description"),
-            "place":  _("Place"),
-            "citation_list": _("Citations"),
-            "note_list": _("Notes"),
-            "media_list": _("Media"),
-            "attribute_list": _("Attributes"),
-            "change": _("Last changed"),
-            "tag_list": _("Tags"),
-            "private": _("Private"),
         }
 
     def unserialize(self, data):

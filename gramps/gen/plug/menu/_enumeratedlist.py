@@ -29,7 +29,7 @@ Option class representing an enumerated list of possible values.
 #
 #-------------------------------------------------------------------------
 from . import Option
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------

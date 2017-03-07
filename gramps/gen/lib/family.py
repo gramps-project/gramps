@@ -49,6 +49,8 @@ from .tagbase import TagBase
 from .childref import ChildRef
 from .familyreltype import FamilyRelType
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 LOG = logging.getLogger(".citation")
 
@@ -140,59 +142,53 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         from .attribute import Attribute
         return {
             "type": "object",
+            "title": _("Family"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
                 "handle": {"type": "string",
-                           "maxLength": 50},
-                "gramps_id": {"type": "string"},
+                           "maxLength": 50,
+                           "title": _("Handle")},
+                "gramps_id": {"type": "string",
+                              "title": _("Gramps ID")},
                 "father_handle": {"type": ["string", "null"],
-                                  "maxLength": 50},
+                                  "maxLength": 50,
+                                  "title": _("Father")},
                 "mother_handle": {"type": ["string", "null"],
-                                  "maxLength": 50},
+                                  "maxLength": 50,
+                                  "title": _("Mother")},
                 "child_ref_list": {"type": "array",
-                                   "items": ChildRef.get_schema()},
+                                   "items": ChildRef.get_schema(),
+                                   "title": _("Children")},
                 "type": FamilyRelType.get_schema(),
                 "event_ref_list": {"type": "array",
-                                   "items": EventRef.get_schema()},
+                                   "items": EventRef.get_schema(),
+                                   "title": _("Events")},
                 "media_list": {"type": "array",
-                               "items": MediaRef.get_schema()},
+                               "items": MediaRef.get_schema(),
+                               "title": _("Media")},
                 "attribute_list": {"type": "array",
-                                   "items": Attribute.get_schema()},
+                                   "items": Attribute.get_schema(),
+                                   "title": _("Attributes")},
                 "lds_ord_list": {"type": "array",
-                                 "items": LdsOrd.get_schema()},
+                                 "items": LdsOrd.get_schema(),
+                                 "title": _("LDS ordinances")},
                 "citation_list": {"type": "array",
                                   "items": {"type": "string",
-                                            "maxLength": 50}},
+                                            "maxLength": 50},
+                                  "title": _("Citations")},
                 "note_list": {"type": "array",
                               "items": {"type": "string",
-                                        "maxLength": 50}},
-                "change": {"type": "integer"},
+                                        "maxLength": 50},
+                              "title": _("Notes")},
+                "change": {"type": "integer",
+                           "title": _("Last changed")},
                 "tag_list": {"type": "array",
                              "items": {"type": "string",
-                                       "maxLength": 50}},
-                "private": {"type": "boolean"}
+                                       "maxLength": 50},
+                             "title": _("Tags")},
+                "private": {"type": "boolean",
+                            "title": _("Private")}
             }
-        }
-
-    @classmethod
-    def get_labels(cls, _):
-        return {
-            "_class": _("Family"),
-            "handle": _("Handle"),
-            "gramps_id": _("Gramps ID"),
-            "father_handle": _("Father"),
-            "mother_handle": _("Mother"),
-            "child_ref_list": _("Children"),
-            "type": _("Relationship"),
-            "event_ref_list": _("Events"),
-            "media_list": _("Media"),
-            "attribute_list": _("Attributes"),
-            "lds_ord_list": _("LDS ordinances"),
-            "citation_list": _("Citations"),
-            "note_list": _("Notes"),
-            "change": _("Last changed"),
-            "tag_list": _("Tags"),
-            "private": _("Private"),
         }
 
     def unserialize(self, data):

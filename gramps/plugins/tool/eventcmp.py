@@ -124,7 +124,7 @@ class EventComparison(tool.Tool,ManagedWindow):
         ManagedWindow.__init__(self, uistate, [], self)
         self.qual = 0
 
-        self.filterDialog = Glade(toplevel="filters")
+        self.filterDialog = Glade(toplevel="filters", also_load=["liststore1"])
         self.filterDialog.connect_signals({
             "on_apply_clicked"       : self.on_apply_clicked,
             "on_editor_clicked"      : self.filter_editor_clicked,
@@ -161,7 +161,7 @@ class EventComparison(tool.Tool,ManagedWindow):
             self.filters.set_active(0)
 
     def on_help_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
+        """Display the relevant portion of Gramps manual"""
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def build_menu_names(self, obj):
@@ -230,7 +230,7 @@ class EventComparisonResults(ManagedWindow):
         self.row_data = []
         self.save_form = None
 
-        self.topDialog = Glade()
+        self.topDialog = Glade(toplevel="eventcmp")
         self.topDialog.connect_signals({
             "on_write_table"        : self.on_write_table,
             "destroy_passed_object" : self.close,
@@ -271,7 +271,7 @@ class EventComparisonResults(ManagedWindow):
         pass
 
     def on_help_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
+        """Display the relevant portion of Gramps manual"""
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def build_menu_names(self, obj):

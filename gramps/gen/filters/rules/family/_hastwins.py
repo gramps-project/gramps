@@ -30,9 +30,9 @@
 #
 #-------------------------------------------------------------------------
 from .. import Rule
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from ....lib.childreftype import ChildRefType
+from ....const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #

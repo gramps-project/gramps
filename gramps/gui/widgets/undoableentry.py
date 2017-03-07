@@ -118,13 +118,15 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
         Handle formatting undo/redo key press.
 
         """
+        keymap = Gdk.Keymap.get_default();
+        primary = keymap.get_modifier_mask(Gdk.ModifierIntent.PRIMARY_ACCELERATOR)
         if ((Gdk.keyval_name(event.keyval) == 'Z') and
-            (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and
+            (event.get_state() & primary) and
             (event.get_state() & Gdk.ModifierType.SHIFT_MASK)):
             self.redo()
             return True
         elif ((Gdk.keyval_name(event.keyval) == 'z') and
-              (event.get_state() & Gdk.ModifierType.CONTROL_MASK)):
+              (event.get_state() & primary)):
             self.undo()
             return True
 
@@ -177,8 +179,8 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
                 self.undo_stack.append(prev_insert)
                 self.undo_stack.append(undo_action)
             break
-        self.get_buffer().insert_text(position, text, length)
-        return position + length
+        self.get_buffer().insert_text(position, text, len(text))
+        return position + len(text)
 
     def _on_delete_text(self, editable, start, end):
         def can_be_merged(prev, cur):

@@ -87,7 +87,7 @@ _LATEX_TEMPLATE = '''%
 \\usepackage[T1]{fontenc}%
 %
 % We use latin1 encoding at a minimum by default.
-% GRAMPS uses unicode UTF-8 encoding for its
+% Gramps uses unicode UTF-8 encoding for its
 % international support. LaTeX can deal gracefully
 % with unicode encoding by using the ucs style invoked
 % when utf8 is specified as an option to the inputenc

@@ -228,7 +228,7 @@ class EditEvent(EditPrimary):
         return (_('Edit Event'), self.get_menu_title())
 
     def help_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
+        """Display the relevant portion of Gramps manual"""
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def save(self, *obj):

@@ -52,7 +52,7 @@ from gi.repository import Pango
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.display import display_help
+from .display import display_help
 from gramps.gen.const import URL_WIKISTRING, URL_MANUAL_PAGE
 from .user import User
 from .dialog import ErrorDialog, QuestionDialog, QuestionDialog2, ICON
@@ -65,7 +65,7 @@ from .glade import Glade
 from gramps.gen.db.exceptions import DbException
 from gramps.gen.db.utils import make_database, open_database
 from gramps.gen.config import config
-from gramps.gui.listmodel import ListModel
+from .listmodel import ListModel
 from gramps.gen.constfunc import win
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -647,7 +647,8 @@ class DbManager(CLIDbManager, ManagedWindow):
         else:
             base_path = self.dbstate.db.get_save_path()
             archive = os.path.join(base_path, ARCHIVE)
-            check_in(self.dbstate.db, archive, self.user, self.__start_cursor)
+            _check_in(self.dbstate.db, archive, self.user,
+                      self.__start_cursor, parent=self.window)
             self.__end_cursor()
 
         self.__populate()
@@ -1118,7 +1119,7 @@ def check_out(dbase, rev, path, user):
     rdr(dbase, xml_file, user)
     os.unlink(xml_file)
 
-def check_in(dbase, filename, user, cursor_func=None):
+def _check_in(dbase, filename, user, cursor_func=None, parent=None):
     """
     Checks in the specified file into RCS
     """
@@ -1129,6 +1130,7 @@ def check_in(dbase, filename, user, cursor_func=None):
     glade = Glade(toplevel='comment')
     top = glade.toplevel
     text = glade.get_object('description')
+    top.set_transient_for(parent)
     top.run()
     comment = text.get_text()
     top.destroy()

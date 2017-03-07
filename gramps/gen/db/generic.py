@@ -41,24 +41,23 @@ import glob
 # Gramps Modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.db import (DbReadBase, DbWriteBase, DbUndo, DBLOGNAME,
-                           DBUNDOFN, KEY_TO_CLASS_MAP, REFERENCE_KEY,
-                           PERSON_KEY, FAMILY_KEY, CITATION_KEY,
-                           SOURCE_KEY, EVENT_KEY, MEDIA_KEY,
-                           PLACE_KEY, REPOSITORY_KEY, NOTE_KEY, TAG_KEY)
-from gramps.gen.errors import HandleError
-from gramps.gen.utils.callback import Callback
-from gramps.gen.updatecallback import UpdateCallback
-from gramps.gen.db.bookmarks import DbBookmarks
-from gramps.gen.db import exceptions
+from . import (DbReadBase, DbWriteBase, DbUndo, DBLOGNAME, DBUNDOFN,
+               KEY_TO_CLASS_MAP, REFERENCE_KEY, PERSON_KEY, FAMILY_KEY,
+               CITATION_KEY, SOURCE_KEY, EVENT_KEY, MEDIA_KEY, PLACE_KEY,
+               REPOSITORY_KEY, NOTE_KEY, TAG_KEY)
+from ..errors import HandleError
+from ..utils.callback import Callback
+from ..updatecallback import UpdateCallback
+from .bookmarks import DbBookmarks
+from . import exceptions
 
-from gramps.gen.utils.id import create_id
-from gramps.gen.lib.researcher import Researcher
-from gramps.gen.lib import (Tag, Media, Person, Family, Source, Citation, Event,
-                            Place, Repository, Note, NameOriginType)
-from gramps.gen.lib.genderstats import GenderStats
-from gramps.gen.config import config
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from ..utils.id import create_id
+from ..lib.researcher import Researcher
+from ..lib import (Tag, Media, Person, Family, Source, Citation, Event,
+                   Place, Repository, Note, NameOriginType)
+from ..lib.genderstats import GenderStats
+from ..config import config
+from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 LOG = logging.getLogger(DBLOGNAME)
@@ -255,7 +254,7 @@ class DbGenericUndo(DbUndo):
             else:
                 sql = "INSERT INTO %s (handle, blob_data) VALUES (?, ?)" % table
                 self.db.dbapi.execute(sql, [handle, pickle.dumps(data)])
-            obj = self.db.get_table_func(cls)["class_func"].create(data)
+            obj = self.db._get_table_func(cls)["class_func"].create(data)
             self.db._update_secondary_values(obj)
 
     def undo_signals(self, data, handle, obj_key, emit, signal_root):
@@ -672,7 +671,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 touch(filename)
 
                 # Save metadata
-                self._txn_begin()
                 self._set_metadata('name_formats', self.name_formats)
                 self._set_metadata('researcher', self.owner)
 
@@ -723,7 +721,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 self._set_metadata('omap_index', self.omap_index)
                 self._set_metadata('rmap_index', self.rmap_index)
                 self._set_metadata('nmap_index', self.nmap_index)
-                self._txn_commit()
 
             self._close()
         self.db_is_open = False
@@ -764,7 +761,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         raise NotImplementedError
 
-    def get_table_func(self, table=None, func=None):
+    def _get_table_func(self, table=None, func=None):
         """
         Private implementation of get_table_func.
         """
@@ -775,16 +772,45 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         elif func in self.__tables[table].keys():
             return self.__tables[table][func]
         else:
-            return super().get_table_func(table, func)
+            return None
 
     def get_table_names(self):
         """Return a list of valid table names."""
-        return list(self.get_table_func())
+        return list(self._get_table_func())
 
     def get_table_metadata(self, table_name):
         """Return the metadata for a valid table name."""
-        if table_name in self.get_table_func():
-            return self.get_table_func(table_name)
+        if table_name in self._get_table_func():
+            return self._get_table_func(table_name)
+        return None
+
+    def get_from_name_and_handle(self, table_name, handle):
+        """
+        Returns a gen.lib object (or None) given table_name and
+        handle.
+
+        Examples:
+
+        >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
+        >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
+        """
+        if table_name in self._get_table_func() and handle:
+            return self._get_table_func(table_name, "handle_func")(handle)
+        return None
+
+    def get_from_name_and_gramps_id(self, table_name, gramps_id):
+        """
+        Returns a gen.lib object (or None) given table_name and
+        Gramps ID.
+
+        Examples:
+
+        >>> self.get_from_name_and_gramps_id("Person", "I00002")
+        >>> self.get_from_name_and_gramps_id("Family", "F056")
+        >>> self.get_from_name_and_gramps_id("Media", "M00012")
+        """
+        if table_name in self._get_table_func():
+            return self._get_table_func(table_name, "gramps_id_func")(gramps_id)
         return None
 
     def _txn_begin(self):
@@ -889,7 +915,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_person_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Person ID values.
+        Set the naming template for Gramps Person ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
@@ -900,7 +926,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_citation_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Citation ID values.
+        Set the naming template for Gramps Citation ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
@@ -911,7 +937,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_source_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Source ID values.
+        Set the naming template for Gramps Source ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
@@ -922,7 +948,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_media_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Media ID values.
+        Set the naming template for Gramps Media ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
@@ -933,7 +959,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_place_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Place ID values.
+        Set the naming template for Gramps Place ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
@@ -944,7 +970,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_family_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Family ID values. The string is
+        Set the naming template for Gramps Family ID values. The string is
         expected to be in the form of a simple text string, or in a format
         that contains a C/Python style format string using %d, such as F%d
         or F%04d.
@@ -954,7 +980,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_event_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Event ID values.
+        Set the naming template for Gramps Event ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
@@ -965,7 +991,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_repository_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Repository ID values.
+        Set the naming template for Gramps Repository ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
@@ -976,7 +1002,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_note_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Note ID values.
+        Set the naming template for Gramps Note ID values.
 
         The string is expected to be in the form of a simple text string, or
         in a format that contains a C/Python style format string using %d,
@@ -1258,135 +1284,48 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def get_event_from_handle(self, handle):
+    def _get_from_handle(self, obj_key, obj_class, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
         if handle is None:
             raise HandleError('Handle is None')
         if not handle:
             raise HandleError('Handle is empty')
-        data = self.get_raw_event_data(handle)
+        data = self.get_raw_data(obj_key, handle)
         if data:
-            return Event.create(data)
+            return obj_class.create(data)
         else:
             raise HandleError('Handle %s not found' % handle)
+
+    def get_event_from_handle(self, handle):
+        return self._get_from_handle(EVENT_KEY, Event, handle)
 
     def get_family_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_family_data(handle)
-        if data:
-            return Family.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(FAMILY_KEY, Family, handle)
 
     def get_repository_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_repository_data(handle)
-        if data:
-            return Repository.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(REPOSITORY_KEY, Repository, handle)
 
     def get_person_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_person_data(handle)
-        if data:
-            return Person.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(PERSON_KEY, Person, handle)
 
     def get_place_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_place_data(handle)
-        if data:
-            return Place.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(PLACE_KEY, Place, handle)
 
     def get_citation_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_citation_data(handle)
-        if data:
-            return Citation.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(CITATION_KEY, Citation, handle)
 
     def get_source_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_source_data(handle)
-        if data:
-            return Source.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(SOURCE_KEY, Source, handle)
 
     def get_note_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_note_data(handle)
-        if data:
-            return Note.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(NOTE_KEY, Note, handle)
 
     def get_media_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_media_data(handle)
-        if data:
-            return Media.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(MEDIA_KEY, Media, handle)
 
     def get_tag_from_handle(self, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
-        if handle is None:
-            raise HandleError('Handle is None')
-        if not handle:
-            raise HandleError('Handle is empty')
-        data = self.get_raw_tag_data(handle)
-        if data:
-            return Tag.create(data)
-        else:
-            raise HandleError('Handle %s not found' % handle)
+        return self._get_from_handle(TAG_KEY, Tag, handle)
 
     ################################################################
     #
@@ -1627,7 +1566,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         Iterate over items in a class.
         """
-        cursor = self.get_table_func(class_.__name__, "cursor_func")
+        cursor = self._get_table_func(class_.__name__, "cursor_func")
         for data in cursor():
             yield class_.create(data[1])
 
@@ -1820,116 +1759,67 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def add_person(self, person, trans, set_gid=True):
-        if not person.handle:
-            person.handle = create_id()
-        if (not person.gramps_id) and set_gid:
-            person.gramps_id = self.find_next_person_gramps_id()
-        if not person.gramps_id:
+    def _add_base(self, obj, trans, set_gid, find_func, commit_func):
+        if not obj.handle:
+            obj.handle = create_id()
+        if (not obj.gramps_id) and set_gid:
+            obj.gramps_id = find_func()
+        if (not obj.gramps_id):
             # give it a random value for the moment:
-            person.gramps_id = str(random.random())
-        self.commit_person(person, trans)
-        return person.handle
+            obj.gramps_id = str(random.random())
+        commit_func(obj, trans)
+        return obj.handle
+
+    def add_person(self, person, trans, set_gid=True):
+        return self._add_base(person, trans, set_gid,
+                              self.find_next_person_gramps_id,
+                              self.commit_person)
 
     def add_family(self, family, trans, set_gid=True):
-        if not family.handle:
-            family.handle = create_id()
-        if (not family.gramps_id) and set_gid:
-            family.gramps_id = self.find_next_family_gramps_id()
-        if not family.gramps_id:
-            # give it a random value for the moment:
-            family.gramps_id = str(random.random())
-        self.commit_family(family, trans)
-        return family.handle
-
-    def add_citation(self, citation, trans, set_gid=True):
-        if not citation.handle:
-            citation.handle = create_id()
-        if (not citation.gramps_id) and set_gid:
-            citation.gramps_id = self.find_next_citation_gramps_id()
-        if not citation.gramps_id:
-            # give it a random value for the moment:
-            citation.gramps_id = str(random.random())
-        self.commit_citation(citation, trans)
-        return citation.handle
-
-    def add_source(self, source, trans, set_gid=True):
-        if not source.handle:
-            source.handle = create_id()
-        if (not source.gramps_id) and set_gid:
-            source.gramps_id = self.find_next_source_gramps_id()
-        if not source.gramps_id:
-            # give it a random value for the moment:
-            source.gramps_id = str(random.random())
-        self.commit_source(source, trans)
-        return source.handle
-
-    def add_repository(self, repository, trans, set_gid=True):
-        if not repository.handle:
-            repository.handle = create_id()
-        if (not repository.gramps_id) and set_gid:
-            repository.gramps_id = self.find_next_repository_gramps_id()
-        if not repository.gramps_id:
-            # give it a random value for the moment:
-            repository.gramps_id = str(random.random())
-        self.commit_repository(repository, trans)
-        return repository.handle
-
-    def add_note(self, note, trans, set_gid=True):
-        if not note.handle:
-            note.handle = create_id()
-        if (not note.gramps_id) and set_gid:
-            note.gramps_id = self.find_next_note_gramps_id()
-        if not note.gramps_id:
-            # give it a random value for the moment:
-            note.gramps_id = str(random.random())
-        self.commit_note(note, trans)
-        return note.handle
-
-    def add_place(self, place, trans, set_gid=True):
-        if not place.handle:
-            place.handle = create_id()
-        if (not place.gramps_id) and set_gid:
-            place.gramps_id = self.find_next_place_gramps_id()
-        if not place.gramps_id:
-            # give it a random value for the moment:
-            place.gramps_id = str(random.random())
-        self.commit_place(place, trans)
-        return place.handle
+        return self._add_base(family, trans, set_gid,
+                              self.find_next_family_gramps_id,
+                              self.commit_family)
 
     def add_event(self, event, trans, set_gid=True):
-        if not event.handle:
-            event.handle = create_id()
-        if (not event.gramps_id) and set_gid:
-            event.gramps_id = self.find_next_event_gramps_id()
-        if not event.gramps_id:
-            # give it a random value for the moment:
-            event.gramps_id = str(random.random())
-        self.commit_event(event, trans)
-        return event.handle
+        return self._add_base(event, trans, set_gid,
+                              self.find_next_event_gramps_id,
+                              self.commit_event)
+
+    def add_place(self, place, trans, set_gid=True):
+        return self._add_base(place, trans, set_gid,
+                              self.find_next_place_gramps_id,
+                              self.commit_place)
+
+    def add_repository(self, repository, trans, set_gid=True):
+        return self._add_base(repository, trans, set_gid,
+                              self.find_next_repository_gramps_id,
+                              self.commit_repository)
+
+    def add_source(self, source, trans, set_gid=True):
+        return self._add_base(source, trans, set_gid,
+                              self.find_next_source_gramps_id,
+                              self.commit_source)
+
+    def add_citation(self, citation, trans, set_gid=True):
+        return self._add_base(citation, trans, set_gid,
+                              self.find_next_citation_gramps_id,
+                              self.commit_citation)
+
+    def add_media(self, media, trans, set_gid=True):
+        return self._add_base(media, trans, set_gid,
+                              self.find_next_media_gramps_id,
+                              self.commit_media)
+
+    def add_note(self, note, trans, set_gid=True):
+        return self._add_base(note, trans, set_gid,
+                              self.find_next_note_gramps_id,
+                              self.commit_note)
 
     def add_tag(self, tag, trans):
         if not tag.handle:
             tag.handle = create_id()
         self.commit_tag(tag, trans)
         return tag.handle
-
-    def add_media(self, obj, transaction, set_gid=True):
-        """
-        Add a Media to the database, assigning internal IDs if they have
-        not already been defined.
-
-        If not set_gid, then gramps_id is not set.
-        """
-        if not obj.handle:
-            obj.handle = create_id()
-        if (not obj.gramps_id) and set_gid:
-            obj.gramps_id = self.find_next_media_gramps_id()
-        if not obj.gramps_id:
-            # give it a random value for the moment:
-            obj.gramps_id = str(random.random())
-        self.commit_media(obj, transaction)
-        return obj.handle
 
     ################################################################
     #
@@ -2506,35 +2396,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.emit('repository-rebuild')
         self.emit('note-rebuild')
         self.emit('tag-rebuild')
-
-    def get_from_name_and_handle(self, table_name, handle):
-        """
-        Returns a gen.lib object (or None) given table_name and
-        handle.
-
-        Examples:
-
-        >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
-        >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
-        """
-        if table_name in self.get_table_func() and handle:
-            return self.get_table_func(table_name, "handle_func")(handle)
-        return None
-
-    def get_from_name_and_gramps_id(self, table_name, gramps_id):
-        """
-        Returns a gen.lib object (or None) given table_name and
-        Gramps ID.
-
-        Examples:
-
-        >>> self.get_from_name_and_gramps_id("Person", "I00002")
-        >>> self.get_from_name_and_gramps_id("Family", "F056")
-        >>> self.get_from_name_and_gramps_id("Media", "M00012")
-        """
-        if table_name in self.get_table_func():
-            return self.get_table_func(table_name, "gramps_id_func")(gramps_id)
-        return None
 
     def get_save_path(self):
         return self._directory

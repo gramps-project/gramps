@@ -106,7 +106,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
 
     def run(self):
 
-        top = Glade(toplevel="mergecitations")
+        top = Glade(toplevel="mergecitations",  also_load=["liststore1"])
 
         # retrieve options
         fields = self.options.handler.options_dict['fields']
@@ -164,7 +164,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
         return (_("Tool settings"),_("Merge citations tool"))
 
     def on_help_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
+        """Display the relevant portion of Gramps manual"""
 
         display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 

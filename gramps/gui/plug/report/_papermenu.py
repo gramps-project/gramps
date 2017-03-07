@@ -138,7 +138,7 @@ class PaperFrame(Gtk.Box):
         glade_xml = Glade()
 
         self.paper_grid = glade_xml.get_object('paper_grid')
-
+        self.top = glade_xml.get_object('papermenu')
 
         # get all the widgets
         widgets = ('pwidth', 'pheight', 'lmargin', 'rmargin', 'tmargin',
@@ -174,7 +174,10 @@ class PaperFrame(Gtk.Box):
         self.bmargin.set_text("%.2f" % margins[3])
 
         self.paper_grid.show_all()
+        # Shift the grid from glade toplevel window to this box
         self.paper_grid.reparent(self)
+        # need to get rid of glade toplevel now that we are done with it.
+        self.top.destroy()
 
         self.units_changed(self.metric)
         self.size_changed(None)

@@ -46,7 +46,7 @@ from ._dateparser import DateParser
 from ._datedisplay import DateDisplay, DateDisplayEn
 from ..constfunc import win
 from ..const import GRAMPS_LOCALE as glocale
-from gramps.gen.utils.grampslocale import GrampsLocale
+from ..utils.grampslocale import GrampsLocale
 
 #-------------------------------------------------------------------------
 #
@@ -84,7 +84,7 @@ LANG_TO_DISPLAY = {
     'en_GB'                 : DateDisplayEn,
     'English_United States' : DateDisplayEn,
     'ko_KR'                 : DateDisplay,
-    'nb_NO'                 : DateDisplay,
+    'nb_NO'                 : DateDisplay, # TODO this's in _date_nb, why here?
     }
 
 def register_datehandler(locales,parse_class,display_class):

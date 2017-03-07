@@ -26,9 +26,9 @@ import os
 from .. import (Person, Family, Event, Source, Place, Citation,
                 Repository, Media, Note, Tag)
 from ..serialize import to_json, from_json
-from gramps.gen.db.utils import import_as_dict
-from gramps.cli.user import User
-from gramps.gen.const import DATA_DIR
+from ...db.utils import import_as_dict
+from ...const import DATA_DIR
+from ...user import User
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
@@ -114,9 +114,9 @@ def generate_case(obj):
     #setattr(DatabaseCheck, name, test2)
 
 db = import_as_dict(EXAMPLE, User())
-for table in db.get_table_func():
-    for handle in db.get_table_func(table,"handles_func")():
-        obj = db.get_table_func(table,"handle_func")(handle)
+for table in db.get_table_names():
+    for handle in db.get_table_metadata(table)["handles_func"]():
+        obj = db.get_table_metadata(table)["handle_func"](handle)
         generate_case(obj)
 
 if __name__ == "__main__":

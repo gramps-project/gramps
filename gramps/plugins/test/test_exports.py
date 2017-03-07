@@ -26,7 +26,7 @@ import difflib
 from gramps.test.test_util import Gramps
 from gramps.gen.const import TEMP_DIR, DATA_DIR
 from gramps.gen.datehandler import set_format
-from gramps.cli.user import User
+from gramps.gen.user import User
 from gramps.gen.utils.config import config
 
 TREE_NAME = "Test_exporttest"
@@ -36,7 +36,7 @@ TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 def call(*args):
     """ Call Gramps to perform the action with out and err captured """
     print("call:", args)
-    gramps = Gramps(user=User(auto_accept=True, quiet=True))
+    gramps = Gramps(user=User())
     out, err = gramps.run(*args)
     print("out:", out, "err:", err)
     return out, err

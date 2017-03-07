@@ -1082,6 +1082,7 @@ class UpdateAddons(ManagedWindow):
         self.set_window(glade.toplevel, None, None)
         self.window.set_title(self.title)
         self.setup_configs("interface.updateaddons", 750, 400)
+        self.rescan = False
 
         apply_button = glade.get_object('apply')
         cancel_button = glade.get_object('cancel')
@@ -1137,6 +1138,7 @@ class UpdateAddons(ManagedWindow):
             self.list.selection.select_iter(pos)
 
         self.show()
+        self.window.run()
 
     def build_menu_names(self, obj):
         return (self.title, " ")
@@ -1210,6 +1212,7 @@ class UpdateAddons(ManagedWindow):
                      ", ".join(errors),
                      parent=self.parent_window)
         if count:
+            self.rescan = True
             OkDialog(_("Done downloading and installing addons"),
                      # translators: leave all/any {...} untranslated
                      "%s %s" % (ngettext("{number_of} addon was installed.",

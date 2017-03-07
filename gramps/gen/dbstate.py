@@ -42,8 +42,8 @@ from .db import DbReadBase
 from .proxy.proxybase import ProxyDbBase
 from .utils.callback import Callback
 from .config import config
-from gramps.gen.db.dbconst import DBLOGNAME
-from gramps.gen.db.dummydb import DummyDb
+from .db.dbconst import DBLOGNAME
+from .db.dummydb import DummyDb
 
 #-------------------------------------------------------------------------
 #

@@ -74,12 +74,6 @@ class DbReadBase:
         self.basedb = self
         self.__feature = {} # {"feature": VALUE, ...}
 
-    def get_table_func(self, table=None, func=None):
-        """
-        Base implementation of get_table_func.
-        """
-        return None
-
     def get_feature(self, feature):
         """
         Databases can implement certain features or not. The default is

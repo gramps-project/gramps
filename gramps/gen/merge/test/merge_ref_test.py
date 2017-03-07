@@ -31,11 +31,11 @@ import copy
 import lxml.etree as ET
 
 from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
+from gramps.test.test_util import Gramps
+from gramps.gen.user import User
 from gramps.gen.const import DATA_DIR, USER_PLUGINS, TEMP_DIR
 from gramps.version import VERSION
 from gramps.gen.lib import Name, Surname
-from gramps.test.test_util import Gramps
-from gramps.cli.user import User
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
@@ -93,7 +93,7 @@ class BaseMergeCheck(unittest.TestCase):
     def do_case(self, phoenix_id, titanic_id, input_doc, expect_doc,
                 test_error_str=''):
         """Do the merge and "assert" the result."""
-        gramps = Gramps(user=User(auto_accept=True, quiet=True))
+        gramps = Gramps(user=User())
         result_str, err_str = gramps.run(
             '-d', '.ImportXML', '--config=preferences.eprefix:DEFAULT',
             '-i', '-', '-f', 'gramps', '-a', 'tool', '-p',
@@ -154,7 +154,7 @@ class BaseMergeCheck(unittest.TestCase):
 
     def do_family_case(self, phoenix_id, titanic_id, father_h, mother_h,
                        input_doc, expect_doc, test_error_str=''):
-        gramps = Gramps(user=User(auto_accept=True, quiet=True))
+        gramps = Gramps(user=User())
         result_str, err_str = gramps.run(
             '-d', '.ImportXML', '--config=preferences.eprefix:DEFAULT',
             '-i', '-', '-f', 'gramps', '-a', 'tool', '-p',
@@ -166,7 +166,7 @@ class BaseMergeCheck(unittest.TestCase):
 
     def raw_contains(self, phoenix_id, titanic_id, input_doc, expect_str,
                      test_error_str=''):
-        gramps = Gramps(user=User(auto_accept=True, quiet=True))
+        gramps = Gramps(user=User())
         result_str, err_str = gramps.run(
             '-d', '.ImportXML', '--config=preferences.eprefix:DEFAULT',
             '-i', '-', '-f', 'gramps', '-a', 'tool', '-p',
@@ -1475,6 +1475,34 @@ class FamilyPersonCheck(BaseMergeCheck):
         """Merge two persons where titanic has multiple family relationships
         with his partner, this should raise an error."""
         input_ctxt = ET.fromstring(self.basedoc, parser=self.parser)
+        expect = copy.deepcopy(input_ctxt)
+        persons = expect.xpath("//g:person",
+                               namespaces={"g": NS_G})
+        altname = ET.SubElement(persons[0], NSP + 'name',
+                                alt='1', type='Birth Name')
+        ET.SubElement(altname, NSP + 'surname').text = 'Person 2'
+        attr = ET.SubElement(persons[0], NSP + 'attribute',
+                             type='Merged Gramps ID', value='I0002')
+        parentref = expect.xpath("//g:person[@handle='_i0000']/g:parentin",
+                                 namespaces={"g": NS_G})[0]
+        attr.addnext(parentref)  # restore order of elements
+        ET.SubElement(persons[0], NSP + 'parentin', hlink='_f0001')
+        ET.SubElement(persons[3], NSP + 'parentin', hlink='_f0001')
+        ET.SubElement(persons[0], NSP + 'parentin', hlink='_f0002')
+        ET.SubElement(persons[3], NSP + 'parentin', hlink='_f0002')
+        family = expect.xpath("//g:family[@handle='_f0001']",
+                              namespaces={"g": NS_G})[0]
+        ET.SubElement(family, NSP + 'father', hlink='_i0000')
+        ET.SubElement(family, NSP + 'mother', hlink='_i0003')
+        families = expect.xpath("//g:families",
+                                namespaces={"g": NS_G})[0]
+        family = ET.SubElement(families, NSP + 'family',
+                               handle='_f0002', id='F0002')
+        ET.SubElement(family, NSP + 'rel', type='Married')
+        ET.SubElement(family, NSP + 'father', hlink='_i0000')
+        ET.SubElement(family, NSP + 'mother', hlink='_i0003')
+        persons[2].getparent().remove(persons[2])
+
         persons = input_ctxt.xpath("//g:person",
                                    namespaces={"g": NS_G})
         ET.SubElement(persons[2], NSP + 'parentin', hlink='_f0001')
@@ -1492,12 +1520,9 @@ class FamilyPersonCheck(BaseMergeCheck):
         ET.SubElement(family, NSP + 'rel', type='Married')
         ET.SubElement(family, NSP + 'father', hlink='_i0002')
         ET.SubElement(family, NSP + 'mother', hlink='_i0003')
-        input_doc = expect = ET.tostring(input_ctxt)
+        input_doc = ET.tostring(input_ctxt)
         self.do_case('I0000', 'I0002', input_doc, expect,
-                     test_error_str="A person with multiple relations "
-                     "with the same spouse is about to be merged. This is "
-                     "beyond the capabilities of the merge routine. The "
-                     "merge is aborted.")
+                     test_error_str="")
 
     def test_merge_fam(self):
         """Merge two persons such that also the families in which they are

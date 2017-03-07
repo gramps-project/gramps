@@ -41,6 +41,8 @@ from .mediabase import MediaBase
 from .urlbase import UrlBase
 from .tagbase import TagBase
 from .location import Location
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -118,28 +120,6 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 self.change, TagBase.serialize(self), self.private)
 
     @classmethod
-    def get_labels(cls, _):
-        return {
-            "handle": _("Handle"),
-            "gramps_id": _("Gramps ID"),
-            "title": _("Title"),
-            "long": _("Longitude"),
-            "lat": _("Latitude"),
-            "placeref_list": _("Places"),
-            "name": _("Name"),
-            "alt_names": _("Alternate Names"),
-            "place_type": _("Type"),
-            "code": _("Code"),
-            "alt_loc": _("Alternate Locations"),
-            "urls": _("URLs"),
-            "media_list": _("Media"),
-            "citation_list": _("Citations"),
-            "note_list": _("Notes"),
-            "change": _("Last changed"),
-            "tag_list": _("Tags"),
-            "private": _("Private")
-            }
-    @classmethod
     def get_schema(cls):
         """
         Returns the JSON Schema for this class.
@@ -151,38 +131,55 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         from .mediaref import MediaRef
         return {
             "type": "object",
+            "title": _("Place"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
                 "handle": {"type": "string",
-                           "maxLength": 50},
-                "gramps_id": {"type": "string"},
-                "title": {"type": "string"},
-                "long": {"type": "string"},
-                "lat": {"type": "string"},
+                           "maxLength": 50,
+                           "title": _("Handle")},
+                "gramps_id": {"type": "string",
+                              "title": _("Gramps ID")},
+                "title": {"type": "string",
+                          "title": _("Title")},
+                "long": {"type": "string",
+                         "title": _("Longitude")},
+                "lat": {"type": "string",
+                        "title": _("Latitude")},
                 "placeref_list": {"type": "array",
-                                  "items": PlaceRef.get_schema()},
+                                  "items": PlaceRef.get_schema(),
+                                  "title": _("Places")},
                 "name": PlaceName.get_schema(),
                 "alt_names": {"type": "array",
-                              "items": PlaceName.get_schema()},
+                              "items": PlaceName.get_schema(),
+                              "title": _("Alternate Names")},
                 "place_type": PlaceType.get_schema(),
-                "code": {"type": "string"},
+                "code": {"type": "string",
+                         "title": _("Code")},
                 "alt_loc": {"type": "array",
-                            "items": Location.get_schema()},
+                            "items": Location.get_schema(),
+                            "title": _("Alternate Locations")},
                 "urls": {"type": "array",
-                         "items": Url.get_schema()},
+                         "items": Url.get_schema(),
+                         "title": _("URLs")},
                 "media_list": {"type": "array",
-                               "items": MediaRef.get_schema()},
+                               "items": MediaRef.get_schema(),
+                               "title": _("Media")},
                 "citation_list": {"type": "array",
                                   "items": {"type": "string",
-                                            "maxLength": 50}},
+                                            "maxLength": 50},
+                                  "title": _("Citations")},
                 "note_list": {"type": "array",
                               "items": {"type": "string",
-                                        "maxLength": 50}},
-                "change": {"type": "integer"},
+                                        "maxLength": 50},
+                              "title": _("Notes")},
+                "change": {"type": "integer",
+                           "title": _("Last changed")},
                 "tag_list": {"type": "array",
                              "items": {"type": "string",
-                                       "maxLength": 50}},
-                "private": {"type": "boolean"}
+                                       "maxLength": 50},
+                             "title": _("Tags")},
+                "private": {"type": "boolean",
+                            "title": _("Private")}
             }
         }
 

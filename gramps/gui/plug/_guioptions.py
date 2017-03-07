@@ -73,12 +73,11 @@ class LastNameDialog(ManagedWindow):
     """
     def __init__(self, database, uistate, track, surnames, skip_list=set()):
 
-        ManagedWindow.__init__(self, uistate, track, self)
+        ManagedWindow.__init__(self, uistate, track, self, modal=True)
         flags = Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT
         buttons = (_('_Cancel'), Gtk.ResponseType.REJECT,
                    _('_OK'), Gtk.ResponseType.ACCEPT)
         self.__dlg = Gtk.Dialog(None, uistate.window, flags, buttons)
-        self.__dlg.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
         self.set_window(self.__dlg, None, _('Select surname'))
         self.setup_configs('interface.lastnamedialog', 400, 400)
 
@@ -133,6 +132,9 @@ class LastNameDialog(ManagedWindow):
                 self.__model.append([key, surnames[key]])
 
         # keep the list sorted starting with the most popular last name
+        # (but after sorting the whole list alphabetically first, so
+        # that surnames with the same number of people will be alphabetical)
+        self.__model.set_sort_column_id(0, Gtk.SortType.ASCENDING)
         self.__model.set_sort_column_id(1, Gtk.SortType.DESCENDING)
 
         # the "OK" button should be enabled/disabled based on the selection of
@@ -150,11 +152,14 @@ class LastNameDialog(ManagedWindow):
         if response == Gtk.ResponseType.ACCEPT:
             (mode, paths) = self.__tree_selection.get_selected_rows()
             for path in paths:
-                iii = self.__model.get_iter(path)
-                surname = self.__model.get_value(iii, 0)
+                tree_iter = self.__model.get_iter(path)
+                surname = self.__model.get_value(tree_iter, 0)
                 surname_set.add(surname)
-        self.__dlg.destroy()
+        self.close() # ManagedWindow: set the parent dialog to be modal again
         return surname_set
+
+    def build_menu_names(self, obj):
+        return (_('Select surname'), None)
 
 #-------------------------------------------------------------------------
 #
@@ -1161,7 +1166,7 @@ class GuiPersonListOption(Gtk.Box):
         self.set_size_request(150, 100)
 
         self.__model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING)
-        self.__tree_view = Gtk.TreeView(self.__model)
+        self.__tree_view = Gtk.TreeView(model=self.__model)
         col1 = Gtk.TreeViewColumn(_('Name'), Gtk.CellRendererText(), text=0)
         col2 = Gtk.TreeViewColumn(_('ID'), Gtk.CellRendererText(), text=1)
         col1.set_resizable(True)
@@ -1206,12 +1211,12 @@ class GuiPersonListOption(Gtk.Box):
         # people we already have must be excluded
         # so we don't list them multiple times
         skip_list = set()
-        iii = self.__model.get_iter_first()
-        while iii:
-            gid = self.__model.get_value(iii, 1) # get the GID stored in col. #1
+        tree_iter = self.__model.get_iter_first()
+        while tree_iter:
+            gid = self.__model.get_value(tree_iter, 1) # get the GID in col. #1
             person = self.__db.get_person_from_gramps_id(gid)
             skip_list.add(person.get_handle())
-            iii = self.__model.iter_next(iii)
+            tree_iter = self.__model.iter_next(tree_iter)
 
         select_class = SelectorFactory('Person')
         sel = select_class(self.__dbstate, self.__uistate,
@@ -1258,8 +1263,8 @@ class GuiPersonListOption(Gtk.Box):
         """
         (path, column) = self.__tree_view.get_cursor()
         if path:
-            iii = self.__model.get_iter(path)
-            self.__model.remove(iii)
+            tree_iter = self.__model.get_iter(path)
+            self.__model.remove(tree_iter)
             self.__update_value()
 
     def __update_value(self):
@@ -1267,11 +1272,11 @@ class GuiPersonListOption(Gtk.Box):
         Parse the object and return.
         """
         gidlist = ''
-        iii = self.__model.get_iter_first()
-        while iii:
-            gid = self.__model.get_value(iii, 1)
+        tree_iter = self.__model.get_iter_first()
+        while tree_iter:
+            gid = self.__model.get_value(tree_iter, 1)
             gidlist = gidlist + gid + ' '
-            iii = self.__model.iter_next(iii)
+            tree_iter = self.__model.iter_next(tree_iter)
 
         # Supress signals so that the set_value() handler
         # (__value_changed()) doesn't get called
@@ -1384,12 +1389,12 @@ class GuiPlaceListOption(Gtk.Box):
         # places we already have must be excluded
         # so we don't list them multiple times
         skip_list = set()
-        iii = self.__model.get_iter_first()
-        while iii:
-            gid = self.__model.get_value(iii, 1) # get the GID stored in col. #1
+        tree_iter = self.__model.get_iter_first()
+        while tree_iter:
+            gid = self.__model.get_value(tree_iter, 1) # get the GID in col. #1
             place = self.__db.get_place_from_gramps_id(gid)
             skip_list.add(place.get_handle())
-            iii = self.__model.iter_next(iii)
+            tree_iter = self.__model.iter_next(tree_iter)
 
         select_class = SelectorFactory('Place')
         sel = select_class(self.__dbstate, self.__uistate,
@@ -1407,8 +1412,8 @@ class GuiPlaceListOption(Gtk.Box):
         """
         (path, column) = self.__tree_view.get_cursor()
         if path:
-            iii = self.__model.get_iter(path)
-            self.__model.remove(iii)
+            tree_iter = self.__model.get_iter(path)
+            self.__model.remove(tree_iter)
             self.__update_value()
 
     def __update_value(self):
@@ -1416,11 +1421,11 @@ class GuiPlaceListOption(Gtk.Box):
         Parse the object and return.
         """
         gidlist = ''
-        iii = self.__model.get_iter_first()
-        while iii:
-            gid = self.__model.get_value(iii, 1)
+        tree_iter = self.__model.get_iter_first()
+        while tree_iter:
+            gid = self.__model.get_value(tree_iter, 1)
             gidlist = gidlist + gid + ' '
-            iii = self.__model.iter_next(iii)
+            tree_iter = self.__model.iter_next(tree_iter)
         self.__option.set_value(gidlist)
 
     def __value_changed(self):
@@ -1488,7 +1493,7 @@ class GuiSurnameColorOption(Gtk.Box):
         self.__surnames = {}  # list of surnames and count
 
         self.__model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING)
-        self.__tree_view = Gtk.TreeView(self.__model)
+        self.__tree_view = Gtk.TreeView(model=self.__model)
         self.__tree_view.connect('row-activated', self.__row_clicked)
         col1 = Gtk.TreeViewColumn(_('Surname'), Gtk.CellRendererText(), text=0)
         col2 = Gtk.TreeViewColumn(_('Color'), Gtk.CellRendererText(), text=1)
@@ -1528,11 +1533,11 @@ class GuiSurnameColorOption(Gtk.Box):
         Handle the add surname button.
         """
         skip_list = set()
-        iii = self.__model.get_iter_first()
-        while iii:
-            surname = self.__model.get_value(iii, 0)
+        tree_iter = self.__model.get_iter_first()
+        while tree_iter:
+            surname = self.__model.get_value(tree_iter, 0)
             skip_list.add(surname.encode('iso-8859-1', 'xmlcharrefreplace'))
-            iii = self.__model.iter_next(iii)
+            tree_iter = self.__model.iter_next(tree_iter)
 
         ln_dialog = LastNameDialog(self.__db, self.__uistate,
                                    self.__track, self.__surnames, skip_list)
@@ -1547,8 +1552,8 @@ class GuiSurnameColorOption(Gtk.Box):
         """
         (path, column) = self.__tree_view.get_cursor()
         if path:
-            iii = self.__model.get_iter(path)
-            self.__model.remove(iii)
+            tree_iter = self.__model.get_iter(path)
+            self.__model.remove(tree_iter)
             self.__update_value()
 
     def __row_clicked(self, treeview, path, column):
@@ -1556,10 +1561,10 @@ class GuiSurnameColorOption(Gtk.Box):
         Handle the case of a row being clicked on.
         """
         # get the surname and colour value for this family
-        iii = self.__model.get_iter(path)
-        surname = self.__model.get_value(iii, 0)
+        tree_iter = self.__model.get_iter(path)
+        surname = self.__model.get_value(tree_iter, 0)
         rgba = Gdk.RGBA()
-        rgba.parse(self.__model.get_value(iii, 1))
+        rgba.parse(self.__model.get_value(tree_iter, 1))
 
         title = _('Select color for %s') % surname
         colour_dialog = Gtk.ColorChooserDialog(title)
@@ -1571,7 +1576,7 @@ class GuiSurnameColorOption(Gtk.Box):
             colour_name = '#%02x%02x%02x' % (int(rgba.red * 255),
                                              int(rgba.green * 255),
                                              int(rgba.blue * 255))
-            self.__model.set_value(iii, 1, colour_name)
+            self.__model.set_value(tree_iter, 1, colour_name)
 
         colour_dialog.destroy()
         self.__update_value()
@@ -1581,11 +1586,11 @@ class GuiSurnameColorOption(Gtk.Box):
         Parse the object and return.
         """
         surname_colours = ''
-        iii = self.__model.get_iter_first()
-        while iii:
-            surname = self.__model.get_value(iii, 0)
+        tree_iter = self.__model.get_iter_first()
+        while tree_iter:
+            surname = self.__model.get_value(tree_iter, 0)
             #surname = surname.encode('iso-8859-1', 'xmlcharrefreplace')
-            colour = self.__model.get_value(iii, 1)
+            colour = self.__model.get_value(tree_iter, 1)
             # Tried to use a dictionary, and tried to save it as a tuple,
             # but couldn't get this to work right -- this is lame, but now
             # the surnames and colours are saved as a plain text string
@@ -1596,7 +1601,7 @@ class GuiSurnameColorOption(Gtk.Box):
             # whitespace character which is unlikely to appear in
             # a surname.  (See bug report #2162.)
             surname_colours += surname + '\xb0' + colour + '\xb0'
-            iii = self.__model.iter_next(iii)
+            tree_iter = self.__model.iter_next(tree_iter)
         self.__option.set_value(surname_colours)
 
     def __value_changed(self):

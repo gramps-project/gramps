@@ -32,7 +32,7 @@ import contextlib
 from io import TextIOWrapper, BytesIO, StringIO
 
 from gramps.gen.dbstate import DbState
-from gramps.cli.user import User
+from gramps.gen.user import User
 from gramps.cli.grampscli import CLIManager
 from gramps.cli.argparser import ArgParser
 from gramps.cli.arghandler import ArgHandler
@@ -249,7 +249,7 @@ class Gramps:
         from gramps.cli.clidbman import CLIDbManager
         self.dbstate = dbstate or DbState()
         #we need a manager for the CLI session
-        self.user = user or User(auto_accept=True, quiet=False)
+        self.user = user or User()
         self.climanager = CLIManager(self.dbstate, setloader=True, user=self.user)
         self.clidbmanager = CLIDbManager(self.dbstate)
 

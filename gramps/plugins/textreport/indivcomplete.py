@@ -59,7 +59,6 @@ from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.lds import TEMPLES
 from gramps.gen.proxy import CacheProxyDb
-from gramps.gen.relationship import get_relationship_calculator
 from gramps.gen.errors import ReportError
 
 #------------------------------------------------------------------------
@@ -99,7 +98,7 @@ class IndivCompleteReport(Report):
 
         The arguments are:
 
-        database        - the GRAMPS database instance
+        database        - the Gramps database instance
         options         - instance of the Options class for this report
         user            - a gen.user.User() instance
 
@@ -158,8 +157,9 @@ class IndivCompleteReport(Report):
         stdoptions.run_name_format_option(self, menu)
 
         self.home_person = self._db.get_default_person() # might be None
-        self.increlname = menu.get_option_by_name('incl_relname')
+        self.increlname = menu.get_option_by_name('incl_relname').get_value()
         if self.increlname and self.home_person:
+            from gramps.gen.relationship import get_relationship_calculator
             self.rel_calc = get_relationship_calculator(reinit=True,
                                                         clocale=self._locale)
 

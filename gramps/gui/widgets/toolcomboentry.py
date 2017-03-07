@@ -61,7 +61,10 @@ class ToolComboEntry(ValueToolItem):
         self.set_expand(False)
 
         combo = ShortlistComboEntry(items, shortlist, validator)
-        combo.set_focus_on_click(False)
+        if (Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION) < (3, 20):
+            combo.set_focus_on_click(False)
+        else:
+            Gtk.Widget.set_focus_on_click(combo, False)
         combo.set_entry_editable(editable)
         combo.show()
         self.add(combo)

@@ -517,7 +517,7 @@ class DisplayState(Callback):
 
     def set_gendepth(self, value):
         """ Set the generations we search back for showing relationships
-            on GRAMPS interface. Value must be integer > 0
+            on Gramps interface. Value must be integer > 0
             This method will be used by the preference editor when user changes
             the generations.
         """

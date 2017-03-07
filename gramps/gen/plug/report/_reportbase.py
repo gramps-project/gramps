@@ -26,9 +26,9 @@
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.utils.grampslocale import GrampsLocale
-from gramps.gen.display.name import NameDisplay
-from gramps.gen.config import config
+from ...utils.grampslocale import GrampsLocale
+from ...display.name import NameDisplay
+from ...config import config
 
 #-------------------------------------------------------------------------
 #

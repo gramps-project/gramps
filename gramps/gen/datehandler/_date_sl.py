@@ -66,6 +66,7 @@ class DateParserSL(DateParser):
         'ca.'    : Date.MOD_ABOUT,
         'približno' : Date.MOD_ABOUT,
         'pribl.' : Date.MOD_ABOUT,
+        '~'      : Date.MOD_ABOUT,
         }
 
     quality_to_int = {

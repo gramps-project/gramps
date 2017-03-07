@@ -90,10 +90,16 @@ before_script:
  - export PYTHONPATH=meta
 # set module exclusions. --exclude=TestUser because of older version of mock
 # without configure_mock
- - export EXCLUDE="--exclude=TestcaseGenerator --exclude=vcard"
+ - export EXCLUDE="--exclude=TestcaseGenerator"
 #   --exclude=merge_ref_test"
 # set GRAMPS_RESOURCES for locale, data,image and documentation
  - export GRAMPS_RESOURCES=.
+# Install addons
+ - mkdir -p ~/.gramps/gramps50/plugins/
+ - wget https://github.com/gramps-project/addons/raw/master/gramps50/download/CliMerge.addon.tgz
+ - tar -C ~/.gramps/gramps50/plugins -xzf CliMerge.addon.tgz
+ - wget https://github.com/gramps-project/addons/raw/master/gramps50/download/ExportRaw.addon.tgz
+ - tar -C ~/.gramps/gramps50/plugins -xzf ExportRaw.addon.tgz
 
 script:
 # Ignore the virtualenv entirely. Use nosetests3, python3 (3.4.0) and coverage

@@ -24,12 +24,12 @@ Unittest that tests person-specific filter rules
 import unittest
 import os
 
-from gramps.gen.db.utils import import_as_dict
-from gramps.cli.user import User
-from gramps.gen.filters import GenericFilter
-from gramps.gen.const import DATA_DIR
+from ....db.utils import import_as_dict
+from ....filters import GenericFilter
+from ....const import DATA_DIR
+from ....user import User
 
-from gramps.gen.filters.rules.person import (
+from ..person import (
     Disconnected, Everyone, FamilyWithIncompleteEvent, HasAlternateName,
     HasCommonAncestorWith, HasNickname, HasUnknownGender, HasSourceOf,
     HaveAltFamilies, HaveChildren, IncompleteNames, IsBookmarked,

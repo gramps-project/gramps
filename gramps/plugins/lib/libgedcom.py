@@ -53,7 +53,7 @@ parser contains:
   Level, Token, Token text, Data, and line number.
 
 The Data field is typically text, but in some cases, it may be a integer
-value representing an enumerated type or a GRAMPS object (in the case of
+value representing an enumerated type or a Gramps object (in the case of
 dates).
 
 The parser works on the current level. Each context and level has a an
@@ -595,7 +595,7 @@ LDS_STATUS = {
 # otherwise handled by the code, the tag itself is used for display and
 # export.  For example "_XYZ" is not in the table and will be displayed as
 # "_XYZ" and exported as an EVEN.TYPE=_XYZ
-# As Custom entries, they do not appear in GRAMPS Events add choice unless
+# As Custom entries, they do not appear in Gramps Events add choice unless
 # already imported via GEDCOM.
 #
 # -------------------------------------------------------------------------
@@ -629,7 +629,7 @@ DEL_AND_C1 = dict.fromkeys(list(range(0x7F, 0x9F)))
 
 #-------------------------------------------------------------------------
 #
-# GEDCOM events to GRAMPS events conversion
+# GEDCOM events to Gramps events conversion
 #
 #-------------------------------------------------------------------------
 GED_TO_GRAMPS_EVENT = {}
@@ -1029,7 +1029,7 @@ class GedLine:
         """
         Checks to see if the token maps a known GEDCOM event. If so, we
         change the type from UNKNOWN to TOKEN_GEVENT (gedcom event), and
-        the data is assigned to the associated GRAMPS EventType
+        the data is assigned to the associated Gramps EventType
         """
         token = GED_TO_GRAMPS_EVENT.get(self.token_text)
         if token:
@@ -1703,7 +1703,7 @@ class GedcomParser(UpdateCallback):
     @staticmethod
     def __find_from_handle(gramps_id, table):
         """
-        Find a handle corresponding to the specified GRAMPS ID.
+        Find a handle corresponding to the specified Gramps ID.
 
         The passed table contains the mapping. If the value is found, we return
         it, otherwise we create a new handle, store it, and return it.
@@ -2665,33 +2665,33 @@ class GedcomParser(UpdateCallback):
 
     def __find_person_handle(self, gramps_id):
         """
-        Return the database handle associated with the person's GRAMPS ID
+        Return the database handle associated with the person's Gramps ID
         """
         return self.__find_from_handle(gramps_id, self.gid2id)
 
     def __find_family_handle(self, gramps_id):
         """
-        Return the database handle associated with the family's GRAMPS ID
+        Return the database handle associated with the family's Gramps ID
         """
         return self.__find_from_handle(gramps_id, self.fid2id)
 
     def __find_media_handle(self, gramps_id):
         """
-        Return the database handle associated with the media object's GRAMPS ID
+        Return the database handle associated with the media object's Gramps ID
         """
         return self.__find_from_handle(gramps_id, self.oid2id)
 
     def __find_note_handle(self, gramps_id):
         """
-        Return the database handle associated with the media object's GRAMPS ID
+        Return the database handle associated with the media object's Gramps ID
         """
         return self.__find_from_handle(gramps_id, self.nid2id)
 
     def __find_or_create_person(self, gramps_id):
         """
-        Finds or creates a person based on the GRAMPS ID. If the ID is
+        Finds or creates a person based on the Gramps ID. If the ID is
         already used (is in the db), we return the item in the db. Otherwise,
-        we create a new person, assign the handle and GRAMPS ID.
+        we create a new person, assign the handle and Gramps ID.
         """
         person = Person()
         intid = self.gid2id.get(gramps_id)
@@ -2705,9 +2705,9 @@ class GedcomParser(UpdateCallback):
 
     def __find_or_create_family(self, gramps_id):
         """
-        Finds or creates a family based on the GRAMPS ID. If the ID is
+        Finds or creates a family based on the Gramps ID. If the ID is
         already used (is in the db), we return the item in the db. Otherwise,
-        we create a new family, assign the handle and GRAMPS ID.
+        we create a new family, assign the handle and Gramps ID.
         """
         family = Family()
         # Add a counter for reordering the children later:
@@ -2723,9 +2723,9 @@ class GedcomParser(UpdateCallback):
 
     def __find_or_create_media(self, gramps_id):
         """
-        Finds or creates a media object based on the GRAMPS ID. If the ID is
+        Finds or creates a media object based on the Gramps ID. If the ID is
         already used (is in the db), we return the item in the db. Otherwise,
-        we create a new media object, assign the handle and GRAMPS ID.
+        we create a new media object, assign the handle and Gramps ID.
         """
         obj = Media()
         intid = self.oid2id.get(gramps_id)
@@ -2739,10 +2739,10 @@ class GedcomParser(UpdateCallback):
 
     def __find_or_create_source(self, gramps_id):
         """
-        Find or create a source based on the GRAMPS ID.
+        Find or create a source based on the Gramps ID.
 
         If the ID is already used (is in the db), we return the item in the
-        db. Otherwise, we create a new source, assign the handle and GRAMPS ID.
+        db. Otherwise, we create a new source, assign the handle and Gramps ID.
 
         """
         obj = Source()
@@ -2757,9 +2757,9 @@ class GedcomParser(UpdateCallback):
 
     def __find_or_create_repository(self, gramps_id):
         """
-        Finds or creates a repository based on the GRAMPS ID. If the ID is
+        Finds or creates a repository based on the Gramps ID. If the ID is
         already used (is in the db), we return the item in the db. Otherwise,
-        we create a new repository, assign the handle and GRAMPS ID.
+        we create a new repository, assign the handle and Gramps ID.
 
         Some GEDCOM "flavors" destroy the specification, and declare the
         repository inline instead of in a object.
@@ -2776,10 +2776,10 @@ class GedcomParser(UpdateCallback):
 
     def __find_or_create_note(self, gramps_id):
         """
-        Finds or creates a note based on the GRAMPS ID. If the ID is
+        Finds or creates a note based on the Gramps ID. If the ID is
         already used (is in the db), we return the item in the db. Otherwise,
-        we create a new note, assign the handle and GRAMPS ID.
-        If no GRAMPS ID is passed in, we not only make a Note with GID, we
+        we create a new note, assign the handle and Gramps ID.
+        If no Gramps ID is passed in, we not only make a Note with GID, we
         commit it.
         """
         note = Note()
@@ -3058,6 +3058,8 @@ class GedcomParser(UpdateCallback):
         text = StyledText(message, [tag])
         new_note.set_styledtext(text)
         new_note.set_handle(create_id())
+        gramps_id = self.nid_map[""]
+        new_note.set_gramps_id(gramps_id)
         note_type = NoteType()
         note_type.set((NoteType.CUSTOM, _("GEDCOM import")))
         new_note.set_type(note_type)
@@ -3793,7 +3795,7 @@ class GedcomParser(UpdateCallback):
 
     def __person_std_event(self, line, state):
         """
-        Parses GEDCOM event types that map to a GRAMPS standard type. Additional
+        Parses GEDCOM event types that map to a Gramps standard type. Additional
         parsing required is for the event detail:
 
            +1 <<EVENT_DETAIL>> {0:1} p.*
@@ -3843,8 +3845,8 @@ class GedcomParser(UpdateCallback):
 
     def __person_birt(self, line, state):
         """
-        Parses GEDCOM BIRT tag into a GRAMPS birth event. Additional work
-        must be done, since additional handling must be done by GRAMPS to set
+        Parses GEDCOM BIRT tag into a Gramps birth event. Additional work
+        must be done, since additional handling must be done by Gramps to set
         this up as a birth reference event.
 
            n  BIRT [Y|<NULL>] {1:1}
@@ -3888,8 +3890,8 @@ class GedcomParser(UpdateCallback):
 
     def __person_deat(self, line, state):
         """
-        Parses GEDCOM DEAT tag into a GRAMPS birth event. Additional work
-        must be done, since additional handling must be done by GRAMPS to set
+        Parses GEDCOM DEAT tag into a Gramps birth event. Additional work
+        must be done, since additional handling must be done by Gramps to set
         this up as a death reference event.
 
            n  DEAT [Y|<NULL>] {1:1}
@@ -4323,7 +4325,7 @@ class GedcomParser(UpdateCallback):
 
     def __person_std_attr(self, line, state):
         """
-        Parses an TOKEN that GRAMPS recognizes as an Attribute
+        Parses an TOKEN that Gramps recognizes as an Attribute
 
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -4341,7 +4343,7 @@ class GedcomParser(UpdateCallback):
 
     def __person_fact(self, line, state):
         """
-        Parses an TOKEN that GRAMPS recognizes as an Attribute
+        Parses an TOKEN that Gramps recognizes as an Attribute
 
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -4363,7 +4365,7 @@ class GedcomParser(UpdateCallback):
 
     def __person_bapl(self, line, state):
         """
-        Parses an BAPL TOKEN, producing a GRAMPS LdsOrd instance
+        Parses an BAPL TOKEN, producing a Gramps LdsOrd instance
 
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -4374,7 +4376,7 @@ class GedcomParser(UpdateCallback):
 
     def __person_conl(self, line, state):
         """
-        Parses an CONL TOKEN, producing a GRAMPS LdsOrd instance
+        Parses an CONL TOKEN, producing a Gramps LdsOrd instance
 
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -4385,7 +4387,7 @@ class GedcomParser(UpdateCallback):
 
     def __person_endl(self, line, state):
         """
-        Parses an ENDL TOKEN, producing a GRAMPS LdsOrd instance
+        Parses an ENDL TOKEN, producing a Gramps LdsOrd instance
 
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -4396,7 +4398,7 @@ class GedcomParser(UpdateCallback):
 
     def __person_slgc(self, line, state):
         """
-        Parses an SLGC TOKEN, producing a GRAMPS LdsOrd instance
+        Parses an SLGC TOKEN, producing a Gramps LdsOrd instance
 
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -4555,6 +4557,9 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
 
+        if not line.data:  # handles empty FAMC line
+            self.__not_recognized(line, state)
+            return
         sub_state = CurrentState()
         sub_state.person = state.person
         sub_state.level = state.level + 1
@@ -4639,7 +4644,7 @@ class GedcomParser(UpdateCallback):
 
     def __person_famc_sour(self, line, state):
         """
-        Parses the SOUR tag on an INDI.FAMC tag. GRAMPS has no corresponding
+        Parses the SOUR tag on an INDI.FAMC tag. Gramps has no corresponding
         record on its family relationship, so we add the source to the Person
         record.
 
@@ -4844,7 +4849,7 @@ class GedcomParser(UpdateCallback):
 
     def __family_std_event(self, line, state):
         """
-        Parses GEDCOM event types that map to a GRAMPS standard type. Additional
+        Parses GEDCOM event types that map to a Gramps standard type. Additional
         parsing required is for the event detail:
 
            +1 <<EVENT_DETAIL>> {0:1} p.*
@@ -4889,7 +4894,7 @@ class GedcomParser(UpdateCallback):
 
     def __family_even(self, line, state):
         """
-        Parses GEDCOM event types that map to a GRAMPS standard type. Additional
+        Parses GEDCOM event types that map to a Gramps standard type. Additional
         parsing required is for the event detail:
 
            +1 <<EVENT_DETAIL>> {0:1} p.*
@@ -7554,7 +7559,7 @@ class GedcomParser(UpdateCallback):
         >  +1 <<NOTE_STRUCTURE>> {0:M}
 
         The Note structure is ignored, since we have nothing
-        corresponding in GRAMPS.
+        corresponding in Gramps.
 
         Based on the values calculated, attempt to convert to a valid
         change time using time.strptime. If this fails (and it shouldn't
@@ -7961,7 +7966,7 @@ class GedcomStageOne:
 #-------------------------------------------------------------------------
 def make_gedcom_date(subdate, calendar, mode, quality):
     """
-    Convert a GRAMPS date structure into a GEDCOM compatible date.
+    Convert a Gramps date structure into a GEDCOM compatible date.
     """
     retval = ""
     (day, mon, year) = subdate[0:3]

@@ -40,7 +40,7 @@ from .._regexpidbase import RegExpIdBase
 #-------------------------------------------------------------------------
 class RegExpIdOf(RegExpIdBase):
     """
-    Rule that checks for a note whose GRAMPS ID
+    Rule that checks for a note whose Gramps ID
     matches regular expression.
     """
 

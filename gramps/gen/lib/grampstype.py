@@ -218,18 +218,12 @@ class GrampsType(object, metaclass=GrampsTypeMeta):
         """
         return {
             "type": "object",
+            "title": _("Type"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "string":  {"type": "string"},
+                "string":  {"type": "string",
+                            "title": _("Type")},
             }
-        }
-
-    @classmethod
-    def get_labels(cls, _):
-        return {
-            "_class": _("Family Relationship"),
-            "value": _("Family Relationship"),
-            "string": _("Family Relationship"),
         }
 
     def unserialize(self, data):

@@ -210,7 +210,7 @@ def estimate_age(dbase, person,
     and lower bounds of the person's age is returned. If either
     the birth or death date is missing, a (-1, -1) is returned.
 
-    @param dbase: GRAMPS database to which the Person object belongs
+    @param dbase: Gramps database to which the Person object belongs
     @type dbase: DbBase
     @param person: Person object to calculate the age of
     @type person: Person
@@ -575,7 +575,7 @@ class Extract:
             for child_ref in fam.get_child_ref_list():
                 children.append(child_ref.ref)
         # TODO: it would be good to return only biological children,
-        # but GRAMPS doesn't offer any efficient way to check that
+        # but Gramps doesn't offer any efficient way to check that
         # (I don't want to check each children's parent family mother
         # and father relations as that would make this *much* slower)
         if children:
@@ -642,7 +642,7 @@ class Extract:
         """goes through the database and collects the selected personal
         data persons fitting the filter and birth year criteria. The
         arguments are:
-        dbase       - the GRAMPS database
+        dbase       - the Gramps database
         people      - a list of filtered people
         options     - report options_dict which sets which methods are used
         genders     - which gender(s) to include into statistics
@@ -729,7 +729,7 @@ class StatisticsChart(Report):
 
         The arguments are:
 
-        database        - the GRAMPS database instance
+        database        - the Gramps database instance
         options         - instance of the Options class for this report
         user            - a gen.user.User() instance
         incl_private  - Whether to include private data

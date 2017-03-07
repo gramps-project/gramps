@@ -91,7 +91,7 @@ class RelGraphReport(Report):
 
         The arguments are:
 
-        database        - the GRAMPS database instance
+        database        - the Gramps database instance
         options         - instance of the Options class for this report
         user            - a gen.user.User() instance
 
@@ -191,7 +191,8 @@ class RelGraphReport(Report):
 
     def write_report(self):
         person_handles = self._filter.apply(self._db,
-                                            self._db.iter_person_handles())
+                                            self._db.iter_person_handles(),
+                                            user=self._user)
 
         person_handles = self.sort_persons(person_handles)
 

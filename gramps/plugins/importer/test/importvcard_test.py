@@ -25,6 +25,8 @@ Unittest of import of VCard
 # in case of a failing test, add True as last parameter to do_case to see the output.
 
 import unittest
+import sys
+import os
 import time
 import subprocess
 import xml.etree.ElementTree as ET
@@ -72,17 +74,20 @@ class VCardCheck(unittest.TestCase):
 
         return ET.tostring(doc, encoding='utf-8')
 
-    def do_case(self, input_str, expect_doc, debug=True):
+    def do_case(self, input_str, expect_doc, debug=False):
         if debug:
             print(input_str)
 
-        process = subprocess.Popen('python3 Gramps.py -d .Date -d .ImportVCard '
-                                   '--config=preferences.eprefix:DEFAULT '
-                                   '-i - -f vcf -e - -f gramps',
+        gcmd = [sys.executable, 'Gramps.py',
+                '-d', '.Date', '-d', '.ImportVCard',
+                '--config=preferences.eprefix:DEFAULT',
+                '-i', '-', '-f', 'vcf',
+                '-e', '-', '-f', 'gramps']
+        process = subprocess.Popen(gcmd,
                                    stdin=subprocess.PIPE,
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE,
-                                   shell=True)
+                                   env=os.environ)
         result_str, err_str = process.communicate(input_str.encode("utf-8"))
         if debug:
             print(err_str)
@@ -218,9 +223,10 @@ class VCardCheck(unittest.TestCase):
         self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_check_version(self):
-        self.vcard.extend(["BEGIN:VCARD", "VERSION:3.7", "FN:Another",
-                             "N:Another;;;;", "END:VCARD"])
-        self.do_case("\r\n".join(self.vcard), self.gramps)
+        self.vcard = ["BEGIN:VCARD", "VERSION:3.7", "FN:Another",
+                      "N:Another;;;;", "END:VCARD"]
+        expected = ET.XML(self.header + "</database>")
+        self.do_case("\r\n".join(self.vcard), expected)
 
     def test_add_formatted_name_twice(self):
         self.vcard[2] = "FN:Lastname B A"
@@ -252,7 +258,9 @@ class VCardCheck(unittest.TestCase):
     def test_add_name_multisurname(self):
         self.vcard[2] = "FN:Lastname Lastname2"
         self.vcard[3] = "N:Lastname,Lastname2;;;;"
-        ET.SubElement(self.name, 'surname').text = 'Lastname2'
+        surname = ET.SubElement(self.name, 'surname')
+        surname.text = 'Lastname2'
+        surname.set('prim', '0')
         self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_name_prefixsurname(self):

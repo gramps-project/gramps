@@ -39,7 +39,7 @@ import traceback
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.version import VERSION as GRAMPSVERSION, VERSION_TUPLE
+from ...version import VERSION as GRAMPSVERSION, VERSION_TUPLE
 from ..const import IMAGE_DIR
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -217,7 +217,7 @@ class PluginData:
     .. attribute:: supported
        Bool value indicating if the plugin is still supported, default=True
     .. attribute:: load_on_reg
-       bool value, if True, the plugin is loaded on GRAMPS startup. Some
+       bool value, if True, the plugin is loaded on Gramps startup. Some
        plugins. Only set this value if for testing you want the plugin to be
        loaded immediately on startup. default=False
     .. attribute: icons

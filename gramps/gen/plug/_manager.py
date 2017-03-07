@@ -104,7 +104,7 @@ class BasePluginManager:
         self.__scanned_dirs = []
 
     def reg_plugins(self, direct, dbstate=None, uistate=None,
-                    load_on_reg=False):
+                    load_on_reg=False, rescan=False):
         """
         Searches the specified directory, and registers python plugin that
         are being defined in gpr.py files.
@@ -112,6 +112,14 @@ class BasePluginManager:
         If a relationship calculator for env var LANG is present, it is
         immediately loaded so it is available for all.
         """
+        if rescan:
+            self.__import_plugins    = []
+            self.__export_plugins    = []
+            self.__docgen_plugins    = []
+            self.__docgen_names      = []
+            self.__scanned_dirs = []
+            self.__pgr._PluginRegister__plugindata = []
+            self.__pgr._PluginRegister__id_to_pdata = {}
         # if we've already scanned this directory or if the directory does not
         # exist, we are done.  Should only happen in tests.
 
@@ -300,6 +308,8 @@ class BasePluginManager:
         self.__import_plugins = []
         self.__export_plugins = []
         self.__docgen_plugins = []
+        self.__docgen_names = []
+
 
     def reload_plugins(self):
         """ Reload previously loaded plugins """

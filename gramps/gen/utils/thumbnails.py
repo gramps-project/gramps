@@ -19,7 +19,7 @@
 #
 
 """
-Handles generation and access to thumbnails used in GRAMPS.
+Handles generation and access to thumbnails used in Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -133,7 +133,7 @@ def __build_thumb_path(path, rectangle=None, size=SIZE_NORMAL):
     Convert the specified path into a corresponding path for the thumbnail
     image. We do this by converting the original path into an MD5SUM value
     (which should be unique), adding the '.png' extension, and prepending
-    with the GRAMPS thumbnail directory.
+    with the Gramps thumbnail directory.
 
     :type path: unicode
     :param path: filename of the source file

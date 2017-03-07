@@ -39,7 +39,7 @@ from .. import HasGrampsId
 #
 #-------------------------------------------------------------------------
 class HasIdOf(HasGrampsId):
-    """Rule that checks for a repo with a specific GRAMPS ID"""
+    """Rule that checks for a repo with a specific Gramps ID"""
 
     name        = _('Repository with <Id>')
     description = _("Matches a repository with a specified Gramps ID")

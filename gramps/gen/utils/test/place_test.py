@@ -34,7 +34,7 @@ import math
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.utils.place import conv_lat_lon
+from ..place import conv_lat_lon
 
 #-------------------------------------------------------------------------
 #

@@ -32,6 +32,8 @@ Surname class for Gramps.
 from .secondaryobj import SecondaryObject
 from .nameorigintype import NameOriginType
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -82,25 +84,19 @@ class Surname(SecondaryObject):
         """
         return {
             "type": "object",
+            "title": _("Surname"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "surname": {"type": "string"},
-                "prefix": {"type": "string"},
-                "primary": {"type": "boolean"},
+                "surname": {"type": "string",
+                            "title": _("Surname")},
+                "prefix": {"type": "string",
+                           "title": _("Prefix")},
+                "primary": {"type": "boolean",
+                            "title": _("Primary")},
                 "origintype": NameOriginType.get_schema(),
-                "connector": {"type": "string"}
+                "connector": {"type": "string",
+                              "title": _("Connector")}
             }
-        }
-
-    @classmethod
-    def get_labels(cls, _):
-        return {
-            "_class": _("Surname"),
-            "surname": _("Surname"),
-            "prefix": _("Prefix"),
-            "primary": _("Primary"),
-            "origintype": _("Origin type"),
-            "connector": _("Connector")
         }
 
     def is_empty(self):

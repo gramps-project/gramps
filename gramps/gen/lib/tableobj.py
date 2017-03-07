@@ -37,7 +37,7 @@ import time
 #
 #-------------------------------------------------------------------------
 from .baseobj import BaseObject
-from gramps.gen.errors import HandleError
+from ..errors import HandleError
 
 #-------------------------------------------------------------------------
 #
@@ -147,13 +147,6 @@ class TableObject(BaseObject):
         :rtype: str
         """
         return self.handle
-
-    @classmethod
-    def get_labels(cls, _):
-        """
-        Return labels.
-        """
-        return {}
 
     @classmethod
     def get_schema(cls):

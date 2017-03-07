@@ -539,7 +539,7 @@ class ProgenParser(UpdateCallback):
         Pro-Gen defines his own set of (static) person and family identifiers.
         """
         UpdateCallback.__init__(self, user.callback)
-        # Sometime their match the GRAMPS localisation, sometimes not. To be on
+        # Sometime their match the Gramps localisation, sometimes not. To be on
         # a safe and uniform path person and family identifiers for (alphabetical)
         # German (de), English (en) and Dutch (nl) language defined here.
         self.bname, ext = os.path.splitext(file_name)
@@ -754,7 +754,7 @@ class ProgenParser(UpdateCallback):
         Finds or creates a Person based on the Pro-Gen ID.
         """
         # If the ID is already used (= is in the database), we return the item in
-        # the DB. Otherwise, we create a new person, assign the handle and GRAMPS ID.
+        # the DB. Otherwise, we create a new person, assign the handle and Gramps ID.
         person = Person()
         intid = self.gid2id.get(progen_id)
         if self.dbase.has_person_handle(intid):

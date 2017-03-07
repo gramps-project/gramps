@@ -20,20 +20,14 @@
 
 #-------------------------------------------------------------------------
 #
-# Standard Python modules
-#
-#-------------------------------------------------------------------------
-from ....const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
-
-#-------------------------------------------------------------------------
-#
 # Gramps modules
 #
 #-------------------------------------------------------------------------
 from .. import Rule
 from ....lib.nameorigintype import NameOriginType
-from gramps.gen.soundex import soundex
+from ....soundex import soundex
+from ....const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 
 
 #-------------------------------------------------------------------------

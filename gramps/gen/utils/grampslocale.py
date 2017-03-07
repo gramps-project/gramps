@@ -104,7 +104,7 @@ _LOCALE_NAMES = {
     'sv': ('Swedish_Sweden', '1252', _("Swedish")),
     'tr': ('Turkish_Turkey', '1254', _("Turkish")),
     'uk': ('Ukrainian_Ukraine', '1251', _("Ukrainian")),
-    'vi': ('Vietnamese_Viet Nam', '1258', _("Vietnamese")),
+    'vi': ('Vietnamese_Vietnam', '1258', _("Vietnamese")),
     'zh_CN': ('Chinese_China', '936', _("Chinese (Simplified)")),
     'zh_HK': ('Chinese_Hong Kong', '950', _("Chinese (Hong Kong)")),
     'zh_TW': ('Chinese_Taiwan', '950', _("Chinese (Traditional)")),
@@ -654,13 +654,13 @@ class GrampsLocale:
         if self._dd:
             return self._dd
 
-        from gramps.gen.config import config
+        from ..config import config
         try:
             val = config.get('preferences.date-format')
         except AttributeError:
             val = 0;
 
-        from gramps.gen.datehandler import LANG_TO_DISPLAY as displayers
+        from ..datehandler import LANG_TO_DISPLAY as displayers
         _first = self._GrampsLocale__first_instance
         if self.calendar in displayers:
             self._dd = displayers[self.calendar](val)
@@ -688,7 +688,7 @@ class GrampsLocale:
         if self._dp:
             return self._dp
 
-        from gramps.gen.datehandler import LANG_TO_PARSER as parsers
+        from ..datehandler import LANG_TO_PARSER as parsers
         _first = self._GrampsLocale__first_instance
         if self.calendar in parsers:
             self._dp = parsers[self.calendar]()
@@ -904,7 +904,7 @@ class GrampsLocale:
         :returns: The name as text in the proper language.
         :rtype: unicode
         """
-        from gramps.gen.lib.grampstype import GrampsType
+        from ..lib.grampstype import GrampsType
         return GrampsType.xml_str(name)
 
     def format(self, format, val, grouping=False, monetary=False):

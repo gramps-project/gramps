@@ -39,7 +39,7 @@ from .._regexpidbase import RegExpIdBase
 #
 #-------------------------------------------------------------------------
 class RegExpIdOf(RegExpIdBase):
-    """Rule that checks for a person whose GRAMPS ID
+    """Rule that checks for a person whose Gramps ID
     matches regular expression.
     """
 

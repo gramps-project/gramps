@@ -77,14 +77,13 @@ class Test(unittest.TestCase):
     # This tests the fix for bug #1331-1334
     # read trivial gedcom input, write gedcom output
     def test2_exec_CLI(self):
-        pyexec = sys.executable
         ifile = min1r
         ofile = out_ged
-        gcmd = "Gramps.py -i %s -e %s" % (ifile, ofile)
-        process = subprocess.Popen("%s %s" % (pyexec, gcmd),
+        gcmd = [sys.executable, "Gramps.py", "-i", ifile, "-e", ofile]
+        process = subprocess.Popen(gcmd,
                                    stdin=subprocess.PIPE,
                                    stdout=subprocess.PIPE,
-                                   stderr=subprocess.PIPE, shell=True)
+                                   stderr=subprocess.PIPE)
         result_str, err_str = process.communicate()
         self.assertEqual(process.returncode, 0,
                          "executed CLI command %r" % gcmd)
@@ -110,14 +109,13 @@ class Test(unittest.TestCase):
                 f.write("garbage")
 
         # ~same as test 2
-        pyexec = sys.executable
         ifile = min1r
         ofile = out_ged
-        gcmd = "Gramps.py -i %s -e %s" % (ifile, ofile)
-        process = subprocess.Popen("%s %s" % (pyexec, gcmd),
+        gcmd = [sys.executable, "Gramps.py", "-i", ifile, "-e", ofile]
+        process = subprocess.Popen(gcmd,
                                    stdin=subprocess.PIPE,
                                    stdout=subprocess.PIPE,
-                                   stderr=subprocess.PIPE, shell=True)
+                                   stderr=subprocess.PIPE)
         result_str, err_str = process.communicate()
         self.assertEqual(process.returncode, 0,
                          "executed CLI command %r" % gcmd)

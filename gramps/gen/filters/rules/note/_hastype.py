@@ -31,7 +31,7 @@
 #-------------------------------------------------------------------------
 from ....lib.notetype import NoteType
 from .. import Rule
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from ....const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------

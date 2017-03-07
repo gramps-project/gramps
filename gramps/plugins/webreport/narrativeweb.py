@@ -1417,7 +1417,7 @@ class BasePage:
         if cindex:
             hyper.attr += ' name ="sref%d"' % cindex
 
-        # add GRAMPS ID
+        # add Gramps ID
         if not self.noid and gid:
             hyper += Html("span", ' [%s]' % gid, class_="grampsid", inline=True)
         return hyper
@@ -1789,7 +1789,7 @@ class BasePage:
         fname = "/".join(["css", _NARRATIVEPRINT])
         url3 = self.report.build_url_fname(fname, None, self.uplink)
 
-        # Link to GRAMPS favicon
+        # Link to Gramps favicon
         fname = "/".join(['images', 'favicon2.ico'])
         url4 = self.report.build_url_image("favicon2.ico",
                                            "images", self.uplink)
@@ -2122,7 +2122,7 @@ class BasePage:
 
     def media_ref_rect_regions(self, handle):
         """
-        GRAMPS feature #2634 -- attempt to highlight subregions in media
+        Gramps feature #2634 -- attempt to highlight subregions in media
         objects and link back to the relevant web page.
 
         This next section of code builds up the "records" we'll need to
@@ -4000,7 +4000,7 @@ class PlacePages(BasePage):
                 placedetail += urllinks
 
             # add place map here
-            # Link to GRAMPS marker
+            # Link to Gramps marker
             fname = "/".join(['images', 'marker.png'])
             marker_path = self.report.build_url_image("marker.png",
                                                       "images", self.uplink)
@@ -6729,7 +6729,7 @@ class PersonPages(BasePage):
                           type="text/javascript", indent=False) as jsc:
                     head += jsc
 
-                    # Link to GRAMPS marker
+                    # Link to Gramps marker
                     fname = "/".join(['images', 'marker.png'])
                     marker_path = self.report.build_url_image("marker.png",
                                                               "images",
@@ -8253,7 +8253,7 @@ class NavWebReport(Report):
     """
     def __init__(self, database, options, user):
         """
-        @param: database -- The GRAMPS database instance
+        @param: database -- The Gramps database instance
         @param: options  -- Instance of the Options class for this report
         @param: user     -- Instance of a gen.user.User()
         """
@@ -9124,7 +9124,7 @@ class NavWebReport(Report):
             fdir, fname = os.path.split(from_path)
             self.copy_file(from_path, fname, "images")
 
-        # copy GRAMPS marker icon for openstreetmap
+        # copy Gramps marker icon for openstreetmap
         fname = CSS["marker"]["filename"]
         self.copy_file(fname, "marker.png", "images")
 

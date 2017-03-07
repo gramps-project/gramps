@@ -152,7 +152,7 @@ def relative_path(original, base):
 def expand_path(path, normalize = True):
     """
     Expand environment variables in a path
-    Uses both the environment variables and the GRAMPS environment
+    Uses both the environment variables and the Gramps environment
     The expansion uses the str.format, e.g. "~/{GRAMPSHOME}/{VERSION}/filename.txt"
     We make the assumption that the user will not use a path that contain variable names
     (it is technically possible to use characters "{", "}" in  paths)

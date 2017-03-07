@@ -347,7 +347,7 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         return (_("Tool settings"), self.label)
 
     def on_help_clicked(self, obj):
-        """ Display the relevant portion of GRAMPS manual """
+        """ Display the relevant portion of Gramps manual """
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_apply_clicked(self, obj):
@@ -364,7 +364,8 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
                 o_dict[option] = self.top.get_object(option).get_value_as_int()
 
         try:
-            self.v_r = VerifyResults(self.dbstate, self.uistate, self.track)
+            self.v_r = VerifyResults(self.dbstate, self.uistate, self.track,
+                                     self.top)
             self.add_results = self.v_r.add_results
             self.v_r.load_ignored(self.db.full_name)
         except WindowActiveError:
@@ -493,7 +494,7 @@ class VerifyResults(ManagedWindow):
     TRUE_COL = 8
     SHOW_COL = 9
 
-    def __init__(self, dbstate, uistate, track):
+    def __init__(self, dbstate, uistate, track, glade):
         """ initialize things """
         self.title = _('Data Verification Results')
 
@@ -501,8 +502,8 @@ class VerifyResults(ManagedWindow):
 
         self.dbstate = dbstate
         self._set_filename()
-        self.top = Glade(toplevel="verify_result")
-        window = self.top.toplevel
+        self.top = glade
+        window = self.top.get_object("verify_result")
         self.set_window(window, self.top.get_object('title2'), self.title)
         self.setup_configs('interface.verifyresults', 500, 300)
 
@@ -724,13 +725,13 @@ class VerifyResults(ManagedWindow):
             if the_type == 'Person':
                 try:
                     person = self.dbstate.db.get_person_from_handle(handle)
-                    EditPerson(self.dbstate, self.uistate, [], person)
+                    EditPerson(self.dbstate, self.uistate, self.track, person)
                 except WindowActiveError:
                     pass
             elif the_type == 'Family':
                 try:
                     family = self.dbstate.db.get_family_from_handle(handle)
-                    EditFamily(self.dbstate, self.uistate, [], family)
+                    EditFamily(self.dbstate, self.uistate, self.track, family)
                 except WindowActiveError:
                     pass
 
@@ -759,7 +760,7 @@ class VerifyResults(ManagedWindow):
 
     def build_menu_names(self, obj):
         """ build the menu names """
-        return (self.title, None)
+        return (self.title, self.title)
 
 #------------------------------------------------------------------------
 #

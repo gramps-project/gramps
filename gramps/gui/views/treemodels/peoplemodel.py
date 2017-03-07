@@ -22,7 +22,7 @@
 #
 
 """
-TreeModel for the GRAMPS Person tree.
+TreeModel for the Gramps Person tree.
 """
 
 #-------------------------------------------------------------------------

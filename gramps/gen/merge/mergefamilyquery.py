@@ -188,6 +188,8 @@ class MergeFamilyQuery:
             # replace the family in lds ordinances
             for (dummy, person_handle) in self.database.find_backlink_handles(
                     old_handle, ['Person']):
+                if person_handle in (self.titanic_fh, self.titanic_mh):
+                    continue
                 person = self.database.get_person_from_handle(person_handle)
                 person.replace_handle_reference('Family', old_handle,new_handle)
                 self.database.commit_person(person, trans)

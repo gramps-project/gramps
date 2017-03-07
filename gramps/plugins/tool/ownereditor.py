@@ -113,12 +113,12 @@ class OwnerEditor(tool.Tool, ManagedWindow):
             "on_cancel_button_clicked": self.close,
             "on_help_button_clicked": self.on_help_button_clicked,
             "on_eventbox_button_press_event": self.on_button_press_event,
-            "on_menu_activate": self.on_menu_activate,
-            "on_delete_event"   : self.close,
-            })
+            "on_menu_activate": self.on_menu_activate})
 
         # fetch the popup menu
         self.menu = topDialog.get_object("popup_menu")
+        self.track_ref_for_deletion("menu")
+
         #topDialog.connect_signals({"on_menu_activate": self.on_menu_activate})
 
         # get current db owner and attach it to the entries of the window
@@ -148,10 +148,11 @@ class OwnerEditor(tool.Tool, ManagedWindow):
     def on_ok_button_clicked(self, obj):
         """Update the current db's owner information from editor"""
         self.db.set_researcher(self.owner)
+        self.menu.destroy()
         self.close()
 
     def on_help_button_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
+        """Display the relevant portion of Gramps manual"""
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_button_press_event(self, obj, event):
@@ -172,6 +173,9 @@ class OwnerEditor(tool.Tool, ManagedWindow):
         elif menuitem.props.name == 'copy_from_db_to_preferences':
             for i in range(len(config_keys)):
                 config.set(config_keys[i], self.owner.get()[i])
+
+    def clean_up(self):
+        self.menu.destroy()
 
 #-------------------------------------------------------------------------
 #

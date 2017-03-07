@@ -24,6 +24,7 @@ Unittest for export to VCard
 import unittest
 import time
 import subprocess
+import sys
 import os
 import xml.etree.ElementTree as ET
 
@@ -70,12 +71,14 @@ class VCardCheck(unittest.TestCase):
         if debug:
             print(ET.tostring(input_doc))
 
-        process = subprocess.Popen('python Gramps.py '
-                                   '-i - -f gramps -e - -f vcf',
+        gcmd = [sys.executable, 'Gramps.py',
+                '-i', '-', '-f', 'gramps',
+                '-e', '-', '-f', 'vcf']
+        process = subprocess.Popen(gcmd,
                                    stdin=subprocess.PIPE,
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE,
-                                   shell=True)
+                                   env=os.environ)
         input_str = (self.header.encode('utf-8') +
                      ET.tostring(input_doc, encoding='utf-8'))
         result_str, err_str = process.communicate(input_str)

@@ -44,6 +44,8 @@ from .datebase import DateBase
 from .tagbase import TagBase
 from .attrbase import SrcAttributeBase
 from .citationbase import IndirectCitationBase
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 LOG = logging.getLogger(".citation")
 
@@ -92,49 +94,44 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         from .date import Date
         return {
             "type": "object",
+            "title": _("Citation"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
                 "handle": {"type": "string",
-                           "maxLength": 50},
-                "gramps_id": {"type": "string"},
-                "date": {"oneOf": [{"type": "null"}, Date.get_schema()]},
-                "page": {"type": "string"},
+                           "maxLength": 50,
+                           "title": _("Handle")},
+                "gramps_id": {"type": "string",
+                              "title": _("Gramps ID")},
+                "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
+                         "title": _("Date")},
+                "page": {"type": "string",
+                         "title": _("Page")},
                 "confidence": {"type": "integer",
                                "minimum": 0,
-                               "maximum": 4},
+                               "maximum": 4,
+                               "title": _("Confidence")},
                 "source_handle": {"type": "string",
-                                  "maxLength": 50},
+                                  "maxLength": 50,
+                                  "title": _("Source")},
                 "note_list": {"type": "array",
                               "items": {"type": "string",
-                                        "maxLength": 50}},
+                                        "maxLength": 50},
+                              "title": _("Notes")},
                 "media_list": {"type": "array",
-                               "items": MediaRef.get_schema()},
+                               "items": MediaRef.get_schema(),
+                               "title": _("Media")},
                 "srcattr_list": {"type": "array",
-                                  "items": SrcAttribute.get_schema()},
-                "change": {"type": "integer"},
+                                 "items": SrcAttribute.get_schema(),
+                                 "title": _("Source Attributes")},
+                "change": {"type": "integer",
+                           "title": _("Last changed")},
                 "tag_list": {"type": "array",
                              "items": {"type": "string",
-                                       "maxLength": 50}},
-                "private": {"type": "boolean"}
+                                       "maxLength": 50},
+                             "title": _("Tags")},
+                "private": {"type": "boolean",
+                            "title": _("Private")}
             }
-        }
-
-    @classmethod
-    def get_labels(cls, _):
-        return {
-            "_class": _("Citation"),
-            "handle":  _("Handle"),
-            "gramps_id": _("Gramps ID"),
-            "date": _("Date"),
-            "page": _("Page"),
-            "confidence":  _("Confidence"),
-            "source_handle": _("Source"),
-            "note_list": _("Notes"),
-            "media_list": _("Media"),
-            "srcattribute_list": _("Source Attributes"),
-            "change": _("Last changed"),
-            "tag_list": _("Tags"),
-            "private": _("Private"),
         }
 
     def serialize(self, no_text_date=False):

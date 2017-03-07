@@ -26,7 +26,7 @@ import sys
 from abc import ABCMeta, abstractmethod
 from contextlib import contextmanager
 
-class User(metaclass=ABCMeta):
+class UserBase(metaclass=ABCMeta):
     """
     This class provides a means to interact with the user in an abstract way.
     This class should be overridden by each respective user interface to
@@ -187,3 +187,43 @@ class User(metaclass=ABCMeta):
         """
         Displays information to the user
         """
+
+class User(UserBase):
+    """
+    An implementation of the :class:`.gen.user.UserBase` class which supresses
+    output and accepts prompts.  This is useful for unit tests.
+    """
+
+    def __init__(self, callback=None, error=None, uistate=None, dbstate=None):
+        UserBase.__init__(self, callback=self.__cb)
+
+    def __cb(self, percent, text=None):
+        return
+
+    def begin_progress(self, title, message, steps):
+        pass
+
+    def step_progress(self):
+        pass
+
+    def end_progress(self):
+        pass
+
+    def prompt(self, title, message, accept_label, reject_label, parent=None,
+               default_label=None):
+        return True
+
+    def warn(self, title, warning=""):
+        pass
+
+    def notify_error(self, title, error=""):
+        pass
+
+    def notify_db_error(self, error):
+        pass
+
+    def notify_db_repair(self, error):
+        pass
+
+    def info(self, msg1, infotext, parent=None, monospaced=False):
+        pass

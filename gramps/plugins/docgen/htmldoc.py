@@ -150,7 +150,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         fname2 = '/'.join([self._backend.datadir(), _TEXTDOCSCREEN])
         fname3 = '/'.join([self._backend.datadir(), _HTMLSCREEN])
 
-        # links for GRAMPS favicon and stylesheets
+        # links for Gramps favicon and stylesheets
         links = Html('link', rel='shortcut icon', href=fname1,
                      type='image/x-icon') + (
                          Html('link', rel='stylesheet', href=fname2,

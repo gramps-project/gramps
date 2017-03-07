@@ -21,7 +21,7 @@
 #
 
 import locale
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from ..const import GRAMPS_LOCALE as glocale
 
 """
 Some OS environments do not support the locale.nl_langinfo() method

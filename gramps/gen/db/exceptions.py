@@ -25,8 +25,8 @@
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import URL_WIKISTRING, URL_MANUAL_PAGE
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from ..const import URL_WIKISTRING, URL_MANUAL_PAGE
+from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------

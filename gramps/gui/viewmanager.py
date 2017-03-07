@@ -267,13 +267,14 @@ class ViewManager(CLIManager):
 
     def __init__(self, dbstate, view_category_order, user=None):
         """
-        The viewmanager is initialised with a dbstate on which GRAMPS is
+        The viewmanager is initialised with a dbstate on which Gramps is
         working, and a fixed view_category_order, which is the order in which
         the view categories are accessible in the sidebar.
         """
         CLIManager.__init__(self, dbstate, setloader=False, user=user)
         if _GTKOSXAPPLICATION:
             self.macapp = QuartzApp.Application()
+            self.macapp.set_use_quartz_accelerators(False)
 
         self.view_category_order = view_category_order
 
@@ -344,8 +345,9 @@ class ViewManager(CLIManager):
         """
         Called when add-on updates are available.
         """
-        PluginWindows.UpdateAddons(self.uistate, [], addon_update_list)
-        self.do_reg_plugins(self.dbstate, self.uistate)
+        rescan = PluginWindows.UpdateAddons(self.uistate, [],
+                                            addon_update_list).rescan
+        self.do_reg_plugins(self.dbstate, self.uistate, rescan=rescan)
 
     def _errordialog(self, title, errormessage):
         """
@@ -727,14 +729,15 @@ class ViewManager(CLIManager):
         if not self.dbstate.is_open() and show_manager:
             self.__open_activate(None)
 
-    def do_reg_plugins(self, dbstate, uistate):
+    def do_reg_plugins(self, dbstate, uistate, rescan=False):
         """
         Register the plugins at initialization time. The plugin status window
         is opened on an error if the user has requested.
         """
         # registering plugins
         self.uistate.status_text(_('Registering plugins...'))
-        error = CLIManager.do_reg_plugins(self, dbstate, uistate)
+        error = CLIManager.do_reg_plugins(self, dbstate, uistate,
+                                          rescan=rescan)
 
         #  get to see if we need to open the plugin status window
         if error and config.get('behavior.pop-plugin-status'):
@@ -1557,7 +1560,7 @@ def key_bindings(obj):
 
 def manual_activate(obj):
     """
-    Display the GRAMPS manual
+    Display the Gramps manual
     """
     display_help(webpage=WIKI_HELP_PAGE_MAN)
 
@@ -1569,7 +1572,7 @@ def report_bug_activate(obj):
 
 def home_page_activate(obj):
     """
-    Display the GRAMPS home page
+    Display the Gramps home page
     """
     display_url(URL_HOMEPAGE)
 

@@ -56,121 +56,6 @@ class PrivateProxyDb(ProxyDbBase):
         Create a new PrivateProxyDb instance.
         """
         ProxyDbBase.__init__(self, db)
-        self.__tables = {
-            'Person':
-            {
-                "handle_func": self.get_person_from_handle,
-                "gramps_id_func": self.get_person_from_gramps_id,
-                "class_func": Person,
-                "cursor_func": self.get_person_cursor,
-                "handles_func": self.get_person_handles,
-                "iter_func": self.iter_people,
-                "count_func": self.get_number_of_people,
-            },
-            'Family':
-            {
-                "handle_func": self.get_family_from_handle,
-                "gramps_id_func": self.get_family_from_gramps_id,
-                "class_func": Family,
-                "cursor_func": self.get_family_cursor,
-                "handles_func": self.get_family_handles,
-                "iter_func": self.iter_families,
-                "count_func": self.get_number_of_families,
-            },
-            'Source':
-            {
-                "handle_func": self.get_source_from_handle,
-                "gramps_id_func": self.get_source_from_gramps_id,
-                "class_func": Source,
-                "cursor_func": self.get_source_cursor,
-                "handles_func": self.get_source_handles,
-                "iter_func": self.iter_sources,
-                "count_func": self.get_number_of_sources,
-            },
-            'Citation':
-            {
-                "handle_func": self.get_citation_from_handle,
-                "gramps_id_func": self.get_citation_from_gramps_id,
-                "class_func": Citation,
-                "cursor_func": self.get_citation_cursor,
-                "handles_func": self.get_citation_handles,
-                "iter_func": self.iter_citations,
-                "count_func": self.get_number_of_citations,
-            },
-            'Event':
-            {
-                "handle_func": self.get_event_from_handle,
-                "gramps_id_func": self.get_event_from_gramps_id,
-                "class_func": Event,
-                "cursor_func": self.get_event_cursor,
-                "handles_func": self.get_event_handles,
-                "iter_func": self.iter_events,
-                "count_func": self.get_number_of_events,
-            },
-            'Media':
-            {
-                "handle_func": self.get_media_from_handle,
-                "gramps_id_func": self.get_media_from_gramps_id,
-                "class_func": Media,
-                "cursor_func": self.get_media_cursor,
-                "handles_func": self.get_media_handles,
-                "iter_func": self.iter_media,
-                "count_func": self.get_number_of_media,
-            },
-            'Place':
-            {
-                "handle_func": self.get_place_from_handle,
-                "gramps_id_func": self.get_place_from_gramps_id,
-                "class_func": Place,
-                "cursor_func": self.get_place_cursor,
-                "handles_func": self.get_place_handles,
-                "iter_func": self.iter_places,
-                "count_func": self.get_number_of_places,
-            },
-            'Repository':
-            {
-                "handle_func": self.get_repository_from_handle,
-                "gramps_id_func": self.get_repository_from_gramps_id,
-                "class_func": Repository,
-                "cursor_func": self.get_repository_cursor,
-                "handles_func": self.get_repository_handles,
-                "iter_func": self.iter_repositories,
-                "count_func": self.get_number_of_repositories,
-            },
-            'Note':
-            {
-                "handle_func": self.get_note_from_handle,
-                "gramps_id_func": self.get_note_from_gramps_id,
-                "class_func": Note,
-                "cursor_func": self.get_note_cursor,
-                "handles_func": self.get_note_handles,
-                "iter_func": self.iter_notes,
-                "count_func": self.get_number_of_notes,
-            },
-            'Tag':
-            {
-                "handle_func": self.get_tag_from_handle,
-                "gramps_id_func": None,
-                "class_func": Tag,
-                "cursor_func": self.get_tag_cursor,
-                "handles_func": self.get_tag_handles,
-                "iter_func": self.iter_tags,
-                "count_func": self.get_number_of_tags,
-            }
-        }
-
-    def get_table_func(self, table=None, func=None):
-        """
-        Private implementation of get_table_func.
-        """
-        if table is None:
-            return list(self.__tables.keys())
-        elif func is None:
-            return self.__tables[table]
-        elif func in self.__tables[table].keys():
-            return self.__tables[table][func]
-        else:
-            return super().get_table_func(table, func)
 
     def get_person_from_handle(self, handle):
         """
@@ -264,7 +149,7 @@ class PrivateProxyDb(ProxyDbBase):
 
     def get_person_from_gramps_id(self, val):
         """
-        Finds a Person in the database from the passed GRAMPS ID.
+        Finds a Person in the database from the passed Gramps ID.
         If no such Person exists, None is returned.
         """
         person = self.db.get_person_from_gramps_id(val)
@@ -274,7 +159,7 @@ class PrivateProxyDb(ProxyDbBase):
 
     def get_family_from_gramps_id(self, val):
         """
-        Finds a Family in the database from the passed GRAMPS ID.
+        Finds a Family in the database from the passed Gramps ID.
         If no such Family exists, None is returned.
         """
         family = self.db.get_family_from_gramps_id(val)
@@ -284,7 +169,7 @@ class PrivateProxyDb(ProxyDbBase):
 
     def get_event_from_gramps_id(self, val):
         """
-        Finds an Event in the database from the passed GRAMPS ID.
+        Finds an Event in the database from the passed Gramps ID.
         If no such Event exists, None is returned.
         """
         event = self.db.get_event_from_gramps_id(val)

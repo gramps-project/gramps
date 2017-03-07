@@ -28,6 +28,8 @@
 #
 #-------------------------------------------------------------------------
 from .styledtexttag import StyledTextTag
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -299,19 +301,15 @@ class StyledText:
         """
         return {
             "type": "object",
+            "title": _("Styled Text"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "string": {"type": "string"},
+                "string": {"type": "string",
+                           "title": _("Text")},
                 "tags": {"type": "array",
-                         "items": StyledTextTag.get_schema()}
+                         "items": StyledTextTag.get_schema(),
+                         "title": _("Styled Text Tags")}
             }
-        }
-
-    @classmethod
-    def get_labels(cls, _):
-        return {
-            "string": _("Text"),
-            "tags": _("Styled Text Tags"),
         }
 
     def unserialize(self, data):

@@ -100,7 +100,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                           'name_ix': 3},
             'places': {'get_func': self.db.get_place_from_handle,
                        'remove': self.db.remove_place,
-                       'get_text': None,
+                       'get_text': self.get_place_text,
                        'editor': 'EditPlace',
                        'icon': 'gramps-place',
                        'name_ix': 2},
@@ -435,6 +435,17 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
 
         return text
 
+    def get_place_text(self, the_type, handle, data):
+        """
+        We need just the place name.
+        """
+        # get the place object
+        place = self.tables[the_type]['get_func'](handle)
+
+        # get the name
+        text = place.get_name().get_value()
+
+        return text
 #------------------------------------------------------------------------
 #
 #

@@ -350,7 +350,7 @@ class BookmarksDialog(ManagedWindow):
             self.modified = True
 
     def help_clicked(self):
-        """Display the relevant portion of GRAMPS manual."""
+        """Display the relevant portion of Gramps manual."""
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def build_menu_names(self, obj): # this is meaningless while it's modal
@@ -455,7 +455,7 @@ class CitationBookmarks(ListBookmarks):
             # FIXME: See http://www.gramps-project.org/bugs/view.php?id=6352 a
             # more comprehensive solution is needed in the long term. See also
             # change_active in CitatinTreeView
-            from gramps.gui.dialog import WarningDialog
+            from ..dialog import WarningDialog
             WarningDialog(
                 _("Cannot bookmark this reference"),
                 # FIXME should this next string be translated?

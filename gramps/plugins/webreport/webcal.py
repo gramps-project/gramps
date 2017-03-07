@@ -448,7 +448,7 @@ class WebCalReport(Report):
         # _CALENDARSCREEN stylesheet
         fname2 = "/".join(subdirs + ["css", _CALENDARSCREEN])
 
-        # links for GRAMPS favicon and stylesheets
+        # links for Gramps favicon and stylesheets
         links = Html("link", rel='shortcut icon',
                      href=fname1, type="image/x-icon") + (
             Html("link", href=fname2, type="text/css",

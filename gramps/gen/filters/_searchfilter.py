@@ -19,10 +19,8 @@
 #
 
 """
-Package providing filtering framework for GRAMPS.
+Package providing filtering framework for Gramps.
 """
-
-from gramps.gen.constfunc import win
 
 class SearchFilter:
     def __init__(self, func, text, invert):
@@ -31,10 +29,7 @@ class SearchFilter:
         self.invert = invert
 
     def match(self, handle, db):
-        if win():
-            return self.invert ^ (self.func(handle).upper().find(str(self.text)) != -1)
-        else:
-            return self.invert ^ (self.func(handle).upper().find(self.text) != -1)
+        return self.invert ^ (self.func(handle).upper().find(self.text) != -1)
 
 class ExactSearchFilter(SearchFilter):
     def __init__(self, func, text, invert):

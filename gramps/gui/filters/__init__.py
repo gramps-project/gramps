@@ -19,7 +19,7 @@
 #
 
 """
-Package providing filtering framework for GRAMPS.
+Package providing filtering framework for Gramps.
 """
 
 from ._filtercombobox import FilterComboBox

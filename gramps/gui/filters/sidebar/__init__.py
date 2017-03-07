@@ -20,7 +20,7 @@
 #
 
 """
-Package providing sidebar filters for GRAMPS.
+Package providing sidebar filters for Gramps.
 """
 
 from ._sidebarfilter import SidebarFilter

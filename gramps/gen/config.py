@@ -23,7 +23,7 @@
 #
 
 """
-This package implements access to GRAMPS configuration.
+This package implements access to Gramps configuration.
 """
 
 #---------------------------------------------------------------

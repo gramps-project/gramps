@@ -21,7 +21,7 @@
 #
 
 """
-Package providing filter rules for GRAMPS.
+Package providing filter rules for Gramps.
 """
 
 from ._searchfathername import SearchFatherName

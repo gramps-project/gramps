@@ -20,7 +20,7 @@
 #
 
 """
-Provide the managed window interface, which allows GRAMPS to track
+Provide the managed window interface, which allows Gramps to track
 the create/deletion of dialog windows.
 """
 
@@ -78,7 +78,7 @@ def get_object(self,value):
 
 class GrampsWindowManager:
     """
-    Manage hierarchy of open GRAMPS windows.
+    Manage hierarchy of open Gramps windows.
 
     This class's purpose is to manage the hierarchy of open windows.
     The idea is to maintain the tree of branches and leaves.
@@ -372,7 +372,7 @@ class ManagedWindow:
                 return (menu_label, submenu_label)
 
         :param uistate:  gramps uistate
-        :param track:    {list of parent windows, [] if the main GRAMPS window
+        :param track:    {list of parent windows, [] if the main Gramps window
                             is the parent}
         :param obj:      The object that is used to id the managed window,
                             The inheriting object needs a method
@@ -518,11 +518,11 @@ class ManagedWindow:
     def build_window_key(self, obj):
         return id(obj)
 
-    def define_glade(self, top_module, glade_file=None):
+    def define_glade(self, top_module, glade_file=None, also_load=[]):
         if glade_file is None:
             raise TypeError("ManagedWindow.define_glade: no glade file")
             glade_file = GLADE_FILE
-        self._gladeobj = Glade(glade_file, None, top_module)
+        self._gladeobj = Glade(glade_file, None, top_module, also_load)
         return self._gladeobj
 
     def get_widget(self, name):

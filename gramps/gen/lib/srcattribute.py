@@ -20,7 +20,7 @@
 #
 
 """
-Source Attribute class for GRAMPS.
+Source Attribute class for Gramps.
 """
 
 #-------------------------------------------------------------------------

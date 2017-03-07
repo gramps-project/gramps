@@ -20,7 +20,7 @@
 #
 
 """
-CitationListModel class for GRAMPS.
+CitationListModel class for Gramps.
 """
 
 #-------------------------------------------------------------------------

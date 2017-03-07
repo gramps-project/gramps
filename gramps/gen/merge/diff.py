@@ -108,14 +108,20 @@ def diff_dbs(db1, db2, user):
         for item in ['Person', 'Family', 'Source', 'Citation', 'Event', 'Media',
                      'Place', 'Repository', 'Note', 'Tag']:
             step()
-            handles1 = sorted([handle for handle in db1.get_table_func(item,"handles_func")()])
-            handles2 = sorted([handle for handle in db2.get_table_func(item,"handles_func")()])
+
+            handles_func1 = db1.get_table_metadata(item)["handles_func"]
+            handles_func2 = db2.get_table_metadata(item)["handles_func"]
+            handle_func1 = db1.get_table_metadata(item)["handle_func"]
+            handle_func2 = db2.get_table_metadata(item)["handle_func"]
+
+            handles1 = sorted([handle for handle in handles_func1()])
+            handles2 = sorted([handle for handle in handles_func2()])
             p1 = 0
             p2 = 0
             while p1 < len(handles1) and p2 < len(handles2):
                 if handles1[p1] == handles2[p2]: # in both
-                    item1 = db1.get_table_func(item,"handle_func")(handles1[p1])
-                    item2 = db2.get_table_func(item,"handle_func")(handles2[p2])
+                    item1 = handle_func1(handles1[p1])
+                    item2 = handle_func2(handles2[p2])
                     diff = diff_items(item, to_struct(item1), to_struct(item2))
                     if diff:
                         diffs += [(item, item1, item2)]
@@ -123,19 +129,19 @@ def diff_dbs(db1, db2, user):
                     p1 += 1
                     p2 += 1
                 elif handles1[p1] < handles2[p2]: # p1 is mssing in p2
-                    item1 = db1.get_table_func(item,"handle_func")(handles1[p1])
+                    item1 = handle_func1(handles1[p1])
                     missing_from_new += [(item, item1)]
                     p1 += 1
                 elif handles1[p1] > handles2[p2]: # p2 is mssing in p1
-                    item2 = db2.get_table_func(item,"handle_func")(handles2[p2])
+                    item2 = handle_func2(handles2[p2])
                     missing_from_old += [(item, item2)]
                     p2 += 1
             while p1 < len(handles1):
-                item1 = db1.get_table_func(item,"handle_func")(handles1[p1])
+                item1 = handle_func1(handles1[p1])
                 missing_from_new += [(item, item1)]
                 p1 += 1
             while p2 < len(handles2):
-                item2 = db2.get_table_func(item,"handle_func")(handles2[p2])
+                item2 = handle_func2(handles2[p2])
                 missing_from_old += [(item, item2)]
                 p2 += 1
     return diffs, missing_from_old, missing_from_new

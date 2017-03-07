@@ -151,7 +151,7 @@ class ReportDialog(ManagedWindow):
 
         self.style_name = self.options.handler.get_default_stylesheet_name()
 
-        window = Gtk.Dialog('Gramps')
+        window = Gtk.Dialog(title='Gramps')
         self.set_window(window, None, self.get_title())
         self.window.set_modal(True)
 
@@ -325,7 +325,7 @@ class ReportDialog(ManagedWindow):
 
         self.style_menu = StyleComboBox()
         self.style_menu.set_hexpand(True)
-        self.style_button = Gtk.Button("%s..." % _("Style Editor"))
+        self.style_button = Gtk.Button(label="%s..." % _("Style Editor"))
         self.style_button.connect('clicked', self.on_style_edit_clicked)
 
         self.grid.attach(label, 1, self.row, 1, 1)
@@ -382,7 +382,7 @@ class ReportDialog(ManagedWindow):
             row += 1
 
     def setup_other_frames(self):
-        from gramps.gui.plug._guioptions import GuiTextOption
+        from .._guioptions import GuiTextOption
         for key in self.frame_names:
             flist = self.frames[key]
             grid = Gtk.Grid()
@@ -616,7 +616,7 @@ class ReportDialog(ManagedWindow):
             widget, has_label = make_gui_option(option, self.dbstate,
                                                 self.uistate, self.track)
             if has_label:
-                widget_text = Gtk.Label(_('%s:') % option.get_label())
+                widget_text = Gtk.Label(label=(_('%s:') % option.get_label()))
                 widget_text.set_halign(Gtk.Align.START)
                 self.grid.attach(widget_text, 1, self.row, 1, 1)
                 self.doc_widgets.append(widget_text)
