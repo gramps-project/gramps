@@ -119,7 +119,7 @@ def importData(database, filename, user):
     database.smap = {}
     database.pmap = {}
     database.fmap = {}
-    line_cnt = 0
+    line_cnt = 1
     person_cnt = 0
 
     with ImportOpenFileContextManager(filename, user) as xml_file:
@@ -900,7 +900,7 @@ class GrampsParser(UpdateCallback):
                 gramps_ids[id_] = gramps_id
         return gramps_ids[id_]
 
-    def parse(self, ifile, linecount=0, personcount=0):
+    def parse(self, ifile, linecount=1, personcount=0):
         """
         Parse the xml file
         :param ifile: must be a file handle that is already open, with position
