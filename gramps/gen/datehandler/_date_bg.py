@@ -305,6 +305,26 @@ class DateDisplayBG(DateDisplay):
             scal = self.format_extras(cal, newyear)
             return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, scal)
 
+    def dd_dformat01(self, date_val):
+        """
+        numerical -- for Bulgarian dates
+        """
+        if date_val[3]:
+            return self.display_iso(date_val)
+        else:
+            if date_val[0] == date_val[1] == 0:
+                return str(date_val[2])
+            else:
+                value = self._tformat.replace('%m', str(date_val[1]))
+                # some locales have %b for the month, e.g. ar_EG, is_IS, nb_NO
+                value = value.replace('%b', str(date_val[1]))
+                if date_val[0] == 0: # ignore the zero day and its delimiter
+                    i_day = value.find('%e') # Bulgarian uses %e and not %d
+                    value = value.replace(value[i_day:i_day+3], '')
+                value = value.replace('%e', str(date_val[0]))
+                value = value.replace('%Y', str(abs(date_val[2])))
+                return value.replace('-', '/')
+
 #-------------------------------------------------------------------------
 #
 # Register classes
