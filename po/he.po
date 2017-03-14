@@ -1970,109 +1970,77 @@ msgstr ""
 msgid "today"
 msgstr "היום"
 
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection to be used in your localized
-#. DateDisplayer code!
-#: ../gramps/gen/datehandler/_datestrings.py:79
 msgid "localized lexeme inflections||January"
-msgstr ""
+msgstr "ינואר"
 
-#: ../gramps/gen/datehandler/_datestrings.py:80
 msgid "localized lexeme inflections||February"
-msgstr ""
+msgstr "פברואר"
 
-#: ../gramps/gen/datehandler/_datestrings.py:81
 msgid "localized lexeme inflections||March"
-msgstr ""
+msgstr "מרץ"
 
-#: ../gramps/gen/datehandler/_datestrings.py:82
 msgid "localized lexeme inflections||April"
-msgstr ""
+msgstr "אפריל"
 
-#: ../gramps/gen/datehandler/_datestrings.py:83
 msgid "localized lexeme inflections||May"
-msgstr ""
+msgstr "מאי"
 
-#: ../gramps/gen/datehandler/_datestrings.py:84
 msgid "localized lexeme inflections||June"
-msgstr ""
+msgstr "יוני"
 
-#: ../gramps/gen/datehandler/_datestrings.py:85
 msgid "localized lexeme inflections||July"
-msgstr ""
+msgstr "יולי"
 
-#: ../gramps/gen/datehandler/_datestrings.py:86
 msgid "localized lexeme inflections||August"
-msgstr ""
+msgstr "אוגוסט"
 
-#: ../gramps/gen/datehandler/_datestrings.py:87
 msgid "localized lexeme inflections||September"
-msgstr ""
+msgstr "ספטמבר"
 
-#: ../gramps/gen/datehandler/_datestrings.py:88
 msgid "localized lexeme inflections||October"
-msgstr ""
+msgstr "אוקטובר"
 
-#: ../gramps/gen/datehandler/_datestrings.py:89
 msgid "localized lexeme inflections||November"
-msgstr ""
+msgstr "נובמבר"
 
-#: ../gramps/gen/datehandler/_datestrings.py:90
 msgid "localized lexeme inflections||December"
-msgstr ""
+msgstr "דצמבר"
 
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection to be used in your localized
-#. DateDisplayer code!
-#: ../gramps/gen/datehandler/_datestrings.py:97
 msgid "localized lexeme inflections - short month form||Jan"
-msgstr ""
+msgstr "ינו"
 
-#: ../gramps/gen/datehandler/_datestrings.py:98
 msgid "localized lexeme inflections - short month form||Feb"
-msgstr ""
+msgstr "פבר"
 
-#: ../gramps/gen/datehandler/_datestrings.py:99
 msgid "localized lexeme inflections - short month form||Mar"
-msgstr ""
+msgstr "מרץ"
 
-#: ../gramps/gen/datehandler/_datestrings.py:100
 msgid "localized lexeme inflections - short month form||Apr"
-msgstr ""
+msgstr "אפר"
 
-#: ../gramps/gen/datehandler/_datestrings.py:101
 msgid "localized lexeme inflections - short month form||May"
-msgstr ""
+msgstr "מאי"
 
-#: ../gramps/gen/datehandler/_datestrings.py:102
 msgid "localized lexeme inflections - short month form||Jun"
-msgstr ""
+msgstr "יונ"
 
-#: ../gramps/gen/datehandler/_datestrings.py:103
 msgid "localized lexeme inflections - short month form||Jul"
-msgstr ""
+msgstr "יול"
 
-#: ../gramps/gen/datehandler/_datestrings.py:104
 msgid "localized lexeme inflections - short month form||Aug"
-msgstr ""
+msgstr "אוג"
 
-#: ../gramps/gen/datehandler/_datestrings.py:105
 msgid "localized lexeme inflections - short month form||Sep"
-msgstr ""
+msgstr "ספט"
 
-#: ../gramps/gen/datehandler/_datestrings.py:106
 msgid "localized lexeme inflections - short month form||Oct"
-msgstr ""
+msgstr "אוק"
 
-#: ../gramps/gen/datehandler/_datestrings.py:107
 msgid "localized lexeme inflections - short month form||Nov"
-msgstr ""
+msgstr "נוב"
 
-#: ../gramps/gen/datehandler/_datestrings.py:108
 msgid "localized lexeme inflections - short month form||Dec"
-msgstr ""
+msgstr "דצמ"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -34668,6 +34636,27 @@ msgstr "נברסקה"
 #: ../gramps/plugins/webstuff/webstuff.py:152
 msgid "No style sheet"
 msgstr "ללא עמוד סגנון"
+
+msgid "Sun"
+msgstr "א'"
+
+msgid "Mon"
+msgstr "ב'"
+
+msgid "Tue"
+msgstr "ג'"
+
+msgid "Wed"
+msgstr "ד'"
+
+msgid "Thu"
+msgstr "ה'"
+
+msgid "Fri"
+msgstr "ו'"
+
+msgid "Sat"
+msgstr "ש'"
 
 #~ msgid "none"
 #~ msgstr "ללא"
