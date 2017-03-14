@@ -195,7 +195,7 @@ class DateDisplayPL(DateDisplay):
 
     formats = (
         "RRRR-MM-DD (ISO)", "Numeryczny", "Miesiąc Dzień, Rok",
-        "Dzień.Miesiąc.Rok", "Dzień Miesiąc Rok", "Dzień MieRzym Rok"
+        "Miesiąc.Dzień.Rok", "Dzień Miesiąc Rok", "Dzień MieRzym Rok"
         )
         # this definition must agree with its "_display_gregorian" method
 
@@ -224,15 +224,15 @@ class DateDisplayPL(DateDisplay):
         if self.format == 0:
             return self.display_iso(date_val)
         elif self.format == 1:
-            # month_number.day.year
+            # day.month_number.year
             if date_val[3]:
                 return self.display_iso(date_val)
             else:
                 if date_val[0] == date_val[1] == 0:
                     value = str(date_val[2])
                 else:
-                    value = self._tformat.replace('%m', str(date_val[0]))
-                    value = value.replace('%d', str(date_val[1]))
+                    value = self._tformat.replace('%d', str(date_val[0]))
+                    value = value.replace('%m', str(date_val[1]))
                     value = value.replace('%Y', str(date_val[2]))
         elif self.format == 2:
             # month_name day, year
@@ -245,14 +245,14 @@ class DateDisplayPL(DateDisplay):
                 value = "%s %d, %s" % (self.long_months[date_val[1]],
                                        date_val[0], year)
         elif self.format == 3:
-            # day. month_number. year
+            # month_number. day. year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
                 else:
                     value = "%d.%s" % (date_val[1], year)
             else:
-                value = "%d.%d.%s" % (date_val[0], date_val[1], year)
+                value = "%d.%d.%s" % (date_val[1], date_val[0], year)
         elif self.format == 4:
             # day month_name year
             if date_val[0] == 0:
