@@ -27,8 +27,6 @@ __all__ = ["UndoableEntry"]
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 import warnings
 import logging

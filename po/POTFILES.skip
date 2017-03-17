@@ -1,5 +1,4 @@
 # List of source files which do not need to be translated.
-# $Id$
 #
 #   Python files
 #
@@ -47,7 +46,6 @@ gramps/gen/datehandler/_date_sk.py
 gramps/gen/datehandler/_date_sl.py
 gramps/gen/datehandler/_date_sr.py
 gramps/gen/datehandler/_date_sv.py
-gramps/gen/datehandler/_dateutils.py
 gramps/gen/datehandler/_date_zh.py
 gramps/gen/datehandler/_grampslocale.py
 #
@@ -61,6 +59,7 @@ gramps/gen/db/cursor.py
 gramps/gen/db/dbconst.py
 gramps/gen/db/test/db_test.py
 gramps/gen/db/txn.py
+gramps/gen/db/undoredo.py
 gramps/gen/db/utils.py
 #
 # gen.display package
@@ -70,7 +69,6 @@ gramps/gen/display/__init__.py
 # gen.filters package
 #
 gramps/gen/filters/_filterlist.py
-gramps/gen/filters/_genericfilter.py
 gramps/gen/filters/__init__.py
 gramps/gen/filters/_paramfilter.py
 gramps/gen/filters/_searchfilter.py
@@ -139,12 +137,8 @@ gramps/gen/lib/baseobj.py
 gramps/gen/lib/gcalendar.py
 gramps/gen/lib/childref.py
 gramps/gen/lib/citationbase.py
-gramps/gen/lib/citation.py
 gramps/gen/lib/const.py
 gramps/gen/lib/datebase.py
-gramps/gen/lib/event.py
-gramps/gen/lib/eventref.py
-gramps/gen/lib/family.py
 gramps/gen/lib/genderstats.py
 gramps/gen/lib/ldsordbase.py
 gramps/gen/lib/location.py
@@ -152,28 +146,21 @@ gramps/gen/lib/locationbase.py
 gramps/gen/lib/mediaobj.py
 gramps/gen/lib/mediabase.py
 gramps/gen/lib/mediaref.py
-gramps/gen/lib/note.py
 gramps/gen/lib/notebase.py
 gramps/gen/lib/personref.py
-gramps/gen/lib/place.py
 gramps/gen/lib/placebase.py
 gramps/gen/lib/primaryobj.py
 gramps/gen/lib/privacybase.py
 gramps/gen/lib/refbase.py
-gramps/gen/lib/repo.py
 gramps/gen/lib/reporef.py
 gramps/gen/lib/researcher.py
 gramps/gen/lib/secondaryobj.py
 gramps/gen/lib/serialize.py
-gramps/gen/lib/src.py
 gramps/gen/lib/srcbase.py
 gramps/gen/lib/srcref.py
-gramps/gen/lib/styledtext.py
 gramps/gen/lib/styledtexttag.py
-gramps/gen/lib/surname.py
 gramps/gen/lib/tableobj.py
 gramps/gen/lib/tagbase.py
-gramps/gen/lib/tag.py
 gramps/gen/lib/test/date_test.py
 gramps/gen/lib/test/grampstype_test.py
 gramps/gen/lib/test/merge_test.py
@@ -230,6 +217,7 @@ gramps/gen/plug/docgen/textdoc.py
 gramps/gen/plug/report/_bibliography.py
 gramps/gen/plug/report/__init__.py
 gramps/gen/plug/report/_options.py
+gramps/gen/plug/report/_paper.py
 gramps/gen/plug/report/_reportbase.py
 #
 # gen proxy API
@@ -356,7 +344,6 @@ gramps/gui/views/__init__.py
 # gui/views/treemodels - the GUI views package
 #
 gramps/gui/views/treemodels/__init__.py
-gramps/gui/views/treemodels/citationbasemodel.py
 gramps/gui/views/treemodels/citationlistmodel.py
 gramps/gui/views/treemodels/eventmodel.py
 gramps/gui/views/treemodels/familymodel.py
@@ -390,7 +377,10 @@ gramps/gui/widgets/valuetoolitem.py
 # plugins .gpr.py
 #
 gramps/plugins/__init__.py
-gramps/plugins/tool/toolsdebug.gpr.py
+#
+# plugins/db directory
+#
+gramps/plugins/db/dbapi/inmemorydb.py
 #
 # plugins/docgen directory
 #
@@ -410,7 +400,6 @@ gramps/plugins/export/test/exportvcard_test.py
 #
 gramps/plugins/lib/__init__.py
 gramps/plugins/lib/libgrampsxml.py
-gramps/plugins/lib/libholiday.py
 gramps/plugins/lib/libhtml.py
 gramps/plugins/lib/libmapservice.py
 gramps/plugins/lib/libmixin.py
