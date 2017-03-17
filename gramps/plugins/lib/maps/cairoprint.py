@@ -24,8 +24,6 @@
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #

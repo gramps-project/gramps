@@ -26,8 +26,6 @@ OpenStreetMap map service plugin. Open place in openstreetmap.org
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
