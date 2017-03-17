@@ -256,8 +256,11 @@ class ConfigManager:
             try: # see bugs 5356, 5490, 5591, 5651, 5718, etc.
                 parser.read(filename, encoding='utf8')
             except Exception as err:
-                msg1 = _("WARNING: could not parse file %s because %s, recreating it:\n")
-                logging.warn(msg1 % (filename, str(err)))
+                msg1 = _("WARNING: could not parse file:\n%(file)s\n"
+                         "because %(error)s -- recreating it\n") % {
+                             'file' : filename,
+                             'error' : str(err)}
+                logging.warn(msg1)
                 return
             for sec in parser.sections():
                 name = sec.lower()
