@@ -346,7 +346,7 @@ gramps/gen/simple/_simpleaccess.py
 gramps/gen/simple/_simpletable.py
 gramps/gen/utils/alive.py
 gramps/gen/utils/cast.py
-gramps/gen/utils/configmanager.py 
+gramps/gen/utils/configmanager.py
 gramps/gen/utils/db.py
 gramps/gen/utils/docgen/odstab.py
 gramps/gen/utils/image.py
