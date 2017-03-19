@@ -1,5 +1,5 @@
 # List of source files which contain translatable strings.
-# $Id$
+#
 gramps/cli/arghandler.py
 gramps/cli/argparser.py
 gramps/cli/clidbman.py
@@ -10,14 +10,15 @@ gramps/gen/config.py
 gramps/gen/const.py
 gramps/gen/datehandler/__init__.py
 gramps/gen/datehandler/_datedisplay.py
-gramps/gen/datehandler/_datestrings.py
 gramps/gen/datehandler/_dateparser.py
+gramps/gen/datehandler/_datestrings.py
+gramps/gen/datehandler/_dateutils.py
 gramps/gen/db/base.py
 gramps/gen/db/exceptions.py
 gramps/gen/db/generic.py
-gramps/gen/db/undoredo.py
 gramps/gen/display/name.py
 gramps/gen/filters/_filterparser.py
+gramps/gen/filters/_genericfilter.py
 gramps/gen/filters/rules/_changedsincebase.py
 gramps/gen/filters/rules/_everything.py
 gramps/gen/filters/rules/_hasattributebase.py
@@ -177,6 +178,7 @@ gramps/gen/filters/rules/person/_hasnote.py
 gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py
 gramps/gen/filters/rules/person/_hasnoteregexp.py
 gramps/gen/filters/rules/person/_hasrelationship.py
+gramps/gen/filters/rules/person/_hassoundexname.py
 gramps/gen/filters/rules/person/_hassourcecount.py
 gramps/gen/filters/rules/person/_hassourceof.py
 gramps/gen/filters/rules/person/_hastag.py
@@ -279,9 +281,13 @@ gramps/gen/filters/rules/source/_regexpidof.py
 gramps/gen/filters/rules/source/_sourceprivate.py
 gramps/gen/lib/attrtype.py
 gramps/gen/lib/childreftype.py
+gramps/gen/lib/citation.py
 gramps/gen/lib/date.py
+gramps/gen/lib/event.py
+gramps/gen/lib/eventref.py
 gramps/gen/lib/eventroletype.py
 gramps/gen/lib/eventtype.py
+gramps/gen/lib/family.py
 gramps/gen/lib/familyreltype.py
 gramps/gen/lib/grampstype.py
 gramps/gen/lib/ldsord.py
@@ -290,14 +296,21 @@ gramps/gen/lib/media.py
 gramps/gen/lib/name.py
 gramps/gen/lib/nameorigintype.py
 gramps/gen/lib/nametype.py
+gramps/gen/lib/note.py
 gramps/gen/lib/notetype.py
 gramps/gen/lib/person.py
+gramps/gen/lib/place.py
 gramps/gen/lib/placetype.py
+gramps/gen/lib/repo.py
 gramps/gen/lib/repotype.py
+gramps/gen/lib/src.py
 gramps/gen/lib/srcmediatype.py
 gramps/gen/lib/srcattrtype.py
+gramps/gen/lib/styledtext.py
 gramps/gen/lib/styledtexttagtype.py
+gramps/gen/lib/surname.py
 gramps/gen/lib/surnamebase.py
+gramps/gen/lib/tag.py
 gramps/gen/lib/urltype.py
 gramps/gen/merge/diff.py
 gramps/gen/merge/mergecitationquery.py
@@ -322,7 +335,6 @@ gramps/gen/plug/docgen/paperstyle.py
 gramps/gen/plug/menu/_enumeratedlist.py
 gramps/gen/plug/report/_book.py
 gramps/gen/plug/report/_constants.py
-gramps/gen/plug/report/_paper.py
 gramps/gen/plug/report/endnotes.py
 gramps/gen/plug/report/stdoptions.py
 gramps/gen/plug/report/utils.py
@@ -331,8 +343,10 @@ gramps/gen/proxy/private.py
 gramps/gen/recentfiles.py
 gramps/gen/relationship.py
 gramps/gen/simple/_simpleaccess.py
+gramps/gen/simple/_simpletable.py
 gramps/gen/utils/alive.py
 gramps/gen/utils/cast.py
+gramps/gen/utils/configmanager.py
 gramps/gen/utils/db.py
 gramps/gen/utils/docgen/odstab.py
 gramps/gen/utils/image.py
@@ -406,6 +420,7 @@ gramps/gui/editors/edittaglist.py
 gramps/gui/editors/editurl.py
 gramps/gui/editors/filtereditor.py
 gramps/gui/editors/objectentries.py
+gramps/gui/filters/_filterstore.py
 gramps/gui/filters/_searchbar.py
 gramps/gui/filters/sidebar/_citationsidebarfilter.py
 gramps/gui/filters/sidebar/_eventsidebarfilter.py
@@ -516,6 +531,7 @@ gramps/gui/views/listview.py
 gramps/gui/views/navigationview.py
 gramps/gui/views/pageview.py
 gramps/gui/views/tags.py
+gramps/gui/views/treemodels/citationbasemodel.py
 gramps/gui/views/treemodels/citationtreemodel.py
 gramps/gui/views/treemodels/mediamodel.py
 gramps/gui/views/treemodels/peoplemodel.py
@@ -541,7 +557,6 @@ gramps/plugins/db/bsddb/undoredo.py
 gramps/plugins/db/bsddb/upgrade.py
 gramps/plugins/db/bsddb/write.py
 gramps/plugins/db/dbapi/inmemorydb.gpr.py
-gramps/plugins/db/dbapi/inmemorydb.py
 gramps/plugins/docgen/asciidoc.py
 gramps/plugins/docgen/docgen.gpr.py
 gramps/plugins/docgen/gtkprint.glade
@@ -621,6 +636,7 @@ gramps/plugins/importer/importvcard.py
 gramps/plugins/importer/importxml.py
 gramps/plugins/lib/libcairodoc.py
 gramps/plugins/lib/libgedcom.py
+gramps/plugins/lib/libholiday.py
 gramps/plugins/lib/libhtmlbackend.py
 gramps/plugins/lib/libhtmlconst.py
 gramps/plugins/lib/libmetadata.py
@@ -707,6 +723,7 @@ gramps/plugins/tool/reorderids.py
 gramps/plugins/tool/sortevents.py
 gramps/plugins/tool/testcasegenerator.py
 gramps/plugins/tool/tools.gpr.py
+gramps/plugins/tool/toolsdebug.gpr.py
 gramps/plugins/tool/verify.glade
 gramps/plugins/tool/verify.py
 gramps/plugins/view/citationlistview.py

@@ -142,8 +142,8 @@ class CursorTest(unittest.TestCase):
 
         self.assertEqual(v.handle, data.handle)
 
-    def test_insert_with_curor_closed(self):
-        """test_insert_with_curor_closed"""
+    def test_insert_with_cursor_closed(self):
+        """test_insert_with_cursor_closed"""
 
         cursor_txn = self.env.txn_begin()
 
@@ -162,9 +162,8 @@ class CursorTest(unittest.TestCase):
 
         self.assertEqual(v.handle, data.handle)
 
-    @unittest.skip("Insert expected to fail with open cursor")
-    def test_insert_with_curor_open(self):
-        """test_insert_with_curor_open"""
+    def test_insert_with_cursor_open(self):
+        """test_insert_with_cursor_open"""
 
         cursor_txn = self.env.txn_begin()
         cursor = self.surnames.cursor(txn=cursor_txn)
@@ -172,9 +171,7 @@ class CursorTest(unittest.TestCase):
         cursor.next()
 
         data = Data(b'2', 'surname2', 'name2')
-        the_txn = self.env.txn_begin()
-        self.person_map.put(data.handle, data, txn=the_txn)
-        the_txn.commit()
+        self.person_map.put(data.handle, data, txn=cursor_txn)
 
         cursor.close()
         cursor_txn.commit()
@@ -183,9 +180,8 @@ class CursorTest(unittest.TestCase):
 
         self.assertEqual(v.handle, data.handle)
 
-    @unittest.skip("Insert expected to fail with open cursor")
-    def test_insert_with_curor_open_and_db_open(self):
-        """test_insert_with_curor_open_and_db_open"""
+    def test_insert_with_cursor_open_and_db_open(self):
+        """test_insert_with_cursor_open_and_db_open"""
 
         (person2,surnames2) = self._open_tables()
 
@@ -195,9 +191,7 @@ class CursorTest(unittest.TestCase):
         cursor.next()
 
         data = Data(b'2', 'surname2', 'name2')
-        the_txn = self.env.txn_begin()
-        self.person_map.put(data.handle, data, txn=the_txn)
-        the_txn.commit()
+        self.person_map.put(data.handle, data, txn=cursor_txn)
 
         cursor.close()
         cursor_txn.commit()

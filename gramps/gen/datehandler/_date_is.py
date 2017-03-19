@@ -30,6 +30,7 @@ Icelandic-specific classes for parsing and displaying dates.
 #
 #-------------------------------------------------------------------------
 import re
+import datetime
 
 #-------------------------------------------------------------------------
 #
@@ -171,6 +172,34 @@ class DateDisplayIs(DateDisplay):
             scal = self.format_extras(cal, newyear)
             return "%s%s%s%s" % (qual_str, self._mod_str[mod],
                                  text, scal)
+
+    def _get_weekday(self, date_val):
+        if date_val[0] == 0 or date_val[1] == 0: # no day or no month or both
+            return ''
+        w_day = datetime.date(date_val[2], date_val[1], date_val[0]) # y, m, d
+        return self.short_days[((w_day.weekday() + 1) % 7) + 1]
+
+    def dd_dformat01(self, date_val):
+        """
+        numerical -- for Icelandic dates
+        """
+        if date_val[3]:
+            return self.display_iso(date_val)
+        else:
+            if date_val[0] == date_val[1] == 0:
+                return str(date_val[2])
+            else:
+                value = self._tformat.replace('%m', str(date_val[1]))
+                # some locales have %b for the month, e.g. ar_EG, is_IS, nb_NO
+                value = value.replace('%b', str(date_val[1]))
+                # some locales have %a for the abbreviated day, e.g. is_IS
+                value = value.replace('%a', self._get_weekday(date_val))
+                if date_val[0] == 0: # ignore the zero day and its delimiter
+                    i_day = value.find('%e') # Icelandic uses %e and not %d
+                    value = value.replace(value[i_day:i_day+3], '')
+                value = value.replace('%e', str(date_val[0]))
+                value = value.replace('%Y', str(abs(date_val[2])))
+                return value.replace('-', '/')
 
 #-------------------------------------------------------------------------
 #

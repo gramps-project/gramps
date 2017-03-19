@@ -2756,6 +2756,34 @@ msgstr "Föstudagur"
 msgid "Saturday"
 msgstr "Laugardagur"
 
+#: ../gramps/gen/datehandler/_datestrings.py:10031
+msgid "Sun"
+msgstr "sun"
+
+#: ../gramps/gen/datehandler/_datestrings.py:10032
+msgid "Mon"
+msgstr "mán"
+
+#: ../gramps/gen/datehandler/_datestrings.py:10033
+msgid "Tue"
+msgstr "þri"
+
+#: ../gramps/gen/datehandler/_datestrings.py:10034
+msgid "Wed"
+msgstr "mið"
+
+#: ../gramps/gen/datehandler/_datestrings.py:10035
+msgid "Thu"
+msgstr "fim"
+
+#: ../gramps/gen/datehandler/_datestrings.py:10036
+msgid "Fri"
+msgstr "fös"
+
+#: ../gramps/gen/datehandler/_datestrings.py:10037
+msgid "Sat"
+msgstr "lau"
+
 #: ../gramps/gen/db/base.py:1750 ../gramps/gui/widgets/fanchart.py:1831
 msgid "Add child to family"
 msgstr "Bæta barni við fjölskyldu"

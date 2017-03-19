@@ -248,12 +248,23 @@ class DateStrings:
                 _("Saturday"),
             )
 
+        self.short_days = ("", # Icelandic needs them
+            _("Sun"),
+            _("Mon"),
+            _("Tue"),
+            _("Wed"),
+            _("Thu"),
+            _("Fri"),
+            _("Sat"))
+
+# set GRAMPS_RESOURCES then: python3 -m gramps.gen.datehandler._datestrings
 if __name__ == '__main__':
     import sys
     from ..utils.grampslocale import GrampsLocale
     from ..const import GRAMPS_LOCALE as glocale
     from ._grampslocale import (_deprecated_long_months as old_long,
             _deprecated_short_months as old_short,
+            _deprecated_short_days as old_short_days, # Icelandic needs them
             _deprecated_long_days as old_days)
     from ._datedisplay import DateDisplay
     import gettext
@@ -272,10 +283,10 @@ if __name__ == '__main__':
     print ("# Generating snippets for {}*.po\n"
             "# Available languages: {}".format(
                     lang_short, available_langs))
-    glocale = GrampsLocale(languages=(lang))
+    glocale = GrampsLocale(languages=(lang)) # in __main__
     dd = glocale.date_displayer
     ds = dd._ds
-    glocale_EN = GrampsLocale(languages=('en'))
+    glocale_EN = GrampsLocale(languages=('en')) # in __main__
     ds_EN = DateStrings(glocale_EN)
 
     filename = __file__
@@ -308,12 +319,17 @@ if __name__ == '__main__':
         localized_months = old_long
     print_po_snippet((ds_EN.long_months, localized_months, old_long),
             "localized lexeme inflections||")
+
     try:
         localized_months = dd.__class__.short_months
     except AttributeError:
         localized_months = old_short
     print_po_snippet((ds_EN.short_months, localized_months, old_short),
             "localized lexeme inflections - short month form||")
+
+    print_po_snippet((ds_EN.long_days, old_days, old_days), "")
+
+    print_po_snippet((ds_EN.short_days, old_short_days, old_short_days), "")
 
     try:
         loc = dd.__class__.hebrew
@@ -356,5 +372,3 @@ if __name__ == '__main__':
                 "date quality|")
     except AttributeError:
         pass
-
-    print_po_snippet((ds_EN.long_days, old_days, old_days), "")

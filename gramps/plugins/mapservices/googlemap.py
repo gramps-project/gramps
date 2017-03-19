@@ -26,8 +26,6 @@ Google Maps map service plugin. Open place in maps.google.com
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #

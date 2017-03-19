@@ -30,8 +30,6 @@
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ...const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 from ..docgen import PaperSize
 from ...const import PAPERSIZE
 

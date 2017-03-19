@@ -121,6 +121,7 @@ class DateDisplay:
         self._mod_str = self._ds.modifiers
         self._qual_str = self._ds.qualifiers
         self.long_days = self._ds.long_days
+        self.short_days = self._ds.short_days # Icelandic needs this
 
         if format is None:
             self.format = 0
@@ -553,6 +554,8 @@ class DateDisplay:
                 return str(date_val[2])
             else:
                 value = self._tformat.replace('%m', str(date_val[1]))
+                # some locales have %b for the month, e.g. ar_EG, is_IS, nb_NO
+                value = value.replace('%b', str(date_val[1]))
                 if date_val[0] == 0: # ignore the zero day and its delimiter
                     i_day = value.find('%d')
                     value = value.replace(value[i_day:i_day+3], '')

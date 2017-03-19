@@ -39,6 +39,7 @@ from ..lib.date import Date
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
+from ..const import ARABIC_COMMA
 
 #-------------------------------------------------------------------------
 #
@@ -201,6 +202,27 @@ class DateDisplayAR(DateDisplay):
             text = self.display_cal[date.get_calendar()](start)
             scal = self.format_extras(cal, newyear)
             return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, scal)
+
+    def dd_dformat01(self, date_val):
+        """
+        numerical -- for Arabic dates
+        """
+        value = DateDisplay.dd_dformat01(self, date_val)
+        return value.replace(',', ARABIC_COMMA)
+
+    def dd_dformat02(self, date_val, inflect, long_months):
+        """
+        month_name day, year -- for Arabic dates
+        """
+        value = DateDisplay.dd_dformat02(self, date_val, inflect, long_months)
+        return value.replace(',', ARABIC_COMMA)
+
+    def dd_dformat03(self, date_val, inflect, short_months):
+        """
+        month_abbreviation day, year -- for Arabic dates
+        """
+        value = DateDisplay.dd_dformat03(self, date_val, inflect, short_months)
+        return value.replace(',', ARABIC_COMMA)
 
 #-------------------------------------------------------------------------
 #
