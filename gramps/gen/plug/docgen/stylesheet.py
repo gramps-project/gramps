@@ -147,25 +147,25 @@ class StyleSheetList:
             xml_file.write('<?xml version="1.0" encoding="utf-8"?>\n')
             xml_file.write('<stylelist>\n')
 
-            for name in sorted(self.map.keys()): # enable diff of archived copies
+            for name in sorted(self.map.keys()): # enable diff of archived ones
                 if name == "default":
                     continue
                 sheet = self.map[name]
-                xml_file.write('<sheet name="%s">\n' % escxml(name))
+                xml_file.write('  <sheet name="%s">\n' % escxml(name))
 
-                for p_name in sheet.get_paragraph_style_names():
+                for p_name in sorted(sheet.get_paragraph_style_names()):
                     self.write_paragraph_style(xml_file, sheet, p_name)
 
-                for t_name in sheet.get_table_style_names():
+                for t_name in sorted(sheet.get_table_style_names()):
                     self.write_table_style(xml_file, sheet, t_name)
 
-                for c_name in sheet.get_cell_style_names():
+                for c_name in sorted(sheet.get_cell_style_names()):
                     self.write_cell_style(xml_file, sheet, c_name)
 
-                for g_name in sheet.get_draw_style_names():
+                for g_name in sorted(sheet.get_draw_style_names()):
                     self.write_graphics_style(xml_file, sheet, g_name)
 
-                xml_file.write('</sheet>\n')
+                xml_file.write('  </sheet>\n')
             xml_file.write('</stylelist>\n')
 
     def write_paragraph_style(self, xml_file, sheet, p_name):
@@ -184,15 +184,15 @@ class StyleSheetList:
 
         # Write out style definition
         xml_file.write(
-            '<style name="%s">\n' % escxml(p_name) +
-                '<font face="%d" ' % font.get_type_face() +
+            '    <style name="%s">\n' % escxml(p_name) +
+            '      <font face="%d" ' % font.get_type_face() +
                     'size="%d" ' % font.get_size() +
                     'italic="%d" ' % font.get_italic() +
                     'bold="%d" ' % font.get_bold() +
                     'underline="%d" ' % font.get_underline() +
                     'color="#%02x%02x%02x" ' % font.get_color() +
                     '/>\n' +
-                '<para ' +
+            '      <para ' +
                     'description="%s" ' % escxml(para.get_description()) +
                     'rmargin="%.3f" ' % rmargin +
                     'lmargin="%.3f" ' % lmargin +
@@ -208,7 +208,7 @@ class StyleSheetList:
                     'rborder="%d" ' % para.get_right_border() +
                     'bborder="%d" ' % para.get_bottom_border() +
                     '/>\n' +
-            '</style>\n'
+            '    </style>\n'
         )
 
     def write_table_style(self, xml_file, sheet, t_name):
@@ -217,8 +217,8 @@ class StyleSheetList:
 
         # Write out style definition
         xml_file.write(
-            '<style name="%s">\n' % escxml(t_name) +
-                '<table width="%d" ' % t_style.get_width() +
+            '    <style name="%s">\n' % escxml(t_name) +
+            '      <table width="%d" ' % t_style.get_width() +
                     'columns="%d"' % t_style.get_columns() +
                     '>\n')
 
@@ -226,8 +226,8 @@ class StyleSheetList:
             column_width = t_style.get_column_width(col)
             xml_file.write('<column width="%d" />\n' % column_width)
 
-        xml_file.write('</table>\n')
-        xml_file.write('</style>\n')
+        xml_file.write('      </table>\n')
+        xml_file.write('    </style>\n')
 
     def write_cell_style(self, xml_file, sheet, c_name):
 
@@ -235,14 +235,14 @@ class StyleSheetList:
 
         # Write out style definition
         xml_file.write(
-            '<style name="%s">\n' % escxml(c_name) +
-                '<cell lborder="%d" ' % cell.get_left_border() +
+            '    <style name="%s">\n' % escxml(c_name) +
+            '      <cell lborder="%d" ' % cell.get_left_border() +
                     'rborder="%d" ' % cell.get_right_border() +
                     'tborder="%d" ' % cell.get_top_border() +
                     'bborder="%d" ' % cell.get_bottom_border() +
                     'pad="%.3f" ' % cell.get_padding() +
                     '/>\n' +
-            '</style>\n'
+            '    </style>\n'
         )
 
     def write_graphics_style(self, xml_file, sheet, g_name):
@@ -251,8 +251,9 @@ class StyleSheetList:
 
         # Write out style definition
         xml_file.write(
-            '<style name="%s">\n' % escxml(g_name) +
-                '<draw para="%s" ' % draw.get_paragraph_style() +
+            '    <style name="%s">\n' % escxml(g_name) +
+            '      <draw para="%s" ' % draw.get_paragraph_style() +
+                    'description="%s" ' % escxml(draw.get_description()) +
                     'width="%.3f" ' % draw.get_line_width() +
                     'style="%d" ' % draw.get_line_style() +
                     'color="#%02x%02x%02x" ' % draw.get_color() +
@@ -260,7 +261,7 @@ class StyleSheetList:
                     'shadow="%d" ' % draw.get_shadow() +
                     'space="%.3f" ' % draw.get_shadow_space() +
                     '/>\n' +
-            '</style>\n'
+            '    </style>\n'
         )
 
     def parse(self):
@@ -507,6 +508,8 @@ class SheetParser(handler.ContentHandler):
             self.c.set_padding(float(attrs['pad']))
         elif tag == "draw":
             self.g = GraphicsStyle()
+            if 'description' in attrs:
+                self.g.set_description(attrs['description'])
             self.g.set_paragraph_style(attrs['para'])
             self.g.set_line_width(float(attrs['width']))
             self.g.set_line_style(int(attrs['style']))
