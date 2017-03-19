@@ -95,6 +95,7 @@ class GraphicsStyle:
             self.fill_color = obj.fill_color
             self.lwidth = obj.lwidth
             self.lstyle = obj.lstyle
+            self.description = obj.description
         else:
             self.para_name = ""
             self.shadow = 0
@@ -103,6 +104,19 @@ class GraphicsStyle:
             self.color = (0, 0, 0)
             self.fill_color = (255, 255, 255)
             self.lstyle = SOLID
+            self.description = ""
+
+    def set_description(self, text):
+        """
+        Set the desciption of the graphics object
+        """
+        self.description = text
+
+    def get_description(self):
+        """
+        Return the desciption of the graphics object
+        """
+        return self.description
 
     def set_line_width(self, val):
         """
