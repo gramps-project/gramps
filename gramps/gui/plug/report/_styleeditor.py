@@ -336,7 +336,9 @@ class StyleEditor(ManagedWindow):
         self.pname.set_text( '<span size="larger" weight="bold">%s</span>' %
                              self.current_name)
         self.pname.set_use_markup(True)
-        self.pdescription.set_text(_("No description available") )
+
+        descr = g.get_description()
+        self.pdescription.set_text(descr or _("No description available"))
 
         self.top.get_object("line_style").set_active(g.get_line_style())
         self.top.get_object("line_width").set_value(g.get_line_width())
