@@ -102,6 +102,7 @@ _LOCALE_NAMES = {
     'sq': ('Albanian_Albania', '1250', _("Albanian")),
     'sr': ('Serbian(Cyrillic)_Serbia and Montenegro', '1251', _("Serbian")),
     'sv': ('Swedish_Sweden', '1252', _("Swedish")),
+    'ta': (None, None, _("Tamil")), # Windows has no codepage for Tamil
     'tr': ('Turkish_Turkey', '1254', _("Turkish")),
     'uk': ('Ukrainian_Ukraine', '1251', _("Ukrainian")),
     'vi': ('Vietnamese_Vietnam', '1258', _("Vietnamese")),
@@ -111,7 +112,7 @@ _LOCALE_NAMES = {
     }
 
 # locales with less than 70% currently translated
-INCOMPLETE_TRANSLATIONS = ('ar', 'bg', 'he', 'ja', 'sq', 'tr')
+INCOMPLETE_TRANSLATIONS = ('ar', 'bg', 'he', 'ja', 'sq', 'ta', 'tr')
 
 def _check_mswin_locale(locale):
     msloc = None
