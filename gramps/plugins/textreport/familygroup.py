@@ -688,6 +688,7 @@ class FamilyGroupOptions(MenuReportOptions):
         self.__fid = None
         self.__filter = None
         self.__recursive = None
+        self.__generations = None
         self._nf = None
         MenuReportOptions.__init__(self, name, dbase)
 
@@ -717,6 +718,7 @@ class FamilyGroupOptions(MenuReportOptions):
         self.__recursive.set_help(_("Create reports for all descendants "
                                     "of this family."))
         add_option("recursive", self.__recursive)
+        self.__recursive.connect('value-changed', self.__recursive_changed)
 
         ##########################
         category_name = _("Report Options (2)")
@@ -786,11 +788,11 @@ class FamilyGroupOptions(MenuReportOptions):
         gramps_ids.set_help(_("Whether to include Gramps ID next to names."))
         add_option("gramps_ids", gramps_ids)
 
-        generations = BooleanOption(_("Generation numbers "
-                                      "(recursive only)"), False)
-        generations.set_help(_("Whether to include the generation on each "
-                               "report (recursive only)."))
-        add_option("generations", generations) # TODO make insensitive if ...
+        self.__generations = BooleanOption(_("Generation numbers "
+                                             "(recursive only)"), False)
+        self.__generations.set_help(_("Whether to include the generation "
+                                      "on each report (recursive only)."))
+        add_option("generations", self.__generations)
 
         missinginfo = BooleanOption(_("Print fields for missing "
                                       "information"), True)
@@ -828,6 +830,13 @@ class FamilyGroupOptions(MenuReportOptions):
         elif self.__recursive:
             self.__recursive.set_value(False)
             self.__recursive.set_available(False)
+
+    def __recursive_changed(self):
+        """
+        Handle recursive change.
+        """
+        recursive_value = self.__recursive.get_value()
+        self.__generations.set_available(recursive_value)
 
     def make_default_style(self, default_style):
         """Make default output style for the Family Group Report."""
