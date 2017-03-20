@@ -67,10 +67,24 @@ class TableStyle:
             self.width = obj.width
             self.columns = obj.columns
             self.colwid  = obj.colwid[:]
+            self.description = obj.description
         else:
             self.width = 0
             self.columns = 0
             self.colwid = [ 0 ] * 100
+            self.description = ""
+
+    def set_description(self, text):
+        """
+        Set the description of the table object
+        """
+        self.description = text
+
+    def get_description(self):
+        """
+        Return the description of the table object
+        """
+        return self.description
 
     def set_width(self, width):
         """
@@ -151,6 +165,7 @@ class TableCellStyle:
             self.bborder = obj.bborder
             self.padding = obj.padding
             self.longlist = obj.longlist
+            self.description = obj.description
         else:
             self.rborder = 0
             self.lborder = 0
@@ -158,6 +173,19 @@ class TableCellStyle:
             self.bborder = 0
             self.padding = 0
             self.longlist = 0
+            self.description = ""
+
+    def set_description(self, text):
+        """
+        Set the description of the table cell object
+        """
+        self.description = text
+
+    def get_description(self):
+        """
+        Return the description of the table cell object
+        """
+        return self.description
 
     def set_padding(self, val):
         "Return the cell padding in centimeters"
