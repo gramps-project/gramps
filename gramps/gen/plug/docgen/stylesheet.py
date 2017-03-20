@@ -7,6 +7,7 @@
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2009       Gary Burton
 # Copyright (C) 2014       Nick Hall
+# Copyright (C) 2017       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -185,7 +186,8 @@ class StyleSheetList:
         # Write out style definition
         xml_file.write(
             '    <style name="%s">\n' % escxml(p_name) +
-            '      <font face="%d" ' % font.get_type_face() +
+            '      <font ' +
+                    'face="%d" ' % font.get_type_face() +
                     'size="%d" ' % font.get_size() +
                     'italic="%d" ' % font.get_italic() +
                     'bold="%d" ' % font.get_bold() +
@@ -218,13 +220,15 @@ class StyleSheetList:
         # Write out style definition
         xml_file.write(
             '    <style name="%s">\n' % escxml(t_name) +
-            '      <table width="%d" ' % t_style.get_width() +
+            '      <table ' +
+                    'description="%s" ' % escxml(t_style.get_description()) +
+                    'width="%d" ' % t_style.get_width() +
                     'columns="%d"' % t_style.get_columns() +
                     '>\n')
 
         for col in range(t_style.get_columns()):
             column_width = t_style.get_column_width(col)
-            xml_file.write('<column width="%d" />\n' % column_width)
+            xml_file.write('        <column width="%d" />\n' % column_width)
 
         xml_file.write('      </table>\n')
         xml_file.write('    </style>\n')
@@ -236,7 +240,9 @@ class StyleSheetList:
         # Write out style definition
         xml_file.write(
             '    <style name="%s">\n' % escxml(c_name) +
-            '      <cell lborder="%d" ' % cell.get_left_border() +
+            '      <cell ' +
+                    'description="%s" ' % escxml(cell.get_description()) +
+                    'lborder="%d" ' % cell.get_left_border() +
                     'rborder="%d" ' % cell.get_right_border() +
                     'tborder="%d" ' % cell.get_top_border() +
                     'bborder="%d" ' % cell.get_bottom_border() +
@@ -252,8 +258,9 @@ class StyleSheetList:
         # Write out style definition
         xml_file.write(
             '    <style name="%s">\n' % escxml(g_name) +
-            '      <draw para="%s" ' % draw.get_paragraph_style() +
+            '      <draw ' +
                     'description="%s" ' % escxml(draw.get_description()) +
+                    'para="%s" ' % draw.get_paragraph_style() +
                     'width="%.3f" ' % draw.get_line_width() +
                     'style="%d" ' % draw.get_line_style() +
                     'color="#%02x%02x%02x" ' % draw.get_color() +
@@ -494,6 +501,8 @@ class SheetParser(handler.ContentHandler):
             self.style_name = attrs['name']
         elif tag == "table":
             self.t = TableStyle()
+            if 'description' in attrs:
+                self.t.set_description(attrs['description'])
             self.t.set_width(int(attrs['width']))
             self.t.set_columns(int(attrs['columns']))
             self.column_widths = []
@@ -501,6 +510,8 @@ class SheetParser(handler.ContentHandler):
             self.column_widths.append(int(attrs['width']))
         elif tag == "cell":
             self.c = TableCellStyle()
+            if 'description' in attrs:
+                self.c.set_description(attrs['description'])
             self.c.set_left_border(int(attrs['lborder']))
             self.c.set_right_border(int(attrs['rborder']))
             self.c.set_top_border(int(attrs['tborder']))

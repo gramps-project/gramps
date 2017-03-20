@@ -108,13 +108,13 @@ class ParagraphStyle:
 
     def set_description(self, text):
         """
-        Set the desciption of the paragraph
+        Set the description of the paragraph
         """
         self.description = text
 
     def get_description(self):
         """
-        Return the desciption of the paragraph
+        Return the description of the paragraph
         """
         return self.description
 

@@ -5,7 +5,7 @@
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2008       Peter Landgren
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2012       Paul Franklin
+# Copyright (C) 2012,2017  Paul Franklin
 # Copyright (C) 2014       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
@@ -359,7 +359,9 @@ class StyleEditor(ManagedWindow):
         self.pname.set_text( '<span size="larger" weight="bold">%s</span>' %
                              self.current_name)
         self.pname.set_use_markup(True)
-        self.pdescription.set_text(_("No description available") )
+
+        descr = c.get_description()
+        self.pdescription.set_text(descr or _("No description available"))
 
         self.top.get_object("cell_lborder").set_active(c.get_left_border())
         self.top.get_object("cell_rborder").set_active(c.get_right_border())
@@ -375,7 +377,9 @@ class StyleEditor(ManagedWindow):
         self.pname.set_text( '<span size="larger" weight="bold">%s</span>' %
                              self.current_name)
         self.pname.set_use_markup(True)
-        self.pdescription.set_text(_("No description available") )
+
+        descr = t.get_description()
+        self.pdescription.set_text(descr or _("No description available"))
 
         self.top.get_object("table_width").set_value(t.get_width())
 
