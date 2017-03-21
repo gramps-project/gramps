@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-19 18:50+0100\n"
-"PO-Revision-Date: 2017-03-19 18:52+0100\n"
+"POT-Creation-Date: 2017-03-21 08:43+0100\n"
+"PO-Revision-Date: 2017-03-21 08:58+0100\n"
 "Last-Translator: Alois Pöttker <alois.poettker@gmx.de>\n"
 "Language-Team: Deutsch <>\n"
 "Language: de\n"
@@ -6799,7 +6799,7 @@ msgstr "Lebensereignisse"
 #: ../gramps/plugins/quickview/quickview.gpr.py:203
 #: ../gramps/plugins/quickview/references.py:86
 #: ../gramps/plugins/textreport/recordsreport.py:272
-#: ../gramps/plugins/tool/reorderids.glade:739
+#: ../gramps/plugins/tool/reorderids.glade:740
 #: ../gramps/plugins/view/relview.py:1378
 #: ../gramps/plugins/view/relview.py:1402
 #: ../gramps/plugins/webreport/narrativeweb.py:3523
@@ -7395,7 +7395,7 @@ msgstr "Zu erledigen"
 #: ../gramps/plugins/quickview/quickview.gpr.py:207
 #: ../gramps/plugins/quickview/references.py:93
 #: ../gramps/plugins/textreport/tagreport.py:553
-#: ../gramps/plugins/tool/reorderids.glade:825
+#: ../gramps/plugins/tool/reorderids.glade:826
 #: ../gramps/plugins/view/mediaview.py:129
 #: ../gramps/plugins/view/view.gpr.py:80 ../gramps/plugins/view/view.gpr.py:88
 #: ../gramps/plugins/webreport/narrativeweb.py:1889
@@ -7508,7 +7508,6 @@ msgid "Notes"
 msgstr "Notizen"
 
 #: ../gramps/gen/lib/media.py:161 ../gramps/gen/lib/person.py:228
-#, fuzzy
 msgid "Last changed"
 msgstr "Letzte Änderung"
 
@@ -7750,33 +7749,28 @@ msgid "Title"
 msgstr "Titel"
 
 #: ../gramps/gen/lib/name.py:169
-#, fuzzy
 msgid "Group as"
-msgstr "G_ruppieren als:"
+msgstr "Gruppieren als:"
 
 #: ../gramps/gen/lib/name.py:171
-#, fuzzy
 msgid "Sort as"
-msgstr "_Sortieren als:"
+msgstr "Sortieren als:"
 
 #: ../gramps/gen/lib/name.py:173
-#, fuzzy
 msgid "Display as"
-msgstr "_Anzeigen als:"
+msgstr "Anzeigen als:"
 
 #: ../gramps/gen/lib/name.py:175 ../gramps/plugins/importer/importcsv.py:163
 msgid "Call name"
 msgstr "Rufname"
 
 #: ../gramps/gen/lib/name.py:177
-#, fuzzy
 msgid "Nick name"
-msgstr "Spitzname"
+msgstr "Spitzname\t"
 
 #: ../gramps/gen/lib/name.py:179
-#, fuzzy
 msgid "Family nick name"
-msgstr "Familienspitzname:"
+msgstr "Familienspitzname"
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:461 ../gramps/gen/lib/name.py:476
@@ -7903,7 +7897,7 @@ msgstr "Quelltext"
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:115
 #: ../gramps/plugins/quickview/quickview.gpr.py:209
 #: ../gramps/plugins/quickview/references.py:89
-#: ../gramps/plugins/tool/reorderids.glade:796
+#: ../gramps/plugins/tool/reorderids.glade:797
 msgid "Citation"
 msgstr "Fundstelle"
 
@@ -8028,7 +8022,7 @@ msgstr "Kind-Referenzen Notiz"
 #: ../gramps/plugins/textreport/placereport.py:298
 #: ../gramps/plugins/textreport/placereport.py:452
 #: ../gramps/plugins/tool/eventcmp.py:253
-#: ../gramps/plugins/tool/reorderids.glade:724
+#: ../gramps/plugins/tool/reorderids.glade:725
 #: ../gramps/plugins/webreport/narrativeweb.py:3522
 #: ../gramps/plugins/webreport/narrativeweb.py:4219
 #: ../gramps/plugins/webreport/narrativeweb.py:7091
@@ -8050,22 +8044,18 @@ msgid "Gender"
 msgstr "Geschlecht"
 
 #: ../gramps/gen/lib/person.py:188
-#, fuzzy
 msgid "Alternate names"
 msgstr "Alternative Namen"
 
 #: ../gramps/gen/lib/person.py:190
-#, fuzzy
 msgid "Death reference index"
-msgstr "Ereignis-Referenz Notiz"
+msgstr "Totesreferenz Index"
 
 #: ../gramps/gen/lib/person.py:192
-#, fuzzy
 msgid "Birth reference index"
-msgstr "eferenz bearbeiten"
+msgstr "Geburtsreferenz Index"
 
 #: ../gramps/gen/lib/person.py:195
-#, fuzzy
 msgid "Event references"
 msgstr "Ereignisreferenzen"
 
@@ -8090,9 +8080,8 @@ msgid "Families"
 msgstr "Familien"
 
 #: ../gramps/gen/lib/person.py:203
-#, fuzzy
 msgid "Parent families"
-msgstr "Familien wieder ordnen"
+msgstr "Elternfamilie"
 
 #: ../gramps/gen/lib/person.py:209 ../gramps/gui/merge/mergeperson.py:268
 #: ../gramps/plugins/textreport/indivcomplete.py:406
@@ -8102,15 +8091,13 @@ msgstr "Adressen"
 
 #: ../gramps/gen/lib/person.py:215
 msgid "Urls"
-msgstr ""
+msgstr "URLs"
 
 #: ../gramps/gen/lib/person.py:218
-#, fuzzy
 msgid "LDS ordinances"
 msgstr "LDS Ordination"
 
 #: ../gramps/gen/lib/person.py:237
-#, fuzzy
 msgid "Person references"
 msgstr "Personenreferenzen"
 
@@ -8750,17 +8737,16 @@ msgid "Bottom"
 msgstr "Unten"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:90
-#, fuzzy
 msgid "Straight"
 msgstr "Vertikal"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:91
 msgid "Curved"
-msgstr ""
+msgstr "Gekrümmt"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:92
 msgid "Orthogonal"
-msgstr ""
+msgstr "Orthogonal"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:136
@@ -8977,7 +8963,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/references.py:94
 #: ../gramps/plugins/textreport/familygroup.py:366
 #: ../gramps/plugins/textreport/familygroup.py:428
-#: ../gramps/plugins/tool/reorderids.glade:839
+#: ../gramps/plugins/tool/reorderids.glade:840
 msgid "Note"
 msgstr "Notiz"
 
@@ -9061,9 +9047,8 @@ msgid "Value '%(val)s' not found for option '%(opt)s'"
 msgstr "Wert '%(val)s' nicht gefunden für Option '%(opt)s'"
 
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:144
-#, fuzzy
 msgid "Valid values: "
-msgstr "Werte"
+msgstr "Gültige Werte:"
 
 #. ------------------------------------------------------------------------
 #.
@@ -10269,7 +10254,7 @@ msgstr "Adresse"
 #: ../gramps/plugins/quickview/quickview.gpr.py:204
 #: ../gramps/plugins/quickview/references.py:87
 #: ../gramps/plugins/textreport/placereport.py:452
-#: ../gramps/plugins/tool/reorderids.glade:754
+#: ../gramps/plugins/tool/reorderids.glade:755
 #: ../gramps/plugins/webreport/narrativeweb.py:998
 msgid "Event"
 msgstr "Ereignis"
@@ -10302,7 +10287,7 @@ msgstr "Ereignis"
 #: ../gramps/plugins/quickview/references.py:92
 #: ../gramps/plugins/textreport/indivcomplete.py:496
 #: ../gramps/plugins/textreport/indivcomplete.py:694
-#: ../gramps/plugins/tool/reorderids.glade:768
+#: ../gramps/plugins/tool/reorderids.glade:769
 #: ../gramps/plugins/tool/sortevents.py:58
 #: ../gramps/plugins/view/eventview.py:86
 #: ../gramps/plugins/webreport/narrativeweb.py:1000
@@ -10387,7 +10372,7 @@ msgstr "%(frel)s %(mrel)s"
 #: ../gramps/plugins/quickview/reporef.py:62
 #: ../gramps/plugins/textreport/tagreport.py:722
 #: ../gramps/plugins/textreport/tagreport.py:831
-#: ../gramps/plugins/tool/reorderids.glade:782
+#: ../gramps/plugins/tool/reorderids.glade:783
 msgid "Source"
 msgstr "Quelle"
 
@@ -10400,7 +10385,7 @@ msgstr "Quelle"
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:113
 #: ../gramps/plugins/quickview/filterbyname.py:205
 #: ../gramps/plugins/quickview/filterbyname.py:264
-#: ../gramps/plugins/tool/reorderids.glade:810
+#: ../gramps/plugins/tool/reorderids.glade:811
 msgid "Repository"
 msgstr "Aufbewahrungsort"
 
@@ -10599,7 +10584,7 @@ msgstr "Ungültige oder unvollständige Formatfestlegung."
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:84
 #, python-format
 msgid "%s: "
-msgstr ""
+msgstr "%s:"
 
 #: ../gramps/gui/configure.py:513
 msgid ""
@@ -10753,7 +10738,7 @@ msgstr "Drücke die Eingabetaste zum Speichern, ESC zum Abbrechen."
 msgid "This format exists already."
 msgstr "Dieses Format existiert bereits."
 
-#: ../gramps/gui/configure.py:822 ../gramps/plugins/tool/reorderids.glade:1490
+#: ../gramps/gui/configure.py:822 ../gramps/plugins/tool/reorderids.glade:1491
 msgid "Format"
 msgstr "Format"
 
@@ -11095,7 +11080,6 @@ msgid "Always"
 msgstr "Immer"
 
 #: ../gramps/gui/configure.py:1375
-#, fuzzy
 msgid "Check for addon updates"
 msgstr "Nach Aktualisierungen suchen"
 
@@ -11175,34 +11159,28 @@ msgid "Automatically load last Family Tree"
 msgstr "Letzten Stammbaum automatisch laden"
 
 #: ../gramps/gui/configure.py:1479
-#, fuzzy
 msgid "Backup path"
-msgstr "Sicherung abgebrochen"
+msgstr "sicherungspfad"
 
 #: ../gramps/gui/configure.py:1486
-#, fuzzy
 msgid "Backup on exit"
-msgstr "Sicherung abgebrochen"
+msgstr "Sicherung bei Abschluß"
 
 #: ../gramps/gui/configure.py:1493
-#, fuzzy
 msgid "Every 15 minutes"
-msgstr "Jede Notiz"
+msgstr "Alle 15 Minuten"
 
 #: ../gramps/gui/configure.py:1494
-#, fuzzy
 msgid "Every 30 minutes"
-msgstr "Jede Notiz"
+msgstr "Alle 30 Minuten"
 
 #: ../gramps/gui/configure.py:1495
-#, fuzzy
 msgid "Every hour"
-msgstr "Jede Quelle"
+msgstr "Jede Stunde"
 
 #: ../gramps/gui/configure.py:1500
-#, fuzzy
 msgid "Autobackup"
-msgstr "Automatisches Backup..."
+msgstr "Automatisches Backup ..."
 
 #: ../gramps/gui/configure.py:1540
 msgid "Select media directory"
@@ -11278,7 +11256,7 @@ msgid "Select backup directory"
 msgstr "Sicherungsverzeichnis wählen"
 
 #: ../gramps/gui/dbloader.py:119 ../gramps/gui/plug/tool.py:109
-#: ../gramps/plugins/tool/reorderids.glade:54
+#: ../gramps/plugins/tool/reorderids.glade:55
 msgid "Undo history warning"
 msgstr "Warnung: Bearbeitungschronik zurück setzen."
 
@@ -11722,7 +11700,7 @@ msgstr ""
 msgid "Proceed, I have taken a backup"
 msgstr "Weiter, ich habe eine Sicherung"
 
-#: ../gramps/gui/dbman.py:912 ../gramps/plugins/tool/reorderids.glade:1619
+#: ../gramps/gui/dbman.py:912 ../gramps/plugins/tool/reorderids.glade:1620
 msgid "Stop"
 msgstr "Stopp"
 
@@ -13842,7 +13820,7 @@ msgstr "Markierung"
 #: ../gramps/gui/views/bookmarks.py:288 ../gramps/gui/views/tags.py:431
 #: ../gramps/gui/views/tags.py:644 ../gramps/gui/widgets/grampletbar.py:641
 #: ../gramps/gui/widgets/grampletpane.py:242
-#: ../gramps/plugins/tool/reorderids.glade:1653
+#: ../gramps/plugins/tool/reorderids.glade:1654
 #: ../gramps/plugins/tool/testcasegenerator.py:329
 msgid "_Help"
 msgstr "_Hilfe"
@@ -15910,7 +15888,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergeplace.glade:635
 #: ../gramps/gui/glade/mergerepository.glade:414
 #: ../gramps/gui/glade/mergesource.glade:528
-#: ../gramps/plugins/tool/reorderids.glade:1600
+#: ../gramps/plugins/tool/reorderids.glade:1601
 msgid "Detailed Selection"
 msgstr "Detailauswahl"
 
@@ -17101,7 +17079,7 @@ msgstr "Keine (Ehe-)Partner oder Kinder gefunden"
 
 #. Add column with the warning text
 #: ../gramps/gui/merge/mergeperson.py:343
-#: ../gramps/plugins/tool/reorderids.glade:88
+#: ../gramps/plugins/tool/reorderids.glade:89
 #: ../gramps/plugins/tool/verify.py:564
 msgid "Warning"
 msgstr "Warnung"
@@ -17368,7 +17346,7 @@ msgstr "_Ausführen"
 
 #: ../gramps/gui/plug/_windows.py:1047
 #: ../gramps/plugins/tool/ownereditor.py:164
-#: ../gramps/plugins/tool/reorderids.py:449
+#: ../gramps/plugins/tool/reorderids.py:452
 msgid "Main window"
 msgstr "Hauptfenster"
 
@@ -17692,9 +17670,8 @@ msgid "Replace given names of living people"
 msgstr "Ersetze Vornamen von lebenden Personen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:732
-#, fuzzy
 msgid "Replace complete name of living people"
-msgstr "Ersetze Vornamen von lebenden Personen"
+msgstr "Ersetze den Namen von lebenden Personen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:733
 msgid "Do not include living people"
@@ -17761,7 +17738,7 @@ msgstr "Deine Änderungen wurden noch nicht gespeichert."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:242
 #: ../gramps/gui/plug/report/_bookdialog.py:738
-#: ../gramps/plugins/tool/reorderids.glade:1636
+#: ../gramps/plugins/tool/reorderids.glade:1637
 msgid "Proceed"
 msgstr "Fortsetzen"
 
@@ -29589,7 +29566,7 @@ msgid "Count/Total"
 msgstr "Gesamt"
 
 #: ../gramps/plugins/quickview/filterbyname.py:89
-#: ../gramps/plugins/tool/reorderids.glade:1439
+#: ../gramps/plugins/tool/reorderids.glade:1440
 msgid "Object"
 msgstr "Objekt"
 
@@ -33072,9 +33049,8 @@ msgid "Search for sources"
 msgstr "Suche nach Quellen"
 
 #: ../gramps/plugins/tool/removeunused.glade:128
-#, fuzzy
 msgid "Search for citations"
-msgstr "Quelle oder Fundstelle"
+msgstr "Suche nach Fundstellen"
 
 #: ../gramps/plugins/tool/removeunused.glade:143
 msgid "Search for places"
@@ -33127,7 +33103,11 @@ msgstr "Markieren"
 msgid "Remove unused objects"
 msgstr "Unbenutzte Objekte entfernen"
 
-#: ../gramps/plugins/tool/reorderids.glade:70
+#: ../gramps/plugins/tool/reorderids.glade:23
+msgid "Reorder IDs"
+msgstr "Ordne IDs neu."
+
+#: ../gramps/plugins/tool/reorderids.glade:71
 msgid ""
 "Proceeding with this tool will erase the undo history for\n"
 "this session. In particular, you will not be able to revert the\n"
@@ -33141,13 +33121,13 @@ msgstr ""
 "Wenn du jedoch die Änderungen, die durch das Werkzeug gemacht werden,\n"
 "rückgängig machen willst, stoppe hier und sichere deine Datenbank."
 
-#: ../gramps/plugins/tool/reorderids.glade:1443
+#: ../gramps/plugins/tool/reorderids.glade:1444
 msgid "Enable ID reordering."
 msgstr ""
 "Ermögliche ID\n"
 "Neunummerierung."
 
-#: ../gramps/plugins/tool/reorderids.glade:1460
+#: ../gramps/plugins/tool/reorderids.glade:1461
 msgid ""
 "List next ID available\n"
 "(maynot be continuous)."
@@ -33156,31 +33136,31 @@ msgstr ""
 "verfügbaren ID\n"
 "(evt. nicht fortlaufend)."
 
-#: ../gramps/plugins/tool/reorderids.glade:1463
+#: ../gramps/plugins/tool/reorderids.glade:1464
 msgid " Actual"
 msgstr " Aktuell"
 
-#: ../gramps/plugins/tool/reorderids.glade:1477
+#: ../gramps/plugins/tool/reorderids.glade:1478
 msgid "Amount of ID in use."
 msgstr ""
 "Anzahl der\n"
 "benutzten IDs."
 
-#: ../gramps/plugins/tool/reorderids.glade:1479
+#: ../gramps/plugins/tool/reorderids.glade:1480
 msgid " Quantity"
 msgstr " Anzahl"
 
-#: ../gramps/plugins/tool/reorderids.glade:1494
+#: ../gramps/plugins/tool/reorderids.glade:1495
 msgid "Actual / Upcoming ID format."
 msgstr ""
 "Aktuelles / Neues\n"
 "ID Format."
 
-#: ../gramps/plugins/tool/reorderids.glade:1509
+#: ../gramps/plugins/tool/reorderids.glade:1510
 msgid "Change"
 msgstr "Änderung"
 
-#: ../gramps/plugins/tool/reorderids.glade:1513
+#: ../gramps/plugins/tool/reorderids.glade:1514
 msgid ""
 "Enable ID reordering\n"
 "with Start / Step sequence."
@@ -33188,31 +33168,31 @@ msgstr ""
 "Ermögliche ID Neunummerierung\n"
 "mit Start / Schrittweite Sequenz."
 
-#: ../gramps/plugins/tool/reorderids.glade:1529
+#: ../gramps/plugins/tool/reorderids.glade:1530
 msgid "Start"
 msgstr "Start"
 
-#: ../gramps/plugins/tool/reorderids.glade:1533
+#: ../gramps/plugins/tool/reorderids.glade:1534
 msgid "Reorder ID start number."
 msgstr ""
 "Neunummerierung ID\n"
 "Start Nummer."
 
-#: ../gramps/plugins/tool/reorderids.glade:1548
+#: ../gramps/plugins/tool/reorderids.glade:1549
 msgid "Step"
 msgstr "Schritt"
 
-#: ../gramps/plugins/tool/reorderids.glade:1552
+#: ../gramps/plugins/tool/reorderids.glade:1553
 msgid "Reorder ID step width."
 msgstr ""
 "Neunummerierung ID\n"
 "Schrittweite."
 
-#: ../gramps/plugins/tool/reorderids.glade:1567
+#: ../gramps/plugins/tool/reorderids.glade:1568
 msgid "Keep"
 msgstr "Schutz"
 
-#: ../gramps/plugins/tool/reorderids.glade:1571
+#: ../gramps/plugins/tool/reorderids.glade:1572
 msgid ""
 "Keep IDs with alternate\n"
 "prefixes untouched."
@@ -33220,21 +33200,38 @@ msgstr ""
 "Bewahre IDs mit\n"
 "abweichenden Format."
 
-#: ../gramps/plugins/tool/reorderids.py:64
-msgid "manual|Reorder_GRAMPS_ID"
+#: ../gramps/plugins/tool/reorderids.py:65
+msgid "manual|Reorder_Gramps_ID"
 msgstr "Manuell|Ordne Gramps-IDs neu"
 
 #. set gramps style title for the window
-#: ../gramps/plugins/tool/reorderids.py:234
-#: ../gramps/plugins/tool/reorderids.py:449
+#: ../gramps/plugins/tool/reorderids.py:236
+#: ../gramps/plugins/tool/reorderids.py:452
 #: ../gramps/plugins/tool/tools.gpr.py:375
 msgid "Reorder Gramps IDs"
 msgstr "Ordne Gramps-IDs neu"
 
-#: ../gramps/plugins/tool/reorderids.py:464
+#: ../gramps/plugins/tool/reorderids.py:459
+msgid "Reordering Gramps IDs"
+msgstr "Gramps-IDs neu ordnen"
+
+#: ../gramps/plugins/tool/reorderids.py:471
 #, python-format
 msgid "Reorder %s IDs"
 msgstr "Ordne %s IDs neu."
+
+#: ../gramps/plugins/tool/reorderids.py:475
+#, python-format
+msgid "Reordering %s IDs"
+msgstr "Ordne %s IDs neu."
+
+#: ../gramps/plugins/tool/reorderids.py:487
+msgid "Done."
+msgstr "Fertig."
+
+#: ../gramps/plugins/tool/reorderids.py:569
+msgid "Finding and assigning unused IDs"
+msgstr "Finden und zuweisen von unbenutzten IDs"
 
 #: ../gramps/plugins/tool/sortevents.py:76
 msgid "Sort Events"
@@ -37068,9 +37065,6 @@ msgstr "Kein Stylesheet"
 #~ msgid "Adding children"
 #~ msgstr "Kinder hinzufügen"
 
-#~ msgid "Reordering Gramps IDs"
-#~ msgstr "Gramps-IDs neu ordnen"
-
 #~ msgid "Reordering Gramps IDs..."
 #~ msgstr "Gramps-IDs neu ordnen..."
 
@@ -37097,12 +37091,6 @@ msgstr "Kein Stylesheet"
 
 #~ msgid "Reordering Repository IDs"
 #~ msgstr "Aufbewahrungsort-IDs neu ordnen"
-
-#~ msgid "Done."
-#~ msgstr "Fertig."
-
-#~ msgid "Finding and assigning unused IDs"
-#~ msgstr "Finden und zuweisen von unbenutzten IDs"
 
 #~ msgid "Person or Place|Title"
 #~ msgstr "Titel"

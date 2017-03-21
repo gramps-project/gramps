@@ -32,17 +32,17 @@ scheme specified in the database's prefix_fmt ids
 #
 #------------------------------------------------------------------------
 import re
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 from gi.repository import Gtk, Gdk
 
 #------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 from gramps.gen.db import DbTxn
 from gramps.gen.lib import (Person, Family, Event, Place,
@@ -53,6 +53,7 @@ from gramps.gui.glade import Glade
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.plug import tool
 from gramps.gen.updatecallback import UpdateCallback
+from gramps.gui.utils import ProgressMeter
 from gramps.gui.widgets import MonitoredCheckbox, MonitoredEntry
 
 #-------------------------------------------------------------------------
@@ -61,7 +62,7 @@ from gramps.gui.widgets import MonitoredCheckbox, MonitoredEntry
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Reorder_GRAMPS_ID')
+WIKI_HELP_SEC = _('manual|Reorder_Gramps_ID')
 
 #-------------------------------------------------------------------------
 #
@@ -192,7 +193,8 @@ class ReorderIds(ManagedWindow, UpdateCallback):
         self.dbstate = dbstate.db
 
         ManagedWindow.__init__(self, self.uistate, [], self.__class__)
-        UpdateCallback.__init__(self, user.callback)
+        if not self.uistate:
+            UpdateCallback.__init__(self, user.callback)
 
         self.object_status = True
         self.change_status = False
@@ -253,6 +255,7 @@ class ReorderIds(ManagedWindow, UpdateCallback):
             "on_ok_button_clicked" : self.on_ok_button_clicked
         })
 
+        # Calculate all entries and update Glade window
         for prim_obj, __ in self.xobjects:
             object_fmt, quant_id, next_id = self.prim_methods[prim_obj]
 
@@ -441,7 +444,7 @@ class ReorderIds(ManagedWindow, UpdateCallback):
         self.close()
 
     def on_help_button_clicked(self, widget=None):
-        """ display the relevant portion of GRAMPS manual """
+        """ display the relevant portion of Gramps manual """
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def build_menu_names_(self, widget=None):
@@ -452,27 +455,42 @@ class ReorderIds(ManagedWindow, UpdateCallback):
         """ execute all primary objects and reorder if neccessary """
 
         # Update progress calculation
-        objs_total = 0
-        for prim_obj, __ in self.xobjects:
-            obj_check_btn = self.gtk.get_object('%s_check_btn' % prim_obj)
-            if obj_check_btn.get_active():
-                objs_total += self.obj_values[prim_obj].amound_id +1
-        self.set_total(objs_total)
-
-        self.dbstate.disable_signals()
-        for prim_obj, __ in self.xobjects:
-            with DbTxn(_("Reorder %s IDs") % prim_obj, self.dbstate, batch=True) as self.trans:
+        if self.uistate:
+            self.progress = ProgressMeter(_('Reordering Gramps IDs'), '')
+        else:
+            total_objs = 0
+            for prim_obj, __ in self.xobjects:
                 obj_check_btn = self.gtk.get_object('%s_check_btn' % prim_obj)
                 if obj_check_btn.get_active():
+                    total_objs += self.obj_values[prim_obj].amound_id +1
+            self.set_total(total_objs)
+
+        # Update database
+        self.dbstate.disable_signals()
+        for prim_obj, prim_objs in self.xobjects:
+            with DbTxn(_('Reorder %s IDs') % prim_obj, self.dbstate, batch=True) as self.trans:
+                obj_check_btn = self.gtk.get_object('%s_check_btn' % prim_obj)
+                if obj_check_btn.get_active():
+                    if self.uistate:
+                        self.progress.set_pass(_('Reordering %s IDs') % prim_objs.title(), \
+                                               self.obj_values[prim_obj].amound_id +1)
+                    # Process reordering
                     self.reorder(prim_obj)
 
         self.dbstate.enable_signals()
         self.dbstate.request_rebuild()
 
+        # Update progress calculation
+        if self.uistate:
+            self.progress.close()
+        else:
+            print(_("Done."))
+
     # finds integer portion in a GrampsID
     _findint = re.compile('^[^\d]*(\d+)[^\d]*')
     def reorder(self, prim_obj):
         """ reorders all selected primary objects with a (new) style, start & step """
+
         dup_ids = []   # list of duplicate identifiers
         new_ids = {}   # list of new identifiers
 
@@ -489,7 +507,11 @@ class ReorderIds(ManagedWindow, UpdateCallback):
         index_max = int("9" * int(formatmatch.groups()[0]))
 
         for handle in list(table.keys()):
-            self.update()   # Update progress
+            # Update progress
+            if self.uistate:
+                self.progress.step()
+            else:
+                self.update()
 
             # extract basic data out of the database
             table_data = table[handle]
@@ -542,10 +564,13 @@ class ReorderIds(ManagedWindow, UpdateCallback):
 
         # go through the duplicates, looking for the first available
         # handle that matches the new scheme.
-        for handle in dup_ids:
-            obj = get_from_handle(handle)
-            obj.set_gramps_id(next_from_id())
-            commit(obj, self.trans)
+        if dup_ids:
+            if self.uistate:
+                self.progress.set_pass(_('Finding and assigning unused IDs'), len(dup_ids))
+            for handle in dup_ids:
+                obj = get_from_handle(handle)
+                obj.set_gramps_id(next_from_id())
+                commit(obj, self.trans)
 
 #------------------------------------------------------------------------
 #
