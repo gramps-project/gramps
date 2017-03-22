@@ -4,6 +4,7 @@
   <requires lib="gtk+" version="3.10"/>
   <object class="GtkDialog" id="reorder-ids">
     <property name="can_focus">False</property>
+    <property name="resizable">False</property>
     <property name="modal">True</property>
     <property name="window_position">center-on-parent</property>
     <property name="hide_titlebar_when_maximized">True</property>
@@ -718,7 +719,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="label1">
+                      <object class="GtkLabel" id="person_lbl">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
@@ -733,7 +734,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="label2">
+                      <object class="GtkLabel" id="family_lbl">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
@@ -748,7 +749,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="label3">
+                      <object class="GtkLabel" id="evant_lbl">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
@@ -762,7 +763,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="label4">
+                      <object class="GtkLabel" id="place_lbl">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
@@ -776,7 +777,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="label5">
+                      <object class="GtkLabel" id="source_lbl">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
@@ -790,7 +791,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="label6">
+                      <object class="GtkLabel" id="citation_lbl">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
@@ -804,7 +805,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="label7">
+                      <object class="GtkLabel" id="repository_lbl">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
@@ -819,7 +820,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="label8">
+                      <object class="GtkLabel" id="media_lbl">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
@@ -833,7 +834,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="label9">
+                      <object class="GtkLabel" id="note_lbl">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
@@ -847,7 +848,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="person_check_btn">
+                      <object class="GtkCheckButton" id="person_active">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -865,7 +866,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="family_check_btn">
+                      <object class="GtkCheckButton" id="family_active">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -882,7 +883,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="event_check_btn">
+                      <object class="GtkCheckButton" id="event_active">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -899,7 +900,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="place_check_btn">
+                      <object class="GtkCheckButton" id="place_active">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -916,7 +917,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="source_check_btn">
+                      <object class="GtkCheckButton" id="source_active">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -933,7 +934,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="citation_check_btn">
+                      <object class="GtkCheckButton" id="citation_active">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -950,7 +951,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="repository_check_btn">
+                      <object class="GtkCheckButton" id="repository_active">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -967,7 +968,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="media_check_btn">
+                      <object class="GtkCheckButton" id="media_active">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -984,7 +985,7 @@ please stop here and backup your database.</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="note_check_btn">
+                      <object class="GtkCheckButton" id="note_active">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -1461,7 +1462,7 @@ please stop here and backup your database.</property>
                         <property name="tooltip_text" translatable="yes">List next ID available
 (maynot be continuous).</property>
                         <property name="halign">start</property>
-                        <property name="label" translatable="yes"> Actual</property>
+                        <property name="label" translatable="yes">  Actual</property>
                         <property name="justify">fill</property>
                       </object>
                       <packing>

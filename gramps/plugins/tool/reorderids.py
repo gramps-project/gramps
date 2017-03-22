@@ -46,7 +46,8 @@ _ = glocale.translation.gettext
 
 from gramps.gen.db import DbTxn
 from gramps.gen.lib import (Person, Family, Event, Place,
-                            Source, Citation, Repository, Media, Note)
+                            Source, Citation, Repository,
+                            Media, Note)
 
 from gramps.gui.display import display_help
 from gramps.gui.glade import Glade
@@ -76,7 +77,7 @@ _parseformat = re.compile('.*%(\d+)[^\d]+')
 class ReorderEntry(object):
     """ Class for internal values for every primary object """
 
-    def __init__(self, object_fmt, quant_id, next_id):
+    def __init__(self, object_fmt, quant_id, nextgramps_id):
         self.width_fmt = 4
         self.object_fmt, self.object_prefix = '', ''
         self.quant_id, self.actual_id, self.actgramps_id = 0, 0, '0'
@@ -84,11 +85,17 @@ class ReorderEntry(object):
         self.stored_fmt = object_fmt
         self.stored_prefix = self.object_prefix
 
-        self.change_obj = False
-        nxt_id = int(next_id.split(self.object_prefix, 1)[1])
-        self.amound_id = nxt_id -1 if nxt_id > 0 else 0
+        self.number_id = int(nextgramps_id.split(self.object_prefix, 1)[1])
         self.step_id = 1
-        self.keep_obj = False
+        self.active_obj, self.change_obj, self.keep_obj = True, False, False
+
+    def set_active(self, active):
+        """ sets Change flag """
+        self.active_obj = active
+
+    def get_active(self):
+        """ gets Change flag """
+        return self.active_obj
 
     def set_fmt(self, object_fmt):
         """ sets primary object format """
@@ -128,8 +135,6 @@ class ReorderEntry(object):
             self.width_fmt = int(formatmatch.groups()[0])
         self.actgramps_id = self.__ret_gid(self.actual_id)
 
-        return
-
     def zero_id(self):
         """ provide zero Start ID """
         return self.__ret_gid(0)
@@ -145,7 +150,7 @@ class ReorderEntry(object):
 
     def next_id(self):
         """ provide next Start ID """
-        return self.__ret_gid(self.amound_id +1)
+        return self.__ret_gid(self.number_id)
 
     def succ_id(self):
         """ provide next actual Gramps ID """
@@ -155,8 +160,11 @@ class ReorderEntry(object):
         return self.actgramps_id
 
     def last_id(self):
-        """ provide amound of Gramps IDs """
-        return self.__ret_gid(self.amound_id)
+        """ provide quantities of Gramps IDs """
+        if self.quant_id > 0:
+            return self.__ret_gid(self.quant_id -1)
+        else:
+            return self.__ret_gid(0)
 
     def set_step(self, step):
         """ sets ID Step width """
@@ -185,7 +193,8 @@ class ReorderIds(ManagedWindow, UpdateCallback):
     """ Class for Reodering Gramps ID Tool """
     xobjects = (('person', 'people'), ('family', 'families'),
                 ('event', 'events'), ('place', 'places'),
-                ('source', 'sources'), ('citation', 'citations'), ('repository', 'repositories'),
+                ('source', 'sources'), ('citation', 'citations'),
+                ('repository', 'repositories'),
                 ('media', 'media'), ('note', 'notes'))
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
@@ -203,7 +212,8 @@ class ReorderIds(ManagedWindow, UpdateCallback):
         self.keep_status = True
 
         self.obj_values = {}   # enable access to all internal values
-        self.format_entries, self.change_entries = {}, {}
+        self.active_entries, self.format_entries = {}, {}
+        self.change_entries = {}
         self.start_entries, self.step_entries = {}, {}
         self.keep_entries = {}
 
@@ -223,7 +233,16 @@ class ReorderIds(ManagedWindow, UpdateCallback):
             self.obj_methods[prim_obj] = (eval(class_type), eval(table), eval(commit),
                                           eval(get_from_id), eval(get_from_handle),
                                           eval(next_from_id))
-        self._display()
+
+            object_fmt, quant_id, next_id = self.prim_methods[prim_obj]
+
+            obj_value = ReorderEntry(object_fmt, quant_id, next_id)
+            self.obj_values[prim_obj] = obj_value
+
+        if self.uistate:
+            self._display()
+        else:
+            self._execute()
 
     def _display(self):
         """ organize Glade 'Reorder IDs' window """
@@ -237,55 +256,59 @@ class ReorderIds(ManagedWindow, UpdateCallback):
 
         # connect signals
         self.gtk.connect_signals({
-            "on_warning_exp_activate" : self.on_expander_activate,
-            "on_selection_exp_activate" : self.on_expander_activate,
-            "on_object_button_clicked" : self.on_object_button_clicked,
-            "on_object_button_toggled" : self.on_object_button_toggled,
-            "on_format_button_clicked" : self.on_format_button_clicked,
-            "on_start_button_clicked" : self.on_start_button_clicked,
-            "on_step_button_clicked" : self.on_step_button_clicked,
-            "on_keep_button_clicked" : self.on_keep_button_clicked,
-            "on_change_button_clicked" : self.on_change_button_clicked,
-            "on_change_button_toggled" : self.on_change_button_toggled,
-            "on_format_entry_keyrelease" : self.on_format_entry_keyrelease,
-            "on_format_entry_focusout" : self.on_format_entry_focusout,
-            "on_start_entry_focusout" : self.on_start_entry_focusout,
-            "on_help_button_clicked" : self.on_help_button_clicked,
+            "on_warning_exp_activate" : self.__on_expander_activate,
+            "on_selection_exp_activate" : self.__on_expander_activate,
+            "on_object_button_clicked" : self.__on_object_button_clicked,
+            "on_object_button_toggled" : self.__on_object_button_toggled,
+            "on_format_button_clicked" : self.__on_format_button_clicked,
+            "on_start_button_clicked" : self.__on_start_button_clicked,
+            "on_step_button_clicked" : self.__on_step_button_clicked,
+            "on_keep_button_clicked" : self.__on_keep_button_clicked,
+            "on_change_button_clicked" : self.__on_change_button_clicked,
+            "on_change_button_toggled" : self.__on_change_button_toggled,
+            "on_format_entry_keyrelease" : self.__on_format_entry_keyrelease,
+            "on_format_entry_focusout" : self.__on_format_entry_focusout,
+            "on_start_entry_focusout" : self.__on_start_entry_focusout,
+            "on_help_button_clicked" : self.__on_help_button_clicked,
             "on_cancel_button_clicked" : self.close,
-            "on_ok_button_clicked" : self.on_ok_button_clicked
+            "on_ok_button_clicked" : self.__on_ok_button_clicked
         })
 
         # Calculate all entries and update Glade window
-        for prim_obj, __ in self.xobjects:
-            object_fmt, quant_id, next_id = self.prim_methods[prim_obj]
-
-            obj_value = ReorderEntry(object_fmt, quant_id, next_id)
-            self.obj_values[prim_obj] = obj_value
-
-            # populate Actual & Quantity fields with values
+        for prim_obj, tmp in self.xobjects:
+            # populate Object, Actual & Quantity fields with values
+            obj_active = self.gtk.get_object('%s_active' % prim_obj)
+            self.active_entries[prim_obj] = MonitoredCheckbox(obj_active, obj_active,
+                                        self.obj_values[prim_obj].set_active,
+                                        self.obj_values[prim_obj].get_active)
             obj_actual = self.gtk.get_object('%s_actual' % prim_obj)
             obj_actual.set_text('%s' % self.obj_values[prim_obj].last_id())
             obj_quant = self.gtk.get_object('%s_quant' % prim_obj)
-            obj_quant.set_text('%s' % str(quant_id))
+            obj_quant.set_text('%s' % str(self.obj_values[prim_obj].quant_id))
 
             # connect/populate Format, Start, Step, Keep & Change fields with GTK/values
             obj_format = self.gtk.get_object('%s_format' % prim_obj)
             self.format_entries[prim_obj] = MonitoredEntry(obj_format,
-                                        obj_value.set_fmt, obj_value.get_fmt)
+                                    self.obj_values[prim_obj].set_fmt,
+                                    self.obj_values[prim_obj].get_fmt)
             obj_change = self.gtk.get_object('%s_change' % prim_obj)
             self.change_entries[prim_obj] = MonitoredCheckbox(obj_change, obj_change,
-                                        obj_value.set_change, obj_value.get_change)
+                                    self.obj_values[prim_obj].set_change,
+                                    self.obj_values[prim_obj].get_change)
             obj_start = self.gtk.get_object('%s_start' % prim_obj)
             self.start_entries[prim_obj] = MonitoredEntry(obj_start,
-                                        obj_value.set_id, obj_value.get_id)
+                                    self.obj_values[prim_obj].set_id,
+                                    self.obj_values[prim_obj].get_id)
             obj_step = self.gtk.get_object('%s_step' % prim_obj)
             self.step_entries[prim_obj] = MonitoredEntry(obj_step,
-                                        obj_value.set_step, obj_value.get_step,
-                                        changed=obj_value.change_step)
+                                    self.obj_values[prim_obj].set_step,
+                                    self.obj_values[prim_obj].get_step,
+                                    changed=self.obj_values[prim_obj].change_step)
             obj_keep = self.gtk.get_object('%s_keep' % prim_obj)
             self.keep_entries[prim_obj] = MonitoredCheckbox(obj_keep, obj_keep,
-                                      obj_value.set_keep, obj_value.get_keep,
-                                      readonly=True)
+                                    self.obj_values[prim_obj].set_keep,
+                                    self.obj_values[prim_obj].get_keep,
+                                    readonly=True)
 
         # fetch the popup menu
         self.menu = self.gtk.get_object("popup_menu")
@@ -293,25 +316,30 @@ class ReorderIds(ManagedWindow, UpdateCallback):
         # ok, let's see what we've done
         self.show()
 
-    def on_expander_activate(self, widget=None):
+    def __on_expander_activate(self, widget=None):
         """ de-/activate the expander's after toggle the 'Active' attribute """
         warn_exp = self.gtk.get_object('warning_exp')
         warn_state = warn_exp.get_expanded()
         select_exp = self.gtk.get_object('selection_exp')
         select_state = select_exp.get_expanded()
 
-    def on_object_button_clicked(self, widget=None):
+        if not select_state:
+            warn_exp.set_expanded(False)
+
+    def __on_object_button_clicked(self, widget=None):
         """ compute all primary objects and toggle the 'Active' attribute """
         self.object_status = not self.object_status
 
-        for prim_obj, __ in self.xobjects:
-            obj_check_btn = self.gtk.get_object('%s_check_btn' % prim_obj)
-            obj_check_btn.set_active(self.object_status)
+        for prim_obj, tmp in self.xobjects:
+            obj = self.gtk.get_object('%s_active' % prim_obj)
+            obj.set_active(self.object_status)
 
-    def on_object_button_toggled(self, widget):
-        """ compute all primary objects and toggle the 'Sensitive' attribute """
+    def __on_object_button_toggled(self, widget):
+        """ compute the primary object and toggle the 'Sensitive' attribute """
         obj_state = widget.get_active()
         obj_name = Gtk.Buildable.get_name(widget).split('_', 1)[0]
+
+        self.active_entries[obj_name].set_val(obj_state)
 
         for obj_entry in ['actual', 'quant', 'format', 'change']:
             obj = self.gtk.get_object('%s_%s' % (obj_name, obj_entry))
@@ -323,10 +351,10 @@ class ReorderIds(ManagedWindow, UpdateCallback):
                 obj = self.gtk.get_object('%s_%s' % (obj_name, obj_entry))
                 obj.set_sensitive(obj_state)
 
-    def on_format_button_clicked(self, widget=None):
+    def __on_format_button_clicked(self, widget=None):
         """ compute all sensitive primary objects and sets the
             'Format' scheme of identifiers """
-        for prim_obj, __ in self.xobjects:
+        for prim_obj, tmp in self.xobjects:
             obj_format = self.gtk.get_object('%s_format' % prim_obj)
             if not obj_format.get_sensitive():
                 continue
@@ -339,11 +367,11 @@ class ReorderIds(ManagedWindow, UpdateCallback):
                 obj_id = self.obj_values[prim_obj].last_id()
             self.start_entries[prim_obj].force_value(obj_id)
 
-    def on_change_button_clicked(self, widget=None):
-        """ compute all sensitive primary objects and toggle the 'Change' attribute """
+    def __on_change_button_clicked(self, widget=None):
+        """ compute all primary objects and toggle the 'Change' attribute """
         self.change_status = not self.change_status
 
-        for prim_obj, __ in self.xobjects:
+        for prim_obj, tmp in self.xobjects:
             obj_change = self.gtk.get_object('%s_change' % prim_obj)
             if not obj_change.get_sensitive():
                 continue
@@ -351,8 +379,8 @@ class ReorderIds(ManagedWindow, UpdateCallback):
             self.change_entries[prim_obj].set_val(self.change_status)
             obj_change.set_active(self.change_status)
 
-    def on_change_button_toggled(self, widget):
-        """ compute all primary objects and toggle the 'Sensitive' attribute """
+    def __on_change_button_toggled(self, widget):
+        """ compute the primary object and toggle the 'Sensitive' attribute """
         obj_state = widget.get_active()
         obj_name = Gtk.Buildable.get_name(widget).split('_', 1)[0]
 
@@ -367,12 +395,12 @@ class ReorderIds(ManagedWindow, UpdateCallback):
                     self.keep_entries[obj_name].set_val(obj_state)
             obj.set_sensitive(obj_state)
 
-    def on_start_button_clicked(self, widget=None):
+    def __on_start_button_clicked(self, widget=None):
         """ compute all sensitive primary objects and sets the
             'Start' values of identifiers """
         self.start_zero = not self.start_zero
 
-        for prim_obj, __ in self.xobjects:
+        for prim_obj, tmp in self.xobjects:
             obj = self.gtk.get_object('%s_start' % prim_obj)
             if not obj.get_sensitive():
                 continue
@@ -383,12 +411,12 @@ class ReorderIds(ManagedWindow, UpdateCallback):
                 obj_id = self.obj_values[prim_obj].next_id()
             self.start_entries[prim_obj].force_value(obj_id)
 
-    def on_step_button_clicked(self, widget=None):
+    def __on_step_button_clicked(self, widget=None):
         """ compute all sensitive primary objects and sets the
             'Step' width of identifiers """
         self.step_cnt = self.step_cnt +1 if self.step_cnt < 3 else 0
 
-        for prim_obj, __ in self.xobjects:
+        for prim_obj, tmp in self.xobjects:
             obj = self.gtk.get_object('%s_step' % prim_obj)
             if not obj.get_sensitive():
                 continue
@@ -396,11 +424,11 @@ class ReorderIds(ManagedWindow, UpdateCallback):
             step_val = self.step_list[self.step_cnt]
             self.step_entries[prim_obj].force_value(step_val)
 
-    def on_keep_button_clicked(self, widget=None):
-        """ compute all sensitive primary objects and toggle the 'Active' attribute """
+    def __on_keep_button_clicked(self, widget=None):
+        """ compute the primary object and toggle the 'Active' attribute """
         self.keep_status = not self.keep_status
 
-        for prim_obj, __ in self.xobjects:
+        for prim_obj, tmp in self.xobjects:
             obj = self.gtk.get_object('%s_change' % prim_obj)
             if not obj.get_active():
                 continue
@@ -409,7 +437,7 @@ class ReorderIds(ManagedWindow, UpdateCallback):
             obj.set_active(self.keep_status)
             self.keep_entries[prim_obj].set_val(self.keep_status)
 
-    def on_format_entry_keyrelease(self, widget, event, data=None):
+    def __on_format_entry_keyrelease(self, widget, event, data=None):
         """ activated on all return's of an entry """
         if event.keyval in [Gdk.KEY_Return]:
             obj_name = Gtk.Buildable.get_name(widget).split('_', 1)[0]
@@ -421,7 +449,7 @@ class ReorderIds(ManagedWindow, UpdateCallback):
 
         return False
 
-    def on_format_entry_focusout(self, widget, event, data=None):
+    def __on_format_entry_focusout(self, widget, event, data=None):
         """ activated on all focus out of an entry """
         obj_name = Gtk.Buildable.get_name(widget).split('_', 1)[0]
         obj_fmt = self.format_entries[obj_name].get_val()
@@ -431,19 +459,19 @@ class ReorderIds(ManagedWindow, UpdateCallback):
 
         return False
 
-    def on_start_entry_focusout(self, widget, event, data=None):
+    def __on_start_entry_focusout(self, widget, event, data=None):
         """ activated on all focus out of an entry """
         obj_name = Gtk.Buildable.get_name(widget).split('_', 1)[0]
         self.start_entries[obj_name].update()
 
         return False
 
-    def on_ok_button_clicked(self, widget=None):
+    def __on_ok_button_clicked(self, widget=None):
         """ execute the reodering and close """
-        self.execute()
+        self._execute()
         self.close()
 
-    def on_help_button_clicked(self, widget=None):
+    def __on_help_button_clicked(self, widget=None):
         """ display the relevant portion of Gramps manual """
         display_help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
@@ -451,31 +479,31 @@ class ReorderIds(ManagedWindow, UpdateCallback):
         """ The menu name """
         return (_('Main window'), _("Reorder Gramps IDs"))
 
-    def execute(self):
+    def _execute(self):
         """ execute all primary objects and reorder if neccessary """
 
         # Update progress calculation
         if self.uistate:
-            self.progress = ProgressMeter(_('Reordering Gramps IDs'), '')
+            self.progress = ProgressMeter(_('Reorder Gramps IDs'), '')
         else:
             total_objs = 0
-            for prim_obj, __ in self.xobjects:
-                obj_check_btn = self.gtk.get_object('%s_check_btn' % prim_obj)
-                if obj_check_btn.get_active():
-                    total_objs += self.obj_values[prim_obj].amound_id +1
+            for prim_obj, tmp in self.xobjects:
+                if self.obj_values[prim_obj].active_obj:
+                    total_objs += self.obj_values[prim_obj].quant_id
             self.set_total(total_objs)
 
         # Update database
         self.dbstate.disable_signals()
         for prim_obj, prim_objs in self.xobjects:
-            with DbTxn(_('Reorder %s IDs') % prim_obj, self.dbstate, batch=True) as self.trans:
-                obj_check_btn = self.gtk.get_object('%s_check_btn' % prim_obj)
-                if obj_check_btn.get_active():
+            with DbTxn(_('Reorder %s IDs ...') % prim_obj, self.dbstate, batch=True) \
+            as self.trans:
+                if self.obj_values[prim_obj].active_obj:
                     if self.uistate:
-                        self.progress.set_pass(_('Reordering %s IDs') % prim_objs.title(), \
-                                               self.obj_values[prim_obj].amound_id +1)
+                        self.progress.set_pass(_('Reorder %s IDs ...') % \
+                                               _(prim_objs.title()), \
+                                               self.obj_values[prim_obj].quant_id)
                     # Process reordering
-                    self.reorder(prim_obj)
+                    self._reorder(prim_obj)
 
         self.dbstate.enable_signals()
         self.dbstate.request_rebuild()
@@ -484,12 +512,12 @@ class ReorderIds(ManagedWindow, UpdateCallback):
         if self.uistate:
             self.progress.close()
         else:
-            print(_("Done."))
+            print('\nDone.')
 
     # finds integer portion in a GrampsID
     _findint = re.compile('^[^\d]*(\d+)[^\d]*')
-    def reorder(self, prim_obj):
-        """ reorders all selected primary objects with a (new) style, start & step """
+    def _reorder(self, prim_obj):
+        """ reorders all selected objects with a (new) style, start & step """
 
         dup_ids = []   # list of duplicate identifiers
         new_ids = {}   # list of new identifiers
@@ -566,7 +594,7 @@ class ReorderIds(ManagedWindow, UpdateCallback):
         # handle that matches the new scheme.
         if dup_ids:
             if self.uistate:
-                self.progress.set_pass(_('Finding and assigning unused IDs'), len(dup_ids))
+                self.progress.set_pass(_('Finding and assigning unused IDs.'), len(dup_ids))
             for handle in dup_ids:
                 obj = get_from_handle(handle)
                 obj.set_gramps_id(next_from_id())
