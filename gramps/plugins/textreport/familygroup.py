@@ -855,7 +855,7 @@ class FamilyGroupOptions(MenuReportOptions):
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set_header_level(1)
-        para.set_description(_("The style used for the title of the page."))
+        para.set_description(_("The style used for the title."))
         default_style.add_paragraph_style('FGR-Title', para)
 
         font = FontStyle()

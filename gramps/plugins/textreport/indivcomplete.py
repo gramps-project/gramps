@@ -257,7 +257,7 @@ class IndivCompleteReport(Report):
         self.doc.start_table('note', 'IDS-IndTable')
         self.doc.start_row()
         self.doc.start_cell('IDS-TableHead', 2)
-        self.write_paragraph(self._('Notes'), style='IDS-TableTitle')
+        self.write_paragraph(self._('Notes'), style='IDS-SectionTitle')
         self.doc.end_cell()
         self.doc.end_row()
 
@@ -289,7 +289,7 @@ class IndivCompleteReport(Report):
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
         self.write_paragraph(self._('Alternate Parents'),
-                             style='IDS-TableTitle')
+                             style='IDS-SectionTitle')
         self.doc.end_cell()
         self.doc.end_row()
 
@@ -356,7 +356,7 @@ class IndivCompleteReport(Report):
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
         self.write_paragraph(self._('Relationship to home person'),
-                             style='IDS-TableTitle')
+                             style='IDS-SectionTitle')
         self.doc.end_cell()
         self.doc.end_row()
         self.doc.start_row()
@@ -376,7 +376,7 @@ class IndivCompleteReport(Report):
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
         self.write_paragraph(self._('Alternate Names'),
-                             style='IDS-TableTitle')
+                             style='IDS-SectionTitle')
         self.doc.end_cell()
         self.doc.end_row()
 
@@ -403,7 +403,7 @@ class IndivCompleteReport(Report):
         self.doc.start_table("addresses", "IDS-IndTable")
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
-        self.write_paragraph(self._('Addresses'), style='IDS-TableTitle')
+        self.write_paragraph(self._('Addresses'), style='IDS-SectionTitle')
         self.doc.end_cell()
         self.doc.end_row()
 
@@ -428,7 +428,7 @@ class IndivCompleteReport(Report):
         self.doc.start_table("associations", "IDS-IndTable")
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
-        self.write_paragraph(self._('Associations'), style='IDS-TableTitle')
+        self.write_paragraph(self._('Associations'), style='IDS-SectionTitle')
         self.doc.end_cell()
         self.doc.end_row()
         for person_ref in self.person.get_person_ref_list():
@@ -455,7 +455,7 @@ class IndivCompleteReport(Report):
         self.doc.start_table("attributes", "IDS-IndTable")
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
-        self.write_paragraph(self._('Attributes'), style='IDS-TableTitle')
+        self.write_paragraph(self._('Attributes'), style='IDS-SectionTitle')
         self.doc.end_cell()
         self.doc.end_row()
 
@@ -482,18 +482,18 @@ class IndivCompleteReport(Report):
         self.doc.start_table("ordinances", "IDS-IndTable")
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
-        self.write_paragraph(self._('LDS Ordinance'), style='IDS-TableTitle')
+        self.write_paragraph(self._('LDS Ordinance'), style='IDS-SectionTitle')
         self.doc.end_cell()
         self.doc.end_row()
         self.doc.end_table()
 
         self.doc.start_table("ordinances3", "IDS-OrdinanceTable")
         self.doc.start_row()
-        self.write_cell(self._('Type'), style='IDS-Section')
-        self.write_cell(self._('Date'), style='IDS-Section')
-        self.write_cell(self._('Status'), style='IDS-Section')
-        self.write_cell(self._('Temple'), style='IDS-Section')
-        self.write_cell(self._('Place'), style='IDS-Section')
+        self.write_cell(self._('Type'), style='IDS-TableSection')
+        self.write_cell(self._('Date'), style='IDS-TableSection')
+        self.write_cell(self._('Status'), style='IDS-TableSection')
+        self.write_cell(self._('Temple'), style='IDS-TableSection')
+        self.write_cell(self._('Place'), style='IDS-TableSection')
         self.doc.end_row()
 
         for lds_ord in ord_list:
@@ -531,7 +531,7 @@ class IndivCompleteReport(Report):
         self.doc.start_table("tags", "IDS-IndTable")
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
-        self.write_paragraph(self._('Tags'), style='IDS-TableTitle')
+        self.write_paragraph(self._('Tags'), style='IDS-SectionTitle')
         self.doc.end_cell()
         self.doc.end_row()
         for tag_handle in thlist:
@@ -573,7 +573,7 @@ class IndivCompleteReport(Report):
         cells = 3 # the GalleryTable has 3 cells
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", cells)
-        self.write_paragraph(self._('Images'), style='IDS-TableTitle')
+        self.write_paragraph(self._('Images'), style='IDS-SectionTitle')
         self.doc.end_cell()
         self.doc.end_row()
         media_count = 0
@@ -597,7 +597,7 @@ class IndivCompleteReport(Report):
             if image_count % cells == 0:
                 self.doc.start_row()
             self.doc.start_cell('IDS-NormalCell')
-            self.write_paragraph(description, style='IDS-ImageCaptionCenter')
+            self.write_paragraph(description, style='IDS-ImageCaption')
             utils.insert_image(self._db, self.doc, media_ref, self._user,
                                      align='center', w_cm=5.0, h_cm=5.0)
             self.do_attributes(media.get_attribute_list() +
@@ -624,7 +624,7 @@ class IndivCompleteReport(Report):
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
         self.write_paragraph(self._('Families'),
-                             style='IDS-TableTitle')
+                             style='IDS-SectionTitle')
         self.doc.end_cell()
         self.doc.end_row()
         self.doc.end_table()
@@ -687,11 +687,11 @@ class IndivCompleteReport(Report):
                 self.doc.start_table("ordinances2", "IDS-OrdinanceTable2")
                 self.doc.start_row()
                 self.write_cell(self._('LDS Ordinance'))
-                self.write_cell(self._('Type'), style='IDS-Section')
-                self.write_cell(self._('Date'), style='IDS-Section')
-                self.write_cell(self._('Status'), style='IDS-Section')
-                self.write_cell(self._('Temple'), style='IDS-Section')
-                self.write_cell(self._('Place'), style='IDS-Section')
+                self.write_cell(self._('Type'), style='IDS-TableSection')
+                self.write_cell(self._('Date'), style='IDS-TableSection')
+                self.write_cell(self._('Status'), style='IDS-TableSection')
+                self.write_cell(self._('Temple'), style='IDS-TableSection')
+                self.write_cell(self._('Place'), style='IDS-TableSection')
                 self.doc.end_row()
 
                 for lds_ord in ord_list:
@@ -750,7 +750,7 @@ class IndivCompleteReport(Report):
         self.doc.start_table(event_group_sect, "IDS-IndTable")
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
-        self.write_paragraph(self._(event_group_sect), style='IDS-TableTitle')
+        self.write_paragraph(self._(event_group_sect), style='IDS-SectionTitle')
         self.doc.end_cell()
         self.doc.end_row()
 
@@ -1182,7 +1182,7 @@ class IndivCompleteOptions(MenuReportOptions):
         para.set_top_margin(utils.pt2cm(8))
         para.set_bottom_margin(utils.pt2cm(8))
         para.set_font(font)
-        para.set_description(_("The style used for the title of the page."))
+        para.set_description(_("The style used for the title."))
         default_style.add_paragraph_style("IDS-Title", para)
 
         font = FontStyle()
@@ -1194,8 +1194,8 @@ class IndivCompleteOptions(MenuReportOptions):
         para.set_font(font)
         para.set_top_margin(utils.pt2cm(3))
         para.set_bottom_margin(utils.pt2cm(3))
-        para.set_description(_("The style used for category labels."))
-        default_style.add_paragraph_style("IDS-TableTitle", para)
+        para.set_description(_("The style used for the section headers."))
+        default_style.add_paragraph_style("IDS-SectionTitle", para)
 
         font = FontStyle()
         font.set_bold(1)
@@ -1218,14 +1218,14 @@ class IndivCompleteOptions(MenuReportOptions):
         default_style.add_paragraph_style("IDS-Normal", para)
 
         font = FontStyle()
-        font.set_size(12)
+        font.set_size(32) # SJ "12" not "32"
         font.set_italic(1)
         para = ParagraphStyle()
         para.set_font(font)
         para.set_top_margin(utils.pt2cm(3))
         para.set_bottom_margin(utils.pt2cm(3))
-        para.set_description(_('The style used for the section headers.'))
-        default_style.add_paragraph_style("IDS-Section", para)
+        para.set_description(_('The basic style used for table headings.'))
+        default_style.add_paragraph_style('IDS-TableSection', para)
 
         font = FontStyle()
         font.set_size(8)
@@ -1234,7 +1234,7 @@ class IndivCompleteOptions(MenuReportOptions):
         para.set_font(font)
         para.set_top_margin(utils.pt2cm(3))
         para.set_bottom_margin(utils.pt2cm(3))
-        para.set_description(_('A style used for image facts.'))
+        para.set_description(_('The style used for image notes.'))
         default_style.add_paragraph_style("IDS-ImageNote", para)
 
         font = FontStyle()
@@ -1244,8 +1244,8 @@ class IndivCompleteOptions(MenuReportOptions):
         para.set_font(font)
         para.set_top_margin(utils.pt2cm(3))
         para.set_bottom_margin(utils.pt2cm(3))
-        para.set_description(_('A style used for image captions.'))
-        default_style.add_paragraph_style("IDS-ImageCaptionCenter", para)
+        para.set_description(_('The style used for image descriptions.'))
+        default_style.add_paragraph_style("IDS-ImageCaption", para)
 
         # Table Styles
         tbl = TableStyle()

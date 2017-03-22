@@ -132,7 +132,7 @@ class PlaceHolderBox(BoxBase):
 #------------------------------------------------------------------------
 class DescendantTitleBase(TitleBox):
     def __init__(self, dbase, doc, locale, name_displayer,
-                 boxstr="CG2-Title"):
+                 boxstr="CG2-Title-box"):
         self._nd = name_displayer
         TitleBox.__init__(self, doc, boxstr)
         self.database = dbase
@@ -204,7 +204,7 @@ class TitleNone(TitleNoDisplay):
     """No Title class for the report """
 
     def __init__(self, dbase, doc, locale):
-        TitleNoDisplay.__init__(self, doc, "CG2-Title")
+        TitleNoDisplay.__init__(self, doc, "CG2-Title-box")
         self._ = locale.translation.sgettext
 
     def calc_title(self, persons):
@@ -1760,9 +1760,7 @@ class DescendTreeOptions(MenuReportOptions):
         para_style = ParagraphStyle()
         para_style.set_font(font)
         para_style.set_alignment(PARA_ALIGN_CENTER)
-        para_style.set_description(
-            _("The basic style used for the title display.")
-            )
+        para_style.set_description(_("The style used for the title."))
         default_style.add_paragraph_style("CG2-Title", para_style)
 
         font = FontStyle()
@@ -1771,8 +1769,7 @@ class DescendTreeOptions(MenuReportOptions):
         para_style = ParagraphStyle()
         para_style.set_font(font)
         para_style.set_description(
-            _('The basic style used for the text display.')
-            )
+            _('The basic style used for the text display.'))
         default_style.add_paragraph_style("CG2-Normal", para_style)
 
         #Set the size of the shadow based on the font size!  Much better
@@ -1783,8 +1780,7 @@ class DescendTreeOptions(MenuReportOptions):
         para_style = ParagraphStyle()
         para_style.set_font(font)
         para_style.set_description(
-            _('The bold style used for the text display.')
-            )
+            _('The bold style used for the text display.'))
         default_style.add_paragraph_style("CG2-Bold", para_style)
 
         font = FontStyle()
@@ -1793,16 +1789,17 @@ class DescendTreeOptions(MenuReportOptions):
         para_style = ParagraphStyle()
         para_style.set_font(font)
         para_style.set_description(
-            _('The basic style used for the note display.')
-            )
+            _('The basic style used for the note display.'))
         default_style.add_paragraph_style("CG2-Note", para_style)
 
+        # TODO this seems meaningless, as only the text is displayed
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Title")
         graph_style.set_color((0, 0, 0))
         graph_style.set_fill_color((255, 255, 255))
         graph_style.set_line_width(0)
-        default_style.add_draw_style("CG2-Title", graph_style)
+        graph_style.set_description(_("Cannot edit this reference"))
+        default_style.add_draw_style("CG2-Title-box", graph_style)
 
         ## Draw styles
         graph_style = GraphicsStyle()

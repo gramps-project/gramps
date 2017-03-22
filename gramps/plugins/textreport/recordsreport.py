@@ -325,7 +325,7 @@ class RecordsReportOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_font(font)
         para.set_top_margin(utils.pt2cm(6))
-        para.set_description(_('The style used for headings.'))
+        para.set_description(_('The style used for the section headers.'))
         default_style.add_paragraph_style('REC-Heading', para)
 
         font = FontStyle()

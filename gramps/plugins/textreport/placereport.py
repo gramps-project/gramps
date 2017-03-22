@@ -491,7 +491,7 @@ class PlaceOptions(MenuReportOptions):
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(_('The style used for the title of the report.'))
+        para.set_description(_('The style used for the title.'))
         self.default_style.add_paragraph_style("PLC-ReportTitle", para)
 
     def __report_subtitle_style(self):
@@ -520,7 +520,7 @@ class PlaceOptions(MenuReportOptions):
         para.set(first_indent=-1.5, lmargin=1.5)
         para.set_top_margin(0.75)
         para.set_bottom_margin(0.25)
-        para.set_description(_('The style used for place title.'))
+        para.set_description(_('The style used for the section headers.'))
         self.default_style.add_paragraph_style("PLC-PlaceTitle", para)
 
     def __place_details_style(self):
@@ -532,7 +532,7 @@ class PlaceOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_font(font)
         para.set(first_indent=0.0, lmargin=1.5)
-        para.set_description(_('The style used for place details.'))
+        para.set_description(_('The style used for details.'))
         self.default_style.add_paragraph_style("PLC-PlaceDetails", para)
 
     def __column_title_style(self):
@@ -544,7 +544,7 @@ class PlaceOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_font(font)
         para.set(first_indent=0.0, lmargin=0.0)
-        para.set_description(_('The style used for a column title.'))
+        para.set_description(_('The basic style used for table headings.'))
         self.default_style.add_paragraph_style("PLC-ColumnTitle", para)
 
     def __section_style(self):
@@ -558,7 +558,7 @@ class PlaceOptions(MenuReportOptions):
         para.set(first_indent=-1.5, lmargin=1.5)
         para.set_top_margin(0.5)
         para.set_bottom_margin(0.25)
-        para.set_description(_('The style used for each section.'))
+        para.set_description(_('The basic style used for the text display.'))
         self.default_style.add_paragraph_style("PLC-Section", para)
 
     def __event_table_style(self):
@@ -589,7 +589,7 @@ class PlaceOptions(MenuReportOptions):
         font.set(face=FONT_SERIF, size=10)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set_description(_('The style used for event and person details.'))
+        para.set_description(_('The style used for the items and values.'))
         self.default_style.add_paragraph_style("PLC-Details", para)
 
     def __cell_style(self):

@@ -132,7 +132,7 @@ class CustomTextOptions(MenuReportOptions):
         category_name = _("Text")
 
         self.__top = TextOption(_("Initial Text"), [""])
-        self.__top.set_help(_("Text to display at the top."))
+        self.__top.set_help(_("Text to display at the top"))
         menu.add_option(category_name, "top", self.__top)
 
         self.__mid = TextOption(_("Middle Text"), [""])
@@ -140,7 +140,7 @@ class CustomTextOptions(MenuReportOptions):
         menu.add_option(category_name, "mid", self.__mid)
 
         self.__bot = TextOption(_("Final Text"), [""])
-        self.__bot.set_help(_("Text to display last."))
+        self.__bot.set_help(_("Text to display at the bottom"))
         menu.add_option(category_name, "bot", self.__bot)
 
     def get_subject(self):
@@ -161,8 +161,7 @@ class CustomTextOptions(MenuReportOptions):
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set(pad=0.5)
-        para.set_description(
-            _('The style used for the first portion of the custom text.'))
+        para.set_description(_('Text to display at the top'))
         default_style.add_paragraph_style("CBT-Initial", para)
 
         font = FontStyle()
@@ -171,8 +170,7 @@ class CustomTextOptions(MenuReportOptions):
         para.set_font(font)
         para.set(pad=0.5)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(
-            _('The style used for the middle portion of the custom text.'))
+        para.set_description(_('Text to display in the middle'))
         default_style.add_paragraph_style("CBT-Middle", para)
 
         font = FontStyle()
@@ -181,6 +179,5 @@ class CustomTextOptions(MenuReportOptions):
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set(pad=0.5)
-        para.set_description(
-            _('The style used for the last portion of the custom text.'))
+        para.set_description(_('Text to display at the bottom'))
         default_style.add_paragraph_style("CBT-Final", para)

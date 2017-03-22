@@ -317,8 +317,8 @@ class KinshipReport(Report):
             death_date = self._get_date(death.get_date_object())
         dates = ''
         if birth_date or death_date:
-            dates = self._(" (%(birth_date)s - %(death_date)s)"
-                          ) % {'birth_date' : birth_date,
+            dates = " (%(birth_date)s - %(death_date)s)" % {
+                               'birth_date' : birth_date,
                                'death_date' : death_date}
 
         self.doc.start_paragraph('KIN-Normal')
@@ -400,7 +400,7 @@ class KinshipOptions(MenuReportOptions):
         para.set_bottom_margin(utils.pt2cm(8))
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(_("The style used for the title of the page."))
+        para.set_description(_("The style used for the title."))
         default_style.add_paragraph_style("KIN-Title", para)
 
         font = FontStyle()
@@ -410,7 +410,7 @@ class KinshipOptions(MenuReportOptions):
         para.set_header_level(3)
         para.set_font(font)
         para.set_top_margin(utils.pt2cm(6))
-        para.set_description(_('The basic style used for sub-headings.'))
+        para.set_description(_('The style used for second level headings.'))
         default_style.add_paragraph_style("KIN-Subtitle", para)
 
         font = FontStyle()
