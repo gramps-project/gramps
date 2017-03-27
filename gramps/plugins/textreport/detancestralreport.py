@@ -168,6 +168,8 @@ class DetAncestorReport(Report):
         stdoptions.run_name_format_option(self, menu)
         self._nd = self._name_display
 
+        self.place_format = menu.get_option_by_name("place_format").get_value()
+
         self.gen_handles = {}
         self.prev_gen_handles = {}
 
@@ -440,7 +442,7 @@ class DetAncestorReport(Report):
         else:
             date = event.get_date_object().get_year()
 
-        place = _pd.display_event(self._db, event)
+        place = _pd.display_event(self._db, event, self.place_format)
 
         self.doc.start_paragraph('DAR-MoreDetails')
         if date and place:
@@ -847,6 +849,8 @@ class DetAncestorOptions(MenuReportOptions):
         addopt = partial(menu.add_option, category)
 
         stdoptions.add_name_format_option(menu, category)
+
+        stdoptions.add_place_format_option(menu, category)
 
         stdoptions.add_private_data_option(menu, category)
 

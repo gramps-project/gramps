@@ -112,6 +112,7 @@ VERSION_DIR = os.path.join(
 CUSTOM_FILTERS = os.path.join(VERSION_DIR, "custom_filters.xml")
 REPORT_OPTIONS = os.path.join(HOME_DIR, "report_options.xml")
 TOOL_OPTIONS = os.path.join(HOME_DIR, "tool_options.xml")
+PLACE_FORMATS = os.path.join(HOME_DIR, "place_formats.xml")
 
 ENV_DIR = os.path.join(HOME_DIR, "env")
 TEMP_DIR = os.path.join(HOME_DIR, "temp")

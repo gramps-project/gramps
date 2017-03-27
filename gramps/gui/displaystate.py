@@ -372,6 +372,7 @@ class DisplayState(Callback):
         'filters-changed' : (str, ),
         'filter-name-changed' : (str, str, str),
         'nameformat-changed' : None,
+        'placeformat-changed' : None,
         'grampletbar-close-changed' : None,
         'update-available' : (list, ),
         'autobackup' : None,

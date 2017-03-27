@@ -130,6 +130,9 @@ class PlaceBaseView(ListView):
             '<PRIMARY>BackSpace' : self.key_delete,
             })
         self.maptoolbtn = None
+
+        uistate.connect('placeformat-changed', self.build_tree)
+
         self.additional_uis.append(self.additional_ui())
 
     def navigation_type(self):

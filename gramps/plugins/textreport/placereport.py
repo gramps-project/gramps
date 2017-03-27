@@ -105,6 +105,8 @@ class PlaceReport(Report):
         stdoptions.run_name_format_option(self, menu)
         self._nd = self._name_display
 
+        self.place_format = menu.get_option_by_name("place_format").get_value()
+
         filter_option = menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
 
@@ -196,7 +198,7 @@ class PlaceReport(Report):
                     place_names += ' (%s)' % place_name.get_language()
             place_details += [self._("places|All Names: %s") % place_names,]
         self.doc.start_paragraph("PLC-PlaceTitle")
-        place_title = _pd.display(self._db, place)
+        place_title = _pd.display(self._db, place, self.place_format)
         self.doc.write_text(("%(nbr)s. %(place)s") % {'nbr' : place_nbr,
                                                       'place' : place_title})
         self.doc.end_paragraph()
@@ -425,7 +427,7 @@ class PlaceOptions(MenuReportOptions):
                 if subject:
                     subject += " + "
                 place = self.__db.get_place_from_gramps_id(place_id)
-                subject += _pd.display(self.__db, place)
+                subject += _pd.display(self.__db, place, self.place_format)
         return subject
 
     def add_menu_options(self, menu):

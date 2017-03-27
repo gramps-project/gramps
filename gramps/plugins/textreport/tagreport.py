@@ -108,6 +108,8 @@ class TagReport(Report):
 
         stdoptions.run_name_format_option(self, menu)
 
+        self.place_format = menu.get_option_by_name("place_format").get_value()
+
     def write_report(self):
         self.doc.start_paragraph("TR-Title")
         # feature request 2356: avoid genitive form
@@ -439,7 +441,7 @@ class TagReport(Report):
 
         for place_handle in place_list:
             place = self.database.get_place_from_handle(place_handle)
-            place_title = _pd.display(self.database, place)
+            place_title = _pd.display(self.database, place, self.place_format)
 
             self.doc.start_row()
 
@@ -915,6 +917,8 @@ class TagOptions(MenuReportOptions):
         menu.add_option(category_name, "tag", self.__tag_option)
 
         stdoptions.add_name_format_option(menu, category_name)
+
+        stdoptions.add_place_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name)
 

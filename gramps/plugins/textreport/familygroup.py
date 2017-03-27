@@ -117,13 +117,15 @@ class FamilyGroup(Report):
 
         stdoptions.run_name_format_option(self, menu)
 
+        self.place_format = menu.get_option_by_name("place_format").get_value()
+
     def dump_parent_event(self, name, event):
         place = ""
         date = ""
         descr = ""
         if event:
             date = self._get_date(event.get_date_object())
-            place = _pd.display_event(self.db, event)
+            place = _pd.display_event(self.db, event, self.place_format)
             if place is None:
                 place = ''
             descr = event.get_description()
@@ -438,7 +440,7 @@ class FamilyGroup(Report):
             date = self._get_date(event.get_date_object())
             place_handle = event.get_place_handle()
             if place_handle:
-                place = _pd.display_event(self.db, event)
+                place = _pd.display_event(self.db, event, self.place_format)
                 if place is None:
                     place = ''
 
@@ -735,6 +737,8 @@ class FamilyGroupOptions(MenuReportOptions):
         self._nf.connect('value-changed', self.__update_filters)
 
         self.__update_filters()
+
+        stdoptions.add_place_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name)
 

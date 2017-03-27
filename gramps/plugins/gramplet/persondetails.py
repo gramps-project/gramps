@@ -50,6 +50,7 @@ class PersonDetails(Gramplet):
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add(self.gui.WIDGET)
         self.uistate.connect('nameformat-changed', self.update)
+        self.uistate.connect('placeformat-changed', self.update)
 
     def build_gui(self):
         """

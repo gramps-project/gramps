@@ -157,6 +157,8 @@ class IndivCompleteReport(Report):
 
         stdoptions.run_name_format_option(self, menu)
 
+        self.place_format = menu.get_option_by_name("place_format").get_value()
+
         self.home_person = self._db.get_default_person() # might be None
         self.increlname = menu.get_option_by_name('incl_relname').get_value()
         if self.increlname and self.home_person:
@@ -183,7 +185,7 @@ class IndivCompleteReport(Report):
         place_handle = event.get_place_handle()
         if place_handle:
             place = self._db.get_place_from_handle(place_handle)
-            place_name = _pd.display_event(self._db, event)
+            place_name = _pd.display_event(self._db, event, self.place_format)
             place_endnote = self._cite_endnote(place)
         # make sure it's translated, so it can be used below, in "combine"
         ignore = _('%(str1)s in %(str2)s. ') % {'str1' : '', 'str2' : ''}
@@ -518,7 +520,8 @@ class IndivCompleteReport(Report):
             place_handle = lds_ord.get_place_handle()
             if place_handle:
                 place = self._db.get_place_from_handle(place_handle)
-                place_name = _pd.display_event(self._db, lds_ord)
+                place_name = _pd.display_event(self._db, lds_ord,
+                                               self.place_format)
                 place_endnote = self._cite_endnote(place)
             endnotes = self._cite_endnote(lds_ord, prior=place_endnote)
             self.doc.start_row()
@@ -716,7 +719,8 @@ class IndivCompleteReport(Report):
                     place_handle = lds_ord.get_place_handle()
                     if place_handle:
                         place = self._db.get_place_from_handle(place_handle)
-                        place_name = _pd.display_event(self._db, lds_ord)
+                        place_name = _pd.display_event(self._db, lds_ord,
+                                                       self.place_format)
                         place_endnote = self._cite_endnote(place)
                     endnotes = self._cite_endnote(lds_ord, prior=place_endnote)
                     self.doc.start_row()
@@ -1082,6 +1086,8 @@ class IndivCompleteOptions(MenuReportOptions):
         self._nf.connect('value-changed', self.__update_filters)
 
         self.__update_filters()
+
+        stdoptions.add_place_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name)
 
