@@ -160,7 +160,7 @@ class SimpleBookTitleOptions(MenuReportOptions):
         menu.add_option(category_name, "imgsize", imgsize)
 
     def make_default_style(self, default_style):
-        """Make the default output style for the Simple Boot Title report."""
+        """Make the default output style for the Simple Book Title report."""
         font = FontStyle()
         font.set(face=FONT_SANS_SERIF, size=16, bold=1, italic=1)
         para = ParagraphStyle()
@@ -168,7 +168,7 @@ class SimpleBookTitleOptions(MenuReportOptions):
         para.set_header_level(1)
         para.set_alignment(PARA_ALIGN_CENTER)
         para.set(pad=0.5)
-        para.set_description(_('The style used for the title of the page.'))
+        para.set_description(_('The style used for the title.'))
         default_style.add_paragraph_style("SBT-Title", para)
 
         font = FontStyle()

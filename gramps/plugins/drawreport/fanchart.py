@@ -767,7 +767,7 @@ class FanChartOptions(MenuReportOptions):
         p_style.set_font(f_style)
         p_style.set_alignment(PARA_ALIGN_CENTER)
         p_style.set_description(
-            _('The basic style used for the default text display.'))
+            _('The basic style used for the text display.'))
         default_style.add_paragraph_style("FC-Text", p_style)
 
         for i in range(0, self.max_generations):

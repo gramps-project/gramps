@@ -1127,7 +1127,7 @@ class StatisticsChartOptions(MenuReportOptions):
         pstyle = ParagraphStyle()
         pstyle.set_font(fstyle)
         pstyle.set_alignment(PARA_ALIGN_CENTER)
-        pstyle.set_description(_("The style used for the title of the page."))
+        pstyle.set_description(_("The style used for the title."))
         default_style.add_paragraph_style("SC-Title", pstyle)
 
         """

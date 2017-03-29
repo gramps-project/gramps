@@ -950,7 +950,7 @@ class DetAncestorOptions(MenuReportOptions):
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(_('The style used for the title of the page.'))
+        para.set_description(_('The style used for the title.'))
         default_style.add_paragraph_style("DAR-Title", para)
 
         font = FontStyle()
@@ -980,7 +980,8 @@ class DetAncestorOptions(MenuReportOptions):
         para.set(first_indent=-0.75, lmargin=1.75)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
-        para.set_description(_('The style used for the children list.'))
+        para.set_description(
+            _('The style used for the text related to the children.'))
         default_style.add_paragraph_style("DAR-ChildList", para)
 
         font = FontStyle()
@@ -990,6 +991,7 @@ class DetAncestorOptions(MenuReportOptions):
         para.set(first_indent=0.0, lmargin=1.0)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
+        para.set_description(_('The style used for the note header.'))
         default_style.add_paragraph_style("DAR-NoteHeader", para)
 
         para = ParagraphStyle()
@@ -1003,7 +1005,7 @@ class DetAncestorOptions(MenuReportOptions):
         para.set(first_indent=-1.0, lmargin=1.0)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
-        para.set_description(_('The style used for the first personal entry.'))
+        para.set_description(_('The style used for first level headings.'))
         default_style.add_paragraph_style("DAR-First-Entry", para)
 
         font = FontStyle()
@@ -1013,7 +1015,7 @@ class DetAncestorOptions(MenuReportOptions):
         para.set(first_indent=0.0, lmargin=1.0)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
-        para.set_description(_('The style used for the More About header.'))
+        para.set_description(_('The style used for second level headings.'))
         default_style.add_paragraph_style("DAR-MoreHeader", para)
 
         font = FontStyle()
@@ -1023,7 +1025,7 @@ class DetAncestorOptions(MenuReportOptions):
         para.set(first_indent=0.0, lmargin=1.0)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
-        para.set_description(_('The style used for additional detail data.'))
+        para.set_description(_('The style used for details.'))
         default_style.add_paragraph_style("DAR-MoreDetails", para)
 
         endnotes.add_endnote_styles(default_style)

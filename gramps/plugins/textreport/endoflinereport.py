@@ -207,8 +207,8 @@ class EndOfLineReport(Report):
             death_date = self._get_date(event.get_date_object())
         dates = ''
         if birth_date or death_date:
-            dates = self._(" (%(birth_date)s - %(death_date)s)"
-                          ) % {'birth_date' : birth_date,
+            dates = " (%(birth_date)s - %(death_date)s)" % {
+                               'birth_date' : birth_date,
                                'death_date' : death_date}
 
         self.doc.start_row()
@@ -293,7 +293,7 @@ class EndOfLineOptions(MenuReportOptions):
         para.set_bottom_margin(utils.pt2cm(8))
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(_("The style used for the title of the page."))
+        para.set_description(_("The style used for the title."))
         default_style.add_paragraph_style("EOL-Title", para)
 
         font = FontStyle()
@@ -302,7 +302,7 @@ class EndOfLineOptions(MenuReportOptions):
         para.set_bottom_margin(utils.pt2cm(6))
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(_('The style used for the section headers.'))
+        para.set_description(_('The style used for the subtitle.'))
         default_style.add_paragraph_style("EOL-Subtitle", para)
 
         font = FontStyle()
@@ -320,8 +320,7 @@ class EndOfLineOptions(MenuReportOptions):
         para = ParagraphStyle()
         para.set_font(font)
         para.set_top_margin(utils.pt2cm(6))
-        para.set_description(
-            _('The basic style used for generation headings.'))
+        para.set_description(_('The style used for the generation header.'))
         default_style.add_paragraph_style("EOL-Generation", para)
 
         font = FontStyle()
@@ -330,7 +329,7 @@ class EndOfLineOptions(MenuReportOptions):
         para.set_font(font)
         para.set_top_margin(0)
         para.set_bottom_margin(utils.pt2cm(6))
-        para.set_description(_('The basic style used for the text display.'))
+        para.set_description(_('The style used for details.'))
         default_style.add_paragraph_style("EOL-Pedigree", para)
 
         #Table Styles

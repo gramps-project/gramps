@@ -5,7 +5,7 @@
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2008       Peter Landgren
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2012       Paul Franklin
+# Copyright (C) 2012,2017  Paul Franklin
 # Copyright (C) 2014       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
@@ -193,8 +193,8 @@ class StyleListDisplay(ManagedWindow):
 #------------------------------------------------------------------------
 class StyleEditor(ManagedWindow):
     """
-    Edits the current style definition. Presents a dialog allowing the values
-    of the paragraphs in the style to be altered.
+    Edits the current style definition.
+    Presents a dialog allowing the values in the style to be altered.
     """
 
     def __init__(self, name, style, parent):
@@ -338,7 +338,12 @@ class StyleEditor(ManagedWindow):
         self.pname.set_use_markup(True)
 
         descr = g.get_description()
-        self.pdescription.set_text(descr or _("No description available"))
+        descr = descr or _("No description available")
+        p_style = g.get_paragraph_style()
+        if p_style:
+            para_note = _("(Embedded style '%s' must be edited separately)")
+            descr += '\n\n' + para_note % p_style
+        self.pdescription.set_text(descr)
 
         self.top.get_object("line_style").set_active(g.get_line_style())
         self.top.get_object("line_width").set_value(g.get_line_width())
@@ -359,7 +364,9 @@ class StyleEditor(ManagedWindow):
         self.pname.set_text( '<span size="larger" weight="bold">%s</span>' %
                              self.current_name)
         self.pname.set_use_markup(True)
-        self.pdescription.set_text(_("No description available") )
+
+        descr = c.get_description()
+        self.pdescription.set_text(descr or _("No description available"))
 
         self.top.get_object("cell_lborder").set_active(c.get_left_border())
         self.top.get_object("cell_rborder").set_active(c.get_right_border())
@@ -375,7 +382,9 @@ class StyleEditor(ManagedWindow):
         self.pname.set_text( '<span size="larger" weight="bold">%s</span>' %
                              self.current_name)
         self.pname.set_use_markup(True)
-        self.pdescription.set_text(_("No description available") )
+
+        descr = t.get_description()
+        self.pdescription.set_text(descr or _("No description available"))
 
         self.top.get_object("table_width").set_value(t.get_width())
 

@@ -117,5 +117,5 @@ class AlphabeticalIndexOptions(MenuReportOptions):
         font.set(face=FONT_SANS_SERIF, size=10)
         para = ParagraphStyle()
         para.set_font(font)
-        para.set_description(_('The style used for index entries.'))
+        para.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("IDX-Entry", para)

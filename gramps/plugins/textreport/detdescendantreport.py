@@ -1173,7 +1173,7 @@ class DetDescendantOptions(MenuReportOptions):
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(_('The style used for the title of the page.'))
+        para.set_description(_('The style used for the title.'))
         default_style.add_paragraph_style("DDR-Title", para)
 
         font = FontStyle()
@@ -1203,7 +1203,8 @@ class DetDescendantOptions(MenuReportOptions):
         para.set(first_indent=-0.75, lmargin=2.25)
         para.set_top_margin(0.125)
         para.set_bottom_margin(0.125)
-        para.set_description(_('The style used for the children list.'))
+        para.set_description(
+            _('The style used for the text related to the children.'))
         default_style.add_paragraph_style("DDR-ChildList", para)
 
         font = FontStyle()
@@ -1213,6 +1214,7 @@ class DetDescendantOptions(MenuReportOptions):
         para.set(first_indent=0.0, lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
+        para.set_description(_('The style used for the note header.'))
         default_style.add_paragraph_style("DDR-NoteHeader", para)
 
         para = ParagraphStyle()
@@ -1226,7 +1228,7 @@ class DetDescendantOptions(MenuReportOptions):
         para.set(first_indent=-1.5, lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
-        para.set_description(_('The style used for the first personal entry.'))
+        para.set_description(_('The style used for first level headings.'))
         default_style.add_paragraph_style("DDR-First-Entry", para)
 
         font = FontStyle()
@@ -1236,9 +1238,7 @@ class DetDescendantOptions(MenuReportOptions):
         para.set(first_indent=0.0, lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
-        para.set_description(
-            _('The style used for the More About header and '
-              'for headers of mates.'))
+        para.set_description(_('The style used for second level headings.'))
         default_style.add_paragraph_style("DDR-MoreHeader", para)
 
         font = FontStyle()
@@ -1248,7 +1248,7 @@ class DetDescendantOptions(MenuReportOptions):
         para.set(first_indent=0.0, lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
-        para.set_description(_('The style used for additional detail data.'))
+        para.set_description(_('The style used for details.'))
         default_style.add_paragraph_style("DDR-MoreDetails", para)
 
         endnotes.add_endnote_styles(default_style)

@@ -108,13 +108,13 @@ class GraphicsStyle:
 
     def set_description(self, text):
         """
-        Set the desciption of the graphics object
+        Set the description of the graphics object
         """
         self.description = text
 
     def get_description(self):
         """
-        Return the desciption of the graphics object
+        Return the description of the graphics object
         """
         return self.description
 

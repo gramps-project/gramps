@@ -183,7 +183,7 @@ class NoteLinkOptions(MenuReportOptions):
         p.set_bottom_margin(utils.pt2cm(3))
         p.set_font(f)
         p.set_alignment(PARA_ALIGN_CENTER)
-        p.set_description(_("The style used for the title of the page."))
+        p.set_description(_("The style used for the title."))
         default_style.add_paragraph_style("NoteLink-Title", p)
 
         font = FontStyle()

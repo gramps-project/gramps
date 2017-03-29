@@ -930,7 +930,7 @@ class TagOptions(MenuReportOptions):
         para.set_bottom_margin(utils.pt2cm(3))
         para.set_font(font)
         para.set_alignment(PARA_ALIGN_CENTER)
-        para.set_description(_("The style used for the title of the page."))
+        para.set_description(_("The style used for the title."))
         default_style.add_paragraph_style("TR-Title", para)
 
         font = FontStyle()
