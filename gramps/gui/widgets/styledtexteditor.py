@@ -81,10 +81,10 @@ FORMAT_TOOLBAR = '''
   <toolitem action="%d"/>
   <toolitem action="%d"/>
   <toolitem action="%d"/>
+  <toolitem action="%d"/>
+  <toolitem action="%d"/>
   <toolitem action="Undo"/>
   <toolitem action="Redo"/>
-  <toolitem action="%d"/>
-  <toolitem action="%d"/>
   <toolitem action="%d"/>
   <toolitem action="%d"/>
   <toolitem action="%d"/>
@@ -464,13 +464,14 @@ class StyledTextEditor(Gtk.TextView):
 
         # ...then the normal actions, which have a ToolButton as proxy
         format_actions = [
-            (str(StyledTextTagType.FONTCOLOR), 'gramps-font-color', None, None,
-             _('Font Color'), self._on_action_activate),
-            (str(StyledTextTagType.HIGHLIGHT), 'gramps-font-bgcolor', None,
-            None, _('Background Color'), self._on_action_activate),
-            (str(StyledTextTagType.LINK), 'go-jump', None, None,
+            (str(StyledTextTagType.FONTCOLOR), 'gramps-font-color',
+             _('Font Color'), None, _('Font Color'), self._on_action_activate),
+            (str(StyledTextTagType.HIGHLIGHT), 'gramps-font-bgcolor',
+             _('Background Color'), None, _('Background Color'),
+             self._on_action_activate),
+            (str(StyledTextTagType.LINK), 'go-jump', _('Link'), None,
              _('Link'), self._on_link_activate),
-            ('clear', 'edit-clear', None, None,
+            ('clear', 'edit-clear', _('Clear Markup'), None,
              _('Clear Markup'), self._format_clear_cb),
         ]
 
