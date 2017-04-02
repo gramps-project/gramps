@@ -541,6 +541,9 @@ class StyledTextEditor(Gtk.TextView):
 
         return toolbar
 
+    def set_transient_parent(self, parent=None):
+        self.transient_parent = parent
+
     def _init_url_match(self):
         """Setup regexp matching for URL match."""
         self.textbuffer.create_tag('hyperlink',
@@ -640,9 +643,13 @@ class StyledTextEditor(Gtk.TextView):
         current_value = self.textbuffer.get_style_at_cursor(style)
 
         if style == StyledTextTagType.FONTCOLOR:
-            color_dialog = Gtk.ColorChooserDialog(_("Select font color"))
+            color_dialog = Gtk.ColorChooserDialog(
+                title=_("Select font color"),
+                transient_for=self.transient_parent)
         elif style == StyledTextTagType.HIGHLIGHT:
-            color_dialog = Gtk.ColorChooserDialog(_("Select background color"))
+            color_dialog = Gtk.ColorChooserDialog(
+                title=_("Select background color"),
+                transient_for=self.transient_parent)
         else:
             _LOG.debug("unknown style: '%d'" % style)
             return

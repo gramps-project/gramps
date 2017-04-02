@@ -272,6 +272,7 @@ class EditNote(EditPrimary):
         if not self.dbstate.db.readonly:
             vbox = self.top.get_object('container')
             vbox.pack_start(self.texteditor.get_toolbar(), False, False, 0)
+            self.texteditor.set_transient_parent(self.window)
 
         # setup initial values for textview and textbuffer
         if self.obj:
