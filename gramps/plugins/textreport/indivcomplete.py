@@ -1218,7 +1218,7 @@ class IndivCompleteOptions(MenuReportOptions):
         default_style.add_paragraph_style("IDS-Normal", para)
 
         font = FontStyle()
-        font.set_size(32) # SJ "12" not "32"
+        font.set_size(12)
         font.set_italic(1)
         para = ParagraphStyle()
         para.set_font(font)
