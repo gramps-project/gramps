@@ -134,8 +134,8 @@ class AsciiDoc(BaseDoc, TextDoc):
     """
     ASCII document generator.
     """
-    def __init__(self, styles, paper_style, options=None):
-        BaseDoc.__init__(self, styles, paper_style)
+    def __init__(self, styles, paper_style, options=None, uistate=None):
+        BaseDoc.__init__(self, styles, paper_style, uistate=uistate)
         self.__note_format = False
 
         self._cpl = 72 # characters per line, in case the options are ignored

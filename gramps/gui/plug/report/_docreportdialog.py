@@ -108,9 +108,11 @@ class DocReportDialog(ReportDialog):
 
         if self.doc_options:
             self.doc = self.format(self.selected_style, pstyle,
-                                   self.doc_options)
+                                   self.doc_options,
+                                   uistate=self.uistate)
         else:
-            self.doc = self.format(self.selected_style, pstyle)
+            self.doc = self.format(self.selected_style, pstyle,
+                                   uistate=self.uistate)
         if not self.format_menu.get_active_plugin().get_paper_used():
             #set css filename
             self.doc.set_css_filename(self.css_filename)
