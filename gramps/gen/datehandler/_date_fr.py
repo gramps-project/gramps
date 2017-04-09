@@ -42,7 +42,6 @@ from ..lib.date import Date
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
-from . import _grampslocale
 
 #-------------------------------------------------------------------------
 #
@@ -232,22 +231,24 @@ class DateDisplayFR(DateDisplay):
 
     _bce_str = "%s avant le calendrier"
 
-    # Replace the previous "Numérique" by a string which
-    # do have an explicit meaning: "System default (format)"
-    _locale_tformat = _grampslocale.tformat
-    _locale_tformat = _locale_tformat.replace('%d', "J")
-    _locale_tformat = _locale_tformat.replace('%m', "M")
-    _locale_tformat = _locale_tformat.replace('%Y', "A")
+    def formats_changed(self):
+        """ Allow overriding so a subclass can modify """
 
-    formats = ("AAAA-MM-JJ (ISO)",  # 0
-               "Défaut système (" + _locale_tformat + ")",        # 1
+        # Replace the previous "Numérique" by a string which
+        # do have an explicit meaning: "System default (format)"
+        example = self.dhformat
+        example = example.replace('%d', "J")
+        example = example.replace('%m', "M")
+        example = example.replace('%Y', "A")
+
+        self.formats = ("AAAA-MM-JJ (ISO)",  # 0
+               "Défaut système (" + example + ")",        # 1
                "Jour Mois Année",   # 2
                "Jour MOI Année",    # 3
                "Jour. Mois Année",  # 4
                "Jour. MOI Année",   # 5
                "Mois Jour, Année",  # 6
                "MOI Jour, Année",)  # 7
-
         # this definition must agree with its "_display_gregorian" method
 
     def _display_gregorian(self, date_val, **kwargs):
@@ -263,7 +264,7 @@ class DateDisplayFR(DateDisplay):
             return self.display_iso(date_val)
         elif self.format == 1:
 
-            # ISO
+            # numerical
 
             if date_val[2] < 0 or date_val[3]:
                 return self.display_iso(date_val)
@@ -271,7 +272,7 @@ class DateDisplayFR(DateDisplay):
                 if date_val[0] == date_val[1] == 0:
                     value = str(date_val[2])
                 else:
-                    value = self._tformat.replace('%m', str(date_val[1]))
+                    value = self.dhformat.replace('%m', str(date_val[1]))
                     value = value.replace('%d', str(date_val[0]))
 
                     # base_display :
@@ -380,5 +381,7 @@ class DateDisplayFR(DateDisplay):
 #
 #-------------------------------------------------------------------------
 
-register_datehandler(('fr_FR', 'fr', 'french', 'French', 'fr_CA',
-                      'fr_BE', 'fr_CH'), DateParserFR, DateDisplayFR)
+register_datehandler(
+    ('fr_FR', 'fr', 'french', 'French', 'fr_CA',
+     'fr_BE', 'fr_CH', ('%d/%m/%Y',)),
+    DateParserFR, DateDisplayFR)

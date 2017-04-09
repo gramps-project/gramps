@@ -55,10 +55,10 @@ def get_date_formats(flocale=glocale):
     trans_text = flocale.translation.sgettext
     try:
         return tuple(trans_text(fmt)
-                     for fmt in LANG_TO_DISPLAY[flocale.lang].formats)
+                     for fmt in LANG_TO_DISPLAY[flocale.lang](0).formats)
     except:
         return tuple(trans_text(fmt)
-                     for fmt in LANG_TO_DISPLAY['C'].formats)
+                     for fmt in LANG_TO_DISPLAY['C'](0).formats)
 
 def set_format(value):
     try:

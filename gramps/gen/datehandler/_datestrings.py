@@ -270,7 +270,7 @@ if __name__ == '__main__':
     import gettext
     lang = glocale.lang
     lang_short = lang[:2]
-    available_langs = glocale.get_available_translations()
+    available_langs = glocale.languages # get the cached list
     if glocale.check_available_translations(lang) is None:
         print ("Translation for current language {lang} not available.\n"
                 "Available translations: {list}.\n"

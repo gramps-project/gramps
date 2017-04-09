@@ -364,5 +364,6 @@ class DateDisplayHU(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('hu_HU', 'hu', 'hungarian', 'Hungarian', 'magyar'),
-                     DateParserHU, DateDisplayHU)
+register_datehandler(
+    ('hu_HU', 'hu', 'hungarian', 'Hungarian', 'magyar', ('%Y-%m-%d',)),
+    DateParserHU, DateDisplayHU)

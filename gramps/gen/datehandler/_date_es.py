@@ -177,4 +177,6 @@ class DateDisplayES(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('es_ES', 'es', 'spanish', 'Spanish'), DateParserES, DateDisplayES)
+register_datehandler(
+    ('es_ES', 'es', 'spanish', 'Spanish', ('%d/%m/%Y',)),
+    DateParserES, DateDisplayES)

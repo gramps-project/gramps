@@ -4,7 +4,7 @@
 #
 # Copyright (C) 2004-2006  Donald N. Allingham
 # Copyright (C) 2013       Vassilii Khachaturov
-# Copyright (C) 2014-2015  Paul Franklin
+# Copyright (C) 2014-2017  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,6 +28,13 @@ localized tasks.
 
 #-------------------------------------------------------------------------
 #
+# Python modules
+#
+#-------------------------------------------------------------------------
+import datetime
+
+#-------------------------------------------------------------------------
+#
 # set up logging
 #
 #-------------------------------------------------------------------------
@@ -40,7 +47,7 @@ log = logging.getLogger(".DateDisplay")
 #
 #-------------------------------------------------------------------------
 from ..lib.date import Date
-from . import _grampslocale
+from ..const import GRAMPS_LOCALE as glocale
 from ..utils.grampslocale import GrampsLocale
 from ._datestrings import DateStrings
 
@@ -57,8 +64,6 @@ class DateDisplay:
     """
     Base date display class.
     """
-
-    _tformat = _grampslocale.tformat
 
     formats = (
         # format 0 - must always be ISO
@@ -98,7 +103,21 @@ class DateDisplay:
     _bce_str = "%s B.C.E."
     # this will be overridden if a locale-specific date displayer exists
 
-    def __init__(self, format=None):
+    def __init__(self, format=None, blocale=None):
+        """
+        :param blocale: allow translation of dates and date formats
+        :type blocale: a :class:`.GrampsLocale` instance
+        """
+        from ._datehandler import locale_tformat # circular import if above
+        if blocale:
+            self._locale = blocale
+        elif not hasattr(self, '_locale'):
+            self._locale = glocale
+        if self._locale.calendar in locale_tformat:
+            self.dhformat = locale_tformat[self._locale.calendar] # date format
+        else:
+            self.dhformat = locale_tformat['en_GB'] # something is required
+        self.formats_changed() # allow overriding so a subclass can modify
         self._ds = DateStrings(self._locale)
         calendar = list(self._ds.calendar)
         calendar[Date.CAL_GREGORIAN] = "" # that string only used in parsing,
@@ -301,6 +320,10 @@ class DateDisplay:
                 : _("calculated|{short_month} {year}"),
         }
 
+    def formats_changed(self):
+        """ Allow overriding so a subclass can modify """
+        pass
+
     def set_format(self, format):
         self.format = format
 
@@ -332,6 +355,9 @@ class DateDisplay:
         Disregard any format settings and use display_iso for each date.
 
         (Will be overridden if a locale-specific date displayer exists.)
+
+        (The usage is "displayer.display(...)" (or a variant, e.g. _dd.display)
+        so any subclass must have a "display" method, somehow, or use this.)
         """
         mod = date.get_modifier()
         cal = date.get_calendar()
@@ -540,6 +566,18 @@ class DateDisplay:
         return self.FORMATS_short_month_year[inflect].format(
                      short_month = short_months[month], year = '').rstrip()
 
+    def _get_short_weekday(self, date_val):
+        if date_val[0] == 0 or date_val[1] == 0: # no day or no month or both
+            return ''
+        w_day = datetime.date(date_val[2], date_val[1], date_val[0]) # y, m, d
+        return self.short_days[((w_day.weekday() + 1) % 7) + 1]
+
+    def _get_long_weekday(self, date_val):
+        if date_val[0] == 0 or date_val[1] == 0: # no day or no month or both
+            return ''
+        w_day = datetime.date(date_val[2], date_val[1], date_val[0]) # y, m, d
+        return self.long_days[((w_day.weekday() + 1) % 7) + 1]
+
     def dd_dformat01(self, date_val):
         """
         numerical
@@ -553,9 +591,17 @@ class DateDisplay:
             if date_val[0] == date_val[1] == 0:
                 return str(date_val[2])
             else:
-                value = self._tformat.replace('%m', str(date_val[1]))
+                value = self.dhformat.replace('%m', str(date_val[1]))
                 # some locales have %b for the month, e.g. ar_EG, is_IS, nb_NO
+                # so it would be "Jan" but as it's "numeric" I'll make it "1"
                 value = value.replace('%b', str(date_val[1]))
+                # some locales have %B for the month, e.g. ta_IN
+                # so it would be "January" but as it's "numeric" I'll make it 1
+                value = value.replace('%B', str(date_val[1]))
+                # some locales have %a for the abbreviated day, e.g. is_IS
+                value = value.replace('%a', self._get_short_weekday(date_val))
+                # some locales have %A for the long/full day, e.g. ta_IN
+                value = value.replace('%A', self._get_long_weekday(date_val))
                 if date_val[0] == 0: # ignore the zero day and its delimiter
                     i_day = value.find('%d')
                     value = value.replace(value[i_day:i_day+3], '')
@@ -719,17 +765,10 @@ class DateDisplayEn(DateDisplay):
     """
     English language date display class.
     """
-
-
-    def __init__(self, format=None):
-        """
-        Create a DateDisplay class that converts a Date object to a string
-        of the desired format. The format value must correspond to the format
-        list value (DateDisplay.format[]).
-        """
-
-        DateDisplay.__init__(self, format)
-
     display = DateDisplay.display_formatted
 
-    _locale = GrampsLocale(languages='en') # no register_datehandler here
+class DateDisplayGB(DateDisplay):
+    """
+    British-English language date display class (its format is different).
+    """
+    display = DateDisplay.display_formatted

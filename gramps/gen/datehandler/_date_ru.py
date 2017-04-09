@@ -162,4 +162,6 @@ class DateDisplayRU(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('ru_RU', 'ru', 'russian', 'Russian'), DateParserRU, DateDisplayRU)
+register_datehandler(
+    ('ru_RU', 'ru', 'russian', 'Russian', ('%d.%m.%Y',)),
+    DateParserRU, DateDisplayRU)

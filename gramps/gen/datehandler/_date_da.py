@@ -176,4 +176,6 @@ class DateDisplayDa(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('da_DK', 'da', 'dansk', 'Danish'), DateParserDa, DateDisplayDa)
+register_datehandler(
+    ('da_DK', 'da', 'dansk', 'Danish', ('%d-%m-%Y',)),
+    DateParserDa, DateDisplayDa)

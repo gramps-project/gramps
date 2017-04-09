@@ -256,7 +256,7 @@ class DateDisplaySR_Base(DateDisplay):
                 if date_val[0] == 0 and date_val[1] == 0:
                     value = str(date_val[2])
                 else:
-                    value = self._tformat.replace('%m', str(date_val[1]))
+                    value = self.dhformat.replace('%m', str(date_val[1]))
                     value = value.replace('%d', str(date_val[0]))
                     value = value.replace('%Y', str(abs(date_val[2])))
                     #some locale magic already provides the right separator
@@ -423,9 +423,11 @@ class DateDisplaySR_Cyrillic(DateDisplaySR_Base):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('srpski', 'Srpski',
-                      'sr_Latn', 'sr_Latn_RS', 'sr_RS@latin'),
-                     DateParserSR, DateDisplaySR_Latin)
-register_datehandler(('sr', 'српски', 'Српски', 'serbian',
-                      'sr_RS', 'sr_Cyrl', 'sr_Cyrl_RS'),
-                     DateParserSR, DateDisplaySR_Cyrillic)
+register_datehandler(
+    ('sr_RS.utf8@latin', 'srpski', 'Srpski',
+     'sr_Latn', 'sr_Latn_RS', 'sr_RS@latin', ('%d.%m.%Y.',)),
+    DateParserSR, DateDisplaySR_Latin)
+register_datehandler(
+    ('sr_RS', 'sr', 'sr_Cyrl', 'sr_Cyrl_RS',
+     'српски', 'Српски', 'serbian', ('%d.%m.%Y.',)),
+    DateParserSR, DateDisplaySR_Cyrillic)

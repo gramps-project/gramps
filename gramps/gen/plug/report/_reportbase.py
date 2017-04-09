@@ -26,6 +26,7 @@
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from ...const import GRAMPS_LOCALE as glocale
 from ...utils.grampslocale import GrampsLocale
 from ...display.name import NameDisplay
 from ...config import config
@@ -67,9 +68,15 @@ class Report:
         Set the translator to one selected with
         stdoptions.add_localization_option().
         """
+        from ...datehandler import LANG_TO_DISPLAY, main_locale
         if language == GrampsLocale.DEFAULT_TRANSLATION_STR:
             language = None
-        locale = GrampsLocale(lang=language)
+        if language is None: # the UI language
+            locale = glocale
+        elif language in LANG_TO_DISPLAY: # a displayer exists
+            locale = LANG_TO_DISPLAY[main_locale[language]]._locale
+        else: # no displayer
+            locale = GrampsLocale(lang=language)
         self._ = locale.translation.sgettext
         self._get_date = locale.get_date
         self._get_type = locale.get_type

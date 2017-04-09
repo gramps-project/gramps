@@ -171,8 +171,10 @@ class DateParserCZ(DateParser):
         'vyp.'       : Date.QUAL_CALCULATED,
         }
 
-    # bug 9739 _grampslocale.py gets '%-d.%-m.%Y' and makes it be '%/d.%/m.%Y'
-    fmt = DateParser.fmt.replace('/', '') # so counteract that
+    def dhformat_changed(self):
+        """ Allow overriding so a subclass can modify it """
+        # bug 9739 grampslocale.py gets '%-d.%-m.%Y' -- makes it be '%/d.%/m.%Y'
+        self.dhformat = self.dhformat.replace('/', '') # so counteract that
 
     def init_strings(self):
         DateParser.init_strings(self)
@@ -215,21 +217,24 @@ class DateDisplayCZ(DateDisplay):
     bce = ["před naším letopočtem", "před Kristem",
            "př. n. l.", "př. Kr."] + DateParser.bce
 
-    formats = (
-        "ISO (rrrr-mm-dd)",
-        "numerický",
-        "měsíc den, Rok",
-        "měs den, Rok",
-        "den. měsíc rok",
-        "den. měs rok"
-        )
-        # this must agree with DateDisplayEn's "formats" definition
-        # (since no locale-specific _display_gregorian exists, here)
-
     display = DateDisplay.display_formatted
 
-    # bug 9537 _grampslocale.py gets '%-d.%-m.%Y' and makes it be '%/d.%/m.%Y'
-    _tformat =  DateDisplay._tformat.replace('/', '') # so counteract that
+    def formats_changed(self):
+        """ Allow overriding so a subclass can modify """
+
+        # bug 9537 grampslocale.py gets '%-d.%-m.%Y' -- makes it be '%/d.%/m.%Y'
+        self.dhformat = self.dhformat.replace('/', '') # so counteract that
+
+        self.formats = (
+            "ISO (rrrr-mm-dd)",
+            "numerický",
+            "měsíc den, Rok",
+            "měs den, Rok",
+            "den. měsíc rok",
+            "den. měs rok"
+            )
+            # this must agree with DateDisplayEn's "formats" definition
+            # (since no locale-specific _display_gregorian exists, here)
 
     def orig_display(self, date): # unused: only here for historical reference
         """
@@ -278,4 +283,6 @@ class DateDisplayCZ(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(("cs", "CS", "cs_CZ", "Czech"), DateParserCZ, DateDisplayCZ)
+register_datehandler(
+    ("cs_CZ", "cs", "CS", "Czech", ('%-d.%-m.%Y',)),
+    DateParserCZ, DateDisplayCZ)

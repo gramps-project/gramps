@@ -89,8 +89,19 @@ class DateParserIs(DateParser):
         'reiknað'   : Date.QUAL_CALCULATED,
         }
 
+    def dhformat_changed(self):
+        self._dhformat_parse = re.compile(".*%(\S).*%(\S).*%(\S).*%(\S).*")
+
     def init_strings(self):
         DateParser.init_strings(self)
+
+        # match 'day. month year' format
+        self._text2 = re.compile('(\d+)?\.?\s*?%s\.?\s*((\d+)(/\d+)?)?\s*$'
+                                 % self._mon_str, re.IGNORECASE)
+        # match 'short-day day.month year' format
+        short_day_str = '(' + '|'.join(self._ds.short_days[1:]) + ')'
+        self._numeric = re.compile("%s\s*((\d+)[\.]\s*)?((\d+)\s*)?(\d+)\s*$"
+                                   % short_day_str, re.IGNORECASE)
         self._span     = re.compile("(frá)?\s*(?P<start>.+)\s*(til|--|–)\s*(?P<stop>.+)",
                                     re.IGNORECASE)
         self._range    = re.compile("(milli)\s+(?P<start>.+)\s+og\s+(?P<stop>.+)",
@@ -189,7 +200,7 @@ class DateDisplayIs(DateDisplay):
             if date_val[0] == date_val[1] == 0:
                 return str(date_val[2])
             else:
-                value = self._tformat.replace('%m', str(date_val[1]))
+                value = self.dhformat.replace('%m', str(date_val[1]))
                 # some locales have %b for the month, e.g. ar_EG, is_IS, nb_NO
                 value = value.replace('%b', str(date_val[1]))
                 # some locales have %a for the abbreviated day, e.g. is_IS
@@ -206,4 +217,6 @@ class DateDisplayIs(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('is_IS', 'is', 'íslenskt', 'Icelandic'), DateParserIs, DateDisplayIs)
+register_datehandler(
+    ('is_IS', 'is', 'íslenskt', 'Icelandic', ('%a %e.%b %Y',)),
+    DateParserIs, DateDisplayIs)

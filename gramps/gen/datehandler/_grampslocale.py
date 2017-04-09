@@ -20,8 +20,19 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 import locale
-from ..const import GRAMPS_LOCALE as glocale
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale # TODO unneeded? (see codeset)
 
 """
 Some OS environments do not support the locale.nl_langinfo() method
@@ -33,7 +44,7 @@ strftime.
 Since these routines return values encoded into selected character
 set, we have to convert to unicode.
 """
-codeset = glocale.encoding
+codeset = glocale.encoding # TODO I don't think "codeset" is used anymore
 
 try:
 
@@ -89,19 +100,14 @@ try:
 
     _deprecated_short_days = (
         "",
-        locale.nl_langinfo(locale.ABDAY_1), # Sunday
-        locale.nl_langinfo(locale.ABDAY_2), # Monday
-        locale.nl_langinfo(locale.ABDAY_3), # Tuesday
-        locale.nl_langinfo(locale.ABDAY_4), # Wednesday
-        locale.nl_langinfo(locale.ABDAY_5), # Thursday
-        locale.nl_langinfo(locale.ABDAY_6), # Friday
-        locale.nl_langinfo(locale.ABDAY_7), # Saturday
+        locale.nl_langinfo(locale.ABDAY_1), # Sun
+        locale.nl_langinfo(locale.ABDAY_2), # Mon
+        locale.nl_langinfo(locale.ABDAY_3), # Tue
+        locale.nl_langinfo(locale.ABDAY_4), # Wed
+        locale.nl_langinfo(locale.ABDAY_5), # Thu
+        locale.nl_langinfo(locale.ABDAY_6), # Fri
+        locale.nl_langinfo(locale.ABDAY_7), # Sat
         )
-
-    tformat = locale.nl_langinfo(locale.D_FMT).replace('%y','%Y')
-    # Gramps treats dates with '-' as ISO format, so replace separator on
-    # locale dates that use '-' to prevent confict
-    tformat = tformat.replace('-', '/')
 
 except:
     import time
@@ -160,37 +166,11 @@ except:
 
     _deprecated_short_days = (
         "",
-        time.strftime('%a',(1,1,1,1,1,1,6,1,1)), # Sunday
-        time.strftime('%a',(1,1,1,1,1,1,0,1,1)), # Monday
-        time.strftime('%a',(1,1,1,1,1,1,1,1,1)), # Tuesday
-        time.strftime('%a',(1,1,1,1,1,1,2,1,1)), # Wednesday
-        time.strftime('%a',(1,1,1,1,1,1,3,1,1)), # Thursday
-        time.strftime('%a',(1,1,1,1,1,1,4,1,1)), # Friday
-        time.strftime('%a',(1,1,1,1,1,1,5,1,1)), # Saturday
+        time.strftime('%a',(1,1,1,1,1,1,6,1,1)), # Sun
+        time.strftime('%a',(1,1,1,1,1,1,0,1,1)), # Mon
+        time.strftime('%a',(1,1,1,1,1,1,1,1,1)), # Tue
+        time.strftime('%a',(1,1,1,1,1,1,2,1,1)), # Wed
+        time.strftime('%a',(1,1,1,1,1,1,3,1,1)), # Thu
+        time.strftime('%a',(1,1,1,1,1,1,4,1,1)), # Fri
+        time.strftime('%a',(1,1,1,1,1,1,5,1,1)), # Sat
         )
-
-    # depending on the locale, the value returned for 20th Feb 2009 could be
-    # of the format '20/2/2009', '20/02/2009', '20.2.2009', '20.02.2009',
-    # '20-2-2009', '20-02-2009', '2009/02/20', '2009.02.20', '2009-02-20',
-    # '09-02-20' hence to reduce the possible values to test, make sure month
-    # is double digit also day should be double digit, preferably greater than
-    # 12 for human readablity
-
-    timestr = time.strftime('%x',(2005,10,25,1,1,1,1,1,1))
-
-    # Gramps treats dates with '-' as ISO format, so replace separator on
-    # locale dates that use '-' to prevent confict
-    timestr = timestr.replace('-', '/')
-    time2fmt_map = {
-        '25/10/2005' : '%d/%m/%Y',
-        '10/25/2005' : '%m/%d/%Y',
-        '2005/10/25' : '%Y/%m/%d',
-        '25.10.2005' : '%d.%m.%Y',
-        '10.25.2005' : '%m.%d.%Y',
-        '2005.10.25' : '%Y.%m.%d',
-        }
-
-    try:
-        tformat = time2fmt_map[timestr]
-    except KeyError as e:
-        tformat = '%d/%m/%Y'  #default value

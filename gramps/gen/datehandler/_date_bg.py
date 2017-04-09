@@ -315,7 +315,7 @@ class DateDisplayBG(DateDisplay):
             if date_val[0] == date_val[1] == 0:
                 return str(date_val[2])
             else:
-                value = self._tformat.replace('%m', str(date_val[1]))
+                value = self.dhformat.replace('%m', str(date_val[1]))
                 # some locales have %b for the month, e.g. ar_EG, is_IS, nb_NO
                 value = value.replace('%b', str(date_val[1]))
                 if date_val[0] == 0: # ignore the zero day and its delimiter
@@ -330,5 +330,6 @@ class DateDisplayBG(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('bg_BG', 'bg', 'bulgarian', 'Bulgarian'),
+register_datehandler(
+    ('bg_BG', 'bg', 'bulgarian', 'Bulgarian', ('%e.%m.%Y',)),
     DateParserBG, DateDisplayBG)

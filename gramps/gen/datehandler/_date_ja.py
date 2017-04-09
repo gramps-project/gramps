@@ -42,7 +42,6 @@ from ..lib.date import Date
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay
 from ._datehandler import register_datehandler
-from . import _grampslocale
 
 #-------------------------------------------------------------------------
 #
@@ -185,15 +184,18 @@ class DateDisplayJA(DateDisplay):
     Japanese language date display class.
     """
 
-    # Specify what is actually the "System Default".
-    _locale_tformat = _grampslocale.tformat
-    _locale_tformat = _locale_tformat.replace('%d', "31")
-    _locale_tformat = _locale_tformat.replace('%m', "12")
-    _locale_tformat = _locale_tformat.replace('%Y', "1999")
+    def formats_changed(self):
+        """ Allow overriding so a subclass can modify """
 
-    # This definition must agree with its "_display_gregorian" method
-    formats = ("YYYY-MM-DD (ISO)", # 0
-                "システムデフォールト (" + _locale_tformat + ")", # 1
+        # Specify what is actually the "System Default".
+        example = self.dhformat
+        example = example.replace('%d', "31")
+        example = example.replace('%m', "12")
+        example = example.replace('%Y', "1999")
+
+        # This definition must agree with its "_display_gregorian" method
+        self. formats = ("YYYY-MM-DD (ISO)", # 0
+                "システムデフォールト (" + example + ")", # 1
                 "1999年12月31日",   # 2
                 "1999年十二月31日", # 3
                 )
@@ -216,7 +218,7 @@ class DateDisplayJA(DateDisplay):
                 if date_val[0] == date_val[1] == 0:
                     value = str(date_val[2])
                 else:
-                    value = self._tformat.replace('%m', str(date_val[1]))
+                    value = self.dhformat.replace('%m', str(date_val[1]))
                     if date_val[0] == 0: # ignore the zero day and its delimiter
                         i_day = value.find('%d')
                         value = value.replace(value[i_day:i_day+3], '')
@@ -265,5 +267,6 @@ class DateDisplayJA(DateDisplay):
 #
 #-------------------------------------------------------------------------
 
-register_datehandler(('ja_JP', 'ja', 'japanese', 'Japanese'),
-                     DateParserJA, DateDisplayJA)
+register_datehandler(
+    ('ja_JP', 'ja', 'japanese', 'Japanese', ('%Y年%m月%d日',)),
+    DateParserJA, DateDisplayJA)

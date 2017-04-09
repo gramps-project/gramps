@@ -229,5 +229,6 @@ class DateDisplayAR(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('ar_AR', 'ar', 'Arabic', 'arabic'),
+register_datehandler(
+    ('ar_EG', 'ar_AR', 'ar', 'Arabic', 'arabic', ('%d %b, %Y',)),
     DateParserAR, DateDisplayAR)

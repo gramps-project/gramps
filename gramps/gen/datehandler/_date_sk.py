@@ -165,4 +165,6 @@ class DateDisplaySK(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('sk_SK', 'sk', 'SK', 'Slovak'), DateParserSK, DateDisplaySK)
+register_datehandler(
+    ('sk_SK', 'sk', 'SK', 'Slovak', ('%d.%m.%Y',)),
+    DateParserSK, DateDisplaySK)

@@ -231,7 +231,7 @@ class DateDisplayPL(DateDisplay):
                 if date_val[0] == date_val[1] == 0:
                     value = str(date_val[2])
                 else:
-                    value = self._tformat.replace('%d', str(date_val[0]))
+                    value = self.dhformat.replace('%d', str(date_val[0]))
                     value = value.replace('%m', str(date_val[1]))
                     value = value.replace('%Y', str(date_val[2]))
         elif self.format == 2:
@@ -317,5 +317,6 @@ class DateDisplayPL(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('pl_PL','polish','Polish_Poland','pl'),
-                     DateParserPL, DateDisplayPL)
+register_datehandler(
+    ('pl_PL', 'polish', 'Polish_Poland', 'pl', ('%d.%m.%Y',)),
+    DateParserPL, DateDisplayPL)

@@ -178,5 +178,6 @@ class DateDisplayFI(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('fi_FI', 'fi', 'finnish', 'Finnish'),
-                     DateParserFI, DateDisplayFI)
+register_datehandler(
+    ('fi_FI', 'fi', 'finnish', 'Finnish', ('%d.%m.%Y',)),
+    DateParserFI, DateDisplayFI)

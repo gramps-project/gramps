@@ -189,5 +189,6 @@ class DateDisplayIT(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('it_IT', 'it', 'italian', 'Italian', 'it_CH'),
+register_datehandler(
+    ('it_IT', 'it', 'italian', 'Italian', 'it_CH', ('%d/%m/%Y',)),
     DateParserIT, DateDisplayIT)

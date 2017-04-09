@@ -180,7 +180,7 @@ class DateDisplayNL(DateDisplay):
                 if date_val[0] == date_val[1] == 0:
                     value = str(date_val[2])
                 else:
-                    value = self._tformat.replace('%m', str(date_val[1]))
+                    value = self.dhformat.replace('%m', str(date_val[1]))
                     value = value.replace('%d', str(date_val[0]))
                     value = value.replace('%Y', str(abs(date_val[2])))
                     value = value.replace('-', '/')
@@ -268,5 +268,6 @@ class DateDisplayNL(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('nl_NL', 'dutch', 'Dutch', 'nl_BE', 'nl'),
-                     DateParserNL, DateDisplayNL)
+register_datehandler(
+    ('nl_NL', 'dutch', 'Dutch', 'nl_BE', 'nl', ('%d-%m-%Y',)),
+    DateParserNL, DateDisplayNL)

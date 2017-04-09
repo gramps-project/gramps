@@ -242,5 +242,6 @@ class DateDisplayEL(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('el_GR', 'el_CY', 'el', 'Greek', 'greek'),
+register_datehandler(
+    ('el_GR', 'el_CY', 'el', 'Greek', 'greek', ('%d/%m/%Y',)),
     DateParserEL, DateDisplayEL)

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004-2006  Donald N. Allingham
+# Copyright (C) 2017       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,7 +44,7 @@ log = logging.getLogger(".gen.datehandler")
 #
 #-------------------------------------------------------------------------
 from ._dateparser import DateParser
-from ._datedisplay import DateDisplay, DateDisplayEn
+from ._datedisplay import DateDisplay, DateDisplayEn, DateDisplayGB
 from ..constfunc import win
 from ..const import GRAMPS_LOCALE as glocale
 from ..utils.grampslocale import GrampsLocale
@@ -74,18 +75,35 @@ LANG_SHORT = str(LANG_SHORT)
 
 LANG_TO_PARSER = {
     'C'                     : DateParser,
-    'en'                    : DateParser,
-    'English_United States' : DateParser,
     }
 
 LANG_TO_DISPLAY = {
     'C'                     : DateDisplayEn,
-    'en'                    : DateDisplayEn,
-    'en_GB'                 : DateDisplayEn,
-    'English_United States' : DateDisplayEn,
     'ko_KR'                 : DateDisplay,
-    'nb_NO'                 : DateDisplay, # TODO this's in _date_nb, why here?
     }
+
+main_locale = { } # this will be augmented by calls to register_datehandler
+
+locale_tformat = {} # locale "tformat" (date format) strings
+
+for no_handler in (
+    ('C', ('%d/%m/%Y',)),
+    ('eo_EO', 'eo', 'Esperanto', ('%d/%m/%Y',)), # 'eo_EO' is a placeholder
+    ('he_IL', 'he', 'Hebrew', ('%d/%m/%Y',)),
+    ('sq_AL', 'sq', 'Albanian', ('%Y/%b/%d',)),
+    ('tr_TR', 'tr', 'Turkish', ('%d/%m/%Y',)),
+    ('vi_VN', 'vi', 'Vietnamese', ('%d/%m/%Y',)),
+    ):
+    format_string = ''
+    for possible_format in no_handler:
+        if isinstance(possible_format, tuple):
+            format_string = possible_format[0] # pre-seeded date format string
+            # maintain legacy gramps transformations
+            format_string = format_string.replace('%y','%Y').replace('-', '/')
+    for lang_str in no_handler:
+        if isinstance(lang_str, tuple): continue
+        main_locale[lang_str] = no_handler[0]
+        locale_tformat[lang_str] = format_string # locale's date format string
 
 def register_datehandler(locales,parse_class,display_class):
     """
@@ -104,8 +122,25 @@ def register_datehandler(locales,parse_class,display_class):
     :param display_class: Class to be associated with displaying
     :type display_class: :class:`.DateDisplay`
     """
+    format_string = ''
+    for possible_format in locales: # allow possibly embedding a date format
+        if isinstance(possible_format, tuple):
+            format_string = possible_format[0] # pre-seeded date format string
+            # maintain legacy gramps transformations
+            format_string = format_string.replace('%y','%Y').replace('-', '/')
     for lang_str in locales:
+        if isinstance(lang_str, tuple): continue
         LANG_TO_PARSER[lang_str] = parse_class
         LANG_TO_DISPLAY[lang_str] = display_class
+        main_locale[lang_str] = locales[0]
+        locale_tformat[lang_str] = format_string # locale's date format string
 
     parse_class._locale = display_class._locale = GrampsLocale(lang=locales[0])
+
+register_datehandler(
+    ('en_GB', 'English_United Kingdom', ("%d/%m/%y",)),
+    DateParser, DateDisplayGB)
+
+register_datehandler(
+    ('en_US', 'en', 'English_United States', ("%m/%d/%y",)),
+    DateParser, DateDisplayEn)

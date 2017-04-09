@@ -138,5 +138,6 @@ class DateDisplayUK(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('uk_UA', 'uk', 'ukrainian', 'Ukrainian'),
-                        DateParserUK, DateDisplayUK)
+register_datehandler(
+    ('uk_UA', 'uk', 'ukrainian', 'Ukrainian', ('%d.%m.%Y',)),
+    DateParserUK, DateDisplayUK)

@@ -178,5 +178,6 @@ class DateDisplayZH_CN(DateDisplay):
 #
 #-------------------------------------------------------------------------
 
-register_datehandler(('zh_CN', 'zh_SG', 'zh', 'chinese', 'Chinese'),
-                     DateParserZH_CN, DateDisplayZH_CN)
+register_datehandler(
+    ('zh_CN', 'zh_SG', 'zh', 'chinese', 'Chinese', ('%Y年%m月%d日',)),
+    DateParserZH_CN, DateDisplayZH_CN)

@@ -135,6 +135,7 @@ from gramps.gen.lib.const import IDENTICAL, DIFFERENT
 from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
 from gramps.plugins.lib.libplaceimport import PlaceImport
 from gramps.gen.display.place import displayer as _pd
+from gramps.gen.utils.grampslocale import GrampsLocale
 
 #-------------------------------------------------------------------------
 #
@@ -729,7 +730,13 @@ class GedcomDateParser(DateParser):
         'may' : 5,  'jun' : 6,  'jul' : 7,  'aug' : 8,
         'sep' : 9,  'oct' : 10, 'nov' : 11, 'dec' : 12,
         }
-    fmt = "%m/%d/%y"
+
+    _locale = GrampsLocale(lang='en_US') # no register_datehandler here
+
+    def dhformat_changed(self):
+        """ Allow overriding so a subclass can modify it """
+        self.dhformat = "%m/%d/%y"
+
 
 #-------------------------------------------------------------------------
 #

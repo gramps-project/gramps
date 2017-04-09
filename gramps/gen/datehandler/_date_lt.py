@@ -182,7 +182,8 @@ class DateDisplayLT(DateDisplay):
     _qual_str = ("", "apytikriai ", "apskaičiuota ")
 
     formats = (
-        "mmmm-MM-DD (ISO)", "mmmm m. mėnesio diena d.", "Mėn diena, metai")
+        "mmmm-MM-DD (ISO)", "mmmm.MM.DD",
+        "mmmm m. mėnesio diena d.", "Mėn diena, metai")
         # this definition must agree with its "_display_gregorian" method
 
     def _display_gregorian(self, date_val):
@@ -195,6 +196,9 @@ class DateDisplayLT(DateDisplay):
         if self.format == 0:
             return self.display_iso(date_val)
         elif self.format == 1:
+            # numerical
+            return self.dd_dformat01(date_val)
+        elif self.format == 2:
             # mmmm m. mėnesio diena d. (year m. month_name day d.)
             if date_val[0] == 0:
                 if date_val[1] == 0:
@@ -205,7 +209,7 @@ class DateDisplayLT(DateDisplay):
                 value = "%s m. %s %d d." % (year,
                                             self.long_months[date_val[1]],
                                             date_val[0])
-        elif self.format == 2:
+        elif self.format == 3:
             # month_abbreviation day, year
             if date_val[0] == 0:
                 if date_val[1] == 0:
@@ -259,4 +263,6 @@ class DateDisplayLT(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('lt_LT', 'lt', 'lithuanian', 'Lithuanian'), DateParserLT, DateDisplayLT)
+register_datehandler(
+    ('lt_LT', 'lt', 'lithuanian', 'Lithuanian', ('%Y.%m.%d',)),
+    DateParserLT, DateDisplayLT)
