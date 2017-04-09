@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2013       John Ralls <jralls@ceridwen.us>
-# Copyright (C) 2013-2016  Paul Franklin
+# Copyright (C) 2013-2017  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,13 +25,16 @@ Commonly used report options. Call the function, don't copy the code!
 
 #-------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from ...config import config
+from ...datehandler import get_date_formats, LANG_TO_DISPLAY, main_locale
 from ...display.name import displayer as global_name_display
+from ...lib.date import Today
 from ..menu import EnumeratedListOption, BooleanOption, NumberOption
 from ...proxy import PrivateProxyDb, LivingProxyDb
+from ...utils.grampslocale import GrampsLocale
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
@@ -50,6 +53,7 @@ def add_localization_option(menu, category):
     Insert an option for localizing the report into a different locale
     from the UI locale.
     """
+
     trans = EnumeratedListOption(_("Translation"),
                                  glocale.DEFAULT_TRANSLATION_STR)
     trans.add_item(glocale.DEFAULT_TRANSLATION_STR, _("Default"))
@@ -58,6 +62,7 @@ def add_localization_option(menu, category):
         trans.add_item(languages[language], language)
     trans.set_help(_("The translation to be used for the report."))
     menu.add_option(category, "trans", trans)
+    return trans
 
 def add_name_format_option(menu, category):
     """
@@ -206,3 +211,90 @@ def run_living_people_option(report, menu, llocale=glocale):
                                         years_after_death=years_past_death,
                                         llocale=llocale)
     return option
+
+def add_date_format_option(menu, category, localization_option):
+    """
+    Insert an option for changing the report's date format to a
+    report-specific format instead of the user's Edit=>Preferences choice
+
+    :param localization_option: allow realtime translation of date formats
+    :type localization_option: a :class:`.EnumeratedListOption` instance
+    """
+
+    def on_trans_value_changed():
+        """
+        Handle a change in the localization option (inside the date-format one)
+        """
+        lang = localization_option.get_value()
+        if lang == GrampsLocale.DEFAULT_TRANSLATION_STR: # the UI language
+            vlocale = glocale
+        elif lang in LANG_TO_DISPLAY: # a displayer exists
+            vlocale = LANG_TO_DISPLAY[lang]._locale # locale is already loaded
+        else: # no displayer
+            vlocale = GrampsLocale(lang=main_locale[lang])
+        ldd = vlocale.date_displayer
+        target_format_list = get_date_formats(vlocale) # get localized formats
+        # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
+        trans_text = vlocale.translation.sgettext
+        if global_date_format < len(target_format_list):
+            ldd.set_format(global_date_format)
+            example = vlocale.get_date(today)
+            target_option_list = [
+                (0, "%s (%s) (%s)" % (trans_text("Default"),
+                                      target_format_list[global_date_format],
+                                      example))]
+        else:
+            target_option_list = [(0, trans_text("Default"))]
+        for fmt in target_format_list:
+            index = target_format_list.index(fmt) + 1 # option default = 0
+            ldd.set_format(index - 1)
+            example = vlocale.get_date(today)
+            target_option_list += [(index, fmt + ' (%s)' % example)]
+        date_option.set_items(target_option_list)
+
+    today = Today()
+    date_option = EnumeratedListOption(_("Date format"), 0)
+    global_date_format = config.get('preferences.date-format')
+    on_trans_value_changed()
+    date_option.set_help(_("The format and language for dates, with examples"))
+    # if this report hasn't ever been run, start with user's current setting
+    date_option.set_value(global_date_format + 1)
+    # if the report has been run, this line will get the user's old setting
+    menu.add_option(category, 'date_format', date_option)
+    localization_option.connect('value-changed', on_trans_value_changed)
+
+def run_date_format_option(report, menu):
+    """
+    Run the option for changing the report's date format to a
+    report-specific format instead of the user's Edit=>Preferences choice
+    """
+    def warning(value):
+        """
+        Convenience function for the error message.
+
+        The 'value' (starting at '0') is the index in the option choices list
+        (as opposed to the index (starting at '0') in the target format list,
+        which is shorter by one, so corresponding offsets are made).
+        """
+        target_format_choices = date_option.get_items() # with numbers
+        report._user.warn(
+            _("Ignoring unknown option: %s") % value,
+            _("Valid values: ") + str(target_format_choices)
+            + '\n\n' +
+            _("Using options string: %s") % str(target_format_list[0])
+            ) # the previous line's "0" is because ISO is always the fallback
+
+    target_format_list = get_date_formats(report._locale)
+    date_option = menu.get_option_by_name('date_format')
+    date_opt_value = date_option.get_value()
+    if date_opt_value == 0: # "default"
+        format_to_be = config.get('preferences.date-format') # the UI choice
+    elif date_opt_value <= len(target_format_list):
+        format_to_be = date_opt_value - 1
+    else:
+        warning(date_opt_value)
+        format_to_be = 0 # ISO always exists
+    if format_to_be + 1 > len(target_format_list):
+        warning(format_to_be + 1)
+        format_to_be = 0 # ISO always exists
+    report._ldd.set_format(format_to_be)
