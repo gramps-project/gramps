@@ -131,6 +131,8 @@ class IndivCompleteReport(Report):
         lang = menu.get_option_by_name('trans').get_value()
         self._locale = self.set_locale(lang)
 
+        stdoptions.run_date_format_option(self, menu)
+
         stdoptions.run_private_data_option(self, menu)
         stdoptions.run_living_people_option(self, menu, self._locale)
         self.database = CacheProxyDb(self.database)
@@ -1074,7 +1076,9 @@ class IndivCompleteOptions(MenuReportOptions):
 
         stdoptions.add_living_people_option(menu, category_name)
 
-        stdoptions.add_localization_option(menu, category_name)
+        locale_opt = stdoptions.add_localization_option(menu, category_name)
+
+        stdoptions.add_date_format_option(menu, category_name, locale_opt)
 
         ################################
         category_name = _("Include")
