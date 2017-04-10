@@ -567,13 +567,17 @@ class DateDisplay:
                      short_month = short_months[month], year = '').rstrip()
 
     def _get_short_weekday(self, date_val):
-        if date_val[0] == 0 or date_val[1] == 0: # no day or no month or both
+        if (date_val[0] == 0 or date_val[1] == 0 # no day or no month or both
+                or date_val[1] == 13 # Hebrew has 13 months
+                or date_val[2] < 0): # B.C.E. date
             return ''
         w_day = datetime.date(date_val[2], date_val[1], date_val[0]) # y, m, d
         return self.short_days[((w_day.weekday() + 1) % 7) + 1]
 
     def _get_long_weekday(self, date_val):
-        if date_val[0] == 0 or date_val[1] == 0: # no day or no month or both
+        if (date_val[0] == 0 or date_val[1] == 0 # no day or no month or both
+                or date_val[1] == 13 # Hebrew has 13 months
+                or date_val[2] < 0): # B.C.E. date
             return ''
         w_day = datetime.date(date_val[2], date_val[1], date_val[0]) # y, m, d
         return self.long_days[((w_day.weekday() + 1) % 7) + 1]
