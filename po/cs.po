@@ -38,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-21 23:34-0700\n"
-"PO-Revision-Date: 2017-04-04 09:24+0200\n"
+"POT-Creation-Date: 2017-04-09 16:09-0700\n"
+"PO-Revision-Date: 2017-04-10 12:55+0200\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -1213,7 +1213,7 @@ msgstr "\"%s\""
 msgid "Performing action: %s."
 msgstr "Prováděná akce: %s."
 
-#: ../gramps/cli/arghandler.py:458
+#: ../gramps/cli/arghandler.py:458 ../gramps/gen/plug/report/stdoptions.py:284
 #, python-format
 msgid "Using options string: %s"
 msgstr "Použitý řetězec voleb: %s"
@@ -1976,6 +1976,7 @@ msgid "Use '%(notranslate)s' to see valid values."
 msgstr "Popis platných hodnot získáte použitím '%(notranslate)s'."
 
 #: ../gramps/cli/plug/__init__.py:528
+#: ../gramps/gen/plug/report/stdoptions.py:281
 #, python-format
 msgid "Ignoring unknown option: %s"
 msgstr "Ignorovaná neplatná volba: %s"
@@ -2087,18 +2088,18 @@ msgstr "žádné"
 msgid ":"
 msgstr ":"
 
-#: ../gramps/gen/datehandler/__init__.py:76
+#: ../gramps/gen/datehandler/__init__.py:83
 #, python-format
 msgid "Date parser for '%s' not available, using default"
 msgstr "Analyzátor data pro '%s' není k dispozici, použije se výchozí"
 
-#: ../gramps/gen/datehandler/__init__.py:92
+#: ../gramps/gen/datehandler/__init__.py:100
 #, python-format
 msgid "Date displayer for '%s' not available, using default"
 msgstr "Zobrazovač data pro '%s' není k dispozici, použije se výchozí"
 
 #. format 0 - must always be ISO
-#: ../gramps/gen/datehandler/_datedisplay.py:65
+#: ../gramps/gen/datehandler/_datedisplay.py:70
 msgid "YYYY-MM-DD (ISO)"
 msgstr "RRRR-MM-DD (ISO)"
 
@@ -2107,34 +2108,34 @@ msgstr "RRRR-MM-DD (ISO)"
 #. This should be the format that is used under the locale by
 #. strftime() for '%x'.
 #. You may translate this as "Numerical", "System preferred", or similar.
-#: ../gramps/gen/datehandler/_datedisplay.py:72
+#: ../gramps/gen/datehandler/_datedisplay.py:77
 msgid "date format|Numerical"
 msgstr "Numerický"
 
 #. Full month name, day, year
-#: ../gramps/gen/datehandler/_datedisplay.py:75
+#: ../gramps/gen/datehandler/_datedisplay.py:80
 msgid "Month Day, Year"
 msgstr "Měsíc den, rok"
 
 #. Abbreviated month name, day, year
-#: ../gramps/gen/datehandler/_datedisplay.py:78
+#: ../gramps/gen/datehandler/_datedisplay.py:83
 msgid "MON DAY, YEAR"
 msgstr "MĚS DEN, ROK"
 
 #. Day, full month name, year
-#: ../gramps/gen/datehandler/_datedisplay.py:81
+#: ../gramps/gen/datehandler/_datedisplay.py:86
 msgid "Day Month Year"
 msgstr "Den Měsíc Rok"
 
 #. Day, abbreviated month name, year
-#: ../gramps/gen/datehandler/_datedisplay.py:84
+#: ../gramps/gen/datehandler/_datedisplay.py:89
 msgid "DAY MON YEAR"
 msgstr "DEN MĚS ROK"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection for your language.
-#: ../gramps/gen/datehandler/_datedisplay.py:162
+#: ../gramps/gen/datehandler/_datedisplay.py:181
 #: ../gramps/plugins/drawreport/calendarreport.py:232
 #, python-brace-format
 msgid "{long_month} {year}"
@@ -2145,7 +2146,7 @@ msgstr "{long_month} {year}"
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:170
+#: ../gramps/gen/datehandler/_datedisplay.py:189
 #, python-brace-format
 msgid "from|{long_month} {year}"
 msgstr "{long_month.f[D]} {year}"
@@ -2155,7 +2156,7 @@ msgstr "{long_month.f[D]} {year}"
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:178
+#: ../gramps/gen/datehandler/_datedisplay.py:197
 #, python-brace-format
 msgid "to|{long_month} {year}"
 msgstr "{long_month.f[D]} {year}"
@@ -2165,7 +2166,7 @@ msgstr "{long_month.f[D]} {year}"
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:186
+#: ../gramps/gen/datehandler/_datedisplay.py:205
 #, python-brace-format
 msgid "between|{long_month} {year}"
 msgstr "{long_month.f[O]} {year}"
@@ -2175,7 +2176,7 @@ msgstr "{long_month.f[O]} {year}"
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:194
+#: ../gramps/gen/datehandler/_datedisplay.py:213
 #, python-brace-format
 msgid "and|{long_month} {year}"
 msgstr "{long_month.f[O]} {year}"
@@ -2184,7 +2185,7 @@ msgstr "{long_month.f[O]} {year}"
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:201
+#: ../gramps/gen/datehandler/_datedisplay.py:220
 #, python-brace-format
 msgid "before|{long_month} {year}"
 msgstr "{long_month.f[O]} {year}"
@@ -2193,7 +2194,7 @@ msgstr "{long_month.f[O]} {year}"
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:208
+#: ../gramps/gen/datehandler/_datedisplay.py:227
 #, python-brace-format
 msgid "after|{long_month} {year}"
 msgstr "{long_month.f[T]} {year}"
@@ -2202,7 +2203,7 @@ msgstr "{long_month.f[T]} {year}"
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:215
+#: ../gramps/gen/datehandler/_datedisplay.py:234
 #, python-brace-format
 msgid "about|{long_month} {year}"
 msgstr "{long_month.f[D]} {year}"
@@ -2211,7 +2212,7 @@ msgstr "{long_month.f[D]} {year}"
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:222
+#: ../gramps/gen/datehandler/_datedisplay.py:241
 #, python-brace-format
 msgid "estimated|{long_month} {year}"
 msgstr "{long_month.f[D]} {year}"
@@ -2220,12 +2221,12 @@ msgstr "{long_month.f[D]} {year}"
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:229
+#: ../gramps/gen/datehandler/_datedisplay.py:248
 #, python-brace-format
 msgid "calculated|{long_month} {year}"
 msgstr "{long_month} {year}"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:234
+#: ../gramps/gen/datehandler/_datedisplay.py:253
 #, python-brace-format
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2235,7 +2236,7 @@ msgstr "{short_month} {year}"
 #. language, translate this to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:242
+#: ../gramps/gen/datehandler/_datedisplay.py:261
 #, python-brace-format
 msgid "from|{short_month} {year}"
 msgstr "{short_month.f[D]} {year}"
@@ -2245,7 +2246,7 @@ msgstr "{short_month.f[D]} {year}"
 #. language, translate this to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:250
+#: ../gramps/gen/datehandler/_datedisplay.py:269
 #, python-brace-format
 msgid "to|{short_month} {year}"
 msgstr "{short_month.f[D]} {year}"
@@ -2255,7 +2256,7 @@ msgstr "{short_month.f[D]} {year}"
 #. language, translate this to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:258
+#: ../gramps/gen/datehandler/_datedisplay.py:277
 #, python-brace-format
 msgid "between|{short_month} {year}"
 msgstr "{short_month.f[O]} {year}"
@@ -2265,7 +2266,7 @@ msgstr "{short_month.f[O]} {year}"
 #. language, translate this to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:266
+#: ../gramps/gen/datehandler/_datedisplay.py:285
 #, python-brace-format
 msgid "and|{short_month} {year}"
 msgstr "{short_month.f[O]} {year}"
@@ -2274,7 +2275,7 @@ msgstr "{short_month.f[O]} {year}"
 #. language, translate this to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:273
+#: ../gramps/gen/datehandler/_datedisplay.py:292
 #, python-brace-format
 msgid "before|{short_month} {year}"
 msgstr "{short_month.f[D]} {year}"
@@ -2283,7 +2284,7 @@ msgstr "{short_month.f[D]} {year}"
 #. language, translate this to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:280
+#: ../gramps/gen/datehandler/_datedisplay.py:299
 #, python-brace-format
 msgid "after|{short_month} {year}"
 msgstr "{short_month.f[T]} {year}"
@@ -2292,7 +2293,7 @@ msgstr "{short_month.f[T]} {year}"
 #. language, translate this to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:287
+#: ../gramps/gen/datehandler/_datedisplay.py:306
 #, python-brace-format
 msgid "about|{short_month} {year}"
 msgstr "{short_month.f[D]} {year}"
@@ -2301,7 +2302,7 @@ msgstr "{short_month.f[D]} {year}"
 #. language, translate this to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:294
+#: ../gramps/gen/datehandler/_datedisplay.py:313
 #, python-brace-format
 msgid "estimated|{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2310,7 +2311,7 @@ msgstr "{short_month} {year}"
 #. language, translate this to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
-#: ../gramps/gen/datehandler/_datedisplay.py:301
+#: ../gramps/gen/datehandler/_datedisplay.py:320
 #, python-brace-format
 msgid "calculated|{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -2318,18 +2319,18 @@ msgstr "{short_month} {year}"
 #. If there is no special inflection for "from <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "from" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:400
+#: ../gramps/gen/datehandler/_datedisplay.py:426
 msgid "from-date|"
 msgstr "from"
 
 #. If there is no special inflection for "to <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "to" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:405
+#: ../gramps/gen/datehandler/_datedisplay.py:431
 msgid "to-date|"
 msgstr "to"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:406
+#: ../gramps/gen/datehandler/_datedisplay.py:432
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}od {date_start} do {date_stop}{nonstd_calendar_and_ny}"
@@ -2337,18 +2338,18 @@ msgstr "{date_quality}od {date_start} do {date_stop}{nonstd_calendar_and_ny}"
 #. If there is no special inflection for "between <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "between" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:425
+#: ../gramps/gen/datehandler/_datedisplay.py:451
 msgid "between-date|"
 msgstr "between"
 
 #. If there is no special inflection for "and <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "and" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:430
+#: ../gramps/gen/datehandler/_datedisplay.py:456
 msgid "and-date|"
 msgstr "and"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:431
+#: ../gramps/gen/datehandler/_datedisplay.py:457
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
@@ -2357,68 +2358,68 @@ msgstr "{date_quality}mezi {date_start} a {date_stop}{nonstd_calendar_and_ny}"
 #. If there is no special inflection for "before <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "before" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:464
+#: ../gramps/gen/datehandler/_datedisplay.py:490
 msgid "before-date|"
 msgstr "before"
 
 #. If there is no special inflection for "after <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "after" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:469
+#: ../gramps/gen/datehandler/_datedisplay.py:495
 msgid "after-date|"
 msgstr "after"
 
 #. If there is no special inflection for "about <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "about" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:474
+#: ../gramps/gen/datehandler/_datedisplay.py:500
 msgid "about-date|"
 msgstr "about"
 
 #. If there is no special inflection for "estimated <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "estimated" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:479
+#: ../gramps/gen/datehandler/_datedisplay.py:505
 msgid "estimated-date|"
 msgstr "estimated"
 
 #. If there is no special inflection for "calculated <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "calculated" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:484
+#: ../gramps/gen/datehandler/_datedisplay.py:510
 msgid "calculated-date|"
 msgstr "calculated"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:503
+#: ../gramps/gen/datehandler/_datedisplay.py:529
 #, python-brace-format
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:585
+#: ../gramps/gen/datehandler/_datedisplay.py:631
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
 msgstr "{long_month} {day:d}, {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:611
+#: ../gramps/gen/datehandler/_datedisplay.py:657
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
 msgstr "{short_month} {day:d}, {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:637
+#: ../gramps/gen/datehandler/_datedisplay.py:683
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
 msgstr "{day:d}. {long_month} {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:663
+#: ../gramps/gen/datehandler/_datedisplay.py:709
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
 msgstr "{day:d}. {short_month} {year}"
 
-#: ../gramps/gen/datehandler/_dateparser.py:401
+#: ../gramps/gen/datehandler/_dateparser.py:421
 msgid "today"
 msgstr "dnes"
 
@@ -8578,6 +8579,7 @@ msgstr "Horní index"
 #: ../gramps/gui/widgets/styledtextbuffer.py:565
 #: ../gramps/gui/widgets/styledtextbuffer.py:605
 #: ../gramps/gui/widgets/styledtexteditor.py:472
+#: ../gramps/gui/widgets/styledtexteditor.py:473
 msgid "Link"
 msgstr "Odkaz"
 
@@ -8589,7 +8591,7 @@ msgstr "Odkaz"
 #: ../gramps/gui/configure.py:655 ../gramps/gui/configure.py:656
 #: ../gramps/gui/configure.py:657 ../gramps/gui/configure.py:658
 #: ../gramps/gui/editors/displaytabs/surnametab.py:74
-#: ../gramps/gui/plug/_guioptions.py:87 ../gramps/gui/plug/_guioptions.py:1498
+#: ../gramps/gui/plug/_guioptions.py:87 ../gramps/gui/plug/_guioptions.py:1502
 #: ../gramps/plugins/drawreport/statisticschart.py:334
 #: ../gramps/plugins/export/exportcsv.py:354
 #: ../gramps/plugins/importer/importcsv.py:159
@@ -8636,7 +8638,7 @@ msgstr "Štítek"
 
 #: ../gramps/gen/lib/tag.py:125 ../gramps/gui/glade/styleeditor.glade:384
 #: ../gramps/gui/glade/styleeditor.glade:1433
-#: ../gramps/gui/plug/_guioptions.py:1499 ../gramps/gui/views/tags.py:409
+#: ../gramps/gui/plug/_guioptions.py:1503 ../gramps/gui/views/tags.py:409
 msgid "Color"
 msgstr "Barva"
 
@@ -8920,8 +8922,10 @@ msgstr "Nemohu vytvořit %s"
 #.
 #. -------------------------------------------------------------------------------
 #: ../gramps/gen/plug/docgen/graphdoc.py:65
-#: ../gramps/gen/plug/report/stdoptions.py:55
-#: ../gramps/gen/plug/report/stdoptions.py:68
+#: ../gramps/gen/plug/report/stdoptions.py:59
+#: ../gramps/gen/plug/report/stdoptions.py:73
+#: ../gramps/gen/plug/report/stdoptions.py:243
+#: ../gramps/gen/plug/report/stdoptions.py:247
 msgid "Default"
 msgstr "Výchozí"
 
@@ -9026,7 +9030,7 @@ msgstr "Rozložení GraphViz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:138
-#: ../gramps/gui/widgets/styledtexteditor.py:481
+#: ../gramps/gui/widgets/styledtexteditor.py:482
 msgid "Font family"
 msgstr "Řez písma"
 
@@ -9039,7 +9043,7 @@ msgstr ""
 "písmo FreeSans. FreeSans je dostupné z http://www.nongnu.org/freefont/"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:147
-#: ../gramps/gui/widgets/styledtexteditor.py:493
+#: ../gramps/gui/widgets/styledtexteditor.py:494
 msgid "Font size"
 msgstr "Velikost písma"
 
@@ -9274,6 +9278,7 @@ msgid "Value '%(val)s' not found for option '%(opt)s'"
 msgstr "Hodnota '%(val)s' pro volbu '%(opt)s' nebyla nalezena"
 
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:144
+#: ../gramps/gen/plug/report/stdoptions.py:282
 msgid "Valid values: "
 msgstr "Platné hodnoty: "
 
@@ -9388,68 +9393,76 @@ msgstr "Závěrečné poznámky"
 msgid "%s:"
 msgstr "%s:"
 
-#: ../gramps/gen/plug/report/stdoptions.py:53
+#: ../gramps/gen/plug/report/stdoptions.py:57
 msgid "Translation"
 msgstr "Překlad"
 
-#: ../gramps/gen/plug/report/stdoptions.py:59
+#: ../gramps/gen/plug/report/stdoptions.py:63
 msgid "The translation to be used for the report."
 msgstr "Překlad použitý pro tuto sestavu."
 
-#: ../gramps/gen/plug/report/stdoptions.py:67 ../gramps/gui/configure.py:981
+#: ../gramps/gen/plug/report/stdoptions.py:72 ../gramps/gui/configure.py:981
 #: ../gramps/plugins/webreport/webcal.py:1671
 msgid "Name format"
 msgstr "Formát jména"
 
-#: ../gramps/gen/plug/report/stdoptions.py:72
+#: ../gramps/gen/plug/report/stdoptions.py:77
 #: ../gramps/plugins/webreport/webcal.py:1675
 msgid "Select the format to display names"
 msgstr "Vyberte formát zobrazení jmen"
 
-#: ../gramps/gen/plug/report/stdoptions.py:100
+#: ../gramps/gen/plug/report/stdoptions.py:105
 msgid "Include data marked private"
 msgstr "Zahrnout soukromé záznamy"
 
-#: ../gramps/gen/plug/report/stdoptions.py:101
+#: ../gramps/gen/plug/report/stdoptions.py:106
 msgid "Whether to include private data"
 msgstr "Zda zahrnout soukromé informace"
 
-#: ../gramps/gen/plug/report/stdoptions.py:166
+#: ../gramps/gen/plug/report/stdoptions.py:171
 msgid "Living People"
 msgstr "Žijící osoby"
 
-#: ../gramps/gen/plug/report/stdoptions.py:168
+#: ../gramps/gen/plug/report/stdoptions.py:173
 msgid "'living people'|Included, and all data"
 msgstr "Zahrnuta všechna data"
 
-#: ../gramps/gen/plug/report/stdoptions.py:172
+#: ../gramps/gen/plug/report/stdoptions.py:177
 msgid "'living people'|Full names, but data removed"
 msgstr "Plná jména nahrazena, data odstraněna"
 
-#: ../gramps/gen/plug/report/stdoptions.py:174
+#: ../gramps/gen/plug/report/stdoptions.py:179
 msgid "'living people'|Given names replaced, and data removed"
 msgstr "Křestní jména změněna, data odstraněna"
 
-#: ../gramps/gen/plug/report/stdoptions.py:176
+#: ../gramps/gen/plug/report/stdoptions.py:181
 msgid "'living people'|Complete names replaced, and data removed"
 msgstr "Úplná jména změněna, data odstraněna"
 
-#: ../gramps/gen/plug/report/stdoptions.py:178
+#: ../gramps/gen/plug/report/stdoptions.py:183
 msgid "'living people'|Not included"
 msgstr "Nezahrnuto"
 
 #. for deferred translation
-#: ../gramps/gen/plug/report/stdoptions.py:180
+#: ../gramps/gen/plug/report/stdoptions.py:185
 msgid "How to handle living people"
 msgstr "Jak jednat s živými osobami"
 
-#: ../gramps/gen/plug/report/stdoptions.py:183
+#: ../gramps/gen/plug/report/stdoptions.py:188
 msgid "Years from death to consider living"
 msgstr "Počet let od úmrtí v kterých jsou osoby považovány za živé"
 
-#: ../gramps/gen/plug/report/stdoptions.py:186
+#: ../gramps/gen/plug/report/stdoptions.py:191
 msgid "Whether to restrict data on recently-dead people"
 msgstr "Zda omezit informace nedávno zemřelých osob"
+
+#: ../gramps/gen/plug/report/stdoptions.py:256 ../gramps/gui/configure.py:1009
+msgid "Date format"
+msgstr "Formát data"
+
+#: ../gramps/gen/plug/report/stdoptions.py:259
+msgid "The format and language for dates, with examples"
+msgstr "Formát a jazyk pro datum. S příklady"
 
 #: ../gramps/gen/plug/report/utils.py:158
 #: ../gramps/plugins/textreport/indivcomplete.py:901
@@ -9868,224 +9881,224 @@ msgstr "%s, ..."
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s a %(mother)s"
 
-#: ../gramps/gen/utils/grampslocale.py:69
+#: ../gramps/gen/utils/grampslocale.py:70
 msgid "Arabic"
 msgstr "Arabština"
 
-#: ../gramps/gen/utils/grampslocale.py:70
+#: ../gramps/gen/utils/grampslocale.py:71
 msgid "Bulgarian"
 msgstr "Bulharština"
 
-#: ../gramps/gen/utils/grampslocale.py:71
+#: ../gramps/gen/utils/grampslocale.py:72
 msgid "Breton"
 msgstr "Bretonština"
 
 #. Windows has no translation for Breton
-#: ../gramps/gen/utils/grampslocale.py:72
+#: ../gramps/gen/utils/grampslocale.py:73
 msgid "Catalan"
 msgstr "Katalánština"
 
-#: ../gramps/gen/utils/grampslocale.py:73
+#: ../gramps/gen/utils/grampslocale.py:74
 msgid "Czech"
 msgstr "Čeština"
 
-#: ../gramps/gen/utils/grampslocale.py:74
+#: ../gramps/gen/utils/grampslocale.py:75
 msgid "Danish"
 msgstr "Dánština"
 
-#: ../gramps/gen/utils/grampslocale.py:75
+#: ../gramps/gen/utils/grampslocale.py:76
 msgid "German"
 msgstr "Němčina"
 
-#: ../gramps/gen/utils/grampslocale.py:76
+#: ../gramps/gen/utils/grampslocale.py:77
 msgid "Greek"
 msgstr "Řečtina"
 
-#: ../gramps/gen/utils/grampslocale.py:77
+#: ../gramps/gen/utils/grampslocale.py:78
 msgid "English (USA)"
 msgstr "Angličtina (USA)"
 
-#: ../gramps/gen/utils/grampslocale.py:78
+#: ../gramps/gen/utils/grampslocale.py:79
 msgid "English"
 msgstr "Angličtina"
 
-#: ../gramps/gen/utils/grampslocale.py:79
+#: ../gramps/gen/utils/grampslocale.py:80
 msgid "Esperanto"
 msgstr "Esperanto"
 
 #. Windows has no translation for Esperanto
-#: ../gramps/gen/utils/grampslocale.py:80
+#: ../gramps/gen/utils/grampslocale.py:81
 msgid "Spanish"
 msgstr "Španělština"
 
-#: ../gramps/gen/utils/grampslocale.py:81
+#: ../gramps/gen/utils/grampslocale.py:82
 msgid "Finnish"
 msgstr "Finština"
 
-#: ../gramps/gen/utils/grampslocale.py:82
+#: ../gramps/gen/utils/grampslocale.py:83
 msgid "French"
 msgstr "Francouzština"
 
-#: ../gramps/gen/utils/grampslocale.py:83
+#: ../gramps/gen/utils/grampslocale.py:84
 msgid "Gaelic"
 msgstr "Gaelština"
 
 #. Windows has no translation for Gaelic
-#: ../gramps/gen/utils/grampslocale.py:84
+#: ../gramps/gen/utils/grampslocale.py:85
 msgid "Hebrew"
 msgstr "Hebrejský"
 
-#: ../gramps/gen/utils/grampslocale.py:85
+#: ../gramps/gen/utils/grampslocale.py:86
 msgid "Croatian"
 msgstr "Chorvatština"
 
-#: ../gramps/gen/utils/grampslocale.py:86
+#: ../gramps/gen/utils/grampslocale.py:87
 msgid "Hungarian"
 msgstr "Maďarština"
 
-#: ../gramps/gen/utils/grampslocale.py:87
+#: ../gramps/gen/utils/grampslocale.py:88
 msgid "Icelandic"
 msgstr "Islandština"
 
-#: ../gramps/gen/utils/grampslocale.py:88
+#: ../gramps/gen/utils/grampslocale.py:89
 msgid "Italian"
 msgstr "Italština"
 
-#: ../gramps/gen/utils/grampslocale.py:89
+#: ../gramps/gen/utils/grampslocale.py:90
 msgid "Japanese"
 msgstr "Japonština"
 
-#: ../gramps/gen/utils/grampslocale.py:90
+#: ../gramps/gen/utils/grampslocale.py:91
 msgid "Lithuanian"
 msgstr "Litevština"
 
-#: ../gramps/gen/utils/grampslocale.py:91
+#: ../gramps/gen/utils/grampslocale.py:92
 msgid "Macedonian"
 msgstr "Makedonština"
 
 #. Windows has no translation for Macedonian
-#: ../gramps/gen/utils/grampslocale.py:92
+#: ../gramps/gen/utils/grampslocale.py:93
 msgid "Norwegian Bokmal"
 msgstr "Norština Bokmål"
 
-#: ../gramps/gen/utils/grampslocale.py:93
+#: ../gramps/gen/utils/grampslocale.py:94
 msgid "Dutch"
 msgstr "Holandština"
 
-#: ../gramps/gen/utils/grampslocale.py:94
+#: ../gramps/gen/utils/grampslocale.py:95
 msgid "Norwegian Nynorsk"
 msgstr "Norština (Nynorsk)"
 
-#: ../gramps/gen/utils/grampslocale.py:95
+#: ../gramps/gen/utils/grampslocale.py:96
 msgid "Polish"
 msgstr "Polština"
 
-#: ../gramps/gen/utils/grampslocale.py:96
+#: ../gramps/gen/utils/grampslocale.py:97
 msgid "Portuguese (Brazil)"
 msgstr "Portugalština (Brazilská)"
 
-#: ../gramps/gen/utils/grampslocale.py:97
+#: ../gramps/gen/utils/grampslocale.py:98
 msgid "Portuguese (Portugal)"
 msgstr "Portugalština (Portugalská)"
 
-#: ../gramps/gen/utils/grampslocale.py:98
+#: ../gramps/gen/utils/grampslocale.py:99
 msgid "Romanian"
 msgstr "Rumunština"
 
-#: ../gramps/gen/utils/grampslocale.py:99
+#: ../gramps/gen/utils/grampslocale.py:100
 msgid "Russian"
 msgstr "Ruština"
 
-#: ../gramps/gen/utils/grampslocale.py:100
+#: ../gramps/gen/utils/grampslocale.py:101
 msgid "Slovak"
 msgstr "Slovenština"
 
-#: ../gramps/gen/utils/grampslocale.py:101
+#: ../gramps/gen/utils/grampslocale.py:102
 msgid "Slovenian"
 msgstr "Slovinština"
 
-#: ../gramps/gen/utils/grampslocale.py:102
+#: ../gramps/gen/utils/grampslocale.py:103
 msgid "Albanian"
 msgstr "Albánština"
 
-#: ../gramps/gen/utils/grampslocale.py:103
+#: ../gramps/gen/utils/grampslocale.py:104
 msgid "Serbian"
 msgstr "srbština"
 
-#: ../gramps/gen/utils/grampslocale.py:104
+#: ../gramps/gen/utils/grampslocale.py:105
 msgid "Swedish"
 msgstr "Švédština"
 
-#: ../gramps/gen/utils/grampslocale.py:105
+#: ../gramps/gen/utils/grampslocale.py:106
 msgid "Tamil"
 msgstr "Tamilština"
 
 #. Windows has no codepage for Tamil
-#: ../gramps/gen/utils/grampslocale.py:106
+#: ../gramps/gen/utils/grampslocale.py:107
 msgid "Turkish"
 msgstr "Turečtina"
 
-#: ../gramps/gen/utils/grampslocale.py:107
+#: ../gramps/gen/utils/grampslocale.py:108
 msgid "Ukrainian"
 msgstr "Ukrajinština"
 
-#: ../gramps/gen/utils/grampslocale.py:108
+#: ../gramps/gen/utils/grampslocale.py:109
 msgid "Vietnamese"
 msgstr "Vietnamština"
 
-#: ../gramps/gen/utils/grampslocale.py:109
+#: ../gramps/gen/utils/grampslocale.py:110
 msgid "Chinese (Simplified)"
 msgstr "Zjednodušená čínština"
 
-#: ../gramps/gen/utils/grampslocale.py:110
+#: ../gramps/gen/utils/grampslocale.py:111
 msgid "Chinese (Hong Kong)"
 msgstr "Čínština (Hongkong)"
 
-#: ../gramps/gen/utils/grampslocale.py:111
+#: ../gramps/gen/utils/grampslocale.py:112
 msgid "Chinese (Traditional)"
 msgstr "Tradiční čínština"
 
-#: ../gramps/gen/utils/grampslocale.py:835
+#: ../gramps/gen/utils/grampslocale.py:885
 msgid "the person"
 msgstr "osoba"
 
-#: ../gramps/gen/utils/grampslocale.py:837
+#: ../gramps/gen/utils/grampslocale.py:887
 msgid "the family"
 msgstr "rodina"
 
-#: ../gramps/gen/utils/grampslocale.py:839
+#: ../gramps/gen/utils/grampslocale.py:889
 msgid "the place"
 msgstr "místo"
 
-#: ../gramps/gen/utils/grampslocale.py:841
+#: ../gramps/gen/utils/grampslocale.py:891
 msgid "the event"
 msgstr "událost"
 
-#: ../gramps/gen/utils/grampslocale.py:843
+#: ../gramps/gen/utils/grampslocale.py:893
 msgid "the repository"
 msgstr "archiv"
 
-#: ../gramps/gen/utils/grampslocale.py:845
+#: ../gramps/gen/utils/grampslocale.py:895
 msgid "the note"
 msgstr "poznámka"
 
-#: ../gramps/gen/utils/grampslocale.py:847
+#: ../gramps/gen/utils/grampslocale.py:897
 msgid "the media"
 msgstr "média"
 
-#: ../gramps/gen/utils/grampslocale.py:849
+#: ../gramps/gen/utils/grampslocale.py:899
 msgid "the source"
 msgstr "pramen"
 
-#: ../gramps/gen/utils/grampslocale.py:851
+#: ../gramps/gen/utils/grampslocale.py:901
 msgid "the filter"
 msgstr "filtr"
 
-#: ../gramps/gen/utils/grampslocale.py:853
+#: ../gramps/gen/utils/grampslocale.py:903
 msgid "the citation"
 msgstr "citace"
 
-#: ../gramps/gen/utils/grampslocale.py:855
+#: ../gramps/gen/utils/grampslocale.py:905
 msgid "See details"
 msgstr "Zobrazit podrobnosti"
 
@@ -10422,8 +10435,8 @@ msgstr "Využívání schránky"
 #: ../gramps/gui/editors/editaddress.py:167
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
 #: ../gramps/plugins/gramplet/repositorydetails.py:133
-#: ../gramps/plugins/lib/libgedcom.py:5426
-#: ../gramps/plugins/lib/libgedcom.py:5592
+#: ../gramps/plugins/lib/libgedcom.py:5433
+#: ../gramps/plugins/lib/libgedcom.py:5599
 #: ../gramps/plugins/textreport/familygroup.py:348
 #: ../gramps/plugins/webreport/narrativeweb.py:7952
 msgid "Address"
@@ -10703,8 +10716,8 @@ msgstr "PSČ"
 #: ../gramps/gui/configure.py:523 ../gramps/plugins/export/exportgedcom.py:788
 #: ../gramps/plugins/export/exportgedcom.py:1156
 #: ../gramps/plugins/gramplet/repositorydetails.py:121
-#: ../gramps/plugins/lib/libgedcom.py:3975
-#: ../gramps/plugins/lib/libgedcom.py:5689
+#: ../gramps/plugins/lib/libgedcom.py:3982
+#: ../gramps/plugins/lib/libgedcom.py:5696
 #: ../gramps/plugins/webreport/narrativeweb.py:1491
 msgid "Phone"
 msgstr "Telefon"
@@ -10900,10 +10913,6 @@ msgstr "Upravit"
 #: ../gramps/gui/configure.py:995
 msgid "Consider single pa/matronymic as surname"
 msgstr "Zvážit samotné příjmení po otci/matce"
-
-#: ../gramps/gui/configure.py:1009
-msgid "Date format"
-msgstr "Formát data"
 
 #: ../gramps/gui/configure.py:1017
 msgid "Years"
@@ -11297,7 +11306,7 @@ msgstr "Vybrat adresář pro média"
 #: ../gramps/gui/glade/rule.glade:747 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1721
 #: ../gramps/gui/logger/_errorview.py:168 ../gramps/gui/plug/_guioptions.py:78
-#: ../gramps/gui/plug/_guioptions.py:1733 ../gramps/gui/plug/_windows.py:440
+#: ../gramps/gui/plug/_guioptions.py:1738 ../gramps/gui/plug/_windows.py:440
 #: ../gramps/gui/plug/report/_fileentry.py:64
 #: ../gramps/gui/plug/report/_reportdialog.py:161 ../gramps/gui/utils.py:178
 #: ../gramps/gui/viewmanager.py:1829 ../gramps/gui/views/listview.py:1022
@@ -12548,7 +12557,7 @@ msgid "Move the selected surname downwards"
 msgstr "Posunout zvolené příjmení níže"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:77
-#: ../gramps/plugins/lib/libgedcom.py:618
+#: ../gramps/plugins/lib/libgedcom.py:619
 msgid "Origin"
 msgstr "Původ"
 
@@ -13083,7 +13092,7 @@ msgid "Cannot save family. ID already exists."
 msgstr "Rodinu nelze uložit. ID již existuje."
 
 #: ../gramps/gui/editors/editfamily.py:1093
-#: ../gramps/gui/editors/editnote.py:326
+#: ../gramps/gui/editors/editnote.py:327
 #: ../gramps/gui/editors/editreference.py:294
 #, python-format
 msgid ""
@@ -13315,30 +13324,30 @@ msgstr "Nová poznámka"
 msgid "_Note"
 msgstr "Poz_námka"
 
-#: ../gramps/gui/editors/editnote.py:292 ../gramps/gui/editors/editnote.py:341
+#: ../gramps/gui/editors/editnote.py:293 ../gramps/gui/editors/editnote.py:342
 #: ../gramps/gui/editors/objectentries.py:436
 msgid "Edit Note"
 msgstr "Upravit poznámku"
 
-#: ../gramps/gui/editors/editnote.py:316
+#: ../gramps/gui/editors/editnote.py:317
 msgid "Cannot save note"
 msgstr "Poznámku nelze uložit"
 
-#: ../gramps/gui/editors/editnote.py:317
+#: ../gramps/gui/editors/editnote.py:318
 msgid "No data exists for this note. Please enter data or cancel the edit."
 msgstr ""
 "O této poznámce nejsou žádné informace. Vložte informace, nebo operaci "
 "zrušte."
 
-#: ../gramps/gui/editors/editnote.py:325
+#: ../gramps/gui/editors/editnote.py:326
 msgid "Cannot save note. ID already exists."
 msgstr "Poznámku nelze uložit. ID již existuje."
 
-#: ../gramps/gui/editors/editnote.py:336
+#: ../gramps/gui/editors/editnote.py:337
 msgid "Add Note"
 msgstr "Přidat poznámku"
 
-#: ../gramps/gui/editors/editnote.py:359
+#: ../gramps/gui/editors/editnote.py:360
 #, python-format
 msgid "Delete Note (%s)"
 msgstr "Odstranit poznámku (%s)"
@@ -16945,23 +16954,23 @@ msgstr "Zahrnout také %s?"
 msgid "Select Person"
 msgstr "Vybrat osobu"
 
-#: ../gramps/gui/plug/_guioptions.py:1569
+#: ../gramps/gui/plug/_guioptions.py:1573
 #, python-format
 msgid "Select color for %s"
 msgstr "Vybrat barvu pro %s"
 
-#: ../gramps/gui/plug/_guioptions.py:1731
+#: ../gramps/gui/plug/_guioptions.py:1736
 #: ../gramps/gui/plug/report/_reportdialog.py:451
 msgid "Save As"
 msgstr "Uložit jako"
 
-#: ../gramps/gui/plug/_guioptions.py:1735 ../gramps/gui/plug/_windows.py:442
+#: ../gramps/gui/plug/_guioptions.py:1740 ../gramps/gui/plug/_windows.py:442
 #: ../gramps/gui/plug/report/_bookdialog.py:626
 #: ../gramps/gui/plug/report/_fileentry.py:66
 msgid "_Open"
 msgstr "_Otevřít"
 
-#: ../gramps/gui/plug/_guioptions.py:1812
+#: ../gramps/gui/plug/_guioptions.py:1817
 #: ../gramps/gui/plug/report/_reportdialog.py:328
 msgid "Style Editor"
 msgstr "Editor stylů"
@@ -17833,13 +17842,18 @@ msgid "Style editor"
 msgstr "Editor stylů"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:341
-#: ../gramps/gui/plug/report/_styleeditor.py:364
-#: ../gramps/gui/plug/report/_styleeditor.py:382
-#: ../gramps/gui/plug/report/_styleeditor.py:415
+#: ../gramps/gui/plug/report/_styleeditor.py:369
+#: ../gramps/gui/plug/report/_styleeditor.py:387
+#: ../gramps/gui/plug/report/_styleeditor.py:420
 msgid "No description available"
 msgstr "Žádný popis není k dispozici"
 
-#: ../gramps/gui/plug/report/_styleeditor.py:392
+#: ../gramps/gui/plug/report/_styleeditor.py:344
+#, python-format
+msgid "(Embedded style '%s' must be edited separately)"
+msgstr "(Vložený styl '%s' musí být upravován samostatně)"
+
+#: ../gramps/gui/plug/report/_styleeditor.py:397
 #, python-format
 msgid "Column %d:"
 msgstr "Sloupec %d:"
@@ -19006,24 +19020,25 @@ msgid "Background Color"
 msgstr "Barva pozadí"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:474
+#: ../gramps/gui/widgets/styledtexteditor.py:475
 msgid "Clear Markup"
 msgstr "Vymazat značku"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:514
 #: ../gramps/gui/widgets/styledtexteditor.py:515
+#: ../gramps/gui/widgets/styledtexteditor.py:516
 msgid "Undo"
 msgstr "Zpět"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:518
 #: ../gramps/gui/widgets/styledtexteditor.py:519
+#: ../gramps/gui/widgets/styledtexteditor.py:520
 msgid "Redo"
 msgstr "Znovu"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:642
+#: ../gramps/gui/widgets/styledtexteditor.py:647
 msgid "Select font color"
 msgstr "Vybrat barvu písma"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:644
+#: ../gramps/gui/widgets/styledtexteditor.py:651
 msgid "Select background color"
 msgstr "Vyberat barvu pozadí"
 
@@ -21048,9 +21063,9 @@ msgstr "Zapisují se jednotlivci"
 #: ../gramps/plugins/export/exportgedcom.py:790
 #: ../gramps/plugins/export/exportgedcom.py:1066
 #: ../gramps/plugins/export/exportgedcom.py:1158
-#: ../gramps/plugins/lib/libgedcom.py:3990
-#: ../gramps/plugins/lib/libgedcom.py:5701
-#: ../gramps/plugins/lib/libgedcom.py:6834
+#: ../gramps/plugins/lib/libgedcom.py:3997
+#: ../gramps/plugins/lib/libgedcom.py:5708
+#: ../gramps/plugins/lib/libgedcom.py:6841
 msgid "FAX"
 msgstr "FAX"
 
@@ -21072,12 +21087,12 @@ msgid "Writing repositories"
 msgstr "Zapisují se archivy"
 
 #: ../gramps/plugins/export/exportgedcom.py:1160
-#: ../gramps/plugins/lib/libgedcom.py:5713
+#: ../gramps/plugins/lib/libgedcom.py:5720
 msgid "EMAIL"
 msgstr "EMAIL"
 
 #: ../gramps/plugins/export/exportgedcom.py:1162
-#: ../gramps/plugins/lib/libgedcom.py:5725
+#: ../gramps/plugins/lib/libgedcom.py:5732
 msgid "WWW"
 msgstr "WWW"
 
@@ -23852,7 +23867,7 @@ msgid "Change Name"
 msgstr "Změnit název"
 
 #: ../gramps/plugins/importer/importgeneweb.py:89
-#: ../gramps/plugins/lib/libgedcom.py:603
+#: ../gramps/plugins/lib/libgedcom.py:604
 msgid "Circumcision"
 msgstr "Obřízka"
 
@@ -23865,7 +23880,7 @@ msgid "Dotation"
 msgstr "Dotace"
 
 #: ../gramps/plugins/importer/importgeneweb.py:100
-#: ../gramps/plugins/lib/libgedcom.py:609
+#: ../gramps/plugins/lib/libgedcom.py:610
 msgid "Excommunication"
 msgstr "Vyloučení"
 
@@ -23874,7 +23889,7 @@ msgid "LDS Family Link"
 msgstr "SPD odkaz na rodinu"
 
 #: ../gramps/plugins/importer/importgeneweb.py:103
-#: ../gramps/plugins/lib/libgedcom.py:611
+#: ../gramps/plugins/lib/libgedcom.py:612
 msgid "Funeral"
 msgstr "Funeral"
 
@@ -24501,117 +24516,117 @@ msgstr ""
 "Nesoulad mezi zvolenou koncovkou %(ext)s a aktuálním formátem.\n"
 "   Zapisuje se do souboru %(filename)s ve formátu %(impliedext)s."
 
-#: ../gramps/plugins/lib/libgedcom.py:604
+#: ../gramps/plugins/lib/libgedcom.py:605
 msgid "Common Law Marriage"
 msgstr "Neformální sňatek"
 
-#: ../gramps/plugins/lib/libgedcom.py:605
+#: ../gramps/plugins/lib/libgedcom.py:606
 #: ../gramps/plugins/webreport/narrativeweb.py:9662
 #: ../gramps/plugins/webreport/webcal.py:1611
 msgid "Destination"
 msgstr "Cíl"
 
-#: ../gramps/plugins/lib/libgedcom.py:606
+#: ../gramps/plugins/lib/libgedcom.py:607
 msgid "DNA"
 msgstr "DNA"
 
-#: ../gramps/plugins/lib/libgedcom.py:607
+#: ../gramps/plugins/lib/libgedcom.py:608
 msgid "Cause of Death"
 msgstr "Příčina úmrtí"
 
-#: ../gramps/plugins/lib/libgedcom.py:608
+#: ../gramps/plugins/lib/libgedcom.py:609
 msgid "Employment"
 msgstr "Zaměstnání"
 
-#: ../gramps/plugins/lib/libgedcom.py:610
+#: ../gramps/plugins/lib/libgedcom.py:611
 msgid "Eye Color"
 msgstr "Barva očí"
 
-#: ../gramps/plugins/lib/libgedcom.py:612
+#: ../gramps/plugins/lib/libgedcom.py:613
 msgid "Height"
 msgstr "Výška"
 
-#: ../gramps/plugins/lib/libgedcom.py:613
+#: ../gramps/plugins/lib/libgedcom.py:614
 msgid "Initiatory (LDS)"
 msgstr "Zasvěcující (SPD)"
 
-#: ../gramps/plugins/lib/libgedcom.py:614
+#: ../gramps/plugins/lib/libgedcom.py:615
 msgid "Military ID"
 msgstr "Vojenský průkaz"
 
-#: ../gramps/plugins/lib/libgedcom.py:615
+#: ../gramps/plugins/lib/libgedcom.py:616
 msgid "Mission (LDS)"
 msgstr "Misie (SPD)"
 
-#: ../gramps/plugins/lib/libgedcom.py:616
+#: ../gramps/plugins/lib/libgedcom.py:617
 msgid "Namesake"
 msgstr "Jmenovec"
 
-#: ../gramps/plugins/lib/libgedcom.py:617
+#: ../gramps/plugins/lib/libgedcom.py:618
 msgid "Ordinance"
 msgstr "Vysvěcení"
 
-#: ../gramps/plugins/lib/libgedcom.py:619
+#: ../gramps/plugins/lib/libgedcom.py:620
 msgid "Separation"
 msgstr "Rozluka"
 
 #. Applies to Families
-#: ../gramps/plugins/lib/libgedcom.py:620
+#: ../gramps/plugins/lib/libgedcom.py:621
 msgid "Weight"
 msgstr "Hmotnost"
 
-#: ../gramps/plugins/lib/libgedcom.py:825
+#: ../gramps/plugins/lib/libgedcom.py:832
 msgid "Line ignored "
 msgstr "Řádek ignorován "
 
 #. e.g. Illegal character (oxAB) (0xCB)... 1 NOTE xyz?pqr?lmn
-#: ../gramps/plugins/lib/libgedcom.py:1423
+#: ../gramps/plugins/lib/libgedcom.py:1430
 #, python-format
 msgid "Illegal character%s"
 msgstr "neplatný znak%s"
 
-#: ../gramps/plugins/lib/libgedcom.py:1696
+#: ../gramps/plugins/lib/libgedcom.py:1703
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "Váš GEDCOM soubor je porušený. Zdá se, že byl zkrácen."
 
-#: ../gramps/plugins/lib/libgedcom.py:1778
+#: ../gramps/plugins/lib/libgedcom.py:1785
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Importovat z GEDCOM (%s)"
 
-#: ../gramps/plugins/lib/libgedcom.py:2614
-#: ../gramps/plugins/lib/libgedcom.py:3064
+#: ../gramps/plugins/lib/libgedcom.py:2621
+#: ../gramps/plugins/lib/libgedcom.py:3071
 msgid "GEDCOM import"
 msgstr "GEDCOM Import"
 
-#: ../gramps/plugins/lib/libgedcom.py:2642
+#: ../gramps/plugins/lib/libgedcom.py:2649
 msgid "GEDCOM import report: No errors detected"
 msgstr "GEDCOM import report: Nebyly detekovány chyby"
 
-#: ../gramps/plugins/lib/libgedcom.py:2644
+#: ../gramps/plugins/lib/libgedcom.py:2651
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "GEDCOM import report: %s detekovaných chyb"
 
-#: ../gramps/plugins/lib/libgedcom.py:2957
-#: ../gramps/plugins/lib/libgedcom.py:2981
-#: ../gramps/plugins/lib/libgedcom.py:2994
+#: ../gramps/plugins/lib/libgedcom.py:2964
+#: ../gramps/plugins/lib/libgedcom.py:2988
+#: ../gramps/plugins/lib/libgedcom.py:3001
 msgid "Line ignored as not understood"
 msgstr "Řádek byl ignorovnán jako nesrozumitelný"
 
-#: ../gramps/plugins/lib/libgedcom.py:2983
+#: ../gramps/plugins/lib/libgedcom.py:2990
 msgid "Tag recognized but not supported"
 msgstr "Štítek byl rozpoznán ale není podporován"
 
-#: ../gramps/plugins/lib/libgedcom.py:3019
+#: ../gramps/plugins/lib/libgedcom.py:3026
 msgid "Skipped subordinate line"
 msgstr "Vynechaná podřízená řádka"
 
-#: ../gramps/plugins/lib/libgedcom.py:3053
+#: ../gramps/plugins/lib/libgedcom.py:3060
 msgid "Records not imported into "
 msgstr "Záznamy neimportované do "
 
-#: ../gramps/plugins/lib/libgedcom.py:3091
+#: ../gramps/plugins/lib/libgedcom.py:3098
 #, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -24620,7 +24635,7 @@ msgstr ""
 "Chyba: %(msg)s  '%(gramps_id)s' (vložené jako @%(xref)s@) není v GEDCOM "
 "vstupu. Záznam byl sloučen"
 
-#: ../gramps/plugins/lib/libgedcom.py:3100
+#: ../gramps/plugins/lib/libgedcom.py:3107
 #, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -24629,7 +24644,7 @@ msgstr ""
 "Chyba: %(msg)s '%(gramps_id)s' (vloženo jako @%(xref)s@) není v GEDCOM "
 "vstupu. Byl vytvořen záznam s typizačním atributem 'Neznámý'"
 
-#: ../gramps/plugins/lib/libgedcom.py:3145
+#: ../gramps/plugins/lib/libgedcom.py:3152
 #, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
@@ -24640,7 +24655,7 @@ msgstr ""
 "(vložena jako %(orig_person)s) není členem odkazované rodiny. Odkaz na "
 "rodinu byl osobě odejmut"
 
-#: ../gramps/plugins/lib/libgedcom.py:3223
+#: ../gramps/plugins/lib/libgedcom.py:3230
 #, python-format
 msgid ""
 "\n"
@@ -24660,177 +24675,177 @@ msgstr ""
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
 #. truncated for output
-#: ../gramps/plugins/lib/libgedcom.py:3295
+#: ../gramps/plugins/lib/libgedcom.py:3302
 #, python-format
 msgid "ADDR element ignored '%s'"
 msgstr "ADDR element ignorován '%s'"
 
-#: ../gramps/plugins/lib/libgedcom.py:3315
+#: ../gramps/plugins/lib/libgedcom.py:3322
 msgid "TRLR (trailer)"
 msgstr "TRLR (trailer)"
 
-#: ../gramps/plugins/lib/libgedcom.py:3344
+#: ../gramps/plugins/lib/libgedcom.py:3351
 msgid "(Submitter):"
 msgstr "(Vkladatel ):"
 
-#: ../gramps/plugins/lib/libgedcom.py:3368
-#: ../gramps/plugins/lib/libgedcom.py:7090
+#: ../gramps/plugins/lib/libgedcom.py:3375
+#: ../gramps/plugins/lib/libgedcom.py:7097
 msgid "GEDCOM data"
 msgstr "GEDCOM data"
 
-#: ../gramps/plugins/lib/libgedcom.py:3414
+#: ../gramps/plugins/lib/libgedcom.py:3421
 msgid "Unknown tag"
 msgstr "Neznámý štítek"
 
-#: ../gramps/plugins/lib/libgedcom.py:3416
-#: ../gramps/plugins/lib/libgedcom.py:3430
-#: ../gramps/plugins/lib/libgedcom.py:3434
-#: ../gramps/plugins/lib/libgedcom.py:3455
+#: ../gramps/plugins/lib/libgedcom.py:3423
+#: ../gramps/plugins/lib/libgedcom.py:3437
+#: ../gramps/plugins/lib/libgedcom.py:3441
+#: ../gramps/plugins/lib/libgedcom.py:3462
 msgid "Top Level"
 msgstr "Nejvyšší úroveň"
 
-#: ../gramps/plugins/lib/libgedcom.py:3530
+#: ../gramps/plugins/lib/libgedcom.py:3537
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (jednotlivec) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:3649
+#: ../gramps/plugins/lib/libgedcom.py:3656
 msgid "Empty Alias <NAME PERSONAL> ignored"
 msgstr "Prázdný alias <NAME PERSONAL> ignorován"
 
-#: ../gramps/plugins/lib/libgedcom.py:4817
+#: ../gramps/plugins/lib/libgedcom.py:4824
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (rodina) Gramps ID: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5169
-#: ../gramps/plugins/lib/libgedcom.py:6523
+#: ../gramps/plugins/lib/libgedcom.py:5176
+#: ../gramps/plugins/lib/libgedcom.py:6530
 msgid "Filename omitted"
 msgstr "Vynechaný název souboru"
 
-#: ../gramps/plugins/lib/libgedcom.py:5192
-#: ../gramps/plugins/lib/libgedcom.py:6563
+#: ../gramps/plugins/lib/libgedcom.py:5199
+#: ../gramps/plugins/lib/libgedcom.py:6570
 #, python-format
 msgid "Could not import %s"
 msgstr "Nemohu importovat %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5249
-#: ../gramps/plugins/lib/libgedcom.py:6664
+#: ../gramps/plugins/lib/libgedcom.py:5256
+#: ../gramps/plugins/lib/libgedcom.py:6671
 msgid "Media-Type"
 msgstr "Typ média"
 
-#: ../gramps/plugins/lib/libgedcom.py:5273
-#: ../gramps/plugins/lib/libgedcom.py:6554
+#: ../gramps/plugins/lib/libgedcom.py:5280
+#: ../gramps/plugins/lib/libgedcom.py:6561
 msgid "Multiple FILE in a single OBJE ignored"
 msgstr "Více FILE a jeden OBJE ignorovány"
 
 #. We have previously found a PLAC
-#: ../gramps/plugins/lib/libgedcom.py:5428
+#: ../gramps/plugins/lib/libgedcom.py:5435
 msgid "A second PLAC ignored"
 msgstr "Druhý PLAC ignorován"
 
 #. For RootsMagic etc. Place Details e.g. address, hospital, cemetary
-#: ../gramps/plugins/lib/libgedcom.py:5566
+#: ../gramps/plugins/lib/libgedcom.py:5573
 msgid "Detail"
 msgstr "Podrobnosti"
 
 #. We have perviously found an ADDR, or have populated location
 #. from PLAC title
-#: ../gramps/plugins/lib/libgedcom.py:5579
+#: ../gramps/plugins/lib/libgedcom.py:5586
 msgid "Location already populated; ADDR ignored"
 msgstr "Místo již naplněno; ADDR ignorována"
 
-#: ../gramps/plugins/lib/libgedcom.py:5984
-#: ../gramps/plugins/lib/libgedcom.py:6871
+#: ../gramps/plugins/lib/libgedcom.py:5991
+#: ../gramps/plugins/lib/libgedcom.py:6878
 msgid "Warn: ADDR overwritten"
 msgstr "Pozor: ADDR přepsáno"
 
-#: ../gramps/plugins/lib/libgedcom.py:6149
+#: ../gramps/plugins/lib/libgedcom.py:6156
 msgid "Citation Justification"
 msgstr "Zarovnání citace"
 
-#: ../gramps/plugins/lib/libgedcom.py:6176
+#: ../gramps/plugins/lib/libgedcom.py:6183
 msgid "REFN ignored"
 msgstr "REFN ignorován"
 
 #. SOURce with the given gramps_id had no title
-#: ../gramps/plugins/lib/libgedcom.py:6275
+#: ../gramps/plugins/lib/libgedcom.py:6282
 #, python-format
 msgid "No title - ID %s"
 msgstr "Žádný titulek - ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6280
+#: ../gramps/plugins/lib/libgedcom.py:6287
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (pramen) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6530
+#: ../gramps/plugins/lib/libgedcom.py:6537
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (multimediální objekt) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6760
+#: ../gramps/plugins/lib/libgedcom.py:6767
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (archiv) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6821
-#: ../gramps/plugins/lib/libgedcom.py:7797
+#: ../gramps/plugins/lib/libgedcom.py:6828
+#: ../gramps/plugins/lib/libgedcom.py:7804
 msgid "Only one phone number supported"
 msgstr "Podporováno je pouze jedno telefonní číslo"
 
-#: ../gramps/plugins/lib/libgedcom.py:7006
+#: ../gramps/plugins/lib/libgedcom.py:7013
 msgid "HEAD (header)"
 msgstr "Hlavička"
 
-#: ../gramps/plugins/lib/libgedcom.py:7027
+#: ../gramps/plugins/lib/libgedcom.py:7034
 msgid "Approved system identification"
 msgstr "Schválená identifikace systému"
 
-#: ../gramps/plugins/lib/libgedcom.py:7039
+#: ../gramps/plugins/lib/libgedcom.py:7046
 msgid "Generated By"
 msgstr "Vytvořeno v"
 
-#: ../gramps/plugins/lib/libgedcom.py:7055
+#: ../gramps/plugins/lib/libgedcom.py:7062
 msgid "Name of software product"
 msgstr "Název softwarového produktu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7069
+#: ../gramps/plugins/lib/libgedcom.py:7076
 msgid "Version number of software product"
 msgstr "Číslo verze softwarového produktu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7087
+#: ../gramps/plugins/lib/libgedcom.py:7094
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Tvůrce produktu: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7109
+#: ../gramps/plugins/lib/libgedcom.py:7116
 msgid "Name of source data"
 msgstr "Název zdrojových dat"
 
-#: ../gramps/plugins/lib/libgedcom.py:7126
+#: ../gramps/plugins/lib/libgedcom.py:7133
 msgid "Copyright of source data"
 msgstr "Autorská práva zdrojových dat"
 
-#: ../gramps/plugins/lib/libgedcom.py:7143
+#: ../gramps/plugins/lib/libgedcom.py:7150
 msgid "Publication date of source data"
 msgstr "Datum vydání zdrojových dat"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/lib/libgedcom.py:7157
+#: ../gramps/plugins/lib/libgedcom.py:7164
 #, python-format
 msgid "Import from %s"
 msgstr "Importovat z %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7196
+#: ../gramps/plugins/lib/libgedcom.py:7203
 msgid "Submission record identifier"
 msgstr "Identifikátor záznamu vkladu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7209
+#: ../gramps/plugins/lib/libgedcom.py:7216
 msgid "Language of GEDCOM text"
 msgstr "Jazyk textu GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7230
+#: ../gramps/plugins/lib/libgedcom.py:7237
 #, python-format
 msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
@@ -24839,88 +24854,88 @@ msgstr ""
 "Import GEDCOM souboru %(filename)s s DEST=%(by)s může ve výsledné databázi "
 "způsobit problémy!"
 
-#: ../gramps/plugins/lib/libgedcom.py:7233
+#: ../gramps/plugins/lib/libgedcom.py:7240
 msgid "Look for nameless events."
 msgstr "Najít nepojmenované události."
 
-#: ../gramps/plugins/lib/libgedcom.py:7257
+#: ../gramps/plugins/lib/libgedcom.py:7264
 msgid "Character set"
 msgstr "Znaková sada"
 
-#: ../gramps/plugins/lib/libgedcom.py:7262
+#: ../gramps/plugins/lib/libgedcom.py:7269
 msgid "Character set and version"
 msgstr "Znaková sada a verze"
 
-#: ../gramps/plugins/lib/libgedcom.py:7279
+#: ../gramps/plugins/lib/libgedcom.py:7286
 msgid "GEDCOM version not supported"
 msgstr "Verze GEDCOM není podporována"
 
-#: ../gramps/plugins/lib/libgedcom.py:7283
+#: ../gramps/plugins/lib/libgedcom.py:7290
 msgid "GEDCOM version"
 msgstr "Verze GEDCOM"
 
 #. Allow Lineage-Linked etc. though it should be in uppercase
-#: ../gramps/plugins/lib/libgedcom.py:7291
+#: ../gramps/plugins/lib/libgedcom.py:7298
 msgid "GEDCOM FORM should be in uppercase"
 msgstr "GEDCOM forma by měla být velkými písmeny"
 
-#: ../gramps/plugins/lib/libgedcom.py:7293
+#: ../gramps/plugins/lib/libgedcom.py:7300
 msgid "GEDCOM FORM not supported"
 msgstr "Nepodporovaná GEDCOM forma"
 
-#: ../gramps/plugins/lib/libgedcom.py:7296
+#: ../gramps/plugins/lib/libgedcom.py:7303
 msgid "GEDCOM form"
 msgstr "GEDCOM formulář"
 
-#: ../gramps/plugins/lib/libgedcom.py:7345
+#: ../gramps/plugins/lib/libgedcom.py:7352
 msgid "Creation date of GEDCOM"
 msgstr "Datum vytvoření GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7350
+#: ../gramps/plugins/lib/libgedcom.py:7357
 msgid "Creation date and time of GEDCOM"
 msgstr "Datum a čas vytvoření GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7391
-#: ../gramps/plugins/lib/libgedcom.py:7433
+#: ../gramps/plugins/lib/libgedcom.py:7398
+#: ../gramps/plugins/lib/libgedcom.py:7440
 msgid "Empty note ignored"
 msgstr "Prázdná poznámka byla ignorována"
 
-#: ../gramps/plugins/lib/libgedcom.py:7449
+#: ../gramps/plugins/lib/libgedcom.py:7456
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "NOTE Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7500
+#: ../gramps/plugins/lib/libgedcom.py:7507
 msgid "Submission: Submitter"
 msgstr "Zařazení: Vkladatel"
 
-#: ../gramps/plugins/lib/libgedcom.py:7502
+#: ../gramps/plugins/lib/libgedcom.py:7509
 msgid "Submission: Family file"
 msgstr "Vklad: soubor rodiny"
 
-#: ../gramps/plugins/lib/libgedcom.py:7504
+#: ../gramps/plugins/lib/libgedcom.py:7511
 msgid "Submission: Temple code"
 msgstr "Vklad: Kód kostela"
 
-#: ../gramps/plugins/lib/libgedcom.py:7506
+#: ../gramps/plugins/lib/libgedcom.py:7513
 msgid "Submission: Generations of ancestors"
 msgstr "Zařazení: Genrací předků"
 
-#: ../gramps/plugins/lib/libgedcom.py:7508
+#: ../gramps/plugins/lib/libgedcom.py:7515
 msgid "Submission: Generations of descendants"
 msgstr "Zařazení: Genrací  potomků"
 
-#: ../gramps/plugins/lib/libgedcom.py:7510
+#: ../gramps/plugins/lib/libgedcom.py:7517
 msgid "Submission: Ordinance process flag"
 msgstr "Vklad: Příznak průběhu obřadu"
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../gramps/plugins/lib/libgedcom.py:7736
+#: ../gramps/plugins/lib/libgedcom.py:7743
 msgid "Invalid temple code"
 msgstr "Neplatný kód kostela"
 
-#: ../gramps/plugins/lib/libgedcom.py:7830
+#: ../gramps/plugins/lib/libgedcom.py:7837
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -24928,7 +24943,7 @@ msgstr ""
 "Váš GEDCOM soubor je porušený. Zdá se, že soubor je v UTF-16 kódování, ale "
 "neobsahuje značku BOM."
 
-#: ../gramps/plugins/lib/libgedcom.py:7833
+#: ../gramps/plugins/lib/libgedcom.py:7840
 msgid "Your GEDCOM file is empty."
 msgstr "GEDCOM soubor je prázdný."
 
