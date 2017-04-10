@@ -91,6 +91,7 @@ for no_handler in (
     ('eo_EO', 'eo', 'Esperanto', ('%d/%m/%Y',)), # 'eo_EO' is a placeholder
     ('he_IL', 'he', 'Hebrew', ('%d/%m/%Y',)),
     ('sq_AL', 'sq', 'Albanian', ('%Y/%b/%d',)),
+    ('ta_IN', 'ta', 'Tamil', ('%A %d %B %Y',)),
     ('tr_TR', 'tr', 'Turkish', ('%d/%m/%Y',)),
     ('vi_VN', 'vi', 'Vietnamese', ('%d/%m/%Y',)),
     ):
