@@ -99,15 +99,15 @@ class TimeLine(Report):
         self._user = user
         menu = options.menu
 
-        lang = options.menu.get_option_by_name('trans').get_value()
-        rlocale = self.set_locale(lang)
+        self.set_locale(options.menu.get_option_by_name('trans').get_value())
 
         stdoptions.run_private_data_option(self, menu)
-        living_opt = stdoptions.run_living_people_option(self, menu, rlocale)
+        living_opt = stdoptions.run_living_people_option(self, menu,
+                                                         self._locale)
         self.database = CacheProxyDb(self.database)
 
         self.filter = menu.get_option_by_name('filter').get_filter()
-        self.fil_name = "(%s)" % self.filter.get_name(rlocale)
+        self.fil_name = "(%s)" % self.filter.get_name(self._locale)
 
         living_value = menu.get_option_by_name('living_people').get_value()
         for (value, description) in living_opt.get_items(xml_items=True):

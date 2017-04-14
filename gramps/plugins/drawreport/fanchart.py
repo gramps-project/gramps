@@ -176,11 +176,10 @@ class FanChart(Report):
 
         menu = options.menu
 
-        lang = options.menu.get_option_by_name('trans').get_value()
-        rlocale = self.set_locale(lang)
+        self.set_locale(options.menu.get_option_by_name('trans').get_value())
 
         stdoptions.run_private_data_option(self, menu)
-        stdoptions.run_living_people_option(self, menu, rlocale)
+        stdoptions.run_living_people_option(self, menu, self._locale)
         self.database = CacheProxyDb(self.database)
 
         self.max_generations = menu.get_option_by_name('maxgen').get_value()

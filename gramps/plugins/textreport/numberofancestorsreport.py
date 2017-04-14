@@ -83,8 +83,7 @@ class NumberOfAncestorsReport(Report):
         if self.__person is None:
             raise ReportError(_("Person %s is not in the Database") % pid)
 
-        lang = options.menu.get_option_by_name('trans').get_value()
-        self._locale = self.set_locale(lang)
+        self.set_locale(options.menu.get_option_by_name('trans').get_value())
 
         stdoptions.run_name_format_option(self, options.menu)
 

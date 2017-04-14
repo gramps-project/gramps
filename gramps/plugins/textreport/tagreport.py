@@ -83,11 +83,13 @@ class TagReport(Report):
         Report.__init__(self, database, options, user)
         menu = options.menu
 
-        lang = menu.get_option_by_name('trans').get_value()
-        rlocale = self.set_locale(lang)
+        self.set_locale(menu.get_option_by_name('trans').get_value())
+
+        stdoptions.run_date_format_option(self, menu)
 
         stdoptions.run_private_data_option(self, menu)
-        living_opt = stdoptions.run_living_people_option(self, menu, rlocale)
+        living_opt = stdoptions.run_living_people_option(self, menu, 
+                                                         self._locale)
         self.database = CacheProxyDb(self.database)
 
         self._lv = menu.get_option_by_name('living_people').get_value()
@@ -915,7 +917,9 @@ class TagOptions(MenuReportOptions):
 
         stdoptions.add_living_people_option(menu, category_name)
 
-        stdoptions.add_localization_option(menu, category_name)
+        locale_opt = stdoptions.add_localization_option(menu, category_name)
+
+        stdoptions.add_date_format_option(menu, category_name, locale_opt)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Tag Report."""

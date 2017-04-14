@@ -86,11 +86,12 @@ class KinshipReport(Report):
         Report.__init__(self, database, options, user)
         menu = options.menu
 
-        lang = menu.get_option_by_name('trans').get_value()
-        rlocale = self.set_locale(lang)
+        self.set_locale(menu.get_option_by_name('trans').get_value())
+
+        stdoptions.run_date_format_option(self, menu)
 
         stdoptions.run_private_data_option(self, menu)
-        stdoptions.run_living_people_option(self, menu, rlocale)
+        stdoptions.run_living_people_option(self, menu, self._locale)
         self.database = CacheProxyDb(self.database)
         self.__db = self.database
 
@@ -107,7 +108,7 @@ class KinshipReport(Report):
         stdoptions.run_name_format_option(self, menu)
 
         self.rel_calc = get_relationship_calculator(reinit=True,
-                                                    clocale=rlocale)
+                                                    clocale=self._locale)
 
         self.kinship_map = {}
         self.spouse_map = {}
@@ -386,7 +387,9 @@ class KinshipOptions(MenuReportOptions):
 
         stdoptions.add_living_people_option(menu, category_name)
 
-        stdoptions.add_localization_option(menu, category_name)
+        locale_opt = stdoptions.add_localization_option(menu, category_name)
+
+        stdoptions.add_date_format_option(menu, category_name, locale_opt)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Kinship Report."""

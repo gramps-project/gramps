@@ -75,8 +75,7 @@ class RecordsReport(Report):
         Report.__init__(self, database, options, user)
         menu = options.menu
 
-        lang = options.menu.get_option_by_name('trans').get_value()
-        self._locale = self.set_locale(lang)
+        self.set_locale(options.menu.get_option_by_name('trans').get_value())
 
         stdoptions.run_private_data_option(self, menu)
         living_opt = stdoptions.run_living_people_option(self, menu,

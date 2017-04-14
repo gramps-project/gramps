@@ -102,8 +102,7 @@ class BirthdayReport(Report):
         self.filter = self.filter_option.get_filter()
         pid = mgobn('pid')
 
-        lang = menu.get_option_by_name('trans').get_value()
-        self._locale = self.set_locale(lang)
+        self.set_locale(menu.get_option_by_name('trans').get_value())
 
         stdoptions.run_name_format_option(self, menu)
 

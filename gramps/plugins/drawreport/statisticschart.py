@@ -740,13 +740,13 @@ class StatisticsChart(Report):
         menu = options.menu
         self._user = user
 
-        lang = menu.get_option_by_name('trans').get_value()
-        rlocale = self.set_locale(lang)
+        self.set_locale(menu.get_option_by_name('trans').get_value())
         # override default gettext, or English output will have "person|Title"
-        self._ = rlocale.translation.sgettext
+        self._ = self._locale.translation.sgettext
 
         stdoptions.run_private_data_option(self, menu)
-        living_opt = stdoptions.run_living_people_option(self, menu, rlocale)
+        living_opt = stdoptions.run_living_people_option(self, menu,
+                                                         self._locale)
         self.database = CacheProxyDb(self.database)
 
         get_option_by_name = menu.get_option_by_name
@@ -754,7 +754,7 @@ class StatisticsChart(Report):
 
         filter_opt = get_option_by_name('filter')
         self.filter = filter_opt.get_filter()
-        self.fil_name = "(%s)" % self.filter.get_name(rlocale)
+        self.fil_name = "(%s)" % self.filter.get_name(self._locale)
 
         self.bar_items = get_value('bar_items')
         year_from = get_value('year_from')
@@ -805,7 +805,7 @@ class StatisticsChart(Report):
                                        gender, year_from, year_to,
                                        get_value('no_years'),
                                        self._user.step_progress,
-                                       rlocale)
+                                       self._locale)
         self._user.end_progress()
 
         self._user.begin_progress(_('Statistics Charts'),

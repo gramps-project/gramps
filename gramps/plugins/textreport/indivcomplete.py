@@ -128,8 +128,7 @@ class IndivCompleteReport(Report):
         self._user = user
         menu = options.menu
 
-        lang = menu.get_option_by_name('trans').get_value()
-        self._locale = self.set_locale(lang)
+        self.set_locale(menu.get_option_by_name('trans').get_value())
 
         stdoptions.run_date_format_option(self, menu)
 

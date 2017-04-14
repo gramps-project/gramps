@@ -556,8 +556,8 @@ class AncestorTree(Report):
         self.options = options
         self._user = user
 
-        lang = options.menu.get_option_by_name('trans').get_value()
-        self._locale = self.set_locale(lang)
+        self.set_locale(options.menu.get_option_by_name('trans').get_value())
+        stdoptions.run_date_format_option(self, options.menu)
         stdoptions.run_private_data_option(self, options.menu)
         stdoptions.run_living_people_option(self, options.menu, self._locale)
         self.database = CacheProxyDb(self.database)
@@ -901,7 +901,9 @@ class AncestorTreeOptions(MenuReportOptions):
 
         stdoptions.add_private_data_option(menu, category_name)
 
-        stdoptions.add_localization_option(menu, category_name)
+        locale_opt = stdoptions.add_localization_option(menu, category_name)
+
+        stdoptions.add_date_format_option(menu, category_name, locale_opt)
 
         ##################
         category_name = _("Display")

@@ -69,9 +69,7 @@ class Report:
         stdoptions.add_localization_option().
         """
         from ...datehandler import LANG_TO_DISPLAY, main_locale
-        if language == GrampsLocale.DEFAULT_TRANSLATION_STR:
-            language = None
-        if language is None: # the UI language
+        if language == GrampsLocale.DEFAULT_TRANSLATION_STR: # the UI language
             locale = glocale
         elif language in LANG_TO_DISPLAY: # a displayer exists
             locale = LANG_TO_DISPLAY[main_locale[language]]._locale
@@ -85,6 +83,7 @@ class Report:
         self._name_display.set_name_format(self.database.name_formats)
         fmt_default = config.get('preferences.name-format')
         self._name_display.set_default_format(fmt_default)
+        self._locale = locale # define it here rather than in every report
         return locale
 
     def write_report(self):

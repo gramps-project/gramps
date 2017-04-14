@@ -96,11 +96,12 @@ class AncestorReport(Report):
         self.map = {}
         menu = options.menu
 
-        lang = menu.get_option_by_name('trans').get_value()
-        rlocale = self.set_locale(lang)
+        self.set_locale(menu.get_option_by_name('trans').get_value())
+
+        stdoptions.run_date_format_option(self, menu)
 
         stdoptions.run_private_data_option(self, menu)
-        stdoptions.run_living_people_option(self, menu, rlocale)
+        stdoptions.run_living_people_option(self, menu, self._locale)
         self.database = CacheProxyDb(self.database)
 
         self.max_generations = menu.get_option_by_name('maxgen').get_value()
@@ -114,7 +115,7 @@ class AncestorReport(Report):
         stdoptions.run_name_format_option(self, menu)
 
         self.__narrator = Narrator(self.database,  use_fulldate=True,
-                                   nlocale=rlocale)
+                                   nlocale=self._locale)
 
     def apply_filter(self, person_handle, index, generation=1):
         """
@@ -305,7 +306,9 @@ class AncestorOptions(MenuReportOptions):
 
         stdoptions.add_living_people_option(menu, category_name)
 
-        stdoptions.add_localization_option(menu, category_name)
+        locale_opt = stdoptions.add_localization_option(menu, category_name)
+
+        stdoptions.add_date_format_option(menu, category_name, locale_opt)
 
     def make_default_style(self, default_style):
         """

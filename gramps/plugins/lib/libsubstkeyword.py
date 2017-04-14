@@ -309,7 +309,6 @@ class DateFormat(GenericFormat):
         def modifier():
             #ui_mods taken from date.py def lookup_modifier(self, modifier):
             # trans_text is a defined keyword (in po/update_po.py, po/genpot.sh)
-            # (in po/update_po.py, po/genpot.sh)
             trans_text = self._locale.translation.gettext
             ui_mods = ["", trans_text("before"), trans_text("after"),
                        trans_text("about"), "", "", ""]

@@ -75,11 +75,10 @@ class SummaryReport(Report):
         """
         Report.__init__(self, database, options, user)
 
-        lang = options.menu.get_option_by_name('trans').get_value()
-        rlocale = self.set_locale(lang)
+        self.set_locale(options.menu.get_option_by_name('trans').get_value())
 
         stdoptions.run_private_data_option(self, options.menu)
-        stdoptions.run_living_people_option(self, options.menu, rlocale)
+        stdoptions.run_living_people_option(self, options.menu, self._locale)
         self.database = CacheProxyDb(self.database)
         self.__db = self.database
 

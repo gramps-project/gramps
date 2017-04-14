@@ -112,7 +112,7 @@ class Calendar(Report):
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
 
-        self._locale = self.set_locale(get_value('trans'))
+        self.set_locale(get_value('trans'))
 
     def get_name(self, person, maiden_name = None):
         """ Return person's name, unless maiden_name given,
