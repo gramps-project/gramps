@@ -88,7 +88,7 @@ class TagReport(Report):
         stdoptions.run_date_format_option(self, menu)
 
         stdoptions.run_private_data_option(self, menu)
-        living_opt = stdoptions.run_living_people_option(self, menu, 
+        living_opt = stdoptions.run_living_people_option(self, menu,
                                                          self._locale)
         self.database = CacheProxyDb(self.database)
 
