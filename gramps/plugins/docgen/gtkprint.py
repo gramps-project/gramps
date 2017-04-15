@@ -184,6 +184,7 @@ class PrintPreview:
         self._operation = operation
         self._preview = preview
         self._context = context
+        self._parent = parent
 
         self.__build_window()
         self._current_page = None
@@ -196,7 +197,7 @@ class PrintPreview:
         from gramps.gui.glade import Glade
         glade_xml = Glade()
         self._window = glade_xml.toplevel
-        #self._window.set_transient_for(parent)
+        self._window.set_transient_for(self._parent)
 
         # remember active widgets for future use
         self._swin = glade_xml.get_object('swin')
@@ -521,7 +522,8 @@ class GtkPrint(libcairodoc.CairoDoc):
         # run print dialog
         while True:
             self.preview = None
-            res = operation.run(Gtk.PrintOperationAction.PRINT_DIALOG, None)
+            res = operation.run(Gtk.PrintOperationAction.PRINT_DIALOG,
+                                self.uistate.window)
             if self.preview is None: # cancel or print
                 break
             # set up printing again; can't reuse PrintOperation?

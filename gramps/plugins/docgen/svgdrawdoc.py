@@ -52,8 +52,8 @@ _ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 class SvgDrawDoc(BaseDoc, DrawDoc):
 
-    def __init__(self, styles, type, options=None):
-        BaseDoc.__init__(self, styles, type)
+    def __init__(self, styles, type, options=None, uistate=None):
+        BaseDoc.__init__(self, styles, type, uistate=uistate)
         self.file = None
         self.filename = None
         self.level = 0

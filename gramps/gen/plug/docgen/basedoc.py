@@ -60,7 +60,7 @@ class BaseDoc(metaclass=ABCMeta):
     such as OpenOffice, AbiWord, and LaTeX are derived from this base
     class, providing a common interface to all document generators.
     """
-    def __init__(self, styles, paper_style, track=[]):
+    def __init__(self, styles, paper_style, track=[], uistate=None):
         """
         Create a BaseDoc instance, which provides a document generation
         interface. This class should never be instantiated directly, but
@@ -77,6 +77,7 @@ class BaseDoc(metaclass=ABCMeta):
         self.track = track
         self._creator = ""
         self.init_called = False
+        self.uistate = uistate
 
     def init(self):
         self.init_called = True
