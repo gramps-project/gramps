@@ -51,6 +51,7 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.errors import ReportError
+from gramps.gen.utils.db import family_name
 
 #------------------------------------------------------------------------
 #
@@ -607,6 +608,9 @@ class FamilyGroup(Report):
                         self.dump_child_event('FGR-TextChild1', ev_name, mrg)
 
     def dump_family(self, family_handle, generation):
+        family = self.db.get_family_from_handle(family_handle)
+        family_toc_name = family_name(family, self.db)
+
         self.doc.start_paragraph('FGR-Title')
         if self.recursive and self.generations:
             title = self._("Family Group Report - Generation %d") % generation
@@ -614,9 +618,9 @@ class FamilyGroup(Report):
             title = self._("Family Group Report")
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
+        mark = IndexMark(family_toc_name, INDEX_TYPE_TOC, 2)
+        self.doc.write_text('', mark)
         self.doc.end_paragraph()
-
-        family = self.db.get_family_from_handle(family_handle)
 
         self.dump_parent(self._("Husband"), family.get_father_handle())
         self.doc.start_paragraph("FGR-blank")
