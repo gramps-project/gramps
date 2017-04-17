@@ -13,8 +13,10 @@ po/.intltool-merge-cache
 docs/_build/
 
 # Editing
+*~
 tags
 *.swp
+.idea
 
 # Testing
 test/data
