@@ -7,7 +7,7 @@
     <researcher>
       <resname>Alex Roitman,,,</resname>
     </researcher>
-    <mediapath>/home/cristina/programs/trunk/example/gramps</mediapath>
+    <mediapath>/home/pierre/Gramps/gramps.40/example/gramps</mediapath>
   </header>
   <name-formats>
     <format number="-1" name="SURNAME, Given (Common)" fmt_str="SURNAME, given (common)" active="1"/>
@@ -41895,7 +41895,7 @@
       <father hlink="_35WJQC1B7T7NPV8OLV"/>
       <mother hlink="_46WJQCIOLQ0KOX2XCC"/>
       <eventref hlink="_a5af0ed602318310d6d" role="Family"/>
-      <childref hlink="_GNUJQCL9MD64AM56OH"/>
+      <childref hlink="_GNUJQCL9MD64AM56OH" mrel="Custom relationship to mother" frel="Custom relationship to father"/>
       <childref hlink="_SOFKQCBYAO18OWC0CS"/>
       <childref hlink="_EPFKQCETTDTEL3PYIR"/>
       <childref hlink="_9QFKQC54ET79K2SD57"/>
@@ -61988,6 +61988,94 @@ page 26  Repository:Address</text>
       </style>
       <style name="fontface" value="Courier">
         <range start="0" end="705"/>
+      </style>
+    </note>
+    <note handle="_d0436bba4ec328d3b631259a4ee" change="1431184305" id="_header1" type="General">
+      <text>Title for the example pages</text>
+      <style name="fontcolor" value="#ef2929">
+        <range start="0" end="27"/>
+      </style>
+      <style name="underline">
+        <range start="0" end="27"/>
+      </style>
+      <style name="fontface" value="Serif">
+        <range start="0" end="27"/>
+      </style>
+      <style name="bold">
+        <range start="0" end="27"/>
+      </style>
+      <style name="fontsize" value="8">
+        <range start="0" end="27"/>
+      </style>
+    </note>
+    <note handle="_d0436bcc69d6bba278bff5bc7db" change="1431184300" id="_footer1" type="General">
+      <text>Footer: exported by  __GRAMPS_HOMEPAGE__ on __EXPORT_DATE__</text>
+    </note>
+    <note handle="_d0436be64ac277b615b79b34e72" change="1431211661" id="_custom1" type="General">
+      <text>Export date: __EXPORT_DATE__
+GRAMPS homepage: __GRAMPS_HOMEPAGE__
+GRAMPS version: __GRAMPS_VERSION__
+
+Number of families: __NB_FAMILIES__
+Number of persons: __NB_INDIVIDUALS__
+Number of media objects: __NB_MEDIA__
+Number of sources: __NB_SOURCES__
+Number of repositories: __NB_REPOSITORIES__
+Number of places: __NB_PLACES__
+
+Search form:
+__SEARCH_FORM__
+
+Test link person: Garner von Zieliński, Lewis Anderson Sr
+Test link family: Family of Warner, Allen Carl and Garner, Rita Marie
+Test link source: World of the Wierd
+Test link media: 1897_expeditionsmannschaft_rio_a
+Test link place: Warren-Farmington Hills-Troy, MI
+
+Test internet link: blog.codinghorror.com
+Test relative path link: relative file path to &quot;archive.zip&quot;
+Test relative path link: relative file path to &quot;archive.tgz&quot;
+
+Thumbnail for &quot;1897_expeditionsmannschaft_rio_a&quot;:
+__THUMB_O0010__
+Image &quot;AntoineClaudet&quot;:
+__MEDIA_O0011__
+Thumbnail for &quot;1897_expeditionsmannschaft_rio_a&quot; with link:
+__THUMB_O0010__
+Image &quot;AntoineClaudet&quot; with link:
+__MEDIA_O0011__
+
+Wrong media ID:
+__MEDIA_wrong id__</text>
+      <style name="link" value="relative://relative.archive.zip">
+        <range start="663" end="686"/>
+      </style>
+      <style name="link" value="gramps://Media/handle/238CGQ939HG18SS5MG">
+        <range start="952" end="967"/>
+      </style>
+      <style name="link" value="gramps://Media/handle/238CGQ939HG18SS5MG">
+        <range start="520" end="535"/>
+      </style>
+      <style name="link" value="gramps://Family/handle/48TJQCGNNIR5SJRCAK">
+        <range start="413" end="429"/>
+      </style>
+      <style name="link" value="gramps://Person/handle/GNUJQCL9MD64AM56OH">
+        <range start="355" end="371"/>
+      </style>
+      <style name="link" value="http://blog.codinghorror.com/">
+        <range start="621" end="639"/>
+      </style>
+      <style name="link" value="gramps://Source/handle/VUBKMQTA2XZG1V6QP8">
+        <range start="483" end="499"/>
+      </style>
+      <style name="link" value="gramps://Place/handle/3WTJQCB9F2MX9W98VP">
+        <range start="570" end="585"/>
+      </style>
+      <style name="link" value="gramps://Media/handle/Y3ARGQWE088EQRTTDH">
+        <range start="1002" end="1017"/>
+      </style>
+      <style name="link" value="relative://relative.archive.tgz">
+        <range start="724" end="747"/>
       </style>
     </note>
   </notes>
