@@ -41,7 +41,7 @@ class TestArgParser(unittest.TestCase):
     def setUp(self):
         pass
 
-    def create_parser(*self_and_args):
+    def create_parser(self, *self_and_args):
         return ArgParser(list(self_and_args))
 
     def triggers_option_error(self, option):
