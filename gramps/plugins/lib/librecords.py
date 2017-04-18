@@ -64,6 +64,10 @@ RECORDS = [
     (_T_("Youngest mother"),                 'person_youngestmother',   True),
     (_T_("Oldest father"),                   'person_oldestfather',     True),
     (_T_("Oldest mother"),                   'person_oldestmother',     True),
+    (_T_("Father with most children"),       'person_mostkidsfather',   False),
+    (_T_("Mother with most children"),       'person_mostkidsmother',   False),
+    (_T_("Father with most grandchildren"), 'person_mostgrandkidsfather',False),
+    (_T_("Mother with most grandchildren"), 'person_mostgrandkidsmother',False),
     (_T_("Couple with most children"),       'family_mostchildren',     True),
     (_T_("Living couple married most recently"), 'family_youngestmarried',True),
     (_T_("Living couple married most long ago"), 'family_oldestmarried',  True),
@@ -128,8 +132,19 @@ def find_records(db, filter, top_size, callname,
     person_youngestmother = []
     person_oldestfather = []
     person_oldestmother = []
+    person_mostkidsfather = []
+    person_mostkidsmother = []
+    person_mostgrandkidsfather = []
+    person_mostgrandkidsmother = []
 
     person_handle_list = db.iter_person_handles()
+
+    # the next "if" will turn person_handle_list from a generator into a
+    # list, but only when this code is called from a report (which has a
+    # filter) and not when called from a gramplet (which has no filter);
+    # so the next line drains the generator and turns it into a list
+    # always, so the gramplet can use it later, in the second loop
+    person_handle_list = list(person_handle_list)
 
     if filter:
         person_handle_list = filter.apply(db, person_handle_list, user=user)
@@ -230,6 +245,37 @@ def find_records(db, filter, top_size, callname,
                             child_birth_date - birth_date,
                             name, 'Person', person_handle, top_size)
 
+    for person_handle in person_handle_list:
+        # this "person loop" doesn't care about a person's birth or death
+        person = db.get_person_from_handle(person_handle)
+        if person is None:
+            continue
+
+        name = _get_styled_primary_name(person, callname,
+                                        trans_text=trans_text,
+                                        name_format=name_format)
+
+        person_child_list = get_birth_children(db, person)
+        if person.get_gender() == person.MALE:
+            _record(None, person_mostkidsfather,
+                    len(person_child_list),
+                    name, 'Person', person_handle, top_size)
+        elif person.get_gender() == person.FEMALE:
+            _record(None, person_mostkidsmother,
+                    len(person_child_list),
+                    name, 'Person', person_handle, top_size)
+
+        person_grandchild_list = []
+        for child in person_child_list:
+            person_grandchild_list += get_birth_children(db, child)
+        if person.get_gender() == person.MALE:
+            _record(None, person_mostgrandkidsfather,
+                    len(person_grandchild_list),
+                    name, 'Person', person_handle, top_size)
+        elif person.get_gender() == person.FEMALE:
+            _record(None, person_mostgrandkidsmother,
+                    len(person_grandchild_list),
+                    name, 'Person', person_handle, top_size)
 
     # Family records
     family_mostchildren = []
@@ -401,6 +447,25 @@ def _record(lowest, highest, value, text, handle_type, handle, top_size):
             if highest[i-1][0] > highest[i][0]:
                 del highest[i:]
                 break
+
+def get_birth_children(db, person):
+    """ return all the birth children of a person, in a list """
+    person_child_list = []
+    for family_handle in person.get_family_handle_list():
+        family = db.get_family_from_handle(family_handle)
+        for child_ref in family.get_child_ref_list():
+            if person.get_gender() == person.MALE:
+                relation = child_ref.get_father_relation()
+            elif person.get_gender() == person.FEMALE:
+                relation = child_ref.get_mother_relation()
+            else:
+                continue # no records are kept for unknown-sex parents
+            if relation != ChildRefType.BIRTH:
+                continue # only count birth children
+            child = db.get_person_from_handle(child_ref.ref)
+            if child not in person_child_list:
+                person_child_list += [child]
+    return person_child_list
 
 #------------------------------------------------------------------------
 #
