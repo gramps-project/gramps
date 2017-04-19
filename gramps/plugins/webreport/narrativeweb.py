@@ -9622,7 +9622,8 @@ class NavWebOptions(MenuReportOptions):
         self.__down_fname1 = None
         self.__navigation = None
         self.__target_cal_uri = None
-        MenuReportOptions.__init__(self, name, dbase)
+        db_options = name + ' ' + dbase.get_dbname()
+        MenuReportOptions.__init__(self, db_options, dbase)
 
     def add_menu_options(self, menu):
         """
