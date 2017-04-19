@@ -8267,8 +8267,9 @@ class NavWebReport(Report):
             menuopt = menu.get_option_by_name(optname)
             self.options[optname] = menuopt.get_value()
 
-        lang = self.options['trans']
-        self.rlocale = self.set_locale(lang)
+        self.set_locale(options.menu.get_option_by_name('trans').get_value())
+        stdoptions.run_date_format_option(self, menu)
+        self.rlocale = self._locale
 
         stdoptions.run_private_data_option(self, menu)
         stdoptions.run_living_people_option(self, menu)
@@ -9687,7 +9688,8 @@ class NavWebOptions(MenuReportOptions):
 
         stdoptions.add_name_format_option(menu, category_name)
 
-        stdoptions.add_localization_option(menu, category_name)
+        locale_opt = stdoptions.add_localization_option(menu, category_name)
+        stdoptions.add_date_format_option(menu, category_name, locale_opt)
 
         self.__securesite = BooleanOption(_("This is a secure site (https)"),
                                           False)

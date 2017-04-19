@@ -126,8 +126,9 @@ class WebCalReport(Report):
 
         mgobn = lambda name: options.menu.get_option_by_name(name).get_value()
 
-        lang = mgobn('trans')
-        self.rlocale = self.set_locale(lang)
+        self.set_locale(options.menu.get_option_by_name('trans').get_value())
+        stdoptions.run_date_format_option(self, options.menu)
+        self.rlocale = self._locale
         self._ = self.rlocale.translation.sgettext
 
         self.html_dir = mgobn('target')
@@ -1681,7 +1682,8 @@ class WebCalOptions(MenuReportOptions):
         alive.set_help(_("Include only living people in the calendar"))
         menu.add_option(category_name, "alive", alive)
 
-        stdoptions.add_localization_option(menu, category_name)
+        locale_opt = stdoptions.add_localization_option(menu, category_name)
+        stdoptions.add_date_format_option(menu, category_name, locale_opt)
 
     def __add_content_options(self, menu):
         """
