@@ -105,7 +105,7 @@ please stop here and backup your database.</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="valign">start</property>
-            <property name="margin_left">5</property>
+            <property name="margin_left">4</property>
             <property name="margin_right">5</property>
             <property name="margin_top">5</property>
             <property name="resize_toplevel">True</property>

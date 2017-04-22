@@ -22,7 +22,7 @@
 #
 
 """
-Change id IDs of all the elements in the database to conform to the
+Change IDs of all elements in the database to conform to the
 scheme specified in the database's prefix_fmt ids
 """
 

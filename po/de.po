@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-22 22:25+0100\n"
-"PO-Revision-Date: 2017-03-22 22:29+0100\n"
+"PO-Revision-Date: 2017-04-22 22:35+0200\n"
 "Last-Translator: Alois Pöttker <alois.poettker@gmx.de>\n"
 "Language-Team: Deutsch <>\n"
 "Language: de\n"
@@ -33227,11 +33227,7 @@ msgstr "Markieren"
 msgid "Remove unused objects"
 msgstr "Unbenutzte Objekte entfernen"
 
-#: ../gramps/plugins/tool/reorderids.glade:24
-msgid "Reorder IDs"
-msgstr "Ordne IDs neu."
-
-#: ../gramps/plugins/tool/reorderids.glade:72
+#: ../gramps/plugins/tool/reorderids.glade:69
 msgid ""
 "Proceeding with this tool will erase the undo history for\n"
 "this session. In particular, you will not be able to revert the\n"
@@ -33245,106 +33241,95 @@ msgstr ""
 "Wenn du jedoch die Änderungen, die durch das Werkzeug gemacht werden,\n"
 "rückgängig machen willst, stoppe hier und sichere deine Datenbank."
 
-#: ../gramps/plugins/tool/reorderids.glade:1445
+#: ../gramps/plugins/tool/reorderids.glade:1442
 msgid "Enable ID reordering."
 msgstr ""
 "Ermögliche ID\n"
 "Neunummerierung."
 
-#: ../gramps/plugins/tool/reorderids.glade:1462
+#: ../gramps/plugins/tool/reorderids.glade:1459
 msgid ""
 "List next ID available\n"
 "(maynot be continuous)."
 msgstr ""
-"Nummer der nächsten \n"
-"verfügbaren ID\n"
+"Nummer der nächsten verfügbaren ID\n"
 "(evt. nicht fortlaufend)."
 
-#: ../gramps/plugins/tool/reorderids.glade:1465
-msgid "  Actual"
-msgstr "  Aktuell"
+#: ../gramps/plugins/tool/reorderids.glade:1462
+msgid " Actual"
+msgstr " Aktuell"
 
-#: ../gramps/plugins/tool/reorderids.glade:1479
+#: ../gramps/plugins/tool/reorderids.glade:1476
 msgid "Amount of ID in use."
-msgstr ""
-"Anzahl der\n"
-"benutzten IDs."
+msgstr "Anzahl der benutzten IDs."
 
-#: ../gramps/plugins/tool/reorderids.glade:1481
+#: ../gramps/plugins/tool/reorderids.glade:1478
 msgid " Quantity"
 msgstr " Anzahl"
 
-#: ../gramps/plugins/tool/reorderids.glade:1496
+#: ../gramps/plugins/tool/reorderids.glade:1493
 msgid "Actual / Upcoming ID format."
-msgstr ""
-"Aktuelles / Neues\n"
-"ID Format."
+msgstr "Aktuelles / Kommendes ID Format."
 
-#: ../gramps/plugins/tool/reorderids.glade:1511
+#: ../gramps/plugins/tool/reorderids.glade:1508
 msgid "Change"
 msgstr "Änderung"
 
-#: ../gramps/plugins/tool/reorderids.glade:1515
+#: ../gramps/plugins/tool/reorderids.glade:1512
 msgid ""
 "Enable ID reordering\n"
 "with Start / Step sequence."
 msgstr ""
-"Ermögliche ID Neunummerierung\n"
-"mit Start / Schrittweite Sequenz."
+"Ermögliche ID Neunummerierung mit\n"
+"Start / Schrittweite Sequenz."
 
-#: ../gramps/plugins/tool/reorderids.glade:1531
+#: ../gramps/plugins/tool/reorderids.glade:1528
 msgid "Start"
 msgstr "Start"
 
-#: ../gramps/plugins/tool/reorderids.glade:1535
+#: ../gramps/plugins/tool/reorderids.glade:1532
 msgid "Reorder ID start number."
 msgstr ""
 "Neunummerierung ID\n"
 "Start Nummer."
 
-#: ../gramps/plugins/tool/reorderids.glade:1550
+#: ../gramps/plugins/tool/reorderids.glade:1547
 msgid "Step"
 msgstr "Schritt"
 
-#: ../gramps/plugins/tool/reorderids.glade:1554
+#: ../gramps/plugins/tool/reorderids.glade:1551
 msgid "Reorder ID step width."
 msgstr ""
 "Neunummerierung ID\n"
 "Schrittweite."
 
-#: ../gramps/plugins/tool/reorderids.glade:1569
+#: ../gramps/plugins/tool/reorderids.glade:1566
 msgid "Keep"
 msgstr "Schutz"
 
-#: ../gramps/plugins/tool/reorderids.glade:1573
+#: ../gramps/plugins/tool/reorderids.glade:1570
 msgid ""
 "Keep IDs with alternate\n"
 "prefixes untouched."
 msgstr ""
-"Bewahre IDs mit\n"
+"Bewahre IDs mit \n"
 "abweichenden Format."
 
-#: ../gramps/plugins/tool/reorderids.py:66
-msgid "manual|Reorder_Gramps_ID"
+#: ../gramps/plugins/tool/reorderids.py:65
+msgid "manual|Reorder_GRAMPS_ID"
 msgstr "Manuell|Ordne Gramps-IDs neu"
 
 #. set gramps style title for the window
-#: ../gramps/plugins/tool/reorderids.py:255
-#: ../gramps/plugins/tool/reorderids.py:480
-#: ../gramps/plugins/tool/reorderids.py:487
+#: ../gramps/plugins/tool/reorderids.py:237
+#: ../gramps/plugins/tool/reorderids.py:454
 #: ../gramps/plugins/tool/tools.gpr.py:375
 msgid "Reorder Gramps IDs"
 msgstr "Ordne Gramps-IDs neu"
 
-#: ../gramps/plugins/tool/reorderids.py:498
-#: ../gramps/plugins/tool/reorderids.py:502
+#: ../gramps/plugins/tool/reorderids.py:469
 #, python-format
-msgid "Reorder %s IDs ..."
-msgstr "Ordne %s IDs neu ..."
-
-#: ../gramps/plugins/tool/reorderids.py:597
-msgid "Finding and assigning unused IDs."
-msgstr "Finden und zuweisen von unbenutzten IDs."
+msgid "Reorder %s IDs"
+msgstr "Ordne %s IDs neu"
 
 #: ../gramps/plugins/tool/sortevents.py:76
 msgid "Sort Events"
