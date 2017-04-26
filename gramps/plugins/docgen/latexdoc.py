@@ -1236,7 +1236,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
             from gramps.gen.config import config
             if not config.get('interface.ignore-pil'):
                 from gramps.gen.constfunc import has_display
-                if has_display():
+                if has_display() and self.uistate:
                     from gramps.gui.dialog import MessageHideDialog
                     title = _("PIL (Python Imaging Library) not loaded.")
                     message = _("Production of jpg images from non-jpg images "
@@ -1244,8 +1244,8 @@ class LaTeXDoc(BaseDoc, TextDoc):
                                 "Use your package manager to install "
                                 "python-imaging or python-pillow or "
                                 "python3-pillow")
-                    MessageHideDialog(title, message, # TODO no-parent
-                                      'interface.ignore-pil')
+                    MessageHideDialog(title, message, 'interface.ignore-pil',
+                                      parent=self.uistate.window)
             self.emit(''.join(('%\n *** Error: cannot convert ', infile,
                                '\n ***                    to ', outfile,
                                '\n *** PIL not installed %\n')))
