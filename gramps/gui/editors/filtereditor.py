@@ -581,8 +581,8 @@ class EditRule(ManagedWindow):
                 elif v == _('Day of Week:'):
                     long_days = displayer.long_days
                     days_of_week = long_days[2:] + long_days[1:2]
-                    t = MyList(map(str, range(7)), days_of_week)
-                else:                    
+                    t = MyList(list(map(str, range(7))), days_of_week)
+                else:
                     t = MyEntry()
                 t.set_hexpand(True)
                 tlist.append(t)
