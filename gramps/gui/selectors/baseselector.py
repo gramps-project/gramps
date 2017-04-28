@@ -21,6 +21,16 @@
 
 #-------------------------------------------------------------------------
 #
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+import time
+import logging
+
+_LOG = logging.getLogger(".gui.baseselector")
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -53,12 +63,13 @@ class BaseSelector(ManagedWindow):
     IMAGE  =  2
 
     def __init__(self, dbstate, uistate, track=[], filter=None, skip=set(),
-                 show_search_bar = True, default=None, expand=True):
+                 show_search_bar = True, default=None, expand=False):
         """Set up the dialog with the dbstate and uistate, track of parent
             windows for ManagedWindow, initial filter for the model, skip with
             set of handles to skip in the view, and search_bar to show the
             SearchBar at the top or not.
         """
+        self.cput = time.clock()
         self.filter = (2, filter, False)
         self.expand = expand
 
@@ -133,6 +144,17 @@ class BaseSelector(ManagedWindow):
         """
         iter_ = self.model.get_iter_from_handle(handle)
         if iter_:
+            if not (self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY):
+                # Expand tree
+                parent_iter = self.model.iter_parent(iter_)
+                if parent_iter:
+                    parent_path = self.model.get_path(parent_iter)
+                    if parent_path:
+                        parent_path_list = parent_path.get_indices()
+                        for i in range(len(parent_path_list)):
+                            expand_path = Gtk.TreePath(
+                                tuple([x for x in parent_path_list[:i + 1]]))
+                            self.tree.expand_row(expand_path, False)
             # Select active object
             path = self.model.get_path(iter_)
             self.selection.unselect_all()
@@ -182,6 +204,8 @@ class BaseSelector(ManagedWindow):
         id_list.append(handle)
 
     def run(self):
+        _LOG.debug(self.__class__.__name__ + ' works ' +
+                   str(time.clock() - self.cput) + ' sec')
         val = self.window.run()
         result = None
         if val == Gtk.ResponseType.OK:
