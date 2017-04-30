@@ -919,14 +919,12 @@ class FamilyGroupOptions(MenuReportOptions):
         cell.set_padding(0.1)
         cell.set_bottom_border(1)
         cell.set_left_border(1)
-        cell.set_right_border(1) # for RTL
         default_style.add_cell_style('FGR-TextContents', cell)
 
         cell = TableCellStyle()
         cell.set_padding(0.1)
         cell.set_bottom_border(0)
         cell.set_left_border(1)
-        cell.set_right_border(1) # for RTL
         cell.set_padding(0.1)
         default_style.add_cell_style('FGR-TextChild1', cell)
 
@@ -934,7 +932,6 @@ class FamilyGroupOptions(MenuReportOptions):
         cell.set_padding(0.1)
         cell.set_bottom_border(1)
         cell.set_left_border(1)
-        cell.set_right_border(1) # for RTL
         cell.set_padding(0.1)
         default_style.add_cell_style('FGR-TextChild2', cell)
 
