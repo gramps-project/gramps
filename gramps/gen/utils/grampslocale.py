@@ -112,6 +112,9 @@ _LOCALE_NAMES = {
     'zh_TW': ('Chinese_Taiwan', '950', _("Chinese (Traditional)")),
     }
 
+# locales with right-to-left text
+_RTL_LOCALES = ('ar', 'he')
+
 # locales with less than 70% currently translated
 INCOMPLETE_TRANSLATIONS = ('ar', 'bg', 'he', 'ja', 'sq', 'ta', 'tr')
 
@@ -526,6 +529,10 @@ class GrampsLocale:
                 self._win_bindtextdomain(self.localedomain.encode('utf-8'),
                                          self.localedir.encode('utf-8'))
 
+        self.rtl_locale = False
+        if self.language[0] in _RTL_LOCALES:
+            self.rtl_locale = True # right-to-left
+
     def _init_secondary_locale(self):
         """
         Init a secondary locale. Secondary locales are used to provide
@@ -560,6 +567,9 @@ class GrampsLocale:
 
         self.numeric = self.currency = self.calendar = self.collation = self.lang
 
+        self.rtl_locale = False
+        if self.language[0] in _RTL_LOCALES:
+            self.rtl_locale = True # right-to-left
 
     def __init__(self, localedir=None, lang=None, domain=None, languages=None):
         """

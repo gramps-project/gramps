@@ -79,6 +79,7 @@ class Report:
         self._get_date = locale.get_date
         self._get_type = locale.get_type
         self._ldd = locale.date_displayer
+        self.doc.set_rtl_doc(locale.rtl_locale)
         self._name_display = NameDisplay(locale) # a legacy/historical name
         self._name_display.set_name_format(self.database.name_formats)
         fmt_default = config.get('preferences.name-format')

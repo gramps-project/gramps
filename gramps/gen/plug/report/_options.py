@@ -626,6 +626,9 @@ class EmptyDoc:
     def set_creator(self, creator):
         pass
 
+    def set_rtl_doc(self, value): # crock!
+        pass
+
     def open(self, filename):
         pass
 

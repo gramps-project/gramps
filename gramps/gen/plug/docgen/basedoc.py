@@ -6,6 +6,7 @@
 # Copyright (C) 2007       Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2017       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -78,6 +79,13 @@ class BaseDoc(metaclass=ABCMeta):
         self._creator = ""
         self.init_called = False
         self.uistate = uistate
+        self._rtl_doc = False # does the document have right-to-left text?
+
+    def set_rtl_doc(self, value):
+        self._rtl_doc = value
+
+    def get_rtl_doc(self):
+        return self._rtl_doc
 
     def init(self):
         self.init_called = True
