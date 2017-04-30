@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-09 16:09-0700\n"
+"POT-Creation-Date: 2017-04-30 14:16-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1187,14 +1187,14 @@ msgstr ""
 #: ../gramps/gui/editors/editname.py:310 ../gramps/gui/plug/_windows.py:685
 #: ../gramps/gui/plug/_windows.py:1116
 #: ../gramps/plugins/gramplet/whatsnext.py:493
-#: ../gramps/plugins/textreport/detancestralreport.py:464
-#: ../gramps/plugins/textreport/detdescendantreport.py:511
-#: ../gramps/plugins/textreport/familygroup.py:136
-#: ../gramps/plugins/textreport/familygroup.py:302
-#: ../gramps/plugins/textreport/indivcomplete.py:899
-#: ../gramps/plugins/textreport/indivcomplete.py:939
-#: ../gramps/plugins/textreport/indivcomplete.py:1010
-#: ../gramps/plugins/textreport/placereport.py:181
+#: ../gramps/plugins/textreport/detancestralreport.py:465
+#: ../gramps/plugins/textreport/detdescendantreport.py:513
+#: ../gramps/plugins/textreport/familygroup.py:138
+#: ../gramps/plugins/textreport/familygroup.py:304
+#: ../gramps/plugins/textreport/indivcomplete.py:900
+#: ../gramps/plugins/textreport/indivcomplete.py:940
+#: ../gramps/plugins/textreport/indivcomplete.py:1011
+#: ../gramps/plugins/textreport/placereport.py:183
 #: ../gramps/plugins/webreport/narrativeweb.py:1065
 #: ../gramps/plugins/webreport/narrativeweb.py:2604
 #: ../gramps/plugins/webreport/narrativeweb.py:2654
@@ -1293,9 +1293,9 @@ msgstr ""
 #: ../gramps/plugins/gramplet/persondetails.py:217
 #: ../gramps/plugins/gramplet/relativegramplet.py:124
 #: ../gramps/plugins/gramplet/relativegramplet.py:135
-#: ../gramps/plugins/graph/gvfamilylines.py:283
-#: ../gramps/plugins/graph/gvhourglass.py:376
-#: ../gramps/plugins/graph/gvrelgraph.py:890
+#: ../gramps/plugins/graph/gvfamilylines.py:285
+#: ../gramps/plugins/graph/gvhourglass.py:379
+#: ../gramps/plugins/graph/gvrelgraph.py:893
 #: ../gramps/plugins/importer/importprogen.py:985
 #: ../gramps/plugins/lib/maps/geography.py:836
 #: ../gramps/plugins/lib/maps/geography.py:846
@@ -1303,29 +1303,29 @@ msgstr ""
 #: ../gramps/plugins/quickview/all_relations.py:277
 #: ../gramps/plugins/quickview/all_relations.py:294
 #: ../gramps/plugins/textreport/descendreport.py:313
-#: ../gramps/plugins/textreport/detancestralreport.py:206
-#: ../gramps/plugins/textreport/detancestralreport.py:290
-#: ../gramps/plugins/textreport/detancestralreport.py:576
-#: ../gramps/plugins/textreport/detancestralreport.py:578
-#: ../gramps/plugins/textreport/detancestralreport.py:585
-#: ../gramps/plugins/textreport/detancestralreport.py:587
-#: ../gramps/plugins/textreport/detancestralreport.py:602
-#: ../gramps/plugins/textreport/detancestralreport.py:655
-#: ../gramps/plugins/textreport/detancestralreport.py:657
-#: ../gramps/plugins/textreport/detancestralreport.py:664
-#: ../gramps/plugins/textreport/detancestralreport.py:666
-#: ../gramps/plugins/textreport/detancestralreport.py:724
-#: ../gramps/plugins/textreport/detdescendantreport.py:332
-#: ../gramps/plugins/textreport/detdescendantreport.py:430
-#: ../gramps/plugins/textreport/detdescendantreport.py:615
-#: ../gramps/plugins/textreport/detdescendantreport.py:653
+#: ../gramps/plugins/textreport/detancestralreport.py:207
+#: ../gramps/plugins/textreport/detancestralreport.py:291
+#: ../gramps/plugins/textreport/detancestralreport.py:577
+#: ../gramps/plugins/textreport/detancestralreport.py:579
+#: ../gramps/plugins/textreport/detancestralreport.py:586
+#: ../gramps/plugins/textreport/detancestralreport.py:588
+#: ../gramps/plugins/textreport/detancestralreport.py:603
+#: ../gramps/plugins/textreport/detancestralreport.py:656
+#: ../gramps/plugins/textreport/detancestralreport.py:658
+#: ../gramps/plugins/textreport/detancestralreport.py:665
+#: ../gramps/plugins/textreport/detancestralreport.py:667
+#: ../gramps/plugins/textreport/detancestralreport.py:725
+#: ../gramps/plugins/textreport/detdescendantreport.py:334
+#: ../gramps/plugins/textreport/detdescendantreport.py:432
+#: ../gramps/plugins/textreport/detdescendantreport.py:617
 #: ../gramps/plugins/textreport/detdescendantreport.py:655
-#: ../gramps/plugins/textreport/detdescendantreport.py:662
+#: ../gramps/plugins/textreport/detdescendantreport.py:657
 #: ../gramps/plugins/textreport/detdescendantreport.py:664
-#: ../gramps/plugins/textreport/detdescendantreport.py:692
-#: ../gramps/plugins/textreport/detdescendantreport.py:835
+#: ../gramps/plugins/textreport/detdescendantreport.py:666
+#: ../gramps/plugins/textreport/detdescendantreport.py:694
+#: ../gramps/plugins/textreport/detdescendantreport.py:837
 #: ../gramps/plugins/textreport/indivcomplete.py:85
-#: ../gramps/plugins/textreport/indivcomplete.py:922
+#: ../gramps/plugins/textreport/indivcomplete.py:923
 #: ../gramps/plugins/tool/check.py:2356 ../gramps/plugins/tool/check.py:2382
 #: ../gramps/plugins/tool/dumpgenderstats.py:74
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
@@ -1950,25 +1950,25 @@ msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:631
+#: ../gramps/gen/datehandler/_datedisplay.py:635
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
 msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:657
+#: ../gramps/gen/datehandler/_datedisplay.py:661
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
 msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:683
+#: ../gramps/gen/datehandler/_datedisplay.py:687
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
 msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:709
+#: ../gramps/gen/datehandler/_datedisplay.py:713
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
 msgstr ""
@@ -2879,12 +2879,12 @@ msgstr ""
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1093
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1107
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1121
-#: ../gramps/plugins/graph/gvrelgraph.py:751
+#: ../gramps/plugins/graph/gvrelgraph.py:752
 #: ../gramps/plugins/quickview/quickview.gpr.py:130
-#: ../gramps/plugins/textreport/birthdayreport.py:412
-#: ../gramps/plugins/textreport/familygroup.py:706
-#: ../gramps/plugins/textreport/indivcomplete.py:1044
-#: ../gramps/plugins/textreport/recordsreport.py:218
+#: ../gramps/plugins/textreport/birthdayreport.py:411
+#: ../gramps/plugins/textreport/familygroup.py:711
+#: ../gramps/plugins/textreport/indivcomplete.py:1045
+#: ../gramps/plugins/textreport/recordsreport.py:217
 #: ../gramps/plugins/tool/sortevents.py:167
 #: ../gramps/plugins/webreport/narrativeweb.py:9675
 #: ../gramps/plugins/webreport/webcal.py:1622
@@ -4888,9 +4888,9 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_isfemale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:108
-#: ../gramps/plugins/graph/gvfamilylines.py:279
-#: ../gramps/plugins/graph/gvhourglass.py:372
-#: ../gramps/plugins/graph/gvrelgraph.py:886
+#: ../gramps/plugins/graph/gvfamilylines.py:281
+#: ../gramps/plugins/graph/gvhourglass.py:375
+#: ../gramps/plugins/graph/gvrelgraph.py:889
 #: ../gramps/plugins/webreport/narrativeweb.py:8125
 #: ../gramps/plugins/webreport/narrativeweb.py:8192
 msgid "Females"
@@ -4953,9 +4953,9 @@ msgstr ""
 #. ###############################
 #: ../gramps/gen/filters/rules/person/_ismale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:105
-#: ../gramps/plugins/graph/gvfamilylines.py:275
-#: ../gramps/plugins/graph/gvhourglass.py:368
-#: ../gramps/plugins/graph/gvrelgraph.py:882
+#: ../gramps/plugins/graph/gvfamilylines.py:277
+#: ../gramps/plugins/graph/gvhourglass.py:371
+#: ../gramps/plugins/graph/gvrelgraph.py:885
 #: ../gramps/plugins/webreport/narrativeweb.py:8123
 #: ../gramps/plugins/webreport/narrativeweb.py:8190
 msgid "Males"
@@ -5713,8 +5713,8 @@ msgstr ""
 #: ../gramps/plugins/gramplet/coordinates.py:90
 #: ../gramps/plugins/gramplet/events.py:86
 #: ../gramps/plugins/lib/libmetadata.py:100
-#: ../gramps/plugins/textreport/placereport.py:222
-#: ../gramps/plugins/textreport/placereport.py:299
+#: ../gramps/plugins/textreport/placereport.py:224
+#: ../gramps/plugins/textreport/placereport.py:301
 #: ../gramps/plugins/tool/sortevents.py:57
 #: ../gramps/plugins/view/eventview.py:82
 #: ../gramps/plugins/webreport/narrativeweb.py:1001
@@ -5801,10 +5801,10 @@ msgstr ""
 #: ../gramps/plugins/gramplet/descendant.py:63
 #: ../gramps/plugins/quickview/all_relations.py:270
 #: ../gramps/plugins/quickview/lineage.py:93
-#: ../gramps/plugins/textreport/familygroup.py:316
-#: ../gramps/plugins/textreport/familygroup.py:524
+#: ../gramps/plugins/textreport/familygroup.py:318
 #: ../gramps/plugins/textreport/familygroup.py:526
-#: ../gramps/plugins/textreport/tagreport.py:166
+#: ../gramps/plugins/textreport/familygroup.py:528
+#: ../gramps/plugins/textreport/tagreport.py:168
 #: ../gramps/plugins/view/relview.py:612
 #: ../gramps/plugins/webreport/narrativeweb.py:3266
 #: ../gramps/plugins/webreport/narrativeweb.py:6151
@@ -5855,8 +5855,8 @@ msgstr ""
 #: ../gramps/gen/lib/note.py:116 ../gramps/gen/lib/person.py:180
 #: ../gramps/gen/lib/place.py:141 ../gramps/gen/lib/repo.py:93
 #: ../gramps/gen/lib/src.py:104 ../gramps/plugins/graph/gvfamilylines.py:159
-#: ../gramps/plugins/graph/gvhourglass.py:347
-#: ../gramps/plugins/graph/gvrelgraph.py:782
+#: ../gramps/plugins/graph/gvhourglass.py:348
+#: ../gramps/plugins/graph/gvrelgraph.py:783
 #: ../gramps/plugins/importer/importcsv.py:206
 #: ../gramps/plugins/quickview/filterbyname.py:154
 #: ../gramps/plugins/quickview/filterbyname.py:165
@@ -5874,8 +5874,8 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:264
 #: ../gramps/plugins/quickview/filterbyname.py:270
 #: ../gramps/plugins/quickview/filterbyname.py:276
-#: ../gramps/plugins/textreport/familygroup.py:787
-#: ../gramps/plugins/textreport/indivcomplete.py:1108
+#: ../gramps/plugins/textreport/familygroup.py:794
+#: ../gramps/plugins/textreport/indivcomplete.py:1111
 #: ../gramps/plugins/tool/findloop.py:103
 #: ../gramps/plugins/tool/findloop.py:107
 #: ../gramps/plugins/webreport/narrativeweb.py:2923
@@ -5933,13 +5933,13 @@ msgstr ""
 #: ../gramps/plugins/quickview/onthisday.py:80
 #: ../gramps/plugins/quickview/onthisday.py:81
 #: ../gramps/plugins/quickview/onthisday.py:82
-#: ../gramps/plugins/textreport/indivcomplete.py:493
-#: ../gramps/plugins/textreport/indivcomplete.py:691
-#: ../gramps/plugins/textreport/placereport.py:221
-#: ../gramps/plugins/textreport/placereport.py:299
-#: ../gramps/plugins/textreport/tagreport.py:349
-#: ../gramps/plugins/textreport/tagreport.py:582
-#: ../gramps/plugins/textreport/tagreport.py:825
+#: ../gramps/plugins/textreport/indivcomplete.py:494
+#: ../gramps/plugins/textreport/indivcomplete.py:692
+#: ../gramps/plugins/textreport/placereport.py:223
+#: ../gramps/plugins/textreport/placereport.py:301
+#: ../gramps/plugins/textreport/tagreport.py:351
+#: ../gramps/plugins/textreport/tagreport.py:584
+#: ../gramps/plugins/textreport/tagreport.py:827
 #: ../gramps/plugins/tool/sortevents.py:54
 #: ../gramps/plugins/view/citationlistview.py:100
 #: ../gramps/plugins/view/citationtreeview.py:95
@@ -5986,8 +5986,8 @@ msgstr ""
 #: ../gramps/plugins/quickview/quickview.gpr.py:205
 #: ../gramps/plugins/quickview/references.py:88
 #: ../gramps/plugins/quickview/reporef.py:62
-#: ../gramps/plugins/textreport/tagreport.py:722
-#: ../gramps/plugins/textreport/tagreport.py:831
+#: ../gramps/plugins/textreport/tagreport.py:724
+#: ../gramps/plugins/textreport/tagreport.py:833
 msgid "Source"
 msgstr ""
 
@@ -6006,8 +6006,8 @@ msgstr ""
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:771
 #: ../gramps/plugins/quickview/filterbyname.py:112
 #: ../gramps/plugins/quickview/filterbyname.py:137
-#: ../gramps/plugins/textreport/indivcomplete.py:260
-#: ../gramps/plugins/textreport/tagreport.py:484
+#: ../gramps/plugins/textreport/indivcomplete.py:261
+#: ../gramps/plugins/textreport/tagreport.py:486
 #: ../gramps/plugins/view/noteview.py:110
 #: ../gramps/plugins/view/view.gpr.py:97
 #: ../gramps/plugins/view/view.gpr.py:105
@@ -6033,7 +6033,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:398
 #: ../gramps/plugins/quickview/quickview.gpr.py:207
 #: ../gramps/plugins/quickview/references.py:93
-#: ../gramps/plugins/textreport/tagreport.py:553
+#: ../gramps/plugins/textreport/tagreport.py:555
 #: ../gramps/plugins/view/mediaview.py:129
 #: ../gramps/plugins/view/view.gpr.py:82 ../gramps/plugins/view/view.gpr.py:90
 #: ../gramps/plugins/webreport/narrativeweb.py:1889
@@ -6071,7 +6071,7 @@ msgstr ""
 #: ../gramps/gui/selectors/selectnote.py:77
 #: ../gramps/plugins/lib/libpersonview.py:111
 #: ../gramps/plugins/lib/libplaceview.py:92
-#: ../gramps/plugins/textreport/indivcomplete.py:534
+#: ../gramps/plugins/textreport/indivcomplete.py:535
 #: ../gramps/plugins/tool/notrelated.py:129
 #: ../gramps/plugins/view/citationlistview.py:103
 #: ../gramps/plugins/view/citationtreeview.py:98
@@ -6149,7 +6149,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:89
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
-#: ../gramps/plugins/textreport/indivcomplete.py:648
+#: ../gramps/plugins/textreport/indivcomplete.py:649
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
 #: ../gramps/plugins/view/relview.py:648
 #: ../gramps/plugins/webreport/narrativeweb.py:6350
@@ -6225,7 +6225,7 @@ msgstr[1] ""
 #: ../gramps/plugins/gramplet/whatsnext.py:440
 #: ../gramps/plugins/gramplet/whatsnext.py:473
 #: ../gramps/plugins/gramplet/whatsnext.py:495
-#: ../gramps/plugins/textreport/placereport.py:191
+#: ../gramps/plugins/textreport/placereport.py:193
 msgid ", "
 msgstr ""
 
@@ -6265,17 +6265,17 @@ msgstr ""
 msgid "date-modifier|none"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1864 ../gramps/plugins/lib/libsubstkeyword.py:315
+#: ../gramps/gen/lib/date.py:1864 ../gramps/plugins/lib/libsubstkeyword.py:314
 msgid "about"
 msgstr ""
 
 #: ../gramps/gen/lib/date.py:1864
 #: ../gramps/plugins/importer/importprogen.py:1723
-#: ../gramps/plugins/lib/libsubstkeyword.py:314
+#: ../gramps/plugins/lib/libsubstkeyword.py:313
 msgid "after"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1864 ../gramps/plugins/lib/libsubstkeyword.py:314
+#: ../gramps/gen/lib/date.py:1864 ../gramps/plugins/lib/libsubstkeyword.py:313
 msgid "before"
 msgstr ""
 
@@ -6302,7 +6302,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:246
 #: ../gramps/plugins/quickview/quickview.gpr.py:204
 #: ../gramps/plugins/quickview/references.py:87
-#: ../gramps/plugins/textreport/placereport.py:452
+#: ../gramps/plugins/textreport/placereport.py:454
 #: ../gramps/plugins/webreport/narrativeweb.py:998
 msgid "Event"
 msgstr ""
@@ -6334,8 +6334,8 @@ msgstr ""
 #: ../gramps/plugins/quickview/onthisday.py:82
 #: ../gramps/plugins/quickview/quickview.gpr.py:206
 #: ../gramps/plugins/quickview/references.py:92
-#: ../gramps/plugins/textreport/indivcomplete.py:496
-#: ../gramps/plugins/textreport/indivcomplete.py:694
+#: ../gramps/plugins/textreport/indivcomplete.py:497
+#: ../gramps/plugins/textreport/indivcomplete.py:695
 #: ../gramps/plugins/tool/sortevents.py:58
 #: ../gramps/plugins/view/eventview.py:86
 #: ../gramps/plugins/webreport/narrativeweb.py:1000
@@ -6352,7 +6352,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:813
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:827
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:841
-#: ../gramps/plugins/textreport/tagreport.py:802
+#: ../gramps/plugins/textreport/tagreport.py:804
 #: ../gramps/plugins/view/view.gpr.py:283
 #: ../gramps/plugins/view/view.gpr.py:291
 msgid "Citations"
@@ -6370,8 +6370,8 @@ msgstr ""
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:631
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:645
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:659
-#: ../gramps/plugins/textreport/indivcomplete.py:458
-#: ../gramps/plugins/textreport/indivcomplete.py:677
+#: ../gramps/plugins/textreport/indivcomplete.py:459
+#: ../gramps/plugins/textreport/indivcomplete.py:678
 #: ../gramps/plugins/webreport/narrativeweb.py:807
 #: ../gramps/plugins/webreport/narrativeweb.py:1370
 #: ../gramps/plugins/webreport/narrativeweb.py:1626
@@ -6434,7 +6434,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:240
 #: ../gramps/plugins/quickview/quickview.gpr.py:203
 #: ../gramps/plugins/quickview/references.py:86
-#: ../gramps/plugins/textreport/recordsreport.py:272
+#: ../gramps/plugins/textreport/recordsreport.py:271
 #: ../gramps/plugins/view/relview.py:1378
 #: ../gramps/plugins/view/relview.py:1402
 #: ../gramps/plugins/webreport/narrativeweb.py:3523
@@ -6476,10 +6476,10 @@ msgid "Other"
 msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:166 ../gramps/gui/merge/mergeperson.py:194
-#: ../gramps/plugins/textreport/familygroup.py:324
-#: ../gramps/plugins/textreport/familygroup.py:530
+#: ../gramps/plugins/textreport/familygroup.py:326
 #: ../gramps/plugins/textreport/familygroup.py:532
-#: ../gramps/plugins/textreport/tagreport.py:172
+#: ../gramps/plugins/textreport/familygroup.py:534
+#: ../gramps/plugins/textreport/tagreport.py:174
 #: ../gramps/plugins/view/relview.py:621 ../gramps/plugins/view/relview.py:646
 #: ../gramps/plugins/webreport/narrativeweb.py:3270
 #: ../gramps/plugins/webreport/narrativeweb.py:6155
@@ -6612,9 +6612,9 @@ msgstr ""
 #: ../gramps/gen/lib/eventtype.py:198 ../gramps/gui/merge/mergeperson.py:258
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:219
-#: ../gramps/plugins/textreport/familygroup.py:402
-#: ../gramps/plugins/textreport/familygroup.py:411
-#: ../gramps/plugins/textreport/familygroup.py:602
+#: ../gramps/plugins/textreport/familygroup.py:404
+#: ../gramps/plugins/textreport/familygroup.py:413
+#: ../gramps/plugins/textreport/familygroup.py:604
 #: ../gramps/plugins/webreport/narrativeweb.py:3524
 msgid "Marriage"
 msgstr ""
@@ -6865,12 +6865,12 @@ msgstr ""
 #: ../gramps/plugins/gramplet/persondetails.py:219
 #: ../gramps/plugins/importer/importcsv.py:216
 #: ../gramps/plugins/quickview/all_relations.py:300
-#: ../gramps/plugins/textreport/familygroup.py:228
-#: ../gramps/plugins/textreport/familygroup.py:239
-#: ../gramps/plugins/textreport/indivcomplete.py:317
-#: ../gramps/plugins/textreport/indivcomplete.py:319
-#: ../gramps/plugins/textreport/indivcomplete.py:911
-#: ../gramps/plugins/textreport/tagreport.py:248
+#: ../gramps/plugins/textreport/familygroup.py:230
+#: ../gramps/plugins/textreport/familygroup.py:241
+#: ../gramps/plugins/textreport/indivcomplete.py:318
+#: ../gramps/plugins/textreport/indivcomplete.py:320
+#: ../gramps/plugins/textreport/indivcomplete.py:912
+#: ../gramps/plugins/textreport/tagreport.py:250
 #: ../gramps/plugins/view/familyview.py:80
 #: ../gramps/plugins/view/relview.py:899
 #: ../gramps/plugins/webreport/narrativeweb.py:7463
@@ -6887,12 +6887,12 @@ msgstr ""
 #: ../gramps/plugins/gramplet/persondetails.py:220
 #: ../gramps/plugins/importer/importcsv.py:213
 #: ../gramps/plugins/quickview/all_relations.py:297
-#: ../gramps/plugins/textreport/familygroup.py:245
-#: ../gramps/plugins/textreport/familygroup.py:256
-#: ../gramps/plugins/textreport/indivcomplete.py:326
-#: ../gramps/plugins/textreport/indivcomplete.py:328
-#: ../gramps/plugins/textreport/indivcomplete.py:912
-#: ../gramps/plugins/textreport/tagreport.py:254
+#: ../gramps/plugins/textreport/familygroup.py:247
+#: ../gramps/plugins/textreport/familygroup.py:258
+#: ../gramps/plugins/textreport/indivcomplete.py:327
+#: ../gramps/plugins/textreport/indivcomplete.py:329
+#: ../gramps/plugins/textreport/indivcomplete.py:913
+#: ../gramps/plugins/textreport/tagreport.py:256
 #: ../gramps/plugins/view/familyview.py:81
 #: ../gramps/plugins/view/relview.py:900
 #: ../gramps/plugins/webreport/narrativeweb.py:7477
@@ -6903,8 +6903,8 @@ msgstr ""
 #: ../gramps/gen/lib/family.py:161 ../gramps/gui/widgets/fanchart.py:1644
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:855
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:869
-#: ../gramps/plugins/textreport/familygroup.py:639
-#: ../gramps/plugins/textreport/indivcomplete.py:663
+#: ../gramps/plugins/textreport/familygroup.py:644
+#: ../gramps/plugins/textreport/indivcomplete.py:664
 #: ../gramps/plugins/view/pedigreeview.py:1753
 #: ../gramps/plugins/view/relview.py:1420
 #: ../gramps/plugins/webreport/narrativeweb.py:762
@@ -6916,7 +6916,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:491
 #: ../gramps/plugins/quickview/filterbyname.py:97
 #: ../gramps/plugins/quickview/filterbyname.py:122
-#: ../gramps/plugins/textreport/tagreport.py:320
+#: ../gramps/plugins/textreport/tagreport.py:322
 #: ../gramps/plugins/view/eventview.py:119
 #: ../gramps/plugins/view/view.gpr.py:37 ../gramps/plugins/view/view.gpr.py:45
 #: ../gramps/plugins/webreport/narrativeweb.py:1885
@@ -6988,13 +6988,13 @@ msgstr ""
 #: ../gramps/plugins/quickview/onthisday.py:82
 #: ../gramps/plugins/quickview/references.py:70
 #: ../gramps/plugins/quickview/siblings.py:48
-#: ../gramps/plugins/textreport/indivcomplete.py:492
-#: ../gramps/plugins/textreport/indivcomplete.py:690
-#: ../gramps/plugins/textreport/tagreport.py:337
-#: ../gramps/plugins/textreport/tagreport.py:432
-#: ../gramps/plugins/textreport/tagreport.py:501
-#: ../gramps/plugins/textreport/tagreport.py:576
-#: ../gramps/plugins/textreport/tagreport.py:660
+#: ../gramps/plugins/textreport/indivcomplete.py:493
+#: ../gramps/plugins/textreport/indivcomplete.py:691
+#: ../gramps/plugins/textreport/tagreport.py:339
+#: ../gramps/plugins/textreport/tagreport.py:434
+#: ../gramps/plugins/textreport/tagreport.py:503
+#: ../gramps/plugins/textreport/tagreport.py:578
+#: ../gramps/plugins/textreport/tagreport.py:662
 #: ../gramps/plugins/tool/patchnames.py:407
 #: ../gramps/plugins/tool/sortevents.py:55
 #: ../gramps/plugins/view/eventview.py:84
@@ -7138,10 +7138,10 @@ msgstr ""
 #: ../gramps/plugins/lib/libpersonview.py:98
 #: ../gramps/plugins/lib/libplaceview.py:84
 #: ../gramps/plugins/quickview/filterbyname.py:306
-#: ../gramps/plugins/textreport/indivcomplete.py:909
-#: ../gramps/plugins/textreport/tagreport.py:160
-#: ../gramps/plugins/textreport/tagreport.py:426
-#: ../gramps/plugins/textreport/tagreport.py:654
+#: ../gramps/plugins/textreport/indivcomplete.py:910
+#: ../gramps/plugins/textreport/tagreport.py:162
+#: ../gramps/plugins/textreport/tagreport.py:428
+#: ../gramps/plugins/textreport/tagreport.py:656
 #: ../gramps/plugins/tool/dumpgenderstats.py:71
 #: ../gramps/plugins/tool/dumpgenderstats.py:93
 #: ../gramps/plugins/tool/dumpgenderstats.py:94
@@ -7194,9 +7194,9 @@ msgstr ""
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/persondetails.py:160
 #: ../gramps/plugins/lib/libplaceview.py:86
-#: ../gramps/plugins/textreport/tagreport.py:420
-#: ../gramps/plugins/textreport/tagreport.py:570
-#: ../gramps/plugins/textreport/tagreport.py:739
+#: ../gramps/plugins/textreport/tagreport.py:422
+#: ../gramps/plugins/textreport/tagreport.py:572
+#: ../gramps/plugins/textreport/tagreport.py:741
 #: ../gramps/plugins/view/mediaview.py:94
 #: ../gramps/plugins/view/sourceview.py:82
 #: ../gramps/plugins/webreport/narrativeweb.py:3050
@@ -7241,12 +7241,12 @@ msgstr ""
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:465 ../gramps/gen/lib/name.py:480
 #: ../gramps/gen/plug/report/utils.py:257
-#: ../gramps/plugins/graph/gvfamilylines.py:485
-#: ../gramps/plugins/textreport/detancestralreport.py:443
-#: ../gramps/plugins/textreport/detdescendantreport.py:493
-#: ../gramps/plugins/textreport/indivcomplete.py:198
-#: ../gramps/plugins/textreport/indivcomplete.py:206
-#: ../gramps/plugins/textreport/indivcomplete.py:1000
+#: ../gramps/plugins/graph/gvfamilylines.py:488
+#: ../gramps/plugins/textreport/detancestralreport.py:444
+#: ../gramps/plugins/textreport/detdescendantreport.py:495
+#: ../gramps/plugins/textreport/indivcomplete.py:199
+#: ../gramps/plugins/textreport/indivcomplete.py:207
+#: ../gramps/plugins/textreport/indivcomplete.py:1001
 #, python-format
 msgid "%(str1)s, %(str2)s"
 msgstr ""
@@ -7329,8 +7329,8 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:91
 #: ../gramps/gui/glade/editnote.glade:326
 #: ../gramps/gui/views/treemodels/mediamodel.py:117
-#: ../gramps/plugins/drawreport/ancestortree.py:972
-#: ../gramps/plugins/drawreport/descendtree.py:1692
+#: ../gramps/plugins/drawreport/ancestortree.py:974
+#: ../gramps/plugins/drawreport/descendtree.py:1694
 #: ../gramps/plugins/export/exportcsv.py:361
 #: ../gramps/plugins/export/exportcsv.py:466
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:111
@@ -7339,8 +7339,8 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:276
 #: ../gramps/plugins/quickview/quickview.gpr.py:208
 #: ../gramps/plugins/quickview/references.py:94
-#: ../gramps/plugins/textreport/familygroup.py:366
-#: ../gramps/plugins/textreport/familygroup.py:428
+#: ../gramps/plugins/textreport/familygroup.py:368
+#: ../gramps/plugins/textreport/familygroup.py:430
 msgid "Note"
 msgstr ""
 
@@ -7495,9 +7495,9 @@ msgstr ""
 #: ../gramps/plugins/quickview/references.py:85
 #: ../gramps/plugins/quickview/samesurnames.py:115
 #: ../gramps/plugins/quickview/samesurnames.py:160
-#: ../gramps/plugins/textreport/placereport.py:222
-#: ../gramps/plugins/textreport/placereport.py:298
-#: ../gramps/plugins/textreport/placereport.py:452
+#: ../gramps/plugins/textreport/placereport.py:224
+#: ../gramps/plugins/textreport/placereport.py:300
+#: ../gramps/plugins/textreport/placereport.py:454
 #: ../gramps/plugins/tool/eventcmp.py:253
 #: ../gramps/plugins/webreport/narrativeweb.py:3522
 #: ../gramps/plugins/webreport/narrativeweb.py:4219
@@ -7514,7 +7514,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importcsv.py:168
 #: ../gramps/plugins/lib/libpersonview.py:100
 #: ../gramps/plugins/quickview/siblings.py:48
-#: ../gramps/plugins/textreport/indivcomplete.py:910
+#: ../gramps/plugins/textreport/indivcomplete.py:911
 #: ../gramps/plugins/webreport/narrativeweb.py:7331
 msgid "Gender"
 msgstr ""
@@ -7536,13 +7536,13 @@ msgid "Event references"
 msgstr ""
 
 #: ../gramps/gen/lib/person.py:199
-#: ../gramps/plugins/graph/gvfamilylines.py:288
-#: ../gramps/plugins/graph/gvhourglass.py:381
-#: ../gramps/plugins/graph/gvrelgraph.py:896
+#: ../gramps/plugins/graph/gvfamilylines.py:290
+#: ../gramps/plugins/graph/gvhourglass.py:384
+#: ../gramps/plugins/graph/gvrelgraph.py:899
 #: ../gramps/plugins/quickview/filterbyname.py:94
 #: ../gramps/plugins/quickview/filterbyname.py:119
-#: ../gramps/plugins/textreport/indivcomplete.py:626
-#: ../gramps/plugins/textreport/tagreport.py:231
+#: ../gramps/plugins/textreport/indivcomplete.py:627
+#: ../gramps/plugins/textreport/tagreport.py:233
 #: ../gramps/plugins/tool/verify.glade:753
 #: ../gramps/plugins/view/familyview.py:114
 #: ../gramps/plugins/view/view.gpr.py:52 ../gramps/plugins/view/view.gpr.py:60
@@ -7561,7 +7561,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/person.py:209 ../gramps/gen/lib/repo.py:103
 #: ../gramps/gui/merge/mergeperson.py:268
-#: ../gramps/plugins/textreport/indivcomplete.py:406
+#: ../gramps/plugins/textreport/indivcomplete.py:407
 #: ../gramps/plugins/webreport/narrativeweb.py:1439
 msgid "Addresses"
 msgstr ""
@@ -7599,7 +7599,7 @@ msgstr ""
 #: ../gramps/gen/lib/place.py:150 ../gramps/gui/configure.py:1164
 #: ../gramps/plugins/quickview/filterbyname.py:100
 #: ../gramps/plugins/quickview/filterbyname.py:125
-#: ../gramps/plugins/textreport/tagreport.py:403
+#: ../gramps/plugins/textreport/tagreport.py:405
 #: ../gramps/plugins/view/view.gpr.py:221
 #: ../gramps/plugins/view/view.gpr.py:229
 #: ../gramps/plugins/view/view.gpr.py:244
@@ -7612,7 +7612,7 @@ msgid "Places"
 msgstr ""
 
 #: ../gramps/gen/lib/place.py:154 ../gramps/gui/merge/mergeperson.py:199
-#: ../gramps/plugins/textreport/indivcomplete.py:378
+#: ../gramps/plugins/textreport/indivcomplete.py:379
 msgid "Alternate Names"
 msgstr ""
 
@@ -7812,7 +7812,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:88
 #: ../gramps/gui/selectors/selectsource.py:70
 #: ../gramps/plugins/gramplet/citations.py:78
-#: ../gramps/plugins/textreport/tagreport.py:745
+#: ../gramps/plugins/textreport/tagreport.py:747
 #: ../gramps/plugins/view/sourceview.py:84
 #: ../gramps/plugins/webreport/narrativeweb.py:4881
 #: ../gramps/plugins/webreport/narrativeweb.py:4978
@@ -7834,7 +7834,7 @@ msgstr ""
 #: ../gramps/gen/lib/src.py:127
 #: ../gramps/plugins/quickview/filterbyname.py:106
 #: ../gramps/plugins/quickview/filterbyname.py:131
-#: ../gramps/plugins/textreport/tagreport.py:637
+#: ../gramps/plugins/textreport/tagreport.py:639
 #: ../gramps/plugins/view/repoview.py:129
 #: ../gramps/plugins/view/view.gpr.py:252
 #: ../gramps/plugins/view/view.gpr.py:260
@@ -7907,7 +7907,7 @@ msgstr ""
 #: ../gramps/gui/clipboard.py:645 ../gramps/gui/configure.py:1200
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:101
 #: ../gramps/plugins/textreport/custombooktext.py:132
-#: ../gramps/plugins/textreport/tagreport.py:507
+#: ../gramps/plugins/textreport/tagreport.py:509
 msgid "Text"
 msgstr ""
 
@@ -8007,8 +8007,8 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:109
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:92
 #: ../gramps/gui/views/tags.py:226 ../gramps/gui/views/tags.py:231
-#: ../gramps/plugins/textreport/tagreport.py:902
-#: ../gramps/plugins/textreport/tagreport.py:906
+#: ../gramps/plugins/textreport/tagreport.py:904
+#: ../gramps/plugins/textreport/tagreport.py:908
 msgid "Tag"
 msgstr ""
 
@@ -8122,7 +8122,7 @@ msgid "No description was provided"
 msgstr ""
 
 #: ../gramps/gen/plug/_options.py:386
-#: ../gramps/plugins/textreport/recordsreport.py:163
+#: ../gramps/plugins/textreport/recordsreport.py:162
 #, python-format
 msgid ""
 "Option '%(opt_name)s' is present in %(file)s\n"
@@ -8255,12 +8255,12 @@ msgstr ""
 #: ../gramps/gen/utils/docgen/odstab.py:477
 #: ../gramps/gen/utils/docgen/odstab.py:496
 #: ../gramps/gen/utils/docgen/odstab.py:499
-#: ../gramps/plugins/docgen/asciidoc.py:176
+#: ../gramps/plugins/docgen/asciidoc.py:177
 #: ../gramps/plugins/docgen/cairodoc.py:190
 #: ../gramps/plugins/docgen/cairodoc.py:193
-#: ../gramps/plugins/docgen/odfdoc.py:1138
-#: ../gramps/plugins/docgen/odfdoc.py:1141
-#: ../gramps/plugins/docgen/rtfdoc.py:92 ../gramps/plugins/docgen/rtfdoc.py:95
+#: ../gramps/plugins/docgen/odfdoc.py:1154
+#: ../gramps/plugins/docgen/odfdoc.py:1157
+#: ../gramps/plugins/docgen/rtfdoc.py:93 ../gramps/plugins/docgen/rtfdoc.py:96
 #: ../gramps/plugins/docgen/svgdrawdoc.py:89
 #: ../gramps/plugins/docgen/svgdrawdoc.py:91
 #: ../gramps/plugins/export/exportcsv.py:261
@@ -8656,10 +8656,10 @@ msgid "Graphics"
 msgstr ""
 
 #: ../gramps/gen/plug/report/endnotes.py:61
-#: ../gramps/plugins/textreport/ancestorreport.py:364
-#: ../gramps/plugins/textreport/detancestralreport.py:963
-#: ../gramps/plugins/textreport/detdescendantreport.py:1186
-#: ../gramps/plugins/textreport/endoflinereport.py:323
+#: ../gramps/plugins/textreport/ancestorreport.py:367
+#: ../gramps/plugins/textreport/detancestralreport.py:966
+#: ../gramps/plugins/textreport/detdescendantreport.py:1190
+#: ../gramps/plugins/textreport/endoflinereport.py:326
 msgid "The style used for the generation header."
 msgstr ""
 
@@ -8695,8 +8695,8 @@ msgstr ""
 #: ../gramps/gen/plug/report/endnotes.py:175
 #: ../gramps/gui/editors/editfamily.py:945
 #: ../gramps/gui/editors/editfamily.py:952
-#: ../gramps/gui/plug/report/_docreportdialog.py:184
-#: ../gramps/gui/plug/report/_docreportdialog.py:235
+#: ../gramps/gui/plug/report/_docreportdialog.py:186
+#: ../gramps/gui/plug/report/_docreportdialog.py:237
 #: ../gramps/gui/plug/report/_graphvizreportdialog.py:150
 #: ../gramps/gui/plug/report/_reportdialog.py:323
 #: ../gramps/gui/plug/report/_reportdialog.py:376
@@ -8712,12 +8712,12 @@ msgstr ""
 #: ../gramps/plugins/gramplet/statsgramplet.py:132
 #: ../gramps/plugins/gramplet/statsgramplet.py:137
 #: ../gramps/plugins/gramplet/statsgramplet.py:141
-#: ../gramps/plugins/textreport/familygroup.py:406
-#: ../gramps/plugins/textreport/indivcomplete.py:907
-#: ../gramps/plugins/textreport/indivcomplete.py:909
+#: ../gramps/plugins/textreport/familygroup.py:408
+#: ../gramps/plugins/textreport/indivcomplete.py:908
 #: ../gramps/plugins/textreport/indivcomplete.py:910
 #: ../gramps/plugins/textreport/indivcomplete.py:911
 #: ../gramps/plugins/textreport/indivcomplete.py:912
+#: ../gramps/plugins/textreport/indivcomplete.py:913
 #: ../gramps/plugins/view/relview.py:538 ../gramps/plugins/view/relview.py:602
 #: ../gramps/plugins/view/relview.py:614 ../gramps/plugins/view/relview.py:631
 #: ../gramps/plugins/view/relview.py:641 ../gramps/plugins/view/relview.py:646
@@ -8801,12 +8801,12 @@ msgid "The format and language for dates, with examples"
 msgstr ""
 
 #: ../gramps/gen/plug/report/utils.py:158
-#: ../gramps/plugins/textreport/indivcomplete.py:901
+#: ../gramps/plugins/textreport/indivcomplete.py:902
 msgid "File does not exist"
 msgstr ""
 
 #: ../gramps/gen/plug/report/utils.py:159
-#: ../gramps/plugins/textreport/indivcomplete.py:897
+#: ../gramps/plugins/textreport/indivcomplete.py:898
 #: ../gramps/plugins/textreport/simplebooktitle.py:106
 #: ../gramps/plugins/webreport/narrativeweb.py:2117
 #: ../gramps/plugins/webreport/narrativeweb.py:2332
@@ -8822,7 +8822,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/report/utils.py:297
 #: ../gramps/plugins/textreport/notelinkreport.py:164
-#: ../gramps/plugins/textreport/summary.py:281
+#: ../gramps/plugins/textreport/summary.py:280
 #: ../gramps/plugins/tool/eventcmp.py:157
 msgid "Entire Database"
 msgstr ""
@@ -8830,7 +8830,7 @@ msgstr ""
 #. feature request 2356: avoid genitive form
 #: ../gramps/gen/plug/report/utils.py:301
 #: ../gramps/gui/plug/export/_exportoptions.py:452
-#: ../gramps/plugins/textreport/descendreport.py:472
+#: ../gramps/plugins/textreport/descendreport.py:473
 #, python-format
 msgid "Descendants of %s"
 msgstr ""
@@ -9206,7 +9206,7 @@ msgstr ""
 msgid "%s, ..."
 msgstr ""
 
-#: ../gramps/gen/utils/db.py:537 ../gramps/plugins/lib/librecords.py:271
+#: ../gramps/gen/utils/db.py:537 ../gramps/plugins/lib/librecords.py:317
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr ""
@@ -9388,47 +9388,47 @@ msgstr ""
 msgid "Chinese (Traditional)"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:885
+#: ../gramps/gen/utils/grampslocale.py:895
 msgid "the person"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:887
+#: ../gramps/gen/utils/grampslocale.py:897
 msgid "the family"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:889
+#: ../gramps/gen/utils/grampslocale.py:899
 msgid "the place"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:891
+#: ../gramps/gen/utils/grampslocale.py:901
 msgid "the event"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:893
+#: ../gramps/gen/utils/grampslocale.py:903
 msgid "the repository"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:895
+#: ../gramps/gen/utils/grampslocale.py:905
 msgid "the note"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:897
+#: ../gramps/gen/utils/grampslocale.py:907
 msgid "the media"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:899
+#: ../gramps/gen/utils/grampslocale.py:909
 msgid "the source"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:901
+#: ../gramps/gen/utils/grampslocale.py:911
 msgid "the filter"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:903
+#: ../gramps/gen/utils/grampslocale.py:913
 msgid "the citation"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:905
+#: ../gramps/gen/utils/grampslocale.py:915
 msgid "See details"
 msgstr ""
 
@@ -9638,7 +9638,7 @@ msgid "High"
 msgstr ""
 
 #: ../gramps/gen/utils/string.py:57 ../gramps/gui/editors/editcitation.py:212
-#: ../gramps/plugins/graph/gvfamilylines.py:258
+#: ../gramps/plugins/graph/gvfamilylines.py:260
 msgid "Normal"
 msgstr ""
 
@@ -9752,7 +9752,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/repositorydetails.py:133
 #: ../gramps/plugins/lib/libgedcom.py:5433
 #: ../gramps/plugins/lib/libgedcom.py:5599
-#: ../gramps/plugins/textreport/familygroup.py:348
+#: ../gramps/plugins/textreport/familygroup.py:350
 #: ../gramps/plugins/webreport/narrativeweb.py:7952
 msgid "Address"
 msgstr ""
@@ -9870,8 +9870,8 @@ msgstr ""
 
 #. #################
 #: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1111
-#: ../gramps/plugins/drawreport/ancestortree.py:907
-#: ../gramps/plugins/drawreport/descendtree.py:1643
+#: ../gramps/plugins/drawreport/ancestortree.py:909
+#: ../gramps/plugins/drawreport/descendtree.py:1645
 msgid "Display"
 msgstr ""
 
@@ -10233,7 +10233,7 @@ msgid "Active person's name and ID"
 msgstr ""
 
 #: ../gramps/gui/configure.py:1085
-#: ../gramps/plugins/textreport/indivcomplete.py:358
+#: ../gramps/plugins/textreport/indivcomplete.py:359
 msgid "Relationship to home person"
 msgstr ""
 
@@ -10799,8 +10799,8 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../gramps/gui/plug/_windows.py:127 ../gramps/gui/plug/_windows.py:184
 #: ../gramps/plugins/quickview/ageondate.py:54
-#: ../gramps/plugins/textreport/indivcomplete.py:494
-#: ../gramps/plugins/textreport/indivcomplete.py:692
+#: ../gramps/plugins/textreport/indivcomplete.py:495
+#: ../gramps/plugins/textreport/indivcomplete.py:693
 #: ../gramps/plugins/textreport/notelinkreport.py:95
 #: ../gramps/plugins/webreport/narrativeweb.py:1319
 msgid "Status"
@@ -11388,8 +11388,8 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:347
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:353
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:168
-#: ../gramps/plugins/drawreport/ancestortree.py:1093
-#: ../gramps/plugins/drawreport/descendtree.py:1801
+#: ../gramps/plugins/drawreport/ancestortree.py:1095
+#: ../gramps/plugins/drawreport/descendtree.py:1803
 msgid "Cannot edit this reference"
 msgstr ""
 
@@ -11409,8 +11409,8 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:64
-#: ../gramps/plugins/textreport/indivcomplete.py:495
-#: ../gramps/plugins/textreport/indivcomplete.py:693
+#: ../gramps/plugins/textreport/indivcomplete.py:496
+#: ../gramps/plugins/textreport/indivcomplete.py:694
 #: ../gramps/plugins/webreport/narrativeweb.py:1317
 msgid "Temple"
 msgstr ""
@@ -11435,7 +11435,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:257
 #: ../gramps/gui/editors/editperson.py:960
-#: ../gramps/plugins/textreport/indivcomplete.py:587
+#: ../gramps/plugins/textreport/indivcomplete.py:588
 msgid "Non existing media found in the Gallery"
 msgstr ""
 
@@ -12307,8 +12307,8 @@ msgstr ""
 
 #: ../gramps/gui/editors/editldsord.py:314
 #: ../gramps/gui/editors/editldsord.py:442
-#: ../gramps/plugins/textreport/indivcomplete.py:485
-#: ../gramps/plugins/textreport/indivcomplete.py:689
+#: ../gramps/plugins/textreport/indivcomplete.py:486
+#: ../gramps/plugins/textreport/indivcomplete.py:690
 #: ../gramps/plugins/webreport/narrativeweb.py:795
 msgid "LDS Ordinance"
 msgstr ""
@@ -13254,7 +13254,7 @@ msgid "Citation:"
 msgstr ""
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:112
-#: ../gramps/plugins/textreport/tagreport.py:819
+#: ../gramps/plugins/textreport/tagreport.py:821
 #: ../gramps/plugins/view/citationlistview.py:98
 msgid "Volume/Page"
 msgstr ""
@@ -13276,13 +13276,13 @@ msgid "Custom filter"
 msgstr ""
 
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:106
-#: ../gramps/plugins/textreport/tagreport.py:343
+#: ../gramps/plugins/textreport/tagreport.py:345
 msgid "Participants"
 msgstr ""
 
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:117
 #: ../gramps/gui/widgets/reorderfam.py:91
-#: ../gramps/plugins/textreport/tagreport.py:260
+#: ../gramps/plugins/textreport/tagreport.py:262
 #: ../gramps/plugins/view/familyview.py:82
 #: ../gramps/plugins/webreport/narrativeweb.py:7092
 msgid "Relationship"
@@ -14868,12 +14868,12 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/glade/mergeperson.glade:196
-#: ../gramps/plugins/textreport/recordsreport.py:269
+#: ../gramps/plugins/textreport/recordsreport.py:268
 msgid "Person 1"
 msgstr ""
 
 #: ../gramps/gui/glade/mergeperson.glade:210
-#: ../gramps/plugins/textreport/recordsreport.py:267
+#: ../gramps/plugins/textreport/recordsreport.py:266
 msgid "Person 2"
 msgstr ""
 
@@ -15179,7 +15179,7 @@ msgid "Alignment"
 msgstr ""
 
 #: ../gramps/gui/glade/styleeditor.glade:570
-#: ../gramps/plugins/drawreport/fanchart.py:705
+#: ../gramps/plugins/drawreport/fanchart.py:704
 msgid "Background color"
 msgstr ""
 
@@ -15732,7 +15732,7 @@ msgstr ""
 #. Go over spouses and build their menu
 #: ../gramps/gui/merge/mergeperson.py:238
 #: ../gramps/gui/widgets/fanchart.py:1551
-#: ../gramps/plugins/textreport/kinshipreport.py:132
+#: ../gramps/plugins/textreport/kinshipreport.py:133
 #: ../gramps/plugins/view/pedigreeview.py:1677
 msgid "Spouses"
 msgstr ""
@@ -15742,7 +15742,7 @@ msgstr ""
 #: ../gramps/gui/widgets/reorderfam.py:90
 #: ../gramps/plugins/gramplet/children.py:98
 #: ../gramps/plugins/lib/libpersonview.py:105
-#: ../gramps/plugins/textreport/familygroup.py:566
+#: ../gramps/plugins/textreport/familygroup.py:568
 #: ../gramps/plugins/view/relview.py:1405
 msgid "Spouse"
 msgstr ""
@@ -16471,26 +16471,26 @@ msgstr ""
 msgid "Gramps Book"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_docreportdialog.py:141
+#: ../gramps/gui/plug/report/_docreportdialog.py:143
 #: ../gramps/gui/plug/report/_graphvizreportdialog.py:181
 msgid "Paper Options"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_docreportdialog.py:147
+#: ../gramps/gui/plug/report/_docreportdialog.py:149
 msgid "HTML Options"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_docreportdialog.py:184
+#: ../gramps/gui/plug/report/_docreportdialog.py:186
 #: ../gramps/gui/plug/report/_graphvizreportdialog.py:150
 msgid "Output Format"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_docreportdialog.py:192
+#: ../gramps/gui/plug/report/_docreportdialog.py:194
 #: ../gramps/gui/plug/report/_graphvizreportdialog.py:158
 msgid "Open with default viewer"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_docreportdialog.py:235
+#: ../gramps/gui/plug/report/_docreportdialog.py:237
 msgid "CSS file"
 msgstr ""
 
@@ -16538,29 +16538,29 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:835
 #: ../gramps/plugins/drawreport/calendarreport.py:465
 #: ../gramps/plugins/drawreport/descendtree.py:1566
-#: ../gramps/plugins/drawreport/fanchart.py:686
+#: ../gramps/plugins/drawreport/fanchart.py:685
 #: ../gramps/plugins/drawreport/statisticschart.py:986
 #: ../gramps/plugins/drawreport/timeline.py:413
 #: ../gramps/plugins/graph/gvfamilylines.py:115
-#: ../gramps/plugins/graph/gvhourglass.py:312
-#: ../gramps/plugins/graph/gvrelgraph.py:747
+#: ../gramps/plugins/graph/gvhourglass.py:313
+#: ../gramps/plugins/graph/gvrelgraph.py:748
 #: ../gramps/plugins/textreport/alphabeticalindex.py:93
-#: ../gramps/plugins/textreport/ancestorreport.py:281
-#: ../gramps/plugins/textreport/birthdayreport.py:410
-#: ../gramps/plugins/textreport/descendreport.py:504
-#: ../gramps/plugins/textreport/detancestralreport.py:807
-#: ../gramps/plugins/textreport/detdescendantreport.py:999
-#: ../gramps/plugins/textreport/endoflinereport.py:269
-#: ../gramps/plugins/textreport/familygroup.py:702
-#: ../gramps/plugins/textreport/indivcomplete.py:1041
-#: ../gramps/plugins/textreport/kinshipreport.py:355
-#: ../gramps/plugins/textreport/numberofancestorsreport.py:203
-#: ../gramps/plugins/textreport/placereport.py:433
-#: ../gramps/plugins/textreport/recordsreport.py:216
+#: ../gramps/plugins/textreport/ancestorreport.py:282
+#: ../gramps/plugins/textreport/birthdayreport.py:409
+#: ../gramps/plugins/textreport/descendreport.py:505
+#: ../gramps/plugins/textreport/detancestralreport.py:808
+#: ../gramps/plugins/textreport/detdescendantreport.py:1001
+#: ../gramps/plugins/textreport/endoflinereport.py:270
+#: ../gramps/plugins/textreport/familygroup.py:707
+#: ../gramps/plugins/textreport/indivcomplete.py:1042
+#: ../gramps/plugins/textreport/kinshipreport.py:356
+#: ../gramps/plugins/textreport/numberofancestorsreport.py:202
+#: ../gramps/plugins/textreport/placereport.py:435
+#: ../gramps/plugins/textreport/recordsreport.py:215
 #: ../gramps/plugins/textreport/simplebooktitle.py:134
-#: ../gramps/plugins/textreport/summary.py:287
+#: ../gramps/plugins/textreport/summary.py:286
 #: ../gramps/plugins/textreport/tableofcontents.py:92
-#: ../gramps/plugins/textreport/tagreport.py:894
+#: ../gramps/plugins/textreport/tagreport.py:896
 #: ../gramps/plugins/webreport/narrativeweb.py:9649
 #: ../gramps/plugins/webreport/webcal.py:1607
 msgid "Report Options"
@@ -16662,8 +16662,8 @@ msgstr ""
 #. How to handle missing information
 #: ../gramps/gui/plug/report/_styleeditor.py:166
 #: ../gramps/gui/plug/report/_styleeditor.py:180
-#: ../gramps/plugins/textreport/detancestralreport.py:933
-#: ../gramps/plugins/textreport/detdescendantreport.py:1154
+#: ../gramps/plugins/textreport/detancestralreport.py:936
+#: ../gramps/plugins/textreport/detdescendantreport.py:1158
 msgid "Missing information"
 msgstr ""
 
@@ -17234,12 +17234,12 @@ msgstr ""
 #. #########################
 #. ###############################
 #: ../gramps/gui/viewmanager.py:1760
-#: ../gramps/plugins/graph/gvfamilylines.py:214
-#: ../gramps/plugins/graph/gvrelgraph.py:806
-#: ../gramps/plugins/textreport/detancestralreport.py:873
-#: ../gramps/plugins/textreport/detdescendantreport.py:1078
-#: ../gramps/plugins/textreport/familygroup.py:740
-#: ../gramps/plugins/textreport/indivcomplete.py:1080
+#: ../gramps/plugins/graph/gvfamilylines.py:216
+#: ../gramps/plugins/graph/gvrelgraph.py:809
+#: ../gramps/plugins/textreport/detancestralreport.py:876
+#: ../gramps/plugins/textreport/detdescendantreport.py:1082
+#: ../gramps/plugins/textreport/familygroup.py:747
+#: ../gramps/plugins/textreport/indivcomplete.py:1083
 msgid "Include"
 msgstr ""
 
@@ -17965,11 +17965,11 @@ msgstr ""
 msgid "In-Memory Database"
 msgstr ""
 
-#: ../gramps/plugins/docgen/asciidoc.py:463
+#: ../gramps/plugins/docgen/asciidoc.py:469
 msgid "Characters per line"
 msgstr ""
 
-#: ../gramps/plugins/docgen/asciidoc.py:464
+#: ../gramps/plugins/docgen/asciidoc.py:470
 msgid "The number of characters per line"
 msgstr ""
 
@@ -18085,7 +18085,7 @@ msgstr ""
 msgid "Zooms the page out"
 msgstr ""
 
-#: ../gramps/plugins/docgen/gtkprint.py:480
+#: ../gramps/plugins/docgen/gtkprint.py:481
 #, python-format
 msgid "of %d"
 msgstr ""
@@ -18111,18 +18111,18 @@ msgstr ""
 msgid "Could not create jpeg version of image %(name)s"
 msgstr ""
 
-#: ../gramps/plugins/docgen/latexdoc.py:1241
+#: ../gramps/plugins/docgen/latexdoc.py:1240
 msgid "PIL (Python Imaging Library) not loaded."
 msgstr ""
 
-#: ../gramps/plugins/docgen/latexdoc.py:1242
+#: ../gramps/plugins/docgen/latexdoc.py:1241
 msgid ""
 "Production of jpg images from non-jpg images in LaTeX documents will not be "
 "available. Use your package manager to install python-imaging or python-"
 "pillow or python3-pillow"
 msgstr ""
 
-#: ../gramps/plugins/docgen/odfdoc.py:1166
+#: ../gramps/plugins/docgen/odfdoc.py:1182
 #, python-format
 msgid "Could not open %s"
 msgstr ""
@@ -18136,7 +18136,7 @@ msgid "transparent background"
 msgstr ""
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:344
-#: ../gramps/plugins/drawreport/fanchart.py:706
+#: ../gramps/plugins/drawreport/fanchart.py:705
 msgid "white"
 msgstr ""
 
@@ -18186,16 +18186,16 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:362
 #: ../gramps/plugins/drawreport/calendarreport.py:113
 #: ../gramps/plugins/drawreport/descendtree.py:689
-#: ../gramps/plugins/drawreport/fanchart.py:195
-#: ../gramps/plugins/graph/gvhourglass.py:105
-#: ../gramps/plugins/graph/gvrelgraph.py:180
-#: ../gramps/plugins/textreport/ancestorreport.py:112
-#: ../gramps/plugins/textreport/birthdayreport.py:112
-#: ../gramps/plugins/textreport/descendreport.py:440
-#: ../gramps/plugins/textreport/detancestralreport.py:163
-#: ../gramps/plugins/textreport/detdescendantreport.py:182
-#: ../gramps/plugins/textreport/endoflinereport.py:90
-#: ../gramps/plugins/textreport/kinshipreport.py:105
+#: ../gramps/plugins/drawreport/fanchart.py:194
+#: ../gramps/plugins/graph/gvhourglass.py:106
+#: ../gramps/plugins/graph/gvrelgraph.py:181
+#: ../gramps/plugins/textreport/ancestorreport.py:113
+#: ../gramps/plugins/textreport/birthdayreport.py:111
+#: ../gramps/plugins/textreport/descendreport.py:441
+#: ../gramps/plugins/textreport/detancestralreport.py:164
+#: ../gramps/plugins/textreport/detdescendantreport.py:184
+#: ../gramps/plugins/textreport/endoflinereport.py:91
+#: ../gramps/plugins/textreport/kinshipreport.py:106
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:84
 #, python-format
 msgid "Person %s is not in the Database"
@@ -18223,16 +18223,16 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:793
 #: ../gramps/plugins/drawreport/calendarreport.py:475
-#: ../gramps/plugins/drawreport/fanchart.py:688
-#: ../gramps/plugins/graph/gvhourglass.py:314
-#: ../gramps/plugins/graph/gvrelgraph.py:757
-#: ../gramps/plugins/textreport/ancestorreport.py:283
-#: ../gramps/plugins/textreport/descendreport.py:506
-#: ../gramps/plugins/textreport/detancestralreport.py:810
-#: ../gramps/plugins/textreport/detdescendantreport.py:1002
-#: ../gramps/plugins/textreport/endoflinereport.py:271
-#: ../gramps/plugins/textreport/kinshipreport.py:357
-#: ../gramps/plugins/textreport/numberofancestorsreport.py:205
+#: ../gramps/plugins/drawreport/fanchart.py:687
+#: ../gramps/plugins/graph/gvhourglass.py:315
+#: ../gramps/plugins/graph/gvrelgraph.py:758
+#: ../gramps/plugins/textreport/ancestorreport.py:284
+#: ../gramps/plugins/textreport/descendreport.py:507
+#: ../gramps/plugins/textreport/detancestralreport.py:811
+#: ../gramps/plugins/textreport/detdescendantreport.py:1004
+#: ../gramps/plugins/textreport/endoflinereport.py:272
+#: ../gramps/plugins/textreport/kinshipreport.py:358
+#: ../gramps/plugins/textreport/numberofancestorsreport.py:204
 msgid "Center Person"
 msgstr ""
 
@@ -18251,11 +18251,11 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:804
 #: ../gramps/plugins/drawreport/descendtree.py:1531
-#: ../gramps/plugins/drawreport/fanchart.py:692
-#: ../gramps/plugins/textreport/ancestorreport.py:287
-#: ../gramps/plugins/textreport/descendreport.py:521
-#: ../gramps/plugins/textreport/detancestralreport.py:819
-#: ../gramps/plugins/textreport/detdescendantreport.py:1024
+#: ../gramps/plugins/drawreport/fanchart.py:691
+#: ../gramps/plugins/textreport/ancestorreport.py:288
+#: ../gramps/plugins/textreport/descendreport.py:522
+#: ../gramps/plugins/textreport/detancestralreport.py:820
+#: ../gramps/plugins/textreport/detdescendantreport.py:1026
 msgid "Generations"
 msgstr ""
 
@@ -18292,7 +18292,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:838
 #: ../gramps/plugins/drawreport/descendtree.py:1569
-#: ../gramps/plugins/drawreport/descendtree.py:1740
+#: ../gramps/plugins/drawreport/descendtree.py:1742
 msgid "Do not include a title"
 msgstr ""
 
@@ -18397,34 +18397,34 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:896
 #: ../gramps/plugins/drawreport/calendarreport.py:493
 #: ../gramps/plugins/drawreport/descendtree.py:1632
-#: ../gramps/plugins/drawreport/fanchart.py:729
+#: ../gramps/plugins/drawreport/fanchart.py:728
 #: ../gramps/plugins/drawreport/statisticschart.py:1045
 #: ../gramps/plugins/drawreport/timeline.py:434
 #: ../gramps/plugins/graph/gvfamilylines.py:167
-#: ../gramps/plugins/graph/gvhourglass.py:354
-#: ../gramps/plugins/graph/gvrelgraph.py:790
-#: ../gramps/plugins/textreport/ancestorreport.py:300
-#: ../gramps/plugins/textreport/birthdayreport.py:439
-#: ../gramps/plugins/textreport/descendreport.py:539
-#: ../gramps/plugins/textreport/detancestralreport.py:833
-#: ../gramps/plugins/textreport/detdescendantreport.py:1038
-#: ../gramps/plugins/textreport/familygroup.py:724
-#: ../gramps/plugins/textreport/indivcomplete.py:1065
-#: ../gramps/plugins/textreport/kinshipreport.py:381
-#: ../gramps/plugins/textreport/placereport.py:456
-#: ../gramps/plugins/textreport/recordsreport.py:244
+#: ../gramps/plugins/graph/gvhourglass.py:355
+#: ../gramps/plugins/graph/gvrelgraph.py:791
+#: ../gramps/plugins/textreport/ancestorreport.py:301
+#: ../gramps/plugins/textreport/birthdayreport.py:438
+#: ../gramps/plugins/textreport/descendreport.py:540
+#: ../gramps/plugins/textreport/detancestralreport.py:834
+#: ../gramps/plugins/textreport/detdescendantreport.py:1040
+#: ../gramps/plugins/textreport/familygroup.py:729
+#: ../gramps/plugins/textreport/indivcomplete.py:1066
+#: ../gramps/plugins/textreport/kinshipreport.py:382
+#: ../gramps/plugins/textreport/placereport.py:458
+#: ../gramps/plugins/textreport/recordsreport.py:243
 #: ../gramps/plugins/webreport/narrativeweb.py:9701
 #: ../gramps/plugins/webreport/webcal.py:1660
 msgid "Report Options (2)"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:909
+#: ../gramps/plugins/drawreport/ancestortree.py:911
 msgid ""
 "Father\n"
 "Display Format"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:913
+#: ../gramps/plugins/drawreport/ancestortree.py:915
 msgid "Display format for the fathers box."
 msgstr ""
 
@@ -18434,72 +18434,72 @@ msgstr ""
 #. missing.add_item(1, _("Displays '_____'"))
 #. missing.set_help(_("What will print when information is not known"))
 #. menu.add_option(category_name, "miss_val", missing)
-#: ../gramps/plugins/drawreport/ancestortree.py:924
+#: ../gramps/plugins/drawreport/ancestortree.py:926
 msgid ""
 "Mother\n"
 "Display Format"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:929
+#: ../gramps/plugins/drawreport/ancestortree.py:931
 msgid "Display format for the mothers box."
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:932
+#: ../gramps/plugins/drawreport/ancestortree.py:934
 msgid ""
 "Center person uses\n"
 "which format"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:934
+#: ../gramps/plugins/drawreport/ancestortree.py:936
 msgid "Use Fathers Display format"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:935
+#: ../gramps/plugins/drawreport/ancestortree.py:937
 msgid "Use Mothers display format"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:936
+#: ../gramps/plugins/drawreport/ancestortree.py:938
 msgid "The display format for the center person"
-msgstr ""
-
-#: ../gramps/plugins/drawreport/ancestortree.py:939
-#: ../gramps/plugins/drawreport/descendtree.py:1666
-msgid "Include Marriage box"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:941
 #: ../gramps/plugins/drawreport/descendtree.py:1668
+msgid "Include Marriage box"
+msgstr ""
+
+#: ../gramps/plugins/drawreport/ancestortree.py:943
+#: ../gramps/plugins/drawreport/descendtree.py:1670
 msgid "Whether to include a separate marital box in the report"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:945
-#: ../gramps/plugins/drawreport/descendtree.py:1672
+#: ../gramps/plugins/drawreport/ancestortree.py:947
+#: ../gramps/plugins/drawreport/descendtree.py:1674
 msgid ""
 "Marriage\n"
 "Display Format"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:947
-#: ../gramps/plugins/drawreport/descendtree.py:1674
+#: ../gramps/plugins/drawreport/ancestortree.py:949
+#: ../gramps/plugins/drawreport/descendtree.py:1676
 msgid "Display format for the marital box."
 msgstr ""
 
 #. #################
-#: ../gramps/plugins/drawreport/ancestortree.py:952
-#: ../gramps/plugins/drawreport/descendtree.py:1679
+#: ../gramps/plugins/drawreport/ancestortree.py:954
+#: ../gramps/plugins/drawreport/descendtree.py:1681
 #: ../gramps/plugins/lib/libmetadata.py:104
 msgid "Advanced"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:955
-#: ../gramps/plugins/drawreport/descendtree.py:1682
+#: ../gramps/plugins/drawreport/ancestortree.py:957
+#: ../gramps/plugins/drawreport/descendtree.py:1684
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:957
-#: ../gramps/plugins/drawreport/descendtree.py:1684
+#: ../gramps/plugins/drawreport/ancestortree.py:959
+#: ../gramps/plugins/drawreport/descendtree.py:1686
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
@@ -18511,115 +18511,115 @@ msgstr ""
 #. self.__include_images.set_help(
 #. _("Whether to include thumbnails of people."))
 #. menu.add_option(category_name, "includeImages", self.__include_images)
-#: ../gramps/plugins/drawreport/ancestortree.py:967
-#: ../gramps/plugins/drawreport/descendtree.py:1687
+#: ../gramps/plugins/drawreport/ancestortree.py:969
+#: ../gramps/plugins/drawreport/descendtree.py:1689
 msgid "Include a note"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:968
-#: ../gramps/plugins/drawreport/descendtree.py:1688
+#: ../gramps/plugins/drawreport/ancestortree.py:970
+#: ../gramps/plugins/drawreport/descendtree.py:1690
 msgid "Whether to include a note on the report."
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:973
-#: ../gramps/plugins/drawreport/descendtree.py:1693
+#: ../gramps/plugins/drawreport/ancestortree.py:975
+#: ../gramps/plugins/drawreport/descendtree.py:1695
 msgid ""
 "Add a note\n"
 "\n"
 "$T inserts today's date"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:978
-#: ../gramps/plugins/drawreport/descendtree.py:1698
+#: ../gramps/plugins/drawreport/ancestortree.py:980
+#: ../gramps/plugins/drawreport/descendtree.py:1700
 msgid "Note Location"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:981
-#: ../gramps/plugins/drawreport/descendtree.py:1701
+#: ../gramps/plugins/drawreport/ancestortree.py:983
+#: ../gramps/plugins/drawreport/descendtree.py:1703
 msgid "Where to place the note."
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:985
+#: ../gramps/plugins/drawreport/ancestortree.py:987
 msgid "inter-box scale factor"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:988
+#: ../gramps/plugins/drawreport/ancestortree.py:990
 msgid "Make the inter-box spacing bigger or smaller"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:991
-#: ../gramps/plugins/drawreport/descendtree.py:1710
+#: ../gramps/plugins/drawreport/ancestortree.py:993
+#: ../gramps/plugins/drawreport/descendtree.py:1712
 msgid "box shadow scale factor"
 msgstr ""
 
 #. down to 0
-#: ../gramps/plugins/drawreport/ancestortree.py:993
-#: ../gramps/plugins/drawreport/descendtree.py:1712
+#: ../gramps/plugins/drawreport/ancestortree.py:995
+#: ../gramps/plugins/drawreport/descendtree.py:1714
 msgid "Make the box shadow bigger or smaller"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1022
+#: ../gramps/plugins/drawreport/ancestortree.py:1024
 msgid "No generations of empty boxes for unknown ancestors"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1025
+#: ../gramps/plugins/drawreport/ancestortree.py:1027
 msgid "One Generation of empty boxes for unknown ancestors"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1030
+#: ../gramps/plugins/drawreport/ancestortree.py:1032
 msgid " Generations of empty boxes for unknown ancestors"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1047
-#: ../gramps/plugins/drawreport/descendtree.py:1772
-#: ../gramps/plugins/drawreport/fanchart.py:770
+#: ../gramps/plugins/drawreport/ancestortree.py:1049
+#: ../gramps/plugins/drawreport/descendtree.py:1774
+#: ../gramps/plugins/drawreport/fanchart.py:769
 #: ../gramps/plugins/drawreport/timeline.py:479
 #: ../gramps/plugins/textreport/alphabeticalindex.py:120
-#: ../gramps/plugins/textreport/ancestorreport.py:374
-#: ../gramps/plugins/textreport/detancestralreport.py:1001
-#: ../gramps/plugins/textreport/detdescendantreport.py:1224
-#: ../gramps/plugins/textreport/endoflinereport.py:314
-#: ../gramps/plugins/textreport/familygroup.py:867
-#: ../gramps/plugins/textreport/indivcomplete.py:1217
-#: ../gramps/plugins/textreport/kinshipreport.py:421
+#: ../gramps/plugins/textreport/ancestorreport.py:377
+#: ../gramps/plugins/textreport/detancestralreport.py:1004
+#: ../gramps/plugins/textreport/detdescendantreport.py:1228
+#: ../gramps/plugins/textreport/endoflinereport.py:317
+#: ../gramps/plugins/textreport/familygroup.py:874
+#: ../gramps/plugins/textreport/indivcomplete.py:1220
+#: ../gramps/plugins/textreport/kinshipreport.py:424
 #: ../gramps/plugins/textreport/notelinkreport.py:206
-#: ../gramps/plugins/textreport/numberofancestorsreport.py:234
-#: ../gramps/plugins/textreport/placereport.py:561
-#: ../gramps/plugins/textreport/recordsreport.py:336
-#: ../gramps/plugins/textreport/summary.py:330
-#: ../gramps/plugins/textreport/tagreport.py:964
+#: ../gramps/plugins/textreport/numberofancestorsreport.py:233
+#: ../gramps/plugins/textreport/placereport.py:565
+#: ../gramps/plugins/textreport/recordsreport.py:335
+#: ../gramps/plugins/textreport/summary.py:329
+#: ../gramps/plugins/textreport/tagreport.py:968
 msgid "The basic style used for the text display."
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1057
-#: ../gramps/plugins/drawreport/descendtree.py:1792
-#: ../gramps/plugins/textreport/familygroup.py:879
-#: ../gramps/plugins/textreport/tagreport.py:982
+#: ../gramps/plugins/drawreport/ancestortree.py:1059
+#: ../gramps/plugins/drawreport/descendtree.py:1794
+#: ../gramps/plugins/textreport/familygroup.py:886
+#: ../gramps/plugins/textreport/tagreport.py:986
 msgid "The basic style used for the note display."
 msgstr ""
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1066
-#: ../gramps/plugins/drawreport/descendtree.py:1763
-#: ../gramps/plugins/drawreport/fanchart.py:760
+#: ../gramps/plugins/drawreport/ancestortree.py:1068
+#: ../gramps/plugins/drawreport/descendtree.py:1765
+#: ../gramps/plugins/drawreport/fanchart.py:759
 #: ../gramps/plugins/drawreport/statisticschart.py:1130
 #: ../gramps/plugins/drawreport/timeline.py:497
 #: ../gramps/plugins/textreport/alphabeticalindex.py:103
-#: ../gramps/plugins/textreport/ancestorreport.py:351
-#: ../gramps/plugins/textreport/descendreport.py:562
-#: ../gramps/plugins/textreport/detancestralreport.py:953
-#: ../gramps/plugins/textreport/detdescendantreport.py:1176
-#: ../gramps/plugins/textreport/endoflinereport.py:296
-#: ../gramps/plugins/textreport/familygroup.py:858
-#: ../gramps/plugins/textreport/indivcomplete.py:1185
-#: ../gramps/plugins/textreport/kinshipreport.py:403
+#: ../gramps/plugins/textreport/ancestorreport.py:354
+#: ../gramps/plugins/textreport/descendreport.py:565
+#: ../gramps/plugins/textreport/detancestralreport.py:956
+#: ../gramps/plugins/textreport/detdescendantreport.py:1180
+#: ../gramps/plugins/textreport/endoflinereport.py:299
+#: ../gramps/plugins/textreport/familygroup.py:865
+#: ../gramps/plugins/textreport/indivcomplete.py:1188
+#: ../gramps/plugins/textreport/kinshipreport.py:406
 #: ../gramps/plugins/textreport/notelinkreport.py:186
-#: ../gramps/plugins/textreport/numberofancestorsreport.py:227
-#: ../gramps/plugins/textreport/placereport.py:494
-#: ../gramps/plugins/textreport/recordsreport.py:309
+#: ../gramps/plugins/textreport/numberofancestorsreport.py:226
+#: ../gramps/plugins/textreport/placereport.py:498
+#: ../gramps/plugins/textreport/recordsreport.py:308
 #: ../gramps/plugins/textreport/simplebooktitle.py:171
-#: ../gramps/plugins/textreport/summary.py:311
+#: ../gramps/plugins/textreport/summary.py:310
 #: ../gramps/plugins/textreport/tableofcontents.py:102
-#: ../gramps/plugins/textreport/tagreport.py:933
+#: ../gramps/plugins/textreport/tagreport.py:937
 msgid "The style used for the title."
 msgstr ""
 
@@ -18641,12 +18641,12 @@ msgid "Calendar Report"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:199
-#: ../gramps/plugins/textreport/birthdayreport.py:219
+#: ../gramps/plugins/textreport/birthdayreport.py:218
 msgid "Formatting months..."
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:319
-#: ../gramps/plugins/textreport/birthdayreport.py:264
+#: ../gramps/plugins/textreport/birthdayreport.py:263
 #: ../gramps/plugins/webreport/webcal.py:1271
 msgid "Reading database..."
 msgstr ""
@@ -18665,7 +18665,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:424
-#: ../gramps/plugins/textreport/birthdayreport.py:374
+#: ../gramps/plugins/textreport/birthdayreport.py:373
 #, python-format
 msgid ""
 "%(spouse)s and\n"
@@ -18674,7 +18674,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:430
-#: ../gramps/plugins/textreport/birthdayreport.py:379
+#: ../gramps/plugins/textreport/birthdayreport.py:378
 #, python-brace-format
 msgid ""
 "{spouse} and\n"
@@ -18691,20 +18691,20 @@ msgid "Select filter to restrict people that appear on calendar"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:476
-#: ../gramps/plugins/drawreport/fanchart.py:689
-#: ../gramps/plugins/graph/gvrelgraph.py:758
-#: ../gramps/plugins/textreport/ancestorreport.py:284
-#: ../gramps/plugins/textreport/descendreport.py:507
-#: ../gramps/plugins/textreport/detancestralreport.py:811
-#: ../gramps/plugins/textreport/detdescendantreport.py:1003
-#: ../gramps/plugins/textreport/endoflinereport.py:272
-#: ../gramps/plugins/textreport/kinshipreport.py:358
-#: ../gramps/plugins/textreport/numberofancestorsreport.py:206
+#: ../gramps/plugins/drawreport/fanchart.py:688
+#: ../gramps/plugins/graph/gvrelgraph.py:759
+#: ../gramps/plugins/textreport/ancestorreport.py:285
+#: ../gramps/plugins/textreport/descendreport.py:508
+#: ../gramps/plugins/textreport/detancestralreport.py:812
+#: ../gramps/plugins/textreport/detdescendantreport.py:1005
+#: ../gramps/plugins/textreport/endoflinereport.py:273
+#: ../gramps/plugins/textreport/kinshipreport.py:359
+#: ../gramps/plugins/textreport/numberofancestorsreport.py:205
 msgid "The center person for the report"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:480
-#: ../gramps/plugins/textreport/birthdayreport.py:427
+#: ../gramps/plugins/textreport/birthdayreport.py:426
 msgid "Text Area 1"
 msgstr ""
 
@@ -18713,7 +18713,7 @@ msgid "First line of text at bottom of calendar"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:484
-#: ../gramps/plugins/textreport/birthdayreport.py:431
+#: ../gramps/plugins/textreport/birthdayreport.py:430
 msgid "Text Area 2"
 msgstr ""
 
@@ -18722,7 +18722,7 @@ msgid "Second line of text at bottom of calendar"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:488
-#: ../gramps/plugins/textreport/birthdayreport.py:435
+#: ../gramps/plugins/textreport/birthdayreport.py:434
 msgid "Text Area 3"
 msgstr ""
 
@@ -18731,7 +18731,7 @@ msgid "Third line of text at bottom of calendar"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:504
-#: ../gramps/plugins/textreport/birthdayreport.py:446
+#: ../gramps/plugins/textreport/birthdayreport.py:445
 #: ../gramps/plugins/webreport/webcal.py:1680
 msgid "Include only living people"
 msgstr ""
@@ -18745,9 +18745,9 @@ msgstr ""
 #. Content options
 #. Content
 #: ../gramps/plugins/drawreport/calendarreport.py:511
-#: ../gramps/plugins/textreport/birthdayreport.py:454
-#: ../gramps/plugins/textreport/detancestralreport.py:846
-#: ../gramps/plugins/textreport/detdescendantreport.py:1051
+#: ../gramps/plugins/textreport/birthdayreport.py:453
+#: ../gramps/plugins/textreport/detancestralreport.py:849
+#: ../gramps/plugins/textreport/detdescendantreport.py:1055
 #: ../gramps/plugins/view/relview.py:1726
 msgid "Content"
 msgstr ""
@@ -18759,13 +18759,13 @@ msgid "Year of calendar"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:520
-#: ../gramps/plugins/textreport/birthdayreport.py:461
+#: ../gramps/plugins/textreport/birthdayreport.py:460
 #: ../gramps/plugins/webreport/webcal.py:1716
 msgid "Country for holidays"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:531
-#: ../gramps/plugins/textreport/birthdayreport.py:472
+#: ../gramps/plugins/textreport/birthdayreport.py:471
 msgid "Select the country to see associated holidays"
 msgstr ""
 
@@ -18781,54 +18781,54 @@ msgid "Select the first day of the week for the calendar"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:545
-#: ../gramps/plugins/textreport/birthdayreport.py:475
+#: ../gramps/plugins/textreport/birthdayreport.py:474
 #: ../gramps/plugins/webreport/webcal.py:1739
 msgid "Birthday surname"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:548
-#: ../gramps/plugins/textreport/birthdayreport.py:478
+#: ../gramps/plugins/textreport/birthdayreport.py:477
 #: ../gramps/plugins/webreport/webcal.py:1740
 msgid "Wives use husband's surname (from first family listed)"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:551
-#: ../gramps/plugins/textreport/birthdayreport.py:481
+#: ../gramps/plugins/textreport/birthdayreport.py:480
 #: ../gramps/plugins/webreport/webcal.py:1742
 msgid "Wives use husband's surname (from last family listed)"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:552
-#: ../gramps/plugins/textreport/birthdayreport.py:482
+#: ../gramps/plugins/textreport/birthdayreport.py:481
 #: ../gramps/plugins/webreport/webcal.py:1744
 msgid "Wives use their own surname"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:553
-#: ../gramps/plugins/textreport/birthdayreport.py:483
+#: ../gramps/plugins/textreport/birthdayreport.py:482
 #: ../gramps/plugins/webreport/webcal.py:1745
 msgid "Select married women's displayed surname"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:556
-#: ../gramps/plugins/textreport/birthdayreport.py:486
+#: ../gramps/plugins/textreport/birthdayreport.py:485
 #: ../gramps/plugins/webreport/webcal.py:1755
 msgid "Include birthdays"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:557
-#: ../gramps/plugins/textreport/birthdayreport.py:487
+#: ../gramps/plugins/textreport/birthdayreport.py:486
 msgid "Whether to include birthdays"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:560
-#: ../gramps/plugins/textreport/birthdayreport.py:490
+#: ../gramps/plugins/textreport/birthdayreport.py:489
 #: ../gramps/plugins/webreport/webcal.py:1759
 msgid "Include anniversaries"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:561
-#: ../gramps/plugins/textreport/birthdayreport.py:491
+#: ../gramps/plugins/textreport/birthdayreport.py:490
 msgid "Whether to include anniversaries"
 msgstr ""
 
@@ -18853,17 +18853,17 @@ msgid "Days of the week text"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:646
-#: ../gramps/plugins/textreport/birthdayreport.py:576
+#: ../gramps/plugins/textreport/birthdayreport.py:575
 msgid "Text at bottom, line 1"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:648
-#: ../gramps/plugins/textreport/birthdayreport.py:578
+#: ../gramps/plugins/textreport/birthdayreport.py:577
 msgid "Text at bottom, line 2"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:650
-#: ../gramps/plugins/textreport/birthdayreport.py:580
+#: ../gramps/plugins/textreport/birthdayreport.py:579
 msgid "Text at bottom, line 3"
 msgstr ""
 
@@ -18973,17 +18973,17 @@ msgid "Whether to indent the spouses in the tree."
 msgstr ""
 
 #: ../gramps/plugins/drawreport/descendtree.py:1570
-#: ../gramps/plugins/drawreport/descendtree.py:1741
+#: ../gramps/plugins/drawreport/descendtree.py:1743
 msgid "Descendant Chart for [selected person(s)]"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/descendtree.py:1573
-#: ../gramps/plugins/drawreport/descendtree.py:1745
+#: ../gramps/plugins/drawreport/descendtree.py:1747
 msgid "Family Chart for [names of chosen family]"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/descendtree.py:1576
-#: ../gramps/plugins/drawreport/descendtree.py:1749
+#: ../gramps/plugins/drawreport/descendtree.py:1751
 msgid "Cousin Chart for [names of children]"
 msgstr ""
 
@@ -18991,13 +18991,13 @@ msgstr ""
 msgid "Whether to include page numbers on each page."
 msgstr ""
 
-#: ../gramps/plugins/drawreport/descendtree.py:1645
+#: ../gramps/plugins/drawreport/descendtree.py:1647
 msgid ""
 "Descendant\n"
 "Display Format"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/descendtree.py:1649
+#: ../gramps/plugins/drawreport/descendtree.py:1651
 msgid "Display format for a descendant."
 msgstr ""
 
@@ -19007,25 +19007,25 @@ msgstr ""
 #. True)
 #. diffspouse.set_help(_("Whether spouses can have a different format."))
 #. menu.add_option(category_name, "diffspouse", diffspouse)
-#: ../gramps/plugins/drawreport/descendtree.py:1659
+#: ../gramps/plugins/drawreport/descendtree.py:1661
 msgid ""
 "Spousal\n"
 "Display Format"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/descendtree.py:1663
+#: ../gramps/plugins/drawreport/descendtree.py:1665
 msgid "Display format for a spouse."
 msgstr ""
 
-#: ../gramps/plugins/drawreport/descendtree.py:1705
+#: ../gramps/plugins/drawreport/descendtree.py:1707
 msgid "inter-box Y scale factor"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/descendtree.py:1707
+#: ../gramps/plugins/drawreport/descendtree.py:1709
 msgid "Make the inter-box Y bigger or smaller"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/descendtree.py:1783
+#: ../gramps/plugins/drawreport/descendtree.py:1785
 msgid "The bold style used for the text display."
 msgstr ""
 
@@ -19118,88 +19118,88 @@ msgid "Produces a timeline chart."
 msgstr ""
 
 #. choose  one line or two lines translation according to the width
-#: ../gramps/plugins/drawreport/fanchart.py:257
+#: ../gramps/plugins/drawreport/fanchart.py:256
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:272
+#: ../gramps/plugins/drawreport/fanchart.py:271
 #, python-format
 msgid ""
 "%(generations)d Generation Fan Chart for\n"
 "%(person)s"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:693
-#: ../gramps/plugins/textreport/ancestorreport.py:288
-#: ../gramps/plugins/textreport/descendreport.py:522
-#: ../gramps/plugins/textreport/detancestralreport.py:820
-#: ../gramps/plugins/textreport/detdescendantreport.py:1025
+#: ../gramps/plugins/drawreport/fanchart.py:692
+#: ../gramps/plugins/textreport/ancestorreport.py:289
+#: ../gramps/plugins/textreport/descendreport.py:523
+#: ../gramps/plugins/textreport/detancestralreport.py:821
+#: ../gramps/plugins/textreport/detdescendantreport.py:1027
 msgid "The number of generations to include in the report"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:697
+#: ../gramps/plugins/drawreport/fanchart.py:696
 msgid "Type of graph"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:698
+#: ../gramps/plugins/drawreport/fanchart.py:697
 msgid "full circle"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:699
+#: ../gramps/plugins/drawreport/fanchart.py:698
 msgid "half circle"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:700
+#: ../gramps/plugins/drawreport/fanchart.py:699
 msgid "quarter circle"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:701
+#: ../gramps/plugins/drawreport/fanchart.py:700
 msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:707
+#: ../gramps/plugins/drawreport/fanchart.py:706
 msgid "generation dependent"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:708
+#: ../gramps/plugins/drawreport/fanchart.py:707
 msgid "Background color is either white or generation dependent"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:712
+#: ../gramps/plugins/drawreport/fanchart.py:711
 msgid "Orientation of radial texts"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:714
+#: ../gramps/plugins/drawreport/fanchart.py:713
 msgid "upright"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:715
+#: ../gramps/plugins/drawreport/fanchart.py:714
 msgid "roundabout"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:716
+#: ../gramps/plugins/drawreport/fanchart.py:715
 msgid "Print radial texts upright or roundabout"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:718
+#: ../gramps/plugins/drawreport/fanchart.py:717
 msgid "Draw empty boxes"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:719
+#: ../gramps/plugins/drawreport/fanchart.py:718
 msgid "Draw the background although there is no information"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:723
+#: ../gramps/plugins/drawreport/fanchart.py:722
 msgid "Use one font style for all generations"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:725
+#: ../gramps/plugins/drawreport/fanchart.py:724
 msgid ""
 "You can customize font and color for each generation in the style editor"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/fanchart.py:781
+#: ../gramps/plugins/drawreport/fanchart.py:780
 #, python-format
 msgid "The style used for the text display of generation \"%d\""
 msgstr ""
@@ -19349,9 +19349,9 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:769
 #: ../gramps/plugins/drawreport/timeline.py:118
-#: ../gramps/plugins/textreport/placereport.py:97
-#: ../gramps/plugins/textreport/recordsreport.py:92
-#: ../gramps/plugins/textreport/tagreport.py:98
+#: ../gramps/plugins/textreport/placereport.py:99
+#: ../gramps/plugins/textreport/recordsreport.py:91
+#: ../gramps/plugins/textreport/tagreport.py:100
 #, python-format
 msgid "(Living people: %(option_name)s)"
 msgstr ""
@@ -19385,15 +19385,15 @@ msgid "%s (persons):"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:991
-#: ../gramps/plugins/textreport/recordsreport.py:220
+#: ../gramps/plugins/textreport/recordsreport.py:219
 msgid "Determines what people are included in the report."
 msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:996
 #: ../gramps/plugins/drawreport/timeline.py:421
-#: ../gramps/plugins/textreport/birthdayreport.py:418
-#: ../gramps/plugins/textreport/indivcomplete.py:1050
-#: ../gramps/plugins/textreport/recordsreport.py:224
+#: ../gramps/plugins/textreport/birthdayreport.py:417
+#: ../gramps/plugins/textreport/indivcomplete.py:1051
+#: ../gramps/plugins/textreport/recordsreport.py:223
 #: ../gramps/plugins/tool/sortevents.py:172
 #: ../gramps/plugins/webreport/narrativeweb.py:9681
 #: ../gramps/plugins/webreport/webcal.py:1628
@@ -19401,8 +19401,8 @@ msgid "Filter Person"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:997
-#: ../gramps/plugins/textreport/birthdayreport.py:419
-#: ../gramps/plugins/textreport/indivcomplete.py:1051
+#: ../gramps/plugins/textreport/birthdayreport.py:418
+#: ../gramps/plugins/textreport/indivcomplete.py:1052
 msgid "The center person for the filter."
 msgstr ""
 
@@ -19480,7 +19480,7 @@ msgid "Include charts with indicated data."
 msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1121
-#: ../gramps/plugins/textreport/placereport.py:592
+#: ../gramps/plugins/textreport/placereport.py:596
 msgid "The style used for the items and values."
 msgstr ""
 
@@ -19526,7 +19526,7 @@ msgid "Determines what people are included in the report"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/timeline.py:422
-#: ../gramps/plugins/textreport/recordsreport.py:225
+#: ../gramps/plugins/textreport/recordsreport.py:224
 #: ../gramps/plugins/tool/sortevents.py:173
 #: ../gramps/plugins/webreport/narrativeweb.py:9682
 #: ../gramps/plugins/webreport/webcal.py:1629
@@ -19544,11 +19544,11 @@ msgid "Sorting method to use"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/timeline.py:488
-#: ../gramps/plugins/textreport/indivcomplete.py:1197
+#: ../gramps/plugins/textreport/indivcomplete.py:1200
 #: ../gramps/plugins/textreport/notelinkreport.py:196
-#: ../gramps/plugins/textreport/placereport.py:523
-#: ../gramps/plugins/textreport/recordsreport.py:328
-#: ../gramps/plugins/textreport/tagreport.py:954
+#: ../gramps/plugins/textreport/placereport.py:527
+#: ../gramps/plugins/textreport/recordsreport.py:327
+#: ../gramps/plugins/textreport/tagreport.py:958
 msgid "The style used for the section headers."
 msgstr ""
 
@@ -19690,13 +19690,13 @@ msgid "Include marriages"
 msgstr ""
 
 #: ../gramps/plugins/export/exportcsv.py:138
-#: ../gramps/plugins/textreport/detancestralreport.py:875
-#: ../gramps/plugins/textreport/detdescendantreport.py:1080
+#: ../gramps/plugins/textreport/detancestralreport.py:878
+#: ../gramps/plugins/textreport/detdescendantreport.py:1084
 msgid "Include children"
 msgstr ""
 
 #: ../gramps/plugins/export/exportcsv.py:139
-#: ../gramps/plugins/graph/gvfamilylines.py:230
+#: ../gramps/plugins/graph/gvfamilylines.py:232
 msgid "Include places"
 msgstr ""
 
@@ -19747,14 +19747,14 @@ msgstr ""
 
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:217
-#: ../gramps/plugins/textreport/familygroup.py:620
+#: ../gramps/plugins/textreport/familygroup.py:625
 #: ../gramps/plugins/webreport/narrativeweb.py:2740
 msgid "Husband"
 msgstr ""
 
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:214
-#: ../gramps/plugins/textreport/familygroup.py:629
+#: ../gramps/plugins/textreport/familygroup.py:634
 #: ../gramps/plugins/webreport/narrativeweb.py:2738
 msgid "Wife"
 msgstr ""
@@ -19773,7 +19773,7 @@ msgid "FAX"
 msgstr ""
 
 #: ../gramps/plugins/export/exportgedcom.py:804
-#: ../gramps/plugins/textreport/familygroup.py:665
+#: ../gramps/plugins/textreport/familygroup.py:670
 msgid "Writing families"
 msgstr ""
 
@@ -19994,15 +19994,15 @@ msgid "Right-click on a row to edit the selected event or the related place."
 msgstr ""
 
 #: ../gramps/plugins/gramplet/coordinates.py:94
-#: ../gramps/plugins/textreport/tagreport.py:154
-#: ../gramps/plugins/textreport/tagreport.py:242
-#: ../gramps/plugins/textreport/tagreport.py:331
-#: ../gramps/plugins/textreport/tagreport.py:414
-#: ../gramps/plugins/textreport/tagreport.py:495
-#: ../gramps/plugins/textreport/tagreport.py:564
-#: ../gramps/plugins/textreport/tagreport.py:648
-#: ../gramps/plugins/textreport/tagreport.py:733
-#: ../gramps/plugins/textreport/tagreport.py:813
+#: ../gramps/plugins/textreport/tagreport.py:156
+#: ../gramps/plugins/textreport/tagreport.py:244
+#: ../gramps/plugins/textreport/tagreport.py:333
+#: ../gramps/plugins/textreport/tagreport.py:416
+#: ../gramps/plugins/textreport/tagreport.py:497
+#: ../gramps/plugins/textreport/tagreport.py:566
+#: ../gramps/plugins/textreport/tagreport.py:650
+#: ../gramps/plugins/textreport/tagreport.py:735
+#: ../gramps/plugins/textreport/tagreport.py:815
 msgid "Id"
 msgstr ""
 
@@ -20605,7 +20605,7 @@ msgstr ""
 
 #. #########################
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:693
-#: ../gramps/plugins/textreport/familygroup.py:773
+#: ../gramps/plugins/textreport/familygroup.py:780
 msgid "Family Notes"
 msgstr ""
 
@@ -20873,7 +20873,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1127
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1138
-#: ../gramps/plugins/textreport/recordsreport.py:119
+#: ../gramps/plugins/textreport/recordsreport.py:118
 msgid "Records"
 msgstr ""
 
@@ -21098,10 +21098,10 @@ msgstr ""
 
 #. Create the Generation title, set an index marker
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:267
-#: ../gramps/plugins/textreport/ancestorreport.py:213
-#: ../gramps/plugins/textreport/detancestralreport.py:221
-#: ../gramps/plugins/textreport/detdescendantreport.py:350
-#: ../gramps/plugins/textreport/endoflinereport.py:185
+#: ../gramps/plugins/textreport/ancestorreport.py:214
+#: ../gramps/plugins/textreport/detancestralreport.py:222
+#: ../gramps/plugins/textreport/detdescendantreport.py:352
+#: ../gramps/plugins/textreport/endoflinereport.py:186
 #, python-format
 msgid "Generation %d"
 msgstr ""
@@ -21246,15 +21246,15 @@ msgid "Double-click item to see matches"
 msgstr ""
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:87
-#: ../gramps/plugins/textreport/summary.py:241
+#: ../gramps/plugins/textreport/summary.py:240
 #: ../gramps/plugins/webreport/narrativeweb.py:8107
 msgid "less than 1"
 msgstr ""
 
 #. -------------------------
 #: ../gramps/plugins/gramplet/statsgramplet.py:99
-#: ../gramps/plugins/graph/gvfamilylines.py:272
-#: ../gramps/plugins/textreport/summary.py:114
+#: ../gramps/plugins/graph/gvfamilylines.py:274
+#: ../gramps/plugins/textreport/summary.py:113
 #: ../gramps/plugins/webreport/narrativeweb.py:1882
 #: ../gramps/plugins/webreport/narrativeweb.py:1940
 #: ../gramps/plugins/webreport/narrativeweb.py:2005
@@ -21277,7 +21277,7 @@ msgid "Individuals with unknown gender"
 msgstr ""
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:115
-#: ../gramps/plugins/textreport/summary.py:212
+#: ../gramps/plugins/textreport/summary.py:211
 #: ../gramps/plugins/webreport/narrativeweb.py:8131
 #: ../gramps/plugins/webreport/narrativeweb.py:8198
 msgid "Family Information"
@@ -21289,7 +21289,7 @@ msgid "Unique surnames"
 msgstr ""
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:126
-#: ../gramps/plugins/textreport/summary.py:229
+#: ../gramps/plugins/textreport/summary.py:228
 #: ../gramps/plugins/webreport/narrativeweb.py:8138
 msgid "Media Objects"
 msgstr ""
@@ -21310,7 +21310,7 @@ msgid "Total size of media objects"
 msgstr ""
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:141
-#: ../gramps/plugins/textreport/summary.py:259
+#: ../gramps/plugins/textreport/summary.py:258
 #: ../gramps/plugins/webreport/narrativeweb.py:8148
 msgid "Missing Media Objects"
 msgstr ""
@@ -21600,7 +21600,7 @@ msgid "Produces an hourglass graph using Graphviz."
 msgstr ""
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:81
-#: ../gramps/plugins/graph/gvrelgraph.py:201
+#: ../gramps/plugins/graph/gvrelgraph.py:202
 msgid "Relationship Graph"
 msgstr ""
 
@@ -21681,20 +21681,20 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:139
-#: ../gramps/plugins/graph/gvhourglass.py:328
-#: ../gramps/plugins/graph/gvrelgraph.py:762
+#: ../gramps/plugins/graph/gvhourglass.py:329
+#: ../gramps/plugins/graph/gvrelgraph.py:763
 msgid "Arrowhead direction"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:142
-#: ../gramps/plugins/graph/gvhourglass.py:331
-#: ../gramps/plugins/graph/gvrelgraph.py:765
+#: ../gramps/plugins/graph/gvhourglass.py:332
+#: ../gramps/plugins/graph/gvrelgraph.py:766
 msgid "Choose the direction that the arrows point."
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:145
-#: ../gramps/plugins/graph/gvhourglass.py:334
-#: ../gramps/plugins/graph/gvrelgraph.py:768
+#: ../gramps/plugins/graph/gvhourglass.py:335
+#: ../gramps/plugins/graph/gvrelgraph.py:769
 msgid "Graph coloring"
 msgstr ""
 
@@ -21707,251 +21707,251 @@ msgstr ""
 
 #. see bug report #2180
 #: ../gramps/plugins/graph/gvfamilylines.py:154
-#: ../gramps/plugins/graph/gvhourglass.py:342
-#: ../gramps/plugins/graph/gvrelgraph.py:777
+#: ../gramps/plugins/graph/gvhourglass.py:343
+#: ../gramps/plugins/graph/gvrelgraph.py:778
 msgid "Use rounded corners"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:156
-#: ../gramps/plugins/graph/gvhourglass.py:344
-#: ../gramps/plugins/graph/gvrelgraph.py:778
+#: ../gramps/plugins/graph/gvhourglass.py:345
+#: ../gramps/plugins/graph/gvrelgraph.py:779
 msgid "Use rounded corners to differentiate between women and men."
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:160
-#: ../gramps/plugins/graph/gvhourglass.py:348
-#: ../gramps/plugins/graph/gvrelgraph.py:783
+#: ../gramps/plugins/graph/gvhourglass.py:349
+#: ../gramps/plugins/graph/gvrelgraph.py:784
 msgid "Do not include"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:161
-#: ../gramps/plugins/graph/gvhourglass.py:349
-#: ../gramps/plugins/graph/gvrelgraph.py:784
+#: ../gramps/plugins/graph/gvhourglass.py:350
+#: ../gramps/plugins/graph/gvrelgraph.py:785
 msgid "Share an existing line"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:162
-#: ../gramps/plugins/graph/gvhourglass.py:350
-#: ../gramps/plugins/graph/gvrelgraph.py:785
+#: ../gramps/plugins/graph/gvhourglass.py:351
+#: ../gramps/plugins/graph/gvrelgraph.py:786
 msgid "On a line of its own"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:163
-#: ../gramps/plugins/graph/gvhourglass.py:351
-#: ../gramps/plugins/graph/gvrelgraph.py:786
+#: ../gramps/plugins/graph/gvhourglass.py:352
+#: ../gramps/plugins/graph/gvrelgraph.py:787
 msgid "Whether (and where) to include Gramps IDs"
 msgstr ""
 
 #. --------------------------------
-#: ../gramps/plugins/graph/gvfamilylines.py:180
+#: ../gramps/plugins/graph/gvfamilylines.py:182
 msgid "People of Interest"
 msgstr ""
 
 #. --------------------------------
-#: ../gramps/plugins/graph/gvfamilylines.py:183
+#: ../gramps/plugins/graph/gvfamilylines.py:185
 msgid "People of interest"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:184
+#: ../gramps/plugins/graph/gvfamilylines.py:186
 msgid ""
 "People of interest are used as a starting point when determining \"family "
 "lines\"."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:188
+#: ../gramps/plugins/graph/gvfamilylines.py:190
 msgid "Limit the number of ancestors"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:190
+#: ../gramps/plugins/graph/gvfamilylines.py:192
 msgid "Whether to limit the number of ancestors."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:196
+#: ../gramps/plugins/graph/gvfamilylines.py:198
 msgid "The maximum number of ancestors to include."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:200
+#: ../gramps/plugins/graph/gvfamilylines.py:202
 msgid "Limit the number of descendants"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:203
+#: ../gramps/plugins/graph/gvfamilylines.py:205
 msgid "Whether to limit the number of descendants."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:209
+#: ../gramps/plugins/graph/gvfamilylines.py:211
 msgid "The maximum number of descendants to include."
 msgstr ""
 
 #. --------------------
-#: ../gramps/plugins/graph/gvfamilylines.py:218
+#: ../gramps/plugins/graph/gvfamilylines.py:220
 msgid "Include dates"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:219
+#: ../gramps/plugins/graph/gvfamilylines.py:221
 msgid "Whether to include dates for people and families."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:224
+#: ../gramps/plugins/graph/gvfamilylines.py:226
 msgid "Limit dates to years only"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:225
+#: ../gramps/plugins/graph/gvfamilylines.py:227
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:231
+#: ../gramps/plugins/graph/gvfamilylines.py:233
 msgid "Whether to include placenames for people and families."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:235
+#: ../gramps/plugins/graph/gvfamilylines.py:237
 msgid "Include the number of children"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:237
+#: ../gramps/plugins/graph/gvfamilylines.py:239
 msgid ""
 "Whether to include the number of children for families with more than 1 "
 "child."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:242
-#: ../gramps/plugins/graph/gvrelgraph.py:846
+#: ../gramps/plugins/graph/gvfamilylines.py:244
+#: ../gramps/plugins/graph/gvrelgraph.py:849
 msgid "Include thumbnail images of people"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:245
+#: ../gramps/plugins/graph/gvfamilylines.py:247
 msgid "Whether to include thumbnail images of people."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:250
-msgid "Thumbnail location"
-msgstr ""
-
-#: ../gramps/plugins/graph/gvfamilylines.py:251
-#: ../gramps/plugins/graph/gvrelgraph.py:853
-msgid "Above the name"
-msgstr ""
-
 #: ../gramps/plugins/graph/gvfamilylines.py:252
-#: ../gramps/plugins/graph/gvrelgraph.py:854
-msgid "Beside the name"
+msgid "Thumbnail location"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:253
 #: ../gramps/plugins/graph/gvrelgraph.py:856
+msgid "Above the name"
+msgstr ""
+
+#: ../gramps/plugins/graph/gvfamilylines.py:254
+#: ../gramps/plugins/graph/gvrelgraph.py:857
+msgid "Beside the name"
+msgstr ""
+
+#: ../gramps/plugins/graph/gvfamilylines.py:255
+#: ../gramps/plugins/graph/gvrelgraph.py:859
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:257
+#: ../gramps/plugins/graph/gvfamilylines.py:259
 msgid "Thumbnail size"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:259
+#: ../gramps/plugins/graph/gvfamilylines.py:261
 msgid "Large"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:260
+#: ../gramps/plugins/graph/gvfamilylines.py:262
 msgid "Size of the thumbnail image"
 msgstr ""
 
 #. ----------------------------
-#: ../gramps/plugins/graph/gvfamilylines.py:264
+#: ../gramps/plugins/graph/gvfamilylines.py:266
 msgid "Family Colors"
 msgstr ""
 
 #. ----------------------------
-#: ../gramps/plugins/graph/gvfamilylines.py:267
+#: ../gramps/plugins/graph/gvfamilylines.py:269
 msgid "Family colors"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:268
+#: ../gramps/plugins/graph/gvfamilylines.py:270
 msgid "Colors to use for various family lines."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:276
-#: ../gramps/plugins/graph/gvhourglass.py:369
-#: ../gramps/plugins/graph/gvrelgraph.py:883
+#: ../gramps/plugins/graph/gvfamilylines.py:278
+#: ../gramps/plugins/graph/gvhourglass.py:372
+#: ../gramps/plugins/graph/gvrelgraph.py:886
 msgid "The color to use to display men."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:280
-#: ../gramps/plugins/graph/gvhourglass.py:373
-#: ../gramps/plugins/graph/gvrelgraph.py:887
+#: ../gramps/plugins/graph/gvfamilylines.py:282
+#: ../gramps/plugins/graph/gvhourglass.py:376
+#: ../gramps/plugins/graph/gvrelgraph.py:890
 msgid "The color to use to display women."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:284
-#: ../gramps/plugins/graph/gvhourglass.py:377
-#: ../gramps/plugins/graph/gvrelgraph.py:892
+#: ../gramps/plugins/graph/gvfamilylines.py:286
+#: ../gramps/plugins/graph/gvhourglass.py:380
+#: ../gramps/plugins/graph/gvrelgraph.py:895
 msgid "The color to use when the gender is unknown."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:289
-#: ../gramps/plugins/graph/gvhourglass.py:382
-#: ../gramps/plugins/graph/gvrelgraph.py:897
+#: ../gramps/plugins/graph/gvfamilylines.py:291
+#: ../gramps/plugins/graph/gvhourglass.py:385
+#: ../gramps/plugins/graph/gvrelgraph.py:900
 msgid "The color to use to display families."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:400
-#: ../gramps/plugins/textreport/familygroup.py:672
-#: ../gramps/plugins/textreport/indivcomplete.py:812
+#: ../gramps/plugins/graph/gvfamilylines.py:403
+#: ../gramps/plugins/textreport/familygroup.py:677
+#: ../gramps/plugins/textreport/indivcomplete.py:813
 msgid "Empty report"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:401
-#: ../gramps/plugins/textreport/familygroup.py:673
-#: ../gramps/plugins/textreport/indivcomplete.py:813
+#: ../gramps/plugins/graph/gvfamilylines.py:404
+#: ../gramps/plugins/textreport/familygroup.py:678
+#: ../gramps/plugins/textreport/indivcomplete.py:814
 msgid "You did not specify anybody"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:460
+#: ../gramps/plugins/graph/gvfamilylines.py:463
 msgid "Number of people in database:"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:463
+#: ../gramps/plugins/graph/gvfamilylines.py:466
 msgid "Number of people of interest:"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:466
+#: ../gramps/plugins/graph/gvfamilylines.py:469
 msgid "Number of families in database:"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:469
+#: ../gramps/plugins/graph/gvfamilylines.py:472
 msgid "Number of families of interest:"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:473
+#: ../gramps/plugins/graph/gvfamilylines.py:476
 msgid "Additional people removed:"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:476
+#: ../gramps/plugins/graph/gvfamilylines.py:479
 msgid "Additional families removed:"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:479
+#: ../gramps/plugins/graph/gvfamilylines.py:482
 msgid "Initial list of people of interest:"
 msgstr ""
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/graph/gvfamilylines.py:968
+#: ../gramps/plugins/graph/gvfamilylines.py:971
 #, python-brace-format
 msgid "{number_of} child"
 msgid_plural "{number_of} children"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:1043
+#: ../gramps/plugins/graph/gvfamilylines.py:1046
 #, python-format
 msgid "father: %s"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:1053
+#: ../gramps/plugins/graph/gvfamilylines.py:1056
 #, python-format
 msgid "mother: %s"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvfamilylines.py:1066
+#: ../gramps/plugins/graph/gvfamilylines.py:1069
 #, python-format
 msgid "child: %s"
 msgstr ""
@@ -21972,165 +21972,165 @@ msgstr ""
 msgid "Center - Other"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:315
+#: ../gramps/plugins/graph/gvhourglass.py:316
 msgid "The Center person for the graph"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:318
-#: ../gramps/plugins/textreport/kinshipreport.py:361
+#: ../gramps/plugins/graph/gvhourglass.py:319
+#: ../gramps/plugins/textreport/kinshipreport.py:362
 msgid "Max Descendant Generations"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:319
+#: ../gramps/plugins/graph/gvhourglass.py:320
 msgid "The number of generations of descendants to include in the graph"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:323
-#: ../gramps/plugins/textreport/kinshipreport.py:365
+#: ../gramps/plugins/graph/gvhourglass.py:324
+#: ../gramps/plugins/textreport/kinshipreport.py:366
 msgid "Max Ancestor Generations"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:324
+#: ../gramps/plugins/graph/gvhourglass.py:325
 msgid "The number of generations of ancestors to include in the graph"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvhourglass.py:337
-#: ../gramps/plugins/graph/gvrelgraph.py:771
+#: ../gramps/plugins/graph/gvhourglass.py:338
+#: ../gramps/plugins/graph/gvrelgraph.py:772
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
 msgstr ""
 
 #. ###############################
-#: ../gramps/plugins/graph/gvhourglass.py:365
-#: ../gramps/plugins/graph/gvrelgraph.py:879
+#: ../gramps/plugins/graph/gvhourglass.py:368
+#: ../gramps/plugins/graph/gvrelgraph.py:882
 msgid "Graph Style"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:202
-#: ../gramps/plugins/textreport/indivcomplete.py:817
+#: ../gramps/plugins/graph/gvrelgraph.py:203
+#: ../gramps/plugins/textreport/indivcomplete.py:818
 #: ../gramps/plugins/textreport/notelinkreport.py:103
-#: ../gramps/plugins/textreport/placereport.py:156
+#: ../gramps/plugins/textreport/placereport.py:158
 msgid "Generating report"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:753
+#: ../gramps/plugins/graph/gvrelgraph.py:754
 msgid "Determines what people are included in the graph"
 msgstr ""
 
 #. ###############################
-#: ../gramps/plugins/graph/gvrelgraph.py:809
+#: ../gramps/plugins/graph/gvrelgraph.py:812
 msgid "Dates and/or Places"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:810
+#: ../gramps/plugins/graph/gvrelgraph.py:813
 msgid "Do not include any dates or places"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:811
+#: ../gramps/plugins/graph/gvrelgraph.py:814
 msgid "Include (birth, marriage, death) dates, but no places"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:813
+#: ../gramps/plugins/graph/gvrelgraph.py:816
 msgid "Include (birth, marriage, death) dates, and places"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:815
+#: ../gramps/plugins/graph/gvrelgraph.py:818
 msgid "Include (birth, marriage, death) dates, and places if no dates"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:817
+#: ../gramps/plugins/graph/gvrelgraph.py:820
 msgid "Include (birth, marriage, death) years, but no places"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:819
+#: ../gramps/plugins/graph/gvrelgraph.py:822
 msgid "Include (birth, marriage, death) years, and places"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:821
+#: ../gramps/plugins/graph/gvrelgraph.py:824
 msgid "Include (birth, marriage, death) places, but no dates"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:823
+#: ../gramps/plugins/graph/gvrelgraph.py:826
 msgid "Include (birth, marriage, death) dates and places on same line"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:826
+#: ../gramps/plugins/graph/gvrelgraph.py:829
 msgid "Whether to include dates and/or places"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:829
+#: ../gramps/plugins/graph/gvrelgraph.py:832
 msgid "Include URLs"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:830
+#: ../gramps/plugins/graph/gvrelgraph.py:833
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
 "Web Site' report."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:838
-#: ../gramps/plugins/textreport/birthdayreport.py:495
-#: ../gramps/plugins/textreport/indivcomplete.py:1125
+#: ../gramps/plugins/graph/gvrelgraph.py:841
+#: ../gramps/plugins/textreport/birthdayreport.py:494
+#: ../gramps/plugins/textreport/indivcomplete.py:1128
 msgid "Include relationship to center person"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:839
+#: ../gramps/plugins/graph/gvrelgraph.py:842
 msgid "Whether to show every person's relationship to the center person"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:848
+#: ../gramps/plugins/graph/gvrelgraph.py:851
 msgid "Whether to include thumbnails of people."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:852
+#: ../gramps/plugins/graph/gvrelgraph.py:855
 msgid "Thumbnail Location"
 msgstr ""
 
 #. occupation = BooleanOption(_("Include occupation"), False)
-#: ../gramps/plugins/graph/gvrelgraph.py:860
+#: ../gramps/plugins/graph/gvrelgraph.py:863
 msgid "Include occupation"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:861
+#: ../gramps/plugins/graph/gvrelgraph.py:864
 msgid "Do not include any occupation"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:862
+#: ../gramps/plugins/graph/gvrelgraph.py:865
 msgid "Include description of most recent occupation"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:864
+#: ../gramps/plugins/graph/gvrelgraph.py:867
 msgid "Include date, description and place of all occupations"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:866
+#: ../gramps/plugins/graph/gvrelgraph.py:869
 msgid "Whether to include the last occupation"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:870
+#: ../gramps/plugins/graph/gvrelgraph.py:873
 msgid "Include relationship debugging numbers also"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:873
+#: ../gramps/plugins/graph/gvrelgraph.py:876
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:901
+#: ../gramps/plugins/graph/gvrelgraph.py:904
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:902
+#: ../gramps/plugins/graph/gvrelgraph.py:905
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:906
+#: ../gramps/plugins/graph/gvrelgraph.py:909
 msgid "Show family nodes"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:907
+#: ../gramps/plugins/graph/gvrelgraph.py:910
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr ""
 
@@ -26789,36 +26789,52 @@ msgid "Oldest mother"
 msgstr ""
 
 #: ../gramps/plugins/lib/librecords.py:67
-msgid "Couple with most children"
+msgid "Father with most children"
 msgstr ""
 
 #: ../gramps/plugins/lib/librecords.py:68
-msgid "Living couple married most recently"
+msgid "Mother with most children"
 msgstr ""
 
 #: ../gramps/plugins/lib/librecords.py:69
-msgid "Living couple married most long ago"
+msgid "Father with most grandchildren"
 msgstr ""
 
 #: ../gramps/plugins/lib/librecords.py:70
-msgid "Shortest past marriage"
+msgid "Mother with most grandchildren"
 msgstr ""
 
 #: ../gramps/plugins/lib/librecords.py:71
-msgid "Longest past marriage"
+msgid "Couple with most children"
 msgstr ""
 
 #: ../gramps/plugins/lib/librecords.py:72
-msgid "Couple with smallest age difference"
+msgid "Living couple married most recently"
 msgstr ""
 
 #: ../gramps/plugins/lib/librecords.py:73
+msgid "Living couple married most long ago"
+msgstr ""
+
+#: ../gramps/plugins/lib/librecords.py:74
+msgid "Shortest past marriage"
+msgstr ""
+
+#: ../gramps/plugins/lib/librecords.py:75
+msgid "Longest past marriage"
+msgstr ""
+
+#: ../gramps/plugins/lib/librecords.py:76
+msgid "Couple with smallest age difference"
+msgstr ""
+
+#: ../gramps/plugins/lib/librecords.py:77
 msgid "Couple with biggest age difference"
 msgstr ""
 
 #. Add call name to first name.
 #. translators: used in French+Russian, ignore otherwise
-#: ../gramps/plugins/lib/librecords.py:452
+#: ../gramps/plugins/lib/librecords.py:517
 #, python-format
 msgid "\"%(callname)s\" (%(firstname)s)"
 msgstr ""
@@ -27377,7 +27393,7 @@ msgstr ""
 
 #: ../gramps/plugins/quickview/filterbyname.py:91
 #: ../gramps/plugins/quickview/filterbyname.py:116
-#: ../gramps/plugins/textreport/tagreport.py:143
+#: ../gramps/plugins/textreport/tagreport.py:145
 #: ../gramps/plugins/view/view.gpr.py:197
 #: ../gramps/plugins/view/view.gpr.py:205
 #: ../gramps/plugins/view/view.gpr.py:214
@@ -27951,34 +27967,34 @@ msgid "Entire Book"
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/ancestorreport.py:192
+#: ../gramps/plugins/textreport/ancestorreport.py:193
 #, python-format
 msgid "Ahnentafel Report for %s"
 msgstr ""
 
-#: ../gramps/plugins/textreport/ancestorreport.py:291
-#: ../gramps/plugins/textreport/detancestralreport.py:823
-#: ../gramps/plugins/textreport/detdescendantreport.py:1028
+#: ../gramps/plugins/textreport/ancestorreport.py:292
+#: ../gramps/plugins/textreport/detancestralreport.py:824
+#: ../gramps/plugins/textreport/detdescendantreport.py:1030
 msgid "Page break between generations"
 msgstr ""
 
-#: ../gramps/plugins/textreport/ancestorreport.py:293
-#: ../gramps/plugins/textreport/detancestralreport.py:825
-#: ../gramps/plugins/textreport/detdescendantreport.py:1030
+#: ../gramps/plugins/textreport/ancestorreport.py:294
+#: ../gramps/plugins/textreport/detancestralreport.py:826
+#: ../gramps/plugins/textreport/detdescendantreport.py:1032
 msgid "Whether to start a new page after each generation."
 msgstr ""
 
-#: ../gramps/plugins/textreport/ancestorreport.py:296
+#: ../gramps/plugins/textreport/ancestorreport.py:297
 msgid "Add linebreak after each name"
 msgstr ""
 
-#: ../gramps/plugins/textreport/ancestorreport.py:297
+#: ../gramps/plugins/textreport/ancestorreport.py:298
 msgid "Indicates if a line break should follow the name."
 msgstr ""
 
 #: ../gramps/plugins/textreport/birthdayreport.py:65
-#: ../gramps/plugins/textreport/birthdayreport.py:218
-#: ../gramps/plugins/textreport/birthdayreport.py:263
+#: ../gramps/plugins/textreport/birthdayreport.py:217
+#: ../gramps/plugins/textreport/birthdayreport.py:262
 #: ../gramps/plugins/textreport/textplugins.gpr.py:59
 msgid "Birthday and Anniversary Report"
 msgstr ""
@@ -27988,77 +28004,77 @@ msgid "My Birthday Report"
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/birthdayreport.py:215
+#: ../gramps/plugins/textreport/birthdayreport.py:214
 #, python-format
 msgid "Relationships shown are to %s"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:321
+#: ../gramps/plugins/textreport/birthdayreport.py:320
 #, python-format
 msgid "%(person)s, birth%(relation)s"
 msgstr ""
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/textreport/birthdayreport.py:326
+#: ../gramps/plugins/textreport/birthdayreport.py:325
 #, python-brace-format
 msgid "{person}, {age}{relation}"
 msgid_plural "{person}, {age}{relation}"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:414
-#: ../gramps/plugins/textreport/familygroup.py:708
-#: ../gramps/plugins/textreport/indivcomplete.py:1046
+#: ../gramps/plugins/textreport/birthdayreport.py:413
+#: ../gramps/plugins/textreport/familygroup.py:713
+#: ../gramps/plugins/textreport/indivcomplete.py:1047
 msgid "Select the filter to be applied to the report."
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:423
+#: ../gramps/plugins/textreport/birthdayreport.py:422
 msgid "Title text"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:424
+#: ../gramps/plugins/textreport/birthdayreport.py:423
 msgid "Title of report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:428
+#: ../gramps/plugins/textreport/birthdayreport.py:427
 msgid "First line of text at bottom of report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:432
+#: ../gramps/plugins/textreport/birthdayreport.py:431
 msgid "Second line of text at bottom of report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:436
+#: ../gramps/plugins/textreport/birthdayreport.py:435
 msgid "Third line of text at bottom of report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:447
+#: ../gramps/plugins/textreport/birthdayreport.py:446
 msgid "Include only living people in the report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:456
-#: ../gramps/plugins/textreport/birthdayreport.py:458
+#: ../gramps/plugins/textreport/birthdayreport.py:455
+#: ../gramps/plugins/textreport/birthdayreport.py:457
 msgid "Year of report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:497
-#: ../gramps/plugins/textreport/indivcomplete.py:1127
+#: ../gramps/plugins/textreport/birthdayreport.py:496
+#: ../gramps/plugins/textreport/indivcomplete.py:1130
 msgid "Whether to include relationships to the center person"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:566
+#: ../gramps/plugins/textreport/birthdayreport.py:565
 msgid "Title text style"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:569
+#: ../gramps/plugins/textreport/birthdayreport.py:568
 msgid "Data text display"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:571
+#: ../gramps/plugins/textreport/birthdayreport.py:570
 msgid "Day text style"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:574
+#: ../gramps/plugins/textreport/birthdayreport.py:573
 msgid "Month text style"
 msgstr ""
 
@@ -28113,805 +28129,805 @@ msgstr ""
 msgid "%s sp."
 msgstr ""
 
-#: ../gramps/plugins/textreport/descendreport.py:510
-#: ../gramps/plugins/textreport/detdescendantreport.py:1006
+#: ../gramps/plugins/textreport/descendreport.py:511
+#: ../gramps/plugins/textreport/detdescendantreport.py:1008
 msgid "Numbering system"
 msgstr ""
 
-#: ../gramps/plugins/textreport/descendreport.py:512
+#: ../gramps/plugins/textreport/descendreport.py:513
 msgid "Simple numbering"
 msgstr ""
 
-#: ../gramps/plugins/textreport/descendreport.py:513
-#: ../gramps/plugins/textreport/detdescendantreport.py:1010
+#: ../gramps/plugins/textreport/descendreport.py:514
+#: ../gramps/plugins/textreport/detdescendantreport.py:1012
 msgid "d'Aboville numbering"
 msgstr ""
 
-#: ../gramps/plugins/textreport/descendreport.py:514
-#: ../gramps/plugins/textreport/detdescendantreport.py:1008
+#: ../gramps/plugins/textreport/descendreport.py:515
+#: ../gramps/plugins/textreport/detdescendantreport.py:1010
 msgid "Henry numbering"
 msgstr ""
 
-#: ../gramps/plugins/textreport/descendreport.py:515
-#: ../gramps/plugins/textreport/detdescendantreport.py:1009
+#: ../gramps/plugins/textreport/descendreport.py:516
+#: ../gramps/plugins/textreport/detdescendantreport.py:1011
 msgid "Modified Henry numbering"
 msgstr ""
 
-#: ../gramps/plugins/textreport/descendreport.py:516
+#: ../gramps/plugins/textreport/descendreport.py:517
 msgid "de Villiers/Pama numbering"
 msgstr ""
 
-#: ../gramps/plugins/textreport/descendreport.py:517
+#: ../gramps/plugins/textreport/descendreport.py:518
 msgid "Meurgey de Tupigny numbering"
 msgstr ""
 
-#: ../gramps/plugins/textreport/descendreport.py:518
-#: ../gramps/plugins/textreport/detdescendantreport.py:1013
+#: ../gramps/plugins/textreport/descendreport.py:519
+#: ../gramps/plugins/textreport/detdescendantreport.py:1015
 msgid "The numbering system to be used"
 msgstr ""
 
-#: ../gramps/plugins/textreport/descendreport.py:525
+#: ../gramps/plugins/textreport/descendreport.py:526
 msgid "Show marriage info"
 msgstr ""
 
-#: ../gramps/plugins/textreport/descendreport.py:527
+#: ../gramps/plugins/textreport/descendreport.py:528
 msgid "Whether to show marriage information in the report."
 msgstr ""
 
-#: ../gramps/plugins/textreport/descendreport.py:530
+#: ../gramps/plugins/textreport/descendreport.py:531
 msgid "Show divorce info"
 msgstr ""
 
-#: ../gramps/plugins/textreport/descendreport.py:531
+#: ../gramps/plugins/textreport/descendreport.py:532
 msgid "Whether to show divorce information in the report."
 msgstr ""
 
-#: ../gramps/plugins/textreport/descendreport.py:534
+#: ../gramps/plugins/textreport/descendreport.py:535
 msgid "Show duplicate trees"
 msgstr ""
 
-#: ../gramps/plugins/textreport/descendreport.py:536
+#: ../gramps/plugins/textreport/descendreport.py:537
 msgid "Whether to show duplicate Family Trees in the report."
 msgstr ""
 
-#: ../gramps/plugins/textreport/descendreport.py:576
+#: ../gramps/plugins/textreport/descendreport.py:579
 #, python-format
 msgid "The style used for the level %d display."
 msgstr ""
 
-#: ../gramps/plugins/textreport/descendreport.py:587
+#: ../gramps/plugins/textreport/descendreport.py:590
 #, python-format
 msgid "The style used for the spouse level %d display."
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/detancestralreport.py:209
+#: ../gramps/plugins/textreport/detancestralreport.py:210
 #, python-format
 msgid "Ancestral Report for %s"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:272
-#: ../gramps/plugins/textreport/detdescendantreport.py:890
-#: ../gramps/plugins/textreport/detdescendantreport.py:908
-#: ../gramps/plugins/textreport/detdescendantreport.py:919
-#: ../gramps/plugins/textreport/detdescendantreport.py:945
+#: ../gramps/plugins/textreport/detancestralreport.py:273
+#: ../gramps/plugins/textreport/detdescendantreport.py:892
+#: ../gramps/plugins/textreport/detdescendantreport.py:910
+#: ../gramps/plugins/textreport/detdescendantreport.py:921
+#: ../gramps/plugins/textreport/detdescendantreport.py:947
 #, python-format
 msgid "More about %(person_name)s:"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:308
-#: ../gramps/plugins/textreport/detdescendantreport.py:451
+#: ../gramps/plugins/textreport/detancestralreport.py:309
+#: ../gramps/plugins/textreport/detdescendantreport.py:453
 #, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/detancestralreport.py:350
-#: ../gramps/plugins/textreport/detdescendantreport.py:877
+#: ../gramps/plugins/textreport/detancestralreport.py:351
+#: ../gramps/plugins/textreport/detdescendantreport.py:879
 #, python-format
 msgid "Notes for %s"
 msgstr ""
 
 #. translators: needed for French, ignore otherwise
-#: ../gramps/plugins/textreport/detancestralreport.py:368
-#: ../gramps/plugins/textreport/detancestralreport.py:419
-#: ../gramps/plugins/textreport/detancestralreport.py:487
-#: ../gramps/plugins/textreport/detdescendantreport.py:527
-#: ../gramps/plugins/textreport/detdescendantreport.py:813
-#: ../gramps/plugins/textreport/detdescendantreport.py:898
-#: ../gramps/plugins/textreport/detdescendantreport.py:954
+#: ../gramps/plugins/textreport/detancestralreport.py:369
+#: ../gramps/plugins/textreport/detancestralreport.py:420
+#: ../gramps/plugins/textreport/detancestralreport.py:488
+#: ../gramps/plugins/textreport/detdescendantreport.py:529
+#: ../gramps/plugins/textreport/detdescendantreport.py:815
+#: ../gramps/plugins/textreport/detdescendantreport.py:900
+#: ../gramps/plugins/textreport/detdescendantreport.py:956
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:397
-#: ../gramps/plugins/textreport/detdescendantreport.py:932
+#: ../gramps/plugins/textreport/detancestralreport.py:398
+#: ../gramps/plugins/textreport/detdescendantreport.py:934
 msgid "Address: "
 msgstr ""
 
 #. translators: needed for Arabic, ignore otherwise
-#: ../gramps/plugins/textreport/detancestralreport.py:406
-#: ../gramps/plugins/textreport/detdescendantreport.py:935
+#: ../gramps/plugins/textreport/detancestralreport.py:407
+#: ../gramps/plugins/textreport/detdescendantreport.py:937
 #, python-format
 msgid "%s, "
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:468
+#: ../gramps/plugins/textreport/detancestralreport.py:469
 #, python-format
 msgid "%(event_role)s at %(event_name)s of %(primary_person)s: %(event_text)s"
 msgstr ""
 
 #. translators: needed for Arabic, ignore otherwise
-#: ../gramps/plugins/textreport/detancestralreport.py:484
-#: ../gramps/plugins/textreport/detdescendantreport.py:410
-#: ../gramps/plugins/textreport/detdescendantreport.py:524
-#: ../gramps/plugins/textreport/familygroup.py:133
+#: ../gramps/plugins/textreport/detancestralreport.py:485
+#: ../gramps/plugins/textreport/detdescendantreport.py:412
+#: ../gramps/plugins/textreport/detdescendantreport.py:526
+#: ../gramps/plugins/textreport/familygroup.py:135
 msgid "; "
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:591
-#: ../gramps/plugins/textreport/detdescendantreport.py:681
+#: ../gramps/plugins/textreport/detancestralreport.py:592
+#: ../gramps/plugins/textreport/detdescendantreport.py:683
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:673
-#: ../gramps/plugins/textreport/detdescendantreport.py:786
-#: ../gramps/plugins/textreport/detdescendantreport.py:805
+#: ../gramps/plugins/textreport/detancestralreport.py:674
+#: ../gramps/plugins/textreport/detdescendantreport.py:788
+#: ../gramps/plugins/textreport/detdescendantreport.py:807
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:728
-#: ../gramps/plugins/textreport/detdescendantreport.py:618
+#: ../gramps/plugins/textreport/detancestralreport.py:729
+#: ../gramps/plugins/textreport/detdescendantreport.py:620
 #, python-format
 msgid "Spouse: %s"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:732
-#: ../gramps/plugins/textreport/detdescendantreport.py:622
+#: ../gramps/plugins/textreport/detancestralreport.py:733
+#: ../gramps/plugins/textreport/detdescendantreport.py:624
 #, python-format
 msgid "Relationship with: %s"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:814
+#: ../gramps/plugins/textreport/detancestralreport.py:815
 msgid "Sosa-Stradonitz number"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:816
+#: ../gramps/plugins/textreport/detancestralreport.py:817
 msgid "The Sosa-Stradonitz number of the central person."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:828
-#: ../gramps/plugins/textreport/detdescendantreport.py:1033
-#: ../gramps/plugins/textreport/indivcomplete.py:1059
+#: ../gramps/plugins/textreport/detancestralreport.py:829
+#: ../gramps/plugins/textreport/detdescendantreport.py:1035
+#: ../gramps/plugins/textreport/indivcomplete.py:1060
 msgid "Page break before end notes"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:830
-#: ../gramps/plugins/textreport/detdescendantreport.py:1035
-#: ../gramps/plugins/textreport/indivcomplete.py:1061
+#: ../gramps/plugins/textreport/detancestralreport.py:831
+#: ../gramps/plugins/textreport/detdescendantreport.py:1037
+#: ../gramps/plugins/textreport/indivcomplete.py:1062
 msgid "Whether to start a new page before the end notes."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:848
-#: ../gramps/plugins/textreport/detdescendantreport.py:1053
+#: ../gramps/plugins/textreport/detancestralreport.py:851
+#: ../gramps/plugins/textreport/detdescendantreport.py:1057
 msgid "Use complete sentences"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:850
-#: ../gramps/plugins/textreport/detdescendantreport.py:1055
+#: ../gramps/plugins/textreport/detancestralreport.py:853
+#: ../gramps/plugins/textreport/detdescendantreport.py:1059
 msgid "Whether to use complete sentences or succinct language."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:854
-#: ../gramps/plugins/textreport/detdescendantreport.py:1059
+#: ../gramps/plugins/textreport/detancestralreport.py:857
+#: ../gramps/plugins/textreport/detdescendantreport.py:1063
 msgid "Use full dates instead of only the year"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:856
-#: ../gramps/plugins/textreport/detdescendantreport.py:1061
+#: ../gramps/plugins/textreport/detancestralreport.py:859
+#: ../gramps/plugins/textreport/detdescendantreport.py:1065
 msgid "Whether to use full dates instead of just year."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:859
-#: ../gramps/plugins/textreport/detdescendantreport.py:1064
+#: ../gramps/plugins/textreport/detancestralreport.py:862
+#: ../gramps/plugins/textreport/detdescendantreport.py:1068
 msgid "Compute death age"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:860
-#: ../gramps/plugins/textreport/detdescendantreport.py:1065
+#: ../gramps/plugins/textreport/detancestralreport.py:863
+#: ../gramps/plugins/textreport/detdescendantreport.py:1069
 msgid "Whether to compute a person's age at death."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:863
-#: ../gramps/plugins/textreport/detdescendantreport.py:1068
+#: ../gramps/plugins/textreport/detancestralreport.py:866
+#: ../gramps/plugins/textreport/detdescendantreport.py:1072
 msgid "Omit duplicate ancestors"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:864
-#: ../gramps/plugins/textreport/detdescendantreport.py:1069
+#: ../gramps/plugins/textreport/detancestralreport.py:867
+#: ../gramps/plugins/textreport/detdescendantreport.py:1073
 msgid "Whether to omit duplicate ancestors."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:867
-#: ../gramps/plugins/textreport/detdescendantreport.py:1072
+#: ../gramps/plugins/textreport/detancestralreport.py:870
+#: ../gramps/plugins/textreport/detdescendantreport.py:1076
 msgid "Use callname for common name"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:868
-#: ../gramps/plugins/textreport/detdescendantreport.py:1073
+#: ../gramps/plugins/textreport/detancestralreport.py:871
+#: ../gramps/plugins/textreport/detdescendantreport.py:1077
 msgid "Whether to use the call name as the first name."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:876
-#: ../gramps/plugins/textreport/detdescendantreport.py:1081
+#: ../gramps/plugins/textreport/detancestralreport.py:879
+#: ../gramps/plugins/textreport/detdescendantreport.py:1085
 msgid "Whether to list children."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:879
-#: ../gramps/plugins/textreport/detdescendantreport.py:1084
+#: ../gramps/plugins/textreport/detancestralreport.py:882
+#: ../gramps/plugins/textreport/detdescendantreport.py:1088
 msgid "Include spouses of children"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:881
-#: ../gramps/plugins/textreport/detdescendantreport.py:1086
+#: ../gramps/plugins/textreport/detancestralreport.py:884
+#: ../gramps/plugins/textreport/detdescendantreport.py:1090
 msgid "Whether to list the spouses of the children."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:884
-#: ../gramps/plugins/textreport/detdescendantreport.py:1098
+#: ../gramps/plugins/textreport/detancestralreport.py:887
+#: ../gramps/plugins/textreport/detdescendantreport.py:1102
 msgid "Include events"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:885
-#: ../gramps/plugins/textreport/detdescendantreport.py:1099
+#: ../gramps/plugins/textreport/detancestralreport.py:888
+#: ../gramps/plugins/textreport/detdescendantreport.py:1103
 msgid "Whether to include events."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:888
+#: ../gramps/plugins/textreport/detancestralreport.py:891
 msgid "Include other events"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:889
+#: ../gramps/plugins/textreport/detancestralreport.py:892
 msgid "Whether to include other events people participated in."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:894
-#: ../gramps/plugins/textreport/detdescendantreport.py:1103
+#: ../gramps/plugins/textreport/detancestralreport.py:897
+#: ../gramps/plugins/textreport/detdescendantreport.py:1107
 msgid "Include descendant reference in child list"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:896
-#: ../gramps/plugins/textreport/detdescendantreport.py:1105
+#: ../gramps/plugins/textreport/detancestralreport.py:899
+#: ../gramps/plugins/textreport/detdescendantreport.py:1109
 msgid "Whether to add descendant references in child list."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:900
-#: ../gramps/plugins/textreport/detdescendantreport.py:1109
-#: ../gramps/plugins/textreport/indivcomplete.py:1100
+#: ../gramps/plugins/textreport/detancestralreport.py:903
+#: ../gramps/plugins/textreport/detdescendantreport.py:1113
+#: ../gramps/plugins/textreport/indivcomplete.py:1103
 msgid "Include Photo/Images from Gallery"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:901
-#: ../gramps/plugins/textreport/detdescendantreport.py:1110
-#: ../gramps/plugins/textreport/indivcomplete.py:1101
+#: ../gramps/plugins/textreport/detancestralreport.py:904
+#: ../gramps/plugins/textreport/detdescendantreport.py:1114
+#: ../gramps/plugins/textreport/indivcomplete.py:1104
 msgid "Whether to include images."
 msgstr ""
 
 #. #########################
 #. ###############################
-#: ../gramps/plugins/textreport/detancestralreport.py:904
-#: ../gramps/plugins/textreport/detdescendantreport.py:1113
-#: ../gramps/plugins/textreport/familygroup.py:770
-#: ../gramps/plugins/textreport/indivcomplete.py:1105
+#: ../gramps/plugins/textreport/detancestralreport.py:907
+#: ../gramps/plugins/textreport/detdescendantreport.py:1117
+#: ../gramps/plugins/textreport/familygroup.py:777
+#: ../gramps/plugins/textreport/indivcomplete.py:1108
 msgid "Include (2)"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:906
-#: ../gramps/plugins/textreport/detdescendantreport.py:1115
+#: ../gramps/plugins/textreport/detancestralreport.py:909
+#: ../gramps/plugins/textreport/detdescendantreport.py:1119
 msgid "Include notes"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:907
-#: ../gramps/plugins/textreport/detdescendantreport.py:1116
+#: ../gramps/plugins/textreport/detancestralreport.py:910
+#: ../gramps/plugins/textreport/detdescendantreport.py:1120
 msgid "Whether to include notes."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:910
-#: ../gramps/plugins/textreport/detdescendantreport.py:1119
+#: ../gramps/plugins/textreport/detancestralreport.py:913
+#: ../gramps/plugins/textreport/detdescendantreport.py:1123
 msgid "Include sources"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:911
-#: ../gramps/plugins/textreport/detdescendantreport.py:1120
+#: ../gramps/plugins/textreport/detancestralreport.py:914
+#: ../gramps/plugins/textreport/detdescendantreport.py:1124
 msgid "Whether to include source references."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:914
-#: ../gramps/plugins/textreport/detdescendantreport.py:1123
-#: ../gramps/plugins/textreport/indivcomplete.py:1092
+#: ../gramps/plugins/textreport/detancestralreport.py:917
+#: ../gramps/plugins/textreport/detdescendantreport.py:1127
+#: ../gramps/plugins/textreport/indivcomplete.py:1095
 msgid "Include sources notes"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:916
-#: ../gramps/plugins/textreport/detdescendantreport.py:1125
-#: ../gramps/plugins/textreport/indivcomplete.py:1094
+#: ../gramps/plugins/textreport/detancestralreport.py:919
+#: ../gramps/plugins/textreport/detdescendantreport.py:1129
+#: ../gramps/plugins/textreport/indivcomplete.py:1097
 msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
 "Include sources is selected."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:920
-#: ../gramps/plugins/textreport/detdescendantreport.py:1129
+#: ../gramps/plugins/textreport/detancestralreport.py:923
+#: ../gramps/plugins/textreport/detdescendantreport.py:1133
 msgid "Include attributes"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:921
-#: ../gramps/plugins/textreport/detdescendantreport.py:1130
-#: ../gramps/plugins/textreport/familygroup.py:761
-#: ../gramps/plugins/textreport/indivcomplete.py:1117
+#: ../gramps/plugins/textreport/detancestralreport.py:924
+#: ../gramps/plugins/textreport/detdescendantreport.py:1134
+#: ../gramps/plugins/textreport/familygroup.py:768
+#: ../gramps/plugins/textreport/indivcomplete.py:1120
 msgid "Whether to include attributes."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:924
-#: ../gramps/plugins/textreport/detdescendantreport.py:1133
+#: ../gramps/plugins/textreport/detancestralreport.py:927
+#: ../gramps/plugins/textreport/detdescendantreport.py:1137
 msgid "Include addresses"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:925
-#: ../gramps/plugins/textreport/detdescendantreport.py:1134
+#: ../gramps/plugins/textreport/detancestralreport.py:928
+#: ../gramps/plugins/textreport/detdescendantreport.py:1138
 msgid "Whether to include addresses."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:928
-#: ../gramps/plugins/textreport/detdescendantreport.py:1137
+#: ../gramps/plugins/textreport/detancestralreport.py:931
+#: ../gramps/plugins/textreport/detdescendantreport.py:1141
 msgid "Include alternative names"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:929
-#: ../gramps/plugins/textreport/detdescendantreport.py:1138
+#: ../gramps/plugins/textreport/detancestralreport.py:932
+#: ../gramps/plugins/textreport/detdescendantreport.py:1142
 msgid "Whether to include other names."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:935
-#: ../gramps/plugins/textreport/detdescendantreport.py:1157
+#: ../gramps/plugins/textreport/detancestralreport.py:938
+#: ../gramps/plugins/textreport/detdescendantreport.py:1161
 msgid "Replace missing places with ______"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:936
-#: ../gramps/plugins/textreport/detdescendantreport.py:1159
+#: ../gramps/plugins/textreport/detancestralreport.py:939
+#: ../gramps/plugins/textreport/detdescendantreport.py:1163
 msgid "Whether to replace missing Places with blanks."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:939
-#: ../gramps/plugins/textreport/detdescendantreport.py:1162
+#: ../gramps/plugins/textreport/detancestralreport.py:942
+#: ../gramps/plugins/textreport/detdescendantreport.py:1166
 msgid "Replace missing dates with ______"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:940
-#: ../gramps/plugins/textreport/detdescendantreport.py:1163
+#: ../gramps/plugins/textreport/detancestralreport.py:943
+#: ../gramps/plugins/textreport/detdescendantreport.py:1167
 msgid "Whether to replace missing Dates with blanks."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:973
-#: ../gramps/plugins/textreport/detdescendantreport.py:1196
+#: ../gramps/plugins/textreport/detancestralreport.py:976
+#: ../gramps/plugins/textreport/detdescendantreport.py:1200
 msgid "The style used for the children list title."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:984
-#: ../gramps/plugins/textreport/detdescendantreport.py:1207
-#: ../gramps/plugins/textreport/familygroup.py:889
+#: ../gramps/plugins/textreport/detancestralreport.py:987
+#: ../gramps/plugins/textreport/detdescendantreport.py:1211
+#: ../gramps/plugins/textreport/familygroup.py:896
 msgid "The style used for the text related to the children."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:994
-#: ../gramps/plugins/textreport/detdescendantreport.py:1217
+#: ../gramps/plugins/textreport/detancestralreport.py:997
+#: ../gramps/plugins/textreport/detdescendantreport.py:1221
 msgid "The style used for the note header."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:1008
-#: ../gramps/plugins/textreport/detdescendantreport.py:1231
+#: ../gramps/plugins/textreport/detancestralreport.py:1011
+#: ../gramps/plugins/textreport/detdescendantreport.py:1235
 #: ../gramps/plugins/textreport/tableofcontents.py:117
 msgid "The style used for first level headings."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:1018
-#: ../gramps/plugins/textreport/detdescendantreport.py:1241
-#: ../gramps/plugins/textreport/kinshipreport.py:413
-#: ../gramps/plugins/textreport/summary.py:320
+#: ../gramps/plugins/textreport/detancestralreport.py:1021
+#: ../gramps/plugins/textreport/detdescendantreport.py:1245
+#: ../gramps/plugins/textreport/kinshipreport.py:416
+#: ../gramps/plugins/textreport/summary.py:319
 #: ../gramps/plugins/textreport/tableofcontents.py:123
 msgid "The style used for second level headings."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:1028
-#: ../gramps/plugins/textreport/detdescendantreport.py:1251
-#: ../gramps/plugins/textreport/endoflinereport.py:332
-#: ../gramps/plugins/textreport/placereport.py:535
+#: ../gramps/plugins/textreport/detancestralreport.py:1031
+#: ../gramps/plugins/textreport/detdescendantreport.py:1255
+#: ../gramps/plugins/textreport/endoflinereport.py:335
+#: ../gramps/plugins/textreport/placereport.py:539
 msgid "The style used for details."
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/detdescendantreport.py:337
+#: ../gramps/plugins/textreport/detdescendantreport.py:339
 #, python-format
 msgid "Descendant Report for %(person_name)s"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:638
+#: ../gramps/plugins/textreport/detdescendantreport.py:640
 #, python-format
 msgid "Ref: %(number)s. %(name)s"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:763
+#: ../gramps/plugins/textreport/detdescendantreport.py:765
 #, python-format
 msgid "Notes for %(mother_name)s and %(father_name)s:"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1012
+#: ../gramps/plugins/textreport/detdescendantreport.py:1014
 msgid "Record (Modified Register) numbering"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1016
+#: ../gramps/plugins/textreport/detdescendantreport.py:1018
 msgid "Report structure"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1019
+#: ../gramps/plugins/textreport/detdescendantreport.py:1021
 msgid "show people by generations"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1020
+#: ../gramps/plugins/textreport/detdescendantreport.py:1022
 msgid "show people by lineage"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1021
+#: ../gramps/plugins/textreport/detdescendantreport.py:1023
 msgid "How people are organized in the report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1089
-#: ../gramps/plugins/textreport/kinshipreport.py:369
+#: ../gramps/plugins/textreport/detdescendantreport.py:1093
+#: ../gramps/plugins/textreport/kinshipreport.py:370
 msgid "Include spouses"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1091
+#: ../gramps/plugins/textreport/detdescendantreport.py:1095
 msgid "Whether to include detailed spouse information."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1094
+#: ../gramps/plugins/textreport/detdescendantreport.py:1098
 msgid "Include spouse reference"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1095
+#: ../gramps/plugins/textreport/detdescendantreport.py:1099
 msgid "Whether to include reference to spouse."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1142
+#: ../gramps/plugins/textreport/detdescendantreport.py:1146
 msgid "Include sign of succession ('+') in child-list"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1143
+#: ../gramps/plugins/textreport/detdescendantreport.py:1147
 msgid ""
 "Whether to include a sign ('+') before the descendant number in the child-"
 "list to indicate a child has succession."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1148
+#: ../gramps/plugins/textreport/detdescendantreport.py:1152
 msgid "Include path to start-person"
 msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1149
+#: ../gramps/plugins/textreport/detdescendantreport.py:1153
 msgid ""
 "Whether to include the path of descendancy from the start-person to each "
 "descendant."
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/endoflinereport.py:158
+#: ../gramps/plugins/textreport/endoflinereport.py:159
 #, python-format
 msgid "End of Line Report for %s"
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/endoflinereport.py:165
+#: ../gramps/plugins/textreport/endoflinereport.py:166
 #, python-format
 msgid "All the ancestors of %s who are missing a parent"
 msgstr ""
 
-#: ../gramps/plugins/textreport/endoflinereport.py:305
-#: ../gramps/plugins/textreport/placereport.py:509
-#: ../gramps/plugins/textreport/recordsreport.py:319
+#: ../gramps/plugins/textreport/endoflinereport.py:308
+#: ../gramps/plugins/textreport/placereport.py:513
+#: ../gramps/plugins/textreport/recordsreport.py:318
 #: ../gramps/plugins/textreport/simplebooktitle.py:181
-#: ../gramps/plugins/textreport/tagreport.py:944
+#: ../gramps/plugins/textreport/tagreport.py:948
 msgid "The style used for the subtitle."
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:503
+#: ../gramps/plugins/textreport/familygroup.py:505
 msgid "acronym for male|M"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:505
+#: ../gramps/plugins/textreport/familygroup.py:507
 msgid "acronym for female|F"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:507
+#: ../gramps/plugins/textreport/familygroup.py:509
 #, python-format
 msgid "acronym for unknown|%dU"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:611
+#: ../gramps/plugins/textreport/familygroup.py:616
 #, python-format
 msgid "Family Group Report - Generation %d"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:613
-#: ../gramps/plugins/textreport/familygroup.py:664
+#: ../gramps/plugins/textreport/familygroup.py:618
+#: ../gramps/plugins/textreport/familygroup.py:669
 #: ../gramps/plugins/textreport/textplugins.gpr.py:191
 msgid "Family Group Report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:712
+#: ../gramps/plugins/textreport/familygroup.py:717
 msgid "Center Family"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:713
+#: ../gramps/plugins/textreport/familygroup.py:718
 msgid "The center family for the filter"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:717
+#: ../gramps/plugins/textreport/familygroup.py:722
 msgid "Recursive (down)"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:718
+#: ../gramps/plugins/textreport/familygroup.py:723
 msgid "Create reports for all descendants of this family."
 msgstr ""
 
 #. #########################
-#: ../gramps/plugins/textreport/familygroup.py:743
+#: ../gramps/plugins/textreport/familygroup.py:750
 msgid "Parent Marriage"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:745
+#: ../gramps/plugins/textreport/familygroup.py:752
 msgid "Whether to include marriage information for parents."
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:748
+#: ../gramps/plugins/textreport/familygroup.py:755
 msgid "Parent Events"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:749
+#: ../gramps/plugins/textreport/familygroup.py:756
 msgid "Whether to include events for parents."
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:752
+#: ../gramps/plugins/textreport/familygroup.py:759
 msgid "Parent Addresses"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:753
+#: ../gramps/plugins/textreport/familygroup.py:760
 msgid "Whether to include addresses for parents."
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:756
+#: ../gramps/plugins/textreport/familygroup.py:763
 msgid "Parent Notes"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:757
+#: ../gramps/plugins/textreport/familygroup.py:764
 msgid "Whether to include notes for parents."
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:760
+#: ../gramps/plugins/textreport/familygroup.py:767
 msgid "Parent Attributes"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:764
+#: ../gramps/plugins/textreport/familygroup.py:771
 msgid "Alternate Parent Names"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:766
+#: ../gramps/plugins/textreport/familygroup.py:773
 msgid "Whether to include alternate names for parents."
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:774
+#: ../gramps/plugins/textreport/familygroup.py:781
 msgid "Whether to include notes for families."
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:777
+#: ../gramps/plugins/textreport/familygroup.py:784
 msgid "Dates of Relatives"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:778
+#: ../gramps/plugins/textreport/familygroup.py:785
 msgid "Whether to include dates for relatives (father, mother, spouse)."
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:782
+#: ../gramps/plugins/textreport/familygroup.py:789
 msgid "Children Marriages"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:784
+#: ../gramps/plugins/textreport/familygroup.py:791
 msgid "Whether to include marriage information for children."
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:788
-#: ../gramps/plugins/textreport/indivcomplete.py:1109
+#: ../gramps/plugins/textreport/familygroup.py:795
+#: ../gramps/plugins/textreport/indivcomplete.py:1112
 msgid "Whether to include Gramps ID next to names."
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:791
+#: ../gramps/plugins/textreport/familygroup.py:798
 msgid "Generation numbers (recursive only)"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:793
+#: ../gramps/plugins/textreport/familygroup.py:800
 msgid "Whether to include the generation on each report (recursive only)."
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:797
+#: ../gramps/plugins/textreport/familygroup.py:804
 msgid "Print fields for missing information"
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:799
+#: ../gramps/plugins/textreport/familygroup.py:806
 msgid "Whether to include fields for missing information."
 msgstr ""
 
-#: ../gramps/plugins/textreport/familygroup.py:899
+#: ../gramps/plugins/textreport/familygroup.py:906
 msgid "The style used for the parent's name"
 msgstr ""
 
 #. make sure it's translated, so it can be used below, in "combine"
-#: ../gramps/plugins/textreport/indivcomplete.py:187
+#: ../gramps/plugins/textreport/indivcomplete.py:188
 #, python-format
 msgid "%(str1)s in %(str2)s. "
 msgstr ""
 
 #. for example (a stepfather): John Smith, relationship: Step
-#: ../gramps/plugins/textreport/indivcomplete.py:243
+#: ../gramps/plugins/textreport/indivcomplete.py:244
 #, python-format
 msgid "%(parent-name)s, relationship: %(rel-type)s"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:291
+#: ../gramps/plugins/textreport/indivcomplete.py:292
 msgid "Alternate Parents"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:431
+#: ../gramps/plugins/textreport/indivcomplete.py:432
 #: ../gramps/plugins/webreport/narrativeweb.py:7079
 msgid "Associations"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:576
+#: ../gramps/plugins/textreport/indivcomplete.py:577
 msgid "Images"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:816
-#: ../gramps/plugins/textreport/indivcomplete.py:838
+#: ../gramps/plugins/textreport/indivcomplete.py:817
+#: ../gramps/plugins/textreport/indivcomplete.py:839
 #: ../gramps/plugins/textreport/textplugins.gpr.py:214
 msgid "Complete Individual Report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:918
+#: ../gramps/plugins/textreport/indivcomplete.py:919
 #: ../gramps/plugins/tool/dumpgenderstats.py:72
 #: ../gramps/plugins/tool/dumpgenderstats.py:96
 #: ../gramps/plugins/tool/dumpgenderstats.py:99
 msgid "Male"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:920
+#: ../gramps/plugins/textreport/indivcomplete.py:921
 #: ../gramps/plugins/tool/dumpgenderstats.py:73
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:99
 msgid "Female"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:934
+#: ../gramps/plugins/textreport/indivcomplete.py:935
 msgid "(image)"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:1055
+#: ../gramps/plugins/textreport/indivcomplete.py:1056
 msgid "List events chronologically"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:1056
+#: ../gramps/plugins/textreport/indivcomplete.py:1057
 msgid "Whether to sort events into chronological order."
 msgstr ""
 
 #. ###############################
-#: ../gramps/plugins/textreport/indivcomplete.py:1083
+#: ../gramps/plugins/textreport/indivcomplete.py:1086
 msgid "Include Notes"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:1084
+#: ../gramps/plugins/textreport/indivcomplete.py:1087
 msgid "Whether to include Person and Family Notes."
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:1087
+#: ../gramps/plugins/textreport/indivcomplete.py:1090
 msgid "Include Source Information"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:1088
+#: ../gramps/plugins/textreport/indivcomplete.py:1091
 msgid "Whether to cite sources."
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:1112
+#: ../gramps/plugins/textreport/indivcomplete.py:1115
 msgid "Include Tags"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:1113
+#: ../gramps/plugins/textreport/indivcomplete.py:1116
 msgid "Whether to include tags."
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:1116
+#: ../gramps/plugins/textreport/indivcomplete.py:1119
 msgid "Include Attributes"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:1120
+#: ../gramps/plugins/textreport/indivcomplete.py:1123
 msgid "Include Census Events"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:1121
+#: ../gramps/plugins/textreport/indivcomplete.py:1124
 msgid "Whether to include Census Events."
 msgstr ""
 
 #. ###############################
-#: ../gramps/plugins/textreport/indivcomplete.py:1131
+#: ../gramps/plugins/textreport/indivcomplete.py:1134
 msgid "Sections"
 msgstr ""
 
 #. ###############################
-#: ../gramps/plugins/textreport/indivcomplete.py:1134
+#: ../gramps/plugins/textreport/indivcomplete.py:1137
 msgid "Event groups"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:1135
+#: ../gramps/plugins/textreport/indivcomplete.py:1138
 msgid "Check if a separate section is required."
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:1208
+#: ../gramps/plugins/textreport/indivcomplete.py:1211
 msgid "The style used for the spouse's name."
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:1227
+#: ../gramps/plugins/textreport/indivcomplete.py:1230
 #: ../gramps/plugins/textreport/notelinkreport.py:217
-#: ../gramps/plugins/textreport/placereport.py:547
-#: ../gramps/plugins/textreport/tagreport.py:975
+#: ../gramps/plugins/textreport/placereport.py:551
+#: ../gramps/plugins/textreport/tagreport.py:979
 msgid "The basic style used for table headings."
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:1237
+#: ../gramps/plugins/textreport/indivcomplete.py:1240
 msgid "The style used for image notes."
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:1247
+#: ../gramps/plugins/textreport/indivcomplete.py:1250
 msgid "The style used for image descriptions."
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/kinshipreport.py:124
+#: ../gramps/plugins/textreport/kinshipreport.py:125
 #, python-format
 msgid "Kinship Report for %s"
 msgstr ""
 
-#: ../gramps/plugins/textreport/kinshipreport.py:362
+#: ../gramps/plugins/textreport/kinshipreport.py:363
 msgid "The maximum number of descendant generations"
 msgstr ""
 
-#: ../gramps/plugins/textreport/kinshipreport.py:366
+#: ../gramps/plugins/textreport/kinshipreport.py:367
 msgid "The maximum number of ancestor generations"
 msgstr ""
 
-#: ../gramps/plugins/textreport/kinshipreport.py:370
+#: ../gramps/plugins/textreport/kinshipreport.py:371
 msgid "Whether to include spouses"
 msgstr ""
 
-#: ../gramps/plugins/textreport/kinshipreport.py:373
+#: ../gramps/plugins/textreport/kinshipreport.py:374
 msgid "Include cousins"
 msgstr ""
 
-#: ../gramps/plugins/textreport/kinshipreport.py:374
+#: ../gramps/plugins/textreport/kinshipreport.py:375
 msgid "Whether to include cousins"
 msgstr ""
 
-#: ../gramps/plugins/textreport/kinshipreport.py:377
+#: ../gramps/plugins/textreport/kinshipreport.py:378
 msgid "Include aunts/uncles/nephews/nieces"
 msgstr ""
 
-#: ../gramps/plugins/textreport/kinshipreport.py:378
+#: ../gramps/plugins/textreport/kinshipreport.py:379
 msgid "Whether to include aunts/uncles/nephews/nieces"
 msgstr ""
 
@@ -28937,12 +28953,12 @@ msgid "Failed"
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/numberofancestorsreport.py:105
+#: ../gramps/plugins/textreport/numberofancestorsreport.py:104
 #, python-format
 msgid "Number of Ancestors for %s"
 msgstr ""
 
-#: ../gramps/plugins/textreport/numberofancestorsreport.py:126
+#: ../gramps/plugins/textreport/numberofancestorsreport.py:125
 #, python-brace-format
 msgid "Generation {number} has {count} individual. {percent}"
 msgid_plural "Generation {number} has {count} individuals. {percent}"
@@ -28951,7 +28967,7 @@ msgstr[1] ""
 
 #. TC # English return something like:
 #. Total ancestors in generations 2 to 3 is 4. (66.67%)
-#: ../gramps/plugins/textreport/numberofancestorsreport.py:168
+#: ../gramps/plugins/textreport/numberofancestorsreport.py:167
 #, python-format
 msgid ""
 "Total ancestors in generations %(second_generation)d to %(last_generation)d "
@@ -28960,104 +28976,104 @@ msgstr ""
 
 #. Write the title line. Set in INDEX marker so that this section will be
 #. identified as a major category if this is included in a Book report.
-#: ../gramps/plugins/textreport/placereport.py:124
-#: ../gramps/plugins/textreport/placereport.py:138
-#: ../gramps/plugins/textreport/placereport.py:155
+#: ../gramps/plugins/textreport/placereport.py:126
+#: ../gramps/plugins/textreport/placereport.py:140
+#: ../gramps/plugins/textreport/placereport.py:157
 #: ../gramps/plugins/textreport/textplugins.gpr.py:303
 msgid "Place Report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/placereport.py:125
+#: ../gramps/plugins/textreport/placereport.py:127
 msgid "Please select at least one place before running this."
 msgstr ""
 
-#: ../gramps/plugins/textreport/placereport.py:178
+#: ../gramps/plugins/textreport/placereport.py:180
 #, python-format
 msgid "Gramps ID: %s "
 msgstr ""
 
-#: ../gramps/plugins/textreport/placereport.py:195
+#: ../gramps/plugins/textreport/placereport.py:197
 #, python-format
 msgid "places|All Names: %s"
 msgstr ""
 
-#: ../gramps/plugins/textreport/placereport.py:217
+#: ../gramps/plugins/textreport/placereport.py:219
 msgid "Events that happened at this place"
 msgstr ""
 
-#: ../gramps/plugins/textreport/placereport.py:221
-#: ../gramps/plugins/textreport/placereport.py:298
+#: ../gramps/plugins/textreport/placereport.py:223
+#: ../gramps/plugins/textreport/placereport.py:300
 msgid "Type of Event"
 msgstr ""
 
-#: ../gramps/plugins/textreport/placereport.py:267
+#: ../gramps/plugins/textreport/placereport.py:269
 #, python-format
 msgid "%(persons)s and %(name)s (%(id)s)"
 msgstr ""
 
-#: ../gramps/plugins/textreport/placereport.py:294
+#: ../gramps/plugins/textreport/placereport.py:296
 msgid "People associated with this place"
 msgstr ""
 
-#: ../gramps/plugins/textreport/placereport.py:329
+#: ../gramps/plugins/textreport/placereport.py:331
 #, python-format
 msgid "%(father)s (%(father_id)s) and %(mother)s (%(mother_id)s)"
 msgstr ""
 
-#: ../gramps/plugins/textreport/placereport.py:439
+#: ../gramps/plugins/textreport/placereport.py:441
 msgid "Select using filter"
 msgstr ""
 
-#: ../gramps/plugins/textreport/placereport.py:440
+#: ../gramps/plugins/textreport/placereport.py:442
 msgid "Select places using a filter"
 msgstr ""
 
-#: ../gramps/plugins/textreport/placereport.py:447
+#: ../gramps/plugins/textreport/placereport.py:449
 msgid "Select places individually"
 msgstr ""
 
-#: ../gramps/plugins/textreport/placereport.py:448
+#: ../gramps/plugins/textreport/placereport.py:450
 msgid "List of places to report on"
 msgstr ""
 
-#: ../gramps/plugins/textreport/placereport.py:451
+#: ../gramps/plugins/textreport/placereport.py:453
 msgid "Center on"
 msgstr ""
 
-#: ../gramps/plugins/textreport/placereport.py:453
+#: ../gramps/plugins/textreport/placereport.py:455
 msgid "If report is event or person centered"
 msgstr ""
 
-#: ../gramps/plugins/textreport/recordsreport.py:174
+#: ../gramps/plugins/textreport/recordsreport.py:173
 #, python-format
 msgid "%(number)s. "
 msgstr ""
 
-#: ../gramps/plugins/textreport/recordsreport.py:229
+#: ../gramps/plugins/textreport/recordsreport.py:228
 msgid "Number of ranks to display"
 msgstr ""
 
-#: ../gramps/plugins/textreport/recordsreport.py:232
+#: ../gramps/plugins/textreport/recordsreport.py:231
 msgid "Use call name"
 msgstr ""
 
-#: ../gramps/plugins/textreport/recordsreport.py:234
+#: ../gramps/plugins/textreport/recordsreport.py:233
 msgid "Don't use call name"
 msgstr ""
 
-#: ../gramps/plugins/textreport/recordsreport.py:235
+#: ../gramps/plugins/textreport/recordsreport.py:234
 msgid "Replace first names with call name"
 msgstr ""
 
-#: ../gramps/plugins/textreport/recordsreport.py:237
+#: ../gramps/plugins/textreport/recordsreport.py:236
 msgid "Underline call name in first names / add call name to first name"
 msgstr ""
 
-#: ../gramps/plugins/textreport/recordsreport.py:241
+#: ../gramps/plugins/textreport/recordsreport.py:240
 msgid "Footer text"
 msgstr ""
 
-#: ../gramps/plugins/textreport/recordsreport.py:346
+#: ../gramps/plugins/textreport/recordsreport.py:345
 #: ../gramps/plugins/textreport/simplebooktitle.py:191
 msgid "The style used for the footer."
 msgstr ""
@@ -29113,72 +29129,72 @@ msgid ""
 "to the page."
 msgstr ""
 
-#: ../gramps/plugins/textreport/summary.py:91
+#: ../gramps/plugins/textreport/summary.py:90
 #: ../gramps/plugins/textreport/textplugins.gpr.py:348
 msgid "Database Summary Report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/summary.py:168
+#: ../gramps/plugins/textreport/summary.py:167
 #, python-format
 msgid "Number of individuals: %d"
 msgstr ""
 
-#: ../gramps/plugins/textreport/summary.py:172
+#: ../gramps/plugins/textreport/summary.py:171
 #, python-format
 msgid "Males: %d"
 msgstr ""
 
-#: ../gramps/plugins/textreport/summary.py:176
+#: ../gramps/plugins/textreport/summary.py:175
 #, python-format
 msgid "Females: %d"
 msgstr ""
 
-#: ../gramps/plugins/textreport/summary.py:180
+#: ../gramps/plugins/textreport/summary.py:179
 #, python-format
 msgid "Individuals with unknown gender: %d"
 msgstr ""
 
-#: ../gramps/plugins/textreport/summary.py:185
+#: ../gramps/plugins/textreport/summary.py:184
 #, python-format
 msgid "Incomplete names: %d"
 msgstr ""
 
-#: ../gramps/plugins/textreport/summary.py:189
+#: ../gramps/plugins/textreport/summary.py:188
 #, python-format
 msgid "Individuals missing birth dates: %d"
 msgstr ""
 
-#: ../gramps/plugins/textreport/summary.py:194
+#: ../gramps/plugins/textreport/summary.py:193
 #, python-format
 msgid "Disconnected individuals: %d"
 msgstr ""
 
-#: ../gramps/plugins/textreport/summary.py:199
+#: ../gramps/plugins/textreport/summary.py:198
 #, python-format
 msgid "Unique surnames: %d"
 msgstr ""
 
-#: ../gramps/plugins/textreport/summary.py:203
+#: ../gramps/plugins/textreport/summary.py:202
 #, python-format
 msgid "Individuals with media objects: %d"
 msgstr ""
 
-#: ../gramps/plugins/textreport/summary.py:216
+#: ../gramps/plugins/textreport/summary.py:215
 #, python-format
 msgid "Number of families: %d"
 msgstr ""
 
-#: ../gramps/plugins/textreport/summary.py:248
+#: ../gramps/plugins/textreport/summary.py:247
 #, python-format
 msgid "Number of unique media objects: %d"
 msgstr ""
 
-#: ../gramps/plugins/textreport/summary.py:253
+#: ../gramps/plugins/textreport/summary.py:252
 #, python-format
 msgid "Total size of media objects: %s MB"
 msgstr ""
 
-#: ../gramps/plugins/textreport/summary.py:291
+#: ../gramps/plugins/textreport/summary.py:290
 msgid "Whether to count private data"
 msgstr ""
 
@@ -29195,31 +29211,31 @@ msgstr ""
 msgid "The style used for third level headings."
 msgstr ""
 
-#: ../gramps/plugins/textreport/tagreport.py:104
+#: ../gramps/plugins/textreport/tagreport.py:106
 #: ../gramps/plugins/textreport/textplugins.gpr.py:258
 msgid "Tag Report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/tagreport.py:105
+#: ../gramps/plugins/textreport/tagreport.py:107
 msgid "You must first create a tag before running this report."
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/tagreport.py:112
+#: ../gramps/plugins/textreport/tagreport.py:114
 #, python-format
 msgid "Tag Report for %s Items"
 msgstr ""
 
-#: ../gramps/plugins/textreport/tagreport.py:666
+#: ../gramps/plugins/textreport/tagreport.py:668
 msgid "Email Address"
 msgstr ""
 
-#: ../gramps/plugins/textreport/tagreport.py:751
+#: ../gramps/plugins/textreport/tagreport.py:753
 #: ../gramps/plugins/view/sourceview.py:86
 msgid "Publication Information"
 msgstr ""
 
-#: ../gramps/plugins/textreport/tagreport.py:909
+#: ../gramps/plugins/textreport/tagreport.py:911
 msgid "The tag to use for the report"
 msgstr ""
 
