@@ -7,7 +7,7 @@
 # Copyright (C) 2010       Peter Landgren
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
-# Copyright (C) 2012       Paul Franklin
+# Copyright (C) 2012,2017  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -424,6 +424,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.filename = None
         self.lang = None
         self._backend = None
+        self.column_order = None
+        self.row_cells = None
         self.span = 0
         self.level = 0
         self.time = "0000-00-00T00:00:00"
@@ -1046,7 +1048,12 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         styles = self.get_style_sheet()
         table = styles.get_table_style(style_name)
 
-        for col in range(table.get_columns()):
+        self.column_order = []
+        for cell in range(table.get_columns()):
+            self.column_order.append(cell)
+        if self.get_rtl_doc():
+            self.column_order.reverse()
+        for col in self.column_order:
             self.cntnt.write(
                 '<table:table-column table:style-name="%s.%s"/>\n'
                 % (style_name, str(chr(ord('A')+col)))
@@ -1063,17 +1070,25 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         open a row
         """
         self.cntnt.write('<table:table-row>\n')
+        self.row_cells = []
+        self.cntnt_saved = self.cntnt # save the content up to now
 
     def end_row(self):
         """
         close a row
         """
+        self.cntnt = self.cntnt_saved # restore the original contents
+        if self.get_rtl_doc():
+            self.row_cells.reverse()
+        for cell in self.row_cells:
+            self.cntnt.write(cell)
         self.cntnt.write('</table:table-row>\n')
 
     def start_cell(self, style_name, span=1):
         """
         open a cell
         """
+        self.cntnt = StringIO() # start a new buffer (with the expected name)
         self.span = span
         self.cntnt.write(
             '<table:table-cell table:style-name="%s" ' % style_name +
@@ -1093,6 +1108,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         #for col in range(1, self.span):
         #    self.cntnt.write('<table:covered-table-cell/>\n')
         self.new_cell = 0
+        self.row_cells.append(self.cntnt.getvalue()) # save the cell, for now
 
     def start_bold(self):
         """

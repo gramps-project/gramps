@@ -7,7 +7,7 @@
 # Copyright (C) 2009       Brian Matherly
 # Copyright (C) 2010       Peter Landgren
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2011-2012  Paul Franklin
+# Copyright (C) 2011-2017  Paul Franklin
 # Copyright (C) 2012       Craig Anderson
 #
 # This program is free software; you can redistribute it and/or modify
@@ -1450,6 +1450,8 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
         # this is an ugly hack, but got no better idea.
         self._active_row_style = list(map(style.get_column_width,
                                         list(range(style.get_columns()))))
+        if self.get_rtl_doc():
+            self._active_row_style.reverse()
 
     def end_table(self):
         self._active_element = self._active_element.get_parent()
@@ -1460,6 +1462,8 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
         self._active_element = new_row
 
     def end_row(self):
+        if self.get_rtl_doc():
+            self._active_element._children.reverse()
         self._active_element = self._active_element.get_parent()
 
     def start_cell(self, style_name, span=1):

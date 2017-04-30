@@ -6,6 +6,7 @@
 # Copyright (C) 2009       Gary Burton
 # Copyright (C) 2010       Peter Landgren
 # Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
+# Copyright (C) 2017       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -133,6 +134,7 @@ class RTFDoc(BaseDoc, TextDoc):
             )
         self.in_table = 0
         self.text = ""
+        self.p_wide = float(self.paper.get_usable_width())
 
     #--------------------------------------------------------------------
     #
@@ -153,7 +155,7 @@ class RTFDoc(BaseDoc, TextDoc):
 
     #--------------------------------------------------------------------
     #
-    # Starts a paragraph. Instead of using a style sheet, generate the
+    # Starts a paragraph. Instead of using a style sheet, generate
     # the style for each paragraph on the fly. Not the ideal, but it
     # does work.
     #
@@ -313,7 +315,20 @@ class RTFDoc(BaseDoc, TextDoc):
     def start_table(self, name, style_name):
         self.in_table = 1
         styles = self.get_style_sheet()
-        self.tbl_style = styles.get_table_style(style_name)
+        table_style = styles.get_table_style(style_name)
+        self._cells = []
+        if self.get_rtl_doc():
+            cell_percent = 100.0
+        else:
+            cell_percent = 0.0
+        for cell in range(table_style.get_columns()):
+            if self.get_rtl_doc():
+                cell_percent -= float(table_style.get_column_width(cell))
+            else:
+                cell_percent += float(table_style.get_column_width(cell))
+            self._cells.append(twips((self.p_wide * cell_percent) / 100.0))
+        if self._cells[-1:] == [0]:
+            self._cells[-1:] = [twips(self.p_wide)] # left edge => right edge
 
     #--------------------------------------------------------------------
     #
@@ -328,24 +343,32 @@ class RTFDoc(BaseDoc, TextDoc):
     # Start a row. RTF uses the \trowd to start a row. RTF also specifies
     # all the cell data after it has specified the cell definitions for
     # the row. Therefore it is necessary to keep a list of cell contents
-    # that is to be written after all the cells are defined.
+    # that is to be written after all the cells are defined.  It is also
+    # necessary to keep a list of the row columns definitions, since for
+    # RTL columns the columns which are processed last (in LTR) come first,
+    # and we don't know which will be skipped with a non-one "span" argument
+    # until we process them
     #
     #--------------------------------------------------------------------
     def start_row(self):
         self.contents = []
+        self.columns = []
         self.cell = 0
-        self.prev = 0
-        self.cell_percent = 0.0
         self.text = ""
         self.file.write('\\trowd\n')
 
     #--------------------------------------------------------------------
     #
     # End a row. Write the cell contents, separated by the \cell marker,
-    # then terminate the row
+    # then terminate the row with a \row marker
     #
     #--------------------------------------------------------------------
     def end_row(self):
+        for column in sorted(self.columns):
+            for line in column[1]:
+                self.file.write(line)
+        if self.get_rtl_doc():
+            self.contents.reverse()
         self.file.write('{')
         for line in self.contents:
             self.file.write(line)
@@ -356,29 +379,26 @@ class RTFDoc(BaseDoc, TextDoc):
     #
     # Start a cell. Dump out the cell specifics, such as borders. Cell
     # widths are kind of interesting. RTF doesn't specify how wide a cell
-    # is, but rather where it's right edge is in relationship to the
+    # is, but rather where its right edge is in relationship to the
     # left margin. This means that each cell is the cumlative of the
     # previous cells plus its own width.
     #
     #--------------------------------------------------------------------
     def start_cell(self, style_name, span=1):
+        cell_data = []
         styles = self.get_style_sheet()
         s = styles.get_cell_style(style_name)
-        self.remain = span -1
         if s.get_top_border():
-            self.file.write('\\clbrdrt\\brdrs\\brdrw10\n')
+            cell_data.append('\\clbrdrt\\brdrs\\brdrw10\n')
         if s.get_bottom_border():
-            self.file.write('\\clbrdrb\\brdrs\\brdrw10\n')
+            cell_data.append('\\clbrdrb\\brdrs\\brdrw10\n')
         if s.get_left_border():
-            self.file.write('\\clbrdrl\\brdrs\\brdrw10\n')
+            cell_data.append('\\clbrdrl\\brdrs\\brdrw10\n')
         if s.get_right_border():
-            self.file.write('\\clbrdrr\\brdrs\\brdrw10\n')
-        table_width = float(self.paper.get_usable_width())
-        for cell in range(self.cell, self.cell+span):
-            self.cell_percent += float(self.tbl_style.get_column_width(cell))
-        cell_width = twips((table_width * self.cell_percent)/100.0)
+            cell_data.append('\\clbrdrr\\brdrs\\brdrw10\n')
         self.need_nl = False
-        self.file.write('\\cellx%d\n' % cell_width)
+        cell_data.append('\\cellx%d\n' % self._cells[self.cell + span - 1])
+        self.columns.append([self._cells[self.cell + span - 1], cell_data])
         self.cell += 1
 
     #--------------------------------------------------------------------

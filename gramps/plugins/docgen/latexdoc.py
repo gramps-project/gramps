@@ -67,7 +67,7 @@ _CLICKABLE = '\\url{\\1}'
 #
 #------------------------------------------------------------------------
 #   For an interim mark e.g. for an intended linebreak I use a special pattern.
-#   It shouldn't interfere with normal text. In LaTeX charackter '&' is used
+#   It shouldn't interfere with normal text. In LaTeX character '&' is used
 #   for column separation in tables and may occur there in series. The pattern
 #   is used here before column separation is set. On the other hand incoming
 #   text can't show this pattern for it would have been replaced by '\&\&'.
@@ -703,7 +703,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
             if self.in_multrow_cell: #   cols of rows: convert to rows of cols
                 self.repack_row()
             else:
-                self.tabmem = TabMem(text)
                 self.tabmem.rows.append(self.tabrow)
         elif tab_state == TAB_BEG: # text: \\begin{longtable}[l]{
             self._backend.write(''.join(('\\grinittab{\\textwidth}{',
@@ -770,8 +769,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
 
         self.tabmem.rows[-1].addit = self.tabrow.addit
         self.in_multrow_cell = False
-        return
-
 
     def calc_latex_widths(self):
         """
@@ -954,7 +951,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self._backend.open()
 
         # Font size control seems to be limited. For now, ignore
-        # any style constraints, and use 12pt has the default
+        # any style constraints, and use 12pt as the default
 
         options = "12pt"
 
@@ -1025,7 +1022,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
             thisstyle.left_indent = left
             thisstyle.first_line_indent = first
             self.latexstyle[style_name] = thisstyle
-
 
     def close(self):
         """Clean up and close the document"""
@@ -1132,6 +1128,11 @@ class LaTeXDoc(BaseDoc, TextDoc):
         styles = self.get_style_sheet()
         self.tblstyle = styles.get_table_style(style_name)
         self.numcols = self.tblstyle.get_columns()
+        self.column_order = []
+        for cell in range(self.numcols):
+            self.column_order.append(cell)
+        if self.get_rtl_doc():
+            self.column_order.reverse()
 
         tblfmt = '*{%d}{l}' % self.numcols
         self.emit('\\begin{longtable}[l]{%s}\n' % (tblfmt), TAB_BEG)
@@ -1148,7 +1149,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         self.doline = False
         self.skipfirst = False
         self.curcol = 0
-        self.currow = self.currow + 1
+        self.currow += 1
 
     def end_row(self):
         """End the row (new line)"""
@@ -1168,7 +1169,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         We always place our data inside braces
         for safety of formatting."""
         self.colspan = span
-        self.curcol = self.curcol + self.colspan
+        self.curcol += self.colspan
 
         styles = self.get_style_sheet()
         self.cstyle = styles.get_cell_style(style_name)
@@ -1208,11 +1209,9 @@ class LaTeXDoc(BaseDoc, TextDoc):
 
         self.emit('\\multicolumn{%d}{%s}' % (span, cellfmt), CELL_BEG, span)
 
-
     def end_cell(self):
         """Prepares for next cell"""
         self.emit('', CELL_END)
-
 
     def add_media(self, infile, pos, x, y, alt='', style_name=None, crop=None):
         """Add photo to report"""

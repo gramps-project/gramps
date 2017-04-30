@@ -6,7 +6,7 @@
 # Copyright (C) 2009-2010  Benny Malengier <benny.malengier@gramps-project.org>
 # Copyright (C) 2010       Peter Landgren
 # Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
-# Copyright (C) 2012       Paul Franklin
+# Copyright (C) 2012,2017  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -153,6 +153,7 @@ class AsciiDoc(BaseDoc, TextDoc):
         self.tbl_style = None
         self.in_cell = None
         self.ncols = 0
+        self.column_order = []
         self.cellpars = []
         self.cell_lines = []
         self.cell_widths = []
@@ -309,6 +310,11 @@ class AsciiDoc(BaseDoc, TextDoc):
         styles = self.get_style_sheet()
         self.tbl_style = styles.get_table_style(style_name)
         self.ncols = self.tbl_style.get_columns()
+        self.column_order = []
+        for cell in range(self.ncols):
+            self.column_order.append(cell)
+        if self.get_rtl_doc():
+            self.column_order.reverse()
 
     #--------------------------------------------------------------------
     #
@@ -333,7 +339,7 @@ class AsciiDoc(BaseDoc, TextDoc):
         self.maxlines = 0
         table_width = (self.get_usable_width() *
                        self.tbl_style.get_width() / 100.0)
-        for cell in range(self.ncols):
+        for cell in self.column_order:
             self.cell_widths[cell] = int(
                 table_width * self.tbl_style.get_column_width(cell) / 100.0)
 
@@ -346,7 +352,7 @@ class AsciiDoc(BaseDoc, TextDoc):
     def end_row(self):
         self.in_cell = 0
         cell_text = [None]*self.ncols
-        for cell in range(self.ncols):
+        for cell in self.column_order:
             if self.cell_widths[cell]:
                 blanks = ' '*self.cell_widths[cell] + '\n'
                 if self.cell_lines[cell] < self.maxlines:
@@ -355,7 +361,7 @@ class AsciiDoc(BaseDoc, TextDoc):
                         )
                 cell_text[cell] = self.cellpars[cell].split('\n')
         for line in range(self.maxlines):
-            for cell in range(self.ncols):
+            for cell in self.column_order:
                 if self.cell_widths[cell]:
                     self.file.write(cell_text[cell][line])
             self.file.write('\n')
