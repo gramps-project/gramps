@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2002-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2017-      Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -69,5 +70,6 @@ editor_rule_list = [
     ChangedSince,
     HasTag,
     HasTitle,
+    WithinArea,
     IsEnclosedBy
 ]
