@@ -47,15 +47,14 @@ class WithinArea(Rule):
     Rule that checks for a place within an area
     """
 
-    labels      = [_('Place:'), _('Value:'), _('Units:')]
+    labels      = [_('Handle:'), _('Value:'), _('Units:')]
     name        = _('Places within an area')
     description = _('Matches a place within an area')
     category    = _('General filters')
 
     def prepare(self, db, user):
-        self.reference = self.list[0]
+        ref_place = db.get_place_from_handle(self.list[0])
         self.handle = None
-        ref_place = self.list[0]
         self.radius = None
         self.latitude = None
         self.longitude = None

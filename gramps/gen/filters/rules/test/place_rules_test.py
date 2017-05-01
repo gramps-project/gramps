@@ -224,11 +224,10 @@ class BaseTest(unittest.TestCase):
         """
         Test within area rule.
         """
-        rule = WithinArea(['P1339', '50', '0'])
+        rule = WithinArea(['KJUJQCY580EB77WIVO', 100, 0])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'EAFKQCR0ED5QWL87EO', b'1IKKQC4VIRNIUZB87M', b'PI8KQC036QOG871SWV',
-            b'SQ6LQCK58EP1VCZV9N', b'IAAKQCDY5W6SOAD10P', b'JE0KQCGT22EDCB0XBM',
-            b'KUALQC7IDAN91IK2V6']))
+            b'KJUJQCY580EB77WIVO', b'TLVJQC4FD2CD9OYAXU', b'TE4KQCL9FDYA4PB6VW',
+            b'W9GLQCSRJIQ9N2TGDF']))
 
     def test_isenclosedby_inclusive(self):
         """

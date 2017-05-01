@@ -42,6 +42,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from ..selectors import SelectorFactory
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -62,6 +63,7 @@ class PlaceWithin(Gtk.Box):
         # default value is 50.0, minimum is 10.0 and max is 300.0
         self.slider = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL,
                                 adjustment=adj)
+        self.slider.connect('value-changed', self.slider_change)
         self.pack_start(self.slider, True, True, 0)
         self.unit = Gtk.ComboBoxText()
         list(map(self.unit.append_text,
@@ -76,3 +78,15 @@ class PlaceWithin(Gtk.Box):
     def set_value(self, value, unit):
         self.slider.set_value(int(value))
         self.unit.set_active(int(unit))
+
+    def slider_change(self, value):
+        _db = self.dbstate.db
+        active_reference = self.uistate.get_active('Place')
+        place_name = None
+        if active_reference:
+            place = _db.get_place_from_handle(active_reference)
+            place_name = _pd.display(self.dbstate.db, place)
+        if place_name is None:
+            self.set_tooltip_text(_('You have no active place'))
+        else:
+            self.set_tooltip_text(place_name)
