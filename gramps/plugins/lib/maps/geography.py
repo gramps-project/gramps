@@ -665,18 +665,20 @@ class GeoGraphyView(OsmGps, NavigationView):
                 lat = mark[3]
                 lon = mark[4]
                 icon = mark[7]
+                colour = mark[12]
                 differtype = False
                 count = 1
                 continue
             if last != current:
                 self.add_marker(None, None, lat, lon, icon, differtype,
-                                count, color=mark[12])
+                                count, color=colour)
                 differtype = False
                 count = 1
                 last = current
                 lat = mark[3]
                 lon = mark[4]
                 icon = mark[7]
+                colour = mark[12]
             else: # This marker already exists. add info.
                 count += 1
                 if icon != mark[7]:
