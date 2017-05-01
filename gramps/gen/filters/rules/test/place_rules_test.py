@@ -33,7 +33,9 @@ from ..place import (
     AllPlaces, HasCitation, HasGallery, HasIdOf, RegExpIdOf, HasNote,
     HasNoteRegexp, HasReferenceCountOf, HasSourceCount, HasSourceOf,
     PlacePrivate, MatchesSourceConfidence, HasData, HasNoLatOrLon,
-    InLatLonNeighborhood, ChangedSince, HasTag, HasTitle, IsEnclosedBy)
+    InLatLonNeighborhood, ChangedSince, HasTag, HasTitle, IsEnclosedBy,
+    WithinArea
+    )
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
@@ -216,6 +218,16 @@ class BaseTest(unittest.TestCase):
             b'EAFKQCR0ED5QWL87EO', b'S22LQCLUZM135LVKRL', b'VDUJQCFP24ZV3O4ID2',
             b'V6ALQCZZFN996CO4D', b'OC6LQCXMKP6NUVYQD8', b'CUUKQC6BY5LAZXLXC6',
             b'PTFKQCKPHO2VC5SYKS', b'PHUJQCJ9R4XQO5Y0WS']))
+
+    def test_withinarea(self):
+        """
+        Test within area rule.
+        """
+        rule = WithinArea(['P1339', '50', '0'])
+        self.assertEqual(self.filter_with_rule(rule), set([
+            b'EAFKQCR0ED5QWL87EO', b'1IKKQC4VIRNIUZB87M', b'PI8KQC036QOG871SWV',
+            b'SQ6LQCK58EP1VCZV9N', b'IAAKQCDY5W6SOAD10P', b'JE0KQCGT22EDCB0XBM',
+            b'KUALQC7IDAN91IK2V6']))
 
     def test_isenclosedby_inclusive(self):
         """

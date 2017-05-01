@@ -46,6 +46,7 @@ from ._matchessourceconfidence import MatchesSourceConfidence
 from ._changedsince import ChangedSince
 from ._hastag import HasTag
 from ._hastitle import HasTitle
+from ._withinarea import WithinArea
 
 editor_rule_list = [
     AllPlaces,

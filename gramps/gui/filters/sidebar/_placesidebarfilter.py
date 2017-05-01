@@ -46,7 +46,7 @@ from .. import build_filter_model
 from . import SidebarFilter
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.place import (RegExpIdOf, HasData, IsEnclosedBy,
-                                            HasTag, HasNoteRegexp,
+                                            HasTag, HasNoteRegexp, WithinArea,
                                             MatchesFilter)
 
 GenericPlaceFilter = GenericFilterFactory('Place')
@@ -65,6 +65,7 @@ class PlaceSidebarFilter(SidebarFilter):
         self.filter_place = Place()
         self.filter_place.set_type((PlaceType.CUSTOM, ''))
         self.ptype = Gtk.ComboBox(has_entry=True)
+        self.dbstate = dbstate
         if dbstate.is_open():
             self.custom_types = dbstate.db.get_place_types()
         else:
@@ -80,6 +81,7 @@ class PlaceSidebarFilter(SidebarFilter):
         self.filter_code = widgets.BasicEntry()
         self.filter_enclosed = widgets.PlaceEntry(dbstate, uistate, [])
         self.filter_note = widgets.BasicEntry()
+        self.filter_within = widgets.PlaceWithin(dbstate, uistate, [])
 
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
         self.tag = Gtk.ComboBox()
@@ -106,6 +108,7 @@ class PlaceSidebarFilter(SidebarFilter):
         self.add_entry(_('Type'), self.ptype)
         self.add_text_entry(_('Code'), self.filter_code)
         self.add_text_entry(_('Enclosed By'), self.filter_enclosed)
+        self.add_text_entry(_('Within'), self.filter_within)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
@@ -117,6 +120,7 @@ class PlaceSidebarFilter(SidebarFilter):
         self.filter_code.set_text('')
         self.filter_enclosed.set_text('')
         self.filter_note.set_text('')
+        self.filter_within.set_value(0, 0)
         self.ptype.get_child().set_text('')
         self.tag.set_active(0)
         self.generic.set_active(0)
@@ -128,12 +132,13 @@ class PlaceSidebarFilter(SidebarFilter):
         code = str(self.filter_code.get_text()).strip()
         enclosed = str(self.filter_enclosed.get_text()).strip()
         note = str(self.filter_note.get_text()).strip()
+        within = self.filter_within.get_value()
         regex = self.filter_regex.get_active()
         tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
 
         empty = not (gid or name or ptype or code or enclosed or note or regex
-                     or tag or gen)
+                     or within or tag or gen)
         if empty:
             generic_filter = None
         else:
@@ -151,6 +156,16 @@ class PlaceSidebarFilter(SidebarFilter):
 
             if note:
                 rule = HasNoteRegexp([note], use_regex=regex)
+                generic_filter.add_rule(rule)
+
+            if within and within[0] > 0 and self.dbstate.is_open():
+                rule = WithinArea([None, within[0], within[1]])
+                active_reference = self.uistate.get_active('Place')
+                if active_reference:
+                    db = self.dbstate.db
+                    place = db.get_place_from_handle(active_reference)
+                    if place:
+                        rule = WithinArea([place, within[0], within[1]])
                 generic_filter.add_rule(rule)
 
             # check the Tag
