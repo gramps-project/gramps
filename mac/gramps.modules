@@ -18,7 +18,7 @@
   <repository type="tarball" name="oracle"
 	      href="http://download.oracle.com/"/>
   <repository type="tarball" name="pymodules"
-	      href="http://pypi.python.org/packages/source/"/>
+	      href="http://pypi.python.org/packages/"/>
   <repository type="tarball" name="stowers"
 	     href="http://www.johnstowers.co.nz/files/"/>
   <repository type="git" name="github"
@@ -52,8 +52,8 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 -->
 
-  <include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-stable/gtk-osx.modules"/>
-  <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
+  <!--include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-stable/gtk-osx.modules"/ -->
+  <include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/>
 
   <distutils id="gramps-git" supports-non-srcdir-builds="no">
     <branch module="gramps-project/gramps.git" repo="github"
@@ -83,7 +83,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 
   <distutils id="pyenchant">
-    <branch repo="pymodules" module="p/pyenchant/pyenchant-1.6.1.tar.gz"
+    <branch repo="pymodules" module="73/73/49f95fe636ab3deed0ef1e3b9087902413bcdf74ec00298c3059e660cfbb/pyenchant-1.6.8.tar.gz"
 	    version="1.6.1"/>
   </distutils>
 
@@ -124,34 +124,28 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   <autotools id="gexiv2" autogen-sh="configure" supports-non-srcdir-builds="no"
 	     autogenargs="--enable-introspection --with-libtool=libtool"
 	     autogen-template="%(srcdir)s/%(autogen-sh)s --prefix=%(prefix)s %(autogenargs)s">
-    <branch module="gexiv2/0.7/gexiv2-0.7.0.tar.xz"
-	    repo="ftp.gnome.org" version="0.7.0">
+    <branch module="gexiv2/0.10/gexiv2-0.10.5.tar.xz"
+            repo="ftp.gnome.org" version="0.10.5"
+            hash="sha256:318fe068cd414c0af91759a87c29fd577cd5d42bf7a6f50caff27535c02ac7f3">
     </branch>
     <dependencies>
       <dep package="exiv2"/>
     </dependencies>
   </autotools>
 
-  <distutils id="setuptools">
-    <branch module="s/setuptools/setuptools-16.0.tar.gz"
-	    version="16.0" repo="pymodules"/>
-  </distutils>
   <distutils id="pil">
-    <!--branch module="Imaging-1.1.7.tar.gz" version="1.1.7" repo="pythonware">
-      <patch file="Imaging-Freetype2.patch" strip="1"/-->
-    <branch module="P/Pillow/Pillow-2.7.0.tar.gz" version="2.7.0"
+    <branch module="93/73/66854f63b1941aad9af18a1de59f9cf95ad1a87c801540222e332f6688d7/Pillow-4.1.1.tar.gz" version="4.1.1"
 	    repo="pymodules"
-	    hash="md5:3fdc9f16a1b60366ae8158b424655d10">
-      <patch file="Pillow-tk-setup.patch" strip="1"/>
+	    hash="md5:f2565954955c8d10f3b4f1f72f852bf7">
     </branch>
     <dependencies>
-      <dep package="setuptools"/>
+      <!--dep package="setuptools"/-->
     </dependencies>
   </distutils>
 
  <distutils id='pyicu'>
-    <branch version='1.8' repo='pymodules'
-	    module='P/PyICU/PyICU-1.8.tar.gz'/>
+    <branch version='1.9' repo='pymodules'
+	    module='6e/88/f42a1297909ca6d9113ba37b37067011ae29432fe592fdd98cf52ad23b77/PyICU-1.9.7.tar.gz'/>
     <dependencies>
       <dep package='icu'/>
     </dependencies>
@@ -161,7 +155,6 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     <dependencies>
       <dep package="python"/>
       <dep package="meta-gtk-osx-gtk3"/>
-      <dep package="gtk-mac-integration-python"/>
       <dep package="meta-gtk-osx-gtk3-core-themes"/>
       <dep package="goocanvas2"/>
       <dep package="librsvg"/>
@@ -170,7 +163,6 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="gtkspell3"/>
       <dep package="osmgpsmap"/>
       <dep package="graphviz"/>
-      <dep package="pil"/>
       <dep package="gexiv2"/>
    </dependencies>
  </metamodule>
@@ -178,10 +170,12 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
  <metamodule id="meta-python3-modules">
    <dependencies>
      <dep package="python3"/>
+     <dep package="gtk-mac-integration-python"/>
      <dep package="pycairo"/>
      <dep package="pygobject3"/>
      <dep package='pyicu'/>
      <dep package='pybsddb'/>
+     <dep package="pil"/>
    </dependencies>
  </metamodule>
 
