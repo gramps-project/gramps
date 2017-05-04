@@ -24,21 +24,22 @@ import os
 import shutil
 
 from gramps.test.test_util import Gramps
-from gramps.gen.db.utils import open_database
 from gramps.gen.user import User
+from gramps.gen.const import DATA_DIR
 
-ddir = os.path.dirname(__file__)
-example = os.path.join(ddir, "..", "..", "..",
-                       "example", "gramps", "data.gramps")
-sample = os.path.join(ddir, "..", "..", "..",
-                      "example", "gedcom", "sample.ged")
+# ddir = os.path.dirname(__file__)
+# example = os.path.join(ddir, "..", "..", "..",
+#                        "example", "gramps", "data.gramps")
+# sample = os.path.join(ddir, "..", "..", "..",
+#                       "example", "gedcom", "sample.ged")
+example = os.path.join(DATA_DIR, "tests", "data.gramps")
 
 TREE_NAME = "Test_reporttest"
 
 class ReportControl:
     def tearDown(self):
         out, err = self.call("-y", "--remove", TREE_NAME)
-        out, err = self.call("-y", "--remove", TREE_NAME + "_import_gedcom")
+        # out, err = self.call("-y", "--remove", TREE_NAME + "_import_gedcom")
 
     def call(self, *args):
         #print("call:", args)
@@ -55,7 +56,7 @@ class ReportControl:
 
     def addreport(self, class_, report_name, test_function,
                   files, **options):
-        test_name = report_name.replace("-", "_")
+        test_name = "test_" + report_name.replace("-", "_")
         setattr(class_, test_name, dynamic_report_method(
             report_name,
             test_function,
@@ -68,7 +69,7 @@ class ReportControl:
 
     def addcli(self, class_, report_name, test_function,
                files, *args, **options):
-        test_name = report_name.replace("-", "_")
+        test_name = "test_" + report_name.replace("-", "_")
         setattr(class_, test_name,
                 dynamic_cli_method(
                     report_name,
@@ -115,7 +116,7 @@ class TestDynamic(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         out, err = cls.call("-y", "--remove", TREE_NAME)
-        out, err = cls.call("-y", "--remove", TREE_NAME + "_import_gedcom")
+        # out, err = cls.call("-y", "--remove", TREE_NAME + "_import_gedcom")
 
 reports = ReportControl()
 
