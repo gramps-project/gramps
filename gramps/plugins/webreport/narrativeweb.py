@@ -855,7 +855,7 @@ class BasePage:
         if person:
             bd_event = get_birth_or_fallback(self.r_db, child)
             if bd_event:
-                birth = self.locale.get_date(bd_event.get_date_object())
+                birth = self.rlocale.get_date(bd_event.get_date_object())
             dd_event = get_death_or_fallback(self.r_db, child)
             if dd_event:
                 death = self.rlocale.get_date(dd_event.get_date_object())
