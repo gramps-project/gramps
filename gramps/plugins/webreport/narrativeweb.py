@@ -6263,7 +6263,7 @@ class PersonPages(BasePage):
                     elif first_surname:
                         first_surname = False
                         tcell += Html("a", html_escape(surname),
-                                      title="Surnames " + surname)
+                                      title=self._("Surnames") + " " + surname)
                     else:
                         tcell += "&nbsp;"
 
