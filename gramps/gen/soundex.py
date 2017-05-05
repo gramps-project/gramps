@@ -52,6 +52,8 @@ def soundex(strval):
         return "Z000"
     strval = strval.decode('ASCII', 'ignore')
     str2 = strval[0]
+    translator = strval.maketrans('','',IGNORE)
+    strval = strval.translate(translator)
     strval = strval.translate(TABLE)
     if not strval:
         return "Z000"
