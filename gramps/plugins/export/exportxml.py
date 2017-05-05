@@ -511,7 +511,7 @@ class GrampsXmlWriter(UpdateCallback):
             self.g.write('  ' * indent)
 
         self.g.write('<%s>' % val)
-        self.g.write(self.fix(text.rstrip()))
+        self.g.write(escxml(str(text).translate(strip_dict)))
         self.g.write("</%s>\n" % val)
 
     def write_person(self,person,index=1):
