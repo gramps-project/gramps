@@ -1147,14 +1147,8 @@ class BasePage:
                 latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                 if latitude is not None:
                     etype = event.get_type()
-
-                    # only allow Birth, Death, Census, Marriage,
-                    # and Divorce events...
-                    if etype in [EventType.BIRTH, EventType.DEATH,
-                                 EventType.CENSUS,
-                                 EventType.MARRIAGE, EventType.DIVORCE]:
-                        place_lat_long.append([latitude, longitude, placetitle,
-                                               place_handle, event_date, etype])
+                    place_lat_long.append([latitude, longitude, placetitle,
+                                           place_handle, event_date, etype])
 
     def _get_event_place(self, person, place_lat_long):
         """
