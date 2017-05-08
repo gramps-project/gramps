@@ -298,3 +298,31 @@ def run_date_format_option(report, menu):
         warning(format_to_be + 1)
         format_to_be = 0 # ISO always exists
     report._ldd.set_format(format_to_be)
+
+def add_gramps_id_option(menu, category, ownline=False):
+    """
+    Insert an option for deciding whether to include gramps IDs
+    in the report
+
+    Since for some reports it makes sense to possibly have the ID on its
+    own line (e.g. Graphviz reports), that possibility is included, but
+    since for most reports it won't make sense the default is False
+
+    :param menu: The menu the options should be added to.
+    :type menu: :class:`.Menu`
+    :param category: A label that describes the category that the option
+        belongs to, e.g. "Report Options"
+    :type category: string
+    :param ownline: whether the option offers to have the ID on its own line
+    :type ownline: Boolean
+    """
+
+    include_id = EnumeratedListOption(_('Gramps ID'), 0)
+    include_id.add_item(0, _('Do not include'))
+    include_id.add_item(1, _('Share an existing line'))
+    if ownline:
+        include_id.add_item(2, _('On a line of its own'))
+        include_id.set_help(_('Whether (and where) to include Gramps IDs'))
+    else:
+        include_id.set_help(_("Whether to include Gramps IDs"))
+    menu.add_option(category, 'inc_id', include_id)
