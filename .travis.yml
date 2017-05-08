@@ -106,7 +106,7 @@ script:
 # from /usr/bin. Use libraries from /usr/lib/python3.4,
 # /usr/local/lib/python3.4/dist-packages and /usr/lib/python3/dist-packages
  - nosetests3 --nologcapture --with-coverage --cover-package=gramps $EXCLUDE
-   gramps  test test/GrampsLogger
+   gramps
 # FIXME: This should have run from the current directory, rather than from
 # gramps, because there is some test code in that directory.
 
