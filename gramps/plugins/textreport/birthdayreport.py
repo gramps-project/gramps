@@ -107,8 +107,8 @@ class BirthdayReport(Report):
         stdoptions.run_name_format_option(self, menu)
 
         self.center_person = self.database.get_person_from_gramps_id(pid)
-        if (self.center_person == None) :
-            raise ReportError(_("Person %s is not in the Database") % pid )
+        if self.center_person is None:
+            raise ReportError(_("Person %s is not in the Database") % pid)
 
     def get_name(self, person, maiden_name = None):
         """

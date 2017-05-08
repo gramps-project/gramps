@@ -120,13 +120,13 @@ def _convert_str_to_match_type(str_val, type_val):
 
         # Search through characters between the brackets
         for char in str_val[1:-1]:
-            if (char == "'" or char == '"') and quote_type == None:
+            if (char == "'" or char == '"') and quote_type is None:
                 # This character starts a string
                 quote_type = char
             elif char == quote_type:
                 # This character ends a string
                 quote_type = None
-            elif quote_type == None and char == ",":
+            elif quote_type is None and char == ",":
                 # This character ends an entry
                 ret_val.append(entry.strip())
                 entry = ""

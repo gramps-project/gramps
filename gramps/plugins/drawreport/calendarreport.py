@@ -107,10 +107,11 @@ class Calendar(Report):
         self.text3 = get_value('text3')
         self.filter_option = menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
+
         pid = get_value('pid')
         self.center_person = self.database.get_person_from_gramps_id(pid)
-        if (self.center_person == None) :
-            raise ReportError(_("Person %s is not in the Database") % pid )
+        if self.center_person is None:
+            raise ReportError(_("Person %s is not in the Database") % pid)
 
         self.set_locale(get_value('trans'))
 

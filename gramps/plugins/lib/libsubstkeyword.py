@@ -629,7 +629,7 @@ class ConsumableString:
     def __get_a_char_of_text(self):
         """ Removes one char of TEXT from the string and returns it. """
         if self.this == "\\":
-            if self.next == None:
+            if self.next is None:
                 rtrn = "\\"
             else:
                 rtrn = self.next
