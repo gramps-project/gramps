@@ -103,7 +103,7 @@ class RelGraphReport(Report):
                      returning the list of filters.
         arrow      - Arrow styles for heads and tails.
         showfamily - Whether to show family nodes.
-        incid      - Whether to include IDs.
+        inc_id     - Whether to include IDs.
         url        - Whether to include URLs.
         inclimg    - Include images or not
         imgpos     - Image position, above/beside name
@@ -137,7 +137,7 @@ class RelGraphReport(Report):
         self.database = CacheProxyDb(self.database)
         self._db = self.database
 
-        self.includeid = get_value('incid')
+        self.includeid = get_value('inc_id')
         self.includeurl = get_value('url')
         self.includeimg = get_value('includeImages')
         self.imgpos = get_value('imageOnTheSide')
@@ -780,12 +780,7 @@ class RelGraphOptions(MenuReportOptions):
                                   "between women and men."))
         add_option("useroundedcorners", roundedcorners)
 
-        include_id = EnumeratedListOption(_('Gramps ID'), 0)
-        include_id.add_item(0, _('Do not include'))
-        include_id.add_item(1, _('Share an existing line'))
-        include_id.add_item(2, _('On a line of its own'))
-        include_id.set_help(_("Whether (and where) to include Gramps IDs"))
-        add_option("incid", include_id)
+        stdoptions.add_gramps_id_option(menu, category_name, ownline=True)
 
         ################################
         category_name = _("Report Options (2)")

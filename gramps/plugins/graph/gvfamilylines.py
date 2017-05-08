@@ -156,12 +156,7 @@ class FamilyLinesOptions(MenuReportOptions):
             _("Use rounded corners to differentiate between women and men."))
         add_option("useroundedcorners", roundedcorners)
 
-        include_id = EnumeratedListOption(_('Gramps ID'), 0)
-        include_id.add_item(0, _('Do not include'))
-        include_id.add_item(1, _('Share an existing line'))
-        include_id.add_item(2, _('On a line of its own'))
-        include_id.set_help(_("Whether (and where) to include Gramps IDs"))
-        add_option("incid", include_id)
+        stdoptions.add_gramps_id_option(menu, category_name, ownline=True)
 
         # ---------------------
         category_name = _('Report Options (2)')
@@ -336,7 +331,7 @@ class FamilyLinesReport(Report):
         user         - a gen.user.User() instance
         name_format  - Preferred format to display names
         incl_private - Whether to include private data
-        incid        - Whether to include IDs.
+        inc_id       - Whether to include IDs.
         living_people - How to handle living people
         years_past_death - Consider as living this many years after death
         """
@@ -383,7 +378,7 @@ class FamilyLinesReport(Report):
         self._just_years = get_value('justyears')
         self._incplaces = get_value('incplaces')
         self._incchildcount = get_value('incchildcnt')
-        self.includeid = get_value('incid')
+        self.includeid = get_value('inc_id')
 
         arrow_str = get_value('arrow')
         if 'd' in arrow_str:

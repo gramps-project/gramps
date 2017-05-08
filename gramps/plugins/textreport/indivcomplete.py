@@ -143,7 +143,7 @@ class IndivCompleteReport(Report):
 
         self.use_attrs = menu.get_option_by_name('incl_attrs').get_value()
         self.use_census = menu.get_option_by_name('incl_census').get_value()
-        self.use_gramps_id = menu.get_option_by_name('grampsid').get_value()
+        self.use_gramps_id = menu.get_option_by_name('inc_id').get_value()
         self.use_images = menu.get_option_by_name('images').get_value()
         self.use_notes = menu.get_option_by_name('incl_notes').get_value()
         self.use_srcs = menu.get_option_by_name('cites').get_value()
@@ -1108,9 +1108,7 @@ class IndivCompleteOptions(MenuReportOptions):
         category_name = _("Include (2)")
         ################################
 
-        grampsid = BooleanOption(_("Gramps ID"), False)
-        grampsid.set_help(_("Whether to include Gramps ID next to names."))
-        menu.add_option(category_name, "grampsid", grampsid)
+        stdoptions.add_gramps_id_option(menu, category_name)
 
         tags = BooleanOption(_("Include Tags"), True)
         tags.set_help(_("Whether to include tags."))
