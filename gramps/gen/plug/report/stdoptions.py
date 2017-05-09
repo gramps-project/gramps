@@ -301,7 +301,7 @@ def run_date_format_option(report, menu):
 
 def add_gramps_id_option(menu, category, ownline=False):
     """
-    Insert an option for deciding whether to include gramps IDs
+    Insert an option for deciding whether to include Gramps IDs
     in the report
 
     Since for some reports it makes sense to possibly have the ID on its
@@ -319,10 +319,11 @@ def add_gramps_id_option(menu, category, ownline=False):
 
     include_id = EnumeratedListOption(_('Gramps ID'), 0)
     include_id.add_item(0, _('Do not include'))
-    include_id.add_item(1, _('Share an existing line'))
     if ownline:
+        include_id.add_item(1, _('Share an existing line'))
         include_id.add_item(2, _('On a line of its own'))
         include_id.set_help(_('Whether (and where) to include Gramps IDs'))
     else:
+        include_id.add_item(1, _('Include'))
         include_id.set_help(_("Whether to include Gramps IDs"))
     menu.add_option(category, 'inc_id', include_id)

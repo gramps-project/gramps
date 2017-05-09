@@ -226,7 +226,7 @@ class Printinfo:
     This class must first be initialized with set_class_vars
     """
     def __init__(self, doc, database, numbering, showmarriage, showdivorce,
-                 name_display, rlocale):
+                 name_display, rlocale, want_ids):
         #classes
         self._name_display = name_display
         self.doc = doc
@@ -235,6 +235,7 @@ class Printinfo:
         #variables
         self.showmarriage = showmarriage
         self.showdivorce = showdivorce
+        self.want_ids = want_ids
         self._ = rlocale.translation.sgettext # needed for English
         self._get_date = rlocale.get_date
 
@@ -283,6 +284,9 @@ class Printinfo:
             if tmp:
                 string += ", " + tmp
 
+        if family and self.want_ids:
+            string += ' (%s)' % family.get_gramps_id()
+
         self.doc.write_text(string)
 
     def print_person(self, level, person):
@@ -291,6 +295,8 @@ class Printinfo:
         self.doc.start_paragraph("DR-Level%d" % min(level, 32), display_num)
         mark = utils.get_person_mark(self.database, person)
         self.doc.write_text(self._name_display.display(person), mark)
+        if self.want_ids:
+            self.doc.write_text(' (%s)' % person.get_gramps_id())
         self.dump_string(person)
         self.doc.end_paragraph()
         return display_num
@@ -305,6 +311,8 @@ class Printinfo:
             name = self._name_display.display(spouse)
             self.doc.write_text(
                 self._("sp. %(spouse)s") % {'spouse':name}, mark)
+            if self.want_ids:
+                self.doc.write_text(' (%s)' % spouse.get_gramps_id())
             self.dump_string(spouse, family_handle)
             self.doc.end_paragraph()
         else:
@@ -420,6 +428,7 @@ class DescendantReport(Report):
         incl_private  - Whether to include private data
         living_people - How to handle living people
         years_past_death - Consider as living this many years after death
+        inc_id        - Whether to include Gramps IDs
         """
 
         Report.__init__(self, database, options, user)
@@ -435,6 +444,7 @@ class DescendantReport(Report):
         self.database = CacheProxyDb(self.database)
 
         self.max_generations = menu.get_option_by_name('gen').get_value()
+        self.want_ids = menu.get_option_by_name('inc_id').get_value()
 
         pid = menu.get_option_by_name('pid').get_value()
         self.center_person = self.database.get_person_from_gramps_id(pid)
@@ -465,7 +475,8 @@ class DescendantReport(Report):
         stdoptions.run_name_format_option(self, menu)
 
         self.obj_print = Printinfo(self.doc, self.database, obj, marrs, divs,
-                                   self._name_display, self._locale)
+                                   self._name_display, self._locale,
+                                   self.want_ids)
 
     def write_report(self):
         self.doc.start_paragraph("DR-Title")
@@ -523,6 +534,8 @@ class DescendantOptions(MenuReportOptions):
         gen = NumberOption(_("Generations"), 10, 1, 15)
         gen.set_help(_("The number of generations to include in the report"))
         menu.add_option(category_name, "gen", gen)
+
+        stdoptions.add_gramps_id_option(menu, category_name)
 
         marrs = BooleanOption(_('Show marriage info'), False)
         marrs.set_help(
