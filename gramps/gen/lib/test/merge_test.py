@@ -1243,11 +1243,11 @@ class PersonCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
         self.phoenix.merge(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
-    def todo_test_merge_person_aschild(self):
-        pass
+    #def todo_test_merge_person_aschild(self):
+        #pass
 
-    def todo_test_merge_person_asparent(self):
-        pass
+    #def todo_test_merge_person_asparent(self):
+        #pass
 
     def test_altname_identical(self):
         name = Name()
@@ -1586,8 +1586,8 @@ class SourceCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.ref_obj = Source()
         self.ref_obj.set_title("Source 1")
 
-    def todo_test_replace(self):
-        pass
+    #def todo_test_replace(self):
+        #pass
 
     def test_merge_datamap(self):
         attr1 = SrcAttribute()
@@ -1739,8 +1739,8 @@ class CitationBaseCheck(unittest.TestCase):
         self.phoenix.replace_citation_references('123456','654321')
         self.assertEqual(self.phoenix.serialize(), self.obj_list.serialize())
 
-    def todo_test_replace_child(self):
-        pass
+    #def todo_test_replace_child(self):
+        #pass
 
     def test_merge_identical(self):
         citation = Citation()
