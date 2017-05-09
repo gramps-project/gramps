@@ -98,10 +98,5 @@ class RotateHandlerTest(unittest.TestCase):
         l.removeHandler(rh)
 
 
-def testSuite():
-    suite = unittest.makeSuite(RotateHandlerTest,'test')
-    return suite
-
-
 if __name__ == '__main__':
-    unittest.TextTestRunner().run(testSuite())
+    unittest.main()

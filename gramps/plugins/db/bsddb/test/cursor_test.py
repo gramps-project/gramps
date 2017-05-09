@@ -223,10 +223,6 @@ class CursorTest(unittest.TestCase):
         pldata = set([d[1] for d in data])
         self.assertEqual(placenames, pldata)
 
-def testSuite():
-    suite = unittest.makeSuite(CursorTest, 'test')
-    return suite
-
 
 if __name__ == '__main__':
-    unittest.TextTestRunner().run(testSuite())
+    unittest.main()

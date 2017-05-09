@@ -214,12 +214,6 @@ class ReferenceMapTest(GrampsDbBaseTest):
         self.assertLess(with_reference_map, without_reference_map / 10,
                         "Reference_map should an order of magnitude faster.")
 
-def testSuite():
-    suite = unittest.makeSuite(ReferenceMapTest,'test')
-    return suite
-
-def perfSuite():
-    return unittest.makeSuite(ReferenceMapTest,'perf')
 
 if __name__ == '__main__':
-    unittest.TextTestRunner().run(testSuite())
+    unittest.main()
