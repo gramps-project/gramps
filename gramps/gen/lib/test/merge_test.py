@@ -1010,7 +1010,7 @@ class NoteBaseCheck(unittest.TestCase):
         self.phoenix.replace_note_references('123456','654321')
         self.assertEqual(self.phoenix.serialize(), ref_note_list.serialize())
 
-    def todo_test_replace_child(self):
+    def test_replace_child(self):
         ref_note_list = NoteBase()
         note = Note("")
         note.set_handle('123456')
