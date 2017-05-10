@@ -24,21 +24,23 @@ import os
 import shutil
 
 from gramps.test.test_util import Gramps
-from gramps.gen.db.utils import open_database
 from gramps.gen.user import User
+from gramps.gen.const import DATA_DIR
 
-ddir = os.path.dirname(__file__)
-example = os.path.join(ddir, "..", "..", "..",
-                       "example", "gramps", "data.gramps")
-sample = os.path.join(ddir, "..", "..", "..",
-                      "example", "gedcom", "sample.ged")
+# ddir = os.path.dirname(__file__)
+# example = os.path.join(ddir, "..", "..", "..",
+#                        "example", "gramps", "data.gramps")
+# sample = os.path.join(ddir, "..", "..", "..",
+#                       "example", "gedcom", "sample.ged")
+example = os.path.join(DATA_DIR, "tests", "data.gramps")
 
 TREE_NAME = "Test_reporttest"
+
 
 class ReportControl:
     def tearDown(self):
         out, err = self.call("-y", "--remove", TREE_NAME)
-        out, err = self.call("-y", "--remove", TREE_NAME + "_import_gedcom")
+        # out, err = self.call("-y", "--remove", TREE_NAME + "_import_gedcom")
 
     def call(self, *args):
         #print("call:", args)
@@ -49,13 +51,13 @@ class ReportControl:
 
     def __init__(self):
         super().__init__()
-        self.tearDown() # removes it if it existed
+        self.tearDown()  # removes it if it existed
         out, err = self.call("-C", TREE_NAME,
                              "--import", example)
 
     def addreport(self, class_, report_name, test_function,
                   files, **options):
-        test_name = report_name.replace("-", "_")
+        test_name = "test_" + report_name.replace("-", "_")
         setattr(class_, test_name, dynamic_report_method(
             report_name,
             test_function,
@@ -68,33 +70,37 @@ class ReportControl:
 
     def addcli(self, class_, report_name, test_function,
                files, *args, **options):
-        test_name = report_name.replace("-", "_")
+        test_name = "test_" + report_name.replace("-", "_")
         setattr(class_, test_name,
                 dynamic_cli_method(
                     report_name,
                     test_function,
                     files,
-                    *args))
+                    *args, **options))
+
 
 def dynamic_report_method(report_name, test_function,
                           files, *args, **options):
     args = list(args)
-    args[-1] += "," + (",".join(["%s=%s" % (k, v) for (k,v) in options.items()]))
+    args[-1] += "," + (",".join(["%s=%s" % (k, v)
+                                 for (k, v) in options.items()]))
     options["files"] = files
-    # This needs to have "test" in name:
-    def test_method(self):
+
+    def test_method(self):  # This needs to have "test" in name
         out, err = self.call(*args)
         self.assertTrue(test_function(out, err, report_name, **options))
     return test_method
 
+
 def dynamic_cli_method(report_name, test_function,
                        files, *args, **options):
     options["files"] = files
-    # This needs to have "test" in name:
-    def test_method(self):
+
+    def test_method(self):  # This needs to have "test" in name
         out, err = self.call(*args)
         self.assertTrue(test_function(out, err, report_name, **options))
     return test_method
+
 
 class TestDynamic(unittest.TestCase):
     @classmethod
@@ -115,9 +121,10 @@ class TestDynamic(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         out, err = cls.call("-y", "--remove", TREE_NAME)
-        out, err = cls.call("-y", "--remove", TREE_NAME + "_import_gedcom")
+        # out, err = cls.call("-y", "--remove", TREE_NAME + "_import_gedcom")
 
 reports = ReportControl()
+
 
 def report_contains(text):
     def test_output_file(out, err, report_name, **options):
@@ -134,16 +141,19 @@ def report_contains(text):
                 elif os.path.isfile(filename):
                     os.remove(filename)
                 else:
-                    raise Exception("can't find '%s' in order to delete it" % filename)
+                    raise Exception("can't find '%s' in order to delete it" %
+                                    filename)
         elif os.path.isfile(report_name + "." + ext):
             os.remove(report_name + "." + ext)
         else:
-            raise Exception("can't find '%s' in order to delete it" % (report_name + "." + ext))
+            raise Exception("can't find '%s' in order to delete it" %
+                            (report_name + "." + ext))
         return text in contents
     return test_output_file
 
+
 def err_does_not_contain(text):
-    def test_output_file(out, err, report_name, **options):
+    def test_output_file(dummy, err, report_name, **options):
         if options.get("files", []):
             for filename in options.get("files", []):
                 if filename is None:
@@ -153,18 +163,21 @@ def err_does_not_contain(text):
                 elif os.path.isfile(filename):
                     os.remove(filename)
                 else:
-                    raise Exception("can't find '%s' in order to delete it" % filename)
+                    raise Exception("can't find '%s' in order to delete it" %
+                                    filename)
         else:
             ext = options["off"]
             if os.path.isfile(report_name + "." + ext):
                 os.remove(report_name + "." + ext)
             else:
-                raise Exception("can't find '%s' in order to delete it" % (report_name + "." + ext))
+                raise Exception("can't find '%s' in order to delete it" %
+                                (report_name + "." + ext))
         return text not in err
     return test_output_file
 
+
 def err_does_contain(text):
-    def test_output_file(out, err, report_name, **options):
+    def test_output_file(dummy, err, report_name, **options):
         if options.get("files", []):
             for filename in options.get("files", []):
                 if filename is None:
@@ -174,21 +187,24 @@ def err_does_contain(text):
                 elif os.path.isfile(filename):
                     os.remove(filename)
                 else:
-                    raise Exception("can't find '%s' in order to delete it" % filename)
+                    raise Exception("can't find '%s' in order to delete it" %
+                                    filename)
         else:
             ext = options["off"]
             if os.path.isfile(report_name + "." + ext):
                 os.remove(report_name + "." + ext)
             else:
-                raise Exception("can't find '%s' in order to delete it" % (report_name + "." + ext))
+                raise Exception("can't find '%s' in order to delete it" %
+                                (report_name + "." + ext))
         if isinstance(text, list):
             return all([(line in err) for line in text])
         else:
             return text in err
     return test_output_file
 
+
 def out_does_contain(text):
-    def test_output_file(out, err, report_name, **options):
+    def test_output_file(out, dummy, report_name, **options):
         if options.get("files", []):
             for filename in options.get("files", []):
                 if filename is None:
@@ -198,13 +214,15 @@ def out_does_contain(text):
                 elif os.path.isfile(filename):
                     os.remove(filename)
                 else:
-                    raise Exception("can't find '%s' in order to delete it" % filename)
+                    raise Exception("can't find '%s' in order to delete it" %
+                                    filename)
         else:
             ext = options["off"]
             if os.path.isfile(report_name + "." + ext):
                 os.remove(report_name + "." + ext)
             else:
-                raise Exception("can't find '%s' in order to delete it" % (report_name + "." + ext))
+                raise Exception("can't find '%s' in order to delete it" %
+                                (report_name + "." + ext))
         if isinstance(text, list):
             return all([(line in out) for line in text])
         else:
@@ -288,58 +306,58 @@ report_list = [
                                "ancestor_chart-4.svg",
                                "ancestor_chart-5.svg",
                                "ancestor_chart-6.svg",
-                           ]), # Ancestor Tree
-    ("ancestor_report", "txt", []), # Ahnentafel Report
-    ("birthday_report", "txt", []), # Birthday and Anniversary Report
+                               ]),  # Ancestor Tree
+    ("ancestor_report", "txt", []),  # Ahnentafel Report
+    ("birthday_report", "txt", []),  # Birthday and Anniversary Report
     ("calendar", "svg", ["calendar-10.svg", "calendar-11.svg",
                          "calendar-12.svg", "calendar-2.svg",
                          "calendar-3.svg", "calendar-4.svg",
                          "calendar-5.svg", "calendar-6.svg",
                          "calendar-7.svg", "calendar-8.svg",
-                         "calendar-9.svg", "calendar.svg"]), # Calendar
-    ("descend_chart", "svg", []), # Descendant Tree
-    ("descend_report", "txt", []), # Descendant Report
-    ("det_ancestor_report", "txt", []), # Detailed Ancestral Report
-    ("det_descendant_report", "txt", []), # Detailed Descendant Report
-    ("endofline_report", "txt", []), # End of Line Report
-    ("family_descend_chart", "svg", []), # Family Descendant Tree
-    ("family_group", "txt", []), # Family Group Report
-    ## COULD be dot ("familylines_graph", "dot", []), # Family Lines Graph
-    ("fan_chart", "svg", []), # Fan Chart
-    ## COULD be dot ("hourglass_graph", "dot", []), # Hourglass Graph
-    ("indiv_complete", "txt", []), # Complete Individual Report
-    ("kinship_report", "txt", []), # Kinship Report
-    ("notelinkreport", "txt", []), # Note Link Report
-    ("number_of_ancestors", "txt", []), # Number of Ancestors Report
-    ## NEED a place ("place_report", "txt", []), # Place Report
-    ("records", "txt", []), # Records Report
-    ## COULD be dot ("rel_graph", "dot", []), # Relationship Graph
-    ("statistics_chart", "svg", ["statistics_chart.svg",
+                         "calendar-9.svg", "calendar.svg"]),  # Calendar
+    ("descend_chart", "svg", []),  # Descendant Tree
+    ("descend_report", "txt", []),  # Descendant Report
+    ("det_ancestor_report", "txt", []),  # Detailed Ancestral Report
+    ("det_descendant_report", "txt", []),  # Detailed Descendant Report
+    ("endofline_report", "txt", []),  # End of Line Report
+    ("family_descend_chart", "svg", []),  # Family Descendant Tree
+    ("family_group", "txt", []),  # Family Group Report
+    # COULD be dot ("familylines_graph", "dot", []),  # Family Lines Graph
+    ("fan_chart", "svg", []),  # Fan Chart
+    # COULD be dot ("hourglass_graph", "dot", []),  # Hourglass Graph
+    ("indiv_complete", "txt", []),  # Complete Individual Report
+    ("kinship_report", "txt", []),  # Kinship Report
+    ("notelinkreport", "txt", []),  # Note Link Report
+    ("number_of_ancestors", "txt", []),  # Number of Ancestors Report
+    # NEED a place ("place_report", "txt", []),  # Place Report
+    ("records", "txt", []),  # Records Report
+    # COULD be dot ("rel_graph", "dot", []),  # Relationship Graph
+    ("statistics_chart", "svg", ["statistics_chart.svg",  # Statistics Charts
                                  "statistics_chart-2.svg",
-                                 "statistics_chart-3.svg"]), # Statistics Charts
-    ("summary", "txt", []), # Database Summary Report
-    ("timeline", "svg", ["timeline.svg", "timeline-2.svg"]), # Timeline Chart
+                                 "statistics_chart-3.svg"]),
+    ("summary", "txt", []),  # Database Summary Report
+    ("timeline", "svg", ["timeline.svg", "timeline-2.svg"]),  # Timeline Chart
 ]
 
-for (report_name, off, files) in report_list:
-    reports.addreport(TestDynamic, report_name,
+for (_report_name, _off, _files) in report_list:
+    reports.addreport(TestDynamic, _report_name,
                       err_does_not_contain("Failed to write report."),
-                      files=files,
-                      off=off)
+                      files=_files,
+                      off=_off)
 
+txt_list = [
+    "W: Early marriage, Family: F0000, Smith, Martin and Jefferson, Elna",
+    "W: Multiple parents, Person: I0061, Jones, Roberta Michele",
+    "W: Multiple parents, Person: I0063, Jones, Frank Albert",
+    "W: Multiple parents, Person: I0076, Smith, Marie Astri",
+    "W: Multiple parents, Person: I0077, Smith, Susan Elizabeth",
+    "W: Old age but no death, Person: I0004, Smith, Ingeman",
+    "W: Old age but no death, Person: I0009, Smith, Emil",
+    "W: Old age but no death, Person: I0011, Smith, Hanna",
+    "W: Old age but no death, Person: I0058, Smith, Elaine Marie",
+    "W: Old age but no death, Person: I0072, Iverson, Alice Hannah", ]
 reports.addcli(TestDynamic, "tool_verify",
-               out_does_contain([
-                                 "W: Early marriage, Family: F0000, Smith, Martin and Jefferson, Elna",
-                                 "W: Multiple parents, Person: I0061, Jones, Roberta Michele",
-                                 "W: Multiple parents, Person: I0063, Jones, Frank Albert",
-                                 "W: Multiple parents, Person: I0076, Smith, Marie Astri",
-                                 "W: Multiple parents, Person: I0077, Smith, Susan Elizabeth",
-                                 "W: Old age but no death, Person: I0004, Smith, Ingeman",
-                                 "W: Old age but no death, Person: I0009, Smith, Emil",
-                                 "W: Old age but no death, Person: I0011, Smith, Hanna",
-                                 "W: Old age but no death, Person: I0058, Smith, Elaine Marie",
-                                 "W: Old age but no death, Person: I0072, Iverson, Alice Hannah",
-                                ]),
+               out_does_contain(txt_list),
                [None],
                "--force",
                "-O", TREE_NAME,
@@ -347,9 +365,10 @@ reports.addcli(TestDynamic, "tool_verify",
                "--action", "tool",
                "--options", "name=verify")
 
+txt_list = ["6 media objects were referenced, but not found",
+            "References to 6 media objects were kept"]
 reports.addcli(TestDynamic, "tool_check",
-               out_does_contain(["6 media objects were referenced, but not found",
-                                 "References to 6 media objects were kept"]),
+               out_does_contain(txt_list),
                [None],
                "--force",
                "-O", TREE_NAME,
