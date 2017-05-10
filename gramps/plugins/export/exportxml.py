@@ -62,7 +62,6 @@ from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.exceptions import DbWriteFailure
 from gramps.version import VERSION
 from gramps.gen.constfunc import win
-from gramps.gui.plug.export import WriterOptionBox, WriterOptionBoxWithCompression
 import gramps.plugins.lib.libgrampsxml as libgrampsxml
 
 #-------------------------------------------------------------------------
