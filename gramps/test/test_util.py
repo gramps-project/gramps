@@ -254,6 +254,8 @@ class Gramps:
         self.clidbmanager = CLIDbManager(self.dbstate)
 
     def run(self, *args, stdin=None, bytesio=False):
+        logger = logging.getLogger()
+        old_level = logger.getEffectiveLevel()
         with capture(stdin, bytesio=bytesio) as output:
             try:
                 try:    # make sure we have user directories
@@ -276,7 +278,9 @@ class Gramps:
                 argparser.print_usage()
                 handler = ArgHandler(self.dbstate, argparser, self.climanager)
                 # create a manager to manage the database
+                logger.setLevel(logging.CRITICAL)
                 handler.handle_args_cli()
+                logger.setLevel(old_level)
                 if handler.dbstate.is_open():
                     handler.dbstate.db.close()
             except:
