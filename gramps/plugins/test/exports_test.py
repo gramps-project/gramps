@@ -35,10 +35,10 @@ TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 
 def call(*args):
     """ Call Gramps to perform the action with out and err captured """
-    print("call:", args)
+    #print("call:", args)
     gramps = Gramps(user=User())
     out, err = gramps.run(*args)
-    print("out:", out, "err:", err)
+    #print("out:", out, "err:", err)
     return out, err
 
 

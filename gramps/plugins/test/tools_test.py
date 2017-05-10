@@ -39,10 +39,9 @@ const.myrand = random.Random()
 
 def call(*args):
     """ Call Gramps to perform the action with out and err captured """
-    if __debug__:
-        print ("call: %s", args)
+    #if __debug__:
+        #print ("call: %s", args)
     gramps = Gramps(user=User())
-    # gramps = Gramps(user=User())
     out, err = gramps.run(*args)
     # print("out:", out, "err:", err)
     return out, err

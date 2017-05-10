@@ -25,6 +25,7 @@ import shutil
 
 from gramps.test.test_util import Gramps
 from gramps.gen.db.utils import open_database
+from gramps.gen.user import User
 
 ddir = os.path.dirname(__file__)
 example = os.path.join(ddir, "..", "..", "..",
@@ -40,10 +41,10 @@ class ReportControl:
         out, err = self.call("-y", "--remove", TREE_NAME + "_import_gedcom")
 
     def call(self, *args):
-        print("call:", args)
-        self.gramps = Gramps()
+        #print("call:", args)
+        self.gramps = Gramps(user=User())
         out, err = self.gramps.run(*args)
-        print("out:", out, "err:", err)
+        #print("out:", out, "err:", err)
         return out, err
 
     def __init__(self):
@@ -105,10 +106,10 @@ class TestDynamic(unittest.TestCase):
 
     @classmethod
     def call(cls, *args):
-        print("call:", args)
-        gramps = Gramps()
+        #print("call:", args)
+        gramps = Gramps(user=User())
         out, err = gramps.run(*args)
-        print("out:", out, "err:", err)
+        #print("out:", out, "err:", err)
         return out, err
 
     @classmethod
@@ -123,7 +124,7 @@ def report_contains(text):
         ext = options["off"]
         with open(report_name + "." + ext) as fp:
             contents = fp.read()
-        print(contents)
+        #print(contents)
         if options.get("files", []):
             for filename in options.get("files", []):
                 if filename is None:
