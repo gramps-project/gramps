@@ -95,6 +95,7 @@ class DetDescendantReport(Report):
         that come in the options class.
 
         gen           - Maximum number of generations to include.
+        inc_id        - Whether to include Gramps IDs
         pagebgg       - Whether to include page breaks between generations.
         pageben       - Whether to include page break before End Notes.
         fulldates     - Whether to use full dates instead of just year.
@@ -177,6 +178,7 @@ class DetDescendantReport(Report):
         self.inc_paths = get_value('incpaths')
         self.inc_ssign = get_value('incssign')
         self.inc_materef = get_value('incmateref')
+        self.want_ids = get_value('inc_id')
 
         pid = get_value('pid')
         self.center_person = self._db.get_person_from_gramps_id(pid)
@@ -439,6 +441,8 @@ class DetDescendantReport(Report):
         elif name:
             self.doc.write_text_citation("%s. " % self.endnotes(person))
         self.doc.end_bold()
+        if self.want_ids:
+            self.doc.write_text('(%s)' % person.get_gramps_id())
 
         if self.inc_paths:
             self.write_path(person)
@@ -597,6 +601,8 @@ class DetDescendantReport(Report):
                                                       self._name_display)
             if text:
                 self.doc.write_text_citation(text, spouse_mark)
+                if self.want_ids:
+                    self.doc.write_text('(%s)' % family.get_gramps_id())
                 is_first = False
 
     def __write_mate(self, person, family):
@@ -627,6 +633,8 @@ class DetDescendantReport(Report):
             if name[-1:] != '.':
                 self.doc.write_text(".")
             self.doc.write_text_citation(self.endnotes(mate))
+            if self.want_ids:
+                self.doc.write_text(' (%s)' % mate.get_gramps_id())
             self.doc.end_paragraph()
 
             if not self.inc_materef:
@@ -723,6 +731,8 @@ class DetDescendantReport(Report):
             cnt += 1
 
             self.doc.write_text("%s. " % child_name, child_mark)
+            if self.want_ids:
+                self.doc.write_text('(%s) ' % child.get_gramps_id())
             self.__narrator.set_subject(child)
             self.doc.write_text_citation(
                 self.__narrator.get_born_string() or
@@ -1026,6 +1036,8 @@ class DetDescendantOptions(MenuReportOptions):
         gen = NumberOption(_("Generations"), 10, 1, 100)
         gen.set_help(_("The number of generations to include in the report"))
         add_option("gen", gen)
+
+        stdoptions.add_gramps_id_option(menu, category)
 
         pagebbg = BooleanOption(_("Page break between generations"), False)
         pagebbg.set_help(

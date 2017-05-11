@@ -292,8 +292,11 @@ class AncestorOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", self.__pid)
 
         maxgen = NumberOption(_("Generations"), 10, 1, 100)
-        maxgen.set_help(_("The number of generations to include in the report"))
+        maxgen.set_help(
+            _("The number of generations to include in the report"))
         menu.add_option(category_name, "maxgen", maxgen)
+
+        stdoptions.add_gramps_id_option(menu, category_name)
 
         pagebbg = BooleanOption(_("Page break between generations"), False)
         pagebbg.set_help(
@@ -303,8 +306,6 @@ class AncestorOptions(MenuReportOptions):
         namebrk = BooleanOption(_("Add linebreak after each name"), False)
         namebrk.set_help(_("Whether a line break should follow the name."))
         menu.add_option(category_name, "namebrk", namebrk)
-
-        stdoptions.add_gramps_id_option(menu, category_name)
 
         category_name = _("Report Options (2)")
 
