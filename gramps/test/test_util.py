@@ -228,6 +228,9 @@ def capture(stdin, bytesio=False):
     if stdin:
         oldin = sys.stdin
         sys.stdin = stdin
+    logger = logging.getLogger()
+    old_level = logger.getEffectiveLevel()
+    logger.setLevel(logging.CRITICAL)
     try:
         output = [BytesIO() if bytesio else StringIO(), StringIO()]
         sys.stdout, sys.stderr = output
@@ -236,6 +239,7 @@ def capture(stdin, bytesio=False):
     except SystemExit:
         pass
     finally:
+        logger.setLevel(old_level)
         sys.stdout, sys.stderr = oldout, olderr
         sys.exit = oldexit
         if stdin:
