@@ -25,6 +25,7 @@ import unittest
 import os
 import sys
 import re
+import locale
 from time import localtime, strptime
 from unittest.mock import patch
 #import logging
@@ -48,6 +49,9 @@ TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 # ------------------------------------------------------------------
 #  Local Functions
 # ------------------------------------------------------------------
+
+# These tests assume a US date and time format.
+locale.setlocale(locale.LC_ALL, 'en_US.utf8')
 
 def mock_time(*args):
     """
