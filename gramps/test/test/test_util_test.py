@@ -184,29 +184,6 @@ class Test3(U.TestCase):
         else:
             self.fail("Skip deltree constraint test, no '$HOME' var")
 
-# logging (& misc?)
-class Test4(U.TestCase):
-    logf = "/tmp/__tu__log__"
-
-    def test4a(self):
-        wmsg = "a warning message"
-        emsg = "an error message"
-        import logging
-        # file logging helps with file capture of log-messages
-        tl = tu.TestLogger()
-        for i in (1,2):
-            # 2 passes to test clearing old file
-            tl.logfile_init(self.logf)
-            logging.warn(wmsg)
-            logging.info("nada")
-            logging.error(emsg)
-            ll = tl.logfile_getlines()
-            nl = len(ll)
-            print(repr(ll))
-            self.assertEquals(nl,2,
-                tu.msg(nl,2, "pass %d: expected line count" % i))
-            #del tl
-
 
 if __name__ == "__main__":
     U.main()
