@@ -166,7 +166,8 @@ class Test3(U.TestCase):
             self.assertTrue(os.path.isdir(s2), "made dir %r" % s2)
             f = os.path.join(s2,"test_file")
 
-            open(f,"w").write("testing..")
+            with open(f, "w") as fd:
+                fd.write("testing..")
             self.assertTrue(os.path.isfile(f), "file %r exists" % f)
             tu.delete_tree(sub)
             self.assertFalse(os.path.isdir(sub),
