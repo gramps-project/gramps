@@ -719,6 +719,7 @@ gramps/plugins/tool/relcalc.glade
 gramps/plugins/tool/relcalc.py
 gramps/plugins/tool/removeunused.glade
 gramps/plugins/tool/removeunused.py
+gramps/plugins/tool/reorderids.glade
 gramps/plugins/tool/reorderids.py
 gramps/plugins/tool/sortevents.py
 gramps/plugins/tool/testcasegenerator.py
