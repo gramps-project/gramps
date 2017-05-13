@@ -61,10 +61,11 @@ class PlaceWithin(Gtk.Box):
         self.last = ""
         # initial tooltip when no place already selected.
         self.tooltip = _('Matches places within a given distance'
-                         ' for the active place. You have no active place.')
+                         ' of the active place. You have no active place.')
         self.set_tooltip_text(self.tooltip)
         self.entry = Gtk.Entry()
         self.entry.set_max_length(3)
+        self.entry.set_width_chars(5)
         self.entry.connect('changed', self.entry_change)
         self.pack_start(self.entry, True, True, 0)
         self.unit = Gtk.ComboBoxText()

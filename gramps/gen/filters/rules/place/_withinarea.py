@@ -47,7 +47,7 @@ class WithinArea(Rule):
     Rule that checks for a place within an area
     """
 
-    labels      = [_('Id:'), _('Value:'), _('Units:')]
+    labels      = [_('ID:'), _('Value:'), _('Units:')]
     name        = _('Places within an area')
     description = _('Matches places within a given distance of another place')
     category    = _('Position filters')
