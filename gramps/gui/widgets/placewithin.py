@@ -58,13 +58,15 @@ class PlaceWithin(Gtk.Box):
         self.dbstate = dbstate
         self.uistate = uistate
         self.track = track
-        adj = Gtk.Adjustment(value=0, lower=0, upper=300,
-                             step_increment=1, page_increment=10, page_size=10)
-        # default value is 50.0, minimum is 10.0 and max is 300.0
-        self.slider = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL,
-                                adjustment=adj)
-        self.slider.connect('value-changed', self.slider_change)
-        self.pack_start(self.slider, True, True, 0)
+        self.last = ""
+        # initial tooltip when no place already selected.
+        self.tooltip = _('Matches places within a given distance'
+                         ' for the active place. You have no active place.')
+        self.set_tooltip_text(self.tooltip)
+        self.entry = Gtk.Entry()
+        self.entry.set_max_length(3)
+        self.entry.connect('changed', self.entry_change)
+        self.pack_start(self.entry, True, True, 0)
         self.unit = Gtk.ComboBoxText()
         list(map(self.unit.append_text,
             [ _('kilometers'), _('miles'), _('degrees') ]))
@@ -73,13 +75,18 @@ class PlaceWithin(Gtk.Box):
         self.show_all()
 
     def get_value(self):
-        return self.slider.get_value(), self.unit.get_active()
+        return int(self.entry.get_text()), self.unit.get_active()
 
     def set_value(self, value, unit):
-        self.slider.set_value(int(value))
+        self.entry.set_text(str(value))
         self.unit.set_active(int(unit))
 
-    def slider_change(self, value):
+    def entry_change(self, entry):
+        value = entry.get_text()
+        if value.isnumeric() or value == "":
+            self.last = value # This entry is numeric and valid.
+        else:
+            entry.set_text(self.last) # reset to the last valid entry
         _db = self.dbstate.db
         active_reference = self.uistate.get_active('Place')
         place_name = None
@@ -87,6 +94,6 @@ class PlaceWithin(Gtk.Box):
             place = _db.get_place_from_handle(active_reference)
             place_name = _pd.display(self.dbstate.db, place)
         if place_name is None:
-            self.set_tooltip_text(_('You have no active place'))
+            self.set_tooltip_text(self.tooltip)
         else:
             self.set_tooltip_text(place_name)

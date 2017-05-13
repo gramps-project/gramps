@@ -162,8 +162,10 @@ class PlaceSidebarFilter(SidebarFilter):
             if within and within[0] > 0 and self.dbstate.is_open():
                 rule = WithinArea([None, within[0], within[1]])
                 active_reference = self.uistate.get_active('Place')
+                place = self.dbstate.db.get_place_from_handle(active_reference)
                 if active_reference:
-                    rule = WithinArea([active_reference, within[0], within[1]])
+                    gid = place.get_gramps_id()
+                    rule = WithinArea([gid, within[0], within[1]])
                 generic_filter.add_rule(rule)
 
             # check the Tag

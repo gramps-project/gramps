@@ -224,7 +224,7 @@ class BaseTest(unittest.TestCase):
         """
         Test within area rule.
         """
-        rule = WithinArea(['KJUJQCY580EB77WIVO', 100, 0])
+        rule = WithinArea(['P1339', 100, 0])
         self.assertEqual(self.filter_with_rule(rule), set([
             b'KJUJQCY580EB77WIVO', b'TLVJQC4FD2CD9OYAXU', b'TE4KQCL9FDYA4PB6VW',
             b'W9GLQCSRJIQ9N2TGDF']))
