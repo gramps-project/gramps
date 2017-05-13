@@ -581,6 +581,9 @@ class EditRule(ManagedWindow):
                     long_days = displayer.long_days
                     days_of_week = long_days[2:] + long_days[1:2]
                     t = MyList(list(map(str, range(7))), days_of_week)
+                elif v == _('Units:'):
+                    t = MyList([0, 1, 2],
+                               [_('kilometers'), _('miles'), _('degrees')])
                 else:
                     t = MyEntry()
                 t.set_hexpand(True)

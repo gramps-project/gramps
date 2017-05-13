@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2016 Tom Samstag
+# Copyright (C) 2017 Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,7 +34,9 @@ from ..place import (
     AllPlaces, HasCitation, HasGallery, HasIdOf, RegExpIdOf, HasNote,
     HasNoteRegexp, HasReferenceCountOf, HasSourceCount, HasSourceOf,
     PlacePrivate, MatchesSourceConfidence, HasData, HasNoLatOrLon,
-    InLatLonNeighborhood, ChangedSince, HasTag, HasTitle, IsEnclosedBy)
+    InLatLonNeighborhood, ChangedSince, HasTag, HasTitle, IsEnclosedBy,
+    WithinArea
+    )
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
@@ -216,6 +219,15 @@ class BaseTest(unittest.TestCase):
             b'EAFKQCR0ED5QWL87EO', b'S22LQCLUZM135LVKRL', b'VDUJQCFP24ZV3O4ID2',
             b'V6ALQCZZFN996CO4D', b'OC6LQCXMKP6NUVYQD8', b'CUUKQC6BY5LAZXLXC6',
             b'PTFKQCKPHO2VC5SYKS', b'PHUJQCJ9R4XQO5Y0WS']))
+
+    def test_withinarea(self):
+        """
+        Test within area rule.
+        """
+        rule = WithinArea(['P1339', 100, 0])
+        self.assertEqual(self.filter_with_rule(rule), set([
+            b'KJUJQCY580EB77WIVO', b'TLVJQC4FD2CD9OYAXU', b'TE4KQCL9FDYA4PB6VW',
+            b'W9GLQCSRJIQ9N2TGDF']))
 
     def test_isenclosedby_inclusive(self):
         """
