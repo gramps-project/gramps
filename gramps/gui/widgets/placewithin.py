@@ -76,7 +76,10 @@ class PlaceWithin(Gtk.Box):
         self.show_all()
 
     def get_value(self):
-        return int(self.entry.get_text()), self.unit.get_active()
+        value = self.entry.get_text()
+        if value == "":
+            value = "0"
+        return int(value), self.unit.get_active()
 
     def set_value(self, value, unit):
         self.entry.set_text(str(value))
