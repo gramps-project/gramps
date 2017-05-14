@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-14 08:24+0200\n"
+"POT-Creation-Date: 2017-05-14 12:07-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3097,6 +3097,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_matchidof.py:44
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:45
 #: ../gramps/gen/filters/rules/place/_isenclosedby.py:48
+#: ../gramps/gen/filters/rules/place/_withinarea.py:50
 #: ../gramps/gui/editors/filtereditor.py:517
 #: ../gramps/gui/glade/editplaceref.glade:244
 msgid "ID:"
@@ -3492,6 +3493,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:44
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:44
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:44
+#: ../gramps/gen/filters/rules/place/_withinarea.py:50
 msgid "Value:"
 msgstr ""
 
@@ -5252,6 +5254,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:50
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:56
+#: ../gramps/gen/filters/rules/place/_withinarea.py:53
 msgid "Position filters"
 msgstr ""
 
@@ -5432,6 +5435,19 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:48
 msgid "Matches places whose Gramps ID matches the regular expression"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/place/_withinarea.py:50
+#: ../gramps/gui/editors/filtereditor.py:584
+msgid "Units:"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/place/_withinarea.py:51
+msgid "Places within an area"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/place/_withinarea.py:52
+msgid "Matches places within a given distance of another place"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
@@ -13069,19 +13085,18 @@ msgstr ""
 msgid "Only include primary participants"
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:584
-msgid "Units:"
-msgstr ""
-
 #: ../gramps/gui/editors/filtereditor.py:586
+#: ../gramps/gui/widgets/placewithin.py:73
 msgid "degrees"
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:586
+#: ../gramps/gui/widgets/placewithin.py:73
 msgid "kilometers"
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:586
+#: ../gramps/gui/widgets/placewithin.py:73
 msgid "miles"
 msgstr ""
 
@@ -17803,6 +17818,13 @@ msgstr ""
 
 #: ../gramps/gui/widgets/photo.py:87
 msgid "Make Active Media"
+msgstr ""
+
+#. initial tooltip when no place already selected.
+#: ../gramps/gui/widgets/placewithin.py:63
+msgid ""
+"Matches places within a given distance of the active place. You have no "
+"active place."
 msgstr ""
 
 #: ../gramps/gui/widgets/progressdialog.py:298
