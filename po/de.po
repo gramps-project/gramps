@@ -3,27 +3,27 @@
 # This file is distributed under the same license as the Gramps package.
 # translation of de.po to Deutsch
 #
+#
 # Anton Huber <anton_huber@gmx.de>, 2005,2006.
 # Sebastian Vöcking <sebastian_voecking@gmx.de>, 2005.
 # Sebastian Vöcking <voeck@web.de>, 2005.
 # Martin Hawlisch <martin@hawlisch.de>, 2005, 2006.
 # Alex Roitman <shura@gramps-project.org>, 2006.
-# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016.
+# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
 # Alois Pöttker <alois.poettker@gmx.de>, 2017.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-14 08:24+0200\n"
-"PO-Revision-Date: 2017-05-14 08:39+0200\n"
-"Last-Translator: Alois Pöttker <alois.poettker@gmx.de>\n"
-"Language-Team: Deutsch <>\n"
+"POT-Creation-Date: 2017-05-14 17:43+0200\n"
+"PO-Revision-Date: 2017-05-14 18:15+0100\n"
+"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Lokalize 2.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -1797,8 +1797,7 @@ msgstr "Gesperrt durch %s"
 #: ../gramps/plugins/view/geomoves.py:596
 #: ../gramps/plugins/view/geoperson.py:480
 #: ../gramps/plugins/view/geoplaces.py:526
-#: ../gramps/plugins/view/relview.py:468
-#: ../gramps/plugins/view/relview.py:1008
+#: ../gramps/plugins/view/relview.py:468 ../gramps/plugins/view/relview.py:1008
 #: ../gramps/plugins/view/relview.py:1065
 #: ../gramps/plugins/webreport/narrativeweb.py:2192
 #: ../gramps/plugins/webreport/narrativeweb.py:2221
@@ -1974,9 +1973,9 @@ msgstr "Der zu verwendende css Dateiname darf nur im html Format sein"
 
 #. translators: needed for French, Hebrew and Arabic
 #: ../gramps/cli/plug/__init__.py:402
-#, fuzzy, python-format
+#, python-format
 msgid "%(id)s:\t%(father)s, %(mother)s"
-msgstr "%(gramps_id)s : %(father)s und %(mother)s"
+msgstr "%(id)s:\t%(father)s, %(mother)s"
 
 #: ../gramps/cli/plug/__init__.py:447
 #, python-format
@@ -2916,38 +2915,32 @@ msgstr "Samstag"
 
 #. Icelandic needs them
 #: ../gramps/gen/datehandler/_datestrings.py:252
-#, fuzzy
 msgid "Sun"
-msgstr "Starten"
+msgstr "So."
 
 #: ../gramps/gen/datehandler/_datestrings.py:253
-#, fuzzy
 msgid "Mon"
-msgstr "Männer"
+msgstr "Mo."
 
 #: ../gramps/gen/datehandler/_datestrings.py:254
-#, fuzzy
 msgid "Tue"
-msgstr "Wahr"
+msgstr "Di."
 
 #: ../gramps/gen/datehandler/_datestrings.py:255
-#, fuzzy
 msgid "Wed"
-msgstr "rot"
+msgstr "Mi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:256
 msgid "Thu"
-msgstr ""
+msgstr "Do."
 
 #: ../gramps/gen/datehandler/_datestrings.py:257
-#, fuzzy
 msgid "Fri"
-msgstr "Freitag"
+msgstr "Fr."
 
 #: ../gramps/gen/datehandler/_datestrings.py:258
-#, fuzzy
 msgid "Sat"
-msgstr "Bundesland"
+msgstr "Sa."
 
 #: ../gramps/gen/db/base.py:1775 ../gramps/gui/widgets/fanchart.py:1761
 msgid "Add child to family"
@@ -3460,9 +3453,8 @@ msgstr ""
 
 #: ../gramps/gen/filters/_genericfilter.py:139
 #: ../gramps/gen/filters/_genericfilter.py:169
-#, fuzzy
 msgid "Applying ..."
-msgstr "Wende Filter an..."
+msgstr "Anwendung ..."
 
 #. #########################
 #. ###############################
@@ -5419,9 +5411,8 @@ msgid "Name:"
 msgstr "Name:"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:42
-#, fuzzy
 msgid "Soundex match of People with the <name>"
-msgstr "Personen mit dem <Namen>"
+msgstr "Soundex passt auf Personen mit dem <Namen>"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:43
 msgid ""
@@ -6506,8 +6497,7 @@ msgstr "Gesellschaftsklasse"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:75
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:104
-#: ../gramps/gui/glade/rule.glade:931
-#: ../gramps/gui/glade/styleeditor.glade:262
+#: ../gramps/gui/glade/rule.glade:931 ../gramps/gui/glade/styleeditor.glade:262
 #: ../gramps/gui/plug/_windows.py:134 ../gramps/gui/plug/_windows.py:243
 #: ../gramps/gui/plug/_windows.py:620 ../gramps/gui/plug/_windows.py:1105
 #: ../gramps/gui/selectors/selectevent.py:73
@@ -6806,8 +6796,7 @@ msgstr "Quelle"
 #: ../gramps/plugins/quickview/filterbyname.py:137
 #: ../gramps/plugins/textreport/indivcomplete.py:261
 #: ../gramps/plugins/textreport/tagreport.py:486
-#: ../gramps/plugins/view/noteview.py:110
-#: ../gramps/plugins/view/view.gpr.py:97
+#: ../gramps/plugins/view/noteview.py:110 ../gramps/plugins/view/view.gpr.py:97
 #: ../gramps/plugins/view/view.gpr.py:105
 #: ../gramps/plugins/webreport/narrativeweb.py:1044
 #: ../gramps/plugins/webreport/narrativeweb.py:1679
@@ -6929,8 +6918,8 @@ msgstr "Markierungen"
 #: ../gramps/plugins/view/citationtreeview.py:97
 #: ../gramps/plugins/view/eventview.py:87
 #: ../gramps/plugins/view/familyview.py:84
-#: ../gramps/plugins/view/mediaview.py:99
-#: ../gramps/plugins/view/noteview.py:82 ../gramps/plugins/view/repoview.py:97
+#: ../gramps/plugins/view/mediaview.py:99 ../gramps/plugins/view/noteview.py:82
+#: ../gramps/plugins/view/repoview.py:97
 #: ../gramps/plugins/view/sourceview.py:87
 msgid "Private"
 msgstr "Vertraulich"
@@ -7160,9 +7149,8 @@ msgid "Citations"
 msgstr "Fundstellen"
 
 #: ../gramps/gen/lib/eventref.py:95
-#, fuzzy
 msgid "Event reference"
-msgstr "Ereignisreferenzen"
+msgstr "Ereignisreferenz"
 
 #: ../gramps/gen/lib/eventref.py:106 ../gramps/gen/lib/family.py:171
 #: ../gramps/gen/lib/media.py:152 ../gramps/gen/lib/person.py:212
@@ -7223,8 +7211,7 @@ msgstr "Lebensereignisse"
 #: ../gramps/gui/clipboard.py:771 ../gramps/gui/configure.py:537
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
-#: ../gramps/gui/editors/editfamily.py:499
-#: ../gramps/gui/editors/editlink.py:93
+#: ../gramps/gui/editors/editfamily.py:499 ../gramps/gui/editors/editlink.py:93
 #: ../gramps/gui/editors/filtereditor.py:294
 #: ../gramps/gui/glade/editldsord.glade:267
 #: ../gramps/plugins/export/exportcsv.py:506
@@ -7801,8 +7788,8 @@ msgstr "Verheiratet"
 #: ../gramps/plugins/tool/patchnames.py:407
 #: ../gramps/plugins/tool/sortevents.py:55
 #: ../gramps/plugins/view/eventview.py:84
-#: ../gramps/plugins/view/mediaview.py:96
-#: ../gramps/plugins/view/noteview.py:81 ../gramps/plugins/view/repoview.py:87
+#: ../gramps/plugins/view/mediaview.py:96 ../gramps/plugins/view/noteview.py:81
+#: ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/webreport/narrativeweb.py:1351
 #: ../gramps/plugins/webreport/narrativeweb.py:1677
 #: ../gramps/plugins/webreport/narrativeweb.py:2503
@@ -7857,9 +7844,8 @@ msgid "Completed"
 msgstr "Abgeschlossen"
 
 #: ../gramps/gen/lib/ldsord.py:109
-#, fuzzy
 msgid "Do not seal"
-msgstr "Baum nicht skalieren"
+msgstr ""
 
 #: ../gramps/gen/lib/ldsord.py:110
 msgid "Infant"
@@ -7874,9 +7860,8 @@ msgid "Qualified"
 msgstr "Qualifiziert"
 
 #: ../gramps/gen/lib/ldsord.py:113
-#, fuzzy
 msgid "Do not seal/Cancel"
-msgstr "Nicht wieder fragen"
+msgstr ""
 
 #: ../gramps/gen/lib/ldsord.py:114
 msgid "Stillborn"
@@ -8345,8 +8330,7 @@ msgstr "Geburt Referenzindex"
 msgid "Event references"
 msgstr "Ereignisreferenzen"
 
-#: ../gramps/gen/lib/person.py:199
-#: ../gramps/plugins/graph/gvfamilylines.py:285
+#: ../gramps/gen/lib/person.py:199 ../gramps/plugins/graph/gvfamilylines.py:285
 #: ../gramps/plugins/graph/gvhourglass.py:379
 #: ../gramps/plugins/graph/gvrelgraph.py:894
 #: ../gramps/plugins/quickview/filterbyname.py:94
@@ -8441,7 +8425,7 @@ msgstr "Alternative Ortsangaben"
 
 #: ../gramps/gen/lib/place.py:163 ../gramps/gen/lib/repo.py:106
 msgid "URLs"
-msgstr ""
+msgstr "URLs"
 
 #: ../gramps/gen/lib/placetype.py:65 ../gramps/gui/configure.py:521
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:76
@@ -8631,9 +8615,8 @@ msgid "Author"
 msgstr "Autor"
 
 #: ../gramps/gen/lib/src.py:110
-#, fuzzy
 msgid "Publication info"
-msgstr "Veröffentlichungsformat"
+msgstr "Veröffentlichungsinformation"
 
 #: ../gramps/gen/lib/src.py:119
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
@@ -8643,8 +8626,7 @@ msgstr "Veröffentlichungsformat"
 msgid "Abbreviation"
 msgstr "Abkürzung"
 
-#: ../gramps/gen/lib/src.py:127
-#: ../gramps/plugins/quickview/filterbyname.py:106
+#: ../gramps/gen/lib/src.py:127 ../gramps/plugins/quickview/filterbyname.py:106
 #: ../gramps/plugins/quickview/filterbyname.py:131
 #: ../gramps/plugins/textreport/tagreport.py:639
 #: ../gramps/plugins/view/repoview.py:129
@@ -8711,9 +8693,8 @@ msgid "Video"
 msgstr "Video"
 
 #: ../gramps/gen/lib/styledtext.py:304
-#, fuzzy
 msgid "Styled Text"
-msgstr "Gestylter Texteditor"
+msgstr "Gestylter Text"
 
 #: ../gramps/gen/lib/styledtext.py:308
 #: ../gramps/gen/plug/report/_constants.py:53 ../gramps/gui/clipboard.py:637
@@ -8801,7 +8782,6 @@ msgid "Prefix"
 msgstr "Präfix"
 
 #: ../gramps/gen/lib/surname.py:95
-#, fuzzy
 msgid "Primary"
 msgstr "Primär"
 
@@ -8835,7 +8815,7 @@ msgstr "Farbe"
 
 #: ../gramps/gen/lib/tag.py:128
 msgid "Priority"
-msgstr ""
+msgstr "Priorität"
 
 #: ../gramps/gen/lib/urltype.py:49
 msgid "E-mail"
@@ -8896,8 +8876,7 @@ msgstr "Familien zusammenfassen"
 msgid "Merge Media Objects"
 msgstr "Medienobjekte zusammenfassen"
 
-#: ../gramps/gen/merge/mergenotequery.py:58
-#: ../gramps/gui/merge/mergenote.py:66
+#: ../gramps/gen/merge/mergenotequery.py:58 ../gramps/gui/merge/mergenote.py:66
 msgid "Merge Notes"
 msgstr "Notizen zusammenfassen"
 
@@ -9493,8 +9472,7 @@ msgstr "Gültige Werte:"
 #.
 #. ------------------------------------------------------------------------
 #: ../gramps/gen/plug/report/_book.py:71 ../gramps/gui/plug/_dialogs.py:59
-#: ../gramps/gui/plug/report/_bookdialog.py:84
-#: ../gramps/gui/viewmanager.py:113
+#: ../gramps/gui/plug/report/_bookdialog.py:84 ../gramps/gui/viewmanager.py:113
 msgid "Unsupported"
 msgstr "Nicht unterstützt"
 
@@ -9599,8 +9577,7 @@ msgstr "Schlussnotizen"
 #: ../gramps/plugins/view/relview.py:614 ../gramps/plugins/view/relview.py:631
 #: ../gramps/plugins/view/relview.py:641 ../gramps/plugins/view/relview.py:646
 #: ../gramps/plugins/view/relview.py:654 ../gramps/plugins/view/relview.py:862
-#: ../gramps/plugins/view/relview.py:898
-#: ../gramps/plugins/view/relview.py:1378
+#: ../gramps/plugins/view/relview.py:898 ../gramps/plugins/view/relview.py:1378
 #: ../gramps/plugins/view/relview.py:1402
 #, python-format
 msgid "%s:"
@@ -9711,9 +9688,8 @@ msgid "Include"
 msgstr "Einbeziehen"
 
 #: ../gramps/gen/plug/report/stdoptions.py:328
-#, fuzzy
 msgid "Whether to include Gramps IDs"
-msgstr "Ob (und wo) Gramps IDs enthalten sind"
+msgstr "Ob Gramps IDs enthalten sind"
 
 #: ../gramps/gen/plug/report/utils.py:158
 #: ../gramps/plugins/textreport/indivcomplete.py:902
@@ -9771,18 +9747,15 @@ msgstr "Vorfahren von %s"
 msgid "People with common ancestor with %s"
 msgstr "Personen mit gemeinsamen Vorfahren wie %s"
 
-#: ../gramps/gen/plug/report/utils.py:354
-#: ../gramps/gui/plug/_guioptions.py:891
+#: ../gramps/gen/plug/report/utils.py:354 ../gramps/gui/plug/_guioptions.py:891
 msgid "unknown father"
 msgstr "unbekannter Vater"
 
-#: ../gramps/gen/plug/report/utils.py:360
-#: ../gramps/gui/plug/_guioptions.py:897
+#: ../gramps/gen/plug/report/utils.py:360 ../gramps/gui/plug/_guioptions.py:897
 msgid "unknown mother"
 msgstr "unbekannte Mutter"
 
-#: ../gramps/gen/plug/report/utils.py:362
-#: ../gramps/gui/plug/_guioptions.py:899
+#: ../gramps/gen/plug/report/utils.py:362 ../gramps/gui/plug/_guioptions.py:899
 #, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
 msgstr "%(father_name)s und %(mother_name)s (%(family_id)s)"
@@ -10025,13 +9998,11 @@ msgstr ""
 "Für diese Sprache '%s' ist keine Übersetzung der Familienbeziehungen "
 "verfügbar.Verwende stattdessen Englisch."
 
-#: ../gramps/gen/utils/alive.py:148
-#: ../gramps/plugins/importer/importcsv.py:201
+#: ../gramps/gen/utils/alive.py:148 ../gramps/plugins/importer/importcsv.py:201
 msgid "death date"
 msgstr "Sterbedatum"
 
-#: ../gramps/gen/utils/alive.py:153
-#: ../gramps/plugins/importer/importcsv.py:177
+#: ../gramps/gen/utils/alive.py:153 ../gramps/plugins/importer/importcsv.py:177
 msgid "birth date"
 msgstr "Geburtsdatum"
 
@@ -10851,9 +10822,8 @@ msgstr "Namenseditor anzeigen"
 #: ../gramps/gui/glade/displaystate.glade:23
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
-#: ../gramps/gui/glade/updateaddons.glade:25
-#: ../gramps/gui/plug/_windows.py:105 ../gramps/gui/plug/_windows.py:691
-#: ../gramps/gui/plug/_windows.py:747
+#: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/plug/_windows.py:105
+#: ../gramps/gui/plug/_windows.py:691 ../gramps/gui/plug/_windows.py:747
 #: ../gramps/gui/plug/quick/_textbufdoc.py:60 ../gramps/gui/undohistory.py:90
 #: ../gramps/gui/viewmanager.py:515 ../gramps/gui/viewmanager.py:1696
 #: ../gramps/gui/views/bookmarks.py:287 ../gramps/gui/views/tags.py:430
@@ -10958,7 +10928,7 @@ msgstr "Ungültige oder unvollständige Formatfestlegung."
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:84
 #, python-format
 msgid "%s: "
-msgstr ""
+msgstr "%s: "
 
 #: ../gramps/gui/configure.py:513
 msgid ""
@@ -11127,8 +11097,8 @@ msgstr "Beispiel"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:129
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:115
 #: ../gramps/gui/editors/editfamily.py:148
-#: ../gramps/gui/plug/report/_bookdialog.py:653
-#: ../gramps/gui/views/tags.py:422 ../gramps/gui/widgets/fanchart.py:1712
+#: ../gramps/gui/plug/report/_bookdialog.py:653 ../gramps/gui/views/tags.py:422
+#: ../gramps/gui/widgets/fanchart.py:1712
 #: ../gramps/gui/widgets/fanchart.py:1754
 #: ../gramps/plugins/view/pedigreeview.py:1627
 msgid "_Add"
@@ -11431,9 +11401,8 @@ msgid "Always"
 msgstr "Immer"
 
 #: ../gramps/gui/configure.py:1375
-#, fuzzy
 msgid "Check for addon updates"
-msgstr "Nach Aktualisierungen suchen"
+msgstr "Nach Aktualisierungen für Erweiterungen suchen"
 
 #: ../gramps/gui/configure.py:1381
 msgid "Updated addons only"
@@ -11460,9 +11429,8 @@ msgid "Do not ask about previously notified addons"
 msgstr "Bereits aktualisierte Erweiterungen nicht erneut abfragen"
 
 #: ../gramps/gui/configure.py:1407
-#, fuzzy
 msgid "Check for updated addons now"
-msgstr "Nach Aktualisierungen suchen"
+msgstr "Jetzt nach Aktualisierungen für Erweiterungen suchen"
 
 #: ../gramps/gui/configure.py:1417
 msgid "Checking Addons Failed"
@@ -11548,8 +11516,7 @@ msgstr "Wähle ein Medienverzeichnis"
 #: ../gramps/gui/glade/editattribute.glade:21
 #: ../gramps/gui/glade/editchildref.glade:22
 #: ../gramps/gui/glade/editcitation.glade:42
-#: ../gramps/gui/glade/editdate.glade:69
-#: ../gramps/gui/glade/editevent.glade:21
+#: ../gramps/gui/glade/editdate.glade:69 ../gramps/gui/glade/editevent.glade:21
 #: ../gramps/gui/glade/editeventref.glade:38
 #: ../gramps/gui/glade/editfamily.glade:21
 #: ../gramps/gui/glade/editldsord.glade:39
@@ -11565,8 +11532,7 @@ msgstr "Wähle ein Medienverzeichnis"
 #: ../gramps/gui/glade/editplaceref.glade:38
 #: ../gramps/gui/glade/editreporef.glade:22
 #: ../gramps/gui/glade/editrepository.glade:22
-#: ../gramps/gui/glade/editsource.glade:23
-#: ../gramps/gui/glade/editurl.glade:21
+#: ../gramps/gui/glade/editsource.glade:23 ../gramps/gui/glade/editurl.glade:21
 #: ../gramps/gui/glade/mergecitation.glade:21
 #: ../gramps/gui/glade/mergedata.glade:25
 #: ../gramps/gui/glade/mergedata.glade:246
@@ -11681,9 +11647,8 @@ msgid "Select file _type:"
 msgstr "Datei_typ auswählen:"
 
 #: ../gramps/gui/dbloader.py:387
-#, fuzzy
 msgid "Import Family Tree"
-msgstr "Gramp: Stammbaum Import"
+msgstr "Stammbaum importieren"
 
 #: ../gramps/gui/dbloader.py:398
 msgid "Import"
@@ -11755,15 +11720,13 @@ msgstr "Datumsinformation"
 
 #: ../gramps/gui/dbman.py:121 ../gramps/gui/editors/edittaglist.py:120
 #: ../gramps/gui/glade/addmedia.glade:38
-#: ../gramps/gui/glade/baseselector.glade:40
-#: ../gramps/gui/glade/book.glade:482 ../gramps/gui/glade/book.glade:555
-#: ../gramps/gui/glade/configure.glade:39 ../gramps/gui/glade/dbman.glade:24
-#: ../gramps/gui/glade/editaddress.glade:36
+#: ../gramps/gui/glade/baseselector.glade:40 ../gramps/gui/glade/book.glade:482
+#: ../gramps/gui/glade/book.glade:555 ../gramps/gui/glade/configure.glade:39
+#: ../gramps/gui/glade/dbman.glade:24 ../gramps/gui/glade/editaddress.glade:36
 #: ../gramps/gui/glade/editattribute.glade:37
 #: ../gramps/gui/glade/editchildref.glade:38
 #: ../gramps/gui/glade/editcitation.glade:57
-#: ../gramps/gui/glade/editdate.glade:85
-#: ../gramps/gui/glade/editevent.glade:40
+#: ../gramps/gui/glade/editdate.glade:85 ../gramps/gui/glade/editevent.glade:40
 #: ../gramps/gui/glade/editeventref.glade:54
 #: ../gramps/gui/glade/editfamily.glade:40
 #: ../gramps/gui/glade/editldsord.glade:55
@@ -11779,8 +11742,7 @@ msgstr "Datumsinformation"
 #: ../gramps/gui/glade/editplaceref.glade:54
 #: ../gramps/gui/glade/editreporef.glade:41
 #: ../gramps/gui/glade/editrepository.glade:40
-#: ../gramps/gui/glade/editsource.glade:40
-#: ../gramps/gui/glade/editurl.glade:37
+#: ../gramps/gui/glade/editsource.glade:40 ../gramps/gui/glade/editurl.glade:37
 #: ../gramps/gui/glade/mergecitation.glade:37
 #: ../gramps/gui/glade/mergedata.glade:262
 #: ../gramps/gui/glade/mergedata.glade:451
@@ -11794,14 +11756,12 @@ msgstr "Datumsinformation"
 #: ../gramps/gui/glade/mergerepository.glade:37
 #: ../gramps/gui/glade/mergesource.glade:37
 #: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
-#: ../gramps/gui/glade/rule.glade:764
-#: ../gramps/gui/glade/styleeditor.glade:103
+#: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1738
 #: ../gramps/gui/plug/_guioptions.py:79
 #: ../gramps/gui/plug/report/_reportdialog.py:165 ../gramps/gui/utils.py:192
 #: ../gramps/gui/viewmanager.py:1698 ../gramps/gui/views/tags.py:646
-#: ../gramps/plugins/tool/check.py:770
-#: ../gramps/plugins/tool/patchnames.py:118
+#: ../gramps/plugins/tool/check.py:770 ../gramps/plugins/tool/patchnames.py:118
 #: ../gramps/plugins/tool/populatesources.py:91
 #: ../gramps/plugins/tool/testcasegenerator.py:328
 msgid "_OK"
@@ -12304,15 +12264,13 @@ msgstr "_Attribute"
 #: ../gramps/plugins/tool/notrelated.py:127
 #: ../gramps/plugins/tool/patchnames.py:404
 #: ../gramps/plugins/tool/removeunused.py:195
-#: ../gramps/plugins/tool/sortevents.py:56
-#: ../gramps/plugins/tool/verify.py:571
+#: ../gramps/plugins/tool/sortevents.py:56 ../gramps/plugins/tool/verify.py:571
 #: ../gramps/plugins/view/citationlistview.py:99
 #: ../gramps/plugins/view/citationtreeview.py:94
 #: ../gramps/plugins/view/eventview.py:83
 #: ../gramps/plugins/view/familyview.py:79
-#: ../gramps/plugins/view/mediaview.py:95
-#: ../gramps/plugins/view/noteview.py:80 ../gramps/plugins/view/relview.py:602
-#: ../gramps/plugins/view/repoview.py:86
+#: ../gramps/plugins/view/mediaview.py:95 ../gramps/plugins/view/noteview.py:80
+#: ../gramps/plugins/view/relview.py:602 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/view/sourceview.py:83
 msgid "ID"
 msgstr "ID"
@@ -13743,8 +13701,7 @@ msgid "Add Person (%s)"
 msgstr "Person (%s) hinzufügen"
 
 #: ../gramps/gui/editors/editperson.py:866
-#: ../gramps/plugins/view/relview.py:580
-#: ../gramps/plugins/view/relview.py:1002
+#: ../gramps/plugins/view/relview.py:580 ../gramps/plugins/view/relview.py:1002
 #: ../gramps/plugins/view/relview.py:1059
 #: ../gramps/plugins/view/relview.py:1183
 #: ../gramps/plugins/view/relview.py:1288
@@ -13802,8 +13759,7 @@ msgid "manual|Place_Editor_dialog"
 msgstr "Ortsnamenseditor_Dialog"
 
 #: ../gramps/gui/editors/editplace.py:91
-#: ../gramps/gui/glade/editplace.glade:354
-#: ../gramps/gui/merge/mergeplace.py:55
+#: ../gramps/gui/glade/editplace.glade:354 ../gramps/gui/merge/mergeplace.py:55
 msgid "place|Name:"
 msgstr "Ortsname:"
 
@@ -14044,8 +14000,7 @@ msgstr "Markierungenauswahl"
 #: ../gramps/gui/glade/editattribute.glade:54
 #: ../gramps/gui/glade/editchildref.glade:58
 #: ../gramps/gui/glade/editcitation.glade:27
-#: ../gramps/gui/glade/editdate.glade:53
-#: ../gramps/gui/glade/editevent.glade:58
+#: ../gramps/gui/glade/editdate.glade:53 ../gramps/gui/glade/editevent.glade:58
 #: ../gramps/gui/glade/editeventref.glade:22
 #: ../gramps/gui/glade/editfamily.glade:60
 #: ../gramps/gui/glade/editldsord.glade:75
@@ -14061,8 +14016,7 @@ msgstr "Markierungenauswahl"
 #: ../gramps/gui/glade/editplaceref.glade:22
 #: ../gramps/gui/glade/editreporef.glade:61
 #: ../gramps/gui/glade/editrepository.glade:59
-#: ../gramps/gui/glade/editsource.glade:58
-#: ../gramps/gui/glade/editurl.glade:57
+#: ../gramps/gui/glade/editsource.glade:58 ../gramps/gui/glade/editurl.glade:57
 #: ../gramps/gui/glade/mergecitation.glade:53
 #: ../gramps/gui/glade/mergedata.glade:77
 #: ../gramps/gui/glade/mergedata.glade:278
@@ -14188,9 +14142,8 @@ msgid "Use regular expression"
 msgstr "Regulären Ausdruck benutzen"
 
 #: ../gramps/gui/editors/filtereditor.py:568
-#, fuzzy
 msgid "Also family events where person is spouse"
-msgstr "Auch Familienereignisse bei denen die Person Frau/Mann ist"
+msgstr "Auch Familienereignisse bei denen die Person Partner(in) ist"
 
 #: ../gramps/gui/editors/filtereditor.py:570
 msgid "Only include primary participants"
@@ -14198,21 +14151,19 @@ msgstr "Nur Hauptbeteiligte aufnehmen"
 
 #: ../gramps/gui/editors/filtereditor.py:584
 msgid "Units:"
-msgstr ""
+msgstr "Einheiten:"
 
 #: ../gramps/gui/editors/filtereditor.py:586
-#, fuzzy
 msgid "degrees"
-msgstr "Akademischer Grad"
+msgstr "Grad"
 
 #: ../gramps/gui/editors/filtereditor.py:586
 msgid "kilometers"
-msgstr ""
+msgstr "Kilometer"
 
 #: ../gramps/gui/editors/filtereditor.py:586
-#, fuzzy
 msgid "miles"
-msgstr "Familien"
+msgstr "Meilen"
 
 #: ../gramps/gui/editors/filtereditor.py:597
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:76
@@ -14252,8 +14203,7 @@ msgid "Rule Name"
 msgstr "Regelname"
 
 #: ../gramps/gui/editors/filtereditor.py:758
-#: ../gramps/gui/editors/filtereditor.py:762
-#: ../gramps/gui/glade/rule.glade:914
+#: ../gramps/gui/editors/filtereditor.py:762 ../gramps/gui/glade/rule.glade:914
 msgid "No rule selected"
 msgstr "Keine Regel ausgewählt"
 
@@ -14261,8 +14211,7 @@ msgstr "Keine Regel ausgewählt"
 msgid "Define filter"
 msgstr "Filter definieren"
 
-#: ../gramps/gui/editors/filtereditor.py:820
-#: ../gramps/gui/glade/rule.glade:967
+#: ../gramps/gui/editors/filtereditor.py:820 ../gramps/gui/glade/rule.glade:967
 msgid "Values"
 msgstr "Werte"
 
@@ -14443,8 +14392,8 @@ msgstr "%s ist nicht"
 msgid "%s does not contain"
 msgstr "%s enthält nicht"
 
-#: ../gramps/gui/filters/_searchbar.py:168
-#: ../gramps/gui/views/listview.py:1153 ../gramps/gui/views/listview.py:1173
+#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1153
+#: ../gramps/gui/views/listview.py:1173
 msgid "Updating display..."
 msgstr "Anzeige wird aktualisiert..."
 
@@ -14520,9 +14469,8 @@ msgid "Death date"
 msgstr "Sterbedatum"
 
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:112
-#, fuzzy
 msgid "Within"
-msgstr "_Durch:"
+msgstr "Innerhalb"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:107
 msgid "URL"
@@ -14797,8 +14745,7 @@ msgstr "Gramps Warnungen"
 #: ../gramps/gui/glade/editplacename.glade:44
 #: ../gramps/gui/glade/editreporef.glade:50
 #: ../gramps/gui/glade/editrepository.glade:48
-#: ../gramps/gui/glade/editsource.glade:46
-#: ../gramps/gui/glade/editurl.glade:46
+#: ../gramps/gui/glade/editsource.glade:46 ../gramps/gui/glade/editurl.glade:46
 msgid "Accept changes and close window"
 msgstr "Änderungen akzeptieren und Fenster schließen"
 
@@ -16269,8 +16216,7 @@ msgid "Note 2"
 msgstr "Notiz 2"
 
 #: ../gramps/gui/glade/mergenote.glade:278
-#: ../gramps/gui/glade/mergenote.glade:294
-#: ../gramps/gui/views/listview.py:1027
+#: ../gramps/gui/glade/mergenote.glade:294 ../gramps/gui/views/listview.py:1027
 msgid "Format:"
 msgstr "Format:"
 
@@ -16530,8 +16476,7 @@ msgstr "Die gewählte Regel bearbeiten"
 msgid "Delete the selected rule"
 msgstr "Die gewählte Regel löschen"
 
-#: ../gramps/gui/glade/rule.glade:521
-#: ../gramps/gui/glade/styleeditor.glade:403
+#: ../gramps/gui/glade/rule.glade:521 ../gramps/gui/glade/styleeditor.glade:403
 #: ../gramps/plugins/tool/finddupes.glade:132
 #: ../gramps/plugins/tool/mergecitations.glade:132
 #: ../gramps/plugins/tool/sortevents.py:82
@@ -17233,9 +17178,9 @@ msgstr "Personen_zusammenfassen"
 
 #. translators: needed for French, ignore otherwise
 #: ../gramps/gui/merge/mergeperson.py:62
-#, fuzzy, python-format
+#, python-format
 msgid "%(key)s:\t%(value)s"
-msgstr "%(type)s: %(value)s"
+msgstr "%(key)s:\t%(value)s"
 
 #: ../gramps/gui/merge/mergeperson.py:92
 msgid "Merge People"
@@ -18276,9 +18221,8 @@ msgstr "Fehlende Information"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:166
 #: ../gramps/gui/plug/report/_styleeditor.py:180
-#, fuzzy
 msgid "Select a style"
-msgstr "Eine Datei wählen"
+msgstr "Wähle einen Stil"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:226
 #: ../gramps/gui/plug/report/_styleeditor.py:298
@@ -19001,8 +18945,7 @@ msgstr ""
 "Dieses Element wird derzeit verwendet. Beim Löschen wird es aus der "
 "Datenbank und allen referenzierenden Objekten entfernt."
 
-#: ../gramps/gui/views/listview.py:565
-#: ../gramps/plugins/view/familyview.py:267
+#: ../gramps/gui/views/listview.py:565 ../gramps/plugins/view/familyview.py:267
 msgid "Deleting item will remove it from the database."
 msgstr "Das Löschen des Elementes wird es aus der Datenbank ganz entfernen."
 
@@ -19265,13 +19208,11 @@ msgstr "Diesen Abschnitt ausklappen"
 msgid "Collapse this section"
 msgstr "Diesen Abschnitt einklappen"
 
-#: ../gramps/gui/widgets/fanchart.py:1519
-#: ../gramps/plugins/view/relview.py:811
+#: ../gramps/gui/widgets/fanchart.py:1519 ../gramps/plugins/view/relview.py:811
 msgid "Edit family"
 msgstr "Familie bearbeiten"
 
-#: ../gramps/gui/widgets/fanchart.py:1535
-#: ../gramps/plugins/view/relview.py:812
+#: ../gramps/gui/widgets/fanchart.py:1535 ../gramps/plugins/view/relview.py:812
 msgid "Reorder families"
 msgstr "Familien wieder ordnen"
 
@@ -20174,9 +20115,8 @@ msgid "Use Mothers display format"
 msgstr "Verwende Anzeigeformat der Mutter"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:938
-#, fuzzy
 msgid "The display format for the center person"
-msgstr "Welches Anzeigeformat für die zentrale Person verwendet wird"
+msgstr "Das Anzeigeformat für die zentrale Person"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:941
 #: ../gramps/plugins/drawreport/descendtree.py:1668
@@ -20552,9 +20492,8 @@ msgstr "Geburtstage mit einbeziehen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:558
 #: ../gramps/plugins/textreport/birthdayreport.py:486
-#, fuzzy
 msgid "Whether to include birthdays"
-msgstr "Ob Markierungen aufgenommen werden."
+msgstr "Ob Geburtstage aufgenommen werden"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:561
 #: ../gramps/plugins/textreport/birthdayreport.py:489
@@ -20564,9 +20503,8 @@ msgstr "Jubiläen mit einbeziehen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:562
 #: ../gramps/plugins/textreport/birthdayreport.py:490
-#, fuzzy
 msgid "Whether to include anniversaries"
-msgstr "Legt fest, ob Bilder aufgenommen werden."
+msgstr "Ob Gedenktage aufgenommen werden"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:631
 msgid "Title text and background color"
@@ -23698,9 +23636,8 @@ msgid "Large"
 msgstr "Groß"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:257
-#, fuzzy
 msgid "Size of the thumbnail image"
-msgstr "Erstelle und verwende nur Miniaturbilder"
+msgstr "Größe der Miniaturbilder"
 
 #. ----------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:261
@@ -24520,9 +24457,9 @@ msgid "Field '%(fldname)s' not found"
 msgstr "Feld '%(fldname)s' nicht gefunden"
 
 #: ../gramps/plugins/importer/importprogen.py:459
-#, fuzzy, python-format
+#, python-format
 msgid "Cannot find DEF file: %(dname)s"
-msgstr "Kann DEF Datei nicht finden: %(deffname)s"
+msgstr "Kann DEF Datei nicht finden: %(dname)s"
 
 #. Raise a error message
 #: ../gramps/plugins/importer/importprogen.py:515
@@ -24535,26 +24472,25 @@ msgid "Pro-Gen import"
 msgstr "Pro-Gen importieren"
 
 #: ../gramps/plugins/importer/importprogen.py:585
-#, fuzzy, python-format
+#, python-format
 msgid "Import from Pro-Gen (%s)"
-msgstr "Aus Pro-Gen importieren"
+msgstr "Import aus Pro-Gen (%s)"
 
 #. Hmmm. Just use the plain text.
 #: ../gramps/plugins/importer/importprogen.py:1065
-#, fuzzy, python-format
+#, python-format
 msgid "Date did not match: '%(text)s' (%(msg)s)"
 msgstr "Datum passt nicht: '%(text)s' (%(msg)s)"
 
 #: ../gramps/plugins/importer/importprogen.py:1791
-#, fuzzy, python-format
+#, python-format
 msgid "Cannot find father for I%(person)s (Father=%(id)d)"
-msgstr "Der Vater für I%(person)s (father=%(id)d) kann nicht gefunden werden."
+msgstr "Kann den Vater für I%(person)s (Father=%(id)d) nicht finden"
 
 #: ../gramps/plugins/importer/importprogen.py:1794
-#, fuzzy, python-format
+#, python-format
 msgid "Cannot find mother for I%(person)s (Mother=%(mother)d)"
-msgstr ""
-"Die Mutter für I%(person)s (mother=%(mother)d) kann nicht gefunden werden."
+msgstr "Kann die Mutter für I%(person)s (Mother=%(mother)d) nicht finden"
 
 #: ../gramps/plugins/importer/importvcard.py:226
 #, python-format
@@ -29059,24 +28995,20 @@ msgid "Oldest mother"
 msgstr "Älteste Mutter"
 
 #: ../gramps/plugins/lib/librecords.py:67
-#, fuzzy
 msgid "Father with most children"
-msgstr "Paar mit den meisten Kindern"
+msgstr "Vater mit den meisten Kindern"
 
 #: ../gramps/plugins/lib/librecords.py:68
-#, fuzzy
 msgid "Mother with most children"
-msgstr "Paar mit den meisten Kindern"
+msgstr "Mutter mit den meisten Kindern"
 
 #: ../gramps/plugins/lib/librecords.py:69
-#, fuzzy
 msgid "Father with most grandchildren"
-msgstr "Paar mit den meisten Kindern"
+msgstr "Vater mit den meisten Enkelkindern"
 
 #: ../gramps/plugins/lib/librecords.py:70
-#, fuzzy
 msgid "Mother with most grandchildren"
-msgstr "Paar mit den meisten Kindern"
+msgstr "Mutter mit den meisten Enkelkindern"
 
 #: ../gramps/plugins/lib/librecords.py:71
 msgid "Couple with most children"
@@ -29449,9 +29381,8 @@ msgstr "Ereignisart"
 #: ../gramps/plugins/quickview/attributematch.py:50
 #: ../gramps/plugins/quickview/reporef.py:83
 #: ../gramps/plugins/quickview/siblings.py:72
-#, fuzzy
 msgid "Not found"
-msgstr "Keine Eltern gefunden"
+msgstr "Nicht gefunden"
 
 #. display the results
 #: ../gramps/plugins/quickview/all_events.py:103
@@ -30302,9 +30233,8 @@ msgid "Add linebreak after each name"
 msgstr "Zeilenumbruch nach jedem Namen"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:307
-#, fuzzy
 msgid "Whether a line break should follow the name."
-msgstr "Zeigt, ob nach dem Namen ein Zeilenumbruch folgt."
+msgstr "Ob nach dem Namen ein Zeilenumbruch folgen sollte."
 
 #: ../gramps/plugins/textreport/birthdayreport.py:65
 #: ../gramps/plugins/textreport/birthdayreport.py:217
@@ -30407,7 +30337,6 @@ msgstr "Eingangstext"
 
 #: ../gramps/plugins/textreport/custombooktext.py:135
 #: ../gramps/plugins/textreport/custombooktext.py:164
-#, fuzzy
 msgid "Text to display at the top"
 msgstr "Text, der oben angezeigt werden soll."
 
@@ -30426,9 +30355,8 @@ msgstr "Schlusstext"
 
 #: ../gramps/plugins/textreport/custombooktext.py:143
 #: ../gramps/plugins/textreport/custombooktext.py:182
-#, fuzzy
 msgid "Text to display at the bottom"
-msgstr "Text, der oben angezeigt werden soll."
+msgstr "Text, der unten angezeigt werden soll."
 
 #: ../gramps/plugins/textreport/descendreport.py:313
 #: ../gramps/plugins/textreport/descendreport.py:321
@@ -30687,9 +30615,8 @@ msgstr "Legt fest, ob Kinder aufgelistet werden."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:894
 #: ../gramps/plugins/textreport/detdescendantreport.py:1100
-#, fuzzy
 msgid "Include spouses of children"
-msgstr "Anzahl der Kinder aufnehmen"
+msgstr "Partner(inen) der Kinder aufnehmen"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:896
 #: ../gramps/plugins/textreport/detdescendantreport.py:1102
@@ -30718,7 +30645,6 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/detancestralreport.py:909
 #: ../gramps/plugins/textreport/detdescendantreport.py:1119
-#, fuzzy
 msgid "Include descendant reference in child list"
 msgstr "Verweis auf Nachfahren in die Liste der Kinder aufnehmen"
 
@@ -30874,9 +30800,8 @@ msgstr "Der Stil für Ebene zwei Überschriften."
 #: ../gramps/plugins/textreport/detdescendantreport.py:1267
 #: ../gramps/plugins/textreport/endoflinereport.py:335
 #: ../gramps/plugins/textreport/placereport.py:539
-#, fuzzy
 msgid "The style used for details."
-msgstr "Der Stil, der für die Ortsdetails verwendet wird."
+msgstr "Der Stil, der für die Details verwendet wird."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/detdescendantreport.py:341
@@ -31224,14 +31149,12 @@ msgid "The basic style used for table headings."
 msgstr "Der Basisstil, der für Tabellenüberschriften verwendet wird."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1238
-#, fuzzy
 msgid "The style used for image notes."
-msgstr "Der Stil, der für Indexeinträge verwendet wird."
+msgstr "Der Stil, der für Bildnotizen verwendet wird."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1248
-#, fuzzy
 msgid "The style used for image descriptions."
-msgstr "Der Stil, der für  Bildunterschriften verwendet wird."
+msgstr "Der Stil, der für  Bildbeschreibungen verwendet wird."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/kinshipreport.py:125
@@ -32512,7 +32435,6 @@ msgid "Merge candidates"
 msgstr "Kandidaten zum Zusammenfügen"
 
 #: ../gramps/plugins/tool/finddupes.py:583
-#, fuzzy
 msgid "Merge persons"
 msgstr "Personen zusammenfassen"
 
@@ -33200,7 +33122,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/reorderids.py:67
 msgid "manual|Reorder_Gramps_ID"
-msgstr "Manuell|Ordne Gramps-IDs neu"
+msgstr "Ordne Gramps-IDs neu"
 
 #. set gramps style title for the window
 #: ../gramps/plugins/tool/reorderids.py:203
@@ -33215,6 +33137,10 @@ msgstr "Ordne Gramps-IDs neu"
 #, python-format
 msgid "Reorder %s IDs ..."
 msgstr "Ordne %s IDs neu"
+
+#: ../gramps/plugins/tool/reorderids.py:624
+msgid "Finding and assigning unused IDs."
+msgstr ""
 
 #: ../gramps/plugins/tool/sortevents.py:76
 msgid "Sort Events"
@@ -33544,9 +33470,8 @@ msgid "Searches the entire database, looking for a possible loop."
 msgstr "Durchsucht die gesamte Datenbank suche nach möglichen Schleifen"
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:64
-#, fuzzy
 msgid "Dump Gender Statistics"
-msgstr "Geschlechtsstatistik neu erstellen"
+msgstr "Geschlechtsstatistik verwerfen"
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:65
 msgid "Will dump the statistics for guessing the gender from the first name."
@@ -33619,8 +33544,7 @@ msgstr "Maximaler Altersa_bstand zwischen zwei Kindern"
 msgid "Maximum _span of years for all children"
 msgstr "Maximaler Zeitra_um für die Geburt aller Kinder"
 
-#: ../gramps/plugins/tool/verify.glade:985
-#: ../gramps/plugins/tool/verify.py:677
+#: ../gramps/plugins/tool/verify.glade:985 ../gramps/plugins/tool/verify.py:677
 msgid "_Hide marked"
 msgstr "_als versteckt markiert"
 
@@ -34939,13 +34863,11 @@ msgstr "(1 Geschwister)"
 msgid " (only child)"
 msgstr "(Einzelkind)"
 
-#: ../gramps/plugins/view/relview.py:956
-#: ../gramps/plugins/view/relview.py:1452
+#: ../gramps/plugins/view/relview.py:956 ../gramps/plugins/view/relview.py:1452
 msgid "Add new child to family"
 msgstr "Neues Kind zur Familie hinzufügen"
 
-#: ../gramps/plugins/view/relview.py:960
-#: ../gramps/plugins/view/relview.py:1456
+#: ../gramps/plugins/view/relview.py:960 ../gramps/plugins/view/relview.py:1456
 msgid "Add existing child to family"
 msgstr "Bestehendes Kind zur Familie hinzufügen"
 
@@ -35798,11 +35720,11 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9792
 msgid "This is a secure site (https)"
-msgstr ""
+msgstr "Dies ist eine sichere Site (https)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9794
 msgid "Whether to use http:// or https://"
-msgstr ""
+msgstr "Ob http:// oder https:// verwendet wird"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9804
 #: ../gramps/plugins/webreport/webcal.py:1636
