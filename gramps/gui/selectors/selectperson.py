@@ -65,7 +65,8 @@ WIKI_HELP_SEC3 = _('manual|Select_Mother_selector')
 class SelectPerson(BaseSelector):
 
     def __init__(self, dbstate, uistate, track=[], title=None, filter=None,
-                 skip=set(), show_search_bar=False, default=None):
+                 skip=set(), show_search_bar=False, default=None,
+                 expand=False):
 
         # SelectPerson may have a title passed to it which should be used
         # instead of the default defined for get_window_title()
@@ -73,7 +74,8 @@ class SelectPerson(BaseSelector):
             self.title = title
 
         BaseSelector.__init__(self, dbstate, uistate, track, filter,
-                              skip, show_search_bar, default)
+                              skip, show_search_bar, default,
+                              expand=expand)
 
     def _local_init(self):
         """
