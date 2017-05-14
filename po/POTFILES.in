@@ -251,6 +251,7 @@ gramps/gen/filters/rules/place/_matchesfilter.py
 gramps/gen/filters/rules/place/_matchessourceconfidence.py
 gramps/gen/filters/rules/place/_placeprivate.py
 gramps/gen/filters/rules/place/_regexpidof.py
+gramps/gen/filters/rules/place/_withinarea.py
 gramps/gen/filters/rules/repository/_allrepos.py
 gramps/gen/filters/rules/repository/_changedsince.py
 gramps/gen/filters/rules/repository/_hasidof.py
@@ -545,6 +546,7 @@ gramps/gui/widgets/grampletpane.py
 gramps/gui/widgets/labels.py
 gramps/gui/widgets/monitoredwidgets.py
 gramps/gui/widgets/photo.py
+gramps/gui/widgets/placewithin.py
 gramps/gui/widgets/progressdialog.py
 gramps/gui/widgets/reorderfam.py
 gramps/gui/widgets/styledtextbuffer.py
