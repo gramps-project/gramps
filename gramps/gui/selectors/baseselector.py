@@ -298,7 +298,7 @@ class BaseSelector(ManagedWindow):
         self.tree.set_search_column(search_col)
 
         self.setupcols = False
-        
+       
     def column_clicked(self, obj, data):
         if self.sort_col != data:
             self.sortorder = Gtk.SortType.ASCENDING
