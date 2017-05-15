@@ -155,7 +155,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
     def share_button_clicked(self, obj):
         SelectCitation = SelectorFactory('Citation')
 
-        sel = SelectCitation(self.dbstate, self.uistate, self.track, expand=False)
+        sel = SelectCitation(self.dbstate, self.uistate, self.track)
         object = sel.run()
         LOG.debug("selected object: %s" % object)
         # the object returned should either be a Source or a Citation
