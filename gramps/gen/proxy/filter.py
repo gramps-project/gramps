@@ -78,6 +78,8 @@ class FilterProxyDb(ProxyDbBase):
         Finds a Person in the database from the passed Gramps ID.
         If no such Person exists, None is returned.
         """
+        if isinstance(handle, bytes):
+            handle = str(handle, 'utf-8')
         if handle in self.plist:
             person = self.db.get_person_from_handle(handle)
             if person is None:
@@ -115,15 +117,23 @@ class FilterProxyDb(ProxyDbBase):
             return None
 
     def include_person(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, 'utf-8')
         return handle in self.plist
 
     def include_family(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, 'utf-8')
         return handle in self.flist
 
     def include_event(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, 'utf-8')
         return handle in self.elist
 
     def include_note(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, 'utf-8')
         return handle in self.nlist
 
     def get_source_from_handle(self, handle):
@@ -202,6 +212,8 @@ class FilterProxyDb(ProxyDbBase):
         Finds a Event in the database from the passed Gramps ID.
         If no such Event exists, None is returned.
         """
+        if isinstance(handle, bytes):
+            handle = str(handle, 'utf-8')
         if handle in self.elist:
             event = self.db.get_event_from_handle(handle)
             # Filter all notes out
@@ -215,6 +227,8 @@ class FilterProxyDb(ProxyDbBase):
         Finds a Family in the database from the passed Gramps ID.
         If no such Family exists, None is returned.
         """
+        if isinstance(handle, bytes):
+            handle = str(handle, 'utf-8')
         if handle in self.flist:
             family = self.db.get_family_from_handle(handle)
             if family is None:
@@ -281,6 +295,8 @@ class FilterProxyDb(ProxyDbBase):
         Finds a Note in the database from the passed Gramps ID.
         If no such Note exists, None is returned.
         """
+        if isinstance(handle, bytes):
+            handle = str(handle, 'utf-8')
         if handle in self.nlist:
             return self.db.get_note_from_handle(handle)
         else:
