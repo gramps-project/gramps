@@ -1108,6 +1108,14 @@ class GrampsPreferences(ConfigureDialog):
                           row, 'interface.grampletbar-close', stop=3,
                           extra_callback=self.cb_grampletbar_close)
         row += 1
+        # When using Select People, do the trees expand by default?
+        cbox = self.add_checkbox(grid,
+                                 _("When selecting people, use a List "
+                                   "(default: a Tree)"),
+                                 row, 'interface.people-selector-list', stop=3)
+        cbox.set_tooltip_text(_("Tree view with large trees will slow down the"
+                                " dialog."))
+        row += 1
         return _('Display'), grid
 
     def add_places_panel(self, configdialog):

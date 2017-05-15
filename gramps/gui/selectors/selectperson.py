@@ -34,10 +34,11 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from ..views.treemodels import PeopleBaseModel, PersonTreeModel
+from ..views.treemodels import PersonListModel, PersonTreeModel
 from .baseselector import BaseSelector
 from ..display import display_help
 from gramps.gen.const import URL_MANUAL_SECT1
+from gramps.gen.config import config
 
 #-------------------------------------------------------------------------
 #
@@ -80,13 +81,17 @@ class SelectPerson(BaseSelector):
         Perform local initialisation for this class
         """
         self.setup_configs('interface.person-sel', 600, 450)
-        self.tree.connect('key-press-event', self._key_press)
+        if not config.get('interface.people-selector-list'):  # Tree view
+            self.tree.connect('key-press-event', self._key_press)
 
     def get_window_title(self):
         return _("Select Person")
 
     def get_model_class(self):
-        return PersonTreeModel
+        if config.get('interface.people-selector-list'):
+            return PersonListModel
+        else:
+            return PersonTreeModel
 
     def get_column_titles(self):
         return [
@@ -112,7 +117,8 @@ class SelectPerson(BaseSelector):
 
     def _on_row_activated(self, treeview, path, view_col):
         store, paths = self.selection.get_selected_rows()
-        if paths and len(paths[0].get_indices()) == 2 :
+        if config.get('interface.people-selector-list') or \
+                paths and len(paths[0].get_indices()) == 2:
             self.window.response(Gtk.ResponseType.OK)
 
     def _key_press(self, obj, event):

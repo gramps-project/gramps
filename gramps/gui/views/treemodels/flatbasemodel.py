@@ -512,9 +512,12 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         """
         if search:
             if search[0]:
-                #following is None if no data given in filter sidebar
                 self.search = search[1]
-                self.rebuild_data = self._rebuild_filter
+                if search[0] == 2:  # fast filter
+                    self.rebuild_data = self._rebuild_search
+                else:
+                    #following is None if no data given in filter sidebar
+                    self.rebuild_data = self._rebuild_filter
             else:
                 if search[1]: # Search from topbar in columns
                     # we have search[1] = (index, text_unicode, inversion)
