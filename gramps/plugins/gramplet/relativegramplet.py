@@ -85,7 +85,8 @@ class RelativesGramplet(Gramplet):
                 spouse = database.get_person_from_handle(spouse_handle)
                 spousename = name_displayer.display(spouse)
                 text = "%s" %  spousename
-                self.append_text(_("%d. Partner: ") % (famc))
+                self.append_text(_("%d. %s: ") % (famc,
+                                                  family.get_relationship()))
                 self.link(text, 'Person', spouse_handle)
                 self.append_text("\n")
             else:
