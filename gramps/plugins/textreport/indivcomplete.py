@@ -131,6 +131,7 @@ class IndivCompleteReport(Report):
         filter_option = options.menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
         self.bibli = None
+        self.names_notes_list = []
 
         self.section_list = menu.get_option_by_name('sections').get_selected()
 
@@ -220,6 +221,10 @@ class IndivCompleteReport(Report):
     def write_note(self):
         notelist = self.person.get_note_list()
         notelist += self.family_notes_list
+        if self.names_notes_list:
+            for note_handle in self.names_notes_list:
+                if note_handle not in notelist:
+                    notelist += [note_handle]
         if not notelist:
             return
         self.doc.start_table('note','IDS-IndTable')
@@ -308,7 +313,8 @@ class IndivCompleteReport(Report):
 
     def write_alt_names(self):
 
-        if len(self.person.get_alternate_names()) < 1:
+        alt_names = self.person.get_alternate_names()
+        if len(alt_names) < 1:
             return
         
         self.doc.start_table("altnames","IDS-IndTable")
@@ -319,7 +325,8 @@ class IndivCompleteReport(Report):
         self.doc.end_cell()
         self.doc.end_row()
         
-        for name in self.person.get_alternate_names():
+        for name in alt_names:
+            self.names_notes_list += name.get_note_list()
             name_type = self._(self._get_type(name.get_type()))
             self.doc.start_row()
             self.write_cell(name_type)
