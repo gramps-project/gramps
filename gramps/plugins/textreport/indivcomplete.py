@@ -166,6 +166,7 @@ class IndivCompleteReport(Report):
 
         self.bibli = None
         self.family_notes_list = []
+        self.names_notes_list = []
         self.mime0 = None
         self.person = None
 
@@ -227,6 +228,8 @@ class IndivCompleteReport(Report):
         for notehandle in event.get_note_list():
             note = self._db.get_note_from_handle(notehandle)
             text = note.get_styledtext()
+            if self.use_gramps_id:
+                text = text + ' [%s]' % note.get_gramps_id()
             note_format = note.get_format()
             self.doc.write_styled_note(
                 text, note_format, 'IDS-Normal',
@@ -253,6 +256,10 @@ class IndivCompleteReport(Report):
         """ write a note """
         notelist = self.person.get_note_list()
         notelist += self.family_notes_list
+        if self.names_notes_list:
+            for note_handle in self.names_notes_list:
+                if note_handle not in notelist:
+                    notelist += [note_handle]
         if not notelist or not self.use_notes:
             return
         self.doc.start_table('note', 'IDS-IndTable')
@@ -265,6 +272,8 @@ class IndivCompleteReport(Report):
         for notehandle in notelist:
             note = self._db.get_note_from_handle(notehandle)
             text = note.get_styledtext()
+            if self.use_gramps_id:
+                text = text + ' [%s]' % note.get_gramps_id()
             note_format = note.get_format()
             self.doc.start_row()
             self.doc.start_cell('IDS-NormalCell', 2)
@@ -370,7 +379,8 @@ class IndivCompleteReport(Report):
     def write_alt_names(self):
         """ write any alternate names of the person """
 
-        if len(self.person.get_alternate_names()) < 1:
+        alt_names = self.person.get_alternate_names()
+        if len(alt_names) < 1:
             return
 
         self.doc.start_table("altnames", "IDS-IndTable")
@@ -381,7 +391,8 @@ class IndivCompleteReport(Report):
         self.doc.end_cell()
         self.doc.end_row()
 
-        for name in self.person.get_alternate_names():
+        for name in alt_names:
+            self.names_notes_list += name.get_note_list()
             name_type = self._(self._get_type(name.get_type()))
             self.doc.start_row()
             self.write_cell(name_type)
