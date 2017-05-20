@@ -100,6 +100,7 @@ class EditMediaRef(EditReference):
         tblref =  self.top.get_object('table50')
         self.notebook_ref = self.top.get_object('notebook_ref')
         self.track_ref_for_deletion("notebook_ref")
+        self.expander = self.top.get_object('expander1')
         #recreate start page as GrampsTab
         self.notebook_ref.remove_page(0)
         self.reftab = RefTab(self.dbstate, self.uistate, self.track,
@@ -187,6 +188,7 @@ class EditMediaRef(EditReference):
         self.selection.set_multiple_selection(False)
         self.selection.connect("region-modified", self.region_modified)
         self.selection.connect("region-created", self.region_modified)
+        self.expander.connect("activate", self.selection.expander)
         frame = self.top.get_object("frame9")
         frame.add(self.selection)
         self.track_ref_for_deletion("selection")

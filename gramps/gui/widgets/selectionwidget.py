@@ -197,6 +197,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
         self.pixbuf = None
         self.scaled_pixbuf = None
         self.scale = 1.0
+        self.old_viewport_size = None
 
         Gtk.ScrolledWindow.__init__(self)
         self.add(self._build_gui())
@@ -227,6 +228,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
         self.event_box.add(self.image)
 
         self.viewport = Gtk.Viewport()
+        self.connect("size-allocate", self._resize)
         self.viewport.add(self.event_box)
         return self.viewport
 
@@ -296,6 +298,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
                                         self.pixbuf.get_height())
 
             viewport_size = self.viewport.get_allocation()
+            self.old_viewport_size = viewport_size
             self.scale = scale_to_fit(self.pixbuf.get_width(),
                                       self.pixbuf.get_height(),
                                       viewport_size.width,
@@ -312,6 +315,32 @@ class SelectionWidget(Gtk.ScrolledWindow):
         self.pixbuf = None
         self.image.set_from_icon_name('image-missing', Gtk.IconSize.DIALOG)
         self.image.queue_draw()
+
+    def _resize(self, *dummy):
+        """
+        Handles size-allocate' events from Gtk.
+        """
+        if self.pixbuf:
+            viewport_size = self.viewport.get_allocation()
+            if viewport_size.height != self.old_viewport_size.height or \
+                    viewport_size.width != self.old_viewport_size.width or \
+                    not self.image.get_pixbuf():
+                self.scale = scale_to_fit(self.pixbuf.get_width(),
+                                          self.pixbuf.get_height(),
+                                          viewport_size.width,
+                                          viewport_size.height)
+                self._rescale()
+                self.old_viewport_size = viewport_size
+                return False
+
+    def expander(self, *dummy):
+        """ Handler for expander in caller; needed because Gtk doesn't handle
+        verticle expansion right
+        """
+        self.image.clear()
+        self.image.set_size_request(2, 2)
+        self.event_box.set_size_request(2, 2)
+        return False
 
     # ======================================================
     # coordinate transformations (public methods)
@@ -531,14 +560,14 @@ class SelectionWidget(Gtk.ScrolledWindow):
     # drawing and scaling the image
     # ======================================================
 
-    def _expose_handler(self, widget, event):
+    def _expose_handler(self, widget, cr):
         """
         Handles the expose-event signal of the underlying widget.
         """
         if self.pixbuf:
-            self._draw_selection()
+            self._draw_selection(widget, cr)
 
-    def _draw_selection(self):
+    def _draw_selection(self, widget, cr):
         """
         Draws the image, the selection boxes and does the necessary
         shading.
@@ -550,8 +579,6 @@ class SelectionWidget(Gtk.ScrolledWindow):
         offset_x, offset_y = self._image_to_screen((0, 0))
         offset_x -= 1
         offset_y -= 1
-
-        cr = self.image.get_window().cairo_create()
 
         if self.selection:
             x1, y1, x2, y2 = self._rect_image_to_screen(self.selection)
