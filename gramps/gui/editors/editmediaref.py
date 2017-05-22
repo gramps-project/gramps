@@ -386,6 +386,7 @@ class EditMediaRef(EditReference):
         real = self.selection.proportional_to_real_rect(self.rectangle)
         region = Region(real[0], real[1], real[2], real[3])
         self.selection.set_regions([region])
+        self.selection.select(region)  # update the selection box shown
         self.selection.refresh()
 
     def region_modified(self, widget):
