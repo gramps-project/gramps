@@ -149,6 +149,4 @@ def importData(database, filename, user):
     except GedcomError as msg:
         user.notify_error(_('Error reading GEDCOM file'), str(msg))
         return
-    ## a "GEDCOM import report" happens in GedcomParser so this is not needed:
-    ## return ImportInfo({_("Results"): _("done")})
-    return None
+    return ImportInfo({_("Results"): _("done")})

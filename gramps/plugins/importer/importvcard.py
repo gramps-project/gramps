@@ -71,9 +71,7 @@ def importData(database, filename, user):
     except GrampsImportError as msg:
         user.notify_error(_("%s could not be opened\n") % filename, str(msg))
         return
-    ## a "VCARD import report" happens in VCardParser so this is not needed:
-    ## return ImportInfo({_("Results"): _("done")})
-    return None
+    return ImportInfo({_("Results"): _("done")})
 
 
 def splitof_nameprefix(name):

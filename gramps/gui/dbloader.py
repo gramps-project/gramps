@@ -127,11 +127,7 @@ class DbLoader(CLIDbLoader):
             if not warn_dialog.run():
                 return False
 
-        GrampsImportFileDialog(self.dbstate, self.uistate,
-                               callback=self.set_info)
-
-    def set_info(self, info):
-        self.import_info = info
+        GrampsImportFileDialog(self.dbstate, self.uistate)
 
     def import_info_text(self):
         """
@@ -382,7 +378,7 @@ def format_maker():
 
 class GrampsImportFileDialog(ManagedWindow):
 
-    def __init__(self, dbstate, uistate, callback=None):
+    def __init__(self, dbstate, uistate):
         """
         A dialog to import a file into Gramps
         """
@@ -430,8 +426,7 @@ class GrampsImportFileDialog(ManagedWindow):
             # the import_dialog.run() makes it modal, so any change to that
             # line would require the ManagedWindow.__init__ to be changed also
             response = import_dialog.run()
-            if response in (Gtk.ResponseType.CANCEL,
-                            Gtk.ResponseType.DELETE_EVENT):
+            if response in (Gtk.ResponseType.CANCEL, Gtk.ResponseType.DELETE_EVENT):
                 break
             elif response == Gtk.ResponseType.OK:
                 filename = import_dialog.get_filename()
@@ -455,8 +450,6 @@ class GrampsImportFileDialog(ManagedWindow):
                                        plugin.get_import_function(),
                                        filename)
                         self.close()
-                        if callback is not None:
-                            callback(self.import_info)
                         return
 
                 # Finally, we give up and declare this an unknown format
