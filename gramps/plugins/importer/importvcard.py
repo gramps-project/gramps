@@ -71,6 +71,8 @@ def importData(database, filename, user):
     except GrampsImportError as msg:
         user.notify_error(_("%s could not be opened\n") % filename, str(msg))
         return
+    ## a "VCARD import report" happens in VCardParser so this is not needed:
+    ## (but the imports_test.py unittest currently requires it, so here it is)
     return ImportInfo({_("Results"): _("done")})
 
 
