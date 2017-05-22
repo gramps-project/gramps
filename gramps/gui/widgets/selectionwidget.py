@@ -694,7 +694,8 @@ class SelectionWidget(Gtk.ScrolledWindow):
             return
         if event.button == 1: # left button
             self.start_point_screen = (event.x, event.y)
-            if self.current is not None and self.grabber is None:
+            if self.current is not None and self.grabber is None and \
+                    self.multiple_selection:
                 self.current = None
                 self.selection = None
                 self.refresh()
@@ -724,17 +725,22 @@ class SelectionWidget(Gtk.ScrolledWindow):
             if self.start_point_screen:
                 if self.current is not None:
                     # a box is currently selected
-                    if self.grabber is None:
-                        # clicked outside of the grabbing area
-                        self.current = None
-                        self.selection = None
-                        self.emit("selection-cleared")
-                    elif self.grabber != INSIDE:
+                    if self.grabber and self.grabber != INSIDE:
                         # clicked on one of the grabbers
                         dx, dy = (event.x - self.start_point_screen[0],
                                   event.y - self.start_point_screen[1])
                         self.grabber_to_draw = self._modify_selection(dx, dy)
                         self.current.set_coords(*self.selection)
+                        self.emit("region-modified")
+                    elif self.grabber is None and self.multiple_selection:
+                        # clicked outside of the grabbing area
+                        self.current = None
+                        self.selection = None
+                        self.emit("selection-cleared")
+                    else:
+                        # update current selection
+                        self.current.set_coords(*self.selection)
+                        self.region = self.current
                         self.emit("region-modified")
                 else:
                     # nothing is currently selected
@@ -774,10 +780,11 @@ class SelectionWidget(Gtk.ScrolledWindow):
                 dx, dy = (event.x - self.start_point_screen[0],
                           event.y - self.start_point_screen[1])
                 self.grabber_to_draw = self._modify_selection(dx, dy)
-            elif self._can_select():
+            else:
                 # making new selection
                 start_point = self._screen_to_truncated(self.start_point_screen)
                 self.selection = order_coordinates(start_point, end_point)
+
         else:
             # motion (mouse button is not pressed)
             self.in_region = self._find_region(*end_point_orig)
