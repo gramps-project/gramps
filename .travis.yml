@@ -72,7 +72,7 @@ install:
 # by the automatic git checkout.
 
 # Download Sean Ross-Ross's Pure Python module containing a framework to
-# manipulate and analyze python ast�s and bytecode. This is loaded to 
+# manipulate and analyze python ast�s and bytecode. This is loaded to
 # /home/travis/build/gramps-project/gramps/meta
 # FIXME: This should be loaded from the release directory at
 # https://pypi.python.org/pypi/meta
