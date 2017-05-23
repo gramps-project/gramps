@@ -118,7 +118,7 @@ class RelCalc(tool.Tool, ManagedWindow):
         self.textbuffer = Gtk.TextBuffer()
         self.text.set_buffer(self.textbuffer)
 
-        self.model = PersonTreeModel(self.db)
+        self.model = PersonTreeModel(self.db, uistate)
         self.tree.set_model(self.model)
 
         self.tree.connect('key-press-event', self._key_press)
