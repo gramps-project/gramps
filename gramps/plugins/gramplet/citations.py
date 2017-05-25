@@ -133,9 +133,10 @@ class Citations(Gramplet, DbGUIElement):
         for lds in obj.get_lds_ord_list():
             self.add_citations(lds)
             place_handle = lds.get_place_handle()
-            place = self.dbstate.db.get_place_from_handle(place_handle)
-            if place:
-                self.add_place_citations(place)
+            if place_handle:
+                place = self.dbstate.db.get_place_from_handle(place_handle)
+                if place:
+                    self.add_place_citations(place)
 
     def add_association_citations(self, obj):
         for assoc in obj.get_person_ref_list():
