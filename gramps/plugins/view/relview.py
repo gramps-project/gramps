@@ -360,6 +360,7 @@ class RelationshipView(NavigationView):
               </placeholder>
             </menu>
             <menu action="EditMenu">
+              <menuitem action="AddNewPerson"/>
               <menuitem action="Edit"/>
               <menuitem action="AddParentsMenu"/>
               <menuitem action="ShareFamilyMenu"/>
@@ -383,6 +384,7 @@ class RelationshipView(NavigationView):
               <toolitem action="HomePerson"/>
             </placeholder>
             <placeholder name="CommonEdit">
+              <toolitem action="AddNewPerson"/>
               <toolitem action="Edit"/>
               <toolitem action="AddParents"/>
               <toolitem action="ShareFamily"/>
@@ -409,6 +411,8 @@ class RelationshipView(NavigationView):
 
         self.family_action = ActionGroup(name=self.title + '/Family')
         self.family_action.add_actions([
+            ('AddNewPerson', 'gramps-person', _('Add new Person'), None ,
+                _("Add a new person"), self.add_new_person),
             ('Edit', 'gtk-edit', _('Edit...'), "<PRIMARY>Return",
                 _("Edit the active person"), self.edit_active),
             ('AddSpouse', 'gramps-spouse', _('Partner'), None ,
@@ -514,6 +518,7 @@ class RelationshipView(NavigationView):
         if not person:
             self.family_action.set_sensitive(False)
             self.order_action.set_sensitive(False)
+            #self.write_no_family_tree_message()
             self.redrawing = False
             return
         self.family_action.set_sensitive(True)
@@ -560,6 +565,25 @@ class RelationshipView(NavigationView):
         self.dirty = False
 
         return True
+
+    def write_no_family_tree_message(self):
+        """No Family Tree open - mention how to create one"""
+        #TODO not working
+        grid = Gtk.Grid()
+        grid.set_column_spacing(12)
+        grid.set_row_spacing(0)
+
+        # name and edit button
+        name = "xxxxxxxxxxxxxxxxxxx"
+        fmt = '<span size="larger" weight="bold">%s</span>'
+        text = fmt % escape(name)
+        label = widgets.BasicLabel(text)
+        eventbox = Gtk.EventBox()
+        eventbox.set_visible_window(False)
+        hbox = widgets.LinkBox(label)
+        eventbox.add(hbox)
+
+        grid.attach(eventbox, 0, 0, 2, 1)
 
     def write_title(self, person):
 
@@ -1494,6 +1518,20 @@ class RelationshipView(NavigationView):
             except WindowActiveError:
                 pass
 
+    def add_new_person(self, obj):
+        """
+        Add a new person to the database.
+        """
+        person = Person()
+        #the editor requires a surname
+        person.primary_name.add_surname(Surname())
+        person.primary_name.set_primary_surname(0)
+
+        try:
+            EditPerson(self.dbstate, self.uistate, [], person)
+        except WindowActiveError:
+            pass
+
     def add_family(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
             family = Family()
@@ -1746,6 +1784,13 @@ class RelationshipView(NavigationView):
         :return: list of functions
         """
         return [self.content_panel, self.config_panel]
+
+    def get_default_gramplets(self):
+        """
+        Define the default gramplets for the sidebar and bottombar.
+        """
+        return (("WelStartRelview",),
+                ())
 
 #-------------------------------------------------------------------------
 #
