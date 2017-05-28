@@ -70,7 +70,7 @@ class InteractiveSearchBox:
         function handling keypresses from the treeview
         for the typeahead find capabilities
         """
-        if not event.string:
+        if not Gdk.keyval_to_unicode(event.keyval):
             return False
         if self._key_cancels_search(event.keyval):
             return False
