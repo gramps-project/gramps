@@ -38,6 +38,8 @@ from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf
+from gi.repository import Pango
+import cairo
 
 #-------------------------------------------------------------------------
 #
@@ -117,6 +119,7 @@ def map2class(target):
          'place-link': ClipPlace,
          'placeref': ClipPlaceRef,
          'note-link': ClipNote,
+         'TEXT': ClipText,
          }
     return d[target] if target in d else None
 
@@ -1018,6 +1021,7 @@ class ClipboardListView(object):
 
         self._widget.connect('drag-data-get', self.object_drag_data_get)
         self._widget.connect('drag-begin', self.object_drag_begin)
+        self._widget.connect_after('drag-begin', self.object_after_drag_begin)
         self._widget.connect('drag-data-received',
                              self.object_drag_data_received)
         self._widget.connect('drag-end', self.object_drag_end)
@@ -1202,7 +1206,35 @@ class ClipboardListView(object):
     def object_drag_begin(self, widget, drag_context):
         """ Handle the beginning of a drag operation. """
         pass
-    
+
+    def object_after_drag_begin(self, widget, drag_context):
+        tree_selection = widget.get_selection()
+        model, paths = tree_selection.get_selected_rows()
+        if len(paths) == 1:
+            path = paths[0]
+            node = model.get_iter(path)
+            target = model.get_value(node, 0)
+            if target == "TEXT":
+                layout = widget.create_pango_layout(model.get_value(node,4))
+                layout.set_alignment(Pango.Alignment.CENTER)
+                width, height = layout.get_pixel_size()
+                surface = cairo.ImageSurface(cairo.FORMAT_RGB24,
+                                                  width, height)
+                ctx = cairo.Context(surface)
+                style_ctx = self._widget.get_style_context()
+                Gtk.render_background(style_ctx, ctx, 0, 0, width, height)
+                ctx.save()
+                Gtk.render_layout(style_ctx, ctx, 0, 0 , layout)
+                ctx.restore()
+                Gtk.drag_set_icon_surface(drag_context, surface)
+            else:
+                try:
+                    if map2class(target):
+                        Gtk.drag_set_icon_pixbuf(drag_context,
+                                                 map2class(target).ICON, 0, 0)
+                except:
+                    Gtk.drag_set_icon_default(drag_context)
+
     def object_drag_end(self, widget, drag_context):
         """ Handle the end of a drag operation. """
         pass
@@ -1218,7 +1250,10 @@ class ClipboardListView(object):
             path = paths[0]
             node = model.get_iter(path)
             o = model.get_value(node,1)
-            sel_data.set(tgs[0], 8, o.pack())
+            if model.get_value(node, 0) == 'TEXT':
+                sel_data.set_text(o._value, -1)
+            else:
+                sel_data.set(tgs[0], 8, o.pack())
         elif len(paths) > 1:
             raw_list = []
             for path in paths:
