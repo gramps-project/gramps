@@ -123,7 +123,7 @@ class BasePersonView(ListView):
         )
     ADD_MSG     = _("Add a new person")
     EDIT_MSG    = _("Edit the selected person")
-    DEL_MSG     = _("Remove the selected person")
+    DEL_MSG     = _("Delete the selected person")
     MERGE_MSG   = _("Merge the selected persons")
     FILTER_TYPE = "Person"
     QR_CATEGORY = CATEGORY_QR_PERSON
@@ -388,7 +388,7 @@ class BasePersonView(ListView):
             [
                 ('Add', 'list-add', _("_Add..."), "<PRIMARY>Insert",
                  self.ADD_MSG, self.add),
-                ('Remove', 'list-remove', _("_Remove"), "<PRIMARY>Delete",
+                ('Remove', 'list-remove', _("_Delete"), "<PRIMARY>Delete",
                  self.DEL_MSG, self.remove),
                 ('Merge', 'gramps-merge', _('_Merge...'), None,
                  self.MERGE_MSG, self.merge),
