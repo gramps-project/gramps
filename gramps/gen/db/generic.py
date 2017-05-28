@@ -44,7 +44,7 @@ import glob
 from . import (DbReadBase, DbWriteBase, DbUndo, DBLOGNAME, DBUNDOFN,
                KEY_TO_CLASS_MAP, REFERENCE_KEY, PERSON_KEY, FAMILY_KEY,
                CITATION_KEY, SOURCE_KEY, EVENT_KEY, MEDIA_KEY, PLACE_KEY,
-               REPOSITORY_KEY, NOTE_KEY, TAG_KEY)
+               REPOSITORY_KEY, NOTE_KEY, TAG_KEY, TXNADD, TXNDEL)
 from ..errors import HandleError
 from ..utils.callback import Callback
 from ..updatecallback import UpdateCallback
@@ -147,11 +147,11 @@ class DbGenericUndo(DbUndo):
             # now emit the signals
             for record_id in subitems:
                 (key, trans_type, handle, old_data, new_data) = \
-                        pickle.loads(self.undodb[record_id])
+                    pickle.loads(self.undodb[record_id])
 
                 if key != REFERENCE_KEY:
-                    self.undo_signals(new_data, handle, key,
-                                      db.emit, SIGBASE[key])
+                    self.undo_signals(trans_type, handle,
+                                      db.emit, SIGBASE[key], False)
             self.db._txn_commit()
         except:
             self.db._txn_abort()
@@ -201,8 +201,8 @@ class DbGenericUndo(DbUndo):
                         pickle.loads(self.undodb[record_id])
 
                 if key != REFERENCE_KEY:
-                    self.undo_signals(old_data, handle, key,
-                                      db.emit, SIGBASE[key])
+                    self.undo_signals(trans_type, handle,
+                                      db.emit, SIGBASE[key], True)
             self.db._txn_commit()
         except:
             self.db._txn_abort()
@@ -257,20 +257,19 @@ class DbGenericUndo(DbUndo):
             obj = self.db._get_table_func(cls)["class_func"].create(data)
             self.db._update_secondary_values(obj)
 
-    def undo_signals(self, data, handle, obj_key, emit, signal_root):
+    def undo_signals(self, trans_type, handle, emit, signal_root, reverse):
         """
         Helper method to undo/redo the changes made
         """
-        cls = KEY_TO_CLASS_MAP[obj_key]
-        table = cls.lower()
-        if data is None:
-            emit(signal_root + '-delete', ([handle],))
-        else:
-            if self.db.has_handle(obj_key, handle):
-                signal = signal_root + '-update'
-            else:
-                signal = signal_root + '-add'
-            emit(signal, ([handle],))
+        if ((not reverse) and trans_type == TXNADD) \
+                or (reverse and trans_type == TXNDEL):
+            typ = '-add'
+        elif not reverse and trans_type == TXNDEL \
+                or reverse and trans_type == TXNADD:
+            typ = '-delete'
+        else:   # TXNUPD
+            typ = '-update'
+        emit(signal_root + typ, ([handle],))
 
 class Cursor:
     def __init__(self, iterator):

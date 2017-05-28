@@ -244,8 +244,9 @@ class DbUndo:
                     pickle.loads(self.undodb[record_id])
 
             if key != REFERENCE_KEY:
-                self.undo_signals(old_data, handle, self.mapbase[key],
-                                  db.emit, _SIGBASE[key])
+                self.undo_signals(trans_type, handle,
+                                  db.emit, _SIGBASE[key], True)
+
         # Notify listeners
         if db.undo_callback:
             if self.undo_count > 0:
@@ -289,8 +290,8 @@ class DbUndo:
                 pickle.loads(self.undodb[record_id])
 
             if key != REFERENCE_KEY:
-                self.undo_signals(new_data, handle, self.mapbase[key],
-                                  db.emit, _SIGBASE[key])
+                self.undo_signals(trans_type, handle,
+                                  db.emit, _SIGBASE[key], False)
         # Notify listeners
         if db.undo_callback:
             db.undo_callback(_("_Undo %s")
@@ -336,24 +337,19 @@ class DbUndo:
             self.db._log_error()
             raise DbError(msg)
 
-    def undo_signals(self, data, handle, db_map, emit, signal_root):
+    def undo_signals(self, trans_type, handle, emit, signal_root, reverse):
         """
         Helper method to undo/redo the changes made
         """
-        try:
-            if data is None:
-                emit(signal_root + '-delete', ([handle.decode('utf-8')],))
-            else:
-                ex_data = db_map.get(handle, txn=self.txn)
-                if ex_data:
-                    signal = signal_root + '-update'
-                else:
-                    signal = signal_root + '-add'
-                emit(signal, ([handle.decode('utf-8')],))
-
-        except DBERRS as msg:
-            self.db._log_error()
-            raise DbError(msg)
+        if ((not reverse) and trans_type == TXNADD) \
+                or (reverse and trans_type == TXNDEL):
+            typ = '-add'
+        elif not reverse and trans_type == TXNDEL \
+                or reverse and trans_type == TXNADD:
+            typ = '-delete'
+        else:   # TXNUPD
+            typ = '-update'
+        emit(signal_root + typ, ([handle.decode('utf-8')],))
 
     undo_count = property(lambda self:len(self.undoq))
     redo_count = property(lambda self:len(self.redoq))
