@@ -77,7 +77,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasCitation(['page 23', '', ''])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'YNUJQC8YM5EGRG868J']))
+                         set(['YNUJQC8YM5EGRG868J']))
 
     def test_hasgallery(self):
         """
@@ -85,7 +85,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasGallery(['0', 'greater than'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'YNUJQC8YM5EGRG868J']))
+                         set(['YNUJQC8YM5EGRG868J']))
 
     def test_hasidof(self):
         """
@@ -93,7 +93,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasIdOf(['P0001'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'c96587262e91149933fcea5f20a']))
+                         set(['c96587262e91149933fcea5f20a']))
 
     def test_regexpidof(self):
         """
@@ -101,11 +101,11 @@ class BaseTest(unittest.TestCase):
         """
         rule = RegExpIdOf(['P000.'], use_regex=True)
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'c96587262e91149933fcea5f20a', b'c96587262ff262aaac31f6db7af',
-            b'c96587262f24c33ab2420276737', b'c96587262e566596a225682bf53',
-            b'c9658726302661576894508202d', b'c96587262f8329d37b252e1b9e5',
-            b'c965872630664f33485fc18e75', b'c96587262fb7dbb954077cb1286',
-            b'c96587262f4a44183c65ff1e52', b'c96587262ed43fdb37bf04bdb7f',
+            'c96587262e91149933fcea5f20a', 'c96587262ff262aaac31f6db7af',
+            'c96587262f24c33ab2420276737', 'c96587262e566596a225682bf53',
+            'c9658726302661576894508202d', 'c96587262f8329d37b252e1b9e5',
+            'c965872630664f33485fc18e75', 'c96587262fb7dbb954077cb1286',
+            'c96587262f4a44183c65ff1e52', 'c96587262ed43fdb37bf04bdb7f',
             ]))
 
     def test_hasnote(self):
@@ -128,9 +128,9 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasReferenceCountOf(['greater than', '35'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'c96587262e566596a225682bf53', b'MATJQCJYH8ULRIRYTH',
-            b'5HTJQCSB91P69HY731', b'4ECKQCWCLO5YIHXEXC',
-            b'c965872630a68ebd32322c4a30a']))
+            'c96587262e566596a225682bf53', 'MATJQCJYH8ULRIRYTH',
+            '5HTJQCSB91P69HY731', '4ECKQCWCLO5YIHXEXC',
+            'c965872630a68ebd32322c4a30a']))
 
     def test_hassourcecount(self):
         """
@@ -138,7 +138,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasSourceCount(['1', 'equal to'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'YNUJQC8YM5EGRG868J']))
+                         set(['YNUJQC8YM5EGRG868J']))
 
     def test_hassourceof(self):
         """
@@ -146,7 +146,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasSourceOf(['S0001'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'YNUJQC8YM5EGRG868J']))
+                         set(['YNUJQC8YM5EGRG868J']))
 
     def test_placeprivate(self):
         """
@@ -161,7 +161,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = MatchesSourceConfidence(['2'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'YNUJQC8YM5EGRG868J']))
+                         set(['YNUJQC8YM5EGRG868J']))
 
     def test_hasdata(self):
         """
@@ -169,7 +169,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasData(['Albany', 'County', ''])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'c9658726d602acadb74e330116a']))
+                         set(['c9658726d602acadb74e330116a']))
 
     def test_hasnolatorlon(self):
         """
@@ -184,8 +184,8 @@ class BaseTest(unittest.TestCase):
         """
         rule = InLatLonNeighborhood(['30N', '90W', '2', '2'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'C6WJQC0GDYP3HZDPR3', b'N88LQCRB363ES5WJ83',
-            b'03EKQCC2KTNLHFLDRJ', b'M9VKQCJV91X0M12J8']))
+            'C6WJQC0GDYP3HZDPR3', 'N88LQCRB363ES5WJ83',
+            '03EKQCC2KTNLHFLDRJ', 'M9VKQCJV91X0M12J8']))
 
     def test_changedsince(self):
         """
@@ -207,8 +207,8 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasTitle(['Albany'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'51VJQCXUP61H9JRL66', b'9XBKQCE1LZ7PMJE56G',
-            b'c9658726d602acadb74e330116a', b'P9MKQCT08Z3YBJV5UB']))
+            '51VJQCXUP61H9JRL66', '9XBKQCE1LZ7PMJE56G',
+            'c9658726d602acadb74e330116a', 'P9MKQCT08Z3YBJV5UB']))
 
     def test_isenclosedby(self):
         """
@@ -216,9 +216,9 @@ class BaseTest(unittest.TestCase):
         """
         rule = IsEnclosedBy(['P0001', '0'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'EAFKQCR0ED5QWL87EO', b'S22LQCLUZM135LVKRL', b'VDUJQCFP24ZV3O4ID2',
-            b'V6ALQCZZFN996CO4D', b'OC6LQCXMKP6NUVYQD8', b'CUUKQC6BY5LAZXLXC6',
-            b'PTFKQCKPHO2VC5SYKS', b'PHUJQCJ9R4XQO5Y0WS']))
+            'EAFKQCR0ED5QWL87EO', 'S22LQCLUZM135LVKRL', 'VDUJQCFP24ZV3O4ID2',
+            'V6ALQCZZFN996CO4D', 'OC6LQCXMKP6NUVYQD8', 'CUUKQC6BY5LAZXLXC6',
+            'PTFKQCKPHO2VC5SYKS', 'PHUJQCJ9R4XQO5Y0WS']))
 
     def test_withinarea(self):
         """
@@ -226,8 +226,8 @@ class BaseTest(unittest.TestCase):
         """
         rule = WithinArea(['P1339', 100, 0])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'KJUJQCY580EB77WIVO', b'TLVJQC4FD2CD9OYAXU', b'TE4KQCL9FDYA4PB6VW',
-            b'W9GLQCSRJIQ9N2TGDF']))
+            'KJUJQCY580EB77WIVO', 'TLVJQC4FD2CD9OYAXU', 'TE4KQCL9FDYA4PB6VW',
+            'W9GLQCSRJIQ9N2TGDF']))
 
     def test_isenclosedby_inclusive(self):
         """
@@ -235,10 +235,10 @@ class BaseTest(unittest.TestCase):
         """
         rule = IsEnclosedBy(['P0001', '1'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'c96587262e91149933fcea5f20a', b'EAFKQCR0ED5QWL87EO',
-            b'S22LQCLUZM135LVKRL', b'VDUJQCFP24ZV3O4ID2', b'V6ALQCZZFN996CO4D',
-            b'OC6LQCXMKP6NUVYQD8', b'CUUKQC6BY5LAZXLXC6', b'PTFKQCKPHO2VC5SYKS',
-            b'PHUJQCJ9R4XQO5Y0WS']))
+            'c96587262e91149933fcea5f20a', 'EAFKQCR0ED5QWL87EO',
+            'S22LQCLUZM135LVKRL', 'VDUJQCFP24ZV3O4ID2', 'V6ALQCZZFN996CO4D',
+            'OC6LQCXMKP6NUVYQD8', 'CUUKQC6BY5LAZXLXC6', 'PTFKQCKPHO2VC5SYKS',
+            'PHUJQCJ9R4XQO5Y0WS']))
 
 
 if __name__ == "__main__":

@@ -537,9 +537,6 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         pmon.add_op(status)
         with gen_cursor() as cursor:
             for handle, data in cursor:
-                # for python3 this returns a byte object, so conversion needed
-                if not isinstance(handle, str):
-                    handle = handle.decode('utf-8')
                 status.heartbeat()
                 self.__total += 1
                 if not (handle in skip or (dfilter and not
@@ -865,10 +862,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         not correspond to a gramps object.
         """
         node = self.get_node_from_iter(iter)
-        handle = node.handle
-        if handle and not isinstance(handle, str):
-            handle = handle.decode('utf-8')
-        return handle
+        return node.handle
 
     # The following implement the public interface of Gtk.TreeModel
 
@@ -904,7 +898,6 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         if node.handle is None:
             # Header rows dont get the foreground color set
             if col == self.color_column():
-                #color must not be utf-8
                 return "#000000000000"
 
             # Return the node name for the first column
@@ -917,14 +910,10 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             # return values for 'data' row, calling a function
             # according to column_defs table
             val = self._get_value(node.handle, col, node.secondary)
-        #GTK 3 should convert unicode objects automatically, but this
-        # gives wrong column values, so convert for python 2.7
+
         if val is None:
             return ''
-        elif not isinstance(val, str):
-            return val.decode('utf-8')
-        else:
-            return val
+        return val
 
     def _get_value(self, handle, col, secondary=False, store_cache=True):
         """

@@ -5226,12 +5226,8 @@ class MediaPages(BasePage):
                 # add unused media
                 media_list = self.r_db.get_media_handles()
                 for media_ref in media_list:
-                    if isinstance(media_ref, bytes):
-                        media_handle = media_ref.decode("utf-8")
-                    else:
-                        media_handle = media_ref
-                    if media_handle not in self.report.obj_dict[Media]:
-                        unused_media_handles.append(media_handle)
+                    if media_ref not in self.report.obj_dict[Media]:
+                        unused_media_handles.append(media_ref)
                 unused_media_handles = sorted(
                     unused_media_handles,
                     key=lambda x: sort_by_desc_and_gid(
@@ -5677,12 +5673,8 @@ class ThumbnailPreviewPage(BasePage):
             media_list = self.r_db.get_media_handles()
             unused_media_handles = []
             for media_ref in media_list:
-                if isinstance(media_ref, bytes):
-                    media_handle = media_ref.decode("utf-8")
-                else:
-                    media_handle = media_ref
-                if media_handle not in self.report.obj_dict[Media]:
-                    self.photo_keys.append(media_handle)
+                if media_ref not in self.report.obj_dict[Media]:
+                    self.photo_keys.append(media_ref)
 
         media_list = []
         for person_handle in self.photo_keys:
@@ -8706,10 +8698,6 @@ class NavWebReport(Report):
                                 _('Constructing list of other objects...'),
                                 sum(1 for _ in ind_list)) as step:
             for handle in ind_list:
-                # FIXME work around bug that self.database.iter under python 3
-                # returns (binary) data rather than text
-                if not isinstance(handle, str):
-                    handle = handle.decode('utf-8')
                 step()
                 self._add_person(handle, "", "")
 

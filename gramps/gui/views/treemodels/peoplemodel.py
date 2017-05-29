@@ -168,9 +168,6 @@ class PeopleBaseModel(BaseModel):
         cached, name = self.get_cached_value(handle, "SORT_NAME")
         if not cached:
             name = name_displayer.raw_sorted_name(data[COLUMN_NAME])
-            # internally we work with utf-8
-            if not isinstance(name, str):
-                name = name.decode('utf-8')
             self.set_cached_value(handle, "SORT_NAME", name)
         return name
 
@@ -179,9 +176,6 @@ class PeopleBaseModel(BaseModel):
         cached, name = self.get_cached_value(handle, "NAME")
         if not cached:
             name = name_displayer.raw_display_name(data[COLUMN_NAME])
-            # internally we work with utf-8 for python 2.7
-            if not isinstance(name, str):
-                name = name.encode('utf-8')
             self.set_cached_value(handle, "NAME", name)
         return name
 
@@ -629,8 +623,6 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
 
         name_data = data[COLUMN_NAME]
         group_name = ngn(self.db, name_data)
-        #if isinstance(group_name, str):
-        #    group_name = group_name.encode('utf-8')
         sort_key = self.sort_func(data)
 
         #if group_name not in self.group_list:
