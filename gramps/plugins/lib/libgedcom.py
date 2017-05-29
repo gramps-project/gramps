@@ -134,6 +134,7 @@ from gramps.gui.dialog import WarningDialog
 from gramps.gen.lib.const import IDENTICAL, DIFFERENT
 from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
 from gramps.gen.constfunc import conv_to_unicode, win
+from gramps.gen.lib.urlbase import UrlBase
 from gramps.plugins.lib.libplaceimport import PlaceImport
 from gramps.gen.display.place import displayer as _pd
 
@@ -5343,11 +5344,21 @@ class GedcomParser(UpdateCallback):
         # The following code that detects URL is an older v5.5 usage; the
         # modern option is to use the EMAIL tag.
         if isinstance(sub_state.form, str) and sub_state.form == "url":
-            url = Url()
-            url.set_path(sub_state.filename)
-            url.set_description(sub_state.title)
-            url.set_type(UrlType.WEB_HOME)
-            pri_obj.add_url(url)
+            if isinstance(pri_obj, UrlBase):
+                url = Url()
+                url.set_path(sub_state.filename)
+                url.set_description(sub_state.title)
+                url.set_type(UrlType.WEB_HOME)
+                pri_obj.add_url(url)
+            else:  # some primary objects (Event) son't have spot for URL
+                new_note = Note(sub_state.filename)
+                new_note.set_gramps_id(self.nid_map[""])
+                new_note.set_handle(create_id())
+                new_note.set_type(OBJ_NOTETYPE.get(type(pri_obj).__name__,
+                                                   NoteType.GENERAL))
+                self.dbase.commit_note(new_note, self.trans, new_note.change)
+                pri_obj.add_note(new_note.get_handle())
+
         else:
             # to allow import of references to URLs (especially for import from
             # geni.com), do not try to find the file if it is blatently a URL
