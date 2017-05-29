@@ -33,8 +33,6 @@ import signal
 
 import logging
 
-LOG = logging.getLogger(".")
-
 from subprocess import Popen, PIPE
 
 #-------------------------------------------------------------------------
@@ -124,9 +122,9 @@ stderrh.setLevel(logging.DEBUG)
 
 # Setup the base level logger, this one gets
 # everything.
-l = logging.getLogger()
-l.setLevel(logging.WARNING)
-l.addHandler(stderrh)
+LOG = logging.getLogger(".")
+LOG.setLevel(logging.WARNING)
+LOG.addHandler(stderrh)
 
 # put a hook on to catch any completely unhandled exceptions.
 def exc_hook(type, value, tb):
@@ -155,13 +153,13 @@ from .gen.mime import mime_type_is_defined
 
 MIN_PYTHON_VERSION = (3, 2, 0, '', 0)
 if not sys.version_info >= MIN_PYTHON_VERSION:
-    logging.warning(_("Your Python version does not meet the "
-             "requirements. At least python %(v1)d.%(v2)d.%(v3)d is needed to"
-             " start Gramps.\n\n"
-             "Gramps will terminate now.") % {
-             'v1': MIN_PYTHON_VERSION[0],
-             'v2': MIN_PYTHON_VERSION[1],
-             'v3': MIN_PYTHON_VERSION[2]})
+    LOG.warning(_("Your Python version does not meet the "
+         "requirements. At least python %(v1)d.%(v2)d.%(v3)d is needed to"
+         " start Gramps.\n\n"
+         "Gramps will terminate now.") % {
+         'v1': MIN_PYTHON_VERSION[0],
+         'v2': MIN_PYTHON_VERSION[1],
+         'v3': MIN_PYTHON_VERSION[2]})
     sys.exit(1)
 
 #-------------------------------------------------------------------------
@@ -438,24 +436,24 @@ def run():
     argpars = ArgParser(argv_copy)
 
     # Calls to LOG must be after setup_logging() and ArgParser()
-    LOG = logging.getLogger(".locale")
-    LOG.debug("Encoding: %s", glocale.encoding)
-    LOG.debug("Translating Gramps to %s", glocale.language[0])
-    LOG.debug("Collation Locale: %s", glocale.collation)
-    LOG.debug("Date/Time Locale: %s", glocale.calendar)
-    LOG.debug("Currency Locale: %s", glocale.currency)
-    LOG.debug("Number-format Locale: %s", glocale.numeric)
+    LOG_LOCALE = logging.getLogger(".locale")
+    LOG_LOCALE.debug("Encoding: %s", glocale.encoding)
+    LOG_LOCALE.debug("Translating Gramps to %s", glocale.language[0])
+    LOG_LOCALE.debug("Collation Locale: %s", glocale.collation)
+    LOG_LOCALE.debug("Date/Time Locale: %s", glocale.calendar)
+    LOG_LOCALE.debug("Currency Locale: %s", glocale.currency)
+    LOG_LOCALE.debug("Number-format Locale: %s", glocale.numeric)
 
     if 'LANG' in os.environ:
-        LOG.debug('Using LANG: %s' %
+        LOG_LOCALE.debug('Using LANG: %s' %
                          get_env_var('LANG'))
     else:
-        LOG.debug('environment: LANG is not defined')
+        LOG_LOCALE.debug('environment: LANG is not defined')
     if 'LANGUAGE' in os.environ:
-        LOG.debug('Using LANGUAGE: %s' %
+        LOG_LOCALE.debug('Using LANGUAGE: %s' %
                          get_env_var('LANGUAGE'))
     else:
-        LOG.debug('environment: LANGUAGE is not defined')
+        LOG_LOCALE.debug('environment: LANGUAGE is not defined')
 
     if argpars.need_gui():
         LOG.debug("A GUI is needed, set it up")
