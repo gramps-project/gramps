@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-24 22:29+0200\n"
-"PO-Revision-Date: 2017-05-25 21:49+0100\n"
+"POT-Creation-Date: 2017-05-29 19:10+0200\n"
+"PO-Revision-Date: 2017-05-29 19:12+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1382,8 +1382,8 @@ msgstr ""
 "wenn neu\n"
 " -i, --import=DATEINAME                 Importiert eine Datei\n"
 " -e, --export=DATEINAME                 Exportiert eine Datei\n"
-" -r, --remove=STAMMBAUMMUSTER       Entfernt passende Stammbäume (verwende"
-" Reguläre Ausdrücke)\n"
+" -r, --remove=STAMMBAUMMUSTER       Entfernt passende Stammbäume (verwende "
+"Reguläre Ausdrücke)\n"
 " -f, --format=FORMAT                    Format festlegen\n"
 " -a, --action=AKTION                    Aktion festlegen\n"
 " -p, --options=OPTIONENZEICHENKETTE           Optionen festlegen\n"
@@ -5421,8 +5421,8 @@ msgid ""
 "Soundex Match of people with a specified name. First name, Surname, Call "
 "name, and Nickname are searched in primary and alternate names."
 msgstr ""
-"Soundex Passt auf Personen mit einem bestimmten Namen. Vorname, Nachname,"
-" Rufname, und Spitzname werden im primären und den alternativen Namen gesucht."
+"Soundex Passt auf Personen mit einem bestimmten Namen. Vorname, Nachname, "
+"Rufname, und Spitzname werden im primären und den alternativen Namen gesucht."
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:45
 msgid "People with <count> sources"
@@ -11147,8 +11147,7 @@ msgstr "_Bearbeiten"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:117
 #: ../gramps/gui/editors/editfamily.py:151
 #: ../gramps/gui/plug/report/_bookdialog.py:622
-#: ../gramps/gui/views/bookmarks.py:283 ../gramps/gui/views/listview.py:212
-#: ../gramps/gui/views/tags.py:424 ../gramps/plugins/lib/libpersonview.py:391
+#: ../gramps/gui/views/bookmarks.py:283 ../gramps/gui/views/tags.py:424
 msgid "_Remove"
 msgstr "_Entfernen"
 
@@ -14563,6 +14562,8 @@ msgid "Configure currently selected item"
 msgstr "Den gewählten Artikel konfigurieren"
 
 #: ../gramps/gui/glade/book.glade:523 ../gramps/gui/glade/dbman.glade:265
+#: ../gramps/gui/views/listview.py:212
+#: ../gramps/plugins/lib/libpersonview.py:391
 msgid "_Delete"
 msgstr "_Löschen"
 
@@ -15780,8 +15781,8 @@ msgstr ""
 msgid ""
 "Either use the two fields below to enter coordinates(latitude and longitude),"
 msgstr ""
-"Verwende entweder die beiden Felder unten  um die Koordinaten (Längen- und"
-" Breitengrad) einzugeben,"
+"Verwende entweder die beiden Felder unten  um die Koordinaten (Längen- und "
+"Breitengrad) einzugeben,"
 
 #: ../gramps/gui/glade/editplace.glade:119
 msgid "L_atitude:"
@@ -15835,16 +15836,16 @@ msgid ""
 "or use copy/paste from your favorite map provider (format : latitude,"
 "longitude) in the following field:"
 msgstr ""
-"oder verwende copy/paste von deinem bevorzugten Kartenanbieter (Format:"
-" Breitengrad, Längengrad) im folgenden Feld:"
+"oder verwende copy/paste von deinem bevorzugten Kartenanbieter (Format: "
+"Breitengrad, Längengrad) im folgenden Feld:"
 
 #: ../gramps/gui/glade/editplace.glade:237
 #: ../gramps/gui/glade/editplaceref.glade:375
 msgid ""
 "Field used to paste info from a web page like google, openstreetmap, ... "
 msgstr ""
-"Feld wird verwendet um Informationen von einer Webseite hinein zu kopieren"
-" wie Google, OpenStreetmap, ..."
+"Feld wird verwendet um Informationen von einer Webseite hinein zu kopieren "
+"wie Google, OpenStreetmap, ..."
 
 #: ../gramps/gui/glade/editplace.glade:264
 #: ../gramps/gui/glade/editplaceref.glade:495
@@ -17269,10 +17270,10 @@ msgid ""
 "additional manual merging of families is necessary."
 msgstr ""
 "Die Personen wurden zusammengefasst.\n"
-"Jedoch sind die Familien für diese Zusammenführung zu komplex um sie"
-" automatisch durchzuführen. Wir empfehlen das du in die Beziehungenansicht"
-" gehst und schaust ob noch zusätzliche Zusammenfassungen von Familien nötig"
-" sind."
+"Jedoch sind die Familien für diese Zusammenführung zu komplex um sie "
+"automatisch durchzuführen. Wir empfehlen das du in die Beziehungenansicht "
+"gehst und schaust ob noch zusätzliche Zusammenfassungen von Familien nötig "
+"sind."
 
 #: ../gramps/gui/merge/mergeplace.py:53
 msgid "manual|Merge_Places"
@@ -19419,8 +19420,8 @@ msgid ""
 "Matches places within a given distance of the active place. You have no "
 "active place."
 msgstr ""
-"Entspricht Orten innerhalb einer bestimmten Distanz zum aktiven Ort. Du hast"
-" keinen aktiven Ort."
+"Entspricht Orten innerhalb einer bestimmten Distanz zum aktiven Ort. Du hast "
+"keinen aktiven Ort."
 
 #: ../gramps/gui/widgets/progressdialog.py:298
 msgid "Progress Information"
@@ -24599,15 +24600,15 @@ msgid ""
 "VCard is malformed missing the compulsory N property, so there is no name; "
 "skip it."
 msgstr ""
-"VCard ist falsch gestaltet fehlende zwingendes N Objekt, also gibt es keinen"
-" Namen; also las es aus."
+"VCard ist falsch gestaltet fehlende zwingendes N Objekt, also gibt es keinen "
+"Namen; also las es aus."
 
 #: ../gramps/plugins/importer/importvcard.py:371
 msgid ""
 "VCard is malformed missing the compulsory FN property, get name from N alone."
 msgstr ""
-"VCard ist falsch gestaltet fehlendes zwingendes FN Objekt, nimm Namen nur von"
-" N."
+"VCard ist falsch gestaltet fehlendes zwingendes FN Objekt, nimm Namen nur "
+"von N."
 
 #: ../gramps/plugins/importer/importvcard.py:375
 msgid "VCard is malformed wrong number of name components."
@@ -28813,8 +28814,8 @@ msgid "Edit the selected person"
 msgstr "Gewählte Person bearbeiten"
 
 #: ../gramps/plugins/lib/libpersonview.py:126
-msgid "Remove the selected person"
-msgstr "Gewählte Person entfernen"
+msgid "Delete the selected person"
+msgstr "Die ausgewählte Person löschen"
 
 #: ../gramps/plugins/lib/libpersonview.py:127
 msgid "Merge the selected persons"
@@ -30732,7 +30733,9 @@ msgstr "Fotos/Bilder aus der Galerie aufnehmen"
 msgid "Whether to include images."
 msgstr "Legt fest, ob Bilder aufgenommen werden."
 
-#. #########################. ###############################: ../gramps/plugins/textreport/detancestralreport.py:919
+#. #########################
+#. ###############################
+#: ../gramps/plugins/textreport/detancestralreport.py:919
 #: ../gramps/plugins/textreport/detdescendantreport.py:1110
 #: ../gramps/plugins/textreport/familygroup.py:777
 #: ../gramps/plugins/textreport/indivcomplete.py:1119
@@ -36641,6 +36644,9 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:153
 msgid "No style sheet"
 msgstr "Kein Stylesheet"
+
+#~ msgid "Remove the selected person"
+#~ msgstr "Gewählte Person entfernen"
 
 #~ msgid "   %(item)s: %(summary)s"
 #~ msgstr "   %(item)s: %(summary)s"
