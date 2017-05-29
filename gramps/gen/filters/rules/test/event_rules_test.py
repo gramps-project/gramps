@@ -81,7 +81,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasIdOf(['E0001'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'a5af0eb696917232725']))
+                         set(['a5af0eb696917232725']))
 
     def test_hasgallery(self):
         """
@@ -89,7 +89,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasGallery(['0', 'greater than'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'a5af0ecb107303354a0']))
+                         set(['a5af0ecb107303354a0']))
 
     def test_regexpidof(self):
         """
@@ -97,11 +97,11 @@ class BaseTest(unittest.TestCase):
         """
         rule = RegExpIdOf(['E000.'], use_regex=True)
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'a5af0eb69cf2d3fb615', b'a5af0eb667015e355db',
-            b'a5af0eb6a016da2d6d1', b'a5af0eb6a405acb126c',
-            b'a5af0eb698f29568502', b'a5af0eb69b82a6cdc5a',
-            b'a5af0eb69f41bfb5a6a', b'a5af0eb69c40c179441',
-            b'a5af0eb6a3229544ba2', b'a5af0eb696917232725']))
+            'a5af0eb69cf2d3fb615', 'a5af0eb667015e355db',
+            'a5af0eb6a016da2d6d1', 'a5af0eb6a405acb126c',
+            'a5af0eb698f29568502', 'a5af0eb69b82a6cdc5a',
+            'a5af0eb69f41bfb5a6a', 'a5af0eb69c40c179441',
+            'a5af0eb6a3229544ba2', 'a5af0eb696917232725']))
 
     def test_hascitation(self):
         """
@@ -109,7 +109,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasCitation(['page 1', '', ''])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'a5af0ecb107303354a0']))
+                         set(['a5af0ecb107303354a0']))
 
     def test_hasnote(self):
         """
@@ -117,7 +117,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasNote([])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'a5af0ecb11f5ac3110e']))
+                         set(['a5af0ecb11f5ac3110e']))
 
     def test_hasnoteregexp(self):
         """
@@ -125,7 +125,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasNoteRegexp(['.'], use_regex=True)
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'a5af0ecb11f5ac3110e']))
+                         set(['a5af0ecb11f5ac3110e']))
 
     def test_hasreferencecountof(self):
         """
@@ -133,8 +133,8 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasReferenceCountOf(['greater than', '1'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'cc8205d86fc4e9706a5', b'a5af0ed60de7a612b9e',
-            b'cc820604ef05cb67907']))
+            'cc8205d86fc4e9706a5', 'a5af0ed60de7a612b9e',
+            'cc820604ef05cb67907']))
 
     def test_hassourcecount(self):
         """
@@ -142,7 +142,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasSourceCount(['1', 'greater than'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'a5af0ecb107303354a0']))
+                         set(['a5af0ecb107303354a0']))
 
     def test_eventprivate(self):
         """
@@ -157,7 +157,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = MatchesSourceConfidence(['2'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'a5af0ecb107303354a0']))
+                         set(['a5af0ecb107303354a0']))
 
     def test_hasattribute(self):
         """
@@ -165,7 +165,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasAttribute(['Cause', ''])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'a5af0ecb11f5ac3110e']))
+                         set(['a5af0ecb11f5ac3110e']))
 
     def test_hasdata(self):
         """
@@ -173,8 +173,8 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasData(['Burial', 'before 1800', 'USA', ''])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'a5af0ed4211095487d2', b'a5af0ed36793c1d3e05',
-            b'a5af0ecfcc16ce7a96a']))
+            'a5af0ed4211095487d2', 'a5af0ed36793c1d3e05',
+            'a5af0ecfcc16ce7a96a']))
 
     def test_changedsince(self):
         """
@@ -182,8 +182,8 @@ class BaseTest(unittest.TestCase):
         """
         rule = ChangedSince(['2011-01-01', '2014-01-01'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'a5af0ecb107303354a0', b'a5af0ecb11f5ac3110e',
-            b'a5af0ed5df832ee65c1']))
+            'a5af0ecb107303354a0', 'a5af0ecb11f5ac3110e',
+            'a5af0ed5df832ee65c1']))
 
     def test_hastag(self):
         """

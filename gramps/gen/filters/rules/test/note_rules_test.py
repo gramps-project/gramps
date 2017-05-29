@@ -72,7 +72,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasIdOf(['N0001'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'ac380498bac48eedee8']))
+                         set(['ac380498bac48eedee8']))
 
     def test_regexpidof(self):
         """
@@ -80,11 +80,11 @@ class BaseTest(unittest.TestCase):
         """
         rule = RegExpIdOf(['N000.'], use_regex=True)
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'ac380498c020c7bcdc7', b'ac3804a842b21358c97',
-            b'ae13613d581506d040892f88a21', b'ac3804a8405171ef666',
-            b'ac3804a1d747a39822c', b'ac3804aac6b762b75a5',
-            b'ac380498bac48eedee8', b'ac3804a1d66258b8e13',
-            b'ac380498bc46102e1e8', b'b39fe2e143d1e599450']))
+            'ac380498c020c7bcdc7', 'ac3804a842b21358c97',
+            'ae13613d581506d040892f88a21', 'ac3804a8405171ef666',
+            'ac3804a1d747a39822c', 'ac3804aac6b762b75a5',
+            'ac380498bac48eedee8', 'ac3804a1d66258b8e13',
+            'ac380498bc46102e1e8', 'b39fe2e143d1e599450']))
 
     def test_hasnote(self):
         """
@@ -92,7 +92,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasNote(['note', 'Person Note'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'b39ff11d8912173cded', b'b39ff01f75c1f76859a']))
+            'b39ff11d8912173cded', 'b39ff01f75c1f76859a']))
 
     def test_matchesregexpof(self):
         """
@@ -100,8 +100,8 @@ class BaseTest(unittest.TestCase):
         """
         rule = MatchesRegexpOf(['^This'], use_regex=True)
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'b39ff11d8912173cded', b'c140d4c29520c92055c',
-            b'b39ff01f75c1f76859a']))
+            'b39ff11d8912173cded', 'c140d4c29520c92055c',
+            'b39ff01f75c1f76859a']))
 
     def test_hasreferencecountof(self):
         """
@@ -109,7 +109,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasReferenceCountOf(['greater than', '1'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'c140d4c29520c92055c']))
+                         set(['c140d4c29520c92055c']))
 
     def test_noteprivate(self):
         """
@@ -124,9 +124,9 @@ class BaseTest(unittest.TestCase):
         """
         rule = ChangedSince(['2010-01-01', '2016-01-01'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'c140d4c29520c92055c', b'd0436bcc69d6bba278bff5bc7db',
-            b'b39fe2e143d1e599450', b'd0436bba4ec328d3b631259a4ee',
-            b'd0436be64ac277b615b79b34e72']))
+            'c140d4c29520c92055c', 'd0436bcc69d6bba278bff5bc7db',
+            'b39fe2e143d1e599450', 'd0436bba4ec328d3b631259a4ee',
+            'd0436be64ac277b615b79b34e72']))
 
     def test_hastag(self):
         """
@@ -134,7 +134,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasTag(['ToDo'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'b39ff01f75c1f76859a', b'b39fe2e143d1e599450']))
+            'b39ff01f75c1f76859a', 'b39fe2e143d1e599450']))
 
     def test_hastype(self):
         """
@@ -142,8 +142,8 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasType(['Person Note'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'ac380498c020c7bcdc7', b'b39ff11d8912173cded',
-            b'b39ff01f75c1f76859a']))
+            'ac380498c020c7bcdc7', 'b39ff11d8912173cded',
+            'b39ff01f75c1f76859a']))
 
 
 if __name__ == "__main__":

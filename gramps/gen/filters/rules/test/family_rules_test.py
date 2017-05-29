@@ -83,7 +83,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasGallery(['0', 'greater than'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'9OUJQCBOHW9UEK9CNV']))
+                         set(['9OUJQCBOHW9UEK9CNV']))
 
     def test_hasidof(self):
         """
@@ -91,7 +91,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasIdOf(['F0001'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'48TJQCGNNIR5SJRCAK']))
+                         set(['48TJQCGNNIR5SJRCAK']))
 
     def test_haslds(self):
         """
@@ -99,7 +99,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasLDS(['0', 'greater than'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'9OUJQCBOHW9UEK9CNV']))
+                         set(['9OUJQCBOHW9UEK9CNV']))
 
     def test_hasnote(self):
         """
@@ -107,7 +107,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasNote([])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'9OUJQCBOHW9UEK9CNV']))
+                         set(['9OUJQCBOHW9UEK9CNV']))
 
     def test_regexpidof(self):
         """
@@ -115,11 +115,11 @@ class BaseTest(unittest.TestCase):
         """
         rule = RegExpIdOf(['F000.'], use_regex=True)
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'LOTJQC78O5B4WQGJRP', b'UPTJQC4VPCABZUDB75',
-            b'NBTJQCIX49EKOCIHBP', b'C9UJQCF6ETBTV2MRRV',
-            b'74UJQCKV8R4NBNHCB', b'4BTJQCL4CHNA5OUTKF',
-            b'48TJQCGNNIR5SJRCAK', b'4YTJQCTEH7PQUU4AD',
-            b'MTTJQC05LKVFFLN01A', b'd5839c123c034ef82ab',
+            'LOTJQC78O5B4WQGJRP', 'UPTJQC4VPCABZUDB75',
+            'NBTJQCIX49EKOCIHBP', 'C9UJQCF6ETBTV2MRRV',
+            '74UJQCKV8R4NBNHCB', '4BTJQCL4CHNA5OUTKF',
+            '48TJQCGNNIR5SJRCAK', '4YTJQCTEH7PQUU4AD',
+            'MTTJQC05LKVFFLN01A', 'd5839c123c034ef82ab',
             ]))
 
     def test_hasnoteregexp(self):
@@ -128,7 +128,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasNoteRegexp(['.'], use_regex=True)
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'9OUJQCBOHW9UEK9CNV']))
+                         set(['9OUJQCBOHW9UEK9CNV']))
 
     def test_hasreferencecountof(self):
         """
@@ -136,10 +136,10 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasReferenceCountOf(['greater than', '12'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'29IKQCMUNFTIBV653N', b'8OUJQCUVZ0XML7BQLF', b'UPTJQC4VPCABZUDB75',
-            b'9NWJQCJGLXUR3AQSFJ', b'5G2KQCGBTS86UVSRG5', b'WG2KQCSY9LEFDFQHMN',
-            b'MTTJQC05LKVFFLN01A', b'C2VJQC71TNHO7RBBMX', b'QIDKQCJQ37SIUQ3UFU',
-            b'DV4KQCX9OBVQ74H77F']))
+            '29IKQCMUNFTIBV653N', '8OUJQCUVZ0XML7BQLF', 'UPTJQC4VPCABZUDB75',
+            '9NWJQCJGLXUR3AQSFJ', '5G2KQCGBTS86UVSRG5', 'WG2KQCSY9LEFDFQHMN',
+            'MTTJQC05LKVFFLN01A', 'C2VJQC71TNHO7RBBMX', 'QIDKQCJQ37SIUQ3UFU',
+            'DV4KQCX9OBVQ74H77F']))
 
     def test_hassourcecount(self):
         """
@@ -147,7 +147,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasSourceCount(['1', 'greater than'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'9OUJQCBOHW9UEK9CNV']))
+                         set(['9OUJQCBOHW9UEK9CNV']))
 
     def test_hassourceof(self):
         """
@@ -155,7 +155,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasSourceOf(['S0001'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'9OUJQCBOHW9UEK9CNV']))
+                         set(['9OUJQCBOHW9UEK9CNV']))
 
     def test_hascitation(self):
         """
@@ -163,7 +163,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasCitation(['page 10', '', '2'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'9OUJQCBOHW9UEK9CNV']))
+                         set(['9OUJQCBOHW9UEK9CNV']))
 
     def test_familyprivate(self):
         """
@@ -178,8 +178,8 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasEvent(['Marriage', 'before 1900', 'USA', '', 'Garner'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'KSFKQCP4V0YXGM1LR9', b'8ZFKQC3FRSHACOJBOU', b'3XFKQCE7QUDJ99AVNV',
-            b'OVFKQC51DX0OQUV3JB', b'9OUJQCBOHW9UEK9CNV']))
+            'KSFKQCP4V0YXGM1LR9', '8ZFKQC3FRSHACOJBOU', '3XFKQCE7QUDJ99AVNV',
+            'OVFKQC51DX0OQUV3JB', '9OUJQCBOHW9UEK9CNV']))
 
     def test_hasattribute(self):
         """
@@ -187,7 +187,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasAttribute(['Number of Children', ''])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'9OUJQCBOHW9UEK9CNV']))
+                         set(['9OUJQCBOHW9UEK9CNV']))
 
     def test_isbookmarked(self):
         """
@@ -195,7 +195,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = IsBookmarked([])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'9OUJQCBOHW9UEK9CNV']))
+                         set(['9OUJQCBOHW9UEK9CNV']))
 
     def test_matchessourceconfidence(self):
         """
@@ -211,7 +211,7 @@ class BaseTest(unittest.TestCase):
         rule = FatherHasNameOf(['', '', 'Dr.', '', '', '', '', '', '', '',
                                 ''])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'9OUJQCBOHW9UEK9CNV']))
+                         set(['9OUJQCBOHW9UEK9CNV']))
 
     def test_fatherhasidof(self):
         """
@@ -219,7 +219,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = FatherHasIdOf(['I0106'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'8OUJQCUVZ0XML7BQLF']))
+                         set(['8OUJQCUVZ0XML7BQLF']))
 
     def test_motherhasnameof(self):
         """
@@ -228,8 +228,8 @@ class BaseTest(unittest.TestCase):
         rule = MotherHasNameOf(['', 'Alvarado', '', '', '', '', '', '', '', '',
                                 ''])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'EM3KQC48HFLA02TF8D', b'K9NKQCBG105ECXZ48D',
-            b'2QMKQC5YWNAWZMG6VO', b'6JUJQCCAXGENRX990K']))
+            'EM3KQC48HFLA02TF8D', 'K9NKQCBG105ECXZ48D',
+            '2QMKQC5YWNAWZMG6VO', '6JUJQCCAXGENRX990K']))
 
     def test_motherhasidof(self):
         """
@@ -237,7 +237,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = MotherHasIdOf(['I0107'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'8OUJQCUVZ0XML7BQLF']))
+                         set(['8OUJQCUVZ0XML7BQLF']))
 
     def test_childhasnameof(self):
         """
@@ -246,9 +246,9 @@ class BaseTest(unittest.TestCase):
         rule = ChildHasNameOf(['Eugene', '', '', '', '', '', '', '', '', '',
                                ''])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'D1YJQCGLEIBPPLNL4B', b'5GTJQCXVYVAIQTBVKA', b'I42KQCM3S926FMJ91O',
-            b'7CTJQCFJVBQSY076A6', b'9OUJQCBOHW9UEK9CNV', b'9IXJQCX18AHUFPQHEZ',
-            b'9NWJQCJGLXUR3AQSFJ']))
+            'D1YJQCGLEIBPPLNL4B', '5GTJQCXVYVAIQTBVKA', 'I42KQCM3S926FMJ91O',
+            '7CTJQCFJVBQSY076A6', '9OUJQCBOHW9UEK9CNV', '9IXJQCX18AHUFPQHEZ',
+            '9NWJQCJGLXUR3AQSFJ']))
 
     def test_childhasidof(self):
         """
@@ -256,7 +256,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = ChildHasIdOf(['I0001'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'48TJQCGNNIR5SJRCAK']))
+                         set(['48TJQCGNNIR5SJRCAK']))
 
     def test_changedsince(self):
         """
@@ -264,7 +264,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = ChangedSince(['2008-01-01', '2014-01-01'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'9OUJQCBOHW9UEK9CNV']))
+                         set(['9OUJQCBOHW9UEK9CNV']))
 
     def test_hastag(self):
         """
@@ -272,7 +272,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasTag(['ToDo'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'9OUJQCBOHW9UEK9CNV']))
+                         set(['9OUJQCBOHW9UEK9CNV']))
 
     def test_hastwins(self):
         """
@@ -280,8 +280,8 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasTwins([])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'SD6KQC7LB8MYGA7F5W', b'8OUJQCUVZ0XML7BQLF', b'1BVJQCNTFAGS8273LJ',
-            b'5IUJQCRJY47YQ8PU7N', b'ZLUJQCPDV93OR8KHB7', b'4U2KQCBXG2VTPH6U1F',
+            'SD6KQC7LB8MYGA7F5W', '8OUJQCUVZ0XML7BQLF', '1BVJQCNTFAGS8273LJ',
+            '5IUJQCRJY47YQ8PU7N', 'ZLUJQCPDV93OR8KHB7', '4U2KQCBXG2VTPH6U1F',
             ]))
 
     def test_isancestorof(self):
@@ -290,10 +290,10 @@ class BaseTest(unittest.TestCase):
         """
         rule = IsAncestorOf(['F0031', '0'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'4AXJQC96KTN3WGPTVE', b'1RUJQCYX9QL1V45YLD', b'5GTJQCXVYVAIQTBVKA',
-            b'X3WJQCSF48F6809142', b'NSVJQC89IHEEBIPDP2', b'9OUJQCBOHW9UEK9CNV',
-            b'1RUJQCCL9MVRYLMTBO', b'RRVJQC5A8DDHQFPRDL', b'0SUJQCOS78AXGWP8QR',
-            b'57WJQCTBJKR5QYPS6K', b'8OUJQCUVZ0XML7BQLF', b'7PUJQC4PPS4EDIVMYE'
+            '4AXJQC96KTN3WGPTVE', '1RUJQCYX9QL1V45YLD', '5GTJQCXVYVAIQTBVKA',
+            'X3WJQCSF48F6809142', 'NSVJQC89IHEEBIPDP2', '9OUJQCBOHW9UEK9CNV',
+            '1RUJQCCL9MVRYLMTBO', 'RRVJQC5A8DDHQFPRDL', '0SUJQCOS78AXGWP8QR',
+            '57WJQCTBJKR5QYPS6K', '8OUJQCUVZ0XML7BQLF', '7PUJQC4PPS4EDIVMYE'
             ]))
 
     def test_isdescendantof(self):
@@ -302,11 +302,11 @@ class BaseTest(unittest.TestCase):
         """
         rule = IsDescendantOf(['F0031', '0'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'SFXJQCLE8PIG7PH38J', b'UCXJQCC5HS8VXDKWBM', b'IIEKQCRX89WYBHKB7R',
-            b'XDXJQCMWU5EIV8XCRF', b'7BXJQCU22OCA4HN38A', b'3FXJQCR749H2H7G321',
-            b'IEXJQCFUN95VENI6BO', b'4FXJQC7656WDQ3HJGW', b'FLEKQCRVG3O1UA9YUB',
-            b'BCXJQC9AQ0DBXCVLEQ', b'9SEKQCAAWRUCIO7A0M', b'DDXJQCVT5X72TOXP0C',
-            b'CGXJQC515QL9RLPQTU', b'XGXJQCNVZH2PWRMVAH', b'RBXJQCUYMQR2KRMDFY'
+            'SFXJQCLE8PIG7PH38J', 'UCXJQCC5HS8VXDKWBM', 'IIEKQCRX89WYBHKB7R',
+            'XDXJQCMWU5EIV8XCRF', '7BXJQCU22OCA4HN38A', '3FXJQCR749H2H7G321',
+            'IEXJQCFUN95VENI6BO', '4FXJQC7656WDQ3HJGW', 'FLEKQCRVG3O1UA9YUB',
+            'BCXJQC9AQ0DBXCVLEQ', '9SEKQCAAWRUCIO7A0M', 'DDXJQCVT5X72TOXP0C',
+            'CGXJQC515QL9RLPQTU', 'XGXJQCNVZH2PWRMVAH', 'RBXJQCUYMQR2KRMDFY'
             ]))
 
 

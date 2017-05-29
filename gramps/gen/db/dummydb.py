@@ -526,7 +526,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_family_handles(self, sort_handles=False):
         """
@@ -670,7 +670,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_note_handles(self):
         """
@@ -782,7 +782,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_person_attribute_types(self):
         """
@@ -829,7 +829,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_person_handles(self, sort_handles=False):
         """
@@ -887,7 +887,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_place_handles(self, sort_handles=False):
         """
@@ -907,7 +907,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_raw_family_data(self, handle):
         """
@@ -916,7 +916,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_raw_note_data(self, handle):
         """
@@ -925,7 +925,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_raw_media_data(self, handle):
         """
@@ -934,7 +934,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_raw_person_data(self, handle):
         """
@@ -943,7 +943,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_raw_place_data(self, handle):
         """
@@ -952,7 +952,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_raw_repository_data(self, handle):
         """
@@ -961,7 +961,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_raw_source_data(self, handle):
         """
@@ -970,7 +970,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_raw_citation_data(self, handle):
         """
@@ -979,7 +979,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_raw_tag_data(self, handle):
         """
@@ -988,7 +988,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_repo_bookmarks(self):
         """
@@ -1026,7 +1026,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_repository_handles(self):
         """
@@ -1097,7 +1097,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_source_handles(self, sort_handles=False):
         """
@@ -1155,7 +1155,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_citation_handles(self, sort_handles=False):
         """
@@ -1193,7 +1193,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         LOG.warning("handle %s does not exist in the dummy database", handle)
-        raise HandleError('Handle %s not found' % handle.encode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_tag_from_name(self, val):
         """
@@ -1611,7 +1611,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
 
     def set_mediapath(self, path):
         """
-        Set the default media path for database, path should be utf-8.
+        Set the default media path for database.
         """
         if not self.db_is_open:
             LOG.warning("database is closed")

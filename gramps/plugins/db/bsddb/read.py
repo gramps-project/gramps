@@ -108,14 +108,11 @@ def find_byte_surname(key, data):
     """
     surn = __index_surname(data[3][5])
     # in python 3 we work with unicode internally, but need byte function sometimes
-    if isinstance(surn, str):
-        return surn.encode('utf-8')
-    return surn
+    return surn.encode('utf-8')
 
 def find_fullname(key, data):
     """
     Creating a fullname from raw data of a person, to use for sort and index
-    returns a byte string
     """
     # data[3] -> primary_name
     # data[3][4] -> primary given
@@ -140,7 +137,6 @@ def find_fullname(key, data):
 def find_surname(key, data):
     """
     Creating a surname from raw data of a person, to use for sort and index
-    returns a byte string
     """
     # data[3][5] -> surname_list
     return __index_surname(data[3][5])
@@ -148,7 +144,6 @@ def find_surname(key, data):
 def find_surname_name(key, data):
     """
     Creating a surname from raw name, to use for sort and index
-    returns a byte string
     """
     return __index_surname(data[5])
 
@@ -156,7 +151,6 @@ def __index_surname(surn_list):
     """
     All non pa/matronymic surnames are used in indexing.
     pa/matronymic not as they change for every generation!
-    returns a byte string
     """
     if surn_list:
         surn = " ".join([x[0] for x in surn_list if not (x[3][0] in [
@@ -196,11 +190,10 @@ class DbBsddbTreeCursor(BsddbBaseCursor):
         Iterator
         """
         _n = self.next_dup
-        to_do = [b'']
+        to_do = ['']
         while to_do:
             key = to_do.pop()
-            key = key.encode('utf-8') if not isinstance(key, bytes) else key
-            data = self.set(key)
+            data = self.set(key.encode('utf-8'))
             while data:
                 ### FIXME: this is a dirty hack that works without no
                 ### sensible explanation. For some reason, for a readonly
@@ -629,12 +622,9 @@ class DbBsddbRead(DbReadBase, Callback):
         Helper function for find_next_<object>_gramps_id methods
         """
         index = prefix % map_index
-        #in bytes
-        bindex = index.encode('utf-8')
-        while trans.get(bindex, txn=self.txn) is not None:
+        while trans.get(index.encode('utf-8'), txn=self.txn) is not None:
             map_index += 1
             index = prefix % map_index
-            bindex = index.encode('utf-8')
         map_index += 1
         return (map_index, index)
 
@@ -720,14 +710,12 @@ class DbBsddbRead(DbReadBase, Callback):
         return gid
 
     def _get_from_handle(self, handle, class_type, data_map):
-        if isinstance(handle, str):
-            handle = handle.encode('utf-8')
-        data = data_map.get(handle)
+        data = data_map.get(handle.encode('utf-8'))
         if data:
             newobj = class_type()
             newobj.unserialize(data)
             return newobj
-        raise HandleError('Handle %s not found' % handle.decode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     def get_person_from_handle(self, handle):
         """
@@ -812,10 +800,10 @@ class DbBsddbRead(DbReadBase, Callback):
     def __get_obj_from_gramps_id(self, val, tbl, class_, prim_tbl):
         if isinstance(tbl, dict):
             return None ## trying to get object too early
-        if isinstance(val, str):
-            val = val.encode('utf-8')
+        if val is None:
+            return None
         try:
-            data = tbl.get(val, txn=self.txn)
+            data = tbl.get(val.encode('utf-8'), txn=self.txn)
             if data is not None:
                 obj = class_()
                 ### FIXME: this is a dirty hack that works without no
@@ -929,15 +917,8 @@ class DbBsddbRead(DbReadBase, Callback):
         Return the default grouping name for a surname.
         Return type is a unicode object
         """
-        if isinstance(surname, str):
-            key = surname.encode('utf-8')
-        else:
-            key = surname
-        name_group = self.name_group.get(key, surname)
-        if isinstance(name_group, bytes):
-            return name_group.decode("utf-8")
-        else:
-            return name_group
+        key = surname.encode('utf-8')
+        return self.name_group.get(key, surname)
 
     def get_name_group_keys(self):
         """
@@ -951,8 +932,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         # The use of has_key seems allright because there is no write lock
         # on the name_group table when this is called.
-        if isinstance(name, str):
-            name = name.encode('utf-8')
+        name = name.encode('utf-8')
         return name in self.name_group
 
     def get_number_of_records(self, table):
@@ -1036,12 +1016,10 @@ class DbBsddbRead(DbReadBase, Callback):
             return True
 
     def _all_handles(self, table):
-        """ return all the keys of a database table
-
-        .. warning:: For speed the keys are directly returned, so on python3
-                     bytestrings are returned!
         """
-        return table.keys(txn=self.txn)
+        Return all the keys of a database table
+        """
+        return [key.decode('utf-8') for key in table.keys(txn=self.txn)]
 
     def get_person_handles(self, sort_handles=False):
         """
@@ -1049,9 +1027,6 @@ class DbBsddbRead(DbReadBase, Callback):
         the database.
 
         If sort_handles is True, the list is sorted by surnames.
-
-        .. warning:: For speed the keys are directly returned, so on python3
-                     bytestrings are returned!
         """
         if self.db_is_open:
             handle_list = self._all_handles(self.person_map)
@@ -1066,9 +1041,6 @@ class DbBsddbRead(DbReadBase, Callback):
         the database.
 
         If sort_handles is True, the list is sorted by Place title.
-
-        .. warning:: For speed the keys are directly returned, so on python3
-                     bytestrings are returned!
         """
 
         if self.db_is_open:
@@ -1084,9 +1056,6 @@ class DbBsddbRead(DbReadBase, Callback):
         the database.
 
         If sort_handles is True, the list is sorted by Source title.
-
-        .. warning:: For speed the keys are directly returned, so on python3
-                     bytestrings are returned!
         """
         if self.db_is_open:
             handle_list = self._all_handles(self.source_map)
@@ -1101,9 +1070,6 @@ class DbBsddbRead(DbReadBase, Callback):
         the database.
 
         If sort_handles is True, the list is sorted by Citation Volume/Page.
-
-        .. warning:: For speed the keys are directly returned, so on python3
-                     bytestrings are returned!
         """
         if self.db_is_open:
             handle_list = self._all_handles(self.citation_map)
@@ -1118,9 +1084,6 @@ class DbBsddbRead(DbReadBase, Callback):
         the database.
 
         If sort_handles is True, the list is sorted by title.
-
-        .. warning:: For speed the keys are directly returned, so on python3
-                     bytestrings are returned!
         """
         if self.db_is_open:
             handle_list = self._all_handles(self.media_map)
@@ -1133,9 +1096,6 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Return a list of database handles, one handle for each Event in the
         database.
-
-        .. warning:: For speed the keys are directly returned, so on python3
-                     bytestrings are returned!
         """
         if self.db_is_open:
             return self._all_handles(self.event_map)
@@ -1147,9 +1107,6 @@ class DbBsddbRead(DbReadBase, Callback):
         the database.
 
         If sort_handles is True, the list is sorted by surnames.
-
-        .. warning:: For speed the keys are directly returned, so on python3
-                     bytestrings are returned!
         """
         if self.db_is_open:
             handle_list = self._all_handles(self.family_map)
@@ -1162,9 +1119,6 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Return a list of database handles, one handle for each Repository in
         the database.
-
-        .. warning:: For speed the keys are directly returned, so on python3
-                     bytestrings are returned!
         """
         if self.db_is_open:
             return self._all_handles(self.repository_map)
@@ -1174,9 +1128,6 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Return a list of database handles, one handle for each Note in the
         database.
-
-        .. warning:: For speed the keys are directly returned, so on python3
-                     bytestrings are returned!
         """
         if self.db_is_open:
             return self._all_handles(self.note_map)
@@ -1188,9 +1139,6 @@ class DbBsddbRead(DbReadBase, Callback):
         the database.
 
         If sort_handles is True, the list is sorted by Tag name.
-
-        .. warning:: For speed the keys are directly returned, so on python3
-                     bytestrings are returned!
         """
         if self.db_is_open:
             handle_list = self._all_handles(self.tag_map)
@@ -1206,7 +1154,7 @@ class DbBsddbRead(DbReadBase, Callback):
         def g(self):
             with curs_(self) as cursor:
                 for key, data in cursor:
-                    yield key.decode('utf-8')
+                    yield key
         return g
 
     # Use closure to define iterators for each primary object type
@@ -1279,8 +1227,7 @@ class DbBsddbRead(DbReadBase, Callback):
             }
 
         table = key2table[obj_key]
-        if isinstance(gramps_id, str):
-            gramps_id = gramps_id.encode('utf-8')
+        gramps_id = gramps_id.encode('utf-8')
         return table.get(gramps_id, txn=self.txn) is not None
 
     def find_initial_person(self):
@@ -1293,7 +1240,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     @staticmethod
     def _validated_id_prefix(val, default):
-        if isinstance(val, str) and val:
+        if val:
             try:
                 str_ = val % 1
             except TypeError:           # missing conversion specifier
@@ -1649,10 +1596,8 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         if table is None:
             return None ## trying to get object too early
-        if isinstance(handle, str):
-            handle = handle.encode('utf-8')
         try:
-            return table.get(handle, txn=self.txn)
+            return table.get(handle.encode('utf-8'), txn=self.txn)
         except DBERRS as msg:
             self.__log_error()
             raise DbError(msg)
@@ -1691,10 +1636,10 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Helper function for has_<object>_handle methods
         """
-        if isinstance(handle, str):
-            handle = handle.encode('utf-8')
+        if handle is None:
+            return False
         try:
-            return table.get(handle, txn=self.txn) is not None
+            return table.get(handle.encode('utf-8'), txn=self.txn) is not None
         except DBERRS as msg:
             self.__log_error()
             raise DbError(msg)
@@ -1763,8 +1708,9 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Helper function for has_<object>_gramps_id methods
         """
-        if isinstance(gramps_id, str):
-            gramps_id = gramps_id.encode('utf-8')
+        if gramps_id is None:
+            return False
+        gramps_id = gramps_id.encode('utf-8')
         try:
             return id_map.get(gramps_id, txn=self.txn) is not None
         except DBERRS as msg:
@@ -1826,104 +1772,85 @@ class DbBsddbRead(DbReadBase, Callback):
         return self.__has_gramps_id(self.cid_trans, gramps_id)
 
     def __sortbyperson_key(self, handle):
-        if isinstance(handle, str):
-            handle = handle.encode('utf-8')
+        handle = handle.encode('utf-8')
         return glocale.sort_key(find_fullname(handle,
                                               self.person_map.get(handle)))
 
     def __sortbyfamily_key(self, handle):
-        if isinstance(handle, str):
-            handle = handle.encode('utf-8')
+        handle = handle.encode('utf-8')
         data = self.family_map.get(handle)
         data2 = data[2]
-        if isinstance(data2, str):
-            data2 = data2.encode('utf-8')
         data3 = data[3]
-        if isinstance(data3, str):
-            data3 = data3.encode('utf-8')
         if data2: # father handle
+            data2 = data2.encode('utf-8')
             return glocale.sort_key(find_fullname(data2,
                                     self.person_map.get(data2)))
         elif data3: # mother handle
+            data3 = data3.encode('utf-8')
             return glocale.sort_key(find_fullname(data3,
                                     self.person_map.get(data3)))
         return ''
 
     def __sortbyplace(self, first, second):
-        if isinstance(first, str):
-            first = first.encode('utf-8')
-        if isinstance(second, str):
-            second = second.encode('utf-8')
+        first = first.encode('utf-8')
+        second = second.encode('utf-8')
         return glocale.strcoll(self.place_map.get(first)[2],
                               self.place_map.get(second)[2])
 
     def __sortbyplace_key(self, place):
-        if isinstance(place, str):
-            place = place.encode('utf-8')
+        place = place.encode('utf-8')
         return glocale.sort_key(self.place_map.get(place)[2])
 
     def __sortbysource(self, first, second):
-        if isinstance(first, str):
-            first = first.encode('utf-8')
-        if isinstance(second, str):
-            second = second.encode('utf-8')
+        first = first.encode('utf-8')
+        second = second.encode('utf-8')
         source1 = str(self.source_map[first][2])
         source2 = str(self.source_map[second][2])
         return glocale.strcoll(source1, source2)
 
     def __sortbysource_key(self, key):
-        if isinstance(key, str):
-            key = key.encode('utf-8')
+        key = key.encode('utf-8')
         source = str(self.source_map[key][2])
         return glocale.sort_key(source)
 
     def __sortbycitation(self, first, second):
-        if isinstance(first, str):
-            first = first.encode('utf-8')
-        if isinstance(second, str):
-            second = second.encode('utf-8')
+        first = first.encode('utf-8')
+        second = second.encode('utf-8')
         citation1 = str(self.citation_map[first][3])
         citation2 = str(self.citation_map[second][3])
         return glocale.strcoll(citation1, citation2)
 
     def __sortbycitation_key(self, key):
-        if isinstance(key, str):
-            key = key.encode('utf-8')
+        key = key.encode('utf-8')
         citation = str(self.citation_map[key][3])
         return glocale.sort_key(citation)
 
     def __sortbymedia(self, first, second):
-        if isinstance(first, str):
-            first = first.encode('utf-8')
-        if isinstance(second, str):
-            second = second.encode('utf-8')
+        first = first.encode('utf-8')
+        second = second.encode('utf-8')
         media1 = self.media_map[first][4]
         media2 = self.media_map[second][4]
         return glocale.strcoll(media1, media2)
 
     def __sortbymedia_key(self, key):
-        if isinstance(key, str):
-            key = key.encode('utf-8')
+        key = key.encode('utf-8')
         media = self.media_map[key][4]
         return glocale.sort_key(media)
 
     def __sortbytag(self, first, second):
-        if isinstance(first, str):
-            first = first.encode('utf-8')
-        if isinstance(second, str):
-            second = second.encode('utf-8')
+        first = first.encode('utf-8')
+        second = second.encode('utf-8')
         tag1 = self.tag_map[first][1]
         tag2 = self.tag_map[second][1]
         return glocale.strcoll(tag1, tag2)
 
     def __sortbytag_key(self, key):
-        if isinstance(key, str):
-            key = key.encode('utf-8')
+        key = key.encode('utf-8')
         tag = self.tag_map[key][1]
         return glocale.sort_key(tag)
 
     def set_mediapath(self, path):
-        """Set the default media path for database, path should be utf-8."""
+        """Set the default media path for database."""
         if (self.metadata is not None) and (not self.readonly):
             self.metadata[b'mediapath'] = path
 

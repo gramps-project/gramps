@@ -203,14 +203,14 @@ class CursorTest(unittest.TestCase):
     def test_treecursor(self):
         #fill with data
         the_txn = self.env.txn_begin()
-        data = [(b'1', 'countryA',  ''  ),
-                (b'2', 'localityA', '1' ),
-                (b'3', 'localityB', '1' ),
-                (b'4', 'countryB',  ''  ),
-                (b'5', 'streetA',   '2' ),
-                (b'6', 'countryB',  ''  )]
+        data = [('1', 'countryA',  ''  ),
+                ('2', 'localityA', '1' ),
+                ('3', 'localityB', '1' ),
+                ('4', 'countryB',  ''  ),
+                ('5', 'streetA',   '2' ),
+                ('6', 'countryB',  ''  )]
         for d in data:
-            self.place_map.put(d[0], d, txn=the_txn)
+            self.place_map.put(d[0].encode('utf-8'), d, txn=the_txn)
         the_txn.commit()
 
         cursor_txn = self.env.txn_begin()

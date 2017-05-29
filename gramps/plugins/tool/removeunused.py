@@ -291,8 +291,7 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 for handle, data in cursor:
                     if not any(h for h in fbh(handle)):
                         if handle not in todo_list and handle not in link_list:
-                            self.add_results((the_type, handle.decode('utf-8'),
-                                              data))
+                            self.add_results((the_type, handle, data))
                     self.update()
             self.reset()
 
