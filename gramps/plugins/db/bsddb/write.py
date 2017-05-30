@@ -87,7 +87,7 @@ LOG = logging.getLogger(".citation")
 #_hdlr.setFormatter(logging.Formatter(fmt="%(name)s.%(levelname)s: %(message)s"))
 #_LOG.addHandler(_hdlr)
 _MINVERSION = 9
-_DBVERSION = 18
+_DBVERSION = 19
 
 IDTRANS     = "person_id"
 FIDTRANS    = "family_id"
@@ -2159,6 +2159,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             upgrade.gramps_upgrade_17(self)
         if version < 18:
             upgrade.gramps_upgrade_18(self)
+        if version < 19:
+            upgrade.gramps_upgrade_19(self)
 
             self.reset()
             self.set_total(6)
