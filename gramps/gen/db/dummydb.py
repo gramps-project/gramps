@@ -67,6 +67,7 @@ from .base import DbReadBase
 from .dbconst import DBLOGNAME
 from ..errors import HandleError
 from ..utils.callback import Callback
+from ..lib import Researcher
 
 LOG = logging.getLogger(DBLOGNAME)
 
@@ -218,6 +219,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         Callback.__init__(self)
         self.db_is_open = False
         self.readonly = True
+        self.name_formats = []
         self.bookmarks = Bookmarks()
         self.family_bookmarks = Bookmarks()
         self.event_bookmarks = Bookmarks()
@@ -227,6 +229,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         self.repo_bookmarks = Bookmarks()
         self.media_bookmarks = Bookmarks()
         self.note_bookmarks = Bookmarks()
+        self.owner = Researcher()
 
     def get_feature(self, feature):
         """
@@ -1053,7 +1056,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         """
         if not self.db_is_open:
             LOG.warning("database is closed")
-        return None
+        return self.owner
 
     def get_save_path(self):
         """
