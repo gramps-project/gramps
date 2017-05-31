@@ -1211,7 +1211,7 @@ class DbBsddbRead(DbReadBase, Callback):
             }
 
         table = key2table[obj_key]
-        return list(table.keys())
+        return [key.decode('utf-8') for key in table.keys()]
 
     def has_gramps_id(self, obj_key, gramps_id):
         key2table = {
