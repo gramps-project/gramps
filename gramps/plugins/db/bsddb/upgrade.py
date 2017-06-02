@@ -77,6 +77,17 @@ def gramps_upgrade_pickle(self):
     with BSDDBTxn(self.env, self.metadata) as txn:
         txn.put(b'upgraded', 'Yes')
 
+def gramps_upgrade_19(self):
+    """
+    Upgrade database from version 18 to 19.
+    """
+    default_handle = self.metadata.get(b'default')
+    with BSDDBTxn(self.env, self.metadata) as txn:
+        if default_handle is not None:
+            default_handle = default_handle.decode('utf-8')
+            txn.put(b'default', default_handle)
+        txn.put(b'version', 19)
+
 def gramps_upgrade_18(self):
     """
     Upgrade database from version 17 to 18.

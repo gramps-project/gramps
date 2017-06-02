@@ -72,7 +72,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasIdOf(['R0000'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'b39fe38593f3f8c4f12']))
+                         set(['b39fe38593f3f8c4f12']))
 
     def test_regexpidof(self):
         """
@@ -80,8 +80,8 @@ class BaseTest(unittest.TestCase):
         """
         rule = RegExpIdOf(['R000.'], use_regex=True)
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'a701ead12841521cd4d', b'a701e99f93e5434f6f3',
-            b'b39fe38593f3f8c4f12']))
+            'a701ead12841521cd4d', 'a701e99f93e5434f6f3',
+            'b39fe38593f3f8c4f12']))
 
     def test_hasnoteregexp(self):
         """
@@ -89,7 +89,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasNoteRegexp(['.'], use_regex=True)
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'a701ead12841521cd4d', b'b39fe38593f3f8c4f12']))
+            'a701ead12841521cd4d', 'b39fe38593f3f8c4f12']))
 
     def test_hasreferencecountof(self):
         """
@@ -97,7 +97,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasReferenceCountOf(['greater than', '1'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'a701e99f93e5434f6f3']))
+                         set(['a701e99f93e5434f6f3']))
 
     def test_repoprivate(self):
         """
@@ -112,7 +112,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = ChangedSince(['2010-01-01', '2016-01-01'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'a701e99f93e5434f6f3']))
+                         set(['a701e99f93e5434f6f3']))
 
     def test_matchesnamesubstringof(self):
         """
@@ -120,7 +120,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = MatchesNameSubstringOf(['Martha'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'a701ead12841521cd4d']))
+                         set(['a701ead12841521cd4d']))
 
     def test_hastag(self):
         """

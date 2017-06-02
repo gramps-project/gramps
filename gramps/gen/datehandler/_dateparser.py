@@ -618,12 +618,11 @@ class DateParser:
             y = self._get_int(groups[0])
             m = self._get_int(groups[3])
             d = self._get_int(groups[4])
-            if check and not check((d, m, y)):
-                return Date.EMPTY
-            if groups[2]: # slash year digit
+            if groups[2] and julian_valid((d, m, y + 1)): # slash year digit
                 return (d, m, y + 1, True)
-            else:
+            if check is None or check((d, m, y)):
                 return (d, m, y, False)
+            return Date.EMPTY
 
         # Database datetime format, used in ex. MSSQL
         # YYYYMMDD HH:MM:SS or YYYYMMDD or YYYYMMDDHHMMSS

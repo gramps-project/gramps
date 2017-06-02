@@ -1385,7 +1385,7 @@ class DbReadBase:
 
     def set_mediapath(self, path):
         """
-        Set the default media path for database, path should be utf-8.
+        Set the default media path for database.
         """
         raise NotImplementedError
 

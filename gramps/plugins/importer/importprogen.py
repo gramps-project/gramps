@@ -763,7 +763,7 @@ class ProgenParser(UpdateCallback):
             # create a new Person
             gramps_id = self.dbase.id2user_format("I%05d" % progen_id)
             # make sure that gramps_id are bytes ...
-            if self.dbase.has_person_gramps_id(gramps_id.encode('utf-8')):
+            if self.dbase.has_person_gramps_id(gramps_id):
                 gramps_id = self.dbase.find_next_person_gramps_id()
             intid = _find_from_handle(progen_id, self.gid2id)
             person.set_handle(intid)
@@ -783,7 +783,7 @@ class ProgenParser(UpdateCallback):
             # create a new Family
             gramps_id = self.dbase.fid2user_format("F%04d" % progen_id)
             # make sure that gramps_id are bytes ...
-            if self.dbase.has_family_gramps_id(gramps_id.encode('utf-8')):
+            if self.dbase.has_family_gramps_id(gramps_id):
                 gramps_id = self.dbase.find_next_family_gramps_id()
             intid = _find_from_handle(progen_id, self.fid2id)
             family.set_handle(intid)
@@ -1063,7 +1063,7 @@ class ProgenParser(UpdateCallback):
 
         # Hmmm. Just use the plain text.
         LOG.warning(_("Date did not match: '%(text)s' (%(msg)s)"), \
-                     {'text' : date_text.encode('utf-8'), 'msg' : diag_msg or ''})
+                     {'text' : date_text, 'msg' : diag_msg or ''})
         date.set_as_text(date_text)
 
         return date
@@ -1197,9 +1197,7 @@ class ProgenParser(UpdateCallback):
             self.__add_tag('Person', person)
 
             # create diagnose message
-            diag_msg = "%s: %s %s" % (person.gramps_id,
-                                      first_name.encode('utf-8'),
-                                      sur_name.encode('utf-8'))
+            diag_msg = "%s: %s %s" % (person.gramps_id, first_name, sur_name)
 
             # prcesss F25 Birth Date
             birth_date = self.__create_date_from_text \

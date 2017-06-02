@@ -209,7 +209,7 @@ class ListView(NavigationView):
         self.edit_action.add_actions([
                 ('Add', 'list-add', _("_Add..."), "<PRIMARY>Insert",
                     self.ADD_MSG, self.add),
-                ('Remove', 'list-remove', _("_Remove"), "<PRIMARY>Delete",
+                ('Remove', 'list-remove', _("_Delete"), "<PRIMARY>Delete",
                     self.DEL_MSG, self.remove),
                 ('Merge', 'gramps-merge', _('_Merge...'), None,
                     self.MERGE_MSG, self.merge),

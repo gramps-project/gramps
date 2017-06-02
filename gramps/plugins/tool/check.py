@@ -357,8 +357,7 @@ class CheckIntegrity:
         logging.info('Looking for duplicate spouses')
         previous_errors = len(self.duplicate_links)
 
-        for bhandle in self.db.get_person_handles():
-            handle = bhandle.decode('utf-8')
+        for handle in self.db.get_person_handles():
             pers = self.db.get_person_from_handle(handle)
             splist = pers.get_family_handle_list()
             if len(splist) != len(set(splist)):
@@ -379,8 +378,7 @@ class CheckIntegrity:
                                self.db.get_number_of_media())
         logging.info('Looking for character encoding errors')
         error_count = 0
-        for bhandle in self.db.get_media_handles():
-            handle = bhandle.decode('utf-8')
+        for handle in self.db.get_media_handles():
             data = self.db.get_raw_media_data(handle)
             if not isinstance(data[2], str) or not isinstance(data[4], str):
                 obj = self.db.get_media_from_handle(handle)
@@ -420,8 +418,7 @@ class CheckIntegrity:
                                self.db.get_number_of_notes())
         logging.info('Looking for ctrl characters in notes')
         error_count = 0
-        for bhandle in self.db.get_note_handles():
-            handle = bhandle.decode('utf-8')
+        for handle in self.db.get_note_handles():
             note = self.db.get_note_from_handle(handle)
             stext = note.get_styledtext()
             old_text = str(stext)
@@ -447,8 +444,7 @@ class CheckIntegrity:
         self.progress.set_pass(_('Looking for bad alternate place names'),
                                self.db.get_number_of_places())
         logging.info('Looking for bad alternate place names')
-        for bhandle in self.db.get_place_handles():
-            handle = bhandle.decode('utf-8')
+        for handle in self.db.get_place_handles():
             place = self.db.get_place_from_handle(handle)
             fixed_alt_names = []
             fixup = False
@@ -480,8 +476,7 @@ class CheckIntegrity:
         logging.info('Looking for broken family links')
         previous_errors = len(self.broken_parent_links + self.broken_links)
 
-        for bfamily_handle in fhandle_list:
-            family_handle = bfamily_handle.decode('utf-8')
+        for family_handle in fhandle_list:
             family = self.db.get_family_from_handle(family_handle)
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
@@ -612,8 +607,7 @@ class CheckIntegrity:
             self.progress.step()
 
         # Check persons membership in referenced families
-        for bperson_handle in self.db.get_person_handles():
-            person_handle = bperson_handle.decode('utf-8')
+        for person_handle in self.db.get_person_handles():
             person = self.db.get_person_from_handle(person_handle)
 
             phandle_list = person.get_parent_family_handle_list()
@@ -778,8 +772,7 @@ class CheckIntegrity:
 
         # --------------------------------------------------------------------
 
-        for bobjectid in self.db.get_media_handles():
-            objectid = bobjectid.decode('utf-8')
+        for objectid in self.db.get_media_handles():
             obj = self.db.get_media_from_handle(objectid)
             photo_name = media_path_full(self.db, obj.get_path())
             photo_desc = obj.get_description()
@@ -985,8 +978,7 @@ class CheckIntegrity:
                                len(fhandle_list))
         logging.info('Looking for empty families')
         previous_errors = len(self.empty_family)
-        for bfamily_handle in fhandle_list:
-            family_handle = bfamily_handle.decode('utf-8')
+        for family_handle in fhandle_list:
             self.progress.step()
 
             family = self.db.get_family_from_handle(family_handle)
@@ -1022,8 +1014,7 @@ class CheckIntegrity:
         logging.info('Looking for broken parent relationships')
         previous_errors = len(self.fam_rel)
 
-        for bfamily_handle in fhandle_list:
-            family_handle = bfamily_handle.decode('utf-8')
+        for family_handle in fhandle_list:
             self.progress.step()
             family = self.db.get_family_from_handle(family_handle)
 
@@ -1062,8 +1053,7 @@ class CheckIntegrity:
                                self.db.get_number_of_families())
         logging.info('Looking for event problems')
 
-        for bkey in self.db.get_person_handles(sort_handles=False):
-            key = bkey.decode('utf-8')
+        for key in self.db.get_person_handles(sort_handles=False):
             self.progress.step()
 
             person = self.db.get_person_from_handle(key)
@@ -1184,8 +1174,7 @@ class CheckIntegrity:
                 self.db.commit_person(person, self.trans)
                 self.invalid_events.add(key)
 
-        for bkey in self.db.get_family_handles():
-            key = bkey.decode('utf-8')
+        for key in self.db.get_family_handles():
             self.progress.step()
             family = self.db.get_family_from_handle(key)
             if family.get_event_ref_list():
@@ -1234,8 +1223,7 @@ class CheckIntegrity:
                                len(plist))
         logging.info('Looking for person reference problems')
 
-        for bkey in plist:
-            key = bkey.decode('utf-8')
+        for key in plist:
             self.progress.step()
             none_handle = False
             newlist = []
@@ -1268,8 +1256,7 @@ class CheckIntegrity:
                                len(plist))
         logging.info('Looking for family reference problems')
 
-        for bkey in plist:
-            key = bkey.decode('utf-8')
+        for key in plist:
             self.progress.step()
             person = self.db.get_person_from_handle(key)
             for ordinance in person.get_lds_ord_list():
@@ -1295,8 +1282,7 @@ class CheckIntegrity:
                                len(slist))
         logging.info('Looking for repository reference problems')
 
-        for bkey in slist:
-            key = bkey.decode('utf-8')
+        for key in slist:
             self.progress.step()
             none_handle = False
             newlist = []
@@ -1331,8 +1317,7 @@ class CheckIntegrity:
             len(elist) + len(plist) + len(flist) + len(llist))
         logging.info('Looking for place reference problems')
 
-        for bkey in llist:
-            key = bkey.decode('utf-8')
+        for key in llist:
             self.progress.step()
             none_handle = False
             newlist = []
@@ -1360,8 +1345,7 @@ class CheckIntegrity:
                 self.db.commit_place(place, self.trans)
 
         # check persons -> the LdsOrd references a place
-        for bkey in plist:
-            key = bkey.decode('utf-8')
+        for key in plist:
             self.progress.step()
             person = self.db.get_person_from_handle(key)
             for ordinance in person.lds_ord_list:
@@ -1383,8 +1367,7 @@ class CheckIntegrity:
                                          'hand': place_handle})
                         self.invalid_place_references.add(key)
         # check families -> the LdsOrd references a place
-        for bkey in flist:
-            key = bkey.decode('utf-8')
+        for key in flist:
             self.progress.step()
             family = self.db.get_family_from_handle(key)
             for ordinance in family.lds_ord_list:
@@ -1404,8 +1387,7 @@ class CheckIntegrity:
                                          'hand': place_handle})
                         self.invalid_place_references.add(key)
         # check events
-        for bkey in elist:
-            key = bkey.decode('utf-8')
+        for key in elist:
             self.progress.step()
             event = self.db.get_event_from_handle(key)
             place_handle = event.get_place_handle()
@@ -1429,8 +1411,7 @@ class CheckIntegrity:
 
     def check_citation_references(self):
         '''Looking for citation reference problems'''
-        known_handles = [key.decode('utf-8') for key in
-                         self.db.get_citation_handles()]
+        known_handles = self.db.get_citation_handles()
 
         total = (
             self.db.get_number_of_people() +
@@ -1447,9 +1428,9 @@ class CheckIntegrity:
                                total)
         logging.info('Looking for citation reference problems')
 
-        for bhandle in self.db.get_person_handles():
+        for handle in self.db.get_person_handles():
             self.progress.step()
-            person = self.db.get_person_from_handle(bhandle)
+            person = self.db.get_person_from_handle(handle)
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
@@ -1461,9 +1442,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_citation_references.add(item[1])
 
-        for bhandle in self.db.get_family_handles():
+        for handle in self.db.get_family_handles():
             self.progress.step()
-            family = self.db.get_family_from_handle(bhandle)
+            family = self.db.get_family_from_handle(handle)
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
@@ -1475,9 +1456,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_citation_references.add(item[1])
 
-        for bhandle in self.db.get_place_handles():
+        for handle in self.db.get_place_handles():
             self.progress.step()
-            place = self.db.get_place_from_handle(bhandle)
+            place = self.db.get_place_from_handle(handle)
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
@@ -1489,9 +1470,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_citation_references.add(item[1])
 
-        for bhandle in self.db.get_citation_handles():
+        for handle in self.db.get_citation_handles():
             self.progress.step()
-            citation = self.db.get_citation_from_handle(bhandle)
+            citation = self.db.get_citation_from_handle(handle)
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
@@ -1503,9 +1484,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_citation_references.add(item[1])
 
-        for bhandle in self.db.get_repository_handles():
+        for handle in self.db.get_repository_handles():
             self.progress.step()
-            repository = self.db.get_repository_from_handle(bhandle)
+            repository = self.db.get_repository_from_handle(handle)
             handle_list = repository.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
@@ -1518,9 +1499,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_citation_references.add(item[1])
 
-        for bhandle in self.db.get_media_handles():
+        for handle in self.db.get_media_handles():
             self.progress.step()
-            obj = self.db.get_media_from_handle(bhandle)
+            obj = self.db.get_media_from_handle(handle)
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
@@ -1532,9 +1513,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_citation_references.add(item[1])
 
-        for bhandle in self.db.get_event_handles():
+        for handle in self.db.get_event_handles():
             self.progress.step()
-            event = self.db.get_event_from_handle(bhandle)
+            event = self.db.get_event_from_handle(handle)
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
@@ -1565,8 +1546,7 @@ class CheckIntegrity:
                                len(clist))
         logging.info('Looking for source reference problems')
 
-        for bkey in clist:
-            key = bkey.decode('utf-8')
+        for key in clist:
             self.progress.step()
             citation = self.db.get_citation_from_handle(key)
             source_handle = citation.get_reference_handle()
@@ -1593,8 +1573,7 @@ class CheckIntegrity:
 
     def check_media_references(self):
         '''Looking for media object reference problems'''
-        known_handles = [key.decode('utf-8') for key in
-                         self.db.get_media_handles(False)]
+        known_handles = self.db.get_media_handles(False)
 
         total = (
             self.db.get_number_of_people() +
@@ -1609,9 +1588,9 @@ class CheckIntegrity:
                                  'problems'), total)
         logging.info('Looking for media object reference problems')
 
-        for bhandle in self.db.get_person_handles():
+        for handle in self.db.get_person_handles():
             self.progress.step()
-            person = self.db.get_person_from_handle(bhandle)
+            person = self.db.get_person_from_handle(handle)
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
@@ -1623,9 +1602,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_media_references.add(item[1])
 
-        for bhandle in self.db.get_family_handles():
+        for handle in self.db.get_family_handles():
             self.progress.step()
-            family = self.db.get_family_from_handle(bhandle)
+            family = self.db.get_family_from_handle(handle)
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
@@ -1637,9 +1616,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_media_references.add(item[1])
 
-        for bhandle in self.db.get_place_handles():
+        for handle in self.db.get_place_handles():
             self.progress.step()
-            place = self.db.get_place_from_handle(bhandle)
+            place = self.db.get_place_from_handle(handle)
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
@@ -1651,9 +1630,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_media_references.add(item[1])
 
-        for bhandle in self.db.get_event_handles():
+        for handle in self.db.get_event_handles():
             self.progress.step()
-            event = self.db.get_event_from_handle(bhandle)
+            event = self.db.get_event_from_handle(handle)
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
@@ -1665,9 +1644,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_media_references.add(item[1])
 
-        for bhandle in self.db.get_citation_handles():
+        for handle in self.db.get_citation_handles():
             self.progress.step()
-            citation = self.db.get_citation_from_handle(bhandle)
+            citation = self.db.get_citation_from_handle(handle)
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
@@ -1679,9 +1658,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_media_references.add(item[1])
 
-        for bhandle in self.db.get_source_handles():
+        for handle in self.db.get_source_handles():
             self.progress.step()
-            source = self.db.get_source_from_handle(bhandle)
+            source = self.db.get_source_from_handle(handle)
             handle_list = source.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
@@ -1716,8 +1695,7 @@ class CheckIntegrity:
         if missing_references:
             self.db.add_note(self.explanation, self.trans, set_gid=True)
 
-        known_handles = [key.decode('utf-8') for key in
-                         self.db.get_note_handles()]
+        known_handles = self.db.get_note_handles()
 
         total = (self.db.get_number_of_people() +
                  self.db.get_number_of_families() +
@@ -1732,9 +1710,9 @@ class CheckIntegrity:
                                total)
         logging.info('Looking for note reference problems')
 
-        for bhandle in self.db.get_person_handles():
+        for handle in self.db.get_person_handles():
             self.progress.step()
-            person = self.db.get_person_from_handle(bhandle)
+            person = self.db.get_person_from_handle(handle)
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
@@ -1746,9 +1724,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_note_references.add(item[1])
 
-        for bhandle in self.db.get_family_handles():
+        for handle in self.db.get_family_handles():
             self.progress.step()
-            family = self.db.get_family_from_handle(bhandle)
+            family = self.db.get_family_from_handle(handle)
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
@@ -1760,9 +1738,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_note_references.add(item[1])
 
-        for bhandle in self.db.get_place_handles():
+        for handle in self.db.get_place_handles():
             self.progress.step()
-            place = self.db.get_place_from_handle(bhandle)
+            place = self.db.get_place_from_handle(handle)
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
@@ -1774,9 +1752,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_note_references.add(item[1])
 
-        for bhandle in self.db.get_citation_handles():
+        for handle in self.db.get_citation_handles():
             self.progress.step()
-            citation = self.db.get_citation_from_handle(bhandle)
+            citation = self.db.get_citation_from_handle(handle)
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
@@ -1788,9 +1766,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_note_references.add(item[1])
 
-        for bhandle in self.db.get_source_handles():
+        for handle in self.db.get_source_handles():
             self.progress.step()
-            source = self.db.get_source_from_handle(bhandle)
+            source = self.db.get_source_from_handle(handle)
             handle_list = source.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
@@ -1802,9 +1780,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_note_references.add(item[1])
 
-        for bhandle in self.db.get_media_handles():
+        for handle in self.db.get_media_handles():
             self.progress.step()
-            obj = self.db.get_media_from_handle(bhandle)
+            obj = self.db.get_media_from_handle(handle)
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
@@ -1816,9 +1794,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_note_references.add(item[1])
 
-        for bhandle in self.db.get_event_handles():
+        for handle in self.db.get_event_handles():
             self.progress.step()
-            event = self.db.get_event_from_handle(bhandle)
+            event = self.db.get_event_from_handle(handle)
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
@@ -1830,9 +1808,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_note_references.add(item[1])
 
-        for bhandle in self.db.get_repository_handles():
+        for handle in self.db.get_repository_handles():
             self.progress.step()
-            repo = self.db.get_repository_from_handle(bhandle)
+            repo = self.db.get_repository_from_handle(handle)
             handle_list = repo.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
@@ -1858,9 +1836,8 @@ class CheckIntegrity:
         ''' fix media checksums '''
         self.progress.set_pass(_('Updating checksums on media'),
                                len(self.db.get_media_handles()))
-        for bobjectid in self.db.get_media_handles():
+        for objectid in self.db.get_media_handles():
             self.progress.step()
-            objectid = bobjectid.decode('utf-8')
             obj = self.db.get_media_from_handle(objectid)
             full_path = media_path_full(self.db, obj.get_path())
             new_checksum = create_checksum(full_path)
@@ -1871,8 +1848,7 @@ class CheckIntegrity:
 
     def check_tag_references(self):
         '''Looking for tag reference problems'''
-        known_handles = [key.decode('utf-8') for key in
-                         self.db.get_tag_handles()]
+        known_handles = self.db.get_tag_handles()
 
         total = (self.db.get_number_of_people() +
                  self.db.get_number_of_families() +
@@ -1888,9 +1864,9 @@ class CheckIntegrity:
                                total)
         logging.info('Looking for tag reference problems')
 
-        for bhandle in self.db.get_person_handles():
+        for handle in self.db.get_person_handles():
             self.progress.step()
-            person = self.db.get_person_from_handle(bhandle)
+            person = self.db.get_person_from_handle(handle)
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
@@ -1902,9 +1878,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_tag_references.add(item[1])
 
-        for bhandle in self.db.get_family_handles():
+        for handle in self.db.get_family_handles():
             self.progress.step()
-            family = self.db.get_family_from_handle(bhandle)
+            family = self.db.get_family_from_handle(handle)
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
@@ -1916,9 +1892,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_tag_references.add(item[1])
 
-        for bhandle in self.db.get_media_handles():
+        for handle in self.db.get_media_handles():
             self.progress.step()
-            obj = self.db.get_media_from_handle(bhandle)
+            obj = self.db.get_media_from_handle(handle)
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
@@ -1930,9 +1906,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_tag_references.add(item[1])
 
-        for bhandle in self.db.get_note_handles():
+        for handle in self.db.get_note_handles():
             self.progress.step()
-            note = self.db.get_note_from_handle(bhandle)
+            note = self.db.get_note_from_handle(handle)
             handle_list = note.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
@@ -1944,9 +1920,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_tag_references.add(item[1])
 
-        for bhandle in self.db.get_event_handles():
+        for handle in self.db.get_event_handles():
             self.progress.step()
-            event = self.db.get_event_from_handle(bhandle)
+            event = self.db.get_event_from_handle(handle)
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
@@ -1958,9 +1934,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_tag_references.add(item[1])
 
-        for bhandle in self.db.get_citation_handles():
+        for handle in self.db.get_citation_handles():
             self.progress.step()
-            citation = self.db.get_citation_from_handle(bhandle)
+            citation = self.db.get_citation_from_handle(handle)
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
@@ -1972,9 +1948,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_tag_references.add(item[1])
 
-        for bhandle in self.db.get_source_handles():
+        for handle in self.db.get_source_handles():
             self.progress.step()
-            source = self.db.get_source_from_handle(bhandle)
+            source = self.db.get_source_from_handle(handle)
             handle_list = source.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
@@ -1986,9 +1962,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_tag_references.add(item[1])
 
-        for bhandle in self.db.get_place_handles():
+        for handle in self.db.get_place_handles():
             self.progress.step()
-            place = self.db.get_place_from_handle(bhandle)
+            place = self.db.get_place_from_handle(handle)
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
@@ -2000,9 +1976,9 @@ class CheckIntegrity:
                     elif item[1] not in known_handles:
                         self.invalid_tag_references.add(item[1])
 
-        for bhandle in self.db.get_repository_handles():
+        for handle in self.db.get_repository_handles():
             self.progress.step()
-            repository = self.db.get_repository_from_handle(bhandle)
+            repository = self.db.get_repository_from_handle(handle)
             handle_list = repository.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':

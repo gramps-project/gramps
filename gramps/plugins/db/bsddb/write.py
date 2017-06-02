@@ -87,7 +87,7 @@ LOG = logging.getLogger(".citation")
 #_hdlr.setFormatter(logging.Formatter(fmt="%(name)s.%(levelname)s: %(message)s"))
 #_LOG.addHandler(_hdlr)
 _MINVERSION = 9
-_DBVERSION = 18
+_DBVERSION = 19
 
 IDTRANS     = "person_id"
 FIDTRANS    = "family_id"
@@ -139,7 +139,7 @@ def find_idmap(key, data):
     returns a byte string
     """
     val = data[1]
-    if isinstance(val, str):
+    if val is not None:
         val = val.encode('utf-8')
     return val
 
@@ -148,9 +148,7 @@ def find_parent(key, data):
         val = data[5][0][0]
     else:
         val = ''
-    if isinstance(val, str):
-        val = val.encode('utf-8')
-    return val
+    return val.encode('utf-8')
 
 # Secondary database key lookups for reference_map table
 # reference_map data values are of the form:
@@ -162,18 +160,14 @@ def find_primary_handle(key, data):
     returns byte string
     """
     val = (data)[0][1]
-    if isinstance(val, str):
-        val = val.encode('utf-8')
-    return val
+    return val.encode('utf-8')
 
 def find_referenced_handle(key, data):
     """ return handle for association of indexes
     returns byte string
     """
     val = (data)[1][1]
-    if isinstance(val, str):
-        val = val.encode('utf-8')
-    return val
+    return val.encode('utf-8')
 
 #-------------------------------------------------------------------------
 #
@@ -344,9 +338,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     @catch_db_error
     def set_default_person_handle(self, handle):
         """Set the default Person to the passed instance."""
-        #we store a byte string!
-        if isinstance(handle, str):
-            handle = handle.encode('utf-8')
         if not self.readonly:
             # Start transaction
             with BSDDBTxn(self.env, self.metadata) as txn:
@@ -370,7 +361,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             return None
 
     def set_mediapath(self, path):
-        """Set the default media path for database, path should be utf-8."""
+        """Set the default media path for database."""
         if self.metadata and not self.readonly:
             # Start transaction
             with BSDDBTxn(self.env, self.metadata) as txn:
@@ -973,12 +964,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         Find all child places having the given place as the primary parent.
         """
-        if isinstance(handle, str):
-            handle = handle.encode('utf-8')
         parent_cur = self.get_place_parent_cursor()
 
         try:
-            ret = parent_cur.set(handle)
+            ret = parent_cur.set(handle.encode('utf-8'))
         except:
             ret = None
 
@@ -1017,14 +1006,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
             result_list = list(find_backlink_handles(handle))
         """
-        if isinstance(handle, str):
-            handle = handle.encode('utf-8')
         # Use the secondary index to locate all the reference_map entries
         # that include a reference to the object we are looking for.
         referenced_cur = self._get_reference_map_referenced_cursor()
 
         try:
-            ret = referenced_cur.set(handle)
+            ret = referenced_cur.set(handle.encode('utf-8'))
         except:
             ret = None
 
@@ -1103,11 +1090,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         handle = obj.handle
         existing_references = set()
         primary_cur = self._get_reference_map_primary_cursor()
+        key = handle.encode('utf-8')
         try:
-            if isinstance(handle, str):
-                key = handle.encode('utf-8')
-            else:
-                key = handle
             ret = primary_cur.set(key)
         except:
             ret = None
@@ -1164,8 +1148,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                                     'which is partly bytecode, this is not allowed.\n'
                                     'Key is %s') % str(key))
             key = str(key)
-        if isinstance(key, str):
-            key = key.encode('utf-8')
+        key = key.encode('utf-8')
         if not self.readonly:
             if not transaction.batch:
                 old_data = self.reference_map.get(key, txn=txn)
@@ -1181,8 +1164,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if isinstance(key, tuple):
             #create a string key
             key = str(key)
-        if isinstance(key, str):
-            key = key.encode('utf-8')
+        key = key.encode('utf-8')
         if self.readonly or not key:
             return
 
@@ -1540,8 +1522,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if self.readonly or not handle:
             return
 
-        if isinstance(handle, str):
-            handle = handle.encode('utf-8')
+        handle = handle.encode('utf-8')
         if transaction.batch:
             with BSDDBTxn(self.env, data_map) as txn:
                 self._delete_primary_from_reference_map(handle, transaction,
@@ -1565,8 +1546,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         person = self.get_person_from_handle(handle)
         self.genderStats.uncount_person (person)
         self.remove_from_surname_list(person)
-        if isinstance(handle, str):
-            handle = handle.encode('utf-8')
+        handle = handle.encode('utf-8')
         if transaction.batch:
             with BSDDBTxn(self.env, self.person_map) as txn:
                 self._delete_primary_from_reference_map(handle, transaction,
@@ -1702,13 +1682,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         If not then we need to remove the name from the list.
         The function must be overridden in the derived class.
         """
-        name = find_surname_name(person.handle,
-                                     person.get_primary_name().serialize())
-        if isinstance(name, str):
-            uname = name
-            name = name.encode('utf-8')
-        else:
-            uname = str(name)
+        uname = find_surname_name(person.handle,
+                                  person.get_primary_name().serialize())
+        name = uname.encode('utf-8')
         try:
             cursor = self.surnames.cursor(txn=self.txn)
             cursor_position = cursor.set(name)
@@ -1736,8 +1712,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         obj.change = int(change_time or time.time())
         handle = obj.handle
-        if isinstance(handle, str):
-            handle = handle.encode('utf-8')
+        handle = handle.encode('utf-8')
 
         self._update_reference_map(obj, transaction, self.txn)
 
@@ -1969,18 +1944,16 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                           transaction, change_time)
 
     def get_from_handle(self, handle, class_type, data_map):
-        if isinstance(handle, str):
-            handle = handle.encode('utf-8')
         if handle is None:
             raise HandleError('Handle is None')
         if not handle:
             raise HandleError('Handle is empty')
-        data = data_map.get(handle, txn=self.txn)
+        data = data_map.get(handle.encode('utf-8'), txn=self.txn)
         if data:
             newobj = class_type()
             newobj.unserialize(data)
             return newobj
-        raise HandleError('Handle %s not found' % handle.decode('utf-8'))
+        raise HandleError('Handle %s not found' % handle)
 
     @catch_db_error
     def transaction_begin(self, transaction):
@@ -2186,6 +2159,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             upgrade.gramps_upgrade_17(self)
         if version < 18:
             upgrade.gramps_upgrade_18(self)
+        if version < 19:
+            upgrade.gramps_upgrade_19(self)
 
             self.reset()
             self.set_total(6)

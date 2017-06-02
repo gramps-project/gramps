@@ -74,7 +74,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasIdOf(['O0000'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'b39fe1cfc1305ac4a21']))
+                         set(['b39fe1cfc1305ac4a21']))
 
     def test_regexpidof(self):
         """
@@ -82,9 +82,9 @@ class BaseTest(unittest.TestCase):
         """
         rule = RegExpIdOf(['O000.'], use_regex=True)
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'F0QIGQFT275JFJ75E8', b'78V2GQX2FKNSYQ3OHE',
-            b'b39fe1cfc1305ac4a21', b'F8JYGQFL2PKLSYH79X',
-            b'B1AUFQV7H8R9NR4SZM']))
+            'F0QIGQFT275JFJ75E8', '78V2GQX2FKNSYQ3OHE',
+            'b39fe1cfc1305ac4a21', 'F8JYGQFL2PKLSYH79X',
+            'B1AUFQV7H8R9NR4SZM']))
 
     def test_hascitation(self):
         """
@@ -92,7 +92,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasCitation(['page 21', '', ''])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'B1AUFQV7H8R9NR4SZM']))
+                         set(['B1AUFQV7H8R9NR4SZM']))
 
     def test_hasnoteregexp(self):
         """
@@ -114,7 +114,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasReferenceCountOf(['greater than', '1'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'238CGQ939HG18SS5MG', b'b39fe1cfc1305ac4a21']))
+            '238CGQ939HG18SS5MG', 'b39fe1cfc1305ac4a21']))
 
     def test_hassourcecount(self):
         """
@@ -122,7 +122,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasSourceCount(['1', 'equal to'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'B1AUFQV7H8R9NR4SZM']))
+                         set(['B1AUFQV7H8R9NR4SZM']))
 
     def test_hassourceof(self):
         """
@@ -130,7 +130,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasSourceOf(['S0001'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'B1AUFQV7H8R9NR4SZM']))
+                         set(['B1AUFQV7H8R9NR4SZM']))
 
     def test_mediaprivate(self):
         """
@@ -145,7 +145,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = MatchesSourceConfidence(['2'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'B1AUFQV7H8R9NR4SZM']))
+                         set(['B1AUFQV7H8R9NR4SZM']))
 
     def test_hasmedia(self):
         """
@@ -153,7 +153,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasMedia(['mannschaft', 'image/jpeg', '.jpg', '1897'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'238CGQ939HG18SS5MG']))
+                         set(['238CGQ939HG18SS5MG']))
 
     def test_hasattribute(self):
         """
@@ -161,7 +161,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasAttribute(['Description', ''])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'B1AUFQV7H8R9NR4SZM']))
+                         set(['B1AUFQV7H8R9NR4SZM']))
 
     def test_changedsince(self):
         """
@@ -169,8 +169,8 @@ class BaseTest(unittest.TestCase):
         """
         rule = ChangedSince(['2010-01-01', '2016-01-01'])
         self.assertEqual(self.filter_with_rule(rule), set([
-            b'b39fe1cfc1305ac4a21', b'B1AUFQV7H8R9NR4SZM',
-            b'238CGQ939HG18SS5MG', b'F0QIGQFT275JFJ75E8']))
+            'b39fe1cfc1305ac4a21', 'B1AUFQV7H8R9NR4SZM',
+            '238CGQ939HG18SS5MG', 'F0QIGQFT275JFJ75E8']))
 
     def test_hastag(self):
         """
@@ -178,7 +178,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HasTag(['ToDo'])
         self.assertEqual(self.filter_with_rule(rule),
-                         set([b'238CGQ939HG18SS5MG']))
+                         set(['238CGQ939HG18SS5MG']))
 
 
 if __name__ == "__main__":

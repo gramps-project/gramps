@@ -1285,8 +1285,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     ################################################################
 
     def _get_from_handle(self, obj_key, obj_class, handle):
-        if isinstance(handle, bytes):
-            handle = str(handle, "utf-8")
         if handle is None:
             raise HandleError('Handle is None')
         if not handle:

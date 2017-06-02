@@ -58,7 +58,7 @@ class ProxyCursor:
 
     def __iter__(self):
         for handle in self.get_handles():
-            yield bytes(handle, "utf-8"), self.get_raw(handle)
+            yield handle, self.get_raw(handle)
 
 class ProxyMap:
     """
@@ -75,7 +75,7 @@ class ProxyMap:
 
     def keys(self):
         """ return the keys """
-        return [bytes(key, "utf-8") for key in self.get_keys()]
+        return self.get_keys()
 
 class ProxyDbBase(DbReadBase):
     """
@@ -207,7 +207,7 @@ class ProxyDbBase(DbReadBase):
         if (self.db is not None) and self.db.is_open():
             proxied = set(self.iter_person_handles())
             all = self.basedb.get_person_handles(sort_handles=sort_handles)
-            return [hdl for hdl in all if str(hdl, 'utf-8') in proxied]
+            return [hdl for hdl in all if hdl in proxied]
         else:
             return []
 
@@ -219,7 +219,7 @@ class ProxyDbBase(DbReadBase):
         if (self.db is not None) and self.db.is_open():
             proxied = set(self.iter_family_handles())
             all = self.basedb.get_family_handles(sort_handles=sort_handles)
-            return [hdl for hdl in all if str(hdl, 'utf-8') in proxied]
+            return [hdl for hdl in all if hdl in proxied]
         else:
             return []
 
