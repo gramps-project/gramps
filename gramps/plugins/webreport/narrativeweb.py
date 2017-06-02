@@ -9718,10 +9718,10 @@ class NavWebOptions(MenuReportOptions):
         @param: menu -- The menu for which we add options
         """
         self.__add_report_options(menu)
-        self.__add_report_options_2(menu)
+        self.__add_report_html(menu)
+        self.__add_report_display(menu)
         self.__add_page_generation_options(menu)
         self.__add_images_generation_options(menu)
-        self.__add_privacy_options(menu)
         self.__add_download_options(menu)
         self.__add_advanced_options(menu)
         self.__add_advanced_options_2(menu)
@@ -9772,21 +9772,16 @@ class NavWebOptions(MenuReportOptions):
 
         self.__update_filters()
 
-        stdoptions.add_name_format_option(menu, category_name)
+        stdoptions.add_living_people_option(menu, category_name)
+        stdoptions.add_private_data_option(menu, category_name, default=False)
 
-        locale_opt = stdoptions.add_localization_option(menu, category_name)
-        stdoptions.add_date_format_option(menu, category_name, locale_opt)
+        addopt = partial(menu.add_option, category_name)
 
-        self.__securesite = BooleanOption(_("This is a secure site (https)"),
-                                          False)
-        self.__securesite.set_help(_('Whether to use http:// or https://'))
-        addopt("securesite", self.__securesite)
-
-    def __add_report_options_2(self, menu):
+    def __add_report_html(self, menu):
         """
-        Continue Options on the "Report Options" tab.
+        Html Options for the Report.
         """
-        category_name = _("Report Options (2)")
+        category_name = _("Html options")
         addopt = partial( menu.add_option, category_name )
 
         ext = EnumeratedListOption(_("File extension"), ".html")
@@ -9851,9 +9846,34 @@ class NavWebOptions(MenuReportOptions):
         addopt("graphgens", self.__graphgens)
         self.__graph_changed()
 
+        self.__securesite = BooleanOption(_("This is a secure site (https)"),
+                                          False)
+        self.__securesite.set_help(_('Whether to use http:// or https://'))
+        addopt("securesite", self.__securesite)
+
+    def __add_report_display(self, menu):
+        """
+        How to display names, datyes, ...
+        """
+        category_name = _("Display")
+        addopt = partial( menu.add_option, category_name )
+
+
+        stdoptions.add_name_format_option(menu, category_name)
+
+        locale_opt = stdoptions.add_localization_option(menu, category_name)
+        stdoptions.add_date_format_option(menu, category_name, locale_opt)
+
         nogid = BooleanOption(_('Suppress Gramps ID'), False)
         nogid.set_help(_('Whether to include the Gramps ID of objects'))
         addopt( "nogid", nogid )
+        addopt = partial(menu.add_option, category_name)
+
+        birthorder = BooleanOption(
+            _('Sort all children in birth order'), False)
+        birthorder.set_help(
+            _('Whether to display children in birth order or in entry order?'))
+        addopt("birthorder", birthorder)
 
     def __add_page_generation_options(self, menu):
         """
@@ -9947,17 +9967,6 @@ class NavWebOptions(MenuReportOptions):
 
         self.__gallery_changed()
 
-    def __add_privacy_options(self, menu):
-        """
-        Options on the "Privacy" tab.
-        """
-        category_name = _("Privacy")
-
-        stdoptions.add_living_people_option(menu, category_name)
-        stdoptions.add_private_data_option(menu, category_name, default=False)
-
-        addopt = partial(menu.add_option, category_name)
-
     def __add_download_options(self, menu):
         """
         Options for the download tab ...
@@ -10049,14 +10058,8 @@ class NavWebOptions(MenuReportOptions):
         """
         Continue options on the "Advanced" tab.
         """
-        category_name = _("Advanced Options (2)")
+        category_name = _("Include")
         addopt = partial(menu.add_option, category_name)
-
-        birthorder = BooleanOption(
-            _('Sort all children in birth order'), False)
-        birthorder.set_help(
-            _('Whether to display children in birth order or in entry order?'))
-        addopt("birthorder", birthorder)
 
         inc_families = BooleanOption(_("Include family pages"), False)
         inc_families.set_help(_("Whether or not to include family pages."))
