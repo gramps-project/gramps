@@ -108,11 +108,7 @@ class ProbablyAlive:
             if death_ref:
                 death = self.db.get_event_from_handle(death_ref.ref)
                 if death:
-                    if death.get_date_object().is_valid():
-                        death_date = death.get_date_object()
-                    else: # has a death event, but it is not valid:
-                        death_date = Today() # before today
-                        death_date.set_modifier(Date.MOD_BEFORE)
+                    death_date = death.get_date_object()
 
         # Look for Cause Of Death, Burial or Cremation events.
         # These are fairly good indications that someone's not alive.
@@ -144,7 +140,8 @@ class ProbablyAlive:
 
         if not birth_date and death_date:
             # person died more than MAX after current year
-            birth_date = death_date.copy_offset_ymd(year=-self.MAX_AGE_PROB_ALIVE)
+            if death_date.is_valid():
+                birth_date = death_date.copy_offset_ymd(year=-self.MAX_AGE_PROB_ALIVE)
             explain = _("death date")
 
         if not death_date and birth_date:
