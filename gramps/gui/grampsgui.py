@@ -256,7 +256,7 @@ class Gramps:
                 and not gettext.find(GTK_GETTEXT_DOMAIN)):
             _display_gtk_gettext_message(parent=self._vm.window)
 
-        _display_welcome_message(parent=self._vm.window)
+        #_display_welcome_message(parent=self._vm.window)
 
         _display_translator_message(parent=self._vm.window)
 
