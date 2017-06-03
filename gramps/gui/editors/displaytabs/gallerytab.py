@@ -467,42 +467,55 @@ class GalleryTab(ButtonTab, DbGUIElement):
         and decide if this is a move or a reorder.
         """
         if sel_data and sel_data.get_data():
+            sel_list = []
             try:
-                (mytype, selfid, obj, row_from) = pickle.loads(sel_data.get_data())
+                rets = pickle.loads(sel_data.get_data())
 
-                # make sure this is the correct DND type for this object
-                if mytype == self._DND_TYPE.drag_type:
+                # single dnd item
+                if isinstance(rets, tuple):
+                    sel_list.append(rets)
 
-                    # determine the destination row
-                    data = self.iconlist.get_dest_item_at_pos(x, y)
-                    if data:
-                        (path, pos) = data
-                        row = path.get_indices()[0]
-                        if pos ==  Gtk.IconViewDropPosition.DROP_LEFT:
-                            row = max(row, 0)
-                        elif pos == Gtk.IconViewDropPosition.DROP_RIGHT:
-                            row = min(row, len(self.get_data()))
-                        elif pos == Gtk.IconViewDropPosition.DROP_INTO:
-                            row = min(row+1, len(self.get_data()))
-                    else:
-                        row = len(self.get_data())
+                # multiple dnd items
+                elif isinstance(rets, list):
+                    for ret in rets:
+                        sel_list.append(pickle.loads(ret))
 
-                    # if the is same object, we have a move, otherwise,
-                    # it is a standard drag-n-drop
+                for sel in sel_list:
+                    (mytype, selfid, obj, row_from) = sel
 
-                    if id(self) == selfid:
-                        self._move(row_from, row, obj)
-                    else:
-                        self._handle_drag(row, obj)
-                    self.rebuild()
-                elif mytype == DdTargets.MEDIAOBJ.drag_type:
-                    oref = MediaRef()
-                    oref.set_reference_handle(obj)
-                    self.get_data().append(oref)
-                    self.changed = True
-                    self.rebuild()
-                elif self._DND_EXTRA and mytype == self._DND_EXTRA.drag_type:
-                    self.handle_extra_type(mytype, obj)
+                    # make sure this is the correct DND type for this object
+                    if mytype == self._DND_TYPE.drag_type:
+
+                        # determine the destination row
+                        data = self.iconlist.get_dest_item_at_pos(x, y)
+                        if data:
+                            (path, pos) = data
+                            row = path.get_indices()[0]
+                            if pos ==  Gtk.IconViewDropPosition.DROP_LEFT:
+                                row = max(row, 0)
+                            elif pos == Gtk.IconViewDropPosition.DROP_RIGHT:
+                                row = min(row, len(self.get_data()))
+                            elif pos == Gtk.IconViewDropPosition.DROP_INTO:
+                                row = min(row+1, len(self.get_data()))
+                        else:
+                            row = len(self.get_data())
+
+                        # if the is same object, we have a move, otherwise,
+                        # it is a standard drag-n-drop
+
+                        if id(self) == selfid:
+                            self._move(row_from, row, obj)
+                        else:
+                            self._handle_drag(row, obj)
+                        self.rebuild()
+                    elif mytype == DdTargets.MEDIAOBJ.drag_type:
+                        oref = MediaRef()
+                        oref.set_reference_handle(obj)
+                        self.get_data().append(oref)
+                        self.changed = True
+                        self.rebuild()
+                    elif self._DND_EXTRA and mytype == self._DND_EXTRA.drag_type:
+                        self.handle_extra_type(mytype, obj)
             except pickle.UnpicklingError:
                 files =  sel_data.get_uris()
                 for file in files:
