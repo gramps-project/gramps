@@ -325,56 +325,65 @@ def navigation_label(db, nav_type, handle):
     label = None
     obj = None
     if nav_type == 'Person':
-        obj = db.get_person_from_handle(handle)
-        if obj:
-            label = name_displayer.display(obj)
+        if db.has_person_handle(handle):
+            obj = db.get_person_from_handle(handle)
+            if obj:
+                label = name_displayer.display(obj)
     elif nav_type == 'Family':
-        obj = db.get_family_from_handle(handle)
-        if obj:
-            label = family_name(obj, db)
+        if db.has_family_handle(handle):
+            obj = db.get_family_from_handle(handle)
+            if obj:
+                label = family_name(obj, db)
     elif nav_type == 'Event':
-        obj = db.get_event_from_handle(handle)
-        if obj:
-            who = get_participant_from_event(db, handle)
-            desc = obj.get_description()
-            label = obj.get_type()
-            if desc:
-                label = '%s - %s' % (label, desc)
-            if who:
-                label = '%s - %s' % (label, who)
+        if db.has_event_handle(handle):
+            obj = db.get_event_from_handle(handle)
+            if obj:
+                who = get_participant_from_event(db, handle)
+                desc = obj.get_description()
+                label = obj.get_type()
+                if desc:
+                    label = '%s - %s' % (label, desc)
+                if who:
+                    label = '%s - %s' % (label, who)
     elif nav_type == 'Place':
-        obj = db.get_place_from_handle(handle)
-        if obj:
-            label = place_displayer.display(db, obj)
+        if db.has_place_handle(handle):
+            obj = db.get_place_from_handle(handle)
+            if obj:
+                label = place_displayer.display(db, obj)
     elif nav_type == 'Source':
-        obj = db.get_source_from_handle(handle)
-        if obj:
-            label = obj.get_title()
+        if db.has_source_handle(handle):
+            obj = db.get_source_from_handle(handle)
+            if obj:
+                label = obj.get_title()
     elif nav_type == 'Citation':
-        obj = db.get_citation_from_handle(handle)
-        if obj:
-            label = obj.get_page()
-            src = db.get_source_from_handle(obj.get_reference_handle())
-            if src:
-                label = src.get_title() + " "  + label
+        if db.has_citation_handle(handle):
+            obj = db.get_citation_from_handle(handle)
+            if obj:
+                label = obj.get_page()
+                src = db.get_source_from_handle(obj.get_reference_handle())
+                if src:
+                    label = src.get_title() + " "  + label
     elif nav_type == 'Repository':
-        obj = db.get_repository_from_handle(handle)
-        if obj:
-            label = obj.get_name()
+        if db.has_repository_handle(handle):
+            obj = db.get_repository_from_handle(handle)
+            if obj:
+                label = obj.get_name()
     elif nav_type == 'Media' or nav_type == 'Media':
-        obj = db.get_media_from_handle(handle)
-        if obj:
-            label = obj.get_description()
+        if db.has_media_handle(handle):
+            obj = db.get_media_from_handle(handle)
+            if obj:
+                label = obj.get_description()
     elif nav_type == 'Note':
-        obj = db.get_note_from_handle(handle)
-        if obj:
-            label = obj.get()
-            # When strings are cut, make sure they are unicode
-            #otherwise you may end of with cutting within an utf-8 sequence
-            label = str(label)
-            label = " ".join(label.split())
-            if len(label) > 40:
-                label = label[:40] + "..."
+        if db.has_note_handle(handle):
+            obj = db.get_note_from_handle(handle)
+            if obj:
+                label = obj.get()
+                # When strings are cut, make sure they are unicode
+                #otherwise you may end of with cutting within an utf-8 sequence
+                label = str(label)
+                label = " ".join(label.split())
+                if len(label) > 40:
+                    label = label[:40] + "..."
 
     if label and obj:
         label = '[%s] %s' % (obj.get_gramps_id(), label)

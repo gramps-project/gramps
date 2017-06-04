@@ -33,6 +33,7 @@ LOG = logging.getLogger(".Gramplets")
 # Gramps modules
 #
 #------------------------------------------------------------------------
+from ..db.dbconst import CLASS_TO_KEY_MAP
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -127,7 +128,11 @@ class Gramplet:
         """
         Return the handle of the active object for the given navigation type.
         """
-        return self.uistate.get_active(nav_type, self.nav_group)
+        handle = self.uistate.get_active(nav_type, self.nav_group)
+        if handle and nav_type in self.dbstate.db.get_table_names() and \
+                self.dbstate.db.has_handle(CLASS_TO_KEY_MAP[nav_type], handle):
+            return handle
+        return None
 
     def get_active_object(self, nav_type):
         """
@@ -135,7 +140,8 @@ class Gramplet:
         Assumes nav_type is one of the codes of Db.get_by_name.
         """
         handle = self.uistate.get_active(nav_type, self.nav_group)
-        if nav_type in self.dbstate.db.get_table_names() and handle:
+        if handle and nav_type in self.dbstate.db.get_table_names() and \
+                self.dbstate.db.has_handle(CLASS_TO_KEY_MAP[nav_type], handle):
             return self.dbstate.db.get_from_name_and_handle(nav_type, handle)
         return None
 
