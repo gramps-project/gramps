@@ -21,8 +21,8 @@
 	      href="http://pypi.python.org/packages/"/>
   <repository type="tarball" name="stowers"
 	     href="http://www.johnstowers.co.nz/files/"/>
-  <repository type="git" name="github"
-	      href="git://github.com/"/>
+  <repository type="git" name="github" href="git://github.com/"/>
+  <repository type="tarball" name="github-tarball" href="https://github.com/"/>
   <repository type="tarball" name="graphviz"
 	      href="http://www.graphviz.org/pub/graphviz/stable/SOURCES/"/>
   <repository type="tarball" name="exiv2.org"
@@ -57,6 +57,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
   <distutils id="gramps-git" supports-non-srcdir-builds="no">
     <branch module="gramps-project/gramps.git" repo="github"
+            revision="maintenance/gramps50"
 	    checkoutdir="gramps-git"/>
     <dependencies>
       <dep package="meta-python2-modules"/>
@@ -64,9 +65,19 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </distutils>
 
-  <distutils id="gramps-addons-svn">
-    <branch module="gramps-addons/trunk/contrib"
-	    repo="gramps-addons"/>
+ <distutils id="gramps" supports-non-srcdir-builds="no">
+    <branch module="gramps-project/gramps/archive/v5.0.0-alpha2.tar.gz"
+	    repo="github-tarball" version="5.0.0"
+	    checkoutdir="gramps-gramps-5.0.0-alpha2"/>
+    <dependencies>
+      <dep package="meta-python2-modules"/>
+      <dep package="meta-python3-modules"/>
+    </dependencies>
+  </distutils>
+
+  <distutils id="gramps-addons-git">
+    <branch module="gramps-project/gramps-addons"
+	    repo="github"/>
     <dependencies>
       <dep package="gramps-git"/>
     </dependencies>
@@ -100,7 +111,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   <autotools id="osmgpsmap" skip-autogen="never"
 	     autogenargs="--disable-gtk-doc-html"
 	     supports-non-srcdir-builds="no">
-    <branch module="nzjrs/osm-gps-map" revision="1.0.2" repo="github"/>
+    <branch module="nzjrs/osm-gps-map" revision="1.1.0" repo="github"/>
     <dependencies>
       <dep package="meta-gtk-osx-gtk3"/>
       <dep package="libsoup"/>
@@ -109,7 +120,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
   <autotools id="graphviz" autogen-sh="configure"
 	     autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --with-pangocairo">
-    <branch module="graphviz-2.38.0.tar.gz" version="2.38.0" repo="graphviz"/>
+    <branch module="graphviz-2.40.1.tar.gz" version="2.40.1" repo="graphviz"/>
     <dependencies>
       <dep package="pango"/>
       <dep package="meta-gtk-osx-freetype"/>
@@ -117,16 +128,17 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </autotools>
 
-  <autotools id="exiv2" supports-non-srcdir-builds="no">
-    <branch module="exiv2-0.21.1.tar.gz" repo="exiv2.org" version="0.21.1"/>
+  <autotools id="exiv2"  supports-non-srcdir-builds="no">
+    <branch module="exiv2-0.21.1.tar.gz" repo="exiv2.org"
+            version="0.21.1"/>
   </autotools>
 
   <autotools id="gexiv2" autogen-sh="configure" supports-non-srcdir-builds="no"
 	     autogenargs="--enable-introspection --with-libtool=libtool"
 	     autogen-template="%(srcdir)s/%(autogen-sh)s --prefix=%(prefix)s %(autogenargs)s">
-    <branch module="gexiv2/0.10/gexiv2-0.10.5.tar.xz"
-            repo="ftp.gnome.org" version="0.10.5"
-            hash="sha256:318fe068cd414c0af91759a87c29fd577cd5d42bf7a6f50caff27535c02ac7f3">
+    <branch module="gexiv2/0.10/gexiv2-0.10.6.tar.xz"
+            repo="ftp.gnome.org" version="0.10.6"
+            hash="sha256:132788919667254b42c026ab39ab3c3a5be59be8575c05fa4b371ca8aed55825">
     </branch>
     <dependencies>
       <dep package="exiv2"/>
@@ -169,6 +181,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
  <metamodule id="meta-python3-modules">
    <dependencies>
+     <dep package="berkeleydb"/>
      <dep package="python3"/>
      <dep package="gtk-mac-integration-python"/>
      <dep package="pycairo"/>
