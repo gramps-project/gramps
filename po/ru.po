@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps50\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 09:18+0300\n"
-"PO-Revision-Date: 2017-05-30 09:44+0300\n"
+"POT-Creation-Date: 2017-06-04 11:07+0300\n"
+"PO-Revision-Date: 2017-06-04 11:10+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -1193,7 +1193,7 @@ msgstr "Семейные древа Gramps:"
 #: ../gramps/cli/arghandler.py:441 ../gramps/cli/arghandler.py:442
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/clidbman.py:69
 #: ../gramps/cli/clidbman.py:172 ../gramps/cli/clidbman.py:193
-#: ../gramps/gui/clipboard.py:970 ../gramps/gui/configure.py:1504
+#: ../gramps/gui/clipboard.py:973 ../gramps/gui/configure.py:1504
 msgid "Family Tree"
 msgstr "Семейное древо"
 
@@ -1574,7 +1574,7 @@ msgstr ""
 "       %(message)s"
 
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:171
-#: ../gramps/gui/clipboard.py:186 ../gramps/gui/clipboard.py:187
+#: ../gramps/gui/clipboard.py:189 ../gramps/gui/clipboard.py:190
 #: ../gramps/gui/plug/_windows.py:496
 msgid "Unavailable"
 msgstr "Недоступно"
@@ -1716,12 +1716,12 @@ msgstr "Заблокировано %s"
 #: ../gramps/gen/utils/lds.py:86 ../gramps/gen/utils/unknown.py:119
 #: ../gramps/gen/utils/unknown.py:121 ../gramps/gen/utils/unknown.py:125
 #: ../gramps/gen/utils/unknown.py:131 ../gramps/gen/utils/unknown.py:136
-#: ../gramps/gui/clipboard.py:183 ../gramps/gui/dbman.py:989
+#: ../gramps/gui/clipboard.py:186 ../gramps/gui/dbman.py:989
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:125
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:143
 #: ../gramps/gui/editors/editmedia.py:178
 #: ../gramps/gui/editors/editmediaref.py:142
-#: ../gramps/plugins/db/bsddb/write.py:2287
+#: ../gramps/plugins/db/bsddb/write.py:2289
 #: ../gramps/plugins/gramplet/persondetails.py:208
 #: ../gramps/plugins/gramplet/persondetails.py:214
 #: ../gramps/plugins/gramplet/persondetails.py:216
@@ -3184,12 +3184,12 @@ msgid "_Redo %s"
 msgstr "Ве_рнуть %s"
 
 #: ../gramps/gen/db/generic.py:2443 ../gramps/plugins/db/bsddb/read.py:1998
-#: ../gramps/plugins/db/bsddb/write.py:2290
+#: ../gramps/plugins/db/bsddb/write.py:2292
 msgid "Number of people"
 msgstr "Количество людей"
 
 #: ../gramps/gen/db/generic.py:2444 ../gramps/plugins/db/bsddb/read.py:1999
-#: ../gramps/plugins/db/bsddb/write.py:2291
+#: ../gramps/plugins/db/bsddb/write.py:2293
 #: ../gramps/plugins/gramplet/statsgramplet.py:117
 #: ../gramps/plugins/webreport/narrativeweb.py:8221
 #: ../gramps/plugins/webreport/narrativeweb.py:8288
@@ -3197,56 +3197,56 @@ msgid "Number of families"
 msgstr "Количество семей"
 
 #: ../gramps/gen/db/generic.py:2445 ../gramps/plugins/db/bsddb/read.py:2000
-#: ../gramps/plugins/db/bsddb/write.py:2292
+#: ../gramps/plugins/db/bsddb/write.py:2294
 #: ../gramps/plugins/webreport/narrativeweb.py:8249
 #: ../gramps/plugins/webreport/narrativeweb.py:8300
 msgid "Number of sources"
 msgstr "Количество источников"
 
 #: ../gramps/gen/db/generic.py:2446 ../gramps/plugins/db/bsddb/read.py:2001
-#: ../gramps/plugins/db/bsddb/write.py:2293
+#: ../gramps/plugins/db/bsddb/write.py:2295
 #: ../gramps/plugins/webreport/narrativeweb.py:8253
 #: ../gramps/plugins/webreport/narrativeweb.py:8303
 msgid "Number of citations"
 msgstr "Количество цитат"
 
 #: ../gramps/gen/db/generic.py:2447 ../gramps/plugins/db/bsddb/read.py:2002
-#: ../gramps/plugins/db/bsddb/write.py:2294
+#: ../gramps/plugins/db/bsddb/write.py:2296
 #: ../gramps/plugins/webreport/narrativeweb.py:8242
 #: ../gramps/plugins/webreport/narrativeweb.py:8294
 msgid "Number of events"
 msgstr "Количество событий"
 
 #: ../gramps/gen/db/generic.py:2448 ../gramps/plugins/db/bsddb/read.py:2003
-#: ../gramps/plugins/db/bsddb/write.py:2295
+#: ../gramps/plugins/db/bsddb/write.py:2297
 msgid "Number of media"
 msgstr "Количество документов"
 
 #: ../gramps/gen/db/generic.py:2449 ../gramps/plugins/db/bsddb/read.py:2004
-#: ../gramps/plugins/db/bsddb/write.py:2296
+#: ../gramps/plugins/db/bsddb/write.py:2298
 #: ../gramps/plugins/webreport/narrativeweb.py:8245
 #: ../gramps/plugins/webreport/narrativeweb.py:8297
 msgid "Number of places"
 msgstr "Количество мест"
 
 #: ../gramps/gen/db/generic.py:2450 ../gramps/plugins/db/bsddb/read.py:2005
-#: ../gramps/plugins/db/bsddb/write.py:2297
+#: ../gramps/plugins/db/bsddb/write.py:2299
 #: ../gramps/plugins/webreport/narrativeweb.py:8257
 #: ../gramps/plugins/webreport/narrativeweb.py:8306
 msgid "Number of repositories"
 msgstr "Количество хранилищ"
 
 #: ../gramps/gen/db/generic.py:2451 ../gramps/plugins/db/bsddb/read.py:2006
-#: ../gramps/plugins/db/bsddb/write.py:2298
+#: ../gramps/plugins/db/bsddb/write.py:2300
 msgid "Number of notes"
 msgstr "Количество заметок"
 
 #: ../gramps/gen/db/generic.py:2452 ../gramps/plugins/db/bsddb/read.py:2007
-#: ../gramps/plugins/db/bsddb/write.py:2299
+#: ../gramps/plugins/db/bsddb/write.py:2301
 msgid "Number of tags"
 msgstr "Количество меток"
 
-#: ../gramps/gen/db/generic.py:2453 ../gramps/plugins/db/bsddb/write.py:2300
+#: ../gramps/gen/db/generic.py:2453 ../gramps/plugins/db/bsddb/write.py:2302
 msgid "Data version"
 msgstr "Версия базы данных"
 
@@ -6528,11 +6528,11 @@ msgstr "Воспитанник"
 
 #. 8
 #: ../gramps/gen/lib/citation.py:97 ../gramps/gen/lib/notetype.py:79
-#: ../gramps/gui/clipboard.py:490 ../gramps/gui/configure.py:543
+#: ../gramps/gui/clipboard.py:493 ../gramps/gui/configure.py:543
 #: ../gramps/gui/editors/editcitation.py:119
 #: ../gramps/gui/editors/editcitation.py:125
 #: ../gramps/gui/editors/editlink.py:100
-#: ../gramps/gui/editors/filtereditor.py:301
+#: ../gramps/gui/editors/filtereditor.py:301 ../gramps/gui/viewmanager.py:612
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:170
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:115
 #: ../gramps/plugins/quickview/quickview.gpr.py:209
@@ -6667,10 +6667,10 @@ msgstr "Достоверность"
 
 #. 7
 #: ../gramps/gen/lib/citation.py:115 ../gramps/gen/lib/src.py:97
-#: ../gramps/gui/clipboard.py:800 ../gramps/gui/configure.py:541
+#: ../gramps/gui/clipboard.py:803 ../gramps/gui/configure.py:541
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:78
 #: ../gramps/gui/editors/editlink.py:99 ../gramps/gui/editors/editsource.py:86
-#: ../gramps/gui/editors/filtereditor.py:297
+#: ../gramps/gui/editors/filtereditor.py:297 ../gramps/gui/viewmanager.py:610
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:170
 #: ../gramps/plugins/export/exportcsv.py:466
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:114
@@ -6718,8 +6718,8 @@ msgstr "Заметки"
 #: ../gramps/gen/lib/event.py:165 ../gramps/gen/lib/family.py:168
 #: ../gramps/gen/lib/media.py:134 ../gramps/gen/lib/person.py:206
 #: ../gramps/gen/lib/place.py:166 ../gramps/gen/lib/src.py:117
-#: ../gramps/gui/clipboard.py:659 ../gramps/gui/editors/editlink.py:94
-#: ../gramps/gui/editors/filtereditor.py:298
+#: ../gramps/gui/clipboard.py:662 ../gramps/gui/editors/editlink.py:94
+#: ../gramps/gui/editors/filtereditor.py:298 ../gramps/gui/viewmanager.py:616
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:110
 #: ../gramps/plugins/quickview/filterbyname.py:109
 #: ../gramps/plugins/quickview/filterbyname.py:134
@@ -6992,10 +6992,11 @@ msgstr "только текст"
 
 #. 0 this order range above
 #: ../gramps/gen/lib/event.py:136 ../gramps/gen/lib/eventref.py:109
-#: ../gramps/gui/clipboard.py:340 ../gramps/gui/configure.py:547
+#: ../gramps/gui/clipboard.py:343 ../gramps/gui/configure.py:547
 #: ../gramps/gui/editors/editlink.py:92
 #: ../gramps/gui/editors/filtereditor.py:295
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:133
+#: ../gramps/gui/viewmanager.py:606
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:108
 #: ../gramps/plugins/quickview/filterbyname.py:175
 #: ../gramps/plugins/quickview/filterbyname.py:246
@@ -7009,7 +7010,7 @@ msgstr "Событие"
 
 #. 5
 #: ../gramps/gen/lib/event.py:151 ../gramps/gen/lib/place.py:134
-#: ../gramps/gui/clipboard.py:367 ../gramps/gui/configure.py:539
+#: ../gramps/gui/clipboard.py:370 ../gramps/gui/configure.py:539
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:81
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:65
@@ -7018,7 +7019,7 @@ msgstr "Событие"
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:108
 #: ../gramps/gui/glade/editevent.glade:270
 #: ../gramps/gui/plug/_guioptions.py:1348
-#: ../gramps/gui/selectors/selectevent.py:72
+#: ../gramps/gui/selectors/selectevent.py:72 ../gramps/gui/viewmanager.py:608
 #: ../gramps/gui/views/treemodels/placemodel.py:284
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/export/exportcsv.py:466
@@ -7120,12 +7121,12 @@ msgstr "События"
 #. 1
 #. get the family events
 #: ../gramps/gen/lib/eventtype.py:139 ../gramps/gen/lib/family.py:145
-#: ../gramps/gui/clipboard.py:771 ../gramps/gui/configure.py:537
+#: ../gramps/gui/clipboard.py:774 ../gramps/gui/configure.py:537
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
 #: ../gramps/gui/editors/editfamily.py:499 ../gramps/gui/editors/editlink.py:93
 #: ../gramps/gui/editors/filtereditor.py:294
-#: ../gramps/gui/glade/editldsord.glade:267
+#: ../gramps/gui/glade/editldsord.glade:267 ../gramps/gui/viewmanager.py:604
 #: ../gramps/plugins/export/exportcsv.py:506
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:109
 #: ../gramps/plugins/importer/importcsv.py:211
@@ -7650,7 +7651,7 @@ msgstr "Женаты"
 #. Create the tree columns
 #. 0 selected?
 #: ../gramps/gen/lib/grampstype.py:221 ../gramps/gen/lib/grampstype.py:225
-#: ../gramps/gui/clipboard.py:961
+#: ../gramps/gui/clipboard.py:964
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:62
 #: ../gramps/gui/editors/displaytabs/backreflist.py:59
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:77
@@ -7823,7 +7824,7 @@ msgstr "Контрольная сумма"
 #. Handle
 #. Add column with object name
 #: ../gramps/gen/lib/name.py:143 ../gramps/gen/lib/repo.py:96
-#: ../gramps/gen/lib/tag.py:122 ../gramps/gui/clipboard.py:589
+#: ../gramps/gen/lib/tag.py:122 ../gramps/gui/clipboard.py:592
 #: ../gramps/gui/configure.py:516
 #: ../gramps/gui/editors/displaytabs/backreflist.py:61
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:73
@@ -7898,7 +7899,7 @@ msgid "Suffix"
 msgstr "Суффикс"
 
 #: ../gramps/gen/lib/name.py:166 ../gramps/gen/lib/place.py:143
-#: ../gramps/gen/lib/src.py:106 ../gramps/gui/clipboard.py:964
+#: ../gramps/gen/lib/src.py:106 ../gramps/gui/clipboard.py:967
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:80
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:105
@@ -8012,7 +8013,7 @@ msgstr "Происхождение по мужской линии"
 msgid "Matrilineal"
 msgstr "Происхождение по женской линии"
 
-#: ../gramps/gen/lib/nameorigintype.py:86 ../gramps/gui/clipboard.py:323
+#: ../gramps/gen/lib/nameorigintype.py:86 ../gramps/gui/clipboard.py:326
 #: ../gramps/gui/plug/_windows.py:625
 msgid "Location"
 msgstr "Расположение"
@@ -8032,7 +8033,7 @@ msgstr "Фамилия в браке"
 #. ###############################
 #. 3
 #: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:255
-#: ../gramps/gui/clipboard.py:394 ../gramps/gui/configure.py:551
+#: ../gramps/gui/clipboard.py:397 ../gramps/gui/configure.py:551
 #: ../gramps/gui/editors/editlink.py:95 ../gramps/gui/editors/editmedia.py:98
 #: ../gramps/gui/editors/editmedia.py:181
 #: ../gramps/gui/editors/editmediaref.py:145
@@ -8045,7 +8046,7 @@ msgstr "Фамилия в браке"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:113
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:108
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:91
-#: ../gramps/gui/glade/editnote.glade:326
+#: ../gramps/gui/glade/editnote.glade:326 ../gramps/gui/viewmanager.py:618
 #: ../gramps/gui/views/treemodels/mediamodel.py:117
 #: ../gramps/plugins/drawreport/ancestortree.py:974
 #: ../gramps/plugins/drawreport/descendtree.py:1694
@@ -8192,10 +8193,10 @@ msgstr "Заметка о ссылке на ребёнка"
 #.
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
-#: ../gramps/gen/lib/person.py:173 ../gramps/gui/clipboard.py:743
+#: ../gramps/gen/lib/person.py:173 ../gramps/gui/clipboard.py:746
 #: ../gramps/gui/configure.py:535 ../gramps/gui/editors/editlink.py:96
 #: ../gramps/gui/editors/filtereditor.py:293
-#: ../gramps/gui/glade/editpersonref.glade:211
+#: ../gramps/gui/glade/editpersonref.glade:211 ../gramps/gui/viewmanager.py:602
 #: ../gramps/plugins/export/exportcsv.py:354
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:107
 #: ../gramps/plugins/importer/importcsv.py:208
@@ -8479,11 +8480,11 @@ msgid "Number"
 msgstr "Номер"
 
 #. 6
-#: ../gramps/gen/lib/repo.py:86 ../gramps/gui/clipboard.py:827
+#: ../gramps/gen/lib/repo.py:86 ../gramps/gui/clipboard.py:830
 #: ../gramps/gui/configure.py:549 ../gramps/gui/editors/editlink.py:98
 #: ../gramps/gui/editors/editrepository.py:77
 #: ../gramps/gui/editors/editrepository.py:79
-#: ../gramps/gui/editors/filtereditor.py:299
+#: ../gramps/gui/editors/filtereditor.py:299 ../gramps/gui/viewmanager.py:614
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:113
 #: ../gramps/plugins/quickview/filterbyname.py:205
 #: ../gramps/plugins/quickview/filterbyname.py:264
@@ -8623,8 +8624,8 @@ msgid "Styled Text"
 msgstr "Стилизованный текст"
 
 #: ../gramps/gen/lib/styledtext.py:308
-#: ../gramps/gen/plug/report/_constants.py:53 ../gramps/gui/clipboard.py:637
-#: ../gramps/gui/clipboard.py:645 ../gramps/gui/configure.py:1200
+#: ../gramps/gen/plug/report/_constants.py:53 ../gramps/gui/clipboard.py:640
+#: ../gramps/gui/clipboard.py:648 ../gramps/gui/configure.py:1200
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:101
 #: ../gramps/plugins/textreport/custombooktext.py:132
 #: ../gramps/plugins/textreport/tagreport.py:509
@@ -8681,7 +8682,7 @@ msgstr "Интернет-ссылка"
 
 #. show surname and first name
 #: ../gramps/gen/lib/surname.py:87 ../gramps/gen/lib/surname.py:91
-#: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:621
+#: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:624
 #: ../gramps/gui/configure.py:646 ../gramps/gui/configure.py:648
 #: ../gramps/gui/configure.py:650 ../gramps/gui/configure.py:652
 #: ../gramps/gui/configure.py:655 ../gramps/gui/configure.py:656
@@ -9597,6 +9598,7 @@ msgstr "Как и где включать номера-идентификато�
 #: ../gramps/plugins/textreport/detdescendantreport.py:1075
 #: ../gramps/plugins/textreport/familygroup.py:747
 #: ../gramps/plugins/textreport/indivcomplete.py:1094
+#: ../gramps/plugins/webreport/narrativeweb.py:10061
 msgid "Include"
 msgstr "Включить"
 
@@ -10571,12 +10573,12 @@ msgstr "Участники"
 msgid "translator-credits"
 msgstr ""
 
-#: ../gramps/gui/clipboard.py:69
+#: ../gramps/gui/clipboard.py:71
 msgid "manual|Using_the_Clipboard"
 msgstr "Использование_буфера_обмена"
 
 #. We encounter a PLAC, having previously encountered an ADDR
-#: ../gramps/gui/clipboard.py:303 ../gramps/gui/configure.py:517
+#: ../gramps/gui/clipboard.py:306 ../gramps/gui/configure.py:517
 #: ../gramps/gui/editors/editaddress.py:167
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
 #: ../gramps/plugins/gramplet/repositorydetails.py:133
@@ -10587,67 +10589,67 @@ msgstr "Использование_буфера_обмена"
 msgid "Address"
 msgstr "Адрес"
 
-#: ../gramps/gui/clipboard.py:427
+#: ../gramps/gui/clipboard.py:430
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:118
 msgid "Family Event"
 msgstr "Семейное событие"
 
-#: ../gramps/gui/clipboard.py:443
+#: ../gramps/gui/clipboard.py:446
 msgid "Url"
 msgstr "Веб-адрес"
 
-#: ../gramps/gui/clipboard.py:459 ../gramps/gui/editors/editattribute.py:135
+#: ../gramps/gui/clipboard.py:462 ../gramps/gui/editors/editattribute.py:135
 msgid "Attribute"
 msgstr "Атрибут"
 
-#: ../gramps/gui/clipboard.py:474
+#: ../gramps/gui/clipboard.py:477
 msgid "Family Attribute"
 msgstr "Семейный атрибут"
 
-#: ../gramps/gui/clipboard.py:505
+#: ../gramps/gui/clipboard.py:508
 msgid "not available|NA"
 msgstr "Недоступно"
 
-#: ../gramps/gui/clipboard.py:514
+#: ../gramps/gui/clipboard.py:517
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
 msgstr "Том/Страница: %(pag)s -- %(sourcetext)s"
 
-#: ../gramps/gui/clipboard.py:535
+#: ../gramps/gui/clipboard.py:538
 msgid "Repository ref"
 msgstr "ссылка на хранилище"
 
-#: ../gramps/gui/clipboard.py:553
+#: ../gramps/gui/clipboard.py:556
 msgid "Event ref"
 msgstr "ссылка на событие"
 
-#: ../gramps/gui/clipboard.py:571
+#: ../gramps/gui/clipboard.py:574
 msgid "Place ref"
 msgstr "Ссылка на место"
 
-#: ../gramps/gui/clipboard.py:605 ../gramps/gui/editors/editplacename.py:134
+#: ../gramps/gui/clipboard.py:608 ../gramps/gui/editors/editplacename.py:134
 msgid "Place Name"
 msgstr "Название места"
 
 # !!!FIXME!!!
-#: ../gramps/gui/clipboard.py:686
+#: ../gramps/gui/clipboard.py:689
 msgid "Media ref"
 msgstr "Ссылка на документ"
 
-#: ../gramps/gui/clipboard.py:704
+#: ../gramps/gui/clipboard.py:707
 msgid "Person ref"
 msgstr "Ссылка на лицо"
 
-#: ../gramps/gui/clipboard.py:722
+#: ../gramps/gui/clipboard.py:725
 msgid "Child ref"
 msgstr "Ссылка на ребёнка"
 
-#: ../gramps/gui/clipboard.py:731
+#: ../gramps/gui/clipboard.py:734
 #, python-format
 msgid "%(frel)s %(mrel)s"
 msgstr "%(frel)s %(mrel)s"
 
-#: ../gramps/gui/clipboard.py:967 ../gramps/gui/dbman.py:126
+#: ../gramps/gui/clipboard.py:970 ../gramps/gui/dbman.py:126
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:63
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:64
 #: ../gramps/plugins/gramplet/attributes.py:57
@@ -10658,26 +10660,26 @@ msgstr "%(frel)s %(mrel)s"
 msgid "Value"
 msgstr "Значение"
 
-#: ../gramps/gui/clipboard.py:1387 ../gramps/gui/clipboard.py:1393
-#: ../gramps/gui/clipboard.py:1431 ../gramps/gui/clipboard.py:1475
+#: ../gramps/gui/clipboard.py:1422 ../gramps/gui/clipboard.py:1428
+#: ../gramps/gui/clipboard.py:1466 ../gramps/gui/clipboard.py:1510
 #: ../gramps/gui/glade/clipboard.glade:7
 msgid "Clipboard"
 msgstr "Буфер обмена"
 
 #. Now add more items to popup menu, if available
 #. See details (edit, etc):
-#: ../gramps/gui/clipboard.py:1519 ../gramps/gui/plug/quick/_quicktable.py:141
+#: ../gramps/gui/clipboard.py:1554 ../gramps/gui/plug/quick/_quicktable.py:141
 #, python-format
 msgid "the object|See %s details"
 msgstr "%s - cм. детали"
 
 #. ---------------------------
-#: ../gramps/gui/clipboard.py:1525 ../gramps/gui/plug/quick/_quicktable.py:149
+#: ../gramps/gui/clipboard.py:1560 ../gramps/gui/plug/quick/_quicktable.py:149
 #, python-format
 msgid "the object|Make %s active"
 msgstr "Сделать %s активным"
 
-#: ../gramps/gui/clipboard.py:1541
+#: ../gramps/gui/clipboard.py:1576
 #, python-format
 msgid "the object|Create Filter from %s selected..."
 msgstr "Создать фильтр из выбранных %s..."
@@ -10704,6 +10706,7 @@ msgstr "П_рименить"
 #: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1111
 #: ../gramps/plugins/drawreport/ancestortree.py:909
 #: ../gramps/plugins/drawreport/descendtree.py:1645
+#: ../gramps/plugins/webreport/narrativeweb.py:9858
 msgid "Display"
 msgstr "Отображение"
 
@@ -12408,7 +12411,7 @@ msgstr ""
 "\n"
 "Для правки этой ссылки вам необходимо закрыть предыдущую правку."
 
-#: ../gramps/gui/editors/displaytabs/gallerytab.py:527
+#: ../gramps/gui/editors/displaytabs/gallerytab.py:540
 #: ../gramps/plugins/view/mediaview.py:197
 msgid "Drag Media Object"
 msgstr "Перетянуть документ"
@@ -13481,7 +13484,7 @@ msgstr "Новая заметка - %(context)s"
 msgid "New Note"
 msgstr "Новая заметка"
 
-#: ../gramps/gui/editors/editnote.py:189 ../gramps/gui/viewmanager.py:618
+#: ../gramps/gui/editors/editnote.py:189
 msgid "_Note"
 msgstr "_Заметка"
 
@@ -14487,7 +14490,6 @@ msgid "_Load Family Tree"
 msgstr "_Загрузить семейное древо"
 
 #: ../gramps/gui/glade/dbman.glade:234 ../gramps/gui/glade/editlink.glade:208
-#: ../gramps/gui/viewmanager.py:601
 msgid "_New"
 msgstr "_Создать"
 
@@ -14724,7 +14726,6 @@ msgstr ""
 #: ../gramps/gui/glade/editrepository.glade:205
 #: ../gramps/gui/glade/editsource.glade:288
 #: ../gramps/gui/glade/editurl.glade:149
-#: ../gramps/plugins/webreport/narrativeweb.py:9954
 msgid "Privacy"
 msgstr "Личная информация"
 
@@ -18484,37 +18485,9 @@ msgstr "Буфер обмена"
 msgid "Open the Clipboard dialog"
 msgstr "Открыть диалог «Буфер обмена»"
 
-#: ../gramps/gui/viewmanager.py:602
-msgid "_Person"
-msgstr "_Лицо"
-
-#: ../gramps/gui/viewmanager.py:604
-msgid "Famil_y"
-msgstr "_Семья"
-
-#: ../gramps/gui/viewmanager.py:606
-msgid "_Event"
-msgstr "Со_бытие"
-
-#: ../gramps/gui/viewmanager.py:608
-msgid "_Place"
-msgstr "М_есто"
-
-#: ../gramps/gui/viewmanager.py:610
-msgid "_Source"
-msgstr "Ис_точник"
-
-#: ../gramps/gui/viewmanager.py:612
-msgid "_Citation"
-msgstr "_Цитата"
-
-#: ../gramps/gui/viewmanager.py:614
-msgid "Repositor_y"
-msgstr "_Хранилище"
-
-#: ../gramps/gui/viewmanager.py:616
-msgid "_Media"
-msgstr "_Альбом"
+#: ../gramps/gui/viewmanager.py:601
+msgid "New"
+msgstr "Создать"
 
 #. --------------------------------------
 #: ../gramps/gui/viewmanager.py:621
@@ -19326,53 +19299,53 @@ msgstr "База данных BSDDB"
 msgid "Berkeley Software Distribution Database Backend"
 msgstr "Berkeley Software Distribution Database Backend"
 
-#: ../gramps/plugins/db/bsddb/upgrade.py:398
+#: ../gramps/plugins/db/bsddb/upgrade.py:409
 #, python-format
 msgid ""
 "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d  Людей         обновлено с %(n2)6d цитатами за %(n3)6d сек\n"
 
-#: ../gramps/plugins/db/bsddb/upgrade.py:399
+#: ../gramps/plugins/db/bsddb/upgrade.py:410
 #, python-format
 msgid ""
 "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d  Семей         обновлено с %(n2)6d цитатами за %(n3)6d сек\n"
 
-#: ../gramps/plugins/db/bsddb/upgrade.py:400
+#: ../gramps/plugins/db/bsddb/upgrade.py:411
 #, python-format
 msgid ""
 "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d  Событий       обновлено с %(n2)6d цитатами за %(n3)6d сек\n"
 
-#: ../gramps/plugins/db/bsddb/upgrade.py:401
+#: ../gramps/plugins/db/bsddb/upgrade.py:412
 #, python-format
 msgid ""
 "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d  Документов    обновлено с %(n2)6d цитатами за %(n3)6d сек\n"
 
-#: ../gramps/plugins/db/bsddb/upgrade.py:402
+#: ../gramps/plugins/db/bsddb/upgrade.py:413
 #, python-format
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d  Мест          обновлено с %(n2)6d цитатами за %(n3)6d сек\n"
 
-#: ../gramps/plugins/db/bsddb/upgrade.py:403
+#: ../gramps/plugins/db/bsddb/upgrade.py:414
 #, python-format
 msgid ""
 "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d  Хранилищ      обновлено с %(n2)6d цитатами за %(n3)6d сек\n"
 
-#: ../gramps/plugins/db/bsddb/upgrade.py:404
+#: ../gramps/plugins/db/bsddb/upgrade.py:415
 #, python-format
 msgid ""
 "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr "%(n1)6d  Источников    обновлено с %(n2)6d цитатами за %(n3)6d сек\n"
 
-#: ../gramps/plugins/db/bsddb/upgrade.py:789
+#: ../gramps/plugins/db/bsddb/upgrade.py:800
 msgid "Number of new objects upgraded:\n"
 msgstr "Количество новых объектов обнавлено:\n"
 
-#: ../gramps/plugins/db/bsddb/upgrade.py:798
+#: ../gramps/plugins/db/bsddb/upgrade.py:809
 msgid ""
 "\n"
 "\n"
@@ -19389,7 +19362,7 @@ msgstr ""
 "информацию"
 
 # statistics over import results
-#: ../gramps/plugins/db/bsddb/upgrade.py:802
+#: ../gramps/plugins/db/bsddb/upgrade.py:813
 msgid "Upgrade Statistics"
 msgstr "Итоги обновления"
 
@@ -19419,11 +19392,11 @@ msgstr ""
 "Начата вторая транзакция с базой данных, хотя текущая транзакция, «%s», ещё "
 "не завершилась."
 
-#: ../gramps/plugins/db/bsddb/write.py:2289
+#: ../gramps/plugins/db/bsddb/write.py:2291
 msgid "DB-API version"
 msgstr "Версия DB-API"
 
-#: ../gramps/plugins/db/bsddb/write.py:2301
+#: ../gramps/plugins/db/bsddb/write.py:2303
 msgid "Database db version"
 msgstr "Версия базы данных"
 
@@ -19929,7 +19902,6 @@ msgstr "Включать ли пустые страницы."
 #: ../gramps/plugins/textreport/kinshipreport.py:382
 #: ../gramps/plugins/textreport/placereport.py:458
 #: ../gramps/plugins/textreport/recordsreport.py:243
-#: ../gramps/plugins/webreport/narrativeweb.py:9789
 #: ../gramps/plugins/webreport/webcal.py:1661
 msgid "Report Options (2)"
 msgstr "Параметры отчёта (2)"
@@ -29228,7 +29200,7 @@ msgid "Open on maps.google.com"
 msgstr "Открыть на maps.google.com"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:71
-#: ../gramps/plugins/webreport/narrativeweb.py:10095
+#: ../gramps/plugins/webreport/narrativeweb.py:10098
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
@@ -35102,7 +35074,7 @@ msgstr "Миниатюры"
 #: ../gramps/plugins/webreport/narrativeweb.py:1927
 #: ../gramps/plugins/webreport/narrativeweb.py:2068
 #: ../gramps/plugins/webreport/narrativeweb.py:5891
-#: ../gramps/plugins/webreport/narrativeweb.py:9965
+#: ../gramps/plugins/webreport/narrativeweb.py:9974
 msgid "Download"
 msgstr "Загрузить"
 
@@ -35639,148 +35611,161 @@ msgstr "Название веб-сайта"
 msgid "Select filter to restrict people that appear on web site"
 msgstr "Выберите фильтр для отбора лиц в отчёт"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9780
-msgid "This is a secure site (https)"
-msgstr "Это защищённый сайт (https)"
+#: ../gramps/plugins/webreport/narrativeweb.py:9784
+msgid "Html options"
+msgstr "Параметры HTML"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9782
-msgid "Whether to use http:// or https://"
-msgstr "Использовать http:// или https://"
-
-#: ../gramps/plugins/webreport/narrativeweb.py:9792
+#: ../gramps/plugins/webreport/narrativeweb.py:9787
 #: ../gramps/plugins/webreport/webcal.py:1636
 msgid "File extension"
 msgstr "Расширение файла"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9795
+#: ../gramps/plugins/webreport/narrativeweb.py:9790
 #: ../gramps/plugins/webreport/webcal.py:1639
 msgid "The extension to be used for the web files"
 msgstr "Расширение файлов веб-сайта"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9798
+#: ../gramps/plugins/webreport/narrativeweb.py:9793
 #: ../gramps/plugins/webreport/webcal.py:1642
 msgid "Copyright"
 msgstr "Авторское право"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9801
+#: ../gramps/plugins/webreport/narrativeweb.py:9796
 #: ../gramps/plugins/webreport/webcal.py:1645
 msgid "The copyright to be used for the web files"
 msgstr "Авторские права, которые будут использоваться для веб-страниц"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9804
+#: ../gramps/plugins/webreport/narrativeweb.py:9799
 #: ../gramps/plugins/webreport/webcal.py:1651
 msgid "StyleSheet"
 msgstr "Таблица стилей"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9809
+#: ../gramps/plugins/webreport/narrativeweb.py:9804
 #: ../gramps/plugins/webreport/webcal.py:1654
 msgid "The stylesheet to be used for the web pages"
 msgstr "Таблица стилей для веб-страниц"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9814
+#: ../gramps/plugins/webreport/narrativeweb.py:9809
 msgid "Horizontal -- Default"
 msgstr "Горизонтально (по умолчанию)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9815
+#: ../gramps/plugins/webreport/narrativeweb.py:9810
 msgid "Vertical   -- Left Side"
 msgstr "Вертикально (слева)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9816
+#: ../gramps/plugins/webreport/narrativeweb.py:9811
 msgid "Fade       -- WebKit Browsers Only"
 msgstr "Fade (только для WebKit браузеров)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9817
-#: ../gramps/plugins/webreport/narrativeweb.py:9831
+#: ../gramps/plugins/webreport/narrativeweb.py:9812
+#: ../gramps/plugins/webreport/narrativeweb.py:9826
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr "Drop-Down (только для WebKit браузеров)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9819
+#: ../gramps/plugins/webreport/narrativeweb.py:9814
 msgid "Navigation Menu Layout"
 msgstr "Раскладка меню навигации"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9823
+#: ../gramps/plugins/webreport/narrativeweb.py:9818
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Выберите раскладку для меню навигации."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9830
+#: ../gramps/plugins/webreport/narrativeweb.py:9825
 msgid "Normal Outline Style"
 msgstr "Обычный стиль с подчеркиванием"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9834
+#: ../gramps/plugins/webreport/narrativeweb.py:9829
 msgid "Citation Referents Layout"
 msgstr "Отображение ссылок на цитаты"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9838
+#: ../gramps/plugins/webreport/narrativeweb.py:9833
 msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
 msgstr ""
 "Определяет стиль вывода на странице источников в разделе ссылок на цитаты"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9842
+#: ../gramps/plugins/webreport/narrativeweb.py:9837
 msgid "Include ancestor's tree"
 msgstr "Включить древо предков"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9843
+#: ../gramps/plugins/webreport/narrativeweb.py:9838
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Включать ли граф предков на каждой индивидуальной странице"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9848
+#: ../gramps/plugins/webreport/narrativeweb.py:9843
 msgid "Graph generations"
 msgstr "Граф поколений"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9849
+#: ../gramps/plugins/webreport/narrativeweb.py:9844
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Количество поколений для графа предков"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9854
+#: ../gramps/plugins/webreport/narrativeweb.py:9849
+msgid "This is a secure site (https)"
+msgstr "Это защищённый сайт (https)"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:9851
+msgid "Whether to use http:// or https://"
+msgstr "Использовать http:// или https://"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:9867
 msgid "Suppress Gramps ID"
 msgstr "Не включать Gramps ID"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9855
+#: ../gramps/plugins/webreport/narrativeweb.py:9868
 msgid "Whether to include the Gramps ID of objects"
 msgstr "Включать ли номера идентификаторы объектов Gramps ID"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9862
+#: ../gramps/plugins/webreport/narrativeweb.py:9873
+msgid "Sort all children in birth order"
+msgstr "Сортировать всех детей в порядке рождения"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:9875
+msgid "Whether to display children in birth order or in entry order?"
+msgstr ""
+"Показывать детей в порядке рождения или в порядке ввода их в базу данных?"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:9882
 msgid "Page Generation"
 msgstr "Создание страниц"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9865
+#: ../gramps/plugins/webreport/narrativeweb.py:9885
 msgid "Home page note"
 msgstr "Заметка для главной страницы"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9866
+#: ../gramps/plugins/webreport/narrativeweb.py:9886
 msgid "A note to be used on the home page"
 msgstr "Заметка для размещения на главной странице"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9869
+#: ../gramps/plugins/webreport/narrativeweb.py:9889
 msgid "Home page image"
 msgstr "Изображение для главной страницы"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9870
+#: ../gramps/plugins/webreport/narrativeweb.py:9890
 msgid "An image to be used on the home page"
 msgstr "Изображение для использования на домашней странице"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9873
+#: ../gramps/plugins/webreport/narrativeweb.py:9893
 msgid "Introduction note"
 msgstr "Заметка для введения"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9874
+#: ../gramps/plugins/webreport/narrativeweb.py:9894
 msgid "A note to be used as the introduction"
 msgstr "Заметка для использования в качестве введения"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9877
+#: ../gramps/plugins/webreport/narrativeweb.py:9897
 msgid "Introduction image"
 msgstr "Изображение для введения"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9878
+#: ../gramps/plugins/webreport/narrativeweb.py:9898
 msgid "An image to be used as the introduction"
 msgstr "Изображение для использования во введении"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9881
+#: ../gramps/plugins/webreport/narrativeweb.py:9901
 msgid "Publisher contact note"
 msgstr "Заметка с данными издателя"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9882
+#: ../gramps/plugins/webreport/narrativeweb.py:9902
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -35790,13 +35775,13 @@ msgstr ""
 "Если информация не предоставлена, страница\n"
 "об издателе не будет создана"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9888
+#: ../gramps/plugins/webreport/narrativeweb.py:9908
 msgid "Publisher contact image"
 msgstr ""
 "Изображение для страницы\n"
 "с информацией об издателе"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9889
+#: ../gramps/plugins/webreport/narrativeweb.py:9909
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -35806,51 +35791,51 @@ msgstr ""
 "Если информация не предоставлена, страница\n"
 "об издателе не будет создана"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9895
+#: ../gramps/plugins/webreport/narrativeweb.py:9915
 msgid "HTML user header"
 msgstr "Верхний колонтитул (HTML)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9896
+#: ../gramps/plugins/webreport/narrativeweb.py:9916
 msgid "A note to be used as the page header"
 msgstr "Заметка для использования в качестве верхнего колонтитула"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9899
+#: ../gramps/plugins/webreport/narrativeweb.py:9919
 msgid "HTML user footer"
 msgstr "Нижний колонтитул (HTML)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9900
+#: ../gramps/plugins/webreport/narrativeweb.py:9920
 msgid "A note to be used as the page footer"
 msgstr "Заметка для использования в качестве нижнего колонтитула"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9907
+#: ../gramps/plugins/webreport/narrativeweb.py:9927
 msgid "Images Generation"
 msgstr "Создание изображений"
 
 # !!!FIXME!!!
-#: ../gramps/plugins/webreport/narrativeweb.py:9910
+#: ../gramps/plugins/webreport/narrativeweb.py:9930
 msgid "Include images and media objects"
 msgstr "Включать изображения и документы"
 
 # !!!FIXME!!!
-#: ../gramps/plugins/webreport/narrativeweb.py:9912
+#: ../gramps/plugins/webreport/narrativeweb.py:9932
 msgid "Whether to include a gallery of media objects"
 msgstr "Включать ли галерею документов"
 
 # !!!FIXME!!!
-#: ../gramps/plugins/webreport/narrativeweb.py:9918
+#: ../gramps/plugins/webreport/narrativeweb.py:9938
 msgid "Include unused images and media objects"
 msgstr "Включать неиспользуемые изображения и документы"
 
 # !!!FIXME!!!
-#: ../gramps/plugins/webreport/narrativeweb.py:9919
+#: ../gramps/plugins/webreport/narrativeweb.py:9939
 msgid "Whether to include unused or unreferenced media objects"
 msgstr "Включать ли неиспользуемые документы"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9924
+#: ../gramps/plugins/webreport/narrativeweb.py:9944
 msgid "Create and only use thumbnail- sized images"
 msgstr "Создать и использовать только эскизы - уменьшенные изображения"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9926
+#: ../gramps/plugins/webreport/narrativeweb.py:9946
 msgid ""
 "This option allows you to create only thumbnail images instead of the full-"
 "sized images on the Media Page. This will allow you to have a much smaller "
@@ -35860,11 +35845,11 @@ msgstr ""
 "чтобы использовать полноразмерные изображения. Это позволит получить намного "
 "меньший размер данных для загрузки на хостинг."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9935
+#: ../gramps/plugins/webreport/narrativeweb.py:9955
 msgid "Max width of initial image"
 msgstr "Макс. ширина изображения"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9937
+#: ../gramps/plugins/webreport/narrativeweb.py:9957
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page. Set to 0 for no limit."
@@ -35872,11 +35857,11 @@ msgstr ""
 "Это поле позволяет задать максимальную ширину изображения на странице с "
 "документами. Укажите 0, чтобы не ограничивать ширину."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9942
+#: ../gramps/plugins/webreport/narrativeweb.py:9962
 msgid "Max height of initial image"
 msgstr "Макс. высота изображения"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9944
+#: ../gramps/plugins/webreport/narrativeweb.py:9964
 msgid ""
 "This allows you to set the maximum height of the image shown on the media "
 "page. Set to 0 for no limit."
@@ -35884,156 +35869,143 @@ msgstr ""
 "Это поле позволяет задать максимальную высоту изображения на странице с "
 "документами. Укажите 0, чтобы не ограничивать высоту."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9968
+#: ../gramps/plugins/webreport/narrativeweb.py:9977
 msgid "Include download page"
 msgstr "Включить страницу загрузки"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9970
+#: ../gramps/plugins/webreport/narrativeweb.py:9979
 msgid "Whether to include a database download option"
 msgstr "Включать ли возможность загрузки базы данных"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9975
-#: ../gramps/plugins/webreport/narrativeweb.py:9987
+#: ../gramps/plugins/webreport/narrativeweb.py:9984
+#: ../gramps/plugins/webreport/narrativeweb.py:9996
 msgid "Download Filename"
 msgstr "Имя файла"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9978
-#: ../gramps/plugins/webreport/narrativeweb.py:9990
+#: ../gramps/plugins/webreport/narrativeweb.py:9987
+#: ../gramps/plugins/webreport/narrativeweb.py:9999
 msgid "File to be used for downloading of database"
 msgstr "Файл с базой данных, который вы хотите предоставить для скачивания"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9981
-#: ../gramps/plugins/webreport/narrativeweb.py:9993
+#: ../gramps/plugins/webreport/narrativeweb.py:9990
+#: ../gramps/plugins/webreport/narrativeweb.py:10002
 msgid "Description for download"
 msgstr "Описание"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9982
+#: ../gramps/plugins/webreport/narrativeweb.py:9991
 msgid "Smith Family Tree"
 msgstr "Семейное древо Ивановых"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9983
-#: ../gramps/plugins/webreport/narrativeweb.py:9995
+#: ../gramps/plugins/webreport/narrativeweb.py:9992
+#: ../gramps/plugins/webreport/narrativeweb.py:10004
 msgid "Give a description for this file."
 msgstr "Опишите этот файл."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9994
+#: ../gramps/plugins/webreport/narrativeweb.py:10003
 msgid "Johnson Family Tree"
 msgstr "Семейное древо Сидоровых"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10004
+#: ../gramps/plugins/webreport/narrativeweb.py:10013
 #: ../gramps/plugins/webreport/webcal.py:1826
 msgid "Advanced Options"
 msgstr "Дополнительные настройки"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10007
+#: ../gramps/plugins/webreport/narrativeweb.py:10016
 #: ../gramps/plugins/webreport/webcal.py:1828
 msgid "Character set encoding"
 msgstr "Кодировка символов"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10011
+#: ../gramps/plugins/webreport/narrativeweb.py:10020
 #: ../gramps/plugins/webreport/webcal.py:1832
 msgid "The encoding to be used for the web files"
 msgstr "Кодировка, которая будет использоваться для веб-страниц"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10015
+#: ../gramps/plugins/webreport/narrativeweb.py:10024
 msgid "Include link to active person on every page"
 msgstr "Включать ли на каждой странице ссылку на главное лицо"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10017
+#: ../gramps/plugins/webreport/narrativeweb.py:10026
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr "Включить ссылку на активное лицо (если есть веб-страница)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10021
+#: ../gramps/plugins/webreport/narrativeweb.py:10030
 msgid "Include a column for birth dates on the index pages"
 msgstr "Включить колонку с датами рождений на индексных страницах"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10022
+#: ../gramps/plugins/webreport/narrativeweb.py:10031
 msgid "Whether to include a birth column"
 msgstr "Включать ли колонку с датами рождений"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10026
+#: ../gramps/plugins/webreport/narrativeweb.py:10035
 msgid "Include a column for death dates on the index pages"
 msgstr "Включить колонку с датами смерти на индексных страницах"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10027
+#: ../gramps/plugins/webreport/narrativeweb.py:10036
 msgid "Whether to include a death column"
 msgstr "Включать ли колонку с датами смерти"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10030
+#: ../gramps/plugins/webreport/narrativeweb.py:10039
 msgid "Include a column for partners on the index pages"
 msgstr "Включить колонку с данными о партнёре на индексных страницах"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10032
+#: ../gramps/plugins/webreport/narrativeweb.py:10041
 msgid "Whether to include a partners column"
 msgstr "Включать ли колонку с данными о партнёре"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10035
+#: ../gramps/plugins/webreport/narrativeweb.py:10044
 msgid "Include a column for parents on the index pages"
 msgstr "Включить колонку с данными о родителях на индексных страницах"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10037
+#: ../gramps/plugins/webreport/narrativeweb.py:10046
 msgid "Whether to include a parents column"
 msgstr "Включать ли колонку с данными о родителях"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10041
+#: ../gramps/plugins/webreport/narrativeweb.py:10050
 msgid "Include half and/ or step-siblings on the individual pages"
 msgstr "Включать братьев и сестёр на индивидуальной странице"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10044
+#: ../gramps/plugins/webreport/narrativeweb.py:10053
 msgid ""
 "Whether to include half and/ or step-siblings with the parents and siblings"
 msgstr "Включать братьев и сестёр с их родителями и братьями/сёстрами"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10052
-msgid "Advanced Options (2)"
-msgstr "Дополнительные настройки (2)"
-
-#: ../gramps/plugins/webreport/narrativeweb.py:10056
-msgid "Sort all children in birth order"
-msgstr "Сортировать всех детей в порядке рождения"
-
-#: ../gramps/plugins/webreport/narrativeweb.py:10058
-msgid "Whether to display children in birth order or in entry order?"
-msgstr ""
-"Показывать детей в порядке рождения или в порядке ввода их в базу данных?"
-
-#: ../gramps/plugins/webreport/narrativeweb.py:10061
+#: ../gramps/plugins/webreport/narrativeweb.py:10064
 msgid "Include family pages"
 msgstr "Включить семейные страницы"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10062
+#: ../gramps/plugins/webreport/narrativeweb.py:10065
 msgid "Whether or not to include family pages."
 msgstr "Включать или нет семейные страницы."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10065
+#: ../gramps/plugins/webreport/narrativeweb.py:10068
 msgid "Include event pages"
 msgstr "Включить страницы с событиями"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10067
+#: ../gramps/plugins/webreport/narrativeweb.py:10070
 msgid "Add a complete events list and relevant pages or not"
 msgstr "Включать ли полный список событий на отдельных страницах"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10070
+#: ../gramps/plugins/webreport/narrativeweb.py:10073
 msgid "Include repository pages"
 msgstr "Включить страницы с источниками"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10072
+#: ../gramps/plugins/webreport/narrativeweb.py:10075
 msgid "Whether or not to include the Repository Pages."
 msgstr "Включать или нет страницы с источниками."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10076
+#: ../gramps/plugins/webreport/narrativeweb.py:10079
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Включить файл GENDEX (/gendex.txt)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10077
+#: ../gramps/plugins/webreport/narrativeweb.py:10080
 msgid "Whether to include a GENDEX file or not"
 msgstr "Включать ли файл GENDEX"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10080
+#: ../gramps/plugins/webreport/narrativeweb.py:10083
 msgid "Include address book pages"
 msgstr "Включить страницы с адресами"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10081
+#: ../gramps/plugins/webreport/narrativeweb.py:10084
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
@@ -36041,27 +36013,27 @@ msgstr ""
 "Добавлять или нет страницы с адресами, которые могут содержать адреса "
 "электронной почты, веб-страницы и почтовые адреса, места жительство."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10091
+#: ../gramps/plugins/webreport/narrativeweb.py:10094
 msgid "Place Map Options"
 msgstr "Отображение мест на карте"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10096
+#: ../gramps/plugins/webreport/narrativeweb.py:10099
 msgid "Google"
 msgstr "Карты Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10097
+#: ../gramps/plugins/webreport/narrativeweb.py:10100
 msgid "Map Service"
 msgstr "Картографический сервис"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10101
+#: ../gramps/plugins/webreport/narrativeweb.py:10104
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr "Выберите картографический сервис для создания страниц мест на карте."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10107
+#: ../gramps/plugins/webreport/narrativeweb.py:10110
 msgid "Include Place map on Place Pages"
 msgstr "Включить карту на страницах с местоположениями"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10109
+#: ../gramps/plugins/webreport/narrativeweb.py:10112
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
@@ -36069,11 +36041,11 @@ msgstr ""
 "Включать ли карту на странице с местоположениями для мест с известными "
 "широтой и долготой."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10114
+#: ../gramps/plugins/webreport/narrativeweb.py:10117
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr "Включать страницы карт семьи со всеми местами отмеченными на карте"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10118
+#: ../gramps/plugins/webreport/narrativeweb.py:10121
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
@@ -36082,64 +36054,64 @@ msgstr ""
 "упомянутые на данной странице. Это позволит видеть, как ваша семья "
 "переезжала."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10126
+#: ../gramps/plugins/webreport/narrativeweb.py:10129
 msgid "Family Links"
 msgstr "Семейные связи"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10127
+#: ../gramps/plugins/webreport/narrativeweb.py:10130
 msgid "Drop"
 msgstr "Не показывать маркеры"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10128
+#: ../gramps/plugins/webreport/narrativeweb.py:10131
 msgid "Markers"
 msgstr "Маркеры"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10129
+#: ../gramps/plugins/webreport/narrativeweb.py:10132
 msgid "Google/ FamilyMap Option"
 msgstr "Настройки Google/ Семейной карты"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10134
+#: ../gramps/plugins/webreport/narrativeweb.py:10137
 msgid ""
 "Select which option that you would like to have for the Google Maps Family "
 "Map pages..."
 msgstr "Выберите параметр для страниц с картами Google и Семейными картами..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10138
+#: ../gramps/plugins/webreport/narrativeweb.py:10141
 msgid "Google maps API key"
 msgstr "API-ключ для карт Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10139
+#: ../gramps/plugins/webreport/narrativeweb.py:10142
 msgid "The API key used for the Google maps"
 msgstr "API-ключ используемый для карт Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10148
+#: ../gramps/plugins/webreport/narrativeweb.py:10151
 msgid "Other inclusion (CMS, Web Calendar, Php)"
 msgstr "Включить другое (CMS, Веб-календарь, Php)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10152
+#: ../gramps/plugins/webreport/narrativeweb.py:10155
 msgid "Do we include these pages in a cms web ?"
 msgstr "Включать эти страницы в cms веб?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10156
-#: ../gramps/plugins/webreport/narrativeweb.py:10173
+#: ../gramps/plugins/webreport/narrativeweb.py:10159
+#: ../gramps/plugins/webreport/narrativeweb.py:10176
 msgid "URI"
 msgstr "URI"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10162
+#: ../gramps/plugins/webreport/narrativeweb.py:10165
 msgid "Where do you place your web site ? default = /NAVWEB"
 msgstr "Где размещён веб сайт? по умолчанию = /NAVWEB"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10169
+#: ../gramps/plugins/webreport/narrativeweb.py:10172
 msgid "Do we include the web calendar ?"
 msgstr "Включать веб-календарь?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10179
+#: ../gramps/plugins/webreport/narrativeweb.py:10182
 msgid "Where do you place your web site ? default = /WEBCAL"
 msgstr "Где размещён веб сайт? по умолчанию = /WEBCAL"
 
 #. adding title to hyperlink menu for screen readers and
 #. braille writers
-#: ../gramps/plugins/webreport/narrativeweb.py:10668
+#: ../gramps/plugins/webreport/narrativeweb.py:10671
 #, python-format
 msgid "Alphabet Menu: %s"
 msgstr "Алфавитное меню: %s"
@@ -36502,6 +36474,33 @@ msgstr "Небраска"
 #: ../gramps/plugins/webstuff/webstuff.py:153
 msgid "No style sheet"
 msgstr "Без стилевого листа"
+
+#~ msgid "_Person"
+#~ msgstr "_Лицо"
+
+#~ msgid "Famil_y"
+#~ msgstr "_Семья"
+
+#~ msgid "_Event"
+#~ msgstr "Со_бытие"
+
+#~ msgid "_Place"
+#~ msgstr "М_есто"
+
+#~ msgid "_Source"
+#~ msgstr "Ис_точник"
+
+#~ msgid "_Citation"
+#~ msgstr "_Цитата"
+
+#~ msgid "Repositor_y"
+#~ msgstr "_Хранилище"
+
+#~ msgid "_Media"
+#~ msgstr "_Альбом"
+
+#~ msgid "Advanced Options (2)"
+#~ msgstr "Дополнительные настройки (2)"
 
 #~ msgid "Reordering Gramps IDs"
 #~ msgstr "Упорядочивание идентификаторов Gramps ID"
