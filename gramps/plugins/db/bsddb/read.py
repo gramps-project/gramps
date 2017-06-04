@@ -73,6 +73,9 @@ from gramps.gen.utils.callback import Callback
 from . import BsddbBaseCursor
 from gramps.gen.db.base import DbReadBase
 from gramps.gen.db.bookmarks import DbBookmarks
+from gramps.gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, CITATION_KEY,
+                                   SOURCE_KEY, EVENT_KEY, MEDIA_KEY, PLACE_KEY,
+                                   REPOSITORY_KEY, NOTE_KEY, TAG_KEY)
 from gramps.gen.utils.id import create_id
 from gramps.gen.errors import DbError, HandleError
 from gramps.gen.constfunc import get_env_var
@@ -1631,6 +1634,23 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_raw_tag_data(self, handle):
         return self.__get_raw_data(self.tag_map, handle)
+
+    def has_handle(self, obj_key, handle):
+        """
+        Determine in a valid handle exists for the obj_key type
+        """
+        __key_to_map_map = {
+            PERSON_KEY: self.person_map,
+            FAMILY_KEY: self.family_map,
+            EVENT_KEY: self.event_map,
+            SOURCE_KEY: self.source_map,
+            CITATION_KEY: self.citation_map,
+            PLACE_KEY: self.place_map,
+            MEDIA_KEY: self.media_map,
+            REPOSITORY_KEY: self.repository_map,
+            NOTE_KEY: self.note_map,
+            TAG_KEY: self.tag_map}
+        return self.__has_handle(__key_to_map_map[obj_key], handle)
 
     def __has_handle(self, table, handle):
         """
