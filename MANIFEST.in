@@ -1,3 +1,5 @@
+include ChangeLog
+include po/ChangeLog
 include AUTHORS
 include COPYING
 include FAQ
