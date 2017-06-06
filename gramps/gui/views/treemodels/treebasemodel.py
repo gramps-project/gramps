@@ -594,6 +594,8 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             with gen_cursor() as cursor:
                 for handle, data in cursor:
                     status_ppl.heartbeat()
+                    if not isinstance(handle, str):
+                        handle = handle.decode('utf-8')
                     add_func(handle, data)
                     self.__displayed += 1
 
