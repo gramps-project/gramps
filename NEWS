@@ -1,3 +1,1579 @@
+2017-06-06
+Version 5.0.0-alpha2
+* Text-only dates are sometimes not exported in XML
+* EOFError [Ran out of input] in Clipboard
+* Crash after dragging multiple items from clipboard to gallery
+* Cannot drag & drop textual value via clipboard
+* Quick search with Czech characters -> Crash
+* Narrated Web Report options reorganization
+* February 29th invalid date in Julian dual-dated leap year
+* Fix get_gramps_ids method to return a list of str
+* Fix DummyDb errors after a cancelled database upgrade
+* Database upgrade to convert default handle to str
+* Convert handle type to str in the database API
+* Use the term "Delete" instead of "Remove"
+* restore missing (since January) "import statistics" dialog
+* Note isn't included on CIR when it is attached to a name
+* New global [Add]>[New] menu with Keybindings
+* Missing [edit buttons] in relationship view
+* fix Detailed Descendent Report, multi paths to descendent
+* fix export filtering
+* Add "within <n> km/miles/degree" filter
+* Extend ReorderIDs-II functionality.
+* Narrative web features
+* add gramps-ID option to DAR and DDR text reports
+* add gramps-ID option to Ancestor and Descendant text reports
+* add a new gramps-ID option
+* Incorrect SoundEx result
+* Fix syntax error postgresql
+* fix XML export of notes so lead/trail spaces are preserved
+* Save defaults for different Narrative Web report websites
+* add the date-format option to narrativeweb and webcal.
+* Bad color assignment in geoplaces
+* report tables are always written LTR even for RTL locales
+* fix exception on Event filter editor
+* add CONTRIBUTING file, enable packaging this file
+* many "GtkDialog mapped without a transient parent" fixes
+* add more Records options (father with most children, etc.)
+* add a subtitle to the book's T.O.C. for the Family Group report
+* add the date-format option to some more reports
+* fix numeric date displayer (for Hebrew month "13" and B.C.E. years)
+* enable Tamil dates
+* enable date-format option in reports
+* secondary locales do not use their own numeric date format
+* partial fix for Note editor Toolbar overflow icons missing
+* Bug in the Name Editor / Group As
+* clarify use of the style editor for graphic style editing
+* enable preliminary Tamil translation
+* disable FGR option if it's not relevant
+* add a "description" to a report style table and a style table cell
+* neaten a report's style XML file, and add the new description
+* enable a report graphic style object to have a "description"
+* make Polish "numerical" date display consistent with its locale format
+* fix Bulgarian numeric dates
+* slight tweak to Arabic date handler
+* Prevent warnings when importing xml from stdin
+* fix Icelandic numeric-format date display
+* put "short" days into the Icelandic translation
+* fix Norwegian numeric-format date display
+* remove the last bogus Chinese strings from the Turkish translation
+* fix some date-related words in Esperanto
+* change to Microsoft's current official country name, for Windows users
+* add datestrings to several translation
+* fix remove unused objects tool to use place name not title
+* Undo in undoableentry does the wrong undo in MacOS.
+* Fix unodoableentry for international characters
+* Check that the USER_CSS directory exists
+* add filter progress bar to the Relationship Graph report
+* add filter progress bar to the Records report
+* Fix addon manager to reload updated plugins so they are recognized
+* Fix Addon manager to recognize newly installed addons immediately
+* Fix family merge bug
+* Fix ToolComboEntry for Gtk method not supported on older Gtk
+* Avoid using 'shell=True' when running a subprocess
+* give CLI warning "title" its own line, as the error already does
+* don't type out a (possible) warning message if the option is not on
+* fix bug (the option itself is always True, we want the value)
+* enable deferred translation of date format strings
+* Inconvenient size of error dialog
+* make LastNameDialog a better ManagedWindow
+* fix for multiline Titles in Source view
+* Fix Gedcom import for improper creation of error message
+* fix Gedcom import for empty FAMC line
+* tweak some report options slightly (less height, re-tabify some)
+* Change output order in Relationship Graph plugin
+* Custom Note Types not shown in the filter siderbar
+* fix bug (typo?) where Quick Views had a title of "True"
+* Narrativeweb: Add possibility to translate "%s:" strings
+* The family map for narrativeweb must work over https
+* Write PlaceID links in CSV export
+* Fix Gtk deprecations
+* Fix Glade file loading to avoid loading and leaving extra toplevels
+* Fix import gedcom glade file to remove unused toplevel object
+* fix owner editor to properly destroy glade object
+* Fix bookmarks keybinding on Mac to match the documentation.
+* Fix reports papermenu to properly destroy glade objects
+* Fix dbman so RCS checkin window has correct transient parent
+* Fix 'Extract Info from names' tool
+* Error printing graphical report ancestor tree
+* fix error when 'Manage Family Tree' is closed via ESC or the dialog 'x'
+* Add progress indication to long running reports
+* Add progress indication for filters with long 'prepare' times
+* remember the last location of windows -- for many dialog windows
+* fix UndoableEntry for pygobject bug
+* A new Soundex filter for matching 'name' with people using Soundex
+* start to update API doc for DB stuff
+* add a spacing value for children widgets
+* Added spouses to the child listing in the DAR and the DDR
+* Geography : use progressmeter when filtering.
+* Remove hidden character from front of shebang line
+* Fix CSV export options for new parameters
+* Fix missing filter parameter
+* Add [Arrowhead direction] option to Hourglass graph
+* Add [Arrowhead direction] option to Familylines graph
+* Add filter progress to reports
+* Add filter progress to sort events tool
+* Add filter progress to export assistant
+* Convert filters to use the User class
+* Fix Progen import for several issues
+* Fix Progen import to use 'Status Bar' progress indicator
+* Improve Addon management performance
+* Custom Family Relations not shown in the filter siderbar
+* Errors printing graphical report ancestor tree
+* Values not saved and bug in monitoredwidgets
+* Ability to be able to enter comma separated latitude/longitude pairs
+* Provide an option for custom colors in Hourglass graph
+* fix citation tree view quick report right click
+* Fix Check&Repair 'Cross table duplicates' Progress parent
+* fix Merge Place has wrong label
+* Fix Gedcom export to have a more detailed progress indication
+* fix export assistant to show textual progress steps and first step
+* Fix export assistant, proper parent for popup progress and dialog
+* Fix updatecallback to show first progress step
+* change __rebuild_search to use status bar progress
+* fix for two progress bars occupy the same space
+* fix performace with people tree view and some filters
+* tweak DumpGenderStats tool (enable GUI to be closed, neaten CLI output)
+* Fixes ManagedWindow for a modal window with another modal elsewhere
+* upgrade Update Addons to ManagedWindow
+* Fix wording for addon restart
+* fix non-textual value on place name
+* tweak sqlite3 info typeout to conform, only output sometimes
+* fix Merge Family; Error dialog hidden behind Merge Dialog
+* fix progress meters for transient parent
+* fix up export dialog to show progress bar
+* Check & Repair for dbapi
+* Fix common error/warn dialogs to deal with modal parent
+* fix db undo/redo operation to delay signal emission
+* explanation for 'f' and 'm' letters on tests
+* fix some punctuation marks for french
+* Fix the debug module (profiling code) for current python libraries
+* Only Event and Family Editors are checking if data_has_changed
+* Update note text before closing
+* fix file chooser's deprecation warnings in import dialog
+* Increase relationship.py to show relationships
+* Support tag on EventRef Editor
+* Fix test_exports to ignore changes in Gedcom Copyright year
+* ancestor tree doesn't use replacements
+* fix Windows issue; Book dialogs don't stay on top
+* Change config keys to mention addon
+* Restart addon message change wording
+* Error dialog can become hidden behind merge dialog
+* Make merging people with complex families more friendly
+* Fix 'Info' popup from Manage Family Trees' dialog for parent
+* fix popup ProgressMonitor to find a parent for set_transient_for
+* fix selected person not updated if changed in people list view
+* put the correct FSF address into some (presumably cribbed) modules
+* restore the ImportInfo to the new Pro-Gen importer
+* save quick backup's folder if backup aborted, if needed
+* Make XML backup dialog size persist
+* Fix dialogs for Gtk deprecations
+* Improve Pro-Gen importer
+* Add window track to merge dialogs
+* translate some currently-untranslated punctuation marks
+* Shrink size of Break Lock (and other QuestionDialogs)
+* fix merge issue with Person Tree View
+* enable a simple test for translated datestrings
+* pylint errors
+* fix QuickReports for Cairo crash when no objects found
+* fix lineage quickreport when started from person with no parent
+* fix quick search exception when nothing in searched list
+* Fix HandleError when using finddupes tool to merge
+* shoehorn in some missing (somehow) datestrings in el.po
+* fix styledtext editing of LINK with URL as Visible element
+* fix detection of URLs in Styled text editor
+* narrow GrampsPreferences if possible (e.g. in Greek it is 1138)
+* Problem adding parents [with Latin names]
+* center errorview dialog, and shorten it too
+* Don't allow selecton of Active or Home person until actually commited
+* fix for special characters in Family Tree names
+* Tag editor: Tweak improvement on buttons order
+* The configparser is assuming the wrong encoding.
+* Sorting in family tab of narrated web report
+* Tidy up export assistant multiple inheritance
+* Silence remaining PyGIWarning
+* Sorting of relationships in family tab of narrated web report
+* NarrativeWeb: Reduce the Report options window.
+* enable custom filters in reports to select the center person
+* make various reports dialog height less than 600, for smaller displays
+* Enable copying Soundex result
+* Use latest valid date rather than today
+* Modify endonym handling in place displayer
+* Fix house number concatenation
+* Remove MySQL backend
+* typos in Norwegian version of relationship calculator
+* reduce default width of preferences dialog
+* give statusbar "warnings" dialog a less-ambiguous name
+* Add new backup preferences
+* make "quick backup" dialog slightly wider
+* trap FilterError when creating and testing a new filter
+* Jump to Gramps ID functionality doesn't work for relview
+* Jump to Gramps ID functionality added to pedigree
+* Jump to Gramps ID functionality added to *fanchart*
+* Jump to Gramps ID functionality doesn't work
+* ability to search alternate place names when selecting place
+* set up a window's initial configuration easier (size, etc.)
+* Clipboard window doesn't remember its previous position
+* Book Report only works with the default values
+* 'Check and Repair' tool ignores some objects with tag support
+* nonetype error when merging events or families
+* Relative media path incorrectly calculated for Windows
+* Use COLLATE clause rather than locale specific columns
+* Fix place tree cursor
+* Remove trailing semi-colon from SQL statements
+* Fix clear map action on Geography
+* Fix undo/redo reference updates
+* add FanChart2Way
+* recommend 'gir1.2-goocanvas-2.0' on debian package
+* Database repair tool always modify all source objects
+* Re-enable selection in MultiTreeView on a drag-end event
+* Exclude places outside valid date ranges
+* enable book selector dialog to remember its size
+* avoid all other operations during export and fixes for export popups
+* Quick Backup: remember Media (include/exclude) setting
+* Fix translation confusion on 'View' noun/verb
+* Add kmls for the geography places view.
+* fix right-click menus crash
+* Support for Windows Python3 pythonw.exe
+* fix name_displayer.add_name_format so it won't create duplicates
+* Remove icons from various right-click and other menus
+* enable a ManagedWindow to remember its position
+* enable many tools and dialogs to remember their size
+* Fix LDS editor for 'Family' related issues
+* Fix icon and tooltip in LDS editor
+* fix citation tree view for HandleError exceptions
+* Fix Mock localtime to return same val in Linux & Windows
+* Improve test coverage in the Gedcom importer
+* Add PEDI and _FREL/_MREL Gedcom Tag Export support
+* Improve efficiency of get_tag_from_name method
+* Fixes for install after removal of old LICENSE
+* Show more place types in family lines graph
+* Remove old LICENSE file
+* Rewrite cursors to avoid using table maps
+* fix fault when viewing family events with event gramplet
+* enable debug flag on 'xgettext' for python files
+* Fix format string (order, RTL, LTR)
+* [Geography] update map tiles on demand
+* fix duplicated Gramps IDs on Gedcom import
+* Avoid using table maps in commit methods
+* fix Gedcom import in some alternate languages; improper date parsing
+* Update Tool 'Check & Repair' to detect and repair duplicate Gramps IDs
+* Remove duplicate columns in person table
+* Remove name columns from the family table
+* handle some report pathological cases (better)
+* Remove unused Select API code
+* Wrong parsing Numeric date format for cs_CZ locale
+* Geography: add a message in geoplaces to change the markers color.
+* remember size of sidebar within the main window
+* [geography] Assign different colours to marker
+* Export options 'Preview' buttons create hidden quickreport.
+* tweak (correct exit status for pathological case of no DISPLAY)
+* Add thumbnail size option to family lines graph
+* Include "relationship to home person" on the "[C.I.] Report"
+* Support for Retina Display / HiDPI
+* fix Gedcom import with no VERSion (very old Gedcom) crash
+* fix Import Vcard can create multiple surnames with all selected as 'Primary'
+* move files for testing gramps out of example/gramps
+* Change error message for better internationalization
+* Fix to translate strings for international use
+* Make VCARD import errors into user dialog instead of logger.warning
+* dummydb: AttributeError: 'str' object has no attribute 'decode'
+* HandleError is not raised by the DBAPI interface
+* Fix alignment radio buttons in style editor
+* Update Docs copyright year
+* XML import with env language other than utf8, has bad progress meter
+* Check & Repair: add fix for bad alt place names
+* DB-API: make autobackup configurable
+* DB-API: ignore errors on secondary field lookups
+* Events coordinates : add menu to edit place or event, add place ID.
+* DB-API: Getting a handle that doesn't exist now raises error, like BSDDB
+* Geography : add the possibility to add new unsupported map
+* Events Gramplet should show events in Family Geography
+* enable the main window to remember its position on the screen
+* Remove Unused Objects tool reports linked notes as unused.
+* ask for a little [translation] help, if appropriate
+* Add Export Options filter to Vcard Export
+* Select Place search & Source/Citation hierarchy should NOT be expanded
+* HTML-Export, make language selectable (NarWeb filter name)
+* tweak statistics gramplet
+* HTML-Export, some missing translations
+* HTML-Export, make language selectable (WebCal)
+* fix Check & repair so it won't crash with bad 'get_from_handle'
+* HTML-Export, make language selectable independently (Narrativeweb)
+* fix Gedcom export of illegal level 1 CAUS entries
+* Gedcom Export; fix support for PHON, FAX, EMAIL, WWW tags to v5.5.1 standard
+* Put back Titlecase versions of strings to be translated
+* CSV import, fix failure for certain types of cross references
+* clarify new Graphviz backend option
+* Gedcom import Notes get NoteType appropriate to object
+* orthogonal routing for Relationship Graph
+* emable deferred translation of Span ages
+* Adjust GedcomStageOne notes Parsing
+* Gedcom import, remove old, dead, code, no longer used
+* make Place GID vs place name consistent across runs for Gedcom import
+* Change the page name to statistics
+* Add a link in Person page to First name list and [then] a link to family list
+* sort custom filter names with German-umlaut chars correctly
+* Narrativeweb : Created for in footer not consistant with filter option.
+* Add a Statistics Page to the Narrative Web Site report
+* Chinese families for example.gramps (thanks, Sati Bodhi (Yin Hoe TAN))
+* Color pedigree view name boxes.
+* Gedcom import exception processing fixes
+* Google map API now requires a key
+* Sort User Filters on sidebar by name
+* NarrativeWeb : openlayers v2 is obsolete.
+* Geography: clear views when no-database signal emitted
+* Fixes for the PHON, FAX, EMAIL and WWW Gedcom tags to support Gedcom v5.5.1.
+* Update files in windows directory so it compiles under python3
+* _deeprelationshippath filter rule, addition of filter rules and classname
+* Support for FTM and others Custom Gedcom Event Tags on import
+* Comment out useless ErrorReportAssistant test, and fix whitespace
+* [Narrative Web:] The czech letter 'ch' uppercase version is 'CH'
+* Narrativeweb : narrative-maps.css link incorrect when use into a CMS.
+* Update graphviz to 2.38.
+* Change to a binary launcher in Mac app bundles.
+* fix typo in Warning dialog, that duplicated the DEST= value
+* Narrativeweb : ancestortree.css link incorrect when use into a CMS.
+* Narrativeweb : some dates are incorrect in tar archive.
+* Gramps crashes when closed while exporting
+* Gramps crashes when I select a report 'Open with default viewer'
+* events gramplet in family view error
+* tweak Ascii backend
+* When I try to edit a place on the map, the process stops with an error.
+* Option for text [DDR] to report by branch
+* Some events are not shown in familymaps page.
+* Ensure no popup under CLI for warning
+* Geography: Avoid crash is OsmGps not initialized
+* better handle an unlikely error in the Complete Individual report
+* DBAPI: try_execute ignores errors
+* slightly generalize the running-master warning message
+* Gedcom import media improvements part 2
+* Problems when no database is open. Partial fix.
+* Add new argument to IsEnclosedByRule
+* Geography : Add a message to clarify things in geoplaces
+* Narrativeweb : place title must agree the references.place-auto configuration
+* his name is spelled "d'Aboville" and not "D'Aboville"
+* DB-API import loses researcher and bookmarks
+* example.gramps map has different value, and should return correct type
+* Enhance the Descendant Report and Detailed Descendant Report
+* import-to-export of example.gramps map has different value
+* update Finnish holidays
+* Some strings in tools and report dialogs will not translate
+* Export to '.wft' file crashes if Unicode characters are present on Windows
+* Web Family tree export should be utf-8
+* CSV import/export messes up places
+* Restrict DBAPI selection to power users
+* Change pycairo-python3 to pycairo.
+* Gedcom import of FTM .ged file containing _LINK tags not supported
+* Website reports should accept any StyleSheet
+* Gedcom import of FTM file containing _PHOTO tags
+* Attempting to select an "Available item" for the Book Report gives an error
+* Fix for either valid or invalid FTM Gedcom
+* Gedcom import of FTM file with OCCU record crashes import
+* Family Page maps are non-functional in Narrative Web report.
+* Enhance Book Report
+* Gedcom import improvements in media areato support v5.5.1 and FTM
+* workaround for GNU gettext check
+* Gedcom import loses spaces in text fields from FTM
+* enhance Book class (to allow non-identical Book copies to be made)
+* Rebase and de-compress exp_sample.gramps
+* fix vcf filter and tweak test_imports for better pythonic
+* Vcard export order is not consistent
+* some Book Report subjects are missing or misleading
+* fix for intermittent plugin recognition via CLI
+* fix typos ("log.warn" => "LOG.warning" => "log.warning")
+* String not translated in geoplaces
+* Missed the place filter rule when updating for changed example.gramps
+* Fix filter tests for changed sample.gramps
+* Fix build for database directory structure changes
+* Update directory structure for database plugins
+* add a Greek family to example.gramps (thanks, Zissis Papadopoulos)
+* Descendant Report does not recognise auto. place title generation
+* Geography : Translated text will not be printed in the program
+* Fix CSV import of utf-8 encoded files exported by Gramps
+* A few Deprecation warnings handled
+* fix LOG.warn() deprecation warning
+* Geography : add parent to WarningDialog
+* some tweaks to the book report
+* Geography : Attempting to print crashes(core dumps python)
+* GEDCOM doesn't accept CR as a line terminator
+* Implement stand-alone default DummyDb database including diagnostics
+* Vcard export on Windows problems
+* Wrong Numeric date format for cs_CZ locale
+* Narrativeweb: inconsistent & incomplete display of place hierarchy labels
+* make verify tool less likely to crash while creating its file
+* Increase width of date column in location gramplets
+* Fix date sort column in location gramplets
+* Narratedweb : inconsistent & incomplete display of place hierarchy labels
+* Narratedweb : surname listing errors for people with multiple partners
+* Configure 'Enclosing' and 'Enclosed by' Date gramplets to show Place IDs
+* Correct place type for parishes in example database
+* Move extract city tool to third-party addons
+* Fix to generate correct LDS ordinances for people and families
+* missing newline in table and illegal RTF
+* RTF files show incorrect Unicode characters
+* [In "Verify" people w/ death event w/o date are not thought dead]
+* move LaTeX no-PIL-software warning into method which needs it
+* Remove buggy _xmlplus imports
+* While starting gramps, it fails to pop up "tips of the day"
+* tweak string for translation, to make gettext happy
+* enable deferred translation of dates in tag report
+* implement fetching sorted Person and Family handles in the proxy DBs
+* DB-API: get_ITEM_handles() should return strings
+* Added missing copyright and GPL
+* Version 5.0.0-alpha1
+* Moved LRU to gramps.gen.utils
+* Remove import test from reports
+* uncompressed .gramps
+* Use first matching name when generating place titles
+* GEDCOM import with media files that have no path fails
+* enable C.I.R. to include or exclude Person and Family Notes
+* [C.I.R.] add option to include or exclude census data
+* Switch to suppress and select more items in [C.I.] report
+* [Geography] Geoclose and mother handle
+* place names empty if Gedcom ADDR record contains no street
+* Fix another file left open
+* Resize grips have been removed
+* Ensure files are not left open
+* Tidy up place configuration options
+* LivingProxyDB leaves data in families when "[Living]" chosen
+* make report cope better with privacy proxy
+* LivingProxyDB leaves data in when back references followed
+* GEDCOM import creates inconsistent source gramps IDs
+* Use CSS to fade background colour in ValidatableMaskedEntry
+* moved test directory, tweaked tests, and fixes
+* Use CacheProxyDb on reports with LivingProxyDb
+* narrativeweb: proxies and filters may hide objects
+* Additional fixes for narrativeweb
+* CacheProxyDb: adds LRU cache for handle lookups
+* NarrativeWebReport: media_ref handles need not be binary
+* Fix setup.py to remove the double '/' when building man pages
+* GEDCOM import in CLI mode with ANSEL encoded .ged file tries to pop up gui
+* Add inclusive option to IsEnclosedBy rule
+* Saving/closing new person window with Alt-o does not find gender
+* Fix to allow deferred translation of place type
+* Include all place types in place report
+* Allow place selection both individually and by filter
+* Expand tree in selectors automatically
+* [Performance] Handling many Events on a person
+* 'Complete Individual Report' is titled 'Summary of [name]'
+* DB-API: duplicate note ID
+* Fix Encloses gramplet to display correct place references
+* Add 'Search for citations' to 'Remove unused objects' tool
+* Make trailing whitespace into a Travis error.
+* Update template for appdata stuff
+* Media Preview: wrong frame
+* UnboundLocalError on ODF doc backend
+* AttributeError: 'NoneType' object has no attribute 'db'
+* merge conflict
+* DB-API: updated obj.change date/time when editing
+* Convert a few more opens to use the "with" CM
+* DB-API: ensure that undo/redo operations are in a low-level db transaction
+* GEDCOM import PLAC or ADDR attached Notes etc. are lost
+* GEDCOM import some Place Names & Titles are blank
+* GEDCOM import PLAC:FORM in local mode doesn't work
+* fix broken GEDCOM import PLAC:FORM handling
+* Place Alt Names gets duplicated entries
+* fix empty Place Alternate Names on import
+* Person: add aliases for field names
+* cope when import of GExiv2 gets a ValueError
+* Date: add property year
+* Gramps not appearing in Gnome Software
+* PyGIWarning: importing without specifiying a version first
+* Windows SQLite database has indexes that Linux SQLite can't read
+* Place schema: wrong type for alt_names
+* Add sqlite info to error report assistant
+* QuerySet: fix removing tag logic
+* sqlite: add version number
+* LDS ordinance statuses enhancement
+* Webcal link : add an index file
+* Add a Webcal link to Narrative pages
+* Bash completetions: a little cleaning up
+* QuerySet tag(): remove batch; allow tag removal; test
+* Multiple GEDCOM imports creates duplicate event IDs
+* Attempting to export an empty BSDDB Family tree fails
+* Family Tree Manager: reselect the default row
+* ViewManager: no longer delay showing window; causes transient window issues
+* Drag and drop on Family Tree Manager fixes
+* DbPythonError: adjust message regarding Python
+* Text metadata (i.e. *.txt files) implemented for DBAPI backends.
+* The place page in webreport is complete mess
+* empty media path must be interpreted as /home/user in DB-API
+* Gallery tab of Source view does not display .ods files
+* Narrativeweb: Add option to Include all / unreferenced Media objects
+* Add a Button to close the current database; refresh gramplets when no db
+* Add a Button to close the current database; retitle main window
+* CLI: command completions in bash, bash-like shells
+* CLI: -l, -L, -t should match names with re patterns in them
+* Stats Gramplet: remove sequential scan through person
+* Family Tree Manager: add close button; fix convert GUI issue
+* Database: add reload method; re-expand fields before reindexing
+* Pedigree view crashes if you happen to choose a child as ancestor
+* NarrativeWeb : use the common way to manage name format (cleanup).
+* Narrativeweb: relationship to central person on individual pages
+* web reports: viewport line settings don't allow scaling
+* NarrativeWeb : use the common way to manage living people.
+* Postgresql: fetchone when nothing to fetch, throws exception
+* Fixed get_person_handles(sort_index=True)
+* testcasegenerator: allow to run from cli
+* Tests: added tools check and verify
+* DB-API: get_family_handles(sort_handles=True) now fixed
+* Book report, Complete Individual Report part - missing sorting
+* Field name lookup: improve error message
+* Auto backup at exit, but not when opening another database
+* InMemoryDB: provide None for dbname
+* Check for non-existent files - remove try/except
+* Family Tree Manager: set transient on Info window
+* Family Tree Manager: rearrange dialogs to handle cancel
+* Problems when no database is open
+* add "living people" option to many of the reports
+* Crash on adding media
+* tweak "living people" option (change option report output)
+* tweak "living people" option (change choice strings)
+* add deferred translation to "living people" option
+* Add Convert Button to Tree Manager: makes a dbapi from a bsddb
+* Change Exportgedcoms open
+* enable deferred translation for EnumeratedListOption items
+* another librecords tweak: check that a Person exists
+* Export XML: don't crash when exporting filtered/proxied data
+* EditNote: don't crash if referenced item does not exist
+* Config: new database-backup-use-compression option
+* the Family Tree Manager dialog should show the database type
+* make librecords play nice with proxy DBs
+* the Records report crashes on family records
+* Db Manager: Select Row of current Tree
+* Narrated Web report - Individual sort order not correct on the Surnames tab
+* tidy up the title in the Timeline Report
+* tweak Birthday Report to use proxy DB always
+* CLI: require exact re.match for -t
+* CLI: make re match exactly for -l, -L
+* Postgresql and Mysql limit/offset
+* DB-API: some SQL implementations need subqueries to be named
+* DB-API: Show last backup time/date, and total backup counts
+* Postgresql and Mysql LIMIT fixes
+* Bring MySQL and Postgresql up to date
+* Specify required GtkSpell and GExiv2 version
+* Tool 'Rename Event Types' does not include custom types
+* Narrated web report link to thumbnails is broken on certain pages
+* Narrated Web report - Individual page sort order has changed
+* Add compression option on XML export
+* get_family_handles with sort_handles
+* Narrative web : beginning of cleanup.
+* Add dropdown list to Link Editor
+* Rename Main Interface Config keys
+* Editorial changes & Fixes from QuLogic
+* Prefer "with" context manager to open files
+* Remove Django-style WHERE; consider Python expressions
+* Shortened names of backends
+* Moved guiQML to its own project
+* Fix Error Report Dialog appearance
+* Fix_Capitalization_of_Family_Names:
+* CLI prompt: don't default to yes for truly dangerous
+* Remove DictionaryDB
+* Tree Manager: adjust column order, add tooltip text
+* InMemoryDB: load last, set has_changed = False
+* Replace dictionarydb with inmemorydb, a sqlite :memory: db
+* Slow exit of Gramps GUI
+* Gramps reports that it can't find dictionaries.
+* DbManager: add database type column
+* DB-API: get_family_handles(sort_handles) add given to sort order
+* gramps -L changes Last Accessed time/date
+* CLI: add regular expression patterns to -t, -l, and -L
+* gramps -r PATTERN: make no be the default
+* center the book report Available Books dialog
+* DB-API: separate dbapi init from sql init
+* Pedigree view crashes : changed the name and solved glade problem.
+* add deferred translation to "living people" report option
+* Move GRAMPS_RESOURCE default into grampsapp.main()
+* Add optional list of trees to command-line args: -t -l -L
+* Don't use equality to check None
+* Remove remaining Sourceless Javascript Files
+* Familygroup report: Add filter option
+* add sorted family handles to DB-API
+* Pedigree view crashes : add examples for testing loops.
+* Pedigree view crashes ... : add help to glade file.
+* Pedigree view crashes ... : add help button + suppress CLI tool mode
+* Pedigree view crashes ... : remove last empty line.
+* Pedigree view crashes ... : trailing space and replace list() by set()
+* GEDCOM 5.5.1 Support Custom Event on export
+* cope with None family in relview
+* clarify default setting in report .gpr.py files
+* RelationshipCalc callback: not all signals pass handle_list
+* Remove deprecated locale flag
+* Check for missing father or mother in family rules
+* Add new family ancestor and descendant rules
+* TypeError: 'str' does not support the buffer interface (better solution)
+* tweak Place details gramplet for alternative names: show language
+* Request for new "Replace All Names" in Export Options dialog
+* enhance place report: add place names if two or more
+* Fanchart: Please increase limit on generations
+* Add Two related Features to Event and Media pages in the Narrated Web
+* have the Family Group report default be to show marriages
+* Family Group Report -- tweaks request (added family notes)
+* allow for more types in "living" proxy
+* fix "TypeError: 'tuple' object does not support item assignment"
+* TypeError: 'str' does not support the buffer interface
+* make tag name map fix more readable
+* Gramps has experienced an unexpected error
+* Error when trying to create narrative report (residence event)
+* Places index + Media index are incorrectly sorted
+* [Regression]: Filter set by default on selector is ignored
+* Initial batch of tests of filter rules
+* Empty handle, bsddb backend and place
+* Cannot exclude living people from descendant reports
+* center the Book dialog (in the whole screen)
+* Reports ignore "Private" flag and "Living People"
+* D.A.R. has ? for locations when [private data is excluded]
+* Age in the event family view column is wrong. better solution.
+* Crash when dragging multiple media items to clipboard
+* Unable to build narrated web site
+* [Regression] vCal Export File format invalid
+* Error occurs for Complete Individual Report -- complete database
+* add a filter to the tree of rule filters
+* clarify these old files are not for the current Windows AIO package
+* fix scrolling in persons view after typing some letter
+* multiple lines on firstname can corrupt ODT file
+* Narrative Web report further stops in error.
+* Geography: geography view Location could not convert string to float.
+* Error still when creating a Narrative Website Report
+* Add pypi classifier for Natural Language :: Icelandic
+* fix some crashes in export preview
+* Recognise Ghostscript on 64bit ms-windows
+* Narrative Report with BSDDB, additional fixes and test
+* make setup.py typeout more accurate
+* Searching in people view when surnames are collapsed
+* TreeBaseModel : str has no encode method.
+* Add dates and relationships handlers for Icelandic
+* Wrong reference number for "same person as" in detailed descendant report
+* Age in the event family view column is wrong
+* Add Citations Selector To Link Editor
+* Fix error when changing database in new locations gramplets
+* Double-clicking on a source causes exception : better solution.
+* Fix comment about getting the right encoding for stdout.
+* Error loading Participants add-on in French locale
+* Date format does not match system.
+* Enhance the Locations gramplet
+* Protection from null objects
+* IsAncestorOf bug hidden by looking up null handle
+* Rename family tree does not update the title of the parent window.
+* Add labels to SytledText and Note
+* StyledText: don't crash if styles are corrupt
+* Individuals with incomplete names, not updated when name completed
+* Children gramplet in Family view does not get updated ...
+* Non-image media objects don't appear in the main window gallery.
+* Pressing tab stops at element in gui places
+* Database selects/iters can order by any field
+* Double-clicking on a source in the citation gramplet causes exception
+* "Find text in record" filter crash
+* vCard Export does not work
+* Notes used in the "To Do" gramplet are found by Remove Unused Objects tool
+* finish translation: ending ";" in keywords of desktop entry
+* add option to output more than one occupation in relationship graph
+* Add another way of showing dates and places in relationship graph
+* clean up output of families from relationship graph
+* Cleanup code, filenames, and documentation
+* Only consider LC_ALL, LANG, and LANGUAGE, when choosing the default locale.
+* Unable to select Unicode UTF-8 encoding on command line
+* Cannot import gedcom generated by RootsMagic
+* People sorted by surname view now crashes
+* Narrative web : html elements emitted in different order
+* Narrative web : "errno: 1, operation is not permitted" when creating archive
+* Complete Report about person (whole database) - PDF - crash
+* Geography : change one place selection function by a method.
+* Removed webapp to django-webapp project
+* Unhandled AttributeError when db.get_tag_from_handle returns None
+* Need to rebuild reference map if making changes in batch mode
+* Use db_is_open properly
+* CLI: if database is opened at end, then close it
+* "Unknown" spouse uses hardcoded string [deferred translation]
+* fix handling of a None handle
+* ValueError: underlying buffer has been detached
+* Year 2016
+* mars month instead of Marzec (Polish)
+* Only check for changed data when cancel button clicked
+* Avoid check for changed data when save button clicked
+* Store original object during editor initialisation
+* fixes for None handle errors: single-parent family
+* Fix handle errors in family lines graph
+* Report Plugin [LaTeX backend] crashes
+* Fix place hierarchy creation during import
+* Geography : Use progress meter while selecting places or events.
+* Geography : performance issue due to bad initialization.
+* Better place levels handling in geography view.
+* Geography : performance issue when selecting the events or places views.
+* CLI -r/--remove asks firsts, uses reg exp
+* Add framework for testing CLI commands
+* Adds -r, --remove FAMILY_TREE_NAME to command-line
+* Webcal : use 'until' instead of 'till'
+* Check for empty handle when returning default person
+* Fix handle errors in reports
+* Fix handle errors in person and family editors
+* Prevent crash from exporting because of no default person.
+* Remove encoding on stdout and stderr
+* gramps -L prints as it goes
+* More empty handle checks in proxies
+* Webcal: make it possible to move to the next day page having a birthday
+* Check for empty handle in private proxy
+* use ngettext for proper plural forms use
+* Webcal: add an sign that somebody is not alive and make the report nicer
+* webcal : make the month name clickable in the year overview page
+* sort problem : TypeError: unorderable types: EventRef() < EventRef()
+* disambiguate "none" (for French)
+* center export dialog on parent window
+* center report dialogs on parent window
+* Raise HandleError exception for bad handles
+* x button now closes import file menu
+* Father/mother's age attributes are not translated on DA and DD reports
+* Unicode conversion of command line arguments no longer needed
+* Narrative web report: add author to citations
+* events list and family list are differents between two reports.
+* narrativeweb : change mtime at the bad place and made twice.
+* Sourceless Javascript Files in release tarball
+* permission denied : change mtime to origin instead of destination.
+* narrativeweb: Place title based on current date not that of the event
+* Father/mother's age attributes are not translated on reports
+* improve Russian date handler, and R. d.h. tests
+* Add missing 'Father/mother age' translation strings
+* Unicode conversion not required for other Gtk methods
+* Unicode conversion not required for FileChooserDialog methods
+* Put tag selection list in alphabetical order
+* Fix delete error in undoable entry widget
+* thumbnails html file missing in the narrative web.
+* Don't check SSL certs on Mac when fetching addons.
+* Narrated: html elements emitted in different order ... on windows
+* unused *_init.jpg are created in the narrated website.
+* Some media files are not exported to the NAVWEB report.
+* Narrated Web Site Report: html elements emitted in different order
+* 'Unknown' spouse uses an harcoded string name on report
+* Interactivesearch gives "TypeError: unorderable types: str() < NoneType()"
+* Catch urlopen TypeError when context arg isn't supported.
+* 'Narrative' word not translatable
+* Name of user defined filter is not shown
+* Faulty headline in start up screen
+* Find is broken when used in the Family selector.
+* "Show all" checkbox of "Select Family" window not unchecked when ...
+* Locality data in address was not imported
+* Can not download new or updated add-ons
+* Installation from DMG (binary) file and port file fail.
+* Re-enable selection in MultiTreeView on a grab_broken event
+* fix another deprecation warning (thanks to Tom Hughes)
+* Fix creation of focus change events
+* Handle citation objects in glocale.trans_objclass
+* Check that gramplet is in notebook before setting tab label
+* Geography : Edit place creates duplicate in the "enclosed by" tab.
+* Geography: [G.I.] displays a warning and ask to set a version to load.
+* Gramps Help button User Manual wiki-links
+* Sort custom place types in editors
+* Fix error converting color into string
+* [Geography] Ignore places without hierarchy
+* Holidays: added cmp() for Python3
+* Tidy up xml parser file handling
+* Fix countries selector on Reports
+* the easter method in libholiday.py isn't Python3-friendly
+* Suggestion:Use 'People and Events.'' instead of of an 'etc'
+* verification tool : Exception raised [if] "Estimate missing or inexact dates"
+* hourglass graph report - link missing in ancestor graph
+* Update initial [interface] startup defaults for (height/width)
+* Descendants-detailed report crashes
+* Problem with existing selection in media reference editor
+* Unable to produce graph reports [in Greek locale]
+* allow for get_dbname() returning None
+* Fix AttributeError: 'EditMediaRef' object has no attribute 'glade'
+* 'Place Name Editor' Add New wiki section & help link
+* Need a date handler for Hungarian locale
+* Add Occupation/Profession to Relationship Graph
+* FanChartDescendants View should at least have 2 generations
+* add Help URL link & wiki section to many dialogs
+* allow hyphenated gramps-id in Graphviz reports
+* Ignore Glade '.glade~' temp files
+* 'Editors' continue updating broken wiki help links
+* Complete Individual Report fails to run
+* more 'Editors' update broken wiki help links
+* NarrativeWeb and cms : best approach for use of css files and relative links.
+* 'Gramplets' update broken wiki help links
+* Geography : ValueError: Place.set_name(name) requires a PlaceName()
+* Replace GRAMPS with Gramps in comments
+* Tidy up Gtk constructors
+* Narrative web and cms : links not present.
+* Set TextOption widget to expand vertically
+* Workaround for displaying more lines on Text box via label's height
+* Unused Object Dialog box too small
+* Fix outdate tip. Soundex utility > Soundex Gramplet
+* Update some Tips of the day
+* Add citation in citationtreeview: automatically select source
+* NarrativeWeb : include in CMS or MVS
+* Geography : changeAttributeError: 'str' object has no attribute 'value'
+* bump version and fix spelling
+* Let display translation string on family label
+* Update URL to Gramps 4.2 page
+* clarify book report dialog names
+* GRAMPS > Gramps
+* [Debian] Fix name and version for suggested packages
+* Readme - fix list
+* Readme - be a bit more descriptive
+* Error when extracting place names
+* Mention it for for addons instead of just Graph View
+* Custom filters for note text repaired
+* Readme reorder and add travis-ci build badge for developers
+* Convert to README to .md format
+* Embrace Github and use .md for README
+* Update links to 4.2 user manual etc..
+* Fix Pedigreeview crash when selecting Compact view
+* Records report & Gramplet add biggest/smallest age difference for couples
+* Replace hardcoded G R A M P S 3.4.0 string with Non-breaking space instead.
+* Environment variables in mediapath
+* Views: start with treeviews (grouped) as initial views
+* added sibling lookup cache
+* update comment to Note Link Report
+* Avoid using person-centric date matching for places
+* Merge PLace: show place type next to merge names
+* Cut in half the time to load treeviews
+* Slow scrolling in Gramps 4.X, on all platforms.
+* Use place title as default name in GEDCOM import
+* Ensure place names are not empty after upgrade
+* Fix proxy to include all referenced place objects
+* FanChart: moved constants to const.py for reuse without GUI
+* Moved gui.thumbnails to gen.utils: useful without gui
+* GenericDb: assign a temporary gramps_id
+* Databases: deal with TAG_KEY; assign gramps_id, if necessary
+* OpenOrStdin/out: add encoding
+* New items in generic databases don't not get next gramps_id, but start from 0
+* DbManager and -L: show counts of all primary objects
+* DbManager: make Info sorted by setting name
+* DbManager: make Info look better
+* ViewManager: added Info button that shows -L info for db
+* Remove copy button from family tree manager
+* BSDDB: don't count person twice
+* Common means nick, call, or otherwise first of given
+* Rearranged Name format codes to better read; changed Common
+* ImportCSV: allow person, family, and marriage to reference places
+* ImportCSV: removed duplicate entry; added 'enclosedby'
+* Error in loading addon will now show in debug log
+* webkit dependency no longer required, HTML View removed
+* ExportCSV: allow lowercase matching of place type
+* Added Places to CSV import/export
+* Tidy up style editor layout
+* Fix style name bug in style editor
+* Set some dialog response codes
+* Updated example/gramps/data.gramps with researcher info
+* Avoid using place objects during database upgrade
+* Incorrect date used for date arithmetic
+* Gramps throws fatal error when trying to delete a family
+* GraphViz does not seem to like double-quotes in Given names
+* Unexpected error with coping data between DB Owner and Preferences
+* Copy values from previous gramps.ini when upgrading; fixed typo
+* Geography : Must test if kml file exists.
+* Copy values from previous gramps.ini when upgrading
+* Fix some mismatching keys on translations
+* GEDCOM version should be exported as 5.5.1
+* Increase minimum pygobject version required to 3.12
+* Fix 'python' filename under Windows
+* [Compare Individual Events :Tool ]
+* 'update_po.py' should use python3
+* Temp workaround for an ascii UnicodeEncodeError into console
+* Make place title in GEDCOM export date dependent
+* Import GEDCOM file from MyHeritage, added __str__ to Attribute
+* AttributeError: 'NoneType' object has no attribute 'set_cursor'
+* Media: Radiobox's Include label is missing from the Gramps XML Backup dialog
+* docbackend: protect from sytledtexttag with value is None
+* right-click on Citation in Clipboard
+* Create Filter from the [xxxxx] selected, in Clipboard (and add use_regex)
+* Error Report Assistant fails
+* Change GraphViz to Graphviz
+* Change lesser than to less than
+* Gramps -L: cleanup, standardize
+* Merge citations caused crash
+* Gramps -L leaves all BSDDB type trees locked
+* fix check_po to work with lexemes in po files
+* gramps crashes if gtk < 3.10
+* partial for fix popup menu for clipboardgramplet
+* Update Map Service links for OpenStreetMap
+* ProxyDb: return bytes(handle) like actual database
+* events gramplet: check for existing family
+* children gramplet: protect from crash when no family
+* Debian: do not need to recommend devel package
+* fix Lithuanian date parser (another y-m-d one)
+* fix date parser for y-m-d locales (e.g. Hungarian)
+* keep support for XML v1.7.0
+* Bump to Gramps XML 1.7.1
+* Detailed Descendant Report - only first family event output
+* install grampsxml.{dtd,rng} files.
+* Cover custom types on DTD and RNG files
+* fix duplicate <name> element on pre-1.7.0 XML version
+* cover pathological case (perhaps from privacy proxy)
+* Print Gramps IDs in familygroup report
+* Crash when trying to create a book
+* Narrated Web report failed
+* statistics report does not run (filter?)
+* gramps crashes if gtk < 3.10; workaround for debian (packaging)
+* SVG Document output
+* Statistics Charts report crashes in Windows 4.1.3 AIO
+* Replace "Title" with "Enclosed By" in place sidebar filter
+* Fix IsEnclosedBy rule for non-existent places
+* Use place displayer when sorting places in narrated web report
+* Update/Migrate 'data.gramps'
+* Update/Migrate 'example.gramps' and XML schema files
+* Errors producing Ancestor Tree (4.2.0beta1)
+* Workaround for excessive height of rule editor window
+* Set parent of ProgressMeter
+* Update DEBIAN stuff
+* Gedcom import. Fix problem when matching places with the same name ...
+* Gedcom import crashes
+* addresses pickleupgrade.txt issue
+* tab font of gramplet 'details' not like other gramplets
+* Update INSTALL file to document --resourcepath option
+* add resource path option to setup.py
+* SimpleAccess: sort by surname; fixes crash in python3
+* DB-API Database backend doesn't compute inverse filters correctly
+* undoredo: changes to work with general backend
+* Validate place name language
+* Remove setup.py --enable-package-mode option text from INSTALL
+* Merge NEWS (releases on 41 branch)
+* fix a bug 'on mouse over' event
+* Cannot open Citation references from Clip Board
+* Remove some unicode stuff for python3
+* Short cut keys does not work in 'Change Event Types' dialog
+* letter as custom paper size generated a ValueError
+* date handler fix
+* translation and dateparser fix
+* Recursion Filter error
+* Geography : gtk 3.16 problem and change for new place structure.
+* Relationship Calculator - can't select person to relate to
+* spelling correction to stop duplicate key
+* Updated backends to 5.0; moved Django and DBAPI to addons
+* Bump all version numbers to 5.0
+* Change Gramps repository to Github.
+* Include modulesets from gnome.org, not personal ones.
+* Add a couple more place displayer options
+* Add extra place displayer options
+* Remove place format preference setting
+* PhpGedView tool moves to addons
+* Use place displayer for headings
+* GeneWeb moved to github
+* update year on man files config for sphinx
+* update DEBIAN section for matching python3
+* Enable gwplus event types translation
+* Review GeneWeb file format on import (.gw)
+* Use place displayer to generate title in views
+* Clipboard: some items are not tied to a specific database (text)
+* Clipboard: Allow for bytes or string
+* Drop text on Clipboard crashes with byte/string issue
+* Add place name edit button to place editors
+* Note Link Report: adjust columns for better fit
+* Correct tooltips in place name editor
+* let the user know that links inside notes can rot
+* PlaceName: updated GUI merge for new placenames
+* DB-API 2.0 can now load/save from file; need to load/save metadata
+* Added missing function; allow failed plugin message to show
+* Database API: expore name, full_name, and brief_name
+* bsddb backend: supply version details in get_summary
+* Database API, -L: database reports summary, if possible
+* Removed hardcoded database backend types
+* Fixed About dialog to show proper BSDDB version
+* Basic infrastructure for Undo/Redo
+* Loads tree based on id in database.txt
+* Database backend writes its plugin id in database.txt
+* new framework slovenian datehandler
+* Add date and language to place names
+* Custom Events not shown in the filter siderbar
+* Fix a baptism date error
+* Database Differences Report fails on gpkg with media
+* Missing place filter rule for translation
+* Deleting Multiple Items Dialogue Unclear
+* Make Family muli-select remove operate like the People view
+* Give previous/proper message when deleting 1 person
+* Fix mistake in alignment conversion
+* Creation of Narration Website report fails
+* Fixed GW import issue with citation handles
+* Another escape change from cgi to html
+* Fix popup menu
+* Fix syntax error
+* lock.file with accent letter cause gramps to crash at start
+* Use escape utility from html rather than cgi module
+* Specify required Pango and PangoCairo version
+* Convert deprecated stock items in glade files
+* Replace stock items with named icons
+* slight tweaks to calendar-type reports
+* Remove SourceForge username from authors file
+* Geography : feature request for kml files loading.
+* add a gramps-XML file to test date formats in different locales
+* tweaks to Chinese date handlers (fix parsing, reduce date formats)
+* fix date display when month is zero but day is not
+* Fix AgeStats gramplet
+* Recursion error when filtering for relatives
+* add parent to gedcom import report dialog
+* Error on use of Ctrl-Z
+* Finnish Date format settings does nothing
+* Add new IsEnclosedBy rule
+* Remove deprecated rules hint setting
+* Gramps 4.2 addons URL from github
+* fixes for Japanese date parser
+* fix numeric date parser pathological case
+* Add a title preview to the place editors
+* Update required gtk version in glade files
+* Hide place title field in place editor
+* Allow database-changed signal to work with more general databases
+* Workaround for broken introspection
+* pyicu: pin at version 1.8, until they fix 1.9 installer
+* Added right-click "Copy all" to all QuickTables.
+* Drag & Drop to add media: wrong handling of non-ascii characters
+* Turn underscores in menuitems into mnemonic accelerator key
+* Added right-click API to ListModel; allow copy all from Descendants Gramplet.
+* Crash following update: addon permission issue blocks re-starting gramps
+* Fixed QuestionDialog2 failure
+* GUI allows multiple Find Duplicates, then faults
+* remove ambiguous strings to make update_po.py happy
+* Add places in rel_graph
+* Complete Individual Report - Family Notes
+* enable localized span and range date displayer code
+* Crash on geneweb export with python3
+* Use MSWin environment variables USERPROFILE and APPDATA.
+* Fix a bundling omission and create python2 and python3 meta-modules.
+* Gedcom input: SUBN and SUBM record handling
+* Update _datedisplay.py
+* event columns too narrow
+* Geography : follow fix a bad copy/past
+* Fix gtk-critical error when setting mac menubar.
+* New 'Include Siblings' feature added
+* problem by start program
+* GEDCOM import/export round trip causes lost information
+* db upgrade fails, fatal damage
+* date format month/year is not well reported at editing time
+* Make place type in Place Reference Editor editable, add tooltip
+* make report name consistent with gpr registration
+* Rename readme.md to README.md
+* Create readme with existing instructions.
+* Update COPYING-DOCS
+* make reports' privacy option more prominent, harder to miss
+* false positive on pattern
+* Entering a witness to an event such as marriage
+* add a rule for checking mapping key
+* Gramps can't [GEDCOM] import estim. date period exported by itself
+* add filter name to report's title, tweak report's filter option display
+* tweak report's filter option to display per the report's name-format
+* add name-format option, and deferred translation to report's second line
+* add deferred translation to report's second line
+* slight tweak to name-format option
+* enable deferred translation of get_person_filters filter list
+* Fix bug in processing of Place FORM in GEDCOM import
+* Remove --no-wrap option from merging
+* remove markup in translation
+* fix confusing strings
+* move some unrelated comments away from translated strings
+* Various fixes for GEDCOM import.
+* Updates for building and bundling with Python3
+* fix date displayer: estimated and calculated month inflections
+* tweak, polish argument for encoding
+* Improve TipsParse for python3 support
+* slight tweak to date displayer, for Finnish
+* geography: bad copy/paste. Points are at the same level.
+* geography: Attempting to add a bookmark causes an error.
+* Fix crash on Relationships Graph report with unknown gender, sibling
+* Japanese data localisation
+* geography : some minor tweaks for kml
+* Point to User manual.
+* Year 2015
+* Minor updates to FAQ
+* Lower Case Gramps
+* Minor updates to readme
+* Convert remaining unicode literals
+* Remove HtmlView plugin
+* Crash when trying to link existing place as an enclosing place ...
+* HTML view fails to load
+* Remove python2 specific code
+* Support creating directories in various scenarios
+* HTML view fails to load; replaced file with open
+* Complete Individual Report -- option to output all media
+* NameError in GEDCOM importer
+* Event address is lost on import, i.e. disconnected from event.
+* Remove executable flag of two css files
+* gramps -i option in manpage not reflecting what happens
+* Enable "Complete Individual Report" to show individual's tags
+* implement both "traditional" and "simplfied" Chinese -- partial
+* Regression: running gramps from crontab fails
+* Check python version >= 3.2 when running setup script
+* correct incorrect tip49, new gramps.pot
+* Tidy up About dialog
+* Set minimum python version required to 3.2
+* geography : added the layer to osmgpsmap.
+* geography : added the possibility to show kml files.
+* Convert update addons dialog to no longer be a ManagedWindow
+* Remove place title from default view columns
+* Family with children but no parents is lost on filtered export
+* Update PyICU to 1.8
+* Fix pickle upgrade of python2 strings to python3 str
+* two new filter rules were missing on template, 'intltool-update -m'
+* Use place displayer in relationship view
+* geography: some minor problems.
+* Views into Geography should not always use the last option set by the user
+* Moved stderr and stdin handlers to only be installed for cli application
+* geography : Add path selector to the text entry for tile cache
+* Allow gramps to be used from source, without GRAMPS_RESOURCES env variable
+* Fix graphviz report dialog after conversion to use Grid widget
+* GEDCOM import of embedded notes attached to media does not work
+* geography - Moving around the map using arrow keys and to zoom from keypad
+* Fix default size of detached gramplet window
+* Allow gramplets detached from the dashboard to fill the window
+* Fix spacing in export assistant file chooser
+* Swap description and main participants columns
+* geography : Filter panel on geography view displays improperly
+* Fix bug in export assistant after conversion to use Grid widget
+* Fix removing rows in flat list views
+* Ensure key is correct type when updating reference map
+* Convert more deprecated Gtk widgets
+* Fix overwritten heading in relationship view
+* Fix citation editor resizing
+* Fix wrong instruction about removing /usr/local/bin in INSTALL.
+* Convert Gtk HBox and VBox widgets into Box widgets
+* More INSTALL clarifications.
+* Improve distutils install instructions.
+* Convert Gtk Table widgets into Grid widgets
+* Remove trailing whitespace from INSTALL and README.
+* Clarify/correct uninstall instructions.
+* Remove no-longer-needed packagers note about osm-gps-map.
+* add "python-pillow" to "python-imaging" mention
+* Errors handling owner/submitter information in GEDCOM files
+* Update import to cope with missing place name and type
+* fix trailing comma in pathological cases
+* Remove check for empty place title
+* Detailed descendent report crashes
+* Update place sidebar filter
+* Add new place HasTitle rule
+* Add new place HasData rule
+* New place reference editor
+* Activate drag and drop on "enclosed by" tab
+* Put places in data.gramps into a hierarchy
+* Rename "Name" to "Title"
+* Remove auto-update of place titles
+* Implement place displayer
+* Check for active person in session log gramplet
+* Check that the mediapath is not set to None
+* Always display main participants
+* Fix bug when family has no parents
+* Keywords entry in gramps.desktop does not end with ';'
+* GEDCOM export does not export media attached to citations
+* Some Addons provide an update even it was already done during the last start
+* Interactive-search: Quick search with LIST_ONLY sorted views
+* translations don't show in many labels, buttons, and other elements
+* Records Gramplet uses wrong text
+* 'Available Gramps Updates for Addons' window not on top
+* Test method name changes for automatic test detection
+* Renamed test methods for proper automatic detection
+* New year...
+* specify SVG font size is in points, for stupid viewers
+* can't disable box shadow in SVG descendant tree
+* move privacy option higher, make it more noticeable
+* Kekule numbering in Detailed Ancestral Report
+* Our own interactive-search enabling customized and delayed search.
+* Crash when mixed "inflected" and "non inflected" months
+* Update Ukrainian date handler
+* Gramps freeze after defining a report stile with German cm values
+* descendant tree graphical report, syntax error in svg output
+* add gramps-ID option
+* modify gramps-ID option
+* Enable Attributes gramplet support on Source/Citation bars
+* Fix handling of keypresses in treeview
+* Closing detached gramplet causes python to crash
+* Crash on Ancestry.com .ged import; consistent.
+* Fix place reference editor for drag support
+* ignore a zero day and its delimiter, in numerical date format
+* Spurious spaces in CLI List Family Trees, tab delimited output
+* date inflections
+* regression: Complete Individual report has some untranslated output
+* add a few date examples (near the top of the list)
+* ImageMetadata doesn't show metadata
+* small feature update to add z,n,e to the date format string
+* Fix problem with fanchart if max_generation = 1
+* Allow dragging the "Father/Mother/Spouse" label or Add/edt/share buttons
+* Add Family drag support from RelationshipView
+* Allow for dragging a family from EditFamily
+* Add Person drag support from RelationshipView
+* Allow to drag a person from EditPerson (if not a unsaved person)
+* And drag support to EditPersonRef when person is set
+* Association editor refuses dropped persons
+* new Event types are saved as a disordered list
+* Fix error setting gramplet tab label
+* Some text not translatable in context menu fancharts (GUI)
+* Error converting database after upgrade to Gramps 4.1.1
+* Ensure that reference map has string keys
+* Gramps doesn't work under Turkish locale
+* Serbian should be ready for Windows OS and LOCALE_NAMES mapping
+* DB lock not checked when opening database from the recent opened trees
+* enable Serbian Cyrillic translation
+* New locations gramplet
+* Update place details gramplet
+* Add new place locations gramplet
+* Re-enable Esperento support after a large review (8% to 99%)
+* some labels fit better on citations sidebar filter
+* enhance Serbian date handler to handle Cyrillic dates
+* Add check for empty handle in gramplets
+* sidebarfilter gramplet does not fit well into People, Events, ... Media views
+* 'Unknown' person in detailed ancestor report can not be translated
+* typo ("data format" => "date format")
+* bump man files to '4.2.0'
+* Fix new event default type considering existing events with *default* role
+* Cleaned up and improved the Gramps API docs, Sphinx - fixed four
+* Rebuild secondary indexes after database upgrade
+* Update location utilities to work with proxies
+* Fix check and repair tool for empty placerefs
+* cannot generate Narrative Web report with gendex option enabled
+* .desktop file missing Keywords entry
+* Can't fill in calculated and estimated dates in cs locale
+* "name format" option in descendant and ancestortree reports
+* Grafical reports don't use the correct name format
+* Update OsmGpsMap to version 1.0.2
+* Complete Individual Report Sources
+* Importing gedcom files containing multibyte UTF-8 characters fails
+* Fix backlinks code in place report
+* python3 bytes-string mismatch with ICU installed
+* Text reports don't use the correct name format
+* Add draw styles to style sheet editor
+* Add cell styles to style sheet editor
+* Enhance style sheet editor to include table styles
+* enable the "default" CSS choice for the narrated web report
+* translate some punctuation marks -- partial
+* Invalid format string in media mamager message
+* Allow gramplets to be displayed in the dashboard only
+* add an optional [alternate name] on the $n and $s vars: $n[Married Name]
+* Update FSF address to current location.
+* add a few examples (Thai script, Married Name, "estimated about" date)
+* add a support for embeded custom attributes list on media object
+* "reports" should have a "no private information" button
+* Exclude private data [...] for detailed ancestor report" -- partial
+* skip events referring to private data
+* add Serbian holidays to holidays.xml.in
+* simplify Bulgaria and Ukraine Easter using new method
+* Add julian_easter(y) function to libholiday.py
+* Slovak holidays and other slovak translation updates
+* fix url/uri handling with non-ascii characters under linux and mac
+* simplify Canadian Ash Wednesday holiday
+* Fix error when no place is selected
+* Prevent user creating a cycle in the place hierarchy
+* add Arabic-script and Islamic-date examples (courtesy of Munzir Taha)
+* Prevent creation of a place cycle when merging
+* Avoid infinite loop when place cycle encountered
+* Fix bug adding parent places to a new place
+* Fix place type for places without a main location
+* In Ahnentafel Report, Use Christening Date if no Birth Date
+* [Narweb:] Missing webpage for media [under some circumstances]
+* include Gramps.py in the tarball
+* Remove markup in translatable messages -- partial
+* Invalid link for Merge citation Help button
+* I can't add a people in my tree
+* Place report does not run
+* implement both "traditional" and "simplified" Chinese
+* translations don't show in many labels
+* Fix path when using drag & drop to add media
+* Fix custom place types in the place editor
+* Limit the number of generations displayed in the ancestor gramplet
+* export of a subset of the tree fails
+* bump gramplet.gpr.py to new '4.2' major version
+* bump to '4.2.0' version
+* add Tamil translation (partial)
+* Update translations: ca, cs, da, de, el, fi, fr, hr, hu, is, it, nb, nl, pt_BR, ru, sl, sv, uk, zh_CN, zh_HK, zh_TW
+
+2016-12-15
+Version 4.2.5
+* The configparser is assuming the wrong encoding
+* Sorting in family tab of narrated web report
+* Silence remaining PyGIWarning
+* Sorting of relationships in family tab of narrated web report
+* Use latest valid date rather than today
+* Modify endonym handling in place displayer
+* Fix house number concatenation
+* Allow merging of families with one or more parents in common
+* Jump to Gramps ID functionality doesn't work
+* Ability to search alternate place names when selecting place
+* Fix clear map action on Geography
+* Database repair tool always edit all source objects
+* Database repair tool ignored some objects with tag
+* "Enclosing" gramplet includes places outside valid date ranges
+* Fix icon and tooltip in LDS editor
+* CSV import fails
+* Fix duplicated Gramps IDs on Gedcom import
+* Unexpected error Preferences > Dates > Markup for invalid date format
+* Fix Import Vcard, can create multiple surnames with all selected as 'Primary'
+* Fix Gedcom import in some alternate languages; improper date parsing
+* Export options 'Preview' buttons create hidden quickreport
+* Alignment radio buttons in the style editor do not work
+* Select Place search & Source/Citation hierarchy should NOT be expanded
+* Tweak improvement on Tag editor
+* Support for Windows Python3 pythonw.exe
+* Wrong parsing Numeric date format for cs_CZ locale
+* Fix Norwegian relationship calculator
+* Fix Icelandic and German translations
+* Update translations: cs, de, fi, fr, hu, is, nb, ru
+
+2016-09-04
+Version 4.2.4
+* fixes for the PHON, FAX, EMAIL and WWW Gedcom tags to support Gedcom v5.5.1
+* use more relative import
+* Support for FTM and others Custom Gedcom Event Tags on import
+* fix '_deeprelationshippath' filter rule
+* Narrativeweb: some dates are incorrect in tar archive.
+* MacOS: Update graphviz to 2.38 and change to a binary launcher in app bundles.
+* Gramps crashes when closed while exporting
+* Some events are not shown in familymaps page.
+* Remove old debug bloc on place selection.
+* Add GUI and CLI config option to allow easy setting
+* Chinese characters are not rendered properly in pdf reports
+* Support v5.5.1 OBJE/FORM/MEDI tag on embedded OBJE
+* Sorting of Sources on gedcom
+* Change "class xxx(object)" to "class xxx"
+* Use "with open" instead of "try: except:"
+* Change "raise NotImplemented" to "raise NotImplementedError()"
+* Add new argument to IsEnclosedByRule
+* Narrativeweb: place title must agree the references.place-auto configuration
+* Improvements on CSV file format support
+* update Finnish holidays
+* Some strings in tools and report dialogs will not translate
+* Gedcom import improvements in media area to support v5.5.1 and FTM
+* Trailing whitespace
+* Gedcom import of FTM .ged file containing _LINK tags not supported
+* Change pycairo-python3 to pycairo.
+* pycairo for python2 is now py2cairo.
+* Remove pango modules from bundle, pango no longer uses them.
+* Gedcom import loses spaces in text fields from FTM
+* Gedcom import of FTM file containing _PHOTO tags
+* Missed self.photo initializer
+* Attempting to select an "Available item" for the Book Report gives an error
+* Fix for either valid or invalid FTM Gedcom
+* Gedcom import of FTM file with OCCU record crashes import
+* crash - 'NoneType' object has no attribute 'get_child_ref_list'
+* Family Page maps are non-functional in Narrative Web report
+* Gedcom import loses spaces in text fields from FTM
+* String not translated in geoplaces
+* Descendant Report does not recognise auto. place title generation
+* Translated text will not be printed in the program
+* Geography: Attempting to print crashes (add parent to dialog)
+* GEDCOM doesn't accept CR as a line terminator
+* Wrong Numeric date format for cs_CZ locale
+* Narrativeweb: inconsistent & incomplete display of place hierarchy labels
+* Narratedweb: surname listing errors for people with multiple partners
+* In "Verify" people w/ death event w/o date are not thought dead
+* While starting gramps, it fails to pop up "tips of the day"
+* GEDCOM import in CLI mode with .ged file containing ANSEL encoding tries to pop up gui
+* fix merge conflict
+* Use first matching name when generating place titles
+* GEDCOM import with media files that have no path fails
+* [Geography] Geoclose and mother handle
+* place names empty if Gedcom ADDR record contains no street
+* Tidy up place configuration options
+* Use CSS to fade background colour in ValidatableMaskedEntry
+* crash on GEDCOM import with empty _AKA lines
+* Add inclusive option to IsEnclosedBy rule
+* Saving/closing new person window with Alt-o does not find gender
+* Fix to allow deferred translation of place type
+* Include all place types in place report
+* Allow place selection both individually and by filter on textual report
+* Expand tree in selectors automatically
+* Fix Encloses gramplet to display correct place references
+* Update for appdata stuff
+* UnboundLocalError on ODF doc backend
+* Media Preview: wrong frame
+* fix signals
+* GEDCOM import PLAC:FORM in local mode doesn't work
+* fix empty Place Alternate Names on import
+* Merge unit test for PlaceCheck not working correctly
+* GEDCOM import some Place Names & Titles are blank
+* GEDCOM import PLAC or ADDR attached Notes etc. are lost
+* Gramps not appearing in Gnome Software
+* fix broken GEDCOM import PLAC:FORM handling
+* Place Alt Names gets duplicated entries
+* Multiple GEDCOM imports creates duplicate event IDs
+* The place page in webreport is complete mess
+* Gallery tab of Source view does not display .ods files
+* Narrated Web report - Individual sort order not correct on the Surnames tab
+* Specify required GtkSpell and GExiv2 version
+* Narrated web report link to thumbnails is broken on certain pages
+* Narrated Web report - Individual page sort order has changed
+* Gramps reports that it can't find dictionaries.
+* Turns out it was really that enchant couldn't find its backend because an environment variable wasn't set.
+* Update translations: cs, da, de, fi, fr, hu, pt_BR, ru, sl
+
+2016-04-10
+Version 4.2.3
+* Creation of the "graphic calendar report" failed
+* Fix "TypeError: 'tuple' object does not support item assignment
+* Fix experienced an unexpected error
+* Unable to build narrated web site
+* [NarrativeWeb report] Places index and Media index are incorrectly sorted
+* Error when trying to create narrative report (residence event)
+* Fix filter set by default on selector, 'Show all' button
+* Detailed Ancestors Report has ? for locations when [private data is excluded]
+* Age in the event family view column is wrong.
+* Crash when dragging multiple media items to clipboard
+* vCal Export File format invalid
+* Error occurs for Complete Individual Report -- complete database
+* Narrated Web Site Report: places page is no longer sorted alphabetically
+* Narrative web: html elements emitted in different order
+* Narrative web: "errno: 1, operation is not permitted" when creating archive.
+* Narrative Web report further stops in error.
+* Fix multiple lines for firstname on gramps XML file via import or export
+* fix scrolling in persons view after typing some letters
+* Location on geography view could not convert string to float
+* setup.py: make typeout more accurate
+* Searching in people view when surnames are collapsed
+* Fix error when changing database in new locations gramplets
+* Error loading Participants add-on in French locale
+* Restores setting the stdout encoding to sys.getdefaultencoding() for Python3
+* Fix comment about getting the right encoding for stdout.
+* Date format does not match system.
+* Make US English a special-case locale, where en_GB is the default for english based locales
+* Enhance the Locations gramplet
+* New "Encloses" gramplet to the display places that the active place encloses
+* Individuals with incomplete names, not updated when name completed
+* Children gramplet in Family view does not get updated when a birth/death events are added to a child
+* Non-image media objects don't appear in the main window gallery.
+* Pressing tab stops at element in gui places
+* Double-clicking on a source in the citation gramplet causes exception
+* "Find text in record" filter crash
+* Fix vCard Export
+* Notes used in the "To Do" gramplet are found by the Remove Unused Objects tool
+* Unable to select Unicode
+* Cannot import gedcom generated by RootsMagic custom place details ignoring PlaceName()
+* Fix people sorted by surname view
+* Complete Report about person (whole database) - PDF - crash
+* Update for travis
+* Only consider the values of LC_ALL, LANG, and LANGUAGE, in that order, when choosing the default locale.
+* New Icelandic date and relationships handlers
+* Fix Finnish translation in keywords of desktop entry
+* Update translations: cs, de, el, fi, fr, hu, is, it, ru, sl, sv, uk
+
+2016-01-06
+Version 4.2.2
+* "Show all" checkbox of "Select Family" window not unchecked when the filter is cleared
+* Name of user defined filter is not shown
+* ErrorDialog and GtkDialog mapped without a transient parent
+* 'Find' is broken when used in the Family selector
+* Fix default selection in selectors
+* Comment currently-unused bogus wiki URL pointers
+* Fix counter for filtered entries and indentation on TreeBaseModel
+* Faulty headline in start up screen
+* Check that gramplet is in notebook before setting tab label
+* Fix creation of focus change events
+* Interactivesearch gives "TypeError: unorderable types: str() < NoneType()"
+* Put tag selection list in alphabetical order
+* Remove redundant code
+* Fix delete error in undoable entry widget
+* Fix deprecation warning
+* Re-enable selection in MultiTreeView on a grab_broken event
+* Add validation to gender field
+* Unhandled AttributeError when db.get_tag_from_handle returns None
+* ReferencedBySelectionProxy can forget some referenced tags
+* Remove encoding on stdout and stderr
+* Handle citation objects in glocale.trans_objclass
+* Locality data in address was not imported
+* Don't check SSL certs when fetching addons
+* Catch urlopen TypeError when context arg isn't supported
+* Fix undefined variable error
+* Can not download new or updated add-ons
+* ValueError: underlying buffer has been detached
+* LaTeX backend crashes
+* Geography: performance issue due to bad initialization and performance issue when selecting the events or places views.
+* Narrated Web Site Report: html elements emitted in different order
+* Unused *_init.jpg are created in the narrated website
+* Some media files are not exported to the NAVWEB report
+* Narrative web report: add author to citations
+* TypeError: unorderable types: EventRef() < EventRef(), events list and family list are differents between two reports
+* Permission denied: change mtime to origin instead of destination
+* Thumbnails html file missing in the narrative web
+* Narrativeweb: Place title based on current date not that of the event
+* Webcal: make the month name clickable in the year overview page
+* 'Narrative' word not translatable
+* 'Unknown' spouse uses an harcoded string name on Simple Descendants textual report
+* Father/mother's age attributes are not translated on reports
+* Improve Russian date handler and unittests
+* Mars month instead of Marzec on Polish locale (Date Editor)
+* Translations update: cs, de, fr, fi, nl, pl, ru, sv
+
+2015-10-12
+Version 4.2.1,
+* Support for Retina and HiDPI Display, added 24px icons
+* Fix verification tool with "Estimate missing or inexact dates"
+* Fix missing link in hourglass graph report
+* Sort custom place types in editors
+* Allow Easter calculation with python3
+* Fix crash on Descendants-detailed report
+* FanChartDescendants View should at least have 2 generations
+* Allow hyphenated gramps-id in Graphviz reports
+* Complete Individual Report fails to run
+* Fix broken wiki help links
+* Set TextOption widget to expand vertically
+* Unused Object Dialog box too small
+* Short cut keys does not work in 'Change Event Types' dialog
+* Update some Tips of the day
+* Error when extracting place names
+* Custom filters for note text repaired
+* Fix Pedigreeview crash when selecting Compact view
+* Set "visable_window" in GtkEventBox to fix transparency
+* Faster scrolling
+** cache database access for column values
+** cache do_get_path lookups
+** speed up load access on treeviews with no filters
+** new LRU size of 1k (was 250)
+** use cache in do_get_path from siblings
+* Avoid using person-centric date matching for places
+* Use place title as default name in GEDCOM import
+* Ensure place names are not empty after upgrade
+* Fix proxy to include all referenced place objects
+* Fix bug that prevented any addons being loaded onto the Mac version
+* Remove copy button from family tree manager
+* Consistency for name fields on Person Editor
+* [Geography] Place.set_name(name) requires a PlaceName()
+* [Geography] Fix and improvements on place selection
+* Limit problems with existing selection in media reference editor
+* Stability fixes on Mac port
+* Mac port localization crash with non-standard locale (e.g. en_IT).
+* Fix color on history
+* Fix countries selector for holidays
+* Fix missing markups into textual reports
+* All sidebars with Types now show custom types in combo list
+* [New] Added Places to CSV import/export
+* Some fixes on installer (setup.py)
+* Various improvements on gen.plug.utils
+* Fix graph reports [in Greek locale]
+* New date handler for Hungarian locale
+* Updated translations : cs, de, el, en_GB, fi, fr, hu, is, sv
+
+2015-08-02
+Version 4.2.0,
+* New date and language fields on place name
+* Review on GtkBuilder, fix some Gtk3 warnings and move from deprecated methods
+* Change icons and buttons handling methods
+* Enhanced Place Editor and new Place Name editor
+* New widget: use own interactive-search
+* Ability to import kml data into Geography views
+* Enhancement for removing multiple selected items from Views (action group)
+* Add drag support on more Views, Selectors and Editors
+* Add right-click "Copy all" to ListModel and all QuickTables
+* Review Alternate Place handling and edition
+* New 'Place' configuration keys set by user (settings)
+* New filter rule: is enclosed by
+* Consistency on Privacy option for reports
+* Consistency on "Name-format" options for reports
+* Add DeferredFilter class (a subclass of GenericFilter)
+* New textual Report: Links on Notes
+* Fix alphabetic index and toc bug in books
+* Enhancements on Style Editor
+* Enhancements on End Notes into textual reports
+* Changes on Individuals complete textual report
+* Changes on Ancestors Tree draw report: Include Siblings
+* Add name-format option, and deferred translation on Records report
+* Add deferred translation on Timeline draw report
+* Enable attributes gramplet on Source and Citation Views
+* New place locations gramplet
+* Optimizations around index, Flat and TreeView models
+* Enhanced samples files
+* All importers return now an ImportInfo object
+* Experimental gwplus (geneweb) import file format support
+* Remove experimental HTML renderer view
+* New test scripts
+* New Date handler for Japanese
+* Review on Slovenian and Czech Date Handlers
+* Implement both "traditional" and "simplfied" Chinese (translations and dates)
+* Serbian review
+
 2015-05-01
 Version 4.1.3, "Thou shalt not count to five", a maintenance release.
 * Fix db upgrade failure
@@ -337,8 +1913,8 @@ Version 3.4.4 of Gramps! "The Ministry of Silly Names", a maintenance release.
 * fix annoying errors on navigation related to citations gramplet and tag object.
 * listing the Family Trees can corrupt them.
 * various fix around handling Gedcom file format
-* fix citations and sources import on ProGen format 
-* better date handling and better alternate translation support on some textual reports according to locale under windows 
+* fix citations and sources import on ProGen format
+* better date handling and better alternate translation support on some textual reports according to locale under windows
 * avoid Errors when setting wrong value as markup for invalid dates (Preferences)
 * fix paragraph layout on PDF format or print output
 * New: New-Zealand holidays
@@ -356,7 +1932,7 @@ Version 3.4.3 of Gramps! "Whenever life gets you down, Mrs. Brown", a maintenanc
 * Sorting (both in the main display window, and particularly in Narrative Web output) now uses PyICU (if that module is available). Inclusion of PyICU is 'strongly recommended'. This resolves a number of bugs particularly related to sorting of non-Latin characters, and sorting on MS Windows and Mac OS X. Some changes have been made in Narrative Web to support contractions for alphabetic indices.
 * The automatic Addon checking and download now works once again (the location used in Gramps 3.4.2 and before had been changed, so the the automatic process was no longer working).
 * Import from Pro-Gen has been updated (at last) to take account of the change to Citations (in 3.4.0)
-* Import and Export of address fields in GEDCOM has been improved so that the round-trip works properly. 
+* Import and Export of address fields in GEDCOM has been improved so that the round-trip works properly.
 * GEDCOM Repositories not imported correctly from FTM for Windows and Heredis.
 * Fixes to a number of errors in filtering notes.
 * Fix some errors in determining whether someone is alive (e.g. for filtering out alive people).
@@ -365,7 +1941,7 @@ Version 3.4.3 of Gramps! "Whenever life gets you down, Mrs. Brown", a maintenanc
 * Fixed update problems with citation bottombar gramplet (bug #6336)
 * Fixed Open Document Text output in Book report (bug #6457)
 * A number of changes to Narrative Web:
-** Media objects attached to Marriage events and Sources are not included in Narrative Web Site 
+** Media objects attached to Marriage events and Sources are not included in Narrative Web Site
 ** restructure the families index so families are indexed under both spouses, and the family name is normalised
 ** separate out Families section in individual and families pages so individual page links to the family page and family page links to both people
 ** normalise links to families so the link is only displayed if the family page is present, and the gid is included when appropriate
@@ -383,7 +1959,7 @@ Version 3.4.3 of Gramps! "Whenever life gets you down, Mrs. Brown", a maintenanc
 ** Implemented a generalised back reference function to display the 'References' section of all pages. This recursively displays references till one is found for which a page exists.
 ** Removed list of people and families from heading of the event pages as these are now in the 'References' section.
 ** Fixed bug "0005968: Narrated Web Site not copying Source Citations files such as jpg or pdf docs to web site
-** Fixed bug "0005946 GRAMPS failed to insert jpeg image into proper place for an event" by displaying a thumbnail for citation media in the 'Source References' section (with a link to the media page) 
+** Fixed bug "0005946 GRAMPS failed to insert jpeg image into proper place for an event" by displaying a thumbnail for citation media in the 'Source References' section (with a link to the media page)
 ** Tidy up media pages - remove unused parameters, use list of media items generated in first pass. Should fix bugs 2365, 5905 and 6009.
 ** Tidy up sources pages - fix numbering of repositories, remove unused parameters, fix title of individual source pages
 ** Bug: reset NarrWeb navigation menu layout when style sheet doesn't support it
@@ -391,7 +1967,7 @@ Version 3.4.3 of Gramps! "Whenever life gets you down, Mrs. Brown", a maintenanc
 ** Fix option to suppress Gramps ID (bug #6237)
 * a number of technical changes to Narrative Web
 ** Removed a lot of redundant code and parameters (mainly connected with the old way of determining the objects to be included in the report).
-** Movement of some large chunks of code within the source file and some initial work towards GEPS 022: Narrative Website Refactor. Functionality should be unchanged. 
+** Movement of some large chunks of code within the source file and some initial work towards GEPS 022: Narrative Website Refactor. Functionality should be unchanged.
 ** Moved routines for calculating objects to be output so they can be part of default list building classes.
 * Various updated translations: da, de, es, fr, it, nb, nl, pt_BR, pt_PT, sv, uk
 
@@ -583,7 +2159,7 @@ Version 3.1.3 -- the "What name?" release.
 2009-06-06
 Version 3.1.2 -- the "Skip the impersonations" release.
 * Contains translation updates and small bug fixes.  No new features.
-* ca, cs, de, fr, he, it, nb, nl, pl, pt_br, ru, sk, sv, 
+* ca, cs, de, fr, he, it, nb, nl, pl, pt_br, ru, sk, sv,
 * fixes a failure in 'Check & Repair Database'
 * fixes to Gramplets
 * fixes to CLI regressions
@@ -696,7 +2272,7 @@ Version 2.2.5 -- the "Now go away or I shall taunt you a second time" release
 
 Version 2.2.4 -- the "When you're chewing on life's gristle, Don't grumble, give a whistle" release
 * Improved handling of readonly files
-* Enhanced parsing of longitute and latitude and mapping 
+* Enhanced parsing of longitute and latitude and mapping
   (Benny Malengier/Zsolt Foldvari)
 * Check and repair improvements
 * Reference map rebuild tool
