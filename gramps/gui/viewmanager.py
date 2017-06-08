@@ -107,7 +107,8 @@ from .managedwindow import ManagedWindow
 #-------------------------------------------------------------------------
 if is_quartz():
     try:
-        gi.require_version('GtkosApplication', '1.0')
+        import gi
+        gi.require_version('GtkosxApplication', '1.0')
         from gi.repository import GtkosxApplication as QuartzApp
         _GTKOSXAPPLICATION = True
     except:
