@@ -138,7 +138,6 @@ git_revision = get_git_revision(ROOT_DIR).replace('\n', '')
 if sys.platform == 'win32' and git_revision == "":
     git_revision = get_git_revision(os.path.split(ROOT_DIR)[1])
 #VERSION += git_revision
-VERSION += "-1"
 
 #
 # Glade files
