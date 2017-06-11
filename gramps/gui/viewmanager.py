@@ -1178,7 +1178,8 @@ class ViewManager(CLIManager):
                 self.dbstate.db.close(user=self.user)
             (filename, title) = value
             self.db_loader.read_file(filename)
-            self._post_load_newdb(filename, 'x-directory/normal', title)
+            if self.dbstate.db.is_open():
+                self._post_load_newdb(filename, 'x-directory/normal', title)
         else:
             if dialog.after_change != "":
                 # We change the title of the main window.
