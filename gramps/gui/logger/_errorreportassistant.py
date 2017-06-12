@@ -119,7 +119,7 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
         if self.parent_window is not None:
             self._save_position(save_config=False) # the next line saves it
             self._save_size()
-        self.hide()
+        self.destroy()
         if self.ownthread:
             Gtk.main_quit()
 
