@@ -3,6 +3,7 @@
 # Copyright (C) 2001-2007  Donald N. Allingham
 # Copyright (C) 2008       Gary Burton
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2017       Alois Poettker
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -52,7 +53,7 @@ from gramps.gen.errors import WindowActiveError
 from gramps.gui.views.bookmarks import EventBookmarks
 from gramps.gen.config import config
 from gramps.gui.ddtargets import DdTargets
-from gramps.gui.dialog import ErrorDialog
+from gramps.gui.dialog import ErrorDialog, QuestionDialog2
 from gramps.gui.editors import EditEvent, DeleteEventQuery
 from gramps.gui.filters.sidebar import EventSidebarFilter
 from gramps.gui.merge import MergeEvent
@@ -227,23 +228,43 @@ class EventView(ListView):
             pass
 
     def remove(self, obj):
-        self.remove_selected_objects()
+        """
+        Method called when removing event(s) from the event view.
+        """
+        response = -3   # Accept operation
+        if len(self.selected_handles()) > 1:
+            all_single_cancel = QuestionDialog2(
+                _("Multiple Selection Delete"),
+                _("More than one item has been selected for deletion. "
+                  "Select the option indicating how to delete the items:"),
+                _("Delete All"),
+                _("Confirm Each Delete"),
+                _("Cancel Delete"),
+                parent=self.uistate.window)
+            response = all_single_cancel.runMR()   # Run dialog with Multiple Responses
+
+        if response == -3:   # == Gtk.ResponseType.ACCEPT
+            self.delete_selected_objects(False)   # Delete all events w/o confimation
+        elif response == -9:   # == Gtk.ResponseType.NO
+            self.delete_selected_objects(True)   # Delete single event w. confimation
+        else:   # response == Gtk.ResponseType.CANCEL:
+            pass   # Cancel operation
 
     def remove_object_from_handle(self, handle):
         person_list = [
             item[1] for item in
-            self.dbstate.db.find_backlink_handles(handle,['Person']) ]
+            self.dbstate.db.find_backlink_handles(handle, ['Person']) ]
 
         family_list = [
             item[1] for item in
-            self.dbstate.db.find_backlink_handles(handle,['Family']) ]
+            self.dbstate.db.find_backlink_handles(handle, ['Family']) ]
 
-        object = self.dbstate.db.get_event_from_handle(handle)
+        event = self.dbstate.db.get_event_from_handle(handle)
 
-        query = DeleteEventQuery(self.dbstate, self.uistate, object,
+        query = DeleteEventQuery(self.dbstate, self.uistate, event,
                                  person_list, family_list)
         is_used = len(person_list) + len(family_list) > 0
-        return (query, is_used, object)
+        return (query, is_used, event)
 
     def edit(self, obj):
         for handle in self.selected_handles():
