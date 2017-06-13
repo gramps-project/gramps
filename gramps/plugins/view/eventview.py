@@ -3,6 +3,7 @@
 # Copyright (C) 2001-2007  Donald N. Allingham
 # Copyright (C) 2008       Gary Burton
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2017       Alois Poettker
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -57,6 +58,8 @@ from gramps.gui.editors import EditEvent, DeleteEventQuery
 from gramps.gui.filters.sidebar import EventSidebarFilter
 from gramps.gui.merge import MergeEvent
 from gramps.gen.plug import CATEGORY_QR_EVENT
+from gramps.gui.dialog import ErrorDialog, MultiSelectDialog, QuestionDialog
+from gramps.gen.utils.string import data_recover_msg
 
 #-------------------------------------------------------------------------
 #
@@ -227,23 +230,59 @@ class EventView(ListView):
             pass
 
     def remove(self, obj):
-        self.remove_selected_objects()
+        """
+        Method called when deleting event(s) from the event view.
+        """
+        handles = self.selected_handles()
+        if len(handles) == 1:
+            event = self.dbstate.db.get_event_from_handle(handles[0])
+            msg1 = self._message1_format(event)
+            msg2 = self._message2_format(event)
+            msg2 = "%s %s" % (msg2, data_recover_msg)
+            QuestionDialog(msg1,
+                           msg2,
+                           _('_Delete Event'),
+                           lambda: self.delete_event_response(event),
+                           parent=self.uistate.window)
+        else:
+            MultiSelectDialog(self._message1_format,
+                              self._message2_format,
+                              handles,
+                              self.dbstate.db.get_event_from_handle,
+                              yes_func=self.delete_event_response,
+                              parent=self.uistate.window)
+
+    def _message1_format(self, event):
+        """
+        Header format for remove dialogs.
+        """
+        return _('Delete {type} [{gid}]?').format(type=str(event.type),
+                                                  gid=event.gramps_id)
+
+    def _message2_format(self, event):
+        """
+        Detailed message format for the remove dialogs.
+        """
+        return _('Deleting item will remove it from the database.')
+
+    def delete_event_response(self, event):
+        """
+        Delete the event from the database.
+        """
+        person_list = [item[1] for item in
+            self.dbstate.db.find_backlink_handles(event.handle, ['Person'])]
+        family_list = [item[1] for item in
+            self.dbstate.db.find_backlink_handles(event.handle, ['Family'])]
+
+        query = DeleteEventQuery(self.dbstate, self.uistate, event,
+                                 person_list, family_list)
+        query.query_response()
 
     def remove_object_from_handle(self, handle):
-        person_list = [
-            item[1] for item in
-            self.dbstate.db.find_backlink_handles(handle,['Person']) ]
-
-        family_list = [
-            item[1] for item in
-            self.dbstate.db.find_backlink_handles(handle,['Family']) ]
-
-        object = self.dbstate.db.get_event_from_handle(handle)
-
-        query = DeleteEventQuery(self.dbstate, self.uistate, object,
-                                 person_list, family_list)
-        is_used = len(person_list) + len(family_list) > 0
-        return (query, is_used, object)
+        """
+        The remove_selected_objects method is not called in this view.
+        """
+        pass
 
     def edit(self, obj):
         for handle in self.selected_handles():
