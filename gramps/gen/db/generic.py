@@ -44,7 +44,8 @@ import glob
 from . import (DbReadBase, DbWriteBase, DbUndo, DBLOGNAME, DBUNDOFN,
                KEY_TO_CLASS_MAP, REFERENCE_KEY, PERSON_KEY, FAMILY_KEY,
                CITATION_KEY, SOURCE_KEY, EVENT_KEY, MEDIA_KEY, PLACE_KEY,
-               REPOSITORY_KEY, NOTE_KEY, TAG_KEY, TXNADD, TXNDEL)
+               REPOSITORY_KEY, NOTE_KEY, TAG_KEY, TXNADD, TXNUPD, TXNDEL,
+               KEY_TO_NAME_MAP)
 from ..errors import HandleError
 from ..utils.callback import Callback
 from ..updatecallback import UpdateCallback
@@ -132,6 +133,8 @@ class DbGenericUndo(DbUndo):
         transaction = txn
         db = self.db
         subitems = transaction.get_recnos()
+        # sigs[obj_type][trans_type]
+        sigs = [[[] for trans_type in range(3)] for key in range(11)]
 
         # Process all records in the transaction
         try:
@@ -144,14 +147,10 @@ class DbGenericUndo(DbUndo):
                     self.undo_reference(new_data, handle)
                 else:
                     self.undo_data(new_data, handle, key)
+                    sigs[key][trans_type].append(handle)
             # now emit the signals
-            for record_id in subitems:
-                (key, trans_type, handle, old_data, new_data) = \
-                    pickle.loads(self.undodb[record_id])
+            self.undo_sigs(sigs, False)
 
-                if key != REFERENCE_KEY:
-                    self.undo_signals(trans_type, handle,
-                                      db.emit, SIGBASE[key], False)
             self.db._txn_commit()
         except:
             self.db._txn_abort()
@@ -183,6 +182,8 @@ class DbGenericUndo(DbUndo):
         transaction = txn
         db = self.db
         subitems = transaction.get_recnos(reverse=True)
+        # sigs[obj_type][trans_type]
+        sigs = [[[] for trans_type in range(3)] for key in range(11)]
 
         # Process all records in the transaction
         try:
@@ -195,14 +196,10 @@ class DbGenericUndo(DbUndo):
                     self.undo_reference(old_data, handle)
                 else:
                     self.undo_data(old_data, handle, key)
+                    sigs[key][trans_type].append(handle)
             # now emit the signals
-            for record_id in subitems:
-                (key, trans_type, handle, old_data, new_data) = \
-                        pickle.loads(self.undodb[record_id])
+            self.undo_sigs(sigs, True)
 
-                if key != REFERENCE_KEY:
-                    self.undo_signals(trans_type, handle,
-                                      db.emit, SIGBASE[key], True)
             self.db._txn_commit()
         except:
             self.db._txn_abort()
@@ -257,19 +254,34 @@ class DbGenericUndo(DbUndo):
             obj = self.db._get_table_func(cls)["class_func"].create(data)
             self.db._update_secondary_values(obj)
 
-    def undo_signals(self, trans_type, handle, emit, signal_root, reverse):
+    def undo_sigs(self, sigs, undo):
         """
-        Helper method to undo/redo the changes made
+        Helper method to undo/redo the signals for changes made
+        We want to do deletes and adds first
+        Note that if 'undo' we swap emits
         """
-        if ((not reverse) and trans_type == TXNADD) \
-                or (reverse and trans_type == TXNDEL):
-            typ = '-add'
-        elif not reverse and trans_type == TXNDEL \
-                or reverse and trans_type == TXNADD:
-            typ = '-delete'
-        else:   # TXNUPD
-            typ = '-update'
-        emit(signal_root + typ, ([handle],))
+        for trans_type in [TXNDEL, TXNADD, TXNUPD]:
+            for obj_type in range(11):
+                handles = sigs[obj_type][trans_type]
+                if handles:
+                    if not undo and trans_type == TXNDEL \
+                            or undo and trans_type == TXNADD:
+                        typ = '-delete'
+                    else:
+                        # don't update a handle if its been deleted, and note
+                        # that 'deleted' handles are in the 'add' list if we
+                        # are undoing
+                        handles = [handle for handle in handles
+                                   if handle not in
+                                   sigs[obj_type][TXNADD if undo else TXNDEL]]
+                        if ((not undo) and trans_type == TXNADD) \
+                                or (undo and trans_type == TXNDEL):
+                            typ = '-add'
+                        else:   # TXNUPD
+                            typ = '-update'
+                    if handles:
+                        self.db.emit(KEY_TO_NAME_MAP[obj_type] + typ,
+                                     (handles,))
 
 class Cursor:
     def __init__(self, iterator):
