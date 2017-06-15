@@ -2239,7 +2239,7 @@ msgstr "{short_month} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:261
 #, python-brace-format
 msgid "from|{short_month} {year}"
-msgstr "{short_month.f[D]} {year}"
+msgstr "{short_month} {year}"
 
 #. second date in a span
 #. If "to <Month>" needs a special inflection in your
@@ -2249,7 +2249,7 @@ msgstr "{short_month.f[D]} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:269
 #, python-brace-format
 msgid "to|{short_month} {year}"
-msgstr "{short_month.f[D]} {year}"
+msgstr "{short_month} {year}"
 
 #. first date in a range
 #. If "between <Month>" needs a special inflection in your
@@ -2259,7 +2259,7 @@ msgstr "{short_month.f[D]} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:277
 #, python-brace-format
 msgid "between|{short_month} {year}"
-msgstr "{short_month.f[O]} {year}"
+msgstr "{short_month} {year}"
 
 #. second date in a range
 #. If "and <Month>" needs a special inflection in your
@@ -2269,7 +2269,7 @@ msgstr "{short_month.f[O]} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:285
 #, python-brace-format
 msgid "and|{short_month} {year}"
-msgstr "{short_month.f[O]} {year}"
+msgstr "{short_month} {year}"
 
 #. If "before <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
@@ -2278,7 +2278,7 @@ msgstr "{short_month.f[O]} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:292
 #, python-brace-format
 msgid "before|{short_month} {year}"
-msgstr "{short_month.f[D]} {year}"
+msgstr "{short_month} {year}"
 
 #. If "after <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
@@ -2287,7 +2287,7 @@ msgstr "{short_month.f[D]} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:299
 #, python-brace-format
 msgid "after|{short_month} {year}"
-msgstr "{short_month.f[T]} {year}"
+msgstr "{short_month} {year}"
 
 #. If "about <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
@@ -2296,7 +2296,7 @@ msgstr "{short_month.f[T]} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:306
 #, python-brace-format
 msgid "about|{short_month} {year}"
-msgstr "{short_month.f[D]} {year}"
+msgstr "{short_month} {year}"
 
 #. If "estimated <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
@@ -2473,51 +2473,51 @@ msgstr "P=prosinec|D=prosince|T=prosinci|O=prosincem"
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:97
 msgid "localized lexeme inflections - short month form||Jan"
-msgstr "P=led|D=led|T=led"
+msgstr "led"
 
 #: ../gramps/gen/datehandler/_datestrings.py:98
 msgid "localized lexeme inflections - short month form||Feb"
-msgstr "P=úno|D=úno|T=úno"
+msgstr "úno"
 
 #: ../gramps/gen/datehandler/_datestrings.py:99
 msgid "localized lexeme inflections - short month form||Mar"
-msgstr "P=bře|D=bře|T=bře"
+msgstr "bře"
 
 #: ../gramps/gen/datehandler/_datestrings.py:100
 msgid "localized lexeme inflections - short month form||Apr"
-msgstr "P=dub|D=dub|T=dub"
+msgstr "dub"
 
 #: ../gramps/gen/datehandler/_datestrings.py:101
 msgid "localized lexeme inflections - short month form||May"
-msgstr "P=kvě|D=kvě|T=kvě"
+msgstr "kvě"
 
 #: ../gramps/gen/datehandler/_datestrings.py:102
 msgid "localized lexeme inflections - short month form||Jun"
-msgstr "P=čer|D=čer|T=čer"
+msgstr "čer"
 
 #: ../gramps/gen/datehandler/_datestrings.py:103
 msgid "localized lexeme inflections - short month form||Jul"
-msgstr "P=čvc|D=čvc|T=čvc"
+msgstr "čvc"
 
 #: ../gramps/gen/datehandler/_datestrings.py:104
 msgid "localized lexeme inflections - short month form||Aug"
-msgstr "P=srp|D=srp|T=srp"
+msgstr "srp"
 
 #: ../gramps/gen/datehandler/_datestrings.py:105
 msgid "localized lexeme inflections - short month form||Sep"
-msgstr "P=zář|D=zář|T=zář"
+msgstr "zář"
 
 #: ../gramps/gen/datehandler/_datestrings.py:106
 msgid "localized lexeme inflections - short month form||Oct"
-msgstr "P=říj|D=říj|T=říj"
+msgstr "říj"
 
 #: ../gramps/gen/datehandler/_datestrings.py:107
 msgid "localized lexeme inflections - short month form||Nov"
-msgstr "P=lis|D=lis|T=lis"
+msgstr "lis"
 
 #: ../gramps/gen/datehandler/_datestrings.py:108
 msgid "localized lexeme inflections - short month form||Dec"
-msgstr "P=pro|D=pro|T=pro"
+msgstr "pro"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2574,31 +2574,31 @@ msgstr "prosinec"
 #. Must appear in the order indexed by Date.CAL_... numeric constants
 #: ../gramps/gen/datehandler/_datestrings.py:131 ../gramps/gen/lib/date.py:609
 msgid "calendar|Gregorian"
-msgstr "Gregoriánský"
+msgstr "gregoriánský"
 
 #: ../gramps/gen/datehandler/_datestrings.py:132 ../gramps/gen/lib/date.py:610
 msgid "calendar|Julian"
-msgstr "Juliánský"
+msgstr "juliánský"
 
 #: ../gramps/gen/datehandler/_datestrings.py:133 ../gramps/gen/lib/date.py:611
 msgid "calendar|Hebrew"
-msgstr "Hebrejský"
+msgstr "hebrejský"
 
 #: ../gramps/gen/datehandler/_datestrings.py:134 ../gramps/gen/lib/date.py:612
 msgid "calendar|French Republican"
-msgstr "Francouzské republiky"
+msgstr "francouzský republikánský"
 
 #: ../gramps/gen/datehandler/_datestrings.py:135 ../gramps/gen/lib/date.py:613
 msgid "calendar|Persian"
-msgstr "Perský"
+msgstr "perský"
 
 #: ../gramps/gen/datehandler/_datestrings.py:136 ../gramps/gen/lib/date.py:614
 msgid "calendar|Islamic"
-msgstr "Islámský"
+msgstr "islámský"
 
 #: ../gramps/gen/datehandler/_datestrings.py:137 ../gramps/gen/lib/date.py:615
 msgid "calendar|Swedish"
-msgstr "Švédský"
+msgstr "švédský"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -17947,7 +17947,7 @@ msgstr "Sloupec %d:"
 
 #: ../gramps/gui/plug/tool.py:55
 msgid "Debug"
-msgstr "Ladit"
+msgstr "Ladění a diagnostika"
 
 #: ../gramps/gui/plug/tool.py:56
 msgid "Analysis and Exploration"
