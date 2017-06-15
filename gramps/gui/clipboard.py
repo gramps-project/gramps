@@ -1314,54 +1314,57 @@ class ClipboardListView:
         # Just select the first match.
         wrapper_class = self._target_type_to_wrapper_class_map[
                                                     str(possible_wrappers[0])]
-        o = wrapper_class(self.dbstate, sel_data)
-        if title:
-            o._title = title
-        if value:
-            o._value = value
-        if dbid:
-            o._dbid = dbid
-        if dbname:
-            o._dbname = dbname
+        try:
+            o = wrapper_class(self.dbstate, sel_data)
+            if title:
+                o._title = title
+            if value:
+                o._value = value
+            if dbid:
+                o._dbid = dbid
+            if dbname:
+                o._dbname = dbname
 
-        # If the wrapper object is a subclass of ClipDropList then
-        # the drag data was a list of objects and we need to decode
-        # all of them.
-        if isinstance(o,ClipDropList):
-            o_list = o.get_objects()
-        else:
-            o_list = [o]
-        for o in o_list:
-            if o.__class__.DRAG_TARGET is None:
-                continue
-            data = [o.__class__.DRAG_TARGET.drag_type, o, None,
-                    o._type, o._value, o._dbid, o._dbname]
-            contains = model_contains(model, data)
-            if ((context.action if hasattr(context, "action") else context.get_actions())
-                != Gdk.DragAction.MOVE) and contains:
-                continue
-            drop_info = widget.get_dest_row_at_pos(x, y)
-            if drop_info:
-                path, position = drop_info
-                node = model.get_iter(path)
-                if (position == Gtk.TreeViewDropPosition.BEFORE
-                    or position == Gtk.TreeViewDropPosition.INTO_OR_BEFORE):
-                    model.insert_before(node, data)
-                else:
-                    model.insert_after(node, data)
+            # If the wrapper object is a subclass of ClipDropList then
+            # the drag data was a list of objects and we need to decode
+            # all of them.
+            if isinstance(o,ClipDropList):
+                o_list = o.get_objects()
             else:
-                model.append(data)
+                o_list = [o]
+            for o in o_list:
+                if o.__class__.DRAG_TARGET is None:
+                    continue
+                data = [o.__class__.DRAG_TARGET.drag_type, o, None,
+                        o._type, o._value, o._dbid, o._dbname]
+                contains = model_contains(model, data)
+                if ((context.action if hasattr(context, "action") else context.get_actions())
+                    != Gdk.DragAction.MOVE) and contains:
+                    continue
+                drop_info = widget.get_dest_row_at_pos(x, y)
+                if drop_info:
+                    path, position = drop_info
+                    node = model.get_iter(path)
+                    if (position == Gtk.TreeViewDropPosition.BEFORE
+                        or position == Gtk.TreeViewDropPosition.INTO_OR_BEFORE):
+                        model.insert_before(node, data)
+                    else:
+                        model.insert_after(node, data)
+                else:
+                    model.append(data)
 
-        # FIXME: there is one bug here: if you multi-select and drop
-        # on self, then it moves the first, and copies the rest.
+            # FIXME: there is one bug here: if you multi-select and drop
+            # on self, then it moves the first, and copies the rest.
 
-        if ((context.action if hasattr(context, "action") else context.get_actions()) ==
-            Gdk.DragAction.MOVE):
-            context.finish(True, True, time)
+            if ((context.action if hasattr(context, "action") else context.get_actions()) ==
+                Gdk.DragAction.MOVE):
+                context.finish(True, True, time)
 
-        # remember time for double drop workaround.
-        self._previous_drop_time = realTime
-        return o_list
+            # remember time for double drop workaround.
+            self._previous_drop_time = realTime
+            return o_list
+        except EOFError:
+            return None
 
     # proxy methods to provide access to the real widget functions.
 

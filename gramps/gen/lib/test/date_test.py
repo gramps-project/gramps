@@ -536,5 +536,42 @@ class Test_set_newyear(BaseDateTest):
             except DateError:
                 self.assertTrue(should_raise, message)
 
+#-------------------------------------------------------------------------
+#
+# EmptyDateTest
+#
+#-------------------------------------------------------------------------
+class EmptyDateTest(BaseDateTest):
+    """
+    Tests for empty dates.
+    """
+    def test_empty(self):
+        d = Date()
+        self.assertTrue(d.is_empty())
+
+    def test_text_only_empty(self):
+        d = Date()
+        d.set(text='First of Jan',
+              modifier=Date.MOD_TEXTONLY)
+        self.assertFalse(d.is_empty())
+
+    def test_single_empty(self):
+        d = Date()
+        d.set(value=(1, 1, 1900, False),
+              modifier=Date.MOD_NONE)
+        self.assertFalse(d.is_empty())
+
+    def test_range_empty(self):
+        d = Date()
+        d.set(value=(1, 1, 1900, False, 1, 1, 1910, False),
+              modifier=Date.MOD_RANGE)
+        self.assertFalse(d.is_empty())
+
+    def test_span_empty(self):
+        d = Date()
+        d.set(value=(1, 1, 1900, False, 1, 1, 1910, False),
+              modifier=Date.MOD_SPAN)
+        self.assertFalse(d.is_empty())
+
 if __name__ == "__main__":
     unittest.main()

@@ -42,7 +42,7 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
 
  Used to show maps in the geography view.
  It may be osmgpsmap, osm-gps-map, or python-osmgpsmap,
- but the Python bindings for this must also be present.
+ but the Python bindings for this must also be present, so gir1.2-osmgpsmap-1.0.
  Without this the GeoView will not be active, see
  https://gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_Categories#Geography_Category
 
@@ -50,7 +50,7 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
 
   Enable creation of graphs using Graphviz engine.
   Without this, three reports cannot be run.
-  Obtain it from: http://www.graphviz.org
+  Obtain it from: http://www.graphviz.org or try graphviz and python3-pygraphviz from your packages.
 
 * **PyICU**
 
@@ -109,7 +109,7 @@ Prerequistes required for the following Addons to work:
 * **Family Sheet** - Requires: PIL (Python Imaging Library) or PILLOW.
 ( https://gramps-project.org/wiki/index.php?title=Family_Sheet )
 
-* **Graph View** - Requires: PyGoocanvas and Goocanvas.
+* **Graph View** - Requires: PyGoocanvas and Goocanvas (python-pygoocanvas, gir1.2-goocanvas-2.0).
 ( https://gramps-project.org/wiki/index.php?title=Graph_View )
 
 * **PedigreeChart** - Can optionally use - numpy if installed
