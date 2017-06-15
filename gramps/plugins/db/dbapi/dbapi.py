@@ -308,21 +308,23 @@ class DBAPI(DbGeneric):
         self.dbapi.commit()
         if not txn.batch:
             # Now, emit signals:
-            for (obj_type_val, txn_type_val) in list(txn):
-                if obj_type_val == REFERENCE_KEY:
-                    continue
-                if txn_type_val == TXNDEL:
-                    handles = [handle for (handle, data) in
-                               txn[(obj_type_val, txn_type_val)]]
-                else:
-                    handles = [handle for (handle, data) in
-                               txn[(obj_type_val, txn_type_val)]
-                               if (handle, None)
-                               not in txn[(obj_type_val, TXNDEL)]]
-                if handles:
-                    signal = KEY_TO_NAME_MAP[
-                        obj_type_val] + action[txn_type_val]
-                    self.emit(signal, (handles, ))
+            # do deletes and adds first
+            for trans_type in [TXNDEL, TXNADD, TXNUPD]:
+                for obj_type in range(11):
+                    if obj_type != REFERENCE_KEY and \
+                            (obj_type, trans_type) in txn:
+                        if trans_type == TXNDEL:
+                            handles = [handle for (handle, data) in
+                                       txn[(obj_type, trans_type)]]
+                        else:
+                            handles = [handle for (handle, data) in
+                                       txn[(obj_type, trans_type)]
+                                       if (handle, None)
+                                       not in txn[(obj_type, TXNDEL)]]
+                        if handles:
+                            signal = KEY_TO_NAME_MAP[
+                                obj_type] + action[trans_type]
+                            self.emit(signal, (handles, ))
         self.transaction = None
         msg = txn.get_description()
         self.undodb.commit(txn, msg)
