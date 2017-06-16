@@ -681,11 +681,11 @@ class DBAPI(DbGeneric):
         if self.readonly or not handle:
             return
         if self.has_handle(obj_key, handle):
+            data = self.get_raw_data(obj_key, handle)
             table = KEY_TO_NAME_MAP[obj_key]
             sql = "DELETE FROM %s WHERE handle = ?" % table
             self.dbapi.execute(sql, [handle])
             if not transaction.batch:
-                data = self.get_raw_data(obj_key, handle)
                 transaction.add(obj_key, TXNDEL, handle, data, None)
 
     def find_backlink_handles(self, handle, include_classes=None):
