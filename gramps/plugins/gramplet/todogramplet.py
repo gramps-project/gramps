@@ -210,6 +210,6 @@ class ToDoGramplet(Gramplet):
         self.set_has_data(self.get_has_data())
 
     def db_changed(self):
-        self.dbstate.db.connect('note-add', self.update)
-        self.dbstate.db.connect('note-delete', self.update)
-        self.dbstate.db.connect('note-update', self.update)
+        self.connect(self.dbstate.db, 'note-add', self.update)
+        self.connect(self.dbstate.db, 'note-delete', self.update)
+        self.connect(self.dbstate.db, 'note-update', self.update)

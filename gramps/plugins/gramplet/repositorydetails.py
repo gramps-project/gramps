@@ -79,7 +79,7 @@ class RepositoryDetails(Gramplet):
         list(map(self.grid.remove, self.grid.get_children()))
 
     def db_changed(self):
-        self.dbstate.db.connect('repository-update', self.update)
+        self.connect(self.dbstate.db, 'repository-update', self.update)
         self.connect_signal('Repository', self.update)
 
     def update_has_data(self):

@@ -197,7 +197,7 @@ class PersonToDo(ToDo):
     Displays the To Do notes for a person.
     """
     def db_changed(self):
-        self.dbstate.db.connect('person-update', self.update)
+        self.connect(self.dbstate.db, 'person-update', self.update)
 
     def active_changed(self, handle):
         self.update()
@@ -232,7 +232,7 @@ class EventToDo(ToDo):
     Displays the To Do notes for an event.
     """
     def db_changed(self):
-        self.dbstate.db.connect('event-update', self.update)
+        self.connect(self.dbstate.db, 'event-update', self.update)
         self.connect_signal('Event', self.update)
 
     def update_has_data(self):
@@ -265,7 +265,7 @@ class FamilyToDo(ToDo):
     Displays the To Do notes for a family.
     """
     def db_changed(self):
-        self.dbstate.db.connect('family-update', self.update)
+        self.connect(self.dbstate.db, 'family-update', self.update)
         self.connect_signal('Family', self.update)
 
     def update_has_data(self):
@@ -298,7 +298,7 @@ class PlaceToDo(ToDo):
     Displays the To Do notes for a place.
     """
     def db_changed(self):
-        self.dbstate.db.connect('place-update', self.update)
+        self.connect(self.dbstate.db, 'place-update', self.update)
         self.connect_signal('Place', self.update)
 
     def update_has_data(self):
@@ -331,7 +331,7 @@ class SourceToDo(ToDo):
     Displays the To Do notes for a source.
     """
     def db_changed(self):
-        self.dbstate.db.connect('source-update', self.update)
+        self.connect(self.dbstate.db, 'source-update', self.update)
         self.connect_signal('Source', self.update)
 
     def update_has_data(self):
@@ -364,7 +364,7 @@ class CitationToDo(ToDo):
     Displays the To Do notes for a Citation.
     """
     def db_changed(self):
-        self.dbstate.db.connect('citation-update', self.update)
+        self.connect(self.dbstate.db, 'citation-update', self.update)
         self.connect_signal('Citation', self.update)
 
     def update_has_data(self):
@@ -397,7 +397,7 @@ class RepositoryToDo(ToDo):
     Displays the To Do notes for a repository.
     """
     def db_changed(self):
-        self.dbstate.db.connect('repository-update', self.update)
+        self.connect(self.dbstate.db, 'repository-update', self.update)
         self.connect_signal('Repository', self.update)
 
     def update_has_data(self):
@@ -430,7 +430,7 @@ class MediaToDo(ToDo):
     Displays the To Do notes for a media object.
     """
     def db_changed(self):
-        self.dbstate.db.connect('media-update', self.update)
+        self.connect(self.dbstate.db, 'media-update', self.update)
         self.connect_signal('Media', self.update)
 
     def update_has_data(self):

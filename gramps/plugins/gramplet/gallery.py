@@ -108,7 +108,7 @@ class PersonGallery(Gallery):
     Displays a gallery of media objects for a person.
     """
     def db_changed(self):
-        self.dbstate.db.connect('person-update', self.update)
+        self.connect(self.dbstate.db, 'person-update', self.update)
 
     def active_changed(self, handle):
         self.update()
@@ -138,7 +138,7 @@ class FamilyGallery(Gallery):
     Displays a gallery of media objects for a family.
     """
     def db_changed(self):
-        self.dbstate.db.connect('family-update', self.update)
+        self.connect(self.dbstate.db, 'family-update', self.update)
         self.connect_signal('Family', self.update)
 
     def update_has_data(self):
@@ -166,7 +166,7 @@ class EventGallery(Gallery):
     Displays a gallery of media objects for an event.
     """
     def db_changed(self):
-        self.dbstate.db.connect('event-update', self.update)
+        self.connect(self.dbstate.db, 'event-update', self.update)
         self.connect_signal('Event', self.update)
 
     def update_has_data(self):
@@ -194,7 +194,7 @@ class PlaceGallery(Gallery):
     Displays a gallery of media objects for a place.
     """
     def db_changed(self):
-        self.dbstate.db.connect('place-update', self.update)
+        self.connect(self.dbstate.db, 'place-update', self.update)
         self.connect_signal('Place', self.update)
 
     def update_has_data(self):
@@ -222,7 +222,7 @@ class SourceGallery(Gallery):
     Displays a gallery of media objects for a source.
     """
     def db_changed(self):
-        self.dbstate.db.connect('event-update', self.update)
+        self.connect(self.dbstate.db, 'event-update', self.update)
         self.connect_signal('Source', self.update)
 
     def update_has_data(self):
@@ -250,7 +250,7 @@ class CitationGallery(Gallery):
     Displays a gallery of media objects for a Citation.
     """
     def db_changed(self):
-        self.dbstate.db.connect('event-update', self.update)
+        self.connect(self.dbstate.db, 'event-update', self.update)
         self.connect_signal('Citation', self.update)
 
     def update_has_data(self):

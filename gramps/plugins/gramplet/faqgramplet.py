@@ -175,6 +175,3 @@ class FAQGramplet(Gramplet):
               "How can I help with Gramps?"
               "%(html_end)s\n") % faq_dict)
         self.append_text("", scroll_to='begin')
-
-    def post_init(self):
-        self.disconnect("active-changed")
