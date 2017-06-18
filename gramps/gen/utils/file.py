@@ -140,9 +140,12 @@ def relative_path(original, base):
     # base path is normcase (lower case on Windows) so compare target in lower
     # on Windows as well
     for i in range(min(len(base_list), len(target_list))):
-        if base_list[i] != (target_list[i].lower() if win()
-                            else target_list[i]):
-            break
+        if win():
+            if base_list[i].lower() != target_list[i].lower():
+                break
+        else:
+            if base_list[i] != target_list[i]:
+                break
     else:
         #if break did not happen we are here at end, and add 1.
         i += 1
