@@ -174,26 +174,31 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
             operatingsystem = sys.platform
             distribution = " "
 
-        return "Python version: %s \n"\
+        sqlite = ''
+        if __debug__:
+            sqlite = "sqlite version: %s (%s) \n" % (sqlite3_version_str,
+                                                     sqlite3_py_version_str)
+
+        return "Gramps version: %s \n"\
+               "Python version: %s \n"\
                "BSDDB version: %s \n"\
-               "sqlite version: %s (%s) \n"\
-               "Gramps version: %s \n"\
+               "%s"\
                "LANG: %s\n"\
                "OS: %s\n"\
                "Distribution: %s\n\n"\
                "GTK version    : %s\n"\
                "gobject version: %s\n"\
                "cairo version  : %s"\
-               % (str(sys.version).replace('\n',''),
+               % (str(VERSION),
+                  str(sys.version).replace('\n',''),
                   BSDDB_STR,
-                  sqlite3_version_str,
-                  sqlite3_py_version_str,
-                  str(VERSION),
+                  sqlite,
                   get_env_var('LANG',''),
                   operatingsystem,
                   distribution,
                   '%d.%d.%d' % (Gtk.get_major_version(),
-                            Gtk.get_minor_version(), Gtk.get_micro_version()),
+                                Gtk.get_minor_version(),
+                                Gtk.get_micro_version()),
                   '%d.%d.%d' % GObject.pygobject_version,
                   cairo.version_info)
 
