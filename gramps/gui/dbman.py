@@ -580,9 +580,8 @@ class DbManager(CLIDbManager):
         node = self.model.get_iter(path)
         filename = conv_to_unicode(self.model.get_value(node, FILE_COL), 'utf8')
         try:
-            name_file = open(filename, "r")
-            file_name_to_delete=name_file.read()
-            name_file.close()
+            with open(filename, "r", encoding='utf-8') as name_file:
+                file_name_to_delete = name_file.read()
             remove_filename(file_name_to_delete)
             directory = conv_to_unicode(self.data_to_delete[1], 'utf8')
             for (top, dirs, files) in os.walk(directory):
