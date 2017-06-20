@@ -29,35 +29,30 @@ Provide the event view.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import logging
 _LOG = logging.getLogger(".plugins.eventview")
 
 #-------------------------------------------------------------------------
 #
-# GTK/Gnome modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import Gtk
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
-#
-# gramps modules
-#
-#-------------------------------------------------------------------------
-from gramps.gen.lib import Event
-from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
-from gramps.gui.views.treemodels import EventModel
+from gramps.gui.dialog import ErrorDialog, MultiSelectDialog, QuestionDialog
 from gramps.gen.errors import WindowActiveError
-from gramps.gui.views.bookmarks import EventBookmarks
-from gramps.gen.config import config
+from gramps.gen.lib import Event
+from gramps.gen.utils.string import data_recover_msg
+
 from gramps.gui.ddtargets import DdTargets
-from gramps.gui.dialog import ErrorDialog, QuestionDialog2
 from gramps.gui.editors import EditEvent, DeleteEventQuery
 from gramps.gui.filters.sidebar import EventSidebarFilter
 from gramps.gui.merge import MergeEvent
 from gramps.gen.plug import CATEGORY_QR_EVENT
+from gramps.gui.views.bookmarks import EventBookmarks
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
+from gramps.gui.views.treemodels import EventModel
 
 #-------------------------------------------------------------------------
 #
@@ -209,8 +204,8 @@ class EventView(ListView):
 
     def define_actions(self):
         ListView.define_actions(self)
-        self._add_action('FilterEdit', None, _('Event Filter Editor'),
-                        callback=self.filter_editor,)
+        self._add_action('FilterEdit', None,
+                         _('Event Filter Editor'), callback=self.filter_editor)
         self._add_action('QuickReport', None,
                          _("Quick View"), None, None, None)
 
@@ -229,42 +224,61 @@ class EventView(ListView):
 
     def remove(self, obj):
         """
-        Method called when removing event(s) from the event view.
+        Method called when deleting event(s) from the event view.
         """
-        response = -3   # Accept operation
-        if len(self.selected_handles()) > 1:
-            all_single_cancel = QuestionDialog2(
-                _("Multiple Selection Delete"),
-                _("More than one item has been selected for deletion. "
-                  "Select the option indicating how to delete the items:"),
-                _("Delete All"),
-                _("Confirm Each Delete"),
-                _("Cancel Delete"),
-                parent=self.uistate.window)
-            response = all_single_cancel.runMR()   # Run dialog with Multiple Responses
+        handles = self.selected_handles()
+        if len(handles) == 1:
+            event = self.dbstate.db.get_event_from_handle(handles[0])
+            msg1 = self._message1_format(event)
+            msg2 = self._message2_format(event)
+            msg2 = "%s %s" % (msg2, data_recover_msg)
+            QuestionDialog(msg1,
+                           msg2,
+                           _('_Delete Event'),
+                           lambda: self.delete_event_response(event),
+                           parent=self.uistate.window)
+        else:
+            MultiSelectDialog(self._message1_format,
+                              self._message2_format,
+                              handles,
+                              self.dbstate.db.get_event_from_handle,
+                              yes_func=self.delete_event_response,
+                              parent=self.uistate.window)
 
-        if response == -3:   # == Gtk.ResponseType.ACCEPT
-            self.delete_selected_objects(False)   # Delete all events w/o confimation
-        elif response == -9:   # == Gtk.ResponseType.NO
-            self.delete_selected_objects(True)   # Delete single event w. confimation
-        else:   # response == Gtk.ResponseType.CANCEL:
-            pass   # Cancel operation
+    def _message1_format(self, event):
+        """
+        Header format for remove dialogs.
+        """
+        event_type = event.type._I2SMAP[event.type.value]
+        message1_string = \
+            _('Delete {typ}-Event [{gid}]?').format(typ=event_type, gid=event.gramps_id)
 
-    def remove_object_from_handle(self, handle):
-        person_list = [
-            item[1] for item in
-            self.dbstate.db.find_backlink_handles(handle, ['Person']) ]
+        return message1_string
 
-        family_list = [
-            item[1] for item in
-            self.dbstate.db.find_backlink_handles(handle, ['Family']) ]
+    def _message2_format(self, event):
+        """
+        Detailed message format for the remove dialogs.
+        """
+        return _('Deleting item will remove it from the database.')
 
-        event = self.dbstate.db.get_event_from_handle(handle)
+    def delete_event_response(self, event):
+        """
+        Delete the event from the database.
+        """
+        person_list = [item[1] for item in
+            self.dbstate.db.find_backlink_handles(event.handle, ['Person'])]
+        family_list = [item[1] for item in
+            self.dbstate.db.find_backlink_handles(event.handle, ['Family'])]
 
         query = DeleteEventQuery(self.dbstate, self.uistate, event,
                                  person_list, family_list)
-        is_used = len(person_list) + len(family_list) > 0
-        return (query, is_used, event)
+        query.query_response()
+
+    def remove_object_from_handle(self, handle):
+        """
+        The remove_selected_objects method is not called in this view.
+        """
+        pass
 
     def edit(self, obj):
         for handle in self.selected_handles():

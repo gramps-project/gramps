@@ -4,7 +4,6 @@
 # Copyright (C) 2001-2007  Donald N. Allingham
 # Copyright (C) 2009-2010  Nick Hall
 # Copyright (C) 2009       Benny Malengier
-# Copyright (C) 2017       Alois Poettker
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,7 +21,7 @@
 #
 
 """
-Provide the base classes for Gramps' DataView classes
+Provide the base classes for GRAMPS' DataView classes
 """
 
 #----------------------------------------------------------------
@@ -155,7 +154,7 @@ class ListView(NavigationView):
         self.list.set_fixed_height_mode(True)
         self.list.connect('button-press-event', self._button_press)
         self.list.connect('key-press-event', self._key_press)
-        self.list.connect('start-interactive-search', self.open_all_nodes)
+        self.list.connect('start-interactive-search',self.open_all_nodes)
         self.searchbox = InteractiveSearchBox(self.list)
 
         if self.drag_info():
@@ -376,7 +375,7 @@ class ListView(NavigationView):
 
     def filter_editor(self, obj):
         try:
-            FilterEditor(self.FILTER_TYPE, CUSTOM_FILTERS,
+            FilterEditor(self.FILTER_TYPE , CUSTOM_FILTERS,
                          self.dbstate, self.uistate)
         except WindowActiveError:
             return
@@ -528,7 +527,7 @@ class ListView(NavigationView):
         """
         order = self._config.get('columns.rank')
         size = self._config.get('columns.size')
-        vis = self._config.get('columns.visible')
+        vis =  self._config.get('columns.visible')
 
         colord = [(1 if val in vis else 0, val, size)
             for val, size in zip(order, size)]
@@ -539,10 +538,9 @@ class ListView(NavigationView):
 
     def remove_selected_objects(self):
         """
-        Method to choose delete operation
+        Function to remove selected objects
         """
         prompt = True
-
         if len(self.selected_handles()) > 1:
             q = QuestionDialog2(
                 _("Multiple Selection Delete"),
@@ -553,12 +551,6 @@ class ListView(NavigationView):
                 parent=self.uistate.window)
             prompt = not q.run()
 
-        self.delete_selected_objects(prompt)
-
-    def delete_selected_objects(self, prompt):
-        """
-        Method to delete selected objects
-        """
         if not prompt:
             self.uistate.set_busy_cursor(True)
 
@@ -573,6 +565,8 @@ class ListView(NavigationView):
                     msg = _('Deleting item will remove it from the database.')
 
                 msg += ' ' + data_recover_msg
+                #descr = object.get_description()
+                #if descr == "":
                 descr = object.get_gramps_id()
                 self.uistate.set_busy_cursor(True)
                 QuestionDialog(_('Delete %s?') % descr, msg,
@@ -843,7 +837,7 @@ class ListView(NavigationView):
                 if paths:
                     firstsel = self.model.get_iter(paths[0])
                     handle = self.model.get_handle_from_iter(firstsel)
-                    if len(paths) == 1 and handle is None:
+                    if len(paths)==1 and handle is None:
                         return self.expand_collapse_tree_branch()
                     else:
                         self.edit(obj)
@@ -854,7 +848,7 @@ class ListView(NavigationView):
                 # Quick Reports
                 qr_menu = self.uistate.uimanager.\
                             get_widget('/Popup/QuickReport')
-                if qr_menu and self.QR_CATEGORY > -1:
+                if qr_menu and self.QR_CATEGORY > -1 :
                     (ui, qr_actions) = create_quickreport_menu(
                                             self.QR_CATEGORY,
                                             self.dbstate,
@@ -932,15 +926,15 @@ class ListView(NavigationView):
                 if len(paths) == 1 and handle is None:
                     return self.expand_collapse_tree_branch()
         elif event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
-            store, paths = self.selection.get_selected_rows()
-            if paths:
-                iter_ = self.model.get_iter(paths[0])
-                handle = self.model.get_handle_from_iter(iter_)
-                if len(paths) == 1 and handle is None:
-                    return self.expand_collapse_tree()
-                else:
-                    self.edit(obj)
-                    return True
+                store, paths = self.selection.get_selected_rows()
+                if paths:
+                    iter_ = self.model.get_iter(paths[0])
+                    handle = self.model.get_handle_from_iter(iter_)
+                    if len(paths) == 1 and handle is None:
+                        return self.expand_collapse_tree()
+                    else:
+                        self.edit(obj)
+                        return True
         elif Gdk.keyval_to_unicode(event.keyval):
             # Custom interactive search
             return self.searchbox.treeview_keypress(obj, event)
@@ -1006,7 +1000,7 @@ class ListView(NavigationView):
         widths = self.get_column_widths()
         order = self._config.get('columns.rank')
         size = self._config.get('columns.size')
-        vis = self._config.get('columns.visible')
+        vis =  self._config.get('columns.visible')
         newsize = []
         index = 0
         for val, size in zip(order, size):

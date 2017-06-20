@@ -105,7 +105,6 @@ class QuestionDialog:
         label2.set_text(msg2)
         label2.set_use_markup(True)
 
-        self.xml.get_object('cancel').set_visible(False)
         self.xml.get_object('okbutton').set_label(label)
 
         if parent:
@@ -127,9 +126,7 @@ def on_activate_link(label, uri):
     return True
 
 class QuestionDialog2:
-    """ Dialog with 3 buttons (eg. 'Cancel', 'Opt. 1' & 'Opt. 2' """
-    def __init__(self, msg1, msg2, label_msg1, label_msg2, label_msg3=None,
-                 parent=None):
+    def __init__(self, msg1, msg2, label_msg1, label_msg2, parent=None):
         self.xml = Glade(toplevel='questiondialog')
 
         self.top = self.xml.toplevel
@@ -150,11 +147,6 @@ class QuestionDialog2:
         self.xml.get_object('okbutton').set_use_underline(True)
         self.xml.get_object('no').set_label(label_msg2)
         self.xml.get_object('no').set_use_underline(True)
-        if label_msg3:
-            self.xml.get_object('cancel').set_label(label_msg3)
-            self.xml.get_object('cancel').set_use_underline(True)
-        else:
-            self.xml.get_object('cancel').set_visible(False)
 
         self.parent = parent
         if parent:
@@ -165,18 +157,11 @@ class QuestionDialog2:
         self.top.show()
 
     def run(self):
-        """ Run dialog with Binary Response """
         response = self.top.run()
         self.top.destroy()
         if self.parent and self.parent_modal:
             self.parent.set_modal(True)
         return (response == Gtk.ResponseType.ACCEPT)
-
-    def runMR(self):
-        """ Run dialog with Multiple Responses """
-        response = self.top.run()
-        self.top.destroy()
-        return response
 
 class OptionDialog:
     def __init__(self, msg1, msg2, btnmsg1, task1, btnmsg2, task2, parent=None):
