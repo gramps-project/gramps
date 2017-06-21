@@ -142,15 +142,7 @@ class CitationSidebarFilter(SidebarFilter):
         gid = str(self.filter_id.get_text()).strip()
         page = str(self.filter_page.get_text()).strip()
         date = str(self.filter_date.get_text()).strip()
-        model = self.filter_conf.get_model()
-        node = self.filter_conf.get_active_iter()
-        conf_name = model.get_value(node, 0)  # The value is actually the text
-        conf = Citation.CONF_NORMAL
-        for i in list(conf_strings.keys()):
-            if _(conf_strings[i]) == conf_name:
-                conf = i
-                break
-#        conf = self.citn.get_confidence_level()
+        conf = str(self.filter_conf.get_active())
         note = str(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
         tag = self.tag.get_active() > 0
