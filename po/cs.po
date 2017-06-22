@@ -9712,7 +9712,7 @@ msgstr ""
 
 #: ../gramps/gen/relationship.py:1406
 msgid "Relationship loop detected:"
-msgstr "Detekována smyčka ve vztazích"
+msgstr "Detekována smyčka ve vztazích:"
 
 #: ../gramps/gen/relationship.py:1407
 #, python-format
@@ -10040,7 +10040,7 @@ msgstr "Makedonština"
 #. Windows has no translation for Macedonian
 #: ../gramps/gen/utils/grampslocale.py:93
 msgid "Norwegian Bokmal"
-msgstr "Norština Bokmål"
+msgstr "Norský Bokmål"
 
 #: ../gramps/gen/utils/grampslocale.py:94
 msgid "Dutch"
@@ -10048,7 +10048,7 @@ msgstr "Holandština"
 
 #: ../gramps/gen/utils/grampslocale.py:95
 msgid "Norwegian Nynorsk"
-msgstr "Norština (Nynorsk)"
+msgstr "Norský Nynorsk"
 
 #: ../gramps/gen/utils/grampslocale.py:96
 msgid "Polish"
@@ -15559,8 +15559,7 @@ msgstr ""
 msgid ""
 "Field used to paste info from a web page like google, openstreetmap, ... "
 msgstr ""
-"Pole použité pro vložení informace z webové stránky jako google, "
-"openstreetmap, ..."
+"Pole použité pro vložení informace z webové stránky jako google, openstreetmap, ... "
 
 #: ../gramps/gui/glade/editplace.glade:264
 #: ../gramps/gui/glade/editplaceref.glade:495
@@ -30103,12 +30102,12 @@ msgstr "Zda použít rozvité, nebo holé věty."
 #: ../gramps/plugins/textreport/detancestralreport.py:869
 #: ../gramps/plugins/textreport/detdescendantreport.py:1060
 msgid "Use full dates instead of only the year"
-msgstr "Používat plná data místo pouze let(roků)"
+msgstr "Místo pouze roku používat plný datum"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:871
 #: ../gramps/plugins/textreport/detdescendantreport.py:1062
 msgid "Whether to use full dates instead of just year."
-msgstr "Zda používat plná data místo pouze let(roků)."
+msgstr "Zda používat plný datum místo pouze roku."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:874
 #: ../gramps/plugins/textreport/detdescendantreport.py:1065
@@ -32603,7 +32602,7 @@ msgstr "Množství použitých ID."
 
 #: ../gramps/plugins/tool/reorderids.glade:1404
 msgid " Quantity"
-msgstr " Množství "
+msgstr " Množství"
 
 #: ../gramps/plugins/tool/reorderids.glade:1419
 msgid "Actual / Upcoming ID format."
