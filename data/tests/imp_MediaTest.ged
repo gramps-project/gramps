@@ -43,6 +43,15 @@
 2 NOTE @N0018@
 1 OBJE @M7@
 1 OBJE @M8@
+1 OBJE
+2 FORM URL
+2 FILE http:\\obje.form.on_person.org
+1 BIRT
+2 TYPE Birth of the Tester
+2 DATE 2 OCT 1864
+2 OBJE
+3 FORM URL
+3 FILE http:\\obje.form.on_event.org
 0 @M1@ OBJE
 1 FORM jpeg
 1 TITL Multimedia link to linked form v5.5 blob

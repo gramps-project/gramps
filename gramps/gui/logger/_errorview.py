@@ -106,8 +106,13 @@ class ErrorView(ManagedWindow):
     def draw_window(self):
         title = "%s - Gramps" % _("Error Report")
         self.top = Gtk.Dialog(title)
+        # look over the top level windows, it seems the oldest come first, so
+        # the most recent still visible window appears to be a good choice for
+        # a transient parent
         for win in self.top.list_toplevels():
-            if win.is_active():
+            if win == self.top:  # not interested if this is us...
+                continue
+            if win.is_toplevel() and win.is_visible():
                 self.parent_window = win # for ManagedWindow
         if self.parent_window is None: # but it is on some screen
             self.parent_window = self.top.get_screen()

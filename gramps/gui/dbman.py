@@ -716,7 +716,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         node = self.model.get_iter(path)
         filename = self.model.get_value(node, FILE_COL)
         try:
-            with open(filename, "r") as name_file:
+            with open(filename, "r", encoding='utf-8') as name_file:
                 file_name_to_delete = name_file.read()
             remove_filename(file_name_to_delete)
             directory = self.data_to_delete[1]

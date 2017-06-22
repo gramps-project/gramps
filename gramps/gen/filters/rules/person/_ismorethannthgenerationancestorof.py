@@ -51,34 +51,34 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
     def prepare(self, db, user):
         self.db = db
         self.map = set()
-        try:
-            root_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
-            self.init_ancestor_list(root_handle,0)
-        except:
-            pass
+        person = db.get_person_from_gramps_id(self.list[0])
+        if person:
+            root_handle = person.get_handle()
+            if root_handle:
+                self.init_ancestor_list(root_handle)
+
+    def init_ancestor_list(self, root_handle):
+        queue = [(root_handle, 1)] # generation 1 is root
+        while queue:
+            handle, gen = queue.pop(0) # pop off front of queue
+            if gen > int(self.list[1]):
+                self.map.add(handle)
+            gen += 1
+            p = self.db.get_person_from_handle(handle)
+            fam_id = p.get_main_parents_family_handle()
+            if fam_id:
+                fam = self.db.get_family_from_handle(fam_id)
+                if fam:
+                    f_id = fam.get_father_handle()
+                    m_id = fam.get_mother_handle()
+                    # append to back of queue:
+                    if f_id:
+                        queue.append((f_id, gen))
+                    if m_id:
+                        queue.append((m_id, gen))
 
     def reset(self):
         self.map.clear()
 
     def apply(self,db,person):
         return person.handle in self.map
-
-    def init_ancestor_list(self, handle, gen):
-#        if p.get_handle() in self.map:
-#            loop_error(self.orig,p)
-        if not handle:
-            return
-        if gen >= int(self.list[1]):
-            self.map.add(handle)
-
-        p = self.db.get_person_from_handle(handle)
-        fam_id = p.get_main_parents_family_handle()
-        fam = self.db.get_family_from_handle(fam_id)
-        if fam:
-            f_id = fam.get_father_handle()
-            m_id = fam.get_mother_handle()
-
-            if f_id:
-                self.init_ancestor_list(f_id, gen+1)
-            if m_id:
-                self.init_ancestor_list(m_id, gen+1)

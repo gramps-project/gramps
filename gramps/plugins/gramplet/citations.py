@@ -57,8 +57,14 @@ class Citations(Gramplet, DbGUIElement):
         """
         called on init of DbGUIElement, connect to db as required.
         """
-        self.callman.register_callbacks({'citation-update': self.changed})
-        self.callman.connect_all(keys=['citation'])
+        self.callman.register_callbacks({'citation-update': self.changed,
+                                         'person-update': self.changed,
+                                         'family-update': self.changed,
+                                         'event-update': self.changed,
+                                         'media-update': self.changed,
+                                         'place-update': self.changed})
+        self.callman.connect_all(keys=['citation', 'family', 'person', 'event',
+                                       'media', 'place'])
 
     def changed(self, handle):
         """
@@ -102,6 +108,7 @@ class Citations(Gramplet, DbGUIElement):
             self.add_media_citations(media)
 
     def add_media_citations(self, media):
+        self.callman.register_handles({'media': [media.handle]})
         self.add_citations(media)
         self.add_attribute_citations(media)
 
@@ -112,6 +119,7 @@ class Citations(Gramplet, DbGUIElement):
             self.add_event_citations(event)
 
     def add_event_citations(self, event):
+        self.callman.register_handles({'event': [event.handle]})
         self.add_citations(event)
         self.add_attribute_citations(event)
         self.add_mediaref_citations(event)
@@ -122,6 +130,7 @@ class Citations(Gramplet, DbGUIElement):
                 self.add_place_citations(place)
 
     def add_place_citations(self, place):
+        self.callman.register_handles({'place': [place.handle]})
         self.add_citations(place)
         self.add_mediaref_citations(place)
 
@@ -133,9 +142,10 @@ class Citations(Gramplet, DbGUIElement):
         for lds in obj.get_lds_ord_list():
             self.add_citations(lds)
             place_handle = lds.get_place_handle()
-            place = self.dbstate.db.get_place_from_handle(place_handle)
-            if place:
-                self.add_place_citations(place)
+            if place_handle:
+                place = self.dbstate.db.get_place_from_handle(place_handle)
+                if place:
+                    self.add_place_citations(place)
 
     def add_association_citations(self, obj):
         for assoc in obj.get_person_ref_list():
@@ -310,7 +320,6 @@ class PersonCitations(Citations):
         if active_handle:
             active = self.dbstate.db.get_person_from_handle(active_handle)
             if active:
-                self.callman.register_obj(active)
                 self.display_citations(active)
             else:
                 self.set_has_data(False)
@@ -322,6 +331,7 @@ class PersonCitations(Citations):
         Display the citations for the active person.
         """
         self.source_nodes = {}
+        self.callman.register_handles({'person': [person.handle]})
         self.add_citations(person)
         self.add_eventref_citations(person)
         for handle in person.get_family_handle_list():
@@ -387,7 +397,6 @@ class EventCitations(Citations):
         if active_handle:
             active = self.dbstate.db.get_event_from_handle(active_handle)
             if active:
-                self.callman.register_obj(active)
                 self.display_citations(active)
             else:
                 self.set_has_data(False)
@@ -435,7 +444,6 @@ class FamilyCitations(Citations):
         if active_handle:
             active = self.dbstate.db.get_family_from_handle(active_handle)
             if active:
-                self.callman.register_obj(active)
                 self.display_citations(active)
             else:
                 self.set_has_data(False)
@@ -447,6 +455,7 @@ class FamilyCitations(Citations):
         Display the citations for the active family.
         """
         self.source_nodes = {}
+        self.callman.register_handles({'family': [family.handle]})
         self.add_citations(family)
         self.add_eventref_citations(family)
         self.add_attribute_citations(family)
@@ -496,7 +505,6 @@ class PlaceCitations(Citations):
         if active_handle:
             active = self.dbstate.db.get_place_from_handle(active_handle)
             if active:
-                self.callman.register_obj(active)
                 self.display_citations(active)
             else:
                 self.set_has_data(False)
@@ -544,7 +552,6 @@ class MediaCitations(Citations):
         if active_handle:
             active = self.dbstate.db.get_media_from_handle(active_handle)
             if active:
-                self.callman.register_obj(active)
                 self.display_citations(active)
             else:
                 self.set_has_data(False)

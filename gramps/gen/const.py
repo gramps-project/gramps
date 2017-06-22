@@ -59,8 +59,8 @@ PROGRAM_NAME = "Gramps"
 #-------------------------------------------------------------------------
 URL_HOMEPAGE = "http://gramps-project.org/"
 URL_MAILINGLIST = "http://sourceforge.net/mail/?group_id=25770"
-URL_BUGHOME = "http://bugs.gramps-project.org"
-URL_BUGTRACKER = "http://bugs.gramps-project.org/bug_report_page.php"
+URL_BUGHOME = "http://gramps-project.org/bugs"
+URL_BUGTRACKER = "http://gramps-project.org/bugs/bug_report_page.php"
 URL_WIKISTRING = "http://gramps-project.org/wiki/index.php?title="
 URL_MANUAL_PAGE = "Gramps_%s_Wiki_Manual" % major_version
 URL_MANUAL_DATA = '%s_-_Entering_and_editing_data:_detailed' % URL_MANUAL_PAGE

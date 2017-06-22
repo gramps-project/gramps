@@ -57,6 +57,7 @@ class TopSurnamesGramplet(Gramplet):
         self.dbstate.db.connect('person-update', self.update)
         self.dbstate.db.connect('person-rebuild', self.update)
         self.dbstate.db.connect('family-rebuild', self.update)
+        self.set_text(_("No Family Tree loaded."))
 
     def on_load(self):
         if len(self.gui.data) > 0:

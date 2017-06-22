@@ -201,12 +201,7 @@ class GeoPerson(GeoGraphyView):
         Rebuild the tree with the given person handle as the root.
         """
         active = self.get_active()
-        #if handle:
-        #    self._createmap(handle)
-        #elif active:
-        #    p1 = self.dbstate.db.get_person_from_handle(active)
-        #    self._createmap(p1)
-        self._createmap()
+        self._createmap(None)
         self.uistate.modify_statusbar(self.dbstate)
 
     def build_tree(self):
@@ -216,8 +211,7 @@ class GeoPerson(GeoGraphyView):
         information.
         """
         active = self.get_active()
-        #self._createmap(active)
-        self._createmap()
+        self._createmap(None)
         self.uistate.modify_statusbar(self.dbstate)
 
     def animate(self, menu, marks, index, stepyear):
@@ -288,10 +282,11 @@ class GeoPerson(GeoGraphyView):
                          menu, marks, i, stepyear)
         return False
 
-    def _createmap(self):
+    def _createmap(self, active):
         """
         Create all markers for each people's event in the database which has
         a lat/lon.
+        @param: active is mandatory but unused in this view. Fix : 10088
         """
         dbstate = self.dbstate
         self.cal = config.get('preferences.calendar-format-report')

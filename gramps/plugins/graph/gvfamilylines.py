@@ -895,6 +895,9 @@ class FamilyLinesReport(Report):
             # see if we have a table that needs to be terminated
             if image_path:
                 label += '</TD></TR></TABLE>'
+            else:
+                # non html label is enclosed by "" so escape other "
+                label = label.replace('"', '\\\"')
 
             shape = "box"
             style = "solid"

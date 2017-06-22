@@ -1541,10 +1541,11 @@ class RelationshipView(NavigationView):
             name.add_surname(Surname())
             name.set_primary_surname(0)
             family = self.dbstate.db.get_family_from_handle(handle)
-            father = self.dbstate.db.get_person_from_handle(
-                                        family.get_father_handle())
-            if father:
-                preset_name(father, name)
+            father_h = family.get_father_handle()
+            if father_h:
+                father = self.dbstate.db.get_person_from_handle(father_h)
+                if father:
+                    preset_name(father, name)
             person.set_primary_name(name)
             try:
                 EditPerson(self.dbstate, self.uistate, [], person,
