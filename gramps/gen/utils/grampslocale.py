@@ -920,8 +920,9 @@ class GrampsLocale:
         """
 
         if HAVE_ICU and self.collator:
-            #ICU can digest strings and unicode
-            return self.collator.getCollationKey(string).getByteArray()
+            # ICU can digest strings and unicode
+            # Use hex() as a fix for bug #10077
+            return self.collator.getCollationKey(string).getByteArray().hex()
         else:
             if isinstance(string, bytes):
                 string = string.decode("utf-8", "replace")
