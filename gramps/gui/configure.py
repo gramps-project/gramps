@@ -1245,7 +1245,7 @@ class GrampsPreferences(ConfigureDialog):
     def autobackup_changed(self, obj):
         active = obj.get_active()
         config.set('database.autobackup', active)
-        self.uistate.set_autobackup_timer()
+        self.uistate.set_backup_timer()
 
     def add_date_panel(self, configdialog):
         grid = Gtk.Grid()
