@@ -917,8 +917,11 @@ class DbBsddbRead(DbReadBase, Callback):
         Return the default grouping name for a surname.
         Return type is a unicode object
         """
-        key = surname.encode('utf-8')
-        return self.name_group.get(key, surname)
+        group = self.name_group.get(surname.encode('utf-8'))
+        if group is not None:
+            return group.decode('utf-8')
+        else:
+            return surname
 
     def get_name_group_keys(self):
         """

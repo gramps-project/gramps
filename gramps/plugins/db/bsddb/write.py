@@ -1640,7 +1640,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 if data is not None:
                     txn.delete(sname)
                 if group is not None:
-                    txn.put(sname, group)
+                    txn.put(sname, group.encode('utf-8'))
             if group is None:
                 grouppar = ''
             else:
