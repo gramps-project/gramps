@@ -6,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps50_fi_master_POT_20170529\n"
+"Project-Id-Version: Gramps50_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-03 10:59+0300\n"
-"PO-Revision-Date: 2017-06-04 11:00+0300\n"
+"PO-Revision-Date: 2017-06-26 20:35+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -2164,7 +2164,7 @@ msgstr "{long_month.f[G]} {year}"
 #: ../gramps/gen/datehandler/_datedisplay.py:213
 #, python-format
 msgid "and|{long_month} {year}"
-msgstr "{long_month.f[E]} {year}"
+msgstr "{long_month.f[G]} {year}"
 
 # älä muuta
 #. If "before <Month>" needs a special inflection in your
@@ -17876,7 +17876,7 @@ msgstr "Paperiasetukset"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:149
 msgid "HTML Options"
-msgstr "HTML-asetukset"
+msgstr "HTML asetukset"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:186
 #: ../gramps/gui/plug/report/_graphvizreportdialog.py:150
@@ -35515,7 +35515,7 @@ msgstr "Valitse suodin rajoittamaan henkilöitä jotka näkyvät nettisivustossa
 # uusi/muuttunut20170603
 #: ../gramps/plugins/webreport/narrativeweb.py:9784
 msgid "Html options"
-msgstr "Html valinnat"
+msgstr "Html asetukset"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9787
 #: ../gramps/plugins/webreport/webcal.py:1636
