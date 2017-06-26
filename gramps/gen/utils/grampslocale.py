@@ -923,7 +923,7 @@ class GrampsLocale:
         if HAVE_ICU and self.collator:
             # ICU can digest strings and unicode
             # Use hexlify() as to make a consistent string, fixing bug #10077
-            return hexlify(self.collator.getCollationKey(string)).decode()
+            return hexlify(self.collator.getCollationKey(string).getByteArray()).decode()
         else:
             if isinstance(string, bytes):
                 string = string.decode("utf-8", "replace")
