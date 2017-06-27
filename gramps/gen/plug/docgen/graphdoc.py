@@ -590,6 +590,7 @@ class GVDocBase(BaseDoc, GVDoc):
 
     def start_subgraph(self, graph_id):
         """ Implement GVDocBase.start_subgraph() """
+        graph_id = graph_id.replace(' ', '_') # for user-defined ID with space
         self.write(
             '  subgraph cluster_%s\n' % graph_id +
             '  {\n' +
