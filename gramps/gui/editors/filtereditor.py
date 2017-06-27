@@ -1184,7 +1184,7 @@ class FilterEditor(ManagedWindow):
             if self.check_recursive_filters(self.namespace, name):
                 QuestionDialog( _('Delete Filter?'),
                                 _('This filter is currently being used '
-                                  'as the base for other filters. Deleting'
+                                  'as the base for other filters. Deleting '
                                   'this filter will result in removing all '
                                   'other filters that depend on it.'),
                                 _('Delete Filter'),
