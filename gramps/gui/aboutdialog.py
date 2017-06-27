@@ -127,10 +127,10 @@ class GrampsAboutDialog(Gtk.AboutDialog):
         """
         if hasattr(os, "uname"):
             operatingsystem = os.uname()[0]
-            distribution = os.uname()[2]
-        else:
+            distro = "\n" + _("Distribution: %s") % ellipses(os.uname()[2])
+        else: # probably Windows
             operatingsystem = sys.platform
-            distribution = " "
+            distro = "" # print nothing if there's nothing to print
 
         sqlite = ''
         if __debug__:
@@ -143,14 +143,13 @@ class GrampsAboutDialog(Gtk.AboutDialog):
                  "BSDDB: %s \n" +
                  sqlite +
                  "LANG: %s\n" +
-                 "OS: %s\n" +
-                 "Distribution: %s")
+                 "OS: %s" +
+                 distro)
                 % (ellipses(str(VERSION)),
                    ellipses(str(sys.version).replace('\n','')),
                    BSDDB_STR,
                    ellipses(get_env_var('LANG','')),
-                   ellipses(operatingsystem),
-                   ellipses(distribution)))
+                   ellipses(operatingsystem)))
 
 #-------------------------------------------------------------------------
 #
