@@ -23783,7 +23783,7 @@ msgstr "VCARD innflutningsskýrsla: Engar villur fundust"
 #: ../gramps/plugins/importer/importvcard.py:256
 #, python-format
 msgid "VCARD import report: %s errors detected\n"
-msgstr "VCARD innflutningsskýrsla: %s villur fundust"
+msgstr "VCARD innflutningsskýrsla: %s villur fundust\n"
 
 #: ../gramps/plugins/importer/importvcard.py:321
 #, python-format
