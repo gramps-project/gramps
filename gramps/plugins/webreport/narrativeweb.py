@@ -4058,6 +4058,10 @@ class PlacePages(BasePage):
                     latitude, longitude = conv_lat_lon(place.get_latitude(),
                                                        place.get_longitude(),
                                                        "D.D8")
+                    if not longitude:
+                        longitude = 0.0
+                    if not latitude:
+                        latitude = 0.0
                     placetitle = place_name
 
                     # add narrative-maps CSS...
@@ -4127,8 +4131,7 @@ class PlacePages(BasePage):
                                 canvas += jsc
                                 param1 = xml_lang()[3:5].lower()
                                 jsc += MARKER_PATH % marker_path
-                                jsc += OSM_MARKERS % ([[float(longitude),
-                                                        float(latitude),
+                                jsc += OSM_MARKERS % ([[longitude, latitude,
                                                         placetitle]],
                                                      longitude, latitude, 10)
 
