@@ -169,10 +169,10 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
         """
         if hasattr(os, "uname"):
             operatingsystem = os.uname()[0]
-            distribution = os.uname()[2]
-        else:
+            distribution = "Distribution: %s\n" % os.uname()[2]
+        else: # probably Windows
             operatingsystem = sys.platform
-            distribution = " "
+            distribution = "" # print nothing if there's nothing to print
 
         sqlite = ''
         if __debug__:
@@ -185,7 +185,7 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
                "%s"\
                "LANG: %s\n"\
                "OS: %s\n"\
-               "Distribution: %s\n\n"\
+               "%s\n"\
                "GTK version    : %s\n"\
                "gobject version: %s\n"\
                "cairo version  : %s"\
