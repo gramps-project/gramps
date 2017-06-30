@@ -2650,20 +2650,15 @@ class BasePage:
                                 mime_type = media.get_mime_type()
                                 if mime_type:
                                     if mime_type.startswith("image/"):
-                                        real_path, newpath = \
+                                        real_path, new_path = \
                                             self.report.prepare_copy_media(
                                                 media)
                                         newpath = self.report.build_url_fname(
-                                            newpath, uplink=self.uplink)
-                                        dest_dir = os.path.dirname(
-                                            self.report.cur_fname)
-                                        if dest_dir:
-                                            newpath = os.path.join(dest_dir,
-                                                                   newpath)
+                                            new_path, uplink=self.uplink)
                                         self.report.copy_file(
                                             media_path_full(self.r_db,
                                                             media.get_path()),
-                                            newpath)
+                                            new_path)
 
                                         tmp += Html("li",
                                                     self.media_link(
