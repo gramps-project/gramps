@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps50\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-29 09:45+0300\n"
-"PO-Revision-Date: 2017-06-29 10:13+0300\n"
+"POT-Creation-Date: 2017-06-30 08:39+0300\n"
+"PO-Revision-Date: 2017-06-30 08:42+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -10577,6 +10577,16 @@ msgstr "Иван Комарицын, Василий Хачатуров, Егор
 #, python-format
 msgid "Distribution: %s"
 msgstr "Ядро: %s"
+
+#: ../gramps/gui/aboutdialog.py:145
+#, python-format
+msgid "LANG: %s\n"
+msgstr "Язык: %s\n"
+
+#: ../gramps/gui/aboutdialog.py:146
+#, python-format
+msgid "OS: %s"
+msgstr "Система: %s"
 
 #: ../gramps/gui/clipboard.py:71
 msgid "manual|Using_the_Clipboard"
