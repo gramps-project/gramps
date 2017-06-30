@@ -25,7 +25,7 @@
 #-------------------------------------------------------------------------
 import os
 import webbrowser
-
+import sys
 #------------------------------------------------------------------------
 #
 # Gramps modules
@@ -33,7 +33,7 @@ import webbrowser
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.const import URL_MANUAL_PAGE, URL_WIKISTRING
-from gramps.gen.constfunc import is_quartz
+from gramps.gen.constfunc import is_quartz, mac
 from gramps.gen.config import config
 from .utils import open_file_with_default_application as run_file
 
@@ -74,4 +74,9 @@ def display_url(link, uistate=None):
     """
     Open the specified URL in a browser.
     """
-    webbrowser.open_new_tab(link)
+    if (mac() and sys.version_info.major == 3 and sys.version_info.minor < 5):
+        import subprocess
+        proc = subprocess.call(['/usr/bin/open', link],
+                               stderr=subprocess.STDOUT)
+    else:
+        webbrowser.open_new_tab(link)
