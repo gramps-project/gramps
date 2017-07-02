@@ -633,6 +633,7 @@ gramps/plugins/importer/importgedcom.py
 gramps/plugins/importer/importgeneweb.py
 gramps/plugins/importer/importgpkg.py
 gramps/plugins/importer/importgrdb.py
+gramps/plugins/importer/importprogen.glade
 gramps/plugins/importer/importprogen.py
 gramps/plugins/importer/importvcard.py
 gramps/plugins/importer/importxml.py
@@ -646,6 +647,7 @@ gramps/plugins/lib/libnarrate.py
 gramps/plugins/lib/libpersonview.py
 gramps/plugins/lib/libplaceview.py
 gramps/plugins/lib/libplugins.gpr.py
+gramps/plugins/lib/libprogen.py
 gramps/plugins/lib/librecords.py
 gramps/plugins/lib/libsubstkeyword.py
 #gramps/plugins/lib/libtranslate.py
