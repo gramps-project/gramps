@@ -2210,7 +2210,7 @@ msgstr "Jour MOI Année"
 #: ../gramps/plugins/drawreport/calendarreport.py:233
 #, python-brace-format
 msgid "{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 # trunk
 #. first date in a span
@@ -2221,7 +2221,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:189
 #, python-brace-format
 msgid "from|{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 # trunk
 #. second date in a span
@@ -2232,7 +2232,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:197
 #, python-brace-format
 msgid "to|{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 # trunk
 #. first date in a range
@@ -2243,7 +2243,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:205
 #, python-brace-format
 msgid "between|{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 # trunk
 #. second date in a range
@@ -2254,7 +2254,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:213
 #, python-brace-format
 msgid "and|{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 # trunk
 #. If "before <Month>" needs a special inflection in your
@@ -2264,7 +2264,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:220
 #, python-brace-format
 msgid "before|{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 # trunk
 #. If "after <Month>" needs a special inflection in your
@@ -2274,7 +2274,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:227
 #, python-brace-format
 msgid "after|{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 # trunk
 #. If "about <Month>" needs a special inflection in your
@@ -2284,7 +2284,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:234
 #, python-brace-format
 msgid "about|{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 # trunk
 #. If "estimated <Month>" needs a special inflection in your
@@ -2294,7 +2294,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:241
 #, python-brace-format
 msgid "estimated|{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 # trunk
 #. If "calculated <Month>" needs a special inflection in your
@@ -2304,13 +2304,13 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:248
 #, python-brace-format
 msgid "calculated|{long_month} {year}"
-msgstr ""
+msgstr "{long_month} {year}"
 
 # trunk
 #: ../gramps/gen/datehandler/_datedisplay.py:253
 #, python-brace-format
 msgid "{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 # trunk
 #. first date in a span
@@ -2321,7 +2321,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:261
 #, python-brace-format
 msgid "from|{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 # trunk
 #. second date in a span
@@ -2332,7 +2332,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:269
 #, python-brace-format
 msgid "to|{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 # trunk
 #. first date in a range
@@ -2343,7 +2343,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:277
 #, python-brace-format
 msgid "between|{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 # trunk
 #. second date in a range
@@ -2354,7 +2354,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:285
 #, python-brace-format
 msgid "and|{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 # trunk
 #. If "before <Month>" needs a special inflection in your
@@ -2364,7 +2364,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:292
 #, python-brace-format
 msgid "before|{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 # trunk
 #. If "after <Month>" needs a special inflection in your
@@ -2374,7 +2374,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:299
 #, python-brace-format
 msgid "after|{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 # trunk
 #. If "about <Month>" needs a special inflection in your
@@ -2384,7 +2384,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:306
 #, python-brace-format
 msgid "about|{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 # trunk
 #. If "estimated <Month>" needs a special inflection in your
@@ -2394,7 +2394,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:313
 #, python-brace-format
 msgid "estimated|{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 # trunk
 #. If "calculated <Month>" needs a special inflection in your
@@ -2404,7 +2404,7 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:320
 #, python-brace-format
 msgid "calculated|{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 # trunk
 #. If there is no special inflection for "from <Month>"
@@ -2496,35 +2496,35 @@ msgstr ""
 #: ../gramps/gen/datehandler/_datedisplay.py:529
 #, python-brace-format
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 
 # trunk
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:635
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
-msgstr ""
+msgstr "{long_month} {day:d}, {year}"
 
 # trunk
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:661
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
-msgstr ""
+msgstr "{short_month} {day:d}, {year}"
 
 # trunk
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:687
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
-msgstr ""
+msgstr "{day:d} {long_month} {year}"
 
 # trunk
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:713
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
-msgstr ""
+msgstr "{day:d} {short_month} {year}"
 
 # trunk
 #: ../gramps/gen/datehandler/_dateparser.py:421
@@ -2657,62 +2657,62 @@ msgstr "déc"
 #. DateParser code!
 #: ../gramps/gen/datehandler/_datestrings.py:116
 msgid "alternative month names for January||"
-msgstr ""
+msgstr "|"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:117
 msgid "alternative month names for February||"
-msgstr ""
+msgstr "|"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:118
 msgid "alternative month names for March||"
-msgstr ""
+msgstr "|"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:119
 msgid "alternative month names for April||"
-msgstr ""
+msgstr "|"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:120
 msgid "alternative month names for May||"
-msgstr ""
+msgstr "|"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:121
 msgid "alternative month names for June||"
-msgstr ""
+msgstr "|"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:122
 msgid "alternative month names for July||"
-msgstr ""
+msgstr "|"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:123
 msgid "alternative month names for August||"
-msgstr ""
+msgstr "|"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:124
 msgid "alternative month names for September||"
-msgstr ""
+msgstr "|"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:125
 msgid "alternative month names for October||"
-msgstr ""
+msgstr "|"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:126
 msgid "alternative month names for November||"
-msgstr ""
+msgstr "|"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:127
 msgid "alternative month names for December||"
-msgstr ""
+msgstr "|"
 
 # trunk
 #. Must appear in the order indexed by Date.CAL_... numeric constants
@@ -2757,67 +2757,67 @@ msgstr "Suédois"
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:146
 msgid "Hebrew month lexeme|Tishri"
-msgstr ""
+msgstr "Tishri"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:147
 msgid "Hebrew month lexeme|Heshvan"
-msgstr ""
+msgstr "Heshvan"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:148
 msgid "Hebrew month lexeme|Kislev"
-msgstr ""
+msgstr "Kislev"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:149
 msgid "Hebrew month lexeme|Tevet"
-msgstr ""
+msgstr "Tevet"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:150
 msgid "Hebrew month lexeme|Shevat"
-msgstr ""
+msgstr "Shevat"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:151
 msgid "Hebrew month lexeme|AdarI"
-msgstr ""
+msgstr "AdarI"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:152
 msgid "Hebrew month lexeme|AdarII"
-msgstr ""
+msgstr "AdarII"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:153
 msgid "Hebrew month lexeme|Nisan"
-msgstr ""
+msgstr "Nisan"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:154
 msgid "Hebrew month lexeme|Iyyar"
-msgstr ""
+msgstr "Iyyar"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:155
 msgid "Hebrew month lexeme|Sivan"
-msgstr ""
+msgstr "Sivan"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:156
 msgid "Hebrew month lexeme|Tammuz"
-msgstr ""
+msgstr "Tammuz"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:157
 msgid "Hebrew month lexeme|Av"
-msgstr ""
+msgstr "Av"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:158
 msgid "Hebrew month lexeme|Elul"
-msgstr ""
+msgstr "Elul"
 
 # trunk
 #. TRANSLATORS: see
@@ -2826,62 +2826,62 @@ msgstr ""
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:167
 msgid "French month lexeme|Vendémiaire"
-msgstr ""
+msgstr "Vendémiaire"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:168
 msgid "French month lexeme|Brumaire"
-msgstr ""
+msgstr "Brumaire"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:169
 msgid "French month lexeme|Frimaire"
-msgstr ""
+msgstr "Frimaire"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:170
 msgid "French month lexeme|Nivôse"
-msgstr ""
+msgstr "Nivôse"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:171
 msgid "French month lexeme|Pluviôse"
-msgstr ""
+msgstr "Pluviôse"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:172
 msgid "French month lexeme|Ventôse"
-msgstr ""
+msgstr "Ventôse"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:173
 msgid "French month lexeme|Germinal"
-msgstr ""
+msgstr "Germinal"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:174
 msgid "French month lexeme|Floréal"
-msgstr ""
+msgstr "Floréal"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:175
 msgid "French month lexeme|Prairial"
-msgstr ""
+msgstr "Prairial"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:176
 msgid "French month lexeme|Messidor"
-msgstr ""
+msgstr "Messidor"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:177
 msgid "French month lexeme|Thermidor"
-msgstr ""
+msgstr "Thermidor"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:178
 msgid "French month lexeme|Fructidor"
-msgstr ""
+msgstr "Fructidor"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:179
@@ -2895,62 +2895,62 @@ msgstr "Sansculottides"
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:188
 msgid "Islamic month lexeme|Muharram"
-msgstr ""
+msgstr "Muharram"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:189
 msgid "Islamic month lexeme|Safar"
-msgstr ""
+msgstr "Safar"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:190
 msgid "Islamic month lexeme|Rabi`al-Awwal"
-msgstr ""
+msgstr "Rabi`al-Awwal"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:191
 msgid "Islamic month lexeme|Rabi`ath-Thani"
-msgstr ""
+msgstr "Rabi`ath-Thani"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:192
 msgid "Islamic month lexeme|Jumada l-Ula"
-msgstr ""
+msgstr "Jumada l-Ula"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:193
 msgid "Islamic month lexeme|Jumada t-Tania"
-msgstr ""
+msgstr "Jumada t-Tania"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgid "Islamic month lexeme|Rajab"
-msgstr ""
+msgstr "Rajab"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:195
 msgid "Islamic month lexeme|Sha`ban"
-msgstr ""
+msgstr "Sha`ban"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:196
 msgid "Islamic month lexeme|Ramadan"
-msgstr ""
+msgstr "Ramadan"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:197
 msgid "Islamic month lexeme|Shawwal"
-msgstr ""
+msgstr "Shawwal"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:198
 msgid "Islamic month lexeme|Dhu l-Qa`da"
-msgstr ""
+msgstr "Dhu l-Qa`da"
 
 # trunk
 #: ../gramps/gen/datehandler/_datestrings.py:199
 msgid "Islamic month lexeme|Dhu l-Hijja"
-msgstr ""
+msgstr "Dhu l-Hijja"
 
 # master
 #. TRANSLATORS: see
@@ -2959,62 +2959,62 @@ msgstr ""
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:208
 msgid "Persian month lexeme|Farvardin"
-msgstr ""
+msgstr "Farvardin"
 
 # master
 #: ../gramps/gen/datehandler/_datestrings.py:209
 msgid "Persian month lexeme|Ordibehesht"
-msgstr ""
+msgstr "Ordibehesht"
 
 # master
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgid "Persian month lexeme|Khordad"
-msgstr ""
+msgstr "Khordad"
 
 # master
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgid "Persian month lexeme|Tir"
-msgstr ""
+msgstr "Tir"
 
 # master
 #: ../gramps/gen/datehandler/_datestrings.py:212
 msgid "Persian month lexeme|Mordad"
-msgstr ""
+msgstr "Mordad"
 
 # master
 #: ../gramps/gen/datehandler/_datestrings.py:213
 msgid "Persian month lexeme|Shahrivar"
-msgstr ""
+msgstr "Shahrivar"
 
 # master
 #: ../gramps/gen/datehandler/_datestrings.py:214
 msgid "Persian month lexeme|Mehr"
-msgstr ""
+msgstr "Mehr"
 
 # master
 #: ../gramps/gen/datehandler/_datestrings.py:215
 msgid "Persian month lexeme|Aban"
-msgstr ""
+msgstr "Aban"
 
 # master
 #: ../gramps/gen/datehandler/_datestrings.py:216
 msgid "Persian month lexeme|Azar"
-msgstr ""
+msgstr "Azar"
 
 # master
 #: ../gramps/gen/datehandler/_datestrings.py:217
 msgid "Persian month lexeme|Dey"
-msgstr ""
+msgstr "Dey"
 
 # master
 #: ../gramps/gen/datehandler/_datestrings.py:218
 msgid "Persian month lexeme|Bahman"
-msgstr ""
+msgstr "Bahman"
 
 # master
 #: ../gramps/gen/datehandler/_datestrings.py:219
 msgid "Persian month lexeme|Esfand"
-msgstr ""
+msgstr "Esfand"
 
 # trunk
 #. TRANSLATORS: if the modifier is after the date
