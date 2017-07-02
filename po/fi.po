@@ -6,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps50_fi\n"
+"Project-Id-Version: Gramps51_fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-28 12:57+0300\n"
-"PO-Revision-Date: 2017-06-28 14:16+0300\n"
+"POT-Creation-Date: 2017-07-01 19:29+0300\n"
+"PO-Revision-Date: 2017-07-02 19:32+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -122,7 +122,7 @@ msgstr "Kroatia"
 
 #: ../data/holidays.xml.in.h:7
 msgid "England"
-msgstr "Yhdistynyt kuningaskunta (Englanti)"
+msgstr "Englanti"
 
 #: ../data/holidays.xml.in.h:8
 msgid "Finland"
@@ -1073,7 +1073,7 @@ msgid ""
 msgstr ""
 "<b>The Gramps käyttölisenssi</b><br/>Gramps on vapaasti levitettävissä GNU "
 "General Public Licence -lisenssin ehtojen mukaisesti, kts. http://www.gnu."
-"org/licenses/licenses.html#GPL"
+"org/licenses/licenses.html#GPL."
 
 #: ../data/tips.xml.in.h:63
 msgid ""
@@ -1593,7 +1593,7 @@ msgstr "Sukupuu \"%s\":"
 #: ../gramps/plugins/textreport/placereport.py:183
 #: ../gramps/plugins/webreport/narrativeweb.py:1107
 #: ../gramps/plugins/webreport/narrativeweb.py:2640
-#: ../gramps/plugins/webreport/narrativeweb.py:2690
+#: ../gramps/plugins/webreport/narrativeweb.py:2685
 #, python-format
 msgid "%(str1)s: %(str2)s"
 msgstr "%(str1)s, %(str2)s"
@@ -1749,8 +1749,8 @@ msgstr "Lukittu %s toimesta"
 #: ../gramps/plugins/webreport/narrativeweb.py:2226
 #: ../gramps/plugins/webreport/narrativeweb.py:2233
 #: ../gramps/plugins/webreport/narrativeweb.py:2629
-#: ../gramps/plugins/webreport/narrativeweb.py:2731
-#: ../gramps/plugins/webreport/narrativeweb.py:2846
+#: ../gramps/plugins/webreport/narrativeweb.py:2726
+#: ../gramps/plugins/webreport/narrativeweb.py:2841
 msgid "Unknown"
 msgstr "Tuntematon"
 
@@ -1863,7 +1863,7 @@ msgstr "=muoto"
 
 #: ../gramps/cli/plug/__init__.py:285
 msgid "Output file format."
-msgstr "Tulostiedoston muoto"
+msgstr "Tulostiedoston muoto."
 
 #: ../gramps/cli/plug/__init__.py:286 ../gramps/cli/plug/__init__.py:287
 msgid "=name"
@@ -1871,7 +1871,7 @@ msgstr "=nimi"
 
 #: ../gramps/cli/plug/__init__.py:286
 msgid "Style name."
-msgstr "Tyylin nimi:"
+msgstr "Tyylin nimi."
 
 #: ../gramps/cli/plug/__init__.py:287
 msgid "Paper size name."
@@ -2045,6 +2045,7 @@ msgstr ""
 "N=tammikuu|G=tammikuun|IN=tammikuussa|P=tammikuuta|IL=tammikuuhun|"
 "E=tammikuusta"
 
+# muutettu20170702
 #: ../gramps/gen/const.py:220
 msgid ""
 "Gramps\n"
@@ -2052,8 +2053,8 @@ msgid ""
 "is a personal genealogy program."
 msgstr ""
 "Gramps\n"
-" (Genealogical Management Programming System) on henkilökohtainen ohjelma \n"
-" sukututkimuksen ja analysoinnin hallintaan."
+" (Genealogical Research and Analysis Management Programming System)\n"
+"on henkilökohtainen sukututkimusohjelma."
 
 #: ../gramps/gen/const.py:250
 msgid "surname|none"
@@ -2853,7 +2854,7 @@ msgstr "ennen "
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:228
 msgid "date modifier|after "
-msgstr " jälkeen"
+msgstr "jälkeen"
 
 #. TRANSLATORS: if the modifier is after the date
 #. put the space ahead of the word instead of after it
@@ -2897,38 +2898,31 @@ msgstr "Perjantai"
 msgid "Saturday"
 msgstr "Lauantai"
 
-# uusi/muutettu20170317
 #. Icelandic needs them
 #: ../gramps/gen/datehandler/_datestrings.py:252
 msgid "Sun"
 msgstr "Sun"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/datehandler/_datestrings.py:253
 msgid "Mon"
 msgstr "Mon"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/datehandler/_datestrings.py:254
 msgid "Tue"
 msgstr "Tue"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/datehandler/_datestrings.py:255
 msgid "Wed"
 msgstr "Wed"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/datehandler/_datestrings.py:256
 msgid "Thu"
 msgstr "Thu"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/datehandler/_datestrings.py:257
 msgid "Fri"
 msgstr "Fri"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/datehandler/_datestrings.py:258
 msgid "Sat"
 msgstr "Sat"
@@ -2970,7 +2964,7 @@ msgstr ""
 "versiota %(min_vers)s ja aina versioon %(max_vers)s \n"
 "\n"
 "Päivitä Gramps vastaavaan versioon tai käytä XML-muotoa vaihtaaksesi tietoa "
-"eri skeemaversioiden välillä. "
+"eri skeemaversioiden välillä."
 
 #: ../gramps/gen/db/exceptions.py:114
 #, python-format
@@ -3009,7 +3003,7 @@ msgstr ""
 "\n"
 "Sinun pitäisi käynnistää %(bold_start)suudempi%(bold_end)s Gramps versio ja "
 "%(wiki_backup_html_start)stehdä varmuuskopio%(html_end)s sukupuustasi. Voit "
-"sitten tuoda tämän varmuuskopion tähän Gramps versioon. "
+"sitten tuoda tämän varmuuskopion tähän Gramps versioon."
 
 #: ../gramps/gen/db/exceptions.py:166
 #, python-format
@@ -3203,29 +3197,29 @@ msgstr "Henkilöiden määrä"
 #: ../gramps/gen/db/generic.py:2443 ../gramps/plugins/db/bsddb/read.py:2002
 #: ../gramps/plugins/db/bsddb/write.py:2293
 #: ../gramps/plugins/gramplet/statsgramplet.py:117
-#: ../gramps/plugins/webreport/narrativeweb.py:8221
-#: ../gramps/plugins/webreport/narrativeweb.py:8288
+#: ../gramps/plugins/webreport/narrativeweb.py:8219
+#: ../gramps/plugins/webreport/narrativeweb.py:8286
 msgid "Number of families"
 msgstr "Perheitä"
 
 #: ../gramps/gen/db/generic.py:2444 ../gramps/plugins/db/bsddb/read.py:2003
 #: ../gramps/plugins/db/bsddb/write.py:2294
-#: ../gramps/plugins/webreport/narrativeweb.py:8249
-#: ../gramps/plugins/webreport/narrativeweb.py:8300
+#: ../gramps/plugins/webreport/narrativeweb.py:8247
+#: ../gramps/plugins/webreport/narrativeweb.py:8298
 msgid "Number of sources"
 msgstr "Lähteiden määrä"
 
 #: ../gramps/gen/db/generic.py:2445 ../gramps/plugins/db/bsddb/read.py:2004
 #: ../gramps/plugins/db/bsddb/write.py:2295
-#: ../gramps/plugins/webreport/narrativeweb.py:8253
-#: ../gramps/plugins/webreport/narrativeweb.py:8303
+#: ../gramps/plugins/webreport/narrativeweb.py:8251
+#: ../gramps/plugins/webreport/narrativeweb.py:8301
 msgid "Number of citations"
 msgstr "Lainausten määrä"
 
 #: ../gramps/gen/db/generic.py:2446 ../gramps/plugins/db/bsddb/read.py:2005
 #: ../gramps/plugins/db/bsddb/write.py:2296
-#: ../gramps/plugins/webreport/narrativeweb.py:8242
-#: ../gramps/plugins/webreport/narrativeweb.py:8294
+#: ../gramps/plugins/webreport/narrativeweb.py:8240
+#: ../gramps/plugins/webreport/narrativeweb.py:8292
 msgid "Number of events"
 msgstr "Tapahtumien määrä"
 
@@ -3236,15 +3230,15 @@ msgstr "Median määrä"
 
 #: ../gramps/gen/db/generic.py:2448 ../gramps/plugins/db/bsddb/read.py:2007
 #: ../gramps/plugins/db/bsddb/write.py:2298
-#: ../gramps/plugins/webreport/narrativeweb.py:8245
-#: ../gramps/plugins/webreport/narrativeweb.py:8297
+#: ../gramps/plugins/webreport/narrativeweb.py:8243
+#: ../gramps/plugins/webreport/narrativeweb.py:8295
 msgid "Number of places"
 msgstr "Paikkojen määrä"
 
 #: ../gramps/gen/db/generic.py:2449 ../gramps/plugins/db/bsddb/read.py:2008
 #: ../gramps/plugins/db/bsddb/write.py:2299
-#: ../gramps/plugins/webreport/narrativeweb.py:8257
-#: ../gramps/plugins/webreport/narrativeweb.py:8306
+#: ../gramps/plugins/webreport/narrativeweb.py:8255
+#: ../gramps/plugins/webreport/narrativeweb.py:8304
 msgid "Number of repositories"
 msgstr "Arkistojen määrä"
 
@@ -3269,7 +3263,7 @@ msgstr "Tietokantaversio"
 #: ../gramps/gui/views/treemodels/placemodel.py:131
 #: ../gramps/plugins/lib/libtreebase.py:707
 msgid ","
-msgstr ", "
+msgstr ","
 
 #: ../gramps/gen/display/name.py:352
 msgid "Default format (defined by Gramps preferences)"
@@ -3429,7 +3423,6 @@ msgstr ""
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
 msgstr "VIRHE: suodinta %s ei voi ladata virheettömästi. Muokkaa suodinta!"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/filters/_genericfilter.py:139
 #: ../gramps/gen/filters/_genericfilter.py:169
 msgid "Applying ..."
@@ -3461,7 +3454,7 @@ msgstr "Käytetään ..."
 #: ../gramps/plugins/textreport/indivcomplete.py:1056
 #: ../gramps/plugins/textreport/recordsreport.py:217
 #: ../gramps/plugins/tool/sortevents.py:167
-#: ../gramps/plugins/webreport/narrativeweb.py:9762
+#: ../gramps/plugins/webreport/narrativeweb.py:9760
 #: ../gramps/plugins/webreport/webcal.py:1623
 msgid "Filter"
 msgstr "Suodin"
@@ -3766,7 +3759,6 @@ msgstr "Ei kuvausta"
 msgid "Every citation"
 msgstr "Kaikki lainaukset"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:46
 msgid "Matches every citation in the database"
 msgstr "Poimii kaikki lainaukset tietokannasta"
@@ -5358,12 +5350,10 @@ msgstr "Perhesuotimet"
 msgid "Name:"
 msgstr "Nimi:"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:42
 msgid "Soundex match of People with the <name>"
 msgstr "Soundex henkilöille, joilla on <nimi>"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:43
 msgid ""
 "Soundex Match of people with a specified name. First name, Surname, Call "
@@ -5541,8 +5531,8 @@ msgstr "Poimii henkilön kahteen tai useampaan kertaan olevat esivanhemmat"
 #: ../gramps/plugins/graph/gvfamilylines.py:276
 #: ../gramps/plugins/graph/gvhourglass.py:370
 #: ../gramps/plugins/graph/gvrelgraph.py:884
-#: ../gramps/plugins/webreport/narrativeweb.py:8214
-#: ../gramps/plugins/webreport/narrativeweb.py:8281
+#: ../gramps/plugins/webreport/narrativeweb.py:8212
+#: ../gramps/plugins/webreport/narrativeweb.py:8279
 msgid "Females"
 msgstr "Naiset"
 
@@ -5615,8 +5605,8 @@ msgstr ""
 #: ../gramps/plugins/graph/gvfamilylines.py:272
 #: ../gramps/plugins/graph/gvhourglass.py:366
 #: ../gramps/plugins/graph/gvrelgraph.py:880
-#: ../gramps/plugins/webreport/narrativeweb.py:8212
-#: ../gramps/plugins/webreport/narrativeweb.py:8279
+#: ../gramps/plugins/webreport/narrativeweb.py:8210
+#: ../gramps/plugins/webreport/narrativeweb.py:8277
 msgid "Males"
 msgstr "Miehet"
 
@@ -6438,8 +6428,8 @@ msgstr "Kasti"
 #: ../gramps/plugins/webreport/narrativeweb.py:1043
 #: ../gramps/plugins/webreport/narrativeweb.py:1325
 #: ../gramps/plugins/webreport/narrativeweb.py:2504
-#: ../gramps/plugins/webreport/narrativeweb.py:3165
-#: ../gramps/plugins/webreport/narrativeweb.py:5924
+#: ../gramps/plugins/webreport/narrativeweb.py:3160
+#: ../gramps/plugins/webreport/narrativeweb.py:5922
 msgid "Description"
 msgstr "Kuvaus"
 
@@ -6524,8 +6514,8 @@ msgstr "Tyhjä"
 #: ../gramps/plugins/textreport/familygroup.py:528
 #: ../gramps/plugins/textreport/tagreport.py:168
 #: ../gramps/plugins/view/relview.py:612
-#: ../gramps/plugins/webreport/narrativeweb.py:3314
-#: ../gramps/plugins/webreport/narrativeweb.py:6191
+#: ../gramps/plugins/webreport/narrativeweb.py:3309
+#: ../gramps/plugins/webreport/narrativeweb.py:6189
 msgid "Birth"
 msgstr "Syntymä"
 
@@ -6592,13 +6582,13 @@ msgstr "Painike"
 #: ../gramps/plugins/quickview/filterbyname.py:276
 #: ../gramps/plugins/tool/findloop.py:103
 #: ../gramps/plugins/tool/findloop.py:107
-#: ../gramps/plugins/webreport/narrativeweb.py:2971
-#: ../gramps/plugins/webreport/narrativeweb.py:4266
-#: ../gramps/plugins/webreport/narrativeweb.py:4477
-#: ../gramps/plugins/webreport/narrativeweb.py:5025
-#: ../gramps/plugins/webreport/narrativeweb.py:5526
-#: ../gramps/plugins/webreport/narrativeweb.py:7370
-#: ../gramps/plugins/webreport/narrativeweb.py:7945
+#: ../gramps/plugins/webreport/narrativeweb.py:2966
+#: ../gramps/plugins/webreport/narrativeweb.py:4264
+#: ../gramps/plugins/webreport/narrativeweb.py:4475
+#: ../gramps/plugins/webreport/narrativeweb.py:5023
+#: ../gramps/plugins/webreport/narrativeweb.py:5524
+#: ../gramps/plugins/webreport/narrativeweb.py:7368
+#: ../gramps/plugins/webreport/narrativeweb.py:7943
 msgid "Gramps ID"
 msgstr "Gramps ID"
 
@@ -6664,10 +6654,10 @@ msgstr "Gramps ID"
 #: ../gramps/plugins/webreport/narrativeweb.py:1352
 #: ../gramps/plugins/webreport/narrativeweb.py:1519
 #: ../gramps/plugins/webreport/narrativeweb.py:2634
-#: ../gramps/plugins/webreport/narrativeweb.py:4265
-#: ../gramps/plugins/webreport/narrativeweb.py:5184
-#: ../gramps/plugins/webreport/narrativeweb.py:5549
-#: ../gramps/plugins/webreport/narrativeweb.py:6846
+#: ../gramps/plugins/webreport/narrativeweb.py:4263
+#: ../gramps/plugins/webreport/narrativeweb.py:5182
+#: ../gramps/plugins/webreport/narrativeweb.py:5547
+#: ../gramps/plugins/webreport/narrativeweb.py:6844
 msgid "Date"
 msgstr "Päivämäärä"
 
@@ -6727,7 +6717,7 @@ msgstr "Lähde"
 #: ../gramps/plugins/view/view.gpr.py:105
 #: ../gramps/plugins/webreport/narrativeweb.py:1044
 #: ../gramps/plugins/webreport/narrativeweb.py:1679
-#: ../gramps/plugins/webreport/narrativeweb.py:7143
+#: ../gramps/plugins/webreport/narrativeweb.py:7141
 msgid "Notes"
 msgstr "Lisätiedot"
 
@@ -6756,8 +6746,8 @@ msgstr "Lisätiedot"
 #: ../gramps/plugins/webreport/narrativeweb.py:2060
 #: ../gramps/plugins/webreport/narrativeweb.py:2107
 #: ../gramps/plugins/webreport/narrativeweb.py:2407
-#: ../gramps/plugins/webreport/narrativeweb.py:5151
-#: ../gramps/plugins/webreport/narrativeweb.py:5346
+#: ../gramps/plugins/webreport/narrativeweb.py:5149
+#: ../gramps/plugins/webreport/narrativeweb.py:5344
 msgid "Media"
 msgstr "Media"
 
@@ -6867,7 +6857,7 @@ msgstr "Yksityinen"
 #: ../gramps/plugins/textreport/indivcomplete.py:660
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
 #: ../gramps/plugins/view/relview.py:648
-#: ../gramps/plugins/webreport/narrativeweb.py:6390
+#: ../gramps/plugins/webreport/narrativeweb.py:6388
 msgid "unknown"
 msgstr "tuntematon"
 
@@ -7076,7 +7066,6 @@ msgstr "Paikka"
 msgid "Citations"
 msgstr "Lainaukset"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/lib/eventref.py:95
 msgid "Event reference"
 msgstr "Tapahtumaviite"
@@ -7156,7 +7145,7 @@ msgstr "Elinkaaren tapahtumat"
 #: ../gramps/plugins/tool/reorderids.glade:657
 #: ../gramps/plugins/view/relview.py:1378
 #: ../gramps/plugins/view/relview.py:1402
-#: ../gramps/plugins/webreport/narrativeweb.py:3571
+#: ../gramps/plugins/webreport/narrativeweb.py:3566
 msgid "Family"
 msgstr "Perhe"
 
@@ -7182,8 +7171,8 @@ msgstr "Oikeudellinen"
 
 #: ../gramps/gen/lib/eventtype.py:153 ../gramps/gen/lib/eventtype.py:195
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:463
-#: ../gramps/plugins/webreport/narrativeweb.py:3143
-#: ../gramps/plugins/webreport/narrativeweb.py:8042
+#: ../gramps/plugins/webreport/narrativeweb.py:3138
+#: ../gramps/plugins/webreport/narrativeweb.py:8040
 msgid "Residence"
 msgstr "Asuinpaikka"
 
@@ -7200,8 +7189,8 @@ msgstr "Muu"
 #: ../gramps/plugins/textreport/familygroup.py:534
 #: ../gramps/plugins/textreport/tagreport.py:174
 #: ../gramps/plugins/view/relview.py:621 ../gramps/plugins/view/relview.py:646
-#: ../gramps/plugins/webreport/narrativeweb.py:3318
-#: ../gramps/plugins/webreport/narrativeweb.py:6195
+#: ../gramps/plugins/webreport/narrativeweb.py:3313
+#: ../gramps/plugins/webreport/narrativeweb.py:6193
 msgid "Death"
 msgstr "Kuolema"
 
@@ -7334,7 +7323,7 @@ msgstr "Testamentti"
 #: ../gramps/plugins/textreport/familygroup.py:404
 #: ../gramps/plugins/textreport/familygroup.py:413
 #: ../gramps/plugins/textreport/familygroup.py:604
-#: ../gramps/plugins/webreport/narrativeweb.py:3572
+#: ../gramps/plugins/webreport/narrativeweb.py:3567
 msgid "Marriage"
 msgstr "Avioliitto"
 
@@ -7359,7 +7348,7 @@ msgid "Engagement"
 msgstr "Kihlaus"
 
 #: ../gramps/gen/lib/eventtype.py:204
-#: ../gramps/plugins/webreport/narrativeweb.py:3573
+#: ../gramps/plugins/webreport/narrativeweb.py:3568
 msgid "Divorce"
 msgstr "Avioero"
 
@@ -7592,7 +7581,7 @@ msgstr "peruut."
 #: ../gramps/plugins/textreport/tagreport.py:250
 #: ../gramps/plugins/view/familyview.py:80
 #: ../gramps/plugins/view/relview.py:899
-#: ../gramps/plugins/webreport/narrativeweb.py:7532
+#: ../gramps/plugins/webreport/narrativeweb.py:7530
 msgid "Father"
 msgstr "Isä"
 
@@ -7614,7 +7603,7 @@ msgstr "Isä"
 #: ../gramps/plugins/textreport/tagreport.py:256
 #: ../gramps/plugins/view/familyview.py:81
 #: ../gramps/plugins/view/relview.py:900
-#: ../gramps/plugins/webreport/narrativeweb.py:7546
+#: ../gramps/plugins/webreport/narrativeweb.py:7544
 msgid "Mother"
 msgstr "Äiti"
 
@@ -7641,9 +7630,9 @@ msgstr "Lapset"
 #: ../gramps/plugins/webreport/narrativeweb.py:1921
 #: ../gramps/plugins/webreport/narrativeweb.py:1988
 #: ../gramps/plugins/webreport/narrativeweb.py:2050
-#: ../gramps/plugins/webreport/narrativeweb.py:4230
-#: ../gramps/plugins/webreport/narrativeweb.py:4453
-#: ../gramps/plugins/webreport/narrativeweb.py:7429
+#: ../gramps/plugins/webreport/narrativeweb.py:4228
+#: ../gramps/plugins/webreport/narrativeweb.py:4451
+#: ../gramps/plugins/webreport/narrativeweb.py:7427
 msgid "Events"
 msgstr "Tapahtumat"
 
@@ -7722,10 +7711,10 @@ msgstr "Avioliitto"
 #: ../gramps/plugins/webreport/narrativeweb.py:1351
 #: ../gramps/plugins/webreport/narrativeweb.py:1677
 #: ../gramps/plugins/webreport/narrativeweb.py:2503
-#: ../gramps/plugins/webreport/narrativeweb.py:3100
-#: ../gramps/plugins/webreport/narrativeweb.py:4264
-#: ../gramps/plugins/webreport/narrativeweb.py:7865
-#: ../gramps/plugins/webreport/narrativeweb.py:7953
+#: ../gramps/plugins/webreport/narrativeweb.py:3095
+#: ../gramps/plugins/webreport/narrativeweb.py:4262
+#: ../gramps/plugins/webreport/narrativeweb.py:7863
+#: ../gramps/plugins/webreport/narrativeweb.py:7951
 msgid "Type"
 msgstr "Tyyppi"
 
@@ -7870,7 +7859,7 @@ msgstr "Tarkistussumma"
 #: ../gramps/plugins/tool/removeunused.py:201
 #: ../gramps/plugins/tool/verify.py:578 ../gramps/plugins/view/repoview.py:85
 #: ../gramps/plugins/webreport/narrativeweb.py:779
-#: ../gramps/plugins/webreport/narrativeweb.py:7692
+#: ../gramps/plugins/webreport/narrativeweb.py:7690
 msgid "Name"
 msgstr "Nimi"
 
@@ -7883,9 +7872,9 @@ msgstr "Etunimi"
 #: ../gramps/plugins/webreport/narrativeweb.py:1971
 #: ../gramps/plugins/webreport/narrativeweb.py:1974
 #: ../gramps/plugins/webreport/narrativeweb.py:2042
-#: ../gramps/plugins/webreport/narrativeweb.py:4569
-#: ../gramps/plugins/webreport/narrativeweb.py:4619
-#: ../gramps/plugins/webreport/narrativeweb.py:6252
+#: ../gramps/plugins/webreport/narrativeweb.py:4567
+#: ../gramps/plugins/webreport/narrativeweb.py:4617
+#: ../gramps/plugins/webreport/narrativeweb.py:6250
 msgid "Surnames"
 msgstr "Sukunimet"
 
@@ -7920,7 +7909,7 @@ msgstr "Loppuliite"
 #: ../gramps/plugins/textreport/tagreport.py:741
 #: ../gramps/plugins/view/mediaview.py:94
 #: ../gramps/plugins/view/sourceview.py:82
-#: ../gramps/plugins/webreport/narrativeweb.py:3098
+#: ../gramps/plugins/webreport/narrativeweb.py:3093
 msgid "Title"
 msgstr "Nimike"
 
@@ -8223,9 +8212,9 @@ msgstr "Lapsiviitteen lisätietoja"
 #: ../gramps/plugins/textreport/placereport.py:454
 #: ../gramps/plugins/tool/eventcmp.py:253
 #: ../gramps/plugins/tool/reorderids.glade:642
-#: ../gramps/plugins/webreport/narrativeweb.py:3570
-#: ../gramps/plugins/webreport/narrativeweb.py:4267
-#: ../gramps/plugins/webreport/narrativeweb.py:7141
+#: ../gramps/plugins/webreport/narrativeweb.py:3565
+#: ../gramps/plugins/webreport/narrativeweb.py:4265
+#: ../gramps/plugins/webreport/narrativeweb.py:7139
 msgid "Person"
 msgstr "Henkilö"
 
@@ -8239,7 +8228,7 @@ msgstr "Henkilö"
 #: ../gramps/plugins/lib/libpersonview.py:100
 #: ../gramps/plugins/quickview/siblings.py:48
 #: ../gramps/plugins/textreport/indivcomplete.py:922
-#: ../gramps/plugins/webreport/narrativeweb.py:7381
+#: ../gramps/plugins/webreport/narrativeweb.py:7379
 msgid "Gender"
 msgstr "Sukupuoli"
 
@@ -8274,7 +8263,7 @@ msgstr "Tapahtumaviitteet"
 #: ../gramps/plugins/webreport/narrativeweb.py:1920
 #: ../gramps/plugins/webreport/narrativeweb.py:1979
 #: ../gramps/plugins/webreport/narrativeweb.py:2043
-#: ../gramps/plugins/webreport/narrativeweb.py:3514
+#: ../gramps/plugins/webreport/narrativeweb.py:3509
 msgid "Families"
 msgstr "Perheet"
 
@@ -8305,8 +8294,8 @@ msgstr "Sulautettu Gramps ID"
 #: ../gramps/plugins/gramplet/coordinates.py:96
 #: ../gramps/plugins/gramplet/placedetails.py:133
 #: ../gramps/plugins/lib/libplaceview.py:90
-#: ../gramps/plugins/webreport/narrativeweb.py:2988
-#: ../gramps/plugins/webreport/narrativeweb.py:3891
+#: ../gramps/plugins/webreport/narrativeweb.py:2983
+#: ../gramps/plugins/webreport/narrativeweb.py:3886
 msgid "Longitude"
 msgstr "Pituusaste"
 
@@ -8314,8 +8303,8 @@ msgstr "Pituusaste"
 #: ../gramps/plugins/gramplet/coordinates.py:95
 #: ../gramps/plugins/gramplet/placedetails.py:131
 #: ../gramps/plugins/lib/libplaceview.py:89
-#: ../gramps/plugins/webreport/narrativeweb.py:2980
-#: ../gramps/plugins/webreport/narrativeweb.py:3890
+#: ../gramps/plugins/webreport/narrativeweb.py:2975
+#: ../gramps/plugins/webreport/narrativeweb.py:3885
 msgid "Latitude"
 msgstr "Leveysaste"
 
@@ -8329,8 +8318,8 @@ msgstr "Leveysaste"
 #: ../gramps/plugins/webreport/narrativeweb.py:1922
 #: ../gramps/plugins/webreport/narrativeweb.py:1985
 #: ../gramps/plugins/webreport/narrativeweb.py:2051
-#: ../gramps/plugins/webreport/narrativeweb.py:3849
-#: ../gramps/plugins/webreport/narrativeweb.py:4002
+#: ../gramps/plugins/webreport/narrativeweb.py:3844
+#: ../gramps/plugins/webreport/narrativeweb.py:3997
 msgid "Places"
 msgstr "Paikat"
 
@@ -8348,11 +8337,10 @@ msgid "Code"
 msgstr "Koodi"
 
 #: ../gramps/gen/lib/place.py:160
-#: ../gramps/plugins/webreport/narrativeweb.py:3015
+#: ../gramps/plugins/webreport/narrativeweb.py:3010
 msgid "Alternate Locations"
 msgstr "Vaihtoehtoiset sijainnit"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/lib/place.py:163 ../gramps/gen/lib/repo.py:106
 msgid "URLs"
 msgstr "URL:t"
@@ -8365,9 +8353,9 @@ msgstr "URL:t"
 #: ../gramps/plugins/view/geoplaces.py:559
 #: ../gramps/plugins/view/repoview.py:93
 #: ../gramps/plugins/webreport/narrativeweb.py:1526
-#: ../gramps/plugins/webreport/narrativeweb.py:3003
-#: ../gramps/plugins/webreport/narrativeweb.py:3029
-#: ../gramps/plugins/webreport/narrativeweb.py:3889
+#: ../gramps/plugins/webreport/narrativeweb.py:2998
+#: ../gramps/plugins/webreport/narrativeweb.py:3024
+#: ../gramps/plugins/webreport/narrativeweb.py:3884
 msgid "Country"
 msgstr "Valtio tai Liittovaltio"
 
@@ -8385,8 +8373,8 @@ msgstr "Lääni tai Osavaltio"
 #: ../gramps/plugins/lib/maps/placeselection.py:134
 #: ../gramps/plugins/view/geoplaces.py:565
 #: ../gramps/plugins/webreport/narrativeweb.py:1524
-#: ../gramps/plugins/webreport/narrativeweb.py:3000
-#: ../gramps/plugins/webreport/narrativeweb.py:3026
+#: ../gramps/plugins/webreport/narrativeweb.py:2995
+#: ../gramps/plugins/webreport/narrativeweb.py:3021
 msgid "County"
 msgstr "Maakunta"
 
@@ -8396,8 +8384,8 @@ msgstr "Maakunta"
 #: ../gramps/plugins/view/geoplaces.py:583
 #: ../gramps/plugins/view/repoview.py:91
 #: ../gramps/plugins/webreport/narrativeweb.py:1522
-#: ../gramps/plugins/webreport/narrativeweb.py:2998
-#: ../gramps/plugins/webreport/narrativeweb.py:3024
+#: ../gramps/plugins/webreport/narrativeweb.py:2993
+#: ../gramps/plugins/webreport/narrativeweb.py:3019
 msgid "City"
 msgstr "Paikkakunta"
 
@@ -8411,8 +8399,8 @@ msgstr "Seurakunta"
 #: ../gramps/plugins/view/geoplaces.py:532
 #: ../gramps/plugins/view/repoview.py:90
 #: ../gramps/plugins/webreport/narrativeweb.py:1521
-#: ../gramps/plugins/webreport/narrativeweb.py:2997
-#: ../gramps/plugins/webreport/narrativeweb.py:3023
+#: ../gramps/plugins/webreport/narrativeweb.py:2992
+#: ../gramps/plugins/webreport/narrativeweb.py:3018
 msgid "Locality"
 msgstr "Taajama"
 
@@ -8422,8 +8410,8 @@ msgstr "Taajama"
 #: ../gramps/plugins/view/geoplaces.py:535
 #: ../gramps/plugins/view/repoview.py:89
 #: ../gramps/plugins/webreport/narrativeweb.py:1520
-#: ../gramps/plugins/webreport/narrativeweb.py:2996
-#: ../gramps/plugins/webreport/narrativeweb.py:3022
+#: ../gramps/plugins/webreport/narrativeweb.py:2991
+#: ../gramps/plugins/webreport/narrativeweb.py:3017
 msgid "Street"
 msgstr "Katu"
 
@@ -8477,8 +8465,8 @@ msgstr "Rakennus tai Torppa"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:89
 #: ../gramps/plugins/view/geoplaces.py:556
-#: ../gramps/plugins/webreport/narrativeweb.py:3096
-#: ../gramps/plugins/webreport/narrativeweb.py:4928
+#: ../gramps/plugins/webreport/narrativeweb.py:3091
+#: ../gramps/plugins/webreport/narrativeweb.py:4926
 msgid "Number"
 msgstr "Kutsunumero"
 
@@ -8539,12 +8527,11 @@ msgstr "Kassakaappi"
 #: ../gramps/plugins/gramplet/citations.py:84
 #: ../gramps/plugins/textreport/tagreport.py:747
 #: ../gramps/plugins/view/sourceview.py:84
-#: ../gramps/plugins/webreport/narrativeweb.py:4929
-#: ../gramps/plugins/webreport/narrativeweb.py:5026
+#: ../gramps/plugins/webreport/narrativeweb.py:4927
+#: ../gramps/plugins/webreport/narrativeweb.py:5024
 msgid "Author"
 msgstr "Tekijä"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/lib/src.py:110
 msgid "Publication info"
 msgstr "Julkaisutiedot"
@@ -8553,7 +8540,7 @@ msgstr "Julkaisutiedot"
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:89
 #: ../gramps/plugins/view/sourceview.py:85
-#: ../gramps/plugins/webreport/narrativeweb.py:5027
+#: ../gramps/plugins/webreport/narrativeweb.py:5025
 msgid "Abbreviation"
 msgstr "Lyhennelmä"
 
@@ -8565,9 +8552,9 @@ msgstr "Lyhennelmä"
 #: ../gramps/plugins/view/view.gpr.py:260
 #: ../gramps/plugins/webreport/narrativeweb.py:1924
 #: ../gramps/plugins/webreport/narrativeweb.py:2053
-#: ../gramps/plugins/webreport/narrativeweb.py:3087
-#: ../gramps/plugins/webreport/narrativeweb.py:7841
-#: ../gramps/plugins/webreport/narrativeweb.py:7926
+#: ../gramps/plugins/webreport/narrativeweb.py:3082
+#: ../gramps/plugins/webreport/narrativeweb.py:7839
+#: ../gramps/plugins/webreport/narrativeweb.py:7924
 msgid "Repositories"
 msgstr "Arkistot"
 
@@ -8623,7 +8610,6 @@ msgstr "Hautakivi"
 msgid "Video"
 msgstr "Video"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/lib/styledtext.py:304
 msgid "Styled Text"
 msgstr "Tekstityyli"
@@ -8637,7 +8623,6 @@ msgstr "Tekstityyli"
 msgid "Text"
 msgstr "Teksti"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/lib/styledtext.py:311
 msgid "Styled Text Tags"
 msgstr "Tagin tekstityyli"
@@ -8699,9 +8684,9 @@ msgstr "Linkki"
 #: ../gramps/plugins/export/exportcsv.py:354
 #: ../gramps/plugins/importer/importcsv.py:159
 #: ../gramps/plugins/quickview/filterbyname.py:354
-#: ../gramps/plugins/webreport/narrativeweb.py:3282
-#: ../gramps/plugins/webreport/narrativeweb.py:4618
-#: ../gramps/plugins/webreport/narrativeweb.py:6185
+#: ../gramps/plugins/webreport/narrativeweb.py:3277
+#: ../gramps/plugins/webreport/narrativeweb.py:4616
+#: ../gramps/plugins/webreport/narrativeweb.py:6183
 msgid "Surname"
 msgstr "Sukunimi"
 
@@ -8713,7 +8698,6 @@ msgstr "Sukunimi"
 msgid "Prefix"
 msgstr "Etuliite"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/lib/surname.py:95
 msgid "Primary"
 msgstr "Päänimi"
@@ -8746,7 +8730,6 @@ msgstr "Tagi"
 msgid "Color"
 msgstr "Väri"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/lib/tag.py:128
 msgid "Priority"
 msgstr "Etusija"
@@ -8925,8 +8908,8 @@ msgstr "Sivupalkki"
 #: ../gramps/gen/plug/_pluginreg.py:514
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
 #: ../gramps/plugins/webreport/narrativeweb.py:2110
-#: ../gramps/plugins/webreport/narrativeweb.py:8241
-#: ../gramps/plugins/webreport/narrativeweb.py:8293
+#: ../gramps/plugins/webreport/narrativeweb.py:8239
+#: ../gramps/plugins/webreport/narrativeweb.py:8291
 msgid "Miscellaneous"
 msgstr "Muut"
 
@@ -9019,7 +9002,7 @@ msgstr "Tiedosto %s on jo käytössä, sulje se ensin."
 #: ../gramps/plugins/lib/libhtmlbackend.py:253
 #: ../gramps/plugins/lib/libhtmlbackend.py:259
 #: ../gramps/plugins/lib/libhtmlbackend.py:263
-#: ../gramps/plugins/webreport/narrativeweb.py:8532
+#: ../gramps/plugins/webreport/narrativeweb.py:8530
 #, python-format
 msgid "Could not create %s"
 msgstr "Kohdetta %s ei voitu luoda"
@@ -9214,7 +9197,7 @@ msgstr "Yhdyslinjat"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:185
 msgid "How the lines between objects will be drawn."
-msgstr "Miten piirretään viivat kohteiden välillä"
+msgstr "Miten piirretään viivat kohteiden välillä."
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:201
@@ -9567,7 +9550,6 @@ msgstr ""
 "Vuosien määrä kuolemasta, jolloin henkilöä pidetään tietosuojan kannalta "
 "elävänä"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/plug/report/stdoptions.py:191
 msgid "Whether to restrict data on recently-dead people"
 msgstr "Rajoitetaanko hiljattain kuolleiden henkilöiden tietoja"
@@ -9610,7 +9592,7 @@ msgstr "Lisätäänkö (ja minne) Gramps ID"
 #: ../gramps/plugins/textreport/detdescendantreport.py:1075
 #: ../gramps/plugins/textreport/familygroup.py:747
 #: ../gramps/plugins/textreport/indivcomplete.py:1094
-#: ../gramps/plugins/webreport/narrativeweb.py:10061
+#: ../gramps/plugins/webreport/narrativeweb.py:10059
 msgid "Include"
 msgstr "Ota mukaan"
 
@@ -9710,17 +9692,17 @@ msgstr "Uusi"
 #: ../gramps/gen/plug/utils.py:291 ../gramps/gen/plug/utils.py:298
 #, python-format
 msgid "Unable to open '%s'"
-msgstr "Tiedoston %s avaus epäonnistui"
+msgstr "Ei voi avata '%s'"
 
 #: ../gramps/gen/plug/utils.py:305
 #, python-format
 msgid "Error in reading '%s'"
-msgstr "Luku epäonnistui: %s"
+msgstr "Virhe luettaessa '%s'"
 
 #: ../gramps/gen/plug/utils.py:316
 #, python-format
 msgid "Error: cannot open '%s'"
-msgstr "Virhe:Tiedoston %s avaus epäonnistui"
+msgstr "Virhe: ei voi avata ”%s”"
 
 #: ../gramps/gen/plug/utils.py:320
 #, python-format
@@ -9923,8 +9905,7 @@ msgstr "ent. kumppani, sukupuoli ja suhde tuntematon"
 msgid ""
 "Family relationship translator not available for language '%s'. Using "
 "'english' instead."
-msgstr ""
-" '%s' kielelle ei löydy perhesuhteiden kääntäjää. Käytetään siksi 'english'."
+msgstr "Perhesuhteiden kääntäjää ei löydy kielelle '%s' . Käytetään 'english'."
 
 #: ../gramps/gen/utils/alive.py:145 ../gramps/plugins/importer/importcsv.py:201
 msgid "death date"
@@ -10017,7 +9998,6 @@ msgstr "Tosi"
 msgid "true"
 msgstr "tosi"
 
-# uusi/muutettu20170317
 #: ../gramps/gen/utils/configmanager.py:259
 #, python-format
 msgid ""
@@ -10039,225 +10019,224 @@ msgstr "%s, ..."
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s ja %(mother)s"
 
-#: ../gramps/gen/utils/grampslocale.py:70
+#: ../gramps/gen/utils/grampslocale.py:71
 msgid "Arabic"
 msgstr "arabia"
 
-#: ../gramps/gen/utils/grampslocale.py:71
+#: ../gramps/gen/utils/grampslocale.py:72
 msgid "Bulgarian"
 msgstr "bulgaria"
 
-#: ../gramps/gen/utils/grampslocale.py:72
+#: ../gramps/gen/utils/grampslocale.py:73
 msgid "Breton"
 msgstr "bretoni"
 
 #. Windows has no translation for Breton
-#: ../gramps/gen/utils/grampslocale.py:73
+#: ../gramps/gen/utils/grampslocale.py:74
 msgid "Catalan"
 msgstr "katalaani"
 
-#: ../gramps/gen/utils/grampslocale.py:74
+#: ../gramps/gen/utils/grampslocale.py:75
 msgid "Czech"
 msgstr "tsekki"
 
-#: ../gramps/gen/utils/grampslocale.py:75
+#: ../gramps/gen/utils/grampslocale.py:76
 msgid "Danish"
 msgstr "tanska"
 
-#: ../gramps/gen/utils/grampslocale.py:76
+#: ../gramps/gen/utils/grampslocale.py:77
 msgid "German"
 msgstr "saksa"
 
-#: ../gramps/gen/utils/grampslocale.py:77
+#: ../gramps/gen/utils/grampslocale.py:78
 msgid "Greek"
 msgstr "kreikka"
 
-#: ../gramps/gen/utils/grampslocale.py:78
+#: ../gramps/gen/utils/grampslocale.py:79
 msgid "English (USA)"
 msgstr "englanti (US)"
 
-#: ../gramps/gen/utils/grampslocale.py:79
+#: ../gramps/gen/utils/grampslocale.py:80
 msgid "English"
 msgstr "englanti"
 
-#: ../gramps/gen/utils/grampslocale.py:80
+#: ../gramps/gen/utils/grampslocale.py:81
 msgid "Esperanto"
 msgstr "esperanto"
 
 #. Windows has no translation for Esperanto
-#: ../gramps/gen/utils/grampslocale.py:81
+#: ../gramps/gen/utils/grampslocale.py:82
 msgid "Spanish"
 msgstr "espanja"
 
-#: ../gramps/gen/utils/grampslocale.py:82
+#: ../gramps/gen/utils/grampslocale.py:83
 msgid "Finnish"
 msgstr "suomi"
 
-#: ../gramps/gen/utils/grampslocale.py:83
+#: ../gramps/gen/utils/grampslocale.py:84
 msgid "French"
 msgstr "ranska"
 
-#: ../gramps/gen/utils/grampslocale.py:84
+#: ../gramps/gen/utils/grampslocale.py:85
 msgid "Gaelic"
 msgstr "gaeli"
 
 #. Windows has no translation for Gaelic
-#: ../gramps/gen/utils/grampslocale.py:85
+#: ../gramps/gen/utils/grampslocale.py:86
 msgid "Hebrew"
 msgstr "heprea"
 
-#: ../gramps/gen/utils/grampslocale.py:86
+#: ../gramps/gen/utils/grampslocale.py:87
 msgid "Croatian"
 msgstr "kroatia"
 
-#: ../gramps/gen/utils/grampslocale.py:87
+#: ../gramps/gen/utils/grampslocale.py:88
 msgid "Hungarian"
 msgstr "unkari"
 
-#: ../gramps/gen/utils/grampslocale.py:88
+#: ../gramps/gen/utils/grampslocale.py:89
 msgid "Icelandic"
 msgstr "islanti"
 
-#: ../gramps/gen/utils/grampslocale.py:89
+#: ../gramps/gen/utils/grampslocale.py:90
 msgid "Italian"
 msgstr "italia"
 
-#: ../gramps/gen/utils/grampslocale.py:90
+#: ../gramps/gen/utils/grampslocale.py:91
 msgid "Japanese"
 msgstr "japani"
 
-#: ../gramps/gen/utils/grampslocale.py:91
+#: ../gramps/gen/utils/grampslocale.py:92
 msgid "Lithuanian"
 msgstr "liettua"
 
-#: ../gramps/gen/utils/grampslocale.py:92
+#: ../gramps/gen/utils/grampslocale.py:93
 msgid "Macedonian"
 msgstr "makedonia"
 
 #. Windows has no translation for Macedonian
-#: ../gramps/gen/utils/grampslocale.py:93
+#: ../gramps/gen/utils/grampslocale.py:94
 msgid "Norwegian Bokmal"
 msgstr "kirjanorja"
 
-#: ../gramps/gen/utils/grampslocale.py:94
+#: ../gramps/gen/utils/grampslocale.py:95
 msgid "Dutch"
 msgstr "hollanti"
 
-#: ../gramps/gen/utils/grampslocale.py:95
+#: ../gramps/gen/utils/grampslocale.py:96
 msgid "Norwegian Nynorsk"
 msgstr "uusnorja"
 
-#: ../gramps/gen/utils/grampslocale.py:96
+#: ../gramps/gen/utils/grampslocale.py:97
 msgid "Polish"
 msgstr "puola"
 
-#: ../gramps/gen/utils/grampslocale.py:97
+#: ../gramps/gen/utils/grampslocale.py:98
 msgid "Portuguese (Brazil)"
 msgstr "brasilianportugali"
 
-#: ../gramps/gen/utils/grampslocale.py:98
+#: ../gramps/gen/utils/grampslocale.py:99
 msgid "Portuguese (Portugal)"
 msgstr "euroopanportugali"
 
-#: ../gramps/gen/utils/grampslocale.py:99
+#: ../gramps/gen/utils/grampslocale.py:100
 msgid "Romanian"
 msgstr "romania"
 
-#: ../gramps/gen/utils/grampslocale.py:100
+#: ../gramps/gen/utils/grampslocale.py:101
 msgid "Russian"
 msgstr "venäjä"
 
-#: ../gramps/gen/utils/grampslocale.py:101
+#: ../gramps/gen/utils/grampslocale.py:102
 msgid "Slovak"
 msgstr "slovakian"
 
-#: ../gramps/gen/utils/grampslocale.py:102
+#: ../gramps/gen/utils/grampslocale.py:103
 msgid "Slovenian"
 msgstr "sloveeni"
 
-#: ../gramps/gen/utils/grampslocale.py:103
+#: ../gramps/gen/utils/grampslocale.py:104
 msgid "Albanian"
 msgstr "albania"
 
-#: ../gramps/gen/utils/grampslocale.py:104
+#: ../gramps/gen/utils/grampslocale.py:105
 msgid "Serbian"
 msgstr "serbian"
 
-#: ../gramps/gen/utils/grampslocale.py:105
+#: ../gramps/gen/utils/grampslocale.py:106
 msgid "Swedish"
 msgstr "ruotsi"
 
-# uusi/muutettu20170321
-#: ../gramps/gen/utils/grampslocale.py:106
+#: ../gramps/gen/utils/grampslocale.py:107
 msgid "Tamil"
 msgstr "tamili"
 
 #. Windows has no codepage for Tamil
-#: ../gramps/gen/utils/grampslocale.py:107
+#: ../gramps/gen/utils/grampslocale.py:108
 msgid "Turkish"
 msgstr "turkki"
 
-#: ../gramps/gen/utils/grampslocale.py:108
+#: ../gramps/gen/utils/grampslocale.py:109
 msgid "Ukrainian"
 msgstr "ukraina"
 
-#: ../gramps/gen/utils/grampslocale.py:109
+#: ../gramps/gen/utils/grampslocale.py:110
 msgid "Vietnamese"
 msgstr "vietnam"
 
-#: ../gramps/gen/utils/grampslocale.py:110
+#: ../gramps/gen/utils/grampslocale.py:111
 msgid "Chinese (Simplified)"
 msgstr "kiina (Simplified)"
 
-#: ../gramps/gen/utils/grampslocale.py:111
+#: ../gramps/gen/utils/grampslocale.py:112
 msgid "Chinese (Hong Kong)"
 msgstr "kiina (Hongkong)"
 
-#: ../gramps/gen/utils/grampslocale.py:112
+#: ../gramps/gen/utils/grampslocale.py:113
 msgid "Chinese (Traditional)"
 msgstr "Windows kiinalainen perinteinen (CP 950) tai Big-5"
 
-#: ../gramps/gen/utils/grampslocale.py:895
+#: ../gramps/gen/utils/grampslocale.py:896
 msgid "the person"
 msgstr "henkilö"
 
-#: ../gramps/gen/utils/grampslocale.py:897
+#: ../gramps/gen/utils/grampslocale.py:898
 msgid "the family"
 msgstr "perhe"
 
-#: ../gramps/gen/utils/grampslocale.py:899
+#: ../gramps/gen/utils/grampslocale.py:900
 msgid "the place"
 msgstr "paikka"
 
-#: ../gramps/gen/utils/grampslocale.py:901
+#: ../gramps/gen/utils/grampslocale.py:902
 msgid "the event"
 msgstr "tapahtuma"
 
-#: ../gramps/gen/utils/grampslocale.py:903
+#: ../gramps/gen/utils/grampslocale.py:904
 msgid "the repository"
 msgstr "arkisto"
 
-#: ../gramps/gen/utils/grampslocale.py:905
+#: ../gramps/gen/utils/grampslocale.py:906
 msgid "the note"
 msgstr "lisätieto"
 
-#: ../gramps/gen/utils/grampslocale.py:907
+#: ../gramps/gen/utils/grampslocale.py:908
 msgid "the media"
 msgstr "media"
 
-#: ../gramps/gen/utils/grampslocale.py:909
+#: ../gramps/gen/utils/grampslocale.py:910
 msgid "the source"
 msgstr "lähde"
 
-#: ../gramps/gen/utils/grampslocale.py:911
+#: ../gramps/gen/utils/grampslocale.py:912
 msgid "the filter"
 msgstr "suodin"
 
-#: ../gramps/gen/utils/grampslocale.py:913
+#: ../gramps/gen/utils/grampslocale.py:914
 msgid "the citation"
 msgstr "lainaus"
 
-#: ../gramps/gen/utils/grampslocale.py:915
+#: ../gramps/gen/utils/grampslocale.py:916
 msgid "See details"
 msgstr "Katso lisätiedot"
 
@@ -10439,7 +10418,7 @@ msgstr "%(west_longitude)s L"
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
-#: ../gramps/plugins/webreport/narrativeweb.py:6388
+#: ../gramps/plugins/webreport/narrativeweb.py:6386
 msgid "male"
 msgstr "mies"
 
@@ -10448,7 +10427,7 @@ msgstr "mies"
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
-#: ../gramps/plugins/webreport/narrativeweb.py:6389
+#: ../gramps/plugins/webreport/narrativeweb.py:6387
 msgid "female"
 msgstr "nainen"
 
@@ -10513,7 +10492,7 @@ msgstr ""
 
 #: ../gramps/gen/utils/unknown.py:139
 msgid "Unknown, created to replace a missing note object."
-msgstr "Tuntematon, luotu korvaamaan puutuva lisätiedon objekti"
+msgstr "Tuntematon, luotu korvaamaan puutuva lisätiedon objekti."
 
 #. primitive static variable
 #: ../gramps/gen/utils/unknown.py:149
@@ -10597,6 +10576,12 @@ msgstr ""
 msgid "Distribution: %s"
 msgstr "Jakelu: %s"
 
+# uusi/muutettu20170630
+#: ../gramps/gui/aboutdialog.py:146
+#, python-format
+msgid "OS: %s"
+msgstr "Käyttöjärjestelmä: %s"
+
 # WIKI_HELP_SEC navigointi
 #: ../gramps/gui/clipboard.py:71
 msgid "manual|Using_the_Clipboard"
@@ -10610,7 +10595,7 @@ msgstr "Leikep.C3.B6yd.C3.A4n_k.C3.A4ytt.C3.B6"
 #: ../gramps/plugins/lib/libgedcom.py:5443
 #: ../gramps/plugins/lib/libgedcom.py:5609
 #: ../gramps/plugins/textreport/familygroup.py:350
-#: ../gramps/plugins/webreport/narrativeweb.py:8041
+#: ../gramps/plugins/webreport/narrativeweb.py:8039
 msgid "Address"
 msgstr "Osoite"
 
@@ -10729,7 +10714,7 @@ msgstr "_Käytä"
 #: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1111
 #: ../gramps/plugins/drawreport/ancestortree.py:909
 #: ../gramps/plugins/drawreport/descendtree.py:1645
-#: ../gramps/plugins/webreport/narrativeweb.py:9858
+#: ../gramps/plugins/webreport/narrativeweb.py:9856
 msgid "Display"
 msgstr "Näyttö"
 
@@ -10846,7 +10831,7 @@ msgstr "Asetukset"
 #: ../gramps/gui/configure.py:232 ../gramps/gui/configure.py:238
 #: ../gramps/gui/configure.py:805
 msgid "Invalid or incomplete format definition."
-msgstr "Viallinen tai puutteellinen muotoilumääritelmä"
+msgstr "Viallinen tai puutteellinen muotoilumääritelmä."
 
 #. label for the combo
 #. translators: needed for French, ignore otherwise
@@ -10976,20 +10961,20 @@ msgstr "Värit"
 
 #: ../gramps/gui/configure.py:605
 msgid "Suppress warning when adding parents to a child."
-msgstr "Älä näytä varoitusta lisättäessä vanhempia lapselle"
+msgstr "Älä näytä varoitusta lisättäessä vanhempia lapselle."
 
 #: ../gramps/gui/configure.py:609
 msgid "Suppress warning when canceling with changed data."
-msgstr "Älä näytä varoitusta perumisesta kun tietoja on muutettu"
+msgstr "Älä näytä varoitusta perumisesta kun tietoja on muutettu."
 
 #: ../gramps/gui/configure.py:613
 msgid "Suppress warning about missing researcher when exporting to GEDCOM."
 msgstr ""
-"Älä näytä varoitusta puuttuvista tutkijan tiedoista GEDCOMiin vietäessä"
+"Älä näytä varoitusta puuttuvista tutkijan tiedoista GEDCOMiin vietäessä."
 
 #: ../gramps/gui/configure.py:618
 msgid "Show plugin status dialog on plugin load error."
-msgstr "Näytä laajennusten tila kun laajennusten lataaminen epäonnistuu"
+msgstr "Näytä laajennusten tila kun laajennusten lataaminen epäonnistuu."
 
 #: ../gramps/gui/configure.py:621
 msgid "Warnings"
@@ -11014,7 +10999,7 @@ msgstr "Enter tallettaa ja Esc peruuttaa päivityksen"
 
 #: ../gramps/gui/configure.py:783
 msgid "This format exists already."
-msgstr "Muotoilu on jo olemassa"
+msgstr "Muotoilu on jo olemassa."
 
 #: ../gramps/gui/configure.py:832
 msgid "Example"
@@ -11037,7 +11022,7 @@ msgstr "Esimerkki"
 #: ../gramps/gui/widgets/fanchart.py:1754
 #: ../gramps/plugins/view/pedigreeview.py:1627
 msgid "_Add"
-msgstr "_Lisää..."
+msgstr "_Lisää"
 
 #: ../gramps/gui/configure.py:855
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:148
@@ -12402,7 +12387,7 @@ msgstr "_Näytä"
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:145
 #: ../gramps/plugins/view/mediaview.py:215
 msgid "Open Containing _Folder"
-msgstr "Avaa kansio (Containing_Folder)"
+msgstr "Avaa kansio"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:153
 msgid "_Make Active Media"
@@ -13438,7 +13423,7 @@ msgstr "Nimimuokkain_ikkuna"
 #: ../gramps/gui/editors/editname.py:174
 #: ../gramps/gui/editors/editperson.py:327
 msgid "Call name must be the given name that is normally used."
-msgstr "Yhtä etunimistä tai niiden osaa käytetään normaalisti kutsumanimenä. "
+msgstr "Yhtä etunimistä tai niiden osaa käytetään normaalisti kutsumanimenä."
 
 #: ../gramps/gui/editors/editname.py:313
 msgid "New Name"
@@ -14328,9 +14313,11 @@ msgstr "Lainaus:"
 msgid "Volume/Page"
 msgstr "Osa/sivu"
 
+# muutettu
+# Lainaus: Alin luottamustaso
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
 msgid "Citation: Minimum Confidence|Min. Conf."
-msgstr "Lainaus: Alin luottamustaso"
+msgstr "Alin luot."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:111
@@ -14353,7 +14340,7 @@ msgstr "Pääosalliset"
 #: ../gramps/gui/widgets/reorderfam.py:91
 #: ../gramps/plugins/textreport/tagreport.py:262
 #: ../gramps/plugins/view/familyview.py:82
-#: ../gramps/plugins/webreport/narrativeweb.py:7142
+#: ../gramps/plugins/webreport/narrativeweb.py:7140
 msgid "Relationship"
 msgstr "Suhde"
 
@@ -14363,7 +14350,7 @@ msgstr "mikä tahansa"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:129
 #: ../gramps/plugins/export/exportcsv.py:357
-#: ../gramps/plugins/webreport/narrativeweb.py:7693
+#: ../gramps/plugins/webreport/narrativeweb.py:7691
 msgid "Birth date"
 msgstr "Syntymäaika"
 
@@ -14375,7 +14362,7 @@ msgstr "esimerkki: \"%(msg1)s\" tai \"%(msg2)s\""
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:131
 #: ../gramps/plugins/export/exportcsv.py:359
-#: ../gramps/plugins/webreport/narrativeweb.py:7694
+#: ../gramps/plugins/webreport/narrativeweb.py:7692
 msgid "Death date"
 msgstr "Kuolinaika"
 
@@ -14859,7 +14846,7 @@ msgstr ""
 "Julkaisuissa tämä voi olla moniosaisen julkaisun osan numero ja sivunumerot. "
 "Aikakauskirjoissa vuosikerta, kuukausi ja sivunumero. Sanomalehdessä vuosi, "
 "päivä, sivu ja palsta. Kasteluetteloissa srk., arkistonumero, sivu, rivi, "
-"jne."
+"jne. "
 
 #: ../gramps/gui/glade/editcitation.glade:152
 msgid "_Volume/Page:"
@@ -14876,7 +14863,7 @@ msgid ""
 "log/registry. "
 msgstr ""
 "Viittaamasi lähteen päivä, esim. väestölaskennassa päivä jolloin laskijat "
-"kävivät talossa, tai verotusluettelon konseptin laatimispäivä."
+"kävivät talossa, tai verotusluettelon konseptin laatimispäivä. "
 
 #: ../gramps/gui/glade/editcitation.glade:201
 msgid ""
@@ -14899,7 +14886,7 @@ msgstr ""
 "jonkin aikaa sen jälkeen\n"
 "Erittäin korkea =Ensisijainen näyttö. Esim. Viranomaisen tapahtuman "
 "yhteydessä kirjaama tieto, alkuperäinen asiakirja, tai luotettavien "
-"lähteiden yksiselitteinen yhteisnäyttö"
+"lähteiden yksiselitteinen yhteisnäyttö "
 
 #: ../gramps/gui/glade/editcitation.glade:226
 #: ../gramps/gui/glade/editevent.glade:312
@@ -15161,7 +15148,7 @@ msgstr "_Mormonitemppeli:"
 
 #: ../gramps/gui/glade/editldsord.glade:223
 msgid "_Family:"
-msgstr "_Perhe"
+msgstr "_Perhe:"
 
 #: ../gramps/gui/glade/editldsord.glade:248
 #: ../gramps/gui/selectors/selectfamily.py:62
@@ -15186,7 +15173,7 @@ msgstr "_Linkkityyppi:"
 
 #: ../gramps/gui/glade/editlocation.glade:107
 msgid "The town or city where the place is."
-msgstr "Paikkakunta (esim. kaupunki tai kunta), jossa paikka sijaitsee"
+msgstr "Paikkakunta (esim. kaupunki tai kunta), jossa paikka sijaitsee."
 
 #: ../gramps/gui/glade/editlocation.glade:121
 msgid "S_treet:"
@@ -15271,7 +15258,7 @@ msgstr "Hakemisto"
 
 #: ../gramps/gui/glade/editmedia.glade:302
 msgid "A unique ID to identify the Media object."
-msgstr "Mediatiedoston ainutkertainen ID"
+msgstr "Mediatiedoston ainutkertainen ID."
 
 #: ../gramps/gui/glade/editmedia.glade:346
 msgid ""
@@ -15417,7 +15404,7 @@ msgid ""
 "name."
 msgstr ""
 "Virallisen nimen sijasta tai ohella käytetty kuvaileva nimi, kuten \"Tauno "
-"Palo\""
+"Palo\"."
 
 #: ../gramps/gui/glade/editname.glade:333
 msgid "Given Name(s) "
@@ -15539,9 +15526,7 @@ msgstr "_Lempinimi:"
 
 #: ../gramps/gui/glade/editperson.glade:335
 msgid "Click on a table cell to edit."
-msgstr ""
-"Napsauta tehdäksesi nimestä aktiivisen\n"
-"Kaksoisnapsauta nimeä muokataksesi"
+msgstr "Napsauta taulukon solua muokataksesi."
 
 #: ../gramps/gui/glade/editperson.glade:355
 msgid ""
@@ -15659,7 +15644,7 @@ msgstr "_Pituusaste:"
 #: ../gramps/gui/glade/editplace.glade:148
 #: ../gramps/gui/glade/editplaceref.glade:445
 msgid "Full title of this place."
-msgstr "Paikan koko nimi"
+msgstr "Paikan koko nimi."
 
 #: ../gramps/gui/glade/editplace.glade:176
 #: ../gramps/gui/glade/editplaceref.glade:459
@@ -15711,7 +15696,7 @@ msgid ""
 "Field used to paste info from a web page like google, openstreetmap, ... "
 msgstr ""
 "Kenttää käytetään liittämään nettisivun tieto kuten Google, "
-"OpenStreedMap, ..."
+"OpenStreedMap, ... "
 
 #: ../gramps/gui/glade/editplace.glade:264
 #: ../gramps/gui/glade/editplaceref.glade:495
@@ -15780,7 +15765,7 @@ msgstr "Muoto, jossa lähde on saatavissa arkistosta."
 
 #: ../gramps/gui/glade/editreporef.glade:209
 msgid "Id number of the source in the repository."
-msgstr "Raporttiin sisällytettävien sukupolvien lukumäärä"
+msgstr "Raporttiin sisällytettävien sukupolvien lukumäärä."
 
 #: ../gramps/gui/glade/editreporef.glade:264
 #: ../gramps/gui/glade/editrepository.glade:97
@@ -15863,15 +15848,18 @@ msgstr "_Kuvaus:"
 msgid "Type of internet address, eg. E-mail, Web Page, ..."
 msgstr "Nettiosoitteen tyyppi, esim. Sähköposti, Nettisivu,.."
 
+# 20170701muutettu
+# Gramps kotisivu on osoitteessa http://Gramps-project.org/
 #: ../gramps/gui/glade/editurl.glade:189
 msgid ""
 "The internet address as needed to navigate to it, eg. http://gramps-project."
 "org"
-msgstr "Gramps kotisivu on osoitteessa http://Gramps-project.org/"
+msgstr ""
+"Internet selailuun tarvittava osoite on esim. http://gramps-project.org"
 
 #: ../gramps/gui/glade/editurl.glade:205
 msgid "Open the web address in the default browser."
-msgstr "Näytä nettiosoite oletussovelluksella"
+msgstr "Näytä nettiosoite oletussovelluksella."
 
 #: ../gramps/gui/glade/editurl.glade:217
 msgid "A descriptive caption of the Internet location you are storing."
@@ -16030,17 +16018,17 @@ msgstr ""
 #: ../gramps/gui/glade/mergefamily.glade:187
 #: ../gramps/gui/glade/mergefamily.glade:203
 msgid "Father:"
-msgstr "Isä"
+msgstr "Isä:"
 
 #: ../gramps/gui/glade/mergefamily.glade:220
 #: ../gramps/gui/glade/mergefamily.glade:236
 msgid "Mother:"
-msgstr "Äiti"
+msgstr "Äiti:"
 
 #: ../gramps/gui/glade/mergefamily.glade:253
 #: ../gramps/gui/glade/mergefamily.glade:269
 msgid "Relationship:"
-msgstr "Suhde"
+msgstr "Suhde:"
 
 #: ../gramps/gui/glade/mergefamily.glade:417
 msgid "Family 1"
@@ -16385,7 +16373,7 @@ msgstr "Tyylitiedoston n_imi:"
 
 #: ../gramps/gui/glade/styleeditor.glade:177
 msgid "Style name"
-msgstr "Tyylin _nimi:"
+msgstr "Tyylin _nimi"
 
 #: ../gramps/gui/glade/styleeditor.glade:286
 msgid "Type face"
@@ -16782,7 +16770,7 @@ msgstr ""
 
 #: ../gramps/gui/grampsgui.py:365
 msgid "Gramps terminated because of no DISPLAY"
-msgstr "Gramps suljettu, koska DISPLAY ei ole "
+msgstr "Gramps suljettu, koska DISPLAY ei ole"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:95
 msgid "Error Report Assistant"
@@ -17066,9 +17054,9 @@ msgstr "Sulauta henkilöt"
 #: ../gramps/plugins/view/pedigreeview.py:1790
 #: ../gramps/plugins/view/relview.py:538 ../gramps/plugins/view/relview.py:862
 #: ../gramps/plugins/view/relview.py:898
-#: ../gramps/plugins/webreport/narrativeweb.py:3327
-#: ../gramps/plugins/webreport/narrativeweb.py:6204
-#: ../gramps/plugins/webreport/narrativeweb.py:7676
+#: ../gramps/plugins/webreport/narrativeweb.py:3322
+#: ../gramps/plugins/webreport/narrativeweb.py:6202
+#: ../gramps/plugins/webreport/narrativeweb.py:7674
 msgid "Parents"
 msgstr "Vanhemmat"
 
@@ -17282,7 +17270,7 @@ msgstr "Liitännäisen nimi"
 
 #: ../gramps/gui/plug/_windows.py:250
 msgid "Path to Addon:"
-msgstr "Liitännäispolku"
+msgstr "Liitännäispolku:"
 
 #: ../gramps/gui/plug/_windows.py:270
 msgid "Install Addon"
@@ -17385,7 +17373,7 @@ msgstr "Pääikkuna"
 
 #: ../gramps/gui/plug/_windows.py:1175
 msgid "Downloading and installing selected addons..."
-msgstr "Ladataan ja asennetaan valittuja laajennuksia"
+msgstr "Ladataan ja asennetaan valittuja laajennuksia..."
 
 #: ../gramps/gui/plug/_windows.py:1210
 msgid "Installation Errors"
@@ -17393,7 +17381,7 @@ msgstr "Asennusvirheet"
 
 #: ../gramps/gui/plug/_windows.py:1211
 msgid "The following addons had errors: "
-msgstr "Seuraavissa laajennuksissa oli virheitä:"
+msgstr "Seuraavissa laajennuksissa oli virheitä: "
 
 #: ../gramps/gui/plug/_windows.py:1216 ../gramps/gui/plug/_windows.py:1224
 msgid "Done downloading and installing addons"
@@ -17663,12 +17651,10 @@ msgstr "Suodatetaan yksityisiä tietoja"
 msgid "Filtering living persons"
 msgstr "Suodatetaan elossa olevia henkilöitä"
 
-# uusi/muutettu20170317
 #: ../gramps/gui/plug/export/_exportoptions.py:615
 msgid "Applying selected person filter"
 msgstr "Käytetään valittua suodinta henkilöille"
 
-# uusi/muutettu20170317
 #: ../gramps/gui/plug/export/_exportoptions.py:625
 msgid "Applying selected note filter"
 msgstr "Käytetään valittua suodinta lisätiedoille"
@@ -17756,11 +17742,11 @@ msgstr "Valmiit kirjamallit"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:240
 msgid "Discard Unsaved Changes"
-msgstr "Hylkää tallentamattomat muutokset?"
+msgstr "Hylkää tallentamattomat muutokset"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:241
 msgid "You have made changes which have not been saved."
-msgstr "Teit muutoksia joita ei ole talletettu"
+msgstr "Teit muutoksia joita ei ole talletettu."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:242
 #: ../gramps/gui/plug/report/_bookdialog.py:738
@@ -17826,7 +17812,7 @@ msgstr "Ei yhtään kirjan kohdetta"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:554
 msgid "Please select a book item to configure."
-msgstr "Valitse kirjan määrittämiseksi kohde"
+msgstr "Valitse kirjan määrittämiseksi kohde."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:619
 #: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:420
@@ -17850,7 +17836,7 @@ msgstr "Ei kohteita"
 #: ../gramps/gui/plug/report/_bookdialog.py:711
 #: ../gramps/gui/plug/report/_bookdialog.py:722
 msgid "This book has no items."
-msgstr "Tässä kirjassa ei ole kohteita"
+msgstr "Tässä kirjassa ei ole kohteita."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:728
 msgid "No book name"
@@ -17903,7 +17889,7 @@ msgstr "Näytä oletussovelluksella"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:237
 msgid "CSS file"
-msgstr "Muotoilutiedosto (CSS)"
+msgstr "CSS muotoilutiedosto"
 
 #: ../gramps/gui/plug/report/_papermenu.py:106
 msgid "Portrait"
@@ -17972,7 +17958,7 @@ msgstr "Tyyli"
 #: ../gramps/plugins/textreport/summary.py:286
 #: ../gramps/plugins/textreport/tableofcontents.py:92
 #: ../gramps/plugins/textreport/tagreport.py:896
-#: ../gramps/plugins/webreport/narrativeweb.py:9736
+#: ../gramps/plugins/webreport/narrativeweb.py:9734
 #: ../gramps/plugins/webreport/webcal.py:1608
 msgid "Report Options"
 msgstr "Raporttiasetukset"
@@ -18256,16 +18242,6 @@ msgstr "Arkistot"
 msgid "Select Repository"
 msgstr "Valitse arkisto"
 
-#. -------------------------------------------------------------------------
-#.
-#. Constants
-#.
-#. -------------------------------------------------------------------------
-#. FIXME
-#: ../gramps/gui/selectors/selectsource.py:46
-msgid "manual|xxxx"
-msgstr "xxxx"
-
 #: ../gramps/gui/selectors/selectsource.py:62
 msgid "Select Source"
 msgstr "Valitse lähde"
@@ -18310,10 +18286,6 @@ msgstr ""
 "Vihjetiedoston luku ei onnistu.\n"
 "\n"
 "%s"
-
-#: ../gramps/gui/undohistory.py:57
-msgid "11"
-msgstr "11"
 
 #: ../gramps/gui/undohistory.py:73
 msgid "Undo History"
@@ -18409,7 +18381,7 @@ msgstr "Uuden lainausmuokkaimen avaus ei onnistu"
 
 #: ../gramps/gui/viewmanager.py:466 ../gramps/gui/viewmanager.py:1263
 msgid "No Family Tree"
-msgstr "Ei sukupuuta ladattuna."
+msgstr "Ei sukupuuta ladattuna"
 
 #: ../gramps/gui/viewmanager.py:488
 msgid "Connect to a recent database"
@@ -18710,7 +18682,7 @@ msgstr "Media:"
 
 #: ../gramps/gui/viewmanager.py:1889
 #: ../gramps/plugins/gramplet/statsgramplet.py:139
-#: ../gramps/plugins/webreport/narrativeweb.py:8235
+#: ../gramps/plugins/webreport/narrativeweb.py:8233
 msgid "Megabyte|MB"
 msgstr "Mbyte"
 
@@ -18911,7 +18883,7 @@ msgstr "_Aseta kotihenkilö"
 
 #: ../gramps/gui/views/navigationview.py:337
 msgid "No Home Person"
-msgstr "Kotihenkilöä ei ole asetettu."
+msgstr "Kotihenkilöä ei ole asetettu"
 
 #: ../gramps/gui/views/navigationview.py:338
 msgid ""
@@ -19232,7 +19204,7 @@ msgid ""
 "application."
 msgstr ""
 "Kaksoisnapsauta kuvaa jotta se avautuisi oletuksena olevassa "
-"katseluohjelmassa"
+"katseluohjelmassa."
 
 #: ../gramps/gui/widgets/photo.py:87
 msgid "Make Active Media"
@@ -19500,7 +19472,7 @@ msgstr "Tulosta..."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:56
 msgid "Generates documents and prints them directly."
-msgstr "Tuottaa dokumentteja ja tulostaa ne saman tien"
+msgstr "Tuottaa dokumentteja ja tulostaa ne saman tien."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:76
 msgid "HTML"
@@ -19508,7 +19480,7 @@ msgstr "HTML"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:77
 msgid "Generates documents in HTML format."
-msgstr "Tuottaa dokumentteja HTML-muodossa"
+msgstr "Tuottaa dokumentteja HTML-muodossa."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:97
 msgid "LaTeX"
@@ -19532,7 +19504,7 @@ msgstr "PDF-dokumentti"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:141
 msgid "Generates documents in PDF format (.pdf)."
-msgstr "Tuottaa PDF muodossa dokumentteja (.pdf)"
+msgstr "Tuottaa PDF muodossa dokumentteja (.pdf)."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:162
 msgid "Generates documents in PostScript format (.ps)."
@@ -19592,7 +19564,7 @@ msgstr "Koko sivu"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:225
 msgid "Zooms the page in"
-msgstr "Suurentaa sivua "
+msgstr "Suurentaa sivua"
 
 #: ../gramps/plugins/docgen/gtkprint.glade:240
 msgid "Zooms the page out"
@@ -19604,13 +19576,13 @@ msgid "of %d"
 msgstr " %d"
 
 #: ../gramps/plugins/docgen/htmldoc.py:273
-#: ../gramps/plugins/webreport/narrativeweb.py:9646
+#: ../gramps/plugins/webreport/narrativeweb.py:9644
 #: ../gramps/plugins/webreport/webcal.py:269
 msgid "Possible destination error"
 msgstr "Mahdollinen kohdevirhe"
 
 #: ../gramps/plugins/docgen/htmldoc.py:274
-#: ../gramps/plugins/webreport/narrativeweb.py:9647
+#: ../gramps/plugins/webreport/narrativeweb.py:9645
 #: ../gramps/plugins/webreport/webcal.py:270
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -19761,7 +19733,7 @@ msgstr "Puun keskushenkilö"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:798
 msgid "Include siblings of the center person"
-msgstr "Lisää keskushenkilön sisarukset "
+msgstr "Lisää keskushenkilön sisarukset"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:800
 msgid ""
@@ -20000,7 +19972,6 @@ msgstr "Isän näyttömuoto"
 msgid "Use Mothers display format"
 msgstr "Äidin näyttömuoto"
 
-# uusi/muutettu20170317
 #: ../gramps/plugins/drawreport/ancestortree.py:938
 msgid "The display format for the center person"
 msgstr "Keskushenkilön näyttömuoto"
@@ -20079,7 +20050,7 @@ msgid ""
 msgstr ""
 "Lisää tieto\n"
 "\n"
-"$T lisää \"tämän päivän\""
+"$T lisää tämä päivä"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:980
 #: ../gramps/plugins/drawreport/descendtree.py:1700
@@ -20093,7 +20064,7 @@ msgstr "Lisätietojen sijaintipaikka."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:987
 msgid "inter-box scale factor"
-msgstr "Laatikoiden pystyvälikerroin"
+msgstr "laatikoiden skaalauskerroin"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:990
 msgid "Make the inter-box spacing bigger or smaller"
@@ -20102,7 +20073,7 @@ msgstr "Kasvata tai pienennä laatikoiden pystyvälikerrointa"
 #: ../gramps/plugins/drawreport/ancestortree.py:993
 #: ../gramps/plugins/drawreport/descendtree.py:1712
 msgid "box shadow scale factor"
-msgstr "Laatikon varjon kerroin"
+msgstr "laatikon varjon skaalauskerroin"
 
 #. down to 0
 #: ../gramps/plugins/drawreport/ancestortree.py:995
@@ -20120,7 +20091,7 @@ msgstr "Tuntemattomille esivanhemmille yksi tyhjä sukupolvilaatikko"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1032
 msgid " Generations of empty boxes for unknown ancestors"
-msgstr "Tuntemattomien esivanhempien tyhjät esipolvilaatikot"
+msgstr " Tuntemattomien esivanhempien tyhjät esipolvilaatikot"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1049
 #: ../gramps/plugins/drawreport/descendtree.py:1774
@@ -20375,7 +20346,6 @@ msgstr "Valitse näytettävä sukunimi avioituneille naisille"
 msgid "Include birthdays"
 msgstr "Ota mukaan syntymäpäivät"
 
-# uusi/muutettu20170317
 #: ../gramps/plugins/drawreport/calendarreport.py:558
 #: ../gramps/plugins/textreport/birthdayreport.py:486
 msgid "Whether to include birthdays"
@@ -20387,7 +20357,6 @@ msgstr "Lisätäänkö syntymäpäivät"
 msgid "Include anniversaries"
 msgstr "Ota mukaan vuosipäivät"
 
-# uusi/muutettu20170317
 #: ../gramps/plugins/drawreport/calendarreport.py:562
 #: ../gramps/plugins/textreport/birthdayreport.py:490
 msgid "Whether to include anniversaries"
@@ -20587,7 +20556,7 @@ msgstr "Puolison näyttömuoto."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1707
 msgid "inter-box Y scale factor"
-msgstr "Laatikoiden pystyvälikerroin"
+msgstr "laatikoiden Y skaalauskerroin"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1709
 msgid "Make the inter-box Y bigger or smaller"
@@ -20595,7 +20564,7 @@ msgstr "Kasvata tai pienennä laatikoiden pystyvälikerrointa"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1785
 msgid "The bold style used for the text display."
-msgstr "Tekstin näytössä käytettävä vahvennettu tyyli"
+msgstr "Tekstin näytössä käytettävä vahvennettu tyyli."
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:37
 msgid "Ancestor Chart"
@@ -20700,7 +20669,7 @@ msgid ""
 "%(person)s"
 msgstr ""
 "%(generations)d sukupolven viuhkakaavio\n"
-"henkilölle %(person)s "
+"henkilölle %(person)s"
 
 #: ../gramps/plugins/drawreport/fanchart.py:692
 #: ../gramps/plugins/textreport/ancestorreport.py:296
@@ -20716,15 +20685,15 @@ msgstr "Kaavion tyyppi"
 
 #: ../gramps/plugins/drawreport/fanchart.py:697
 msgid "full circle"
-msgstr "Täysi ympyrä"
+msgstr "täysi ympyrä"
 
 #: ../gramps/plugins/drawreport/fanchart.py:698
 msgid "half circle"
-msgstr "Puoliympyrä"
+msgstr "puoliympyrä"
 
 #: ../gramps/plugins/drawreport/fanchart.py:699
 msgid "quarter circle"
-msgstr "Neljännesympyrä"
+msgstr "neljännesympyrä"
 
 #: ../gramps/plugins/drawreport/fanchart.py:700
 msgid "The form of the graph: full circle, half circle, or quarter circle."
@@ -20961,7 +20930,7 @@ msgstr "%s (henkilöä):"
 #: ../gramps/plugins/drawreport/statisticschart.py:991
 #: ../gramps/plugins/textreport/recordsreport.py:219
 msgid "Determines what people are included in the report."
-msgstr "Määrittää henkilöt, jotka otetaan mukaan raporttiin"
+msgstr "Määrittää henkilöt, jotka otetaan mukaan raporttiin."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:996
 #: ../gramps/plugins/drawreport/timeline.py:421
@@ -20969,7 +20938,7 @@ msgstr "Määrittää henkilöt, jotka otetaan mukaan raporttiin"
 #: ../gramps/plugins/textreport/indivcomplete.py:1062
 #: ../gramps/plugins/textreport/recordsreport.py:223
 #: ../gramps/plugins/tool/sortevents.py:172
-#: ../gramps/plugins/webreport/narrativeweb.py:9768
+#: ../gramps/plugins/webreport/narrativeweb.py:9766
 #: ../gramps/plugins/webreport/webcal.py:1629
 msgid "Filter Person"
 msgstr "Suodinhenkilö"
@@ -20978,7 +20947,7 @@ msgstr "Suodinhenkilö"
 #: ../gramps/plugins/textreport/birthdayreport.py:418
 #: ../gramps/plugins/textreport/indivcomplete.py:1063
 msgid "The center person for the filter."
-msgstr "Suotimen keskushenkilö"
+msgstr "Suotimen keskushenkilö."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1001
 msgid "Sort chart items by"
@@ -21010,7 +20979,7 @@ msgstr "Ihmiset syntyneet ennen"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1021
 msgid "Birth year until which to include people"
-msgstr "Ota mukaan henkilöt, jotka ovat syntyneet annettuun vuoteen mennessä."
+msgstr "Syntymävuosi, johon asti ihmiset otetaan mukaan"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1024
 msgid "Include people without known birth years"
@@ -21104,7 +21073,7 @@ msgstr "Määrittää henkilöt, jotka otetaan mukaan raporttiin"
 #: ../gramps/plugins/drawreport/timeline.py:422
 #: ../gramps/plugins/textreport/recordsreport.py:224
 #: ../gramps/plugins/tool/sortevents.py:173
-#: ../gramps/plugins/webreport/narrativeweb.py:9769
+#: ../gramps/plugins/webreport/narrativeweb.py:9767
 #: ../gramps/plugins/webreport/webcal.py:1630
 msgid "The center person for the filter"
 msgstr "Suotimen keskushenkilö"
@@ -21331,14 +21300,14 @@ msgstr "Kuolintiedon lähde"
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:217
 #: ../gramps/plugins/textreport/familygroup.py:625
-#: ../gramps/plugins/webreport/narrativeweb.py:2776
+#: ../gramps/plugins/webreport/narrativeweb.py:2771
 msgid "Husband"
 msgstr "Aviomies"
 
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:214
 #: ../gramps/plugins/textreport/familygroup.py:634
-#: ../gramps/plugins/webreport/narrativeweb.py:2774
+#: ../gramps/plugins/webreport/narrativeweb.py:2769
 msgid "Wife"
 msgstr "Vaimo"
 
@@ -21503,7 +21472,7 @@ msgstr "Äidin ja lapsen iän välinen ikäjakauma"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:262
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:269
 #: ../gramps/plugins/webreport/narrativeweb.py:1931
-#: ../gramps/plugins/webreport/narrativeweb.py:8176
+#: ../gramps/plugins/webreport/narrativeweb.py:8174
 msgid "Statistics"
 msgstr "Tilasto"
 
@@ -21882,7 +21851,7 @@ msgstr "Gramplet näyttää aktiivisen henkilöt jälkeläiset"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:104
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:111
-#: ../gramps/plugins/webreport/narrativeweb.py:7060
+#: ../gramps/plugins/webreport/narrativeweb.py:7058
 msgid "Ancestors"
 msgstr "Esivanhemmat"
 
@@ -21950,7 +21919,7 @@ msgstr "Gramplet näyttää kaikki etunimet pilvikaaviona"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:205
 #: ../gramps/plugins/view/pedigreeview.py:528
 #: ../gramps/plugins/view/view.gpr.py:127
-#: ../gramps/plugins/webreport/narrativeweb.py:7246
+#: ../gramps/plugins/webreport/narrativeweb.py:7244
 msgid "Pedigree"
 msgstr "Esipolvien taulu"
 
@@ -22364,10 +22333,10 @@ msgstr "Gramplet näyttää henkilöön tulevat linkit"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:967
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:981
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:995
-#: ../gramps/plugins/webreport/narrativeweb.py:2720
-#: ../gramps/plugins/webreport/narrativeweb.py:3228
-#: ../gramps/plugins/webreport/narrativeweb.py:5793
-#: ../gramps/plugins/webreport/narrativeweb.py:6832
+#: ../gramps/plugins/webreport/narrativeweb.py:2715
+#: ../gramps/plugins/webreport/narrativeweb.py:3223
+#: ../gramps/plugins/webreport/narrativeweb.py:5791
+#: ../gramps/plugins/webreport/narrativeweb.py:6830
 msgid "References"
 msgstr "Viitteet"
 
@@ -22895,7 +22864,7 @@ msgstr "Kaksoisnapsauta nähdäksesi löydetyt"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:87
 #: ../gramps/plugins/textreport/summary.py:240
-#: ../gramps/plugins/webreport/narrativeweb.py:8196
+#: ../gramps/plugins/webreport/narrativeweb.py:8194
 msgid "less than 1"
 msgstr "vähemmän kuin 1"
 
@@ -22906,60 +22875,60 @@ msgstr "vähemmän kuin 1"
 #: ../gramps/plugins/webreport/narrativeweb.py:1918
 #: ../gramps/plugins/webreport/narrativeweb.py:1976
 #: ../gramps/plugins/webreport/narrativeweb.py:2041
-#: ../gramps/plugins/webreport/narrativeweb.py:6152
-#: ../gramps/plugins/webreport/narrativeweb.py:8207
-#: ../gramps/plugins/webreport/narrativeweb.py:8275
+#: ../gramps/plugins/webreport/narrativeweb.py:6150
+#: ../gramps/plugins/webreport/narrativeweb.py:8205
+#: ../gramps/plugins/webreport/narrativeweb.py:8273
 msgid "Individuals"
 msgstr "Henkilöt"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:101
-#: ../gramps/plugins/webreport/narrativeweb.py:8210
-#: ../gramps/plugins/webreport/narrativeweb.py:8276
+#: ../gramps/plugins/webreport/narrativeweb.py:8208
+#: ../gramps/plugins/webreport/narrativeweb.py:8274
 msgid "Number of individuals"
 msgstr "Henkilöiden määrä"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:111
-#: ../gramps/plugins/webreport/narrativeweb.py:8216
-#: ../gramps/plugins/webreport/narrativeweb.py:8283
+#: ../gramps/plugins/webreport/narrativeweb.py:8214
+#: ../gramps/plugins/webreport/narrativeweb.py:8281
 msgid "Individuals with unknown gender"
 msgstr "Henkilöt, joiden sukupuoli on tuntematon"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:115
 #: ../gramps/plugins/textreport/summary.py:211
-#: ../gramps/plugins/webreport/narrativeweb.py:8220
-#: ../gramps/plugins/webreport/narrativeweb.py:8287
+#: ../gramps/plugins/webreport/narrativeweb.py:8218
+#: ../gramps/plugins/webreport/narrativeweb.py:8285
 msgid "Family Information"
 msgstr "Perhetiedot"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:122
-#: ../gramps/plugins/webreport/narrativeweb.py:8223
+#: ../gramps/plugins/webreport/narrativeweb.py:8221
 msgid "Unique surnames"
 msgstr "Sukunimiä"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:126
 #: ../gramps/plugins/textreport/summary.py:228
-#: ../gramps/plugins/webreport/narrativeweb.py:8227
+#: ../gramps/plugins/webreport/narrativeweb.py:8225
 msgid "Media Objects"
 msgstr "Mediatiedostot"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:128
-#: ../gramps/plugins/webreport/narrativeweb.py:8229
+#: ../gramps/plugins/webreport/narrativeweb.py:8227
 msgid "Total number of media object references"
 msgstr "Mediatiedostojen viitteiden kokonaismäärä"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:132
-#: ../gramps/plugins/webreport/narrativeweb.py:8231
+#: ../gramps/plugins/webreport/narrativeweb.py:8229
 msgid "Number of unique media objects"
 msgstr "Mediatiedostoja"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:137
-#: ../gramps/plugins/webreport/narrativeweb.py:8233
+#: ../gramps/plugins/webreport/narrativeweb.py:8231
 msgid "Total size of media objects"
 msgstr "Mediatiedostojen yhteenlaskettu koko"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:141
 #: ../gramps/plugins/textreport/summary.py:258
-#: ../gramps/plugins/webreport/narrativeweb.py:8237
+#: ../gramps/plugins/webreport/narrativeweb.py:8235
 msgid "Missing Media Objects"
 msgstr "Puuttuvia mediatiedostoja"
 
@@ -23329,7 +23298,7 @@ msgstr "Jälkeläiset - Esivanhemmat"
 #. ---------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:119
 msgid "Follow parents to determine \"family lines\""
-msgstr "Seuraa vanhempia määritettäessä \"perhelinjoja\" "
+msgstr "Seuraa vanhempia määritettäessä \"perhelinjoja\""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:121
 msgid ""
@@ -23341,7 +23310,7 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:125
 msgid "Follow children to determine \"family lines\""
-msgstr "Seuraa lapsia määritettäessä \"perhelinjoja\" "
+msgstr "Seuraa lapsia määritettäessä \"perhelinjoja\""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:127
 msgid "Children will be considered when determining \"family lines\"."
@@ -23435,7 +23404,7 @@ msgstr "Rajoita jälkeläisten määrää"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:200
 msgid "Whether to limit the number of descendants."
-msgstr "Rajoitetaanko jälkeläisten määrää"
+msgstr "Rajoitetaanko jälkeläisten määrää."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:206
 msgid "The maximum number of descendants to include."
@@ -23822,7 +23791,7 @@ msgid ""
 "the media object files.)"
 msgstr ""
 "Tuo datan Gramps paketista (sisältää tietokannan XML muodossa ja kaikki "
-"siihen liittyvät mediatiedostot)."
+"siihen liittyvät mediatiedostot.)"
 
 #: ../gramps/plugins/importer/import.gpr.py:110
 msgid "Gramps XML Family Tree"
@@ -24812,7 +24781,7 @@ msgid "Common Law Marriage"
 msgstr "Avoliitto"
 
 #: ../gramps/plugins/lib/libgedcom.py:607
-#: ../gramps/plugins/webreport/narrativeweb.py:9749
+#: ../gramps/plugins/webreport/narrativeweb.py:9747
 #: ../gramps/plugins/webreport/webcal.py:1612
 msgid "Destination"
 msgstr "Kohde"
@@ -24903,7 +24872,7 @@ msgstr "GEDCOM tuonnin raportti: %s virhettä löytynyt"
 #: ../gramps/plugins/lib/libgedcom.py:2988
 #: ../gramps/plugins/lib/libgedcom.py:3001
 msgid "Line ignored as not understood"
-msgstr "Rivistä ei saatu selvää, joten se jätettiin huomiotta."
+msgstr "Rivistä ei saatu selvää, joten se jätettiin huomiotta"
 
 #: ../gramps/plugins/lib/libgedcom.py:2990
 msgid "Tag recognized but not supported"
@@ -24933,7 +24902,7 @@ msgid ""
 "Record with typifying attribute 'Unknown' created"
 msgstr ""
 "Virhe: %(msg)s '%(gramps_id)s' (syötteenä @%(xref)s@) ei GEDCOM aineistossa. "
-"Luotu tietue tyyppiominaisuudeltaan 'Tuntematon' "
+"Luotu tietue tyyppiominaisuudeltaan 'Tuntematon'"
 
 #: ../gramps/plugins/lib/libgedcom.py:3152
 #, python-format
@@ -28686,7 +28655,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libplaceview.py:363
 msgid "Cannot delete place."
-msgstr "Paikkaa ei voi poistaa"
+msgstr "Paikkaa ei voi poistaa."
 
 #: ../gramps/plugins/lib/libplaceview.py:364
 msgid ""
@@ -28738,7 +28707,7 @@ msgstr "Hoitaa HTML tiedoston DocBackend.py avulla."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:142
 msgid "Common constants for html files."
-msgstr "HTML tiedostojen vakiosanat"
+msgstr "Yhteiset vakiot html-tiedostoille."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:160
 msgid "Manages an HTML DOM tree."
@@ -28758,20 +28727,20 @@ msgstr "Hoitaa ODF tiedoston DocBackend.py ohjelman avulla."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:229
 msgid "Provides the Base needed for the List People views."
-msgstr "Tarjoaa kehikon henkilölistausten näkymille"
+msgstr "Tarjoaa kehikon henkilölistausten näkymille."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:246
 msgid "Provides the Base needed for the List Place views."
-msgstr "Tarjoaa kehikon paikkalistausten näkymille"
+msgstr "Tarjoaa kehikon paikkalistausten näkymille."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:263
 msgid "Provides variable substitution on display lines."
-msgstr "Tarjoaa muuttujien päivityksen näyttöriveillä"
+msgstr "Tarjoaa muuttujien päivityksen näyttöriveillä."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:279
 msgid ""
 "Provides the base needed for the ancestor and descendant graphical reports."
-msgstr "Tarjoa kehikon esipolvien ja jälkeläisten graafisille raporteille"
+msgstr "Tarjoa kehikon esipolvien ja jälkeläisten graafisille raporteille."
 
 #: ../gramps/plugins/lib/librecords.py:55
 msgid "Youngest living person"
@@ -29058,7 +29027,7 @@ msgstr "Tiilien välimuistin %s hakemiston luonti epäonnistui"
 #: ../gramps/plugins/lib/maps/osmgps.py:226
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
-msgstr "Tiilien välimuistin hakemiston luonti %s varten epäonnistui"
+msgstr "Tiilien välimuistin hakemiston luonti %s varten epäonnistui."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:107
 #: ../gramps/plugins/lib/maps/placeselection.py:109
@@ -29138,7 +29107,7 @@ msgid "Open on maps.google.com"
 msgstr "Avaa maps.google.com"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:71
-#: ../gramps/plugins/webreport/narrativeweb.py:10098
+#: ../gramps/plugins/webreport/narrativeweb.py:10096
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap kartat"
 
@@ -29199,7 +29168,7 @@ msgstr "Tapahtumapaikka"
 #: ../gramps/plugins/quickview/all_events.py:60
 #: ../gramps/plugins/quickview/all_events.py:109
 #: ../gramps/plugins/quickview/all_events.py:124
-#: ../gramps/plugins/webreport/narrativeweb.py:6848
+#: ../gramps/plugins/webreport/narrativeweb.py:6846
 msgid "Event Type"
 msgstr "Tapahtumatyyppi"
 
@@ -29279,10 +29248,10 @@ msgstr "Vanhempi"
 
 #: ../gramps/plugins/quickview/all_relations.py:286
 #: ../gramps/plugins/view/relview.py:414
-#: ../gramps/plugins/webreport/narrativeweb.py:2778
-#: ../gramps/plugins/webreport/narrativeweb.py:2780
-#: ../gramps/plugins/webreport/narrativeweb.py:3322
-#: ../gramps/plugins/webreport/narrativeweb.py:6199
+#: ../gramps/plugins/webreport/narrativeweb.py:2773
+#: ../gramps/plugins/webreport/narrativeweb.py:2775
+#: ../gramps/plugins/webreport/narrativeweb.py:3317
+#: ../gramps/plugins/webreport/narrativeweb.py:6197
 msgid "Partner"
 msgstr "Kumppani"
 
@@ -29475,9 +29444,9 @@ msgstr "Henkilöt"
 #: ../gramps/plugins/webreport/narrativeweb.py:1923
 #: ../gramps/plugins/webreport/narrativeweb.py:1982
 #: ../gramps/plugins/webreport/narrativeweb.py:2052
-#: ../gramps/plugins/webreport/narrativeweb.py:4895
-#: ../gramps/plugins/webreport/narrativeweb.py:4992
-#: ../gramps/plugins/webreport/narrativeweb.py:7144
+#: ../gramps/plugins/webreport/narrativeweb.py:4893
+#: ../gramps/plugins/webreport/narrativeweb.py:4990
+#: ../gramps/plugins/webreport/narrativeweb.py:7142
 msgid "Sources"
 msgstr "Lähteet"
 
@@ -29540,8 +29509,8 @@ msgstr "Koko tavuina"
 #, python-brace-format
 msgid "Filter matched {number_of} record."
 msgid_plural "Filter matched {number_of} records."
-msgstr[0] "Suodatettu {number_of} tietue"
-msgstr[1] "Suodatettu {number_of} tietuetta"
+msgstr[0] "Suodatettu {number_of} tietue."
+msgstr[1] "Suodatettu {number_of} tietuetta."
 
 #. display the results
 #. feature request 2356: avoid genitive form
@@ -29798,7 +29767,7 @@ msgid "No references for this %s"
 msgstr "Ei viitteitä kohteena %s"
 
 #: ../gramps/plugins/quickview/reporef.py:62
-#: ../gramps/plugins/webreport/narrativeweb.py:3102
+#: ../gramps/plugins/webreport/narrativeweb.py:3097
 msgid "Call number"
 msgstr "Hakuavain"
 
@@ -30057,7 +30026,7 @@ msgstr "Lisää rivinvaihto joka nimen jälkeen"
 # uusi/muutettu20170511
 #: ../gramps/plugins/textreport/ancestorreport.py:307
 msgid "Whether a line break should follow the name."
-msgstr "Pitääkö rivinvaihdon tulla jokaisen nimen jälkeen. "
+msgstr "Pitääkö rivinvaihdon tulla jokaisen nimen jälkeen."
 
 #: ../gramps/plugins/textreport/birthdayreport.py:65
 #: ../gramps/plugins/textreport/birthdayreport.py:217
@@ -30093,7 +30062,7 @@ msgstr[1] "{person}, {age}{relation}"
 #: ../gramps/plugins/textreport/familygroup.py:713
 #: ../gramps/plugins/textreport/indivcomplete.py:1058
 msgid "Select the filter to be applied to the report."
-msgstr "Valitse raporttiin käytettävä suodin"
+msgstr "Valitse raporttiin käytettävä suodin."
 
 #: ../gramps/plugins/textreport/birthdayreport.py:422
 msgid "Title text"
@@ -30124,11 +30093,10 @@ msgstr "Lisää vain elossa olevat henkilöt raporttiin"
 msgid "Year of report"
 msgstr "Raportin vuosi"
 
-# uusi/muutettu20170317
 #: ../gramps/plugins/textreport/birthdayreport.py:496
 #: ../gramps/plugins/textreport/indivcomplete.py:1139
 msgid "Whether to include relationships to the center person"
-msgstr "Lisätäänkö suhteet keskushenkilöön "
+msgstr "Lisätäänkö suhteet keskushenkilöön"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:565
 msgid "Title text style"
@@ -30158,7 +30126,6 @@ msgstr "Käyttäjän teksti"
 msgid "Initial Text"
 msgstr "Alkuteksti"
 
-# uusi/muutettu20170321
 #: ../gramps/plugins/textreport/custombooktext.py:135
 #: ../gramps/plugins/textreport/custombooktext.py:164
 msgid "Text to display at the top"
@@ -30177,7 +30144,6 @@ msgstr "Keskellä näytettävä teksti"
 msgid "Final Text"
 msgstr "Lopputeksti"
 
-# uusi/muutettu20170321
 #: ../gramps/plugins/textreport/custombooktext.py:143
 #: ../gramps/plugins/textreport/custombooktext.py:182
 msgid "Text to display at the bottom"
@@ -30283,7 +30249,7 @@ msgstr "Esivanhempien raportti %s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:941
 #, python-format
 msgid "More about %(person_name)s:"
-msgstr "Tapahtumat: %(person_name)s"
+msgstr "Tapahtumat: %(person_name)s:"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:313
 #, python-format
@@ -30347,7 +30313,7 @@ msgstr "Lapset: %(mother_name)s ja %(father_name)s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:801
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
-msgstr "Tapahtumat: %(mother_name)s ja %(father_name)s"
+msgstr "Tapahtumat: %(mother_name)s ja %(father_name)s:"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:737
 #: ../gramps/plugins/textreport/detdescendantreport.py:610
@@ -30434,7 +30400,6 @@ msgstr "Käytetäänkö kutsumanimeä ensimmäisenä nimenä."
 msgid "Whether to list children."
 msgstr "Listataanko lapset."
 
-# uusi/muutettu20170317
 #: ../gramps/plugins/textreport/detancestralreport.py:894
 #: ../gramps/plugins/textreport/detdescendantreport.py:1081
 msgid "Include spouses of children"
@@ -30464,7 +30429,6 @@ msgstr "Lisää muita tapahtumia"
 msgid "Whether to include other events people participated in."
 msgstr "Lisätäänkö muita tapahtumia osallistuville henkilöille."
 
-# uusi/muutettu20170317
 #: ../gramps/plugins/textreport/detancestralreport.py:909
 #: ../gramps/plugins/textreport/detdescendantreport.py:1100
 msgid "Include descendant reference in child list"
@@ -30487,7 +30451,6 @@ msgstr "Lisää valo- ja muut kuvat Galleriasta"
 msgid "Whether to include images."
 msgstr "Lisätäänkö kuvat."
 
-# uusi/muutettu20170317
 #. #########################
 #. ###############################
 #: ../gramps/plugins/textreport/detancestralreport.py:919
@@ -30596,7 +30559,6 @@ msgstr "Käytettävä tyyli lapsilistan otsikolle."
 msgid "The style used for the text related to the children."
 msgstr "Käytettävä tyyli lapsiin liittyvälle tekstille."
 
-# uusi/muutettu20170321
 #: ../gramps/plugins/textreport/detancestralreport.py:1009
 #: ../gramps/plugins/textreport/detdescendantreport.py:1214
 msgid "The style used for the note header."
@@ -30616,13 +30578,12 @@ msgstr "Käytettävä tyyli otsikolle."
 msgid "The style used for second level headings."
 msgstr "Käytettävä tyyli otsikolle."
 
-# uusi/muutettu20170321
 #: ../gramps/plugins/textreport/detancestralreport.py:1043
 #: ../gramps/plugins/textreport/detdescendantreport.py:1248
 #: ../gramps/plugins/textreport/endoflinereport.py:335
 #: ../gramps/plugins/textreport/placereport.py:539
 msgid "The style used for details."
-msgstr "Lisätiedossa käytettävä tyyli"
+msgstr "Lisätiedossa käytettävä tyyli."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/detdescendantreport.py:338
@@ -30687,7 +30648,7 @@ msgid ""
 "list to indicate a child has succession."
 msgstr ""
 "Lisätäänkö lasten listaan ('+') jälkeläisen numeron eteen merkitsemään "
-"jälkeläisiä"
+"jälkeläisiä."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1145
 msgid "Include path to start-person"
@@ -30861,7 +30822,7 @@ msgid "Alternate Parents"
 msgstr "Vaihtoehtoiset vanhemmat"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:443
-#: ../gramps/plugins/webreport/narrativeweb.py:7129
+#: ../gramps/plugins/webreport/narrativeweb.py:7127
 msgid "Associations"
 msgstr "Liitokset"
 
@@ -30963,12 +30924,10 @@ msgstr "Käytettävä tyyli puolison nimelle."
 msgid "The basic style used for table headings."
 msgstr "Käytettävä perustyyli taulukko-otsikoille."
 
-# uusi/muutettu20170321
 #: ../gramps/plugins/textreport/indivcomplete.py:1249
 msgid "The style used for image notes."
-msgstr "Kuvan lisätiedossa käytettävä tyyli"
+msgstr "Kuvan lisätiedossa käytettävä tyyli."
 
-# uusi/muutettu20170321
 #: ../gramps/plugins/textreport/indivcomplete.py:1259
 msgid "The style used for image descriptions."
 msgstr "Kuvan kuvauksessa käytetty tyyli."
@@ -31297,7 +31256,7 @@ msgstr "Tagi raportti"
 
 #: ../gramps/plugins/textreport/tagreport.py:107
 msgid "You must first create a tag before running this report."
-msgstr "Luo ensin tagi ennen kuin ajat tämän raportin"
+msgstr "Luo ensin tagi ennen kuin ajat tämän raportin."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/tagreport.py:114
@@ -32252,10 +32211,11 @@ msgstr "Sulauta henkilöt"
 msgid "manual|Find_database_loop"
 msgstr "Etsi_tietokanta_silmukka"
 
+# muutettu20170701
 #: ../gramps/plugins/tool/findloop.py:70
 #: ../gramps/plugins/tool/tools.gpr.py:465
 msgid "Find database loop"
-msgstr "Etsi tietokanta silmukka"
+msgstr "Etsi tietokannasta silmukka"
 
 #. start the progress indicator
 #: ../gramps/plugins/tool/findloop.py:89
@@ -32290,7 +32250,7 @@ msgstr "Medianhallinta"
 #: ../gramps/plugins/tool/mediamanager.py:97
 #: ../gramps/plugins/webreport/narrativeweb.py:1916
 #: ../gramps/plugins/webreport/narrativeweb.py:2039
-#: ../gramps/plugins/webreport/narrativeweb.py:4736
+#: ../gramps/plugins/webreport/narrativeweb.py:4734
 msgid "Introduction"
 msgstr "Johdanto"
 
@@ -32858,7 +32818,7 @@ msgstr "Poista käyttämättömät tiedot"
 # uusi/muutettu20170514
 #: ../gramps/plugins/tool/reorderids.glade:1368
 msgid "Enable ID reordering."
-msgstr "Käytä ID uudelleenjärjestelyä"
+msgstr "Käytä ID uudelleenjärjestelyä."
 
 # uusi/muutettu20170514
 #: ../gramps/plugins/tool/reorderids.glade:1385
@@ -32960,7 +32920,7 @@ msgstr "Uudelleenjärjestä %s ID:t ..."
 # uusi/muutettu20170514
 #: ../gramps/plugins/tool/reorderids.py:622
 msgid "Finding and assigning unused IDs."
-msgstr "Löydä ja valitse käyttämättömät ID:t"
+msgstr "Löydä ja valitse käyttämättömät ID:t."
 
 #: ../gramps/plugins/tool/sortevents.py:76
 msgid "Sort Events"
@@ -33244,7 +33204,7 @@ msgstr "Luo uudelleen sukupuolitilastot"
 
 #: ../gramps/plugins/tool/tools.gpr.py:310
 msgid "Rebuilds gender statistics for name gender guessing..."
-msgstr "Luo uudelleen sukupuolitilastot käyttäen arvauksia"
+msgstr "Luo uudelleen sukupuolitilastot käyttäen arvauksia..."
 
 #: ../gramps/plugins/tool/tools.gpr.py:331
 msgid "Relationship Calculator"
@@ -33292,15 +33252,15 @@ msgstr ""
 msgid "Searches the entire database, looking for a possible loop."
 msgstr "Etsii koko tietokannasta, etsii mahdollista silmukkaa."
 
-# uusi/muutettu20170317
+# uusi/muutettu20170701
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:64
 msgid "Dump Gender Statistics"
-msgstr "Muodosta sukupuolitilastot"
+msgstr "Tyhjennä sukupuolitilastot"
 
-# uusi/muutettu20170317
+# uusi/muutettu20170701
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:65
 msgid "Will dump the statistics for guessing the gender from the first name."
-msgstr "Muodostaa tilaston arvaamalla sukupuolen etunimistä."
+msgstr "Poistaa tilastosta arvaamalla sukupuolen etunimistä."
 
 #: ../gramps/plugins/tool/verify.glade:215
 msgid "Maximum _age"
@@ -34923,15 +34883,15 @@ msgid "Narrative"
 msgstr "Kerrottua"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1523
-#: ../gramps/plugins/webreport/narrativeweb.py:3001
-#: ../gramps/plugins/webreport/narrativeweb.py:3027
-#: ../gramps/plugins/webreport/narrativeweb.py:3888
+#: ../gramps/plugins/webreport/narrativeweb.py:2996
+#: ../gramps/plugins/webreport/narrativeweb.py:3022
+#: ../gramps/plugins/webreport/narrativeweb.py:3883
 msgid "State/ Province"
 msgstr "Lääni, Osavaltio tai Provinssi"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1525
-#: ../gramps/plugins/webreport/narrativeweb.py:3002
-#: ../gramps/plugins/webreport/narrativeweb.py:3028
+#: ../gramps/plugins/webreport/narrativeweb.py:2997
+#: ../gramps/plugins/webreport/narrativeweb.py:3023
 msgid "Postal Code"
 msgstr "Postinumero"
 
@@ -34978,14 +34938,14 @@ msgstr "Koti"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1926
 #: ../gramps/plugins/webreport/narrativeweb.py:2061
-#: ../gramps/plugins/webreport/narrativeweb.py:5694
+#: ../gramps/plugins/webreport/narrativeweb.py:5692
 msgid "Thumbnails"
 msgstr "Pikkukuvat"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1927
 #: ../gramps/plugins/webreport/narrativeweb.py:2068
-#: ../gramps/plugins/webreport/narrativeweb.py:5891
-#: ../gramps/plugins/webreport/narrativeweb.py:9974
+#: ../gramps/plugins/webreport/narrativeweb.py:5889
+#: ../gramps/plugins/webreport/narrativeweb.py:9972
 msgid "Download"
 msgstr "Lataus"
 
@@ -34993,8 +34953,8 @@ msgstr "Lataus"
 #: ../gramps/plugins/webreport/narrativeweb.py:1928
 #: ../gramps/plugins/webreport/narrativeweb.py:1994
 #: ../gramps/plugins/webreport/narrativeweb.py:2069
-#: ../gramps/plugins/webreport/narrativeweb.py:8010
-#: ../gramps/plugins/webreport/narrativeweb.py:8124
+#: ../gramps/plugins/webreport/narrativeweb.py:8008
+#: ../gramps/plugins/webreport/narrativeweb.py:8122
 msgid "Address Book"
 msgstr "Osoitekirja"
 
@@ -35002,7 +34962,7 @@ msgstr "Osoitekirja"
 #: ../gramps/plugins/webreport/narrativeweb.py:1930
 #: ../gramps/plugins/webreport/narrativeweb.py:2076
 #: ../gramps/plugins/webreport/narrativeweb.py:2113
-#: ../gramps/plugins/webreport/narrativeweb.py:6007
+#: ../gramps/plugins/webreport/narrativeweb.py:6005
 msgid "Contact"
 msgstr "Yhteystieto"
 
@@ -35012,17 +34972,17 @@ msgid "Web Calendar"
 msgstr "Nettikalenteri"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2012
-#: ../gramps/plugins/webreport/narrativeweb.py:5366
+#: ../gramps/plugins/webreport/narrativeweb.py:5364
 msgid "Previous"
 msgstr "Edellinen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2014
-#: ../gramps/plugins/webreport/narrativeweb.py:5378
+#: ../gramps/plugins/webreport/narrativeweb.py:5376
 msgid "Next"
 msgstr "Seuraava"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2489
-#: ../gramps/plugins/webreport/narrativeweb.py:8043
+#: ../gramps/plugins/webreport/narrativeweb.py:8041
 msgid "Web Links"
 msgstr "Nettilinkit"
 
@@ -35034,30 +34994,30 @@ msgstr " [Napsauta siirtymiseksi]"
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr "Mormonisakramentti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2754
-#: ../gramps/plugins/webreport/narrativeweb.py:2755
-#: ../gramps/plugins/webreport/narrativeweb.py:6587
-#: ../gramps/plugins/webreport/narrativeweb.py:6895
+#: ../gramps/plugins/webreport/narrativeweb.py:2749
+#: ../gramps/plugins/webreport/narrativeweb.py:2750
+#: ../gramps/plugins/webreport/narrativeweb.py:6585
+#: ../gramps/plugins/webreport/narrativeweb.py:6893
 msgid "Family Map"
 msgstr "Perhekartta"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2999
-#: ../gramps/plugins/webreport/narrativeweb.py:3025
+#: ../gramps/plugins/webreport/narrativeweb.py:2994
+#: ../gramps/plugins/webreport/narrativeweb.py:3020
 msgid "Church Parish"
 msgstr "Seurakunta"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3046
+#: ../gramps/plugins/webreport/narrativeweb.py:3041
 msgid "Locations"
 msgstr "Sijainnit"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3277
-#: ../gramps/plugins/webreport/narrativeweb.py:4661
-#: ../gramps/plugins/webreport/narrativeweb.py:6221
+#: ../gramps/plugins/webreport/narrativeweb.py:3272
+#: ../gramps/plugins/webreport/narrativeweb.py:4659
+#: ../gramps/plugins/webreport/narrativeweb.py:6219
 msgid "<absent>"
 msgstr "<puuttuva>"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/webreport/narrativeweb.py:3293
+#: ../gramps/plugins/webreport/narrativeweb.py:3288
 #, python-format
 msgid ""
 "This page contains an index of all the individuals in the database with the "
@@ -35068,34 +35028,34 @@ msgstr ""
 "on %s. Henkilön nimen napauttaminen vie sinut valitun henkilön sivulle."
 
 #. Name Column
-#: ../gramps/plugins/webreport/narrativeweb.py:3310
-#: ../gramps/plugins/webreport/narrativeweb.py:6187
+#: ../gramps/plugins/webreport/narrativeweb.py:3305
+#: ../gramps/plugins/webreport/narrativeweb.py:6185
 msgid "Given Name"
 msgstr "Etunimi"
 
 #. set progress bar pass for Repositories
-#: ../gramps/plugins/webreport/narrativeweb.py:3491
-#: ../gramps/plugins/webreport/narrativeweb.py:3825
-#: ../gramps/plugins/webreport/narrativeweb.py:4203
-#: ../gramps/plugins/webreport/narrativeweb.py:4868
-#: ../gramps/plugins/webreport/narrativeweb.py:5109
-#: ../gramps/plugins/webreport/narrativeweb.py:6116
-#: ../gramps/plugins/webreport/narrativeweb.py:7805
-#: ../gramps/plugins/webreport/narrativeweb.py:8697
-#: ../gramps/plugins/webreport/narrativeweb.py:9224
-#: ../gramps/plugins/webreport/narrativeweb.py:9277
-#: ../gramps/plugins/webreport/narrativeweb.py:9297
-#: ../gramps/plugins/webreport/narrativeweb.py:9306
-#: ../gramps/plugins/webreport/narrativeweb.py:9348
+#: ../gramps/plugins/webreport/narrativeweb.py:3486
+#: ../gramps/plugins/webreport/narrativeweb.py:3820
+#: ../gramps/plugins/webreport/narrativeweb.py:4201
+#: ../gramps/plugins/webreport/narrativeweb.py:4866
+#: ../gramps/plugins/webreport/narrativeweb.py:5107
+#: ../gramps/plugins/webreport/narrativeweb.py:6114
+#: ../gramps/plugins/webreport/narrativeweb.py:7803
+#: ../gramps/plugins/webreport/narrativeweb.py:8695
+#: ../gramps/plugins/webreport/narrativeweb.py:9222
+#: ../gramps/plugins/webreport/narrativeweb.py:9275
+#: ../gramps/plugins/webreport/narrativeweb.py:9295
+#: ../gramps/plugins/webreport/narrativeweb.py:9304
+#: ../gramps/plugins/webreport/narrativeweb.py:9346
 msgid "Narrated Web Site Report"
 msgstr "Kertova-nettisivusto raportti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3492
+#: ../gramps/plugins/webreport/narrativeweb.py:3487
 msgid "Creating family pages..."
 msgstr "Luodaan perhesivuja..."
 
 #. Families list page message
-#: ../gramps/plugins/webreport/narrativeweb.py:3523
+#: ../gramps/plugins/webreport/narrativeweb.py:3518
 msgid ""
 "This page contains an index of all the families/ relationships in the "
 "database, sorted by their family name/ surname. Clicking on a person&#8217;s "
@@ -35105,23 +35065,23 @@ msgstr ""
 "perhenimen/sukunimen mukaan aakkostettuna. Henkilön napsauttaminen vie sinut "
 "valitun suhteen sivulle."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3569
-#: ../gramps/plugins/webreport/narrativeweb.py:3886
-#: ../gramps/plugins/webreport/narrativeweb.py:4263
-#: ../gramps/plugins/webreport/narrativeweb.py:4611
+#: ../gramps/plugins/webreport/narrativeweb.py:3564
+#: ../gramps/plugins/webreport/narrativeweb.py:3881
+#: ../gramps/plugins/webreport/narrativeweb.py:4261
+#: ../gramps/plugins/webreport/narrativeweb.py:4609
 msgid "Letter"
 msgstr "Kirjain"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3615
+#: ../gramps/plugins/webreport/narrativeweb.py:3610
 msgid "Families beginning with letter "
 msgstr "Annetulla kirjaimella alkavat perheet"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3826
+#: ../gramps/plugins/webreport/narrativeweb.py:3821
 msgid "Creating place pages"
 msgstr "Luodaan paikkasivut"
 
 #. place list page message
-#: ../gramps/plugins/webreport/narrativeweb.py:3858
+#: ../gramps/plugins/webreport/narrativeweb.py:3853
 msgid ""
 "This page contains an index of all the places in the database, sorted by "
 "their title. Clicking on a place&#8217;s title will take you to that "
@@ -35131,25 +35091,25 @@ msgstr ""
 "niiden nimien mukaan. Paikan nimen napauttaminen vie sinut valitun paikan "
 "sivulle."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3887
+#: ../gramps/plugins/webreport/narrativeweb.py:3882
 msgid "Place Name | Name"
 msgstr "Paikka"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3935
+#: ../gramps/plugins/webreport/narrativeweb.py:3930
 #, python-format
 msgid "Places beginning with letter %s"
 msgstr "Kirjaimella %s alkavat paikat"
 
 #. section title
-#: ../gramps/plugins/webreport/narrativeweb.py:4099
+#: ../gramps/plugins/webreport/narrativeweb.py:4098
 msgid "Place Map"
 msgstr "Paikkavalikko"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4204
+#: ../gramps/plugins/webreport/narrativeweb.py:4202
 msgid "Creating event pages"
 msgstr "Luodaan tapahtumasivut"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4236
+#: ../gramps/plugins/webreport/narrativeweb.py:4234
 msgid ""
 "This page contains an index of all the events in the database, sorted by "
 "their type and date (if one is present). Clicking on an event&#8217;s Gramps "
@@ -35159,17 +35119,17 @@ msgstr ""
 "niiden tyypin ja mahdollisen päivämäärän (jos on) mukaan lajiteltuna. "
 "Tapahtuman Gramps ID-tunnuksen napsauttaminen avaa valitun tapahtuman sivun."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4333
+#: ../gramps/plugins/webreport/narrativeweb.py:4331
 #, python-format
 msgid "Event types beginning with letter %s"
 msgstr "Tapahtumatyypit jotka alkavat kirjaimella %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4573
+#: ../gramps/plugins/webreport/narrativeweb.py:4571
 msgid "Surnames by person count"
 msgstr "Sukunimet henkilömäärän mukaisesti"
 
 #. page message
-#: ../gramps/plugins/webreport/narrativeweb.py:4580
+#: ../gramps/plugins/webreport/narrativeweb.py:4578
 msgid ""
 "This page contains an index of all the surnames in the database. Selecting a "
 "link will lead to a list of individuals in the database with this same "
@@ -35179,25 +35139,25 @@ msgstr ""
 "napsauttaminen vie luetteloon tietokannan henkilöistä, joilla on tämä sama "
 "sukunimi."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4626
+#: ../gramps/plugins/webreport/narrativeweb.py:4624
 msgid "Number of People"
 msgstr "Henkilöiden määrä"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4674
+#: ../gramps/plugins/webreport/narrativeweb.py:4672
 #, python-format
 msgid "Surnames beginning with letter %s"
 msgstr "Kirjaimella %s alkavat sukunimet"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4780
+#: ../gramps/plugins/webreport/narrativeweb.py:4778
 #: ../gramps/plugins/webreport/webcal.py:569
 msgid "Home"
 msgstr "Koti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4869
+#: ../gramps/plugins/webreport/narrativeweb.py:4867
 msgid "Creating source pages"
 msgstr "Luodaan lähdesivut"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4911
+#: ../gramps/plugins/webreport/narrativeweb.py:4909
 msgid ""
 "This page contains an index of all the sources in the database, sorted by "
 "their title. Clicking on a source&#8217;s title will take you to that "
@@ -35206,19 +35166,19 @@ msgstr ""
 "Tällä sivulla on lista kaikista tietokannan lähteistä aakkostettuna niiden "
 "nimikkeen mukaan. Nimikkeen napsauttaminen vie sinut ko. lähteen sivulle."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4930
+#: ../gramps/plugins/webreport/narrativeweb.py:4928
 msgid "Source Name|Name"
 msgstr "Lähde"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5028
+#: ../gramps/plugins/webreport/narrativeweb.py:5026
 msgid "Publication information"
 msgstr "Julkaisutiedot"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5110
+#: ../gramps/plugins/webreport/narrativeweb.py:5108
 msgid "Creating media pages"
 msgstr "Luodaan mediasivut"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5158
+#: ../gramps/plugins/webreport/narrativeweb.py:5156
 msgid ""
 "This page contains an index of all the media objects in the database, sorted "
 "by their title. Clicking on the title will take you to that media "
@@ -35230,19 +35190,19 @@ msgstr ""
 "mediatiedoston sivulle. Jos näet median kokotiedot kuvan yläpuolella, kuvaa "
 "napsauttamalla näet täysimittaisen version kuvasta.  "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5183
+#: ../gramps/plugins/webreport/narrativeweb.py:5181
 msgid "Media | Name"
 msgstr "Mediatiedosto"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5185
+#: ../gramps/plugins/webreport/narrativeweb.py:5183
 msgid "Mime Type"
 msgstr "Näyttötyyppi"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5245
+#: ../gramps/plugins/webreport/narrativeweb.py:5243
 msgid "Below unused media objects"
 msgstr "Alla käyttämättömät mediatiedostot"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5367
+#: ../gramps/plugins/webreport/narrativeweb.py:5365
 #, python-format
 msgid ""
 "%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
@@ -35252,19 +35212,19 @@ msgstr ""
 "%(total_pages)d%(strong_end)s"
 
 #. missing media error message
-#: ../gramps/plugins/webreport/narrativeweb.py:5381
+#: ../gramps/plugins/webreport/narrativeweb.py:5379
 msgid "The file has been moved or deleted."
 msgstr "Tiedosto on siirretty tai poistettu."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5537
+#: ../gramps/plugins/webreport/narrativeweb.py:5535
 msgid "File Type"
 msgstr "Tiedostotyyppi"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5640
+#: ../gramps/plugins/webreport/narrativeweb.py:5638
 msgid "Missing media object:"
 msgstr "Puuttuva mediatiedosto:"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5699
+#: ../gramps/plugins/webreport/narrativeweb.py:5697
 msgid ""
 "This page displays a indexed list of all the media objects in this "
 "database.  It is sorted by media title.  There is an index of all the media "
@@ -35276,11 +35236,11 @@ msgstr ""
 "kuvatiedostoista tietokannassa. Kuvakkeen napsauttaminen vie sinut valitun "
 "median sivulle."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5718
+#: ../gramps/plugins/webreport/narrativeweb.py:5716
 msgid "Thumbnail Preview"
 msgstr "Pikkukuvien esikatselu"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5897
+#: ../gramps/plugins/webreport/narrativeweb.py:5895
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
 "share a couple of files with you regarding their family.  If there are any "
@@ -35294,20 +35254,20 @@ msgstr ""
 "Lataussivulla ja tiedostoilla on sama käyttöoikeusrajoitus kuin on muilla "
 "näillä nettisivuilla."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5923
+#: ../gramps/plugins/webreport/narrativeweb.py:5921
 msgid "File Name"
 msgstr "Tiedostonimi"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5925
+#: ../gramps/plugins/webreport/narrativeweb.py:5923
 msgid "Last Modified"
 msgstr "Viimeisin muutos"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6117
+#: ../gramps/plugins/webreport/narrativeweb.py:6115
 msgid "Creating individual pages"
 msgstr "Luodaan henkilösivut"
 
 #. Individual List page message
-#: ../gramps/plugins/webreport/narrativeweb.py:6160
+#: ../gramps/plugins/webreport/narrativeweb.py:6158
 msgid ""
 "This page contains an index of all the individuals in the database, sorted "
 "by their last names. Selecting the person&#8217;s name will take you to that "
@@ -35317,18 +35277,18 @@ msgstr ""
 "lajiteltuna. Henkilön nimen napsauttaminen vie sinut valitun henkilön "
 "sivulle."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6245
+#: ../gramps/plugins/webreport/narrativeweb.py:6243
 #, python-format
 msgid "Surnames %(surname)s beginning with letter %(letter)s"
 msgstr "Sukunimet %(surname)s alkaen kirjaimella %(letter)s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6747
+#: ../gramps/plugins/webreport/narrativeweb.py:6745
 #, python-format
 msgid "Tracking %s"
 msgstr "Jäljitetään %s"
 
 #. page description
-#: ../gramps/plugins/webreport/narrativeweb.py:6751
+#: ../gramps/plugins/webreport/narrativeweb.py:6749
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/ places. If you place your mouse over the marker it will display the "
@@ -35341,23 +35301,23 @@ msgstr ""
 "viitteistä ovat aikajärjestyksessä (jos löytyy). Napsauttamalla nimeä "
 "viitteiden osassa siirryt valitun paikan sivulle."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6822
+#: ../gramps/plugins/webreport/narrativeweb.py:6820
 msgid "Drop Markers"
 msgstr "Pudota markkerit"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6847
+#: ../gramps/plugins/webreport/narrativeweb.py:6845
 msgid "Place Title"
 msgstr "Paikan nimi"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7340
+#: ../gramps/plugins/webreport/narrativeweb.py:7338
 msgid "Call Name"
 msgstr "Kutsumanimi"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7358
+#: ../gramps/plugins/webreport/narrativeweb.py:7356
 msgid "Nick Name"
 msgstr "Lempinimi"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7404
+#: ../gramps/plugins/webreport/narrativeweb.py:7402
 msgid "Age at Death"
 msgstr "Ikä kuollessa"
 
@@ -35365,35 +35325,35 @@ msgstr "Ikä kuollessa"
 #. actually be StepFather-in-law), but it is too expensive to
 #. calculate out the correct relationship using the Relationship
 #. Calculator
-#: ../gramps/plugins/webreport/narrativeweb.py:7538
+#: ../gramps/plugins/webreport/narrativeweb.py:7536
 msgid "Stepfather"
 msgstr "Isäpuoli"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7548
+#: ../gramps/plugins/webreport/narrativeweb.py:7546
 msgid "Stepmother"
 msgstr "Äitipuoli"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7574
+#: ../gramps/plugins/webreport/narrativeweb.py:7572
 msgid "Not siblings"
 msgstr "Ei sisaruksia"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7654
+#: ../gramps/plugins/webreport/narrativeweb.py:7652
 msgid "Relation to the center person"
 msgstr "Kotihenkilön suhde"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7691
+#: ../gramps/plugins/webreport/narrativeweb.py:7689
 msgid "Relation to main person"
 msgstr "Suhde päähenkilöön"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7695
+#: ../gramps/plugins/webreport/narrativeweb.py:7693
 msgid "Relation within this family (if not by birth)"
 msgstr "Suhde tähän perheeseen (jollei syntymän kautta)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7806
+#: ../gramps/plugins/webreport/narrativeweb.py:7804
 msgid "Creating repository pages"
 msgstr "Luodaan arkistosivut"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7849
+#: ../gramps/plugins/webreport/narrativeweb.py:7847
 msgid ""
 "This page contains an index of all the repositories in the database, sorted "
 "by their title. Clicking on a repositories&#8217;s title will take you to "
@@ -35402,12 +35362,12 @@ msgstr ""
 "Tällä sivulla on hakemisto kaikista tietokannan arkistoista lajiteltuna "
 "niiden nimen mukaan. Nimen napauttaminen vie sinut valitun arkiston sivulle."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7867
+#: ../gramps/plugins/webreport/narrativeweb.py:7865
 msgid "Repository |Name"
 msgstr "Arkisto"
 
 #. Address Book Page message
-#: ../gramps/plugins/webreport/narrativeweb.py:8018
+#: ../gramps/plugins/webreport/narrativeweb.py:8016
 msgid ""
 "This page contains an index of all the individuals in the database, sorted "
 "by their surname, with one of the following: Address, Residence, or Web "
@@ -35418,271 +35378,271 @@ msgstr ""
 "lajiteltuna, joilla on osoite, asuinpaikka tai nettilinkki tietokannassa. "
 "Henkilön nimen napauttaminen vie sinut valitun henkilön Osoitekirjasivulle."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8040
+#: ../gramps/plugins/webreport/narrativeweb.py:8038
 msgid "Full Name"
 msgstr "Koko nimi"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8204
+#: ../gramps/plugins/webreport/narrativeweb.py:8202
 msgid "Database overview"
 msgstr "Tietokannan kuvaus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8271
+#: ../gramps/plugins/webreport/narrativeweb.py:8269
 msgid "Narrative web content report for"
 msgstr "Kertova-nettisivusto sisältöraportti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8486
+#: ../gramps/plugins/webreport/narrativeweb.py:8484
 #, python-format
 msgid "Neither %(current)s nor %(parent)s are directories"
 msgstr "%(current)s ja %(parent)s eivät ole hakemistoja"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8495
-#: ../gramps/plugins/webreport/narrativeweb.py:8500
-#: ../gramps/plugins/webreport/narrativeweb.py:8513
-#: ../gramps/plugins/webreport/narrativeweb.py:8518
+#: ../gramps/plugins/webreport/narrativeweb.py:8493
+#: ../gramps/plugins/webreport/narrativeweb.py:8498
+#: ../gramps/plugins/webreport/narrativeweb.py:8511
+#: ../gramps/plugins/webreport/narrativeweb.py:8516
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "Hakemiston '%s' luonti epäonnistui"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8525
+#: ../gramps/plugins/webreport/narrativeweb.py:8523
 msgid "Invalid file name"
 msgstr "Virheellinen tiedoston nimi"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8526
+#: ../gramps/plugins/webreport/narrativeweb.py:8524
 msgid "The archive file must be a file, not a directory"
 msgstr "Arkistotiedosto ei voi olla hakemisto"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8661
+#: ../gramps/plugins/webreport/narrativeweb.py:8659
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
 msgstr "ID=%(grampsid)s, polku=%(dir)s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8666
+#: ../gramps/plugins/webreport/narrativeweb.py:8664
 msgid "Missing media objects:"
 msgstr "Puuttuva mediatiedosto:"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8698
+#: ../gramps/plugins/webreport/narrativeweb.py:8696
 msgid "Constructing list of other objects..."
 msgstr "Kerätään muiden kohteiden listaa..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8933
+#: ../gramps/plugins/webreport/narrativeweb.py:8931
 #, python-format
 msgid "Family of %(husband)s and %(spouse)s"
 msgstr "%(husband)s ja %(spouse)s muodostama perhe"
 
 #. Only the name of the husband is known
 #. Only the name of the wife is known
-#: ../gramps/plugins/webreport/narrativeweb.py:8939
-#: ../gramps/plugins/webreport/narrativeweb.py:8943
+#: ../gramps/plugins/webreport/narrativeweb.py:8937
+#: ../gramps/plugins/webreport/narrativeweb.py:8941
 #, python-format
 msgid "Family of %s"
 msgstr "Perhe %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9225
+#: ../gramps/plugins/webreport/narrativeweb.py:9223
 msgid "Creating GENDEX file"
 msgstr "GENDEX tiedostoa luodaan"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9278
+#: ../gramps/plugins/webreport/narrativeweb.py:9276
 msgid "Creating surname pages"
 msgstr "Luodaan sukunimisivut"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9298
+#: ../gramps/plugins/webreport/narrativeweb.py:9296
 msgid "Creating thumbnail preview page..."
 msgstr "Luodaan pikkukuvalla esikatselusivu..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9307
+#: ../gramps/plugins/webreport/narrativeweb.py:9305
 msgid "Creating statistics page..."
 msgstr "Luodaan tilastosivu..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9349
+#: ../gramps/plugins/webreport/narrativeweb.py:9347
 msgid "Creating address book pages ..."
 msgstr "Luodaan osoitekirjasivuja..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9739
+#: ../gramps/plugins/webreport/narrativeweb.py:9737
 msgid "Store web pages in .tar.gz archive"
 msgstr "Talleta nettisivut .tar.gz arkistoon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9741
+#: ../gramps/plugins/webreport/narrativeweb.py:9739
 msgid "Whether to store the web pages in an archive file"
 msgstr "Talletetaanko nettisivut .tar.gz arkistoon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9752
+#: ../gramps/plugins/webreport/narrativeweb.py:9750
 #: ../gramps/plugins/webreport/webcal.py:1615
 msgid "The destination directory for the web files"
 msgstr "Kohdehakemisto nettitiedostoille"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9758
+#: ../gramps/plugins/webreport/narrativeweb.py:9756
 msgid "My Family Tree"
 msgstr "Sukupuuni"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9758
+#: ../gramps/plugins/webreport/narrativeweb.py:9756
 msgid "Web site title"
 msgstr "Nettisivuston otsikko"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9759
+#: ../gramps/plugins/webreport/narrativeweb.py:9757
 msgid "The title of the web site"
 msgstr "Nettisivuston otsikko"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9764
+#: ../gramps/plugins/webreport/narrativeweb.py:9762
 msgid "Select filter to restrict people that appear on web site"
 msgstr "Valitse suodin rajoittamaan henkilöitä jotka näkyvät nettisivustossa"
 
 # uusi/muuttunut20170603
-#: ../gramps/plugins/webreport/narrativeweb.py:9784
+#: ../gramps/plugins/webreport/narrativeweb.py:9782
 msgid "Html options"
 msgstr "Html valinnat"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9787
+#: ../gramps/plugins/webreport/narrativeweb.py:9785
 #: ../gramps/plugins/webreport/webcal.py:1636
 msgid "File extension"
 msgstr "Tiedostotarkennin"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9790
+#: ../gramps/plugins/webreport/narrativeweb.py:9788
 #: ../gramps/plugins/webreport/webcal.py:1639
 msgid "The extension to be used for the web files"
 msgstr "Nettisivujen tiedostotarkennin"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9793
+#: ../gramps/plugins/webreport/narrativeweb.py:9791
 #: ../gramps/plugins/webreport/webcal.py:1642
 msgid "Copyright"
 msgstr "Tekijänoikeudet"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9796
+#: ../gramps/plugins/webreport/narrativeweb.py:9794
 #: ../gramps/plugins/webreport/webcal.py:1645
 msgid "The copyright to be used for the web files"
 msgstr "Nettisivujen tekijänoikeudet"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9799
+#: ../gramps/plugins/webreport/narrativeweb.py:9797
 #: ../gramps/plugins/webreport/webcal.py:1651
 msgid "StyleSheet"
 msgstr "Tyylitiedosto"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9804
+#: ../gramps/plugins/webreport/narrativeweb.py:9802
 #: ../gramps/plugins/webreport/webcal.py:1654
 msgid "The stylesheet to be used for the web pages"
 msgstr "Nettisivuilla käytettävä tyylitiedosto"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9809
+#: ../gramps/plugins/webreport/narrativeweb.py:9807
 msgid "Horizontal -- Default"
 msgstr "Vaakasuoraan -- oletus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9810
+#: ../gramps/plugins/webreport/narrativeweb.py:9808
 msgid "Vertical   -- Left Side"
 msgstr "Pystysuoraan -- vasen sivu"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9811
+#: ../gramps/plugins/webreport/narrativeweb.py:9809
 msgid "Fade       -- WebKit Browsers Only"
 msgstr "Häivennä     -- vain WebKit moottoria käyttävät selaimet"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9812
-#: ../gramps/plugins/webreport/narrativeweb.py:9826
+#: ../gramps/plugins/webreport/narrativeweb.py:9810
+#: ../gramps/plugins/webreport/narrativeweb.py:9824
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr "Pudota       -- vain WebKit moottoria käyttävät selaimet"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9814
+#: ../gramps/plugins/webreport/narrativeweb.py:9812
 msgid "Navigation Menu Layout"
 msgstr "Navigointi valikon asetelma"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9818
+#: ../gramps/plugins/webreport/narrativeweb.py:9816
 msgid "Choose which layout for the Navigation Menus."
-msgstr "Valitse navigointi valikon asetelma"
+msgstr "Valitse navigointi valikon asetelma."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9825
+#: ../gramps/plugins/webreport/narrativeweb.py:9823
 msgid "Normal Outline Style"
 msgstr "Normaali asetelmatyyli"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9829
+#: ../gramps/plugins/webreport/narrativeweb.py:9827
 msgid "Citation Referents Layout"
 msgstr "Lainausviitteiden asetelma"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9833
+#: ../gramps/plugins/webreport/narrativeweb.py:9831
 msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
 msgstr ""
 "Määritä oletusasetelma käytettäväksi lähdesivun lainausviitteet osiossa"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9837
+#: ../gramps/plugins/webreport/narrativeweb.py:9835
 msgid "Include ancestor's tree"
 msgstr "Lisää kaavio esivanhemmista"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9838
+#: ../gramps/plugins/webreport/narrativeweb.py:9836
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Lisätäänkö kaavio esivanhemmista jokaiselle henkilösivulle"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9843
+#: ../gramps/plugins/webreport/narrativeweb.py:9841
 msgid "Graph generations"
 msgstr "Kaavion sukupolvet"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9844
+#: ../gramps/plugins/webreport/narrativeweb.py:9842
 msgid "The number of generations to include in the ancestor graph"
-msgstr "Montako sukupolvea tulee esivanhempien kaavioon "
+msgstr "Montako sukupolvea tulee esivanhempien kaavioon"
 
 # usi/muutettu20170217
-#: ../gramps/plugins/webreport/narrativeweb.py:9849
+#: ../gramps/plugins/webreport/narrativeweb.py:9847
 msgid "This is a secure site (https)"
 msgstr "Tämä on suojattu sivusto (https)"
 
 # usi/muutettu20170217
-#: ../gramps/plugins/webreport/narrativeweb.py:9851
+#: ../gramps/plugins/webreport/narrativeweb.py:9849
 msgid "Whether to use http:// or https://"
 msgstr "Käytetäänkö http:// vai https://"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9867
+#: ../gramps/plugins/webreport/narrativeweb.py:9865
 msgid "Suppress Gramps ID"
 msgstr "Jätä pois Gramps ID"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9868
+#: ../gramps/plugins/webreport/narrativeweb.py:9866
 msgid "Whether to include the Gramps ID of objects"
 msgstr "Lisätäänkö kohteiden Gramps ID"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9873
+#: ../gramps/plugins/webreport/narrativeweb.py:9871
 msgid "Sort all children in birth order"
 msgstr "Lajittele kaikki lapset syntymäjärjestykseen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9875
+#: ../gramps/plugins/webreport/narrativeweb.py:9873
 msgid "Whether to display children in birth order or in entry order?"
 msgstr "Näytetäänkö lapset syntymä- tai syöttöjärjestyksessä?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9882
+#: ../gramps/plugins/webreport/narrativeweb.py:9880
 msgid "Page Generation"
 msgstr "Sivun luonti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9885
+#: ../gramps/plugins/webreport/narrativeweb.py:9883
 msgid "Home page note"
 msgstr "Kotisivun lisätietoteksti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9886
+#: ../gramps/plugins/webreport/narrativeweb.py:9884
 msgid "A note to be used on the home page"
 msgstr "Kotisivulla näytettävä lisätietoteksti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9889
+#: ../gramps/plugins/webreport/narrativeweb.py:9887
 msgid "Home page image"
 msgstr "Kotisivun kuva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9890
+#: ../gramps/plugins/webreport/narrativeweb.py:9888
 msgid "An image to be used on the home page"
 msgstr "Kotisivulla näytettävä kuva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9893
+#: ../gramps/plugins/webreport/narrativeweb.py:9891
 msgid "Introduction note"
 msgstr "Johdannon lisätietoteksti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9894
+#: ../gramps/plugins/webreport/narrativeweb.py:9892
 msgid "A note to be used as the introduction"
 msgstr "Johdantona käytettävä lisätietoteksti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9897
+#: ../gramps/plugins/webreport/narrativeweb.py:9895
 msgid "Introduction image"
 msgstr "Johdannon kuva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9898
+#: ../gramps/plugins/webreport/narrativeweb.py:9896
 msgid "An image to be used as the introduction"
 msgstr "Johdannossa käytettävä kuva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9901
+#: ../gramps/plugins/webreport/narrativeweb.py:9899
 msgid "Publisher contact note"
 msgstr "Julkaisijan yhteystietojen lisätietoteksti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9902
+#: ../gramps/plugins/webreport/narrativeweb.py:9900
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -35692,11 +35652,11 @@ msgstr ""
 "Lisätietojen puuttuessa\n"
 "ei luoda kontaktisivuakaan"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9908
+#: ../gramps/plugins/webreport/narrativeweb.py:9906
 msgid "Publisher contact image"
 msgstr "Julkaisijan yhteystietoihin liittyvä kuva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9909
+#: ../gramps/plugins/webreport/narrativeweb.py:9907
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -35706,47 +35666,47 @@ msgstr ""
 "Lisätietojen puuttuessa\n"
 "ei luoda kontaktisivuakaan"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9915
+#: ../gramps/plugins/webreport/narrativeweb.py:9913
 msgid "HTML user header"
 msgstr "HTML ylätunniste"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9916
+#: ../gramps/plugins/webreport/narrativeweb.py:9914
 msgid "A note to be used as the page header"
 msgstr "Sivun ylätunnisteena käytettävä lisätietoteksti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9919
+#: ../gramps/plugins/webreport/narrativeweb.py:9917
 msgid "HTML user footer"
 msgstr "HTML alatunniste"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9920
+#: ../gramps/plugins/webreport/narrativeweb.py:9918
 msgid "A note to be used as the page footer"
 msgstr "Sivun alatunnisteena käytettävä lisätietoteksti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9927
+#: ../gramps/plugins/webreport/narrativeweb.py:9925
 msgid "Images Generation"
 msgstr "Kuvien luonti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9930
+#: ../gramps/plugins/webreport/narrativeweb.py:9928
 msgid "Include images and media objects"
 msgstr "Lisää kuvat ja muut mediatiedostot"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9932
+#: ../gramps/plugins/webreport/narrativeweb.py:9930
 msgid "Whether to include a gallery of media objects"
 msgstr "Lisätäänkö kuvat ja muut mediatiedostot"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9938
+#: ../gramps/plugins/webreport/narrativeweb.py:9936
 msgid "Include unused images and media objects"
 msgstr "Liitä mukaan käyttämättömät kuvat ja mediatiedostot"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9939
+#: ../gramps/plugins/webreport/narrativeweb.py:9937
 msgid "Whether to include unused or unreferenced media objects"
 msgstr "Lisätäänkö käyttämättömät tai viittaamattomat mediatiedostot"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9944
+#: ../gramps/plugins/webreport/narrativeweb.py:9942
 msgid "Create and only use thumbnail- sized images"
 msgstr "Luo ja käytä vain esikatselukuvan kokoisia kuvia"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9946
+#: ../gramps/plugins/webreport/narrativeweb.py:9944
 msgid ""
 "This option allows you to create only thumbnail images instead of the full-"
 "sized images on the Media Page. This will allow you to have a much smaller "
@@ -35756,11 +35716,11 @@ msgstr ""
 "täysimittaisten kuvien sijaan. Näin kuormitat vähemmän "
 "nettipalveluntarjoajasi palvelinta."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9955
+#: ../gramps/plugins/webreport/narrativeweb.py:9953
 msgid "Max width of initial image"
 msgstr "Alkuperäisen kuvan suurin leveys"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9957
+#: ../gramps/plugins/webreport/narrativeweb.py:9955
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page. Set to 0 for no limit."
@@ -35768,11 +35728,11 @@ msgstr ""
 "Tämä sallii sinun asettavan mediasivulla näytettävän kuvan enimmäisleveyden. "
 "Aseta 0 kun rajoitusta ei ole."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9962
+#: ../gramps/plugins/webreport/narrativeweb.py:9960
 msgid "Max height of initial image"
 msgstr "Alkuperäisen kuvan suurin korkeus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9964
+#: ../gramps/plugins/webreport/narrativeweb.py:9962
 msgid ""
 "This allows you to set the maximum height of the image shown on the media "
 "page. Set to 0 for no limit."
@@ -35780,146 +35740,146 @@ msgstr ""
 "Tämä sallii sinun asettavan mediasivulla näytettävän kuvan "
 "enimmäiskorkeuden. Aseta 0 kun rajoitusta ei ole."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9977
+#: ../gramps/plugins/webreport/narrativeweb.py:9975
 msgid "Include download page"
 msgstr "Lisää lataussivu"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9979
+#: ../gramps/plugins/webreport/narrativeweb.py:9977
 msgid "Whether to include a database download option"
 msgstr "Lisätäänkö tietokannan latausmahdollisuus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9984
-#: ../gramps/plugins/webreport/narrativeweb.py:9996
+#: ../gramps/plugins/webreport/narrativeweb.py:9982
+#: ../gramps/plugins/webreport/narrativeweb.py:9994
 msgid "Download Filename"
 msgstr "Ladattavan tiedoston nimi"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9987
-#: ../gramps/plugins/webreport/narrativeweb.py:9999
+#: ../gramps/plugins/webreport/narrativeweb.py:9985
+#: ../gramps/plugins/webreport/narrativeweb.py:9997
 msgid "File to be used for downloading of database"
 msgstr "Tietokannan imuroinnissa käytettävä tiedosto"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9990
-#: ../gramps/plugins/webreport/narrativeweb.py:10002
+#: ../gramps/plugins/webreport/narrativeweb.py:9988
+#: ../gramps/plugins/webreport/narrativeweb.py:10000
 msgid "Description for download"
 msgstr "Latauksen kuvaus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9991
+#: ../gramps/plugins/webreport/narrativeweb.py:9989
 msgid "Smith Family Tree"
 msgstr "Smith Sukupuu"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9992
-#: ../gramps/plugins/webreport/narrativeweb.py:10004
+#: ../gramps/plugins/webreport/narrativeweb.py:9990
+#: ../gramps/plugins/webreport/narrativeweb.py:10002
 msgid "Give a description for this file."
 msgstr "Annan tälle tiedostolle kuvaus."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10003
+#: ../gramps/plugins/webreport/narrativeweb.py:10001
 msgid "Johnson Family Tree"
 msgstr "Johnson Sukupuu"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10013
+#: ../gramps/plugins/webreport/narrativeweb.py:10011
 #: ../gramps/plugins/webreport/webcal.py:1826
 msgid "Advanced Options"
 msgstr "Lisäasetukset"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10016
+#: ../gramps/plugins/webreport/narrativeweb.py:10014
 #: ../gramps/plugins/webreport/webcal.py:1828
 msgid "Character set encoding"
 msgstr "Merkistön koodaus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10020
+#: ../gramps/plugins/webreport/narrativeweb.py:10018
 #: ../gramps/plugins/webreport/webcal.py:1832
 msgid "The encoding to be used for the web files"
 msgstr "Nettisivuilla käytettävä merkistökoodaus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10024
+#: ../gramps/plugins/webreport/narrativeweb.py:10022
 msgid "Include link to active person on every page"
 msgstr "Lisää linkki kotihenkilöön jokaiselle sivulle"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10026
+#: ../gramps/plugins/webreport/narrativeweb.py:10024
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr ""
 "Lisää linkki kotihenkilöön jokaiselle sivulle (jos heillä on nettisivu)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10030
+#: ../gramps/plugins/webreport/narrativeweb.py:10028
 msgid "Include a column for birth dates on the index pages"
 msgstr "Lisää hakemistosivuille sarake syntymäajalle"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10031
+#: ../gramps/plugins/webreport/narrativeweb.py:10029
 msgid "Whether to include a birth column"
 msgstr "Lisätäänkö syntymäsarake"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10035
+#: ../gramps/plugins/webreport/narrativeweb.py:10033
 msgid "Include a column for death dates on the index pages"
 msgstr "Lisää hakemistosivuille sarake kuolinajalle"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10036
+#: ../gramps/plugins/webreport/narrativeweb.py:10034
 msgid "Whether to include a death column"
 msgstr "Lisätäänkö kuolinsarake"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10039
+#: ../gramps/plugins/webreport/narrativeweb.py:10037
 msgid "Include a column for partners on the index pages"
 msgstr "Lisää hakemistosivuille sarake kumppaneista"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10041
+#: ../gramps/plugins/webreport/narrativeweb.py:10039
 msgid "Whether to include a partners column"
 msgstr "Lisätäänkö kumppanisarake"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10044
+#: ../gramps/plugins/webreport/narrativeweb.py:10042
 msgid "Include a column for parents on the index pages"
 msgstr "Lisää hakemistosivuille sarake vanhemmista"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10046
+#: ../gramps/plugins/webreport/narrativeweb.py:10044
 msgid "Whether to include a parents column"
 msgstr "Lisätäänkö vanhemmat sarake"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10050
+#: ../gramps/plugins/webreport/narrativeweb.py:10048
 msgid "Include half and/ or step-siblings on the individual pages"
 msgstr "Lisää hakemistosivuille sarake sisaruspuolille"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10053
+#: ../gramps/plugins/webreport/narrativeweb.py:10051
 msgid ""
 "Whether to include half and/ or step-siblings with the parents and siblings"
 msgstr ""
 "Lisätäänkö hakemistosivuille sarake sisaruspuolille, vanhempineen ja "
 "sisaruksineen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10064
+#: ../gramps/plugins/webreport/narrativeweb.py:10062
 msgid "Include family pages"
 msgstr "Lisää perhesivut"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10065
+#: ../gramps/plugins/webreport/narrativeweb.py:10063
 msgid "Whether or not to include family pages."
 msgstr "Lisätäänkö perhesivut."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10068
+#: ../gramps/plugins/webreport/narrativeweb.py:10066
 msgid "Include event pages"
 msgstr "Lisää tapahtumasivut"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10070
+#: ../gramps/plugins/webreport/narrativeweb.py:10068
 msgid "Add a complete events list and relevant pages or not"
 msgstr "Lisätäänkö täydellinen tapahtumalista ja ao. sivut vai ei"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10073
+#: ../gramps/plugins/webreport/narrativeweb.py:10071
 msgid "Include repository pages"
 msgstr "Lisää arkistosivut"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10075
+#: ../gramps/plugins/webreport/narrativeweb.py:10073
 msgid "Whether or not to include the Repository Pages."
-msgstr "Lisätäänkö arkistosivut"
+msgstr "Lisätäänkö arkistosivut."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10079
+#: ../gramps/plugins/webreport/narrativeweb.py:10077
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Ota mukaan GENDEX tiedosto (/gendex.txt)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10080
+#: ../gramps/plugins/webreport/narrativeweb.py:10078
 msgid "Whether to include a GENDEX file or not"
 msgstr "Lisätäänkö GENDEX tiedosto vai ei"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10083
+#: ../gramps/plugins/webreport/narrativeweb.py:10081
 msgid "Include address book pages"
 msgstr "Lisää osoitekirjan sivut"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10084
+#: ../gramps/plugins/webreport/narrativeweb.py:10082
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
@@ -35927,28 +35887,28 @@ msgstr ""
 "Otetaanko mukaan osoitekirjan sivut, jotka voivat sisältää sähköposti- ja "
 "nettiosoitteet sekä henkilökohtaiset osoite/asuinpaikka tapahtumat."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10094
+#: ../gramps/plugins/webreport/narrativeweb.py:10092
 msgid "Place Map Options"
 msgstr "Paikkakarttojen valinnat"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10099
+#: ../gramps/plugins/webreport/narrativeweb.py:10097
 msgid "Google"
 msgstr "Google kartat"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10100
+#: ../gramps/plugins/webreport/narrativeweb.py:10098
 msgid "Map Service"
 msgstr "Karttapalvelu"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10104
+#: ../gramps/plugins/webreport/narrativeweb.py:10102
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr ""
-"Valitse karttapalvelu, jota haluat käyttää paikkakarttasivujen luonnissa"
+"Valitse karttapalvelu, jota haluat käyttää paikkakarttasivujen luonnissa."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10110
+#: ../gramps/plugins/webreport/narrativeweb.py:10108
 msgid "Include Place map on Place Pages"
 msgstr "Lisää paikkakartta paikkasivuille"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10112
+#: ../gramps/plugins/webreport/narrativeweb.py:10110
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
@@ -35956,11 +35916,11 @@ msgstr ""
 "Lisätäänkö mukaan paikkasivuille paikkakartta, jossa on leveys- ja "
 "pituuspiiritiedot."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10117
+#: ../gramps/plugins/webreport/narrativeweb.py:10115
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr "Ota mukaan perheen karttasivut joilla näytetään kartalla kaikki paikat"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10121
+#: ../gramps/plugins/webreport/narrativeweb.py:10119
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
@@ -35968,64 +35928,64 @@ msgstr ""
 "Lisätäänkö erillinen sivu karttaa varten. Siitä näkisi kuinka sukusi on "
 "liikkunut maassa ja maailmalla."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10129
+#: ../gramps/plugins/webreport/narrativeweb.py:10127
 msgid "Family Links"
 msgstr "Perhelinja-kaavio"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10130
+#: ../gramps/plugins/webreport/narrativeweb.py:10128
 msgid "Drop"
 msgstr "Poista"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10131
+#: ../gramps/plugins/webreport/narrativeweb.py:10129
 msgid "Markers"
 msgstr "Markkerit"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10132
+#: ../gramps/plugins/webreport/narrativeweb.py:10130
 msgid "Google/ FamilyMap Option"
 msgstr "Google/Perhekartan valinnat"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10137
+#: ../gramps/plugins/webreport/narrativeweb.py:10135
 msgid ""
 "Select which option that you would like to have for the Google Maps Family "
 "Map pages..."
 msgstr "Valitse miten haluat GoogleMapin näyttävän perhekarttasi..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10141
+#: ../gramps/plugins/webreport/narrativeweb.py:10139
 msgid "Google maps API key"
 msgstr "Google kartat API avain"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10142
+#: ../gramps/plugins/webreport/narrativeweb.py:10140
 msgid "The API key used for the Google maps"
 msgstr "Käytetään Google kartat API-avainta"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10151
+#: ../gramps/plugins/webreport/narrativeweb.py:10149
 msgid "Other inclusion (CMS, Web Calendar, Php)"
 msgstr "Muut mukaan otettavat (CMS, Web Calendar, Php)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10155
+#: ../gramps/plugins/webreport/narrativeweb.py:10153
 msgid "Do we include these pages in a cms web ?"
 msgstr "Lisätäänkö nämä sivut cms nettiin ?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10159
-#: ../gramps/plugins/webreport/narrativeweb.py:10176
+#: ../gramps/plugins/webreport/narrativeweb.py:10157
+#: ../gramps/plugins/webreport/narrativeweb.py:10174
 msgid "URI"
 msgstr "URI-tunnus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10165
+#: ../gramps/plugins/webreport/narrativeweb.py:10163
 msgid "Where do you place your web site ? default = /NAVWEB"
 msgstr "Minne haluat tallentaa nettisivusi? oletus = /NAVWEB"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10172
+#: ../gramps/plugins/webreport/narrativeweb.py:10170
 msgid "Do we include the web calendar ?"
 msgstr "Lisätäänkö web-kalenteri?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10182
+#: ../gramps/plugins/webreport/narrativeweb.py:10180
 msgid "Where do you place your web site ? default = /WEBCAL"
 msgstr "Minne haluat tallentaa nettisivusi? oletus = /WEBCAL"
 
 #. adding title to hyperlink menu for screen readers and
 #. braille writers
-#: ../gramps/plugins/webreport/narrativeweb.py:10671
+#: ../gramps/plugins/webreport/narrativeweb.py:10669
 #, python-format
 msgid "Alphabet Menu: %s"
 msgstr "Aakkos valikko: %s"
@@ -36141,7 +36101,7 @@ msgstr "Luodaanko kalenteri useammalle vuodelle vai ei."
 
 #: ../gramps/plugins/webreport/webcal.py:1704
 msgid "Start Year for the Calendar(s)"
-msgstr "Kalenterien aloitusvuosi"
+msgstr "Kalenterien aloitusvuosi Calendar(s)"
 
 #: ../gramps/plugins/webreport/webcal.py:1706
 msgid "Enter the starting year for the calendars between 1900 - 3000"
@@ -36149,7 +36109,7 @@ msgstr "Syötä aloitusvuosi kalenteriin väliltä 1900-3000"
 
 #: ../gramps/plugins/webreport/webcal.py:1710
 msgid "End Year for the Calendar(s)"
-msgstr "Kalenterien päättymisvuosi"
+msgstr "Kalenterien päättymisvuosi Calendar(s)"
 
 #: ../gramps/plugins/webreport/webcal.py:1712
 msgid "Enter the ending year for the calendars between 1900 - 3000."
@@ -36286,7 +36246,7 @@ msgstr "Luodaan päiväsivut vuosikalenteriin"
 
 #: ../gramps/plugins/webreport/webcal.py:1837
 msgid "Whether to create one day pages or not"
-msgstr "Luodaanko päiväsivut vai ei."
+msgstr "Luodaanko päiväsivut vai ei"
 
 #: ../gramps/plugins/webreport/webcal.py:1840
 msgid "Link to Narrated Web Report"
@@ -36389,238 +36349,12 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Ei tyylitiedostoa"
 
-#~ msgid "_Person"
-#~ msgstr "Henkilö"
-
-#~ msgid "Famil_y"
-#~ msgstr "Perhe"
-
-#~ msgid "_Event"
-#~ msgstr "Tapahtuma"
-
-#~ msgid "_Place"
-#~ msgstr "Paikka"
-
-#~ msgid "_Source"
-#~ msgstr "Lähde"
-
-#~ msgid "_Citation"
-#~ msgstr "Lainaus"
-
-#~ msgid "Repositor_y"
-#~ msgstr "Arkisto"
-
-#~ msgid "_Media"
-#~ msgstr "Media"
-
-#~ msgid "Advanced Options (2)"
-#~ msgstr "Lisäasetukset (2)"
-
-#~ msgid "Remove the selected person"
-#~ msgstr "Poista valittu henkilö"
-
-#~ msgid "Reordering Gramps IDs"
-#~ msgstr "Järjestetään uudelleen Gramps ID-tunnukset"
-
-#~ msgid "Reordering Gramps IDs..."
-#~ msgstr "Järjestetään uudelleen Gramps ID-tunnukset..."
-
-#~ msgid "Reordering People IDs"
-#~ msgstr "Järjestetään uudelleen henkilöiden ID-tunnukset"
-
-#~ msgid "Reordering Family IDs"
-#~ msgstr "Järjestetään uudelleen perheiden ID-tunnukset"
-
-#~ msgid "Reordering Event IDs"
-#~ msgstr "Järjestetään uudelleen tapahtumien ID-tunnukset"
-
-#~ msgid "Reordering Media Object IDs"
-#~ msgstr "Järjestetään uudelleen mediatiedostojen ID-tunnukset"
-
-#~ msgid "Reordering Source IDs"
-#~ msgstr "Järjestetään uudelleen lähteiden ID-tunnukst"
-
-#~ msgid "Reordering Citation IDs"
-#~ msgstr "Järjestetään uudelleen lainausten ID-tunnukset"
-
-#~ msgid "Reordering Place IDs"
-#~ msgstr "Järjestetään uudelleen paikkojen ID-tunnukset"
-
-#~ msgid "Reordering Repository IDs"
-#~ msgstr "Järjestetään uudelleen arkistojen ID-tunnukset"
-
-#~ msgid "Reordering Note IDs"
-#~ msgstr "Järjestetään uudelleen lisätietojen ID-tunnukset"
-
-#~ msgid "Done."
-#~ msgstr "Valmis."
-
-#~ msgid "Finding and assigning unused IDs"
-#~ msgstr "Etsitään ja kohdistetaan käyttämättömät ID-tunnukset"
-
-#~ msgid "Indicates if a line break should follow the name."
-#~ msgstr "Osoittaa pitääkö joka nimen jälkeen tulla rivinvaihto."
-
-#~ msgid "Whether to include Gramps ID next to names."
-#~ msgstr "Lisätäänkö Gramps ID nimien yhteyteen"
-
-#~ msgid "The basic style used for the title display."
-#~ msgstr "Käytettävä perustyyli näytettävälle otsikolle."
-
-#~ msgid "The basic style used for the default text display."
-#~ msgstr "Käytettävä perustyyli näytettävälle tekstille."
-
-#~ msgid "The style used for the title of the page."
-#~ msgstr "Käytettävä tyyli sivun otsikolle."
-
-#~ msgid "The style used for the person's name."
-#~ msgstr "Käytettävä tyyli henkilön nimelle."
-
-#~ msgid "The style used for the year labels."
-#~ msgstr "Käytettävä tyyli vuosien tunnuksille."
-
-#~ msgid "Text to display last."
-#~ msgstr "Lopussa näytettävä teksti."
-
-#~ msgid "The style used for the first portion of the custom text."
-#~ msgstr "Käytettävä tyyli käyttäjän tekstin alkuosalle."
-
-#~ msgid "The style used for the middle portion of the custom text."
-#~ msgstr "Käytettävä tyyli käyttäjän tekstin keskiosalle."
-
-#~ msgid "The style used for the last portion of the custom text."
-#~ msgstr "Käytettävä tyyli käyttäjän tekstin loppuosalle."
-
-#~ msgid "The style used for the children list."
-#~ msgstr "Käytettävä tyyli lapsilistalle."
-
-#~ msgid "The style used for the first personal entry."
-#~ msgstr "Käytettävä tyyli henkilön ensimmäiselle esiintymiselle."
-
-#~ msgid "The style used for the More About header."
-#~ msgstr "Käytettävä tyyli Lisätietoja -ylätunnisteelle."
-
-#~ msgid "The style used for additional detail data."
-#~ msgstr "Käytettävä tyyli muille yksityiskohtaisille tiedoille."
-
-#~ msgid "The style used for the More About header and for headers of mates."
-#~ msgstr ""
-#~ "Käytettävä tyyli Lisätietoja -kappaleen ja Kumppaneiden ylätunnisteille."
-
-#~ msgid " (%(birth_date)s - %(death_date)s)"
-#~ msgstr " (%(birth_date)s - %(death_date)s)"
-
-#~ msgid "The basic style used for generation headings."
-#~ msgstr "Käytettävä perustyyli sukupolviotsikoille."
-
-#~ msgid "The style used for category labels."
-#~ msgstr "Käytettävä tyyli kategorianimikkeille."
-
-#~ msgid "A style used for image facts."
-#~ msgstr "Kuvan tietojen tyyli."
-
-#~ msgid "The basic style used for sub-headings."
-#~ msgstr "Käytettävä perustyyli aliotsikoille."
-
-#~ msgid "The style used for the title of the report."
-#~ msgstr "Käytettävä tyyli raportin otsikolle."
-
-#~ msgid "The style used for place title."
-#~ msgstr "Käytettävä tyyli paikan otsikolle."
-
-#~ msgid "The style used for a column title."
-#~ msgstr "Käytettävä tyyli sarakkeen otsikolle."
-
-#~ msgid "The style used for each section."
-#~ msgstr "Käytettävä tyyli kaikille osioille."
-
-#~ msgid "The style used for event and person details."
-#~ msgstr "Käytettävä tyyli tapahtumien ja henkilöiden tiedoille."
-
-#~ msgid "The style used for headings."
-#~ msgstr "Käytettävä tyyli otsikolle."
-
-#~ msgid "Family Relationship"
-#~ msgstr "Perhesuhteet"
-
-#~ msgid "Primary name"
-#~ msgstr "Päänimi"
-
-#~ msgid "Probably alive"
-#~ msgstr "Todennäköisesti elossa"
-
-#~ msgid ""
-#~ "This allows you to restrict information on people who have not been dead "
-#~ "for very long"
-#~ msgstr ""
-#~ "Tällä voit rajoittaa tietoja henkilöistä, jotka eivät ole olleet "
-#~ "kuolleina kovin pitkään"
-
-#~ msgid "Replace"
-#~ msgstr "Korvaa"
-
-#~ msgid "Text Options"
-#~ msgstr "Tekstioptiot"
-
-#~ msgid "Report Details"
-#~ msgstr "Raportin tiedot"
-
-#~ msgid "Filt_er:"
-#~ msgstr "Suod_in:"
-
-#~ msgid "_Marriages"
-#~ msgstr "_Avioliitot"
-
-#~ msgid "I_ndividuals"
-#~ msgstr "He_nkilöt"
-
-#~ msgid "Translate _Headers"
-#~ msgstr "Käännä _otsikot"
-
-#~ msgid "Export:"
-#~ msgstr "Vienti:"
-
-#~ msgid "Exclude _notes"
-#~ msgstr "Jätä pois lisätiedot"
-
-#~ msgid "Use _Living as first name"
-#~ msgstr "Käytä elossa oleville vain etunimeä"
-
-#~ msgid "Reference i_mages from path:  "
-#~ msgstr "Kuvaviitteiden polku:  "
-
-#~ msgid "Include Gramps ID"
-#~ msgstr "Ota Gramps ID mukaan"
-
-#~ msgid "Warning messages"
-#~ msgstr "Varoitukset"
-
-#~ msgid "Created by:"
-#~ msgstr "Toteutti:"
-
-#~ msgid "People:"
-#~ msgstr "Henkilöt:"
-
-#~ msgid "Encoding:"
-#~ msgstr "Koodaus:"
-
-#~ msgid "Version:"
-#~ msgstr "Versio:"
-
-#~ msgid "Families:"
-#~ msgstr "Perheet:"
-
-#~ msgid "Select the first day of the week for the report"
-#~ msgstr "Valitse raporttia varten viikon ensimmäinen päivä"
-
-#~ msgid "Include birthdays in the report"
-#~ msgstr "Lisää syntymäpäivät raporttiin"
-
-#~ msgid "Include anniversaries in the report"
-#~ msgstr "Lisää vuosipäivät raporttiin"
-
-#~ msgid "Include relationships to center person (slower)"
-#~ msgstr "Lisää suhteet keskushenkilöön (hitaampi)"
-
-#~ msgid "List children"
-#~ msgstr "Listaa lapset"
+# uusi/muutettu20170630
+#~ msgid "LANG: %s\n"
+#~ msgstr "Kieli: %s\n"
+
+#~ msgid "manual|xxxx"
+#~ msgstr "xxxx"
+
+#~ msgid "11"
+#~ msgstr "11"
