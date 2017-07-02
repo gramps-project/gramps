@@ -48,8 +48,8 @@ from gi.repository import GdkPixbuf
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import (AUTHORS, AUTHORS_FILE, COMMENTS, COPYRIGHT_MSG,
-                       DOCUMENTERS, LICENSE_FILE, PROGRAM_NAME, SPLASH,
-                       URL_HOMEPAGE, VERSION)
+                              DOCUMENTERS, LICENSE_FILE, PROGRAM_NAME, SPLASH,
+                              URL_HOMEPAGE, VERSION, COLON)
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.constfunc import get_env_var
@@ -134,15 +134,15 @@ class GrampsAboutDialog(Gtk.AboutDialog):
 
         sqlite = ''
         if __debug__:
-            sqlite = "sqlite: %s (%s)\n" % (sqlite3_version_str,
-                                            sqlite3_py_version_str)
+            sqlite = "sqlite" + COLON + " %s (%s)\n" % (sqlite3_version_str,
+                                                        sqlite3_py_version_str)
 
         return (("\n\n" +
-                 "GRAMPS: %s \n" +
-                 "Python: %s \n" +
-                 "BSDDB: %s \n" +
+                 "GRAMPS" + COLON + " %s \n" +
+                 "Python" + COLON + " %s \n" +
+                 "BSDDB" + COLON + " %s \n" +
                  sqlite +
-                 "LANG: %s\n" +
+                 "LANG" + COLON + " %s\n" +
                  _("OS: %s") +
                  distro)
                 % (ellipses(str(VERSION)),
