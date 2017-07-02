@@ -142,7 +142,7 @@ class GrampsAboutDialog(Gtk.AboutDialog):
                  "Python: %s \n" +
                  "BSDDB: %s \n" +
                  sqlite +
-                 _("LANG: %s\n") +
+                 "LANG: %s\n" +
                  _("OS: %s") +
                  distro)
                 % (ellipses(str(VERSION)),
