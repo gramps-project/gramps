@@ -435,6 +435,9 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
                 Disconnected(self.db, person),
                 InvalidBirthDate(self.db, person, invdate),
                 InvalidDeathDate(self.db, person, invdate),
+                BirthEqualsDeath(self.db, person),
+                BirthEqualsMarriage(self.db, person),
+                DeathEqualsMarriage(self.db, person),
                 ]
 
             for rule in rule_list:
@@ -1787,4 +1790,56 @@ class OldAgeButNoDeath(PersonRule):
     def get_message(self):
         """ return the rule's error message """
         return _("Old age but no death")
+
+class BirthEqualsDeath(PersonRule):
+    """ test if a person's birth date is the same as their death date """
+    ID = 33
+    SEVERITY = Rule.ERROR
+    def broken(self):
+        """ return boolean indicating whether this rule is violated """
+        birth_date = get_birth_date(self.db, self.obj)
+        death_date = get_death_date(self.db, self.obj)
+        birth_ok = birth_date > 0 if birth_date is not None else False
+        death_ok = death_date > 0 if death_date is not None else False
+        return death_ok and birth_ok and birth_date == death_date
+
+    def get_message(self):
+        """ return the rule's error message """
+        return _("Birth equals death")
+
+class BirthEqualsMarriage(PersonRule):
+    """ test if a person's birth date is the same as their marriage date """
+    ID = 34
+    SEVERITY = Rule.ERROR
+    def broken(self):
+        """ return boolean indicating whether this rule is violated """
+        birth_date = get_birth_date(self.db, self.obj)
+        birth_ok = birth_date > 0 if birth_date is not None else False
+        for fhandle in self.obj.get_family_handle_list():
+            family = self.db.get_family_from_handle(fhandle)
+            marr_date = get_marriage_date(self.db, family)
+            marr_ok = marr_date > 0 if marr_date is not None else False
+            return marr_ok and birth_ok and birth_date == marr_date
+
+    def get_message(self):
+        """ return the rule's error message """
+        return _("Birth equals marriage")
+
+class DeathEqualsMarriage(PersonRule):
+    """ test if a person's death date is the same as their marriage date """
+    ID = 35
+    SEVERITY = Rule.WARNING # it's possible
+    def broken(self):
+        """ return boolean indicating whether this rule is violated """
+        death_date = get_death_date(self.db, self.obj)
+        death_ok = death_date > 0 if death_date is not None else False
+        for fhandle in self.obj.get_family_handle_list():
+            family = self.db.get_family_from_handle(fhandle)
+            marr_date = get_marriage_date(self.db, family)
+            marr_ok = marr_date > 0 if marr_date is not None else False
+            return marr_ok and death_ok and death_date == marr_date
+
+    def get_message(self):
+        """ return the rule's error message """
+        return _("Death equals marriage")
 
