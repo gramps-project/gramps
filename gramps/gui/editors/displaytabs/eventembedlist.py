@@ -311,8 +311,8 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             return GroupEmbeddedList.get_popup_menu_items(self)
         else:
             return [
-                (True, _('_Add'), 'list-add', self.add_button_clicked),
-                (False, _('_Edit'), 'gtk-edit', self.edit_button_clicked),
+                (True, _('_Add'), self.add_button_clicked),
+                (False, _('_Edit'), self.edit_button_clicked),
                 ]
 
     def _non_native_change(self):
