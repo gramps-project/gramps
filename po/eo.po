@@ -16695,7 +16695,7 @@ msgstr ""
 "\n"
 "Vidu la dosieron README de la Gramps-documentaro por la instalaj "
 "antaŭpostuloj,\n"
-"kutime lokigitaj en /usr/share/doc/gramps."
+"kutime lokigitaj en /usr/share/doc/gramps.\n"
 
 #: ../gramps/gui/grampsgui.py:297
 msgid "Error parsing arguments"
@@ -31843,8 +31843,8 @@ msgstr[1] "{quantity} nevalidaj fontcitaĵoj estis riparitaj\n"
 #, python-brace-format
 msgid "{quantity} Duplicated Gramps ID fixed\n"
 msgid_plural "{quantity} Duplicated Gramps IDs fixed\n"
-msgstr[0] "{quantity} Duobligita Gramps-id estis riparita"
-msgstr[1] "{quantity} Duobligitaj Gramps-id estis riparitaj"
+msgstr[0] "{quantity} Duobligita Gramps-id estis riparita\n"
+msgstr[1] "{quantity} Duobligitaj Gramps-id estis riparitaj\n"
 
 #: ../gramps/plugins/tool/check.py:2617
 #, python-format
