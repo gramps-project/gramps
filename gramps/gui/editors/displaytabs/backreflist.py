@@ -66,7 +66,6 @@ class BackRefList(EmbeddedList):
         EmbeddedList.__init__(self, dbstate, uistate, track,
                               _('_References'), refmodel)
         self._callback = callback
-        self.connectid = self.model.connect('row-inserted', self.update_label)
         self.track_ref_for_deletion("model")
 
     def update_label(self, *obj):
@@ -135,3 +134,11 @@ class BackRefList(EmbeddedList):
     def edit_button_clicked(self, obj):
         (reftype, ref) = self.find_node()
         edit_object(self.dbstate, self.uistate, reftype, ref)
+
+    def post_rebuild(self, prebuildpath):
+        """
+        Allow post rebuild embeddedlist specific handling.
+        @param prebuildpath: path selected before rebuild, None if none
+        @type prebuildpath: tree path
+        """
+        self.connectid = self.model.connect('row-inserted', self.update_label)

@@ -37,15 +37,14 @@ _ = glocale.translation.gettext
 from .backrefmodel import BackRefModel
 from .backreflist import BackRefList
 
-from ...dialog import QuestionDialog
 from ...widgets import SimpleButton
 
 class EventBackRefList(BackRefList):
-
+    """
+    Connector class between events and back reference mechanism
+    """
     def __init__(self, dbstate, uistate, track, obj, option=None, callback=None):
         """"""
-        self.dbase = dbstate.db
-        self.uistate = uistate
         self.option = option
 
         BackRefList.__init__(self, dbstate, uistate, track, obj, BackRefModel,
@@ -53,13 +52,6 @@ class EventBackRefList(BackRefList):
 
     def get_icon_name(self):
         return 'gramps-event'
-
-    def _cleanup_local_connects(self):
-        """
-        Method overrides '_cleanup_local_connects' from BackRefList.py
-        """
-        # if not self.changed:   # Temp. disabled
-        self.model.disconnect(self.connectid)
 
     def _create_buttons(self, share_button=False, move_button=False,
                         jump_button=False, top_label=None):
@@ -116,11 +108,11 @@ class EventBackRefList(BackRefList):
         return result_list
 
     def delete_button_clicked(self, obj):
-        """"""
+        """
+        Delete the selected reference(s) out of reference list
+        """
         (reftype, ref) = self.find_node()
         self.option['ref_call'](ref)
 
-        # with reference deleting self.connectid handler is lost,
-        # therefore we don't need a disconnect anymore
-        self.changed = True
+        # refresh the reference list
         self.rebuild()

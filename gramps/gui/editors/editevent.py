@@ -73,9 +73,11 @@ WIKI_HELP_SEC = _('manual|New_Event_dialog')
 #
 #-------------------------------------------------------------------------
 class EditEvent(EditPrimary):
-
+    """
+    Class to edit events
+    """
     def __init__(self, dbstate, uistate, track, event, callback=None):
-
+        """"""
         self.dbase = dbstate.db
         self.callback = callback
         self.action = uistate.action.split('-')[1]
@@ -146,8 +148,6 @@ class EditEvent(EditPrimary):
 
     def _setup_fields(self):
 
-        # place, select_place, add_del_place
-
         self.place_field = PlaceEntry(self.dbstate, self.uistate, self.track,
                                       self.top.get_object("place"),
                                       self.top.get_object("place_event_box"),
@@ -176,9 +176,9 @@ class EditEvent(EditPrimary):
                                   self.obj, self.dbase.readonly)
 
         self.event_menu = MonitoredDataType(self.top.get_object("personal_events"),
-                                            self.obj.set_type,
-                                            self.obj.get_type,
-                                            custom_values=self.get_custom_events())
+                                        self.obj.set_type,
+                                        self.obj.get_type,
+                                        custom_values=self.get_custom_events())
 
         self.date_field = MonitoredDate(self.top.get_object("date_entry"),
                                         self.top.get_object("date_stat"),
@@ -188,8 +188,7 @@ class EditEvent(EditPrimary):
 
     def _create_tabbed_pages(self):
         """
-        Create the notebook tabs and inserts them into the main
-        window.
+        Create the notebook tabs and inserts them into the main window.
         """
         notebook = Gtk.Notebook()
 
@@ -260,7 +259,7 @@ class EditEvent(EditPrimary):
         return self.reference_list
 
     def save(self, *obj):
-        """ After failure checking saves event through different criteria """
+        """ after failure checking saves event through different criteria """
 
         self.ok_button.set_sensitive(False)
         if self.object_is_empty():
@@ -271,22 +270,22 @@ class EditEvent(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        (uses_dupe_id, id) = self._uses_duplicate_id()
+        (uses_dupe_id, ident) = self._uses_duplicate_id()
         if uses_dupe_id:
-            prim_object = self.get_from_gramps_id(id)
+            prim_object = self.get_from_gramps_id(ident)
             name = prim_object.get_description()
             msg1 = _("Cannot save event. ID already exists.")
             msg2 = _("You have attempted to use the existing Gramps ID with "
-                         "value %(id)s. This value is already used by '"
+                         "value %(ident)s. This value is already used by '"
                          "%(prim_object)s'. Please enter a different ID or leave "
-                         "blank to get the next available ID value.") % {
-                         'id' : id, 'prim_object' : name }
+                         "blank to get the next available ID value.") % \
+                        {'ident' : ident, 'prim_object' : name}
             ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
 
-        t = self.obj.get_type()
-        if t.is_custom() and str(t) == '':
+        obj_type = self.obj.get_type()
+        if obj_type.is_custom() and str(obj_type) == '':
             ErrorDialog(
                 _("Cannot save event"),
                 _("The event type cannot be empty"),
@@ -313,30 +312,37 @@ class EditEvent(EditPrimary):
         self._do_close()
 
     def save_clone(self):
-        """ Saves a cloned event """
+        """ saves a cloned event """
 
         person_list, family_list = [], []
         for item in self.reference_list:
-            if item[0] == 'Person': person_list.append(item[1])
-            if item[0] == 'Family': family_list.append(item[1])
+            if item[0] == 'Person':
+                person_list.append(item[1])
+            if item[0] == 'Family':
+                family_list.append(item[1])
 
         with DbTxn(_("Clone Event"), self.dbase) as trans:
-            # add a new (gramps_id & handle == None) Event to database
+            # add a new (gramps_id & handle == None) event to database
             self.obj.handle = None
             self.dbase.add_event(self.obj, trans)
 
+            # create the reference list and add to ...
             event_ref = EventRef()
             event_ref.set_reference_handle(self.obj.handle)
 
+            # persons
             for handle in person_list:
                 person = self.dbase.get_person_from_handle(handle)
                 person.add_event_ref(event_ref)
                 self.dbase.commit_person(person, trans)
 
+            # families
             for handle in family_list:
                 family = self.dbase.get_family_from_handle(handle)
                 family.add_event_ref(event_ref)
                 self.dbase.commit_family(family, trans)
+
+        pass
 
     def data_has_changed(self):
         """
@@ -345,7 +351,6 @@ class EditEvent(EditPrimary):
         entered date when importing from a XML file, so we can get an
         incorrect fail.
         """
-
         if self.dbase.readonly:
             return False
         elif self.obj.handle:
@@ -364,8 +369,12 @@ class EditEvent(EditPrimary):
 # Delete Query class
 #
 #-------------------------------------------------------------------------
-class DeleteEventQuery:
+class DeleteEventQuery(object):
+    """
+    Class to delete event and references to this
+    """
     def __init__(self, dbstate, uistate, event, person_list, family_list):
+        """"""
         self.event = event
         self.dbase = dbstate.db
         self.uistate = uistate

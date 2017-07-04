@@ -241,7 +241,7 @@ class EditEventRef(EditReference):
                              self.uistate,
                              self.track,
                              self.db.find_backlink_handles(self.source.handle),
-                             self.enable_warnbox)
+                             callback=self.enable_warnbox)
         self._add_tab(notebook, self.backref_tab)
         self.track_ref_for_deletion("backref_tab")
 
