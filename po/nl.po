@@ -43,8 +43,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-03 10:44-0700\n"
-"PO-Revision-Date: 2017-06-28 10:21+0200\n"
+"POT-Creation-Date: 2017-07-01 20:33-0700\n"
+"PO-Revision-Date: 2017-07-05 10:28+0200\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@gmail.com>\n"
 "Language: nl\n"
@@ -1226,7 +1226,7 @@ msgstr "Gramps-stambomen:"
 #: ../gramps/cli/arghandler.py:441 ../gramps/cli/arghandler.py:442
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/clidbman.py:69
 #: ../gramps/cli/clidbman.py:172 ../gramps/cli/clidbman.py:193
-#: ../gramps/gui/clipboard.py:970 ../gramps/gui/configure.py:1504
+#: ../gramps/gui/clipboard.py:973 ../gramps/gui/configure.py:1504
 msgid "Family Tree"
 msgstr "Stamboom"
 
@@ -1345,7 +1345,6 @@ msgid "Unknown action: %s."
 msgstr "Onbekende actie: %s."
 
 #: ../gramps/cli/argparser.py:53
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -1394,13 +1393,14 @@ msgstr ""
 "  -C, --create=STAMBOOM               nieuwe stamboom aanmaken en openen\n"
 "  -i, --import=BESTANDSNAAM                  bestand importeren\n"
 "  -e, --export=BESTANDSNAAM                  bestand exporteren\n"
+"  -r, --remove=BESTANDSNAAM                bestand verwijderen\n"
 "  -f, --format=FORMAAT                    een bestandsformaat opgeven\n"
 "  -a, --action=ACTIE                    actie opgeven\n"
 "  -p, --options=OPTIETEKST           opties opgeven\n"
 "  -d, --debug=LOG_NAAM                foutmeldingenrapportage activeren\n"
-"  -l                                     Lijst van stambomen\n"
-"  -L                                     Lijst van stambomen met details\n"
-"  -t                                     Lijst van stambomen, tabgescheiden\n"
+"  -l  [STAMBOOMPATROON...]      Lijst van stambomen\n"
+"  -L [STAMBOOMPATROON...]      Lijst van stambomen met details\n"
+"  -t  [STAMBOOMPATROON...]      Lijst van stambomen, tabgescheiden\n"
 "  -u, --force-unlock                     ontgrendelen van stamboom forceren\n"
 "  -s, --show                        instellingen tonen\n"
 "  -c, --config=[config.setting[:waarde]]  instellingen vastleggen en Gramps "
@@ -1603,7 +1603,7 @@ msgstr ""
 "       %(message)s"
 
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:171
-#: ../gramps/gui/clipboard.py:186 ../gramps/gui/clipboard.py:187
+#: ../gramps/gui/clipboard.py:189 ../gramps/gui/clipboard.py:190
 #: ../gramps/gui/plug/_windows.py:496
 msgid "Unavailable"
 msgstr "Niet beschikbaar"
@@ -1653,7 +1653,7 @@ msgstr "Stamboom \"%s\":"
 #: ../gramps/plugins/textreport/placereport.py:183
 #: ../gramps/plugins/webreport/narrativeweb.py:1107
 #: ../gramps/plugins/webreport/narrativeweb.py:2640
-#: ../gramps/plugins/webreport/narrativeweb.py:2690
+#: ../gramps/plugins/webreport/narrativeweb.py:2685
 #, python-format
 msgid "%(str1)s: %(str2)s"
 msgstr "%(str1)s: %(str2)s"
@@ -1746,11 +1746,11 @@ msgstr "Vergrendeld door %s"
 #: ../gramps/gen/utils/lds.py:86 ../gramps/gen/utils/unknown.py:119
 #: ../gramps/gen/utils/unknown.py:121 ../gramps/gen/utils/unknown.py:125
 #: ../gramps/gen/utils/unknown.py:131 ../gramps/gen/utils/unknown.py:136
-#: ../gramps/gui/clipboard.py:183 ../gramps/gui/dbman.py:989
+#: ../gramps/gui/clipboard.py:186 ../gramps/gui/dbman.py:989
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:125
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:143
 #: ../gramps/gui/editors/editmedia.py:178
-#: ../gramps/gui/editors/editmediaref.py:142
+#: ../gramps/gui/editors/editmediaref.py:143
 #: ../gramps/plugins/db/bsddb/write.py:2289
 #: ../gramps/plugins/gramplet/persondetails.py:208
 #: ../gramps/plugins/gramplet/persondetails.py:214
@@ -1800,7 +1800,7 @@ msgstr "Vergrendeld door %s"
 #: ../gramps/plugins/view/geofamclose.py:712
 #: ../gramps/plugins/view/geofamily.py:465
 #: ../gramps/plugins/view/geomoves.py:596
-#: ../gramps/plugins/view/geoperson.py:480
+#: ../gramps/plugins/view/geoperson.py:475
 #: ../gramps/plugins/view/geoplaces.py:526 ../gramps/plugins/view/relview.py:468
 #: ../gramps/plugins/view/relview.py:1008 ../gramps/plugins/view/relview.py:1065
 #: ../gramps/plugins/webreport/narrativeweb.py:2192
@@ -1808,8 +1808,8 @@ msgstr "Vergrendeld door %s"
 #: ../gramps/plugins/webreport/narrativeweb.py:2226
 #: ../gramps/plugins/webreport/narrativeweb.py:2233
 #: ../gramps/plugins/webreport/narrativeweb.py:2629
-#: ../gramps/plugins/webreport/narrativeweb.py:2731
-#: ../gramps/plugins/webreport/narrativeweb.py:2846
+#: ../gramps/plugins/webreport/narrativeweb.py:2726
+#: ../gramps/plugins/webreport/narrativeweb.py:2841
 msgid "Unknown"
 msgstr "Onbekend"
 
@@ -2104,7 +2104,7 @@ msgstr "Gegevens privé"
 msgid "localized lexeme inflections||January"
 msgstr "januari"
 
-#: ../gramps/gen/const.py:221
+#: ../gramps/gen/const.py:220
 msgid ""
 "Gramps\n"
 " (Genealogical Research and Analysis Management Programming System)\n"
@@ -2114,15 +2114,15 @@ msgstr ""
 " (Genealogical Research and Analysis Management Programming System)\n"
 "is een genealogisch programma."
 
-#: ../gramps/gen/const.py:251
+#: ../gramps/gen/const.py:250
 msgid "surname|none"
 msgstr "geen"
 
-#: ../gramps/gen/const.py:252
+#: ../gramps/gen/const.py:251
 msgid "given-name|none"
 msgstr "geen"
 
-#: ../gramps/gen/const.py:256 ../gramps/plugins/webreport/narrativeweb.py:541
+#: ../gramps/gen/const.py:255 ../gramps/plugins/webreport/narrativeweb.py:541
 msgid ":"
 msgstr ":"
 
@@ -3195,84 +3195,84 @@ msgstr ""
 "%(wiki_backup_html_start)sreservekopie%(html_end)s te maken."
 
 #: ../gramps/gen/db/generic.py:162 ../gramps/gen/db/generic.py:214
-#: ../gramps/gen/db/generic.py:2051 ../gramps/plugins/db/bsddb/undoredo.py:252
-#: ../gramps/plugins/db/bsddb/undoredo.py:296
+#: ../gramps/gen/db/generic.py:2050 ../gramps/plugins/db/bsddb/undoredo.py:253
+#: ../gramps/plugins/db/bsddb/undoredo.py:297
 #: ../gramps/plugins/db/bsddb/write.py:2131
 #, python-format
 msgid "_Undo %s"
 msgstr "Ongedaan maken %s"
 
 #: ../gramps/gen/db/generic.py:167 ../gramps/gen/db/generic.py:220
-#: ../gramps/plugins/db/bsddb/undoredo.py:258
-#: ../gramps/plugins/db/bsddb/undoredo.py:302
+#: ../gramps/plugins/db/bsddb/undoredo.py:259
+#: ../gramps/plugins/db/bsddb/undoredo.py:303
 #, python-format
 msgid "_Redo %s"
 msgstr "%s opnieuw doen"
 
-#: ../gramps/gen/db/generic.py:2443 ../gramps/plugins/db/bsddb/read.py:1998
+#: ../gramps/gen/db/generic.py:2442 ../gramps/plugins/db/bsddb/read.py:2001
 #: ../gramps/plugins/db/bsddb/write.py:2292
 msgid "Number of people"
 msgstr "Aantal personen"
 
-#: ../gramps/gen/db/generic.py:2444 ../gramps/plugins/db/bsddb/read.py:1999
+#: ../gramps/gen/db/generic.py:2443 ../gramps/plugins/db/bsddb/read.py:2002
 #: ../gramps/plugins/db/bsddb/write.py:2293
 #: ../gramps/plugins/gramplet/statsgramplet.py:117
-#: ../gramps/plugins/webreport/narrativeweb.py:8221
-#: ../gramps/plugins/webreport/narrativeweb.py:8288
+#: ../gramps/plugins/webreport/narrativeweb.py:8219
+#: ../gramps/plugins/webreport/narrativeweb.py:8286
 msgid "Number of families"
 msgstr "Aantal gezinnen"
 
-#: ../gramps/gen/db/generic.py:2445 ../gramps/plugins/db/bsddb/read.py:2000
+#: ../gramps/gen/db/generic.py:2444 ../gramps/plugins/db/bsddb/read.py:2003
 #: ../gramps/plugins/db/bsddb/write.py:2294
-#: ../gramps/plugins/webreport/narrativeweb.py:8249
-#: ../gramps/plugins/webreport/narrativeweb.py:8300
+#: ../gramps/plugins/webreport/narrativeweb.py:8247
+#: ../gramps/plugins/webreport/narrativeweb.py:8298
 msgid "Number of sources"
 msgstr "Aantal bronnen"
 
-#: ../gramps/gen/db/generic.py:2446 ../gramps/plugins/db/bsddb/read.py:2001
+#: ../gramps/gen/db/generic.py:2445 ../gramps/plugins/db/bsddb/read.py:2004
 #: ../gramps/plugins/db/bsddb/write.py:2295
-#: ../gramps/plugins/webreport/narrativeweb.py:8253
-#: ../gramps/plugins/webreport/narrativeweb.py:8303
+#: ../gramps/plugins/webreport/narrativeweb.py:8251
+#: ../gramps/plugins/webreport/narrativeweb.py:8301
 msgid "Number of citations"
 msgstr "Aantal citaten"
 
-#: ../gramps/gen/db/generic.py:2447 ../gramps/plugins/db/bsddb/read.py:2002
+#: ../gramps/gen/db/generic.py:2446 ../gramps/plugins/db/bsddb/read.py:2005
 #: ../gramps/plugins/db/bsddb/write.py:2296
-#: ../gramps/plugins/webreport/narrativeweb.py:8242
-#: ../gramps/plugins/webreport/narrativeweb.py:8294
+#: ../gramps/plugins/webreport/narrativeweb.py:8240
+#: ../gramps/plugins/webreport/narrativeweb.py:8292
 msgid "Number of events"
 msgstr "Aantal gebeurtenissen"
 
-#: ../gramps/gen/db/generic.py:2448 ../gramps/plugins/db/bsddb/read.py:2003
+#: ../gramps/gen/db/generic.py:2447 ../gramps/plugins/db/bsddb/read.py:2006
 #: ../gramps/plugins/db/bsddb/write.py:2297
 msgid "Number of media"
 msgstr "Aantal media-objecten"
 
-#: ../gramps/gen/db/generic.py:2449 ../gramps/plugins/db/bsddb/read.py:2004
+#: ../gramps/gen/db/generic.py:2448 ../gramps/plugins/db/bsddb/read.py:2007
 #: ../gramps/plugins/db/bsddb/write.py:2298
-#: ../gramps/plugins/webreport/narrativeweb.py:8245
-#: ../gramps/plugins/webreport/narrativeweb.py:8297
+#: ../gramps/plugins/webreport/narrativeweb.py:8243
+#: ../gramps/plugins/webreport/narrativeweb.py:8295
 msgid "Number of places"
 msgstr "Aantal locaties"
 
-#: ../gramps/gen/db/generic.py:2450 ../gramps/plugins/db/bsddb/read.py:2005
+#: ../gramps/gen/db/generic.py:2449 ../gramps/plugins/db/bsddb/read.py:2008
 #: ../gramps/plugins/db/bsddb/write.py:2299
-#: ../gramps/plugins/webreport/narrativeweb.py:8257
-#: ../gramps/plugins/webreport/narrativeweb.py:8306
+#: ../gramps/plugins/webreport/narrativeweb.py:8255
+#: ../gramps/plugins/webreport/narrativeweb.py:8304
 msgid "Number of repositories"
 msgstr "Aantal bibliotheken"
 
-#: ../gramps/gen/db/generic.py:2451 ../gramps/plugins/db/bsddb/read.py:2006
+#: ../gramps/gen/db/generic.py:2450 ../gramps/plugins/db/bsddb/read.py:2009
 #: ../gramps/plugins/db/bsddb/write.py:2300
 msgid "Number of notes"
 msgstr "Aantal opmerkingen"
 
-#: ../gramps/gen/db/generic.py:2452 ../gramps/plugins/db/bsddb/read.py:2007
+#: ../gramps/gen/db/generic.py:2451 ../gramps/plugins/db/bsddb/read.py:2010
 #: ../gramps/plugins/db/bsddb/write.py:2301
 msgid "Number of tags"
 msgstr "Aantal tags"
 
-#: ../gramps/gen/db/generic.py:2453 ../gramps/plugins/db/bsddb/write.py:2302
+#: ../gramps/gen/db/generic.py:2452 ../gramps/plugins/db/bsddb/write.py:2302
 msgid "Data version"
 msgstr "Gegevensversie"
 
@@ -3481,7 +3481,7 @@ msgstr "Toegepassen ..."
 #: ../gramps/plugins/textreport/indivcomplete.py:1056
 #: ../gramps/plugins/textreport/recordsreport.py:217
 #: ../gramps/plugins/tool/sortevents.py:167
-#: ../gramps/plugins/webreport/narrativeweb.py:9762
+#: ../gramps/plugins/webreport/narrativeweb.py:9760
 #: ../gramps/plugins/webreport/webcal.py:1623
 msgid "Filter"
 msgstr "Filter"
@@ -3782,7 +3782,7 @@ msgstr "Overige filters"
 #: ../gramps/plugins/view/geofamclose.py:724
 #: ../gramps/plugins/view/geofamily.py:478
 #: ../gramps/plugins/view/geomoves.py:609
-#: ../gramps/plugins/view/geoperson.py:491
+#: ../gramps/plugins/view/geoperson.py:486
 msgid "No description"
 msgstr "Geen beschrijving"
 
@@ -4805,7 +4805,7 @@ msgstr "Type:"
 # pad
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48
 #: ../gramps/gui/glade/mergemedia.glade:245
-#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1827
+#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1829
 msgid "Path:"
 msgstr "Pad:"
 
@@ -5633,8 +5633,8 @@ msgstr ""
 #: ../gramps/plugins/graph/gvfamilylines.py:276
 #: ../gramps/plugins/graph/gvhourglass.py:370
 #: ../gramps/plugins/graph/gvrelgraph.py:884
-#: ../gramps/plugins/webreport/narrativeweb.py:8214
-#: ../gramps/plugins/webreport/narrativeweb.py:8281
+#: ../gramps/plugins/webreport/narrativeweb.py:8212
+#: ../gramps/plugins/webreport/narrativeweb.py:8279
 msgid "Females"
 msgstr "Vrouwen"
 
@@ -5707,8 +5707,8 @@ msgstr ""
 #: ../gramps/plugins/graph/gvfamilylines.py:272
 #: ../gramps/plugins/graph/gvhourglass.py:366
 #: ../gramps/plugins/graph/gvrelgraph.py:880
-#: ../gramps/plugins/webreport/narrativeweb.py:8212
-#: ../gramps/plugins/webreport/narrativeweb.py:8279
+#: ../gramps/plugins/webreport/narrativeweb.py:8210
+#: ../gramps/plugins/webreport/narrativeweb.py:8277
 msgid "Males"
 msgstr "Mannen"
 
@@ -6556,8 +6556,8 @@ msgstr "Kaste"
 #: ../gramps/plugins/webreport/narrativeweb.py:1043
 #: ../gramps/plugins/webreport/narrativeweb.py:1325
 #: ../gramps/plugins/webreport/narrativeweb.py:2504
-#: ../gramps/plugins/webreport/narrativeweb.py:3165
-#: ../gramps/plugins/webreport/narrativeweb.py:5924
+#: ../gramps/plugins/webreport/narrativeweb.py:3160
+#: ../gramps/plugins/webreport/narrativeweb.py:5922
 msgid "Description"
 msgstr "Beschrijving"
 
@@ -6620,7 +6620,7 @@ msgstr "Tijd"
 
 # niet/geen
 #: ../gramps/gen/lib/childreftype.py:67 ../gramps/gui/configure.py:81
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:209
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:201
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:175
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:201
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:155
@@ -6644,8 +6644,8 @@ msgstr "Geen"
 #: ../gramps/plugins/textreport/familygroup.py:528
 #: ../gramps/plugins/textreport/tagreport.py:168
 #: ../gramps/plugins/view/relview.py:612
-#: ../gramps/plugins/webreport/narrativeweb.py:3314
-#: ../gramps/plugins/webreport/narrativeweb.py:6191
+#: ../gramps/plugins/webreport/narrativeweb.py:3309
+#: ../gramps/plugins/webreport/narrativeweb.py:6189
 msgid "Birth"
 msgstr "Geboorte"
 
@@ -6667,11 +6667,11 @@ msgstr "Pleegouder"
 
 #. 8
 #: ../gramps/gen/lib/citation.py:97 ../gramps/gen/lib/notetype.py:79
-#: ../gramps/gui/clipboard.py:490 ../gramps/gui/configure.py:543
+#: ../gramps/gui/clipboard.py:493 ../gramps/gui/configure.py:543
 #: ../gramps/gui/editors/editcitation.py:119
 #: ../gramps/gui/editors/editcitation.py:125
 #: ../gramps/gui/editors/editlink.py:100
-#: ../gramps/gui/editors/filtereditor.py:301 ../gramps/gui/viewmanager.py:612
+#: ../gramps/gui/editors/filtereditor.py:301 ../gramps/gui/viewmanager.py:613
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:170
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:115
 #: ../gramps/plugins/quickview/quickview.gpr.py:209
@@ -6711,13 +6711,13 @@ msgstr "Handle"
 #: ../gramps/plugins/quickview/filterbyname.py:270
 #: ../gramps/plugins/quickview/filterbyname.py:276
 #: ../gramps/plugins/tool/findloop.py:103 ../gramps/plugins/tool/findloop.py:107
-#: ../gramps/plugins/webreport/narrativeweb.py:2971
-#: ../gramps/plugins/webreport/narrativeweb.py:4266
-#: ../gramps/plugins/webreport/narrativeweb.py:4477
-#: ../gramps/plugins/webreport/narrativeweb.py:5025
-#: ../gramps/plugins/webreport/narrativeweb.py:5526
-#: ../gramps/plugins/webreport/narrativeweb.py:7370
-#: ../gramps/plugins/webreport/narrativeweb.py:7945
+#: ../gramps/plugins/webreport/narrativeweb.py:2966
+#: ../gramps/plugins/webreport/narrativeweb.py:4264
+#: ../gramps/plugins/webreport/narrativeweb.py:4475
+#: ../gramps/plugins/webreport/narrativeweb.py:5023
+#: ../gramps/plugins/webreport/narrativeweb.py:5524
+#: ../gramps/plugins/webreport/narrativeweb.py:7368
+#: ../gramps/plugins/webreport/narrativeweb.py:7943
 msgid "Gramps ID"
 msgstr "Gramps ID"
 
@@ -6781,10 +6781,10 @@ msgstr "Gramps ID"
 #: ../gramps/plugins/webreport/narrativeweb.py:1352
 #: ../gramps/plugins/webreport/narrativeweb.py:1519
 #: ../gramps/plugins/webreport/narrativeweb.py:2634
-#: ../gramps/plugins/webreport/narrativeweb.py:4265
-#: ../gramps/plugins/webreport/narrativeweb.py:5184
-#: ../gramps/plugins/webreport/narrativeweb.py:5549
-#: ../gramps/plugins/webreport/narrativeweb.py:6846
+#: ../gramps/plugins/webreport/narrativeweb.py:4263
+#: ../gramps/plugins/webreport/narrativeweb.py:5182
+#: ../gramps/plugins/webreport/narrativeweb.py:5547
+#: ../gramps/plugins/webreport/narrativeweb.py:6844
 msgid "Date"
 msgstr "Datum"
 
@@ -6804,10 +6804,10 @@ msgstr "Zekerheid"
 
 #. 7
 #: ../gramps/gen/lib/citation.py:115 ../gramps/gen/lib/src.py:97
-#: ../gramps/gui/clipboard.py:800 ../gramps/gui/configure.py:541
+#: ../gramps/gui/clipboard.py:803 ../gramps/gui/configure.py:541
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:78
 #: ../gramps/gui/editors/editlink.py:99 ../gramps/gui/editors/editsource.py:86
-#: ../gramps/gui/editors/filtereditor.py:297 ../gramps/gui/viewmanager.py:610
+#: ../gramps/gui/editors/filtereditor.py:297 ../gramps/gui/viewmanager.py:611
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:170
 #: ../gramps/plugins/export/exportcsv.py:466
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:114
@@ -6845,7 +6845,7 @@ msgstr "Bron"
 #: ../gramps/plugins/view/view.gpr.py:105
 #: ../gramps/plugins/webreport/narrativeweb.py:1044
 #: ../gramps/plugins/webreport/narrativeweb.py:1679
-#: ../gramps/plugins/webreport/narrativeweb.py:7143
+#: ../gramps/plugins/webreport/narrativeweb.py:7141
 msgid "Notes"
 msgstr "Opmerkingen"
 
@@ -6855,8 +6855,8 @@ msgstr "Opmerkingen"
 #: ../gramps/gen/lib/event.py:165 ../gramps/gen/lib/family.py:168
 #: ../gramps/gen/lib/media.py:134 ../gramps/gen/lib/person.py:206
 #: ../gramps/gen/lib/place.py:166 ../gramps/gen/lib/src.py:117
-#: ../gramps/gui/clipboard.py:659 ../gramps/gui/editors/editlink.py:94
-#: ../gramps/gui/editors/filtereditor.py:298 ../gramps/gui/viewmanager.py:616
+#: ../gramps/gui/clipboard.py:662 ../gramps/gui/editors/editlink.py:94
+#: ../gramps/gui/editors/filtereditor.py:298 ../gramps/gui/viewmanager.py:617
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:110
 #: ../gramps/plugins/quickview/filterbyname.py:109
 #: ../gramps/plugins/quickview/filterbyname.py:134
@@ -6874,8 +6874,8 @@ msgstr "Opmerkingen"
 #: ../gramps/plugins/webreport/narrativeweb.py:2060
 #: ../gramps/plugins/webreport/narrativeweb.py:2107
 #: ../gramps/plugins/webreport/narrativeweb.py:2407
-#: ../gramps/plugins/webreport/narrativeweb.py:5151
-#: ../gramps/plugins/webreport/narrativeweb.py:5346
+#: ../gramps/plugins/webreport/narrativeweb.py:5149
+#: ../gramps/plugins/webreport/narrativeweb.py:5344
 msgid "Media"
 msgstr "Media"
 
@@ -6983,7 +6983,7 @@ msgstr "Persoonlijk"
 #: ../gramps/plugins/textreport/indivcomplete.py:660
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
 #: ../gramps/plugins/view/relview.py:648
-#: ../gramps/plugins/webreport/narrativeweb.py:6390
+#: ../gramps/plugins/webreport/narrativeweb.py:6388
 msgid "unknown"
 msgstr "onbekend"
 
@@ -7129,11 +7129,11 @@ msgstr "alleen tekst"
 # Gebeuren (korter)
 #. 0 this order range above
 #: ../gramps/gen/lib/event.py:136 ../gramps/gen/lib/eventref.py:109
-#: ../gramps/gui/clipboard.py:340 ../gramps/gui/configure.py:547
+#: ../gramps/gui/clipboard.py:343 ../gramps/gui/configure.py:547
 #: ../gramps/gui/editors/editlink.py:92
 #: ../gramps/gui/editors/filtereditor.py:295
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:133
-#: ../gramps/gui/viewmanager.py:606
+#: ../gramps/gui/viewmanager.py:607
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:108
 #: ../gramps/plugins/quickview/filterbyname.py:175
 #: ../gramps/plugins/quickview/filterbyname.py:246
@@ -7147,7 +7147,7 @@ msgstr "Gebeurtenis"
 
 #. 5
 #: ../gramps/gen/lib/event.py:151 ../gramps/gen/lib/place.py:134
-#: ../gramps/gui/clipboard.py:367 ../gramps/gui/configure.py:539
+#: ../gramps/gui/clipboard.py:370 ../gramps/gui/configure.py:539
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:81
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:65
@@ -7156,7 +7156,7 @@ msgstr "Gebeurtenis"
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:108
 #: ../gramps/gui/glade/editevent.glade:270
 #: ../gramps/gui/plug/_guioptions.py:1348
-#: ../gramps/gui/selectors/selectevent.py:72 ../gramps/gui/viewmanager.py:608
+#: ../gramps/gui/selectors/selectevent.py:72 ../gramps/gui/viewmanager.py:609
 #: ../gramps/gui/views/treemodels/placemodel.py:284
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/export/exportcsv.py:466
@@ -7258,12 +7258,12 @@ msgstr "Levensgebeurtenissen"
 #. 1
 #. get the family events
 #: ../gramps/gen/lib/eventtype.py:139 ../gramps/gen/lib/family.py:145
-#: ../gramps/gui/clipboard.py:771 ../gramps/gui/configure.py:537
+#: ../gramps/gui/clipboard.py:774 ../gramps/gui/configure.py:537
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
 #: ../gramps/gui/editors/editfamily.py:499 ../gramps/gui/editors/editlink.py:93
 #: ../gramps/gui/editors/filtereditor.py:294
-#: ../gramps/gui/glade/editldsord.glade:267 ../gramps/gui/viewmanager.py:604
+#: ../gramps/gui/glade/editldsord.glade:267 ../gramps/gui/viewmanager.py:605
 #: ../gramps/plugins/export/exportcsv.py:506
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:109
 #: ../gramps/plugins/importer/importcsv.py:211
@@ -7276,7 +7276,7 @@ msgstr "Levensgebeurtenissen"
 #: ../gramps/plugins/textreport/recordsreport.py:271
 #: ../gramps/plugins/tool/reorderids.glade:657
 #: ../gramps/plugins/view/relview.py:1378 ../gramps/plugins/view/relview.py:1402
-#: ../gramps/plugins/webreport/narrativeweb.py:3571
+#: ../gramps/plugins/webreport/narrativeweb.py:3566
 msgid "Family"
 msgstr "Gezin"
 
@@ -7302,8 +7302,8 @@ msgstr "Wettelijk"
 
 #: ../gramps/gen/lib/eventtype.py:153 ../gramps/gen/lib/eventtype.py:195
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:463
-#: ../gramps/plugins/webreport/narrativeweb.py:3143
-#: ../gramps/plugins/webreport/narrativeweb.py:8042
+#: ../gramps/plugins/webreport/narrativeweb.py:3138
+#: ../gramps/plugins/webreport/narrativeweb.py:8040
 msgid "Residence"
 msgstr "Residentie"
 
@@ -7322,8 +7322,8 @@ msgstr "Overige"
 #: ../gramps/plugins/textreport/familygroup.py:534
 #: ../gramps/plugins/textreport/tagreport.py:174
 #: ../gramps/plugins/view/relview.py:621 ../gramps/plugins/view/relview.py:646
-#: ../gramps/plugins/webreport/narrativeweb.py:3318
-#: ../gramps/plugins/webreport/narrativeweb.py:6195
+#: ../gramps/plugins/webreport/narrativeweb.py:3313
+#: ../gramps/plugins/webreport/narrativeweb.py:6193
 msgid "Death"
 msgstr "Overlijden"
 
@@ -7464,7 +7464,7 @@ msgstr "Testament"
 #: ../gramps/plugins/textreport/familygroup.py:404
 #: ../gramps/plugins/textreport/familygroup.py:413
 #: ../gramps/plugins/textreport/familygroup.py:604
-#: ../gramps/plugins/webreport/narrativeweb.py:3572
+#: ../gramps/plugins/webreport/narrativeweb.py:3567
 msgid "Marriage"
 msgstr "Huwelijk"
 
@@ -7494,7 +7494,7 @@ msgid "Engagement"
 msgstr "Verloving"
 
 #: ../gramps/gen/lib/eventtype.py:204
-#: ../gramps/plugins/webreport/narrativeweb.py:3573
+#: ../gramps/plugins/webreport/narrativeweb.py:3568
 msgid "Divorce"
 msgstr "Scheiding"
 
@@ -7728,7 +7728,7 @@ msgstr "annul."
 #: ../gramps/plugins/textreport/indivcomplete.py:923
 #: ../gramps/plugins/textreport/tagreport.py:250
 #: ../gramps/plugins/view/familyview.py:80 ../gramps/plugins/view/relview.py:899
-#: ../gramps/plugins/webreport/narrativeweb.py:7532
+#: ../gramps/plugins/webreport/narrativeweb.py:7530
 msgid "Father"
 msgstr "Vader"
 
@@ -7749,7 +7749,7 @@ msgstr "Vader"
 #: ../gramps/plugins/textreport/indivcomplete.py:924
 #: ../gramps/plugins/textreport/tagreport.py:256
 #: ../gramps/plugins/view/familyview.py:81 ../gramps/plugins/view/relview.py:900
-#: ../gramps/plugins/webreport/narrativeweb.py:7546
+#: ../gramps/plugins/webreport/narrativeweb.py:7544
 msgid "Mother"
 msgstr "Moeder"
 
@@ -7777,9 +7777,9 @@ msgstr "Kinderen"
 #: ../gramps/plugins/webreport/narrativeweb.py:1921
 #: ../gramps/plugins/webreport/narrativeweb.py:1988
 #: ../gramps/plugins/webreport/narrativeweb.py:2050
-#: ../gramps/plugins/webreport/narrativeweb.py:4230
-#: ../gramps/plugins/webreport/narrativeweb.py:4453
-#: ../gramps/plugins/webreport/narrativeweb.py:7429
+#: ../gramps/plugins/webreport/narrativeweb.py:4228
+#: ../gramps/plugins/webreport/narrativeweb.py:4451
+#: ../gramps/plugins/webreport/narrativeweb.py:7427
 msgid "Events"
 msgstr "Gebeurtenissen"
 
@@ -7803,7 +7803,7 @@ msgstr "Getrouwd"
 #. Create the tree columns
 #. 0 selected?
 #: ../gramps/gen/lib/grampstype.py:221 ../gramps/gen/lib/grampstype.py:225
-#: ../gramps/gui/clipboard.py:961
+#: ../gramps/gui/clipboard.py:964
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:62
 #: ../gramps/gui/editors/displaytabs/backreflist.py:59
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:77
@@ -7857,10 +7857,10 @@ msgstr "Getrouwd"
 #: ../gramps/plugins/webreport/narrativeweb.py:1351
 #: ../gramps/plugins/webreport/narrativeweb.py:1677
 #: ../gramps/plugins/webreport/narrativeweb.py:2503
-#: ../gramps/plugins/webreport/narrativeweb.py:3100
-#: ../gramps/plugins/webreport/narrativeweb.py:4264
-#: ../gramps/plugins/webreport/narrativeweb.py:7865
-#: ../gramps/plugins/webreport/narrativeweb.py:7953
+#: ../gramps/plugins/webreport/narrativeweb.py:3095
+#: ../gramps/plugins/webreport/narrativeweb.py:4262
+#: ../gramps/plugins/webreport/narrativeweb.py:7863
+#: ../gramps/plugins/webreport/narrativeweb.py:7951
 msgid "Type"
 msgstr "Type"
 
@@ -7947,7 +7947,7 @@ msgstr "Niet gewist"
 
 # Compleet
 #: ../gramps/gen/lib/markertype.py:53
-#: ../gramps/gui/logger/_errorreportassistant.py:691
+#: ../gramps/gui/logger/_errorreportassistant.py:696
 msgid "Complete"
 msgstr "Voltooid"
 
@@ -7968,7 +7968,7 @@ msgstr "Controlesom"
 #. Handle
 #. Add column with object name
 #: ../gramps/gen/lib/name.py:143 ../gramps/gen/lib/repo.py:96
-#: ../gramps/gen/lib/tag.py:122 ../gramps/gui/clipboard.py:589
+#: ../gramps/gen/lib/tag.py:122 ../gramps/gui/clipboard.py:592
 #: ../gramps/gui/configure.py:516
 #: ../gramps/gui/editors/displaytabs/backreflist.py:61
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:73
@@ -8011,7 +8011,7 @@ msgstr "Controlesom"
 #: ../gramps/plugins/tool/removeunused.py:201
 #: ../gramps/plugins/tool/verify.py:578 ../gramps/plugins/view/repoview.py:85
 #: ../gramps/plugins/webreport/narrativeweb.py:779
-#: ../gramps/plugins/webreport/narrativeweb.py:7692
+#: ../gramps/plugins/webreport/narrativeweb.py:7690
 msgid "Name"
 msgstr "Naam"
 
@@ -8024,9 +8024,9 @@ msgstr "Voornaam"
 #: ../gramps/plugins/webreport/narrativeweb.py:1971
 #: ../gramps/plugins/webreport/narrativeweb.py:1974
 #: ../gramps/plugins/webreport/narrativeweb.py:2042
-#: ../gramps/plugins/webreport/narrativeweb.py:4569
-#: ../gramps/plugins/webreport/narrativeweb.py:4619
-#: ../gramps/plugins/webreport/narrativeweb.py:6252
+#: ../gramps/plugins/webreport/narrativeweb.py:4567
+#: ../gramps/plugins/webreport/narrativeweb.py:4617
+#: ../gramps/plugins/webreport/narrativeweb.py:6250
 msgid "Surnames"
 msgstr "Achternamen"
 
@@ -8042,7 +8042,7 @@ msgid "Suffix"
 msgstr "Achtervoegsel"
 
 #: ../gramps/gen/lib/name.py:166 ../gramps/gen/lib/place.py:143
-#: ../gramps/gen/lib/src.py:106 ../gramps/gui/clipboard.py:964
+#: ../gramps/gen/lib/src.py:106 ../gramps/gui/clipboard.py:967
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:80
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:105
@@ -8061,7 +8061,7 @@ msgstr "Achtervoegsel"
 #: ../gramps/plugins/textreport/tagreport.py:741
 #: ../gramps/plugins/view/mediaview.py:94
 #: ../gramps/plugins/view/sourceview.py:82
-#: ../gramps/plugins/webreport/narrativeweb.py:3098
+#: ../gramps/plugins/webreport/narrativeweb.py:3093
 msgid "Title"
 msgstr "Titel"
 
@@ -8159,7 +8159,7 @@ msgstr "Familielijn langs vaderszijde"
 msgid "Matrilineal"
 msgstr "Familielijn langs moederszijde"
 
-#: ../gramps/gen/lib/nameorigintype.py:86 ../gramps/gui/clipboard.py:323
+#: ../gramps/gen/lib/nameorigintype.py:86 ../gramps/gui/clipboard.py:326
 #: ../gramps/gui/plug/_windows.py:625
 msgid "Location"
 msgstr "Locatie"
@@ -8182,10 +8182,10 @@ msgstr "Getrouwde naam"
 #. ###############################
 #. 3
 #: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:255
-#: ../gramps/gui/clipboard.py:394 ../gramps/gui/configure.py:551
+#: ../gramps/gui/clipboard.py:397 ../gramps/gui/configure.py:551
 #: ../gramps/gui/editors/editlink.py:95 ../gramps/gui/editors/editmedia.py:98
 #: ../gramps/gui/editors/editmedia.py:181
-#: ../gramps/gui/editors/editmediaref.py:145
+#: ../gramps/gui/editors/editmediaref.py:146
 #: ../gramps/gui/editors/filtereditor.py:300
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:115
@@ -8195,7 +8195,7 @@ msgstr "Getrouwde naam"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:113
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:108
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:91
-#: ../gramps/gui/glade/editnote.glade:326 ../gramps/gui/viewmanager.py:618
+#: ../gramps/gui/glade/editnote.glade:326 ../gramps/gui/viewmanager.py:619
 #: ../gramps/gui/views/treemodels/mediamodel.py:117
 #: ../gramps/plugins/drawreport/ancestortree.py:974
 #: ../gramps/plugins/drawreport/descendtree.py:1694
@@ -8220,7 +8220,7 @@ msgstr "Formaat"
 
 #: ../gramps/gen/lib/notetype.py:75 ../gramps/gui/configure.py:1411
 #: ../gramps/gui/editors/editeventref.py:89
-#: ../gramps/gui/editors/editmediaref.py:106
+#: ../gramps/gui/editors/editmediaref.py:107
 #: ../gramps/gui/editors/editplaceref.py:71
 #: ../gramps/gui/editors/editreporef.py:71
 #: ../gramps/gui/glade/editeventref.glade:183
@@ -8250,7 +8250,7 @@ msgid "Source text"
 msgstr "Brontekst"
 
 #: ../gramps/gen/lib/notetype.py:80 ../gramps/gen/plug/_pluginreg.py:78
-#: ../gramps/gui/logger/_errorview.py:169
+#: ../gramps/gui/logger/_errorview.py:174
 msgid "Report"
 msgstr "Verslag"
 
@@ -8345,10 +8345,10 @@ msgstr "Opmerking over een verwijzing naar een kind"
 #.
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
-#: ../gramps/gen/lib/person.py:173 ../gramps/gui/clipboard.py:743
+#: ../gramps/gen/lib/person.py:173 ../gramps/gui/clipboard.py:746
 #: ../gramps/gui/configure.py:535 ../gramps/gui/editors/editlink.py:96
 #: ../gramps/gui/editors/filtereditor.py:293
-#: ../gramps/gui/glade/editpersonref.glade:211 ../gramps/gui/viewmanager.py:602
+#: ../gramps/gui/glade/editpersonref.glade:211 ../gramps/gui/viewmanager.py:603
 #: ../gramps/plugins/export/exportcsv.py:354
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:107
 #: ../gramps/plugins/importer/importcsv.py:208
@@ -8373,9 +8373,9 @@ msgstr "Opmerking over een verwijzing naar een kind"
 #: ../gramps/plugins/textreport/placereport.py:454
 #: ../gramps/plugins/tool/eventcmp.py:253
 #: ../gramps/plugins/tool/reorderids.glade:642
-#: ../gramps/plugins/webreport/narrativeweb.py:3570
-#: ../gramps/plugins/webreport/narrativeweb.py:4267
-#: ../gramps/plugins/webreport/narrativeweb.py:7141
+#: ../gramps/plugins/webreport/narrativeweb.py:3565
+#: ../gramps/plugins/webreport/narrativeweb.py:4265
+#: ../gramps/plugins/webreport/narrativeweb.py:7139
 msgid "Person"
 msgstr "Persoon"
 
@@ -8389,7 +8389,7 @@ msgstr "Persoon"
 #: ../gramps/plugins/lib/libpersonview.py:100
 #: ../gramps/plugins/quickview/siblings.py:48
 #: ../gramps/plugins/textreport/indivcomplete.py:922
-#: ../gramps/plugins/webreport/narrativeweb.py:7381
+#: ../gramps/plugins/webreport/narrativeweb.py:7379
 msgid "Gender"
 msgstr "Geslacht"
 
@@ -8426,7 +8426,7 @@ msgstr "Gebeurtenissenverwijzingen"
 #: ../gramps/plugins/webreport/narrativeweb.py:1920
 #: ../gramps/plugins/webreport/narrativeweb.py:1979
 #: ../gramps/plugins/webreport/narrativeweb.py:2043
-#: ../gramps/plugins/webreport/narrativeweb.py:3514
+#: ../gramps/plugins/webreport/narrativeweb.py:3509
 msgid "Families"
 msgstr "Gezinnen"
 
@@ -8457,8 +8457,8 @@ msgstr "Gramps IDs samengevoegd"
 #: ../gramps/plugins/gramplet/coordinates.py:96
 #: ../gramps/plugins/gramplet/placedetails.py:133
 #: ../gramps/plugins/lib/libplaceview.py:90
-#: ../gramps/plugins/webreport/narrativeweb.py:2988
-#: ../gramps/plugins/webreport/narrativeweb.py:3891
+#: ../gramps/plugins/webreport/narrativeweb.py:2983
+#: ../gramps/plugins/webreport/narrativeweb.py:3886
 msgid "Longitude"
 msgstr "Lengtegraad"
 
@@ -8466,8 +8466,8 @@ msgstr "Lengtegraad"
 #: ../gramps/plugins/gramplet/coordinates.py:95
 #: ../gramps/plugins/gramplet/placedetails.py:131
 #: ../gramps/plugins/lib/libplaceview.py:89
-#: ../gramps/plugins/webreport/narrativeweb.py:2980
-#: ../gramps/plugins/webreport/narrativeweb.py:3890
+#: ../gramps/plugins/webreport/narrativeweb.py:2975
+#: ../gramps/plugins/webreport/narrativeweb.py:3885
 msgid "Latitude"
 msgstr "Breedtegraad"
 
@@ -8481,8 +8481,8 @@ msgstr "Breedtegraad"
 #: ../gramps/plugins/webreport/narrativeweb.py:1922
 #: ../gramps/plugins/webreport/narrativeweb.py:1985
 #: ../gramps/plugins/webreport/narrativeweb.py:2051
-#: ../gramps/plugins/webreport/narrativeweb.py:3849
-#: ../gramps/plugins/webreport/narrativeweb.py:4002
+#: ../gramps/plugins/webreport/narrativeweb.py:3844
+#: ../gramps/plugins/webreport/narrativeweb.py:3997
 msgid "Places"
 msgstr "Locaties"
 
@@ -8500,7 +8500,7 @@ msgid "Code"
 msgstr "Code"
 
 #: ../gramps/gen/lib/place.py:160
-#: ../gramps/plugins/webreport/narrativeweb.py:3015
+#: ../gramps/plugins/webreport/narrativeweb.py:3010
 msgid "Alternate Locations"
 msgstr "Alternatieve locaties"
 
@@ -8515,9 +8515,9 @@ msgstr "Urls"
 #: ../gramps/plugins/lib/maps/placeselection.py:132
 #: ../gramps/plugins/view/geoplaces.py:559 ../gramps/plugins/view/repoview.py:93
 #: ../gramps/plugins/webreport/narrativeweb.py:1526
-#: ../gramps/plugins/webreport/narrativeweb.py:3003
-#: ../gramps/plugins/webreport/narrativeweb.py:3029
-#: ../gramps/plugins/webreport/narrativeweb.py:3889
+#: ../gramps/plugins/webreport/narrativeweb.py:2998
+#: ../gramps/plugins/webreport/narrativeweb.py:3024
+#: ../gramps/plugins/webreport/narrativeweb.py:3884
 msgid "Country"
 msgstr "Land"
 
@@ -8535,8 +8535,8 @@ msgstr "Deelstaat"
 #: ../gramps/plugins/lib/maps/placeselection.py:134
 #: ../gramps/plugins/view/geoplaces.py:565
 #: ../gramps/plugins/webreport/narrativeweb.py:1524
-#: ../gramps/plugins/webreport/narrativeweb.py:3000
-#: ../gramps/plugins/webreport/narrativeweb.py:3026
+#: ../gramps/plugins/webreport/narrativeweb.py:2995
+#: ../gramps/plugins/webreport/narrativeweb.py:3021
 msgid "County"
 msgstr "Provincie"
 
@@ -8546,8 +8546,8 @@ msgstr "Provincie"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
 #: ../gramps/plugins/view/geoplaces.py:583 ../gramps/plugins/view/repoview.py:91
 #: ../gramps/plugins/webreport/narrativeweb.py:1522
-#: ../gramps/plugins/webreport/narrativeweb.py:2998
-#: ../gramps/plugins/webreport/narrativeweb.py:3024
+#: ../gramps/plugins/webreport/narrativeweb.py:2993
+#: ../gramps/plugins/webreport/narrativeweb.py:3019
 msgid "City"
 msgstr "Dorp of stad"
 
@@ -8564,8 +8564,8 @@ msgstr "Parochie"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:55
 #: ../gramps/plugins/view/geoplaces.py:532 ../gramps/plugins/view/repoview.py:90
 #: ../gramps/plugins/webreport/narrativeweb.py:1521
-#: ../gramps/plugins/webreport/narrativeweb.py:2997
-#: ../gramps/plugins/webreport/narrativeweb.py:3023
+#: ../gramps/plugins/webreport/narrativeweb.py:2992
+#: ../gramps/plugins/webreport/narrativeweb.py:3018
 msgid "Locality"
 msgstr "Plaats"
 
@@ -8574,8 +8574,8 @@ msgstr "Plaats"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:54
 #: ../gramps/plugins/view/geoplaces.py:535 ../gramps/plugins/view/repoview.py:89
 #: ../gramps/plugins/webreport/narrativeweb.py:1520
-#: ../gramps/plugins/webreport/narrativeweb.py:2996
-#: ../gramps/plugins/webreport/narrativeweb.py:3022
+#: ../gramps/plugins/webreport/narrativeweb.py:2991
+#: ../gramps/plugins/webreport/narrativeweb.py:3017
 msgid "Street"
 msgstr "Straat"
 
@@ -8629,17 +8629,17 @@ msgstr "Opbouwen"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:89
 #: ../gramps/plugins/view/geoplaces.py:556
-#: ../gramps/plugins/webreport/narrativeweb.py:3096
-#: ../gramps/plugins/webreport/narrativeweb.py:4928
+#: ../gramps/plugins/webreport/narrativeweb.py:3091
+#: ../gramps/plugins/webreport/narrativeweb.py:4926
 msgid "Number"
 msgstr "Nummer"
 
 #. 6
-#: ../gramps/gen/lib/repo.py:86 ../gramps/gui/clipboard.py:827
+#: ../gramps/gen/lib/repo.py:86 ../gramps/gui/clipboard.py:830
 #: ../gramps/gui/configure.py:549 ../gramps/gui/editors/editlink.py:98
 #: ../gramps/gui/editors/editrepository.py:77
 #: ../gramps/gui/editors/editrepository.py:79
-#: ../gramps/gui/editors/filtereditor.py:299 ../gramps/gui/viewmanager.py:614
+#: ../gramps/gui/editors/filtereditor.py:299 ../gramps/gui/viewmanager.py:615
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:113
 #: ../gramps/plugins/quickview/filterbyname.py:205
 #: ../gramps/plugins/quickview/filterbyname.py:264
@@ -8688,11 +8688,11 @@ msgstr "Kluis"
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:106
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:88
 #: ../gramps/gui/selectors/selectsource.py:70
-#: ../gramps/plugins/gramplet/citations.py:78
+#: ../gramps/plugins/gramplet/citations.py:84
 #: ../gramps/plugins/textreport/tagreport.py:747
 #: ../gramps/plugins/view/sourceview.py:84
-#: ../gramps/plugins/webreport/narrativeweb.py:4929
-#: ../gramps/plugins/webreport/narrativeweb.py:5026
+#: ../gramps/plugins/webreport/narrativeweb.py:4927
+#: ../gramps/plugins/webreport/narrativeweb.py:5024
 msgid "Author"
 msgstr "Auteur"
 
@@ -8704,7 +8704,7 @@ msgstr "Publicatie-informatie"
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:89
 #: ../gramps/plugins/view/sourceview.py:85
-#: ../gramps/plugins/webreport/narrativeweb.py:5027
+#: ../gramps/plugins/webreport/narrativeweb.py:5025
 msgid "Abbreviation"
 msgstr "Afkorting"
 
@@ -8715,9 +8715,9 @@ msgstr "Afkorting"
 #: ../gramps/plugins/view/view.gpr.py:260
 #: ../gramps/plugins/webreport/narrativeweb.py:1924
 #: ../gramps/plugins/webreport/narrativeweb.py:2053
-#: ../gramps/plugins/webreport/narrativeweb.py:3087
-#: ../gramps/plugins/webreport/narrativeweb.py:7841
-#: ../gramps/plugins/webreport/narrativeweb.py:7926
+#: ../gramps/plugins/webreport/narrativeweb.py:3082
+#: ../gramps/plugins/webreport/narrativeweb.py:7839
+#: ../gramps/plugins/webreport/narrativeweb.py:7924
 msgid "Repositories"
 msgstr "Bibliotheken"
 
@@ -8779,8 +8779,8 @@ msgid "Styled Text"
 msgstr "Tekststijl"
 
 #: ../gramps/gen/lib/styledtext.py:308
-#: ../gramps/gen/plug/report/_constants.py:53 ../gramps/gui/clipboard.py:637
-#: ../gramps/gui/clipboard.py:645 ../gramps/gui/configure.py:1200
+#: ../gramps/gen/plug/report/_constants.py:53 ../gramps/gui/clipboard.py:640
+#: ../gramps/gui/clipboard.py:648 ../gramps/gui/configure.py:1200
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:101
 #: ../gramps/plugins/textreport/custombooktext.py:132
 #: ../gramps/plugins/textreport/tagreport.py:509
@@ -8837,7 +8837,7 @@ msgstr "Koppeling"
 
 #. show surname and first name
 #: ../gramps/gen/lib/surname.py:87 ../gramps/gen/lib/surname.py:91
-#: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:621
+#: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:624
 #: ../gramps/gui/configure.py:646 ../gramps/gui/configure.py:648
 #: ../gramps/gui/configure.py:650 ../gramps/gui/configure.py:652
 #: ../gramps/gui/configure.py:655 ../gramps/gui/configure.py:656
@@ -8848,9 +8848,9 @@ msgstr "Koppeling"
 #: ../gramps/plugins/export/exportcsv.py:354
 #: ../gramps/plugins/importer/importcsv.py:159
 #: ../gramps/plugins/quickview/filterbyname.py:354
-#: ../gramps/plugins/webreport/narrativeweb.py:3282
-#: ../gramps/plugins/webreport/narrativeweb.py:4618
-#: ../gramps/plugins/webreport/narrativeweb.py:6185
+#: ../gramps/plugins/webreport/narrativeweb.py:3277
+#: ../gramps/plugins/webreport/narrativeweb.py:4616
+#: ../gramps/plugins/webreport/narrativeweb.py:6183
 msgid "Surname"
 msgstr "Achternaam"
 
@@ -9074,8 +9074,8 @@ msgstr "Zijbalk"
 #: ../gramps/gen/plug/_pluginreg.py:514
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
 #: ../gramps/plugins/webreport/narrativeweb.py:2110
-#: ../gramps/plugins/webreport/narrativeweb.py:8241
-#: ../gramps/plugins/webreport/narrativeweb.py:8293
+#: ../gramps/plugins/webreport/narrativeweb.py:8239
+#: ../gramps/plugins/webreport/narrativeweb.py:8291
 msgid "Miscellaneous"
 msgstr "Verscheidene"
 
@@ -9166,7 +9166,7 @@ msgstr "Bestand %s is reeds geopend, sluit het eerst."
 #: ../gramps/plugins/lib/libhtmlbackend.py:253
 #: ../gramps/plugins/lib/libhtmlbackend.py:259
 #: ../gramps/plugins/lib/libhtmlbackend.py:263
-#: ../gramps/plugins/webreport/narrativeweb.py:8532
+#: ../gramps/plugins/webreport/narrativeweb.py:8530
 #, python-format
 msgid "Could not create %s"
 msgstr "%s kon niet worden aangemaakt"
@@ -9484,41 +9484,41 @@ msgstr "Opmerkinggrootte"
 msgid "The size of note text, in points."
 msgstr "De tekstgrootte van opmerkingen in punten."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:961
+#: ../gramps/gen/plug/docgen/graphdoc.py:962
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:967
+#: ../gramps/gen/plug/docgen/graphdoc.py:968
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphiz)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:973
+#: ../gramps/gen/plug/docgen/graphdoc.py:974
 #: ../gramps/plugins/docgen/docgen.gpr.py:161
 msgid "PostScript"
 msgstr "PostScript"
 
 # Structured is een fout
-#: ../gramps/gen/plug/docgen/graphdoc.py:979
+#: ../gramps/gen/plug/docgen/graphdoc.py:980
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Schaalbare vectorgrafiek (SVG)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:985
+#: ../gramps/gen/plug/docgen/graphdoc.py:986
 msgid "Compressed Structured Vector Graphs (SVGZ)"
 msgstr "Gecomprimeerde schaalbare vectorgrafiek (SVGZ)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:991
+#: ../gramps/gen/plug/docgen/graphdoc.py:992
 msgid "JPEG image"
 msgstr "JPEG-afbeelding"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:997
+#: ../gramps/gen/plug/docgen/graphdoc.py:998
 msgid "GIF image"
 msgstr "GIF-afbeelding"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1003
+#: ../gramps/gen/plug/docgen/graphdoc.py:1004
 msgid "PNG image"
 msgstr "PNG-afbeelding"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1009
+#: ../gramps/gen/plug/docgen/graphdoc.py:1010
 msgid "Graphviz File"
 msgstr "Graphviz-bestand"
 
@@ -9550,7 +9550,7 @@ msgstr "Geldige waarden: "
 #.
 #. ------------------------------------------------------------------------
 #: ../gramps/gen/plug/report/_book.py:71 ../gramps/gui/plug/_dialogs.py:59
-#: ../gramps/gui/plug/report/_bookdialog.py:84 ../gramps/gui/viewmanager.py:119
+#: ../gramps/gui/plug/report/_bookdialog.py:84 ../gramps/gui/viewmanager.py:120
 msgid "Unsupported"
 msgstr "Niet ondersteund"
 
@@ -9747,14 +9747,14 @@ msgstr "Al of niet de Gramps-ID toevoegen"
 #. What to include
 #. #########################
 #. ###############################
-#: ../gramps/gen/plug/report/stdoptions.py:327 ../gramps/gui/viewmanager.py:1886
+#: ../gramps/gen/plug/report/stdoptions.py:327 ../gramps/gui/viewmanager.py:1888
 #: ../gramps/plugins/graph/gvfamilylines.py:211
 #: ../gramps/plugins/graph/gvrelgraph.py:804
 #: ../gramps/plugins/textreport/detancestralreport.py:888
 #: ../gramps/plugins/textreport/detdescendantreport.py:1075
 #: ../gramps/plugins/textreport/familygroup.py:747
 #: ../gramps/plugins/textreport/indivcomplete.py:1094
-#: ../gramps/plugins/webreport/narrativeweb.py:10061
+#: ../gramps/plugins/webreport/narrativeweb.py:10059
 msgid "Include"
 msgstr "Bijvoegen"
 
@@ -10070,86 +10070,86 @@ msgstr ""
 "Er is geen vertaling in het %s beschikbaar voor de familieverwantschappen en "
 "deze zal daarom in het Engels worden weergegeven."
 
-#: ../gramps/gen/utils/alive.py:148 ../gramps/plugins/importer/importcsv.py:201
+#: ../gramps/gen/utils/alive.py:145 ../gramps/plugins/importer/importcsv.py:201
 msgid "death date"
 msgstr "sterfdatum"
 
-#: ../gramps/gen/utils/alive.py:153 ../gramps/plugins/importer/importcsv.py:177
+#: ../gramps/gen/utils/alive.py:150 ../gramps/plugins/importer/importcsv.py:177
 msgid "birth date"
 msgstr "geboortedatum"
 
-#: ../gramps/gen/utils/alive.py:186
+#: ../gramps/gen/utils/alive.py:183
 msgid "sibling birth date"
 msgstr "geboortedatums van broers of zussen"
 
-#: ../gramps/gen/utils/alive.py:198
+#: ../gramps/gen/utils/alive.py:195
 msgid "sibling death date"
 msgstr "overlijdensdatums van broers of zussen"
 
-#: ../gramps/gen/utils/alive.py:212
+#: ../gramps/gen/utils/alive.py:209
 msgid "sibling birth-related date"
 msgstr "datum in verband met geboorte broer of zus"
 
-#: ../gramps/gen/utils/alive.py:223
+#: ../gramps/gen/utils/alive.py:220
 msgid "sibling death-related date"
 msgstr "datum in verband met overlijden van broer of zus"
 
-#: ../gramps/gen/utils/alive.py:238 ../gramps/gen/utils/alive.py:249
+#: ../gramps/gen/utils/alive.py:235 ../gramps/gen/utils/alive.py:246
 msgid "a spouse's birth-related date, "
 msgstr "datum in verband met geboorte echtgeno(o)t(e), "
 
-#: ../gramps/gen/utils/alive.py:242 ../gramps/gen/utils/alive.py:253
+#: ../gramps/gen/utils/alive.py:239 ../gramps/gen/utils/alive.py:250
 msgid "a spouse's death-related date, "
 msgstr "datum in verband met overlijden echtgeno(o)t(e), "
 
-#: ../gramps/gen/utils/alive.py:271
+#: ../gramps/gen/utils/alive.py:268
 msgid "event with spouse"
 msgstr "gebeurtenis met echtgenoot of echtgenote"
 
-#: ../gramps/gen/utils/alive.py:298
+#: ../gramps/gen/utils/alive.py:295
 msgid "descendant birth date"
 msgstr "geboortedatums van afstammelingen"
 
-#: ../gramps/gen/utils/alive.py:307
+#: ../gramps/gen/utils/alive.py:304
 msgid "descendant death date"
 msgstr "overlijdensdatum van afstammelingen"
 
-#: ../gramps/gen/utils/alive.py:323
+#: ../gramps/gen/utils/alive.py:320
 msgid "descendant birth-related date"
 msgstr "datum in verband met geboorte afstammeling"
 
-#: ../gramps/gen/utils/alive.py:331
+#: ../gramps/gen/utils/alive.py:328
 msgid "descendant death-related date"
 msgstr "datum in verband met overlijden afstammeling"
 
-#: ../gramps/gen/utils/alive.py:344
+#: ../gramps/gen/utils/alive.py:341
 #, python-format
 msgid "Database error: loop in %s's descendants"
 msgstr "Databasefout: Lus in afstammelingen van %s"
 
-#: ../gramps/gen/utils/alive.py:373 ../gramps/gen/utils/alive.py:419
+#: ../gramps/gen/utils/alive.py:370 ../gramps/gen/utils/alive.py:416
 msgid "ancestor birth date"
 msgstr "geboortedatum voorouder"
 
-#: ../gramps/gen/utils/alive.py:383 ../gramps/gen/utils/alive.py:429
+#: ../gramps/gen/utils/alive.py:380 ../gramps/gen/utils/alive.py:426
 msgid "ancestor death date"
 msgstr "overlijdensdatum voorouder"
 
-#: ../gramps/gen/utils/alive.py:394 ../gramps/gen/utils/alive.py:440
+#: ../gramps/gen/utils/alive.py:391 ../gramps/gen/utils/alive.py:437
 msgid "ancestor birth-related date"
 msgstr "datum in verband met geboorte voorouder"
 
-#: ../gramps/gen/utils/alive.py:402 ../gramps/gen/utils/alive.py:448
+#: ../gramps/gen/utils/alive.py:399 ../gramps/gen/utils/alive.py:445
 msgid "ancestor death-related date"
 msgstr "datum in verband met overlijden voorouder"
 
-#: ../gramps/gen/utils/alive.py:463
+#: ../gramps/gen/utils/alive.py:460
 #, python-format
 msgid "Database error: loop in %s's ancestors"
 msgstr "Databasefout: Lus in voorouders van %s"
 
 #. no evidence, must consider alive
-#: ../gramps/gen/utils/alive.py:510
+#: ../gramps/gen/utils/alive.py:507
 msgid "no evidence"
 msgstr "geen aanwijzing"
 
@@ -10182,48 +10182,48 @@ msgstr "%s, ..."
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s en %(mother)s"
 
-#: ../gramps/gen/utils/grampslocale.py:70
+#: ../gramps/gen/utils/grampslocale.py:71
 msgid "Arabic"
 msgstr "Arabisch"
 
-#: ../gramps/gen/utils/grampslocale.py:71
+#: ../gramps/gen/utils/grampslocale.py:72
 msgid "Bulgarian"
 msgstr "Bulgaars"
 
-#: ../gramps/gen/utils/grampslocale.py:72
+#: ../gramps/gen/utils/grampslocale.py:73
 msgid "Breton"
 msgstr "Bretoens"
 
 #. Windows has no translation for Breton
-#: ../gramps/gen/utils/grampslocale.py:73
+#: ../gramps/gen/utils/grampslocale.py:74
 msgid "Catalan"
 msgstr "Catalaans"
 
-#: ../gramps/gen/utils/grampslocale.py:74
+#: ../gramps/gen/utils/grampslocale.py:75
 msgid "Czech"
 msgstr "Tsjechisch"
 
-#: ../gramps/gen/utils/grampslocale.py:75
+#: ../gramps/gen/utils/grampslocale.py:76
 msgid "Danish"
 msgstr "Deens"
 
-#: ../gramps/gen/utils/grampslocale.py:76
+#: ../gramps/gen/utils/grampslocale.py:77
 msgid "German"
 msgstr "Duits"
 
-#: ../gramps/gen/utils/grampslocale.py:77
+#: ../gramps/gen/utils/grampslocale.py:78
 msgid "Greek"
 msgstr "Grieks"
 
-#: ../gramps/gen/utils/grampslocale.py:78
+#: ../gramps/gen/utils/grampslocale.py:79
 msgid "English (USA)"
 msgstr "Engels (VS)"
 
-#: ../gramps/gen/utils/grampslocale.py:79
+#: ../gramps/gen/utils/grampslocale.py:80
 msgid "English"
 msgstr "Engels"
 
-#: ../gramps/gen/utils/grampslocale.py:80
+#: ../gramps/gen/utils/grampslocale.py:81
 msgid "Esperanto"
 msgstr "Esperanto"
 
@@ -10232,179 +10232,179 @@ msgstr "Esperanto"
 # Maximum span in years for all childer.
 # Dus: de periode waarin men kinderen kan krijgen.
 #. Windows has no translation for Esperanto
-#: ../gramps/gen/utils/grampslocale.py:81
+#: ../gramps/gen/utils/grampslocale.py:82
 msgid "Spanish"
 msgstr "Spaans"
 
-#: ../gramps/gen/utils/grampslocale.py:82
+#: ../gramps/gen/utils/grampslocale.py:83
 msgid "Finnish"
 msgstr "Fins"
 
-#: ../gramps/gen/utils/grampslocale.py:83
+#: ../gramps/gen/utils/grampslocale.py:84
 msgid "French"
 msgstr "Frans"
 
-#: ../gramps/gen/utils/grampslocale.py:84
+#: ../gramps/gen/utils/grampslocale.py:85
 msgid "Gaelic"
 msgstr "Gaelic"
 
 #. Windows has no translation for Gaelic
-#: ../gramps/gen/utils/grampslocale.py:85
+#: ../gramps/gen/utils/grampslocale.py:86
 msgid "Hebrew"
 msgstr "Hebreeuws"
 
-#: ../gramps/gen/utils/grampslocale.py:86
+#: ../gramps/gen/utils/grampslocale.py:87
 msgid "Croatian"
 msgstr "Kroatisch"
 
-#: ../gramps/gen/utils/grampslocale.py:87
+#: ../gramps/gen/utils/grampslocale.py:88
 msgid "Hungarian"
 msgstr "Hongaars"
 
-#: ../gramps/gen/utils/grampslocale.py:88
+#: ../gramps/gen/utils/grampslocale.py:89
 msgid "Icelandic"
 msgstr "IJsland"
 
-#: ../gramps/gen/utils/grampslocale.py:89
+#: ../gramps/gen/utils/grampslocale.py:90
 msgid "Italian"
 msgstr "Italiaans"
 
-#: ../gramps/gen/utils/grampslocale.py:90
+#: ../gramps/gen/utils/grampslocale.py:91
 msgid "Japanese"
 msgstr "Japans"
 
-#: ../gramps/gen/utils/grampslocale.py:91
+#: ../gramps/gen/utils/grampslocale.py:92
 msgid "Lithuanian"
 msgstr "Litouws"
 
-#: ../gramps/gen/utils/grampslocale.py:92
+#: ../gramps/gen/utils/grampslocale.py:93
 msgid "Macedonian"
 msgstr "Macedonisch"
 
 #. Windows has no translation for Macedonian
-#: ../gramps/gen/utils/grampslocale.py:93
+#: ../gramps/gen/utils/grampslocale.py:94
 msgid "Norwegian Bokmal"
 msgstr "Noors Bokmål"
 
 # Gebeurtenistype: overlijden/sterven/sterfgeval/doodgaan
-#: ../gramps/gen/utils/grampslocale.py:94
+#: ../gramps/gen/utils/grampslocale.py:95
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: ../gramps/gen/utils/grampslocale.py:95
+#: ../gramps/gen/utils/grampslocale.py:96
 msgid "Norwegian Nynorsk"
 msgstr "Noors Nynorsk"
 
-#: ../gramps/gen/utils/grampslocale.py:96
+#: ../gramps/gen/utils/grampslocale.py:97
 msgid "Polish"
 msgstr "Pools"
 
-#: ../gramps/gen/utils/grampslocale.py:97
+#: ../gramps/gen/utils/grampslocale.py:98
 msgid "Portuguese (Brazil)"
 msgstr "Portugees (Brazilië)"
 
-#: ../gramps/gen/utils/grampslocale.py:98
+#: ../gramps/gen/utils/grampslocale.py:99
 msgid "Portuguese (Portugal)"
 msgstr "Portugees (Portugal)"
 
-#: ../gramps/gen/utils/grampslocale.py:99
+#: ../gramps/gen/utils/grampslocale.py:100
 msgid "Romanian"
 msgstr "Roemeens"
 
-#: ../gramps/gen/utils/grampslocale.py:100
+#: ../gramps/gen/utils/grampslocale.py:101
 msgid "Russian"
 msgstr "Russisch"
 
-#: ../gramps/gen/utils/grampslocale.py:101
+#: ../gramps/gen/utils/grampslocale.py:102
 msgid "Slovak"
 msgstr "Slowaaks"
 
-#: ../gramps/gen/utils/grampslocale.py:102
+#: ../gramps/gen/utils/grampslocale.py:103
 msgid "Slovenian"
 msgstr "Sloveens"
 
-#: ../gramps/gen/utils/grampslocale.py:103
+#: ../gramps/gen/utils/grampslocale.py:104
 msgid "Albanian"
 msgstr "Albanees"
 
-#: ../gramps/gen/utils/grampslocale.py:104
+#: ../gramps/gen/utils/grampslocale.py:105
 msgid "Serbian"
 msgstr "Servisch"
 
-#: ../gramps/gen/utils/grampslocale.py:105
+#: ../gramps/gen/utils/grampslocale.py:106
 msgid "Swedish"
 msgstr "Zweeds"
 
-#: ../gramps/gen/utils/grampslocale.py:106
+#: ../gramps/gen/utils/grampslocale.py:107
 msgid "Tamil"
 msgstr "Tamil"
 
 #. Windows has no codepage for Tamil
-#: ../gramps/gen/utils/grampslocale.py:107
+#: ../gramps/gen/utils/grampslocale.py:108
 msgid "Turkish"
 msgstr "Turks"
 
-#: ../gramps/gen/utils/grampslocale.py:108
+#: ../gramps/gen/utils/grampslocale.py:109
 msgid "Ukrainian"
 msgstr "Oekraïens"
 
-#: ../gramps/gen/utils/grampslocale.py:109
+#: ../gramps/gen/utils/grampslocale.py:110
 msgid "Vietnamese"
 msgstr "Vietnamees"
 
-#: ../gramps/gen/utils/grampslocale.py:110
+#: ../gramps/gen/utils/grampslocale.py:111
 msgid "Chinese (Simplified)"
 msgstr "Chinees (Vereenvoudigd)"
 
-#: ../gramps/gen/utils/grampslocale.py:111
+#: ../gramps/gen/utils/grampslocale.py:112
 msgid "Chinese (Hong Kong)"
 msgstr "Chinees (Hong Kong)"
 
-#: ../gramps/gen/utils/grampslocale.py:112
+#: ../gramps/gen/utils/grampslocale.py:113
 msgid "Chinese (Traditional)"
 msgstr "Chinees (traditioneel)"
 
-#: ../gramps/gen/utils/grampslocale.py:895
+#: ../gramps/gen/utils/grampslocale.py:896
 msgid "the person"
 msgstr "de persoon"
 
-#: ../gramps/gen/utils/grampslocale.py:897
+#: ../gramps/gen/utils/grampslocale.py:898
 msgid "the family"
 msgstr "het gezin"
 
-#: ../gramps/gen/utils/grampslocale.py:899
+#: ../gramps/gen/utils/grampslocale.py:900
 msgid "the place"
 msgstr "de locatie"
 
-#: ../gramps/gen/utils/grampslocale.py:901
+#: ../gramps/gen/utils/grampslocale.py:902
 msgid "the event"
 msgstr "de gebeurtenis"
 
-#: ../gramps/gen/utils/grampslocale.py:903
+#: ../gramps/gen/utils/grampslocale.py:904
 msgid "the repository"
 msgstr "de bibliotheek"
 
-#: ../gramps/gen/utils/grampslocale.py:905
+#: ../gramps/gen/utils/grampslocale.py:906
 msgid "the note"
 msgstr "de opmerking"
 
-#: ../gramps/gen/utils/grampslocale.py:907
+#: ../gramps/gen/utils/grampslocale.py:908
 msgid "the media"
 msgstr "het media-object"
 
-#: ../gramps/gen/utils/grampslocale.py:909
+#: ../gramps/gen/utils/grampslocale.py:910
 msgid "the source"
 msgstr "de bron"
 
-#: ../gramps/gen/utils/grampslocale.py:911
+#: ../gramps/gen/utils/grampslocale.py:912
 msgid "the filter"
 msgstr "het filter"
 
-#: ../gramps/gen/utils/grampslocale.py:913
+#: ../gramps/gen/utils/grampslocale.py:914
 msgid "the citation"
 msgstr "Het citaat"
 
-#: ../gramps/gen/utils/grampslocale.py:915
+#: ../gramps/gen/utils/grampslocale.py:916
 msgid "See details"
 msgstr "Zie details"
 
@@ -10590,7 +10590,7 @@ msgstr "%(west_longitude)s W"
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
-#: ../gramps/plugins/webreport/narrativeweb.py:6388
+#: ../gramps/plugins/webreport/narrativeweb.py:6386
 msgid "male"
 msgstr "mannelijk"
 
@@ -10599,7 +10599,7 @@ msgstr "mannelijk"
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
-#: ../gramps/plugins/webreport/narrativeweb.py:6389
+#: ../gramps/plugins/webreport/narrativeweb.py:6387
 msgid "female"
 msgstr "vrouwelijk"
 
@@ -10743,85 +10743,95 @@ msgstr "Bijdragen door"
 msgid "translator-credits"
 msgstr "Frederik De Richter"
 
-#: ../gramps/gui/clipboard.py:69
+#: ../gramps/gui/aboutdialog.py:130
+#, python-format
+msgid "Distribution: %s"
+msgstr "Distributie: %s"
+
+#: ../gramps/gui/aboutdialog.py:146
+#, python-format
+msgid "OS: %s"
+msgstr "OS: %s"
+
+#: ../gramps/gui/clipboard.py:71
 msgid "manual|Using_the_Clipboard"
 msgstr "Gebruik_van_het_klembord"
 
 #. We encounter a PLAC, having previously encountered an ADDR
-#: ../gramps/gui/clipboard.py:303 ../gramps/gui/configure.py:517
+#: ../gramps/gui/clipboard.py:306 ../gramps/gui/configure.py:517
 #: ../gramps/gui/editors/editaddress.py:167
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
 #: ../gramps/plugins/gramplet/repositorydetails.py:133
-#: ../gramps/plugins/lib/libgedcom.py:5432
-#: ../gramps/plugins/lib/libgedcom.py:5598
+#: ../gramps/plugins/lib/libgedcom.py:5443
+#: ../gramps/plugins/lib/libgedcom.py:5609
 #: ../gramps/plugins/textreport/familygroup.py:350
-#: ../gramps/plugins/webreport/narrativeweb.py:8041
+#: ../gramps/plugins/webreport/narrativeweb.py:8039
 msgid "Address"
 msgstr "Adres"
 
-#: ../gramps/gui/clipboard.py:427
+#: ../gramps/gui/clipboard.py:430
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:118
 msgid "Family Event"
 msgstr "Gezinsgebeurtenis"
 
-#: ../gramps/gui/clipboard.py:443
+#: ../gramps/gui/clipboard.py:446
 msgid "Url"
 msgstr "Url"
 
-#: ../gramps/gui/clipboard.py:459 ../gramps/gui/editors/editattribute.py:135
+#: ../gramps/gui/clipboard.py:462 ../gramps/gui/editors/editattribute.py:135
 msgid "Attribute"
 msgstr "Kenmerk"
 
-#: ../gramps/gui/clipboard.py:474
+#: ../gramps/gui/clipboard.py:477
 msgid "Family Attribute"
 msgstr "Gezinskenmerk"
 
 # NB = Nota bene, dat is een verwarrende afkorting. Weet echter geen geschikt alternatief, dus voluit geschreven.
-#: ../gramps/gui/clipboard.py:505
+#: ../gramps/gui/clipboard.py:508
 msgid "not available|NA"
 msgstr "Niet beschikbaar"
 
-#: ../gramps/gui/clipboard.py:514
+#: ../gramps/gui/clipboard.py:517
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
 msgstr "Volume/Pagina: %(pag)s -- %(sourcetext)s"
 
-#: ../gramps/gui/clipboard.py:535
+#: ../gramps/gui/clipboard.py:538
 msgid "Repository ref"
 msgstr "Bibliotheekverwijzing"
 
-#: ../gramps/gui/clipboard.py:553
+#: ../gramps/gui/clipboard.py:556
 msgid "Event ref"
 msgstr "Gebeurtenisverwijzing"
 
 # Plaatsnaam
-#: ../gramps/gui/clipboard.py:571
+#: ../gramps/gui/clipboard.py:574
 msgid "Place ref"
 msgstr "Locatieverwijzing"
 
 # Plaatsnaam
-#: ../gramps/gui/clipboard.py:605 ../gramps/gui/editors/editplacename.py:134
+#: ../gramps/gui/clipboard.py:608 ../gramps/gui/editors/editplacename.py:134
 msgid "Place Name"
 msgstr "Locatienaam"
 
-#: ../gramps/gui/clipboard.py:686
+#: ../gramps/gui/clipboard.py:689
 msgid "Media ref"
 msgstr "Mediaverwijzing"
 
-#: ../gramps/gui/clipboard.py:704
+#: ../gramps/gui/clipboard.py:707
 msgid "Person ref"
 msgstr "Persoonsverwijzing"
 
-#: ../gramps/gui/clipboard.py:722
+#: ../gramps/gui/clipboard.py:725
 msgid "Child ref"
 msgstr "Kindverwijzing"
 
-#: ../gramps/gui/clipboard.py:731
+#: ../gramps/gui/clipboard.py:734
 #, python-format
 msgid "%(frel)s %(mrel)s"
 msgstr "%(frel)s %(mrel)s"
 
-#: ../gramps/gui/clipboard.py:967 ../gramps/gui/dbman.py:126
+#: ../gramps/gui/clipboard.py:970 ../gramps/gui/dbman.py:126
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:63
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:64
 #: ../gramps/plugins/gramplet/attributes.py:57
@@ -10834,26 +10844,26 @@ msgstr "Waarde"
 
 # zie ook uncleared.
 # is dit goed?
-#: ../gramps/gui/clipboard.py:1387 ../gramps/gui/clipboard.py:1393
-#: ../gramps/gui/clipboard.py:1431 ../gramps/gui/clipboard.py:1475
+#: ../gramps/gui/clipboard.py:1425 ../gramps/gui/clipboard.py:1431
+#: ../gramps/gui/clipboard.py:1469 ../gramps/gui/clipboard.py:1513
 #: ../gramps/gui/glade/clipboard.glade:7
 msgid "Clipboard"
 msgstr "Klembord"
 
 #. Now add more items to popup menu, if available
 #. See details (edit, etc):
-#: ../gramps/gui/clipboard.py:1519 ../gramps/gui/plug/quick/_quicktable.py:141
+#: ../gramps/gui/clipboard.py:1557 ../gramps/gui/plug/quick/_quicktable.py:141
 #, python-format
 msgid "the object|See %s details"
 msgstr "Zie %s details"
 
 #. ---------------------------
-#: ../gramps/gui/clipboard.py:1525 ../gramps/gui/plug/quick/_quicktable.py:149
+#: ../gramps/gui/clipboard.py:1563 ../gramps/gui/plug/quick/_quicktable.py:149
 #, python-format
 msgid "the object|Make %s active"
 msgstr "%s activeren"
 
-#: ../gramps/gui/clipboard.py:1541
+#: ../gramps/gui/clipboard.py:1579
 #, python-format
 msgid "the object|Create Filter from %s selected..."
 msgstr "Filter van geselecteerde %s aanmaken..."
@@ -10869,7 +10879,7 @@ msgstr "Versleep de kolommen om de volgorde te veranderen"
 
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1545
 #: ../gramps/gui/configure.py:1567 ../gramps/gui/configure.py:1590
-#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1957
+#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1959
 #: ../gramps/plugins/lib/maps/geography.py:1009
 #: ../gramps/plugins/lib/maps/geography.py:1263
 msgid "_Apply"
@@ -10880,7 +10890,7 @@ msgstr "Toepassen"
 #: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1111
 #: ../gramps/plugins/drawreport/ancestortree.py:909
 #: ../gramps/plugins/drawreport/descendtree.py:1645
-#: ../gramps/plugins/webreport/narrativeweb.py:9858
+#: ../gramps/plugins/webreport/narrativeweb.py:9856
 msgid "Display"
 msgstr "Weergave"
 
@@ -10915,7 +10925,7 @@ msgstr "Het naambewerkingsscherm tonen"
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/plug/_windows.py:105
 #: ../gramps/gui/plug/_windows.py:691 ../gramps/gui/plug/_windows.py:747
 #: ../gramps/gui/plug/quick/_textbufdoc.py:60 ../gramps/gui/undohistory.py:90
-#: ../gramps/gui/viewmanager.py:538 ../gramps/gui/viewmanager.py:1821
+#: ../gramps/gui/viewmanager.py:539 ../gramps/gui/viewmanager.py:1823
 #: ../gramps/gui/views/bookmarks.py:287 ../gramps/gui/views/tags.py:430
 #: ../gramps/gui/widgets/grampletbar.py:635
 #: ../gramps/gui/widgets/grampletpane.py:237
@@ -11040,8 +11050,8 @@ msgstr "Postcode"
 #: ../gramps/gui/configure.py:523 ../gramps/plugins/export/exportgedcom.py:788
 #: ../gramps/plugins/export/exportgedcom.py:1156
 #: ../gramps/plugins/gramplet/repositorydetails.py:121
-#: ../gramps/plugins/lib/libgedcom.py:3981
-#: ../gramps/plugins/lib/libgedcom.py:5695
+#: ../gramps/plugins/lib/libgedcom.py:3982
+#: ../gramps/plugins/lib/libgedcom.py:5706
 #: ../gramps/plugins/webreport/narrativeweb.py:1527
 msgid "Phone"
 msgstr "Telefoon"
@@ -11191,7 +11201,7 @@ msgstr "Voorbeeld"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:129
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:115
 #: ../gramps/gui/editors/editfamily.py:148
-#: ../gramps/gui/plug/report/_bookdialog.py:653 ../gramps/gui/viewmanager.py:600
+#: ../gramps/gui/plug/report/_bookdialog.py:653 ../gramps/gui/viewmanager.py:601
 #: ../gramps/gui/views/tags.py:422 ../gramps/gui/widgets/fanchart.py:1712
 #: ../gramps/gui/widgets/fanchart.py:1754
 #: ../gramps/plugins/view/pedigreeview.py:1627
@@ -11207,7 +11217,7 @@ msgstr "Toevoegen"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:130
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:116
 #: ../gramps/gui/glade/editlink.glade:222
-#: ../gramps/gui/plug/report/_bookdialog.py:627 ../gramps/gui/viewmanager.py:513
+#: ../gramps/gui/plug/report/_bookdialog.py:627 ../gramps/gui/viewmanager.py:514
 #: ../gramps/gui/views/tags.py:423 ../gramps/gui/widgets/fanchart.py:1511
 #: ../gramps/plugins/view/pedigreeview.py:1662
 #: ../gramps/plugins/view/pedigreeview.py:1890
@@ -11640,11 +11650,11 @@ msgstr "Selecteer mediamap"
 #: ../gramps/gui/glade/rule.glade:316 ../gramps/gui/glade/rule.glade:747
 #: ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1721
-#: ../gramps/gui/logger/_errorview.py:168 ../gramps/gui/plug/_guioptions.py:78
+#: ../gramps/gui/logger/_errorview.py:173 ../gramps/gui/plug/_guioptions.py:78
 #: ../gramps/gui/plug/_guioptions.py:1738 ../gramps/gui/plug/_windows.py:440
 #: ../gramps/gui/plug/report/_fileentry.py:64
 #: ../gramps/gui/plug/report/_reportdialog.py:161 ../gramps/gui/utils.py:178
-#: ../gramps/gui/viewmanager.py:1955 ../gramps/gui/views/listview.py:1022
+#: ../gramps/gui/viewmanager.py:1957 ../gramps/gui/views/listview.py:1022
 #: ../gramps/gui/views/navigationview.py:362 ../gramps/gui/views/tags.py:645
 #: ../gramps/gui/widgets/progressdialog.py:437
 #: ../gramps/plugins/lib/maps/geography.py:1008
@@ -11661,7 +11671,7 @@ msgid "Select database directory"
 msgstr "Gegevensbestandsmap selecteren"
 
 # dit is een soort titel in een file-selector
-#: ../gramps/gui/configure.py:1585 ../gramps/gui/viewmanager.py:1952
+#: ../gramps/gui/configure.py:1585 ../gramps/gui/viewmanager.py:1954
 msgid "Select backup directory"
 msgstr "Een map voor de reservekopie selecteren"
 
@@ -11708,7 +11718,7 @@ msgstr "Ik heb een reservekopie gemaakt, werk de stamboom bij"
 #: ../gramps/gui/dbloader.py:211 ../gramps/gui/dbloader.py:226
 #: ../gramps/gui/dbloader.py:241 ../gramps/gui/dbloader.py:256
 #: ../gramps/gui/plug/report/_bookdialog.py:243
-#: ../gramps/gui/plug/report/_bookdialog.py:739 ../gramps/gui/viewmanager.py:840
+#: ../gramps/gui/plug/report/_bookdialog.py:739 ../gramps/gui/viewmanager.py:841
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -11847,7 +11857,7 @@ msgstr "Gegevensbestandsinformatie"
 #: ../gramps/gui/glade/styleeditor.glade:1738
 #: ../gramps/gui/plug/_guioptions.py:79
 #: ../gramps/gui/plug/report/_reportdialog.py:165 ../gramps/gui/utils.py:192
-#: ../gramps/gui/viewmanager.py:1823 ../gramps/gui/views/tags.py:646
+#: ../gramps/gui/viewmanager.py:1825 ../gramps/gui/views/tags.py:646
 #: ../gramps/plugins/tool/check.py:764 ../gramps/plugins/tool/patchnames.py:118
 #: ../gramps/plugins/tool/populatesources.py:91
 #: ../gramps/plugins/tool/testcasegenerator.py:328
@@ -12208,7 +12218,6 @@ msgstr "Geen actief voorwerp"
 
 # dit is een soort titel in een file-selector
 #: ../gramps/gui/editors/addmedia.py:70
-#, fuzzy
 msgid "manual|Select_a_media_selector"
 msgstr "Een media-object selecteren"
 
@@ -12596,7 +12605,7 @@ msgstr ""
 "\n"
 "Om dit media-object toch aan te passen moet u eerst dit media-object sluiten."
 
-#: ../gramps/gui/editors/displaytabs/gallerytab.py:527
+#: ../gramps/gui/editors/displaytabs/gallerytab.py:540
 #: ../gramps/plugins/view/mediaview.py:197
 msgid "Drag Media Object"
 msgstr "Media-object verslepen"
@@ -12912,7 +12921,7 @@ msgid "Move the selected surname downwards"
 msgstr "De geselecteerde achternaam naar beneden verschuiven"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:77
-#: ../gramps/plugins/lib/libgedcom.py:619
+#: ../gramps/plugins/lib/libgedcom.py:620
 msgid "Origin"
 msgstr "Oorsprong"
 
@@ -13110,7 +13119,6 @@ msgid "Calculated"
 msgstr "Berekend"
 
 #: ../gramps/gui/editors/editdate.py:99
-#, fuzzy
 msgid "manual|Editing_dates"
 msgstr "Datums_aanpassen"
 
@@ -13124,7 +13132,6 @@ msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
 msgstr "Datum verbeteren van `{cur_mode}' naar `{text_mode}'"
 
 #: ../gramps/gui/editors/editevent.py:64
-#, fuzzy
 msgid "manual|New_Event_dialog"
 msgstr "Gebeurtenissen_samenvoegen"
 
@@ -13148,9 +13155,9 @@ msgstr "Nieuwe gebeurtenis"
 #: ../gramps/plugins/view/geofamclose.py:735
 #: ../gramps/plugins/view/geofamily.py:430
 #: ../gramps/plugins/view/geomoves.py:620
-#: ../gramps/plugins/view/geoperson.py:440
-#: ../gramps/plugins/view/geoperson.py:461
-#: ../gramps/plugins/view/geoperson.py:502
+#: ../gramps/plugins/view/geoperson.py:435
+#: ../gramps/plugins/view/geoperson.py:456
+#: ../gramps/plugins/view/geoperson.py:497
 msgid "Edit Event"
 msgstr "Gebeurtenis bewerken"
 
@@ -13191,7 +13198,6 @@ msgstr "Gebeurtenis verwijderen (%s)"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../gramps/gui/editors/editeventref.py:57
-#, fuzzy
 msgid "manual|Event_Reference_Editor_dialog"
 msgstr "Gebeurtenissenverwijzingen bewerken"
 
@@ -13202,7 +13208,7 @@ msgid "Event Reference Editor"
 msgstr "Gebeurtenissenverwijzingen bewerken"
 
 #: ../gramps/gui/editors/editeventref.py:95
-#: ../gramps/gui/editors/editmediaref.py:114
+#: ../gramps/gui/editors/editmediaref.py:115
 #: ../gramps/gui/editors/editname.py:134
 #: ../gramps/gui/editors/editplaceref.py:77
 #: ../gramps/gui/editors/editreporef.py:77
@@ -13218,7 +13224,6 @@ msgid "Add Event"
 msgstr "Gebeurtenis toevoegen"
 
 #: ../gramps/gui/editors/editfamily.py:91
-#, fuzzy
 msgid "manual|Family_Editor_dialog"
 msgstr "Gezinsfilters bewerken"
 
@@ -13320,7 +13325,7 @@ msgstr "Verwantschap bewerken"
 
 #: ../gramps/gui/editors/editfamily.py:217
 #: ../gramps/gui/editors/editfamily.py:232
-#: ../gramps/plugins/view/relview.py:1579
+#: ../gramps/plugins/view/relview.py:1580
 msgid "Select Child"
 msgstr "Kind selecteren"
 
@@ -13479,7 +13484,6 @@ msgid "Add Family"
 msgstr "Gezin toevoegen"
 
 #: ../gramps/gui/editors/editldsord.py:67
-#, fuzzy
 msgid "manual|LDS_Ordinance_Editor"
 msgstr "LDS Ordinance bewerken"
 
@@ -13514,7 +13518,6 @@ msgid "LDS Ordinance"
 msgstr "JDS Wijding"
 
 #: ../gramps/gui/editors/editlink.py:49
-#, fuzzy
 msgid "manual|Link_Editor"
 msgstr "Koppeling bewerken"
 
@@ -13535,13 +13538,13 @@ msgid "manual|New_Media_dialog"
 msgstr "manual|New_Media_dialog"
 
 #: ../gramps/gui/editors/editmedia.py:99
-#: ../gramps/gui/editors/editmediaref.py:406
+#: ../gramps/gui/editors/editmediaref.py:409
 #, python-format
 msgid "Media: %s"
 msgstr "Media: %s"
 
 #: ../gramps/gui/editors/editmedia.py:101
-#: ../gramps/gui/editors/editmediaref.py:408
+#: ../gramps/gui/editors/editmediaref.py:411
 msgid "New Media"
 msgstr "Nieuwe media"
 
@@ -13580,13 +13583,13 @@ msgstr ""
 "niet! Geef een andere pad op"
 
 #: ../gramps/gui/editors/editmedia.py:324
-#: ../gramps/gui/editors/editmediaref.py:523
+#: ../gramps/gui/editors/editmediaref.py:526
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr "Media-object toevoegen (%s)"
 
 #: ../gramps/gui/editors/editmedia.py:329
-#: ../gramps/gui/editors/editmediaref.py:517
+#: ../gramps/gui/editors/editmediaref.py:520
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "Media-object bewerken (%s)"
@@ -13596,12 +13599,11 @@ msgid "Remove Media Object"
 msgstr "Media-object verwijderen"
 
 #: ../gramps/gui/editors/editmediaref.py:71
-#, fuzzy
 msgid "manual|Media_Reference_Editor_dialog"
 msgstr "Mediaverwijzingen bewerken"
 
 #: ../gramps/gui/editors/editmediaref.py:93
-#: ../gramps/gui/editors/editmediaref.py:409
+#: ../gramps/gui/editors/editmediaref.py:412
 msgid "Media Reference Editor"
 msgstr "Mediaverwijzingen bewerken"
 
@@ -13617,7 +13619,6 @@ msgid "Name Editor"
 msgstr "Naam bewerken"
 
 #: ../gramps/gui/editors/editname.py:162
-#, fuzzy
 msgid "manual|Name_Editor"
 msgstr "Naam bewerken"
 
@@ -13672,7 +13673,6 @@ msgid "Group this name only"
 msgstr "Alleen deze naam groeperen"
 
 #: ../gramps/gui/editors/editnote.py:67
-#, fuzzy
 msgid "manual|Editing_information_about_notes"
 msgstr "Informatie_aanpassen_van_gebeurtenissen"
 
@@ -13744,7 +13744,6 @@ msgid "New Person"
 msgstr "Nieuw persoon"
 
 #: ../gramps/gui/editors/editperson.py:245
-#, fuzzy
 msgid "manual|Editing_information_about_people"
 msgstr "Informatie_aanpassen_van_personen"
 
@@ -13836,7 +13835,6 @@ msgstr "Onbekend"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../gramps/gui/editors/editpersonref.py:67
-#, fuzzy
 msgid "manual|Person_Reference_Editor"
 msgstr "Personenverwijzingen bewerken"
 
@@ -13859,7 +13857,6 @@ msgid "You must either select a person or Cancel the edit"
 msgstr "U moet ofwel een persoon selecteren ofwel de aanpassing teniet doen"
 
 #: ../gramps/gui/editors/editplace.py:69
-#, fuzzy
 msgid "manual|Place_Editor_dialog"
 msgstr "Locatie-aanpassingscherm"
 
@@ -13937,7 +13934,6 @@ msgid "Delete Place (%s)"
 msgstr "Locatie verwijderen (%s)"
 
 #: ../gramps/gui/editors/editplacename.py:49
-#, fuzzy
 msgid "manual|Place_Name_Editor_dialog"
 msgstr "Locatie-aanpassingscherm"
 
@@ -14020,7 +14016,6 @@ msgid "Add Repository"
 msgstr "Bibliotheek toevoegen"
 
 #: ../gramps/gui/editors/editrepository.py:60
-#, fuzzy
 msgid "manual|New_Repositories_dialog"
 msgstr "_Bibliotheken"
 
@@ -14055,7 +14050,6 @@ msgid "Delete Repository (%s)"
 msgstr "Bibliotheek verwijderen (%s)"
 
 #: ../gramps/gui/editors/editsource.py:64
-#, fuzzy
 msgid "manual|New_Source_dialog"
 msgstr "Nieuwe bron"
 
@@ -14100,7 +14094,6 @@ msgid "Delete Source (%s)"
 msgstr "Bron verwijderen (%s)"
 
 #: ../gramps/gui/editors/edittaglist.py:48
-#, fuzzy
 msgid "manual|Tag_selection_dialog"
 msgstr "Taggen"
 
@@ -14147,9 +14140,9 @@ msgstr "Tagselectie"
 #: ../gramps/gui/glade/mergerepository.glade:53
 #: ../gramps/gui/glade/mergesource.glade:53 ../gramps/gui/glade/reorder.glade:54
 #: ../gramps/gui/glade/rule.glade:41 ../gramps/gui/glade/rule.glade:351
-#: ../gramps/gui/glade/rule.glade:781 ../gramps/gui/logger/_errorview.py:170
+#: ../gramps/gui/glade/rule.glade:781 ../gramps/gui/logger/_errorview.py:175
 #: ../gramps/gui/plug/report/_reportdialog.py:158
-#: ../gramps/gui/undohistory.py:82 ../gramps/gui/viewmanager.py:516
+#: ../gramps/gui/undohistory.py:82 ../gramps/gui/viewmanager.py:517
 #: ../gramps/gui/views/bookmarks.py:288 ../gramps/gui/views/tags.py:431
 #: ../gramps/gui/views/tags.py:644 ../gramps/gui/widgets/grampletbar.py:641
 #: ../gramps/gui/widgets/grampletpane.py:242
@@ -14158,7 +14151,6 @@ msgid "_Help"
 msgstr "_Hulp"
 
 #: ../gramps/gui/editors/editurl.py:47
-#, fuzzy
 msgid "manual|Internet_Address_Editor"
 msgstr "Internetadres bewerken"
 
@@ -14175,7 +14167,6 @@ msgid "manual|Define_Filter_dialog"
 msgstr "manual|Define_Filter_dialog"
 
 #: ../gramps/gui/editors/filtereditor.py:85
-#, fuzzy
 msgid "manual|Custom_Filters"
 msgstr "Eigengemaakte filters"
 
@@ -14357,9 +14348,8 @@ msgstr "Filter verwijderen?"
 
 #: ../gramps/gui/editors/filtereditor.py:1186
 msgid ""
-"This filter is currently being used as the base for other filters. "
-"Deletingthis filter will result in removing all other filters that depend on "
-"it."
+"This filter is currently being used as the base for other filters. Deleting "
+"this filter will result in removing all other filters that depend on it."
 msgstr ""
 "Deze filter wordt momenteel als basis voor andere filters gebruikt. Indien "
 "deze filter verwijderd wordt, zullen alle onderliggende filters ook "
@@ -14561,7 +14551,7 @@ msgstr "Deelnemers"
 #: ../gramps/gui/widgets/reorderfam.py:91
 #: ../gramps/plugins/textreport/tagreport.py:262
 #: ../gramps/plugins/view/familyview.py:82
-#: ../gramps/plugins/webreport/narrativeweb.py:7142
+#: ../gramps/plugins/webreport/narrativeweb.py:7140
 msgid "Relationship"
 msgstr "Verwantschap"
 
@@ -14571,7 +14561,7 @@ msgstr "alle"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:129
 #: ../gramps/plugins/export/exportcsv.py:357
-#: ../gramps/plugins/webreport/narrativeweb.py:7693
+#: ../gramps/plugins/webreport/narrativeweb.py:7691
 msgid "Birth date"
 msgstr "Geboortedatum"
 
@@ -14583,7 +14573,7 @@ msgstr "voorbeeld: \"%(msg1)s\" of \"%(msg2)s\""
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:131
 #: ../gramps/plugins/export/exportcsv.py:359
-#: ../gramps/plugins/webreport/narrativeweb.py:7694
+#: ../gramps/plugins/webreport/narrativeweb.py:7692
 msgid "Death date"
 msgstr "Sterfdatum"
 
@@ -15949,8 +15939,8 @@ msgstr ""
 msgid ""
 "Field used to paste info from a web page like google, openstreetmap, ... "
 msgstr ""
-"Veld kan gebruikt worden om info te plakken van een webpagina zoals google, "
-"openstreetmap of andere ..."
+"Veld kan gebruikt worden om info te plakken van een webpagina zoals 'google', "
+"'openstreetmap' of andere ... "
 
 #: ../gramps/gui/glade/editplace.glade:264
 #: ../gramps/gui/glade/editplaceref.glade:495
@@ -17063,11 +17053,11 @@ msgstr "Gramps is gestopt omdat er geen SCHERM is"
 msgid "Error Report Assistant"
 msgstr "Foutverslag assistent"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:257
+#: ../gramps/gui/logger/_errorreportassistant.py:262
 msgid "Report a bug"
 msgstr "Een fout rapporteren"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:264
+#: ../gramps/gui/logger/_errorreportassistant.py:269
 msgid ""
 "This is the Bug Reporting Assistant. It will help you to make a bug report to "
 "the Gramps developers that will be as detailed as possible.\n"
@@ -17089,7 +17079,7 @@ msgstr ""
 "kan overnemen naar de foutopvolgingswebstek. U kunt het bericht nauwkeurig "
 "bekijken om te zien welke informatie u wilt verzenden."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:281
+#: ../gramps/gui/logger/_errorreportassistant.py:286
 msgid ""
 "If you can see that there is any personal information included in the error "
 "please remove it."
@@ -17097,12 +17087,12 @@ msgstr ""
 "Indien u vaststelt dat er persoonlijke informatie in het foutrapport aanwezig "
 "is gelieve deze informatie dan te verwijderen."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:325
-#: ../gramps/gui/logger/_errorreportassistant.py:353
+#: ../gramps/gui/logger/_errorreportassistant.py:330
+#: ../gramps/gui/logger/_errorreportassistant.py:358
 msgid "Error Details"
 msgstr "Foutdetails"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:330
+#: ../gramps/gui/logger/_errorreportassistant.py:335
 msgid ""
 "This is the detailed Gramps error information, don't worry if you do not "
 "understand it. You will have the opportunity to add further detail about the "
@@ -17112,7 +17102,7 @@ msgstr ""
 "niet begrijpt. U hebt in de volgende stappen van de assistent de mogelijkheid "
 "om meer details toe te voegen wat de fout betreft."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:360
+#: ../gramps/gui/logger/_errorreportassistant.py:365
 msgid ""
 "Please check the information below and correct anything that you know to be "
 "wrong or remove anything that you would rather not have included in the bug "
@@ -17121,31 +17111,31 @@ msgstr ""
 "Controleer onderstaande informatie en verbeter alles wat u denkt dat niet "
 "juist is of verwijder datgene dat u liever niet in het foutrapport wil hebben."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:405
-#: ../gramps/gui/logger/_errorreportassistant.py:431
+#: ../gramps/gui/logger/_errorreportassistant.py:410
+#: ../gramps/gui/logger/_errorreportassistant.py:436
 msgid "System Information"
 msgstr "Systeeminformatie"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:410
+#: ../gramps/gui/logger/_errorreportassistant.py:415
 msgid ""
 "This is the information about your system that will help the developers to "
 "fix the bug."
 msgstr ""
 "Deze informatie over uw systeem helpt de ontwikkelaars de fout te corrigeren."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:438
+#: ../gramps/gui/logger/_errorreportassistant.py:443
 msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occurred."
 msgstr ""
 "Geef zoveel mogelijk informatie over wat u precies deed toen de fout optrad."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:477
-#: ../gramps/gui/logger/_errorreportassistant.py:502
+#: ../gramps/gui/logger/_errorreportassistant.py:482
+#: ../gramps/gui/logger/_errorreportassistant.py:507
 msgid "Further Information"
 msgstr "Verdere informatie"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:482
+#: ../gramps/gui/logger/_errorreportassistant.py:487
 msgid ""
 "This is your opportunity to describe what you were doing when the error "
 "occurred."
@@ -17153,7 +17143,7 @@ msgstr ""
 "U heeft nu de mogelijkheid om te omschrijven wat u juist deed wanneer de fout "
 "zich voordeed."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:509
+#: ../gramps/gui/logger/_errorreportassistant.py:514
 msgid ""
 "Please check that the information is correct, do not worry if you don't "
 "understand the detail of the error information. Just make sure that it does "
@@ -17163,12 +17153,12 @@ msgstr ""
 "details van de foutboodschap begrijpt. Kijk wel na of deze informatie niets "
 "bevat wat u liever niet naar de ontwikkelaars stuurt."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:541
-#: ../gramps/gui/logger/_errorreportassistant.py:568
+#: ../gramps/gui/logger/_errorreportassistant.py:546
+#: ../gramps/gui/logger/_errorreportassistant.py:573
 msgid "Bug Report Summary"
 msgstr "Samenvatting foutverslag"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:546
+#: ../gramps/gui/logger/_errorreportassistant.py:551
 msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to file a bug on the Gramps bug tracking system website."
@@ -17176,7 +17166,7 @@ msgstr ""
 "Dit is het volledige foutverslag. De volgende pagina van de assistent zal u "
 "helpen om het verslag naar het Gramps-foutopvolgingssysteem sturen."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:577
+#: ../gramps/gui/logger/_errorreportassistant.py:582
 msgid ""
 "Use the two buttons below to first copy the bug report to the clipboard and "
 "then open a webbrowser to file a bug report at "
@@ -17185,7 +17175,7 @@ msgstr ""
 "naar het klembord om vervolgens een webbrowser te openen om dit foutverslag "
 "te sturen naar "
 
-#: ../gramps/gui/logger/_errorreportassistant.py:586
+#: ../gramps/gui/logger/_errorreportassistant.py:591
 msgid ""
 "Use this button to start a web browser and file a bug report on the Gramps "
 "bug tracking system."
@@ -17193,7 +17183,7 @@ msgstr ""
 "Gebruik deze knop om een webbrowser te starten en een foutverslagop te sturen "
 "naar het Gramps-foutopvolgingssysteem."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:608
+#: ../gramps/gui/logger/_errorreportassistant.py:613
 msgid ""
 "Use this button to copy the bug report onto the clipboard. Then go to the bug "
 "tracking website by using the button below, paste the report and click submit "
@@ -17203,12 +17193,12 @@ msgstr ""
 "vervolgens naar de foutopvolgingswebstek door de knop onderaan te gebruiken, "
 "plak het verslag  en klik op verzenden"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:640
-#: ../gramps/gui/logger/_errorreportassistant.py:667
+#: ../gramps/gui/logger/_errorreportassistant.py:645
+#: ../gramps/gui/logger/_errorreportassistant.py:672
 msgid "Send Bug Report"
 msgstr "Stuur foutrapport"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:645
+#: ../gramps/gui/logger/_errorreportassistant.py:650
 msgid ""
 "This is the final step. Use the buttons on this page to start a web browser "
 "and file a bug report on the Gramps bug tracking system."
@@ -17217,7 +17207,7 @@ msgstr ""
 "te starten en het foutverslag op te sturen naar het Gramps "
 "foutopvolgingssysteem."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:674
+#: ../gramps/gui/logger/_errorreportassistant.py:679
 msgid ""
 "Gramps is an Open Source project. Its success depends on its users. User "
 "feedback is important. Thank you for taking the time to submit a bug report."
@@ -17230,7 +17220,6 @@ msgstr ""
 "Veel plezier met het gebruik van Gramps."
 
 #: ../gramps/gui/logger/_errorview.py:46
-#, fuzzy
 msgid "manual|Error_Report"
 msgstr "Foutverslag"
 
@@ -17238,11 +17227,11 @@ msgstr "Foutverslag"
 msgid "Error Report"
 msgstr "Foutverslag"
 
-#: ../gramps/gui/logger/_errorview.py:129
+#: ../gramps/gui/logger/_errorview.py:134
 msgid "Gramps has experienced an unexpected error"
 msgstr "Gramps stelt een onverwachte fout vast"
 
-#: ../gramps/gui/logger/_errorview.py:138
+#: ../gramps/gui/logger/_errorview.py:143
 msgid ""
 "Your data will be safe but it would be advisable to restart Gramps "
 "immediately. If you would like to report the problem to the Gramps team "
@@ -17254,7 +17243,7 @@ msgstr ""
 "ontwikkelingsteam klik dan Rapport en de Fout Rapporteringsassistent zal u "
 "helpen om een foutrapport aan te maken."
 
-#: ../gramps/gui/logger/_errorview.py:147 ../gramps/gui/logger/_errorview.py:162
+#: ../gramps/gui/logger/_errorview.py:152 ../gramps/gui/logger/_errorview.py:167
 msgid "Error Detail"
 msgstr "Foutdetail"
 
@@ -17335,9 +17324,9 @@ msgstr "Personen samenvoegen"
 #: ../gramps/plugins/view/pedigreeview.py:1790
 #: ../gramps/plugins/view/relview.py:538 ../gramps/plugins/view/relview.py:862
 #: ../gramps/plugins/view/relview.py:898
-#: ../gramps/plugins/webreport/narrativeweb.py:3327
-#: ../gramps/plugins/webreport/narrativeweb.py:6204
-#: ../gramps/plugins/webreport/narrativeweb.py:7676
+#: ../gramps/plugins/webreport/narrativeweb.py:3322
+#: ../gramps/plugins/webreport/narrativeweb.py:6202
+#: ../gramps/plugins/webreport/narrativeweb.py:7674
 msgid "Parents"
 msgstr "Ouders"
 
@@ -17386,7 +17375,7 @@ msgstr ""
 "De personen zijn samengevoegd.\n"
 "Maar voor de families was de samenvoeging te ingewikkeld om dit automatisch "
 "te doen. Het is beter om via het scherm waar je de relaties kan bekijken of "
-"er een bijkomende samenvoeging nodig is. "
+"er een bijkomende samenvoeging nodig is."
 
 #: ../gramps/gui/merge/mergeplace.py:53
 msgid "manual|Merge_Places"
@@ -18247,7 +18236,7 @@ msgstr "Stijl"
 #: ../gramps/plugins/textreport/summary.py:286
 #: ../gramps/plugins/textreport/tableofcontents.py:92
 #: ../gramps/plugins/textreport/tagreport.py:896
-#: ../gramps/plugins/webreport/narrativeweb.py:9736
+#: ../gramps/plugins/webreport/narrativeweb.py:9734
 #: ../gramps/plugins/webreport/webcal.py:1608
 msgid "Report Options"
 msgstr "Verslagopties"
@@ -18443,7 +18432,6 @@ msgstr ""
 "kiezen."
 
 #: ../gramps/gui/selectors/selectcitation.py:51
-#, fuzzy
 msgid "manual|Select_Source_or_Citation_selector"
 msgstr "Bron of citaat selecteren"
 
@@ -18469,7 +18457,6 @@ msgid "Last Change"
 msgstr "Laatste wijziging"
 
 #: ../gramps/gui/selectors/selectevent.py:46
-#, fuzzy
 msgid "manual|Select_Event_selector"
 msgstr "Gebeurtenissen_samenvoegen"
 
@@ -18483,7 +18470,6 @@ msgid "manual|Select_Family_selector"
 msgstr "manual|Select_Family_selector"
 
 #: ../gramps/gui/selectors/selectnote.py:49
-#, fuzzy
 msgid "manual|Select_Note_selector"
 msgstr "Opmerkingen_samenvoegen"
 
@@ -18515,7 +18501,6 @@ msgid "manual|Select_Mother_selector"
 msgstr "manual|Select_Mother_selector"
 
 #: ../gramps/gui/selectors/selectplace.py:47
-#, fuzzy
 msgid "manual|Select_Place_selector"
 msgstr "Locaties_samenvoegen"
 
@@ -18524,23 +18509,12 @@ msgid "Select Place"
 msgstr "Locatie selecteren"
 
 #: ../gramps/gui/selectors/selectrepository.py:46
-#, fuzzy
 msgid "manual|Repositories"
 msgstr "Bibliotheken_samenvoegen"
 
 #: ../gramps/gui/selectors/selectrepository.py:62
 msgid "Select Repository"
 msgstr "Bibliotheek kiezen"
-
-#. -------------------------------------------------------------------------
-#.
-#. Constants
-#.
-#. -------------------------------------------------------------------------
-#. FIXME
-#: ../gramps/gui/selectors/selectsource.py:46
-msgid "manual|xxxx"
-msgstr ""
 
 #: ../gramps/gui/selectors/selectsource.py:62
 msgid "Select Source"
@@ -18568,7 +18542,7 @@ msgid "Spelling checker initialization failed: %s"
 msgstr "Initialisatie van de spellingscontrole faalde: %s"
 
 #: ../gramps/gui/tipofday.py:67 ../gramps/gui/tipofday.py:68
-#: ../gramps/gui/tipofday.py:121 ../gramps/gui/viewmanager.py:533
+#: ../gramps/gui/tipofday.py:121 ../gramps/gui/viewmanager.py:534
 msgid "Tip of the Day"
 msgstr "Tip van de dag"
 
@@ -18587,21 +18561,17 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/undohistory.py:57
-msgid "11"
-msgstr "11"
-
 #: ../gramps/gui/undohistory.py:73
 msgid "Undo History"
 msgstr "Bewerkingsgeschiedenis"
 
-#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:642
-#: ../gramps/gui/viewmanager.py:1287
+#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:643
+#: ../gramps/gui/viewmanager.py:1289
 msgid "_Undo"
 msgstr "Ongedaan maken"
 
-#: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:647
-#: ../gramps/gui/viewmanager.py:1304
+#: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:648
+#: ../gramps/gui/viewmanager.py:1306
 msgid "_Redo"
 msgstr "Opnieuw"
 
@@ -18684,200 +18654,200 @@ msgstr ""
 msgid "Cannot open new citation editor"
 msgstr "Het scherm om de citaten aan te passen kon niet geopend worden"
 
-#: ../gramps/gui/viewmanager.py:465 ../gramps/gui/viewmanager.py:1261
+#: ../gramps/gui/viewmanager.py:466 ../gramps/gui/viewmanager.py:1263
 msgid "No Family Tree"
 msgstr "Geen stamboom"
 
-#: ../gramps/gui/viewmanager.py:487
+#: ../gramps/gui/viewmanager.py:488
 msgid "Connect to a recent database"
 msgstr "Verbinden met een recent gegevensbestand"
 
-#: ../gramps/gui/viewmanager.py:505
+#: ../gramps/gui/viewmanager.py:506
 msgid "_Family Trees"
 msgstr "Stambomen"
 
-#: ../gramps/gui/viewmanager.py:506
+#: ../gramps/gui/viewmanager.py:507
 msgid "_Manage Family Trees..."
 msgstr "Stambomen beheren..."
 
-#: ../gramps/gui/viewmanager.py:507
+#: ../gramps/gui/viewmanager.py:508
 msgid "Manage databases"
 msgstr "Gegevensbestanden beheren"
 
-#: ../gramps/gui/viewmanager.py:508
+#: ../gramps/gui/viewmanager.py:509
 msgid "Open _Recent"
 msgstr "_Recent openen"
 
-#: ../gramps/gui/viewmanager.py:509
+#: ../gramps/gui/viewmanager.py:510
 msgid "Open an existing database"
 msgstr "Een bestaand gegevensbestand openen"
 
-#: ../gramps/gui/viewmanager.py:510
+#: ../gramps/gui/viewmanager.py:511
 msgid "_Quit"
 msgstr "Afsluiten"
 
-#: ../gramps/gui/viewmanager.py:512
+#: ../gramps/gui/viewmanager.py:513
 msgid "_View"
 msgstr "Scherm"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
-#: ../gramps/gui/viewmanager.py:514
+#: ../gramps/gui/viewmanager.py:515
 msgid "_Preferences..."
 msgstr "_Voorkeuren..."
 
-#: ../gramps/gui/viewmanager.py:517
+#: ../gramps/gui/viewmanager.py:518
 msgid "Gramps _Home Page"
 msgstr "Gramps _homepagina"
 
-#: ../gramps/gui/viewmanager.py:519
+#: ../gramps/gui/viewmanager.py:520
 msgid "Gramps _Mailing Lists"
 msgstr "Gramps-postlijsten"
 
-#: ../gramps/gui/viewmanager.py:521
+#: ../gramps/gui/viewmanager.py:522
 msgid "_Report a Bug"
 msgstr "Een fout _rapporteren"
 
-#: ../gramps/gui/viewmanager.py:523
+#: ../gramps/gui/viewmanager.py:524
 msgid "_Extra Reports/Tools"
 msgstr "Bijkomende Verslagen/Hulpmiddelen"
 
-#: ../gramps/gui/viewmanager.py:525
+#: ../gramps/gui/viewmanager.py:526
 msgid "_About"
 msgstr "_Info"
 
-#: ../gramps/gui/viewmanager.py:527
+#: ../gramps/gui/viewmanager.py:528
 msgid "_Plugin Manager"
 msgstr "Uitbreidingenbeheerder"
 
-#: ../gramps/gui/viewmanager.py:529
+#: ../gramps/gui/viewmanager.py:530
 msgid "_FAQ"
 msgstr "_FAQ"
 
-#: ../gramps/gui/viewmanager.py:530
+#: ../gramps/gui/viewmanager.py:531
 msgid "_Key Bindings"
 msgstr "Sneltoetsen"
 
-#: ../gramps/gui/viewmanager.py:531
+#: ../gramps/gui/viewmanager.py:532
 msgid "_User Manual"
 msgstr "Gebr_uikshandleiding"
 
-#: ../gramps/gui/viewmanager.py:539
+#: ../gramps/gui/viewmanager.py:540
 msgid "Close the current database"
 msgstr "Huidig gegevensbestand sluiten"
 
-#: ../gramps/gui/viewmanager.py:540
+#: ../gramps/gui/viewmanager.py:541
 msgid "_Export..."
 msgstr "_Exporteren..."
 
-#: ../gramps/gui/viewmanager.py:542
+#: ../gramps/gui/viewmanager.py:543
 msgid "Make Backup..."
 msgstr "Reservekopie maken..."
 
-#: ../gramps/gui/viewmanager.py:543
+#: ../gramps/gui/viewmanager.py:544
 msgid "Make a Gramps XML backup of the database"
 msgstr "Een Gramps XML reservekopie van het gegevensbestand aanmaken"
 
 # annuleren hier beter dan negeren/verlaten
-#: ../gramps/gui/viewmanager.py:545
+#: ../gramps/gui/viewmanager.py:546
 msgid "_Abandon Changes and Quit"
 msgstr "_Wijzigingen annuleren en sluiten"
 
 # rapportages
-#: ../gramps/gui/viewmanager.py:546 ../gramps/gui/viewmanager.py:549
+#: ../gramps/gui/viewmanager.py:547 ../gramps/gui/viewmanager.py:550
 msgid "_Reports"
 msgstr "Verslagen"
 
-#: ../gramps/gui/viewmanager.py:547
+#: ../gramps/gui/viewmanager.py:548
 msgid "Open the reports dialog"
 msgstr "Het dialoogvenster voor verslagen openen"
 
 # ga naar
-#: ../gramps/gui/viewmanager.py:548
+#: ../gramps/gui/viewmanager.py:549
 msgid "_Go"
 msgstr "_Ga naar"
 
-#: ../gramps/gui/viewmanager.py:550
+#: ../gramps/gui/viewmanager.py:551
 msgid "Books..."
 msgstr "Boeken..."
 
-#: ../gramps/gui/viewmanager.py:551
+#: ../gramps/gui/viewmanager.py:552
 msgid "_Windows"
 msgstr "Vensters"
 
 # zie ook uncleared.
 # is dit goed?
-#: ../gramps/gui/viewmanager.py:598
+#: ../gramps/gui/viewmanager.py:599
 msgid "Clip_board"
 msgstr "Klembord"
 
-#: ../gramps/gui/viewmanager.py:599
+#: ../gramps/gui/viewmanager.py:600
 msgid "Open the Clipboard dialog"
 msgstr "Het klemborddialoogvenster openen"
 
-#: ../gramps/gui/viewmanager.py:601
+#: ../gramps/gui/viewmanager.py:602
 msgid "New"
 msgstr "Nieuw"
 
 #. --------------------------------------
-#: ../gramps/gui/viewmanager.py:621
+#: ../gramps/gui/viewmanager.py:622
 msgid "_Import..."
 msgstr "_Importeren..."
 
-#: ../gramps/gui/viewmanager.py:623 ../gramps/gui/viewmanager.py:626
+#: ../gramps/gui/viewmanager.py:624 ../gramps/gui/viewmanager.py:627
 msgid "_Tools"
 msgstr "Hulpmiddelen"
 
-#: ../gramps/gui/viewmanager.py:624
+#: ../gramps/gui/viewmanager.py:625
 msgid "Open the tools dialog"
 msgstr "De hulpmiddelendialoog openen"
 
-#: ../gramps/gui/viewmanager.py:625
+#: ../gramps/gui/viewmanager.py:626
 msgid "_Bookmarks"
 msgstr "Bladwijzers"
 
-#: ../gramps/gui/viewmanager.py:627
+#: ../gramps/gui/viewmanager.py:628
 msgid "_Configure..."
 msgstr "Scherminstellingen..."
 
-#: ../gramps/gui/viewmanager.py:628
+#: ../gramps/gui/viewmanager.py:629
 msgid "Configure the active view"
 msgstr "Het actieve scherm configureren"
 
-#: ../gramps/gui/viewmanager.py:633
+#: ../gramps/gui/viewmanager.py:634
 msgid "_Navigator"
 msgstr "_Navigator"
 
-#: ../gramps/gui/viewmanager.py:635
+#: ../gramps/gui/viewmanager.py:636
 msgid "_Toolbar"
 msgstr "Werkbalk"
 
-#: ../gramps/gui/viewmanager.py:637
+#: ../gramps/gui/viewmanager.py:638
 msgid "F_ull Screen"
 msgstr "Volledig beeld"
 
-#: ../gramps/gui/viewmanager.py:653
+#: ../gramps/gui/viewmanager.py:654
 msgid "Undo History..."
 msgstr "Geschiedenis wissen..."
 
-#: ../gramps/gui/viewmanager.py:676
+#: ../gramps/gui/viewmanager.py:677
 #, python-format
 msgid "Key %s is not bound"
 msgstr "Toets %s is niet gebonden"
 
 #. registering plugins
-#: ../gramps/gui/viewmanager.py:783
+#: ../gramps/gui/viewmanager.py:784
 msgid "Registering plugins..."
 msgstr "Geregistreerde uitbreidingen..."
 
-#: ../gramps/gui/viewmanager.py:791
+#: ../gramps/gui/viewmanager.py:792
 msgid "Ready"
 msgstr "Klaar"
 
-#: ../gramps/gui/viewmanager.py:836
+#: ../gramps/gui/viewmanager.py:837
 msgid "Abort changes?"
 msgstr "Wijzigingen annuleren?"
 
-#: ../gramps/gui/viewmanager.py:837
+#: ../gramps/gui/viewmanager.py:838
 msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
@@ -18885,15 +18855,15 @@ msgstr ""
 "Het annuleren van wijzigingen zorgt ervoor wijzigingen in het gegevensbestand "
 "worden teruggedraaid naar de toestand voordat u de wijzigingen doorvoerde."
 
-#: ../gramps/gui/viewmanager.py:839
+#: ../gramps/gui/viewmanager.py:840
 msgid "Abort changes"
 msgstr "Wijzigingen annuleren"
 
-#: ../gramps/gui/viewmanager.py:850
+#: ../gramps/gui/viewmanager.py:851
 msgid "Cannot abandon session's changes"
 msgstr "Kan deze veranderingen aan deze sessie niet ongedaan maken"
 
-#: ../gramps/gui/viewmanager.py:851
+#: ../gramps/gui/viewmanager.py:852
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
@@ -18901,31 +18871,31 @@ msgstr ""
 "Veranderingen kunnen niet volledig ongedaan gemaakt worden omdat het aantal "
 "veranderingen van de sessie het maximum overschrijdt."
 
-#: ../gramps/gui/viewmanager.py:1012
+#: ../gramps/gui/viewmanager.py:1013
 msgid "View failed to load. Check error output."
 msgstr "Scherm kon niet geladen worden. Best foutboodschap controleren."
 
-#: ../gramps/gui/viewmanager.py:1164
+#: ../gramps/gui/viewmanager.py:1165
 msgid "Import Statistics"
 msgstr "Statistieken importeren"
 
-#: ../gramps/gui/viewmanager.py:1231
+#: ../gramps/gui/viewmanager.py:1233
 msgid "Read Only"
 msgstr "Alleen lezen"
 
-#: ../gramps/gui/viewmanager.py:1350
+#: ../gramps/gui/viewmanager.py:1352
 msgid "Autobackup..."
 msgstr "Automatisch reservekopie maken..."
 
-#: ../gramps/gui/viewmanager.py:1355
+#: ../gramps/gui/viewmanager.py:1357
 msgid "Error saving backup data"
 msgstr "Fout bij het maken van een reservekopie"
 
-#: ../gramps/gui/viewmanager.py:1646
+#: ../gramps/gui/viewmanager.py:1648
 msgid "Failed Loading View"
 msgstr "Scherm kon niet geladen worden"
 
-#: ../gramps/gui/viewmanager.py:1647
+#: ../gramps/gui/viewmanager.py:1649
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -18949,11 +18919,11 @@ msgstr ""
 "Wenst u echter dat deze uitbreiding niet meer door Gramps wordt geladen, kunt "
 "u de uitbreiding verbergen via het uitbreidingsmenu in het hulpmenu."
 
-#: ../gramps/gui/viewmanager.py:1739
+#: ../gramps/gui/viewmanager.py:1741
 msgid "Failed Loading Plugin"
 msgstr "Laden van de uitbreiding mislukte"
 
-#: ../gramps/gui/viewmanager.py:1740
+#: ../gramps/gui/viewmanager.py:1742
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -18978,55 +18948,55 @@ msgstr ""
 "Wanneer u niet wilt dat Gramps deze plugin opnieuw probeert in te laden, kunt "
 "u deze in het uitbreidingenbeheer in het menu Help verbergen."
 
-#: ../gramps/gui/viewmanager.py:1819
+#: ../gramps/gui/viewmanager.py:1821
 msgid "Gramps XML Backup"
 msgstr "Gramps XML reservekopie"
 
-#: ../gramps/gui/viewmanager.py:1848
+#: ../gramps/gui/viewmanager.py:1850
 msgid "File:"
 msgstr "Bestand:"
 
-#: ../gramps/gui/viewmanager.py:1880
+#: ../gramps/gui/viewmanager.py:1882
 msgid "Media:"
 msgstr "Media:"
 
-#: ../gramps/gui/viewmanager.py:1887
+#: ../gramps/gui/viewmanager.py:1889
 #: ../gramps/plugins/gramplet/statsgramplet.py:139
-#: ../gramps/plugins/webreport/narrativeweb.py:8235
+#: ../gramps/plugins/webreport/narrativeweb.py:8233
 msgid "Megabyte|MB"
 msgstr "Megabyte|MB"
 
-#: ../gramps/gui/viewmanager.py:1889
+#: ../gramps/gui/viewmanager.py:1891
 msgid "Exclude"
 msgstr "Niet toevoegen"
 
-#: ../gramps/gui/viewmanager.py:1909
+#: ../gramps/gui/viewmanager.py:1911
 msgid "Backup file already exists! Overwrite?"
 msgstr "Bestand bestaat reeds! Overschrijven?"
 
-#: ../gramps/gui/viewmanager.py:1910
+#: ../gramps/gui/viewmanager.py:1912
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Het bestand '%s' bestaat."
 
-#: ../gramps/gui/viewmanager.py:1911
+#: ../gramps/gui/viewmanager.py:1913
 msgid "Proceed and overwrite"
 msgstr "Verder gaan en overschrijven"
 
-#: ../gramps/gui/viewmanager.py:1912
+#: ../gramps/gui/viewmanager.py:1914
 msgid "Cancel the backup"
 msgstr "Reservekopie annuleren"
 
-#: ../gramps/gui/viewmanager.py:1927
+#: ../gramps/gui/viewmanager.py:1929
 msgid "Making backup..."
 msgstr "Reservekopie wordt aangemaakt..."
 
-#: ../gramps/gui/viewmanager.py:1940
+#: ../gramps/gui/viewmanager.py:1942
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Reservekopie naar '%s' opgeslagen"
 
-#: ../gramps/gui/viewmanager.py:1943
+#: ../gramps/gui/viewmanager.py:1945
 msgid "Backup aborted"
 msgstr "Reservekopie aanmaken werd afgebroken"
 
@@ -19247,12 +19217,10 @@ msgid "View %(name)s: %(msg)s"
 msgstr "%(name)s: %(msg)s tonen"
 
 #: ../gramps/gui/views/tags.py:87
-#, fuzzy
 msgid "manual|Organize_Tags_Window"
 msgstr "Tags organiseren"
 
 #: ../gramps/gui/views/tags.py:88
-#, fuzzy
 msgid "manual|New_Tag_dialog"
 msgstr "Taggen"
 
@@ -19412,7 +19380,7 @@ msgstr "Partner aan een persoon toevoegen"
 msgid "Add a person"
 msgstr "Een persoon toevoegen"
 
-#: ../gramps/gui/widgets/fanchart.py:1851 ../gramps/plugins/view/relview.py:1561
+#: ../gramps/gui/widgets/fanchart.py:1851 ../gramps/plugins/view/relview.py:1562
 msgid "Add Child to Family"
 msgstr "Kind aan gezin toevoegen"
 
@@ -19886,13 +19854,13 @@ msgid "of %d"
 msgstr "van %d"
 
 #: ../gramps/plugins/docgen/htmldoc.py:273
-#: ../gramps/plugins/webreport/narrativeweb.py:9646
+#: ../gramps/plugins/webreport/narrativeweb.py:9644
 #: ../gramps/plugins/webreport/webcal.py:269
 msgid "Possible destination error"
 msgstr "Mogelijk een doelfout"
 
 #: ../gramps/plugins/docgen/htmldoc.py:274
-#: ../gramps/plugins/webreport/narrativeweb.py:9647
+#: ../gramps/plugins/webreport/narrativeweb.py:9645
 #: ../gramps/plugins/webreport/webcal.py:270
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -20595,7 +20563,7 @@ msgstr "Enkel nog levende personen tonen in de kalender"
 #: ../gramps/plugins/textreport/birthdayreport.py:453
 #: ../gramps/plugins/textreport/detancestralreport.py:861
 #: ../gramps/plugins/textreport/detdescendantreport.py:1052
-#: ../gramps/plugins/view/relview.py:1726
+#: ../gramps/plugins/view/relview.py:1727
 msgid "Content"
 msgstr "Inhoud"
 
@@ -21261,7 +21229,7 @@ msgstr "Bepaalt welke personen toegevoegd worden aan het verslag."
 #: ../gramps/plugins/textreport/indivcomplete.py:1062
 #: ../gramps/plugins/textreport/recordsreport.py:223
 #: ../gramps/plugins/tool/sortevents.py:172
-#: ../gramps/plugins/webreport/narrativeweb.py:9768
+#: ../gramps/plugins/webreport/narrativeweb.py:9766
 #: ../gramps/plugins/webreport/webcal.py:1629
 msgid "Filter Person"
 msgstr "Personenfilter"
@@ -21400,7 +21368,7 @@ msgstr "Bepaalt welke personen toegevoegd worden aan het verslag"
 #: ../gramps/plugins/drawreport/timeline.py:422
 #: ../gramps/plugins/textreport/recordsreport.py:224
 #: ../gramps/plugins/tool/sortevents.py:173
-#: ../gramps/plugins/webreport/narrativeweb.py:9769
+#: ../gramps/plugins/webreport/narrativeweb.py:9767
 #: ../gramps/plugins/webreport/webcal.py:1630
 msgid "The center person for the filter"
 msgstr "De centrale persoon voor de filter"
@@ -21631,14 +21599,14 @@ msgstr "Begrafenisbron"
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:217
 #: ../gramps/plugins/textreport/familygroup.py:625
-#: ../gramps/plugins/webreport/narrativeweb.py:2776
+#: ../gramps/plugins/webreport/narrativeweb.py:2771
 msgid "Husband"
 msgstr "Man"
 
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:214
 #: ../gramps/plugins/textreport/familygroup.py:634
-#: ../gramps/plugins/webreport/narrativeweb.py:2774
+#: ../gramps/plugins/webreport/narrativeweb.py:2769
 msgid "Wife"
 msgstr "Vrouw"
 
@@ -21651,9 +21619,9 @@ msgstr "Individuele pagina's maken"
 #: ../gramps/plugins/export/exportgedcom.py:790
 #: ../gramps/plugins/export/exportgedcom.py:1066
 #: ../gramps/plugins/export/exportgedcom.py:1158
-#: ../gramps/plugins/lib/libgedcom.py:3996
-#: ../gramps/plugins/lib/libgedcom.py:5707
-#: ../gramps/plugins/lib/libgedcom.py:6840
+#: ../gramps/plugins/lib/libgedcom.py:3997
+#: ../gramps/plugins/lib/libgedcom.py:5718
+#: ../gramps/plugins/lib/libgedcom.py:6851
 msgid "FAX"
 msgstr "FAX"
 
@@ -21675,12 +21643,12 @@ msgid "Writing repositories"
 msgstr "Bibliotheken wegschrijven"
 
 #: ../gramps/plugins/export/exportgedcom.py:1160
-#: ../gramps/plugins/lib/libgedcom.py:5719
+#: ../gramps/plugins/lib/libgedcom.py:5730
 msgid "EMAIL"
 msgstr "Email"
 
 #: ../gramps/plugins/export/exportgedcom.py:1162
-#: ../gramps/plugins/lib/libgedcom.py:5731
+#: ../gramps/plugins/lib/libgedcom.py:5742
 msgid "WWW"
 msgstr "WWW"
 
@@ -21805,7 +21773,7 @@ msgstr "Moeder - kind leeftijdsverschilverdeling"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:262
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:269
 #: ../gramps/plugins/webreport/narrativeweb.py:1931
-#: ../gramps/plugins/webreport/narrativeweb.py:8176
+#: ../gramps/plugins/webreport/narrativeweb.py:8174
 msgid "Statistics"
 msgstr "Statistieken"
 
@@ -21870,19 +21838,19 @@ msgstr "Dubbelklik op een dag voor meer details"
 msgid "Double-click on a row to edit the selected child."
 msgstr "Dubbelklik op een rij om het geselecteerde kind te bewerken."
 
-#: ../gramps/plugins/gramplet/citations.py:73
+#: ../gramps/plugins/gramplet/citations.py:79
 msgid "Double-click on a row to edit the selected source/citation."
 msgstr "Dubbelklik op een rij om de geselecteerde bron/citaat te bewerken."
 
-#: ../gramps/plugins/gramplet/citations.py:77
+#: ../gramps/plugins/gramplet/citations.py:83
 msgid "Source/Citation"
 msgstr "Bron/Citaat"
 
-#: ../gramps/plugins/gramplet/citations.py:79
+#: ../gramps/plugins/gramplet/citations.py:85
 msgid "Publisher"
 msgstr "Publicist"
 
-#: ../gramps/plugins/gramplet/citations.py:152
+#: ../gramps/plugins/gramplet/citations.py:162
 msgid "<No Citation>"
 msgstr "<Geen citaat>"
 
@@ -22124,6 +22092,7 @@ msgstr "Dubbelklik op de voornaam voor meer details"
 #: ../gramps/plugins/gramplet/statsgramplet.py:53
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:70
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:52
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:60
 #: ../gramps/plugins/gramplet/whatsnext.py:45
 msgid "No Family Tree loaded."
 msgstr "Geen stamboom geladen."
@@ -22132,7 +22101,7 @@ msgstr "Geen stamboom geladen."
 #: ../gramps/plugins/gramplet/recordsgramplet.py:50
 #: ../gramps/plugins/gramplet/statsgramplet.py:69
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:93
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:69
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:70
 msgid "Processing..."
 msgstr "Wordt verwerkt..."
 
@@ -22146,7 +22115,7 @@ msgstr "Totaal aantal voornamen"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:153
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:177
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:112
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:113
 msgid "Total people"
 msgstr "Totaal aantal personen"
 
@@ -22188,7 +22157,7 @@ msgstr "Gramplet die de afstammelingen van de actieve persoon toont"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:104
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:111
-#: ../gramps/plugins/webreport/narrativeweb.py:7060
+#: ../gramps/plugins/webreport/narrativeweb.py:7058
 msgid "Ancestors"
 msgstr "Voorouders"
 
@@ -22259,7 +22228,7 @@ msgstr "Gramplet toont alle achternamen in een tekstwolk"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:205
 #: ../gramps/plugins/view/pedigreeview.py:528
 #: ../gramps/plugins/view/view.gpr.py:127
-#: ../gramps/plugins/webreport/narrativeweb.py:7246
+#: ../gramps/plugins/webreport/narrativeweb.py:7244
 msgid "Pedigree"
 msgstr "Kwartierstaat"
 
@@ -22678,10 +22647,10 @@ msgstr "Gramplet die de verwijzingen naar een persoon toont"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:967
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:981
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:995
-#: ../gramps/plugins/webreport/narrativeweb.py:2720
-#: ../gramps/plugins/webreport/narrativeweb.py:3228
-#: ../gramps/plugins/webreport/narrativeweb.py:5793
-#: ../gramps/plugins/webreport/narrativeweb.py:6832
+#: ../gramps/plugins/webreport/narrativeweb.py:2715
+#: ../gramps/plugins/webreport/narrativeweb.py:3223
+#: ../gramps/plugins/webreport/narrativeweb.py:5791
+#: ../gramps/plugins/webreport/narrativeweb.py:6830
 msgid "References"
 msgstr "Referenties"
 
@@ -23214,7 +23183,7 @@ msgstr "Dubbelklik op een element om overeenkomsten te bekijken"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:87
 #: ../gramps/plugins/textreport/summary.py:240
-#: ../gramps/plugins/webreport/narrativeweb.py:8196
+#: ../gramps/plugins/webreport/narrativeweb.py:8194
 msgid "less than 1"
 msgstr "minder dan 1"
 
@@ -23226,60 +23195,60 @@ msgstr "minder dan 1"
 #: ../gramps/plugins/webreport/narrativeweb.py:1918
 #: ../gramps/plugins/webreport/narrativeweb.py:1976
 #: ../gramps/plugins/webreport/narrativeweb.py:2041
-#: ../gramps/plugins/webreport/narrativeweb.py:6152
-#: ../gramps/plugins/webreport/narrativeweb.py:8207
-#: ../gramps/plugins/webreport/narrativeweb.py:8275
+#: ../gramps/plugins/webreport/narrativeweb.py:6150
+#: ../gramps/plugins/webreport/narrativeweb.py:8205
+#: ../gramps/plugins/webreport/narrativeweb.py:8273
 msgid "Individuals"
 msgstr "Personen"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:101
-#: ../gramps/plugins/webreport/narrativeweb.py:8210
-#: ../gramps/plugins/webreport/narrativeweb.py:8276
+#: ../gramps/plugins/webreport/narrativeweb.py:8208
+#: ../gramps/plugins/webreport/narrativeweb.py:8274
 msgid "Number of individuals"
 msgstr "Aantal personen"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:111
-#: ../gramps/plugins/webreport/narrativeweb.py:8216
-#: ../gramps/plugins/webreport/narrativeweb.py:8283
+#: ../gramps/plugins/webreport/narrativeweb.py:8214
+#: ../gramps/plugins/webreport/narrativeweb.py:8281
 msgid "Individuals with unknown gender"
 msgstr "Personen met onbekend geslacht"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:115
 #: ../gramps/plugins/textreport/summary.py:211
-#: ../gramps/plugins/webreport/narrativeweb.py:8220
-#: ../gramps/plugins/webreport/narrativeweb.py:8287
+#: ../gramps/plugins/webreport/narrativeweb.py:8218
+#: ../gramps/plugins/webreport/narrativeweb.py:8285
 msgid "Family Information"
 msgstr "Gezinsinformatie"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:122
-#: ../gramps/plugins/webreport/narrativeweb.py:8223
+#: ../gramps/plugins/webreport/narrativeweb.py:8221
 msgid "Unique surnames"
 msgstr "Unieke achternamen"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:126
 #: ../gramps/plugins/textreport/summary.py:228
-#: ../gramps/plugins/webreport/narrativeweb.py:8227
+#: ../gramps/plugins/webreport/narrativeweb.py:8225
 msgid "Media Objects"
 msgstr "Media-objecten"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:128
-#: ../gramps/plugins/webreport/narrativeweb.py:8229
+#: ../gramps/plugins/webreport/narrativeweb.py:8227
 msgid "Total number of media object references"
 msgstr "Totaal aantal verwijzingen naar media-objecten"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:132
-#: ../gramps/plugins/webreport/narrativeweb.py:8231
+#: ../gramps/plugins/webreport/narrativeweb.py:8229
 msgid "Number of unique media objects"
 msgstr "Aantal unieke media-objecten"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:137
-#: ../gramps/plugins/webreport/narrativeweb.py:8233
+#: ../gramps/plugins/webreport/narrativeweb.py:8231
 msgid "Total size of media objects"
 msgstr "Totale grootte van media-objecten"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:141
 #: ../gramps/plugins/textreport/summary.py:258
-#: ../gramps/plugins/webreport/narrativeweb.py:8237
+#: ../gramps/plugins/webreport/narrativeweb.py:8235
 msgid "Missing Media Objects"
 msgstr "Ontbrekende media-objecten"
 
@@ -23307,7 +23276,7 @@ msgid "Max font size"
 msgstr "Max lettergrootte"
 
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:174
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:110
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:111
 msgid "Total unique surnames"
 msgstr "Totaal aantal unieke achternamen"
 
@@ -23918,24 +23887,24 @@ msgid "Initial list of people of interest:"
 msgstr "Initiele lijst van Interessante personen:"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/graph/gvfamilylines.py:966
+#: ../gramps/plugins/graph/gvfamilylines.py:969
 #, python-brace-format
 msgid "{number_of} child"
 msgid_plural "{number_of} children"
 msgstr[0] "{number_of} kind"
 msgstr[1] "{number_of} kinderen"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:1041
+#: ../gramps/plugins/graph/gvfamilylines.py:1044
 #, python-format
 msgid "father: %s"
 msgstr "vader: %s"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:1051
+#: ../gramps/plugins/graph/gvfamilylines.py:1054
 #, python-format
 msgid "mother: %s"
 msgstr "moeder: %s"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:1064
+#: ../gramps/plugins/graph/gvfamilylines.py:1067
 #, python-format
 msgid "child: %s"
 msgstr "kind: %s"
@@ -24484,7 +24453,7 @@ msgid "Change Name"
 msgstr "Naam wijzigen"
 
 #: ../gramps/plugins/importer/importgeneweb.py:89
-#: ../gramps/plugins/lib/libgedcom.py:604
+#: ../gramps/plugins/lib/libgedcom.py:605
 msgid "Circumcision"
 msgstr "Besnijdenis"
 
@@ -24497,7 +24466,7 @@ msgid "Dotation"
 msgstr "Schenking"
 
 #: ../gramps/plugins/importer/importgeneweb.py:100
-#: ../gramps/plugins/lib/libgedcom.py:610
+#: ../gramps/plugins/lib/libgedcom.py:611
 msgid "Excommunication"
 msgstr "Ex-communicatie"
 
@@ -24506,7 +24475,7 @@ msgid "LDS Family Link"
 msgstr "'LDS'-gezinsverwijzing"
 
 #: ../gramps/plugins/importer/importgeneweb.py:103
-#: ../gramps/plugins/lib/libgedcom.py:612
+#: ../gramps/plugins/lib/libgedcom.py:613
 msgid "Funeral"
 msgstr "Begrafenis"
 
@@ -25150,120 +25119,120 @@ msgstr ""
 "formaat.\n"
 " Schrijven naar %(filename)s in formaat %(impliedext)s."
 
-#: ../gramps/plugins/lib/libgedcom.py:605
+#: ../gramps/plugins/lib/libgedcom.py:606
 msgid "Common Law Marriage"
 msgstr "Wettelijk huwelijk"
 
-#: ../gramps/plugins/lib/libgedcom.py:606
-#: ../gramps/plugins/webreport/narrativeweb.py:9749
+#: ../gramps/plugins/lib/libgedcom.py:607
+#: ../gramps/plugins/webreport/narrativeweb.py:9747
 #: ../gramps/plugins/webreport/webcal.py:1612
 msgid "Destination"
 msgstr "Bestemming"
 
-#: ../gramps/plugins/lib/libgedcom.py:607
+#: ../gramps/plugins/lib/libgedcom.py:608
 msgid "DNA"
 msgstr "DNA"
 
-#: ../gramps/plugins/lib/libgedcom.py:608
+#: ../gramps/plugins/lib/libgedcom.py:609
 msgid "Cause of Death"
 msgstr "Doodsoorzaak"
 
-#: ../gramps/plugins/lib/libgedcom.py:609
+#: ../gramps/plugins/lib/libgedcom.py:610
 msgid "Employment"
 msgstr "Werk"
 
-#: ../gramps/plugins/lib/libgedcom.py:611
+#: ../gramps/plugins/lib/libgedcom.py:612
 msgid "Eye Color"
 msgstr "Kleur ogen"
 
-#: ../gramps/plugins/lib/libgedcom.py:613
+#: ../gramps/plugins/lib/libgedcom.py:614
 msgid "Height"
 msgstr "Hoogte"
 
-#: ../gramps/plugins/lib/libgedcom.py:614
+#: ../gramps/plugins/lib/libgedcom.py:615
 msgid "Initiatory (LDS)"
 msgstr "Initiatory (LDS)"
 
-#: ../gramps/plugins/lib/libgedcom.py:615
+#: ../gramps/plugins/lib/libgedcom.py:616
 msgid "Military ID"
 msgstr "Militaire ID"
 
-#: ../gramps/plugins/lib/libgedcom.py:616
+#: ../gramps/plugins/lib/libgedcom.py:617
 msgid "Mission (LDS)"
 msgstr "Mission (LDS)"
 
-#: ../gramps/plugins/lib/libgedcom.py:617
+#: ../gramps/plugins/lib/libgedcom.py:618
 msgid "Namesake"
 msgstr "Naamgenoot"
 
-#: ../gramps/plugins/lib/libgedcom.py:618
+#: ../gramps/plugins/lib/libgedcom.py:619
 msgid "Ordinance"
 msgstr "Wijding"
 
-#: ../gramps/plugins/lib/libgedcom.py:620
+#: ../gramps/plugins/lib/libgedcom.py:621
 msgid "Separation"
 msgstr "Scheiding"
 
 #. Applies to Families
-#: ../gramps/plugins/lib/libgedcom.py:621
+#: ../gramps/plugins/lib/libgedcom.py:622
 msgid "Weight"
 msgstr "Gewicht"
 
-#: ../gramps/plugins/lib/libgedcom.py:832
+#: ../gramps/plugins/lib/libgedcom.py:833
 msgid "Line ignored "
 msgstr "Lijn genegeerd "
 
 #. e.g. Illegal character (oxAB) (0xCB)... 1 NOTE xyz?pqr?lmn
-#: ../gramps/plugins/lib/libgedcom.py:1430
+#: ../gramps/plugins/lib/libgedcom.py:1431
 #, python-format
 msgid "Illegal character%s"
 msgstr "Ongeldig karakter%s"
 
-#: ../gramps/plugins/lib/libgedcom.py:1702
+#: ../gramps/plugins/lib/libgedcom.py:1703
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr ""
 "Uw GEDCOM-bestand is beschadigd. Het lijkt erop dat bepaalde gegevens niet "
 "volledig zijn."
 
-#: ../gramps/plugins/lib/libgedcom.py:1784
+#: ../gramps/plugins/lib/libgedcom.py:1785
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Geïmporteerd uit GEDCOM (%s)"
 
-#: ../gramps/plugins/lib/libgedcom.py:2620
-#: ../gramps/plugins/lib/libgedcom.py:3070
+#: ../gramps/plugins/lib/libgedcom.py:2621
+#: ../gramps/plugins/lib/libgedcom.py:3071
 msgid "GEDCOM import"
 msgstr "GEDCOM-import"
 
-#: ../gramps/plugins/lib/libgedcom.py:2648
+#: ../gramps/plugins/lib/libgedcom.py:2649
 msgid "GEDCOM import report: No errors detected"
 msgstr "GEDCOM importverslag: Geen fouten gevonden"
 
-#: ../gramps/plugins/lib/libgedcom.py:2650
+#: ../gramps/plugins/lib/libgedcom.py:2651
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "GEDCOM importverslag: %s fouten gevonden"
 
 # Let op, ipv waarschuwing
-#: ../gramps/plugins/lib/libgedcom.py:2963
-#: ../gramps/plugins/lib/libgedcom.py:2987
-#: ../gramps/plugins/lib/libgedcom.py:3000
+#: ../gramps/plugins/lib/libgedcom.py:2964
+#: ../gramps/plugins/lib/libgedcom.py:2988
+#: ../gramps/plugins/lib/libgedcom.py:3001
 msgid "Line ignored as not understood"
 msgstr "Regel werd niet begrepen en daarom genegeerd"
 
-#: ../gramps/plugins/lib/libgedcom.py:2989
+#: ../gramps/plugins/lib/libgedcom.py:2990
 msgid "Tag recognized but not supported"
 msgstr "Tag werd herkend maar niet ondersteund"
 
-#: ../gramps/plugins/lib/libgedcom.py:3025
+#: ../gramps/plugins/lib/libgedcom.py:3026
 msgid "Skipped subordinate line"
 msgstr "Regel met 'subordinate' werd overgeslagen"
 
-#: ../gramps/plugins/lib/libgedcom.py:3059
+#: ../gramps/plugins/lib/libgedcom.py:3060
 msgid "Records not imported into "
 msgstr "Gegevens niet geïmporteerd in "
 
-#: ../gramps/plugins/lib/libgedcom.py:3097
+#: ../gramps/plugins/lib/libgedcom.py:3098
 #, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -25272,7 +25241,7 @@ msgstr ""
 "Fout: %(msg)s  '%(gramps_id)s' (invoer zoals @%(xref)s@) niet in \"GEDCOM\"-"
 "invoer. Gegeven gesynthetiseerd"
 
-#: ../gramps/plugins/lib/libgedcom.py:3106
+#: ../gramps/plugins/lib/libgedcom.py:3107
 #, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -25281,7 +25250,7 @@ msgstr ""
 "Fout: %(msg)s '%(gramps_id)s' (invoer als @%(xref)s@) niet in GEDCOM-invoer. "
 "Een gegeven met atribuuttype 'Unknown' aangemaakt"
 
-#: ../gramps/plugins/lib/libgedcom.py:3151
+#: ../gramps/plugins/lib/libgedcom.py:3152
 #, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
@@ -25292,7 +25261,7 @@ msgstr ""
 "(invoer als %(orig_person)s) is geen lid van het gezin waarnaar verwezen "
 "wordt. Gezinsverwijzing wordt verwijderd bij die persoon"
 
-#: ../gramps/plugins/lib/libgedcom.py:3229
+#: ../gramps/plugins/lib/libgedcom.py:3230
 #, python-format
 msgid ""
 "\n"
@@ -25312,177 +25281,177 @@ msgstr ""
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
 #. truncated for output
-#: ../gramps/plugins/lib/libgedcom.py:3301
+#: ../gramps/plugins/lib/libgedcom.py:3302
 #, python-format
 msgid "ADDR element ignored '%s'"
 msgstr "ADDR element genegeerd '%s'"
 
-#: ../gramps/plugins/lib/libgedcom.py:3321
+#: ../gramps/plugins/lib/libgedcom.py:3322
 msgid "TRLR (trailer)"
 msgstr "TRLR (trailer)"
 
-#: ../gramps/plugins/lib/libgedcom.py:3350
+#: ../gramps/plugins/lib/libgedcom.py:3351
 msgid "(Submitter):"
 msgstr "(Uitgever):"
 
-#: ../gramps/plugins/lib/libgedcom.py:3374
-#: ../gramps/plugins/lib/libgedcom.py:7096
+#: ../gramps/plugins/lib/libgedcom.py:3375
+#: ../gramps/plugins/lib/libgedcom.py:7107
 msgid "GEDCOM data"
 msgstr "GEDCOM gegevens"
 
-#: ../gramps/plugins/lib/libgedcom.py:3420
+#: ../gramps/plugins/lib/libgedcom.py:3421
 msgid "Unknown tag"
 msgstr "Onbekende tag"
 
-#: ../gramps/plugins/lib/libgedcom.py:3422
-#: ../gramps/plugins/lib/libgedcom.py:3436
-#: ../gramps/plugins/lib/libgedcom.py:3440
-#: ../gramps/plugins/lib/libgedcom.py:3461
+#: ../gramps/plugins/lib/libgedcom.py:3423
+#: ../gramps/plugins/lib/libgedcom.py:3437
+#: ../gramps/plugins/lib/libgedcom.py:3441
+#: ../gramps/plugins/lib/libgedcom.py:3462
 msgid "Top Level"
 msgstr "Hoogste niveau"
 
-#: ../gramps/plugins/lib/libgedcom.py:3536
+#: ../gramps/plugins/lib/libgedcom.py:3537
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (persoon) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:3655
+#: ../gramps/plugins/lib/libgedcom.py:3656
 msgid "Empty Alias <NAME PERSONAL> ignored"
 msgstr "Lege alias <NAME PERSONAL> genegeerd"
 
-#: ../gramps/plugins/lib/libgedcom.py:4823
+#: ../gramps/plugins/lib/libgedcom.py:4824
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (gezin) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5175
-#: ../gramps/plugins/lib/libgedcom.py:6529
+#: ../gramps/plugins/lib/libgedcom.py:5176
+#: ../gramps/plugins/lib/libgedcom.py:6540
 msgid "Filename omitted"
 msgstr "Bestandsnaam weggelaten"
 
-#: ../gramps/plugins/lib/libgedcom.py:5198
-#: ../gramps/plugins/lib/libgedcom.py:6569
+#: ../gramps/plugins/lib/libgedcom.py:5209
+#: ../gramps/plugins/lib/libgedcom.py:6580
 #, python-format
 msgid "Could not import %s"
 msgstr "Kon %s niet importeren"
 
-#: ../gramps/plugins/lib/libgedcom.py:5255
-#: ../gramps/plugins/lib/libgedcom.py:6670
+#: ../gramps/plugins/lib/libgedcom.py:5266
+#: ../gramps/plugins/lib/libgedcom.py:6681
 msgid "Media-Type"
 msgstr "Mediatype"
 
-#: ../gramps/plugins/lib/libgedcom.py:5279
-#: ../gramps/plugins/lib/libgedcom.py:6560
+#: ../gramps/plugins/lib/libgedcom.py:5290
+#: ../gramps/plugins/lib/libgedcom.py:6571
 msgid "Multiple FILE in a single OBJE ignored"
 msgstr "Meerdere 'FILE' in een enkel 'OBJE' genegeerd"
 
 #. We have previously found a PLAC
-#: ../gramps/plugins/lib/libgedcom.py:5434
+#: ../gramps/plugins/lib/libgedcom.py:5445
 msgid "A second PLAC ignored"
 msgstr "Een tweede PLAC genegeerd"
 
 #. For RootsMagic etc. Place Details e.g. address, hospital, cemetary
-#: ../gramps/plugins/lib/libgedcom.py:5572
+#: ../gramps/plugins/lib/libgedcom.py:5583
 msgid "Detail"
 msgstr "Detail"
 
 #. We have perviously found an ADDR, or have populated location
 #. from PLAC title
-#: ../gramps/plugins/lib/libgedcom.py:5585
+#: ../gramps/plugins/lib/libgedcom.py:5596
 msgid "Location already populated; ADDR ignored"
 msgstr "Locatie is al bezet; ADDR genegeerd"
 
-#: ../gramps/plugins/lib/libgedcom.py:5990
-#: ../gramps/plugins/lib/libgedcom.py:6877
+#: ../gramps/plugins/lib/libgedcom.py:6001
+#: ../gramps/plugins/lib/libgedcom.py:6888
 msgid "Warn: ADDR overwritten"
 msgstr "Waarschuwing: ADDR overschreven"
 
-#: ../gramps/plugins/lib/libgedcom.py:6155
+#: ../gramps/plugins/lib/libgedcom.py:6166
 msgid "Citation Justification"
 msgstr "Citaatinverantwoording"
 
-#: ../gramps/plugins/lib/libgedcom.py:6182
+#: ../gramps/plugins/lib/libgedcom.py:6193
 msgid "REFN ignored"
 msgstr "REFN genegeerd"
 
 #. SOURce with the given gramps_id had no title
-#: ../gramps/plugins/lib/libgedcom.py:6281
+#: ../gramps/plugins/lib/libgedcom.py:6292
 #, python-format
 msgid "No title - ID %s"
 msgstr "Geen titel - ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6286
+#: ../gramps/plugins/lib/libgedcom.py:6297
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (source) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6536
+#: ../gramps/plugins/lib/libgedcom.py:6547
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (multi-media object) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6766
+#: ../gramps/plugins/lib/libgedcom.py:6777
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (repository) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6827
-#: ../gramps/plugins/lib/libgedcom.py:7803
+#: ../gramps/plugins/lib/libgedcom.py:6838
+#: ../gramps/plugins/lib/libgedcom.py:7814
 msgid "Only one phone number supported"
 msgstr "Er wordt maar één telefoonnummer ondersteund"
 
-#: ../gramps/plugins/lib/libgedcom.py:7012
+#: ../gramps/plugins/lib/libgedcom.py:7023
 msgid "HEAD (header)"
 msgstr "HEAD (hoofding)"
 
-#: ../gramps/plugins/lib/libgedcom.py:7033
+#: ../gramps/plugins/lib/libgedcom.py:7044
 msgid "Approved system identification"
 msgstr "Goedgekeurde systeemidentificatie"
 
-#: ../gramps/plugins/lib/libgedcom.py:7045
+#: ../gramps/plugins/lib/libgedcom.py:7056
 msgid "Generated By"
 msgstr "Aangemaakt door"
 
-#: ../gramps/plugins/lib/libgedcom.py:7061
+#: ../gramps/plugins/lib/libgedcom.py:7072
 msgid "Name of software product"
 msgstr "Naam van het softwareproduct"
 
-#: ../gramps/plugins/lib/libgedcom.py:7075
+#: ../gramps/plugins/lib/libgedcom.py:7086
 msgid "Version number of software product"
 msgstr "Versienummer van het softwareproduct"
 
-#: ../gramps/plugins/lib/libgedcom.py:7093
+#: ../gramps/plugins/lib/libgedcom.py:7104
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Bedrijf dat %s heeft geproduceerd"
 
-#: ../gramps/plugins/lib/libgedcom.py:7115
+#: ../gramps/plugins/lib/libgedcom.py:7126
 msgid "Name of source data"
 msgstr "Naam van de brongegevens"
 
-#: ../gramps/plugins/lib/libgedcom.py:7132
+#: ../gramps/plugins/lib/libgedcom.py:7143
 msgid "Copyright of source data"
 msgstr "Auteursrecht van de brongegevens"
 
-#: ../gramps/plugins/lib/libgedcom.py:7149
+#: ../gramps/plugins/lib/libgedcom.py:7160
 msgid "Publication date of source data"
 msgstr "Publicatiedatum van de brongegevens"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/lib/libgedcom.py:7163
+#: ../gramps/plugins/lib/libgedcom.py:7174
 #, python-format
 msgid "Import from %s"
 msgstr "Geïmporteerd uit %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7202
+#: ../gramps/plugins/lib/libgedcom.py:7213
 msgid "Submission record identifier"
 msgstr "Identificatie 'submission'-gegeven"
 
-#: ../gramps/plugins/lib/libgedcom.py:7215
+#: ../gramps/plugins/lib/libgedcom.py:7226
 msgid "Language of GEDCOM text"
 msgstr "Taal van de GEDCOM-tekst"
 
-#: ../gramps/plugins/lib/libgedcom.py:7236
+#: ../gramps/plugins/lib/libgedcom.py:7247
 #, python-format
 msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
@@ -25491,91 +25460,91 @@ msgstr ""
 "Import van GEDCOM-bestand %(filename)s met BESTEM=%(by)s, kan aanleiding "
 "geven tot fouten in het aangemaakte gegevensbestand!"
 
-#: ../gramps/plugins/lib/libgedcom.py:7239
+#: ../gramps/plugins/lib/libgedcom.py:7250
 msgid "Look for nameless events."
 msgstr "Naar naamloze gebeurtenissen zoeken."
 
 # Doping
-#: ../gramps/plugins/lib/libgedcom.py:7263
+#: ../gramps/plugins/lib/libgedcom.py:7274
 msgid "Character set"
 msgstr "Tekenset codering"
 
 # Doping
-#: ../gramps/plugins/lib/libgedcom.py:7268
+#: ../gramps/plugins/lib/libgedcom.py:7279
 msgid "Character set and version"
 msgstr "Tekenset codering en versie"
 
-#: ../gramps/plugins/lib/libgedcom.py:7285
+#: ../gramps/plugins/lib/libgedcom.py:7296
 msgid "GEDCOM version not supported"
 msgstr "GEDCOM-versie wordt niet ondersteund"
 
-#: ../gramps/plugins/lib/libgedcom.py:7289
+#: ../gramps/plugins/lib/libgedcom.py:7300
 msgid "GEDCOM version"
 msgstr "GEDCOM-versie"
 
 #. Allow Lineage-Linked etc. though it should be in uppercase
-#: ../gramps/plugins/lib/libgedcom.py:7297
+#: ../gramps/plugins/lib/libgedcom.py:7308
 msgid "GEDCOM FORM should be in uppercase"
 msgstr "GEDCOM-formulier moet in hoofdletters"
 
-#: ../gramps/plugins/lib/libgedcom.py:7299
+#: ../gramps/plugins/lib/libgedcom.py:7310
 msgid "GEDCOM FORM not supported"
 msgstr "GEDCOM-formulier niet ondersteund"
 
-#: ../gramps/plugins/lib/libgedcom.py:7302
+#: ../gramps/plugins/lib/libgedcom.py:7313
 msgid "GEDCOM form"
 msgstr "GEDCOM-formulier"
 
-#: ../gramps/plugins/lib/libgedcom.py:7351
+#: ../gramps/plugins/lib/libgedcom.py:7362
 msgid "Creation date of GEDCOM"
 msgstr "Aanmaakdatum van GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7356
+#: ../gramps/plugins/lib/libgedcom.py:7367
 msgid "Creation date and time of GEDCOM"
 msgstr "Aanmaakdatum en tijdstip van GEDCOM"
 
 # Let op, ipv waarschuwing
-#: ../gramps/plugins/lib/libgedcom.py:7397
-#: ../gramps/plugins/lib/libgedcom.py:7439
+#: ../gramps/plugins/lib/libgedcom.py:7408
+#: ../gramps/plugins/lib/libgedcom.py:7450
 msgid "Empty note ignored"
 msgstr "Lege opmerking werd genegeerd"
 
-#: ../gramps/plugins/lib/libgedcom.py:7455
+#: ../gramps/plugins/lib/libgedcom.py:7466
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "OPMERKING Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7506
+#: ../gramps/plugins/lib/libgedcom.py:7517
 msgid "Submission: Submitter"
 msgstr "Submissie: Indiener"
 
-#: ../gramps/plugins/lib/libgedcom.py:7508
+#: ../gramps/plugins/lib/libgedcom.py:7519
 msgid "Submission: Family file"
 msgstr "Submission: Stamboombestand"
 
-#: ../gramps/plugins/lib/libgedcom.py:7510
+#: ../gramps/plugins/lib/libgedcom.py:7521
 msgid "Submission: Temple code"
 msgstr "Submissie: Tempelcode"
 
-#: ../gramps/plugins/lib/libgedcom.py:7512
+#: ../gramps/plugins/lib/libgedcom.py:7523
 msgid "Submission: Generations of ancestors"
 msgstr "Submission: Het aantal vooroudergeneraties"
 
-#: ../gramps/plugins/lib/libgedcom.py:7514
+#: ../gramps/plugins/lib/libgedcom.py:7525
 msgid "Submission: Generations of descendants"
 msgstr "Submission: Het aantal afstammelingengeneraties"
 
-#: ../gramps/plugins/lib/libgedcom.py:7516
+#: ../gramps/plugins/lib/libgedcom.py:7527
 msgid "Submission: Ordinance process flag"
 msgstr "Submission: vlag behandeling wijding"
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../gramps/plugins/lib/libgedcom.py:7742
+#: ../gramps/plugins/lib/libgedcom.py:7753
 msgid "Invalid temple code"
 msgstr "Ongeldige tempelcode"
 
-#: ../gramps/plugins/lib/libgedcom.py:7836
+#: ../gramps/plugins/lib/libgedcom.py:7847
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 "
 "character set, but is missing the BOM marker."
@@ -25583,7 +25552,7 @@ msgstr ""
 "Uw GEDCOM-bestand is beschadigd. Het bestand lijkt met de tekenset UTF16 te "
 "zijn gecodeerd, maar de BOM-aanduiding ontbreekt."
 
-#: ../gramps/plugins/lib/libgedcom.py:7839
+#: ../gramps/plugins/lib/libgedcom.py:7850
 msgid "Your GEDCOM file is empty."
 msgstr "Uw GEDCOM-bestand is leeg."
 
@@ -29363,9 +29332,9 @@ msgstr "Gtk-versie is te oud."
 #: ../gramps/plugins/view/geofamclose.py:740
 #: ../gramps/plugins/view/geofamily.py:434
 #: ../gramps/plugins/view/geomoves.py:625
-#: ../gramps/plugins/view/geoperson.py:445
-#: ../gramps/plugins/view/geoperson.py:466
-#: ../gramps/plugins/view/geoperson.py:506
+#: ../gramps/plugins/view/geoperson.py:440
+#: ../gramps/plugins/view/geoperson.py:461
+#: ../gramps/plugins/view/geoperson.py:501
 #: ../gramps/plugins/view/geoplaces.py:435
 #: ../gramps/plugins/view/geoplaces.py:460
 msgid "Center on this place"
@@ -29541,7 +29510,7 @@ msgid "Open on maps.google.com"
 msgstr "Met maps.google.com openen"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:71
-#: ../gramps/plugins/webreport/narrativeweb.py:10098
+#: ../gramps/plugins/webreport/narrativeweb.py:10096
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
@@ -29603,7 +29572,7 @@ msgstr "Gebeurtenislocatie"
 #: ../gramps/plugins/quickview/all_events.py:60
 #: ../gramps/plugins/quickview/all_events.py:109
 #: ../gramps/plugins/quickview/all_events.py:124
-#: ../gramps/plugins/webreport/narrativeweb.py:6848
+#: ../gramps/plugins/webreport/narrativeweb.py:6846
 msgid "Event Type"
 msgstr "Gebeurtenistype"
 
@@ -29682,10 +29651,10 @@ msgstr "Ouder"
 
 #: ../gramps/plugins/quickview/all_relations.py:286
 #: ../gramps/plugins/view/relview.py:414
-#: ../gramps/plugins/webreport/narrativeweb.py:2778
-#: ../gramps/plugins/webreport/narrativeweb.py:2780
-#: ../gramps/plugins/webreport/narrativeweb.py:3322
-#: ../gramps/plugins/webreport/narrativeweb.py:6199
+#: ../gramps/plugins/webreport/narrativeweb.py:2773
+#: ../gramps/plugins/webreport/narrativeweb.py:2775
+#: ../gramps/plugins/webreport/narrativeweb.py:3317
+#: ../gramps/plugins/webreport/narrativeweb.py:6197
 msgid "Partner"
 msgstr "Partners"
 
@@ -29879,9 +29848,9 @@ msgstr "Personen"
 #: ../gramps/plugins/webreport/narrativeweb.py:1923
 #: ../gramps/plugins/webreport/narrativeweb.py:1982
 #: ../gramps/plugins/webreport/narrativeweb.py:2052
-#: ../gramps/plugins/webreport/narrativeweb.py:4895
-#: ../gramps/plugins/webreport/narrativeweb.py:4992
-#: ../gramps/plugins/webreport/narrativeweb.py:7144
+#: ../gramps/plugins/webreport/narrativeweb.py:4893
+#: ../gramps/plugins/webreport/narrativeweb.py:4990
+#: ../gramps/plugins/webreport/narrativeweb.py:7142
 msgid "Sources"
 msgstr "Bronnen"
 
@@ -30212,7 +30181,7 @@ msgid "No references for this %s"
 msgstr "Geen verwijzingen voor deze %s"
 
 #: ../gramps/plugins/quickview/reporef.py:62
-#: ../gramps/plugins/webreport/narrativeweb.py:3102
+#: ../gramps/plugins/webreport/narrativeweb.py:3097
 msgid "Call number"
 msgstr "Inventarisnummer"
 
@@ -31064,7 +31033,7 @@ msgstr "Verslagsstructuur"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1016
 msgid "show people by generations"
-msgstr "Personen per generaties tonen"
+msgstr "personen per generaties tonen"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1017
 msgid "show people by lineage"
@@ -31280,7 +31249,7 @@ msgid "Alternate Parents"
 msgstr "Alternatieve ouders"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:443
-#: ../gramps/plugins/webreport/narrativeweb.py:7129
+#: ../gramps/plugins/webreport/narrativeweb.py:7127
 msgid "Associations"
 msgstr "Associaties"
 
@@ -31877,7 +31846,6 @@ msgid "_Accept changes and close"
 msgstr "Wijzigingen _accepteren en sluiten"
 
 #: ../gramps/plugins/tool/changenames.py:64
-#, fuzzy
 msgid "manual|Fix_Capitalization_of_Family_Names"
 msgstr "Verbeter_de_hoofdletters_van_familienamen..."
 
@@ -32539,7 +32507,6 @@ msgstr "_Bewerken van eigen gemaakte filters"
 # afzonderlijke/individuele
 # seperate/individual
 #: ../gramps/plugins/tool/eventcmp.py:70
-#, fuzzy
 msgid "manual|Compare_Individual_Events"
 msgstr "Individuele_gebeurtenissen_vergelijken..."
 
@@ -32642,7 +32609,6 @@ msgstr "Medium"
 
 # Duplicaat
 #: ../gramps/plugins/tool/finddupes.py:66
-#, fuzzy
 msgid "manual|Find_Possible_Duplicate_People"
 msgstr "Mogelijke_dubbele_personen_zoeken..."
 
@@ -32714,13 +32680,12 @@ msgid "Merge persons"
 msgstr "Personen samenvoegen"
 
 #: ../gramps/plugins/tool/findloop.py:56
-#, fuzzy
 msgid "manual|Find_database_loop"
 msgstr "Datums_aanpassen"
 
 #: ../gramps/plugins/tool/findloop.py:70 ../gramps/plugins/tool/tools.gpr.py:465
 msgid "Find database loop"
-msgstr "gegevensbestandlus zoeken"
+msgstr "Gegevensbestandlus zoeken"
 
 # Classificatie, taxering
 #. start the progress indicator
@@ -32755,7 +32720,7 @@ msgstr "Mediamanager"
 #: ../gramps/plugins/tool/mediamanager.py:97
 #: ../gramps/plugins/webreport/narrativeweb.py:1916
 #: ../gramps/plugins/webreport/narrativeweb.py:2039
-#: ../gramps/plugins/webreport/narrativeweb.py:4736
+#: ../gramps/plugins/webreport/narrativeweb.py:4734
 msgid "Introduction"
 msgstr "Inleiding"
 
@@ -32960,7 +32925,6 @@ msgid "Ignore Date and Confidence"
 msgstr "Datum en zekerheidsniveau negeren"
 
 #: ../gramps/plugins/tool/mergecitations.py:83
-#, fuzzy
 msgid "manual|Merge_citations"
 msgstr "Citaten_samenvoegen"
 
@@ -32999,7 +32963,6 @@ msgid "_Tag"
 msgstr "Tag"
 
 #: ../gramps/plugins/tool/notrelated.py:60
-#, fuzzy
 msgid "manual|Not_Related"
 msgstr "Heeft_geen_verwantschap..."
 
@@ -33090,7 +33053,6 @@ msgid "Right-click to copy from/to Researcher Preferences"
 msgstr "Rechtsklikken om naar/van Onderzoekersvoorkeuren te kopieren"
 
 #: ../gramps/plugins/tool/ownereditor.py:56
-#, fuzzy
 msgid "manual|Edit_Database_Owner_Information"
 msgstr "Gegevensbestandseigenaarsinformatie_aanpassen..."
 
@@ -33331,7 +33293,7 @@ msgstr "Ongebruikte objecten verwijderen"
 
 #: ../gramps/plugins/tool/reorderids.glade:1368
 msgid "Enable ID reordering."
-msgstr "Id herschikking toelaten"
+msgstr "Id herschikking toelaten."
 
 #: ../gramps/plugins/tool/reorderids.glade:1385
 msgid ""
@@ -33343,7 +33305,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/reorderids.glade:1388
 msgid "  Actual"
-msgstr "Actueel"
+msgstr " Actueel"
 
 #: ../gramps/plugins/tool/reorderids.glade:1402
 msgid "Amount of ID in use."
@@ -33351,11 +33313,11 @@ msgstr "Aantal Id's in gebruik."
 
 #: ../gramps/plugins/tool/reorderids.glade:1404
 msgid " Quantity"
-msgstr "Hoeveelheid"
+msgstr " Hoeveelheid"
 
 #: ../gramps/plugins/tool/reorderids.glade:1419
 msgid "Actual / Upcoming ID format."
-msgstr ""
+msgstr "Huidige / Volgende Id-formaat."
 
 #: ../gramps/plugins/tool/reorderids.glade:1434
 msgid "Change"
@@ -33366,6 +33328,8 @@ msgid ""
 "Enable ID reordering\n"
 "with Start / Step sequence."
 msgstr ""
+"Id herordenen toelaten\n"
+"met Start / stap volgorde."
 
 # Classificatie, taxering
 #: ../gramps/plugins/tool/reorderids.glade:1454
@@ -33382,7 +33346,7 @@ msgstr "Stap"
 
 #: ../gramps/plugins/tool/reorderids.glade:1477
 msgid "Reorder ID step width."
-msgstr ""
+msgstr "Id stapbreedte herschikking."
 
 #: ../gramps/plugins/tool/reorderids.glade:1492
 msgid "Keep"
@@ -33393,9 +33357,10 @@ msgid ""
 "Keep IDs with alternate\n"
 "prefixes untouched."
 msgstr ""
+"Id's met alternatieve\n"
+"prefix behouden."
 
 #: ../gramps/plugins/tool/reorderids.py:67
-#, fuzzy
 msgid "manual|Reorder_Gramps_ID"
 msgstr "Gramps ID's herschikken"
 
@@ -33413,7 +33378,7 @@ msgstr "Gramps ID's herschikken"
 msgid "Reorder %s IDs ..."
 msgstr "%s ID's herschikken..."
 
-#: ../gramps/plugins/tool/reorderids.py:624
+#: ../gramps/plugins/tool/reorderids.py:622
 msgid "Finding and assigning unused IDs."
 msgstr "Ongebruikte ID's zoeken en toekennen."
 
@@ -33762,6 +33727,7 @@ msgstr "Geslachtsstatistieken opstellen"
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:65
 msgid "Will dump the statistics for guessing the gender from the first name."
 msgstr ""
+"Statistieken die gebaseerd zijn op het geslacht van de voornaam opslaan."
 
 #: ../gramps/plugins/tool/verify.glade:215
 msgid "Maximum _age"
@@ -34396,7 +34362,7 @@ msgstr "Naam omdraaien links van de waaier"
 #: ../gramps/plugins/view/fanchartdescview.py:359
 #: ../gramps/plugins/view/fanchartview.py:351
 #: ../gramps/plugins/view/pedigreeview.py:2052
-#: ../gramps/plugins/view/relview.py:1709
+#: ../gramps/plugins/view/relview.py:1710
 msgid "Layout"
 msgstr "Layout"
 
@@ -34483,7 +34449,7 @@ msgstr "Een persoon die als referentie zal dienen, kiezen."
 #: ../gramps/plugins/view/geofamclose.py:496
 #: ../gramps/plugins/view/geofamily.py:207
 #: ../gramps/plugins/view/geomoves.py:292
-#: ../gramps/plugins/view/geoperson.py:339
+#: ../gramps/plugins/view/geoperson.py:334
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
@@ -34779,26 +34745,26 @@ msgstr "Persoonslocatiekaart"
 msgid "GeoPerson"
 msgstr "'GeoPerson'"
 
-#: ../gramps/plugins/view/geoperson.py:318
+#: ../gramps/plugins/view/geoperson.py:313
 #, python-format
 msgid "Person places for %s"
 msgstr "Persoonslocaties voor %s"
 
-#: ../gramps/plugins/view/geoperson.py:522
+#: ../gramps/plugins/view/geoperson.py:517
 msgid "Animate"
 msgstr "Animatie"
 
-#: ../gramps/plugins/view/geoperson.py:545
+#: ../gramps/plugins/view/geoperson.py:540
 msgid "Animation speed in milliseconds (big value means slower)"
 msgstr "Animatiesnelheid in milliseconden (grote waarde betekent trager)"
 
-#: ../gramps/plugins/view/geoperson.py:553
+#: ../gramps/plugins/view/geoperson.py:548
 msgid "How many steps between two markers when we are on large move ?"
 msgstr ""
 "Hoeveel stappen tussen twee merkpunten wanneer een verre verplaatsing dient "
 "te gebeuren?"
 
-#: ../gramps/plugins/view/geoperson.py:560
+#: ../gramps/plugins/view/geoperson.py:555
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
@@ -34807,7 +34773,7 @@ msgstr ""
 "verre verplaatsing.\n"
 "De waarde is in een tienden van graden."
 
-#: ../gramps/plugins/view/geoperson.py:567
+#: ../gramps/plugins/view/geoperson.py:562
 msgid "The animation parameters"
 msgstr "De animatieparameters"
 
@@ -35231,23 +35197,23 @@ msgstr[1] " ({number_of} kinderen)"
 msgid " (no children)"
 msgstr " (geen kinderen)"
 
-#: ../gramps/plugins/view/relview.py:1698
+#: ../gramps/plugins/view/relview.py:1699
 msgid "Use shading"
 msgstr "Schaduwen gebruiken"
 
-#: ../gramps/plugins/view/relview.py:1701
+#: ../gramps/plugins/view/relview.py:1702
 msgid "Display edit buttons"
 msgstr "Aanpasknoppen tonen"
 
-#: ../gramps/plugins/view/relview.py:1703
+#: ../gramps/plugins/view/relview.py:1704
 msgid "View links as website links"
 msgstr "Verwijzingen worden als 'website-links' getoond"
 
-#: ../gramps/plugins/view/relview.py:1720
+#: ../gramps/plugins/view/relview.py:1721
 msgid "Show Details"
 msgstr "Details tonen"
 
-#: ../gramps/plugins/view/relview.py:1723
+#: ../gramps/plugins/view/relview.py:1724
 msgid "Show Siblings"
 msgstr "Broers en zussen tonen"
 
@@ -35421,15 +35387,15 @@ msgid "Narrative"
 msgstr "Verhaal"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1523
-#: ../gramps/plugins/webreport/narrativeweb.py:3001
-#: ../gramps/plugins/webreport/narrativeweb.py:3027
-#: ../gramps/plugins/webreport/narrativeweb.py:3888
+#: ../gramps/plugins/webreport/narrativeweb.py:2996
+#: ../gramps/plugins/webreport/narrativeweb.py:3022
+#: ../gramps/plugins/webreport/narrativeweb.py:3883
 msgid "State/ Province"
 msgstr "Deelstaat/Provincie"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1525
-#: ../gramps/plugins/webreport/narrativeweb.py:3002
-#: ../gramps/plugins/webreport/narrativeweb.py:3028
+#: ../gramps/plugins/webreport/narrativeweb.py:2997
+#: ../gramps/plugins/webreport/narrativeweb.py:3023
 msgid "Postal Code"
 msgstr "Postcode"
 
@@ -35478,14 +35444,14 @@ msgstr "Startpagina"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1926
 #: ../gramps/plugins/webreport/narrativeweb.py:2061
-#: ../gramps/plugins/webreport/narrativeweb.py:5694
+#: ../gramps/plugins/webreport/narrativeweb.py:5692
 msgid "Thumbnails"
 msgstr "Miniaturen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1927
 #: ../gramps/plugins/webreport/narrativeweb.py:2068
-#: ../gramps/plugins/webreport/narrativeweb.py:5891
-#: ../gramps/plugins/webreport/narrativeweb.py:9974
+#: ../gramps/plugins/webreport/narrativeweb.py:5889
+#: ../gramps/plugins/webreport/narrativeweb.py:9972
 msgid "Download"
 msgstr "Download"
 
@@ -35493,8 +35459,8 @@ msgstr "Download"
 #: ../gramps/plugins/webreport/narrativeweb.py:1928
 #: ../gramps/plugins/webreport/narrativeweb.py:1994
 #: ../gramps/plugins/webreport/narrativeweb.py:2069
-#: ../gramps/plugins/webreport/narrativeweb.py:8010
-#: ../gramps/plugins/webreport/narrativeweb.py:8124
+#: ../gramps/plugins/webreport/narrativeweb.py:8008
+#: ../gramps/plugins/webreport/narrativeweb.py:8122
 msgid "Address Book"
 msgstr "Adressenboek"
 
@@ -35502,7 +35468,7 @@ msgstr "Adressenboek"
 #: ../gramps/plugins/webreport/narrativeweb.py:1930
 #: ../gramps/plugins/webreport/narrativeweb.py:2076
 #: ../gramps/plugins/webreport/narrativeweb.py:2113
-#: ../gramps/plugins/webreport/narrativeweb.py:6007
+#: ../gramps/plugins/webreport/narrativeweb.py:6005
 msgid "Contact"
 msgstr "Contact"
 
@@ -35512,17 +35478,17 @@ msgid "Web Calendar"
 msgstr "Webkalender"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2012
-#: ../gramps/plugins/webreport/narrativeweb.py:5366
+#: ../gramps/plugins/webreport/narrativeweb.py:5364
 msgid "Previous"
 msgstr "Vorige"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2014
-#: ../gramps/plugins/webreport/narrativeweb.py:5378
+#: ../gramps/plugins/webreport/narrativeweb.py:5376
 msgid "Next"
 msgstr "Volgende"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2489
-#: ../gramps/plugins/webreport/narrativeweb.py:8043
+#: ../gramps/plugins/webreport/narrativeweb.py:8041
 msgid "Web Links"
 msgstr "Weblinks"
 
@@ -35534,30 +35500,30 @@ msgstr " [Klik om te gaan naar]"
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr "LDS / LDS Ordinance"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2754
-#: ../gramps/plugins/webreport/narrativeweb.py:2755
-#: ../gramps/plugins/webreport/narrativeweb.py:6587
-#: ../gramps/plugins/webreport/narrativeweb.py:6895
+#: ../gramps/plugins/webreport/narrativeweb.py:2749
+#: ../gramps/plugins/webreport/narrativeweb.py:2750
+#: ../gramps/plugins/webreport/narrativeweb.py:6585
+#: ../gramps/plugins/webreport/narrativeweb.py:6893
 msgid "Family Map"
 msgstr "Gezinskaart"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2999
-#: ../gramps/plugins/webreport/narrativeweb.py:3025
+#: ../gramps/plugins/webreport/narrativeweb.py:2994
+#: ../gramps/plugins/webreport/narrativeweb.py:3020
 msgid "Church Parish"
 msgstr "Parochie"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3046
+#: ../gramps/plugins/webreport/narrativeweb.py:3041
 msgid "Locations"
 msgstr "Locaties"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3277
-#: ../gramps/plugins/webreport/narrativeweb.py:4661
-#: ../gramps/plugins/webreport/narrativeweb.py:6221
+#: ../gramps/plugins/webreport/narrativeweb.py:3272
+#: ../gramps/plugins/webreport/narrativeweb.py:4659
+#: ../gramps/plugins/webreport/narrativeweb.py:6219
 msgid "<absent>"
 msgstr "<afwezig>"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/webreport/narrativeweb.py:3293
+#: ../gramps/plugins/webreport/narrativeweb.py:3288
 #, python-format
 msgid ""
 "This page contains an index of all the individuals in the database with the "
@@ -35569,35 +35535,35 @@ msgstr ""
 "gaan."
 
 #. Name Column
-#: ../gramps/plugins/webreport/narrativeweb.py:3310
-#: ../gramps/plugins/webreport/narrativeweb.py:6187
+#: ../gramps/plugins/webreport/narrativeweb.py:3305
+#: ../gramps/plugins/webreport/narrativeweb.py:6185
 msgid "Given Name"
 msgstr "Voornaam"
 
 # webstek
 #. set progress bar pass for Repositories
-#: ../gramps/plugins/webreport/narrativeweb.py:3491
-#: ../gramps/plugins/webreport/narrativeweb.py:3825
-#: ../gramps/plugins/webreport/narrativeweb.py:4203
-#: ../gramps/plugins/webreport/narrativeweb.py:4868
-#: ../gramps/plugins/webreport/narrativeweb.py:5109
-#: ../gramps/plugins/webreport/narrativeweb.py:6116
-#: ../gramps/plugins/webreport/narrativeweb.py:7805
-#: ../gramps/plugins/webreport/narrativeweb.py:8697
-#: ../gramps/plugins/webreport/narrativeweb.py:9224
-#: ../gramps/plugins/webreport/narrativeweb.py:9277
-#: ../gramps/plugins/webreport/narrativeweb.py:9297
-#: ../gramps/plugins/webreport/narrativeweb.py:9306
-#: ../gramps/plugins/webreport/narrativeweb.py:9348
+#: ../gramps/plugins/webreport/narrativeweb.py:3486
+#: ../gramps/plugins/webreport/narrativeweb.py:3820
+#: ../gramps/plugins/webreport/narrativeweb.py:4201
+#: ../gramps/plugins/webreport/narrativeweb.py:4866
+#: ../gramps/plugins/webreport/narrativeweb.py:5107
+#: ../gramps/plugins/webreport/narrativeweb.py:6114
+#: ../gramps/plugins/webreport/narrativeweb.py:7803
+#: ../gramps/plugins/webreport/narrativeweb.py:8695
+#: ../gramps/plugins/webreport/narrativeweb.py:9222
+#: ../gramps/plugins/webreport/narrativeweb.py:9275
+#: ../gramps/plugins/webreport/narrativeweb.py:9295
+#: ../gramps/plugins/webreport/narrativeweb.py:9304
+#: ../gramps/plugins/webreport/narrativeweb.py:9346
 msgid "Narrated Web Site Report"
 msgstr "Websiteverslag"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3492
+#: ../gramps/plugins/webreport/narrativeweb.py:3487
 msgid "Creating family pages..."
 msgstr "Gezinspagina's aanmaken..."
 
 #. Families list page message
-#: ../gramps/plugins/webreport/narrativeweb.py:3523
+#: ../gramps/plugins/webreport/narrativeweb.py:3518
 msgid ""
 "This page contains an index of all the families/ relationships in the "
 "database, sorted by their family name/ surname. Clicking on a person&#8217;s "
@@ -35607,23 +35573,23 @@ msgstr ""
 "gegevensbestand, gesorteerd op hun familienaam/achternaam. Door een naam van "
 "een persoon te klikken gaat u naar de pagina van hun gezin/verwantschap."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3569
-#: ../gramps/plugins/webreport/narrativeweb.py:3886
-#: ../gramps/plugins/webreport/narrativeweb.py:4263
-#: ../gramps/plugins/webreport/narrativeweb.py:4611
+#: ../gramps/plugins/webreport/narrativeweb.py:3564
+#: ../gramps/plugins/webreport/narrativeweb.py:3881
+#: ../gramps/plugins/webreport/narrativeweb.py:4261
+#: ../gramps/plugins/webreport/narrativeweb.py:4609
 msgid "Letter"
 msgstr "Letter"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3615
+#: ../gramps/plugins/webreport/narrativeweb.py:3610
 msgid "Families beginning with letter "
 msgstr "Gezinnen die beginnen met de letter "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3826
+#: ../gramps/plugins/webreport/narrativeweb.py:3821
 msgid "Creating place pages"
 msgstr "Plaats-pagina's aanmaken"
 
 #. place list page message
-#: ../gramps/plugins/webreport/narrativeweb.py:3858
+#: ../gramps/plugins/webreport/narrativeweb.py:3853
 msgid ""
 "This page contains an index of all the places in the database, sorted by "
 "their title. Clicking on a place&#8217;s title will take you to that "
@@ -35634,25 +35600,25 @@ msgstr ""
 "locatie."
 
 # Plaatsnaam
-#: ../gramps/plugins/webreport/narrativeweb.py:3887
+#: ../gramps/plugins/webreport/narrativeweb.py:3882
 msgid "Place Name | Name"
 msgstr "Naam"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3935
+#: ../gramps/plugins/webreport/narrativeweb.py:3930
 #, python-format
 msgid "Places beginning with letter %s"
 msgstr "Locaties met de letter %s"
 
 #. section title
-#: ../gramps/plugins/webreport/narrativeweb.py:4099
+#: ../gramps/plugins/webreport/narrativeweb.py:4098
 msgid "Place Map"
 msgstr "Locatiekaart"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4204
+#: ../gramps/plugins/webreport/narrativeweb.py:4202
 msgid "Creating event pages"
 msgstr "Gebeurtenissenpagina's worden aangemaakt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4236
+#: ../gramps/plugins/webreport/narrativeweb.py:4234
 msgid ""
 "This page contains an index of all the events in the database, sorted by "
 "their type and date (if one is present). Clicking on an event&#8217;s Gramps "
@@ -35663,17 +35629,17 @@ msgstr ""
 "gebeurtenis&#8217;s gramps-id te klikken wordt de pagina van deze gebeurtenis "
 "geopend."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4333
+#: ../gramps/plugins/webreport/narrativeweb.py:4331
 #, python-format
 msgid "Event types beginning with letter %s"
 msgstr "Gebeurtenistypes die beginnen met de letter %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4573
+#: ../gramps/plugins/webreport/narrativeweb.py:4571
 msgid "Surnames by person count"
 msgstr "Telling Achternamen per persoon"
 
 #. page message
-#: ../gramps/plugins/webreport/narrativeweb.py:4580
+#: ../gramps/plugins/webreport/narrativeweb.py:4578
 msgid ""
 "This page contains an index of all the surnames in the database. Selecting a "
 "link will lead to a list of individuals in the database with this same "
@@ -35683,26 +35649,26 @@ msgstr ""
 "Door de link te selecteren, verkrijgt u een lijst van alle personen in het "
 "gegevensbestand met dezelfde achternaam."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4626
+#: ../gramps/plugins/webreport/narrativeweb.py:4624
 msgid "Number of People"
 msgstr "Aantal personen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4674
+#: ../gramps/plugins/webreport/narrativeweb.py:4672
 #, python-format
 msgid "Surnames beginning with letter %s"
 msgstr "Achternamen die beginnen met de letter %s"
 
 # Nog geen definieve vertaling gevonden. Dit verwijst naar eerste webpagina, dus beter: start
-#: ../gramps/plugins/webreport/narrativeweb.py:4780
+#: ../gramps/plugins/webreport/narrativeweb.py:4778
 #: ../gramps/plugins/webreport/webcal.py:569
 msgid "Home"
 msgstr "Startpagina"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4869
+#: ../gramps/plugins/webreport/narrativeweb.py:4867
 msgid "Creating source pages"
 msgstr "Bron-pagina's aanmaken"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4911
+#: ../gramps/plugins/webreport/narrativeweb.py:4909
 msgid ""
 "This page contains an index of all the sources in the database, sorted by "
 "their title. Clicking on a source&#8217;s title will take you to that "
@@ -35712,19 +35678,19 @@ msgstr ""
 "gesorteerd volgens titel. Aanklikken van de brontitel brengt u naar de "
 "bronpagina."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4930
+#: ../gramps/plugins/webreport/narrativeweb.py:4928
 msgid "Source Name|Name"
 msgstr "Naam"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5028
+#: ../gramps/plugins/webreport/narrativeweb.py:5026
 msgid "Publication information"
 msgstr "Publicatie-informatie"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5110
+#: ../gramps/plugins/webreport/narrativeweb.py:5108
 msgid "Creating media pages"
 msgstr "Mediapagina's aanmaken"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5158
+#: ../gramps/plugins/webreport/narrativeweb.py:5156
 msgid ""
 "This page contains an index of all the media objects in the database, sorted "
 "by their title. Clicking on the title will take you to that media "
@@ -35736,20 +35702,20 @@ msgstr ""
 "object&#8217;s pagina. Indien u boven het beeld informatie ziet over de "
 "beeldgrootte, kunt u op het beeld klikken om volledige weergave te zien. "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5183
+#: ../gramps/plugins/webreport/narrativeweb.py:5181
 msgid "Media | Name"
 msgstr "Naam"
 
 # Filteren? ik vermoed dat het hier om het znw gaat
-#: ../gramps/plugins/webreport/narrativeweb.py:5185
+#: ../gramps/plugins/webreport/narrativeweb.py:5183
 msgid "Mime Type"
 msgstr "Mime-type"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5245
+#: ../gramps/plugins/webreport/narrativeweb.py:5243
 msgid "Below unused media objects"
 msgstr "Onderstaand aantal ongebruikte media-objecten"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5367
+#: ../gramps/plugins/webreport/narrativeweb.py:5365
 #, python-format
 msgid ""
 "%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
@@ -35759,20 +35725,20 @@ msgstr ""
 "%(total_pages)d%(strong_end)s"
 
 #. missing media error message
-#: ../gramps/plugins/webreport/narrativeweb.py:5381
+#: ../gramps/plugins/webreport/narrativeweb.py:5379
 msgid "The file has been moved or deleted."
 msgstr "Het bestand is verplaatst of verwijderd."
 
 # Filteren? ik vermoed dat het hier om het znw gaat
-#: ../gramps/plugins/webreport/narrativeweb.py:5537
+#: ../gramps/plugins/webreport/narrativeweb.py:5535
 msgid "File Type"
 msgstr "Bestandstype"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5640
+#: ../gramps/plugins/webreport/narrativeweb.py:5638
 msgid "Missing media object:"
 msgstr "Ontbrekend media-object:"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5699
+#: ../gramps/plugins/webreport/narrativeweb.py:5697
 msgid ""
 "This page displays a indexed list of all the media objects in this database.  "
 "It is sorted by media title.  There is an index of all the media objects in "
@@ -35783,11 +35749,11 @@ msgstr ""
 "gesorteerd op titel. Door op een miniatuur te klikken gaat u naar de pagina "
 "van dit media-object."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5718
+#: ../gramps/plugins/webreport/narrativeweb.py:5716
 msgid "Thumbnail Preview"
 msgstr "Voorvertoning van de miniaturen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5897
+#: ../gramps/plugins/webreport/narrativeweb.py:5895
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
 "share a couple of files with you regarding their family.  If there are any "
@@ -35801,22 +35767,22 @@ msgstr ""
 "klikken. De 'download'-pagina en de bestanden hebben hetzelfde auteursrecht "
 "als de rest van deze web-pagina's."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5923
+#: ../gramps/plugins/webreport/narrativeweb.py:5921
 msgid "File Name"
 msgstr "Bestandsnaam"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5925
+#: ../gramps/plugins/webreport/narrativeweb.py:5923
 msgid "Last Modified"
 msgstr "Laatst veranderd op"
 
 # afzonderlijke/individuele
 # seperate/individual
-#: ../gramps/plugins/webreport/narrativeweb.py:6117
+#: ../gramps/plugins/webreport/narrativeweb.py:6115
 msgid "Creating individual pages"
 msgstr "Individuele pagina's maken"
 
 #. Individual List page message
-#: ../gramps/plugins/webreport/narrativeweb.py:6160
+#: ../gramps/plugins/webreport/narrativeweb.py:6158
 msgid ""
 "This page contains an index of all the individuals in the database, sorted by "
 "their last names. Selecting the person&#8217;s name will take you to that "
@@ -35826,18 +35792,18 @@ msgstr ""
 "gesorteerd op achternaam. Door een persoonsnaam te kiezen kunt u naar de "
 "pagina van deze persoon gaan."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6245
+#: ../gramps/plugins/webreport/narrativeweb.py:6243
 #, python-format
 msgid "Surnames %(surname)s beginning with letter %(letter)s"
 msgstr "Achternaam %(surname)s die beginnen met de letter %(letter)s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6747
+#: ../gramps/plugins/webreport/narrativeweb.py:6745
 #, python-format
 msgid "Tracking %s"
 msgstr "%s traceren"
 
 #. page description
-#: ../gramps/plugins/webreport/narrativeweb.py:6751
+#: ../gramps/plugins/webreport/narrativeweb.py:6749
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/ places. If you place your mouse over the marker it will display the "
@@ -35851,24 +35817,24 @@ msgstr ""
 "gesorteerd op datum (indien beschikbaar). Door te klikken op een "
 "locatie&#8217;s naam in de verwijzingen gaat u naar de pagina van die locatie."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6822
+#: ../gramps/plugins/webreport/narrativeweb.py:6820
 msgid "Drop Markers"
 msgstr "Merkpunten laten vallen"
 
 # Plaatsnaam
-#: ../gramps/plugins/webreport/narrativeweb.py:6847
+#: ../gramps/plugins/webreport/narrativeweb.py:6845
 msgid "Place Title"
 msgstr "Locatietitel"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7340
+#: ../gramps/plugins/webreport/narrativeweb.py:7338
 msgid "Call Name"
 msgstr "Roepnaam"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7358
+#: ../gramps/plugins/webreport/narrativeweb.py:7356
 msgid "Nick Name"
 msgstr "Bijnaam"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7404
+#: ../gramps/plugins/webreport/narrativeweb.py:7402
 msgid "Age at Death"
 msgstr "Leeftijd bij overlijden"
 
@@ -35876,35 +35842,35 @@ msgstr "Leeftijd bij overlijden"
 #. actually be StepFather-in-law), but it is too expensive to
 #. calculate out the correct relationship using the Relationship
 #. Calculator
-#: ../gramps/plugins/webreport/narrativeweb.py:7538
+#: ../gramps/plugins/webreport/narrativeweb.py:7536
 msgid "Stepfather"
 msgstr "Stiefvader"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7548
+#: ../gramps/plugins/webreport/narrativeweb.py:7546
 msgid "Stepmother"
 msgstr "Stiefmoeder"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7574
+#: ../gramps/plugins/webreport/narrativeweb.py:7572
 msgid "Not siblings"
 msgstr "Geen broers noch zussen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7654
+#: ../gramps/plugins/webreport/narrativeweb.py:7652
 msgid "Relation to the center person"
 msgstr "Verwantschap met de centrale persoon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7691
+#: ../gramps/plugins/webreport/narrativeweb.py:7689
 msgid "Relation to main person"
 msgstr "Verwantschap met de hoofdpersoon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7695
+#: ../gramps/plugins/webreport/narrativeweb.py:7693
 msgid "Relation within this family (if not by birth)"
 msgstr "Relatie in dit gezin (indien niet door geboorte)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7806
+#: ../gramps/plugins/webreport/narrativeweb.py:7804
 msgid "Creating repository pages"
 msgstr "Bibliotheekpagina's worden aangemaakt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7849
+#: ../gramps/plugins/webreport/narrativeweb.py:7847
 msgid ""
 "This page contains an index of all the repositories in the database, sorted "
 "by their title. Clicking on a repositories&#8217;s title will take you to "
@@ -35914,12 +35880,12 @@ msgstr ""
 "gesorteerd volgens titel. Aanklikken van de bibliotheek&#8217;s titel brengt "
 "u naar de bibliotheek&#8217;s pagina."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7867
+#: ../gramps/plugins/webreport/narrativeweb.py:7865
 msgid "Repository |Name"
 msgstr "Naam"
 
 #. Address Book Page message
-#: ../gramps/plugins/webreport/narrativeweb.py:8018
+#: ../gramps/plugins/webreport/narrativeweb.py:8016
 msgid ""
 "This page contains an index of all the individuals in the database, sorted by "
 "their surname, with one of the following: Address, Residence, or Web Links. "
@@ -35931,274 +35897,274 @@ msgstr ""
 "naam van een persoon te selecteren kunt u naar de adresboekpagina van deze "
 "persoon gaan."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8040
+#: ../gramps/plugins/webreport/narrativeweb.py:8038
 msgid "Full Name"
 msgstr "Volledige naam"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8204
+#: ../gramps/plugins/webreport/narrativeweb.py:8202
 msgid "Database overview"
 msgstr "Overzicht gegevensbestand"
 
 # webstek
-#: ../gramps/plugins/webreport/narrativeweb.py:8271
+#: ../gramps/plugins/webreport/narrativeweb.py:8269
 msgid "Narrative web content report for"
 msgstr "Verslag inhoud webstek voor"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8486
+#: ../gramps/plugins/webreport/narrativeweb.py:8484
 #, python-format
 msgid "Neither %(current)s nor %(parent)s are directories"
 msgstr "%(current)s noch %(parent)s zijn mappen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8495
-#: ../gramps/plugins/webreport/narrativeweb.py:8500
-#: ../gramps/plugins/webreport/narrativeweb.py:8513
-#: ../gramps/plugins/webreport/narrativeweb.py:8518
+#: ../gramps/plugins/webreport/narrativeweb.py:8493
+#: ../gramps/plugins/webreport/narrativeweb.py:8498
+#: ../gramps/plugins/webreport/narrativeweb.py:8511
+#: ../gramps/plugins/webreport/narrativeweb.py:8516
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "De map %s kon niet worden aangemaakt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8525
+#: ../gramps/plugins/webreport/narrativeweb.py:8523
 msgid "Invalid file name"
 msgstr "Ongeldige bestandsnaam"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8526
+#: ../gramps/plugins/webreport/narrativeweb.py:8524
 msgid "The archive file must be a file, not a directory"
 msgstr "Het archief moet een bestand zijn, geen map"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8661
+#: ../gramps/plugins/webreport/narrativeweb.py:8659
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
 msgstr "ID=%(grampsid)s, pad=%(dir)s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8666
+#: ../gramps/plugins/webreport/narrativeweb.py:8664
 msgid "Missing media objects:"
 msgstr "Ontbrekend media-objecten:"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8698
+#: ../gramps/plugins/webreport/narrativeweb.py:8696
 msgid "Constructing list of other objects..."
 msgstr "Een lijst van de andere objecten wordt aangemaakt..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8933
+#: ../gramps/plugins/webreport/narrativeweb.py:8931
 #, python-format
 msgid "Family of %(husband)s and %(spouse)s"
 msgstr "Gezin van %(husband)s en %(spouse)s"
 
 #. Only the name of the husband is known
 #. Only the name of the wife is known
-#: ../gramps/plugins/webreport/narrativeweb.py:8939
-#: ../gramps/plugins/webreport/narrativeweb.py:8943
+#: ../gramps/plugins/webreport/narrativeweb.py:8937
+#: ../gramps/plugins/webreport/narrativeweb.py:8941
 #, python-format
 msgid "Family of %s"
 msgstr "Gezin van %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9225
+#: ../gramps/plugins/webreport/narrativeweb.py:9223
 msgid "Creating GENDEX file"
 msgstr "Een GENDEX-bestand wordt aangemaakt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9278
+#: ../gramps/plugins/webreport/narrativeweb.py:9276
 msgid "Creating surname pages"
 msgstr "Familienaam-pagina's aanmaken"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9298
+#: ../gramps/plugins/webreport/narrativeweb.py:9296
 msgid "Creating thumbnail preview page..."
 msgstr "Pagina's voor de voorvertoning van de miniaturen aanmaken..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9307
+#: ../gramps/plugins/webreport/narrativeweb.py:9305
 msgid "Creating statistics page..."
 msgstr "Statistiekpagina aanmaken..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9349
+#: ../gramps/plugins/webreport/narrativeweb.py:9347
 msgid "Creating address book pages ..."
 msgstr "Adressenboekenpagina's worden aangemaakt ..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9739
+#: ../gramps/plugins/webreport/narrativeweb.py:9737
 msgid "Store web pages in .tar.gz archive"
 msgstr "Sla de webpagina's op in een .tar.gz archief"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9741
+#: ../gramps/plugins/webreport/narrativeweb.py:9739
 msgid "Whether to store the web pages in an archive file"
 msgstr "Sla de webpagina's op in een archiefbestand"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9752
+#: ../gramps/plugins/webreport/narrativeweb.py:9750
 #: ../gramps/plugins/webreport/webcal.py:1615
 msgid "The destination directory for the web files"
 msgstr "De doelmap voor de webpagina's"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9758
+#: ../gramps/plugins/webreport/narrativeweb.py:9756
 msgid "My Family Tree"
 msgstr "Mijn stamboom"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9758
+#: ../gramps/plugins/webreport/narrativeweb.py:9756
 msgid "Web site title"
 msgstr "Websitetitel"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9759
+#: ../gramps/plugins/webreport/narrativeweb.py:9757
 msgid "The title of the web site"
 msgstr "De titel voor de website"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9764
+#: ../gramps/plugins/webreport/narrativeweb.py:9762
 msgid "Select filter to restrict people that appear on web site"
 msgstr ""
 "Kies een filter om het aantal personen te beperken dat getoond wordt op de "
 "website"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9784
+#: ../gramps/plugins/webreport/narrativeweb.py:9782
 msgid "Html options"
 msgstr "Html opties"
 
 # Bestandsuitgang/extensie
-#: ../gramps/plugins/webreport/narrativeweb.py:9787
+#: ../gramps/plugins/webreport/narrativeweb.py:9785
 #: ../gramps/plugins/webreport/webcal.py:1636
 msgid "File extension"
 msgstr "Bestandsextensie"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9790
+#: ../gramps/plugins/webreport/narrativeweb.py:9788
 #: ../gramps/plugins/webreport/webcal.py:1639
 msgid "The extension to be used for the web files"
 msgstr "De gebruikte extensie voor de webpagina's"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9793
+#: ../gramps/plugins/webreport/narrativeweb.py:9791
 #: ../gramps/plugins/webreport/webcal.py:1642
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9796
+#: ../gramps/plugins/webreport/narrativeweb.py:9794
 #: ../gramps/plugins/webreport/webcal.py:1645
 msgid "The copyright to be used for the web files"
 msgstr "De licentie waaronder de webpagina's worden weergegeven"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9799
+#: ../gramps/plugins/webreport/narrativeweb.py:9797
 #: ../gramps/plugins/webreport/webcal.py:1651
 msgid "StyleSheet"
 msgstr "Stijlblad"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9804
+#: ../gramps/plugins/webreport/narrativeweb.py:9802
 #: ../gramps/plugins/webreport/webcal.py:1654
 msgid "The stylesheet to be used for the web pages"
 msgstr "Het stijlblad dat wordt gebruikt voor de webpagina's"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9809
+#: ../gramps/plugins/webreport/narrativeweb.py:9807
 msgid "Horizontal -- Default"
 msgstr "Horizontaal  -- Standaard"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9810
+#: ../gramps/plugins/webreport/narrativeweb.py:9808
 msgid "Vertical   -- Left Side"
 msgstr "Vertikaal - linkse kant"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9811
+#: ../gramps/plugins/webreport/narrativeweb.py:9809
 msgid "Fade       -- WebKit Browsers Only"
 msgstr "Vervagen        -- enkel 'WebKit'-browsers"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9812
-#: ../gramps/plugins/webreport/narrativeweb.py:9826
+#: ../gramps/plugins/webreport/narrativeweb.py:9810
+#: ../gramps/plugins/webreport/narrativeweb.py:9824
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr "Uitvalmenu   -- enkel 'WebKit'-browsers"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9814
+#: ../gramps/plugins/webreport/narrativeweb.py:9812
 msgid "Navigation Menu Layout"
 msgstr "Navigatiemenu lay-out"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9818
+#: ../gramps/plugins/webreport/narrativeweb.py:9816
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Lay-out voor de navigatiemenu's kiezen."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9825
+#: ../gramps/plugins/webreport/narrativeweb.py:9823
 msgid "Normal Outline Style"
 msgstr "De stijl gebruikt voor gewone tekst"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
-#: ../gramps/plugins/webreport/narrativeweb.py:9829
+#: ../gramps/plugins/webreport/narrativeweb.py:9827
 msgid "Citation Referents Layout"
 msgstr "Lay-out voor de citaatverwijzingen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9833
+#: ../gramps/plugins/webreport/narrativeweb.py:9831
 msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
 msgstr ""
 "De standaard lay-out voor de sectie  van de citaatverwijzingen van de "
 "bronpagina"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9837
+#: ../gramps/plugins/webreport/narrativeweb.py:9835
 msgid "Include ancestor's tree"
 msgstr "Vooroudergrafiek bijvoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9838
+#: ../gramps/plugins/webreport/narrativeweb.py:9836
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Al of niet een vooroudergrafiek toevoegen aan ieder afzonderlijk blad"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9843
+#: ../gramps/plugins/webreport/narrativeweb.py:9841
 msgid "Graph generations"
 msgstr "Grafiekgeneraties"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9844
+#: ../gramps/plugins/webreport/narrativeweb.py:9842
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Het aantal generaties dat getoond wordt in het verslag"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9849
+#: ../gramps/plugins/webreport/narrativeweb.py:9847
 msgid "This is a secure site (https)"
 msgstr "Dit is een veilige webstek (https)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9851
+#: ../gramps/plugins/webreport/narrativeweb.py:9849
 msgid "Whether to use http:// or https://"
 msgstr "Al dan niet http:// of https://"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9867
+#: ../gramps/plugins/webreport/narrativeweb.py:9865
 msgid "Suppress Gramps ID"
 msgstr "Onderdruk Gramps-ID"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9868
+#: ../gramps/plugins/webreport/narrativeweb.py:9866
 msgid "Whether to include the Gramps ID of objects"
 msgstr "Al of niet de Gramps-ID van objecten toevoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9873
+#: ../gramps/plugins/webreport/narrativeweb.py:9871
 msgid "Sort all children in birth order"
 msgstr "Kinderen volgens geboorte ordenen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9875
+#: ../gramps/plugins/webreport/narrativeweb.py:9873
 msgid "Whether to display children in birth order or in entry order?"
 msgstr "Kinderen sorteren volgens geboortedatum of ingavevolgorde?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9882
+#: ../gramps/plugins/webreport/narrativeweb.py:9880
 msgid "Page Generation"
 msgstr "Pagina genereren"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9885
+#: ../gramps/plugins/webreport/narrativeweb.py:9883
 msgid "Home page note"
 msgstr "Opmerking Home Page website"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9886
+#: ../gramps/plugins/webreport/narrativeweb.py:9884
 msgid "A note to be used on the home page"
 msgstr "Een opmerking gebruikt op de home page"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9889
+#: ../gramps/plugins/webreport/narrativeweb.py:9887
 msgid "Home page image"
 msgstr "Afbeelding voor de beginpagina"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9890
+#: ../gramps/plugins/webreport/narrativeweb.py:9888
 msgid "An image to be used on the home page"
 msgstr "Een afbeelding gebruiken voor de beginpagina"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9893
+#: ../gramps/plugins/webreport/narrativeweb.py:9891
 msgid "Introduction note"
 msgstr "Inleidingsopmerking"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9894
+#: ../gramps/plugins/webreport/narrativeweb.py:9892
 msgid "A note to be used as the introduction"
 msgstr "Een opmerking gebruiken als inleiding"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9897
+#: ../gramps/plugins/webreport/narrativeweb.py:9895
 msgid "Introduction image"
 msgstr "Introductieafbeelding"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9898
+#: ../gramps/plugins/webreport/narrativeweb.py:9896
 msgid "An image to be used as the introduction"
 msgstr "Een afbeelding gebruiken als inleiding"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9901
+#: ../gramps/plugins/webreport/narrativeweb.py:9899
 msgid "Publisher contact note"
 msgstr "Contactgegevens uitgever"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9902
+#: ../gramps/plugins/webreport/narrativeweb.py:9900
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -36208,11 +36174,11 @@ msgstr ""
 "Indien geen uitgeversinformatie wordt opgegeven,\n"
 "wordt er ook geen contactpagina aangemaakt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9908
+#: ../gramps/plugins/webreport/narrativeweb.py:9906
 msgid "Publisher contact image"
 msgstr "Afbeelding uitgever"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9909
+#: ../gramps/plugins/webreport/narrativeweb.py:9907
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -36222,47 +36188,47 @@ msgstr ""
 "Indien er geen uitgeversinformatie wordt opgegeven,\n"
 "wordt er ook geen contactpagina aangemaakt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9915
+#: ../gramps/plugins/webreport/narrativeweb.py:9913
 msgid "HTML user header"
 msgstr "Zelf aangemaakte HTML-hoofding"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9916
+#: ../gramps/plugins/webreport/narrativeweb.py:9914
 msgid "A note to be used as the page header"
 msgstr "Een opmerking gebruiken als paginahoofding"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9919
+#: ../gramps/plugins/webreport/narrativeweb.py:9917
 msgid "HTML user footer"
 msgstr "HTML gebruiker voetnoot"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9920
+#: ../gramps/plugins/webreport/narrativeweb.py:9918
 msgid "A note to be used as the page footer"
 msgstr "Een opmerking gebruiken voor de voetnoot van de pagina"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9927
+#: ../gramps/plugins/webreport/narrativeweb.py:9925
 msgid "Images Generation"
 msgstr "Afbeeldingen genereren"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9930
+#: ../gramps/plugins/webreport/narrativeweb.py:9928
 msgid "Include images and media objects"
 msgstr "Plaatjes en media-objecten bijvoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9932
+#: ../gramps/plugins/webreport/narrativeweb.py:9930
 msgid "Whether to include a gallery of media objects"
 msgstr "Al of niet een galerij van de media-objecten toevoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9938
+#: ../gramps/plugins/webreport/narrativeweb.py:9936
 msgid "Include unused images and media objects"
 msgstr "Ongebruikte plaatjes en media-objecten bijvoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9939
+#: ../gramps/plugins/webreport/narrativeweb.py:9937
 msgid "Whether to include unused or unreferenced media objects"
 msgstr "Al of niet niet gebruikte of ongerefereerde media-objecten toevoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9944
+#: ../gramps/plugins/webreport/narrativeweb.py:9942
 msgid "Create and only use thumbnail- sized images"
 msgstr "Enkel miniaturen aanmaken en gebruiken"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9946
+#: ../gramps/plugins/webreport/narrativeweb.py:9944
 msgid ""
 "This option allows you to create only thumbnail images instead of the full-"
 "sized images on the Media Page. This will allow you to have a much smaller "
@@ -36272,11 +36238,11 @@ msgstr ""
 "werken met afbeeldingen op volledige grootte. Zo kunt u het totale volume van "
 "de grootte van de 'upload' naar uw site beperken."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9955
+#: ../gramps/plugins/webreport/narrativeweb.py:9953
 msgid "Max width of initial image"
 msgstr "Max breedte van de eerste afbeelding"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9957
+#: ../gramps/plugins/webreport/narrativeweb.py:9955
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page. Set to 0 for no limit."
@@ -36284,11 +36250,11 @@ msgstr ""
 "Stel de maximale breedte van een afbeelding voor de mediapagina in. Zet deze "
 "op 0 om geen limiet in te stellen."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9962
+#: ../gramps/plugins/webreport/narrativeweb.py:9960
 msgid "Max height of initial image"
 msgstr "Max hoogte van de eerste afbeelding"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9964
+#: ../gramps/plugins/webreport/narrativeweb.py:9962
 msgid ""
 "This allows you to set the maximum height of the image shown on the media "
 "page. Set to 0 for no limit."
@@ -36296,152 +36262,152 @@ msgstr ""
 "Stel de maximale hoogte van een afbeelding voor de mediapagina in. Zet deze "
 "op 0 om geen limiet in te stellen."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9977
+#: ../gramps/plugins/webreport/narrativeweb.py:9975
 msgid "Include download page"
 msgstr "Downloadpagina bijvoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9979
+#: ../gramps/plugins/webreport/narrativeweb.py:9977
 msgid "Whether to include a database download option"
 msgstr ""
 "Al of niet een optie toevoegen om het gegevensbestand te kunnen downloaden"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9984
-#: ../gramps/plugins/webreport/narrativeweb.py:9996
+#: ../gramps/plugins/webreport/narrativeweb.py:9982
+#: ../gramps/plugins/webreport/narrativeweb.py:9994
 msgid "Download Filename"
 msgstr "Bestandnaam downloaden"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9987
-#: ../gramps/plugins/webreport/narrativeweb.py:9999
+#: ../gramps/plugins/webreport/narrativeweb.py:9985
+#: ../gramps/plugins/webreport/narrativeweb.py:9997
 msgid "File to be used for downloading of database"
 msgstr "Welk bestand gebruiken om het gegevensbestand op te laden"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9990
-#: ../gramps/plugins/webreport/narrativeweb.py:10002
+#: ../gramps/plugins/webreport/narrativeweb.py:9988
+#: ../gramps/plugins/webreport/narrativeweb.py:10000
 msgid "Description for download"
 msgstr "Beschrijving voor download"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9991
+#: ../gramps/plugins/webreport/narrativeweb.py:9989
 msgid "Smith Family Tree"
 msgstr "Stamboom van Smith"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9992
-#: ../gramps/plugins/webreport/narrativeweb.py:10004
+#: ../gramps/plugins/webreport/narrativeweb.py:9990
+#: ../gramps/plugins/webreport/narrativeweb.py:10002
 msgid "Give a description for this file."
 msgstr "Geef een beschrijving voor dit bestand."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10003
+#: ../gramps/plugins/webreport/narrativeweb.py:10001
 msgid "Johnson Family Tree"
 msgstr "Stamboom van Johnson"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10013
+#: ../gramps/plugins/webreport/narrativeweb.py:10011
 #: ../gramps/plugins/webreport/webcal.py:1826
 msgid "Advanced Options"
 msgstr "Uitgebreide opties"
 
 # Doping
-#: ../gramps/plugins/webreport/narrativeweb.py:10016
+#: ../gramps/plugins/webreport/narrativeweb.py:10014
 #: ../gramps/plugins/webreport/webcal.py:1828
 msgid "Character set encoding"
 msgstr "Tekenset codering"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10020
+#: ../gramps/plugins/webreport/narrativeweb.py:10018
 #: ../gramps/plugins/webreport/webcal.py:1832
 msgid "The encoding to be used for the web files"
 msgstr "De gebruikte codering voor de webpagina's"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10024
+#: ../gramps/plugins/webreport/narrativeweb.py:10022
 msgid "Include link to active person on every page"
 msgstr "Een link voorzien naar de actieve persoon op iedere pagina"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10026
+#: ../gramps/plugins/webreport/narrativeweb.py:10024
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr ""
 "Een link voorzien naar de actieve persoon (indien ze een webpagina hebben)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10030
+#: ../gramps/plugins/webreport/narrativeweb.py:10028
 msgid "Include a column for birth dates on the index pages"
 msgstr "Een kolom voorzien in de indexpagina's voor de geboortedatums"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10031
+#: ../gramps/plugins/webreport/narrativeweb.py:10029
 msgid "Whether to include a birth column"
 msgstr "Al of niet een geboortekolom toevoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10035
+#: ../gramps/plugins/webreport/narrativeweb.py:10033
 msgid "Include a column for death dates on the index pages"
 msgstr "Een kolom voorzien in de indexpagina's voor de overlijdensdatums"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10036
+#: ../gramps/plugins/webreport/narrativeweb.py:10034
 msgid "Whether to include a death column"
 msgstr "Al of niet een overlijdenskolom toevoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10039
+#: ../gramps/plugins/webreport/narrativeweb.py:10037
 msgid "Include a column for partners on the index pages"
 msgstr "Een kolom voorzien in de indexpagina's voor de partners"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10041
+#: ../gramps/plugins/webreport/narrativeweb.py:10039
 msgid "Whether to include a partners column"
 msgstr "Al of niet een partnerkolom toevoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10044
+#: ../gramps/plugins/webreport/narrativeweb.py:10042
 msgid "Include a column for parents on the index pages"
 msgstr "Een kolom voorzien in de indexpagina's voor de ouders"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10046
+#: ../gramps/plugins/webreport/narrativeweb.py:10044
 msgid "Whether to include a parents column"
 msgstr "Al of niet een ouderkolom toevoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10050
+#: ../gramps/plugins/webreport/narrativeweb.py:10048
 msgid "Include half and/ or step-siblings on the individual pages"
 msgstr ""
 "Halfbroers, halfzusters, stiefbroers en stiefzussen op afzonderlijke pagina's "
 "toevoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10053
+#: ../gramps/plugins/webreport/narrativeweb.py:10051
 msgid ""
 "Whether to include half and/ or step-siblings with the parents and siblings"
 msgstr ""
 "Al of niet halfbroers, halfzussen, stiefbroers en stiefzussen aan de ouders "
 "en nakomelingen toevoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10064
+#: ../gramps/plugins/webreport/narrativeweb.py:10062
 msgid "Include family pages"
 msgstr "Familiepagina's bijvoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10065
+#: ../gramps/plugins/webreport/narrativeweb.py:10063
 msgid "Whether or not to include family pages."
 msgstr "Al of niet familiepagina's toevoegen."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10068
+#: ../gramps/plugins/webreport/narrativeweb.py:10066
 msgid "Include event pages"
 msgstr "Gebeurtenissenpagina's bijvoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10070
+#: ../gramps/plugins/webreport/narrativeweb.py:10068
 msgid "Add a complete events list and relevant pages or not"
 msgstr ""
 "Al of niet toevoegen van een volledige gebeurtenissenlijst en relevante "
 "pagina's"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10073
+#: ../gramps/plugins/webreport/narrativeweb.py:10071
 msgid "Include repository pages"
 msgstr "Bibliothekenpagina's bijvoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10075
+#: ../gramps/plugins/webreport/narrativeweb.py:10073
 msgid "Whether or not to include the Repository Pages."
 msgstr "Al of niet bibliotheekpagina's toevoegen."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10079
+#: ../gramps/plugins/webreport/narrativeweb.py:10077
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "GENDEX-bestand bijvoegen (/gendex.txt)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10080
+#: ../gramps/plugins/webreport/narrativeweb.py:10078
 msgid "Whether to include a GENDEX file or not"
 msgstr "Al of niet een GENDEX-bestand toevoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10083
+#: ../gramps/plugins/webreport/narrativeweb.py:10081
 msgid "Include address book pages"
 msgstr "Adressenpagina's bijvoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10084
+#: ../gramps/plugins/webreport/narrativeweb.py:10082
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and website "
 "addresses and personal address/ residence events."
@@ -36450,29 +36416,29 @@ msgstr ""
 "website-adressen bevatten en ook persoonlijke adres- of "
 "residentiegebeurtenissen."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10094
+#: ../gramps/plugins/webreport/narrativeweb.py:10092
 msgid "Place Map Options"
 msgstr "Locatiekaartopties"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10099
+#: ../gramps/plugins/webreport/narrativeweb.py:10097
 msgid "Google"
 msgstr "Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10100
+#: ../gramps/plugins/webreport/narrativeweb.py:10098
 msgid "Map Service"
 msgstr "Kaartendienst"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10104
+#: ../gramps/plugins/webreport/narrativeweb.py:10102
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr ""
 "Welke kaartendienst wenst u te gebruiken voor de pagina's van de "
 "locatiekaarten."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10110
+#: ../gramps/plugins/webreport/narrativeweb.py:10108
 msgid "Include Place map on Place Pages"
 msgstr "Locatiekaart op de locatiepagina's bijvoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10112
+#: ../gramps/plugins/webreport/narrativeweb.py:10110
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
@@ -36480,11 +36446,11 @@ msgstr ""
 "Al of niet een locatiekaart op de locatiepagina's toevoegen indien lengte/"
 "breedte gekend zijn."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10117
+#: ../gramps/plugins/webreport/narrativeweb.py:10115
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr "Gezinskaartpagina's waarop alle locaties worden getoond toevoegen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10121
+#: ../gramps/plugins/webreport/narrativeweb.py:10119
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
@@ -36492,23 +36458,23 @@ msgstr ""
 "Al dan niet een individuele kaartpagina aanmaken waar alle locaties op "
 "getoond worden. Zo kunt u zien hoe uw familie rondtrok in een land."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10129
+#: ../gramps/plugins/webreport/narrativeweb.py:10127
 msgid "Family Links"
 msgstr "Gezinsverwijzingen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10130
+#: ../gramps/plugins/webreport/narrativeweb.py:10128
 msgid "Drop"
 msgstr "Drop"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10131
+#: ../gramps/plugins/webreport/narrativeweb.py:10129
 msgid "Markers"
 msgstr "Merkpunten"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10132
+#: ../gramps/plugins/webreport/narrativeweb.py:10130
 msgid "Google/ FamilyMap Option"
 msgstr "Google/ Gezinskaart optie"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10137
+#: ../gramps/plugins/webreport/narrativeweb.py:10135
 msgid ""
 "Select which option that you would like to have for the Google Maps Family "
 "Map pages..."
@@ -36516,42 +36482,42 @@ msgstr ""
 "Welke optie wenst u te gebruiken voor de pagina's van de Google Maps "
 "familiekaarten..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10141
+#: ../gramps/plugins/webreport/narrativeweb.py:10139
 msgid "Google maps API key"
 msgstr "GoogleMaps API sleutel"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10142
+#: ../gramps/plugins/webreport/narrativeweb.py:10140
 msgid "The API key used for the Google maps"
 msgstr "De gebruikte API sleutel voor de GoogleMaps"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10151
+#: ../gramps/plugins/webreport/narrativeweb.py:10149
 msgid "Other inclusion (CMS, Web Calendar, Php)"
 msgstr "Andere toevoegingen ( CMS, Web Calendar, Php)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10155
+#: ../gramps/plugins/webreport/narrativeweb.py:10153
 msgid "Do we include these pages in a cms web ?"
 msgstr "Deze pagina's in een 'cms web' toeveogen?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10159
-#: ../gramps/plugins/webreport/narrativeweb.py:10176
+#: ../gramps/plugins/webreport/narrativeweb.py:10157
+#: ../gramps/plugins/webreport/narrativeweb.py:10174
 msgid "URI"
 msgstr "URI"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10165
+#: ../gramps/plugins/webreport/narrativeweb.py:10163
 msgid "Where do you place your web site ? default = /NAVWEB"
 msgstr "Waar uw webstek plaatsen? standaard = /NAVWEB"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10172
+#: ../gramps/plugins/webreport/narrativeweb.py:10170
 msgid "Do we include the web calendar ?"
 msgstr "Webkalender toevoegen?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10182
+#: ../gramps/plugins/webreport/narrativeweb.py:10180
 msgid "Where do you place your web site ? default = /WEBCAL"
 msgstr "Waar uw webstek plaatsen? standaard = /WEBCAL"
 
 #. adding title to hyperlink menu for screen readers and
 #. braille writers
-#: ../gramps/plugins/webreport/narrativeweb.py:10671
+#: ../gramps/plugins/webreport/narrativeweb.py:10669
 #, python-format
 msgid "Alphabet Menu: %s"
 msgstr "Alfabetisch menu: %s"
@@ -36922,6 +36888,9 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:153
 msgid "No style sheet"
 msgstr "Geen stijlblad"
+
+#~ msgid "11"
+#~ msgstr "11"
 
 #~ msgid "Remove the selected person"
 #~ msgstr "De geselecteerde persoon verwijderen"
@@ -39220,10 +39189,6 @@ msgstr "Geen stijlblad"
 #, fuzzy
 #~ msgid "General Data"
 #~ msgstr "Algemeen"
-
-#, fuzzy
-#~ msgid "Description: "
-#~ msgstr "Beschrijving:"
 
 #, fuzzy
 #~ msgid "Copyright: "
