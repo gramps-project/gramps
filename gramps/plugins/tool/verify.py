@@ -365,7 +365,7 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
 
         try:
             self.v_r = VerifyResults(self.dbstate, self.uistate, self.track,
-                                     self.top)
+                                     self.top, self.close)
             self.add_results = self.v_r.add_results
             self.v_r.load_ignored(self.db.full_name)
         except WindowActiveError:
@@ -494,24 +494,22 @@ class VerifyResults(ManagedWindow):
     TRUE_COL = 8
     SHOW_COL = 9
 
-    def __init__(self, dbstate, uistate, track, glade):
+    def __init__(self, dbstate, uistate, track, glade, closeall):
         """ initialize things """
         self.title = _('Data Verification Results')
 
         ManagedWindow.__init__(self, uistate, track, self.__class__)
 
         self.dbstate = dbstate
+        self.closeall = closeall
         self._set_filename()
         self.top = glade
         window = self.top.get_object("verify_result")
         self.set_window(window, self.top.get_object('title2'), self.title)
         self.setup_configs('interface.verifyresults', 500, 300)
-
-        self.top.connect_signals({
-            "destroy_passed_object"  : self.close,
-            "on_verify_ok_clicked"   : self.__dummy,
-            "on_help_clicked"        : self.__dummy,
-            })
+        window.connect("close", self.close)
+        close_btn = self.top.get_object("closebutton1")
+        close_btn.connect("clicked", self.close)
 
         self.warn_tree = self.top.get_object('warn_tree')
         self.warn_tree.connect('button_press_event', self.double_click)
@@ -584,12 +582,6 @@ class VerifyResults(ManagedWindow):
         self.show()
         self.window_shown = False
 
-    def __dummy(self, obj):
-        """dummy callback, needed because VerifyResults is in same glade file
-        as Verify, so callbacks of Verify must be defined.
-        """
-        pass
-
     def _set_filename(self):
         """ set the file where people who will be ignored will be kept """
         db_filename = self.dbstate.db.get_save_path()
@@ -661,6 +653,7 @@ class VerifyResults(ManagedWindow):
         self.save_ignored(new_ignores)
 
         ManagedWindow.close(self, *obj)
+        self.closeall()
 
     def hide_toggled(self, button):
         if button.get_active():
