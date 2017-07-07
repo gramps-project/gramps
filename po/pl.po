@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 13:00-0700\n"
-"PO-Revision-Date: 2014-06-04 01:28+0100\n"
+"PO-Revision-Date: 2016-11-20 00:20+0100\n"
 "Last-Translator: Łukasz Rymarczyk <yenidai@poczta.onet.pl>\n"
 "Language-Team: Łukasz Rymarczyk <yenidai@poczta.onet.pl>\n"
 "Language: pl_PL\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.6\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -6300,8 +6300,7 @@ msgstr "Kasta"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:75
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:101
-#: ../gramps/gui/glade/rule.glade:934
-#: ../gramps/gui/glade/styleeditor.glade:262
+#: ../gramps/gui/glade/rule.glade:934 ../gramps/gui/glade/styleeditor.glade:262
 #: ../gramps/gui/plug/_windows.py:130 ../gramps/gui/plug/_windows.py:239
 #: ../gramps/gui/plug/_windows.py:607 ../gramps/gui/plug/_windows.py:1084
 #: ../gramps/gui/selectors/selectevent.py:74
@@ -6624,8 +6623,7 @@ msgstr "Zdarzenia życiowe"
 #: ../gramps/gui/configure.py:531
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
-#: ../gramps/gui/editors/editfamily.py:499
-#: ../gramps/gui/editors/editlink.py:91
+#: ../gramps/gui/editors/editfamily.py:499 ../gramps/gui/editors/editlink.py:91
 #: ../gramps/gui/editors/filtereditor.py:294
 #: ../gramps/gui/glade/editldsord.glade:267
 #: ../gramps/plugins/export/exportcsv.py:541
@@ -7272,8 +7270,7 @@ msgstr "Cytaty"
 #: ../gramps/plugins/quickview/filterbyname.py:137
 #: ../gramps/plugins/textreport/indivcomplete.py:251
 #: ../gramps/plugins/textreport/tagreport.py:484
-#: ../gramps/plugins/view/noteview.py:110
-#: ../gramps/plugins/view/view.gpr.py:95
+#: ../gramps/plugins/view/noteview.py:110 ../gramps/plugins/view/view.gpr.py:95
 #: ../gramps/plugins/view/view.gpr.py:103
 #: ../gramps/plugins/webreport/narrativeweb.py:378
 #: ../gramps/plugins/webreport/narrativeweb.py:1039
@@ -7416,8 +7413,8 @@ msgstr "Atrybuty"
 #: ../gramps/plugins/view/citationtreeview.py:97
 #: ../gramps/plugins/view/eventview.py:87
 #: ../gramps/plugins/view/familyview.py:84
-#: ../gramps/plugins/view/mediaview.py:99
-#: ../gramps/plugins/view/noteview.py:82 ../gramps/plugins/view/repoview.py:97
+#: ../gramps/plugins/view/mediaview.py:99 ../gramps/plugins/view/noteview.py:82
+#: ../gramps/plugins/view/repoview.py:97
 #: ../gramps/plugins/view/sourceview.py:87
 msgid "Private"
 msgstr "Poufny"
@@ -7568,8 +7565,8 @@ msgstr "Tytuł"
 #: ../gramps/plugins/tool/patchnames.py:402
 #: ../gramps/plugins/tool/sortevents.py:55
 #: ../gramps/plugins/view/eventview.py:84
-#: ../gramps/plugins/view/mediaview.py:96
-#: ../gramps/plugins/view/noteview.py:81 ../gramps/plugins/view/repoview.py:87
+#: ../gramps/plugins/view/mediaview.py:96 ../gramps/plugins/view/noteview.py:81
+#: ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/webreport/narrativeweb.py:390
 #: ../gramps/plugins/webreport/narrativeweb.py:1350
 #: ../gramps/plugins/webreport/narrativeweb.py:1670
@@ -7862,8 +7859,7 @@ msgstr "Modyfikuj odwołanie"
 msgid "Event references"
 msgstr "Odwołanie do zdarzenia"
 
-#: ../gramps/gen/lib/person.py:253
-#: ../gramps/plugins/graph/gvfamilylines.py:264
+#: ../gramps/gen/lib/person.py:253 ../gramps/plugins/graph/gvfamilylines.py:264
 #: ../gramps/plugins/graph/gvrelgraph.py:794
 #: ../gramps/plugins/quickview/filterbyname.py:94
 #: ../gramps/plugins/quickview/filterbyname.py:119
@@ -8222,8 +8218,7 @@ msgstr "Połącz rodziny"
 msgid "Merge Media Objects"
 msgstr "Połącz obiekty medialne"
 
-#: ../gramps/gen/merge/mergenotequery.py:58
-#: ../gramps/gui/merge/mergenote.py:66
+#: ../gramps/gen/merge/mergenotequery.py:58 ../gramps/gui/merge/mergenote.py:66
 msgid "Merge Notes"
 msgstr "Połącz notatki"
 
@@ -8723,8 +8718,7 @@ msgstr ""
 #. 3
 #: ../gramps/gen/plug/docgen/graphdoc.py:244 ../gramps/gui/clipboard.py:394
 #: ../gramps/gui/configure.py:545 ../gramps/gui/editors/editlink.py:93
-#: ../gramps/gui/editors/editmedia.py:98
-#: ../gramps/gui/editors/editmedia.py:183
+#: ../gramps/gui/editors/editmedia.py:98 ../gramps/gui/editors/editmedia.py:183
 #: ../gramps/gui/editors/editmediaref.py:145
 #: ../gramps/gui/editors/filtereditor.py:300
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
@@ -8844,8 +8838,7 @@ msgstr "Wartości"
 #.
 #. ------------------------------------------------------------------------
 #: ../gramps/gen/plug/report/_book.py:69 ../gramps/gui/plug/_dialogs.py:59
-#: ../gramps/gui/plug/report/_bookdialog.py:84
-#: ../gramps/gui/viewmanager.py:111
+#: ../gramps/gui/plug/report/_bookdialog.py:84 ../gramps/gui/viewmanager.py:111
 msgid "Unsupported"
 msgstr "Niewspierane"
 
@@ -9058,20 +9051,17 @@ msgstr ""
 "Osoby posiadające wspólnego przodka\n"
 "  z osobą %s"
 
-#: ../gramps/gen/plug/report/utils.py:345
-#: ../gramps/gui/plug/_guioptions.py:885
+#: ../gramps/gen/plug/report/utils.py:345 ../gramps/gui/plug/_guioptions.py:885
 #: ../gramps/gui/plug/report/_bookdialog.py:176
 msgid "unknown father"
 msgstr "nieznany ojciec"
 
-#: ../gramps/gen/plug/report/utils.py:351
-#: ../gramps/gui/plug/_guioptions.py:891
+#: ../gramps/gen/plug/report/utils.py:351 ../gramps/gui/plug/_guioptions.py:891
 #: ../gramps/gui/plug/report/_bookdialog.py:182
 msgid "unknown mother"
 msgstr "nieznana matka"
 
-#: ../gramps/gen/plug/report/utils.py:353
-#: ../gramps/gui/plug/_guioptions.py:893
+#: ../gramps/gen/plug/report/utils.py:353 ../gramps/gui/plug/_guioptions.py:893
 #, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
 msgstr "%(father_name)s i %(mother_name)s (%(family_id)s)"
@@ -9309,13 +9299,11 @@ msgstr ""
 "Tłumaczenie relacji rodzinnych nie jest dostępne dla języka '%s'. Zostanie "
 "użyty język 'english' ."
 
-#: ../gramps/gen/utils/alive.py:148
-#: ../gramps/plugins/importer/importcsv.py:199
+#: ../gramps/gen/utils/alive.py:148 ../gramps/plugins/importer/importcsv.py:199
 msgid "death date"
 msgstr "Data zgonu"
 
-#: ../gramps/gen/utils/alive.py:153
-#: ../gramps/plugins/importer/importcsv.py:167
+#: ../gramps/gen/utils/alive.py:153 ../gramps/plugins/importer/importcsv.py:167
 msgid "birth date"
 msgstr "Data urodzenia"
 
@@ -10268,9 +10256,8 @@ msgstr "Wyświetl edytor nazwisk"
 #: ../gramps/gui/glade/displaystate.glade:25
 #: ../gramps/gui/glade/plugins.glade:24 ../gramps/gui/glade/rule.glade:26
 #: ../gramps/gui/glade/rule.glade:1029 ../gramps/gui/glade/tipofday.glade:117
-#: ../gramps/gui/glade/updateaddons.glade:26
-#: ../gramps/gui/plug/_windows.py:102 ../gramps/gui/plug/_windows.py:676
-#: ../gramps/gui/plug/_windows.py:732
+#: ../gramps/gui/glade/updateaddons.glade:26 ../gramps/gui/plug/_windows.py:102
+#: ../gramps/gui/plug/_windows.py:676 ../gramps/gui/plug/_windows.py:732
 #: ../gramps/gui/plug/quick/_textbufdoc.py:62 ../gramps/gui/undohistory.py:90
 #: ../gramps/gui/viewmanager.py:1222 ../gramps/gui/views/bookmarks.py:236
 #: ../gramps/gui/views/tags.py:419 ../gramps/gui/widgets/grampletbar.py:633
@@ -10524,8 +10511,8 @@ msgstr "Przykład"
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:129
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:115
 #: ../gramps/gui/editors/editfamily.py:149
-#: ../gramps/gui/plug/report/_bookdialog.py:694
-#: ../gramps/gui/views/tags.py:411 ../gramps/gui/widgets/fanchart.py:1777
+#: ../gramps/gui/plug/report/_bookdialog.py:694 ../gramps/gui/views/tags.py:411
+#: ../gramps/gui/widgets/fanchart.py:1777
 #: ../gramps/plugins/view/pedigreeview.py:1597
 #, fuzzy
 msgid "_Add"
@@ -10936,8 +10923,7 @@ msgstr "Wybierz katalog mediów"
 #: ../gramps/gui/glade/editattribute.glade:21
 #: ../gramps/gui/glade/editchildref.glade:22
 #: ../gramps/gui/glade/editcitation.glade:43
-#: ../gramps/gui/glade/editdate.glade:69
-#: ../gramps/gui/glade/editevent.glade:21
+#: ../gramps/gui/glade/editdate.glade:69 ../gramps/gui/glade/editevent.glade:21
 #: ../gramps/gui/glade/editeventref.glade:38
 #: ../gramps/gui/glade/editfamily.glade:21
 #: ../gramps/gui/glade/editldsord.glade:41
@@ -10953,8 +10939,7 @@ msgstr "Wybierz katalog mediów"
 #: ../gramps/gui/glade/editplaceref.glade:38
 #: ../gramps/gui/glade/editreporef.glade:22
 #: ../gramps/gui/glade/editrepository.glade:22
-#: ../gramps/gui/glade/editsource.glade:23
-#: ../gramps/gui/glade/editurl.glade:22
+#: ../gramps/gui/glade/editsource.glade:23 ../gramps/gui/glade/editurl.glade:22
 #: ../gramps/gui/glade/mergecitation.glade:22
 #: ../gramps/gui/glade/mergedata.glade:25
 #: ../gramps/gui/glade/mergedata.glade:246
@@ -11141,15 +11126,13 @@ msgstr "Brak informacji o dacie"
 
 #: ../gramps/gui/dbman.py:118 ../gramps/gui/editors/edittaglist.py:118
 #: ../gramps/gui/glade/addmedia.glade:40
-#: ../gramps/gui/glade/baseselector.glade:40
-#: ../gramps/gui/glade/book.glade:485 ../gramps/gui/glade/book.glade:559
-#: ../gramps/gui/glade/configure.glade:39 ../gramps/gui/glade/dbman.glade:24
-#: ../gramps/gui/glade/editaddress.glade:36
+#: ../gramps/gui/glade/baseselector.glade:40 ../gramps/gui/glade/book.glade:485
+#: ../gramps/gui/glade/book.glade:559 ../gramps/gui/glade/configure.glade:39
+#: ../gramps/gui/glade/dbman.glade:24 ../gramps/gui/glade/editaddress.glade:36
 #: ../gramps/gui/glade/editattribute.glade:37
 #: ../gramps/gui/glade/editchildref.glade:38
 #: ../gramps/gui/glade/editcitation.glade:58
-#: ../gramps/gui/glade/editdate.glade:85
-#: ../gramps/gui/glade/editevent.glade:40
+#: ../gramps/gui/glade/editdate.glade:85 ../gramps/gui/glade/editevent.glade:40
 #: ../gramps/gui/glade/editeventref.glade:54
 #: ../gramps/gui/glade/editfamily.glade:40
 #: ../gramps/gui/glade/editldsord.glade:57
@@ -11165,8 +11148,7 @@ msgstr "Brak informacji o dacie"
 #: ../gramps/gui/glade/editplaceref.glade:54
 #: ../gramps/gui/glade/editreporef.glade:41
 #: ../gramps/gui/glade/editrepository.glade:40
-#: ../gramps/gui/glade/editsource.glade:40
-#: ../gramps/gui/glade/editurl.glade:38
+#: ../gramps/gui/glade/editsource.glade:40 ../gramps/gui/glade/editurl.glade:38
 #: ../gramps/gui/glade/mergecitation.glade:38
 #: ../gramps/gui/glade/mergedata.glade:262
 #: ../gramps/gui/glade/mergedata.glade:451
@@ -11180,14 +11162,12 @@ msgstr "Brak informacji o dacie"
 #: ../gramps/gui/glade/mergerepository.glade:38
 #: ../gramps/gui/glade/mergesource.glade:38
 #: ../gramps/gui/glade/reorder.glade:40 ../gramps/gui/glade/rule.glade:336
-#: ../gramps/gui/glade/rule.glade:767
-#: ../gramps/gui/glade/styleeditor.glade:103
+#: ../gramps/gui/glade/rule.glade:767 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1736
 #: ../gramps/gui/plug/_guioptions.py:79
 #: ../gramps/gui/plug/report/_reportdialog.py:164 ../gramps/gui/utils.py:186
 #: ../gramps/gui/viewmanager.py:1220 ../gramps/gui/views/tags.py:628
-#: ../gramps/plugins/tool/check.py:695
-#: ../gramps/plugins/tool/patchnames.py:117
+#: ../gramps/plugins/tool/check.py:695 ../gramps/plugins/tool/patchnames.py:117
 #: ../gramps/plugins/tool/populatesources.py:90
 #: ../gramps/plugins/tool/testcasegenerator.py:297
 #, fuzzy
@@ -11714,15 +11694,13 @@ msgstr "_Atrybuty"
 #: ../gramps/plugins/tool/notrelated.py:125
 #: ../gramps/plugins/tool/patchnames.py:399
 #: ../gramps/plugins/tool/removeunused.py:191
-#: ../gramps/plugins/tool/sortevents.py:56
-#: ../gramps/plugins/tool/verify.py:535
+#: ../gramps/plugins/tool/sortevents.py:56 ../gramps/plugins/tool/verify.py:535
 #: ../gramps/plugins/view/citationlistview.py:99
 #: ../gramps/plugins/view/citationtreeview.py:94
 #: ../gramps/plugins/view/eventview.py:83
 #: ../gramps/plugins/view/familyview.py:79
-#: ../gramps/plugins/view/mediaview.py:95
-#: ../gramps/plugins/view/noteview.py:80 ../gramps/plugins/view/relview.py:591
-#: ../gramps/plugins/view/repoview.py:86
+#: ../gramps/plugins/view/mediaview.py:95 ../gramps/plugins/view/noteview.py:80
+#: ../gramps/plugins/view/relview.py:591 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/view/sourceview.py:83
 msgid "ID"
 msgstr "Identyfikator"
@@ -11751,8 +11729,7 @@ msgstr "%(part1)s - %(part2)s"
 #: ../gramps/gui/glade/rule.glade:432
 #: ../gramps/gui/glade/styleeditor.glade:1830
 #: ../gramps/gui/glade/styleeditor.glade:1837
-#: ../gramps/gui/widgets/fanchart.py:1823
-#: ../gramps/plugins/view/relview.py:408
+#: ../gramps/gui/widgets/fanchart.py:1823 ../gramps/plugins/view/relview.py:408
 msgid "Add"
 msgstr "Dodaj"
 
@@ -13276,8 +13253,7 @@ msgid "manual|Place_Editor_dialog"
 msgstr ""
 
 #: ../gramps/gui/editors/editplace.py:93
-#: ../gramps/gui/glade/editplace.glade:288
-#: ../gramps/gui/merge/mergeplace.py:55
+#: ../gramps/gui/glade/editplace.glade:288 ../gramps/gui/merge/mergeplace.py:55
 msgid "place|Name:"
 msgstr "Nazwa miejsca:"
 
@@ -13519,9 +13495,9 @@ msgid "Tag selection"
 msgstr "Wybór atrybutu"
 
 #. pylint: disable-msg=E1101
-#: ../gramps/gui/editors/edittaglist.py:99
-#: ../gramps/gui/views/bookmarks.py:205 ../gramps/gui/views/tags.py:382
-#: ../gramps/gui/views/tags.py:605 ../gramps/gui/views/tags.py:621
+#: ../gramps/gui/editors/edittaglist.py:99 ../gramps/gui/views/bookmarks.py:205
+#: ../gramps/gui/views/tags.py:382 ../gramps/gui/views/tags.py:605
+#: ../gramps/gui/views/tags.py:621
 #, python-format
 msgid "%(title)s - Gramps"
 msgstr "%(title)s - Gramps"
@@ -13554,8 +13530,7 @@ msgstr "Atrybut:"
 #: ../gramps/gui/glade/editattribute.glade:54
 #: ../gramps/gui/glade/editchildref.glade:58
 #: ../gramps/gui/glade/editcitation.glade:28
-#: ../gramps/gui/glade/editdate.glade:53
-#: ../gramps/gui/glade/editevent.glade:58
+#: ../gramps/gui/glade/editdate.glade:53 ../gramps/gui/glade/editevent.glade:58
 #: ../gramps/gui/glade/editeventref.glade:22
 #: ../gramps/gui/glade/editfamily.glade:60
 #: ../gramps/gui/glade/editldsord.glade:77
@@ -13571,8 +13546,7 @@ msgstr "Atrybut:"
 #: ../gramps/gui/glade/editplaceref.glade:22
 #: ../gramps/gui/glade/editreporef.glade:61
 #: ../gramps/gui/glade/editrepository.glade:59
-#: ../gramps/gui/glade/editsource.glade:58
-#: ../gramps/gui/glade/editurl.glade:58
+#: ../gramps/gui/glade/editsource.glade:58 ../gramps/gui/glade/editurl.glade:58
 #: ../gramps/gui/glade/mergecitation.glade:54
 #: ../gramps/gui/glade/mergedata.glade:77
 #: ../gramps/gui/glade/mergedata.glade:278
@@ -13747,8 +13721,7 @@ msgid "Rule Name"
 msgstr "Nazwa reguły"
 
 #: ../gramps/gui/editors/filtereditor.py:757
-#: ../gramps/gui/editors/filtereditor.py:761
-#: ../gramps/gui/glade/rule.glade:917
+#: ../gramps/gui/editors/filtereditor.py:761 ../gramps/gui/glade/rule.glade:917
 msgid "No rule selected"
 msgstr "Nie wybrano reguły"
 
@@ -13756,8 +13729,7 @@ msgstr "Nie wybrano reguły"
 msgid "Define filter"
 msgstr "Zdefiniuj filtr"
 
-#: ../gramps/gui/editors/filtereditor.py:820
-#: ../gramps/gui/glade/rule.glade:970
+#: ../gramps/gui/editors/filtereditor.py:820 ../gramps/gui/glade/rule.glade:970
 msgid "Values"
 msgstr "Wartości"
 
@@ -13942,8 +13914,7 @@ msgstr ""
 
 #: ../gramps/gui/filters/_searchbar.py:57
 #: ../gramps/gui/glade/clipboard.glade:56
-#: ../gramps/gui/plug/report/_bookdialog.py:663
-#: ../gramps/gui/undohistory.py:88
+#: ../gramps/gui/plug/report/_bookdialog.py:663 ../gramps/gui/undohistory.py:88
 #, fuzzy
 msgid "_Clear"
 msgstr "Wyczyść"
@@ -13968,8 +13939,8 @@ msgstr "%s nie jest"
 msgid "%s does not contain"
 msgstr "%s nie zawiera"
 
-#: ../gramps/gui/filters/_searchbar.py:168
-#: ../gramps/gui/views/listview.py:1140 ../gramps/gui/views/listview.py:1160
+#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1140
+#: ../gramps/gui/views/listview.py:1160
 msgid "Updating display..."
 msgstr "Odświeżanie widoku..."
 
@@ -14197,7 +14168,7 @@ msgstr "_Otwórz wybrane drzewo"
 
 #: ../gramps/gui/glade/dbman.glade:241 ../gramps/gui/glade/editlink.glade:209
 msgid "_New"
-msgstr ""
+msgstr "_Nowy"
 
 #: ../gramps/gui/glade/dbman.glade:257
 #, fuzzy
@@ -14331,8 +14302,7 @@ msgstr "Nie pytaj ponownie"
 #: ../gramps/gui/glade/editplacename.glade:44
 #: ../gramps/gui/glade/editreporef.glade:50
 #: ../gramps/gui/glade/editrepository.glade:48
-#: ../gramps/gui/glade/editsource.glade:46
-#: ../gramps/gui/glade/editurl.glade:47
+#: ../gramps/gui/glade/editsource.glade:46 ../gramps/gui/glade/editurl.glade:47
 msgid "Accept changes and close window"
 msgstr "Zaakceptuj zmiany i zamknij okno"
 
@@ -15753,8 +15723,7 @@ msgid "Note 2"
 msgstr "Notatka 2"
 
 #: ../gramps/gui/glade/mergenote.glade:279
-#: ../gramps/gui/glade/mergenote.glade:295
-#: ../gramps/gui/views/listview.py:1007
+#: ../gramps/gui/glade/mergenote.glade:295 ../gramps/gui/views/listview.py:1007
 msgid "Format:"
 msgstr "Format:"
 
@@ -16011,8 +15980,7 @@ msgstr "Modyfikuj wybraną regułę"
 msgid "Delete the selected rule"
 msgstr "Usuń wybraną regułę"
 
-#: ../gramps/gui/glade/rule.glade:524
-#: ../gramps/gui/glade/styleeditor.glade:403
+#: ../gramps/gui/glade/rule.glade:524 ../gramps/gui/glade/styleeditor.glade:403
 #: ../gramps/plugins/export/exportcsv.glade:113
 #: ../gramps/plugins/export/exportftree.glade:120
 #: ../gramps/plugins/export/exportgeneweb.glade:121
@@ -18523,8 +18491,7 @@ msgstr ""
 "Ta element jest aktualnie używany. Usunięcie go spowoduje usunięcie go z "
 "bazy danych oraz ze wszystkich obiektów, które się do niego odwołują."
 
-#: ../gramps/gui/views/listview.py:558
-#: ../gramps/plugins/view/familyview.py:267
+#: ../gramps/gui/views/listview.py:558 ../gramps/plugins/view/familyview.py:267
 msgid "Deleting item will remove it from the database."
 msgstr "Usunięcie elementu usunie go z bazy danych."
 
@@ -18793,13 +18760,11 @@ msgstr "Zwiń tą sekcję"
 msgid "People Menu"
 msgstr "Menu osób"
 
-#: ../gramps/gui/widgets/fanchart.py:1589
-#: ../gramps/plugins/view/relview.py:800
+#: ../gramps/gui/widgets/fanchart.py:1589 ../gramps/plugins/view/relview.py:800
 msgid "Edit family"
 msgstr "Modyfikuj rodzinę"
 
-#: ../gramps/gui/widgets/fanchart.py:1608
-#: ../gramps/plugins/view/relview.py:801
+#: ../gramps/gui/widgets/fanchart.py:1608 ../gramps/plugins/view/relview.py:801
 msgid "Reorder families"
 msgstr "Zmień kolejność rodzin"
 
@@ -33202,8 +33167,7 @@ msgstr "Maksymalna liczba lat między dziećmi"
 msgid "Maximum _span of years for all children"
 msgstr "Maksymalna różnica wieku dla wszystkich dzieci"
 
-#: ../gramps/plugins/tool/verify.glade:987
-#: ../gramps/plugins/tool/verify.py:632
+#: ../gramps/plugins/tool/verify.glade:987 ../gramps/plugins/tool/verify.py:632
 msgid "_Hide marked"
 msgstr "_Ukryj oznaczone"
 
@@ -34474,13 +34438,11 @@ msgstr "(1 rodzeństwo)"
 msgid " (only child)"
 msgstr "(jedno dziecko)"
 
-#: ../gramps/plugins/view/relview.py:945
-#: ../gramps/plugins/view/relview.py:1442
+#: ../gramps/plugins/view/relview.py:945 ../gramps/plugins/view/relview.py:1442
 msgid "Add new child to family"
 msgstr "Dodaj nowe dziecko do rodziny"
 
-#: ../gramps/plugins/view/relview.py:949
-#: ../gramps/plugins/view/relview.py:1446
+#: ../gramps/plugins/view/relview.py:949 ../gramps/plugins/view/relview.py:1446
 msgid "Add existing child to family"
 msgstr "Dodaj istniejące dziecko do rodziny"
 
