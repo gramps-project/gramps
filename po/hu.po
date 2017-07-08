@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 4.2.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-03 10:44-0700\n"
-"PO-Revision-Date: 2017-04-17 16:36+0200\n"
+"POT-Creation-Date: 2017-06-30 08:39+0300\n"
+"PO-Revision-Date: 2017-07-02 11:43+0200\n"
 "Last-Translator: Nemeséri Lajos <nemeseril@gmail.com>\n"
 "Language-Team: magyar <>\n"
 "Language: hu\n"
@@ -1196,7 +1196,7 @@ msgstr "GRAMPS családfa:"
 #: ../gramps/cli/arghandler.py:441 ../gramps/cli/arghandler.py:442
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/clidbman.py:69
 #: ../gramps/cli/clidbman.py:172 ../gramps/cli/clidbman.py:193
-#: ../gramps/gui/clipboard.py:970 ../gramps/gui/configure.py:1504
+#: ../gramps/gui/clipboard.py:973 ../gramps/gui/configure.py:1504
 msgid "Family Tree"
 msgstr "Családfa"
 
@@ -1570,7 +1570,7 @@ msgstr ""
 "      %(message)s"
 
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:171
-#: ../gramps/gui/clipboard.py:186 ../gramps/gui/clipboard.py:187
+#: ../gramps/gui/clipboard.py:189 ../gramps/gui/clipboard.py:190
 #: ../gramps/gui/plug/_windows.py:496
 msgid "Unavailable"
 msgstr "Elérhetetlen"
@@ -1710,11 +1710,11 @@ msgstr "%s által zárolt"
 #: ../gramps/gen/utils/lds.py:86 ../gramps/gen/utils/unknown.py:119
 #: ../gramps/gen/utils/unknown.py:121 ../gramps/gen/utils/unknown.py:125
 #: ../gramps/gen/utils/unknown.py:131 ../gramps/gen/utils/unknown.py:136
-#: ../gramps/gui/clipboard.py:183 ../gramps/gui/dbman.py:989
+#: ../gramps/gui/clipboard.py:186 ../gramps/gui/dbman.py:989
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:125
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:143
 #: ../gramps/gui/editors/editmedia.py:178
-#: ../gramps/gui/editors/editmediaref.py:142
+#: ../gramps/gui/editors/editmediaref.py:143
 #: ../gramps/plugins/db/bsddb/write.py:2289
 #: ../gramps/plugins/gramplet/persondetails.py:208
 #: ../gramps/plugins/gramplet/persondetails.py:214
@@ -1764,10 +1764,9 @@ msgstr "%s által zárolt"
 #: ../gramps/plugins/view/geofamclose.py:712
 #: ../gramps/plugins/view/geofamily.py:465
 #: ../gramps/plugins/view/geomoves.py:596
-#: ../gramps/plugins/view/geoperson.py:480
+#: ../gramps/plugins/view/geoperson.py:475
 #: ../gramps/plugins/view/geoplaces.py:526
-#: ../gramps/plugins/view/relview.py:468
-#: ../gramps/plugins/view/relview.py:1008
+#: ../gramps/plugins/view/relview.py:468 ../gramps/plugins/view/relview.py:1008
 #: ../gramps/plugins/view/relview.py:1065
 #: ../gramps/plugins/webreport/narrativeweb.py:2192
 #: ../gramps/plugins/webreport/narrativeweb.py:2221
@@ -2069,7 +2068,7 @@ msgstr "Bizalmas felvétel"
 msgid "localized lexeme inflections||January"
 msgstr "január"
 
-#: ../gramps/gen/const.py:221
+#: ../gramps/gen/const.py:220
 msgid ""
 "Gramps\n"
 " (Genealogical Research and Analysis Management Programming System)\n"
@@ -2080,15 +2079,15 @@ msgstr ""
 " = Származástani kutatás és elemzés kezelő programrendszer egy személyi "
 "családfakutató program."
 
-#: ../gramps/gen/const.py:251
+#: ../gramps/gen/const.py:250
 msgid "surname|none"
 msgstr "vezetéknév|nincs"
 
-#: ../gramps/gen/const.py:252
+#: ../gramps/gen/const.py:251
 msgid "given-name|none"
 msgstr "utónév|nincs"
 
-#: ../gramps/gen/const.py:256 ../gramps/plugins/webreport/narrativeweb.py:541
+#: ../gramps/gen/const.py:255 ../gramps/plugins/webreport/narrativeweb.py:541
 msgid ":"
 msgstr ":"
 
@@ -3156,84 +3155,84 @@ msgstr ""
 "%(wiki_backup_html_start)skészítsen mentést%(html_end)s."
 
 #: ../gramps/gen/db/generic.py:162 ../gramps/gen/db/generic.py:214
-#: ../gramps/gen/db/generic.py:2051 ../gramps/plugins/db/bsddb/undoredo.py:252
-#: ../gramps/plugins/db/bsddb/undoredo.py:296
+#: ../gramps/gen/db/generic.py:2050 ../gramps/plugins/db/bsddb/undoredo.py:253
+#: ../gramps/plugins/db/bsddb/undoredo.py:297
 #: ../gramps/plugins/db/bsddb/write.py:2131
 #, python-format
 msgid "_Undo %s"
 msgstr "%s _visszavonása"
 
 #: ../gramps/gen/db/generic.py:167 ../gramps/gen/db/generic.py:220
-#: ../gramps/plugins/db/bsddb/undoredo.py:258
-#: ../gramps/plugins/db/bsddb/undoredo.py:302
+#: ../gramps/plugins/db/bsddb/undoredo.py:259
+#: ../gramps/plugins/db/bsddb/undoredo.py:303
 #, python-format
 msgid "_Redo %s"
 msgstr "%s _ismétlése"
 
-#: ../gramps/gen/db/generic.py:2443 ../gramps/plugins/db/bsddb/read.py:1998
+#: ../gramps/gen/db/generic.py:2442 ../gramps/plugins/db/bsddb/read.py:2001
 #: ../gramps/plugins/db/bsddb/write.py:2292
 msgid "Number of people"
 msgstr "Emberek száma"
 
-#: ../gramps/gen/db/generic.py:2444 ../gramps/plugins/db/bsddb/read.py:1999
+#: ../gramps/gen/db/generic.py:2443 ../gramps/plugins/db/bsddb/read.py:2002
 #: ../gramps/plugins/db/bsddb/write.py:2293
 #: ../gramps/plugins/gramplet/statsgramplet.py:117
-#: ../gramps/plugins/webreport/narrativeweb.py:8221
-#: ../gramps/plugins/webreport/narrativeweb.py:8288
+#: ../gramps/plugins/webreport/narrativeweb.py:8224
+#: ../gramps/plugins/webreport/narrativeweb.py:8291
 msgid "Number of families"
 msgstr "Családok száma"
 
-#: ../gramps/gen/db/generic.py:2445 ../gramps/plugins/db/bsddb/read.py:2000
+#: ../gramps/gen/db/generic.py:2444 ../gramps/plugins/db/bsddb/read.py:2003
 #: ../gramps/plugins/db/bsddb/write.py:2294
-#: ../gramps/plugins/webreport/narrativeweb.py:8249
-#: ../gramps/plugins/webreport/narrativeweb.py:8300
+#: ../gramps/plugins/webreport/narrativeweb.py:8252
+#: ../gramps/plugins/webreport/narrativeweb.py:8303
 msgid "Number of sources"
 msgstr "Források száma"
 
-#: ../gramps/gen/db/generic.py:2446 ../gramps/plugins/db/bsddb/read.py:2001
+#: ../gramps/gen/db/generic.py:2445 ../gramps/plugins/db/bsddb/read.py:2004
 #: ../gramps/plugins/db/bsddb/write.py:2295
-#: ../gramps/plugins/webreport/narrativeweb.py:8253
-#: ../gramps/plugins/webreport/narrativeweb.py:8303
+#: ../gramps/plugins/webreport/narrativeweb.py:8256
+#: ../gramps/plugins/webreport/narrativeweb.py:8306
 msgid "Number of citations"
 msgstr "Idézetek száma"
 
-#: ../gramps/gen/db/generic.py:2447 ../gramps/plugins/db/bsddb/read.py:2002
+#: ../gramps/gen/db/generic.py:2446 ../gramps/plugins/db/bsddb/read.py:2005
 #: ../gramps/plugins/db/bsddb/write.py:2296
-#: ../gramps/plugins/webreport/narrativeweb.py:8242
-#: ../gramps/plugins/webreport/narrativeweb.py:8294
+#: ../gramps/plugins/webreport/narrativeweb.py:8245
+#: ../gramps/plugins/webreport/narrativeweb.py:8297
 msgid "Number of events"
 msgstr "Események száma"
 
-#: ../gramps/gen/db/generic.py:2448 ../gramps/plugins/db/bsddb/read.py:2003
+#: ../gramps/gen/db/generic.py:2447 ../gramps/plugins/db/bsddb/read.py:2006
 #: ../gramps/plugins/db/bsddb/write.py:2297
 msgid "Number of media"
 msgstr "Médiumok száma"
 
-#: ../gramps/gen/db/generic.py:2449 ../gramps/plugins/db/bsddb/read.py:2004
+#: ../gramps/gen/db/generic.py:2448 ../gramps/plugins/db/bsddb/read.py:2007
 #: ../gramps/plugins/db/bsddb/write.py:2298
-#: ../gramps/plugins/webreport/narrativeweb.py:8245
-#: ../gramps/plugins/webreport/narrativeweb.py:8297
+#: ../gramps/plugins/webreport/narrativeweb.py:8248
+#: ../gramps/plugins/webreport/narrativeweb.py:8300
 msgid "Number of places"
 msgstr "Helyek száma"
 
-#: ../gramps/gen/db/generic.py:2450 ../gramps/plugins/db/bsddb/read.py:2005
+#: ../gramps/gen/db/generic.py:2449 ../gramps/plugins/db/bsddb/read.py:2008
 #: ../gramps/plugins/db/bsddb/write.py:2299
-#: ../gramps/plugins/webreport/narrativeweb.py:8257
-#: ../gramps/plugins/webreport/narrativeweb.py:8306
+#: ../gramps/plugins/webreport/narrativeweb.py:8260
+#: ../gramps/plugins/webreport/narrativeweb.py:8309
 msgid "Number of repositories"
 msgstr "Tárolók száma"
 
-#: ../gramps/gen/db/generic.py:2451 ../gramps/plugins/db/bsddb/read.py:2006
+#: ../gramps/gen/db/generic.py:2450 ../gramps/plugins/db/bsddb/read.py:2009
 #: ../gramps/plugins/db/bsddb/write.py:2300
 msgid "Number of notes"
 msgstr "Megjegyzések száma"
 
-#: ../gramps/gen/db/generic.py:2452 ../gramps/plugins/db/bsddb/read.py:2007
+#: ../gramps/gen/db/generic.py:2451 ../gramps/plugins/db/bsddb/read.py:2010
 #: ../gramps/plugins/db/bsddb/write.py:2301
 msgid "Number of tags"
 msgstr "Címek száma"
 
-#: ../gramps/gen/db/generic.py:2453 ../gramps/plugins/db/bsddb/write.py:2302
+#: ../gramps/gen/db/generic.py:2452 ../gramps/plugins/db/bsddb/write.py:2302
 msgid "Data version"
 msgstr "Adat változat"
 
@@ -3435,7 +3434,7 @@ msgstr "Alkalmazás ..."
 #: ../gramps/plugins/textreport/indivcomplete.py:1056
 #: ../gramps/plugins/textreport/recordsreport.py:217
 #: ../gramps/plugins/tool/sortevents.py:167
-#: ../gramps/plugins/webreport/narrativeweb.py:9762
+#: ../gramps/plugins/webreport/narrativeweb.py:9765
 #: ../gramps/plugins/webreport/webcal.py:1623
 msgid "Filter"
 msgstr "Szűrő"
@@ -3732,7 +3731,7 @@ msgstr "Vegyes szűrők"
 #: ../gramps/plugins/view/geofamclose.py:724
 #: ../gramps/plugins/view/geofamily.py:478
 #: ../gramps/plugins/view/geomoves.py:609
-#: ../gramps/plugins/view/geoperson.py:491
+#: ../gramps/plugins/view/geoperson.py:486
 msgid "No description"
 msgstr "Nincs leírás"
 
@@ -4721,7 +4720,7 @@ msgstr "Típus:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48
 #: ../gramps/gui/glade/mergemedia.glade:245
-#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1827
+#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1829
 msgid "Path:"
 msgstr "Útvonal:"
 
@@ -5522,8 +5521,8 @@ msgstr ""
 #: ../gramps/plugins/graph/gvfamilylines.py:276
 #: ../gramps/plugins/graph/gvhourglass.py:370
 #: ../gramps/plugins/graph/gvrelgraph.py:884
-#: ../gramps/plugins/webreport/narrativeweb.py:8214
-#: ../gramps/plugins/webreport/narrativeweb.py:8281
+#: ../gramps/plugins/webreport/narrativeweb.py:8217
+#: ../gramps/plugins/webreport/narrativeweb.py:8284
 msgid "Females"
 msgstr "Nők"
 
@@ -5592,8 +5591,8 @@ msgstr ""
 #: ../gramps/plugins/graph/gvfamilylines.py:272
 #: ../gramps/plugins/graph/gvhourglass.py:366
 #: ../gramps/plugins/graph/gvrelgraph.py:880
-#: ../gramps/plugins/webreport/narrativeweb.py:8212
-#: ../gramps/plugins/webreport/narrativeweb.py:8279
+#: ../gramps/plugins/webreport/narrativeweb.py:8215
+#: ../gramps/plugins/webreport/narrativeweb.py:8282
 msgid "Males"
 msgstr "Férfiak"
 
@@ -6099,17 +6098,16 @@ msgstr "Reguláris kifejezéssel egyező GRAMPS azonosítónak megfelelő helyek
 #: ../gramps/gen/filters/rules/place/_withinarea.py:50
 #: ../gramps/gui/editors/filtereditor.py:584
 msgid "Units:"
-msgstr ""
+msgstr "Egységek:"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:51
-#, fuzzy
 msgid "Places within an area"
-msgstr "Helyek <count> médiával"
+msgstr "Helyek egy körzetben"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:52
-#, fuzzy
 msgid "Matches places within a given distance of another place"
-msgstr "Egy meghatározott értékű idézetnek megfelelő helyszínek"
+msgstr ""
+"Egy helyhez viszonyított meghatározott távolságon belül levő helyszínek"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
@@ -6403,8 +6401,7 @@ msgstr "Kaszt"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:75
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:104
-#: ../gramps/gui/glade/rule.glade:931
-#: ../gramps/gui/glade/styleeditor.glade:262
+#: ../gramps/gui/glade/rule.glade:931 ../gramps/gui/glade/styleeditor.glade:262
 #: ../gramps/gui/plug/_windows.py:134 ../gramps/gui/plug/_windows.py:243
 #: ../gramps/gui/plug/_windows.py:620 ../gramps/gui/plug/_windows.py:1105
 #: ../gramps/gui/selectors/selectevent.py:73
@@ -6419,7 +6416,7 @@ msgstr "Kaszt"
 #: ../gramps/plugins/webreport/narrativeweb.py:1325
 #: ../gramps/plugins/webreport/narrativeweb.py:2504
 #: ../gramps/plugins/webreport/narrativeweb.py:3165
-#: ../gramps/plugins/webreport/narrativeweb.py:5924
+#: ../gramps/plugins/webreport/narrativeweb.py:5927
 msgid "Description"
 msgstr "Leírás"
 
@@ -6480,7 +6477,7 @@ msgid "Time"
 msgstr "Idő"
 
 #: ../gramps/gen/lib/childreftype.py:67 ../gramps/gui/configure.py:81
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:209
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:201
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:175
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:201
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:155
@@ -6505,7 +6502,7 @@ msgstr "Nincs"
 #: ../gramps/plugins/textreport/tagreport.py:168
 #: ../gramps/plugins/view/relview.py:612
 #: ../gramps/plugins/webreport/narrativeweb.py:3314
-#: ../gramps/plugins/webreport/narrativeweb.py:6191
+#: ../gramps/plugins/webreport/narrativeweb.py:6194
 msgid "Birth"
 msgstr "Születés"
 
@@ -6527,11 +6524,11 @@ msgstr "Nevelt"
 
 #. 8
 #: ../gramps/gen/lib/citation.py:97 ../gramps/gen/lib/notetype.py:79
-#: ../gramps/gui/clipboard.py:490 ../gramps/gui/configure.py:543
+#: ../gramps/gui/clipboard.py:493 ../gramps/gui/configure.py:543
 #: ../gramps/gui/editors/editcitation.py:119
 #: ../gramps/gui/editors/editcitation.py:125
 #: ../gramps/gui/editors/editlink.py:100
-#: ../gramps/gui/editors/filtereditor.py:301 ../gramps/gui/viewmanager.py:612
+#: ../gramps/gui/editors/filtereditor.py:301 ../gramps/gui/viewmanager.py:613
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:170
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:115
 #: ../gramps/plugins/quickview/quickview.gpr.py:209
@@ -6573,12 +6570,12 @@ msgstr "Kezelés"
 #: ../gramps/plugins/tool/findloop.py:103
 #: ../gramps/plugins/tool/findloop.py:107
 #: ../gramps/plugins/webreport/narrativeweb.py:2971
-#: ../gramps/plugins/webreport/narrativeweb.py:4266
-#: ../gramps/plugins/webreport/narrativeweb.py:4477
-#: ../gramps/plugins/webreport/narrativeweb.py:5025
-#: ../gramps/plugins/webreport/narrativeweb.py:5526
-#: ../gramps/plugins/webreport/narrativeweb.py:7370
-#: ../gramps/plugins/webreport/narrativeweb.py:7945
+#: ../gramps/plugins/webreport/narrativeweb.py:4269
+#: ../gramps/plugins/webreport/narrativeweb.py:4480
+#: ../gramps/plugins/webreport/narrativeweb.py:5028
+#: ../gramps/plugins/webreport/narrativeweb.py:5529
+#: ../gramps/plugins/webreport/narrativeweb.py:7373
+#: ../gramps/plugins/webreport/narrativeweb.py:7948
 msgid "Gramps ID"
 msgstr "GRAMPS azonosító"
 
@@ -6644,10 +6641,10 @@ msgstr "GRAMPS azonosító"
 #: ../gramps/plugins/webreport/narrativeweb.py:1352
 #: ../gramps/plugins/webreport/narrativeweb.py:1519
 #: ../gramps/plugins/webreport/narrativeweb.py:2634
-#: ../gramps/plugins/webreport/narrativeweb.py:4265
-#: ../gramps/plugins/webreport/narrativeweb.py:5184
-#: ../gramps/plugins/webreport/narrativeweb.py:5549
-#: ../gramps/plugins/webreport/narrativeweb.py:6846
+#: ../gramps/plugins/webreport/narrativeweb.py:4268
+#: ../gramps/plugins/webreport/narrativeweb.py:5187
+#: ../gramps/plugins/webreport/narrativeweb.py:5552
+#: ../gramps/plugins/webreport/narrativeweb.py:6849
 msgid "Date"
 msgstr "Dátum"
 
@@ -6666,10 +6663,10 @@ msgstr "Megbízhatóság"
 
 #. 7
 #: ../gramps/gen/lib/citation.py:115 ../gramps/gen/lib/src.py:97
-#: ../gramps/gui/clipboard.py:800 ../gramps/gui/configure.py:541
+#: ../gramps/gui/clipboard.py:803 ../gramps/gui/configure.py:541
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:78
 #: ../gramps/gui/editors/editlink.py:99 ../gramps/gui/editors/editsource.py:86
-#: ../gramps/gui/editors/filtereditor.py:297 ../gramps/gui/viewmanager.py:610
+#: ../gramps/gui/editors/filtereditor.py:297 ../gramps/gui/viewmanager.py:611
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:170
 #: ../gramps/plugins/export/exportcsv.py:466
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:114
@@ -6703,12 +6700,11 @@ msgstr "Forrás"
 #: ../gramps/plugins/quickview/filterbyname.py:137
 #: ../gramps/plugins/textreport/indivcomplete.py:268
 #: ../gramps/plugins/textreport/tagreport.py:486
-#: ../gramps/plugins/view/noteview.py:110
-#: ../gramps/plugins/view/view.gpr.py:97
+#: ../gramps/plugins/view/noteview.py:110 ../gramps/plugins/view/view.gpr.py:97
 #: ../gramps/plugins/view/view.gpr.py:105
 #: ../gramps/plugins/webreport/narrativeweb.py:1044
 #: ../gramps/plugins/webreport/narrativeweb.py:1679
-#: ../gramps/plugins/webreport/narrativeweb.py:7143
+#: ../gramps/plugins/webreport/narrativeweb.py:7146
 msgid "Notes"
 msgstr "Jegyzetek"
 
@@ -6718,8 +6714,8 @@ msgstr "Jegyzetek"
 #: ../gramps/gen/lib/event.py:165 ../gramps/gen/lib/family.py:168
 #: ../gramps/gen/lib/media.py:134 ../gramps/gen/lib/person.py:206
 #: ../gramps/gen/lib/place.py:166 ../gramps/gen/lib/src.py:117
-#: ../gramps/gui/clipboard.py:659 ../gramps/gui/editors/editlink.py:94
-#: ../gramps/gui/editors/filtereditor.py:298 ../gramps/gui/viewmanager.py:616
+#: ../gramps/gui/clipboard.py:662 ../gramps/gui/editors/editlink.py:94
+#: ../gramps/gui/editors/filtereditor.py:298 ../gramps/gui/viewmanager.py:617
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:110
 #: ../gramps/plugins/quickview/filterbyname.py:109
 #: ../gramps/plugins/quickview/filterbyname.py:134
@@ -6737,8 +6733,8 @@ msgstr "Jegyzetek"
 #: ../gramps/plugins/webreport/narrativeweb.py:2060
 #: ../gramps/plugins/webreport/narrativeweb.py:2107
 #: ../gramps/plugins/webreport/narrativeweb.py:2407
-#: ../gramps/plugins/webreport/narrativeweb.py:5151
-#: ../gramps/plugins/webreport/narrativeweb.py:5346
+#: ../gramps/plugins/webreport/narrativeweb.py:5154
+#: ../gramps/plugins/webreport/narrativeweb.py:5349
 msgid "Media"
 msgstr "Média"
 
@@ -6826,8 +6822,8 @@ msgstr "Címkék"
 #: ../gramps/plugins/view/citationtreeview.py:97
 #: ../gramps/plugins/view/eventview.py:87
 #: ../gramps/plugins/view/familyview.py:84
-#: ../gramps/plugins/view/mediaview.py:99
-#: ../gramps/plugins/view/noteview.py:82 ../gramps/plugins/view/repoview.py:97
+#: ../gramps/plugins/view/mediaview.py:99 ../gramps/plugins/view/noteview.py:82
+#: ../gramps/plugins/view/repoview.py:97
 #: ../gramps/plugins/view/sourceview.py:87
 msgid "Private"
 msgstr "Bizalmas"
@@ -6848,7 +6844,7 @@ msgstr "Bizalmas"
 #: ../gramps/plugins/textreport/indivcomplete.py:660
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
 #: ../gramps/plugins/view/relview.py:648
-#: ../gramps/plugins/webreport/narrativeweb.py:6390
+#: ../gramps/plugins/webreport/narrativeweb.py:6393
 msgid "unknown"
 msgstr "ismeretlen"
 
@@ -6989,11 +6985,11 @@ msgstr "csak szöveg"
 
 #. 0 this order range above
 #: ../gramps/gen/lib/event.py:136 ../gramps/gen/lib/eventref.py:109
-#: ../gramps/gui/clipboard.py:340 ../gramps/gui/configure.py:547
+#: ../gramps/gui/clipboard.py:343 ../gramps/gui/configure.py:547
 #: ../gramps/gui/editors/editlink.py:92
 #: ../gramps/gui/editors/filtereditor.py:295
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:133
-#: ../gramps/gui/viewmanager.py:606
+#: ../gramps/gui/viewmanager.py:607
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:108
 #: ../gramps/plugins/quickview/filterbyname.py:175
 #: ../gramps/plugins/quickview/filterbyname.py:246
@@ -7007,7 +7003,7 @@ msgstr "Esemény"
 
 #. 5
 #: ../gramps/gen/lib/event.py:151 ../gramps/gen/lib/place.py:134
-#: ../gramps/gui/clipboard.py:367 ../gramps/gui/configure.py:539
+#: ../gramps/gui/clipboard.py:370 ../gramps/gui/configure.py:539
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:81
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:65
@@ -7016,7 +7012,7 @@ msgstr "Esemény"
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:108
 #: ../gramps/gui/glade/editevent.glade:270
 #: ../gramps/gui/plug/_guioptions.py:1348
-#: ../gramps/gui/selectors/selectevent.py:72 ../gramps/gui/viewmanager.py:608
+#: ../gramps/gui/selectors/selectevent.py:72 ../gramps/gui/viewmanager.py:609
 #: ../gramps/gui/views/treemodels/placemodel.py:284
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/export/exportcsv.py:466
@@ -7117,13 +7113,12 @@ msgstr "Élet események"
 #. 1
 #. get the family events
 #: ../gramps/gen/lib/eventtype.py:139 ../gramps/gen/lib/family.py:145
-#: ../gramps/gui/clipboard.py:771 ../gramps/gui/configure.py:537
+#: ../gramps/gui/clipboard.py:774 ../gramps/gui/configure.py:537
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
-#: ../gramps/gui/editors/editfamily.py:499
-#: ../gramps/gui/editors/editlink.py:93
+#: ../gramps/gui/editors/editfamily.py:499 ../gramps/gui/editors/editlink.py:93
 #: ../gramps/gui/editors/filtereditor.py:294
-#: ../gramps/gui/glade/editldsord.glade:267 ../gramps/gui/viewmanager.py:604
+#: ../gramps/gui/glade/editldsord.glade:267 ../gramps/gui/viewmanager.py:605
 #: ../gramps/plugins/export/exportcsv.py:506
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:109
 #: ../gramps/plugins/importer/importcsv.py:211
@@ -7164,7 +7159,7 @@ msgstr "Törvényes"
 #: ../gramps/gen/lib/eventtype.py:153 ../gramps/gen/lib/eventtype.py:195
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:463
 #: ../gramps/plugins/webreport/narrativeweb.py:3143
-#: ../gramps/plugins/webreport/narrativeweb.py:8042
+#: ../gramps/plugins/webreport/narrativeweb.py:8045
 msgid "Residence"
 msgstr "Lakóhely"
 
@@ -7182,7 +7177,7 @@ msgstr "Egyéb"
 #: ../gramps/plugins/textreport/tagreport.py:174
 #: ../gramps/plugins/view/relview.py:621 ../gramps/plugins/view/relview.py:646
 #: ../gramps/plugins/webreport/narrativeweb.py:3318
-#: ../gramps/plugins/webreport/narrativeweb.py:6195
+#: ../gramps/plugins/webreport/narrativeweb.py:6198
 msgid "Death"
 msgstr "Halál"
 
@@ -7573,7 +7568,7 @@ msgstr "megsem."
 #: ../gramps/plugins/textreport/tagreport.py:250
 #: ../gramps/plugins/view/familyview.py:80
 #: ../gramps/plugins/view/relview.py:899
-#: ../gramps/plugins/webreport/narrativeweb.py:7532
+#: ../gramps/plugins/webreport/narrativeweb.py:7535
 msgid "Father"
 msgstr "Apa"
 
@@ -7595,7 +7590,7 @@ msgstr "Apa"
 #: ../gramps/plugins/textreport/tagreport.py:256
 #: ../gramps/plugins/view/familyview.py:81
 #: ../gramps/plugins/view/relview.py:900
-#: ../gramps/plugins/webreport/narrativeweb.py:7546
+#: ../gramps/plugins/webreport/narrativeweb.py:7549
 msgid "Mother"
 msgstr "Anya"
 
@@ -7622,9 +7617,9 @@ msgstr "Gyermekek"
 #: ../gramps/plugins/webreport/narrativeweb.py:1921
 #: ../gramps/plugins/webreport/narrativeweb.py:1988
 #: ../gramps/plugins/webreport/narrativeweb.py:2050
-#: ../gramps/plugins/webreport/narrativeweb.py:4230
-#: ../gramps/plugins/webreport/narrativeweb.py:4453
-#: ../gramps/plugins/webreport/narrativeweb.py:7429
+#: ../gramps/plugins/webreport/narrativeweb.py:4233
+#: ../gramps/plugins/webreport/narrativeweb.py:4456
+#: ../gramps/plugins/webreport/narrativeweb.py:7432
 msgid "Events"
 msgstr "Események"
 
@@ -7648,7 +7643,7 @@ msgstr "Házas"
 #. Create the tree columns
 #. 0 selected?
 #: ../gramps/gen/lib/grampstype.py:221 ../gramps/gen/lib/grampstype.py:225
-#: ../gramps/gui/clipboard.py:961
+#: ../gramps/gui/clipboard.py:964
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:62
 #: ../gramps/gui/editors/displaytabs/backreflist.py:59
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:77
@@ -7698,15 +7693,15 @@ msgstr "Házas"
 #: ../gramps/plugins/tool/patchnames.py:407
 #: ../gramps/plugins/tool/sortevents.py:55
 #: ../gramps/plugins/view/eventview.py:84
-#: ../gramps/plugins/view/mediaview.py:96
-#: ../gramps/plugins/view/noteview.py:81 ../gramps/plugins/view/repoview.py:87
+#: ../gramps/plugins/view/mediaview.py:96 ../gramps/plugins/view/noteview.py:81
+#: ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/webreport/narrativeweb.py:1351
 #: ../gramps/plugins/webreport/narrativeweb.py:1677
 #: ../gramps/plugins/webreport/narrativeweb.py:2503
 #: ../gramps/plugins/webreport/narrativeweb.py:3100
-#: ../gramps/plugins/webreport/narrativeweb.py:4264
-#: ../gramps/plugins/webreport/narrativeweb.py:7865
-#: ../gramps/plugins/webreport/narrativeweb.py:7953
+#: ../gramps/plugins/webreport/narrativeweb.py:4267
+#: ../gramps/plugins/webreport/narrativeweb.py:7868
+#: ../gramps/plugins/webreport/narrativeweb.py:7956
 msgid "Type"
 msgstr "Típus"
 
@@ -7786,7 +7781,7 @@ msgid "Uncleared"
 msgstr "Tisztázatlan"
 
 #: ../gramps/gen/lib/markertype.py:53
-#: ../gramps/gui/logger/_errorreportassistant.py:691
+#: ../gramps/gui/logger/_errorreportassistant.py:696
 msgid "Complete"
 msgstr "Teljes"
 
@@ -7807,7 +7802,7 @@ msgstr "Ellenőrző összeg"
 #. Handle
 #. Add column with object name
 #: ../gramps/gen/lib/name.py:143 ../gramps/gen/lib/repo.py:96
-#: ../gramps/gen/lib/tag.py:122 ../gramps/gui/clipboard.py:589
+#: ../gramps/gen/lib/tag.py:122 ../gramps/gui/clipboard.py:592
 #: ../gramps/gui/configure.py:516
 #: ../gramps/gui/editors/displaytabs/backreflist.py:61
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:73
@@ -7851,7 +7846,7 @@ msgstr "Ellenőrző összeg"
 #: ../gramps/plugins/tool/removeunused.py:201
 #: ../gramps/plugins/tool/verify.py:578 ../gramps/plugins/view/repoview.py:85
 #: ../gramps/plugins/webreport/narrativeweb.py:779
-#: ../gramps/plugins/webreport/narrativeweb.py:7692
+#: ../gramps/plugins/webreport/narrativeweb.py:7695
 msgid "Name"
 msgstr "Név"
 
@@ -7864,9 +7859,9 @@ msgstr "Utónév"
 #: ../gramps/plugins/webreport/narrativeweb.py:1971
 #: ../gramps/plugins/webreport/narrativeweb.py:1974
 #: ../gramps/plugins/webreport/narrativeweb.py:2042
-#: ../gramps/plugins/webreport/narrativeweb.py:4569
-#: ../gramps/plugins/webreport/narrativeweb.py:4619
-#: ../gramps/plugins/webreport/narrativeweb.py:6252
+#: ../gramps/plugins/webreport/narrativeweb.py:4572
+#: ../gramps/plugins/webreport/narrativeweb.py:4622
+#: ../gramps/plugins/webreport/narrativeweb.py:6255
 msgid "Surnames"
 msgstr "Vezetéknevek"
 
@@ -7882,7 +7877,7 @@ msgid "Suffix"
 msgstr "Utótag"
 
 #: ../gramps/gen/lib/name.py:166 ../gramps/gen/lib/place.py:143
-#: ../gramps/gen/lib/src.py:106 ../gramps/gui/clipboard.py:964
+#: ../gramps/gen/lib/src.py:106 ../gramps/gui/clipboard.py:967
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:80
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:105
@@ -7996,7 +7991,7 @@ msgstr "Apaági"
 msgid "Matrilineal"
 msgstr "Anyaági"
 
-#: ../gramps/gen/lib/nameorigintype.py:86 ../gramps/gui/clipboard.py:323
+#: ../gramps/gen/lib/nameorigintype.py:86 ../gramps/gui/clipboard.py:326
 #: ../gramps/gui/plug/_windows.py:625
 msgid "Location"
 msgstr "Helyszín"
@@ -8016,10 +8011,10 @@ msgstr "Házassági név"
 #. ###############################
 #. 3
 #: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:255
-#: ../gramps/gui/clipboard.py:394 ../gramps/gui/configure.py:551
+#: ../gramps/gui/clipboard.py:397 ../gramps/gui/configure.py:551
 #: ../gramps/gui/editors/editlink.py:95 ../gramps/gui/editors/editmedia.py:98
 #: ../gramps/gui/editors/editmedia.py:181
-#: ../gramps/gui/editors/editmediaref.py:145
+#: ../gramps/gui/editors/editmediaref.py:146
 #: ../gramps/gui/editors/filtereditor.py:300
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:115
@@ -8029,7 +8024,7 @@ msgstr "Házassági név"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:113
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:108
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:91
-#: ../gramps/gui/glade/editnote.glade:326 ../gramps/gui/viewmanager.py:618
+#: ../gramps/gui/glade/editnote.glade:326 ../gramps/gui/viewmanager.py:619
 #: ../gramps/gui/views/treemodels/mediamodel.py:117
 #: ../gramps/plugins/drawreport/ancestortree.py:974
 #: ../gramps/plugins/drawreport/descendtree.py:1694
@@ -8054,7 +8049,7 @@ msgstr "Formátum"
 
 #: ../gramps/gen/lib/notetype.py:75 ../gramps/gui/configure.py:1411
 #: ../gramps/gui/editors/editeventref.py:89
-#: ../gramps/gui/editors/editmediaref.py:106
+#: ../gramps/gui/editors/editmediaref.py:107
 #: ../gramps/gui/editors/editplaceref.py:71
 #: ../gramps/gui/editors/editreporef.py:71
 #: ../gramps/gui/glade/editeventref.glade:183
@@ -8084,7 +8079,7 @@ msgid "Source text"
 msgstr "Forrás szöveg"
 
 #: ../gramps/gen/lib/notetype.py:80 ../gramps/gen/plug/_pluginreg.py:78
-#: ../gramps/gui/logger/_errorview.py:169
+#: ../gramps/gui/logger/_errorview.py:174
 msgid "Report"
 msgstr "összesítés"
 
@@ -8176,11 +8171,11 @@ msgstr "Gyermek hivatkozás jegyzet"
 #.
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
-#: ../gramps/gen/lib/person.py:173 ../gramps/gui/clipboard.py:743
+#: ../gramps/gen/lib/person.py:173 ../gramps/gui/clipboard.py:746
 #: ../gramps/gui/configure.py:535 ../gramps/gui/editors/editlink.py:96
 #: ../gramps/gui/editors/filtereditor.py:293
-#: ../gramps/gui/glade/editpersonref.glade:211
-#: ../gramps/gui/viewmanager.py:602 ../gramps/plugins/export/exportcsv.py:354
+#: ../gramps/gui/glade/editpersonref.glade:211 ../gramps/gui/viewmanager.py:603
+#: ../gramps/plugins/export/exportcsv.py:354
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:107
 #: ../gramps/plugins/importer/importcsv.py:208
 #: ../gramps/plugins/quickview/ageondate.py:54
@@ -8205,8 +8200,8 @@ msgstr "Gyermek hivatkozás jegyzet"
 #: ../gramps/plugins/tool/eventcmp.py:253
 #: ../gramps/plugins/tool/reorderids.glade:642
 #: ../gramps/plugins/webreport/narrativeweb.py:3570
-#: ../gramps/plugins/webreport/narrativeweb.py:4267
-#: ../gramps/plugins/webreport/narrativeweb.py:7141
+#: ../gramps/plugins/webreport/narrativeweb.py:4270
+#: ../gramps/plugins/webreport/narrativeweb.py:7144
 msgid "Person"
 msgstr "Személy"
 
@@ -8220,7 +8215,7 @@ msgstr "Személy"
 #: ../gramps/plugins/lib/libpersonview.py:100
 #: ../gramps/plugins/quickview/siblings.py:48
 #: ../gramps/plugins/textreport/indivcomplete.py:922
-#: ../gramps/plugins/webreport/narrativeweb.py:7381
+#: ../gramps/plugins/webreport/narrativeweb.py:7384
 msgid "Gender"
 msgstr "Nem"
 
@@ -8240,8 +8235,7 @@ msgstr "Születési hivatkozás index"
 msgid "Event references"
 msgstr "Esemény hivatkozások"
 
-#: ../gramps/gen/lib/person.py:199
-#: ../gramps/plugins/graph/gvfamilylines.py:285
+#: ../gramps/gen/lib/person.py:199 ../gramps/plugins/graph/gvfamilylines.py:285
 #: ../gramps/plugins/graph/gvhourglass.py:379
 #: ../gramps/plugins/graph/gvrelgraph.py:894
 #: ../gramps/plugins/quickview/filterbyname.py:94
@@ -8459,16 +8453,16 @@ msgstr "Épület"
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:89
 #: ../gramps/plugins/view/geoplaces.py:556
 #: ../gramps/plugins/webreport/narrativeweb.py:3096
-#: ../gramps/plugins/webreport/narrativeweb.py:4928
+#: ../gramps/plugins/webreport/narrativeweb.py:4931
 msgid "Number"
 msgstr "Szám"
 
 #. 6
-#: ../gramps/gen/lib/repo.py:86 ../gramps/gui/clipboard.py:827
+#: ../gramps/gen/lib/repo.py:86 ../gramps/gui/clipboard.py:830
 #: ../gramps/gui/configure.py:549 ../gramps/gui/editors/editlink.py:98
 #: ../gramps/gui/editors/editrepository.py:77
 #: ../gramps/gui/editors/editrepository.py:79
-#: ../gramps/gui/editors/filtereditor.py:299 ../gramps/gui/viewmanager.py:614
+#: ../gramps/gui/editors/filtereditor.py:299 ../gramps/gui/viewmanager.py:615
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:113
 #: ../gramps/plugins/quickview/filterbyname.py:205
 #: ../gramps/plugins/quickview/filterbyname.py:264
@@ -8517,11 +8511,11 @@ msgstr "Széf"
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:106
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:88
 #: ../gramps/gui/selectors/selectsource.py:70
-#: ../gramps/plugins/gramplet/citations.py:78
+#: ../gramps/plugins/gramplet/citations.py:84
 #: ../gramps/plugins/textreport/tagreport.py:747
 #: ../gramps/plugins/view/sourceview.py:84
-#: ../gramps/plugins/webreport/narrativeweb.py:4929
-#: ../gramps/plugins/webreport/narrativeweb.py:5026
+#: ../gramps/plugins/webreport/narrativeweb.py:4932
+#: ../gramps/plugins/webreport/narrativeweb.py:5029
 msgid "Author"
 msgstr "Szerző"
 
@@ -8533,12 +8527,11 @@ msgstr "Kiadás információ"
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:89
 #: ../gramps/plugins/view/sourceview.py:85
-#: ../gramps/plugins/webreport/narrativeweb.py:5027
+#: ../gramps/plugins/webreport/narrativeweb.py:5030
 msgid "Abbreviation"
 msgstr "Rövidítés"
 
-#: ../gramps/gen/lib/src.py:127
-#: ../gramps/plugins/quickview/filterbyname.py:106
+#: ../gramps/gen/lib/src.py:127 ../gramps/plugins/quickview/filterbyname.py:106
 #: ../gramps/plugins/quickview/filterbyname.py:131
 #: ../gramps/plugins/textreport/tagreport.py:639
 #: ../gramps/plugins/view/repoview.py:129
@@ -8547,8 +8540,8 @@ msgstr "Rövidítés"
 #: ../gramps/plugins/webreport/narrativeweb.py:1924
 #: ../gramps/plugins/webreport/narrativeweb.py:2053
 #: ../gramps/plugins/webreport/narrativeweb.py:3087
-#: ../gramps/plugins/webreport/narrativeweb.py:7841
-#: ../gramps/plugins/webreport/narrativeweb.py:7926
+#: ../gramps/plugins/webreport/narrativeweb.py:7844
+#: ../gramps/plugins/webreport/narrativeweb.py:7929
 msgid "Repositories"
 msgstr "Tárolók"
 
@@ -8609,8 +8602,8 @@ msgid "Styled Text"
 msgstr "Formázott Szöveg"
 
 #: ../gramps/gen/lib/styledtext.py:308
-#: ../gramps/gen/plug/report/_constants.py:53 ../gramps/gui/clipboard.py:637
-#: ../gramps/gui/clipboard.py:645 ../gramps/gui/configure.py:1200
+#: ../gramps/gen/plug/report/_constants.py:53 ../gramps/gui/clipboard.py:640
+#: ../gramps/gui/clipboard.py:648 ../gramps/gui/configure.py:1200
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:101
 #: ../gramps/plugins/textreport/custombooktext.py:132
 #: ../gramps/plugins/textreport/tagreport.py:509
@@ -8667,7 +8660,7 @@ msgstr "Hivatkozás"
 
 #. show surname and first name
 #: ../gramps/gen/lib/surname.py:87 ../gramps/gen/lib/surname.py:91
-#: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:621
+#: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:624
 #: ../gramps/gui/configure.py:646 ../gramps/gui/configure.py:648
 #: ../gramps/gui/configure.py:650 ../gramps/gui/configure.py:652
 #: ../gramps/gui/configure.py:655 ../gramps/gui/configure.py:656
@@ -8679,8 +8672,8 @@ msgstr "Hivatkozás"
 #: ../gramps/plugins/importer/importcsv.py:159
 #: ../gramps/plugins/quickview/filterbyname.py:354
 #: ../gramps/plugins/webreport/narrativeweb.py:3282
-#: ../gramps/plugins/webreport/narrativeweb.py:4618
-#: ../gramps/plugins/webreport/narrativeweb.py:6185
+#: ../gramps/plugins/webreport/narrativeweb.py:4621
+#: ../gramps/plugins/webreport/narrativeweb.py:6188
 msgid "Surname"
 msgstr "Vezetéknév"
 
@@ -8786,8 +8779,7 @@ msgstr "Család összefűzése"
 msgid "Merge Media Objects"
 msgstr "Média objektumok összefűzése"
 
-#: ../gramps/gen/merge/mergenotequery.py:58
-#: ../gramps/gui/merge/mergenote.py:66
+#: ../gramps/gen/merge/mergenotequery.py:58 ../gramps/gui/merge/mergenote.py:66
 msgid "Merge Notes"
 msgstr "Jegyzetek összefűzése"
 
@@ -8903,8 +8895,8 @@ msgstr "Oldalsáv"
 #: ../gramps/gen/plug/_pluginreg.py:514
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
 #: ../gramps/plugins/webreport/narrativeweb.py:2110
-#: ../gramps/plugins/webreport/narrativeweb.py:8241
-#: ../gramps/plugins/webreport/narrativeweb.py:8293
+#: ../gramps/plugins/webreport/narrativeweb.py:8244
+#: ../gramps/plugins/webreport/narrativeweb.py:8296
 msgid "Miscellaneous"
 msgstr "Egyebek"
 
@@ -8993,7 +8985,7 @@ msgstr "A %s fájl már nyitva van, először zárja be."
 #: ../gramps/plugins/lib/libhtmlbackend.py:253
 #: ../gramps/plugins/lib/libhtmlbackend.py:259
 #: ../gramps/plugins/lib/libhtmlbackend.py:263
-#: ../gramps/plugins/webreport/narrativeweb.py:8532
+#: ../gramps/plugins/webreport/narrativeweb.py:8535
 #, python-format
 msgid "Could not create %s"
 msgstr "Nem létrehozható %s"
@@ -9312,40 +9304,40 @@ msgstr "A jegyzet mérete"
 msgid "The size of note text, in points."
 msgstr "A jegyzetszöveg mérete pontokban."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:961
+#: ../gramps/gen/plug/docgen/graphdoc.py:962
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:967
+#: ../gramps/gen/plug/docgen/graphdoc.py:968
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:973
+#: ../gramps/gen/plug/docgen/graphdoc.py:974
 #: ../gramps/plugins/docgen/docgen.gpr.py:161
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:979
+#: ../gramps/gen/plug/docgen/graphdoc.py:980
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Strukturált vektorgrafika (SVG)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:985
+#: ../gramps/gen/plug/docgen/graphdoc.py:986
 msgid "Compressed Structured Vector Graphs (SVGZ)"
 msgstr "Tömörített strukturált vektorgrafika (SVGZ)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:991
+#: ../gramps/gen/plug/docgen/graphdoc.py:992
 msgid "JPEG image"
 msgstr "JPEG kép"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:997
+#: ../gramps/gen/plug/docgen/graphdoc.py:998
 msgid "GIF image"
 msgstr "GIF kép"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1003
+#: ../gramps/gen/plug/docgen/graphdoc.py:1004
 msgid "PNG image"
 msgstr "PNG kép"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1009
+#: ../gramps/gen/plug/docgen/graphdoc.py:1010
 msgid "Graphviz File"
 msgstr "Graphviz fájl"
 
@@ -9377,8 +9369,7 @@ msgstr "Érvényes értékek: "
 #.
 #. ------------------------------------------------------------------------
 #: ../gramps/gen/plug/report/_book.py:71 ../gramps/gui/plug/_dialogs.py:59
-#: ../gramps/gui/plug/report/_bookdialog.py:84
-#: ../gramps/gui/viewmanager.py:119
+#: ../gramps/gui/plug/report/_bookdialog.py:84 ../gramps/gui/viewmanager.py:120
 msgid "Unsupported"
 msgstr "Nem támogatott"
 
@@ -9478,8 +9469,7 @@ msgstr "Végjegyzetek"
 #: ../gramps/plugins/view/relview.py:614 ../gramps/plugins/view/relview.py:631
 #: ../gramps/plugins/view/relview.py:641 ../gramps/plugins/view/relview.py:646
 #: ../gramps/plugins/view/relview.py:654 ../gramps/plugins/view/relview.py:862
-#: ../gramps/plugins/view/relview.py:898
-#: ../gramps/plugins/view/relview.py:1378
+#: ../gramps/plugins/view/relview.py:898 ../gramps/plugins/view/relview.py:1378
 #: ../gramps/plugins/view/relview.py:1402
 #, python-format
 msgid "%s:"
@@ -9578,21 +9568,20 @@ msgstr "Legyen-e (és hol) GRAMPS Azonosító a nevek mellett"
 #. #########################
 #. ###############################
 #: ../gramps/gen/plug/report/stdoptions.py:327
-#: ../gramps/gui/viewmanager.py:1886
+#: ../gramps/gui/viewmanager.py:1888
 #: ../gramps/plugins/graph/gvfamilylines.py:211
 #: ../gramps/plugins/graph/gvrelgraph.py:804
 #: ../gramps/plugins/textreport/detancestralreport.py:888
 #: ../gramps/plugins/textreport/detdescendantreport.py:1075
 #: ../gramps/plugins/textreport/familygroup.py:747
 #: ../gramps/plugins/textreport/indivcomplete.py:1094
-#: ../gramps/plugins/webreport/narrativeweb.py:10061
+#: ../gramps/plugins/webreport/narrativeweb.py:10064
 msgid "Include"
 msgstr "Beleértve"
 
 #: ../gramps/gen/plug/report/stdoptions.py:328
-#, fuzzy
 msgid "Whether to include Gramps IDs"
-msgstr "Legyen-e (és hol) GRAMPS Azonosító a nevek mellett"
+msgstr "Legyenek-e GRAMPS Azonosítók benne"
 
 #: ../gramps/gen/plug/report/utils.py:158
 #: ../gramps/plugins/textreport/indivcomplete.py:913
@@ -9650,18 +9639,15 @@ msgstr "%s ősei"
 msgid "People with common ancestor with %s"
 msgstr "Közös őssel rendelkezők %s személlyel"
 
-#: ../gramps/gen/plug/report/utils.py:354
-#: ../gramps/gui/plug/_guioptions.py:891
+#: ../gramps/gen/plug/report/utils.py:354 ../gramps/gui/plug/_guioptions.py:891
 msgid "unknown father"
 msgstr "ismeretlen apa"
 
-#: ../gramps/gen/plug/report/utils.py:360
-#: ../gramps/gui/plug/_guioptions.py:897
+#: ../gramps/gen/plug/report/utils.py:360 ../gramps/gui/plug/_guioptions.py:897
 msgid "unknown mother"
 msgstr "ismeretlen anya"
 
-#: ../gramps/gen/plug/report/utils.py:362
-#: ../gramps/gui/plug/_guioptions.py:899
+#: ../gramps/gen/plug/report/utils.py:362 ../gramps/gui/plug/_guioptions.py:899
 #, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
 msgstr "%(father_name)s és %(mother_name)s (%(family_id)s)"
@@ -9903,88 +9889,86 @@ msgstr ""
 "Családi rokonság fordító nem elérhető a(z) '%s' nyelvhez. Helyette az "
 "'angol' lesz."
 
-#: ../gramps/gen/utils/alive.py:148
-#: ../gramps/plugins/importer/importcsv.py:201
+#: ../gramps/gen/utils/alive.py:145 ../gramps/plugins/importer/importcsv.py:201
 msgid "death date"
 msgstr "halálozási dátum"
 
-#: ../gramps/gen/utils/alive.py:153
-#: ../gramps/plugins/importer/importcsv.py:177
+#: ../gramps/gen/utils/alive.py:150 ../gramps/plugins/importer/importcsv.py:177
 msgid "birth date"
 msgstr "születési dátum"
 
-#: ../gramps/gen/utils/alive.py:186
+#: ../gramps/gen/utils/alive.py:183
 msgid "sibling birth date"
 msgstr "testvér születési dátuma"
 
-#: ../gramps/gen/utils/alive.py:198
+#: ../gramps/gen/utils/alive.py:195
 msgid "sibling death date"
 msgstr "testvér halálozási dátuma"
 
-#: ../gramps/gen/utils/alive.py:212
+#: ../gramps/gen/utils/alive.py:209
 msgid "sibling birth-related date"
 msgstr "testvér születéséhez kapcsolódó dátum"
 
-#: ../gramps/gen/utils/alive.py:223
+#: ../gramps/gen/utils/alive.py:220
 msgid "sibling death-related date"
 msgstr "testvér halálához kapcsolódó dátum"
 
-#: ../gramps/gen/utils/alive.py:238 ../gramps/gen/utils/alive.py:249
+#: ../gramps/gen/utils/alive.py:235 ../gramps/gen/utils/alive.py:246
 msgid "a spouse's birth-related date, "
 msgstr "egy házastárs születéséhez kapcsolódó dátum, "
 
-#: ../gramps/gen/utils/alive.py:242 ../gramps/gen/utils/alive.py:253
+#: ../gramps/gen/utils/alive.py:239 ../gramps/gen/utils/alive.py:250
 msgid "a spouse's death-related date, "
 msgstr "egy házastárs halálához kapcsolódó dátum, "
 
-#: ../gramps/gen/utils/alive.py:271
+#: ../gramps/gen/utils/alive.py:268
 msgid "event with spouse"
 msgstr "esemény házastárssal"
 
-#: ../gramps/gen/utils/alive.py:298
+#: ../gramps/gen/utils/alive.py:295
 msgid "descendant birth date"
 msgstr "leszármazott születési dátuma"
 
-#: ../gramps/gen/utils/alive.py:307
+#: ../gramps/gen/utils/alive.py:304
 msgid "descendant death date"
 msgstr "leszármazott halálozási dátuma"
 
-#: ../gramps/gen/utils/alive.py:323
+#: ../gramps/gen/utils/alive.py:320
 msgid "descendant birth-related date"
 msgstr "leszármazott születéséhez kapcsolódó dátum"
 
-#: ../gramps/gen/utils/alive.py:331
+#: ../gramps/gen/utils/alive.py:328
 msgid "descendant death-related date"
 msgstr "leszármazott halálához kapcsolódó dátum"
 
-#: ../gramps/gen/utils/alive.py:344
+#: ../gramps/gen/utils/alive.py:341
 #, python-format
 msgid "Database error: loop in %s's descendants"
 msgstr "Adatbázis hiba: visszacsatolás %s leszármazottaiban"
 
-#: ../gramps/gen/utils/alive.py:373 ../gramps/gen/utils/alive.py:419
+#: ../gramps/gen/utils/alive.py:370 ../gramps/gen/utils/alive.py:416
 msgid "ancestor birth date"
 msgstr "ős születési dátuma"
 
-#: ../gramps/gen/utils/alive.py:383 ../gramps/gen/utils/alive.py:429
+#: ../gramps/gen/utils/alive.py:380 ../gramps/gen/utils/alive.py:426
 msgid "ancestor death date"
 msgstr "ős halálozási dátuma"
 
-#: ../gramps/gen/utils/alive.py:394 ../gramps/gen/utils/alive.py:440
+#: ../gramps/gen/utils/alive.py:391 ../gramps/gen/utils/alive.py:437
 msgid "ancestor birth-related date"
 msgstr "ős születéséhez kapcsolódó dátum"
 
-#: ../gramps/gen/utils/alive.py:402 ../gramps/gen/utils/alive.py:448
+#: ../gramps/gen/utils/alive.py:399 ../gramps/gen/utils/alive.py:445
 msgid "ancestor death-related date"
 msgstr "ős halálához kapcsolódó dátum"
 
-#: ../gramps/gen/utils/alive.py:463
+#: ../gramps/gen/utils/alive.py:460
 #, python-format
 msgid "Database error: loop in %s's ancestors"
 msgstr "Adatbázis hiba: visszacsatolás %s őseiben"
 
 #. no evidence, must consider alive
-#: ../gramps/gen/utils/alive.py:510
+#: ../gramps/gen/utils/alive.py:507
 msgid "no evidence"
 msgstr "nincs bizonyíték"
 
@@ -10017,224 +10001,224 @@ msgstr "%s, ..."
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s és %(mother)s"
 
-#: ../gramps/gen/utils/grampslocale.py:70
+#: ../gramps/gen/utils/grampslocale.py:71
 msgid "Arabic"
 msgstr "Arab"
 
-#: ../gramps/gen/utils/grampslocale.py:71
+#: ../gramps/gen/utils/grampslocale.py:72
 msgid "Bulgarian"
 msgstr "Bolgár"
 
-#: ../gramps/gen/utils/grampslocale.py:72
+#: ../gramps/gen/utils/grampslocale.py:73
 msgid "Breton"
 msgstr "Breton"
 
 #. Windows has no translation for Breton
-#: ../gramps/gen/utils/grampslocale.py:73
+#: ../gramps/gen/utils/grampslocale.py:74
 msgid "Catalan"
 msgstr "Katalán"
 
-#: ../gramps/gen/utils/grampslocale.py:74
+#: ../gramps/gen/utils/grampslocale.py:75
 msgid "Czech"
 msgstr "Cseh"
 
-#: ../gramps/gen/utils/grampslocale.py:75
+#: ../gramps/gen/utils/grampslocale.py:76
 msgid "Danish"
 msgstr "Dán"
 
-#: ../gramps/gen/utils/grampslocale.py:76
+#: ../gramps/gen/utils/grampslocale.py:77
 msgid "German"
 msgstr "Német"
 
-#: ../gramps/gen/utils/grampslocale.py:77
+#: ../gramps/gen/utils/grampslocale.py:78
 msgid "Greek"
 msgstr "Görög"
 
-#: ../gramps/gen/utils/grampslocale.py:78
+#: ../gramps/gen/utils/grampslocale.py:79
 msgid "English (USA)"
 msgstr "Angol (USA)"
 
-#: ../gramps/gen/utils/grampslocale.py:79
+#: ../gramps/gen/utils/grampslocale.py:80
 msgid "English"
 msgstr "Angol"
 
-#: ../gramps/gen/utils/grampslocale.py:80
+#: ../gramps/gen/utils/grampslocale.py:81
 msgid "Esperanto"
 msgstr "Eszperantó"
 
 #. Windows has no translation for Esperanto
-#: ../gramps/gen/utils/grampslocale.py:81
+#: ../gramps/gen/utils/grampslocale.py:82
 msgid "Spanish"
 msgstr "Spanyol"
 
-#: ../gramps/gen/utils/grampslocale.py:82
+#: ../gramps/gen/utils/grampslocale.py:83
 msgid "Finnish"
 msgstr "Finn"
 
-#: ../gramps/gen/utils/grampslocale.py:83
+#: ../gramps/gen/utils/grampslocale.py:84
 msgid "French"
 msgstr "Francia"
 
-#: ../gramps/gen/utils/grampslocale.py:84
+#: ../gramps/gen/utils/grampslocale.py:85
 msgid "Gaelic"
 msgstr "Kelta"
 
 #. Windows has no translation for Gaelic
-#: ../gramps/gen/utils/grampslocale.py:85
+#: ../gramps/gen/utils/grampslocale.py:86
 msgid "Hebrew"
 msgstr "Héber"
 
-#: ../gramps/gen/utils/grampslocale.py:86
+#: ../gramps/gen/utils/grampslocale.py:87
 msgid "Croatian"
 msgstr "Horvát"
 
-#: ../gramps/gen/utils/grampslocale.py:87
+#: ../gramps/gen/utils/grampslocale.py:88
 msgid "Hungarian"
 msgstr "Magyar"
 
-#: ../gramps/gen/utils/grampslocale.py:88
+#: ../gramps/gen/utils/grampslocale.py:89
 msgid "Icelandic"
 msgstr "Izlandi"
 
-#: ../gramps/gen/utils/grampslocale.py:89
+#: ../gramps/gen/utils/grampslocale.py:90
 msgid "Italian"
 msgstr "Olasz"
 
-#: ../gramps/gen/utils/grampslocale.py:90
+#: ../gramps/gen/utils/grampslocale.py:91
 msgid "Japanese"
 msgstr "Japán"
 
-#: ../gramps/gen/utils/grampslocale.py:91
+#: ../gramps/gen/utils/grampslocale.py:92
 msgid "Lithuanian"
 msgstr "Litván"
 
-#: ../gramps/gen/utils/grampslocale.py:92
+#: ../gramps/gen/utils/grampslocale.py:93
 msgid "Macedonian"
 msgstr "Macedón"
 
 #. Windows has no translation for Macedonian
-#: ../gramps/gen/utils/grampslocale.py:93
+#: ../gramps/gen/utils/grampslocale.py:94
 msgid "Norwegian Bokmal"
 msgstr "Bokmal norvég"
 
-#: ../gramps/gen/utils/grampslocale.py:94
+#: ../gramps/gen/utils/grampslocale.py:95
 msgid "Dutch"
 msgstr "Holland"
 
-#: ../gramps/gen/utils/grampslocale.py:95
+#: ../gramps/gen/utils/grampslocale.py:96
 msgid "Norwegian Nynorsk"
 msgstr "Nynorsk norvég"
 
-#: ../gramps/gen/utils/grampslocale.py:96
+#: ../gramps/gen/utils/grampslocale.py:97
 msgid "Polish"
 msgstr "Lengyel"
 
-#: ../gramps/gen/utils/grampslocale.py:97
+#: ../gramps/gen/utils/grampslocale.py:98
 msgid "Portuguese (Brazil)"
 msgstr "Portugál (Brazília)"
 
-#: ../gramps/gen/utils/grampslocale.py:98
+#: ../gramps/gen/utils/grampslocale.py:99
 msgid "Portuguese (Portugal)"
 msgstr "Portugál (Portugália)"
 
-#: ../gramps/gen/utils/grampslocale.py:99
+#: ../gramps/gen/utils/grampslocale.py:100
 msgid "Romanian"
 msgstr "Román"
 
-#: ../gramps/gen/utils/grampslocale.py:100
+#: ../gramps/gen/utils/grampslocale.py:101
 msgid "Russian"
 msgstr "Orosz"
 
-#: ../gramps/gen/utils/grampslocale.py:101
+#: ../gramps/gen/utils/grampslocale.py:102
 msgid "Slovak"
 msgstr "Szlovák"
 
-#: ../gramps/gen/utils/grampslocale.py:102
+#: ../gramps/gen/utils/grampslocale.py:103
 msgid "Slovenian"
 msgstr "Szlovén"
 
-#: ../gramps/gen/utils/grampslocale.py:103
+#: ../gramps/gen/utils/grampslocale.py:104
 msgid "Albanian"
 msgstr "Albán"
 
-#: ../gramps/gen/utils/grampslocale.py:104
+#: ../gramps/gen/utils/grampslocale.py:105
 msgid "Serbian"
 msgstr "Szerb"
 
-#: ../gramps/gen/utils/grampslocale.py:105
+#: ../gramps/gen/utils/grampslocale.py:106
 msgid "Swedish"
 msgstr "Svéd"
 
-#: ../gramps/gen/utils/grampslocale.py:106
+#: ../gramps/gen/utils/grampslocale.py:107
 msgid "Tamil"
 msgstr "Tamil"
 
 #. Windows has no codepage for Tamil
-#: ../gramps/gen/utils/grampslocale.py:107
+#: ../gramps/gen/utils/grampslocale.py:108
 msgid "Turkish"
 msgstr "Török"
 
-#: ../gramps/gen/utils/grampslocale.py:108
+#: ../gramps/gen/utils/grampslocale.py:109
 msgid "Ukrainian"
 msgstr "Ukrán"
 
-#: ../gramps/gen/utils/grampslocale.py:109
+#: ../gramps/gen/utils/grampslocale.py:110
 msgid "Vietnamese"
 msgstr "Vietnami"
 
-#: ../gramps/gen/utils/grampslocale.py:110
+#: ../gramps/gen/utils/grampslocale.py:111
 msgid "Chinese (Simplified)"
 msgstr "Kínai (egyszerűsített)"
 
-#: ../gramps/gen/utils/grampslocale.py:111
+#: ../gramps/gen/utils/grampslocale.py:112
 msgid "Chinese (Hong Kong)"
 msgstr "Kínai (Hong Kong)"
 
-#: ../gramps/gen/utils/grampslocale.py:112
+#: ../gramps/gen/utils/grampslocale.py:113
 msgid "Chinese (Traditional)"
 msgstr "Kínai (egyszerűsített)"
 
-#: ../gramps/gen/utils/grampslocale.py:895
+#: ../gramps/gen/utils/grampslocale.py:896
 msgid "the person"
 msgstr "a személy"
 
-#: ../gramps/gen/utils/grampslocale.py:897
+#: ../gramps/gen/utils/grampslocale.py:898
 msgid "the family"
 msgstr "a család"
 
-#: ../gramps/gen/utils/grampslocale.py:899
+#: ../gramps/gen/utils/grampslocale.py:900
 msgid "the place"
 msgstr "a hely"
 
-#: ../gramps/gen/utils/grampslocale.py:901
+#: ../gramps/gen/utils/grampslocale.py:902
 msgid "the event"
 msgstr "az esemény"
 
-#: ../gramps/gen/utils/grampslocale.py:903
+#: ../gramps/gen/utils/grampslocale.py:904
 msgid "the repository"
 msgstr "a tároló"
 
-#: ../gramps/gen/utils/grampslocale.py:905
+#: ../gramps/gen/utils/grampslocale.py:906
 msgid "the note"
 msgstr "a feljegyzés"
 
-#: ../gramps/gen/utils/grampslocale.py:907
+#: ../gramps/gen/utils/grampslocale.py:908
 msgid "the media"
 msgstr "a média"
 
-#: ../gramps/gen/utils/grampslocale.py:909
+#: ../gramps/gen/utils/grampslocale.py:910
 msgid "the source"
 msgstr "a forrás"
 
-#: ../gramps/gen/utils/grampslocale.py:911
+#: ../gramps/gen/utils/grampslocale.py:912
 msgid "the filter"
 msgstr "a szűrő"
 
-#: ../gramps/gen/utils/grampslocale.py:913
+#: ../gramps/gen/utils/grampslocale.py:914
 msgid "the citation"
 msgstr "az idézet"
 
-#: ../gramps/gen/utils/grampslocale.py:915
+#: ../gramps/gen/utils/grampslocale.py:916
 msgid "See details"
 msgstr "Részletek"
 
@@ -10415,7 +10399,7 @@ msgstr "%(west_longitude)s NY"
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
-#: ../gramps/plugins/webreport/narrativeweb.py:6388
+#: ../gramps/plugins/webreport/narrativeweb.py:6391
 msgid "male"
 msgstr "férfi"
 
@@ -10424,7 +10408,7 @@ msgstr "férfi"
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
-#: ../gramps/plugins/webreport/narrativeweb.py:6389
+#: ../gramps/plugins/webreport/narrativeweb.py:6392
 msgid "female"
 msgstr "nő"
 
@@ -10566,82 +10550,97 @@ msgstr "Hozzájárultak"
 msgid "translator-credits"
 msgstr "fordító hitelességek"
 
-#: ../gramps/gui/clipboard.py:69
+#: ../gramps/gui/aboutdialog.py:130
+#, python-format
+msgid "Distribution: %s"
+msgstr "Elosztás: %s"
+
+#: ../gramps/gui/aboutdialog.py:145
+#, python-format
+msgid "LANG: %s\n"
+msgstr "NYELV: %s\n"
+
+#: ../gramps/gui/aboutdialog.py:146
+#, python-format
+msgid "OS: %s"
+msgstr "Op.Rendsz.: %s"
+
+#: ../gramps/gui/clipboard.py:71
 msgid "manual|Using_the_Clipboard"
 msgstr "A_Vágólap használata"
 
 #. We encounter a PLAC, having previously encountered an ADDR
-#: ../gramps/gui/clipboard.py:303 ../gramps/gui/configure.py:517
+#: ../gramps/gui/clipboard.py:306 ../gramps/gui/configure.py:517
 #: ../gramps/gui/editors/editaddress.py:167
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
 #: ../gramps/plugins/gramplet/repositorydetails.py:133
-#: ../gramps/plugins/lib/libgedcom.py:5432
-#: ../gramps/plugins/lib/libgedcom.py:5598
+#: ../gramps/plugins/lib/libgedcom.py:5443
+#: ../gramps/plugins/lib/libgedcom.py:5609
 #: ../gramps/plugins/textreport/familygroup.py:350
-#: ../gramps/plugins/webreport/narrativeweb.py:8041
+#: ../gramps/plugins/webreport/narrativeweb.py:8044
 msgid "Address"
 msgstr "Lakcím"
 
-#: ../gramps/gui/clipboard.py:427
+#: ../gramps/gui/clipboard.py:430
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:118
 msgid "Family Event"
 msgstr "Családi esemény"
 
-#: ../gramps/gui/clipboard.py:443
+#: ../gramps/gui/clipboard.py:446
 msgid "Url"
 msgstr "URL"
 
-#: ../gramps/gui/clipboard.py:459 ../gramps/gui/editors/editattribute.py:135
+#: ../gramps/gui/clipboard.py:462 ../gramps/gui/editors/editattribute.py:135
 msgid "Attribute"
 msgstr "Jellemző"
 
-#: ../gramps/gui/clipboard.py:474
+#: ../gramps/gui/clipboard.py:477
 msgid "Family Attribute"
 msgstr "Családjellemző"
 
-#: ../gramps/gui/clipboard.py:505
+#: ../gramps/gui/clipboard.py:508
 msgid "not available|NA"
 msgstr "NA"
 
-#: ../gramps/gui/clipboard.py:514
+#: ../gramps/gui/clipboard.py:517
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
 msgstr "Kötet/Oldal: %(pag)s -- %(sourcetext)s"
 
-#: ../gramps/gui/clipboard.py:535
+#: ../gramps/gui/clipboard.py:538
 msgid "Repository ref"
 msgstr "Tároló hivatkozás"
 
-#: ../gramps/gui/clipboard.py:553
+#: ../gramps/gui/clipboard.py:556
 msgid "Event ref"
 msgstr "Esemény hivatkozás"
 
-#: ../gramps/gui/clipboard.py:571
+#: ../gramps/gui/clipboard.py:574
 msgid "Place ref"
 msgstr "Helyszín hivatkozás"
 
-#: ../gramps/gui/clipboard.py:605 ../gramps/gui/editors/editplacename.py:134
+#: ../gramps/gui/clipboard.py:608 ../gramps/gui/editors/editplacename.py:134
 msgid "Place Name"
 msgstr "Helynév"
 
-#: ../gramps/gui/clipboard.py:686
+#: ../gramps/gui/clipboard.py:689
 msgid "Media ref"
 msgstr "Média hivatkozás"
 
-#: ../gramps/gui/clipboard.py:704
+#: ../gramps/gui/clipboard.py:707
 msgid "Person ref"
 msgstr "Személy hivatkozás"
 
-#: ../gramps/gui/clipboard.py:722
+#: ../gramps/gui/clipboard.py:725
 msgid "Child ref"
 msgstr "Gyermek hivatkozás"
 
-#: ../gramps/gui/clipboard.py:731
+#: ../gramps/gui/clipboard.py:734
 #, python-format
 msgid "%(frel)s %(mrel)s"
 msgstr "%(frel)s %(mrel)s"
 
-#: ../gramps/gui/clipboard.py:967 ../gramps/gui/dbman.py:126
+#: ../gramps/gui/clipboard.py:970 ../gramps/gui/dbman.py:126
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:63
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:64
 #: ../gramps/plugins/gramplet/attributes.py:57
@@ -10652,26 +10651,26 @@ msgstr "%(frel)s %(mrel)s"
 msgid "Value"
 msgstr "Érték"
 
-#: ../gramps/gui/clipboard.py:1387 ../gramps/gui/clipboard.py:1393
-#: ../gramps/gui/clipboard.py:1431 ../gramps/gui/clipboard.py:1475
+#: ../gramps/gui/clipboard.py:1425 ../gramps/gui/clipboard.py:1431
+#: ../gramps/gui/clipboard.py:1469 ../gramps/gui/clipboard.py:1513
 #: ../gramps/gui/glade/clipboard.glade:7
 msgid "Clipboard"
 msgstr "Vágólap"
 
 #. Now add more items to popup menu, if available
 #. See details (edit, etc):
-#: ../gramps/gui/clipboard.py:1519 ../gramps/gui/plug/quick/_quicktable.py:141
+#: ../gramps/gui/clipboard.py:1557 ../gramps/gui/plug/quick/_quicktable.py:141
 #, python-format
 msgid "the object|See %s details"
 msgstr "Lásd %s részleteit"
 
 #. ---------------------------
-#: ../gramps/gui/clipboard.py:1525 ../gramps/gui/plug/quick/_quicktable.py:149
+#: ../gramps/gui/clipboard.py:1563 ../gramps/gui/plug/quick/_quicktable.py:149
 #, python-format
 msgid "the object|Make %s active"
 msgstr "Tegye %s-t aktívvá"
 
-#: ../gramps/gui/clipboard.py:1541
+#: ../gramps/gui/clipboard.py:1579
 #, python-format
 msgid "the object|Create Filter from %s selected..."
 msgstr "Szűrő létrehozása a kiválasztott %s-bó(ő)l..."
@@ -10687,7 +10686,7 @@ msgstr "Húzd és ejtsd az oszlopokat a sorrend változtatásához"
 
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1545
 #: ../gramps/gui/configure.py:1567 ../gramps/gui/configure.py:1590
-#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1957
+#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1959
 #: ../gramps/plugins/lib/maps/geography.py:1009
 #: ../gramps/plugins/lib/maps/geography.py:1263
 msgid "_Apply"
@@ -10697,7 +10696,7 @@ msgstr "_Alkalmaz"
 #: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1111
 #: ../gramps/plugins/drawreport/ancestortree.py:909
 #: ../gramps/plugins/drawreport/descendtree.py:1645
-#: ../gramps/plugins/webreport/narrativeweb.py:9858
+#: ../gramps/plugins/webreport/narrativeweb.py:9861
 msgid "Display"
 msgstr "Megjelenítés"
 
@@ -10729,11 +10728,10 @@ msgstr "Névszerkesztő mutatása"
 #: ../gramps/gui/glade/displaystate.glade:23
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
-#: ../gramps/gui/glade/updateaddons.glade:25
-#: ../gramps/gui/plug/_windows.py:105 ../gramps/gui/plug/_windows.py:691
-#: ../gramps/gui/plug/_windows.py:747
+#: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/plug/_windows.py:105
+#: ../gramps/gui/plug/_windows.py:691 ../gramps/gui/plug/_windows.py:747
 #: ../gramps/gui/plug/quick/_textbufdoc.py:60 ../gramps/gui/undohistory.py:90
-#: ../gramps/gui/viewmanager.py:538 ../gramps/gui/viewmanager.py:1821
+#: ../gramps/gui/viewmanager.py:539 ../gramps/gui/viewmanager.py:1823
 #: ../gramps/gui/views/bookmarks.py:287 ../gramps/gui/views/tags.py:430
 #: ../gramps/gui/widgets/grampletbar.py:635
 #: ../gramps/gui/widgets/grampletpane.py:237
@@ -10856,8 +10854,8 @@ msgstr "Irányítószám"
 #: ../gramps/gui/configure.py:523 ../gramps/plugins/export/exportgedcom.py:788
 #: ../gramps/plugins/export/exportgedcom.py:1156
 #: ../gramps/plugins/gramplet/repositorydetails.py:121
-#: ../gramps/plugins/lib/libgedcom.py:3981
-#: ../gramps/plugins/lib/libgedcom.py:5695
+#: ../gramps/plugins/lib/libgedcom.py:3982
+#: ../gramps/plugins/lib/libgedcom.py:5706
 #: ../gramps/plugins/webreport/narrativeweb.py:1527
 msgid "Phone"
 msgstr "Telefon"
@@ -11002,7 +11000,7 @@ msgstr "Példa"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:115
 #: ../gramps/gui/editors/editfamily.py:148
 #: ../gramps/gui/plug/report/_bookdialog.py:653
-#: ../gramps/gui/viewmanager.py:600 ../gramps/gui/views/tags.py:422
+#: ../gramps/gui/viewmanager.py:601 ../gramps/gui/views/tags.py:422
 #: ../gramps/gui/widgets/fanchart.py:1712
 #: ../gramps/gui/widgets/fanchart.py:1754
 #: ../gramps/plugins/view/pedigreeview.py:1627
@@ -11019,7 +11017,7 @@ msgstr "_Hozzáadás"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:116
 #: ../gramps/gui/glade/editlink.glade:222
 #: ../gramps/gui/plug/report/_bookdialog.py:627
-#: ../gramps/gui/viewmanager.py:513 ../gramps/gui/views/tags.py:423
+#: ../gramps/gui/viewmanager.py:514 ../gramps/gui/views/tags.py:423
 #: ../gramps/gui/widgets/fanchart.py:1511
 #: ../gramps/plugins/view/pedigreeview.py:1662
 #: ../gramps/plugins/view/pedigreeview.py:1890
@@ -11416,8 +11414,7 @@ msgstr "A média könyvtár kiválasztása"
 #: ../gramps/gui/glade/editattribute.glade:21
 #: ../gramps/gui/glade/editchildref.glade:22
 #: ../gramps/gui/glade/editcitation.glade:42
-#: ../gramps/gui/glade/editdate.glade:69
-#: ../gramps/gui/glade/editevent.glade:21
+#: ../gramps/gui/glade/editdate.glade:69 ../gramps/gui/glade/editevent.glade:21
 #: ../gramps/gui/glade/editeventref.glade:38
 #: ../gramps/gui/glade/editfamily.glade:21
 #: ../gramps/gui/glade/editldsord.glade:39
@@ -11433,8 +11430,7 @@ msgstr "A média könyvtár kiválasztása"
 #: ../gramps/gui/glade/editplaceref.glade:38
 #: ../gramps/gui/glade/editreporef.glade:22
 #: ../gramps/gui/glade/editrepository.glade:22
-#: ../gramps/gui/glade/editsource.glade:23
-#: ../gramps/gui/glade/editurl.glade:21
+#: ../gramps/gui/glade/editsource.glade:23 ../gramps/gui/glade/editurl.glade:21
 #: ../gramps/gui/glade/mergecitation.glade:21
 #: ../gramps/gui/glade/mergedata.glade:25
 #: ../gramps/gui/glade/mergedata.glade:246
@@ -11451,11 +11447,11 @@ msgstr "A média könyvtár kiválasztása"
 #: ../gramps/gui/glade/reorder.glade:22 ../gramps/gui/glade/rule.glade:316
 #: ../gramps/gui/glade/rule.glade:747 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1721
-#: ../gramps/gui/logger/_errorview.py:168 ../gramps/gui/plug/_guioptions.py:78
+#: ../gramps/gui/logger/_errorview.py:173 ../gramps/gui/plug/_guioptions.py:78
 #: ../gramps/gui/plug/_guioptions.py:1738 ../gramps/gui/plug/_windows.py:440
 #: ../gramps/gui/plug/report/_fileentry.py:64
 #: ../gramps/gui/plug/report/_reportdialog.py:161 ../gramps/gui/utils.py:178
-#: ../gramps/gui/viewmanager.py:1955 ../gramps/gui/views/listview.py:1022
+#: ../gramps/gui/viewmanager.py:1957 ../gramps/gui/views/listview.py:1022
 #: ../gramps/gui/views/navigationview.py:362 ../gramps/gui/views/tags.py:645
 #: ../gramps/gui/widgets/progressdialog.py:437
 #: ../gramps/plugins/lib/maps/geography.py:1008
@@ -11470,7 +11466,7 @@ msgstr "Még_se"
 msgid "Select database directory"
 msgstr "Adatbázis könyvtár kiválasztása"
 
-#: ../gramps/gui/configure.py:1585 ../gramps/gui/viewmanager.py:1952
+#: ../gramps/gui/configure.py:1585 ../gramps/gui/viewmanager.py:1954
 msgid "Select backup directory"
 msgstr "Válassza ki a mentési könyvtárat"
 
@@ -11520,7 +11516,7 @@ msgstr ""
 #: ../gramps/gui/dbloader.py:241 ../gramps/gui/dbloader.py:256
 #: ../gramps/gui/plug/report/_bookdialog.py:243
 #: ../gramps/gui/plug/report/_bookdialog.py:739
-#: ../gramps/gui/viewmanager.py:840
+#: ../gramps/gui/viewmanager.py:841
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -11621,15 +11617,13 @@ msgstr "Adatbázis információ"
 
 #: ../gramps/gui/dbman.py:121 ../gramps/gui/editors/edittaglist.py:120
 #: ../gramps/gui/glade/addmedia.glade:38
-#: ../gramps/gui/glade/baseselector.glade:40
-#: ../gramps/gui/glade/book.glade:482 ../gramps/gui/glade/book.glade:555
-#: ../gramps/gui/glade/configure.glade:39 ../gramps/gui/glade/dbman.glade:24
-#: ../gramps/gui/glade/editaddress.glade:36
+#: ../gramps/gui/glade/baseselector.glade:40 ../gramps/gui/glade/book.glade:482
+#: ../gramps/gui/glade/book.glade:555 ../gramps/gui/glade/configure.glade:39
+#: ../gramps/gui/glade/dbman.glade:24 ../gramps/gui/glade/editaddress.glade:36
 #: ../gramps/gui/glade/editattribute.glade:37
 #: ../gramps/gui/glade/editchildref.glade:38
 #: ../gramps/gui/glade/editcitation.glade:57
-#: ../gramps/gui/glade/editdate.glade:85
-#: ../gramps/gui/glade/editevent.glade:40
+#: ../gramps/gui/glade/editdate.glade:85 ../gramps/gui/glade/editevent.glade:40
 #: ../gramps/gui/glade/editeventref.glade:54
 #: ../gramps/gui/glade/editfamily.glade:40
 #: ../gramps/gui/glade/editldsord.glade:55
@@ -11645,8 +11639,7 @@ msgstr "Adatbázis információ"
 #: ../gramps/gui/glade/editplaceref.glade:54
 #: ../gramps/gui/glade/editreporef.glade:41
 #: ../gramps/gui/glade/editrepository.glade:40
-#: ../gramps/gui/glade/editsource.glade:40
-#: ../gramps/gui/glade/editurl.glade:37
+#: ../gramps/gui/glade/editsource.glade:40 ../gramps/gui/glade/editurl.glade:37
 #: ../gramps/gui/glade/mergecitation.glade:37
 #: ../gramps/gui/glade/mergedata.glade:262
 #: ../gramps/gui/glade/mergedata.glade:451
@@ -11660,14 +11653,12 @@ msgstr "Adatbázis információ"
 #: ../gramps/gui/glade/mergerepository.glade:37
 #: ../gramps/gui/glade/mergesource.glade:37
 #: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
-#: ../gramps/gui/glade/rule.glade:764
-#: ../gramps/gui/glade/styleeditor.glade:103
+#: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1738
 #: ../gramps/gui/plug/_guioptions.py:79
 #: ../gramps/gui/plug/report/_reportdialog.py:165 ../gramps/gui/utils.py:192
-#: ../gramps/gui/viewmanager.py:1823 ../gramps/gui/views/tags.py:646
-#: ../gramps/plugins/tool/check.py:764
-#: ../gramps/plugins/tool/patchnames.py:118
+#: ../gramps/gui/viewmanager.py:1825 ../gramps/gui/views/tags.py:646
+#: ../gramps/plugins/tool/check.py:764 ../gramps/plugins/tool/patchnames.py:118
 #: ../gramps/plugins/tool/populatesources.py:91
 #: ../gramps/plugins/tool/testcasegenerator.py:328
 msgid "_OK"
@@ -12160,15 +12151,13 @@ msgstr "_Tulajdonságok"
 #: ../gramps/plugins/tool/notrelated.py:127
 #: ../gramps/plugins/tool/patchnames.py:404
 #: ../gramps/plugins/tool/removeunused.py:195
-#: ../gramps/plugins/tool/sortevents.py:56
-#: ../gramps/plugins/tool/verify.py:571
+#: ../gramps/plugins/tool/sortevents.py:56 ../gramps/plugins/tool/verify.py:571
 #: ../gramps/plugins/view/citationlistview.py:99
 #: ../gramps/plugins/view/citationtreeview.py:94
 #: ../gramps/plugins/view/eventview.py:83
 #: ../gramps/plugins/view/familyview.py:79
-#: ../gramps/plugins/view/mediaview.py:95
-#: ../gramps/plugins/view/noteview.py:80 ../gramps/plugins/view/relview.py:602
-#: ../gramps/plugins/view/repoview.py:86
+#: ../gramps/plugins/view/mediaview.py:95 ../gramps/plugins/view/noteview.py:80
+#: ../gramps/plugins/view/relview.py:602 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/view/sourceview.py:83
 msgid "ID"
 msgstr "Azonosító"
@@ -12405,7 +12394,7 @@ msgstr ""
 "\n"
 "A médiahivatkozás szerkesztéséhez be kell zárnia a média objektumot."
 
-#: ../gramps/gui/editors/displaytabs/gallerytab.py:527
+#: ../gramps/gui/editors/displaytabs/gallerytab.py:540
 #: ../gramps/plugins/view/mediaview.py:197
 msgid "Drag Media Object"
 msgstr "A médiaobjektum megfogása"
@@ -12721,7 +12710,7 @@ msgid "Move the selected surname downwards"
 msgstr "A kiválasztott vezetéknév mozgatása lefelé"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:77
-#: ../gramps/plugins/lib/libgedcom.py:619
+#: ../gramps/plugins/lib/libgedcom.py:620
 msgid "Origin"
 msgstr "Eredet"
 
@@ -12951,9 +12940,9 @@ msgstr "Új esemény"
 #: ../gramps/plugins/view/geofamclose.py:735
 #: ../gramps/plugins/view/geofamily.py:430
 #: ../gramps/plugins/view/geomoves.py:620
-#: ../gramps/plugins/view/geoperson.py:440
-#: ../gramps/plugins/view/geoperson.py:461
-#: ../gramps/plugins/view/geoperson.py:502
+#: ../gramps/plugins/view/geoperson.py:435
+#: ../gramps/plugins/view/geoperson.py:456
+#: ../gramps/plugins/view/geoperson.py:497
 msgid "Edit Event"
 msgstr "Esemény szerkesztése"
 
@@ -13002,7 +12991,7 @@ msgid "Event Reference Editor"
 msgstr "Esemény hivatkozás szerkesztő"
 
 #: ../gramps/gui/editors/editeventref.py:95
-#: ../gramps/gui/editors/editmediaref.py:114
+#: ../gramps/gui/editors/editmediaref.py:115
 #: ../gramps/gui/editors/editname.py:134
 #: ../gramps/gui/editors/editplaceref.py:77
 #: ../gramps/gui/editors/editreporef.py:77
@@ -13119,7 +13108,7 @@ msgstr "Kapcsolat szerkesztése"
 
 #: ../gramps/gui/editors/editfamily.py:217
 #: ../gramps/gui/editors/editfamily.py:232
-#: ../gramps/plugins/view/relview.py:1579
+#: ../gramps/plugins/view/relview.py:1580
 msgid "Select Child"
 msgstr "Gyermek kiválasztása"
 
@@ -13330,13 +13319,13 @@ msgid "manual|New_Media_dialog"
 msgstr "manual|Új_Média_párbeszéd_ablak"
 
 #: ../gramps/gui/editors/editmedia.py:99
-#: ../gramps/gui/editors/editmediaref.py:406
+#: ../gramps/gui/editors/editmediaref.py:409
 #, python-format
 msgid "Media: %s"
 msgstr "Média: %s"
 
 #: ../gramps/gui/editors/editmedia.py:101
-#: ../gramps/gui/editors/editmediaref.py:408
+#: ../gramps/gui/editors/editmediaref.py:411
 msgid "New Media"
 msgstr "Új média"
 
@@ -13374,13 +13363,13 @@ msgstr ""
 "Kérem vigyen be más útvonalat"
 
 #: ../gramps/gui/editors/editmedia.py:324
-#: ../gramps/gui/editors/editmediaref.py:523
+#: ../gramps/gui/editors/editmediaref.py:526
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr "(%s) média objektum hozzáadása"
 
 #: ../gramps/gui/editors/editmedia.py:329
-#: ../gramps/gui/editors/editmediaref.py:517
+#: ../gramps/gui/editors/editmediaref.py:520
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "(%s) média objektum szerkesztése"
@@ -13394,7 +13383,7 @@ msgid "manual|Media_Reference_Editor_dialog"
 msgstr "manual|Média_hivatkozás_szerkesztő_párbeszéd_ablak"
 
 #: ../gramps/gui/editors/editmediaref.py:93
-#: ../gramps/gui/editors/editmediaref.py:409
+#: ../gramps/gui/editors/editmediaref.py:412
 msgid "Media Reference Editor"
 msgstr "Média hivatkozás szerkesztő"
 
@@ -13591,8 +13580,7 @@ msgid "Add Person (%s)"
 msgstr "(%s) személy hozzáadása"
 
 #: ../gramps/gui/editors/editperson.py:866
-#: ../gramps/plugins/view/relview.py:580
-#: ../gramps/plugins/view/relview.py:1002
+#: ../gramps/plugins/view/relview.py:580 ../gramps/plugins/view/relview.py:1002
 #: ../gramps/plugins/view/relview.py:1059
 #: ../gramps/plugins/view/relview.py:1183
 #: ../gramps/plugins/view/relview.py:1288
@@ -13650,8 +13638,7 @@ msgid "manual|Place_Editor_dialog"
 msgstr "manual|Hely_Szerkesztő_párbeszéd_ablak"
 
 #: ../gramps/gui/editors/editplace.py:91
-#: ../gramps/gui/glade/editplace.glade:354
-#: ../gramps/gui/merge/mergeplace.py:55
+#: ../gramps/gui/glade/editplace.glade:354 ../gramps/gui/merge/mergeplace.py:55
 msgid "place|Name:"
 msgstr "Hely név:"
 
@@ -13891,8 +13878,7 @@ msgstr "Címke kiválasztása"
 #: ../gramps/gui/glade/editattribute.glade:54
 #: ../gramps/gui/glade/editchildref.glade:58
 #: ../gramps/gui/glade/editcitation.glade:27
-#: ../gramps/gui/glade/editdate.glade:53
-#: ../gramps/gui/glade/editevent.glade:58
+#: ../gramps/gui/glade/editdate.glade:53 ../gramps/gui/glade/editevent.glade:58
 #: ../gramps/gui/glade/editeventref.glade:22
 #: ../gramps/gui/glade/editfamily.glade:60
 #: ../gramps/gui/glade/editldsord.glade:75
@@ -13908,8 +13894,7 @@ msgstr "Címke kiválasztása"
 #: ../gramps/gui/glade/editplaceref.glade:22
 #: ../gramps/gui/glade/editreporef.glade:61
 #: ../gramps/gui/glade/editrepository.glade:59
-#: ../gramps/gui/glade/editsource.glade:58
-#: ../gramps/gui/glade/editurl.glade:57
+#: ../gramps/gui/glade/editsource.glade:58 ../gramps/gui/glade/editurl.glade:57
 #: ../gramps/gui/glade/mergecitation.glade:53
 #: ../gramps/gui/glade/mergedata.glade:77
 #: ../gramps/gui/glade/mergedata.glade:278
@@ -13925,9 +13910,9 @@ msgstr "Címke kiválasztása"
 #: ../gramps/gui/glade/mergesource.glade:53
 #: ../gramps/gui/glade/reorder.glade:54 ../gramps/gui/glade/rule.glade:41
 #: ../gramps/gui/glade/rule.glade:351 ../gramps/gui/glade/rule.glade:781
-#: ../gramps/gui/logger/_errorview.py:170
+#: ../gramps/gui/logger/_errorview.py:175
 #: ../gramps/gui/plug/report/_reportdialog.py:158
-#: ../gramps/gui/undohistory.py:82 ../gramps/gui/viewmanager.py:516
+#: ../gramps/gui/undohistory.py:82 ../gramps/gui/viewmanager.py:517
 #: ../gramps/gui/views/bookmarks.py:288 ../gramps/gui/views/tags.py:431
 #: ../gramps/gui/views/tags.py:644 ../gramps/gui/widgets/grampletbar.py:641
 #: ../gramps/gui/widgets/grampletpane.py:242
@@ -14044,20 +14029,18 @@ msgstr "Csak elsődleges résztvevőkkel"
 
 #: ../gramps/gui/editors/filtereditor.py:586
 #: ../gramps/gui/widgets/placewithin.py:73
-#, fuzzy
 msgid "degrees"
-msgstr "Képzettség"
+msgstr "fok"
 
 #: ../gramps/gui/editors/filtereditor.py:586
 #: ../gramps/gui/widgets/placewithin.py:73
 msgid "kilometers"
-msgstr ""
+msgstr "kilométer"
 
 #: ../gramps/gui/editors/filtereditor.py:586
 #: ../gramps/gui/widgets/placewithin.py:73
-#, fuzzy
 msgid "miles"
-msgstr "Családok"
+msgstr "mérföld"
 
 #: ../gramps/gui/editors/filtereditor.py:597
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:76
@@ -14095,8 +14078,7 @@ msgid "Rule Name"
 msgstr "Szabály neve"
 
 #: ../gramps/gui/editors/filtereditor.py:758
-#: ../gramps/gui/editors/filtereditor.py:762
-#: ../gramps/gui/glade/rule.glade:914
+#: ../gramps/gui/editors/filtereditor.py:762 ../gramps/gui/glade/rule.glade:914
 msgid "No rule selected"
 msgstr "Nincs szabály kiválasztva"
 
@@ -14104,8 +14086,7 @@ msgstr "Nincs szabály kiválasztva"
 msgid "Define filter"
 msgstr "Szűrő meghatározása"
 
-#: ../gramps/gui/editors/filtereditor.py:820
-#: ../gramps/gui/glade/rule.glade:967
+#: ../gramps/gui/editors/filtereditor.py:820 ../gramps/gui/glade/rule.glade:967
 msgid "Values"
 msgstr "Értékek"
 
@@ -14135,12 +14116,11 @@ msgstr "A szűrő törlése?"
 
 #: ../gramps/gui/editors/filtereditor.py:1186
 msgid ""
-"This filter is currently being used as the base for other filters. "
-"Deletingthis filter will result in removing all other filters that depend on "
-"it."
+"This filter is currently being used as the base for other filters. Deleting "
+"this filter will result in removing all other filters that depend on it."
 msgstr ""
-"Ez a szűrő alapja más szűrőknek. A szűrő törlése minden más tőle függő "
-"szűrőt is eltávolít."
+"Ez a szűrő használatban van és alapja más szűrőknek. A szűrő törlése minden "
+"más tőle függő szűrőt is eltávolít."
 
 #: ../gramps/gui/editors/filtereditor.py:1190
 msgid "Delete Filter"
@@ -14283,8 +14263,8 @@ msgstr "%s nem"
 msgid "%s does not contain"
 msgstr "%s nem tartalmazza"
 
-#: ../gramps/gui/filters/_searchbar.py:168
-#: ../gramps/gui/views/listview.py:1153 ../gramps/gui/views/listview.py:1173
+#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1153
+#: ../gramps/gui/views/listview.py:1173
 msgid "Updating display..."
 msgstr "Képernyő frissítése..."
 
@@ -14333,7 +14313,7 @@ msgstr "Résztvevők"
 #: ../gramps/gui/widgets/reorderfam.py:91
 #: ../gramps/plugins/textreport/tagreport.py:262
 #: ../gramps/plugins/view/familyview.py:82
-#: ../gramps/plugins/webreport/narrativeweb.py:7142
+#: ../gramps/plugins/webreport/narrativeweb.py:7145
 msgid "Relationship"
 msgstr "Rokonság"
 
@@ -14343,7 +14323,7 @@ msgstr "mind"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:129
 #: ../gramps/plugins/export/exportcsv.py:357
-#: ../gramps/plugins/webreport/narrativeweb.py:7693
+#: ../gramps/plugins/webreport/narrativeweb.py:7696
 msgid "Birth date"
 msgstr "Születési dátum"
 
@@ -14355,14 +14335,13 @@ msgstr "példa: \"%(msg1)s\", vagy \"%(msg2)s\""
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:131
 #: ../gramps/plugins/export/exportcsv.py:359
-#: ../gramps/plugins/webreport/narrativeweb.py:7694
+#: ../gramps/plugins/webreport/narrativeweb.py:7697
 msgid "Death date"
 msgstr "Halálozás dátuma"
 
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:112
-#, fuzzy
 msgid "Within"
-msgstr "_Ezzel:"
+msgstr "Belül"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:107
 msgid "URL"
@@ -14639,8 +14618,7 @@ msgstr "GRAMPS figyelmeztetések"
 #: ../gramps/gui/glade/editplacename.glade:44
 #: ../gramps/gui/glade/editreporef.glade:50
 #: ../gramps/gui/glade/editrepository.glade:48
-#: ../gramps/gui/glade/editsource.glade:46
-#: ../gramps/gui/glade/editurl.glade:46
+#: ../gramps/gui/glade/editsource.glade:46 ../gramps/gui/glade/editurl.glade:46
 msgid "Accept changes and close window"
 msgstr "A változások jóváhagyása és az ablak bezárása"
 
@@ -16071,8 +16049,7 @@ msgid "Note 2"
 msgstr "Jegyzet 2"
 
 #: ../gramps/gui/glade/mergenote.glade:278
-#: ../gramps/gui/glade/mergenote.glade:294
-#: ../gramps/gui/views/listview.py:1027
+#: ../gramps/gui/glade/mergenote.glade:294 ../gramps/gui/views/listview.py:1027
 msgid "Format:"
 msgstr "Formátum:"
 
@@ -16330,8 +16307,7 @@ msgstr "A kiválasztott szabály szerkesztése"
 msgid "Delete the selected rule"
 msgstr "A kiválasztott szabály törlése"
 
-#: ../gramps/gui/glade/rule.glade:521
-#: ../gramps/gui/glade/styleeditor.glade:403
+#: ../gramps/gui/glade/rule.glade:521 ../gramps/gui/glade/styleeditor.glade:403
 #: ../gramps/plugins/tool/finddupes.glade:132
 #: ../gramps/plugins/tool/mergecitations.glade:132
 #: ../gramps/plugins/tool/sortevents.py:82
@@ -16774,11 +16750,11 @@ msgstr "DISPLAY hiánya miatt a GRAMPS leállt"
 msgid "Error Report Assistant"
 msgstr "Hiba jelentés varázsló"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:257
+#: ../gramps/gui/logger/_errorreportassistant.py:262
 msgid "Report a bug"
 msgstr "Jelentsen egy hibát"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:264
+#: ../gramps/gui/logger/_errorreportassistant.py:269
 msgid ""
 "This is the Bug Reporting Assistant. It will help you to make a bug report "
 "to the Gramps developers that will be as detailed as possible.\n"
@@ -16799,19 +16775,19 @@ msgstr ""
 "a hibajelentést a vágólapra helyezi, amit ön beilleszthet a hibakövető "
 "weboldal űrlapjába, és átnézheti a beküldésre tervezett információt."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:281
+#: ../gramps/gui/logger/_errorreportassistant.py:286
 msgid ""
 "If you can see that there is any personal information included in the error "
 "please remove it."
 msgstr ""
 "Ha bármilyen személyes információ látható a hibában, kérjük távolítsa azt el."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:325
-#: ../gramps/gui/logger/_errorreportassistant.py:353
+#: ../gramps/gui/logger/_errorreportassistant.py:330
+#: ../gramps/gui/logger/_errorreportassistant.py:358
 msgid "Error Details"
 msgstr "Hiba részletek"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:330
+#: ../gramps/gui/logger/_errorreportassistant.py:335
 msgid ""
 "This is the detailed Gramps error information, don't worry if you do not "
 "understand it. You will have the opportunity to add further detail about the "
@@ -16820,7 +16796,7 @@ msgstr ""
 "Ez a GRAMPS részletes hiba információja, nem baj, ha nem érti. A hibáról "
 "lehetősége lesz további részleteket hozzáadni a varázsló következő oldalain."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:360
+#: ../gramps/gui/logger/_errorreportassistant.py:365
 msgid ""
 "Please check the information below and correct anything that you know to be "
 "wrong or remove anything that you would rather not have included in the bug "
@@ -16830,12 +16806,12 @@ msgstr ""
 "hogy hibás; vagy távolítson el mindent, amit nem szeretne a hibajelentésben "
 "látni."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:405
-#: ../gramps/gui/logger/_errorreportassistant.py:431
+#: ../gramps/gui/logger/_errorreportassistant.py:410
+#: ../gramps/gui/logger/_errorreportassistant.py:436
 msgid "System Information"
 msgstr "Rendszerinformáció"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:410
+#: ../gramps/gui/logger/_errorreportassistant.py:415
 msgid ""
 "This is the information about your system that will help the developers to "
 "fix the bug."
@@ -16843,7 +16819,7 @@ msgstr ""
 "Ez információ az ön rendszeréről, ami segíti a fejlesztőket a hiba "
 "kijavításában."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:438
+#: ../gramps/gui/logger/_errorreportassistant.py:443
 msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occurred."
@@ -16851,12 +16827,12 @@ msgstr ""
 "Kérem adjon annyi információt a hiba keletkezése idején végzett "
 "tevékenységéről, amennyit csak tud."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:477
-#: ../gramps/gui/logger/_errorreportassistant.py:502
+#: ../gramps/gui/logger/_errorreportassistant.py:482
+#: ../gramps/gui/logger/_errorreportassistant.py:507
 msgid "Further Information"
 msgstr "További információ"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:482
+#: ../gramps/gui/logger/_errorreportassistant.py:487
 msgid ""
 "This is your opportunity to describe what you were doing when the error "
 "occurred."
@@ -16864,7 +16840,7 @@ msgstr ""
 "Most lehetősége van leírni, milyen műveleteket végzett, amikor a hiba "
 "keletkezett."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:509
+#: ../gramps/gui/logger/_errorreportassistant.py:514
 msgid ""
 "Please check that the information is correct, do not worry if you don't "
 "understand the detail of the error information. Just make sure that it does "
@@ -16874,12 +16850,12 @@ msgstr ""
 "hibainformáció részleteit. Arról győződjön meg, hogy semmi olyan nincs a "
 "fejlesztőknek küldendő információban, amit nem akar beküldeni."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:541
-#: ../gramps/gui/logger/_errorreportassistant.py:568
+#: ../gramps/gui/logger/_errorreportassistant.py:546
+#: ../gramps/gui/logger/_errorreportassistant.py:573
 msgid "Bug Report Summary"
 msgstr "Hibajelentés összegzés"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:546
+#: ../gramps/gui/logger/_errorreportassistant.py:551
 msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to file a bug on the Gramps bug tracking system website."
@@ -16887,7 +16863,7 @@ msgstr ""
 "Ez a teljes hibajelentés. A varázsló következő oldala segíteni fog Önnek "
 "beküldeni a hibát a GRAMPS hibakövető web-rendszerébe."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:577
+#: ../gramps/gui/logger/_errorreportassistant.py:582
 msgid ""
 "Use the two buttons below to first copy the bug report to the clipboard and "
 "then open a webbrowser to file a bug report at "
@@ -16895,7 +16871,7 @@ msgstr ""
 "Használja az alul levő két gombot a hibajelentés vágólapra másolásához, majd "
 "a böngésző megnyitásához a hibajelentés beküldéséhez ide: "
 
-#: ../gramps/gui/logger/_errorreportassistant.py:586
+#: ../gramps/gui/logger/_errorreportassistant.py:591
 msgid ""
 "Use this button to start a web browser and file a bug report on the Gramps "
 "bug tracking system."
@@ -16903,7 +16879,7 @@ msgstr ""
 "Használja ezt a gombot a böngésző indításához és a hibajelentésnek a GRAMPS "
 "hibakövető rendszerébe juttatásához."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:608
+#: ../gramps/gui/logger/_errorreportassistant.py:613
 msgid ""
 "Use this button to copy the bug report onto the clipboard. Then go to the "
 "bug tracking website by using the button below, paste the report and click "
@@ -16913,12 +16889,12 @@ msgstr ""
 "hibakövető web-oldalra az alább levő gomb segítségével és illessze be a "
 "jelentést"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:640
-#: ../gramps/gui/logger/_errorreportassistant.py:667
+#: ../gramps/gui/logger/_errorreportassistant.py:645
+#: ../gramps/gui/logger/_errorreportassistant.py:672
 msgid "Send Bug Report"
 msgstr "Hibajelentés küldése"
 
-#: ../gramps/gui/logger/_errorreportassistant.py:645
+#: ../gramps/gui/logger/_errorreportassistant.py:650
 msgid ""
 "This is the final step. Use the buttons on this page to start a web browser "
 "and file a bug report on the Gramps bug tracking system."
@@ -16926,7 +16902,7 @@ msgstr ""
 "Ez az utolsó lépés. Használja az oldal gombjait a böngésző indításához és a "
 "hibajelentésnek a GRAMPS hibakövető rendszerébe juttatásához."
 
-#: ../gramps/gui/logger/_errorreportassistant.py:674
+#: ../gramps/gui/logger/_errorreportassistant.py:679
 msgid ""
 "Gramps is an Open Source project. Its success depends on its users. User "
 "feedback is important. Thank you for taking the time to submit a bug report."
@@ -16942,11 +16918,11 @@ msgstr "manual|Hibajelentés"
 msgid "Error Report"
 msgstr "Hibajelentés"
 
-#: ../gramps/gui/logger/_errorview.py:129
+#: ../gramps/gui/logger/_errorview.py:134
 msgid "Gramps has experienced an unexpected error"
 msgstr "A GRAMPS egy nem várt hibába ütközött"
 
-#: ../gramps/gui/logger/_errorview.py:138
+#: ../gramps/gui/logger/_errorview.py:143
 msgid ""
 "Your data will be safe but it would be advisable to restart Gramps "
 "immediately. If you would like to report the problem to the Gramps team "
@@ -16958,8 +16934,8 @@ msgstr ""
 "Jelentés-re és a Hibajelentő varázsló segíteni fog önnek annak "
 "elkészítésében."
 
-#: ../gramps/gui/logger/_errorview.py:147
-#: ../gramps/gui/logger/_errorview.py:162
+#: ../gramps/gui/logger/_errorview.py:152
+#: ../gramps/gui/logger/_errorview.py:167
 msgid "Error Detail"
 msgstr "Hiba részletek"
 
@@ -17043,8 +17019,8 @@ msgstr "Emberek összefűzése"
 #: ../gramps/plugins/view/relview.py:538 ../gramps/plugins/view/relview.py:862
 #: ../gramps/plugins/view/relview.py:898
 #: ../gramps/plugins/webreport/narrativeweb.py:3327
-#: ../gramps/plugins/webreport/narrativeweb.py:6204
-#: ../gramps/plugins/webreport/narrativeweb.py:7676
+#: ../gramps/plugins/webreport/narrativeweb.py:6207
+#: ../gramps/plugins/webreport/narrativeweb.py:7679
 msgid "Parents"
 msgstr "Szülők"
 
@@ -17946,7 +17922,7 @@ msgstr "Stílus"
 #: ../gramps/plugins/textreport/summary.py:286
 #: ../gramps/plugins/textreport/tableofcontents.py:92
 #: ../gramps/plugins/textreport/tagreport.py:896
-#: ../gramps/plugins/webreport/narrativeweb.py:9736
+#: ../gramps/plugins/webreport/narrativeweb.py:9739
 #: ../gramps/plugins/webreport/webcal.py:1608
 msgid "Report Options"
 msgstr "Összesítő lehetőségek"
@@ -18254,7 +18230,7 @@ msgid "Spelling checker initialization failed: %s"
 msgstr "A helyesírás ellenőrző nem indult el: %s"
 
 #: ../gramps/gui/tipofday.py:67 ../gramps/gui/tipofday.py:68
-#: ../gramps/gui/tipofday.py:121 ../gramps/gui/viewmanager.py:533
+#: ../gramps/gui/tipofday.py:121 ../gramps/gui/viewmanager.py:534
 msgid "Tip of the Day"
 msgstr "A nap tippje"
 
@@ -18281,13 +18257,13 @@ msgstr "11"
 msgid "Undo History"
 msgstr "Történet visszavonása"
 
-#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:642
-#: ../gramps/gui/viewmanager.py:1287
+#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:643
+#: ../gramps/gui/viewmanager.py:1289
 msgid "_Undo"
 msgstr "Viss_zavonás"
 
-#: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:647
-#: ../gramps/gui/viewmanager.py:1304
+#: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:648
+#: ../gramps/gui/viewmanager.py:1306
 msgid "_Redo"
 msgstr "I_smétlés"
 
@@ -18369,194 +18345,194 @@ msgstr ""
 msgid "Cannot open new citation editor"
 msgstr "Nem megnyitható az idézet-szerkesztő"
 
-#: ../gramps/gui/viewmanager.py:465 ../gramps/gui/viewmanager.py:1261
+#: ../gramps/gui/viewmanager.py:466 ../gramps/gui/viewmanager.py:1263
 msgid "No Family Tree"
 msgstr "Nincs Családfa"
 
-#: ../gramps/gui/viewmanager.py:487
+#: ../gramps/gui/viewmanager.py:488
 msgid "Connect to a recent database"
 msgstr "Jelenlegi adatbázishoz kapcsolódás"
 
-#: ../gramps/gui/viewmanager.py:505
+#: ../gramps/gui/viewmanager.py:506
 msgid "_Family Trees"
 msgstr "Család_fák"
 
-#: ../gramps/gui/viewmanager.py:506
+#: ../gramps/gui/viewmanager.py:507
 msgid "_Manage Family Trees..."
 msgstr "Családfák _kezelése..."
 
-#: ../gramps/gui/viewmanager.py:507
+#: ../gramps/gui/viewmanager.py:508
 msgid "Manage databases"
 msgstr "Adatbázisok kezelése"
 
-#: ../gramps/gui/viewmanager.py:508
+#: ../gramps/gui/viewmanager.py:509
 msgid "Open _Recent"
 msgstr "Jelenlegi _megnyitása"
 
-#: ../gramps/gui/viewmanager.py:509
+#: ../gramps/gui/viewmanager.py:510
 msgid "Open an existing database"
 msgstr "Jelenlegi adatbázis megnyitása"
 
-#: ../gramps/gui/viewmanager.py:510
+#: ../gramps/gui/viewmanager.py:511
 msgid "_Quit"
 msgstr "_Kilépés"
 
-#: ../gramps/gui/viewmanager.py:512
+#: ../gramps/gui/viewmanager.py:513
 msgid "_View"
 msgstr "_Nézet"
 
-#: ../gramps/gui/viewmanager.py:514
+#: ../gramps/gui/viewmanager.py:515
 msgid "_Preferences..."
 msgstr "_Beállítások..."
 
-#: ../gramps/gui/viewmanager.py:517
+#: ../gramps/gui/viewmanager.py:518
 msgid "Gramps _Home Page"
 msgstr "GRAMPS _honlap"
 
-#: ../gramps/gui/viewmanager.py:519
+#: ../gramps/gui/viewmanager.py:520
 msgid "Gramps _Mailing Lists"
 msgstr "GRAMPS _levelezőlista"
 
-#: ../gramps/gui/viewmanager.py:521
+#: ../gramps/gui/viewmanager.py:522
 msgid "_Report a Bug"
 msgstr "_Hiba jelentése"
 
-#: ../gramps/gui/viewmanager.py:523
+#: ../gramps/gui/viewmanager.py:524
 msgid "_Extra Reports/Tools"
 msgstr "_Extra összesítők/eszközök"
 
-#: ../gramps/gui/viewmanager.py:525
+#: ../gramps/gui/viewmanager.py:526
 msgid "_About"
 msgstr "Né_vjegy"
 
-#: ../gramps/gui/viewmanager.py:527
+#: ../gramps/gui/viewmanager.py:528
 msgid "_Plugin Manager"
 msgstr "_Beépülő kezelő"
 
-#: ../gramps/gui/viewmanager.py:529
+#: ../gramps/gui/viewmanager.py:530
 msgid "_FAQ"
 msgstr "_GYIK"
 
-#: ../gramps/gui/viewmanager.py:530
-msgid "_Key Bindings"
-msgstr "_Kulcs kötések"
-
 #: ../gramps/gui/viewmanager.py:531
+msgid "_Key Bindings"
+msgstr "_Gyorsbillentyűk"
+
+#: ../gramps/gui/viewmanager.py:532
 msgid "_User Manual"
 msgstr "_Felhasználói kézikönyv"
 
-#: ../gramps/gui/viewmanager.py:539
+#: ../gramps/gui/viewmanager.py:540
 msgid "Close the current database"
 msgstr "Zárja be a jelenlegi adatbázist"
 
-#: ../gramps/gui/viewmanager.py:540
+#: ../gramps/gui/viewmanager.py:541
 msgid "_Export..."
 msgstr "_Exportálás..."
 
-#: ../gramps/gui/viewmanager.py:542
+#: ../gramps/gui/viewmanager.py:543
 msgid "Make Backup..."
 msgstr "Biztonsági másolat készítése..."
 
-#: ../gramps/gui/viewmanager.py:543
+#: ../gramps/gui/viewmanager.py:544
 msgid "Make a Gramps XML backup of the database"
 msgstr "GRAMPS XML adatbázis biztonsági mentés készítése"
 
-#: ../gramps/gui/viewmanager.py:545
+#: ../gramps/gui/viewmanager.py:546
 msgid "_Abandon Changes and Quit"
 msgstr "_A változások elvetése és kilépés"
 
-#: ../gramps/gui/viewmanager.py:546 ../gramps/gui/viewmanager.py:549
+#: ../gramps/gui/viewmanager.py:547 ../gramps/gui/viewmanager.py:550
 msgid "_Reports"
 msgstr "Ö_sszesítők"
 
-#: ../gramps/gui/viewmanager.py:547
+#: ../gramps/gui/viewmanager.py:548
 msgid "Open the reports dialog"
 msgstr "Összesítők párbeszédablak megnyitása"
 
-#: ../gramps/gui/viewmanager.py:548
+#: ../gramps/gui/viewmanager.py:549
 msgid "_Go"
 msgstr "_Menj"
 
-#: ../gramps/gui/viewmanager.py:550
+#: ../gramps/gui/viewmanager.py:551
 msgid "Books..."
 msgstr "Könyvek..."
 
-#: ../gramps/gui/viewmanager.py:551
+#: ../gramps/gui/viewmanager.py:552
 msgid "_Windows"
 msgstr "Ab_lakok"
 
-#: ../gramps/gui/viewmanager.py:598
+#: ../gramps/gui/viewmanager.py:599
 msgid "Clip_board"
 msgstr "Vá_gólap"
 
-#: ../gramps/gui/viewmanager.py:599
+#: ../gramps/gui/viewmanager.py:600
 msgid "Open the Clipboard dialog"
 msgstr "Vágólap párbeszédablak megnyitása"
 
-#: ../gramps/gui/viewmanager.py:601
+#: ../gramps/gui/viewmanager.py:602
 msgid "New"
 msgstr "Új"
 
 #. --------------------------------------
-#: ../gramps/gui/viewmanager.py:621
+#: ../gramps/gui/viewmanager.py:622
 msgid "_Import..."
 msgstr "_Importálás..."
 
-#: ../gramps/gui/viewmanager.py:623 ../gramps/gui/viewmanager.py:626
+#: ../gramps/gui/viewmanager.py:624 ../gramps/gui/viewmanager.py:627
 msgid "_Tools"
 msgstr "_Eszközök"
 
-#: ../gramps/gui/viewmanager.py:624
+#: ../gramps/gui/viewmanager.py:625
 msgid "Open the tools dialog"
 msgstr "Eszközök párbeszédablak megnyitása"
 
-#: ../gramps/gui/viewmanager.py:625
+#: ../gramps/gui/viewmanager.py:626
 msgid "_Bookmarks"
 msgstr "_Könyvjelzők"
 
-#: ../gramps/gui/viewmanager.py:627
+#: ../gramps/gui/viewmanager.py:628
 msgid "_Configure..."
 msgstr "_Beállítás..."
 
-#: ../gramps/gui/viewmanager.py:628
+#: ../gramps/gui/viewmanager.py:629
 msgid "Configure the active view"
 msgstr "Aktív nézet beállítása"
 
-#: ../gramps/gui/viewmanager.py:633
+#: ../gramps/gui/viewmanager.py:634
 msgid "_Navigator"
 msgstr "_Navigátor"
 
-#: ../gramps/gui/viewmanager.py:635
+#: ../gramps/gui/viewmanager.py:636
 msgid "_Toolbar"
 msgstr "_Eszközsáv"
 
-#: ../gramps/gui/viewmanager.py:637
+#: ../gramps/gui/viewmanager.py:638
 msgid "F_ull Screen"
 msgstr "Teljes ké_pernyő"
 
-#: ../gramps/gui/viewmanager.py:653
+#: ../gramps/gui/viewmanager.py:654
 msgid "Undo History..."
 msgstr "Történet visszavonása..."
 
-#: ../gramps/gui/viewmanager.py:676
+#: ../gramps/gui/viewmanager.py:677
 #, python-format
 msgid "Key %s is not bound"
 msgstr "%s kulcs nem kötött"
 
 #. registering plugins
-#: ../gramps/gui/viewmanager.py:783
+#: ../gramps/gui/viewmanager.py:784
 msgid "Registering plugins..."
 msgstr "Bővítmények regisztrálása..."
 
-#: ../gramps/gui/viewmanager.py:791
+#: ../gramps/gui/viewmanager.py:792
 msgid "Ready"
 msgstr "Kész"
 
-#: ../gramps/gui/viewmanager.py:836
+#: ../gramps/gui/viewmanager.py:837
 msgid "Abort changes?"
 msgstr "Változások elvetése?"
 
-#: ../gramps/gui/viewmanager.py:837
+#: ../gramps/gui/viewmanager.py:838
 msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
@@ -18564,15 +18540,15 @@ msgstr ""
 "A változások elvetése visszaadja adatbázisának a szerkesztés megkezdése "
 "előtti állapotát."
 
-#: ../gramps/gui/viewmanager.py:839
+#: ../gramps/gui/viewmanager.py:840
 msgid "Abort changes"
 msgstr "Változások elvetése"
 
-#: ../gramps/gui/viewmanager.py:850
+#: ../gramps/gui/viewmanager.py:851
 msgid "Cannot abandon session's changes"
 msgstr "A munkamenet változások elvetése nem lehetséges"
 
-#: ../gramps/gui/viewmanager.py:851
+#: ../gramps/gui/viewmanager.py:852
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
@@ -18580,31 +18556,31 @@ msgstr ""
 "A munkamenet változások elvetése teljesen nem lehetséges, mert a "
 "munkamenetben a változások száma meghaladja a korlátot."
 
-#: ../gramps/gui/viewmanager.py:1012
+#: ../gramps/gui/viewmanager.py:1013
 msgid "View failed to load. Check error output."
 msgstr "A nézet betöltése meghiúsult. Ellenőrizze a hibakimenetet."
 
-#: ../gramps/gui/viewmanager.py:1164
+#: ../gramps/gui/viewmanager.py:1165
 msgid "Import Statistics"
 msgstr "Statisztikák importálása"
 
-#: ../gramps/gui/viewmanager.py:1231
+#: ../gramps/gui/viewmanager.py:1233
 msgid "Read Only"
 msgstr "Csak olvasható"
 
-#: ../gramps/gui/viewmanager.py:1350
+#: ../gramps/gui/viewmanager.py:1352
 msgid "Autobackup..."
 msgstr "Automentés..."
 
-#: ../gramps/gui/viewmanager.py:1355
+#: ../gramps/gui/viewmanager.py:1357
 msgid "Error saving backup data"
 msgstr "Biztonsági adatmentés hiba"
 
-#: ../gramps/gui/viewmanager.py:1646
+#: ../gramps/gui/viewmanager.py:1648
 msgid "Failed Loading View"
 msgstr "A nézet betöltése nem sikerült"
 
-#: ../gramps/gui/viewmanager.py:1647
+#: ../gramps/gui/viewmanager.py:1649
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -18629,11 +18605,11 @@ msgstr ""
 "Ha szeretné, hogy a GRAMPS ne töltse be újra a nézetet, akkor azt elrejtheti "
 "a Súgó menü Bővítmény-kezelőjének használatával."
 
-#: ../gramps/gui/viewmanager.py:1739
+#: ../gramps/gui/viewmanager.py:1741
 msgid "Failed Loading Plugin"
 msgstr "A bővítmény betöltése nem sikerült"
 
-#: ../gramps/gui/viewmanager.py:1740
+#: ../gramps/gui/viewmanager.py:1742
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -18658,55 +18634,55 @@ msgstr ""
 "Ha szeretné, hogy a GRAMPS ne töltse be újra a bővítményt, akkor rejtse el a "
 "Súgó menü Bővítmény-kezelőjének használatával."
 
-#: ../gramps/gui/viewmanager.py:1819
+#: ../gramps/gui/viewmanager.py:1821
 msgid "Gramps XML Backup"
 msgstr "GRAMPS XML biztonsági mentés"
 
-#: ../gramps/gui/viewmanager.py:1848
+#: ../gramps/gui/viewmanager.py:1850
 msgid "File:"
 msgstr "Fájl:"
 
-#: ../gramps/gui/viewmanager.py:1880
+#: ../gramps/gui/viewmanager.py:1882
 msgid "Media:"
 msgstr "Média:"
 
-#: ../gramps/gui/viewmanager.py:1887
+#: ../gramps/gui/viewmanager.py:1889
 #: ../gramps/plugins/gramplet/statsgramplet.py:139
-#: ../gramps/plugins/webreport/narrativeweb.py:8235
+#: ../gramps/plugins/webreport/narrativeweb.py:8238
 msgid "Megabyte|MB"
 msgstr "MB"
 
-#: ../gramps/gui/viewmanager.py:1889
+#: ../gramps/gui/viewmanager.py:1891
 msgid "Exclude"
 msgstr "Kizárva"
 
-#: ../gramps/gui/viewmanager.py:1909
+#: ../gramps/gui/viewmanager.py:1911
 msgid "Backup file already exists! Overwrite?"
 msgstr "A mentési fájl már létezik. Felülírja?"
 
-#: ../gramps/gui/viewmanager.py:1910
+#: ../gramps/gui/viewmanager.py:1912
 #, python-format
 msgid "The file '%s' exists."
 msgstr "A(z) '%s' fájl már létezik."
 
-#: ../gramps/gui/viewmanager.py:1911
+#: ../gramps/gui/viewmanager.py:1913
 msgid "Proceed and overwrite"
 msgstr "Folytatás és felülírás"
 
-#: ../gramps/gui/viewmanager.py:1912
+#: ../gramps/gui/viewmanager.py:1914
 msgid "Cancel the backup"
 msgstr "A mentés megszakítása"
 
-#: ../gramps/gui/viewmanager.py:1927
+#: ../gramps/gui/viewmanager.py:1929
 msgid "Making backup..."
 msgstr "Mentés készítése..."
 
-#: ../gramps/gui/viewmanager.py:1940
+#: ../gramps/gui/viewmanager.py:1942
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "A másolat ide mentve: '%s'"
 
-#: ../gramps/gui/viewmanager.py:1943
+#: ../gramps/gui/viewmanager.py:1945
 msgid "Backup aborted"
 msgstr "A mentés megszakítva"
 
@@ -18789,8 +18765,7 @@ msgstr ""
 "Ez az elem most használatban van. Törlése eltávolítja azt az adatbázisból, "
 "és minden más elemből, ami hivatkozik rá."
 
-#: ../gramps/gui/views/listview.py:565
-#: ../gramps/plugins/view/familyview.py:267
+#: ../gramps/gui/views/listview.py:565 ../gramps/plugins/view/familyview.py:267
 msgid "Deleting item will remove it from the database."
 msgstr "Az elem törlésével eltávolítja azt az adatbázisból."
 
@@ -19052,13 +19027,11 @@ msgstr "A szakasz kibontása"
 msgid "Collapse this section"
 msgstr "A szakasz összecsukása"
 
-#: ../gramps/gui/widgets/fanchart.py:1519
-#: ../gramps/plugins/view/relview.py:811
+#: ../gramps/gui/widgets/fanchart.py:1519 ../gramps/plugins/view/relview.py:811
 msgid "Edit family"
 msgstr "Család szerkesztése"
 
-#: ../gramps/gui/widgets/fanchart.py:1535
-#: ../gramps/plugins/view/relview.py:812
+#: ../gramps/gui/widgets/fanchart.py:1535 ../gramps/plugins/view/relview.py:812
 msgid "Reorder families"
 msgstr "Családok újrarendezése"
 
@@ -19091,7 +19064,7 @@ msgid "Add a person"
 msgstr "Személy hozzáadása"
 
 #: ../gramps/gui/widgets/fanchart.py:1851
-#: ../gramps/plugins/view/relview.py:1561
+#: ../gramps/plugins/view/relview.py:1562
 msgid "Add Child to Family"
 msgstr "Gyermek hozzáadása a családhoz"
 
@@ -19203,6 +19176,8 @@ msgid ""
 "Matches places within a given distance of the active place. You have no "
 "active place."
 msgstr ""
+"Az aktív helyhez a megadott távolságon belül található helyek. Nincs aktív "
+"helye."
 
 #: ../gramps/gui/widgets/progressdialog.py:298
 msgid "Progress Information"
@@ -19565,13 +19540,13 @@ msgid "of %d"
 msgstr "%d-hez"
 
 #: ../gramps/plugins/docgen/htmldoc.py:273
-#: ../gramps/plugins/webreport/narrativeweb.py:9646
+#: ../gramps/plugins/webreport/narrativeweb.py:9649
 #: ../gramps/plugins/webreport/webcal.py:269
 msgid "Possible destination error"
 msgstr "Lehetséges irány hiba"
 
 #: ../gramps/plugins/docgen/htmldoc.py:274
-#: ../gramps/plugins/webreport/narrativeweb.py:9647
+#: ../gramps/plugins/webreport/narrativeweb.py:9650
 #: ../gramps/plugins/webreport/webcal.py:270
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -20268,7 +20243,7 @@ msgstr "Csak élő emberek a naptárban"
 #: ../gramps/plugins/textreport/birthdayreport.py:453
 #: ../gramps/plugins/textreport/detancestralreport.py:861
 #: ../gramps/plugins/textreport/detdescendantreport.py:1052
-#: ../gramps/plugins/view/relview.py:1726
+#: ../gramps/plugins/view/relview.py:1727
 msgid "Content"
 msgstr "Tartalom"
 
@@ -20927,7 +20902,7 @@ msgstr "Meghatározza, milyen emberek kerülnek az összegzőbe."
 #: ../gramps/plugins/textreport/indivcomplete.py:1062
 #: ../gramps/plugins/textreport/recordsreport.py:223
 #: ../gramps/plugins/tool/sortevents.py:172
-#: ../gramps/plugins/webreport/narrativeweb.py:9768
+#: ../gramps/plugins/webreport/narrativeweb.py:9771
 #: ../gramps/plugins/webreport/webcal.py:1629
 msgid "Filter Person"
 msgstr "Személyszűrő"
@@ -21060,7 +21035,7 @@ msgstr "Meghatározza, mely emberek legyenek az összesítőben"
 #: ../gramps/plugins/drawreport/timeline.py:422
 #: ../gramps/plugins/textreport/recordsreport.py:224
 #: ../gramps/plugins/tool/sortevents.py:173
-#: ../gramps/plugins/webreport/narrativeweb.py:9769
+#: ../gramps/plugins/webreport/narrativeweb.py:9772
 #: ../gramps/plugins/webreport/webcal.py:1630
 msgid "The center person for the filter"
 msgstr "A szűrő központi személye"
@@ -21304,9 +21279,9 @@ msgstr "Egyének beírása"
 #: ../gramps/plugins/export/exportgedcom.py:790
 #: ../gramps/plugins/export/exportgedcom.py:1066
 #: ../gramps/plugins/export/exportgedcom.py:1158
-#: ../gramps/plugins/lib/libgedcom.py:3996
-#: ../gramps/plugins/lib/libgedcom.py:5707
-#: ../gramps/plugins/lib/libgedcom.py:6840
+#: ../gramps/plugins/lib/libgedcom.py:3997
+#: ../gramps/plugins/lib/libgedcom.py:5718
+#: ../gramps/plugins/lib/libgedcom.py:6851
 msgid "FAX"
 msgstr "FAX"
 
@@ -21328,12 +21303,12 @@ msgid "Writing repositories"
 msgstr "Tárolók írása"
 
 #: ../gramps/plugins/export/exportgedcom.py:1160
-#: ../gramps/plugins/lib/libgedcom.py:5719
+#: ../gramps/plugins/lib/libgedcom.py:5730
 msgid "EMAIL"
 msgstr "EMAIL"
 
 #: ../gramps/plugins/export/exportgedcom.py:1162
-#: ../gramps/plugins/lib/libgedcom.py:5731
+#: ../gramps/plugins/lib/libgedcom.py:5742
 msgid "WWW"
 msgstr "WWW"
 
@@ -21456,7 +21431,7 @@ msgstr "Anya-gyermek életkor különbség eloszlás"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:262
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:269
 #: ../gramps/plugins/webreport/narrativeweb.py:1931
-#: ../gramps/plugins/webreport/narrativeweb.py:8176
+#: ../gramps/plugins/webreport/narrativeweb.py:8179
 msgid "Statistics"
 msgstr "Statisztika"
 
@@ -21521,20 +21496,20 @@ msgstr "Részletekért kattintson kétszer a napon"
 msgid "Double-click on a row to edit the selected child."
 msgstr "A kiválasztott gyermek szerkesztéséhez kattintson kétszer a soron."
 
-#: ../gramps/plugins/gramplet/citations.py:73
+#: ../gramps/plugins/gramplet/citations.py:79
 msgid "Double-click on a row to edit the selected source/citation."
 msgstr ""
 "A kiválasztott forrás/idézet szerkesztéséhez kattintson kettőt a soron."
 
-#: ../gramps/plugins/gramplet/citations.py:77
+#: ../gramps/plugins/gramplet/citations.py:83
 msgid "Source/Citation"
 msgstr "Forrás/Idézet"
 
-#: ../gramps/plugins/gramplet/citations.py:79
+#: ../gramps/plugins/gramplet/citations.py:85
 msgid "Publisher"
 msgstr "Kiadó"
 
-#: ../gramps/plugins/gramplet/citations.py:152
+#: ../gramps/plugins/gramplet/citations.py:162
 msgid "<No Citation>"
 msgstr "<Nincs idézet>"
 
@@ -21773,6 +21748,7 @@ msgstr "Részletekért kattintson kétszer a keresztnéven"
 #: ../gramps/plugins/gramplet/statsgramplet.py:53
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:70
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:52
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:60
 #: ../gramps/plugins/gramplet/whatsnext.py:45
 msgid "No Family Tree loaded."
 msgstr "Nincs betöltött családfa."
@@ -21781,7 +21757,7 @@ msgstr "Nincs betöltött családfa."
 #: ../gramps/plugins/gramplet/recordsgramplet.py:50
 #: ../gramps/plugins/gramplet/statsgramplet.py:69
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:93
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:69
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:70
 msgid "Processing..."
 msgstr "Végrehajtás..."
 
@@ -21795,7 +21771,7 @@ msgstr "Összes keresztnév mutatása"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:153
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:177
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:112
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:113
 msgid "Total people"
 msgstr "Összes ember"
 
@@ -21833,7 +21809,7 @@ msgstr "Aktív személy leszármazottait mutató gramplet"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:104
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:111
-#: ../gramps/plugins/webreport/narrativeweb.py:7060
+#: ../gramps/plugins/webreport/narrativeweb.py:7063
 msgid "Ancestors"
 msgstr "Ősök"
 
@@ -21900,7 +21876,7 @@ msgstr "Az összes keresztnevet szövegfelhőként mutató gramplet"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:205
 #: ../gramps/plugins/view/pedigreeview.py:528
 #: ../gramps/plugins/view/view.gpr.py:127
-#: ../gramps/plugins/webreport/narrativeweb.py:7246
+#: ../gramps/plugins/webreport/narrativeweb.py:7249
 msgid "Pedigree"
 msgstr "Családfa"
 
@@ -22316,8 +22292,8 @@ msgstr "Egy személy vissza-hivatkozásait mutató gramplet"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:995
 #: ../gramps/plugins/webreport/narrativeweb.py:2720
 #: ../gramps/plugins/webreport/narrativeweb.py:3228
-#: ../gramps/plugins/webreport/narrativeweb.py:5793
-#: ../gramps/plugins/webreport/narrativeweb.py:6832
+#: ../gramps/plugins/webreport/narrativeweb.py:5796
+#: ../gramps/plugins/webreport/narrativeweb.py:6835
 msgid "References"
 msgstr "Hivatkozások"
 
@@ -22841,7 +22817,7 @@ msgstr "Kattintson kettőt az elemen a találatok megnézéséhez"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:87
 #: ../gramps/plugins/textreport/summary.py:240
-#: ../gramps/plugins/webreport/narrativeweb.py:8196
+#: ../gramps/plugins/webreport/narrativeweb.py:8199
 msgid "less than 1"
 msgstr "kevesebb mint 1"
 
@@ -22852,60 +22828,60 @@ msgstr "kevesebb mint 1"
 #: ../gramps/plugins/webreport/narrativeweb.py:1918
 #: ../gramps/plugins/webreport/narrativeweb.py:1976
 #: ../gramps/plugins/webreport/narrativeweb.py:2041
-#: ../gramps/plugins/webreport/narrativeweb.py:6152
-#: ../gramps/plugins/webreport/narrativeweb.py:8207
-#: ../gramps/plugins/webreport/narrativeweb.py:8275
+#: ../gramps/plugins/webreport/narrativeweb.py:6155
+#: ../gramps/plugins/webreport/narrativeweb.py:8210
+#: ../gramps/plugins/webreport/narrativeweb.py:8278
 msgid "Individuals"
 msgstr "Személyek"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:101
-#: ../gramps/plugins/webreport/narrativeweb.py:8210
-#: ../gramps/plugins/webreport/narrativeweb.py:8276
+#: ../gramps/plugins/webreport/narrativeweb.py:8213
+#: ../gramps/plugins/webreport/narrativeweb.py:8279
 msgid "Number of individuals"
 msgstr "Személyek száma"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:111
-#: ../gramps/plugins/webreport/narrativeweb.py:8216
-#: ../gramps/plugins/webreport/narrativeweb.py:8283
+#: ../gramps/plugins/webreport/narrativeweb.py:8219
+#: ../gramps/plugins/webreport/narrativeweb.py:8286
 msgid "Individuals with unknown gender"
 msgstr "Személyek ismeretlen nemmel"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:115
 #: ../gramps/plugins/textreport/summary.py:211
-#: ../gramps/plugins/webreport/narrativeweb.py:8220
-#: ../gramps/plugins/webreport/narrativeweb.py:8287
+#: ../gramps/plugins/webreport/narrativeweb.py:8223
+#: ../gramps/plugins/webreport/narrativeweb.py:8290
 msgid "Family Information"
 msgstr "Családinformáció"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:122
-#: ../gramps/plugins/webreport/narrativeweb.py:8223
+#: ../gramps/plugins/webreport/narrativeweb.py:8226
 msgid "Unique surnames"
 msgstr "Különleges vezetéknevek"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:126
 #: ../gramps/plugins/textreport/summary.py:228
-#: ../gramps/plugins/webreport/narrativeweb.py:8227
+#: ../gramps/plugins/webreport/narrativeweb.py:8230
 msgid "Media Objects"
 msgstr "Média objektumok"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:128
-#: ../gramps/plugins/webreport/narrativeweb.py:8229
+#: ../gramps/plugins/webreport/narrativeweb.py:8232
 msgid "Total number of media object references"
 msgstr "A média objektum hivatkozások összes száma"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:132
-#: ../gramps/plugins/webreport/narrativeweb.py:8231
+#: ../gramps/plugins/webreport/narrativeweb.py:8234
 msgid "Number of unique media objects"
 msgstr "Különleges média objektumok száma"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:137
-#: ../gramps/plugins/webreport/narrativeweb.py:8233
+#: ../gramps/plugins/webreport/narrativeweb.py:8236
 msgid "Total size of media objects"
 msgstr "Média objektumok teljes mérete"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:141
 #: ../gramps/plugins/textreport/summary.py:258
-#: ../gramps/plugins/webreport/narrativeweb.py:8237
+#: ../gramps/plugins/webreport/narrativeweb.py:8240
 msgid "Missing Media Objects"
 msgstr "Hiányzó média objektumok"
 
@@ -22933,7 +22909,7 @@ msgid "Max font size"
 msgstr "Legnagyobb betűméret"
 
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:174
-#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:110
+#: ../gramps/plugins/gramplet/topsurnamesgramplet.py:111
 msgid "Total unique surnames"
 msgstr "Az összes különleges vezetéknév"
 
@@ -23539,24 +23515,24 @@ msgid "Initial list of people of interest:"
 msgstr "Célszemélyek kezdő listája:"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/graph/gvfamilylines.py:966
+#: ../gramps/plugins/graph/gvfamilylines.py:969
 #, python-brace-format
 msgid "{number_of} child"
 msgid_plural "{number_of} children"
 msgstr[0] "{number_of} gyermek"
 msgstr[1] "{number_of} gyermek"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:1041
+#: ../gramps/plugins/graph/gvfamilylines.py:1044
 #, python-format
 msgid "father: %s"
 msgstr "apa: %s"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:1051
+#: ../gramps/plugins/graph/gvfamilylines.py:1054
 #, python-format
 msgid "mother: %s"
 msgstr "anya: %s"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:1064
+#: ../gramps/plugins/graph/gvfamilylines.py:1067
 #, python-format
 msgid "child: %s"
 msgstr "gyermek: %s"
@@ -24093,7 +24069,7 @@ msgid "Change Name"
 msgstr "Név változtatása"
 
 #: ../gramps/plugins/importer/importgeneweb.py:89
-#: ../gramps/plugins/lib/libgedcom.py:604
+#: ../gramps/plugins/lib/libgedcom.py:605
 msgid "Circumcision"
 msgstr "Körülmetélés"
 
@@ -24106,7 +24082,7 @@ msgid "Dotation"
 msgstr "Hozomány"
 
 #: ../gramps/plugins/importer/importgeneweb.py:100
-#: ../gramps/plugins/lib/libgedcom.py:610
+#: ../gramps/plugins/lib/libgedcom.py:611
 msgid "Excommunication"
 msgstr "Kiátkozás"
 
@@ -24115,7 +24091,7 @@ msgid "LDS Family Link"
 msgstr "UNSZ család hivatkozások"
 
 #: ../gramps/plugins/importer/importgeneweb.py:103
-#: ../gramps/plugins/lib/libgedcom.py:612
+#: ../gramps/plugins/lib/libgedcom.py:613
 msgid "Funeral"
 msgstr "Temetés"
 
@@ -24751,117 +24727,117 @@ msgstr ""
 "formátummal.\n"
 " %(filename)s írása %(impliedext)s formátumban."
 
-#: ../gramps/plugins/lib/libgedcom.py:605
+#: ../gramps/plugins/lib/libgedcom.py:606
 msgid "Common Law Marriage"
 msgstr "Élettársi viszony"
 
-#: ../gramps/plugins/lib/libgedcom.py:606
-#: ../gramps/plugins/webreport/narrativeweb.py:9749
+#: ../gramps/plugins/lib/libgedcom.py:607
+#: ../gramps/plugins/webreport/narrativeweb.py:9752
 #: ../gramps/plugins/webreport/webcal.py:1612
 msgid "Destination"
 msgstr "Célhely"
 
-#: ../gramps/plugins/lib/libgedcom.py:607
+#: ../gramps/plugins/lib/libgedcom.py:608
 msgid "DNA"
 msgstr "DNS"
 
-#: ../gramps/plugins/lib/libgedcom.py:608
+#: ../gramps/plugins/lib/libgedcom.py:609
 msgid "Cause of Death"
 msgstr "Halál oka"
 
-#: ../gramps/plugins/lib/libgedcom.py:609
+#: ../gramps/plugins/lib/libgedcom.py:610
 msgid "Employment"
 msgstr "Foglalkozás"
 
-#: ../gramps/plugins/lib/libgedcom.py:611
+#: ../gramps/plugins/lib/libgedcom.py:612
 msgid "Eye Color"
 msgstr "Szemszín"
 
-#: ../gramps/plugins/lib/libgedcom.py:613
+#: ../gramps/plugins/lib/libgedcom.py:614
 msgid "Height"
 msgstr "Magasság"
 
-#: ../gramps/plugins/lib/libgedcom.py:614
+#: ../gramps/plugins/lib/libgedcom.py:615
 msgid "Initiatory (LDS)"
 msgstr "Beavatás (mormon egyház)"
 
-#: ../gramps/plugins/lib/libgedcom.py:615
+#: ../gramps/plugins/lib/libgedcom.py:616
 msgid "Military ID"
 msgstr "Katonai azonosító"
 
-#: ../gramps/plugins/lib/libgedcom.py:616
+#: ../gramps/plugins/lib/libgedcom.py:617
 msgid "Mission (LDS)"
 msgstr "Misszió (mormon egyház)"
 
-#: ../gramps/plugins/lib/libgedcom.py:617
+#: ../gramps/plugins/lib/libgedcom.py:618
 msgid "Namesake"
 msgstr "Névrokon"
 
-#: ../gramps/plugins/lib/libgedcom.py:618
+#: ../gramps/plugins/lib/libgedcom.py:619
 msgid "Ordinance"
 msgstr "Szertartás"
 
-#: ../gramps/plugins/lib/libgedcom.py:620
+#: ../gramps/plugins/lib/libgedcom.py:621
 msgid "Separation"
 msgstr "Különélés"
 
 #. Applies to Families
-#: ../gramps/plugins/lib/libgedcom.py:621
+#: ../gramps/plugins/lib/libgedcom.py:622
 msgid "Weight"
 msgstr "Súly"
 
-#: ../gramps/plugins/lib/libgedcom.py:832
+#: ../gramps/plugins/lib/libgedcom.py:833
 msgid "Line ignored "
 msgstr "A vonal kihagyva "
 
 #. e.g. Illegal character (oxAB) (0xCB)... 1 NOTE xyz?pqr?lmn
-#: ../gramps/plugins/lib/libgedcom.py:1430
+#: ../gramps/plugins/lib/libgedcom.py:1431
 #, python-format
 msgid "Illegal character%s"
 msgstr "Nem megengedett %s karakter"
 
-#: ../gramps/plugins/lib/libgedcom.py:1702
+#: ../gramps/plugins/lib/libgedcom.py:1703
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "A GEDCOM fájl hibás. Csonkának tűnik."
 
-#: ../gramps/plugins/lib/libgedcom.py:1784
+#: ../gramps/plugins/lib/libgedcom.py:1785
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Importálás: GEDCOM (%s)"
 
-#: ../gramps/plugins/lib/libgedcom.py:2620
-#: ../gramps/plugins/lib/libgedcom.py:3070
+#: ../gramps/plugins/lib/libgedcom.py:2621
+#: ../gramps/plugins/lib/libgedcom.py:3071
 msgid "GEDCOM import"
 msgstr "GEDCOM importálás"
 
-#: ../gramps/plugins/lib/libgedcom.py:2648
+#: ../gramps/plugins/lib/libgedcom.py:2649
 msgid "GEDCOM import report: No errors detected"
 msgstr "GEDCOM import jelentés: Nincs hiba"
 
-#: ../gramps/plugins/lib/libgedcom.py:2650
+#: ../gramps/plugins/lib/libgedcom.py:2651
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "GEDCOM import jelentés: %s hiba történt"
 
-#: ../gramps/plugins/lib/libgedcom.py:2963
-#: ../gramps/plugins/lib/libgedcom.py:2987
-#: ../gramps/plugins/lib/libgedcom.py:3000
+#: ../gramps/plugins/lib/libgedcom.py:2964
+#: ../gramps/plugins/lib/libgedcom.py:2988
+#: ../gramps/plugins/lib/libgedcom.py:3001
 msgid "Line ignored as not understood"
 msgstr "A sor kihagyva, mert nem értelmezhető"
 
-#: ../gramps/plugins/lib/libgedcom.py:2989
+#: ../gramps/plugins/lib/libgedcom.py:2990
 msgid "Tag recognized but not supported"
 msgstr "Címke felismerve, de nem támogatott"
 
-#: ../gramps/plugins/lib/libgedcom.py:3025
+#: ../gramps/plugins/lib/libgedcom.py:3026
 msgid "Skipped subordinate line"
 msgstr "Alárendelt vonal átugrása"
 
-#: ../gramps/plugins/lib/libgedcom.py:3059
+#: ../gramps/plugins/lib/libgedcom.py:3060
 msgid "Records not imported into "
 msgstr "Adat nem importálható "
 
-#: ../gramps/plugins/lib/libgedcom.py:3097
+#: ../gramps/plugins/lib/libgedcom.py:3098
 #, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -24870,7 +24846,7 @@ msgstr ""
 "Hiba: %(msg)s  '%(gramps_id)s' (bemenet, mint @%(xref)s@) nem GEDCOM "
 "bemenet. Az adatrekord generált"
 
-#: ../gramps/plugins/lib/libgedcom.py:3106
+#: ../gramps/plugins/lib/libgedcom.py:3107
 #, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -24879,7 +24855,7 @@ msgstr ""
 "Hiba: %(msg)s  '%(gramps_id)s' (bemenet, mint @%(xref)s@) nem GEDCOM "
 "bemenet. Az adatrekord 'Ismeretlen' jelzéssel létrehozva"
 
-#: ../gramps/plugins/lib/libgedcom.py:3151
+#: ../gramps/plugins/lib/libgedcom.py:3152
 #, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
@@ -24890,7 +24866,7 @@ msgstr ""
 "személye (bemenet, mint %(orig_person)s) nem tagja a hivatkozott családnak. "
 "A család hivatkozás a személytől eltávolítva"
 
-#: ../gramps/plugins/lib/libgedcom.py:3229
+#: ../gramps/plugins/lib/libgedcom.py:3230
 #, python-format
 msgid ""
 "\n"
@@ -24910,177 +24886,177 @@ msgstr ""
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
 #. truncated for output
-#: ../gramps/plugins/lib/libgedcom.py:3301
+#: ../gramps/plugins/lib/libgedcom.py:3302
 #, python-format
 msgid "ADDR element ignored '%s'"
 msgstr "Az ADDR elem figyelmen kívül hagyta: '%s'"
 
-#: ../gramps/plugins/lib/libgedcom.py:3321
+#: ../gramps/plugins/lib/libgedcom.py:3322
 msgid "TRLR (trailer)"
 msgstr "TRLR (utó-adat)"
 
-#: ../gramps/plugins/lib/libgedcom.py:3350
+#: ../gramps/plugins/lib/libgedcom.py:3351
 msgid "(Submitter):"
 msgstr "(Benyújtó):"
 
-#: ../gramps/plugins/lib/libgedcom.py:3374
-#: ../gramps/plugins/lib/libgedcom.py:7096
+#: ../gramps/plugins/lib/libgedcom.py:3375
+#: ../gramps/plugins/lib/libgedcom.py:7107
 msgid "GEDCOM data"
 msgstr "GEDCOM adat"
 
-#: ../gramps/plugins/lib/libgedcom.py:3420
+#: ../gramps/plugins/lib/libgedcom.py:3421
 msgid "Unknown tag"
 msgstr "Ismeretlen címke"
 
-#: ../gramps/plugins/lib/libgedcom.py:3422
-#: ../gramps/plugins/lib/libgedcom.py:3436
-#: ../gramps/plugins/lib/libgedcom.py:3440
-#: ../gramps/plugins/lib/libgedcom.py:3461
+#: ../gramps/plugins/lib/libgedcom.py:3423
+#: ../gramps/plugins/lib/libgedcom.py:3437
+#: ../gramps/plugins/lib/libgedcom.py:3441
+#: ../gramps/plugins/lib/libgedcom.py:3462
 msgid "Top Level"
 msgstr "Felső szint"
 
-#: ../gramps/plugins/lib/libgedcom.py:3536
+#: ../gramps/plugins/lib/libgedcom.py:3537
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (egyéni) GRAMPS Azonosító: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:3655
+#: ../gramps/plugins/lib/libgedcom.py:3656
 msgid "Empty Alias <NAME PERSONAL> ignored"
 msgstr "<NAME PERSONAL> Üres Álnév figyelmen kívül hagyása"
 
-#: ../gramps/plugins/lib/libgedcom.py:4823
+#: ../gramps/plugins/lib/libgedcom.py:4824
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (család) GRAMPS Azonosító: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5175
-#: ../gramps/plugins/lib/libgedcom.py:6529
+#: ../gramps/plugins/lib/libgedcom.py:5176
+#: ../gramps/plugins/lib/libgedcom.py:6540
 msgid "Filename omitted"
 msgstr "A fájlnév kimaradt"
 
-#: ../gramps/plugins/lib/libgedcom.py:5198
-#: ../gramps/plugins/lib/libgedcom.py:6569
+#: ../gramps/plugins/lib/libgedcom.py:5209
+#: ../gramps/plugins/lib/libgedcom.py:6580
 #, python-format
 msgid "Could not import %s"
 msgstr "%s nem importálható"
 
-#: ../gramps/plugins/lib/libgedcom.py:5255
-#: ../gramps/plugins/lib/libgedcom.py:6670
+#: ../gramps/plugins/lib/libgedcom.py:5266
+#: ../gramps/plugins/lib/libgedcom.py:6681
 msgid "Media-Type"
 msgstr "Médiatípus"
 
-#: ../gramps/plugins/lib/libgedcom.py:5279
-#: ../gramps/plugins/lib/libgedcom.py:6560
+#: ../gramps/plugins/lib/libgedcom.py:5290
+#: ../gramps/plugins/lib/libgedcom.py:6571
 msgid "Multiple FILE in a single OBJE ignored"
 msgstr "Figyelembe nem vett többszörös FILE egy egyszerű OBJE-ben"
 
 #. We have previously found a PLAC
-#: ../gramps/plugins/lib/libgedcom.py:5434
+#: ../gramps/plugins/lib/libgedcom.py:5445
 msgid "A second PLAC ignored"
 msgstr "A második PLAC figyelmen kívül hagyása"
 
 #. For RootsMagic etc. Place Details e.g. address, hospital, cemetary
-#: ../gramps/plugins/lib/libgedcom.py:5572
+#: ../gramps/plugins/lib/libgedcom.py:5583
 msgid "Detail"
 msgstr "Részlet"
 
 #. We have perviously found an ADDR, or have populated location
 #. from PLAC title
-#: ../gramps/plugins/lib/libgedcom.py:5585
+#: ../gramps/plugins/lib/libgedcom.py:5596
 msgid "Location already populated; ADDR ignored"
 msgstr "A helyzet már betöltött; az ADDR figyelmen kívül hagyása"
 
-#: ../gramps/plugins/lib/libgedcom.py:5990
-#: ../gramps/plugins/lib/libgedcom.py:6877
+#: ../gramps/plugins/lib/libgedcom.py:6001
+#: ../gramps/plugins/lib/libgedcom.py:6888
 msgid "Warn: ADDR overwritten"
 msgstr "Figyelmeztetés: ADDR felülírva"
 
-#: ../gramps/plugins/lib/libgedcom.py:6155
+#: ../gramps/plugins/lib/libgedcom.py:6166
 msgid "Citation Justification"
 msgstr "Idézet igazolás"
 
-#: ../gramps/plugins/lib/libgedcom.py:6182
+#: ../gramps/plugins/lib/libgedcom.py:6193
 msgid "REFN ignored"
 msgstr "REFN kihagyva"
 
 #. SOURce with the given gramps_id had no title
-#: ../gramps/plugins/lib/libgedcom.py:6281
+#: ../gramps/plugins/lib/libgedcom.py:6292
 #, python-format
 msgid "No title - ID %s"
 msgstr "Nincs cím - Azonosító: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6286
+#: ../gramps/plugins/lib/libgedcom.py:6297
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (forrás) GRAMPS Azonosító: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6536
+#: ../gramps/plugins/lib/libgedcom.py:6547
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (multimédia objektum) GRAMPS Azonosító: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6766
+#: ../gramps/plugins/lib/libgedcom.py:6777
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (tároló) GRAPMS Azonosító: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6827
-#: ../gramps/plugins/lib/libgedcom.py:7803
+#: ../gramps/plugins/lib/libgedcom.py:6838
+#: ../gramps/plugins/lib/libgedcom.py:7814
 msgid "Only one phone number supported"
 msgstr "Csak egy telefonszám támogatott"
 
-#: ../gramps/plugins/lib/libgedcom.py:7012
+#: ../gramps/plugins/lib/libgedcom.py:7023
 msgid "HEAD (header)"
 msgstr "FEJLÉC (header)"
 
-#: ../gramps/plugins/lib/libgedcom.py:7033
+#: ../gramps/plugins/lib/libgedcom.py:7044
 msgid "Approved system identification"
 msgstr "Jóváhagyott rendszerazonosító"
 
-#: ../gramps/plugins/lib/libgedcom.py:7045
+#: ../gramps/plugins/lib/libgedcom.py:7056
 msgid "Generated By"
 msgstr "Létrehozta"
 
-#: ../gramps/plugins/lib/libgedcom.py:7061
+#: ../gramps/plugins/lib/libgedcom.py:7072
 msgid "Name of software product"
 msgstr "A szoftvertermék neve"
 
-#: ../gramps/plugins/lib/libgedcom.py:7075
+#: ../gramps/plugins/lib/libgedcom.py:7086
 msgid "Version number of software product"
 msgstr "A szoftvertermék verzió száma"
 
-#: ../gramps/plugins/lib/libgedcom.py:7093
+#: ../gramps/plugins/lib/libgedcom.py:7104
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Az eredményt létrehozó tevékenység: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7115
+#: ../gramps/plugins/lib/libgedcom.py:7126
 msgid "Name of source data"
 msgstr "A forrásadat neve"
 
-#: ../gramps/plugins/lib/libgedcom.py:7132
+#: ../gramps/plugins/lib/libgedcom.py:7143
 msgid "Copyright of source data"
 msgstr "A forrásadat szerzői joga"
 
-#: ../gramps/plugins/lib/libgedcom.py:7149
+#: ../gramps/plugins/lib/libgedcom.py:7160
 msgid "Publication date of source data"
 msgstr "A forrásadat kiadási dátuma"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/lib/libgedcom.py:7163
+#: ../gramps/plugins/lib/libgedcom.py:7174
 #, python-format
 msgid "Import from %s"
 msgstr "Import a következőből: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7202
+#: ../gramps/plugins/lib/libgedcom.py:7213
 msgid "Submission record identifier"
 msgstr "Rekord azonosító benyújtása"
 
-#: ../gramps/plugins/lib/libgedcom.py:7215
+#: ../gramps/plugins/lib/libgedcom.py:7226
 msgid "Language of GEDCOM text"
 msgstr "A GEDCOM szöveg nyelve"
 
-#: ../gramps/plugins/lib/libgedcom.py:7236
+#: ../gramps/plugins/lib/libgedcom.py:7247
 #, python-format
 msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
@@ -25089,88 +25065,88 @@ msgstr ""
 "%(filename)s GEDCOM fájl DEST=%(by)s értékkel importálása hibákat okozhat az "
 "adatbázisban!"
 
-#: ../gramps/plugins/lib/libgedcom.py:7239
+#: ../gramps/plugins/lib/libgedcom.py:7250
 msgid "Look for nameless events."
 msgstr "Névhiányos események keresése."
 
-#: ../gramps/plugins/lib/libgedcom.py:7263
+#: ../gramps/plugins/lib/libgedcom.py:7274
 msgid "Character set"
 msgstr "Karakterkészlet"
 
-#: ../gramps/plugins/lib/libgedcom.py:7268
+#: ../gramps/plugins/lib/libgedcom.py:7279
 msgid "Character set and version"
 msgstr "Karakterkészlet és verziója"
 
-#: ../gramps/plugins/lib/libgedcom.py:7285
+#: ../gramps/plugins/lib/libgedcom.py:7296
 msgid "GEDCOM version not supported"
 msgstr "A GEDCOM verzió nem támogatott"
 
-#: ../gramps/plugins/lib/libgedcom.py:7289
+#: ../gramps/plugins/lib/libgedcom.py:7300
 msgid "GEDCOM version"
 msgstr "GEDCOM verzió"
 
 #. Allow Lineage-Linked etc. though it should be in uppercase
-#: ../gramps/plugins/lib/libgedcom.py:7297
+#: ../gramps/plugins/lib/libgedcom.py:7308
 msgid "GEDCOM FORM should be in uppercase"
 msgstr "A GEDCOM FORM-nak nagybetűsnek kell lennie"
 
-#: ../gramps/plugins/lib/libgedcom.py:7299
+#: ../gramps/plugins/lib/libgedcom.py:7310
 msgid "GEDCOM FORM not supported"
 msgstr "A GEDCOM FORM nem támogatott"
 
-#: ../gramps/plugins/lib/libgedcom.py:7302
+#: ../gramps/plugins/lib/libgedcom.py:7313
 msgid "GEDCOM form"
 msgstr "GEDCOM forma"
 
-#: ../gramps/plugins/lib/libgedcom.py:7351
+#: ../gramps/plugins/lib/libgedcom.py:7362
 msgid "Creation date of GEDCOM"
 msgstr "GEDCOM adat létrehozása"
 
-#: ../gramps/plugins/lib/libgedcom.py:7356
+#: ../gramps/plugins/lib/libgedcom.py:7367
 msgid "Creation date and time of GEDCOM"
 msgstr "GEDCOM adat és idő létrehozása"
 
-#: ../gramps/plugins/lib/libgedcom.py:7397
-#: ../gramps/plugins/lib/libgedcom.py:7439
+#: ../gramps/plugins/lib/libgedcom.py:7408
+#: ../gramps/plugins/lib/libgedcom.py:7450
 msgid "Empty note ignored"
 msgstr "Az üres jegyzet kihagyva"
 
-#: ../gramps/plugins/lib/libgedcom.py:7455
+#: ../gramps/plugins/lib/libgedcom.py:7466
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "NOTE GRAMPS Azonosító: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7506
+#: ../gramps/plugins/lib/libgedcom.py:7517
 msgid "Submission: Submitter"
 msgstr "Benyújtás: Benyújtó"
 
-#: ../gramps/plugins/lib/libgedcom.py:7508
+#: ../gramps/plugins/lib/libgedcom.py:7519
 msgid "Submission: Family file"
 msgstr "Benyújtás: Család fájl"
 
-#: ../gramps/plugins/lib/libgedcom.py:7510
+#: ../gramps/plugins/lib/libgedcom.py:7521
 msgid "Submission: Temple code"
 msgstr "Benyújtás: Templom kód"
 
-#: ../gramps/plugins/lib/libgedcom.py:7512
+#: ../gramps/plugins/lib/libgedcom.py:7523
 msgid "Submission: Generations of ancestors"
 msgstr "Benyújtás: Ősök generációi"
 
-#: ../gramps/plugins/lib/libgedcom.py:7514
+#: ../gramps/plugins/lib/libgedcom.py:7525
 msgid "Submission: Generations of descendants"
 msgstr "Benyújtás: Leszármazottak generációi"
 
-#: ../gramps/plugins/lib/libgedcom.py:7516
+#: ../gramps/plugins/lib/libgedcom.py:7527
 msgid "Submission: Ordinance process flag"
 msgstr "Benyújtás: Rend eljárás jelölő"
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../gramps/plugins/lib/libgedcom.py:7742
+#: ../gramps/plugins/lib/libgedcom.py:7753
 msgid "Invalid temple code"
 msgstr "Szabálytalan templomkód"
 
-#: ../gramps/plugins/lib/libgedcom.py:7836
+#: ../gramps/plugins/lib/libgedcom.py:7847
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -25178,7 +25154,7 @@ msgstr ""
 "A GEDCOM fájl hibás. Úgy tűnik UTF16 karakterkészlettel kódolt, de hiányzik "
 "a BOM jel."
 
-#: ../gramps/plugins/lib/libgedcom.py:7839
+#: ../gramps/plugins/lib/libgedcom.py:7850
 msgid "Your GEDCOM file is empty."
 msgstr "A GEDCOM fájl üres."
 
@@ -28611,9 +28587,8 @@ msgid "Edit the selected person"
 msgstr "Kiválasztott személy szerkesztése"
 
 #: ../gramps/plugins/lib/libpersonview.py:126
-#, fuzzy
 msgid "Delete the selected person"
-msgstr "Kiválasztott helyszín törlése"
+msgstr "Kiválasztott személy törlése"
 
 #: ../gramps/plugins/lib/libpersonview.py:127
 msgid "Merge the selected persons"
@@ -28859,24 +28834,20 @@ msgid "Oldest mother"
 msgstr "Legidősebb anya"
 
 #: ../gramps/plugins/lib/librecords.py:67
-#, fuzzy
 msgid "Father with most children"
-msgstr "Legtöbb gyerekes pár"
+msgstr "A legtöbb gyerekes apa"
 
 #: ../gramps/plugins/lib/librecords.py:68
-#, fuzzy
 msgid "Mother with most children"
-msgstr "Legtöbb gyerekes pár"
+msgstr "A legtöbb gyerekes anya"
 
 #: ../gramps/plugins/lib/librecords.py:69
-#, fuzzy
 msgid "Father with most grandchildren"
-msgstr "Legtöbb gyerekes pár"
+msgstr "A legtöbb unokás apa"
 
 #: ../gramps/plugins/lib/librecords.py:70
-#, fuzzy
 msgid "Mother with most grandchildren"
-msgstr "Legtöbb gyerekes pár"
+msgstr "A legtöbb unokás anya"
 
 #: ../gramps/plugins/lib/librecords.py:71
 msgid "Couple with most children"
@@ -29006,9 +28977,9 @@ msgstr "A Gtk változata túl öreg."
 #: ../gramps/plugins/view/geofamclose.py:740
 #: ../gramps/plugins/view/geofamily.py:434
 #: ../gramps/plugins/view/geomoves.py:625
-#: ../gramps/plugins/view/geoperson.py:445
-#: ../gramps/plugins/view/geoperson.py:466
-#: ../gramps/plugins/view/geoperson.py:506
+#: ../gramps/plugins/view/geoperson.py:440
+#: ../gramps/plugins/view/geoperson.py:461
+#: ../gramps/plugins/view/geoperson.py:501
 #: ../gramps/plugins/view/geoplaces.py:435
 #: ../gramps/plugins/view/geoplaces.py:460
 msgid "Center on this place"
@@ -29177,7 +29148,7 @@ msgid "Open on maps.google.com"
 msgstr "A maps.google.com-on nyissa meg"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:71
-#: ../gramps/plugins/webreport/narrativeweb.py:10098
+#: ../gramps/plugins/webreport/narrativeweb.py:10101
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
@@ -29238,7 +29209,7 @@ msgstr "Esemény helye"
 #: ../gramps/plugins/quickview/all_events.py:60
 #: ../gramps/plugins/quickview/all_events.py:109
 #: ../gramps/plugins/quickview/all_events.py:124
-#: ../gramps/plugins/webreport/narrativeweb.py:6848
+#: ../gramps/plugins/webreport/narrativeweb.py:6851
 msgid "Event Type"
 msgstr "Eseménytípus"
 
@@ -29319,7 +29290,7 @@ msgstr "Szülő"
 #: ../gramps/plugins/webreport/narrativeweb.py:2778
 #: ../gramps/plugins/webreport/narrativeweb.py:2780
 #: ../gramps/plugins/webreport/narrativeweb.py:3322
-#: ../gramps/plugins/webreport/narrativeweb.py:6199
+#: ../gramps/plugins/webreport/narrativeweb.py:6202
 msgid "Partner"
 msgstr "Társ"
 
@@ -29510,9 +29481,9 @@ msgstr "Emberek"
 #: ../gramps/plugins/webreport/narrativeweb.py:1923
 #: ../gramps/plugins/webreport/narrativeweb.py:1982
 #: ../gramps/plugins/webreport/narrativeweb.py:2052
-#: ../gramps/plugins/webreport/narrativeweb.py:4895
-#: ../gramps/plugins/webreport/narrativeweb.py:4992
-#: ../gramps/plugins/webreport/narrativeweb.py:7144
+#: ../gramps/plugins/webreport/narrativeweb.py:4898
+#: ../gramps/plugins/webreport/narrativeweb.py:4995
+#: ../gramps/plugins/webreport/narrativeweb.py:7147
 msgid "Sources"
 msgstr "Források"
 
@@ -30092,9 +30063,8 @@ msgid "Add linebreak after each name"
 msgstr "Sortörés hozzáadása minden név után"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:307
-#, fuzzy
 msgid "Whether a line break should follow the name."
-msgstr "Jelzi, ha a nevet sortörésnek kell követnie."
+msgstr "A sortörés a nevet követően legyen-e."
 
 #: ../gramps/plugins/textreport/birthdayreport.py:65
 #: ../gramps/plugins/textreport/birthdayreport.py:217
@@ -30891,7 +30861,7 @@ msgid "Alternate Parents"
 msgstr "Alternatív szülők"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:443
-#: ../gramps/plugins/webreport/narrativeweb.py:7129
+#: ../gramps/plugins/webreport/narrativeweb.py:7132
 msgid "Associations"
 msgstr "Társítások"
 
@@ -32318,7 +32288,7 @@ msgstr "Médiakezelő"
 #: ../gramps/plugins/tool/mediamanager.py:97
 #: ../gramps/plugins/webreport/narrativeweb.py:1916
 #: ../gramps/plugins/webreport/narrativeweb.py:2039
-#: ../gramps/plugins/webreport/narrativeweb.py:4736
+#: ../gramps/plugins/webreport/narrativeweb.py:4739
 msgid "Introduction"
 msgstr "Bevezetés"
 
@@ -32882,74 +32852,75 @@ msgstr "Használatlan objektumok eltávolítása"
 
 #: ../gramps/plugins/tool/reorderids.glade:1368
 msgid "Enable ID reordering."
-msgstr ""
+msgstr "ID újrarendezés bekapcsolása."
 
 #: ../gramps/plugins/tool/reorderids.glade:1385
 msgid ""
 "List next ID available\n"
 "(maynot be continuous)."
 msgstr ""
+"A következő ID listázása\n"
+"(lehetséges, hogy nem folyamatos)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1388
 msgid "  Actual"
-msgstr ""
+msgstr "  Aktuális"
 
 #: ../gramps/plugins/tool/reorderids.glade:1402
 msgid "Amount of ID in use."
-msgstr ""
+msgstr "Használatban levő ID-k mennyisége."
 
 #: ../gramps/plugins/tool/reorderids.glade:1404
 msgid " Quantity"
-msgstr ""
+msgstr " Mennyiség"
 
 #: ../gramps/plugins/tool/reorderids.glade:1419
 msgid "Actual / Upcoming ID format."
-msgstr ""
+msgstr "Aktuális / A következő ID formátum."
 
 #: ../gramps/plugins/tool/reorderids.glade:1434
-#, fuzzy
 msgid "Change"
-msgstr "tartomány"
+msgstr "Változtatni"
 
 #: ../gramps/plugins/tool/reorderids.glade:1438
 msgid ""
 "Enable ID reordering\n"
 "with Start / Step sequence."
 msgstr ""
+"ID újrarendezés bekapcsolása\n"
+"Indítás / Lépés sorrenddel."
 
 #: ../gramps/plugins/tool/reorderids.glade:1454
-#, fuzzy
 msgid "Start"
 msgstr "Indítás"
 
 #: ../gramps/plugins/tool/reorderids.glade:1458
-#, fuzzy
 msgid "Reorder ID start number."
-msgstr "Papírtájolás szám."
+msgstr "Az ID újrarendezés kezdőszáma."
 
 #: ../gramps/plugins/tool/reorderids.glade:1473
-#, fuzzy
 msgid "Step"
-msgstr "Mostohagyermek"
+msgstr "Lépés"
 
 #: ../gramps/plugins/tool/reorderids.glade:1477
 msgid "Reorder ID step width."
-msgstr ""
+msgstr "Az ID újrarendezés lépés szélessége."
 
 #: ../gramps/plugins/tool/reorderids.glade:1492
 msgid "Keep"
-msgstr ""
+msgstr "Megtartás"
 
 #: ../gramps/plugins/tool/reorderids.glade:1496
 msgid ""
 "Keep IDs with alternate\n"
 "prefixes untouched."
 msgstr ""
+"ID-k megtartása a váltakozó\n"
+"előtagok változatlanul hagyásával."
 
 #: ../gramps/plugins/tool/reorderids.py:67
-#, fuzzy
 msgid "manual|Reorder_Gramps_ID"
-msgstr "GRAPMS-azonosítók újrarendezése"
+msgstr "manual|GRAPMS-azonosítók újrarendezése"
 
 #. set gramps style title for the window
 #: ../gramps/plugins/tool/reorderids.py:203
@@ -32961,12 +32932,11 @@ msgstr "GRAPMS-azonosítók újrarendezése"
 
 #: ../gramps/plugins/tool/reorderids.py:525
 #: ../gramps/plugins/tool/reorderids.py:529
-#, fuzzy, python-format
+#, python-format
 msgid "Reorder %s IDs ..."
-msgstr "GRAPMS-azonosítók újrarendezése..."
+msgstr "%s azonosítók újrarendezése..."
 
-#: ../gramps/plugins/tool/reorderids.py:624
-#, fuzzy
+#: ../gramps/plugins/tool/reorderids.py:622
 msgid "Finding and assigning unused IDs."
 msgstr "Használatlan azonosítók keresése és kiosztása"
 
@@ -33374,8 +33344,7 @@ msgstr "Legnagyobb korkülönbség a _gyermekek között évben"
 msgid "Maximum _span of years for all children"
 msgstr "Az összes gyermek legnagyobb idő_intervalluma években"
 
-#: ../gramps/plugins/tool/verify.glade:985
-#: ../gramps/plugins/tool/verify.py:677
+#: ../gramps/plugins/tool/verify.glade:985 ../gramps/plugins/tool/verify.py:677
 msgid "_Hide marked"
 msgstr "Megjelöltek _elrejtése"
 
@@ -33933,7 +33902,7 @@ msgstr "A legyező bal oldalán a név megfordítása"
 #: ../gramps/plugins/view/fanchartdescview.py:359
 #: ../gramps/plugins/view/fanchartview.py:351
 #: ../gramps/plugins/view/pedigreeview.py:2052
-#: ../gramps/plugins/view/relview.py:1709
+#: ../gramps/plugins/view/relview.py:1710
 msgid "Layout"
 msgstr "Elrendezés"
 
@@ -34019,7 +33988,7 @@ msgstr "Válassza ki a személyt, aki a kiindulásunk lesz."
 #: ../gramps/plugins/view/geofamclose.py:496
 #: ../gramps/plugins/view/geofamily.py:207
 #: ../gramps/plugins/view/geomoves.py:292
-#: ../gramps/plugins/view/geoperson.py:339
+#: ../gramps/plugins/view/geoperson.py:334
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
@@ -34310,24 +34279,24 @@ msgstr "Személy-hely térkép"
 msgid "GeoPerson"
 msgstr "Geo-személy"
 
-#: ../gramps/plugins/view/geoperson.py:318
+#: ../gramps/plugins/view/geoperson.py:313
 #, python-format
 msgid "Person places for %s"
 msgstr "Személy-helyek %s számára"
 
-#: ../gramps/plugins/view/geoperson.py:522
+#: ../gramps/plugins/view/geoperson.py:517
 msgid "Animate"
 msgstr "Megelevenít"
 
-#: ../gramps/plugins/view/geoperson.py:545
+#: ../gramps/plugins/view/geoperson.py:540
 msgid "Animation speed in milliseconds (big value means slower)"
 msgstr "Animációs sebesség milliszekundumban (a nagyobb érték a lassabb)"
 
-#: ../gramps/plugins/view/geoperson.py:553
+#: ../gramps/plugins/view/geoperson.py:548
 msgid "How many steps between two markers when we are on large move ?"
 msgstr "Hány lépés legyen két jel között, ha hosszú mozgásban vagyunk?"
 
-#: ../gramps/plugins/view/geoperson.py:560
+#: ../gramps/plugins/view/geoperson.py:555
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
@@ -34335,7 +34304,7 @@ msgstr ""
 "Minimálisan kiválasztható szélességi/hosszúsági fok nagy mozgáshoz.\n"
 "Az érték tized fokokban értendő."
 
-#: ../gramps/plugins/view/geoperson.py:567
+#: ../gramps/plugins/view/geoperson.py:562
 msgid "The animation parameters"
 msgstr "Animációs paraméterek"
 
@@ -34691,13 +34660,11 @@ msgstr " (1 testvér)"
 msgid " (only child)"
 msgstr " (csak gyermek)"
 
-#: ../gramps/plugins/view/relview.py:956
-#: ../gramps/plugins/view/relview.py:1452
+#: ../gramps/plugins/view/relview.py:956 ../gramps/plugins/view/relview.py:1452
 msgid "Add new child to family"
 msgstr "Új gyermek hozzáadása a családhoz"
 
-#: ../gramps/plugins/view/relview.py:960
-#: ../gramps/plugins/view/relview.py:1456
+#: ../gramps/plugins/view/relview.py:960 ../gramps/plugins/view/relview.py:1456
 msgid "Add existing child to family"
 msgstr "Létező gyermek hozzáadása a családhoz"
 
@@ -34754,23 +34721,23 @@ msgstr[1] " ({number_of} gyermek)"
 msgid " (no children)"
 msgstr " (nincs gyermek)"
 
-#: ../gramps/plugins/view/relview.py:1698
+#: ../gramps/plugins/view/relview.py:1699
 msgid "Use shading"
 msgstr "Árnyékolás használata"
 
-#: ../gramps/plugins/view/relview.py:1701
+#: ../gramps/plugins/view/relview.py:1702
 msgid "Display edit buttons"
 msgstr "Szerkesztőgombok mutatása"
 
-#: ../gramps/plugins/view/relview.py:1703
+#: ../gramps/plugins/view/relview.py:1704
 msgid "View links as website links"
 msgstr "Hivatkozások nézete, mint webhivatkozás"
 
-#: ../gramps/plugins/view/relview.py:1720
+#: ../gramps/plugins/view/relview.py:1721
 msgid "Show Details"
 msgstr "Részletek mutatása"
 
-#: ../gramps/plugins/view/relview.py:1723
+#: ../gramps/plugins/view/relview.py:1724
 msgid "Show Siblings"
 msgstr "Testvérek mutatása"
 
@@ -34997,14 +34964,14 @@ msgstr "Kezdőlap"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1926
 #: ../gramps/plugins/webreport/narrativeweb.py:2061
-#: ../gramps/plugins/webreport/narrativeweb.py:5694
+#: ../gramps/plugins/webreport/narrativeweb.py:5697
 msgid "Thumbnails"
 msgstr "Bélyegképek"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1927
 #: ../gramps/plugins/webreport/narrativeweb.py:2068
-#: ../gramps/plugins/webreport/narrativeweb.py:5891
-#: ../gramps/plugins/webreport/narrativeweb.py:9974
+#: ../gramps/plugins/webreport/narrativeweb.py:5894
+#: ../gramps/plugins/webreport/narrativeweb.py:9977
 msgid "Download"
 msgstr "Letöltés"
 
@@ -35012,8 +34979,8 @@ msgstr "Letöltés"
 #: ../gramps/plugins/webreport/narrativeweb.py:1928
 #: ../gramps/plugins/webreport/narrativeweb.py:1994
 #: ../gramps/plugins/webreport/narrativeweb.py:2069
-#: ../gramps/plugins/webreport/narrativeweb.py:8010
-#: ../gramps/plugins/webreport/narrativeweb.py:8124
+#: ../gramps/plugins/webreport/narrativeweb.py:8013
+#: ../gramps/plugins/webreport/narrativeweb.py:8127
 msgid "Address Book"
 msgstr "Címjegyzék"
 
@@ -35021,7 +34988,7 @@ msgstr "Címjegyzék"
 #: ../gramps/plugins/webreport/narrativeweb.py:1930
 #: ../gramps/plugins/webreport/narrativeweb.py:2076
 #: ../gramps/plugins/webreport/narrativeweb.py:2113
-#: ../gramps/plugins/webreport/narrativeweb.py:6007
+#: ../gramps/plugins/webreport/narrativeweb.py:6010
 msgid "Contact"
 msgstr "Elérés"
 
@@ -35031,17 +34998,17 @@ msgid "Web Calendar"
 msgstr "Web-naptár"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2012
-#: ../gramps/plugins/webreport/narrativeweb.py:5366
+#: ../gramps/plugins/webreport/narrativeweb.py:5369
 msgid "Previous"
 msgstr "Előző"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2014
-#: ../gramps/plugins/webreport/narrativeweb.py:5378
+#: ../gramps/plugins/webreport/narrativeweb.py:5381
 msgid "Next"
 msgstr "Következő"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2489
-#: ../gramps/plugins/webreport/narrativeweb.py:8043
+#: ../gramps/plugins/webreport/narrativeweb.py:8046
 msgid "Web Links"
 msgstr "Web-hivatkozások"
 
@@ -35055,8 +35022,8 @@ msgstr "Utolsó Napok Szentjei/Mormon rend"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2754
 #: ../gramps/plugins/webreport/narrativeweb.py:2755
-#: ../gramps/plugins/webreport/narrativeweb.py:6587
-#: ../gramps/plugins/webreport/narrativeweb.py:6895
+#: ../gramps/plugins/webreport/narrativeweb.py:6590
+#: ../gramps/plugins/webreport/narrativeweb.py:6898
 msgid "Family Map"
 msgstr "Családtérkép"
 
@@ -35070,8 +35037,8 @@ msgid "Locations"
 msgstr "Koordináták"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3277
-#: ../gramps/plugins/webreport/narrativeweb.py:4661
-#: ../gramps/plugins/webreport/narrativeweb.py:6221
+#: ../gramps/plugins/webreport/narrativeweb.py:4664
+#: ../gramps/plugins/webreport/narrativeweb.py:6224
 msgid "<absent>"
 msgstr "<hiányzó>"
 
@@ -35088,24 +35055,24 @@ msgstr ""
 
 #. Name Column
 #: ../gramps/plugins/webreport/narrativeweb.py:3310
-#: ../gramps/plugins/webreport/narrativeweb.py:6187
+#: ../gramps/plugins/webreport/narrativeweb.py:6190
 msgid "Given Name"
 msgstr "Utónév"
 
 #. set progress bar pass for Repositories
 #: ../gramps/plugins/webreport/narrativeweb.py:3491
 #: ../gramps/plugins/webreport/narrativeweb.py:3825
-#: ../gramps/plugins/webreport/narrativeweb.py:4203
-#: ../gramps/plugins/webreport/narrativeweb.py:4868
-#: ../gramps/plugins/webreport/narrativeweb.py:5109
-#: ../gramps/plugins/webreport/narrativeweb.py:6116
-#: ../gramps/plugins/webreport/narrativeweb.py:7805
-#: ../gramps/plugins/webreport/narrativeweb.py:8697
-#: ../gramps/plugins/webreport/narrativeweb.py:9224
-#: ../gramps/plugins/webreport/narrativeweb.py:9277
-#: ../gramps/plugins/webreport/narrativeweb.py:9297
-#: ../gramps/plugins/webreport/narrativeweb.py:9306
-#: ../gramps/plugins/webreport/narrativeweb.py:9348
+#: ../gramps/plugins/webreport/narrativeweb.py:4206
+#: ../gramps/plugins/webreport/narrativeweb.py:4871
+#: ../gramps/plugins/webreport/narrativeweb.py:5112
+#: ../gramps/plugins/webreport/narrativeweb.py:6119
+#: ../gramps/plugins/webreport/narrativeweb.py:7808
+#: ../gramps/plugins/webreport/narrativeweb.py:8700
+#: ../gramps/plugins/webreport/narrativeweb.py:9227
+#: ../gramps/plugins/webreport/narrativeweb.py:9280
+#: ../gramps/plugins/webreport/narrativeweb.py:9300
+#: ../gramps/plugins/webreport/narrativeweb.py:9309
+#: ../gramps/plugins/webreport/narrativeweb.py:9351
 msgid "Narrated Web Site Report"
 msgstr "Leíró web-oldal összesítő"
 
@@ -35126,8 +35093,8 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3569
 #: ../gramps/plugins/webreport/narrativeweb.py:3886
-#: ../gramps/plugins/webreport/narrativeweb.py:4263
-#: ../gramps/plugins/webreport/narrativeweb.py:4611
+#: ../gramps/plugins/webreport/narrativeweb.py:4266
+#: ../gramps/plugins/webreport/narrativeweb.py:4614
 msgid "Letter"
 msgstr "Betű"
 
@@ -35160,15 +35127,15 @@ msgid "Places beginning with letter %s"
 msgstr "%s betűvel kezdődő helyek"
 
 #. section title
-#: ../gramps/plugins/webreport/narrativeweb.py:4099
+#: ../gramps/plugins/webreport/narrativeweb.py:4103
 msgid "Place Map"
 msgstr "Helytérkép"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4204
+#: ../gramps/plugins/webreport/narrativeweb.py:4207
 msgid "Creating event pages"
 msgstr "Eseményoldalak létrehozása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4236
+#: ../gramps/plugins/webreport/narrativeweb.py:4239
 msgid ""
 "This page contains an index of all the events in the database, sorted by "
 "their type and date (if one is present). Clicking on an event&#8217;s Gramps "
@@ -35178,17 +35145,17 @@ msgstr ""
 "típus és dátum szerint (ha van). Az esemény GRAMPS azonosítójára kattintva  "
 "az esemény oldalára jutunk."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4333
+#: ../gramps/plugins/webreport/narrativeweb.py:4336
 #, python-format
 msgid "Event types beginning with letter %s"
 msgstr "%s betűvel kezdődő eseménytípusok"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4573
+#: ../gramps/plugins/webreport/narrativeweb.py:4576
 msgid "Surnames by person count"
 msgstr "Vezetéknevek személyek száma szerint"
 
 #. page message
-#: ../gramps/plugins/webreport/narrativeweb.py:4580
+#: ../gramps/plugins/webreport/narrativeweb.py:4583
 msgid ""
 "This page contains an index of all the surnames in the database. Selecting a "
 "link will lead to a list of individuals in the database with this same "
@@ -35198,25 +35165,25 @@ msgstr ""
 "Egy hivatkozást kiválasztva az adatbázis azonos családnevű személyek "
 "listájához  jutunk."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4626
+#: ../gramps/plugins/webreport/narrativeweb.py:4629
 msgid "Number of People"
 msgstr "Emberek száma"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4674
+#: ../gramps/plugins/webreport/narrativeweb.py:4677
 #, python-format
 msgid "Surnames beginning with letter %s"
 msgstr "%s betűvel kezdődő vezetéknevek"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4780
+#: ../gramps/plugins/webreport/narrativeweb.py:4783
 #: ../gramps/plugins/webreport/webcal.py:569
 msgid "Home"
 msgstr "Kezdőlap"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4869
+#: ../gramps/plugins/webreport/narrativeweb.py:4872
 msgid "Creating source pages"
 msgstr "Forrásoldalak létrehozása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4911
+#: ../gramps/plugins/webreport/narrativeweb.py:4914
 msgid ""
 "This page contains an index of all the sources in the database, sorted by "
 "their title. Clicking on a source&#8217;s title will take you to that "
@@ -35226,19 +35193,19 @@ msgstr ""
 "címük szerint listázva. Kiválasztva egy forrás címét a forrás oldalára "
 "jutunk."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4930
+#: ../gramps/plugins/webreport/narrativeweb.py:4933
 msgid "Source Name|Name"
 msgstr "Forrásnév"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5028
+#: ../gramps/plugins/webreport/narrativeweb.py:5031
 msgid "Publication information"
 msgstr "Kiadvány információ"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5110
+#: ../gramps/plugins/webreport/narrativeweb.py:5113
 msgid "Creating media pages"
 msgstr "Médiaoldalak létrehozása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5158
+#: ../gramps/plugins/webreport/narrativeweb.py:5161
 msgid ""
 "This page contains an index of all the media objects in the database, sorted "
 "by their title. Clicking on the title will take you to that media "
@@ -35250,19 +35217,19 @@ msgstr ""
 "jutunk. Ha a kép felett látható a média mérete, rákattintva a teljes méret "
 "látható  lesz. "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5183
+#: ../gramps/plugins/webreport/narrativeweb.py:5186
 msgid "Media | Name"
 msgstr "Médianév"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5185
+#: ../gramps/plugins/webreport/narrativeweb.py:5188
 msgid "Mime Type"
 msgstr "MIME-típus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5245
+#: ../gramps/plugins/webreport/narrativeweb.py:5248
 msgid "Below unused media objects"
 msgstr "Alább a használatlan média objektumok"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5367
+#: ../gramps/plugins/webreport/narrativeweb.py:5370
 #, python-format
 msgid ""
 "%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
@@ -35272,19 +35239,19 @@ msgstr ""
 "%(total_pages)d%(strong_end)s-bó(ő)l"
 
 #. missing media error message
-#: ../gramps/plugins/webreport/narrativeweb.py:5381
+#: ../gramps/plugins/webreport/narrativeweb.py:5384
 msgid "The file has been moved or deleted."
 msgstr "A fájl mozgatva, vagy törölve lett."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5537
+#: ../gramps/plugins/webreport/narrativeweb.py:5540
 msgid "File Type"
 msgstr "Fájltípus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5640
+#: ../gramps/plugins/webreport/narrativeweb.py:5643
 msgid "Missing media object:"
 msgstr "Hiányzó médiaobjektum:"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5699
+#: ../gramps/plugins/webreport/narrativeweb.py:5702
 msgid ""
 "This page displays a indexed list of all the media objects in this "
 "database.  It is sorted by media title.  There is an index of all the media "
@@ -35295,11 +35262,11 @@ msgstr ""
 "tartalmazza címük szerint. Ez az adatbázisban levő média objektum egy "
 "indexe. A bélyegképre kattintva a kép oldalára jutunk."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5718
+#: ../gramps/plugins/webreport/narrativeweb.py:5721
 msgid "Thumbnail Preview"
 msgstr "Bélyegkép előnézet"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5897
+#: ../gramps/plugins/webreport/narrativeweb.py:5900
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
 "share a couple of files with you regarding their family.  If there are any "
@@ -35313,20 +35280,20 @@ msgstr ""
 "letöltő oldal és a fájlok  ugyanolyan szerzői jog alá esik, mint maguk a web-"
 "oldalak."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5923
+#: ../gramps/plugins/webreport/narrativeweb.py:5926
 msgid "File Name"
 msgstr "Fájlnév"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5925
+#: ../gramps/plugins/webreport/narrativeweb.py:5928
 msgid "Last Modified"
 msgstr "Utoljára módosítva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6117
+#: ../gramps/plugins/webreport/narrativeweb.py:6120
 msgid "Creating individual pages"
 msgstr "Egyéni oldalak elkészítése"
 
 #. Individual List page message
-#: ../gramps/plugins/webreport/narrativeweb.py:6160
+#: ../gramps/plugins/webreport/narrativeweb.py:6163
 msgid ""
 "This page contains an index of all the individuals in the database, sorted "
 "by their last names. Selecting the person&#8217;s name will take you to that "
@@ -35335,18 +35302,18 @@ msgstr ""
 "Ez az oldal az adatbázisban található összes személy listáját tartalmazza "
 "családnevük szerint. Kiválasztva egy nevet a személy saját oldalára jutunk."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6245
+#: ../gramps/plugins/webreport/narrativeweb.py:6248
 #, python-format
 msgid "Surnames %(surname)s beginning with letter %(letter)s"
 msgstr "%(letter)s betűvel kezdődő %(surname)s vezetéknevek"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6747
+#: ../gramps/plugins/webreport/narrativeweb.py:6750
 #, python-format
 msgid "Tracking %s"
 msgstr "%s követése"
 
 #. page description
-#: ../gramps/plugins/webreport/narrativeweb.py:6751
+#: ../gramps/plugins/webreport/narrativeweb.py:6754
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/ places. If you place your mouse over the marker it will display the "
@@ -35360,23 +35327,23 @@ msgstr ""
 "(ha van bármilyen). A Hivatkozás részben a helyszín nevére kattintva a "
 "helyszín oldalára kerülünk."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6822
+#: ../gramps/plugins/webreport/narrativeweb.py:6825
 msgid "Drop Markers"
 msgstr "Jelölések dobása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6847
+#: ../gramps/plugins/webreport/narrativeweb.py:6850
 msgid "Place Title"
 msgstr "Helycím"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7340
+#: ../gramps/plugins/webreport/narrativeweb.py:7343
 msgid "Call Name"
 msgstr "Hívónév"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7358
+#: ../gramps/plugins/webreport/narrativeweb.py:7361
 msgid "Nick Name"
 msgstr "Becenév"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7404
+#: ../gramps/plugins/webreport/narrativeweb.py:7407
 msgid "Age at Death"
 msgstr "Kora a halálakor"
 
@@ -35384,35 +35351,35 @@ msgstr "Kora a halálakor"
 #. actually be StepFather-in-law), but it is too expensive to
 #. calculate out the correct relationship using the Relationship
 #. Calculator
-#: ../gramps/plugins/webreport/narrativeweb.py:7538
+#: ../gramps/plugins/webreport/narrativeweb.py:7541
 msgid "Stepfather"
 msgstr "Mostohaapa"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7548
+#: ../gramps/plugins/webreport/narrativeweb.py:7551
 msgid "Stepmother"
 msgstr "Mostohaanya"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7574
+#: ../gramps/plugins/webreport/narrativeweb.py:7577
 msgid "Not siblings"
 msgstr "Nem testvérek"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7654
+#: ../gramps/plugins/webreport/narrativeweb.py:7657
 msgid "Relation to the center person"
 msgstr "Kapcsolat a kiinduló személlyel"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7691
+#: ../gramps/plugins/webreport/narrativeweb.py:7694
 msgid "Relation to main person"
 msgstr "Kapcsolat a kiinduló személyhez"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7695
+#: ../gramps/plugins/webreport/narrativeweb.py:7698
 msgid "Relation within this family (if not by birth)"
 msgstr "Kapcsolat a családon belül (ha az nem születési)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7806
+#: ../gramps/plugins/webreport/narrativeweb.py:7809
 msgid "Creating repository pages"
 msgstr "Tárolóoldalak létrehozása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7849
+#: ../gramps/plugins/webreport/narrativeweb.py:7852
 msgid ""
 "This page contains an index of all the repositories in the database, sorted "
 "by their title. Clicking on a repositories&#8217;s title will take you to "
@@ -35421,12 +35388,12 @@ msgstr ""
 "Ez az oldal az adatbázisban található összes tároló listáját tartalmazza "
 "címük szerint. Kiválasztva egy tároló címét a tároló oldalára jutunk."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7867
+#: ../gramps/plugins/webreport/narrativeweb.py:7870
 msgid "Repository |Name"
 msgstr "Név"
 
 #. Address Book Page message
-#: ../gramps/plugins/webreport/narrativeweb.py:8018
+#: ../gramps/plugins/webreport/narrativeweb.py:8021
 msgid ""
 "This page contains an index of all the individuals in the database, sorted "
 "by their surname, with one of the following: Address, Residence, or Web "
@@ -35438,270 +35405,269 @@ msgstr ""
 "hivatkozás. Kiválasztva egy családnevet azok személyes címlista  oldalára "
 "jutunk."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8040
+#: ../gramps/plugins/webreport/narrativeweb.py:8043
 msgid "Full Name"
 msgstr "Teljes név"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8204
+#: ../gramps/plugins/webreport/narrativeweb.py:8207
 msgid "Database overview"
 msgstr "Adatbázis áttekintés"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8271
+#: ../gramps/plugins/webreport/narrativeweb.py:8274
 msgid "Narrative web content report for"
 msgstr "Leíró web-tartalom összesítő"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8486
+#: ../gramps/plugins/webreport/narrativeweb.py:8489
 #, python-format
 msgid "Neither %(current)s nor %(parent)s are directories"
 msgstr "Sem %(current)s, sem %(parent)s nem mappa"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8495
-#: ../gramps/plugins/webreport/narrativeweb.py:8500
-#: ../gramps/plugins/webreport/narrativeweb.py:8513
-#: ../gramps/plugins/webreport/narrativeweb.py:8518
+#: ../gramps/plugins/webreport/narrativeweb.py:8498
+#: ../gramps/plugins/webreport/narrativeweb.py:8503
+#: ../gramps/plugins/webreport/narrativeweb.py:8516
+#: ../gramps/plugins/webreport/narrativeweb.py:8521
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "Nem lehet létrehozni a mappát : %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8525
+#: ../gramps/plugins/webreport/narrativeweb.py:8528
 msgid "Invalid file name"
 msgstr "Szabálytalan fájlnév"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8526
+#: ../gramps/plugins/webreport/narrativeweb.py:8529
 msgid "The archive file must be a file, not a directory"
 msgstr "Az archívumnak fájlnak kell lennie, nem mappának"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8661
+#: ../gramps/plugins/webreport/narrativeweb.py:8664
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
 msgstr "Azonosító=%(grampsid)s, path=%(dir)s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8666
+#: ../gramps/plugins/webreport/narrativeweb.py:8669
 msgid "Missing media objects:"
 msgstr "Hiányzó médiaobjektumok:"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8698
+#: ../gramps/plugins/webreport/narrativeweb.py:8701
 msgid "Constructing list of other objects..."
 msgstr "Más objektum-lista felépítése..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8933
+#: ../gramps/plugins/webreport/narrativeweb.py:8936
 #, python-format
 msgid "Family of %(husband)s and %(spouse)s"
 msgstr "%(husband)s és %(spouse)s családja"
 
 #. Only the name of the husband is known
 #. Only the name of the wife is known
-#: ../gramps/plugins/webreport/narrativeweb.py:8939
-#: ../gramps/plugins/webreport/narrativeweb.py:8943
+#: ../gramps/plugins/webreport/narrativeweb.py:8942
+#: ../gramps/plugins/webreport/narrativeweb.py:8946
 #, python-format
 msgid "Family of %s"
 msgstr "%s családja"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9225
+#: ../gramps/plugins/webreport/narrativeweb.py:9228
 msgid "Creating GENDEX file"
 msgstr "GENDEX fájl létrehozása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9278
+#: ../gramps/plugins/webreport/narrativeweb.py:9281
 msgid "Creating surname pages"
 msgstr "Családnév oldalak létrehozása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9298
+#: ../gramps/plugins/webreport/narrativeweb.py:9301
 msgid "Creating thumbnail preview page..."
 msgstr "Bélyegkép előnézet oldal létrehozása..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9307
+#: ../gramps/plugins/webreport/narrativeweb.py:9310
 msgid "Creating statistics page..."
 msgstr "Statisztikai oldal létrehozása..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9349
+#: ../gramps/plugins/webreport/narrativeweb.py:9352
 msgid "Creating address book pages ..."
 msgstr "Címlista oldalak létrehozása ..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9739
+#: ../gramps/plugins/webreport/narrativeweb.py:9742
 msgid "Store web pages in .tar.gz archive"
 msgstr "A honlapot .tar.gz archívumban tárolja"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9741
+#: ../gramps/plugins/webreport/narrativeweb.py:9744
 msgid "Whether to store the web pages in an archive file"
 msgstr "Legyen-e a web-oldal archívum fájlban tárolva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9752
+#: ../gramps/plugins/webreport/narrativeweb.py:9755
 #: ../gramps/plugins/webreport/webcal.py:1615
 msgid "The destination directory for the web files"
 msgstr "A web-fájlok cél könyvtára"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9758
+#: ../gramps/plugins/webreport/narrativeweb.py:9761
 msgid "My Family Tree"
 msgstr "Családfám"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9758
+#: ../gramps/plugins/webreport/narrativeweb.py:9761
 msgid "Web site title"
 msgstr "A web-oldal neve"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9759
+#: ../gramps/plugins/webreport/narrativeweb.py:9762
 msgid "The title of the web site"
 msgstr "A web-oldal megnevezése"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9764
+#: ../gramps/plugins/webreport/narrativeweb.py:9767
 msgid "Select filter to restrict people that appear on web site"
 msgstr "Válasszon szűrőt a weboldalon megjelenő személyekhez"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9784
-#, fuzzy
-msgid "Html options"
-msgstr "Cella beállítások"
-
 #: ../gramps/plugins/webreport/narrativeweb.py:9787
+msgid "Html options"
+msgstr "Html beállítások"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:9790
 #: ../gramps/plugins/webreport/webcal.py:1636
 msgid "File extension"
 msgstr "Fájlkiterjesztés"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9790
+#: ../gramps/plugins/webreport/narrativeweb.py:9793
 #: ../gramps/plugins/webreport/webcal.py:1639
 msgid "The extension to be used for the web files"
 msgstr "A web-fájlokhoz használandó kiterjesztés"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9793
+#: ../gramps/plugins/webreport/narrativeweb.py:9796
 #: ../gramps/plugins/webreport/webcal.py:1642
 msgid "Copyright"
 msgstr "Szerzői jog"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9796
+#: ../gramps/plugins/webreport/narrativeweb.py:9799
 #: ../gramps/plugins/webreport/webcal.py:1645
 msgid "The copyright to be used for the web files"
 msgstr "A web-fájlokra vonatkozó szerzői jog"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9799
+#: ../gramps/plugins/webreport/narrativeweb.py:9802
 #: ../gramps/plugins/webreport/webcal.py:1651
 msgid "StyleSheet"
 msgstr "Stíluslap"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9804
+#: ../gramps/plugins/webreport/narrativeweb.py:9807
 #: ../gramps/plugins/webreport/webcal.py:1654
 msgid "The stylesheet to be used for the web pages"
 msgstr "A weboldalhoz használandó stíluslap"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9809
+#: ../gramps/plugins/webreport/narrativeweb.py:9812
 msgid "Horizontal -- Default"
 msgstr "Vízszintes -- alapértelmezett"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9810
+#: ../gramps/plugins/webreport/narrativeweb.py:9813
 msgid "Vertical   -- Left Side"
 msgstr "Függőleges -- bal oldal"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9811
+#: ../gramps/plugins/webreport/narrativeweb.py:9814
 msgid "Fade       -- WebKit Browsers Only"
 msgstr "Homályosít      -- csak WebKit böngészők"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9812
-#: ../gramps/plugins/webreport/narrativeweb.py:9826
+#: ../gramps/plugins/webreport/narrativeweb.py:9815
+#: ../gramps/plugins/webreport/narrativeweb.py:9829
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr "Legördülő  -- csak WebKit böngészők"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9814
+#: ../gramps/plugins/webreport/narrativeweb.py:9817
 msgid "Navigation Menu Layout"
 msgstr "Navigációs menü elrendezés"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9818
+#: ../gramps/plugins/webreport/narrativeweb.py:9821
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Válassza ki a Navigációs menü elrendezését."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9825
+#: ../gramps/plugins/webreport/narrativeweb.py:9828
 msgid "Normal Outline Style"
 msgstr "Normál kontúr stílus"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9829
+#: ../gramps/plugins/webreport/narrativeweb.py:9832
 msgid "Citation Referents Layout"
 msgstr "Idézet hivatkozások elrendezés"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9833
+#: ../gramps/plugins/webreport/narrativeweb.py:9836
 msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
 msgstr ""
 "Meghatározza a Forrás oldal idézet hivatkozások részének alapértelmezett "
 "elrendezését"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9837
+#: ../gramps/plugins/webreport/narrativeweb.py:9840
 msgid "Include ancestor's tree"
 msgstr "Az ős-fával"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9838
+#: ../gramps/plugins/webreport/narrativeweb.py:9841
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Legyen-e minden személy oldalán az ős-grafikon is"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9843
+#: ../gramps/plugins/webreport/narrativeweb.py:9846
 msgid "Graph generations"
 msgstr "Generációk grafikonja"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9844
+#: ../gramps/plugins/webreport/narrativeweb.py:9847
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Az ős grafikonba kerülő generációk száma"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9849
+#: ../gramps/plugins/webreport/narrativeweb.py:9852
 msgid "This is a secure site (https)"
 msgstr "Ez egy biztonságos oldal (https)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9851
+#: ../gramps/plugins/webreport/narrativeweb.py:9854
 msgid "Whether to use http:// or https://"
 msgstr "http://- vagy https://-t használjon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9867
+#: ../gramps/plugins/webreport/narrativeweb.py:9870
 msgid "Suppress Gramps ID"
 msgstr "GRAMPS-azonosító elnyomása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9868
+#: ../gramps/plugins/webreport/narrativeweb.py:9871
 msgid "Whether to include the Gramps ID of objects"
 msgstr "Legyen-e az objektum GRAMPS-azonosítóval"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9873
+#: ../gramps/plugins/webreport/narrativeweb.py:9876
 msgid "Sort all children in birth order"
 msgstr "Rendezze az összes gyermeket születési sorrendbe"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9875
+#: ../gramps/plugins/webreport/narrativeweb.py:9878
 msgid "Whether to display children in birth order or in entry order?"
 msgstr "Legyenek-e a gyermekek születési, vagy belépési sorrenbe rendezve?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9882
+#: ../gramps/plugins/webreport/narrativeweb.py:9885
 msgid "Page Generation"
 msgstr "Generáció oldal"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9885
+#: ../gramps/plugins/webreport/narrativeweb.py:9888
 msgid "Home page note"
 msgstr "Kezdő oldal szöveg"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9886
+#: ../gramps/plugins/webreport/narrativeweb.py:9889
 msgid "A note to be used on the home page"
 msgstr "A kezdőlapon megjelenő szöveg"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9889
+#: ../gramps/plugins/webreport/narrativeweb.py:9892
 msgid "Home page image"
 msgstr "Kezdőlap kép"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9890
+#: ../gramps/plugins/webreport/narrativeweb.py:9893
 msgid "An image to be used on the home page"
 msgstr "Egy kép, ami a kezdőlapon lesz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9893
+#: ../gramps/plugins/webreport/narrativeweb.py:9896
 msgid "Introduction note"
 msgstr "Bevezető szöveg"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9894
+#: ../gramps/plugins/webreport/narrativeweb.py:9897
 msgid "A note to be used as the introduction"
 msgstr "Egy szöveg, ami a bevezetésben lesz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9897
+#: ../gramps/plugins/webreport/narrativeweb.py:9900
 msgid "Introduction image"
 msgstr "Bevezető kép"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9898
+#: ../gramps/plugins/webreport/narrativeweb.py:9901
 msgid "An image to be used as the introduction"
 msgstr "Egy kép, ami a bevezetésben lesz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9901
+#: ../gramps/plugins/webreport/narrativeweb.py:9904
 msgid "Publisher contact note"
 msgstr "A kiadó kapcsolat információja"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9902
+#: ../gramps/plugins/webreport/narrativeweb.py:9905
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -35711,11 +35677,11 @@ msgstr ""
 "Ha nincs kiadói információ, akkor\n"
 "nem lesz kapcsolati oldal létrehozva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9908
+#: ../gramps/plugins/webreport/narrativeweb.py:9911
 msgid "Publisher contact image"
 msgstr "A kiadó kapcsolati képe"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9909
+#: ../gramps/plugins/webreport/narrativeweb.py:9912
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -35725,47 +35691,47 @@ msgstr ""
 "Ha nincs kiadói információ, akkor\n"
 "nem lesz kapcsolati oldal létrehozva"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9915
+#: ../gramps/plugins/webreport/narrativeweb.py:9918
 msgid "HTML user header"
 msgstr "HTML felhasználói fejléc"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9916
+#: ../gramps/plugins/webreport/narrativeweb.py:9919
 msgid "A note to be used as the page header"
 msgstr "Egy szöveg, ami az oldal fejlécében lesz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9919
+#: ../gramps/plugins/webreport/narrativeweb.py:9922
 msgid "HTML user footer"
 msgstr "HTML felhasználói lábléc"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9920
+#: ../gramps/plugins/webreport/narrativeweb.py:9923
 msgid "A note to be used as the page footer"
 msgstr "Egy szöveg, ami az oldal láblécében lesz"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9927
+#: ../gramps/plugins/webreport/narrativeweb.py:9930
 msgid "Images Generation"
 msgstr "Képek generálása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9930
+#: ../gramps/plugins/webreport/narrativeweb.py:9933
 msgid "Include images and media objects"
 msgstr "Képekkel és médiaobjektumokkal"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9932
+#: ../gramps/plugins/webreport/narrativeweb.py:9935
 msgid "Whether to include a gallery of media objects"
 msgstr "Legyen-e benne a médiaobjektumok galériája"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9938
+#: ../gramps/plugins/webreport/narrativeweb.py:9941
 msgid "Include unused images and media objects"
 msgstr "A nem használt képekkel és médiaobjektumokkal"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9939
+#: ../gramps/plugins/webreport/narrativeweb.py:9942
 msgid "Whether to include unused or unreferenced media objects"
 msgstr "Legyenek-e benne nem használt, vagy nem-hivatkozott médiaobjektumok"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9944
+#: ../gramps/plugins/webreport/narrativeweb.py:9947
 msgid "Create and only use thumbnail- sized images"
 msgstr "Csak bélyegkép méretű képek létrehozása és használata"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9946
+#: ../gramps/plugins/webreport/narrativeweb.py:9949
 msgid ""
 "This option allows you to create only thumbnail images instead of the full-"
 "sized images on the Media Page. This will allow you to have a much smaller "
@@ -35775,11 +35741,11 @@ msgstr ""
 "hanem bélyegkép méretű képek létrehozását. Ez a web-kiszolgáló oldalra "
 "sokkal kisebb feltöltési méretet tesz lehetővé."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9955
+#: ../gramps/plugins/webreport/narrativeweb.py:9958
 msgid "Max width of initial image"
 msgstr "A kezdőkép maximális szélessége"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9957
+#: ../gramps/plugins/webreport/narrativeweb.py:9960
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page. Set to 0 for no limit."
@@ -35787,11 +35753,11 @@ msgstr ""
 "Lehetővé teszi a kép maximális mutatott szélességének beállítását a média "
 "oldalon. állítsa 0-ra, ha nincs korlát."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9962
+#: ../gramps/plugins/webreport/narrativeweb.py:9965
 msgid "Max height of initial image"
 msgstr "A kezdőkép maximális magassága"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9964
+#: ../gramps/plugins/webreport/narrativeweb.py:9967
 msgid ""
 "This allows you to set the maximum height of the image shown on the media "
 "page. Set to 0 for no limit."
@@ -35799,144 +35765,144 @@ msgstr ""
 "Lehetővé teszi a kép maximális mutatott magasságának beállítását a média "
 "oldalon. állítsa 0-ra, ha nincs korlát."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9977
+#: ../gramps/plugins/webreport/narrativeweb.py:9980
 msgid "Include download page"
 msgstr "Letöltés lappal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9979
+#: ../gramps/plugins/webreport/narrativeweb.py:9982
 msgid "Whether to include a database download option"
 msgstr "Legyen-e letöltés opcióhoz adatbázis benne"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9984
-#: ../gramps/plugins/webreport/narrativeweb.py:9996
+#: ../gramps/plugins/webreport/narrativeweb.py:9987
+#: ../gramps/plugins/webreport/narrativeweb.py:9999
 msgid "Download Filename"
 msgstr "Fájlnév letöltés"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9987
-#: ../gramps/plugins/webreport/narrativeweb.py:9999
+#: ../gramps/plugins/webreport/narrativeweb.py:9990
+#: ../gramps/plugins/webreport/narrativeweb.py:10002
 msgid "File to be used for downloading of database"
 msgstr "Az adatbázis letöltéséhez használandó fájl"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9990
-#: ../gramps/plugins/webreport/narrativeweb.py:10002
+#: ../gramps/plugins/webreport/narrativeweb.py:9993
+#: ../gramps/plugins/webreport/narrativeweb.py:10005
 msgid "Description for download"
 msgstr "A letöltés leírása"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9991
+#: ../gramps/plugins/webreport/narrativeweb.py:9994
 msgid "Smith Family Tree"
 msgstr "Smith családfa"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:9992
-#: ../gramps/plugins/webreport/narrativeweb.py:10004
+#: ../gramps/plugins/webreport/narrativeweb.py:9995
+#: ../gramps/plugins/webreport/narrativeweb.py:10007
 msgid "Give a description for this file."
 msgstr "Adja meg a fájl leírását."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10003
+#: ../gramps/plugins/webreport/narrativeweb.py:10006
 msgid "Johnson Family Tree"
 msgstr "Johnson családfa"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10013
+#: ../gramps/plugins/webreport/narrativeweb.py:10016
 #: ../gramps/plugins/webreport/webcal.py:1826
 msgid "Advanced Options"
 msgstr "Haladó opciók"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10016
+#: ../gramps/plugins/webreport/narrativeweb.py:10019
 #: ../gramps/plugins/webreport/webcal.py:1828
 msgid "Character set encoding"
 msgstr "Karakterkészlet kódolás"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10020
+#: ../gramps/plugins/webreport/narrativeweb.py:10023
 #: ../gramps/plugins/webreport/webcal.py:1832
 msgid "The encoding to be used for the web files"
 msgstr "A web-oldal karakterkódja"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10024
+#: ../gramps/plugins/webreport/narrativeweb.py:10027
 msgid "Include link to active person on every page"
 msgstr "Aktív személy hivatkozással minden oldalon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10026
+#: ../gramps/plugins/webreport/narrativeweb.py:10029
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr "Együtt egy hivatkozással aktív személyhez (ha van web-oldala)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10030
+#: ../gramps/plugins/webreport/narrativeweb.py:10033
 msgid "Include a column for birth dates on the index pages"
 msgstr "Legyen oszlop a születési dátumokhoz az index oldalakon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10031
+#: ../gramps/plugins/webreport/narrativeweb.py:10034
 msgid "Whether to include a birth column"
 msgstr "Legyen-e születési oszlop"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10035
+#: ../gramps/plugins/webreport/narrativeweb.py:10038
 msgid "Include a column for death dates on the index pages"
 msgstr "Legyen oszlop a halálozási dátumokhoz az index oldalakon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10036
+#: ../gramps/plugins/webreport/narrativeweb.py:10039
 msgid "Whether to include a death column"
 msgstr "Legyen-e halálozási oszlop"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10039
+#: ../gramps/plugins/webreport/narrativeweb.py:10042
 msgid "Include a column for partners on the index pages"
 msgstr "Legyen oszlop a társaknak az index oldalakon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10041
+#: ../gramps/plugins/webreport/narrativeweb.py:10044
 msgid "Whether to include a partners column"
 msgstr "Legyen-e társak oszlop"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10044
+#: ../gramps/plugins/webreport/narrativeweb.py:10047
 msgid "Include a column for parents on the index pages"
 msgstr "Legyen oszlop a szülőknek az index oldalakon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10046
+#: ../gramps/plugins/webreport/narrativeweb.py:10049
 msgid "Whether to include a parents column"
 msgstr "Legyen-e szülők oszlop"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10050
+#: ../gramps/plugins/webreport/narrativeweb.py:10053
 msgid "Include half and/ or step-siblings on the individual pages"
 msgstr "Legyen fél- és/vagy mostohatestvér az egyes oldalakon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10053
+#: ../gramps/plugins/webreport/narrativeweb.py:10056
 msgid ""
 "Whether to include half and/ or step-siblings with the parents and siblings"
 msgstr ""
 "Benne legyenek-e a fél- és/vagy mostohatestvérek a szülőkkel és testvérekkel"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10064
+#: ../gramps/plugins/webreport/narrativeweb.py:10067
 msgid "Include family pages"
 msgstr "Családi oldalakkal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10065
+#: ../gramps/plugins/webreport/narrativeweb.py:10068
 msgid "Whether or not to include family pages."
 msgstr "Legyenek-e benne családi oldalak is."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10068
+#: ../gramps/plugins/webreport/narrativeweb.py:10071
 msgid "Include event pages"
 msgstr "Esemény oldalakkal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10070
+#: ../gramps/plugins/webreport/narrativeweb.py:10073
 msgid "Add a complete events list and relevant pages or not"
 msgstr "Adjon-e hozzá eseménylistát és fontos oldalakat, vagy sem"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10073
+#: ../gramps/plugins/webreport/narrativeweb.py:10076
 msgid "Include repository pages"
 msgstr "Tároló oldalakkal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10075
+#: ../gramps/plugins/webreport/narrativeweb.py:10078
 msgid "Whether or not to include the Repository Pages."
 msgstr "Legyenek-e benne Tároló oldalak, vagy sem."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10079
+#: ../gramps/plugins/webreport/narrativeweb.py:10082
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "GENDEX-fájllal (/gendex.txt)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10080
+#: ../gramps/plugins/webreport/narrativeweb.py:10083
 msgid "Whether to include a GENDEX file or not"
 msgstr "Legyen-e benne GENDEX-fájl, vagy sem"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10083
+#: ../gramps/plugins/webreport/narrativeweb.py:10086
 msgid "Include address book pages"
 msgstr "Címlista oldalakkal együtt"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10084
+#: ../gramps/plugins/webreport/narrativeweb.py:10087
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
@@ -35944,27 +35910,27 @@ msgstr ""
 "Legyenek-e hozzáadva olyan Címlista oldalak (vagy sem), melyek e-mail-, web-"
 "oldal- és személyes lak-/lakóhely címeket tartalmaznak."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10094
+#: ../gramps/plugins/webreport/narrativeweb.py:10097
 msgid "Place Map Options"
 msgstr "Helytérkép opciók"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10099
+#: ../gramps/plugins/webreport/narrativeweb.py:10102
 msgid "Google"
 msgstr "Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10100
+#: ../gramps/plugins/webreport/narrativeweb.py:10103
 msgid "Map Service"
 msgstr "Térképszolgáltatás"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10104
+#: ../gramps/plugins/webreport/narrativeweb.py:10107
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr "A Helytérkép oldalak létrehozásához válasszon egy térképszolgáltatást."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10110
+#: ../gramps/plugins/webreport/narrativeweb.py:10113
 msgid "Include Place map on Place Pages"
 msgstr "Helytérképpel a Helyek oldalon"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10112
+#: ../gramps/plugins/webreport/narrativeweb.py:10115
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
@@ -35972,11 +35938,11 @@ msgstr ""
 "Legyen-e helytérkép a Helyek oldalon, ahol a szélességi/hosszúsági fokok "
 "elérhetőek."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10117
+#: ../gramps/plugins/webreport/narrativeweb.py:10120
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr "Családtérkép oldalakkal az összes hely jelölésével a térképen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10121
+#: ../gramps/plugins/webreport/narrativeweb.py:10124
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
@@ -35984,23 +35950,23 @@ msgstr ""
 "Legyen-e egyéni oldalhoz térkép hozzáadva, ami jelöli az összes helyet az "
 "oldalon. Ez lehetővé teszi a család országon belüli utazásainak bemutatását."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10129
+#: ../gramps/plugins/webreport/narrativeweb.py:10132
 msgid "Family Links"
 msgstr "Család hivatkozások"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10130
+#: ../gramps/plugins/webreport/narrativeweb.py:10133
 msgid "Drop"
 msgstr "Eldobás"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10131
+#: ../gramps/plugins/webreport/narrativeweb.py:10134
 msgid "Markers"
 msgstr "Jelzők"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10132
+#: ../gramps/plugins/webreport/narrativeweb.py:10135
 msgid "Google/ FamilyMap Option"
 msgstr "Google/ CsaládTérkép opció"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10137
+#: ../gramps/plugins/webreport/narrativeweb.py:10140
 msgid ""
 "Select which option that you would like to have for the Google Maps Family "
 "Map pages..."
@@ -36008,42 +35974,42 @@ msgstr ""
 "Válassza ki, milyen opciókkal szeretné a Google Térképeken a Családtérkép "
 "oldalakat megjeleníteni..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10141
+#: ../gramps/plugins/webreport/narrativeweb.py:10144
 msgid "Google maps API key"
 msgstr "Google térkép API kulcs"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10142
+#: ../gramps/plugins/webreport/narrativeweb.py:10145
 msgid "The API key used for the Google maps"
 msgstr "A Google térképhez használt API kulcs"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10151
+#: ../gramps/plugins/webreport/narrativeweb.py:10154
 msgid "Other inclusion (CMS, Web Calendar, Php)"
 msgstr "Egyéb számításba veendő (CMS, Web-naptár, Php)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10155
+#: ../gramps/plugins/webreport/narrativeweb.py:10158
 msgid "Do we include these pages in a cms web ?"
 msgstr "Betegyük ezeket a lapokat a cms web-be ?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10159
-#: ../gramps/plugins/webreport/narrativeweb.py:10176
+#: ../gramps/plugins/webreport/narrativeweb.py:10162
+#: ../gramps/plugins/webreport/narrativeweb.py:10179
 msgid "URI"
 msgstr "URI"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10165
+#: ../gramps/plugins/webreport/narrativeweb.py:10168
 msgid "Where do you place your web site ? default = /NAVWEB"
 msgstr "Hol van az Ön web helye ? Alapértelmezett = /NAVWEB"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10172
+#: ../gramps/plugins/webreport/narrativeweb.py:10175
 msgid "Do we include the web calendar ?"
 msgstr "Betegyük a web-naptárt ?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:10182
+#: ../gramps/plugins/webreport/narrativeweb.py:10185
 msgid "Where do you place your web site ? default = /WEBCAL"
 msgstr "Hol van az Ön web-helye ? Alapértelmezett = /WEBCAL"
 
 #. adding title to hyperlink menu for screen readers and
 #. braille writers
-#: ../gramps/plugins/webreport/narrativeweb.py:10671
+#: ../gramps/plugins/webreport/narrativeweb.py:10674
 #, python-format
 msgid "Alphabet Menu: %s"
 msgstr "Ábécé menü: %s"
@@ -38356,9 +38322,6 @@ msgstr "Nincs stíluslap"
 
 #~ msgid "General Data"
 #~ msgstr "Általános adatok"
-
-#~ msgid "Description: "
-#~ msgstr "Leírás: "
 
 #~ msgid "Artist: "
 #~ msgstr "Művész: "
