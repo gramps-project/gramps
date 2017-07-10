@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 import os
 import sys
+import platform
 
 ##import logging
 ##_LOG = logging.getLogger(".GrampsAboutDialog")
@@ -125,12 +126,9 @@ class GrampsAboutDialog(Gtk.AboutDialog):
         """
         Obtain version information of core dependencies
         """
+        distro = "" # print nothing if there's nothing to print
         if hasattr(os, "uname"):
-            operatingsystem = os.uname()[0]
             distro = "\n" + _("Distribution: %s") % ellipses(os.uname()[2])
-        else: # probably Windows
-            operatingsystem = sys.platform
-            distro = "" # print nothing if there's nothing to print
 
         sqlite = ''
         if __debug__:
@@ -149,7 +147,7 @@ class GrampsAboutDialog(Gtk.AboutDialog):
                    ellipses(str(sys.version).replace('\n','')),
                    BSDDB_STR,
                    ellipses(get_env_var('LANG','')),
-                   ellipses(operatingsystem)))
+                   ellipses(platform.system())))
 
 #-------------------------------------------------------------------------
 #

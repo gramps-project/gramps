@@ -28,8 +28,10 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf
 from gi.repository import GObject
+
 import cairo
 import sys, os
+import platform
 
 try:
     import bsddb3 as bsddb # ok, in try/except
@@ -167,12 +169,9 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
         """
         Get relevant system information.
         """
+        distribution = "" # print nothing if there's nothing to print
         if hasattr(os, "uname"):
-            operatingsystem = os.uname()[0]
             distribution = "Distribution: %s\n" % os.uname()[2]
-        else: # probably Windows
-            operatingsystem = sys.platform
-            distribution = "" # print nothing if there's nothing to print
 
         sqlite = ''
         if __debug__:
@@ -194,7 +193,7 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
                   BSDDB_STR,
                   sqlite,
                   get_env_var('LANG',''),
-                  operatingsystem,
+                  platform.system(),
                   distribution,
                   '%d.%d.%d' % (Gtk.get_major_version(),
                                 Gtk.get_minor_version(),
