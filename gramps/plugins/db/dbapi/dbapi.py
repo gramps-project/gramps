@@ -418,8 +418,9 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by surnames.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM person "
-                               "ORDER BY surname COLLATE glocale")
+            self.dbapi.execute('SELECT handle FROM person '
+                               'ORDER BY surname '
+                               'COLLATE "%s"' % glocale.get_collation())
         else:
             self.dbapi.execute("SELECT handle FROM person")
         rows = self.dbapi.fetchall()
@@ -433,21 +434,21 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by surnames.
         """
         if sort_handles:
-            sql = ("SELECT family.handle " +
-                   "FROM family " +
-                   "LEFT JOIN person AS father " +
-                   "ON family.father_handle = father.handle " +
-                   "LEFT JOIN person AS mother " +
-                   "ON family.mother_handle = mother.handle " +
-                   "ORDER BY (CASE WHEN father.handle IS NULL " +
-                   "THEN mother.surname " +
-                   "ELSE father.surname " +
-                   "END), " +
-                   "(CASE WHEN family.handle IS NULL " +
-                   "THEN mother.given_name " +
-                   "ELSE father.given_name " +
-                   "END) " +
-                   "COLLATE glocale")
+            sql = ('SELECT family.handle ' +
+                   'FROM family ' +
+                   'LEFT JOIN person AS father ' +
+                   'ON family.father_handle = father.handle ' +
+                   'LEFT JOIN person AS mother ' +
+                   'ON family.mother_handle = mother.handle ' +
+                   'ORDER BY (CASE WHEN father.handle IS NULL ' +
+                   'THEN mother.surname ' +
+                   'ELSE father.surname ' +
+                   'END), ' +
+                   '(CASE WHEN family.handle IS NULL ' +
+                   'THEN mother.given_name ' +
+                   'ELSE father.given_name ' +
+                   'END) ' +
+                   'COLLATE "%s"' % glocale.get_collation())
             self.dbapi.execute(sql)
         else:
             self.dbapi.execute("SELECT handle FROM family")
@@ -471,8 +472,9 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by Citation title.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM citation "
-                               "ORDER BY page COLLATE glocale")
+            self.dbapi.execute('SELECT handle FROM citation '
+                               'ORDER BY page '
+                               'COLLATE "%s"' % glocale.get_collation())
         else:
             self.dbapi.execute("SELECT handle FROM citation")
         rows = self.dbapi.fetchall()
@@ -486,8 +488,9 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by Source title.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM source "
-                               "ORDER BY title COLLATE glocale")
+            self.dbapi.execute('SELECT handle FROM source '
+                               'ORDER BY title '
+                               'COLLATE "%s"' % glocale.get_collation())
         else:
             self.dbapi.execute("SELECT handle from source")
         rows = self.dbapi.fetchall()
@@ -501,8 +504,9 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by Place title.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM place "
-                               "ORDER BY title COLLATE glocale")
+            self.dbapi.execute('SELECT handle FROM place '
+                               'ORDER BY title '
+                               'COLLATE "%s"' % glocale.get_collation())
         else:
             self.dbapi.execute("SELECT handle FROM place")
         rows = self.dbapi.fetchall()
@@ -525,8 +529,9 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by title.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM media "
-                               "ORDER BY desc COLLATE glocale")
+            self.dbapi.execute('SELECT handle FROM media '
+                               'ORDER BY desc '
+                               'COLLATE "%s"' % glocale.get_collation())
         else:
             self.dbapi.execute("SELECT handle FROM media")
         rows = self.dbapi.fetchall()
@@ -549,8 +554,9 @@ class DBAPI(DbGeneric):
         If sort_handles is True, the list is sorted by Tag name.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM tag "
-                               "ORDER BY name COLLATE glocale")
+            self.dbapi.execute('SELECT handle FROM tag '
+                               'ORDER BY name '
+                               'COLLATE "%s"' % glocale.get_collation())
         else:
             self.dbapi.execute("SELECT handle FROM tag")
         rows = self.dbapi.fetchall()
