@@ -919,6 +919,8 @@ class DBAPI(DbGeneric):
             table_name = cls.__name__.lower()
             for field, schema_type, max_length in cls.get_secondary_fields():
                 sql_type = self._sql_type(schema_type, max_length)
+                # PostgreSQL may rollback on error; commit everything now
+                self.dbapi.commit()
                 try:
                     # test to see if it exists:
                     self.dbapi.execute("SELECT %s FROM %s LIMIT 1"
