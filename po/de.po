@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-29 19:10+0200\n"
-"PO-Revision-Date: 2017-05-29 19:12+0100\n"
+"PO-Revision-Date: 2017-07-15 00:22+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -25903,7 +25903,7 @@ msgstr "Sie starb am %(death_date)s in %(death_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:246
 #, python-format
 msgid "She died %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr "Sie starb am%(death_date)s in %(death_place)s im Alter von %(age)s."
+msgstr "Sie starb am %(death_date)s in %(death_place)s im Alter von %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:257
 #, python-format
