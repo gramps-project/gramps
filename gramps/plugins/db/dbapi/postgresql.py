@@ -26,7 +26,6 @@
 #-------------------------------------------------------------------------
 import psycopg2
 import re
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -34,6 +33,7 @@ import os
 #
 #-------------------------------------------------------------------------
 from gramps.gen.db.dbconst import ARRAYSIZE
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 psycopg2.paramstyle = 'format'
 
@@ -57,9 +57,14 @@ class Postgresql:
         self.__connection = psycopg2.connect(*args, **kwargs)
         self.__connection.autocommit = True
         self.__cursor = self.__connection.cursor()
-        locale = os.environ.get('LANG', 'en_US.utf8')
-        self.execute("DROP COLLATION IF EXISTS glocale")
-        self.execute("CREATE COLLATION glocale (LOCALE = '%s')" % locale)
+        # Duplicating system collations works, but to delete them the schema
+        # must be specified, so get the current schema
+        self.execute('SELECT current_schema()')
+        current_schema, = self.fetchone()
+        self.execute('DROP COLLATION IF EXISTS "%s"."%s"'
+                     % (current_schema, glocale.get_collation()))
+        self.execute('CREATE COLLATION "%s"'
+                     "(LOCALE = '%s')" % (glocale.get_collation(), glocale.collation))
 
     def _hack_query(self, query):
         query = query.replace("?", "%s")

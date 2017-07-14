@@ -83,7 +83,8 @@ class Sqlite:
         self.log = logging.getLogger(".sqlite")
         self.__connection = sqlite3.connect(*args, **kwargs)
         self.__cursor = self.__connection.cursor()
-        self.__connection.create_collation("glocale", glocale.strcoll)
+        self.__connection.create_collation(glocale.get_collation(),
+                                           glocale.strcoll)
         self.__connection.create_function("regexp", 2, regexp)
 
     def execute(self, *args, **kwargs):

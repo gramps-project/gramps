@@ -935,6 +935,12 @@ class GrampsLocale:
                 return string
             return key
 
+    def get_collation(self):
+        """
+        Return the collation without any character encoding.
+        """
+        return self.collation.split('.')[0]
+
     def strcoll(self, string1, string2):
         """
         Given two localized strings, compare them and return -1 if
