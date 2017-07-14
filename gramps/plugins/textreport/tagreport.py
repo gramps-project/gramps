@@ -542,7 +542,8 @@ class TagReport(Report):
 
     def write_media(self):
         """ write the media associated with the tag """
-        mlist = self.database.get_media_handles(sort_handles=True)
+        mlist = self.database.get_media_handles(sort_handles=True,
+                                                locale=self._locale)
         filter_class = GenericFilterFactory('Media')
         a_filter = filter_class()
         a_filter.add_rule(rules.media.HasTag([self.tag]))
@@ -711,7 +712,8 @@ class TagReport(Report):
 
     def write_sources(self):
         """ write the sources associated with the tag """
-        slist = self.database.get_source_handles(sort_handles=True)
+        slist = self.database.get_source_handles(sort_handles=True,
+                                                 locale=self._locale)
         filter_class = GenericFilterFactory('Source')
         a_filter = filter_class()
         a_filter.add_rule(rules.source.HasTag([self.tag]))
@@ -791,7 +793,8 @@ class TagReport(Report):
 
     def write_citations(self):
         """ write the citations associated with the tag """
-        clist = self.database.get_citation_handles(sort_handles=True)
+        clist = self.database.get_citation_handles(sort_handles=True,
+                                                   locale=self._locale)
         filter_class = GenericFilterFactory('Citation')
         a_filter = filter_class()
         a_filter.add_rule(rules.citation.HasTag([self.tag]))

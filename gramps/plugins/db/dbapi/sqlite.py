@@ -83,8 +83,20 @@ class Sqlite:
         self.log = logging.getLogger(".sqlite")
         self.__connection = sqlite3.connect(*args, **kwargs)
         self.__cursor = self.__connection.cursor()
-        self.__connection.create_collation("glocale", glocale.strcoll)
         self.__connection.create_function("regexp", 2, regexp)
+        self.__collations = []
+        self.check_collation(glocale)
+
+    def check_collation(self, locale):
+        """
+        Checks that a collation exists and if not creates it.
+
+        :param locale: Locale to be checked.
+        :param type: A GrampsLocale object.
+        """
+        collation = locale.get_collation()
+        if collation not in self.__collations:
+            self.__connection.create_collation(collation, locale.strcoll)
 
     def execute(self, *args, **kwargs):
         """

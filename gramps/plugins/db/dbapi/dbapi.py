@@ -401,44 +401,57 @@ class DBAPI(DbGeneric):
         else:
             return key
 
-    def get_person_handles(self, sort_handles=False):
+    def get_person_handles(self, sort_handles=False, locale=glocale):
         """
         Return a list of database handles, one handle for each Person in
         the database.
 
-        If sort_handles is True, the list is sorted by surnames.
+        :param sort_handles: If True, the list is sorted by surnames.
+        :type sort_handles: bool
+        :param locale: The locale to use for collation.
+        :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM person "
-                               "ORDER BY surname COLLATE glocale")
+            if locale != glocale:
+                self.dbapi.check_collation(locale)
+
+            self.dbapi.execute('SELECT handle FROM person '
+                               'ORDER BY surname '
+                               'COLLATE "%s"' % locale.get_collation())
         else:
             self.dbapi.execute("SELECT handle FROM person")
         rows = self.dbapi.fetchall()
         return [row[0] for row in rows]
 
-    def get_family_handles(self, sort_handles=False):
+    def get_family_handles(self, sort_handles=False, locale=glocale):
         """
         Return a list of database handles, one handle for each Family in
         the database.
 
-        If sort_handles is True, the list is sorted by surnames.
+        :param sort_handles: If True, the list is sorted by surnames.
+        :type sort_handles: bool
+        :param locale: The locale to use for collation.
+        :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            sql = ("SELECT family.handle " +
-                   "FROM family " +
-                   "LEFT JOIN person AS father " +
-                   "ON family.father_handle = father.handle " +
-                   "LEFT JOIN person AS mother " +
-                   "ON family.mother_handle = mother.handle " +
-                   "ORDER BY (CASE WHEN father.handle IS NULL " +
-                   "THEN mother.surname " +
-                   "ELSE father.surname " +
-                   "END), " +
-                   "(CASE WHEN family.handle IS NULL " +
-                   "THEN mother.given_name " +
-                   "ELSE father.given_name " +
-                   "END) " +
-                   "COLLATE glocale")
+            if locale != glocale:
+                self.dbapi.check_collation(locale)
+
+            sql = ('SELECT family.handle ' +
+                   'FROM family ' +
+                   'LEFT JOIN person AS father ' +
+                   'ON family.father_handle = father.handle ' +
+                   'LEFT JOIN person AS mother ' +
+                   'ON family.mother_handle = mother.handle ' +
+                   'ORDER BY (CASE WHEN father.handle IS NULL ' +
+                   'THEN mother.surname ' +
+                   'ELSE father.surname ' +
+                   'END), ' +
+                   '(CASE WHEN family.handle IS NULL ' +
+                   'THEN mother.given_name ' +
+                   'ELSE father.given_name ' +
+                   'END) ' +
+                   'COLLATE "%s"' % locale.get_collation())
             self.dbapi.execute(sql)
         else:
             self.dbapi.execute("SELECT handle FROM family")
@@ -454,46 +467,67 @@ class DBAPI(DbGeneric):
         rows = self.dbapi.fetchall()
         return [row[0] for row in rows]
 
-    def get_citation_handles(self, sort_handles=False):
+    def get_citation_handles(self, sort_handles=False, locale=glocale):
         """
         Return a list of database handles, one handle for each Citation in
         the database.
 
-        If sort_handles is True, the list is sorted by Citation title.
+        :param sort_handles: If True, the list is sorted by Citation title.
+        :type sort_handles: bool
+        :param locale: The locale to use for collation.
+        :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM citation "
-                               "ORDER BY page COLLATE glocale")
+            if locale != glocale:
+                self.dbapi.check_collation(locale)
+
+            self.dbapi.execute('SELECT handle FROM citation '
+                               'ORDER BY page '
+                               'COLLATE "%s"' % locale.get_collation())
         else:
             self.dbapi.execute("SELECT handle FROM citation")
         rows = self.dbapi.fetchall()
         return [row[0] for row in rows]
 
-    def get_source_handles(self, sort_handles=False):
+    def get_source_handles(self, sort_handles=False, locale=glocale):
         """
         Return a list of database handles, one handle for each Source in
         the database.
 
-        If sort_handles is True, the list is sorted by Source title.
+        :param sort_handles: If True, the list is sorted by Source title.
+        :type sort_handles: bool
+        :param locale: The locale to use for collation.
+        :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM source "
-                               "ORDER BY title COLLATE glocale")
+            if locale != glocale:
+                self.dbapi.check_collation(locale)
+
+            self.dbapi.execute('SELECT handle FROM source '
+                               'ORDER BY title '
+                               'COLLATE "%s"' % locale.get_collation())
         else:
             self.dbapi.execute("SELECT handle from source")
         rows = self.dbapi.fetchall()
         return [row[0] for row in rows]
 
-    def get_place_handles(self, sort_handles=False):
+    def get_place_handles(self, sort_handles=False, locale=glocale):
         """
         Return a list of database handles, one handle for each Place in
         the database.
 
-        If sort_handles is True, the list is sorted by Place title.
+        :param sort_handles: If True, the list is sorted by Place title.
+        :type sort_handles: bool
+        :param locale: The locale to use for collation.
+        :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM place "
-                               "ORDER BY title COLLATE glocale")
+            if locale != glocale:
+                self.dbapi.check_collation(locale)
+
+            self.dbapi.execute('SELECT handle FROM place '
+                               'ORDER BY title '
+                               'COLLATE "%s"' % locale.get_collation())
         else:
             self.dbapi.execute("SELECT handle FROM place")
         rows = self.dbapi.fetchall()
@@ -508,16 +542,23 @@ class DBAPI(DbGeneric):
         rows = self.dbapi.fetchall()
         return [row[0] for row in rows]
 
-    def get_media_handles(self, sort_handles=False):
+    def get_media_handles(self, sort_handles=False, locale=glocale):
         """
         Return a list of database handles, one handle for each Media in
         the database.
 
-        If sort_handles is True, the list is sorted by title.
+        :param sort_handles: If True, the list is sorted by title.
+        :type sort_handles: bool
+        :param locale: The locale to use for collation.
+        :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM media "
-                               "ORDER BY desc COLLATE glocale")
+            if locale != glocale:
+                self.dbapi.check_collation(locale)
+
+            self.dbapi.execute('SELECT handle FROM media '
+                               'ORDER BY desc '
+                               'COLLATE "%s"' % locale.get_collation())
         else:
             self.dbapi.execute("SELECT handle FROM media")
         rows = self.dbapi.fetchall()
@@ -532,16 +573,23 @@ class DBAPI(DbGeneric):
         rows = self.dbapi.fetchall()
         return [row[0] for row in rows]
 
-    def get_tag_handles(self, sort_handles=False):
+    def get_tag_handles(self, sort_handles=False, locale=glocale):
         """
         Return a list of database handles, one handle for each Tag in
         the database.
 
-        If sort_handles is True, the list is sorted by Tag name.
+        :param sort_handles: If True, the list is sorted by Tag name.
+        :type sort_handles: bool
+        :param locale: The locale to use for collation.
+        :type locale: A GrampsLocale object.
         """
         if sort_handles:
-            self.dbapi.execute("SELECT handle FROM tag "
-                               "ORDER BY name COLLATE glocale")
+            if locale != glocale:
+                self.dbapi.check_collation(locale)
+
+            self.dbapi.execute('SELECT handle FROM tag '
+                               'ORDER BY name '
+                               'COLLATE "%s"' % locale.get_collation())
         else:
             self.dbapi.execute("SELECT handle FROM tag")
         rows = self.dbapi.fetchall()

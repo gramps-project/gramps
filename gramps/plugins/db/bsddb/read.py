@@ -36,6 +36,7 @@ import os
 from sys import maxsize
 from operator import itemgetter
 import ast
+from functools import partial
 
 try:
     from bsddb3 import db
@@ -1024,7 +1025,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return [key.decode('utf-8') for key in table.keys(txn=self.txn)]
 
-    def get_person_handles(self, sort_handles=False):
+    def get_person_handles(self, sort_handles=False, locale=glocale):
         """
         Return a list of database handles, one handle for each Person in
         the database.
@@ -1034,11 +1035,12 @@ class DbBsddbRead(DbReadBase, Callback):
         if self.db_is_open:
             handle_list = self._all_handles(self.person_map)
             if sort_handles:
-                handle_list.sort(key=self.__sortbyperson_key)
+                handle_list.sort(key=partial(self.__sortbyperson_key,
+                                             locale=locale))
             return handle_list
         return []
 
-    def get_place_handles(self, sort_handles=False):
+    def get_place_handles(self, sort_handles=False, locale=glocale):
         """
         Return a list of database handles, one handle for each Place in
         the database.
@@ -1049,11 +1051,12 @@ class DbBsddbRead(DbReadBase, Callback):
         if self.db_is_open:
             handle_list = self._all_handles(self.place_map)
             if sort_handles:
-                handle_list.sort(key=self.__sortbyplace_key)
+                handle_list.sort(key=partial(self.__sortbyplace_key,
+                                             locale=locale))
             return handle_list
         return []
 
-    def get_source_handles(self, sort_handles=False):
+    def get_source_handles(self, sort_handles=False, locale=glocale):
         """
         Return a list of database handles, one handle for each Source in
         the database.
@@ -1063,11 +1066,12 @@ class DbBsddbRead(DbReadBase, Callback):
         if self.db_is_open:
             handle_list = self._all_handles(self.source_map)
             if sort_handles:
-                handle_list.sort(key=self.__sortbysource_key)
+                handle_list.sort(key=partial(self.__sortbysource_key,
+                                             locale=locale))
             return handle_list
         return []
 
-    def get_citation_handles(self, sort_handles=False):
+    def get_citation_handles(self, sort_handles=False, locale=glocale):
         """
         Return a list of database handles, one handle for each Citation in
         the database.
@@ -1077,11 +1081,12 @@ class DbBsddbRead(DbReadBase, Callback):
         if self.db_is_open:
             handle_list = self._all_handles(self.citation_map)
             if sort_handles:
-                handle_list.sort(key=self.__sortbycitation_key)
+                handle_list.sort(key=partial(self.__sortbycitation_key,
+                                             locale=locale))
             return handle_list
         return []
 
-    def get_media_handles(self, sort_handles=False):
+    def get_media_handles(self, sort_handles=False, locale=glocale):
         """
         Return a list of database handles, one handle for each Media in
         the database.
@@ -1091,7 +1096,8 @@ class DbBsddbRead(DbReadBase, Callback):
         if self.db_is_open:
             handle_list = self._all_handles(self.media_map)
             if sort_handles:
-                handle_list.sort(key=self.__sortbymedia_key)
+                handle_list.sort(key=partial(self.__sortbymedia_key,
+                                             locale=locale))
             return handle_list
         return []
 
@@ -1104,7 +1110,7 @@ class DbBsddbRead(DbReadBase, Callback):
             return self._all_handles(self.event_map)
         return []
 
-    def get_family_handles(self, sort_handles=False):
+    def get_family_handles(self, sort_handles=False, locale=glocale):
         """
         Return a list of database handles, one handle for each Family in
         the database.
@@ -1114,7 +1120,8 @@ class DbBsddbRead(DbReadBase, Callback):
         if self.db_is_open:
             handle_list = self._all_handles(self.family_map)
             if sort_handles:
-                handle_list.sort(key=self.__sortbyfamily_key)
+                handle_list.sort(key=partial(self.__sortbyfamily_key,
+                                             locale=locale))
             return handle_list
         return []
 
@@ -1136,7 +1143,7 @@ class DbBsddbRead(DbReadBase, Callback):
             return self._all_handles(self.note_map)
         return []
 
-    def get_tag_handles(self, sort_handles=False):
+    def get_tag_handles(self, sort_handles=False, locale=glocale):
         """
         Return a list of database handles, one handle for each Tag in
         the database.
@@ -1146,7 +1153,8 @@ class DbBsddbRead(DbReadBase, Callback):
         if self.db_is_open:
             handle_list = self._all_handles(self.tag_map)
             if sort_handles:
-                handle_list.sort(key=self.__sortbytag_key)
+                handle_list.sort(key=partial(self.__sortbytag_key,
+                                             locale=locale))
             return handle_list
         return []
 
@@ -1774,24 +1782,24 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.__has_gramps_id(self.cid_trans, gramps_id)
 
-    def __sortbyperson_key(self, handle):
+    def __sortbyperson_key(self, handle, locale=glocale):
         handle = handle.encode('utf-8')
-        return glocale.sort_key(find_fullname(handle,
-                                              self.person_map.get(handle)))
+        return locale.sort_key(find_fullname(handle,
+                                             self.person_map.get(handle)))
 
-    def __sortbyfamily_key(self, handle):
+    def __sortbyfamily_key(self, handle, locale=glocale):
         handle = handle.encode('utf-8')
         data = self.family_map.get(handle)
         data2 = data[2]
         data3 = data[3]
         if data2: # father handle
             data2 = data2.encode('utf-8')
-            return glocale.sort_key(find_fullname(data2,
-                                    self.person_map.get(data2)))
+            return locale.sort_key(find_fullname(data2,
+                                   self.person_map.get(data2)))
         elif data3: # mother handle
             data3 = data3.encode('utf-8')
-            return glocale.sort_key(find_fullname(data3,
-                                    self.person_map.get(data3)))
+            return locale.sort_key(find_fullname(data3,
+                                   self.person_map.get(data3)))
         return ''
 
     def __sortbyplace(self, first, second):
@@ -1800,9 +1808,9 @@ class DbBsddbRead(DbReadBase, Callback):
         return glocale.strcoll(self.place_map.get(first)[2],
                               self.place_map.get(second)[2])
 
-    def __sortbyplace_key(self, place):
+    def __sortbyplace_key(self, place, locale=glocale):
         place = place.encode('utf-8')
-        return glocale.sort_key(self.place_map.get(place)[2])
+        return locale.sort_key(self.place_map.get(place)[2])
 
     def __sortbysource(self, first, second):
         first = first.encode('utf-8')
@@ -1811,10 +1819,10 @@ class DbBsddbRead(DbReadBase, Callback):
         source2 = str(self.source_map[second][2])
         return glocale.strcoll(source1, source2)
 
-    def __sortbysource_key(self, key):
+    def __sortbysource_key(self, key, locale=glocale):
         key = key.encode('utf-8')
         source = str(self.source_map[key][2])
-        return glocale.sort_key(source)
+        return locale.sort_key(source)
 
     def __sortbycitation(self, first, second):
         first = first.encode('utf-8')
@@ -1823,10 +1831,10 @@ class DbBsddbRead(DbReadBase, Callback):
         citation2 = str(self.citation_map[second][3])
         return glocale.strcoll(citation1, citation2)
 
-    def __sortbycitation_key(self, key):
+    def __sortbycitation_key(self, key, locale=glocale):
         key = key.encode('utf-8')
         citation = str(self.citation_map[key][3])
-        return glocale.sort_key(citation)
+        return locale.sort_key(citation)
 
     def __sortbymedia(self, first, second):
         first = first.encode('utf-8')
@@ -1835,10 +1843,10 @@ class DbBsddbRead(DbReadBase, Callback):
         media2 = self.media_map[second][4]
         return glocale.strcoll(media1, media2)
 
-    def __sortbymedia_key(self, key):
+    def __sortbymedia_key(self, key, locale=glocale):
         key = key.encode('utf-8')
         media = self.media_map[key][4]
-        return glocale.sort_key(media)
+        return locale.sort_key(media)
 
     def __sortbytag(self, first, second):
         first = first.encode('utf-8')
@@ -1847,10 +1855,10 @@ class DbBsddbRead(DbReadBase, Callback):
         tag2 = self.tag_map[second][1]
         return glocale.strcoll(tag1, tag2)
 
-    def __sortbytag_key(self, key):
+    def __sortbytag_key(self, key, locale=glocale):
         key = key.encode('utf-8')
         tag = self.tag_map[key][1]
-        return glocale.sort_key(tag)
+        return locale.sort_key(tag)
 
     def set_mediapath(self, path):
         """Set the default media path for database."""
