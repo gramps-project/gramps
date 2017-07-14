@@ -135,58 +135,47 @@ class DBAPI(DbGeneric):
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
                            'given_name TEXT, '
                            'surname TEXT, '
-                           'gramps_id TEXT, '
                            'blob_data BLOB'
                            ')')
         self.dbapi.execute('CREATE TABLE family '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'father_handle VARCHAR(50), '
-                           'mother_handle VARCHAR(50), '
-                           'gramps_id TEXT, '
                            'blob_data BLOB'
                            ')')
         self.dbapi.execute('CREATE TABLE source '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'gramps_id TEXT, '
                            'blob_data BLOB'
                            ')')
         self.dbapi.execute('CREATE TABLE citation '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'gramps_id TEXT, '
                            'blob_data BLOB'
                            ')')
         self.dbapi.execute('CREATE TABLE event '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'gramps_id TEXT, '
                            'blob_data BLOB'
                            ')')
         self.dbapi.execute('CREATE TABLE media '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'gramps_id TEXT, '
                            'blob_data BLOB'
                            ')')
         self.dbapi.execute('CREATE TABLE place '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
                            'enclosed_by VARCHAR(50), '
-                           'gramps_id TEXT, '
                            'blob_data BLOB'
                            ')')
         self.dbapi.execute('CREATE TABLE repository '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'gramps_id TEXT, '
                            'blob_data BLOB'
                            ')')
         self.dbapi.execute('CREATE TABLE note '
                            '('
                            'handle VARCHAR(50) PRIMARY KEY NOT NULL, '
-                           'gramps_id TEXT, '
                            'blob_data BLOB'
                            ')')
         self.dbapi.execute('CREATE TABLE tag '
@@ -912,17 +901,8 @@ class DBAPI(DbGeneric):
                     Citation, Media, Note, Tag):
             table_name = cls.__name__.lower()
             for field, schema_type, max_length in cls.get_secondary_fields():
-                sql_type = self._sql_type(schema_type, max_length)
-                try:
-                    # test to see if it exists:
-                    self.dbapi.execute("SELECT %s FROM %s LIMIT 1"
-                                       % (field, table_name))
-                    LOG.info("    Table %s, field %s is up to date",
-                             table_name, field)
-                except:
-                    # if not, let's add it
-                    LOG.info("    Table %s, field %s was added",
-                             table_name, field)
+                if field != 'handle':
+                    sql_type = self._sql_type(schema_type, max_length)
                     self.dbapi.execute("ALTER TABLE %s ADD COLUMN %s %s"
                                        % (table_name, field, sql_type))
 
