@@ -31,6 +31,8 @@ Place name class for Gramps
 from .secondaryobj import SecondaryObject
 from .datebase import DateBase
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -90,11 +92,15 @@ class PlaceName(SecondaryObject, DateBase):
         from .date import Date
         return {
             "type": "object",
+            "title": _("Place Name"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "value": {"type": "string"},
-                "date": {"oneOf": [{"type": "null"}, Date.get_schema()]},
-                "lang": {"type": "string"}
+                "value": {"type": "string",
+                          "title": _("Text")},
+                "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
+                         "title": _("Date")},
+                "lang": {"type": "string",
+                         "title": _("Language")}
             }
         }
 

@@ -37,6 +37,8 @@ from .citationbase import CitationBase
 from .notebase import NoteBase
 from .refbase import RefBase
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -93,18 +95,24 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         """
         return {
             "type": "object",
+            "title": _("Person ref"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean"},
+                "private": {"type": "boolean",
+                            "title": _("Private")},
                 "citation_list": {"type": "array",
+                                  "title": _("Citations"),
                                   "items": {"type": "string",
                                             "maxLength": 50}},
                 "note_list": {"type": "array",
+                              "title": _("Notes"),
                               "items": {"type": "string",
                                         "maxLength": 50}},
                 "ref": {"type": "string",
+                        "title": _("Handle"),
                         "maxLength": 50},
-                "rel": {"type": "string"}
+                "rel": {"type": "string",
+                        "title": _("Association")}
             }
         }
 

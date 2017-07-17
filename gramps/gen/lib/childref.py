@@ -37,6 +37,8 @@ from .notebase import NoteBase
 from .refbase import RefBase
 from .childreftype import ChildRefType
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -100,17 +102,22 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         """
         return {
             "type": "object",
+            "title": _("Child Reference"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean"},
+                "private": {"type": "boolean",
+                            "title": _("Private")},
                 "citation_list": {"type": "array",
                                   "items": {"type": "string",
-                                            "maxLength": 50}},
+                                            "maxLength": 50},
+                                  "title": _("Citations")},
                 "note_list": {"type": "array",
                               "items": {"type": "string",
-                                        "maxLength": 50}},
+                                        "maxLength": 50},
+                              "title": _("Notes")},
                 "ref": {"type": "string",
-                        "maxLength": 50},
+                        "maxLength": 50,
+                        "title": _("Handle")},
                 "frel": ChildRefType.get_schema(),
                 "mrel": ChildRefType.get_schema()
             }

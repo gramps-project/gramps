@@ -28,6 +28,8 @@
 #
 #-------------------------------------------------------------------------
 from .styledtexttagtype import StyledTextTagType
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -96,14 +98,17 @@ class StyledTextTag:
         """
         return {
             "type": "object",
+            "title": _("Tag"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
                 "name": StyledTextTagType.get_schema(),
-                "value": {"type": ["null", "string", "integer"]},
+                "value": {"type": ["null", "string", "integer"],
+                          "title": _("Value")},
                 "ranges": {"type": "array",
                            "items": {"type": "array",
                                      "items": {"type": "integer"},
                                      "minItems": 2,
-                                     "maxItems": 2}}
+                                     "maxItems": 2},
+                           "title": _("Ranges")}
             }
         }

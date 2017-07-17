@@ -33,6 +33,8 @@ Location class for Gramps.
 from .secondaryobj import SecondaryObject
 from .locationbase import LocationBase
 from .const import IDENTICAL, DIFFERENT
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -82,17 +84,27 @@ class Location(SecondaryObject, LocationBase):
         """
         return {
             "type": "object",
+            "title": _("Location"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "street": {"type": "string"},
-                "locality": {"type": "string"},
-                "city": {"type": "string"},
-                "county": {"type": "string"},
-                "state": {"type": "string"},
-                "country": {"type": "string"},
-                "postal": {"type": "string"},
-                "phone": {"type": "string"},
-                "parish": {"type": "string"}
+                "street": {"type": "string",
+                           "title": _("Street")},
+                "locality": {"type": "string",
+                             "title": _("Locality")},
+                "city": {"type": "string",
+                         "title": _("City")},
+                "county": {"type": "string",
+                           "title": _("County")},
+                "state": {"type": "string",
+                          "title": _("State")},
+                "country": {"type": "string",
+                            "title": _("Country")},
+                "postal": {"type": "string",
+                           "title": _("Postal Code")},
+                "phone": {"type": "string",
+                          "title": _("Phone")},
+                "parish": {"type": "string",
+                           "title": _("Parish")}
             }
         }
 

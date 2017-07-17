@@ -38,6 +38,8 @@ from .notebase import NoteBase
 from .datebase import DateBase
 from .locationbase import LocationBase
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -92,24 +94,37 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
         from .date import Date
         return {
             "type": "object",
+            "title": _("Address"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean"},
+                "private": {"type": "boolean",
+                            "title": _("Private")},
                 "citation_list": {"type": "array",
+                                  "title": _("Citations"),
                                   "items": {"type": "string",
                                             "maxLength": 50}},
                 "note_list": {"type": "array",
+                              "title": _("Notes"),
                               "items": {"type": "string",
                                         "maxLength": 50}},
-                "date": {"oneOf": [{"type": "null"}, Date.get_schema()]},
-                "street": {"type": "string"},
-                "locality": {"type": "string"},
-                "city": {"type": "string"},
-                "county": {"type": "string"},
-                "state": {"type": "string"},
-                "country": {"type": "string"},
-                "postal": {"type": "string"},
-                "phone": {"type": "string"}
+                "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
+                         "title": _("Date")},
+                "street": {"type": "string",
+                           "title": _("Street")},
+                "locality": {"type": "string",
+                             "title": _("Locality")},
+                "city": {"type": "string",
+                         "title": _("City")},
+                "county": {"type": "string",
+                           "title": _("County")},
+                "state": {"type": "string",
+                          "title": _("State")},
+                "country": {"type": "string",
+                            "title": _("Country")},
+                "postal": {"type": "string",
+                           "title": _("Postal Code")},
+                "phone": {"type": "string",
+                          "title": _("Phone")}
             }
         }
 
