@@ -208,7 +208,7 @@ class ProgenOptions(ManagedWindow):
 
         # initial values
         fname = os.path.basename(filename).split('\\')[-1]
-        date = time.strftime("%Y-%m-%d")
+        date = time.strftime("%Y-%m-%d", time.localtime())
         text = "Pro-Gen Import"
 
         # add import source title/confidence

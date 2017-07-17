@@ -8,13 +8,13 @@
     </researcher>
   </header>
   <tags>
-    <tag handle="_0000000100000001" change="1" name="Person Pro-Gen Import (SAMPLE.DEF) 2017-06-25" color="#000000000000" priority="0"/>
-    <tag handle="_0000000200000002" change="1" name="Family Pro-Gen Import (SAMPLE.DEF) 2017-06-25" color="#000000000000" priority="0"/>
-    <tag handle="_0000000300000003" change="1" name="Event Pro-Gen Import (SAMPLE.DEF) 2017-06-25" color="#000000000000" priority="0"/>
-    <tag handle="_0000000400000004" change="1" name="Place Pro-Gen Import (SAMPLE.DEF) 2017-06-25" color="#000000000000" priority="0"/>
-    <tag handle="_0000000500000005" change="1" name="Source Pro-Gen Import (SAMPLE.DEF) 2017-06-25" color="#000000000000" priority="0"/>
-    <tag handle="_0000000600000006" change="1" name="Citation Pro-Gen Import (SAMPLE.DEF) 2017-06-25" color="#000000000000" priority="0"/>
-    <tag handle="_0000000700000007" change="1" name="Note Pro-Gen Import (SAMPLE.DEF) 2017-06-25" color="#000000000000" priority="0"/>
+    <tag handle="_0000000100000001" change="1" name="Person Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#000000000000" priority="0"/>
+    <tag handle="_0000000200000002" change="1" name="Family Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#000000000000" priority="0"/>
+    <tag handle="_0000000300000003" change="1" name="Event Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#000000000000" priority="0"/>
+    <tag handle="_0000000400000004" change="1" name="Place Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#000000000000" priority="0"/>
+    <tag handle="_0000000500000005" change="1" name="Source Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#000000000000" priority="0"/>
+    <tag handle="_0000000600000006" change="1" name="Citation Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#000000000000" priority="0"/>
+    <tag handle="_0000000700000007" change="1" name="Note Pro-Gen Import (SAMPLE.DEF) 1999-12-25" color="#000000000000" priority="0"/>
   </tags>
   <events>
     <event handle="_0000000b0000000b" change="1" id="E0000">
