@@ -149,7 +149,7 @@ class PersonNotes(Notes):
     Displays the notes for a person.
     """
     def db_changed(self):
-        self.dbstate.db.connect('person-update', self.update)
+        self.connect(self.dbstate.db, 'person-update', self.update)
 
     def active_changed(self, handle):
         self.update()
@@ -179,7 +179,7 @@ class EventNotes(Notes):
     Displays the notes for an event.
     """
     def db_changed(self):
-        self.dbstate.db.connect('event-update', self.update)
+        self.connect(self.dbstate.db, 'event-update', self.update)
         self.connect_signal('Event', self.update)
 
     def update_has_data(self):
@@ -207,7 +207,7 @@ class FamilyNotes(Notes):
     Displays the notes for a family.
     """
     def db_changed(self):
-        self.dbstate.db.connect('family-update', self.update)
+        self.connect(self.dbstate.db, 'family-update', self.update)
         self.connect_signal('Family', self.update)
 
     def update_has_data(self):
@@ -235,7 +235,7 @@ class PlaceNotes(Notes):
     Displays the notes for a place.
     """
     def db_changed(self):
-        self.dbstate.db.connect('place-update', self.update)
+        self.connect(self.dbstate.db, 'place-update', self.update)
         self.connect_signal('Place', self.update)
 
     def update_has_data(self):
@@ -263,7 +263,7 @@ class SourceNotes(Notes):
     Displays the notes for a source.
     """
     def db_changed(self):
-        self.dbstate.db.connect('source-update', self.update)
+        self.connect(self.dbstate.db, 'source-update', self.update)
         self.connect_signal('Source', self.update)
 
     def update_has_data(self):
@@ -291,7 +291,7 @@ class CitationNotes(Notes):
     Displays the notes for a Citation.
     """
     def db_changed(self):
-        self.dbstate.db.connect('citation-update', self.update)
+        self.connect(self.dbstate.db, 'citation-update', self.update)
         self.connect_signal('Citation', self.update)
 
     def update_has_data(self):
@@ -319,7 +319,7 @@ class RepositoryNotes(Notes):
     Displays the notes for a repository.
     """
     def db_changed(self):
-        self.dbstate.db.connect('repository-update', self.update)
+        self.connect(self.dbstate.db, 'repository-update', self.update)
         self.connect_signal('Repository', self.update)
 
     def update_has_data(self):
@@ -347,7 +347,7 @@ class MediaNotes(Notes):
     Displays the notes for a media object.
     """
     def db_changed(self):
-        self.dbstate.db.connect('media-update', self.update)
+        self.connect(self.dbstate.db, 'media-update', self.update)
         self.connect_signal('Media', self.update)
 
     def update_has_data(self):

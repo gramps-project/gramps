@@ -147,13 +147,13 @@ class WhatNextGramplet(Gramplet):
 
     def db_changed(self):
 
-        self.dbstate.db.connect('home-person-changed', self.update)
-        self.dbstate.db.connect('person-add', self.update)
-        self.dbstate.db.connect('person-delete', self.update)
-        self.dbstate.db.connect('person-update', self.update)
-        self.dbstate.db.connect('family-add', self.update)
-        self.dbstate.db.connect('family-delete', self.update)
-        self.dbstate.db.connect('family-update', self.update)
+        self.connect(self.dbstate.db, 'home-person-changed', self.update)
+        self.connect(self.dbstate.db, 'person-add', self.update)
+        self.connect(self.dbstate.db, 'person-delete', self.update)
+        self.connect(self.dbstate.db, 'person-update', self.update)
+        self.connect(self.dbstate.db, 'family-add', self.update)
+        self.connect(self.dbstate.db, 'family-delete', self.update)
+        self.connect(self.dbstate.db, 'family-update', self.update)
 
 
     def main(self):

@@ -64,12 +64,12 @@ class Gramplet:
         self.init()
         self.on_load()
         self.build_options()
-        self.connect(self.dbstate, "database-changed", self._db_changed)
-        self.connect(self.gui.textview, "button-press-event",
-                     self.gui.on_button_press)
-        self.connect(self.gui.textview, "motion-notify-event",
-                     self.gui.on_motion)
-        self.connect_signal('Person', self._active_changed)
+        self.dbstate.connect("database-changed", self._db_changed)
+        self.dbstate.connect("no-database", self._no_db)
+        self.gui.textview.connect("button-press-event",
+                                  self.gui.on_button_press)
+        self.gui.textview.connect("motion-notify-event",
+                                  self.gui.on_motion)
         self._db_changed(self.dbstate.db)
         active_person = self.get_active('Person')
         if active_person: # already changed
@@ -83,6 +83,7 @@ class Gramplet:
         """
         self.uistate.register(self.dbstate, nav_type, self.nav_group)
         history = self.uistate.get_history(nav_type, self.nav_group)
+        # print('History: nave-type = %s' % nav_type)
         self.connect(history, "active-changed", method)
 
     def init(self): # once, constructor
@@ -383,10 +384,23 @@ class Gramplet:
         Internal method for handling items that should happen when the
         database changes. This will push a message to the GUI status bar.
         """
+        if self.dbstate.db.is_open():
+            self.disconnect_all()  # clear the old signals from old db
         self.dbstate.db = db
         self.gui.dbstate.db = db
-        self.db_changed()
+        if db.is_open():
+            # the following prevents connecting to every Gramplet, and still
+            # allows Person Gramplets to be informed of active-changed
+            # Some Gramplets .gpr files don't have navtypes set, thus the
+            # hasattr
+            if hasattr(self.gui, 'navtypes') and 'Person' in self.gui.navtypes:
+                self.connect_signal('Person', self._active_changed)
+            self.db_changed()
         self.update()
+
+    def _no_db(self):
+        if self.dbstate.db.is_open():
+            self.disconnect_all()  # clear the old signals
 
     def get_option_widget(self, label):
         """
@@ -428,8 +442,18 @@ class Gramplet:
         if signal in self._signal:
             for (id, signal_obj) in self._signal[signal]:
                 signal_obj.disconnect(id)
+            self._signal[signal] = []
         else:
             raise AttributeError("unknown signal: '%s'" % signal)
+
+    def disconnect_all(self):
+        """
+        Used to disconnect all the signals for this specific gramplet
+        """
+        for signal in self._signal:
+            for (sig_id, signal_obj) in self._signal[signal]:
+                signal_obj.disconnect(sig_id)
+            self._signal[signal] = []
 
     def hidden_widgets(self):
         """

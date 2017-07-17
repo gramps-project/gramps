@@ -84,7 +84,7 @@ class PlaceDetails(Gramplet):
         list(map(self.grid.remove, self.grid.get_children()))
 
     def db_changed(self):
-        self.dbstate.db.connect('place-update', self.update)
+        self.connect(self.dbstate.db, 'place-update', self.update)
         self.connect_signal('Place', self.update)
 
     def update_has_data(self):

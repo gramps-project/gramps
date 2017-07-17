@@ -100,7 +100,7 @@ class PersonChildren(Children):
         return top
 
     def db_changed(self):
-        self.dbstate.db.connect('person-update', self.update)
+        self.connect(self.dbstate.db, 'person-update', self.update)
 
     def active_changed(self, handle):
         self.update()
@@ -198,10 +198,9 @@ class FamilyChildren(Children):
         return top
 
     def db_changed(self):
-        self.dbstate.db.connect('family-update', self.update)
-        self.connect_signal('Family', self.update)
-        self.dbstate.db.connect('person-update', self.update)
-        self.connect_signal('Person', self.update)
+        self.connect(self.dbstate.db, 'family-update', self.update)
+        self.connect_signal('Family', self.update)  # familiy active-changed
+        self.connect(self.dbstate.db, 'person-update', self.update)
 
     def main(self):
         active_handle = self.get_active('Family')
