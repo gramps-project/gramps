@@ -40,7 +40,7 @@ _ = glocale.translation.gettext
 from gramps.gen.config import config
 
 from gramps.gen.lib import Citation
-from gramps.gen.lib.date import Date, Today
+from gramps.gen.lib.date import Today
 from gramps.gen.lib.datebase import DateBase
 from gramps.gen.utils.libformatting import ImportInfo
 
@@ -117,12 +117,13 @@ class ImportSourceCitation(object):
     def __init__(self, dflt_btn, dflt_text, text, fname, date):
         """"""
         self.source_btn = ImportValue(dflt_btn)
-        self.source_title = ImportEntry(_('Import from Pro-Gen (%s)') % fname)
         self.source_priv = ImportPrivacy(False)
+        self.source_title = ImportEntry(_('Import from Pro-Gen (%s)') % fname)
+        self.source_attr = ImportEntry('%s (%s) %s' % (text, fname, date))
         self.citation_btn = ImportValue(dflt_btn)
-        self.citation_page = ImportEntry('%s' % dflt_text)
         self.citation_priv = ImportPrivacy(False)
         self.citation_conf = ImportValue(Citation.CONF_HIGH)
+        self.citation_page = ImportEntry('%s' % dflt_text)
         self.citation_attr = ImportEntry('%s (%s) %s' % (text, fname, date))
 
 class ImportTagTextDefault(object):
@@ -130,41 +131,45 @@ class ImportTagTextDefault(object):
 
     def __init__(self, text, fname):
         """"""
-        self.dflt_text = ImportEntry(text)
-        self.dflt_file = ImportEntry(fname)
-        self.dflt_date = Date()
+        self.text = ImportEntry(text)
+        self.fname = ImportEntry(fname)
+        self.date = Today()
+        self.date.text = '{:04d}-{:02d}-{:02d}'.format \
+            (self.date.dateval[2], self.date.dateval[1], self.date.dateval[0])
 
     # sets / gets Default entries
     def set_dfltdate(self, date):
         """ connects to 'set' method of MonitoredDate """
-        self.dflt_date = date
+        self.date = date
     def get_dfltdate(self):
         """ connects to 'get' method of MonitoredDate """
-        return self.dflt_date.text
+        return self.date.text
 
 class ImportTagText(object):
     """ Class for internal values for tag objects """
 
-    def __init__(self, text, fname, date):
+    def __init__(self, default):
         """"""
+        self.tag_dflt = default
         self.tag_obj = ImportValue(True)
-        self.tag_file = ImportValue(True)
+        self.tag_fname = ImportValue(True)
         self.tag_date = ImportValue(True)
-        self.act_text, self.dflt_file, self.dflt_date = text, fname, date
-        self.tag_text = "%s(%s)%s" % (text, fname, date)
+        tag_text = '%s (%s) %s' % \
+            (default.text.get_entry(),
+             default.fname.get_entry(),
+             default.get_dfltdate())
+        self.tag_text = ImportEntry(tag_text)
 
-    def set_tagtext(self, text):
-        """ connects to 'set' method of MonitoredEntry """
-        # \xa0 as (non breakable) space to separate text elements
-        self.act_text = text.split('\xa0')[0].rstrip()
-    def get_tagtext(self):
-        """ connects to 'get' method of MonitoredEntry """
-        self.tag_text = self.act_text
-        if self.tag_file.get_value():
-            self.tag_text += '\xa0(%s)' % self.dflt_file
+    def get_dflttext(self):
+        """ set Tag Text to default values """
+        tag_text = self.tag_dflt.text.get_entry()
+        if self.tag_fname.get_value():
+            tag_text += ' (%s)' % self.tag_dflt.fname.get_entry()
         if self.tag_date.get_value():
-            self.tag_text += '\xa0%s' % self.dflt_date
-        return self.tag_text
+            tag_text += ' %s' % self.tag_dflt.get_dfltdate()
+        self.tag_text.set_entry(tag_text)
+
+        return tag_text
 
 def _importData(database, filename, user):
     """
@@ -187,8 +192,7 @@ def _importData(database, filename, user):
     if info:   # successful import
         # display qualified/standard statistic window
         if user.uistate:
-            InfoDialog(_('Import Statistics'), info.info_text(),
-                       parent=user.parent)
+            InfoDialog(_('Import Statistics'), info.info_text(), parent=user.parent)
         else:
             return ImportInfo({_("Results"): _("done")})
 
@@ -207,9 +211,9 @@ class ProgenOptions(ManagedWindow):
         self.fail = True
 
         # initial values
-        fname = os.path.basename(filename).split('\\')[-1]
-        date = time.strftime("%Y-%m-%d", time.localtime())
         text = "Pro-Gen Import"
+        fname = os.path.basename(filename).split('\\')[-1]
+        date = time.strftime('%Y-%m-%d', time.localtime())
 
         # add import source title/confidence
         #            citation page/confidence/privacy/attribute
@@ -230,10 +234,10 @@ class ProgenOptions(ManagedWindow):
         self.tagobj_status = True
         self.tagobj_values, self.tagobj_methods = {}, {}
         self.tagtext_methods = {}
-        self.tagfile_status, self.tagfile_methods = True, {}
+        self.tagfname_status, self.tagfname_methods = True, {}
         self.tagdate_status, self.tagdate_methods = True, {}
         for obj in libprogen.TAGOBJECTS:
-            self.tagobj_values[obj] = ImportTagText(text, fname, date)
+            self.tagobj_values[obj] = ImportTagText(self.default_values)
 
         # add primary object values
         self.primobj_values, self.primobj_methods = {}, {}
@@ -259,17 +263,24 @@ class ProgenOptions(ManagedWindow):
 
     def __on_source_button_toggled(self, widget):
         """ compute the source button and toggle the 'Sensitive' attribute """
-        obj_state = widget.get_active()
-        for obj in ['title', 'priv']:
+        obj_source_state = widget.get_active()
+        for obj in ['priv', 'title', 'attr']:
             imp_obj = self.glade.get_object('imp_source_%s' % obj)
-            imp_obj.set_sensitive(obj_state)
+            imp_obj.set_sensitive(obj_source_state)
+
+        # Check if Source enabled and syncronizing Citation
+        self.glade.get_object('imp_citation_btn').set_active(obj_source_state)
+        self.glade.get_object('imp_citation_btn').set_sensitive(obj_source_state)
 
     def __on_citation_button_toggled(self, widget):
         """ compute the citation button and toggle the 'Sensitive' attribute """
-        obj_state = widget.get_active()
-        for obj in ['page', 'attr', 'conf', 'priv']:
+        # Check if Source enabled and syncronizing Citation
+        obj_source_state = self.glade.get_object('imp_source_btn').get_active()
+
+        obj_citation_state = widget.get_active() and obj_source_state
+        for obj in ['priv', 'conf', 'page', 'attr']:
             imp_obj = self.glade.get_object('imp_citation_%s' % obj)
-            imp_obj.set_sensitive(obj_state)
+            imp_obj.set_sensitive(obj_citation_state)
 
     def __on_import_entry_keyrelease(self, widget, event, data=None):
         """ activated on all return's of an entry"""
@@ -293,13 +304,13 @@ class ProgenOptions(ManagedWindow):
         obj_name = Gtk.Buildable.get_name(widget)
         obj_name = obj_name.split('_', 1)[1].split('_', 1)[0]
 
-        for obj in ['file', 'date', 'text']:
+        for obj in ['text', 'fname', 'date']:
             tag_obj = self.glade.get_object('tag_%s_%s' % (obj_name, obj))
             tag_obj.set_sensitive(obj_state)
 
     def __on_text_button_clicked(self, widget=None):
         """ compute all primary objects and flush the 'text' field """
-        self.__on_tagtext_entry_resume(default=True)   # Resume tag text
+        self.__on_tagtext_entry_resume()   # Resume tag text
 
     def __on_tagtext_entry_keyrelease(self, widget, event, data=None):
         """ activated on all return's of an entry """
@@ -313,44 +324,42 @@ class ProgenOptions(ManagedWindow):
                                              libprogen.TAGOBJECTS[obj_index])
             obj_next.grab_focus()
 
-    def __on_tagtext_entry_resume(self, default=True):
+    def __on_tagtext_entry_resume(self):
         """ resume new tagtext from old + file & date variables"""
         for obj in libprogen.TAGOBJECTS:
             tag_obj = self.glade.get_object('tag_%s_text' % obj)
             if not tag_obj.get_sensitive():
                 continue
 
-            if default:
-                obj_entry = self.default_values.dflt_text.get_entry()
-            else:
-                obj_entry = self.tagobj_values[obj].act_text
-            self.tagobj_values[obj].set_tagtext(obj_entry)
+            obj_entry = self.tagobj_values[obj].get_dflttext()
+            self.tagobj_values[obj].tag_text.set_entry(obj_entry)
             self.tagtext_methods[obj].update()
 
-    def __on_file_button_clicked(self, widget=None):
+    def __on_fname_button_clicked(self, widget=None):
         """ compute all primary objects and toggle the 'file' attribute """
-        self.tagfile_status = not self.tagfile_status
+        self.tagfname_status = not self.tagfname_status
 
         for obj in libprogen.TAGOBJECTS:
-            tag_obj = self.glade.get_object('tag_%s_file' % obj)
+            tag_obj = self.glade.get_object('tag_%s_fname' % obj)
             if not tag_obj.get_sensitive():
                 continue
 
-            self.tagfile_methods[obj].set_val(self.tagfile_status)
-            tag_obj.set_active(self.tagfile_status)
+            self.tagfname_methods[obj].set_val(self.tagfname_status)
+            tag_obj.set_active(self.tagfname_status)
 
-        self.__on_tagtext_entry_resume(default=False)   # Resume tag text
+        self.__on_tagtext_entry_resume()   # Resume tag text
 
-    def __on_file_button_toggled(self, widget):
+    def __on_fname_button_toggled(self, widget):
         """ compute the primary object and toggle the 'Sensitive' attribute """
-        self.__on_tagtext_entry_resume(default=False)
+        self.__on_tagtext_entry_resume()
 
+        # switch focus forward
         obj_name = Gtk.Buildable.get_name(widget)
         obj_name = obj_name.split('_', 1)[1].split('_', 1)[0]
         obj_index = libprogen.TAGOBJECTS.index(obj_name)
         if obj_index < len(libprogen.TAGOBJECTS) -1:
             obj_index = obj_index +1
-        obj_next = self.glade.get_object('tag_%s_file' % \
+        obj_next = self.glade.get_object('tag_%s_fname' % \
                                          libprogen.TAGOBJECTS[obj_index])
         obj_next.grab_focus()
 
@@ -366,12 +375,13 @@ class ProgenOptions(ManagedWindow):
             self.tagdate_methods[obj].set_val(self.tagdate_status)
             tag_obj.set_active(self.tagdate_status)
 
-        self.__on_tagtext_entry_resume(default=False)   # Resume tag text
+        self.__on_tagtext_entry_resume()   # Resume tag text
 
     def __on_date_button_toggled(self, widget):
         """ compute the primary object and toggle the 'Sensitive' attribute """
-        self.__on_tagtext_entry_resume(default=False)
+        self.__on_tagtext_entry_resume()
 
+        # switch focus forward
         obj_name = Gtk.Buildable.get_name(widget)
         obj_name = obj_name.split('_', 1)[1].split('_', 1)[0]
         obj_index = libprogen.TAGOBJECTS.index(obj_name)
@@ -462,7 +472,7 @@ class ProgenOptions(ManagedWindow):
             get_import = eval('self.imp_values.%s.get_value' % obj)
             self.import_methods[obj] = MonitoredCheckbox(\
                 widget, widget, set_import, get_import, self.dbase.readonly)
-        for obj in ('source_title', 'citation_page', 'citation_attr'):
+        for obj in ('source_title', 'source_attr', 'citation_page', 'citation_attr'):
             widget = self.glade.get_object('imp_%s' % obj)
             set_import = eval('self.imp_values.%s.set_entry' % obj)
             get_import = eval('self.imp_values.%s.get_entry' % obj)
@@ -488,10 +498,10 @@ class ProgenOptions(ManagedWindow):
             widget, get_import, self.dbase.readonly)
 
         # Text (w. Defaults) for Tags
-        for obj in ('text', 'file'):
+        for obj in ('text', 'fname'):
             widget = self.glade.get_object('tag_default_%s' % obj)
-            set_import = eval('self.default_values.dflt_%s.set_entry' % obj)
-            get_import = eval('self.default_values.dflt_%s.get_entry' % obj)
+            set_import = eval('self.default_values.%s.set_entry' % obj)
+            get_import = eval('self.default_values.%s.get_entry' % obj)
             self.default_methods[obj] = MonitoredEntry(\
                 widget, set_import, get_import, self.dbase.readonly)
         date = Today()
@@ -502,7 +512,6 @@ class ProgenOptions(ManagedWindow):
             self.glade.get_object('tag_default_date_btn'),
             datebase.get_date_object(),
             self.uistate, [], self.dbase.readonly)
-        self.default_values.set_dfltdate(date)
 
         for obj in libprogen.TAGOBJECTS:
             # populate object fields with values
@@ -512,12 +521,12 @@ class ProgenOptions(ManagedWindow):
                 self.tagobj_values[obj].tag_obj.get_value)
             widget = self.glade.get_object('tag_%s_text' % obj)
             self.tagtext_methods[obj] = MonitoredEntry(widget,
-                self.tagobj_values[obj].set_tagtext,
-                self.tagobj_values[obj].get_tagtext)
-            widget = self.glade.get_object('tag_%s_file' % obj)
-            self.tagfile_methods[obj] = MonitoredCheckbox(widget, widget,
-                self.tagobj_values[obj].tag_file.set_value,
-                self.tagobj_values[obj].tag_file.get_value)
+                self.tagobj_values[obj].tag_text.set_entry,
+                self.tagobj_values[obj].tag_text.get_entry)
+            widget = self.glade.get_object('tag_%s_fname' % obj)
+            self.tagfname_methods[obj] = MonitoredCheckbox(widget, widget,
+                self.tagobj_values[obj].tag_fname.set_value,
+                self.tagobj_values[obj].tag_fname.get_value)
             widget = self.glade.get_object('tag_%s_date' % obj)
             self.tagdate_methods[obj] = MonitoredCheckbox(widget, widget,
                 self.tagobj_values[obj].tag_date.set_value,
@@ -550,8 +559,8 @@ class ProgenOptions(ManagedWindow):
             "on_object_button_clicked" : self.__on_object_button_clicked,
             "on_object_button_toggled" : self.__on_object_button_toggled,
             "on_text_button_clicked" : self.__on_text_button_clicked,
-            "on_file_button_clicked" : self.__on_file_button_clicked,
-            "on_file_button_toggled" : self.__on_file_button_toggled,
+            "on_fname_button_clicked" : self.__on_fname_button_clicked,
+            "on_fname_button_toggled" : self.__on_fname_button_toggled,
             "on_date_button_clicked" : self.__on_date_button_clicked,
             "on_date_button_toggled" : self.__on_date_button_toggled,
             "on_primobj_button_toggled" : self.__on_primobj_button_toggled,
@@ -576,27 +585,52 @@ class ProgenOptions(ManagedWindow):
     def _collect(self):
         """ collect all options """
 
-        self.option['imp_source_title'] = self.imp_values.source_title.get_entry() \
-            if self.imp_values.source_btn.get_value() else ''
+        self.option['imp_source'] = self.imp_values.source_btn.get_value()
         self.option['imp_source_priv'] = self.imp_values.source_priv.get_privacy() \
-            if self.imp_values.source_btn.get_value() else False
-        self.option['imp_citation_page'] = self.imp_values.citation_page.get_entry() \
-            if self.imp_values.citation_btn.get_value() else ''
-        self.option['imp_citation_attr'] = self.imp_values.citation_attr.get_entry() \
-            if self.imp_values.citation_btn.get_value() else ''
+            if self.option['imp_source'] else False
+        if self.option['imp_source']:
+            self.option['imp_source_title'] = self.imp_values.source_title.get_entry()
+            sourceattr = self.imp_values.source_attr.get_entry()
+            # Expand if exists possible strftime directives
+            if ('%Y' or '%m' or '%d' or '%H' or '%M' or '%S') in sourceattr:
+                sourceattr = time.strftime(sourceattr)
+            self.option['imp_source_attr'] = sourceattr
+        else:
+            self.option['imp_source_title'] = ''
+            self.option['imp_source_attr'] = ''
+
+        self.option['imp_citation'] = self.imp_values.citation_btn.get_value()
         self.option['imp_citation_conf'] = self.imp_values.citation_conf.get_value() \
-            if self.imp_values.citation_btn.get_value() else Citation.CONF_HIGH
+            if self.option['imp_citation'] else Citation.CONF_HIGH
         self.option['imp_citation_priv'] = self.imp_values.citation_priv.get_privacy() \
-            if self.imp_values.citation_btn.get_value() else False
+            if self.option['imp_citation'] else False
+        if self.option['imp_citation']:
+            citationpage = self.imp_values.citation_page.get_entry()
+            if ('%Y' or '%m' or '%d' or '%H' or '%M' or '%S') in citationpage:
+                citationpage = time.strftime(citationpage)
+            self.option['imp_citation_page'] = citationpage
+            citationattr = self.imp_values.citation_attr.get_entry()
+            if ('%Y' or '%m' or '%d' or '%H' or '%M' or '%S') in citationattr:
+                citationattr = time.strftime(citationattr)
+            self.option['imp_citation_attr'] = citationattr
+        else:
+            self.option['imp_citation_page'] = ''
+            self.option['imp_citation_attr'] = ''
 
         for obj in libprogen.TAGOBJECTS:
-            self.option['tag_%s' % obj] = self.tagobj_values[obj].get_tagtext() \
-            if self.tagobj_values[obj].tag_text else ''
+            if self.tagobj_values[obj].tag_obj.get_value():
+                tagtext = self.tagobj_values[obj].tag_text.get_entry()
+                if ('%Y' or '%m' or '%d' or '%H' or '%M' or '%S') in tagtext:
+                    tagtext = time.strftime(tagtext)
+                self.option['tag_{}'.format(obj)] = tagtext
+            else:
+                self.option['tag_{}'.format(obj)] = ''
 
         for obj in libprogen.PRIMOBJECTS:
-            self.option['prim_%s' % obj] = self.primobj_values[obj].get_value()
-
+            self.option['prim_{}'.format(obj)] = \
+                self.primobj_values[obj].get_value()
         for obj in libprogen.OPTOBJECTS:
-            self.option['opt_%s' % obj] = self.option_values[obj].get_value()
+            self.option['opt_{}'.format(obj)] = \
+                self.option_values[obj].get_value()
 
         self.fail = False   # Pro-Gen import proceed

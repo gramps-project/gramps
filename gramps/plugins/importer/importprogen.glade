@@ -118,21 +118,83 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkComboBox" id="imp_citation_conf">
+                  <object class="GtkEntry" id="imp_source_title">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="tooltip_text" translatable="yes">Citation confidence level
-(Very low - very high).</property>
-                    <property name="halign">start</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="imp_citation_conf_txt"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
+                    <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Source reference text
+(Text &amp; import Filename).</property>
+                    <property name="hexpand">True</property>
+                    <signal name="key-release-event" handler="on_import_entry_keyrelease" swapped="no"/>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
+                    <property name="top_attach">1</property>
+                    <property name="width">1</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="imp_source_title_lbl">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Title</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">1</property>
+                    <property name="width">2</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="imp_source_attr_lbl">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="valign">center</property>
+                    <property name="margin_bottom">10</property>
+                    <property name="label" translatable="yes">Attribut</property>
+                    <attributes>
+                      <attribute name="stretch" value="semi-condensed"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">2</property>
+                    <property name="width">2</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="imp_source_attr">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Source attribute text
+(Text, import Filename &amp; (System-)Date).</property>
+                    <property name="opacity">0.9882352941176471</property>
+                    <property name="valign">start</property>
+                    <property name="margin_bottom">10</property>
+                    <property name="hexpand">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">2</property>
+                    <property name="width">1</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkCheckButton" id="imp_citation_btn">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="tooltip_text" translatable="yes">Citation reference.</property>
+                    <property name="halign">start</property>
+                    <property name="xalign">0</property>
+                    <property name="draw_indicator">True</property>
+                    <signal name="toggled" handler="on_citation_button_toggled" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
                     <property name="top_attach">3</property>
                     <property name="width">1</property>
                     <property name="height">1</property>
@@ -151,7 +213,7 @@
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
-                    <property name="top_attach">2</property>
+                    <property name="top_attach">3</property>
                     <property name="width">1</property>
                     <property name="height">1</property>
                   </packing>
@@ -186,8 +248,89 @@
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
-                    <property name="top_attach">2</property>
+                    <property name="top_attach">3</property>
                     <property name="width">1</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="imp_citation_conf_lbl">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_right">2</property>
+                    <property name="label" translatable="yes">Confidence</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">4</property>
+                    <property name="width">2</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkComboBox" id="imp_citation_conf">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">Citation confidence level
+(Very low - very high).</property>
+                    <property name="halign">start</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="imp_citation_conf_txt"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">4</property>
+                    <property name="width">1</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="imp_citation_page_lbl">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Page</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">5</property>
+                    <property name="width">2</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="imp_citation_page">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Citation volume/page text
+(Text &amp; (System-)Date).</property>
+                    <property name="hexpand">True</property>
+                    <signal name="key-release-event" handler="on_import_entry_keyrelease" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="left_attach">2</property>
+                    <property name="top_attach">5</property>
+                    <property name="width">1</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="imp_citation_attr_lbl">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="valign">center</property>
+                    <property name="label" translatable="yes">Attribut</property>
+                    <attributes>
+                      <attribute name="stretch" value="semi-condensed"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">6</property>
+                    <property name="width">2</property>
                     <property name="height">1</property>
                   </packing>
                 </child>
@@ -204,117 +347,8 @@
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
-                    <property name="top_attach">5</property>
+                    <property name="top_attach">6</property>
                     <property name="width">1</property>
-                    <property name="height">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkCheckButton" id="imp_citation_btn">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="tooltip_text" translatable="yes">Citation reference.</property>
-                    <property name="halign">start</property>
-                    <property name="xalign">0</property>
-                    <property name="draw_indicator">True</property>
-                    <signal name="toggled" handler="on_citation_button_toggled" swapped="no"/>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">2</property>
-                    <property name="width">1</property>
-                    <property name="height">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="imp_source_title">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">Source reference text
-(Text &amp; import Filename).</property>
-                    <property name="margin_bottom">10</property>
-                    <property name="hexpand">True</property>
-                    <signal name="key-release-event" handler="on_import_entry_keyrelease" swapped="no"/>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">1</property>
-                    <property name="width">1</property>
-                    <property name="height">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="imp_citation_page">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">Citation volume/page text
-(Text &amp; (System-)Date).</property>
-                    <property name="hexpand">True</property>
-                    <signal name="key-release-event" handler="on_import_entry_keyrelease" swapped="no"/>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="top_attach">4</property>
-                    <property name="width">1</property>
-                    <property name="height">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="imp_source_">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_bottom">10</property>
-                    <property name="label" translatable="yes">Title</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">1</property>
-                    <property name="width">2</property>
-                    <property name="height">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="imp_citation_page_lbl">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Page</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">4</property>
-                    <property name="width">2</property>
-                    <property name="height">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="imp_citation_attr_lbl">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="valign">center</property>
-                    <property name="label" translatable="yes">Attribut</property>
-                    <attributes>
-                      <attribute name="stretch" value="semi-condensed"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">5</property>
-                    <property name="width">2</property>
-                    <property name="height">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="imp_citation_conf_lbl">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_right">2</property>
-                    <property name="label" translatable="yes">Confidence</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">3</property>
-                    <property name="width">2</property>
                     <property name="height">1</property>
                   </packing>
                 </child>
@@ -338,7 +372,7 @@
                 <property name="halign">start</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkLabel" id="dflt_lbl">
+                  <object class="GtkLabel" id="dfltbox_lbl">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
@@ -390,7 +424,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="tag_default_file_lbl">
+                      <object class="GtkLabel" id="tag_default_fname_lbl">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="margin_right">2</property>
@@ -403,7 +437,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="tag_default_file">
+                      <object class="GtkEntry" id="tag_default_fname">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Import Filename.</property>
@@ -485,7 +519,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="tag_lb">
+                  <object class="GtkLabel" id="taggrid_lbl">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
@@ -831,14 +865,14 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="tag_person_file">
+                      <object class="GtkCheckButton" id="tag_person_fname">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="halign">center</property>
                         <property name="xalign">0</property>
                         <property name="draw_indicator">True</property>
-                        <signal name="toggled" handler="on_file_button_toggled" swapped="no"/>
+                        <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -848,14 +882,14 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="tag_family_file">
+                      <object class="GtkCheckButton" id="tag_family_fname">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="halign">center</property>
                         <property name="xalign">0</property>
                         <property name="draw_indicator">True</property>
-                        <signal name="toggled" handler="on_file_button_toggled" swapped="no"/>
+                        <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -865,14 +899,14 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="tag_event_file">
+                      <object class="GtkCheckButton" id="tag_event_fname">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="halign">center</property>
                         <property name="xalign">0</property>
                         <property name="draw_indicator">True</property>
-                        <signal name="toggled" handler="on_file_button_toggled" swapped="no"/>
+                        <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -882,14 +916,14 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="tag_place_file">
+                      <object class="GtkCheckButton" id="tag_place_fname">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="halign">center</property>
                         <property name="xalign">0</property>
                         <property name="draw_indicator">True</property>
-                        <signal name="toggled" handler="on_file_button_toggled" swapped="no"/>
+                        <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -899,14 +933,14 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="tag_source_file">
+                      <object class="GtkCheckButton" id="tag_source_fname">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="halign">center</property>
                         <property name="xalign">0</property>
                         <property name="draw_indicator">True</property>
-                        <signal name="toggled" handler="on_file_button_toggled" swapped="no"/>
+                        <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -916,14 +950,14 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="tag_citation_file">
+                      <object class="GtkCheckButton" id="tag_citation_fname">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="halign">center</property>
                         <property name="xalign">0</property>
                         <property name="draw_indicator">True</property>
-                        <signal name="toggled" handler="on_file_button_toggled" swapped="no"/>
+                        <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -933,14 +967,14 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="tag_note_file">
+                      <object class="GtkCheckButton" id="tag_note_fname">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="halign">center</property>
                         <property name="xalign">0</property>
                         <property name="draw_indicator">True</property>
-                        <signal name="toggled" handler="on_file_button_toggled" swapped="no"/>
+                        <signal name="toggled" handler="on_fname_button_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -1076,7 +1110,6 @@
                         <property name="receives_default">True</property>
                         <property name="tooltip_text" translatable="yes">Copy Default Text
 to all Tag Text'.</property>
-                        <property name="valign">start</property>
                         <property name="hexpand">True</property>
                         <property name="relief">none</property>
                         <signal name="clicked" handler="on_text_button_clicked" swapped="no"/>
@@ -1093,12 +1126,12 @@ to all Tag Text'.</property>
                         <property name="label" translatable="yes">File</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
+                        <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Copy Default Filename
-to all Tag Text'.</property>
+to all sensitive Tag Text'.</property>
                         <property name="halign">center</property>
                         <property name="relief">none</property>
-                        <signal name="clicked" handler="on_file_button_clicked" swapped="no"/>
+                        <signal name="clicked" handler="on_fname_button_clicked" swapped="no"/>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -1112,9 +1145,9 @@ to all Tag Text'.</property>
                         <property name="label" translatable="yes">Date</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
+                        <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Copy Default Date
-to all Tag Text'.</property>
+to all sensitive Tag Text'.</property>
                         <property name="halign">center</property>
                         <property name="relief">none</property>
                         <signal name="clicked" handler="on_date_button_clicked" swapped="no"/>
@@ -1175,7 +1208,7 @@ all object tags.</property>
                 <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkLabel" id="primobj_lbl">
+                  <object class="GtkLabel" id="primobjbox_lbl">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
@@ -1264,7 +1297,7 @@ Child import.</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="option_lbl">
+                  <object class="GtkLabel" id="miscbox_lbl">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>

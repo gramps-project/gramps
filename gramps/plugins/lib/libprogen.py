@@ -192,18 +192,17 @@ def _get_defname(fname):
     Get the name of the PG30.DEF file by looking at the user DEF file.
     """
     # Return the name of the DEF file. <fname> is expected to be somewhere in
-    # the PG30 tree. Contents of <fname> is something like:
+    # the PG30 tree. Contents of <fname> is always something like:
     # => \\0
     # => C:\\PG30\\NL\\PG30-1.DEF
 
     # We will strip the C: and convert the rest to a native pathname. Next,
     # this pathname is compared with <fname>.
 
-    with open(fname) as file_:
+    with open(fname, buffering=1, encoding='cp437', errors='strict') as file_:
         lines = file_.readlines()
-    if not lines[0].startswith(r'\0') or len(lines) < 2:
-        ProgenError(_("Not a Pro-Gen file"))
-        return None, '?'
+    if not lines[0].startswith(r'\0') or len(lines) != 2:
+        return None, fname
 
     defname = lines[1]
     defname = defname.strip()
@@ -434,14 +433,10 @@ class PG30Def(object):
     #    tables=2
 
     def __init__(self, fname):
-        fname, dname = _get_defname(fname)
-        if not fname:
-            raise ProgenError(_("Cannot find DEF file: %(dname)s") % locals())
-
-        # Read the DEF file (maybe throw a IOError)
+        # Read the main DEF file (maybe throw a IOError)
         lines = None
-        with open(fname, buffering=1, encoding='cp437', errors='strict') as frme:
-            lines = frme.readlines()
+        with open(fname, buffering=1, encoding='cp437', errors='strict') as frame:
+            lines = frame.readlines()
 
         # Analyse the DEF lines
         lines = [l.strip() for l in lines]
@@ -490,6 +485,15 @@ class ProgenParser(UpdateCallback):
             # Nothing to import
             return None
 
+        # Read the stub DEF file (maybe throw a IOError)
+        self.fname, dname = _get_defname(self.fname)
+        if not self.fname:
+            error_msg = ProgenError(_("Not a (right) DEF file: %(dname)s") % locals())
+            self.user.notify_error(_("Pro-Gen data error"), str(error_msg))
+            # close feedback about import progress (GUI)!
+            if self.uistate: self.progress.close()
+            return None
+
         # start feedback about import progress (GUI / TXT)
         self.__display_message(_('Initializing.'), _('Import from Pro-Gen'))
         self.def_ = PG30Def(self.fname)
@@ -510,7 +514,9 @@ class ProgenParser(UpdateCallback):
             # Raise a error message
             error_msg = ProgenError(_("Not a supported Pro-Gen import file language"))
             self.user.notify_error(_("Pro-Gen data error"), str(error_msg))
-            return
+            # close feedback about import progress (GUI)
+            if self.uistate: self.progress.close()
+            return None
 
         self.mems = _read_mem(self.bname)
         self.pers = _read_recs(self.def_['Table_1'], self.bname, self.mems)
@@ -534,9 +540,8 @@ class ProgenParser(UpdateCallback):
         self.dbase.enable_signals()
         self.dbase.request_rebuild()
 
-        # close feedback about import progress (GUI / TXT)
-        if self.uistate:
-            self.progress.close()
+        # close feedback about import progress (GUI)
+        if self.uistate: self.progress.close()
 
         return self.info
 
@@ -850,27 +855,18 @@ class ProgenParser(UpdateCallback):
         return place
 
     def __get_or_create_citation(self, source_title, date_text,
-                                 page_text='', page_ref='',
-                                 confidence=3, note_text=None, attr_text=None):
+                                 page_text='', page_ref=''):
         """
-        Finds or creates a Citation based on:
+        Finds or creates Source & Citation based on:
             Source, Name, Date, Page, Note, Attribute.
         """
         if not source_title:
             return None
 
-        # process Volume/Page
-        page = source_title
-        if page_text or page_ref:
-            page = '%s %s' % (page_text, page_ref)
-
-        # process Attribute
-        if attr_text:
-            sattr = SrcAttribute()
-            sattr.set_type(_("Source"))
-            sattr.set_value(attr_text)
-
         # process Source
+        if not self.option['imp_source']:   # No Source enabled
+            return None
+
         if source_title in self.skeys:   # source exists
             source = self.dbase.get_source_from_handle(self.skeys[source_title])
         else:   # create a new source
@@ -881,7 +877,10 @@ class ProgenParser(UpdateCallback):
             self.__add_tag('source', source)   # add tag to 'Source'
 
             # process Attribute
-            if attr_text:
+            if self.option['imp_source_attr']:
+                sattr = SrcAttribute()
+                sattr.set_type(_("Source"))
+                sattr.set_value(self.option['imp_source_attr'])
                 source.add_attribute(sattr)
 
             self.dbase.add_source(source, self.trans)   # add & commit ...
@@ -892,6 +891,14 @@ class ProgenParser(UpdateCallback):
             self.info.add('new-object', SOURCE_KEY, None)
 
         # process Citation
+        if not self.option['imp_citation']:   # No Citation enabled
+            return None
+
+        # process Volume/Page
+        page = source_title
+        if page_text or page_ref:
+            page = '%s %s' % (page_text, page_ref)
+
         if page in self.ckeys:   # citation exists
             citation = self.dbase.get_citation_from_handle(self.ckeys[page])
         else:   # create a new citation
@@ -907,7 +914,7 @@ class ProgenParser(UpdateCallback):
                 citation.set_date_object(date)
 
             # process Confidence
-            citation.set_confidence_level(confidence)
+            citation.set_confidence_level(self.option['imp_citation_conf'])
 
             # process Page (substitute string directives)
             if ('%Y' or '%m' or '%d' or '%H' or '%M' or '%S') in page:
@@ -915,13 +922,18 @@ class ProgenParser(UpdateCallback):
             citation.set_page('%s' % page)
 
             # process Note
-            note = self.__create_note(note_text, NoteType.CUSTOM,
-                                      _("Pro-Gen Import"))
-            if note and note.handle:
-                citation.add_note(note.handle)
+            imp_citation_note = ''   # Not yet used
+            if imp_citation_note:
+                note = self.__create_note(imp_citation_note, NoteType.CUSTOM,
+                                          _("Pro-Gen Import"))
+                if note and note.handle:
+                    citation.add_note(note.handle)
 
             # process Attribute
-            if attr_text:
+            if self.option['imp_citation_attr']:
+                sattr = SrcAttribute()
+                sattr.set_type(_("Citation"))
+                sattr.set_value(self.option['imp_citation_attr'])
                 citation.add_attribute(sattr)
 
             self.dbase.add_citation(citation, self.trans)   # add & commit ...
@@ -1159,7 +1171,8 @@ class ProgenParser(UpdateCallback):
         for tagobj in TAGOBJECTS:
             tagname = 'tag_%s' % tagobj
             if self.option[tagname]:
-                tagname = '%s %s' % (_(tagobj).capitalize(),
+                # process tagname (substitute string directives)
+                tagname = '%s %s' % (_(tagobj).capitalize(), \
                                      self.option[tagname])
                 tag = self.dbase.get_tag_from_name(tagname)
                 if not tag:
@@ -1262,9 +1275,7 @@ class ProgenParser(UpdateCallback):
                 citation = self.__get_or_create_citation \
                     (self.option['imp_source_title'],
                      recflds[person_ix[2]],   # F02: INDI CHAN DATE
-                     self.option['imp_citation_page'], pageref,
-                     self.option['imp_citation_conf'], '',
-                     self.option['imp_citation_attr'])
+                     self.option['imp_citation_page'], pageref)
                 if citation and citation.handle:
                     person.add_citation(citation.handle)
                     name.add_citation(citation.handle)
@@ -1420,9 +1431,7 @@ class ProgenParser(UpdateCallback):
             source_text = recflds[person_ix[30]]   # F30: ... SOUR TEXT
             info = recflds[person_ix[31]]   # F31: INDI ... NOTE
             citation = self.__get_or_create_citation \
-                (source, recflds[person_ix[25]], source_refn, '',
-                 self.option['imp_citation_conf'], '',
-                 self.option['imp_citation_attr'])
+                (source, recflds[person_ix[25]], source_refn)
 
             if birth_date or place or info or citation:
                 desc = source_text
@@ -1450,9 +1459,7 @@ class ProgenParser(UpdateCallback):
             source_text = recflds[person_ix[38]]   # F38: ... SOUR TEXT
             info = recflds[person_ix[39]]   # F39: ... NOTE
             citation = self.__get_or_create_citation \
-                (source, recflds[person_ix[32]], source_refn, '',
-                 self.option['imp_citation_conf'], '',
-                 self.option['imp_citation_attr'])
+                (source, recflds[person_ix[32]], source_refn)
 
             if date or place or info or citation:
                 dummy, chris_ref = self.__create_event_and_ref \
@@ -1466,9 +1473,7 @@ class ProgenParser(UpdateCallback):
                 citation = None
                 if source != religion:
                     citation = self.__get_or_create_citation \
-                        (religion, recflds[person_ix[32]], source_refn, '',
-                         self.option['imp_citation_conf'], '',
-                         self.option['imp_citation_attr'])
+                        (religion, recflds[person_ix[32]], source_refn)
                 dummy, reli_ref = self.__create_event_and_ref \
                     (EventType.RELIGION, '', date, '', citation)
                 if reli_ref:
@@ -1487,9 +1492,7 @@ class ProgenParser(UpdateCallback):
             source_text = recflds[person_ix[45]]   # F45: ... SOUR TEXT
             info = recflds[person_ix[46]]   # F46: ... NOTE
             citation = self.__get_or_create_citation \
-                (source, recflds[person_ix[40]], source_refn, '',
-                 self.option['imp_citation_conf'], '',
-                 self.option['imp_citation_attr'])
+                (source, recflds[person_ix[40]], source_refn)
 
             if date or place or info or citation:
                 desc = source_text
@@ -1529,9 +1532,7 @@ class ProgenParser(UpdateCallback):
             source_text = recflds[person_ix[51]]   # F51: ... SOUR TEXT
             info = recflds[person_ix[52]]   # F52: ... INFO
             citation = self.__get_or_create_citation \
-                (source, recflds[person_ix[47]], source_refn, '',
-                 self.option['imp_citation_conf'], '',
-                 self.option['imp_citation_attr'])
+                (source, recflds[person_ix[47]], source_refn)
 
             if date or place or info or citation:
                 dummy, cremation_ref = self.__create_event_and_ref \
@@ -1552,9 +1553,7 @@ class ProgenParser(UpdateCallback):
             source_text = recflds[person_ix[57]]   # F51: ... SOUR TEXT
             info = recflds[person_ix[58]]   # F58: ... INFO
             citation = self.__get_or_create_citation \
-                (source, recflds[person_ix[53]], source_refn, '',
-                 self.option['imp_citation_conf'], '',
-                 self.option['imp_citation_attr'])
+                (source, recflds[person_ix[53]], source_refn)
 
             if date or place or info or citation:
                 dummy, buri_ref = self.__create_event_and_ref \
@@ -1664,9 +1663,7 @@ class ProgenParser(UpdateCallback):
                     citation = self.__get_or_create_citation \
                         (self.option['imp_source_title'],
                          recflds[family_ix[2]],   # F02: FAM CHAN DATE
-                         self.option['imp_citation_page'], pageref,
-                         self.option['imp_citation_conf'], '',
-                         self.option['imp_citation_attr'])
+                         self.option['imp_citation_page'], pageref)
                     if citation and citation.handle:
                         family.add_citation(citation.handle)
 
@@ -1686,9 +1683,7 @@ class ProgenParser(UpdateCallback):
                 source_text = recflds[family_ix[12]]   # F12: ... SOUR TEXT
                 info = recflds[family_ix[13]]   # F13: ... NOTE
                 citation = self.__get_or_create_citation \
-                    (source, recflds[family_ix[8]], source_refn, '',
-                     self.option['imp_citation_conf'], '',
-                     self.option['imp_citation_attr'])
+                    (source, recflds[family_ix[8]], source_refn)
 
                 if date or place or info or citation:
                     evt_type = _('Civil union')
@@ -1722,9 +1717,7 @@ class ProgenParser(UpdateCallback):
                 # F20: ... NOTE
                 info = recflds[family_ix[20]]
                 citation = self.__get_or_create_citation \
-                    (source, recflds[family_ix[14]], source_refn, '',
-                     self.option['imp_citation_conf'], '',
-                     self.option['imp_citation_attr'])
+                    (source, recflds[family_ix[14]], source_refn)
 
                 if date or place or info or citation:
                     desc = source_text
@@ -1754,9 +1747,7 @@ class ProgenParser(UpdateCallback):
                 source_text = recflds[family_ix[26]]
                 info = recflds[family_ix[27]]   # F27: ... NOTE
                 citation = self.__get_or_create_citation \
-                    (source, recflds[family_ix[21]], source_refn, '',
-                     self.option['imp_citation_conf'], '',
-                     self.option['imp_citation_attr'])
+                    (source, recflds[family_ix[21]], source_refn)
 
                 if date or place or info or citation:
                     desc = source_text
@@ -1794,9 +1785,7 @@ class ProgenParser(UpdateCallback):
                 # F35 ... INFO
                 info = recflds[family_ix[35]]
                 citation = self.__get_or_create_citation \
-                    (source, recflds[family_ix[28]], source_refn, '',
-                     self.option['imp_citation_conf'], '',
-                     self.option['imp_citation_attr'])
+                    (source, recflds[family_ix[28]], source_refn)
 
                 if wedding_date or place or info or citation:
                     desc = [_f for _f in [church, source_text] if _f]
@@ -1880,9 +1869,7 @@ class ProgenParser(UpdateCallback):
                 # F41: ... INFO
                 info = recflds[family_ix[41]]
                 citation = self.__get_or_create_citation \
-                    (source, recflds[family_ix[36]], source_refn, '',
-                     self.option['imp_citation_conf'], '',
-                     self.option['imp_citation_attr'])
+                    (source, recflds[family_ix[36]], source_refn)
 
                 if date or place or info or citation:
                     desc = source_text
