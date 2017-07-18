@@ -29,37 +29,30 @@ Provide the event view.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import logging
 _LOG = logging.getLogger(".plugins.eventview")
 
 #-------------------------------------------------------------------------
 #
-# GTK/Gnome modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import Gtk
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
-#-------------------------------------------------------------------------
-#
-# gramps modules
-#
-#-------------------------------------------------------------------------
-from gramps.gen.lib import Event
-from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
-from gramps.gui.views.treemodels import EventModel
+from gramps.gui.dialog import ErrorDialog, MultiSelectDialog, QuestionDialog
 from gramps.gen.errors import WindowActiveError
-from gramps.gui.views.bookmarks import EventBookmarks
-from gramps.gen.config import config
+from gramps.gen.lib import Event
+from gramps.gen.utils.string import data_recover_msg
+
 from gramps.gui.ddtargets import DdTargets
-from gramps.gui.dialog import ErrorDialog
 from gramps.gui.editors import EditEvent, DeleteEventQuery
 from gramps.gui.filters.sidebar import EventSidebarFilter
 from gramps.gui.merge import MergeEvent
 from gramps.gen.plug import CATEGORY_QR_EVENT
-from gramps.gui.dialog import ErrorDialog, MultiSelectDialog, QuestionDialog
-from gramps.gen.utils.string import data_recover_msg
+from gramps.gui.views.bookmarks import EventBookmarks
+from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
+from gramps.gui.views.treemodels import EventModel
 
 #-------------------------------------------------------------------------
 #
@@ -211,8 +204,8 @@ class EventView(ListView):
 
     def define_actions(self):
         ListView.define_actions(self)
-        self._add_action('FilterEdit', None, _('Event Filter Editor'),
-                        callback=self.filter_editor,)
+        self._add_action('FilterEdit', None,
+                         _('Event Filter Editor'), callback=self.filter_editor)
         self._add_action('QuickReport', None,
                          _("Quick View"), None, None, None)
 
