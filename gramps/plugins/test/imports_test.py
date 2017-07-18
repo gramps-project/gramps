@@ -26,7 +26,7 @@ import os
 import sys
 import re
 import locale
-from time import localtime, strptime
+from time import strptime
 from unittest.mock import patch
 #import logging
 
@@ -194,20 +194,12 @@ def make_tst_function(tstfile, file_name):
     the test function (a method, to be precise).
     """
 
-    @patch('gramps.plugins.db.dbapi.dbapi.time')
-    @patch('gramps.plugins.db.bsddb.write.time')
-    @patch('gramps.gen.utils.unknown.localtime')
-    @patch('gramps.gen.utils.unknown.time')
-    @patch('time.localtime')
-    def tst(self, mockptime, mocktime, mockltime, mockwtime, mockdtime):
+    @patch('time.time', side_effect=mock_time)
+    @patch('time.localtime', side_effect=mock_localtime)
+    def tst(self, mock_localtime, mock_time):
         """ This compares the import file with the expected result '.gramps'
         file.
         """
-        mockptime.side_effect = mock_localtime
-        mocktime.side_effect = mock_time
-        mockltime.side_effect = mock_localtime
-        mockwtime.side_effect = mock_time
-        mockdtime.side_effect = mock_time
         fn1 = os.path.join(TEST_DIR, tstfile)
         fn2 = os.path.join(TEST_DIR, (file_name + ".gramps"))
         fres = os.path.join(TEMP_DIR, (file_name + ".difs"))
