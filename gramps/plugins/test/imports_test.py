@@ -35,7 +35,6 @@ config.set('preferences.date-format', 0)
 from gramps.gen.db.utils import import_as_dict
 from gramps.gen.merge.diff import diff_dbs, to_struct
 from gramps.gen.simple import SimpleAccess
-from gramps.gen.utils.id import set_det_id
 from gramps.gen.user import User
 from gramps.gen.const import TEMP_DIR, DATA_DIR
 from gramps.test.test_util import capture
@@ -70,6 +69,15 @@ def mock_strftime(*args):
     Mock up a dummy to replace the varying 'time string results'
     """
     return strftime(args[0], (1999, 12, 25, 0, 0, 0, 5, 359, -1))
+
+rand = 0
+def mock_create_id():
+    """
+    Mock up a dummy to replace the varying 'time string results'
+    """
+    global rand
+    rand += 1
+    return "%08x%08x" % (rand, rand)
 
 class TestImports(unittest.TestCase):
     """The test class cases will be dynamically created at import time from
@@ -201,7 +209,14 @@ def make_tst_function(tstfile, file_name):
     """
     @patch('gramps.gen.utils.unknown.strftime', side_effect=mock_strftime)
     @patch('time.strftime', side_effect=mock_strftime)
-    def tst(self, mstrftime1, mstrftime2):
+    @patch('gramps.gen.utils.id.create_id', side_effect=mock_create_id)
+    @patch('gramps.gen.db.generic.create_id', side_effect=mock_create_id)
+    @patch('gramps.gen.utils.unknown.create_id', side_effect=mock_create_id)
+    @patch('gramps.plugins.importer.importxml.create_id', side_effect=mock_create_id)
+    @patch('gramps.plugins.importer.importcsv.create_id', side_effect=mock_create_id)
+    @patch('gramps.plugins.lib.libgedcom.create_id', side_effect=mock_create_id)
+    @patch('gramps.plugins.lib.libprogen.create_id', side_effect=mock_create_id)
+    def tst(self, *args):
         """ This compares the import file with the expected result '.gramps'
         file.
         """
@@ -224,12 +239,13 @@ def make_tst_function(tstfile, file_name):
         except OSError:
             pass
         #logger.info("\n**** %s ****", tstfile)
-        set_det_id(True)
+        global rand
+        rand = 0
         with capture(None) as output:
             self.user = User()
             self.database1 = import_as_dict(fn1, self.user,
                                             skp_imp_adds=skp_imp_adds)
-            set_det_id(True)
+            rand = 0
             self.database2 = import_as_dict(fn2, self.user)
         self.assertIsNotNone(self.database1,
                              "Unable to import file: %s" % fn1)

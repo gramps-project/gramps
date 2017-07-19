@@ -23,12 +23,12 @@ import os
 import sys
 import codecs
 import unittest
+from unittest.mock import patch
 import random
 
 from gramps.test.test_util import Gramps
 from gramps.gen.const import DATA_DIR
 from gramps.gen.user import User
-from gramps.gen.utils.id import set_det_id
 from gramps.gen import const
 from gramps.gen.utils.config import config
 
@@ -36,6 +36,14 @@ TREE_NAME = "Test_tooltest"
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 const.myrand = random.Random()
 
+rand = 0
+def mock_create_id():
+    """
+    Mock up a dummy to replace the varying 'time string results'
+    """
+    global rand
+    rand += 1
+    return "%08x%08x" % (rand, rand)
 
 def call(*args):
     """ Call Gramps to perform the action with out and err captured """
@@ -83,7 +91,8 @@ class ToolControl(unittest.TestCase):
         config.set('database.backend', self.db_backend)
         call("-y", "-q", "--remove", TREE_NAME)
 
-    def test_tcg_and_check_and_repair(self):
+    @patch('gramps.plugins.tool.check.create_id', side_effect=mock_create_id)
+    def test_tcg_and_check_and_repair(self, mock1):
         """
         Run a 'Test Case Generator' and 'Check & Repair Database' test.
         Note that the 'Test Case Generator" uses a lot of random numbers to
@@ -105,7 +114,6 @@ class ToolControl(unittest.TestCase):
         except:
             pass
         tst_file = os.path.join(TEST_DIR, "data.gramps")
-        set_det_id(True)
         # the following line assumes that TCG has run through init code, where
         # it puts 'myrand', a 'Random' class object, into the 'const' module so
         # we can access it here.
