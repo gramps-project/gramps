@@ -32339,7 +32339,7 @@ msgstr "Найти дубликаты"
 
 #: ../gramps/plugins/tool/finddupes.py:190
 msgid "Looking for duplicate people"
-msgstr "Поиск лиц имещих дубликаты"
+msgstr "Поиск лиц, имеющих дубликаты"
 
 #: ../gramps/plugins/tool/finddupes.py:199
 msgid "Pass 1: Building preliminary lists"
