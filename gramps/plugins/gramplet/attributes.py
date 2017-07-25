@@ -93,7 +93,7 @@ class PersonAttributes(Attributes):
     Displays the attributes of a person.
     """
     def db_changed(self):
-        self.dbstate.db.connect('person-update', self.update)
+        self.connect(self.dbstate.db, 'person-update', self.update)
 
     def active_changed(self, handle):
         self.update()
@@ -123,7 +123,7 @@ class EventAttributes(Attributes):
     Displays the attributes of an event.
     """
     def db_changed(self):
-        self.dbstate.db.connect('event-update', self.update)
+        self.connect(self.dbstate.db, 'event-update', self.update)
         self.connect_signal('Event', self.update)
 
     def update_has_data(self):
@@ -151,7 +151,7 @@ class FamilyAttributes(Attributes):
     Displays the attributes of an event.
     """
     def db_changed(self):
-        self.dbstate.db.connect('family-update', self.update)
+        self.connect(self.dbstate.db, 'family-update', self.update)
         self.connect_signal('Family', self.update)
 
     def update_has_data(self):
@@ -179,7 +179,7 @@ class MediaAttributes(Attributes):
     Displays the attributes of a media object.
     """
     def db_changed(self):
-        self.dbstate.db.connect('media-update', self.update)
+        self.connect(self.dbstate.db, 'media-update', self.update)
         self.connect_signal('Media', self.update)
 
     def update_has_data(self):
@@ -207,7 +207,7 @@ class SourceAttributes(Attributes):
     Displays the attributes of a source object.
     """
     def db_changed(self):
-        self.dbstate.db.connect('source-update', self.update)
+        self.connect(self.dbstate.db, 'source-update', self.update)
         self.connect_signal('Source', self.update)
 
     def update_has_data(self):
@@ -235,7 +235,7 @@ class CitationAttributes(Attributes):
     Displays the attributes of a citation object.
     """
     def db_changed(self):
-        self.dbstate.db.connect('citation-update', self.update)
+        self.connect(self.dbstate.db, 'citation-update', self.update)
         self.connect_signal('Citation', self.update)
 
     def update_has_data(self):

@@ -30,6 +30,8 @@ Source Attribute class for Gramps.
 #-------------------------------------------------------------------------
 from .attribute import AttributeRoot
 from .srcattrtype import SrcAttributeType
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -65,10 +67,13 @@ class SrcAttribute(AttributeRoot):
         """
         return {
             "type": "object",
+            "title": _("Attribute"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean"},
+                "private": {"type": "boolean",
+                            "title": _("Private")},
                 "type": SrcAttributeType.get_schema(),
-                "value": {"type": "string"}
+                "value": {"type": "string",
+                          "title": _("Value")}
             }
         }

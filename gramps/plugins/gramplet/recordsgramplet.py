@@ -43,8 +43,8 @@ class RecordsGramplet(Gramplet):
         self.set_text(_("No Family Tree loaded."))
 
     def db_changed(self):
-        self.dbstate.db.connect('person-rebuild', self.update)
-        self.dbstate.db.connect('family-rebuild', self.update)
+        self.connect(self.dbstate.db, 'person-rebuild', self.update)
+        self.connect(self.dbstate.db, 'family-rebuild', self.update)
 
     def main(self):
         self.set_text(_("Processing...") + "\n")

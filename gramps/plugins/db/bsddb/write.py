@@ -1640,7 +1640,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 if data is not None:
                     txn.delete(sname)
                 if group is not None:
-                    txn.put(sname, group)
+                    txn.put(sname, group.encode('utf-8'))
             if group is None:
                 grouppar = ''
             else:
@@ -2034,11 +2034,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.txn = None
         self.env.log_flush()
         if not transaction.batch:
-            emit = self.__emit
-            for obj_type, obj_name in KEY_TO_NAME_MAP.items():
-                emit(transaction, obj_type, TXNADD, obj_name, '-add')
-                emit(transaction, obj_type, TXNUPD, obj_name, '-update')
-                emit(transaction, obj_type, TXNDEL, obj_name, '-delete')
+            # do deletes and adds first
+            for trans_type in [TXNDEL, TXNADD, TXNUPD]:
+                for obj_type in range(11):
+                    if obj_type != REFERENCE_KEY:
+                        self.__emit(transaction, obj_type, trans_type)
         self.transaction = None
         transaction.clear()
         self.undodb.commit(transaction, msg)
@@ -2051,21 +2051,23 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                       hex(id(self)),
                       transaction.get_description()))
 
-    def __emit(self, transaction, obj_type, trans_type, obj, suffix):
+    def __emit(self, transaction, obj_type, trans_type):
         """
         Define helper function to do the actual emits
         """
         if (obj_type, trans_type) in transaction:
             if trans_type == TXNDEL:
                 handles = [handle.decode('utf-8') for handle, data in
-                            transaction[(obj_type, trans_type)]]
+                           transaction[(obj_type, trans_type)]]
             else:
                 handles = [handle.decode('utf-8') for handle, data in
-                            transaction[(obj_type, trans_type)]
-                            if (handle, None) not in transaction[(obj_type,
-                                                                  TXNDEL)]]
+                           transaction[(obj_type, trans_type)]
+                           if (handle, None) not in transaction[(obj_type,
+                                                                 TXNDEL)]]
             if handles:
-                self.emit(obj + suffix, (handles, ))
+                self.emit(KEY_TO_NAME_MAP[obj_type] +
+                          ['-add', '-update', '-delete'][trans_type],
+                          (handles, ))
 
     def transaction_abort(self, transaction):
         """

@@ -38,6 +38,8 @@ from .notebase import NoteBase
 from .refbase import RefBase
 from .attrbase import AttributeBase
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -81,24 +83,31 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
         from .attribute import Attribute
         return {
             "type": "object",
+            "title": _("Media ref"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean"},
+                "private": {"type": "boolean",
+                            "title": _("Private")},
                 "citation_list": {"type": "array",
+                                  "title": _("Citations"),
                                   "items": {"type": "string",
                                             "maxLength": 50}},
                 "note_list": {"type": "array",
+                              "title": _("Notes"),
                               "items": {"type": "string",
                                         "maxLength": 50}},
                 "attribute_list": {"type": "array",
+                                   "title": _("Attributes"),
                                    "items": Attribute.get_schema()},
                 "ref": {"type": "string",
+                        "title": _("Handle"),
                         "maxLength": 50},
                 "rect": {"oneOf": [{"type": "null"},
                                    {"type": "array",
                                     "items": {"type": "integer"},
                                     "minItems": 4,
-                                    "maxItems": 4}]}
+                                    "maxItems": 4}],
+                         "title": _("Region")}
             }
         }
 

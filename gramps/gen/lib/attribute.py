@@ -36,6 +36,8 @@ from .citationbase import CitationBase
 from .notebase import NoteBase
 from .attrtype import AttributeType
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -231,17 +233,22 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
         """
         return {
             "type": "object",
+            "title": _("Attribute"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean"},
+                "private": {"type": "boolean",
+                            "title": _("Private")},
                 "citation_list": {"type": "array",
+                                  "title": _("Citations"),
                                   "items": {"type": "string",
                                             "maxLength": 50}},
                 "note_list": {"type": "array",
                               "items": {"type": "string",
-                                        "maxLength": 50}},
+                                        "maxLength": 50},
+                              "title": _("Notes")},
                 "type": AttributeType.get_schema(),
-                "value": {"type": "string"}
+                "value": {"type": "string",
+                          "title": _("Value")}
             }
         }
 

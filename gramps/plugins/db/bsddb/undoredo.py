@@ -51,7 +51,8 @@ _ = glocale.translation.gettext
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.db.dbconst import *
+from gramps.gen.db.dbconst import (REFERENCE_KEY, KEY_TO_NAME_MAP, TXNDEL,
+                                   TXNADD, TXNUPD)
 from . import BSDDBTxn
 from gramps.gen.errors import DbError
 
@@ -226,8 +227,9 @@ class DbUndo:
         txn = self.undoq.pop()
         self.redoq.append(txn)
         transaction = txn
-        db = self.db
         subitems = transaction.get_recnos(reverse=True)
+        # sigs[obj_type][trans_type]
+        sigs = [[[] for trans_type in range(3)] for key in range(11)]
 
         # Process all records in the transaction
         for record_id in subitems:
@@ -238,29 +240,25 @@ class DbUndo:
                 self.undo_reference(old_data, handle, self.mapbase[key])
             else:
                 self.undo_data(old_data, handle, self.mapbase[key])
+                handle = handle.decode('utf-8')
+                sigs[key][trans_type].append(handle)
         # now emit the signals
-        for record_id in subitems:
-            (key, trans_type, handle, old_data, new_data) = \
-                    pickle.loads(self.undodb[record_id])
-
-            if key != REFERENCE_KEY:
-                self.undo_signals(trans_type, handle,
-                                  db.emit, _SIGBASE[key], True)
+        self.undo_sigs(sigs, True)
 
         # Notify listeners
-        if db.undo_callback:
+        if self.db.undo_callback:
             if self.undo_count > 0:
-                db.undo_callback(_("_Undo %s")
-                                   % self.undoq[-1].get_description())
+                self.db.undo_callback(_("_Undo %s")
+                                      % self.undoq[-1].get_description())
             else:
-                db.undo_callback(None)
+                self.db.undo_callback(None)
 
-        if db.redo_callback:
-            db.redo_callback(_("_Redo %s")
-                                   % transaction.get_description())
+        if self.db.redo_callback:
+            self.db.redo_callback(_("_Redo %s")
+                                  % transaction.get_description())
 
-        if update_history and db.undo_history_callback:
-            db.undo_history_callback()
+        if update_history and self.db.undo_history_callback:
+            self.db.undo_history_callback()
         return True
 
     @undoredo
@@ -272,8 +270,9 @@ class DbUndo:
         txn = self.redoq.pop()
         self.undoq.append(txn)
         transaction = txn
-        db = self.db
         subitems = transaction.get_recnos()
+        # sigs[obj_type][trans_type]
+        sigs = [[[] for trans_type in range(3)] for key in range(11)]
 
         # Process all records in the transaction
         for record_id in subitems:
@@ -284,29 +283,26 @@ class DbUndo:
                 self.undo_reference(new_data, handle, self.mapbase[key])
             else:
                 self.undo_data(new_data, handle, self.mapbase[key])
-        # Process all signals in the transaction
-        for record_id in subitems:
-            (key, trans_type, handle, old_data, new_data) = \
-                pickle.loads(self.undodb[record_id])
+                handle = handle.decode('utf-8')
+                sigs[key][trans_type].append(handle)
+        # now emit the signals
+        self.undo_sigs(sigs, False)
 
-            if key != REFERENCE_KEY:
-                self.undo_signals(trans_type, handle,
-                                  db.emit, _SIGBASE[key], False)
         # Notify listeners
-        if db.undo_callback:
-            db.undo_callback(_("_Undo %s")
-                                   % transaction.get_description())
+        if self.db.undo_callback:
+            self.db.undo_callback(_("_Undo %s")
+                                  % transaction.get_description())
 
-        if db.redo_callback:
+        if self.db.redo_callback:
             if self.redo_count > 1:
                 new_transaction = self.redoq[-2]
-                db.redo_callback(_("_Redo %s")
-                                   % new_transaction.get_description())
+                self.db.redo_callback(_("_Redo %s")
+                                      % new_transaction.get_description())
             else:
-                db.redo_callback(None)
+                self.db.redo_callback(None)
 
-        if update_history and db.undo_history_callback:
-            db.undo_history_callback()
+        if update_history and self.db.undo_history_callback:
+            self.db.undo_history_callback()
         return True
 
     def undo_reference(self, data, handle, db_map):
@@ -337,19 +333,34 @@ class DbUndo:
             self.db._log_error()
             raise DbError(msg)
 
-    def undo_signals(self, trans_type, handle, emit, signal_root, reverse):
+    def undo_sigs(self, sigs, undo):
         """
-        Helper method to undo/redo the changes made
+        Helper method to undo/redo the signals for changes made
+        We want to do deletes and adds first
+        Note that if 'undo' we swap emits
         """
-        if ((not reverse) and trans_type == TXNADD) \
-                or (reverse and trans_type == TXNDEL):
-            typ = '-add'
-        elif not reverse and trans_type == TXNDEL \
-                or reverse and trans_type == TXNADD:
-            typ = '-delete'
-        else:   # TXNUPD
-            typ = '-update'
-        emit(signal_root + typ, ([handle.decode('utf-8')],))
+        for trans_type in [TXNDEL, TXNADD, TXNUPD]:
+            for obj_type in range(11):
+                handles = sigs[obj_type][trans_type]
+                if handles:
+                    if not undo and trans_type == TXNDEL \
+                            or undo and trans_type == TXNADD:
+                        typ = '-delete'
+                    else:
+                        # don't update a handle if its been deleted, and note
+                        # that 'deleted' handles are in the 'add' list if we
+                        # are undoing
+                        handles = [handle for handle in handles
+                                   if handle not in
+                                   sigs[obj_type][TXNADD if undo else TXNDEL]]
+                        if ((not undo) and trans_type == TXNADD) \
+                                or (undo and trans_type == TXNDEL):
+                            typ = '-add'
+                        else:   # TXNUPD
+                            typ = '-update'
+                    if handles:
+                        self.db.emit(KEY_TO_NAME_MAP[obj_type] + typ,
+                                     (handles,))
 
     undo_count = property(lambda self:len(self.undoq))
     redo_count = property(lambda self:len(self.redoq))

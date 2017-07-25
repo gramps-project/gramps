@@ -2650,20 +2650,15 @@ class BasePage:
                                 mime_type = media.get_mime_type()
                                 if mime_type:
                                     if mime_type.startswith("image/"):
-                                        real_path, newpath = \
+                                        real_path, new_path = \
                                             self.report.prepare_copy_media(
                                                 media)
                                         newpath = self.report.build_url_fname(
-                                            newpath, uplink=self.uplink)
-                                        dest_dir = os.path.dirname(
-                                            self.report.cur_fname)
-                                        if dest_dir:
-                                            newpath = os.path.join(dest_dir,
-                                                                   newpath)
+                                            new_path, uplink=self.uplink)
                                         self.report.copy_file(
                                             media_path_full(self.r_db,
                                                             media.get_path()),
-                                            newpath)
+                                            new_path)
 
                                         tmp += Html("li",
                                                     self.media_link(
@@ -4058,6 +4053,10 @@ class PlacePages(BasePage):
                     latitude, longitude = conv_lat_lon(place.get_latitude(),
                                                        place.get_longitude(),
                                                        "D.D8")
+                    if not longitude:
+                        longitude = 0.0
+                    if not latitude:
+                        latitude = 0.0
                     placetitle = place_name
 
                     # add narrative-maps CSS...
@@ -4127,8 +4126,7 @@ class PlacePages(BasePage):
                                 canvas += jsc
                                 param1 = xml_lang()[3:5].lower()
                                 jsc += MARKER_PATH % marker_path
-                                jsc += OSM_MARKERS % ([[float(longitude),
-                                                        float(latitude),
+                                jsc += OSM_MARKERS % ([[longitude, latitude,
                                                         placetitle]],
                                                      longitude, latitude, 10)
 

@@ -54,7 +54,7 @@ from gramps.gen.const import URL_MANUAL_PAGE
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Keybindings' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('11')
+WIKI_HELP_SEC = '11'
 
 #-------------------------------------------------------------------------
 #

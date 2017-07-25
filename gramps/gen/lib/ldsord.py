@@ -167,21 +167,31 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         from .date import Date
         return {
             "type": "object",
+            "title": _("LDS Ordinance"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
                 "citation_list": {"type": "array",
+                                  "title": _("Citations"),
                                   "items": {"type": "string",
                                             "maxLength": 50}},
                 "note_list": {"type": "array",
+                              "title": _("Notes"),
                               "items": {"type": "string",
                                         "maxLength": 50}},
-                "date": {"oneOf": [{"type": "null"}, Date.get_schema()]},
-                "type": {"type": "integer"},
-                "place": {"type": "string"},
-                "famc": {"type": ["null", "string"]},
-                "temple": {"type": "string"},
-                "status": {"type": "integer"},
-                "private": {"type": "boolean"}
+                "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
+                         "title": _("Date")},
+                "type": {"type": "integer",
+                         "title": _("Type")},
+                "place": {"type": "string",
+                          "title": _("Place")},
+                "famc": {"type": ["null", "string"],
+                         "title": _("Family")},
+                "temple": {"type": "string",
+                           "title": _("Temple")},
+                "status": {"type": "integer",
+                           "title": _("Status")},
+                "private": {"type": "boolean",
+                            "title": _("Private")}
             }
         }
 

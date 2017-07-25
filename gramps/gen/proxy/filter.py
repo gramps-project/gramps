@@ -33,6 +33,7 @@ Proxy class for the Gramps databases. Apply filter
 from .proxybase import ProxyDbBase
 from ..lib import (Date, Person, Name, Surname, NameOriginType, Family, Source,
                    Citation, Event, Media, Place, Repository, Note, Tag)
+from ..const import GRAMPS_LOCALE as glocale
 
 class FilterProxyDb(ProxyDbBase):
     """
@@ -385,10 +386,15 @@ class FilterProxyDb(ProxyDbBase):
         else:
             return None
 
-    def get_person_handles(self, sort_handles=False):
+    def get_person_handles(self, sort_handles=False, locale=glocale):
         """
         Return a list of database handles, one handle for each Person in
-        the database. If sort_handles is True, the list is sorted by surnames
+        the database.
+
+        :param sort_handles: If True, the list is sorted by surnames.
+        :type sort_handles: bool
+        :param locale: The locale to use for collation.
+        :type locale: A GrampsLocale object.
         """
         # FIXME: plist is not a sorted list of handles
         return list(self.plist)
@@ -426,10 +432,15 @@ class FilterProxyDb(ProxyDbBase):
         """
         return map(self.get_event_from_handle, self.elist)
 
-    def get_family_handles(self, sort_handles=False):
+    def get_family_handles(self, sort_handles=False, locale=glocale):
         """
         Return a list of database handles, one handle for each Family in
-        the database. If sort_handles is True, the list is sorted by surnames
+        the database.
+
+        :param sort_handles: If True, the list is sorted by surnames.
+        :type sort_handles: bool
+        :param locale: The locale to use for collation.
+        :type locale: A GrampsLocale object.
         """
         # FIXME: flist is not a sorted list of handles
         return list(self.flist)

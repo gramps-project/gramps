@@ -57,9 +57,6 @@ class CalendarGramplet(Gramplet):
         self.gui.get_container_widget().add(vbox)
         vbox.show_all()
 
-    def post_init(self):
-        self.disconnect("active-changed")
-
     def double_click(self, obj):
         """
         Bring up events on this day.

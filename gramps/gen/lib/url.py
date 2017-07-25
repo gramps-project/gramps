@@ -41,6 +41,8 @@ from .secondaryobj import SecondaryObject
 from .privacybase import PrivacyBase
 from .urltype import UrlType
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -83,11 +85,15 @@ class Url(SecondaryObject, PrivacyBase):
         """
         return {
             "type": "object",
+            "title": _("Url"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "private": {"type": "boolean"},
-                "path": {"type": "string"},
-                "desc": {"type": "string"},
+                "private": {"type": "boolean",
+                            "title": _("Private")},
+                "path": {"type": "string",
+                         "title": _("Path")},
+                "desc": {"type": "string",
+                         "title": _("Description")},
                 "type": UrlType.get_schema()
             }
         }

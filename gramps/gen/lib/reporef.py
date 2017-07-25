@@ -36,6 +36,8 @@ from .notebase import NoteBase
 from .refbase import RefBase
 from .srcmediatype import SourceMediaType
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -91,16 +93,21 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         """
         return {
             "type": "object",
+            "title": _("Repository ref"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
                 "note_list": {"type": "array",
+                              "title": _("Notes"),
                               "items": {"type": "string",
                                         "maxLength": 50}},
                 "ref": {"type": "string",
+                        "title": _("Handle"),
                         "maxLength": 50},
-                "call_number": {"type": "string"},
+                "call_number": {"type": "string",
+                                "title": _("Call Number")},
                 "media_type": SourceMediaType.get_schema(),
-                "private": {"type": "boolean"}
+                "private": {"type": "boolean",
+                            "title": _("Private")}
             }
         }
 

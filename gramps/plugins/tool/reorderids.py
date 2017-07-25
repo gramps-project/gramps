@@ -230,7 +230,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
         self.prim_methods, self.obj_methods = {}, {}
         for prim_obj, prim_objs in self.xobjects:
             class_type = prim_obj.title()
-            table = "self.dbstate.%s_map" % prim_obj
+            iter_handles = "self.dbstate.iter_%s_handles" % prim_obj
             get_number_obj = "self.dbstate.get_number_of_%s" % prim_objs
             prefix_fmt = "self.dbstate.%s_prefix" % prim_obj
             get_from_id = "self.dbstate.get_%s_from_gramps_id" % prim_obj
@@ -240,7 +240,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
 
             self.prim_methods[prim_obj] = (eval(prefix_fmt), eval(get_number_obj)(),
                                            eval(next_from_id)())
-            self.obj_methods[prim_obj] = (eval(class_type), eval(table), eval(commit),
+            self.obj_methods[prim_obj] = (eval(class_type), eval(iter_handles), eval(commit),
                                           eval(get_from_id), eval(get_from_handle),
                                           eval(next_from_id))
 
@@ -549,7 +549,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
         dup_ids = []   # list of duplicate identifiers
         new_ids = {}   # list of new identifiers
 
-        class_type, table, commit, get_from_id, get_from_handle, next_from_id = \
+        class_type, iter_handles, commit, get_from_id, get_from_handle, next_from_id = \
             self.obj_methods[prim_obj]
 
         prefix_fmt = self.obj_values[prim_obj].get_fmt()
@@ -561,7 +561,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
         formatmatch = _parseformat.match(prefix_fmt)
         index_max = int("9" * int(formatmatch.groups()[0]))
 
-        for handle in list(table.keys()):
+        for handle in iter_handles():
             # Update progress
             if self.uistate:
                 self.progress.step()
@@ -569,9 +569,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
                 self.update()
 
             # extract basic data out of the database
-            table_data = table[handle]
-            obj = class_type()
-            obj.unserialize(table_data)
+            obj = get_from_handle(handle)
 
             act_id = obj.get_gramps_id()
             if change:

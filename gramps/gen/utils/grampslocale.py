@@ -33,6 +33,7 @@ import codecs
 import locale
 import collections
 import logging
+from binascii import hexlify
 
 LOG = logging.getLogger("." + __name__)
 LOG.propagate = True
@@ -920,8 +921,9 @@ class GrampsLocale:
         """
 
         if HAVE_ICU and self.collator:
-            #ICU can digest strings and unicode
-            return self.collator.getCollationKey(string).getByteArray()
+            # ICU can digest strings and unicode
+            # Use hexlify() as to make a consistent string, fixing bug #10077
+            return hexlify(self.collator.getCollationKey(string).getByteArray()).decode()
         else:
             if isinstance(string, bytes):
                 string = string.decode("utf-8", "replace")
@@ -932,6 +934,12 @@ class GrampsLocale:
                          self.collation, str(err))
                 return string
             return key
+
+    def get_collation(self):
+        """
+        Return the collation without any character encoding.
+        """
+        return self.collation.split('.')[0]
 
     def strcoll(self, string1, string2):
         """

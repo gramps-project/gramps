@@ -32,6 +32,8 @@ from .secondaryobj import SecondaryObject
 from .refbase import RefBase
 from .datebase import DateBase
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -82,11 +84,14 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         from .date import Date
         return {
             "type": "object",
+            "title": _("Place ref"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
                 "ref": {"type": "string",
+                        "title": _("Handle"),
                         "maxLength": 50},
-                "date": {"oneOf": [{"type": "null"}, Date.get_schema()]}
+                "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
+                         "title": _("Date")}
             }
         }
 

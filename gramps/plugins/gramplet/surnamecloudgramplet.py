@@ -70,11 +70,11 @@ class SurnameCloudGramplet(Gramplet):
         self.set_text(_("No Family Tree loaded."))
 
     def db_changed(self):
-        self.dbstate.db.connect('person-add', self.update)
-        self.dbstate.db.connect('person-delete', self.update)
-        self.dbstate.db.connect('person-update', self.update)
-        self.dbstate.db.connect('person-rebuild', self.update)
-        self.dbstate.db.connect('family-rebuild', self.update)
+        self.connect(self.dbstate.db, 'person-add', self.update)
+        self.connect(self.dbstate.db, 'person-delete', self.update)
+        self.connect(self.dbstate.db, 'person-update', self.update)
+        self.connect(self.dbstate.db, 'person-rebuild', self.update)
+        self.connect(self.dbstate.db, 'family-rebuild', self.update)
 
     def on_load(self):
         if len(self.gui.data) == 3:

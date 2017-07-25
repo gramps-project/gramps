@@ -660,7 +660,8 @@ class FamilyGroup(Report):
                         self.dump_family(child_family_handle, (generation+1))
 
     def write_report(self):
-        flist = self.db.get_family_handles(sort_handles=True)
+        flist = self.db.get_family_handles(sort_handles=True,
+                                           locale=self._locale)
         if not self.filter:
             fam_list = flist
         else:

@@ -188,7 +188,7 @@ class GeoPersonEvents(GeoEvents):
     Displays the events for a person.
     """
     def db_changed(self):
-        self.dbstate.db.connect('person-update', self.update)
+        self.connect(self.dbstate.db, 'person-update', self.update)
 
     def active_changed(self, handle):
         self.update()
@@ -256,7 +256,7 @@ class GeoFamilyEvents(GeoEvents):
     Displays the events for a family.
     """
     def db_changed(self):
-        self.dbstate.db.connect('family-update', self.update)
+        self.connect(self.dbstate.db, 'family-update', self.update)
         self.connect_signal('Family', self.update)
 
     def update_has_data(self):
