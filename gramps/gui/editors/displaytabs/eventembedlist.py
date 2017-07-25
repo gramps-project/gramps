@@ -139,8 +139,9 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                 except ValueError:
                     break
             #remove the deleted workgroup events from the object
-            for index in indexlist.reverse():
-                del refs[index]
+            if len(indexlist) > 0:
+                for index in indexlist.reverse():
+                    del refs[index]
         #now rebuild the display tab
         self.rebuild_callback()
 
@@ -152,6 +153,14 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         return 'gramps-event'
 
     def get_data(self):
+        """ provides / reloads data """
+        if self.reload:
+            # reload object/family form DBase (may changed, eg. Event-Clone)
+            del self.obj.event_ref_list[:]   # erase event reference list
+            family = self.dbstate.db.get_family_from_gramps_id(self.obj.gramps_id)
+            self.obj.event_ref_list = family.get_event_ref_list()
+            self.reload = False
+
         #family events
         if not self._data or self.changed:
             self._data = [self.obj.get_event_ref_list()]

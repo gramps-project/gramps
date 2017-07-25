@@ -98,7 +98,7 @@ class EventView(ListView):
     EDIT_MSG    = _("Edit the selected event")
     DEL_MSG     = _("Delete the selected event")
     MERGE_MSG   = _("Merge the selected events")
-    CLONE_MSG   = _("Clones the selected event")
+    CLONE_MSG   = _("Clone the selected event")
     FILTER_TYPE = "Event"
     QR_CATEGORY = CATEGORY_QR_EVENT
 

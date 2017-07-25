@@ -67,6 +67,14 @@ class PersonEventEmbedList(EventEmbedList):
                                 build_model=EventRefModel, **kwargs)
 
     def get_data(self):
+        """ provides / reloads data """
+        if self.reload:
+            # reload object/person form DBase (may changed, eg. Event-Clone)
+            del self.obj.event_ref_list[:]   # erase event reference list
+            person = self.dbstate.db.get_person_from_gramps_id(self.obj.gramps_id)
+            self.obj.event_ref_list = person.get_event_ref_list()
+            self.reload = False
+
         if not self._data or self.changed:
             self._data = [self.obj.get_event_ref_list()]
             self._groups = [(self.obj.get_handle(), self._WORKNAME, '')]

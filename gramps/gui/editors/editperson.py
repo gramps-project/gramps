@@ -272,6 +272,7 @@ class EditPerson(EditPrimary):
         """
         self._add_db_signal('person-rebuild', self._do_close)
         self._add_db_signal('person-delete', self.check_for_close)
+        self._add_db_signal('person-update', self.person_change)
         self._add_db_signal('family-rebuild', self.family_change)
         self._add_db_signal('family-delete', self.family_change)
         self._add_db_signal('family-update', self.family_change)
@@ -279,6 +280,12 @@ class EditPerson(EditPrimary):
         self._add_db_signal('event-update', self.event_updated)
         self._add_db_signal('event-rebuild', self.event_updated)
         self._add_db_signal('event-delete', self.event_updated)
+
+    def person_change(self, handle_list=[]):
+        """
+        Callback for person change signals.
+        """
+        self.event_list.rebuild_callback(reload=True)
 
     def family_change(self, handle_list=[]):
         """
@@ -816,6 +823,7 @@ class EditPerson(EditPrimary):
         Save the data.
         """
         self.ok_button.set_sensitive(False)
+
         if self.object_is_empty():
             ErrorDialog(_("Cannot save person"),
                         _("No data exists for this person. Please "
@@ -823,6 +831,7 @@ class EditPerson(EditPrimary):
                         parent=self.window)
             self.ok_button.set_sensitive(True)
             return
+
         # fix surname problems
         for name in [self.obj.get_primary_name()] + self.obj.get_alternate_names():
             if len(name.get_surname_list()) > 1:
@@ -852,8 +861,12 @@ class EditPerson(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        self._check_for_unknown_gender()
+        # We disconnect the callbacks to all signals we connected earlier.
+        # This prevents the signals originating in any of the following
+        # commits from being caught by us again.
+        self._cleanup_callbacks()
 
+        self._check_for_unknown_gender()
         self.db.set_birth_death_index(self.obj)
 
         if not self.obj.handle:
@@ -861,14 +874,14 @@ class EditPerson(EditPrimary):
                         self.name_displayer.display(self.obj),
                        self.db) as trans:
                 self.db.add_person(self.obj, trans)
-        else:
-            if self.data_has_changed():
-                with DbTxn(_("Edit Person (%s)") % \
-                            self.name_displayer.display(self.obj),
-                           self.db) as trans:
-                    if not self.obj.get_gramps_id():
-                        self.obj.set_gramps_id(self.db.find_next_person_gramps_id())
-                    self.db.commit_person(self.obj, trans)
+
+        elif self.data_has_changed():
+            with DbTxn(_("Edit Person (%s)") % \
+                        self.name_displayer.display(self.obj),
+                       self.db) as trans:
+                if not self.obj.get_gramps_id():
+                    self.obj.set_gramps_id(self.db.find_next_person_gramps_id())
+                self.db.commit_person(self.obj, trans)
 
         self._do_close()
         if self.callback:
