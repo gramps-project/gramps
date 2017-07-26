@@ -320,7 +320,7 @@ class EditPerson(EditPrimary):
     def event_updated(self, obj):
         #place in event might have changed, or person event shown in the list
         # we just rebuild the view always
-        self.event_list.rebuild_callback()
+        self.event_list.rebuild_callback(reload=not self.event_list.changed)
 
     def _validate_call(self, widget, text):
         """ a callname must be a part of the given name, see if this is the
