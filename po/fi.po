@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps50_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-22 21:07+0300\n"
-"PO-Revision-Date: 2017-07-25 11:35+0300\n"
+"PO-Revision-Date: 2017-07-26 19:21+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -2854,7 +2854,7 @@ msgstr "ennen "
 #. put the space ahead of the word instead of after it
 #: ../gramps/gen/datehandler/_datestrings.py:228
 msgid "date modifier|after "
-msgstr "jälkeen"
+msgstr " jälkeen"
 
 #. TRANSLATORS: if the modifier is after the date
 #. put the space ahead of the word instead of after it
@@ -36039,14 +36039,12 @@ msgstr "Laskee juhlapyhiä vuodeksi %04d"
 msgid ""
 "the \"WebCal\" will be the potential-email Subject|Created for "
 "%(html_email_author_start)sWebCal%(html_email_author_end)s"
-msgstr ""
-"\"Nettikalenteri\" on mahdollinen sähköpostin aihe | Tuottaja "
-"%(html_email_author_start)sWebCal%(html_email_author_end)s"
+msgstr "Tuottaja %(html_email_author_start)sWebCal%(html_email_author_end)s"
 
 #: ../gramps/plugins/webreport/webcal.py:494
 #, python-format
 msgid "Created for %(author)s"
-msgstr "Luodaan %(author)s"
+msgstr "Tuottaja %(author)s"
 
 #. Add a link for year_glance() if requested
 #: ../gramps/plugins/webreport/webcal.py:575
