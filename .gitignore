@@ -23,5 +23,8 @@ test/data
 Thumbs.db
 ehthumbs.db
 
+# IDE
+.idea/
+
 # Glade temp files
 *~
