@@ -39263,4 +39263,4 @@ msgstr "Jokio stiliaus"
 #~ "Rinkmena nebus įkelta"
 
 #~ msgid "Import file contains unacceptable XML namespace version"
-#~ msgstr "Įkeliamą rinkmeną sudaro nepriimtina XML vard
+#~ msgstr "Įkeliamą rinkmeną sudaro nepriimtina XML vard"
