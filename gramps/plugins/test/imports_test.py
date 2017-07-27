@@ -26,7 +26,7 @@ import os
 import sys
 import re
 import locale
-from time import localtime, strptime
+from time import strptime, strftime
 from unittest.mock import patch
 #import logging
 
@@ -35,7 +35,6 @@ config.set('preferences.date-format', 0)
 from gramps.gen.db.utils import import_as_dict
 from gramps.gen.merge.diff import diff_dbs, to_struct
 from gramps.gen.simple import SimpleAccess
-from gramps.gen.utils.id import set_det_id
 from gramps.gen.user import User
 from gramps.gen.const import TEMP_DIR, DATA_DIR
 from gramps.test.test_util import capture
@@ -64,6 +63,21 @@ def mock_localtime(*args):
     Mock up a dummy to replace the varying 'time string results'
     """
     return strptime("25 Dec 1999", "%d %b %Y")
+
+def mock_strftime(*args):
+    """
+    Mock up a dummy to replace the varying 'time string results'
+    """
+    return strftime(args[0], (1999, 12, 25, 0, 0, 0, 5, 359, -1))
+
+rand = 0
+def mock_create_id():
+    """
+    Mock up a dummy to replace the varying 'time string results'
+    """
+    global rand
+    rand += 1
+    return "%08x%08x" % (rand, rand)
 
 class TestImports(unittest.TestCase):
     """The test class cases will be dynamically created at import time from
@@ -193,21 +207,19 @@ def make_tst_function(tstfile, file_name):
     """ This is here to support the dynamic function creation.  This creates
     the test function (a method, to be precise).
     """
-
-    @patch('gramps.plugins.db.dbapi.dbapi.time')
-    @patch('gramps.plugins.db.bsddb.write.time')
-    @patch('gramps.gen.utils.unknown.localtime')
-    @patch('gramps.gen.utils.unknown.time')
-    @patch('time.localtime')
-    def tst(self, mockptime, mocktime, mockltime, mockwtime, mockdtime):
+    @patch('gramps.gen.utils.unknown.strftime', side_effect=mock_strftime)
+    @patch('time.strftime', side_effect=mock_strftime)
+    @patch('gramps.gen.utils.id.create_id', side_effect=mock_create_id)
+    @patch('gramps.gen.db.generic.create_id', side_effect=mock_create_id)
+    @patch('gramps.gen.utils.unknown.create_id', side_effect=mock_create_id)
+    @patch('gramps.plugins.importer.importxml.create_id', side_effect=mock_create_id)
+    @patch('gramps.plugins.importer.importcsv.create_id', side_effect=mock_create_id)
+    @patch('gramps.plugins.lib.libgedcom.create_id', side_effect=mock_create_id)
+    @patch('gramps.plugins.lib.libprogen.create_id', side_effect=mock_create_id)
+    def tst(self, *args):
         """ This compares the import file with the expected result '.gramps'
         file.
         """
-        mockptime.side_effect = mock_localtime
-        mocktime.side_effect = mock_time
-        mockltime.side_effect = mock_localtime
-        mockwtime.side_effect = mock_time
-        mockdtime.side_effect = mock_time
         fn1 = os.path.join(TEST_DIR, tstfile)
         fn2 = os.path.join(TEST_DIR, (file_name + ".gramps"))
         fres = os.path.join(TEMP_DIR, (file_name + ".difs"))
@@ -227,12 +239,13 @@ def make_tst_function(tstfile, file_name):
         except OSError:
             pass
         #logger.info("\n**** %s ****", tstfile)
-        set_det_id(True)
+        global rand
+        rand = 0
         with capture(None) as output:
             self.user = User()
             self.database1 = import_as_dict(fn1, self.user,
                                             skp_imp_adds=skp_imp_adds)
-            set_det_id(True)
+            rand = 0
             self.database2 = import_as_dict(fn2, self.user)
         self.assertIsNotNone(self.database1,
                              "Unable to import file: %s" % fn1)
