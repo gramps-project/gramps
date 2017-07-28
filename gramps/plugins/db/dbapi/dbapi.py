@@ -25,7 +25,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-import shutil
 import time
 import sys
 import pickle
@@ -85,15 +84,6 @@ class DBAPI(DbGeneric):
         _LOG.debug("Write database backend file to 'dbapi'")
         with open(versionpath, "w") as version_file:
             version_file.write("dbapi")
-        # Write settings.py and settings.ini:
-        settings_py = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                   "settings.py")
-        settings_ini = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                    "settings.ini")
-        LOG.debug("Copy settings.py from: " + settings_py)
-        LOG.debug("Copy settings.ini from: " + settings_py)
-        shutil.copy2(settings_py, directory)
-        shutil.copy2(settings_ini, directory)
 
     def _initialize(self, directory):
         # Run code from directory
@@ -107,16 +97,27 @@ class DBAPI(DbGeneric):
         config_mgr.register('database.password', 'password')
         config_mgr.register('database.port', 'port')
         config_mgr.load() # load from settings.ini
-        settings = {
-            "__file__":
-            os.path.join(directory, "settings.py"),
-            "config": config_mgr
-        }
-        settings_file = os.path.join(directory, "settings.py")
-        with open(settings_file) as fp:
-            code = compile(fp.read(), settings_file, 'exec')
-            exec(code, globals(), settings)
-        self.dbapi = settings["dbapi"]
+
+        dbtype = config_mgr.get('database.dbtype')
+
+        if dbtype == "sqlite":
+            from gramps.plugins.db.dbapi.sqlite import Sqlite
+            path_to_db = os.path.join(directory, 'sqlite.db')
+            self.dbapi = Sqlite(path_to_db)
+        else:
+            dbkwargs = {}
+            for key in config_mgr.get_section_settings('database'):
+                # Use all parameters except dbtype as keyword arguments
+                if key == 'dbtype':
+                    continue
+                dbkwargs[key] = config_mgr.get('database.' + key)
+            if dbtype == "postgresql":
+                from gramps.plugins.db.dbapi.postgresql import Postgresql
+                self.dbapi = Postgresql(**dbkwargs)
+            else:
+                raise AttributeError(("invalid DB-API dbtype: '%s'. " +
+                                      "Should be 'sqlite' or 'postgresql'")
+                                      % dbtype)
 
         # We use the existence of the person table as a proxy for the database
         # being new
