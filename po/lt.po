@@ -16648,7 +16648,7 @@ msgstr ""
 "kairę rašybos kalbose!\n"
 "\n"
 "Skaitykite Gramps README dokumentaciją apie diegimui būtinas sąlygas,\n"
-"kurios paprastai patalpintos aplanke /usr/share/doc/gramps."
+"kurios paprastai patalpintos aplanke /usr/share/doc/gramps.\n"
 
 #: ../gramps/gui/grampsgui.py:297
 msgid "Error parsing arguments"
