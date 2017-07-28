@@ -26,9 +26,7 @@
 #-------------------------------------------------------------------------
 import os
 import time
-import sys
 import pickle
-from operator import itemgetter
 import logging
 
 #------------------------------------------------------------------------
