@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2015-2016 Douglas S. Blank <doug.blank@gmail.com>
-# Copyright (C) 2016      Nick Hall
+# Copyright (C) 2016-2017 Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #
 
 """
-Backend for sqlite database.
+Backend for SQLite database.
 """
 
 #-------------------------------------------------------------------------
@@ -29,14 +29,16 @@ Backend for sqlite database.
 #
 #-------------------------------------------------------------------------
 import sqlite3
-import logging
+import os
 import re
+import logging
 
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.plugins.db.dbapi.dbapi import DBAPI
 from gramps.gen.db.dbconst import ARRAYSIZE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -44,10 +46,25 @@ sqlite3.paramstyle = 'qmark'
 
 #-------------------------------------------------------------------------
 #
-# Sqlite class
+# SQLite class
 #
 #-------------------------------------------------------------------------
-class Sqlite:
+class SQLite(DBAPI):
+
+    def _initialize(self, directory):
+        if directory == ':memory:':
+            path_to_db = ':memory:'
+        else:
+            path_to_db = os.path.join(directory, 'sqlite.db')
+        self.dbapi = Connection(path_to_db)
+
+
+#-------------------------------------------------------------------------
+#
+# Connection class
+#
+#-------------------------------------------------------------------------
+class Connection:
     """
     The Sqlite class is an interface between the DBAPI class which is the Gramps
     backend for the DBAPI interface and the sqlite3 python module.

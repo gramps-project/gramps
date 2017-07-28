@@ -601,6 +601,11 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # run backend-specific code:
         self._initialize(directory)
 
+        # We use the existence of the person table as a proxy for the database
+        # being new
+        if not self.dbapi.table_exists("person"):
+            self._create_schema()
+
         # Load metadata
         self.name_formats = self._get_metadata('name_formats')
         self.owner = self._get_metadata('researcher', default=Researcher())

@@ -22,15 +22,15 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 register(DATABASE,
-         id    = 'inmemorydb',
-         name  = _("In-Memory"),
-         name_accell  = _("In-_Memory Database"),
-         description =  _("In-Memory Database"),
-         version = '1.0.0',
-         gramps_target_version = "5.0",
-         status = STABLE,
-         fname = 'inmemorydb.py',
-         databaseclass = 'InMemoryDB',
+         id='postgresql',
+         name=_('PostgreSQL'),
+         name_accell=_('_PostgreSQL Database'),
+         description=_('PostgreSQL Database'),
+         version='1.0.0',
+         gramps_target_version='5.0',
+         status=STABLE,
+         fname='postgresql.py',
+         databaseclass='PostgreSQL',
          authors=['Doug Blank'],
-         authors_email=["doug.blank@gmail.com"],
+         authors_email=['doug.blank@gmail.com']
 )

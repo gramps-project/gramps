@@ -79,48 +79,12 @@ class DBAPI(DbGeneric):
             version_file.write(str(self.VERSION[0]))
 
         versionpath = os.path.join(directory, str(DBBACKEND))
-        _LOG.debug("Write database backend file to 'dbapi'")
+        _LOG.debug("Write database backend file")
         with open(versionpath, "w") as version_file:
-            version_file.write("dbapi")
+            version_file.write(self.__class__.__name__.lower())
 
     def _initialize(self, directory):
-        # Run code from directory
-        from gramps.gen.utils.configmanager import ConfigManager
-        config_file = os.path.join(directory, 'settings.ini')
-        config_mgr = ConfigManager(config_file)
-        config_mgr.register('database.dbtype', 'sqlite')
-        config_mgr.register('database.dbname', 'gramps')
-        config_mgr.register('database.host', 'localhost')
-        config_mgr.register('database.user', 'user')
-        config_mgr.register('database.password', 'password')
-        config_mgr.register('database.port', 'port')
-        config_mgr.load() # load from settings.ini
-
-        dbtype = config_mgr.get('database.dbtype')
-
-        if dbtype == "sqlite":
-            from gramps.plugins.db.dbapi.sqlite import Sqlite
-            path_to_db = os.path.join(directory, 'sqlite.db')
-            self.dbapi = Sqlite(path_to_db)
-        else:
-            dbkwargs = {}
-            for key in config_mgr.get_section_settings('database'):
-                # Use all parameters except dbtype as keyword arguments
-                if key == 'dbtype':
-                    continue
-                dbkwargs[key] = config_mgr.get('database.' + key)
-            if dbtype == "postgresql":
-                from gramps.plugins.db.dbapi.postgresql import Postgresql
-                self.dbapi = Postgresql(**dbkwargs)
-            else:
-                raise AttributeError(("invalid DB-API dbtype: '%s'. " +
-                                      "Should be 'sqlite' or 'postgresql'")
-                                      % dbtype)
-
-        # We use the existence of the person table as a proxy for the database
-        # being new
-        if not self.dbapi.table_exists("person"):
-            self._create_schema()
+        raise NotImplementedError
 
     def _create_schema(self):
         """

@@ -47,8 +47,8 @@ class DbRandomTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.db = make_database("inmemorydb")
-        cls.db.load(None)
+        cls.db = make_database("sqlite")
+        cls.db.load(":memory:")
 
     def setUp(self):
         self.handles = {'Person': [], 'Family': [], 'Event': [], 'Place': [],
@@ -709,8 +709,8 @@ class DbEmptyTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.db = make_database("inmemorydb")
-        cls.db.load(None)
+        cls.db = make_database("sqlite")
+        cls.db.load(":memory:")
 
     ################################################################
     #
@@ -806,8 +806,8 @@ class DbPersonTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.db = make_database("inmemorydb")
-        cls.db.load(None)
+        cls.db = make_database("sqlite")
+        cls.db.load(":memory:")
 
     def __add_person(self, gender, first_name, surname, trans):
         person = Person()

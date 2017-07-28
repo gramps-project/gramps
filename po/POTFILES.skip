@@ -378,10 +378,6 @@ gramps/gui/widgets/valuetoolitem.py
 #
 gramps/plugins/__init__.py
 #
-# plugins/db directory
-#
-gramps/plugins/db/dbapi/inmemorydb.py
-#
 # plugins/docgen directory
 #
 gramps/plugins/docgen/__init__.py

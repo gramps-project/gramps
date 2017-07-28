@@ -809,7 +809,7 @@ class DbManager(CLIDbManager, ManagedWindow):
             new_text = "%s %s" % (name, _("(Converted #%d)") % count)
         new_path, newname = self._create_new_db(new_text, edit_entry=False)
         ## Create a new database of correct type:
-        dbase = make_database("dbapi")
+        dbase = make_database(config.get('database.backend'))
         dbase.write_version(new_path)
         dbase.load(new_path)
         ## import from XML
