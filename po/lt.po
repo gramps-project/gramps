@@ -19248,7 +19248,7 @@ msgstr ""
 msgid ""
 "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
-"%(n1)6d  Vietovės        atnaujintos su %%(n2)6d citatom per %(n3)6d s\n"
+"%(n1)6d  Vietovės        atnaujintos su %(n2)6d citatom per %(n3)6d s\n"
 
 #: ../gramps/plugins/db/bsddb/upgrade.py:414
 #, python-format
@@ -24200,7 +24200,7 @@ msgstr "Laukas '%(fldname)s' nerastas"
 #: ../gramps/plugins/importer/importprogen.py:459
 #, python-format
 msgid "Cannot find DEF file: %(dname)s"
-msgstr "Nerasta DEF rinkmena: %%(dname)s"
+msgstr "Nerasta DEF rinkmena: %(dname)s"
 
 #. Raise a error message
 #: ../gramps/plugins/importer/importprogen.py:515
