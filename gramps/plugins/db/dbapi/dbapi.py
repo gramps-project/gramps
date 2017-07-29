@@ -224,23 +224,26 @@ class DBAPI(DbGeneric):
         Lowlevel interface to the backend transaction.
         Executes a db BEGIN;
         """
-        _LOG.debug("    DBAPI %s transaction begin", hex(id(self)))
-        self.dbapi.begin()
+        if self.transaction == None:
+            _LOG.debug("    DBAPI %s transaction begin", hex(id(self)))
+            self.dbapi.begin()
 
     def _txn_commit(self):
         """
         Lowlevel interface to the backend transaction.
         Executes a db END;
         """
-        _LOG.debug("    DBAPI %s transaction commit", hex(id(self)))
-        self.dbapi.commit()
+        if self.transaction == None:
+            _LOG.debug("    DBAPI %s transaction commit", hex(id(self)))
+            self.dbapi.commit()
 
     def _txn_abort(self):
         """
         Lowlevel interface to the backend transaction.
         Executes a db ROLLBACK;
         """
-        self.dbapi.rollback()
+        if self.transaction == None:
+            self.dbapi.rollback()
 
     def transaction_begin(self, transaction):
         """
