@@ -1,3 +1,39 @@
+2017-xx-xx
+Version 4.2.6
+* Fix HasCitation rule in citation filter sidebar
+* Fix use of regular expressions
+* Date Editor had 'Type' and 'Quality' labels swapped
+* Fix FamilyGroup Report
+* Fix names not displayed in relationship graph
+* Fix outdated Bugtracker link in reporting wizard
+* Fix replacements in Ancestor tree
+* Fix Default Browser Setting
+* Fix linking place on OpenStreetMap view
+* Fix Family Lines Report having unescaped characters
+* Fix non-local character in DB name (Windows OS)
+* Fix checking for "event.string" in "treeview_keypress"
+* Fix invalid February 29th date in Julian dual-dated
+* Fix Note on CIR when it is attached to a (preferred or alternative) name through the names dialog.
+* Improve time loading for person selector in census forms
+* Fix incorrect SoundEx result
+* Fix Error printing on ancestor tree graphical report
+* Fix custom filter creation with 'Events occurring on a particular day of the week'
+* Bug in the Name Editor / Group As
+* Gramps CSV export of Places did not generate correct Title.
+* Add custom Family Relations not shown in the filter siderbar
+* Fix non-textual value on Tag report
+* Fix 'interface.dont-ask' config key ignored on Note edition
+* Fix Reorder Relationships dialog
+* Shrink size of Break Lock (and other QuestionDialogs)
+* Only selection of Active or Home person if commited
+* Fix quick search exception when nothing in searched list
+* Fix problem adding parents
+* Fix bookmarks keybinding on Mac
+* Fix failure to load default gramplets if GExiv2 is missing or too old.
+* Update API doc for place displayer
+* Add datestrings to Turkish translation
+* Update translations: de, fr, fi, hu, it, ru, sl, sv
+
 2016-12-15
 Version 4.2.5
 * The configparser is assuming the wrong encoding
