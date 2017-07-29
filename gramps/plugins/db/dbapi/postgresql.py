@@ -41,6 +41,7 @@ from gramps.plugins.db.dbapi.dbapi import DBAPI
 from gramps.gen.utils.configmanager import ConfigManager
 from gramps.gen.db.dbconst import ARRAYSIZE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 psycopg2.paramstyle = 'format'
 
@@ -50,6 +51,18 @@ psycopg2.paramstyle = 'format'
 #
 #-------------------------------------------------------------------------
 class PostgreSQL(DBAPI):
+
+    def get_summary(self):
+        """
+        Return a diction of information about this database
+        backend.
+        """
+        summary = super().get_summary()
+        summary.update({
+            _("Database version"): psycopg2.__version__,
+            _("Database module location"): psycopg2.__file__,
+        })
+        return summary
 
     def _initialize(self, directory):
         config_file = os.path.join(directory, 'settings.ini')
@@ -74,20 +87,6 @@ class PostgreSQL(DBAPI):
 #
 #-------------------------------------------------------------------------
 class Connection:
-    @classmethod
-    def get_summary(cls):
-        """
-        Return a diction of information about this database
-        backend.
-        """
-        summary = {
-            "DB-API version": "2.0",
-            "Database SQL type": cls.__name__,
-            "Database SQL module": "psycopg2",
-            "Database SQL module version": psycopg2.__version__,
-            "Database SQL module location": psycopg2.__file__,
-        }
-        return summary
 
     def __init__(self, *args, **kwargs):
         self.__connection = psycopg2.connect(*args, **kwargs)

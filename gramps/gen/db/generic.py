@@ -2466,7 +2466,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             _("Number of repositories"): self.get_number_of_repositories(),
             _("Number of notes"): self.get_number_of_notes(),
             _("Number of tags"): self.get_number_of_tags(),
-            _("Data version"): ".".join([str(v) for v in self.VERSION]),
+            _("Schema version"): ".".join([str(v) for v in self.VERSION]),
         }
 
     def _order_by_person_key(self, person):

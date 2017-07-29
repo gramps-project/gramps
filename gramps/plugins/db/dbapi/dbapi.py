@@ -958,16 +958,3 @@ class DBAPI(DbGeneric):
         in the appropriate type.
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
-
-    def get_summary(self):
-        """
-        Returns dictionary of summary item.
-        Should include, if possible:
-
-        _("Number of people")
-        _("Version")
-        _("Schema version")
-        """
-        summary = super().get_summary()
-        summary.update(self.dbapi.__class__.get_summary())
-        return summary

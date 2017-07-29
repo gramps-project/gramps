@@ -171,11 +171,18 @@ class CLIDbManager:
             retval = {_("Unavailable"): "locked"}
         retval.update({_("Family Tree"): name,
                        _("Path"): dirpath,
-                       _("Database"): dbid,
+                       _("Database"): self.get_backend_name_from_dbid(dbid),
                        _("Last accessed"): time_val(dirpath)[1],
                        _("Locked?"): self.is_locked(dirpath),
                       })
         return retval
+
+    def get_backend_name_from_dbid(self, dbid):
+        pmgr = BasePluginManager.get_instance()
+        for plugin in pmgr.get_reg_databases():
+            if plugin.id == dbid:
+                return plugin._name
+        return _("Unknown")
 
     def print_family_tree_summaries(self, database_names=None):
         """

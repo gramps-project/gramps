@@ -981,13 +981,6 @@ class DbManager(CLIDbManager, ManagedWindow):
                             parent=self.top)
         self.new_btn.set_sensitive(True)
 
-    def get_backend_name_from_dbid(self, dbid):
-        pmgr = GuiPluginManager.get_instance()
-        for plugin in pmgr.get_reg_databases():
-            if plugin.id == dbid:
-                return plugin._name
-        return _("Unknown")
-
     def _create_new_db(self, title=None, create_db=True, dbid=None,
                        edit_entry=True):
         """

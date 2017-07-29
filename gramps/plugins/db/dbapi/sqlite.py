@@ -41,6 +41,7 @@ import logging
 from gramps.plugins.db.dbapi.dbapi import DBAPI
 from gramps.gen.db.dbconst import ARRAYSIZE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 sqlite3.paramstyle = 'qmark'
 
@@ -50,6 +51,18 @@ sqlite3.paramstyle = 'qmark'
 #
 #-------------------------------------------------------------------------
 class SQLite(DBAPI):
+
+    def get_summary(self):
+        """
+        Return a dictionary of information about this database backend.
+        """
+        summary = super().get_summary()
+        summary.update({
+            _("Database version"): sqlite3.sqlite_version,
+            _("Database module version"): sqlite3.version,
+            _("Database module location"): sqlite3.__file__,
+        })
+        return summary
 
     def _initialize(self, directory):
         if directory == ':memory:':
@@ -69,20 +82,6 @@ class Connection:
     The Sqlite class is an interface between the DBAPI class which is the Gramps
     backend for the DBAPI interface and the sqlite3 python module.
     """
-    @classmethod
-    def get_summary(cls):
-        """
-        Return a dictionary of information about this database backend.
-        """
-        summary = {
-            "DB-API version": "2.0",
-            "Database SQL type": cls.__name__,
-            "Database SQL module": "sqlite3",
-            "Database SQL Python module version": sqlite3.version,
-            "Database SQL module version": sqlite3.sqlite_version,
-            "Database SQL module location": sqlite3.__file__,
-        }
-        return summary
 
     def __init__(self, *args, **kwargs):
         """
