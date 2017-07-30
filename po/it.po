@@ -43225,14 +43225,6 @@ msgstr "Nessun foglio di stile"
 #~ msgid "Ancestors of \"%s\""
 #~ msgstr "Ascendenti di \"%s\""
 
-#~ msgid "Generation %d has 1 individual. (%3.2f%%)\n"
-#~ msgstr "La generazione %d comprende 1 persona. (%3.2f%%)\n"
-
-#~ msgid "Total ancestors in generations 2 to %d is %d. (%3.2f%%)\n"
-#~ msgstr ""
-#~ "Il numero totale di ascendenti dalla generazione 2 alla generazione %d è "
-#~ "%d. (%3.2f%%)\n"
-
 #~ msgid "Whether to compress tree."
 #~ msgstr "Indica se comprimere l'albero."
 

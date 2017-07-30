@@ -42397,12 +42397,6 @@ msgstr "Bez arkusza stylów"
 #~ msgid "Filtering"
 #~ msgstr "Filtrowanie"
 
-#~ msgid "Generation %d has 1 individual. (%3.2f%%)"
-#~ msgstr "Pokolenie %d ma 1 osobę. (%3.2f%%)"
-
-#~ msgid "Total ancestors in generations 2 to %d is %d. (%3.2f%%)"
-#~ msgstr "Łączna ilość przodków w pokoleniach od 2 do %d wynosi %d. (%3.2f%%)"
-
 #~ msgid "Easter"
 #~ msgstr "Wielkanoc"
 

@@ -23350,16 +23350,6 @@ msgstr "Gjenerata %d"
 msgid "Double-click to see people in generation %d"
 msgstr "<i>Kliko-dy herë në rresht për të redaktuar infromacione personale</i>"
 
-#. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:272
-#, fuzzy, python-brace-format
-msgid ""
-" has {count_person} of {max_count_person} individuals ({percent} complete)\n"
-msgid_plural ""
-" has {count_person} of {max_count_person} individuals ({percent} complete)\n"
-msgstr[0] "ka %d prej %d personave (%.2f%% e përfunduar)\n"
-msgstr[1] "ka %d prej %d personave (%.2f%% e përfunduar)\n"
-
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:279
 msgid "All generations"
 msgstr "Të gjitha gjeneratat"
@@ -31883,13 +31873,6 @@ msgstr "Dështim"
 #, fuzzy, python-format
 msgid "Number of Ancestors for %s"
 msgstr "Numri i paraardhësve"
-
-#: ../gramps/plugins/textreport/numberofancestorsreport.py:125
-#, fuzzy, python-brace-format
-msgid "Generation {number} has {count} individual. {percent}"
-msgid_plural "Generation {number} has {count} individuals. {percent}"
-msgstr[0] "Gjenerata %d ka %d persona (%3.2f%%)\n"
-msgstr[1] "Gjenerata %d ka %d persona (%3.2f%%)\n"
 
 #. TC # English return something like:
 #. Total ancestors in generations 2 to 3 is 4. (66.67%)

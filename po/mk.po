@@ -32154,13 +32154,6 @@ msgstr "Неуспешно"
 msgid "Number of Ancestors for %s"
 msgstr "Број на предци"
 
-#: ../gramps/plugins/textreport/numberofancestorsreport.py:125
-#, fuzzy, python-brace-format
-msgid "Generation {number} has {count} individual. {percent}"
-msgid_plural "Generation {number} has {count} individuals. {percent}"
-msgstr[0] "Генерацијата %d има %d лица. (%3.2f%%)\n"
-msgstr[1] "Генерацијата %d има %d лица. (%3.2f%%)\n"
-
 #. TC # English return something like:
 #. Total ancestors in generations 2 to 3 is 4. (66.67%)
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:167
