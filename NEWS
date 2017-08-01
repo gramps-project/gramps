@@ -1,4 +1,4 @@
-2017-xx-xx
+2017-08-01
 Version 4.2.6
 * Fix HasCitation rule in citation filter sidebar
 * Fix use of regular expressions
@@ -32,7 +32,7 @@ Version 4.2.6
 * Fix failure to load default gramplets if GExiv2 is missing or too old.
 * Update API doc for place displayer
 * Add datestrings to Turkish translation
-* Update translations: de, fr, fi, hu, it, ru, sl, sv
+* Update translations: cs, de, fr, fi, hu, it, ru, sl, sv, tr
 
 2016-12-15
 Version 4.2.5

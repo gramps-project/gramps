@@ -1,310 +1,253 @@
-2016-12-15  romjerome <romjerome@users.noreply.github.com>
+2017-08-01  romjerome <romjerome@users.noreply.github.com>
 
-	* gramps/gen/const.py: make official 4.2.5 release
+	* po/fr.po: typos
 
-2016-12-15  romjerome <romjerome@users.noreply.github.com>
+2017-07-31  Zdeněk Hataš <zdenek.hatas@gmail.com>
 
-	* NEWS: update News file
+	* po/cs.po: update to recent pot
 
-2016-12-15  romjerome <romjerome@users.noreply.github.com>
+2017-07-29  romjerome <romjerome@users.noreply.github.com>
 
-	* gramps/plugins/importer/importprogen.py: fix a missing import
+	* NEWS: start '4.2.6' section
 
-2016-12-15  romjerome <romjerome@users.noreply.github.com>
+2017-07-29  romjerome <romjerome@users.noreply.github.com>
 
-	* gramps/gui/views/tags.py: Tag editor: Tweak improvement on buttons
-	order
+	* po/fr.po, po/gramps.pot: Update template no modified or new message id, update references (header and
+	comments)
 
-2016-12-15  SNoiraud <serge.noiraud@laposte.net>
+2017-07-26  vantu5z <vantu5z@mail.ru>
 
-	* gramps/gui/widgets/grampletbar.py: 9340: The configparser is
-	assuming the wrong encoding.
+	* po/ru.po: update Russian translation - merge last template - fix typo - change 'е' to 'ё' in some words
 
-2016-12-14  SNoiraud <serge.noiraud@laposte.net>
+2017-06-21  Nick Hall <nick-h@gramps-project.org>
 
-	* gramps/plugins/webreport/narrativeweb.py: 9563: Sorting in family
-	tab of narrated web report
+	* gramps/gui/filters/sidebar/_citationsidebarfilter.py: Fix
+	HasCitation rule in citation filter sidebar Filter parameters should be of type str.  Fixes #10076.  (cherry picked from commit adb4883291159298781144706fa5bc6331870ef2)
 
-2016-12-13  Leonhaeuser <mirko@leonhaeuser.de>
+2016-04-06  Nick Hall <nick-h@gramps-project.org>
 
-	* po/de.po: fix 0009696
+	* gramps/gen/filters/rules/_rule.py: Remove deprecated locale flag re.L is deprecated and re.U is now default.  (cherry picked from commit da3db4bc2828210fa77d6d57bb28a7b0cc2c19e8) Fixes #10136
 
-2016-12-14  Sam Manzi <manzi.sam@gmail.com>
+2017-07-23  Paul Franklin <pf.98052@gmail.com>
 
-	* gramps/grampsapp.py, gramps/plugins/gramplet/gramplet.gpr.py,
-	gramps/plugins/lib/libmetadata.py,
-	gramps/plugins/lib/maps/constants.py,
-	gramps/plugins/lib/maps/datelayer.py,
-	gramps/plugins/lib/maps/dummylayer.py,
-	gramps/plugins/lib/maps/dummynogps.py,
-	gramps/plugins/lib/maps/geography.py,
-	gramps/plugins/lib/maps/kmllayer.py,
-	gramps/plugins/lib/maps/lifewaylayer.py,
-	gramps/plugins/lib/maps/markerlayer.py,
-	gramps/plugins/lib/maps/messagelayer.py,
-	gramps/plugins/lib/maps/osmgps.py,
-	gramps/plugins/lib/maps/selectionlayer.py,
-	gramps/plugins/view/geography.gpr.py: 9801 Silence remaining
-	PyGIWarning
+	* gramps/gui/glade/editdate.glade: Date Editor has 'Type' and
+	'Quality' labels swapped Fixes #10135
 
-2016-12-13  SNoiraud <serge.noiraud@laposte.net>
+2017-07-15  Leonhaeuser <mirko@leonhaeuser.de>
 
-	* gramps/plugins/webreport/narrativeweb.py: 9563: Sorting of
-	relationships in family tab of narrated web report
+	* po/de.po: update German translation Fix #0010131
 
-2016-12-10  Josip <bpisoj@gmail.com>
-
-	* gramps/grampsapp.py: Support for Windows Python3 pythonw.exe
-
-2016-12-10  romjerome <romjerome@users.noreply.github.com>
-
-	* NEWS: start to update NEWS
-
-2016-12-09  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/gen/utils/location.py: 9799: Use latest valid date rather
-	than today This is useful for historic places when an event date is not
-	available.
-
-2016-12-09  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/gen/utils/location.py: 9813: Modify endonym handling in
-	place displayer If no language code is matched, the default name is now the first in
-	the list, rather than a name with no language code.
-
-2016-12-09  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/gen/display/place.py: 9737: Fix house number concatenation
-
-2016-12-07  Espen Berg <espenbe@gmail.com>
-
-	* gramps/plugins/rel/rel_no.py: Corrected another typo in
-	relationship calculator, Norwegian
-
-2016-12-07  Espen Berg <espenbe@gmail.com>
-
-	* gramps/plugins/rel/rel_no.py: Language correction in Norwegian
-	locale relationship calculator
-
-2016-12-06  prculley <paulr2787@gmail.com>
-
-	* gramps/gen/merge/mergefamilyquery.py: bug 9818 allow merging of
-	families with one or more parents in common
-
-2016-12-06  vantu5z <vantu5z@mail.ru>
-
-	* po/ru.po: update Russian translation
-
-2016-12-05  SNoiraud <serge.noiraud@laposte.net>
-
-	* gramps/gui/views/navigationview.py: 7309: Jump to Gramps ID
-	functionality doesn't work
-
-2016-12-05  romjerome <romjerome@users.noreply.github.com>
-
-	* po/fr.po: update french translation
-
-2016-12-05  romjerome <romjerome@users.noreply.github.com>
-
-	* po/gramps.pot: 9276: update translation strings template No new entry, update references and comments
-
-2016-12-05  romjerome <romjerome@users.noreply.github.com>
-
-	* gramps/gui/views/treemodels/placemodel.py: 9276: ability to search
-	alternate place names when selecting place
-
-2016-12-05  romjerome <romjerome@users.noreply.github.com>
-
-	* po/fr.po: typo on french translation
-
-2016-12-04  Espen Berg <espenbe@gmail.com>
-
-	* po/nb.po: Cleaned out one more line in nb.po
-
-2016-12-04  Espen Berg <espenbe@gmail.com>
-
-	* po/nb.po: The unlocking message is on one loooong line. Inserted
-	line breaks in Norwegian translation for cleanliness
-
-2016-12-03  Espen Berg <espenbe@gmail.com>
-
-	* po/nb.po: Revising Norwegian bokmål language file (at last)
-
-2016-12-03  Espen Berg <espenbe@gmail.com>
-
-	* po/nb.po: Revising Norwegian bokmål language file (at last)
-
-2016-12-03  romjerome <romjerome@users.noreply.github.com>
-
-	* gramps/plugins/tool/check.py: 9812: 'Check and Repair' tool
-	ignores some objects with tag support
-
-2016-11-30  vantu5z <vantu5z@mail.ru>
-
-	* po/ru.po: update Russian translation
-
-2016-11-29  romjerome <romjerome@users.noreply.github.com>
-
-	* gramps/plugins/lib/maps/geography.py: 9815: Fix clear map action
-	on Geography
-
-2016-11-29  Matti Niemelä <matti.u.niemela@gmail.com>
-
-	* po/fi.po: Update finnish translation
-
-2016-11-28  Zdeněk Hataš <zdenek.hatas@gmail.com>
-
-	* po/cs.po: czech translation update
-
-2016-11-26  romjerome <romjerome@users.noreply.github.com>
-
-	* debian/control: 9801: recommend 'gir1.2-goocanvas-2.0' on debian
-	package
-
-2016-11-26  romjerome <romjerome@users.noreply.github.com>
-
-	* gramps/plugins/tool/check.py: 8555: Database repair tool always
-	modify all source objects
-
-2016-11-24  romjerome <romjerome@users.noreply.github.com>
-
-	* po/fr.po: Update french translation
-
-2016-11-24  romjerome <romjerome@users.noreply.github.com>
-
-	* po/gramps.pot: Update translation strings template
-
-2016-11-24  romjerome <romjerome@users.noreply.github.com>
-
-	* po/fr.po: typo on french translation
-
-2016-11-22  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/plugins/gramplet/locations.py: 9534: Exclude places outside
-	valid date ranges
-
-2016-11-10  Leonhaeuser <mirko@leonhaeuser.de>
-
-	* po/de.po: update German translation
-
-2016-11-01  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/gui/glade/editldsord.glade: 9767: Fix icon and tooltip in
-	LDS editor The icon on the family selection button was removed by mistake in
-	commit 75009f0.
-
-2016-10-30  prculley <paulr2787@gmail.com>
-
-	* gramps/plugins/lib/libgedcom.py: bug 9755, fix duplicated Gramps
-	IDs on Gedcom import
-
-2016-10-29  Sam Manzi <manzi.sam@gmail.com>
-
-	* gramps/gui/configure.py: 9685 Fix Unicode error - Markup for
-	invalid date format
-
-2016-10-25  prculley <paulr2787@gmail.com>
-
-	* gramps/plugins/importer/importcsv.py: Fix bug 9733, CSV import
-	Fails, 9676, failure for certain types of cross references etc.
-
-2016-10-24  prculley <paulr2787@gmail.com>
-
-	* gramps/plugins/importer/importvcard.py: bug 9458, fix Import Vcard
-	can create multiple surnames with all selected as 'Primary'
-
-2016-10-16  prculley <paulr2787@gmail.com>
-
-	* gramps/plugins/lib/libgedcom.py: bug 8993; fix Gedcom import in
-	some alternate languages; improper date parsing
-
-2016-10-23  romjerome <romjerome@users.noreply.github.com>
-
-	* po/fr.po: typo on the french translation
-
-2016-10-21  SNoiraud <serge.noiraud@laposte.net>
-
-	* gramps/gui/plug/export/_exportassistant.py,
-	gramps/gui/plug/quick/_textbufdoc.py: 8250 and 9736 : remove patchs.
-	need to found another solution.
-
-2016-10-18  vantu5z <vantu5z@mail.ru>
-
-	* po/ru.po: update russian translation
-
-2016-10-16  SNoiraud <serge.noiraud@laposte.net>
-
-	* gramps/gui/plug/quick/_textbufdoc.py: 9736: Export options
-	'Preview' buttons create hidden quickreport.
-
-2016-10-12  Paul Franklin <pf.98052@gmail.com>
-
-	* gramps/gen/datehandler/_date_cs.py,
-	gramps/gen/datehandler/_dateparser.py: 9739: Wrong parsing Numeric
-	date format for cs_CZ locale
-
-2016-10-11  SNoiraud <serge.noiraud@laposte.net>
-
-	* gramps/gui/plug/quick/_textbufdoc.py: 9736: Export options
-	'Preview' buttons create hidden quickreport.
-
-2016-10-04  Matti Niemelä <matti.u.niemela@gmail.com>
-
-	* po/fi.po: Update finnish translation
-
-2016-10-03  Leonhaeuser <mirko@leonhaeuser.de>
-
-	* po/de.po: update German translation
-
-2016-10-01  Zdeněk Hataš <zdenek.hatas@gmail.com>
-
-	* po/cs.po: czech translation update
-
-2016-09-28  romjerome <romjerome@users.noreply.github.com>
-
-	* data/man/en.rst: typo, Change FICHIER to File
-
-2016-09-28  Lajos Nemeséri <nemeseril@gmail.com>
+2017-07-08  Lajos Nemeséri <nemeseril@gmail.com>
 
 	* po/hu.po: Update Hungarian translation
 
-2016-09-25  Nick Hall <nick-h@gramps-project.org>
+2017-06-30  John Ralls <jralls@ceridwen.us>
 
-	* gramps/gui/glade/styleeditor.glade: 9721: Fix alignment radio
-	buttons in style editor
+	* gramps/gui/display.py: Open web links with /usr/bin/open on Mac
+	and Python older than 3.5 Works around https://bugs.python.org/issue24452 Fixes #10105
 
-2016-09-16  SNoiraud <serge.noiraud@laposte.net>
+2017-06-27  John Ralls <jralls@ceridwen.us>
+
+	* gramps/gen/utils/grampslocale.py: FamilyGroup Report crash Python's sort routine gratuitously converts the bytearrays returned
+	by ICU::Collator::getByteArray to a string when storing it. This
+	resulted in a TypeError when attempting to compare a just-returned
+	bytearray with a stored string.  We work around this by converting the bytearray into its hexadecimal
+	representation and then decoding that into a string.  Fixes #10077.
+
+2017-06-22  Paul Franklin <pf.98052@gmail.com>
+
+	* gramps/gen/plug/docgen/graphdoc.py: names not displayed in
+	relationship graph Issue #10093
+
+2017-06-21  Paul Franklin <pf.98052@gmail.com>
+
+	* gramps/gen/const.py: Outdated Bugtracker link in Unexpected Error
+	reporting wizard Fixes #10100
+
+2017-06-21  Paul Franklin <pf.98052@gmail.com>
+
+	* gramps/plugins/graph/gvfamilylines.py: Family Lines Report
+	generates empty PDFs when name [has double-quotes] Fixes #10096
+
+2017-06-19  Paul Franklin <pf.98052@gmail.com>
+
+	* gramps/gui/dbman.py: non-local character in DB name causes crash
+	on Windows Fixes #10095
+
+2017-05-28  Josip <bpisoj@gmail.com>
+
+	* gramps/gui/views/listview.py,
+	gramps/gui/widgets/interactivesearchbox.py: Quick search with Czech
+	characters -> Crash Crash happen when checking for "event.string" in "treeview_keypress"
+	function in "gramps/gui/widgets/interactivesearchbox.py" Note that
+	https://lazka.github.io/pgi-docs/Gdk-3.0/classes/EventKey.html#Gdk.EventKeysays it is deprecated and should never be used.  Gdk.keyval_to_unicode return the corresponding unicode character, or
+	0 if there is no corresponding character.  Fixes #9130.  (cherry picked from commit bc1724533171fe69a6a775101d8d4318ba05b396)
+
+2017-05-31  John Ralls <jralls@ceridwen.us>
+
+	* gramps/gen/datehandler/_dateparser.py: 8366: February 29th invalid
+	date in Julian dual-dated leap year
+
+2017-05-19  Paul Franklin <pf.98052@gmail.com>
+
+	* gramps/plugins/textreport/indivcomplete.py: 10033: Note isn't
+	included on CIR when it is attached to a name
+
+2017-05-15  Nick Hall <nick-h@gramps-project.org>
 
 	* gramps/gui/editors/displaytabs/citationembedlist.py,
-	gramps/gui/selectors/baseselector.py: 9700: Select Place search &
-	Source/Citation hierarchy should NOT be expanded
+	gramps/gui/selectors/baseselector.py: Revert bugs #8785 and #9700 Expanding tree selectors by default caused performance issues.  The
+	expanded person selector also made it more difficult to select a
+	specific person in some circumstances.  GEPS 041 has been created to discuss a better selector design.
 
-2016-09-13  Sveinn í Felli <sv1@fellsnet.is>
+2017-05-05  Sam Manzi <manzi.sam@gmail.com>
 
-	* po/is.po: Add 9693: Icelandic translation update(msgfmt error
-	fixed)
+	* gramps/gen/soundex.py: Fix bug 9975 Incorrect SoundEx result
+	(#388)
 
-2016-09-12  Sveinn í Felli <sv1@fellsnet.is>
+2017-04-29  Paul Culley <paulr2787@gmail.com>
 
-	* po/is.po: Add 9693: Icelandic translation update
+	* gramps/gui/editors/filtereditor.py: bug 9564; fix exception on
+	Event filter editor (#378) for 'Events occurring on a particular day of the week' filter
 
-2016-09-10  John Ralls <jralls@ceridwen.us>
+2017-03-22  Paul Franklin <pf.98052@gmail.com>
 
-	* mac/Info.plist, mac/gramps.bundle, mac/gramps.modules: Add gir
-	files to bundle.  Enables change of library paths in the typelibs to point at
-	@executable_path by gtk-mac-bundler.
+	* gramps/plugins/export/exportxml.py: 9995: Bug in the Name Editor /
+	Group As
 
-2016-08-18  John Ralls <jralls@ceridwen.us>
+2017-03-16  Paul Franklin <pf.98052@gmail.com>
 
-	* mac/gramps.bundle: Revert "Remove pango modules from bundle, pango
-	no longer uses them." This reverts commit e311de19649371d59c2ab535d4564ee725963b4f because
-	for the moment we have to build with an older Pango.
+	* po/tr.po: add datestrings to gramps42 Turkish translation
 
-2016-08-18  John Ralls <jralls@ceridwen.us>
+2017-02-11  Nick Hall <nick-h@gramps-project.org>
 
-	* mac/gramps.bundle: escape illegal '--' in comment.
+	* gramps/plugins/export/exportcsv.py: 9945: Write PlaceID links in
+	CSV export When places are included in the export use PlaceID links, otherwise
+	generate a formatted place for the event.
 
-2016-09-04  romjerome <romjerome@users.noreply.github.com>
+2017-02-08  Doug Reider <dreider@gramps.org>
 
-	* bump to '4.2.5'
+	* mac/gramps.accel: Fix bookmarks keybinding on Mac to match the
+	documentation.
+
+2017-02-08  Bernard Banko <beernarrd@gmail.com>
+
+	* po/sl.po: updated sl translation
+
+2017-02-08  Bernard Banko <beernarrd@gmail.com>
+
+	* po/sl.po: corrected slovenian name editor keywords
+
+2017-02-07  Paul Franklin <pf.98052@gmail.com>
+
+	* gramps/plugins/drawreport/ancestortree.py,
+	gramps/plugins/lib/librecurse.py: 9004: Error printing graphical
+	report ancestor tree
+
+2017-02-07  Jérôme Rapinat <romjerome@yahoo.fr>
+
+	* gramps/plugins/drawreport/ancestortree.py: 9004: Error printing
+	graphical report ancestor tree
+
+2017-02-02  Peter Landgren <peter.talken@telia.com>
+
+	* po/sv.po: Update Swedish translation
+
+2017-02-02  romjerome <romjerome@users.noreply.github.com>
+
+	* gramps/plugins/tool/changenames.glade: 9907: add a spacing value
+	for children widgets fit better for some Gtk themes
+
+2017-02-02  romjerome <romjerome@users.noreply.github.com>
+
+	* docs/gen/gen_display.rst: 8855: update API doc for place displayer
+
+2017-01-25  Matti Niemelä <matti.u.niemela@gmail.com>
+
+	* po/fi.po: update finnish translation
+
+2017-01-25  romjerome <romjerome@users.noreply.github.com>
+
+	* gramps/plugins/drawreport/ancestortree.py: 9904: revert fd83162 TODO: need a solution for recursive iteration and private records
+
+2017-01-24  romjerome <romjerome@users.noreply.github.com>
+
+	* gramps/plugins/drawreport/ancestortree.py: 9904: Errors printing
+	graphical report ancestor tree
+
+2017-01-24  romjerome <romjerome@users.noreply.github.com>
+
+	* gramps/gui/filters/sidebar/_familysidebarfilter.py: 9908: Custom
+	Family Relations not shown in the filter siderbar
+
+2017-01-14  romjerome <romjerome@users.noreply.github.com>
+
+	* gramps/plugins/textreport/tagreport.py: 9899: fix non-textual
+	value on place name
+
+2017-01-11  Luigi Toscano <luigi.toscano@tiscali.it>
+
+	* po/it.po: Italian translation: updates and fixes
+
+2017-01-08  Luigi Toscano <luigi.toscano@tiscali.it>
+
+	* po/it.po: Refresh it.po using the current pot template
+
+2017-01-03  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gui/editors/editnote.py: 9878: Update note text before
+	closing The object must be updated so that changes can be detected.
+
+2017-01-02  SNoiraud <serge.noiraud@laposte.net>
+
+	* gramps/plugins/lib/maps/placeselection.py: 9865: Can not link the
+	place on geography view
+
+2016-12-28  Paul Franklin <pf.98052@gmail.com>
+
+	* gramps/plugins/drawreport/ancestortree.py: 9862: ancestor tree
+	doesn't use replacements
+
+2016-12-23  Josip <bpisoj@gmail.com>
+
+	* gramps/gui/glade/reorder.glade: 8128:  GtkDialog mapped without a
+	transient parent Fix Reorder Relationships dialog (cherry picked from commit 3b4ceeb630fff4d1f9ed1d64a6db20bef7262ec5)
+
+2016-12-17  prculley <paulr2787@gmail.com>
+
+	* gramps/gui/glade/dialog.glade: bug 9235: Shrink size of Break Lock
+	(and other QuestionDialogs)
+
+2016-12-17  prculley <paulr2787@gmail.com>
+
+	* gramps/gui/editors/editperson.py: bug 9470; Don't allow selecton
+	of Active or Home person until actually commited
+
+2016-12-18  prculley <paulr2787@gmail.com>
+
+	* gramps/gui/widgets/interactivesearchbox.py: bug 9478; fix quick
+	search exception when nothing in searched list
+
+2016-12-17  Paul Franklin <pf.98052@gmail.com>
+
+	* gramps/gen/const.py, gramps/version.py: bump to 4.2.6
+
+2016-12-17  Paul Franklin <pf.98052@gmail.com>
+
+	* gramps/gui/editors/editfamily.py: 9612: Problem adding parents
+	[with Latin names]
+
+2016-12-16  John Ralls <jralls@ceridwen.us>
+
+	* mac/Info.plist, mac/gramps.bundle, mac/gramps.modules: Release
+	4.2.5 on Mac.
+
+2016-12-16  John Ralls <jralls@ceridwen.us>
+
+	* gramps/plugins/gramplet/gramplet.gpr.py: Fix failure to load
+	default gramplets if GExiv2 is missing or too old.
+
+2016-12-15  romjerome <romjerome@users.noreply.github.com>
+
+	* make official 4.2.5 release
 
