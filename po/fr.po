@@ -3458,7 +3458,7 @@ msgstr "Date :"
 #: ../gramps/gui/glade/mergecitation.glade:279
 #: ../gramps/gui/glade/mergecitation.glade:295
 msgid "Confidence:"
-msgstr "Niveau de confiance"
+msgstr "Niveau de confiance :"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/_hascitationbase.py:52
@@ -13205,7 +13205,7 @@ msgstr "Éditeur de lieu"
 #: ../gramps/gui/glade/editplace.glade:288
 #: ../gramps/gui/merge/mergeplace.py:55
 msgid "place|Name:"
-msgstr "Nom du lieu"
+msgstr "Nom du lieu :"
 
 #: ../gramps/gui/editors/editplace.py:98
 #: ../gramps/gui/editors/editplaceref.py:95
@@ -16085,7 +16085,7 @@ msgstr "H_aut :"
 # trunk
 #: ../gramps/gui/glade/papermenu.glade:244
 msgid "_Bottom:"
-msgstr "_Bas"
+msgstr "_Bas :"
 
 #: ../gramps/gui/glade/papermenu.glade:377
 msgid "Metric"
@@ -22648,7 +22648,7 @@ msgstr "Gramplet affichant toutes les notes À faire de l'objet medium"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1255
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1263
 msgid "SoundEx"
-msgstr "Code SoundEx :"
+msgstr "Code SoundEx"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1256
 msgid "Gramplet to generate SoundEx codes"
