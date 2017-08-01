@@ -1365,7 +1365,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
-                <property name="tooltip_text" translatable="yes">Enable ID reordering.</property>
+                <property name="tooltip_text" translatable="yes">Enable ID reordering</property>
                 <property name="halign">start</property>
                 <property name="relief">none</property>
                 <property name="focus_on_click">False</property>
@@ -1383,7 +1383,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="tooltip_text" translatable="yes">List next ID available
-(maynot be continuous).</property>
+(maynot be continuous)</property>
                 <property name="halign">start</property>
                 <property name="label" translatable="yes">  Actual</property>
                 <property name="justify">fill</property>
@@ -1399,7 +1399,7 @@
               <object class="GtkLabel" id="quant_lbl">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Amount of ID in use.</property>
+                <property name="tooltip_text" translatable="yes">Amount of ID in use</property>
                 <property name="halign">start</property>
                 <property name="label" translatable="yes"> Quantity</property>
               </object>
@@ -1416,7 +1416,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
-                <property name="tooltip_text" translatable="yes">Actual / Upcoming ID format.</property>
+                <property name="tooltip_text" translatable="yes">Actual / Upcoming ID format</property>
                 <property name="halign">start</property>
                 <property name="relief">none</property>
                 <property name="focus_on_click">False</property>
@@ -1436,7 +1436,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes">Enable ID reordering
-with Start / Step sequence.</property>
+with Start / Step sequence</property>
                 <property name="resize_mode">immediate</property>
                 <property name="relief">none</property>
                 <property name="focus_on_click">False</property>
@@ -1455,7 +1455,7 @@ with Start / Step sequence.</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
-                <property name="tooltip_text" translatable="yes">Reorder ID start number.</property>
+                <property name="tooltip_text" translatable="yes">Reorder ID start number</property>
                 <property name="halign">start</property>
                 <property name="relief">none</property>
                 <property name="focus_on_click">False</property>
@@ -1474,7 +1474,7 @@ with Start / Step sequence.</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="tooltip_text" translatable="yes">Reorder ID step width.</property>
+                <property name="tooltip_text" translatable="yes">Reorder ID step width</property>
                 <property name="halign">start</property>
                 <property name="relief">none</property>
                 <property name="focus_on_click">False</property>
@@ -1494,7 +1494,7 @@ with Start / Step sequence.</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes">Keep IDs with alternate
-prefixes untouched.</property>
+prefixes untouched</property>
                 <property name="relief">none</property>
                 <property name="focus_on_click">False</property>
                 <signal name="clicked" handler="on_keep_button_clicked" swapped="no"/>
