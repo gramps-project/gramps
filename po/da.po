@@ -31,21 +31,22 @@
 # First Communion: Førstekommunion
 # probate: skifte
 # record: optegnelse
-#
+# 
 # Anvendt af Lars Kr. Lundin:
 # citation: citering (fremfor f.eks. 'kildehenvisning')
 #      citering er i 2016 blevet ændret til kildehenvisning af Kaj Mikkelsen
 # database: database (fremfor det tidligere 'slægtsbog')
 # matches: matcher (fremfor det tidligere 'passer med')
 # locale: landestandard (i mangel af bedre)
-# Kaj Mikkelsen <kmi@vgdata.dk>, 2016, 2017.
+# 
+# Kaj Mikkelsen <kmi@vgdata.dk>, 2016, 2017., 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-03 10:44-0700\n"
-"PO-Revision-Date: 2017-07-30 12:06+0200\n"
+"PO-Revision-Date: 2017-08-05 16:58+0200\n"
 "Last-Translator: Kaj Mikkelsen <kmi@vgdata.dk>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -922,7 +923,7 @@ msgid ""
 "Web."
 msgstr ""
 "<b>Lave et genealogisk websted</b><br/>Du kan let eksportere din slægtsbog "
-"til en webside. Vælg hele databasen, slægtslinjer eller udvalgte personer "
+"til en webside. Vælg hele databasen, slægtslinier eller udvalgte personer "
 "som mål for websiden, der herefter er klar til at blive sendt til World Wide "
 "Web."
 
@@ -1217,9 +1218,9 @@ msgstr "Gramps Slægtsbøger:"
 #. We have to construct the line elements together, to avoid
 #. insertion of blank spaces when print on the same line is used
 #. -------------------------------------------------------------------------
-#.
+#. 
 #. constants
-#.
+#. 
 #. -------------------------------------------------------------------------
 #: ../gramps/cli/arghandler.py:434 ../gramps/cli/arghandler.py:436
 #: ../gramps/cli/arghandler.py:441 ../gramps/cli/arghandler.py:442
@@ -1468,7 +1469,7 @@ msgid ""
 "Syntax may be different for other shells and for Windows.\n"
 msgstr ""
 "\n"
-"Eksempel på brug af Gramps' kommandolinje-interface\n"
+"Eksempel på brug af Gramps' kommandolinie-interface\n"
 "\n"
 "1. For at importere fire databaser (deres formater kan bestemmes ud fra\n"
 "   deres navne) og herefter kontrollere den resulterende database for fejl,\n"
@@ -1501,7 +1502,7 @@ msgstr ""
 "   gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps\n"
 "\n"
 "6. For at åbne en database og, baseret på disse data, generere en\n"
-"   tidslinje-rapport i PDF-format hvor uddata gemmes i filen my_timeline."
+"   tidslinie-rapport i PDF-format hvor uddata gemmes i filen my_timeline."
 "pdf:\n"
 "\n"
 "   gramps -O 'Family Tree 1' -a report -p name=timeline,off=pdf,"
@@ -1514,7 +1515,7 @@ msgstr ""
 "8. Oplistning af valgmuligheder for rapporter:\n"
 "\n"
 "   Brug name=timeline,show=all for at finde ud af alle tilgængelige\n"
-"   valgmuligheder for tidslinje-rapporten.\n"
+"   valgmuligheder for tidslinie-rapporten.\n"
 "   For at finde ud af detaljer om en bestemt valgmulighed,\n"
 "   brug show=option_name , f.eks.. name=timeline,show=off string.\n"
 "   For at finde ud af tilgængelige rapportnavne, brug name=show string.\n"
@@ -1595,7 +1596,7 @@ msgid ""
 "To use in the command-line mode, supply at least one input file to process."
 msgstr ""
 "Fejl ved fortolkning af argumenterne: %s \n"
-"Ved brug på kommandolinjen skal mindst en inddata-fil angives."
+"Ved brug på kommandolinien skal mindst en inddata-fil angives."
 
 #: ../gramps/cli/clidbman.py:82
 #, python-format
@@ -1805,7 +1806,8 @@ msgstr "Låst af %s"
 #: ../gramps/plugins/view/geomoves.py:596
 #: ../gramps/plugins/view/geoperson.py:480
 #: ../gramps/plugins/view/geoplaces.py:526
-#: ../gramps/plugins/view/relview.py:468 ../gramps/plugins/view/relview.py:1008
+#: ../gramps/plugins/view/relview.py:468
+#: ../gramps/plugins/view/relview.py:1008
 #: ../gramps/plugins/view/relview.py:1065
 #: ../gramps/plugins/webreport/narrativeweb.py:2192
 #: ../gramps/plugins/webreport/narrativeweb.py:2221
@@ -4970,7 +4972,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:51
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:147
 msgid "Finding relationship paths"
-msgstr "Finder slægtskabslinjerne"
+msgstr "Finder slægtskabslinierne"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:52
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:69
@@ -4985,7 +4987,7 @@ msgstr "Indhenter alle forekomster fra underfilter"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:131
 msgid "Relationship path between <person> and people matching <filter>"
-msgstr "Slægtskabslinjen mellem <person> og personer der passer på <filter>"
+msgstr "Slægtskabslinien mellem <person> og personer der passer på <filter>"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:132
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:46
@@ -5004,8 +5006,8 @@ msgid ""
 msgstr ""
 "Gennemsøger databasen ved at starte fra en angivet person for at vise alle "
 "personer mellem den angivne person og en gruppe af målpersoner som er "
-"specificeret i et filter. Herved skabes et sæt af slægtslinjer (medtager "
-"også ægteskab) mellem den angivne person og målpersonerne. Hver linje er "
+"specificeret i et filter. Herved skabes et sæt af slægtslinier (medtager "
+"også ægteskab) mellem den angivne person og målpersonerne. Hver linie er "
 "ikke nødvendigvis den korteste."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:148
@@ -5807,7 +5809,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:46
 msgid "Relationship path between <persons>"
-msgstr "Slægtskabslinjen mellem <persons>"
+msgstr "Slægtskabslinien mellem <persons>"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:48
 msgid ""
@@ -5815,11 +5817,11 @@ msgid ""
 "the relationship path between two persons."
 msgstr ""
 "Matcher to personers aner tilbage til en fælles ane, hvorved deres fælles "
-"slægtskabslinje dannes."
+"slægtskabslinie dannes."
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:51
 msgid "Relationship path between bookmarked persons"
-msgstr "Slægtskabslinjen mellem personer med bogmærke"
+msgstr "Slægtskabslinien mellem personer med bogmærke"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:53
 msgid ""
@@ -5827,7 +5829,7 @@ msgid ""
 "producing the relationship path(s) between bookmarked persons."
 msgstr ""
 "Matcher aner til personer med bogmærke tilbage til disses fælles aner, "
-"hvorved den fælles slægtskabslinje mellem personerne med bogmærke dannes."
+"hvorved den fælles slægtskabslinie mellem personerne med bogmærke dannes."
 
 #: ../gramps/gen/filters/rules/person/_searchname.py:46
 msgid "People matching the <name>"
@@ -6394,7 +6396,8 @@ msgstr "Kaste"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:75
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:104
-#: ../gramps/gui/glade/rule.glade:931 ../gramps/gui/glade/styleeditor.glade:262
+#: ../gramps/gui/glade/rule.glade:931
+#: ../gramps/gui/glade/styleeditor.glade:262
 #: ../gramps/gui/plug/_windows.py:134 ../gramps/gui/plug/_windows.py:243
 #: ../gramps/gui/plug/_windows.py:620 ../gramps/gui/plug/_windows.py:1105
 #: ../gramps/gui/selectors/selectevent.py:73
@@ -6695,7 +6698,8 @@ msgstr "Kilde"
 #: ../gramps/plugins/quickview/filterbyname.py:137
 #: ../gramps/plugins/textreport/indivcomplete.py:268
 #: ../gramps/plugins/textreport/tagreport.py:486
-#: ../gramps/plugins/view/noteview.py:110 ../gramps/plugins/view/view.gpr.py:97
+#: ../gramps/plugins/view/noteview.py:110
+#: ../gramps/plugins/view/view.gpr.py:97
 #: ../gramps/plugins/view/view.gpr.py:105
 #: ../gramps/plugins/webreport/narrativeweb.py:1044
 #: ../gramps/plugins/webreport/narrativeweb.py:1679
@@ -6817,17 +6821,18 @@ msgstr "Mærkater"
 #: ../gramps/plugins/view/citationtreeview.py:97
 #: ../gramps/plugins/view/eventview.py:87
 #: ../gramps/plugins/view/familyview.py:84
-#: ../gramps/plugins/view/mediaview.py:99 ../gramps/plugins/view/noteview.py:82
+#: ../gramps/plugins/view/mediaview.py:99
+#: ../gramps/plugins/view/noteview.py:82
 #: ../gramps/plugins/view/repoview.py:97
 #: ../gramps/plugins/view/sourceview.py:87
 msgid "Private"
 msgstr "Privat"
 
 #. -------------------------------------------------------------------------
-#.
+#. 
 #. Short hand function to return either the person's name, or an empty
 #. string if the person is None
-#.
+#. 
 #. -------------------------------------------------------------------------
 #: ../gramps/gen/lib/date.py:274 ../gramps/gen/lib/date.py:422
 #: ../gramps/gen/mime/_pythonmime.py:48 ../gramps/gen/mime/_pythonmime.py:56
@@ -7050,7 +7055,7 @@ msgstr "Kildehenvisninger"
 
 #: ../gramps/gen/lib/eventref.py:95
 msgid "Event reference"
-msgstr "Hændelses henvisning"
+msgstr "Hændelseshenvisning"
 
 #: ../gramps/gen/lib/eventref.py:106 ../gramps/gen/lib/family.py:171
 #: ../gramps/gen/lib/media.py:152 ../gramps/gen/lib/person.py:212
@@ -7111,7 +7116,8 @@ msgstr "Livs Hændelser"
 #: ../gramps/gui/clipboard.py:771 ../gramps/gui/configure.py:537
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
-#: ../gramps/gui/editors/editfamily.py:499 ../gramps/gui/editors/editlink.py:93
+#: ../gramps/gui/editors/editfamily.py:499
+#: ../gramps/gui/editors/editlink.py:93
 #: ../gramps/gui/editors/filtereditor.py:294
 #: ../gramps/gui/glade/editldsord.glade:267 ../gramps/gui/viewmanager.py:604
 #: ../gramps/plugins/export/exportcsv.py:506
@@ -7348,9 +7354,9 @@ msgstr "Andet ægteskab"
 
 #. cm2pt = utils.cm2pt
 #. ------------------------------------------------------------------------
-#.
+#. 
 #. Constants
-#.
+#. 
 #. ------------------------------------------------------------------------
 #: ../gramps/gen/lib/eventtype.py:211
 #: ../gramps/plugins/drawreport/ancestortree.py:61
@@ -7519,18 +7525,18 @@ msgid "Marriage Contract abbreviation|m.con."
 msgstr "ægtesk.kontr."
 
 # Fra: http://genealogytipoftheday.blogspot.com/2010/08/marriage-bann.html
-#
+# 
 # Marriage Bann?
 # A marriage bann is an announcement of an upcoming marriage.
 # Usually made for three consecutive weeks in church, banns may also be
 # publicly published announcements of an upcoming marriage.
-#
+# 
 # Usually done so that anyone with knowledge of why the couple should not be
 # married could come forth with the reason.
-#
+# 
 # The publication (or announcement) of the banns does not necessarily mean
 # that the marriage actually took place. 
-#
+# 
 # Dansk oversættelse ...bryllupskundgørelse? -MBJ
 #: ../gramps/gen/lib/eventtype.py:251
 msgid "Marriage Banns abbreviation|m.ban."
@@ -7702,7 +7708,8 @@ msgstr "Gift"
 #: ../gramps/plugins/tool/patchnames.py:407
 #: ../gramps/plugins/tool/sortevents.py:55
 #: ../gramps/plugins/view/eventview.py:84
-#: ../gramps/plugins/view/mediaview.py:96 ../gramps/plugins/view/noteview.py:81
+#: ../gramps/plugins/view/mediaview.py:96
+#: ../gramps/plugins/view/noteview.py:81
 #: ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/webreport/narrativeweb.py:1351
 #: ../gramps/plugins/webreport/narrativeweb.py:1677
@@ -8176,16 +8183,16 @@ msgstr "Barnereference"
 
 #. 4
 #. ------------------------------------------------------------------------
-#.
+#. 
 #. References
-#.
+#. 
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
 #: ../gramps/gen/lib/person.py:173 ../gramps/gui/clipboard.py:743
 #: ../gramps/gui/configure.py:535 ../gramps/gui/editors/editlink.py:96
 #: ../gramps/gui/editors/filtereditor.py:293
-#: ../gramps/gui/glade/editpersonref.glade:211 ../gramps/gui/viewmanager.py:602
-#: ../gramps/plugins/export/exportcsv.py:354
+#: ../gramps/gui/glade/editpersonref.glade:211
+#: ../gramps/gui/viewmanager.py:602 ../gramps/plugins/export/exportcsv.py:354
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:107
 #: ../gramps/plugins/importer/importcsv.py:208
 #: ../gramps/plugins/quickview/ageondate.py:54
@@ -8245,7 +8252,8 @@ msgstr "Fødselshenvisnings indeks"
 msgid "Event references"
 msgstr "Hændelses henvisning"
 
-#: ../gramps/gen/lib/person.py:199 ../gramps/plugins/graph/gvfamilylines.py:285
+#: ../gramps/gen/lib/person.py:199
+#: ../gramps/plugins/graph/gvfamilylines.py:285
 #: ../gramps/plugins/graph/gvhourglass.py:379
 #: ../gramps/plugins/graph/gvrelgraph.py:894
 #: ../gramps/plugins/quickview/filterbyname.py:94
@@ -8541,7 +8549,8 @@ msgstr "Udgivelsesoplysninger"
 msgid "Abbreviation"
 msgstr "Forkortelse"
 
-#: ../gramps/gen/lib/src.py:127 ../gramps/plugins/quickview/filterbyname.py:106
+#: ../gramps/gen/lib/src.py:127
+#: ../gramps/plugins/quickview/filterbyname.py:106
 #: ../gramps/plugins/quickview/filterbyname.py:131
 #: ../gramps/plugins/textreport/tagreport.py:639
 #: ../gramps/plugins/view/repoview.py:129
@@ -8622,7 +8631,7 @@ msgstr "Tekst"
 
 #: ../gramps/gen/lib/styledtext.py:311
 msgid "Styled Text Tags"
-msgstr "Formateret text mærkater"
+msgstr "Formateret tekstmærkater"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:61
 #: ../gramps/gui/widgets/styledtexteditor.py:458
@@ -8790,7 +8799,8 @@ msgstr "Sammenflet familie"
 msgid "Merge Media Objects"
 msgstr "Sammenflet medieobjekter"
 
-#: ../gramps/gen/merge/mergenotequery.py:58 ../gramps/gui/merge/mergenote.py:66
+#: ../gramps/gen/merge/mergenotequery.py:58
+#: ../gramps/gui/merge/mergenote.py:66
 msgid "Merge Notes"
 msgstr "Sammenflet noter"
 
@@ -8826,9 +8836,9 @@ msgid "Gramplet %s caused an error"
 msgstr "Gramplet %s forårsagede en fejl"
 
 #. -------------------------------------------------------------------------
-#.
+#. 
 #. Constants
-#.
+#. 
 #. -------------------------------------------------------------------------
 #: ../gramps/gen/plug/_manager.py:61
 msgid "No description was provided"
@@ -9002,9 +9012,9 @@ msgid "Could not create %s"
 msgstr "Kunne ikke danne %s"
 
 #. -------------------------------------------------------------------------------
-#.
+#. 
 #. Private Constants
-#.
+#. 
 #. -------------------------------------------------------------------------------
 #: ../gramps/gen/plug/docgen/graphdoc.py:65
 #: ../gramps/gen/plug/report/stdoptions.py:59
@@ -9106,7 +9116,7 @@ msgstr "Buet"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:92
 msgid "Orthogonal"
-msgstr "Retvinklet"
+msgstr "Vinkelret"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:136
@@ -9287,7 +9297,7 @@ msgid ""
 "graphs will result in longer lines and larger graphs."
 msgstr ""
 "Delgrafer kan hjælpe GraphViz med at placere ægtefæller sammen, men med mere "
-"komplicerede grafer, vil dette medføre længere linjer og større grafer."
+"komplicerede grafer, vil dette medføre længere linier og større grafer."
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:258
@@ -9375,12 +9385,13 @@ msgstr "Gyldige værdier: "
 
 # FIXME Better translation?
 #. ------------------------------------------------------------------------
-#.
+#. 
 #. Private Constants
-#.
+#. 
 #. ------------------------------------------------------------------------
 #: ../gramps/gen/plug/report/_book.py:71 ../gramps/gui/plug/_dialogs.py:59
-#: ../gramps/gui/plug/report/_bookdialog.py:84 ../gramps/gui/viewmanager.py:119
+#: ../gramps/gui/plug/report/_bookdialog.py:84
+#: ../gramps/gui/viewmanager.py:119
 msgid "Unsupported"
 msgstr "Ikke understøttet"
 
@@ -9479,7 +9490,8 @@ msgstr "Slutnoter"
 #: ../gramps/plugins/view/relview.py:614 ../gramps/plugins/view/relview.py:631
 #: ../gramps/plugins/view/relview.py:641 ../gramps/plugins/view/relview.py:646
 #: ../gramps/plugins/view/relview.py:654 ../gramps/plugins/view/relview.py:862
-#: ../gramps/plugins/view/relview.py:898 ../gramps/plugins/view/relview.py:1378
+#: ../gramps/plugins/view/relview.py:898
+#: ../gramps/plugins/view/relview.py:1378
 #: ../gramps/plugins/view/relview.py:1402
 #, python-format
 msgid "%s:"
@@ -9562,15 +9574,15 @@ msgstr "Medtag ikke"
 
 #: ../gramps/gen/plug/report/stdoptions.py:323
 msgid "Share an existing line"
-msgstr "Del en eksisterende linje"
+msgstr "Del en eksisterende linie"
 
 #: ../gramps/gen/plug/report/stdoptions.py:324
 msgid "On a line of its own"
-msgstr "På sin egen linje"
+msgstr "På sin egen linie"
 
 #: ../gramps/gen/plug/report/stdoptions.py:325
 msgid "Whether (and where) to include Gramps IDs"
-msgstr "Hvorvidt (og hvor) Gramps-id'er skal medtages"
+msgstr "Hvorvidt (og hvor) Gramps-IDer skal medtages"
 
 #. --------------------
 #. ###############################
@@ -9649,15 +9661,18 @@ msgstr "Aner til %s"
 msgid "People with common ancestor with %s"
 msgstr "Personer med samme ane som %s"
 
-#: ../gramps/gen/plug/report/utils.py:354 ../gramps/gui/plug/_guioptions.py:891
+#: ../gramps/gen/plug/report/utils.py:354
+#: ../gramps/gui/plug/_guioptions.py:891
 msgid "unknown father"
 msgstr "ukendt fader"
 
-#: ../gramps/gen/plug/report/utils.py:360 ../gramps/gui/plug/_guioptions.py:897
+#: ../gramps/gen/plug/report/utils.py:360
+#: ../gramps/gui/plug/_guioptions.py:897
 msgid "unknown mother"
 msgstr "ukendt moder"
 
-#: ../gramps/gen/plug/report/utils.py:362 ../gramps/gui/plug/_guioptions.py:899
+#: ../gramps/gen/plug/report/utils.py:362
+#: ../gramps/gui/plug/_guioptions.py:899
 #, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
 msgstr "%(father_name)s og %(mother_name)s (%(family_id)s)"
@@ -9897,11 +9912,13 @@ msgid ""
 msgstr ""
 "Slægtsskabsoversætter findes ikke for sprog '%s'. Anvender engelsk i stedet."
 
-#: ../gramps/gen/utils/alive.py:148 ../gramps/plugins/importer/importcsv.py:201
+#: ../gramps/gen/utils/alive.py:148
+#: ../gramps/plugins/importer/importcsv.py:201
 msgid "death date"
 msgstr "dødsdato"
 
-#: ../gramps/gen/utils/alive.py:153 ../gramps/plugins/importer/importcsv.py:177
+#: ../gramps/gen/utils/alive.py:153
+#: ../gramps/plugins/importer/importcsv.py:177
 msgid "birth date"
 msgstr "fødselsdato"
 
@@ -10723,8 +10740,9 @@ msgstr "Vis navneredigering"
 #: ../gramps/gui/glade/displaystate.glade:23
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
-#: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/plug/_windows.py:105
-#: ../gramps/gui/plug/_windows.py:691 ../gramps/gui/plug/_windows.py:747
+#: ../gramps/gui/glade/updateaddons.glade:25
+#: ../gramps/gui/plug/_windows.py:105 ../gramps/gui/plug/_windows.py:691
+#: ../gramps/gui/plug/_windows.py:747
 #: ../gramps/gui/plug/quick/_textbufdoc.py:60 ../gramps/gui/undohistory.py:90
 #: ../gramps/gui/viewmanager.py:538 ../gramps/gui/viewmanager.py:1821
 #: ../gramps/gui/views/bookmarks.py:287 ../gramps/gui/views/tags.py:430
@@ -11242,7 +11260,7 @@ msgstr "Datoer"
 
 #: ../gramps/gui/configure.py:1306
 msgid "Use alternate Font handler for GUI and Reports (requires restart)"
-msgstr "Brug skiftende Font håndtering for GUI og rapporter (kræver genstart)"
+msgstr "Brug skiftende fonthåndtering for GUI og rapporter (kræver genstart)"
 
 #: ../gramps/gui/configure.py:1312
 msgid "Add default source on GEDCOM import"
@@ -11299,7 +11317,7 @@ msgstr "Altid"
 
 #: ../gramps/gui/configure.py:1375
 msgid "Check for addon updates"
-msgstr "Kontrollér om der findes opdateringer"
+msgstr "Kontrollér om der findes tilføjelses opdateringer"
 
 #: ../gramps/gui/configure.py:1381
 msgid "Updated addons only"
@@ -11384,11 +11402,11 @@ msgstr "Sikkerhedskopier ved afslutning"
 
 #: ../gramps/gui/configure.py:1493
 msgid "Every 15 minutes"
-msgstr "Hver 15. minut"
+msgstr "Hvert 15. minut"
 
 #: ../gramps/gui/configure.py:1494
 msgid "Every 30 minutes"
-msgstr "Hver 30. minut"
+msgstr "Hvert 30. minut"
 
 #: ../gramps/gui/configure.py:1495
 msgid "Every hour"
@@ -11413,7 +11431,8 @@ msgstr "Vælg mappe til medieobjekter"
 #: ../gramps/gui/glade/editattribute.glade:21
 #: ../gramps/gui/glade/editchildref.glade:22
 #: ../gramps/gui/glade/editcitation.glade:42
-#: ../gramps/gui/glade/editdate.glade:69 ../gramps/gui/glade/editevent.glade:21
+#: ../gramps/gui/glade/editdate.glade:69
+#: ../gramps/gui/glade/editevent.glade:21
 #: ../gramps/gui/glade/editeventref.glade:38
 #: ../gramps/gui/glade/editfamily.glade:21
 #: ../gramps/gui/glade/editldsord.glade:39
@@ -11429,7 +11448,8 @@ msgstr "Vælg mappe til medieobjekter"
 #: ../gramps/gui/glade/editplaceref.glade:38
 #: ../gramps/gui/glade/editreporef.glade:22
 #: ../gramps/gui/glade/editrepository.glade:22
-#: ../gramps/gui/glade/editsource.glade:23 ../gramps/gui/glade/editurl.glade:21
+#: ../gramps/gui/glade/editsource.glade:23
+#: ../gramps/gui/glade/editurl.glade:21
 #: ../gramps/gui/glade/mergecitation.glade:21
 #: ../gramps/gui/glade/mergedata.glade:25
 #: ../gramps/gui/glade/mergedata.glade:246
@@ -11545,7 +11565,7 @@ msgstr "Vælg fil _type:"
 
 #: ../gramps/gui/dbloader.py:391
 msgid "Import Family Tree"
-msgstr "Importér slægtstræ"
+msgstr "Importér slægtsbog"
 
 #: ../gramps/gui/dbloader.py:402
 msgid "Import"
@@ -11615,13 +11635,15 @@ msgstr "Database Information"
 
 #: ../gramps/gui/dbman.py:121 ../gramps/gui/editors/edittaglist.py:120
 #: ../gramps/gui/glade/addmedia.glade:38
-#: ../gramps/gui/glade/baseselector.glade:40 ../gramps/gui/glade/book.glade:482
-#: ../gramps/gui/glade/book.glade:555 ../gramps/gui/glade/configure.glade:39
-#: ../gramps/gui/glade/dbman.glade:24 ../gramps/gui/glade/editaddress.glade:36
+#: ../gramps/gui/glade/baseselector.glade:40
+#: ../gramps/gui/glade/book.glade:482 ../gramps/gui/glade/book.glade:555
+#: ../gramps/gui/glade/configure.glade:39 ../gramps/gui/glade/dbman.glade:24
+#: ../gramps/gui/glade/editaddress.glade:36
 #: ../gramps/gui/glade/editattribute.glade:37
 #: ../gramps/gui/glade/editchildref.glade:38
 #: ../gramps/gui/glade/editcitation.glade:57
-#: ../gramps/gui/glade/editdate.glade:85 ../gramps/gui/glade/editevent.glade:40
+#: ../gramps/gui/glade/editdate.glade:85
+#: ../gramps/gui/glade/editevent.glade:40
 #: ../gramps/gui/glade/editeventref.glade:54
 #: ../gramps/gui/glade/editfamily.glade:40
 #: ../gramps/gui/glade/editldsord.glade:55
@@ -11637,7 +11659,8 @@ msgstr "Database Information"
 #: ../gramps/gui/glade/editplaceref.glade:54
 #: ../gramps/gui/glade/editreporef.glade:41
 #: ../gramps/gui/glade/editrepository.glade:40
-#: ../gramps/gui/glade/editsource.glade:40 ../gramps/gui/glade/editurl.glade:37
+#: ../gramps/gui/glade/editsource.glade:40
+#: ../gramps/gui/glade/editurl.glade:37
 #: ../gramps/gui/glade/mergecitation.glade:37
 #: ../gramps/gui/glade/mergedata.glade:262
 #: ../gramps/gui/glade/mergedata.glade:451
@@ -11651,12 +11674,14 @@ msgstr "Database Information"
 #: ../gramps/gui/glade/mergerepository.glade:37
 #: ../gramps/gui/glade/mergesource.glade:37
 #: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
-#: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
+#: ../gramps/gui/glade/rule.glade:764
+#: ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1738
 #: ../gramps/gui/plug/_guioptions.py:79
 #: ../gramps/gui/plug/report/_reportdialog.py:165 ../gramps/gui/utils.py:192
 #: ../gramps/gui/viewmanager.py:1823 ../gramps/gui/views/tags.py:646
-#: ../gramps/plugins/tool/check.py:764 ../gramps/plugins/tool/patchnames.py:118
+#: ../gramps/plugins/tool/check.py:764
+#: ../gramps/plugins/tool/patchnames.py:118
 #: ../gramps/plugins/tool/populatesources.py:91
 #: ../gramps/plugins/tool/testcasegenerator.py:328
 msgid "_OK"
@@ -12149,13 +12174,15 @@ msgstr "Attri_butter"
 #: ../gramps/plugins/tool/notrelated.py:127
 #: ../gramps/plugins/tool/patchnames.py:404
 #: ../gramps/plugins/tool/removeunused.py:195
-#: ../gramps/plugins/tool/sortevents.py:56 ../gramps/plugins/tool/verify.py:571
+#: ../gramps/plugins/tool/sortevents.py:56
+#: ../gramps/plugins/tool/verify.py:571
 #: ../gramps/plugins/view/citationlistview.py:99
 #: ../gramps/plugins/view/citationtreeview.py:94
 #: ../gramps/plugins/view/eventview.py:83
 #: ../gramps/plugins/view/familyview.py:79
-#: ../gramps/plugins/view/mediaview.py:95 ../gramps/plugins/view/noteview.py:80
-#: ../gramps/plugins/view/relview.py:602 ../gramps/plugins/view/repoview.py:86
+#: ../gramps/plugins/view/mediaview.py:95
+#: ../gramps/plugins/view/noteview.py:80 ../gramps/plugins/view/relview.py:602
+#: ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/view/sourceview.py:83
 msgid "ID"
 msgstr "Id"
@@ -12370,7 +12397,7 @@ msgstr "Åbn mappe med _indhold"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:153
 msgid "_Make Active Media"
-msgstr "Opret aktiv medie"
+msgstr "Opret aktivt medie"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:257
 #: ../gramps/gui/editors/editperson.py:960
@@ -12463,9 +12490,9 @@ msgid "Set as default name"
 msgstr "Indstil som forvalgt navn"
 
 #. -------------------------------------------------------------------------
-#.
+#. 
 #. NameModel
-#.
+#. 
 #. -------------------------------------------------------------------------
 #: ../gramps/gui/editors/displaytabs/namemodel.py:56
 #: ../gramps/gui/plug/_guioptions.py:1252 ../gramps/gui/views/tags.py:496
@@ -13570,7 +13597,8 @@ msgid "Add Person (%s)"
 msgstr "Tilføj person (%s)"
 
 #: ../gramps/gui/editors/editperson.py:866
-#: ../gramps/plugins/view/relview.py:580 ../gramps/plugins/view/relview.py:1002
+#: ../gramps/plugins/view/relview.py:580
+#: ../gramps/plugins/view/relview.py:1002
 #: ../gramps/plugins/view/relview.py:1059
 #: ../gramps/plugins/view/relview.py:1183
 #: ../gramps/plugins/view/relview.py:1288
@@ -13627,7 +13655,8 @@ msgid "manual|Place_Editor_dialog"
 msgstr ""
 
 #: ../gramps/gui/editors/editplace.py:91
-#: ../gramps/gui/glade/editplace.glade:354 ../gramps/gui/merge/mergeplace.py:55
+#: ../gramps/gui/glade/editplace.glade:354
+#: ../gramps/gui/merge/mergeplace.py:55
 msgid "place|Name:"
 msgstr "Navn:"
 
@@ -13867,7 +13896,8 @@ msgstr "Sæt mærkat på udvalg"
 #: ../gramps/gui/glade/editattribute.glade:54
 #: ../gramps/gui/glade/editchildref.glade:58
 #: ../gramps/gui/glade/editcitation.glade:27
-#: ../gramps/gui/glade/editdate.glade:53 ../gramps/gui/glade/editevent.glade:58
+#: ../gramps/gui/glade/editdate.glade:53
+#: ../gramps/gui/glade/editevent.glade:58
 #: ../gramps/gui/glade/editeventref.glade:22
 #: ../gramps/gui/glade/editfamily.glade:60
 #: ../gramps/gui/glade/editldsord.glade:75
@@ -13883,7 +13913,8 @@ msgstr "Sæt mærkat på udvalg"
 #: ../gramps/gui/glade/editplaceref.glade:22
 #: ../gramps/gui/glade/editreporef.glade:61
 #: ../gramps/gui/glade/editrepository.glade:59
-#: ../gramps/gui/glade/editsource.glade:58 ../gramps/gui/glade/editurl.glade:57
+#: ../gramps/gui/glade/editsource.glade:58
+#: ../gramps/gui/glade/editurl.glade:57
 #: ../gramps/gui/glade/mergecitation.glade:53
 #: ../gramps/gui/glade/mergedata.glade:77
 #: ../gramps/gui/glade/mergedata.glade:278
@@ -14009,7 +14040,7 @@ msgstr "Anvend regulært udtryk"
 
 #: ../gramps/gui/editors/filtereditor.py:568
 msgid "Also family events where person is spouse"
-msgstr "Også familiehændelser hvor personen er hustru/ægtemand"
+msgstr "Også familiehændelser hvor personen er ægtefælle"
 
 #: ../gramps/gui/editors/filtereditor.py:570
 msgid "Only include primary participants"
@@ -14058,15 +14089,16 @@ msgstr ""
 "tilfælde af det foregående tegn eller gruppe. En stjerne matcher ingen eller "
 "flere tilfælde. Et plus vil matche en eller flere tilfælde. Brug parenteser "
 "for at gruppere udtryk. Angiv alternativer med en vandret streg. \\\"^\\\" "
-"vil matche begyndelsen af en linje. Et dollartegn vil matche slutningen af "
-"en linje."
+"vil matche begyndelsen af en linie. Et dollartegn vil matche slutningen af "
+"en linie."
 
 #: ../gramps/gui/editors/filtereditor.py:627
 msgid "Rule Name"
 msgstr "Regelnavn"
 
 #: ../gramps/gui/editors/filtereditor.py:758
-#: ../gramps/gui/editors/filtereditor.py:762 ../gramps/gui/glade/rule.glade:914
+#: ../gramps/gui/editors/filtereditor.py:762
+#: ../gramps/gui/glade/rule.glade:914
 msgid "No rule selected"
 msgstr "Ingen regel er valgt"
 
@@ -14074,7 +14106,8 @@ msgstr "Ingen regel er valgt"
 msgid "Define filter"
 msgstr "Definér filter"
 
-#: ../gramps/gui/editors/filtereditor.py:820 ../gramps/gui/glade/rule.glade:967
+#: ../gramps/gui/editors/filtereditor.py:820
+#: ../gramps/gui/glade/rule.glade:967
 msgid "Values"
 msgstr "Værdier"
 
@@ -14247,8 +14280,8 @@ msgstr "%s er ikke"
 msgid "%s does not contain"
 msgstr "%s indeholder ikke"
 
-#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1153
-#: ../gramps/gui/views/listview.py:1173
+#: ../gramps/gui/filters/_searchbar.py:168
+#: ../gramps/gui/views/listview.py:1153 ../gramps/gui/views/listview.py:1173
 msgid "Updating display..."
 msgstr "Opdaterer skærmbillede..."
 
@@ -14602,7 +14635,8 @@ msgstr "Gramps Advarsler"
 #: ../gramps/gui/glade/editplacename.glade:44
 #: ../gramps/gui/glade/editreporef.glade:50
 #: ../gramps/gui/glade/editrepository.glade:48
-#: ../gramps/gui/glade/editsource.glade:46 ../gramps/gui/glade/editurl.glade:46
+#: ../gramps/gui/glade/editsource.glade:46
+#: ../gramps/gui/glade/editurl.glade:46
 msgid "Accept changes and close window"
 msgstr "Godkend ændringer og afslut dialogen"
 
@@ -14800,7 +14834,7 @@ msgstr ""
 "kan det omfatte nummeret, udgaven og sidenumre. For en avis kunne det "
 "omfatte kolonnenummer og sidenummer. For en ikke-udgivet kilde, kunne det "
 "være arknummer, sidenummer, rammenummer, etc. En folketællingsprotokol kunne "
-"have et linjenummer, et husnummer og  antal familiemedlemmer ud over "
+"have et linienummer, et husnummer og  antal familiemedlemmer ud over "
 "sidenummeret. "
 
 #: ../gramps/gui/glade/editcitation.glade:152
@@ -15598,8 +15632,8 @@ msgstr "Vælg en person der har en tilknytning til den redigerede person."
 msgid ""
 "Either use the two fields below to enter coordinates(latitude and longitude),"
 msgstr ""
-"Brug enten de to nedenstående felter til at angive koordinater (længde og "
-"bredde),"
+"Brug enten de to nedenstående felter til at angive koordinater (bredde og "
+"længde) ,"
 
 #: ../gramps/gui/glade/editplace.glade:119
 msgid "L_atitude:"
@@ -15653,8 +15687,8 @@ msgid ""
 "or use copy/paste from your favorite map provider (format : latitude,"
 "longitude) in the following field:"
 msgstr ""
-"eller brug kopier/indsæt fra din yndlings kort leverandør (format : bredde, "
-"længde) i det følgende felt:"
+"eller brug kopier/indsæt fra din foretrukne kort leverandør (format : "
+"bredde, længde) i det følgende felt:"
 
 #: ../gramps/gui/glade/editplace.glade:237
 #: ../gramps/gui/glade/editplaceref.glade:375
@@ -16057,7 +16091,8 @@ msgid "Note 2"
 msgstr "Note 2"
 
 #: ../gramps/gui/glade/mergenote.glade:278
-#: ../gramps/gui/glade/mergenote.glade:294 ../gramps/gui/views/listview.py:1027
+#: ../gramps/gui/glade/mergenote.glade:294
+#: ../gramps/gui/views/listview.py:1027
 msgid "Format:"
 msgstr "Format:"
 
@@ -16315,7 +16350,8 @@ msgstr "Redigér den valgte regel"
 msgid "Delete the selected rule"
 msgstr "Slet den valgte regel"
 
-#: ../gramps/gui/glade/rule.glade:521 ../gramps/gui/glade/styleeditor.glade:403
+#: ../gramps/gui/glade/rule.glade:521
+#: ../gramps/gui/glade/styleeditor.glade:403
 #: ../gramps/plugins/tool/finddupes.glade:132
 #: ../gramps/plugins/tool/mergecitations.glade:132
 #: ../gramps/plugins/tool/sortevents.py:82
@@ -16398,7 +16434,7 @@ msgstr "Baggrundsfarve"
 
 #: ../gramps/gui/glade/styleeditor.glade:587
 msgid "First li_ne:"
-msgstr "F_ørste linje:"
+msgstr "F_ørste linie:"
 
 #: ../gramps/gui/glade/styleeditor.glade:642
 msgid "R_ight:"
@@ -16504,7 +16540,7 @@ msgstr "Celleindstillinger"
 
 #: ../gramps/gui/glade/styleeditor.glade:1412
 msgid "Line"
-msgstr "linje"
+msgstr "linie"
 
 #: ../gramps/gui/glade/styleeditor.glade:1452
 msgid "Style:"
@@ -16516,7 +16552,7 @@ msgstr "Bredde:"
 
 #: ../gramps/gui/glade/styleeditor.glade:1478
 msgid "Line:"
-msgstr "linje:"
+msgstr "linie:"
 
 #: ../gramps/gui/glade/styleeditor.glade:1491
 msgid "Fill:"
@@ -18207,9 +18243,9 @@ msgid "Select Repository"
 msgstr "Vælg arkiv"
 
 #. -------------------------------------------------------------------------
-#.
+#. 
 #. Constants
-#.
+#. 
 #. -------------------------------------------------------------------------
 #. FIXME
 #: ../gramps/gui/selectors/selectsource.py:46
@@ -18780,7 +18816,8 @@ msgstr ""
 "Dette element er i brug nu. Sletning af det vil fjerne det fra databasen, og "
 "fra alle andre elementer der henviser til det."
 
-#: ../gramps/gui/views/listview.py:565 ../gramps/plugins/view/familyview.py:267
+#: ../gramps/gui/views/listview.py:565
+#: ../gramps/plugins/view/familyview.py:267
 msgid "Deleting item will remove it from the database."
 msgstr "Sletning af elementet vil fjerne det fra databasen."
 
@@ -19041,11 +19078,13 @@ msgstr "Udfold denne sektion"
 msgid "Collapse this section"
 msgstr "Sammenfold denne sektion"
 
-#: ../gramps/gui/widgets/fanchart.py:1519 ../gramps/plugins/view/relview.py:811
+#: ../gramps/gui/widgets/fanchart.py:1519
+#: ../gramps/plugins/view/relview.py:811
 msgid "Edit family"
 msgstr "Redigér familie"
 
-#: ../gramps/gui/widgets/fanchart.py:1535 ../gramps/plugins/view/relview.py:812
+#: ../gramps/gui/widgets/fanchart.py:1535
+#: ../gramps/plugins/view/relview.py:812
 msgid "Reorder families"
 msgstr "Omorganisér familier"
 
@@ -19433,11 +19472,11 @@ msgstr "In-Memory Database"
 
 #: ../gramps/plugins/docgen/asciidoc.py:469
 msgid "Characters per line"
-msgstr "Tegn per linje"
+msgstr "Tegn per linie"
 
 #: ../gramps/plugins/docgen/asciidoc.py:470
 msgid "The number of characters per line"
-msgstr "Antallet af tegn per linje"
+msgstr "Antallet af tegn per linie"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:34
 msgid "Plain Text"
@@ -19959,7 +19998,7 @@ msgstr "Brug visningsformat til moder"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:938
 msgid "The display format for the center person"
-msgstr "Det visningsformat der skal bruges til fokusperson"
+msgstr "Det visningsformat der skal bruges til fokuspersonen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:941
 #: ../gramps/plugins/drawreport/descendtree.py:1668
@@ -20224,7 +20263,7 @@ msgstr "Tekstområde 1"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:482
 msgid "First line of text at bottom of calendar"
-msgstr "Første tekstlinje, nederst i kalenderen"
+msgstr "Første tekstlinie, nederst i kalenderen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:485
 #: ../gramps/plugins/textreport/birthdayreport.py:430
@@ -20233,7 +20272,7 @@ msgstr "Tekstområde 2"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:486
 msgid "Second line of text at bottom of calendar"
-msgstr "Anden tekstlinje, nederst i kalenderen"
+msgstr "Anden tekstlinie, nederst i kalenderen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:489
 #: ../gramps/plugins/textreport/birthdayreport.py:434
@@ -20242,7 +20281,7 @@ msgstr "Tekstområde 3"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:490
 msgid "Third line of text at bottom of calendar"
-msgstr "Tredje tekstlinje, nederst i kalenderen"
+msgstr "Tredje tekstlinie, nederst i kalenderen"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:505
 #: ../gramps/plugins/textreport/birthdayreport.py:445
@@ -20369,17 +20408,17 @@ msgstr "Tekst til ugedag"
 #: ../gramps/plugins/drawreport/calendarreport.py:647
 #: ../gramps/plugins/textreport/birthdayreport.py:575
 msgid "Text at bottom, line 1"
-msgstr "Tekst nederst, linje 1"
+msgstr "Tekst nederst, linie 1"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:649
 #: ../gramps/plugins/textreport/birthdayreport.py:577
 msgid "Text at bottom, line 2"
-msgstr "Tekst nederst, linje 2"
+msgstr "Tekst nederst, linie 2"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:651
 #: ../gramps/plugins/textreport/birthdayreport.py:579
 msgid "Text at bottom, line 3"
-msgstr "Tekst nederst, linje 3"
+msgstr "Tekst nederst, linie 3"
 
 #: ../gramps/plugins/drawreport/descendtree.py:158
 #, python-format
@@ -20636,11 +20675,11 @@ msgstr ""
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:221
 #: ../gramps/plugins/drawreport/timeline.py:274
 msgid "Timeline Chart"
-msgstr "Tidslinjetavle"
+msgstr "Tidslinietavle"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:222
 msgid "Produces a timeline chart."
-msgstr "Laver en tidslinjetavle."
+msgstr "Laver en tidslinietavle."
 
 #. choose  one line or two lines translation according to the width
 #: ../gramps/plugins/drawreport/fanchart.py:256
@@ -21025,7 +21064,7 @@ msgstr "Navn"
 #: ../gramps/plugins/drawreport/timeline.py:168
 #: ../gramps/plugins/drawreport/timeline.py:337
 msgid "Timeline"
-msgstr "Tidslinje"
+msgstr "Tidslinie"
 
 #: ../gramps/plugins/drawreport/timeline.py:157
 msgid "Sorting dates..."
@@ -21033,7 +21072,7 @@ msgstr "Sorterer datoer ..."
 
 #: ../gramps/plugins/drawreport/timeline.py:168
 msgid "Calculating timeline..."
-msgstr "Beregner tidslinje ..."
+msgstr "Beregner tidslinie ..."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/drawreport/timeline.py:276
@@ -21864,7 +21903,7 @@ msgstr "Efterkommer-vifte"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:155
 #: ../gramps/plugins/view/fanchart2wayview.py:78
 msgid "2-Way Fan Chart"
-msgstr "\"-vejs Viftetavle"
+msgstr "2-vejs Viftetavle"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:156
 msgid ""
@@ -22637,7 +22676,7 @@ msgstr "Vis datoer"
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:69
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:80
 msgid "Line type"
-msgstr "linjetype"
+msgstr "linietype"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:163
 msgid "Click to make active\n"
@@ -23075,7 +23114,7 @@ msgstr ""
 #. distance to the main person will be added on top of this.
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
-msgstr "Mindste antal linjer der skal vises"
+msgstr "Mindste antal linier der skal vises"
 
 #. How many generations of descendants to process before we go up to the
 #. next level of ancestors.
@@ -23206,11 +23245,11 @@ msgstr ": %s\n"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:36
 msgid "Family Lines Graph"
-msgstr "Tavle over slægtslinjer"
+msgstr "Tavle over slægtslinier"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:37
 msgid "Produces family line graphs using Graphviz."
-msgstr "Laver slægtslinjetavler med GraphViz."
+msgstr "Laver slægtslinietavler med GraphViz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:59
 msgid "Hourglass Graph"
@@ -23230,9 +23269,9 @@ msgid "Produces relationship graphs using Graphviz."
 msgstr "Laver slægtskabstavler med GraphViz."
 
 #. ------------------------------------------------------------------------
-#.
+#. 
 #. Constant options items
-#.
+#. 
 #. ------------------------------------------------------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:73
 #: ../gramps/plugins/graph/gvhourglass.py:57
@@ -23275,23 +23314,23 @@ msgstr "Efterkommere - Aner"
 #. ---------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:119
 msgid "Follow parents to determine \"family lines\""
-msgstr "Følg forældre for at fastlægge slægtslinjer"
+msgstr "Følg forældre for at fastlægge slægtslinier"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:121
 msgid ""
 "Parents and their ancestors will be considered when determining \"family "
 "lines\"."
 msgstr ""
-"Forældre og deres aner vil blive taget i betragtning når \"slægtslinjerne\" "
+"Forældre og deres aner vil blive taget i betragtning når \"slægtslinierne\" "
 "fastlægges."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:125
 msgid "Follow children to determine \"family lines\""
-msgstr "Følg børn for at fastlægge \"slægtslinjer\""
+msgstr "Følg børn for at fastlægge \"slægtslinier\""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:127
 msgid "Children will be considered when determining \"family lines\"."
-msgstr "Børn vil blive taget i betragtning når \"slægtslinjer\" fastlægges."
+msgstr "Børn vil blive taget i betragtning når \"slægtslinier\" fastlægges."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:131
 msgid "Try to remove extra people and families"
@@ -23303,7 +23342,7 @@ msgid ""
 "removed when determining \"family lines\"."
 msgstr ""
 "Personer og familier, som ikke er direkte beslægtet med interessante "
-"personer, vil blive fjernet når \"slægtslinjerne\" fastlægges."
+"personer, vil blive fjernet når \"slægtslinierne\" fastlægges."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:139
 #: ../gramps/plugins/graph/gvhourglass.py:329
@@ -23360,7 +23399,7 @@ msgid ""
 "People of interest are used as a starting point when determining \"family "
 "lines\"."
 msgstr ""
-"Interessante personer bruges som udgangspunkt når \"slægtslinjer\" "
+"Interessante personer bruges som udgangspunkt når \"slægtslinier\" "
 "fastlægges."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:185
@@ -23474,7 +23513,7 @@ msgstr "Familiefarver"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:265
 msgid "Colors to use for various family lines."
-msgstr "Farver der bruges til forskellige slægtslinjer."
+msgstr "Farver der bruges til forskellige slægtslinier."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:273
 #: ../gramps/plugins/graph/gvhourglass.py:367
@@ -23565,7 +23604,7 @@ msgstr "barn: %s"
 
 #: ../gramps/plugins/graph/gvhourglass.py:61
 msgid "Center -> Others"
-msgstr "Center -> Andre"
+msgstr "Centrér -> Andre"
 
 #: ../gramps/plugins/graph/gvhourglass.py:62
 msgid "Center <- Others"
@@ -23573,11 +23612,11 @@ msgstr "Center <- Andre"
 
 #: ../gramps/plugins/graph/gvhourglass.py:63
 msgid "Center <-> Other"
-msgstr "Center <-> Andre"
+msgstr "Centrér <-> Andre"
 
 #: ../gramps/plugins/graph/gvhourglass.py:64
 msgid "Center - Other"
-msgstr "Center - Andres"
+msgstr "Centrér - Andres"
 
 #: ../gramps/plugins/graph/gvhourglass.py:316
 msgid "The Center person for the graph"
@@ -23662,7 +23701,7 @@ msgstr "Medtag fødsels-, vielses- og dødssteder, men ingen datoer"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:821
 msgid "Include (birth, marriage, death) dates and places on same line"
-msgstr "Medtag fødsels-, vielses- og dødsdatoer og steder på samme linje"
+msgstr "Medtag fødsels-, vielses- og dødsdatoer og steder på samme linie"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:824
 msgid "Whether to include dates and/or places"
@@ -23733,12 +23772,12 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvrelgraph.py:899
 msgid "Indicate non-birth relationships with dotted lines"
-msgstr "Vis slægtskaber, der ikke er blodlinjer, med prikkede linjer"
+msgstr "Vis slægtskaber, der ikke er blodlinier, med prikkede linier"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:900
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr ""
-"Slægtskaber, der ikke er blodlinjer, vises som prikkede linjer i tavlen."
+"Slægtskaber, der ikke er blodlinier, vises som prikkede linier i tavlen."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:904
 msgid "Show family nodes"
@@ -23959,7 +23998,7 @@ msgstr "sted"
 
 #: ../gramps/plugins/importer/importcsv.py:222
 msgid "place id"
-msgstr "steds-id"
+msgstr "steds-ID"
 
 #: ../gramps/plugins/importer/importcsv.py:223
 msgid "name"
@@ -23992,7 +24031,7 @@ msgstr "indeholdt_i"
 #: ../gramps/plugins/importer/importcsv.py:256
 #, python-format
 msgid "format error: line %(line)d: %(zero)s"
-msgstr "formatfejl: linje %(line)d: %(zero)s"
+msgstr "formatfejl: linie %(line)d: %(zero)s"
 
 #: ../gramps/plugins/importer/importcsv.py:337
 msgid "CSV Import"
@@ -24255,7 +24294,7 @@ msgstr ""
 "Databaseversionen er ikke understøttet af denne version af Gramps.Du bør "
 "anvende en ældre udgave af Gramps med version 3.0.x og importere din "
 "database ind i den version. Du kan herefter eksportere en kopi af dine data "
-"til Gramps XML (slægtstræ). Herefter kan du opgradere til den seneste "
+"til Gramps XML (slægtstbog). Herefter kan du opgradere til den seneste "
 "version af Gramps (for eksempel denne version), danne en ny database og "
 "importere dine Gramps XML-data ind i den version. Læs venligst mere her:"
 "%(gramps_wiki_migrate_two_to_three_url)s"
@@ -24282,7 +24321,7 @@ msgstr "Kan ikke finde DEF-fil: %(dname)s"
 #. Raise a error message
 #: ../gramps/plugins/importer/importprogen.py:515
 msgid "Not a supported Pro-Gen import file language"
-msgstr "Ikke et understøttet Pro-Gen import fil sprog"
+msgstr "Ikke et understøttet Pro-Gen import-filsprog"
 
 #. self.reset(_("Import from Pro-Gen"))  # non-functional for now
 #: ../gramps/plugins/importer/importprogen.py:526
@@ -24358,11 +24397,12 @@ msgstr ""
 msgid ""
 "VCard is malformed missing the compulsory FN property, get name from N alone."
 msgstr ""
-"VCard er fejlformateret, magler FN egenskaben, tager navnet udelukkende fra N"
+"VCard er fejlformateret, mangler den obligatoriske FN egenskab, tager navnet "
+"udelukkende fra N"
 
 #: ../gramps/plugins/importer/importvcard.py:375
 msgid "VCard is malformed wrong number of name components."
-msgstr "VCard er fejlformateret, forkert antal navne enheder."
+msgstr "VCard er fejlformateret, forkert antal navneenheder."
 
 #: ../gramps/plugins/importer/importvcard.py:517
 #, python-brace-format
@@ -24380,9 +24420,9 @@ msgstr ""
 
 #. feature requests 2356, 1658: avoid genitive form
 #. -------------------------------------------------------------------------
-#.
+#. 
 #. Support functions
-#.
+#. 
 #. -------------------------------------------------------------------------
 #. feature requests 2356, 1658: avoid genitive form
 #: ../gramps/plugins/importer/importxml.py:103
@@ -24771,7 +24811,7 @@ msgstr "Dødsårsag"
 
 #: ../gramps/plugins/lib/libgedcom.py:609
 msgid "Employment"
-msgstr "Ansættelse"
+msgstr "Beskæftigelse"
 
 #: ../gramps/plugins/lib/libgedcom.py:611
 msgid "Eye Color"
@@ -24787,7 +24827,7 @@ msgstr "Initiatory (LDS)"
 
 #: ../gramps/plugins/lib/libgedcom.py:615
 msgid "Military ID"
-msgstr "Militærtjeneste"
+msgstr "MilitærID"
 
 #: ../gramps/plugins/lib/libgedcom.py:616
 msgid "Mission (LDS)"
@@ -24812,7 +24852,7 @@ msgstr "Vægt"
 
 #: ../gramps/plugins/lib/libgedcom.py:832
 msgid "Line ignored "
-msgstr "linje ignoreret "
+msgstr "linie ignoreret "
 
 #. e.g. Illegal character (oxAB) (0xCB)... 1 NOTE xyz?pqr?lmn
 #: ../gramps/plugins/lib/libgedcom.py:1430
@@ -24847,7 +24887,7 @@ msgstr "GEDCOM import rapport: %s fejl fundet"
 #: ../gramps/plugins/lib/libgedcom.py:2987
 #: ../gramps/plugins/lib/libgedcom.py:3000
 msgid "Line ignored as not understood"
-msgstr "Linje ignoreret som ikke forstået"
+msgstr "linie ignoreret som ikke forstået"
 
 #: ../gramps/plugins/lib/libgedcom.py:2989
 msgid "Tag recognized but not supported"
@@ -24855,7 +24895,7 @@ msgstr "Mærkat genkendt, men ikke understøttet"
 
 #: ../gramps/plugins/lib/libgedcom.py:3025
 msgid "Skipped subordinate line"
-msgstr "Sprang over underordnet linje"
+msgstr "Sprang over underordnet linie"
 
 #: ../gramps/plugins/lib/libgedcom.py:3059
 msgid "Records not imported into "
@@ -24997,7 +25037,7 @@ msgstr "Advarsel: ADDR overskrevet"
 
 #: ../gramps/plugins/lib/libgedcom.py:6155
 msgid "Citation Justification"
-msgstr "Kildehenvisnings begrundelse"
+msgstr "Kildehenvisningsbegrundelse"
 
 #: ../gramps/plugins/lib/libgedcom.py:6182
 msgid "REFN ignored"
@@ -25027,7 +25067,7 @@ msgstr "REPO (arkiv) Gramps ID %s"
 #: ../gramps/plugins/lib/libgedcom.py:6827
 #: ../gramps/plugins/lib/libgedcom.py:7803
 msgid "Only one phone number supported"
-msgstr ""
+msgstr "Kun et telefonnummer er understøttet"
 
 #: ../gramps/plugins/lib/libgedcom.py:7012
 msgid "HEAD (header)"
@@ -28726,7 +28766,7 @@ msgstr "Leverer grundlaget som er nødvendigt for stedliste-oversigterne."
 # komplet uforståeligt -MBJ
 #: ../gramps/plugins/lib/libplugins.gpr.py:263
 msgid "Provides variable substitution on display lines."
-msgstr "Leverer variabel erstatning på visningslinjer."
+msgstr "Leverer variabel erstatning på visningslinier."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:279
 msgid ""
@@ -28914,11 +28954,11 @@ msgstr "Rens '%(map)s's net-cachen."
 
 #: ../gramps/plugins/lib/maps/geography.py:884
 msgid "You can't use the print functionality"
-msgstr "Du kan ikke benytte print funktionen"
+msgstr "Du kan ikke benytte printfunktionen"
 
 #: ../gramps/plugins/lib/maps/geography.py:885
 msgid "Your Gtk version is too old."
-msgstr "Din Gtk version er forgammel."
+msgstr "Din Gtk version er for gammel."
 
 #: ../gramps/plugins/lib/maps/geography.py:926
 #: ../gramps/plugins/view/geoclose.py:550
@@ -29090,7 +29130,7 @@ msgstr "Åbnes fra kartor.eniro.se"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:52
 msgid "GoogleMaps"
-msgstr "GoogleMaps"
+msgstr "Google Maps"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:53
 msgid "Open on maps.google.com"
@@ -29502,7 +29542,7 @@ msgstr[1] "Filteret matched {number_of} poster."
 #: ../gramps/plugins/quickview/lineage.py:52
 #, python-format
 msgid "Father lineage for %s"
-msgstr "Faders slægtslinje til %s"
+msgstr "Faders slægtslinie til %s"
 
 #: ../gramps/plugins/quickview/lineage.py:54
 msgid ""
@@ -29510,7 +29550,7 @@ msgid ""
 "line. People in this lineage all share the same Y-chromosome."
 msgstr ""
 "Denne rapport viser faderens slægt, også kaldet fædrende slægt eller Y-"
-"linjen. Personer i denne slægtslinje deler alle det samme Y-kromosom."
+"linien. Personer i denne slægtslinie deler alle det samme Y-kromosom."
 
 #: ../gramps/plugins/quickview/lineage.py:61
 msgid "Name Father"
@@ -29524,14 +29564,14 @@ msgstr "Bemærkning"
 
 #: ../gramps/plugins/quickview/lineage.py:69
 msgid "Direct line male descendants"
-msgstr "Mandlige efterkommere i direkte linje"
+msgstr "Mandlige efterkommere i direkte linie"
 
 #. display the results
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/quickview/lineage.py:83
 #, python-format
 msgid "Mother lineage for %s"
-msgstr "Moders slægtslinje til %s"
+msgstr "Moders slægtslinie til %s"
 
 #: ../gramps/plugins/quickview/lineage.py:85
 msgid ""
@@ -29539,7 +29579,7 @@ msgid ""
 "lineage. People in this lineage all share the same Mitochondrial DNA (mtDNA)."
 msgstr ""
 "Denne rapport viser moderens slægt, også kaldet mødrende slægt eller MtDNA-"
-"linjen. Personer i denne slægtslinje deler alle det samme mitrokondiske DNA "
+"linien. Personer i denne slægtslinie deler alle det samme mitrokondiske DNA "
 "(mtDNA)."
 
 #: ../gramps/plugins/quickview/lineage.py:93
@@ -29548,7 +29588,7 @@ msgstr "Moders navn"
 
 #: ../gramps/plugins/quickview/lineage.py:101
 msgid "Direct line female descendants"
-msgstr "Kvindelige efterkommere i direkte linje"
+msgstr "Kvindelige efterkommere i direkte linie"
 
 #: ../gramps/plugins/quickview/lineage.py:125
 #: ../gramps/plugins/quickview/lineage.py:221
@@ -29666,19 +29706,19 @@ msgstr "Vis filtrerede data"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:150
 msgid "Father lineage"
-msgstr "Faders slægtslinje"
+msgstr "Faders slægtslinie"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:151
 msgid "Display father lineage"
-msgstr "Vis faders slægtslinje"
+msgstr "Vis faders slægtslinie"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:164
 msgid "Mother lineage"
-msgstr "Moders slægtslinje"
+msgstr "Moders slægtslinie"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:165
 msgid "Display mother lineage"
-msgstr "Vis moders slægtslinje"
+msgstr "Vis moders slægtslinie"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:184
 msgid "On This Day"
@@ -30011,11 +30051,11 @@ msgstr "Vælg om en ny side skal påbegyndes efter hver generation."
 
 #: ../gramps/plugins/textreport/ancestorreport.py:306
 msgid "Add linebreak after each name"
-msgstr "Tilføj en ny linje efter hvert navn"
+msgstr "Tilføj en ny linie efter hvert navn"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:307
 msgid "Whether a line break should follow the name."
-msgstr "Hvorvidt et navn skal efterfølges af en ny linje."
+msgstr "Hvorvidt et navn skal efterfølges af en ny linie."
 
 #: ../gramps/plugins/textreport/birthdayreport.py:65
 #: ../gramps/plugins/textreport/birthdayreport.py:217
@@ -30063,15 +30103,15 @@ msgstr "Rapporttitel"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:427
 msgid "First line of text at bottom of report"
-msgstr "Første tekstlinje nederst i rapporten"
+msgstr "Første tekstlinie nederst i rapporten"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:431
 msgid "Second line of text at bottom of report"
-msgstr "Anden tekstlinje nederst i rapporten"
+msgstr "Anden tekstlinie nederst i rapporten"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:435
 msgid "Third line of text at bottom of report"
-msgstr "Tredje tekstlinje nederst i rapporten"
+msgstr "Tredje tekstlinie nederst i rapporten"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:446
 msgid "Include only living people in the report"
@@ -30646,13 +30686,13 @@ msgid ""
 "Whether to include the path of descendancy from the start-person to each "
 "descendant."
 msgstr ""
-"Vælg om efterkommerlinjen fra proband til hver efterkommer skal medtages."
+"Vælg om efterkommerlinien fra proband til hver efterkommer skal medtages."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/endoflinereport.py:159
 #, python-format
 msgid "End of Line Report for %s"
-msgstr "Rapport over ufuldstændige slægtslinjer for %s"
+msgstr "Rapport over ufuldstændige slægtslinier for %s"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/endoflinereport.py:166
@@ -31308,11 +31348,11 @@ msgstr "Laver en detaljeret efterkommerrapport"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:169
 msgid "End of Line Report"
-msgstr "Rapport over ufuldstændige slægtslinjer"
+msgstr "Rapport over ufuldstændige slægtslinier"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:170
 msgid "Produces a textual end of line report"
-msgstr "Danner en tekstrapport over ufuldstændige slægtslinjer"
+msgstr "Danner en tekstrapport over ufuldstændige slægtslinier"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:192
 msgid ""
@@ -31739,8 +31779,8 @@ msgstr[1] "{quantity} ødelagte familieforbindelser rettet\n"
 #, python-brace-format
 msgid "{quantity} place alternate name fixed\n"
 msgid_plural "{quantity} place alternate names fixed\n"
-msgstr[0] "{quantity} ugyldigt navn steder blev rettet\n"
-msgstr[1] "{quantity} ugyldige navne på dødshændelser blev rettet\n"
+msgstr[0] "{quantity} ugyldigt navn på steder blev rettet\n"
+msgstr[1] "{quantity} ugyldige navne blev rettet\n"
 
 #: ../gramps/plugins/tool/check.py:2427
 #, python-brace-format
@@ -31826,7 +31866,7 @@ msgstr[1] "{quantity} ugyldige navne på fødselshændelser blev rettet\n"
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
 msgstr[0] "{quantity} ugyldigt navn på dødshændelse blev rettet\n"
-msgstr[1] "{quantity} ugyldige navne på dødshændelser blev rettet\n"
+msgstr[1] "{quantity} ugyldige navne blev rettet\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2523
@@ -32824,7 +32864,7 @@ msgstr "Antal ID i brug."
 
 #: ../gramps/plugins/tool/reorderids.glade:1404
 msgid " Quantity"
-msgstr " ANtal"
+msgstr " Antal"
 
 #: ../gramps/plugins/tool/reorderids.glade:1419
 msgid "Actual / Upcoming ID format."
@@ -32839,7 +32879,7 @@ msgid ""
 "Enable ID reordering\n"
 "with Start / Step sequence."
 msgstr ""
-"Tillad ID gendannelse\n"
+"Tillad ID omorganisering\n"
 "med start / trinvis sekvens. "
 
 #: ../gramps/plugins/tool/reorderids.glade:1454
@@ -32972,7 +33012,7 @@ msgstr "Tilføj serienummer"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:312
 msgid "Add line break"
-msgstr "Tilføj linjeskift"
+msgstr "Tilføj linieskift"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:317
 msgid ""
@@ -33295,7 +33335,8 @@ msgstr "Største antal år _mellem børn"
 msgid "Maximum _span of years for all children"
 msgstr "Største års_interval mellem alle børn"
 
-#: ../gramps/plugins/tool/verify.glade:985 ../gramps/plugins/tool/verify.py:677
+#: ../gramps/plugins/tool/verify.glade:985
+#: ../gramps/plugins/tool/verify.py:677
 msgid "_Hide marked"
 msgstr "_Gem markerede"
 
@@ -33797,7 +33838,7 @@ msgstr "Baggrund"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:331
 msgid "Add global background colored gradient"
-msgstr "Tillæg global bagrund som farvet gradient"
+msgstr "Tilføj global bagrund som farvet gradient"
 
 #. colors, stored as hex values
 #: ../gramps/plugins/view/fanchart2wayview.py:335
@@ -33837,7 +33878,7 @@ msgstr "Størrelsen  i forhold til antal efterkommere"
 #: ../gramps/plugins/view/fanchartdescview.py:351
 #: ../gramps/plugins/view/fanchartview.py:334
 msgid "Show names on two lines"
-msgstr "Vis familieforgreninger"
+msgstr "Vis navne på to linier"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:358
 #: ../gramps/plugins/view/fanchartdescview.py:356
@@ -34327,7 +34368,7 @@ msgstr "Vis alle steder"
 
 #: ../gramps/plugins/view/geoplaces.py:591
 msgid "The places marker color"
-msgstr "Sted markeringsfarve."
+msgstr "Markeringsfarve for steder."
 
 #: ../gramps/plugins/view/mediaview.py:113
 msgid "Edit the selected media object"
@@ -34609,11 +34650,13 @@ msgstr " (1 søskende)"
 msgid " (only child)"
 msgstr " (enebarn)"
 
-#: ../gramps/plugins/view/relview.py:956 ../gramps/plugins/view/relview.py:1452
+#: ../gramps/plugins/view/relview.py:956
+#: ../gramps/plugins/view/relview.py:1452
 msgid "Add new child to family"
 msgstr "Føj nyt barn til familien"
 
-#: ../gramps/plugins/view/relview.py:960 ../gramps/plugins/view/relview.py:1456
+#: ../gramps/plugins/view/relview.py:960
+#: ../gramps/plugins/view/relview.py:1456
 msgid "Add existing child to family"
 msgstr "Føj eksisterende barn til familien"
 
@@ -35467,7 +35510,7 @@ msgstr "Vælg filter til afgrænsning af personer der vises på webstedet"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9784
 msgid "Html options"
-msgstr "Html muligheder"
+msgstr "Html-muligheder"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9787
 #: ../gramps/plugins/webreport/webcal.py:1636
@@ -35660,7 +35703,7 @@ msgstr "En note der bruges til sidefoden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9927
 msgid "Images Generation"
-msgstr "Danner sider"
+msgstr "Billeddannelse"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:9930
 msgid "Include images and media objects"
@@ -35930,11 +35973,11 @@ msgstr "Vælg indstillingen for Google Maps-kortet over familiehændelser ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:10141
 msgid "Google maps API key"
-msgstr "GoogleMaps API nøgler"
+msgstr "Google Maps API nøgle"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:10142
 msgid "The API key used for the Google maps"
-msgstr "API nøgler, der bruges til Google maps"
+msgstr "API nøglen, der bruges til Google maps"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:10151
 msgid "Other inclusion (CMS, Web Calendar, Php)"
