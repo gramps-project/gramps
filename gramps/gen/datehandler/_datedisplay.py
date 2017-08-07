@@ -608,7 +608,10 @@ class DateDisplay:
                 value = value.replace('%A', self._get_long_weekday(date_val))
                 if date_val[0] == 0: # ignore the zero day and its delimiter
                     i_day = value.find('%d')
-                    value = value.replace(value[i_day:i_day+3], '')
+                    if len(value) == i_day + 2: # delimiter is left of the day
+                        value = value.replace(value[i_day-1:i_day+2], '')
+                    else: # delimiter is to the right of the day
+                        value = value.replace(value[i_day:i_day+3], '')
                 value = value.replace('%d', str(date_val[0]))
                 value = value.replace('%Y', str(abs(date_val[2])))
                 return value.replace('-', '/')
