@@ -206,8 +206,8 @@ class ErrorDialog(Gtk.MessageDialog):
 
         Gtk.MessageDialog.__init__(self, transient_for=parent,
                                    modal=True,
-                                   message_type=Gtk.MessageType.ERROR,
-                                   buttons=Gtk.ButtonsType.CLOSE)
+                                   message_type=Gtk.MessageType.ERROR)
+        self.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
         self.set_markup('<span weight="bold" size="larger">%s</span>' % str(msg1))
         self.format_secondary_text(msg2)
         self.set_icon(ICON)
@@ -252,8 +252,8 @@ class WarningDialog(Gtk.MessageDialog):
 
         Gtk.MessageDialog.__init__(self, transient_for=parent,
                                    modal=True,
-                                   message_type=Gtk.MessageType.WARNING,
-                                   buttons=Gtk.ButtonsType.CLOSE)
+                                   message_type=Gtk.MessageType.WARNING)
+        self.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
         self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
         self.format_secondary_markup(msg2)
         # FIXME: Hyper-links in the secondary text display as underlined text,
@@ -278,8 +278,8 @@ class OkDialog(Gtk.MessageDialog):
 
         Gtk.MessageDialog.__init__(self, transient_for=parent,
                                    modal=True,
-                                   message_type=Gtk.MessageType.INFO,
-                                   buttons=Gtk.ButtonsType.CLOSE)
+                                   message_type=Gtk.MessageType.INFO)
+        self.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
         self.set_markup('<span weight="bold" size="larger">%s</span>' % msg1)
         self.format_secondary_text(msg2)
         self.set_icon(ICON)
