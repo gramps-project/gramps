@@ -25,7 +25,8 @@ The "plug" package for handling plugins in Gramps.
 """
 
 from ._plugin import Plugin
-from ._pluginreg import (PluginData, PluginRegister, REPORT, TOOL,
+from ._pluginreg import (PluginData, PluginRegister,
+            REPORT, TOOL, VIEW, GRAMPLET,
             CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE,
             CATEGORY_WEB, CATEGORY_BOOK, CATEGORY_GRAPHVIZ,
             TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX, TOOL_REVCTL,

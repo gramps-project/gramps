@@ -30,7 +30,6 @@ from . import tool
 try:
     from ._guioptions import make_gui_option, add_gui_options
     from ._dialogs import ReportPluginDialog, ToolPluginDialog
-    from . import _windows as PluginWindows
 except TypeError: # No GUI
     pass
 

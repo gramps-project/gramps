@@ -46,7 +46,7 @@ LOG = logging.getLogger(".gen.plug")
 #
 #-------------------------------------------------------------------------
 from ._pluginreg import make_environment
-from ..const import USER_PLUGINS
+from ..const import USER_PLUGINS, VERSION_DIR
 from ...version import VERSION_TUPLE
 from . import BasePluginManager
 from ..utils.configmanager import safe_eval
@@ -219,6 +219,12 @@ def available_updates():
         if fp and fp.getcode() == 200: # ok
             break
 
+    try:
+        wfp = open(os.path.join(VERSION_DIR, "new_addons.txt"), mode='wt',
+                   encoding='utf-8')
+    except Exception as err:
+        LOG.warning("Failed to open addon status file: {err}".format(err=err))
+
     pmgr = BasePluginManager.get_instance()
     addon_update_list = []
     if fp and fp.getcode() == 200:
@@ -235,6 +241,8 @@ def available_updates():
                 LOG.warning("Skipped a line in the addon listing: " +
                          str(line))
                 continue
+            if wfp:
+                wfp.write(str(plugin_dict) + '\n')
             id = plugin_dict["i"]
             plugin = pmgr.get_plugin(id)
             if plugin:
@@ -269,6 +277,8 @@ def available_updates():
         count += 1
         if fp:
             fp.close()
+        if wfp:
+            wfp.close()
     else:
         LOG.debug("Checking Addons Failed")
     LOG.debug("Done checking!")
