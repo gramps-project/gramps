@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2016-08-31" version="5.0.0"/>
+    <created date="2017-08-08" version="5.1.0"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
     </researcher>
@@ -951,7 +951,7 @@
       <place hlink="_L3WJQCD3US67V2CNZT"/>
       <description>Birth of Garner, Anderson</description>
     </event>
-    <event handle="_a5af0eb7dfb557da07e" change="1284030599" id="E0179">
+    <event handle="_a5af0eb7dfb557da07e" change="1502187535" id="E0179">
       <type>Death</type>
       <dateval val="1887-04-07"/>
       <place hlink="_AKFKQC2N4SM243HCTN"/>
@@ -6262,7 +6262,7 @@
       <dateval val="1842-06-28"/>
       <description>Death of Moreno, Joseph McDowell</description>
     </event>
-    <event handle="_a5af0ec45b25c630e03" change="1284030608" id="E1179">
+    <event handle="_a5af0ec45b25c630e03" change="1502187451" id="E1179">
       <type>Birth</type>
       <dateval val="1911-07-12"/>
       <description>Birth of Thornton, James Arthur</description>
@@ -15003,7 +15003,7 @@
       <type>Marriage</type>
       <description>Marriage of Johnson, Henry and Sparks, Catherine</description>
     </event>
-    <event handle="_a5af0ed5df832ee65c1" change="1328026859" id="E2815">
+    <event handle="_a5af0ed5df832ee65c1" change="1502187371" id="E2815">
       <type>Marriage</type>
       <dateval val="1875-04-01"/>
       <place hlink="_RF5KQCNJRQY8OGTX2H"/>
@@ -18649,7 +18649,7 @@
       <parentin hlink="_F4CKQCJZ24JRE9Z889"/>
       <citationref hlink="_c140d2472c91aad494f"/>
     </person>
-    <person handle="_14LKQCYZJEAXTS3XX" change="1185438865" id="I1376">
+    <person handle="_14LKQCYZJEAXTS3XX" change="1502187492" id="I1376">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Elizabeth</first>
@@ -18657,6 +18657,7 @@
       </name>
       <eventref hlink="_a5af0ebb003796f79a0" role="Primary"/>
       <eventref hlink="_a5af0ebb0143dab99ff" role="Primary"/>
+      <eventref hlink="_a5af0eb7dfb557da07e" role="Witness"/>
       <childof hlink="_5IUJQCRJY47YQ8PU7N"/>
       <parentin hlink="_I4LKQCOAGPFH4R90A7"/>
       <citationref hlink="_c140d24731407d57b3c"/>
@@ -19904,7 +19905,7 @@
       <childof hlink="_IO5KQC6H0Q6Y517LR9"/>
       <citationref hlink="_c140d24a1fd2319b703"/>
     </person>
-    <person handle="_35WJQC1B7T7NPV8OLV" change="1284030051" id="I0106">
+    <person handle="_35WJQC1B7T7NPV8OLV" change="1502187260" id="I0106">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Robert W.</first>
@@ -19913,6 +19914,11 @@
       <eventref hlink="_a5af0eb74ac73f86aa7" role="Primary"/>
       <eventref hlink="_a5af0eb74ba358391ae" role="Primary"/>
       <eventref hlink="_a5af0eb74c852f7c633" role="Primary"/>
+      <eventref hlink="_a5af0ed5df832ee65c1" role="Witness">
+        <attribute type="Age" value="23">
+          <citationref hlink="_c140dafeb317af2fd79"/>
+        </attribute>
+      </eventref>
       <childof hlink="_X3WJQCSF48F6809142"/>
       <parentin hlink="_8OUJQCUVZ0XML7BQLF"/>
       <citationref hlink="_c140d24a27e19bb381a"/>
@@ -21991,13 +21997,14 @@
       <childof hlink="_GCDKQCHI74ZPMI5GDJ"/>
       <citationref hlink="_c140d24f3f8704aa41b"/>
     </person>
-    <person handle="_6G0KQC2UXYC66XDDC2" change="1185438865" id="I0363">
+    <person handle="_6G0KQC2UXYC66XDDC2" change="1502187537" id="I0363">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Miranda Keziah</first>
         <surname>Farmer</surname>
       </name>
       <eventref hlink="_a5af0ec7a76244d962d" role="Primary"/>
+      <eventref hlink="_a5af0eb7dfb557da07e" role="Witness"/>
       <childof hlink="_8NVJQCGMJTCL7E6ZDV"/>
       <citationref hlink="_c140d24f439709d3118"/>
     </person>
@@ -22989,7 +22996,7 @@
       <parentin hlink="_FBVJQCFBI50TW78O49"/>
       <citationref hlink="_c140d2522702664ec52"/>
     </person>
-    <person handle="_8CLKQCT97PJOGREJ7W" change="1185438865" id="I1387">
+    <person handle="_8CLKQCT97PJOGREJ7W" change="1502187387" id="I1387">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Robert</first>
@@ -22997,6 +23004,11 @@
       </name>
       <eventref hlink="_a5af0ebb3737a6ad088" role="Primary"/>
       <eventref hlink="_a5af0ebb39b441e9607" role="Primary"/>
+      <eventref hlink="_a5af0ed5df832ee65c1" role="Clergy">
+        <attribute type="Age" value="23">
+          <citationref hlink="_c140dafeb317af2fd79"/>
+        </attribute>
+      </eventref>
       <childof hlink="_5IUJQCRJY47YQ8PU7N"/>
       <parentin hlink="_H6LKQCWVIFNRNGHFVH"/>
       <citationref hlink="_c140d2522d804491375"/>
@@ -23803,7 +23815,7 @@
       <childof hlink="_5DBKQCVAB0XMBEW8R9"/>
       <citationref hlink="_c140d25425874b0b827"/>
     </person>
-    <person handle="_9HUJQC6ONNW8SMSKGQ" change="1185438865" id="I0038">
+    <person handle="_9HUJQC6ONNW8SMSKGQ" change="1502187526" id="I0038">
       <gender>M</gender>
       <name type="Birth Name">
         <first>David</first>
@@ -23812,6 +23824,7 @@
       <eventref hlink="_a5af0ec7eb514c52fbf" role="Primary"/>
       <eventref hlink="_a5af0ec7ec844213b55" role="Primary"/>
       <eventref hlink="_a5af0ec7ed61c743fc8" role="Primary"/>
+      <eventref hlink="_a5af0eb7dfb557da07e" role="Informant"/>
       <childof hlink="_5IUJQCRJY47YQ8PU7N"/>
       <parentin hlink="_3HUJQCK4DH582YUTZG"/>
       <citationref hlink="_c140d2542c764516f13"/>
@@ -24506,7 +24519,7 @@
       <parentin hlink="_8NVJQCGMJTCL7E6ZDV"/>
       <citationref hlink="_c140d2560004fad8df6"/>
     </person>
-    <person handle="_ANLKQCQSQNE5LDZMRC" change="1185438865" id="I1402">
+    <person handle="_ANLKQCQSQNE5LDZMRC" change="1502187434" id="I1402">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Margaret Jane &quot;Maggie&quot;</first>
@@ -24514,6 +24527,7 @@
       </name>
       <eventref hlink="_a5af0ebb7d47a006ee2" role="Primary"/>
       <eventref hlink="_a5af0ebb7e54e14970f" role="Primary"/>
+      <eventref hlink="_a5af0ec45b25c630e03" role="Witness"/>
       <childof hlink="_VDLKQCQQ1ADTJG1D1F"/>
       <parentin hlink="_SNLKQCD0VNJ627062Y"/>
       <citationref hlink="_c140d25607213be35da"/>
@@ -24882,13 +24896,18 @@
       <parentin hlink="_JFYJQCG2KLRQN835JD"/>
       <citationref hlink="_c140d256e3403ba129d"/>
     </person>
-    <person handle="_B3BKQCSV0G3NKSKWDX" change="1185438865" id="I0880">
+    <person handle="_B3BKQCSV0G3NKSKWDX" change="1502187344" id="I0880">
       <gender>F</gender>
       <name type="Birth Name">
         <first>L. J.</first>
         <surname>Blanco</surname>
       </name>
       <eventref hlink="_a5af0ed2cf617169903" role="Primary"/>
+      <eventref hlink="_a5af0ed5df832ee65c1" role="Clergy">
+        <attribute type="Age" value="23">
+          <citationref hlink="_c140dafeb317af2fd79"/>
+        </attribute>
+      </eventref>
       <childof hlink="_1BVJQCNTFAGS8273LJ"/>
       <citationref hlink="_c140d256ec4306a51ca"/>
     </person>
@@ -31930,7 +31949,7 @@
       <childof hlink="_UDMKQC5D3A2PXPUGNC"/>
       <citationref hlink="_c140d266ec93334f40f"/>
     </person>
-    <person handle="_MG5KQC6ZKSVO4A63G2" change="1328026883" id="I0624">
+    <person handle="_MG5KQC6ZKSVO4A63G2" change="1502187451" id="I0624">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Raymond E.</first>
@@ -31938,6 +31957,7 @@
       </name>
       <eventref hlink="_a5af0ece8bd1125a1a9" role="Primary"/>
       <eventref hlink="_a5af0ece8d15511ddf9" role="Primary"/>
+      <eventref hlink="_a5af0ec45b25c630e03" role="Informant"/>
       <childof hlink="_9OUJQCBOHW9UEK9CNV"/>
       <citationref hlink="_c140d266f0d5d178784"/>
     </person>
@@ -32336,7 +32356,7 @@
       <parentin hlink="_F4CKQCJZ24JRE9Z889"/>
       <citationref hlink="_c140d267ccb7aef0cd0"/>
     </person>
-    <person handle="_N4DKQCPEMZ7OO62O7J" change="1185438865" id="I0975">
+    <person handle="_N4DKQCPEMZ7OO62O7J" change="1502187308" id="I0975">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Henry</first>
@@ -32345,6 +32365,11 @@
       <eventref hlink="_a5af0ed483738d4ed1e" role="Primary"/>
       <eventref hlink="_a5af0ed484a144d229b" role="Primary"/>
       <eventref hlink="_a5af0ed48605fb6b9eb" role="Primary"/>
+      <eventref hlink="_a5af0ed5df832ee65c1" role="Witness">
+        <attribute type="Age" value="23">
+          <citationref hlink="_c140dafeb317af2fd79"/>
+        </attribute>
+      </eventref>
       <parentin hlink="_7PUJQC4PPS4EDIVMYE"/>
       <citationref hlink="_c140d267d2128356d8e"/>
     </person>
