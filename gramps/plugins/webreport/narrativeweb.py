@@ -12,7 +12,7 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2016  Serge Noiraud
+# Copyright (C) 2010-2017  Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
@@ -4495,6 +4495,7 @@ class EventPages(BasePage):
                 name.set_display_as(name_format)
                 name = _nd.display_name(name)
                 path = self.report.build_url_fname(hdl[1], "ppl", self.uplink)
+                path += self.ext
                 gid = person.gramps_id
                 event = self.r_db.get_event_from_handle(event_handle)
                 evt_type = self._(event.get_type().xml_str())
@@ -4509,13 +4510,14 @@ class EventPages(BasePage):
                 else:
                     gid_html = " "
 
+                drole = self._(" (%s) " % role)
                 if path != "":
-                    list_html += Html("a", href=path) + name + gid_html
+                    list_html += Html("a", href=path) + name + drole + gid_html
                 else:
-                    list_html += name + str(gid_html)
+                    list_html += name + drole + str(gid_html)
 
                 # return references division to its caller
-                return ordered + role
+                return ordered
 
             sorted_list = sorted(handle_list, key=sort_on_type)
             with Html("div", class_="subsection", id="references") as section:
