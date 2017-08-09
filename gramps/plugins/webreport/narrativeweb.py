@@ -12,7 +12,7 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2016  Serge Noiraud
+# Copyright (C) 2010-2017  Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
@@ -1077,7 +1077,7 @@ class BasePage:
 
         event_role = event_ref.get_role()
         if not event_role == omit:
-            etype += " (%s)" % event_role
+            etype += " (%s)" % self._(event_role.xml_str())
         event_hyper = self.event_link(event_ref.ref,
                                       etype,
                                       event_gid,
@@ -2696,47 +2696,6 @@ class BasePage:
             section += ordered
 
         # return section to its caller
-        return section
-
-    def display_references(self, handlelist,
-                           uplink=False):
-        """
-        Display references for the current objects
-
-        @param: handlelist -- List of handles
-        @param: uplink     -- If True, then "../../../" is inserted in front of
-                              the result.
-        """
-        if not handlelist:
-            return None
-
-        # begin references division and title
-        with Html("div", class_="subsection", id="references") as section:
-            section += Html("h4", self._("References"), inline=True)
-
-            ordered = Html("ol")
-            section += ordered
-            sortlist = sorted(handlelist,
-                              key=lambda x: self.rlocale.sort_key(x[1]))
-
-            for (path, name, gid) in sortlist:
-                list_html = Html("li")
-                ordered += list_html
-
-                name = name or self._("Unknown")
-                if not self.noid and gid != "":
-                    gid_html = Html("span", " [%s]" % gid, class_="grampsid",
-                                    inline=True)
-                else:
-                    gid_html = ""
-
-                if path != "":
-                    url = self.report.build_url_fname(path, None, self.uplink)
-                    list_html += Html("a", href=url) + name + gid_html
-                else:
-                    list_html += name + str(gid_html)
-
-        # return references division to its caller
         return section
 
     def family_map_link(self, handle, url):
@@ -4521,9 +4480,82 @@ class EventPages(BasePage):
                     eventdetail += addgallery
 
             # References list
-            ref_list = self.display_bkref_list(Event, event_handle)
-            if ref_list is not None:
-                eventdetail += ref_list
+            # for each reference, get the reference role
+            handle_list = self.report.bkref_dict[Event][event_handle]
+            name_format = self.report.options['name_format']
+
+            def sort_on_type(item):
+                return item[1]
+
+            def show_one_reference(person, event_handle, role, subdir):
+                if subdir == "ppl":
+                    primary_name = person.get_primary_name()
+                    name = Name(primary_name)
+                    name.set_display_as(name_format)
+                    name = _nd.display_name(name)
+                    role = self._(" (%s) " % role)
+                else: # "fam"
+                    name = self.report.get_family_name(person)
+                path = self.report.build_url_fname(event_handle, subdir, self.uplink)
+                path += self.ext
+                gid = person.gramps_id
+                # begin references division and title
+                list_html = Html("li")
+                ordered = list_html
+
+                name = name or self._("Unknown")
+                if not self.noid and gid != "":
+                    gid_html = Html("span", " [%s] " % gid, class_="grampsid",
+                                    inline=True)
+                else:
+                    gid_html = " "
+
+                if path != "":
+                    list_html += Html("a", href=path) + name + role + gid_html
+                else:
+                    list_html += name + role + str(gid_html)
+
+                # return references division to its caller
+                return ordered
+
+            sorted_list = sorted(handle_list, key=sort_on_type)
+            with Html("div", class_="subsection", id="references") as section:
+                section += Html("h4", self._("References"), inline=True)
+
+                ordered = Html("ol")
+                section += ordered
+                for hdl in sorted_list:
+                    thetype = hdl[0]
+                    if thetype == Person:
+                        person = self.r_db.get_person_from_handle(hdl[1])
+                        for evt_ref in person.get_event_ref_list():
+                            if event_handle != evt_ref.ref:
+                                continue
+                            role = self._(evt_ref.get_role().xml_str())
+                            ref_list = show_one_reference(person, hdl[1], role, "ppl")
+                            if ref_list is not None:
+                                section += ref_list
+                    if thetype == Family:
+                        family = self.r_db.get_family_from_handle(hdl[1])
+                        ref_list = show_one_reference(family, hdl[1], "", "fam")
+                        if ref_list is not None:
+                            section += ref_list
+                        role = self._("Primary")
+                        partner2 = family.get_mother_handle()
+                        partner1 = family.get_father_handle()
+                        if partner1 :
+                            person = self.r_db.get_person_from_handle(partner1)
+                            ref_list = show_one_reference(person, partner1, role, "ppl")
+                            if ref_list is not None:
+                                section += ref_list
+                        partner2 = family.get_mother_handle()
+                        if partner2 :
+                            person = self.r_db.get_person_from_handle(partner2)
+                            ref_list = show_one_reference(person, partner2, role, "ppl")
+                            if ref_list is not None:
+                                section += ref_list
+            if section is not None:
+                eventdetail += section
 
         # add clearline for proper styling
         # add footer section
