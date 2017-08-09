@@ -4489,16 +4489,18 @@ class EventPages(BasePage):
             def sort_on_type(item):
                 return item[1]
 
-            def show_one_reference(person, event_handle, role):
-                primary_name = person.get_primary_name()
-                name = Name(primary_name)
-                name.set_display_as(name_format)
-                name = _nd.display_name(name)
-                path = self.report.build_url_fname(hdl[1], "ppl", self.uplink)
+            def show_one_reference(person, event_handle, role, subdir):
+                if subdir == "ppl":
+                    primary_name = person.get_primary_name()
+                    name = Name(primary_name)
+                    name.set_display_as(name_format)
+                    name = _nd.display_name(name)
+                    role = self._(" (%s) " % role)
+                else: # "fam"
+                    name = self.report.get_family_name(person)
+                path = self.report.build_url_fname(event_handle, subdir, self.uplink)
                 path += self.ext
                 gid = person.gramps_id
-                event = self.r_db.get_event_from_handle(event_handle)
-                evt_type = self._(event.get_type().xml_str())
                 # begin references division and title
                 list_html = Html("li")
                 ordered = list_html
@@ -4510,11 +4512,10 @@ class EventPages(BasePage):
                 else:
                     gid_html = " "
 
-                drole = self._(" (%s) " % role)
                 if path != "":
-                    list_html += Html("a", href=path) + name + drole + gid_html
+                    list_html += Html("a", href=path) + name + role + gid_html
                 else:
-                    list_html += name + drole + str(gid_html)
+                    list_html += name + role + str(gid_html)
 
                 # return references division to its caller
                 return ordered
@@ -4533,23 +4534,26 @@ class EventPages(BasePage):
                             if event_handle != evt_ref.ref:
                                 continue
                             role = self._(evt_ref.get_role().xml_str())
-                            ref_list = show_one_reference(person, event_handle, role)
+                            ref_list = show_one_reference(person, hdl[1], role, "ppl")
                             if ref_list is not None:
                                 section += ref_list
                     if thetype == Family:
                         family = self.r_db.get_family_from_handle(hdl[1])
+                        ref_list = show_one_reference(family, hdl[1], "", "fam")
+                        if ref_list is not None:
+                            section += ref_list
+                        role = self._("Primary")
+                        partner2 = family.get_mother_handle()
                         partner1 = family.get_father_handle()
                         if partner1 :
                             person = self.r_db.get_person_from_handle(partner1)
-                            role = self._("Primary")
-                            ref_list = show_one_reference(person, event_handle, role)
+                            ref_list = show_one_reference(person, partner1, role, "ppl")
                             if ref_list is not None:
                                 section += ref_list
                         partner2 = family.get_mother_handle()
                         if partner2 :
                             person = self.r_db.get_person_from_handle(partner2)
-                            role = self._("Primary")
-                            ref_list = show_one_reference(person, event_handle, role)
+                            ref_list = show_one_reference(person, partner2, role, "ppl")
                             if ref_list is not None:
                                 section += ref_list
             if section is not None:
