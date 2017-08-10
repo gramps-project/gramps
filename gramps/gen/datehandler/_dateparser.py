@@ -451,6 +451,7 @@ class DateParser:
         self._abt2     = re.compile('<(.*)>', re.IGNORECASE)
         self._text     = re.compile('%s\.?\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._mon_str,
                                     re.IGNORECASE)
+        # this next RE has the (possibly-slashed) year at the string's end
         self._text2    = re.compile('(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$' % self._mon_str,
                                     re.IGNORECASE)
         self._jtext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._jmon_str,
@@ -521,7 +522,7 @@ class DateParser:
 
     def _parse_calendar(self, text, regex1, regex2, mmap, check=None):
         match = regex1.match(text.lower())
-        if match:
+        if match: # user typed in month-name day year
             groups = match.groups()
             if groups[0] is None:
                 m = 0
@@ -546,7 +547,7 @@ class DateParser:
             return value
 
         match = regex2.match(text.lower())
-        if match:
+        if match: # user typed in day month-name year or year month-name day
             groups = match.groups()
             if self.ymd:
                 if groups[3] is None:
@@ -906,8 +907,6 @@ class DateParser:
             if subdate == Date.EMPTY and text != "":
                 date.set_as_text(text)
                 return
-            #else:
-            #    print 'valid subdate', text, subdate
         except:
             date.set_as_text(text)
             return
