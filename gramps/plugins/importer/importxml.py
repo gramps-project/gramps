@@ -2515,8 +2515,10 @@ class GrampsParser(UpdateCallback):
             date_value = self.name.get_date_object()
         elif self.event:
             date_value = self.event.get_date_object()
-        else:
+        elif self.placeref:
             date_value = self.placeref.get_date_object()
+        else:
+            date_value = self.place_name.get_date_object()
 
         date_value.set_as_text(attrs['val'])
 
