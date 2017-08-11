@@ -399,8 +399,7 @@ class Gramplet:
         self.update()
 
     def _no_db(self):
-        if self.dbstate.db.is_open():
-            self.disconnect_all()  # clear the old signals
+        self.disconnect_all()  # clear the old signals
 
     def get_option_widget(self, label):
         """
