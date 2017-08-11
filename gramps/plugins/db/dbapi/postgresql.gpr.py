@@ -21,16 +21,23 @@ from gramps.gen.plug._pluginreg import register, STABLE, DATABASE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
-register(DATABASE,
-         id='postgresql',
-         name=_('PostgreSQL'),
-         name_accell=_('_PostgreSQL Database'),
-         description=_('PostgreSQL Database'),
-         version='1.0.0',
-         gramps_target_version='5.0',
-         status=STABLE,
-         fname='postgresql.py',
-         databaseclass='PostgreSQL',
-         authors=['Doug Blank'],
-         authors_email=['doug.blank@gmail.com']
-)
+try:
+    import psycopg2
+    available = True
+except (ImportError, ValueError):
+    available = False
+
+if available:
+    register(DATABASE,
+             id='postgresql',
+             name=_('PostgreSQL'),
+             name_accell=_('_PostgreSQL Database'),
+             description=_('PostgreSQL Database'),
+             version='1.0.0',
+             gramps_target_version='5.0',
+             status=STABLE,
+             fname='postgresql.py',
+             databaseclass='PostgreSQL',
+             authors=['Doug Blank'],
+             authors_email=['doug.blank@gmail.com']
+    )
