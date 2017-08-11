@@ -679,7 +679,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Close the database.
         if update is False, don't change access times, etc.
         """
-        if self._directory:
+        if self._directory != ":memory:":
             if update:
                 # This is just a dummy file to indicate last modified time of
                 # the database for gramps.cli.clidbman:
