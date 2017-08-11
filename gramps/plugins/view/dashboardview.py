@@ -81,6 +81,12 @@ class DashboardView(PageView):
         """
         pass
 
+    def get_title(self):
+        """
+        Used to set the titlebar in the configuration window.
+        """
+        return _('Dashboard')
+
     def get_stock(self):
         """
         Return image associated with the view, which is used for the
@@ -105,6 +111,9 @@ class DashboardView(PageView):
         self.widget.set_inactive()
 
     def set_active(self):
+        new_title = "%s - %s - Gramps" % (self.dbstate.db.get_dbname(),
+                                          self.get_title())
+        self.uistate.window.set_title(new_title)
         self.active = True
         self.widget.set_active()
 
