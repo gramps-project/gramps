@@ -365,6 +365,7 @@ class RelationshipView(NavigationView):
               <menuitem action="ShareFamilyMenu"/>
               <menuitem action="AddSpouseMenu"/>
               <menuitem action="ChangeOrder"/>
+              <menuitem action="SetActive"/>
               <menuitem action="FilterEdit"/>
             </menu>
             <menu action="BookMenu">
