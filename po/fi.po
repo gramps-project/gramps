@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps50_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-30 12:11+0300\n"
-"PO-Revision-Date: 2017-07-30 13:28+0300\n"
+"PO-Revision-Date: 2017-08-14 16:40+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -35911,7 +35911,8 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:10115
 msgid "Include Family Map Pages with all places shown on the map"
-msgstr "Ota mukaan perheen karttasivut joilla näytetään kartalla kaikki paikat"
+msgstr ""
+"Ota mukaan perheen karttasivut, joilla näytetään kartalla kaikki paikat"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:10119
 msgid ""
