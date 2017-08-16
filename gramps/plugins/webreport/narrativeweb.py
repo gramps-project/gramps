@@ -508,7 +508,8 @@ class NavWebReport(Report):
             self.obj_dict[Person][person_handle] = (person_fname, person_name,
                                                     person.gramps_id)
             self.bkref_dict[Person][person_handle].add((bkref_class,
-                                                        bkref_handle))
+                                                        bkref_handle,
+                                                        ""))
 
             ############### Header section ##############
             for citation_handle in person.get_citation_list():
@@ -652,7 +653,9 @@ class NavWebReport(Report):
             family_fname = ""
         self.obj_dict[Family][family_handle] = (family_fname, family_name,
                                                 family.gramps_id)
-        self.bkref_dict[Family][family_handle].add((bkref_class, bkref_handle))
+        self.bkref_dict[Family][family_handle].add((bkref_class,
+                                                    bkref_handle,
+                                                    ""))
 
         if self.inc_gallery:
             for media_ref in family.get_media_list():
