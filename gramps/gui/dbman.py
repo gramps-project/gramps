@@ -315,10 +315,10 @@ class DbManager(CLIDbManager, ManagedWindow):
                 self.rcs_btn.set_sensitive(True)
         else:
             self.close_btn.set_sensitive(False)
-            backend_name = self.get_backend_name_from_dbid("bsddb")
+            dbid = config.get('database.backend')
+            backend_type = self.get_backend_name_from_dbid(dbid)
             if (store.get_value(node, ICON_COL) in [None, ""] and
-                    store.get_value(node,
-                                    BACKEND_COL).startswith(backend_name)):
+                    store.get_value(node, BACKEND_COL) != backend_type):
                 self.convert_btn.set_sensitive(True)
             else:
                 self.convert_btn.set_sensitive(False)
@@ -760,21 +760,23 @@ class DbManager(CLIDbManager, ManagedWindow):
 
     def __convert_db_ask(self, obj):
         """
-        Ask to convert a closed BSDDB tree into a new DB-API
-        tree.
+        Ask to convert a closed family tree into the default database backend.
         """
         store, node = self.selection.get_selected()
         name = store[node][0]
         dirname = store[node][1]
+        dbid = config.get('database.backend')
+        backend_type = self.get_backend_name_from_dbid(dbid)
         QuestionDialog(
             _("Convert the '%s' database?") % name,
-            _("You wish to convert this database into the new DB-API format?"),
+            _("Do you wish to convert this family tree into a %(database)s "
+              "database?") % {'database': backend_type},
             _("Convert"),
             lambda: self.__convert_db(name, dirname), parent=self.top)
 
     def __convert_db(self, name, dirname):
         """
-        Actually convert the db from BSDDB to DB-API.
+        Actually convert the family tree into the default database backend.
         """
         try:
             db = open_database(name)
