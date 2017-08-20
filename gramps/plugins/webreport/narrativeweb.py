@@ -833,7 +833,7 @@ class NavWebReport(Report):
         @param: bkref_class   -- The class associated to this handle (source)
         @param: bkref_handle  -- The handle associated to this source
         """
-        if not self.obj_dict[Source][source_handle]:
+        if len(self.obj_dict[Source][source_handle]) > 0:
             return
         source = self._db.get_source_from_handle(source_handle)
         source_name = source.get_title()
@@ -868,7 +868,7 @@ class NavWebReport(Report):
         @param: bkref_class     -- The class associated to this handle
         @param: bkref_handle    -- The handle associated to this citation
         """
-        if not self.obj_dict[Citation][citation_handle]:
+        if len(self.obj_dict[Citation][citation_handle]) > 0:
             return
         citation = self._db.get_citation_from_handle(citation_handle)
         # If Page is none, we want to make sure that a tuple is generated for
@@ -899,7 +899,7 @@ class NavWebReport(Report):
         @param: bkref_class  -- The class associated to this handle (media)
         @param: bkref_handle -- The handle associated to this media
         """
-        if not self.obj_dict[Media][media_handle]:
+        if len(self.obj_dict[Media][media_handle]) > 0:
             return
         media_refs = self.bkref_dict[Media].get(media_handle)
         if media_refs and (bkref_class, bkref_handle) in media_refs:
@@ -938,7 +938,7 @@ class NavWebReport(Report):
         @param: bkref_class  -- The class associated to this handle (source)
         @param: bkref_handle -- The handle associated to this source
         """
-        if not self.obj_dict[Repository][repos_handle]:
+        if len(self.obj_dict[Repository][repos_handle]) > 0:
             return
         repos = self._db.get_repository_from_handle(repos_handle)
         repos_name = repos.name
