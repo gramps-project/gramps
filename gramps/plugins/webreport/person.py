@@ -1662,6 +1662,8 @@ class PersonPages(BasePage):
         """
         center_person = self.r_db.get_person_from_gramps_id(
             self.report.options['pid'])
+        if center_person is None:
+            return
         relationship = self.rel_class.get_one_relationship(self.r_db,
                                                            self.person,
                                                            center_person)
