@@ -191,7 +191,7 @@ class CLIDbManager:
         print(_('Gramps Family Trees:'))
         for item in self.current_names:
             (name, dirpath, path_name, last,
-             tval, enable, stock_id, backend_type, version) = item
+             tval, enable, stock_id, backend_type) = item
             if (database_names is None or
                     any([(re.match("^" + dbname + "$", name) or
                           dbname == name)
@@ -213,7 +213,7 @@ class CLIDbManager:
         summary_list = []
         for item in self.current_names:
             (name, dirpath, path_name, last,
-             tval, enable, stock_id, backend_type, version) = item
+             tval, enable, stock_id, backend_type) = item
             if (database_names is None or
                     any([(re.match("^" + dbname + "$", name) or
                           dbname == name)
@@ -240,15 +240,6 @@ class CLIDbManager:
                         backend_type = file.read()
                 except:
                     backend_type = "bsddb"
-                try:
-                    with open(os.path.join(dirpath, "bdbversion.txt")) as file:
-                        version = file.read()
-                except:
-                    version = "(0, 0, 0)"
-                try:
-                    version = ast.literal_eval(version)
-                except:
-                    version = (0, 0, 0)
                 if os.path.isfile(path_name):
                     with open(path_name, 'r', encoding='utf8') as file:
                         name = file.readline().strip()
@@ -262,7 +253,7 @@ class CLIDbManager:
 
                     self.current_names.append(
                         (name, os.path.join(dbdir, dpath), path_name,
-                         last, tval, enable, stock_id, backend_type, version))
+                         last, tval, enable, stock_id, backend_type))
 
         self.current_names.sort()
 

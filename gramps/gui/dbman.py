@@ -422,9 +422,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         for items in self.current_names:
             data = list(items[:8])
             backend_type = self.get_backend_name_from_dbid(data[BACKEND_COL])
-            version = str(".".join([str(v) for v in items[8]]))
-            node = self.model.append(None, data[:-1] + [backend_type + ", "
-                                                        + version])
+            node = self.model.append(None, data[:-1] + [backend_type])
             # For already loaded database, set current_node:
             if self.dbstate.is_open() and \
                 self.dbstate.db.get_save_path() == data[1]:
@@ -434,7 +432,7 @@ class DbManager(CLIDbManager, ManagedWindow):
                 last_accessed_node = node
             for rdata in find_revisions(os.path.join(items[1], ARCHIVE_V)):
                 data = [rdata[2], rdata[0], items[1], rdata[1], 0, False, "",
-                        backend_type + ", " + version]
+                        backend_type]
                 self.model.append(node, data)
         if self._current_node is None:
             self._current_node = last_accessed_node
