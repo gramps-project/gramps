@@ -47,14 +47,12 @@ import logging
 #------------------------------------------------
 # Gramps module
 #------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #------------------------------------------------
 # specific narrative web import
 #------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
 
-_ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
 
