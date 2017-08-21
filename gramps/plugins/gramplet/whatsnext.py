@@ -367,7 +367,7 @@ class WhatNextGramplet(Gramplet):
         if missingbits:
             self.link(name, 'Person', person.get_handle())
             self.append_text(_(": %(list)s\n") % {
-                'list': _(", ").join(missingbits)})
+                'list': _(", ").join(missingbits)}) # Arabic OK
             self.__counter += 1
 
         append_list.append(person)
@@ -389,7 +389,7 @@ class WhatNextGramplet(Gramplet):
         if missingbits:
             self.link(name, 'Person', person.get_handle())
             self.append_text(_(": %(list)s\n") % {
-                'list': _(", ").join(missingbits)})
+                'list': _(", ").join(missingbits)}) # Arabic OK
             self.__counter += 1
 
 
@@ -437,7 +437,7 @@ class WhatNextGramplet(Gramplet):
         if missingbits:
             self.link(name, 'Family', family.get_handle())
             self.append_text(_(": %(list)s\n") % {
-                'list': _(", ").join(missingbits)})
+                'list': _(", ").join(missingbits)}) # Arabic OK
             self.__counter += 1
 
         append_list.append((family, person1, person2))
@@ -470,7 +470,7 @@ class WhatNextGramplet(Gramplet):
         if missingbits:
             self.link(name, 'Family', family.get_handle())
             self.append_text(_(": %(list)s\n") % {
-                'list': _(", ").join(missingbits)})
+                'list': _(", ").join(missingbits)}) # Arabic OK
             self.__counter += 1
 
 
@@ -492,7 +492,7 @@ class WhatNextGramplet(Gramplet):
             # translators: needed for French, ignore otherwise
             return [_("%(str1)s: %(str2)s"
                      ) % {'str1' : event.get_type(),
-                          'str2' : _(", ").join(missingbits)}]
+                          'str2' : _(", ").join(missingbits)}] # Arabic OK
         else:
             return []
 

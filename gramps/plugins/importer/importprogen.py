@@ -293,6 +293,7 @@ class PG30DefTableField(object):
         self.size = int(self.fields[3])
 
     def __repr__(self):
+        # TODO for Arabic, should the next line's comma be translated?
         return self.fieldname + ' -> ' + ', '.join(self.fields)
 
 

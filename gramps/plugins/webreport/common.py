@@ -355,6 +355,7 @@ def _get_short_name(gender, name):
     short_name = name.get_first_name()
     suffix = name.get_suffix()
     if suffix:
+        # TODO for Arabic, should the next line's comma be translated?
         short_name = short_name + ", " + suffix
     return short_name
 

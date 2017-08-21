@@ -342,6 +342,7 @@ class DateDisplay:
         for item in [scal, snewyear]:
             if item:
                 if retval:
+                    # TODO for Arabic, should the next comma be translated?
                     retval += ", "
                 retval += item
         if retval:

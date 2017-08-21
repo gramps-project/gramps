@@ -201,6 +201,7 @@ def gramps_upgrade_17(self):
             n -= 1
         while n > level:
             if loc[n]:
+                # TODO for Arabic, should the next line's comma be translated?
                 title = ', '.join([item for item in loc[n:] if item])
                 parent_handle = add_place(self, loc[n], n, parent_handle, title)
                 locations[tuple([''] * n + loc[n:])] = parent_handle

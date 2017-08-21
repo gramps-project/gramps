@@ -484,6 +484,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
             tag = self.db.get_tag_from_handle(handle)
             tags.append(tag.get_name())
         tags.sort(key=glocale.sort_key)
+        # TODO for Arabic, should the next line's comma be translated?
         return ', '.join(tags)
 
 #------------------------------------------------------------------------

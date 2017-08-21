@@ -228,6 +228,7 @@ class PersonDetails(Gramplet):
             if attr.get_type() == attr_key:
                 values.append(attr.get_value())
         if values:
+            # translators: needed for Arabic, ignore otherwise
             self.add_row(attr_key, _(', ').join(values))
 
     def display_type(self, active_person, event_type):

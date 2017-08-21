@@ -77,10 +77,13 @@ def _build_title(db, place):
     if descr:
         title_descr += descr.strip()
     if parish:
+        # TODO for Arabic, should the next line's comma be translated?
         title_descr += ', ' + parish.strip() + _(" parish")
     if city:
+        # TODO for Arabic, should the next line's comma be translated?
         title_descr += ', ' + city.strip()
     if state:
+        # TODO for Arabic, should the next line's comma be translated?
         title_descr += ', ' + state.strip() + _(" state")
     return _strip_leading_comma(title_descr)
 
@@ -91,6 +94,7 @@ def _build_city(db, place):
     # Build a title description string that will work for Eniro
     city_descr = _build_area(db, place)
     if county:
+        # TODO for Arabic, should the next line's comma be translated?
         city_descr += ', ' + county
     return _strip_leading_comma(city_descr)
 
@@ -104,6 +108,7 @@ def _build_area(db, place):
     if street:
         area_descr += street.strip()
     if city:
+        # TODO for Arabic, should the next line's comma be translated?
         area_descr += ', ' + city
     return _strip_leading_comma(area_descr)
 

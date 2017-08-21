@@ -657,7 +657,7 @@ class RelGraphReport(Report):
                             label += '%s' % desc
                         if place:
                             if date or desc:
-                                label += ', '
+                                label += self._(', ') # Arabic OK
                             label += '%s' % place
                         label += ')'
 

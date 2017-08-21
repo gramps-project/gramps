@@ -176,6 +176,7 @@ class PluginDialog(ManagedWindow):
         self.title.set_text('<span weight="bold" size="larger">%s</span>' \
                             % pdata.name)
         self.title.set_use_markup(1)
+        # TODO for Arabic, should the next two lines' commas be translated?
         self.author_name.set_text(', '.join(pdata.authors))
         self.author_email.set_text(', '.join(pdata.authors_email))
         self.item = pdata

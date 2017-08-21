@@ -359,7 +359,7 @@ class FanChart(Report):
             else:
                 name = p_pn.get_first_name() + p_pn.get_surname()
             if (name != "") and (val != ""):
-                string = name + ", " + val
+                string = name + self._(", ") + val # Arabic OK
             else:
                 string = name + val
             return [string]
@@ -375,7 +375,7 @@ class FanChart(Report):
                 return [name, val]
             else:
                 if (name != "") and (val != ""):
-                    string = name + ", " + val
+                    string = name + self._(", ") + val # Arabic OK
                 else:
                     string = name + val
                 return [string]

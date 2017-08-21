@@ -446,7 +446,7 @@ class CommandLineReport:
             else:
                 print(_("Unknown option: %s") % option, file=sys.stderr)
                 print(_("   Valid options are:") +
-                      ", ".join(list(self.options_dict.keys())),
+                      _(", ").join(list(self.options_dict.keys())), # Arabic OK
                       file=sys.stderr)
                 print(_("   Use '%(donottranslate)s' to see description "
                         "and acceptable values"
@@ -527,7 +527,7 @@ class CommandLineReport:
             else:
                 print(_("Ignoring unknown option: %s") % opt, file=sys.stderr)
                 print(_("   Valid options are:"),
-                      ", ".join(list(self.options_dict.keys())),
+                      _(", ").join(list(self.options_dict.keys())), # Arabic OK
                       file=sys.stderr)
                 print(_("   Use '%(donottranslate)s' to see description "
                         "and acceptable values"

@@ -266,7 +266,7 @@ class Printinfo:
         tmp = self.__date_place(
             get_death_or_fallback(self.database, person))
         if string and tmp:
-            string += ", "
+            string += self._(", ") # Arabic OK
         string += tmp
 
         if string:
@@ -276,13 +276,13 @@ class Printinfo:
             tmp = self.__date_place(
                 get_marriage_or_fallback(self.database, family))
             if tmp:
-                string += ", " + tmp
+                string += self._(", ") + tmp # Arabic OK
 
         if family and self.showdivorce:
             tmp = self.__date_place(
                 get_divorce_or_fallback(self.database, family))
             if tmp:
-                string += ", " + tmp
+                string += self._(", ") + tmp # Arabic OK
 
         if family and self.want_ids:
             string += ' (%s)' % family.get_gramps_id()

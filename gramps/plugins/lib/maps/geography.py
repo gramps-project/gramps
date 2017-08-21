@@ -1063,6 +1063,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                     if gids == "":
                         gids = plce.gramps_id
                     else:
+                        # TODO for Arabic, should the next comma be translated?
                         gids = gids + ", " + plce.gramps_id
             if nb_places > 1:
                 from gramps.gui.dialog import WarningDialog

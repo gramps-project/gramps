@@ -331,6 +331,7 @@ class PersonPages(BasePage):
                                             tcell[-1].inside += ","
                                         else:
                                             tcell = tcell[:-1] + (
+                                                # TODO for Arabic, translate?
                                                 (tcell[-1] + ", "),)
                                     # Have to manipulate as tuples so that
                                     # subsequent people are not nested
@@ -1322,7 +1323,7 @@ class PersonPages(BasePage):
                     # if we have just a firstname, then the name is preceeded
                     # by ", " which doesn't exactly look very nice printed on
                     # the web page
-                    if pname[:2] == ', ':
+                    if pname[:2] == ', ': # TODO for Arabic, translate this?
                         pname = pname[2:]
                     if name != primary_name:
                         datetext = self.rlocale.get_date(name.date)

@@ -281,6 +281,7 @@ def write_index(index, doc):
         doc.start_cell('IDX-Cell')
         doc.start_paragraph('IDX-Entry')
         pages = [str(page_nr) for page_nr in index[key]]
+        # TODO for Arabic, should the next line's comma be translated?
         doc.write_text(', '.join(pages))
         doc.end_paragraph()
         doc.end_cell()

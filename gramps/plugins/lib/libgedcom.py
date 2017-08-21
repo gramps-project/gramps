@@ -3306,6 +3306,7 @@ class GedcomParser(UpdateCallback):
             for elmn in str_list:
                 if elmn:
                     if title != '':
+                        # TODO for Arabic, should the next comma be translated?
                         title += ', '
                     title += elmn
             return title

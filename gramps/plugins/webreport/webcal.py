@@ -1901,6 +1901,7 @@ def _regular_surname(sex, name):
     surname = name.get_surname()
     suffix = name.get_suffix()
     if suffix:
+        # TODO for Arabic, should the next line's comma be translated?
         surname = surname + ", " + suffix
     return surname
 

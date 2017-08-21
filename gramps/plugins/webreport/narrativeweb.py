@@ -765,6 +765,7 @@ class NavWebReport(Report):
                     family = self._db.get_family_from_handle(ref_handle)
                     ref_name = self.get_family_name(family)
             if ref_name != "":
+                # TODO for Arabic, should the next line's comma be translated?
                 event_name += ", " + ref_name
             # end descriptions to media pages
         if self.inc_events:
