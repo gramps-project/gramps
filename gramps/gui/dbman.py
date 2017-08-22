@@ -769,8 +769,8 @@ class DbManager(CLIDbManager, ManagedWindow):
         backend_type = self.get_backend_name_from_dbid(dbid)
         QuestionDialog(
             _("Convert the '%s' database?") % name,
-            _("Do you wish to convert this family tree into a %(database)s "
-              "database?") % {'database': backend_type},
+            _("Do you wish to convert this family tree into a "
+              "%(database_type)s database?") % {'database_type': backend_type},
             _("Convert"),
             lambda: self.__convert_db(name, dirname), parent=self.top)
 
