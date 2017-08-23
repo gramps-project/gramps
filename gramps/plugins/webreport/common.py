@@ -290,12 +290,10 @@ def sort_people(dbase, handle_list, rlocale=glocale):
         primary_name = person.get_primary_name()
 
         if primary_name.group_as:
-            surname = primary_name.group_as.encode('utf-8')
+            surname = primary_name.group_as
         else:
             group_map = _nd.primary_surname(primary_name)
             surname = dbase.get_name_group_mapping(group_map)
-            if isinstance(surname, bytes):
-                surname = surname.decode('utf-8')
 
         # Treat people who have no name with those whose name is just
         # 'whitespace'
