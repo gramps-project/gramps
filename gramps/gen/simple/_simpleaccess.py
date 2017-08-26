@@ -25,6 +25,7 @@ Provide a simplified database access interface to the Gramps database.
 """
 from ..lib import (Person, Family, Event, Source, Place, Citation,
                    Media, Repository, Note, Date, Tag)
+from ..errors import HandleError
 from ..datehandler import displayer
 from ..utils.string import gender as gender_map
 from ..utils.db import get_birth_or_fallback, get_death_or_fallback
@@ -961,8 +962,12 @@ class SimpleAccess:
         :param value: gramps_id or handle.
         """
         if object_class in self.dbase.get_table_names():
-            obj = self.dbase.get_table_metadata(object_class)\
-                           [prop + "_func"](value)
+            try:
+                obj = self.dbase.get_table_metadata(
+                    object_class)[prop + "_func"](value)
+            except HandleError:
+                # Deals with deleted objects referenced in Note Links
+                obj = None
             if obj:
                 if isinstance(obj, Person):
                     return "%s: %s [%s]" % (_(object_class),
