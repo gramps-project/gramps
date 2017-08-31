@@ -1,0 +1,100 @@
+0 HEAD
+1 SOUR GrampsTests
+2 NAME GrampsTests
+2 VERS 1.0
+2 CORP GrampsTests, Inc.
+3 ADDR PO Box 123
+4 CONT Anyville, UT 12345
+4 CONT USA
+3 PHON 1-800-888-8888
+1 DEST GrampsTests
+1 DATE 26 AUF 2017
+1 FILE imp_place_test.ged
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 SUBM @SUBM1@
+0 @SUBM1@ SUBM
+1 NAME The Gramps Tester
+1 ADDR 112 Main St., Open Source, Software, Is Great
+2 ADR1 112 Main St.
+2 ADR2 Open Source
+2 CITY Software
+2 CTRY Is Great
+2 POST 11111
+1 EMAIL gramps-users@@lists.sourceforge.net
+1 FAX 9-999-999-9999
+1 LANG MyLang
+1 PHON 8-888-888-8888
+1 WWW http://gramps-project.org
+0 @I310@ INDI
+1 NAME Living
+1 SEX M
+1 _UID B9C4D3F0D254674AA1B9023745BEBFE551C1
+1 CHAN
+2 DATE 26 JAN 2015
+1 RESI
+2 DATE 1960
+2 PLAC the place unknown
+2 ADDR the address unknown
+3 NOTE address enclosed by place, both new
+1 RESI
+2 DATE 1961
+2 ADDR the address unknown
+3 NOTE address enclosed by place, both existing note also merged into existing place
+3 SOUR @S1@
+4 PAGE Citation for 'the address unknown'
+2 PLAC the place unknown
+3 NOTE check that this note is retained when the place is merged into existing place
+3 SOUR @S1@
+4 PAGE Citation for 'the place unknown'
+1 RESI
+2 DATE 1962
+2 PLAC 1962, the place
+3 FORM Number, Unknown
+3 NOTE setup the place
+1 RESI
+2 DATE 1963
+2 PLAC the place
+2 ADDR 1963 address
+3 ADR1 1963 address
+3 ADR2 Mylocality
+3 ADR3 Mytown
+3 CITY Mytown
+3 STAE Mystate
+3 CTRY USA
+3 NOTE the ADDR is new, but PLAC already exists, we skip enclosure for ADDR portion
+1 RESI
+2 DATE 1964
+2 PLAC Full 1964 place, Mylocality, Mytown, Mystate, USA, 12345
+3 FORM street, locality, city, state, country, zipcode
+2 ADDR Addr detail on Full 1964 place
+3 NOTE the Mylocality place already exists, other stuff new
+1 RESI
+2 DATE 1965
+2 ADDR raw address
+1 RESI
+2 DATE 1966
+2 ADDR Raw address in Mytown
+3 CITY Mytown
+3 STAE Mystate
+3 CTRY USA
+3 NOTE New raw address, enclosed by Mytown
+1 RESI
+2 DATE 1967
+2 PLAC the place
+2 PLAC second place ignored
+2 ADDR the address
+2 ADDR second address ignored
+3 NOTE second address ignored
+0 @S1@ SOUR
+1 AUTH The Gramps Test guys
+1 PUBL 2017
+1 REPO @REPO1@
+1 TITL The Gramps Test Library
+0 @REPO1@ REPO
+1 NAME Gramps GitHub Library
+
+
+0 TRLR

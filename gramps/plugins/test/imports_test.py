@@ -304,6 +304,7 @@ def make_tst_function(tstfile, file_name):
         fn2 = os.path.join(TEST_DIR, (file_name + ".gramps"))
         fres = os.path.join(TEMP_DIR, (file_name + ".difs"))
         fout = os.path.join(TEMP_DIR, (file_name + ".gramps"))
+        config.set("preferences.place-auto", True)
         if "_dfs" in tstfile:
             config.set("preferences.default-source", True)
             config.set("preferences.tag-on-import-format", "Imported")

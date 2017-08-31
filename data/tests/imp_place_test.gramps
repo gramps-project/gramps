@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
+"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.7.1/">
+  <header>
+    <created date="2017-09-29" version="5.0.0-alpha3"/>
+    <researcher>
+      <resname>The Gramps Tester</resname>
+      <resaddr>112 Main St., Open Source</resaddr>
+      <rescity>Software</rescity>
+      <rescountry>Is Great</rescountry>
+      <respostal>11111</respostal>
+      <resphone>8-888-888-8888</resphone>
+      <resemail>gramps-users@lists.sourceforge.net</resemail>
+    </researcher>
+  </header>
+  <events>
+    <event handle="_0000000300000003" change="1" id="E0000">
+      <type>Residence</type>
+      <dateval val="1960"/>
+      <place hlink="_0000000600000006"/>
+    </event>
+    <event handle="_0000000700000007" change="1" id="E0001">
+      <type>Residence</type>
+      <dateval val="1961"/>
+      <place hlink="_0000000600000006"/>
+    </event>
+    <event handle="_0000000d0000000d" change="1" id="E0002">
+      <type>Residence</type>
+      <dateval val="1962"/>
+      <place hlink="_0000001000000010"/>
+    </event>
+    <event handle="_0000001100000011" change="1" id="E0003">
+      <type>Residence</type>
+      <dateval val="1963"/>
+      <place hlink="_0000001600000016"/>
+    </event>
+    <event handle="_0000001700000017" change="1" id="E0004">
+      <type>Residence</type>
+      <dateval val="1964"/>
+      <place hlink="_0000001b0000001b"/>
+    </event>
+    <event handle="_0000001c0000001c" change="1" id="E0005">
+      <type>Residence</type>
+      <dateval val="1965"/>
+      <place hlink="_0000001d0000001d"/>
+    </event>
+    <event handle="_0000001e0000001e" change="1" id="E0006">
+      <type>Residence</type>
+      <dateval val="1966"/>
+      <place hlink="_0000002000000020"/>
+    </event>
+    <event handle="_0000002100000021" change="1" id="E0007">
+      <type>Residence</type>
+      <dateval val="1967"/>
+      <place hlink="_0000002200000022"/>
+    </event>
+  </events>
+  <people>
+    <person handle="_0000000200000002" change="1422252000" id="I0310">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Living</first>
+      </name>
+      <eventref hlink="_0000000300000003" role="Primary"/>
+      <eventref hlink="_0000000700000007" role="Primary"/>
+      <eventref hlink="_0000000d0000000d" role="Primary"/>
+      <eventref hlink="_0000001100000011" role="Primary"/>
+      <eventref hlink="_0000001700000017" role="Primary"/>
+      <eventref hlink="_0000001c0000001c" role="Primary"/>
+      <eventref hlink="_0000001e0000001e" role="Primary"/>
+      <eventref hlink="_0000002100000021" role="Primary"/>
+      <attribute type="_UID" value="B9C4D3F0D254674AA1B9023745BEBFE551C1"/>
+      <noteref hlink="_0000002300000023"/>
+    </person>
+  </people>
+  <citations>
+    <citation handle="_0000000a0000000a" change="1" id="C0000">
+      <page>Citation for 'the address unknown'</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_0000000900000009"/>
+    </citation>
+    <citation handle="_0000000c0000000c" change="1" id="C0001">
+      <page>Citation for 'the place unknown'</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_0000000900000009"/>
+    </citation>
+  </citations>
+  <sources>
+    <source handle="_0000000900000009" change="1" id="S0001">
+      <stitle>The Gramps Test Library</stitle>
+      <sauthor>The Gramps Test guys</sauthor>
+      <spubinfo>2017</spubinfo>
+      <reporef hlink="_0000002400000024" medium="Book"/>
+    </source>
+  </sources>
+  <places>
+    <placeobj handle="_0000000500000005" change="1" id="P0000" type="Unknown">
+      <ptitle>the place unknown</ptitle>
+      <pname value="the place unknown"/>
+      <noteref hlink="_0000000b0000000b"/>
+      <citationref hlink="_0000000c0000000c"/>
+    </placeobj>
+    <placeobj handle="_0000000600000006" change="1" id="P0001" type="Address">
+      <ptitle>the address unknown</ptitle>
+      <pname value="the address unknown"/>
+      <placeref hlink="_0000000500000005"/>
+      <noteref hlink="_0000000400000004"/>
+      <noteref hlink="_0000000800000008"/>
+      <citationref hlink="_0000000a0000000a"/>
+    </placeobj>
+    <placeobj handle="_0000000f0000000f" change="1" id="P0002" type="Unknown">
+      <ptitle>the place</ptitle>
+      <pname value="the place"/>
+    </placeobj>
+    <placeobj handle="_0000001000000010" change="1" id="P0003" type="Number">
+      <ptitle>1962, the place</ptitle>
+      <pname value="1962"/>
+      <placeref hlink="_0000000f0000000f"/>
+      <noteref hlink="_0000000e0000000e"/>
+    </placeobj>
+    <placeobj handle="_0000001300000013" change="1" id="P0004" type="Country">
+      <ptitle>USA</ptitle>
+      <pname value="USA"/>
+    </placeobj>
+    <placeobj handle="_0000001400000014" change="1" id="P0005" type="State">
+      <ptitle>Mystate, USA</ptitle>
+      <pname value="Mystate"/>
+      <placeref hlink="_0000001300000013"/>
+    </placeobj>
+    <placeobj handle="_0000001500000015" change="1" id="P0006" type="City">
+      <ptitle>Mytown, Mystate, USA</ptitle>
+      <pname value="Mytown"/>
+      <placeref hlink="_0000001400000014"/>
+    </placeobj>
+    <placeobj handle="_0000001600000016" change="1" id="P0007" type="Street">
+      <ptitle>1963 address, Mylocality, Mytown, Mystate, USA</ptitle>
+      <pname value="1963 address, Mylocality"/>
+      <placeref hlink="_0000001500000015"/>
+      <placeref hlink="_0000000f0000000f"/>
+      <noteref hlink="_0000001200000012"/>
+    </placeobj>
+    <placeobj handle="_0000001900000019" change="1" id="P0008" type="Locality">
+      <ptitle>Mylocality, Mytown, Mystate, USA</ptitle>
+      <pname value="Mylocality"/>
+      <placeref hlink="_0000001500000015"/>
+    </placeobj>
+    <placeobj handle="_0000001a0000001a" change="1" id="P0009" type="Street">
+      <ptitle>Full 1964 place, Mylocality, Mytown, Mystate, USA</ptitle>
+      <code>12345</code>
+      <pname value="Full 1964 place"/>
+      <placeref hlink="_0000001900000019"/>
+    </placeobj>
+    <placeobj handle="_0000001b0000001b" change="1" id="P0010" type="Address">
+      <ptitle>Addr detail on Full 1964 place</ptitle>
+      <pname value="Addr detail on Full 1964 place"/>
+      <placeref hlink="_0000001a0000001a"/>
+      <noteref hlink="_0000001800000018"/>
+    </placeobj>
+    <placeobj handle="_0000001d0000001d" change="1" id="P0011" type="Address">
+      <ptitle>raw address</ptitle>
+      <pname value="raw address"/>
+    </placeobj>
+    <placeobj handle="_0000002000000020" change="1" id="P0012" type="Street">
+      <ptitle>Raw address in Mytown, Mytown, Mystate, USA</ptitle>
+      <pname value="Raw address in Mytown"/>
+      <placeref hlink="_0000001500000015"/>
+      <noteref hlink="_0000001f0000001f"/>
+    </placeobj>
+    <placeobj handle="_0000002200000022" change="1" id="P0013" type="Address">
+      <ptitle>the address</ptitle>
+      <pname value="the address"/>
+      <placeref hlink="_0000000f0000000f"/>
+    </placeobj>
+  </places>
+  <repositories>
+    <repository handle="_0000002400000024" change="1" id="REPO1">
+      <rname>Gramps GitHub Library</rname>
+      <type>Library</type>
+    </repository>
+  </repositories>
+  <notes>
+    <note handle="_0000000100000001" change="1" id="N0000" type="GEDCOM import">
+      <text>Records not imported into SUBM (Submitter): (@SUBM1@) The Gramps Tester:
+
+Line ignored as not understood                                      Line    28: 1 LANG MyLang
+</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="168"/>
+      </style>
+    </note>
+    <note handle="_0000000400000004" change="1" id="N0001" type="Address Note">
+      <text>address enclosed by place, both new</text>
+    </note>
+    <note handle="_0000000800000008" change="1" id="N0002" type="Address Note">
+      <text>address enclosed by place, both existing note also merged into existing place</text>
+    </note>
+    <note handle="_0000000b0000000b" change="1" id="N0003" type="Place Note">
+      <text>check that this note is retained when the place is merged into existing place</text>
+    </note>
+    <note handle="_0000000e0000000e" change="1" id="N0004" type="Place Note">
+      <text>setup the place</text>
+    </note>
+    <note handle="_0000001200000012" change="1" id="N0005" type="Address Note">
+      <text>the ADDR is new, but PLAC already exists, we skip enclosure for ADDR portion</text>
+    </note>
+    <note handle="_0000001800000018" change="1" id="N0006" type="Address Note">
+      <text>the Mylocality place already exists, other stuff new</text>
+    </note>
+    <note handle="_0000001f0000001f" change="1" id="N0007" type="Address Note">
+      <text>New raw address, enclosed by Mytown</text>
+    </note>
+    <note handle="_0000002300000023" change="1" id="N0008" type="GEDCOM import">
+      <text>Records not imported into INDI (individual) Gramps ID I0310:
+
+A second PLAC ignored                                               Line    87: 2 PLAC second place ignored
+Line ignored as not understood                                      Line    89: 2 ADDR second address ignored
+Skipped subordinate line                                            Line    90: 3 NOTE second address ignored
+</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="390"/>
+      </style>
+    </note>
+  </notes>
+</database>

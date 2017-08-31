@@ -201,9 +201,8 @@
 2 PLAC San Francisco, San Francisco Co., CA
 1 RESI
 2 DATE 1980
-2 ADDR 459 Main St., The Village, San Francisco, CA, USA
-3 ADR1 456 Main St
-3 ADR1 456 Main St again
+2 ADDR 456 Main St., The Village, San Francisco, CA, USA
+3 ADR1 456 Main St.
 3 ADR2 The Village
 3 CITY San Francisco
 3 CTRY USA
