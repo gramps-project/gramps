@@ -288,6 +288,9 @@ class DbManager(CLIDbManager, ManagedWindow):
         if not __debug__:
             self.convert_btn.set_visible(False)
 
+        if not _RCS_FOUND: # it's not in Windows
+            self.rcs_btn.set_visible(False)
+
         # if nothing is selected
         if not node:
             self.connect_btn.set_sensitive(False)
