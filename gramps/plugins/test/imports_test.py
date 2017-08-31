@@ -51,7 +51,10 @@ TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 # ------------------------------------------------------------------
 
 # These tests assume a US date and time format.
-locale.setlocale(locale.LC_ALL, 'en_US.utf8')
+try:
+    locale.setlocale(locale.LC_ALL, 'en_US.utf8')
+except:     # seems to fail on Windows system for some reason
+    pass
 
 def mock_time(*args):
     """
@@ -210,6 +213,7 @@ def make_tst_function(tstfile, file_name):
         fn2 = os.path.join(TEST_DIR, (file_name + ".gramps"))
         fres = os.path.join(TEMP_DIR, (file_name + ".difs"))
         fout = os.path.join(TEMP_DIR, (file_name + ".gramps"))
+        config.set('preferences.place-auto', True)
         if "_dfs" in tstfile:
             config.set('preferences.default-source', True)
             config.set('preferences.tag-on-import-format', "Imported")

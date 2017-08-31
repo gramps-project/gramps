@@ -129,11 +129,8 @@ from gramps.gen.utils.lds import TEMPLES
 from gramps.gen.utils.unknown import make_unknown, create_explanation_note
 from gramps.gen.datehandler._dateparser import DateParser
 from gramps.gen.db.dbconst import EVENT_KEY
-from gramps.gen.lib.const import IDENTICAL
 from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
 from gramps.gen.lib.urlbase import UrlBase
-from gramps.plugins.lib.libplaceimport import PlaceImport
-from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.grampslocale import GrampsLocale
 
 #-------------------------------------------------------------------------
@@ -274,6 +271,7 @@ TOKEN__PRIM = 134
 TOKEN__JUST = 135
 TOKEN__TEXT = 136
 TOKEN__DATE = 137
+TOKEN_ADR3 = 138
 
 TOKENS = {
     "_ADPN"           : TOKEN__ADPN,
@@ -334,6 +332,7 @@ TOKENS = {
     "ADOPT"           : TOKEN_ADOP,
     "ADR1"            : TOKEN_ADR1,
     "ADR2"            : TOKEN_ADR2,
+    "ADR3"            : TOKEN_ADR3,
     "AFN"             : TOKEN_AFN,
     "AGE"             : TOKEN_AGE,
     "AGENCY"          : TOKEN_IGNORE,
@@ -1589,13 +1588,15 @@ class CurrentState:
         self.primary = False        # _PRIMARY tag on an INDI.FAMC tag
         self.filename = ""
         self.title = ""
-        self.addr = None
-        self.res = None
+        self.place = None
+        self.place_pf = None        # PLAC.FORM parser
+        self.place_fields = None    # method for parsing places
+        self.addr = None            # Hold ADDR structure
+        self.addr_place = None      # The Place that will hold the ADDR data
+        self.addr_pf = None         # the FORM for the ADDR
+        self.res = None             # Hold Researcher structure
         self.source = None
         self.ftype = None
-        self.pf = None              # method for parsing places
-        self.location = None
-        self.place_fields = None    # method for parsing places
         self.ref = None             # PersonRef
         self.handle = None          #
         self.form = ""              # Multimedia format
@@ -1607,7 +1608,6 @@ class CurrentState:
         self.name = ""
         self.ignore = False
         self.repo_ref = None
-        self.place = None
         self.media = None
         self.photo = ""             # Person primary photo
         self.prim = None            # Photo is primary
@@ -1633,92 +1633,62 @@ class CurrentState:
 class PlaceParser:
     """
     Provide the ability to parse GEDCOM FORM statements for places, and
-    the parse the line of text, mapping the text components to Location
-    values based of the FORM statement.
+    mapping the text components to PlaceType values based on the FORM
+    statement.
+
+    Note that postal codes are a special case.
+
+    For now this assumes FORM statements are in English or the local language;
+    a questionable assumption.  If not recognized, they will be treated as
+    CUSTOM grampstypes.
     """
+    POSTAL = -99
 
     __field_map = {
-        'addr'          : Location.set_street,
-        'subdivision'   : Location.set_street,
-        'addr1'         : Location.set_street,
-        'adr1'          : Location.set_street,
-        'street'        : Location.set_street,
-        'addr2'         : Location.set_locality,
-        'adr2'          : Location.set_locality,
-        'locality'      : Location.set_locality,
-        'neighborhood'  : Location.set_locality,
-        'city'          : Location.set_city,
-        'town'          : Location.set_city,
-        'village'       : Location.set_city,
-        'county'        : Location.set_county,
-        'country'       : Location.set_country,
-        'state'         : Location.set_state,
-        'state/province': Location.set_state,
-        'region'        : Location.set_state,
-        'province'      : Location.set_state,
-        'area code'     : Location.set_postal_code,
-        'post code'     : Location.set_postal_code,
-        'zip code'      : Location.set_postal_code, }
+        'Addr'          : PlaceType.STREET,
+        'Subdivision'   : PlaceType.STREET,
+        'Addr1'         : PlaceType.STREET,
+        'Adr1'          : PlaceType.STREET,
+        'Addr2'         : PlaceType.LOCALITY,
+        'Adr2'          : PlaceType.LOCALITY,
+        'State/province': PlaceType.STATE,
+        'Area code'     : POSTAL,
+        'Post code'     : POSTAL,
+        'Postal'        : POSTAL,
+        'Zipcode'       : POSTAL,
+        'Zip code'      : POSTAL, }
 
     def __init__(self, line=None):
-        self.parse_function = []
+        self.pf_list = []
 
         if line:
             self.parse_form(line)
 
     def parse_form(self, line):
         """
-        Parses the GEDCOM PLAC.FORM into a list of function
-        pointers (if possible). It does this my mapping the text strings
-        (separated by commas) to the corresponding Location
-        method via the __field_map variable
+        Parses the GEDCOM PLAC.FORM into a list of PlaceTypes(if possible).
+        It does this my mapping the text strings (separated by commas) to the
+        corresponding PlaceType by trying our own __field_map, then the
+        translated PlaceType set, then the English PlaceType set.
         """
+        self.pf_list = []
         for item in line.data.split(','):
-            item = item.lower().strip()
-            fcn = self.__field_map.get(item, lambda x, y: None)
-            self.parse_function.append(fcn)
+            item = item.strip().capitalize()
+            type_num = self.__field_map.get(item, None)
+            if type_num == self.POSTAL:
+                pass
+            elif type_num is not None:
+                type_num = PlaceType(type_num)
+            else:
+                type_num = PlaceType(item)
+                if type_num.is_custom():
+                    type_num = PlaceType()
+                    type_num.set_from_xml_str(item)
+            self.pf_list.append(type_num)
 
-    def load_place(self, place_import, place, text):
-        """
-        Takes the text string representing a place, splits it into
-        its subcomponents (comma separated), and calls the approriate
-        function based of its position, depending on the parsed value
-        from the FORM statement.
-        """
-        items = [item.strip() for item in text.split(',')]
-        if len(items) != len(self.parse_function):
-            return
-        index = 0
-        loc = Location()
-        for item in items:
-            self.parse_function[index](loc, item)
-            index += 1
-
-        location = (loc.get_street(),
-                    loc.get_locality(),
-                    loc.get_parish(),
-                    loc.get_city(),
-                    loc.get_county(),
-                    loc.get_state(),
-                    loc.get_country())
-
-        for level, name in enumerate(location):
-            if name:
-                break
-
-        if name:
-            type_num = 7 - level
-        else:
-            name = place.title
-            type_num = PlaceType.UNKNOWN
-        place.name.set_value(name)
-        place.set_type(PlaceType(type_num))
-        code = loc.get_postal_code()
-        place.set_code(code)
-        if place.handle:    # if handle is available, store immediately
-            place_import.store_location(location, place.handle)
-        else:               # return for storage later
-            return location
+    def get_pf(self):
+        """ return the list of PlaceTypes associated with the PLAC.FORM """
+        return self.pf_list
 
 
 #-------------------------------------------------------------------------
@@ -1761,7 +1731,7 @@ class IdFinder:
 #
 #-------------------------------------------------------------------------
 class IdMapper:
-    """ This class provide methods to keep track of the correspoindence between
+    """ This class provide methods to keep track of the correspondence between
     Gedcom xrefs (@P1023@) and Gramps IDs. """
     def __init__(self, has_gid, find_next, id2user_format):
         self.has_gid = has_gid
@@ -1832,7 +1802,7 @@ class GedcomParser(UpdateCallback):
     BadFile = "Not a GEDCOM file"
 
     @staticmethod
-    def __find_from_handle(gramps_id, table):
+    def __find_hndl_from_id(gramps_id, table):
         """
         Find a handle corresponding to the specified Gramps ID.
 
@@ -1876,6 +1846,19 @@ class GedcomParser(UpdateCallback):
                 # something strange, set as first name
                 name.set_first_name(text.strip())
         return name
+
+    @staticmethod
+    def __add_placeref(place, ref_hndl, date=None):
+        """
+        Adds a PlaceRef to a Place.  It checks for duplicates before adding.
+        """
+        pref = PlaceRef()
+        pref.ref = ref_hndl
+        pref.date = date
+        for ref in place.placeref_list:
+            if ref.serialize() == pref.serialize():
+                return
+        place.add_placeref(pref)
 
     def __init__(self, dbase, ifile, filename, user, stage_one,
                  default_source, default_tag_format=None):
@@ -1950,16 +1933,13 @@ class GedcomParser(UpdateCallback):
             self.dbase.find_next_note_gramps_id,
             self.dbase.nid2user_format)
 
-        self.gid2id = {}
-        self.oid2id = {}
-        self.sid2id = {}
-        self.lid2id = {}
-        self.fid2id = {}
-        self.rid2id = {}
-        self.nid2id = {}
-
-        self.place_import = PlaceImport(self.dbase)
-
+# Despite the name, the following are Gramps ID to handle
+        self.gid2id = {}    # Person
+        self.fid2id = {}    # Family
+        self.sid2id = {}    # Source
+        self.oid2id = {}    # Media
+        self.rid2id = {}    # Repo
+        self.nid2id = {}    # Note
         #
         # Parse table for <<SUBMITTER_RECORD>> below the level 0 SUBM tag
         #
@@ -2322,25 +2302,6 @@ class GedcomParser(UpdateCallback):
         }
         self.func_list.append(self.media_parse_tbl)
 
-        self.parse_loc_tbl = {
-            TOKEN_ADR1   : self.__location_adr1,
-            TOKEN_ADR2   : self.__location_adr2,
-            TOKEN_CITY   : self.__location_city,
-            TOKEN_STAE   : self.__location_stae,
-            TOKEN_POST   : self.__location_post,
-            TOKEN_CTRY   : self.__location_ctry,
-            # Not legal GEDCOM - not clear why these are included at this level
-            TOKEN_ADDR   : self.__ignore,
-            TOKEN_DATE   : self.__ignore,  # there is nowhere to put a date
-            TOKEN_NOTE   : self.__location_note,
-            TOKEN_RNOTE  : self.__location_note,
-            TOKEN__LOC   : self.__ignore,
-            TOKEN__NAME  : self.__ignore,
-            TOKEN_PHON   : self.__location_phone,
-            TOKEN_IGNORE : self.__ignore,
-        }
-        self.func_list.append(self.parse_loc_tbl)
-
         #
         # Parse table for <<FAM_RECORD>> below the level 0 FAM tag
         #
@@ -2509,13 +2470,14 @@ class GedcomParser(UpdateCallback):
 
         self.parse_addr_tbl = {
             TOKEN_DATE   : self.__address_date,
-            TOKEN_ADR1   : self.__address_adr1,
-            TOKEN_ADR2   : self.__address_adr2,
+            TOKEN_ADR1   : self.__address_adr,
+            TOKEN_ADR2   : self.__address_adr,
+            TOKEN_ADR3   : self.__address_adr,
             TOKEN_CITY   : self.__address_city,
             TOKEN_STAE   : self.__address_state,
             TOKEN_POST   : self.__address_post,
             TOKEN_CTRY   : self.__address_country,
-            TOKEN_PHON   : self.__ignore,
+            TOKEN_PHON   : self.__address_phone,
             TOKEN_SOUR   : self.__address_sour,
             TOKEN_NOTE   : self.__address_note,
             TOKEN_RNOTE  : self.__address_note,
@@ -2533,21 +2495,30 @@ class GedcomParser(UpdateCallback):
         self.func_list.append(self.event_cause_tbl)
 
         self.event_place_map = {
-            TOKEN_NOTE   : self.__event_place_note,
-            TOKEN_RNOTE  : self.__event_place_note,
-            TOKEN_FORM   : self.__event_place_form,
+            # +1 << NOTE_STRUCTURE >> {0:M}
+            TOKEN_NOTE   : self.__place_note,
+            TOKEN_RNOTE  : self.__place_note,
+            # +1 FORM <PLACE_HIERARCHY> {0:1}
+            TOKEN_FORM   : self.__place_form,
+            # +1 FONE <PLACE_PHONETIC_VARIATION> {0:M}
+            # +2 TYPE <PHONETIC_TYPE> {1:1}
+            # +1 ROMN <PLACE_ROMANIZED_VARIATION> {0:M}
+            # +2 TYPE <ROMANIZED_TYPE> {1:1}
+            # +1 MAP {0:1}
+            TOKEN_MAP    : self.__place_map,  # self.place_map_tbl
             # Not legal.
-            TOKEN_OBJE   : self.__event_place_object,
-            TOKEN_SOUR   : self.__event_place_sour,
+            TOKEN_OBJE   : self.__place_object,
+            TOKEN_SOUR   : self.__place_sour,
             TOKEN__LOC   : self.__ignore,
-            TOKEN_MAP    : self.__place_map,
             # Not legal,  but generated by Ultimate Family Tree
             TOKEN_QUAY   : self.__ignore,
         }
         self.func_list.append(self.event_place_map)
 
         self.place_map_tbl = {
+            # +1 LATI <PLACE_LATITUDE> {1:1}
             TOKEN_LATI   : self.__place_lati,
+            # +1 LONG <PLACE_LONGITUDE> {1:1}
             TOKEN_LONG   : self.__place_long,
         }
         self.func_list.append(self.place_map_tbl)
@@ -2670,7 +2641,7 @@ class GedcomParser(UpdateCallback):
         self.func_list.append(self.header_subm)
 
         self.place_form = {
-            TOKEN_FORM   : self.__place_form,
+            TOKEN_FORM   : self.__header_place_form,
         }
         self.func_list.append(self.place_form)
 
@@ -2763,8 +2734,6 @@ class GedcomParser(UpdateCallback):
                 self.dbase.add_source(src, self.trans)
             self.__clean_up()
 
-            self.place_import.generate_hierarchy(self.trans)
-
         if not self.dbase.get_feature("skip-check-xref"):
             self.__check_xref()
         self.dbase.enable_signals()
@@ -2798,25 +2767,25 @@ class GedcomParser(UpdateCallback):
         """
         Return the database handle associated with the person's Gramps ID
         """
-        return self.__find_from_handle(gramps_id, self.gid2id)
+        return self.__find_hndl_from_id(gramps_id, self.gid2id)
 
     def __find_family_handle(self, gramps_id):
         """
         Return the database handle associated with the family's Gramps ID
         """
-        return self.__find_from_handle(gramps_id, self.fid2id)
+        return self.__find_hndl_from_id(gramps_id, self.fid2id)
 
     def __find_media_handle(self, gramps_id):
         """
         Return the database handle associated with the media object's Gramps ID
         """
-        return self.__find_from_handle(gramps_id, self.oid2id)
+        return self.__find_hndl_from_id(gramps_id, self.oid2id)
 
     def __find_note_handle(self, gramps_id):
         """
         Return the database handle associated with the media object's Gramps ID
         """
-        return self.__find_from_handle(gramps_id, self.nid2id)
+        return self.__find_hndl_from_id(gramps_id, self.nid2id)
 
     def __find_or_create_person(self, gramps_id):
         """
@@ -2829,7 +2798,7 @@ class GedcomParser(UpdateCallback):
         if self.dbase.has_person_handle(intid):
             person.unserialize(self.dbase.get_raw_person_data(intid))
         else:
-            intid = self.__find_from_handle(gramps_id, self.gid2id)
+            intid = self.__find_hndl_from_id(gramps_id, self.gid2id)
             person.set_handle(intid)
             person.set_gramps_id(gramps_id)
         return person
@@ -2847,7 +2816,7 @@ class GedcomParser(UpdateCallback):
         if self.dbase.has_family_handle(intid):
             family.unserialize(self.dbase.get_raw_family_data(intid))
         else:
-            intid = self.__find_from_handle(gramps_id, self.fid2id)
+            intid = self.__find_hndl_from_id(gramps_id, self.fid2id)
             family.set_handle(intid)
             family.set_gramps_id(gramps_id)
         return family
@@ -2863,7 +2832,7 @@ class GedcomParser(UpdateCallback):
         if self.dbase.has_media_handle(intid):
             obj.unserialize(self.dbase.get_raw_media_data(intid))
         else:
-            intid = self.__find_from_handle(gramps_id, self.oid2id)
+            intid = self.__find_hndl_from_id(gramps_id, self.oid2id)
             obj.set_handle(intid)
             obj.set_gramps_id(gramps_id)
         return obj
@@ -2881,7 +2850,7 @@ class GedcomParser(UpdateCallback):
         if self.dbase.has_source_handle(intid):
             obj.unserialize(self.dbase.get_raw_source_data(intid))
         else:
-            intid = self.__find_from_handle(gramps_id, self.sid2id)
+            intid = self.__find_hndl_from_id(gramps_id, self.sid2id)
             obj.set_handle(intid)
             obj.set_gramps_id(gramps_id)
         return obj
@@ -2900,7 +2869,7 @@ class GedcomParser(UpdateCallback):
         if self.dbase.has_repository_handle(intid):
             repository.unserialize(self.dbase.get_raw_repository_data(intid))
         else:
-            intid = self.__find_from_handle(gramps_id, self.rid2id)
+            intid = self.__find_hndl_from_id(gramps_id, self.rid2id)
             repository.set_handle(intid)
             repository.set_gramps_id(gramps_id)
         return repository
@@ -2924,7 +2893,7 @@ class GedcomParser(UpdateCallback):
         if self.dbase.has_note_handle(intid):
             note.unserialize(self.dbase.get_raw_note_data(intid))
         else:
-            intid = self.__find_from_handle(gramps_id, self.nid2id)
+            intid = self.__find_hndl_from_id(gramps_id, self.nid2id)
             note.set_handle(intid)
             note.set_gramps_id(gramps_id)
         if need_commit:
@@ -2947,35 +2916,32 @@ class GedcomParser(UpdateCallback):
             return True
         return False
 
-    def __find_place(self, title, location, placeref_list):
+    def __find_place(self, title, ptype, pref):
         """
-        Finds an existing place based on the title and primary location.
+        Finds an existing place based on the title, place type and placeref.
 
         @param title: The place title
         @type title: string
-        @param location: The current location
-        @type location: gen.lib.Location
+        @param ptype: The place type
+        @type ptype: PlaceType
+        @param pref: The PlaceRef.ref handle
+        @type pref: Handle
         @return gen.lib.Place
         """
         for place_handle in self.place_names[title]:
             place = self.dbase.get_place_from_handle(place_handle)
-            if place.get_title() == title:
-                if self.__loc_is_empty(location) and \
-                   self.__loc_is_empty(self.__get_first_loc(place)) and \
-                   place.get_placeref_list() == placeref_list:
+            if place.get_title() == title and place.get_type() == ptype:
+                if not pref and place.get_placeref_list() == []:
                     return place
-                elif (not self.__loc_is_empty(location) and
-                      not self.__loc_is_empty(self.__get_first_loc(place)) and
-                      self.__get_first_loc(place).is_equivalent(location) ==
-                      IDENTICAL) and \
-                        place.get_placeref_list() == placeref_list:
-                    return place
+                for placeref in place.get_placeref_list():
+                    if placeref.ref == pref:
+                        return place
         return None
 
     def __add_place(self, event, sub_state):
         """
-        Add a new place to an event if not already present, or update a
-        place.
+        Add a place to an event, make new place if not already present, or
+        update an existing place.
 
         @param event: The event
         @type event: gen.lib.Event
@@ -2983,32 +2949,115 @@ class GedcomParser(UpdateCallback):
                         by event_parse_tbl)
         @type sub_state: CurrentState
         """
+        place = None
         if sub_state.place:
-            # see whether this place already exists
-            place = self.__find_place(sub_state.place.get_title(),
-                                      self.__get_first_loc(sub_state.place),
-                                      sub_state.place.get_placeref_list())
-            if place is None:
-                place = sub_state.place
-                place_title = _pd.display(self.dbase, place)
-                location = sub_state.pf.load_place(self.place_import, place,
-                                                   place_title)
-                self.dbase.add_place(place, self.trans)
-                # if 'location was created, then store it, now that we have a
-                # handle.
-                if location:
-                    self.place_import.store_location(location, place.handle)
-                self.place_names[place.get_title()].append(place.get_handle())
-                event.set_place_handle(place.get_handle())
+            # we have a place
+            ptypes = sub_state.place_pf.get_pf()
+            places = sub_state.place.get_title().split(',')
+            if len(places) == len(ptypes):
+                # we have a hierarchy, go through it largest first
+                prev_place_hndl = None
+                title = ''
+                for indx in reversed(range(len(places))):
+                    name = places[indx].strip()
+                    if not name:
+                        continue
+                    if ptypes[indx] == PlaceParser.POSTAL:
+                        sub_state.place.set_code(name)
+                        continue
+                    title = name + \
+                        ((', ' + title) if title else '')
+                    place = self.__find_place(title, ptypes[indx],
+                                              prev_place_hndl)
+                    if place is not None:
+                        prev_place_hndl = place.get_handle()
+                        if indx != 0:
+                            #  still checking the hierarchy
+                            prev_place_hndl = place.get_handle()
+                            continue
+                        else:
+                            # already have a place, need to merge in our stuff
+                            # we leave title alone, but set name for merge, if
+                            # different, it will end up in alt-names
+                            sub_state.place.name.value = name
+                            if prev_place_hndl:
+                                self.__add_placeref(sub_state.place,
+                                                    prev_place_hndl)
+                            place.merge(sub_state.place)
+                            self.dbase.commit_place(place, self.trans)
+                            break
+                    elif indx != 0:
+                        # still making hierarchy, Create the place
+                        place = Place()
+                    else:
+                        # a new place with all the items
+                        place = sub_state.place
+                    place.set_title(title)
+                    place.name.value = name
+                    if prev_place_hndl:
+                        self.__add_placeref(place, prev_place_hndl)
+                    place.set_type(ptypes[indx])
+                    self.dbase.add_place(place, self.trans)
+                    prev_place_hndl = place.get_handle()
+                    self.place_names[title].append(place.handle)
             else:
-                place.merge(sub_state.place)
-                place_title = _pd.display(self.dbase, place)
-                location = sub_state.pf.load_place(self.place_import, place,
-                                                   place_title)
-                self.dbase.commit_place(place, self.trans)
-                if location:
-                    self.place_import.store_location(location, place.handle)
-                event.set_place_handle(place.get_handle())
+                # No hierarchy available, just save it.
+                sub_state.place.name.value = sub_state.place.title
+                place = self.__find_place(sub_state.place.title,
+                                          sub_state.place.place_type, None)
+                if place is None:
+                    place = sub_state.place
+                    self.dbase.add_place(place, self.trans)
+                    self.place_names[place.title].append(place.handle)
+                else:
+                    place.merge(sub_state.place)
+                    self.dbase.commit_place(place, self.trans)
+            event.set_place_handle(place.get_handle())
+        if sub_state.addr_place:
+            # ADDR was in EVEN, need to make hierarchy
+            ptypes = sub_state.addr_pf
+            places = sub_state.addr
+            # we have a hierarchy, go through it largest first
+            prev_place_hndl = None
+            title = ''
+            for indx in reversed(range(len(places))):
+                title = places[indx].strip() + \
+                    ((', ' + title) if title else '')
+                if indx == 0 and place and not prev_place_hndl:
+                    prev_place_hndl = place.handle
+                a_place = self.__find_place(title, ptypes[indx],
+                                            prev_place_hndl)
+                if a_place is not None:
+                    prev_place_hndl = a_place.get_handle()
+                    if indx != 0:
+                        #  still checking the hierarchy
+                        continue
+                    else:
+                        # already have a place, need to merge in our stuff
+                        a_place.merge(sub_state.addr_place)
+                        self.dbase.commit_place(a_place, self.trans)
+                        continue
+                elif indx != 0:
+                    # still making hierarchy, Create the place
+                    a_place = Place()
+                else:
+                    # a new place with all the items
+                    a_place = sub_state.addr_place
+                a_place.set_title(title)
+                a_place.name.set_value(places[indx].strip())
+                if prev_place_hndl:
+                    self.__add_placeref(a_place, prev_place_hndl)
+                a_place.set_type(ptypes[indx])
+                self.dbase.add_place(a_place, self.trans)
+                prev_place_hndl = a_place.get_handle()
+                self.place_names[title].append(a_place.get_handle())
+            event.set_place_handle(a_place.get_handle())
+
+        if sub_state.addr_place and place:
+            # ADDR and PLAC were in EVEN, need to enclose Addr place in
+            # Place.
+            self.__add_placeref(a_place, place.get_handle())
+            self.dbase.commit_place(a_place, self.trans)
 
     def __find_file(self, fullname, altpath):
         # try to find the media file
@@ -3217,8 +3266,8 @@ class GedcomParser(UpdateCallback):
             for input_id, gramps_id in _map.map().items():
                 # Check whether an object exists for the mapped gramps_id
                 if not has_gid_func(gramps_id):
-                    _handle = self.__find_from_handle(gramps_id,
-                                                      gramps_id2handle)
+                    _handle = self.__find_hndl_from_id(gramps_id,
+                                                       gramps_id2handle)
                     if msg == "FAM":
                         make_unknown(gramps_id, self.explanation.handle,
                                      class_func, commit_func, self.trans,
@@ -3268,7 +3317,7 @@ class GedcomParser(UpdateCallback):
                     return key
 
         for input_id, gramps_id in self.pid_map.map().items():
-            person_handle = self.__find_from_handle(gramps_id, self.gid2id)
+            person_handle = self.__find_hndl_from_id(gramps_id, self.gid2id)
             person = self.dbase.get_person_from_handle(person_handle)
             for family_handle in person.get_family_handle_list():
                 family = self.dbase.get_family_from_handle(family_handle)
@@ -3293,7 +3342,7 @@ class GedcomParser(UpdateCallback):
                     return key
 
         for input_id, gramps_id in self.fid_map.map().items():
-            family_handle = self.__find_from_handle(gramps_id, self.fid2id)
+            family_handle = self.__find_hndl_from_id(gramps_id, self.fid2id)
             family = self.dbase.get_family_from_handle(family_handle)
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
@@ -3358,19 +3407,20 @@ class GedcomParser(UpdateCallback):
                     "To correct for that, %(new)d objects were created and\n"
                     "their typifying attribute was set to 'Unknown'.\n"
                     "Where possible these 'Unknown' objects are \n"
-                    "referenced by note %(unknown)s.\n"
-                    ) % {'new': self.missing_references,
-                         'unknown': self.explanation.gramps_id}
+                    "referenced by note %(unknown)s.\n") % \
+                {'new': self.missing_references,
+                 'unknown': self.explanation.gramps_id}
             self.__add_msg(txt)
             self.number_of_errors -= 1
 
-    def __merge_address(self, free_form_address, addr, line, state):
+    def __merge_address(self, addr, line):
         """
         Merge freeform and structured addrssses.
         n ADDR <ADDRESS_LINE> {0:1}
         +1 CONT <ADDRESS_LINE> {0:M}
         +1 ADR1 <ADDRESS_LINE1> {0:1}  (Street)
-        +1 ADR2 <ADDRESS_LINE2> {0:1}  (Locality)
+        +1 ADR2 <ADDRESS_LINE2> {0:1}
+        +1 ADR3 <ADDRESS_LINE3> {0:1}
         +1 CITY <ADDRESS_CITY> {0:1}
         +1 STAE <ADDRESS_STATE> {0:1}
         +1 POST <ADDRESS_POSTAL_CODE> {0:1}
@@ -3379,12 +3429,11 @@ class GedcomParser(UpdateCallback):
         This is done along the lines suggested by Tamura Jones in
         http://www.tamurajones.net/GEDCOMADDR.xhtml as a result of bug 6382.
         "When a GEDCOM reader encounters a double address, it should read the
-        structured address. ... A GEDCOM reader that does verify that the
-        addresses are the same should issue an error if they are not".
+        structured address.
 
         This is called for SUBMitter addresses (__subm_addr), INDIvidual
         addresses (__person_addr), REPO addresses and HEADer corp address
-        (__repo_address) and EVENt addresses (__event_adr).
+        (__repo_address).
 
         The structured address (if any) will have been accumulated into an
         object of type LocationBase, which will either be a Location, or an
@@ -3397,48 +3446,65 @@ class GedcomParser(UpdateCallback):
         structured components. N.B. PAF provides a free-form address and a
         country, so this allows for that case.
 
-        If both forms of address are provided, then the structured address is
-        used, and if the ADDR/CONT contains anything not in the structured
-        address, a warning is issued.
+        If both forms of address are provided, then the Structured parts of
+        address are removed from the free-form version, anything left is put
+        back into the front of name/title which is rebuilt from structured
+        address.
+        TODO for Arabic, should the output commas be translated?
 
         If just ADR1, ADR2, CITY, STAE, POST or CTRY are provided (this is not
         actually legal GEDCOM symtax, but may be possible by GEDCOM extensions)
         then just the structrued address is used.
-        The routine returns a string suitable for a title.
+        The routine returns a string suitable for a title, or None if no useful
+        structured address is included.
         """
         title = ''
-        free_form_address = free_form_address.replace('\n', ', ')
-        if not (addr.get_street() or addr.get_locality() or
-                addr.get_city() or addr.get_state() or
-                addr.get_postal_code()):
+        ff_addr = line.data.replace('\n', ', ')
+        if not (addr.get_street() or addr.get_city() or addr.get_state()):
+            addr.set_street(ff_addr)
+            return None
+        # structured address provided
+        # Since ADR1, ADR2, ADR3 form a second free-form address we will
+        # merge with the ff addr, removing duplicates and preserve order.
+        # This assumes that the order between the two is the same if there
+        # are common elements, although there may be extras in one or the
+        # other.
+        ff_list = [item.strip() for item in ff_addr.split(',') if item.strip()]
+        street = addr.get_street().replace('\n', ', ')
+        st_list = [item.strip() for item in street.split(',') if item.strip()]
+        mrg_list = []
+        for item in ff_list:
+            if item in st_list:
+                while True:
+                    item2 = st_list[0]
+                    mrg_list.append(item2)
+                    del st_list[0]
+                    if item == item2:
+                        break
+            else:
+                mrg_list.append(item)
+        mrg_list.extend(st_list)
 
-            addr.set_street(free_form_address)
-            return free_form_address
-        else:
-            # structured address provided
-            addr_list = free_form_address.split(",")
-            str_list = []
-            for func in (addr.get_street(), addr.get_locality(),
-                         addr.get_city(), addr.get_state(),
-                         addr.get_postal_code(), addr.get_country()):
-                str_list += [i.strip(',' + string.whitespace)
-                             for i in func.split("\n")]
-            for elmn in addr_list:
-                if elmn.strip(',' + string.whitespace) not in str_list:
-                    # message means that the element %s was ignored, but
-                    # expressed the wrong way round because the message is
-                    # truncated for output
-                    self.__add_msg(_("ADDR element ignored '%s'"
-                                     % elmn), line, state)
-            # The free-form address ADDR is discarded
-            # Assemble a title out of structured address
-            for elmn in str_list:
-                if elmn:
-                    if title != '':
-                        # TODO for Arabic, should the next comma be translated?
-                        title += ', '
-                    title += elmn
-            return title
+        len_mrg_list = len(mrg_list)
+        for item in (addr.get_city(), addr.get_state(),
+                     addr.get_postal_code(), addr.get_country()):
+            item = item.replace("\n", " ").strip(',' + string.whitespace)
+            indx = 0
+            while indx < len_mrg_list:
+                if item == mrg_list[indx]:
+                    del mrg_list[indx]
+                    mrg_list.append(item)
+                    len_mrg_list -= 1
+                indx += 1
+        # Reassemble a street from leftovers
+        for item in mrg_list:
+            if title != '':
+                title += ', '
+            title += item
+            len_mrg_list -= 1
+            if not len_mrg_list:
+                addr.set_street(title)
+        return title
 
     def __parse_trailer(self):
         """
@@ -3953,7 +4019,7 @@ class GedcomParser(UpdateCallback):
         sub_state.level = state.level + 1
         sub_state.event = event
         sub_state.event_ref = event_ref
-        sub_state.pf = self.place_parser
+        sub_state.place_pf = self.place_parser
 
         self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
         state.msg += sub_state.msg
@@ -4098,7 +4164,7 @@ class GedcomParser(UpdateCallback):
         self.__parse_level(sub_state, self.parse_addr_tbl, self.__ignore)
         state.msg += sub_state.msg
 
-        self.__merge_address(free_form, sub_state.addr, line, state)
+        self.__merge_address(sub_state.addr, line)
         state.person.add_address(sub_state.addr)
 
     def __person_resi(self, line, state):
@@ -4198,7 +4264,7 @@ class GedcomParser(UpdateCallback):
         sub_state.level = state.level + 1
         sub_state.event = event
         sub_state.event_ref = event_ref
-        sub_state.pf = self.place_parser
+        sub_state.place_pf = self.place_parser
 
         self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
         state.msg += sub_state.msg
@@ -4580,19 +4646,13 @@ class GedcomParser(UpdateCallback):
         sub_state.level = state.level + 1
         sub_state.lds_ord = LdsOrd()
         sub_state.lds_ord.set_type(lds_type)
-        sub_state.place = None
-        sub_state.place_fields = PlaceParser()
+        sub_state.place_pf = PlaceParser()
         sub_state.person = state.person
         state.person.lds_ord_list.append(sub_state.lds_ord)
 
         self.__parse_level(sub_state, self.lds_parse_tbl, self.__ignore)
         state.msg += sub_state.msg
-
-        if sub_state.place:
-            place_title = _pd.display(self.dbase, sub_state.place)
-            sub_state.place_fields.load_place(self.place_import,
-                                              sub_state.place,
-                                              place_title)
+        self.__add_place(sub_state.lds_ord, sub_state)
 
     def __lds_temple(self, line, state):
         """
@@ -4640,7 +4700,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.pf = PlaceParser(line)
+        state.place_pf = PlaceParser(line)
 
     def __lds_plac(self, line, state):
         """
@@ -4651,21 +4711,19 @@ class GedcomParser(UpdateCallback):
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
+
+        The Gedcom spec doesn't treat LDS places the same as event places,
+        instead it just has the single line with title.
         """
-        try:
-            title = line.data
-            place = self.__find_place(title, None, None)
-            if place is None:
-                place = Place()
-                place.set_title(title)
-                place.name.set_value(title)
-                self.dbase.add_place(place, self.trans)
-                self.place_names[place.get_title()].append(place.get_handle())
-            else:
-                pass
-            state.lds_ord.set_place_handle(place.handle)
-        except NameError:
-            return
+        title = line.data
+        if state.place is None:
+            state.place = Place()
+            state.place.set_title(title)
+            state.place.name.set_value(line.data)
+        else:
+            # We have previously found a PLAC
+            self.__add_msg(_("A second PLAC ignored"), line, state)
+            # ignore this second PLAC, and use the old one
 
     def __lds_sour(self, line, state):
         """
@@ -4950,26 +5008,6 @@ class GedcomParser(UpdateCallback):
 
         self.__parse_level(state, self.family_func, self.__family_even)
 
-        # handle addresses attached to families
-        if state.addr is not None:
-            father_handle = family.get_father_handle()
-            father = self.dbase.get_person_from_handle(father_handle)
-            if father:
-                father.add_address(state.addr)
-                self.dbase.commit_person(father, self.trans)
-            mother_handle = family.get_mother_handle()
-            mother = self.dbase.get_person_from_handle(mother_handle)
-            if mother:
-                mother.add_address(state.addr)
-                self.dbase.commit_person(mother, self.trans)
-
-            for child_ref in family.get_child_ref_list():
-                child_handle = child_ref.ref
-                child = self.dbase.get_person_from_handle(child_handle)
-                if child:
-                    child.add_address(state.addr)
-                    self.dbase.commit_person(child, self.trans)
-
         # add default reference if no reference exists
         self.__add_default_source(family)
 
@@ -5032,7 +5070,7 @@ class GedcomParser(UpdateCallback):
         sub_state.level = state.level + 1
         sub_state.event = event
         sub_state.event_ref = event_ref
-        sub_state.pf = self.place_parser
+        sub_state.place_pf = self.place_parser
 
         self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
         state.msg += sub_state.msg
@@ -5089,7 +5127,7 @@ class GedcomParser(UpdateCallback):
         sub_state.level = state.level + 1
         sub_state.event = event
         sub_state.event_ref = event_ref
-        sub_state.pf = self.place_parser
+        sub_state.place_pf = self.place_parser
 
         self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
         state.msg += sub_state.msg
@@ -5173,17 +5211,13 @@ class GedcomParser(UpdateCallback):
         sub_state.lds_ord.set_type(LdsOrd.SEAL_TO_SPOUSE)
         sub_state.place = None
         sub_state.family = state.family
-        sub_state.place_fields = PlaceParser()
+        # LDS places don't use HEAD.PLAC.FORM
+        sub_state.place_pf = PlaceParser()
         state.family.lds_ord_list.append(sub_state.lds_ord)
 
         self.__parse_level(sub_state, self.lds_parse_tbl, self.__ignore)
         state.msg += sub_state.msg
-
-        if sub_state.place:
-            place_title = _pd.display(self.dbase, sub_state.place)
-            sub_state.place_fields.load_place(self.place_import,
-                                              sub_state.place,
-                                              place_title)
+        self.__add_place(sub_state.lds_ord, sub_state)
 
     def __family_source(self, line, state):
         """
@@ -5603,21 +5637,16 @@ class GedcomParser(UpdateCallback):
         else:
             place = state.place
             if place:
-                # We encounter a PLAC, having previously encountered an ADDR
-                if state.place.place_type.string != _("Address"):
-                    # We have previously found a PLAC
-                    self.__add_msg(_("A second PLAC ignored"), line, state)
-                    # ignore this second PLAC, and use the old one
-                else:
-                    # This is the first PLAC
-                    place.set_title(line.data)
-                    place.name.set_value(line.data)
-            else:
-                # The first thing we encounter is PLAC
-                state.place = Place()
-                place = state.place
-                place.set_title(line.data)
-                place.name.set_value(line.data)
+                # We have previously found a PLAC
+                self.__add_msg(_("A second PLAC ignored"), line, state)
+                # ignore this second PLAC
+                self.__skip_subordinate_levels(line.level + 1, state)
+                return
+            # The first thing we encounter is PLAC
+            state.place = Place()
+            place = state.place
+            place.set_title(line.data)
+            place.name.set_value(line.data)
 
             sub_state = CurrentState()
             sub_state.place = place
@@ -5626,12 +5655,13 @@ class GedcomParser(UpdateCallback):
             self.__parse_level(sub_state, self.event_place_map,
                                self.__undefined)
             state.msg += sub_state.msg
-            if sub_state.pf:                # if we found local PLAC:FORM
-                state.pf = sub_state.pf     # save to override global value
+            if sub_state.place_pf:  # if we found local PLAC:FORM
+                # save to override global value
+                state.place_pf = sub_state.place_pf
             # merge notes etc into place
             state.place.merge(sub_state.place)
 
-    def __event_place_note(self, line, state):
+    def __place_note(self, line, state):
         """
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -5640,16 +5670,16 @@ class GedcomParser(UpdateCallback):
         """
         self.__parse_note(line, state.place, state)
 
-    def __event_place_form(self, line, state):
+    def __place_form(self, line, state):
         """
         @param line: The current line in GedLine format
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
         """
-        state.pf = PlaceParser(line)
+        state.place_pf = PlaceParser(line)
 
-    def __event_place_object(self, line, state):
+    def __place_object(self, line, state):
         """
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -5658,7 +5688,7 @@ class GedcomParser(UpdateCallback):
         """
         self.__obje(line, state, state.place)
 
-    def __event_place_sour(self, line, state):
+    def __place_sour(self, line, state):
         """
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -5669,7 +5699,6 @@ class GedcomParser(UpdateCallback):
 
     def __place_map(self, line, state):
         """
-
         n   MAP
         n+1 LONG <PLACE_LONGITUDE>
         n+1 LATI <PLACE_LATITUDE>
@@ -5710,95 +5739,53 @@ class GedcomParser(UpdateCallback):
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
+
+        Process the ADDR record for events.  The data is saved in state.addr
+        and state.addr_place for later processing and commit in __add_place.
         """
-        free_form = line.data
+        if state.addr_place:
+            # only one ADDR allowed in the event.
+            self.__not_recognized(line, state)
+            return
 
         sub_state = CurrentState(level=state.level + 1)
-        sub_state.location = Location()
-        sub_state.event = state.event
+        sub_state.addr = addr = Address()
         sub_state.place = Place()  # temp stash for notes, citations etc
 
-        self.__parse_level(sub_state, self.parse_loc_tbl, self.__undefined)
+        self.__parse_level(sub_state, self.parse_addr_tbl, self.__undefined)
         state.msg += sub_state.msg
 
-        title = self.__merge_address(free_form, sub_state.location,
-                                     line, state)
+        title = self.__merge_address(addr, line)
+        state.addr = []     # list of place name components
+        state.addr_pf = []  # list of place name component types
 
-        location = sub_state.location
-
-        if self.addr_is_detail and state.place:
-            # Commit the enclosing place
-            place = self.__find_place(state.place.get_title(), None,
-                                      state.place.get_placeref_list())
-            if place is None:
-                place = state.place
-                self.dbase.add_place(place, self.trans)
-                self.place_names[place.get_title()].append(place.get_handle())
-            else:
-                place.merge(state.place)
-                self.dbase.commit_place(place, self.trans)
-            place_title = _pd.display(self.dbase, place)
-            state.pf.load_place(self.place_import, place, place_title)
-
-            # Create the Place Details (it is committed with the event)
-            place_detail = Place()
-            place_detail.set_name(PlaceName(value=title))
-            place_detail.set_title(title)
-            # For RootsMagic etc. Place Details e.g. address, hospital, ...
-            place_detail.set_type((PlaceType.CUSTOM, _("Detail")))
-            placeref = PlaceRef()
-            placeref.ref = place.get_handle()
-            place_detail.set_placeref_list([placeref])
-            state.place = place_detail
+        # We don't include Country here because bare country would not be much
+        # of an address, better to use raw one.
+        if not title:  # indicates that no structured address provided
+            title = addr.get_street()
+            state.addr_pf = [PlaceType((PlaceType.CUSTOM, _("Address")))]
+            state.addr = [title]
+            sub_state.place.name.value = title
         else:
-            place = state.place
-            if place:
-                # We encounter an ADDR having previously encountered a PLAC
-                if len(place.get_alternate_locations()) != 0 and \
-                        not self.__get_first_loc(place).is_empty():
-                    # We have perviously found an ADDR, or have populated
-                    # location from PLAC title
-                    self.__add_msg(_("Location already populated; ADDR "
-                                     "ignored"), line, state)
-                    # ignore this second ADDR, and use the old one
-                else:
-                    # This is the first ADDR
-                    place.add_alternate_locations(location)
-            else:
-                # The first thing we encounter is ADDR
-                state.place = Place()
-                place = state.place
-                place.add_alternate_locations(location)
-                place.set_name(PlaceName(value=title))
-                place.set_title(title)
-                place.set_type((PlaceType.CUSTOM, _("Address")))
-
-        # merge notes etc into place
-        state.place.merge(sub_state.place)
-
-    def __add_location(self, place, location):
-        """
-        @param place: A place object we have found or created
-        @type place: Place
-        @param location: A location we want to add to this place
-        @type location: gen.lib.location
-        """
-        for loc in place.get_alternate_locations():
-            if loc.is_equivalent(location) == IDENTICAL:
-                return
-        place.add_alternate_locations(location)
-
-    def __get_first_loc(self, place):
-        """
-        @param place: A place object
-        @type place: Place
-        @return location: the first alternate location if any else None
-        @type location: gen.lib.location
-        """
-        if len(place.get_alternate_locations()) == 0:
-            return None
-        else:
-            return place.get_alternate_locations()[0]
+            # structured address provided
+            for item, ptype in ((addr.get_street(), PlaceType.STREET),
+                                (addr.get_city(), PlaceType.CITY),
+                                (addr.get_state(), PlaceType.STATE),
+                                (addr.get_country(), PlaceType.COUNTRY)):
+                item = item.replace("\n", " ").strip(',' + string.whitespace)
+                if not item:
+                    continue    # Don't store empties
+                state.addr_pf += [ptype]
+                state.addr += [item]
+            sub_state.place.name.value = state.addr[0]
+            sub_state.place.set_type(state.addr_pf[0])
+        sub_state.place.set_title(title)
+        # store notes etc into place
+        sub_state.place.set_code(addr.postal)
+        sub_state.place.set_note_list(addr.note_list)
+        sub_state.place.set_citation_list(addr.citation_list)
+        sub_state.place.name.date = addr.date
+        state.addr_place = sub_state.place
 
     def __event_privacy(self, line, state):
         """
@@ -6149,33 +6136,25 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.addr.set_date_object(line.data)
+        if isinstance(state.addr, Address):
+            state.addr.set_date_object(line.data)
+        else:
+            # This causes dates below SUBMitter to be ignored
+            self.__not_recognized(line, state)
 
-    def __address_adr1(self, line, state):
+    def __address_adr(self, line, state):
         """
-        Parses the ADR1 line of an ADDR tag
-
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        # The ADDR may already have been parsed by the level above
-        # assert state.addr.get_street() == ""
-        if state.addr.get_street() != "":
-            self.__add_msg(_("Warn: ADDR overwritten"), line, state)
-        state.addr.set_street(line.data)
-
-    def __address_adr2(self, line, state):
-        """
-        Parses the ADR2 line of an ADDR tag
+        Parses the ADR1, ADR2, ADR3 line of an ADDR tag
 
         @param line: The current line in GedLine format
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
         """
-        state.addr.set_locality(line.data)
+        if state.addr.street:
+            state.addr.street += ', ' + line.data.strip()
+        else:
+            state.addr.street = line.data.strip()
 
     def __address_city(self, line, state):
         """
@@ -6221,6 +6200,15 @@ class GedcomParser(UpdateCallback):
         """
         state.addr.set_country(line.data)
 
+    def __address_phone(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.addr.set_phone(line.data)
+
     def __address_sour(self, line, state):
         """
         Parses the SOUR line of an ADDR tag
@@ -6230,7 +6218,12 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.addr.add_citation(self.handle_source(line, state.level, state))
+        if isinstance(state.addr, Address):
+            state.addr.add_citation(self.handle_source(line, state.level,
+                                                       state))
+        else:
+            # This causes citations below SUBMitter to be ignored
+            self.__not_recognized(line, state)
 
     def __address_note(self, line, state):
         """
@@ -6241,7 +6234,11 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.__parse_note(line, state.addr, state)
+        if isinstance(state.addr, Address):
+            self.__parse_note(line, state.addr, state)
+        else:
+            # This causes notes below SUBMitter to be ignored
+            self.__not_recognized(line, state)
 
     def __citation_page(self, line, state):
         """
@@ -6979,15 +6976,13 @@ class GedcomParser(UpdateCallback):
         instead they put everything on a single line. Try to determine
         if this happened, and try to fix it.
         """
-        free_form = line.data
-
         sub_state = CurrentState(level=state.level + 1)
         sub_state.addr = Address()
 
         self.__parse_level(sub_state, self.parse_addr_tbl, self.__ignore)
         state.msg += sub_state.msg
 
-        self.__merge_address(free_form, sub_state.addr, line, state)
+        self.__merge_address(sub_state.addr, line)
         state.repo.add_address(sub_state.addr)
 
     def __repo_phon(self, line, state):
@@ -7040,98 +7035,6 @@ class GedcomParser(UpdateCallback):
         url.set_path(line.data)
         url.set_type(UrlType(UrlType.EMAIL))
         state.repo.add_url(url)
-
-    def __location_adr1(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        if not state.location:
-            state.location = Location()
-        if state.location.get_street() != "":
-            self.__add_msg(_("Warn: ADDR overwritten"), line, state)
-        state.location.set_street(line.data)
-
-    def __location_adr2(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        if not state.location:
-            state.location = Location()
-        state.location.set_locality(line.data)
-
-    def __location_city(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        if not state.location:
-            state.location = Location()
-        state.location.set_city(line.data)
-
-    def __location_stae(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        if not state.location:
-            state.location = Location()
-        state.location.set_state(line.data)
-
-    def __location_post(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        if not state.location:
-            state.location = Location()
-        state.location.set_postal_code(line.data)
-
-    def __location_ctry(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        if not state.location:
-            state.location = Location()
-        state.location.set_country(line.data)
-
-    def __location_phone(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        if not state.location:
-            state.location = Location()
-        state.location.set_phone(line.data)
-
-    def __location_note(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        if state.event:
-            self.__parse_note(line, state.place, state)
-        else:
-            # This causes notes below SUBMitter to be ignored
-            self.__not_recognized(line, state)
 
     def __optional_note(self, line, state):
         """
@@ -7493,7 +7396,7 @@ class GedcomParser(UpdateCallback):
         self.__parse_level(sub_state, self.place_form, self.__undefined)
         state.msg += sub_state.msg
 
-    def __place_form(self, line, state):
+    def __header_place_form(self, line, state):
         """
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -7730,7 +7633,8 @@ class GedcomParser(UpdateCallback):
             # have got deleted by Chack and repair because the record is empty.
             # If we find the source record, the title is overwritten in
             # __source_title.
-            src.set_title(line.data)
+            if not src.get_title():
+                src.set_title(line.data)
         self.dbase.commit_source(src, self.trans)
         self.__parse_source_reference(citation, level, src.handle, state)
         citation.set_reference_handle(src.handle)
@@ -7824,7 +7728,7 @@ class GedcomParser(UpdateCallback):
         sub_state.event_ref = event_ref
         sub_state.event = event
         sub_state.person = state.person
-        sub_state.pf = self.place_parser
+        sub_state.place_pf = self.place_parser
 
         self.__parse_level(sub_state, event_map, self.__undefined)
         state.msg += sub_state.msg
@@ -7852,7 +7756,7 @@ class GedcomParser(UpdateCallback):
         sub_state.level = state.level + 1
         sub_state.event = event
         sub_state.event_ref = event_ref
-        sub_state.pf = self.place_parser
+        sub_state.place_pf = self.place_parser
 
         self.__parse_level(sub_state, event_map, self.__undefined)
         state.msg += sub_state.msg
@@ -7959,17 +7863,15 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        free_form = line.data
-
         sub_state = CurrentState(level=state.level + 1)
-        sub_state.location = state.res
+        sub_state.addr = state.res
 
-        self.__parse_level(sub_state, self.parse_loc_tbl, self.__undefined)
+        self.__parse_level(sub_state, self.parse_addr_tbl, self.__undefined)
         state.msg += sub_state.msg
 
-        self.__merge_address(free_form, state.res, line, state)
+        self.__merge_address(state.res, line)
         # Researcher is a sub-type of LocationBase, so get_street and
-        # set_street which are used in routines called from self.parse_loc_tbl
+        # set_street which are used in routines called from self.parse_addr_tbl
         # work fine.
         # Unfortunately, Researcher also has get_address and set_address, so we
         # need to copy the street into that.
@@ -8150,6 +8052,7 @@ class GedcomStageOne:
         Return the number of lines in the file
         """
         return self.lcnt
+
 
 
 #-------------------------------------------------------------------------

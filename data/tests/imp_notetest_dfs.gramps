@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2016-10-23" version="5.0.0-alpha1"/>
+    <created date="2017-08-31" version="5.0.0-alpha2"/>
     <researcher>
       <resname>John A. Tester</resname>
     </researcher>
@@ -102,10 +102,10 @@
       <lds_ord type="baptism">
         <dateval val="-005-05-05"/>
         <temple val="SLAKE"/>
-        <place hlink="_0000003000000030"/>
-        <noteref hlink="_0000003100000031"/>
-        <noteref hlink="_0000003400000034"/>
-        <citationref hlink="_0000003300000033"/>
+        <place hlink="_0000003400000034"/>
+        <noteref hlink="_0000003000000030"/>
+        <noteref hlink="_0000003300000033"/>
+        <citationref hlink="_0000003200000032"/>
       </lds_ord>
       <childof hlink="_0000001700000017"/>
       <personref hlink="_0000003500000035" rel="">
@@ -154,9 +154,9 @@
       <confidence>2</confidence>
       <sourceref hlink="_0000000400000004"/>
     </citation>
-    <citation handle="_0000003300000033" change="1" id="C0003">
+    <citation handle="_0000003200000032" change="1" id="C0003">
       <confidence>2</confidence>
-      <sourceref hlink="_0000003200000032"/>
+      <sourceref hlink="_0000003100000031"/>
     </citation>
     <citation handle="_0000003700000037" change="1" id="C0004">
       <confidence>2</confidence>
@@ -202,7 +202,7 @@
       <reporef hlink="_0000000100000001" medium="Unknown"/>
       <reporef hlink="_0000000c0000000c" medium="Unknown"/>
     </source>
-    <source handle="_0000003200000032" change="1" id="SOURCE1">
+    <source handle="_0000003100000031" change="1" id="SOURCE1">
       <stitle>@SOURCE1@</stitle>
     </source>
     <source handle="_0000003c0000003c" change="1" id="S0001">
@@ -218,11 +218,10 @@
     <placeobj handle="_0000001400000014" change="1" id="P0000" type="Address">
       <ptitle>123 main, Norwalk, Ohio, USA</ptitle>
       <pname value="123 main, Norwalk, Ohio, USA"/>
-      <location street="123 main, Norwalk, Ohio, USA"/>
       <noteref hlink="_0000001200000012"/>
       <noteref hlink="_0000001300000013"/>
     </placeobj>
-    <placeobj handle="_0000003000000030" change="1" id="P0001" type="Unknown">
+    <placeobj handle="_0000003400000034" change="1" id="P0001" type="Unknown">
       <ptitle>Salt Lake City</ptitle>
       <pname value="Salt Lake City"/>
     </placeobj>
@@ -270,7 +269,8 @@
 
 Line ignored as not understood                                      Line    18: 2 TEST Header Note
 Empty note ignored                                                  Line    19: 1 NOTE 
-Skipped subordinate line                                            Line    20: 2 TEST Empty Note</text>
+Skipped subordinate line                                            Line    20: 2 TEST Empty Note
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="327"/>
       </style>
@@ -288,7 +288,8 @@ Skipped subordinate line                                            Line    20: 
 Line ignored as not understood                                      Line    26: 2 TEST Submission Note
 Empty note ignored                                                  Line    27: 1 NOTE 
 Skipped subordinate line                                            Line    28: 2 TEST Empty Note
-Line ignored as not understood                                      Line    29: 1 TEST submission</text>
+Line ignored as not understood                                      Line    29: 1 TEST submission
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="425"/>
       </style>
@@ -300,7 +301,8 @@ Tag recognized but not supported                                    Line    32: 
 Tag recognized but not supported                                    Line    33: 1 REFN Submission Note REFN
 Skipped subordinate line                                            Line    34: 2 TYPE Submission Note REFN TYPE
 Tag recognized but not supported                                    Line    35: 1 SOUR Submission note source
-Line ignored as not understood                                      Line    39: 1 TEST on XREF Note</text>
+Line ignored as not understood                                      Line    39: 1 TEST on XREF Note
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="586"/>
       </style>
@@ -318,7 +320,8 @@ Line ignored as not understood                                      Line    39: 
 Line ignored as not understood                                      Line    43: 2 TEST Submitter Note
 Empty note ignored                                                  Line    44: 1 NOTE 
 Skipped subordinate line                                            Line    45: 2 TEST Empty Note
-Line ignored as not understood                                      Line    46: 1 TEST Submitter</text>
+Line ignored as not understood                                      Line    46: 1 TEST Submitter
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="460"/>
       </style>
@@ -327,11 +330,11 @@ Line ignored as not understood                                      Line    46: 
       <text>Birth Event note</text>
       <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000001200000012" change="1" id="N0010" type="Place Note">
+    <note handle="_0000001200000012" change="1" id="N0010" type="Address Note">
       <text>Location Note</text>
       <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000001300000013" change="1" id="N0011" type="Place Note">
+    <note handle="_0000001300000013" change="1" id="N0011" type="Address Note">
       <text>Location Note 2</text>
       <tagref hlink="_0000000500000005"/>
     </note>
@@ -382,7 +385,8 @@ Empty note ignored                                                  Line    85: 
 Skipped subordinate line                                            Line    86: 3 TEST Empty Note
 Line ignored as not understood                                      Line    88: 3 TEST 123456 Note
 Empty note ignored                                                  Line    90: 2 NOTE 
-Skipped subordinate line                                            Line    91: 3 TEST Empty Note</text>
+Skipped subordinate line                                            Line    91: 3 TEST Empty Note
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="2009"/>
       </style>
@@ -396,7 +400,8 @@ Skipped subordinate line                                            Line   105: 
 Tag recognized but not supported                                    Line   109: 2 NOTE Note on a change on a note!!!
 Skipped subordinate line                                            Line   110: 3 CHAN 
 Skipped subordinate line                                            Line   111: 4 DATE 2001-01-11
-Skipped subordinate line                                            Line   112: 5 TIME 16:00:06</text>
+Skipped subordinate line                                            Line   112: 5 TIME 16:00:06
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="741"/>
       </style>
@@ -407,7 +412,8 @@ Skipped subordinate line                                            Line   112: 
     <note handle="_0000002500000025" change="1" id="N0022" type="GEDCOM import">
       <text>Records not imported into OBJE (multi-media object) Gramps ID M1:
 
-Could not import photo.jpg                                          Line   114: 1 FILE photo.jpg</text>
+Could not import photo.jpg                                          Line   114: 1 FILE photo.jpg
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="164"/>
       </style>
@@ -420,7 +426,8 @@ Could not import photo.jpg                                          Line   114: 
       <text>Records not imported into INDI (individual) Gramps ID I0002:
 
 Empty note ignored                                                  Line   132: 2 NOTE 
-Skipped subordinate line                                            Line   133: 3 TEST Empty Note</text>
+Skipped subordinate line                                            Line   133: 3 TEST Empty Note
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="248"/>
       </style>
@@ -429,11 +436,11 @@ Skipped subordinate line                                            Line   133: 
       <text>Name note</text>
       <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000003100000031" change="1" id="N0026" type="LDS Note">
+    <note handle="_0000003000000030" change="1" id="N0026" type="LDS Note">
       <text>Place note</text>
       <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000003400000034" change="1" id="N0027" type="LDS Note">
+    <note handle="_0000003300000033" change="1" id="N0027" type="LDS Note">
       <text>LDS xref note</text>
     </note>
     <note handle="_0000003600000036" change="979250406" id="N0028" type="Association Note">
@@ -447,7 +454,8 @@ Empty note ignored                                                  Line   141: 
 Skipped subordinate line                                            Line   142: 3 TEST Empty Note
 Line ignored as not understood                                      Line   163: 3 TEST Accociation note
 Empty note ignored                                                  Line   167: 2 NOTE 
-Skipped subordinate line                                            Line   168: 3 TEST Empty Note</text>
+Skipped subordinate line                                            Line   168: 3 TEST Empty Note
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="538"/>
       </style>
@@ -482,7 +490,8 @@ Empty note ignored                                                  Line   187: 
 Skipped subordinate line                                            Line   188: 2 TEST Empty Note
 Line ignored as not understood                                      Line   190: 2 TEST citation
 Line ignored as not understood                                      Line   194: 3 TEST Citation Data
-Line ignored as not understood                                      Line   196: 4 TEST Citation Data Note</text>
+Line ignored as not understood                                      Line   196: 4 TEST Citation Data Note
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="645"/>
       </style>
@@ -502,7 +511,8 @@ Line ignored as not understood                                      Line   206: 
 Empty note ignored                                                  Line   208: 2 NOTE 
 Skipped subordinate line                                            Line   209: 3 TEST Empty Note
 Empty note ignored                                                  Line   214: 1 NOTE 
-Skipped subordinate line                                            Line   215: 2 TEST Empty Note</text>
+Skipped subordinate line                                            Line   215: 2 TEST Empty Note
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="524"/>
       </style>
@@ -516,7 +526,8 @@ Skipped subordinate line                                            Line   215: 
 
 Line ignored as not understood                                      Line   223: 1 TEST Repo
 Empty note ignored                                                  Line   224: 1 NOTE 
-Skipped subordinate line                                            Line   225: 2 TEST Empty Note</text>
+Skipped subordinate line                                            Line   225: 2 TEST Empty Note
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="340"/>
       </style>
