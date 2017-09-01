@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps50\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-28 09:36+0300\n"
-"PO-Revision-Date: 2017-08-28 09:37+0300\n"
+"POT-Creation-Date: 2017-09-01 22:08+0300\n"
+"PO-Revision-Date: 2017-09-01 22:15+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -1593,7 +1593,7 @@ msgstr "Путь"
 msgid "Database"
 msgstr "База данных"
 
-#: ../gramps/cli/clidbman.py:175 ../gramps/gui/dbman.py:401
+#: ../gramps/cli/clidbman.py:175 ../gramps/gui/dbman.py:404
 msgid "Last accessed"
 msgstr "Последний доступ"
 
@@ -1747,7 +1747,7 @@ msgstr ""
 "Вы уверены, что хотите удалить семейное древо\n"
 "\"%s\"?"
 
-#: ../gramps/cli/clidbman.py:443 ../gramps/gui/dbman.py:726
+#: ../gramps/cli/clidbman.py:443 ../gramps/gui/dbman.py:730
 msgid "Could not delete Family Tree"
 msgstr "Не удалось удалить семейное древо"
 
@@ -8005,7 +8005,7 @@ msgstr "Храм"
 
 #. icon_column = Gtk.TreeViewColumn(_('Status'), render,
 #. icon_name=ICON_COL)
-#: ../gramps/gen/lib/ldsord.py:192 ../gramps/gui/dbman.py:385
+#: ../gramps/gen/lib/ldsord.py:192 ../gramps/gui/dbman.py:388
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../gramps/gui/plug/_windows.py:127 ../gramps/gui/plug/_windows.py:184
@@ -11816,20 +11816,20 @@ msgstr "Применяются настройки"
 msgid "Family Trees"
 msgstr "Семейные древа"
 
-#: ../gramps/gui/dbman.py:372
+#: ../gramps/gui/dbman.py:375
 msgid "Family Tree name"
 msgstr "Название семейного древа"
 
-#: ../gramps/gui/dbman.py:392
+#: ../gramps/gui/dbman.py:395
 msgid "Database Type"
 msgstr "Тип базы данных"
 
-#: ../gramps/gui/dbman.py:498
+#: ../gramps/gui/dbman.py:502
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Снять блокировку с базы данных '%s'?"
 
-#: ../gramps/gui/dbman.py:499
+#: ../gramps/gui/dbman.py:503
 msgid ""
 "Gramps believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -11842,15 +11842,15 @@ msgstr ""
 "Однако, если вы снимете блокировку, когда другой пользователь редактирует "
 "базу, вы можете испортить её."
 
-#: ../gramps/gui/dbman.py:505
+#: ../gramps/gui/dbman.py:509
 msgid "Break lock"
 msgstr "Снять блокировку"
 
-#: ../gramps/gui/dbman.py:597
+#: ../gramps/gui/dbman.py:601
 msgid "Rename failed"
 msgstr "Переименование не удалось"
 
-#: ../gramps/gui/dbman.py:598
+#: ../gramps/gui/dbman.py:602
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -11861,54 +11861,54 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dbman.py:616
+#: ../gramps/gui/dbman.py:620
 msgid "Could not rename the Family Tree."
 msgstr "Не удалось переименовать это семейное древо."
 
-#: ../gramps/gui/dbman.py:617
+#: ../gramps/gui/dbman.py:621
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Семейное древо уже существует, выберите уникальное имя."
 
-#: ../gramps/gui/dbman.py:662
+#: ../gramps/gui/dbman.py:666
 msgid "Extracting archive..."
 msgstr "Распаковка архива..."
 
-#: ../gramps/gui/dbman.py:667
+#: ../gramps/gui/dbman.py:671
 msgid "Importing archive..."
 msgstr "Импорт архива..."
 
-#: ../gramps/gui/dbman.py:683
+#: ../gramps/gui/dbman.py:687
 #, python-format
 msgid "Remove the '%s' Family Tree?"
 msgstr "Удалить семейное древо «%s»?"
 
-#: ../gramps/gui/dbman.py:684
+#: ../gramps/gui/dbman.py:688
 msgid "Removing this Family Tree will permanently destroy the data."
 msgstr "Удаление данного семейного древа безвозвратно сотрёт данные."
 
-#: ../gramps/gui/dbman.py:686
+#: ../gramps/gui/dbman.py:690
 msgid "Remove Family Tree"
 msgstr "Удалить семейное древо"
 
-#: ../gramps/gui/dbman.py:691
+#: ../gramps/gui/dbman.py:695
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Удалить версию '%(revision)s' базы данных '%(database)s'"
 
-#: ../gramps/gui/dbman.py:695
+#: ../gramps/gui/dbman.py:699
 msgid ""
 "Removing this version will prevent you from extracting it in the future."
 msgstr "Удаление данной версии не позволит вам открыть её в будущем."
 
-#: ../gramps/gui/dbman.py:697
+#: ../gramps/gui/dbman.py:701
 msgid "Remove version"
 msgstr "Удалить версию"
 
-#: ../gramps/gui/dbman.py:752
+#: ../gramps/gui/dbman.py:756
 msgid "Deletion failed"
 msgstr "Удаление не удалось"
 
-#: ../gramps/gui/dbman.py:753
+#: ../gramps/gui/dbman.py:757
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -11919,61 +11919,61 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dbman.py:771
+#: ../gramps/gui/dbman.py:775
 #, python-format
 msgid "Convert the '%s' database?"
 msgstr "Преобразовать базу данных '%s'?"
 
-#: ../gramps/gui/dbman.py:772
+#: ../gramps/gui/dbman.py:776
 #, python-format
 msgid ""
 "Do you wish to convert this family tree into a %(database_type)s database?"
 msgstr "Хотите преобразовать эту базу данных в %(database_type)s формат?"
 
-#: ../gramps/gui/dbman.py:774
+#: ../gramps/gui/dbman.py:778
 msgid "Convert"
 msgstr "Преобразовать"
 
-#: ../gramps/gui/dbman.py:784
+#: ../gramps/gui/dbman.py:788
 #, python-format
 msgid "Opening the '%s' database"
 msgstr "Открывается база данных '%s'"
 
-#: ../gramps/gui/dbman.py:785
+#: ../gramps/gui/dbman.py:789
 msgid "An attempt to convert the database failed. Perhaps it needs updating."
 msgstr ""
 "Попытка преобразования базы данных не удалась. Возможно необходимо "
 "обновление."
 
-#: ../gramps/gui/dbman.py:796 ../gramps/gui/dbman.py:821
+#: ../gramps/gui/dbman.py:800 ../gramps/gui/dbman.py:825
 #, python-format
 msgid "Converting the '%s' database"
 msgstr "Проводится преобразование базы данных '%s'"
 
-#: ../gramps/gui/dbman.py:797
+#: ../gramps/gui/dbman.py:801
 msgid "An attempt to export the database failed."
 msgstr "Попытка экспорта базы данных не удалась."
 
-#: ../gramps/gui/dbman.py:801
+#: ../gramps/gui/dbman.py:805
 msgid "Converting data..."
 msgstr "Преобразование данных..."
 
-#: ../gramps/gui/dbman.py:806 ../gramps/gui/dbman.py:809
+#: ../gramps/gui/dbman.py:810 ../gramps/gui/dbman.py:813
 #, python-format
 msgid "(Converted #%d)"
 msgstr "(Преобразовано #%d)"
 
-#: ../gramps/gui/dbman.py:822
+#: ../gramps/gui/dbman.py:826
 msgid "An attempt to import into the database failed."
 msgstr "Попытка импорта в базу данных не удалась."
 
-#: ../gramps/gui/dbman.py:879
+#: ../gramps/gui/dbman.py:883
 msgid "Repair Family Tree?"
 msgstr "Починить семейное древо?"
 
 # !!!FIXME!!!
 # проверить, что действительно файл называется need_recover в русской версии
-#: ../gramps/gui/dbman.py:880
+#: ../gramps/gui/dbman.py:884
 #, python-format
 msgid ""
 "If you click %(bold_start)sProceed%(bold_end)s, Gramps will attempt to "
@@ -12024,31 +12024,31 @@ msgstr ""
 "можете убрать кнопку «Восстановить», удалив файл %(recover_file)s из папки с "
 "семейным древом."
 
-#: ../gramps/gui/dbman.py:911
+#: ../gramps/gui/dbman.py:915
 msgid "Proceed, I have taken a backup"
 msgstr "Продолжить, ведь я сделал резервную копию"
 
-#: ../gramps/gui/dbman.py:912
+#: ../gramps/gui/dbman.py:916
 msgid "Stop"
 msgstr "Стоп"
 
-#: ../gramps/gui/dbman.py:935
+#: ../gramps/gui/dbman.py:939
 msgid "Rebuilding database from backup files"
 msgstr "Восстанавление базы данных из резервной копии"
 
-#: ../gramps/gui/dbman.py:940
+#: ../gramps/gui/dbman.py:944
 msgid "Error restoring backup data"
 msgstr "Ошибка восстановления резервной копии"
 
-#: ../gramps/gui/dbman.py:979
+#: ../gramps/gui/dbman.py:983
 msgid "Could not create Family Tree"
 msgstr "Ошибка при создании семейного древа"
 
-#: ../gramps/gui/dbman.py:1100
+#: ../gramps/gui/dbman.py:1104
 msgid "Retrieve failed"
 msgstr "Извлечение не удалось"
 
-#: ../gramps/gui/dbman.py:1101
+#: ../gramps/gui/dbman.py:1105
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -12059,11 +12059,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dbman.py:1140 ../gramps/gui/dbman.py:1166
+#: ../gramps/gui/dbman.py:1144 ../gramps/gui/dbman.py:1170
 msgid "Archiving failed"
 msgstr "Архивирование не удалось"
 
-#: ../gramps/gui/dbman.py:1141
+#: ../gramps/gui/dbman.py:1145
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -12074,15 +12074,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dbman.py:1146
+#: ../gramps/gui/dbman.py:1150
 msgid "Creating data to be archived..."
 msgstr "Сбор данных для архивации..."
 
-#: ../gramps/gui/dbman.py:1155
+#: ../gramps/gui/dbman.py:1159
 msgid "Saving archive..."
 msgstr "Сохранение архива..."
 
-#: ../gramps/gui/dbman.py:1167
+#: ../gramps/gui/dbman.py:1171
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -19005,7 +19005,7 @@ msgstr "Новая метка..."
 
 #: ../gramps/gui/views/tags.py:229
 msgid "Organize Tags..."
-msgstr "Организовать метки..."
+msgstr "Управление метками..."
 
 #: ../gramps/gui/views/tags.py:232
 msgid "Tag selected rows"
@@ -19013,17 +19013,17 @@ msgstr "Добавить метки к выделенным строкам"
 
 #: ../gramps/gui/views/tags.py:272
 msgid "Adding Tags"
-msgstr "Добавляем метки"
+msgstr "Добавление меток"
 
 #: ../gramps/gui/views/tags.py:277
 #, python-format
 msgid "Tag Selection (%s)"
-msgstr "Добавляем метку к выделенному (%s)"
+msgstr "Добавить метку к выделенному (%s)"
 
 #: ../gramps/gui/views/tags.py:326 ../gramps/gui/views/tags.py:335
 #: ../gramps/gui/views/tags.py:400
 msgid "Organize Tags"
-msgstr "Организовать метки"
+msgstr "Управление метками"
 
 #: ../gramps/gui/views/tags.py:354
 msgid "Change Tag Priority"
@@ -19039,7 +19039,7 @@ msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
 msgstr ""
-"Определение метки будет удалено. Метка так же будет удалена со всех объектов "
+"Метка будет удалена. Также она будет удалена со всех объектов "
 "в базе данных."
 
 #: ../gramps/gui/views/tags.py:526
