@@ -70,6 +70,13 @@ _RANKDIR = [ { 'name': _("Vertical (↓)"),   'value' : "TB" },
              { 'name': _("Horizontal (→)"), 'value' : "LR" },
              { 'name': _("Horizontal (←)"), 'value' : "RL" } ]
 
+_NODE_PORTS = {
+    "TB": ("n", "s"),
+    "BT": ("s", "n"),
+    "LR": ("w", "e"),
+    "RL": ("e", "w"),
+}
+
 _PAGEDIR = [ { 'name' : _("Bottom, left"),                  'value' :"BL" },
              { 'name' : _("Bottom, right"),                 'value' :"BR" },
              { 'name' : _("Top, left"),                     'value' :"TL" },
@@ -454,7 +461,9 @@ class GVDocBase(BaseDoc, GVDoc):
             '  size="%3.2f,%3.2f";'       % (sizew, sizeh),
             '  splines="%s";'             % self.spline,
             '',
-            '  edge [len=0.5 style=solid fontsize=%d];' % self.fontsize +
+            '  edge [len=0.5 style=solid fontsize=%d ' % self.fontsize +
+              'headport=%s tailport=%s'   % _NODE_PORTS[self.rankdir] +
+              '];',
             '',
             ]))
         if self.fontfamily:
