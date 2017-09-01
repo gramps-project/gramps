@@ -658,6 +658,7 @@ class PedigreeView(NavigationView):
               </placeholder>
             </menu>
             <menu action="EditMenu">
+              <menuitem action="SetActive"/>
               <menuitem action="FilterEdit"/>
             </menu>
             <menu action="BookMenu">
@@ -1280,6 +1281,13 @@ class PedigreeView(NavigationView):
         if defperson:
             self.change_active(defperson.get_handle())
 
+    def cb_set_home(self, menuitem, handle):
+        """Set the root person to current person for database."""
+        active = self.uistate.get_active('Person')
+        if active:
+            self.dbstate.db.set_default_person_handle(handle)
+        self.cb_home(None)
+
     def cb_edit_person(self, obj, person_handle):
         """
         Open edit person window for person_handle.
@@ -1352,7 +1360,7 @@ class PedigreeView(NavigationView):
         """Right click option menu."""
         self.menu = Gtk.Menu()
         self.menu.set_reserve_toggle_size(False)
-        self.add_nav_portion_to_menu(self.menu)
+        self.add_nav_portion_to_menu(self.menu, None)
         self.add_settings_to_menu(self.menu)
         self.menu.popup(None, None, None, None, 0, event.time)
         return True
@@ -1559,7 +1567,7 @@ class PedigreeView(NavigationView):
                                     mother_handle)
                         self.find_tree(mother, (2*index)+2, depth+1, lst, mrel)
 
-    def add_nav_portion_to_menu(self, menu):
+    def add_nav_portion_to_menu(self, menu, person_handle):
         """
         This function adds a common history-navigation portion
         to the context menu. Used by both build_nav_menu() and
@@ -1584,6 +1592,12 @@ class PedigreeView(NavigationView):
                 item.connect("activate", callback)
             item.show()
             menu.append(item)
+        item = Gtk.MenuItem.new_with_mnemonic(_("Set _Home Person"))
+        item.connect("activate", self.cb_set_home, person_handle)
+        if person_handle is None:
+            item.set_sensitive(False)
+        item.show()
+        menu.append(item)
 
     def add_settings_to_menu(self, menu):
         """
@@ -1636,7 +1650,7 @@ class PedigreeView(NavigationView):
         self.menu.append(add_item)
 
         # Add history-based navigation
-        self.add_nav_portion_to_menu(self.menu)
+        self.add_nav_portion_to_menu(self.menu, None)
         self.add_settings_to_menu(self.menu)
         self.menu.popup(None, None, None, None, 0, event.time)
         return 1
@@ -1873,7 +1887,7 @@ class PedigreeView(NavigationView):
         self.menu.append(item)
 
         # Add history-based navigation
-        self.add_nav_portion_to_menu(self.menu)
+        self.add_nav_portion_to_menu(self.menu, person_handle)
         self.add_settings_to_menu(self.menu)
         self.menu.popup(None, None, None, None, 0, event.time)
         return 1
@@ -1904,7 +1918,7 @@ class PedigreeView(NavigationView):
         self.menu.append(item)
 
         # Add history-based navigation
-        self.add_nav_portion_to_menu(self.menu)
+        self.add_nav_portion_to_menu(self.menu, None)
         self.add_settings_to_menu(self.menu)
         self.menu.popup(None, None, None, None, 0, event.time)
         return 1
