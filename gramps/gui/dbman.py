@@ -465,6 +465,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         or the path and name if something has been selected
         """
         self.show()
+        self.__update_buttons(self.selection)
         while True:
             value = self.top.run()
             if value == Gtk.ResponseType.OK:
