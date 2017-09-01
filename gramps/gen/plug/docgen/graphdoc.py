@@ -64,12 +64,19 @@ log = logging.getLogger(".graphdoc")
 #-------------------------------------------------------------------------------
 _FONTS = [ { 'name' : _("Default"),                   'value' : ""          },
            { 'name' : _("PostScript / Helvetica"),    'value' : "Helvetica" },
-           { 'name' : _("TrueType / FreeSans"),       'value' : "FreeSans"  }  ]
+           { 'name' : _("TrueType / FreeSans"),       'value' : "FreeSans"  } ]
 
-_RANKDIR = [ { 'name' : _("Vertical (↓)"),      'value' : "TB" },
-             { 'name' : _("Vertical (↑)"),      'value' : "BT" },
-             { 'name' : _("Horizontal (→)"),    'value' : "LR" },
-             { 'name' : _("Horizontal (←)"),    'value' : "RL" } ]
+_RANKDIR = [ { 'name': _("Vertical (↓)"),   'value' : "TB" },
+             { 'name': _("Vertical (↑)"),   'value' : "BT" },
+             { 'name': _("Horizontal (→)"), 'value' : "LR" },
+             { 'name': _("Horizontal (←)"), 'value' : "RL" } ]
+
+_NODE_PORTS = {
+    "TB": ("n", "s"),
+    "BT": ("s", "n"),
+    "LR": ("w", "e"),
+    "RL": ("e", "w"),
+}
 
 _PAGEDIR = [ { 'name' : _("Bottom, left"),                  'value' :"BL" },
              { 'name' : _("Bottom, right"),                 'value' :"BR" },
@@ -432,32 +439,35 @@ class GVDocBase(BaseDoc, GVDoc):
         sizew *= self.hpages
         sizeh *= self.vpages
 
-        self.write(
-            'digraph GRAMPS_graph\n'
-            '{\n'
-            '  bgcolor=white;\n'
-            '  center="true"; \n'
-            '  charset="utf8";\n'
-            '  concentrate="false";\n'      +
-            '  dpi="%d";\n'                 % self.dpi +
-            '  graph [fontsize=%d];\n'      % self.fontsize +
-            '  margin="%3.2f,%3.2f"; \n'    % (xmargin, ymargin) +
-            '  mclimit="99";\n'             +
-            '  nodesep="%.2f";\n'           % self.nodesep +
-            '  outputorder="edgesfirst";\n' +
+        self.write('\n'.join([
+            'digraph GRAMPS_graph',
+            '{',
+            '  bgcolor=white;',
+            '  center="true";',
+            '  charset="utf8";',
+            '  concentrate="false";',
+            '  dpi="%d";'                 % self.dpi,
+            '  graph [fontsize=%d];'      % self.fontsize,
+            '  margin="%3.2f,%3.2f";'     % (xmargin, ymargin),
+            '  mclimit="99";',
+            '  nodesep="%.2f";'           % self.nodesep,
+            '  outputorder="edgesfirst";',
             ('#' if self.hpages == self.vpages == 1 else '') +
                 # comment out "page=" if the graph is on 1 page (bug #2121)
-            '  page="%3.2f,%3.2f";\n'       % (pwidth, pheight) +
-            '  pagedir="%s";\n'             % self.pagedir +
-            '  rankdir="%s";\n'             % self.rankdir +
-            '  ranksep="%.2f";\n'           % self.ranksep +
-            '  ratio="%s";\n'               % self.ratio +
-            '  searchsize="100";\n'         +
-            '  size="%3.2f,%3.2f"; \n'      % (sizew, sizeh) +
-            '  splines="%s";\n'               % self.spline +
-            '\n'                            +
-            '  edge [len=0.5 style=solid fontsize=%d];\n' % self.fontsize
-            )
+            '  page="%3.2f,%3.2f";'       % (pwidth, pheight),
+            '  pagedir="%s";'             % self.pagedir,
+            '  rankdir="%s";'             % self.rankdir,
+            '  ranksep="%.2f";'           % self.ranksep,
+            '  ratio="%s";'               % self.ratio,
+            '  searchsize="100";',
+            '  size="%3.2f,%3.2f";'       % (sizew, sizeh),
+            '  splines="%s";'             % self.spline,
+            '',
+            '  edge [len=0.5 style=solid fontsize=%d ' % self.fontsize +
+              'headport=%s tailport=%s'   % _NODE_PORTS[self.rankdir] +
+              '];',
+            '',
+            ]))
         if self.fontfamily:
             self.write( '  node [style=filled fontname="%s" fontsize=%d];\n'
                             % ( self.fontfamily, self.fontsize ) )
