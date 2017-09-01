@@ -278,6 +278,9 @@ class GedcomWriter(UpdateCallback):
             # break the line into multiple lines if a newline is found
             textlines = textlines.replace('\n\r', '\n')
             textlines = textlines.replace('\r', '\n')
+            # Need to double '@' See Gedcom 5.5 spec 'any_char'
+            if not textlines.startswith('@'):  # avoid xrefs
+                textlines = textlines.replace('@', '@@')
             textlist = textlines.split('\n')
             token_level = level
             for text in textlist:

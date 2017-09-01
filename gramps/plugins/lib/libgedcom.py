@@ -839,6 +839,8 @@ class Lexer:
                 self.__add_msg(message)
                 continue
 
+            # Need to un-double '@' See Gedcom 5.5 spec 'any_char'
+            line_value = line_value.replace('@@', '@')
             token = TOKENS.get(tag, TOKEN_UNKNOWN)
             data = (level, token, line_value, tag, self.index)
 
