@@ -1,3 +1,68 @@
+2017-09-02
+Version 5.0.0-alpha3
+* Fix Undo -- crashes due to race in Gtk
+* Fix for deleted objects referenced in Note StyledText Links
+* Strange index and surnames count in narrative web
+* Missing references in narrative web
+* Timestamp set to zero makes gramps crash on Windows in narrative web
+* Avoid loop in narrativeweb with citation, source, and media.
+* Use the default database backend for database conversion
+* Remove version from the database type column in FTM
+* Correct issue with exception on database change in gramplets
+* Add empty role to person and family backref lists in narrative web
+* Refactor narrative web report
+* Fix InMemory db close error
+* Eliminate unparsable "day month year" dates in Swedish
+* Check for installed DB backend on DB selector
+* Fix crash when import complex .gramps 5.0 current branch backup file
+* Fix no-day numeric date display in y-m-d locales
+* Flag three small-dialog "close" buttons to be translated
+* Prevent DBAPI from nesting transactions for metadata
+* Tidy database summary information
+* Reorganise DBAPI plugins (add SQLite, PostgreSQL; remove DBAPI, InMemoryDb)
+* Remove DBAPI settings.py file
+* Date Editor has 'Type' and 'Quality' labels swapped
+* Allow multiple collations per DB connection
+* Fix HandleErrors with Family Merge and issues on close/open in gramplets
+* Augment internal schema (title properties, source attribute lists, etc.)
+* Guarantee order on DB emits
+* Undo of delete person on DBAPI fails
+* Fix creating new PostgreSQL database
+* Use all parameters in settings.ini for PostgreSQL
+* Ignore 32-bit vs. 64-bit when reporting Windows errors, and 'Distribution'
+* Fix verify tool to close and save configs properly
+* Open web links with /usr/bin/open on Mac and Python older than 3.5
+* Flag for translation some more colons for French
+* Path to Narrated Web alternate image is wrong
+* Narrative web: crash using OSM when bad lat/lon
+* Fix FamilyGroup crash by Python's sort routine on ICU bytearrays
+* ReorderIds tool crashes with 'bytes' error on BSDDB
+* Add 24x24 PNG -- not having it makes for an ugly charts toolbar in HiDPI
+* 'DisplayState' object has no attribute 'set_autobackup_timer'
+* Fix unnecessarily long relative paths generated on Windows
+* The get_name_group_mapping method should return a string
+* Fix names not displayed in relationship graph
+* Citations Gramplet doesn't update in many cases
+* Fix HasCitation rule in citation filter sidebar
+* Outdated bugtracker link in Unexpected Error reporting wizard
+* Family Lines report generates empty PDFs when name has double-quotes
+* Non-local character in DB name causes crash on Windows
+* Fix dead people shown as alive in narrative web
+* Fix GEDCOM import with OBJE/FORM URL on event
+* Fix drag in media reference editor so it creates/updates selection
+* Fix spin button updates in media reference editor
+* Media preview size changes
+* Fix more dialogs which are mapped without a transient parent
+* Undo of delete doesn't update views
+* Fix error on 'cancel' for DB upgrade
+* Top Surnames Gramplet doesn't update when DB is closed
+* Fix DBAPI PostgreSQL crash
+* Try to link a map position if we have an active place
+* Remove recursion in ancestor filters
+* Fix more HandleError crashes, in views and gramplets
+* Fix relationship calculator failure
+* Update translations: ca, cs, da, de, eo, fr, fi, hu, is, lt, nl, pt_BR, ru, sl, uk
+
 2017-08-01
 Version 4.2.6
 * Fix HasCitation rule in citation filter sidebar
