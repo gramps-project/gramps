@@ -19,6 +19,6 @@
 #
 
 VERSION_TUPLE = (5, 0, 0)
-VERSION_QUALIFIER = "-alpha2"
+VERSION_QUALIFIER = "-alpha3"
 VERSION        = '.'.join(map(str,VERSION_TUPLE)) + VERSION_QUALIFIER
 major_version = "%s.%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])
