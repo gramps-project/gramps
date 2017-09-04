@@ -13,6 +13,7 @@ include TestPlan.txt
 recursive-include data *
 recursive-include debian *
 recursive-include docs *
+recursive-include example *
 recursive-include gramps *
 recursive-include help *
 recursive-include images *
