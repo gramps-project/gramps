@@ -191,6 +191,13 @@ class GVOptions:
         spline.set_help(_("How the lines between objects will be drawn."))
         menu.add_option(category, "spline", spline)
 
+        node_ports = BooleanOption(_("Align line ends"), True)
+        node_ports.set_help(_("Force connecting lines to attach to nodes on "
+                              "the side they're coming from. Otherwise, they "
+                              "take the shortest way and may attach anywhere "
+                              "to the node."))
+        menu.add_option(category, "node_ports", node_ports)
+
         # the page direction option only makes sense when the
         # number of horizontal and/or vertical pages is > 1,
         # so we need to remember these 3 controls for later
@@ -415,6 +422,7 @@ class GVDocBase(BaseDoc, GVDoc):
         self.vpages        = get_value('v_pages')
         self.usesubgraphs  = get_value('usesubgraphs')
         self.spline        = get_value('spline')
+        self.node_ports    = get_value('node_ports')
 
         paper_size          = paper_style.get_size()
 
@@ -461,11 +469,12 @@ class GVDocBase(BaseDoc, GVDoc):
             '  size="%3.2f,%3.2f";'       % (sizew, sizeh),
             '  splines="%s";'             % self.spline,
             '',
-            '  edge [len=0.5 style=solid fontsize=%d ' % self.fontsize +
-              'headport=%s tailport=%s'   % _NODE_PORTS[self.rankdir] +
-              '];',
+            '  edge [ len=0.5 style=solid fontsize=%d ]; ' % self.fontsize,
             '',
             ]))
+        if self.node_ports:
+            self.write('  edge [ headport=%s tailport=%s ];\n'
+                       % _NODE_PORTS[self.rankdir])
         if self.fontfamily:
             self.write( '  node [style=filled fontname="%s" fontsize=%d];\n'
                             % ( self.fontfamily, self.fontsize ) )
