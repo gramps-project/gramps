@@ -316,6 +316,9 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         self.sidebar.set_active()
         self.bottombar.set_active()
         self.active = True
+        new_title = "%s - %s - Gramps" % (self.dbstate.db.get_dbname(),
+                                      self.get_title())
+        self.uistate.window.set_title(new_title)
         if self.dirty:
             self.uistate.set_busy_cursor(True)
             self.build_tree()
