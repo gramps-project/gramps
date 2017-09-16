@@ -83,7 +83,7 @@ def gramps_upgrade_19(self):
     """
     default_handle = self.metadata.get(b'default')
     with BSDDBTxn(self.env, self.metadata) as txn:
-        if default_handle is not None:
+        if isinstance(default_handle, bytes):
             default_handle = default_handle.decode('utf-8')
             txn.put(b'default', default_handle)
         txn.put(b'version', 19)
