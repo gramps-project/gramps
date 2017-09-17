@@ -213,7 +213,7 @@ class ProgenOptions(ManagedWindow):
         # initial values
         text = "Pro-Gen Import"
         fname = os.path.basename(filename).split('\\')[-1]
-        date = time.strftime('%Y-%m-%d', time.localtime())
+        date = time.strftime("%Y-%m-%d")
 
         # add import source title/confidence
         #            citation page/confidence/privacy/attribute
