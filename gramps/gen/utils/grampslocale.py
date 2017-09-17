@@ -525,7 +525,10 @@ class GrampsLocale:
         # with locale instead of gettext. Win32 doesn't support bindtextdomain.
         if self.localedir:
             if not sys.platform == 'win32':
-                locale.bindtextdomain(self.localedomain, self.localedir)
+                try:
+                    locale.bindtextdomain(self.localedomain, self.localedir)
+                except:
+                    gettext.bindtextdomain(self.localedomain, self.localedir)
             else:
                 self._win_bindtextdomain(self.localedomain.encode('utf-8'),
                                          self.localedir.encode('utf-8'))
