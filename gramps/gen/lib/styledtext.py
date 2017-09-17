@@ -27,6 +27,7 @@
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from copy import copy
 from .styledtexttag import StyledTextTag
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -77,6 +78,8 @@ class StyledText:
         There could be a 'merge_tags' functionality in :py:meth:`__init__`,
         however :py:class:`StyledTextBuffer` will merge them automatically if
         the text is displayed.
+     3. Warning: Some of these operations modify the source tag ranges in place
+        so if you intend to use a source tag more than once, copy it for use.
     """
     (POS_TEXT, POS_TAGS) = list(range(2))
 
@@ -198,17 +201,27 @@ class StyledText:
         new_string = self._string.join([str(string) for string in seq])
 
         offset = 0
+        not_first = False
         new_tags = []
         self_len = len(self._string)
 
         for text in seq:
+            if not_first:  # if not first time through...
+                # put the joined element tag(s) into place
+                for tag in self.tags:
+                    ntag = copy(tag)
+                    ntag.ranges = [(start + offset, end + offset)
+                                   for (start, end) in tag.ranges]
+                    new_tags += [ntag]
+                offset += self_len
             if isinstance(text, StyledText):
                 for tag in text.tags:
-                    tag.ranges = [(start + offset, end + offset)
-                                  for (start, end) in tag.ranges]
-                    new_tags += [tag]
-
-            offset = offset + len(str(text)) + self_len
+                    ntag = copy(tag)
+                    ntag.ranges = [(start + offset, end + offset)
+                                   for (start, end) in tag.ranges]
+                    new_tags += [ntag]
+            offset += len(str(text))
+            not_first = True
 
         return self.__class__(new_string, new_tags)
 
@@ -366,6 +379,7 @@ if __name__ == '__main__':
     from .styledtexttagtype import StyledTextTagType
     T1 = StyledTextTag(StyledTextTagType(1), 'v1', [(0, 2), (2, 4), (4, 6)])
     T2 = StyledTextTag(StyledTextTagType(2), 'v2', [(1, 3), (3, 5), (0, 7)])
+    T3 = StyledTextTag(StyledTextTagType(0), 'v3', [(0, 1)])
 
     A = StyledText('123X456', [T1])
     B = StyledText("abcXdef", [T2])
@@ -376,7 +390,7 @@ if __name__ == '__main__':
 
     C = C.join([A, S, B])
     L = C.split()
-    C = C.replace('X', StyledText('_'))
+    C = C.replace('X', StyledText('_', [T3]))
     A = A + B
 
     print(A)
