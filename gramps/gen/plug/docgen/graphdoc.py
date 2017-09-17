@@ -34,7 +34,6 @@ import os
 from io import BytesIO
 import tempfile
 from subprocess import Popen, PIPE
-import sys
 
 #-------------------------------------------------------------------------------
 #
@@ -64,12 +63,19 @@ log = logging.getLogger(".graphdoc")
 #-------------------------------------------------------------------------------
 _FONTS = [ { 'name' : _("Default"),                   'value' : ""          },
            { 'name' : _("PostScript / Helvetica"),    'value' : "Helvetica" },
-           { 'name' : _("TrueType / FreeSans"),       'value' : "FreeSans"  }  ]
+           { 'name' : _("TrueType / FreeSans"),       'value' : "FreeSans"  } ]
 
-_RANKDIR = [ { 'name' : _("Vertical (↓)"),      'value' : "TB" },
-             { 'name' : _("Vertical (↑)"),      'value' : "BT" },
-             { 'name' : _("Horizontal (→)"),    'value' : "LR" },
-             { 'name' : _("Horizontal (←)"),    'value' : "RL" } ]
+_RANKDIR = [ { 'name': _("Vertical (↓)"),   'value' : "TB" },
+             { 'name': _("Vertical (↑)"),   'value' : "BT" },
+             { 'name': _("Horizontal (→)"), 'value' : "LR" },
+             { 'name': _("Horizontal (←)"), 'value' : "RL" } ]
+
+_NODE_PORTS = {
+    "TB": ("n", "s"),
+    "BT": ("s", "n"),
+    "LR": ("w", "e"),
+    "RL": ("e", "w"),
+}
 
 _PAGEDIR = [ { 'name' : _("Bottom, left"),                  'value' :"BL" },
              { 'name' : _("Bottom, right"),                 'value' :"BR" },
@@ -185,6 +191,13 @@ class GVOptions:
         spline.set_help(_("How the lines between objects will be drawn."))
         menu.add_option(category, "spline", spline)
 
+        node_ports = BooleanOption(_("Align line ends"), True)
+        node_ports.set_help(_("Force connecting lines to attach to nodes on "
+                              "the side they're coming from. Otherwise, they "
+                              "take the shortest way and may attach anywhere "
+                              "to the node."))
+        menu.add_option(category, "node_ports", node_ports)
+
         # the page direction option only makes sense when the
         # number of horizontal and/or vertical pages is > 1,
         # so we need to remember these 3 controls for later
@@ -255,8 +268,7 @@ class GVOptions:
         category = _("Note")
         ################################
 
-        note = TextOption(_("Note to add to the graph"),
-                           [""] )
+        note = TextOption(_("Note to add to the graph"), [""] )
         note.set_help(_("This text will be added to the graph."))
         menu.add_option(category, "note", note)
 
@@ -360,9 +372,9 @@ class GVDoc(metaclass=ABCMeta):
         """
         Start a subgraph in this graph.
 
-        :param id: The unique identifier of the subgraph.
+        :param graph_id: The unique identifier of the subgraph.
             Example: "p55"
-        :type id1: string
+        :type graph_id: string
         :return: nothing
         """
 
@@ -410,6 +422,7 @@ class GVDocBase(BaseDoc, GVDoc):
         self.vpages        = get_value('v_pages')
         self.usesubgraphs  = get_value('usesubgraphs')
         self.spline        = get_value('spline')
+        self.node_ports    = get_value('node_ports')
 
         paper_size          = paper_style.get_size()
 
@@ -432,32 +445,36 @@ class GVDocBase(BaseDoc, GVDoc):
         sizew *= self.hpages
         sizeh *= self.vpages
 
-        self.write(
-            'digraph GRAMPS_graph\n'
-            '{\n'
-            '  bgcolor=white;\n'
-            '  center="true"; \n'
-            '  charset="utf8";\n'
-            '  concentrate="false";\n'      +
-            '  dpi="%d";\n'                 % self.dpi +
-            '  graph [fontsize=%d];\n'      % self.fontsize +
-            '  margin="%3.2f,%3.2f"; \n'    % (xmargin, ymargin) +
-            '  mclimit="99";\n'             +
-            '  nodesep="%.2f";\n'           % self.nodesep +
-            '  outputorder="edgesfirst";\n' +
+        self.write('\n'.join([
+            'digraph GRAMPS_graph',
+            '{',
+            '  bgcolor=white;',
+            '  center="true";',
+            '  charset="utf8";',
+            '  concentrate="false";',
+            '  dpi="%d";'                 % self.dpi,
+            '  graph [fontsize=%d];'      % self.fontsize,
+            '  margin="%3.2f,%3.2f";'     % (xmargin, ymargin),
+            '  mclimit="99";',
+            '  nodesep="%.2f";'           % self.nodesep,
+            '  outputorder="edgesfirst";',
             ('#' if self.hpages == self.vpages == 1 else '') +
                 # comment out "page=" if the graph is on 1 page (bug #2121)
-            '  page="%3.2f,%3.2f";\n'       % (pwidth, pheight) +
-            '  pagedir="%s";\n'             % self.pagedir +
-            '  rankdir="%s";\n'             % self.rankdir +
-            '  ranksep="%.2f";\n'           % self.ranksep +
-            '  ratio="%s";\n'               % self.ratio +
-            '  searchsize="100";\n'         +
-            '  size="%3.2f,%3.2f"; \n'      % (sizew, sizeh) +
-            '  splines="%s";\n'               % self.spline +
-            '\n'                            +
-            '  edge [len=0.5 style=solid fontsize=%d];\n' % self.fontsize
-            )
+            '  page="%3.2f,%3.2f";'       % (pwidth, pheight),
+            '  pagedir="%s";'             % self.pagedir,
+            '  rankdir="%s";'             % self.rankdir,
+            '  ranksep="%.2f";'           % self.ranksep,
+            '  ratio="%s";'               % self.ratio,
+            '  searchsize="100";',
+            '  size="%3.2f,%3.2f";'       % (sizew, sizeh),
+            '  splines="%s";'             % self.spline,
+            '',
+            '  edge [ len=0.5 style=solid fontsize=%d ]; ' % self.fontsize,
+            '',
+            ]))
+        if self.node_ports:
+            self.write('  edge [ headport=%s tailport=%s ];\n'
+                       % _NODE_PORTS[self.rankdir])
         if self.fontfamily:
             self.write( '  node [style=filled fontname="%s" fontsize=%d];\n'
                             % ( self.fontfamily, self.fontsize ) )
