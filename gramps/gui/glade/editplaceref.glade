@@ -225,7 +225,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="halign">start</property>
-                        <property name="label" translatable="yes">Either use the two fields below to enter coordinates(latitude and longitude),</property>
+                        <property name="label" translatable="yes">Either use the two fields below to enter coordinates (latitude and longitude),</property>
                         <property name="hexpand">True</property>
                       </object>
                       <packing>
