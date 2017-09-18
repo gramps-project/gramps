@@ -8,6 +8,7 @@
 # Copyright (C) 2007       Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2017       Jonathan Biegert <azrdev@qrdn.de>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -70,6 +71,11 @@ _RANKDIR = [ { 'name' : _("Vertical (↓)"),      'value' : "TB" },
              { 'name' : _("Vertical (↑)"),      'value' : "BT" },
              { 'name' : _("Horizontal (→)"),    'value' : "LR" },
              { 'name' : _("Horizontal (←)"),    'value' : "RL" } ]
+
+_NODE_PORTS = { "TB" : ("n", "s"),
+                "BT" : ("s", "n"),
+                "LR" : ("w", "e"),
+                "RL" : ("e", "w") }
 
 _PAGEDIR = [ { 'name' : _("Bottom, left"),                  'value' :"BL" },
              { 'name' : _("Bottom, right"),                 'value' :"BR" },
@@ -184,6 +190,10 @@ class GVOptions:
             spline.add_item(item["value"], item["name"])
         spline.set_help(_("How the lines between objects will be drawn."))
         menu.add_option(category, "spline", spline)
+
+        node_ports = BooleanOption(_("Alternate line attachment"), False)
+        node_ports.set_help(_("Whether lines attach to nodes differently"))
+        menu.add_option(category, "node_ports", node_ports)
 
         # the page direction option only makes sense when the
         # number of horizontal and/or vertical pages is > 1,
@@ -410,6 +420,7 @@ class GVDocBase(BaseDoc, GVDoc):
         self.vpages        = get_value('v_pages')
         self.usesubgraphs  = get_value('usesubgraphs')
         self.spline        = get_value('spline')
+        self.node_ports    = get_value('node_ports')
 
         paper_size          = paper_style.get_size()
 
@@ -458,6 +469,9 @@ class GVDocBase(BaseDoc, GVDoc):
             '\n'                            +
             '  edge [len=0.5 style=solid fontsize=%d];\n' % self.fontsize
             )
+        if self.node_ports:
+            self.write('  edge [headport=%s tailport=%s];\n'
+                           % _NODE_PORTS[self.rankdir])
         if self.fontfamily:
             self.write( '  node [style=filled fontname="%s" fontsize=%d];\n'
                             % ( self.fontfamily, self.fontsize ) )
