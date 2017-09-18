@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps50\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-01 22:08+0300\n"
-"PO-Revision-Date: 2017-09-01 22:15+0300\n"
+"POT-Creation-Date: 2017-09-18 09:19+0300\n"
+"PO-Revision-Date: 2017-09-18 09:28+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -6412,8 +6412,8 @@ msgstr "Выбирает источники, помеченные как лич�
 #: ../gramps/gui/configure.py:517 ../gramps/gui/editors/editaddress.py:167
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
 #: ../gramps/plugins/gramplet/repositorydetails.py:133
-#: ../gramps/plugins/lib/libgedcom.py:5444
-#: ../gramps/plugins/lib/libgedcom.py:5610
+#: ../gramps/plugins/lib/libgedcom.py:5566
+#: ../gramps/plugins/lib/libgedcom.py:5733
 #: ../gramps/plugins/textreport/familygroup.py:350
 #: ../gramps/plugins/webreport/addressbooklist.py:112
 msgid "Address"
@@ -6674,11 +6674,11 @@ msgid "Postal Code"
 msgstr "Индекс/Почтовый код"
 
 #: ../gramps/gen/lib/address.py:127 ../gramps/gen/lib/location.py:105
-#: ../gramps/gui/configure.py:523 ../gramps/plugins/export/exportgedcom.py:788
-#: ../gramps/plugins/export/exportgedcom.py:1156
+#: ../gramps/gui/configure.py:523 ../gramps/plugins/export/exportgedcom.py:793
+#: ../gramps/plugins/export/exportgedcom.py:1166
 #: ../gramps/plugins/gramplet/repositorydetails.py:121
-#: ../gramps/plugins/lib/libgedcom.py:3983
-#: ../gramps/plugins/lib/libgedcom.py:5707
+#: ../gramps/plugins/lib/libgedcom.py:4104
+#: ../gramps/plugins/lib/libgedcom.py:5830
 #: ../gramps/plugins/webreport/basepage.py:1105
 msgid "Phone"
 msgstr "Телефон"
@@ -7129,7 +7129,7 @@ msgid "Values"
 msgstr "Значения"
 
 #: ../gramps/gen/lib/date.py:719 ../gramps/gen/lib/placename.py:99
-#: ../gramps/gen/lib/styledtext.py:308
+#: ../gramps/gen/lib/styledtext.py:321
 #: ../gramps/gen/plug/report/_constants.py:53 ../gramps/gui/clipboard.py:640
 #: ../gramps/gui/clipboard.py:648 ../gramps/gui/configure.py:1200
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:101
@@ -8806,11 +8806,11 @@ msgstr "Надгробный камень"
 msgid "Video"
 msgstr "Видео"
 
-#: ../gramps/gen/lib/styledtext.py:304
+#: ../gramps/gen/lib/styledtext.py:317
 msgid "Styled Text"
 msgstr "Стилизованный текст"
 
-#: ../gramps/gen/lib/styledtext.py:311
+#: ../gramps/gen/lib/styledtext.py:324
 msgid "Styled Text Tags"
 msgstr "Стилизованные теги текста"
 
@@ -9186,7 +9186,7 @@ msgstr "Файл %s уже открыт, сначала закройте его.
 #: ../gramps/plugins/docgen/svgdrawdoc.py:91
 #: ../gramps/plugins/export/exportcsv.py:261
 #: ../gramps/plugins/export/exportcsv.py:265
-#: ../gramps/plugins/export/exportgedcom.py:1552
+#: ../gramps/plugins/export/exportgedcom.py:1565
 #: ../gramps/plugins/export/exportgeneweb.py:108
 #: ../gramps/plugins/export/exportgeneweb.py:112
 #: ../gramps/plugins/export/exportvcalendar.py:119
@@ -12826,7 +12826,7 @@ msgid "Move the selected surname downwards"
 msgstr "Переместить выделенную фамилию ниже"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:77
-#: ../gramps/plugins/lib/libgedcom.py:620
+#: ../gramps/plugins/lib/libgedcom.py:717
 msgid "Origin"
 msgstr "Имяобразование"
 
@@ -12950,7 +12950,7 @@ msgstr "Сохранение цитаты невозможно. ID уже сущ
 #: ../gramps/gui/editors/editevent.py:249
 #: ../gramps/gui/editors/editmedia.py:298
 #: ../gramps/gui/editors/editperson.py:846
-#: ../gramps/gui/editors/editplace.py:314
+#: ../gramps/gui/editors/editplace.py:318
 #: ../gramps/gui/editors/editreference.py:287
 #: ../gramps/gui/editors/editrepository.py:189
 #: ../gramps/gui/editors/editsource.py:210
@@ -13752,58 +13752,58 @@ msgstr "Место: %s"
 msgid "New Place"
 msgstr "Новое место"
 
-#: ../gramps/gui/editors/editplace.py:199
-#: ../gramps/gui/editors/editplaceref.py:192
-msgid "Invalid latitude (syntax: 18\\u00b09'"
-msgstr "Неверная широта (пример: 18\\u00b09'"
+#. translators: translate the "S" too (and the "or" of course)
+#: ../gramps/gui/editors/editplace.py:201
+#: ../gramps/gui/editors/editplaceref.py:194
+msgid ""
+"Invalid latitude\n"
+"(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
+msgstr ""
+"Неверная широта\n"
+"(пример: 18\\u00b09'48.21\"Ю, -18.2412 или -18:9:48.21)"
 
-#: ../gramps/gui/editors/editplace.py:200
-#: ../gramps/gui/editors/editplaceref.py:193
-msgid "48.21\"S, -18.2412 or -18:9:48.21)"
-msgstr "48.21\"S, -18.2412 или -18:9:48.21)"
+#. translators: translate the "E" too (and the "or" of course)
+#: ../gramps/gui/editors/editplace.py:206
+#: ../gramps/gui/editors/editplaceref.py:199
+msgid ""
+"Invalid longitude\n"
+"(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
+msgstr ""
+"Неверная долгота\n"
+"(пример: 18\\u00b09'48.21\"В, -18.2412 или -18:9:48.21)"
 
-#: ../gramps/gui/editors/editplace.py:202
-#: ../gramps/gui/editors/editplaceref.py:195
-msgid "Invalid longitude (syntax: 18\\u00b09'"
-msgstr "Неверная долгота (пример: 18\\u00b09'"
-
-#: ../gramps/gui/editors/editplace.py:203
-#: ../gramps/gui/editors/editplaceref.py:196
-msgid "48.21\"E, -18.2412 or -18:9:48.21)"
-msgstr "48.21\"E, -18.2412 или -18:9:48.21)"
-
-#: ../gramps/gui/editors/editplace.py:213
+#: ../gramps/gui/editors/editplace.py:217
 #: ../gramps/plugins/lib/maps/geography.py:922
 #: ../gramps/plugins/view/geoplaces.py:430
 #: ../gramps/plugins/view/geoplaces.py:456
 msgid "Edit Place"
 msgstr "Редактировать место"
 
-#: ../gramps/gui/editors/editplace.py:303
-#: ../gramps/gui/editors/editplaceref.py:298
+#: ../gramps/gui/editors/editplace.py:307
+#: ../gramps/gui/editors/editplaceref.py:302
 msgid "Cannot save place. Name not entered."
 msgstr "Сохранение местоположения невозможно. Не задано название."
 
-#: ../gramps/gui/editors/editplace.py:304
-#: ../gramps/gui/editors/editplaceref.py:299
+#: ../gramps/gui/editors/editplace.py:308
+#: ../gramps/gui/editors/editplaceref.py:303
 msgid "You must enter a name before saving."
 msgstr "Перед сохранением необходимо ввести название."
 
-#: ../gramps/gui/editors/editplace.py:313
+#: ../gramps/gui/editors/editplace.py:317
 msgid "Cannot save place. ID already exists."
 msgstr "Не удалось сохранить местоположение. ID уже существует."
 
-#: ../gramps/gui/editors/editplace.py:325
+#: ../gramps/gui/editors/editplace.py:329
 #, python-format
 msgid "Add Place (%s)"
 msgstr "Добавить место (%s)"
 
-#: ../gramps/gui/editors/editplace.py:330
+#: ../gramps/gui/editors/editplace.py:334
 #, python-format
 msgid "Edit Place (%s)"
 msgstr "Редактирование места (%s)"
 
-#: ../gramps/gui/editors/editplace.py:358
+#: ../gramps/gui/editors/editplace.py:362
 #, python-format
 msgid "Delete Place (%s)"
 msgstr "Удалить место (%s)"
@@ -13834,11 +13834,11 @@ msgstr "Название места не может быть пустым"
 msgid "Place Reference Editor"
 msgstr "Редактор ссылки на место"
 
-#: ../gramps/gui/editors/editplaceref.py:305
+#: ../gramps/gui/editors/editplaceref.py:309
 msgid "Modify Place"
 msgstr "Редактировать Место"
 
-#: ../gramps/gui/editors/editplaceref.py:310
+#: ../gramps/gui/editors/editplaceref.py:314
 msgid "Add Place"
 msgstr "Добавить Место"
 
@@ -15701,7 +15701,8 @@ msgstr "Выбор лица, которое имеет связь с редак�
 #: ../gramps/gui/glade/editplace.glade:105
 #: ../gramps/gui/glade/editplaceref.glade:228
 msgid ""
-"Either use the two fields below to enter coordinates(latitude and longitude),"
+"Either use the two fields below to enter coordinates (latitude and "
+"longitude),"
 msgstr "Введите в поля ниже координаты (широта и долгота),"
 
 #: ../gramps/gui/glade/editplace.glade:119
@@ -18372,23 +18373,23 @@ msgstr "Первоначальное время"
 msgid "Action"
 msgstr "Действие"
 
-#: ../gramps/gui/undohistory.py:196
+#: ../gramps/gui/undohistory.py:197
 msgid "Delete confirmation"
 msgstr "Подтверждение удаления"
 
-#: ../gramps/gui/undohistory.py:197
+#: ../gramps/gui/undohistory.py:198
 msgid "Are you sure you want to clear the Undo history?"
 msgstr "Вы уверены, что хотите очистить историю откатов?"
 
-#: ../gramps/gui/undohistory.py:198 ../gramps/plugins/gramplet/eval.py:80
+#: ../gramps/gui/undohistory.py:199 ../gramps/plugins/gramplet/eval.py:80
 msgid "Clear"
 msgstr "Очистить"
 
-#: ../gramps/gui/undohistory.py:234
+#: ../gramps/gui/undohistory.py:236
 msgid "Database opened"
 msgstr "База данных открыта"
 
-#: ../gramps/gui/undohistory.py:236
+#: ../gramps/gui/undohistory.py:238
 msgid "History cleared"
 msgstr "История очищена"
 
@@ -19039,8 +19040,7 @@ msgid ""
 "The tag definition will be removed.  The tag will be also removed from all "
 "objects in the database."
 msgstr ""
-"Метка будет удалена. Также она будет удалена со всех объектов "
-"в базе данных."
+"Метка будет удалена. Также она будет удалена со всех объектов в базе данных."
 
 #: ../gramps/gui/views/tags.py:526
 msgid "Removing Tags"
@@ -21375,47 +21375,47 @@ msgstr "Муж"
 msgid "Wife"
 msgstr "Жена"
 
-#: ../gramps/plugins/export/exportgedcom.py:399
+#: ../gramps/plugins/export/exportgedcom.py:403
 msgid "Writing individuals"
 msgstr "Запись людей"
 
-#: ../gramps/plugins/export/exportgedcom.py:790
-#: ../gramps/plugins/export/exportgedcom.py:1066
-#: ../gramps/plugins/export/exportgedcom.py:1158
-#: ../gramps/plugins/lib/libgedcom.py:3998
-#: ../gramps/plugins/lib/libgedcom.py:5719
-#: ../gramps/plugins/lib/libgedcom.py:6852
+#: ../gramps/plugins/export/exportgedcom.py:795
+#: ../gramps/plugins/export/exportgedcom.py:1077
+#: ../gramps/plugins/export/exportgedcom.py:1168
+#: ../gramps/plugins/lib/libgedcom.py:4119
+#: ../gramps/plugins/lib/libgedcom.py:5842
+#: ../gramps/plugins/lib/libgedcom.py:6976
 msgid "FAX"
 msgstr "Факс"
 
-#: ../gramps/plugins/export/exportgedcom.py:804
+#: ../gramps/plugins/export/exportgedcom.py:809
 #: ../gramps/plugins/textreport/familygroup.py:671
 msgid "Writing families"
 msgstr "Запись семей"
 
-#: ../gramps/plugins/export/exportgedcom.py:969
+#: ../gramps/plugins/export/exportgedcom.py:976
 msgid "Writing sources"
 msgstr "Запись источников"
 
-#: ../gramps/plugins/export/exportgedcom.py:1003
+#: ../gramps/plugins/export/exportgedcom.py:1011
 msgid "Writing notes"
 msgstr "Запись заметок"
 
-#: ../gramps/plugins/export/exportgedcom.py:1044
+#: ../gramps/plugins/export/exportgedcom.py:1054
 msgid "Writing repositories"
 msgstr "Запись хранилищ"
 
-#: ../gramps/plugins/export/exportgedcom.py:1160
-#: ../gramps/plugins/lib/libgedcom.py:5731
+#: ../gramps/plugins/export/exportgedcom.py:1170
+#: ../gramps/plugins/lib/libgedcom.py:5854
 msgid "EMAIL"
 msgstr "Эл. почта"
 
-#: ../gramps/plugins/export/exportgedcom.py:1162
-#: ../gramps/plugins/lib/libgedcom.py:5743
+#: ../gramps/plugins/export/exportgedcom.py:1172
+#: ../gramps/plugins/lib/libgedcom.py:5866
 msgid "WWW"
 msgstr "Веб-страница"
 
-#: ../gramps/plugins/export/exportgedcom.py:1555
+#: ../gramps/plugins/export/exportgedcom.py:1568
 msgid "GEDCOM Export failed"
 msgstr "Экспорт в GEDCOM не удался"
 
@@ -24193,7 +24193,7 @@ msgid "Change Name"
 msgstr "Смена имени"
 
 #: ../gramps/plugins/importer/importgeneweb.py:89
-#: ../gramps/plugins/lib/libgedcom.py:605
+#: ../gramps/plugins/lib/libgedcom.py:702
 msgid "Circumcision"
 msgstr "Обрезание"
 
@@ -24206,7 +24206,7 @@ msgid "Dotation"
 msgstr "Вклад"
 
 #: ../gramps/plugins/importer/importgeneweb.py:100
-#: ../gramps/plugins/lib/libgedcom.py:611
+#: ../gramps/plugins/lib/libgedcom.py:708
 msgid "Excommunication"
 msgstr "Отлучение"
 
@@ -24215,7 +24215,7 @@ msgid "LDS Family Link"
 msgstr "СПД ссылка для семьи"
 
 #: ../gramps/plugins/importer/importgeneweb.py:103
-#: ../gramps/plugins/lib/libgedcom.py:613
+#: ../gramps/plugins/lib/libgedcom.py:710
 msgid "Funeral"
 msgstr "Похороны"
 
@@ -24851,120 +24851,120 @@ msgstr ""
 "Несоответствие между выбранным расширением %(ext)s и форматом данных.\n"
 " Производится запись в %(filename)s в формате %(impliedext)s."
 
-#: ../gramps/plugins/lib/libgedcom.py:606
+#: ../gramps/plugins/lib/libgedcom.py:703
 msgid "Common Law Marriage"
 msgstr "Гражданский брак"
 
-#: ../gramps/plugins/lib/libgedcom.py:607
+#: ../gramps/plugins/lib/libgedcom.py:704
 #: ../gramps/plugins/webreport/narrativeweb.py:1573
 #: ../gramps/plugins/webreport/webcal.py:1612
 msgid "Destination"
 msgstr "Расположение"
 
 # LDS
-#: ../gramps/plugins/lib/libgedcom.py:608
+#: ../gramps/plugins/lib/libgedcom.py:705
 msgid "DNA"
 msgstr "ДНК"
 
-#: ../gramps/plugins/lib/libgedcom.py:609
+#: ../gramps/plugins/lib/libgedcom.py:706
 msgid "Cause of Death"
 msgstr "Причина смерти"
 
-#: ../gramps/plugins/lib/libgedcom.py:610
+#: ../gramps/plugins/lib/libgedcom.py:707
 msgid "Employment"
 msgstr "Профессия"
 
-#: ../gramps/plugins/lib/libgedcom.py:612
+#: ../gramps/plugins/lib/libgedcom.py:709
 msgid "Eye Color"
 msgstr "Цвет глаз"
 
-#: ../gramps/plugins/lib/libgedcom.py:614
+#: ../gramps/plugins/lib/libgedcom.py:711
 msgid "Height"
 msgstr "Высота"
 
-#: ../gramps/plugins/lib/libgedcom.py:615
+#: ../gramps/plugins/lib/libgedcom.py:712
 msgid "Initiatory (LDS)"
 msgstr "Посвящение (СПД)"
 
-#: ../gramps/plugins/lib/libgedcom.py:616
+#: ../gramps/plugins/lib/libgedcom.py:713
 msgid "Military ID"
 msgstr "Воинская служба (ID)"
 
-#: ../gramps/plugins/lib/libgedcom.py:617
+#: ../gramps/plugins/lib/libgedcom.py:714
 msgid "Mission (LDS)"
 msgstr "Призвание (СПД)"
 
-#: ../gramps/plugins/lib/libgedcom.py:618
+#: ../gramps/plugins/lib/libgedcom.py:715
 msgid "Namesake"
 msgstr "Тёзка"
 
-#: ../gramps/plugins/lib/libgedcom.py:619
+#: ../gramps/plugins/lib/libgedcom.py:716
 msgid "Ordinance"
 msgstr "Процедура"
 
 # Applies to Families
-#: ../gramps/plugins/lib/libgedcom.py:621
+#: ../gramps/plugins/lib/libgedcom.py:718
 msgid "Separation"
 msgstr "Развод"
 
 #. Applies to Families
-#: ../gramps/plugins/lib/libgedcom.py:622
+#: ../gramps/plugins/lib/libgedcom.py:719
 msgid "Weight"
 msgstr "Вес"
 
-#: ../gramps/plugins/lib/libgedcom.py:833
+#: ../gramps/plugins/lib/libgedcom.py:931
 msgid "Line ignored "
 msgstr "Строка проигнорирована "
 
 #. e.g. Illegal character (oxAB) (0xCB)... 1 NOTE xyz?pqr?lmn
-#: ../gramps/plugins/lib/libgedcom.py:1431
+#: ../gramps/plugins/lib/libgedcom.py:1543
 #, python-format
 msgid "Illegal character%s"
 msgstr "Недопустимый символ %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:1703
+#: ../gramps/plugins/lib/libgedcom.py:1823
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "Ваш файл GEDCOM сломан. Похоже, что он записан не до конца."
 
-#: ../gramps/plugins/lib/libgedcom.py:1785
+#: ../gramps/plugins/lib/libgedcom.py:1905
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Импорт из GEDCOM (%s)"
 
-#: ../gramps/plugins/lib/libgedcom.py:2621
-#: ../gramps/plugins/lib/libgedcom.py:3071
+#: ../gramps/plugins/lib/libgedcom.py:2737
+#: ../gramps/plugins/lib/libgedcom.py:3191
 msgid "GEDCOM import"
 msgstr "Импорт GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:2649
+#: ../gramps/plugins/lib/libgedcom.py:2765
 msgid "GEDCOM import report: No errors detected"
 msgstr "Отчёт импорта GEDCOM: ошибок не обнаружено"
 
-#: ../gramps/plugins/lib/libgedcom.py:2651
+#: ../gramps/plugins/lib/libgedcom.py:2767
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "Отчёт импорта GEDCOM: обнаружены ошибки %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:2964
-#: ../gramps/plugins/lib/libgedcom.py:2988
-#: ../gramps/plugins/lib/libgedcom.py:3001
+#: ../gramps/plugins/lib/libgedcom.py:3084
+#: ../gramps/plugins/lib/libgedcom.py:3109
+#: ../gramps/plugins/lib/libgedcom.py:3122
 msgid "Line ignored as not understood"
 msgstr "Строка не распознана и будет проигнорирована"
 
-#: ../gramps/plugins/lib/libgedcom.py:2990
+#: ../gramps/plugins/lib/libgedcom.py:3111
 msgid "Tag recognized but not supported"
 msgstr "Метка распознана, но не поддерживается"
 
 # FIXME: is it correct term?
-#: ../gramps/plugins/lib/libgedcom.py:3026
+#: ../gramps/plugins/lib/libgedcom.py:3147
 msgid "Skipped subordinate line"
 msgstr "Пропущена зависимая строка"
 
-#: ../gramps/plugins/lib/libgedcom.py:3060
+#: ../gramps/plugins/lib/libgedcom.py:3180
 msgid "Records not imported into "
 msgstr "Записи не импортированы в "
 
-#: ../gramps/plugins/lib/libgedcom.py:3098
+#: ../gramps/plugins/lib/libgedcom.py:3218
 #, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -24973,7 +24973,7 @@ msgstr ""
 "Ошибка: %(msg)s  '%(gramps_id)s' (введена как @%(xref)s@) не ввод GEDCOM. "
 "Запись синтезирована"
 
-#: ../gramps/plugins/lib/libgedcom.py:3107
+#: ../gramps/plugins/lib/libgedcom.py:3227
 #, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -24982,7 +24982,7 @@ msgstr ""
 "Ошибка: %(msg)s '%(gramps_id)s' (введена как @%(xref)s@) не ввод GEDCOM. "
 "Запись создана с атрибутом 'Неизвестный'"
 
-#: ../gramps/plugins/lib/libgedcom.py:3152
+#: ../gramps/plugins/lib/libgedcom.py:3271
 #, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
@@ -24993,7 +24993,7 @@ msgstr ""
 "(введено как %(orig_person)s) не является членом семьи. Ссылка на семью "
 "удалена из лица"
 
-#: ../gramps/plugins/lib/libgedcom.py:3230
+#: ../gramps/plugins/lib/libgedcom.py:3349
 #, python-format
 msgid ""
 "\n"
@@ -25013,177 +25013,177 @@ msgstr ""
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
 #. truncated for output
-#: ../gramps/plugins/lib/libgedcom.py:3302
+#: ../gramps/plugins/lib/libgedcom.py:3423
 #, python-format
 msgid "ADDR element ignored '%s'"
 msgstr "Элемент ADDR проигнорирован '%s'"
 
-#: ../gramps/plugins/lib/libgedcom.py:3323
+#: ../gramps/plugins/lib/libgedcom.py:3444
 msgid "TRLR (trailer)"
 msgstr "TRLR (трейлер)"
 
-#: ../gramps/plugins/lib/libgedcom.py:3352
+#: ../gramps/plugins/lib/libgedcom.py:3473
 msgid "(Submitter):"
 msgstr "(Исследователь):"
 
-#: ../gramps/plugins/lib/libgedcom.py:3376
-#: ../gramps/plugins/lib/libgedcom.py:7108
+#: ../gramps/plugins/lib/libgedcom.py:3497
+#: ../gramps/plugins/lib/libgedcom.py:7232
 msgid "GEDCOM data"
 msgstr "Данные GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:3422
+#: ../gramps/plugins/lib/libgedcom.py:3542
 msgid "Unknown tag"
 msgstr "Неизвестная метка"
 
-#: ../gramps/plugins/lib/libgedcom.py:3424
-#: ../gramps/plugins/lib/libgedcom.py:3438
-#: ../gramps/plugins/lib/libgedcom.py:3442
-#: ../gramps/plugins/lib/libgedcom.py:3463
+#: ../gramps/plugins/lib/libgedcom.py:3544
+#: ../gramps/plugins/lib/libgedcom.py:3558
+#: ../gramps/plugins/lib/libgedcom.py:3562
+#: ../gramps/plugins/lib/libgedcom.py:3583
 msgid "Top Level"
 msgstr "Высший уровень"
 
-#: ../gramps/plugins/lib/libgedcom.py:3538
+#: ../gramps/plugins/lib/libgedcom.py:3658
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (лицо) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:3657
+#: ../gramps/plugins/lib/libgedcom.py:3777
 msgid "Empty Alias <NAME PERSONAL> ignored"
 msgstr "Пустой Alias <NAME PERSONAL> проигнорирован"
 
-#: ../gramps/plugins/lib/libgedcom.py:4825
+#: ../gramps/plugins/lib/libgedcom.py:4948
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (семья) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5177
-#: ../gramps/plugins/lib/libgedcom.py:6541
+#: ../gramps/plugins/lib/libgedcom.py:5300
+#: ../gramps/plugins/lib/libgedcom.py:6664
 msgid "Filename omitted"
 msgstr "Имя файла опущено"
 
-#: ../gramps/plugins/lib/libgedcom.py:5210
-#: ../gramps/plugins/lib/libgedcom.py:6581
+#: ../gramps/plugins/lib/libgedcom.py:5333
+#: ../gramps/plugins/lib/libgedcom.py:6705
 #, python-format
 msgid "Could not import %s"
 msgstr "Не удалось импортировать %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5267
-#: ../gramps/plugins/lib/libgedcom.py:6682
+#: ../gramps/plugins/lib/libgedcom.py:5390
+#: ../gramps/plugins/lib/libgedcom.py:6805
 msgid "Media-Type"
 msgstr "Тип документа"
 
-#: ../gramps/plugins/lib/libgedcom.py:5291
-#: ../gramps/plugins/lib/libgedcom.py:6572
+#: ../gramps/plugins/lib/libgedcom.py:5414
+#: ../gramps/plugins/lib/libgedcom.py:6695
 msgid "Multiple FILE in a single OBJE ignored"
 msgstr "Несколько файлов для одного объекта проигнорировано"
 
 #. We have previously found a PLAC
-#: ../gramps/plugins/lib/libgedcom.py:5446
+#: ../gramps/plugins/lib/libgedcom.py:5568
 msgid "A second PLAC ignored"
 msgstr "Второй PLAC проигнорирован"
 
-#. For RootsMagic etc. Place Details e.g. address, hospital, cemetary
-#: ../gramps/plugins/lib/libgedcom.py:5584
+#. For RootsMagic etc. Place Details e.g. address, hospital, ...
+#: ../gramps/plugins/lib/libgedcom.py:5707
 msgid "Detail"
 msgstr "Подробности"
 
-#. We have perviously found an ADDR, or have populated location
-#. from PLAC title
-#: ../gramps/plugins/lib/libgedcom.py:5597
+#. We have perviously found an ADDR, or have populated
+#. location from PLAC title
+#: ../gramps/plugins/lib/libgedcom.py:5720
 msgid "Location already populated; ADDR ignored"
 msgstr "Местоположение уже указано; ADDR проигнорирован"
 
-#: ../gramps/plugins/lib/libgedcom.py:6002
-#: ../gramps/plugins/lib/libgedcom.py:6889
+#: ../gramps/plugins/lib/libgedcom.py:6125
+#: ../gramps/plugins/lib/libgedcom.py:7013
 msgid "Warn: ADDR overwritten"
 msgstr "Внимание: ADDR перезаписан"
 
-#: ../gramps/plugins/lib/libgedcom.py:6167
+#: ../gramps/plugins/lib/libgedcom.py:6290
 msgid "Citation Justification"
 msgstr "Достоверность цитаты"
 
-#: ../gramps/plugins/lib/libgedcom.py:6194
+#: ../gramps/plugins/lib/libgedcom.py:6317
 msgid "REFN ignored"
 msgstr "REFN проигнорирован"
 
 #. SOURce with the given gramps_id had no title
-#: ../gramps/plugins/lib/libgedcom.py:6293
+#: ../gramps/plugins/lib/libgedcom.py:6416
 #, python-format
 msgid "No title - ID %s"
 msgstr "Нет названия - ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6298
+#: ../gramps/plugins/lib/libgedcom.py:6421
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (источник) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6548
+#: ../gramps/plugins/lib/libgedcom.py:6671
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (документ) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6778
+#: ../gramps/plugins/lib/libgedcom.py:6901
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (хранилище) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6839
-#: ../gramps/plugins/lib/libgedcom.py:7815
+#: ../gramps/plugins/lib/libgedcom.py:6962
+#: ../gramps/plugins/lib/libgedcom.py:7947
 msgid "Only one phone number supported"
 msgstr "Поддерживается только один телефонный номер"
 
-#: ../gramps/plugins/lib/libgedcom.py:7024
+#: ../gramps/plugins/lib/libgedcom.py:7148
 msgid "HEAD (header)"
 msgstr "HEAD (заголовок)"
 
-#: ../gramps/plugins/lib/libgedcom.py:7045
+#: ../gramps/plugins/lib/libgedcom.py:7169
 msgid "Approved system identification"
 msgstr "Система идентифицирована"
 
-#: ../gramps/plugins/lib/libgedcom.py:7057
+#: ../gramps/plugins/lib/libgedcom.py:7181
 msgid "Generated By"
 msgstr "Создано с помощью"
 
-#: ../gramps/plugins/lib/libgedcom.py:7073
+#: ../gramps/plugins/lib/libgedcom.py:7197
 msgid "Name of software product"
 msgstr "Название продукта"
 
-#: ../gramps/plugins/lib/libgedcom.py:7087
+#: ../gramps/plugins/lib/libgedcom.py:7211
 msgid "Version number of software product"
 msgstr "Номер версии продукта"
 
-#: ../gramps/plugins/lib/libgedcom.py:7105
+#: ../gramps/plugins/lib/libgedcom.py:7229
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Продукт предоставлен: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7127
+#: ../gramps/plugins/lib/libgedcom.py:7251
 msgid "Name of source data"
 msgstr "Название источника данных"
 
-#: ../gramps/plugins/lib/libgedcom.py:7144
+#: ../gramps/plugins/lib/libgedcom.py:7268
 msgid "Copyright of source data"
 msgstr "Авторство источника данных"
 
-#: ../gramps/plugins/lib/libgedcom.py:7161
+#: ../gramps/plugins/lib/libgedcom.py:7285
 msgid "Publication date of source data"
 msgstr "Дата публикации источника данных"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/lib/libgedcom.py:7175
+#: ../gramps/plugins/lib/libgedcom.py:7299
 #, python-format
 msgid "Import from %s"
 msgstr "Импорт из %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7214
+#: ../gramps/plugins/lib/libgedcom.py:7338
 msgid "Submission record identifier"
 msgstr "Идентификатор подтверждения записи"
 
-#: ../gramps/plugins/lib/libgedcom.py:7227
+#: ../gramps/plugins/lib/libgedcom.py:7351
 msgid "Language of GEDCOM text"
 msgstr "Язык текста GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7248
+#: ../gramps/plugins/lib/libgedcom.py:7373
 #, python-format
 msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
@@ -25192,88 +25192,89 @@ msgstr ""
 "Импорт файла GEDCOM %(filename)s с DEST=%(by)s, может вызвать ошибки в "
 "полученной базе данных!"
 
-#: ../gramps/plugins/lib/libgedcom.py:7251
+#: ../gramps/plugins/lib/libgedcom.py:7376
 msgid "Look for nameless events."
 msgstr "Искать безымянные события."
 
-#: ../gramps/plugins/lib/libgedcom.py:7275
+#: ../gramps/plugins/lib/libgedcom.py:7399
 msgid "Character set"
 msgstr "Кодировка символов"
 
-#: ../gramps/plugins/lib/libgedcom.py:7280
+#: ../gramps/plugins/lib/libgedcom.py:7404
 msgid "Character set and version"
 msgstr "Кодировка символов и её версия"
 
-#: ../gramps/plugins/lib/libgedcom.py:7297
+#: ../gramps/plugins/lib/libgedcom.py:7421
 msgid "GEDCOM version not supported"
 msgstr "Версия GEDCOM не поддерживается"
 
-#: ../gramps/plugins/lib/libgedcom.py:7301
+#: ../gramps/plugins/lib/libgedcom.py:7425
 msgid "GEDCOM version"
 msgstr "Версия GEDCOM"
 
-#. Allow Lineage-Linked etc. though it should be in uppercase
-#: ../gramps/plugins/lib/libgedcom.py:7309
+#. Allow Lineage-Linked etc. though it should be in
+#. uppercase  (Note: Gramps is not a validator! prc)
+#: ../gramps/plugins/lib/libgedcom.py:7434
 msgid "GEDCOM FORM should be in uppercase"
 msgstr "Форма GEDCOM должна быть в верхнем регистре"
 
-#: ../gramps/plugins/lib/libgedcom.py:7311
+#: ../gramps/plugins/lib/libgedcom.py:7437
 msgid "GEDCOM FORM not supported"
 msgstr "Форма GEDCOM не поддерживается"
 
-#: ../gramps/plugins/lib/libgedcom.py:7314
+#: ../gramps/plugins/lib/libgedcom.py:7440
 msgid "GEDCOM form"
 msgstr "Форма GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7363
+#: ../gramps/plugins/lib/libgedcom.py:7491
 msgid "Creation date of GEDCOM"
 msgstr "Дата создания GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7368
+#: ../gramps/plugins/lib/libgedcom.py:7496
 msgid "Creation date and time of GEDCOM"
 msgstr "Дата и время создания GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7409
-#: ../gramps/plugins/lib/libgedcom.py:7451
+#: ../gramps/plugins/lib/libgedcom.py:7537
+#: ../gramps/plugins/lib/libgedcom.py:7579
 msgid "Empty note ignored"
 msgstr "Пустая заметка была проигнорирована"
 
-#: ../gramps/plugins/lib/libgedcom.py:7467
+#: ../gramps/plugins/lib/libgedcom.py:7596
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "ID заметки Gramps %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7518
+#: ../gramps/plugins/lib/libgedcom.py:7647
 msgid "Submission: Submitter"
 msgstr "Подтверждение: Исследователь"
 
-#: ../gramps/plugins/lib/libgedcom.py:7520
+#: ../gramps/plugins/lib/libgedcom.py:7649
 msgid "Submission: Family file"
 msgstr "Подтверждение: Семейный файл"
 
-#: ../gramps/plugins/lib/libgedcom.py:7522
+#: ../gramps/plugins/lib/libgedcom.py:7651
 msgid "Submission: Temple code"
 msgstr "Подтверждение: Код церкви"
 
-#: ../gramps/plugins/lib/libgedcom.py:7524
+#: ../gramps/plugins/lib/libgedcom.py:7653
 msgid "Submission: Generations of ancestors"
 msgstr "Подтверждение: Поколения предка"
 
-#: ../gramps/plugins/lib/libgedcom.py:7526
+#: ../gramps/plugins/lib/libgedcom.py:7655
 msgid "Submission: Generations of descendants"
 msgstr "Подтверждение: Поколения потомка"
 
-#: ../gramps/plugins/lib/libgedcom.py:7528
+#: ../gramps/plugins/lib/libgedcom.py:7657
 msgid "Submission: Ordinance process flag"
 msgstr "Подтверждение: Флаг обработки"
 
-#. # Okay we have no clue which temple this is.
-#. # We should tell the user and store it anyway.
-#: ../gramps/plugins/lib/libgedcom.py:7754
+#. Okay we have no clue which temple this is.
+#. We should tell the user and store it anyway.
+#: ../gramps/plugins/lib/libgedcom.py:7885
 msgid "Invalid temple code"
 msgstr "Неверный код церкви"
 
-#: ../gramps/plugins/lib/libgedcom.py:7848
+#: ../gramps/plugins/lib/libgedcom.py:7981
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -25281,7 +25282,7 @@ msgstr ""
 "Файл GEDCOM поврежден. Похоже что файл использует набор символов UTF16, но в "
 "нем отсутствует пометка BOM."
 
-#: ../gramps/plugins/lib/libgedcom.py:7851
+#: ../gramps/plugins/lib/libgedcom.py:7984
 msgid "Your GEDCOM file is empty."
 msgstr "Файл GEDCOM пуст."
 
