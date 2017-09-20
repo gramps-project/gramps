@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-21 15:46-0700\n"
-"PO-Revision-Date: 2017-09-19 08:25+0100\n"
+"PO-Revision-Date: 2017-09-20 16:39+0100\n"
 "Last-Translator: Pedro Albuquerque <pagramps@openmailbox.org>\n"
 "Language-Team: Português <pagramps@openmailbox.org>\n"
 "Language: pt_PT\n"
@@ -658,11 +658,11 @@ msgid ""
 "is wrong in making this choice, you can override the filter by checking the "
 "Show All checkbutton."
 msgstr ""
-"<b>Caixa \"Mostrar  todos\"</b><br/>Ao adicionar um indivíduo existente como "
+"<b>Caixa \"Mostrar todos\"</b><br/>Ao adicionar um indivíduo existente como "
 "cônjuge, a lista de indivíduos mostrados é filtrada a fim de exibir só os "
 "indivíduos que poderiam realmente enquadrar-se naquela situação (com base em "
 "datas na base de dados). Caso o Gramps esteja errado ao filtrar a lista, "
-"pode manualmente ignorar o filtro ao clicar na opção \"Mostrar  todos\"."
+"pode manualmente ignorar o filtro ao clicar na opção \"Mostrar todos\"."
 
 #: ../data/tips.xml.in.h:29
 msgid ""
@@ -1053,7 +1053,8 @@ msgstr ""
 "<b>O indivíduo inicial</b><br/>Qualquer um pode ser escolhido como o "
 "\"indivíduo inicial\" no Gramps. Use \"Editar &gt; Definir indivíduo inicial"
 "\" no separador Indivíduos. O indivíduo inicial é aquele que é seleccionado "
-"quando a base de dados é aberta ou quando o botão Início é clicado."
+"quando a base de dados é aberta ou quando o botão Indivíduo inicial é "
+"clicado."
 
 #: ../data/tips.xml.in.h:60
 msgid ""
@@ -1351,8 +1352,8 @@ msgstr ""
 "  -load-modules=MÓDULO1,MÓDULO2,...      Módulos dinâmicos a carregar\n"
 "\n"
 "Opções de ajuda\n"
-"  -?, --help                             Mostrar  esta mensagem de ajuda\n"
-"  -usage                                 Mostrar  mensagem de ajuda "
+"  -?, --help                             Mostrar esta mensagem de ajuda\n"
+"  -usage                                 Mostrar mensagem de ajuda "
 "abreviada\n"
 "\n"
 "Opções da aplicação\n"
@@ -1375,7 +1376,7 @@ msgstr ""
 "tabulações\n"
 "  -u, --force-unlock                         Forçar desbloqueamento da "
 "árvore genealógica\n"
-"  -s, --show                                 Mostrar  definições da "
+"  -s, --show                                 Mostrar definições da "
 "configuração\n"
 "  -c, --config=[definição.config[:valor]]    Definir definições de "
 "configuração e iniciar o Gramps\n"
@@ -1383,7 +1384,7 @@ msgstr ""
 "perigosas (só linha de comando)\n"
 "  -q, --quiet                                Suprimir indicação de progresso "
 "(só linha de comando)\n"
-"  -v, --version                              Mostrar  versões\n"
+"  -v, --version                              Mostrar versões\n"
 
 #: ../gramps/cli/argparser.py:82
 msgid ""
@@ -3681,7 +3682,7 @@ msgstr "Número de instâncias:"
 #: ../gramps/gui/editors/filtereditor.py:517
 #: ../gramps/gui/glade/editplaceref.glade:244
 msgid "ID:"
-msgstr "ID:"
+msgstr "Id:"
 
 #: ../gramps/gen/filters/rules/_hasnoteregexbase.py:43
 #: ../gramps/gen/filters/rules/_regexpidbase.py:48
@@ -3723,7 +3724,7 @@ msgstr "Número de referências:"
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:45
 #: ../gramps/gui/editors/filtereditor.py:520
 msgid "Source ID:"
-msgstr "ID da fonte:"
+msgstr "Id da fonte:"
 
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:54
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:130
@@ -3846,7 +3847,7 @@ msgstr "Citação com <Id>"
 
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:46
 msgid "Matches a citation with a specified Gramps ID"
-msgstr "Encontra citações com uma dada ID Gramps"
+msgstr "Encontra citações com uma dada Id Gramps"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:46
 msgid "Citations having <count> notes"
@@ -3947,7 +3948,7 @@ msgstr "Citação com fonte <Id>"
 
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:47
 msgid "Matches a citation with a source with a specified Gramps ID"
-msgstr "Encontra citações com uma fonte com uma dada ID Gramps"
+msgstr "Encontra citações com uma fonte com uma dada Id Gramps"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:52
 msgid "Citations having source notes containing <text>"
@@ -4036,7 +4037,7 @@ msgstr "Citações com Id que contém <texto>"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:49
 msgid "Matches citations whose Gramps ID matches the regular expression"
-msgstr "Encontra citações cujas ID Gramps coincidem com a expressão regular"
+msgstr "Encontra citações cujas Id Gramps coincidem com a expressão regular"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:48
 msgid "Citations with Source Id containing <text>"
@@ -4047,7 +4048,7 @@ msgid ""
 "Matches citations whose source has a Gramps ID that matches the regular "
 "expression"
 msgstr ""
-"Encontra citações cuja fonte tem uma ID Gramps que coincide com a expressão "
+"Encontra citações cuja fonte tem uma Id Gramps que coincide com a expressão "
 "regular"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:44
@@ -4175,7 +4176,7 @@ msgstr "Evento com <Id>"
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:45
 msgid "Matches an event with a specified Gramps ID"
-msgstr "Encontra um evento com a ID Gramps especificada"
+msgstr "Encontra um evento com a Id Gramps especificada"
 
 #: ../gramps/gen/filters/rules/event/_hasnote.py:45
 msgid "Events having <count> notes"
@@ -4306,7 +4307,7 @@ msgstr "Eventos com Id que contém <texto>"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:48
 msgid "Matches events whose Gramps ID matches the regular expression"
-msgstr "Encontra eventos cuja ID Gramps coincide com a expressão regular"
+msgstr "Encontra eventos cuja Id Gramps coincide com a expressão regular"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:44
 #: ../gramps/gen/plug/report/utils.py:378
@@ -4333,7 +4334,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:45
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:45
 msgid "Person ID:"
-msgstr "ID do indivíduo:"
+msgstr "Id do indivíduo:"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:46
 msgid "Families having child with Id containing <text>"
@@ -4341,7 +4342,7 @@ msgstr "Famílias com filhos com Id que contém <texto>"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:47
 msgid "Matches families where child has a specified Gramps ID"
-msgstr "Encontra famílias com um filho com uma ID Gramps especificada"
+msgstr "Encontra famílias com um filho com uma Id Gramps especificada"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:49
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:48
@@ -4373,7 +4374,7 @@ msgstr "Famílias com pai com Id que contém <texto>"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:47
 msgid "Matches families whose father has a specified Gramps ID"
-msgstr "Encontra famílias cujo pai tem a ID Gramps especificada"
+msgstr "Encontra famílias cujo pai tem a Id Gramps especificada"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:49
 #: ../gramps/gen/filters/rules/family/_fatherhasnameof.py:48
@@ -4451,7 +4452,7 @@ msgstr "Família com <Id>"
 
 #: ../gramps/gen/filters/rules/family/_hasidof.py:45
 msgid "Matches a family with a specified Gramps ID"
-msgstr "Encontra uma família com uma ID Gramps específica"
+msgstr "Encontra uma família com uma Id Gramps específica"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:48
 msgid "Families with <count> LDS events"
@@ -4603,7 +4604,7 @@ msgstr "Famílias com mãe com Id que contém <texto>"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:47
 msgid "Matches families whose mother has a specified Gramps ID"
-msgstr "Encontra famílias cuja mãe tem uma ID Gramps especificada"
+msgstr "Encontra famílias cuja mãe tem uma Id Gramps especificada"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:49
 #: ../gramps/gen/filters/rules/family/_motherhasnameof.py:48
@@ -4651,7 +4652,7 @@ msgstr "Famílias com Id que contém <texto>"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:48
 msgid "Matches families whose Gramps ID matches the regular expression"
-msgstr "Encontra famílias cuja ID Gramps coincide com a expressão regular"
+msgstr "Encontra famílias cuja Id Gramps coincide com a expressão regular"
 
 #: ../gramps/gen/filters/rules/family/_regexpmothername.py:45
 msgid "Families with mother matching the <regex_name>"
@@ -4730,7 +4731,7 @@ msgstr "Objecto multimédia com <Id>"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:45
 msgid "Matches a media object with a specified Gramps ID"
-msgstr "Encontra um objecto multimédia com a ID Gramps especificada"
+msgstr "Encontra um objecto multimédia com a Id Gramps especificada"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:47
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:47
@@ -4853,7 +4854,7 @@ msgstr "Objectos multimédia com Id que contém <texto>"
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:48
 msgid "Matches media objects whose Gramps ID matches the regular expression"
 msgstr ""
-"Encontra objectos multimédia cuja ID Gramps coincide com a expressão regular"
+"Encontra objectos multimédia cuja Id Gramps coincide com a expressão regular"
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:44
 msgid "Every note"
@@ -4881,7 +4882,7 @@ msgstr "Notas com <Id>"
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:45
 msgid "Matches a note with a specified Gramps ID"
-msgstr "Encontra uma nota com uma ID Gramps específica"
+msgstr "Encontra uma nota com uma Id Gramps específica"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:47
 #: ../gramps/gen/filters/rules/note/_hastype.py:45
@@ -4961,7 +4962,7 @@ msgstr "Notas com Id que contém <texto>"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:48
 msgid "Matches notes whose Gramps ID matches the regular expression"
-msgstr "Encontra notas cuja ID Gramps coincide com a expressão regular"
+msgstr "Encontra notas cuja Id Gramps coincide com a expressão regular"
 
 #: ../gramps/gen/filters/rules/person/_changedsince.py:47
 msgid "Persons changed after <date time>"
@@ -5198,7 +5199,7 @@ msgstr "Indivíduo com <Id>"
 #: ../gramps/gen/filters/rules/person/_hasidof.py:45
 #: ../gramps/gen/filters/rules/person/_matchidof.py:46
 msgid "Matches person with a specified Gramps ID"
-msgstr "Encontra indivíduo com uma ID Gramps especificada"
+msgstr "Encontra indivíduo com uma Id Gramps especificada"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:48
 msgid "People with <count> LDS events"
@@ -5829,7 +5830,7 @@ msgstr "Indivíduos com Id que contém <texto>"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:47
 msgid "Matches people whose Gramps ID matches the regular expression"
-msgstr "Encontra indivíduos cuja ID Gramps coincide com a expressão regular"
+msgstr "Encontra indivíduos cuja Id Gramps coincide com a expressão regular"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:46
 msgid "People with a name matching <text>"
@@ -5936,7 +5937,7 @@ msgstr "Locais com <Id>"
 
 #: ../gramps/gen/filters/rules/place/_hasidof.py:45
 msgid "Matches a place with a specified Gramps ID"
-msgstr "Encontra um local com a ID Gramps especificada"
+msgstr "Encontra um local com a Id Gramps especificada"
 
 #: ../gramps/gen/filters/rules/place/_hasnolatorlon.py:48
 msgid "Places with no latitude or longitude given"
@@ -6140,7 +6141,7 @@ msgstr "Locais com Id que contém <texto>"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:48
 msgid "Matches places whose Gramps ID matches the regular expression"
-msgstr "Encontra locais cuja ID Gramps coincide com a expressão regular"
+msgstr "Encontra locais cuja Id Gramps coincide com a expressão regular"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:50
 #: ../gramps/gui/editors/filtereditor.py:584
@@ -6181,7 +6182,7 @@ msgstr "Repositório com <Id>"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:45
 msgid "Matches a repository with a specified Gramps ID"
-msgstr "Encontra um repositório com a ID Gramps especificada"
+msgstr "Encontra um repositório com a Id Gramps especificada"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:42
 msgid "Repositories having notes containing <substring>"
@@ -6266,7 +6267,7 @@ msgstr "Repositórios com Id que contém <texto>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:48
 msgid "Matches repositories whose Gramps ID matches the regular expression"
-msgstr "Encontra repositórios cuja ID Gramps coincide com a expressão regular"
+msgstr "Encontra repositórios cuja Id Gramps coincide com a expressão regular"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:42
 msgid "Repositories marked private"
@@ -6310,7 +6311,7 @@ msgstr "Fontes com <Id>"
 
 #: ../gramps/gen/filters/rules/source/_hasidof.py:45
 msgid "Matches a source with a specified Gramps ID"
-msgstr "Encontra fontes com uma ID Gramps especificada"
+msgstr "Encontra fontes com uma Id Gramps especificada"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:45
 msgid "Sources having <count> notes"
@@ -6415,7 +6416,7 @@ msgstr "Fontes com Id que contém <texto>"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:48
 msgid "Matches sources whose Gramps ID matches the regular expression"
-msgstr "Encontra fontes cuja ID Gramps coincide com a expressão regular"
+msgstr "Encontra fontes cuja Id Gramps coincide com a expressão regular"
 
 #: ../gramps/gen/filters/rules/source/_sourceprivate.py:42
 msgid "Sources marked private"
@@ -6925,7 +6926,7 @@ msgstr "Citação"
 #: ../gramps/plugins/webreport/repository.py:242
 #: ../gramps/plugins/webreport/source.py:257
 msgid "Gramps ID"
-msgstr "ID Gramps"
+msgstr "Id Gramps"
 
 #: ../gramps/gen/lib/citation.py:108
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:82
@@ -8168,7 +8169,7 @@ msgstr "Ordenar por:"
 
 #: ../gramps/gen/lib/name.py:173
 msgid "Display as"
-msgstr "Mostrar  como:"
+msgstr "Mostrar como:"
 
 #: ../gramps/gen/lib/name.py:175 ../gramps/plugins/importer/importcsv.py:163
 msgid "Call name"
@@ -8528,7 +8529,7 @@ msgstr "Referências a indivíduos"
 
 #: ../gramps/gen/lib/person.py:537
 msgid "Merged Gramps ID"
-msgstr "IDs do Gramps unidas"
+msgstr "Ids do Gramps unidas"
 
 #: ../gramps/gen/lib/personref.py:98 ../gramps/gui/clipboard.py:707
 msgid "Person ref"
@@ -9773,7 +9774,7 @@ msgstr "Numa linha própria"
 
 #: ../gramps/gen/plug/report/stdoptions.py:325
 msgid "Whether (and where) to include Gramps IDs"
-msgstr "Incluir (e onde) IDs Gramps"
+msgstr "Incluir (e onde) Ids Gramps"
 
 #. --------------------
 #. ###############################
@@ -9794,7 +9795,7 @@ msgstr "Incluir"
 
 #: ../gramps/gen/plug/report/stdoptions.py:328
 msgid "Whether to include Gramps IDs"
-msgstr "Se deve incluir IDs Gramps"
+msgstr "Se deve incluir Ids Gramps"
 
 #: ../gramps/gen/plug/report/utils.py:158
 #: ../gramps/plugins/textreport/indivcomplete.py:914
@@ -10460,7 +10461,7 @@ msgstr "NOME"
 #: ../gramps/gui/configure.py:663 ../gramps/gui/configure.py:664
 #: ../gramps/gui/configure.py:665 ../gramps/gui/configure.py:666
 msgid "SURNAME"
-msgstr "APELIDO"
+msgstr "APELIdO"
 
 #: ../gramps/gen/utils/keyword.py:57
 msgid "Name|CALL"
@@ -10556,7 +10557,7 @@ msgstr "Patronímico[con]"
 
 #: ../gramps/gen/utils/keyword.py:69
 msgid "RAWSURNAMES"
-msgstr "APELIDOSEMBRUTO"
+msgstr "APELIdOSEMBRUTO"
 
 #: ../gramps/gen/utils/keyword.py:69 ../gramps/gui/configure.py:667
 msgid "Rawsurnames"
@@ -11022,7 +11023,7 @@ msgstr "Multimédia"
 
 #: ../gramps/gui/configure.py:553
 msgid "ID Formats"
-msgstr "Formatos de ID"
+msgstr "Formatos de Id"
 
 #: ../gramps/gui/configure.py:563
 msgid "Set the colors used for boxes in the graphical views"
@@ -11105,7 +11106,7 @@ msgstr ""
 #: ../gramps/gui/configure.py:618
 msgid "Show plugin status dialog on plugin load error."
 msgstr ""
-"Mostrar  diálogo de estado das extensões se ocorrer um erro ao carregá-las."
+"Mostrar diálogo de estado das extensões se ocorrer um erro ao carregá-las."
 
 #: ../gramps/gui/configure.py:621
 msgid "Warnings"
@@ -11199,7 +11200,7 @@ msgstr "Editar"
 
 #: ../gramps/gui/configure.py:995
 msgid "Consider single pa/matronymic as surname"
-msgstr "Considerar pa/matronímico único como apelido"
+msgstr "Considerar patronímico/matronímico único como apelido"
 
 #: ../gramps/gui/configure.py:1017
 msgid "Years"
@@ -11235,7 +11236,7 @@ msgstr "Altura da caixa de apelidos múltiplos (em pixels)"
 
 #: ../gramps/gui/configure.py:1084
 msgid "Active person's name and ID"
-msgstr "Nome e ID do indivíduo activo"
+msgstr "Nome e Id do indivíduo activo"
 
 #: ../gramps/gui/configure.py:1085
 #: ../gramps/plugins/textreport/indivcomplete.py:368
@@ -11248,11 +11249,11 @@ msgstr "Barra de estado"
 
 #: ../gramps/gui/configure.py:1101
 msgid "Show text label beside Navigator buttons (requires restart)"
-msgstr "Mostrar  texto nos botões do navegador (requer reinício)"
+msgstr "Mostrar texto nos botões do navegador (requer reinício)"
 
 #: ../gramps/gui/configure.py:1107
 msgid "Show close button in gramplet bar tabs"
-msgstr "Mostrar  botão de fecho nos separadores dos gramplets"
+msgstr "Mostrar botão de fecho nos separadores dos gramplets"
 
 #: ../gramps/gui/configure.py:1120
 msgid "Enable automatic place title generation"
@@ -11308,14 +11309,14 @@ msgstr "Registo privado"
 
 #: ../gramps/gui/configure.py:1237
 msgid "Change is not immediate"
-msgstr "Mudança não é imediata"
+msgstr "A mudança não é imediata"
 
 #: ../gramps/gui/configure.py:1238
 msgid ""
 "Changing the date format will not take effect until the next time Gramps is "
 "started."
 msgstr ""
-"Mudar o formato da data não terá efeito até a próxima vez que o Gramps for "
+"Mudar o formato da data não terá efeito até à próxima vez que o Gramps for "
 "iniciado."
 
 #: ../gramps/gui/configure.py:1257
@@ -11413,7 +11414,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1343
 msgid "Display Tip of the Day"
-msgstr "Mostrar  dica do dia"
+msgstr "Mostrar dica do dia"
 
 #: ../gramps/gui/configure.py:1348
 msgid "Remember last view displayed"
@@ -12303,7 +12304,7 @@ msgstr "_Atributos"
 #: ../gramps/plugins/view/relview.py:602 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/view/sourceview.py:83
 msgid "ID"
-msgstr "ID"
+msgstr "Id"
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:67
 msgid "_References"
@@ -12950,7 +12951,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editcitation.py:300
 msgid "Cannot save citation. ID already exists."
-msgstr "Impossível gravar a citação. A ID já existe."
+msgstr "Impossível gravar a citação. A Id já existe."
 
 #: ../gramps/gui/editors/editcitation.py:301
 #: ../gramps/gui/editors/editevent.py:249
@@ -12966,9 +12967,9 @@ msgid ""
 "value is already used by '%(prim_object)s'. Please enter a different ID or "
 "leave blank to get the next available ID value."
 msgstr ""
-"Tentou utilizar uma ID Gramps já existente com o valor %(id)s. Este valor já "
-"está a ser utilizado por \"%(prim_object)s\". Por favor, insira outra ID ou "
-"deixe em branco para obter o próximo ID disponível."
+"Tentou utilizar uma Id Gramps já existente com o valor %(id)s. Este valor já "
+"está a ser utilizado por \"%(prim_object)s\". Por favor, insira outra Id ou "
+"deixe em branco para obter o próximo Id disponível."
 
 #: ../gramps/gui/editors/editcitation.py:311
 #, python-format
@@ -13075,7 +13076,7 @@ msgstr ""
 #: ../gramps/gui/editors/editevent.py:248
 #: ../gramps/gui/editors/editreference.py:276
 msgid "Cannot save event. ID already exists."
-msgstr "Impossível gravar evento. ID já existe."
+msgstr "Impossível gravar evento. Id já existe."
 
 #: ../gramps/gui/editors/editevent.py:262
 msgid "The event type cannot be empty"
@@ -13360,7 +13361,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:1092
 msgid "Cannot save family. ID already exists."
-msgstr "Impossível gravar família. A ID já existe."
+msgstr "Impossível gravar família. A Id já existe."
 
 #: ../gramps/gui/editors/editfamily.py:1093
 #: ../gramps/gui/editors/editnote.py:327
@@ -13371,9 +13372,9 @@ msgid ""
 "value is already used. Please enter a different ID or leave blank to get the "
 "next available ID value."
 msgstr ""
-"Tentou utilizar uma ID Gramps já existente, com o valor %(id)s. Este valor "
-"já está a ser utilizado. Por favor, insira uma ID diferente ou deixe em "
-"branco para obter próximo ID disponível."
+"Tentou utilizar uma Id Gramps já existente, com o valor %(id)s. Este valor "
+"já está a ser utilizado. Por favor, insira uma Id diferente ou deixe em "
+"branco para obter próximo Id disponível."
 
 #: ../gramps/gui/editors/editfamily.py:1108
 msgid "Add Family"
@@ -13454,7 +13455,7 @@ msgstr ""
 #: ../gramps/gui/editors/editmedia.py:297
 #: ../gramps/gui/editors/editreference.py:279
 msgid "Cannot save media object. ID already exists."
-msgstr "Impossível gravar a multimédia. A ID já existe."
+msgstr "Impossível gravar a multimédia. A Id já existe."
 
 #: ../gramps/gui/editors/editmedia.py:312
 msgid "There is no media matching the current path value!"
@@ -13603,7 +13604,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editnote.py:326
 msgid "Cannot save note. ID already exists."
-msgstr "Impossível gravar nota. A ID já existe."
+msgstr "Impossível gravar nota. A Id já existe."
 
 #: ../gramps/gui/editors/editnote.py:337
 msgid "Add Note"
@@ -13678,7 +13679,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editperson.py:845
 msgid "Cannot save person. ID already exists."
-msgstr "Impossível gravar o indivíduo. A ID já existe."
+msgstr "Impossível gravar o indivíduo. A Id já existe."
 
 #: ../gramps/gui/editors/editperson.py:860
 #, python-format
@@ -13798,7 +13799,7 @@ msgstr "Tem de inserir um nome antes de gravar."
 
 #: ../gramps/gui/editors/editplace.py:313
 msgid "Cannot save place. ID already exists."
-msgstr "Impossível gravar local. A ID já existe."
+msgstr "Impossível gravar local. A Id já existe."
 
 #: ../gramps/gui/editors/editplace.py:325
 #, python-format
@@ -13860,11 +13861,11 @@ msgstr "Se fechar sem gravar, as alterações efectuadas serão perdidas"
 #: ../gramps/gui/editors/editreference.py:282
 #: ../gramps/gui/editors/editrepository.py:188
 msgid "Cannot save repository. ID already exists."
-msgstr "Impossível gravar repositório. A ID já existe."
+msgstr "Impossível gravar repositório. A Id já existe."
 
 #: ../gramps/gui/editors/editreference.py:285
 msgid "Cannot save item. ID already exists."
-msgstr "Impossível gravar item. A ID já existe."
+msgstr "Impossível gravar item. A Id já existe."
 
 #: ../gramps/gui/editors/editreporef.py:60
 msgid "Repository Reference Editor"
@@ -13949,7 +13950,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editsource.py:209
 msgid "Cannot save source. ID already exists."
-msgstr "Impossível gravar fonte. A ID já existe."
+msgstr "Impossível gravar fonte. A Id já existe."
 
 #: ../gramps/gui/editors/editsource.py:220
 #, python-format
@@ -14091,7 +14092,7 @@ msgstr "maior que"
 
 #: ../gramps/gui/editors/filtereditor.py:289
 msgid "Not a valid ID"
-msgstr "Não é ID válida"
+msgstr "Não é Id válida"
 
 #: ../gramps/gui/editors/filtereditor.py:318
 msgid "Select..."
@@ -14105,12 +14106,12 @@ msgstr "Seleccionar %s de uma lista"
 #: ../gramps/gui/editors/filtereditor.py:390
 msgid "Give or select a source ID, leave empty to find objects with no source."
 msgstr ""
-"Forneça ou seleccione uma ID de fonte, deixe em branco para localizar "
+"Forneça ou seleccione uma Id de fonte, deixe em branco para localizar "
 "objectos sem fontes."
 
 #: ../gramps/gui/editors/filtereditor.py:562
 msgid "Include selected Gramps ID"
-msgstr "Incluir ID Gramps seleccionada"
+msgstr "Incluir Id Gramps seleccionada"
 
 #: ../gramps/gui/editors/filtereditor.py:564
 msgid "Use exact case of letters"
@@ -14471,7 +14472,7 @@ msgstr "Converter para caminho relativo"
 
 #: ../gramps/gui/glade/baseselector.glade:120
 msgid "Show all"
-msgstr "Mostrar  tudo"
+msgstr "Mostrar tudo"
 
 #: ../gramps/gui/glade/book.glade:51
 msgid "Book _name:"
@@ -14545,7 +14546,7 @@ msgid ""
 msgstr ""
 "Serão usadas as seguintes convenções:\n"
 "<tt>  <b>%f</b> - Nome próprio       <b>%F</b> - NOME PRÓPRIO\n"
-"  <b>%l</b> - Apelido          <b>%L</b> - APELIDO\n"
+"  <b>%l</b> - Apelido          <b>%L</b> - APELIdO\n"
 "  <b>%t</b> - Título           <b>%T</b> - TÍTULO\n"
 "  <b>%p</b> - Prefixo          <b>%P</b> - PREFIXO\n"
 "  <b>%s</b> - Sufixo           <b>%S</b> - SUFIXO\n"
@@ -14973,11 +14974,11 @@ msgstr ""
 #: ../gramps/gui/glade/editrepository.glade:165
 #: ../gramps/gui/glade/editsource.glade:263
 msgid "_ID:"
-msgstr "_ID:"
+msgstr "_Id:"
 
 #: ../gramps/gui/glade/editcitation.glade:240
 msgid "A unique ID to identify the citation"
-msgstr "Uma ID única para identificar a citação"
+msgstr "Uma Id única para identificar a citação"
 
 #: ../gramps/gui/glade/editcitation.glade:360
 #: ../gramps/gui/glade/editevent.glade:390
@@ -15060,7 +15061,7 @@ msgstr "Tipo de _evento:"
 
 #: ../gramps/gui/glade/editevent.glade:134
 msgid "Show Date Editor"
-msgstr "Mostrar  o editor de datas"
+msgstr "Mostrar o editor de datas"
 
 #: ../gramps/gui/glade/editevent.glade:163
 #: ../gramps/gui/glade/editeventref.glade:253
@@ -15105,7 +15106,7 @@ msgstr ""
 #: ../gramps/gui/glade/editevent.glade:375
 #: ../gramps/gui/glade/editeventref.glade:451
 msgid "A unique ID to identify the event"
-msgstr "Uma ID única para identificar o evento"
+msgstr "Uma Id única para identificar o evento"
 
 #: ../gramps/gui/glade/editeventref.glade:85
 #: ../gramps/gui/glade/editplaceref.glade:85
@@ -15173,7 +15174,7 @@ msgstr "Informação de parentesco"
 
 #: ../gramps/gui/glade/editfamily.glade:683
 msgid "A unique ID for the family"
-msgstr "Uma ID única para a família"
+msgstr "Uma Id única para a família"
 
 #: ../gramps/gui/glade/editfamily.glade:698
 #: ../gramps/gui/glade/editname.glade:102
@@ -15334,7 +15335,7 @@ msgstr "Pasta"
 
 #: ../gramps/gui/glade/editmedia.glade:302
 msgid "A unique ID to identify the Media object."
-msgstr "Uma ID única para identificar o objecto multimédia."
+msgstr "Uma Id única para identificar o objecto multimédia."
 
 #: ../gramps/gui/glade/editmedia.glade:346
 msgid ""
@@ -15517,7 +15518,7 @@ msgstr "_Ordenar por:"
 
 #: ../gramps/gui/glade/editname.glade:490
 msgid "_Display as:"
-msgstr "_Mostrar  como:"
+msgstr "_Mostrar como:"
 
 #: ../gramps/gui/glade/editname.glade:503
 msgid ""
@@ -15583,7 +15584,7 @@ msgstr "Um tipo para classificar a nota."
 
 #: ../gramps/gui/glade/editnote.glade:179
 msgid "A unique ID to identify the note."
-msgstr "Uma ID única para identificar a nota."
+msgstr "Uma Id única para identificar a nota."
 
 #: ../gramps/gui/glade/editnote.glade:190
 msgid "_Preformatted"
@@ -15673,7 +15674,7 @@ msgstr "S_exo:"
 
 #: ../gramps/gui/glade/editperson.glade:633
 msgid "A unique ID for the person."
-msgstr "Uma ID única para o indivíduo."
+msgstr "Uma Id única para o indivíduo."
 
 #: ../gramps/gui/glade/editperson.glade:708
 msgid "Preferred Name"
@@ -15787,7 +15788,7 @@ msgstr ""
 #: ../gramps/gui/glade/editplace.glade:264
 #: ../gramps/gui/glade/editplaceref.glade:495
 msgid "A unique ID to identify the place"
-msgstr "Uma ID única para identificar o local"
+msgstr "Uma Id única para identificar o local"
 
 #: ../gramps/gui/glade/editplace.glade:292
 #: ../gramps/gui/glade/editplaceref.glade:523
@@ -15852,7 +15853,7 @@ msgstr "Em que tipo de suporte esta fonte está disponível no repositório."
 
 #: ../gramps/gui/glade/editreporef.glade:209
 msgid "Id number of the source in the repository."
-msgstr "ID da fonte no repositório."
+msgstr "Id da fonte no repositório."
 
 #: ../gramps/gui/glade/editreporef.glade:264
 #: ../gramps/gui/glade/editrepository.glade:97
@@ -15879,7 +15880,7 @@ msgstr ""
 #: ../gramps/gui/glade/editreporef.glade:370
 #: ../gramps/gui/glade/editrepository.glade:179
 msgid "A unique ID to identify the repository."
-msgstr "Uma ID única para identificar o repositório."
+msgstr "Uma Id única para identificar o repositório."
 
 #: ../gramps/gui/glade/editreporef.glade:424
 #: ../gramps/gui/glade/editrepository.glade:144
@@ -15924,7 +15925,7 @@ msgstr "A_breviatura:"
 
 #: ../gramps/gui/glade/editsource.glade:214
 msgid "A unique ID to identify the source"
-msgstr "Uma ID única para identificar a fonte"
+msgstr "Uma Id única para identificar a fonte"
 
 #: ../gramps/gui/glade/editurl.glade:96
 msgid "_Web address:"
@@ -16019,7 +16020,7 @@ msgstr "Fonte 2"
 #: ../gramps/gui/glade/mergesource.glade:344
 #: ../gramps/gui/glade/mergesource.glade:360
 msgid "Gramps ID:"
-msgstr "ID Gramps:"
+msgstr "Id Gramps:"
 
 #: ../gramps/gui/glade/mergecitation.glade:455
 msgid "Notes, media objects and data-items of both citations will be combined."
@@ -16675,7 +16676,7 @@ msgstr "Eliminar o estilo seleccionado"
 
 #: ../gramps/gui/glade/tipofday.glade:25
 msgid "_Display on startup"
-msgstr "_Mostrar  ao iniciar"
+msgstr "_Mostrar ao iniciar"
 
 #: ../gramps/gui/glade/tipofday.glade:102
 #: ../gramps/gui/views/navigationview.py:293
@@ -17158,7 +17159,7 @@ msgstr "Pais"
 #: ../gramps/gui/merge/mergeperson.py:245
 #: ../gramps/plugins/tool/findloop.py:111
 msgid "Family ID"
-msgstr "ID de família"
+msgstr "Id de família"
 
 #: ../gramps/gui/merge/mergeperson.py:236
 msgid "No parents found"
@@ -18957,7 +18958,7 @@ msgstr "Ir para o objecto anterior no histórico"
 #: ../gramps/gui/views/navigationview.py:306
 #: ../gramps/plugins/view/pedigreeview.py:1577
 msgid "_Home"
-msgstr "_Início"
+msgstr "_Indivíduo inicial"
 
 #: ../gramps/gui/views/navigationview.py:308
 msgid "Go to the default person"
@@ -18984,12 +18985,12 @@ msgstr ""
 #: ../gramps/gui/views/navigationview.py:348
 #: ../gramps/gui/views/navigationview.py:351
 msgid "Jump to by Gramps ID"
-msgstr "Ir para uma ID gramps"
+msgstr "Ir para uma Id gramps"
 
 #: ../gramps/gui/views/navigationview.py:375
 #, python-format
 msgid "Error: %s is not a valid Gramps ID"
-msgstr "Erro: %s não é uma ID Gramps válida"
+msgstr "Erro: %s não é uma Id Gramps válida"
 
 #: ../gramps/gui/views/pageview.py:422
 msgid "_Sidebar"
@@ -19203,8 +19204,8 @@ msgid ""
 "Select the down arrow on the right corner for adding, removing or restoring "
 "gramplets."
 msgstr ""
-"Seleccione a seta abaixo no canto à direita para adicionar, remover ou "
-"restaurar gramplets."
+"Use a lista pendente à direita da barra para adicionar, remover ou restaurar "
+"gramplets."
 
 #: ../gramps/gui/widgets/grampletbar.py:486
 #: ../gramps/plugins/view/dashboardview.py:100
@@ -19849,7 +19850,7 @@ msgid ""
 "Display unknown\n"
 "generations"
 msgstr ""
-"Mostrar  gerações\n"
+"Mostrar gerações\n"
 "desconhecidas"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:811
@@ -20716,7 +20717,7 @@ msgstr "Gera uma árvore de descendentes gráfica dos membros de uma família"
 #: ../gramps/plugins/view/fanchartview.py:73
 #: ../gramps/plugins/view/view.gpr.py:143
 msgid "Fan Chart"
-msgstr "Diagrama em leque"
+msgstr "Diagrama circular"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:176
 msgid "Produces fan charts"
@@ -22746,7 +22747,7 @@ msgstr "Máximo de gerações"
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:68
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:79
 msgid "Show dates"
-msgstr "Mostrar  datas"
+msgstr "Mostrar datas"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:61
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:69
@@ -23864,7 +23865,7 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvrelgraph.py:904
 msgid "Show family nodes"
-msgstr "Mostrar  nós da família"
+msgstr "Mostrar nós da família"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:905
 msgid "Families will show up as ellipses, linked to parents and children."
@@ -29771,7 +29772,7 @@ msgstr "Não existem mais eventos em %(year)d"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:36
 msgid "Display people and ages on a particular date"
-msgstr "Mostrar  indivíduos e suas idades numa data específica"
+msgstr "Mostrar indivíduos e suas idades numa data específica"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:55
 msgid "Attribute Match"
@@ -29779,7 +29780,7 @@ msgstr "Comparar atributo"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:56
 msgid "Display people with same attribute."
-msgstr "Mostrar  indivíduos com o mesmo atributo."
+msgstr "Mostrar indivíduos com o mesmo atributo."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:75
 msgid "All Events"
@@ -29787,7 +29788,7 @@ msgstr "Todos os eventos"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:76
 msgid "Display a person's events, both personal and family."
-msgstr "Mostrar  os eventos de um indivíduo, tanto pessoais como familiares."
+msgstr "Mostrar os eventos de um indivíduo, tanto pessoais como familiares."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:90
 msgid "All Family Events"
@@ -29795,7 +29796,7 @@ msgstr "Todos os eventos familiares"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:91
 msgid "Display the family and family members events."
-msgstr "Mostrar  os eventos da família e dos seus membros."
+msgstr "Mostrar os eventos da família e dos seus membros."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:110
 msgid "Relation to Home Person"
@@ -32428,7 +32429,7 @@ msgstr ""
 "\n"
 "O objecto multimédia do Gramps é um conjunto de dados sobre o ficheiro do "
 "objecto multimédia: o seu nome de ficheiro e/ou caminho, a sua descrição, a "
-"sua ID, notas, referências a fontes, etc. Esses dados %(bold_start)snão "
+"sua Id, notas, referências a fontes, etc. Esses dados %(bold_start)snão "
 "incluem o ficheiro propriamente dito%(bold_end)s.\n"
 "\n"
 "Os ficheiros contendo imagem, som, video, etc, existem separadamente no seu "
@@ -33029,7 +33030,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/reorderids.py:67
 msgid "manual|Reorder_Gramps_ID"
-msgstr "Reordenar_IDs_Gramps"
+msgstr "Reordenar_Ids_Gramps"
 
 #. set gramps style title for the window
 #: ../gramps/plugins/tool/reorderids.py:203
@@ -33037,7 +33038,7 @@ msgstr "Reordenar_IDs_Gramps"
 #: ../gramps/plugins/tool/reorderids.py:514
 #: ../gramps/plugins/tool/tools.gpr.py:375
 msgid "Reorder Gramps IDs"
-msgstr "Reordenar IDs Gramps"
+msgstr "Reordenar Ids Gramps"
 
 #: ../gramps/plugins/tool/reorderids.py:525
 #: ../gramps/plugins/tool/reorderids.py:529
@@ -33287,7 +33288,7 @@ msgstr "Gere operações em lote em ficheiros multimédia"
 
 #: ../gramps/plugins/tool/tools.gpr.py:198
 msgid "Not Related"
-msgstr "Sem parentesco"
+msgstr "Indivíduos sem parentesco"
 
 #: ../gramps/plugins/tool/tools.gpr.py:199
 msgid "Find people who are not in any way related to the selected person"
@@ -33357,12 +33358,12 @@ msgstr "Remove objectos não usados da base de dados"
 
 #: ../gramps/plugins/tool/tools.gpr.py:376
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
-msgstr "Reordena as IDs Gramps de acordo com as regras predefinidas."
+msgstr "Reordena as Ids Gramps de acordo com as regras predefinidas."
 
 #: ../gramps/plugins/tool/tools.gpr.py:398
 #: ../gramps/plugins/tool/tools.gpr.py:399
 msgid "Sorts events"
-msgstr "Ordena eventos"
+msgstr "Ordenar eventos"
 
 #: ../gramps/plugins/tool/tools.gpr.py:420
 msgid "Verify the Data"
@@ -34962,7 +34963,7 @@ msgstr "Separador que mostra os costados do indivíduo seleccionado"
 #: ../gramps/plugins/view/view.gpr.py:159
 #: ../gramps/plugins/view/view.gpr.py:174
 msgid "Charts"
-msgstr "Gráficos"
+msgstr "Costados"
 
 #: ../gramps/plugins/view/view.gpr.py:145
 msgid "A view showing parents through a fanchart"
@@ -35509,7 +35510,7 @@ msgstr "Suprimir Ids Gramps"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1684
 msgid "Whether to include the Gramps ID of objects"
-msgstr "Se deve incluir a ID Gramps dos objectos"
+msgstr "Se deve incluir a Id Gramps dos objectos"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1689
 msgid "Sort all children in birth order"
