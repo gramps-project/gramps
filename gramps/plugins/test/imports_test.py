@@ -26,7 +26,7 @@ import os
 import sys
 import re
 import locale
-from time import strptime, strftime
+from time import localtime, strptime
 from unittest.mock import patch
 #import logging
 
@@ -64,12 +64,6 @@ def mock_localtime(*args):
     Mock up a dummy to replace the varying 'time string results'
     """
     return strptime("25 Dec 1999", "%d %b %Y")
-
-def mock_strftime(*args):
-    """
-    Mock up a dummy to replace the varying 'time string results'
-    """
-    return strftime(args[0], (1999, 12, 25, 0, 0, 0, 5, 359, -1))
 
 class TestImports(unittest.TestCase):
     """The test class cases will be dynamically created at import time from
@@ -199,12 +193,21 @@ def make_tst_function(tstfile, file_name):
     """ This is here to support the dynamic function creation.  This creates
     the test function (a method, to be precise).
     """
-    @patch('gramps.gen.utils.unknown.strftime', side_effect=mock_strftime)
-    @patch('time.strftime', side_effect=mock_strftime)
-    def tst(self, mstrftime1, mstrftime2):
+
+    @patch('gramps.plugins.db.dbapi.dbapi.time')
+    @patch('gramps.plugins.db.bsddb.write.time')
+    @patch('gramps.gen.utils.unknown.localtime')
+    @patch('gramps.gen.utils.unknown.time')
+    @patch('time.localtime')
+    def tst(self, mockptime, mocktime, mockltime, mockwtime, mockdtime):
         """ This compares the import file with the expected result '.gramps'
         file.
         """
+        mockptime.side_effect = mock_localtime
+        mocktime.side_effect = mock_time
+        mockltime.side_effect = mock_localtime
+        mockwtime.side_effect = mock_time
+        mockdtime.side_effect = mock_time
         fn1 = os.path.join(TEST_DIR, tstfile)
         fn2 = os.path.join(TEST_DIR, (file_name + ".gramps"))
         fres = os.path.join(TEMP_DIR, (file_name + ".difs"))
