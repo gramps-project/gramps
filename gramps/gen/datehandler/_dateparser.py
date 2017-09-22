@@ -449,8 +449,8 @@ class DateParser:
         self._modifier_after = re.compile('(.*)\s+%s' % self._mod_after_str,
                                           re.IGNORECASE)
         self._abt2     = re.compile('<(.*)>', re.IGNORECASE)
-        self._text     = re.compile('%s\.?\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._mon_str,
-                                    re.IGNORECASE)
+        self._text     = re.compile('%s\.?(\s+\d+)?\s*,?\s+((\d+)(/\d+)?)?\s*$'
+                                        % self._mon_str, re.IGNORECASE)
         # this next RE has the (possibly-slashed) year at the string's end
         self._text2    = re.compile('(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$' % self._mon_str,
                                     re.IGNORECASE)
@@ -542,7 +542,9 @@ class DateParser:
                     y = int(groups[3])
                     s = False
             value = (d, m, y, s)
-            if check and not check((d, m, y)):
+            if s and julian_valid(value): # slash year
+                pass
+            elif check and not check((d, m, y)):
                 value = Date.EMPTY
             return value
 
@@ -670,6 +672,15 @@ class DateParser:
                     y = self._get_int(groups[1])
                     m = self._get_int(groups[3])
                     d = self._get_int(groups[4])
+                if m > 12: # maybe a slash year, not a month (1722/3 is March)
+                    if y % 100 == 99:
+                        modyear = (y + 1) % 1000
+                    elif y % 10 == 9:
+                        modyear = (y + 1) % 100
+                    else:
+                        modyear = (y + 1) % 10
+                    if m == modyear:
+                        return (0, 0, y + 1, True) # slash year
             else:
                 y = self._get_int(groups[4])
                 if self.dmy:
@@ -682,6 +693,15 @@ class DateParser:
                 else:
                     m = self._get_int(groups[1])
                     d = self._get_int(groups[3])
+                if m > 12: # maybe a slash year, not a month
+                    if m % 100 == 99:
+                        modyear = (m + 1) % 1000
+                    elif m % 10 == 9:
+                        modyear = (m + 1) % 100
+                    else:
+                        modyear = (m + 1) % 10
+                    if y == modyear:
+                        return (0, 0, m + 1, True) # slash year
             value = (d, m, y, False)
             if check and not check((d, m, y)):
                 value = Date.EMPTY
