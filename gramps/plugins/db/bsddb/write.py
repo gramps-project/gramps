@@ -1655,7 +1655,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         bsddb
         """
         self.surname_list = sorted(
-                        [s.decode('utf-8') for s in self.surnames.keys()],
+                        [s.decode('utf-8') for s in set(self.surnames.keys())],
                         key=glocale.sort_key)
 
     def add_to_surname_list(self, person, batch_transaction):
