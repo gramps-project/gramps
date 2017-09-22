@@ -5018,6 +5018,8 @@ class GedcomParser(UpdateCallback):
                 event.set_description('')
             else:
                 state.family.type.set(FamilyRelType.MARRIED)
+            if descr == "Y":
+                event.set_description('')
 
         self.dbase.commit_event(event, self.trans)
         event_ref.ref = event.handle
