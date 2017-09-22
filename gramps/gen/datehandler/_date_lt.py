@@ -130,6 +130,7 @@ class DateParserLT(DateParser):
 
     def init_strings(self):
         DateParser.init_strings(self)
+        # this next RE has the (possibly-slashed) year at the string's start
         self._text2 = re.compile('((\d+)(/\d+)?)?\s+?m\.\s+%s\s*(\d+)?\s*d?\.?$'
                                  % self._mon_str, re.IGNORECASE)
         _span_1 = ['nuo']

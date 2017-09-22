@@ -522,7 +522,7 @@ class DateParser:
 
     def _parse_calendar(self, text, regex1, regex2, mmap, check=None):
         match = regex1.match(text.lower())
-        if match: # user typed in month-name day year
+        if match: # user typed in 'month-name day year' or 'month-name year'
             groups = match.groups()
             if groups[0] is None:
                 m = 0
@@ -535,10 +535,10 @@ class DateParser:
                 s = False
             else:
                 d = self._get_int(groups[1])
-                if groups[4] is not None: # slash year "/80"
+                if groups[4] is not None:
                     y = int(groups[3]) + 1 # fullyear + 1
-                    s = True
-                else: # regular, non-slash date
+                    s = True # slash year
+                else: # regular year
                     y = int(groups[3])
                     s = False
             value = (d, m, y, s)
@@ -561,10 +561,10 @@ class DateParser:
                     y = None
                     s = False
                 else:
-                    if groups[2] is not None: # slash year digit
+                    if groups[2] is not None:
                         y = int(groups[1]) + 1 # fullyear + 1
-                        s = True
-                    else: # regular, non-slash year
+                        s = True # slash year
+                    else: # regular year
                         y = int(groups[1])
                         s = False
             else:
@@ -577,10 +577,10 @@ class DateParser:
                     y = None
                     s = False
                 else:
-                    if groups[4] is not None: # slash year digit
+                    if groups[4] is not None:
                         y = int(groups[3]) + 1 # fullyear + 1
-                        s = True
-                    else: # regular, non-slash year
+                        s = True # slash year
+                    else: # regular year
                         y = int(groups[3])
                         s = False
             value = (d, m, y, s)
@@ -621,8 +621,8 @@ class DateParser:
             y = self._get_int(groups[0])
             m = self._get_int(groups[3])
             d = self._get_int(groups[4])
-            if groups[2] and julian_valid((d, m, y + 1)): # slash year digit
-                return (d, m, y + 1, True)
+            if groups[2] and julian_valid((d, m, y + 1)):
+                return (d, m, y + 1, True) # slash year
             if check is None or check((d, m, y)):
                 return (d, m, y, False)
             return Date.EMPTY
