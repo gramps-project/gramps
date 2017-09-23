@@ -65,7 +65,8 @@ from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
                                       BsddbUpgradeRequiredError,
                                       BsddbDowngradeRequiredError,
                                       PythonUpgradeRequiredError,
-                                      PythonDowngradeError)
+                                      PythonDowngradeError,
+                                      DbConnectionError)
 from .pluginmanager import GuiPluginManager
 from .dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2,
                             WarningDialog)
@@ -278,6 +279,9 @@ class DbLoader(CLIDbLoader):
         except PythonDowngradeError as msg:
             self.dbstate.no_database()
             self._warn( _("Cannot open database"), str(msg))
+        except DbConnectionError as msg:
+            self.dbstate.no_database()
+            self._warn(_("Cannot open database"), str(msg))
         except OSError as msg:
             self.dbstate.no_database()
             self._errordialog(

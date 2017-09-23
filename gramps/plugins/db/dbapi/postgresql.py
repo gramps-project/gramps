@@ -41,6 +41,7 @@ from gramps.plugins.db.dbapi.dbapi import DBAPI
 from gramps.gen.utils.configmanager import ConfigManager
 from gramps.gen.config import config
 from gramps.gen.db.dbconst import ARRAYSIZE
+from gramps.gen.db.exceptions import DbConnectionError
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -91,7 +92,10 @@ class PostgreSQL(DBAPI):
         for key in config_mgr.get_section_settings('database'):
             dbkwargs[key] = config_mgr.get('database.' + key)
 
-        self.dbapi = Connection(**dbkwargs)
+        try:
+            self.dbapi = Connection(**dbkwargs)
+        except psycopg2.OperationalError as msg:
+            raise DbConnectionError(str(msg), config_file)
 
 
 #-------------------------------------------------------------------------
