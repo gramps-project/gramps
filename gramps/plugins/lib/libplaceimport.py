@@ -88,6 +88,7 @@ class PlaceImport:
                 n -= 1
             while n > type_num:
                 if loc[n]:
+                    # TODO for Arabic, should the next comma be translated?
                     title = ', '.join([item for item in loc[n:] if item])
                     parent = self.__add_place(loc[n], n, parent, title, trans)
                     self.loc2handle[tuple([''] * n + loc[n:])] = parent

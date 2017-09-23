@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2015-2016 Douglas S. Blank <doug.blank@gmail.com>
-# Copyright (C) 2016      Nick Hall
+# Copyright (C) 2016-2017 Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,12 +19,17 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+"""
+Backend for PostgreSQL database.
+"""
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules
 #
 #-------------------------------------------------------------------------
 import psycopg2
+import os
 import re
 
 #-------------------------------------------------------------------------
@@ -32,26 +37,56 @@ import re
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.plugins.db.dbapi.dbapi import DBAPI
+from gramps.gen.utils.configmanager import ConfigManager
 from gramps.gen.db.dbconst import ARRAYSIZE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 psycopg2.paramstyle = 'format'
 
-class Postgresql:
-    @classmethod
-    def get_summary(cls):
+#-------------------------------------------------------------------------
+#
+# PostgreSQL class
+#
+#-------------------------------------------------------------------------
+class PostgreSQL(DBAPI):
+
+    def get_summary(self):
         """
         Return a diction of information about this database
         backend.
         """
-        summary = {
-            "DB-API version": "2.0",
-            "Database SQL type": cls.__name__,
-            "Database SQL module": "psycopg2",
-            "Database SQL module version": psycopg2.__version__,
-            "Database SQL module location": psycopg2.__file__,
-        }
+        summary = super().get_summary()
+        summary.update({
+            _("Database version"): psycopg2.__version__,
+            _("Database module location"): psycopg2.__file__,
+        })
         return summary
+
+    def _initialize(self, directory):
+        config_file = os.path.join(directory, 'settings.ini')
+        config_mgr = ConfigManager(config_file)
+        config_mgr.register('database.dbname', 'gramps')
+        config_mgr.register('database.host', 'localhost')
+        config_mgr.register('database.user', 'user')
+        config_mgr.register('database.password', 'password')
+        config_mgr.register('database.port', 'port')
+        config_mgr.load()
+
+        dbkwargs = {}
+        for key in config_mgr.get_section_settings('database'):
+            dbkwargs[key] = config_mgr.get('database.' + key)
+
+        self.dbapi = Connection(**dbkwargs)
+
+
+#-------------------------------------------------------------------------
+#
+# Connection class
+#
+#-------------------------------------------------------------------------
+class Connection:
 
     def __init__(self, *args, **kwargs):
         self.__connection = psycopg2.connect(*args, **kwargs)
@@ -140,6 +175,11 @@ class Postgresql:
         return Cursor(self.__connection)
 
 
+#-------------------------------------------------------------------------
+#
+# Cursor class
+#
+#-------------------------------------------------------------------------
 class Cursor:
     def __init__(self, connection):
         self.__connection = connection

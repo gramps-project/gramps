@@ -676,6 +676,7 @@ class GeneWebParser:
                 except IndexError:  # not all parts are written all the time
                     pass
                 if tnth:    # Append title numer to title
+                    # TODO for Arabic, should the next comma be translated?
                     ttitle += ", " + tnth
                 title = self.create_event(
                            EventType.NOB_TITLE, ttitle, tstart, tplace)

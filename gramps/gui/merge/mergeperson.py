@@ -267,6 +267,7 @@ class MergePerson(ManagedWindow):
         if len(alist) > 0:
             self.add(tobj, title, _("Addresses"))
             for addr in alist:
+                # TODO for Arabic, should the next line's comma be translated?
                 location = ", ".join([addr.get_street(), addr.get_city(),
                                      addr.get_state(), addr.get_country(),
                                      addr.get_postal_code(), addr.get_phone()])

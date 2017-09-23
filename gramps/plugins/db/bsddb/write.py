@@ -1655,7 +1655,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         bsddb
         """
         self.surname_list = sorted(
-                        [s.decode('utf-8') for s in self.surnames.keys()],
+                        [s.decode('utf-8') for s in set(self.surnames.keys())],
                         key=glocale.sort_key)
 
     def add_to_surname_list(self, person, batch_transaction):
@@ -2290,7 +2290,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         else:
             bsddb_version = _("Unknown")
         return {
-            _("DB-API version"): "n/a",
             _("Number of people"): self.get_number_of_people(),
             _("Number of families"): self.get_number_of_families(),
             _("Number of sources"): self.get_number_of_sources(),
@@ -2301,8 +2300,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             _("Number of repositories"): self.get_number_of_repositories(),
             _("Number of notes"): self.get_number_of_notes(),
             _("Number of tags"): self.get_number_of_tags(),
-            _("Data version"): schema_version,
-            _("Database db version"): bsddb_version,
+            _("Schema version"): schema_version,
+            _("Database version"): bsddb_version,
         }
 
 def _mkname(path, name):

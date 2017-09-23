@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2015-2016 Douglas S. Blank <doug.blank@gmail.com>
-# Copyright (C) 2016      Nick Hall
+# Copyright (C) 2016-2017 Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #
 
 """
-Backend for sqlite database.
+Backend for SQLite database.
 """
 
 #-------------------------------------------------------------------------
@@ -29,43 +29,59 @@ Backend for sqlite database.
 #
 #-------------------------------------------------------------------------
 import sqlite3
-import logging
+import os
 import re
+import logging
 
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.plugins.db.dbapi.dbapi import DBAPI
 from gramps.gen.db.dbconst import ARRAYSIZE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 sqlite3.paramstyle = 'qmark'
 
 #-------------------------------------------------------------------------
 #
-# Sqlite class
+# SQLite class
 #
 #-------------------------------------------------------------------------
-class Sqlite:
+class SQLite(DBAPI):
+
+    def get_summary(self):
+        """
+        Return a dictionary of information about this database backend.
+        """
+        summary = super().get_summary()
+        summary.update({
+            _("Database version"): sqlite3.sqlite_version,
+            _("Database module version"): sqlite3.version,
+            _("Database module location"): sqlite3.__file__,
+        })
+        return summary
+
+    def _initialize(self, directory):
+        if directory == ':memory:':
+            path_to_db = ':memory:'
+        else:
+            path_to_db = os.path.join(directory, 'sqlite.db')
+        self.dbapi = Connection(path_to_db)
+
+
+#-------------------------------------------------------------------------
+#
+# Connection class
+#
+#-------------------------------------------------------------------------
+class Connection:
     """
     The Sqlite class is an interface between the DBAPI class which is the Gramps
     backend for the DBAPI interface and the sqlite3 python module.
     """
-    @classmethod
-    def get_summary(cls):
-        """
-        Return a dictionary of information about this database backend.
-        """
-        summary = {
-            "DB-API version": "2.0",
-            "Database SQL type": cls.__name__,
-            "Database SQL module": "sqlite3",
-            "Database SQL Python module version": sqlite3.version,
-            "Database SQL module version": sqlite3.sqlite_version,
-            "Database SQL module location": sqlite3.__file__,
-        }
-        return summary
 
     def __init__(self, *args, **kwargs):
         """

@@ -1209,6 +1209,7 @@ class UpdateAddons(ManagedWindow):
         if errors:
             OkDialog(_("Installation Errors"),
                      _("The following addons had errors: ") +
+                     # TODO for Arabic, should the next comma be translated?
                      ", ".join(errors),
                      parent=self.parent_window)
         if count:

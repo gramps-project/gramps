@@ -129,6 +129,7 @@ class CitationBaseModel:
         Return the sorted list of tags.
         """
         tag_list = list(map(self.get_tag_name, data[COLUMN_TAGS]))
+        # TODO for Arabic, should the next line's comma be translated?
         return ', '.join(sorted(tag_list, key=glocale.sort_key))
 
     def citation_tag_color(self, data):
@@ -241,6 +242,7 @@ class CitationBaseModel:
             try:
                 source = self.db.get_source_from_handle(source_handle)
                 tag_list = list(map(self.get_tag_name, source.get_tag_list()))
+                # TODO for Arabic, should the next line's comma be translated?
                 value = ', '.join(sorted(tag_list, key=glocale.sort_key))
             except:
                 value = ''
@@ -288,6 +290,7 @@ class CitationBaseModel:
         Return the sorted list of tags.
         """
         tag_list = list(map(self.get_tag_name, data[COLUMN2_TAGS]))
+        # TODO for Arabic, should the next line's comma be translated?
         return ', '.join(sorted(tag_list, key=glocale.sort_key))
 
     def source_src_tag_color(self, data):

@@ -74,6 +74,7 @@ class HasRepo(Rule):
         if self.list[2]:
             addr_match = False
             for addr in repo.address_list:
+                # TODO for Arabic, should the next line's comma be translated?
                 addr_text = ', '.join(addr.get_text_data_list())
                 if self.match_substring(2, addr_text):
                     addr_match = True
@@ -84,6 +85,7 @@ class HasRepo(Rule):
         if self.list[3]:
             url_match = False
             for url in repo.urls:
+                # TODO for Arabic, should the next line's comma be translated?
                 url_text = ', '.join(url.get_text_data_list())
                 if self.match_substring(3, url_text):
                     url_match = True

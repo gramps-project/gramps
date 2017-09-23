@@ -25,11 +25,8 @@
 #
 #-------------------------------------------------------------------------
 import os
-import shutil
 import time
-import sys
 import pickle
-from operator import itemgetter
 import logging
 
 #------------------------------------------------------------------------
@@ -82,46 +79,12 @@ class DBAPI(DbGeneric):
             version_file.write(str(self.VERSION[0]))
 
         versionpath = os.path.join(directory, str(DBBACKEND))
-        _LOG.debug("Write database backend file to 'dbapi'")
+        _LOG.debug("Write database backend file")
         with open(versionpath, "w") as version_file:
-            version_file.write("dbapi")
-        # Write settings.py and settings.ini:
-        settings_py = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                   "settings.py")
-        settings_ini = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                    "settings.ini")
-        LOG.debug("Copy settings.py from: " + settings_py)
-        LOG.debug("Copy settings.ini from: " + settings_py)
-        shutil.copy2(settings_py, directory)
-        shutil.copy2(settings_ini, directory)
+            version_file.write(self.__class__.__name__.lower())
 
     def _initialize(self, directory):
-        # Run code from directory
-        from gramps.gen.utils.configmanager import ConfigManager
-        config_file = os.path.join(directory, 'settings.ini')
-        config_mgr = ConfigManager(config_file)
-        config_mgr.register('database.dbtype', 'sqlite')
-        config_mgr.register('database.dbname', 'gramps')
-        config_mgr.register('database.host', 'localhost')
-        config_mgr.register('database.user', 'user')
-        config_mgr.register('database.password', 'password')
-        config_mgr.register('database.port', 'port')
-        config_mgr.load() # load from settings.ini
-        settings = {
-            "__file__":
-            os.path.join(directory, "settings.py"),
-            "config": config_mgr
-        }
-        settings_file = os.path.join(directory, "settings.py")
-        with open(settings_file) as fp:
-            code = compile(fp.read(), settings_file, 'exec')
-            exec(code, globals(), settings)
-        self.dbapi = settings["dbapi"]
-
-        # We use the existence of the person table as a proxy for the database
-        # being new
-        if not self.dbapi.table_exists("person"):
-            self._create_schema()
+        raise NotImplementedError
 
     def _create_schema(self):
         """
@@ -261,23 +224,26 @@ class DBAPI(DbGeneric):
         Lowlevel interface to the backend transaction.
         Executes a db BEGIN;
         """
-        _LOG.debug("    DBAPI %s transaction begin", hex(id(self)))
-        self.dbapi.begin()
+        if self.transaction == None:
+            _LOG.debug("    DBAPI %s transaction begin", hex(id(self)))
+            self.dbapi.begin()
 
     def _txn_commit(self):
         """
         Lowlevel interface to the backend transaction.
         Executes a db END;
         """
-        _LOG.debug("    DBAPI %s transaction commit", hex(id(self)))
-        self.dbapi.commit()
+        if self.transaction == None:
+            _LOG.debug("    DBAPI %s transaction commit", hex(id(self)))
+            self.dbapi.commit()
 
     def _txn_abort(self):
         """
         Lowlevel interface to the backend transaction.
         Executes a db ROLLBACK;
         """
-        self.dbapi.rollback()
+        if self.transaction == None:
+            self.dbapi.rollback()
 
     def transaction_begin(self, transaction):
         """
@@ -995,16 +961,3 @@ class DBAPI(DbGeneric):
         in the appropriate type.
         """
         return [v if not isinstance(v, bool) else int(v) for v in values]
-
-    def get_summary(self):
-        """
-        Returns dictionary of summary item.
-        Should include, if possible:
-
-        _("Number of people")
-        _("Version")
-        _("Schema version")
-        """
-        summary = super().get_summary()
-        summary.update(self.dbapi.__class__.get_summary())
-        return summary

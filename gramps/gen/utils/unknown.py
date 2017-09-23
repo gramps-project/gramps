@@ -117,6 +117,7 @@ def make_unknown(class_arg, explanation, class_func, commit_func, transaction,
             obj.set_type(EventType.UNKNOWN)
     elif isinstance(obj, Place):
         obj.set_title(_('Unknown'))
+        obj.name.set_value(_('Unknown'))
     elif isinstance(obj, Source):
         obj.set_title(_('Unknown'))
     elif isinstance(obj, Citation):

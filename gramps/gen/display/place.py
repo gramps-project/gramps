@@ -80,6 +80,7 @@ class PlaceDisplay:
             if config.get('preferences.place-reverse'):
                 names.reverse()
 
+            # TODO for Arabic, should the next line's comma be translated?
             return ", ".join(names)
 
 def _find_populated_place(places):

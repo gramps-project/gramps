@@ -559,6 +559,7 @@ class PeopleBaseModel(BaseModel):
         cached, value = self.get_cached_value(handle, "TAGS")
         if not cached:
             tag_list = list(map(self.get_tag_name, data[COLUMN_TAGS]))
+            # TODO for Arabic, should the next line's comma be translated?
             value = ', '.join(sorted(tag_list, key=glocale.sort_key))
             self.set_cached_value(handle, "TAGS", value)
         return value

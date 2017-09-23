@@ -22,15 +22,15 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 register(DATABASE,
-         id    = 'dbapi',
-         name  = _("DB-API"),
-         name_accell  = _("DB-_API Database"),
-         description =  _("DB-API Database"),
-         version = '1.0.32',
-         gramps_target_version = "5.1",
-         status = STABLE,
-         fname = 'dbapi.py',
-         databaseclass = 'DBAPI',
+         id='sqlite',
+         name=_('SQLite'),
+         name_accell=_('_SQLite Database'),
+         description=_('SQLite Database'),
+         version='1.0.0',
+         gramps_target_version='5.1',
+         status=STABLE,
+         fname='sqlite.py',
+         databaseclass='SQLite',
          authors=['Doug Blank'],
-         authors_email=["doug.blank@gmail.com"],
+         authors_email=['doug.blank@gmail.com']
 )

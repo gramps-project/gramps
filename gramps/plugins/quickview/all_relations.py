@@ -315,6 +315,7 @@ class AllRelReport:
                 if isinstance(fam, list):
                     famstr = str(fam[0]+1)
                     for val in fam[1:] :
+                        # TODO for Arabic, should the next comma be translated?
                         famstr += ', ' + str(val+1)
                 else:
                     famstr = str(fam+1)

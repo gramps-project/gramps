@@ -225,6 +225,7 @@ def add_rem(remark, text):
     """ Allow for extension of remark, return new remark string
     """
     if remark:
+        # TODO for Arabic, should the next line's comma be translated?
         return remark + ', ' + text
     else:
         return text

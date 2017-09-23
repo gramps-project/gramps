@@ -601,6 +601,11 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # run backend-specific code:
         self._initialize(directory)
 
+        # We use the existence of the person table as a proxy for the database
+        # being new
+        if not self.dbapi.table_exists("person"):
+            self._create_schema()
+
         # Load metadata
         self.name_formats = self._get_metadata('name_formats')
         self.owner = self._get_metadata('researcher', default=Researcher())
@@ -674,7 +679,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Close the database.
         if update is False, don't change access times, etc.
         """
-        if self._directory:
+        if self._directory != ":memory:":
             if update:
                 # This is just a dummy file to indicate last modified time of
                 # the database for gramps.cli.clidbman:
@@ -2461,7 +2466,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             _("Number of repositories"): self.get_number_of_repositories(),
             _("Number of notes"): self.get_number_of_notes(),
             _("Number of tags"): self.get_number_of_tags(),
-            _("Data version"): ".".join([str(v) for v in self.VERSION]),
+            _("Schema version"): ".".join([str(v) for v in self.VERSION]),
         }
 
     def _order_by_person_key(self, person):

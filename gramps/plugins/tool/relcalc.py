@@ -232,6 +232,7 @@ class RelCalc(tool.Tool, ManagedWindow):
                 for person_handle in common:
                     person = self.db.get_person_from_handle(person_handle)
                     if index:
+                        # TODO for Arabic, should the next comma be translated?
                         commontext += ", "
                     commontext += name_displayer.display(person)
                     index += 1

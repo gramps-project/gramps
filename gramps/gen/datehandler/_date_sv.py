@@ -95,6 +95,10 @@ class DateParserSv(DateParser):
     def init_strings(self):
         """ Define, in Swedish, span and range regular expressions"""
         DateParser.init_strings(self)
+        self._numeric = re.compile("((\d+)/)?\s*((\d+)/)?\s*(\d+)[/ ]?$")
+        # this next RE has the (possibly-slashed) year at the string's start
+        self._text2 = re.compile('((\d+)(/\d+)?)?\s+?%s\s*(\d+)?\s*$'
+                                     % self._mon_str, re.IGNORECASE)
         self._span     = re.compile("(från)?\s*(?P<start>.+)\s*(till|--|–)\s*(?P<stop>.+)",
                                     re.IGNORECASE)
         self._range    = re.compile("(mellan)\s+(?P<start>.+)\s+och\s+(?P<stop>.+)",
@@ -109,72 +113,70 @@ class DateDisplaySv(DateDisplay):
     """
     Swedish language date display class.
     """
-    long_months = ( "", "januari", "februari", "mars", "april", "maj",
-                    "juni", "juli", "augusti", "september", "oktober",
-                    "november", "december" )
 
-    short_months = ( "", "jan", "feb", "mar", "apr", "maj", "jun",
-                      "jul", "aug", "sep", "okt", "nov", "dec" )
+    _bce_str = "%s f Kr"
 
     formats = (
         "ÅÅÅÅ-MM-DD (ISO)",
         "År/mån/dag",
-        "Månad dag, år",
-        "MÅN DAG ÅR",
-        "Dag månad år",
-        "DAG MÅN ÅR",
+        "År månad dag",
+        "År mån dag",
         )
-        # this must agree with DateDisplayEn's "formats" definition
-        # (since no locale-specific _display_gregorian exists, here)
+        # this definition must agree with its "_display_calendar" method
 
-    calendar = (
-        "",
-        "juliansk",
-        "hebreisk",
-        "fransk republikansk",
-        "persisk",
-        "islamisk",
-        "svensk"
-        )
+    def _display_calendar(self, date_val, long_months, short_months = None,
+                          inflect=""):
+        # this must agree with its locale-specific "formats" definition
 
-    _mod_str = ("", "före ", "efter ", "c:a ", "", "", "")
+        if short_months is None:
+            # Let the short formats work the same as long formats
+            short_months = long_months
 
-    _qual_str = ("", "uppskattat ", "beräknat ")
-
-    _bce_str = "%s f Kr"
-
-    def display(self, date):
-        """
-        Return a text string representing the date.
-        """
-        mod = date.get_modifier()
-        cal = date.get_calendar()
-        qual = date.get_quality()
-        start = date.get_start_date()
-        newyear = date.get_new_year()
-
-        qual_str = self._qual_str[qual]
-
-        if mod == Date.MOD_TEXTONLY:
-            return date.get_text()
-        elif start == Date.EMPTY:
-            return ""
-        elif mod == Date.MOD_SPAN:
-            d1 = self.display_cal[cal](start)
-            d2 = self.display_cal[cal](date.get_stop_date())
-            scal = self.format_extras(cal, newyear)
-            return "%sfrån %s till %s%s" % (qual_str, d1, d2, scal)
-        elif mod == Date.MOD_RANGE:
-            d1 = self.display_cal[cal](start)
-            d2 = self.display_cal[cal](date.get_stop_date())
-            scal = self.format_extras(cal, newyear)
-            return "%smellan %s och %s%s" % (qual_str, d1, d2,
-                                              scal)
+        if self.format == 0:
+            return self.display_iso(date_val)
+        elif self.format == 1:
+            # numerical: year/month/day (with slashes)
+            value = self.dd_dformat01(date_val)
+        elif self.format == 2:
+            # year month_name day
+            value = self.dd_dformat02_sv(date_val, long_months)
+        # elif self.format == 3:
         else:
-            text = self.display_cal[date.get_calendar()](start)
-            scal = self.format_extras(cal, newyear)
-            return "%s%s%s%s" % (qual_str, self._mod_str[mod],
-                                 text, scal)
+            # year month_abbreviation day
+            value = self.dd_dformat03_sv(date_val, short_months)
+        if date_val[2] < 0:
+            # TODO fix BUG 7064: non-Gregorian calendars wrongly use BCE notation for negative dates
+            return self._bce_str % value
+        else:
+            return value
+
+    def dd_dformat02_sv(self, date_val, long_months):
+        # year month_name day
+        year = self._slash_year(date_val[2], date_val[3])
+        if date_val[0] == 0:
+            if date_val[1] == 0:
+                return year
+            else:
+                return "%s %s" % (year, long_months[date_val[1]])
+        elif date_val[1] == 0: # month is zero but day is not (see 8477)
+            return self.display_iso(date_val)
+        else:
+            return "%s %s %s" % (year, long_months[date_val[1]], date_val[0])
+
+    def dd_dformat03_sv(self, date_val, short_months):
+        # year month_abbreviation day
+        year = self._slash_year(date_val[2], date_val[3])
+        if date_val[0] == 0:
+            if date_val[1] == 0:
+                return year
+            else:
+                return "%s %s" % (year, short_months[date_val[1]])
+        elif date_val[1] == 0: # month is zero but day is not (see 8477)
+            return self.display_iso(date_val)
+        else:
+            return "%s %s %s" % (year, short_months[date_val[1]], date_val[0])
+
+    display = DateDisplay.display_formatted
 
 #-------------------------------------------------------------------------
 #

@@ -34,13 +34,13 @@ plg.id    = 'navwebpage'
 plg.name  = _("Narrated Web Site")
 plg.description =  _("Produces web (HTML) pages for individuals, or a set of "
                      "individuals")
-plg.version = '1.0'
+plg.version = '2.0'
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
 plg.fname = 'narrativeweb.py'
 plg.ptype = REPORT
-plg.authors = ["Donald N. Allingham", "Rob G. Healey"]
-plg.authors_email = ["don@gramps-project.org", "robhealey1@gmail.com"]
+plg.authors = ["Donald N. Allingham", "Rob G. Healey", "Serge Noiraud"]
+plg.authors_email = ["don@gramps-project.org", "serge.noiraud@free.fr"]
 plg.category =  CATEGORY_WEB
 plg.reportclass = 'NavWebReport'
 plg.optionclass = 'NavWebOptions'

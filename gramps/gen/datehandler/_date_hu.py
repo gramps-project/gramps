@@ -229,6 +229,7 @@ class DateParserHU(DateParser):
 
         self._numeric = re.compile(
                             "((\d+)[/\.])?\s*((\d+)[/\.])?\s*(\d+)[/\. ]?$")
+        # this next RE has the (possibly-slashed) year at the string's start
         self._text2 = re.compile('((\d+)(/\d+)?\.)?\s+?%s\.?\s*(\d+\.)?\s*$'
                                        % self._mon_str, re.IGNORECASE)
         _span_1 = ['-tó\(ő\)l', '-tól', '-től']

@@ -129,8 +129,8 @@ def import_as_dict(filename, user, skp_imp_adds=True):
     """
     Import the filename into a InMemoryDB and return it.
     """
-    db = make_database("inmemorydb")
-    db.load(None)
+    db = make_database("sqlite")
+    db.load(":memory:")
     db.set_feature("skip-import-additions", skp_imp_adds)
     status = import_from_filename(db, filename, user)
     return db if status else None

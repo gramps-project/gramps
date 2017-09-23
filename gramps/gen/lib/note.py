@@ -111,7 +111,7 @@ class Note(BasicPrimaryObject):
                 "_class": {"enum": [cls.__name__]},
                 "handle": {"type": "string",
                            "maxLength": 50,
-                           "title": ("Handle")},
+                           "title": _("Handle")},
                 "gramps_id": {"type": "string",
                               "title": _("Gramps ID")},
                 "text": StyledText.get_schema(),
