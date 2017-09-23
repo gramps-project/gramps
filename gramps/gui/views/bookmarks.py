@@ -254,7 +254,6 @@ class BookmarksDialog(ManagedWindow):
         self.setup_configs('interface.bookmarksdialog', 400, 350)
         self.show()
         self.edit()
-        self.close()
 
     def draw_window(self):
         """Draw the bookmark dialog box."""
@@ -286,7 +285,6 @@ class BookmarksDialog(ManagedWindow):
         delete.connect('clicked', self.delete_clicked)
         self.top.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
         self.top.add_button(_('_Help'), Gtk.ResponseType.HELP)
-        self.top.connect('delete-event', self.close)
         bbox.add(up)
         bbox.add(down)
         bbox.add(delete)
@@ -318,6 +316,10 @@ class BookmarksDialog(ManagedWindow):
             elif self.response == Gtk.ResponseType.CLOSE:
                 if self.modified:
                     self.bm_class.redraw_and_report_change()
+                self.close()
+                break
+            elif self.response == Gtk.ResponseType.DELETE_EVENT:
+                # ManagedWindow already handles the delete-event signal
                 break
 
     def delete_clicked(self, obj):
