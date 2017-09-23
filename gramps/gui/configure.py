@@ -1443,6 +1443,17 @@ class GrampsPreferences(ConfigureDialog):
         the_iter = obj.get_active_iter()
         db_choice = the_list.get_value(the_iter, 2)
         config.set('database.backend', db_choice)
+        self.set_connection_widgets(db_choice)
+
+    def set_connection_widgets(self, db_choice):
+        """
+        Sets the connection widgets sensitive for PostgreSQL.
+        """
+        for widget in self.connection_widgets:
+            if db_choice == 'postgresql':
+                widget.set_sensitive(True)
+            else:
+                widget.set_sensitive(False)
 
     def add_famtree_panel(self, configdialog):
         grid = Gtk.Grid()
@@ -1458,6 +1469,25 @@ class GrampsPreferences(ConfigureDialog):
             obox = self.__create_backend_combo()
             grid.attach(obox, 2, current_line, 1, 1)
             current_line += 1
+
+            self.connection_widgets = []
+            entry = self.add_entry(grid, _('Username'), current_line,
+                                   'database.user', col_attach=1)
+            self.connection_widgets.append(entry)
+            current_line += 1
+            entry = self.add_entry(grid, _('Password'), current_line,
+                                   'database.password', col_attach=1)
+            self.connection_widgets.append(entry)
+            current_line += 1
+            entry = self.add_entry(grid, _('Host'), current_line,
+                                   'database.host', col_attach=1)
+            self.connection_widgets.append(entry)
+            current_line += 1
+            entry = self.add_entry(grid, _('Port'), current_line,
+                                   'database.port', col_attach=1)
+            self.connection_widgets.append(entry)
+            current_line += 1
+            self.set_connection_widgets(config.get('database.backend'))
 
         self.dbpath_entry = Gtk.Entry()
         self.add_path_box(grid,
