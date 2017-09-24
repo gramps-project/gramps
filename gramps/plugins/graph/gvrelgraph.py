@@ -566,11 +566,8 @@ class RelGraphReport(Report):
 
         # at the very least, the label must have the person's name
         p_name = self._name_display.display(person)
-        if self.use_html_output:
-            # avoid < and > in the name, as this is html text
-            label += p_name.replace('<', '&#60;').replace('>', '&#62;')
-        else:
-            label += p_name
+        p_name = p_name.replace('"', '&#34;')
+        label += p_name.replace('<', '&#60;').replace('>', '&#62;')
         p_id = person.get_gramps_id()
         if self.includeid == 1: # same line
             label += " (%s)" % p_id
@@ -719,7 +716,8 @@ class RelGraphReport(Report):
             empty string
         """
         if event and self.event_choice in [2, 3, 5, 6, 7]:
-            return _pd.display_event(self._db, event)
+            place = _pd.display_event(self._db, event)
+            return place.replace('<', '&#60;').replace('>', '&#62;')
         return ''
 
 #------------------------------------------------------------------------

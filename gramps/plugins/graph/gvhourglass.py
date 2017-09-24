@@ -211,6 +211,8 @@ class HourGlassReport(Report):
         """
         p_id = person.get_gramps_id()
         name = self._name_display.display(person)
+        name = name.replace('"', '&#34;')
+        name = name.replace('<', '&#60;').replace('>', '&#62;')
 
         birth_evt = get_birth_or_fallback(self.__db, person)
         if birth_evt:
