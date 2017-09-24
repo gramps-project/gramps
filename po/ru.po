@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps50\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-18 09:19+0300\n"
-"PO-Revision-Date: 2017-09-18 09:28+0300\n"
+"POT-Creation-Date: 2017-09-24 19:52+0900\n"
+"PO-Revision-Date: 2017-09-24 19:57+0900\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -1193,7 +1193,7 @@ msgstr "Семейные древа Gramps:"
 #: ../gramps/cli/arghandler.py:441 ../gramps/cli/arghandler.py:442
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/clidbman.py:69
 #: ../gramps/cli/clidbman.py:172 ../gramps/cli/clidbman.py:200
-#: ../gramps/gui/clipboard.py:973 ../gramps/gui/configure.py:1504
+#: ../gramps/gui/clipboard.py:973 ../gramps/gui/configure.py:1534
 msgid "Family Tree"
 msgstr "Семейное древо"
 
@@ -1622,9 +1622,10 @@ msgstr "Заблокировано?"
 #: ../gramps/gen/lib/repotype.py:52 ../gramps/gen/lib/srcattrtype.py:43
 #: ../gramps/gen/lib/srcmediatype.py:56 ../gramps/gen/lib/urltype.py:47
 #: ../gramps/gen/utils/lds.py:80 ../gramps/gen/utils/lds.py:86
-#: ../gramps/gen/utils/unknown.py:119 ../gramps/gen/utils/unknown.py:121
-#: ../gramps/gen/utils/unknown.py:125 ../gramps/gen/utils/unknown.py:131
-#: ../gramps/gen/utils/unknown.py:136 ../gramps/gui/clipboard.py:186
+#: ../gramps/gen/utils/unknown.py:119 ../gramps/gen/utils/unknown.py:120
+#: ../gramps/gen/utils/unknown.py:122 ../gramps/gen/utils/unknown.py:126
+#: ../gramps/gen/utils/unknown.py:132 ../gramps/gen/utils/unknown.py:137
+#: ../gramps/gui/clipboard.py:186
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:125
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:143
 #: ../gramps/gui/editors/editmedia.py:178
@@ -1775,7 +1776,7 @@ msgstr ""
 "\n"
 
 #: ../gramps/cli/clidbman.py:542 ../gramps/gui/configure.py:1366
-#: ../gramps/gui/configure.py:1492
+#: ../gramps/gui/configure.py:1522
 msgid "Never"
 msgstr "Никогда"
 
@@ -1811,12 +1812,12 @@ msgstr ""
 "возможно, устранима через диалог «Управление семейными древами». Выберите "
 "базу данных и нажмите кнопку «Исправить»"
 
-#: ../gramps/cli/grampscli.py:152 ../gramps/gui/dbloader.py:164
+#: ../gramps/cli/grampscli.py:152 ../gramps/gui/dbloader.py:165
 msgid "Read only database"
 msgstr "База данных только для чтения"
 
-#: ../gramps/cli/grampscli.py:153 ../gramps/gui/dbloader.py:165
-#: ../gramps/gui/dbloader.py:507
+#: ../gramps/cli/grampscli.py:153 ../gramps/gui/dbloader.py:166
+#: ../gramps/gui/dbloader.py:511
 msgid "You do not have write access to the selected file."
 msgstr "У вас нет доступа для записи выбранного файла."
 
@@ -1824,14 +1825,15 @@ msgstr "У вас нет доступа для записи выбранного
 #: ../gramps/cli/grampscli.py:185 ../gramps/cli/grampscli.py:188
 #: ../gramps/cli/grampscli.py:191 ../gramps/cli/grampscli.py:194
 #: ../gramps/cli/grampscli.py:197 ../gramps/cli/grampscli.py:200
-#: ../gramps/cli/grampscli.py:203 ../gramps/gui/dbloader.py:268
-#: ../gramps/gui/dbloader.py:271 ../gramps/gui/dbloader.py:274
-#: ../gramps/gui/dbloader.py:277 ../gramps/gui/dbloader.py:280
+#: ../gramps/cli/grampscli.py:203 ../gramps/gui/dbloader.py:269
+#: ../gramps/gui/dbloader.py:272 ../gramps/gui/dbloader.py:275
+#: ../gramps/gui/dbloader.py:278 ../gramps/gui/dbloader.py:281
+#: ../gramps/gui/dbloader.py:284
 msgid "Cannot open database"
 msgstr "Ошибка открытия базы данных"
 
-#: ../gramps/cli/grampscli.py:207 ../gramps/gui/dbloader.py:284
-#: ../gramps/gui/dbloader.py:464
+#: ../gramps/cli/grampscli.py:207 ../gramps/gui/dbloader.py:288
+#: ../gramps/gui/dbloader.py:468
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Ошибка открытия файла: %s"
@@ -2068,27 +2070,27 @@ msgstr ""
 "заполните сообщение об ошибке на странице %(gramps_bugtracker_url)s\n"
 "\n"
 
-#: ../gramps/gen/config.py:240
+#: ../gramps/gen/config.py:244
 msgid "Imported %Y/%m/%d %H:%M:%S"
 msgstr "Импортировано %Y/%m/%d %H:%M:%S"
 
-#: ../gramps/gen/config.py:254
+#: ../gramps/gen/config.py:258
 msgid "Missing Given Name"
 msgstr "Имя отсутствует"
 
-#: ../gramps/gen/config.py:255
+#: ../gramps/gen/config.py:259
 msgid "Missing Record"
 msgstr "Запись отсутствует"
 
-#: ../gramps/gen/config.py:256
+#: ../gramps/gen/config.py:260
 msgid "Missing Surname"
 msgstr "Фамилия отсутствует"
 
-#: ../gramps/gen/config.py:263 ../gramps/gen/config.py:265
+#: ../gramps/gen/config.py:267 ../gramps/gen/config.py:269
 msgid "[Living]"
 msgstr "[Живой]"
 
-#: ../gramps/gen/config.py:264
+#: ../gramps/gen/config.py:268
 msgid "Private Record"
 msgstr "Приватная запись"
 
@@ -2097,7 +2099,7 @@ msgstr "Приватная запись"
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
-#: ../gramps/gen/config.py:304 ../gramps/gen/datehandler/_datestrings.py:79
+#: ../gramps/gen/config.py:308 ../gramps/gen/datehandler/_datestrings.py:79
 msgid "localized lexeme inflections||January"
 msgstr "И=январь|Р=января|Т=январём|П=январе"
 
@@ -3194,6 +3196,21 @@ msgstr ""
 "%(bold_start)sстарую%(bold_end)s версию Gramps\n"
 "и %(wiki_backup_html_start)sсоздайте резервную копию%(html_end)s вашего "
 "древа из неё."
+
+#: ../gramps/gen/db/exceptions.py:356
+#, python-format
+msgid ""
+"Database connection failed.\n"
+"\n"
+"%(message)s\n"
+"Please check your connection settings file:\n"
+"%(settings_file)s"
+msgstr ""
+"Не удалось подключиться к базе данных.\n"
+"\n"
+"%(message)s\n"
+"Проверьте файл настроек соединения:\n"
+"%(settings_file)s"
 
 #: ../gramps/gen/db/generic.py:161 ../gramps/gen/db/generic.py:211
 #: ../gramps/gen/db/generic.py:2067 ../gramps/plugins/db/bsddb/undoredo.py:251
@@ -8079,7 +8096,7 @@ msgstr "Регион"
 #: ../gramps/gui/plug/report/_bookdialog.py:373
 #: ../gramps/gui/selectors/selectperson.py:93
 #: ../gramps/gui/selectors/selectplace.py:70
-#: ../gramps/gui/views/bookmarks.py:270 ../gramps/gui/views/tags.py:408
+#: ../gramps/gui/views/bookmarks.py:269 ../gramps/gui/views/tags.py:408
 #: ../gramps/gui/views/treemodels/peoplemodel.py:611
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/ancestor.py:63
@@ -10682,17 +10699,17 @@ msgstr ""
 "Данные можно восстановить командой «Правка / Вернуть» или выходом с отменой "
 "изменений."
 
-#: ../gramps/gen/utils/unknown.py:139
+#: ../gramps/gen/utils/unknown.py:140
 msgid "Unknown, created to replace a missing note object."
 msgstr "Неизвестно. Создано вместо отсутствующей заметки."
 
 #. primitive static variable
-#: ../gramps/gen/utils/unknown.py:149
+#: ../gramps/gen/utils/unknown.py:150
 #, python-format
 msgid "Unknown, was missing %(time)s (%(count)d)"
 msgstr "Неизвестная метка. Отсутствовала %(count)d раз на %(time)s."
 
-#: ../gramps/gen/utils/unknown.py:168
+#: ../gramps/gen/utils/unknown.py:169
 #, python-format
 msgid "Objects referenced by this note were missing in a file imported on %s."
 msgstr ""
@@ -10839,8 +10856,8 @@ msgstr ""
 msgid "Drag and drop the columns to change the order"
 msgstr "Перетаскивайте столбцы с помощью мыши, чтобы изменить порядок"
 
-#: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1545
-#: ../gramps/gui/configure.py:1567 ../gramps/gui/configure.py:1590
+#: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1575
+#: ../gramps/gui/configure.py:1597 ../gramps/gui/configure.py:1620
 #: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1959
 #: ../gramps/plugins/lib/maps/geography.py:1009
 #: ../gramps/plugins/lib/maps/geography.py:1264
@@ -10888,7 +10905,7 @@ msgstr "Показать «Редактор имён»"
 #: ../gramps/gui/plug/_windows.py:691 ../gramps/gui/plug/_windows.py:747
 #: ../gramps/gui/plug/quick/_textbufdoc.py:60 ../gramps/gui/undohistory.py:90
 #: ../gramps/gui/viewmanager.py:539 ../gramps/gui/viewmanager.py:1823
-#: ../gramps/gui/views/bookmarks.py:287 ../gramps/gui/views/tags.py:430
+#: ../gramps/gui/views/bookmarks.py:286 ../gramps/gui/views/tags.py:430
 #: ../gramps/gui/widgets/grampletbar.py:635
 #: ../gramps/gui/widgets/grampletpane.py:237
 #: ../gramps/plugins/lib/maps/placeselection.py:108
@@ -10963,7 +10980,7 @@ msgstr ""
 msgid " Name Editor"
 msgstr " Редактор имён"
 
-#: ../gramps/gui/configure.py:156 ../gramps/gui/configure.py:1645
+#: ../gramps/gui/configure.py:156 ../gramps/gui/configure.py:1675
 #: ../gramps/gui/views/pageview.py:590
 msgid "Preferences"
 msgstr "Настройки"
@@ -10983,8 +11000,8 @@ msgstr "Недопустимое или неполное определение 
 #: ../gramps/gui/configure.py:1044 ../gramps/gui/configure.py:1057
 #: ../gramps/gui/configure.py:1070 ../gramps/gui/configure.py:1094
 #: ../gramps/gui/configure.py:1151 ../gramps/gui/configure.py:1375
-#: ../gramps/gui/configure.py:1393 ../gramps/gui/configure.py:1456
-#: ../gramps/gui/configure.py:1500 ../gramps/gui/views/navigationview.py:357
+#: ../gramps/gui/configure.py:1393 ../gramps/gui/configure.py:1467
+#: ../gramps/gui/configure.py:1530 ../gramps/gui/views/navigationview.py:357
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:84
 #, python-format
 msgid "%s: "
@@ -11181,7 +11198,7 @@ msgstr "_Правка"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:117
 #: ../gramps/gui/editors/editfamily.py:151
 #: ../gramps/gui/plug/report/_bookdialog.py:622
-#: ../gramps/gui/views/bookmarks.py:283 ../gramps/gui/views/tags.py:424
+#: ../gramps/gui/views/bookmarks.py:282 ../gramps/gui/views/tags.py:424
 msgid "_Remove"
 msgstr "_Удалить"
 
@@ -11508,50 +11525,66 @@ msgstr "новые"
 msgid "update"
 msgstr "обновлённые"
 
-#: ../gramps/gui/configure.py:1456
+#: ../gramps/gui/configure.py:1467
 msgid "Database backend"
 msgstr "База данных"
 
-#: ../gramps/gui/configure.py:1464
+#: ../gramps/gui/configure.py:1474
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: ../gramps/gui/configure.py:1478
+msgid "Password"
+msgstr "Пароль"
+
+#: ../gramps/gui/configure.py:1482
+msgid "Host"
+msgstr "Хост"
+
+#: ../gramps/gui/configure.py:1486
+msgid "Port"
+msgstr "Порт"
+
+#: ../gramps/gui/configure.py:1494
 msgid "Family Tree Database path"
 msgstr ""
 "Путь к базе данных\n"
 "с семейным древом"
 
-#: ../gramps/gui/configure.py:1473
+#: ../gramps/gui/configure.py:1503
 msgid "Automatically load last Family Tree"
 msgstr "Автоматически загружать последнюю базу данных"
 
-#: ../gramps/gui/configure.py:1479
+#: ../gramps/gui/configure.py:1509
 msgid "Backup path"
 msgstr "Каталог для резервного копирования"
 
-#: ../gramps/gui/configure.py:1486
+#: ../gramps/gui/configure.py:1516
 msgid "Backup on exit"
 msgstr "Делать резервную копию при выходе"
 
-#: ../gramps/gui/configure.py:1493
+#: ../gramps/gui/configure.py:1523
 msgid "Every 15 minutes"
 msgstr "Каждые 15 минут"
 
-#: ../gramps/gui/configure.py:1494
+#: ../gramps/gui/configure.py:1524
 msgid "Every 30 minutes"
 msgstr "Каждые 30 минут"
 
-#: ../gramps/gui/configure.py:1495
+#: ../gramps/gui/configure.py:1525
 msgid "Every hour"
 msgstr "Каждый час"
 
-#: ../gramps/gui/configure.py:1500
+#: ../gramps/gui/configure.py:1530
 msgid "Autobackup"
 msgstr "Автоматическое резервное копирование"
 
-#: ../gramps/gui/configure.py:1540
+#: ../gramps/gui/configure.py:1570
 msgid "Select media directory"
 msgstr "Выбрать каталог документов"
 
-#: ../gramps/gui/configure.py:1543 ../gramps/gui/configure.py:1566
-#: ../gramps/gui/configure.py:1588 ../gramps/gui/dbloader.py:401
+#: ../gramps/gui/configure.py:1573 ../gramps/gui/configure.py:1596
+#: ../gramps/gui/configure.py:1618 ../gramps/gui/dbloader.py:405
 #: ../gramps/gui/editors/edittaglist.py:119
 #: ../gramps/gui/glade/addmedia.glade:22
 #: ../gramps/gui/glade/baseselector.glade:24
@@ -11609,19 +11642,19 @@ msgstr "Выбрать каталог документов"
 msgid "_Cancel"
 msgstr "_Отменить"
 
-#: ../gramps/gui/configure.py:1563
+#: ../gramps/gui/configure.py:1593
 msgid "Select database directory"
 msgstr "Выбрать каталог базы данных"
 
-#: ../gramps/gui/configure.py:1585 ../gramps/gui/viewmanager.py:1954
+#: ../gramps/gui/configure.py:1615 ../gramps/gui/viewmanager.py:1954
 msgid "Select backup directory"
 msgstr "Выберите каталог для резервного копирования"
 
-#: ../gramps/gui/dbloader.py:119 ../gramps/gui/plug/tool.py:109
+#: ../gramps/gui/dbloader.py:120 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
 msgstr "Предупреждение отката"
 
-#: ../gramps/gui/dbloader.py:120
+#: ../gramps/gui/dbloader.py:121
 msgid ""
 "Proceeding with import will erase the undo history for this session. In "
 "particular, you will not be able to revert the import or any changes made "
@@ -11636,39 +11669,39 @@ msgstr ""
 "Если вы думаете, что может понадобиться откат импорта, пожалуйста, "
 "остановитесь и сохраните копию вашей базы данных."
 
-#: ../gramps/gui/dbloader.py:125
+#: ../gramps/gui/dbloader.py:126
 msgid "_Proceed with import"
 msgstr "_Продолжить импорт"
 
-#: ../gramps/gui/dbloader.py:125 ../gramps/gui/plug/tool.py:116
+#: ../gramps/gui/dbloader.py:126 ../gramps/gui/plug/tool.py:116
 msgid "_Stop"
 msgstr "С_топ"
 
-#: ../gramps/gui/dbloader.py:206 ../gramps/gui/dbloader.py:221
-#: ../gramps/gui/dbloader.py:251
+#: ../gramps/gui/dbloader.py:207 ../gramps/gui/dbloader.py:222
+#: ../gramps/gui/dbloader.py:252
 msgid "Are you sure you want to upgrade this Family Tree?"
 msgstr "Вы уверены, что хотите обновить формат этого древа?"
 
-#: ../gramps/gui/dbloader.py:209 ../gramps/gui/dbloader.py:224
-#: ../gramps/gui/dbloader.py:254
+#: ../gramps/gui/dbloader.py:210 ../gramps/gui/dbloader.py:225
+#: ../gramps/gui/dbloader.py:255
 msgid ""
 "I have made a backup,\n"
 "please upgrade my Family Tree"
 msgstr "У меня есть резервная копия, моё древо можно обновить"
 
-#: ../gramps/gui/dbloader.py:211 ../gramps/gui/dbloader.py:226
-#: ../gramps/gui/dbloader.py:241 ../gramps/gui/dbloader.py:256
+#: ../gramps/gui/dbloader.py:212 ../gramps/gui/dbloader.py:227
+#: ../gramps/gui/dbloader.py:242 ../gramps/gui/dbloader.py:257
 #: ../gramps/gui/plug/report/_bookdialog.py:243
 #: ../gramps/gui/plug/report/_bookdialog.py:739
 #: ../gramps/gui/viewmanager.py:841
 msgid "Cancel"
 msgstr "Отменить"
 
-#: ../gramps/gui/dbloader.py:236
+#: ../gramps/gui/dbloader.py:237
 msgid "Are you sure you want to downgrade this Family Tree?"
 msgstr "Вы действительно хотите откатить версию этого древа на более старую?"
 
-#: ../gramps/gui/dbloader.py:239
+#: ../gramps/gui/dbloader.py:240
 msgid ""
 "I have made a backup,\n"
 "please downgrade my Family Tree"
@@ -11676,27 +11709,27 @@ msgstr ""
 "Да, я сделал резервную копию.\n"
 "Откатить версию моего древа"
 
-#: ../gramps/gui/dbloader.py:325
+#: ../gramps/gui/dbloader.py:329
 msgid "All files"
 msgstr "Все файлы"
 
-#: ../gramps/gui/dbloader.py:366
+#: ../gramps/gui/dbloader.py:370
 msgid "Automatically detected"
 msgstr "Автоматически"
 
-#: ../gramps/gui/dbloader.py:375
+#: ../gramps/gui/dbloader.py:379
 msgid "Select file _type:"
 msgstr "Выбрать _тип файла:"
 
-#: ../gramps/gui/dbloader.py:391
+#: ../gramps/gui/dbloader.py:395
 msgid "Import Family Tree"
 msgstr "Импортировать семейное древо"
 
-#: ../gramps/gui/dbloader.py:402
+#: ../gramps/gui/dbloader.py:406
 msgid "Import"
 msgstr "Импорт"
 
-#: ../gramps/gui/dbloader.py:465
+#: ../gramps/gui/dbloader.py:469
 #, python-format
 msgid ""
 "File type \"%s\" is unknown to Gramps.\n"
@@ -11709,28 +11742,28 @@ msgstr ""
 "Известные типы: база данных GRAMPS, GRAMPS XML, пакет GRAMPS, GEDCOM и "
 "другие."
 
-#: ../gramps/gui/dbloader.py:488 ../gramps/gui/dbloader.py:495
+#: ../gramps/gui/dbloader.py:492 ../gramps/gui/dbloader.py:499
 msgid "Cannot open file"
 msgstr "Не удалось открыть файл"
 
-#: ../gramps/gui/dbloader.py:489
+#: ../gramps/gui/dbloader.py:493
 msgid "The selected file is a directory, not a file.\n"
 msgstr "Выбранное имя является каталогом, а не файлом.\n"
 
-#: ../gramps/gui/dbloader.py:496
+#: ../gramps/gui/dbloader.py:500
 msgid "You do not have read access to the selected file."
 msgstr "У вас нет доступа для чтения выбранного файла."
 
-#: ../gramps/gui/dbloader.py:506
+#: ../gramps/gui/dbloader.py:510
 msgid "Cannot create file"
 msgstr "Не удалось создать файл"
 
-#: ../gramps/gui/dbloader.py:531
+#: ../gramps/gui/dbloader.py:535
 #, python-format
 msgid "Could not import file: %s"
 msgstr "Ошибка импорта файла %s"
 
-#: ../gramps/gui/dbloader.py:532
+#: ../gramps/gui/dbloader.py:536
 msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
@@ -12280,7 +12313,7 @@ msgstr "Атрибуты"
 #: ../gramps/gui/selectors/selectplace.py:71
 #: ../gramps/gui/selectors/selectrepository.py:70
 #: ../gramps/gui/selectors/selectsource.py:71
-#: ../gramps/gui/views/bookmarks.py:270
+#: ../gramps/gui/views/bookmarks.py:269
 #: ../gramps/gui/views/navigationview.py:357
 #: ../gramps/plugins/gramplet/locations.py:88
 #: ../gramps/plugins/lib/libpersonview.py:99
@@ -14011,7 +14044,7 @@ msgstr "Выбор метки"
 #: ../gramps/gui/logger/_errorview.py:175
 #: ../gramps/gui/plug/report/_reportdialog.py:158
 #: ../gramps/gui/undohistory.py:82 ../gramps/gui/viewmanager.py:517
-#: ../gramps/gui/views/bookmarks.py:288 ../gramps/gui/views/tags.py:431
+#: ../gramps/gui/views/bookmarks.py:287 ../gramps/gui/views/tags.py:431
 #: ../gramps/gui/views/tags.py:644 ../gramps/gui/widgets/grampletbar.py:641
 #: ../gramps/gui/widgets/grampletpane.py:242
 #: ../gramps/plugins/tool/testcasegenerator.py:329
@@ -17886,12 +17919,12 @@ msgid "Please select a book item to configure."
 msgstr "Выберите элемент книги для настройки."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:619
-#: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:420
+#: ../gramps/gui/views/bookmarks.py:280 ../gramps/gui/views/tags.py:420
 msgid "_Up"
 msgstr "_Вверх"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:620
-#: ../gramps/gui/views/bookmarks.py:282 ../gramps/gui/views/tags.py:421
+#: ../gramps/gui/views/bookmarks.py:281 ../gramps/gui/views/tags.py:421
 msgid "_Down"
 msgstr "В_низ"
 
@@ -18784,13 +18817,13 @@ msgid "manual|Bookmarks"
 msgstr "Закладки"
 
 #. this is meaningless while it's modal
-#: ../gramps/gui/views/bookmarks.py:253 ../gramps/gui/views/bookmarks.py:264
-#: ../gramps/gui/views/bookmarks.py:357
+#: ../gramps/gui/views/bookmarks.py:253 ../gramps/gui/views/bookmarks.py:263
+#: ../gramps/gui/views/bookmarks.py:359
 #: ../gramps/gui/views/navigationview.py:276
 msgid "Organize Bookmarks"
 msgstr "Редактор закладок"
 
-#: ../gramps/gui/views/bookmarks.py:460
+#: ../gramps/gui/views/bookmarks.py:462
 msgid "Cannot bookmark this reference"
 msgstr "Не удалось добавить закладку"
 
@@ -19466,7 +19499,7 @@ msgstr ""
 "не завершилась."
 
 #: ../gramps/plugins/db/bsddb/write.py:2304
-#: ../gramps/plugins/db/dbapi/postgresql.py:62
+#: ../gramps/plugins/db/dbapi/postgresql.py:64
 #: ../gramps/plugins/db/dbapi/sqlite.py:61
 msgid "Database version"
 msgstr "Версия базы данных"
@@ -19483,7 +19516,7 @@ msgstr "База данных _PostgreSQL"
 msgid "PostgreSQL Database"
 msgstr "База данных PostgreSQL"
 
-#: ../gramps/plugins/db/dbapi/postgresql.py:63
+#: ../gramps/plugins/db/dbapi/postgresql.py:65
 #: ../gramps/plugins/db/dbapi/sqlite.py:63
 msgid "Database module location"
 msgstr "Расположение модуля базы данных"
