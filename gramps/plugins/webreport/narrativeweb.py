@@ -1612,7 +1612,7 @@ class BasePage(object):
                             '<a href="' + URL_HOMEPAGE + '">' ,
                         'html_end' : '</a>' ,
                         'version' : VERSION }
-            if date is not None:
+            if date is not None and date > 0:
                 msg += "<br />"
                 last_modif = datetime.datetime.fromtimestamp(date).strftime('%Y-%m-%d %H:%M:%S')
                 msg += _('Last change was the %(date)s') % { 'date' : last_modif }
