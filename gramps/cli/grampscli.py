@@ -59,7 +59,8 @@ from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
                                       BsddbUpgradeRequiredError,
                                       BsddbDowngradeRequiredError,
                                       PythonUpgradeRequiredError,
-                                      PythonDowngradeError)
+                                      PythonDowngradeError,
+                                      DbConnectionError)
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.utils.config import get_researcher
 from gramps.gen.recentfiles import recent_files
@@ -199,6 +200,9 @@ class CLIDbLoader:
             self.dbstate.no_database()
             self._errordialog(_("Cannot open database"), str(msg))
         except DbPythonError as msg:
+            self.dbstate.no_database()
+            self._errordialog(_("Cannot open database"), str(msg))
+        except DbConnectionError as msg:
             self.dbstate.no_database()
             self._errordialog(_("Cannot open database"), str(msg))
         except OSError as msg:
