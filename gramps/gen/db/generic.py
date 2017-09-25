@@ -575,7 +575,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if directory:
             self.load(directory)
 
-    def _initialize(self, directory):
+    def _initialize(self, directory, username, password):
         """
         Initialize database backend.
         """
@@ -586,12 +586,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
              force_bsddb_upgrade=False,
              force_bsddb_downgrade=False,
              force_python_upgrade=False,
-             update=True):
+             update=True,
+             username=None,
+             password=None):
         """
         If update is False: then don't update any files
         """
         # run backend-specific code:
-        self._initialize(directory)
+        self._initialize(directory, username, password)
 
         # We use the existence of the person table as a proxy for the database
         # being new

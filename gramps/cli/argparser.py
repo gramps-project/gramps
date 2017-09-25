@@ -62,6 +62,8 @@ Help options
 
 Application options
   -O, --open=FAMILY_TREE                 Open Family Tree
+  -U, --username=USERNAME                Database username
+  -P, --password=PASSWORD                Database password
   -C, --create=FAMILY_TREE               Create on open if new Family Tree
   -i, --import=FILENAME                  Import file
   -e, --export=FILENAME                  Export file
@@ -138,6 +140,8 @@ class ArgParser:
     The valid options are:
 
     -O, --open=FAMILY_TREE          Open Family Tree
+    -U, --username=USERNAME         Database username
+    -P, --password=PASSWORD         Database password
     -C, --create=FAMILY_TREE        Create on open if new Family Tree
     -i, --import=FILENAME           Import file
     -e, --export=FILENAME           Export file
@@ -196,6 +200,8 @@ class ArgParser:
 
         self.open_gui = None
         self.open = None
+        self.username = None
+        self.password = None
         self.exports = []
         self.actions = []
         self.imports = []
@@ -279,6 +285,10 @@ class ArgParser:
                 self.open = value
             elif option in ['-C', '--create']:
                 self.create = value
+            elif option in ['-U', '--username']:
+                self.username = value
+            elif option in ['-P', '--password']:
+                self.password = value
             elif option in ['-i', '--import']:
                 family_tree_format = None
                 if (opt_ix < len(options) - 1

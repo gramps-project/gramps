@@ -65,7 +65,7 @@ class DBAPI(DbGeneric):
         with open(versionpath, "w") as version_file:
             version_file.write(self.__class__.__name__.lower())
 
-    def _initialize(self, directory):
+    def _initialize(self, directory, username, password):
         raise NotImplementedError
 
     def _create_schema(self):

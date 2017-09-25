@@ -1427,6 +1427,11 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def requires_login(self):
+        """
+        Returns True for backends that require a login dialog, else False.
+        """
+        return False
 
 class DbWriteBase(DbReadBase):
     """

@@ -288,6 +288,8 @@ LONGOPTS = [
     "oaf-ior-fd=",
     "oaf-private",
     "open=",
+    "username=",
+    "password=",
     "create=",
     "options=",
     "screen=",
@@ -303,7 +305,7 @@ LONGOPTS = [
     "quiet",
 ]
 
-SHORTOPTS = "O:C:i:e:f:a:p:d:c:r:lLthuv?syq"
+SHORTOPTS = "O:U:P:C:i:e:f:a:p:d:c:r:lLthuv?syq"
 
 GRAMPS_UUID = uuid.UUID('516cd010-5a41-470f-99f8-eb22f1098ad6')
 

@@ -1471,14 +1471,6 @@ class GrampsPreferences(ConfigureDialog):
             current_line += 1
 
             self.connection_widgets = []
-            entry = self.add_entry(grid, _('Username'), current_line,
-                                   'database.user', col_attach=1)
-            self.connection_widgets.append(entry)
-            current_line += 1
-            entry = self.add_entry(grid, _('Password'), current_line,
-                                   'database.password', col_attach=1)
-            self.connection_widgets.append(entry)
-            current_line += 1
             entry = self.add_entry(grid, _('Host'), current_line,
                                    'database.host', col_attach=1)
             self.connection_widgets.append(entry)

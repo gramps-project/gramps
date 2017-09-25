@@ -536,7 +536,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     @catch_db_error
     def load(self, name, callback=None, mode=DBMODE_W, force_schema_upgrade=False,
              force_bsddb_upgrade=False, force_bsddb_downgrade=False,
-             force_python_upgrade=False, update=True):
+             force_python_upgrade=False, update=True,
+             username=None, password=None):
         """
         If update is False: then don't update any files; open read-only
         """

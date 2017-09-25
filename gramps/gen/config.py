@@ -163,8 +163,6 @@ register('database.backup-path', USER_HOME)
 register('database.backup-on-exit', True)
 register('database.autobackup', 0)
 register('database.path', os.path.join(HOME_DIR, 'grampsdb'))
-register('database.user', '')
-register('database.password', '')
 register('database.host', '')
 register('database.port', '')
 

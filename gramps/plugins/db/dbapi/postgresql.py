@@ -66,13 +66,14 @@ class PostgreSQL(DBAPI):
         })
         return summary
 
-    def _initialize(self, directory):
+    def requires_login(self):
+        return True
+
+    def _initialize(self, directory, username, password):
         config_file = os.path.join(directory, 'settings.ini')
         config_mgr = ConfigManager(config_file)
         config_mgr.register('database.dbname', '')
         config_mgr.register('database.host', '')
-        config_mgr.register('database.user', '')
-        config_mgr.register('database.password', '')
         config_mgr.register('database.port', '')
 
         if not os.path.exists(config_file):
@@ -81,8 +82,6 @@ class PostgreSQL(DBAPI):
                 dbname = file.readline().strip()
             config_mgr.set('database.dbname', dbname)
             config_mgr.set('database.host', config.get('database.host'))
-            config_mgr.set('database.user', config.get('database.user'))
-            config_mgr.set('database.password', config.get('database.password'))
             config_mgr.set('database.port', config.get('database.port'))
             config_mgr.save()
 
@@ -93,6 +92,10 @@ class PostgreSQL(DBAPI):
             value = config_mgr.get('database.' + key)
             if value:
                 dbkwargs[key] = value
+        if username:
+            dbkwargs['user'] = username
+        if password:
+            dbkwargs['password'] = password
 
         try:
             self.dbapi = Connection(**dbkwargs)
