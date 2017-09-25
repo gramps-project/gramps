@@ -90,7 +90,9 @@ class PostgreSQL(DBAPI):
 
         dbkwargs = {}
         for key in config_mgr.get_section_settings('database'):
-            dbkwargs[key] = config_mgr.get('database.' + key)
+            value = config_mgr.get('database.' + key)
+            if value:
+                dbkwargs[key] = value
 
         try:
             self.dbapi = Connection(**dbkwargs)
