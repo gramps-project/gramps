@@ -133,6 +133,8 @@ class BasePage: # pylint: disable=C1001
         self.target_uri = report.options['cmsuri']
         self.usecal = report.options['usecal']
         self.target_cal_uri = report.options['caluri']
+        self.extrapage = report.options['extrapage']
+        self.extrapagename = report.options['extrapagename']
         self.familymappages = None
         lang = report.options['trans']
         self.rlocale = report.set_locale(lang)
@@ -1472,6 +1474,7 @@ class BasePage: # pylint: disable=C1001
              self.report.use_home),
             (self.report.intro_fname, self._("Introduction"),
              self.report.use_intro),
+            (self.report.extrapage, self.extrapagename, (self.extrapage != "")),
             ('individuals', self._("Individuals"), True),
             (self.report.surname_fname, self._("Surnames"), True),
             ('families', self._("Families"), self.report.inc_families),

@@ -199,6 +199,12 @@ class NavWebReport(Report):
         self.usecms = self.options['usecms']
         self.target_uri = self.options['cmsuri']
 
+        # Do we add an extra page ?
+        # extrapage is the URI
+        # extrapagename is the visible name in the navigation bar.
+        self.extrapage = self.options['extrapage']
+        self.extrapagename = self.options['extrapagename']
+
         # Do we need to include web calendar ?
         self.usecal = self.options['usecal']
         self.target_cal_uri = self.options['caluri']
@@ -1532,6 +1538,8 @@ class NavWebOptions(MenuReportOptions):
         self.__navigation = None
         self.__target_cal_uri = None
         self.__securesite = False
+        self.__extra_page_name = None
+        self.__extra_page = None
         db_options = name + ' ' + dbase.get_dbname()
         MenuReportOptions.__init__(self, db_options, dbase)
 
@@ -1545,6 +1553,7 @@ class NavWebOptions(MenuReportOptions):
         self.__add_report_html(menu)
         self.__add_report_display(menu)
         self.__add_page_generation_options(menu)
+        self.__add_more_pages(menu)
         self.__add_images_generation_options(menu)
         self.__add_download_options(menu)
         self.__add_advanced_options(menu)
@@ -1674,6 +1683,28 @@ class NavWebOptions(MenuReportOptions):
                                           False)
         self.__securesite.set_help(_('Whether to use http:// or https://'))
         addopt("securesite", self.__securesite)
+
+    def __add_more_pages(self, menu):
+        """
+        Add more extra pages to the report
+        """
+        category_name = _("Extra pages")
+        addopt = partial( menu.add_option, category_name )
+        default_path_name = config.get('paths.website-extra-page-name')
+        self.__extra_page_name = StringOption(_("Extra page name"),
+                                              default_path_name)
+        self.__extra_page_name.set_help(
+            _("Your extra page name like it is shown in the menubar"))
+        self.__extra_page_name.connect('value-changed',
+                                       self.__extra_page_name_changed)
+        addopt("extrapagename", self.__extra_page_name)
+        default_path = config.get('paths.website-extra-page-uri')
+        self.__extra_page = DestinationOption(_("Your extra page path"),
+                                              default_path)
+        self.__extra_page.set_help(
+            _("Your extra page path without extension"))
+        self.__extra_page.connect('value-changed', self.__extra_page_changed)
+        addopt("extrapage", self.__extra_page)
 
     def __add_report_display(self, menu):
         """
@@ -2026,6 +2057,22 @@ class NavWebOptions(MenuReportOptions):
         3 - //mysite.org/WEBCAL      (PRL depend on the protocol used)
         """
         self.__target_cal_uri = self.__calendar_uri.get_value()
+
+    def __extra_page_name_changed(self):
+        """
+        Update the change of the extra page name
+        """
+        self._extra_page_name = self.__extra_page_name.get_value()
+        if self._extra_page_name != "":
+            config.set('paths.website-extra-page-name', self._extra_page_name)
+
+    def __extra_page_changed(self):
+        """
+        Update the change of the extra page without extension
+        """
+        self._extra_page = self.__extra_page.get_value()
+        if self._extra_page != "":
+            config.set('paths.website-extra-page-uri', self._extra_page)
 
     def __archive_changed(self):
         """
