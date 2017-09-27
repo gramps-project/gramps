@@ -228,6 +228,8 @@ class PersonPages(BasePage):
             ppl_handle_list = sort_people(self.r_db, ppl_handle_list,
                                           self.rlocale)
             first = True
+            name_format = self.report.options['name_format']
+            nme_format = _nd.name_formats[name_format][1]
             for (surname, handle_list) in ppl_handle_list:
 
                 if surname and not surname.isspace():
@@ -237,6 +239,15 @@ class PersonPages(BasePage):
                     letter = '&nbsp'
                     surname = self._("<absent>")
 
+                # In case the user choose a format name like "*SURNAME*"
+                # We must display this field in upper case. So we use the
+                # english format of format_name to find if this is the case.
+                # name_format = self.report.options['name_format']
+                # nme_format = _nd.name_formats[name_format][1]
+                if "SURNAME" in nme_format:
+                    surnamed = surname.upper()
+                else:
+                    surnamed = surname
                 first_surname = True
                 for person_handle in sorted(handle_list,
                                             key=self.sort_on_name_and_grampsid):
@@ -261,12 +272,12 @@ class PersonPages(BasePage):
                                       {'surname' : surname,
                                        'letter' : letter})
                         tcell += Html(
-                            "a", html_escape(surname), name=letter,
+                            "a", html_escape(surnamed), name=letter,
                             id_=letter,
                             title=ttle)
                     elif first_surname:
                         first_surname = False
-                        tcell += Html("a", html_escape(surname),
+                        tcell += Html("a", html_escape(surnamed),
                                       title=self._("Surnames") + " " + surname)
                     else:
                         tcell += "&nbsp;"

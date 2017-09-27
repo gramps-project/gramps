@@ -48,6 +48,7 @@ import logging
 # Gramps module
 #------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.display.name import displayer as _nd
 from gramps.gen.plug.report import utils
 from gramps.plugins.lib.libhtml import Html
 
@@ -103,7 +104,17 @@ class SurnamePage(BasePage):
             body += surnamedetail
 
             # section title
-            surnamedetail += Html("h3", html_escape(surname), inline=True)
+            # In case the user choose a format name like "*SURNAME*"
+            # We must display this field in upper case. So we use
+            # the english format of format_name to find if this is
+            # the case.
+            name_format = self.report.options['name_format']
+            nme_format = _nd.name_formats[name_format][1]
+            if "SURNAME" in nme_format:
+                surnamed = surname.upper()
+            else:
+                surnamed = surname
+            surnamedetail += Html("h3", html_escape(surnamed), inline=True)
 
             # feature request 2356: avoid genitive form
             msg = self._("This page contains an index of all the individuals "
@@ -149,7 +160,7 @@ class SurnamePage(BasePage):
                 table += tbody
 
                 for person_handle in sorted(ppl_handle_list,
-                                            key=self.sort_on_name_and_grampsid):
+                                            key=self.sort_on_given_and_birth):
 
                     person = self.r_db.get_person_from_handle(person_handle)
                     if person.get_change_time() > ldatec:

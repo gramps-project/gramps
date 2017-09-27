@@ -54,6 +54,7 @@ from gramps.plugins.lib.libhtml import Html
 # specific narrative web import
 #------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
+from gramps.gen.display.name import displayer as _nd
 from gramps.plugins.webreport.common import (get_first_letters, _KEYPERSON,
                                              alphabet_navigation, html_escape,
                                              sort_people, name_to_md5,
@@ -155,6 +156,7 @@ class SurnameListPage(BasePage):
                 hyper = Html("a", num_people, href=fname, title=num_people)
                 tcell += hyper
 
+                name_format = self.report.options['name_format']
                 # begin table body
                 with Html("tbody") as tbody:
                     table += tbody
@@ -210,10 +212,19 @@ class SurnameListPage(BasePage):
                             tcell += "&nbsp;"
                             prev_surname = surname
 
+                        # In case the user choose a format name like "*SURNAME*"
+                        # We must display this field in upper case. So we use
+                        # the english format of format_name to find if this is
+                        # the case.
+                        # name_format = self.report.options['name_format']
+                        nme_format = _nd.name_formats[name_format][1]
+                        if "SURNAME" in nme_format:
+                            surnamed = surname.upper()
+                        else:
+                            surnamed = surname
                         trow += Html("td",
                                      self.surname_link(name_to_md5(surname),
-                                                       #html_escape(surname)),
-                                                       surname),
+                                                       surnamed),
                                      class_="ColumnSurname", inline=True)
 
                         trow += Html("td", len(data_list),
