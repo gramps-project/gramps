@@ -9,6 +9,7 @@
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2012       Doug Blank
 # Copyright (C) 2012-2013  Paul Franklin
+# Copyright (C) 2017       Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -296,7 +297,7 @@ class ArgParser:
                     # The file doesn't exists, try to create it.
                     try:
                         open(abs_name, 'w').close()
-                        unlink(abs_name)
+                        os.unlink(abs_name)
                     except OSError as e:
                         message = _("WARNING: %(strerr)s "
                                     "(errno=%(errno)s):\n"
