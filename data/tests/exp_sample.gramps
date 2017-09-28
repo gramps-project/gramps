@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2016-10-29" version="5.0.0-alpha1"/>
+    <created date="2018-06-10" version="5.0.0-rc2"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
       <resaddr>Not Provided</resaddr>
@@ -34,10 +34,10 @@
       <place hlink="_0000000900000009"/>
       <description>Birth of Keith Lloyd Smith</description>
     </event>
-    <event handle="_0000000c0000000c" change="1465075916" id="E0003">
+    <event handle="_0000000c0000000c" change="1506719905" id="E0003">
       <type>Birth</type>
       <dateval val="1904-04-17"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Hans Peter Smith</description>
       <citationref hlink="_d53254b0c802fe24bdea26f3180"/>
     </event>
@@ -53,10 +53,10 @@
       <place hlink="_0000001300000013"/>
       <description>Birth of Hanna Smith</description>
     </event>
-    <event handle="_0000001600000016" change="1463929997" id="E0006">
+    <event handle="_0000001600000016" change="1506719905" id="E0006">
       <type>Birth</type>
       <dateval val="1889-08-31"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Herman Julius Nielsen</description>
     </event>
     <event handle="_0000001700000017" change="1463929997" id="E0007">
@@ -75,10 +75,10 @@
       <place hlink="_0000001e0000001e"/>
       <description>Birth of Marjorie Lee Smith</description>
     </event>
-    <event handle="_0000002100000021" change="1463929997" id="E0010">
+    <event handle="_0000002100000021" change="1506719905" id="E0010">
       <type>Birth</type>
       <dateval val="1897-09-11"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Gus Smith</description>
     </event>
     <event handle="_0000002200000022" change="1463929997" id="E0011">
@@ -87,10 +87,10 @@
       <place hlink="_0000000900000009"/>
       <description>Death of Gus Smith</description>
     </event>
-    <event handle="_0000002400000024" change="1463929997" id="E0012">
+    <event handle="_0000002400000024" change="1506719905" id="E0012">
       <type>Birth</type>
       <dateval val="1907-11-05"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Jennifer Anderson</description>
     </event>
     <event handle="_0000002500000025" change="1463929997" id="E0013">
@@ -99,10 +99,10 @@
       <place hlink="_0000000900000009"/>
       <description>Death of Jennifer Anderson</description>
     </event>
-    <event handle="_0000002700000027" change="1463929997" id="E0014">
+    <event handle="_0000002700000027" change="1506719905" id="E0014">
       <type>Birth</type>
       <dateval val="1910-05-02"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Lillie Harriet Jones</description>
     </event>
     <event handle="_0000002800000028" change="1463929997" id="E0015">
@@ -137,10 +137,10 @@
       <place hlink="_0000003400000034"/>
       <description>Christening of Amber Marie Smith</description>
     </event>
-    <event handle="_0000003700000037" change="1463929997" id="E0021">
+    <event handle="_0000003700000037" change="1506719905" id="E0021">
       <type>Birth</type>
       <dateval val="1899-12-20"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Carl Emil Smith</description>
     </event>
     <event handle="_0000003800000038" change="1463929997" id="E0022">
@@ -150,16 +150,16 @@
       <description>Death of Carl Emil Smith</description>
       <attribute type="Cause" value="Bad breath"/>
     </event>
-    <event handle="_0000003a0000003a" change="1463929997" id="E0023">
+    <event handle="_0000003a0000003a" change="1506719905" id="E0023">
       <type>Birth</type>
       <dateval val="1893-01-31"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Hjalmar Smith</description>
     </event>
-    <event handle="_0000003b0000003b" change="1463929997" id="E0024">
+    <event handle="_0000003b0000003b" change="1506719905" id="E0024">
       <type>Death</type>
       <dateval val="1894-09-25"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Death of Hjalmar Smith</description>
     </event>
     <event handle="_0000003d0000003d" change="1463929997" id="E0025">
@@ -180,10 +180,10 @@
       <place hlink="_0000001300000013"/>
       <description>Baptism of Martin Smith</description>
     </event>
-    <event handle="_0000004400000044" change="1463929997" id="E0028">
+    <event handle="_0000004400000044" change="1506719905" id="E0028">
       <type>Birth</type>
       <dateval val="1889-01-31"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Astrid Shermanna Augusta Smith</description>
     </event>
     <event handle="_0000004500000045" change="1463929997" id="E0029">
@@ -221,10 +221,10 @@
       <place hlink="_0000003f0000003f"/>
       <description>Birth of Marta Ericsdotter</description>
     </event>
-    <event handle="_0000005100000051" change="1463929997" id="E0035">
+    <event handle="_0000005100000051" change="1506719905" id="E0035">
       <type>Birth</type>
       <dateval val="1886-12-15"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Kirsti Marie Smith</description>
     </event>
     <event handle="_0000005200000052" change="1463929997" id="E0036">
@@ -245,10 +245,10 @@
       <place hlink="_0000005800000058"/>
       <description>Birth of Anna Streiffert</description>
     </event>
-    <event handle="_0000005900000059" change="1463929997" id="E0039">
+    <event handle="_0000005900000059" change="1506719905" id="E0039">
       <type>Death</type>
       <dateval val="1927-02-02"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Death of Anna Streiffert</description>
     </event>
     <event handle="_0000005c0000005c" change="1463929997" id="E0040">
@@ -268,10 +268,10 @@
       <place hlink="_0000006100000061"/>
       <description>Birth of Magnes Smith</description>
     </event>
-    <event handle="_0000006200000062" change="1463929997" id="E0043">
+    <event handle="_0000006200000062" change="1506719905" id="E0043">
       <type>Death</type>
       <dateval val="1910-02-20"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Death of Magnes Smith</description>
     </event>
     <event handle="_0000006400000064" change="1463929997" id="E0044">
@@ -431,10 +431,10 @@
       <place hlink="_0000001300000013"/>
       <description>Birth of Ingar Smith</description>
     </event>
-    <event handle="_0000009d0000009d" change="1463929997" id="E0072">
+    <event handle="_0000009d0000009d" change="1506719905" id="E0072">
       <type>Birth</type>
       <dateval val="1895-04-07"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Birth of Hjalmar Smith</description>
     </event>
     <event handle="_0000009e0000009e" change="1463929997" id="E0073">
@@ -443,10 +443,10 @@
       <place hlink="_0000001e0000001e"/>
       <description>Death of Hjalmar Smith</description>
     </event>
-    <event handle="_0000009f0000009f" change="1463929997" id="E0074">
+    <event handle="_0000009f0000009f" change="1506719952" id="E0074">
       <type>Baptism</type>
       <dateval val="1895-06-03"/>
-      <place hlink="_000000a0000000a0"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Baptism of Hjalmar Smith</description>
     </event>
     <event handle="_000000a1000000a1" change="1463929997" id="E0075">
@@ -478,10 +478,10 @@
       <place hlink="_000000a8000000a8"/>
       <description>Marriage of Eric Lloyd Smith and Darcy Horne</description>
     </event>
-    <event handle="_000000a9000000a9" change="1463929997" id="E0080">
+    <event handle="_000000a9000000a9" change="1506719905" id="E0080">
       <type>Marriage</type>
       <dateval val="1884-08-24"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Marriage of Magnes Smith and Anna Streiffert</description>
     </event>
     <event handle="_000000aa000000aa" change="1463929997" id="E0081">
@@ -508,10 +508,10 @@
       <dateval val="1856" type="about"/>
       <description>Marriage of Martin Smith and Kerstina Hansdotter</description>
     </event>
-    <event handle="_000000b1000000b1" change="1463929997" id="E0085">
+    <event handle="_000000b1000000b1" change="1506719905" id="E0085">
       <type>Marriage</type>
       <dateval val="1885-11-27"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Marriage of Gustaf Smith, Sr. and Anna Hansdotter</description>
     </event>
     <event handle="_000000b2000000b2" change="1463929997" id="E0086">
@@ -519,10 +519,10 @@
       <dateval val="1910" type="about"/>
       <description>Marriage of Edwin Willard and Kirsti Marie Smith</description>
     </event>
-    <event handle="_000000b3000000b3" change="1463929997" id="E0087">
+    <event handle="_000000b3000000b3" change="1506719905" id="E0087">
       <type>Marriage</type>
       <dateval val="1912-11-30"/>
-      <place hlink="_0000000d0000000d"/>
+      <place hlink="_db41af47aef72a46a71b7444f18"/>
       <description>Marriage of Herman Julius Nielsen and Astrid Shermanna Augusta Smith</description>
     </event>
     <event handle="_000000b4000000b4" change="1463929997" id="E0088">
@@ -624,8 +624,9 @@
       <datestr val="I think 1970 to 1971"/>
       <place hlink="_0000000900000009"/>
     </event>
-    <event handle="_d70acccb2bdd725c3180c78f28" change="1477758659" id="E0105">
+    <event handle="_d70acccb2bdd725c3180c78f28" change="1506722524" id="E0105">
       <type>Death</type>
+      <place hlink="_db41bb333d243420a5c6c590035"/>
     </event>
     <event handle="_d70ad043a9e669bb85bfe71deba" change="1477759023" id="E0106">
       <type>LossOfMojo</type>
@@ -1103,14 +1104,14 @@
         <surname>リチミシキスイミ</surname>
       </name>
     </person>
-    <person handle="_d65a448167a2736b3dfc08c11d8" change="1477759240" id="I0044">
+    <person handle="_d65a448167a2736b3dfc08c11d8" change="1506722528" id="I0044">
       <gender>M</gender>
       <name type="Birth Name">
         <first>The</first>
         <surname>Tester</surname>
       </name>
       <eventref hlink="_d65a44813a618a10a0abaa1ed6a" role="Primary"/>
-      <eventref hlink="_d70acccb2bdd725c3180c78f28" role="Unknown"/>
+      <eventref hlink="_d70acccb2bdd725c3180c78f28" role="Primary"/>
       <eventref hlink="_d70ad043a9e669bb85bfe71deba" role="Primary"/>
       <eventref hlink="_d70ad0ba90b766d0f8966fb0aba" role="Primary"/>
       <lds_ord type="baptism">
@@ -1436,6 +1437,11 @@
       <noteref hlink="_d70a86ba52769996c5099561a3d"/>
       <sourceref hlink="_d65a448169824195df7cdb2236c"/>
     </citation>
+    <citation handle="_db41be3050d2f86673a06ba6b58" change="1506721313" id="C0008">
+      <page>widipedia</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_d7044abba5546284583fee1e21c"/>
+    </citation>
   </citations>
   <sources>
     <source handle="_0000007c0000007c" change="1198222526" id="S0001">
@@ -1478,7 +1484,7 @@
       <sauthor>The tester</sauthor>
       <spubinfo>Published when the test was written</spubinfo>
       <sabbrev>TST</sabbrev>
-      <reporef hlink="_d7044c855b91ee04c40e98987e7"/>
+      <reporef hlink="_d7044c855b91ee04c40e98987e7" medium="Book"/>
     </source>
   </sources>
   <places>
@@ -1494,10 +1500,6 @@
     <placeobj handle="_0000000900000009" change="1463929997" id="P0002" type="Unknown">
       <ptitle>San Francisco, San Francisco Co., CA</ptitle>
       <pname value="San Francisco, San Francisco Co., CA"/>
-    </placeobj>
-    <placeobj handle="_0000000d0000000d" change="1463929997" id="P0003" type="Unknown">
-      <ptitle>Rønne, Bornholm, Denmark</ptitle>
-      <pname value="Rønne, Bornholm, Denmark"/>
     </placeobj>
     <placeobj handle="_0000001300000013" change="1465741826" id="P0004" type="Unknown">
       <ptitle>Gladsax, Kristianstad Län, Sweden</ptitle>
@@ -1563,7 +1565,7 @@
       <ptitle>San Jose, Santa Clara Co., CA</ptitle>
       <pname value="San Jose, Santa Clara Co., CA"/>
     </placeobj>
-    <placeobj handle="_0000008500000085" change="1463929997" id="P0018" type="Unknown">
+    <placeobj handle="_0000008500000085" change="1506723148" id="P0018" type="Address">
       <ptitle>UC Berkeley</ptitle>
       <pname value="UC Berkeley"/>
     </placeobj>
@@ -1575,10 +1577,6 @@
       <ptitle>Tommarp, Kristianstad Län, Sweden</ptitle>
       <pname value="Tommarp, Kristianstad Län, Sweden"/>
       <tagref hlink="_d54b22fbfc721be9331fb706e3"/>
-    </placeobj>
-    <placeobj handle="_000000a0000000a0" change="1463929997" id="P0021" type="Unknown">
-      <ptitle>Rønne Bornholm, Denmark</ptitle>
-      <pname value="Rønne Bornholm, Denmark"/>
     </placeobj>
     <placeobj handle="_000000a8000000a8" change="1463929997" id="P0022" type="Unknown">
       <ptitle>Woodland, Yolo Co., CA</ptitle>
@@ -1598,9 +1596,10 @@
       <pname value="Colorado"/>
       <placeref hlink="_d5324c509dc579ef9edb8afd4a8"/>
     </placeobj>
-    <placeobj handle="_d5324c509dc579ef9edb8afd4a8" change="1465316343" id="P0026" type="Country">
+    <placeobj handle="_d5324c509dc579ef9edb8afd4a8" change="1506721086" id="P0026" type="Country">
       <ptitle>United States of America</ptitle>
       <pname value="USA"/>
+      <pname value="United States of America"/>
     </placeobj>
     <placeobj handle="_d5324e9474c3e534f8629e64977" change="1465316324" id="P0027" type="County">
       <ptitle>Sacramento Co., California, USA</ptitle>
@@ -1616,41 +1615,105 @@
         <dateval val="2016-06-04"/>
       </placeref>
     </placeobj>
-    <placeobj handle="_d65a44813b0735f73085f380547" change="1472500308" id="P0029" type="Street">
+    <placeobj handle="_d65a44813b0735f73085f380547" change="1506720207" id="P0029" type="Street">
       <ptitle>123 High St, Cleveland, Cuyahoga, Ohio, USA, 44140</ptitle>
       <code>44140</code>
-      <pname value="123 High St"/>
+      <pname value="123 High St" lang="en">
+        <dateval val="1952" type="after"/>
+      </pname>
       <placeref hlink="_d65a44816ac17876c5904523a6f"/>
     </placeobj>
-    <placeobj handle="_d65a448166f44db953c2fc173cf" change="1472500308" id="P0030" type="Address">
+    <placeobj handle="_d65a448166f44db953c2fc173cf" change="1506720493" id="P0030" type="Address">
       <ptitle>123 Main St., Winslow, PA, 12345</ptitle>
-      <pname value="123 Main St., Winslow, PA, 12345"/>
+      <pname value="123 Main St., Winslow, PA, 12345" lang="en">
+        <dateval val="1950" type="after"/>
+      </pname>
+      <placeref hlink="_db41b65b17175cbacac45a9ae06"/>
       <location street="123 Main St." city="Winslow" state="PA" postal="12345"/>
     </placeobj>
-    <placeobj handle="_d65a44816ac17876c5904523a6f" change="1472500308" id="P0034" type="City">
+    <placeobj handle="_d65a44816ac17876c5904523a6f" change="1506720323" id="P0034" type="City">
       <ptitle>Cleveland, Cuyahoga, Ohio, USA</ptitle>
-      <pname value="Cleveland"/>
+      <pname value="Cleveland" lang="en">
+        <dateval val="1796" type="after"/>
+      </pname>
       <placeref hlink="_d65a44816b65ed679ad0a8edbc4"/>
-    </placeobj>
-    <placeobj handle="_d65a44816b644bf4d11d3a0a5" change="1472500308" id="P0031" type="Country">
-      <ptitle>USA</ptitle>
-      <pname value="USA"/>
     </placeobj>
     <placeobj handle="_d65a44816b65ed679ad0a8edbc4" change="1472500308" id="P0033" type="County">
       <ptitle>Cuyahoga, Ohio, USA</ptitle>
       <pname value="Cuyahoga"/>
       <placeref hlink="_d65a44816b6da4fc40e3b078d8"/>
     </placeobj>
-    <placeobj handle="_d65a44816b6da4fc40e3b078d8" change="1472500308" id="P0032" type="State">
+    <placeobj handle="_d65a44816b6da4fc40e3b078d8" change="1506720582" id="P0032" type="State">
       <ptitle>Ohio, USA</ptitle>
       <pname value="Ohio"/>
-      <placeref hlink="_d65a44816b644bf4d11d3a0a5"/>
+      <placeref hlink="_d5324c509dc579ef9edb8afd4a8"/>
+    </placeobj>
+    <placeobj handle="_db41af47aef72a46a71b7444f18" change="1506719952" id="RNNNNEJO75IC" type="place">
+      <pname value="Rønne" lang="da"/>
+      <pname value="Rønne, Bornholm, Denmark"/>
+      <pname value="Rønne Bornholm, Denmark"/>
+      <coord long="14.7" lat="55.1"/>
+      <placeref hlink="_db41af489487e66545a6af3c417"/>
+    </placeobj>
+    <placeobj handle="_db41af489487e66545a6af3c417" change="1506719751" id="object_364181" type="amt">
+      <pname value="Bornholm" lang="da"/>
+      <coord long="14.91313861020408" lat="55.131626364795885"/>
+      <placeref hlink="_db41af498041cfa4c4fde64470c"/>
+    </placeobj>
+    <placeobj handle="_db41af498041cfa4c4fde64470c" change="1506719751" id="object_190123" type="kingdom">
+      <pname value="Denmark" lang="en"/>
+      <pname value="Danmark" lang="sv"/>
+      <pname value="Danemark" lang="fr"/>
+      <pname value="Danmark" lang="da"/>
+      <pname value="Dänemark" lang="de"/>
+      <pname value="Dinamarca" lang="es"/>
+    </placeobj>
+    <placeobj handle="_db41b642e10bf768be070f6283" change="1506720542" id="P0003" type="State">
+      <pname value="Pennsylvania"/>
+      <pname value="PA"/>
+      <placeref hlink="_d5324c509dc579ef9edb8afd4a8"/>
+    </placeobj>
+    <placeobj handle="_db41b65b17175cbacac45a9ae06" change="1506720492" id="P0021" type="City">
+      <pname value="Winslow"/>
+      <placeref hlink="_db41b642e10bf768be070f6283"/>
+    </placeobj>
+    <placeobj handle="_db41bb2b8ab59f82b97c9c21294" change="1506721403" id="P0031" type="State">
+      <pname value="Texas"/>
+      <placeref hlink="_d5324c509dc579ef9edb8afd4a8">
+        <dateval val="1845" type="after"/>
+      </placeref>
+      <placeref hlink="_db41bd0b3e94a8d7e20d37da900">
+        <datespan start="1836" stop="1845"/>
+      </placeref>
+      <placeref hlink="_db41bda94f612959fee03427f4f">
+        <datespan start="1690" stop="1821"/>
+      </placeref>
+      <objref hlink="_db41bee197b316a5371fe2bc0d9"/>
+      <noteref hlink="_db41be7a64eae2db056a8232f9"/>
+      <citationref hlink="_db41be3050d2f86673a06ba6b58"/>
+    </placeobj>
+    <placeobj handle="_db41bb2d3d929c33be5d3bd5f68" change="1506720997" id="P0035" type="County">
+      <pname value="Harris"/>
+      <placeref hlink="_db41bb2b8ab59f82b97c9c21294"/>
+    </placeobj>
+    <placeobj handle="_db41bb333d243420a5c6c590035" change="1506721000" id="P0036" type="City">
+      <pname value="Houston"/>
+      <placeref hlink="_db41bb2d3d929c33be5d3bd5f68"/>
+    </placeobj>
+    <placeobj handle="_db41bd0b3e94a8d7e20d37da900" change="1506721193" id="P0037" type="Country">
+      <pname value="Republic of Texas"/>
+    </placeobj>
+    <placeobj handle="_db41bda94f612959fee03427f4f" change="1506721258" id="P0038" type="Country">
+      <pname value="Mexico"/>
     </placeobj>
   </places>
   <objects>
     <object handle="_d54c1b52c8636648123580900ca" change="1477754617" id="O0000">
       <file src="O0.jpg" mime="image/jpeg" checksum="887d22e5822c86bd3961d0d179fbc0a2" description="Michael O'Toole 2015-11"/>
       <noteref hlink="_d70aa63baa15f9fee23b45f03b"/>
+    </object>
+    <object handle="_db41bee197b316a5371fe2bc0d9" change="1528658095" id="O0001">
+      <file src="1024px-Texas_flag_map.svg.png" mime="image/png" checksum="0775f316a04d11ee909a730a1358a4f3" description="1024px-Texas_flag_map.svg"/>
     </object>
   </objects>
   <repositories>
@@ -1825,6 +1888,17 @@ Only one phone number supported                                     Line     9: 
     </note>
     <note handle="_d70aa63baa15f9fee23b45f03b" change="1477754616" id="N0019" type="Media Note">
       <text>A bad photo for sure</text>
+    </note>
+    <note handle="_db41be7a64eae2db056a8232f9" change="1506721344" id="N0020" type="Place Note">
+      <text>Timeline
+French Texas	1684–1689
+Spanish Texas	1690–1821
+Mexican Texas	1821–1836
+Republic of Texas	1836–1845
+Statehood	1845–1860
+Civil War Era	1861–1865
+Reconstruction	1865–1899
+</text>
     </note>
   </notes>
 </database>

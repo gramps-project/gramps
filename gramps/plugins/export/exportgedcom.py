@@ -34,6 +34,7 @@
 #-------------------------------------------------------------------------
 import os
 import time
+import re
 
 #-------------------------------------------------------------------------
 #
@@ -42,6 +43,7 @@ import time
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gen.utils.grampslocale import _LOCALE_NAMES
 from gramps.gen.lib import (AttributeType, ChildRefType, Citation, Date,
                             EventRoleType, EventType, LdsOrd, NameType,
                             PlaceType, NoteType, Person, UrlType)
@@ -53,8 +55,7 @@ from gramps.gui.plug.export import WriterOptionBox
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.place import conv_lat_lon
-from gramps.gen.utils.location import get_main_location
-from gramps.gen.display.place import displayer as _pd
+from gramps.gen.utils.location import get_location_list
 
 #-------------------------------------------------------------------------
 #
@@ -248,9 +249,10 @@ class GedcomWriter(UpdateCallback):
             source_len = self.dbase.get_number_of_sources()
             repo_len = self.dbase.get_number_of_repositories()
             note_len = self.dbase.get_number_of_notes() / NOTES_PER_PERSON
+            place_len = self.dbase.get_number_of_places()
 
             total_steps = (person_len + family_len + source_len + repo_len +
-                           note_len)
+                           note_len + place_len)
             self.set_total(total_steps)
             self._header(filename)
             self._submitter()
@@ -259,6 +261,7 @@ class GedcomWriter(UpdateCallback):
             self._sources()
             self._repos()
             self._notes()
+            self._places()
 
             self._writeln(0, "TRLR")
 
@@ -358,9 +361,9 @@ class GedcomWriter(UpdateCallback):
 
         lang = glocale.language[0]
         if lang and len(lang) >= 2:
-            lang_code = LANGUAGES.get(lang[0:2])
+            lang_code = _LOCALE_NAMES.get(lang[0:2])
             if lang_code:
-                self._writeln(1, 'LANG', lang_code)
+                self._writeln(1, 'LANG', lang_code[2].split(' ')[0])
 
     def _submitter(self):
         """
@@ -1039,6 +1042,109 @@ class GedcomWriter(UpdateCallback):
             self._writeln(0, '@%s@' % note.get_gramps_id(),
                           'NOTE ' + note.get())
 
+    def _places(self):
+        """
+        Write out the list of places, sorting by Gramps ID.
+        """
+        self.set_text(_("Writing places"))
+        place_cnt = 0
+        sorted_list = sort_handles_by_id(self.dbase.get_place_handles(),
+                                         self.dbase.get_place_from_handle)
+
+        for place_handle in [hndl[1] for hndl in sorted_list]:
+            self.update()
+            place_cnt += 1
+            place = self.dbase.get_place_from_handle(place_handle)
+            if place is None:
+                continue
+            self._place_record(place)
+
+    _gramps_id = re.compile(' *[^\d]{0,3}(\d+){3,9}[^\d]{0,3}')
+
+    def _place_record(self, place):
+        """
+        0 @<XREF: _LOC>@ _LOC
+        1 NAME <PLACE_NAME> {1:M}
+        2 DATE <DATE_VALUE> {0:1}
+        2 _NAMC <PLACE_NAME_ADDITION> {0:1}          # Unused
+        2 ABBR <ABBREVIATION_OF_NAME> {0:M}          # Unused
+        3 TYPE <TYPE_OF_ABBREVIATION> {0:1}          # Unused
+        2 LANG <LANGUAGE_ID> {0:1}
+        2 << SOURCE_CITATION >> {0:M}                # Unused
+        1 TYPE <TYPE_OF_LOCATION> {0:M}
+        2 DATE <DATE_VALUE> {0:1}                    # Unused
+        2 << SOURCE_CITATION >> {0:M}                # Unused
+        1 _FPOST <FOKO_POSTCODE> {0:M}               # Unused
+        2 DATE <DATE_VALUE> {0:1}                    # Unused
+        1 _POST <POSTAL_CODE> {0:M}
+        2 DATE <DATE_VALUE> {0:1}                    # Unused
+        2 << SOURCE_CITATION >> {0:M}                # Unused
+        1 _GOV <GOV_IDENTIFIER> {0:1}
+        1 _FSTAE <FOKO_TERRITORY_IDENTIFIER> {0:1}   # Unused
+        1 _FCTRY <FOKO_STATE_IDENTIFIER> {0:1}       # Unused
+        1 MAP {0:1}
+        1 _MAIDENHEAD <MAIDENHEAD_LOCATOR> {0:1}     # Unused
+        1 EVEN [ <EVENT_DESCRIPTOR> | <NULL> ] {0:M} # Unused
+        2 << EVENT_DETAIL >> {0:1}                   # Unused
+        1 _LOC @ <XREF: _LOC> @ {0:M}
+        2 TYPE <HIERARCHICAL_RELATIONSHIP> {1:1}
+        2 DATE <DATE_VALUE> {0:1}
+        2 << SOURCE_CITATION >> {0:M}                # Unused
+        1 _DMGD <DEMOGRAPHICAL_DATA> {0:M}           # Unused
+        2 DATE <DATE_VALUE> {0:1}                    # Unused
+        2 << SOURCE_CITATION >> {0:M}                # Unused
+        2 TYPE <TYPE_OF_DEMOGRAPICAL_DATA> {1:1}     # Unused
+        1 _AIDN <ADMINISTRATIVE_IDENTIFIER> {0:M}    # Unused
+        2 DATE <DATE_VALUE> {0:1}                    # Unused
+        2 << SOURCE_CITATION >> {0:M}                # Unused
+        2 TYPE <TYPE_OF_ADMINISTRATIVE_IDENTIFIER> {1:1} # Unused
+        1 << MULTIMEDIA_LINK >> {0:M}
+        1 << NOTE_STRUCTURE >> {0:M}
+        1 << SOURCE_CITATION >> {0:M}
+        1 << CHANGE_DATE >> {0:1}
+
+        """
+        self._writeln(0, '@%s@' % place.get_gramps_id(), '_LOC')
+        # write the names
+        place.alt_names.insert(0, place.name)
+        for name in place.alt_names:
+            self._writeln(1, "NAME", name.value)
+            self._date(2, name.date)
+            if name.lang:
+                lang_code = _LOCALE_NAMES.get(name.lang)
+                if lang_code:
+                    self._writeln(2, 'LANG', lang_code[2].split(' ')[0])
+        # write the place type.  TODO fixup if 'L' group changes spec!
+        if place.place_type.value != PlaceType.UNKNOWN:
+            self._writeln(1, "TYPE", place.place_type.xml_str())
+        if place.code:
+            self._writeln(1, "_POST", place.code)
+        # See if this is a normal Gramps ID (if not, GOV ID)
+        if not self._gramps_id.match(place.gramps_id):
+            self._writeln(1, "_GOV", place.gramps_id)
+        # write LAT/LON
+        longitude = place.get_longitude()
+        latitude = place.get_latitude()
+        if longitude and latitude:
+            (latitude, longitude) = conv_lat_lon(latitude, longitude, "GEDCOM")
+        if longitude and latitude:
+            self._writeln(1, "MAP")
+            self._writeln(2, 'LATI', latitude)
+            self._writeln(2, 'LONG', longitude)
+        # write place references
+        for pref in place.placeref_list:
+            ref_place = self.dbase.get_place_from_handle(pref.ref)
+            if ref_place:  # in case we ever filter places
+                self._writeln(1, "_LOC", "@%s@" % ref_place.gramps_id)
+                self._date(2, pref.date)
+                # for now we only do political types?
+                self._writeln(2, "TYPE", "POLI")
+        # write the standard stuff
+        self._photos(place.get_media_list(), 1)
+        self._note_references(place.get_note_list(), 1)
+        self._source_references(place.get_citation_list(), 1)
+        self._change(place.get_change_time(), 1)
+
     def _repos(self):
         """
         Write out the list of repositories, sorting by Gramps ID.
@@ -1455,11 +1561,35 @@ class GedcomWriter(UpdateCallback):
             +2 LATI <PLACE_LATITUDE> {1:1}
             +2 LONG <PLACE_LONGITUDE> {1:1}
             +1 <<NOTE_STRUCTURE>> {0:M}
+            +1 _LOC  @<XREF:_LOC>@ {0:1}  # Gedcom L extension
+
+        The Gedcom standard shows that an optional address structure can
+        be written out in the event detail.
+        http://homepages.rootsweb.com/~pmcbride/gedcom/55gcch2.htm#EVENT_DETAIL
+        We use this when the place type is 'Address', as that is how the Gedcom
+        importer identified ADDR records to start with.  If the Address record
+        is enclosed, we finish it off with standard PLAC record.
+
+        Any other types of places are output with the comma delimited list of
+        enclosing places and the PLAC.FORM record to idetify their types.
+        The _LOC Gedcom extension is also added to reference later _LOC
+        records.
         """
         if place is None:
             return
-        place_name = _pd.display(self.dbase, place, dateobj)
+        loc_list = get_location_list(self.dbase, place, date=dateobj,
+                                     lang='en')
+        if loc_list[0][1] == PlaceType((PlaceType.CUSTOM, _("Address"))):
+            self._writeln(level, "ADDR", loc_list[0][0])
+            del loc_list[0]
+        if not loc_list:
+            return
+        place_name = ", ".join(item[0] for item in loc_list)
+        place_form = ", ".join(item[1].xml_str() for item in loc_list)
+
         self._writeln(level, "PLAC", place_name.replace('\r', ' '), limit=120)
+        if len(loc_list) != 1 or loc_list[0][1].value != PlaceType.UNKNOWN:
+            self._writeln(level + 1, "FORM", place_form, limit=120)
         longitude = place.get_longitude()
         latitude = place.get_latitude()
         if longitude and latitude:
@@ -1468,33 +1598,8 @@ class GedcomWriter(UpdateCallback):
             self._writeln(level + 1, "MAP")
             self._writeln(level + 2, 'LATI', latitude)
             self._writeln(level + 2, 'LONG', longitude)
-
-        # The Gedcom standard shows that an optional address structure can
-        # be written out in the event detail.
-        # http://homepages.rootsweb.com/~pmcbride/gedcom/55gcch2.htm#EVENT_DETAIL
-        location = get_main_location(self.dbase, place)
-        street = location.get(PlaceType.STREET)
-        locality = location.get(PlaceType.LOCALITY)
-        city = location.get(PlaceType.CITY)
-        state = location.get(PlaceType.STATE)
-        country = location.get(PlaceType.COUNTRY)
-        postal_code = place.get_code()
-
-        if street or locality or city or state or postal_code or country:
-            self._writeln(level, "ADDR", street)
-            if street:
-                self._writeln(level + 1, 'ADR1', street)
-            if locality:
-                self._writeln(level + 1, 'ADR2', locality)
-            if city:
-                self._writeln(level + 1, 'CITY', city)
-            if state:
-                self._writeln(level + 1, 'STAE', state)
-            if postal_code:
-                self._writeln(level + 1, 'POST', postal_code)
-            if country:
-                self._writeln(level + 1, 'CTRY', country)
-
+        # cross ref to Gedcom L _LOC record
+        self._writeln(level + 1, "_LOC", "@%s@" % place.gramps_id)
         self._note_references(place.get_note_list(), level + 1)
 
     def __write_addr(self, level, addr):
