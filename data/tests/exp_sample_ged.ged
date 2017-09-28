@@ -1,12 +1,12 @@
 0 HEAD
 1 SOUR Gramps
-2 VERS 5.1.2
+2 VERS 6.0.0
 2 NAME Gramps
-1 DATE 7 JAN 2020
-2 TIME 13:39:43
+1 DATE 5 MAY 2025
+2 TIME 18:33:33
 1 SUBM @SUBM@
 1 FILE C:\Users\prc\AppData\Roaming\gramps\temp\exp_sample_ged.ged
-1 COPR Copyright (c) 2020 Alex Roitman,,,.
+1 COPR Copyright (c) 2025 Alex Roitman,,,.
 1 GEDC
 2 VERS 5.5.1
 2 FORM LINEAGE-LINKED
@@ -33,10 +33,16 @@
 2 TYPE Birth of Anna Hansdotter
 2 DATE 2 OCT 1864
 2 PLAC Löderup, Malmöhus Län, Sweden
+3 _LOC @P0000@
 1 DEAT
 2 TYPE Death of Anna Hansdotter
 2 DATE 29 SEP 1945
-2 PLAC Sparks, Washoe Co., NV
+2 PLAC Sparks, Washoe County, Nevada, United States of America
+3 FORM City, County, State, Country
+3 MAP
+4 LATI N39.53491
+4 LONG W119.75269
+3 _LOC @GEO5512862@
 1 FAMS @F0003@
 1 ASSO @I0038@
 2 RELA Friend
@@ -44,7 +50,7 @@
 1 NOTE @N0014@
 1 CHAN
 2 DATE 27 OCT 2016
-3 TIME 15:14:42
+3 TIME 10:14:42
 0 @I0001@ INDI
 1 NAME Keith Lloyd /Smith/
 2 TYPE birth
@@ -54,12 +60,14 @@
 1 BIRT
 2 TYPE Birth of Keith Lloyd Smith
 2 DATE 11 AUG 1966
-2 PLAC San Francisco, San Francisco Co., CA
+2 PLAC San Francisco, San Francisco Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0002@
 1 FAMC @F0008@
 2 PEDI birth
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0002@ INDI
 1 NAME Amber Marie /Smith/
 2 TYPE birth
@@ -70,16 +78,20 @@
 1 BIRT
 2 TYPE Birth of Amber Marie Smith
 2 DATE 12 APR 1998
-2 PLAC Hayward, Alameda Co., CA
+2 PLAC Hayward, Alemeda Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0006@
 1 CHR
 2 TYPE Christening of Amber Marie Smith
 2 DATE 26 APR 1998
-2 PLAC Community Presbyterian Church, Danville, CA
+2 PLAC Community Presbyterian Church, Danville, Contra Costa, California, United States of America
+3 FORM Locality, City, County, State, Country
+3 _LOC @P0007@
 1 FAMC @F0013@
 2 PEDI birth
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0003@ INDI
 1 NAME Magnes /Smith/
 2 TYPE birth
@@ -90,16 +102,22 @@
 2 TYPE Birth of Magnes Smith
 2 DATE 6 OCT 1858
 2 PLAC Simrishamn, Kristianstad Län, Sweden
+3 _LOC @P0012@
 1 DEAT
 2 TYPE Death of Magnes Smith
 2 DATE 20 FEB 1910
 2 PLAC Rønne, Bornholm, Denmark
+3 FORM City, Amt (dänisches), kingdom
+3 MAP
+4 LATI N55.1
+4 LONG E14.7
+3 _LOC @GEO2614553@
 1 FAMC @F0002@
 2 PEDI birth
 1 FAMS @F0011@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0004@ INDI
 1 NAME Ingeman /Smith/
 2 TYPE birth
@@ -110,11 +128,12 @@
 2 TYPE Birth of Ingeman Smith
 2 DATE 29 JAN 1826
 2 PLAC Gladsax, Kristianstad Län, Sweden
+3 _LOC @P0004@
 1 FAMC @F0000@
 2 PEDI birth
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0005@ INDI
 1 NAME Mason Michael /Smith/
 2 TYPE birth
@@ -124,16 +143,20 @@
 1 BIRT
 2 TYPE Birth of Mason Michael Smith
 2 DATE 26 JUN 1996
-2 PLAC Hayward, Alameda Co., CA
+2 PLAC Hayward, Alemeda Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0006@
 1 CHR
 2 TYPE Christening of Mason Michael Smith
 2 DATE 10 JUL 1996
-2 PLAC Community Presbyterian Church, Danville, CA
+2 PLAC Community Presbyterian Church, Danville, Contra Costa, California, United States of America
+3 FORM Locality, City, County, State, Country
+3 _LOC @P0007@
 1 FAMC @F0013@
 2 PEDI birth
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0006@ INDI
 1 NAME Edwin /Willard/
 2 TYPE birth
@@ -146,7 +169,7 @@
 1 FAMS @F0004@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0007@ INDI
 1 NAME Ingar /Smith/
 2 TYPE birth
@@ -157,11 +180,12 @@
 2 TYPE Birth of Ingar Smith
 2 DATE AFT 1823
 2 PLAC Gladsax, Kristianstad Län, Sweden
+3 _LOC @P0004@
 1 FAMC @F0000@
 2 PEDI birth
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0008@ INDI
 1 NAME Hjalmar /Smith/
 2 TYPE birth
@@ -172,25 +196,43 @@
 2 TYPE Birth of Hjalmar Smith
 2 DATE 7 APR 1895
 2 PLAC Rønne, Bornholm, Denmark
+3 FORM City, Amt (dänisches), kingdom
+3 MAP
+4 LATI N55.1
+4 LONG E14.7
+3 _LOC @GEO2614553@
 1 DEAT
 2 TYPE Death of Hjalmar Smith
 2 DATE 26 JUN 1975
-2 PLAC Reno, Washoe Co., NV
+2 PLAC Reno, Washoe County, Nevada, United States of America
+3 FORM City, County, State, Country
+3 MAP
+4 LATI N39.52963
+4 LONG W119.8138
+3 _LOC @GEO5511077@
 1 BAPM
 2 TYPE Baptism of Hjalmar Smith
 2 DATE 3 JUN 1895
-2 PLAC Rønne Bornholm, Denmark
+2 PLAC Rønne, Bornholm, Denmark
+3 FORM City, Amt (dänisches), kingdom
+3 MAP
+4 LATI N55.1
+4 LONG E14.7
+3 _LOC @GEO2614553@
 1 EVEN
 2 TYPE Immi
 2 DATE 14 NOV 1912
 2 PLAC Copenhagen, Denmark
+3 FORM Stadt (Gebietskörperschaft), kingdom
+3 _LOC @object_364318@
+3 _GOV object_364318
 1 FAMC @F0003@
 2 PEDI birth
 1 FAMS @F0006@
 1 NOTE @N0003@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0009@ INDI
 1 NAME Emil /Smith/
 2 TYPE birth
@@ -201,11 +243,12 @@
 2 TYPE Birth of Emil Smith
 2 DATE 27 SEP 1860
 2 PLAC Simrishamn, Kristianstad Län, Sweden
+3 _LOC @P0012@
 1 FAMC @F0002@
 2 PEDI birth
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0010@ INDI
 1 NAME Hans Peter /Smith/
 2 TYPE birth
@@ -216,6 +259,11 @@
 2 TYPE Birth of Hans Peter Smith
 2 DATE 17 APR 1904
 2 PLAC Rønne, Bornholm, Denmark
+3 FORM City, Amt (dänisches), kingdom
+3 MAP
+4 LATI N55.1
+4 LONG E14.7
+3 _LOC @GEO2614553@
 2 SOUR @S0002@
 3 PAGE 22 6
 3 DATA
@@ -227,11 +275,15 @@
 1 DEAT
 2 TYPE Death of Hans Peter Smith
 2 DATE 29 JAN 1977
-2 PLAC San Francisco, San Francisco Co., CA
+2 PLAC San Francisco, San Francisco Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0002@
 1 BURI
 2 TYPE In cemetary
 2 DATE 5 FEB 1977
-2 PLAC San Francisco, San Francisco Co., CA
+2 PLAC San Francisco, San Francisco Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0002@
 2 SOUR @S0004@
 3 QUAY 2
 3 DATA
@@ -242,7 +294,7 @@
 1 FAMS @F0014@
 1 CHAN
 2 DATE 4 JUN 2016
-3 TIME 21:32:08
+3 TIME 16:32:08
 0 @I0011@ INDI
 1 NAME Hanna /Smith/
 2 TYPE birth
@@ -253,11 +305,12 @@
 2 TYPE Birth of Hanna Smith
 2 DATE 29 JAN 1821
 2 PLAC Gladsax, Kristianstad Län, Sweden
+3 _LOC @P0004@
 1 FAMC @F0000@
 2 PEDI birth
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0012@ INDI
 1 NAME Herman Julius /Nielsen/
 2 TYPE birth
@@ -268,13 +321,18 @@
 2 TYPE Birth of Herman Julius Nielsen
 2 DATE 31 AUG 1889
 2 PLAC Rønne, Bornholm, Denmark
+3 FORM City, Amt (dänisches), kingdom
+3 MAP
+4 LATI N55.1
+4 LONG E14.7
+3 _LOC @GEO2614553@
 1 DEAT
 2 TYPE Death of Herman Julius Nielsen
 2 DATE 1945
 1 FAMS @F0005@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0013@ INDI
 1 NAME Evelyn /Michaels/
 2 TYPE birth
@@ -287,7 +345,7 @@
 1 FAMS @F0007@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0014@ INDI
 1 NAME Marjorie Lee /Smith/
 2 TYPE birth
@@ -297,12 +355,17 @@
 1 BIRT
 2 TYPE Birth of Marjorie Lee Smith
 2 DATE 4 NOV 1934
-2 PLAC Reno, Washoe Co., NV
+2 PLAC Reno, Washoe County, Nevada, United States of America
+3 FORM City, County, State, Country
+3 MAP
+4 LATI N39.52963
+4 LONG W119.8138
+3 _LOC @GEO5511077@
 1 FAMC @F0006@
 2 PEDI birth
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0015@ INDI
 1 NAME Gus /Smith/
 2 TYPE birth
@@ -313,16 +376,23 @@
 2 TYPE Birth of Gus Smith
 2 DATE 11 SEP 1897
 2 PLAC Rønne, Bornholm, Denmark
+3 FORM City, Amt (dänisches), kingdom
+3 MAP
+4 LATI N55.1
+4 LONG E14.7
+3 _LOC @GEO2614553@
 1 DEAT
 2 TYPE Death of Gus Smith
 2 DATE 21 OCT 1963
-2 PLAC San Francisco, San Francisco Co., CA
+2 PLAC San Francisco, San Francisco Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0002@
 1 FAMC @F0003@
 2 PEDI birth
 1 FAMS @F0007@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0016@ INDI
 1 NAME Jennifer /Anderson/
 2 TYPE birth
@@ -333,14 +403,21 @@
 2 TYPE Birth of Jennifer Anderson
 2 DATE 5 NOV 1907
 2 PLAC Rønne, Bornholm, Denmark
+3 FORM City, Amt (dänisches), kingdom
+3 MAP
+4 LATI N55.1
+4 LONG E14.7
+3 _LOC @GEO2614553@
 1 DEAT
 2 TYPE Death of Jennifer Anderson
 2 DATE 29 MAY 1985
-2 PLAC San Francisco, San Francisco Co., CA
+2 PLAC San Francisco, San Francisco Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0002@
 1 FAMS @F0014@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0017@ INDI
 1 NAME Lillie Harriet /Jones/
 2 TYPE birth
@@ -351,13 +428,18 @@
 2 TYPE Birth of Lillie Harriet Jones
 2 DATE 2 MAY 1910
 2 PLAC Rønne, Bornholm, Denmark
+3 FORM City, Amt (dänisches), kingdom
+3 MAP
+4 LATI N55.1
+4 LONG E14.7
+3 _LOC @GEO2614553@
 1 DEAT
 2 TYPE Death of Lillie Harriet Jones
 2 DATE 26 JUN 1990
 1 FAMS @F0009@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0018@ INDI
 1 NAME John Hjalmar /Smith/
 2 TYPE birth
@@ -367,13 +449,15 @@
 1 BIRT
 2 TYPE Birth of John Hjalmar Smith
 2 DATE 30 JAN 1932
-2 PLAC San Francisco, San Francisco Co., CA
+2 PLAC San Francisco, San Francisco Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0002@
 1 FAMC @F0006@
 2 PEDI birth
 1 FAMS @F0012@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0019@ INDI
 1 NAME Eric Lloyd /Smith/
 2 TYPE birth
@@ -384,7 +468,9 @@
 1 BIRT
 2 TYPE Birth of Eric Lloyd Smith
 2 DATE 28 AUG 1963
-2 PLAC San Francisco, San Francisco Co., CA
+2 PLAC San Francisco, San Francisco Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0002@
 1 ADOP Y
 2 FAMC @F0008@
 3 ADOP BOTH
@@ -393,7 +479,7 @@
 1 FAMS @F0010@
 1 CHAN
 2 DATE 4 JUN 2016
-3 TIME 21:25:13
+3 TIME 16:25:13
 0 @I0020@ INDI
 1 NAME Carl Emil /Smith/
 2 TYPE birth
@@ -404,16 +490,26 @@
 2 TYPE Birth of Carl Emil Smith
 2 DATE 20 DEC 1899
 2 PLAC Rønne, Bornholm, Denmark
+3 FORM City, Amt (dänisches), kingdom
+3 MAP
+4 LATI N55.1
+4 LONG E14.7
+3 _LOC @GEO2614553@
 1 DEAT
 2 TYPE Death of Carl Emil Smith
 2 DATE 28 JAN 1959
-2 PLAC Reno, Washoe Co., NV
+2 PLAC Reno, Washoe County, Nevada, United States of America
+3 FORM City, County, State, Country
+3 MAP
+4 LATI N39.52963
+4 LONG W119.8138
+3 _LOC @GEO5511077@
 2 CAUS Bad breath
 1 FAMC @F0003@
 2 PEDI birth
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0021@ INDI
 1 NAME Hjalmar /Smith/
 2 TYPE birth
@@ -424,15 +520,25 @@
 2 TYPE Birth of Hjalmar Smith
 2 DATE 31 JAN 1893
 2 PLAC Rønne, Bornholm, Denmark
+3 FORM City, Amt (dänisches), kingdom
+3 MAP
+4 LATI N55.1
+4 LONG E14.7
+3 _LOC @GEO2614553@
 1 DEAT
 2 TYPE Death of Hjalmar Smith
 2 DATE 25 SEP 1894
 2 PLAC Rønne, Bornholm, Denmark
+3 FORM City, Amt (dänisches), kingdom
+3 MAP
+4 LATI N55.1
+4 LONG E14.7
+3 _LOC @GEO2614553@
 1 FAMC @F0003@
 2 PEDI birth
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0022@ INDI
 1 NAME Martin /Smith/
 2 TYPE birth
@@ -443,21 +549,25 @@
 2 TYPE Birth of Martin Smith
 2 DATE 19 NOV 1830
 2 PLAC Gladsax, Kristianstad Län, Sweden
+3 _LOC @P0004@
 1 DEAT
 2 TYPE Death of Martin Smith
 2 DATE BET 1899 AND 1905
 2 PLAC Sweden
+3 FORM Country
+3 _LOC @P0008@
 1 BAPM
 2 TYPE Baptism of Martin Smith
 2 DATE 23 NOV 1830
 2 PLAC Gladsax, Kristianstad Län, Sweden
+3 _LOC @P0004@
 1 FAMC @F0000@
 2 PEDI birth
 1 FAMS @F0002@
 1 NOTE @N0002@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0023@ INDI
 1 NAME Astrid Shermanna Augusta /Smith/
 2 TYPE birth
@@ -468,16 +578,23 @@
 2 TYPE Birth of Astrid Shermanna Augusta Smith
 2 DATE 31 JAN 1889
 2 PLAC Rønne, Bornholm, Denmark
+3 FORM City, Amt (dänisches), kingdom
+3 MAP
+4 LATI N55.1
+4 LONG E14.7
+3 _LOC @GEO2614553@
 1 DEAT
 2 TYPE Death of Astrid Shermanna Augusta Smith
 2 DATE 21 DEC 1963
-2 PLAC San Francisco, San Francisco Co., CA
+2 PLAC San Francisco, San Francisco Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0002@
 1 FAMC @F0003@
 2 PEDI birth
 1 FAMS @F0005@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0024@ INDI
 1 NAME Gustaf /Smith/ Sr.
 2 TYPE birth
@@ -489,24 +606,34 @@
 2 TYPE Birth of Gustaf Smith, Sr.
 2 DATE 28 NOV 1862
 2 PLAC Grostorp, Kristianstad Län, Sweden
+3 _LOC @P0009@
 1 DEAT
 2 TYPE Death of Gustaf Smith, Sr.
 2 DATE BEF 23 JUL 1930
-2 PLAC Sparks, Washoe Co., NV
+2 PLAC Sparks, Washoe County, Nevada, United States of America
+3 FORM City, County, State, Country
+3 MAP
+4 LATI N39.53491
+4 LONG W119.75269
+3 _LOC @GEO5512862@
 1 EVEN
 2 TYPE Immi
 2 DATE 21 MAY 1908
 2 PLAC Copenhagen, Denmark
+3 FORM Stadt (Gebietskörperschaft), kingdom
+3 _LOC @object_364318@
+3 _GOV object_364318
 1 CHR
 2 TYPE Christening of Gustaf Smith, Sr.
 2 DATE 7 DEC 1862
 2 PLAC Gladsax, Kristianstad Län, Sweden
+3 _LOC @P0004@
 1 FAMC @F0002@
 2 PEDI birth
 1 FAMS @F0003@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0025@ INDI
 1 NAME Marta /Ericsdotter/
 2 TYPE birth
@@ -517,10 +644,12 @@
 2 TYPE Birth of Marta Ericsdotter
 2 DATE ABT 1775
 2 PLAC Sweden
+3 FORM Country
+3 _LOC @P0008@
 1 FAMS @F0001@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0026@ INDI
 1 NAME Kirsti Marie /Smith/
 2 TYPE birth
@@ -531,16 +660,23 @@
 2 TYPE Birth of Kirsti Marie Smith
 2 DATE 15 DEC 1886
 2 PLAC Rønne, Bornholm, Denmark
+3 FORM City, Amt (dänisches), kingdom
+3 MAP
+4 LATI N55.1
+4 LONG E14.7
+3 _LOC @GEO2614553@
 1 DEAT
 2 TYPE Death of Kirsti Marie Smith
 2 DATE 18 JUL 1966
-2 PLAC San Francisco, San Francisco Co., CA
+2 PLAC San Francisco, San Francisco Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0002@
 1 FAMC @F0003@
 2 PEDI birth
 1 FAMS @F0004@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0027@ INDI
 1 NAME Ingeman /Smith/
 2 TYPE birth
@@ -551,10 +687,12 @@
 2 TYPE Birth of Ingeman Smith
 2 DATE ABT 1770
 2 PLAC Sweden
+3 FORM Country
+3 _LOC @P0008@
 1 FAMS @F0001@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0028@ INDI
 1 NAME Anna /Streiffert/
 2 TYPE birth
@@ -565,14 +703,20 @@
 2 TYPE Birth of Anna Streiffert
 2 DATE 23 SEP 1860
 2 PLAC Hoya/Jona/Hoia, Sweden
+3 _LOC @P0011@
 1 DEAT
 2 TYPE Death of Anna Streiffert
 2 DATE 2 FEB 1927
 2 PLAC Rønne, Bornholm, Denmark
+3 FORM City, Amt (dänisches), kingdom
+3 MAP
+4 LATI N55.1
+4 LONG E14.7
+3 _LOC @GEO2614553@
 1 FAMS @F0011@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0029@ INDI
 1 NAME Craig Peter /Smith/
 2 TYPE birth
@@ -582,7 +726,9 @@
 1 BIRT
 2 TYPE Birth of Craig Peter Smith
 2 DATE AFT 1966
-2 PLAC San Francisco, San Francisco Co., CA
+2 PLAC San Francisco, San Francisco Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0002@
 1 CENS
 2 TYPE Census of Craig Peter Smith
 2 NOTE @N0000@
@@ -590,7 +736,7 @@
 2 PEDI birth
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0030@ INDI
 1 NAME Janice Ann /Adams/
 2 TYPE birth
@@ -600,7 +746,9 @@
 1 BIRT
 2 TYPE Birth of Janice Ann Adams
 2 DATE 26 AUG 1965
-2 PLAC Fremont, Alameda Co., CA
+2 PLAC Fremont, Alemeda Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0013@
 1 OCCU Retail Manager
 1 _DEG
 2 TYPE Business Management
@@ -608,7 +756,7 @@
 1 FAMS @F0013@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0031@ INDI
 1 NAME Marjorie /Ohman/
 2 TYPE birth
@@ -618,18 +766,25 @@
 1 BIRT
 2 TYPE Birth of Marjorie Ohman
 2 DATE 3 JUN 1903
-2 PLAC Denver, Denver Co., CO, Denver Co., Colorado, USA
+2 PLAC Denver, Denver Co., Colorado, United States of America
+3 FORM City, County, State, Country
 3 MAP
 4 LATI N39.7392
 4 LONG W104.9903
+3 _LOC @P0014@
 1 DEAT
 2 TYPE Death of Marjorie Ohman
 2 DATE 22 JUN 1980
-2 PLAC Reno, Washoe Co., NV
+2 PLAC Reno, Washoe County, Nevada, United States of America
+3 FORM City, County, State, Country
+3 MAP
+4 LATI N39.52963
+4 LONG W119.8138
+3 _LOC @GEO5511077@
 1 FAMS @F0006@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0032@ INDI
 1 NAME Darcy /Horne/
 2 TYPE birth
@@ -639,11 +794,13 @@
 1 BIRT
 2 TYPE Birth of Darcy Horne
 2 DATE 2 JUL 1966
-2 PLAC Sacramento, Sacramento Co., CA
+2 PLAC Sacramento
+3 FORM City
+3 _LOC @P0015@
 1 FAMS @F0010@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0033@ INDI
 1 NAME Lloyd /Smith/
 2 TYPE birth
@@ -653,7 +810,9 @@
 1 BIRT
 2 TYPE Birth of Lloyd Smith
 2 DATE 13 MAR 1935
-2 PLAC San Francisco, San Francisco Co., CA
+2 PLAC San Francisco, San Francisco Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0002@
 1 ADOP Y
 2 FAMC @F0009@
 3 ADOP HUSB
@@ -663,7 +822,7 @@
 1 FAMS @F0008@
 1 CHAN
 2 DATE 4 SEP 2016
-3 TIME 20:17:13
+3 TIME 15:17:13
 0 @I0034@ INDI
 1 NAME Alice Paula /Perkins/
 2 TYPE birth
@@ -673,11 +832,16 @@
 1 BIRT
 2 TYPE Birth of Alice Paula Perkins
 2 DATE 22 NOV 1933
-2 PLAC Sparks, Washoe Co., NV
+2 PLAC Sparks, Washoe County, Nevada, United States of America
+3 FORM City, County, State, Country
+3 MAP
+4 LATI N39.53491
+4 LONG W119.75269
+3 _LOC @GEO5512862@
 1 FAMS @F0012@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0035@ INDI
 1 NAME Lars Peter /Smith/
 2 TYPE birth
@@ -687,7 +851,9 @@
 1 BIRT
 2 TYPE Birth of Lars Peter Smith
 2 DATE 16 SEP 1991
-2 PLAC Santa Rosa, Sonoma Co., CA
+2 PLAC Santa Rosa, Sonoma Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0016@
 1 ADOP Y
 2 FAMC @F0010@
 3 ADOP BOTH
@@ -695,7 +861,7 @@
 2 PEDI adopted
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0036@ INDI
 1 NAME Elna /Jefferson/
 2 TYPE birth
@@ -706,17 +872,21 @@
 2 TYPE Birth of Elna Jefferson
 2 DATE 14 SEP 1800
 2 PLAC Gladsax, Kristianstad Län, Sweden
+3 _LOC @P0004@
 1 DEAT
 2 TYPE Death of Elna Jefferson
 2 PLAC Sweden
+3 FORM Country
+3 _LOC @P0008@
 1 CHR
 2 TYPE Christening of Elna Jefferson
 2 DATE 16 SEP 1800
 2 PLAC Gladsax, Kristianstad Län, Sweden
+3 _LOC @P0004@
 1 FAMS @F0000@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0037@ INDI
 1 NAME Edwin Michael /Smith/
 2 TYPE birth
@@ -727,14 +897,19 @@
 1 BIRT
 2 TYPE Birth of Edwin Michael Smith
 2 DATE 24 MAY 1961
-2 PLAC San Jose, Santa Clara Co., CA
+2 PLAC San Jose, Santa Clara Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0017@
 2 SOUR @S0003@
 1 OCCU Software Engineer
 2 AGE 23
 2 NOTE @N0001@
 1 EDUC Education of Edwin Michael Smith
 2 DATE BET 1979 AND 1984
-2 PLAC UC Berkeley
+2 ADDR UC Berkeley
+2 PLAC Berkeley, Alemeda Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0018@
 1 _DEG
 2 TYPE B.S.E.E.
 2 DATE 1984
@@ -743,7 +918,7 @@
 1 FAMS @F0013@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0038@ INDI
 1 NAME Kerstina /Hansdotter/
 2 TYPE birth
@@ -754,14 +929,17 @@
 2 TYPE Birth of Kerstina Hansdotter
 2 DATE 29 NOV 1832
 2 PLAC Smestorp, Kristianstad Län, Sweden
+3 _LOC @P0019@
 1 DEAT
 2 TYPE Death of Kerstina Hansdotter
 2 DATE BEF 1908
 2 PLAC Sweden
+3 FORM Country
+3 _LOC @P0008@
 1 FAMS @F0002@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0039@ INDI
 1 NAME Martin /Smith/
 2 TYPE birth
@@ -772,15 +950,18 @@
 2 TYPE Birth of Martin Smith
 2 DATE BET 1794 AND 1796
 2 PLAC Tommarp, Kristianstad Län, Sweden
+3 _LOC @P0020@
 1 DEAT
 2 TYPE Death of Martin Smith
 2 PLAC Sweden
+3 FORM Country
+3 _LOC @P0008@
 1 FAMC @F0001@
 2 PEDI birth
 1 FAMS @F0000@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0040@ INDI
 1 NAME Marjorie Alice /Smith/
 2 TYPE birth
@@ -790,12 +971,14 @@
 1 BIRT
 2 TYPE Birth of Marjorie Alice Smith
 2 DATE 5 FEB 1960
-2 PLAC San Jose, Santa Clara Co., CA
+2 PLAC San Jose, Santa Clara Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0017@
 1 FAMC @F0012@
 2 PEDI birth
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0041@ INDI
 1 NAME Janis Elaine /Green/
 2 TYPE birth
@@ -808,7 +991,7 @@
 1 FAMS @F0008@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @I0042@ INDI
 1 NAME 雪 /Ke 柯/
 2 TYPE birth
@@ -828,7 +1011,7 @@
 1 NOTE @N0007@
 1 CHAN
 2 DATE 18 JUN 2016
-3 TIME 17:04:25
+3 TIME 12:04:25
 0 @I0043@ INDI
 1 NAME ピーター /リチミシキスイミ/
 2 TYPE birth
@@ -837,7 +1020,7 @@
 1 SEX M
 1 CHAN
 2 DATE 18 JUN 2016
-3 TIME 16:42:08
+3 TIME 11:42:08
 0 @I0044@ INDI
 1 NAME The /Tester/
 2 TYPE birth
@@ -847,12 +1030,18 @@
 1 SEX M
 1 BIRT
 2 DATE 29 DEC 1954
-2 PLAC 123 High St, Cleveland, Cuyahoga, Ohio, USA
+2 PLAC 123 High St, Cleveland, Cuyahoga, Ohio, United States of America
+3 FORM Street, City, County, State, Country
+3 _LOC @P0029@
 2 PHON 440-871-3400
 2 PHON 800-871-3400
 2 EMAIL thetester@@gmail.com
 2 FAX 440-123-4567
 2 WWW http://thetester.com
+1 DEAT
+2 PLAC Houston, Harris, Texas
+3 FORM City, County, State
+3 _LOC @P0036@
 1 EVEN A very bad day
 2 TYPE LossOfMojo
 2 DATE 7 JUL 1973
@@ -879,8 +1068,8 @@
 3 POST 44177
 3 CTRY Cuyahoga
 1 CHAN
-2 DATE 29 OCT 2016
-3 TIME 16:40:40
+2 DATE 29 SEP 2017
+3 TIME 17:02:08
 0 @I0045@ INDI
 1 NAME Mrs /Tester/
 2 TYPE married
@@ -889,7 +1078,10 @@
 1 SEX F
 1 RESI
 2 DATE 30 DEC 1954
-2 PLAC 123 Main St., Winslow, PA, 12345
+2 ADDR 123 Main St.
+2 PLAC Winslow, Pennsylvania, United States of America
+3 FORM City, State, Country
+3 _LOC @P0030@
 2 PHON 440-871-3401
 2 EMAIL mrstester@@gmail.com
 2 FAX 440-321-4568
@@ -914,7 +1106,7 @@
 1 NOTE @N0010@
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 14:22:58
+3 TIME 09:22:58
 0 @I0046@ INDI
 1 NAME Tom /Von Tester y tested/
 2 TYPE birth
@@ -925,25 +1117,31 @@
 1 SEX M
 1 RESI
 2 DATE FROM 1 JAN 1964 TO 3 MAR 1970
-2 PLAC Denver, Denver Co., CO, Denver Co., Colorado, USA
+2 PLAC Denver, Denver Co., Colorado, United States of America
+3 FORM City, County, State, Country
 3 MAP
 4 LATI N39.7392
 4 LONG W104.9903
+3 _LOC @P0014@
 2 PHON 440-871-3402
 2 EMAIL tomtester@@gmail.com
 2 FAX 440-321-4569
 2 WWW http://tomtester.com
 1 RESI
 2 DATE I think 1970 to 1971
-2 PLAC San Francisco, San Francisco Co., CA
+2 PLAC San Francisco, San Francisco Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0002@
 1 SLGC
 2 DATE ABT 1999
 2 FAMC @F0016@
 2 TEMP DENVE
-2 PLAC Denver, Denver Co., CO, Denver Co., Colorado, USA
+2 PLAC Denver, Denver Co., Colorado, United States of America
+3 FORM City, County, State, Country
 3 MAP
 4 LATI N39.7392
 4 LONG W104.9903
+3 _LOC @P0014@
 1 FAMC @F0016@
 2 PEDI birth
 1 SOUR @S0005@
@@ -953,7 +1151,7 @@
 2 FORM URL
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 16:27:59
+3 TIME 11:27:59
 0 @I0047@ INDI
 1 NAME Fake /von Person/ I
 2 TYPE birth
@@ -967,7 +1165,9 @@
 1 BIRT
 2 DATE 1954
 3 TIME 12:45 am
-2 PLAC Fremont, Alameda Co., CA
+2 PLAC Fremont, Alemeda Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0013@
 2 AGNC A hosptial
 2 HUSB
 3 AGE 47
@@ -994,10 +1194,12 @@
 1 BAPL
 2 DATE 7 JUN 1960
 2 TEMP DENVE
-2 PLAC Denver, Denver Co., CO, Denver Co., Colorado, USA
+2 PLAC Denver, Denver Co., Colorado, United States of America
+3 FORM City, County, State, Country
 3 MAP
 4 LATI N39.7392
 4 LONG W104.9903
+3 _LOC @P0014@
 2 STAT QUALIFIED
 1 FAMC @F0016@
 2 _FREL Adopted
@@ -1021,7 +1223,7 @@
 2 FILE ftp://whoknows.org
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 16:27:59
+3 TIME 11:27:59
 0 @I0048@ INDI
 1 NAME Mary /Tester/
 2 TYPE birth
@@ -1036,7 +1238,7 @@
 2 _MREL Adopted
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 16:27:59
+3 TIME 11:27:59
 0 @I0049@ INDI
 1 NAME Martha /Tester/
 2 TYPE Unknown
@@ -1047,7 +1249,7 @@
 2 PEDI foster
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 16:27:59
+3 TIME 11:27:59
 0 @I0050@ INDI
 1 NAME John /Tester/
 2 TYPE aka
@@ -1058,7 +1260,7 @@
 2 PEDI stepchild
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 16:27:59
+3 TIME 11:27:59
 0 @I0051@ INDI
 1 NAME Mark /Tester/
 2 TYPE birth
@@ -1069,7 +1271,7 @@
 2 PEDI Sponsored
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 16:27:59
+3 TIME 11:27:59
 0 @F0000@ FAM
 1 HUSB @I0039@
 1 WIFE @I0036@
@@ -1077,13 +1279,14 @@
 2 TYPE Marriage of Martin Smith and Elna Jefferson
 2 DATE ABT 1816
 2 PLAC Gladsax, Kristianstad Län, Sweden
+3 _LOC @P0004@
 1 CHIL @I0011@
 1 CHIL @I0007@
 1 CHIL @I0004@
 1 CHIL @I0022@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @F0001@ FAM
 1 HUSB @I0027@
 1 WIFE @I0025@
@@ -1091,10 +1294,12 @@
 2 TYPE Marriage of Ingeman Smith and Marta Ericsdotter
 2 DATE ABT 1790
 2 PLAC Sweden
+3 FORM Country
+3 _LOC @P0008@
 1 CHIL @I0039@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @F0002@ FAM
 1 HUSB @I0022@
 1 WIFE @I0038@
@@ -1106,7 +1311,7 @@
 1 CHIL @I0024@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @F0003@ FAM
 1 HUSB @I0024@
 1 WIFE @I0000@
@@ -1114,6 +1319,11 @@
 2 TYPE Marriage of Gustaf Smith, Sr. and Anna Hansdotter
 2 DATE 27 NOV 1885
 2 PLAC Rønne, Bornholm, Denmark
+3 FORM City, Amt (dänisches), kingdom
+3 MAP
+4 LATI N55.1
+4 LONG E14.7
+3 _LOC @GEO2614553@
 1 CHIL @I0026@
 1 CHIL @I0023@
 1 CHIL @I0021@
@@ -1123,7 +1333,7 @@
 1 CHIL @I0010@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @F0004@ FAM
 1 HUSB @I0006@
 1 WIFE @I0026@
@@ -1132,7 +1342,7 @@
 2 DATE ABT 1910
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @F0005@ FAM
 1 HUSB @I0012@
 1 WIFE @I0023@
@@ -1140,22 +1350,32 @@
 2 TYPE Marriage of Herman Julius Nielsen and Astrid Shermanna Augusta Smith
 2 DATE 30 NOV 1912
 2 PLAC Rønne, Bornholm, Denmark
+3 FORM City, Amt (dänisches), kingdom
+3 MAP
+4 LATI N55.1
+4 LONG E14.7
+3 _LOC @GEO2614553@
 1 CHIL @I0042@
 1 CHAN
 2 DATE 12 JUN 2016
-3 TIME 14:27:35
+3 TIME 09:27:35
 0 @F0006@ FAM
 1 HUSB @I0008@
 1 WIFE @I0031@
 1 MARR
 2 TYPE Marriage of Hjalmar Smith and Marjorie Ohman
 2 DATE 31 OCT 1927
-2 PLAC Reno, Washoe Co., NV
+2 PLAC Reno, Washoe County, Nevada, United States of America
+3 FORM City, County, State, Country
+3 MAP
+4 LATI N39.52963
+4 LONG W119.8138
+3 _LOC @GEO5511077@
 1 CHIL @I0018@
 1 CHIL @I0014@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @F0007@ FAM
 1 HUSB @I0015@
 1 WIFE @I0013@
@@ -1164,39 +1384,43 @@
 2 DATE ABT 1920
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @F0008@ FAM
 1 HUSB @I0033@
 1 WIFE @I0041@
 1 MARR
 2 TYPE Marriage of Lloyd Smith and Janis Elaine Green
 2 DATE 10 AUG 1958
-2 PLAC San Francisco, San Francisco Co., CA
+2 PLAC San Francisco, San Francisco Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0002@
 1 CHIL @I0019@
 1 CHIL @I0001@
 1 CHIL @I0029@
 1 CHIL @I0044@
 1 CHAN
 2 DATE 4 SEP 2016
-3 TIME 20:14:33
+3 TIME 15:14:33
 0 @F0009@ FAM
 1 HUSB @I0010@
 1 WIFE @I0017@
 1 CHIL @I0033@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @F0010@ FAM
 1 HUSB @I0019@
 1 WIFE @I0032@
 1 MARR
 2 TYPE Marriage of Eric Lloyd Smith and Darcy Horne
 2 DATE 12 JUL 1986
-2 PLAC Woodland, Yolo Co., CA
+2 PLAC Woodland, Yolo Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0022@
 1 CHIL @I0035@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @F0011@ FAM
 1 HUSB @I0003@
 1 WIFE @I0028@
@@ -1204,51 +1428,67 @@
 2 TYPE Marriage of Magnes Smith and Anna Streiffert
 2 DATE 24 AUG 1884
 2 PLAC Rønne, Bornholm, Denmark
+3 FORM City, Amt (dänisches), kingdom
+3 MAP
+4 LATI N55.1
+4 LONG E14.7
+3 _LOC @GEO2614553@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @F0012@ FAM
 1 HUSB @I0018@
 1 WIFE @I0034@
 1 MARR
 2 TYPE Marriage of John Hjalmar Smith and Alice Paula Perkins
 2 DATE 4 JUN 1954
-2 PLAC Sparks, Washoe Co., NV
+2 PLAC Sparks, Washoe County, Nevada, United States of America
+3 FORM City, County, State, Country
+3 MAP
+4 LATI N39.53491
+4 LONG W119.75269
+3 _LOC @GEO5512862@
 2 SOUR @S0000@
 1 CHIL @I0040@
 1 CHIL @I0037@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @F0013@ FAM
 1 HUSB @I0037@
 1 WIFE @I0030@
 1 MARR
 2 TYPE Marriage of Edwin Michael Smith and Janice Ann Adams
 2 DATE 27 MAY 1995
-2 PLAC San Ramon, Conta Costa Co., CA
+2 PLAC San Ramon, Contra Costa, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0023@
 1 ENGA
 2 TYPE Engagement of Edwin Michael Smith and Janice Ann Adams
 2 DATE 5 OCT 1994
-2 PLAC San Francisco, San Francisco Co., CA
+2 PLAC San Francisco, San Francisco Co, California, United States of America
+3 FORM City, County, State, Country
+3 _LOC @P0002@
 1 CHIL @I0005@
 1 CHIL @I0002@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @F0014@ FAM
 1 HUSB @I0010@
 1 WIFE @I0016@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @F0016@ FAM
 1 HUSB @I0044@
 1 WIFE @I0045@
 1 SLGS
 2 DATE 22 FEB 2000
 2 TEMP DENVE
-2 PLAC Community Presbyterian Church, Danville, CA
+2 PLAC Community Presbyterian Church, Danville, Contra Costa, California, United States of America
+3 FORM Locality, City, County, State, Country
+3 _LOC @P0007@
 2 STAT CLEARED
 1 MARR
 2 HUSB
@@ -1275,7 +1515,1000 @@
 1 CHIL @I0051@
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 16:27:59
+3 TIME 11:27:59
+0 @GEO2264397@ _LOC
+1 NAME Portugal
+2 LANG English
+2 ABBR PT
+3 TYPE ISO3166
+1 NAME Portuguese Republic
+2 ABBR PT
+3 TYPE ISO3166
+1 NAME Lusitania
+2 ABBR PT
+3 TYPE ISO3166
+1 NAME Portugal
+2 LANG German
+1 NAME Portugal
+2 LANG French
+1 NAME Portuguese Republic
+2 LANG English
+2 ABBR PT
+3 TYPE ISO3166
+1 NAME Republic of Portugal
+2 ABBR PT
+3 TYPE ISO3166
+1 NAME Portugal
+1 NAME República Portuguesa
+1 TYPE republic
+2 _GOVTYPE 56
+1 MAP
+2 LATI N39.6945
+2 LONG W8.13057
+1 _LOC @object_1176980@
+2 DATE AFT 1986
+2 TYPE POLI
+1 SOUR @S0008@
+2 PAGE GeoNames ID: 2264397
+1 CHAN
+2 DATE 16 APR 2025
+3 TIME 17:36:38
+0 @GEO2614553@ _LOC
+1 NAME Rønne
+1 NAME Rønne
+2 LANG German
+1 NAME Rønne
+2 LANG English
+1 NAME Rønne
+2 LANG Danish
+1 TYPE City
+1 TYPE place39
+2 _GOVTYPE 39
+1 _POST 3700
+1 _DMGD 13890
+2 TYPE Population
+1 MAP
+2 LATI N55.1
+2 LONG E14.7
+1 _LOC @object_364181@
+2 TYPE POLI
+1 SOUR @S0008@
+2 PAGE GeoNames ID: 2614553
+1 CHAN
+2 DATE 3 JUN 2019
+3 TIME 11:25:39
+0 @GEO3996063@ _LOC
+1 NAME Mexico
+2 LANG English
+2 ABBR MX
+3 TYPE ISO3166
+1 NAME Mexico
+2 ABBR MX
+3 TYPE ISO3166
+1 NAME el País Azteca
+2 LANG Spanish
+1 NAME Estados Unidos Mexicanos
+2 LANG Spanish
+1 NAME Méjico
+2 LANG Spanish
+1 NAME Meksiko
+2 LANG Finnish
+1 NAME Meksiko
+1 NAME Meksyk
+2 LANG Polish
+1 NAME Mèssico
+2 ABBR MX
+3 TYPE ISO3166
+1 NAME Mexican Republic
+2 LANG English
+2 ABBR MX
+3 TYPE ISO3166
+1 NAME Mexico
+2 LANG Danish
+1 NAME Mexico
+1 NAME México
+2 LANG Spanish
+1 NAME Mexiko
+2 LANG German
+1 NAME Mexiko
+1 NAME Mexiko
+2 ABBR MX
+3 TYPE ISO3166
+1 NAME Mexique
+2 LANG French
+1 NAME Mexique
+2 ABBR MX
+3 TYPE ISO3166
+1 NAME Nueva España
+2 LANG Spanish
+1 NAME República Mejicana
+2 LANG Spanish
+1 NAME República Méjico
+2 ABBR MX
+3 TYPE ISO3166
+1 NAME Republica Mexicana
+2 ABBR MX
+3 TYPE ISO3166
+1 NAME United Mexican States
+2 LANG English
+2 ABBR MX
+3 TYPE ISO3166
+1 NAME Мексика
+2 LANG Russian
+1 TYPE Country
+1 MAP
+2 LATI N23.0
+2 LONG W102.0
+1 SOUR @S0008@
+2 PAGE GeoNames ID: 3996063
+1 CHAN
+2 DATE 23 APR 2025
+3 TIME 09:35:52
+0 @GEO5339268@ _LOC
+1 NAME Contra Costa County
+1 NAME Comté de Contra Costa
+2 LANG French
+1 NAME Condado de Contra Costa
+2 LANG Spanish
+1 NAME Contra Costa
+2 LANG English
+1 NAME Contra Costa
+1 NAME Contra Costan piirikunta
+2 LANG Finnish
+1 NAME Hrabstwo Contra Costa
+2 LANG Polish
+1 NAME Контра-Коста
+2 LANG Russian
+1 NAME Conta Costa Co
+1 TYPE County
+1 MAP
+2 LATI N37.92342
+2 LONG W121.95121
+1 _LOC @P0028@
+2 TYPE POLI
+1 SOUR @S0008@
+2 PAGE GeoNames ID: 5339268
+1 CHAN
+2 DATE 5 MAY 2025
+3 TIME 18:25:16
+0 @GEO5341531@ _LOC
+1 NAME Danville
+1 NAME Danville
+2 LANG Danish
+1 NAME Danville
+2 LANG German
+1 NAME Danville
+2 LANG English
+1 NAME Danville
+2 LANG Spanish
+1 NAME Danville
+2 LANG French
+1 NAME Danville
+2 LANG Polish
+1 NAME Danville
+1 NAME Дэнвилл
+2 LANG Russian
+1 TYPE City
+1 _POST 94506
+1 _POST 94526
+1 MAP
+2 LATI N37.82159
+2 LONG W121.99996
+1 _LOC @GEO5339268@
+2 TYPE POLI
+1 SOUR @S0008@
+2 PAGE GeoNames ID: 5341531
+1 CHAN
+2 DATE 23 APR 2025
+3 TIME 12:00:32
+0 @GEO5509151@ _LOC
+1 NAME Nevada
+2 LANG English
+2 ABBR NV
+3 TYPE Abbreviation
+1 NAME Nevada
+2 ABBR NV
+3 TYPE Abbreviation
+1 NAME Estado de Nevada
+2 LANG Spanish
+1 NAME Nevada
+2 LANG Danish
+1 NAME Nevada
+2 LANG German
+1 NAME Nevada
+2 LANG Spanish
+1 NAME Nevada
+2 LANG Finnish
+1 NAME Nevada
+2 LANG French
+1 NAME Nevada
+2 LANG Polish
+1 NAME Nevada
+1 NAME Silver State
+2 LANG English
+2 ABBR NV
+3 TYPE Abbreviation
+1 NAME State of Nevada
+2 LANG English
+2 ABBR NV
+3 TYPE Abbreviation
+1 NAME Невада
+2 LANG Russian
+1 TYPE State
+1 MAP
+2 LATI N39.25021
+2 LONG W116.75119
+1 _LOC @GEO6252001@
+2 TYPE POLI
+1 SOUR @S0008@
+2 PAGE GeoNames ID: 5509151
+1 CHAN
+2 DATE 23 APR 2025
+3 TIME 10:56:00
+0 @GEO5511077@ _LOC
+1 NAME Reno
+2 LANG English
+1 NAME Reno
+1 NAME Fullers Crossing
+1 NAME Lakes Crossing
+1 NAME Reno
+2 LANG Danish
+1 NAME Reno
+2 LANG German
+1 NAME Reno
+2 LANG Spanish
+1 NAME Reno
+2 LANG Finnish
+1 NAME Reno
+2 LANG French
+1 NAME Reno
+2 LANG Polish
+1 NAME Reno-Stead
+1 NAME Рино
+2 LANG Russian
+1 TYPE City
+1 _POST 89501
+1 _POST 89502
+1 _POST 89503
+1 _POST 89504
+1 _POST 89505
+1 _POST 89506
+1 _POST 89507
+1 _POST 89509
+1 _POST 89510
+1 _POST 89511
+1 _POST 89512
+1 _POST 89513
+1 _POST 89515
+1 _POST 89520
+1 _POST 89523
+1 _POST 89533
+1 _POST 89555
+1 _POST 89557
+1 _POST 89570
+1 _POST 89595
+1 _POST 89599
+1 MAP
+2 LATI N39.52963
+2 LONG W119.8138
+1 _LOC @GEO5709906@
+2 TYPE POLI
+1 SOUR @S0008@
+2 PAGE GeoNames ID: 5511077
+1 CHAN
+2 DATE 23 APR 2025
+3 TIME 10:54:02
+0 @GEO5512862@ _LOC
+1 NAME Sparks
+2 LANG English
+1 NAME Sparks
+1 NAME Harriman
+1 NAME Sparks
+2 LANG German
+1 NAME Sparks
+2 LANG Polish
+1 NAME Спаркс
+2 LANG Russian
+1 TYPE City
+1 _POST 89431
+1 _POST 89432
+1 _POST 89434
+1 _POST 89435
+1 _POST 89436
+1 MAP
+2 LATI N39.53491
+2 LONG W119.75269
+1 _LOC @GEO5709906@
+2 TYPE POLI
+1 SOUR @S0008@
+2 PAGE GeoNames ID: 5512862
+1 CHAN
+2 DATE 23 APR 2025
+3 TIME 11:04:20
+0 @GEO5709906@ _LOC
+1 NAME Washoe County
+2 LANG English
+1 NAME Washoe County
+1 NAME Comté de Washoe
+2 LANG French
+1 NAME Condado de Washoe
+2 LANG Spanish
+1 NAME Hrabstwo Washoe
+2 LANG Polish
+1 NAME Lake County
+1 NAME Roop County
+1 NAME Washau County
+1 NAME Washoe
+2 LANG English
+1 NAME Washoe
+1 NAME Washou County
+1 NAME Уошо
+2 LANG Russian
+1 TYPE County
+1 MAP
+2 LATI N40.66542
+2 LONG W119.6643
+1 _LOC @GEO5509151@
+2 TYPE POLI
+1 SOUR @S0008@
+2 PAGE GeoNames ID: 5709906
+1 SOUR @S0008@
+2 PAGE GeoNames ID: 5709906
+1 CHAN
+2 DATE 23 APR 2025
+3 TIME 10:55:24
+0 @GEO6252001@ _LOC
+1 NAME United States of America
+2 LANG English
+2 ABBR US
+3 TYPE ISO3166
+2 ABBR U.S.
+3 TYPE Abbreviation
+2 ABBR US
+3 TYPE Abbreviation
+2 ABBR U.S.A.
+3 TYPE Abbreviation
+2 ABBR USA
+3 TYPE Abbreviation
+1 NAME United States
+2 ABBR US
+3 TYPE ISO3166
+2 ABBR U.S.
+3 TYPE Abbreviation
+2 ABBR US
+3 TYPE Abbreviation
+2 ABBR U.S.A.
+3 TYPE Abbreviation
+2 ABBR USA
+3 TYPE Abbreviation
+1 NAME America
+2 LANG English
+2 ABBR US
+3 TYPE ISO3166
+2 ABBR U.S.
+3 TYPE Abbreviation
+2 ABBR US
+3 TYPE Abbreviation
+2 ABBR U.S.A.
+3 TYPE Abbreviation
+2 ABBR USA
+3 TYPE Abbreviation
+1 NAME Amerikan Yhdysvallat
+2 LANG Finnish
+1 NAME Amerikas Forenede Stater
+2 LANG Danish
+1 NAME Estados Unidos
+2 LANG Spanish
+1 NAME États Unis
+2 LANG French
+1 NAME Marekani
+1 NAME United States
+2 LANG English
+2 ABBR US
+3 TYPE ISO3166
+2 ABBR U.S.
+3 TYPE Abbreviation
+2 ABBR US
+3 TYPE Abbreviation
+2 ABBR U.S.A.
+3 TYPE Abbreviation
+2 ABBR USA
+3 TYPE Abbreviation
+1 NAME USA
+2 LANG Danish
+1 NAME USA
+2 LANG German
+1 NAME USA
+2 LANG English
+2 ABBR US
+3 TYPE ISO3166
+2 ABBR U.S.
+3 TYPE Abbreviation
+2 ABBR US
+3 TYPE Abbreviation
+2 ABBR U.S.A.
+3 TYPE Abbreviation
+2 ABBR USA
+3 TYPE Abbreviation
+1 NAME USA
+2 LANG Finnish
+1 NAME USA
+2 LANG French
+1 NAME USA
+1 NAME USA
+2 LANG Polish
+1 NAME Vereinigten Staaten von Amerika
+2 LANG German
+1 NAME Vereinigte Staaten
+2 LANG German
+1 NAME Yhdysvallat
+2 LANG Finnish
+1 NAME Соединенные Штаты
+2 LANG Russian
+1 NAME США
+2 LANG Russian
+1 NAME USA
+1 NAME United States of America
+1 TYPE Country
+1 MAP
+2 LATI N39.76
+2 LONG W98.5
+1 SOUR @S0008@
+2 PAGE GeoNames ID: 6252001
+1 CHAN
+2 DATE 23 APR 2025
+3 TIME 11:00:20
+0 @P0000@ _LOC
+1 NAME Löderup, Malmöhus Län, Sweden
+1 CHAN
+2 DATE 12 JUN 2016
+3 TIME 09:30:26
+0 @P0002@ _LOC
+1 NAME San Francisco
+1 TYPE City
+1 _LOC @P0039@
+2 TYPE POLI
+1 CHAN
+2 DATE 5 MAY 2025
+3 TIME 18:26:35
+0 @P0003@ _LOC
+1 NAME Pennsylvania
+1 NAME PA
+1 TYPE State
+1 _LOC @GEO6252001@
+2 TYPE POLI
+1 CHAN
+2 DATE 23 APR 2025
+3 TIME 11:00:20
+0 @P0004@ _LOC
+1 NAME Gladsax, Kristianstad Län, Sweden
+1 CHAN
+2 DATE 22 APR 2025
+3 TIME 16:28:48
+0 @P0006@ _LOC
+1 NAME Hayward
+1 TYPE City
+1 _LOC @P0040@
+2 TYPE POLI
+1 CHAN
+2 DATE 5 MAY 2025
+3 TIME 18:25:56
+0 @P0007@ _LOC
+1 NAME Community Presbyterian Church
+1 TYPE Locality
+1 _LOC @GEO5341531@
+2 TYPE POLI
+1 CHAN
+2 DATE 23 APR 2025
+3 TIME 11:57:50
+0 @P0008@ _LOC
+1 NAME Sweden
+1 TYPE Country
+1 CHAN
+2 DATE 16 APR 2025
+3 TIME 17:43:07
+0 @P0009@ _LOC
+1 NAME Grostorp, Kristianstad Län, Sweden
+1 CHAN
+2 DATE 12 JUN 2016
+3 TIME 09:30:26
+0 @P0011@ _LOC
+1 NAME Hoya/Jona/Hoia, Sweden
+1 CHAN
+2 DATE 22 MAY 2016
+3 TIME 10:13:17
+0 @P0012@ _LOC
+1 NAME Simrishamn, Kristianstad Län, Sweden
+1 CHAN
+2 DATE 12 JUN 2016
+3 TIME 09:29:48
+0 @P0013@ _LOC
+1 NAME Fremont
+1 TYPE City
+1 _LOC @P0040@
+2 TYPE POLI
+1 CHAN
+2 DATE 5 MAY 2025
+3 TIME 18:23:30
+0 @P0014@ _LOC
+1 NAME Denver
+1 TYPE City
+1 MAP
+2 LATI N39.7392
+2 LONG W104.9903
+1 _LOC @P0024@
+2 TYPE POLI
+1 CHAN
+2 DATE 5 MAY 2025
+3 TIME 18:25:35
+0 @P0015@ _LOC
+1 NAME Sacramento
+1 TYPE City
+1 _LOC @P0027@
+2 DATE 4 JUN 2016
+2 TYPE POLI
+1 CHAN
+2 DATE 5 MAY 2025
+3 TIME 18:26:19
+0 @P0016@ _LOC
+1 NAME Santa Rosa
+1 TYPE City
+1 _LOC @P0041@
+2 TYPE POLI
+1 CHAN
+2 DATE 5 MAY 2025
+3 TIME 18:27:09
+0 @P0017@ _LOC
+1 NAME San Jose
+1 TYPE City
+1 _LOC @P0042@
+2 TYPE POLI
+1 CHAN
+2 DATE 5 MAY 2025
+3 TIME 18:26:46
+0 @P0018@ _LOC
+1 NAME UC Berkeley
+1 TYPE Address
+1 _LOC @P0045@
+2 TYPE POLI
+1 CHAN
+2 DATE 16 APR 2025
+3 TIME 17:52:54
+0 @P0019@ _LOC
+1 NAME Smestorp, Kristianstad Län, Sweden
+1 CHAN
+2 DATE 22 MAY 2016
+3 TIME 10:13:17
+0 @P0020@ _LOC
+1 NAME Tommarp, Kristianstad Län, Sweden
+1 CHAN
+2 DATE 12 JUN 2016
+3 TIME 09:30:26
+0 @P0021@ _LOC
+1 NAME Winslow
+1 TYPE City
+1 _LOC @P0003@
+2 TYPE POLI
+1 CHAN
+2 DATE 29 SEP 2017
+3 TIME 16:28:12
+0 @P0022@ _LOC
+1 NAME Woodland
+1 TYPE City
+1 _LOC @P0043@
+2 TYPE POLI
+1 CHAN
+2 DATE 5 MAY 2025
+3 TIME 18:27:28
+0 @P0023@ _LOC
+1 NAME San Ramon
+1 TYPE City
+1 _LOC @GEO5339268@
+2 TYPE POLI
+1 CHAN
+2 DATE 5 MAY 2025
+3 TIME 18:26:56
+0 @P0024@ _LOC
+1 NAME Denver Co.
+1 TYPE County
+1 _LOC @P0025@
+2 TYPE POLI
+1 CHAN
+2 DATE 16 APR 2025
+3 TIME 17:35:47
+0 @P0025@ _LOC
+1 NAME Colorado
+1 TYPE State
+1 _LOC @GEO6252001@
+2 TYPE POLI
+1 CHAN
+2 DATE 23 APR 2025
+3 TIME 11:00:20
+0 @P0027@ _LOC
+1 NAME Sacramento Co.
+1 TYPE County
+1 _LOC @P0028@
+2 DATE 1 JUN 2016
+2 TYPE POLI
+1 CHAN
+2 DATE 16 APR 2025
+3 TIME 17:35:55
+0 @P0028@ _LOC
+1 NAME California
+2 ABBR CA
+3 TYPE Abbreviation
+2 ABBR Calif
+3 TYPE Abbreviation
+1 NAME California
+2 LANG English
+2 ABBR CA
+3 TYPE Abbreviation
+2 ABBR Calif
+3 TYPE Abbreviation
+1 NAME Albion
+2 ABBR CA
+3 TYPE Abbreviation
+2 ABBR Calif
+3 TYPE Abbreviation
+1 NAME Alta California
+2 LANG Spanish
+1 NAME Calif.
+2 ABBR CA
+3 TYPE Abbreviation
+2 ABBR Calif
+3 TYPE Abbreviation
+1 NAME California
+2 LANG Spanish
+1 NAME California
+1 NAME California
+1 NAME California Del Norte
+2 ABBR CA
+3 TYPE Abbreviation
+2 ABBR Calif
+3 TYPE Abbreviation
+1 NAME California Republic
+2 LANG English
+2 ABBR CA
+3 TYPE Abbreviation
+2 ABBR Calif
+3 TYPE Abbreviation
+1 NAME California Septentrional
+2 ABBR CA
+3 TYPE Abbreviation
+2 ABBR Calif
+3 TYPE Abbreviation
+1 NAME California Superior
+2 ABBR CA
+3 TYPE Abbreviation
+2 ABBR Calif
+3 TYPE Abbreviation
+1 NAME Californie
+2 LANG French
+1 NAME Californien
+2 LANG Danish
+1 NAME Estado de California
+2 LANG Spanish
+1 NAME Golden State
+2 LANG English
+2 ABBR CA
+3 TYPE Abbreviation
+2 ABBR Calif
+3 TYPE Abbreviation
+1 NAME Kalifornia
+2 LANG Finnish
+1 NAME Kalifornia
+2 LANG Polish
+1 NAME Kalifornien
+2 LANG German
+1 NAME New Albion
+2 ABBR CA
+3 TYPE Abbreviation
+2 ABBR Calif
+3 TYPE Abbreviation
+1 NAME Noua Albion
+2 ABBR CA
+3 TYPE Abbreviation
+2 ABBR Calif
+3 TYPE Abbreviation
+1 NAME Nueva California
+2 ABBR CA
+3 TYPE Abbreviation
+2 ABBR Calif
+3 TYPE Abbreviation
+1 NAME State of California
+2 LANG English
+2 ABBR CA
+3 TYPE Abbreviation
+2 ABBR Calif
+3 TYPE Abbreviation
+1 NAME Калифорния
+2 LANG Russian
+1 TYPE State
+1 MAP
+2 LATI N37.25022
+2 LONG W119.75126
+1 _LOC @GEO6252001@
+2 TYPE POLI
+1 SOUR @S0008@
+2 PAGE GeoNames ID: 5332921
+1 CHAN
+2 DATE 23 APR 2025
+3 TIME 17:42:08
+0 @P0029@ _LOC
+1 NAME 123 High St
+2 DATE AFT 1952
+2 LANG English
+1 TYPE Street
+1 _POST 44140
+1 _LOC @P0034@
+2 TYPE POLI
+1 CHAN
+2 DATE 16 APR 2025
+3 TIME 17:38:04
+0 @P0030@ _LOC
+1 NAME 123 Main St.
+2 DATE AFT 1950
+2 LANG English
+1 TYPE Address
+1 _LOC @P0021@
+2 TYPE POLI
+1 CHAN
+2 DATE 5 MAY 2025
+3 TIME 18:24:02
+0 @P0031@ _LOC
+1 NAME Texas
+1 TYPE State
+1 _LOC @GEO6252001@
+2 DATE AFT 1845
+2 TYPE POLI
+1 _LOC @P0037@
+2 DATE FROM 1836 TO 1845
+2 TYPE POLI
+1 _LOC @GEO3996063@
+2 DATE FROM 1690 TO 1821
+2 TYPE POLI
+1 OBJE @O0001@
+1 NOTE @N0020@
+1 SOUR @S0007@
+2 PAGE widipedia
+1 CHAN
+2 DATE 23 APR 2025
+3 TIME 11:00:20
+0 @P0032@ _LOC
+1 NAME Ohio
+1 TYPE State
+1 _LOC @GEO6252001@
+2 TYPE POLI
+1 CHAN
+2 DATE 23 APR 2025
+3 TIME 11:00:20
+0 @P0033@ _LOC
+1 NAME Cuyahoga
+1 TYPE County
+1 _LOC @P0032@
+2 TYPE POLI
+1 CHAN
+2 DATE 16 APR 2025
+3 TIME 17:36:02
+0 @P0034@ _LOC
+1 NAME Cleveland
+2 DATE AFT 1796
+2 LANG English
+1 TYPE City
+1 _LOC @P0033@
+2 TYPE POLI
+1 CHAN
+2 DATE 29 SEP 2017
+3 TIME 16:25:23
+0 @P0035@ _LOC
+1 NAME Harris
+1 TYPE County
+1 _LOC @P0031@
+2 TYPE POLI
+1 CHAN
+2 DATE 16 APR 2025
+3 TIME 17:36:11
+0 @P0036@ _LOC
+1 NAME Houston
+1 TYPE City
+1 _LOC @P0035@
+2 TYPE POLI
+1 CHAN
+2 DATE 29 SEP 2017
+3 TIME 16:36:40
+0 @P0037@ _LOC
+1 NAME Republic of Texas
+1 TYPE Country
+1 CHAN
+2 DATE 16 APR 2025
+3 TIME 17:33:52
+0 @P0039@ _LOC
+1 NAME San Francisco Co
+1 TYPE County
+1 _LOC @P0028@
+2 TYPE POLI
+1 CHAN
+2 DATE 16 APR 2025
+3 TIME 17:40:44
+0 @P0040@ _LOC
+1 NAME Alemeda Co
+1 TYPE County
+1 _LOC @P0028@
+2 TYPE POLI
+1 CHAN
+2 DATE 16 APR 2025
+3 TIME 17:42:13
+0 @P0041@ _LOC
+1 NAME Sonoma Co
+1 TYPE County
+1 _LOC @P0028@
+2 TYPE POLI
+1 CHAN
+2 DATE 16 APR 2025
+3 TIME 17:45:54
+0 @P0042@ _LOC
+1 NAME Santa Clara Co
+1 TYPE County
+1 _LOC @P0028@
+2 TYPE POLI
+1 CHAN
+2 DATE 16 APR 2025
+3 TIME 17:48:33
+0 @P0043@ _LOC
+1 NAME Yolo Co
+1 TYPE County
+1 _LOC @P0028@
+2 TYPE POLI
+1 CHAN
+2 DATE 16 APR 2025
+3 TIME 17:49:21
+0 @P0045@ _LOC
+1 NAME Berkeley
+1 TYPE City
+1 _LOC @P0040@
+2 TYPE POLI
+1 CHAN
+2 DATE 16 APR 2025
+3 TIME 17:52:50
+0 @object_1176980@ _LOC
+1 NAME European Union
+2 DATE AFT 2009
+2 LANG English
+2 SOUR @S0008@
+3 PAGE None, just testing
+2 ABBR EU
+3 TYPE Abbreviation
+1 NAME Europese Unie
+2 LANG Dutch
+1 NAME Euroopan Yhteisö
+2 DATE BEF 2009
+2 LANG Finnish
+1 NAME Europäische Union
+2 DATE AFT 2009
+2 LANG German
+1 NAME Union européenne
+2 LANG French
+1 NAME Euroopan Unioni
+2 LANG Finnish
+1 NAME Aontais Eorpaigh
+2 LANG Gaelic
+1 NAME Europäische Gemeinschaft
+2 DATE BEF 2009
+2 LANG German
+1 NAME Unión Europea
+2 LANG Spanish
+1 NAME European Community
+2 DATE FROM 1992 TO 2009
+2 LANG English
+1 TYPE confederation
+2 _GOVTYPE 71
+2 SOUR @S0008@
+3 PAGE Cit for test purposes
+3 DATA
+4 DATE JUN 2019
+1 _GOV object_1176980
+1 MAP
+2 LATI N50.342813
+2 LONG E10.784506
+1 EVEN Lisbon Treaty
+2 TYPE History
+2 DATE 2009
+2 PLAC Lisbon, Portugal, European Community
+3 FORM town, republic, confederation
+3 MAP
+4 LATI N38.72564
+4 LONG W9.150028
+3 _LOC @object_1177032@
+3 _GOV object_1177032
+1 CHAN
+2 DATE 16 APR 2025
+3 TIME 17:33:31
+0 @object_1177032@ _LOC
+1 NAME Lisbon
+2 LANG English
+1 NAME Lisboa
+1 NAME Distrito de Lisboa
+1 NAME Lisbon District
+2 LANG English
+1 NAME Lissabon
+2 LANG German
+1 NAME District de Lisbonne
+2 LANG French
+1 NAME Distrikt Lissabon
+2 LANG German
+1 NAME Lisbonne
+2 LANG French
+1 TYPE town
+2 _GOVTYPE 51
+1 TYPE District
+1 _GOV object_1177032
+1 MAP
+2 LATI N38.72564
+2 LONG W9.150028
+1 _LOC @GEO2264397@
+2 TYPE POLI
+1 SOUR @S0008@
+2 PAGE GeoNames ID: 2267056
+1 CHAN
+2 DATE 3 JUN 2019
+3 TIME 12:01:25
+0 @object_190123@ _LOC
+1 NAME Denmark
+2 LANG English
+2 ABBR DK
+3 TYPE ISO3166
+1 NAME Dinamarca
+2 LANG Spanish
+1 NAME Danemark
+2 LANG French
+1 NAME Dänemark
+2 LANG German
+1 NAME Danmark
+2 LANG Swedish
+1 NAME Danmark
+2 LANG Danish
+1 TYPE kingdom
+2 _GOVTYPE 31
+1 _GOV object_190123
+1 MAP
+2 LATI N55.482291
+2 LONG E9.986007
+1 _LOC @object_1176980@
+2 DATE AFT 1973
+2 TYPE POLI
+1 CHAN
+2 DATE 16 APR 2025
+3 TIME 17:36:21
+0 @object_364181@ _LOC
+1 NAME Bornholm
+2 LANG Danish
+1 TYPE Amt (dänisches)
+2 _GOVTYPE 57
+1 TYPE amt
+1 _GOV object_364181
+1 MAP
+2 LATI N55.131626
+2 LONG E14.913139
+1 _LOC @object_190123@
+2 TYPE POLI
+1 CHAN
+2 DATE 3 JUN 2019
+3 TIME 11:14:17
+0 @object_364318@ _LOC
+1 NAME Copenhagen
+2 LANG English
+1 NAME København
+2 LANG Danish
+1 NAME Kopenhagen
+2 LANG German
+1 TYPE Stadt (Gebietskörperschaft)
+2 _GOVTYPE 150
+1 _GOV object_364318
+1 _LOC @object_190123@
+2 TYPE POLI
+1 CHAN
+2 DATE 18 APR 2025
+3 TIME 10:51:27
 0 @S0000@ SOUR
 1 TITL Marriage Certificae
 1 REPO @R0002@
@@ -1284,17 +2517,17 @@
 1 NOTE @N0004@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @S0001@ SOUR
 1 TITL Birth Certificate
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @S0002@ SOUR
 1 TITL Birth Records
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @S0003@ SOUR
 1 TITL Birth, Death and Marriage Records
 1 REPO @R0002@
@@ -1303,25 +2536,25 @@
 1 NOTE @N0005@
 1 CHAN
 2 DATE 21 DEC 2007
-3 TIME 07:35:26
+3 TIME 01:35:26
 0 @S0004@ SOUR
 1 TITL findagrave.com
 1 CHAN
 2 DATE 4 JUN 2016
-3 TIME 21:28:36
+3 TIME 16:28:36
 0 @S0005@ SOUR
 1 TITL Import from imp_FTM_LINK.ged
 1 REPO @R0000@
 1 REPO @R0001@
 1 CHAN
 2 DATE 29 AUG 2016
-3 TIME 19:51:48
+3 TIME 14:51:48
 0 @S0006@ SOUR
 1 TITL Ohio Births, 1958-2002
 1 REPO @R0004@
 1 CHAN
 2 DATE 29 AUG 2016
-3 TIME 19:51:48
+3 TIME 14:51:48
 0 @S0007@ SOUR
 1 AUTH The tester
 1 PUBL Published when the test was written
@@ -1329,7 +2562,14 @@
 1 REPO @R0006@
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 16:20:39
+3 TIME 11:20:39
+0 @S0008@ SOUR
+1 TITL GeoNames
+1 AUTH Marc Wick
+1 REPO @R0007@
+1 CHAN
+2 DATE 3 JUN 2019
+3 TIME 11:18:34
 0 @R0000@ REPO
 1 NAME Business that produced the product: Ancestry.com
 1 ADDR 360 W 4800 N, Provo, UT 84604
@@ -1389,6 +2629,11 @@
 1 NOTE @N0013@
 0 @R0005@ REPO
 0 @R0006@ REPO
+0 @R0007@ REPO
+1 NAME www.geonames.org
+1 WWW http://www.geonames.org/
+1 EMAIL marc@@geonames.org
+1 NOTE @N0021@
 0 @N0000@ NOTE Witness name: John Doe
 1 CONT Witness comment: This is a simple test.
 0 @N0001@ NOTE Witness name: No Name
@@ -1443,12 +2688,33 @@
 0 @N0017@ NOTE A citation Note Source text
 0 @N0018@ NOTE Another Citation Note
 0 @N0019@ NOTE A bad photo for sure
+0 @N0020@ NOTE Timeline
+1 CONT French Texas	1684–1689
+1 CONT Spanish Texas	1690–1821
+1 CONT Mexican Texas	1821–1836
+1 CONT Republic of Texas	1836–1845
+1 CONT Statehood	1845–1860
+1 CONT Civil War Era	1861–1865
+1 CONT Reconstruction	1865–1899
+1 CONT 
+0 @N0021@ NOTE GeoNames was founded by Marc Wick. You can reach him at marc@@geona
+1 CONC mes.org
+1 CONT GeoNames is a project of Unxos GmbH, Weingartenstrasse 8, 8708 Männedorf
+1 CONC , Switzerland.
+1 CONT This work is licensed under a Creative Commons Attribution 3.0 License
 0 @O0000@ OBJE
-1 FILE d:\users\prc\documents\gramps\data\tests\O0.jpg
+1 FILE d:\users\prc\documents\gramps2\data\tests\O0.jpg
 2 FORM jpg
 2 TITL Michael O'Toole 2015-11
 1 NOTE @N0019@
 1 CHAN
 2 DATE 29 OCT 2016
-3 TIME 15:23:37
+3 TIME 10:23:37
+0 @O0001@ OBJE
+1 FILE d:\users\prc\documents\gramps2\data\tests\1024px-Texas_flag_map.svg.png
+2 FORM png
+2 TITL 1024px-Texas_flag_map.svg
+1 CHAN
+2 DATE 10 JUN 2018
+3 TIME 14:14:55
 0 TRLR
