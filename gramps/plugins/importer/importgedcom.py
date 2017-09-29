@@ -110,7 +110,7 @@ def importData(database, filename, user):
 
     try:
         ifile = open(filename, "rb")
-        stage_one = libgedcom.GedcomStageOne(ifile)
+        stage_one = libgedcom.GedcomStageOne(ifile, database)
         stage_one.parse()
 
         if code_set:

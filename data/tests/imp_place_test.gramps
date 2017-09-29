@@ -6,7 +6,7 @@
     <created date="2017-09-29" version="5.0.0-alpha3"/>
     <researcher>
       <resname>The Gramps Tester</resname>
-      <resaddr>112 Main St., Open Source</resaddr>
+      <resaddr>TesterHouse, Annex, 112 Main St., Open Source</resaddr>
       <rescity>Software</rescity>
       <rescountry>Is Great</rescountry>
       <respostal>11111</respostal>
@@ -15,211 +15,697 @@
     </researcher>
   </header>
   <events>
-    <event handle="_0000000300000003" change="1" id="E0000">
+    <event handle="_0000000900000009" change="1" id="E0000">
       <type>Residence</type>
       <dateval val="1960"/>
-      <place hlink="_0000000600000006"/>
+      <place hlink="_0000000c0000000c"/>
     </event>
-    <event handle="_0000000700000007" change="1" id="E0001">
+    <event handle="_0000000d0000000d" change="1" id="E0001">
       <type>Residence</type>
       <dateval val="1961"/>
-      <place hlink="_0000000600000006"/>
+      <place hlink="_0000000c0000000c"/>
     </event>
-    <event handle="_0000000d0000000d" change="1" id="E0002">
+    <event handle="_0000001300000013" change="1" id="E0002">
       <type>Residence</type>
       <dateval val="1962"/>
-      <place hlink="_0000001000000010"/>
-    </event>
-    <event handle="_0000001100000011" change="1" id="E0003">
-      <type>Residence</type>
-      <dateval val="1963"/>
       <place hlink="_0000001600000016"/>
     </event>
-    <event handle="_0000001700000017" change="1" id="E0004">
+    <event handle="_0000001700000017" change="1" id="E0003">
+      <type>Residence</type>
+      <dateval val="1963"/>
+      <place hlink="_0000001c0000001c"/>
+    </event>
+    <event handle="_0000001d0000001d" change="1" id="E0004">
       <type>Residence</type>
       <dateval val="1964"/>
-      <place hlink="_0000001b0000001b"/>
+      <place hlink="_0000002100000021"/>
     </event>
-    <event handle="_0000001c0000001c" change="1" id="E0005">
+    <event handle="_0000002200000022" change="1" id="E0005">
       <type>Residence</type>
       <dateval val="1965"/>
-      <place hlink="_0000001d0000001d"/>
+      <place hlink="_0000002300000023"/>
     </event>
-    <event handle="_0000001e0000001e" change="1" id="E0006">
+    <event handle="_0000002400000024" change="1" id="E0006">
+      <type>Residence</type>
+      <dateval val="1965-02"/>
+      <place hlink="_0000002300000023"/>
+    </event>
+    <event handle="_0000002600000026" change="1" id="E0007">
       <type>Residence</type>
       <dateval val="1966"/>
-      <place hlink="_0000002000000020"/>
+      <place hlink="_0000002800000028"/>
     </event>
-    <event handle="_0000002100000021" change="1" id="E0007">
+    <event handle="_0000002900000029" change="1" id="E0008">
       <type>Residence</type>
       <dateval val="1967"/>
-      <place hlink="_0000002200000022"/>
+      <place hlink="_0000002a0000002a"/>
+    </event>
+    <event handle="_0000002b0000002b" change="1" id="E0009">
+      <type>Residence</type>
+      <dateval val="1968"/>
+      <place hlink="_0000003100000031"/>
+    </event>
+    <event handle="_0000003200000032" change="1" id="E0010">
+      <type>Residence</type>
+      <dateval val="1969"/>
+      <place hlink="_0000003500000035"/>
+      <noteref hlink="_0000003300000033"/>
+    </event>
+    <event handle="_0000003600000036" change="1" id="E0011">
+      <type>Residence</type>
+      <dateval val="1970"/>
+      <place hlink="_0000001b0000001b"/>
+    </event>
+    <event handle="_0000003900000039" change="1" id="E0012">
+      <type>Residence</type>
+      <dateval val="1971"/>
+      <place hlink="_0000003b0000003b"/>
+    </event>
+    <event handle="_0000003c0000003c" change="1" id="E0013">
+      <type>Residence</type>
+      <dateval val="1972"/>
+      <place hlink="_0000002f0000002f"/>
+    </event>
+    <event handle="_0000003d0000003d" change="1" id="E0014">
+      <type>Residence</type>
+      <dateval val="1973"/>
+      <place hlink="_0000001900000019"/>
+    </event>
+    <event handle="_0000003f0000003f" change="1" id="E0015">
+      <type>Residence</type>
+      <dateval val="1974"/>
+      <place hlink="_0000004100000041"/>
+    </event>
+    <event handle="_0000004200000042" change="1" id="E0016">
+      <type>Residence</type>
+      <dateval val="1975"/>
+      <place hlink="_0000004100000041"/>
+    </event>
+    <event handle="_0000004500000045" change="1" id="E0017">
+      <type>Residence</type>
+      <dateval val="1976"/>
+      <place hlink="_0000004100000041"/>
+    </event>
+    <event handle="_0000004800000048" change="1" id="E0018">
+      <type>Residence</type>
+      <dateval val="1977"/>
+      <place hlink="_0000004a0000004a"/>
+      <noteref hlink="_0000004900000049"/>
+    </event>
+    <event handle="_0000004b0000004b" change="1" id="E0019">
+      <type>Residence</type>
+      <dateval val="1978"/>
+      <place hlink="_0000003400000034"/>
+    </event>
+    <event handle="_0000004d0000004d" change="1" id="E0020">
+      <type>Residence</type>
+      <dateval val="1979"/>
+      <place hlink="_0000005300000053"/>
+    </event>
+    <event handle="_0000005400000054" change="1" id="E0021">
+      <type>Residence</type>
+      <dateval val="1980"/>
+      <place hlink="_0000005700000057"/>
+    </event>
+    <event handle="_0000005800000058" change="1" id="E0022">
+      <type>Residence</type>
+      <dateval val="1981"/>
+      <place hlink="_0000005900000059"/>
+    </event>
+    <event handle="_0000005d0000005d" change="1" id="E0023">
+      <type>Occupancy</type>
+      <dateval val="2000-01-11"/>
+      <description>Move-in to Myhouse</description>
     </event>
   </events>
   <people>
-    <person handle="_0000000200000002" change="1422252000" id="I0310">
+    <person handle="_0000000300000003" change="1505679424" id="I0000">
+      <gender>F</gender>
+      <name type="Birth Name">
+        <first>Susan</first>
+        <surname>Smith</surname>
+      </name>
+      <parentin hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000000500000005" change="1505679424" id="I0001">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Tom</first>
+        <surname>Jones</surname>
+      </name>
+      <parentin hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000000600000006" change="1505679424" id="I0002">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Tim</first>
+        <surname>Jones</surname>
+      </name>
+      <childof hlink="_0000000400000004"/>
+    </person>
+    <person handle="_0000000800000008" change="1422252000" id="I0310">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Living</first>
       </name>
-      <eventref hlink="_0000000300000003" role="Primary"/>
-      <eventref hlink="_0000000700000007" role="Primary"/>
+      <eventref hlink="_0000000900000009" role="Primary"/>
       <eventref hlink="_0000000d0000000d" role="Primary"/>
-      <eventref hlink="_0000001100000011" role="Primary"/>
+      <eventref hlink="_0000001300000013" role="Primary"/>
       <eventref hlink="_0000001700000017" role="Primary"/>
-      <eventref hlink="_0000001c0000001c" role="Primary"/>
-      <eventref hlink="_0000001e0000001e" role="Primary"/>
-      <eventref hlink="_0000002100000021" role="Primary"/>
+      <eventref hlink="_0000001d0000001d" role="Primary"/>
+      <eventref hlink="_0000002200000022" role="Primary"/>
+      <eventref hlink="_0000002400000024" role="Primary"/>
+      <eventref hlink="_0000002600000026" role="Primary"/>
+      <eventref hlink="_0000002900000029" role="Primary"/>
+      <eventref hlink="_0000002b0000002b" role="Primary"/>
+      <eventref hlink="_0000003200000032" role="Primary"/>
+      <eventref hlink="_0000003600000036" role="Primary"/>
+      <eventref hlink="_0000003900000039" role="Primary"/>
+      <eventref hlink="_0000003c0000003c" role="Primary"/>
+      <eventref hlink="_0000003d0000003d" role="Primary"/>
+      <eventref hlink="_0000003f0000003f" role="Primary"/>
+      <eventref hlink="_0000004200000042" role="Primary"/>
+      <eventref hlink="_0000004500000045" role="Primary"/>
+      <eventref hlink="_0000004800000048" role="Primary"/>
+      <eventref hlink="_0000004b0000004b" role="Primary"/>
+      <eventref hlink="_0000004d0000004d" role="Primary"/>
+      <eventref hlink="_0000005400000054" role="Primary"/>
+      <eventref hlink="_0000005800000058" role="Primary"/>
       <attribute type="_UID" value="B9C4D3F0D254674AA1B9023745BEBFE551C1"/>
-      <noteref hlink="_0000002300000023"/>
+      <noteref hlink="_0000005a0000005a"/>
     </person>
   </people>
+  <families>
+    <family handle="_0000000400000004" change="1505679424" id="F0000">
+      <rel type="Unknown"/>
+      <father hlink="_0000000500000005"/>
+      <mother hlink="_0000000300000003"/>
+      <childref hlink="_0000000600000006"/>
+      <noteref hlink="_0000000700000007"/>
+    </family>
+  </families>
   <citations>
-    <citation handle="_0000000a0000000a" change="1" id="C0000">
+    <citation handle="_0000001000000010" change="1" id="C0000">
       <page>Citation for 'the address unknown'</page>
       <confidence>2</confidence>
-      <sourceref hlink="_0000000900000009"/>
+      <sourceref hlink="_0000000f0000000f"/>
     </citation>
-    <citation handle="_0000000c0000000c" change="1" id="C0001">
+    <citation handle="_0000001200000012" change="1" id="C0001">
       <page>Citation for 'the place unknown'</page>
       <confidence>2</confidence>
-      <sourceref hlink="_0000000900000009"/>
+      <sourceref hlink="_0000000f0000000f"/>
+    </citation>
+    <citation handle="_0000005b0000005b" change="1" id="C0002">
+      <page>Myhouse Name Citation</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_0000000f0000000f"/>
+    </citation>
+    <citation handle="_0000005c0000005c" change="1" id="C0003">
+      <page>Myhouse Type Citation</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_0000000f0000000f"/>
+    </citation>
+    <citation handle="_0000005e0000005e" change="1" id="C0004">
+      <page>Myhouse located in Mycity Citation</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_0000000f0000000f"/>
+    </citation>
+    <citation handle="_0000005f0000005f" change="1" id="C0005">
+      <page>Myhouse DMGD Citation</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_0000000f0000000f"/>
+    </citation>
+    <citation handle="_0000006000000060" change="1" id="C0006">
+      <page>Myhouse AIDN Citation</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_0000000f0000000f"/>
+    </citation>
+    <citation handle="_0000006300000063" change="1" id="C0007">
+      <page>Myhouse Citation</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_0000000f0000000f"/>
+    </citation>
+    <citation handle="_0000006500000065" change="1" id="C0008">
+      <page>Mycity POST Citation</page>
+      <confidence>2</confidence>
+      <sourceref hlink="_0000000f0000000f"/>
     </citation>
   </citations>
   <sources>
-    <source handle="_0000000900000009" change="1" id="S0001">
+    <source handle="_0000000f0000000f" change="1" id="S0001">
       <stitle>The Gramps Test Library</stitle>
       <sauthor>The Gramps Test guys</sauthor>
       <spubinfo>2017</spubinfo>
-      <reporef hlink="_0000002400000024" medium="Book"/>
+      <reporef hlink="_0000006b0000006b" medium="Book"/>
     </source>
   </sources>
   <places>
-    <placeobj handle="_0000000500000005" change="1" id="P0000" type="Unknown">
+    <placeobj handle="_0000000b0000000b" change="1" id="P0000" type="Unknown">
       <ptitle>the place unknown</ptitle>
       <pname value="the place unknown"/>
-      <noteref hlink="_0000000b0000000b"/>
-      <citationref hlink="_0000000c0000000c"/>
+      <noteref hlink="_0000001100000011"/>
+      <citationref hlink="_0000001200000012"/>
     </placeobj>
-    <placeobj handle="_0000000600000006" change="1" id="P0001" type="Address">
+    <placeobj handle="_0000000c0000000c" change="1" id="P0010" type="Address">
       <ptitle>the address unknown</ptitle>
       <pname value="the address unknown"/>
-      <placeref hlink="_0000000500000005"/>
-      <noteref hlink="_0000000400000004"/>
-      <noteref hlink="_0000000800000008"/>
-      <citationref hlink="_0000000a0000000a"/>
+      <placeref hlink="_0000000b0000000b"/>
+      <noteref hlink="_0000000a0000000a"/>
+      <noteref hlink="_0000000e0000000e"/>
+      <citationref hlink="_0000001000000010"/>
     </placeobj>
-    <placeobj handle="_0000000f0000000f" change="1" id="P0002" type="Unknown">
+    <placeobj handle="_0000001500000015" change="1" id="P0013" type="Unknown">
       <ptitle>the place</ptitle>
       <pname value="the place"/>
     </placeobj>
-    <placeobj handle="_0000001000000010" change="1" id="P0003" type="Number">
+    <placeobj handle="_0000001600000016" change="1" id="P0014" type="Number">
       <ptitle>1962, the place</ptitle>
       <pname value="1962"/>
-      <placeref hlink="_0000000f0000000f"/>
-      <noteref hlink="_0000000e0000000e"/>
+      <placeref hlink="_0000001500000015"/>
+      <noteref hlink="_0000001400000014"/>
     </placeobj>
-    <placeobj handle="_0000001300000013" change="1" id="P0004" type="Country">
+    <placeobj handle="_0000001900000019" change="1" id="P0006" type="Country">
       <ptitle>USA</ptitle>
       <pname value="USA"/>
+      <noteref hlink="_0000003e0000003e"/>
+      <noteref hlink="_0000006600000066"/>
     </placeobj>
-    <placeobj handle="_0000001400000014" change="1" id="P0005" type="State">
+    <placeobj handle="_0000001a0000001a" change="1" id="P0005" type="State">
       <ptitle>Mystate, USA</ptitle>
       <pname value="Mystate"/>
-      <placeref hlink="_0000001300000013"/>
+      <placeref hlink="_0000001900000019"/>
     </placeobj>
-    <placeobj handle="_0000001500000015" change="1" id="P0006" type="City">
+    <placeobj handle="_0000001b0000001b" change="1" id="MYPLACE002" type="City">
       <ptitle>Mytown, Mystate, USA</ptitle>
       <pname value="Mytown"/>
-      <placeref hlink="_0000001400000014"/>
+      <placeref hlink="_0000001a0000001a"/>
+      <noteref hlink="_0000003700000037"/>
+      <noteref hlink="_0000003800000038"/>
+      <noteref hlink="_0000006700000067"/>
     </placeobj>
-    <placeobj handle="_0000001600000016" change="1" id="P0007" type="Street">
+    <placeobj handle="_0000001c0000001c" change="1" id="P0018" type="Street">
       <ptitle>1963 address, Mylocality, Mytown, Mystate, USA</ptitle>
       <pname value="1963 address, Mylocality"/>
+      <placeref hlink="_0000001b0000001b"/>
       <placeref hlink="_0000001500000015"/>
-      <placeref hlink="_0000000f0000000f"/>
-      <noteref hlink="_0000001200000012"/>
+      <noteref hlink="_0000001800000018"/>
     </placeobj>
-    <placeobj handle="_0000001900000019" change="1" id="P0008" type="Locality">
+    <placeobj handle="_0000001f0000001f" change="1" id="P0019" type="Locality">
       <ptitle>Mylocality, Mytown, Mystate, USA</ptitle>
       <pname value="Mylocality"/>
-      <placeref hlink="_0000001500000015"/>
+      <placeref hlink="_0000001b0000001b"/>
     </placeobj>
-    <placeobj handle="_0000001a0000001a" change="1" id="P0009" type="Street">
+    <placeobj handle="_0000002000000020" change="1" id="P0020" type="Street">
       <ptitle>Full 1964 place, Mylocality, Mytown, Mystate, USA</ptitle>
       <code>12345</code>
       <pname value="Full 1964 place"/>
-      <placeref hlink="_0000001900000019"/>
+      <placeref hlink="_0000001f0000001f"/>
     </placeobj>
-    <placeobj handle="_0000001b0000001b" change="1" id="P0010" type="Address">
+    <placeobj handle="_0000002100000021" change="1" id="P0021" type="Address">
       <ptitle>Addr detail on Full 1964 place</ptitle>
       <pname value="Addr detail on Full 1964 place"/>
-      <placeref hlink="_0000001a0000001a"/>
-      <noteref hlink="_0000001800000018"/>
+      <placeref hlink="_0000002000000020"/>
+      <noteref hlink="_0000001e0000001e"/>
     </placeobj>
-    <placeobj handle="_0000001d0000001d" change="1" id="P0011" type="Address">
+    <placeobj handle="_0000002300000023" change="1" id="P0022" type="Address">
       <ptitle>raw address</ptitle>
       <pname value="raw address"/>
+      <noteref hlink="_0000002500000025"/>
     </placeobj>
-    <placeobj handle="_0000002000000020" change="1" id="P0012" type="Street">
+    <placeobj handle="_0000002800000028" change="1" id="P0023" type="Street">
       <ptitle>Raw address in Mytown, Mytown, Mystate, USA</ptitle>
       <pname value="Raw address in Mytown"/>
-      <placeref hlink="_0000001500000015"/>
-      <noteref hlink="_0000001f0000001f"/>
+      <placeref hlink="_0000001b0000001b"/>
+      <noteref hlink="_0000002700000027"/>
     </placeobj>
-    <placeobj handle="_0000002200000022" change="1" id="P0013" type="Address">
+    <placeobj handle="_0000002a0000002a" change="1" id="P0024" type="Address">
       <ptitle>the address</ptitle>
       <pname value="the address"/>
-      <placeref hlink="_0000000f0000000f"/>
+      <placeref hlink="_0000001500000015"/>
+    </placeobj>
+    <placeobj handle="_0000002e0000002e" change="1" id="P0004" type="County">
+      <ptitle>Mycounty, Mystate, USA</ptitle>
+      <pname value="Mycounty"/>
+      <pname value="Mycounty" lang="en"/>
+      <pname value="My cool county" lang="Hippy"/>
+      <placeref hlink="_0000001a0000001a"/>
+    </placeobj>
+    <placeobj handle="_0000002f0000002f" change="1" id="P0026" type="City">
+      <ptitle>Mycity, Mycounty, Mystate, USA</ptitle>
+      <pname value="Mycity"/>
+      <placeref hlink="_0000002e0000002e"/>
+    </placeobj>
+    <placeobj handle="_0000003000000030" change="1" id="P0027" type="Street">
+      <ptitle>123 Main, Mycity, Mycounty, Mystate, USA</ptitle>
+      <pname value="123 Main"/>
+      <placeref hlink="_0000002f0000002f"/>
+    </placeobj>
+    <placeobj handle="_0000003100000031" change="1" id="P0001" type="Building">
+      <ptitle>Myhouse, 123 Main, Mycity, Mycounty, Mystate, USA</ptitle>
+      <code>23456</code>
+      <pname value="Myhouse"/>
+      <pname value="Myhouse" lang="en">
+        <dateval val="2000-01"/>
+      </pname>
+      <coord long="W98.5375957" lat="N31.9151389"/>
+      <placeref hlink="_0000003000000030"/>
+      <placeref hlink="_0000006c0000006c">
+        <dateval val="2000-01"/>
+      </placeref>
+      <objref hlink="_0000006100000061"/>
+      <noteref hlink="_0000002c0000002c"/>
+      <noteref hlink="_0000002d0000002d"/>
+      <noteref hlink="_0000006200000062"/>
+      <citationref hlink="_0000005b0000005b"/>
+      <citationref hlink="_0000005c0000005c"/>
+      <citationref hlink="_0000005e0000005e"/>
+      <citationref hlink="_0000005f0000005f"/>
+      <citationref hlink="_0000006000000060"/>
+      <citationref hlink="_0000006300000063"/>
+    </placeobj>
+    <placeobj handle="_0000003400000034" change="1" id="MYPLACE001" type="City">
+      <ptitle>My city, Mycounty, Mystate, USA</ptitle>
+      <code>23456</code>
+      <pname value="My city"/>
+      <pname value="My house"/>
+      <pname value="Mycity"/>
+      <coord long="W98.54" lat="N31.92"/>
+      <placeref hlink="_0000002e0000002e"/>
+      <noteref hlink="_0000004c0000004c"/>
+      <noteref hlink="_0000006400000064"/>
+      <citationref hlink="_0000006500000065"/>
+    </placeobj>
+    <placeobj handle="_0000003500000035" change="1" id="P0028" type="Address">
+      <ptitle>Myhouse, 123 Main</ptitle>
+      <pname value="Myhouse, 123 Main"/>
+      <placeref hlink="_0000003400000034"/>
+    </placeobj>
+    <placeobj handle="_0000003a0000003a" change="1" id="P0029" type="City">
+      <ptitle>Mycity, Mystate, USA</ptitle>
+      <pname value="Mycity"/>
+      <placeref hlink="_0000001a0000001a"/>
+    </placeobj>
+    <placeobj handle="_0000003b0000003b" change="1" id="P0030" type="Street">
+      <ptitle>Myhouse, 123 Main, Mycounty, Mycity, Mystate, USA</ptitle>
+      <code>23456</code>
+      <pname value="Myhouse, 123 Main, Mycounty"/>
+      <placeref hlink="_0000003a0000003a"/>
+    </placeobj>
+    <placeobj handle="_0000004100000041" change="1" id="object_276695" type="State">
+      <ptitle>Texas, United States</ptitle>
+      <pname value="Texas, United States"/>
+      <pname value="Texas"/>
+      <placeref hlink="_0000004400000044"/>
+      <noteref hlink="_0000004000000040"/>
+      <noteref hlink="_0000004300000043"/>
+      <noteref hlink="_0000004700000047"/>
+      <noteref hlink="_0000004600000046"/>
+    </placeobj>
+    <placeobj handle="_0000004400000044" change="1" id="P0032" type="Country">
+      <ptitle>United States</ptitle>
+      <pname value="United States"/>
+    </placeobj>
+    <placeobj handle="_0000004a0000004a" change="1" id="P0033" type="Street">
+      <ptitle>Myhouse, 123 Main, Mycity, Mystate, USA</ptitle>
+      <code>23456</code>
+      <pname value="Myhouse, 123 Main"/>
+      <placeref hlink="_0000003a0000003a"/>
+    </placeobj>
+    <placeobj handle="_0000004f0000004f" change="1" id="P0034" type="Continent">
+      <ptitle>North America</ptitle>
+      <pname value="North America"/>
+    </placeobj>
+    <placeobj handle="_0000005000000050" change="1" id="P0035" type="Country">
+      <ptitle>USA, North America</ptitle>
+      <pname value="USA"/>
+      <placeref hlink="_0000004f0000004f"/>
+    </placeobj>
+    <placeobj handle="_0000005100000051" change="1" id="P0036" type="State">
+      <ptitle>Mystate, USA, North America</ptitle>
+      <pname value="Mystate"/>
+      <placeref hlink="_0000005000000050"/>
+    </placeobj>
+    <placeobj handle="_0000005200000052" change="1" id="P0037" type="County">
+      <ptitle>Mycounty, Mystate, USA, North America</ptitle>
+      <pname value="Mycounty"/>
+      <placeref hlink="_0000005100000051"/>
+    </placeobj>
+    <placeobj handle="_0000005300000053" change="1" id="P0038" type="City">
+      <ptitle>Mycity, Mycounty, Mystate, USA, North America</ptitle>
+      <code>23456</code>
+      <pname value="Mycity"/>
+      <placeref hlink="_0000005200000052"/>
+      <noteref hlink="_0000004e0000004e"/>
+    </placeobj>
+    <placeobj handle="_0000005600000056" change="1" id="P0039" type="State">
+      <ptitle>Texas, USA</ptitle>
+      <pname value="Texas"/>
+      <placeref hlink="_0000001900000019"/>
+      <noteref hlink="_0000005500000055"/>
+    </placeobj>
+    <placeobj handle="_0000005700000057" change="1" id="P0040" type="Address">
+      <ptitle>the address unknown</ptitle>
+      <pname value="the address unknown"/>
+      <placeref hlink="_0000005600000056"/>
+    </placeobj>
+    <placeobj handle="_0000005900000059" change="1" id="object_276534a" type="Country">
+      <ptitle>USA</ptitle>
+      <pname value="USA"/>
+      <pname value="United States of America"/>
+    </placeobj>
+    <placeobj handle="_0000006c0000006c" change="1" id="P0002" type="Street">
+      <ptitle>123 Main, My city, Mycounty, Mystate, USA</ptitle>
+      <pname value="123 Main"/>
+      <placeref hlink="_0000003400000034"/>
+    </placeobj>
+    <placeobj handle="_0000006d0000006d" change="1" id="P0008" type="State">
+      <ptitle>Ohio, USA</ptitle>
+      <pname value="Ohio"/>
+      <placeref hlink="_0000005900000059"/>
+      <noteref hlink="_0000006900000069"/>
+    </placeobj>
+    <placeobj handle="_0000006e0000006e" change="1" id="Tester001" type="Country">
+      <ptitle>Testers Country</ptitle>
+      <pname value="Testers Country"/>
+    </placeobj>
+    <placeobj handle="_0000006f0000006f" change="1" id="object_276534" type="Country">
+      <ptitle>United States</ptitle>
+      <pname value="United States"/>
+    </placeobj>
+    <placeobj handle="_0000007200000072" change="946101600" id="P0041" type="Unknown">
+      <ptitle>Unknown</ptitle>
+      <pname value="Unknown"/>
+      <noteref hlink="_0000007000000070"/>
     </placeobj>
   </places>
+  <objects>
+    <object handle="_0000006100000061" change="1" id="M1">
+      <file src="myhouse.jpg" mime="image/jpeg" description="myhouse.jpg"/>
+      <attribute type="Media-Type" value="Photo"/>
+      <noteref hlink="_0000006a0000006a"/>
+    </object>
+  </objects>
   <repositories>
-    <repository handle="_0000002400000024" change="1" id="REPO1">
+    <repository handle="_0000006b0000006b" change="1" id="REPO1">
       <rname>Gramps GitHub Library</rname>
       <type>Library</type>
     </repository>
   </repositories>
   <notes>
-    <note handle="_0000000100000001" change="1" id="N0000" type="GEDCOM import">
+    <note handle="_0000000100000001" change="1" id="N0002" type="Repository Note">
+      <text>We use this person's RESI for place testing.</text>
+    </note>
+    <note handle="_0000000200000002" change="1" id="N0000" type="GEDCOM import">
       <text>Records not imported into SUBM (Submitter): (@SUBM1@) The Gramps Tester:
 
-Line ignored as not understood                                      Line    28: 1 LANG MyLang
+Line ignored as not understood                                      Line    30: 2 SOUR @S1@
+Skipped subordinate line                                            Line    31: 3 PAGE Invalid Address Citation for submitter
+Line ignored as not understood                                      Line    32: 2 DATE 1999-12-00
+Line ignored as not understood                                      Line    36: 1 LANG MyLang
 </text>
       <style name="fontface" value="Monospace">
-        <range start="0" end="168"/>
+        <range start="0" end="484"/>
       </style>
     </note>
-    <note handle="_0000000400000004" change="1" id="N0001" type="Address Note">
+    <note handle="_0000000700000007" change="1" id="N0001" type="GEDCOM import">
+      <text>Records not imported into FAM (family) Gramps ID F0000:
+
+Tag recognized but not supported                                    Line    72: 1 ADDR the Jones address
+</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="162"/>
+      </style>
+    </note>
+    <note handle="_0000000a0000000a" change="1" id="N0003" type="Address Note">
       <text>address enclosed by place, both new</text>
     </note>
-    <note handle="_0000000800000008" change="1" id="N0002" type="Address Note">
+    <note handle="_0000000e0000000e" change="1" id="N0004" type="Address Note">
       <text>address enclosed by place, both existing note also merged into existing place</text>
     </note>
-    <note handle="_0000000b0000000b" change="1" id="N0003" type="Place Note">
+    <note handle="_0000001100000011" change="1" id="N0005" type="Place Note">
       <text>check that this note is retained when the place is merged into existing place</text>
     </note>
-    <note handle="_0000000e0000000e" change="1" id="N0004" type="Place Note">
+    <note handle="_0000001400000014" change="1" id="N0006" type="Place Note">
       <text>setup the place</text>
     </note>
-    <note handle="_0000001200000012" change="1" id="N0005" type="Address Note">
+    <note handle="_0000001800000018" change="1" id="N0007" type="Address Note">
       <text>the ADDR is new, but PLAC already exists, we skip enclosure for ADDR portion</text>
     </note>
-    <note handle="_0000001800000018" change="1" id="N0006" type="Address Note">
+    <note handle="_0000001e0000001e" change="1" id="N0008" type="Address Note">
       <text>the Mylocality place already exists, other stuff new</text>
     </note>
-    <note handle="_0000001f0000001f" change="1" id="N0007" type="Address Note">
+    <note handle="_0000002500000025" change="1" id="N0009" type="Address Note">
+      <text>Check merge of raw addresses</text>
+    </note>
+    <note handle="_0000002700000027" change="1" id="N0010" type="Address Note">
       <text>New raw address, enclosed by Mytown</text>
     </note>
-    <note handle="_0000002300000023" change="1" id="N0008" type="GEDCOM import">
+    <note handle="_0000002c0000002c" change="1" id="N0011" type="Place Attribute">
+      <text>Place Phonetic Variation: Mah Haas
+    Type: Texan 
+Place Romanized Variation: Mah Haas, durnit
+    Type: Texan 
+ZIP/Postal Code: 23456
+    Date: 2000-01-00 
+Name: Myhouse
+    Place Name Addition: Where I lived
+    Abbreviation Of Name: Myhouse
+        Type: What does this mean? 
+Additional Type: Building
+    Date: 2000-01-00
+    Citation: [C0003] 
+Event: [E0023] 
+Enclosed By: [P0002]
+    Hierarchical Relationship: POLI
+    Date: 2000-01-00
+    Citation: [C0004] 
+Demographic data: Another Field I'm unfamiliar with
+    Type: WhoKnows
+    Date: 2000-01-00
+    Citation: [C0005] 
+Administrative Identifier: Another Field I'm unfamiliar with
+    Type: Whoknows
+    Date: 2000-01-00
+    Citation: [C0006] 
+</text>
+      <style name="link" value="gramps://Citation/handle/0000005c0000005c">
+        <range start="343" end="348"/>
+      </style>
+      <style name="link" value="gramps://Event/handle/0000005d0000005d">
+        <range start="355" end="366"/>
+      </style>
+      <style name="link" value="gramps://Place/handle/0000006c0000006c">
+        <range start="381" end="386"/>
+      </style>
+      <style name="link" value="gramps://Citation/handle/0000005e0000005e">
+        <range start="460" end="465"/>
+      </style>
+      <style name="link" value="gramps://Citation/handle/0000005f0000005f">
+        <range start="575" end="580"/>
+      </style>
+      <style name="link" value="gramps://Citation/handle/0000006000000060">
+        <range start="699" end="704"/>
+      </style>
+    </note>
+    <note handle="_0000002d0000002d" change="1" id="N0012" type="Place Note">
+      <text>Attached to Myhouse PLAC</text>
+    </note>
+    <note handle="_0000003300000033" change="1" id="N0013" type="Event Note">
+      <text>Find by _LOC (name is different)</text>
+    </note>
+    <note handle="_0000003700000037" change="1" id="N0014" type="Place Attribute">
+      <text>FOKO Postal Code: 23456NA 
+Maidenhead Locator: No idea what this is...  
+FOKO Territory Identifier: Mstate Not Applicable 
+FOKO State Identifier: USA Not Applicable 
+</text>
+    </note>
+    <note handle="_0000003800000038" change="1" id="N0015" type="Place Note">
+      <text>Merge with Line 79</text>
+    </note>
+    <note handle="_0000003e0000003e" change="1" id="N0016" type="Place Note">
+      <text>tests for match with no placeref and only country</text>
+    </note>
+    <note handle="_0000004000000040" change="1" id="N0017" type="Place Note">
+      <text>setup for next test</text>
+    </note>
+    <note handle="_0000004300000043" change="1" id="N0018" type="Place Note">
+      <text>tests for match with _GOV and different placetype from default</text>
+    </note>
+    <note handle="_0000004600000046" change="1" id="N0019" type="Place Note">
+      <text>tests for match with _GOV and different placetype from already set</text>
+    </note>
+    <note handle="_0000004700000047" change="1" id="N0020" type="Place Attribute">
+      <text>Additional Type: State_again
+    Enclosed By: [P0032] 
+</text>
+      <style name="link" value="gramps://Place/handle/0000004400000044">
+        <range start="47" end="52"/>
+      </style>
+    </note>
+    <note handle="_0000004900000049" change="1" id="N0021" type="Event Note">
+      <text>tests for empty free-form item.</text>
+    </note>
+    <note handle="_0000004c0000004c" change="1" id="N0022" type="Place Note">
+      <text>Test match by LOC</text>
+    </note>
+    <note handle="_0000004e0000004e" change="1" id="N0023" type="Place Note">
+      <text>Tests extra beyond country items</text>
+    </note>
+    <note handle="_0000005500000055" change="1" id="N0024" type="Place Note">
+      <text>Tests match except for xref</text>
+    </note>
+    <note handle="_0000005a0000005a" change="1" id="N0025" type="GEDCOM import">
       <text>Records not imported into INDI (individual) Gramps ID I0310:
 
-A second PLAC ignored                                               Line    87: 2 PLAC second place ignored
-Line ignored as not understood                                      Line    89: 2 ADDR second address ignored
-Skipped subordinate line                                            Line    90: 3 NOTE second address ignored
+A second PLAC ignored                                               Line   136: 2 PLAC second place ignored
+Line ignored as not understood                                      Line   138: 2 ADDR second address ignored
+Skipped subordinate line                                            Line   139: 3 NOTE second address ignored
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="390"/>
       </style>
+    </note>
+    <note handle="_0000006200000062" change="1" id="N0026" type="Place Note">
+      <text>Myhouse was my first purchase!</text>
+    </note>
+    <note handle="_0000006400000064" change="1" id="N0027" type="Place Attribute">
+      <text>Additional Type: City 
+ZIP/Postal Code: 23456
+    Date: 2000-01-00
+    Citation: [C0008] 
+</text>
+      <style name="link" value="gramps://Citation/handle/0000006500000065">
+        <range start="82" end="87"/>
+      </style>
+    </note>
+    <note handle="_0000006600000066" change="1" id="N0028" type="Place Attribute">
+      <text>Name: USA
+    Abbreviation Of Name: United States of America 
+</text>
+    </note>
+    <note handle="_0000006700000067" change="1" id="N0029" type="Place Note">
+      <text>Find by _GOV, should be merged with lines 79, 114 </text>
+    </note>
+    <note handle="_0000006900000069" change="1" id="N0031" type="Place Attribute">
+      <text>Enclosed By: [object_276534a]
+    Hierarchical Relationship: POLI 
+</text>
+      <style name="link" value="gramps://Place/handle/0000005900000059">
+        <range start="14" end="28"/>
+      </style>
+    </note>
+    <note handle="_0000006a0000006a" change="1" id="N0032" type="GEDCOM import">
+      <text>Records not imported into OBJE (multi-media object) Gramps ID M1:
+
+Could not import myhouse.jpg                                        Line   336: 1 FILE myhouse.jpg
+</text>
+      <style name="fontface" value="Monospace">
+        <range start="0" end="166"/>
+      </style>
+    </note>
+    <note handle="_0000007000000070" change="1506702743" id="N0033" type="General">
+      <text>Objects referenced by this note were missing in a file imported on 12/25/1999 12:00:00 AM.</text>
     </note>
   </notes>
 </database>

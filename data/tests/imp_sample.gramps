@@ -1367,8 +1367,8 @@
       <placeref hlink="_0000003d0000003d"/>
     </placeobj>
     <placeobj handle="_0000003f0000003f" change="1" id="P0009" type="Street">
-      <ptitle>456 Main St., The Village, San Francisco, CA, USA</ptitle>
-      <pname value="456 Main St., The Village"/>
+      <ptitle>459 Main St., The Village, 87654, San Francisco, CA, USA</ptitle>
+      <pname value="459 Main St., The Village, 87654"/>
       <placeref hlink="_0000003e0000003e"/>
     </placeobj>
     <placeobj handle="_0000005000000050" change="1" id="P0010" type="Unknown">
@@ -1575,7 +1575,7 @@ Filename omitted                                                    Line    48: 
     <note handle="_0000004900000049" change="1" id="N0013" type="GEDCOM import">
       <text>Records not imported into INDI (individual) Gramps ID I0018:
 
-Tag recognized but not supported                                    Line   244: 2 TYPE first generaton
+Tag recognized but not supported                                    Line   245: 2 TYPE first generaton
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="165"/>
@@ -1607,7 +1607,7 @@ Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corpo
     <note handle="_000000d1000000d1" change="1" id="N0020" type="GEDCOM import">
       <text>Records not imported into FAM (family) Gramps ID F0010:
 
-Tag recognized but not supported                                    Line   862: 2 _STAT 
+Tag recognized but not supported                                    Line   863: 2 _STAT 
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="146"/>
@@ -1616,8 +1616,8 @@ Tag recognized but not supported                                    Line   862: 
     <note handle="_000000d6000000d6" change="1" id="N0021" type="GEDCOM import">
       <text>Records not imported into FAM (family) Gramps ID F0011:
 
-Could not import Magnes&amp;Anna_smiths_marr_cert.jpg                   Line   877: 3 OBJE 
-Could not import Magnes&amp;Anna_smiths_marr_cert.jpg                   Line   880: 2 OBJE 
+Could not import Magnes&amp;Anna_smiths_marr_cert.jpg                   Line   878: 3 OBJE 
+Could not import Magnes&amp;Anna_smiths_marr_cert.jpg                   Line   881: 2 OBJE 
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="233"/>
@@ -1626,7 +1626,7 @@ Could not import Magnes&amp;Anna_smiths_marr_cert.jpg                   Line   8
     <note handle="_000000da000000da" change="1" id="N0022" type="GEDCOM import">
       <text>Records not imported into FAM (family) Gramps ID F0012:
 
-Could not import John&amp;Alice_smiths_marr_cert.jpg                    Line   904: 1 OBJE 
+Could not import John&amp;Alice_smiths_marr_cert.jpg                    Line   905: 1 OBJE 
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="145"/>
@@ -1635,7 +1635,7 @@ Could not import John&amp;Alice_smiths_marr_cert.jpg                    Line   9
     <note handle="_000000e5000000e5" change="1" id="N0023" type="GEDCOM import">
       <text>Records not imported into FAM (family) Gramps ID F0008:
 
-Tag recognized but not supported                                    Line  1004: 1 ADDR 123 Main st, Grantville, Virginia, USA
+Tag recognized but not supported                                    Line  1005: 1 ADDR 123 Main st, Grantville, Virginia, USA
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="183"/>
@@ -1659,8 +1659,8 @@ Tag recognized but not supported                                    Line  1004: 
     <note handle="_000000ef000000ef" change="1" id="N0029" type="GEDCOM import">
       <text>Records not imported into SOUR (source) Gramps ID S0003:
 
-Tag recognized but not supported                                    Line  1044: 1 DATA 
-Skipped subordinate line                                            Line  1045: 2 AGNC NYC Public Library
+Tag recognized but not supported                                    Line  1045: 1 DATA 
+Skipped subordinate line                                            Line  1046: 2 AGNC NYC Public Library
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="252"/>
@@ -1675,9 +1675,9 @@ Skipped subordinate line                                            Line  1045: 
     <note handle="_000000f6000000f6" change="1" id="N0032" type="GEDCOM import">
       <text>Records not imported into REPO (repository) Gramps ID R0003:
 
-REFN ignored                                                        Line  1074: 3 REFN blah blah
-Skipped subordinate line                                            Line  1075: 4 TYPE who knows
-Could not import Attic_photo.jpg                                    Line  1078: 3 OBJE 
+REFN ignored                                                        Line  1075: 3 REFN blah blah
+Skipped subordinate line                                            Line  1076: 4 TYPE who knows
+Could not import Attic_photo.jpg                                    Line  1079: 3 OBJE 
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="344"/>
@@ -1686,7 +1686,7 @@ Could not import Attic_photo.jpg                                    Line  1078: 
     <note handle="_000000f7000000f7" change="1" id="N0033" type="GEDCOM import">
       <text>Records not imported into Top Level:
 
-Unknown tag                                                         Line  1105: 0 XXX an unknown token at level 0
+Unknown tag                                                         Line  1106: 0 XXX an unknown token at level 0
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="152"/>
@@ -1695,13 +1695,13 @@ Unknown tag                                                         Line  1105: 
     <note handle="_000000f9000000f9" change="1" id="N0034" type="GEDCOM import">
       <text>Records not imported into Top Level:
 
-Unknown tag                                                         Line  1108: 1 @X1@ XXX and unknown token xref definition
+Unknown tag                                                         Line  1109: 1 @X1@ XXX and unknown token xref definition
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="163"/>
       </style>
     </note>
-    <note handle="_000000fa000000fa" change="1506714883" id="N0035" type="General">
+    <note handle="_000000fa000000fa" change="1506704761" id="N0035" type="General">
       <text>Objects referenced by this note were missing in a file imported on 12/25/1999 12:00:00 AM.</text>
     </note>
   </notes>
