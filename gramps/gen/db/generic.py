@@ -245,7 +245,7 @@ class DbGenericUndo(DbUndo):
             sql = "DELETE FROM %s WHERE handle = ?" % table
             self.db.dbapi.execute(sql, [handle])
         else:
-            if self.db.has_handle(obj_key, handle):
+            if self.db._has_handle(obj_key, handle):
                 sql = "UPDATE %s SET blob_data = ? WHERE handle = ?" % table
                 self.db.dbapi.execute(sql, [pickle.dumps(data), handle])
             else:
@@ -1123,7 +1123,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def get_number_of(self, obj_key):
+    def _get_number_of(self, obj_key):
         """
         Return the number of objects currently in the database.
         """
@@ -1133,61 +1133,61 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         Return the number of people currently in the database.
         """
-        return self.get_number_of(PERSON_KEY)
+        return self._get_number_of(PERSON_KEY)
 
     def get_number_of_events(self):
         """
         Return the number of events currently in the database.
         """
-        return self.get_number_of(EVENT_KEY)
+        return self._get_number_of(EVENT_KEY)
 
     def get_number_of_places(self):
         """
         Return the number of places currently in the database.
         """
-        return self.get_number_of(PLACE_KEY)
+        return self._get_number_of(PLACE_KEY)
 
     def get_number_of_tags(self):
         """
         Return the number of tags currently in the database.
         """
-        return self.get_number_of(TAG_KEY)
+        return self._get_number_of(TAG_KEY)
 
     def get_number_of_families(self):
         """
         Return the number of families currently in the database.
         """
-        return self.get_number_of(FAMILY_KEY)
+        return self._get_number_of(FAMILY_KEY)
 
     def get_number_of_notes(self):
         """
         Return the number of notes currently in the database.
         """
-        return self.get_number_of(NOTE_KEY)
+        return self._get_number_of(NOTE_KEY)
 
     def get_number_of_citations(self):
         """
         Return the number of citations currently in the database.
         """
-        return self.get_number_of(CITATION_KEY)
+        return self._get_number_of(CITATION_KEY)
 
     def get_number_of_sources(self):
         """
         Return the number of sources currently in the database.
         """
-        return self.get_number_of(SOURCE_KEY)
+        return self._get_number_of(SOURCE_KEY)
 
     def get_number_of_media(self):
         """
         Return the number of media objects currently in the database.
         """
-        return self.get_number_of(MEDIA_KEY)
+        return self._get_number_of(MEDIA_KEY)
 
     def get_number_of_repositories(self):
         """
         Return the number of source repositories currently in the database.
         """
-        return self.get_number_of(REPOSITORY_KEY)
+        return self._get_number_of(REPOSITORY_KEY)
 
     ################################################################
     #
@@ -1276,7 +1276,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             raise HandleError('Handle is None')
         if not handle:
             raise HandleError('Handle is empty')
-        data = self.get_raw_data(obj_key, handle)
+        data = self._get_raw_data(obj_key, handle)
         if data:
             return obj_class.create(data)
         else:
@@ -1360,41 +1360,41 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def has_handle(self, obj_key, handle):
+    def _has_handle(self, obj_key, handle):
         """
         Return True if the handle exists in the database.
         """
         raise NotImplementedError
 
     def has_person_handle(self, handle):
-        return self.has_handle(PERSON_KEY, handle)
+        return self._has_handle(PERSON_KEY, handle)
 
     def has_family_handle(self, handle):
-        return self.has_handle(FAMILY_KEY, handle)
+        return self._has_handle(FAMILY_KEY, handle)
 
     def has_source_handle(self, handle):
-        return self.has_handle(SOURCE_KEY, handle)
+        return self._has_handle(SOURCE_KEY, handle)
 
     def has_citation_handle(self, handle):
-        return self.has_handle(CITATION_KEY, handle)
+        return self._has_handle(CITATION_KEY, handle)
 
     def has_event_handle(self, handle):
-        return self.has_handle(EVENT_KEY, handle)
+        return self._has_handle(EVENT_KEY, handle)
 
     def has_media_handle(self, handle):
-        return self.has_handle(MEDIA_KEY, handle)
+        return self._has_handle(MEDIA_KEY, handle)
 
     def has_place_handle(self, handle):
-        return self.has_handle(PLACE_KEY, handle)
+        return self._has_handle(PLACE_KEY, handle)
 
     def has_repository_handle(self, handle):
-        return self.has_handle(REPOSITORY_KEY, handle)
+        return self._has_handle(REPOSITORY_KEY, handle)
 
     def has_note_handle(self, handle):
-        return self.has_handle(NOTE_KEY, handle)
+        return self._has_handle(NOTE_KEY, handle)
 
     def has_tag_handle(self, handle):
-        return self.has_handle(TAG_KEY, handle)
+        return self._has_handle(TAG_KEY, handle)
 
     ################################################################
     #
@@ -1666,41 +1666,41 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def get_raw_data(self, obj_key, handle):
+    def _get_raw_data(self, obj_key, handle):
         """
         Return raw (serialized and pickled) object from handle.
         """
         raise NotImplementedError
 
     def get_raw_person_data(self, handle):
-        return self.get_raw_data(PERSON_KEY, handle)
+        return self._get_raw_data(PERSON_KEY, handle)
 
     def get_raw_family_data(self, handle):
-        return self.get_raw_data(FAMILY_KEY, handle)
+        return self._get_raw_data(FAMILY_KEY, handle)
 
     def get_raw_source_data(self, handle):
-        return self.get_raw_data(SOURCE_KEY, handle)
+        return self._get_raw_data(SOURCE_KEY, handle)
 
     def get_raw_citation_data(self, handle):
-        return self.get_raw_data(CITATION_KEY, handle)
+        return self._get_raw_data(CITATION_KEY, handle)
 
     def get_raw_event_data(self, handle):
-        return self.get_raw_data(EVENT_KEY, handle)
+        return self._get_raw_data(EVENT_KEY, handle)
 
     def get_raw_media_data(self, handle):
-        return self.get_raw_data(MEDIA_KEY, handle)
+        return self._get_raw_data(MEDIA_KEY, handle)
 
     def get_raw_place_data(self, handle):
-        return self.get_raw_data(PLACE_KEY, handle)
+        return self._get_raw_data(PLACE_KEY, handle)
 
     def get_raw_repository_data(self, handle):
-        return self.get_raw_data(REPOSITORY_KEY, handle)
+        return self._get_raw_data(REPOSITORY_KEY, handle)
 
     def get_raw_note_data(self, handle):
-        return self.get_raw_data(NOTE_KEY, handle)
+        return self._get_raw_data(NOTE_KEY, handle)
 
     def get_raw_tag_data(self, handle):
-        return self.get_raw_data(TAG_KEY, handle)
+        return self._get_raw_data(TAG_KEY, handle)
 
     ################################################################
     #

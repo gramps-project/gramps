@@ -573,7 +573,7 @@ class DBAPI(DbGeneric):
             return Tag.create(pickle.loads(row[0]))
         return None
 
-    def get_number_of(self, obj_key):
+    def _get_number_of(self, obj_key):
         table = KEY_TO_NAME_MAP[obj_key]
         sql = "SELECT count(1) FROM %s" % table
         self.dbapi.execute(sql)
@@ -612,8 +612,8 @@ class DBAPI(DbGeneric):
         obj.change = int(change_time or time.time())
         table = KEY_TO_NAME_MAP[obj_key]
 
-        if self.has_handle(obj_key, obj.handle):
-            old_data = self.get_raw_data(obj_key, obj.handle)
+        if self._has_handle(obj_key, obj.handle):
+            old_data = self._get_raw_data(obj_key, obj.handle)
             # update the object:
             sql = "UPDATE %s SET blob_data = ? WHERE handle = ?" % table
             self.dbapi.execute(sql,
@@ -685,8 +685,8 @@ class DBAPI(DbGeneric):
     def _do_remove(self, handle, transaction, obj_key):
         if self.readonly or not handle:
             return
-        if self.has_handle(obj_key, handle):
-            data = self.get_raw_data(obj_key, handle)
+        if self._has_handle(obj_key, handle):
+            data = self._get_raw_data(obj_key, handle)
             table = KEY_TO_NAME_MAP[obj_key]
             sql = "DELETE FROM %s WHERE handle = ?" % table
             self.dbapi.execute(sql, [handle])
@@ -821,7 +821,7 @@ class DBAPI(DbGeneric):
         gstats = self.get_gender_stats()
         self.genderStats = GenderStats(gstats)
 
-    def has_handle(self, obj_key, handle):
+    def _has_handle(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]
         sql = "SELECT 1 FROM %s WHERE handle = ?" % table
         self.dbapi.execute(sql, [handle])
@@ -840,7 +840,7 @@ class DBAPI(DbGeneric):
         rows = self.dbapi.fetchall()
         return [row[0] for row in rows]
 
-    def get_raw_data(self, obj_key, handle):
+    def _get_raw_data(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]
         sql = "SELECT blob_data FROM %s WHERE handle = ?" % table
         self.dbapi.execute(sql, [handle])
