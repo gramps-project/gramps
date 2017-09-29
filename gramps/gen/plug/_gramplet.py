@@ -133,11 +133,12 @@ class Gramplet:
     def get_active_object(self, nav_type):
         """
         Return the object of the active handle for the given navigation type.
-        Assumes nav_type is one of the codes of Db.get_by_name.
         """
         handle = self.uistate.get_active(nav_type, self.nav_group)
-        if nav_type in self.dbstate.db.get_table_names() and handle:
-            return self.dbstate.db.get_from_name_and_handle(nav_type, handle)
+        handle_func = getattr(self.dbstate.db,
+                             'get_%s_from_handle' % nav_type.lower())
+        if handle:
+            return handle_func(handle)
         return None
 
     def set_active(self, nav_type, handle):

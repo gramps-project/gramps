@@ -503,20 +503,6 @@ class DbBsddbRead(DbReadBase, Callback):
             return self._get_table_func(table_name,"gramps_id_func")(gramps_id)
         return None
 
-    def get_from_name_and_handle(self, table_name, handle):
-        """
-        Returns a gen.lib object (or None) given table_name and
-        handle.
-
-        Examples:
-
-        >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
-        >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
-        """
-        if table_name in self._get_table_func() and handle:
-            return self._get_table_func(table_name,"handle_func")(handle)
-        return None
-
     def set_prefixes(self, person, media, family, source, citation, place,
                      event, repository, note):
         self.set_person_id_prefix(person)
