@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.7.1//EN"
-"http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
-<database xmlns="http://gramps-project.org/xml/1.7.1/">
+<!DOCTYPE database PUBLIC "-//Gramps//DTD Gramps XML 1.8.0//EN"
+"http://gramps-project.org/xml/1.8.0/grampsxml.dtd">
+<database xmlns="http://gramps-project.org/xml/1.8.0/">
   <header>
-    <created date="2017-08-31" version="5.0.0-alpha2"/>
+    <created date="1999-12-25" version="5.1.2"/>
     <researcher>
     </researcher>
   </header>
@@ -206,157 +206,185 @@
     </person>
   </people>
   <places>
-    <placeobj handle="_0000000400000004" change="1" id="P0000" type="Unknown">
+    <placeobj handle="_0000000400000004" change="1" id="P0000" group="Places">
       <ptitle>the place</ptitle>
       <pname value="the place"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
       <noteref hlink="_0000000700000007"/>
       <noteref hlink="_0000000a0000000a"/>
       <noteref hlink="_0000001100000011"/>
       <noteref hlink="_0000001500000015"/>
     </placeobj>
-    <placeobj handle="_0000000500000005" change="1" id="P0001" type="Address">
+    <placeobj handle="_0000000500000005" change="1" id="P0001" group="Places">
       <ptitle>the address</ptitle>
       <pname value="the address"/>
-      <placeref hlink="_0000000400000004"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
+      <placeref hlink="_0000000400000004" type="Administrative"/>
       <noteref hlink="_0000000300000003"/>
       <noteref hlink="_0000000800000008"/>
     </placeobj>
-    <placeobj handle="_0000000d0000000d" change="1" id="P0002" type="Address">
+    <placeobj handle="_0000000d0000000d" change="1" id="P0002" group="Places">
       <ptitle>another address</ptitle>
       <pname value="another address"/>
-      <placeref hlink="_0000000400000004"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
+      <placeref hlink="_0000000400000004" type="Administrative"/>
       <noteref hlink="_0000000c0000000c"/>
       <noteref hlink="_0000000f0000000f"/>
     </placeobj>
-    <placeobj handle="_0000001300000013" change="1" id="P0003" type="Address">
+    <placeobj handle="_0000001300000013" change="1" id="P0003" group="Places">
       <ptitle>the address</ptitle>
       <pname value="the address"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
     </placeobj>
-    <placeobj handle="_0000001800000018" change="1" id="P0004" type="Unknown">
+    <placeobj handle="_0000001800000018" change="1" id="P0004" group="Places">
       <ptitle>the place 2</ptitle>
       <pname value="the place 2"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000001900000019" change="1" id="P0005" type="Address">
+    <placeobj handle="_0000001900000019" change="1" id="P0005" group="Places">
       <ptitle>the address 2</ptitle>
       <pname value="the address 2"/>
-      <placeref hlink="_0000001800000018"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
+      <placeref hlink="_0000001800000018" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000001c0000001c" change="1" id="P0006" type="Unknown">
+    <placeobj handle="_0000001c0000001c" change="1" id="P0006" group="Places">
       <ptitle>place test</ptitle>
       <pname value="place test"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
       <noteref hlink="_0000001b0000001b"/>
       <noteref hlink="_0000002000000020"/>
       <noteref hlink="_0000002500000025"/>
     </placeobj>
-    <placeobj handle="_0000001d0000001d" change="1" id="P0007" type="Address">
+    <placeobj handle="_0000001d0000001d" change="1" id="P0007" group="Places">
       <ptitle>address place test</ptitle>
       <pname value="address place test"/>
-      <placeref hlink="_0000001c0000001c"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
+      <placeref hlink="_0000001c0000001c" type="Administrative"/>
       <noteref hlink="_0000001f0000001f"/>
     </placeobj>
-    <placeobj handle="_0000002300000023" change="1" id="P0008" type="Address">
+    <placeobj handle="_0000002300000023" change="1" id="P0008" group="Places">
       <ptitle>address place test</ptitle>
       <pname value="address place test"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
       <noteref hlink="_0000002200000022"/>
     </placeobj>
-    <placeobj handle="_0000002800000028" change="1" id="P0009" type="Unknown">
+    <placeobj handle="_0000002800000028" change="1" id="P0009" group="Places">
       <ptitle>different place test</ptitle>
       <pname value="different place test"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
       <noteref hlink="_0000002700000027"/>
     </placeobj>
-    <placeobj handle="_0000002900000029" change="1" id="P0010" type="Address">
+    <placeobj handle="_0000002900000029" change="1" id="P0010" group="Places">
       <ptitle>address place test</ptitle>
       <pname value="address place test"/>
-      <placeref hlink="_0000002800000028"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
+      <placeref hlink="_0000002800000028" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000002c0000002c" change="1" id="P0011" type="Address">
+    <placeobj handle="_0000002c0000002c" change="1" id="P0011" group="Places">
       <ptitle>address place test</ptitle>
       <pname value="address place test"/>
-      <placeref hlink="_0000000400000004"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
+      <placeref hlink="_0000000400000004" type="Administrative"/>
       <noteref hlink="_0000002b0000002b"/>
     </placeobj>
-    <placeobj handle="_0000002f0000002f" change="1" id="P0012" type="Unknown">
+    <placeobj handle="_0000002f0000002f" change="1" id="P0012" group="Places">
       <ptitle>a new place</ptitle>
       <pname value="a new place"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000003000000030" change="1" id="P0013" type="Address">
+    <placeobj handle="_0000003000000030" change="1" id="P0013" group="Places">
       <ptitle>address place test</ptitle>
       <pname value="address place test"/>
-      <placeref hlink="_0000002f0000002f"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
+      <placeref hlink="_0000002f0000002f" type="Administrative"/>
       <noteref hlink="_0000002e0000002e"/>
     </placeobj>
-    <placeobj handle="_0000003300000033" change="1" id="P0014" type="Address">
+    <placeobj handle="_0000003300000033" change="1" id="P0014" group="Places">
       <ptitle>address with no place</ptitle>
       <pname value="address with no place"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
       <noteref hlink="_0000003200000032"/>
     </placeobj>
-    <placeobj handle="_0000003600000036" change="1" id="P0015" type="Unknown">
+    <placeobj handle="_0000003600000036" change="1" id="P0015" group="Places">
       <ptitle>Woerden, Zuid-Holland, Netherlands</ptitle>
       <pname value="Woerden, Zuid-Holland, Netherlands"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
       <noteref hlink="_0000003500000035"/>
     </placeobj>
-    <placeobj handle="_0000003700000037" change="1" id="P0016" type="Address">
+    <placeobj handle="_0000003700000037" change="1" id="P0016" group="Places">
       <ptitle>Kromwijkerkade 63</ptitle>
       <pname value="Kromwijkerkade 63"/>
-      <placeref hlink="_0000003600000036"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
+      <placeref hlink="_0000003600000036" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000003a0000003a" change="1" id="P0017" type="Unknown">
+    <placeobj handle="_0000003a0000003a" change="1" id="P0017" group="Places">
       <ptitle>Hasselt, Overijssel, Netherlands</ptitle>
       <pname value="Hasselt, Overijssel, Netherlands"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
     </placeobj>
-    <placeobj handle="_0000003b0000003b" change="1" id="P0018" type="Address">
+    <placeobj handle="_0000003b0000003b" change="1" id="P0018" group="Places">
       <ptitle>Prinsenstraat 69</ptitle>
       <pname value="Prinsenstraat 69"/>
-      <placeref hlink="_0000003a0000003a"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
+      <placeref hlink="_0000003a0000003a" type="Administrative"/>
       <noteref hlink="_0000003900000039"/>
     </placeobj>
-    <placeobj handle="_0000003d0000003d" change="1" id="P0019" type="Unknown">
+    <placeobj handle="_0000003d0000003d" change="1" id="P0019" group="Places">
       <ptitle>Enschede, Overijssel, Netherlands</ptitle>
       <pname value="Enschede, Overijssel, Netherlands"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
       <noteref hlink="_0000004300000043"/>
       <noteref hlink="_0000004900000049"/>
     </placeobj>
-    <placeobj handle="_0000003e0000003e" change="1" id="P0020" type="Address">
+    <placeobj handle="_0000003e0000003e" change="1" id="P0020" group="Places">
       <ptitle>Calslaan 26-52</ptitle>
       <pname value="Calslaan 26-52"/>
-      <placeref hlink="_0000003d0000003d"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
+      <placeref hlink="_0000003d0000003d" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000004100000041" change="1" id="P0021" type="Address">
+    <placeobj handle="_0000004100000041" change="1" id="P0021" group="Places">
       <ptitle>Calslaan 26-44</ptitle>
       <pname value="Calslaan 26-44"/>
-      <placeref hlink="_0000003d0000003d"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
+      <placeref hlink="_0000003d0000003d" type="Administrative"/>
       <noteref hlink="_0000004000000040"/>
     </placeobj>
-    <placeobj handle="_0000004400000044" change="1" id="P0022" type="Address">
+    <placeobj handle="_0000004400000044" change="1" id="P0022" group="Places">
       <ptitle>Calslaan 26-61</ptitle>
       <pname value="Calslaan 26-61"/>
-      <placeref hlink="_0000003d0000003d"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
+      <placeref hlink="_0000003d0000003d" type="Administrative"/>
     </placeobj>
-    <placeobj handle="_0000004700000047" change="1" id="P0023" type="Address">
+    <placeobj handle="_0000004700000047" change="1" id="P0023" group="Places">
       <ptitle>Calslaan 26-61</ptitle>
       <pname value="Calslaan 26-61"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
     </placeobj>
-    <placeobj handle="_0000004b0000004b" change="1" id="P0024" type="Unknown">
+    <placeobj handle="_0000004b0000004b" change="1" id="P0024" group="Places">
       <ptitle>Amsterdam, Noord-Holland, Netherlands</ptitle>
       <pname value="Amsterdam, Noord-Holland, Netherlands"/>
+      <ptype pt_id="Unknown" name="Unknown"/>
       <noteref hlink="_0000004e0000004e"/>
     </placeobj>
-    <placeobj handle="_0000004c0000004c" change="1" id="P0025" type="Address">
+    <placeobj handle="_0000004c0000004c" change="1" id="P0025" group="Places">
       <ptitle>Papendrechtstraat 37</ptitle>
       <pname value="Papendrechtstraat 37"/>
-      <placeref hlink="_0000004b0000004b"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
+      <placeref hlink="_0000004b0000004b" type="Administrative"/>
       <noteref hlink="_0000005300000053"/>
     </placeobj>
-    <placeobj handle="_0000005100000051" change="1" id="P0026" type="Address">
+    <placeobj handle="_0000005100000051" change="1" id="P0026" group="Places">
       <ptitle>Olympiaplein 46-2</ptitle>
       <pname value="Olympiaplein 46-2"/>
-      <placeref hlink="_0000004b0000004b"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
+      <placeref hlink="_0000004b0000004b" type="Administrative"/>
       <noteref hlink="_0000005000000050"/>
     </placeobj>
-    <placeobj handle="_0000005500000055" change="1" id="P0027" type="Address">
+    <placeobj handle="_0000005500000055" change="1" id="P0027" group="Places">
       <ptitle>remembered address that should be set into place</ptitle>
       <pname value="remembered address that should be set into place"/>
-      <placeref hlink="_0000004b0000004b"/>
+      <ptype pt_id="CUSTOM" name="Address"/>
+      <placeref hlink="_0000004b0000004b" type="Administrative"/>
     </placeobj>
   </places>
   <notes>

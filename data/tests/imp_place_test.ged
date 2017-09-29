@@ -7,27 +7,73 @@
 4 CONT Anyville, UT 12345
 4 CONT USA
 3 PHON 1-800-888-8888
+2 DATA Edited by hand by the Gramps Tester
+3 DATE 26 AUG 2017
+3 COPR This is NOT copyrighted 2017
 1 DEST GrampsTests
-1 DATE 26 AUF 2017
+1 DATE 26 AUG 2017
 1 FILE imp_place_test.ged
 1 GEDC
-2 VERS 5.5.1
 2 FORM LINEAGE-LINKED
+2 VERS 5.5.1
 1 CHAR UTF-8
+2 VERS 3.0.0
 1 SUBM @SUBM1@
+1 LANG MyLang
 0 @SUBM1@ SUBM
 1 NAME The Gramps Tester
-1 ADDR 112 Main St., Open Source, Software, Is Great
+1 ADDR TesterHouse, Annex, 112 Main St., Open Source, Software, Is Great
 2 ADR1 112 Main St.
 2 ADR2 Open Source
 2 CITY Software
 2 CTRY Is Great
 2 POST 11111
+2 SOUR @S1@
+3 PAGE Invalid Address Citation for submitter
+2 DATE DEC 1999
 1 EMAIL gramps-users@@lists.sourceforge.net
+1 EMAIL gramps-developers@@lists.sourceforge.net
 1 FAX 9-999-999-9999
 1 LANG MyLang
 1 PHON 8-888-888-8888
 1 WWW http://gramps-project.org
+1 NOTE @N2@
+0 @I0000@ INDI
+1 NAME Susan /Smith/
+2 GIVN Susan
+2 SURN Smith
+1 SEX F
+1 FAMS @F0000@
+1 CHAN
+2 DATE 17 SEP 2017
+3 TIME 15:17:04
+0 @I0001@ INDI
+1 NAME Tom /Jones/
+2 GIVN Tom
+2 SURN Jones
+1 SEX M
+1 FAMS @F0000@
+1 CHAN
+2 DATE 17 SEP 2017
+3 TIME 15:17:04
+0 @I0002@ INDI
+1 NAME Tim /Jones/
+2 GIVN Tim
+2 SURN Jones
+1 SEX M
+1 FAMC @F0000@
+2 PEDI birth
+1 CHAN
+2 DATE 17 SEP 2017
+3 TIME 15:17:04
+0 @F0000@ FAM
+1 HUSB @I0001@
+1 WIFE @I0000@
+1 CHIL @I0002@
+1 ADDR the Jones address
+1 CHAN
+2 DATE 17 SEP 2017
+3 TIME 15:17:04
 0 @I310@ INDI
 1 NAME Living
 1 SEX M
@@ -75,6 +121,10 @@
 2 DATE 1965
 2 ADDR raw address
 1 RESI
+2 DATE FEB 1965
+2 ADDR raw address
+3 NOTE Check merge of raw addresses
+1 RESI
 2 DATE 1966
 2 ADDR Raw address in Mytown
 3 CITY Mytown
@@ -88,6 +138,284 @@
 2 ADDR the address
 2 ADDR second address ignored
 3 NOTE second address ignored
+1 RESI
+2 DATE 1968
+2 PLAC Myhouse, 123 Main, Mycity, Mycounty, Mystate, USA
+3 FORM building, street, city, county, state, country
+3 FONE Mah Haas
+4 TYPE Texan
+3 ROMN Mah Haas, durnit
+4 TYPE Texan
+3 MAP
+4 LATI N31.9151389
+4 LONG W98.5375957
+3 NOTE Attached to Myhouse PLAC
+3 _POST 23456
+4 DATE JAN 2000
+3 _LOC @P1@
+1 RESI
+2 DATE 1969
+2 ADDR Myhouse, 123 Main
+2 PLAC My city, Mycounty, Mystate, USA, 23456
+3 FORM city, county, state, country, Zip Code
+3 _LOC @P3@
+2 NOTE Find by _LOC (name is different)
+1 RESI
+2 DATE 1970
+2 PLAC Mytown, Mystate, USA
+3 FORM city, state, country
+3 _GOV MYPLACE002
+3 _FPOST 23456NA
+3 _MAIDENHEAD No idea what this is... 
+3 NOTE Merge with Line 79
+1 RESI
+2 DATE 1971
+2 ADDR Myhouse, 123 Main, Mycity, Mycounty, Mystate, USA, 23456
+3 ADR1 123 Main
+3 POST 23456
+3 CITY Mycity
+3 STAE Mystate
+3 CTRY USA
+1 RESI
+2 DATE 1972
+2 PLAC Mycity, Mycounty, Mystate, USA
+3 FORM city, county, state, country
+3 _POST 34567
+1 RESI
+2 DATE 1973
+2 PLAC USA
+3 FORM country
+3 NOTE tests for match with no placeref and only country
+1 RESI
+2 DATE 1974
+2 PLAC Texas, United States
+3 _GOV object_276695
+3 NOTE setup for next test
+1 RESI
+2 DATE 1975
+2 PLAC Texas, United States
+3 FORM state, country
+3 _GOV object_276695
+3 NOTE tests for match with _GOV and different placetype from default
+1 RESI
+2 DATE 1976
+2 PLAC Texas, United States
+3 FORM state_again, country
+3 _GOV object_276695
+3 NOTE tests for match with _GOV and different placetype from already set
+1 RESI
+2 DATE 1977
+2 ADDR Myhouse, 123 Main, Mycity, , Mystate, USA, 23456
+3 ADR1 123 Main
+3 POST 23456
+3 CITY Mycity
+3 STAE Mystate
+3 CTRY USA
+2 NOTE tests for empty free-form item.
+1 RESI
+2 DATE 1978
+2 PLAC My house
+3 _LOC @P3@
+3 NOTE Test match by LOC
+1 RESI
+2 DATE 1979
+2 PLAC Mycity, Mycounty, Mystate, USA, 23456, North America
+3 FORM city, county, state, country, Zip Code, Continent
+3 NOTE Tests extra beyond country items
+1 RESI
+2 DATE 1980
+2 ADDR the address unknown
+2 PLAC Texas, USA
+3 FORM state, country
+3 NOTE Tests match except for xref
+1 RESI
+2 DATE 1981
+2 PLAC Usa
+3 _LOC @P11@
+1 RESI
+2 DATE 1982
+2 PLAC Ouchio, USX, North America
+3 FORM State, Country, Continent
+3 _LOC @MYPLACE101@
+1 RESI
+2 DATE JUN 1960
+2 PLAC the place unknown
+2 ADDR the address unknown
+3 NOTE address enclosed by place, both new
+0 @P1@ _LOC
+1 NAME Myhouse
+2 DATE JAN 2000
+2 _NAMC Where I lived
+2 ABBR Myhouse
+3 TYPE What does this mean?
+2 LANG English
+2 SOUR @S1@
+3 PAGE Myhouse Name Citation
+1 TYPE building
+2 DATE JAN 2000
+2 SOUR @S1@
+3 PAGE Myhouse Type Citation
+1 EVEN Move-in to Myhouse
+2 TYPE Occupancy
+2 PLAC Ohio
+3 _LOC @P8@
+2 DATE 11 JAN 2000
+1 _LOC @P2@
+2 TYPE POLI
+2 DATE JAN 2000
+2 SOUR @S1@
+3 PAGE Myhouse located in Mycity Citation
+1 _LOC @P13@
+2 TYPE RELI
+2 DATE AFTER JAN 2012
+1 _DMGD Another Field I'm unfamiliar with
+2 TYPE WhoKnows
+2 DATE JAN 2000
+2 SOUR @S1@
+3 PAGE Myhouse DMGD Citation
+1 _AIDN Another Field I'm unfamiliar with
+2 TYPE Whoknows
+2 DATE JAN 2000
+2 SOUR @S1@
+3 PAGE Myhouse AIDN Citation
+1 OBJE @M1@
+1 NOTE @N1@
+1 SOUR @S1@
+2 PAGE Myhouse Citation
+1 CHAN
+2 DATE 15 SEP 2017
+3 TIME 09:09:09
+0 @P2@ _LOC
+1 NAME 123 Main
+1 TYPE Street
+1 _LOC @P3@
+0 @P3@ _LOC
+1 NAME Mycity
+1 TYPE City
+1 _GOV MYPLACE001
+1 MAP
+2 LATI N31.92
+2 LONG W98.54
+1 _POST 23456
+2 DATE JAN 2000
+2 SOUR @S1@
+3 PAGE Mycity POST Citation
+1 _LOC @P4@
+0 @P4@ _LOC
+1 NAME Mycounty
+2 LANG English
+1 NAME Mycounty
+2 LANG English
+1 NAME My cool county
+2 LANG Hippy
+1 TYPE County
+1 _LOC @P5@
+0 @P5@ _LOC
+1 NAME Mystate
+1 TYPE state
+1 _LOC @P6@
+0 @P6@ _LOC
+1 NAME USA
+2 ABBR United States of America
+1 TYPE country
+0 @P7@ _LOC
+1 NAME Mytown
+1 TYPE town
+1 _GOV MYPLACE002
+1 NOTE Find by _GOV, should be merged with lines 79, 114 
+1 _FPOST 23456NA
+1 _FSTAE Mstate Not Applicable
+1 _FCTRY USA Not Applicable
+1 _MAIDENHEAD No idea what this is...
+1 _MAIDENHEAD No idea what this is...
+1 _LOC @P5@
+0 @P8@ _LOC
+1 NAME Ohio
+1 TYPE state
+1 _LOC @P9@
+1 _LOC @P11@
+1 _LOC @P11@
+1 _LOC @P12@
+2 TYPE POLI
+0 @P9@ _LOC
+1 NAME United States
+1 TYPE country
+1 _GOV object_276534
+1 _LOC @P10@
+0 @P11@ _LOC
+1 NAME United States of America
+1 TYPE Country
+2 _GOVTYPE 50
+1 _GOV object_276534a
+0 @P12@ _LOC
+1 NAME Testers Country
+1 TYPE country
+1 _GOV Tester001
+0 @P13@ _LOC
+1 NAME Testers Parish
+1 TYPE Parish
+2 _GOVTYPE 29
+0 @MYPLACE101@ _LOC
+1 NAME Ouchio
+1 TYPE State
+1 _POST 34567
+2 DATE JAN 2000
+1 _GOV MYPLACE101
+1 MAP
+2 LATI N31.92
+2 LONG W98.54
+1 _LOC @P0101@
+2 TYPE POLI
+1 SOUR @S1@
+2 PAGE Citation for Ouchio
+1 CHAN
+2 DATE 2 MAR 2020
+3 TIME 15:40:05
+0 @P0100@ _LOC
+1 NAME Tehas
+1 TYPE State
+2 DATE AFT 1900
+1 TYPE Country
+2 DATE BEF 1900
+1 _LOC @P0101@
+2 DATE AFT 1900
+2 TYPE POLI
+1 _LOC @P0102@
+2 DATE BEF 1900
+2 TYPE POLI
+1 CHAN
+2 DATE 2 MAR 2020
+3 TIME 15:38:45
+0 @P0101@ _LOC
+1 NAME USX
+2 ABBR United States of Tester
+3 TYPE Abbreviation
+1 TYPE Country
+2 DATE AFT 1900
+1 TYPE State
+2 DATE BEF 1900
+1 _LOC @P0100@
+2 DATE BEF 1900
+2 TYPE POLI
+1 _LOC @P0102@
+2 DATE AFT 1900
+2 TYPE POLI
+1 CHAN
+2 DATE 2 MAR 2020
+3 TIME 15:38:09
+0 @P0102@ _LOC
+1 NAME North America
+1 TYPE Continent
+1 CHAN
+2 DATE 2 MAR 2020
+3 TIME 15:37:17
+0 @M1@ OBJE
+1 FILE myhouse.jpg
+2 FORM jpg
+3 TYPE photo
+0 @N1@ NOTE Myhouse was my first purchase!
+0 @N2@ NOTE We use this person's RESI for place testing.
+0 @N3@ NOTE
 0 @S1@ SOUR
 1 AUTH The Gramps Test guys
 1 PUBL 2017
@@ -95,6 +423,7 @@
 1 TITL The Gramps Test Library
 0 @REPO1@ REPO
 1 NAME Gramps GitHub Library
+
 
 
 0 TRLR
