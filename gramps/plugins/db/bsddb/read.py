@@ -488,21 +488,6 @@ class DbBsddbRead(DbReadBase, Callback):
             return self._get_table_func(table_name)
         return None
 
-    def get_from_name_and_gramps_id(self, table_name, gramps_id):
-        """
-        Returns a gen.lib object (or None) given table_name and
-        Gramps ID.
-
-        Examples:
-
-        >>> self.get_from_name_and_gramps_id("Person", "I00002")
-        >>> self.get_from_name_and_gramps_id("Family", "F056")
-        >>> self.get_from_name_and_gramps_id("Media", "M00012")
-        """
-        if table_name in self._get_table_func():
-            return self._get_table_func(table_name,"gramps_id_func")(gramps_id)
-        return None
-
     def set_prefixes(self, person, media, family, source, citation, place,
                      event, repository, note):
         self.set_person_id_prefix(person)
