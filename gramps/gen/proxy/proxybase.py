@@ -936,9 +936,6 @@ class ProxyDbBase(DbReadBase):
         """returns the default media path of the database"""
         return self.db.get_mediapath()
 
-    def has_gramps_id(self, obj_key, gramps_id):
-        return self.db.has_gramps_id(obj_key, gramps_id)
-
     def get_bookmarks(self):
         """returns the list of Person handles in the bookmarks"""
         return self.bookmarks

@@ -827,7 +827,7 @@ class DBAPI(DbGeneric):
         self.dbapi.execute(sql, [handle])
         return self.dbapi.fetchone() is not None
 
-    def has_gramps_id(self, obj_key, gramps_id):
+    def _has_gramps_id(self, obj_key, gramps_id):
         table = KEY_TO_NAME_MAP[obj_key]
         sql = "SELECT 1 FROM %s WHERE gramps_id = ?" % table
         self.dbapi.execute(sql, [gramps_id])

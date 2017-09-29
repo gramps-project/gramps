@@ -123,7 +123,6 @@ class DbTest(unittest.TestCase):
         "get_url_types",
         "has_event_handle",
         "has_family_handle",
-        "has_gramps_id",
         "has_name_group_key",
         "has_note_handle",
         "has_media_handle",

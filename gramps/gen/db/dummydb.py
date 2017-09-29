@@ -1268,16 +1268,6 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
             LOG.warning("database is closed")
         return False
 
-    def has_gramps_id(self, obj_key, gramps_id):
-        """
-        Returns True if the key exists in table given a table name
-
-        Not used in current codebase
-        """
-        if not self.db_is_open:
-            LOG.warning("database is closed")
-        return False
-
     def has_name_group_key(self, name):
         """
         Return if a key exists in the name_group table.

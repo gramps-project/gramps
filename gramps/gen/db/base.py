@@ -1018,12 +1018,6 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def has_gramps_id(self, obj_key, gramps_id):
-        """
-        Returns True if the key exists in table given a table name
-        """
-        raise NotImplementedError
-
     def has_citation_gramps_id(self, gramps_id):
         """
         Return True if the Gramps ID exists in the Citation table.

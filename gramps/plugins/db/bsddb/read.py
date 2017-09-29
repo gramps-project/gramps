@@ -1179,23 +1179,6 @@ class DbBsddbRead(DbReadBase, Callback):
     iter_tags          = _f(get_tag_cursor, Tag)
     del _f
 
-    def has_gramps_id(self, obj_key, gramps_id):
-        key2table = {
-            PERSON_KEY:     self.id_trans,
-            FAMILY_KEY:     self.fid_trans,
-            SOURCE_KEY:     self.sid_trans,
-            CITATION_KEY:   self.cid_trans,
-            EVENT_KEY:      self.eid_trans,
-            MEDIA_KEY:      self.oid_trans,
-            PLACE_KEY:      self.pid_trans,
-            REPOSITORY_KEY: self.rid_trans,
-            NOTE_KEY:       self.nid_trans,
-            }
-
-        table = key2table[obj_key]
-        gramps_id = gramps_id.encode('utf-8')
-        return table.get(gramps_id, txn=self.txn) is not None
-
     def find_initial_person(self):
         person = self.get_default_person()
         if not person:

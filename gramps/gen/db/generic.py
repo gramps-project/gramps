@@ -1021,7 +1021,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Helper function for find_next_<object>_gramps_id methods
         """
         index = prefix % map_index
-        while self.has_gramps_id(obj_key, index):
+        while self._has_gramps_id(obj_key, index):
             map_index += 1
             index = prefix % map_index
         map_index += 1
@@ -1402,35 +1402,35 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def has_gramps_id(self, obj_key, gramps_id):
+    def _has_gramps_id(self, obj_key, gramps_id):
         raise NotImplementedError
 
     def has_person_gramps_id(self, gramps_id):
-        return self.has_gramps_id(PERSON_KEY, gramps_id)
+        return self._has_gramps_id(PERSON_KEY, gramps_id)
 
     def has_family_gramps_id(self, gramps_id):
-        return self.has_gramps_id(FAMILY_KEY, gramps_id)
+        return self._has_gramps_id(FAMILY_KEY, gramps_id)
 
     def has_source_gramps_id(self, gramps_id):
-        return self.has_gramps_id(SOURCE_KEY, gramps_id)
+        return self._has_gramps_id(SOURCE_KEY, gramps_id)
 
     def has_citation_gramps_id(self, gramps_id):
-        return self.has_gramps_id(CITATION_KEY, gramps_id)
+        return self._has_gramps_id(CITATION_KEY, gramps_id)
 
     def has_event_gramps_id(self, gramps_id):
-        return self.has_gramps_id(EVENT_KEY, gramps_id)
+        return self._has_gramps_id(EVENT_KEY, gramps_id)
 
     def has_media_gramps_id(self, gramps_id):
-        return self.has_gramps_id(MEDIA_KEY, gramps_id)
+        return self._has_gramps_id(MEDIA_KEY, gramps_id)
 
     def has_place_gramps_id(self, gramps_id):
-        return self.has_gramps_id(PLACE_KEY, gramps_id)
+        return self._has_gramps_id(PLACE_KEY, gramps_id)
 
     def has_repository_gramps_id(self, gramps_id):
-        return self.has_gramps_id(REPOSITORY_KEY, gramps_id)
+        return self._has_gramps_id(REPOSITORY_KEY, gramps_id)
 
     def has_note_gramps_id(self, gramps_id):
-        return self.has_gramps_id(NOTE_KEY, gramps_id)
+        return self._has_gramps_id(NOTE_KEY, gramps_id)
 
     ################################################################
     #
