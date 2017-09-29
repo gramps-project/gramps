@@ -833,7 +833,7 @@ class DBAPI(DbGeneric):
         self.dbapi.execute(sql, [gramps_id])
         return self.dbapi.fetchone() != None
 
-    def get_gramps_ids(self, obj_key):
+    def _get_gramps_ids(self, obj_key):
         table = KEY_TO_NAME_MAP[obj_key]
         sql = "SELECT gramps_id FROM %s" % table
         self.dbapi.execute(sql)

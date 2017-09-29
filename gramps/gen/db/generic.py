@@ -1195,7 +1195,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def get_gramps_ids(self, obj_key):
+    def _get_gramps_ids(self, obj_key):
         """
         Return a list of Gramps IDs, one ID for each object in the
         database.
@@ -1207,63 +1207,63 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Return a list of Gramps IDs, one ID for each Person in the
         database.
         """
-        return self.get_gramps_ids(PERSON_KEY)
+        return self._get_gramps_ids(PERSON_KEY)
 
     def get_family_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Family in the
         database.
         """
-        return self.get_gramps_ids(FAMILY_KEY)
+        return self._get_gramps_ids(FAMILY_KEY)
 
     def get_source_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Source in the
         database.
         """
-        return self.get_gramps_ids(SOURCE_KEY)
+        return self._get_gramps_ids(SOURCE_KEY)
 
     def get_citation_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Citation in the
         database.
         """
-        return self.get_gramps_ids(CITATION_KEY)
+        return self._get_gramps_ids(CITATION_KEY)
 
     def get_event_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Event in the
         database.
         """
-        return self.get_gramps_ids(EVENT_KEY)
+        return self._get_gramps_ids(EVENT_KEY)
 
     def get_media_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Media in the
         database.
         """
-        return self.get_gramps_ids(MEDIA_KEY)
+        return self._get_gramps_ids(MEDIA_KEY)
 
     def get_place_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Place in the
         database.
         """
-        return self.get_gramps_ids(PLACE_KEY)
+        return self._get_gramps_ids(PLACE_KEY)
 
     def get_repository_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Repository in the
         database.
         """
-        return self.get_gramps_ids(REPOSITORY_KEY)
+        return self._get_gramps_ids(REPOSITORY_KEY)
 
     def get_note_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Note in the
         database.
         """
-        return self.get_gramps_ids(NOTE_KEY)
+        return self._get_gramps_ids(NOTE_KEY)
 
     ################################################################
     #

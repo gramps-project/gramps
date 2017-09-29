@@ -847,12 +847,6 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_gramps_ids(self, obj_key):
-        """
-        Returns all the keys from a table given a table name
-        """
-        raise NotImplementedError
-
     def get_mediapath(self):
         """
         Return the default media path of the database.

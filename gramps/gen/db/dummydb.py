@@ -555,14 +555,6 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
             LOG.warning("database is closed")
         return []
 
-    def get_gramps_ids(self, obj_key):
-        """
-        Returns all the keys from a table given a table name
-        """
-        if not self.db_is_open:
-            LOG.warning("database is closed")
-        return []
-
     def get_media_attribute_types(self):
         """
         Return a list of all Attribute types associated with Media and MediaRef
