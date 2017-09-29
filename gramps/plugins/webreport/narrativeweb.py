@@ -175,6 +175,12 @@ class NavWebReport(Report):
         # create an event pages or not?
         self.inc_events = self.options['inc_events']
 
+        # create places pages or not?
+        self.inc_places = self.options['inc_places']
+
+        # create sources pages or not?
+        self.inc_sources = self.options['inc_sources']
+
         # include repository page or not?
         self.inc_repository = self.options['inc_repository']
 
@@ -808,12 +814,16 @@ class NavWebReport(Report):
             place_name = _pd.display_event(self._db, event)
         else:
             place_name = place.get_title()
+        if event:
+            role_or_date = str(event.get_date_object())
+        else:
+            role_or_date = ""
         place_fname = self.build_url_fname(place_handle, "plc",
                                            False) + self.ext
         self.obj_dict[Place][place_handle] = (place_fname, place_name,
                                               place.gramps_id, event)
         self.bkref_dict[Place][place_handle].add((bkref_class, bkref_handle,
-                                                  "" # no role for a place
+                                                  role_or_date
                                                  ))
 
         ############### Media section ##############
@@ -1893,6 +1903,16 @@ class NavWebOptions(MenuReportOptions):
         inc_events.set_help(
             _('Add a complete events list and relevant pages or not'))
         addopt("inc_events", inc_events)
+
+        inc_places = BooleanOption(_('Include places pages'), False)
+        inc_places.set_help(
+            _('Whether or not to include the places Pages.'))
+        addopt("inc_places", inc_places)
+
+        inc_sources = BooleanOption(_('Include sources pages'), False)
+        inc_sources.set_help(
+            _('Whether or not to include the sources Pages.'))
+        addopt("inc_sources", inc_sources)
 
         inc_repository = BooleanOption(_('Include repository pages'), False)
         inc_repository.set_help(
