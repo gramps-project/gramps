@@ -1404,12 +1404,6 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def set_save_path(self, path):
-        """
-        Set the save path for the database.
-        """
-        raise NotImplementedError
-
     def get_dbid(self):
         """
         A unique ID for this database on this computer.

@@ -195,7 +195,6 @@ class DbLoader(CLIDbLoader):
                             force_bsddb_upgrade,
                             force_bsddb_downgrade,
                             force_python_upgrade)
-                    db.set_save_path(filename)
                     if self.dbstate.is_open():
                         self.dbstate.db.close(
                             user=User(callback=self._pulse_progress,

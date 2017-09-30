@@ -933,7 +933,6 @@ class DbManager(CLIDbManager, ManagedWindow):
         newdb.write_version(dirname)
 
         dbase = make_database("bsddb")
-        dbase.set_save_path(dirname)
         dbase.load(dirname, None)
 
         self.__start_cursor(_("Rebuilding database from backup files"))

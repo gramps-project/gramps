@@ -1630,13 +1630,6 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
 
-    def set_save_path(self, path):
-        """
-        Set the save path for the database.
-        """
-        if not self.db_is_open:
-            LOG.warning("database is closed")
-
     def get_dbid(self):
         """
         A unique ID for this database on this computer.

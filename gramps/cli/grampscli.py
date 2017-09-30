@@ -174,7 +174,6 @@ class CLIDbLoader:
 
         try:
             self.dbstate.db.load(filename, self._pulse_progress, mode)
-            self.dbstate.db.set_save_path(filename)
         except DbEnvironmentError as msg:
             self.dbstate.no_database()
             self._errordialog(_("Cannot open database"), str(msg))
@@ -306,11 +305,6 @@ class CLIManager:
         self.dbstate.db.db_name = title
         if title:
             name = title
-
-        # This method is for UI stuff when the database has changed.
-        # Window title, recent files, etc related to new file.
-
-        self.dbstate.db.set_save_path(filename)
 
         # apply preferred researcher if loaded file has none
         res = self.dbstate.db.get_researcher()

@@ -1411,10 +1411,6 @@ class DbBsddbRead(DbReadBase, Callback):
         """Return the save path of the file, or "" if one does not exist."""
         return self.path
 
-    def set_save_path(self, path):
-        """Set the save path for the database."""
-        self.path = path
-
     def get_event_attribute_types(self):
         """
         Return a list of all Attribute types assocated with Event instances

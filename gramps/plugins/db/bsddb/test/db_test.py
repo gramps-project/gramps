@@ -168,7 +168,6 @@ class DbTest(unittest.TestCase):
         # Other set methods:
         "set_mediapath",
         "set_researcher",
-        "set_save_path",
         "version_supported",
         ]
 

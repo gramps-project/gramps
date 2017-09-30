@@ -528,7 +528,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "del_func": self.remove_tag,
             }
         }
-        self.set_save_path(directory)
         self.readonly = False
         self.db_is_open = False
         self.name_formats = []
@@ -636,7 +635,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # surname list
         self.surname_list = self.get_surname_list()
 
-        self.set_save_path(directory)
+        self._set_save_path(directory)
+
         if self._directory:
             self.undolog = os.path.join(self._directory, DBUNDOFN)
         else:
@@ -2371,7 +2371,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_save_path(self):
         return self._directory
 
-    def set_save_path(self, directory):
+    def _set_save_path(self, directory):
         self._directory = directory
         if directory:
             self.full_name = os.path.abspath(self._directory)
