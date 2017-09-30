@@ -221,7 +221,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         self.uistate = user.uistate
-        self.dbstate = dbstate.db
+        self.db = dbstate.db
 
         if self.uistate:
             tool.BatchTool.__init__(self, dbstate, user, options_class, name)
@@ -247,19 +247,23 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
         self.prim_methods, self.obj_methods = {}, {}
         for prim_obj, prim_objs in self.xobjects:
             class_type = prim_obj.title()
-            iter_handles = "self.dbstate.iter_%s_handles" % prim_obj
-            get_number_obj = "self.dbstate.get_number_of_%s" % prim_objs
-            prefix_fmt = "self.dbstate.%s_prefix" % prim_obj
-            get_from_id = "self.dbstate.get_%s_from_gramps_id" % prim_obj
-            get_from_handle = "self.dbstate.get_%s_from_handle" % prim_obj
-            next_from_id = "self.dbstate.find_next_%s_gramps_id" % prim_obj
-            commit = "self.dbstate.commit_%s" % prim_obj
+            iter_handles = "iter_%s_handles" % prim_obj
+            get_number_obj = "get_number_of_%s" % prim_objs
+            prefix_fmt = "%s_prefix" % prim_obj
+            get_from_id = "get_%s_from_gramps_id" % prim_obj
+            get_from_handle = "get_%s_from_handle" % prim_obj
+            next_from_id = "find_next_%s_gramps_id" % prim_obj
+            commit = "commit_%s" % prim_obj
 
-            self.prim_methods[prim_obj] = (eval(prefix_fmt), eval(get_number_obj)(),
-                                           eval(next_from_id)())
-            self.obj_methods[prim_obj] = (eval(class_type), eval(iter_handles), eval(commit),
-                                          eval(get_from_id), eval(get_from_handle),
-                                          eval(next_from_id))
+            self.prim_methods[prim_obj] = (getattr(self.db, prefix_fmt),
+                                           getattr(self.db, get_number_obj)(),
+                                           getattr(self.db, next_from_id)())
+            self.obj_methods[prim_obj] = (class_type,
+                                          getattr(self.db, iter_handles),
+                                          getattr(self.db, commit),
+                                          getattr(self.db, get_from_id),
+                                          getattr(self.db, get_from_handle),
+                                          getattr(self.db, next_from_id))
 
             object_fmt, quant_id, next_id = self.prim_methods[prim_obj]
 
@@ -514,7 +518,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
 
         if update:
             config.save()
-            self.dbstate.set_prefixes(
+            self.db.set_prefixes(
                 config.get('preferences.iprefix'),
                 config.get('preferences.oprefix'),
                 config.get('preferences.fprefix'),
@@ -539,9 +543,9 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
             self.set_total(total_objs)
 
         # Update database
-        self.dbstate.disable_signals()
+        self.db.disable_signals()
         for prim_obj, prim_objs in self.xobjects:
-            with DbTxn(_('Reorder %s IDs ...') % prim_obj, self.dbstate, batch=True) \
+            with DbTxn(_('Reorder %s IDs ...') % prim_obj, self.db, batch=True) \
             as self.trans:
                 if self.obj_values[prim_obj].active_obj:
                     if self.uistate:
@@ -551,8 +555,8 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
                     # Process reordering
                     self._reorder(prim_obj)
 
-        self.dbstate.enable_signals()
-        self.dbstate.request_rebuild()
+        self.db.enable_signals()
+        self.db.request_rebuild()
 
         # Update progress calculation
         if self.uistate:
