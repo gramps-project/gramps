@@ -40,6 +40,8 @@ class DbTest(unittest.TestCase):
         "find_next_source_gramps_id",
         "get_bookmarks",
         "get_child_reference_types",
+        "get_dbid",
+        "get_dbname",
         "get_default_handle",
         "get_default_person",
         "get_event_attribute_types",
