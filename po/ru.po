@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps50\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-24 19:52+0900\n"
-"PO-Revision-Date: 2017-09-24 19:57+0900\n"
+"POT-Creation-Date: 2017-09-30 17:29+0900\n"
+"PO-Revision-Date: 2017-09-30 17:37+0900\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -206,11 +206,11 @@ msgstr "Шавуот"
 
 #: ../data/holidays.xml.in.h:25
 msgid "Rosh Ha'Shana"
-msgstr "Рош hа-Шана"
+msgstr "Рош Ха-Шана"
 
 #: ../data/holidays.xml.in.h:26
 msgid "Rosh Ha'Shana 2"
-msgstr "Рош hа-Шана 2"
+msgstr "Рош Ха-Шана 2"
 
 #: ../data/holidays.xml.in.h:27
 msgid "Yom Kippur"
@@ -451,7 +451,7 @@ msgid ""
 "All tools can be accessed through the &quot;Tools&quot; menu."
 msgstr ""
 "<b>Инструменты Gramps</b><br/>Система Gramps оснащена богатым набором "
-"инструментов. Они позволяют совершать как такие операции как проверку "
+"инструментов. Они позволяют совершать такие операции как проверку "
 "правильности базы данных на ошибки и целостность, так и инструменты "
 "исследования и анализа такие как сравнение событий, поиск дубликатов людей, "
 "интерактивный просмотр линии потомков, и другие. Все инструменты доступны "
@@ -464,7 +464,7 @@ msgid ""
 "Utilities &gt; Relationship Calculator...&quot;. The exact relationship as "
 "well as all common ancestors are reported."
 msgstr ""
-"<b>Определение отношений</b>: Этот инструмент из категории <b>Инструменты "
+"<b>Определение отношений</b><br/>Этот инструмент из категории <b>Инструменты "
 "&gt; Вспомогательные</b> позволяет проверить, состоит ли данное лицо в "
 "родственных отношениях с вами (по крови, не по женитьбе). Результатом "
 "является точное название отношения и имя общего предка."
@@ -511,7 +511,7 @@ msgstr ""
 "Графические отчёты позволяют в удобной форме представить запутанные "
 "родственные связи. Текстовые отчёты особенно удобны для пересылки "
 "результатов членам вашей семьи по электронной почте. А если вы готовы "
-"создать вебсайт со своим семейным древом, то для этого также существует тип "
+"создать веб-сайт со своим семейным древом, то для этого также существует тип "
 "отчёта в Gramps."
 
 #: ../data/tips.xml.in.h:17
@@ -522,11 +522,11 @@ msgid ""
 "button from the People View). Then go to the Relationship View and create "
 "relationships between people."
 msgstr ""
-"<b>Как начать новое семейное древо</b>: Хороший способ начать построение "
+"<b>Как начать новое семейное древо</b><br/>Хороший способ начать построение "
 "семейного древа - это внести в базу данных всех членов вашей семьи "
 "(используйте пункт меню «Правка &gt; Добавить...» или щёлкните по кнопке "
-"«Добавить» в разделе «Люди»). Затем отправьтесь в раздел «Отношения» и "
-"задайте связи между людьми."
+"«Добавить» в разделе «Люди»). Затем перейдите в раздел «Отношения» и задайте "
+"связи между людьми."
 
 #: ../data/tips.xml.in.h:18
 msgid ""
@@ -557,8 +557,8 @@ msgid ""
 "of the same person entered more than once in the database."
 msgstr ""
 "<b>Дубликаты</b><br/><b>Инструменты &gt; Обработка базы данных &gt; Найти "
-"возможные дубликаты лиц</b> позволяет поиск (и слияние) записей, дублирующих "
-"одно и то же лицо в базе данных."
+"возможные дубликаты лиц</b> позволяет найти (и объединить) записи, "
+"дублирующие одно и то же лицо в базе данных."
 
 #: ../data/tips.xml.in.h:21
 msgid ""
@@ -570,11 +570,12 @@ msgid ""
 "the Places, Sources and Repositories views."
 msgstr ""
 "<b>Слияние записей</b><br/>Функция «объединить...» в меню «Правка» позволяет "
-"слить несколько записей о разных людях, местах, источниках, или хранилищах. "
-"Это полезно при объединении двух баз данных с общими членами или при "
-"объединении ошибочно введенных записей для одного и того же лица. Функция "
-"доступна из видов: «Люди», «Места», «Источники» и «Хранилища». Для выбора "
-"второй записи для объединения удерживайте клавишу Control при щелчке мышью."
+"объединить несколько записей о разных людях, местах, источниках, или "
+"хранилищах. Это полезно при слиянии двух баз данных с общими элементами или "
+"при объединении ошибочно введённых записей для одного и того же лица. "
+"Функция доступна из видов: «Люди», «Места», «Источники» и «Хранилища». Для "
+"выбора второй записи для объединения удерживайте клавишу Control при щелчке "
+"мышью."
 
 #: ../data/tips.xml.in.h:22
 msgid ""
@@ -583,10 +584,9 @@ msgid ""
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the &quot;View&quot; menu."
 msgstr ""
-"<b>Настройка Видов</b><br/>Ваши данные могут быть представлены, как "
-"иерархически, так и в виде списка. Каждый Вид может быть настроен так, как "
-"пожелаете. Взгляните на правую часть панели инструментов или в меню &quot;"
-"Вид&quot;."
+"<b>Настройка Видов</b><br/>Данные могут быть представлены, как иерархически "
+"так и в виде списка. Каждый Вид может быть настроен так, как пожелаете. "
+"Взгляните на правую часть панели инструментов или в меню &quot;Вид&quot;."
 
 #: ../data/tips.xml.in.h:23
 msgid ""
@@ -595,9 +595,9 @@ msgid ""
 "through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; "
 "Back&quot; or the arrow buttons."
 msgstr ""
-"<b>Переход вперёд-назад<b>/<br/>Gramps помнит предыдущие активные объекты, "
-"такие как люди, места. Вы можете переходить вперед или назад по списку, "
-"используя «Переход &gt; Вперёд» и «Переход &gt; Назад»."
+"<b>Переход вперёд-назад<b>/<br/>Gramps запоминает предыдущие активные "
+"объекты, такие как люди, места. Вы можете переходить вперёд или назад по "
+"списку, используя «Переход &gt; Вперёд» и «Переход &gt; Назад»."
 
 #: ../data/tips.xml.in.h:24
 msgid ""
@@ -617,10 +617,11 @@ msgid ""
 "operations intuitive but the manual is full of information that will make "
 "your time spent on genealogy more productive."
 msgstr ""
-"Не забудьте прочитать руководство пользователя Gramps, <b>Справка &gt; "
-"Руководство·пользователя</b>. Разработчики постарались сделать большинство "
-"операций интуитивными, но руководство содержит информацию, которая сделает "
-"время, потраченное на генеалогию, более продуктивным."
+"<b>Изучение руководства</b><br/>Не забудьте прочитать руководство "
+"пользователя Gramps, <b>Справка &gt; Руководство·пользователя</b>. "
+"Разработчики постарались сделать большинство операций интуитивными, но "
+"руководство содержит информацию, которая сделает время, потраченное на "
+"генеалогию, более продуктивным."
 
 #: ../data/tips.xml.in.h:26
 msgid ""
@@ -629,11 +630,11 @@ msgid ""
 "Then choose to create a new person or add an existing person. You can also "
 "add children (or siblings) from inside the Family Editor."
 msgstr ""
-"<b>Добавление детей</b><br/>Добавление детей в Gramps возможно двумя разными "
+"<b>Добавление детей</b><br/>Добавить детей в Gramps возможно двумя разными "
 "способами. Можно найти одного из родителей в виде «Семьи», и открыть семью. "
-"Затем выберите либо добавление нового лица, либо уже существующего лица, в "
-"качестве ребёнка в эту семью. Кроме того, детей (а также братьев и сестёр) "
-"можно добавлять через редактор семей."
+"Затем выбрать либо добавление нового лица, либо уже существующего лица, в "
+"качестве ребёнка в эту семью. Также детей (братьев и сестёр) можно добавлять "
+"через редактор семей."
 
 #: ../data/tips.xml.in.h:27
 msgid ""
@@ -654,7 +655,7 @@ msgid ""
 "is wrong in making this choice, you can override the filter by checking the "
 "Show All checkbutton."
 msgstr ""
-"<b>Галочка «Показать всех»</b><br/>Когда добавляется супруг из списка лиц, "
+"<b>Параметр «Показать всех»</b><br/>Когда добавляется супруг из списка лиц, "
 "существующих в базе данных, отображаемый список содержит только тех лиц, "
 "которые, по мнению программы, подходят на эту роль (на основании дат из базы "
 "данных). Если Gramps делает неверное предположение, то вы можете отменить "
@@ -673,7 +674,7 @@ msgstr ""
 "пользователей Gramps или через список рассылки gramps-devel, а также через "
 "http://bugs.gramps-project.org, где можно оставить запрос на введение какого "
 "либо усовершенствования. Добавление запроса на усовершенствование "
-"предпочтительней, т.к. можно обсудить вашу идею."
+"предпочтительней, т.к. можно обсудить Вашу идею."
 
 #: ../data/tips.xml.in.h:30
 msgid ""
@@ -683,12 +684,11 @@ msgid ""
 "the development of Gramps, try the gramps-devel list. You can see the lists "
 "by selecting &quot;Help &gt; Gramps Mailing Lists&quot;."
 msgstr ""
-"<b>Рассылки Gramps</b><br/>Хотите получить ответы на возникшие у вас вопросы "
-"по Gramps? Подпишитесь на список рассылки gramps-users. На него подписано "
-"много отзывчивых людей, поэтому, скорее всего, вам быстро ответят. Если же у "
-"вас возникли вопросы, связанные с разработкой Gramps, попробуйте рассылку "
-"gramps-devel. Все эти рассылки доступны из меню «Справка / Списки рассылки "
-"Gramps».."
+"<b>Рассылки Gramps</b><br/>Хотите получить ответы на возникшие вопросы по "
+"Gramps? Подпишитесь на список рассылки gramps-users. На него подписано много "
+"отзывчивых людей, поэтому, скорее всего, Вам быстро ответят. Если же "
+"возникли вопросы, связанные с разработкой Gramps, попробуйте рассылку gramps-"
+"devel. Все эти рассылки доступны из меню «Справка / Списки рассылки Gramps»."
 
 #: ../data/tips.xml.in.h:31
 msgid ""
@@ -700,9 +700,9 @@ msgid ""
 "and introducing yourself. Subscription information can be found at &quot;"
 "Help &gt; Gramps Mailing Lists&quot;"
 msgstr ""
-"<b>Помощь проекту Gramps</b><br/>Вам бы хотелось помочь Gramps, но вы не "
+"<b>Участие в проекте Gramps</b><br/>Вам бы хотелось помочь Gramps, но Вы не "
 "умеете программировать? Ничего страшного! Такому большому проекту требуется "
-"помощь от людей с самыми разными навыками. Помочь можно чем угодно --- от "
+"помощь от людей с самыми разными навыками. Помочь можно чем угодно -- от "
 "написания документации до тестирования версий, находящихся в стадии "
 "разработки, или помочь с веб-сайтом проекта. Для начала подпишитесь на "
 "рассылку разработчиков Gramps, gramps-devel, и представьтесь. Информация о "
@@ -718,13 +718,13 @@ msgid ""
 "are managing genealogies containing hundreds of thousands of people."
 msgstr ""
 "<b>Что в имени?..</b><br/>Название «Gramps» предложил первоначальному автору "
-"программы, Дону Эллингему, его отец. Это --- сокращение фразы "
-"<i>Genealogical Research and Analysis Management Program System</i> "
-"(Программная система управления генеалогическими изысканиями и анализом - "
-"англ.) Данная система является полнофункциональной генеалогической "
-"программой. Она позволяет хранить, редактировать и анализировать "
-"генеалогические данные. База данных Gramps настолько производительна, что "
-"позволяет управлять данными, содержащими информацию о сотнях тысяч людей."
+"программы, Дону Эллингему, его отец. Это -- сокращение фразы <i>Genealogical "
+"Research and Analysis Management Program System</i> (Программная система "
+"управления генеалогическими изысканиями и анализом - англ.) Данная система "
+"является полнофункциональной генеалогической программой. Она позволяет "
+"хранить, редактировать и анализировать генеалогические данные. База данных "
+"Gramps настолько производительна, что позволяет управлять данными, "
+"содержащими информацию о сотнях тысяч людей."
 
 #: ../data/tips.xml.in.h:33
 msgid ""
@@ -834,11 +834,10 @@ msgid ""
 "limited only by your imagination. Custom filters are created from &quot;Edit "
 "&gt; Person Filter Editor&quot;."
 msgstr ""
-"<b>Фильтры</b><br/> Фильтры позволяют вам сузить множество показываемых лиц "
-"в виде «Люди». Помимо многочисленных готовых фильтров, можно настроить "
-"фильтры пользователя, ограниченные только Вашим воображением. "
-"Пользовательские фильтры можно создать из меню «Правка / Редактор фильтров "
-"людей»."
+"<b>Фильтры</b><br/> Фильтры позволяют уменьшить множество показываемых лиц в "
+"виде «Люди». Помимо многочисленных готовых фильтров, можно настроить фильтры "
+"пользователя, ограниченные только Вашим воображением. Пользовательские "
+"фильтры можно создать из меню «Правка / Редактор фильтров людей»."
 
 #: ../data/tips.xml.in.h:42
 msgid ""
@@ -848,10 +847,10 @@ msgid ""
 "from users of most other genealogy programs. Filters exist that make "
 "importing and exporting GEDCOM files trivial."
 msgstr ""
-"<b>Формат GEDCOM</b><br/>Gramps позволяет вам импортировать из и "
-"экспортировать в формат GEDCOM. Полностью поддерживается стандарт GEDCOM "
-"версии 5.5, так что вы можете обмениваться информацией из Gramps с людьми, "
-"использующими другие программы."
+"<b>Формат GEDCOM</b><br/>Gramps позволяет импортировать из и экспортировать "
+"в формат GEDCOM. Полностью поддерживается стандарт GEDCOM версии 5.5, так "
+"что Вы можете обмениваться информацией из Gramps с людьми, использующими "
+"другие программы."
 
 #: ../data/tips.xml.in.h:43
 msgid ""
@@ -862,13 +861,12 @@ msgid ""
 "other Gramps users. This format has the key advantage over GEDCOM that no "
 "information is ever lost when exporting and importing."
 msgstr ""
-"<b>Пакет Ggramps XML</b><br/>Вы можете выгрузить свои данные в формат «Пакет "
-"Gramps», который содержит в себе в сжатом виде ваше семейное древо а так же "
+"<b>Пакет Gramps XML</b><br/>Вы можете выгрузить свои данные в формат «Пакет "
+"Gramps», который содержит в себе в сжатом виде ваше семейное древо, а так же "
 "все другие файлы, используемые в базе данных, включая изображения. Этот файл "
 "может быть очень полезен для резервного копирования и для передачи другим "
 "пользователям Gramps. Этот формат более предпочтителен, нежели GEDCOM, "
-"поскольку при экспорте и импорте никогда не может произойти потеря "
-"информации."
+"поскольку при экспорте и импорте никогда не произойдёт потеря информации."
 
 #: ../data/tips.xml.in.h:44
 msgid ""
@@ -878,7 +876,7 @@ msgid ""
 msgstr ""
 "<b>Формат Web Family Tree</b><br/>Gramps может экспортировать данные в "
 "формате Web Family Tree (WFT). Этот формат позволяет показывать семейное "
-"древо на интернете используя один файл вместо множества файлов HTML."
+"древо через интернет используя всего один файл вместо множества файлов HTML."
 
 #: ../data/tips.xml.in.h:45
 msgid ""
@@ -897,9 +895,9 @@ msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at http://bugs.gramps-project.org"
 msgstr ""
-"<b>Сообщите об ошибках в Gramps</b><br/> Лучший способ послать сообщение об "
-"ошибке Gramps -- это система отслеживания ошибок GRAMPS: http://bugs.gramps-"
-"project.org"
+"<b>Как сообщить об ошибках в Gramps</b><br/> Лучший способ послать сообщение "
+"об ошибке Gramps -- это система отслеживания ошибок GRAMPS: http://bugs."
+"gramps-project.org"
 
 #: ../data/tips.xml.in.h:47
 msgid ""
@@ -916,10 +914,10 @@ msgid ""
 "private can be excluded from reports and data exports. Look for the padlock "
 "which toggles records between private and public."
 msgstr ""
-"Gramps помогает вам оберегать личную информацию путём пометки записей как "
-"личные. Личные данные могут быть исключены из отчётов и экспорта данных. "
-"Обратите внимание на кнопку с изображением замочка --- она переключает "
-"записи из личного в публичный режим и обратно."
+"<b>Защита информации</b><br/>Gramps помогает вам оберегать личную информацию "
+"путём пометки записей как личные. Личные данные могут быть исключены из "
+"отчётов и экспорта данных. Обратите внимание на кнопку с изображением "
+"замочка -- она переключает записи из личного в публичный режим и обратно."
 
 #: ../data/tips.xml.in.h:49
 msgid ""
@@ -935,7 +933,7 @@ msgstr ""
 "информацию из источника, записывайте в точности так, как видите. Используйте "
 "квадратные скобки [], чтобы указать на ваши собственные добавления, удаления "
 "или комментарии. Используйте латинское слово 'sic!' ('так!'), чтобы "
-"подтвердить аккуратную транскрипцию из источника того, что, должно быть, "
+"подтвердить правильность транскрипции из источника того, что, должно быть, "
 "является ошибкой."
 
 #: ../data/tips.xml.in.h:50
@@ -958,7 +956,7 @@ msgid ""
 "single document. This single report is easier to distribute than multiple "
 "reports, especially when printed."
 msgstr ""
-"<b>Отчёт-книга</b><br/>, Отчёт-книга «Отчёты &gt; Книги &gt; Отчёт-книга», "
+"<b>Отчёт-книга</b><br/>Отчёт-книга «Отчёты &gt; Книги &gt; Отчёт-книга» "
 "позволяет собрать несколько отчётов в единый документ. Такой отчёт легче "
 "распространять, чем несколько разных отчётов, особенно в напечатанном виде."
 
@@ -1005,11 +1003,10 @@ msgid ""
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
-"<b>'Что и почему' вашей генеалогии</b><br/> Генеалогия касается не только "
+"<b>«Что и почему» в Вашей генеалогии</b><br/> Генеалогия касается не только "
 "дат и имён, она касается людей. Будьте подробны, включайте причину того, как "
-"развивались события и как потомки могли быть сформированы событиями, через "
-"которые они прошли. Повествования очень помогают сделать живой историю вашей "
-"семьи."
+"развивались события и как эти события могли повлиять на потомков. "
+"Повествования очень помогают сделать семейную историю живой."
 
 #: ../data/tips.xml.in.h:56
 msgid ""
@@ -1018,7 +1015,7 @@ msgid ""
 "displayed, set the default language in your operating system and restart "
 "Gramps."
 msgstr ""
-"<b>Не говорите по английски?</b><br/>Gramps переведен более чем на 40 "
+"<b>Не говорите по английски?</b><br/>Gramps переведён более чем на 40 "
 "языков. Если Gramps поддерживает ваш язык, но этот язык не отображается, "
 "установите язык по умолчанию на вашем компьютере и перезапустите Gramps."
 
@@ -1078,7 +1075,7 @@ msgstr ""
 "<b>Открытое программное обеспечение</b><br/>Модель разработки «Свободное и "
 "открытое ПО» ведёт к тому, что Gramps может быть улучшена любым "
 "программистом, т.к. весь исходный код свободно доступен. Свободно доступен "
-"--- это не просто бесплатно --- это ещё и право на изучение и изменение "
+"-- это не просто бесплатно -- это ещё и право на изучение и изменение "
 "продукта. Поищите материалы про Free Software Foundation и Open Source "
 "Initiative, чтобы узнать подробности."
 
@@ -1110,8 +1107,8 @@ msgid ""
 "Error: Family Tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
-"Ошибка: Древо '%s' уже существует.\n"
-"Параметр '-C' нельзя использовать."
+"Ошибка: Древо «%s» уже существует.\n"
+"Параметр «-C» нельзя использовать."
 
 #: ../gramps/cli/arghandler.py:238
 #, python-format
@@ -1171,7 +1168,7 @@ msgstr "ОШИБКА: Неопознанный формат для файла э
 
 #: ../gramps/cli/arghandler.py:402
 msgid "List of known Family Trees in your database path\n"
-msgstr "Путь к базе данных с семейным древом\n"
+msgstr "Список семейных древ по указанному пути к базе данных\n"
 
 #: ../gramps/cli/arghandler.py:410
 #, python-format
@@ -1207,12 +1204,12 @@ msgstr "\"%s\""
 #: ../gramps/cli/arghandler.py:454
 #, python-format
 msgid "Performing action: %s."
-msgstr "Выполняю действие: %s."
+msgstr "Выполняется действие: %s."
 
 #: ../gramps/cli/arghandler.py:458 ../gramps/gen/plug/report/stdoptions.py:284
 #, python-format
 msgid "Using options string: %s"
-msgstr "Использую строку параметров: %s"
+msgstr "Используется строка параметров: %s"
 
 #: ../gramps/cli/arghandler.py:464
 #, python-format
@@ -1221,7 +1218,7 @@ msgstr "Экспортируются: файл %(filename)s, формат %(form
 
 #: ../gramps/cli/arghandler.py:475
 msgid "Cleaning up."
-msgstr "Навожу порядок."
+msgstr "Проведение очистки."
 
 #: ../gramps/cli/arghandler.py:509
 msgid "Created empty Family Tree successfully"
@@ -1238,7 +1235,7 @@ msgstr "Выход..."
 #: ../gramps/cli/arghandler.py:517
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
-msgstr "Импортирую: файл %(filename)s, формат %(format)s."
+msgstr "Импорт: файл %(filename)s, формат %(format)s."
 
 #: ../gramps/cli/arghandler.py:536
 msgid "Opened successfully!"
@@ -1260,7 +1257,7 @@ msgstr "База данных нуждается в восстановлении
 #: ../gramps/cli/arghandler.py:605 ../gramps/cli/arghandler.py:654
 #: ../gramps/cli/arghandler.py:701
 msgid "Ignoring invalid options string."
-msgstr "Игнорирую неверную строку параметров."
+msgstr "Игнорируется неверная строка параметров."
 
 #. name exists, but is not in the list of valid report names
 #: ../gramps/cli/arghandler.py:629
@@ -1309,7 +1306,7 @@ msgstr ""
 msgid "Unknown action: %s."
 msgstr "Неизвестное действие: %s."
 
-#: ../gramps/cli/argparser.py:53
+#: ../gramps/cli/argparser.py:55
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -1369,7 +1366,7 @@ msgstr ""
 "  -L [FAMILY_TREE_PATTERN...]            Список семейных древ с "
 "подробностями\n"
 "  -t [FAMILY_TREE_PATTERN...]            Список семейных древ, разделённый "
-"табуляцей\n"
+"табуляцией\n"
 "  -u, --force-unlock                     Принудительно снять блокировку с "
 "семейного древа\n"
 "  -s, --show                             Показать настройки конфигурации\n"
@@ -1383,7 +1380,7 @@ msgstr ""
 "                                         (только в режиме командной строки)\n"
 "  -v, --version                          Показать версию\n"
 
-#: ../gramps/cli/argparser.py:82
+#: ../gramps/cli/argparser.py:84
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -1444,7 +1441,7 @@ msgstr ""
 "\n"
 "Пример использования интерфейса командной строки GRAMPS\n"
 "\n"
-"1. Чтобы импортировать четыре базы данных (форматы которых определяемы по "
+"1. Чтобы импортировать четыре базы данных (форматы которых определяются по "
 "именам файлов),\n"
 "а затем проверить результат на наличие ошибок, можно набрать:\n"
 "gramps -i file1.ged -i file2.gpkg -i ~/db3.gramps -i file4.wft -a tool -p "
@@ -1457,11 +1454,11 @@ msgstr ""
 "\n"
 "3. Для записи базы данных, полученной в результате всех операций импорта, "
 "укажите флажок -e\n"
-"(также используйте -f, если имя файла не позволяет Gramps угадать его "
+"(также используйте -f, если имя файла не позволяет Gramps определить его "
 "формат):\n"
 "gramps -i file1.ged -i file2.gpkg -e ~/new-package -f gramps-pkg\n"
 "\n"
-"4. Для записи сообщений об ошибках из примера выше в файлы в файлы outfile и "
+"4. Для записи сообщений об ошибках из примера выше в файлы outfile и "
 "errfile, запустите:\n"
 "gramps -i file1.ged -i file2.dpkg -e ~/new-package -f gramps-pkg >outfile "
 "2>errfile\n"
@@ -1500,11 +1497,11 @@ msgstr ""
 "Точный синтаксис командной строки может отличаться для прочих оболочек и под "
 "Windows.\n"
 
-#: ../gramps/cli/argparser.py:240 ../gramps/cli/argparser.py:394
+#: ../gramps/cli/argparser.py:242 ../gramps/cli/argparser.py:411
 msgid "Error parsing the arguments"
 msgstr "Ошибка при разборе аргументов"
 
-#: ../gramps/cli/argparser.py:242
+#: ../gramps/cli/argparser.py:244
 #, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
@@ -1514,47 +1511,56 @@ msgstr ""
 "Наберите gramps --help чтобы увидеть аргументы командной строки или "
 "прочитайте страницы руководства."
 
-#: ../gramps/cli/argparser.py:260
+#: ../gramps/cli/argparser.py:262
 #, python-format
 msgid "Trying to open: %s ..."
-msgstr "Пытаюсь открыть: %s ..."
+msgstr "Попытка открыть: %s ..."
 
-#: ../gramps/cli/argparser.py:297
+#: ../gramps/cli/argparser.py:302
+#, python-format
+msgid ""
+"WARNING: %(strerr)s (errno=%(errno)s):\n"
+"WARNING: %(name)s\n"
+msgstr ""
+"ВНИМАНИЕ: %(strerr)s (errno=%(errno)s):\n"
+"ВНИМАНИЕ: %(name)s\n"
+
+#: ../gramps/cli/argparser.py:314
 #, python-format
 msgid "Unknown action: %s. Ignoring."
-msgstr "Неизвестное действие: %s."
+msgstr "Неизвестное действие: %s. Игнорируется."
 
-#: ../gramps/cli/argparser.py:307
+#: ../gramps/cli/argparser.py:324
 msgid "setup debugging"
 msgstr "настройки отладки"
 
-#: ../gramps/cli/argparser.py:318
+#: ../gramps/cli/argparser.py:335
 #, python-format
 msgid "Gramps config settings from %s:"
 msgstr "Конфигурация Gramps из %s:"
 
-#: ../gramps/cli/argparser.py:335
+#: ../gramps/cli/argparser.py:352
 #, python-format
 msgid "Current Gramps config setting: %(name)s:%(value)s"
 msgstr "Текущая настройка конфигурации: %(name)s:%(value)s"
 
 #. does a user want the default config value?
-#: ../gramps/cli/argparser.py:342
+#: ../gramps/cli/argparser.py:359
 msgid "DEFAULT"
 msgstr "ПО УМОЛЧАНИЮ"
 
 #. translators: indent "New" to match "Current"
-#: ../gramps/cli/argparser.py:349
+#: ../gramps/cli/argparser.py:366
 #, python-format
 msgid "    New Gramps config setting: %(name)s:%(value)s"
 msgstr "    Новая настройка конфигурации: %(name)s:%(value)s"
 
-#: ../gramps/cli/argparser.py:357
+#: ../gramps/cli/argparser.py:374
 #, python-format
 msgid "Gramps: no such config setting: '%s'"
 msgstr "Gramps: неизвестная настройка конфигурации: «%s»"
 
-#: ../gramps/cli/argparser.py:395
+#: ../gramps/cli/argparser.py:412
 #, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
@@ -1571,7 +1577,7 @@ msgid ""
 "       %(message)s"
 msgstr ""
 "ОШИБКА: %(title)s \n"
-"       %(message)s"
+"        %(message)s"
 
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:171
 #: ../gramps/gui/clipboard.py:189 ../gramps/gui/clipboard.py:190
@@ -1638,8 +1644,8 @@ msgstr "Заблокировано?"
 #: ../gramps/plugins/gramplet/relativegramplet.py:124
 #: ../gramps/plugins/gramplet/relativegramplet.py:135
 #: ../gramps/plugins/graph/gvfamilylines.py:280
-#: ../gramps/plugins/graph/gvhourglass.py:374
-#: ../gramps/plugins/graph/gvrelgraph.py:888
+#: ../gramps/plugins/graph/gvhourglass.py:376
+#: ../gramps/plugins/graph/gvrelgraph.py:886
 #: ../gramps/plugins/importer/importprogen.py:986
 #: ../gramps/plugins/lib/maps/geography.py:838
 #: ../gramps/plugins/lib/maps/geography.py:848
@@ -1786,71 +1792,71 @@ msgstr "Никогда"
 msgid "Locked by %s"
 msgstr "Заблокировано %s"
 
-#: ../gramps/cli/grampscli.py:84
+#: ../gramps/cli/grampscli.py:85
 #, python-format
 msgid "WARNING: %s"
 msgstr "ВНИМАНИЕ: %s"
 
-#: ../gramps/cli/grampscli.py:91 ../gramps/cli/grampscli.py:250
+#: ../gramps/cli/grampscli.py:92 ../gramps/cli/grampscli.py:254
 #, python-format
 msgid "ERROR: %s"
 msgstr "ОШИБКА: %s"
 
-#: ../gramps/cli/grampscli.py:105 ../gramps/cli/user.py:200
+#: ../gramps/cli/grampscli.py:106 ../gramps/cli/user.py:200
 #: ../gramps/gui/dialog.py:244
 msgid "Low level database corruption detected"
 msgstr "Обнаружена ошибка низкого уровня в базе данных"
 
-#: ../gramps/cli/grampscli.py:107 ../gramps/cli/user.py:201
+#: ../gramps/cli/grampscli.py:108 ../gramps/cli/user.py:201
 #: ../gramps/gui/dialog.py:245
 msgid ""
 "Gramps has detected a problem in the underlying Berkeley database. This can "
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
-"Gramps обнаружил проблему в используемой базе данных Berkeley. Эта проблема, "
-"возможно, устранима через диалог «Управление семейными древами». Выберите "
-"базу данных и нажмите кнопку «Исправить»"
+"Обнаружена проблема в базе данных Berkeley. Эта проблема, возможно, "
+"устранима через диалог «Управление семейными древами». Выберите базу данных "
+"и нажмите кнопку «Исправить»"
 
-#: ../gramps/cli/grampscli.py:152 ../gramps/gui/dbloader.py:165
+#: ../gramps/cli/grampscli.py:153 ../gramps/gui/dbloader.py:165
 msgid "Read only database"
 msgstr "База данных только для чтения"
 
-#: ../gramps/cli/grampscli.py:153 ../gramps/gui/dbloader.py:166
+#: ../gramps/cli/grampscli.py:154 ../gramps/gui/dbloader.py:166
 #: ../gramps/gui/dbloader.py:511
 msgid "You do not have write access to the selected file."
-msgstr "У вас нет доступа для записи выбранного файла."
+msgstr "У Вас нет доступа для записи выбранного файла."
 
-#: ../gramps/cli/grampscli.py:179 ../gramps/cli/grampscli.py:182
-#: ../gramps/cli/grampscli.py:185 ../gramps/cli/grampscli.py:188
-#: ../gramps/cli/grampscli.py:191 ../gramps/cli/grampscli.py:194
-#: ../gramps/cli/grampscli.py:197 ../gramps/cli/grampscli.py:200
-#: ../gramps/cli/grampscli.py:203 ../gramps/gui/dbloader.py:269
-#: ../gramps/gui/dbloader.py:272 ../gramps/gui/dbloader.py:275
-#: ../gramps/gui/dbloader.py:278 ../gramps/gui/dbloader.py:281
-#: ../gramps/gui/dbloader.py:284
+#: ../gramps/cli/grampscli.py:180 ../gramps/cli/grampscli.py:183
+#: ../gramps/cli/grampscli.py:186 ../gramps/cli/grampscli.py:189
+#: ../gramps/cli/grampscli.py:192 ../gramps/cli/grampscli.py:195
+#: ../gramps/cli/grampscli.py:198 ../gramps/cli/grampscli.py:201
+#: ../gramps/cli/grampscli.py:204 ../gramps/cli/grampscli.py:207
+#: ../gramps/gui/dbloader.py:269 ../gramps/gui/dbloader.py:272
+#: ../gramps/gui/dbloader.py:275 ../gramps/gui/dbloader.py:278
+#: ../gramps/gui/dbloader.py:281 ../gramps/gui/dbloader.py:284
 msgid "Cannot open database"
 msgstr "Ошибка открытия базы данных"
 
-#: ../gramps/cli/grampscli.py:207 ../gramps/gui/dbloader.py:288
+#: ../gramps/cli/grampscli.py:211 ../gramps/gui/dbloader.py:288
 #: ../gramps/gui/dbloader.py:468
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Ошибка открытия файла: %s"
 
-#: ../gramps/cli/grampscli.py:263
+#: ../gramps/cli/grampscli.py:267
 msgid "Could not load a recent Family Tree."
 msgstr "Не удалось загрузить недавно использованное семейное древо."
 
-#: ../gramps/cli/grampscli.py:264
+#: ../gramps/cli/grampscli.py:268
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr "Семейное древо не существует, так как оно было удалено."
 
-#: ../gramps/cli/grampscli.py:269
+#: ../gramps/cli/grampscli.py:273
 msgid "The database is locked."
 msgstr "База данных заблокирована."
 
-#: ../gramps/cli/grampscli.py:270
+#: ../gramps/cli/grampscli.py:274
 msgid ""
 "Use the --force-unlock option if you are sure that the database is not in "
 "use."
@@ -1859,17 +1865,17 @@ msgstr ""
 "используется."
 
 #. already errors encountered. Show first one on terminal and exit
-#: ../gramps/cli/grampscli.py:352
+#: ../gramps/cli/grampscli.py:356
 #, python-format
 msgid "Error encountered: %s"
 msgstr "Произошла ошибка: %s"
 
-#: ../gramps/cli/grampscli.py:354 ../gramps/cli/grampscli.py:362
+#: ../gramps/cli/grampscli.py:358 ../gramps/cli/grampscli.py:366
 #, python-format
 msgid "  Details: %s"
 msgstr "  Подробности: %s"
 
-#: ../gramps/cli/grampscli.py:359
+#: ../gramps/cli/grampscli.py:363
 #, python-format
 msgid "Error encountered in argument parsing: %s"
 msgstr "При разборе параметров возникла ошибка: %s"
@@ -1982,7 +1988,7 @@ msgstr "   Разрешённые параметры:"
 #: ../gramps/plugins/gramplet/whatsnext.py:440
 #: ../gramps/plugins/gramplet/whatsnext.py:473
 #: ../gramps/plugins/gramplet/whatsnext.py:495
-#: ../gramps/plugins/graph/gvrelgraph.py:660
+#: ../gramps/plugins/graph/gvrelgraph.py:657
 #: ../gramps/plugins/textreport/descendreport.py:269
 #: ../gramps/plugins/textreport/descendreport.py:279
 #: ../gramps/plugins/textreport/descendreport.py:285
@@ -2003,8 +2009,8 @@ msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s="
 "%(notranslate3)s'."
 msgstr ""
-"Игнорирую «%(notranslate1)s=%(notranslate2)s», использую «%(notranslate1)s="
-"%(notranslate3)s»."
+"Игнорируется «%(notranslate1)s=%(notranslate2)s», используется "
+"«%(notranslate1)s=%(notranslate3)s»."
 
 #: ../gramps/cli/plug/__init__.py:510
 #, python-format
@@ -2016,7 +2022,7 @@ msgstr ""
 #: ../gramps/gen/plug/report/stdoptions.py:281
 #, python-format
 msgid "Ignoring unknown option: %s"
-msgstr "Игнорирую неизвестный параметр: %s"
+msgstr "Игнорируется неизвестный параметр: %s"
 
 #: ../gramps/cli/plug/__init__.py:601
 msgid "   Available options:"
@@ -2038,7 +2044,7 @@ msgid ""
 "options."
 msgstr ""
 "параметр «%(optionname)s» не поддерживается. Используйте "
-"«%(donottranslate)s», чтобы увидеть все дозволенные параметры."
+"«%(donottranslate)s», чтобы увидеть все доступные параметры."
 
 #: ../gramps/cli/plug/__init__.py:646
 msgid "Failed to write report. "
@@ -2047,7 +2053,7 @@ msgstr "Не удалось записать отчёт. "
 #: ../gramps/cli/plug/__init__.py:795
 #, python-format
 msgid "Failed to make '%s' report."
-msgstr "Не удалось создать '%s' отчёт."
+msgstr "Не удалось создать «%s» отчёт."
 
 #: ../gramps/cli/user.py:217 ../gramps/gui/dialog.py:230
 msgid "Error detected in database"
@@ -2066,8 +2072,8 @@ msgstr ""
 "Обнаружена проблема в базе данных Gramps. Обычно такие проблемы можно "
 "устранить запуском инструмента «Проверка и исправление базы данных».\n"
 "\n"
-"Если проблема повторится после работы этого инструмента, пожалуйста "
-"заполните сообщение об ошибке на странице %(gramps_bugtracker_url)s\n"
+"Если проблема повторится после работы этого инструмента, пожалуйста создайте "
+"сообщение об ошибке на странице %(gramps_bugtracker_url)s\n"
 "\n"
 
 #: ../gramps/gen/config.py:244
@@ -2943,23 +2949,23 @@ msgstr "Пт"
 msgid "Sat"
 msgstr "Сб"
 
-#: ../gramps/gen/db/base.py:1796 ../gramps/gui/widgets/fanchart.py:1761
+#: ../gramps/gen/db/base.py:1784 ../gramps/gui/widgets/fanchart.py:1761
 msgid "Add child to family"
 msgstr "Добавить ребёнка в семью"
 
-#: ../gramps/gen/db/base.py:1810 ../gramps/gen/db/base.py:1816
+#: ../gramps/gen/db/base.py:1798 ../gramps/gen/db/base.py:1804
 msgid "Remove child from family"
 msgstr "Удалить ребёнка из семьи"
 
-#: ../gramps/gen/db/base.py:1892 ../gramps/gen/db/base.py:1896
+#: ../gramps/gen/db/base.py:1880 ../gramps/gen/db/base.py:1884
 msgid "Remove Family"
 msgstr "Удалить семью"
 
-#: ../gramps/gen/db/base.py:1938
+#: ../gramps/gen/db/base.py:1926
 msgid "Remove father from family"
 msgstr "Удалить отца из семьи"
 
-#: ../gramps/gen/db/base.py:1940
+#: ../gramps/gen/db/base.py:1928
 msgid "Remove mother from family"
 msgstr "Удалить мать из семьи"
 
@@ -2975,7 +2981,7 @@ msgid ""
 "between different schema versions."
 msgstr ""
 "Версия базы данных %(tree_vers)s не поддерживается этой версией Gramps,\n"
-"которая распознаёт форматы версии от%(min_vers)s до %(max_vers)s.\n"
+"которая распознаёт форматы версии от %(min_vers)s до %(max_vers)s.\n"
 "\n"
 "Пожалуйста, обновите GRAMPS или используйте XML формат для переноса данных\n"
 "между различными версиями баз данных."
@@ -2996,9 +3002,8 @@ msgstr ""
 "Семейное древо Python версии %(tree_vers)s, а эта версия Gramps поддерживает "
 "версии от %(min_vers)s до %(max_vers)s.\n"
 "\n"
-"Пожалуйста, обновитесь до необходимой версии или используйте XML формат для "
-"переноса данных\n"
-"между различными версиями Python."
+"Пожалуйста, обновитесь до необходимой версии или используйте XML формат\n"
+"для переноса данных между различными версиями Python."
 
 #: ../gramps/gen/db/exceptions.py:136
 #, python-format
@@ -3012,7 +3017,7 @@ msgid ""
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree. You "
 "can then import this backup into this version of Gramps."
 msgstr ""
-"Древо, которое вы пытаетесь открыть, записано в формате версии Bsddb "
+"Древо, которое Вы пытаетесь открыть, записано в формате версии Bsddb "
 "%(env_version)s. Текущая версия Gramps использует %(bdb_version)s. Это "
 "значит, что это древо было создано в более новой версии Gramps и это привело "
 "к ошибке.\n"
@@ -3035,13 +3040,12 @@ msgid ""
 "start your %(bold_start)snewer%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
-"Древо, которое вы пытаетесь открыть, записано под версией Bsddb "
+"Древо, которое Вы пытаетесь открыть, записано под версией Bsddb "
 "%(env_version)s. Текущая версия Gramps использует %(bdb_version)s. Скорее "
-"всего это значит, что Вы пытаетесь  открыть древо созданное в более новой "
-"версии Gramps. Ввиду не очень больших изменений в версии, возможно, что его "
-"удастся открыть.\n"
+"всего это значит, что древо созданное в более новой версии Gramps. Ввиду не "
+"очень больших изменений в версии, возможно, что его удастся открыть.\n"
 "\n"
-"Если вы ещё не сделали резервной копии Вашего древа, запустите "
+"Если Вы ещё не сделали резервной копии Вашего древа, запустите "
 "%(bold_start)sновую%(bold_end)s версию Gramps и "
 "%(wiki_backup_html_start)sсоздайте резервную копию%(html_end)s из неё."
 
@@ -3061,19 +3065,19 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
-"Семейное древо, которое вы пытаетесь открыть, создано в фрмате Bsddb версии "
+"Семейное древо, которое Вы пытаетесь открыть, создано в фрмате Bsddb версии "
 "%(env_version)s. Эта версия Gramps использует Bsddb версию %(bdb_version)s. "
 "Поэтому невозможно открыть это семейное древо без обновления версии Bsddb "
 "этого древа.\n"
 "\n"
 "Открытие семейного древа этой версией Gramps может непоправимо нарушить Ваше "
-"древо. Настоятельно рекомендуется сделать резервную копию вашего семейного "
+"древо. Настоятельно рекомендуется сделать резервную копию Вашего семейного "
 "древа.\n"
 "\n"
-"Если вы ещё не сделали резервной копии вашего семейного древа, то запустите "
+"Если Вы ещё не сделали резервной копии Вашего семейного древа, то запустите "
 "%(bold_start)sстарую%(bold_end)s версию Gramps\n"
-"и %(wiki_backup_html_start)sсоздайте резервную копию%(html_end)s вашего "
-"древа из неё."
+"и %(wiki_backup_html_start)sсоздайте резервную копию%(html_end)s древа из "
+"неё."
 
 #: ../gramps/gen/db/exceptions.py:225
 msgid ""
@@ -3090,8 +3094,8 @@ msgid ""
 msgstr ""
 "Программа Gramps обнаружила проблему при открытии т.н. «окружения» базы "
 "данных в формате Беркли, в которой хранится данное семейное древо. Наиболее "
-"вероятная причина: ваша база данных была создана предыдущей версией СУБД "
-"Беркли, а с тех пор вы перешли на новую версию. Весьма вероятно, что Gramps "
+"вероятная причина: Ваша база данных была создана предыдущей версией СУБД "
+"Беркли, а с тех пор Вы перешли на новую версию. Весьма вероятно, что Gramps "
 "не внесла никаких изменений в базу данных.\n"
 "Если возможно, попытайтесь запустить предыдущую версию Gramps и "
 "сопутствующие ей версии вспомогательных программных пакетов; экспортируйте "
@@ -3124,18 +3128,18 @@ msgstr ""
 "невозможно открыть семейное древо без обновлении версии базы данных "
 "семейного древа.\n"
 "\n"
-"Если вы проведете обновление, то не сможете открыть древо использую прошлую "
+"Если Вы проведёте обновление, то не сможете открыть древо используя прошлую "
 "версию Gramps, если не сделаете %(wiki_manual_backup_html_start)sрезервную "
 "копию%(html_end)s или %(wiki_manual_export_html_start)sэкспорт%(html_end)s "
-"вашего обновлённого семейного древа.\n"
+"Вашего обновлённого семейного древа.\n"
 "\n"
-"Обновление это сложная задача. которая может привести к порче вашего "
-"семейного древа, если оно будет прервано или будет неудачным.\n"
+"Обновление это сложная задача. которая может привести к порче Вашего "
+"семейного древа, если оно будет прервано или окажется неудачным.\n"
 "\n"
-"Если вы ещё не сделали резервной копии вашего семейного древа, то запустите "
+"Если Вы ещё не сделали резервной копии Вашего семейного древа, то запустите "
 "%(bold_start)sстарую%(bold_end)s версию Gramps\n"
-"и %(wiki_backup_html_start)sсоздайте резервную копию%(html_end)s вашего "
-"древа из неё."
+"и %(wiki_backup_html_start)sсоздайте резервную копию%(html_end)s древа из "
+"неё."
 
 #: ../gramps/gen/db/exceptions.py:290
 #, python-format
@@ -3149,14 +3153,15 @@ msgid ""
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree. You "
 "can then import this backup into this version of Gramps."
 msgstr ""
-"Семейное древо, которое вы пытаетесь открыть, записано с использованием "
+"Семейное древо, которое Вы пытаетесь открыть, записано с использованием "
 "Pythom версии %(db_python_version)s. Текущая версия Gramps использует Python "
-"версии %(current_python_version)s. Т.е. вы пытаетесь загрузить данные "
-"созданные в более новом формате и старой программе и это приводит к ошибке.\n"
+"версии %(current_python_version)s. Т.е. Вы пытаетесь загрузить данные "
+"созданные в более новом формате используя старую программу и это приводит к "
+"ошибке.\n"
 "\n"
 "Запустите %(bold_start)sновую%(bold_end)s версию Gramps, и "
-"%(wiki_backup_html_start)sсоздайте резервную копию%(html_end)s вашего "
-"семейного древа из неё. После этого вы можете попытаться импортировать эту "
+"%(wiki_backup_html_start)sсоздайте резервную копию%(html_end)s Вашего "
+"семейного древа из неё. После этого можете попытаться импортировать эту "
 "резервную копию в текущую, более старую, версию Gramps."
 
 #: ../gramps/gen/db/exceptions.py:320
@@ -3179,23 +3184,23 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
-"Семейное древо, которое вы пытаетесь открыть, записано с использованием "
-"Pythom версии %(db_python_version)s. Текущая версия Gramps использует Python "
+"Семейное древо, которое Вы пытаетесь открыть, записано с использованием "
+"Python версии %(db_python_version)s. Текущая версия Gramps использует Python "
 "версии %(current_python_version)s. Поэтому Вы не можете загрузить это "
 "семейное древо без преобразования версии Python этого древа.\n"
 "\n"
-"После обновления вы не сможете использовать старую версию Gramps для "
+"После обновления Вы не сможете использовать старую версию Gramps для "
 "открытия, если не сделаете %(wiki_manual_backup_html_start)sрезервную копию"
-"%(html_end)s или %(wiki_manual_export_html_start)sэкспорт%(html_end)s вашего "
+"%(html_end)s или %(wiki_manual_export_html_start)sэкспорт%(html_end)s Вашего "
 "обновлённого семейного древа.\n"
 "\n"
-"Обновление это сложная задача. которая может привести к порче вашего "
-"семейного древа, если оно будет прервано или будет неудачным.\n"
+"Обновление это сложная задача. которая может привести к порче семейного "
+"древа, если оно будет прервано или окажется неудачным.\n"
 "\n"
-"Если вы ещё не сделали резервную копию вашего семейного древа, то запустите "
+"Если Вы ещё не сделали резервную копию семейного древа, то запустите "
 "%(bold_start)sстарую%(bold_end)s версию Gramps\n"
-"и %(wiki_backup_html_start)sсоздайте резервную копию%(html_end)s вашего "
-"древа из неё."
+"и %(wiki_backup_html_start)sсоздайте резервную копию%(html_end)s древа из "
+"неё."
 
 #: ../gramps/gen/db/exceptions.py:356
 #, python-format
@@ -3213,7 +3218,7 @@ msgstr ""
 "%(settings_file)s"
 
 #: ../gramps/gen/db/generic.py:161 ../gramps/gen/db/generic.py:211
-#: ../gramps/gen/db/generic.py:2067 ../gramps/plugins/db/bsddb/undoredo.py:251
+#: ../gramps/gen/db/generic.py:2038 ../gramps/plugins/db/bsddb/undoredo.py:251
 #: ../gramps/plugins/db/bsddb/undoredo.py:293
 #: ../gramps/plugins/db/bsddb/write.py:2133
 #, python-format
@@ -3227,12 +3232,12 @@ msgstr "_Откатить %s"
 msgid "_Redo %s"
 msgstr "Ве_рнуть %s"
 
-#: ../gramps/gen/db/generic.py:2459 ../gramps/plugins/db/bsddb/read.py:2009
+#: ../gramps/gen/db/generic.py:2430 ../gramps/plugins/db/bsddb/read.py:1949
 #: ../gramps/plugins/db/bsddb/write.py:2293
 msgid "Number of people"
 msgstr "Количество людей"
 
-#: ../gramps/gen/db/generic.py:2460 ../gramps/plugins/db/bsddb/read.py:2010
+#: ../gramps/gen/db/generic.py:2431 ../gramps/plugins/db/bsddb/read.py:1950
 #: ../gramps/plugins/db/bsddb/write.py:2294
 #: ../gramps/plugins/gramplet/statsgramplet.py:117
 #: ../gramps/plugins/webreport/statistics.py:129
@@ -3240,57 +3245,57 @@ msgstr "Количество людей"
 msgid "Number of families"
 msgstr "Количество семей"
 
-#: ../gramps/gen/db/generic.py:2461 ../gramps/plugins/db/bsddb/read.py:2011
+#: ../gramps/gen/db/generic.py:2432 ../gramps/plugins/db/bsddb/read.py:1951
 #: ../gramps/plugins/db/bsddb/write.py:2295
 #: ../gramps/plugins/webreport/statistics.py:157
 #: ../gramps/plugins/webreport/statistics.py:206
 msgid "Number of sources"
 msgstr "Количество источников"
 
-#: ../gramps/gen/db/generic.py:2462 ../gramps/plugins/db/bsddb/read.py:2012
+#: ../gramps/gen/db/generic.py:2433 ../gramps/plugins/db/bsddb/read.py:1952
 #: ../gramps/plugins/db/bsddb/write.py:2296
 #: ../gramps/plugins/webreport/statistics.py:161
 #: ../gramps/plugins/webreport/statistics.py:209
 msgid "Number of citations"
 msgstr "Количество цитат"
 
-#: ../gramps/gen/db/generic.py:2463 ../gramps/plugins/db/bsddb/read.py:2013
+#: ../gramps/gen/db/generic.py:2434 ../gramps/plugins/db/bsddb/read.py:1953
 #: ../gramps/plugins/db/bsddb/write.py:2297
 #: ../gramps/plugins/webreport/statistics.py:150
 #: ../gramps/plugins/webreport/statistics.py:200
 msgid "Number of events"
 msgstr "Количество событий"
 
-#: ../gramps/gen/db/generic.py:2464 ../gramps/plugins/db/bsddb/read.py:2014
+#: ../gramps/gen/db/generic.py:2435 ../gramps/plugins/db/bsddb/read.py:1954
 #: ../gramps/plugins/db/bsddb/write.py:2298
 msgid "Number of media"
 msgstr "Количество документов"
 
-#: ../gramps/gen/db/generic.py:2465 ../gramps/plugins/db/bsddb/read.py:2015
+#: ../gramps/gen/db/generic.py:2436 ../gramps/plugins/db/bsddb/read.py:1955
 #: ../gramps/plugins/db/bsddb/write.py:2299
 #: ../gramps/plugins/webreport/statistics.py:153
 #: ../gramps/plugins/webreport/statistics.py:203
 msgid "Number of places"
 msgstr "Количество мест"
 
-#: ../gramps/gen/db/generic.py:2466 ../gramps/plugins/db/bsddb/read.py:2016
+#: ../gramps/gen/db/generic.py:2437 ../gramps/plugins/db/bsddb/read.py:1956
 #: ../gramps/plugins/db/bsddb/write.py:2300
 #: ../gramps/plugins/webreport/statistics.py:165
 #: ../gramps/plugins/webreport/statistics.py:212
 msgid "Number of repositories"
 msgstr "Количество хранилищ"
 
-#: ../gramps/gen/db/generic.py:2467 ../gramps/plugins/db/bsddb/read.py:2017
+#: ../gramps/gen/db/generic.py:2438 ../gramps/plugins/db/bsddb/read.py:1957
 #: ../gramps/plugins/db/bsddb/write.py:2301
 msgid "Number of notes"
 msgstr "Количество заметок"
 
-#: ../gramps/gen/db/generic.py:2468 ../gramps/plugins/db/bsddb/read.py:2018
+#: ../gramps/gen/db/generic.py:2439 ../gramps/plugins/db/bsddb/read.py:1958
 #: ../gramps/plugins/db/bsddb/write.py:2302
 msgid "Number of tags"
 msgstr "Количество меток"
 
-#: ../gramps/gen/db/generic.py:2469 ../gramps/plugins/db/bsddb/write.py:2303
+#: ../gramps/gen/db/generic.py:2440 ../gramps/plugins/db/bsddb/write.py:2303
 msgid "Schema version"
 msgstr "Версия схемы"
 
@@ -3444,8 +3449,8 @@ msgid ""
 "WARNING: Too many arguments in filter '%s'!\n"
 "Trying to load with subset of arguments."
 msgstr ""
-"ВНИМАНИЕ: Лишние аргументы в фильтре '%s'!\n"
-"Пробую загрузить с подмножеством аргументов."
+"ВНИМАНИЕ: Лишние аргументы в фильтре «%s»!\n"
+"Загрузка с подмножеством аргументов."
 
 #: ../gramps/gen/filters/_filterparser.py:124
 #, python-format
@@ -3453,14 +3458,13 @@ msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
-"ВНИМАНИЕ: Не хватает аргументов в фильтре '%s'!\n"
-"Пробую загрузить в надежде на удачное обновление."
+"ВНИМАНИЕ: Не хватает аргументов в фильтре «%s»!\n"
+"Загрузка в надежде на удачное обновление."
 
 #: ../gramps/gen/filters/_filterparser.py:132
 #, python-format
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
-msgstr ""
-"ОШИБКА: фильтр %s не удалось загрузить. Отредактируйте критерии фильтра!"
+msgstr "ОШИБКА: фильтр %s не удалось загрузить. Измените критерии фильтра!"
 
 #: ../gramps/gen/filters/_genericfilter.py:139
 #: ../gramps/gen/filters/_genericfilter.py:169
@@ -3486,7 +3490,7 @@ msgstr "Применение ..."
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1093
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1107
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1121
-#: ../gramps/plugins/graph/gvrelgraph.py:752
+#: ../gramps/plugins/graph/gvrelgraph.py:750
 #: ../gramps/plugins/quickview/quickview.gpr.py:130
 #: ../gramps/plugins/textreport/birthdayreport.py:411
 #: ../gramps/plugins/textreport/familygroup.py:712
@@ -3589,7 +3593,7 @@ msgid ""
 "part is optional, are accepted. %s does not satisfy."
 msgstr ""
 "Допускаются только дата/время в формате вида ГГГГ-ММ-ДД ЧЧ:ММ:СС или только "
-"ГГГГ-ММ-ДД. «%s» не годится."
+"ГГГГ-ММ-ДД. «%s» не допускается."
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:49
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:48
@@ -3641,7 +3645,7 @@ msgstr "Цитаты, удовлетворяющие параметрам"
 #: ../gramps/gen/filters/rules/_hascitationbase.py:53
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:53
 msgid "Matches citations with particular parameters"
-msgstr "Выбирает цитаты с данными параметрами"
+msgstr "Выбирает цитаты с указанными параметрами"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:54
 #: ../gramps/gen/filters/rules/_hassourcebase.py:52
@@ -3766,7 +3770,7 @@ msgstr "ID источника:"
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:46
 #: ../gramps/gui/editors/filtereditor.py:522
 msgid "Filter name:"
-msgstr "Название:"
+msgstr "Название фильтра:"
 
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:67
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:70
@@ -3779,11 +3783,11 @@ msgstr "Не удалось найти фильтр «%s» среди задан
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:48
 #: ../gramps/gui/editors/filtereditor.py:530
 msgid "Source filter name:"
-msgstr "Название фильтра источников:"
+msgstr "Исходное название фильтра:"
 
 #: ../gramps/gen/filters/rules/_rule.py:53
 msgid "Miscellaneous filters"
-msgstr "Разные модули расширения"
+msgstr "Расширенные фильтры"
 
 #: ../gramps/gen/filters/rules/_rule.py:54 ../gramps/gui/glade/rule.glade:950
 #: ../gramps/plugins/view/geoclose.py:533
@@ -3800,7 +3804,7 @@ msgstr "Все цитаты"
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:46
 msgid "Matches every citation in the database"
-msgstr "Выбирает всех цитаты в базе данных"
+msgstr "Выбирает все цитаты в базе данных"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:45
 #: ../gramps/gen/filters/rules/event/_changedsince.py:46
@@ -3828,15 +3832,15 @@ msgstr "и перед:"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:46
 msgid "Citations changed after <date time>"
-msgstr "Цитаты, измененные после <дата время>"
+msgstr "Цитаты, изменённые после <дата время>"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:47
 msgid ""
 "Matches citation records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given."
 msgstr ""
-"Выбирает цитаты, чьи данные были изменены после определенной даты (гггг-мм-"
-"дд чч:мм:сс) или, если задана вторая дата, между двумя датами."
+"Выбирает цитаты, данные которых были изменены после определенной даты (гггг-"
+"мм-дд чч:мм:сс) или между двумя датами, если указана вторая дата."
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:43
 msgid "Citations marked private"
@@ -3970,10 +3974,13 @@ msgstr "Выбирает цитаты из данного источника"
 msgid "Source filters"
 msgstr "Фильтры источников"
 
+# возможно нужно исправить на "Citations with Source <Id>"
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:46
 msgid "Citation with Source <Id>"
 msgstr "Цитаты источника с <Id>"
 
+# возможно нужно исправить на 
+# "Matches citations with a source with a specified Gramps ID"
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:47
 msgid "Matches a citation with a source with a specified Gramps ID"
 msgstr "Выбирает цитаты источника с указанным Gramps ID"
@@ -4005,11 +4012,11 @@ msgstr "Метка:"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:49
 msgid "Citations with the <tag>"
-msgstr "Цитаты с <пометкой>"
+msgstr "Цитаты с <меткой>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:50
 msgid "Matches citations with the particular tag"
-msgstr "Выбирает цитаты с определенной пометкой"
+msgstr "Выбирает цитаты с определенной меткой"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:45
 msgid "Citations matching the <filter>"
@@ -5563,8 +5570,8 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_isfemale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:108
 #: ../gramps/plugins/graph/gvfamilylines.py:276
-#: ../gramps/plugins/graph/gvhourglass.py:370
-#: ../gramps/plugins/graph/gvrelgraph.py:884
+#: ../gramps/plugins/graph/gvhourglass.py:372
+#: ../gramps/plugins/graph/gvrelgraph.py:882
 #: ../gramps/plugins/webreport/statistics.py:122
 #: ../gramps/plugins/webreport/statistics.py:187
 msgid "Females"
@@ -5638,8 +5645,8 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_ismale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:105
 #: ../gramps/plugins/graph/gvfamilylines.py:272
-#: ../gramps/plugins/graph/gvhourglass.py:366
-#: ../gramps/plugins/graph/gvrelgraph.py:880
+#: ../gramps/plugins/graph/gvhourglass.py:368
+#: ../gramps/plugins/graph/gvrelgraph.py:878
 #: ../gramps/plugins/webreport/statistics.py:120
 #: ../gramps/plugins/webreport/statistics.py:185
 msgid "Males"
@@ -6429,8 +6436,8 @@ msgstr "Выбирает источники, помеченные как лич�
 #: ../gramps/gui/configure.py:517 ../gramps/gui/editors/editaddress.py:167
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
 #: ../gramps/plugins/gramplet/repositorydetails.py:133
-#: ../gramps/plugins/lib/libgedcom.py:5566
-#: ../gramps/plugins/lib/libgedcom.py:5733
+#: ../gramps/plugins/lib/libgedcom.py:5570
+#: ../gramps/plugins/lib/libgedcom.py:5737
 #: ../gramps/plugins/textreport/familygroup.py:350
 #: ../gramps/plugins/webreport/addressbooklist.py:112
 msgid "Address"
@@ -6691,11 +6698,11 @@ msgid "Postal Code"
 msgstr "Индекс/Почтовый код"
 
 #: ../gramps/gen/lib/address.py:127 ../gramps/gen/lib/location.py:105
-#: ../gramps/gui/configure.py:523 ../gramps/plugins/export/exportgedcom.py:793
-#: ../gramps/plugins/export/exportgedcom.py:1166
+#: ../gramps/gui/configure.py:523 ../gramps/plugins/export/exportgedcom.py:795
+#: ../gramps/plugins/export/exportgedcom.py:1168
 #: ../gramps/plugins/gramplet/repositorydetails.py:121
-#: ../gramps/plugins/lib/libgedcom.py:4104
-#: ../gramps/plugins/lib/libgedcom.py:5830
+#: ../gramps/plugins/lib/libgedcom.py:4106
+#: ../gramps/plugins/lib/libgedcom.py:5834
 #: ../gramps/plugins/webreport/basepage.py:1105
 msgid "Phone"
 msgstr "Телефон"
@@ -6888,7 +6895,7 @@ msgstr "Воспитанник"
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:115
 #: ../gramps/plugins/quickview/quickview.gpr.py:209
 #: ../gramps/plugins/quickview/references.py:89
-#: ../gramps/plugins/tool/reorderids.glade:714
+#: ../gramps/plugins/tool/reorderids.glade:823
 msgid "Citation"
 msgstr "Цитата"
 
@@ -6957,7 +6964,7 @@ msgstr "Достоверность"
 #: ../gramps/plugins/quickview/reporef.py:62
 #: ../gramps/plugins/textreport/tagreport.py:726
 #: ../gramps/plugins/textreport/tagreport.py:836
-#: ../gramps/plugins/tool/reorderids.glade:700
+#: ../gramps/plugins/tool/reorderids.glade:811
 msgid "Source"
 msgstr "Источник"
 
@@ -6978,7 +6985,7 @@ msgstr "Источник"
 #: ../gramps/plugins/quickview/quickview.gpr.py:207
 #: ../gramps/plugins/quickview/references.py:93
 #: ../gramps/plugins/textreport/tagreport.py:556
-#: ../gramps/plugins/tool/reorderids.glade:743
+#: ../gramps/plugins/tool/reorderids.glade:848
 #: ../gramps/plugins/view/mediaview.py:129
 #: ../gramps/plugins/view/view.gpr.py:82 ../gramps/plugins/view/view.gpr.py:90
 #: ../gramps/plugins/webreport/basepage.py:1482
@@ -7218,7 +7225,7 @@ msgstr "только текст"
 #: ../gramps/plugins/quickview/quickview.gpr.py:204
 #: ../gramps/plugins/quickview/references.py:87
 #: ../gramps/plugins/textreport/placereport.py:454
-#: ../gramps/plugins/tool/reorderids.glade:672
+#: ../gramps/plugins/tool/reorderids.glade:787
 #: ../gramps/plugins/webreport/basepage.py:619
 msgid "Event"
 msgstr "Событие"
@@ -7253,7 +7260,7 @@ msgstr "Событие"
 #: ../gramps/plugins/quickview/references.py:92
 #: ../gramps/plugins/textreport/indivcomplete.py:508
 #: ../gramps/plugins/textreport/indivcomplete.py:706
-#: ../gramps/plugins/tool/reorderids.glade:686
+#: ../gramps/plugins/tool/reorderids.glade:799
 #: ../gramps/plugins/tool/sortevents.py:58
 #: ../gramps/plugins/view/eventview.py:86
 #: ../gramps/plugins/webreport/basepage.py:621
@@ -7341,7 +7348,7 @@ msgstr "События"
 #: ../gramps/plugins/quickview/quickview.gpr.py:203
 #: ../gramps/plugins/quickview/references.py:86
 #: ../gramps/plugins/textreport/recordsreport.py:271
-#: ../gramps/plugins/tool/reorderids.glade:657
+#: ../gramps/plugins/tool/reorderids.glade:774
 #: ../gramps/plugins/view/relview.py:1378
 #: ../gramps/plugins/view/relview.py:1402
 #: ../gramps/plugins/webreport/family.py:187
@@ -8307,12 +8314,12 @@ msgstr "Фамилия в браке"
 #: ../gramps/plugins/quickview/references.py:94
 #: ../gramps/plugins/textreport/familygroup.py:368
 #: ../gramps/plugins/textreport/familygroup.py:430
-#: ../gramps/plugins/tool/reorderids.glade:757
+#: ../gramps/plugins/tool/reorderids.glade:860
 msgid "Note"
 msgstr "Заметка"
 
 #: ../gramps/gen/lib/note.py:119 ../gramps/gui/configure.py:822
-#: ../gramps/plugins/tool/reorderids.glade:1415
+#: ../gramps/plugins/tool/reorderids.glade:1447
 msgid "Format"
 msgstr "Формат"
 
@@ -8467,7 +8474,7 @@ msgstr "Заметка о ссылке на ребёнка"
 #: ../gramps/plugins/textreport/placereport.py:300
 #: ../gramps/plugins/textreport/placereport.py:454
 #: ../gramps/plugins/tool/eventcmp.py:253
-#: ../gramps/plugins/tool/reorderids.glade:642
+#: ../gramps/plugins/tool/reorderids.glade:761
 #: ../gramps/plugins/webreport/event.py:178
 #: ../gramps/plugins/webreport/family.py:186
 #: ../gramps/plugins/webreport/person.py:1162
@@ -8505,8 +8512,8 @@ msgid "Event references"
 msgstr "Ссылки на событие"
 
 #: ../gramps/gen/lib/person.py:199 ../gramps/plugins/graph/gvfamilylines.py:285
-#: ../gramps/plugins/graph/gvhourglass.py:379
-#: ../gramps/plugins/graph/gvrelgraph.py:894
+#: ../gramps/plugins/graph/gvhourglass.py:381
+#: ../gramps/plugins/graph/gvrelgraph.py:892
 #: ../gramps/plugins/quickview/filterbyname.py:94
 #: ../gramps/plugins/quickview/filterbyname.py:119
 #: ../gramps/plugins/textreport/indivcomplete.py:638
@@ -8683,7 +8690,7 @@ msgstr "Номер"
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:113
 #: ../gramps/plugins/quickview/filterbyname.py:205
 #: ../gramps/plugins/quickview/filterbyname.py:264
-#: ../gramps/plugins/tool/reorderids.glade:728
+#: ../gramps/plugins/tool/reorderids.glade:835
 msgid "Repository"
 msgstr "Хранилище"
 
@@ -9035,7 +9042,7 @@ msgstr "Объединение хранилищ"
 msgid "Merge Source"
 msgstr "Объединить источник"
 
-#: ../gramps/gen/plug/_gramplet.py:344
+#: ../gramps/gen/plug/_gramplet.py:345
 #, python-format
 msgid "Gramplet %s caused an error"
 msgstr "Грамплет «%s» вызвал ошибку"
@@ -9203,7 +9210,7 @@ msgstr "Файл %s уже открыт, сначала закройте его.
 #: ../gramps/plugins/docgen/svgdrawdoc.py:91
 #: ../gramps/plugins/export/exportcsv.py:261
 #: ../gramps/plugins/export/exportcsv.py:265
-#: ../gramps/plugins/export/exportgedcom.py:1565
+#: ../gramps/plugins/export/exportgedcom.py:1567
 #: ../gramps/plugins/export/exportgeneweb.py:108
 #: ../gramps/plugins/export/exportgeneweb.py:112
 #: ../gramps/plugins/export/exportvcalendar.py:119
@@ -9797,7 +9804,7 @@ msgstr "Как и где включать номера-идентификато�
 #: ../gramps/gen/plug/report/stdoptions.py:327
 #: ../gramps/gui/viewmanager.py:1888
 #: ../gramps/plugins/graph/gvfamilylines.py:211
-#: ../gramps/plugins/graph/gvrelgraph.py:804
+#: ../gramps/plugins/graph/gvrelgraph.py:802
 #: ../gramps/plugins/textreport/detancestralreport.py:888
 #: ../gramps/plugins/textreport/detdescendantreport.py:1075
 #: ../gramps/plugins/textreport/familygroup.py:748
@@ -12984,7 +12991,7 @@ msgstr "Сохранение цитаты невозможно. ID уже сущ
 #: ../gramps/gui/editors/editmedia.py:298
 #: ../gramps/gui/editors/editperson.py:846
 #: ../gramps/gui/editors/editplace.py:318
-#: ../gramps/gui/editors/editreference.py:287
+#: ../gramps/gui/editors/editreference.py:288
 #: ../gramps/gui/editors/editrepository.py:189
 #: ../gramps/gui/editors/editsource.py:210
 #, python-format
@@ -13101,7 +13108,7 @@ msgstr ""
 "правку."
 
 #: ../gramps/gui/editors/editevent.py:248
-#: ../gramps/gui/editors/editreference.py:276
+#: ../gramps/gui/editors/editreference.py:277
 msgid "Cannot save event. ID already exists."
 msgstr "Сохранение события невозможно. ID уже существует."
 
@@ -13390,7 +13397,7 @@ msgstr "Сохранение семьи невозможно: такой ID уж
 
 #: ../gramps/gui/editors/editfamily.py:1093
 #: ../gramps/gui/editors/editnote.py:327
-#: ../gramps/gui/editors/editreference.py:294
+#: ../gramps/gui/editors/editreference.py:295
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(id)s. This "
@@ -13478,7 +13485,7 @@ msgstr ""
 "данные или отмените правку."
 
 #: ../gramps/gui/editors/editmedia.py:297
-#: ../gramps/gui/editors/editreference.py:279
+#: ../gramps/gui/editors/editreference.py:280
 msgid "Cannot save media object. ID already exists."
 msgstr "Не удалось сохранить документ. Такой ID уже существует."
 
@@ -13884,12 +13891,12 @@ msgid "If you close without saving, the changes you have made will be lost"
 msgstr ""
 "Если вы закроете без сохранения, произведённые изменения будут потеряны"
 
-#: ../gramps/gui/editors/editreference.py:282
+#: ../gramps/gui/editors/editreference.py:283
 #: ../gramps/gui/editors/editrepository.py:188
 msgid "Cannot save repository. ID already exists."
 msgstr "Сохранение хранилища невозможно. ID уже существует."
 
-#: ../gramps/gui/editors/editreference.py:285
+#: ../gramps/gui/editors/editreference.py:286
 msgid "Cannot save item. ID already exists."
 msgstr "Ошибка сохранения объекта. Такой ID уже используется."
 
@@ -14682,26 +14689,32 @@ msgid "Cancel the rest of the operations"
 msgstr "Отменить остальные операции"
 
 #: ../gramps/gui/glade/dialog.glade:433
+#: ../gramps/plugins/tool/reorderids.glade:21
 msgid "_No"
 msgstr "_Нет"
 
 #: ../gramps/gui/glade/dialog.glade:438
+#: ../gramps/plugins/tool/reorderids.glade:26
 msgid "Do not apply the operation to this item"
 msgstr "Не применять операцию к этому объекту"
 
 #: ../gramps/gui/glade/dialog.glade:449
+#: ../gramps/plugins/tool/reorderids.glade:37
 msgid "_Yes"
 msgstr "_Да"
 
 #: ../gramps/gui/glade/dialog.glade:456
+#: ../gramps/plugins/tool/reorderids.glade:44
 msgid "Apply the operation to this item"
 msgstr "Применить операцию к этому объекту"
 
 #: ../gramps/gui/glade/dialog.glade:529
+#: ../gramps/plugins/tool/reorderids.glade:117
 msgid "_Use this answer for the rest of the items"
 msgstr "_Использовать этот ответ для остальных объектов"
 
 #: ../gramps/gui/glade/dialog.glade:533
+#: ../gramps/plugins/tool/reorderids.glade:121
 msgid ""
 "If you check this button, your next answer will apply to the rest of the "
 "selected items"
@@ -17466,7 +17479,7 @@ msgstr "З_апустить"
 
 #: ../gramps/gui/plug/_windows.py:1047
 #: ../gramps/plugins/tool/ownereditor.py:164
-#: ../gramps/plugins/tool/reorderids.py:203
+#: ../gramps/plugins/tool/reorderids.py:220
 msgid "Main window"
 msgstr "Главное окно"
 
@@ -18043,8 +18056,8 @@ msgstr "Стиль"
 #: ../gramps/plugins/drawreport/statisticschart.py:986
 #: ../gramps/plugins/drawreport/timeline.py:413
 #: ../gramps/plugins/graph/gvfamilylines.py:115
-#: ../gramps/plugins/graph/gvhourglass.py:313
-#: ../gramps/plugins/graph/gvrelgraph.py:748
+#: ../gramps/plugins/graph/gvhourglass.py:315
+#: ../gramps/plugins/graph/gvrelgraph.py:746
 #: ../gramps/plugins/textreport/alphabeticalindex.py:93
 #: ../gramps/plugins/textreport/ancestorreport.py:288
 #: ../gramps/plugins/textreport/birthdayreport.py:409
@@ -19803,8 +19816,8 @@ msgstr "Параметры древа"
 #: ../gramps/plugins/drawreport/ancestortree.py:793
 #: ../gramps/plugins/drawreport/calendarreport.py:476
 #: ../gramps/plugins/drawreport/fanchart.py:687
-#: ../gramps/plugins/graph/gvhourglass.py:315
-#: ../gramps/plugins/graph/gvrelgraph.py:758
+#: ../gramps/plugins/graph/gvhourglass.py:317
+#: ../gramps/plugins/graph/gvrelgraph.py:756
 #: ../gramps/plugins/textreport/ancestorreport.py:290
 #: ../gramps/plugins/textreport/descendreport.py:519
 #: ../gramps/plugins/textreport/detancestralreport.py:821
@@ -20003,8 +20016,8 @@ msgstr "Включать ли пустые страницы."
 #: ../gramps/plugins/drawreport/statisticschart.py:1045
 #: ../gramps/plugins/drawreport/timeline.py:434
 #: ../gramps/plugins/graph/gvfamilylines.py:162
-#: ../gramps/plugins/graph/gvhourglass.py:350
-#: ../gramps/plugins/graph/gvrelgraph.py:786
+#: ../gramps/plugins/graph/gvhourglass.py:352
+#: ../gramps/plugins/graph/gvrelgraph.py:784
 #: ../gramps/plugins/textreport/ancestorreport.py:310
 #: ../gramps/plugins/textreport/birthdayreport.py:438
 #: ../gramps/plugins/textreport/descendreport.py:554
@@ -20322,7 +20335,7 @@ msgstr "Задайте фильтр, чтобы ограничить лиц, к�
 # !!!FIXME!!!
 #: ../gramps/plugins/drawreport/calendarreport.py:477
 #: ../gramps/plugins/drawreport/fanchart.py:688
-#: ../gramps/plugins/graph/gvrelgraph.py:759
+#: ../gramps/plugins/graph/gvrelgraph.py:757
 #: ../gramps/plugins/textreport/ancestorreport.py:291
 #: ../gramps/plugins/textreport/descendreport.py:520
 #: ../gramps/plugins/textreport/detancestralreport.py:822
@@ -21408,47 +21421,47 @@ msgstr "Муж"
 msgid "Wife"
 msgstr "Жена"
 
-#: ../gramps/plugins/export/exportgedcom.py:403
+#: ../gramps/plugins/export/exportgedcom.py:405
 msgid "Writing individuals"
 msgstr "Запись людей"
 
-#: ../gramps/plugins/export/exportgedcom.py:795
-#: ../gramps/plugins/export/exportgedcom.py:1077
-#: ../gramps/plugins/export/exportgedcom.py:1168
-#: ../gramps/plugins/lib/libgedcom.py:4119
-#: ../gramps/plugins/lib/libgedcom.py:5842
-#: ../gramps/plugins/lib/libgedcom.py:6976
+#: ../gramps/plugins/export/exportgedcom.py:797
+#: ../gramps/plugins/export/exportgedcom.py:1079
+#: ../gramps/plugins/export/exportgedcom.py:1170
+#: ../gramps/plugins/lib/libgedcom.py:4121
+#: ../gramps/plugins/lib/libgedcom.py:5846
+#: ../gramps/plugins/lib/libgedcom.py:6980
 msgid "FAX"
 msgstr "Факс"
 
-#: ../gramps/plugins/export/exportgedcom.py:809
+#: ../gramps/plugins/export/exportgedcom.py:811
 #: ../gramps/plugins/textreport/familygroup.py:671
 msgid "Writing families"
 msgstr "Запись семей"
 
-#: ../gramps/plugins/export/exportgedcom.py:976
+#: ../gramps/plugins/export/exportgedcom.py:978
 msgid "Writing sources"
 msgstr "Запись источников"
 
-#: ../gramps/plugins/export/exportgedcom.py:1011
+#: ../gramps/plugins/export/exportgedcom.py:1013
 msgid "Writing notes"
 msgstr "Запись заметок"
 
-#: ../gramps/plugins/export/exportgedcom.py:1054
+#: ../gramps/plugins/export/exportgedcom.py:1056
 msgid "Writing repositories"
 msgstr "Запись хранилищ"
 
-#: ../gramps/plugins/export/exportgedcom.py:1170
-#: ../gramps/plugins/lib/libgedcom.py:5854
+#: ../gramps/plugins/export/exportgedcom.py:1172
+#: ../gramps/plugins/lib/libgedcom.py:5858
 msgid "EMAIL"
 msgstr "Эл. почта"
 
-#: ../gramps/plugins/export/exportgedcom.py:1172
-#: ../gramps/plugins/lib/libgedcom.py:5866
+#: ../gramps/plugins/export/exportgedcom.py:1174
+#: ../gramps/plugins/lib/libgedcom.py:5870
 msgid "WWW"
 msgstr "Веб-страница"
 
-#: ../gramps/plugins/export/exportgedcom.py:1568
+#: ../gramps/plugins/export/exportgedcom.py:1570
 msgid "GEDCOM Export failed"
 msgstr "Экспорт в GEDCOM не удался"
 
@@ -23439,20 +23452,20 @@ msgstr ""
 "при определении семейных линий."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:139
-#: ../gramps/plugins/graph/gvhourglass.py:329
-#: ../gramps/plugins/graph/gvrelgraph.py:763
+#: ../gramps/plugins/graph/gvhourglass.py:331
+#: ../gramps/plugins/graph/gvrelgraph.py:761
 msgid "Arrowhead direction"
 msgstr "Направление стрелок"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:142
-#: ../gramps/plugins/graph/gvhourglass.py:332
-#: ../gramps/plugins/graph/gvrelgraph.py:766
+#: ../gramps/plugins/graph/gvhourglass.py:334
+#: ../gramps/plugins/graph/gvrelgraph.py:764
 msgid "Choose the direction that the arrows point."
 msgstr "Выберите направление стрелок."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:145
-#: ../gramps/plugins/graph/gvhourglass.py:335
-#: ../gramps/plugins/graph/gvrelgraph.py:769
+#: ../gramps/plugins/graph/gvhourglass.py:337
+#: ../gramps/plugins/graph/gvrelgraph.py:767
 msgid "Graph coloring"
 msgstr "Расцветка графа"
 
@@ -23468,14 +23481,14 @@ msgstr ""
 
 #. see bug report #2180
 #: ../gramps/plugins/graph/gvfamilylines.py:154
-#: ../gramps/plugins/graph/gvhourglass.py:343
-#: ../gramps/plugins/graph/gvrelgraph.py:778
+#: ../gramps/plugins/graph/gvhourglass.py:345
+#: ../gramps/plugins/graph/gvrelgraph.py:776
 msgid "Use rounded corners"
 msgstr "Закруглять углы"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:156
-#: ../gramps/plugins/graph/gvhourglass.py:345
-#: ../gramps/plugins/graph/gvrelgraph.py:779
+#: ../gramps/plugins/graph/gvhourglass.py:347
+#: ../gramps/plugins/graph/gvrelgraph.py:777
 msgid "Use rounded corners to differentiate between women and men."
 msgstr ""
 "Использовать закругленные углы для обозначения различия между мужчинами и "
@@ -23558,7 +23571,7 @@ msgstr ""
 "Включать или нет число детей для семей, в которых более одного ребенка."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:239
-#: ../gramps/plugins/graph/gvrelgraph.py:844
+#: ../gramps/plugins/graph/gvrelgraph.py:842
 msgid "Include thumbnail images of people"
 msgstr "Включать изображения людей"
 
@@ -23571,17 +23584,17 @@ msgid "Thumbnail location"
 msgstr "Позиция изображения"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:248
-#: ../gramps/plugins/graph/gvrelgraph.py:851
+#: ../gramps/plugins/graph/gvrelgraph.py:849
 msgid "Above the name"
 msgstr "Над именем"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:249
-#: ../gramps/plugins/graph/gvrelgraph.py:852
+#: ../gramps/plugins/graph/gvrelgraph.py:850
 msgid "Beside the name"
 msgstr "Под именем"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:250
-#: ../gramps/plugins/graph/gvrelgraph.py:854
+#: ../gramps/plugins/graph/gvrelgraph.py:852
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "Размещение изображения относительно имени человека"
 
@@ -23612,26 +23625,26 @@ msgid "Colors to use for various family lines."
 msgstr "Цвета для отображения разных семейных линий."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:273
-#: ../gramps/plugins/graph/gvhourglass.py:367
-#: ../gramps/plugins/graph/gvrelgraph.py:881
+#: ../gramps/plugins/graph/gvhourglass.py:369
+#: ../gramps/plugins/graph/gvrelgraph.py:879
 msgid "The color to use to display men."
 msgstr "Цвет для отображения мужчин."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:277
-#: ../gramps/plugins/graph/gvhourglass.py:371
-#: ../gramps/plugins/graph/gvrelgraph.py:885
+#: ../gramps/plugins/graph/gvhourglass.py:373
+#: ../gramps/plugins/graph/gvrelgraph.py:883
 msgid "The color to use to display women."
 msgstr "Цвет для отображения женщин."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:281
-#: ../gramps/plugins/graph/gvhourglass.py:375
-#: ../gramps/plugins/graph/gvrelgraph.py:890
+#: ../gramps/plugins/graph/gvhourglass.py:377
+#: ../gramps/plugins/graph/gvrelgraph.py:888
 msgid "The color to use when the gender is unknown."
 msgstr "Цвет для отображения людей неуказанного пола."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:286
-#: ../gramps/plugins/graph/gvhourglass.py:380
-#: ../gramps/plugins/graph/gvrelgraph.py:895
+#: ../gramps/plugins/graph/gvhourglass.py:382
+#: ../gramps/plugins/graph/gvrelgraph.py:893
 msgid "The color to use to display families."
 msgstr "Цвет для отображения семей."
 
@@ -23676,7 +23689,7 @@ msgid "Initial list of people of interest:"
 msgstr "Список лиц, представляющих интерес:"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/graph/gvfamilylines.py:969
+#: ../gramps/plugins/graph/gvfamilylines.py:970
 #, python-brace-format
 msgid "{number_of} child"
 msgid_plural "{number_of} children"
@@ -23684,17 +23697,17 @@ msgstr[0] "{number_of} ребёнок"
 msgstr[1] "{number_of} ребёнка"
 msgstr[2] "{number_of} детей"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:1044
+#: ../gramps/plugins/graph/gvfamilylines.py:1045
 #, python-format
 msgid "father: %s"
 msgstr "отец: %s"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:1054
+#: ../gramps/plugins/graph/gvfamilylines.py:1055
 #, python-format
 msgid "mother: %s"
 msgstr "мать: %s"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:1067
+#: ../gramps/plugins/graph/gvfamilylines.py:1068
 #, python-format
 msgid "child: %s"
 msgstr "ребёнок: %s"
@@ -23715,30 +23728,30 @@ msgstr "Центральное <-> Другие"
 msgid "Center - Other"
 msgstr "Центральное - Другие"
 
-#: ../gramps/plugins/graph/gvhourglass.py:316
+#: ../gramps/plugins/graph/gvhourglass.py:318
 msgid "The Center person for the graph"
 msgstr "Главное лицо для построения графа"
 
-#: ../gramps/plugins/graph/gvhourglass.py:319
+#: ../gramps/plugins/graph/gvhourglass.py:321
 #: ../gramps/plugins/textreport/kinshipreport.py:362
 msgid "Max Descendant Generations"
 msgstr "Максимум поколений потомков"
 
-#: ../gramps/plugins/graph/gvhourglass.py:320
+#: ../gramps/plugins/graph/gvhourglass.py:322
 msgid "The number of generations of descendants to include in the graph"
 msgstr "Сколько поколений потомков отображать на графе"
 
-#: ../gramps/plugins/graph/gvhourglass.py:324
+#: ../gramps/plugins/graph/gvhourglass.py:326
 #: ../gramps/plugins/textreport/kinshipreport.py:366
 msgid "Max Ancestor Generations"
 msgstr "Максимум поколений предков"
 
-#: ../gramps/plugins/graph/gvhourglass.py:325
+#: ../gramps/plugins/graph/gvhourglass.py:327
 msgid "The number of generations of ancestors to include in the graph"
 msgstr "Сколько поколений предков отображать на графе"
 
-#: ../gramps/plugins/graph/gvhourglass.py:338
-#: ../gramps/plugins/graph/gvrelgraph.py:772
+#: ../gramps/plugins/graph/gvhourglass.py:340
+#: ../gramps/plugins/graph/gvrelgraph.py:770
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
@@ -23747,8 +23760,8 @@ msgstr ""
 "неизвестен, то будет использован серый цвет."
 
 #. ###############################
-#: ../gramps/plugins/graph/gvhourglass.py:363
-#: ../gramps/plugins/graph/gvrelgraph.py:877
+#: ../gramps/plugins/graph/gvhourglass.py:365
+#: ../gramps/plugins/graph/gvrelgraph.py:875
 msgid "Graph Style"
 msgstr "Стиль графа"
 
@@ -23759,56 +23772,56 @@ msgstr "Стиль графа"
 msgid "Generating report"
 msgstr "Создаётся отчёт"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:754
+#: ../gramps/plugins/graph/gvrelgraph.py:752
 msgid "Determines what people are included in the graph"
 msgstr "Определяет каких людей следует включать в граф"
 
 #. ###############################
-#: ../gramps/plugins/graph/gvrelgraph.py:807
+#: ../gramps/plugins/graph/gvrelgraph.py:805
 msgid "Dates and/or Places"
 msgstr "Даты и/или Места"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:808
+#: ../gramps/plugins/graph/gvrelgraph.py:806
 msgid "Do not include any dates or places"
 msgstr "Не включать даты и места"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:809
+#: ../gramps/plugins/graph/gvrelgraph.py:807
 msgid "Include (birth, marriage, death) dates, but no places"
 msgstr "Включать даты рождения, брака и смерти, но не места"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:811
+#: ../gramps/plugins/graph/gvrelgraph.py:809
 msgid "Include (birth, marriage, death) dates, and places"
 msgstr "Включать даты рождения, брака, смерти и места"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:813
+#: ../gramps/plugins/graph/gvrelgraph.py:811
 msgid "Include (birth, marriage, death) dates, and places if no dates"
 msgstr "Включать даты рождения, брака, смерти и места. если нет дат"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:815
+#: ../gramps/plugins/graph/gvrelgraph.py:813
 msgid "Include (birth, marriage, death) years, but no places"
 msgstr "Включать года рождения, брака и смерти, но не места"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:817
+#: ../gramps/plugins/graph/gvrelgraph.py:815
 msgid "Include (birth, marriage, death) years, and places"
 msgstr "Включать года рождения, брака, смерти и места"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:819
+#: ../gramps/plugins/graph/gvrelgraph.py:817
 msgid "Include (birth, marriage, death) places, but no dates"
 msgstr "Включать мета рождения, брака и смерти, но не даты"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:821
+#: ../gramps/plugins/graph/gvrelgraph.py:819
 msgid "Include (birth, marriage, death) dates and places on same line"
 msgstr "Включать даты (рождения, брака, смерти) и места в одну строку"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:824
+#: ../gramps/plugins/graph/gvrelgraph.py:822
 msgid "Whether to include dates and/or places"
 msgstr "Включать или нет даты и/или места"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:827
+#: ../gramps/plugins/graph/gvrelgraph.py:825
 msgid "Include URLs"
 msgstr "Включать URL"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:828
+#: ../gramps/plugins/graph/gvrelgraph.py:826
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
@@ -23818,68 +23831,68 @@ msgstr ""
 "или imagemap содержали ссылки на файлы, созданные отчётом «Повествовательный "
 "веб-сайт»."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:836
+#: ../gramps/plugins/graph/gvrelgraph.py:834
 #: ../gramps/plugins/textreport/birthdayreport.py:494
 #: ../gramps/plugins/textreport/indivcomplete.py:1138
 msgid "Include relationship to center person"
 msgstr "Включать родство по отношению к центральному лицу"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:837
+#: ../gramps/plugins/graph/gvrelgraph.py:835
 msgid "Whether to show every person's relationship to the center person"
 msgstr "Включать ли родство каждого лица по отношению к центральному лицу"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:846
+#: ../gramps/plugins/graph/gvrelgraph.py:844
 msgid "Whether to include thumbnails of people."
 msgstr "Включать или нет изображения людей."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:850
+#: ../gramps/plugins/graph/gvrelgraph.py:848
 msgid "Thumbnail Location"
 msgstr "Размещение изображения"
 
 #. occupation = BooleanOption(_("Include occupation"), False)
-#: ../gramps/plugins/graph/gvrelgraph.py:858
+#: ../gramps/plugins/graph/gvrelgraph.py:856
 msgid "Include occupation"
 msgstr "Включить данные о профессии"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:859
+#: ../gramps/plugins/graph/gvrelgraph.py:857
 msgid "Do not include any occupation"
 msgstr "Не включать данные о профессии"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:860
+#: ../gramps/plugins/graph/gvrelgraph.py:858
 msgid "Include description of most recent occupation"
 msgstr "Включать описание профессии"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:862
+#: ../gramps/plugins/graph/gvrelgraph.py:860
 msgid "Include date, description and place of all occupations"
 msgstr "Включать даты, описания и места всех профессий"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:864
+#: ../gramps/plugins/graph/gvrelgraph.py:862
 msgid "Whether to include the last occupation"
 msgstr "Включать ли последнюю профессию"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:868
+#: ../gramps/plugins/graph/gvrelgraph.py:866
 msgid "Include relationship debugging numbers also"
 msgstr "Включать также отладочные числа отношений"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:871
+#: ../gramps/plugins/graph/gvrelgraph.py:869
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
 msgstr "Необходимо ли включать 'Ga' и 'Gb', для отладки калькулятора отношений"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:899
+#: ../gramps/plugins/graph/gvrelgraph.py:897
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Показывать пунктиром отношения, не являющиеся родительскими"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:900
+#: ../gramps/plugins/graph/gvrelgraph.py:898
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr ""
 "Отношения, не являющиеся родительскими, будут показаны на графе пунктиром."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:904
+#: ../gramps/plugins/graph/gvrelgraph.py:902
 msgid "Show family nodes"
 msgstr "Показать семейные узлы"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:905
+#: ../gramps/plugins/graph/gvrelgraph.py:903
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Семьи будут показаны эллипсами, связывающими родителей и детей."
 
@@ -24689,9 +24702,9 @@ msgstr ""
 
 #. there is no old style XML
 #: ../gramps/plugins/importer/importxml.py:808
-#: ../gramps/plugins/importer/importxml.py:1278
-#: ../gramps/plugins/importer/importxml.py:1551
-#: ../gramps/plugins/importer/importxml.py:1970
+#: ../gramps/plugins/importer/importxml.py:1289
+#: ../gramps/plugins/importer/importxml.py:1563
+#: ../gramps/plugins/importer/importxml.py:1984
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr "Файл Xml, который Вы пытаетесь импортировать в Gramps, устарел."
 
@@ -24699,15 +24712,15 @@ msgstr "Файл Xml, который Вы пытаетесь импортиро�
 msgid "Attributes that link the data together are missing."
 msgstr "Атрибуты которые вместе ссылаются на данные отсутствуют."
 
-#: ../gramps/plugins/importer/importxml.py:913
+#: ../gramps/plugins/importer/importxml.py:922
 msgid "Gramps XML import"
 msgstr "Импорт Gramps XML"
 
-#: ../gramps/plugins/importer/importxml.py:948
+#: ../gramps/plugins/importer/importxml.py:957
 msgid "Could not change media path"
 msgstr "Не удалось изменить путь"
 
-#: ../gramps/plugins/importer/importxml.py:949
+#: ../gramps/plugins/importer/importxml.py:958
 #, python-format
 msgid ""
 "The opened file has media path %s, which conflicts with the media path of "
@@ -24719,7 +24732,7 @@ msgstr ""
 "Исходный путь оставлен без изменения. Скопируйте файлы в правильный каталог "
 "или измените путь к документам в «Настройках»."
 
-#: ../gramps/plugins/importer/importxml.py:1008
+#: ../gramps/plugins/importer/importxml.py:1017
 msgid ""
 "The .gramps file you are importing does not contain information about the "
 "version of Gramps with, which it was produced.\n"
@@ -24731,11 +24744,11 @@ msgstr ""
 "\n"
 "Такой файл импортирован не будет."
 
-#: ../gramps/plugins/importer/importxml.py:1011
+#: ../gramps/plugins/importer/importxml.py:1020
 msgid "Import file misses Gramps version"
 msgstr "В импортируемом файле не указана версия Gramps"
 
-#: ../gramps/plugins/importer/importxml.py:1013
+#: ../gramps/plugins/importer/importxml.py:1022
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(newer)s of Gramps, "
@@ -24747,7 +24760,7 @@ msgstr ""
 "импортирован. Пожалуйста обновите Gramps до последней версии и попробуйте "
 "снова."
 
-#: ../gramps/plugins/importer/importxml.py:1021
+#: ../gramps/plugins/importer/importxml.py:1030
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -24769,11 +24782,11 @@ msgstr ""
 "  %(gramps_wiki_xml_url)s\n"
 " для дополнительной информации."
 
-#: ../gramps/plugins/importer/importxml.py:1032
+#: ../gramps/plugins/importer/importxml.py:1041
 msgid "The file will not be imported"
 msgstr "Файл не был импортирован"
 
-#: ../gramps/plugins/importer/importxml.py:1034
+#: ../gramps/plugins/importer/importxml.py:1043
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -24797,25 +24810,25 @@ msgstr ""
 "  %(gramps_wiki_xml_url)s\n"
 " для дополнительной информации."
 
-#: ../gramps/plugins/importer/importxml.py:1047
+#: ../gramps/plugins/importer/importxml.py:1056
 msgid "Old xml file"
 msgstr "Старый xml файл"
 
-#: ../gramps/plugins/importer/importxml.py:1199
-#: ../gramps/plugins/importer/importxml.py:2683
+#: ../gramps/plugins/importer/importxml.py:1209
+#: ../gramps/plugins/importer/importxml.py:2701
 #, python-format
 msgid "Witness name: %s"
 msgstr "Имя свидетеля: %s"
 
-#: ../gramps/plugins/importer/importxml.py:1279
+#: ../gramps/plugins/importer/importxml.py:1290
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr "Любое событие должно иметь атрибут 'hlink'."
 
-#: ../gramps/plugins/importer/importxml.py:1552
+#: ../gramps/plugins/importer/importxml.py:1564
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Любое лицо должно иметь атрибут 'hlink'."
 
-#: ../gramps/plugins/importer/importxml.py:1740
+#: ../gramps/plugins/importer/importxml.py:1753
 #, python-format
 msgid ""
 "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did "
@@ -24824,31 +24837,31 @@ msgstr ""
 "В вашем семейном древе имя «%(key)s» уже сгруппировано с «%(parent)s», не "
 "изменять группировку на «%(value)s»."
 
-#: ../gramps/plugins/importer/importxml.py:1743
+#: ../gramps/plugins/importer/importxml.py:1756
 msgid "Gramps ignored a name grouping"
 msgstr "Gramps игнорирует значение namemap"
 
-#: ../gramps/plugins/importer/importxml.py:1802
+#: ../gramps/plugins/importer/importxml.py:1815
 msgid "Unknown when imported"
 msgstr "Дата импорта неизвестна"
 
-#: ../gramps/plugins/importer/importxml.py:1971
+#: ../gramps/plugins/importer/importxml.py:1985
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Любая заметка должна иметь атрибут 'hlink'."
 
 #. TRANSLATORS: leave the {date} and {xml} untranslated in the format string,
 #. but you may re-order them if needed.
-#: ../gramps/plugins/importer/importxml.py:2501
+#: ../gramps/plugins/importer/importxml.py:2519
 #, python-brace-format
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
 msgstr "Неверная дата {date} в XML {xml}, сохраняю XML в виде текста"
 
-#: ../gramps/plugins/importer/importxml.py:2553
+#: ../gramps/plugins/importer/importxml.py:2571
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Заметка о свидетеле: %s"
 
-#: ../gramps/plugins/importer/importxml.py:3206
+#: ../gramps/plugins/importer/importxml.py:3224
 #, python-format
 msgid ""
 "Error: family '%(family)s' father '%(father)s' does not refer back to the "
@@ -24857,7 +24870,7 @@ msgstr ""
 "Ошибка: семья '%(family)s' отец '%(father)s' не имеет обратной ссылки на "
 "семью. Ссылка добавлена."
 
-#: ../gramps/plugins/importer/importxml.py:3222
+#: ../gramps/plugins/importer/importxml.py:3240
 #, python-format
 msgid ""
 "Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
@@ -24866,7 +24879,7 @@ msgstr ""
 "Ошибка: семья '%(family)s' мать '%(mother)s' не имеет обратной ссылки на "
 "семью. Ссылка добавлена."
 
-#: ../gramps/plugins/importer/importxml.py:3244
+#: ../gramps/plugins/importer/importxml.py:3262
 #, python-format
 msgid ""
 "Error: family '%(family)s' child '%(child)s' does not refer back to the "
@@ -24959,45 +24972,45 @@ msgstr "Недопустимый символ %s"
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "Ваш файл GEDCOM сломан. Похоже, что он записан не до конца."
 
-#: ../gramps/plugins/lib/libgedcom.py:1905
+#: ../gramps/plugins/lib/libgedcom.py:1907
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Импорт из GEDCOM (%s)"
 
-#: ../gramps/plugins/lib/libgedcom.py:2737
-#: ../gramps/plugins/lib/libgedcom.py:3191
+#: ../gramps/plugins/lib/libgedcom.py:2739
+#: ../gramps/plugins/lib/libgedcom.py:3193
 msgid "GEDCOM import"
 msgstr "Импорт GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:2765
+#: ../gramps/plugins/lib/libgedcom.py:2767
 msgid "GEDCOM import report: No errors detected"
 msgstr "Отчёт импорта GEDCOM: ошибок не обнаружено"
 
-#: ../gramps/plugins/lib/libgedcom.py:2767
+#: ../gramps/plugins/lib/libgedcom.py:2769
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "Отчёт импорта GEDCOM: обнаружены ошибки %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:3084
-#: ../gramps/plugins/lib/libgedcom.py:3109
-#: ../gramps/plugins/lib/libgedcom.py:3122
+#: ../gramps/plugins/lib/libgedcom.py:3086
+#: ../gramps/plugins/lib/libgedcom.py:3111
+#: ../gramps/plugins/lib/libgedcom.py:3124
 msgid "Line ignored as not understood"
 msgstr "Строка не распознана и будет проигнорирована"
 
-#: ../gramps/plugins/lib/libgedcom.py:3111
+#: ../gramps/plugins/lib/libgedcom.py:3113
 msgid "Tag recognized but not supported"
 msgstr "Метка распознана, но не поддерживается"
 
 # FIXME: is it correct term?
-#: ../gramps/plugins/lib/libgedcom.py:3147
+#: ../gramps/plugins/lib/libgedcom.py:3149
 msgid "Skipped subordinate line"
 msgstr "Пропущена зависимая строка"
 
-#: ../gramps/plugins/lib/libgedcom.py:3180
+#: ../gramps/plugins/lib/libgedcom.py:3182
 msgid "Records not imported into "
 msgstr "Записи не импортированы в "
 
-#: ../gramps/plugins/lib/libgedcom.py:3218
+#: ../gramps/plugins/lib/libgedcom.py:3220
 #, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -25006,7 +25019,7 @@ msgstr ""
 "Ошибка: %(msg)s  '%(gramps_id)s' (введена как @%(xref)s@) не ввод GEDCOM. "
 "Запись синтезирована"
 
-#: ../gramps/plugins/lib/libgedcom.py:3227
+#: ../gramps/plugins/lib/libgedcom.py:3229
 #, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -25015,7 +25028,7 @@ msgstr ""
 "Ошибка: %(msg)s '%(gramps_id)s' (введена как @%(xref)s@) не ввод GEDCOM. "
 "Запись создана с атрибутом 'Неизвестный'"
 
-#: ../gramps/plugins/lib/libgedcom.py:3271
+#: ../gramps/plugins/lib/libgedcom.py:3273
 #, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
@@ -25026,7 +25039,7 @@ msgstr ""
 "(введено как %(orig_person)s) не является членом семьи. Ссылка на семью "
 "удалена из лица"
 
-#: ../gramps/plugins/lib/libgedcom.py:3349
+#: ../gramps/plugins/lib/libgedcom.py:3351
 #, python-format
 msgid ""
 "\n"
@@ -25046,177 +25059,177 @@ msgstr ""
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
 #. truncated for output
-#: ../gramps/plugins/lib/libgedcom.py:3423
+#: ../gramps/plugins/lib/libgedcom.py:3425
 #, python-format
 msgid "ADDR element ignored '%s'"
 msgstr "Элемент ADDR проигнорирован '%s'"
 
-#: ../gramps/plugins/lib/libgedcom.py:3444
+#: ../gramps/plugins/lib/libgedcom.py:3446
 msgid "TRLR (trailer)"
 msgstr "TRLR (трейлер)"
 
-#: ../gramps/plugins/lib/libgedcom.py:3473
+#: ../gramps/plugins/lib/libgedcom.py:3475
 msgid "(Submitter):"
 msgstr "(Исследователь):"
 
-#: ../gramps/plugins/lib/libgedcom.py:3497
-#: ../gramps/plugins/lib/libgedcom.py:7232
+#: ../gramps/plugins/lib/libgedcom.py:3499
+#: ../gramps/plugins/lib/libgedcom.py:7236
 msgid "GEDCOM data"
 msgstr "Данные GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:3542
+#: ../gramps/plugins/lib/libgedcom.py:3544
 msgid "Unknown tag"
 msgstr "Неизвестная метка"
 
-#: ../gramps/plugins/lib/libgedcom.py:3544
-#: ../gramps/plugins/lib/libgedcom.py:3558
-#: ../gramps/plugins/lib/libgedcom.py:3562
-#: ../gramps/plugins/lib/libgedcom.py:3583
+#: ../gramps/plugins/lib/libgedcom.py:3546
+#: ../gramps/plugins/lib/libgedcom.py:3560
+#: ../gramps/plugins/lib/libgedcom.py:3564
+#: ../gramps/plugins/lib/libgedcom.py:3585
 msgid "Top Level"
 msgstr "Высший уровень"
 
-#: ../gramps/plugins/lib/libgedcom.py:3658
+#: ../gramps/plugins/lib/libgedcom.py:3660
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (лицо) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:3777
+#: ../gramps/plugins/lib/libgedcom.py:3779
 msgid "Empty Alias <NAME PERSONAL> ignored"
 msgstr "Пустой Alias <NAME PERSONAL> проигнорирован"
 
-#: ../gramps/plugins/lib/libgedcom.py:4948
+#: ../gramps/plugins/lib/libgedcom.py:4950
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (семья) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5300
-#: ../gramps/plugins/lib/libgedcom.py:6664
+#: ../gramps/plugins/lib/libgedcom.py:5304
+#: ../gramps/plugins/lib/libgedcom.py:6668
 msgid "Filename omitted"
 msgstr "Имя файла опущено"
 
-#: ../gramps/plugins/lib/libgedcom.py:5333
-#: ../gramps/plugins/lib/libgedcom.py:6705
+#: ../gramps/plugins/lib/libgedcom.py:5337
+#: ../gramps/plugins/lib/libgedcom.py:6709
 #, python-format
 msgid "Could not import %s"
 msgstr "Не удалось импортировать %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5390
-#: ../gramps/plugins/lib/libgedcom.py:6805
+#: ../gramps/plugins/lib/libgedcom.py:5394
+#: ../gramps/plugins/lib/libgedcom.py:6809
 msgid "Media-Type"
 msgstr "Тип документа"
 
-#: ../gramps/plugins/lib/libgedcom.py:5414
-#: ../gramps/plugins/lib/libgedcom.py:6695
+#: ../gramps/plugins/lib/libgedcom.py:5418
+#: ../gramps/plugins/lib/libgedcom.py:6699
 msgid "Multiple FILE in a single OBJE ignored"
 msgstr "Несколько файлов для одного объекта проигнорировано"
 
 #. We have previously found a PLAC
-#: ../gramps/plugins/lib/libgedcom.py:5568
+#: ../gramps/plugins/lib/libgedcom.py:5572
 msgid "A second PLAC ignored"
 msgstr "Второй PLAC проигнорирован"
 
 #. For RootsMagic etc. Place Details e.g. address, hospital, ...
-#: ../gramps/plugins/lib/libgedcom.py:5707
+#: ../gramps/plugins/lib/libgedcom.py:5711
 msgid "Detail"
 msgstr "Подробности"
 
 #. We have perviously found an ADDR, or have populated
 #. location from PLAC title
-#: ../gramps/plugins/lib/libgedcom.py:5720
+#: ../gramps/plugins/lib/libgedcom.py:5724
 msgid "Location already populated; ADDR ignored"
 msgstr "Местоположение уже указано; ADDR проигнорирован"
 
-#: ../gramps/plugins/lib/libgedcom.py:6125
-#: ../gramps/plugins/lib/libgedcom.py:7013
+#: ../gramps/plugins/lib/libgedcom.py:6129
+#: ../gramps/plugins/lib/libgedcom.py:7017
 msgid "Warn: ADDR overwritten"
 msgstr "Внимание: ADDR перезаписан"
 
-#: ../gramps/plugins/lib/libgedcom.py:6290
+#: ../gramps/plugins/lib/libgedcom.py:6294
 msgid "Citation Justification"
 msgstr "Достоверность цитаты"
 
-#: ../gramps/plugins/lib/libgedcom.py:6317
+#: ../gramps/plugins/lib/libgedcom.py:6321
 msgid "REFN ignored"
 msgstr "REFN проигнорирован"
 
 #. SOURce with the given gramps_id had no title
-#: ../gramps/plugins/lib/libgedcom.py:6416
+#: ../gramps/plugins/lib/libgedcom.py:6420
 #, python-format
 msgid "No title - ID %s"
 msgstr "Нет названия - ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6421
+#: ../gramps/plugins/lib/libgedcom.py:6425
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (источник) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6671
+#: ../gramps/plugins/lib/libgedcom.py:6675
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (документ) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6901
+#: ../gramps/plugins/lib/libgedcom.py:6905
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (хранилище) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6962
-#: ../gramps/plugins/lib/libgedcom.py:7947
+#: ../gramps/plugins/lib/libgedcom.py:6966
+#: ../gramps/plugins/lib/libgedcom.py:7951
 msgid "Only one phone number supported"
 msgstr "Поддерживается только один телефонный номер"
 
-#: ../gramps/plugins/lib/libgedcom.py:7148
+#: ../gramps/plugins/lib/libgedcom.py:7152
 msgid "HEAD (header)"
 msgstr "HEAD (заголовок)"
 
-#: ../gramps/plugins/lib/libgedcom.py:7169
+#: ../gramps/plugins/lib/libgedcom.py:7173
 msgid "Approved system identification"
 msgstr "Система идентифицирована"
 
-#: ../gramps/plugins/lib/libgedcom.py:7181
+#: ../gramps/plugins/lib/libgedcom.py:7185
 msgid "Generated By"
 msgstr "Создано с помощью"
 
-#: ../gramps/plugins/lib/libgedcom.py:7197
+#: ../gramps/plugins/lib/libgedcom.py:7201
 msgid "Name of software product"
 msgstr "Название продукта"
 
-#: ../gramps/plugins/lib/libgedcom.py:7211
+#: ../gramps/plugins/lib/libgedcom.py:7215
 msgid "Version number of software product"
 msgstr "Номер версии продукта"
 
-#: ../gramps/plugins/lib/libgedcom.py:7229
+#: ../gramps/plugins/lib/libgedcom.py:7233
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Продукт предоставлен: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7251
+#: ../gramps/plugins/lib/libgedcom.py:7255
 msgid "Name of source data"
 msgstr "Название источника данных"
 
-#: ../gramps/plugins/lib/libgedcom.py:7268
+#: ../gramps/plugins/lib/libgedcom.py:7272
 msgid "Copyright of source data"
 msgstr "Авторство источника данных"
 
-#: ../gramps/plugins/lib/libgedcom.py:7285
+#: ../gramps/plugins/lib/libgedcom.py:7289
 msgid "Publication date of source data"
 msgstr "Дата публикации источника данных"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/lib/libgedcom.py:7299
+#: ../gramps/plugins/lib/libgedcom.py:7303
 #, python-format
 msgid "Import from %s"
 msgstr "Импорт из %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7338
+#: ../gramps/plugins/lib/libgedcom.py:7342
 msgid "Submission record identifier"
 msgstr "Идентификатор подтверждения записи"
 
-#: ../gramps/plugins/lib/libgedcom.py:7351
+#: ../gramps/plugins/lib/libgedcom.py:7355
 msgid "Language of GEDCOM text"
 msgstr "Язык текста GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7373
+#: ../gramps/plugins/lib/libgedcom.py:7377
 #, python-format
 msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
@@ -25225,89 +25238,89 @@ msgstr ""
 "Импорт файла GEDCOM %(filename)s с DEST=%(by)s, может вызвать ошибки в "
 "полученной базе данных!"
 
-#: ../gramps/plugins/lib/libgedcom.py:7376
+#: ../gramps/plugins/lib/libgedcom.py:7380
 msgid "Look for nameless events."
 msgstr "Искать безымянные события."
 
-#: ../gramps/plugins/lib/libgedcom.py:7399
+#: ../gramps/plugins/lib/libgedcom.py:7403
 msgid "Character set"
 msgstr "Кодировка символов"
 
-#: ../gramps/plugins/lib/libgedcom.py:7404
+#: ../gramps/plugins/lib/libgedcom.py:7408
 msgid "Character set and version"
 msgstr "Кодировка символов и её версия"
 
-#: ../gramps/plugins/lib/libgedcom.py:7421
+#: ../gramps/plugins/lib/libgedcom.py:7425
 msgid "GEDCOM version not supported"
 msgstr "Версия GEDCOM не поддерживается"
 
-#: ../gramps/plugins/lib/libgedcom.py:7425
+#: ../gramps/plugins/lib/libgedcom.py:7429
 msgid "GEDCOM version"
 msgstr "Версия GEDCOM"
 
 #. Allow Lineage-Linked etc. though it should be in
 #. uppercase  (Note: Gramps is not a validator! prc)
-#: ../gramps/plugins/lib/libgedcom.py:7434
+#: ../gramps/plugins/lib/libgedcom.py:7438
 msgid "GEDCOM FORM should be in uppercase"
 msgstr "Форма GEDCOM должна быть в верхнем регистре"
 
-#: ../gramps/plugins/lib/libgedcom.py:7437
+#: ../gramps/plugins/lib/libgedcom.py:7441
 msgid "GEDCOM FORM not supported"
 msgstr "Форма GEDCOM не поддерживается"
 
-#: ../gramps/plugins/lib/libgedcom.py:7440
+#: ../gramps/plugins/lib/libgedcom.py:7444
 msgid "GEDCOM form"
 msgstr "Форма GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7491
+#: ../gramps/plugins/lib/libgedcom.py:7495
 msgid "Creation date of GEDCOM"
 msgstr "Дата создания GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7496
+#: ../gramps/plugins/lib/libgedcom.py:7500
 msgid "Creation date and time of GEDCOM"
 msgstr "Дата и время создания GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7537
-#: ../gramps/plugins/lib/libgedcom.py:7579
+#: ../gramps/plugins/lib/libgedcom.py:7541
+#: ../gramps/plugins/lib/libgedcom.py:7583
 msgid "Empty note ignored"
 msgstr "Пустая заметка была проигнорирована"
 
-#: ../gramps/plugins/lib/libgedcom.py:7596
+#: ../gramps/plugins/lib/libgedcom.py:7600
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "ID заметки Gramps %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7647
+#: ../gramps/plugins/lib/libgedcom.py:7651
 msgid "Submission: Submitter"
 msgstr "Подтверждение: Исследователь"
 
-#: ../gramps/plugins/lib/libgedcom.py:7649
+#: ../gramps/plugins/lib/libgedcom.py:7653
 msgid "Submission: Family file"
 msgstr "Подтверждение: Семейный файл"
 
-#: ../gramps/plugins/lib/libgedcom.py:7651
+#: ../gramps/plugins/lib/libgedcom.py:7655
 msgid "Submission: Temple code"
 msgstr "Подтверждение: Код церкви"
 
-#: ../gramps/plugins/lib/libgedcom.py:7653
+#: ../gramps/plugins/lib/libgedcom.py:7657
 msgid "Submission: Generations of ancestors"
 msgstr "Подтверждение: Поколения предка"
 
-#: ../gramps/plugins/lib/libgedcom.py:7655
+#: ../gramps/plugins/lib/libgedcom.py:7659
 msgid "Submission: Generations of descendants"
 msgstr "Подтверждение: Поколения потомка"
 
-#: ../gramps/plugins/lib/libgedcom.py:7657
+#: ../gramps/plugins/lib/libgedcom.py:7661
 msgid "Submission: Ordinance process flag"
 msgstr "Подтверждение: Флаг обработки"
 
 #. Okay we have no clue which temple this is.
 #. We should tell the user and store it anyway.
-#: ../gramps/plugins/lib/libgedcom.py:7885
+#: ../gramps/plugins/lib/libgedcom.py:7889
 msgid "Invalid temple code"
 msgstr "Неверный код церкви"
 
-#: ../gramps/plugins/lib/libgedcom.py:7981
+#: ../gramps/plugins/lib/libgedcom.py:7985
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -25315,7 +25328,7 @@ msgstr ""
 "Файл GEDCOM поврежден. Похоже что файл использует набор символов UTF16, но в "
 "нем отсутствует пометка BOM."
 
-#: ../gramps/plugins/lib/libgedcom.py:7984
+#: ../gramps/plugins/lib/libgedcom.py:7988
 msgid "Your GEDCOM file is empty."
 msgstr "Файл GEDCOM пуст."
 
@@ -29615,7 +29628,7 @@ msgid "Count/Total"
 msgstr "Всего"
 
 #: ../gramps/plugins/quickview/filterbyname.py:89
-#: ../gramps/plugins/tool/reorderids.glade:1364
+#: ../gramps/plugins/tool/reorderids.glade:1401
 msgid "Object"
 msgstr "Объект"
 
@@ -33058,11 +33071,11 @@ msgstr "Отметка"
 msgid "Remove unused objects"
 msgstr "Удалить неиспользуемые объекты"
 
-#: ../gramps/plugins/tool/reorderids.glade:1368
+#: ../gramps/plugins/tool/reorderids.glade:1406
 msgid "Enable ID reordering."
 msgstr "Включить упорядочивание ID"
 
-#: ../gramps/plugins/tool/reorderids.glade:1385
+#: ../gramps/plugins/tool/reorderids.glade:1420
 msgid ""
 "List next ID available\n"
 "(maynot be continuous)."
@@ -33070,27 +33083,27 @@ msgstr ""
 "Список следующих доступных ID\n"
 "(не может быть непрерывным)."
 
-#: ../gramps/plugins/tool/reorderids.glade:1388
+#: ../gramps/plugins/tool/reorderids.glade:1424
 msgid "  Actual"
 msgstr "  Текущий"
 
-#: ../gramps/plugins/tool/reorderids.glade:1402
+#: ../gramps/plugins/tool/reorderids.glade:1436
 msgid "Amount of ID in use."
 msgstr "Количество используемых ID."
 
-#: ../gramps/plugins/tool/reorderids.glade:1404
+#: ../gramps/plugins/tool/reorderids.glade:1438
 msgid " Quantity"
 msgstr " Количество"
 
-#: ../gramps/plugins/tool/reorderids.glade:1419
+#: ../gramps/plugins/tool/reorderids.glade:1452
 msgid "Actual / Upcoming ID format."
 msgstr "Текущий / входящий формат ID"
 
-#: ../gramps/plugins/tool/reorderids.glade:1434
+#: ../gramps/plugins/tool/reorderids.glade:1465
 msgid "Change"
 msgstr "Изменить"
 
-#: ../gramps/plugins/tool/reorderids.glade:1438
+#: ../gramps/plugins/tool/reorderids.glade:1470
 msgid ""
 "Enable ID reordering\n"
 "with Start / Step sequence."
@@ -33098,27 +33111,27 @@ msgstr ""
 "Включить упорядочивание ID\n"
 "c Начала / и Шагом."
 
-#: ../gramps/plugins/tool/reorderids.glade:1454
+#: ../gramps/plugins/tool/reorderids.glade:1483
 msgid "Start"
 msgstr "Начало"
 
-#: ../gramps/plugins/tool/reorderids.glade:1458
+#: ../gramps/plugins/tool/reorderids.glade:1488
 msgid "Reorder ID start number."
 msgstr "Начальное значение для ID."
 
-#: ../gramps/plugins/tool/reorderids.glade:1473
+#: ../gramps/plugins/tool/reorderids.glade:1501
 msgid "Step"
 msgstr "Шаг"
 
-#: ../gramps/plugins/tool/reorderids.glade:1477
+#: ../gramps/plugins/tool/reorderids.glade:1506
 msgid "Reorder ID step width."
 msgstr "Размер шаги при упорядочивании ID."
 
-#: ../gramps/plugins/tool/reorderids.glade:1492
+#: ../gramps/plugins/tool/reorderids.glade:1518
 msgid "Keep"
 msgstr "Оставить"
 
-#: ../gramps/plugins/tool/reorderids.glade:1496
+#: ../gramps/plugins/tool/reorderids.glade:1523
 msgid ""
 "Keep IDs with alternate\n"
 "prefixes untouched."
@@ -33131,20 +33144,28 @@ msgid "manual|Reorder_Gramps_ID"
 msgstr "Переупорядочить_Gramps_ID"
 
 #. set gramps style title for the window
-#: ../gramps/plugins/tool/reorderids.py:203
-#: ../gramps/plugins/tool/reorderids.py:422
-#: ../gramps/plugins/tool/reorderids.py:514
+#. self.top.set_icon(ICON)
+#: ../gramps/plugins/tool/reorderids.py:220
+#: ../gramps/plugins/tool/reorderids.py:441
+#: ../gramps/plugins/tool/reorderids.py:533
+#: ../gramps/plugins/tool/reorderids.py:604
+#: ../gramps/plugins/tool/reorderids.py:609
 #: ../gramps/plugins/tool/tools.gpr.py:375
 msgid "Reorder Gramps IDs"
 msgstr "Упорядочивание Gramps ID"
 
-#: ../gramps/plugins/tool/reorderids.py:525
-#: ../gramps/plugins/tool/reorderids.py:529
+#: ../gramps/plugins/tool/reorderids.py:544
+#: ../gramps/plugins/tool/reorderids.py:548
 #, python-format
 msgid "Reorder %s IDs ..."
 msgstr "Упорядочивание идентификаторов %s Gramps ID..."
 
-#: ../gramps/plugins/tool/reorderids.py:622
+#: ../gramps/plugins/tool/reorderids.py:613
+#, python-format
+msgid "Do you want to replace %s?"
+msgstr "Произвести замену %s?"
+
+#: ../gramps/plugins/tool/reorderids.py:671
 msgid "Finding and assigning unused IDs."
 msgstr "Поиск и назначение неиспользованных ID."
 
