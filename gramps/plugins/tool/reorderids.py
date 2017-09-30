@@ -562,7 +562,10 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
 
     # finds integer portion in a GrampsID
     _findint = re.compile('^[^\d]*(\d+)[^\d]*$')
-    _prob_id = re.compile(' *[^\d]*(\d+){3,9}[^\d]*')
+    # finds prefix, number, suffix of a Gramps ID ignoring a leading or
+    # trailing space.  The number must be at least three digits.
+    _prob_id = re.compile('^ *([^\d]*)(\d{3,9})([^\d]*) *$')
+
     def _reorder(self, prim_obj):
         """ reorders all selected objects with a (new) style, start & step """
 
@@ -575,6 +578,8 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
         prefix_fmt = self.obj_values[prim_obj].get_fmt()
         prefix = self.obj_values[prim_obj].object_prefix
         suffix = self.obj_values[prim_obj].object_suffix
+        old_pref = self.obj_values[prim_obj].stored_prefix
+        old_suff = self.obj_values[prim_obj].stored_suffix
         new_id = self.obj_values[prim_obj].get_id()
         keep_fmt = self.obj_values[prim_obj].get_keep()
         change = self.obj_values[prim_obj].get_change()
@@ -592,11 +597,18 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
             obj = get_from_handle(handle)
 
             act_id = obj.get_gramps_id()
-            match = self._prob_id.match(act_id)
-            # here we see if the ID looks like a typical Gramps ID.  If not
-            # we ask user if he really wants to replace it.
+            # here we see if the ID looks like a new or previous or default
+            # Gramps ID.
+            # If not we ask user if he really wants to replace it.
             # This should allow user to protect a GetGov ID or similar
-            if not match and not do_same:
+            match = self._prob_id.match(act_id)
+            if not (match and
+                    (prefix == match.groups()[0] and
+                     suffix == match.groups()[2] or
+                     old_pref == match.groups()[0] and
+                     old_suff == match.groups()[2] or
+                     len(match.groups()[0]) == 1 and
+                     len(match.groups()[2]) == 0)) and not do_same:
                 xml = Glade(toplevel='dialog')
 
                 top = xml.toplevel
