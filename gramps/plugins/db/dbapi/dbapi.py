@@ -53,24 +53,6 @@ class DBAPI(DbGeneric):
     """
     Database backends class for DB-API 2.0 databases
     """
-    def get_schema_version(self, directory=None):
-        """
-        Get the version of the schema that the database was created
-        under. Assumes 18, if not found.
-        """
-        if directory is None:
-            directory = self._directory
-        version = 18
-        if directory:
-            versionpath = os.path.join(directory, "schemaversion.txt")
-            if os.path.exists(versionpath):
-                with open(versionpath, "r") as version_file:
-                    version = version_file.read()
-                version = int(version)
-            else:
-                LOG.info("Missing '%s'. Assuming version 18.", versionpath)
-        return version
-
     def write_version(self, directory):
         """Write files for a newly created DB."""
         _LOG.debug("Write schema version file to %s", str(self.VERSION[0]))

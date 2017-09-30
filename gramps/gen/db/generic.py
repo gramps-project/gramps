@@ -50,7 +50,6 @@ from ..errors import HandleError
 from ..utils.callback import Callback
 from ..updatecallback import UpdateCallback
 from .bookmarks import DbBookmarks
-from . import exceptions
 
 from ..utils.id import create_id
 from ..lib.researcher import Researcher
@@ -592,12 +591,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         If update is False: then don't update any files
         """
-        db_schema_version = self.get_schema_version(directory)
-        current_schema_version = self.VERSION[0]
-        if db_schema_version != current_schema_version:
-            raise exceptions.DbVersionError(str(db_schema_version),
-                                            str(current_schema_version),
-                                            str(current_schema_version))
         # run backend-specific code:
         self._initialize(directory)
 
@@ -769,13 +762,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def version_supported(self):
         """Return True when the file has a supported version."""
         return True
-
-    def get_schema_version(self, directory=None):
-        """
-        Get the version of the schema that the database was created
-        under. Assumes 18, if not found.
-        """
-        raise NotImplementedError
 
     def _get_table_func(self, table=None, func=None):
         """
