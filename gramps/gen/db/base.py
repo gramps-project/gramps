@@ -1422,6 +1422,17 @@ class DbReadBase:
         """
         raise NotImplementedError
 
+    def get_summary(self):
+        """
+        Returns dictionary of summary item.
+        Should include, if possible:
+
+        _("Number of people")
+        _("Version")
+        _("Data version")
+        """
+        raise NotImplementedError
+
 
 class DbWriteBase(DbReadBase):
     """
