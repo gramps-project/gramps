@@ -319,7 +319,8 @@ class StyledTextEditor(Gtk.TextView):
             if url.startswith("gramps://"):
                 obj_class, prop, value = url[9:].split("/")
                 display = simple_access.display(obj_class, prop, value) or url
-        return display
+        return display + \
+            ("\nCtrl-Click to follow link" if self.get_editable() else '')
 
     def on_button_release_event(self, widget, event):
         """
@@ -343,9 +344,9 @@ class StyledTextEditor(Gtk.TextView):
         """
         self.selclick=False
         if ((event.type == Gdk.EventType.BUTTON_PRESS) and
-            (event.button == 1) and
-            (event.get_state() and get_primary_mask()) and
-            (self.url_match)):
+            (event.button == 1) and (self.url_match) and
+            (event.get_state() & get_primary_mask()) or
+             not self.get_editable())):
 
             flavor = self.url_match[MATCH_FLAVOR]
             url = self.url_match[MATCH_STRING]
