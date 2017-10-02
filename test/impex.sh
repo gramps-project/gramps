@@ -11,7 +11,6 @@
 #     is also supported for import, and run a text summary report.
 #   o Diff each report with the summary of the produced example DB
 
-# $Id$
 
 TOP_DIR=`dirname $PWD`
 TEST_DIR=$TOP_DIR/test

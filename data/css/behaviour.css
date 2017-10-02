@@ -29,7 +29,6 @@ Style Author: Stephane Charette and Jason Simanek
  Image Gallery 
  ------------- 
 
-# $Id$
 
  ensure RegionBox <ol> is hidden and has no margins/padding that would shift the image */
 ol.RegionBox {

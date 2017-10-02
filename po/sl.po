@@ -1,5 +1,4 @@
 # Slovenian translation for Gramps
-# $Id$
 # This file is distributed under the same license as the Gramps package.
 # Copyright (c) 2007 gramps-project
 # Bernard Banko <beernarrd (at) gmail.com>, 2007-2017.

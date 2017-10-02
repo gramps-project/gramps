@@ -1,5 +1,4 @@
 # Hungarian translation for Gramps
-# $Id$
 # This file is distributed under the same license as the Gramps package.
 # Copyright (C) 2013 the Gramps Project
 #

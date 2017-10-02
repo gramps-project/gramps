@@ -1,5 +1,4 @@
 # Spanish translation for Gramps
-# $Id$
 # This file is distributed under the same license as the Gramps package.
 # Messages in spanish for the gramps genealogical software
 #
