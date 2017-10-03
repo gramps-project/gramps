@@ -50,6 +50,7 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import StyledTextTagType
+from gramps.gen.constfunc import mac
 from .styledtextbuffer import (ALLOWED_STYLES,
                                           MATCH_START, MATCH_END,
                                           MATCH_FLAVOR, MATCH_STRING,
@@ -319,8 +320,9 @@ class StyledTextEditor(Gtk.TextView):
             if url.startswith("gramps://"):
                 obj_class, prop, value = url[9:].split("/")
                 display = simple_access.display(obj_class, prop, value) or url
-        return display + \
-            ("\nCtrl-Click to follow link" if self.get_editable() else '')
+        return display + ((_("\nCommand-Click to follow link") if mac() else
+                           _("\nCtrl-Click to follow link"))
+                          if self.get_editable() else '')
 
     def on_button_release_event(self, widget, event):
         """
