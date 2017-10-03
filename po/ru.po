@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps50\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-30 17:29+0900\n"
-"PO-Revision-Date: 2017-09-30 17:37+0900\n"
+"POT-Creation-Date: 2017-10-03 18:21+0900\n"
+"PO-Revision-Date: 2017-10-03 18:25+0900\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -1797,7 +1797,7 @@ msgstr "Заблокировано %s"
 msgid "WARNING: %s"
 msgstr "ВНИМАНИЕ: %s"
 
-#: ../gramps/cli/grampscli.py:92 ../gramps/cli/grampscli.py:254
+#: ../gramps/cli/grampscli.py:92 ../gramps/cli/grampscli.py:253
 #, python-format
 msgid "ERROR: %s"
 msgstr "ОШИБКА: %s"
@@ -1823,40 +1823,40 @@ msgid "Read only database"
 msgstr "База данных только для чтения"
 
 #: ../gramps/cli/grampscli.py:154 ../gramps/gui/dbloader.py:166
-#: ../gramps/gui/dbloader.py:511
+#: ../gramps/gui/dbloader.py:510
 msgid "You do not have write access to the selected file."
 msgstr "У Вас нет доступа для записи выбранного файла."
 
-#: ../gramps/cli/grampscli.py:180 ../gramps/cli/grampscli.py:183
-#: ../gramps/cli/grampscli.py:186 ../gramps/cli/grampscli.py:189
-#: ../gramps/cli/grampscli.py:192 ../gramps/cli/grampscli.py:195
-#: ../gramps/cli/grampscli.py:198 ../gramps/cli/grampscli.py:201
-#: ../gramps/cli/grampscli.py:204 ../gramps/cli/grampscli.py:207
-#: ../gramps/gui/dbloader.py:269 ../gramps/gui/dbloader.py:272
-#: ../gramps/gui/dbloader.py:275 ../gramps/gui/dbloader.py:278
-#: ../gramps/gui/dbloader.py:281 ../gramps/gui/dbloader.py:284
+#: ../gramps/cli/grampscli.py:179 ../gramps/cli/grampscli.py:182
+#: ../gramps/cli/grampscli.py:185 ../gramps/cli/grampscli.py:188
+#: ../gramps/cli/grampscli.py:191 ../gramps/cli/grampscli.py:194
+#: ../gramps/cli/grampscli.py:197 ../gramps/cli/grampscli.py:200
+#: ../gramps/cli/grampscli.py:203 ../gramps/cli/grampscli.py:206
+#: ../gramps/gui/dbloader.py:268 ../gramps/gui/dbloader.py:271
+#: ../gramps/gui/dbloader.py:274 ../gramps/gui/dbloader.py:277
+#: ../gramps/gui/dbloader.py:280 ../gramps/gui/dbloader.py:283
 msgid "Cannot open database"
 msgstr "Ошибка открытия базы данных"
 
-#: ../gramps/cli/grampscli.py:211 ../gramps/gui/dbloader.py:288
-#: ../gramps/gui/dbloader.py:468
+#: ../gramps/cli/grampscli.py:210 ../gramps/gui/dbloader.py:287
+#: ../gramps/gui/dbloader.py:467
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Ошибка открытия файла: %s"
 
-#: ../gramps/cli/grampscli.py:267
+#: ../gramps/cli/grampscli.py:266
 msgid "Could not load a recent Family Tree."
 msgstr "Не удалось загрузить недавно использованное семейное древо."
 
-#: ../gramps/cli/grampscli.py:268
+#: ../gramps/cli/grampscli.py:267
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr "Семейное древо не существует, так как оно было удалено."
 
-#: ../gramps/cli/grampscli.py:273
+#: ../gramps/cli/grampscli.py:272
 msgid "The database is locked."
 msgstr "База данных заблокирована."
 
-#: ../gramps/cli/grampscli.py:274
+#: ../gramps/cli/grampscli.py:273
 msgid ""
 "Use the --force-unlock option if you are sure that the database is not in "
 "use."
@@ -1865,17 +1865,17 @@ msgstr ""
 "используется."
 
 #. already errors encountered. Show first one on terminal and exit
-#: ../gramps/cli/grampscli.py:356
+#: ../gramps/cli/grampscli.py:350
 #, python-format
 msgid "Error encountered: %s"
 msgstr "Произошла ошибка: %s"
 
-#: ../gramps/cli/grampscli.py:358 ../gramps/cli/grampscli.py:366
+#: ../gramps/cli/grampscli.py:352 ../gramps/cli/grampscli.py:360
 #, python-format
 msgid "  Details: %s"
 msgstr "  Подробности: %s"
 
-#: ../gramps/cli/grampscli.py:363
+#: ../gramps/cli/grampscli.py:357
 #, python-format
 msgid "Error encountered in argument parsing: %s"
 msgstr "При разборе параметров возникла ошибка: %s"
@@ -2949,23 +2949,23 @@ msgstr "Пт"
 msgid "Sat"
 msgstr "Сб"
 
-#: ../gramps/gen/db/base.py:1784 ../gramps/gui/widgets/fanchart.py:1761
+#: ../gramps/gen/db/base.py:1789 ../gramps/gui/widgets/fanchart.py:1761
 msgid "Add child to family"
 msgstr "Добавить ребёнка в семью"
 
-#: ../gramps/gen/db/base.py:1798 ../gramps/gen/db/base.py:1804
+#: ../gramps/gen/db/base.py:1803 ../gramps/gen/db/base.py:1809
 msgid "Remove child from family"
 msgstr "Удалить ребёнка из семьи"
 
-#: ../gramps/gen/db/base.py:1880 ../gramps/gen/db/base.py:1884
+#: ../gramps/gen/db/base.py:1885 ../gramps/gen/db/base.py:1889
 msgid "Remove Family"
 msgstr "Удалить семью"
 
-#: ../gramps/gen/db/base.py:1926
+#: ../gramps/gen/db/base.py:1931
 msgid "Remove father from family"
 msgstr "Удалить отца из семьи"
 
-#: ../gramps/gen/db/base.py:1928
+#: ../gramps/gen/db/base.py:1933
 msgid "Remove mother from family"
 msgstr "Удалить мать из семьи"
 
@@ -3217,27 +3217,27 @@ msgstr ""
 "Проверьте файл настроек соединения:\n"
 "%(settings_file)s"
 
-#: ../gramps/gen/db/generic.py:161 ../gramps/gen/db/generic.py:211
-#: ../gramps/gen/db/generic.py:2038 ../gramps/plugins/db/bsddb/undoredo.py:251
+#: ../gramps/gen/db/generic.py:160 ../gramps/gen/db/generic.py:210
+#: ../gramps/gen/db/generic.py:2024 ../gramps/plugins/db/bsddb/undoredo.py:251
 #: ../gramps/plugins/db/bsddb/undoredo.py:293
 #: ../gramps/plugins/db/bsddb/write.py:2133
 #, python-format
 msgid "_Undo %s"
 msgstr "_Откатить %s"
 
-#: ../gramps/gen/db/generic.py:166 ../gramps/gen/db/generic.py:217
+#: ../gramps/gen/db/generic.py:165 ../gramps/gen/db/generic.py:216
 #: ../gramps/plugins/db/bsddb/undoredo.py:257
 #: ../gramps/plugins/db/bsddb/undoredo.py:299
 #, python-format
 msgid "_Redo %s"
 msgstr "Ве_рнуть %s"
 
-#: ../gramps/gen/db/generic.py:2430 ../gramps/plugins/db/bsddb/read.py:1949
+#: ../gramps/gen/db/generic.py:2416 ../gramps/plugins/db/bsddb/read.py:1945
 #: ../gramps/plugins/db/bsddb/write.py:2293
 msgid "Number of people"
 msgstr "Количество людей"
 
-#: ../gramps/gen/db/generic.py:2431 ../gramps/plugins/db/bsddb/read.py:1950
+#: ../gramps/gen/db/generic.py:2417 ../gramps/plugins/db/bsddb/read.py:1946
 #: ../gramps/plugins/db/bsddb/write.py:2294
 #: ../gramps/plugins/gramplet/statsgramplet.py:117
 #: ../gramps/plugins/webreport/statistics.py:129
@@ -3245,57 +3245,57 @@ msgstr "Количество людей"
 msgid "Number of families"
 msgstr "Количество семей"
 
-#: ../gramps/gen/db/generic.py:2432 ../gramps/plugins/db/bsddb/read.py:1951
+#: ../gramps/gen/db/generic.py:2418 ../gramps/plugins/db/bsddb/read.py:1947
 #: ../gramps/plugins/db/bsddb/write.py:2295
 #: ../gramps/plugins/webreport/statistics.py:157
 #: ../gramps/plugins/webreport/statistics.py:206
 msgid "Number of sources"
 msgstr "Количество источников"
 
-#: ../gramps/gen/db/generic.py:2433 ../gramps/plugins/db/bsddb/read.py:1952
+#: ../gramps/gen/db/generic.py:2419 ../gramps/plugins/db/bsddb/read.py:1948
 #: ../gramps/plugins/db/bsddb/write.py:2296
 #: ../gramps/plugins/webreport/statistics.py:161
 #: ../gramps/plugins/webreport/statistics.py:209
 msgid "Number of citations"
 msgstr "Количество цитат"
 
-#: ../gramps/gen/db/generic.py:2434 ../gramps/plugins/db/bsddb/read.py:1953
+#: ../gramps/gen/db/generic.py:2420 ../gramps/plugins/db/bsddb/read.py:1949
 #: ../gramps/plugins/db/bsddb/write.py:2297
 #: ../gramps/plugins/webreport/statistics.py:150
 #: ../gramps/plugins/webreport/statistics.py:200
 msgid "Number of events"
 msgstr "Количество событий"
 
-#: ../gramps/gen/db/generic.py:2435 ../gramps/plugins/db/bsddb/read.py:1954
+#: ../gramps/gen/db/generic.py:2421 ../gramps/plugins/db/bsddb/read.py:1950
 #: ../gramps/plugins/db/bsddb/write.py:2298
 msgid "Number of media"
 msgstr "Количество документов"
 
-#: ../gramps/gen/db/generic.py:2436 ../gramps/plugins/db/bsddb/read.py:1955
+#: ../gramps/gen/db/generic.py:2422 ../gramps/plugins/db/bsddb/read.py:1951
 #: ../gramps/plugins/db/bsddb/write.py:2299
 #: ../gramps/plugins/webreport/statistics.py:153
 #: ../gramps/plugins/webreport/statistics.py:203
 msgid "Number of places"
 msgstr "Количество мест"
 
-#: ../gramps/gen/db/generic.py:2437 ../gramps/plugins/db/bsddb/read.py:1956
+#: ../gramps/gen/db/generic.py:2423 ../gramps/plugins/db/bsddb/read.py:1952
 #: ../gramps/plugins/db/bsddb/write.py:2300
 #: ../gramps/plugins/webreport/statistics.py:165
 #: ../gramps/plugins/webreport/statistics.py:212
 msgid "Number of repositories"
 msgstr "Количество хранилищ"
 
-#: ../gramps/gen/db/generic.py:2438 ../gramps/plugins/db/bsddb/read.py:1957
+#: ../gramps/gen/db/generic.py:2424 ../gramps/plugins/db/bsddb/read.py:1953
 #: ../gramps/plugins/db/bsddb/write.py:2301
 msgid "Number of notes"
 msgstr "Количество заметок"
 
-#: ../gramps/gen/db/generic.py:2439 ../gramps/plugins/db/bsddb/read.py:1958
+#: ../gramps/gen/db/generic.py:2425 ../gramps/plugins/db/bsddb/read.py:1954
 #: ../gramps/plugins/db/bsddb/write.py:2302
 msgid "Number of tags"
 msgstr "Количество меток"
 
-#: ../gramps/gen/db/generic.py:2440 ../gramps/plugins/db/bsddb/write.py:2303
+#: ../gramps/gen/db/generic.py:2426 ../gramps/plugins/db/bsddb/write.py:2303
 msgid "Schema version"
 msgstr "Версия схемы"
 
@@ -4071,7 +4071,7 @@ msgstr "Цитаты с идентификаторами, содержащими
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:49
 msgid "Matches citations whose Gramps ID matches the regular expression"
-msgstr "Выбирает цитаты, Gramps ID которых удовлетворяет регулярному·выражению"
+msgstr "Выбирает цитаты, Gramps ID которых удовлетворяет регулярному выражению"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:48
 msgid "Citations with Source Id containing <text>"
@@ -4091,7 +4091,7 @@ msgstr "Все события"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:45
 msgid "Matches every event in the database"
-msgstr "Выбирает всех события в базе данных"
+msgstr "Выбирает все события в базе данных"
 
 #: ../gramps/gen/filters/rules/event/_changedsince.py:47
 msgid "Events changed after <date time>"
@@ -4102,7 +4102,7 @@ msgid ""
 "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given."
 msgstr ""
-"Выбирает события, измененные после определенной даты (yyyy-mm-dd hh:mm:ss) "
+"Выбирает события, изменённые после определенной даты (yyyy-mm-dd hh:mm:ss) "
 "или, если задана вторая дата, между двумя датами."
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:42
@@ -4134,7 +4134,7 @@ msgstr "События с <атрибутом>"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:46
 msgid "Matches events with the event attribute of a particular value"
-msgstr "Выбирает события с данным значением атрибута"
+msgstr "Выбирает события с указанным значением атрибута"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:51
 msgid "Events with the <citation>"
@@ -4142,7 +4142,7 @@ msgstr "События с <цитатой>"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:52
 msgid "Matches events with a citation of a particular value"
-msgstr "Выбирает события с данным значением цитаты"
+msgstr "Выбирает события с указанным значением цитаты"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:47
 #: ../gramps/gen/filters/rules/event/_hastype.py:45
@@ -4194,7 +4194,7 @@ msgstr "События на заданный день недели"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:40
 msgid "Matches events occurring on a particular day of the week"
-msgstr "Выбирает события, случившиеся на заданный день недели"
+msgstr "Выбирает события, произошедшие в указанный день недели"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:45
 msgid "Events with <count> media"
@@ -4257,19 +4257,19 @@ msgstr "Выбирает события с указанным количеств
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:49
 msgid "Events with the <tag>"
-msgstr "События с <пометкой>"
+msgstr "События с <меткой>"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:50
 msgid "Matches events with the particular tag"
-msgstr "Выбирает события с определенной пометкой"
+msgstr "Выбирает события с указанной меткой"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:46
 msgid "Events with the particular type"
-msgstr "Событие с данным типом"
+msgstr "События определённого типа"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:47
 msgid "Matches events with the particular type "
-msgstr "Выбирает события определённого типа "
+msgstr "Выбирает события указанного типа "
 
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:44
 msgid "Events matching the <filter>"
@@ -4312,16 +4312,16 @@ msgid ""
 "Matches events that occurred at places that match the specified place filter "
 "name"
 msgstr ""
-"Выбирает события, случившиеся в местоположениях, соответствующими указанному "
-"фильтру"
+"Выбирает события, произошедшие в местах и соответствующими указанному "
+"фильтру местоположений"
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:45
 msgid "Events with at least one direct source >= <confidence level>"
-msgstr "События с хоть одним источником >= <достоверность>"
+msgstr "События хотя бы с одним источником >= <достоверность>"
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:46
 msgid "Matches events with at least one direct source with confidence level(s)"
-msgstr "Выбирает события с хотя бы одним достоверным источником"
+msgstr "Выбирает события хотя бы с одним достоверным источником"
 
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:49
 msgid "Events with source matching the <source filter>"
@@ -4333,12 +4333,12 @@ msgstr "Выбирает события с источниками, соотве�
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:47
 msgid "Events with Id containing <text>"
-msgstr "Объекты с идентификаторами, содержащими <текст>"
+msgstr "События с идентификаторами, содержащими <текст>"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:48
 msgid "Matches events whose Gramps ID matches the regular expression"
 msgstr ""
-"Выбирает события, Gramps ID которых удовлетворяет регулярному·выражению"
+"Выбирает события, Gramps ID которых удовлетворяет регулярному выражению"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:44
 #: ../gramps/gen/plug/report/utils.py:378
@@ -4351,14 +4351,14 @@ msgstr "Выбирает все семьи в базе данных"
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:47
 msgid "Families changed after <date time>"
-msgstr "Семьи, измененные после <дата время>"
+msgstr "Семьи, изменённые после <дата время>"
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:48
 msgid ""
 "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Выбирает семьи, чьи данные были изменены после определенной даты (гггг-мм-дд "
+"Выбирает семьи, чьи данные были изменены после определённой даты (гггг-мм-дд "
 "чч:мм:сс) или, если задана вторая дата, между двумя датами."
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:45
@@ -4381,7 +4381,7 @@ msgstr "Выбирает семьи, в которых ребёнок имеет
 #: ../gramps/gen/filters/rules/family/_regexpchildname.py:48
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:48
 msgid "Child filters"
-msgstr "Детские фильтры"
+msgstr "Фильтры детей"
 
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:45
 msgid "Families with child with the <name>"
@@ -4428,7 +4428,7 @@ msgstr "Выбирает семьи, в которых отец имеет ук�
 #: ../gramps/gui/editors/filtereditor.py:105
 #: ../gramps/gui/editors/filtereditor.py:543
 msgid "Family attribute:"
-msgstr "Семейный атрибут:"
+msgstr "Атрибут семьи:"
 
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:45
 msgid "Families with the family <attribute>"
@@ -4467,7 +4467,7 @@ msgstr "Семьи с <событием>"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:53
 msgid "Matches families with an event of a particular value"
-msgstr "Выбирает семьи с данным событием"
+msgstr "Выбирает семьи с указанным событием"
 
 #: ../gramps/gen/filters/rules/family/_hasgallery.py:45
 msgid "Families with <count> media"
@@ -4503,7 +4503,7 @@ msgstr "Выбирает семьи с указанным количеством
 
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:42
 msgid "Families having notes containing <substring>"
-msgstr "Семьи с записками, содержащими <подстроку>"
+msgstr "Семьи с заметками, содержащими <подстроку>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:43
 msgid "Matches families whose notes contain text matching a substring"
@@ -4541,7 +4541,7 @@ msgstr "Семьи с типом отношений"
 
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:47
 msgid "Matches families with the relationship type of a particular value"
-msgstr "Выбирает семьи с данным типом отношений"
+msgstr "Выбирает семьи с указанным типом отношений"
 
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:45
 msgid "Families with <count> sources"
@@ -4561,7 +4561,7 @@ msgstr "Выбирает семьи с указанным источником"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:49
 msgid "Families with the <tag>"
-msgstr "Семьи с <пометкой>"
+msgstr "Семьи с <меткой>"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:50
 msgid "Matches families with the particular tag"
@@ -4599,7 +4599,7 @@ msgstr "Семьи в закладках"
 
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:46
 msgid "Matches the families on the bookmark list"
-msgstr "Выбирает людей из списка закладок"
+msgstr "Выбирает семьи из списка закладок"
 
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:45
 msgid "Descendant families of <family>"
@@ -4619,12 +4619,12 @@ msgstr "Выбирает семьи, соответствующие фильтр
 
 #: ../gramps/gen/filters/rules/family/_matchessourceconfidence.py:44
 msgid "Families with at least one direct source >= <confidence level>"
-msgstr "Семьи с хоть одним источником >= <достоверность>"
+msgstr "Семьи хотя бы с одним источником >= <достоверность>"
 
 #: ../gramps/gen/filters/rules/family/_matchessourceconfidence.py:45
 msgid ""
 "Matches families with at least one direct source with confidence level(s)"
-msgstr "Выбирает семьи с хоть одним достоверным источником"
+msgstr "Выбирает семьи хотя бы с одним достоверным источником"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:46
 msgid "Families having mother with Id containing <text>"
@@ -4700,7 +4700,7 @@ msgstr "Семьи с ребёнком с указанным <именем>"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:46
 msgid "Matches families where any child has a specified (partial) name"
-msgstr "Выбирает семьи, в которых ребёнку дано указанное (частичное) имя"
+msgstr "Выбирает семьи, в которых ребёнку имеет указанное (частичное) имя"
 
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:45
 msgid "Families with father matching the <name>"
@@ -4727,7 +4727,7 @@ msgid ""
 "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given."
 msgstr ""
-"Выбирает документы, измененные после определенной даты (yyyy-mm-dd hh:mm:ss) "
+"Выбирает документы, изменённые после определенной даты (yyyy-mm-dd hh:mm:ss) "
 "или, если задана вторая дата, между двумя датами."
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:44
@@ -4750,7 +4750,7 @@ msgstr "Документы с <цитатой>"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:51
 msgid "Matches media with a citation of a particular value"
-msgstr "Выбирает документы с данным значением цитаты"
+msgstr "Выбирает документы с указанным значением цитаты"
 
 #: ../gramps/gen/filters/rules/media/_hasidof.py:44
 msgid "Media object with <Id>"
@@ -4788,11 +4788,11 @@ msgstr "Документ, удовлетворяющий параметрам"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:52
 msgid "Matches media objects with particular parameters"
-msgstr "Выбирает документы с данными параметрами"
+msgstr "Выбирает документы с указанными параметрами"
 
 #: ../gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py:42
 msgid "Media objects having notes containing <substring>"
-msgstr "Документы с записками, содержащими <подстроку>"
+msgstr "Документы с заметками, содержащими <подстроку>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py:43
 msgid "Matches media objects whose notes contain text matching a substring"
@@ -4808,7 +4808,7 @@ msgid ""
 "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
 "Выбирает документы, заметки которых содержат текст, удовлетворяющий "
-"регулярному·выражению"
+"регулярному выражению"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:42
 msgid "Media objects with a reference count of <count>"
@@ -4832,11 +4832,11 @@ msgstr "Документы с <источником>"
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:48
 msgid "Matches media who have a particular source"
-msgstr "Выбирает документы, ссылающиеся на данный источник"
+msgstr "Выбирает документы, ссылающиеся на указанный источник"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:49
 msgid "Media objects with the <tag>"
-msgstr "Документы с <пометкой>"
+msgstr "Документы с <меткой>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:50
 msgid "Matches media objects with the particular tag"
@@ -4852,7 +4852,7 @@ msgstr "Выбирает документы, соответствующие фи
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:44
 msgid "Media with a direct source >= <confidence level>"
-msgstr "Документы с хоть одним источником >= <достоверности>"
+msgstr "Документы хотя бы с одним источником >= <достоверности>"
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:45
 msgid "Matches media with at least one direct source with confidence level(s)"
@@ -4873,7 +4873,7 @@ msgstr "Документы с идентификаторами, содержащ
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:48
 msgid "Matches media objects whose Gramps ID matches the regular expression"
 msgstr ""
-"Выбирает документы, Gramps ID которых удовлетворяет регулярному·выражению"
+"Выбирает документы, Gramps ID которых удовлетворяет регулярному выражению"
 
 #: ../gramps/gen/filters/rules/note/_allnotes.py:44
 msgid "Every note"
@@ -4892,8 +4892,8 @@ msgid ""
 "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Выбирает заметки, измененные после определенной даты (yyyy-mm-dd hh:mm:ss) "
-"или, если задана вторая дата, в данном диапазоне."
+"Выбирает заметки, изменённые после указанной даты (yyyy-mm-dd hh:mm:ss) или, "
+"если задана вторая дата, в указанном диапазоне."
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:44
 msgid "Note with <Id>"
@@ -4901,7 +4901,7 @@ msgstr "Заметка с <Id>"
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:45
 msgid "Matches a note with a specified Gramps ID"
-msgstr "Выбирает события с указанным Gramps ID"
+msgstr "Выбирает заметки с указанным Gramps ID"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:47
 #: ../gramps/gen/filters/rules/note/_hastype.py:45
@@ -4940,7 +4940,7 @@ msgstr "Заметки указанного типа"
 
 #: ../gramps/gen/filters/rules/note/_hastype.py:47
 msgid "Matches notes with the particular type "
-msgstr "Выбирает заметки определённого типа "
+msgstr "Выбирает заметки указанного типа "
 
 #: ../gramps/gen/filters/rules/note/_matchesfilter.py:44
 msgid "Notes matching the <filter>"
@@ -4957,8 +4957,8 @@ msgstr "Заметки, содержащие <текст>"
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:45
 msgid "Matches notes that contain a substring or match a regular expression"
 msgstr ""
-"Выбирает заметки, которые содержат данную подстроку, либо соответствующие "
-"данному регулярному выражению"
+"Выбирает заметки, которые содержат указанную подстроку или соответствующие "
+"регулярному выражению"
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:44
 msgid "Notes containing <substring>"
@@ -4983,7 +4983,7 @@ msgstr "Заметки с идентификаторами, содержащим
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:48
 msgid "Matches notes whose Gramps ID matches the regular expression"
 msgstr ""
-"Выбирает события, Gramps ID которых удовлетворяет регулярному·выражению"
+"Выбирает заметки, Gramps ID которых удовлетворяет регулярному выражению"
 
 #: ../gramps/gen/filters/rules/person/_changedsince.py:47
 msgid "Persons changed after <date time>"
@@ -4994,7 +4994,7 @@ msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Выбирает людей, чьи данные были изменены после определенной даты (гггг-мм-дд "
+"Выбирает людей, чьи данные были изменены после определённой даты (гггг-мм-дд "
 "чч:мм:сс) или, если задана вторая дата, между двумя датами."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:51
@@ -5076,7 +5076,7 @@ msgstr "Лица с указанным <количеством> адресов"
 
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:50
 msgid "Matches people with a certain number of personal addresses"
-msgstr "Выбирает людей с указанным количеством личных адресов"
+msgstr "Выбирает людей с указанным количеством адресов"
 
 #: ../gramps/gen/filters/rules/person/_hasalternatename.py:45
 msgid "People with an alternate name"
@@ -5114,7 +5114,7 @@ msgstr "Лица с <данными о рождении>"
 
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:50
 msgid "Matches people with birth data of a particular value"
-msgstr "Выбирает людей с определённой информацией о рождении"
+msgstr "Выбирает людей с указанной информацией о рождении"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:50
 msgid "People with the <citation>"
@@ -5122,7 +5122,7 @@ msgstr "Лица с <цитатой>"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:51
 msgid "Matches people with a citation of a particular value"
-msgstr "Выбирает людей с цитатами с указанным значением"
+msgstr "Выбирает людей, имеющих цитату с указанным значением"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:46
 msgid "People with a common ancestor with <person>"
@@ -5160,7 +5160,7 @@ msgstr "Лица с <данными о смерти>"
 
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:50
 msgid "Matches people with death data of a particular value"
-msgstr "Выбирает людей с определённой информацией о смерти"
+msgstr "Выбирает людей с указанной информацией о смерти"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:48
 #: ../gramps/gui/editors/filtereditor.py:101
@@ -5183,7 +5183,7 @@ msgstr "Лица с личными <событиями>"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:55
 msgid "Matches people with a personal event of a particular value"
-msgstr "Выбирает людей с данным личным событием"
+msgstr "Выбирает людей с указанным личным событием"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:45
 msgid "People with the family <attribute>"
@@ -5191,7 +5191,7 @@ msgstr "Лица с семейным <атрибутом>"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:46
 msgid "Matches people with the family attribute of a particular value"
-msgstr "Выбирает объекты с данным значением семейного атрибута"
+msgstr "Выбирает людей с данным значением семейного атрибута"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:52
 msgid "People with the family <event>"
@@ -5212,12 +5212,12 @@ msgstr "Выбирает людей с указанным количеством
 #: ../gramps/gen/filters/rules/person/_hasidof.py:44
 #: ../gramps/gen/filters/rules/person/_matchidof.py:45
 msgid "Person with <Id>"
-msgstr "Лица с <Id>"
+msgstr "Человек с <Id>"
 
 #: ../gramps/gen/filters/rules/person/_hasidof.py:45
 #: ../gramps/gen/filters/rules/person/_matchidof.py:46
 msgid "Matches person with a specified Gramps ID"
-msgstr "Выбирает лиц с указанным Gramps ID"
+msgstr "Выбирает лицо с указанным Gramps ID"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:48
 msgid "People with <count> LDS events"
@@ -11591,7 +11591,7 @@ msgid "Select media directory"
 msgstr "Выбрать каталог документов"
 
 #: ../gramps/gui/configure.py:1573 ../gramps/gui/configure.py:1596
-#: ../gramps/gui/configure.py:1618 ../gramps/gui/dbloader.py:405
+#: ../gramps/gui/configure.py:1618 ../gramps/gui/dbloader.py:404
 #: ../gramps/gui/editors/edittaglist.py:119
 #: ../gramps/gui/glade/addmedia.glade:22
 #: ../gramps/gui/glade/baseselector.glade:24
@@ -11684,31 +11684,31 @@ msgstr "_Продолжить импорт"
 msgid "_Stop"
 msgstr "С_топ"
 
-#: ../gramps/gui/dbloader.py:207 ../gramps/gui/dbloader.py:222
-#: ../gramps/gui/dbloader.py:252
+#: ../gramps/gui/dbloader.py:206 ../gramps/gui/dbloader.py:221
+#: ../gramps/gui/dbloader.py:251
 msgid "Are you sure you want to upgrade this Family Tree?"
 msgstr "Вы уверены, что хотите обновить формат этого древа?"
 
-#: ../gramps/gui/dbloader.py:210 ../gramps/gui/dbloader.py:225
-#: ../gramps/gui/dbloader.py:255
+#: ../gramps/gui/dbloader.py:209 ../gramps/gui/dbloader.py:224
+#: ../gramps/gui/dbloader.py:254
 msgid ""
 "I have made a backup,\n"
 "please upgrade my Family Tree"
 msgstr "У меня есть резервная копия, моё древо можно обновить"
 
-#: ../gramps/gui/dbloader.py:212 ../gramps/gui/dbloader.py:227
-#: ../gramps/gui/dbloader.py:242 ../gramps/gui/dbloader.py:257
+#: ../gramps/gui/dbloader.py:211 ../gramps/gui/dbloader.py:226
+#: ../gramps/gui/dbloader.py:241 ../gramps/gui/dbloader.py:256
 #: ../gramps/gui/plug/report/_bookdialog.py:243
 #: ../gramps/gui/plug/report/_bookdialog.py:739
 #: ../gramps/gui/viewmanager.py:841
 msgid "Cancel"
 msgstr "Отменить"
 
-#: ../gramps/gui/dbloader.py:237
+#: ../gramps/gui/dbloader.py:236
 msgid "Are you sure you want to downgrade this Family Tree?"
 msgstr "Вы действительно хотите откатить версию этого древа на более старую?"
 
-#: ../gramps/gui/dbloader.py:240
+#: ../gramps/gui/dbloader.py:239
 msgid ""
 "I have made a backup,\n"
 "please downgrade my Family Tree"
@@ -11716,27 +11716,27 @@ msgstr ""
 "Да, я сделал резервную копию.\n"
 "Откатить версию моего древа"
 
-#: ../gramps/gui/dbloader.py:329
+#: ../gramps/gui/dbloader.py:328
 msgid "All files"
 msgstr "Все файлы"
 
-#: ../gramps/gui/dbloader.py:370
+#: ../gramps/gui/dbloader.py:369
 msgid "Automatically detected"
 msgstr "Автоматически"
 
-#: ../gramps/gui/dbloader.py:379
+#: ../gramps/gui/dbloader.py:378
 msgid "Select file _type:"
 msgstr "Выбрать _тип файла:"
 
-#: ../gramps/gui/dbloader.py:395
+#: ../gramps/gui/dbloader.py:394
 msgid "Import Family Tree"
 msgstr "Импортировать семейное древо"
 
-#: ../gramps/gui/dbloader.py:406
+#: ../gramps/gui/dbloader.py:405
 msgid "Import"
 msgstr "Импорт"
 
-#: ../gramps/gui/dbloader.py:469
+#: ../gramps/gui/dbloader.py:468
 #, python-format
 msgid ""
 "File type \"%s\" is unknown to Gramps.\n"
@@ -11749,28 +11749,28 @@ msgstr ""
 "Известные типы: база данных GRAMPS, GRAMPS XML, пакет GRAMPS, GEDCOM и "
 "другие."
 
-#: ../gramps/gui/dbloader.py:492 ../gramps/gui/dbloader.py:499
+#: ../gramps/gui/dbloader.py:491 ../gramps/gui/dbloader.py:498
 msgid "Cannot open file"
 msgstr "Не удалось открыть файл"
 
-#: ../gramps/gui/dbloader.py:493
+#: ../gramps/gui/dbloader.py:492
 msgid "The selected file is a directory, not a file.\n"
 msgstr "Выбранное имя является каталогом, а не файлом.\n"
 
-#: ../gramps/gui/dbloader.py:500
+#: ../gramps/gui/dbloader.py:499
 msgid "You do not have read access to the selected file."
 msgstr "У вас нет доступа для чтения выбранного файла."
 
-#: ../gramps/gui/dbloader.py:510
+#: ../gramps/gui/dbloader.py:509
 msgid "Cannot create file"
 msgstr "Не удалось создать файл"
 
-#: ../gramps/gui/dbloader.py:535
+#: ../gramps/gui/dbloader.py:534
 #, python-format
 msgid "Could not import file: %s"
 msgstr "Ошибка импорта файла %s"
 
-#: ../gramps/gui/dbloader.py:536
+#: ../gramps/gui/dbloader.py:535
 msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
@@ -12072,23 +12072,23 @@ msgstr "Продолжить, ведь я сделал резервную коп
 msgid "Stop"
 msgstr "Стоп"
 
-#: ../gramps/gui/dbman.py:939
+#: ../gramps/gui/dbman.py:938
 msgid "Rebuilding database from backup files"
 msgstr "Восстанавление базы данных из резервной копии"
 
-#: ../gramps/gui/dbman.py:944
+#: ../gramps/gui/dbman.py:943
 msgid "Error restoring backup data"
 msgstr "Ошибка восстановления резервной копии"
 
-#: ../gramps/gui/dbman.py:983
+#: ../gramps/gui/dbman.py:982
 msgid "Could not create Family Tree"
 msgstr "Ошибка при создании семейного древа"
 
-#: ../gramps/gui/dbman.py:1104
+#: ../gramps/gui/dbman.py:1103
 msgid "Retrieve failed"
 msgstr "Извлечение не удалось"
 
-#: ../gramps/gui/dbman.py:1105
+#: ../gramps/gui/dbman.py:1104
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -12099,11 +12099,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dbman.py:1144 ../gramps/gui/dbman.py:1170
+#: ../gramps/gui/dbman.py:1143 ../gramps/gui/dbman.py:1169
 msgid "Archiving failed"
 msgstr "Архивирование не удалось"
 
-#: ../gramps/gui/dbman.py:1145
+#: ../gramps/gui/dbman.py:1144
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -12114,15 +12114,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dbman.py:1150
+#: ../gramps/gui/dbman.py:1149
 msgid "Creating data to be archived..."
 msgstr "Сбор данных для архивации..."
 
-#: ../gramps/gui/dbman.py:1159
+#: ../gramps/gui/dbman.py:1158
 msgid "Saving archive..."
 msgstr "Сохранение архива..."
 
-#: ../gramps/gui/dbman.py:1171
+#: ../gramps/gui/dbman.py:1170
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -21708,7 +21708,7 @@ msgstr "Применить"
 msgid "Double-click on a row to edit the selected event."
 msgstr "Щёлкните на строке дважды для правки выбранного события."
 
-#: ../gramps/plugins/gramplet/fanchart2waygramplet.py:87
+#: ../gramps/plugins/gramplet/fanchart2waygramplet.py:86
 #: ../gramps/plugins/gramplet/fanchartdescgramplet.py:64
 #: ../gramps/plugins/gramplet/fanchartgramplet.py:67
 msgid ""
