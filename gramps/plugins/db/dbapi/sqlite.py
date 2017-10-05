@@ -146,7 +146,7 @@ class Connection:
         the next COMMIT or ROLLBACK command.
         """
         self.log.debug("BEGIN TRANSACTION;")
-        self.execute("BEGIN TRANSACTION;")
+        #self.execute("BEGIN TRANSACTION;")
 
     def commit(self):
         """
