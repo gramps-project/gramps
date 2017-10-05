@@ -8,6 +8,8 @@
 # Copyright (C) 2007       Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2017       Mindaugas Baranauskas
+# Copyright (C) 2017       Paul Culley
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -667,12 +669,14 @@ class GVPsDoc(GVDocBase):
         # disappeared. I used 1 inch margins always.
         # See bug tracker issue 2815
         # :cairo does not work with Graphviz 2.26.3 and later See issue 4164
+        # recent versions of Graphvis doesn't even try, just puts out a single
+        # large page.
 
         command = 'dot -Tps:cairo -o"%s" "%s"' % (self._filename, tmp_dot)
         dotversion = str(Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1])
         # Problem with dot 2.26.3 and later and multiple pages, which gives "cairo: out of
-        # memory" If the :cairo is skipped for these cases it gives acceptable
-        # result.
+        # memory" If the :cairo is skipped for these cases it gives bad
+        # result for non-Latin-1 characters (utf-8).
         if (dotversion.find('2.26.3') or dotversion.find('2.28.0') != -1) and (self.vpages * self.hpages) > 1:
             command = command.replace(':cairo','')
         os.system(command)
@@ -922,29 +926,71 @@ class GVPdfGsDoc(GVDocBase):
         # Generate PostScript using dot
         # Reason for using -Tps:cairo. Needed for Non Latin-1 letters
         # See bug tracker issue 2815
-        # :cairo does not work with Graphviz 2.26.3 and later See issue 4164
+        # :cairo does not work with with multi-page See issue 4164
+        # recent versions of Graphvis doesn't even try, just puts out a single
+        # large page, so we use Ghostscript to split it up.
 
-        command = 'dot -Tps:cairo -o"%s" "%s"' % ( tmp_ps, tmp_dot )
+        command = 'dot -Tps:cairo -o"%s" "%s"' % (tmp_ps, tmp_dot)
         dotversion = str(Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1])
-        # Problem with dot 2.26.3 and later and multiple pages, which gives "cairo: out
-        # of memory". If the :cairo is skipped for these cases it gives
-        # acceptable result.
-        if (dotversion.find('2.26.3') or dotversion.find('2.28.0') != -1) and (self.vpages * self.hpages) > 1:
-            command = command.replace(':cairo','')
         os.system(command)
 
         # Add .5 to remove rounding errors.
         paper_size = self._paper.get_size()
-        width_pt = int( (paper_size.get_width_inches() * 72) + 0.5 )
-        height_pt = int( (paper_size.get_height_inches() * 72) + 0.5 )
-
+        width_pt = int((paper_size.get_width_inches() * 72) + .5)
+        height_pt = int((paper_size.get_height_inches() * 72) + .5)
+        if (self.vpages * self.hpages) == 1:
+            # -dDEVICEWIDTHPOINTS=%d' -dDEVICEHEIGHTPOINTS=%d
+            command = '%s -q -sDEVICE=pdfwrite -dNOPAUSE '\
+                '-dDEVICEWIDTHPOINTS=%d -dDEVICEHEIGHTPOINTS=%d '\
+                '-sOutputFile="%s" "%s" -c quit' % (
+                    _GS_CMD, width_pt, height_pt, self._filename, tmp_ps)
+            os.system(command)
+            os.remove(tmp_ps)
+            return
+        # Margins (in centimeters) to pixels 72/2.54=28.345
+        MarginT = int(28.345 * self._paper.get_top_margin())
+        MarginB = int(28.345 * self._paper.get_bottom_margin())
+        MarginR = int(28.345 * self._paper.get_right_margin())
+        MarginL = int(28.345 * self._paper.get_left_margin())
+        MarginX = MarginL + MarginR
+        MarginY = MarginT + MarginB
         # Convert to PDF using ghostscript
-        command = '%s -q -sDEVICE=pdfwrite -dNOPAUSE -dDEVICEWIDTHPOINTS=%d' \
-                  ' -dDEVICEHEIGHTPOINTS=%d -sOutputFile="%s" "%s" -c quit' \
-                  % ( _GS_CMD, width_pt, height_pt, self._filename, tmp_ps )
+        list_of_pieces = []
+
+        x_rng = range(1, self.hpages + 1) if 'L' in self.pagedir \
+            else range(self.hpages , 0, -1)
+        y_rng = range(1, self.vpages + 1) if 'B' in self.pagedir \
+            else range(self.vpages , 0, -1)
+        if self.pagedir[0] in 'TB':
+            the_list = ((x, y) for y in y_rng for x in x_rng)
+        else:
+            the_list = ((x, y) for x in x_rng for y in y_rng)
+        for x, y in the_list:
+            # Slit PS file to pieces of PDF
+            PageOffsetX = (x - 1) * (MarginX - width_pt)
+            PageOffsetY = (y - 1) * (MarginY - height_pt)
+            tmp_pdf_piece = "%s_%d_%d.pdf" % (tmp_ps, x, y)
+            list_of_pieces.append(tmp_pdf_piece)
+            # Generate Ghostscript code
+            command = '%s -q -dBATCH -dNOPAUSE -dSAFER -g%dx%d '\
+                '-sOutputFile="%s" -r72 -sDEVICE=pdfwrite '\
+                '-c "<</.HWMargins [%d %d %d %d] /PageOffset [%d %d]>> '\
+                'setpagedevice" -f "%s"' % (
+                    _GS_CMD, width_pt + 10, height_pt + 10, tmp_pdf_piece,
+                    MarginL, MarginB, MarginR, MarginT,
+                    PageOffsetX + 5, PageOffsetY + 5, tmp_ps)
+            # Execute Ghostscript
+            os.system(command)
+        # Merge pieces to single multipage PDF ;
+        command = '%s -q -dBATCH -dNOPAUSE '\
+            '-sOUTPUTFILE=%s -r72 -sDEVICE=pdfwrite %s '\
+            % (_GS_CMD, self._filename, ' '.join(list_of_pieces))
         os.system(command)
 
+        # Clean temporary files
         os.remove(tmp_ps)
+        for tmp_pdf_piece in list_of_pieces:
+            os.remove(tmp_pdf_piece)
         os.remove(tmp_dot)
 
 #-------------------------------------------------------------------------------
