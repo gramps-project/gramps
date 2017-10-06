@@ -300,7 +300,7 @@ class EditPerson(EditPrimary):
 
     def _update_families(self):
         phandle = self.obj.get_handle()
-        if phandle:
+        if self.dbstate.db.has_person_handle(phandle):
             #new person has no handle yet and cannot be in a family.
             person = self.dbstate.db.get_person_from_handle(phandle)
             self.obj.set_family_handle_list(person.get_family_handle_list())
