@@ -310,8 +310,7 @@ class Callback(object):
             for key in keymap:
                 self.__callback_map[signal_name].remove(key)
             self.__callback_map[signal_name] = None
-        self.__callback_map = None
-        del self.__callback_map
+        self.__callback_map = {}
 
     def emit(self, signal_name, args=tuple()):
         """
