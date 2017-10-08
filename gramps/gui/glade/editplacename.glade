@@ -142,7 +142,7 @@
                         <property name="AtkObject::accessible-name" translatable="yes">Date</property>
                       </object>
                     </child>
-                    <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                    <accelerator key="d" signal="activate" modifiers="primary"/>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
