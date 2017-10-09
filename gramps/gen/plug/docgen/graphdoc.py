@@ -44,7 +44,7 @@ from subprocess import Popen, PIPE
 #-------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ...utils.file import search_for
+from ...utils.file import search_for, where_is
 from . import BaseDoc
 from ..menu import NumberOption, TextOption, EnumeratedListOption, \
     BooleanOption
@@ -103,11 +103,7 @@ if win():
         _GS_CMD = ""
 else:
     _DOT_FOUND = search_for("dot")
-
-    if search_for("gs") == 1:
-        _GS_CMD = "gs"
-    else:
-        _GS_CMD = ""
+    _GS_CMD = where_is("gs")
 
 
 #------------------------------------------------------------------------------
