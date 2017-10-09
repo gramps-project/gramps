@@ -44,7 +44,7 @@ import sys
 #-------------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ...utils.file import search_for
+from ...utils.file import search_for, where_is
 from . import BaseDoc
 from ..menu import NumberOption, TextOption, EnumeratedListOption, \
                           BooleanOption
@@ -103,13 +103,10 @@ if win():
     DETACHED_PROCESS = DWORD(0x00000008).value
 else:
     _DOT_FOUND = search_for("dot")
-    
-    if search_for("gs") == 1:
-        _GS_CMD = "gs"
-    else:
-        _GS_CMD = ""
-        
-#-------------------------------------------------------------------------------
+    _GS_CMD = where_is("gs")
+
+
+#------------------------------------------------------------------------------
 #
 # GVOptions
 #

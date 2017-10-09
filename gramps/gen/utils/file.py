@@ -62,7 +62,7 @@ def find_file( filename):
     try:
         if os.path.isfile(filename):
             return(filename)
-    except UnicodeError:
+    except UnicodeError as err:
         LOG.error("Filename %s raised a Unicode Error %s.", repr(filename), err)
 
     LOG.debug("Filename %s not found.", repr(filename))
@@ -184,6 +184,24 @@ def search_for(name):
             if os.access(fname, os.X_OK) and not os.path.isdir(fname):
                 return 1
     return 0
+
+
+def where_is(name):
+    """ This command is similar to the Linux "whereis -b file" command.
+    It looks for an executable file (name) in the PATH python is using, as
+    well as several likely other paths.  It returns the first file found,
+    or an empty string if not found.
+    """
+    paths = set(os.environ['PATH'].split(os.pathsep))
+    if not win():
+        paths.update(("/bin", "/usr/bin", "/usr/local/bin", "/opt/local/bin",
+                      "/opt/bin"))
+    for i in paths:
+        fname = os.path.join(i, name)
+        if os.access(fname, os.X_OK) and not os.path.isdir(fname):
+            return fname
+    return ""
+
 
 def create_checksum(full_path):
     """
