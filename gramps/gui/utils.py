@@ -467,21 +467,11 @@ def process_pending_events(max_count=10):
 
 def is_right_click(event):
     """
-    Returns True if the event is a button-3 or equivalent
+    Returns True if the event is to open the context menu.
     """
     from gi.repository import Gdk
-
-    if event.type == Gdk.EventType.BUTTON_PRESS:
-        if is_quartz():
-            # Catch quartz emulation of right-click for single-button
-            # mouse.  Note that in this case we want CONTROL_MASK not
-            # PRIMARY_ACCELERATOR!
-            if (event.button == 3
-                or (event.button == 1 and event.get_state() & Gdk.ModifierType.CONTROL_MASK)):
-                return True
-
-        if event.button == 3:
-            return True
+    if Gdk.Event.triggers_context_menu(event):
+        return True
 
 def color_graph_box(alive=False, gender=Person.MALE):
     """
