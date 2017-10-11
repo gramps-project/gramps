@@ -61,7 +61,7 @@ ngettext = glocale.translation.ngettext  # else "nearby" comments are ignored
 from gramps.gen.lib import (Citation, Event, EventType, Family, Media,
                             Name, Note, Person, Place, Repository, Source,
                             StyledText, Tag)
-from gramps.gen.db import DbTxn
+from gramps.gen.db import DbTxn, CLASS_TO_KEY_MAP
 from gramps.gen.config import config
 from gramps.gen.utils.id import create_id
 from gramps.gen.utils.db import family_name
@@ -224,6 +224,22 @@ class Check(tool.BatchTool):
             checker.check_tag_references()
             checker.check_checksum()
             checker.check_media_sourceref()
+
+        # for bsddb the check_backlinks doesn't work in 'batch' mode because
+        # the table used for backlinks is closed.
+        with DbTxn(_("Check Backlink Integrity"), self.db,
+                   batch=False) as checker.trans:
+            checker.check_backlinks()
+
+        # rebuilding reference maps needs to be done outside of a transaction
+        # to avoid nesting transactions.
+        if checker.bad_backlinks:
+            checker.progress.set_pass(_('Rebuilding reference maps...'), 6)
+            logging.info('Rebuilding reference maps...')
+            self.db.reindex_reference_map(checker.callback)
+        else:
+            logging.info('    OK: no backlink problems found')
+
         self.db.enable_signals()
         self.db.request_rebuild()
 
@@ -273,6 +289,7 @@ class CheckIntegrity:
         self.replaced_sourceref = []
         self.place_errors = 0
         self.duplicated_gramps_ids = 0
+        self.bad_backlinks = 0
         self.text = StringIO()
         self.last_img_dir = config.get('behavior.addmedia-image-dir')
         self.progress = ProgressMeter(_('Checking Database'), '',
@@ -1214,6 +1231,61 @@ class CheckIntegrity:
         if len(self.invalid_birth_events) + len(self.invalid_death_events) + \
                 len(self.invalid_events) == 0:
             logging.info('    OK: no event problems found')
+
+    def check_backlinks(self):
+        '''Looking for backlink reference problems'''
+
+        total = self.db.get_total()
+
+        self.progress.set_pass(_('Looking for backlink reference problems'),
+                               total)
+        logging.info('Looking for backlink reference problems')
+
+        for obj_class in CLASS_TO_KEY_MAP.keys():
+            obj_type = obj_class.lower()
+            for handle in getattr(self.db, "iter_%s_handles" % obj_type)():
+                self.progress.step()
+                pri_obj = getattr(self.db, "get_%s_from_handle"
+                                  % obj_type)(handle)
+                handle_list = pri_obj.get_referenced_handles_recursively()
+                # check that each reference has a backlink
+                for item in handle_list:
+                    bl_list = list(self.db.find_backlink_handles(item[1]))
+                    if (obj_class, handle) not in bl_list:
+                        # Object has reference with no cooresponding backlink
+                        self.bad_backlinks += 1
+                        logging.warning('    FAIL: the "%(cls)s" [%(gid)s] '
+                                        'has a "%(cls2)s" reference'
+                                        ' with no corresponding backlink.',
+                                        {'gid': pri_obj.gramps_id,
+                                         'cls': obj_class, 'cls2': item[0]})
+                # Check for backlinks that don't have a reference
+                bl_list = self.db.find_backlink_handles(handle)
+                for item in bl_list:
+                    if not getattr(self.db, "has_%s_handle"
+                                   % item[0].lower())(item[1]):
+                        # backlink to object entirely missing
+                        self.bad_backlinks += 1
+                        logging.warning('    FAIL: the "%(cls)s" [%(gid)s] '
+                                        'has a backlink to a missing'
+                                        ' "%(cls2)s".',
+                                        {'gid': pri_obj.gramps_id,
+                                         'cls': obj_class, 'cls2': item[0]})
+                        continue
+                    obj = getattr(self.db, "get_%s_from_handle"
+                                  % item[0].lower())(item[1])
+                    handle_list = obj.get_referenced_handles_recursively()
+                    if (obj_class, handle) not in handle_list:
+                        # backlink to object which doesn't have reference
+                        self.bad_backlinks += 1
+                        logging.warning('    FAIL: the "%(cls)s" [%(gid)s] '
+                                        'has a backlink to a "%(cls2)s"'
+                                        ' with no corresponding reference.',
+                                        {'gid': pri_obj.gramps_id,
+                                         'cls': obj_class, 'cls2': item[0]})
+
+    def callback(self, *args):
+        self.progress.step()
 
     def check_person_references(self):
         '''Looking for person reference problems'''
@@ -2300,7 +2372,8 @@ class CheckIntegrity:
                   person_references + family_references + place_references +
                   citation_references + repo_references + media_references +
                   note_references + tag_references + name_format + empty_objs +
-                  invalid_dates + source_references + dup_gramps_ids)
+                  invalid_dates + source_references + dup_gramps_ids +
+                  self.bad_backlinks)
 
         if errors == 0:
             if uistate:
@@ -2634,6 +2707,11 @@ class CheckIntegrity:
                     'note': len(self.empty_objects['notes'])
                     }
                 )
+
+        if self.bad_backlinks:
+            self.text.write(_("%d bad backlinks were fixed;\n")
+                            % self.bad_backlinks +
+                            _("All reference maps have been rebuilt.") + '\n')
 
         return errors
 
