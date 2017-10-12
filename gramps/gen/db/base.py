@@ -1433,6 +1433,34 @@ class DbReadBase:
         """
         return False
 
+    def method(self, fmt, *args):
+        """
+        Convenience function to return database methods.
+
+        :param fmt: Method format string.
+        :type fmt: str
+        :param args: Substitutions arguments.
+        :type args: str
+        :returns: Returns a database method or None.
+        :rtype: method
+
+        Examples::
+
+            db.method('get_%s_from_handle, 'Person')
+            Returns the get_person_from_handle method.
+
+            db.method('get_%s_from_%s, 'Event', 'gramps_id')
+            Returns the get_event_from_gramps_id method.
+
+            db.method('get_%s_handles, 'Attribute')
+            Returns None.  Attribute is not a primary object.
+
+        .. warning::  Formats 'iter_%s' and 'get_number_of_%s' are not yet
+                      implemented.
+        """
+        return getattr(self, fmt % tuple([arg.lower() for arg in args]), None)
+
+
 class DbWriteBase(DbReadBase):
     """
     Gramps database object. This object is a base class for all

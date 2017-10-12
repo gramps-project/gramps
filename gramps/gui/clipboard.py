@@ -1573,7 +1573,7 @@ class MultiTreeView(Gtk.TreeView):
                         o = store.get_value(node, 1)
                         if o._objclass == objclass:
                             my_handle = o._handle
-                            obj = self.dbstate.db.get_table_metadata(objclass)["handle_func"](my_handle)
+                            obj = self.dbstate.db.method('get_%s_from_handle', objclass)(my_handle)
                             if obj:
                                 gids.add(obj.gramps_id)
                 menu_item = Gtk.MenuItem(label=_("the object|Create Filter from %s selected...") % glocale.trans_objclass(objclass))

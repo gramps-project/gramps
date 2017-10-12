@@ -779,16 +779,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             return None
 
-    def get_table_names(self):
-        """Return a list of valid table names."""
-        return list(self._get_table_func())
-
-    def get_table_metadata(self, table_name):
-        """Return the metadata for a valid table name."""
-        if table_name in self._get_table_func():
-            return self._get_table_func(table_name)
-        return None
-
     def _txn_begin(self):
         """
         Lowlevel interface to the backend transaction.
