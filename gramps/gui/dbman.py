@@ -665,7 +665,7 @@ class DbManager(CLIDbManager, ManagedWindow):
 
         self.__start_cursor(_("Extracting archive..."))
 
-        dbase = make_database("bsddb")
+        dbase = make_database("bsddb")  # < Unexpected behavior when I've selected SQLite as my default, then archive my family tree 
         dbase.load(new_path)
 
         self.__start_cursor(_("Importing archive..."))
