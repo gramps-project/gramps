@@ -661,11 +661,13 @@ class DbManager(CLIDbManager, ManagedWindow):
         Create a new database, then extracts a revision from RCS and
         imports it into the db
         """
-        new_path, newname = self._create_new_db("%s : %s" % (parent_name, name))
+        dbid = config.get('database.backend')
+        new_path, newname = self._create_new_db("%s : %s" % (parent_name, name),
+                                                dbid=dbid)
 
         self.__start_cursor(_("Extracting archive..."))
 
-        dbase = make_database("bsddb")
+        dbase = make_database(dbid)
         dbase.load(new_path)
 
         self.__start_cursor(_("Importing archive..."))
@@ -811,10 +813,11 @@ class DbManager(CLIDbManager, ManagedWindow):
         while self.existing_name(new_text):
             count += 1
             new_text = "%s %s" % (name, _("(Converted #%d)") % count)
-        new_path, newname = self._create_new_db(new_text, edit_entry=False)
+        dbid = config.get('database.backend')
+        new_path, newname = self._create_new_db(new_text, dbid=dbid,
+                                                edit_entry=False)
         ## Create a new database of correct type:
-        dbase = make_database(config.get('database.backend'))
-        dbase.write_version(new_path)
+        dbase = make_database(dbid)
         dbase.load(new_path)
         ## import from XML
         import_function = None
