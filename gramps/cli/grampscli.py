@@ -241,7 +241,7 @@ class CLIManager:
         self._pmgr = BasePluginManager.get_instance()
         self.user = user
 
-    def open_activate(self, path, username, password):
+    def open_activate(self, path, username=None, password=None):
         """
         Open and make a family tree active
         """
@@ -254,7 +254,7 @@ class CLIManager:
         print(_('ERROR: %s') % errormessage, file=sys.stderr)
         sys.exit(1)
 
-    def _read_recent_file(self, filename, username, password):
+    def _read_recent_file(self, filename, username=None, password=None):
         """
         Called when a file needs to be loaded
         """
