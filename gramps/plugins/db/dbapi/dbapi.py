@@ -35,7 +35,7 @@ import logging
 #
 #------------------------------------------------------------------------
 from gramps.gen.db.dbconst import (DBLOGNAME, DBBACKEND, KEY_TO_NAME_MAP,
-                                   TXNADD, TXNUPD, TXNDEL,
+                                   KEY_TO_CLASS_MAP, TXNADD, TXNUPD, TXNDEL,
                                    PERSON_KEY, FAMILY_KEY, SOURCE_KEY,
                                    EVENT_KEY, MEDIA_KEY, PLACE_KEY, NOTE_KEY,
                                    TAG_KEY, CITATION_KEY, REPOSITORY_KEY,
@@ -664,11 +664,31 @@ class DBAPI(DbGeneric):
             return
         if self._has_handle(obj_key, handle):
             data = self._get_raw_data(obj_key, handle)
+            obj_class = KEY_TO_CLASS_MAP[obj_key]
+            self._remove_backlinks(obj_class, handle, transaction)
             table = KEY_TO_NAME_MAP[obj_key]
             sql = "DELETE FROM %s WHERE handle = ?" % table
             self.dbapi.execute(sql, [handle])
             if not transaction.batch:
                 transaction.add(obj_key, TXNDEL, handle, data, None)
+
+    def _remove_backlinks(self, obj_class, obj_handle, transaction):
+        """
+        Removes all references from this object (backlinks).
+        """
+        # collect backlinks from this object for undo
+        self.dbapi.execute("SELECT ref_class, ref_handle " +
+                           "FROM reference WHERE obj_handle = ?", [obj_handle])
+        rows = self.dbapi.fetchall()
+        # Now, delete backlinks from this object:
+        self.dbapi.execute("DELETE FROM reference WHERE obj_handle = ?;",
+                           [obj_handle])
+        # Add old references to the transaction
+        if not transaction.batch:
+            for (ref_class_name, ref_handle) in rows:
+                key = (obj_handle, ref_handle)
+                old_data = (obj_handle, obj_class, ref_handle, ref_class_name)
+                transaction.add(REFERENCE_KEY, TXNDEL, key, old_data, None)
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
