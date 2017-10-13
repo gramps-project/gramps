@@ -399,7 +399,7 @@ class InteractiveSearchBox():
             self._search_window.hide()
             self._search_entry.set_text("")
             self._treeview.emit('focus-in-event', event)
-        self.__selected_search_result = None
+        self.__selected_search_result = 0
 
     def _position_func(self, userdata=None):
         tree_window = self._treeview.get_window()
