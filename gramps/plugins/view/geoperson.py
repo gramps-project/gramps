@@ -210,6 +210,8 @@ class GeoPerson(GeoGraphyView):
         all handling of visibility is now in rebuild_trees, see that for more
         information.
         """
+        if not self.dbstate.is_open():
+            return
         active = self.get_active()
         self._createmap(None)
         self.uistate.modify_statusbar(self.dbstate)

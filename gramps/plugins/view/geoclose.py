@@ -323,10 +323,12 @@ class GeoClose(GeoGraphyView):
         all handling of visibility is now in rebuild_trees, see that for more
         information.
         """
+        self.lifeway_layer.clear_ways()
+        if not self.dbstate.is_open():
+            return
         active = self.get_active()
         if active:
             person = self.dbstate.db.get_person_from_handle(active)
-            self.lifeway_layer.clear_ways()
             if person is None:
                 self.goto_handle(None)
             else:
