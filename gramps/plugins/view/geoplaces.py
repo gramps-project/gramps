@@ -189,6 +189,8 @@ class GeoPlaces(GeoGraphyView):
         all handling of visibility is now in rebuild_trees, see that for more
         information.
         """
+        if not self.dbstate.is_open():
+            return
         active = self.uistate.get_active('Place')
         if active:
             self._createmap(active)
