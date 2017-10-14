@@ -599,6 +599,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # being new
         if not self.dbapi.table_exists("person"):
             self._create_schema()
+            self._set_metadata('version', str(self.VERSION[0]))
 
         # Load metadata
         self.name_formats = self._get_metadata('name_formats')

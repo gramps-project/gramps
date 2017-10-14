@@ -55,11 +55,6 @@ class DBAPI(DbGeneric):
     """
     def write_version(self, directory):
         """Write files for a newly created DB."""
-        _LOG.debug("Write schema version file to %s", str(self.VERSION[0]))
-        versionpath = os.path.join(directory, "schemaversion.txt")
-        with open(versionpath, "w") as version_file:
-            version_file.write(str(self.VERSION[0]))
-
         versionpath = os.path.join(directory, str(DBBACKEND))
         _LOG.debug("Write database backend file")
         with open(versionpath, "w") as version_file:
