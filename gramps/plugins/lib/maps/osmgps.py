@@ -504,7 +504,7 @@ class OsmGps:
         elif event.button == 2 and event.type == Gdk.EventType.BUTTON_RELEASE:
             self.end_selection = current
             self.zone_selection = False
-        elif event.button == 3 and event.type == Gdk.EventType.BUTTON_PRESS:
+        elif Gdk.Event.triggers_context_menu():
             self.build_nav_menu(osm, event, lat, lon)
         else:
             self.save_center(lat, lon)

@@ -29,6 +29,7 @@ from gi.repository import Pango
 from ... import widgets
 from ...dbguielement import DbGUIElement
 from gramps.gen.config import config
+from ...utils import get_primary_mask
 
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
@@ -129,7 +130,7 @@ class SidebarFilter(DbGUIElement):
             widget.set_tooltip_text(tooltip)
 
     def key_press(self, obj, event):
-        if not (event.get_state() & Gdk.ModifierType.CONTROL_MASK):
+        if not (event.get_state() & get_primary_mask()):
             if event.keyval in (_RETURN, _KP_ENTER):
                 self.clicked(obj)
         return False

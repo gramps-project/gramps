@@ -48,6 +48,7 @@ from .surnamemodel import SurnameModel
 from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 from ...ddtargets import DdTargets
 from gramps.gen.lib import Surname, NameOriginType
+from ...utils import get_primary_mask
 
 #-------------------------------------------------------------------------
 #
@@ -322,11 +323,11 @@ class SurnameTab(EmbeddedList):
         """
         if not EmbeddedList.key_pressed(self, obj, event):
             if event.type == Gdk.EventType.KEY_PRESS and event.keyval in (_TAB,):
-                if not (event.get_state() & (Gdk.ModifierType.SHIFT_MASK |
-                                       Gdk.ModifierType.CONTROL_MASK)):
+                if not (event.get_state() &
+                        get_primary_mask(Gdk.ModifierType.SHIFT_MASK)):
                     return self.next_cell()
-                elif (event.get_state() & (Gdk.ModifierType.SHIFT_MASK |
-                                     Gdk.ModifierType.CONTROL_MASK)):
+                elif (event.get_state() &
+                      get_primary_mask(Gdk.ModifierType.SHIFT_MASK)):
                     return self.prev_cell()
                 else:
                     return
