@@ -222,6 +222,26 @@ class PlaceBaseModel:
         # TODO for Arabic, should the next line's comma be translated?
         return ', '.join(sorted(tag_list, key=glocale.sort_key))
 
+    def clear_cache(self, handle=None):
+        """
+        Clear the LRU cache. Always clear lru_path, because paths may have
+        changed.
+        Need special version of this because Places include Placerefs, and a
+        change in the place the Placeref points to can make the cache stale.
+        So just clearing the effected (deleted/changed) handle is not enough.
+        Note that this is only a (very) short term issue, during processing of
+        signals from a merge event.  The update of the place containing a
+        Placeref will occur.
+        See bug 10184.
+
+        Note that this method overrides the one from 'BaseModel', through
+        FlatBaseModel and TreeBaseModel.  By locating this in PlaceBaseModel,
+        the MRU rules mean this method takes precedence.
+        """
+        self.lru_data.clear()
+        # Invalidates all paths
+        self.lru_path.clear()
+
 #-------------------------------------------------------------------------
 #
 # PlaceListModel
