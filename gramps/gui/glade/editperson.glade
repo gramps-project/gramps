@@ -361,7 +361,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="AtkObject::accessible-name" translatable="yes">Add</property>
                           </object>
                         </child>
-                        <accelerator key="a" signal="activate" modifiers="primary"/>
+                        <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                       <packing>
                         <property name="left_attach">8</property>
@@ -417,7 +417,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                                 <property name="AtkObject::accessible-name" translatable="yes">Private</property>
                               </object>
                             </child>
-                            <accelerator key="p" signal="activate" modifiers="primary"/>
+                            <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -516,7 +516,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="AtkObject::accessible-name" translatable="yes">Edit</property>
                           </object>
                         </child>
-                        <accelerator key="e" signal="activate" modifiers="primary"/>
+                        <accelerator key="e" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                       <packing>
                         <property name="left_attach">8</property>

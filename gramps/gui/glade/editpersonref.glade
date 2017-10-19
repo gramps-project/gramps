@@ -158,7 +158,7 @@ Note: Use Events instead for relations connected to specific time frames or occa
                         <property name="AtkObject::accessible-name" translatable="yes">Private</property>
                       </object>
                     </child>
-                    <accelerator key="p" signal="activate" modifiers="primary"/>
+                    <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
@@ -211,7 +211,7 @@ Note: Use Events instead for relations connected to specific time frames or occa
                         <property name="AtkObject::accessible-name" translatable="yes">Person</property>
                       </object>
                     </child>
-                    <accelerator key="s" signal="activate" modifiers="primary"/>
+                    <accelerator key="s" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>

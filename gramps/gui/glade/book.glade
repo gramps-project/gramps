@@ -118,7 +118,7 @@
                                 <property name="icon_name">document-save</property>
                               </object>
                             </child>
-                            <accelerator key="r" signal="activate" modifiers="primary"/>
+                            <accelerator key="r" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -163,7 +163,7 @@
                                 <property name="icon_name">gtk-index</property>
                               </object>
                             </child>
-                            <accelerator key="s" signal="activate" modifiers="primary"/>
+                            <accelerator key="s" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -333,7 +333,7 @@
                             <property name="icon_name">list-add</property>
                           </object>
                         </child>
-                        <accelerator key="a" signal="activate" modifiers="primary"/>
+                        <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>

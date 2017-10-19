@@ -122,7 +122,7 @@
                     <property name="AtkObject::accessible-name" translatable="yes">Date</property>
                   </object>
                 </child>
-                <accelerator key="d" signal="activate" modifiers="primary"/>
+                <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
               </object>
               <packing>
                 <property name="left_attach">2</property>
@@ -345,7 +345,7 @@ Very High =Direct and primary evidence used, or by dominance of the evidence </p
                     <property name="AtkObject::accessible-name" translatable="yes">Private</property>
                   </object>
                 </child>
-                <accelerator key="p" signal="activate" modifiers="primary"/>
+                <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
               </object>
               <packing>
                 <property name="left_attach">2</property>

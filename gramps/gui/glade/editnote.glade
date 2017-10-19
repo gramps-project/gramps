@@ -233,7 +233,7 @@ Use monospace font to keep preformatting.</property>
                             <property name="AtkObject::accessible-name" translatable="yes">Private</property>
                           </object>
                         </child>
-                        <accelerator key="p" signal="activate" modifiers="primary"/>
+                        <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                       <packing>
                         <property name="left_attach">4</property>
