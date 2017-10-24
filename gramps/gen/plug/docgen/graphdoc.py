@@ -8,7 +8,7 @@
 # Copyright (C) 2007       Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2009       Gary Burton
-# Copyright (C) 2013       Mindaugas Baranauskas <embar@super.lt>
+# Copyright (C) 2017       Mindaugas Baranauskas
 # Copyright (C) 2017       Paul Culley
 #
 # This program is free software; you can redistribute it and/or modify
@@ -911,15 +911,6 @@ class GVPdfGsDoc(GVDocBase):
         options.menu.get_option_by_name('dpi').set_value(72)
         GVDocBase.__init__(self, options, paper_style)
 
-    def init(self):
-        """
-        tell the user how to enable this output format, if necessary
-        """
-        if _GS_CMD == '':
-            from gramps.gen.errors import ReportError
-            raise ReportError(_("'Ghostscript' is not installed"),
-                              _("Use your package manager to install it"))
-
     def close(self):
         """ Implements GVPdfGsDoc.close() """
         GVDocBase.close(self)
@@ -1016,11 +1007,12 @@ FORMATS = []
 
 if _DOT_FOUND:
 
-    FORMATS += [{'type' : "gspdf",
-                 'ext'  : "pdf",
-                 'descr': _("PDF (Ghostscript)"),
-                 'mime' : "application/pdf",
-                 'class': GVPdfGsDoc}]
+    if _GS_CMD != "":
+        FORMATS += [{'type' : "gspdf",
+                     'ext'  : "pdf",
+                     'descr': _("PDF (Ghostscript)"),
+                     'mime' : "application/pdf",
+                     'class': GVPdfGsDoc}]
 
     FORMATS += [{'type' : "gvpdf",
                  'ext'  : "pdf",
