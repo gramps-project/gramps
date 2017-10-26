@@ -808,7 +808,7 @@ class ListView(NavigationView):
             self.build_tree()
             # Reselect one, if it still exists after rebuild:
             nav_type = self.navigation_type()
-            lookup_handle = getattr(self.dbstate.db, 'get_%s_from_handle' % nav_type)
+            lookup_handle = self.dbstate.db.method('get_%s_from_handle', nav_type)
             for handle in selected_ids:
                 # Still exist?
                 try:
