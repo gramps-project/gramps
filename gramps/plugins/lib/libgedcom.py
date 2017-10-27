@@ -637,8 +637,8 @@ for __val, __key in PERSONALCONSTANTATTRIBUTES.items():
 #
 #-------------------------------------------------------------------------
 HMONTH = [
-    "", "ELUL", "TSH", "CSH", "KSL", "TVT", "SHV", "ADR",
-    "ADS", "NSN", "IYR", "SVN", "TMZ", "AAV", "ELL" ]
+    "", "TSH", "CSH", "KSL", "TVT", "SHV", "ADR",
+    "ADS", "NSN", "IYR", "SVN", "TMZ", "AAV", "ELL"]
 
 FMONTH = [
     "",     "VEND", "BRUM", "FRIM", "NIVO", "PLUV", "VENT",
