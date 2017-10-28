@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps50\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-16 08:57+0300\n"
-"PO-Revision-Date: 2017-10-16 09:04+0300\n"
+"POT-Creation-Date: 2017-10-28 10:09+0300\n"
+"PO-Revision-Date: 2017-10-28 10:18+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -1680,17 +1680,17 @@ msgstr "Заблокировано?"
 #: ../gramps/plugins/textreport/detdescendantreport.py:831
 #: ../gramps/plugins/textreport/indivcomplete.py:85
 #: ../gramps/plugins/textreport/indivcomplete.py:935
-#: ../gramps/plugins/tool/check.py:2332 ../gramps/plugins/tool/check.py:2358
+#: ../gramps/plugins/tool/check.py:2405 ../gramps/plugins/tool/check.py:2431
 #: ../gramps/plugins/tool/dumpgenderstats.py:74
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:100
-#: ../gramps/plugins/view/geoclose.py:521
+#: ../gramps/plugins/view/geoclose.py:523
 #: ../gramps/plugins/view/geofamclose.py:271
-#: ../gramps/plugins/view/geofamclose.py:712
-#: ../gramps/plugins/view/geofamily.py:465
+#: ../gramps/plugins/view/geofamclose.py:715
+#: ../gramps/plugins/view/geofamily.py:467
 #: ../gramps/plugins/view/geomoves.py:596
-#: ../gramps/plugins/view/geoperson.py:475
-#: ../gramps/plugins/view/geoplaces.py:526
+#: ../gramps/plugins/view/geoperson.py:477
+#: ../gramps/plugins/view/geoplaces.py:528
 #: ../gramps/plugins/view/relview.py:468 ../gramps/plugins/view/relview.py:1008
 #: ../gramps/plugins/view/relview.py:1065
 #: ../gramps/plugins/webreport/basepage.py:1749
@@ -3794,11 +3794,11 @@ msgid "Miscellaneous filters"
 msgstr "Расширенные фильтры"
 
 #: ../gramps/gen/filters/rules/_rule.py:54 ../gramps/gui/glade/rule.glade:950
-#: ../gramps/plugins/view/geoclose.py:533
-#: ../gramps/plugins/view/geofamclose.py:724
-#: ../gramps/plugins/view/geofamily.py:478
+#: ../gramps/plugins/view/geoclose.py:535
+#: ../gramps/plugins/view/geofamclose.py:727
+#: ../gramps/plugins/view/geofamily.py:480
 #: ../gramps/plugins/view/geomoves.py:609
-#: ../gramps/plugins/view/geoperson.py:486
+#: ../gramps/plugins/view/geoperson.py:488
 msgid "No description"
 msgstr "Нет описания"
 
@@ -6625,7 +6625,7 @@ msgstr "Дата"
 #: ../gramps/gen/lib/placetype.py:71
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:72
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:54
-#: ../gramps/plugins/view/geoplaces.py:535
+#: ../gramps/plugins/view/geoplaces.py:537
 #: ../gramps/plugins/view/repoview.py:89
 #: ../gramps/plugins/webreport/basepage.py:1098
 #: ../gramps/plugins/webreport/basepage.py:2535
@@ -6637,7 +6637,7 @@ msgstr "Улица"
 #: ../gramps/gen/lib/placetype.py:70 ../gramps/gui/configure.py:518
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:73
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:55
-#: ../gramps/plugins/view/geoplaces.py:532
+#: ../gramps/plugins/view/geoplaces.py:534
 #: ../gramps/plugins/view/repoview.py:90
 #: ../gramps/plugins/webreport/basepage.py:1099
 #: ../gramps/plugins/webreport/basepage.py:2536
@@ -6649,7 +6649,7 @@ msgstr "Местность"
 #: ../gramps/gen/lib/placetype.py:68 ../gramps/gui/configure.py:519
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:74
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
-#: ../gramps/plugins/view/geoplaces.py:583
+#: ../gramps/plugins/view/geoplaces.py:585
 #: ../gramps/plugins/view/repoview.py:91
 #: ../gramps/plugins/webreport/basepage.py:1100
 #: ../gramps/plugins/webreport/basepage.py:2537
@@ -6660,9 +6660,9 @@ msgstr "Город"
 #: ../gramps/gen/lib/address.py:119 ../gramps/gen/lib/location.py:97
 #: ../gramps/gen/lib/placetype.py:67
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:57
-#: ../gramps/gui/views/treemodels/placemodel.py:285
+#: ../gramps/gui/views/treemodels/placemodel.py:305
 #: ../gramps/plugins/lib/maps/placeselection.py:134
-#: ../gramps/plugins/view/geoplaces.py:565
+#: ../gramps/plugins/view/geoplaces.py:567
 #: ../gramps/plugins/webreport/basepage.py:1102
 #: ../gramps/plugins/webreport/basepage.py:2540
 #: ../gramps/plugins/webreport/basepage.py:2566
@@ -6672,9 +6672,9 @@ msgstr "Область/Район/Уезд"
 #: ../gramps/gen/lib/address.py:121 ../gramps/gen/lib/location.py:99
 #: ../gramps/gen/lib/placetype.py:66
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:58
-#: ../gramps/gui/views/treemodels/placemodel.py:285
+#: ../gramps/gui/views/treemodels/placemodel.py:305
 #: ../gramps/plugins/lib/maps/placeselection.py:133
-#: ../gramps/plugins/view/geoplaces.py:562
+#: ../gramps/plugins/view/geoplaces.py:564
 msgid "State"
 msgstr "Республика"
 
@@ -6682,9 +6682,9 @@ msgstr "Республика"
 #: ../gramps/gen/lib/placetype.py:65 ../gramps/gui/configure.py:521
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:76
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:59
-#: ../gramps/gui/views/treemodels/placemodel.py:285
+#: ../gramps/gui/views/treemodels/placemodel.py:305
 #: ../gramps/plugins/lib/maps/placeselection.py:132
-#: ../gramps/plugins/view/geoplaces.py:559
+#: ../gramps/plugins/view/geoplaces.py:561
 #: ../gramps/plugins/view/repoview.py:93
 #: ../gramps/plugins/webreport/basepage.py:1104
 #: ../gramps/plugins/webreport/basepage.py:2544
@@ -6737,7 +6737,7 @@ msgstr "Значение"
 #: ../gramps/gen/lib/srcmediatype.py:57 ../gramps/gen/lib/urltype.py:48
 #: ../gramps/gui/autocomp.py:179
 #: ../gramps/plugins/textreport/indivcomplete.py:74
-#: ../gramps/plugins/view/geoplaces.py:529
+#: ../gramps/plugins/view/geoplaces.py:531
 msgid "Custom"
 msgstr "Другой"
 
@@ -6851,7 +6851,7 @@ msgstr "Указатель"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:191
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:171
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:154
-#: ../gramps/plugins/tool/check.py:2386
+#: ../gramps/plugins/tool/check.py:2459
 msgid "None"
 msgstr "Нет"
 
@@ -7246,7 +7246,7 @@ msgstr "Событие"
 #: ../gramps/gui/glade/editevent.glade:270
 #: ../gramps/gui/plug/_guioptions.py:1348
 #: ../gramps/gui/selectors/selectevent.py:72 ../gramps/gui/viewmanager.py:609
-#: ../gramps/gui/views/treemodels/placemodel.py:285
+#: ../gramps/gui/views/treemodels/placemodel.py:305
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/export/exportcsv.py:466
 #: ../gramps/plugins/gramplet/coordinates.py:93
@@ -8050,7 +8050,7 @@ msgid "Location"
 msgstr "Расположение"
 
 #: ../gramps/gen/lib/location.py:107 ../gramps/gen/lib/placetype.py:69
-#: ../gramps/plugins/view/geoplaces.py:580
+#: ../gramps/plugins/view/geoplaces.py:582
 msgid "Parish"
 msgstr "Приход"
 
@@ -8078,7 +8078,7 @@ msgid "Media ref"
 msgstr "Ссылка на документ"
 
 #: ../gramps/gen/lib/mediaref.py:110 ../gramps/gen/lib/placetype.py:73
-#: ../gramps/plugins/view/geoplaces.py:571
+#: ../gramps/plugins/view/geoplaces.py:573
 msgid "Region"
 msgstr "Регион"
 
@@ -8633,52 +8633,52 @@ msgstr "Язык"
 msgid "Place ref"
 msgstr "Ссылка на место"
 
-#: ../gramps/gen/lib/placetype.py:72 ../gramps/plugins/view/geoplaces.py:568
+#: ../gramps/gen/lib/placetype.py:72 ../gramps/plugins/view/geoplaces.py:570
 msgid "Province"
 msgstr "Провинция"
 
-#: ../gramps/gen/lib/placetype.py:74 ../gramps/plugins/view/geoplaces.py:574
+#: ../gramps/gen/lib/placetype.py:74 ../gramps/plugins/view/geoplaces.py:576
 msgid "Department"
 msgstr "Департамент"
 
-#: ../gramps/gen/lib/placetype.py:75 ../gramps/plugins/view/geoplaces.py:538
+#: ../gramps/gen/lib/placetype.py:75 ../gramps/plugins/view/geoplaces.py:540
 msgid "Neighborhood"
 msgstr "Соседство"
 
-#: ../gramps/gen/lib/placetype.py:76 ../gramps/plugins/view/geoplaces.py:577
+#: ../gramps/gen/lib/placetype.py:76 ../gramps/plugins/view/geoplaces.py:579
 msgid "District"
 msgstr "Округ"
 
-#: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:541
+#: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:543
 msgid "Borough"
 msgstr "Район"
 
-#: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:589
+#: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:591
 msgid "Municipality"
 msgstr "Муниципальная"
 
-#: ../gramps/gen/lib/placetype.py:79 ../gramps/plugins/view/geoplaces.py:586
+#: ../gramps/gen/lib/placetype.py:79 ../gramps/plugins/view/geoplaces.py:588
 msgid "Town"
 msgstr "Город (небольшой)"
 
-#: ../gramps/gen/lib/placetype.py:80 ../gramps/plugins/view/geoplaces.py:544
+#: ../gramps/gen/lib/placetype.py:80 ../gramps/plugins/view/geoplaces.py:546
 msgid "Village"
 msgstr "Посёлок"
 
-#: ../gramps/gen/lib/placetype.py:81 ../gramps/plugins/view/geoplaces.py:547
+#: ../gramps/gen/lib/placetype.py:81 ../gramps/plugins/view/geoplaces.py:549
 msgid "Hamlet"
 msgstr "Деревня"
 
-#: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:550
+#: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:552
 msgid "Farm"
 msgstr "Ферма"
 
-#: ../gramps/gen/lib/placetype.py:83 ../gramps/plugins/view/geoplaces.py:553
+#: ../gramps/gen/lib/placetype.py:83 ../gramps/plugins/view/geoplaces.py:555
 msgid "Building"
 msgstr "Здание"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:89
-#: ../gramps/plugins/view/geoplaces.py:556
+#: ../gramps/plugins/view/geoplaces.py:558
 #: ../gramps/plugins/webreport/basepage.py:2636
 #: ../gramps/plugins/webreport/source.py:161
 msgid "Number"
@@ -11638,7 +11638,7 @@ msgstr "Выбрать каталог документов"
 #: ../gramps/gui/widgets/progressdialog.py:437
 #: ../gramps/plugins/lib/maps/geography.py:1008
 #: ../gramps/plugins/lib/maps/geography.py:1262
-#: ../gramps/plugins/tool/check.py:763 ../gramps/plugins/tool/eventcmp.py:398
+#: ../gramps/plugins/tool/check.py:780 ../gramps/plugins/tool/eventcmp.py:398
 #: ../gramps/plugins/tool/populatesources.py:90
 #: ../gramps/plugins/tool/testcasegenerator.py:327
 msgid "_Cancel"
@@ -11849,7 +11849,7 @@ msgstr "Информация о базе данных"
 #: ../gramps/gui/plug/_guioptions.py:79
 #: ../gramps/gui/plug/report/_reportdialog.py:165 ../gramps/gui/utils.py:193
 #: ../gramps/gui/viewmanager.py:1825 ../gramps/gui/views/tags.py:646
-#: ../gramps/plugins/tool/check.py:764 ../gramps/plugins/tool/patchnames.py:118
+#: ../gramps/plugins/tool/check.py:781 ../gramps/plugins/tool/patchnames.py:118
 #: ../gramps/plugins/tool/populatesources.py:91
 #: ../gramps/plugins/tool/testcasegenerator.py:328
 msgid "_OK"
@@ -13091,15 +13091,15 @@ msgid "New Event"
 msgstr "Новое событие"
 
 #: ../gramps/gui/editors/editevent.py:228
-#: ../gramps/plugins/view/geoclose.py:545
-#: ../gramps/plugins/view/geoevents.py:341
-#: ../gramps/plugins/view/geoevents.py:375
-#: ../gramps/plugins/view/geofamclose.py:735
-#: ../gramps/plugins/view/geofamily.py:430
+#: ../gramps/plugins/view/geoclose.py:547
+#: ../gramps/plugins/view/geoevents.py:343
+#: ../gramps/plugins/view/geoevents.py:377
+#: ../gramps/plugins/view/geofamclose.py:738
+#: ../gramps/plugins/view/geofamily.py:432
 #: ../gramps/plugins/view/geomoves.py:620
-#: ../gramps/plugins/view/geoperson.py:435
-#: ../gramps/plugins/view/geoperson.py:456
-#: ../gramps/plugins/view/geoperson.py:497
+#: ../gramps/plugins/view/geoperson.py:437
+#: ../gramps/plugins/view/geoperson.py:458
+#: ../gramps/plugins/view/geoperson.py:499
 msgid "Edit Event"
 msgstr "Редактировать событие"
 
@@ -13317,7 +13317,7 @@ msgstr "Новая семья"
 
 #: ../gramps/gui/editors/editfamily.py:505
 #: ../gramps/gui/editors/editfamily.py:1134
-#: ../gramps/plugins/view/geofamily.py:422
+#: ../gramps/plugins/view/geofamily.py:424
 msgid "Edit Family"
 msgstr "Редактировать семью"
 
@@ -13674,7 +13674,7 @@ msgid "manual|Editing_information_about_people"
 msgstr "Изменение_информации_о_людях"
 
 #: ../gramps/gui/editors/editperson.py:606
-#: ../gramps/plugins/view/geofamily.py:426
+#: ../gramps/plugins/view/geofamily.py:428
 msgid "Edit Person"
 msgstr "Редактировать информацию о человеке"
 
@@ -13821,8 +13821,8 @@ msgstr ""
 
 #: ../gramps/gui/editors/editplace.py:217
 #: ../gramps/plugins/lib/maps/geography.py:922
-#: ../gramps/plugins/view/geoplaces.py:430
-#: ../gramps/plugins/view/geoplaces.py:456
+#: ../gramps/plugins/view/geoplaces.py:432
+#: ../gramps/plugins/view/geoplaces.py:458
 msgid "Edit Place"
 msgstr "Редактировать место"
 
@@ -29147,17 +29147,17 @@ msgid "Your Gtk version is too old."
 msgstr "Версия Gtk слишком старая."
 
 #: ../gramps/plugins/lib/maps/geography.py:926
-#: ../gramps/plugins/view/geoclose.py:550
-#: ../gramps/plugins/view/geoevents.py:346
-#: ../gramps/plugins/view/geoevents.py:379
-#: ../gramps/plugins/view/geofamclose.py:740
-#: ../gramps/plugins/view/geofamily.py:434
+#: ../gramps/plugins/view/geoclose.py:552
+#: ../gramps/plugins/view/geoevents.py:348
+#: ../gramps/plugins/view/geoevents.py:381
+#: ../gramps/plugins/view/geofamclose.py:743
+#: ../gramps/plugins/view/geofamily.py:436
 #: ../gramps/plugins/view/geomoves.py:625
-#: ../gramps/plugins/view/geoperson.py:440
-#: ../gramps/plugins/view/geoperson.py:461
-#: ../gramps/plugins/view/geoperson.py:501
-#: ../gramps/plugins/view/geoplaces.py:435
-#: ../gramps/plugins/view/geoplaces.py:460
+#: ../gramps/plugins/view/geoperson.py:442
+#: ../gramps/plugins/view/geoperson.py:463
+#: ../gramps/plugins/view/geoperson.py:503
+#: ../gramps/plugins/view/geoplaces.py:437
+#: ../gramps/plugins/view/geoplaces.py:462
 msgid "Center on this place"
 msgstr "Центрировать на этом месте"
 
@@ -31725,7 +31725,7 @@ msgstr[0] "{number_of} запись о событии изменена."
 msgstr[1] "{number_of} записи о событиях изменены."
 msgstr[2] "{number_of} записей о событиях изменены."
 
-#: ../gramps/plugins/tool/check.py:119 ../gramps/plugins/tool/check.py:278
+#: ../gramps/plugins/tool/check.py:119 ../gramps/plugins/tool/check.py:295
 msgid "Checking Database"
 msgstr "Проверяю базу данных"
 
@@ -31752,7 +31752,19 @@ msgstr ""
 msgid "Check Integrity"
 msgstr "Проверка целостности"
 
-#: ../gramps/plugins/tool/check.py:281
+#. for bsddb the check_backlinks doesn't work in 'batch' mode because
+#. the table used for backlinks is closed.
+#: ../gramps/plugins/tool/check.py:230
+msgid "Check Backlink Integrity"
+msgstr "Проверка совместимости обратных ссылок"
+
+#: ../gramps/plugins/tool/check.py:237
+#: ../gramps/plugins/tool/rebuildrefmap.py:78
+#: ../gramps/plugins/tool/rebuildrefmap.py:81
+msgid "Rebuilding reference maps..."
+msgstr "Перестроение таблицы ссылок..."
+
+#: ../gramps/plugins/tool/check.py:298
 #, python-format
 msgid ""
 "Objects referenced by this note were referenced but missing so that is why "
@@ -31761,43 +31773,43 @@ msgstr ""
 "Объекты на которые ссылается эта заметка отсутствуют, поэтому они были "
 "созданы при запуске Проверки и исправления в %s."
 
-#: ../gramps/plugins/tool/check.py:303
+#: ../gramps/plugins/tool/check.py:320
 msgid "Looking for invalid name format references"
 msgstr "Поиск сломанных ссылкок на формат имени"
 
-#: ../gramps/plugins/tool/check.py:355
+#: ../gramps/plugins/tool/check.py:372
 msgid "Looking for duplicate spouses"
 msgstr "Поиск дублированных супругов"
 
-#: ../gramps/plugins/tool/check.py:377
+#: ../gramps/plugins/tool/check.py:394
 msgid "Looking for character encoding errors"
 msgstr "Поиск ошибок кодировки символов"
 
-#: ../gramps/plugins/tool/check.py:417
+#: ../gramps/plugins/tool/check.py:434
 msgid "Looking for ctrl characters in notes"
 msgstr "Поиск ошибочных символов в записках"
 
-#: ../gramps/plugins/tool/check.py:444
+#: ../gramps/plugins/tool/check.py:461
 msgid "Looking for bad alternate place names"
 msgstr "Поиск неверных альтернативных названий мест"
 
-#: ../gramps/plugins/tool/check.py:473
+#: ../gramps/plugins/tool/check.py:490
 msgid "Looking for broken family links"
 msgstr "Поиск сломанных семейных связей"
 
-#: ../gramps/plugins/tool/check.py:683
+#: ../gramps/plugins/tool/check.py:700
 msgid "Looking for unused objects"
 msgstr "Поиск неиспользуемых объектов"
 
-#: ../gramps/plugins/tool/check.py:761
+#: ../gramps/plugins/tool/check.py:778
 msgid "Select file"
 msgstr "Выберите файл"
 
-#: ../gramps/plugins/tool/check.py:793
+#: ../gramps/plugins/tool/check.py:810
 msgid "Media object could not be found"
 msgstr "Документ не найден"
 
-#: ../gramps/plugins/tool/check.py:794
+#: ../gramps/plugins/tool/check.py:811
 #, python-format
 msgid ""
 "The file:\n"
@@ -31814,116 +31826,120 @@ msgstr ""
 "ссылку из базы данных,\n"
 "оставить ссылку на отсутствующий файл или выбрать новый файл."
 
-#: ../gramps/plugins/tool/check.py:877
+#: ../gramps/plugins/tool/check.py:894
 msgid "Looking for empty people records"
 msgstr "Поиск пустых записей о лицах"
 
-#: ../gramps/plugins/tool/check.py:884
+#: ../gramps/plugins/tool/check.py:901
 msgid "Looking for empty family records"
 msgstr "Поиск пустых записей о семьях"
 
-#: ../gramps/plugins/tool/check.py:891
+#: ../gramps/plugins/tool/check.py:908
 msgid "Looking for empty event records"
 msgstr "Поиск пустых записей о событиях"
 
-#: ../gramps/plugins/tool/check.py:898
+#: ../gramps/plugins/tool/check.py:915
 msgid "Looking for empty source records"
 msgstr "Поиск пустых записей об источниках"
 
-#: ../gramps/plugins/tool/check.py:905
+#: ../gramps/plugins/tool/check.py:922
 msgid "Looking for empty citation records"
 msgstr "Поиск пустых цитат"
 
-#: ../gramps/plugins/tool/check.py:912
+#: ../gramps/plugins/tool/check.py:929
 msgid "Looking for empty place records"
 msgstr "Поиск пустых записей о местах"
 
-#: ../gramps/plugins/tool/check.py:919
+#: ../gramps/plugins/tool/check.py:936
 msgid "Looking for empty media records"
 msgstr "Поиск пустых записей о документах"
 
-#: ../gramps/plugins/tool/check.py:926
+#: ../gramps/plugins/tool/check.py:943
 msgid "Looking for empty repository records"
 msgstr "Поиск пустых записей о хранилищах"
 
-#: ../gramps/plugins/tool/check.py:933
+#: ../gramps/plugins/tool/check.py:950
 msgid "Looking for empty note records"
 msgstr "Поиск пустых заметкок"
 
-#: ../gramps/plugins/tool/check.py:977
+#: ../gramps/plugins/tool/check.py:994
 msgid "Looking for empty families"
 msgstr "Поиск пустых семей"
 
-#: ../gramps/plugins/tool/check.py:1012
+#: ../gramps/plugins/tool/check.py:1029
 msgid "Looking for broken parent relationships"
 msgstr "Поиск нарушенных отношений родителей/детей"
 
-#: ../gramps/plugins/tool/check.py:1051
+#: ../gramps/plugins/tool/check.py:1068
 msgid "Looking for event problems"
 msgstr "Поиск сломанных событий"
 
-#: ../gramps/plugins/tool/check.py:1222
+#: ../gramps/plugins/tool/check.py:1240
+msgid "Looking for backlink reference problems"
+msgstr "Поиск ошибок связанных с обратными ссылками"
+
+#: ../gramps/plugins/tool/check.py:1294
 msgid "Looking for person reference problems"
 msgstr "Поиск сломанных ссылок на людей"
 
-#: ../gramps/plugins/tool/check.py:1255
+#: ../gramps/plugins/tool/check.py:1327
 msgid "Looking for family reference problems"
 msgstr "Поиск сломанных ссылок на семьи"
 
-#: ../gramps/plugins/tool/check.py:1281
+#: ../gramps/plugins/tool/check.py:1353
 msgid "Looking for repository reference problems"
 msgstr "Поиск сломанных ссылок на хранилища"
 
-#: ../gramps/plugins/tool/check.py:1316
+#: ../gramps/plugins/tool/check.py:1388
 msgid "Looking for place reference problems"
 msgstr "Поиск сломанных ссылок на места"
 
-#: ../gramps/plugins/tool/check.py:1427
+#: ../gramps/plugins/tool/check.py:1499
 msgid "Looking for citation reference problems"
 msgstr "Поиск сломанных ссылок на цитаты"
 
-#: ../gramps/plugins/tool/check.py:1545
+#: ../gramps/plugins/tool/check.py:1617
 msgid "Looking for source reference problems"
 msgstr "Поиск сломанных ссылок на источники"
 
-#: ../gramps/plugins/tool/check.py:1587
+#: ../gramps/plugins/tool/check.py:1659
 msgid "Looking for media object reference problems"
 msgstr "Поиск сломанных ссылок на документы"
 
-#: ../gramps/plugins/tool/check.py:1709
+#: ../gramps/plugins/tool/check.py:1781
 msgid "Looking for note reference problems"
 msgstr "Поиск сломанных ссылок на заметки"
 
-#: ../gramps/plugins/tool/check.py:1837
+#: ../gramps/plugins/tool/check.py:1909
 msgid "Updating checksums on media"
 msgstr "Обновление контрольных сумм документов"
 
-#: ../gramps/plugins/tool/check.py:1863
+#: ../gramps/plugins/tool/check.py:1935
 msgid "Looking for tag reference problems"
 msgstr "Поиск сломанных ссылок на метки"
 
-#: ../gramps/plugins/tool/check.py:2008
+#: ../gramps/plugins/tool/check.py:2080
 msgid "Looking for media source reference problems"
 msgstr "Поиск сломанных ссылок на документы"
 
-#: ../gramps/plugins/tool/check.py:2076
+#: ../gramps/plugins/tool/check.py:2148
 msgid "Looking for Duplicated Gramps ID problems"
 msgstr "Поиск проблем связанных с дублированными Gramps ID"
 
-#: ../gramps/plugins/tool/check.py:2307
+#: ../gramps/plugins/tool/check.py:2380
 msgid "No errors were found"
 msgstr "Ошибок не найдено"
 
-#: ../gramps/plugins/tool/check.py:2308
+#: ../gramps/plugins/tool/check.py:2381
 msgid "The database has passed internal checks"
 msgstr "База данных прошла все внутренние проверки успешно"
 
-#: ../gramps/plugins/tool/check.py:2311
+#: ../gramps/plugins/tool/check.py:2384
 msgid "No errors were found: the database has passed internal checks."
 msgstr "База данных прошла все внутренние проверки успешно."
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2318
+#: ../gramps/plugins/tool/check.py:2391
 #, python-brace-format
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
@@ -31932,18 +31948,18 @@ msgstr[1] "{quantity} нарушенные связи ребёнок/семья 
 msgstr[2] "{quantity} нарушенных связей ребёнок/семья было исправлено\n"
 
 # !!!FIXME!!!
-#: ../gramps/plugins/tool/check.py:2326
+#: ../gramps/plugins/tool/check.py:2399
 msgid "Non existing child"
 msgstr "Несуществующий ребёнок"
 
 # !!!FIXME!!!
-#: ../gramps/plugins/tool/check.py:2337
+#: ../gramps/plugins/tool/check.py:2410
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "%(person)s был(а) удален(а) из семьи %(family)s\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2344
+#: ../gramps/plugins/tool/check.py:2417
 #, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
@@ -31951,17 +31967,17 @@ msgstr[0] "{quantity} нарушенная связь супруги/семья 
 msgstr[1] "{quantity} нарушенные связи супруги/семья были исправлены\n"
 msgstr[2] "{quantity} нарушенных связей супруги/семья было исправлено\n"
 
-#: ../gramps/plugins/tool/check.py:2352 ../gramps/plugins/tool/check.py:2380
+#: ../gramps/plugins/tool/check.py:2425 ../gramps/plugins/tool/check.py:2453
 msgid "Non existing person"
 msgstr "Несуществующее лицо"
 
-#: ../gramps/plugins/tool/check.py:2363 ../gramps/plugins/tool/check.py:2391
+#: ../gramps/plugins/tool/check.py:2436 ../gramps/plugins/tool/check.py:2464
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s был(а) восстановлен(а) в семье %(family)s\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2370
+#: ../gramps/plugins/tool/check.py:2443
 #, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
@@ -31970,7 +31986,7 @@ msgstr[1] "{quantity} дублированные связи супруги/се�
 msgstr[2] "{quantity} дублированных связей супруги/семья было найдено\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2398
+#: ../gramps/plugins/tool/check.py:2471
 #, python-brace-format
 msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
@@ -31980,7 +31996,7 @@ msgstr[1] "Удалены {quantity} семьи без родителей или
 msgstr[2] "Удалено {quantity} семей без родителей или детей.\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2410
+#: ../gramps/plugins/tool/check.py:2483
 #, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
@@ -31989,7 +32005,7 @@ msgstr[1] "Исправлено {quantity} нарушенных семейных
 msgstr[2] "Исправлено {quantity} нарушенных семейных отношений\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2418
+#: ../gramps/plugins/tool/check.py:2491
 #, python-brace-format
 msgid "{quantity} place alternate name fixed\n"
 msgid_plural "{quantity} place alternate names fixed\n"
@@ -31997,7 +32013,7 @@ msgstr[0] "{quantity} альтернативное название места �
 msgstr[1] "{quantity} альтернативных названия мест исправлено\n"
 msgstr[2] "{quantity} альтернативных названий мест исправлено\n"
 
-#: ../gramps/plugins/tool/check.py:2427
+#: ../gramps/plugins/tool/check.py:2500
 #, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
@@ -32007,7 +32023,7 @@ msgstr[2] "{quantity} лиц на которые ссылаются не най�
 
 # !!!FIXME!!!
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2435
+#: ../gramps/plugins/tool/check.py:2508
 #, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
@@ -32016,7 +32032,7 @@ msgstr[1] "{quantity} семьи на которые ссылаются не н�
 msgstr[2] "{quantity} семей на которые ссылаются не найдены\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2445
+#: ../gramps/plugins/tool/check.py:2518
 #, python-brace-format
 msgid "{quantity} date was corrected\n"
 msgid_plural "{quantity} dates were corrected\n"
@@ -32025,7 +32041,7 @@ msgstr[1] "{quantity} даты исправлены\n"
 msgstr[2] "{quantity} дат исправлено\n"
 
 # !!!FIXME!!!
-#: ../gramps/plugins/tool/check.py:2454
+#: ../gramps/plugins/tool/check.py:2527
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
@@ -32035,7 +32051,7 @@ msgstr[2] "{quantity} хранилищ на которые ссылаются н
 
 # !!!FIXME!!!
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2464 ../gramps/plugins/tool/check.py:2551
+#: ../gramps/plugins/tool/check.py:2537 ../gramps/plugins/tool/check.py:2624
 #, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
@@ -32043,7 +32059,7 @@ msgstr[0] "{quantity} документ на который ссылаются н
 msgstr[1] "{quantity} документа на которые ссылаются не найдены\n"
 msgstr[2] "{quantity} документов на которые ссылаются не найдены\n"
 
-#: ../gramps/plugins/tool/check.py:2475
+#: ../gramps/plugins/tool/check.py:2548
 #, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} media objects were kept\n"
@@ -32052,7 +32068,7 @@ msgstr[1] "Ссылки на {quantity} отсутствующих докуме�
 msgstr[2] "Ссылки на {quantity} отсутствующих документов были сохранены\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2483
+#: ../gramps/plugins/tool/check.py:2556
 #, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
@@ -32061,7 +32077,7 @@ msgstr[1] "{quantity} отсутствующих документа замене
 msgstr[2] "{quantity} отсутствующих документов заменено\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2491
+#: ../gramps/plugins/tool/check.py:2564
 #, python-brace-format
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
@@ -32071,7 +32087,7 @@ msgstr[2] "{quantity} отсутствующих документов удале
 
 # !!!FIXME!!!
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2499
+#: ../gramps/plugins/tool/check.py:2572
 #, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
@@ -32080,7 +32096,7 @@ msgstr[1] "{quantity} события на которые ссылаются не
 msgstr[2] "{quantity} событий на которые ссылаются не найдены\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2507
+#: ../gramps/plugins/tool/check.py:2580
 #, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
@@ -32089,7 +32105,7 @@ msgstr[1] "{quantity} неверных названия событий рожд�
 msgstr[2] "{quantity} неверных названия событий рождения исправлено\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2515
+#: ../gramps/plugins/tool/check.py:2588
 #, python-brace-format
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
@@ -32099,7 +32115,7 @@ msgstr[2] "{quantity} неверных названий события смер�
 
 # !!!FIXME!!!
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2523
+#: ../gramps/plugins/tool/check.py:2596
 #, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
@@ -32107,7 +32123,7 @@ msgstr[0] "{quantity} место на которое ссылаются не н�
 msgstr[1] "{quantity} места на которые ссылаются не найдены\n"
 msgstr[2] "{quantity} мест на которые ссылаются не найдены\n"
 
-#: ../gramps/plugins/tool/check.py:2532
+#: ../gramps/plugins/tool/check.py:2605
 #, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
@@ -32115,7 +32131,7 @@ msgstr[0] "{quantity} цитата на которую ссылаются не �
 msgstr[1] "{quantity} цитаты на которые ссылаются не найдены\n"
 msgstr[2] "{quantity} цитат на которые ссылаются не найдены\n"
 
-#: ../gramps/plugins/tool/check.py:2542
+#: ../gramps/plugins/tool/check.py:2615
 #, python-brace-format
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
@@ -32124,7 +32140,7 @@ msgstr[1] "{quantity} источника на которые ссылаются 
 msgstr[2] "{quantity} источников на которые ссылаются не найдены\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2560
+#: ../gramps/plugins/tool/check.py:2633
 #, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
@@ -32133,7 +32149,7 @@ msgstr[1] "{quantity} заметки на которые ссылаются не
 msgstr[2] "{quantity} заметкок на которые ссылаются не найдены\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2570 ../gramps/plugins/tool/check.py:2580
+#: ../gramps/plugins/tool/check.py:2643 ../gramps/plugins/tool/check.py:2653
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
@@ -32142,7 +32158,7 @@ msgstr[1] "{quantity} метки на которые ссылаются не н�
 msgstr[2] "{quantity} меток на которые ссылаются не найдены\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2590
+#: ../gramps/plugins/tool/check.py:2663
 #, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
@@ -32150,7 +32166,7 @@ msgstr[0] "{quantity} неверная ссылка на формат имён �
 msgstr[1] "{quantity} неверные ссылки на формат имён удалены\n"
 msgstr[2] "{quantity} неверных ссылок на формат имён удалено\n"
 
-#: ../gramps/plugins/tool/check.py:2601
+#: ../gramps/plugins/tool/check.py:2674
 #, python-brace-format
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
@@ -32159,7 +32175,7 @@ msgstr[1] "{quantity} неверных источника цитат испра�
 msgstr[2] "{quantity} неверных источников цитат исправлено\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2610
+#: ../gramps/plugins/tool/check.py:2683
 #, python-brace-format
 msgid "{quantity} Duplicated Gramps ID fixed\n"
 msgid_plural "{quantity} Duplicated Gramps IDs fixed\n"
@@ -32168,7 +32184,7 @@ msgstr[1] "{quantity} дублированных Gramps ID исправлено\
 msgstr[2] "{quantity} дублированных Gramps ID исправлено\n"
 
 # need proper plural
-#: ../gramps/plugins/tool/check.py:2617
+#: ../gramps/plugins/tool/check.py:2690
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -32191,11 +32207,22 @@ msgstr ""
 "   %(repo)d хранилищ\n"
 "   %(note)d заметок\n"
 
-#: ../gramps/plugins/tool/check.py:2664
+#: ../gramps/plugins/tool/check.py:2712
+#, python-format
+msgid "%d bad backlinks were fixed;\n"
+msgstr "%d обратных ссылок было исправлено;\n"
+
+#: ../gramps/plugins/tool/check.py:2714
+#: ../gramps/plugins/tool/rebuildrefmap.py:92
+#: ../gramps/plugins/tool/rebuildrefmap.py:95
+msgid "All reference maps have been rebuilt."
+msgstr "Все таблицы ссылок были перестроены."
+
+#: ../gramps/plugins/tool/check.py:2742
 msgid "Integrity Check Results"
 msgstr "Результаты проверки целостности"
 
-#: ../gramps/plugins/tool/check.py:2670
+#: ../gramps/plugins/tool/check.py:2748
 msgid "Check and Repair"
 msgstr "Проверка и коррекция"
 
@@ -32964,19 +32991,9 @@ msgstr "Статистика полов перестроена"
 msgid "Gender statistics for name gender guessing have been rebuilt."
 msgstr "Статистика полов для угадывания пола по имени перестроена."
 
-#: ../gramps/plugins/tool/rebuildrefmap.py:78
-#: ../gramps/plugins/tool/rebuildrefmap.py:81
-msgid "Rebuilding reference maps..."
-msgstr "Перестроение таблицы ссылок..."
-
 #: ../gramps/plugins/tool/rebuildrefmap.py:91
 msgid "Reference maps rebuilt"
 msgstr "Таблицы ссылок перестроены"
-
-#: ../gramps/plugins/tool/rebuildrefmap.py:92
-#: ../gramps/plugins/tool/rebuildrefmap.py:95
-msgid "All reference maps have been rebuilt."
-msgstr "Все таблицы ссылок созданы заново."
 
 #: ../gramps/plugins/tool/relcalc.glade:76
 msgid "Select a person to determine the relationship"
@@ -34216,20 +34233,20 @@ msgstr ""
 msgid "Select the person which will be our reference."
 msgstr "Задайте лицо, относительно которого будут производиться расчёты."
 
-#: ../gramps/plugins/view/geoclose.py:412
-#: ../gramps/plugins/view/geofamclose.py:496
-#: ../gramps/plugins/view/geofamily.py:207
+#: ../gramps/plugins/view/geoclose.py:414
+#: ../gramps/plugins/view/geofamclose.py:499
+#: ../gramps/plugins/view/geofamily.py:209
 #: ../gramps/plugins/view/geomoves.py:292
-#: ../gramps/plugins/view/geoperson.py:334
+#: ../gramps/plugins/view/geoperson.py:336
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../gramps/plugins/view/geoclose.py:568
+#: ../gramps/plugins/view/geoclose.py:570
 msgid "Choose and bookmark the new reference person"
 msgstr "Выберите и поставьте закладку на новом центральном лице"
 
-#: ../gramps/plugins/view/geoclose.py:591
+#: ../gramps/plugins/view/geoclose.py:593
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -34245,8 +34262,8 @@ msgstr ""
 "Значение 1 означает приблизительно 4.6 мили или 7.5 км.\n"
 "Значение в десятых градуса."
 
-#: ../gramps/plugins/view/geoclose.py:602
-#: ../gramps/plugins/view/geofamclose.py:792
+#: ../gramps/plugins/view/geoclose.py:604
+#: ../gramps/plugins/view/geofamclose.py:795
 msgid "The selection parameters"
 msgstr "Параметры отбора"
 
@@ -34258,28 +34275,28 @@ msgstr "Карта мест событий"
 msgid "GeoEvents"
 msgstr "ГеоСобытия"
 
-#: ../gramps/plugins/view/geoevents.py:258
+#: ../gramps/plugins/view/geoevents.py:260
 msgid "incomplete or unreferenced event ?"
 msgstr "событие не заполнено до конца, или без ссылки?"
 
-#: ../gramps/plugins/view/geoevents.py:295
-#: ../gramps/plugins/view/geoevents.py:308
+#: ../gramps/plugins/view/geoevents.py:297
+#: ../gramps/plugins/view/geoevents.py:310
 msgid "Selecting all events"
 msgstr "Выбираются все события"
 
-#: ../gramps/plugins/view/geoevents.py:353
-#: ../gramps/plugins/view/geoevents.py:385
+#: ../gramps/plugins/view/geoevents.py:355
+#: ../gramps/plugins/view/geoevents.py:387
 msgid "Bookmark this event"
 msgstr "Добавить закладку на это событие"
 
-#: ../gramps/plugins/view/geoevents.py:400
+#: ../gramps/plugins/view/geoevents.py:402
 msgid "Show all events"
 msgstr "Отображать все события"
 
-#: ../gramps/plugins/view/geoevents.py:404
-#: ../gramps/plugins/view/geoevents.py:409
-#: ../gramps/plugins/view/geoplaces.py:485
-#: ../gramps/plugins/view/geoplaces.py:490
+#: ../gramps/plugins/view/geoevents.py:406
+#: ../gramps/plugins/view/geoevents.py:411
+#: ../gramps/plugins/view/geoplaces.py:487
+#: ../gramps/plugins/view/geoplaces.py:492
 msgid "Centering on Place"
 msgstr "Центрирование на месте"
 
@@ -34293,7 +34310,7 @@ msgid "GeoFamClose"
 msgstr "ГеоСемВстреча"
 
 #: ../gramps/plugins/view/geofamclose.py:217
-#: ../gramps/plugins/view/geofamily.py:291
+#: ../gramps/plugins/view/geofamily.py:293
 #, python-format
 msgid "%(gramps_id)s : %(father)s and %(mother)s"
 msgstr "%(gramps_id)s : %(father)s и %(mother)s"
@@ -34329,35 +34346,35 @@ msgstr "Исходная семья"
 msgid "Select the family which is the reference for life ways"
 msgstr "Выберите исходную семью, жизненный путь которой хотите проследить"
 
-#: ../gramps/plugins/view/geofamclose.py:608
-#: ../gramps/plugins/view/geofamily.py:345
+#: ../gramps/plugins/view/geofamclose.py:611
+#: ../gramps/plugins/view/geofamily.py:347
 #, python-format
 msgid "Father : %(id)s : %(name)s"
 msgstr "Отец : %(id)s : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:617
-#: ../gramps/plugins/view/geofamily.py:354
+#: ../gramps/plugins/view/geofamclose.py:620
+#: ../gramps/plugins/view/geofamily.py:356
 #, python-format
 msgid "Mother : %(id)s : %(name)s"
 msgstr "Мать : %(id)s : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:629
-#: ../gramps/plugins/view/geofamily.py:366
+#: ../gramps/plugins/view/geofamclose.py:632
+#: ../gramps/plugins/view/geofamily.py:368
 #, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
 msgstr "Ребёнок : %(id)s - %(index)d : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:639
-#: ../gramps/plugins/view/geofamily.py:375
+#: ../gramps/plugins/view/geofamclose.py:642
+#: ../gramps/plugins/view/geofamily.py:377
 #, python-format
 msgid "Person : %(id)s %(name)s has no family."
 msgstr "Лицо : %(id)s %(name)s не имеет семьи."
 
-#: ../gramps/plugins/view/geofamclose.py:758
+#: ../gramps/plugins/view/geofamclose.py:761
 msgid "Choose and bookmark the new reference family"
 msgstr "Выберите и поставьте закладку на новой центральной семье"
 
-#: ../gramps/plugins/view/geofamclose.py:781
+#: ../gramps/plugins/view/geofamclose.py:784
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -34381,7 +34398,7 @@ msgstr "Карта мест семьи"
 msgid "GeoFamily"
 msgstr "ГеоСемья"
 
-#: ../gramps/plugins/view/geofamily.py:319
+#: ../gramps/plugins/view/geofamily.py:321
 #, python-format
 msgid "Family places for %s"
 msgstr "Семейные местоположения для %s"
@@ -34511,24 +34528,24 @@ msgstr "Карта мест для лица"
 msgid "GeoPerson"
 msgstr "ГеоЛицо"
 
-#: ../gramps/plugins/view/geoperson.py:313
+#: ../gramps/plugins/view/geoperson.py:315
 #, python-format
 msgid "Person places for %s"
 msgstr "Местоположения для лица %s"
 
-#: ../gramps/plugins/view/geoperson.py:517
+#: ../gramps/plugins/view/geoperson.py:519
 msgid "Animate"
 msgstr "Анимировать"
 
-#: ../gramps/plugins/view/geoperson.py:540
+#: ../gramps/plugins/view/geoperson.py:542
 msgid "Animation speed in milliseconds (big value means slower)"
 msgstr "Скорость анимации в миллисекундах (большее значение - медленнее)"
 
-#: ../gramps/plugins/view/geoperson.py:548
+#: ../gramps/plugins/view/geoperson.py:550
 msgid "How many steps between two markers when we are on large move ?"
 msgstr "Сколько шагов между двумя маркерами считается большим перемещением ?"
 
-#: ../gramps/plugins/view/geoperson.py:555
+#: ../gramps/plugins/view/geoperson.py:557
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
@@ -34536,7 +34553,7 @@ msgstr ""
 "Минимальная широта/долгота для определения большого шага.\n"
 "Значение в задаётся в десятых процента."
 
-#: ../gramps/plugins/view/geoperson.py:562
+#: ../gramps/plugins/view/geoperson.py:564
 msgid "The animation parameters"
 msgstr "Параметры анимации"
 
@@ -34548,12 +34565,12 @@ msgstr "Карта мест"
 msgid "GeoPlaces"
 msgstr "ГеоМеста"
 
-#: ../gramps/plugins/view/geoplaces.py:345
-#: ../gramps/plugins/view/geoplaces.py:358
+#: ../gramps/plugins/view/geoplaces.py:347
+#: ../gramps/plugins/view/geoplaces.py:360
 msgid "Selecting all places"
 msgstr "Выбираются все места"
 
-#: ../gramps/plugins/view/geoplaces.py:368
+#: ../gramps/plugins/view/geoplaces.py:370
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can change the markers color depending on place type. "
@@ -34563,7 +34580,7 @@ msgstr ""
 "показать все имеющиеся места с координатами. Цвет маркеров можно установить "
 "в соответствии с типом места. Поддерживается использование фильтров."
 
-#: ../gramps/plugins/view/geoplaces.py:381
+#: ../gramps/plugins/view/geoplaces.py:383
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can use the history to navigate on the map. You can "
@@ -34574,42 +34591,42 @@ msgstr ""
 "историей. Цвет маркеров можно установить в соответствии с типом места. "
 "Поддерживается использование фильтров."
 
-#: ../gramps/plugins/view/geoplaces.py:396
+#: ../gramps/plugins/view/geoplaces.py:398
 msgid "The place name in the status bar is disabled."
 msgstr "Название места в статус панели недоступно."
 
-#: ../gramps/plugins/view/geoplaces.py:401
+#: ../gramps/plugins/view/geoplaces.py:403
 #, python-format
 msgid "The maximum number of places is reached (%d)."
 msgstr "Достигнуто максимально разрешённое число местоположений (%d)."
 
-#: ../gramps/plugins/view/geoplaces.py:404
+#: ../gramps/plugins/view/geoplaces.py:406
 msgid "Some information are missing."
 msgstr "Часть информации отсутствует."
 
-#: ../gramps/plugins/view/geoplaces.py:406
+#: ../gramps/plugins/view/geoplaces.py:408
 msgid "Please, use filtering to reduce this number."
 msgstr "Пожалуйста, используйте фильтр, чтобы уменьшить их число."
 
-#: ../gramps/plugins/view/geoplaces.py:408
+#: ../gramps/plugins/view/geoplaces.py:410
 msgid "You can modify this value in the geography option."
 msgstr "Это значение можно изменить в параметрах географии."
 
-#: ../gramps/plugins/view/geoplaces.py:410
+#: ../gramps/plugins/view/geoplaces.py:412
 msgid "In this case, it may take time to show all markers."
 msgstr ""
 "Поэтому, это может занять значительное время, чтобы отобразить все маркеры."
 
-#: ../gramps/plugins/view/geoplaces.py:442
-#: ../gramps/plugins/view/geoplaces.py:466
+#: ../gramps/plugins/view/geoplaces.py:444
+#: ../gramps/plugins/view/geoplaces.py:468
 msgid "Bookmark this place"
 msgstr "Добавить закладку на это местоположение"
 
-#: ../gramps/plugins/view/geoplaces.py:481
+#: ../gramps/plugins/view/geoplaces.py:483
 msgid "Show all places"
 msgstr "Показать все местоположения"
 
-#: ../gramps/plugins/view/geoplaces.py:591
+#: ../gramps/plugins/view/geoplaces.py:593
 msgid "The places marker color"
 msgstr "Цвет маркеров мест"
 
