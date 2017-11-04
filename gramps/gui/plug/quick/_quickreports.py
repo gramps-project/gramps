@@ -117,7 +117,8 @@ def create_web_connect_menu(dbstate, uistate, nav_group, handle):
     retval.extend(actions)
     return retval
 
-def create_quickreport_menu(category,dbstate,uistate, handle) :
+
+def create_quickreport_menu(category, dbstate, uistate, handle, track=[]):
     """ This functions querries the registered quick reports with
             quick_report_list of _PluginMgr.py
         It collects the reports of the requested category, which must be one of
@@ -154,14 +155,16 @@ def create_quickreport_menu(category,dbstate,uistate, handle) :
         new_key = pdata.id.replace(' ', '-')
         ofile.write('<menuitem action="%s"/>' % new_key)
         actions.append((new_key, None, pdata.name, None, None,
-                make_quick_report_callback(pdata, category,
-                                           dbstate, uistate, handle)))
+                make_quick_report_callback(pdata, category, dbstate,
+                                           uistate, handle, track=track)))
     ofile.write('</menu>')
 
     return (ofile.getvalue(), actions)
 
-def make_quick_report_callback(pdata, category, dbstate, uistate, handle):
-    return lambda x: run_report(dbstate, uistate, category, handle, pdata)
+def make_quick_report_callback(pdata, category, dbstate, uistate, handle,
+                               track=[]):
+    return lambda x: run_report(dbstate, uistate, category, handle, pdata,
+                                track=track)
 
 def get_quick_report_list(qv_category=None):
     """
