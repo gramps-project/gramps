@@ -638,6 +638,8 @@ class GuiGramplet:
         for (tag, link_type, handle, tooltip) in self._tags:
             if iter.has_tag(tag):
                 if link_type == 'Person':
+                    if not self.dbstate.db.has_person_handle(handle):
+                        return True
                     person = self.dbstate.db.get_person_from_handle(handle)
                     if person is not None:
                         if event.button == 1: # left mouse
@@ -699,6 +701,8 @@ class GuiGramplet:
                             display_help(handle)
                     return True
                 elif link_type == 'Family':
+                    if not self.dbstate.db.has_family_handle(handle):
+                        return True
                     family = self.dbstate.db.get_family_from_handle(handle)
                     if family is not None:
                         if event.button == 1: # left mouse
