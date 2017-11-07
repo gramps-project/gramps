@@ -73,14 +73,15 @@ class SurnameTab(EmbeddedList):
     _column_toggle = (_('Name|Primary'), -1, 80, 4)
 
     def __init__(self, dbstate, uistate, track, name, on_change=None,
-                 top_label='<b>%s</b>' % _("Multiple Surnames") ):
+                 top_label='<b>%s</b>' % _("Multiple Surnames")):
         self.obj = name
         self.on_change = on_change
         self.curr_col = -1
         self.curr_cellr = None
         self.curr_celle = None
 
-        EmbeddedList.__init__(self, dbstate, uistate, track, _('Family Surnames'),
+        EmbeddedList.__init__(self, dbstate, uistate, track,
+                              _('Family Surnames'),
                               SurnameModel, move_buttons=True,
                               top_label=top_label)
         self.tree.set_grid_lines(Gtk.TreeViewGridLines.HORIZONTAL)
@@ -95,9 +96,11 @@ class SurnameTab(EmbeddedList):
         renderer = Gtk.CellRendererToggle()
         renderer.set_property('activatable', True)
         renderer.set_property('radio', True)
-        renderer.connect( 'toggled', self.on_prim_toggled, self._column_toggle[3])
+        renderer.connect('toggled', self.on_prim_toggled,
+                         self._column_toggle[3])
         # add to treeview
-        column = Gtk.TreeViewColumn(name, renderer, active=self._column_toggle[3])
+        column = Gtk.TreeViewColumn(name, renderer,
+                                    active=self._column_toggle[3])
         column.set_resizable(False)
         column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
         column.set_alignment(0.5)
@@ -110,7 +113,7 @@ class SurnameTab(EmbeddedList):
         return self.obj.get_surname_list()
 
     def is_empty(self):
-        return len(self.model)==0
+        return len(self.model) == 0
 
     def _get_surn_from_model(self):
         """
@@ -199,7 +202,8 @@ class SurnameTab(EmbeddedList):
                     break
                 else:
                     #This value becomes True
-                    self.model.set_value(self.model.get_iter((nr,)), colnr, True)
+                    self.model.set_value(self.model.get_iter((nr,)),
+                                         colnr, True)
             else:
                 self.model.set_value(self.model.get_iter((nr,)), colnr, False)
         self.update()
