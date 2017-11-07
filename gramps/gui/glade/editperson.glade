@@ -332,7 +332,7 @@
                       <object class="GtkBox" id="hboxmultsurnames">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">Click on a table cell to edit.</property>
+                        <property name="tooltip_text" translatable="yes">Double-click on a row to view/edit data</property>
                         <child>
                           <placeholder/>
                         </child>

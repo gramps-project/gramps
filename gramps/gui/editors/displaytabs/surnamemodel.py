@@ -31,6 +31,8 @@ from gi.repository import Gtk
 # Gramps classes
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 
 
 #-------------------------------------------------------------------------
@@ -46,7 +48,9 @@ class SurnameModel(Gtk.ListStore):
                                bool, object)
         for surn in surn_list:
             # fill the liststore
-            self.append(row=[surn.get_prefix(), surn.get_surname(),
+            self.append(row=[surn.get_prefix(),
+                             surn.get_surname() if surn.get_surname() else
+                             _("Missing surname"),
                              surn.get_connector(), str(surn.get_origintype()),
                              surn.get_primary(), surn])
         self.db = db
