@@ -1036,7 +1036,7 @@ class GrampsParser(UpdateCallback):
                     ) % {'oldgramps': self.__gramps_version,
                         'newgramps': VERSION,
                         'xmlversion': xmlversion_str,
-                        'gramps_wiki_xml_url': URL_WIKISTRING + "GRAMPS_XML" ,
+                        'gramps_wiki_xml_url': URL_WIKISTRING + "Gramps_XML" ,
                         }
             raise GrampsImportError(_('The file will not be imported'), msg)
         elif self.__xml_version < (1, 1, 0):
@@ -1051,7 +1051,7 @@ class GrampsParser(UpdateCallback):
                     ) % {'oldgramps': self.__gramps_version,
                         'newgramps': VERSION,
                         'xmlversion': xmlversion_str,
-                        'gramps_wiki_xml_url': URL_WIKISTRING + "GRAMPS_XML" ,
+                        'gramps_wiki_xml_url': URL_WIKISTRING + "Gramps_XML" ,
                         }
             self.user.warn(_('Old xml file'), msg)
 
