@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-26 18:56+0200\n"
+"POT-Creation-Date: 2017-11-13 18:23+0100\n"
 "PO-Revision-Date: 2017-10-26 19:21+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -8385,7 +8385,7 @@ msgstr "Name nach der Hochzeit"
 
 #. ###############################
 #. 3
-#: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:254
+#: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:255
 #: ../gramps/gui/clipboard.py:397 ../gramps/gui/configure.py:551
 #: ../gramps/gui/editors/editlink.py:95 ../gramps/gui/editors/editmedia.py:98
 #: ../gramps/gui/editors/editmedia.py:181
@@ -9333,7 +9333,7 @@ msgstr "Konnte %s nicht erstellen"
 #. Private Constants
 #.
 #. -------------------------------------------------------------------------
-#: ../gramps/gen/plug/docgen/graphdoc.py:66
+#: ../gramps/gen/plug/docgen/graphdoc.py:67
 #: ../gramps/gen/plug/report/stdoptions.py:59
 #: ../gramps/gen/plug/report/stdoptions.py:73
 #: ../gramps/gen/plug/report/stdoptions.py:243
@@ -9341,112 +9341,112 @@ msgstr "Konnte %s nicht erstellen"
 msgid "Default"
 msgstr "Vorgabe"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:67
+#: ../gramps/gen/plug/docgen/graphdoc.py:68
 msgid "PostScript / Helvetica"
 msgstr "PostScript / Helvetica"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:68
+#: ../gramps/gen/plug/docgen/graphdoc.py:69
 msgid "TrueType / FreeSans"
 msgstr "Truetype / FreeSans"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:70
+#: ../gramps/gen/plug/docgen/graphdoc.py:71
 #: ../gramps/plugins/view/pedigreeview.py:2043
 msgid "Vertical (↓)"
 msgstr "Vertikal (↓)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:71
+#: ../gramps/gen/plug/docgen/graphdoc.py:72
 #: ../gramps/plugins/view/pedigreeview.py:2044
 msgid "Vertical (↑)"
 msgstr "Vertikal (↑)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:72
+#: ../gramps/gen/plug/docgen/graphdoc.py:73
 #: ../gramps/plugins/view/pedigreeview.py:2045
 msgid "Horizontal (→)"
 msgstr "Horizontal (→)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:73
+#: ../gramps/gen/plug/docgen/graphdoc.py:74
 #: ../gramps/plugins/view/pedigreeview.py:2046
 msgid "Horizontal (←)"
 msgstr "Horizontal (←)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:75
+#: ../gramps/gen/plug/docgen/graphdoc.py:76
 msgid "Bottom, left"
 msgstr "Unten, links"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:76
+#: ../gramps/gen/plug/docgen/graphdoc.py:77
 msgid "Bottom, right"
 msgstr "Unten, rechts"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:77
+#: ../gramps/gen/plug/docgen/graphdoc.py:78
 msgid "Top, left"
 msgstr "Oben, links"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:78
+#: ../gramps/gen/plug/docgen/graphdoc.py:79
 msgid "Top, Right"
 msgstr "Oben, rechts"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:79
+#: ../gramps/gen/plug/docgen/graphdoc.py:80
 msgid "Right, bottom"
 msgstr "Rechts, unten"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:80
+#: ../gramps/gen/plug/docgen/graphdoc.py:81
 msgid "Right, top"
 msgstr "Rechts, oben"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:81
+#: ../gramps/gen/plug/docgen/graphdoc.py:82
 msgid "Left, bottom"
 msgstr "Links, unten"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:82
+#: ../gramps/gen/plug/docgen/graphdoc.py:83
 msgid "Left, top"
 msgstr "Links, oben"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:84
+#: ../gramps/gen/plug/docgen/graphdoc.py:85
 msgid "Compress to minimal size"
 msgstr "Auf minimale Größe komprimieren"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:85
+#: ../gramps/gen/plug/docgen/graphdoc.py:86
 msgid "Fill the given area"
 msgstr "Gegebenen Bereich füllen"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:86
+#: ../gramps/gen/plug/docgen/graphdoc.py:87
 msgid "Expand uniformly"
 msgstr "Gleichmäßig ausdehnen"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:88
+#: ../gramps/gen/plug/docgen/graphdoc.py:89
 #: ../gramps/gui/glade/styleeditor.glade:1343
 msgid "Top"
 msgstr "Oben"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:89
+#: ../gramps/gen/plug/docgen/graphdoc.py:90
 #: ../gramps/gui/glade/styleeditor.glade:1358
 msgid "Bottom"
 msgstr "Unten"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:91
+#: ../gramps/gen/plug/docgen/graphdoc.py:92
 msgid "Straight"
 msgstr "Gerade"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:92
+#: ../gramps/gen/plug/docgen/graphdoc.py:93
 msgid "Curved"
 msgstr "Gebogen"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:93
+#: ../gramps/gen/plug/docgen/graphdoc.py:94
 msgid "Orthogonal"
 msgstr "Rechtwinklig"
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:134
+#: ../gramps/gen/plug/docgen/graphdoc.py:135
 msgid "Graphviz Layout"
 msgstr "Graphviz Layout"
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:136
+#: ../gramps/gen/plug/docgen/graphdoc.py:137
 #: ../gramps/gui/widgets/styledtexteditor.py:482
 msgid "Font family"
 msgstr "Schriftfamilie"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:139
+#: ../gramps/gen/plug/docgen/graphdoc.py:140
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -9455,29 +9455,29 @@ msgstr ""
 "werden, benutze die FreeSans-Schrift. FreeSans ist verfügbar unter: http://"
 "www.nongnu.org/freefont/"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:145
+#: ../gramps/gen/plug/docgen/graphdoc.py:146
 #: ../gramps/gui/widgets/styledtexteditor.py:494
 msgid "Font size"
 msgstr "Schriftgröße"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:146
+#: ../gramps/gen/plug/docgen/graphdoc.py:147
 msgid "The font size, in points."
 msgstr "Die Schriftgröße in Punkten."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:149
+#: ../gramps/gen/plug/docgen/graphdoc.py:150
 msgid "Graph Direction"
 msgstr "Ausrichtung der Grafik"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:152
+#: ../gramps/gen/plug/docgen/graphdoc.py:153
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr ""
 "Legt fest, ob der Graph von oben nach unten, oder von links nach rechts geht."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:156
+#: ../gramps/gen/plug/docgen/graphdoc.py:157
 msgid "Number of Horizontal Pages"
 msgstr "Horizontale Seitenzahl"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:157
+#: ../gramps/gen/plug/docgen/graphdoc.py:158
 msgid ""
 "Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -9488,11 +9488,11 @@ msgstr ""
 "horizontale Anzahl an Seiten vor. Nur gültig für DOT und PDF über "
 "Ghostscript."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:164
+#: ../gramps/gen/plug/docgen/graphdoc.py:165
 msgid "Number of Vertical Pages"
 msgstr "Vertikale Seitenzahl"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:165
+#: ../gramps/gen/plug/docgen/graphdoc.py:166
 msgid ""
 "Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -9502,11 +9502,11 @@ msgstr ""
 "rechteckige Fläche aus mehreren Seiten verteilt wird. Dies gibt die "
 "vertikale Anzahl an Seiten vor. Nur gültig für DOT und PDF über Ghostscript."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:172
+#: ../gramps/gen/plug/docgen/graphdoc.py:173
 msgid "Paging Direction"
 msgstr "Seitenwechsel Richtung"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:175
+#: ../gramps/gen/plug/docgen/graphdoc.py:176
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
@@ -9514,25 +9514,25 @@ msgstr ""
 "Reihenfolge, in der die Diagrammseiten ausgegeben werden. Diese Option wirkt "
 "nur, wenn die horizontale oder vertikale Seitenzahl größer 1 ist."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:180
+#: ../gramps/gen/plug/docgen/graphdoc.py:181
 msgid "Connecting lines"
 msgstr "Verbindungslinien"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:183
+#: ../gramps/gen/plug/docgen/graphdoc.py:184
 msgid "How the lines between objects will be drawn."
 msgstr "Wie die Linien zwischen Objekten gezeichnet werden."
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:199
+#: ../gramps/gen/plug/docgen/graphdoc.py:200
 msgid "Graphviz Options"
 msgstr "Optionen für Graphviz"
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:202
+#: ../gramps/gen/plug/docgen/graphdoc.py:203
 msgid "Aspect ratio"
 msgstr "Streckung"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:206
+#: ../gramps/gen/plug/docgen/graphdoc.py:207
 msgid ""
 "Affects node spacing and scaling of the graph.\n"
 "If the graph is smaller than the print area:\n"
@@ -9563,11 +9563,11 @@ msgstr ""
 "  Ausdehnen verkleinert die Grafik gleichmäßig, damit sie in den "
 "Druckbereich passt."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:222
+#: ../gramps/gen/plug/docgen/graphdoc.py:223
 msgid "DPI"
 msgstr "DPI"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:223
+#: ../gramps/gen/plug/docgen/graphdoc.py:224
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 100 or 300 DPI.  PostScript and PDF files always use 72 "
@@ -9577,11 +9577,11 @@ msgstr ""
 "erstellst, versuche Werte wie 100 oder 300 DPI. Für PostScript und PDF "
 "Dateien verwende immer 72 DPI."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:230
+#: ../gramps/gen/plug/docgen/graphdoc.py:231
 msgid "Node spacing"
 msgstr "Knotenabstand"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:231
+#: ../gramps/gen/plug/docgen/graphdoc.py:232
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -9591,11 +9591,11 @@ msgstr ""
 "Grafen entspricht das dem Abstand zwischen Spalten. Für waagerechte Grafen "
 "entspricht das dem Abstand zwischen Zeilen."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:238
+#: ../gramps/gen/plug/docgen/graphdoc.py:239
 msgid "Rank spacing"
 msgstr "Ebenenabstand"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:239
+#: ../gramps/gen/plug/docgen/graphdoc.py:240
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -9605,11 +9605,11 @@ msgstr ""
 "entspricht dies dem Abstand zwischen Zeilen. Für waagerechte Grafen "
 "entspricht das dem Abstand zwischen Spalten."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:246
+#: ../gramps/gen/plug/docgen/graphdoc.py:247
 msgid "Use subgraphs"
 msgstr "Benutze Unterdiagramme"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:247
+#: ../gramps/gen/plug/docgen/graphdoc.py:248
 msgid ""
 "Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
@@ -9619,64 +9619,72 @@ msgstr ""
 "und größeren Diagrammen führen."
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:257
+#: ../gramps/gen/plug/docgen/graphdoc.py:258
 msgid "Note to add to the graph"
 msgstr "Notizen zur Grafik hinzufügen."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:259
+#: ../gramps/gen/plug/docgen/graphdoc.py:260
 msgid "This text will be added to the graph."
 msgstr "Dieser Text wird der Grafik hinzugefügt."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:262
+#: ../gramps/gen/plug/docgen/graphdoc.py:263
 msgid "Note location"
 msgstr "Position der Notiz"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:265
+#: ../gramps/gen/plug/docgen/graphdoc.py:266
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Legt fest, ob die Notiz oben oder unten auf der Seite erscheint."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:269
+#: ../gramps/gen/plug/docgen/graphdoc.py:270
 msgid "Note size"
 msgstr "Notizgröße"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:270
+#: ../gramps/gen/plug/docgen/graphdoc.py:271
 msgid "The size of note text, in points."
 msgstr "Die Größe des Notizentext in Punkten."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1013
+#: ../gramps/gen/plug/docgen/graphdoc.py:921
+msgid "'Ghostscript' is not installed"
+msgstr ""
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:922
+msgid "Use your package manager to install it"
+msgstr ""
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1022
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1019
+#: ../gramps/gen/plug/docgen/graphdoc.py:1028
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1025
+#: ../gramps/gen/plug/docgen/graphdoc.py:1034
 #: ../gramps/plugins/docgen/docgen.gpr.py:161
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1031
+#: ../gramps/gen/plug/docgen/graphdoc.py:1040
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Strukturierte Vektor Grafiken (SVG)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1037
+#: ../gramps/gen/plug/docgen/graphdoc.py:1046
 msgid "Compressed Structured Vector Graphs (SVGZ)"
 msgstr "Komprimierte SVG-Grafik (SVGZ)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1043
+#: ../gramps/gen/plug/docgen/graphdoc.py:1052
 msgid "JPEG image"
 msgstr "JPEG-Grafik"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1049
+#: ../gramps/gen/plug/docgen/graphdoc.py:1058
 msgid "GIF image"
 msgstr "GIF-Grafik"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1055
+#: ../gramps/gen/plug/docgen/graphdoc.py:1064
 msgid "PNG image"
 msgstr "PNG-Grafik"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1061
+#: ../gramps/gen/plug/docgen/graphdoc.py:1070
 msgid "Graphviz File"
 msgstr "Graphviz Datei"
 
