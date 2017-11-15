@@ -52,10 +52,12 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.managedwindow import ManagedWindow
+from gramps.gui.dialog import WarningDialog
 from .osmgps import OsmGps
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.lib import PlaceType
 from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.display.place import displayer as _pd
 
 #-------------------------------------------------------------------------
 #
@@ -103,6 +105,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
         self.function = function
         self.selection_layer = layer
         self.layer = layer
+        self.warning = False
         self.set_window(
             Gtk.Dialog(_('Place Selection in a region'), uistate.window,
                        buttons=(_('_Close'), Gtk.ResponseType.CLOSE)),
@@ -258,11 +261,31 @@ class PlaceSelection(ManagedWindow, OsmGps):
                  place, other) = self.get_location(entry[9])
                 if not [country, state, county, place, other] in self.places:
                     self.places.append([country, state, county, place, other])
+        self.warning = False
         for place in self.dbstate.db.iter_places():
             latn = place.get_latitude()
             lonn = place.get_longitude()
             if latn and lonn:
-                latn, lonn = conv_lat_lon(latn, lonn, "D.D8")
+                latn, ignore = conv_lat_lon(latn, "0", "D.D8")
+                if not latn:
+                    if not self.warning:
+                        self.close()
+                    warn1 = _("you have a wrong latitude for:")
+                    warn2 = _pd.display(self.dbstate.db, place) + "\n\n<b>"
+                    warn2 += _("Please, correct this before linking") + "</b>"
+                    WarningDialog(warn1, warn2, parent=self.uistate.window)
+                    self.warning = True
+                    continue
+                ignore, lonn = conv_lat_lon("0", lonn, "D.D8")
+                if not lonn:
+                    if not self.warning:
+                        self.close()
+                    warn1 = _("you have a wrong longitude for:") + "\n"
+                    warn2 = _pd.display(self.dbstate.db, place) + "\n\n<b>"
+                    warn2 += _("Please, correct this before linking") + "</b>"
+                    WarningDialog(warn1, warn2, parent=self.uistate.window)
+                    self.warning = True
+                    continue
                 if (math.hypot(lat-float(latn),
                                lon-float(lonn)) <= rds) == True:
                     (country, state, county,
