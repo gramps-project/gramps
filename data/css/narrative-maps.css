@@ -23,7 +23,6 @@
 body#FamilyMap {
     background-color: #000;
     padding: 0 14px;
-    width: 965px;
 }
 
 /*    Family Maps
@@ -32,8 +31,9 @@ body#FamilyMap {
     margin-left: 10px;
     margin-right: 10px;
     border: solid 4px #000;
-    width: 931px;
-    height: 1000px;
+    margin: 0px auto;
+    width: 800px;
+    height: 800px;
 }
 
 /*    Place Maps
