@@ -45,6 +45,9 @@ Females     Web_Gender_Female.png
 }
 #treeContainer {
     position:relative;
+    display: table-cell;
+    vertical-align: middle;
+    overflow: visible;
     z-index:1;
 }
 #treeContainer div.boxbg {

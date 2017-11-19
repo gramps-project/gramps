@@ -86,6 +86,12 @@ h1 {
     font-weight: bold;
     padding-left: 15px;
 }
+h2 {
+    display:block;
+    margin:0;
+    padding:0;
+    text-align: center;
+}
 h3 {
     font-size: large;
     padding-left: 15px;
@@ -415,7 +421,7 @@ div#SourceDetail {
 }
 .subsection {
     clear: both;
-    overflow: hidden;
+    overflow: visible;
 }
 .subsection p {
     margin: 0px;
