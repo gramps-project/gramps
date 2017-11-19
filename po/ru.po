@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps50\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-09 11:35+0300\n"
-"PO-Revision-Date: 2017-11-09 11:38+0300\n"
+"POT-Creation-Date: 2017-11-19 10:33+0300\n"
+"PO-Revision-Date: 2017-11-19 10:38+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -6661,7 +6661,7 @@ msgstr "Город"
 #: ../gramps/gen/lib/placetype.py:67
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:57
 #: ../gramps/gui/views/treemodels/placemodel.py:305
-#: ../gramps/plugins/lib/maps/placeselection.py:134
+#: ../gramps/plugins/lib/maps/placeselection.py:137
 #: ../gramps/plugins/view/geoplaces.py:567
 #: ../gramps/plugins/webreport/basepage.py:1102
 #: ../gramps/plugins/webreport/basepage.py:2540
@@ -6673,7 +6673,7 @@ msgstr "Область/Район/Уезд"
 #: ../gramps/gen/lib/placetype.py:66
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:58
 #: ../gramps/gui/views/treemodels/placemodel.py:305
-#: ../gramps/plugins/lib/maps/placeselection.py:133
+#: ../gramps/plugins/lib/maps/placeselection.py:136
 #: ../gramps/plugins/view/geoplaces.py:564
 msgid "State"
 msgstr "Республика"
@@ -6683,7 +6683,7 @@ msgstr "Республика"
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:76
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:59
 #: ../gramps/gui/views/treemodels/placemodel.py:305
-#: ../gramps/plugins/lib/maps/placeselection.py:132
+#: ../gramps/plugins/lib/maps/placeselection.py:135
 #: ../gramps/plugins/view/geoplaces.py:561
 #: ../gramps/plugins/view/repoview.py:93
 #: ../gramps/plugins/webreport/basepage.py:1104
@@ -7387,8 +7387,8 @@ msgstr "Место жительства"
 
 #: ../gramps/gen/lib/eventtype.py:155 ../gramps/gui/glade/mergedata.glade:523
 #: ../gramps/gui/glade/mergedata.glade:610
-#: ../gramps/plugins/lib/maps/placeselection.py:135
-#: ../gramps/plugins/lib/maps/placeselection.py:186
+#: ../gramps/plugins/lib/maps/placeselection.py:138
+#: ../gramps/plugins/lib/maps/placeselection.py:189
 msgid "Other"
 msgstr "Другое"
 
@@ -10926,7 +10926,7 @@ msgstr "Показать «Редактор имён»"
 #: ../gramps/gui/views/bookmarks.py:286 ../gramps/gui/views/tags.py:430
 #: ../gramps/gui/widgets/grampletbar.py:635
 #: ../gramps/gui/widgets/grampletpane.py:237
-#: ../gramps/plugins/lib/maps/placeselection.py:108
+#: ../gramps/plugins/lib/maps/placeselection.py:111
 #: ../gramps/plugins/tool/dumpgenderstats.py:85
 msgid "_Close"
 msgstr "_Закрыть"
@@ -29252,12 +29252,12 @@ msgstr "Не удалось создать каталог с кэшем карт
 msgid "Can't create tiles cache directory for '%s'."
 msgstr "Не удалось создать каталог с кэшем карт для '%s'."
 
-#: ../gramps/plugins/lib/maps/placeselection.py:107
-#: ../gramps/plugins/lib/maps/placeselection.py:109
+#: ../gramps/plugins/lib/maps/placeselection.py:110
+#: ../gramps/plugins/lib/maps/placeselection.py:112
 msgid "Place Selection in a region"
 msgstr "Выбор места в области"
 
-#: ../gramps/plugins/lib/maps/placeselection.py:110
+#: ../gramps/plugins/lib/maps/placeselection.py:113
 msgid ""
 "Choose the radius of the selection.\n"
 "On the map you should see a circle or an oval depending on the latitude."
@@ -29265,7 +29265,7 @@ msgstr ""
 "Выберите радиус выделения.\n"
 "На карте будет отображен круг или овал в зависимости от координат."
 
-#: ../gramps/plugins/lib/maps/placeselection.py:148
+#: ../gramps/plugins/lib/maps/placeselection.py:151
 msgid "The green values in the row correspond to the current place values."
 msgstr ""
 "Значения в строке отмеченные зелёным соответствуют значениям для текущего "
@@ -29273,9 +29273,22 @@ msgstr ""
 
 #. here, we could add value from geography names services ...
 #. if we found no place, we must create a default place.
-#: ../gramps/plugins/lib/maps/placeselection.py:195
+#: ../gramps/plugins/lib/maps/placeselection.py:198
 msgid "New place with empty fields"
 msgstr "Новое место с пустыми полями"
+
+#: ../gramps/plugins/lib/maps/placeselection.py:273
+msgid "you have a wrong latitude for:"
+msgstr "указана некорректная широта для:"
+
+#: ../gramps/plugins/lib/maps/placeselection.py:275
+#: ../gramps/plugins/lib/maps/placeselection.py:285
+msgid "Please, correct this before linking"
+msgstr "Необходимо внести исправления до создания ссылки"
+
+#: ../gramps/plugins/lib/maps/placeselection.py:283
+msgid "you have a wrong longitude for:"
+msgstr "указана некорректная долгота для:"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:53
 msgid "Denmark"
