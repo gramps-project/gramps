@@ -197,9 +197,6 @@ class EditPerson(EditPrimary):
         self.singsurnfr = SingSurn(self.top)
         self.multsurnfr = self.top.get_object("hboxmultsurnames")
         self.singlesurn_active = True
-        self.surntab = SurnameTab(self.dbstate, self.uistate, self.track,
-                                  self.obj.get_primary_name(),
-                                  on_change=self._changed_name)
 
         self.set_contexteventbox(self.top.get_object("eventboxtop"))
 
@@ -445,6 +442,9 @@ class EditPerson(EditPrimary):
 
         self.preview_name = self.top.get_object("full_name")
         self.preview_name.override_font(Pango.FontDescription('sans bold 12'))
+        self.surntab = SurnameTab(self.dbstate, self.uistate, self.track,
+                                  self.obj.get_primary_name(),
+                                  on_change=self._changed_name)
 
     def get_start_date(self):
         """
@@ -936,7 +936,8 @@ class EditPerson(EditPrimary):
         msurhbox = self.top.get_object("hboxmultsurnames")
         msurhbox.remove(self.surntab)
         self.surntab = SurnameTab(self.dbstate, self.uistate, self.track,
-                       self.obj.get_primary_name())
+                                  self.obj.get_primary_name(),
+                                  on_change=self._changed_name)
         self.multsurnfr.set_size_request(-1,
                                 int(config.get('interface.surname-box-height')))
         msurhbox.pack_start(self.surntab, True, True, 0)
