@@ -94,8 +94,10 @@ CATEGORY_CODE       = 2
 CATEGORY_WEB        = 3
 CATEGORY_BOOK       = 4
 CATEGORY_GRAPHVIZ   = 5
+CATEGORY_TREE       = 6
 REPORT_CAT          = [ CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE,
-                        CATEGORY_WEB, CATEGORY_BOOK, CATEGORY_GRAPHVIZ]
+                        CATEGORY_WEB, CATEGORY_BOOK, CATEGORY_GRAPHVIZ,
+                        CATEGORY_TREE]
 #possible tool categories
 TOOL_DEBUG  = -1
 TOOL_ANAL   = 0
@@ -1009,6 +1011,7 @@ def make_environment(**kwargs):
         'CATEGORY_WEB': CATEGORY_WEB,
         'CATEGORY_BOOK': CATEGORY_BOOK,
         'CATEGORY_GRAPHVIZ': CATEGORY_GRAPHVIZ,
+        'CATEGORY_TREE': CATEGORY_TREE,
         'TOOL_DEBUG': TOOL_DEBUG,
         'TOOL_ANAL': TOOL_ANAL,
         'TOOL_DBPROC': TOOL_DBPROC,

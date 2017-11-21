@@ -54,8 +54,9 @@ from .. import add_gui_options, make_gui_option
 from ...user import User
 from ...dialog import ErrorDialog, OptionDialog
 from gramps.gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
-                             CATEGORY_CODE, CATEGORY_WEB, CATEGORY_GRAPHVIZ,
-                             standalone_categories)
+                                    CATEGORY_CODE, CATEGORY_WEB,
+                                    CATEGORY_GRAPHVIZ, CATEGORY_TREE,
+                                    standalone_categories)
 from gramps.gen.plug.docgen import StyleSheet, StyleSheetList
 from ...managedwindow import ManagedWindow
 from ._stylecombobox import StyleComboBox
@@ -673,6 +674,9 @@ def report(dbstate, uistate, person, report_class, options_class,
     elif category == CATEGORY_GRAPHVIZ:
         from ._graphvizreportdialog import GraphvizReportDialog
         dialog_class = GraphvizReportDialog
+    elif category == CATEGORY_TREE:
+        from ._treereportdialog import TreeReportDialog
+        dialog_class = TreeReportDialog
     elif category == CATEGORY_WEB:
         from ._webreportdialog import WebReportDialog
         dialog_class = WebReportDialog

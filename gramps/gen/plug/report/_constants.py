@@ -39,7 +39,7 @@ import os
 
 # Report categories
 from .. import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE, CATEGORY_WEB,
-                CATEGORY_BOOK, CATEGORY_GRAPHVIZ)
+                CATEGORY_BOOK, CATEGORY_GRAPHVIZ, CATEGORY_TREE)
 
 standalone_categories = {
     CATEGORY_TEXT     : ("RepText", _("Text Reports")),
@@ -48,6 +48,7 @@ standalone_categories = {
     CATEGORY_WEB      : ("RepWeb", _("Web Pages")),
     CATEGORY_BOOK     : ("RepBook", _("Books")),
     CATEGORY_GRAPHVIZ : ("Graphs", _("Graphs")),
+    CATEGORY_TREE    : ("Trees", _("Trees")),
 }
 book_categories = {
     CATEGORY_TEXT : _("Text"),
