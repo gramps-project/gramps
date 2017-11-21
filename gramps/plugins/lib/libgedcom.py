@@ -5262,12 +5262,20 @@ class GedcomParser(UpdateCallback):
 
     def __family_attr(self, line, state):
         """
+        Parses an TOKEN that Gramps recognizes as an Attribute
         @param line: The current line in GedLine format
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
         """
+        sub_state = CurrentState()
+        sub_state.person = state.person
+        sub_state.attr = line.data
+        sub_state.level = state.level + 1
         state.family.add_attribute(line.data)
+        self.__parse_level(sub_state, self.person_attr_parse_tbl,
+                           self.__ignore)
+        state.msg += sub_state.msg
 
     def __family_cust_attr(self, line, state):
         """
