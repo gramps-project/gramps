@@ -292,14 +292,17 @@ class RelGraphReport(Report):
                 family = self._db.get_family_from_handle(fam_handle)
                 father_handle = family.get_father_handle()
                 mother_handle = family.get_mother_handle()
+                sibling = False
                 for child_ref in family.get_child_ref_list():
                     if child_ref.ref == person_handle:
                         frel = child_ref.frel
                         mrel = child_ref.mrel
-                        break
+                    elif child_ref.ref in person_dict:
+                        sibling = True
                 if (self.show_families and
-                        ((father_handle and father_handle in person_dict) or
-                         (mother_handle and mother_handle in person_dict))):
+                    ((father_handle and father_handle in person_dict) or
+                     (mother_handle and mother_handle in person_dict) or
+                     sibling)):
                     # Link to the family node if either parent is in graph
                     self.add_family_link(p_id, family, frel, mrel)
                 else:
@@ -381,6 +384,20 @@ class RelGraphReport(Report):
                         self.doc.add_link(p_id, family.get_gramps_id(), "",
                                           self.arrowheadstyle,
                                           self.arrowtailstyle)
+
+                # Output families where person is a sibling if another sibling
+                # is present
+                family_list = person.get_parent_family_handle_list()
+                for fam_handle in family_list:
+                    if fam_handle in families_done:
+                        continue
+                    family = self.database.get_family_from_handle(fam_handle)
+                    if family is None:
+                        continue
+                    for child_ref in family.get_child_ref_list():
+                        if child_ref.ref != person_handle:
+                            families_done.add(fam_handle)
+                            self.__add_family(fam_handle)
 
     def __add_family(self, fam_handle):
         """Add a node for a family and optionally link the spouses to it"""
