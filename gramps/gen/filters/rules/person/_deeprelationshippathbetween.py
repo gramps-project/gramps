@@ -26,8 +26,6 @@
 #
 #-------------------------------------------------------------------------
 from collections import deque
-from ....const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -36,12 +34,14 @@ _ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 from .. import Rule
 from . import MatchesFilter
-
+from ....const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 #
 # DeepRelationshipPathBetween
 #
 #-------------------------------------------------------------------------
+
 
 def filter_database(db, user, filter_name):
     """Returns a list of person handles"""
@@ -67,13 +67,14 @@ def filter_database(db, user, filter_name):
 
     return matches
 
+
 def get_family_handle_people(db, exclude_handle, family_handle):
     people = set()
 
     family = db.get_family_from_handle(family_handle)
 
     def possibly_add_handle(h):
-        if h != None and h != exclude_handle:
+        if h is not None and h != exclude_handle:
             people.add(h)
 
     possibly_add_handle(family.get_father_handle())
@@ -85,12 +86,14 @@ def get_family_handle_people(db, exclude_handle, family_handle):
 
     return people
 
+
 def get_person_family_people(db, person, person_handle):
     people = set()
 
-    def add_family_handle_list(list):
-        for family_handle in list:
-            people.update(get_family_handle_people(db, person_handle, family_handle))
+    def add_family_handle_list(fam_list):
+        for family_handle in fam_list:
+            people.update(get_family_handle_people(db, person_handle,
+                                                   family_handle))
 
     add_family_handle_list(person.get_family_handle_list())
     add_family_handle_list(person.get_parent_family_handle_list())
@@ -146,18 +149,21 @@ def find_deep_relations(db, user, person, target_people):
 
     return return_paths
 
+
 class DeepRelationshipPathBetween(Rule):
     """Checks if there is any familial connection between a person and a
        filter match by searching over all connections."""
 
-    labels      = [ _('ID:'), _('Filter name:') ]
-    name        = _("Relationship path between <person> and people matching <filter>")
-    category    = _('Relationship filters')
-    description = _("Searches over the database starting from a specified person and"
-                    " returns everyone between that person and a set of target people specified"
-                    " with a filter.  This produces a set of relationship paths (including"
-                    " by marriage) between the specified person and the target people."
-                    "  Each path is not necessarily the shortest path.")
+    labels = [_('ID:'), _('Filter name:')]
+    name = _("Relationship path between <person> and people matching <filter>")
+    category = _('Relationship filters')
+    description = _("Searches over the database starting from a specified"
+                    " person and returns everyone between that person and"
+                    " a set of target people specified with a filter.  "
+                    "This produces a set of relationship paths (including"
+                    " by marriage) between the specified person and the"
+                    " target people.  Each path is not necessarily"
+                    " the shortest path.")
 
     def prepare(self, db, user):
         root_person_id = self.list[0]
@@ -170,12 +176,10 @@ class DeepRelationshipPathBetween(Rule):
             user.begin_progress(_('Finding relationship paths'),
                                 _('Evaluating people'),
                                 db.get_number_of_people())
-        self.__matches = find_deep_relations(db, user, root_person, target_people)
+        self.__matches = find_deep_relations(db, user, root_person,
+                                             target_people)
         if user:
             user.end_progress()
-
-#         self.__matches = set()
-#         list(map(self.__matches.update, paths))
 
     def reset(self):
         self.__matches = set()
