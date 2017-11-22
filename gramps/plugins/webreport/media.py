@@ -147,6 +147,8 @@ class MediaPages(BasePage):
         BasePage.__init__(self, report, title)
 
         output_file, sio = self.report.create_file("media")
+        # save the media file name in case we create unused media pages
+        self.cur_fname = self.report.cur_fname
         medialistpage, head, body = self.write_header(self._('Media'))
 
         ldatec = 0
@@ -276,6 +278,7 @@ class MediaPages(BasePage):
 
         # send page out for processing
         # and close the file
+        self.report.cur_fname = self.cur_fname
         self.xhtml_writer(medialistpage, output_file, sio, ldatec)
 
     def media_ref_link(self, handle, name, uplink=False):

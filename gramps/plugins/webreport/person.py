@@ -80,7 +80,7 @@ LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
 
 _WIDTH = 160
-_HEIGHT = 64
+_HEIGHT = 120
 _VGAP = 10
 _HGAP = 30
 _SHADOW = 5
