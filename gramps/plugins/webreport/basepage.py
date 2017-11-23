@@ -165,6 +165,18 @@ class BasePage: # pylint: disable=C1001
         name = _nd.display(person)
         return (name, person.get_gramps_id())
 
+    def sort_on_given_and_birth(self, handle):
+        """ Used to sort on given name and birth date. """
+        person = self.r_db.get_person_from_handle(handle)
+        name = _nd.display_given(person)
+        bd_event = get_birth_or_fallback(self.r_db, person)
+        birth = ""
+        if bd_event:
+            birth_iso = str(bd_event.get_date_object()).replace('abt ', '')
+            # we need to remove abt, bef, aft, ...
+            birth = birth_iso.replace('aft ', '').replace('bef ', '')
+        return (name, birth)
+
     def sort_on_grampsid(self, event_ref):
         """
         Sort on gramps ID
