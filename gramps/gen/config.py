@@ -226,6 +226,8 @@ register('paths.report-directory', USER_HOME)
 register('paths.website-directory', USER_HOME)
 register('paths.website-cms-uri', '')
 register('paths.website-cal-uri', '')
+register('paths.website-extra-page-uri', '')
+register('paths.website-extra-page-name', '')
 register('paths.quick-backup-directory', USER_HOME)
 register('paths.quick-backup-filename',
          "%(filename)s_%(year)d-%(month)02d-%(day)02d.%(extension)s")
