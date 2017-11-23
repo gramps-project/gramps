@@ -57,8 +57,9 @@ import logging
 # Gramps module
 #------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.lib import (FamilyRelType, NoteType, NameType, Person, UrlType,
-                            Name, PlaceType, EventRoleType, Family, Citation)
+from gramps.gen.lib import (FamilyRelType, NoteType, NameType, Person,
+                            UrlType, Date, Name, PlaceType, EventRoleType,
+                            Family, Citation)
 from gramps.gen.lib.date import Today
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
 from gramps.version import VERSION
@@ -72,6 +73,7 @@ from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.plugins.lib.libhtmlconst import _CC
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.datehandler import parser as _dp
 from gramps.plugins.lib.libhtml import Html, xml_lang
 from gramps.plugins.lib.libhtmlbackend import HtmlBackend, process_spaces
 from gramps.gen.utils.place import conv_lat_lon
@@ -1491,8 +1493,8 @@ class BasePage: # pylint: disable=C1001
             (self.report.surname_fname, self._("Surnames"), True),
             ('families', self._("Families"), self.report.inc_families),
             ('events', self._("Events"), self.report.inc_events),
-            ('places', self._("Places"), True),
-            ('sources', self._("Sources"), True),
+            ('places', self._("Places"), self.report.inc_places),
+            ('sources', self._("Sources"), self.report.inc_sources),
             ('repositories', self._("Repositories"), inc_repos),
             ('media', self._("Media"), _create_media_link),
             ('thumbnails', self._("Thumbnails"), self.create_media),
@@ -2747,7 +2749,10 @@ class BasePage: # pylint: disable=C1001
             elif obj[2] == "Family":
                 role = "1"
             else:
-                role = "3"
+                if len(obj[2].split('-')) > 1:
+                    role = obj[2] # date in ISO format
+                else:
+                    role = "3"
             return role
 
         for (bkref_class, bkref_handle, role) in sorted(
@@ -2758,7 +2763,17 @@ class BasePage: # pylint: disable=C1001
             name = self.report.obj_dict[bkref_class][bkref_handle][1]
             gid = self.report.obj_dict[bkref_class][bkref_handle][2]
             if role != "":
-                role = self._(" (%s) " % self._(role))
+                if len(role.split('-')) > 1:
+                    # conver ISO date to Date for translation.
+                    if len(role.split(' - ')) > 1:
+                        (d1, d2) = role.split(' - ')
+                        role = self._("between") + " " + d1 + " "
+                        role += self._("and") + " " + d2
+                    date = _dp.parse(role)
+                    date = self.rlocale.get_date(date)
+                    role = " (%s) " % date
+                else:
+                    role = " (%s) " % self._(role)
             ordered += list_html
             if path == "":
                 list_html += name

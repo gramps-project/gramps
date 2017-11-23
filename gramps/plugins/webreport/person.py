@@ -478,6 +478,12 @@ class PersonPages(BasePage):
                 individualdetail += thumbnail
             individualdetail += (name, summary)
 
+            # display Narrative Notes
+            notelist = person.get_note_list()
+            sect8 = self.display_note_list(notelist)
+            if sect8 is not None:
+                individualdetail += sect8
+
             # display a person's events
             sect2 = self.display_ind_events(place_lat_long)
             if sect2 is not None:
@@ -537,12 +543,6 @@ class PersonPages(BasePage):
             sect7 = self.disp_add_img_as_gallery(media_list, person)
             if sect7 is not None:
                 individualdetail += sect7
-
-            # display Narrative Notes
-            notelist = person.get_note_list()
-            sect8 = self.display_note_list(notelist)
-            if sect8 is not None:
-                individualdetail += sect8
 
             # display attributes
             attrlist = person.get_attribute_list()
