@@ -100,6 +100,9 @@ class PlacePages(BasePage):
         self.familymappages = None
         self.googlemapkey = None
 
+        # Place needs to display coordinates?
+        self.display_coordinates = report.options["coordinates"]
+
     def display_pages(self, title):
         """
         Generate and output the pages under the Place tab, namely the place
@@ -168,17 +171,28 @@ class PlacePages(BasePage):
                 trow = Html("tr")
                 thead += trow
 
-                trow.extend(
-                    Html("th", label, class_=colclass, inline=True)
-                    for (label, colclass) in [
-                        [self._("Letter"), "ColumnLetter"],
-                        [self._("Place Name | Name"), "ColumnName"],
-                        [self._("State/ Province"), "ColumnState"],
-                        [self._("Country"), "ColumnCountry"],
-                        [self._("Latitude"), "ColumnLatitude"],
-                        [self._("Longitude"), "ColumnLongitude"]
-                    ]
-                )
+                if self.display_coordinates:
+                    trow.extend(
+                        Html("th", label, class_=colclass, inline=True)
+                        for (label, colclass) in [
+                            [self._("Letter"), "ColumnLetter"],
+                            [self._("Place Name | Name"), "ColumnName"],
+                            [self._("State/ Province"), "ColumnState"],
+                            [self._("Country"), "ColumnCountry"],
+                            [self._("Latitude"), "ColumnLatitude"],
+                            [self._("Longitude"), "ColumnLongitude"]
+                        ]
+                    )
+                else:
+                    trow.extend(
+                        Html("th", label, class_=colclass, inline=True)
+                        for (label, colclass) in [
+                            [self._("Letter"), "ColumnLetter"],
+                            [self._("Place Name | Name"), "ColumnName"],
+                            [self._("State/ Province"), "ColumnState"],
+                            [self._("Country"), "ColumnCountry"]
+                        ]
+                    )
 
                 # bug 9495 : incomplete display of place hierarchy labels
                 def sort_by_place_name(obj):
@@ -243,21 +257,22 @@ class PlacePages(BasePage):
                             ]
                         )
 
-                        tcell1 = Html("td", class_="ColumnLatitude",
-                                      inline=True)
-                        tcell2 = Html("td", class_="ColumnLongitude",
-                                      inline=True)
-                        trow += (tcell1, tcell2)
+                        if self.display_coordinates:
+                            tcell1 = Html("td", class_="ColumnLatitude",
+                                          inline=True)
+                            tcell2 = Html("td", class_="ColumnLongitude",
+                                          inline=True)
+                            trow += (tcell1, tcell2)
 
-                        if place.lat and place.long:
-                            latitude, longitude = conv_lat_lon(place.lat,
-                                                               place.long,
-                                                               "DEG")
-                            tcell1 += latitude
-                            tcell2 += longitude
-                        else:
-                            tcell1 += '&nbsp;'
-                            tcell2 += '&nbsp;'
+                            if place.lat and place.long:
+                                latitude, longitude = conv_lat_lon(place.lat,
+                                                                   place.long,
+                                                                   "DEG")
+                                tcell1 += latitude
+                                tcell2 += longitude
+                            else:
+                                tcell1 += '&nbsp;'
+                                tcell2 += '&nbsp;'
 
         # add clearline for proper styling
         # add footer section

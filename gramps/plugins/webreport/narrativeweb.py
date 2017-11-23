@@ -1730,6 +1730,12 @@ class NavWebOptions(MenuReportOptions):
             _('Whether to display children in birth order or in entry order?'))
         addopt("birthorder", birthorder)
 
+        coordinates = BooleanOption(
+            _('Do we display coordinates in the places list?'), False)
+        coordinates.set_help(
+            _('Whether to display latitude/longitude in the places list?'))
+        addopt("coordinates", coordinates)
+
     def __add_page_generation_options(self, menu):
         """
         Options on the "Page Generation" tab.
