@@ -1940,7 +1940,8 @@ class BasePage: # pylint: disable=C1001
                 photo = photolist_handles[photoref.ref]
                 photolist_ordered.append(photo)
                 try:
-                    photolist.remove(photo)
+                    if photo in photolist:
+                        photolist.remove(photo)
                 except ValueError:
                     LOG.warning("Error trying to remove '%s' from photolist",
                                 photo)
