@@ -62,8 +62,8 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
         # Start with filling the cache for root person (gramps_id in self.list[0])
         self.ancestor_cache = {}
         self.with_people = []
-        filt = MatchesFilter(self.list)
-        filt.requestprepare(db, user)
+        self.filt = MatchesFilter(self.list)
+        self.filt.requestprepare(db, user)
         if user:
             user.begin_progress(self.category,
                                 _('Retrieving all sub-filter matches'),
@@ -72,7 +72,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
             person = db.get_person_from_handle(handle)
             if user:
                 user.step_progress()
-            if person and filt.apply(db, person):
+            if person and self.filt.apply(db, person):
                 #store all people in the filter so as to compare later
                 self.with_people.append(person.handle)
                 #fill list of ancestor of person if not present yet
@@ -80,4 +80,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
                     self.add_ancs(db, person)
         if user:
             user.end_progress()
-        filt.requestreset()
+
+    def reset(self):
+        self.filt.requestreset()
+        self.ancestor_cache = {}

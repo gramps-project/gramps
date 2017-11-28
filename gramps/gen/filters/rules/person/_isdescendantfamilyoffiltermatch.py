@@ -43,7 +43,7 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
     """Rule that checks for a person that is a descendant
     of someone matched by a filter"""
 
-    labels      = [ _('Filter name:') ]
+    labels      = [ _('Filter name:')]
     name        = _('Descendant family members of <filter> match')
     category    = _('Descendant filters')
     description = _("Matches people that are descendants or the spouse "
@@ -53,8 +53,8 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
         self.db = db
         self.matches = set()
 
-        filt = MatchesFilter(self.list[0:1])
-        filt.requestprepare(db, user)
+        self.matchfilt = MatchesFilter(self.list[0:1])
+        self.matchfilt.requestprepare(db, user)
         if user:
             user.begin_progress(self.category,
                                 _('Retrieving all sub-filter matches'),
@@ -62,9 +62,11 @@ class IsDescendantFamilyOfFilterMatch(IsDescendantFamilyOf):
         for person in db.iter_people():
             if user:
                 user.step_progress()
-            if filt.apply(db, person):
+            if self.matchfilt.apply(db, person):
                 self.add_matches(person)
         if user:
             user.end_progress()
-        filt.requestreset()
 
+    def reset(self):
+        self.matchfilt.requestreset()
+        self.matches = set()

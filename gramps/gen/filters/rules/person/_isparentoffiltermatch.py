@@ -51,8 +51,8 @@ class IsParentOfFilterMatch(Rule):
     def prepare(self, db, user):
         self.db = db
         self.map = set()
-        filt = MatchesFilter(self.list)
-        filt.requestprepare(db, user)
+        self.filt = MatchesFilter(self.list)
+        self.filt.requestprepare(db, user)
         if user:
             user.begin_progress(self.category,
                                 _('Retrieving all sub-filter matches'),
@@ -60,13 +60,13 @@ class IsParentOfFilterMatch(Rule):
         for person in db.iter_people():
             if user:
                 user.step_progress()
-            if filt.apply(db, person):
+            if self.filt.apply(db, person):
                 self.init_list(person)
         if user:
             user.end_progress()
-        filt.requestreset()
 
     def reset(self):
+        self.filt.requestreset()
         self.map.clear()
 
     def apply(self,db,person):

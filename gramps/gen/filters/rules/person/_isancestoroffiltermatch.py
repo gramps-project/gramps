@@ -60,8 +60,8 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         except IndexError:
             first = 1
 
-        filt = MatchesFilter(self.list[0:1])
-        filt.requestprepare(db, user)
+        self.filt = MatchesFilter(self.list[0:1])
+        self.filt.requestprepare(db, user)
         if user:
             user.begin_progress(self.category,
                                 _('Retrieving all sub-filter matches'),
@@ -69,13 +69,13 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
         for person in db.iter_people():
             if user:
                 user.step_progress()
-            if filt.apply(db, person):
+            if self.filt.apply(db, person):
                 self.init_ancestor_list(db, person, first)
         if user:
             user.end_progress()
-        filt.requestreset()
 
     def reset(self):
+        self.filt.requestreset()
         self.map.clear()
 
     def apply(self,db,person):

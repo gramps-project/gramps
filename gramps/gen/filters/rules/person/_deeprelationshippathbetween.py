@@ -43,31 +43,6 @@ _ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 
 
-def filter_database(db, user, filter_name):
-    """Returns a list of person handles"""
-
-    filt = MatchesFilter([filter_name])
-    filt.requestprepare(db, user)
-
-    if user:
-        user.begin_progress(_('Finding relationship paths'),
-                            _('Retrieving all sub-filter matches'),
-                            db.get_number_of_people())
-    matches = []
-    for handle in db.iter_person_handles():
-        person = db.get_person_from_handle(handle)
-        if filt.apply(db, person):
-            matches.append(handle)
-        if user:
-            user.step_progress()
-    if user:
-        user.end_progress()
-
-    filt.requestreset()
-
-    return matches
-
-
 def get_family_handle_people(db, exclude_handle, family_handle):
     people = set()
 
@@ -170,9 +145,22 @@ class DeepRelationshipPathBetween(Rule):
         root_person = db.get_person_from_gramps_id(root_person_id)
 
         filter_name = self.list[1]
-        target_people = filter_database(db, user, filter_name)
+        self.filt = MatchesFilter([filter_name])
+        self.filt.requestprepare(db, user)
 
         if user:
+            user.begin_progress(_('Finding relationship paths'),
+                                _('Retrieving all sub-filter matches'),
+                                db.get_number_of_people())
+        target_people = []
+        for handle in db.iter_person_handles():
+            person = db.get_person_from_handle(handle)
+            if self.filt.apply(db, person):
+                target_people.append(handle)
+            if user:
+                user.step_progress()
+        if user:
+            user.end_progress()
             user.begin_progress(_('Finding relationship paths'),
                                 _('Evaluating people'),
                                 db.get_number_of_people())
@@ -182,6 +170,7 @@ class DeepRelationshipPathBetween(Rule):
             user.end_progress()
 
     def reset(self):
+        self.filt.requestreset()
         self.__matches = set()
 
     def apply(self, db, person):
