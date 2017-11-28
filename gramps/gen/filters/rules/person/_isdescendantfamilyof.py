@@ -82,7 +82,8 @@ class IsDescendantFamilyOf(Rule):
 
         while expand:
             person = expand.pop(0)
-            if person is None:
+            if person is None or person.handle in self.matches:
+                # if we have been here before, skip
                 continue
             self.matches.add(person.handle)
             for family_handle in person.get_family_handle_list():

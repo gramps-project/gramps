@@ -61,6 +61,9 @@ class IsLessThanNthGenerationAncestorOf(Rule):
         queue = [(root_handle, 1)] # generation 1 is root
         while queue:
             handle, gen = queue.pop(0) # pop off front of queue
+            if handle in self.map:
+                # if we have been here before, skip
+                continue
             self.map.add(handle)
             gen += 1
             if gen <= int(self.list[1]):

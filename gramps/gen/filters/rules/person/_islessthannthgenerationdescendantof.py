@@ -65,7 +65,8 @@ class IsLessThanNthGenerationDescendantOf(Rule):
         return person.handle in self.map
 
     def init_list(self,person,gen):
-        if not person:
+        if not person or person.handle in self.map:
+            # if we have been here before, skip
             return
         if gen:
             self.map.add(person.handle)
