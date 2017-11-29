@@ -57,6 +57,7 @@ from ...user import User
 from bisect import bisect_right
 from gramps.gen.filters import SearchFilter, ExactSearchFilter
 from .basemodel import BaseModel
+from gramps.gen.proxy.cache import CacheProxyDb
 
 #-------------------------------------------------------------------------
 #
@@ -584,7 +585,8 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         self.__total += items
         assert not skip
         if dfilter:
-            for handle in dfilter.apply(self.db,
+            cdb = CacheProxyDb(self.db)
+            for handle in dfilter.apply(cdb,
                                         user=User(parent=self.uistate.window)):
                 status_ppl.heartbeat()
                 data = data_map(handle)
