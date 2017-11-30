@@ -40,7 +40,13 @@ class CacheProxyDb:
         proxies.
         """
         self.db = database
-        self.clear_cache()
+        # Memory allocation is power of 2 where slots has to fit.
+        # LRU uses one extra slot in its work, so set max to 2^17-1
+        # otherwise we are just wasting memory
+        self.cache_handle = LRU(131071)
+
+    def __del__(self):
+        self.cache_handle.clear()
 
     def __getattr__(self, attr):
         """
@@ -57,10 +63,7 @@ class CacheProxyDb:
         if handle:
             del self.cache_handle[handle]
         else:
-            # Memory allocation is power of 2 where slots has to fit.
-            # LRU uses one extra slot in its work, so set max to 2^17-1
-            # otherwise we are just wasting memory
-            self.cache_handle = LRU(131071)
+            self.cache_handle.clear()
 
     def get_person_from_handle(self, handle):
         """
