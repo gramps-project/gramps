@@ -78,10 +78,15 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_event = Event()
         self.filter_event.set_type((EventType.CUSTOM, ''))
         self.etype = Gtk.ComboBox(has_entry=True)
+        if dbstate.is_open():
+            self.custom_types = dbstate.db.get_event_types()
+        else:
+            self.custom_types = []
         self.event_menu = widgets.MonitoredDataType(
             self.etype,
             self.filter_event.set_type,
-            self.filter_event.get_type)
+            self.filter_event.get_type,
+            custom_values=self.custom_types)
 
         self.filter_note = widgets.BasicEntry()
         self.filter_gender = Gtk.ComboBoxText()
