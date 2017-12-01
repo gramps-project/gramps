@@ -78,10 +78,15 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_event = Event()
         self.filter_event.set_type((EventType.CUSTOM, ''))
         self.etype = Gtk.ComboBox(has_entry=True)
+        try:  # Should use if dbstate.isopen() but not in gramps42
+            self.custom_types = dbstate.db.get_event_types()
+        except:
+            self.custom_types = []
         self.event_menu = widgets.MonitoredDataType(
-            self.etype, 
-            self.filter_event.set_type, 
-            self.filter_event.get_type)
+            self.etype,
+            self.filter_event.set_type,
+            self.filter_event.get_type,
+            custom_values=self.custom_types)
 
         self.filter_note = widgets.BasicEntry()
         self.filter_gender = Gtk.ComboBoxText()

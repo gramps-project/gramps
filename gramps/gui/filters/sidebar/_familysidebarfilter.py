@@ -67,21 +67,29 @@ class FamilySidebarFilter(SidebarFilter):
         self.filter_event = Event()
         self.filter_event.set_type((EventType.CUSTOM, ''))
         self.etype = Gtk.ComboBox(has_entry=True)
+        try:  # should use if dbstate.is_open(), but not in gramps42
+            self.custom_types = dbstate.db.get_event_types()
+        except:
+            self.custom_types = []
 
-        self.family_stub = Family()
-        self.family_stub.set_relationship((FamilyRelType.CUSTOM, ''))
-        self.rtype = Gtk.ComboBox(has_entry=True)
-        self.custom_types = dbstate.db.get_family_relation_types()
-        
         self.event_menu = widgets.MonitoredDataType(
             self.etype,
             self.filter_event.set_type,
-            self.filter_event.get_type)
+            self.filter_event.get_type,
+            custom_values=self.custom_types)
+
+        self.filter_family = Family()
+        self.filter_family.set_relationship((FamilyRelType.CUSTOM, ''))
+        self.rtype = Gtk.ComboBox(has_entry=True)
+        try:  # should use if dbstate.is_open(), but not in gramps42
+            self.custom_types = dbstate.db.get_family_relation_types()
+        except:
+            self.custom_types = []
 
         self.rel_menu = widgets.MonitoredDataType(
             self.rtype,
-            self.family_stub.set_relationship,
-            self.family_stub.get_relationship,
+            self.filter_family.set_relationship,
+            self.filter_family.get_relationship,
             custom_values=self.custom_types)
         
         self.filter_note = widgets.BasicEntry()
@@ -139,7 +147,7 @@ class FamilySidebarFilter(SidebarFilter):
         child = str(self.filter_child.get_text()).strip()
         note = str(self.filter_note.get_text()).strip()
         etype = self.filter_event.get_type().xml_str()
-        rtype = self.family_stub.get_relationship().xml_str()
+        rtype = self.filter_family.get_relationship().xml_str()
         regex = self.filter_regex.get_active()
         tag = self.tag.get_active() > 0
         generic = self.generic.get_active() > 0
