@@ -3,13 +3,14 @@
 # Janne Kovesjärvi <janne.kovesjarvi@gmail.com>, 2008, 200, 2013.
 # Pekka Valta <pekka.valta@kolumbus.fi>, 2014.
 # Matti Niemelä <niememat@gmail.com>, 2014, 2015, 2016, 2017.
+# Niemelä <niememat@gmail.com>, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps50_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-15 20:31+0200\n"
-"PO-Revision-Date: 2017-11-15 22:46+0200\n"
+"PO-Revision-Date: 2017-12-03 17:28+0200\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -23,6 +24,7 @@ msgstr ""
 "X-Poedit-Basepath: gramps/gramps\n"
 "X-Poedit-SearchPath-0: .\n"
 
+# ok
 #: ../gramps/cli/arghandler.py:228
 #, python-format
 msgid ""
@@ -30,8 +32,9 @@ msgid ""
 "The '-C' option cannot be used."
 msgstr ""
 "Virhe: Sukupuu '%s' löytyy jo.\n"
-"'-C' valitsinta ei voi käyttää."
+"'-C' valintaa ei voi käyttää."
 
+# ok
 #: ../gramps/cli/arghandler.py:240
 #, python-format
 msgid ""
@@ -41,7 +44,7 @@ msgid ""
 msgstr ""
 "Virhe: Syötettävää \"%s\" sukupuuta ei ole vielä olemassa.\n"
 "Jos tuot GEDCOM, Gramps-xml tai grdb tiedostoa, käytä tuonnissa sen sijaan -"
-"i valitsinta."
+"i option."
 
 #: ../gramps/cli/arghandler.py:254
 #, python-format
@@ -128,10 +131,11 @@ msgstr "\"%s\""
 msgid "Performing action: %s."
 msgstr "Suorittaa toimintoa: %s."
 
+# ok
 #: ../gramps/cli/arghandler.py:460 ../gramps/gen/plug/report/stdoptions.py:284
 #, python-format
 msgid "Using options string: %s"
-msgstr "Käyttää optio merkkijonoa: %s"
+msgstr "Käyttää valittua merkkijonoa: %s"
 
 #: ../gramps/cli/arghandler.py:466
 #, python-format
@@ -176,10 +180,11 @@ msgstr "  Tiedot: %s"
 msgid "Database needs recovery, cannot open it!"
 msgstr "Tietokanta pitää palauttaa (recovery), sitä ei voi avata!"
 
+# ok
 #: ../gramps/cli/arghandler.py:607 ../gramps/cli/arghandler.py:656
 #: ../gramps/cli/arghandler.py:703
 msgid "Ignoring invalid options string."
-msgstr "Ohitetaan kelvoton optio merkkijono."
+msgstr "Virheellinen merkkijono valinta ohitetaan."
 
 #. name exists, but is not in the list of valid report names
 #: ../gramps/cli/arghandler.py:631
@@ -878,14 +883,16 @@ msgstr "Käytettävä CSS tiedostonimi, vain html muoto"
 msgid "%(id)s:\t%(father)s, %(mother)s"
 msgstr "%(id)s:\t%(father)s, %(mother)s"
 
+# ok
 #: ../gramps/cli/plug/__init__.py:447
 #, python-format
 msgid "Unknown option: %s"
-msgstr "Tuntematon optio: %s"
+msgstr "Tuntematon valinta: %s"
 
+# ok
 #: ../gramps/cli/plug/__init__.py:448 ../gramps/cli/plug/__init__.py:529
 msgid "   Valid options are:"
-msgstr "   Käytettävissä olevat optiot:"
+msgstr "   Käytettävissä olevat valinnat:"
 
 #. translators: needed for Arabic, ignore otherwise
 #. ok we have the children.  Make a title off of them
@@ -933,15 +940,17 @@ msgstr ""
 msgid "Use '%(notranslate)s' to see valid values."
 msgstr "Käytä '%(notranslate)s' nähdäksesi sallitut arvot."
 
+# ok
 #: ../gramps/cli/plug/__init__.py:528
 #: ../gramps/gen/plug/report/stdoptions.py:281
 #, python-format
 msgid "Ignoring unknown option: %s"
-msgstr "Hylätään tuntematon optio: %s"
+msgstr "Ohitetaan tuntematon valinta: %s"
 
+# ok
 #: ../gramps/cli/plug/__init__.py:601
 msgid "   Available options:"
-msgstr "   Käytettävissä olevat optiot:"
+msgstr "   Käytettävissä olevat valinnat:"
 
 #: ../gramps/cli/plug/__init__.py:610
 msgid "(no help available)"
@@ -958,8 +967,8 @@ msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
 "options."
 msgstr ""
-"optio '%(optionname)s' ei ole oikea. Käytä '%(donottranslate)s' nähdäksesi "
-"kaikki käytettävissä olevat optiot."
+"valinta '%(optionname)s' ei ole oikea. Käytä '%(donottranslate)s' nähdäksesi "
+"kaikki käytettävissä olevat valinnat."
 
 #: ../gramps/cli/plug/__init__.py:646
 msgid "Failed to write report. "
@@ -2388,10 +2397,11 @@ msgstr "lempinimi"
 msgid "familynick"
 msgstr "perhelempinimi"
 
+# ok
 #: ../gramps/gen/display/name.py:1117
 #, python-format
 msgid "Wrong name format string %s"
-msgstr "Nimimuodon väärä merkkijono %s"
+msgstr "Nimen muodossa virheellinen merkkijono %s"
 
 #: ../gramps/gen/display/name.py:1121
 msgid "ERROR, Edit Name format in Preferences"
@@ -2586,15 +2596,17 @@ msgstr "Päivämäärä:"
 msgid "Confidence:"
 msgstr "Luotettavuus:"
 
+# ok
 #: ../gramps/gen/filters/rules/_hascitationbase.py:52
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:51
 msgid "Citations matching parameters"
-msgstr "Lainaukset, jotka vastaavat annettuja arvoja"
+msgstr "Lainauksille, asetetaan poimintaehdot"
 
+# ok
 #: ../gramps/gen/filters/rules/_hascitationbase.py:53
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:53
 msgid "Matches citations with particular parameters"
-msgstr "Poimii lainaukset, joilla on tietyt arvot"
+msgstr "Poimii lainaukset, joille on asetettu tietyt poimintaehdot"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:54
 #: ../gramps/gen/filters/rules/_hassourcebase.py:52
@@ -2746,10 +2758,12 @@ msgstr "Muut suotimet"
 msgid "No description"
 msgstr "Ei kuvausta"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:45
 msgid "Every citation"
 msgstr "Kaikki lainaukset"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:46
 msgid "Matches every citation in the database"
 msgstr "Poimii kaikki lainaukset tietokannasta"
@@ -2813,56 +2827,67 @@ msgstr "Poimii lainaukset, jotka on merkitty yksityisiksi"
 msgid "Confidence level:"
 msgstr "Luotettavuustaso:"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:45
 msgid "Citations with <count> media"
-msgstr "Lainaukset, joihin liittyy laskettu määrä <count> mediatiedostoja"
+msgstr "Lainaukset, joissa mediatiedostoja on <määrä>"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:46
 msgid "Matches citations with a certain number of items in the gallery"
-msgstr "Poimii lainaukset, joilla on tietty määrä kuvia kuvagalleriassa"
+msgstr "Poimii lainaukset, joilla on tietty määrä mediatiedostoja galleriassa"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:45
 msgid "Citation with <Id>"
-msgstr "Lainaus, jolla on annettu <Id>"
+msgstr "Lainaukselle on annettu <Id>"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:46
 msgid "Matches a citation with a specified Gramps ID"
-msgstr "Poimii lainauksen, jossa on määritetty Gramps ID"
+msgstr "Poimii lainaukset, joille on annettu Gramps ID"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:46
 msgid "Citations having <count> notes"
-msgstr "Lainaukset, joilla on <lukumäärä> lisätietoja"
+msgstr "Lainaukset, joilla lisätietoja on <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:47
 msgid "Matches citations having a certain number of notes"
 msgstr "Poimii lainaukset, joilla on tietty määrä lisätietoja"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:43
 msgid "Citations having notes containing <substring>"
-msgstr "Lainaukset, joiden lisätiedot sisältää <osamerkkijonon>"
+msgstr "Lainaukset, joiden lisätiedot sisältävät <osamerkkijonon>"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:44
 msgid "Matches citations whose notes contain text matching a substring"
-msgstr "Poimii lainaukset, joiden lisätiedoista löytyy annettu osamerkkijono"
+msgstr "Poimii lainaukset, joiden lisätiedot sisältävät annetun osamerkkijonon"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:42
 msgid "Citations having notes containing <text>"
-msgstr "Lainaukset, joiden lisätiedoista löytyy annettu <teksti>"
+msgstr "Lainaukset, joiden lisätiedot sisältävät <tekstin>"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:43
 msgid ""
 "Matches citations whose notes contain text matching a regular expression"
 msgstr ""
-"Poimii lainaukset, joiden lisätiedoista löytyy annetun säännöllisen "
-"lausekkeen mukainen teksti"
+"Poimii lainaukset, joiden lisätiedot sisältävät tekstin, joka vastaa "
+"säännöllistä lauseketta"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:43
 msgid "Citations with a reference count of <count>"
-msgstr "Lainaukset ja niiden laskettu määrä <count> viitteitä"
+msgstr "Lainaukset joilla on määrätty <viitemäärä>"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:44
 msgid "Matches citations with a certain reference count"
-msgstr "Poimii lainaukset, joilla on tietty määrä viitteitä"
+msgstr "Poimii lainaukset, joilla on tietty määrätty viitemäärä"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:48
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:46
@@ -2888,7 +2913,7 @@ msgstr "Tekijä:"
 #: ../gramps/gui/glade/mergedata.glade.h:16
 #: ../gramps/gui/glade/mergesource.glade.h:10
 msgid "Abbreviation:"
-msgstr "Lyhennelmä:"
+msgstr "Lyhennys:"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:51
 #: ../gramps/gui/glade/mergedata.glade.h:17
@@ -2896,13 +2921,15 @@ msgstr "Lyhennelmä:"
 msgid "Publication:"
 msgstr "Julkaisu:"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hassource.py:52
 msgid "Sources matching parameters"
-msgstr "Lähteet, jotka vastaavat annettuja arvoja"
+msgstr "Lainaukset, joiden lähteet vastaavat annettuja arvoja"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hassource.py:53
 msgid "Matches citations with a source of a particular value"
-msgstr "Poimii lainaukset, joiden lähteellä on tietty arvo"
+msgstr "Poimii lainaukset, joiden lähteet vastaavat annettuja arvoja"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:55
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:49
@@ -2911,25 +2938,29 @@ msgstr "Poimii lainaukset, joiden lähteellä on tietty arvo"
 msgid "Source filters"
 msgstr "Lähdesuotimet"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:46
 msgid "Citation with Source <Id>"
-msgstr "Lainaus, jolla on annettu <Id>"
+msgstr "Lainaus, jonka lähteellä on <Id>"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:47
 msgid "Matches a citation with a source with a specified Gramps ID"
-msgstr "Poimii lainauksen, jossa on määritelty Gramps ID"
+msgstr "Poimii lainauksen, jonka lähteellä on määritelty Gramps ID"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:52
 msgid "Citations having source notes containing <text>"
-msgstr "Lainaukset, joiden lähteen lisätiedoista löytyy annettu <teksti>"
+msgstr "Lainaukset, joiden lähteen lisätiedot sisältävät <tekstin>"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:53
 msgid ""
 "Matches citations whose source notes contain a substring or match a regular "
 "expression"
 msgstr ""
-"Poimii lainaukset, joiden lähteen lisätiedoista löytyy tekstijono tai jotka "
-"ovat annetun säännöllisen lausekkeen mukaisia"
+"Poimii lainaukset, joiden lähteen lisätiedot sisältävät annetun "
+"osamerkkijonon tai säännöllisen lausekkeen"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:48
 #: ../gramps/gen/filters/rules/event/_hastag.py:48
@@ -2944,13 +2975,15 @@ msgstr ""
 msgid "Tag:"
 msgstr "Tagi:"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hastag.py:49
 msgid "Citations with the <tag>"
-msgstr "Lainaukset, joilla on merkitty <tagi>"
+msgstr "Lainaukset, joilla on tietty <tagi>"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_hastag.py:50
 msgid "Matches citations with the particular tag"
-msgstr "Poimii tapahtumat, joilla on tietty tagi"
+msgstr "Poimii tapahtumat, joihin on liitetty tietty tagi"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:45
 msgid "Citations matching the <filter>"
@@ -2960,19 +2993,22 @@ msgstr "Lainaukset, jotka <suodin> hyväksyy"
 msgid "Matches citations matched by the specified filter name"
 msgstr "Poimii lainaukset, jotka saadaan annetun nimisellä suotimella"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:43
 msgid "Citations with Volume/Page containing <text>"
-msgstr "Lainaukset, joiden Osassa/sivussa löytyy <teksti>"
+msgstr "Lainaukset, joiden Osa/sivu sisältää <tekstin>"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:44
 msgid "Matches citations whose Volume/Page contains a certain substring"
-msgstr "Poimii lainaukset, joiden Osassa/sivussa löytyy annettu osamerkkijono"
+msgstr "Poimii lainaukset, joiden Osa/sivu sisältää annetun osamerkkijonon"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:45
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:43
 #: ../gramps/gui/editors/filtereditor.py:532
 msgid "Repository filter name:"
-msgstr "Arkistosuotimet:"
+msgstr "Arkistosuotimen nimi:"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:46
 msgid ""
@@ -2987,10 +3023,12 @@ msgid ""
 msgstr ""
 "Poimii lainaukset, joilla on lähteitä, jotka valittu arkistosuodin hyväksyy"
 
+# ?
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:49
 msgid "Citations with source matching the <source filter>"
 msgstr "Lainaukset, jotka <lähteen suodin> hyväksyy"
 
+# ?
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:50
 msgid ""
 "Matches citations with sources that match the specified source filter name"
@@ -2998,27 +3036,30 @@ msgstr ""
 "Poimii lainaukset, joissa on lähteitä, jotka annetun niminen lähdesuodin "
 "hyväksyy"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:48
 msgid "Citations with Id containing <text>"
-msgstr "Lainaukset, joiden tunnuksessa löytyy <teksti>"
+msgstr "Lainaukset, joiden Id sisältää <tekstin>"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:49
 msgid "Matches citations whose Gramps ID matches the regular expression"
 msgstr ""
-"Poimii lainaukset, joiden Gramps ID on annetun säännöllisen lausekkeen "
-"mukainen"
+"Poimii lainaukset, joiden Gramps ID sisältää annetun säännöllisen lausekkeen"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:48
 msgid "Citations with Source Id containing <text>"
-msgstr "Lainaukset, joiden lähteen tunnuksessa on <teksti>"
+msgstr "Lainaukset, joiden lähteen Id sisätää <tekstin>"
 
+# ok
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:49
 msgid ""
 "Matches citations whose source has a Gramps ID that matches the regular "
 "expression"
 msgstr ""
-"Poimii lainaukset, joiden Gramps ID on annetun säännöllisen lausekkeen "
-"mukainen"
+"Poimii lainaukset, joiden lähteen Gramps ID sisältää annetun säännöllisen "
+"lausekkeen"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:44
 msgid "Every event"
@@ -3129,47 +3170,53 @@ msgstr "Tietyn viikonpäivän tapahtumat"
 msgid "Matches events occurring on a particular day of the week"
 msgstr "Poimii tietyn viikonpäivän tapahtumat"
 
+# ok
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:45
 msgid "Events with <count> media"
-msgstr "Tapahtumat, joilla on <lukumäärä> mediatiedostoja"
+msgstr "Tapahtumat, joilla mediatiedostoja on <lukumäärä>"
 
+# ok
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:46
 msgid "Matches events with a certain number of items in the gallery"
-msgstr "Poimii tapahtumat, joilla on tietty määrä kuvia kuvagalleriassa"
+msgstr "Poimii tapahtumat, joilla on tietty määrä mediaa galleriassa"
 
+# ok
 #: ../gramps/gen/filters/rules/event/_hasidof.py:44
 msgid "Event with <Id>"
-msgstr "Tapahtuma, jolla on <id>"
+msgstr "Tapahtuma, jolla on <Id>"
 
 #: ../gramps/gen/filters/rules/event/_hasidof.py:45
 msgid "Matches an event with a specified Gramps ID"
 msgstr "Poimii tapahtuman, jossa on määritelty Gramps ID"
 
+# ok
 #: ../gramps/gen/filters/rules/event/_hasnote.py:45
 msgid "Events having <count> notes"
-msgstr "Tapahtumat, joilla on <lukumäärä> lisätietoja"
+msgstr "Tapahtumat, joilla lisätietoja on <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/event/_hasnote.py:46
 msgid "Matches events having a certain number of notes"
 msgstr "Poimii tapahtumat, joilla on tietty määrä lisätietoja"
 
+# ok
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:42
 msgid "Events having notes containing <substring>"
-msgstr "Tapahtumat, joiden lisätiedoista löytyy <osamerkkijono>"
+msgstr "Tapahtumat, joiden lisätiedot sisältävät <osamerkkijonon>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:43
 msgid "Matches events whose notes contain text matching a substring"
-msgstr "Poimii tapahtumat, joiden lisätiedoista löytyy annettu osamerkkijono"
+msgstr "Poimii tapahtumat, joiden lisätiedot sisältävät annetun osamerkkijonon"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:41
 msgid "Events having notes containing <text>"
-msgstr "Tapahtumat, joiden lisätiedoista löytyy <teksti>"
+msgstr "Tapahtumat, joiden lisätiedot sisältävät <tekstin>"
 
+# ok
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:42
 msgid "Matches events whose notes contain text matching a regular expression"
 msgstr ""
-"Poimii tapahtumat, joiden lisätiedot ovat annetun säännöllisen lausekkeen "
-"mukaiset"
+"Poimii tapahtumat, joiden lisätiedot sisältävät annetun säännöllisen "
+"lausekkeen"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:42
 msgid "Events with a reference count of <count>"
@@ -3179,9 +3226,10 @@ msgstr "Tapahtumat, joiden viitemäärä on <lukumäärä>"
 msgid "Matches events with a certain reference count"
 msgstr "Poimii tapahtumat, joilla on tietty määrä viitteitä"
 
+# ok
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:44
 msgid "Events with <count> sources"
-msgstr "Tapahtumat, joilla on <lukumäärä> lähteitä"
+msgstr "Tapahtumat, joilla lähteitä on <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:45
 msgid "Matches events with a certain number of sources connected to it"
@@ -3193,7 +3241,7 @@ msgstr "Tapahtumat, joihin on liitetty <tagi>"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:50
 msgid "Matches events with the particular tag"
-msgstr "Poimii tapahtumat, joilla on tietty tagi"
+msgstr "Poimii tapahtumat, joihin on liitetty tietty tagi"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:46
 msgid "Events with the particular type"
@@ -3224,7 +3272,7 @@ msgstr "Lisää perhetapahtumat:"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:51
 msgid "Events of persons matching the <person filter>"
-msgstr "Henkilöiden tapahtumat jotka <henkilösuodin> hyväksyy"
+msgstr "Henkilöiden tapahtumat, jotka <henkilösuodin> hyväksyy"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
 msgid "Matches events of persons matched by the specified person filter name"
@@ -3241,12 +3289,13 @@ msgstr "Paikkasuotimen nimi:"
 msgid "Events of places matching the <place filter>"
 msgstr "Paikkojen tapahtumat, jotka <paikkasuodin> hyväksyy"
 
+# ok
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:51
 msgid ""
 "Matches events that occurred at places that match the specified place filter "
 "name"
 msgstr ""
-"Poimii tapahtumat, jotka jotka tapahtuivat tietyn nimisen paikkasuotimen "
+"Poimii tapahtumat, jotka tapahtuivat tietyn nimisen paikkasuotimen "
 "hyväksymissä paikoissa"
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:45
@@ -3269,22 +3318,23 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:47
 msgid "Events with Id containing <text>"
-msgstr "Poimii tapahtumat, joiden tunnuksessa löytyy <teksti>"
+msgstr "Poimii tapahtumat, joiden Id sisältää <tekstin>"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:48
 msgid "Matches events whose Gramps ID matches the regular expression"
 msgstr ""
-"Poimii tapahtumat, joiden Gramps ID on annetun säännöllisen lausekkeen "
-"mukainen"
+"Poimii tapahtumat, joiden Gramps ID sisältää annetun säännöllisen lausekkeen"
 
+# ok
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:44
 #: ../gramps/gen/plug/report/utils.py:378
 msgid "Every family"
-msgstr "Jokainen perhe"
+msgstr "Kaikki perheet"
 
+# ok
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:45
 msgid "Matches every family in the database"
-msgstr "Poimii jokaisen perheen tietokannasta"
+msgstr "Poimii kaikki perheet tietokannasta"
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:47
 msgid "Families changed after <date time>"
@@ -3306,7 +3356,7 @@ msgstr "Henkilön ID:"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:46
 msgid "Families having child with Id containing <text>"
-msgstr "Perheet, joiden jollakin lapsella on tunnuksessa <teksti>"
+msgstr "Perheet, joilla lapsen Id sisältää <tekstin>"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:47
 msgid "Matches families where child has a specified Gramps ID"
@@ -3336,9 +3386,10 @@ msgstr "Yksityisiksi merkityt perheet"
 msgid "Matches families that are indicated as private"
 msgstr "Poimii perheet, jotka on merkitty yksityisiksi"
 
+# ok
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:46
 msgid "Families having father with Id containing <text>"
-msgstr "Perheet, joiden isän tunnuksesta löytyy <teksti>"
+msgstr "Perheet, joiden isän Id sisältää <tekstin>"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:47
 msgid "Matches families whose father has a specified Gramps ID"
@@ -3406,13 +3457,15 @@ msgstr "Perheet, joilla on <tapahtuma>"
 msgid "Matches families with an event of a particular value"
 msgstr "Poimii perheet, joiden tapahtumalla on tietty arvo"
 
+# ok
 #: ../gramps/gen/filters/rules/family/_hasgallery.py:45
 msgid "Families with <count> media"
-msgstr "Perheet, joilla on <lukumäärä> mediatiedostoja"
+msgstr "Perheet, joilla mediatiedostoja on <lukumäärä>"
 
+# ok
 #: ../gramps/gen/filters/rules/family/_hasgallery.py:46
 msgid "Matches families with a certain number of items in the gallery"
-msgstr "Poimii perheet, joilla on tietty määrä kuvia kuvagalleriassa"
+msgstr "Poimii perheet, joilla on tietty määrä mediatiedostoja galleriassa"
 
 #: ../gramps/gen/filters/rules/family/_hasidof.py:44
 msgid "Family with <Id>"
@@ -3422,43 +3475,49 @@ msgstr "Perhe, jolla on <id>"
 msgid "Matches a family with a specified Gramps ID"
 msgstr "Poimii perheen, jolla on määritelty Gramps ID"
 
+# ok
 #: ../gramps/gen/filters/rules/family/_haslds.py:48
 msgid "Families with <count> LDS events"
-msgstr "Perheet, joilla on <lukumäärä> MAP tapahtumia"
+msgstr "Perheet, joilla on MAP tapahtumia <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:49
 msgid "Matches families with a certain number of LDS events"
 msgstr "Poimii perheet, joilla on tietty määrä MAP tapahtumia"
 
+# ok
 #: ../gramps/gen/filters/rules/family/_hasnote.py:45
 msgid "Families having <count> notes"
-msgstr "Perheet, joilla on <lukumäärä> lisätietoja"
+msgstr "Perheet, joilla on lisätietoja <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/family/_hasnote.py:46
 msgid "Matches families having a certain number notes"
 msgstr "Poimii perheet, joilla on tietty määrä lisätietoja"
 
+# ok
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:42
 msgid "Families having notes containing <substring>"
-msgstr "Perheet, joiden lisätiedoista löytyy <osamerkkijono>"
+msgstr "Perheet, joiden lisätiedot sisältävät <osamerkkijonon>"
 
+# ok
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:43
 msgid "Matches families whose notes contain text matching a substring"
-msgstr "Poimii perheet, joiden lisätiedoista löytyy annettu osamerkkijono"
+msgstr "Poimii perheet, joiden lisätiedot sisältävät annetun osamerkkijonon"
 
+# ok
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:41
 msgid "Families having notes containing <text>"
-msgstr "Perheet, joiden lisätiedoista löytyy <teksti>"
+msgstr "Perheet, joiden lisätiedot sisältävät <tekstin>"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:42
 msgid "Matches families whose notes contain text matching a regular expression"
 msgstr ""
-"Poimii perheet, joiden lisätiedoista löytyy annetun säännöllisen lausekkeen "
-"mukainen teksti"
+"Poimii perheet, joiden lisätiedot sisältävät annetun säännöllisen lausekkeen "
+"mukaisen tekstin"
 
+# ok
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:42
 msgid "Families with a reference count of <count>"
-msgstr "Perheet, joilla on <lukumäärä> viitteitä"
+msgstr "Perheet, joilla viitteitä on <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:43
 msgid "Matches family objects with a certain reference count"
@@ -3475,13 +3534,15 @@ msgstr "Suhteen tyyppi:"
 msgid "Families with the relationship type"
 msgstr "Perheet, joilla on suhdetyyppi"
 
+# ok
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:47
 msgid "Matches families with the relationship type of a particular value"
-msgstr "Poimii perheet, joissa on tietyn arvon mukainen suhde"
+msgstr "Poimii perheet, joissa on tietyn arvon mukainen suhdetyyppi"
 
+# ok
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:45
 msgid "Families with <count> sources"
-msgstr "Perheet, joilla on <lukumäärä> lähteitä"
+msgstr "Perheet, joilla on lähteitä <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:46
 msgid "Matches families with a certain number of sources connected to it"
@@ -3497,7 +3558,7 @@ msgstr "Poimii henkilöt, joilla on tietty lähde"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:49
 msgid "Families with the <tag>"
-msgstr "Perheet, joilla on <tag>"
+msgstr "Perheet, joilla on <tagi>"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:50
 msgid "Matches families with the particular tag"
@@ -3560,11 +3621,12 @@ msgstr "Perheet, joilla on vähintään yksi suora lähde >= <luotettavuustaso>"
 #: ../gramps/gen/filters/rules/family/_matchessourceconfidence.py:45
 msgid ""
 "Matches families with at least one direct source with confidence level(s)"
-msgstr "Poimii perheet, joilla on vähintään yksi lähde luotettavuustasoa"
+msgstr ""
+"Poimii perheet, joilla on vähintään yksi lähde valitulla luotettavuustasolla"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:46
 msgid "Families having mother with Id containing <text>"
-msgstr "Perheet, joiden äidin tunnuksessa on <teksti>"
+msgstr "Perheet, joiden äidin Id sisältää <tekstin>"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:47
 msgid "Matches families whose mother has a specified Gramps ID"
@@ -3588,7 +3650,7 @@ msgstr "Poimii perheet, joiden äidillä on annettu nimi tai nimen osa"
 
 #: ../gramps/gen/filters/rules/family/_regexpchildname.py:45
 msgid "Families with child matching the <regex_name>"
-msgstr "Perheet, joiden lapsen nimi on <säännöllinen lauseke> mukainen"
+msgstr "Perheet, joiden lapsen nimi on <säännöllisen lausekkeen> mukainen"
 
 #: ../gramps/gen/filters/rules/family/_regexpchildname.py:46
 msgid ""
@@ -3600,7 +3662,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_regexpfathername.py:45
 msgid "Families with father matching the <regex_name>"
-msgstr "Perheet, joiden isän nimi on <säännöllinen lauseke> mukainen"
+msgstr "Perheet, joiden isän nimi on <säännöllisen lausekkeen> mukainen"
 
 #: ../gramps/gen/filters/rules/family/_regexpfathername.py:46
 msgid ""
@@ -3609,17 +3671,19 @@ msgid ""
 msgstr ""
 "Poimii perheitä, joiden isän nimi vastaa annettua säännöllistä lauseketta"
 
+# ok
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:47
 msgid "Families with Id containing <text>"
-msgstr "Perheet, joiden tunnuksessa on <teksti>"
+msgstr "Perheet, joiden Id sisältää <tekstin>"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:48
 msgid "Matches families whose Gramps ID matches the regular expression"
 msgstr "Poimii perheet, joiden Gramps ID vastaa säännöllistä lauseketta"
 
+# ok
 #: ../gramps/gen/filters/rules/family/_regexpmothername.py:45
 msgid "Families with mother matching the <regex_name>"
-msgstr "Perheet, joiden äiti on <säännöllinen lauseke> mukainen"
+msgstr "Perheet, joiden äiti on <säännöllisen lausekkeen> mukainen"
 
 #: ../gramps/gen/filters/rules/family/_regexpmothername.py:46
 msgid ""
@@ -3630,7 +3694,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:45
 msgid "Families with any child matching the <name>"
-msgstr "Perheet, joiden jokin lapsi on <nimi> mukainen"
+msgstr "Perheet, joiden jollain lapsella on <nimi>"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:46
 msgid "Matches families where any child has a specified (partial) name"
@@ -3639,15 +3703,15 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:45
 msgid "Families with father matching the <name>"
-msgstr "Perheet, joiden isä on <nimi> mukainen"
+msgstr "Perheet, joiden isällä on <nimi>"
 
 #: ../gramps/gen/filters/rules/family/_searchmothername.py:45
 msgid "Families with mother matching the <name>"
-msgstr "Perheet, joiden äiti on <nimi> mukainen"
+msgstr "Perheet, joiden äidillä on <nimi>"
 
 #: ../gramps/gen/filters/rules/media/_allmedia.py:44
 msgid "Every media object"
-msgstr "Jokainen mediakohde"
+msgstr "Kaikki mediatiedostot"
 
 #: ../gramps/gen/filters/rules/media/_allmedia.py:45
 msgid "Matches every media object in the database"
@@ -3674,7 +3738,7 @@ msgstr "Mediatiedoston ominaisuus:"
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:45
 msgid "Media objects with the attribute <attribute>"
-msgstr "Mediatiedostot, joilla on ominaisuus <ominaisuus>"
+msgstr "Mediatiedostot, joilla on <ominaisuus>"
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:46
 msgid "Matches media objects with the attribute of a particular value"
@@ -3682,7 +3746,7 @@ msgstr "Poimii mediatiedostot, joiden ominaisuudella on tietty arvo"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:50
 msgid "Media with the <citation>"
-msgstr "Tapahtumat, joissa on <lainaus>"
+msgstr "Mediatiedostot, joissa on <lainaus>"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:51
 msgid "Matches media with a citation of a particular value"
@@ -3723,24 +3787,24 @@ msgstr "Poimii mediatiedostot, joilla on tietyt parametrit"
 
 #: ../gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py:42
 msgid "Media objects having notes containing <substring>"
-msgstr "Mediatiedostot, joiden lisätiedoista löytyy <osamerkkijono>"
+msgstr "Mediatiedostot, joiden lisätiedot sisältää <osamerkkijonon>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py:43
 msgid "Matches media objects whose notes contain text matching a substring"
 msgstr ""
-"Poimii mediatiedostot, joiden lisätietojen tekstistä löytyy annettu "
-"osamerkkijono"
+"Poimii mediatiedostot, joiden lisätietojen teksti sisältää annetun "
+"osamerkkijonon"
 
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:41
 msgid "Media objects having notes containing <text>"
-msgstr "Mediatiedostot, joiden lisätiedoista löytyy <teksti>"
+msgstr "Mediatiedostot, joiden lisätiedot sisältää <tekstin>"
 
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:42
 msgid ""
 "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
-"Poimii mediatiedostot, joiden lisätiedoista löytyy säännöllisen lausekkeen "
-"mukainen teksti"
+"Poimii mediatiedostot, joiden lisätiedot sisältää säännöllisen lausekkeen "
+"mukaisen tekstin"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:42
 msgid "Media objects with a reference count of <count>"
@@ -3752,7 +3816,7 @@ msgstr "Poimii mediatiedostot, joilla on tietty määrä viitteitä"
 
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:45
 msgid "Media with <count> sources"
-msgstr "Mediatiedosto, jolla on <määrä> lähdettä"
+msgstr "Mediatiedosto, jolla on lähteitä <määrä>"
 
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:46
 msgid "Matches media with a certain number of sources connected to it"
@@ -3786,10 +3850,12 @@ msgstr "Poimii mediatiedostot, jotka saadaan annetun nimisellä suotimella"
 msgid "Media with a direct source >= <confidence level>"
 msgstr "Mediatiedosto, jossa suora lähde >= <luotettavuustaso>"
 
+# ok
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:45
 msgid "Matches media with at least one direct source with confidence level(s)"
 msgstr ""
-"Poimii mediatiedoston, jossa ainakin yksi suora lähde on luotettavuustasoa"
+"Poimii mediatiedoston, jossa ainakin yksi suora lähde on valitulla "
+"luotettavuustasolla"
 
 #: ../gramps/gen/filters/rules/media/_mediaprivate.py:42
 msgid "Media objects marked private"
@@ -3801,7 +3867,7 @@ msgstr "Poimii mediatiedostot, jotka on merkitty yksityisiksi"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:47
 msgid "Media objects with Id containing <text>"
-msgstr "Mediatiedostot, joiden tunnuksessa on <teksti>"
+msgstr "Mediatiedostot, joiden Id sisältää <tekstin>"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:48
 msgid "Matches media objects whose Gramps ID matches the regular expression"
@@ -3852,9 +3918,10 @@ msgstr "Lisätiedot jotka vastaavat annettuja parametreja"
 msgid "Matches Notes with particular parameters"
 msgstr "Poimii lisätiedot, joilla on tietyt parametrit"
 
+# ok
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:42
 msgid "Notes with a reference count of <count>"
-msgstr "Lisätiedot, joiden viitemäärä on <määrä>"
+msgstr "Lisätiedot, joilla on <viitemäärä>"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:43
 msgid "Matches notes with a certain reference count"
@@ -3884,23 +3951,24 @@ msgstr "Lisätiedot, jotka <suodin> hyväksyy"
 msgid "Matches notes matched by the specified filter name"
 msgstr "Poimii lisätiedot, jotka saadaan annetun nimisellä suotimella"
 
+# ok
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:44
 msgid "Notes containing <text>"
-msgstr "Lisätiedot, joista löytyy <teksti>"
+msgstr "Lisätiedot, jotka sisältävät <tekstin>"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:45
 msgid "Matches notes that contain a substring or match a regular expression"
 msgstr ""
-"Poimii lisätiedot, joiden lisätiedoista löytyy osamerkkijono tai vastaavat "
-"annettua säännöllistä lauseketta"
+"Poimii lisätiedot, joiden lisätiedot sisältävät annetun osamerkkijonon tai "
+"vastaavat annettua säännöllistä lauseketta"
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:44
 msgid "Notes containing <substring>"
-msgstr "Lisätiedot, joista löytyy <osamerkkijono>"
+msgstr "Lisätiedot, jotka sisältävät <osamerkkijonon>"
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:45
 msgid "Matches notes that contain text which matches a substring"
-msgstr "Poimii lisätiedot, joista löytyy annettu merkkijonon osa"
+msgstr "Poimii lisätiedot, jotka sisältävät annetun osamerkkijonon"
 
 #: ../gramps/gen/filters/rules/note/_noteprivate.py:42
 msgid "Notes marked private"
@@ -3912,7 +3980,7 @@ msgstr "Poimii lisätiedot, jotka on merkitty yksityisiksi"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:47
 msgid "Notes with Id containing <text>"
-msgstr "Lisätiedot, joiden Id-tunnuksesta löytyy <teksti>"
+msgstr "Lisätiedot, joiden Id sisältää <tekstin>"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:48
 msgid "Matches notes whose Gramps ID matches the regular expression"
@@ -3931,6 +3999,7 @@ msgstr ""
 "Poimii henkilöt, joita on muutettu annetun päivämäärän ja ajan (vvvv-kk-pp "
 "hh:mm:ss) jälkeen tai aikavälillä, jos toinen päivämäärä ja aika on annettu."
 
+# ?
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:51
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:147
 msgid "Finding relationship paths"
@@ -3945,7 +4014,7 @@ msgstr "Löydetään suhdepolut"
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:58
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:57
 msgid "Retrieving all sub-filter matches"
-msgstr "Noutaa <Alisuotimen> hyväksymät kohteet"
+msgstr "Noutaa <alisuotimen> hyväksymät kohteet"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:131
 msgid "Relationship path between <person> and people matching <filter>"
@@ -3994,17 +4063,19 @@ msgstr "Kaikki henkilöt"
 msgid "Matches everyone in the database"
 msgstr "Poimii kaikki henkilöt tietokannasta"
 
+# ok
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:42
 msgid "Families with incomplete events"
-msgstr "Henkilöllä epätäydellisiä perhetapahtumia"
+msgstr "Perheet, joilla on epätäydellisiä tapahtumia"
 
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:43
 msgid "Matches people with missing date or place in an event of the family"
 msgstr "Poimii henkilöt, joiden perhetapahtumista puuttuu joko aika tai paikka"
 
+# ok
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:49
 msgid "People with <count> addresses"
-msgstr "Henkilöt, joilla on <määrä> osoitteita"
+msgstr "Henkilöt, joilla osoitteita on <määrä>"
 
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:50
 msgid "Matches people with a certain number of personal addresses"
@@ -4018,9 +4089,10 @@ msgstr "Henkilöt vaihtoehtoisella nimellä"
 msgid "Matches people with an alternate name"
 msgstr "Poimii henkilöt vaihtoehtoisella nimellä"
 
+# ok
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:49
 msgid "People with <count> associations"
-msgstr "Henkilöt, joilla on <lukumäärä> liitoksia"
+msgstr "Henkilöt, joilla liitoksia on <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:50
 msgid "Matches people with a certain number of associations"
@@ -4122,13 +4194,15 @@ msgstr "Henkilöt, joilla on henkilökohtainen <tapahtuma>"
 msgid "Matches people with a personal event of a particular value"
 msgstr "Poimii henkilöt, joiden henkilökohtaisella tapahtumalla on tietty arvo"
 
+# ok
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:45
 msgid "People with the family <attribute>"
-msgstr "Henkilöt, joilla on perheen <ominaisuus>"
+msgstr "Henkilöt, joiden perheellä on <ominaisuus>"
 
+# ok
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:46
 msgid "Matches people with the family attribute of a particular value"
-msgstr "Poimii henkilöt, joiden perheominaisuudella on tietty arvo"
+msgstr "Poimii henkilöt, joiden perheen ominaisuudella on tietty arvo"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:52
 msgid "People with the family <event>"
@@ -4140,25 +4214,26 @@ msgstr "Poimii henkilöt, joiden perhetapahtumalla on tietty arvo"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:42
 msgid "People with <count> media"
-msgstr "Henkilöt, joilla on <lukumäärä> mediatiedostoa"
+msgstr "Henkilöt, joilla mediatiedostoja on <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:43
 msgid "Matches people with a certain number of items in the gallery"
-msgstr "Poimii henkilöt, joilla on tietty määrä kuvia kuvagalleriassa"
+msgstr "Poimii henkilöt, joilla on tietty määrä mediatiedostoja galleriassa"
 
 #: ../gramps/gen/filters/rules/person/_hasidof.py:44
 #: ../gramps/gen/filters/rules/person/_matchidof.py:45
 msgid "Person with <Id>"
-msgstr "Henkilö, jolla on <id>"
+msgstr "Henkilö, jolla on <Id>"
 
 #: ../gramps/gen/filters/rules/person/_hasidof.py:45
 #: ../gramps/gen/filters/rules/person/_matchidof.py:46
 msgid "Matches person with a specified Gramps ID"
 msgstr "Poimii henkilöt, joilla on määritelty Gramps ID"
 
+# on
 #: ../gramps/gen/filters/rules/person/_haslds.py:48
 msgid "People with <count> LDS events"
-msgstr "Henkilöt, joilla on <lukumäärä> MAP tapahtumia"
+msgstr "Henkilöt, joilla MAP tapahtumia on <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:49
 msgid "Matches people with a certain number of LDS events"
@@ -4225,9 +4300,10 @@ msgstr "Poimii henkilöt, joilla on annettu nimi tai nimen osa"
 msgid "Surname origin type:"
 msgstr "Sukunimen alkuperä tyyppi:"
 
+# ok
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:47
 msgid "People with the <Surname origin type>"
-msgstr "Henkilöt, joilla sukunimissä on <sukunimen alkuperätyyppi>"
+msgstr "Henkilöt, joilla on <sukunimen alkuperätyyppi>"
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:48
 msgid "Matches people with a surname origin"
@@ -4255,9 +4331,10 @@ msgstr "Henkilöt, joilla on lempinimi"
 msgid "Matches people with a nickname"
 msgstr "Poimii henkilöt, joilla on lempinimi"
 
+# ok
 #: ../gramps/gen/filters/rules/person/_hasnote.py:45
 msgid "People having <count> notes"
-msgstr "Henkilöt, joilla on <lukumäärä> lisätietoja"
+msgstr "Henkilöt, joilla lisätietoja on <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/person/_hasnote.py:46
 msgid "Matches people having a certain number of notes"
@@ -4265,21 +4342,21 @@ msgstr "Poimii henkilöt, joilla on tietty määrä lisätietoja"
 
 #: ../gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py:42
 msgid "People having notes containing <substring>"
-msgstr "Henkilöt, joiden lisätiedoista löytyy <osamerkkijono>"
+msgstr "Henkilöt, joiden lisätiedot sisältää <osamerkkijonon>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py:43
 msgid "Matches people whose notes contain text matching a substring"
-msgstr "Poimii henkilöt, joiden lisätiedoista löytyy annettu merkkijonon osa"
+msgstr "Poimii henkilöt, joiden lisätiedot sisältävät annetun osamerkkijonon"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:41
 msgid "People having notes containing <text>"
-msgstr "Henkilöt, joiden lisätiedoista löytyy <teksti>"
+msgstr "Henkilöt, joiden lisätiedot sisältävät <tekstin>"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:42
 msgid "Matches people whose notes contain text matching a regular expression"
 msgstr ""
-"Poimii henkilöt, joiden lisätiedoista löytyy annetun säännöllisen lausekkeen "
-"mukainen teksti"
+"Poimii henkilöt, joiden lisätiedot sisältävät annetun säännöllisen "
+"lausekkeen mukaisen tekstin"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:45
 msgid "Number of relationships:"
@@ -4335,7 +4412,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:45
 msgid "People with <count> sources"
-msgstr "Henkilöt, joilla on <lukumäärä> lähteitä"
+msgstr "Henkilöt, joilla lähteitä on <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:46
 msgid "Matches people with a certain number of sources connected to it"
@@ -4364,11 +4441,12 @@ msgstr "Kirjainkoon huomioiva:"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:48
 msgid "People with records containing <substring>"
-msgstr "Henkilöt, joiden tiedoista löytyy <osamerkkijono>"
+msgstr "Henkilöt, joiden tietueet sisältävät <osamerkkijonon>"
 
+# ok
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:49
 msgid "Matches people whose records contain text matching a substring"
-msgstr "Poimii henkilöt, joiden tiedoista löytyy annettu merkkijonon osa"
+msgstr "Poimii henkilöt, joiden tietueet sisältävät annetun osamerkkijonon"
 
 #: ../gramps/gen/filters/rules/person/_hasunknowngender.py:45
 msgid "People with unknown gender"
@@ -4463,15 +4541,17 @@ msgstr ""
 "Poimii henkilöt, jotka ovat valitun henkilön jälkeläisiä tai heidän "
 "puolisoitaan"
 
+# ok
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:47
 msgid "Descendant family members of <filter> match"
-msgstr "<Henkilön> jälkeläiset perheineen"
+msgstr "<Suotimen> hyväksymät jälkeläiset perheineen"
 
+# ok
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:49
 msgid ""
 "Matches people that are descendants or the spouse of anybody matched by a "
 "filter"
-msgstr "Poimii suotimen hyväksymien henkilöiden jälkeläiset tai puolisot"
+msgstr "Poimii suotimen hyväksymien henkilöiden jälkeläiset ja heidän puolisot"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:46
 msgid "Descendants of <person>"
@@ -4660,9 +4740,11 @@ msgstr "Tapahtumasuotimen nimi:"
 msgid "Persons with events matching the <event filter>"
 msgstr "Henkilöt joiden tapahtumat <tapahtumasuodin> hyväksyy"
 
+# ok
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
 msgid "Matches persons who have events that match a certain event filter"
-msgstr "Poimii henkilöt, joilla on tapahtumia, jotka valittu suodin hyväksyy"
+msgstr ""
+"Poimii henkilöt, joilla on tapahtumia, jotka valittu tapahtumasuodin hyväksyy"
 
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:44
 msgid "People matching the <filter>"
@@ -4672,11 +4754,12 @@ msgstr "Henkilöt, jotka <suodin> hyväksyy"
 msgid "Matches people matched by the specified filter name"
 msgstr "Poimii henkilöt, jotka saadaan annetun nimisellä suotimella"
 
+# ok
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:44
 msgid "Persons with at least one direct source >= <confidence level>"
 msgstr ""
-"Henkilöt, joilla >= <luotettavuustaso> on vähintään yhdessä suorassa "
-"lähteessä"
+"Henkilöt, joilla vähintään yhdessä suorassa lähteessä on >= "
+"<luotettavuustaso>"
 
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:45
 msgid ""
@@ -4701,9 +4784,10 @@ msgstr ""
 msgid "People with multiple marriage records"
 msgstr "Henkilöt, joilla on enemmän kuin yksi avioliittotieto"
 
+# ok
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:43
 msgid "Matches people who have more than one spouse"
-msgstr "Poimii henkilöt, joilla on enemmän kuin yksi puoliso"
+msgstr "Poimii henkilöt, joilla on (ollut) enemmän kuin yksi puoliso"
 
 #: ../gramps/gen/filters/rules/person/_nevermarried.py:42
 msgid "People with no marriage records"
@@ -4767,9 +4851,10 @@ msgstr ""
 "Poimii henkilöt, joilla ei ole kuolemaan liittyviä tapahtumia ja jotka eivät "
 "ole liian vanhoja"
 
+# ok
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:46
 msgid "People with Id containing <text>"
-msgstr "Henkilöt, joiden tunnuksesta löytyy <merkkijono>"
+msgstr "Henkilöt, joiden Id sisältää <tekstin>"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:47
 msgid "Matches people whose Gramps ID matches the regular expression"
@@ -4778,15 +4863,16 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:46
 msgid "People with a name matching <text>"
-msgstr "Henkilöt, joiden nimi on <teksti> mukainen"
+msgstr "Henkilöt, joiden nimi on <tekstin> mukainen"
 
+# ok
 #: ../gramps/gen/filters/rules/person/_regexpname.py:47
 msgid ""
 "Matches people's names containing a substring or matching a regular "
 "expression"
 msgstr ""
-"Poimii henkilöt, joiden nimistä löytyy merkkijono tai ne ovat annetun "
-"säännöllisen lausekkeen mukaisia"
+"Poimii henkilöt, joiden nimet sisältävät osamerkkijonon tai vastaavat "
+"annettua säännöllistä lauseketta"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:46
 msgid "Relationship path between <persons>"
@@ -4867,13 +4953,15 @@ msgstr "Parametreja vastaavat paikat"
 msgid "Matches places with particular parameters"
 msgstr "Poimii paikat, jotka vastaavat tiettyjä parametreja"
 
+# ok
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:45
 msgid "Places with <count> media"
-msgstr "Paikat, joilla on <lukumäärä> mediatiedostoja"
+msgstr "Paikat, joilla mediatiedostoja on <lukumäärä>"
 
+# ok
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:46
 msgid "Matches places with a certain number of items in the gallery"
-msgstr "Poimii paikat, joilla on tietty määrä kohteita kuvagalleriassa"
+msgstr "Poimii paikat, joilla on tietty määrä mediatiedostoja galleriassa"
 
 #: ../gramps/gen/filters/rules/place/_hasidof.py:44
 msgid "Place with <Id>"
@@ -4899,7 +4987,7 @@ msgstr "Sijaintisuotimet"
 
 #: ../gramps/gen/filters/rules/place/_hasnote.py:45
 msgid "Places having <count> notes"
-msgstr "Paikat, joilla on <lukumäärä> lisätietoja"
+msgstr "Paikat, joilla lisätietoja on <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/place/_hasnote.py:46
 msgid "Matches places having a certain number of notes"
@@ -4907,21 +4995,23 @@ msgstr "Poimii paikat, joilla on tietty määrä lisätietoja"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:42
 msgid "Places having notes containing <substring>"
-msgstr "Paikat, joiden lisätiedoista löytyy <osamerkkijono>"
+msgstr "Paikat, joiden lisätiedot sisältävät <osamerkkijonon>"
 
+# ok
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:43
 msgid "Matches places whose notes contain text matching a substring"
-msgstr "Poimii paikat, joiden lisätiedoista löytyy annettu merkkijonon osa"
+msgstr "Poimii paikat, joiden lisätiedot sisältävät annetun osamerkkijonon"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:41
 msgid "Places having notes containing <text>"
-msgstr "Paikat, joiden lisätiedoista löytyy <teksti>"
+msgstr "Paikat, joiden lisätiedot sisältävät <tekstin>"
 
+# ok
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:42
 msgid "Matches places whose notes contain text matching a regular expression"
 msgstr ""
-"Poimii paikat, joiden lisätiedoissa annetun säännöllisen lausekkeen mukainen "
-"teksti"
+"Poimii paikat, joiden lisätiedot sisältävät säännöllisen lausekkeen mukaisen "
+"tekstin"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:49
 msgid "Street:"
@@ -4965,15 +5055,16 @@ msgstr "Poimii paikat, joilla on tietty määrä viitteitä"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:45
 msgid "Place with <count> sources"
-msgstr "Paikka, joilla on <lukumäärä> lähteitä"
+msgstr "Paikka, joilla lähteitä on <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:46
 msgid "Matches places with a certain number of sources connected to it"
 msgstr "Poimii henkilöt, joilla on tietty määrä lähteitä"
 
+# ok
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:46
 msgid "Places with the <source>"
-msgstr "Paikat, joilla <lähde>"
+msgstr "Paikat, joilla on <lähde>"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:48
 msgid "Matches places who have a particular source"
@@ -5061,10 +5152,12 @@ msgstr "Poimii paikat, jotka saadaan annetun nimisellä suotimella"
 msgid "Place with a direct source >= <confidence level>"
 msgstr "Paikka, jossa suoralla lähteellä >= <luotettavuustaso>"
 
+# ok
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:45
 msgid "Matches places with at least one direct source with confidence level(s)"
 msgstr ""
-"Poimii paikat, joissa on vähintään yksi suora lähde jolla luotettavuustasoa"
+"Poimii paikat, joissa on vähintään yksi suora lähde on valitulla "
+"luotettavuustasolla"
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:42
 msgid "Places marked private"
@@ -5076,12 +5169,12 @@ msgstr "Poimii paikat, jotka on merkitty yksityisiksi"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:47
 msgid "Places with Id containing <text>"
-msgstr "Paikat, joiden tunnuksessa löytyy <teksti>"
+msgstr "Paikat, joiden Id sisältää <tekstin>"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:48
 msgid "Matches places whose Gramps ID matches the regular expression"
 msgstr ""
-"Poimii paikat, joiden Gramps ID on annetun säännöllisen lausekkeen mukainen"
+"Poimii paikat, joiden Gramps ID vastaa annettua säännöllistä lauseketta"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:50
 #: ../gramps/gui/editors/filtereditor.py:584
@@ -5096,9 +5189,10 @@ msgstr "Paikat alueella"
 msgid "Matches places within a given distance of another place"
 msgstr "Poimii paikat tietyllä etäisyydellä toiseen paikkaan"
 
+# ok
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
-msgstr "Jokainen arkisto"
+msgstr "Kaikki arkistot"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:45
 msgid "Matches every repository in the database"
@@ -5118,30 +5212,33 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:44
 msgid "Repository with <Id>"
-msgstr "Arkisto, jolla on <id>"
+msgstr "Arkisto, jolla on <Id>"
 
 #: ../gramps/gen/filters/rules/repository/_hasidof.py:45
 msgid "Matches a repository with a specified Gramps ID"
 msgstr "Poimii arkistot, joilla on määritelty Gramps ID"
 
+# ok
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:42
 msgid "Repositories having notes containing <substring>"
-msgstr "Arkistot, joiden lisätiedoista löytyy <osamerkkijono>"
+msgstr "Arkistot, joiden lisätiedot sisältävät <osamerkkijonon>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:43
 msgid "Matches repositories whose notes contain text matching a substring"
-msgstr "Poimii arkistot, joiden lisätiedoista löytyy annettu merkkijonon osa"
+msgstr "Poimii arkistot, joiden lisätiedot sisältävät annetun osamerkkijonon"
 
+# ok
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:41
 msgid "Repositories having notes containing <text>"
-msgstr "Arkistot, joiden lisätiedoista löytyy <merkkijono>"
+msgstr "Arkistot, joiden lisätiedot sisältävät <tekstin>"
 
+# ok
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:42
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
-"Poimii arkistot, joiden lisätiedoista löytyy annetun säännöllisen lausekkeen "
-"mukainen teksti"
+"Poimii arkistot, joiden lisätiedot sisältävät annetun säännöllisen "
+"lausekkeen mukaisen tekstin"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:42
 msgid "Repositories with a reference count of <count>"
@@ -5189,22 +5286,23 @@ msgstr "Arkistot, jotka <suodin> hyväksyy"
 msgid "Matches repositories matched by the specified filter name"
 msgstr "Poimii arkistot, jotka saadaan annetun nimisellä suotimella"
 
+# ok
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:43
 msgid "Repositories with name containing <text>"
-msgstr "Arkistot, joiden nimestä löytyy <teksti>"
+msgstr "Arkistot, joiden nimi sisältää <tekstin>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:44
 msgid "Matches repositories whose name contains a certain substring"
-msgstr "Poimii arkistot, joiden nimestä löytyy annettu merkkijonon osa"
+msgstr "Poimii arkistot, joiden nimi sisältää annetun osamerkkijonon"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:47
 msgid "Repositories with Id containing <text>"
-msgstr "Arkistot, joiden tunnuksesta löytyy <teksti>"
+msgstr "Arkistot, joiden Id sisältää <tekstin>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:48
 msgid "Matches repositories whose Gramps ID matches the regular expression"
 msgstr ""
-"Poimii arkistot, joiden Gramps ID on annetun säännöllisen lausekkeen mukainen"
+"Poimii arkistot, joiden Gramps ID sisältää annetun säännöllisen lausekkeen"
 
 #: ../gramps/gen/filters/rules/repository/_repoprivate.py:42
 msgid "Repositories marked private"
@@ -5236,45 +5334,49 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:45
 msgid "Sources with <count> media"
-msgstr "Lähteet, joilla on <määrä> mediatiedostoa"
+msgstr "Lähteet, joilla mediatiedostoja on <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:46
 msgid "Matches sources with a certain number of items in the gallery"
-msgstr "Poimii lähteet, joilla on tietty määrä kohteita galleriassa"
+msgstr "Poimii lähteet, joilla on tietty määrä mediatiedostoja galleriassa"
 
 #: ../gramps/gen/filters/rules/source/_hasidof.py:44
 msgid "Source with <Id>"
 msgstr "Lähde, jolla on <id>"
 
+# ok
 #: ../gramps/gen/filters/rules/source/_hasidof.py:45
 msgid "Matches a source with a specified Gramps ID"
-msgstr "Poimii lähteet, joilla on nimetty Gramps ID"
+msgstr "Poimii lähteet, joille on annettu Gramps ID"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:45
 msgid "Sources having <count> notes"
-msgstr "Lähteet, joilla on <lukumäärä> lisätietoja"
+msgstr "Lähteet, joilla lisätietoja on <lukumäärä>"
 
+# ok
 #: ../gramps/gen/filters/rules/source/_hasnote.py:46
 msgid "Matches sources having a certain number of notes"
-msgstr "Poimii lähteet, joilla on tietty määrä lisätietoja"
+msgstr "Poimii lähteet, joilla on tietty lukumäärä lisätietoja"
 
+# ok
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:42
 msgid "Sources having notes containing <substring>"
-msgstr "Lähteet, joiden lisätiedoista löytyy <merkkijono>"
+msgstr "Lähteet, joiden lisätiedot sisältävät <osamerkkijonon>"
 
+# ok
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:43
 msgid "Matches sources whose notes contain text matching a substring"
-msgstr "Poimii lähteet, joiden lisätiedoista löytyy annettu merkkijonon osa"
+msgstr "Poimii lähteet, joiden lisätiedot sisältävät annetun osamerkkijonon"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:41
 msgid "Sources having notes containing <text>"
-msgstr "Lähteet, joiden lisätiedoista löytyy <merkkijono>"
+msgstr "Lähteet, joiden lisätiedot sisältävät <tekstin>"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:42
 msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr ""
-"Poimii lähteet, joiden lisätiedoista löytyy annetun säännöllisen lausekkeen "
-"mukainen teksti"
+"Poimii lähteet, joiden lisätiedot sisältävät annetun säännöllisen lausekkeen "
+"mukaisen tekstin"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:42
 msgid "Sources with a reference count of <count>"
@@ -5284,9 +5386,10 @@ msgstr "Lisätiedot, joiden viitemäärä on <lukumäärä>"
 msgid "Matches sources with a certain reference count"
 msgstr "Poimii lisätiedot, joilla on tietty määrä viitteitä"
 
+# ok
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:47
 msgid "Sources with <count> Repository references"
-msgstr "Lähteet, joilla on <lukumäärä> arkistoviittauksia"
+msgstr "Lähteet, joilla arkistoviitteitä on <lukumäärä>"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:48
 msgid "Matches sources with a certain number of repository references"
@@ -5301,12 +5404,12 @@ msgid ""
 "Matches sources with a repository reference\n"
 "containing a substring in \"Call Number\""
 msgstr ""
-"Poimii lähteet, joiden arkistoviitteessä\n"
-" on merkkijono \"hakuavaimessa\""
+"Poimii lähteet, joiden arkistoviite\n"
+"sisältää osamerkkijonon \"hakuavaimessa\""
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:49
 msgid "Sources with the <tag>"
-msgstr "Lähteet, joilla on <tag>"
+msgstr "Lähteet, joilla on <tagi>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
 msgid "Matches sources with the particular tag"
@@ -5330,22 +5433,25 @@ msgid ""
 "repository filter"
 msgstr "Poimii lähteet, joiden arkistoviitteen valittu arkistosuodin hyväksyy"
 
+# ok
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:43
 msgid "Sources with title containing <text>"
-msgstr "Lähteet, joiden nimikkeestä löytyy <teksti>"
+msgstr "Lähteet, joiden nimikke sisältää <tekstin>"
 
+# ok
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:44
 msgid "Matches sources whose title contains a certain substring"
-msgstr "Poimii lähteet, joiden nimikkeestä löytyy annettu merkkijonon osa"
+msgstr "Poimii lähteet, joiden nimike sisältää annettu osamerkkijonon"
 
+# ok
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:47
 msgid "Sources with Id containing <text>"
-msgstr "Lähteet, joiden Id-tunnuksessa löytyy <teksti>"
+msgstr "Lähteet, joiden Id sisältää <tekstin>"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:48
 msgid "Matches sources whose Gramps ID matches the regular expression"
 msgstr ""
-"Poimii lähteet, joiden Gramps ID on annetun säännöllisen lausekkeen mukainen"
+"Poimii lähteet, joiden Gramps ID vastaa annettua säännöllistä lauseketta"
 
 #: ../gramps/gen/filters/rules/source/_sourceprivate.py:42
 msgid "Sources marked private"
@@ -5909,7 +6015,7 @@ msgstr "Lähde"
 #: ../gramps/plugins/webreport/media.py:150
 #: ../gramps/plugins/webreport/media.py:344
 msgid "Media"
-msgstr "Media"
+msgstr "Mediat"
 
 #: ../gramps/gen/lib/citation.py:125 ../gramps/gen/lib/src.py:124
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:637
@@ -7652,7 +7758,7 @@ msgstr "Julkaisutiedot"
 #: ../gramps/plugins/view/sourceview.py:85
 #: ../gramps/plugins/webreport/source.py:259
 msgid "Abbreviation"
-msgstr "Lyhennelmä"
+msgstr "Lyhennys"
 
 #: ../gramps/gen/lib/src.py:127 ../gramps/plugins/quickview/filterbyname.py:106
 #: ../gramps/plugins/quickview/filterbyname.py:131
@@ -7946,6 +8052,7 @@ msgstr "Gramplet %s aiheutti virheen"
 msgid "No description was provided"
 msgstr "Kuvaus puuttuu"
 
+# ok
 #: ../gramps/gen/plug/_options.py:386
 #: ../gramps/plugins/textreport/recordsreport.py:162
 #, python-format
@@ -7953,8 +8060,8 @@ msgid ""
 "Option '%(opt_name)s' is present in %(file)s\n"
 "  but is not known to the module.  Ignoring..."
 msgstr ""
-"Tiedostossa %(file)s on optio '%(opt_name)s'\n"
-",  jota moduuli ei tunne.  Sivuutetaan..."
+"Valinta '%(opt_name)s' on tiedostossa %(file)s\n"
+"  mutta moduulia ei tunneta.  Ohitetaan..."
 
 #: ../gramps/gen/plug/_pluginreg.py:59
 msgid "Stable"
@@ -8309,10 +8416,11 @@ msgstr "Yhdyslinjat"
 msgid "How the lines between objects will be drawn."
 msgstr "Miten piirretään viivat kohteiden välillä."
 
+# ok
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:200
 msgid "Graphviz Options"
-msgstr "Graphviz asetukset"
+msgstr "Graphviz valinnat"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:203
@@ -8488,10 +8596,11 @@ msgstr "Legal"
 msgid "Custom Size"
 msgstr "Käyttäjän koko"
 
+# ok
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:142
 #, python-format
 msgid "Value '%(val)s' not found for option '%(opt)s'"
-msgstr "Arvoa '%(val)s' ei löydy optiolle '%(opt)s'"
+msgstr "Arvoa '%(val)s' ei löydy valinnalle '%(opt)s'"
 
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:144
 #: ../gramps/gen/plug/report/stdoptions.py:282
@@ -13580,8 +13689,8 @@ msgid ""
 "be presented for any missing media files."
 msgstr ""
 "Valitsemalla tämän kaikkia puuttuvia media tiedostoja käsitellään voimassa "
-"olevan valinnan mukaisesti. Minkään puuttuvan mediatiedoston kohdalla enää "
-"näytetä varoitusta."
+"olevan valinnan mukaisesti. Minkään puuttuvan mediatiedoston kohdalla ei "
+"näytetä varoitusta enää."
 
 #: ../gramps/gui/glade/dialog.glade.h:12
 msgid "Cancel the rest of the operations"
@@ -15318,7 +15427,7 @@ msgstr "Poista valittu sääntö"
 #: ../gramps/plugins/tool/mergecitations.glade.h:2
 #: ../gramps/plugins/tool/sortevents.py:82
 msgid "Options"
-msgstr "Asetukset"
+msgstr "Valinnat"
 
 #: ../gramps/gui/glade/rule.glade.h:22
 msgid "Rule list"
@@ -15465,7 +15574,7 @@ msgstr "A_lla"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:37
 msgid "Paragraph options"
-msgstr "Kappaleasetukset"
+msgstr "Kappaleen valinnat"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:38
 msgid "Width"
@@ -16842,11 +16951,11 @@ msgstr "Gramps kirja"
 #: ../gramps/gui/plug/report/_docreportdialog.py:143
 #: ../gramps/gui/plug/report/_graphvizreportdialog.py:181
 msgid "Paper Options"
-msgstr "Paperiasetukset"
+msgstr "Paperivalinnat"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:149
 msgid "HTML Options"
-msgstr "HTML-asetukset"
+msgstr "HTML valinnat"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:186
 #: ../gramps/gui/plug/report/_graphvizreportdialog.py:150
@@ -16932,12 +17041,12 @@ msgstr "Tyyli"
 #: ../gramps/plugins/webreport/narrativeweb.py:1560
 #: ../gramps/plugins/webreport/webcal.py:1608
 msgid "Report Options"
-msgstr "Raporttiasetukset"
+msgstr "Raportin valinnat"
 
 #. need any labels at top:
 #: ../gramps/gui/plug/report/_reportdialog.py:456
 msgid "Document Options"
-msgstr "Asiakirja-asetukset"
+msgstr "Asiakirjan valinnat"
 
 #: ../gramps/gui/plug/report/_reportdialog.py:502
 #: ../gramps/gui/plug/report/_reportdialog.py:529
@@ -17647,7 +17756,7 @@ msgstr "Tiedosto:"
 
 #: ../gramps/gui/viewmanager.py:1882
 msgid "Media:"
-msgstr "Media:"
+msgstr "Mediat:"
 
 #: ../gramps/gui/viewmanager.py:1889
 #: ../gramps/plugins/gramplet/statsgramplet.py:139
@@ -18690,7 +18799,7 @@ msgstr "Tulostan sukupuuta..."
 #: ../gramps/plugins/drawreport/ancestortree.py:791
 #: ../gramps/plugins/drawreport/descendtree.py:1520
 msgid "Tree Options"
-msgstr "Puuasetukset"
+msgstr "Sukupuun valinnat"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:793
 #: ../gramps/plugins/drawreport/calendarreport.py:476
@@ -18831,7 +18940,7 @@ msgid ""
 msgstr ""
 "Muuta sivukoko puun koon mukaan\n"
 "\n"
-"Huomaa: Menee paperiasetusten edelle ko. valintaikkunassa"
+"Huomaa: Menee paperivalintojen edelle ko. valintaikkunassa"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:869
 #: ../gramps/plugins/drawreport/descendtree.py:1607
@@ -18904,7 +19013,7 @@ msgstr "Otetaanko mukaan tyhjät sivut."
 #: ../gramps/plugins/textreport/recordsreport.py:243
 #: ../gramps/plugins/webreport/webcal.py:1661
 msgid "Report Options (2)"
-msgstr "Raporttiasetukset (2)"
+msgstr "Raportin valinnat (2)"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:911
 msgid ""
@@ -20595,7 +20704,7 @@ msgid ""
 "Click and drag in open area to rotate"
 msgstr ""
 "Napsauta laajentaaksesi/pienentääksesi henkilöä\n"
-"Napsauta kakkospainikkeella nähdäksesi vaihtoehdot\n"
+"Napsauta kakkospainikkeella nähdäksesi valinnat\n"
 "Vedä ja pudota pyörittääksesi vapaalla alueella"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:61
@@ -31941,7 +32050,7 @@ msgstr "Lajitellaan perheiden tietoja..."
 
 #: ../gramps/plugins/tool/sortevents.py:165
 msgid "Tool Options"
-msgstr "Työkaluasetukset"
+msgstr "Työkaluvalinnat"
 
 #: ../gramps/plugins/tool/sortevents.py:168
 msgid "Select the people to sort"
@@ -32510,7 +32619,7 @@ msgstr "Lähde: Kirjoittaja"
 #: ../gramps/plugins/view/citationlistview.py:108
 #: ../gramps/plugins/view/citationtreeview.py:101
 msgid "Source: Abbreviation"
-msgstr "Lähde: Lyhennelmä"
+msgstr "Lähde: Lyhennys"
 
 #: ../gramps/plugins/view/citationlistview.py:109
 #: ../gramps/plugins/view/citationtreeview.py:102
@@ -34476,7 +34585,7 @@ msgid ""
 "sized images on the Media Page. This will allow you to have a much smaller "
 "total upload size to your web hosting site."
 msgstr ""
-"Tämä optio sallii sinun luovan Mediat sivulle vain esikatselukuvia "
+"Tämä valinta sallii sinun luoda Mediat sivulle vain esikatselukuvia "
 "täysimittaisten kuvien sijaan. Näin kuormitat vähemmän "
 "nettipalveluntarjoajasi palvelinta."
 
@@ -34510,7 +34619,7 @@ msgstr "Lisää lataussivu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1803
 msgid "Whether to include a database download option"
-msgstr "Lisätäänkö tietokannan latausmahdollisuus"
+msgstr "Lisätäänkö tietokannan latausvalinta"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1808
 #: ../gramps/plugins/webreport/narrativeweb.py:1820
@@ -34543,7 +34652,7 @@ msgstr "Johnson Sukupuu"
 #: ../gramps/plugins/webreport/narrativeweb.py:1837
 #: ../gramps/plugins/webreport/webcal.py:1826
 msgid "Advanced Options"
-msgstr "Lisäasetukset"
+msgstr "Lisävalinnat"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1840
 #: ../gramps/plugins/webreport/webcal.py:1828
@@ -35070,7 +35179,7 @@ msgstr "Kalenterin otsikko"
 
 #: ../gramps/plugins/webreport/webcal.py:1692
 msgid "Content Options"
-msgstr "Sisältöasetukset"
+msgstr "Sisältövalinnat"
 
 #: ../gramps/plugins/webreport/webcal.py:1697
 msgid "Create multiple year calendars"
@@ -36078,7 +36187,7 @@ msgid ""
 "the database. These can be graphic images, videos, sound clips, "
 "spreadsheets, documents, and more."
 msgstr ""
-"<b>Media näkymä</b><br/>Medianäkymä näyttää listan kaikista sukupuuhun "
+"<b>Medianäkymä</b><br/>Medianäkymä näyttää listan kaikista sukupuuhun "
 "liitetyistä mediatiedostoista. Tiedostot voivat olla kuvia, videoita, ääniä, "
 "taulukoita, dokumentteja jne."
 
