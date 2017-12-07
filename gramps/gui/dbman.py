@@ -557,7 +557,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         if len(new_text) > 0:
             node = self.model.get_iter(path)
             old_text = self.model.get_value(node, NAME_COL)
-            if self.model.get_value(node, ICON_COL) not in [None, ""]:
+            if self.model.get_value(node, ICON_COL) == 'document-open':
                 # this database is loaded. We must change the title
                 # in case we change the name several times before quitting,
                 # we save the first old name.
