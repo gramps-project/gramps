@@ -1463,23 +1463,22 @@ class GrampsPreferences(ConfigureDialog):
 
         current_line = 0
 
-        if __debug__:
-            lwidget = BasicLabel(_("%s: ") % _('Database backend'))
-            grid.attach(lwidget, 1, current_line, 1, 1)
-            obox = self.__create_backend_combo()
-            grid.attach(obox, 2, current_line, 1, 1)
-            current_line += 1
+        lwidget = BasicLabel(_("%s: ") % _('Database backend'))
+        grid.attach(lwidget, 1, current_line, 1, 1)
+        obox = self.__create_backend_combo()
+        grid.attach(obox, 2, current_line, 1, 1)
+        current_line += 1
 
-            self.connection_widgets = []
-            entry = self.add_entry(grid, _('Host'), current_line,
-                                   'database.host', col_attach=1)
-            self.connection_widgets.append(entry)
-            current_line += 1
-            entry = self.add_entry(grid, _('Port'), current_line,
-                                   'database.port', col_attach=1)
-            self.connection_widgets.append(entry)
-            current_line += 1
-            self.set_connection_widgets(config.get('database.backend'))
+        self.connection_widgets = []
+        entry = self.add_entry(grid, _('Host'), current_line,
+                               'database.host', col_attach=1)
+        self.connection_widgets.append(entry)
+        current_line += 1
+        entry = self.add_entry(grid, _('Port'), current_line,
+                               'database.port', col_attach=1)
+        self.connection_widgets.append(entry)
+        current_line += 1
+        self.set_connection_widgets(config.get('database.backend'))
 
         self.dbpath_entry = Gtk.Entry()
         self.add_path_box(grid,

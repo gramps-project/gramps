@@ -130,10 +130,8 @@ class GrampsAboutDialog(Gtk.AboutDialog):
         if hasattr(os, "uname"):
             distro = "\n" + _("Distribution: %s") % ellipses(os.uname()[2])
 
-        sqlite = ''
-        if __debug__:
-            sqlite = "sqlite" + COLON + " %s (%s)\n" % (sqlite3_version_str,
-                                                        sqlite3_py_version_str)
+        sqlite = "sqlite" + COLON + " %s (%s)\n" % (sqlite3_version_str,
+                                                    sqlite3_py_version_str)
 
         return (("\n\n" +
                  "GRAMPS" + COLON + " %s \n" +
