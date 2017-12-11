@@ -45,7 +45,8 @@ from . import (DbReadBase, DbWriteBase, DbUndo, DBLOGNAME, DBUNDOFN,
                KEY_TO_CLASS_MAP, REFERENCE_KEY, PERSON_KEY, FAMILY_KEY,
                CITATION_KEY, SOURCE_KEY, EVENT_KEY, MEDIA_KEY, PLACE_KEY,
                REPOSITORY_KEY, NOTE_KEY, TAG_KEY, TXNADD, TXNUPD, TXNDEL,
-               KEY_TO_NAME_MAP)
+               KEY_TO_NAME_MAP, DBMODE_R, DBMODE_W)
+from .utils import write_lock_file, clear_lock_file
 from ..errors import HandleError
 from ..utils.callback import Callback
 from ..updatecallback import UpdateCallback
@@ -581,7 +582,25 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         raise NotImplementedError
 
-    def load(self, directory, callback=None, mode=None,
+    def __check_readonly(self, name):
+        """
+        Return True if we don't have read/write access to the database,
+        otherwise return False (that is, we DO have read/write access)
+        """
+
+        # See if we write to the target directory at all?
+        if not os.access(name, os.W_OK):
+            return True
+
+        # See if we lack write access to the database file
+        path = os.path.join(name, 'sqlite.db')
+        if os.path.isfile(path) and not os.access(path, os.W_OK):
+            return True
+
+        # All tests passed.  Inform caller that we are NOT read only
+        return False
+
+    def load(self, directory, callback=None, mode=DBMODE_W,
              force_schema_upgrade=False,
              force_bsddb_upgrade=False,
              force_bsddb_downgrade=False,
@@ -592,6 +611,14 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         If update is False: then don't update any files
         """
+        if self.__check_readonly(directory):
+            mode = DBMODE_R
+
+        self.readonly = mode == DBMODE_R
+
+        if not self.readonly:
+            write_lock_file(directory)
+
         # run backend-specific code:
         self._initialize(directory, username, password)
 
@@ -735,6 +762,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 self._set_metadata('nmap_index', self.nmap_index)
 
             self._close()
+
+        try:
+            clear_lock_file(self.get_save_path())
+        except IOError:
+            pass
+
         self.db_is_open = False
         self._directory = None
 

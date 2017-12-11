@@ -72,11 +72,11 @@ from . import (DbBsddbRead, DbWriteBase, BSDDBTxn,
 
 from gramps.gen.db import exceptions
 from gramps.gen.db.dbconst import *
+from gramps.gen.db.utils import write_lock_file, clear_lock_file
 from gramps.gen.utils.callback import Callback
 from gramps.gen.utils.id import create_id
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.errors import DbError, HandleError
-from gramps.gen.constfunc import win, get_env_var
 from gramps.gen.const import HOME_DIR, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -2307,38 +2307,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
 def _mkname(path, name):
     return os.path.join(path, name + DBEXT)
-
-def clear_lock_file(name):
-    try:
-        os.unlink(os.path.join(name, DBLOCKFN))
-    except OSError:
-        return
-
-def write_lock_file(name):
-    if not os.path.isdir(name):
-        os.mkdir(name)
-    with open(os.path.join(name, DBLOCKFN), "w", encoding='utf8') as f:
-        if win():
-            user = get_env_var('USERNAME')
-            host = get_env_var('USERDOMAIN')
-            if host is None:
-                host = ""
-        else:
-            host = os.uname()[1]
-            # An ugly workaround for os.getlogin() issue with Konsole
-            try:
-                user = os.getlogin()
-            except:
-                # not win, so don't need get_env_var.
-                # under cron getlogin() throws and there is no USER.
-                user = os.environ.get('USER', 'noUSER')
-        if host:
-            text = "%s@%s" % (user, host)
-        else:
-            text = user
-        # Save only the username and host, so the massage can be
-        # printed with correct locale in DbManager.py when a lock is found
-        f.write(text)
 
 def upgrade_researcher(owner_data):
     """
