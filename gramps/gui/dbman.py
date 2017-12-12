@@ -929,9 +929,6 @@ class DbManager(CLIDbManager, ManagedWindow):
                 fname = os.path.join(dirname, filename)
                 os.unlink(fname)
 
-        newdb = make_database("bsddb")
-        newdb.write_version(dirname)
-
         dbase = make_database("bsddb")
         dbase.load(dirname, None)
 

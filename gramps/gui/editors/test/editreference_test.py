@@ -62,7 +62,6 @@ class TestEditReference(unittest.TestCase):
             os.mkdir(path)
         except:
             pass
-        db.write_version(path)
         db.load(path)
         dbstate.change_database(db)
         source = Place()

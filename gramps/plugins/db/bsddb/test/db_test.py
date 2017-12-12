@@ -207,7 +207,6 @@ class DbTest(unittest.TestCase):
         "set_name_group_mapping",
         "transaction_begin",
         "transaction_commit",
-        "write_version",
         ]
 
     def _verify_readonly(self, db):

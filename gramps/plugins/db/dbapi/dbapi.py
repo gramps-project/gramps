@@ -53,13 +53,6 @@ class DBAPI(DbGeneric):
     """
     Database backends class for DB-API 2.0 databases
     """
-    def write_version(self, directory):
-        """Write files for a newly created DB."""
-        versionpath = os.path.join(directory, str(DBBACKEND))
-        _LOG.debug("Write database backend file")
-        with open(versionpath, "w") as version_file:
-            version_file.write(self.__class__.__name__.lower())
-
     def _initialize(self, directory, username, password):
         raise NotImplementedError
 

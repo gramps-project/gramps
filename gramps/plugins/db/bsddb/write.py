@@ -562,6 +562,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.path = self.full_name
         self.brief_name = os.path.basename(name)
 
+        # We use the existence of the person table as a proxy for the database
+        # being new
+        if not os.path.exists(os.path.join(self.path, 'person.db')):
+            self._write_version(name)
+
         # If we re-enter load with force_python_upgrade True, then we have
         # already checked the bsddb version, and then checked python version,
         # and are agreeing on the upgrade
@@ -2200,7 +2205,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         else:
             _LOG.debug("Failed to set autoremove flag")
 
-    def write_version(self, name):
+    def _write_version(self, name):
         """Write version number for a newly created DB."""
         full_name = os.path.abspath(name)
 
@@ -2257,11 +2262,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         with open(versionpath, "w") as version_file:
             version = str(_DBVERSION)
             version_file.write(version)
-
-        versionpath = os.path.join(name, str(DBBACKEND))
-        _LOG.debug("Write database backend file to 'bsddb'")
-        with open(versionpath, "w") as version_file:
-            version_file.write("bsddb")
 
         self.metadata.close()
         self.env.close()

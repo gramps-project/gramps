@@ -504,7 +504,6 @@ class ArgHandler:
                     self.imp_db_path = get_empty_tempdir("import_dbdir")
                     dbid = config.get('database.backend')
                     newdb = make_database(dbid)
-                    newdb.write_version(self.imp_db_path)
 
                 try:
                     self.smgr.open_activate(self.imp_db_path, self.username, self.password)

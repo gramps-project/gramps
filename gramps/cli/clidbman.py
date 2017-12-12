@@ -68,6 +68,7 @@ _LOG = logging.getLogger(DBLOGNAME)
 #-------------------------------------------------------------------------
 DEFAULT_TITLE = _("Family Tree")
 NAME_FILE = "name.txt"
+BACKEND_FILE = "database.txt"
 META_NAME = "meta_data.db"
 
 #-------------------------------------------------------------------------
@@ -306,8 +307,10 @@ class CLIDbManager:
             if dbid is None:
                 dbid = config.get('database.backend')
             newdb = make_database(dbid)
-            # write the version number into metadata
-            newdb.write_version(new_path)
+
+        backend_path = os.path.join(new_path, BACKEND_FILE)
+        with open(backend_path, "w", encoding='utf8') as backend_file:
+            backend_file.write(dbid)
 
         (tval, last) = time_val(new_path)
 

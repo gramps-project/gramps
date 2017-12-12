@@ -60,7 +60,6 @@ class FileTest(unittest.TestCase):
         # Create database
         db = make_database("bsddb")
         path = get_empty_tempdir("utils_file_test")
-        db.write_version(path)
         db.load(path)
 
         # Test without db.mediapath set

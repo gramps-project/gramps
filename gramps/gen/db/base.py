@@ -1797,12 +1797,6 @@ class DbWriteBase(DbReadBase):
         """
         raise NotImplementedError
 
-    def write_version(self, name):
-        """
-        Write version number for a newly created DB.
-        """
-        raise NotImplementedError
-
     def add_child_to_family(self, family, child,
                             mrel=ChildRefType(),
                             frel=ChildRefType(),
