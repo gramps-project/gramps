@@ -272,6 +272,8 @@ TOKEN__PHOTO = 132
 TOKEN__LINK = 133
 TOKEN__PRIM = 134
 TOKEN__JUST = 135
+TOKEN__TEXT = 136
+TOKEN__DATE = 137
 
 TOKENS = {
     "_ADPN"           : TOKEN__ADPN,
@@ -282,7 +284,7 @@ TOKENS = {
     "_CAT"            : TOKEN_IGNORE,
     "_CHUR"           : TOKEN_IGNORE,
     "_COMM"           : TOKEN__COMM,
-    "_DATE"           : TOKEN_IGNORE,
+    "_DATE"           : TOKEN__DATE,
     "_DATE2"          : TOKEN_IGNORE,
     "_DETAIL"         : TOKEN_IGNORE,
     "_EMAIL"          : TOKEN_EMAIL,
@@ -315,6 +317,7 @@ TOKENS = {
     "_SCHEMA"         : TOKEN__SCHEMA,
     "_SSHOW"          : TOKEN_IGNORE,
     "_STAT"           : TOKEN__STAT,
+    "_TEXT"           : TOKEN__TEXT,
     "_TODO"           : TOKEN__TODO,
     "_TYPE"           : TOKEN_TYPE,
     "_UID"            : TOKEN__UID,
@@ -1186,6 +1189,7 @@ class GedLine:
 _MAP_DATA = {
     TOKEN_UNKNOWN : GedLine.calc_unknown,
     TOKEN_DATE    : GedLine.calc_date,
+    TOKEN__DATE   : GedLine.calc_date,
     TOKEN_SEX     : GedLine.calc_sex,
     TOKEN_NOTE    : GedLine.calc_note,
     TOKEN_NCHI    : GedLine.calc_nchi,
@@ -2490,7 +2494,9 @@ class GedcomParser(UpdateCallback):
             TOKEN_TITL   : self.__obje_title,
             TOKEN_FILE   : self.__obje_file,    # de-facto extension
             TOKEN_TEXT   : self.__obje_text,    # FTM extension
+            TOKEN__TEXT  : self.__obje_text,    # FTM 2017 extension
             TOKEN_DATE   : self.__obje_date,    # FTM extension
+            TOKEN__DATE  : self.__obje_date,    # FTM 2017 extension
             TOKEN_NOTE   : self.__obje_note,
             TOKEN_RNOTE  : self.__obje_note,
             TOKEN_SOUR   : self.__obje_sour,
@@ -4081,6 +4087,9 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
+        if self.is_ftw:
+            self.__person_resi(line, state)
+            return
         free_form = line.data
 
         sub_state = CurrentState(level=state.level + 1)
@@ -4091,6 +4100,26 @@ class GedcomParser(UpdateCallback):
 
         self.__merge_address(free_form, sub_state.addr, line, state)
         state.person.add_address(sub_state.addr)
+
+    def __person_resi(self, line, state):
+        """
+        Parses GEDCOM ADDR tag, subordinate to the INDI tag, when sourced by
+        FTM.  We treat this as a RESI event, because FTM puts standard event
+        details below the ADDR line.
+
+           n  ADDR <ADDRESS_LINE> {0:1}
+           +1 <<EVENT_DETAIL>> {0:1} p.*
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.backoff = True  # reprocess the current ADDR line
+        line.level += 1      # as if it was next level down
+        event_ref = self.__build_event_pair(state, EventType.RESIDENCE,
+                                            self.event_parse_tbl, '')
+        state.person.add_event_ref(event_ref)
 
     def __person_phon(self, line, state):
         """
