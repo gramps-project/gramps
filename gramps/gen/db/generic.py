@@ -587,6 +587,9 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Return True if we don't have read/write access to the database,
         otherwise return False (that is, we DO have read/write access)
         """
+        # In-memory databases always allow write access.
+        if name == ':memory:':
+            return False
 
         # See if we write to the target directory at all?
         if not os.access(name, os.W_OK):
@@ -616,7 +619,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         self.readonly = mode == DBMODE_R
 
-        if not self.readonly:
+        if not self.readonly and directory != ':memory:':
             write_lock_file(directory)
 
         # run backend-specific code:
@@ -763,10 +766,10 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
             self._close()
 
-        try:
-            clear_lock_file(self.get_save_path())
-        except IOError:
-            pass
+            try:
+                clear_lock_file(self.get_save_path())
+            except IOError:
+                pass
 
         self.db_is_open = False
         self._directory = None
