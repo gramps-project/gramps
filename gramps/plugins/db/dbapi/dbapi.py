@@ -567,11 +567,12 @@ class DBAPI(DbGeneric):
                            [name])
         row = self.dbapi.fetchone()
         if row:
-            self.dbapi.execute("DELETE FROM name_group WHERE name = ?",
-                               [name])
-        self.dbapi.execute(
-            "INSERT INTO name_group (name, grouping) VALUES(?, ?)",
-            [name, grouping])
+            self.dbapi.execute("UPDATE name_group SET grouping=? "
+                               "WHERE name = ?", [grouping, name])
+        else:
+            self.dbapi.execute(
+                "INSERT INTO name_group (name, grouping) VALUES (?, ?)",
+                [name, grouping])
 
     def _commit_base(self, obj, obj_key, trans, change_time):
         """
