@@ -441,6 +441,7 @@ gramps/gui/widgets/menuitem.py
 gramps/gui/widgets/multitreeview.py
 gramps/gui/widgets/placeentry.py
 gramps/gui/widgets/selectionwidget.py
+gramps/gui/widgets/shadebox.py
 gramps/gui/widgets/shortlistcomboentry.py
 gramps/gui/widgets/springseparator.py
 gramps/gui/widgets/statusbar.py
