@@ -538,6 +538,21 @@ def rgb_to_hex(rgb):
         rgbint = (int(rgb[0] * 255), int(rgb[1] * 255), int(rgb[2] * 255))
         return '#%02x%02x%02x' % rgbint
 
+def get_link_color(context):
+    """
+    Find the link color for the current theme.
+    """
+    from gi.repository import Gtk
+
+    if Gtk.get_minor_version() > 11:
+        col = context.get_color(Gtk.StateFlags.LINK)
+    else:
+        found, col = context.lookup_color('link_color')
+        if not found:
+            col.parse('blue')
+
+    return rgb_to_hex((col.red, col.green, col.blue))
+
 def edit_object(dbstate, uistate, reftype, ref):
     """
     Invokes the appropriate editor for an object type and given handle.

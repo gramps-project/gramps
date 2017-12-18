@@ -60,7 +60,7 @@ from .toolcomboentry import ToolComboEntry
 from .springseparator import SpringSeparatorAction
 from ..spell import Spell
 from ..display import display_url
-from ..utils import SystemFonts, rgb_to_hex
+from ..utils import SystemFonts, get_link_color
 from gramps.gen.config import config
 from gramps.gen.constfunc import has_display
 from ..actiongroup import ActionGroup
@@ -184,11 +184,7 @@ class StyledTextEditor(Gtk.TextView):
         self.set_buffer(self.textbuffer)
 
         st_cont = self.get_style_context()
-        col = st_cont.lookup_color('link_color')
-        if col[0]:
-            self.linkcolor = rgb_to_hex((col[1].red, col[1].green, col[1].blue))
-        else:
-            self.linkcolor = 'blue'
+        self.linkcolor = get_link_color(st_cont)
         self.textbuffer.linkcolor = self.linkcolor
 
         self.match = None
