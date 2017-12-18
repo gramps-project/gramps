@@ -171,7 +171,7 @@ class MediaModel(FlatBaseModel):
         tag_handle = data[0]
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
-            tag_color = "#000000000000"
+            tag_color = ""
             tag_priority = None
             for handle in data[11]:
                 tag = self.db.get_tag_from_handle(handle)

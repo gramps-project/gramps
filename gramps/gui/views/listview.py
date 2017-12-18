@@ -67,7 +67,7 @@ from ..dialog import QuestionDialog, QuestionDialog2, ErrorDialog
 from ..editors import FilterEditor
 from ..ddtargets import DdTargets
 from ..plug.quick import create_quickreport_menu, create_web_connect_menu
-from ..utils import is_right_click
+from ..utils import is_right_click, rgb_to_hex
 from ..widgets.interactivesearchbox import InteractiveSearchBox
 
 #----------------------------------------------------------------
@@ -281,11 +281,12 @@ class ListView(NavigationView):
         function because we don't want to set the color of untagged rows.
         '''
         fg_color = model.get_value(iter_, model.color_column())
-        #for color errors, typically color column is badly set
-        if fg_color:
-            renderer.set_property('foreground', fg_color)
-        else:
-            LOG.debug('Bad color set: ' + str(fg_color))
+        if not fg_color:
+            context = self.list.get_style_context()
+            color = context.get_color(Gtk.StateFlags.ACTIVE)
+            fg_color = rgb_to_hex((color.red, color.green, color.blue))
+
+        renderer.set_property('foreground', fg_color)
 
     def set_active(self):
         """
