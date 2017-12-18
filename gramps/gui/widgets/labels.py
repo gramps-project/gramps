@@ -48,7 +48,7 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.constfunc import has_display, win
-from ..utils import rgb_to_hex
+from ..utils import get_link_color
 
 #-------------------------------------------------------------------------
 #
@@ -81,11 +81,7 @@ class LinkLabel(Gtk.EventBox):
         Gtk.EventBox.__init__(self)
 
         st_cont = self.get_style_context()
-        col = st_cont.lookup_color('link_color')
-        if col[0]:
-            self.color = rgb_to_hex((col[1].red, col[1].green, col[1].blue))
-        else:
-            self.color = 'blue'
+        self.color = get_link_color(st_cont)
 
         if emph:
             #emphasize a link
