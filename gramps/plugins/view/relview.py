@@ -306,15 +306,6 @@ class RelationshipView(NavigationView):
         self.child = None
 
         self.scroll = Gtk.ScrolledWindow()
-
-        st_cont = self.scroll.get_style_context()
-        col = st_cont.lookup_color('base_color')
-        if col[0]:
-            self.color = col[1]
-        else:
-            self.color = Gdk.RGBA()
-            self.color.parse("White")
-
         self.scroll.set_policy(Gtk.PolicyType.AUTOMATIC,
                                Gtk.PolicyType.AUTOMATIC)
         self.scroll.show()
@@ -575,9 +566,7 @@ class RelationshipView(NavigationView):
 
         grid.attach(eventbox, 0, 0, 2, 1)
 
-        eventbox = Gtk.EventBox()
-        if self.use_shade:
-            eventbox.override_background_color(Gtk.StateType.NORMAL, self.color)
+        eventbox = widgets.ShadeBox(self.use_shade)
         grid.attach(eventbox, 1, 1, 1, 1)
         subgrid = Gtk.Grid()
         subgrid.set_column_spacing(12)
@@ -874,9 +863,7 @@ class RelationshipView(NavigationView):
             box = self.get_people_box(family.get_father_handle(),
                                       family.get_mother_handle(),
                                       post_msg=childmsg)
-            eventbox = Gtk.EventBox()
-            if self.use_shade:
-                eventbox.override_background_color(Gtk.StateType.NORMAL, self.color)
+            eventbox = widgets.ShadeBox(self.use_shade)
             eventbox.add(box)
             self.child.attach(eventbox, _PDATA_START, self.row,
                                _PDATA_STOP-_PDATA_START, 1)
@@ -928,9 +915,7 @@ class RelationshipView(NavigationView):
                     else :
                         childmsg = _(" (only child)")
                     box = self.get_people_box(post_msg=childmsg)
-                    eventbox = Gtk.EventBox()
-                    if self.use_shade:
-                        eventbox.override_background_color(Gtk.StateType.NORMAL, self.color)
+                    eventbox = widgets.ShadeBox(self.use_shade)
                     eventbox.add(box)
                     self.child.attach(eventbox, _PDATA_START, self.row,
                                       _PDATA_STOP-_PDATA_START, 1)
@@ -958,9 +943,7 @@ class RelationshipView(NavigationView):
                         child_should_be_linked = (child_handle != active)
                         self.write_child(vbox, child_handle, i, child_should_be_linked)
                         i += 1
-                    eventbox = Gtk.EventBox()
-                    if self.use_shade:
-                        eventbox.override_background_color(Gtk.StateType.NORMAL, self.color)
+                    eventbox = widgets.ShadeBox(self.use_shade)
                     eventbox.add(vbox)
                     self.child.attach(eventbox, _CDATA_START-1, self.row,
                                       _CDATA_STOP-_CDATA_START+1, 1)
@@ -980,9 +963,6 @@ class RelationshipView(NavigationView):
                 name = self.get_name(handle, True)
                 link_label = widgets.LinkLabel(name, self._button_press, 
                                                handle, theme=self.theme)
-                if self.use_shade:
-                    link_label.override_background_color(Gtk.StateType.NORMAL,
-                                                         self.color)
                 if self._config.get('preferences.releditbtn'):
                     button = widgets.IconButton(self.edit_button_press, 
                                                 handle)
@@ -1025,7 +1005,7 @@ class RelationshipView(NavigationView):
                           _PLABEL_STOP-_PLABEL_START, 1)
 
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        eventbox = Gtk.EventBox()
+        eventbox = widgets.ShadeBox(self.use_shade)
         if handle:
             name = self.get_name(handle, True)
             person = self.dbstate.db.get_person_from_handle(handle)
@@ -1039,8 +1019,6 @@ class RelationshipView(NavigationView):
                 emph = False
             link_label = widgets.LinkLabel(name, self._button_press, 
                                            handle, emph, theme=self.theme)
-            if self.use_shade:
-                link_label.override_background_color(Gtk.StateType.NORMAL, self.color)
             if self._config.get('preferences.releditbtn'):
                 button = widgets.IconButton(self.edit_button_press, handle)
                 button.set_tooltip_text(_('Edit %s') % name[0])
@@ -1059,8 +1037,6 @@ class RelationshipView(NavigationView):
             if value:
                 vbox.pack_start(widgets.MarkupLabel(value), True, True, 0)
 
-        if self.use_shade:
-            eventbox.override_background_color(Gtk.StateType.NORMAL, self.color)
         eventbox.add(vbox)
         
         self.child.attach(eventbox, _PDATA_START, self.row,
@@ -1160,9 +1136,6 @@ class RelationshipView(NavigationView):
         name = self.get_name(handle, True)
         link_label = widgets.LinkLabel(name, link_func, handle, emph,
                                        theme=self.theme)
-
-        if self.use_shade:
-            link_label.override_background_color(Gtk.StateType.NORMAL, self.color)
         link_label.set_padding(3, 0)
         if child_should_be_linked and self._config.get(
             'preferences.releditbtn'):
@@ -1379,9 +1352,7 @@ class RelationshipView(NavigationView):
             else :
                 childmsg = _(" (no children)")
             box = self.get_people_box(handle, post_msg=childmsg)
-            eventbox = Gtk.EventBox()
-            if self.use_shade:
-                eventbox.override_background_color(Gtk.StateType.NORMAL, self.color)
+            eventbox = widgets.ShadeBox(self.use_shade)
             eventbox.add(box)
             self.child.attach(eventbox, _PDATA_START, self.row,
                               _PDATA_STOP-_PDATA_START, 1)
@@ -1426,9 +1397,7 @@ class RelationshipView(NavigationView):
                 else :
                     childmsg = _(" (no children)")
                 box = self.get_people_box(post_msg=childmsg)
-                eventbox = Gtk.EventBox()
-                if self.use_shade:
-                    eventbox.override_background_color(Gtk.StateType.NORMAL, self.color)
+                eventbox = widgets.ShadeBox(self.use_shade)
                 eventbox.add(box)
                 self.child.attach(eventbox, _PDATA_START, self.row,
                                   _PDATA_STOP-_PDATA_START, 1)
@@ -1456,9 +1425,7 @@ class RelationshipView(NavigationView):
                     i += 1
 
                 self.row += 1
-                eventbox = Gtk.EventBox()
-                if self.use_shade:
-                    eventbox.override_background_color(Gtk.StateType.NORMAL, self.color)
+                eventbox = widgets.ShadeBox(self.use_shade)
                 eventbox.add(vbox)
                 self.child.attach(eventbox, _CDATA_START-1, self.row,
                                   _CDATA_STOP-_CDATA_START+1, 1)
