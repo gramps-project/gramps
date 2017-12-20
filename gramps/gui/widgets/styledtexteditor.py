@@ -344,8 +344,8 @@ class StyledTextEditor(Gtk.TextView):
         self.selclick=False
         if ((event.type == Gdk.EventType.BUTTON_PRESS) and
             (event.button == 1) and (self.url_match) and
-            (event.get_state() & get_primary_mask()) or
-             not self.get_editable()):
+            ((event.get_state() & get_primary_mask()) or
+             not self.get_editable())):
 
             flavor = self.url_match[MATCH_FLAVOR]
             url = self.url_match[MATCH_STRING]
@@ -392,7 +392,7 @@ class StyledTextEditor(Gtk.TextView):
                 copy_menu = Gtk.MenuItem(label=_('Copy _Link Address'))
                 copy_menu.set_use_underline(True)
 
-            if flavor == LINK:
+            if flavor == LINK and self.get_editable():
                 edit_menu = Gtk.MenuItem(label=_('_Edit Link'))
                 edit_menu.set_use_underline(True)
                 edit_menu.connect('activate', self._edit_url_cb,
