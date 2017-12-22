@@ -318,6 +318,7 @@ class CLIManager:
                 and self.dbstate.db.get_total() == 0):
             self.dbstate.db.set_researcher(owner)
 
+        name_displayer.clear_custom_formats()
         name_displayer.set_name_format(self.dbstate.db.name_formats)
         fmt_default = config.get('preferences.name-format')
         name_displayer.set_default_format(fmt_default)
