@@ -66,6 +66,7 @@ class MediaPreview(Gramplet):
                 self.set_has_data(False)
             self.top.show()
         else:
+            self.photo.set_image(None)
             self.set_has_data(False)
 
     def load_image(self, media):
