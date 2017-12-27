@@ -156,8 +156,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         hpane = Gtk.Paned()
         vpane = Gtk.Paned(orientation=Gtk.Orientation.VERTICAL)
         hpane.pack1(vpane, resize=True, shrink=False)
-        hpane.pack2(self.sidebar, resize=False, shrink=True)
-        self._setup_slider_config(hpane, 'hpane.slider-position')
+        hpane.pack2(self.sidebar, resize=False, shrink=False)
         hpane.show()
         vpane.show()
 
@@ -168,14 +167,31 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         self._setup_slider_config(vpane, 'vpane.slider-position')
 
         self.sidebar_toggled(self.sidebar.get_property('visible'))
+        self.hpane_sig = hpane.connect("draw", self.set_page_slider)
 
         return hpane
 
-    def _setup_slider_config(self, widget, setting):
+    def set_page_slider(self, widget, dummy):
+        """ Setup slider.  We have the page realized at this point. """
+        widget.disconnect(self.hpane_sig)
+        # get current width of pane
+        width = widget.get_allocated_width()
+        # default will use natural size for sidebar until it gets to 400 pix
+        side_ch = self.sidebar.get_children()  # Gtk Notebook
+        try:
+            vp_ch = side_ch[0].get_children()  # Gtk Viewport child
+            ch_width = vp_ch[0].get_preferred_width()[0] + 3
+        except AttributeError:
+            ch_width = 300  # needed if no Gramplet installed
+        pos = width - min(ch_width, 400)
+        self._setup_slider_config(widget, 'hpane.slider-position',
+                                  position=pos)
+
+    def _setup_slider_config(self, widget, setting, position=-1):
         """
         Setup the slider configuration setting.
         """
-        self._config.register(setting, -1)
+        self._config.register(setting, position)
         widget.set_position(self._config.get(setting))
         widget.connect('notify::position', self._position_changed, setting)
 
