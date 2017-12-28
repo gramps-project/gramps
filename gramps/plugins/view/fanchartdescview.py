@@ -516,8 +516,6 @@ class CairoPrintSave:
         pxwidth = round(context.get_width())
         pxheight = round(context.get_height())
         scale = min(pxwidth/self.widthpx, pxheight/self.heightpx)
-        if scale > 1:
-            scale = 1
         self.drawfunc(None, cr, scale=scale)
 
     def on_paginate(self, operation, context):
