@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps50_fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-15 20:31+0200\n"
-"PO-Revision-Date: 2017-12-03 17:28+0200\n"
+"POT-Creation-Date: 2017-12-11 12:38+0200\n"
+"PO-Revision-Date: 2017-12-28 11:44+0200\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -24,7 +24,6 @@ msgstr ""
 "X-Poedit-Basepath: gramps/gramps\n"
 "X-Poedit-SearchPath-0: .\n"
 
-# ok
 #: ../gramps/cli/arghandler.py:228
 #, python-format
 msgid ""
@@ -34,7 +33,6 @@ msgstr ""
 "Virhe: Sukupuu '%s' löytyy jo.\n"
 "'-C' valintaa ei voi käyttää."
 
-# ok
 #: ../gramps/cli/arghandler.py:240
 #, python-format
 msgid ""
@@ -44,7 +42,7 @@ msgid ""
 msgstr ""
 "Virhe: Syötettävää \"%s\" sukupuuta ei ole vielä olemassa.\n"
 "Jos tuot GEDCOM, Gramps-xml tai grdb tiedostoa, käytä tuonnissa sen sijaan -"
-"i option."
+"i valintaa."
 
 #: ../gramps/cli/arghandler.py:254
 #, python-format
@@ -131,7 +129,6 @@ msgstr "\"%s\""
 msgid "Performing action: %s."
 msgstr "Suorittaa toimintoa: %s."
 
-# ok
 #: ../gramps/cli/arghandler.py:460 ../gramps/gen/plug/report/stdoptions.py:284
 #, python-format
 msgid "Using options string: %s"
@@ -180,7 +177,6 @@ msgstr "  Tiedot: %s"
 msgid "Database needs recovery, cannot open it!"
 msgstr "Tietokanta pitää palauttaa (recovery), sitä ei voi avata!"
 
-# ok
 #: ../gramps/cli/arghandler.py:607 ../gramps/cli/arghandler.py:656
 #: ../gramps/cli/arghandler.py:703
 msgid "Ignoring invalid options string."
@@ -231,7 +227,6 @@ msgstr "Kirjan nimi puuttuu. Käytä jotain näistä %(donottranslate)s=bookname
 msgid "Unknown action: %s."
 msgstr "Toimenpide tuntematon: %s."
 
-# 20171028
 #: ../gramps/cli/argparser.py:55
 msgid ""
 "\n"
@@ -437,7 +432,6 @@ msgstr ""
 msgid "Trying to open: %s ..."
 msgstr "Yritän avata: %s ..."
 
-# 20171028
 #: ../gramps/cli/argparser.py:312
 #, python-format
 msgid ""
@@ -544,7 +538,7 @@ msgstr "Lukittu?"
 #: ../gramps/cli/clidbman.py:185 ../gramps/cli/clidbman.py:551
 #: ../gramps/gen/lib/attrtype.py:62 ../gramps/gen/lib/childreftype.py:73
 #: ../gramps/gen/lib/eventroletype.py:52 ../gramps/gen/lib/eventtype.py:162
-#: ../gramps/gen/lib/familyreltype.py:47 ../gramps/gen/lib/grampstype.py:34
+#: ../gramps/gen/lib/familyreltype.py:50 ../gramps/gen/lib/grampstype.py:34
 #: ../gramps/gen/lib/nameorigintype.py:73 ../gramps/gen/lib/nametype.py:46
 #: ../gramps/gen/lib/notetype.py:73 ../gramps/gen/lib/placetype.py:63
 #: ../gramps/gen/lib/repotype.py:52 ../gramps/gen/lib/srcattrtype.py:43
@@ -567,7 +561,7 @@ msgstr "Lukittu?"
 #: ../gramps/plugins/gramplet/relativegramplet.py:135
 #: ../gramps/plugins/graph/gvfamilylines.py:280
 #: ../gramps/plugins/graph/gvhourglass.py:376
-#: ../gramps/plugins/graph/gvrelgraph.py:886
+#: ../gramps/plugins/graph/gvrelgraph.py:903
 #: ../gramps/plugins/importer/importprogen.py:986
 #: ../gramps/plugins/lib/maps/geography.py:838
 #: ../gramps/plugins/lib/maps/geography.py:848
@@ -615,9 +609,9 @@ msgstr "Lukittu?"
 #: ../gramps/plugins/webreport/basepage.py:1778
 #: ../gramps/plugins/webreport/basepage.py:1783
 #: ../gramps/plugins/webreport/basepage.py:1790
-#: ../gramps/plugins/webreport/basepage.py:2172
-#: ../gramps/plugins/webreport/basepage.py:2269
-#: ../gramps/plugins/webreport/basepage.py:2384
+#: ../gramps/plugins/webreport/basepage.py:2173
+#: ../gramps/plugins/webreport/basepage.py:2270
+#: ../gramps/plugins/webreport/basepage.py:2385
 msgid "Unknown"
 msgstr "Tuntematon"
 
@@ -643,8 +637,8 @@ msgstr "Sukupuu \"%s\":"
 #: ../gramps/plugins/textreport/indivcomplete.py:1023
 #: ../gramps/plugins/textreport/placereport.py:183
 #: ../gramps/plugins/webreport/basepage.py:686
-#: ../gramps/plugins/webreport/basepage.py:2183
-#: ../gramps/plugins/webreport/basepage.py:2228
+#: ../gramps/plugins/webreport/basepage.py:2184
+#: ../gramps/plugins/webreport/basepage.py:2229
 #, python-format
 msgid "%(str1)s: %(str2)s"
 msgstr "%(str1)s, %(str2)s"
@@ -725,12 +719,12 @@ msgid "ERROR: %s"
 msgstr "VIRHE: %s"
 
 #: ../gramps/cli/grampscli.py:106 ../gramps/cli/user.py:200
-#: ../gramps/gui/dialog.py:244
+#: ../gramps/gui/dialog.py:247
 msgid "Low level database corruption detected"
 msgstr "Tietokanta havaittu rikkoutuneeksi"
 
 #: ../gramps/cli/grampscli.py:108 ../gramps/cli/user.py:201
-#: ../gramps/gui/dialog.py:245
+#: ../gramps/gui/dialog.py:248
 msgid ""
 "Gramps has detected a problem in the underlying Berkeley database. This can "
 "be repaired from the Family Tree Manager. Select the database and click on "
@@ -883,13 +877,11 @@ msgstr "Käytettävä CSS tiedostonimi, vain html muoto"
 msgid "%(id)s:\t%(father)s, %(mother)s"
 msgstr "%(id)s:\t%(father)s, %(mother)s"
 
-# ok
 #: ../gramps/cli/plug/__init__.py:447
 #, python-format
 msgid "Unknown option: %s"
 msgstr "Tuntematon valinta: %s"
 
-# ok
 #: ../gramps/cli/plug/__init__.py:448 ../gramps/cli/plug/__init__.py:529
 msgid "   Valid options are:"
 msgstr "   Käytettävissä olevat valinnat:"
@@ -912,13 +904,13 @@ msgstr "   Käytettävissä olevat valinnat:"
 #: ../gramps/plugins/gramplet/whatsnext.py:440
 #: ../gramps/plugins/gramplet/whatsnext.py:473
 #: ../gramps/plugins/gramplet/whatsnext.py:495
-#: ../gramps/plugins/graph/gvrelgraph.py:657
+#: ../gramps/plugins/graph/gvrelgraph.py:674
 #: ../gramps/plugins/textreport/descendreport.py:269
 #: ../gramps/plugins/textreport/descendreport.py:279
 #: ../gramps/plugins/textreport/descendreport.py:285
 #: ../gramps/plugins/textreport/placereport.py:193
 msgid ", "
-msgstr " "
+msgstr ", "
 
 #: ../gramps/cli/plug/__init__.py:451 ../gramps/cli/plug/__init__.py:532
 #: ../gramps/cli/plug/__init__.py:612
@@ -940,14 +932,12 @@ msgstr ""
 msgid "Use '%(notranslate)s' to see valid values."
 msgstr "Käytä '%(notranslate)s' nähdäksesi sallitut arvot."
 
-# ok
 #: ../gramps/cli/plug/__init__.py:528
 #: ../gramps/gen/plug/report/stdoptions.py:281
 #, python-format
 msgid "Ignoring unknown option: %s"
 msgstr "Ohitetaan tuntematon valinta: %s"
 
-# ok
 #: ../gramps/cli/plug/__init__.py:601
 msgid "   Available options:"
 msgstr "   Käytettävissä olevat valinnat:"
@@ -979,11 +969,11 @@ msgstr "Raportin kirjoitus epäonnistui. "
 msgid "Failed to make '%s' report."
 msgstr "Raportti '%s' epäonnistui."
 
-#: ../gramps/cli/user.py:217 ../gramps/gui/dialog.py:230
+#: ../gramps/cli/user.py:217 ../gramps/gui/dialog.py:233
 msgid "Error detected in database"
 msgstr "Tietokannassa on havaittu virhe"
 
-#: ../gramps/cli/user.py:218 ../gramps/gui/dialog.py:231
+#: ../gramps/cli/user.py:218 ../gramps/gui/dialog.py:234
 #, python-format
 msgid ""
 "Gramps has detected an error in the database. This can usually be resolved "
@@ -1112,7 +1102,7 @@ msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
 
 # älä muuta
-# N(ominatiivi)=tammikuu|G(enetiivi)=tammikuun|IN(essiivi)=tammikuussa|P(artitiivi)=tammikuuta|IL(atiivi)=tammikuuhun|E(latiivi)=tammikuusta
+# N(ominatiivi)=tammikuu|G(enetiivi)=tammikuun|IN(essiivi)=tammikuussa|P(artitiivi)=tammikuuta|IL(latiivi)=tammikuuhun|E(latiivi)=tammikuusta
 # {long_month.f[E]} {year}
 #. first date in a span
 #. If "from <Month>" needs a special inflection in your
@@ -2164,7 +2154,6 @@ msgstr ""
 "%(bold_start)svanha%(bold_end)s Gramps versio ja "
 "%(wiki_backup_html_start)stehdä varmuuskopio%(html_end)s sukupuustasi."
 
-# 20170923
 #: ../gramps/gen/db/exceptions.py:356
 #, python-format
 msgid ""
@@ -2449,7 +2438,7 @@ msgstr "VIRHE: suodinta %s ei voi ladata virheettömästi. Muokkaa suodinta!"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1093
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1107
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1121
-#: ../gramps/plugins/graph/gvrelgraph.py:750
+#: ../gramps/plugins/graph/gvrelgraph.py:767
 #: ../gramps/plugins/quickview/quickview.gpr.py:130
 #: ../gramps/plugins/textreport/birthdayreport.py:411
 #: ../gramps/plugins/textreport/familygroup.py:712
@@ -2596,13 +2585,11 @@ msgstr "Päivämäärä:"
 msgid "Confidence:"
 msgstr "Luotettavuus:"
 
-# ok
 #: ../gramps/gen/filters/rules/_hascitationbase.py:52
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:51
 msgid "Citations matching parameters"
 msgstr "Lainauksille, asetetaan poimintaehdot"
 
-# ok
 #: ../gramps/gen/filters/rules/_hascitationbase.py:53
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:53
 msgid "Matches citations with particular parameters"
@@ -2657,7 +2644,7 @@ msgstr "Lukumäärän pitää olla:"
 #: ../gramps/gen/filters/rules/_hasgrampsid.py:45
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:44
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:44
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:130
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:157
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:45
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:44
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:49
@@ -2719,7 +2706,7 @@ msgid "Source ID:"
 msgstr "Lähteen ID:"
 
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:54
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:130
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:157
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:47
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:46
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:46
@@ -2758,12 +2745,10 @@ msgstr "Muut suotimet"
 msgid "No description"
 msgstr "Ei kuvausta"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:45
 msgid "Every citation"
 msgstr "Kaikki lainaukset"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:46
 msgid "Matches every citation in the database"
 msgstr "Poimii kaikki lainaukset tietokannasta"
@@ -2827,27 +2812,22 @@ msgstr "Poimii lainaukset, jotka on merkitty yksityisiksi"
 msgid "Confidence level:"
 msgstr "Luotettavuustaso:"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:45
 msgid "Citations with <count> media"
 msgstr "Lainaukset, joissa mediatiedostoja on <määrä>"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:46
 msgid "Matches citations with a certain number of items in the gallery"
 msgstr "Poimii lainaukset, joilla on tietty määrä mediatiedostoja galleriassa"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:45
 msgid "Citation with <Id>"
 msgstr "Lainaukselle on annettu <Id>"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hasidof.py:46
 msgid "Matches a citation with a specified Gramps ID"
 msgstr "Poimii lainaukset, joille on annettu Gramps ID"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:46
 msgid "Citations having <count> notes"
 msgstr "Lainaukset, joilla lisätietoja on <lukumäärä>"
@@ -2856,22 +2836,18 @@ msgstr "Lainaukset, joilla lisätietoja on <lukumäärä>"
 msgid "Matches citations having a certain number of notes"
 msgstr "Poimii lainaukset, joilla on tietty määrä lisätietoja"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:43
 msgid "Citations having notes containing <substring>"
 msgstr "Lainaukset, joiden lisätiedot sisältävät <osamerkkijonon>"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:44
 msgid "Matches citations whose notes contain text matching a substring"
 msgstr "Poimii lainaukset, joiden lisätiedot sisältävät annetun osamerkkijonon"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:42
 msgid "Citations having notes containing <text>"
 msgstr "Lainaukset, joiden lisätiedot sisältävät <tekstin>"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:43
 msgid ""
 "Matches citations whose notes contain text matching a regular expression"
@@ -2879,12 +2855,10 @@ msgstr ""
 "Poimii lainaukset, joiden lisätiedot sisältävät tekstin, joka vastaa "
 "säännöllistä lauseketta"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:43
 msgid "Citations with a reference count of <count>"
 msgstr "Lainaukset joilla on määrätty <viitemäärä>"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:44
 msgid "Matches citations with a certain reference count"
 msgstr "Poimii lainaukset, joilla on tietty määrätty viitemäärä"
@@ -2921,12 +2895,10 @@ msgstr "Lyhennys:"
 msgid "Publication:"
 msgstr "Julkaisu:"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hassource.py:52
 msgid "Sources matching parameters"
 msgstr "Lainaukset, joiden lähteet vastaavat annettuja arvoja"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hassource.py:53
 msgid "Matches citations with a source of a particular value"
 msgstr "Poimii lainaukset, joiden lähteet vastaavat annettuja arvoja"
@@ -2938,22 +2910,18 @@ msgstr "Poimii lainaukset, joiden lähteet vastaavat annettuja arvoja"
 msgid "Source filters"
 msgstr "Lähdesuotimet"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:46
 msgid "Citation with Source <Id>"
 msgstr "Lainaus, jonka lähteellä on <Id>"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:47
 msgid "Matches a citation with a source with a specified Gramps ID"
 msgstr "Poimii lainauksen, jonka lähteellä on määritelty Gramps ID"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:52
 msgid "Citations having source notes containing <text>"
 msgstr "Lainaukset, joiden lähteen lisätiedot sisältävät <tekstin>"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:53
 msgid ""
 "Matches citations whose source notes contain a substring or match a regular "
@@ -2975,12 +2943,10 @@ msgstr ""
 msgid "Tag:"
 msgstr "Tagi:"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hastag.py:49
 msgid "Citations with the <tag>"
 msgstr "Lainaukset, joilla on tietty <tagi>"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_hastag.py:50
 msgid "Matches citations with the particular tag"
 msgstr "Poimii tapahtumat, joihin on liitetty tietty tagi"
@@ -2993,17 +2959,14 @@ msgstr "Lainaukset, jotka <suodin> hyväksyy"
 msgid "Matches citations matched by the specified filter name"
 msgstr "Poimii lainaukset, jotka saadaan annetun nimisellä suotimella"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:43
 msgid "Citations with Volume/Page containing <text>"
 msgstr "Lainaukset, joiden Osa/sivu sisältää <tekstin>"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:44
 msgid "Matches citations whose Volume/Page contains a certain substring"
 msgstr "Poimii lainaukset, joiden Osa/sivu sisältää annetun osamerkkijonon"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:45
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:43
 #: ../gramps/gui/editors/filtereditor.py:532
@@ -3023,12 +2986,10 @@ msgid ""
 msgstr ""
 "Poimii lainaukset, joilla on lähteitä, jotka valittu arkistosuodin hyväksyy"
 
-# ?
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:49
 msgid "Citations with source matching the <source filter>"
-msgstr "Lainaukset, jotka <lähteen suodin> hyväksyy"
+msgstr "Lainaukset, jotka <lähdesuodin> hyväksyy"
 
-# ?
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:50
 msgid ""
 "Matches citations with sources that match the specified source filter name"
@@ -3036,23 +2997,19 @@ msgstr ""
 "Poimii lainaukset, joissa on lähteitä, jotka annetun niminen lähdesuodin "
 "hyväksyy"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:48
 msgid "Citations with Id containing <text>"
 msgstr "Lainaukset, joiden Id sisältää <tekstin>"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:49
 msgid "Matches citations whose Gramps ID matches the regular expression"
 msgstr ""
 "Poimii lainaukset, joiden Gramps ID sisältää annetun säännöllisen lausekkeen"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:48
 msgid "Citations with Source Id containing <text>"
 msgstr "Lainaukset, joiden lähteen Id sisätää <tekstin>"
 
-# ok
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:49
 msgid ""
 "Matches citations whose source has a Gramps ID that matches the regular "
@@ -3170,17 +3127,14 @@ msgstr "Tietyn viikonpäivän tapahtumat"
 msgid "Matches events occurring on a particular day of the week"
 msgstr "Poimii tietyn viikonpäivän tapahtumat"
 
-# ok
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:45
 msgid "Events with <count> media"
 msgstr "Tapahtumat, joilla mediatiedostoja on <lukumäärä>"
 
-# ok
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:46
 msgid "Matches events with a certain number of items in the gallery"
 msgstr "Poimii tapahtumat, joilla on tietty määrä mediaa galleriassa"
 
-# ok
 #: ../gramps/gen/filters/rules/event/_hasidof.py:44
 msgid "Event with <Id>"
 msgstr "Tapahtuma, jolla on <Id>"
@@ -3189,7 +3143,6 @@ msgstr "Tapahtuma, jolla on <Id>"
 msgid "Matches an event with a specified Gramps ID"
 msgstr "Poimii tapahtuman, jossa on määritelty Gramps ID"
 
-# ok
 #: ../gramps/gen/filters/rules/event/_hasnote.py:45
 msgid "Events having <count> notes"
 msgstr "Tapahtumat, joilla lisätietoja on <lukumäärä>"
@@ -3198,7 +3151,6 @@ msgstr "Tapahtumat, joilla lisätietoja on <lukumäärä>"
 msgid "Matches events having a certain number of notes"
 msgstr "Poimii tapahtumat, joilla on tietty määrä lisätietoja"
 
-# ok
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:42
 msgid "Events having notes containing <substring>"
 msgstr "Tapahtumat, joiden lisätiedot sisältävät <osamerkkijonon>"
@@ -3211,7 +3163,6 @@ msgstr "Poimii tapahtumat, joiden lisätiedot sisältävät annetun osamerkkijon
 msgid "Events having notes containing <text>"
 msgstr "Tapahtumat, joiden lisätiedot sisältävät <tekstin>"
 
-# ok
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:42
 msgid "Matches events whose notes contain text matching a regular expression"
 msgstr ""
@@ -3226,7 +3177,6 @@ msgstr "Tapahtumat, joiden viitemäärä on <lukumäärä>"
 msgid "Matches events with a certain reference count"
 msgstr "Poimii tapahtumat, joilla on tietty määrä viitteitä"
 
-# ok
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:44
 msgid "Events with <count> sources"
 msgstr "Tapahtumat, joilla lähteitä on <lukumäärä>"
@@ -3289,7 +3239,6 @@ msgstr "Paikkasuotimen nimi:"
 msgid "Events of places matching the <place filter>"
 msgstr "Paikkojen tapahtumat, jotka <paikkasuodin> hyväksyy"
 
-# ok
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:51
 msgid ""
 "Matches events that occurred at places that match the specified place filter "
@@ -3325,13 +3274,11 @@ msgid "Matches events whose Gramps ID matches the regular expression"
 msgstr ""
 "Poimii tapahtumat, joiden Gramps ID sisältää annetun säännöllisen lausekkeen"
 
-# ok
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:44
 #: ../gramps/gen/plug/report/utils.py:378
 msgid "Every family"
 msgstr "Kaikki perheet"
 
-# ok
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:45
 msgid "Matches every family in the database"
 msgstr "Poimii kaikki perheet tietokannasta"
@@ -3386,7 +3333,6 @@ msgstr "Yksityisiksi merkityt perheet"
 msgid "Matches families that are indicated as private"
 msgstr "Poimii perheet, jotka on merkitty yksityisiksi"
 
-# ok
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:46
 msgid "Families having father with Id containing <text>"
 msgstr "Perheet, joiden isän Id sisältää <tekstin>"
@@ -3457,12 +3403,10 @@ msgstr "Perheet, joilla on <tapahtuma>"
 msgid "Matches families with an event of a particular value"
 msgstr "Poimii perheet, joiden tapahtumalla on tietty arvo"
 
-# ok
 #: ../gramps/gen/filters/rules/family/_hasgallery.py:45
 msgid "Families with <count> media"
 msgstr "Perheet, joilla mediatiedostoja on <lukumäärä>"
 
-# ok
 #: ../gramps/gen/filters/rules/family/_hasgallery.py:46
 msgid "Matches families with a certain number of items in the gallery"
 msgstr "Poimii perheet, joilla on tietty määrä mediatiedostoja galleriassa"
@@ -3475,7 +3419,6 @@ msgstr "Perhe, jolla on <id>"
 msgid "Matches a family with a specified Gramps ID"
 msgstr "Poimii perheen, jolla on määritelty Gramps ID"
 
-# ok
 #: ../gramps/gen/filters/rules/family/_haslds.py:48
 msgid "Families with <count> LDS events"
 msgstr "Perheet, joilla on MAP tapahtumia <lukumäärä>"
@@ -3484,7 +3427,6 @@ msgstr "Perheet, joilla on MAP tapahtumia <lukumäärä>"
 msgid "Matches families with a certain number of LDS events"
 msgstr "Poimii perheet, joilla on tietty määrä MAP tapahtumia"
 
-# ok
 #: ../gramps/gen/filters/rules/family/_hasnote.py:45
 msgid "Families having <count> notes"
 msgstr "Perheet, joilla on lisätietoja <lukumäärä>"
@@ -3493,17 +3435,14 @@ msgstr "Perheet, joilla on lisätietoja <lukumäärä>"
 msgid "Matches families having a certain number notes"
 msgstr "Poimii perheet, joilla on tietty määrä lisätietoja"
 
-# ok
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:42
 msgid "Families having notes containing <substring>"
 msgstr "Perheet, joiden lisätiedot sisältävät <osamerkkijonon>"
 
-# ok
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:43
 msgid "Matches families whose notes contain text matching a substring"
 msgstr "Poimii perheet, joiden lisätiedot sisältävät annetun osamerkkijonon"
 
-# ok
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:41
 msgid "Families having notes containing <text>"
 msgstr "Perheet, joiden lisätiedot sisältävät <tekstin>"
@@ -3514,7 +3453,6 @@ msgstr ""
 "Poimii perheet, joiden lisätiedot sisältävät annetun säännöllisen lausekkeen "
 "mukaisen tekstin"
 
-# ok
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:42
 msgid "Families with a reference count of <count>"
 msgstr "Perheet, joilla viitteitä on <lukumäärä>"
@@ -3534,12 +3472,10 @@ msgstr "Suhteen tyyppi:"
 msgid "Families with the relationship type"
 msgstr "Perheet, joilla on suhdetyyppi"
 
-# ok
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:47
 msgid "Matches families with the relationship type of a particular value"
 msgstr "Poimii perheet, joissa on tietyn arvon mukainen suhdetyyppi"
 
-# ok
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:45
 msgid "Families with <count> sources"
 msgstr "Perheet, joilla on lähteitä <lukumäärä>"
@@ -3671,7 +3607,6 @@ msgid ""
 msgstr ""
 "Poimii perheitä, joiden isän nimi vastaa annettua säännöllistä lauseketta"
 
-# ok
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:47
 msgid "Families with Id containing <text>"
 msgstr "Perheet, joiden Id sisältää <tekstin>"
@@ -3680,7 +3615,6 @@ msgstr "Perheet, joiden Id sisältää <tekstin>"
 msgid "Matches families whose Gramps ID matches the regular expression"
 msgstr "Poimii perheet, joiden Gramps ID vastaa säännöllistä lauseketta"
 
-# ok
 #: ../gramps/gen/filters/rules/family/_regexpmothername.py:45
 msgid "Families with mother matching the <regex_name>"
 msgstr "Perheet, joiden äiti on <säännöllisen lausekkeen> mukainen"
@@ -3850,7 +3784,6 @@ msgstr "Poimii mediatiedostot, jotka saadaan annetun nimisellä suotimella"
 msgid "Media with a direct source >= <confidence level>"
 msgstr "Mediatiedosto, jossa suora lähde >= <luotettavuustaso>"
 
-# ok
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:45
 msgid "Matches media with at least one direct source with confidence level(s)"
 msgstr ""
@@ -3918,7 +3851,6 @@ msgstr "Lisätiedot jotka vastaavat annettuja parametreja"
 msgid "Matches Notes with particular parameters"
 msgstr "Poimii lisätiedot, joilla on tietyt parametrit"
 
-# ok
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:42
 msgid "Notes with a reference count of <count>"
 msgstr "Lisätiedot, joilla on <viitemäärä>"
@@ -3951,7 +3883,6 @@ msgstr "Lisätiedot, jotka <suodin> hyväksyy"
 msgid "Matches notes matched by the specified filter name"
 msgstr "Poimii lisätiedot, jotka saadaan annetun nimisellä suotimella"
 
-# ok
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:44
 msgid "Notes containing <text>"
 msgstr "Lisätiedot, jotka sisältävät <tekstin>"
@@ -3999,13 +3930,12 @@ msgstr ""
 "Poimii henkilöt, joita on muutettu annetun päivämäärän ja ajan (vvvv-kk-pp "
 "hh:mm:ss) jälkeen tai aikavälillä, jos toinen päivämäärä ja aika on annettu."
 
-# ?
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:51
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:147
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:53
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:176
 msgid "Finding relationship paths"
 msgstr "Löydetään suhdepolut"
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:52
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:54
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:69
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:67
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:58
@@ -4016,18 +3946,18 @@ msgstr "Löydetään suhdepolut"
 msgid "Retrieving all sub-filter matches"
 msgstr "Noutaa <alisuotimen> hyväksymät kohteet"
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:131
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:158
 msgid "Relationship path between <person> and people matching <filter>"
 msgstr "Suhdepolku <henkilön> ja <suotimen> mukaisten henkilöiden välillä"
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:132
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:159
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:46
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:47
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:52
 msgid "Relationship filters"
 msgstr "Suhdesuotimet"
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:133
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:160
 msgid ""
 "Searches over the database starting from a specified person and returns "
 "everyone between that person and a set of target people specified with a "
@@ -4040,7 +3970,7 @@ msgstr ""
 "Tuloksena on lähtöhenkilön ja kohdehenkilöiden väliset suhdepolut (ml. "
 "avioliitot). Kukin polku ei ole välttämättä lyhyin."
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:148
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:177
 msgid "Evaluating people"
 msgstr "Valitaan henkilöitä"
 
@@ -4063,7 +3993,6 @@ msgstr "Kaikki henkilöt"
 msgid "Matches everyone in the database"
 msgstr "Poimii kaikki henkilöt tietokannasta"
 
-# ok
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:42
 msgid "Families with incomplete events"
 msgstr "Perheet, joilla on epätäydellisiä tapahtumia"
@@ -4072,7 +4001,6 @@ msgstr "Perheet, joilla on epätäydellisiä tapahtumia"
 msgid "Matches people with missing date or place in an event of the family"
 msgstr "Poimii henkilöt, joiden perhetapahtumista puuttuu joko aika tai paikka"
 
-# ok
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:49
 msgid "People with <count> addresses"
 msgstr "Henkilöt, joilla osoitteita on <määrä>"
@@ -4089,7 +4017,6 @@ msgstr "Henkilöt vaihtoehtoisella nimellä"
 msgid "Matches people with an alternate name"
 msgstr "Poimii henkilöt vaihtoehtoisella nimellä"
 
-# ok
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:49
 msgid "People with <count> associations"
 msgstr "Henkilöt, joilla liitoksia on <lukumäärä>"
@@ -4194,12 +4121,10 @@ msgstr "Henkilöt, joilla on henkilökohtainen <tapahtuma>"
 msgid "Matches people with a personal event of a particular value"
 msgstr "Poimii henkilöt, joiden henkilökohtaisella tapahtumalla on tietty arvo"
 
-# ok
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:45
 msgid "People with the family <attribute>"
 msgstr "Henkilöt, joiden perheellä on <ominaisuus>"
 
-# ok
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:46
 msgid "Matches people with the family attribute of a particular value"
 msgstr "Poimii henkilöt, joiden perheen ominaisuudella on tietty arvo"
@@ -4230,7 +4155,6 @@ msgstr "Henkilö, jolla on <Id>"
 msgid "Matches person with a specified Gramps ID"
 msgstr "Poimii henkilöt, joilla on määritelty Gramps ID"
 
-# on
 #: ../gramps/gen/filters/rules/person/_haslds.py:48
 msgid "People with <count> LDS events"
 msgstr "Henkilöt, joilla MAP tapahtumia on <lukumäärä>"
@@ -4300,7 +4224,6 @@ msgstr "Poimii henkilöt, joilla on annettu nimi tai nimen osa"
 msgid "Surname origin type:"
 msgstr "Sukunimen alkuperä tyyppi:"
 
-# ok
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:47
 msgid "People with the <Surname origin type>"
 msgstr "Henkilöt, joilla on <sukunimen alkuperätyyppi>"
@@ -4331,7 +4254,6 @@ msgstr "Henkilöt, joilla on lempinimi"
 msgid "Matches people with a nickname"
 msgstr "Poimii henkilöt, joilla on lempinimi"
 
-# ok
 #: ../gramps/gen/filters/rules/person/_hasnote.py:45
 msgid "People having <count> notes"
 msgstr "Henkilöt, joilla lisätietoja on <lukumäärä>"
@@ -4443,7 +4365,6 @@ msgstr "Kirjainkoon huomioiva:"
 msgid "People with records containing <substring>"
 msgstr "Henkilöt, joiden tietueet sisältävät <osamerkkijonon>"
 
-# ok
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:49
 msgid "Matches people whose records contain text matching a substring"
 msgstr "Poimii henkilöt, joiden tietueet sisältävät annetun osamerkkijonon"
@@ -4541,12 +4462,10 @@ msgstr ""
 "Poimii henkilöt, jotka ovat valitun henkilön jälkeläisiä tai heidän "
 "puolisoitaan"
 
-# ok
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:47
 msgid "Descendant family members of <filter> match"
 msgstr "<Suotimen> hyväksymät jälkeläiset perheineen"
 
-# ok
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:49
 msgid ""
 "Matches people that are descendants or the spouse of anybody matched by a "
@@ -4581,7 +4500,7 @@ msgstr "Poimii henkilön kahteen tai useampaan kertaan olevat esivanhemmat"
 #: ../gramps/plugins/gramplet/statsgramplet.py:108
 #: ../gramps/plugins/graph/gvfamilylines.py:276
 #: ../gramps/plugins/graph/gvhourglass.py:372
-#: ../gramps/plugins/graph/gvrelgraph.py:882
+#: ../gramps/plugins/graph/gvrelgraph.py:899
 #: ../gramps/plugins/webreport/statistics.py:122
 #: ../gramps/plugins/webreport/statistics.py:187
 msgid "Females"
@@ -4655,7 +4574,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/statsgramplet.py:105
 #: ../gramps/plugins/graph/gvfamilylines.py:272
 #: ../gramps/plugins/graph/gvhourglass.py:368
-#: ../gramps/plugins/graph/gvrelgraph.py:878
+#: ../gramps/plugins/graph/gvrelgraph.py:895
 #: ../gramps/plugins/webreport/statistics.py:120
 #: ../gramps/plugins/webreport/statistics.py:185
 msgid "Males"
@@ -4740,7 +4659,6 @@ msgstr "Tapahtumasuotimen nimi:"
 msgid "Persons with events matching the <event filter>"
 msgstr "Henkilöt joiden tapahtumat <tapahtumasuodin> hyväksyy"
 
-# ok
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
 msgid "Matches persons who have events that match a certain event filter"
 msgstr ""
@@ -4754,7 +4672,6 @@ msgstr "Henkilöt, jotka <suodin> hyväksyy"
 msgid "Matches people matched by the specified filter name"
 msgstr "Poimii henkilöt, jotka saadaan annetun nimisellä suotimella"
 
-# ok
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:44
 msgid "Persons with at least one direct source >= <confidence level>"
 msgstr ""
@@ -4784,7 +4701,6 @@ msgstr ""
 msgid "People with multiple marriage records"
 msgstr "Henkilöt, joilla on enemmän kuin yksi avioliittotieto"
 
-# ok
 #: ../gramps/gen/filters/rules/person/_multiplemarriages.py:43
 msgid "Matches people who have more than one spouse"
 msgstr "Poimii henkilöt, joilla on (ollut) enemmän kuin yksi puoliso"
@@ -4851,7 +4767,6 @@ msgstr ""
 "Poimii henkilöt, joilla ei ole kuolemaan liittyviä tapahtumia ja jotka eivät "
 "ole liian vanhoja"
 
-# ok
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:46
 msgid "People with Id containing <text>"
 msgstr "Henkilöt, joiden Id sisältää <tekstin>"
@@ -4865,7 +4780,6 @@ msgstr ""
 msgid "People with a name matching <text>"
 msgstr "Henkilöt, joiden nimi on <tekstin> mukainen"
 
-# ok
 #: ../gramps/gen/filters/rules/person/_regexpname.py:47
 msgid ""
 "Matches people's names containing a substring or matching a regular "
@@ -4953,12 +4867,10 @@ msgstr "Parametreja vastaavat paikat"
 msgid "Matches places with particular parameters"
 msgstr "Poimii paikat, jotka vastaavat tiettyjä parametreja"
 
-# ok
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:45
 msgid "Places with <count> media"
 msgstr "Paikat, joilla mediatiedostoja on <lukumäärä>"
 
-# ok
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:46
 msgid "Matches places with a certain number of items in the gallery"
 msgstr "Poimii paikat, joilla on tietty määrä mediatiedostoja galleriassa"
@@ -4997,7 +4909,6 @@ msgstr "Poimii paikat, joilla on tietty määrä lisätietoja"
 msgid "Places having notes containing <substring>"
 msgstr "Paikat, joiden lisätiedot sisältävät <osamerkkijonon>"
 
-# ok
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:43
 msgid "Matches places whose notes contain text matching a substring"
 msgstr "Poimii paikat, joiden lisätiedot sisältävät annetun osamerkkijonon"
@@ -5006,7 +4917,6 @@ msgstr "Poimii paikat, joiden lisätiedot sisältävät annetun osamerkkijonon"
 msgid "Places having notes containing <text>"
 msgstr "Paikat, joiden lisätiedot sisältävät <tekstin>"
 
-# ok
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:42
 msgid "Matches places whose notes contain text matching a regular expression"
 msgstr ""
@@ -5061,7 +4971,6 @@ msgstr "Paikka, joilla lähteitä on <lukumäärä>"
 msgid "Matches places with a certain number of sources connected to it"
 msgstr "Poimii henkilöt, joilla on tietty määrä lähteitä"
 
-# ok
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:46
 msgid "Places with the <source>"
 msgstr "Paikat, joilla on <lähde>"
@@ -5152,7 +5061,6 @@ msgstr "Poimii paikat, jotka saadaan annetun nimisellä suotimella"
 msgid "Place with a direct source >= <confidence level>"
 msgstr "Paikka, jossa suoralla lähteellä >= <luotettavuustaso>"
 
-# ok
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:45
 msgid "Matches places with at least one direct source with confidence level(s)"
 msgstr ""
@@ -5189,7 +5097,6 @@ msgstr "Paikat alueella"
 msgid "Matches places within a given distance of another place"
 msgstr "Poimii paikat tietyllä etäisyydellä toiseen paikkaan"
 
-# ok
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
 msgstr "Kaikki arkistot"
@@ -5218,7 +5125,6 @@ msgstr "Arkisto, jolla on <Id>"
 msgid "Matches a repository with a specified Gramps ID"
 msgstr "Poimii arkistot, joilla on määritelty Gramps ID"
 
-# ok
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:42
 msgid "Repositories having notes containing <substring>"
 msgstr "Arkistot, joiden lisätiedot sisältävät <osamerkkijonon>"
@@ -5227,12 +5133,10 @@ msgstr "Arkistot, joiden lisätiedot sisältävät <osamerkkijonon>"
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr "Poimii arkistot, joiden lisätiedot sisältävät annetun osamerkkijonon"
 
-# ok
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:41
 msgid "Repositories having notes containing <text>"
 msgstr "Arkistot, joiden lisätiedot sisältävät <tekstin>"
 
-# ok
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:42
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
@@ -5286,7 +5190,6 @@ msgstr "Arkistot, jotka <suodin> hyväksyy"
 msgid "Matches repositories matched by the specified filter name"
 msgstr "Poimii arkistot, jotka saadaan annetun nimisellä suotimella"
 
-# ok
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:43
 msgid "Repositories with name containing <text>"
 msgstr "Arkistot, joiden nimi sisältää <tekstin>"
@@ -5344,7 +5247,6 @@ msgstr "Poimii lähteet, joilla on tietty määrä mediatiedostoja galleriassa"
 msgid "Source with <Id>"
 msgstr "Lähde, jolla on <id>"
 
-# ok
 #: ../gramps/gen/filters/rules/source/_hasidof.py:45
 msgid "Matches a source with a specified Gramps ID"
 msgstr "Poimii lähteet, joille on annettu Gramps ID"
@@ -5353,17 +5255,14 @@ msgstr "Poimii lähteet, joille on annettu Gramps ID"
 msgid "Sources having <count> notes"
 msgstr "Lähteet, joilla lisätietoja on <lukumäärä>"
 
-# ok
 #: ../gramps/gen/filters/rules/source/_hasnote.py:46
 msgid "Matches sources having a certain number of notes"
 msgstr "Poimii lähteet, joilla on tietty lukumäärä lisätietoja"
 
-# ok
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:42
 msgid "Sources having notes containing <substring>"
 msgstr "Lähteet, joiden lisätiedot sisältävät <osamerkkijonon>"
 
-# ok
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:43
 msgid "Matches sources whose notes contain text matching a substring"
 msgstr "Poimii lähteet, joiden lisätiedot sisältävät annetun osamerkkijonon"
@@ -5386,7 +5285,6 @@ msgstr "Lisätiedot, joiden viitemäärä on <lukumäärä>"
 msgid "Matches sources with a certain reference count"
 msgstr "Poimii lisätiedot, joilla on tietty määrä viitteitä"
 
-# ok
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:47
 msgid "Sources with <count> Repository references"
 msgstr "Lähteet, joilla arkistoviitteitä on <lukumäärä>"
@@ -5433,17 +5331,14 @@ msgid ""
 "repository filter"
 msgstr "Poimii lähteet, joiden arkistoviitteen valittu arkistosuodin hyväksyy"
 
-# ok
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:43
 msgid "Sources with title containing <text>"
 msgstr "Lähteet, joiden nimikke sisältää <tekstin>"
 
-# ok
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:44
 msgid "Matches sources whose title contains a certain substring"
 msgstr "Poimii lähteet, joiden nimike sisältää annettu osamerkkijonon"
 
-# ok
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:47
 msgid "Sources with Id containing <text>"
 msgstr "Lähteet, joiden Id sisältää <tekstin>"
@@ -5466,8 +5361,8 @@ msgstr "Poimii lähteet, jotka on merkitty yksityisiksi"
 #: ../gramps/gui/configure.py:517 ../gramps/gui/editors/editaddress.py:167
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
 #: ../gramps/plugins/gramplet/repositorydetails.py:133
-#: ../gramps/plugins/lib/libgedcom.py:5570
-#: ../gramps/plugins/lib/libgedcom.py:5737
+#: ../gramps/plugins/lib/libgedcom.py:5578
+#: ../gramps/plugins/lib/libgedcom.py:5745
 #: ../gramps/plugins/textreport/familygroup.py:350
 #: ../gramps/plugins/webreport/addressbooklist.py:112
 msgid "Address"
@@ -5628,10 +5523,10 @@ msgstr "Lisätiedot"
 #: ../gramps/plugins/webreport/basepage.py:901
 #: ../gramps/plugins/webreport/basepage.py:931
 #: ../gramps/plugins/webreport/basepage.py:1097
-#: ../gramps/plugins/webreport/basepage.py:2177
+#: ../gramps/plugins/webreport/basepage.py:2178
 #: ../gramps/plugins/webreport/event.py:175
-#: ../gramps/plugins/webreport/media.py:183
-#: ../gramps/plugins/webreport/media.py:546
+#: ../gramps/plugins/webreport/media.py:185
+#: ../gramps/plugins/webreport/media.py:549
 #: ../gramps/plugins/webreport/person.py:867
 msgid "Date"
 msgstr "Päivämäärä"
@@ -5643,8 +5538,8 @@ msgstr "Päivämäärä"
 #: ../gramps/plugins/view/geoplaces.py:537
 #: ../gramps/plugins/view/repoview.py:89
 #: ../gramps/plugins/webreport/basepage.py:1098
-#: ../gramps/plugins/webreport/basepage.py:2535
-#: ../gramps/plugins/webreport/basepage.py:2562
+#: ../gramps/plugins/webreport/basepage.py:2536
+#: ../gramps/plugins/webreport/basepage.py:2563
 msgid "Street"
 msgstr "Katu"
 
@@ -5655,8 +5550,8 @@ msgstr "Katu"
 #: ../gramps/plugins/view/geoplaces.py:534
 #: ../gramps/plugins/view/repoview.py:90
 #: ../gramps/plugins/webreport/basepage.py:1099
-#: ../gramps/plugins/webreport/basepage.py:2536
-#: ../gramps/plugins/webreport/basepage.py:2563
+#: ../gramps/plugins/webreport/basepage.py:2537
+#: ../gramps/plugins/webreport/basepage.py:2564
 msgid "Locality"
 msgstr "Taajama"
 
@@ -5667,8 +5562,8 @@ msgstr "Taajama"
 #: ../gramps/plugins/view/geoplaces.py:585
 #: ../gramps/plugins/view/repoview.py:91
 #: ../gramps/plugins/webreport/basepage.py:1100
-#: ../gramps/plugins/webreport/basepage.py:2537
-#: ../gramps/plugins/webreport/basepage.py:2564
+#: ../gramps/plugins/webreport/basepage.py:2538
+#: ../gramps/plugins/webreport/basepage.py:2565
 msgid "City"
 msgstr "Paikkakunta"
 
@@ -5679,8 +5574,8 @@ msgstr "Paikkakunta"
 #: ../gramps/plugins/lib/maps/placeselection.py:137
 #: ../gramps/plugins/view/geoplaces.py:567
 #: ../gramps/plugins/webreport/basepage.py:1102
-#: ../gramps/plugins/webreport/basepage.py:2540
-#: ../gramps/plugins/webreport/basepage.py:2566
+#: ../gramps/plugins/webreport/basepage.py:2541
+#: ../gramps/plugins/webreport/basepage.py:2567
 msgid "County"
 msgstr "Maakunta"
 
@@ -5702,16 +5597,16 @@ msgstr "Lääni tai Osavaltio"
 #: ../gramps/plugins/view/geoplaces.py:561
 #: ../gramps/plugins/view/repoview.py:93
 #: ../gramps/plugins/webreport/basepage.py:1104
-#: ../gramps/plugins/webreport/basepage.py:2544
-#: ../gramps/plugins/webreport/basepage.py:2569
+#: ../gramps/plugins/webreport/basepage.py:2545
+#: ../gramps/plugins/webreport/basepage.py:2570
 #: ../gramps/plugins/webreport/place.py:177
 msgid "Country"
 msgstr "Valtio tai Liittovaltio"
 
 #: ../gramps/gen/lib/address.py:125 ../gramps/gen/lib/location.py:103
 #: ../gramps/plugins/webreport/basepage.py:1103
-#: ../gramps/plugins/webreport/basepage.py:2543
-#: ../gramps/plugins/webreport/basepage.py:2568
+#: ../gramps/plugins/webreport/basepage.py:2544
+#: ../gramps/plugins/webreport/basepage.py:2569
 msgid "Postal Code"
 msgstr "Postinumero"
 
@@ -5720,7 +5615,7 @@ msgstr "Postinumero"
 #: ../gramps/plugins/export/exportgedcom.py:1168
 #: ../gramps/plugins/gramplet/repositorydetails.py:121
 #: ../gramps/plugins/lib/libgedcom.py:4106
-#: ../gramps/plugins/lib/libgedcom.py:5834
+#: ../gramps/plugins/lib/libgedcom.py:5842
 #: ../gramps/plugins/webreport/basepage.py:1105
 msgid "Phone"
 msgstr "Puhelin"
@@ -5745,7 +5640,7 @@ msgstr "Arvo"
 
 #: ../gramps/gen/lib/attrtype.py:63 ../gramps/gen/lib/childreftype.py:74
 #: ../gramps/gen/lib/eventroletype.py:53 ../gramps/gen/lib/eventtype.py:163
-#: ../gramps/gen/lib/familyreltype.py:48 ../gramps/gen/lib/markertype.py:52
+#: ../gramps/gen/lib/familyreltype.py:51 ../gramps/gen/lib/markertype.py:52
 #: ../gramps/gen/lib/nameorigintype.py:74 ../gramps/gen/lib/nametype.py:47
 #: ../gramps/gen/lib/notetype.py:74 ../gramps/gen/lib/placetype.py:64
 #: ../gramps/gen/lib/repotype.py:53 ../gramps/gen/lib/srcattrtype.py:44
@@ -5780,8 +5675,8 @@ msgstr "Kasti"
 #: ../gramps/plugins/view/eventview.py:82
 #: ../gramps/plugins/webreport/basepage.py:622
 #: ../gramps/plugins/webreport/basepage.py:904
-#: ../gramps/plugins/webreport/basepage.py:2048
-#: ../gramps/plugins/webreport/basepage.py:2705
+#: ../gramps/plugins/webreport/basepage.py:2049
+#: ../gramps/plugins/webreport/basepage.py:2706
 #: ../gramps/plugins/webreport/download.py:127
 msgid "Description"
 msgstr "Kuvaus"
@@ -5940,12 +5835,12 @@ msgstr "Lainaus"
 #: ../gramps/plugins/quickview/filterbyname.py:264
 #: ../gramps/plugins/quickview/filterbyname.py:270
 #: ../gramps/plugins/quickview/filterbyname.py:276
-#: ../gramps/plugins/tool/findloop.py:103
-#: ../gramps/plugins/tool/findloop.py:107
-#: ../gramps/plugins/webreport/basepage.py:2510
+#: ../gramps/plugins/tool/findloop.py:112
+#: ../gramps/plugins/tool/findloop.py:116
+#: ../gramps/plugins/webreport/basepage.py:2511
 #: ../gramps/plugins/webreport/event.py:176
 #: ../gramps/plugins/webreport/event.py:388
-#: ../gramps/plugins/webreport/media.py:523
+#: ../gramps/plugins/webreport/media.py:526
 #: ../gramps/plugins/webreport/person.py:1391
 #: ../gramps/plugins/webreport/repository.py:242
 #: ../gramps/plugins/webreport/source.py:257
@@ -5954,14 +5849,14 @@ msgstr "Gramps ID"
 
 #: ../gramps/gen/lib/citation.py:108
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:82
-#: ../gramps/plugins/webreport/basepage.py:2179
+#: ../gramps/plugins/webreport/basepage.py:2180
 msgid "Page"
 msgstr "Sivu"
 
 #: ../gramps/gen/lib/citation.py:112
 #: ../gramps/plugins/view/citationlistview.py:101
 #: ../gramps/plugins/view/citationtreeview.py:96
-#: ../gramps/plugins/webreport/basepage.py:2180
+#: ../gramps/plugins/webreport/basepage.py:2181
 msgid "Confidence"
 msgstr "Luotettavuus"
 
@@ -6011,9 +5906,9 @@ msgstr "Lähde"
 #: ../gramps/plugins/webreport/basepage.py:1548
 #: ../gramps/plugins/webreport/basepage.py:1617
 #: ../gramps/plugins/webreport/basepage.py:1664
-#: ../gramps/plugins/webreport/basepage.py:1952
-#: ../gramps/plugins/webreport/media.py:150
-#: ../gramps/plugins/webreport/media.py:344
+#: ../gramps/plugins/webreport/basepage.py:1953
+#: ../gramps/plugins/webreport/media.py:152
+#: ../gramps/plugins/webreport/media.py:347
 msgid "Media"
 msgstr "Mediat"
 
@@ -6366,7 +6261,7 @@ msgstr "Elinkaaren tapahtumat"
 #: ../gramps/plugins/tool/reorderids.glade.h:8
 #: ../gramps/plugins/view/relview.py:1378
 #: ../gramps/plugins/view/relview.py:1402
-#: ../gramps/plugins/webreport/family.py:187
+#: ../gramps/plugins/webreport/family.py:186
 msgid "Family"
 msgstr "Perhe"
 
@@ -6393,7 +6288,7 @@ msgstr "Oikeudellinen"
 #: ../gramps/gen/lib/eventtype.py:153 ../gramps/gen/lib/eventtype.py:195
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:463
 #: ../gramps/plugins/webreport/addressbooklist.py:113
-#: ../gramps/plugins/webreport/basepage.py:2683
+#: ../gramps/plugins/webreport/basepage.py:2684
 msgid "Residence"
 msgstr "Asuinpaikka"
 
@@ -6543,7 +6438,7 @@ msgstr "Testamentti"
 #: ../gramps/plugins/textreport/familygroup.py:404
 #: ../gramps/plugins/textreport/familygroup.py:413
 #: ../gramps/plugins/textreport/familygroup.py:604
-#: ../gramps/plugins/webreport/family.py:188
+#: ../gramps/plugins/webreport/family.py:187
 msgid "Marriage"
 msgstr "Avioliitto"
 
@@ -6567,7 +6462,7 @@ msgstr "Kuulutukset"
 msgid "Engagement"
 msgstr "Kihlaus"
 
-#: ../gramps/gen/lib/eventtype.py:204 ../gramps/plugins/webreport/family.py:189
+#: ../gramps/gen/lib/eventtype.py:204 ../gramps/plugins/webreport/family.py:188
 msgid "Divorce"
 msgstr "Avioero"
 
@@ -6859,18 +6754,18 @@ msgstr "Tapahtumat"
 msgid "LDS ordinances"
 msgstr "MAP-lisätietoja"
 
-#: ../gramps/gen/lib/familyreltype.py:49
-msgid "Civil Union"
-msgstr "Rekisteröity parisuhde"
-
-#: ../gramps/gen/lib/familyreltype.py:50
-msgid "Unmarried"
-msgstr "Avoliitto"
-
-#: ../gramps/gen/lib/familyreltype.py:51
+#: ../gramps/gen/lib/familyreltype.py:47
 #: ../gramps/plugins/webreport/webcal.py:2033
 msgid "Married"
 msgstr "Avioliitto"
+
+#: ../gramps/gen/lib/familyreltype.py:48
+msgid "Unmarried"
+msgstr "Avoliitto"
+
+#: ../gramps/gen/lib/familyreltype.py:49
+msgid "Civil Union"
+msgstr "Rekisteröity parisuhde"
 
 #. Create the tree columns
 #. 0 selected?
@@ -6929,8 +6824,8 @@ msgstr "Avioliitto"
 #: ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/webreport/basepage.py:930
 #: ../gramps/plugins/webreport/basepage.py:1232
-#: ../gramps/plugins/webreport/basepage.py:2047
-#: ../gramps/plugins/webreport/basepage.py:2640
+#: ../gramps/plugins/webreport/basepage.py:2048
+#: ../gramps/plugins/webreport/basepage.py:2641
 #: ../gramps/plugins/webreport/event.py:174
 #: ../gramps/plugins/webreport/repository.py:161
 #: ../gramps/plugins/webreport/repository.py:250
@@ -6969,6 +6864,7 @@ msgstr "Peruttu"
 #: ../gramps/plugins/gramplet/children.py:93
 #: ../gramps/plugins/gramplet/children.py:192
 #: ../gramps/plugins/importer/importcsv.py:210
+#: ../gramps/plugins/tool/findloop.py:118
 msgid "Child"
 msgstr "Lapsi"
 
@@ -7168,7 +7064,7 @@ msgstr "Loppuliite"
 #: ../gramps/gui/selectors/selectplace.py:73
 #: ../gramps/gui/selectors/selectrepository.py:69
 #: ../gramps/gui/selectors/selectsource.py:69
-#: ../gramps/gui/widgets/grampletpane.py:1571
+#: ../gramps/gui/widgets/grampletpane.py:1575
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/persondetails.py:160
 #: ../gramps/plugins/lib/libplaceview.py:86
@@ -7177,7 +7073,7 @@ msgstr "Loppuliite"
 #: ../gramps/plugins/textreport/tagreport.py:743
 #: ../gramps/plugins/view/mediaview.py:94
 #: ../gramps/plugins/view/sourceview.py:82
-#: ../gramps/plugins/webreport/basepage.py:2638
+#: ../gramps/plugins/webreport/basepage.py:2639
 msgid "Title"
 msgstr "Nimike"
 
@@ -7286,7 +7182,7 @@ msgstr "Avionimi"
 
 #. ###############################
 #. 3
-#: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:255
+#: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:254
 #: ../gramps/gui/clipboard.py:397 ../gramps/gui/configure.py:551
 #: ../gramps/gui/editors/editlink.py:95 ../gramps/gui/editors/editmedia.py:98
 #: ../gramps/gui/editors/editmedia.py:181
@@ -7359,9 +7255,10 @@ msgstr "Raportti"
 msgid "Html code"
 msgstr "HTML koodi"
 
+# muutos
 #: ../gramps/gen/lib/notetype.py:82
 msgid "notetype|To Do"
-msgstr "Tehtävän muistutus"
+msgstr "Tehtävät"
 
 #: ../gramps/gen/lib/notetype.py:83
 msgid "notetype|Link"
@@ -7472,7 +7369,7 @@ msgstr "Lapsiviitteen lisätietoja"
 #: ../gramps/plugins/tool/eventcmp.py:253
 #: ../gramps/plugins/tool/reorderids.glade.h:7
 #: ../gramps/plugins/webreport/event.py:178
-#: ../gramps/plugins/webreport/family.py:186
+#: ../gramps/plugins/webreport/family.py:185
 #: ../gramps/plugins/webreport/person.py:1162
 msgid "Person"
 msgstr "Henkilö"
@@ -7509,7 +7406,7 @@ msgstr "Tapahtumaviitteet"
 
 #: ../gramps/gen/lib/person.py:199 ../gramps/plugins/graph/gvfamilylines.py:285
 #: ../gramps/plugins/graph/gvhourglass.py:381
-#: ../gramps/plugins/graph/gvrelgraph.py:892
+#: ../gramps/plugins/graph/gvrelgraph.py:909
 #: ../gramps/plugins/quickview/filterbyname.py:94
 #: ../gramps/plugins/quickview/filterbyname.py:119
 #: ../gramps/plugins/textreport/indivcomplete.py:638
@@ -7522,7 +7419,7 @@ msgstr "Tapahtumaviitteet"
 #: ../gramps/plugins/webreport/basepage.py:1477
 #: ../gramps/plugins/webreport/basepage.py:1536
 #: ../gramps/plugins/webreport/basepage.py:1600
-#: ../gramps/plugins/webreport/family.py:130
+#: ../gramps/plugins/webreport/family.py:129
 msgid "Families"
 msgstr "Perheet"
 
@@ -7562,7 +7459,7 @@ msgstr "Liitos"
 #: ../gramps/plugins/gramplet/coordinates.py:96
 #: ../gramps/plugins/gramplet/placedetails.py:133
 #: ../gramps/plugins/lib/libplaceview.py:90
-#: ../gramps/plugins/webreport/basepage.py:2527
+#: ../gramps/plugins/webreport/basepage.py:2528
 #: ../gramps/plugins/webreport/place.py:179
 msgid "Longitude"
 msgstr "Pituusaste"
@@ -7571,7 +7468,7 @@ msgstr "Pituusaste"
 #: ../gramps/plugins/gramplet/coordinates.py:95
 #: ../gramps/plugins/gramplet/placedetails.py:131
 #: ../gramps/plugins/lib/libplaceview.py:89
-#: ../gramps/plugins/webreport/basepage.py:2519
+#: ../gramps/plugins/webreport/basepage.py:2520
 #: ../gramps/plugins/webreport/place.py:178
 msgid "Latitude"
 msgstr "Leveysaste"
@@ -7604,7 +7501,7 @@ msgstr "Vaihtoehtoiset nimet"
 msgid "Code"
 msgstr "Koodi"
 
-#: ../gramps/gen/lib/place.py:160 ../gramps/plugins/webreport/basepage.py:2556
+#: ../gramps/gen/lib/place.py:160 ../gramps/plugins/webreport/basepage.py:2557
 msgid "Alternate Locations"
 msgstr "Vaihtoehtoiset sijainnit"
 
@@ -7672,7 +7569,7 @@ msgstr "Rakennus tai Torppa"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:89
 #: ../gramps/plugins/view/geoplaces.py:558
-#: ../gramps/plugins/webreport/basepage.py:2636
+#: ../gramps/plugins/webreport/basepage.py:2637
 #: ../gramps/plugins/webreport/source.py:161
 msgid "Number"
 msgstr "Kutsunumero"
@@ -7768,7 +7665,7 @@ msgstr "Lyhennys"
 #: ../gramps/plugins/view/view.gpr.py:260
 #: ../gramps/plugins/webreport/basepage.py:1481
 #: ../gramps/plugins/webreport/basepage.py:1610
-#: ../gramps/plugins/webreport/basepage.py:2627
+#: ../gramps/plugins/webreport/basepage.py:2628
 #: ../gramps/plugins/webreport/repository.py:137
 #: ../gramps/plugins/webreport/repository.py:222
 msgid "Repositories"
@@ -7851,7 +7748,6 @@ msgstr "Tagin tekstityyli"
 msgid "Tag"
 msgstr "Tagi"
 
-# 20170729
 #: ../gramps/gen/lib/styledtexttag.py:112
 msgid "Ranges"
 msgstr "Alue"
@@ -8052,7 +7948,6 @@ msgstr "Gramplet %s aiheutti virheen"
 msgid "No description was provided"
 msgstr "Kuvaus puuttuu"
 
-# ok
 #: ../gramps/gen/plug/_options.py:386
 #: ../gramps/plugins/textreport/recordsreport.py:162
 #, python-format
@@ -8113,7 +8008,7 @@ msgstr "Suhteet"
 #: ../gramps/gui/glade/grampletpane.glade.h:9
 #: ../gramps/gui/widgets/grampletbar.py:627
 #: ../gramps/gui/widgets/grampletpane.py:225
-#: ../gramps/gui/widgets/grampletpane.py:980
+#: ../gramps/gui/widgets/grampletpane.py:984
 msgid "Gramplet"
 msgstr "gramplet"
 
@@ -8229,7 +8124,7 @@ msgstr "Kohdetta %s ei voitu luoda"
 #. Private Constants
 #.
 #. -------------------------------------------------------------------------
-#: ../gramps/gen/plug/docgen/graphdoc.py:67
+#: ../gramps/gen/plug/docgen/graphdoc.py:66
 #: ../gramps/gen/plug/report/stdoptions.py:59
 #: ../gramps/gen/plug/report/stdoptions.py:73
 #: ../gramps/gen/plug/report/stdoptions.py:243
@@ -8237,112 +8132,112 @@ msgstr "Kohdetta %s ei voitu luoda"
 msgid "Default"
 msgstr "Oletus"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:68
+#: ../gramps/gen/plug/docgen/graphdoc.py:67
 msgid "PostScript / Helvetica"
 msgstr "PostScript / Helvetica"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:69
+#: ../gramps/gen/plug/docgen/graphdoc.py:68
 msgid "TrueType / FreeSans"
 msgstr "TrueType / FreeSans"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:71
+#: ../gramps/gen/plug/docgen/graphdoc.py:70
 #: ../gramps/plugins/view/pedigreeview.py:2043
 msgid "Vertical (↓)"
 msgstr "Alaspäin (↓)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:72
+#: ../gramps/gen/plug/docgen/graphdoc.py:71
 #: ../gramps/plugins/view/pedigreeview.py:2044
 msgid "Vertical (↑)"
 msgstr "Ylöspäin (↑)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:73
+#: ../gramps/gen/plug/docgen/graphdoc.py:72
 #: ../gramps/plugins/view/pedigreeview.py:2045
 msgid "Horizontal (→)"
 msgstr "Oikealle (→)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:74
+#: ../gramps/gen/plug/docgen/graphdoc.py:73
 #: ../gramps/plugins/view/pedigreeview.py:2046
 msgid "Horizontal (←)"
 msgstr "Vasemmalle (←)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:76
+#: ../gramps/gen/plug/docgen/graphdoc.py:75
 msgid "Bottom, left"
 msgstr "Vasen alanurkka"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:77
+#: ../gramps/gen/plug/docgen/graphdoc.py:76
 msgid "Bottom, right"
 msgstr "Oikea alanurkka"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:78
+#: ../gramps/gen/plug/docgen/graphdoc.py:77
 msgid "Top, left"
 msgstr "Vasen ylänurkka"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:79
+#: ../gramps/gen/plug/docgen/graphdoc.py:78
 msgid "Top, Right"
 msgstr "Oikea ylänurkka"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:80
+#: ../gramps/gen/plug/docgen/graphdoc.py:79
 msgid "Right, bottom"
 msgstr "Oikealle, alas"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:81
+#: ../gramps/gen/plug/docgen/graphdoc.py:80
 msgid "Right, top"
 msgstr "Oikealle, ylös"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:82
+#: ../gramps/gen/plug/docgen/graphdoc.py:81
 msgid "Left, bottom"
 msgstr "Vasemmalle, alas"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:83
+#: ../gramps/gen/plug/docgen/graphdoc.py:82
 msgid "Left, top"
 msgstr "Vasemmalle, ylös"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:85
+#: ../gramps/gen/plug/docgen/graphdoc.py:84
 msgid "Compress to minimal size"
 msgstr "Minimoi koko"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:86
+#: ../gramps/gen/plug/docgen/graphdoc.py:85
 msgid "Fill the given area"
 msgstr "Täytä annettu alue"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:87
+#: ../gramps/gen/plug/docgen/graphdoc.py:86
 msgid "Expand uniformly"
 msgstr "Laajenna tasapuolisesti"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:89
+#: ../gramps/gen/plug/docgen/graphdoc.py:88
 #: ../gramps/gui/glade/styleeditor.glade.h:46
 msgid "Top"
 msgstr "Ylhäällä"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:90
+#: ../gramps/gen/plug/docgen/graphdoc.py:89
 #: ../gramps/gui/glade/styleeditor.glade.h:47
 msgid "Bottom"
 msgstr "Alhaalla"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:92
+#: ../gramps/gen/plug/docgen/graphdoc.py:91
 msgid "Straight"
 msgstr "Suora"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:93
+#: ../gramps/gen/plug/docgen/graphdoc.py:92
 msgid "Curved"
 msgstr "Kaareva"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:94
+#: ../gramps/gen/plug/docgen/graphdoc.py:93
 msgid "Orthogonal"
 msgstr "Suorakulmainen"
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:135
+#: ../gramps/gen/plug/docgen/graphdoc.py:134
 msgid "Graphviz Layout"
 msgstr "Graphviz pohja"
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:137
+#: ../gramps/gen/plug/docgen/graphdoc.py:136
 #: ../gramps/gui/widgets/styledtexteditor.py:482
 msgid "Font family"
 msgstr "Kirjasintyyppi"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:140
+#: ../gramps/gen/plug/docgen/graphdoc.py:139
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -8351,28 +8246,28 @@ msgstr ""
 "FreeSans-kirjasinta. FreeSans on saatavilla osoitteesta: http://www.nongnu."
 "org/freefont/"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:146
+#: ../gramps/gen/plug/docgen/graphdoc.py:145
 #: ../gramps/gui/widgets/styledtexteditor.py:494
 msgid "Font size"
 msgstr "Kirjasinkoko"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:147
+#: ../gramps/gen/plug/docgen/graphdoc.py:146
 msgid "The font size, in points."
 msgstr "Kirjasimen koko pisteinä."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:150
+#: ../gramps/gen/plug/docgen/graphdoc.py:149
 msgid "Graph Direction"
 msgstr "Kaavion suunta"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:153
+#: ../gramps/gen/plug/docgen/graphdoc.py:152
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Onko kaavio ylhäältä alas vai vasemmalta oikealle."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:157
+#: ../gramps/gen/plug/docgen/graphdoc.py:156
 msgid "Number of Horizontal Pages"
 msgstr "Sivujen määrä vaakasuunnassa"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:158
+#: ../gramps/gen/plug/docgen/graphdoc.py:157
 msgid ""
 "Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -8382,11 +8277,11 @@ msgstr ""
 "sivulle. Tämä asetus määrittää sivujen määrän vaakasuunnassa. Vain "
 "Ghostscript:llä luoduille dot ja pdf tiedostoille."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:165
+#: ../gramps/gen/plug/docgen/graphdoc.py:164
 msgid "Number of Vertical Pages"
 msgstr "Sivujen määrä pystysuunnassa"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:166
+#: ../gramps/gen/plug/docgen/graphdoc.py:165
 msgid ""
 "Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -8396,11 +8291,11 @@ msgstr ""
 "sivulle. Tämä asetus määrittää sivujen määrän pystysuunnassa. Vain "
 "Ghostscript:llä luoduille dot ja pdf tiedostoille."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:173
+#: ../gramps/gen/plug/docgen/graphdoc.py:172
 msgid "Paging Direction"
 msgstr "Sivutussuunta"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:176
+#: ../gramps/gen/plug/docgen/graphdoc.py:175
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
@@ -8408,26 +8303,25 @@ msgstr ""
 "Sivujen järjestys tulostuksessa. Tällä on vaikutusta vain jos sivuja on "
 "enemmän kuin yksi."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:181
+#: ../gramps/gen/plug/docgen/graphdoc.py:180
 msgid "Connecting lines"
 msgstr "Yhdyslinjat"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:184
+#: ../gramps/gen/plug/docgen/graphdoc.py:183
 msgid "How the lines between objects will be drawn."
 msgstr "Miten piirretään viivat kohteiden välillä."
 
-# ok
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:200
+#: ../gramps/gen/plug/docgen/graphdoc.py:199
 msgid "Graphviz Options"
 msgstr "Graphviz valinnat"
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:203
+#: ../gramps/gen/plug/docgen/graphdoc.py:202
 msgid "Aspect ratio"
 msgstr "Sivujen suhde"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:207
+#: ../gramps/gen/plug/docgen/graphdoc.py:206
 msgid ""
 "Affects node spacing and scaling of the graph.\n"
 "If the graph is smaller than the print area:\n"
@@ -8457,11 +8351,11 @@ msgstr ""
 "  Laajennus supistaa kaaviota tasaisesti, jotta kaavio sopii "
 "tulostusalueeseen."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:223
+#: ../gramps/gen/plug/docgen/graphdoc.py:222
 msgid "DPI"
 msgstr "DPI"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:224
+#: ../gramps/gen/plug/docgen/graphdoc.py:223
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 100 or 300 DPI.  PostScript and PDF files always use 72 "
@@ -8471,11 +8365,11 @@ msgstr ""
 "kokeile arvoja kuten 100 tai 300 DPI. Kun luot PostScript tai PDF tiedostot "
 "käyttävät aina 72 DPI:tä."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:231
+#: ../gramps/gen/plug/docgen/graphdoc.py:230
 msgid "Node spacing"
 msgstr "Kaavion elementtien välistys"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:232
+#: ../gramps/gen/plug/docgen/graphdoc.py:231
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -8485,11 +8379,11 @@ msgstr ""
 "välillä, tuumissa. Pystysuuntaisissa kaavioissa tämä vastaa "
 "sarakevälistystä, vaakasuuntaisissa kaavioissa tämä vastaa rivivälistystä."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:239
+#: ../gramps/gen/plug/docgen/graphdoc.py:238
 msgid "Rank spacing"
 msgstr "Tasovälistys"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:240
+#: ../gramps/gen/plug/docgen/graphdoc.py:239
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -8499,11 +8393,11 @@ msgstr ""
 "Pystysuuntaisissa kaavioissa tämä vastaa rivivälistystä, vaakasuuntaisissa "
 "kaavioissa tämä vastaa sarakevälistystä."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:247
+#: ../gramps/gen/plug/docgen/graphdoc.py:246
 msgid "Use subgraphs"
 msgstr "Käytä alikaavioita"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:248
+#: ../gramps/gen/plug/docgen/graphdoc.py:247
 msgid ""
 "Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
@@ -8513,74 +8407,64 @@ msgstr ""
 "pidemmät viivat ja isompi kaavio."
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:258
+#: ../gramps/gen/plug/docgen/graphdoc.py:257
 msgid "Note to add to the graph"
 msgstr "Kaavioon lisättävä teksti"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:260
+#: ../gramps/gen/plug/docgen/graphdoc.py:259
 msgid "This text will be added to the graph."
 msgstr "Annettu teksti lisätään kaavioon."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:263
+#: ../gramps/gen/plug/docgen/graphdoc.py:262
 msgid "Note location"
 msgstr "Tekstin sijainti"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:266
+#: ../gramps/gen/plug/docgen/graphdoc.py:265
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Tuleeko teksti sivun ylä- vai alaosaan."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:270
+#: ../gramps/gen/plug/docgen/graphdoc.py:269
 msgid "Note size"
 msgstr "Lisätiedon koko"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:271
+#: ../gramps/gen/plug/docgen/graphdoc.py:270
 msgid "The size of note text, in points."
 msgstr "Tekstin koko pisteinä."
 
-# 20171101
-#: ../gramps/gen/plug/docgen/graphdoc.py:921
-msgid "'Ghostscript' is not installed"
-msgstr "'Ghostscript' ei ole asennettu"
-
-# 20171101
-#: ../gramps/gen/plug/docgen/graphdoc.py:922
-msgid "Use your package manager to install it"
-msgstr "Käytä paketinhallintaa sen asentamiseen"
-
-#: ../gramps/gen/plug/docgen/graphdoc.py:1022
+#: ../gramps/gen/plug/docgen/graphdoc.py:1013
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1028
+#: ../gramps/gen/plug/docgen/graphdoc.py:1019
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1034
+#: ../gramps/gen/plug/docgen/graphdoc.py:1025
 #: ../gramps/plugins/docgen/docgen.gpr.py:161
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1040
+#: ../gramps/gen/plug/docgen/graphdoc.py:1031
 msgid "Structured Vector Graphics (SVG)"
 msgstr "SVG (Strukturoitu Vektori-Grafiikka)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1046
+#: ../gramps/gen/plug/docgen/graphdoc.py:1037
 msgid "Compressed Structured Vector Graphs (SVGZ)"
 msgstr "Pakattu Strukturoitu Vektori-Grafiikka (SVG)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1052
+#: ../gramps/gen/plug/docgen/graphdoc.py:1043
 msgid "JPEG image"
 msgstr "JPEG-kuva"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1058
+#: ../gramps/gen/plug/docgen/graphdoc.py:1049
 msgid "GIF image"
 msgstr "GIF-kuva"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1064
+#: ../gramps/gen/plug/docgen/graphdoc.py:1055
 msgid "PNG image"
 msgstr "PNG-kuva"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1070
+#: ../gramps/gen/plug/docgen/graphdoc.py:1061
 msgid "Graphviz File"
 msgstr "Graphviz tiedosto"
 
@@ -8596,7 +8480,6 @@ msgstr "Legal"
 msgid "Custom Size"
 msgstr "Käyttäjän koko"
 
-# ok
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:142
 #, python-format
 msgid "Value '%(val)s' not found for option '%(opt)s'"
@@ -8815,7 +8698,7 @@ msgstr "Lisätäänkö (ja minne) Gramps ID"
 #: ../gramps/gen/plug/report/stdoptions.py:327
 #: ../gramps/gui/viewmanager.py:1888
 #: ../gramps/plugins/graph/gvfamilylines.py:211
-#: ../gramps/plugins/graph/gvrelgraph.py:802
+#: ../gramps/plugins/graph/gvrelgraph.py:819
 #: ../gramps/plugins/textreport/detancestralreport.py:888
 #: ../gramps/plugins/textreport/detdescendantreport.py:1075
 #: ../gramps/plugins/textreport/familygroup.py:748
@@ -8838,8 +8721,8 @@ msgstr "Tiedostoa ei ole olemassa"
 #: ../gramps/plugins/textreport/simplebooktitle.py:106
 #: ../gramps/plugins/webreport/basepage.py:1710
 #: ../gramps/plugins/webreport/basepage.py:1913
-#: ../gramps/plugins/webreport/basepage.py:1978
-#: ../gramps/plugins/webreport/basepage.py:1986
+#: ../gramps/plugins/webreport/basepage.py:1979
+#: ../gramps/plugins/webreport/basepage.py:1987
 msgid "Could not add photo to page"
 msgstr "Kuvan lisäys sivulle epäonnistui"
 
@@ -9913,8 +9796,8 @@ msgstr "Näytä nimimuokkain"
 
 #. self.window.connect('response', self.close)
 #: ../gramps/gui/configure.py:107 ../gramps/gui/configure.py:181
-#: ../gramps/gui/dialog.py:210 ../gramps/gui/dialog.py:256
-#: ../gramps/gui/dialog.py:282 ../gramps/gui/glade/book.glade.h:12
+#: ../gramps/gui/dialog.py:213 ../gramps/gui/dialog.py:259
+#: ../gramps/gui/dialog.py:285 ../gramps/gui/glade/book.glade.h:12
 #: ../gramps/gui/glade/clipboard.glade.h:5 ../gramps/gui/glade/dialog.glade.h:1
 #: ../gramps/gui/glade/displaystate.glade.h:2
 #: ../gramps/gui/glade/plugins.glade.h:1 ../gramps/gui/glade/rule.glade.h:1
@@ -10019,7 +9902,7 @@ msgstr "Viallinen tai puutteellinen muotoilumääritelmä."
 #: ../gramps/gui/configure.py:1151 ../gramps/gui/configure.py:1375
 #: ../gramps/gui/configure.py:1393 ../gramps/gui/configure.py:1467
 #: ../gramps/gui/configure.py:1522 ../gramps/gui/views/navigationview.py:358
-#: ../gramps/plugins/gramplet/sessionloggramplet.py:84
+#: ../gramps/plugins/gramplet/sessionloggramplet.py:90
 #, python-format
 msgid "%s: "
 msgstr "%s: "
@@ -10546,12 +10429,10 @@ msgstr "päivitä"
 msgid "Database backend"
 msgstr "Tietokannan taustaosa"
 
-# 20170923
 #: ../gramps/gui/configure.py:1474
 msgid "Host"
 msgstr "Isäntäkone"
 
-# 20170923
 #: ../gramps/gui/configure.py:1478
 msgid "Port"
 msgstr "Portti"
@@ -10731,17 +10612,14 @@ msgstr "Automaattisesti tunnistetut"
 msgid "Select file _type:"
 msgstr "Valitse _tiedostotyyppi:"
 
-# 20171028
 #: ../gramps/gui/dbloader.py:401 ../gramps/gui/dbloader.py:423
 msgid "Login"
 msgstr "Kirjautuminen"
 
-# 20171028
 #: ../gramps/gui/dbloader.py:409
 msgid "Username: "
 msgstr "Käyttäjätunnus: "
 
-# 20171028
 #: ../gramps/gui/dbloader.py:414
 msgid "Password: "
 msgstr "Salasana: "
@@ -10799,11 +10677,11 @@ msgstr ""
 #: ../gramps/gui/dbman.py:97
 #, python-format
 msgid "%s_-_Manage_Family_Trees"
-msgstr "%s_-_Hallinnoi_sukupuita"
+msgstr "%s_-_Sukupuiden_hallinta"
 
 #: ../gramps/gui/dbman.py:98
 msgid "Family_Trees_manager_window"
-msgstr "Sukupuun_hallintaikkuna"
+msgstr "Uuden_sukupuun_aloittaminen"
 
 #: ../gramps/gui/dbman.py:112
 msgid "_Extract"
@@ -10982,7 +10860,6 @@ msgstr ""
 msgid "Convert the '%s' database?"
 msgstr "Muunnetaanko '%s' tietokanta?"
 
-# 20170821
 #: ../gramps/gui/dbman.py:778
 #, python-format
 msgid ""
@@ -11145,12 +11022,12 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dialog.py:383 ../gramps/gui/dialog.py:461
+#: ../gramps/gui/dialog.py:386 ../gramps/gui/dialog.py:464
 #: ../gramps/gui/utils.py:308
 msgid "Attempt to force closing the dialog"
 msgstr "Ikkuna yritettiin sulkea väkisin"
 
-#: ../gramps/gui/dialog.py:384 ../gramps/gui/dialog.py:462
+#: ../gramps/gui/dialog.py:387 ../gramps/gui/dialog.py:465
 msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
@@ -12067,7 +11944,7 @@ msgstr "Päivämäärän valinta"
 #: ../gramps/gui/editors/editdate.py:269
 #, python-brace-format
 msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
-msgstr "Korjaa päivämäärä tai vaihda `{cur_mode}'  `{text_mode}':een"
+msgstr "Korjaa päivämäärä tai vaihda `{cur_mode}' muotoon`{text_mode}'"
 
 # WIKI_HELP_SEC osa2
 #: ../gramps/gui/editors/editevent.py:64
@@ -12796,7 +12673,6 @@ msgstr "Paikka: %s"
 msgid "New Place"
 msgstr "Uusi paikka"
 
-# 20170916
 #. translators: translate the "S" too (and the "or" of course)
 #: ../gramps/gui/editors/editplace.py:201
 #: ../gramps/gui/editors/editplaceref.py:194
@@ -12807,7 +12683,6 @@ msgstr ""
 "Virheellinen leveysaste\n"
 "(syntaksi: 18\\u00b09'48.21\"E, -18.2412 tai -18:9:48.21)"
 
-# 20170916
 #. translators: translate the "E" too (and the "or" of course)
 #: ../gramps/gui/editors/editplace.py:206
 #: ../gramps/gui/editors/editplaceref.py:199
@@ -13935,7 +13810,6 @@ msgstr "Suhde _äitiin:"
 msgid "Relationship to _Father:"
 msgstr "Suhde _isään:"
 
-# Nimeä lapsi:
 #: ../gramps/gui/glade/editchildref.glade.h:9
 msgid "Name Child:"
 msgstr "Lapsen nimi:"
@@ -14518,7 +14392,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade.h:20
 msgid "Given Name(s) "
-msgstr "Etunimet"
+msgstr "Etunimet "
 
 #: ../gramps/gui/glade/editname.glade.h:21
 msgid "_Family Nick Name:"
@@ -14734,7 +14608,6 @@ msgid "Select a person that has an association to the edited person."
 msgstr ""
 "Valitse henkilö, jolta ensisijaiset tiedot tulevat liitetylle henkilölle."
 
-# 20170916
 #: ../gramps/gui/glade/editplace.glade.h:5
 #: ../gramps/gui/glade/editplaceref.glade.h:9
 msgid ""
@@ -14757,7 +14630,6 @@ msgstr "_Pituusaste:"
 msgid "Full title of this place."
 msgstr "Paikan koko nimi."
 
-# 20170916
 #: ../gramps/gui/glade/editplace.glade.h:10
 #: ../gramps/gui/glade/editplaceref.glade.h:21
 msgid ""
@@ -14773,7 +14645,6 @@ msgstr ""
 "Nämä arvot voi asettaa karttanäkymässä hakemalla paikka, tai karttapalvelun "
 "paikkanäkymässä."
 
-# 20170916
 #: ../gramps/gui/glade/editplace.glade.h:13
 #: ../gramps/gui/glade/editplaceref.glade.h:24
 msgid ""
@@ -16144,7 +16015,7 @@ msgstr "Vanhemmat"
 
 #: ../gramps/gui/merge/mergeperson.py:228
 #: ../gramps/gui/merge/mergeperson.py:245
-#: ../gramps/plugins/tool/findloop.py:111
+#: ../gramps/plugins/tool/findloop.py:120
 msgid "Family ID"
 msgstr "Perheen ID"
 
@@ -16788,7 +16659,7 @@ msgstr "Käytä pakkausta"
 msgid "Web Connect"
 msgstr "Nettiyhteys"
 
-#: ../gramps/gui/plug/quick/_quickreports.py:139
+#: ../gramps/gui/plug/quick/_quickreports.py:140
 #: ../gramps/gui/plug/quick/_textbufdoc.py:74
 #: ../gramps/gui/plug/quick/_textbufdoc.py:154
 #: ../gramps/gui/plug/quick/_textbufdoc.py:156
@@ -17020,7 +16891,7 @@ msgstr "Tyyli"
 #: ../gramps/plugins/drawreport/timeline.py:413
 #: ../gramps/plugins/graph/gvfamilylines.py:115
 #: ../gramps/plugins/graph/gvhourglass.py:315
-#: ../gramps/plugins/graph/gvrelgraph.py:746
+#: ../gramps/plugins/graph/gvrelgraph.py:763
 #: ../gramps/plugins/textreport/alphabeticalindex.py:93
 #: ../gramps/plugins/textreport/ancestorreport.py:288
 #: ../gramps/plugins/textreport/birthdayreport.py:409
@@ -18182,7 +18053,7 @@ msgid "Add Child to Family"
 msgstr "Lisää perheeseen lapsi"
 
 #: ../gramps/gui/widgets/grampletbar.py:206
-#: ../gramps/gui/widgets/grampletpane.py:1190
+#: ../gramps/gui/widgets/grampletpane.py:1194
 msgid "Unnamed Gramplet"
 msgstr "Nimetön gramplet"
 
@@ -18223,33 +18094,33 @@ msgstr ""
 "Gramplet palkki palautetaan oletustilaan. Toimenpidettä ei voi peruuttaa."
 
 #. default tooltip
-#: ../gramps/gui/widgets/grampletpane.py:812
+#: ../gramps/gui/widgets/grampletpane.py:816
 msgid "Drag Properties Button to move and click it for setup"
 msgstr ""
 "Vedä Ominaisuudet painiketta siirtääksesi ja napsauta sitä asetuksia varten"
 
 #. build the GUI:
-#: ../gramps/gui/widgets/grampletpane.py:1008
+#: ../gramps/gui/widgets/grampletpane.py:1012
 msgid "Right click to add gramplets"
 msgstr "Napsauta kakkospainikkeella lisätäksesi grampletteja"
 
-#: ../gramps/gui/widgets/grampletpane.py:1055
+#: ../gramps/gui/widgets/grampletpane.py:1059
 msgid "Untitled Gramplet"
 msgstr "Nimetön gramplet"
 
-#: ../gramps/gui/widgets/grampletpane.py:1543
+#: ../gramps/gui/widgets/grampletpane.py:1547
 msgid "Number of Columns"
 msgstr "Sarakkeiden lukumäärä"
 
-#: ../gramps/gui/widgets/grampletpane.py:1548
+#: ../gramps/gui/widgets/grampletpane.py:1552
 msgid "Gramplet Layout"
 msgstr "Grampletin layout"
 
-#: ../gramps/gui/widgets/grampletpane.py:1578
+#: ../gramps/gui/widgets/grampletpane.py:1582
 msgid "Use maximum height available"
 msgstr "Käytä suurinta korkeutta"
 
-#: ../gramps/gui/widgets/grampletpane.py:1584
+#: ../gramps/gui/widgets/grampletpane.py:1588
 msgid "Height if not maximized"
 msgstr "Korkeus jollei suurimmillaan"
 
@@ -18491,50 +18362,41 @@ msgstr ""
 "Transaktio on käynnistetty, vaikka toinen transaktio, \"%s\", on vielä "
 "aktiivinen tietokannassa."
 
-# 20170729
 #: ../gramps/plugins/db/bsddb/write.py:2305
 #: ../gramps/plugins/db/dbapi/postgresql.py:64
 #: ../gramps/plugins/db/dbapi/sqlite.py:61
 msgid "Database version"
 msgstr "Tietokannan versio"
 
-# 20170729
 #: ../gramps/plugins/db/dbapi/postgresql.gpr.py:33
 msgid "PostgreSQL"
 msgstr "PostgreSQL"
 
-# 20170729
 #: ../gramps/plugins/db/dbapi/postgresql.gpr.py:34
 msgid "_PostgreSQL Database"
 msgstr "_PostgreSQL tietokanta"
 
-# 20170729
 #: ../gramps/plugins/db/dbapi/postgresql.gpr.py:35
 msgid "PostgreSQL Database"
 msgstr "PostgreSQL tietokanta"
 
-# 20170729
 #: ../gramps/plugins/db/dbapi/postgresql.py:65
 #: ../gramps/plugins/db/dbapi/sqlite.py:63
 msgid "Database module location"
 msgstr "Tietokanta moduulin sijainti"
 
-# 20170729
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:26
 msgid "SQLite"
 msgstr "SQLite"
 
-# 20170729
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:27
 msgid "_SQLite Database"
 msgstr "_SQLite tietokanta"
 
-# 20170729
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:28
 msgid "SQLite Database"
 msgstr "SQLite tietokanta"
 
-# 20170729
 #: ../gramps/plugins/db/dbapi/sqlite.py:62
 msgid "Database module version"
 msgstr "Tietokantamoduulin versio"
@@ -18659,10 +18521,11 @@ msgstr "Suurentaa sivua"
 msgid "Zooms the page out"
 msgstr "Pienentää sivua"
 
+# muutos
 #: ../gramps/plugins/docgen/gtkprint.py:481
 #, python-format
 msgid "of %d"
-msgstr " %d"
+msgstr "/ %d"
 
 #: ../gramps/plugins/docgen/htmldoc.py:273
 #: ../gramps/plugins/webreport/narrativeweb.py:1469
@@ -18805,7 +18668,7 @@ msgstr "Sukupuun valinnat"
 #: ../gramps/plugins/drawreport/calendarreport.py:476
 #: ../gramps/plugins/drawreport/fanchart.py:687
 #: ../gramps/plugins/graph/gvhourglass.py:317
-#: ../gramps/plugins/graph/gvrelgraph.py:756
+#: ../gramps/plugins/graph/gvrelgraph.py:773
 #: ../gramps/plugins/textreport/ancestorreport.py:290
 #: ../gramps/plugins/textreport/descendreport.py:519
 #: ../gramps/plugins/textreport/detancestralreport.py:821
@@ -19000,7 +18863,7 @@ msgstr "Otetaanko mukaan tyhjät sivut."
 #: ../gramps/plugins/drawreport/timeline.py:434
 #: ../gramps/plugins/graph/gvfamilylines.py:162
 #: ../gramps/plugins/graph/gvhourglass.py:352
-#: ../gramps/plugins/graph/gvrelgraph.py:784
+#: ../gramps/plugins/graph/gvrelgraph.py:801
 #: ../gramps/plugins/textreport/ancestorreport.py:310
 #: ../gramps/plugins/textreport/birthdayreport.py:438
 #: ../gramps/plugins/textreport/descendreport.py:554
@@ -19310,7 +19173,7 @@ msgstr "Valitse suodin kalenteriin tuleville henkilöille"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:477
 #: ../gramps/plugins/drawreport/fanchart.py:688
-#: ../gramps/plugins/graph/gvrelgraph.py:757
+#: ../gramps/plugins/graph/gvrelgraph.py:774
 #: ../gramps/plugins/textreport/ancestorreport.py:291
 #: ../gramps/plugins/textreport/descendreport.py:520
 #: ../gramps/plugins/textreport/detancestralreport.py:822
@@ -20394,14 +20257,14 @@ msgstr "Kuolintiedon lähde"
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:217
 #: ../gramps/plugins/textreport/familygroup.py:625
-#: ../gramps/plugins/webreport/basepage.py:2314
+#: ../gramps/plugins/webreport/basepage.py:2315
 msgid "Husband"
 msgstr "Aviomies"
 
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:214
 #: ../gramps/plugins/textreport/familygroup.py:634
-#: ../gramps/plugins/webreport/basepage.py:2312
+#: ../gramps/plugins/webreport/basepage.py:2313
 msgid "Wife"
 msgstr "Vaimo"
 
@@ -20413,8 +20276,8 @@ msgstr "Kirjoitetaan henkilöitä"
 #: ../gramps/plugins/export/exportgedcom.py:1079
 #: ../gramps/plugins/export/exportgedcom.py:1170
 #: ../gramps/plugins/lib/libgedcom.py:4121
-#: ../gramps/plugins/lib/libgedcom.py:5846
-#: ../gramps/plugins/lib/libgedcom.py:6980
+#: ../gramps/plugins/lib/libgedcom.py:5854
+#: ../gramps/plugins/lib/libgedcom.py:6988
 msgid "FAX"
 msgstr "FAX"
 
@@ -20436,12 +20299,12 @@ msgid "Writing repositories"
 msgstr "Luodaan arkistot"
 
 #: ../gramps/plugins/export/exportgedcom.py:1172
-#: ../gramps/plugins/lib/libgedcom.py:5858
+#: ../gramps/plugins/lib/libgedcom.py:5866
 msgid "EMAIL"
 msgstr "EMAIL"
 
 #: ../gramps/plugins/export/exportgedcom.py:1174
-#: ../gramps/plugins/lib/libgedcom.py:5870
+#: ../gramps/plugins/lib/libgedcom.py:5878
 msgid "WWW"
 msgstr "WWW"
 
@@ -21426,8 +21289,8 @@ msgstr "Gramplet näyttää henkilöön tulevat linkit"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:967
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:981
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:995
-#: ../gramps/plugins/webreport/basepage.py:2258
-#: ../gramps/plugins/webreport/basepage.py:2775
+#: ../gramps/plugins/webreport/basepage.py:2259
+#: ../gramps/plugins/webreport/basepage.py:2776
 #: ../gramps/plugins/webreport/person.py:853
 #: ../gramps/plugins/webreport/thumbnail.py:209
 msgid "References"
@@ -21458,7 +21321,7 @@ msgid "Gramplet showing the backlink references for a place"
 msgstr "Gramplet näyttää paikkaan tulevat linkit"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:931
-#: ../gramps/plugins/webreport/basepage.py:2142
+#: ../gramps/plugins/webreport/basepage.py:2143
 msgid "Source References"
 msgstr "Lähdeviitteet"
 
@@ -22420,19 +22283,19 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:139
 #: ../gramps/plugins/graph/gvhourglass.py:331
-#: ../gramps/plugins/graph/gvrelgraph.py:761
+#: ../gramps/plugins/graph/gvrelgraph.py:778
 msgid "Arrowhead direction"
 msgstr "Nuolenpäiden suunta"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:142
 #: ../gramps/plugins/graph/gvhourglass.py:334
-#: ../gramps/plugins/graph/gvrelgraph.py:764
+#: ../gramps/plugins/graph/gvrelgraph.py:781
 msgid "Choose the direction that the arrows point."
 msgstr "Valitse mihin suuntaan nuolet osoittavat."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:145
 #: ../gramps/plugins/graph/gvhourglass.py:337
-#: ../gramps/plugins/graph/gvrelgraph.py:767
+#: ../gramps/plugins/graph/gvrelgraph.py:784
 msgid "Graph coloring"
 msgstr "Kaavion väritys"
 
@@ -22448,13 +22311,13 @@ msgstr ""
 #. see bug report #2180
 #: ../gramps/plugins/graph/gvfamilylines.py:154
 #: ../gramps/plugins/graph/gvhourglass.py:345
-#: ../gramps/plugins/graph/gvrelgraph.py:776
+#: ../gramps/plugins/graph/gvrelgraph.py:793
 msgid "Use rounded corners"
 msgstr "Käytä pyöristettyjä nurkkia"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:156
 #: ../gramps/plugins/graph/gvhourglass.py:347
-#: ../gramps/plugins/graph/gvrelgraph.py:777
+#: ../gramps/plugins/graph/gvrelgraph.py:794
 msgid "Use rounded corners to differentiate between women and men."
 msgstr "Käytä pyöristettyjä kulmia erilaistamaan naiset miehistä."
 
@@ -22536,7 +22399,7 @@ msgid ""
 msgstr "Lisätäänkö lapsien määrä perheille, joilla on enemmän kuin 1 lapsi."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:239
-#: ../gramps/plugins/graph/gvrelgraph.py:842
+#: ../gramps/plugins/graph/gvrelgraph.py:859
 msgid "Include thumbnail images of people"
 msgstr "Lisää henkilöiden pikkukuvat"
 
@@ -22549,17 +22412,17 @@ msgid "Thumbnail location"
 msgstr "Pikkukuvan sijainti"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:248
-#: ../gramps/plugins/graph/gvrelgraph.py:849
+#: ../gramps/plugins/graph/gvrelgraph.py:866
 msgid "Above the name"
 msgstr "Nimen yläpuolella"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:249
-#: ../gramps/plugins/graph/gvrelgraph.py:850
+#: ../gramps/plugins/graph/gvrelgraph.py:867
 msgid "Beside the name"
 msgstr "Nimen vieressä"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:250
-#: ../gramps/plugins/graph/gvrelgraph.py:852
+#: ../gramps/plugins/graph/gvrelgraph.py:869
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "Minne pikkukuva sijoittuu suhteessa nimeen"
 
@@ -22591,25 +22454,25 @@ msgstr "Perhelinjoihin käytettävät värit."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:273
 #: ../gramps/plugins/graph/gvhourglass.py:369
-#: ../gramps/plugins/graph/gvrelgraph.py:879
+#: ../gramps/plugins/graph/gvrelgraph.py:896
 msgid "The color to use to display men."
 msgstr "Miehillä käytettävä väri."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:277
 #: ../gramps/plugins/graph/gvhourglass.py:373
-#: ../gramps/plugins/graph/gvrelgraph.py:883
+#: ../gramps/plugins/graph/gvrelgraph.py:900
 msgid "The color to use to display women."
 msgstr "Naisilla käytettävä väri."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:281
 #: ../gramps/plugins/graph/gvhourglass.py:377
-#: ../gramps/plugins/graph/gvrelgraph.py:888
+#: ../gramps/plugins/graph/gvrelgraph.py:905
 msgid "The color to use when the gender is unknown."
 msgstr "Väri henkilöille, joiden sukupuolta ei tunneta."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:286
 #: ../gramps/plugins/graph/gvhourglass.py:382
-#: ../gramps/plugins/graph/gvrelgraph.py:893
+#: ../gramps/plugins/graph/gvrelgraph.py:910
 msgid "The color to use to display families."
 msgstr "Perheillä käytettävä väri."
 
@@ -22715,7 +22578,7 @@ msgid "The number of generations of ancestors to include in the graph"
 msgstr "Enimmäismäärä sukupolvia esivanhemmille, jotka lisätään kaavioon"
 
 #: ../gramps/plugins/graph/gvhourglass.py:340
-#: ../gramps/plugins/graph/gvrelgraph.py:770
+#: ../gramps/plugins/graph/gvrelgraph.py:787
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
@@ -22725,7 +22588,7 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/plugins/graph/gvhourglass.py:365
-#: ../gramps/plugins/graph/gvrelgraph.py:875
+#: ../gramps/plugins/graph/gvrelgraph.py:892
 msgid "Graph Style"
 msgstr "Kaaviotyyli"
 
@@ -22736,57 +22599,57 @@ msgstr "Kaaviotyyli"
 msgid "Generating report"
 msgstr "Tuotetaan raporttia"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:752
+#: ../gramps/plugins/graph/gvrelgraph.py:769
 msgid "Determines what people are included in the graph"
 msgstr "Määrittää kaavioon lisättävät ihmiset"
 
 #. ###############################
-#: ../gramps/plugins/graph/gvrelgraph.py:805
+#: ../gramps/plugins/graph/gvrelgraph.py:822
 msgid "Dates and/or Places"
 msgstr "Päivämäärät ja/tai paikat"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:806
+#: ../gramps/plugins/graph/gvrelgraph.py:823
 msgid "Do not include any dates or places"
 msgstr "Ei sisällä päivämääriä tai paikkoja"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:807
+#: ../gramps/plugins/graph/gvrelgraph.py:824
 msgid "Include (birth, marriage, death) dates, but no places"
 msgstr "Lisätään (syntymä-, avio- ja kuolinajat), mutta ei paikkoja"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:809
+#: ../gramps/plugins/graph/gvrelgraph.py:826
 msgid "Include (birth, marriage, death) dates, and places"
 msgstr "Lisätään (syntymä-, avio-, kuolinajat) ja paikat"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:811
+#: ../gramps/plugins/graph/gvrelgraph.py:828
 msgid "Include (birth, marriage, death) dates, and places if no dates"
 msgstr "Lisätään (syntymä-, avio-, kuolinajat) ja paikat ellei aikaa ole"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:813
+#: ../gramps/plugins/graph/gvrelgraph.py:830
 msgid "Include (birth, marriage, death) years, but no places"
 msgstr "Lisätään (syntymä-, avio- ja kuolinajat), mutta ei paikkoja"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:815
+#: ../gramps/plugins/graph/gvrelgraph.py:832
 msgid "Include (birth, marriage, death) years, and places"
 msgstr "Lisätään (syntymä-, avio-, kuolinvuodet) ja paikat"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:817
+#: ../gramps/plugins/graph/gvrelgraph.py:834
 msgid "Include (birth, marriage, death) places, but no dates"
 msgstr "Lisätään (syntymä-, avio- ja kuolinpaikat), mutta ei aikaa"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:819
+#: ../gramps/plugins/graph/gvrelgraph.py:836
 msgid "Include (birth, marriage, death) dates and places on same line"
 msgstr ""
 "Lisätään (syntymä, avioliitto, kuolema) päivämäärät ja paikat samalla rivillä"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:822
+#: ../gramps/plugins/graph/gvrelgraph.py:839
 msgid "Whether to include dates and/or places"
 msgstr "Lisätäänkö aikamäärät ja/tai paikat"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:825
+#: ../gramps/plugins/graph/gvrelgraph.py:842
 msgid "Include URLs"
 msgstr "Lisää URL:t (nettiosoitteet)"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:826
+#: ../gramps/plugins/graph/gvrelgraph.py:843
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
@@ -22795,67 +22658,67 @@ msgstr ""
 "Lisää URL jokaiseen kaavion kohtaan, jotta PDF- ja HTML-kuvakarttatiedostot "
 "voivat sisältää aktiivisia linkkejä luotuun Kertova-nettisivustoon."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:834
+#: ../gramps/plugins/graph/gvrelgraph.py:851
 #: ../gramps/plugins/textreport/birthdayreport.py:494
 #: ../gramps/plugins/textreport/indivcomplete.py:1138
 msgid "Include relationship to center person"
-msgstr "Lisää suhteet keskushenkilöön "
+msgstr "Lisää suhteet keskushenkilöön"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:835
+#: ../gramps/plugins/graph/gvrelgraph.py:852
 msgid "Whether to show every person's relationship to the center person"
 msgstr "Näytetäänkö jokaisen henkilön suhde keskushenkilöön"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:844
+#: ../gramps/plugins/graph/gvrelgraph.py:861
 msgid "Whether to include thumbnails of people."
 msgstr "Lisätäänkö ihmisten pikkukuvat."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:848
+#: ../gramps/plugins/graph/gvrelgraph.py:865
 msgid "Thumbnail Location"
 msgstr "Pikkukuvan sijainti"
 
 #. occupation = BooleanOption(_("Include occupation"), False)
-#: ../gramps/plugins/graph/gvrelgraph.py:856
+#: ../gramps/plugins/graph/gvrelgraph.py:873
 msgid "Include occupation"
 msgstr "Lisää ammatti"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:857
+#: ../gramps/plugins/graph/gvrelgraph.py:874
 msgid "Do not include any occupation"
 msgstr "Ammatteja ei oteta mukaan"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:858
+#: ../gramps/plugins/graph/gvrelgraph.py:875
 msgid "Include description of most recent occupation"
 msgstr "Mukaan liitetään kuvaus viimeisimmästä ammatissa"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:860
+#: ../gramps/plugins/graph/gvrelgraph.py:877
 msgid "Include date, description and place of all occupations"
 msgstr "Sisältää päivämäärän, kuvauksen ja paikan kaikissa ammateissa"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:862
+#: ../gramps/plugins/graph/gvrelgraph.py:879
 msgid "Whether to include the last occupation"
 msgstr "Lisätäänkö viimeinen ammatti"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:866
+#: ../gramps/plugins/graph/gvrelgraph.py:883
 msgid "Include relationship debugging numbers also"
 msgstr "Ota mukaan suhteen debuggauksen numerot myös"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:869
+#: ../gramps/plugins/graph/gvrelgraph.py:886
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
 msgstr "Otetaanko mukaan myös 'Ga' ja 'Gb', suhdelaskimen debuggaamiseksi"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:897
+#: ../gramps/plugins/graph/gvrelgraph.py:914
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Osoita ei-biologisia suhteita katkoviivalla"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:898
+#: ../gramps/plugins/graph/gvrelgraph.py:915
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "Ei-biologiset suhteet esitetään kaaviossa katkoviivoilla."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:902
+#: ../gramps/plugins/graph/gvrelgraph.py:919
 msgid "Show family nodes"
 msgstr "Näytä perheyksiköt"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:903
+#: ../gramps/plugins/graph/gvrelgraph.py:920
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Perheet näytetään vanhempiin ja lapsiin linkitettyinä soikioina."
 
@@ -23964,7 +23827,7 @@ msgstr "Ohitettiin alistettu rivi"
 
 #: ../gramps/plugins/lib/libgedcom.py:3182
 msgid "Records not imported into "
-msgstr "Tietueita ei tuotu paikkaan"
+msgstr "Tietueita ei tuotu paikkaan "
 
 #: ../gramps/plugins/lib/libgedcom.py:3220
 #, python-format
@@ -24029,7 +23892,7 @@ msgid "(Submitter):"
 msgstr "(Luovuttaja):"
 
 #: ../gramps/plugins/lib/libgedcom.py:3499
-#: ../gramps/plugins/lib/libgedcom.py:7236
+#: ../gramps/plugins/lib/libgedcom.py:7244
 msgid "GEDCOM data"
 msgstr "GEDCOM data"
 
@@ -24058,134 +23921,134 @@ msgstr "Tyhjä Alias <NAME PERSONAL> ohitettu"
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (perhe) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5304
-#: ../gramps/plugins/lib/libgedcom.py:6668
+#: ../gramps/plugins/lib/libgedcom.py:5312
+#: ../gramps/plugins/lib/libgedcom.py:6676
 msgid "Filename omitted"
 msgstr "Tiedostonimi ohitettu"
 
-#: ../gramps/plugins/lib/libgedcom.py:5337
-#: ../gramps/plugins/lib/libgedcom.py:6709
+#: ../gramps/plugins/lib/libgedcom.py:5345
+#: ../gramps/plugins/lib/libgedcom.py:6717
 #, python-format
 msgid "Could not import %s"
 msgstr "Ei voitu tuoda %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5394
-#: ../gramps/plugins/lib/libgedcom.py:6809
+#: ../gramps/plugins/lib/libgedcom.py:5402
+#: ../gramps/plugins/lib/libgedcom.py:6817
 msgid "Media-Type"
 msgstr "Media-Tyyppi"
 
-#: ../gramps/plugins/lib/libgedcom.py:5418
-#: ../gramps/plugins/lib/libgedcom.py:6699
+#: ../gramps/plugins/lib/libgedcom.py:5426
+#: ../gramps/plugins/lib/libgedcom.py:6707
 msgid "Multiple FILE in a single OBJE ignored"
 msgstr "Kerrannais FILE yksittäis OBJE jätetty huomiotta"
 
 #. We have previously found a PLAC
-#: ../gramps/plugins/lib/libgedcom.py:5572
+#: ../gramps/plugins/lib/libgedcom.py:5580
 msgid "A second PLAC ignored"
 msgstr "Muu kuin 1. PLAC ohitetaan"
 
 #. For RootsMagic etc. Place Details e.g. address, hospital, ...
-#: ../gramps/plugins/lib/libgedcom.py:5711
+#: ../gramps/plugins/lib/libgedcom.py:5719
 msgid "Detail"
 msgstr "Tarkennus"
 
 #. We have perviously found an ADDR, or have populated
 #. location from PLAC title
-#: ../gramps/plugins/lib/libgedcom.py:5724
+#: ../gramps/plugins/lib/libgedcom.py:5732
 msgid "Location already populated; ADDR ignored"
 msgstr "Sijainti-tieto on hyödynnetty; ADDR ohitetaan"
 
-#: ../gramps/plugins/lib/libgedcom.py:6129
-#: ../gramps/plugins/lib/libgedcom.py:7017
+#: ../gramps/plugins/lib/libgedcom.py:6137
+#: ../gramps/plugins/lib/libgedcom.py:7025
 msgid "Warn: ADDR overwritten"
 msgstr "Varoitus: ADDR kirjoitettu yli"
 
-#: ../gramps/plugins/lib/libgedcom.py:6294
+#: ../gramps/plugins/lib/libgedcom.py:6302
 msgid "Citation Justification"
 msgstr "Lainauksen perustelu"
 
-#: ../gramps/plugins/lib/libgedcom.py:6321
+#: ../gramps/plugins/lib/libgedcom.py:6329
 msgid "REFN ignored"
 msgstr "REFN ohitettu"
 
 #. SOURce with the given gramps_id had no title
-#: ../gramps/plugins/lib/libgedcom.py:6420
+#: ../gramps/plugins/lib/libgedcom.py:6428
 #, python-format
 msgid "No title - ID %s"
 msgstr "Lähteen nimike puuttuu - ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6425
+#: ../gramps/plugins/lib/libgedcom.py:6433
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (lähde) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6675
+#: ../gramps/plugins/lib/libgedcom.py:6683
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (multi-media object) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6905
+#: ../gramps/plugins/lib/libgedcom.py:6913
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (arkisto) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6966
-#: ../gramps/plugins/lib/libgedcom.py:7951
+#: ../gramps/plugins/lib/libgedcom.py:6974
+#: ../gramps/plugins/lib/libgedcom.py:7959
 msgid "Only one phone number supported"
 msgstr "Tukee vain yhtä puhelinnumeroa"
 
-#: ../gramps/plugins/lib/libgedcom.py:7152
+#: ../gramps/plugins/lib/libgedcom.py:7160
 msgid "HEAD (header)"
 msgstr "Head (ylätunniste)"
 
-#: ../gramps/plugins/lib/libgedcom.py:7173
+#: ../gramps/plugins/lib/libgedcom.py:7181
 msgid "Approved system identification"
 msgstr "Hyväksytty järjestelmän tunnistus"
 
-#: ../gramps/plugins/lib/libgedcom.py:7185
+#: ../gramps/plugins/lib/libgedcom.py:7193
 msgid "Generated By"
 msgstr "Tuotettu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7201
+#: ../gramps/plugins/lib/libgedcom.py:7209
 msgid "Name of software product"
 msgstr "Sovellustuotteen nimi"
 
-#: ../gramps/plugins/lib/libgedcom.py:7215
+#: ../gramps/plugins/lib/libgedcom.py:7223
 msgid "Version number of software product"
 msgstr "Sovellustuotteen versio"
 
-#: ../gramps/plugins/lib/libgedcom.py:7233
+#: ../gramps/plugins/lib/libgedcom.py:7241
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Sovellustuotteen valmistaja: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7255
+#: ../gramps/plugins/lib/libgedcom.py:7263
 msgid "Name of source data"
 msgstr "Lähdeaineiston nimi"
 
-#: ../gramps/plugins/lib/libgedcom.py:7272
+#: ../gramps/plugins/lib/libgedcom.py:7280
 msgid "Copyright of source data"
 msgstr "Lähdeaineiston copyright"
 
-#: ../gramps/plugins/lib/libgedcom.py:7289
+#: ../gramps/plugins/lib/libgedcom.py:7297
 msgid "Publication date of source data"
 msgstr "Lähdeaineiston julkaisupäivä"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/lib/libgedcom.py:7303
+#: ../gramps/plugins/lib/libgedcom.py:7311
 #, python-format
 msgid "Import from %s"
 msgstr "Tuonti paikasta %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7342
+#: ../gramps/plugins/lib/libgedcom.py:7350
 msgid "Submission record identifier"
 msgstr "Luovutuksen tietuetunniste"
 
-#: ../gramps/plugins/lib/libgedcom.py:7355
+#: ../gramps/plugins/lib/libgedcom.py:7363
 msgid "Language of GEDCOM text"
 msgstr "GEDCOM tekstin kieli"
 
-#: ../gramps/plugins/lib/libgedcom.py:7377
+#: ../gramps/plugins/lib/libgedcom.py:7385
 #, python-format
 msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
@@ -24194,89 +24057,89 @@ msgstr ""
 "GEDCOM tiedoston %(filename)s, jossa DEST=%(by)s, tuonti saattaisi aiheuttaa "
 "virheitä syntyvään tietokantaan!"
 
-#: ../gramps/plugins/lib/libgedcom.py:7380
+#: ../gramps/plugins/lib/libgedcom.py:7388
 msgid "Look for nameless events."
 msgstr "Etsitään nimettömiä tapahtumia."
 
-#: ../gramps/plugins/lib/libgedcom.py:7403
+#: ../gramps/plugins/lib/libgedcom.py:7411
 msgid "Character set"
 msgstr "Merkistön koodaus"
 
-#: ../gramps/plugins/lib/libgedcom.py:7408
+#: ../gramps/plugins/lib/libgedcom.py:7416
 msgid "Character set and version"
 msgstr "Merkistön koodaus ja versio"
 
-#: ../gramps/plugins/lib/libgedcom.py:7425
+#: ../gramps/plugins/lib/libgedcom.py:7433
 msgid "GEDCOM version not supported"
 msgstr "GEDCOM versio ei ole tuettu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7429
+#: ../gramps/plugins/lib/libgedcom.py:7437
 msgid "GEDCOM version"
 msgstr "GEDCOM versio"
 
 #. Allow Lineage-Linked etc. though it should be in
 #. uppercase  (Note: Gramps is not a validator! prc)
-#: ../gramps/plugins/lib/libgedcom.py:7438
+#: ../gramps/plugins/lib/libgedcom.py:7446
 msgid "GEDCOM FORM should be in uppercase"
 msgstr "GEDCOM FORM pitäisi olla isoilla kirjaimilla"
 
-#: ../gramps/plugins/lib/libgedcom.py:7441
+#: ../gramps/plugins/lib/libgedcom.py:7449
 msgid "GEDCOM FORM not supported"
 msgstr "GEDCOM FORM ei ole tuettu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7444
+#: ../gramps/plugins/lib/libgedcom.py:7452
 msgid "GEDCOM form"
 msgstr "GEDCOM muoto"
 
-#: ../gramps/plugins/lib/libgedcom.py:7495
+#: ../gramps/plugins/lib/libgedcom.py:7503
 msgid "Creation date of GEDCOM"
 msgstr "GEDCOM luontipäivä"
 
-#: ../gramps/plugins/lib/libgedcom.py:7500
+#: ../gramps/plugins/lib/libgedcom.py:7508
 msgid "Creation date and time of GEDCOM"
 msgstr "GEDCOMin luontipäivä ja kellonaika"
 
-#: ../gramps/plugins/lib/libgedcom.py:7541
-#: ../gramps/plugins/lib/libgedcom.py:7583
+#: ../gramps/plugins/lib/libgedcom.py:7549
+#: ../gramps/plugins/lib/libgedcom.py:7591
 msgid "Empty note ignored"
 msgstr "Tyhjä lisätieto jätettiin huomiotta"
 
-#: ../gramps/plugins/lib/libgedcom.py:7600
+#: ../gramps/plugins/lib/libgedcom.py:7608
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "LISÄTIEDOT Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7651
+#: ../gramps/plugins/lib/libgedcom.py:7659
 msgid "Submission: Submitter"
 msgstr "Luovuttaja"
 
-#: ../gramps/plugins/lib/libgedcom.py:7653
+#: ../gramps/plugins/lib/libgedcom.py:7661
 msgid "Submission: Family file"
 msgstr "Sukupuu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7655
+#: ../gramps/plugins/lib/libgedcom.py:7663
 msgid "Submission: Temple code"
 msgstr "Temppelikoodi"
 
-#: ../gramps/plugins/lib/libgedcom.py:7657
+#: ../gramps/plugins/lib/libgedcom.py:7665
 msgid "Submission: Generations of ancestors"
 msgstr "Esivanhempien sukupolvet"
 
-#: ../gramps/plugins/lib/libgedcom.py:7659
+#: ../gramps/plugins/lib/libgedcom.py:7667
 msgid "Submission: Generations of descendants"
 msgstr "Jälkeläisten sukupolvet"
 
-#: ../gramps/plugins/lib/libgedcom.py:7661
+#: ../gramps/plugins/lib/libgedcom.py:7669
 msgid "Submission: Ordinance process flag"
 msgstr "Sijaistoimituksen tila"
 
 #. Okay we have no clue which temple this is.
 #. We should tell the user and store it anyway.
-#: ../gramps/plugins/lib/libgedcom.py:7889
+#: ../gramps/plugins/lib/libgedcom.py:7897
 msgid "Invalid temple code"
 msgstr "Virheellinen temppelikoodi"
 
-#: ../gramps/plugins/lib/libgedcom.py:7985
+#: ../gramps/plugins/lib/libgedcom.py:7993
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -24284,7 +24147,7 @@ msgstr ""
 "GEDCOM tiedostosi on viallinen. Tiedosto näyttäisi käyttävän UTF16-"
 "merkkikoodausta, mutta siitä puuttuu vaadittu BOM-merkintä."
 
-#: ../gramps/plugins/lib/libgedcom.py:7988
+#: ../gramps/plugins/lib/libgedcom.py:7996
 msgid "Your GEDCOM file is empty."
 msgstr "GEDCOM tiedostosi on tyhjä."
 
@@ -27791,7 +27654,7 @@ msgstr "Yhteiset vakiot html-tiedostoille."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:160
 msgid "Manages an HTML DOM tree."
-msgstr "Hallinnoi HTML-tiedoston DOM rakenteen"
+msgstr "Hallitsee HTML DOM -puuta."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:178
 msgid "Provides base functionality for map services."
@@ -28128,18 +27991,15 @@ msgstr "Vihreät arvot rivissä vastaavat nykyisen paikan arvoja."
 msgid "New place with empty fields"
 msgstr "Uusi paikka ja tyhjät kentät"
 
-# 20171115
 #: ../gramps/plugins/lib/maps/placeselection.py:273
 msgid "you have a wrong latitude for:"
 msgstr "leveysaste virheellinen paikassa:"
 
-# 20171115
 #: ../gramps/plugins/lib/maps/placeselection.py:275
 #: ../gramps/plugins/lib/maps/placeselection.py:285
 msgid "Please, correct this before linking"
 msgstr "Korjaa tämä ennen linkittämistä"
 
-# 20171115
 #: ../gramps/plugins/lib/maps/placeselection.py:283
 msgid "you have a wrong longitude for:"
 msgstr "pituusaste virheellinen paikassa:"
@@ -28343,13 +28203,14 @@ msgid "Name Common ancestor"
 msgstr "Yhteisen esivanhemman nimi"
 
 #: ../gramps/plugins/quickview/all_relations.py:270
+#: ../gramps/plugins/tool/findloop.py:114
 msgid "Parent"
 msgstr "Vanhempi"
 
 #: ../gramps/plugins/quickview/all_relations.py:286
 #: ../gramps/plugins/view/relview.py:414
-#: ../gramps/plugins/webreport/basepage.py:2316
-#: ../gramps/plugins/webreport/basepage.py:2318
+#: ../gramps/plugins/webreport/basepage.py:2317
+#: ../gramps/plugins/webreport/basepage.py:2319
 #: ../gramps/plugins/webreport/person.py:216
 #: ../gramps/plugins/webreport/surname.py:138
 msgid "Partner"
@@ -28494,9 +28355,10 @@ msgstr "mediat"
 msgid "Filtering_on|missing media"
 msgstr "puuttuvat mediat"
 
+# ok
 #: ../gramps/plugins/quickview/filterbyname.py:72
 msgid "Filtering_on|media by size"
-msgstr "mediat koittain"
+msgstr "mediat koon mukaan"
 
 #: ../gramps/plugins/quickview/filterbyname.py:73
 msgid "Filtering_on|list of people"
@@ -28870,7 +28732,7 @@ msgid "Type of media"
 msgstr "Mediatyyppi"
 
 #: ../gramps/plugins/quickview/reporef.py:62
-#: ../gramps/plugins/webreport/basepage.py:2642
+#: ../gramps/plugins/webreport/basepage.py:2643
 msgid "Call number"
 msgstr "Hakuavain"
 
@@ -30614,7 +30476,6 @@ msgstr ""
 msgid "Check Integrity"
 msgstr "Tarkista sisäinen eheys"
 
-# 20171028
 #. for bsddb the check_backlinks doesn't work in 'batch' mode because
 #. the table used for backlinks is closed.
 #: ../gramps/plugins/tool/check.py:230
@@ -30737,7 +30598,6 @@ msgstr "Etsitään virheellisiä lapsi/vanhempi-suhteita"
 msgid "Looking for event problems"
 msgstr "Etsitään virheellisiä tapahtumia"
 
-# 20171028
 #: ../gramps/plugins/tool/check.py:1240
 msgid "Looking for backlink reference problems"
 msgstr "Etsitään paluulinkin viiteongelmia"
@@ -31041,7 +30901,6 @@ msgstr ""
 "   %(repo)d arkistoa\n"
 "   %(note)d lisätietoa\n"
 
-# 20171028
 #: ../gramps/plugins/tool/check.py:2712
 #, python-format
 msgid "%d bad backlinks were fixed;\n"
@@ -31330,38 +31189,29 @@ msgstr "Toinen henkilö"
 msgid "Merge candidates"
 msgstr "Sulauta ehdokkaat"
 
-# uusi/muutettu 20170103
 #: ../gramps/plugins/tool/finddupes.py:583
 msgid "Merge persons"
 msgstr "Sulauta henkilöt"
 
-#: ../gramps/plugins/tool/findloop.py:56
+#: ../gramps/plugins/tool/findloop.py:58
 msgid "manual|Find_database_loop"
 msgstr "Etsi_tietokanta_silmukka"
 
-#: ../gramps/plugins/tool/findloop.py:70
+#: ../gramps/plugins/tool/findloop.py:73
 #: ../gramps/plugins/tool/tools.gpr.py:465
 msgid "Find database loop"
 msgstr "Etsi tietokannasta silmukka"
 
 #. start the progress indicator
-#: ../gramps/plugins/tool/findloop.py:89
+#: ../gramps/plugins/tool/findloop.py:93
 #: ../gramps/plugins/tool/notrelated.py:112
 #: ../gramps/plugins/tool/notrelated.py:257
 msgid "Starting"
 msgstr "Aloitetaan"
 
-#: ../gramps/plugins/tool/findloop.py:91
+#: ../gramps/plugins/tool/findloop.py:95
 msgid "Looking for possible loop for each person"
 msgstr "Haetaan mahdollinen silmukka jokaiselle henkilölle"
-
-#: ../gramps/plugins/tool/findloop.py:105
-msgid "Ancestor"
-msgstr "Esivanhemmat"
-
-#: ../gramps/plugins/tool/findloop.py:109
-msgid "Descendant"
-msgstr "Jälkeläiset"
 
 # WIKI_HELP_SEC tools
 #: ../gramps/plugins/tool/mediamanager.py:68
@@ -31445,7 +31295,7 @@ msgid ""
 "now to continue."
 msgstr ""
 "Pyytämäsi toiminto on suoritettu menestyksekkäästi loppuun.\n"
-"Paina OK jatkaaksesi."
+"Paina Sulje jatkaaksesi."
 
 #: ../gramps/plugins/tool/mediamanager.py:390
 msgid "Operation failed"
@@ -31948,7 +31798,6 @@ msgstr ""
 msgid "  Actual"
 msgstr "  Nykyinen"
 
-# 20170729
 #: ../gramps/plugins/tool/reorderids.glade.h:21
 msgid "Amount of ID in use."
 msgstr "ID tunnusten määrä."
@@ -32022,7 +31871,6 @@ msgstr "Järjestä Gramps ID-tunnukset"
 msgid "Reorder %s IDs ..."
 msgstr "Uudelleenjärjestä %s ID:t ..."
 
-# 20171028
 #: ../gramps/plugins/tool/reorderids.py:625
 #, python-format
 msgid "Do you want to replace %s?"
@@ -34008,19 +33856,19 @@ msgid "Full Name"
 msgstr "Koko nimi"
 
 #: ../gramps/plugins/webreport/addressbooklist.py:114
-#: ../gramps/plugins/webreport/basepage.py:2034
+#: ../gramps/plugins/webreport/basepage.py:2035
 msgid "Web Links"
 msgstr "Nettilinkit"
 
 #. add section title
 #: ../gramps/plugins/webreport/basepage.py:350
-#: ../gramps/plugins/webreport/basepage.py:2015
+#: ../gramps/plugins/webreport/basepage.py:2016
 msgid "Narrative"
 msgstr "Kerrottua"
 
 #: ../gramps/plugins/webreport/basepage.py:1101
-#: ../gramps/plugins/webreport/basepage.py:2541
-#: ../gramps/plugins/webreport/basepage.py:2567
+#: ../gramps/plugins/webreport/basepage.py:2542
+#: ../gramps/plugins/webreport/basepage.py:2568
 #: ../gramps/plugins/webreport/place.py:176
 msgid "State/ Province"
 msgstr "Lääni, Osavaltio tai Provinssi"
@@ -34088,40 +33936,40 @@ msgid "Web Calendar"
 msgstr "Nettikalenteri"
 
 #: ../gramps/plugins/webreport/basepage.py:1569
-#: ../gramps/plugins/webreport/media.py:364
+#: ../gramps/plugins/webreport/media.py:367
 msgid "Previous"
 msgstr "Edellinen"
 
 #: ../gramps/plugins/webreport/basepage.py:1571
-#: ../gramps/plugins/webreport/media.py:375
+#: ../gramps/plugins/webreport/media.py:378
 msgid "Next"
 msgstr "Seuraava"
 
-#: ../gramps/plugins/webreport/basepage.py:2082
+#: ../gramps/plugins/webreport/basepage.py:2083
 msgid " [Click to Go]"
 msgstr " [Napsauta siirtymiseksi]"
 
-#: ../gramps/plugins/webreport/basepage.py:2106
+#: ../gramps/plugins/webreport/basepage.py:2107
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr "Mormonisakramentti"
 
-#: ../gramps/plugins/webreport/basepage.py:2292
 #: ../gramps/plugins/webreport/basepage.py:2293
+#: ../gramps/plugins/webreport/basepage.py:2294
 #: ../gramps/plugins/webreport/person.py:606
 #: ../gramps/plugins/webreport/person.py:916
 msgid "Family Map"
 msgstr "Perhekartta"
 
-#: ../gramps/plugins/webreport/basepage.py:2538
-#: ../gramps/plugins/webreport/basepage.py:2565
+#: ../gramps/plugins/webreport/basepage.py:2539
+#: ../gramps/plugins/webreport/basepage.py:2566
 msgid "Church Parish"
 msgstr "Seurakunta"
 
-#: ../gramps/plugins/webreport/basepage.py:2586
+#: ../gramps/plugins/webreport/basepage.py:2587
 msgid "Locations"
 msgstr "Sijainnit"
 
-#: ../gramps/plugins/webreport/basepage.py:2746
+#: ../gramps/plugins/webreport/basepage.py:2747
 #, python-format
 msgid " (%s) "
 msgstr " (%s) "
@@ -34150,7 +33998,7 @@ msgstr "Viimeisin muutos"
 
 #. set progress bar pass for Repositories
 #: ../gramps/plugins/webreport/event.py:113
-#: ../gramps/plugins/webreport/family.py:107
+#: ../gramps/plugins/webreport/family.py:106
 #: ../gramps/plugins/webreport/media.py:108
 #: ../gramps/plugins/webreport/narrativeweb.py:479
 #: ../gramps/plugins/webreport/narrativeweb.py:1044
@@ -34180,7 +34028,7 @@ msgstr ""
 "Tapahtuman Gramps ID-tunnuksen napsauttaminen avaa valitun tapahtuman sivun."
 
 #: ../gramps/plugins/webreport/event.py:172
-#: ../gramps/plugins/webreport/family.py:184
+#: ../gramps/plugins/webreport/family.py:183
 #: ../gramps/plugins/webreport/place.py:174
 #: ../gramps/plugins/webreport/surnamelist.py:139
 msgid "Letter"
@@ -34191,12 +34039,12 @@ msgstr "Kirjain"
 msgid "Event types beginning with letter %s"
 msgstr "Tapahtumatyypit jotka alkavat kirjaimella %s"
 
-#: ../gramps/plugins/webreport/family.py:108
+#: ../gramps/plugins/webreport/family.py:107
 msgid "Creating family pages..."
 msgstr "Luodaan perhesivuja..."
 
 #. Families list page message
-#: ../gramps/plugins/webreport/family.py:139
+#: ../gramps/plugins/webreport/family.py:138
 msgid ""
 "This page contains an index of all the families/ relationships in the "
 "database, sorted by their family name/ surname. Clicking on a person&#8217;s "
@@ -34206,9 +34054,9 @@ msgstr ""
 "perhenimen/sukunimen mukaan aakkostettuna. Henkilön napsauttaminen vie sinut "
 "valitun suhteen sivulle."
 
-#: ../gramps/plugins/webreport/family.py:230
+#: ../gramps/plugins/webreport/family.py:229
 msgid "Families beginning with letter "
-msgstr "Annetulla kirjaimella alkavat perheet"
+msgstr "Annetulla kirjaimella alkavat perheet "
 
 #: ../gramps/plugins/webreport/home.py:77
 #: ../gramps/plugins/webreport/webcal.py:569
@@ -34219,7 +34067,7 @@ msgstr "Koti"
 msgid "Creating media pages"
 msgstr "Luodaan mediasivut"
 
-#: ../gramps/plugins/webreport/media.py:157
+#: ../gramps/plugins/webreport/media.py:159
 msgid ""
 "This page contains an index of all the media objects in the database, sorted "
 "by their title. Clicking on the title will take you to that media "
@@ -34231,20 +34079,19 @@ msgstr ""
 "mediatiedoston sivulle. Jos näet median kokotiedot kuvan yläpuolella, kuvaa "
 "napsauttamalla näet täysimittaisen version kuvasta.  "
 
-#: ../gramps/plugins/webreport/media.py:181
+#: ../gramps/plugins/webreport/media.py:183
 msgid "Media | Name"
 msgstr "Mediatiedosto"
 
-#: ../gramps/plugins/webreport/media.py:184
+#: ../gramps/plugins/webreport/media.py:186
 msgid "Mime Type"
 msgstr "Näyttötyyppi"
 
-#: ../gramps/plugins/webreport/media.py:243
+#: ../gramps/plugins/webreport/media.py:245
 msgid "Below unused media objects"
 msgstr "Alla käyttämättömät mediatiedostot"
 
-# 20170821
-#: ../gramps/plugins/webreport/media.py:365
+#: ../gramps/plugins/webreport/media.py:368
 #, python-format
 msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of %(strong2_strt)s"
@@ -34254,15 +34101,15 @@ msgstr ""
 "%(total_pages)d%(strong_end)s"
 
 #. missing media error message
-#: ../gramps/plugins/webreport/media.py:378
+#: ../gramps/plugins/webreport/media.py:381
 msgid "The file has been moved or deleted."
 msgstr "Tiedosto on siirretty tai poistettu."
 
-#: ../gramps/plugins/webreport/media.py:534
+#: ../gramps/plugins/webreport/media.py:537
 msgid "File Type"
 msgstr "Tiedostotyyppi"
 
-#: ../gramps/plugins/webreport/media.py:637
+#: ../gramps/plugins/webreport/media.py:640
 msgid "Missing media object:"
 msgstr "Puuttuva mediatiedosto:"
 
@@ -35435,7 +35282,7 @@ msgid "Nebraska"
 msgstr "Nebraska"
 
 #. no style sheet option
-#: ../gramps/plugins/webstuff/webstuff.py:153
+#: ../gramps/plugins/webstuff/webstuff.py:143
 msgid "No style sheet"
 msgstr "Ei tyylitiedostoa"
 
@@ -36483,6 +36330,20 @@ msgid ""
 msgstr ""
 "Kaikki tutkimuksesi pidetään juuri niin hallittuna, haettavissa ja tarkkana "
 "kuin sinulle on tarpeen."
+
+#~ msgid "Ancestor"
+#~ msgstr "Esivanhemmat"
+
+#~ msgid "Descendant"
+#~ msgstr "Jälkeläiset"
+
+# 20171101
+#~ msgid "'Ghostscript' is not installed"
+#~ msgstr "'Ghostscript' ei ole asennettu"
+
+# 20171101
+#~ msgid "Use your package manager to install it"
+#~ msgstr "Käytä paketinhallintaa sen asentamiseen"
 
 #~ msgid ""
 #~ "\n"
