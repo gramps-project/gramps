@@ -1598,6 +1598,8 @@ class FanChartGrampsGUI:
                 siblings.append(sib_id)
         # Collect a list of per-step-family step-siblings
             for parent_h in [fam.get_father_handle(), fam.get_mother_handle()]:
+                if not parent_h:
+                    continue
                 parent = self.dbstate.db.get_person_from_handle(parent_h)
                 other_families = [self.dbstate.db.get_family_from_handle(fam_id)
                                   for fam_id in parent.get_family_handle_list()
