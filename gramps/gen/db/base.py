@@ -847,12 +847,6 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def get_gramps_ids(self, obj_key):
-        """
-        Returns all the keys from a table given a table name
-        """
-        raise NotImplementedError
-
     def get_mediapath(self):
         """
         Return the default media path of the database.
@@ -1021,12 +1015,6 @@ class DbReadBase:
         Find a Tag in the database from the passed Tag name.
 
         If no such Tag exists, None is returned.
-        """
-        raise NotImplementedError
-
-    def has_gramps_id(self, obj_key, gramps_id):
-        """
-        Returns True if the key exists in table given a table name
         """
         raise NotImplementedError
 
@@ -1416,12 +1404,6 @@ class DbReadBase:
         """
         raise NotImplementedError
 
-    def set_save_path(self, path):
-        """
-        Set the save path for the database.
-        """
-        raise NotImplementedError
-
     def get_dbid(self):
         """
         A unique ID for this database on this computer.
@@ -1433,6 +1415,50 @@ class DbReadBase:
         A name for this database on this computer.
         """
         raise NotImplementedError
+
+    def get_summary(self):
+        """
+        Returns dictionary of summary item.
+        Should include, if possible:
+
+        _("Number of people")
+        _("Version")
+        _("Data version")
+        """
+        raise NotImplementedError
+
+    def requires_login(self):
+        """
+        Returns True for backends that require a login dialog, else False.
+        """
+        return False
+
+    def method(self, fmt, *args):
+        """
+        Convenience function to return database methods.
+
+        :param fmt: Method format string.
+        :type fmt: str
+        :param args: Substitutions arguments.
+        :type args: str
+        :returns: Returns a database method or None.
+        :rtype: method
+
+        Examples::
+
+            db.method('get_%s_from_handle, 'Person')
+            Returns the get_person_from_handle method.
+
+            db.method('get_%s_from_%s, 'Event', 'gramps_id')
+            Returns the get_event_from_gramps_id method.
+
+            db.method('get_%s_handles, 'Attribute')
+            Returns None.  Attribute is not a primary object.
+
+        .. warning::  Formats 'iter_%s' and 'get_number_of_%s' are not yet
+                      implemented.
+        """
+        return getattr(self, fmt % tuple([arg.lower() for arg in args]), None)
 
 
 class DbWriteBase(DbReadBase):
@@ -1768,12 +1794,6 @@ class DbWriteBase(DbReadBase):
     def redo(self, update_history=True):
         """
         Redo last transaction.
-        """
-        raise NotImplementedError
-
-    def write_version(self, name):
-        """
-        Write version number for a newly created DB.
         """
         raise NotImplementedError
 

@@ -1296,9 +1296,9 @@ class NavWebReport(Report):
         @param: obj_class -- The class of the related object.
         """
         if prop == "gramps_id":
-            if obj_class in self._db.get_table_names():
-                obj = self._db.get_table_metadata(obj_class)[
-                    "gramps_id_func"](handle)
+            func = self._db.method('get_%s_from_gramps_id', obj_class)
+            if func:
+                obj = func(handle)
                 if obj:
                     handle = obj.handle
                 else:

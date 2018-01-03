@@ -72,11 +72,11 @@ from . import (DbBsddbRead, DbWriteBase, BSDDBTxn,
 
 from gramps.gen.db import exceptions
 from gramps.gen.db.dbconst import *
+from gramps.gen.db.utils import write_lock_file, clear_lock_file
 from gramps.gen.utils.callback import Callback
 from gramps.gen.utils.id import create_id
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.errors import DbError, HandleError
-from gramps.gen.constfunc import win, get_env_var
 from gramps.gen.const import HOME_DIR, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -536,7 +536,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     @catch_db_error
     def load(self, name, callback=None, mode=DBMODE_W, force_schema_upgrade=False,
              force_bsddb_upgrade=False, force_bsddb_downgrade=False,
-             force_python_upgrade=False, update=True):
+             force_python_upgrade=False, update=True,
+             username=None, password=None):
         """
         If update is False: then don't update any files; open read-only
         """
@@ -560,6 +561,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.full_name = os.path.abspath(name)
         self.path = self.full_name
         self.brief_name = os.path.basename(name)
+
+        # We use the existence of the person table as a proxy for the database
+        # being new
+        if not os.path.exists(os.path.join(self.path, 'person.db')):
+            self._write_version(name)
 
         # If we re-enter load with force_python_upgrade True, then we have
         # already checked the bsddb version, and then checked python version,
@@ -2199,7 +2205,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         else:
             _LOG.debug("Failed to set autoremove flag")
 
-    def write_version(self, name):
+    def _write_version(self, name):
         """Write version number for a newly created DB."""
         full_name = os.path.abspath(name)
 
@@ -2257,11 +2263,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             version = str(_DBVERSION)
             version_file.write(version)
 
-        versionpath = os.path.join(name, str(DBBACKEND))
-        _LOG.debug("Write database backend file to 'bsddb'")
-        with open(versionpath, "w") as version_file:
-            version_file.write("bsddb")
-
         self.metadata.close()
         self.env.close()
 
@@ -2306,38 +2307,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
 def _mkname(path, name):
     return os.path.join(path, name + DBEXT)
-
-def clear_lock_file(name):
-    try:
-        os.unlink(os.path.join(name, DBLOCKFN))
-    except OSError:
-        return
-
-def write_lock_file(name):
-    if not os.path.isdir(name):
-        os.mkdir(name)
-    with open(os.path.join(name, DBLOCKFN), "w", encoding='utf8') as f:
-        if win():
-            user = get_env_var('USERNAME')
-            host = get_env_var('USERDOMAIN')
-            if host is None:
-                host = ""
-        else:
-            host = os.uname()[1]
-            # An ugly workaround for os.getlogin() issue with Konsole
-            try:
-                user = os.getlogin()
-            except:
-                # not win, so don't need get_env_var.
-                # under cron getlogin() throws and there is no USER.
-                user = os.environ.get('USER', 'noUSER')
-        if host:
-            text = "%s@%s" % (user, host)
-        else:
-            text = user
-        # Save only the username and host, so the massage can be
-        # printed with correct locale in DbManager.py when a lock is found
-        f.write(text)
 
 def upgrade_researcher(owner_data):
     """

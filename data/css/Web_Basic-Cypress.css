@@ -50,7 +50,6 @@ Characteristic of this style is that it uses the full width of the browser
 window and that horizontal highlighting bars extend over the full width of
 the page.
 --------------------------------------------------------------------------------------------------
-# $Id$
 
  NarrativeWeb Styles
 ------------------------------------------------------------------------------------------------ 
@@ -86,6 +85,12 @@ h1 {
     font-size: x-large;
     font-weight: bold;
     padding-left: 15px;
+}
+h2 {
+    display:block;
+    margin:0;
+    padding:0;
+    text-align: center;
 }
 h3 {
     font-size: large;
@@ -466,7 +471,7 @@ div#SourceDetail {
 }
 .subsection {
     clear: both;
-    overflow: hidden;
+    overflow: visible;
 }
 .subsection p {
     margin: 0px;

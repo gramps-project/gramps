@@ -1,5 +1,4 @@
 # Hebrew translation for Gramps
-# $Id$
 # This file is distributed under the same license as the Gramps package.
 # Copyright (C) 2009 Igal Shapira
 #

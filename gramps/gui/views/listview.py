@@ -808,11 +808,9 @@ class ListView(NavigationView):
             self.build_tree()
             # Reselect one, if it still exists after rebuild:
             nav_type = self.navigation_type()
-            lookup_handle = self.dbstate.db.get_table_metadata(nav_type)['handle_func']
+            lookup_handle = self.dbstate.db.method('get_%s_from_handle', nav_type)
             for handle in selected_ids:
                 # Still exist?
-                # should really use db.has_handle(nav_type, handle) but doesn't
-                # exist for bsddb
                 try:
                     lookup_handle(handle)
                     # Select it, and stop selecting:

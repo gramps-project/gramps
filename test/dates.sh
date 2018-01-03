@@ -3,7 +3,6 @@
 # Date Handler test for GRAMPS:
 #   o Run date_test.py for every available locale.
 
-# $Id$
 
 TOP_DIR=`dirname $PWD`
 SRC_DIR=$TOP_DIR/src

@@ -73,6 +73,7 @@ from gi.repository import Gtk
 from gramps.gen.filters import SearchFilter, ExactSearchFilter
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from .basemodel import BaseModel
+from ...user import User
 
 #-------------------------------------------------------------------------
 #
@@ -453,6 +454,8 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         cput = time.clock()
         GObject.GObject.__init__(self)
         BaseModel.__init__(self)
+        self.uistate = uistate
+        self.user = User(parent=uistate.window, uistate=uistate)
         #inheriting classes must set self.map to obtain the data
         self.prev_handle = None
         self.prev_data = None
@@ -611,7 +614,8 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             if self.search:
                 ident = False
                 if ignore is None:
-                    dlist = self.search.apply(self.db, allkeys, tupleind=1)
+                    dlist = self.search.apply(self.db, allkeys, tupleind=1,
+                                              user=self.user)
                 else:
                     dlist = self.search.apply(self.db,
                                 [ k for k in allkeys if k[1] != ignore],

@@ -1,5 +1,4 @@
 # Bulgarian translation for Gramps
-# $Id$
 # This file is distributed under the same license as the Gramps package.
 # Kamen Naydenov <pau4o@pixel-bg.com>, 2006
 # Svetoslav Stefanov <lfu.project@gmail.com>, 2009

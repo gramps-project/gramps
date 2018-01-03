@@ -854,9 +854,18 @@ class GrampsParser(UpdateCallback):
                                self.db.find_next_repository_gramps_id,
                                'reference',
                                self.db.find_next_note_gramps_id][key]
+        has_gramps_id = [self.db.has_person_gramps_id,
+                         self.db.has_family_gramps_id,
+                         self.db.has_source_gramps_id,
+                         self.db.has_event_gramps_id,
+                         self.db.has_media_gramps_id,
+                         self.db.has_place_gramps_id,
+                         self.db.has_repository_gramps_id,
+                         'reference',
+                         self.db.has_note_gramps_id][key]
 
         gramps_id = self.legalize_id(id_, key, id2id_map, id2user_format,
-                                     find_next_gramps_id)
+                                     find_next_gramps_id, has_gramps_id)
         handle = id2handle_map.get(gramps_id)
         if handle:
             raw = get_raw_obj_data(handle)
@@ -874,7 +883,7 @@ class GrampsParser(UpdateCallback):
         return handle
 
     def legalize_id(self, id_, key, gramps_ids, id2user_format,
-                    find_next_gramps_id):
+                    find_next_gramps_id, has_gramps_id):
         """
         Given an import id, adjust it so that it fits with the existing data.
 
@@ -894,7 +903,7 @@ class GrampsParser(UpdateCallback):
         """
         gramps_id = id2user_format(id_)
         if gramps_id is None or not gramps_ids.get(id_):
-            if gramps_id is None or self.db.has_gramps_id(key, gramps_id):
+            if gramps_id is None or has_gramps_id(gramps_id):
                 gramps_ids[id_] = find_next_gramps_id()
             else:
                 gramps_ids[id_] = gramps_id
@@ -1027,7 +1036,7 @@ class GrampsParser(UpdateCallback):
                     ) % {'oldgramps': self.__gramps_version,
                         'newgramps': VERSION,
                         'xmlversion': xmlversion_str,
-                        'gramps_wiki_xml_url': URL_WIKISTRING + "GRAMPS_XML" ,
+                        'gramps_wiki_xml_url': URL_WIKISTRING + "Gramps_XML" ,
                         }
             raise GrampsImportError(_('The file will not be imported'), msg)
         elif self.__xml_version < (1, 1, 0):
@@ -1042,7 +1051,7 @@ class GrampsParser(UpdateCallback):
                     ) % {'oldgramps': self.__gramps_version,
                         'newgramps': VERSION,
                         'xmlversion': xmlversion_str,
-                        'gramps_wiki_xml_url': URL_WIKISTRING + "GRAMPS_XML" ,
+                        'gramps_wiki_xml_url': URL_WIKISTRING + "Gramps_XML" ,
                         }
             self.user.warn(_('Old xml file'), msg)
 
@@ -1116,7 +1125,8 @@ class GrampsParser(UpdateCallback):
             self.inaugurate(orig_handle, "place", self.placeobj)
             gramps_id = self.legalize_id(attrs.get('id'), PLACE_KEY,
                                          self.pidswap, self.db.pid2user_format,
-                                         self.db.find_next_place_gramps_id)
+                                         self.db.find_next_place_gramps_id,
+                                         self.db.has_place_gramps_id)
             self.placeobj.set_gramps_id(gramps_id)
             if is_merge_candidate:
                 orig_place = self.db.get_place_from_handle(orig_handle)
@@ -1254,7 +1264,8 @@ class GrampsParser(UpdateCallback):
                 self.inaugurate(orig_handle, "event", self.event)
                 gramps_id = self.legalize_id(attrs.get('id'), EVENT_KEY,
                                           self.eidswap, self.db.eid2user_format,
-                                          self.db.find_next_event_gramps_id)
+                                          self.db.find_next_event_gramps_id,
+                                          self.db.has_event_gramps_id)
                 self.event.set_gramps_id(gramps_id)
                 if is_merge_candidate:
                     orig_event = self.db.get_event_from_handle(orig_handle)
@@ -1451,7 +1462,8 @@ class GrampsParser(UpdateCallback):
             self.inaugurate(orig_handle, "person", self.person)
             gramps_id = self.legalize_id(attrs.get('id'), PERSON_KEY,
                                         self.idswap, self.db.id2user_format,
-                                        self.db.find_next_person_gramps_id)
+                                        self.db.find_next_person_gramps_id,
+                                        self.db.has_person_gramps_id)
             self.person.set_gramps_id(gramps_id)
             if is_merge_candidate:
                 orig_person = self.db.get_person_from_handle(orig_handle)
@@ -1585,7 +1597,8 @@ class GrampsParser(UpdateCallback):
             self.inaugurate(orig_handle, "family", self.family)
             gramps_id = self.legalize_id(attrs.get('id'), FAMILY_KEY,
                                         self.fidswap, self.db.fid2user_format,
-                                        self.db.find_next_family_gramps_id)
+                                        self.db.find_next_family_gramps_id,
+                                        self.db.has_family_gramps_id)
             self.family.set_gramps_id(gramps_id)
             if is_merge_candidate:
                 orig_family = self.db.get_family_from_handle(orig_handle)
@@ -1865,7 +1878,8 @@ class GrampsParser(UpdateCallback):
                 self.inaugurate(orig_handle, "note", self.note)
                 gramps_id = self.legalize_id(attrs.get('id'), NOTE_KEY,
                                           self.nidswap, self.db.nid2user_format,
-                                          self.db.find_next_note_gramps_id)
+                                          self.db.find_next_note_gramps_id,
+                                          self.db.has_note_gramps_id)
                 self.note.set_gramps_id(gramps_id)
                 if is_merge_candidate:
                     orig_note = self.db.get_note_from_handle(orig_handle)
@@ -2062,7 +2076,8 @@ class GrampsParser(UpdateCallback):
         self.inaugurate(orig_handle, "citation", self.citation)
         gramps_id = self.legalize_id(attrs.get('id'), CITATION_KEY,
                                      self.cidswap, self.db.cid2user_format,
-                                     self.db.find_next_citation_gramps_id)
+                                     self.db.find_next_citation_gramps_id,
+                                     self.db.has_citation_gramps_id)
         self.citation.set_gramps_id(gramps_id)
         if is_merge_candidate:
             orig_citation = self.db.get_citation_from_handle(orig_handle)
@@ -2116,7 +2131,8 @@ class GrampsParser(UpdateCallback):
             self.inaugurate(orig_handle, "source", self.source)
             gramps_id = self.legalize_id(attrs.get('id'), SOURCE_KEY,
                                          self.sidswap, self.db.sid2user_format,
-                                         self.db.find_next_source_gramps_id)
+                                         self.db.find_next_source_gramps_id,
+                                         self.db.has_source_gramps_id)
             self.source.set_gramps_id(gramps_id)
             if is_merge_candidate:
                 orig_source = self.db.get_source_from_handle(orig_handle)
@@ -2195,7 +2211,8 @@ class GrampsParser(UpdateCallback):
             self.inaugurate(orig_handle, "media", self.object)
             gramps_id = self.legalize_id(attrs.get('id'), MEDIA_KEY,
                                          self.oidswap, self.db.oid2user_format,
-                                         self.db.find_next_media_gramps_id)
+                                         self.db.find_next_media_gramps_id,
+                                         self.db.has_media_gramps_id)
             self.object.set_gramps_id(gramps_id)
             if is_merge_candidate:
                 orig_media = self.db.get_media_from_handle(orig_handle)
@@ -2232,7 +2249,8 @@ class GrampsParser(UpdateCallback):
             self.inaugurate(orig_handle, "repository", self.repo)
             gramps_id = self.legalize_id(attrs.get('id'), REPOSITORY_KEY,
                                          self.ridswap, self.db.rid2user_format,
-                                         self.db.find_next_repository_gramps_id)
+                                         self.db.find_next_repository_gramps_id,
+                                         self.db.has_repository_gramps_id)
             self.repo.set_gramps_id(gramps_id)
             if is_merge_candidate:
                 orig_repo = self.db.get_repository_from_handle(orig_handle)

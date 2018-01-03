@@ -40,6 +40,8 @@ class DbTest(unittest.TestCase):
         "find_next_source_gramps_id",
         "get_bookmarks",
         "get_child_reference_types",
+        "get_dbid",
+        "get_dbname",
         "get_default_handle",
         "get_default_person",
         "get_event_attribute_types",
@@ -57,7 +59,6 @@ class DbTest(unittest.TestCase):
         "get_family_from_handle",
         "get_family_handles",
         "get_family_relation_types",
-        "get_gramps_ids",
         "get_media_attribute_types",
         "get_media_bookmarks",
         "get_media_cursor",
@@ -124,7 +125,6 @@ class DbTest(unittest.TestCase):
         "get_url_types",
         "has_event_handle",
         "has_family_handle",
-        "has_gramps_id",
         "has_name_group_key",
         "has_note_handle",
         "has_media_handle",
@@ -168,7 +168,6 @@ class DbTest(unittest.TestCase):
         # Other set methods:
         "set_mediapath",
         "set_researcher",
-        "set_save_path",
         "version_supported",
         ]
 
@@ -208,7 +207,6 @@ class DbTest(unittest.TestCase):
         "set_name_group_mapping",
         "transaction_begin",
         "transaction_commit",
-        "write_version",
         ]
 
     def _verify_readonly(self, db):

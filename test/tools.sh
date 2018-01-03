@@ -7,7 +7,6 @@
 # specifying all possible options and their combinations. 
 # Instead, this is a general test for all tools.
 
-# $Id$
 
 TOP_DIR=`dirname $PWD`
 TEST_DIR=$TOP_DIR/test

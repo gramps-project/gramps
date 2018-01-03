@@ -44,11 +44,11 @@ class FamilyRelType(GrampsType):
     _DEFAULT = MARRIED
 
     _DATAMAP = [
+        (MARRIED, _("Married"), "Married"),
+        (UNMARRIED, _("Unmarried"), "Unmarried"),
+        (CIVIL_UNION, _("Civil Union"), "Civil Union"),
         (UNKNOWN, _("Unknown"), "Unknown"),
         (CUSTOM, _("Custom"), "Custom"),
-        (CIVIL_UNION, _("Civil Union"), "Civil Union"),
-        (UNMARRIED, _("Unmarried"), "Unmarried"),
-        (MARRIED, _("Married"), "Married"),
         ]
 
     def __init__(self, value=None):

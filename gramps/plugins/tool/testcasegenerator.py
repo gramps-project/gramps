@@ -1107,7 +1107,7 @@ class TestcaseGenerator(tool.BatchTool):
             self.transaction_count += 1
 
             c_h = "unknowncitationhandle"
-            self.create_all_possible_citations([c_h, None], "Broken22",
+            self.create_all_possible_citations([c_h, ''], "Broken22",
                                                'non-existent citation')
 
     def create_all_possible_citations(self, c_h_list, name, message):

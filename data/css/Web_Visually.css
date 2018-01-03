@@ -45,7 +45,6 @@ Unknown     #000
 Males       Web_Gender_Male.png
 Females     Web_Gender_Female.png
 
-# $Id$
 
  NarrativeWeb Styles
 --------------------------------------------------------------------------------------------  */
@@ -156,7 +155,6 @@ h5, h6 {
     margin:1.3em 0 .5em 1em;
 }
 p#description {
-    max-width:800px;
     margin:0;
     padding:1em 20px;
 }

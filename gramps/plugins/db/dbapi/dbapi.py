@@ -35,7 +35,7 @@ import logging
 #
 #------------------------------------------------------------------------
 from gramps.gen.db.dbconst import (DBLOGNAME, DBBACKEND, KEY_TO_NAME_MAP,
-                                   TXNADD, TXNUPD, TXNDEL,
+                                   KEY_TO_CLASS_MAP, TXNADD, TXNUPD, TXNDEL,
                                    PERSON_KEY, FAMILY_KEY, SOURCE_KEY,
                                    EVENT_KEY, MEDIA_KEY, PLACE_KEY, NOTE_KEY,
                                    TAG_KEY, CITATION_KEY, REPOSITORY_KEY,
@@ -53,37 +53,7 @@ class DBAPI(DbGeneric):
     """
     Database backends class for DB-API 2.0 databases
     """
-    def get_schema_version(self, directory=None):
-        """
-        Get the version of the schema that the database was created
-        under. Assumes 18, if not found.
-        """
-        if directory is None:
-            directory = self._directory
-        version = 18
-        if directory:
-            versionpath = os.path.join(directory, "schemaversion.txt")
-            if os.path.exists(versionpath):
-                with open(versionpath, "r") as version_file:
-                    version = version_file.read()
-                version = int(version)
-            else:
-                LOG.info("Missing '%s'. Assuming version 18.", versionpath)
-        return version
-
-    def write_version(self, directory):
-        """Write files for a newly created DB."""
-        _LOG.debug("Write schema version file to %s", str(self.VERSION[0]))
-        versionpath = os.path.join(directory, "schemaversion.txt")
-        with open(versionpath, "w") as version_file:
-            version_file.write(str(self.VERSION[0]))
-
-        versionpath = os.path.join(directory, str(DBBACKEND))
-        _LOG.debug("Write database backend file")
-        with open(versionpath, "w") as version_file:
-            version_file.write(self.__class__.__name__.lower())
-
-    def _initialize(self, directory):
+    def _initialize(self, directory, username, password):
         raise NotImplementedError
 
     def _create_schema(self):
@@ -573,7 +543,7 @@ class DBAPI(DbGeneric):
             return Tag.create(pickle.loads(row[0]))
         return None
 
-    def get_number_of(self, obj_key):
+    def _get_number_of(self, obj_key):
         table = KEY_TO_NAME_MAP[obj_key]
         sql = "SELECT count(1) FROM %s" % table
         self.dbapi.execute(sql)
@@ -597,11 +567,12 @@ class DBAPI(DbGeneric):
                            [name])
         row = self.dbapi.fetchone()
         if row:
-            self.dbapi.execute("DELETE FROM name_group WHERE name = ?",
-                               [name])
-        self.dbapi.execute(
-            "INSERT INTO name_group (name, grouping) VALUES(?, ?)",
-            [name, grouping])
+            self.dbapi.execute("UPDATE name_group SET grouping=? "
+                               "WHERE name = ?", [grouping, name])
+        else:
+            self.dbapi.execute(
+                "INSERT INTO name_group (name, grouping) VALUES (?, ?)",
+                [name, grouping])
 
     def _commit_base(self, obj, obj_key, trans, change_time):
         """
@@ -612,8 +583,8 @@ class DBAPI(DbGeneric):
         obj.change = int(change_time or time.time())
         table = KEY_TO_NAME_MAP[obj_key]
 
-        if self.has_handle(obj_key, obj.handle):
-            old_data = self.get_raw_data(obj_key, obj.handle)
+        if self._has_handle(obj_key, obj.handle):
+            old_data = self._get_raw_data(obj_key, obj.handle)
             # update the object:
             sql = "UPDATE %s SET blob_data = ? WHERE handle = ?" % table
             self.dbapi.execute(sql,
@@ -685,13 +656,33 @@ class DBAPI(DbGeneric):
     def _do_remove(self, handle, transaction, obj_key):
         if self.readonly or not handle:
             return
-        if self.has_handle(obj_key, handle):
-            data = self.get_raw_data(obj_key, handle)
+        if self._has_handle(obj_key, handle):
+            data = self._get_raw_data(obj_key, handle)
+            obj_class = KEY_TO_CLASS_MAP[obj_key]
+            self._remove_backlinks(obj_class, handle, transaction)
             table = KEY_TO_NAME_MAP[obj_key]
             sql = "DELETE FROM %s WHERE handle = ?" % table
             self.dbapi.execute(sql, [handle])
             if not transaction.batch:
                 transaction.add(obj_key, TXNDEL, handle, data, None)
+
+    def _remove_backlinks(self, obj_class, obj_handle, transaction):
+        """
+        Removes all references from this object (backlinks).
+        """
+        # collect backlinks from this object for undo
+        self.dbapi.execute("SELECT ref_class, ref_handle " +
+                           "FROM reference WHERE obj_handle = ?", [obj_handle])
+        rows = self.dbapi.fetchall()
+        # Now, delete backlinks from this object:
+        self.dbapi.execute("DELETE FROM reference WHERE obj_handle = ?;",
+                           [obj_handle])
+        # Add old references to the transaction
+        if not transaction.batch:
+            for (ref_class_name, ref_handle) in rows:
+                key = (obj_handle, ref_handle)
+                old_data = (obj_handle, obj_class, ref_handle, ref_class_name)
+                transaction.add(REFERENCE_KEY, TXNDEL, key, old_data, None)
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
@@ -821,26 +812,26 @@ class DBAPI(DbGeneric):
         gstats = self.get_gender_stats()
         self.genderStats = GenderStats(gstats)
 
-    def has_handle(self, obj_key, handle):
+    def _has_handle(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]
         sql = "SELECT 1 FROM %s WHERE handle = ?" % table
         self.dbapi.execute(sql, [handle])
         return self.dbapi.fetchone() is not None
 
-    def has_gramps_id(self, obj_key, gramps_id):
+    def _has_gramps_id(self, obj_key, gramps_id):
         table = KEY_TO_NAME_MAP[obj_key]
         sql = "SELECT 1 FROM %s WHERE gramps_id = ?" % table
         self.dbapi.execute(sql, [gramps_id])
         return self.dbapi.fetchone() != None
 
-    def get_gramps_ids(self, obj_key):
+    def _get_gramps_ids(self, obj_key):
         table = KEY_TO_NAME_MAP[obj_key]
         sql = "SELECT gramps_id FROM %s" % table
         self.dbapi.execute(sql)
         rows = self.dbapi.fetchall()
         return [row[0] for row in rows]
 
-    def get_raw_data(self, obj_key, handle):
+    def _get_raw_data(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]
         sql = "SELECT blob_data FROM %s WHERE handle = ?" % table
         self.dbapi.execute(sql, [handle])

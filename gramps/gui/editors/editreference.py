@@ -269,7 +269,8 @@ class EditReference(ManagedWindow, DbGUIElement):
         """
         new_id = self.source.get_gramps_id()
         if new_id:
-            old_primary = self.db.get_from_name_and_gramps_id(type, new_id)
+            id_func = getattr(self.db, 'get_%s_from_gramps_id' % type.lower())
+            old_primary = id_func(new_id)
             if old_primary:
                 description = None
                 if type == 'Event':

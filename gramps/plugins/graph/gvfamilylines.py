@@ -867,7 +867,8 @@ class FamilyLinesReport(Report):
                 label += '<TD>'
 
             # at the very least, the label must have the person's name
-            label += name
+            name = name.replace('"', '&#34;')
+            label += name.replace('<', '&#60;').replace('>', '&#62;')
             if self.includeid == 1: # same line
                 label += " (%s)" % p_id
             elif self.includeid == 2: # own line
@@ -1097,4 +1098,6 @@ class FamilyLinesReport(Report):
                     place_text = location.get(PlaceType.STATE)
                 elif location.get(PlaceType.COUNTRY):
                     place_text = location.get(PlaceType.COUNTRY)
+                place_text = place_text.replace('<', '&#60;')
+                place_text = place_text.replace('>', '&#62;')
         return place_text

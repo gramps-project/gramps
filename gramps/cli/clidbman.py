@@ -68,6 +68,7 @@ _LOG = logging.getLogger(DBLOGNAME)
 #-------------------------------------------------------------------------
 DEFAULT_TITLE = _("Family Tree")
 NAME_FILE = "name.txt"
+BACKEND_FILE = "database.txt"
 META_NAME = "meta_data.db"
 
 #-------------------------------------------------------------------------
@@ -303,11 +304,13 @@ class CLIDbManager:
             name_file.write(title)
 
         if create_db:
-            # write the version number into metadata
             if dbid is None:
-                dbid = "bsddb"
+                dbid = config.get('database.backend')
             newdb = make_database(dbid)
-            newdb.write_version(new_path)
+
+        backend_path = os.path.join(new_path, BACKEND_FILE)
+        with open(backend_path, "w", encoding='utf8') as backend_file:
+            backend_file.write(dbid)
 
         (tval, last) = time_val(new_path)
 
@@ -355,15 +358,6 @@ class CLIDbManager:
                     # write locally:
                     temp_fp.write(data)
                     url_fp.close()
-                    from  gramps.gen.db.dbconst import BDBVERSFN
-                    # name not set
-                    (name, ext) = os.path.splitext(os.path.basename(filename))
-                    versionpath = os.path.join(name, BDBVERSFN)
-                    # dbase not set
-                    dbase = make_database("bsddb")
-                    _LOG.debug("Write bsddb version %s", str(dbase.version()))
-                    with open(versionpath, "w") as version_file:
-                        version_file.write(str(dbase.version()))
                     temp_fp.close()
 
         (name, ext) = os.path.splitext(os.path.basename(filename))
@@ -372,13 +366,13 @@ class CLIDbManager:
         for plugin in pmgr.get_import_plugins():
             if format == plugin.get_extension():
 
-                new_path, name = self._create_new_db(name, edit_entry=False)
+                dbid = config.get('database.backend')
+                new_path, name = self._create_new_db(name, dbid=dbid,
+                                                     edit_entry=False)
 
                 # Create a new database
                 self.__start_cursor(_("Importing data..."))
 
-                ## Use bsddb, for now, because we assumed that above.
-                dbid = "bsddb" ## config.get('database.backend')
                 dbase = make_database(dbid)
                 dbase.load(new_path, user.callback)
 

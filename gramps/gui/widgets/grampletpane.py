@@ -48,7 +48,7 @@ from gramps.gen.errors import WindowActiveError
 from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR, COLON
 from ..editors import EditPerson, EditFamily
 from ..managedwindow import ManagedWindow
-from ..utils import is_right_click, rgb_to_hex
+from ..utils import is_right_click, rgb_to_hex, get_primary_mask
 from .menuitem import add_menuitem
 from ..plug import make_gui_option
 from ..plug.quick import run_quick_report_by_name
@@ -405,12 +405,12 @@ class GuiGramplet:
 
         """
         if ((Gdk.keyval_name(event.keyval) == 'Z') and
-            (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and
-            (event.get_state() & Gdk.ModifierType.SHIFT_MASK)):
+            (event.get_state() &
+             get_primary_mask(Gdk.ModifierType.SHIFT_MASK))):
             self.redo()
             return True
         elif ((Gdk.keyval_name(event.keyval) == 'z') and
-              (event.get_state() & Gdk.ModifierType.CONTROL_MASK)):
+              (event.get_state() & get_primary_mask())):
             self.undo()
             return True
 
@@ -638,6 +638,8 @@ class GuiGramplet:
         for (tag, link_type, handle, tooltip) in self._tags:
             if iter.has_tag(tag):
                 if link_type == 'Person':
+                    if not self.dbstate.db.has_person_handle(handle):
+                        return True
                     person = self.dbstate.db.get_person_from_handle(handle)
                     if person is not None:
                         if event.button == 1: # left mouse
@@ -699,6 +701,8 @@ class GuiGramplet:
                             display_help(handle)
                     return True
                 elif link_type == 'Family':
+                    if not self.dbstate.db.has_family_handle(handle):
+                        return True
                     family = self.dbstate.db.get_family_from_handle(handle)
                     if family is not None:
                         if event.button == 1: # left mouse

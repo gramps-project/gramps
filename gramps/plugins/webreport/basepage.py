@@ -1375,8 +1375,8 @@ class BasePage: # pylint: disable=C1001
 
         # Header constants
         _meta1 = 'name ="viewport" content="width=device-width; '
-        _meta1 += 'height=device-height; initial-scale=0.1; '
-        _meta1 += 'maximum-scale=10.0; user-scalable=yes"'
+        _meta1 += 'height=device-height; initial-scale=1.0; '
+        _meta1 += 'minimum-scale=0.5; maximum-scale=10.0; user-scalable=yes"'
         _meta2 = 'name ="apple-mobile-web-app-capable" content="yes"'
         _meta3 = 'name="generator" content="%s %s %s"' % (
             PROGRAM_NAME, VERSION, URL_HOMEPAGE)
@@ -1957,7 +1957,8 @@ class BasePage: # pylint: disable=C1001
                 photo = photolist_handles[photoref.ref]
                 photolist_ordered.append(photo)
                 try:
-                    photolist.remove(photo)
+                    if photo in photolist:
+                        photolist.remove(photo)
                 except ValueError:
                     LOG.warning("Error trying to remove '%s' from photolist",
                                 photo)

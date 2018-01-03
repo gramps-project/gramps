@@ -109,10 +109,10 @@ def diff_dbs(db1, db2, user):
                      'Place', 'Repository', 'Note', 'Tag']:
             step()
 
-            handles_func1 = db1.get_table_metadata(item)["handles_func"]
-            handles_func2 = db2.get_table_metadata(item)["handles_func"]
-            handle_func1 = db1.get_table_metadata(item)["handle_func"]
-            handle_func2 = db2.get_table_metadata(item)["handle_func"]
+            handles_func1 = db1.method('get_%s_handles', item)
+            handles_func2 = db2.method('get_%s_handles', item)
+            handle_func1 = db1.method('get_%s_from_handle', item)
+            handle_func2 = db2.method('get_%s_from_handle', item)
 
             handles1 = sorted([handle for handle in handles_func1()])
             handles2 = sorted([handle for handle in handles_func2()])

@@ -45,12 +45,12 @@ from . import (DbReadBase, DbWriteBase, DbUndo, DBLOGNAME, DBUNDOFN,
                KEY_TO_CLASS_MAP, REFERENCE_KEY, PERSON_KEY, FAMILY_KEY,
                CITATION_KEY, SOURCE_KEY, EVENT_KEY, MEDIA_KEY, PLACE_KEY,
                REPOSITORY_KEY, NOTE_KEY, TAG_KEY, TXNADD, TXNUPD, TXNDEL,
-               KEY_TO_NAME_MAP)
+               KEY_TO_NAME_MAP, DBMODE_R, DBMODE_W)
+from .utils import write_lock_file, clear_lock_file
 from ..errors import HandleError
 from ..utils.callback import Callback
 from ..updatecallback import UpdateCallback
 from .bookmarks import DbBookmarks
-from . import exceptions
 
 from ..utils.id import create_id
 from ..lib.researcher import Researcher
@@ -245,7 +245,7 @@ class DbGenericUndo(DbUndo):
             sql = "DELETE FROM %s WHERE handle = ?" % table
             self.db.dbapi.execute(sql, [handle])
         else:
-            if self.db.has_handle(obj_key, handle):
+            if self.db._has_handle(obj_key, handle):
                 sql = "UPDATE %s SET blob_data = ? WHERE handle = ?" % table
                 self.db.dbapi.execute(sql, [pickle.dumps(data), handle])
             else:
@@ -529,7 +529,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "del_func": self.remove_tag,
             }
         }
-        self.set_save_path(directory)
         self.readonly = False
         self.db_is_open = False
         self.name_formats = []
@@ -577,34 +576,60 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if directory:
             self.load(directory)
 
-    def _initialize(self, directory):
+    def _initialize(self, directory, username, password):
         """
         Initialize database backend.
         """
         raise NotImplementedError
 
-    def load(self, directory, callback=None, mode=None,
+    def __check_readonly(self, name):
+        """
+        Return True if we don't have read/write access to the database,
+        otherwise return False (that is, we DO have read/write access)
+        """
+        # In-memory databases always allow write access.
+        if name == ':memory:':
+            return False
+
+        # See if we write to the target directory at all?
+        if not os.access(name, os.W_OK):
+            return True
+
+        # See if we lack write access to the database file
+        path = os.path.join(name, 'sqlite.db')
+        if os.path.isfile(path) and not os.access(path, os.W_OK):
+            return True
+
+        # All tests passed.  Inform caller that we are NOT read only
+        return False
+
+    def load(self, directory, callback=None, mode=DBMODE_W,
              force_schema_upgrade=False,
              force_bsddb_upgrade=False,
              force_bsddb_downgrade=False,
              force_python_upgrade=False,
-             update=True):
+             update=True,
+             username=None,
+             password=None):
         """
         If update is False: then don't update any files
         """
-        db_schema_version = self.get_schema_version(directory)
-        current_schema_version = self.VERSION[0]
-        if db_schema_version != current_schema_version:
-            raise exceptions.DbVersionError(str(db_schema_version),
-                                            str(current_schema_version),
-                                            str(current_schema_version))
+        if self.__check_readonly(directory):
+            mode = DBMODE_R
+
+        self.readonly = mode == DBMODE_R
+
+        if not self.readonly and directory != ':memory:':
+            write_lock_file(directory)
+
         # run backend-specific code:
-        self._initialize(directory)
+        self._initialize(directory, username, password)
 
         # We use the existence of the person table as a proxy for the database
         # being new
         if not self.dbapi.table_exists("person"):
             self._create_schema()
+            self._set_metadata('version', str(self.VERSION[0]))
 
         # Load metadata
         self.name_formats = self._get_metadata('name_formats')
@@ -643,7 +668,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # surname list
         self.surname_list = self.get_surname_list()
 
-        self.set_save_path(directory)
+        self._set_save_path(directory)
+
         if self._directory:
             self.undolog = os.path.join(self._directory, DBUNDOFN)
         else:
@@ -739,6 +765,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 self._set_metadata('nmap_index', self.nmap_index)
 
             self._close()
+
+            try:
+                clear_lock_file(self.get_save_path())
+            except IOError:
+                pass
+
         self.db_is_open = False
         self._directory = None
 
@@ -770,13 +802,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """Return True when the file has a supported version."""
         return True
 
-    def get_schema_version(self, directory=None):
-        """
-        Get the version of the schema that the database was created
-        under. Assumes 18, if not found.
-        """
-        raise NotImplementedError
-
     def _get_table_func(self, table=None, func=None):
         """
         Private implementation of get_table_func.
@@ -789,45 +814,6 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             return self.__tables[table][func]
         else:
             return None
-
-    def get_table_names(self):
-        """Return a list of valid table names."""
-        return list(self._get_table_func())
-
-    def get_table_metadata(self, table_name):
-        """Return the metadata for a valid table name."""
-        if table_name in self._get_table_func():
-            return self._get_table_func(table_name)
-        return None
-
-    def get_from_name_and_handle(self, table_name, handle):
-        """
-        Returns a gen.lib object (or None) given table_name and
-        handle.
-
-        Examples:
-
-        >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
-        >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
-        """
-        if table_name in self._get_table_func() and handle:
-            return self._get_table_func(table_name, "handle_func")(handle)
-        return None
-
-    def get_from_name_and_gramps_id(self, table_name, gramps_id):
-        """
-        Returns a gen.lib object (or None) given table_name and
-        Gramps ID.
-
-        Examples:
-
-        >>> self.get_from_name_and_gramps_id("Person", "I00002")
-        >>> self.get_from_name_and_gramps_id("Family", "F056")
-        >>> self.get_from_name_and_gramps_id("Media", "M00012")
-        """
-        if table_name in self._get_table_func():
-            return self._get_table_func(table_name, "gramps_id_func")(gramps_id)
-        return None
 
     def _txn_begin(self):
         """
@@ -1050,7 +1036,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Helper function for find_next_<object>_gramps_id methods
         """
         index = prefix % map_index
-        while self.has_gramps_id(obj_key, index):
+        while self._has_gramps_id(obj_key, index):
             map_index += 1
             index = prefix % map_index
         map_index += 1
@@ -1152,7 +1138,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def get_number_of(self, obj_key):
+    def _get_number_of(self, obj_key):
         """
         Return the number of objects currently in the database.
         """
@@ -1162,61 +1148,61 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         Return the number of people currently in the database.
         """
-        return self.get_number_of(PERSON_KEY)
+        return self._get_number_of(PERSON_KEY)
 
     def get_number_of_events(self):
         """
         Return the number of events currently in the database.
         """
-        return self.get_number_of(EVENT_KEY)
+        return self._get_number_of(EVENT_KEY)
 
     def get_number_of_places(self):
         """
         Return the number of places currently in the database.
         """
-        return self.get_number_of(PLACE_KEY)
+        return self._get_number_of(PLACE_KEY)
 
     def get_number_of_tags(self):
         """
         Return the number of tags currently in the database.
         """
-        return self.get_number_of(TAG_KEY)
+        return self._get_number_of(TAG_KEY)
 
     def get_number_of_families(self):
         """
         Return the number of families currently in the database.
         """
-        return self.get_number_of(FAMILY_KEY)
+        return self._get_number_of(FAMILY_KEY)
 
     def get_number_of_notes(self):
         """
         Return the number of notes currently in the database.
         """
-        return self.get_number_of(NOTE_KEY)
+        return self._get_number_of(NOTE_KEY)
 
     def get_number_of_citations(self):
         """
         Return the number of citations currently in the database.
         """
-        return self.get_number_of(CITATION_KEY)
+        return self._get_number_of(CITATION_KEY)
 
     def get_number_of_sources(self):
         """
         Return the number of sources currently in the database.
         """
-        return self.get_number_of(SOURCE_KEY)
+        return self._get_number_of(SOURCE_KEY)
 
     def get_number_of_media(self):
         """
         Return the number of media objects currently in the database.
         """
-        return self.get_number_of(MEDIA_KEY)
+        return self._get_number_of(MEDIA_KEY)
 
     def get_number_of_repositories(self):
         """
         Return the number of source repositories currently in the database.
         """
-        return self.get_number_of(REPOSITORY_KEY)
+        return self._get_number_of(REPOSITORY_KEY)
 
     ################################################################
     #
@@ -1224,7 +1210,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def get_gramps_ids(self, obj_key):
+    def _get_gramps_ids(self, obj_key):
         """
         Return a list of Gramps IDs, one ID for each object in the
         database.
@@ -1236,63 +1222,63 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Return a list of Gramps IDs, one ID for each Person in the
         database.
         """
-        return self.get_gramps_ids(PERSON_KEY)
+        return self._get_gramps_ids(PERSON_KEY)
 
     def get_family_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Family in the
         database.
         """
-        return self.get_gramps_ids(FAMILY_KEY)
+        return self._get_gramps_ids(FAMILY_KEY)
 
     def get_source_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Source in the
         database.
         """
-        return self.get_gramps_ids(SOURCE_KEY)
+        return self._get_gramps_ids(SOURCE_KEY)
 
     def get_citation_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Citation in the
         database.
         """
-        return self.get_gramps_ids(CITATION_KEY)
+        return self._get_gramps_ids(CITATION_KEY)
 
     def get_event_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Event in the
         database.
         """
-        return self.get_gramps_ids(EVENT_KEY)
+        return self._get_gramps_ids(EVENT_KEY)
 
     def get_media_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Media in the
         database.
         """
-        return self.get_gramps_ids(MEDIA_KEY)
+        return self._get_gramps_ids(MEDIA_KEY)
 
     def get_place_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Place in the
         database.
         """
-        return self.get_gramps_ids(PLACE_KEY)
+        return self._get_gramps_ids(PLACE_KEY)
 
     def get_repository_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Repository in the
         database.
         """
-        return self.get_gramps_ids(REPOSITORY_KEY)
+        return self._get_gramps_ids(REPOSITORY_KEY)
 
     def get_note_gramps_ids(self):
         """
         Return a list of Gramps IDs, one ID for each Note in the
         database.
         """
-        return self.get_gramps_ids(NOTE_KEY)
+        return self._get_gramps_ids(NOTE_KEY)
 
     ################################################################
     #
@@ -1305,7 +1291,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             raise HandleError('Handle is None')
         if not handle:
             raise HandleError('Handle is empty')
-        data = self.get_raw_data(obj_key, handle)
+        data = self._get_raw_data(obj_key, handle)
         if data:
             return obj_class.create(data)
         else:
@@ -1389,41 +1375,41 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def has_handle(self, obj_key, handle):
+    def _has_handle(self, obj_key, handle):
         """
         Return True if the handle exists in the database.
         """
         raise NotImplementedError
 
     def has_person_handle(self, handle):
-        return self.has_handle(PERSON_KEY, handle)
+        return self._has_handle(PERSON_KEY, handle)
 
     def has_family_handle(self, handle):
-        return self.has_handle(FAMILY_KEY, handle)
+        return self._has_handle(FAMILY_KEY, handle)
 
     def has_source_handle(self, handle):
-        return self.has_handle(SOURCE_KEY, handle)
+        return self._has_handle(SOURCE_KEY, handle)
 
     def has_citation_handle(self, handle):
-        return self.has_handle(CITATION_KEY, handle)
+        return self._has_handle(CITATION_KEY, handle)
 
     def has_event_handle(self, handle):
-        return self.has_handle(EVENT_KEY, handle)
+        return self._has_handle(EVENT_KEY, handle)
 
     def has_media_handle(self, handle):
-        return self.has_handle(MEDIA_KEY, handle)
+        return self._has_handle(MEDIA_KEY, handle)
 
     def has_place_handle(self, handle):
-        return self.has_handle(PLACE_KEY, handle)
+        return self._has_handle(PLACE_KEY, handle)
 
     def has_repository_handle(self, handle):
-        return self.has_handle(REPOSITORY_KEY, handle)
+        return self._has_handle(REPOSITORY_KEY, handle)
 
     def has_note_handle(self, handle):
-        return self.has_handle(NOTE_KEY, handle)
+        return self._has_handle(NOTE_KEY, handle)
 
     def has_tag_handle(self, handle):
-        return self.has_handle(TAG_KEY, handle)
+        return self._has_handle(TAG_KEY, handle)
 
     ################################################################
     #
@@ -1431,35 +1417,35 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def has_gramps_id(self, obj_key, gramps_id):
+    def _has_gramps_id(self, obj_key, gramps_id):
         raise NotImplementedError
 
     def has_person_gramps_id(self, gramps_id):
-        return self.has_gramps_id(PERSON_KEY, gramps_id)
+        return self._has_gramps_id(PERSON_KEY, gramps_id)
 
     def has_family_gramps_id(self, gramps_id):
-        return self.has_gramps_id(FAMILY_KEY, gramps_id)
+        return self._has_gramps_id(FAMILY_KEY, gramps_id)
 
     def has_source_gramps_id(self, gramps_id):
-        return self.has_gramps_id(SOURCE_KEY, gramps_id)
+        return self._has_gramps_id(SOURCE_KEY, gramps_id)
 
     def has_citation_gramps_id(self, gramps_id):
-        return self.has_gramps_id(CITATION_KEY, gramps_id)
+        return self._has_gramps_id(CITATION_KEY, gramps_id)
 
     def has_event_gramps_id(self, gramps_id):
-        return self.has_gramps_id(EVENT_KEY, gramps_id)
+        return self._has_gramps_id(EVENT_KEY, gramps_id)
 
     def has_media_gramps_id(self, gramps_id):
-        return self.has_gramps_id(MEDIA_KEY, gramps_id)
+        return self._has_gramps_id(MEDIA_KEY, gramps_id)
 
     def has_place_gramps_id(self, gramps_id):
-        return self.has_gramps_id(PLACE_KEY, gramps_id)
+        return self._has_gramps_id(PLACE_KEY, gramps_id)
 
     def has_repository_gramps_id(self, gramps_id):
-        return self.has_gramps_id(REPOSITORY_KEY, gramps_id)
+        return self._has_gramps_id(REPOSITORY_KEY, gramps_id)
 
     def has_note_gramps_id(self, gramps_id):
-        return self.has_gramps_id(NOTE_KEY, gramps_id)
+        return self._has_gramps_id(NOTE_KEY, gramps_id)
 
     ################################################################
     #
@@ -1695,41 +1681,41 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     #
     ################################################################
 
-    def get_raw_data(self, obj_key, handle):
+    def _get_raw_data(self, obj_key, handle):
         """
         Return raw (serialized and pickled) object from handle.
         """
         raise NotImplementedError
 
     def get_raw_person_data(self, handle):
-        return self.get_raw_data(PERSON_KEY, handle)
+        return self._get_raw_data(PERSON_KEY, handle)
 
     def get_raw_family_data(self, handle):
-        return self.get_raw_data(FAMILY_KEY, handle)
+        return self._get_raw_data(FAMILY_KEY, handle)
 
     def get_raw_source_data(self, handle):
-        return self.get_raw_data(SOURCE_KEY, handle)
+        return self._get_raw_data(SOURCE_KEY, handle)
 
     def get_raw_citation_data(self, handle):
-        return self.get_raw_data(CITATION_KEY, handle)
+        return self._get_raw_data(CITATION_KEY, handle)
 
     def get_raw_event_data(self, handle):
-        return self.get_raw_data(EVENT_KEY, handle)
+        return self._get_raw_data(EVENT_KEY, handle)
 
     def get_raw_media_data(self, handle):
-        return self.get_raw_data(MEDIA_KEY, handle)
+        return self._get_raw_data(MEDIA_KEY, handle)
 
     def get_raw_place_data(self, handle):
-        return self.get_raw_data(PLACE_KEY, handle)
+        return self._get_raw_data(PLACE_KEY, handle)
 
     def get_raw_repository_data(self, handle):
-        return self.get_raw_data(REPOSITORY_KEY, handle)
+        return self._get_raw_data(REPOSITORY_KEY, handle)
 
     def get_raw_note_data(self, handle):
-        return self.get_raw_data(NOTE_KEY, handle)
+        return self._get_raw_data(NOTE_KEY, handle)
 
     def get_raw_tag_data(self, handle):
-        return self.get_raw_data(TAG_KEY, handle)
+        return self._get_raw_data(TAG_KEY, handle)
 
     ################################################################
     #
@@ -2414,7 +2400,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_save_path(self):
         return self._directory
 
-    def set_save_path(self, directory):
+    def _set_save_path(self, directory):
         self._directory = directory
         if directory:
             self.full_name = os.path.abspath(self._directory)

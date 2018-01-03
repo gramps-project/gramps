@@ -17,26 +17,43 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
+from build.lib.gramps.gen.filters.rules.person._matchidof import MatchIdOf
 
 """
 Unittest that tests person-specific filter rules
 """
 import unittest
 import os
+import time
+import inspect
 
 from ....db.utils import import_as_dict
-from ....filters import GenericFilter
+from ....filters import GenericFilter, CustomFilters
 from ....const import DATA_DIR
 from ....user import User
 
 from ..person import (
-    Disconnected, Everyone, FamilyWithIncompleteEvent, HasAlternateName,
-    HasCommonAncestorWith, HasNickname, HasUnknownGender, HasSourceOf,
-    HaveAltFamilies, HaveChildren, IncompleteNames, IsBookmarked,
-    IsDuplicatedAncestorOf, IsRelatedWith, HasIdOf, IsDefaultPerson, IsFemale,
-    IsMale, MissingParent, MultipleMarriages, NeverMarried, NoBirthdate,
-    NoDeathdate, PeoplePrivate, PeoplePublic, PersonWithIncompleteEvent,
-    RelationshipPathBetweenBookmarks, HasNameOf, HasSoundexName)
+    Disconnected, Everyone, FamilyWithIncompleteEvent, HasAddress,
+    HasAlternateName, HasAssociation, HasBirth, HasDeath, HasEvent,
+    HasCommonAncestorWith, HasCommonAncestorWithFilterMatch,
+    HasFamilyAttribute, HasFamilyEvent, HasIdOf, HasLDS,
+    HasNameOf, HasNameOriginType, HasNameType, HasNickname, HasRelationship,
+    HasSoundexName, HasSourceOf, HasTextMatchingRegexpOf, HasUnknownGender,
+    HaveAltFamilies, HaveChildren, HavePhotos, IncompleteNames,
+    IsAncestorOfFilterMatch, IsBookmarked, IsChildOfFilterMatch,
+    IsDescendantFamilyOf, IsDescendantFamilyOfFilterMatch,
+    IsDescendantOfFilterMatch, IsDefaultPerson, IsDescendantOf,
+    IsDuplicatedAncestorOf, IsFemale,
+    IsLessThanNthGenerationAncestorOf,
+    IsLessThanNthGenerationAncestorOfDefaultPerson,
+    IsLessThanNthGenerationAncestorOfBookmarked, IsMale,
+    IsMoreThanNthGenerationAncestorOf, IsMoreThanNthGenerationDescendantOf,
+    IsParentOfFilterMatch, IsRelatedWith, IsSiblingOfFilterMatch,
+    IsSpouseOfFilterMatch, IsWitness, MissingParent, MultipleMarriages,
+    NeverMarried, NoBirthdate, NoDeathdate, PeoplePrivate, PeoplePublic,
+    PersonWithIncompleteEvent, ProbablyAlive, RegExpName,
+    RelationshipPathBetweenBookmarks,
+)
 
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 EXAMPLE = os.path.join(TEST_DIR, "example.gramps")
@@ -53,14 +70,291 @@ class BaseTest(unittest.TestCase):
         """
         cls.db = import_as_dict(EXAMPLE, User())
 
-    def filter_with_rule(self, rule):
+    def filter_with_rule(self, rule, l_op='and', invert=False,
+                         baserule=None, base_l_op='and', base_invert=False,
+                         base_name='Base'):
         """
-        Apply a filter with the given rule.
+        Apply a filter with the given rule.  'baserule' can be used to stack
+        filters when using filters that are of 'offiltermatch' type.
         """
+        if baserule:
+            filter_ = GenericFilter()
+            if isinstance(baserule, list):
+                filter_.set_rules(baserule)
+            else:
+                filter_.add_rule(baserule)
+            filter_.set_logical_op(base_l_op)
+            filter_.set_invert(base_invert)
+            filter_.set_name(base_name)
+            filters = CustomFilters.get_filters_dict('Person')
+            filters[base_name] = filter_
         filter_ = GenericFilter()
-        filter_.add_rule(rule)
+        if isinstance(rule, list):
+            filter_.set_rules(rule)
+        else:
+            filter_.add_rule(rule)
+        filter_.set_logical_op(l_op)
+        filter_.set_invert(invert)
+        stime = time.clock()
         results = filter_.apply(self.db)
+        if __debug__:
+            rulename = inspect.stack()[1][3]
+            print("%s: %.2f\n" % (rulename, time.clock() - stime))
         return set(results)
+
+    def test_Complex_1(self):
+        """ Test with two ancestor trees in base filter, and a complex
+        'or' of a descendent tree, sibling of, """
+        rule1 = IsLessThanNthGenerationAncestorOf(['I0005', 10])
+        rule2 = IsLessThanNthGenerationAncestorOf(['I0006', 10])
+        ruleA = IsDescendantOfFilterMatch(['Base'])
+        ruleB = IsSiblingOfFilterMatch(['Base'])
+        ruleC = IsSpouseOfFilterMatch(['Base'])
+        res = self.filter_with_rule([ruleA, ruleB, ruleC], l_op='or',
+                                    baserule=[rule1, rule2], base_l_op='or')
+        self.assertEqual(len(res), 1277)
+
+    def test_IsDescendantOfFilterMatch(self):
+        """ Test the rule with two persons in base filter """
+        rule1 = HasIdOf(['I0610'])
+        rule2 = HasIdOf(['I1804'])
+        rule = IsDescendantOfFilterMatch(['Base'])
+        res = self.filter_with_rule(rule, baserule=[rule1, rule2],
+                                    base_l_op='or')
+        self.assertEqual(len(res), 120)
+
+    def test_IsDescendantFamilyOfFilterMatch(self):
+        """ Test the rule with two persons in base filter """
+        rule1 = HasIdOf(['I0610'])
+        rule2 = HasIdOf(['I1804'])
+        rule = IsDescendantFamilyOfFilterMatch(['Base'])
+        res = self.filter_with_rule(rule, baserule=[rule1, rule2],
+                                    base_l_op='or')
+        self.assertEqual(len(res), 171)
+
+    def test_IsDescendantFamilyOf(self):
+        """ Test the rule """
+        rule = IsDescendantFamilyOf(['I0610', 1])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 118)
+
+    def test_IsDescendantOf(self):
+        """ Test the rule """
+        rule = IsDescendantOf(['I0610', 0])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 85)
+
+    def test_IsMoreThanNthGenerationDescendantOf(self):
+        """ Test the rule """
+        rule = IsMoreThanNthGenerationDescendantOf(['I0610', 3])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 83)
+
+    def test_IsLessThanNthGenerationAncestorOfDefaultPerson(self):
+        """ Test the rule """
+        rule = IsLessThanNthGenerationAncestorOfDefaultPerson([5])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 7)
+
+    def test_IsLessThanNthGenerationAncestorOfBookmarked(self):
+        """ Test the rule """
+        rule = IsLessThanNthGenerationAncestorOfBookmarked([5])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 8)
+
+    def test_IsParentOfFilterMatch(self):
+        """ Test the rule with two persons in base filter """
+        rule1 = HasIdOf(['I0006'])
+        rule2 = HasIdOf(['I0010'])
+        rule = IsParentOfFilterMatch(['Base'])
+        res = self.filter_with_rule(rule, baserule=[rule1, rule2],
+                                    base_l_op='or')
+        self.assertEqual(len(res), 4)
+
+    def test_IsSiblingOfFilterMatch(self):
+        """ Test the rule with two persons in base filter """
+        rule1 = HasIdOf(['I0006'])
+        rule2 = HasIdOf(['I0010'])
+        rule = IsSiblingOfFilterMatch(['Base'])
+        res = self.filter_with_rule(rule, baserule=[rule1, rule2],
+                                    base_l_op='or')
+        self.assertEqual(len(res), 7)
+
+    def test_IsSpouseOfFilterMatch(self):
+        """ Test the rule with two persons in base filter """
+        rule1 = HasIdOf(['I0006'])
+        rule2 = HasIdOf(['I0010'])
+        rule = IsSpouseOfFilterMatch(['Base'])
+        res = self.filter_with_rule(rule, baserule=[rule1, rule2],
+                                    base_l_op='or')
+        self.assertEqual(len(res), 2)
+
+    def test_isancestoroffiltermatch(self):
+        """ Test the rule with two persons in base filter """
+        rule1 = HasIdOf(['I0006'])
+        rule2 = HasIdOf(['I0005'])
+        rule = IsAncestorOfFilterMatch(['Base'])
+        res = self.filter_with_rule(rule, baserule=[rule1, rule2],
+                                    base_l_op='or')
+        self.assertEqual(len(res), 431)
+
+    def test_HasCommonAncestorWithFilterMatch(self):
+        """ Test the rule with two persons in base filter """
+        rule1 = HasIdOf(['I0006'])
+        rule2 = HasIdOf(['I0005'])
+        rule = HasCommonAncestorWithFilterMatch(['Base'])
+        res = self.filter_with_rule(rule, baserule=[rule1, rule2],
+                                    base_l_op='or')
+        self.assertEqual(len(res), 1415)
+
+    def test_IsChildOfFilterMatch(self):
+        """ Test the rule with two persons in base filter """
+        rule1 = HasIdOf(['I0006'])
+        rule2 = HasIdOf(['I0010'])
+        rule = IsChildOfFilterMatch(['Base'])
+        res = self.filter_with_rule(rule, baserule=[rule1, rule2],
+                                    base_l_op='or')
+        self.assertEqual(len(res), 11)
+
+    def test_HasAddress(self):
+        """
+        Test HasAddress rule.
+        """
+        rule = HasAddress([0, 'greater than'])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 1)
+
+    def test_HasAssociation(self):
+        """
+        Test rule.
+        """
+        rule = HasAssociation([0, 'greater than'])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 2)
+
+    def test_HasBirth(self):
+        """
+        Test rule.
+        """
+        rule = HasBirth(['between 1600 and 1700', 'akron', ''])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 2)
+
+    def test_HasDeath(self):
+        """
+        Test HasDeath rule.
+        """
+        rule = HasDeath(['between 1600 and 1700', 'ashtabula', ''])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 2)
+
+    def test_HasEvent(self):
+        """
+        Test rule.
+        """
+        rule = HasEvent(['Birth', 'between 1600 and 1700', 'akron',
+                         '', '', 1])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 2)
+
+    def test_HasFamilyAttribute(self):
+        """
+        Test rule.
+        """
+        rule = HasFamilyAttribute([5, '8'])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 2)
+
+    def test_HasFamilyEvent(self):
+        """
+        Test rule.
+        """
+        rule = HasFamilyEvent(['Marriage', 'after 1900', 'craw', ''])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 4)
+
+    def test_HavePhotos(self):
+        """
+        Test rule.
+        """
+        rule = HavePhotos([0, 'greater than'])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 5)
+
+    def test_HasLDS(self):
+        """
+        Test rule.
+        """
+        rule = HasLDS([0, 'greater than'])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 1)
+
+    def test_HasNameOriginType(self):
+        """
+        Test rule.
+        """
+        rule = HasNameOriginType(['Patrilineal'])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 9)
+
+    def test_HasNameType(self):
+        """
+        Test rule.
+        """
+        rule = HasNameType(['Married Name'])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 1)
+
+    def test_HasRelationship(self):
+        """
+        Test rule.
+        """
+        rule = HasRelationship([0, 'Married', 0])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 1377)
+
+    def test_HasTextMatchingRegexpOf(self):
+        """
+        Test rule.
+        """
+        rule = HasTextMatchingRegexpOf(['.*(Dahl|Akron|Smith|Attic|'
+                                        'of Lessard).*', False],
+                                       use_regex=True)
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 28)
+
+    def test_IsMoreThanNthGenerationAncestorOf(self):
+        """
+        Test rule.
+        """
+        rule = IsMoreThanNthGenerationAncestorOf(['I0005', 3])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 322)
+
+    def test_IsWitness(self):
+        """
+        Test rule.
+        """
+        rule = IsWitness(['Marriage'])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 1)
+
+    def test_ProbablyAlive(self):
+        """
+        Test rule.
+        """
+        rule = ProbablyAlive(['1900'])
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 766)
+
+    def test_RegExpName(self):
+        """
+        Test rule.
+        """
+        rule = RegExpName(['.*(Garc|Amy).*'], use_regex=True)
+        res = self.filter_with_rule(rule)
+        self.assertEqual(len(res), 3)
+
 
     def test_disconnected(self):
         """

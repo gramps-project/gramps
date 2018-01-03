@@ -961,10 +961,10 @@ class SimpleAccess:
         :param prop: "gramps_id", or "handle"
         :param value: gramps_id or handle.
         """
-        if object_class in self.dbase.get_table_names():
+        func = self.dbase.method('get_%s_from_%s', object_class, prop)
+        if func:
             try:
-                obj = self.dbase.get_table_metadata(
-                    object_class)[prop + "_func"](value)
+                obj = func(value)
             except HandleError:
                 # Deals with deleted objects referenced in Note Links
                 obj = None
@@ -1021,8 +1021,9 @@ class SimpleAccess:
         Given a object, return a string describing the object.
         """
         if prop and value:
-            if self.dbase.get_table_metadata(obj):
-                obj = self.dbase.get_table_metadata(obj)[prop + "_func"](value)
+            func = self.dbase.method('get_%s_from_%s', object_class, prop)
+            if func:
+                obj = func(value)
         if isinstance(obj, Person):
             return "%s [%s]" % (self.name(obj),
                                 self.gid(obj))
@@ -1064,6 +1065,6 @@ class SimpleAccess:
         :param prop: "gramps_id", or "handle"
         :param value: gramps_id or handle.
         """
-        if object_class in self.dbase.get_table_names():
-            return self.dbase.get_table_metadata(object_class) \
-                [prop + "_func"](value)
+        func = self.dbase.method('get_%s_from_%s', object_class, prop)
+        if func:
+            return func(value)

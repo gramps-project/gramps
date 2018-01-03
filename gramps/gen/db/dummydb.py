@@ -556,14 +556,6 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
             LOG.warning("database is closed")
         return []
 
-    def get_gramps_ids(self, obj_key):
-        """
-        Returns all the keys from a table given a table name
-        """
-        if not self.db_is_open:
-            LOG.warning("database is closed")
-        return []
-
     def get_media_attribute_types(self):
         """
         Return a list of all Attribute types associated with Media and MediaRef
@@ -1277,16 +1269,6 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
             LOG.warning("database is closed")
         return False
 
-    def has_gramps_id(self, obj_key, gramps_id):
-        """
-        Returns True if the key exists in table given a table name
-
-        Not used in current codebase
-        """
-        if not self.db_is_open:
-            LOG.warning("database is closed")
-        return False
-
     def has_name_group_key(self, name):
         """
         Return if a key exists in the name_group table.
@@ -1645,13 +1627,6 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
     def set_researcher(self, owner):
         """
         Set the information about the owner of the database.
-        """
-        if not self.db_is_open:
-            LOG.warning("database is closed")
-
-    def set_save_path(self, path):
-        """
-        Set the save path for the database.
         """
         if not self.db_is_open:
             LOG.warning("database is closed")

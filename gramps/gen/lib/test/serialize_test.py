@@ -114,9 +114,10 @@ def generate_case(obj):
     #setattr(DatabaseCheck, name, test2)
 
 db = import_as_dict(EXAMPLE, User())
-for table in db.get_table_names():
-    for handle in db.get_table_metadata(table)["handles_func"]():
-        obj = db.get_table_metadata(table)["handle_func"](handle)
+for obj_class in ('Person', 'Family', 'Event', 'Place', 'Repository', 'Source',
+                  'Citation', 'Media', 'Note'):
+    for handle in db.method('get_%s_handles', obj_class)():
+        obj = db.method('get_%s_from_handle', obj_class)(handle)
         generate_case(obj)
 
 if __name__ == "__main__":

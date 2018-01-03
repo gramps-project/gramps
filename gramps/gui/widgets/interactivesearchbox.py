@@ -40,6 +40,12 @@ from gi.repository import Gtk, Gdk, GLib
 
 #-------------------------------------------------------------------------
 #
+# Gramps modules
+#
+#-------------------------------------------------------------------------
+from ..utils import get_primary_mask
+#-------------------------------------------------------------------------
+#
 # InteractiveSearchBox class
 #
 #-------------------------------------------------------------------------
@@ -100,10 +106,7 @@ class InteractiveSearchBox:
         self._search_entry.disconnect(popup_menu_id)
 
         # Intercept CTRL+F keybinding because Gtk do not allow to _replace_ it.
-        default_accel = obj.get_modifier_mask(
-            Gdk.ModifierIntent.PRIMARY_ACCELERATOR)
-        if ((event.state & (default_accel | Gdk.ModifierType.CONTROL_MASK))
-                == (default_accel | Gdk.ModifierType.CONTROL_MASK)
+        if ((event.state & get_primary_mask())
                 and event.keyval in [Gdk.KEY_f, Gdk.KEY_F]):
             self.__imcontext_changed = True
             # self.real_start_interactive_search(event.get_device(), True)
@@ -399,7 +402,7 @@ class InteractiveSearchBox:
             self._search_window.hide()
             self._search_entry.set_text("")
             self._treeview.emit('focus-in-event', event)
-        self.__selected_search_result = None
+        self.__selected_search_result = 0
 
     def _position_func(self, userdata=None):
         tree_window = self._treeview.get_window()

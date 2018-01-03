@@ -54,7 +54,6 @@ Middle                  images/Web_Mainz_Mid.png
 Middle Light            images/Web_Mainz_MidLight.png
 ----------------------------------------------------------------------------
 
-# $Id$
 
  NarrativeWeb Styles
 -------------------------------------------------------------------------------------------- 
@@ -68,7 +67,7 @@ body {
     background: url(../images/Web_Mainz_Bkgd.png) black repeat;
 }
 body > div {
-    width: 950px;
+    width: 85%;
     margin: 0px auto;
     background: url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
     overflow: hidden;
@@ -90,6 +89,12 @@ h1 {
     font-weight: normal;
     font-style: italic;
     margin-left: 2em;
+}
+h2 {
+    display:block;
+    margin:0;
+    padding:0;
+    text-align: center;
 }
 h3 {
     font-size: xx-large;
@@ -144,7 +149,7 @@ div#nav ul li, #subnavigation ul li {
     float: left;
 }
 div#nav ul li a, #subnavigation ul li a {
-    display: block;
+    display: run-in;
     padding: 0.4em 0.8em 0.3em 0.8em;
     font-size: smaller;
     font-family: sans-serif;

@@ -1,5 +1,4 @@
 #!/bin/sh
-# $Id$
 
 # Make translation files
 

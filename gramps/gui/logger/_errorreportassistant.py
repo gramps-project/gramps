@@ -173,10 +173,8 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
         if hasattr(os, "uname"):
             distribution = "Distribution: %s\n" % os.uname()[2]
 
-        sqlite = ''
-        if __debug__:
-            sqlite = "sqlite version: %s (%s) \n" % (sqlite3_version_str,
-                                                     sqlite3_py_version_str)
+        sqlite = "sqlite version: %s (%s) \n" % (sqlite3_version_str,
+                                                 sqlite3_py_version_str)
 
         return "Gramps version: %s \n"\
                "Python version: %s \n"\

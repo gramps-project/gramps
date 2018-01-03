@@ -44,6 +44,7 @@ import gi
 gi.require_version('PangoCairo', '1.0')
 from gi.repository import PangoCairo
 from gi.repository import GLib
+from gi.repository import Gdk
 
 #-------------------------------------------------------------------------
 #
@@ -466,18 +467,11 @@ def process_pending_events(max_count=10):
 
 def is_right_click(event):
     """
-    Returns True if the event is a button-3 or equivalent
+    Returns True if the event is to open the context menu.
     """
     from gi.repository import Gdk
-
-    if event.type == Gdk.EventType.BUTTON_PRESS:
-        if is_quartz():
-            if (event.button == 3
-                or (event.button == 1 and event.get_state() & Gdk.ModifierType.CONTROL_MASK)):
-                return True
-
-        if event.button == 3:
-            return True
+    if Gdk.Event.triggers_context_menu(event):
+        return True
 
 def color_graph_box(alive=False, gender=Person.MALE):
     """
@@ -685,3 +679,12 @@ def text_to_clipboard(text):
     clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(),
                                               Gdk.SELECTION_CLIPBOARD)
     clipboard.set_text(text, -1)
+
+def get_primary_mask(addl_mask=0):
+    """
+    Obtain the IntentPrimary mask for the platform bitwise-ored with a
+    passed-in additional mask.
+    """
+    keymap = Gdk.Keymap.get_default()
+    primary = keymap.get_modifier_mask(Gdk.ModifierIntent.PRIMARY_ACCELERATOR)
+    return primary | addl_mask

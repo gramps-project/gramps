@@ -44,7 +44,7 @@ import math
 import colorsys
 import sys
 import pickle
-from cgi import escape
+from html import escape
 
 #-------------------------------------------------------------------------
 #

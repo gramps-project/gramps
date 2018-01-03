@@ -59,7 +59,8 @@ from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
                                       BsddbUpgradeRequiredError,
                                       BsddbDowngradeRequiredError,
                                       PythonUpgradeRequiredError,
-                                      PythonDowngradeError)
+                                      PythonDowngradeError,
+                                      DbConnectionError)
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.utils.config import get_researcher
 from gramps.gen.recentfiles import recent_files
@@ -131,7 +132,7 @@ class CLIDbLoader:
         """
         pass
 
-    def read_file(self, filename):
+    def read_file(self, filename, username, password):
         """
         This method takes care of changing database, and loading the data.
         In 3.0 we only allow reading of real databases of filetype
@@ -172,8 +173,8 @@ class CLIDbLoader:
         self._begin_progress()
 
         try:
-            self.dbstate.db.load(filename, self._pulse_progress, mode)
-            self.dbstate.db.set_save_path(filename)
+            self.dbstate.db.load(filename, self._pulse_progress, mode,
+                                 username=username, password=password)
         except DbEnvironmentError as msg:
             self.dbstate.no_database()
             self._errordialog(_("Cannot open database"), str(msg))
@@ -199,6 +200,9 @@ class CLIDbLoader:
             self.dbstate.no_database()
             self._errordialog(_("Cannot open database"), str(msg))
         except DbPythonError as msg:
+            self.dbstate.no_database()
+            self._errordialog(_("Cannot open database"), str(msg))
+        except DbConnectionError as msg:
             self.dbstate.no_database()
             self._errordialog(_("Cannot open database"), str(msg))
         except OSError as msg:
@@ -237,11 +241,11 @@ class CLIManager:
         self._pmgr = BasePluginManager.get_instance()
         self.user = user
 
-    def open_activate(self, path):
+    def open_activate(self, path, username=None, password=None):
         """
         Open and make a family tree active
         """
-        self._read_recent_file(path)
+        self._read_recent_file(path, username, password)
 
     def _errordialog(self, title, errormessage):
         """
@@ -250,7 +254,7 @@ class CLIManager:
         print(_('ERROR: %s') % errormessage, file=sys.stderr)
         sys.exit(1)
 
-    def _read_recent_file(self, filename):
+    def _read_recent_file(self, filename, username=None, password=None):
         """
         Called when a file needs to be loaded
         """
@@ -271,7 +275,7 @@ class CLIManager:
                   "that the database is not in use."))
             return
 
-        if self.db_loader.read_file(filename):
+        if self.db_loader.read_file(filename, username, password):
             # Attempt to figure out the database title
             path = os.path.join(filename, "name.txt")
             try:
@@ -302,11 +306,6 @@ class CLIManager:
         self.dbstate.db.db_name = title
         if title:
             name = title
-
-        # This method is for UI stuff when the database has changed.
-        # Window title, recent files, etc related to new file.
-
-        self.dbstate.db.set_save_path(filename)
 
         # apply preferred researcher if loaded file has none
         res = self.dbstate.db.get_researcher()

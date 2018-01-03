@@ -69,10 +69,16 @@ class LogGramplet(Gramplet):
                      lambda handles: self.log('Family', 'Deleted', handles))
         self.connect(self.dbstate.db, 'family-update',
                      lambda handles: self.log('Family', 'Edited', handles))
+        self.connect_signal('Person', self.active_changed)
+        self.connect_signal('Family', self.active_changed_family)
 
     def active_changed(self, handle):
         if handle:
             self.log('Person', 'Selected', [handle])
+
+    def active_changed_family(self, handle):
+        if handle:
+            self.log('Family', 'Selected', [handle])
 
     def log(self, ltype, action, handles):
         for handle in set(handles):
@@ -90,6 +96,8 @@ class LogGramplet(Gramplet):
                         for i in transaction.get_recnos(reverse=True):
                             (obj_type, trans_type, hndl, old_data, dummy) = \
                                     transaction.get_record(i)
+                            if isinstance(hndl, bytes):
+                                hndl = str(hndl, "utf-8")
                             if (obj_type == PERSON_KEY and trans_type == TXNDEL
                                     and hndl == handle):
                                 person = Person()
@@ -102,6 +110,8 @@ class LogGramplet(Gramplet):
                         for i in transaction.get_recnos(reverse=True):
                             (obj_type, trans_type, hndl, old_data, dummy) = \
                                     transaction.get_record(i)
+                            if isinstance(hndl, bytes):
+                                hndl = str(hndl, "utf-8")
                             if (obj_type == FAMILY_KEY and trans_type == TXNDEL
                                     and hndl == handle):
                                 family = Family()

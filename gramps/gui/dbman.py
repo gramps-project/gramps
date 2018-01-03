@@ -285,9 +285,6 @@ class DbManager(CLIDbManager, ManagedWindow):
         # Get the current selection
         store, node = selection.get_selected()
 
-        if not __debug__:
-            self.convert_btn.set_visible(False)
-
         if not _RCS_FOUND: # it's not in Windows
             self.rcs_btn.set_visible(False)
 
@@ -560,7 +557,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         if len(new_text) > 0:
             node = self.model.get_iter(path)
             old_text = self.model.get_value(node, NAME_COL)
-            if self.model.get_value(node, ICON_COL) not in [None, ""]:
+            if self.model.get_value(node, ICON_COL) == 'document-open':
                 # this database is loaded. We must change the title
                 # in case we change the name several times before quitting,
                 # we save the first old name.
@@ -661,11 +658,13 @@ class DbManager(CLIDbManager, ManagedWindow):
         Create a new database, then extracts a revision from RCS and
         imports it into the db
         """
-        new_path, newname = self._create_new_db("%s : %s" % (parent_name, name))
+        dbid = config.get('database.backend')
+        new_path, newname = self._create_new_db("%s : %s" % (parent_name, name),
+                                                dbid=dbid)
 
         self.__start_cursor(_("Extracting archive..."))
 
-        dbase = make_database("bsddb")
+        dbase = make_database(dbid)
         dbase.load(new_path)
 
         self.__start_cursor(_("Importing archive..."))
@@ -811,10 +810,11 @@ class DbManager(CLIDbManager, ManagedWindow):
         while self.existing_name(new_text):
             count += 1
             new_text = "%s %s" % (name, _("(Converted #%d)") % count)
-        new_path, newname = self._create_new_db(new_text, edit_entry=False)
+        dbid = config.get('database.backend')
+        new_path, newname = self._create_new_db(new_text, dbid=dbid,
+                                                edit_entry=False)
         ## Create a new database of correct type:
-        dbase = make_database(config.get('database.backend'))
-        dbase.write_version(new_path)
+        dbase = make_database(dbid)
         dbase.load(new_path)
         ## import from XML
         import_function = None
@@ -929,11 +929,7 @@ class DbManager(CLIDbManager, ManagedWindow):
                 fname = os.path.join(dirname, filename)
                 os.unlink(fname)
 
-        newdb = make_database("bsddb")
-        newdb.write_version(dirname)
-
         dbase = make_database("bsddb")
-        dbase.set_save_path(dirname)
         dbase.load(dirname, None)
 
         self.__start_cursor(_("Rebuilding database from backup files"))

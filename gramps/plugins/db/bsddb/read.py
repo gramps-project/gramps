@@ -478,45 +478,6 @@ class DbBsddbRead(DbReadBase, Callback):
         else:
             return None
 
-    def get_table_names(self):
-        """Return a list of valid table names."""
-        return list(self._get_table_func())
-
-    def get_table_metadata(self, table_name):
-        """Return the metadata for a valid table name."""
-        if table_name in self._get_table_func():
-            return self._get_table_func(table_name)
-        return None
-
-    def get_from_name_and_gramps_id(self, table_name, gramps_id):
-        """
-        Returns a gen.lib object (or None) given table_name and
-        Gramps ID.
-
-        Examples:
-
-        >>> self.get_from_name_and_gramps_id("Person", "I00002")
-        >>> self.get_from_name_and_gramps_id("Family", "F056")
-        >>> self.get_from_name_and_gramps_id("Media", "M00012")
-        """
-        if table_name in self._get_table_func():
-            return self._get_table_func(table_name,"gramps_id_func")(gramps_id)
-        return None
-
-    def get_from_name_and_handle(self, table_name, handle):
-        """
-        Returns a gen.lib object (or None) given table_name and
-        handle.
-
-        Examples:
-
-        >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
-        >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
-        """
-        if table_name in self._get_table_func() and handle:
-            return self._get_table_func(table_name,"handle_func")(handle)
-        return None
-
     def set_prefixes(self, person, media, family, source, citation, place,
                      event, repository, note):
         self.set_person_id_prefix(person)
@@ -1208,43 +1169,12 @@ class DbBsddbRead(DbReadBase, Callback):
     iter_tags          = _f(get_tag_cursor, Tag)
     del _f
 
-    def get_gramps_ids(self, obj_key):
-        key2table = {
-            PERSON_KEY:     self.id_trans,
-            FAMILY_KEY:     self.fid_trans,
-            SOURCE_KEY:     self.sid_trans,
-            CITATION_KEY:   self.cid_trans,
-            EVENT_KEY:      self.eid_trans,
-            MEDIA_KEY:      self.oid_trans,
-            PLACE_KEY:      self.pid_trans,
-            REPOSITORY_KEY: self.rid_trans,
-            NOTE_KEY:       self.nid_trans,
-            }
-
-        table = key2table[obj_key]
-        return [key.decode('utf-8') for key in table.keys()]
-
-    def has_gramps_id(self, obj_key, gramps_id):
-        key2table = {
-            PERSON_KEY:     self.id_trans,
-            FAMILY_KEY:     self.fid_trans,
-            SOURCE_KEY:     self.sid_trans,
-            CITATION_KEY:   self.cid_trans,
-            EVENT_KEY:      self.eid_trans,
-            MEDIA_KEY:      self.oid_trans,
-            PLACE_KEY:      self.pid_trans,
-            REPOSITORY_KEY: self.rid_trans,
-            NOTE_KEY:       self.nid_trans,
-            }
-
-        table = key2table[obj_key]
-        gramps_id = gramps_id.encode('utf-8')
-        return table.get(gramps_id, txn=self.txn) is not None
-
     def find_initial_person(self):
         person = self.get_default_person()
         if not person:
-            the_ids = self.get_gramps_ids(PERSON_KEY)
+            the_ids = []
+            for this_person in self.iter_people():
+                the_ids.append(this_person.gramps_id)
             if the_ids:
                 person = self.get_person_from_gramps_id(min(the_ids))
         return person
@@ -1470,10 +1400,6 @@ class DbBsddbRead(DbReadBase, Callback):
     def get_save_path(self):
         """Return the save path of the file, or "" if one does not exist."""
         return self.path
-
-    def set_save_path(self, path):
-        """Set the save path for the database."""
-        self.path = path
 
     def get_event_attribute_types(self):
         """

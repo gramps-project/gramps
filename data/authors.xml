@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $Id$ -->
 <authors xmlns:html="http://www.w3.org/1999/xhtml">
  <author title="author">
   Alex Roitman &lt;<html:a href="mailto:shura@gramps-project.org">shura@gramps-project.org</html:a>&gt;
@@ -93,6 +92,9 @@
  </author>
  <author title="contributor">
   Nick Hall &lt;<html:a href="mailto:nick__hall@hotmail.com">nick__hall@hotmail.com</html:a>&gt;
+ </author>
+ <author title="contributor">
+  Paul Culley &lt;<html:a href="mailto:paulr2787@gmail.com">paulr2787@gmail.com</html:a>&gt;
  </author>
  <author title="contributor">
   Peter Landgren &lt;<html:a href="mailto:peter.talken@telia.com">peter.talken@telia.com</html:a>&gt;

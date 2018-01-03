@@ -46,6 +46,8 @@ from .edittaglist import EditTagList
 from .editurl import EditUrl
 from .editlink import EditLink
 from .filtereditor import FilterEditor, EditFilter
+from gramps.gen.lib import (Person, Family, Event, Place, Repository, Source,
+                            Citation, Media, Note)
 
 # Map from gramps.gen.lib name to Editor:
 EDITORS = {
@@ -60,6 +62,18 @@ EDITORS = {
     'Note': EditNote,
     }
 
+CLASSES = {
+    'Person': Person,
+    'Event': Event,
+    'Family': Family,
+    'Media': Media,
+    'Source': Source,
+    'Citation': Citation,
+    'Place': Place,
+    'Repository': Repository,
+    'Note': Note,
+    }
+
 def EditObject(dbstate, uistate, track, obj_class, prop=None, value=None, callback=None):
     """
     Generic Object Editor.
@@ -69,15 +83,15 @@ def EditObject(dbstate, uistate, track, obj_class, prop=None, value=None, callba
     """
     import logging
     LOG = logging.getLogger(".Edit")
-    if obj_class in dbstate.db.get_table_names():
+    if obj_class in EDITORS.keys():
         if value is None:
-            obj = dbstate.db.get_table_metadata(obj_class)["class_func"]()
+            obj = CLASSES[obj_class]
             try:
                 EDITORS[obj_class](dbstate, uistate, track, obj, callback=callback)
             except Exception as msg:
                 LOG.warning(str(msg))
         elif prop in ("gramps_id", "handle"):
-            obj = dbstate.db.get_table_metadata(obj_class)[prop + "_func"](value)
+            obj = dbstate.db.method('get_%s_from_%s', obj_class, prop)(value)
             if obj:
                 try:
                     EDITORS[obj_class](dbstate, uistate, track, obj, callback=callback)

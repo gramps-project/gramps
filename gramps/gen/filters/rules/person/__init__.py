@@ -187,6 +187,7 @@ editor_rule_list = [
     HasNote,
     HasNoteRegexp,
     RegExpIdOf,
+    RegExpName,
     Disconnected,
     ChangedSince,
     IsRelatedWith,

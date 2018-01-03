@@ -64,7 +64,7 @@ class SQLite(DBAPI):
         })
         return summary
 
-    def _initialize(self, directory):
+    def _initialize(self, directory, username, password):
         if directory == ':memory:':
             path_to_db = ':memory:'
         else:

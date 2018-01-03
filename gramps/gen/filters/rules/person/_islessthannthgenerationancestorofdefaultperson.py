@@ -73,6 +73,8 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
 
         p = self.db.get_person_from_handle(handle)
         fam_id = p.get_main_parents_family_handle()
+        if not fam_id:
+            return
         fam = self.db.get_family_from_handle(fam_id)
         if fam:
             f_id = fam.get_father_handle()

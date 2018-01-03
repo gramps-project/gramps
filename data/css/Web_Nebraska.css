@@ -45,7 +45,6 @@ gray                #696969
 green               #5D835F
 --------------------------------------------------------------------------------------------
 
-# $Id$
 
  NarrativeWeb Styles
 -------------------------------------------------------------------------------------------- 
@@ -115,7 +114,7 @@ h1 {
     font:normal 2em/1.2em serif;
 }
 h2 {
-    display:none;
+    display:block;
 }
 h3 {
     font:normal 2em/1.2em serif;
@@ -139,7 +138,6 @@ h5, h6 {
 
 p#description {
     color:#542;
-    max-width:800px;
     margin:0;
     padding:1em 20px;
     background-color:#FFF;

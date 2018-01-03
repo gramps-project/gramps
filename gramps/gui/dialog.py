@@ -24,6 +24,7 @@
 #
 #-------------------------------------------------------------------------
 import sys
+import html
 import logging
 _LOG = logging.getLogger(".dialog")
 
@@ -98,7 +99,8 @@ class QuestionDialog:
         self.top.set_title("%s - Gramps" % msg1)
 
         label1 = self.xml.get_object('qd_label1')
-        label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
+        label1.set_text('<span weight="bold" size="larger">%s</span>' %
+                         html.escape(msg1))
         label1.set_use_markup(True)
 
         label2 = self.xml.get_object('qd_label2')
@@ -134,7 +136,8 @@ class QuestionDialog2:
         self.top.set_title("%s - Gramps" % msg1)
 
         label1 = self.xml.get_object('qd_label1')
-        label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
+        label1.set_text('<span weight="bold" size="larger">%s</span>' %
+                        html.escape(msg1))
         label1.set_use_markup(True)
 
         label2 = self.xml.get_object('qd_label2')

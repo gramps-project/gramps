@@ -90,7 +90,6 @@ class FamilyPages(BasePage):
         """
         BasePage.__init__(self, report, title="")
         self.family_dict = defaultdict(set)
-        self.person = None
         self.familymappages = None
 
     def display_pages(self, title):
@@ -343,12 +342,6 @@ class FamilyPages(BasePage):
                     for evt_ref in family.get_event_ref_list():
                         event = self.r_db.get_event_from_handle(evt_ref.ref)
                         media_list += event.get_media_list()
-                thumbnail = self.disp_first_img_as_thumbnail(media_list,
-                                                             family)
-                if thumbnail:
-                    relationshipdetail += thumbnail
-
-            self.person = None   # no longer used
 
             relationshipdetail += Html(
                 "h2", self.page_title, inline=True) + (

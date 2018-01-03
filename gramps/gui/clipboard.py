@@ -60,7 +60,7 @@ from gramps.gen.constfunc import mac
 from .glade import Glade
 from .ddtargets import DdTargets
 from .makefilter import make_filter
-from .utils import is_right_click
+from .utils import is_right_click, get_primary_mask
 
 #-------------------------------------------------------------------------
 #
@@ -1573,7 +1573,7 @@ class MultiTreeView(Gtk.TreeView):
                         o = store.get_value(node, 1)
                         if o._objclass == objclass:
                             my_handle = o._handle
-                            obj = self.dbstate.db.get_table_metadata(objclass)["handle_func"](my_handle)
+                            obj = self.dbstate.db.method('get_%s_from_handle', objclass)(my_handle)
                             if obj:
                                 gids.add(obj.gramps_id)
                 menu_item = Gtk.MenuItem(label=_("the object|Create Filter from %s selected...") % glocale.trans_objclass(objclass))
@@ -1598,7 +1598,7 @@ class MultiTreeView(Gtk.TreeView):
         # otherwise:
         if (target
             and event.type == Gdk.EventType.BUTTON_PRESS
-            and not (event.get_state() & (Gdk.ModifierType.CONTROL_MASK|Gdk.ModifierType.SHIFT_MASK))
+            and not (event.get_state() & get_primary_mask(Gdk.ModifierType.SHIFT_MASK))
             and self.get_selection().path_is_selected(target[0])):
             # disable selection
             self.get_selection().set_select_function(lambda *ignore: False, None)

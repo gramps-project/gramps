@@ -139,16 +139,6 @@ def load_on_reg(dbstate, uistate, plugin):
         ["DropDown-Menus", 0, "Drop Down Menus",
          path_css("Web_DropDown-Menus.css"), None, [], [] ],
 
-        # GeoView style sheet with its image
-        ["GeoView", 0, "GeoView",
-         path_css("GeoView.css"), None,
-         [path_img("crosshairs.png"),
-          path_img("gramps-geo-altmap.png"),
-          path_img("gramps-geo-birth.png"),
-          path_img("gramps-geo-death.png"),
-          path_img("gramps-geo-mainmap.png"),
-          path_img("gramps-geo-marriage.png")], []                     ],
-
         # no style sheet option
         ["No style sheet",1, _("No style sheet"),    [],  None, [], [] ],
 

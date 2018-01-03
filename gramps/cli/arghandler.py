@@ -180,6 +180,8 @@ class ArgHandler:
         self.imports = []
         self.exports = []
         self.removes = parser.removes
+        self.username = parser.username
+        self.password = parser.password
 
         self.open = self.__handle_open_option(parser.open, parser.create)
         self.sanitize_args(parser.imports, parser.exports)
@@ -502,10 +504,9 @@ class ArgHandler:
                     self.imp_db_path = get_empty_tempdir("import_dbdir")
                     dbid = config.get('database.backend')
                     newdb = make_database(dbid)
-                    newdb.write_version(self.imp_db_path)
 
                 try:
-                    self.smgr.open_activate(self.imp_db_path)
+                    self.smgr.open_activate(self.imp_db_path, self.username, self.password)
                     msg = _("Created empty Family Tree successfully")
                     print(msg, file=sys.stderr)
                 except:
@@ -532,7 +533,7 @@ class ArgHandler:
 
             # we load this file for use
             try:
-                self.smgr.open_activate(self.open)
+                self.smgr.open_activate(self.open, self.username, self.password)
                 print(_("Opened successfully!"), file=sys.stderr)
             except:
                 print(_("Error opening the file."), file=sys.stderr)

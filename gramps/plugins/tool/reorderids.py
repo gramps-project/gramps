@@ -46,9 +46,6 @@ _ = glocale.translation.gettext
 
 from gramps.gen.config import config
 from gramps.gen.db import DbTxn
-from gramps.gen.lib import (Person, Family, Event, Place,
-                            Source, Citation, Repository,
-                            Media, Note)
 from gramps.gen.updatecallback import UpdateCallback
 
 from gramps.gui.display import display_help
@@ -66,27 +63,37 @@ from gramps.gui.widgets import MonitoredCheckbox, MonitoredEntry
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Reorder_Gramps_ID')
 
+PREFIXES = {'person': 'i', 'family': 'f', 'event': 'e', 'place': 'p',
+            'source': 's', 'citation': 'c', 'repository': 'r',
+            'media': 'o', 'note': 'n'}
 #-------------------------------------------------------------------------
 #
 # Actual tool
 #
 #-------------------------------------------------------------------------
 
-# gets the number specified in a format string, eg: %04d returns '04'
-_parseformat = re.compile('.*%(\d+)[^\d]+')
+# gets the prefix, number, suffix specified in a format string, eg:
+# P%04dX returns 'P', '04', 'X'  It has to have the integer format with at
+# least 3 digits to pass.
+_parseformat = re.compile(r'(^[^\d]*)%(0[3-9])d([^\d]*$)')
+
 
 class ReorderEntry(object):
     """ Class for internal values for every primary object """
 
-    def __init__(self, object_fmt, quant_id, nextgramps_id):
+    def __init__(self, object_fmt, quant_id, nextgramps_id, obj):
+        self.object = obj
         self.width_fmt = 4
-        self.object_fmt, self.object_prefix = '', ''
+        self.object_fmt, self.object_prefix, self.object_suffix = '', '', ''
         self.quant_id, self.actual_id, self.actgramps_id = 0, 0, '0'
         self.calc_id(object_fmt, quant_id)
-        self.stored_fmt = object_fmt
+        self.stored_fmt = self.object_fmt
         self.stored_prefix = self.object_prefix
+        self.stored_suffix = self.object_suffix
 
-        self.number_id = int(nextgramps_id.split(self.object_prefix, 1)[1])
+        self.number_id = int(nextgramps_id[len(self.object_prefix):
+                                           (len(nextgramps_id) -
+                                            len(self.object_suffix))])
         self.step_id = 1
         self.active_obj, self.change_obj, self.keep_obj = True, False, False
 
@@ -101,7 +108,7 @@ class ReorderEntry(object):
     def set_fmt(self, object_fmt):
         """ sets primary object format """
         if object_fmt:
-            self.calc_id(object_fmt, self.quant_id)
+            self.calc_id(object_fmt.strip(), self.quant_id)
 
     def get_fmt(self):
         """ gets primary object format """
@@ -121,19 +128,26 @@ class ReorderEntry(object):
 
     def __ret_gid(self, actual):
         """ return Gramps ID in correct format """
-        return '%s%s' % \
-               (self.object_prefix, str(actual).zfill(self.width_fmt))
+        return '%s%s%s' % \
+               (self.object_prefix, str(actual).zfill(self.width_fmt),
+                self.object_suffix)
 
     def calc_id(self, object_fmt, quant_id):
-        """ calculates identifier prefix, format & actual value """
-        self.object_prefix = object_fmt.split('%', 1)[0] if '%' in object_fmt else ''
+        """ calculates identifier prefix, suffix, format & actual value.
+        Requires a valid format or returns the default instead """
         self.object_fmt, self.quant_id = object_fmt, quant_id
 
         # Default values, ID counting starts with zero!
-        self.width_fmt, self.actual_id = 4, 0
         formatmatch = _parseformat.match(object_fmt)
         if formatmatch:
-            self.width_fmt = int(formatmatch.groups()[0])
+            self.object_prefix = formatmatch.groups()[0]
+            self.width_fmt = int(formatmatch.groups()[1])
+            self.object_suffix = formatmatch.groups()[2]
+        else:  # not a legal format string, use default
+            self.object_prefix = PREFIXES[self.object].upper()
+            self.width_fmt = 4
+            self.object_suffix = ''
+            self.object_fmt = PREFIXES[self.object].upper() + "%04d"
         self.actgramps_id = self.__ret_gid(self.actual_id)
 
     def zero_id(self):
@@ -163,7 +177,7 @@ class ReorderEntry(object):
     def last_id(self):
         """ provide quantities of Gramps IDs """
         if self.quant_id > 0:
-            return self.__ret_gid(self.quant_id -1)
+            return self.__ret_gid(self.quant_id - 1)
         else:
             return self.__ret_gid(0)
 
@@ -190,6 +204,7 @@ class ReorderEntry(object):
         """ gets Keep flag """
         return self.keep_obj
 
+
 class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
     """ Class for Reodering Gramps ID Tool """
     xobjects = (('person', 'people'), ('family', 'families'),
@@ -204,7 +219,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         self.uistate = user.uistate
-        self.dbstate = dbstate.db
+        self.db = dbstate.db
 
         if self.uistate:
             tool.BatchTool.__init__(self, dbstate, user, options_class, name)
@@ -229,24 +244,26 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
 
         self.prim_methods, self.obj_methods = {}, {}
         for prim_obj, prim_objs in self.xobjects:
-            class_type = prim_obj.title()
-            iter_handles = "self.dbstate.iter_%s_handles" % prim_obj
-            get_number_obj = "self.dbstate.get_number_of_%s" % prim_objs
-            prefix_fmt = "self.dbstate.%s_prefix" % prim_obj
-            get_from_id = "self.dbstate.get_%s_from_gramps_id" % prim_obj
-            get_from_handle = "self.dbstate.get_%s_from_handle" % prim_obj
-            next_from_id = "self.dbstate.find_next_%s_gramps_id" % prim_obj
-            commit = "self.dbstate.commit_%s" % prim_obj
+            iter_handles = "iter_%s_handles" % prim_obj
+            get_number_obj = "get_number_of_%s" % prim_objs
+            prefix_fmt = "%s_prefix" % prim_obj
+            get_from_id = "get_%s_from_gramps_id" % prim_obj
+            get_from_handle = "get_%s_from_handle" % prim_obj
+            next_from_id = "find_next_%s_gramps_id" % prim_obj
+            commit = "commit_%s" % prim_obj
 
-            self.prim_methods[prim_obj] = (eval(prefix_fmt), eval(get_number_obj)(),
-                                           eval(next_from_id)())
-            self.obj_methods[prim_obj] = (eval(class_type), eval(iter_handles), eval(commit),
-                                          eval(get_from_id), eval(get_from_handle),
-                                          eval(next_from_id))
+            self.prim_methods[prim_obj] = (getattr(self.db, prefix_fmt),
+                                           getattr(self.db, get_number_obj)(),
+                                           getattr(self.db, next_from_id)())
+            self.obj_methods[prim_obj] = (getattr(self.db, iter_handles),
+                                          getattr(self.db, commit),
+                                          getattr(self.db, get_from_id),
+                                          getattr(self.db, get_from_handle),
+                                          getattr(self.db, next_from_id))
 
             object_fmt, quant_id, next_id = self.prim_methods[prim_obj]
 
-            obj_value = ReorderEntry(object_fmt, quant_id, next_id)
+            obj_value = ReorderEntry(object_fmt, quant_id, next_id, prim_obj)
             self.obj_values[prim_obj] = obj_value
 
         if self.uistate:
@@ -258,7 +275,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
         """ compute all primary objects and toggle the 'Active' attribute """
         self.object_status = not self.object_status
 
-        for prim_obj, tmp in self.xobjects:
+        for prim_obj, dummy in self.xobjects:
             obj = self.top.get_object('%s_active' % prim_obj)
             obj.set_active(self.object_status)
 
@@ -282,7 +299,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
     def __on_format_button_clicked(self, widget=None):
         """ compute all sensitive primary objects and sets the
             'Format' scheme of identifiers """
-        for prim_obj, tmp in self.xobjects:
+        for prim_obj, dummy in self.xobjects:
             obj_format = self.top.get_object('%s_format' % prim_obj)
             if not obj_format.get_sensitive():
                 continue
@@ -299,7 +316,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
         """ compute all primary objects and toggle the 'Change' attribute """
         self.change_status = not self.change_status
 
-        for prim_obj, tmp in self.xobjects:
+        for prim_obj, dummy in self.xobjects:
             obj_change = self.top.get_object('%s_change' % prim_obj)
             if not obj_change.get_sensitive():
                 continue
@@ -315,8 +332,10 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
         for obj_entry in ['start', 'step', 'keep']:
             obj = self.top.get_object('%s_%s' % (obj_name, obj_entry))
             if obj_entry == 'keep':
-                if self.obj_values[obj_name].stored_prefix != \
-                   self.obj_values[obj_name].object_prefix:
+                if (self.obj_values[obj_name].stored_prefix !=
+                        self.obj_values[obj_name].object_prefix and
+                        self.obj_values[obj_name].stored_suffix !=
+                        self.obj_values[obj_name].object_suffix):
                     self.keep_entries[obj_name].set_val(False)
                 else:
                     obj.set_active(obj_state)
@@ -328,7 +347,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
             'Start' values of identifiers """
         self.start_zero = not self.start_zero
 
-        for prim_obj, tmp in self.xobjects:
+        for prim_obj, dummy in self.xobjects:
             obj = self.top.get_object('%s_start' % prim_obj)
             if not obj.get_sensitive():
                 continue
@@ -342,9 +361,9 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
     def __on_step_button_clicked(self, widget=None):
         """ compute all sensitive primary objects and sets the
             'Step' width of identifiers """
-        self.step_cnt = self.step_cnt +1 if self.step_cnt < 3 else 0
+        self.step_cnt = self.step_cnt + 1 if self.step_cnt < 3 else 0
 
-        for prim_obj, tmp in self.xobjects:
+        for prim_obj, dummy in self.xobjects:
             obj = self.top.get_object('%s_step' % prim_obj)
             if not obj.get_sensitive():
                 continue
@@ -356,7 +375,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
         """ compute the primary object and toggle the 'Active' attribute """
         self.keep_status = not self.keep_status
 
-        for prim_obj, tmp in self.xobjects:
+        for prim_obj, dummy in self.xobjects:
             obj = self.top.get_object('%s_change' % prim_obj)
             if not obj.get_active():
                 continue
@@ -383,7 +402,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
         obj_name = Gtk.Buildable.get_name(widget).split('_', 1)[0]
         obj_fmt = self.format_entries[obj_name].get_val()
 
-        self.format_entries[obj_name].set_val(obj_fmt)
+        self.format_entries[obj_name].set_text(obj_fmt)
         self.start_entries[obj_name].update()
 
         return False
@@ -418,7 +437,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
         window = self.top.toplevel
 
         # set gramps style title for the window
-        self.set_window(window, self.top.get_object("title"), \
+        self.set_window(window, self.top.get_object("title"),
                         _("Reorder Gramps IDs"))
 
         # connect signals
@@ -440,62 +459,62 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
         })
 
         # Calculate all entries and update Glade window
-        for prim_obj, tmp in self.xobjects:
+        for prim_obj, dummy in self.xobjects:
             # populate Object, Actual & Quantity fields with values
             obj_active = self.top.get_object('%s_active' % prim_obj)
-            self.active_entries[prim_obj] = MonitoredCheckbox(obj_active, obj_active,
-                                        self.obj_values[prim_obj].set_active,
-                                        self.obj_values[prim_obj].get_active)
+            self.active_entries[prim_obj] = MonitoredCheckbox(
+                obj_active, obj_active, self.obj_values[prim_obj].set_active,
+                self.obj_values[prim_obj].get_active)
             obj_actual = self.top.get_object('%s_actual' % prim_obj)
             obj_actual.set_text('%s' % self.obj_values[prim_obj].last_id())
             obj_quant = self.top.get_object('%s_quant' % prim_obj)
             obj_quant.set_text('%s' % str(self.obj_values[prim_obj].quant_id))
 
-            # connect/populate Format, Start, Step, Keep & Change fields with GTK/values
+            # connect/populate Format, Start, Step, Keep & Change fields
+            #  with GTK/values
             obj_format = self.top.get_object('%s_format' % prim_obj)
-            self.format_entries[prim_obj] = MonitoredEntry(obj_format,
-                                    self.obj_values[prim_obj].set_fmt,
-                                    self.obj_values[prim_obj].get_fmt)
+            self.format_entries[prim_obj] = MonitoredEntry(
+                obj_format, self.obj_values[prim_obj].set_fmt,
+                self.obj_values[prim_obj].get_fmt)
             obj_change = self.top.get_object('%s_change' % prim_obj)
-            self.change_entries[prim_obj] = MonitoredCheckbox(obj_change, obj_change,
-                                    self.obj_values[prim_obj].set_change,
-                                    self.obj_values[prim_obj].get_change)
+            self.change_entries[prim_obj] = MonitoredCheckbox(
+                obj_change, obj_change, self.obj_values[prim_obj].set_change,
+                self.obj_values[prim_obj].get_change)
             obj_start = self.top.get_object('%s_start' % prim_obj)
-            self.start_entries[prim_obj] = MonitoredEntry(obj_start,
-                                    self.obj_values[prim_obj].set_id,
-                                    self.obj_values[prim_obj].get_id)
+            self.start_entries[prim_obj] = MonitoredEntry(
+                obj_start, self.obj_values[prim_obj].set_id,
+                self.obj_values[prim_obj].get_id)
             obj_step = self.top.get_object('%s_step' % prim_obj)
-            self.step_entries[prim_obj] = MonitoredEntry(obj_step,
-                                    self.obj_values[prim_obj].set_step,
-                                    self.obj_values[prim_obj].get_step,
-                                    changed=self.obj_values[prim_obj].change_step)
+            self.step_entries[prim_obj] = MonitoredEntry(
+                obj_step, self.obj_values[prim_obj].set_step,
+                self.obj_values[prim_obj].get_step,
+                changed=self.obj_values[prim_obj].change_step)
             obj_keep = self.top.get_object('%s_keep' % prim_obj)
-            self.keep_entries[prim_obj] = MonitoredCheckbox(obj_keep, obj_keep,
-                                    self.obj_values[prim_obj].set_keep,
-                                    self.obj_values[prim_obj].get_keep,
-                                    readonly=True)
+            self.keep_entries[prim_obj] = MonitoredCheckbox(
+                obj_keep, obj_keep, self.obj_values[prim_obj].set_keep,
+                self.obj_values[prim_obj].get_keep, readonly=True)
 
         # fetch the popup menu
         self.menu = self.top.get_object("popup_menu")
 
         # ok, let's see what we've done
+        self.window.resize(700, 410)
         self.show()
 
     def _update(self):
         """ store changed objects formats in DB """
 
         update = False
-        for prim_obj, tmp in self.xobjects:
+        for prim_obj, dummy in self.xobjects:
             obj_value = self.obj_values[prim_obj]
             if obj_value.object_fmt != obj_value.stored_fmt:
-                prefix = obj_value.object_prefix.lower()
-                constant = 'preferences.%sprefix' % prefix
+                constant = 'preferences.%sprefix' % PREFIXES[prim_obj]
                 config.set(constant, obj_value.object_fmt)
                 update = True
 
         if update:
             config.save()
-            self.dbstate.set_prefixes(
+            self.db.set_prefixes(
                 config.get('preferences.iprefix'),
                 config.get('preferences.oprefix'),
                 config.get('preferences.fprefix'),
@@ -514,26 +533,26 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
             self.progress = ProgressMeter(_('Reorder Gramps IDs'), '')
         else:
             total_objs = 0
-            for prim_obj, tmp in self.xobjects:
+            for prim_obj, dummy in self.xobjects:
                 if self.obj_values[prim_obj].active_obj:
                     total_objs += self.obj_values[prim_obj].quant_id
             self.set_total(total_objs)
 
         # Update database
-        self.dbstate.disable_signals()
+        self.db.disable_signals()
         for prim_obj, prim_objs in self.xobjects:
-            with DbTxn(_('Reorder %s IDs ...') % prim_obj, self.dbstate, batch=True) \
-            as self.trans:
+            with DbTxn(_('Reorder %s IDs ...') % prim_obj,
+                       self.db, batch=True) as self.trans:
                 if self.obj_values[prim_obj].active_obj:
                     if self.uistate:
-                        self.progress.set_pass(_('Reorder %s IDs ...') % \
-                                               _(prim_objs.title()), \
-                                               self.obj_values[prim_obj].quant_id)
+                        self.progress.set_pass(
+                            _('Reorder %s IDs ...') % _(prim_objs.title()),
+                            self.obj_values[prim_obj].quant_id)
                     # Process reordering
                     self._reorder(prim_obj)
 
-        self.dbstate.enable_signals()
-        self.dbstate.request_rebuild()
+        self.db.enable_signals()
+        self.db.request_rebuild()
 
         # Update progress calculation
         if self.uistate:
@@ -542,24 +561,30 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
             print('\nDone.')
 
     # finds integer portion in a GrampsID
-    _findint = re.compile('^[^\d]*(\d+)[^\d]*')
+    _findint = re.compile('^[^\d]*(\d+)[^\d]*$')
+    # finds prefix, number, suffix of a Gramps ID ignoring a leading or
+    # trailing space.  The number must be at least three digits.
+    _prob_id = re.compile('^ *([^\d]*)(\d{3,9})([^\d]*) *$')
+
     def _reorder(self, prim_obj):
         """ reorders all selected objects with a (new) style, start & step """
 
         dup_ids = []   # list of duplicate identifiers
         new_ids = {}   # list of new identifiers
 
-        class_type, iter_handles, commit, get_from_id, get_from_handle, next_from_id = \
+        iter_handles, commit, get_from_id, get_from_handle, next_from_id = \
             self.obj_methods[prim_obj]
 
         prefix_fmt = self.obj_values[prim_obj].get_fmt()
-        prefix = prefix_fmt.split('%', 1)[0]
+        prefix = self.obj_values[prim_obj].object_prefix
+        suffix = self.obj_values[prim_obj].object_suffix
+        old_pref = self.obj_values[prim_obj].stored_prefix
+        old_suff = self.obj_values[prim_obj].stored_suffix
         new_id = self.obj_values[prim_obj].get_id()
         keep_fmt = self.obj_values[prim_obj].get_keep()
         change = self.obj_values[prim_obj].get_change()
-
-        formatmatch = _parseformat.match(prefix_fmt)
-        index_max = int("9" * int(formatmatch.groups()[0]))
+        index_max = int("9" * self.obj_values[prim_obj].width_fmt)
+        do_same = False
 
         for handle in iter_handles():
             # Update progress
@@ -572,31 +597,68 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
             obj = get_from_handle(handle)
 
             act_id = obj.get_gramps_id()
+            # here we see if the ID looks like a new or previous or default
+            # Gramps ID.
+            # If not we ask user if he really wants to replace it.
+            # This should allow user to protect a GetGov ID or similar
+            match = self._prob_id.match(act_id)
+            if not (match and
+                    (prefix == match.groups()[0] and
+                     suffix == match.groups()[2] or
+                     old_pref == match.groups()[0] and
+                     old_suff == match.groups()[2] or
+                     len(match.groups()[0]) == 1 and
+                     len(match.groups()[2]) == 0)) and not do_same:
+                xml = Glade(toplevel='dialog')
+
+                top = xml.toplevel
+                # self.top.set_icon(ICON)
+                top.set_title("%s - Gramps" % _("Reorder Gramps IDs"))
+                apply_to_rest = xml.get_object('apply_to_rest')
+
+                label1 = xml.get_object('toplabel')
+                label1.set_text('<span weight="bold" size="larger">%s</span>' %
+                                _("Reorder Gramps IDs"))
+                label1.set_use_markup(True)
+
+                label2 = xml.get_object('mainlabel')
+                label2.set_text(_("Do you want to replace %s?" % act_id))
+                top.set_transient_for(self.progress._ProgressMeter__dialog)
+                self.progress._ProgressMeter__dialog.set_modal(False)
+                top.show()
+                response = top.run()
+                do_same = apply_to_rest.get_active()
+                top.destroy()
+                self.progress._ProgressMeter__dialog.set_modal(True)
+                if response != Gtk.ResponseType.YES:
+                    continue
+
+            elif not match and do_same and response != Gtk.ResponseType.YES:
+                continue
+
             if change:
-                # update the defined ID numbers into objects under consideration
-                # of keeping ID if format not matches prefix
+                # update the defined ID numbers into objects under
+                # consideration of keeping ID if format not matches prefix
                 # (implication logical boolean operator below)
-                if act_id.startswith(prefix) or not keep_fmt:
+                if act_id.startswith(prefix) and act_id.endswith(suffix) or \
+                        not keep_fmt:
                     obj.set_gramps_id(new_id)
                     commit(obj, self.trans)
                     new_id = self.obj_values[prim_obj].succ_id()
             else:
-                # attempt to extract integer - if we can't, treat it as a duplicate
+                # attempt to extract integer - if we can't, treat it as a
+                # duplicate
                 try:
-                    match = _findint.match(act_id)
+                    match = self._findint.match(act_id)
                     if match:
                         # get the integer, build the new handle. Make sure it
                         # hasn't already been chosen. If it has, put this
                         # in the duplicate handle list
 
                         index = int(match.groups()[0])
-                        if formatmatch:
-                            if index > index_max:
-                                new_id = next_from_id()
-                            else:
-                                new_id = prefix_fmt % index
+                        if index > index_max:
+                            new_id = next_from_id()
                         else:
-                            # prefix_fmt does not contain a number after %, eg I%d
                             new_id = prefix_fmt % index
 
                         if new_id == act_id:
@@ -607,7 +669,7 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
                         elif get_from_id(new_id) is not None:
                             dup_ids.append(obj.get_handle())
                         else:
-                            obj.set_id(new_id)
+                            obj.set_gramps_id(new_id)
                             commit(obj, self.trans)
                             new_ids[new_id] = act_id
                     else:
@@ -619,11 +681,13 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
         # handle that matches the new scheme.
         if dup_ids:
             if self.uistate:
-                self.progress.set_pass(_('Finding and assigning unused IDs.'), len(dup_ids))
+                self.progress.set_pass(_('Finding and assigning unused IDs.'),
+                                       len(dup_ids))
             for handle in dup_ids:
                 obj = get_from_handle(handle)
                 obj.set_gramps_id(next_from_id())
                 commit(obj, self.trans)
+
 
 #------------------------------------------------------------------------
 #

@@ -3,7 +3,6 @@
 # Report test for GRAMPS: Generate det_descendant_report testing
 # different option combinations.
 
-# $Id$
 
 REP="det_descendant_report"
 FMT="txt"

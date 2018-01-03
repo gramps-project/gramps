@@ -60,7 +60,7 @@ from .toolcomboentry import ToolComboEntry
 from .springseparator import SpringSeparatorAction
 from ..spell import Spell
 from ..display import display_url
-from ..utils import SystemFonts, rgb_to_hex
+from ..utils import SystemFonts, rgb_to_hex, get_primary_mask
 from gramps.gen.config import config
 from gramps.gen.constfunc import has_display
 from ..actiongroup import ActionGroup
@@ -247,12 +247,12 @@ class StyledTextEditor(Gtk.TextView):
 
         """
         if ((Gdk.keyval_name(event.keyval) == 'Z') and
-            (event.get_state() & Gdk.ModifierType.CONTROL_MASK) and
-            (event.get_state() & Gdk.ModifierType.SHIFT_MASK)):
+            (event.get_state() &
+             get_primary_mask(Gdk.ModifierType.SHIFT_MASK))):
             self.redo()
             return True
         elif ((Gdk.keyval_name(event.keyval) == 'z') and
-              (event.get_state() & Gdk.ModifierType.CONTROL_MASK)):
+              (event.get_state() & get_primary_mask())):
             self.undo()
             return True
         else:
@@ -343,9 +343,9 @@ class StyledTextEditor(Gtk.TextView):
         """
         self.selclick=False
         if ((event.type == Gdk.EventType.BUTTON_PRESS) and
-            (event.button == 1) and
-            (event.get_state() and Gdk.ModifierType.CONTROL_MASK) and
-            (self.url_match)):
+            (event.button == 1) and (self.url_match) and
+            ((event.get_state() & get_primary_mask()) or
+             not self.get_editable())):
 
             flavor = self.url_match[MATCH_FLAVOR]
             url = self.url_match[MATCH_STRING]
@@ -392,7 +392,7 @@ class StyledTextEditor(Gtk.TextView):
                 copy_menu = Gtk.MenuItem(label=_('Copy _Link Address'))
                 copy_menu.set_use_underline(True)
 
-            if flavor == LINK:
+            if flavor == LINK and self.get_editable():
                 edit_menu = Gtk.MenuItem(label=_('_Edit Link'))
                 edit_menu.set_use_underline(True)
                 edit_menu.connect('activate', self._edit_url_cb,

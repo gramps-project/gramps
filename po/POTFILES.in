@@ -569,8 +569,6 @@ gramps/plugins/db/bsddb/read.py
 gramps/plugins/db/bsddb/undoredo.py
 gramps/plugins/db/bsddb/upgrade.py
 gramps/plugins/db/bsddb/write.py
-gramps/plugins/db/dbapi/postgresql.gpr.py
-gramps/plugins/db/dbapi/postgresql.py
 gramps/plugins/db/dbapi/sqlite.gpr.py
 gramps/plugins/db/dbapi/sqlite.py
 gramps/plugins/docgen/asciidoc.py

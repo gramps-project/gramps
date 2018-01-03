@@ -48,6 +48,8 @@ from gramps.gen.lib import (AttributeType, ChildRefType, Citation, Date,
 from gramps.version import VERSION
 import gramps.plugins.lib.libgedcom as libgedcom
 from gramps.gen.errors import DatabaseError
+# keep the following line even though not obviously used (works on import)
+from gramps.gui.plug.export import WriterOptionBox
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.place import conv_lat_lon
