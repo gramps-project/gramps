@@ -30,14 +30,7 @@ _ = glocale.translation.sgettext
 import os
 import re
 import time
-import gi
 from gi.repository import GLib
-try:
-    gi.require_version('GeocodeGlib', '1.0')
-    from gi.repository import GeocodeGlib
-    GEOCODEGLIB = True
-except:
-    GEOCODEGLIB = False
 
 #-------------------------------------------------------------------------
 #

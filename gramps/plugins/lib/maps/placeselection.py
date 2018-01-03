@@ -205,8 +205,8 @@ class PlaceSelection(ManagedWindow, OsmGps):
                                place[2], place[3], place[4]))
         # here, we could add value from geography names services ...
         if GEOCODEGLIB:
-            loc = GeocodeGlib.Location.new(lat, lon, 0);
-            obj = GeocodeGlib.Reverse.new_for_location (loc);
+            loc = GeocodeGlib.Location.new(lat, lon, 0)
+            obj = GeocodeGlib.Reverse.new_for_location(loc)
             try:
                 result = GeocodeGlib.Reverse.resolve(obj)
                 self.plist.append((GEOCODE_STRING % result.get_country(),

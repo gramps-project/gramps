@@ -98,12 +98,16 @@ The following packages are optional:
 
  More font support in the reports
 
-* **gir1.2-geocodeglib-1.0**
+* **geocodeglib**
 
  A library use to associate a geographical position (latitude, longitude)
  to a place name. This is used if you already have osmgpsmap installed.
  If installed, when you add or link a place from the map, you have a red line
  at the end of the table for selection.
+ Debian, Ubuntu, ... : gir1.2-geocodeglib-1.0
+ Fedora, Redhat, ... : ?
+ ArchLinux           : geocode-glib
+ ...
 
 Optional packages required by Third-party Addons
 ------------------------------------------------
