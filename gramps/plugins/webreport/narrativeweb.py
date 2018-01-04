@@ -194,6 +194,7 @@ class NavWebReport(Report):
         self.use_intro = self.options['intronote'] or self.options['introimg']
         self.use_home = self.options['homenote'] or self.options['homeimg']
         self.use_contact = self.opts['contactnote'] or self.opts['contactimg']
+        self.inc_stats = self.opts['inc_stats']
 
         # Do we need to include this in a cms ?
         self.usecms = self.options['usecms']
@@ -429,7 +430,8 @@ class NavWebReport(Report):
         self.tab["Source"].display_pages(self.title)
 
         # build classes StatisticsPage
-        self.statistics_preview_page(self.title)
+        if self.inc_stats:
+            self.statistics_preview_page(self.title)
 
         # copy all of the neccessary files
         self.copy_narrated_files()
@@ -1910,6 +1912,10 @@ class NavWebOptions(MenuReportOptions):
                                    "addresses and personal address/ residence "
                                    "events."))
         addopt("inc_addressbook", inc_addressbook)
+
+        inc_statistics = BooleanOption(_("Include the statistics page"), False)
+        inc_statistics.set_help(_("Whether or not to add statistics page"))
+        addopt("inc_stats", inc_statistics)
 
     def __add_place_map_options(self, menu):
         """
