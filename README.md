@@ -105,7 +105,8 @@ The following packages are optional:
  If installed, when you add or link a place from the map, you have a red line
  at the end of the table for selection.
  Debian, Ubuntu, ... : gir1.2-geocodeglib-1.0
- Fedora, Redhat, ... : ?
+ Fedora, Redhat, ... : geocode-glib
+ openSUSE            : geocode-glib
  ArchLinux           : geocode-glib
  ...
 
