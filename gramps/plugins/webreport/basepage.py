@@ -621,7 +621,7 @@ class BasePage: # pylint: disable=C1001
                 (self._("Place"), "ColumnPlace"),
                 (self._("Description"), "ColumnDescription")]
         )
-        trow += Html("/tr")
+        trow += Html("/tr", close=None)
         trow2 = Html("tr", indent=False)
         trow2.extend(
             Html("th", trans, class_=colclass, colspan=opt, inline=True)

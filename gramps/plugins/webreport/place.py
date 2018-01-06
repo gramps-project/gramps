@@ -110,17 +110,22 @@ class PlacePages(BasePage):
         LOG.debug("obj_dict[Place]")
         for item in self.report.obj_dict[Place].items():
             LOG.debug("    %s", str(item))
-        with self.r_user.progress(_("Narrated Web Site Report"),
-                                  _("Creating place pages"),
+        message = _("Creating place pages")
+        with self.r_user.progress(_("Narrated Web Site Report"), message,
                                   len(self.report.obj_dict[Place]) + 1
                                  ) as step:
-
+            index = 1
+            for place_handle in self.report.obj_dict[Place]:
+                self.r_user._progress.set_header("%s (%d/%d)" %
+                                                 (message, index,
+                                                  len(self.report.obj_dict[Place])))
+                step()
+                index += 1
+                self.placepage(self.report, title, place_handle)
+            self.r_user._progress.set_header(_("Creating list of place pages"))
+            step()
             self.placelistpage(self.report, title,
                                self.report.obj_dict[Place].keys())
-
-            for place_handle in self.report.obj_dict[Place]:
-                step()
-                self.placepage(self.report, title, place_handle)
 
     def placelistpage(self, report, title, place_handles):
         """

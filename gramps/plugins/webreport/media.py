@@ -110,8 +110,8 @@ class MediaPages(BasePage):
             media_count = len(self.r_db.get_media_handles())
         else:
             media_count = len(self.report.obj_dict[Media])
-        with self.r_user.progress(_("Narrated Web Site Report"),
-                                  _("Creating media pages"),
+        message = _("Creating media pages")
+        with self.r_user.progress(_("Narrated Web Site Report"), message,
                                   media_count + 1
                                  ) as step:
             # bug 8950 : it seems it's better to sort on desc + gid.
@@ -154,6 +154,8 @@ class MediaPages(BasePage):
                                handle, (prev, next_, index, media_count))
                 prev = handle
                 step()
+                self.r_user._progress.set_header("%s (%d/%d)" %
+                                                 (message, index, media_count))
                 index += 1
 
             total = len(self.unused_media_handles)
@@ -172,10 +174,12 @@ class MediaPages(BasePage):
                                    (prev, next_, index, media_count))
                     prev = media_handle
                     step()
+                    self.r_user._progress.set_header("%s (%d/%d)" %
+                                                     (message, index,
+                                                      media_count))
                     index += 1
                     idx += 1
 
-            step()
         self.medialistpage(self.report, title, sorted_media_handles)
 
     def medialistpage(self, report, title, sorted_media_handles):
@@ -239,9 +243,9 @@ class MediaPages(BasePage):
                     media_count = len(self.r_db.get_media_handles())
                 else:
                     media_count = len(self.report.obj_dict[Media])
+                message = _("Creating list of media pages")
                 with self.r_user.progress(_("Narrated Web Site Report"),
-                                          _("Creating list of media pages"),
-                                          media_count + 1
+                                          message, media_count + 1
                                  ) as step:
                     for media_handle in sorted_media_handles:
                         media = self.r_db.get_media_from_handle(media_handle)
@@ -265,8 +269,10 @@ class MediaPages(BasePage):
                                 Html("td", data, class_=colclass)
                                 for data, colclass in media_data_row
                             )
-                            index += 1
                         step()
+                        self.r_user._progress.set_header("%s (%d/%d)" %
+                                                 (message, index, media_count))
+                        index += 1
 
                     def sort_by_desc_and_gid(obj):
                         """
@@ -310,9 +316,11 @@ class MediaPages(BasePage):
                                 for data, colclass in media_data_row
                             )
                             prev = media_handle
+                            self.r_user._progress.set_header("%s (%d/%d)" %
+                                                 (message, index, media_count))
+                            step()
                             index += 1
                             idx += 1
-                            step()
 
         # add footer section
         # add clearline for proper styling

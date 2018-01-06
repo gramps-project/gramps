@@ -1129,9 +1129,10 @@ div.narrative {
 }
 .narrative p {
     font: normal .9em/1.4em sans-serif;
-    margin-top: .5em;
-    margin-bottom: 0;
-    padding: 0 20px 1em 20px;
+    margin: 0.1em 0 0.2em 0;
+}
+i + div.grampsstylednote p {
+    margin: 0.1em 0 0.2em 0;
 }
 
 /* Subsections : References
