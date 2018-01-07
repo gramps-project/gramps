@@ -189,7 +189,7 @@ class Leak(Gramplet):
                 """
         self.parent = self.top.get_toplevel()
         progress = ProgressMeter(
-            _('Updating display...'), '', parent=self.parent)
+            _('Updating display...'), '', parent=self.parent, can_cancel=True)
         self.model.clear()
         self.junk = []
         gc.collect(2)
@@ -198,7 +198,8 @@ class Leak(Gramplet):
                             str(len(self.junk)))
         progress.set_pass(_('Updating display...'), len(self.junk))
         for count in range(0, len(self.junk)):
-            progress.step()
+            if progress.step():
+                break
             try:
                 refs = []
                 referrers = gc.get_referrers(self.junk[count])
