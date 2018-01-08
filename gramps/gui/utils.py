@@ -314,6 +314,7 @@ class ProgressMeter:
         """
         Close the progress meter
         """
+        del self.__cancel_callback
         self.__dialog.destroy()
 
 #-------------------------------------------------------------------------
