@@ -317,8 +317,7 @@ class RelationshipView(NavigationView):
 
         self.scroll = Gtk.ScrolledWindow()
 
-        st_cont = self.scroll.get_style_context()
-        col = st_cont.lookup_color('base_color')
+        col = Gtk.StyleContext().lookup_color('theme_bg_color')
         if col[0]:
             self.color = col[1]
         else:
