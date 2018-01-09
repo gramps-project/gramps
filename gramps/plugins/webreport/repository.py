@@ -117,10 +117,6 @@ class RepositoryPages(BasePage):
             idx = 1
             for index, key in enumerate(keys):
                 (repo, handle) = repos_dict[key]
-
-                self.r_user._progress.set_header("%s (%d/%d)" %
-                                                 (message, idx,
-                                                  len(self.report.obj_dict[Repository])))
                 step()
                 idx += 1
                 self.repositorypage(self.report, title, repo, handle)

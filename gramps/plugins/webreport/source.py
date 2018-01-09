@@ -108,9 +108,6 @@ class SourcePages(BasePage):
 
             index = 1
             for source_handle in self.report.obj_dict[Source]:
-                self.r_user._progress.set_header("%s (%d/%d)" %
-                                                 (message, index,
-                                                  len(self.report.obj_dict[Source])))
                 step()
                 index += 1
                 self.sourcepage(self.report, title, source_handle)

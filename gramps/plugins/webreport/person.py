@@ -136,14 +136,10 @@ class PersonPages(BasePage):
                                  ) as step:
             index = 1
             for person_handle in sorted(self.report.obj_dict[Person]):
-                self.r_user._progress.set_header("%s (%d/%d)" %
-                                                 (message, index,
-                                                  len(self.report.obj_dict[Person])))
                 step()
                 index += 1
                 person = self.r_db.get_person_from_handle(person_handle)
                 self.individualpage(self.report, title, person)
-            self.r_user._progress.set_header(_('Creating list of individual pages'))
             step()
             self.individuallistpage(self.report, title,
                                     self.report.obj_dict[Person].keys())

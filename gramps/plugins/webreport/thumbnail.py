@@ -227,9 +227,6 @@ class ThumbnailPreviewPage(BasePage):
                     trow += (tcell1, tcell2)
 
                     # increase progress meter...
-                    self.r_user._progress.set_header("%s (%d/%d)" %
-                                                     (message, index,
-                                                      len(media_list)))
                     cb_progress()
 
                     # increase index for row number...

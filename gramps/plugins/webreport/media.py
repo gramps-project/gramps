@@ -154,8 +154,6 @@ class MediaPages(BasePage):
                                handle, (prev, next_, index, media_count))
                 prev = handle
                 step()
-                self.r_user._progress.set_header("%s (%d/%d)" %
-                                                 (message, index, media_count))
                 index += 1
 
             total = len(self.unused_media_handles)
@@ -174,9 +172,6 @@ class MediaPages(BasePage):
                                    (prev, next_, index, media_count))
                     prev = media_handle
                     step()
-                    self.r_user._progress.set_header("%s (%d/%d)" %
-                                                     (message, index,
-                                                      media_count))
                     index += 1
                     idx += 1
 
@@ -270,8 +265,6 @@ class MediaPages(BasePage):
                                 for data, colclass in media_data_row
                             )
                         step()
-                        self.r_user._progress.set_header("%s (%d/%d)" %
-                                                 (message, index, media_count))
                         index += 1
 
                     def sort_by_desc_and_gid(obj):
@@ -316,8 +309,6 @@ class MediaPages(BasePage):
                                 for data, colclass in media_data_row
                             )
                             prev = media_handle
-                            self.r_user._progress.set_header("%s (%d/%d)" %
-                                                 (message, index, media_count))
                             step()
                             index += 1
                             idx += 1

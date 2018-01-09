@@ -110,13 +110,8 @@ class FamilyPages(BasePage):
                                  ) as step:
             for family_handle in self.report.obj_dict[Family]:
                 step()
-                self.r_user._progress.set_header("%s (%d/%d)" %
-                                                 (message, index,
-                                                  len(self.report.obj_dict[Family])))
                 index += 1
                 self.familypage(self.report, title, family_handle)
-
-            self.r_user._progress.set_header(_("Creating list of family pages"))
             step()
             self.familylistpage(self.report, title,
                                 self.report.obj_dict[Family].keys())

@@ -116,13 +116,9 @@ class PlacePages(BasePage):
                                  ) as step:
             index = 1
             for place_handle in self.report.obj_dict[Place]:
-                self.r_user._progress.set_header("%s (%d/%d)" %
-                                                 (message, index,
-                                                  len(self.report.obj_dict[Place])))
                 step()
                 index += 1
                 self.placepage(self.report, title, place_handle)
-            self.r_user._progress.set_header(_("Creating list of place pages"))
             step()
             self.placelistpage(self.report, title,
                                self.report.obj_dict[Place].keys())

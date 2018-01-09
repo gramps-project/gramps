@@ -487,9 +487,6 @@ class NavWebReport(Report):
             index = 1
             for handle in ind_list:
                 self._add_person(handle, "", "")
-                self.user._progress.set_header("%s (%d/%d)" %
-                                                 (message, index,
-                                                  sum(1 for _ in ind_list)))
                 step()
                 index += 1
 
@@ -1058,9 +1055,6 @@ class NavWebReport(Report):
                 date = 0
                 index = 1
                 for person_handle in ind_list:
-                    self.user._progress.set_header("%s (%d/%d)" %
-                                                   (message, index,
-                                                    len(ind_list)))
                     step()
                     index += 1
                     person = self._db.get_person_from_handle(person_handle)
@@ -1128,9 +1122,6 @@ class NavWebReport(Report):
             for (surname, handle_list) in local_list:
                 SurnamePage(self, self.title, surname, sorted(handle_list))
                 step()
-                self.user._progress.set_header("%s (%d/%d)" %
-                                                 (message, index,
-                                                  len(local_list)))
                 index += 1
 
     def thumbnail_preview_page(self):
@@ -1199,9 +1190,6 @@ class NavWebReport(Report):
             for (sort_name, person_handle, add, res, url) in url_addr_res:
                 AddressBookPage(self, self.title, person_handle, add, res, url)
                 step()
-                self.user._progress.set_header("%s (%d/%d)" %
-                                                 (message, index,
-                                                  len(url_addr_res)))
                 index += 1
 
     def base_pages(self):

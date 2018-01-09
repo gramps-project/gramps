@@ -117,13 +117,8 @@ class EventPages(BasePage):
             index = 1
             for event_handle in event_handle_list:
                 step()
-                self.r_user._progress.set_header("%s (%d/%d)" %
-                                                 (message, index,
-                                                  len(event_handle_list)))
                 index += 1
                 self.eventpage(self.report, title, event_handle)
-
-            self.r_user._progress.set_header(_("Creating list of event pages"))
             step()
         self.eventlistpage(self.report, title, event_types,
                            event_handle_list)
