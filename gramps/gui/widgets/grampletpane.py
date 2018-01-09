@@ -197,7 +197,7 @@ class LinkTag(Gtk.TextTag):
     #obtaining the theme link color once. Restart needed on theme change!
     linkcolor = Gtk.Label(label='test') #needed to avoid label destroyed to early
     linkcolor = get_link_color(linkcolor.get_style_context())
-    
+
     def __init__(self, buffer):
         LinkTag.lid += 1
         Gtk.TextTag.__init__(self, name=str(LinkTag.lid))
