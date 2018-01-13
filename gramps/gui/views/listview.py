@@ -67,7 +67,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..ddtargets import DdTargets
 from ..plug.quick import create_quickreport_menu, create_web_connect_menu
-from ..utils import is_right_click, rgb_to_hex
+from ..utils import is_right_click
 from ..widgets.interactivesearchbox import InteractiveSearchBox
 
 #----------------------------------------------------------------
@@ -278,14 +278,11 @@ class ListView(NavigationView):
     def foreground_color(self, column, renderer, model, iter_, data=None):
         '''
         Set the foreground color of the cell renderer.  We use a cell data
-        function because we don't want to set the color of untagged rows.
+        function because there is a problem returning None from a model.
         '''
         fg_color = model.get_value(iter_, model.color_column())
-        if not fg_color:
-            context = self.list.get_style_context()
-            color = context.get_color(Gtk.StateFlags.ACTIVE)
-            fg_color = rgb_to_hex((color.red, color.green, color.blue))
-
+        if fg_color == '':
+            fg_color = None
         renderer.set_property('foreground', fg_color)
 
     def set_active(self):
