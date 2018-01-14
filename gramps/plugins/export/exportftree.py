@@ -46,6 +46,9 @@ log = logging.getLogger(".WriteFtree")
 from gramps.gen.utils.alive import probably_alive
 from gramps.gui.plug.export import WriterOptionBox
 from gramps.gui.glade import Glade
+from gramps.gui.dialog import ErrorDialog
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -119,60 +122,67 @@ class FtreeWriter:
                 id_map[key] = n
             id_name[key] = get_name(pn, sn, count)
 
-        with open(self.filename, "w", encoding='utf_8') as f:
+        try:
+            with open(self.filename, "w", encoding='utf_8') as file:
+                return self._export_data(file, id_name, id_map)
+        except IOError as msg:
+            msg2 = _("Could not create %s") % self.filename
+            ErrorDialog(msg2, str(msg), parent=self.option_box.window)
+            return False
 
-            for key in self.plist:
-                self.update()
-                p = self.db.get_person_from_handle(key)
-                name = id_name[key]
-                father = mother = email = web = ""
+    def _export_data(self, file, id_name, id_map):
+        for key in self.plist:
+            self.update()
+            p = self.db.get_person_from_handle(key)
+            name = id_name[key]
+            father = mother = email = web = ""
 
-                family_handle = p.get_main_parents_family_handle()
-                if family_handle:
-                    family = self.db.get_family_from_handle(family_handle)
-                    if family.get_father_handle() and \
-                      family.get_father_handle() in id_map:
-                        father = id_map[family.get_father_handle()]
-                    if family.get_mother_handle() and \
-                      family.get_mother_handle() in id_map:
-                        mother = id_map[family.get_mother_handle()]
+            family_handle = p.get_main_parents_family_handle()
+            if family_handle:
+                family = self.db.get_family_from_handle(family_handle)
+                if family.get_father_handle() and \
+                        family.get_father_handle() in id_map:
+                    father = id_map[family.get_father_handle()]
+                if family.get_mother_handle() and \
+                        family.get_mother_handle() in id_map:
+                    mother = id_map[family.get_mother_handle()]
 
-                #
-                # Calculate Date
-                #
-                birth_ref = p.get_birth_ref()
-                death_ref = p.get_death_ref()
-                if birth_ref:
-                    birth_event = self.db.get_event_from_handle(birth_ref.ref)
-                    birth = birth_event.get_date_object()
+            #
+            # Calculate Date
+            #
+            birth_ref = p.get_birth_ref()
+            death_ref = p.get_death_ref()
+            if birth_ref:
+                birth_event = self.db.get_event_from_handle(birth_ref.ref)
+                birth = birth_event.get_date_object()
+            else:
+                birth = None
+            if death_ref:
+                death_event = self.db.get_event_from_handle(death_ref.ref)
+                death = death_event.get_date_object()
+            else:
+                death = None
+
+            #if self.restrict:
+            #    alive = probably_alive(p, self.db)
+            #else:
+            #    alive = 0
+
+            if birth:
+                if death:
+                    dates = "%s-%s" % (fdate(birth), fdate(death))
                 else:
-                    birth = None
-                if death_ref:
-                    death_event = self.db.get_event_from_handle(death_ref.ref)
-                    death = death_event.get_date_object()
+                    dates = fdate(birth)
+            else:
+                if death:
+                    dates = fdate(death)
                 else:
-                    death = None
+                    dates = ""
 
-                #if self.restrict:
-                #    alive = probably_alive(p, self.db)
-                #else:
-                #    alive = 0
+            file.write('%s;%s;%s;%s;%s;%s\n' %
+                       (name, father, mother, email, web, dates))
 
-                if birth:
-                    if death:
-                        dates = "%s-%s" % (fdate(birth), fdate(death))
-                    else:
-                        dates = fdate(birth)
-                else:
-                    if death:
-                        dates = fdate(death)
-                    else:
-                        dates = ""
-
-                f.write('%s;%s;%s;%s;%s;%s\n' % (name, father, mother, email, web,
-                                                 dates))
-
-            return True
+        return True
 
 def fdate(val):
     if val.get_year_valid():
