@@ -53,6 +53,7 @@ from gi.repository import Gdk
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gen.lib import EventType, EventRoleType
 from gramps.gen.lib.person import Person
 from gramps.gen.constfunc import has_display, is_quartz, mac, win
 from gramps.gen.config import config
@@ -474,33 +475,50 @@ def is_right_click(event):
     if Gdk.Event.triggers_context_menu(event):
         return True
 
+def color_graph_family(family, dbstate):
+    """
+    :return: based on the config the color for graph family node in hex
+    :rtype: tuple (hex color fill, hex color border)
+    """
+    scheme = config.get('colors.scheme')
+    for event_ref in family.get_event_ref_list():
+        event = dbstate.db.get_event_from_handle(event_ref.ref)
+        if (event.type == EventType.DIVORCE and
+                event_ref.get_role() in (EventRoleType.FAMILY,
+                                         EventRoleType.PRIMARY)):
+            return (config.get('colors.family-divorced')[scheme],
+                    config.get('colors.border-family-divorced')[scheme])
+    return (config.get('colors.family')[scheme],
+            config.get('colors.border-family')[scheme])
+
 def color_graph_box(alive=False, gender=Person.MALE):
     """
     :return: based on the config the color for graph boxes in hex
              If gender is None, an empty box is assumed
     :rtype: tuple (hex color fill, hex color border)
     """
+    scheme = config.get('colors.scheme')
     if gender == Person.MALE:
         if alive:
-            return (config.get('preferences.color-gender-male-alive'),
-                    config.get('preferences.bordercolor-gender-male-alive'))
+            return (config.get('colors.male-alive')[scheme],
+                    config.get('colors.border-male-alive')[scheme])
         else:
-            return (config.get('preferences.color-gender-male-death'),
-                    config.get('preferences.bordercolor-gender-male-death'))
+            return (config.get('colors.male-dead')[scheme],
+                    config.get('colors.border-male-dead')[scheme])
     elif gender == Person.FEMALE:
         if alive:
-            return (config.get('preferences.color-gender-female-alive'),
-                    config.get('preferences.bordercolor-gender-female-alive'))
+            return (config.get('colors.female-alive')[scheme],
+                    config.get('colors.border-female-alive')[scheme])
         else:
-            return (config.get('preferences.color-gender-female-death'),
-                    config.get('preferences.bordercolor-gender-female-death'))
+            return (config.get('colors.female-dead')[scheme],
+                    config.get('colors.border-female-dead')[scheme])
     elif gender == Person.UNKNOWN:
         if alive:
-            return (config.get('preferences.color-gender-unknown-alive'),
-                    config.get('preferences.bordercolor-gender-unknown-alive'))
+            return (config.get('colors.unknown-alive')[scheme],
+                    config.get('colors.border-unknown-alive')[scheme])
         else:
-            return (config.get('preferences.color-gender-unknown-death'),
-                    config.get('preferences.bordercolor-gender-unknown-death'))
+            return (config.get('colors.unknown-dead')[scheme],
+                    config.get('colors.border-unknown-dead')[scheme])
     #empty box, no gender
     return ('#d2d6ce', '#000000')
 ##    print 'male alive', rgb_to_hex((185/256.0, 207/256.0, 231/256.0))
