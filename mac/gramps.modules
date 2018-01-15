@@ -61,8 +61,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     <branch module="gramps-project/gramps.git" repo="github"
 	    checkoutdir="gramps-git" tag="maintenance/gramps42"/>
     <dependencies>
-      <dep package="meta-python2-modules"/>
-      <dep package="meta-python3-modules"/>
+      <dep package="meta-gramps-modules"/>
     </dependencies>
   </distutils>
 
@@ -71,8 +70,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 	    repo="github-tarball" version="4.2.6"
 	    checkoutdir="gramps-gramps-4.2.6"/>
     <dependencies>
-      <dep package="meta-python2-modules"/>
-      <dep package="meta-python3-modules"/>
+      <dep package="meta-gramps-modules"/>
     </dependencies>
   </distutils>
 
