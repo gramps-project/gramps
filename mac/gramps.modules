@@ -163,10 +163,10 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </distutils>
 
-  <metamodule id="meta-python2-modules">
+  <metamodule id="meta-gramps-modules">
     <dependencies>
-      <dep package="python"/>
-      <dep package="meta-gtk-osx-gtk3"/>
+      <dep package="python3"/>
+      <dep package="meta-gtk-osx-gtk3.14"/>
       <dep package="meta-gtk-osx-gtk3-core-themes"/>
       <dep package="goocanvas2"/>
       <dep package="librsvg"/>
@@ -176,20 +176,15 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="osmgpsmap"/>
       <dep package="graphviz"/>
       <dep package="gexiv2"/>
-   </dependencies>
- </metamodule>
+      <dep package="berkeleydb"/>
+      <dep package="gtk-mac-integration-python"/>
+      <dep package="pycairo"/>
+      <dep package="pygobject3"/>
+      <dep package='pyicu'/>
+      <dep package='pybsddb'/>
+      <dep package="pil"/>
+    </dependencies>
+  </metamodule>
 
- <metamodule id="meta-python3-modules">
-   <dependencies>
-     <dep package="berkeleydb"/>
-     <dep package="python3"/>
-     <dep package="gtk-mac-integration-python"/>
-     <dep package="pycairo"/>
-     <dep package="pygobject3"/>
-     <dep package='pyicu'/>
-     <dep package='pybsddb'/>
-     <dep package="pil"/>
-   </dependencies>
- </metamodule>
 
 </moduleset>
