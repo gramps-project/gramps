@@ -860,23 +860,3 @@ def html_escape(text):
     text = text.replace("'", '&#39;')
 
     return text
-
-# The following function is used to try to free memory.
-def cleanup_var(var, lvl=0):
-    if hasattr(var, '__iter__'):
-        if hasattr(var, 'items'):
-            for val in var.items():
-                cleanup_var(val, lvl+1)
-                del val
-        elif isinstance(var, tuple):
-            for val in var:
-                cleanup_var(val, lvl+1)
-                del val
-        else:
-            for val in var:
-                if isinstance(val, set):
-                    cleanup_var(val, lvl+1)
-                del val
-    del var
-    gc.collect()
-

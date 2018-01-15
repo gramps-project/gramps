@@ -103,7 +103,7 @@ from gramps.plugins.webreport.introduction import IntroductionPage
 from gramps.plugins.webreport.addressbook import AddressBookPage
 from gramps.plugins.webreport.addressbooklist import AddressBookListPage
 
-from gramps.plugins.webreport.common import (get_gendex_data, cleanup_var,
+from gramps.plugins.webreport.common import (get_gendex_data,
                                              HTTP, HTTPS, _WEB_EXT, CSS,
                                              _NARRATIVESCREEN, _NARRATIVEPRINT,
                                              _WRONGMEDIAPATH, sort_people)
@@ -450,7 +450,6 @@ class NavWebReport(Report):
                 error += '\n ...'
             self.user.warn(_("Missing media objects:"), error)
         self.database.clear_cache()
-        cleanup_var(self)
 
     def _build_obj_dict(self):
         """
