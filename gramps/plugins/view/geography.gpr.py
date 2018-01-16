@@ -64,14 +64,15 @@ if not OSMGPSMAP:
         if has_display():
             from gramps.gui.dialog import MessageHideDialog
             from gramps.gen.const import URL_WIKISTRING
-            OSMGPS_DICT = {'gramps_wiki_build_osmgps_url' :
-                                URL_WIKISTRING +
-                                    "GEPS_029:_GTK3-GObject_introspection"
-                                    "_Conversion#OsmGpsMap_for_Geography"}
             TITLE = _("OsmGpsMap module not loaded.")
             MESSAGE = _("Geography functionality will not be available.\n"
-                       "To build it for Gramps see "
-                       "%(gramps_wiki_build_osmgps_url)s") % OSMGPS_DICT
+                       "Try to install:\n"
+                       " gir1.2-osmgpsmap-1.0 (debian, ubuntu, ...)\n"
+                       " osm-gps-map-gobject-1.0.1 for fedora, ...\n"
+                       " typelib-1_0-OsmGpsMap-1_0 for openSuse\n"
+                       " ...\n"
+                       "To build it for Gramps see the Wiki (<F1>)\n"
+                       " and search for 'build from source'")
             if uistate:
                 MessageHideDialog(TITLE, MESSAGE,
                                   'interface.ignore-osmgpsmap',
