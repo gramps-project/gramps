@@ -204,6 +204,16 @@ class SurnameTab(EmbeddedList):
         if self.on_change:
             self.on_change()
 
+    def post_rebuild(self, prebuildpath):
+        """
+        Called when data model has changed, in particular necessary when row
+        order is updated.
+        @param prebuildpath: path selected before rebuild, None if none
+        @type prebuildpath: tree path
+        """
+        if self.on_change:
+            self.on_change()
+
     def column_order(self):
         # order of columns for EmbeddedList. Only the text columns here
         return ((1, 0), (1, 1), (1, 2))
