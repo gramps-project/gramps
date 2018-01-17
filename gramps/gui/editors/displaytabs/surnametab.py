@@ -125,7 +125,7 @@ class SurnameTab(EmbeddedList):
         column.set_resizable(True)
         column.set_sort_column_id(self._column_combo[1])
         column.set_min_width(self._column_combo[2])
-        column.set_expand(True)
+        column.set_expand(False)
         self.columns.append(column)
         self.tree.append_column(column)
         # toggle box for primary
@@ -141,7 +141,7 @@ class SurnameTab(EmbeddedList):
         column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
         column.set_alignment(0.5)
         column.set_sort_column_id(self._column_toggle[1])
-        column.set_min_width(self._column_toggle[2])
+        column.set_max_width(self._column_toggle[2])
         self.columns.append(column)
         self.tree.append_column(column)
 
@@ -249,11 +249,13 @@ class SurnameTab(EmbeddedList):
         """
         self.on_edit_start(cellr, celle, path, colnr)
         #set up autocomplete
+        entry = celle.get_child()
+        entry.set_width_chars(10)
         completion = Gtk.EntryCompletion()
         completion.set_model(self.cmborig)
         completion.set_minimum_key_length(1)
         completion.set_text_column(1)
-        celle.get_child().set_completion(completion)
+        entry.set_completion(completion)
         #
         celle.connect('changed', self.on_origcmb_change, path, colnr)
 
