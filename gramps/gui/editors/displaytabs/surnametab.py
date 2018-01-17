@@ -45,7 +45,7 @@ _ENTER = Gdk.keyval_from_name("Enter")
 #
 #-------------------------------------------------------------------------
 from .surnamemodel import SurnameModel
-from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
+from .embeddedlist import EmbeddedList, TEXT_EDIT_COL
 from ...ddtargets import DdTargets
 from gramps.gen.lib import Surname, NameOriginType
 from ...utils import get_primary_mask
@@ -71,9 +71,9 @@ class SurnameTab(EmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text
     _column_names = [
-        (_('Prefix'), -1, 150, TEXT_COL, -1, None),
-        (_('Surname'), -1, 250, TEXT_COL, -1, None),
-        (_('Connector'), -1, 100, TEXT_COL, -1, None),
+        (_('Prefix'), 0, 150, TEXT_EDIT_COL, -1, None),
+        (_('Surname'), 1, -1, TEXT_EDIT_COL, -1, None),
+        (_('Connector'), 2, 100, TEXT_EDIT_COL, -1, None),
         ]
     _column_combo = (_('Origin'), -1, 150, 3)  # name, sort, width, modelcol
     _column_toggle = (_('Name|Primary'), -1, 80, 4)
@@ -93,14 +93,6 @@ class SurnameTab(EmbeddedList):
     def build_columns(self):
         #first the standard text columns with normal method
         EmbeddedList.build_columns(self)
-
-        # Need to add attributes to renderers
-        # and connect renderers to the 'edited' signal
-        for colno in range(len(self.columns)):
-            for renderer in self.columns[colno].get_cells():
-                renderer.set_property('editable', not self.dbstate.db.readonly)
-                renderer.connect('editing_started', self.on_edit_start, colno)
-                renderer.connect('edited', self.on_edit_inline, self.column_order()[colno][1])
 
         # now we add the two special columns
         # combobox for type
@@ -160,6 +152,24 @@ class SurnameTab(EmbeddedList):
 ##        fvalue = self.cmborigmap[first]
 ##        svalue = self.cmborigmap[second]
 ##        return glocale.strcoll(fvalue, svalue)
+
+    def setup_editable_col(self):
+        """
+        inherit this and set the variables needed for editable columns
+        Variable edit_col_funcs needs to be a dictionary from model col_nr to
+        function to call for
+        Example:
+        self.edit_col_funcs ={1: {'edit_start': self.on_edit_start,
+                                  'edited': self.on_edited
+                              }}
+        """
+        self.edit_col_funcs = {
+            0: {'edit_start': self.on_edit_start,
+                'edited': self.on_edit_inline},
+            1: {'edit_start': self.on_edit_start,
+                'edited': self.on_edit_inline},
+            2: {'edit_start': self.on_edit_start,
+                'edited': self.on_edit_inline}}
 
     def get_data(self):
         return self.obj.get_surname_list()

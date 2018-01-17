@@ -42,6 +42,7 @@ from gi.repository import Pango
 # Gramps classes
 #
 #-------------------------------------------------------------------------
+from ...widgets.cellrenderertextedit import CellRendererTextEdit
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from ...utils import is_right_click
@@ -482,7 +483,10 @@ class EmbeddedList(ButtonTab):
             type_col = self._column_names[pair[1]][3]
 
             if (type_col in [TEXT_COL, MARKUP_COL, TEXT_EDIT_COL]):
-                renderer = Gtk.CellRendererText()
+                if type_col == TEXT_EDIT_COL:
+                    renderer = CellRendererTextEdit()
+                else:
+                    renderer = Gtk.CellRendererText()
                 renderer.set_property('ellipsize', Pango.EllipsizeMode.END)
                 if type_col == TEXT_COL or type_col == TEXT_EDIT_COL:
                     column = Gtk.TreeViewColumn(name, renderer, text=pair[1])
