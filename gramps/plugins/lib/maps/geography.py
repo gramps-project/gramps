@@ -1034,6 +1034,19 @@ class GeoGraphyView(OsmGps, NavigationView):
                         pass
         kml.destroy()
 
+    def place_exists(self, place_name):
+        """
+        Do we have already this place in our database ?
+        return the handle for this place.
+        """
+        found = None
+        place_name = place_name.replace('-', ' ').lower()
+        for place in self.dbstate.db.iter_places():
+            if place.name.get_value().lower() == place_name:
+                found = place.handle
+                break
+        return found
+
     def link_place(self, menu, event, lat, lon):
         """
         Link an existing place using longitude and latitude of location centered
@@ -1108,6 +1121,24 @@ class GeoGraphyView(OsmGps, NavigationView):
                 placeref = PlaceRef()
                 placeref.ref = parent
                 new_place.add_placeref(placeref)
+            elif isinstance(parent, gi.overrides.Gtk.TreeModelRow):
+                # We are here because we selected a place from geocoding
+                # parent[0] : country
+                # parent[1] : state
+                # parent[2] : town
+                # parent[3] : name
+                value = PlaceSelection.untag_text(parent[2], 1)
+                plname = PlaceName()
+                plname.set_value(value)
+                handle = self.place_exists(value)
+                if handle:
+                    # The town already exists. We create a place with name
+                    placeref = PlaceRef()
+                    placeref.ref = handle
+                    new_place.add_placeref(placeref)
+                    value = PlaceSelection.untag_text(parent[3], 1)
+                    plname.set_value(value)
+                new_place.set_name(plname)
             else:
                 found = None
                 for place in self.dbstate.db.iter_places():

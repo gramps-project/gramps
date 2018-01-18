@@ -43,7 +43,14 @@ _LOG = logging.getLogger("maps.placeselection")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+import gi
 from gi.repository import Gtk
+try:
+    gi.require_version('GeocodeGlib', '1.0')
+    from gi.repository import GeocodeGlib
+    GEOCODEGLIB = True
+except:
+    GEOCODEGLIB = False
 
 #-------------------------------------------------------------------------
 #
@@ -66,6 +73,8 @@ from gramps.gen.display.place import displayer as _pd
 #-------------------------------------------------------------------------
 PLACE_REGEXP = re.compile('<span background="green">(.*)</span>')
 PLACE_STRING = '<span background="green">%s</span>'
+GEOCODE_REGEXP = re.compile('<span background="red">(.*)</span>')
+GEOCODE_STRING = '<span background="red">%s</span>'
 
 # pylint: disable=unused-argument
 # pylint: disable=no-member
@@ -110,9 +119,14 @@ class PlaceSelection(ManagedWindow, OsmGps):
             Gtk.Dialog(_('Place Selection in a region'), uistate.window,
                        buttons=(_('_Close'), Gtk.ResponseType.CLOSE)),
             None, _('Place Selection in a region'), None)
-        label = Gtk.Label(label=_('Choose the radius of the selection.\n'
-                            'On the map you should see a circle or an'
-                            ' oval depending on the latitude.'))
+        mylabel = _('Choose the radius of the selection.\n'
+                    'On the map you should see a circle or an'
+                    ' oval depending on the latitude.')
+        mylabel += _('\nIn the following table you may have :'
+                     '\n - a green row related to a selected place.')
+        if GEOCODEGLIB:
+            mylabel += _('\n - a red row related to a geocoding result.')
+        label = Gtk.Label(label=mylabel)
         label.set_valign(Gtk.Align.END)
         self.window.vbox.pack_start(label, False, True, 0)
         adj = Gtk.Adjustment(value=1.0, lower=0.1, upper=3.0,
@@ -193,6 +207,17 @@ class PlaceSelection(ManagedWindow, OsmGps):
             self.plist.append((place[0], place[1],
                                place[2], place[3], place[4]))
         # here, we could add value from geography names services ...
+        if GEOCODEGLIB:
+            loc = GeocodeGlib.Location.new(lat, lon, 0)
+            obj = GeocodeGlib.Reverse.new_for_location(loc)
+            try:
+                result = GeocodeGlib.Reverse.resolve(obj)
+                self.plist.append((GEOCODE_STRING % result.get_country(),
+                                   GEOCODE_STRING % result.get_state(),
+                                   GEOCODE_STRING % result.get_town(),
+                                   GEOCODE_STRING % result.get_name(), ''))
+            except:
+                pass
 
         # if we found no place, we must create a default place.
         self.plist.append((_("New place with empty fields"), "",
@@ -299,4 +324,22 @@ class PlaceSelection(ManagedWindow, OsmGps):
         """
         get location values and call the real function : add_place, edit_place
         """
-        self.function(self.plist[index][3], self.lat, self.lon)
+        self.function(self.plist[index], self.lat, self.lon)
+
+    def untag_text(text, tag):
+        """
+        suppress the green or red color tag.
+        if tag = 0 : PLACE_REGEXP
+        if tag = 1 : GEOCODE_REGEXP
+        """
+
+        if tag:
+            regtag = GEOCODE_REGEXP
+        else:
+            regtag = PLACE_REGEXP
+
+        match = regtag.match(text)
+        if match:
+            without_tags = match.groups()[0]
+            return without_tags
+        return text
