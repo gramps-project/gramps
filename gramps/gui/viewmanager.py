@@ -39,6 +39,7 @@ import time
 import datetime
 from io import StringIO
 import posixpath
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -1766,6 +1767,7 @@ def run_plugin(pdata, dbstate, uistate):
                       name=pdata.id,
                       category=pdata.category,
                       callback=dbstate.db.request_rebuild)
+    gc.collect(2)
 
 def make_plugin_callback(pdata, dbstate, uistate):
     """
