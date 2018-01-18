@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps50_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-29 10:43+0200\n"
-"PO-Revision-Date: 2017-12-29 10:45+0200\n"
+"PO-Revision-Date: 2018-01-18 09:54+0200\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -781,8 +781,8 @@ msgid ""
 "Play with the settings to see the different options."
 msgstr ""
 "<b>Esivanhemmat näkymä</b><br/>Esivanhemmat näkymä näyttää perinteisen "
-"sukupuukaavion. Pidä hiirtä henkilön nimen yllä nähdäksesi heistä enemmän "
-"tietoja. Napsauttamalla henkilöä hiiren oikealla painikkeella saat valikon, "
+"sukupuukaavion. Pidä hiirtä henkilön nimen yllä nähdäksesi hänestä enemmän "
+"tietoja. Napsauttamalla henkilöä hiiren kakkospainikkeella saat valikon, "
 "jossa voit nopeasti siirtyä henkilön puolisoon, sisarukseen, lapseen tai "
 "vanhempaan. Kokeile eri valintoja."
 
@@ -796,7 +796,7 @@ msgstr ""
 "<b>Lähteiden hallinta</b><br/>Lähdenäkymä näyttää listan kaikista "
 "tietokannassa olevista lähteistä. Kaksoisnapsauttamalla lähdettä voit "
 "muokata sitä, yhdistää lähteitä ja nähdä ketkä henkilöistä viittaavat "
-"lähteeseen. Suotimella voi ryhmittää lähteitä."
+"lähteeseen. Suotimella voit ryhmittää lähteitä."
 
 #: ../data/tips.xml.in.h:39
 msgid ""
@@ -1144,7 +1144,7 @@ msgstr "kyllä"
 #: ../gramps/cli/arghandler.py:299
 #, python-format
 msgid "Will overwrite the existing file: %s"
-msgstr "Nykyinen tiedosto %s korvataan"
+msgstr "Korvaa aiemman tiedoston: %s"
 
 #: ../gramps/cli/arghandler.py:319
 #, python-format
