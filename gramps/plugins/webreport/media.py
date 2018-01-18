@@ -94,6 +94,7 @@ class MediaPages(BasePage):
         """
         BasePage.__init__(self, report, title="")
         self.media_dict = defaultdict(set)
+        self.unused_media_handles = []
 
     def display_pages(self, title):
         """
@@ -105,9 +106,13 @@ class MediaPages(BasePage):
         LOG.debug("obj_dict[Media]")
         for item in self.report.obj_dict[Media].items():
             LOG.debug("    %s", str(item))
-        with self.r_user.progress(_("Narrated Web Site Report"),
-                                  _("Creating media pages"),
-                                  len(self.report.obj_dict[Media]) + 1
+        if self.create_unused_media:
+            media_count = len(self.r_db.get_media_handles())
+        else:
+            media_count = len(self.report.obj_dict[Media])
+        message = _("Creating media pages")
+        with self.r_user.progress(_("Narrated Web Site Report"), message,
+                                  media_count + 1
                                  ) as step:
             # bug 8950 : it seems it's better to sort on desc + gid.
             def sort_by_desc_and_gid(obj):
@@ -116,23 +121,61 @@ class MediaPages(BasePage):
                 """
                 return (obj.desc.lower(), obj.gramps_id)
 
+            self.unused_media_handles = []
+            if self.create_unused_media:
+                # add unused media
+                media_list = self.r_db.get_media_handles()
+                for media_ref in media_list:
+                    if media_ref not in self.report.obj_dict[Media]:
+                        self.unused_media_handles.append(media_ref)
+                self.unused_media_handles = sorted(
+                    self.unused_media_handles,
+                    key=lambda x: sort_by_desc_and_gid(
+                        self.r_db.get_media_from_handle(x)))
+
             sorted_media_handles = sorted(
                 self.report.obj_dict[Media].keys(),
                 key=lambda x: sort_by_desc_and_gid(
                     self.r_db.get_media_from_handle(x)))
-            self.medialistpage(self.report, title, sorted_media_handles)
-
             prev = None
             total = len(sorted_media_handles)
             index = 1
             for handle in sorted_media_handles:
                 gc.collect() # Reduce memory usage when there are many images.
-                next_ = None if index == total else sorted_media_handles[index]
-                step()
+                if index == media_count:
+                    next_ = None
+                elif index < total:
+                    next_ = sorted_media_handles[index]
+                elif len(self.unused_media_handles) > 0:
+                    next_ = self.unused_media_handles[0]
+                else:
+                    next_ = None
                 self.mediapage(self.report, title,
-                               handle, (prev, next_, index, total))
+                               handle, (prev, next_, index, media_count))
                 prev = handle
+                step()
                 index += 1
+
+            total = len(self.unused_media_handles)
+            idx = 1
+            prev = sorted_media_handles[len(sorted_media_handles)-1]
+            if total > 0:
+                for media_handle in self.unused_media_handles:
+                    media = self.r_db.get_media_from_handle(media_handle)
+                    gc.collect() # Reduce memory usage when many images.
+                    if index == media_count:
+                        next_ = None
+                    else:
+                        next_ = self.unused_media_handles[idx]
+                    self.mediapage(self.report, title,
+                                   media_handle,
+                                   (prev, next_, index, media_count))
+                    prev = media_handle
+                    step()
+                    index += 1
+                    idx += 1
+
+        self.medialistpage(self.report, title, sorted_media_handles)
 
     def medialistpage(self, report, title, sorted_media_handles):
         """
@@ -191,85 +234,84 @@ class MediaPages(BasePage):
                 table += tbody
 
                 index = 1
-                for media_handle in sorted_media_handles:
-                    media = self.r_db.get_media_from_handle(media_handle)
-                    if media:
-                        if media.get_change_time() > ldatec:
-                            ldatec = media.get_change_time()
-                        title = media.get_description() or "[untitled]"
+                if self.create_unused_media:
+                    media_count = len(self.r_db.get_media_handles())
+                else:
+                    media_count = len(self.report.obj_dict[Media])
+                message = _("Creating list of media pages")
+                with self.r_user.progress(_("Narrated Web Site Report"),
+                                          message, media_count + 1
+                                 ) as step:
+                    for media_handle in sorted_media_handles:
+                        media = self.r_db.get_media_from_handle(media_handle)
+                        if media:
+                            if media.get_change_time() > ldatec:
+                                ldatec = media.get_change_time()
+                            title = media.get_description() or "[untitled]"
 
-                        trow = Html("tr")
-                        tbody += trow
+                            trow = Html("tr")
+                            tbody += trow
 
-                        media_data_row = [
-                            [index, "ColumnRowLabel"],
-                            [self.media_ref_link(media_handle,
-                                                 title), "ColumnName"],
-                            [self.rlocale.get_date(media.get_date_object()),
-                             "ColumnDate"],
-                            [media.get_mime_type(), "ColumnMime"]]
+                            media_data_row = [
+                                [index, "ColumnRowLabel"],
+                                [self.media_ref_link(media_handle,
+                                                     title), "ColumnName"],
+                                [self.rlocale.get_date(media.get_date_object()),
+                                 "ColumnDate"],
+                                [media.get_mime_type(), "ColumnMime"]]
 
-                        trow.extend(
-                            Html("td", data, class_=colclass)
-                            for data, colclass in media_data_row
-                        )
+                            trow.extend(
+                                Html("td", data, class_=colclass)
+                                for data, colclass in media_data_row
+                            )
+                        step()
                         index += 1
 
-            def sort_by_desc_and_gid(obj):
-                """
-                Sort by media description and gramps ID
-                """
-                return (obj.desc, obj.gramps_id)
+                    def sort_by_desc_and_gid(obj):
+                        """
+                        Sort by media description and gramps ID
+                        """
+                        return (obj.desc, obj.gramps_id)
 
-            unused_media_handles = []
-            if self.create_unused_media:
-                # add unused media
-                media_list = self.r_db.get_media_handles()
-                for media_ref in media_list:
-                    if media_ref not in self.report.obj_dict[Media]:
-                        unused_media_handles.append(media_ref)
-                unused_media_handles = sorted(
-                    unused_media_handles,
-                    key=lambda x: sort_by_desc_and_gid(
-                        self.r_db.get_media_from_handle(x)))
-
-            idx = 1
-            prev = None
-            total = len(unused_media_handles)
-            if total > 0:
-                trow += Html("tr")
-                trow.extend(
-                    Html("td", Html("h4", " "), inline=True) +
-                    Html("td",
-                         Html("h4",
-                              self._("Below unused media objects"),
-                              inline=True),
-                         class_="") +
-                    Html("td", Html("h4", " "), inline=True) +
-                    Html("td", Html("h4", " "), inline=True)
-                )
-                for media_handle in unused_media_handles:
-                    media = self.r_db.get_media_from_handle(media_handle)
-                    gc.collect() # Reduce memory usage when many images.
-                    next_ = None if idx == total else unused_media_handles[idx]
-                    trow += Html("tr")
-                    media_data_row = [
-                        [index, "ColumnRowLabel"],
-                        [self.media_ref_link(media_handle,
-                                             media.get_description()),
-                         "ColumnName"],
-                        [self.rlocale.get_date(media.get_date_object()),
-                         "ColumnDate"],
-                        [media.get_mime_type(), "ColumnMime"]]
-                    trow.extend(
-                        Html("td", data, class_=colclass)
-                        for data, colclass in media_data_row
-                    )
-                    self.mediapage(self.report, title,
-                                   media_handle, (prev, next_, index, total))
-                    prev = media_handle
-                    index += 1
-                    idx += 1
+                    idx = 1
+                    prev = None
+                    total = len(self.unused_media_handles)
+                    if total > 0:
+                        trow += Html("tr")
+                        trow.extend(
+                            Html("td", Html("h4", " "), inline=True) +
+                            Html("td",
+                                 Html("h4",
+                                      self._("Below unused media objects"),
+                                      inline=True),
+                                 class_="") +
+                            Html("td", Html("h4", " "), inline=True) +
+                            Html("td", Html("h4", " "), inline=True)
+                        )
+                        for media_handle in self.unused_media_handles:
+                            media = self.r_db.get_media_from_handle(media_handle)
+                            gc.collect() # Reduce memory usage when many images.
+                            if idx == total:
+                                next_ = None
+                            else:
+                                self.unused_media_handles[idx]
+                            trow += Html("tr")
+                            media_data_row = [
+                                [index, "ColumnRowLabel"],
+                                [self.media_ref_link(media_handle,
+                                                     media.get_description()),
+                                 "ColumnName"],
+                                [self.rlocale.get_date(media.get_date_object()),
+                                 "ColumnDate"],
+                                [media.get_mime_type(), "ColumnMime"]]
+                            trow.extend(
+                                Html("td", data, class_=colclass)
+                                for data, colclass in media_data_row
+                            )
+                            prev = media_handle
+                            step()
+                            index += 1
+                            idx += 1
 
         # add footer section
         # add clearline for proper styling

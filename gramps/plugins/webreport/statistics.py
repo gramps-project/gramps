@@ -86,6 +86,7 @@ class StatisticsPage(BasePage):
          females,
          unknown) = self.get_gender(report.database.iter_person_handles())
 
+        step()
         mobjects = report.database.get_number_of_media()
         npersons = report.database.get_number_of_people()
         nfamilies = report.database.get_number_of_families()

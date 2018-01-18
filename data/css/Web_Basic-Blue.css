@@ -288,10 +288,6 @@ table.infolist thead tr th {
 table.infolist tr td {
     border-bottom: dashed 1px #000;
     vertical-align: middle;
-    padding: 6px 0 6px 10px;
-}
-table.infolist tr td a {
-    display: block;
 }
 table.infolist tr.BeginLetter td, table.infolist tr.BeginSurname td {
     border-top: solid 1px #000;
@@ -351,15 +347,15 @@ div#Individuals {
     margin: 0;
     padding: 0;
 }
-div#Individuals table.individuallist {
+div#Individuals table.IndividualList {
     border-bottom: solid 1px #000;
 }
-div#Individuals table.individuallist tbody tr td.ColumnSurname a:hover,
-div#Individuals table.individuallist tbody tr td.ColumnSurname a:active {
+div#Individuals table.IndividualList tbody tr td.ColumnSurname a:hover,
+div#Individuals table.IndividualList tbody tr td.ColumnSurname a:active {
     cursor: default;
     background: none;
 }
-div#Individuals table.individuallist tbody tr td.ColumnName a {
+div#Individuals table.IndividualList tbody tr td.ColumnName a {
     vertical-align: middle;
 }
 div#Individuals div table.infolist tr td p {
@@ -1129,9 +1125,10 @@ div.narrative {
 }
 .narrative p {
     font: normal .9em/1.4em sans-serif;
-    margin-top: .5em;
-    margin-bottom: 0;
-    padding: 0 20px 1em 20px;
+    margin: 0.1em 0 0.2em 0;
+}
+i + div.grampsstylednote p {
+    margin: 0.1em 0 0.2em 0;
 }
 
 /* Subsections : References

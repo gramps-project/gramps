@@ -33,7 +33,9 @@ body#FamilyMap {
     border: solid 4px #000;
     margin: 0px auto;
     width: 800px;
-    height: 800px;
+    height: 400px;
+    max-width: 90%;
+    max-height: 90%;
 }
 
 /*    Place Maps
@@ -43,6 +45,8 @@ div#place_canvas {
     border: solid 4px #000;
     width: 500px;
     height: 400px;
+    max-width: 90%;
+    max-height: 90%;
 }
 button#drop {
     background-color: purple;

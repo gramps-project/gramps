@@ -98,8 +98,8 @@ class RepositoryPages(BasePage):
             LOG.debug("    %s", str(item))
 
         # set progress bar pass for Repositories
-        with self.r_user.progress(_("Narrated Web Site Report"),
-                                  _('Creating repository pages'),
+        message = _('Creating repository pages')
+        with self.r_user.progress(_("Narrated Web Site Report"), message,
                                   len(self.report.obj_dict[Repository]) + 1
                                  ) as step:
             # Sort the repositories
@@ -114,10 +114,11 @@ class RepositoryPages(BasePage):
             # RepositoryListPage Class
             self.repositorylistpage(self.report, title, repos_dict, keys)
 
+            idx = 1
             for index, key in enumerate(keys):
                 (repo, handle) = repos_dict[key]
-
                 step()
+                idx += 1
                 self.repositorypage(self.report, title, repo, handle)
 
     def repositorylistpage(self, report, title, repos_dict, keys):

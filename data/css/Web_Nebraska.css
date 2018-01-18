@@ -276,7 +276,6 @@ table.infolist tr th a:hover {
 table.infolist tr td {
     font:normal 1.1em/1.4em serif;
     vertical-align:middle;
-    padding:.1em 10px;
 }
 table.infolist tr td a {
     display:block;
@@ -396,30 +395,30 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
 /* Individuals
 ----------------------------------------------------- */
 #Individuals {  }
-#Individuals table.individuallist {
+#Individuals table.IndividualList {
     border-bottom:solid 1px #A97;
 }
-#Individuals table.individuallist tbody tr td {
+#Individuals table.IndividualList tbody tr td {
     border-bottom:dashed 1px #C1B398;
 }
-#Individuals table.individuallist tbody tr td a:hover {
+#Individuals table.IndividualList tbody tr td a:hover {
     text-decoration:none;
 }
-table.individuallist tbody tr td.ColumnSurname a:hover, table.individuallist tbody tr td.ColumnSurname a:active {
+table.IndividualList tbody tr td.ColumnSurname a:hover, table.IndividualList tbody tr td.ColumnSurname a:active {
     cursor:default;
     color:black;
     background:none;
 }
-table.individuallist tbody tr td.ColumnName {
+table.IndividualList tbody tr td.ColumnName {
     padding:0;
     background-color:#FFF;
 }
-table.individuallist tbody tr td.ColumnName a {
+table.IndividualList tbody tr td.ColumnName a {
     display:block;
-    padding:.6em 10px;
+    padding:.1em .1em;
     vertical-align:middle;
 }
-table.individuallist tbody tr td.ColumnName a:hover {
+table.IndividualList tbody tr td.ColumnName a:hover {
     background-color:#C1B398;
 }
 #Individuals div table.infolist tr td p {
@@ -960,11 +959,12 @@ div#Addresses table.infolist tr td a, div#Addresses table.infolist tr td p a {
 div.narrative {
     padding-bottom:0;
 }
+i + div.grampsstylednote p {
+    margin: 0.1em 0 0.2em 0;
+}
 .narrative p {
+    margin: 0.1em 0 0.2em 0;
     font:normal .9em/1.4em sans-serif;
-    margin-top:.5em;
-    margin-bottom:0;
-    padding:0 20px 1em 20px;
 }
 
 /* Subsections : References

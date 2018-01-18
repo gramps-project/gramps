@@ -99,15 +99,17 @@ class SourcePages(BasePage):
         LOG.debug("obj_dict[Source]")
         for item in self.report.obj_dict[Source].items():
             LOG.debug("    %s", str(item))
-        with self.r_user.progress(_("Narrated Web Site Report"),
-                                  _("Creating source pages"),
+        message = _("Creating source pages")
+        with self.r_user.progress(_("Narrated Web Site Report"), message,
                                   len(self.report.obj_dict[Source]) + 1
                                  ) as step:
             self.sourcelistpage(self.report, title,
                                 self.report.obj_dict[Source].keys())
 
+            index = 1
             for source_handle in self.report.obj_dict[Source]:
                 step()
+                index += 1
                 self.sourcepage(self.report, title, source_handle)
 
     def sourcelistpage(self, report, title, source_handles):
