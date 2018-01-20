@@ -48,6 +48,9 @@ log = logging.getLogger(".WriteFtree")
 from gramps.gen.utils.alive import probably_alive
 from gramps.gui.plug.export import WriterOptionBox
 from gramps.gui.glade import Glade
+from gramps.gui.dialog import ErrorDialog
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -121,8 +124,16 @@ class FtreeWriter(object):
                 id_map[key] = n
             id_name[key] = get_name(pn, sn, count)
 
-        f = open(self.filename,"w")
+        try:
+            with open(self.filename, "w", encoding='utf_8') as file:
+                return self._export_data(file, id_name, id_map)
+        except IOError as msg:
+            msg2 = _("Could not create %s") % self.filename
+            # cannot set parent below because gramps42 doesn't have it...
+            ErrorDialog(msg2, str(msg))
+            return False
 
+    def _export_data(self, file, id_name, id_map):
         for key in self.plist:
             self.update()
             p = self.db.get_person_from_handle(key)
@@ -159,7 +170,7 @@ class FtreeWriter(object):
             #    alive = probably_alive(p, self.db)
             #else:
             #    alive = 0
-                
+
             if birth:
                 if death:
                     dates = "%s-%s" % (fdate(birth), fdate(death))
@@ -170,11 +181,10 @@ class FtreeWriter(object):
                     dates = fdate(death)
                 else:
                     dates = ""
-                        
-            f.write('%s;%s;%s;%s;%s;%s\n' % (name, father, mother, email, web, 
-                                             dates))
-            
-        f.close()
+
+            file.write('%s;%s;%s;%s;%s;%s\n' %
+                       (name, father, mother, email, web, dates))
+
         return True
 
 def fdate(val):
