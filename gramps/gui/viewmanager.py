@@ -136,8 +136,6 @@ UIDEFAULT = '''<ui>
     <menuitem action="Quit"/>
   </menu>
   <menu action="AddMenu">
-    <menu action="AddNewMenu">
-    <separator/>
     <menuitem action="PersonAdd"/>
     <separator/>
     <menuitem action="FamilyAdd"/>
@@ -150,7 +148,6 @@ UIDEFAULT = '''<ui>
     <menuitem action="RepositoryAdd"/>
     <menuitem action="MediaAdd"/>
     <menuitem action="NoteAdd"/>
-    </menu>
   </menu>
   <menu action="EditMenu">
     <menuitem action="Undo"/>
@@ -599,12 +596,12 @@ class ViewManager(CLIManager):
             ('Clipboard', 'edit-paste', _('Clip_board'), "<PRIMARY>b",
              _("Open the Clipboard dialog"), self.clipboard),
             ('AddMenu', None, _('_Add')),
-            ('AddNewMenu', None, _('New')),
-            ('PersonAdd', None, _('Person'), "<Alt>p", None,
+            #('AddNewMenu', None, _('New')),
+            ('PersonAdd', None, _('Person'), "<shift><Alt>p", None,
              self.add_new_person),
-            ('FamilyAdd', None, _('Family'), "<Alt>y", None,
+            ('FamilyAdd', None, _('Family'), "<shift><Alt>y", None,
              self.add_new_family),
-            ('EventAdd', None, _('Event'), "<shift>e", None,
+            ('EventAdd', None, _('Event'), "<shift><Alt>e", None,
              self.add_new_event),
             ('PlaceAdd', None, _('Place'), "<shift><Alt>p", None,
              self.add_new_place),
