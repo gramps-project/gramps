@@ -684,7 +684,7 @@ class BookSelector(ManagedWindow):
             old_margins = self.book.get_margins()
             old_format_name = self.book.get_format_name()
             old_output = self.book.get_output()
-            BookDialog(self.dbstate, self.uistate, self.book, BookOptions)
+            BookDialog(self.dbstate, self.uistate, self.book, BookOptions, track=self.track)
             new_paper_name = self.book.get_paper_name()
             new_orientation = self.book.get_orientation()
             new_paper_metric = self.book.get_paper_metric()
@@ -918,7 +918,7 @@ class BookDialog(DocReportDialog):
     Create a dialog selecting target, format, and paper/HTML options.
     """
 
-    def __init__(self, dbstate, uistate, book, options):
+    def __init__(self, dbstate, uistate, book, options, track=[]):
         self.format_menu = None
         self.options = options
         self.page_html_added = False
@@ -926,7 +926,7 @@ class BookDialog(DocReportDialog):
         self.title = _('Generate Book')
         self.database = dbstate.db
         DocReportDialog.__init__(self, dbstate, uistate, options,
-                                 'book', self.title)
+                                 'book', self.title, track=track)
         self.options.options_dict['bookname'] = self.book.get_name()
 
         response = self.window.run()
