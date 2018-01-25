@@ -723,7 +723,7 @@ class BookSelector(ManagedWindow):
         """
         if self.book.item_list:
             BookDialog(self.dbstate, self.uistate,
-                             self.book, BookOptions)
+                             self.book, BookOptions, track=self.track)
         else:
             WarningDialog(_('No items'), _('This book has no items.'),
                           parent=self.window)
@@ -916,14 +916,14 @@ class BookDialog(DocReportDialog):
     Create a dialog selecting target, format, and paper/HTML options.
     """
 
-    def __init__(self, dbstate, uistate, book, options):
+    def __init__(self, dbstate, uistate, book, options, track=[]):
         self.format_menu = None
         self.options = options
         self.is_from_saved_book = False
         self.page_html_added = False
         self.book = book
         DocReportDialog.__init__(self, dbstate, uistate, options,
-                                  'book', _("Book"))
+                                  'book', _("Book"), track=track)
         self.options.options_dict['bookname'] = self.book.name
         self.database = dbstate.db
 
