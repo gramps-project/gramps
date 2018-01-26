@@ -464,8 +464,9 @@ class RecurseDown:
         #calculate the text.
         myself.calc_text(self.database, indi_handle, fams_handle)
 
-        myself.add_mark(self.database, 
-                self.database.get_person_from_handle(indi_handle))
+        if indi_handle:
+            myself.add_mark(self.database,
+                            self.database.get_person_from_handle(indi_handle))
 
         self.add_to_col(myself)
         
@@ -682,8 +683,9 @@ class MakePersonTree(RecurseDown):
         family2 = family2_h = None
         if self.do_parents:  
             family2_h = center1.get_main_parents_family_handle()
-            family2 = self.database.get_family_from_handle(family2_h)
-        
+            if family2_h:
+                family2 = self.database.get_family_from_handle(family2_h)
+
         mother2_h = father2_h = None
         if family2:
             father2_h = family2.get_father_handle()
