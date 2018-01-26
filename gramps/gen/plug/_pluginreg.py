@@ -1245,8 +1245,7 @@ class PluginRegister:
         """
         Return a list of :class:`PluginData` that are of type ptype
         """
-        return [self.get_plugin(id) for id in
-                set([x.id for x in self.__plugindata if x.ptype == ptype])]
+        return [x for x in self.__plugindata if x.ptype == ptype]
 
     def report_plugins(self, gui=True):
         """
@@ -1355,6 +1354,4 @@ class PluginRegister:
         """
         Return a list of :class:`PluginData` that have load_on_reg == True
         """
-        return [self.get_plugin(id) for id in
-                set([x.id for x in self.__plugindata
-                     if x.load_on_reg == True])]
+        return [x for x in self.__plugindata if x.load_on_reg == True]
