@@ -7,10 +7,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps50_fi\n"
+"Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-18 20:27+0200\n"
-"PO-Revision-Date: 2018-01-20 13:49+0200\n"
+"POT-Creation-Date: 2018-01-26 20:29+0200\n"
+"PO-Revision-Date: 2018-01-26 21:55+0200\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -113,7 +113,7 @@ msgstr "Gramps Sukupuut:"
 #: ../gramps/cli/arghandler.py:443 ../gramps/cli/arghandler.py:444
 #: ../gramps/cli/arghandler.py:446 ../gramps/cli/clidbman.py:69
 #: ../gramps/cli/clidbman.py:173 ../gramps/cli/clidbman.py:201
-#: ../gramps/gui/clipboard.py:973 ../gramps/gui/configure.py:1525
+#: ../gramps/gui/clipboard.py:973 ../gramps/gui/configure.py:1578
 msgid "Family Tree"
 msgstr "Sukupuu"
 
@@ -697,8 +697,8 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../gramps/cli/clidbman.py:536 ../gramps/gui/configure.py:1366
-#: ../gramps/gui/configure.py:1513
+#: ../gramps/cli/clidbman.py:536 ../gramps/gui/configure.py:1419
+#: ../gramps/gui/configure.py:1566
 msgid "Never"
 msgstr "Ei koskaan"
 
@@ -1020,7 +1020,7 @@ msgstr "Yksityinen tietue"
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
-#: ../gramps/gen/config.py:306 ../gramps/gen/datehandler/_datestrings.py:79
+#: ../gramps/gen/config.py:309 ../gramps/gen/datehandler/_datestrings.py:79
 msgid "localized lexeme inflections||January"
 msgstr ""
 "N=tammikuu|G=tammikuun|IN=tammikuussa|P=tammikuuta|IL=tammikuuhun|"
@@ -2269,13 +2269,13 @@ msgid "Surname, Given Suffix"
 msgstr "Sukunimi, Etunimi Loppuliite"
 
 #: ../gramps/gen/display/name.py:356 ../gramps/gen/utils/keyword.py:55
-#: ../gramps/gui/configure.py:646 ../gramps/gui/configure.py:648
-#: ../gramps/gui/configure.py:653 ../gramps/gui/configure.py:655
-#: ../gramps/gui/configure.py:657 ../gramps/gui/configure.py:658
-#: ../gramps/gui/configure.py:659 ../gramps/gui/configure.py:660
-#: ../gramps/gui/configure.py:662 ../gramps/gui/configure.py:663
-#: ../gramps/gui/configure.py:664 ../gramps/gui/configure.py:665
-#: ../gramps/gui/configure.py:666 ../gramps/gui/configure.py:667
+#: ../gramps/gui/configure.py:687 ../gramps/gui/configure.py:689
+#: ../gramps/gui/configure.py:694 ../gramps/gui/configure.py:696
+#: ../gramps/gui/configure.py:698 ../gramps/gui/configure.py:699
+#: ../gramps/gui/configure.py:700 ../gramps/gui/configure.py:701
+#: ../gramps/gui/configure.py:703 ../gramps/gui/configure.py:704
+#: ../gramps/gui/configure.py:705 ../gramps/gui/configure.py:706
+#: ../gramps/gui/configure.py:707 ../gramps/gui/configure.py:708
 #: ../gramps/plugins/export/exportcsv.py:354
 #: ../gramps/plugins/importer/importcsv.py:162
 msgid "Given"
@@ -2311,7 +2311,7 @@ msgid "surname"
 msgstr "sukunimi"
 
 #: ../gramps/gen/display/name.py:608 ../gramps/gen/display/name.py:708
-#: ../gramps/gui/editors/editperson.py:388
+#: ../gramps/gui/editors/editperson.py:385
 #: ../gramps/plugins/importer/importcsv.py:167
 msgid "suffix"
 msgstr "loppuliite"
@@ -2369,7 +2369,7 @@ msgid "Remaining names|rest"
 msgstr "loputnimet"
 
 #: ../gramps/gen/display/name.py:645 ../gramps/gen/display/name.py:737
-#: ../gramps/gui/editors/editperson.py:409
+#: ../gramps/gui/editors/editperson.py:406
 #: ../gramps/plugins/importer/importcsv.py:166
 msgid "prefix"
 msgstr "etuliite"
@@ -3707,7 +3707,7 @@ msgid "Type:"
 msgstr "Tyyppi:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48
-#: ../gramps/gui/glade/mergemedia.glade.h:9 ../gramps/gui/viewmanager.py:1829
+#: ../gramps/gui/glade/mergemedia.glade.h:9 ../gramps/gui/viewmanager.py:1828
 msgid "Path:"
 msgstr "Polku:"
 
@@ -5358,7 +5358,7 @@ msgstr "Poimii lähteet, jotka on merkitty yksityisiksi"
 
 #. We encounter a PLAC, having previously encountered an ADDR
 #: ../gramps/gen/lib/address.py:97 ../gramps/gui/clipboard.py:306
-#: ../gramps/gui/configure.py:517 ../gramps/gui/editors/editaddress.py:167
+#: ../gramps/gui/configure.py:536 ../gramps/gui/editors/editaddress.py:167
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
 #: ../gramps/plugins/gramplet/repositorydetails.py:133
 #: ../gramps/plugins/lib/libgedcom.py:5607
@@ -5544,7 +5544,7 @@ msgid "Street"
 msgstr "Katu"
 
 #: ../gramps/gen/lib/address.py:115 ../gramps/gen/lib/location.py:93
-#: ../gramps/gen/lib/placetype.py:70 ../gramps/gui/configure.py:518
+#: ../gramps/gen/lib/placetype.py:70 ../gramps/gui/configure.py:537
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:73
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:55
 #: ../gramps/plugins/view/geoplaces.py:534
@@ -5556,7 +5556,7 @@ msgid "Locality"
 msgstr "Taajama"
 
 #: ../gramps/gen/lib/address.py:117 ../gramps/gen/lib/location.py:95
-#: ../gramps/gen/lib/placetype.py:68 ../gramps/gui/configure.py:519
+#: ../gramps/gen/lib/placetype.py:68 ../gramps/gui/configure.py:538
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:74
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
 #: ../gramps/plugins/view/geoplaces.py:585
@@ -5589,7 +5589,7 @@ msgid "State"
 msgstr "Lääni tai Osavaltio"
 
 #: ../gramps/gen/lib/address.py:123 ../gramps/gen/lib/location.py:101
-#: ../gramps/gen/lib/placetype.py:65 ../gramps/gui/configure.py:521
+#: ../gramps/gen/lib/placetype.py:65 ../gramps/gui/configure.py:540
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:76
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:59
 #: ../gramps/gui/views/treemodels/placemodel.py:305
@@ -5611,7 +5611,7 @@ msgid "Postal Code"
 msgstr "Postinumero"
 
 #: ../gramps/gen/lib/address.py:127 ../gramps/gen/lib/location.py:105
-#: ../gramps/gui/configure.py:523 ../gramps/plugins/export/exportgedcom.py:795
+#: ../gramps/gui/configure.py:542 ../gramps/plugins/export/exportgedcom.py:795
 #: ../gramps/plugins/export/exportgedcom.py:1168
 #: ../gramps/plugins/gramplet/repositorydetails.py:121
 #: ../gramps/plugins/lib/libgedcom.py:4135
@@ -5698,8 +5698,8 @@ msgid "Social Security Number"
 msgstr "Henkilötunnus"
 
 #: ../gramps/gen/lib/attrtype.py:70 ../gramps/gen/utils/keyword.py:72
-#: ../gramps/gui/configure.py:649 ../gramps/gui/configure.py:651
-#: ../gramps/gui/configure.py:656 ../gramps/gui/configure.py:663
+#: ../gramps/gui/configure.py:690 ../gramps/gui/configure.py:692
+#: ../gramps/gui/configure.py:697 ../gramps/gui/configure.py:704
 #: ../gramps/plugins/tool/patchnames.py:435
 msgid "Nickname"
 msgstr "Lempinimi"
@@ -5800,11 +5800,11 @@ msgstr "Kasvattilapsi"
 
 #. 8
 #: ../gramps/gen/lib/citation.py:97 ../gramps/gen/lib/notetype.py:79
-#: ../gramps/gui/clipboard.py:493 ../gramps/gui/configure.py:543
+#: ../gramps/gui/clipboard.py:493 ../gramps/gui/configure.py:562
 #: ../gramps/gui/editors/editcitation.py:119
 #: ../gramps/gui/editors/editcitation.py:125
 #: ../gramps/gui/editors/editlink.py:100
-#: ../gramps/gui/editors/filtereditor.py:301 ../gramps/gui/viewmanager.py:613
+#: ../gramps/gui/editors/filtereditor.py:301 ../gramps/gui/viewmanager.py:611
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:170
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:115
 #: ../gramps/plugins/quickview/quickview.gpr.py:209
@@ -5862,10 +5862,10 @@ msgstr "Luotettavuus"
 
 #. 7
 #: ../gramps/gen/lib/citation.py:115 ../gramps/gen/lib/src.py:97
-#: ../gramps/gui/clipboard.py:803 ../gramps/gui/configure.py:541
+#: ../gramps/gui/clipboard.py:803 ../gramps/gui/configure.py:560
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:78
 #: ../gramps/gui/editors/editlink.py:99 ../gramps/gui/editors/editsource.py:86
-#: ../gramps/gui/editors/filtereditor.py:297 ../gramps/gui/viewmanager.py:611
+#: ../gramps/gui/editors/filtereditor.py:297 ../gramps/gui/viewmanager.py:609
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:170
 #: ../gramps/plugins/export/exportcsv.py:466
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:114
@@ -5889,7 +5889,7 @@ msgstr "Lähde"
 #: ../gramps/gen/lib/media.py:134 ../gramps/gen/lib/person.py:206
 #: ../gramps/gen/lib/place.py:166 ../gramps/gen/lib/src.py:117
 #: ../gramps/gui/clipboard.py:662 ../gramps/gui/editors/editlink.py:94
-#: ../gramps/gui/editors/filtereditor.py:298 ../gramps/gui/viewmanager.py:617
+#: ../gramps/gui/editors/filtereditor.py:298 ../gramps/gui/viewmanager.py:615
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:110
 #: ../gramps/plugins/quickview/filterbyname.py:109
 #: ../gramps/plugins/quickview/filterbyname.py:134
@@ -5958,7 +5958,7 @@ msgstr "Tagit"
 #: ../gramps/gen/lib/date.py:274 ../gramps/gen/lib/date.py:422
 #: ../gramps/gen/mime/_pythonmime.py:48 ../gramps/gen/mime/_pythonmime.py:56
 #: ../gramps/gen/mime/_winmime.py:57 ../gramps/gen/utils/db.py:523
-#: ../gramps/gui/editors/editperson.py:351
+#: ../gramps/gui/editors/editperson.py:348
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
@@ -6066,7 +6066,7 @@ msgstr "Arvot"
 #: ../gramps/gen/lib/date.py:719 ../gramps/gen/lib/placename.py:99
 #: ../gramps/gen/lib/styledtext.py:321
 #: ../gramps/gen/plug/report/_constants.py:53 ../gramps/gui/clipboard.py:640
-#: ../gramps/gui/clipboard.py:648 ../gramps/gui/configure.py:1200
+#: ../gramps/gui/clipboard.py:648 ../gramps/gui/configure.py:1241
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:101
 #: ../gramps/plugins/textreport/custombooktext.py:132
 #: ../gramps/plugins/textreport/tagreport.py:509
@@ -6125,11 +6125,11 @@ msgstr "vain tekstinä"
 
 #. 0 this order range above
 #: ../gramps/gen/lib/event.py:136 ../gramps/gen/lib/eventref.py:109
-#: ../gramps/gui/clipboard.py:343 ../gramps/gui/configure.py:547
+#: ../gramps/gui/clipboard.py:343 ../gramps/gui/configure.py:566
 #: ../gramps/gui/editors/editlink.py:92
 #: ../gramps/gui/editors/filtereditor.py:295
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:138
-#: ../gramps/gui/viewmanager.py:607
+#: ../gramps/gui/viewmanager.py:605
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:108
 #: ../gramps/plugins/quickview/filterbyname.py:175
 #: ../gramps/plugins/quickview/filterbyname.py:246
@@ -6144,7 +6144,7 @@ msgstr "Tapahtuma"
 #. 5
 #: ../gramps/gen/lib/event.py:151 ../gramps/gen/lib/ldsord.py:186
 #: ../gramps/gen/lib/place.py:134 ../gramps/gui/clipboard.py:370
-#: ../gramps/gui/configure.py:539
+#: ../gramps/gui/configure.py:558
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:81
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:65
@@ -6153,7 +6153,7 @@ msgstr "Tapahtuma"
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:108
 #: ../gramps/gui/glade/editevent.glade.h:15
 #: ../gramps/gui/plug/_guioptions.py:1348
-#: ../gramps/gui/selectors/selectevent.py:72 ../gramps/gui/viewmanager.py:609
+#: ../gramps/gui/selectors/selectevent.py:72 ../gramps/gui/viewmanager.py:607
 #: ../gramps/gui/views/treemodels/placemodel.py:305
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/export/exportcsv.py:466
@@ -6242,12 +6242,12 @@ msgstr "Elinkaaren tapahtumat"
 #. get the family events
 #: ../gramps/gen/lib/eventtype.py:139 ../gramps/gen/lib/family.py:145
 #: ../gramps/gen/lib/ldsord.py:188 ../gramps/gui/clipboard.py:774
-#: ../gramps/gui/configure.py:537
+#: ../gramps/gui/configure.py:556
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
 #: ../gramps/gui/editors/editfamily.py:499 ../gramps/gui/editors/editlink.py:93
 #: ../gramps/gui/editors/filtereditor.py:294
-#: ../gramps/gui/glade/editldsord.glade.h:14 ../gramps/gui/viewmanager.py:605
+#: ../gramps/gui/glade/editldsord.glade.h:14 ../gramps/gui/viewmanager.py:603
 #: ../gramps/plugins/export/exportcsv.py:506
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:109
 #: ../gramps/plugins/importer/importcsv.py:211
@@ -6981,7 +6981,7 @@ msgstr "Seutu"
 #. Add column with object name
 #: ../gramps/gen/lib/name.py:143 ../gramps/gen/lib/repo.py:96
 #: ../gramps/gen/lib/tag.py:122 ../gramps/gui/clipboard.py:592
-#: ../gramps/gui/configure.py:516
+#: ../gramps/gui/configure.py:535
 #: ../gramps/gui/editors/displaytabs/backreflist.py:61
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:73
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:64
@@ -7043,11 +7043,11 @@ msgid "Surnames"
 msgstr "Sukunimet"
 
 #: ../gramps/gen/lib/name.py:164 ../gramps/gen/utils/keyword.py:60
-#: ../gramps/gui/configure.py:646 ../gramps/gui/configure.py:648
-#: ../gramps/gui/configure.py:650 ../gramps/gui/configure.py:652
-#: ../gramps/gui/configure.py:653 ../gramps/gui/configure.py:658
-#: ../gramps/gui/configure.py:660 ../gramps/gui/configure.py:665
-#: ../gramps/gui/configure.py:667 ../gramps/gui/glade/editperson.glade.h:15
+#: ../gramps/gui/configure.py:687 ../gramps/gui/configure.py:689
+#: ../gramps/gui/configure.py:691 ../gramps/gui/configure.py:693
+#: ../gramps/gui/configure.py:694 ../gramps/gui/configure.py:699
+#: ../gramps/gui/configure.py:701 ../gramps/gui/configure.py:706
+#: ../gramps/gui/configure.py:708 ../gramps/gui/glade/editperson.glade.h:15
 #: ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:167
 msgid "Suffix"
@@ -7144,7 +7144,7 @@ msgid "Surname|Taken"
 msgstr "Otettu"
 
 #: ../gramps/gen/lib/nameorigintype.py:79 ../gramps/gen/utils/keyword.py:65
-#: ../gramps/gui/configure.py:659
+#: ../gramps/gui/configure.py:700
 msgid "Patronymic"
 msgstr "Patronyymi"
 
@@ -7183,7 +7183,7 @@ msgstr "Avionimi"
 #. ###############################
 #. 3
 #: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:254
-#: ../gramps/gui/clipboard.py:397 ../gramps/gui/configure.py:551
+#: ../gramps/gui/clipboard.py:397 ../gramps/gui/configure.py:570
 #: ../gramps/gui/editors/editlink.py:95 ../gramps/gui/editors/editmedia.py:98
 #: ../gramps/gui/editors/editmedia.py:181
 #: ../gramps/gui/editors/editmediaref.py:146
@@ -7196,7 +7196,7 @@ msgstr "Avionimi"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:113
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:108
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:91
-#: ../gramps/gui/glade/editnote.glade.h:17 ../gramps/gui/viewmanager.py:619
+#: ../gramps/gui/glade/editnote.glade.h:17 ../gramps/gui/viewmanager.py:617
 #: ../gramps/gui/views/treemodels/mediamodel.py:117
 #: ../gramps/plugins/drawreport/ancestortree.py:974
 #: ../gramps/plugins/drawreport/descendtree.py:1694
@@ -7214,12 +7214,12 @@ msgstr "Avionimi"
 msgid "Note"
 msgstr "Lisätieto"
 
-#: ../gramps/gen/lib/note.py:119 ../gramps/gui/configure.py:822
+#: ../gramps/gen/lib/note.py:119 ../gramps/gui/configure.py:863
 #: ../gramps/plugins/tool/reorderids.glade.h:23
 msgid "Format"
 msgstr "Muotoilu"
 
-#: ../gramps/gen/lib/notetype.py:75 ../gramps/gui/configure.py:1411
+#: ../gramps/gen/lib/notetype.py:75 ../gramps/gui/configure.py:1464
 #: ../gramps/gui/editors/editeventref.py:89
 #: ../gramps/gui/editors/editmediaref.py:107
 #: ../gramps/gui/editors/editplaceref.py:71
@@ -7334,6 +7334,7 @@ msgid "Child Reference Note"
 msgstr "Lapsiviitteen lisätietoja"
 
 #. 4
+#. ('AddNewMenu', None, _('New')),
 #. ------------------------------------------------------------------------
 #.
 #. References
@@ -7341,10 +7342,10 @@ msgstr "Lapsiviitteen lisätietoja"
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
 #: ../gramps/gen/lib/person.py:173 ../gramps/gui/clipboard.py:746
-#: ../gramps/gui/configure.py:535 ../gramps/gui/editors/editlink.py:96
+#: ../gramps/gui/configure.py:554 ../gramps/gui/editors/editlink.py:96
 #: ../gramps/gui/editors/filtereditor.py:293
 #: ../gramps/gui/glade/editpersonref.glade.h:15
-#: ../gramps/gui/viewmanager.py:603 ../gramps/plugins/export/exportcsv.py:354
+#: ../gramps/gui/viewmanager.py:601 ../gramps/plugins/export/exportcsv.py:354
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:107
 #: ../gramps/plugins/importer/importcsv.py:208
 #: ../gramps/plugins/quickview/ageondate.py:54
@@ -7473,7 +7474,7 @@ msgstr "Pituusaste"
 msgid "Latitude"
 msgstr "Leveysaste"
 
-#: ../gramps/gen/lib/place.py:150 ../gramps/gui/configure.py:1164
+#: ../gramps/gen/lib/place.py:150 ../gramps/gui/configure.py:1205
 #: ../gramps/plugins/quickview/filterbyname.py:100
 #: ../gramps/plugins/quickview/filterbyname.py:125
 #: ../gramps/plugins/textreport/tagreport.py:405
@@ -7514,7 +7515,7 @@ msgstr "URL:t"
 msgid "Place Name"
 msgstr "Nimi/Nimike"
 
-#: ../gramps/gen/lib/placename.py:103 ../gramps/gui/configure.py:1157
+#: ../gramps/gen/lib/placename.py:103 ../gramps/gui/configure.py:1198
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:65
 msgid "Language"
 msgstr "Kieli"
@@ -7576,10 +7577,10 @@ msgstr "Kutsunumero"
 
 #. 6
 #: ../gramps/gen/lib/repo.py:86 ../gramps/gui/clipboard.py:830
-#: ../gramps/gui/configure.py:549 ../gramps/gui/editors/editlink.py:98
+#: ../gramps/gui/configure.py:568 ../gramps/gui/editors/editlink.py:98
 #: ../gramps/gui/editors/editrepository.py:77
 #: ../gramps/gui/editors/editrepository.py:79
-#: ../gramps/gui/editors/filtereditor.py:299 ../gramps/gui/viewmanager.py:615
+#: ../gramps/gui/editors/filtereditor.py:299 ../gramps/gui/viewmanager.py:613
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:113
 #: ../gramps/plugins/quickview/filterbyname.py:205
 #: ../gramps/plugins/quickview/filterbyname.py:264
@@ -7799,10 +7800,10 @@ msgstr "Linkki"
 #. show surname and first name
 #: ../gramps/gen/lib/surname.py:87 ../gramps/gen/lib/surname.py:91
 #: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:624
-#: ../gramps/gui/configure.py:646 ../gramps/gui/configure.py:648
-#: ../gramps/gui/configure.py:650 ../gramps/gui/configure.py:652
-#: ../gramps/gui/configure.py:655 ../gramps/gui/configure.py:656
-#: ../gramps/gui/configure.py:657 ../gramps/gui/configure.py:658
+#: ../gramps/gui/configure.py:687 ../gramps/gui/configure.py:689
+#: ../gramps/gui/configure.py:691 ../gramps/gui/configure.py:693
+#: ../gramps/gui/configure.py:696 ../gramps/gui/configure.py:697
+#: ../gramps/gui/configure.py:698 ../gramps/gui/configure.py:699
 #: ../gramps/gui/editors/displaytabs/surnametab.py:75
 #: ../gramps/gui/plug/_guioptions.py:87 ../gramps/gui/plug/_guioptions.py:1502
 #: ../gramps/plugins/drawreport/statisticschart.py:334
@@ -8496,7 +8497,7 @@ msgstr "Sallitut arvot: "
 #.
 #. ------------------------------------------------------------------------
 #: ../gramps/gen/plug/report/_book.py:71 ../gramps/gui/plug/_dialogs.py:59
-#: ../gramps/gui/plug/report/_bookdialog.py:84 ../gramps/gui/viewmanager.py:120
+#: ../gramps/gui/plug/report/_bookdialog.py:84 ../gramps/gui/viewmanager.py:121
 msgid "Unsupported"
 msgstr "Ei tuettu"
 
@@ -8609,7 +8610,7 @@ msgstr "Käännös"
 msgid "The translation to be used for the report."
 msgstr "Raportissa käytettävä käännös."
 
-#: ../gramps/gen/plug/report/stdoptions.py:72 ../gramps/gui/configure.py:981
+#: ../gramps/gen/plug/report/stdoptions.py:72 ../gramps/gui/configure.py:1022
 #: ../gramps/plugins/webreport/webcal.py:1672
 msgid "Name format"
 msgstr "Nimen muoto"
@@ -8666,7 +8667,7 @@ msgstr ""
 msgid "Whether to restrict data on recently-dead people"
 msgstr "Rajoitetaanko hiljattain kuolleiden henkilöiden tietoja"
 
-#: ../gramps/gen/plug/report/stdoptions.py:256 ../gramps/gui/configure.py:1009
+#: ../gramps/gen/plug/report/stdoptions.py:256 ../gramps/gui/configure.py:1050
 msgid "Date format"
 msgstr "Päivämäärän muoto"
 
@@ -8696,7 +8697,7 @@ msgstr "Lisätäänkö (ja minne) Gramps ID"
 #. #########################
 #. ###############################
 #: ../gramps/gen/plug/report/stdoptions.py:327
-#: ../gramps/gui/viewmanager.py:1888
+#: ../gramps/gui/viewmanager.py:1887
 #: ../gramps/plugins/graph/gvfamilylines.py:211
 #: ../gramps/plugins/graph/gvrelgraph.py:819
 #: ../gramps/plugins/textreport/detancestralreport.py:888
@@ -9371,10 +9372,10 @@ msgstr "TITTELI"
 msgid "GIVEN"
 msgstr "ETUNIMI"
 
-#: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/configure.py:653
-#: ../gramps/gui/configure.py:660 ../gramps/gui/configure.py:662
-#: ../gramps/gui/configure.py:663 ../gramps/gui/configure.py:664
-#: ../gramps/gui/configure.py:665 ../gramps/gui/configure.py:666
+#: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/configure.py:694
+#: ../gramps/gui/configure.py:701 ../gramps/gui/configure.py:703
+#: ../gramps/gui/configure.py:704 ../gramps/gui/configure.py:705
+#: ../gramps/gui/configure.py:706 ../gramps/gui/configure.py:707
 msgid "SURNAME"
 msgstr "SUKUNIMI"
 
@@ -9386,9 +9387,9 @@ msgstr "Kutsumanimi"
 msgid "Name|CALL"
 msgstr "KUTSUMANIMI"
 
-#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:650
-#: ../gramps/gui/configure.py:652 ../gramps/gui/configure.py:655
-#: ../gramps/gui/configure.py:656 ../gramps/gui/configure.py:662
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:691
+#: ../gramps/gui/configure.py:693 ../gramps/gui/configure.py:696
+#: ../gramps/gui/configure.py:697 ../gramps/gui/configure.py:703
 msgid "Name|Common"
 msgstr "Yleisnimi"
 
@@ -9470,7 +9471,7 @@ msgstr "Patronyymi[yle]"
 msgid "PATRONYMIC[CON]"
 msgstr "PATRONYYMI[YLE]"
 
-#: ../gramps/gen/utils/keyword.py:69 ../gramps/gui/configure.py:667
+#: ../gramps/gen/utils/keyword.py:69 ../gramps/gui/configure.py:708
 msgid "Rawsurnames"
 msgstr "Rawsukunimet"
 
@@ -9522,7 +9523,7 @@ msgstr "%(east_longitude)s I"
 msgid "%(west_longitude)s W"
 msgstr "%(west_longitude)s L"
 
-#: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:350
+#: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:347
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
@@ -9531,7 +9532,7 @@ msgstr "%(west_longitude)s L"
 msgid "male"
 msgstr "mies"
 
-#: ../gramps/gen/utils/string.py:47 ../gramps/gui/editors/editperson.py:349
+#: ../gramps/gen/utils/string.py:47 ../gramps/gui/editors/editperson.py:346
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
@@ -9758,16 +9759,16 @@ msgstr "Puunäkymä: ensimmäistä saraketta \"%s\" ei voi vaihtaa"
 msgid "Drag and drop the columns to change the order"
 msgstr "Raahaa ja pudota sarakkeita järjestyksen muuttamiseksi"
 
-#: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1566
-#: ../gramps/gui/configure.py:1588 ../gramps/gui/configure.py:1611
-#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1959
+#: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1619
+#: ../gramps/gui/configure.py:1641 ../gramps/gui/configure.py:1664
+#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1958
 #: ../gramps/plugins/lib/maps/geography.py:1009
 #: ../gramps/plugins/lib/maps/geography.py:1264
 msgid "_Apply"
 msgstr "_Käytä"
 
 #. #################
-#: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1111
+#: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1152
 #: ../gramps/plugins/drawreport/ancestortree.py:909
 #: ../gramps/plugins/drawreport/descendtree.py:1645
 #: ../gramps/plugins/webreport/narrativeweb.py:1698
@@ -9806,7 +9807,7 @@ msgstr "Näytä nimimuokkain"
 #: ../gramps/gui/plug/_windows.py:105 ../gramps/gui/plug/_windows.py:691
 #: ../gramps/gui/plug/_windows.py:747
 #: ../gramps/gui/plug/quick/_textbufdoc.py:60 ../gramps/gui/undohistory.py:90
-#: ../gramps/gui/viewmanager.py:539 ../gramps/gui/viewmanager.py:1823
+#: ../gramps/gui/viewmanager.py:537 ../gramps/gui/viewmanager.py:1822
 #: ../gramps/gui/views/bookmarks.py:286 ../gramps/gui/views/tags.py:430
 #: ../gramps/gui/widgets/grampletbar.py:635
 #: ../gramps/gui/widgets/grampletpane.py:232
@@ -9880,34 +9881,35 @@ msgstr ""
 msgid " Name Editor"
 msgstr " Nimimuokkain"
 
-#: ../gramps/gui/configure.py:156 ../gramps/gui/configure.py:1666
+#: ../gramps/gui/configure.py:156 ../gramps/gui/configure.py:1719
 #: ../gramps/gui/views/pageview.py:590
 msgid "Preferences"
 msgstr "Asetukset"
 
 #: ../gramps/gui/configure.py:232 ../gramps/gui/configure.py:238
-#: ../gramps/gui/configure.py:805
+#: ../gramps/gui/configure.py:846
 msgid "Invalid or incomplete format definition."
 msgstr "Viallinen tai puutteellinen muotoilumääritelmä."
 
 #. label for the combo
 #. translators: needed for French, ignore otherwise
-#: ../gramps/gui/configure.py:330 ../gramps/gui/configure.py:354
-#: ../gramps/gui/configure.py:375 ../gramps/gui/configure.py:388
-#: ../gramps/gui/configure.py:413 ../gramps/gui/configure.py:450
-#: ../gramps/gui/configure.py:472 ../gramps/gui/configure.py:981
-#: ../gramps/gui/configure.py:1009 ../gramps/gui/configure.py:1030
-#: ../gramps/gui/configure.py:1044 ../gramps/gui/configure.py:1057
-#: ../gramps/gui/configure.py:1070 ../gramps/gui/configure.py:1094
-#: ../gramps/gui/configure.py:1151 ../gramps/gui/configure.py:1375
-#: ../gramps/gui/configure.py:1393 ../gramps/gui/configure.py:1466
-#: ../gramps/gui/configure.py:1521 ../gramps/gui/views/navigationview.py:358
+#: ../gramps/gui/configure.py:340 ../gramps/gui/configure.py:364
+#: ../gramps/gui/configure.py:385 ../gramps/gui/configure.py:401
+#: ../gramps/gui/configure.py:432 ../gramps/gui/configure.py:469
+#: ../gramps/gui/configure.py:491 ../gramps/gui/configure.py:593
+#: ../gramps/gui/configure.py:1022 ../gramps/gui/configure.py:1050
+#: ../gramps/gui/configure.py:1071 ../gramps/gui/configure.py:1085
+#: ../gramps/gui/configure.py:1098 ../gramps/gui/configure.py:1111
+#: ../gramps/gui/configure.py:1135 ../gramps/gui/configure.py:1192
+#: ../gramps/gui/configure.py:1428 ../gramps/gui/configure.py:1446
+#: ../gramps/gui/configure.py:1519 ../gramps/gui/configure.py:1574
+#: ../gramps/gui/views/navigationview.py:358
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:90
 #, python-format
 msgid "%s: "
 msgstr "%s: "
 
-#: ../gramps/gui/configure.py:513
+#: ../gramps/gui/configure.py:532
 msgid ""
 "Enter your information so people can contact you when you distribute your "
 "Family Tree"
@@ -9915,149 +9917,195 @@ msgstr ""
 "Anna yhteystietosi sen varalta, että muut haluavat ottaa yhteyttä sinuun "
 "sukupuusi vuoksi"
 
-#: ../gramps/gui/configure.py:520
+#: ../gramps/gui/configure.py:539
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:75
 #: ../gramps/plugins/view/repoview.py:92
 msgid "State/County"
 msgstr "Lääni tai Osavaltio"
 
-#: ../gramps/gui/configure.py:522 ../gramps/plugins/view/repoview.py:94
+#: ../gramps/gui/configure.py:541 ../gramps/plugins/view/repoview.py:94
 msgid "ZIP/Postal Code"
 msgstr "Postinumero"
 
-#: ../gramps/gui/configure.py:524 ../gramps/gui/plug/_windows.py:623
+#: ../gramps/gui/configure.py:543 ../gramps/gui/plug/_windows.py:623
 #: ../gramps/plugins/view/repoview.py:95
 msgid "Email"
 msgstr "Sähköposti"
 
-#: ../gramps/gui/configure.py:525
+#: ../gramps/gui/configure.py:544
 msgid "Researcher"
 msgstr "Tutkija"
 
-#: ../gramps/gui/configure.py:545 ../gramps/gui/editors/editperson.py:646
+#: ../gramps/gui/configure.py:564 ../gramps/gui/editors/editperson.py:646
 #: ../gramps/gui/widgets/photo.py:86
 msgid "Media Object"
 msgstr "Mediatiedosto"
 
-#: ../gramps/gui/configure.py:553
+#: ../gramps/gui/configure.py:572
 msgid "ID Formats"
 msgstr "ID muodot"
 
-#: ../gramps/gui/configure.py:563
+#: ../gramps/gui/configure.py:582
 msgid "Set the colors used for boxes in the graphical views"
 msgstr "Aseta graafisissa näkymissä käytettävät laatikoiden värit"
 
-#: ../gramps/gui/configure.py:565
-msgid "Gender Male Alive"
+# 20180126
+#: ../gramps/gui/configure.py:587
+msgid "Light colors"
+msgstr "Vaaleat värit"
+
+# 20180126
+#: ../gramps/gui/configure.py:588
+msgid "Dark colors"
+msgstr "Tummat värit"
+
+# 20180126
+#: ../gramps/gui/configure.py:593
+msgid "Color scheme"
+msgstr "Värijärjetelmä"
+
+# 20180126
+#: ../gramps/gui/configure.py:597
+msgid "Restore to defaults"
+msgstr "Palauta oletusasetukset"
+
+# 20180126
+#: ../gramps/gui/configure.py:603
+msgid "Male Alive"
 msgstr "Elävä mies"
 
-#: ../gramps/gui/configure.py:567
+# 20180126
+#: ../gramps/gui/configure.py:604
+msgid "Male Dead"
+msgstr "Kuollut mies"
+
+# 20180126
+#: ../gramps/gui/configure.py:605
+msgid "Female Alive"
+msgstr "Elävä nainen"
+
+# 20180126
+#: ../gramps/gui/configure.py:606
+msgid "Female Dead"
+msgstr "Kuollut nainen"
+
+# 20180126
+#: ../gramps/gui/configure.py:607
+msgid "Unknown Alive"
+msgstr "Elossa sukupuoli tuntematon"
+
+# 20180126
+#: ../gramps/gui/configure.py:608
+msgid "Unknown Dead"
+msgstr "Kuollut sukupuoli tuntematon"
+
+# 20180126
+#: ../gramps/gui/configure.py:609
+msgid "Family Node"
+msgstr "Perhe liitossa"
+
+# 20180126
+#: ../gramps/gui/configure.py:610
+msgid "Family Divorced"
+msgstr "Perhe eronnut"
+
+# 20180126
+#: ../gramps/gui/configure.py:611
+msgid "Home Person"
+msgstr "Kotihenkilö"
+
+#: ../gramps/gui/configure.py:612
 msgid "Border Male Alive"
 msgstr "Elävän miehen reunaviiva"
 
-#: ../gramps/gui/configure.py:569
-msgid "Gender Male Death"
-msgstr "Kuollut mies"
-
-#: ../gramps/gui/configure.py:571
-msgid "Border Male Death"
+# 20180126
+#: ../gramps/gui/configure.py:613
+msgid "Border Male Dead"
 msgstr "Kuolleen miehen reunaviiva"
 
-#: ../gramps/gui/configure.py:573
-msgid "Gender Female Alive"
-msgstr "Elävä nainen"
-
-#: ../gramps/gui/configure.py:575
+#: ../gramps/gui/configure.py:614
 msgid "Border Female Alive"
 msgstr "Elävän naisen reunaviiva"
 
-#: ../gramps/gui/configure.py:577
-msgid "Gender Female Death"
-msgstr "Kuollut nainen"
-
-#: ../gramps/gui/configure.py:579
-msgid "Border Female Death"
+# 20180126
+#: ../gramps/gui/configure.py:615
+msgid "Border Female Dead"
 msgstr "Kuolleen naisen reunaviiva"
 
-#. #        self.add_color(grid, _('Gender Other Alive'), 5,
-#. #                        'preferences.color-gender-other-alive')
-#. #        self.add_color(grid, _('Border Other Alive'), 6,
-#. #                        'preferences.bordercolor-gender-other-alive')
-#. #        self.add_color(grid, _('Gender Other Death'), 7,
-#. #                        'preferences.color-gender-other-death')
-#. #        self.add_color(grid, _('Border Other Death'), 8,
-#. #                        'preferences.bordercolor-gender-other-death')
-#: ../gramps/gui/configure.py:589
-msgid "Gender Unknown Alive"
-msgstr "Elossa sukupuoli tuntematon"
-
-#: ../gramps/gui/configure.py:591
+#: ../gramps/gui/configure.py:616
 msgid "Border Unknown Alive"
-msgstr "Sukup. tuntem. elossa reunaviiva"
+msgstr "Elossa sukup. tuntem. reunaviiva"
 
-#: ../gramps/gui/configure.py:593
-msgid "Gender Unknown Death"
-msgstr "Sukupuoli tuntematon kuollut"
+# 20180126
+#: ../gramps/gui/configure.py:617
+msgid "Border Unknown Dead"
+msgstr "Kuollut sukup. tuntem. reunaviiva"
 
-#: ../gramps/gui/configure.py:595
-msgid "Border Unknown Death"
-msgstr "Sukup. tuntem. kuollut reunaviiva"
+# 20180126
+#: ../gramps/gui/configure.py:618
+msgid "Border Family"
+msgstr "Perheen reunaviiva"
 
-#: ../gramps/gui/configure.py:597
+# 20180126
+#: ../gramps/gui/configure.py:619
+msgid "Border Family Divorced"
+msgstr "Eronneen perheen reunaviiva"
+
+#: ../gramps/gui/configure.py:627
 msgid "Colors"
 msgstr "Värit"
 
-#: ../gramps/gui/configure.py:605
+#: ../gramps/gui/configure.py:646
 msgid "Suppress warning when adding parents to a child."
 msgstr "Älä näytä varoitusta lisättäessä vanhempia lapselle."
 
-#: ../gramps/gui/configure.py:609
+#: ../gramps/gui/configure.py:650
 msgid "Suppress warning when canceling with changed data."
 msgstr "Älä näytä varoitusta perumisesta kun tietoja on muutettu."
 
-#: ../gramps/gui/configure.py:613
+#: ../gramps/gui/configure.py:654
 msgid "Suppress warning about missing researcher when exporting to GEDCOM."
 msgstr ""
 "Älä näytä varoitusta puuttuvista tutkijan tiedoista GEDCOMiin vietäessä."
 
-#: ../gramps/gui/configure.py:618
+#: ../gramps/gui/configure.py:659
 msgid "Show plugin status dialog on plugin load error."
 msgstr "Näytä laajennusten tila kun laajennusten lataaminen epäonnistuu."
 
-#: ../gramps/gui/configure.py:621
+#: ../gramps/gui/configure.py:662
 msgid "Warnings"
 msgstr "Varoitukset"
 
-#: ../gramps/gui/configure.py:647 ../gramps/gui/configure.py:661
+#: ../gramps/gui/configure.py:688 ../gramps/gui/configure.py:702
 msgid "Common"
 msgstr "Yleisnimi"
 
-#: ../gramps/gui/configure.py:654 ../gramps/plugins/export/exportcsv.py:355
+#: ../gramps/gui/configure.py:695 ../gramps/plugins/export/exportcsv.py:355
 #: ../gramps/plugins/importer/importcsv.py:164
 msgid "Call"
 msgstr "Kutsumanimi"
 
-#: ../gramps/gui/configure.py:659
+#: ../gramps/gui/configure.py:700
 msgid "NotPatronymic"
 msgstr "Eipatronyymi"
 
-#: ../gramps/gui/configure.py:736
+#: ../gramps/gui/configure.py:777
 msgid "Enter to save, Esc to cancel editing"
 msgstr "Enter tallettaa ja Esc peruuttaa päivityksen"
 
-#: ../gramps/gui/configure.py:783
+#: ../gramps/gui/configure.py:824
 msgid "This format exists already."
 msgstr "Muotoilu on jo olemassa."
 
-#: ../gramps/gui/configure.py:832
+#: ../gramps/gui/configure.py:873
 msgid "Example"
 msgstr "Esimerkki"
 
 #. show an add button
 #. we now construct an add menu
-#: ../gramps/gui/configure.py:852
-#: ../gramps/gui/editors/displaytabs/embeddedlist.py:146
-#: ../gramps/gui/editors/displaytabs/embeddedlist.py:153
+#: ../gramps/gui/configure.py:893
+#: ../gramps/gui/editors/displaytabs/embeddedlist.py:147
+#: ../gramps/gui/editors/displaytabs/embeddedlist.py:154
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:314
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:127
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:122
@@ -10065,16 +10113,16 @@ msgstr "Esimerkki"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:115
 #: ../gramps/gui/editors/editfamily.py:148
 #: ../gramps/gui/plug/report/_bookdialog.py:653
-#: ../gramps/gui/viewmanager.py:601 ../gramps/gui/views/tags.py:422
+#: ../gramps/gui/viewmanager.py:599 ../gramps/gui/views/tags.py:422
 #: ../gramps/gui/widgets/fanchart.py:1716
 #: ../gramps/gui/widgets/fanchart.py:1758
 #: ../gramps/plugins/view/pedigreeview.py:1627
 msgid "_Add"
 msgstr "_Lisää"
 
-#: ../gramps/gui/configure.py:855
-#: ../gramps/gui/editors/displaytabs/embeddedlist.py:148
-#: ../gramps/gui/editors/displaytabs/embeddedlist.py:154
+#: ../gramps/gui/configure.py:896
+#: ../gramps/gui/editors/displaytabs/embeddedlist.py:149
+#: ../gramps/gui/editors/displaytabs/embeddedlist.py:155
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:315
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:129
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:123
@@ -10082,16 +10130,16 @@ msgstr "_Lisää"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:116
 #: ../gramps/gui/glade/editlink.glade.h:11
 #: ../gramps/gui/plug/report/_bookdialog.py:627
-#: ../gramps/gui/viewmanager.py:514 ../gramps/gui/views/tags.py:423
+#: ../gramps/gui/viewmanager.py:512 ../gramps/gui/views/tags.py:423
 #: ../gramps/gui/widgets/fanchart.py:1513
 #: ../gramps/plugins/view/pedigreeview.py:1662
 #: ../gramps/plugins/view/pedigreeview.py:1890
 msgid "_Edit"
 msgstr "_Muokkaa"
 
-#: ../gramps/gui/configure.py:859
-#: ../gramps/gui/editors/displaytabs/embeddedlist.py:149
-#: ../gramps/gui/editors/displaytabs/embeddedlist.py:155
+#: ../gramps/gui/configure.py:900
+#: ../gramps/gui/editors/displaytabs/embeddedlist.py:150
+#: ../gramps/gui/editors/displaytabs/embeddedlist.py:156
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:130
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:124
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:117
@@ -10101,7 +10149,7 @@ msgstr "_Muokkaa"
 msgid "_Remove"
 msgstr "_Poista"
 
-#: ../gramps/gui/configure.py:985
+#: ../gramps/gui/configure.py:1026
 #: ../gramps/gui/editors/displaytabs/buttontab.py:71
 #: ../gramps/gui/glade/editfamily.glade.h:15
 #: ../gramps/gui/glade/editperson.glade.h:1 ../gramps/gui/glade/rule.glade.h:18
@@ -10112,123 +10160,123 @@ msgstr "_Poista"
 msgid "Edit"
 msgstr "Muokkaa"
 
-#: ../gramps/gui/configure.py:995
+#: ../gramps/gui/configure.py:1036
 msgid "Consider single pa/matronymic as surname"
 msgstr ""
 "Harkitse sukunimeksi isäpuoleista patronyymiä tai äidinpuolesta matronyymiä"
 
-#: ../gramps/gui/configure.py:1017
+#: ../gramps/gui/configure.py:1058
 msgid "Years"
 msgstr "Vuodet"
 
-#: ../gramps/gui/configure.py:1018
+#: ../gramps/gui/configure.py:1059
 msgid "Years, Months"
 msgstr "Vuodet, Kuukaudet"
 
-#: ../gramps/gui/configure.py:1019
+#: ../gramps/gui/configure.py:1060
 msgid "Years, Months, Days"
 msgstr "Vuodet, Kuukaudet, Päivät"
 
-#: ../gramps/gui/configure.py:1031
+#: ../gramps/gui/configure.py:1072
 msgid "Age display precision (requires restart)"
 msgstr "Ikänäytön tarkkuus (tulee voimaan uudelleen käynnistettäessä)"
 
-#: ../gramps/gui/configure.py:1044
+#: ../gramps/gui/configure.py:1085
 msgid "Calendar on reports"
 msgstr "Kalenteriraportti"
 
-#: ../gramps/gui/configure.py:1057
+#: ../gramps/gui/configure.py:1098
 msgid "Surname guessing"
 msgstr "Sukunimen arvaus"
 
-#: ../gramps/gui/configure.py:1070
+#: ../gramps/gui/configure.py:1111
 msgid "Default family relationship"
 msgstr "Oletusarvoinen perhesuhde"
 
-#: ../gramps/gui/configure.py:1077
+#: ../gramps/gui/configure.py:1118
 msgid "Height multiple surname box (pixels)"
 msgstr "Monen sukunimen laatikon korkeus (pikseleinä)"
 
-#: ../gramps/gui/configure.py:1084
+#: ../gramps/gui/configure.py:1125
 msgid "Active person's name and ID"
 msgstr "Aktiivisen henkilön nimi ja ID"
 
-#: ../gramps/gui/configure.py:1085
+#: ../gramps/gui/configure.py:1126
 #: ../gramps/plugins/textreport/indivcomplete.py:368
 msgid "Relationship to home person"
 msgstr "Suhde kotihenkilöön (koettiin)"
 
-#: ../gramps/gui/configure.py:1094
+#: ../gramps/gui/configure.py:1135
 msgid "Status bar"
 msgstr "Tilapalkki"
 
-#: ../gramps/gui/configure.py:1101
+#: ../gramps/gui/configure.py:1142
 msgid "Show text label beside Navigator buttons (requires restart)"
 msgstr ""
 "Näytä teksti sivupalkin painikkeissa (tulee voimaan uudelleen "
 "käynnistettäessä)"
 
-#: ../gramps/gui/configure.py:1107
+#: ../gramps/gui/configure.py:1148
 msgid "Show close button in gramplet bar tabs"
 msgstr "Näytä suljepainike gramplet-palkin kielekkäänä"
 
-#: ../gramps/gui/configure.py:1120
+#: ../gramps/gui/configure.py:1161
 msgid "Enable automatic place title generation"
 msgstr "Muodosta paikan nimike automaattisesti"
 
-#: ../gramps/gui/configure.py:1132
+#: ../gramps/gui/configure.py:1173
 msgid "Suppress comma after house number"
 msgstr "Jätä pilkku pois talonnumeron jälkeen"
 
-#: ../gramps/gui/configure.py:1137
+#: ../gramps/gui/configure.py:1178
 msgid "Reverse display order"
 msgstr "Käännä näyttöjärjestys"
 
-#: ../gramps/gui/configure.py:1144
+#: ../gramps/gui/configure.py:1185
 msgid "Full place name"
 msgstr "Paikan nimi kokonaan"
 
-#: ../gramps/gui/configure.py:1145
+#: ../gramps/gui/configure.py:1186
 msgid "-> Hamlet/Village/Town/City"
 msgstr "-> Taloryhmä tai osakylä/Kylä/Kaupunki/Paikkakunta"
 
-#: ../gramps/gui/configure.py:1146
+#: ../gramps/gui/configure.py:1187
 msgid "Hamlet/Village/Town/City ->"
 msgstr "Taloryhmä tai osakylä/Kylä/Kaupunki/Paikkakunta ->"
 
-#: ../gramps/gui/configure.py:1151
+#: ../gramps/gui/configure.py:1192
 msgid "Restrict"
 msgstr "Rajoita"
 
-#: ../gramps/gui/configure.py:1180
+#: ../gramps/gui/configure.py:1221
 msgid "Missing surname"
 msgstr "Puuttuva sukunimi"
 
-#: ../gramps/gui/configure.py:1183
+#: ../gramps/gui/configure.py:1224
 msgid "Missing given name"
 msgstr "Puuttuva etunimi"
 
-#: ../gramps/gui/configure.py:1186
+#: ../gramps/gui/configure.py:1227
 msgid "Missing record"
 msgstr "Puuttuva tieto"
 
-#: ../gramps/gui/configure.py:1189
+#: ../gramps/gui/configure.py:1230
 msgid "Private surname"
 msgstr "Yksityinen sukunimi"
 
-#: ../gramps/gui/configure.py:1193
+#: ../gramps/gui/configure.py:1234
 msgid "Private given name"
 msgstr "Yksityinen etunimi"
 
-#: ../gramps/gui/configure.py:1197
+#: ../gramps/gui/configure.py:1238
 msgid "Private record"
 msgstr "Yksityinen tieto"
 
-#: ../gramps/gui/configure.py:1237
+#: ../gramps/gui/configure.py:1290
 msgid "Change is not immediate"
 msgstr "Muutos ei tapahdu välittömästi"
 
-#: ../gramps/gui/configure.py:1238
+#: ../gramps/gui/configure.py:1291
 msgid ""
 "Changing the date format will not take effect until the next time Gramps is "
 "started."
@@ -10236,39 +10284,39 @@ msgstr ""
 "Päivämäärän muodon muutos tulee voimaan vasta kun Gramps on uudelleen "
 "käynnistetty."
 
-#: ../gramps/gui/configure.py:1257
+#: ../gramps/gui/configure.py:1310
 msgid "Date about range"
 msgstr "Noin aikaväli"
 
-#: ../gramps/gui/configure.py:1260
+#: ../gramps/gui/configure.py:1313
 msgid "Date after range"
 msgstr "Aikaväli jälkeen"
 
-#: ../gramps/gui/configure.py:1263
+#: ../gramps/gui/configure.py:1316
 msgid "Date before range"
 msgstr "Aikaväli ennen"
 
-#: ../gramps/gui/configure.py:1266
+#: ../gramps/gui/configure.py:1319
 msgid "Maximum age probably alive"
 msgstr "Korkein todennäköinen elinikä"
 
-#: ../gramps/gui/configure.py:1269
+#: ../gramps/gui/configure.py:1322
 msgid "Maximum sibling age difference"
 msgstr "Suurin mahdollinen sisarusten ikäero"
 
-#: ../gramps/gui/configure.py:1272
+#: ../gramps/gui/configure.py:1325
 msgid "Minimum years between generations"
 msgstr "Pienin mahdollinen vuosimäärä sukupolvien välillä"
 
-#: ../gramps/gui/configure.py:1275
+#: ../gramps/gui/configure.py:1328
 msgid "Average years between generations"
 msgstr "Keskimääräinen vuosimäärä sukupolvien välillä"
 
-#: ../gramps/gui/configure.py:1278
+#: ../gramps/gui/configure.py:1331
 msgid "Markup for invalid date format"
 msgstr "Merkintä virheelliselle päivämäärämuodolle"
 
-#: ../gramps/gui/configure.py:1281
+#: ../gramps/gui/configure.py:1334
 #, python-format
 msgid ""
 "Convenience markups are:\n"
@@ -10299,29 +10347,29 @@ msgstr ""
 "Esimerkiksi: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
 "näyttää <u><b>alleviivatun lihavoidun päiväyksen</b></u>.\n"
 
-#: ../gramps/gui/configure.py:1295
+#: ../gramps/gui/configure.py:1348
 msgid "Dates"
 msgstr "Päivämäärät"
 
-#: ../gramps/gui/configure.py:1306
+#: ../gramps/gui/configure.py:1359
 msgid "Use alternate Font handler for GUI and Reports (requires restart)"
 msgstr ""
 "Käytä vaihtoehtoista fontin käsittelijää GUI:ssa ja raporteissa (vaatii "
 "uudelleenkäynnistyksen)"
 
-#: ../gramps/gui/configure.py:1312
+#: ../gramps/gui/configure.py:1365
 msgid "Add default source on GEDCOM import"
 msgstr "Lisää oletuslähde GEDCOM-tuonnissa"
 
-#: ../gramps/gui/configure.py:1316
+#: ../gramps/gui/configure.py:1369
 msgid "Add tag on import"
 msgstr "Lisää oletuslähde tuonnissa"
 
-#: ../gramps/gui/configure.py:1327
+#: ../gramps/gui/configure.py:1380
 msgid "Enable spelling checker"
 msgstr "Aktivoi oikoluku"
 
-#: ../gramps/gui/configure.py:1336
+#: ../gramps/gui/configure.py:1389
 #, python-format
 msgid ""
 "GtkSpell not loaded. Spell checking will not be available.\n"
@@ -10330,151 +10378,151 @@ msgstr ""
 "GtkSpell ohjelma asentamatta. Oikeellisuustarkistukset eivät toimi.\n"
 "Katso miten saat sen mukaan Grampsiin %(gramps_wiki_build_spell_url)s"
 
-#: ../gramps/gui/configure.py:1343
+#: ../gramps/gui/configure.py:1396
 msgid "Display Tip of the Day"
 msgstr "Näytä päivän vihje"
 
-#: ../gramps/gui/configure.py:1348
+#: ../gramps/gui/configure.py:1401
 msgid "Remember last view displayed"
 msgstr "Muista viimeisin näytetty näkymä"
 
-#: ../gramps/gui/configure.py:1353
+#: ../gramps/gui/configure.py:1406
 msgid "Max generations for relationships"
 msgstr "Suurin sukupolvimäärä sukulaisuussuhteelle"
 
-#: ../gramps/gui/configure.py:1359
+#: ../gramps/gui/configure.py:1412
 msgid "Base path for relative media paths"
 msgstr "Peruspolku suhteellisille mediatiedostojen poluille"
 
-#: ../gramps/gui/configure.py:1367
+#: ../gramps/gui/configure.py:1420
 msgid "Once a month"
 msgstr "Kuukausittain"
 
-#: ../gramps/gui/configure.py:1368
+#: ../gramps/gui/configure.py:1421
 msgid "Once a week"
 msgstr "Viikoittain"
 
-#: ../gramps/gui/configure.py:1369
+#: ../gramps/gui/configure.py:1422
 msgid "Once a day"
 msgstr "Päivittäin"
 
-#: ../gramps/gui/configure.py:1370
+#: ../gramps/gui/configure.py:1423
 msgid "Always"
 msgstr "Aina"
 
-#: ../gramps/gui/configure.py:1375
+#: ../gramps/gui/configure.py:1428
 msgid "Check for addon updates"
 msgstr "Laajennusten päivityksien tarkistus"
 
-#: ../gramps/gui/configure.py:1381
+#: ../gramps/gui/configure.py:1434
 msgid "Updated addons only"
 msgstr "Vain päivitetyt laajennukset"
 
-#: ../gramps/gui/configure.py:1382
+#: ../gramps/gui/configure.py:1435
 msgid "New addons only"
 msgstr "Vain uudet laajennukset"
 
-#: ../gramps/gui/configure.py:1383
+#: ../gramps/gui/configure.py:1436
 msgid "New and updated addons"
 msgstr "Uudet ja päivitetyt laajennukset"
 
-#: ../gramps/gui/configure.py:1393
+#: ../gramps/gui/configure.py:1446
 msgid "What to check"
 msgstr "Mitä tarkistetaan"
 
-#: ../gramps/gui/configure.py:1398
+#: ../gramps/gui/configure.py:1451
 msgid "Where to check"
 msgstr "Mistä tarkistetaan"
 
-#: ../gramps/gui/configure.py:1402
+#: ../gramps/gui/configure.py:1455
 msgid "Do not ask about previously notified addons"
 msgstr "Älä kysy aikaisemmin ilmoitetuista laajennuksista"
 
-#: ../gramps/gui/configure.py:1407
+#: ../gramps/gui/configure.py:1460
 msgid "Check for updated addons now"
 msgstr "Tarkista laajennusten päivitykset nyt"
 
-#: ../gramps/gui/configure.py:1417
+#: ../gramps/gui/configure.py:1470
 msgid "Checking Addons Failed"
 msgstr "Laajennusten tarkistus epäonnistui"
 
-#: ../gramps/gui/configure.py:1418
+#: ../gramps/gui/configure.py:1471
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr "Laajennukset eivät näytä olevan saatavilla. Yritä myöhemmin."
 
-#: ../gramps/gui/configure.py:1431
+#: ../gramps/gui/configure.py:1484
 msgid "There are no available addons of this type"
 msgstr "Tämäntyyppisiä laajennuksia ei ole saatavilla"
 
-#: ../gramps/gui/configure.py:1432
+#: ../gramps/gui/configure.py:1485
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Tarkistettu '%s'"
 
-#: ../gramps/gui/configure.py:1433
+#: ../gramps/gui/configure.py:1486
 msgid "' and '"
 msgstr "' ja '"
 
 #. List of translated strings used here
 #. Dead code for l10n
-#: ../gramps/gui/configure.py:1438
+#: ../gramps/gui/configure.py:1491
 msgid "new"
 msgstr "uusi"
 
-#: ../gramps/gui/configure.py:1438
+#: ../gramps/gui/configure.py:1491
 msgid "update"
 msgstr "päivitä"
 
-#: ../gramps/gui/configure.py:1466
+#: ../gramps/gui/configure.py:1519
 msgid "Database backend"
 msgstr "Tietokannan taustaosa"
 
-#: ../gramps/gui/configure.py:1473
+#: ../gramps/gui/configure.py:1526
 msgid "Host"
 msgstr "Isäntäkone"
 
-#: ../gramps/gui/configure.py:1477
+#: ../gramps/gui/configure.py:1530
 msgid "Port"
 msgstr "Portti"
 
-#: ../gramps/gui/configure.py:1485
+#: ../gramps/gui/configure.py:1538
 msgid "Family Tree Database path"
 msgstr "Sukukannan tietokantapolku"
 
-#: ../gramps/gui/configure.py:1494
+#: ../gramps/gui/configure.py:1547
 msgid "Automatically load last Family Tree"
 msgstr "Lataa automaattisesti viimeisin sukupuu"
 
-#: ../gramps/gui/configure.py:1500
+#: ../gramps/gui/configure.py:1553
 msgid "Backup path"
 msgstr "Varmuuskopion polku"
 
-#: ../gramps/gui/configure.py:1507
+#: ../gramps/gui/configure.py:1560
 msgid "Backup on exit"
 msgstr "Varmuuskopio poistuttaessa"
 
-#: ../gramps/gui/configure.py:1514
+#: ../gramps/gui/configure.py:1567
 msgid "Every 15 minutes"
 msgstr "15 min. välein"
 
-#: ../gramps/gui/configure.py:1515
+#: ../gramps/gui/configure.py:1568
 msgid "Every 30 minutes"
 msgstr "30 min. välein"
 
-#: ../gramps/gui/configure.py:1516
+#: ../gramps/gui/configure.py:1569
 msgid "Every hour"
 msgstr "Tunnin välein"
 
-#: ../gramps/gui/configure.py:1521
+#: ../gramps/gui/configure.py:1574
 msgid "Autobackup"
 msgstr "Automaattinen varmuuskopio"
 
-#: ../gramps/gui/configure.py:1561
+#: ../gramps/gui/configure.py:1614
 msgid "Select media directory"
 msgstr "Valitse mediatiedostojen hakemisto"
 
-#: ../gramps/gui/configure.py:1564 ../gramps/gui/configure.py:1587
-#: ../gramps/gui/configure.py:1609 ../gramps/gui/dbloader.py:422
+#: ../gramps/gui/configure.py:1617 ../gramps/gui/configure.py:1640
+#: ../gramps/gui/configure.py:1662 ../gramps/gui/dbloader.py:422
 #: ../gramps/gui/dbloader.py:456 ../gramps/gui/editors/edittaglist.py:119
 #: ../gramps/gui/glade/addmedia.glade.h:1
 #: ../gramps/gui/glade/baseselector.glade.h:1
@@ -10519,8 +10567,8 @@ msgstr "Valitse mediatiedostojen hakemisto"
 #: ../gramps/gui/logger/_errorview.py:173 ../gramps/gui/plug/_guioptions.py:78
 #: ../gramps/gui/plug/_guioptions.py:1738 ../gramps/gui/plug/_windows.py:440
 #: ../gramps/gui/plug/report/_fileentry.py:64
-#: ../gramps/gui/plug/report/_reportdialog.py:161 ../gramps/gui/utils.py:179
-#: ../gramps/gui/viewmanager.py:1957 ../gramps/gui/views/listview.py:1018
+#: ../gramps/gui/plug/report/_reportdialog.py:161 ../gramps/gui/utils.py:180
+#: ../gramps/gui/viewmanager.py:1956 ../gramps/gui/views/listview.py:1018
 #: ../gramps/gui/views/navigationview.py:363 ../gramps/gui/views/tags.py:645
 #: ../gramps/gui/widgets/progressdialog.py:437
 #: ../gramps/plugins/lib/maps/geography.py:1008
@@ -10531,11 +10579,11 @@ msgstr "Valitse mediatiedostojen hakemisto"
 msgid "_Cancel"
 msgstr "_Peru"
 
-#: ../gramps/gui/configure.py:1584
+#: ../gramps/gui/configure.py:1637
 msgid "Select database directory"
 msgstr "Valitse tietokannan hakemisto"
 
-#: ../gramps/gui/configure.py:1606 ../gramps/gui/viewmanager.py:1954
+#: ../gramps/gui/configure.py:1659 ../gramps/gui/viewmanager.py:1953
 msgid "Select backup directory"
 msgstr "Valitse varmuuskopion hakemisto"
 
@@ -10584,7 +10632,7 @@ msgstr ""
 #: ../gramps/gui/dbloader.py:250 ../gramps/gui/dbloader.py:265
 #: ../gramps/gui/plug/report/_bookdialog.py:243
 #: ../gramps/gui/plug/report/_bookdialog.py:739
-#: ../gramps/gui/viewmanager.py:841
+#: ../gramps/gui/viewmanager.py:839
 msgid "Cancel"
 msgstr "Peru"
 
@@ -10737,8 +10785,8 @@ msgstr "Tietokannan tiedot"
 #: ../gramps/gui/glade/reorder.glade.h:2 ../gramps/gui/glade/rule.glade.h:13
 #: ../gramps/gui/glade/styleeditor.glade.h:2
 #: ../gramps/gui/plug/_guioptions.py:79
-#: ../gramps/gui/plug/report/_reportdialog.py:165 ../gramps/gui/utils.py:193
-#: ../gramps/gui/viewmanager.py:1825 ../gramps/gui/views/tags.py:646
+#: ../gramps/gui/plug/report/_reportdialog.py:165 ../gramps/gui/utils.py:194
+#: ../gramps/gui/viewmanager.py:1824 ../gramps/gui/views/tags.py:646
 #: ../gramps/plugins/tool/check.py:781 ../gramps/plugins/tool/patchnames.py:118
 #: ../gramps/plugins/tool/populatesources.py:91
 #: ../gramps/plugins/tool/testcasegenerator.py:328
@@ -11023,7 +11071,7 @@ msgstr ""
 "%s"
 
 #: ../gramps/gui/dialog.py:386 ../gramps/gui/dialog.py:464
-#: ../gramps/gui/utils.py:308
+#: ../gramps/gui/utils.py:309
 msgid "Attempt to force closing the dialog"
 msgstr "Ikkuna yritettiin sulkea väkisin"
 
@@ -11257,7 +11305,7 @@ msgid "Remove"
 msgstr "Poista"
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:72
-#: ../gramps/gui/editors/displaytabs/embeddedlist.py:147
+#: ../gramps/gui/editors/displaytabs/embeddedlist.py:148
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:128
 #: ../gramps/plugins/view/relview.py:413
 msgid "Share"
@@ -11419,7 +11467,7 @@ msgid "_Make Active Media"
 msgstr "Tee aktiiviseksi mediaksi"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:257
-#: ../gramps/gui/editors/editperson.py:960
+#: ../gramps/gui/editors/editperson.py:961
 #: ../gramps/plugins/textreport/indivcomplete.py:599
 msgid "Non existing media found in the Gallery"
 msgstr "Löydetty Galleriasta media, jota vastaavaa tiedostoa ei löydy"
@@ -12423,7 +12471,7 @@ msgid "manual|Name_Editor"
 msgstr "Nimimuokkain_ikkuna"
 
 #: ../gramps/gui/editors/editname.py:174
-#: ../gramps/gui/editors/editperson.py:327
+#: ../gramps/gui/editors/editperson.py:324
 msgid "Call name must be the given name that is normally used."
 msgstr "Yhtä etunimistä tai niiden osaa käytetään normaalisti kutsumanimenä."
 
@@ -12542,7 +12590,7 @@ msgid "New Person"
 msgstr "Uusi henkilö"
 
 # WIKI_HELP_SEC osa1
-#: ../gramps/gui/editors/editperson.py:245
+#: ../gramps/gui/editors/editperson.py:242
 msgid "manual|Editing_information_about_people"
 msgstr "Henkil.C3.B6tietojen_muokkaus"
 
@@ -12606,26 +12654,26 @@ msgstr "Lisää henkilö (%s)"
 msgid "Edit Person (%s)"
 msgstr "Muokkaa henkilöä (%s)"
 
-#: ../gramps/gui/editors/editperson.py:1097
+#: ../gramps/gui/editors/editperson.py:1098
 msgid "Unknown gender specified"
 msgstr "Määritetty tuntematon sukupuoli"
 
-#: ../gramps/gui/editors/editperson.py:1099
+#: ../gramps/gui/editors/editperson.py:1100
 msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "Please specify the gender."
 msgstr ""
 "Henkilön sukupuoli on tuntematon. Yleensä tämä on virhe. Anna sukupuoli."
 
-#: ../gramps/gui/editors/editperson.py:1102
+#: ../gramps/gui/editors/editperson.py:1103
 msgid "_Male"
 msgstr "_Mies"
 
-#: ../gramps/gui/editors/editperson.py:1103
+#: ../gramps/gui/editors/editperson.py:1104
 msgid "_Female"
 msgstr "_Nainen"
 
-#: ../gramps/gui/editors/editperson.py:1104
+#: ../gramps/gui/editors/editperson.py:1105
 msgid "_Unknown"
 msgstr "_Tuntematon"
 
@@ -12931,7 +12979,7 @@ msgstr "Tagin valinta"
 #: ../gramps/gui/glade/reorder.glade.h:3 ../gramps/gui/glade/rule.glade.h:2
 #: ../gramps/gui/logger/_errorview.py:175
 #: ../gramps/gui/plug/report/_reportdialog.py:158
-#: ../gramps/gui/undohistory.py:82 ../gramps/gui/viewmanager.py:517
+#: ../gramps/gui/undohistory.py:82 ../gramps/gui/viewmanager.py:515
 #: ../gramps/gui/views/bookmarks.py:287 ../gramps/gui/views/tags.py:431
 #: ../gramps/gui/views/tags.py:644 ../gramps/gui/widgets/grampletbar.py:641
 #: ../gramps/gui/widgets/grampletpane.py:237
@@ -17217,7 +17265,7 @@ msgid "Spelling checker initialization failed: %s"
 msgstr "Kielen tarkistuksen käynnistys epäonnistui: %s"
 
 #: ../gramps/gui/tipofday.py:67 ../gramps/gui/tipofday.py:68
-#: ../gramps/gui/tipofday.py:121 ../gramps/gui/viewmanager.py:534
+#: ../gramps/gui/tipofday.py:121 ../gramps/gui/viewmanager.py:532
 msgid "Tip of the Day"
 msgstr "Päivän vihje"
 
@@ -17240,13 +17288,13 @@ msgstr ""
 msgid "Undo History"
 msgstr "Muokkaushistoria"
 
-#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:643
-#: ../gramps/gui/viewmanager.py:1289
+#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:641
+#: ../gramps/gui/viewmanager.py:1287
 msgid "_Undo"
 msgstr "_Peru"
 
-#: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:648
-#: ../gramps/gui/viewmanager.py:1306
+#: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:646
+#: ../gramps/gui/viewmanager.py:1304
 msgid "_Redo"
 msgstr "_Tee uudelleen"
 
@@ -17284,29 +17332,29 @@ msgstr "Tietokanta avattu"
 msgid "History cleared"
 msgstr "Historia tyhjennetty"
 
-#: ../gramps/gui/utils.py:229
+#: ../gramps/gui/utils.py:230
 msgid "Canceling..."
 msgstr "Peruutetaan..."
 
-#: ../gramps/gui/utils.py:309
+#: ../gramps/gui/utils.py:310
 msgid "Please do not force closing this important dialog."
 msgstr "Älä pakota tätä tärkeää ikkunaa kiinni."
 
-#: ../gramps/gui/utils.py:373
+#: ../gramps/gui/utils.py:374
 msgid "The external program failed to launch or experienced an error"
 msgstr "Ulkoinen sovellus ei käynnistynyt tai kohtasi virheen"
 
-#: ../gramps/gui/utils.py:383
+#: ../gramps/gui/utils.py:384
 msgid "Error from external program"
 msgstr "Virhe ulkoisesta ohjelmasta"
 
-#: ../gramps/gui/utils.py:424
+#: ../gramps/gui/utils.py:425
 #: ../gramps/plugins/textreport/simplebooktitle.py:107
 #, python-format
 msgid "File %s does not exist"
 msgstr "Tiedostoa %s ei ole olemassa"
 
-#: ../gramps/gui/utils.py:595
+#: ../gramps/gui/utils.py:613
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -17324,198 +17372,194 @@ msgstr ""
 "Lainauksen muokkaamiseksi sulje lähdemuokkain ja avaa pelkästään "
 "lainausmuokkain"
 
-#: ../gramps/gui/utils.py:608
+#: ../gramps/gui/utils.py:626
 msgid "Cannot open new citation editor"
 msgstr "Uuden lainausmuokkaimen avaus ei onnistu"
 
-#: ../gramps/gui/viewmanager.py:466 ../gramps/gui/viewmanager.py:1263
+#: ../gramps/gui/viewmanager.py:464 ../gramps/gui/viewmanager.py:1261
 msgid "No Family Tree"
 msgstr "Ei sukupuuta ladattuna"
 
-#: ../gramps/gui/viewmanager.py:488
+#: ../gramps/gui/viewmanager.py:486
 msgid "Connect to a recent database"
 msgstr "Avaa äskettäin käytetty tietokanta"
 
-#: ../gramps/gui/viewmanager.py:506
+#: ../gramps/gui/viewmanager.py:504
 msgid "_Family Trees"
 msgstr "_Sukupuut"
 
-#: ../gramps/gui/viewmanager.py:507
+#: ../gramps/gui/viewmanager.py:505
 msgid "_Manage Family Trees..."
 msgstr "_Hallinnoi sukupuita..."
 
-#: ../gramps/gui/viewmanager.py:508
+#: ../gramps/gui/viewmanager.py:506
 msgid "Manage databases"
 msgstr "Hallinnoi tietokantoja"
 
-#: ../gramps/gui/viewmanager.py:509
+#: ../gramps/gui/viewmanager.py:507
 msgid "Open _Recent"
 msgstr "V_iimeksi avattu"
 
-#: ../gramps/gui/viewmanager.py:510
+#: ../gramps/gui/viewmanager.py:508
 msgid "Open an existing database"
 msgstr "Avaa olemassa oleva tietokanta"
 
-#: ../gramps/gui/viewmanager.py:511
+#: ../gramps/gui/viewmanager.py:509
 msgid "_Quit"
 msgstr "_Lopeta"
 
-#: ../gramps/gui/viewmanager.py:513
+#: ../gramps/gui/viewmanager.py:511
 msgid "_View"
 msgstr "_Näytä"
 
-#: ../gramps/gui/viewmanager.py:515
+#: ../gramps/gui/viewmanager.py:513
 msgid "_Preferences..."
 msgstr "_Asetukset..."
 
-#: ../gramps/gui/viewmanager.py:518
+#: ../gramps/gui/viewmanager.py:516
 msgid "Gramps _Home Page"
 msgstr "_Gramps kotisivu"
 
-#: ../gramps/gui/viewmanager.py:520
+#: ../gramps/gui/viewmanager.py:518
 msgid "Gramps _Mailing Lists"
 msgstr "Gramps _postituslistat"
 
-#: ../gramps/gui/viewmanager.py:522
+#: ../gramps/gui/viewmanager.py:520
 msgid "_Report a Bug"
 msgstr "_Virheen raportointi"
 
-#: ../gramps/gui/viewmanager.py:524
+#: ../gramps/gui/viewmanager.py:522
 msgid "_Extra Reports/Tools"
 msgstr "_Muita raportteja/työkaluja"
 
-#: ../gramps/gui/viewmanager.py:526
+#: ../gramps/gui/viewmanager.py:524
 msgid "_About"
 msgstr "_Tietoja"
 
-#: ../gramps/gui/viewmanager.py:528
+#: ../gramps/gui/viewmanager.py:526
 msgid "_Plugin Manager"
 msgstr "_Lisäosien hallinta"
 
-#: ../gramps/gui/viewmanager.py:530
+#: ../gramps/gui/viewmanager.py:528
 msgid "_FAQ"
 msgstr "_UKK (FAQ)"
 
-#: ../gramps/gui/viewmanager.py:531
+#: ../gramps/gui/viewmanager.py:529
 msgid "_Key Bindings"
 msgstr "_Pikanäppäimet"
 
-#: ../gramps/gui/viewmanager.py:532
+#: ../gramps/gui/viewmanager.py:530
 msgid "_User Manual"
 msgstr "_Käyttöohje"
 
-#: ../gramps/gui/viewmanager.py:540
+#: ../gramps/gui/viewmanager.py:538
 msgid "Close the current database"
 msgstr "Sulje nykyinen tietokanta"
 
-#: ../gramps/gui/viewmanager.py:541
+#: ../gramps/gui/viewmanager.py:539
 msgid "_Export..."
 msgstr "_Vienti..."
 
-#: ../gramps/gui/viewmanager.py:543
+#: ../gramps/gui/viewmanager.py:541
 msgid "Make Backup..."
 msgstr "Ota varmuuskopio..."
 
-#: ../gramps/gui/viewmanager.py:544
+#: ../gramps/gui/viewmanager.py:542
 msgid "Make a Gramps XML backup of the database"
 msgstr "Tee Gramps XML varmuuskopio"
 
-#: ../gramps/gui/viewmanager.py:546
+#: ../gramps/gui/viewmanager.py:544
 msgid "_Abandon Changes and Quit"
 msgstr "_Hylkää muutokset ja lopeta"
 
-#: ../gramps/gui/viewmanager.py:547 ../gramps/gui/viewmanager.py:550
+#: ../gramps/gui/viewmanager.py:545 ../gramps/gui/viewmanager.py:548
 msgid "_Reports"
 msgstr "_Raportit"
 
-#: ../gramps/gui/viewmanager.py:548
+#: ../gramps/gui/viewmanager.py:546
 msgid "Open the reports dialog"
 msgstr "Avaa raportti-ikkunan"
 
-#: ../gramps/gui/viewmanager.py:549
+#: ../gramps/gui/viewmanager.py:547
 msgid "_Go"
 msgstr "_Siirry"
 
-#: ../gramps/gui/viewmanager.py:551
+#: ../gramps/gui/viewmanager.py:549
 msgid "Books..."
 msgstr "Kirjat..."
 
-#: ../gramps/gui/viewmanager.py:552
+#: ../gramps/gui/viewmanager.py:550
 msgid "_Windows"
 msgstr "_Ikkunat"
 
-#: ../gramps/gui/viewmanager.py:599
+#: ../gramps/gui/viewmanager.py:597
 msgid "Clip_board"
 msgstr "Leike_pöytä"
 
-#: ../gramps/gui/viewmanager.py:600
+#: ../gramps/gui/viewmanager.py:598
 msgid "Open the Clipboard dialog"
 msgstr "Avaa Leikepöytä ikkuna"
 
-#: ../gramps/gui/viewmanager.py:602
-msgid "New"
-msgstr "Uusi"
-
 #. --------------------------------------
-#: ../gramps/gui/viewmanager.py:622
+#: ../gramps/gui/viewmanager.py:620
 msgid "_Import..."
 msgstr "Tuonti..."
 
-#: ../gramps/gui/viewmanager.py:624 ../gramps/gui/viewmanager.py:627
+#: ../gramps/gui/viewmanager.py:622 ../gramps/gui/viewmanager.py:625
 msgid "_Tools"
 msgstr "Työkalut"
 
-#: ../gramps/gui/viewmanager.py:625
+#: ../gramps/gui/viewmanager.py:623
 msgid "Open the tools dialog"
 msgstr "Avaa työkalut ikkunan"
 
-#: ../gramps/gui/viewmanager.py:626
+#: ../gramps/gui/viewmanager.py:624
 msgid "_Bookmarks"
 msgstr "Kirjanmerkit"
 
-#: ../gramps/gui/viewmanager.py:628
+#: ../gramps/gui/viewmanager.py:626
 msgid "_Configure..."
 msgstr "Asetukset..."
 
-#: ../gramps/gui/viewmanager.py:629
+#: ../gramps/gui/viewmanager.py:627
 msgid "Configure the active view"
 msgstr "Muokkaa valitun näkymän asetuksia"
 
-#: ../gramps/gui/viewmanager.py:634
+#: ../gramps/gui/viewmanager.py:632
 msgid "_Navigator"
 msgstr "_Näkymätila"
 
-#: ../gramps/gui/viewmanager.py:636
+#: ../gramps/gui/viewmanager.py:634
 msgid "_Toolbar"
 msgstr "T_yökalupalkki"
 
-#: ../gramps/gui/viewmanager.py:638
+#: ../gramps/gui/viewmanager.py:636
 msgid "F_ull Screen"
 msgstr "K_okoruutu"
 
-#: ../gramps/gui/viewmanager.py:654
+#: ../gramps/gui/viewmanager.py:652
 msgid "Undo History..."
 msgstr "Muokkaushistoria..."
 
-#: ../gramps/gui/viewmanager.py:677
+#: ../gramps/gui/viewmanager.py:675
 #, python-format
 msgid "Key %s is not bound"
 msgstr "Näppäintä %s ei ole sidottu mihinkään"
 
 #. registering plugins
-#: ../gramps/gui/viewmanager.py:784
+#: ../gramps/gui/viewmanager.py:782
 msgid "Registering plugins..."
 msgstr "Rekisteröi laajennuksia..."
 
-#: ../gramps/gui/viewmanager.py:792
+#: ../gramps/gui/viewmanager.py:790
 msgid "Ready"
 msgstr "Valmis"
 
-#: ../gramps/gui/viewmanager.py:837
+#: ../gramps/gui/viewmanager.py:835
 msgid "Abort changes?"
 msgstr "Peru muutokset?"
 
-#: ../gramps/gui/viewmanager.py:838
+#: ../gramps/gui/viewmanager.py:836
 msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
@@ -17523,15 +17567,15 @@ msgstr ""
 "Muutosten peruminen palauttaa tietokannan tilaan, jossa se oli ennen kuin "
 "aloitit tämän istunnon."
 
-#: ../gramps/gui/viewmanager.py:840
+#: ../gramps/gui/viewmanager.py:838
 msgid "Abort changes"
 msgstr "Peru muutokset"
 
-#: ../gramps/gui/viewmanager.py:851
+#: ../gramps/gui/viewmanager.py:849
 msgid "Cannot abandon session's changes"
 msgstr "Istunnon muutosten hylkääminen ei onnistu"
 
-#: ../gramps/gui/viewmanager.py:852
+#: ../gramps/gui/viewmanager.py:850
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
@@ -17539,31 +17583,31 @@ msgstr ""
 "Istunnon muutoksia ei voida kokonaan perua koska niitä oli enemmän kuin "
 "voidaan perua."
 
-#: ../gramps/gui/viewmanager.py:1013
+#: ../gramps/gui/viewmanager.py:1011
 msgid "View failed to load. Check error output."
 msgstr "Näkymän lataus epännistui. Tarkista virheyhteenveto."
 
-#: ../gramps/gui/viewmanager.py:1165
+#: ../gramps/gui/viewmanager.py:1163
 msgid "Import Statistics"
 msgstr "Tuonti tilastot"
 
-#: ../gramps/gui/viewmanager.py:1233
+#: ../gramps/gui/viewmanager.py:1231
 msgid "Read Only"
 msgstr "Kirjoitussuojattu"
 
-#: ../gramps/gui/viewmanager.py:1352
+#: ../gramps/gui/viewmanager.py:1350
 msgid "Autobackup..."
 msgstr "Automaattinen varmuuskopio..."
 
-#: ../gramps/gui/viewmanager.py:1357
+#: ../gramps/gui/viewmanager.py:1355
 msgid "Error saving backup data"
 msgstr "Virhe varmuuskopion tallennuksessa"
 
-#: ../gramps/gui/viewmanager.py:1648
+#: ../gramps/gui/viewmanager.py:1646
 msgid "Failed Loading View"
 msgstr "Näkymän lataus epäonnistui"
 
-#: ../gramps/gui/viewmanager.py:1649
+#: ../gramps/gui/viewmanager.py:1647
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -17588,11 +17632,11 @@ msgstr ""
 "Ohjeet-valikon Laajennuksien hallinta-valinnan kautta voit myös ohittaa "
 "ongelmallisen laajennuksen."
 
-#: ../gramps/gui/viewmanager.py:1741
+#: ../gramps/gui/viewmanager.py:1739
 msgid "Failed Loading Plugin"
 msgstr "Laajennuksen lataus epäonnistui"
 
-#: ../gramps/gui/viewmanager.py:1742
+#: ../gramps/gui/viewmanager.py:1740
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -17617,55 +17661,55 @@ msgstr ""
 "Ohjeet-valikon Laajennuksien hallinta-valinnan kautta voit myös ohittaa "
 "ongelmallisen laajennuksen."
 
-#: ../gramps/gui/viewmanager.py:1821
+#: ../gramps/gui/viewmanager.py:1820
 msgid "Gramps XML Backup"
 msgstr "Gramps XML varmuuskopio"
 
-#: ../gramps/gui/viewmanager.py:1850
+#: ../gramps/gui/viewmanager.py:1849
 msgid "File:"
 msgstr "Tiedosto:"
 
-#: ../gramps/gui/viewmanager.py:1882
+#: ../gramps/gui/viewmanager.py:1881
 msgid "Media:"
 msgstr "Mediat:"
 
-#: ../gramps/gui/viewmanager.py:1889
+#: ../gramps/gui/viewmanager.py:1888
 #: ../gramps/plugins/gramplet/statsgramplet.py:139
 #: ../gramps/plugins/webreport/statistics.py:144
 msgid "Megabyte|MB"
 msgstr "Mbyte"
 
-#: ../gramps/gui/viewmanager.py:1891
+#: ../gramps/gui/viewmanager.py:1890
 msgid "Exclude"
 msgstr "Jätä pois"
 
-#: ../gramps/gui/viewmanager.py:1911
+#: ../gramps/gui/viewmanager.py:1910
 msgid "Backup file already exists! Overwrite?"
 msgstr "Varmuustiedosto on jo olemassa. Kirjoitetaanko yli?"
 
-#: ../gramps/gui/viewmanager.py:1912
+#: ../gramps/gui/viewmanager.py:1911
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Tiedosto '%s' on jo olemassa."
 
-#: ../gramps/gui/viewmanager.py:1913
+#: ../gramps/gui/viewmanager.py:1912
 msgid "Proceed and overwrite"
 msgstr "Jatka ja kirjoita"
 
-#: ../gramps/gui/viewmanager.py:1914
+#: ../gramps/gui/viewmanager.py:1913
 msgid "Cancel the backup"
 msgstr "Peruuta varmuuskopiointi"
 
-#: ../gramps/gui/viewmanager.py:1929
+#: ../gramps/gui/viewmanager.py:1928
 msgid "Making backup..."
 msgstr "Varmuuskopioidaan..."
 
-#: ../gramps/gui/viewmanager.py:1942
+#: ../gramps/gui/viewmanager.py:1941
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Varmuuskopioitu kohteeseen '%s'"
 
-#: ../gramps/gui/viewmanager.py:1945
+#: ../gramps/gui/viewmanager.py:1944
 msgid "Backup aborted"
 msgstr "Varmuuskopiointi keskeytetty"
 
@@ -34999,7 +35043,7 @@ msgstr ""
 #. page title
 #: ../gramps/plugins/webreport/webcal.py:1124
 msgid "One Day Within A Year"
-msgstr "Päivän tapahtumat"
+msgstr "Tapahtumapäivät"
 
 #: ../gramps/plugins/webreport/webcal.py:1428
 #, python-format
@@ -35182,7 +35226,7 @@ msgstr "Joulukuun lisätiedot"
 
 #: ../gramps/plugins/webreport/webcal.py:1835
 msgid "Create one day event pages for Year At A Glance calendar"
-msgstr "Luodaan päiväsivut vuosikalenteriin"
+msgstr "Luodaan tapahtumapäiville sivut vuosikalenteriin"
 
 #: ../gramps/plugins/webreport/webcal.py:1837
 msgid "Whether to create one day pages or not"
@@ -36334,6 +36378,36 @@ msgid ""
 msgstr ""
 "Kaikki tutkimuksesi pidetään juuri niin hallittuna, haettavissa ja tarkkana "
 "kuin sinulle on tarpeen."
+
+#~ msgid "Gender Male Alive"
+#~ msgstr "Elävä mies"
+
+#~ msgid "Gender Male Death"
+#~ msgstr "Kuollut mies"
+
+#~ msgid "Border Male Death"
+#~ msgstr "Kuolleen miehen reunaviiva"
+
+#~ msgid "Gender Female Alive"
+#~ msgstr "Elävä nainen"
+
+#~ msgid "Gender Female Death"
+#~ msgstr "Kuollut nainen"
+
+#~ msgid "Border Female Death"
+#~ msgstr "Kuolleen naisen reunaviiva"
+
+#~ msgid "Gender Unknown Alive"
+#~ msgstr "Elossa sukupuoli tuntematon"
+
+#~ msgid "Gender Unknown Death"
+#~ msgstr "Sukupuoli tuntematon kuollut"
+
+#~ msgid "Border Unknown Death"
+#~ msgstr "Sukup. tuntem. kuollut reunaviiva"
+
+#~ msgid "New"
+#~ msgstr "Uusi"
 
 #~ msgid "PostgreSQL"
 #~ msgstr "PostgreSQL"
