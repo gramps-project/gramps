@@ -528,7 +528,7 @@ class BookList(object):
                               '\n' % book.get_format_name())
                 if book.get_output():
                     b_f.write('    <output name="%s"/>'
-                              '\n' % book.get_output())
+                              '\n' % escape(book.get_output()))
                 b_f.write('  </book>\n')
 
             b_f.write('</booklist>\n')
