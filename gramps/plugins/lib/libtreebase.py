@@ -669,7 +669,7 @@ class TitleBox(BoxBase):
             return
         #fix me. width should be the printable area
         self.width = PT2CM(self.doc.string_width(self.font, self.text))
-        self.height = PT2CM(self.font.get_size() * 1.2)
+        self.height = PT2CM(self.font.get_size() * 2)
 
     def _get_names(self, persons, name_displayer):
         """  A helper function that receives a list of persons and
