@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-26 20:29+0200\n"
-"PO-Revision-Date: 2018-01-26 21:55+0200\n"
+"POT-Creation-Date: 2018-01-27 09:14+0200\n"
+"PO-Revision-Date: 2018-01-27 15:16+0200\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -796,100 +796,100 @@ msgstr "  Lisätiedot: %s"
 msgid "Error encountered in argument parsing: %s"
 msgstr "Argumenttien parseroinnissa kohdattu virhe: %s"
 
-#: ../gramps/cli/plug/__init__.py:170
+#: ../gramps/cli/plug/__init__.py:171
 msgid "ERROR: Please specify a person"
 msgstr "VIRHE: Määritä henkilö"
 
-#: ../gramps/cli/plug/__init__.py:195
+#: ../gramps/cli/plug/__init__.py:196
 msgid "ERROR: Please specify a family"
 msgstr "VIRHE: Määritä perhe"
 
-#: ../gramps/cli/plug/__init__.py:283
+#: ../gramps/cli/plug/__init__.py:293
 msgid "=filename"
 msgstr "=tiedostonimi"
 
-#: ../gramps/cli/plug/__init__.py:284
+#: ../gramps/cli/plug/__init__.py:294
 msgid "Output file name. MANDATORY"
 msgstr "Tulostiedoston nimi. PAKOLLINEN"
 
-#: ../gramps/cli/plug/__init__.py:285
+#: ../gramps/cli/plug/__init__.py:295
 msgid "=format"
 msgstr "=muoto"
 
-#: ../gramps/cli/plug/__init__.py:285
+#: ../gramps/cli/plug/__init__.py:295
 msgid "Output file format."
 msgstr "Tulostiedoston muoto."
 
-#: ../gramps/cli/plug/__init__.py:286 ../gramps/cli/plug/__init__.py:287
+#: ../gramps/cli/plug/__init__.py:296 ../gramps/cli/plug/__init__.py:297
 msgid "=name"
 msgstr "=nimi"
 
-#: ../gramps/cli/plug/__init__.py:286
+#: ../gramps/cli/plug/__init__.py:296
 msgid "Style name."
 msgstr "Tyylin nimi."
 
-#: ../gramps/cli/plug/__init__.py:287
+#: ../gramps/cli/plug/__init__.py:297
 msgid "Paper size name."
 msgstr "Paperinkoon nimi."
 
-#: ../gramps/cli/plug/__init__.py:288 ../gramps/cli/plug/__init__.py:289
-#: ../gramps/cli/plug/__init__.py:291 ../gramps/cli/plug/__init__.py:293
-#: ../gramps/cli/plug/__init__.py:295
+#: ../gramps/cli/plug/__init__.py:298 ../gramps/cli/plug/__init__.py:299
+#: ../gramps/cli/plug/__init__.py:301 ../gramps/cli/plug/__init__.py:303
+#: ../gramps/cli/plug/__init__.py:305
 msgid "=number"
 msgstr "=numero"
 
-#: ../gramps/cli/plug/__init__.py:288
+#: ../gramps/cli/plug/__init__.py:298
 msgid "Paper orientation number."
 msgstr "Paperin suunnan numero."
 
-#: ../gramps/cli/plug/__init__.py:290
+#: ../gramps/cli/plug/__init__.py:300
 msgid "Left paper margin"
 msgstr "Paperin vasen reunus"
 
-#: ../gramps/cli/plug/__init__.py:290 ../gramps/cli/plug/__init__.py:292
-#: ../gramps/cli/plug/__init__.py:294 ../gramps/cli/plug/__init__.py:296
+#: ../gramps/cli/plug/__init__.py:300 ../gramps/cli/plug/__init__.py:302
+#: ../gramps/cli/plug/__init__.py:304 ../gramps/cli/plug/__init__.py:306
 msgid "Size in cm"
 msgstr "Koko senteissä"
 
-#: ../gramps/cli/plug/__init__.py:292
+#: ../gramps/cli/plug/__init__.py:302
 msgid "Right paper margin"
 msgstr "Paperin oikea reunus"
 
-#: ../gramps/cli/plug/__init__.py:294
+#: ../gramps/cli/plug/__init__.py:304
 msgid "Top paper margin"
 msgstr "Paperin yläreunus"
 
-#: ../gramps/cli/plug/__init__.py:296
+#: ../gramps/cli/plug/__init__.py:306
 msgid "Bottom paper margin"
 msgstr "Paperin alareunus"
 
-#: ../gramps/cli/plug/__init__.py:297
+#: ../gramps/cli/plug/__init__.py:307
 msgid "=css filename"
 msgstr "=tyylitiedoston (css) nimi"
 
-#: ../gramps/cli/plug/__init__.py:298
+#: ../gramps/cli/plug/__init__.py:308
 msgid "CSS filename to use, html format only"
 msgstr "Käytettävä CSS tiedostonimi, vain html muoto"
 
 #. translators: needed for French, Hebrew and Arabic
-#: ../gramps/cli/plug/__init__.py:402
+#: ../gramps/cli/plug/__init__.py:416
 #, python-format
 msgid "%(id)s:\t%(father)s, %(mother)s"
 msgstr "%(id)s:\t%(father)s, %(mother)s"
 
-#: ../gramps/cli/plug/__init__.py:447
+#: ../gramps/cli/plug/__init__.py:461
 #, python-format
 msgid "Unknown option: %s"
 msgstr "Tuntematon valinta: %s"
 
-#: ../gramps/cli/plug/__init__.py:448 ../gramps/cli/plug/__init__.py:529
+#: ../gramps/cli/plug/__init__.py:462 ../gramps/cli/plug/__init__.py:552
 msgid "   Valid options are:"
 msgstr "   Käytettävissä olevat valinnat:"
 
 #. translators: needed for Arabic, ignore otherwise
 #. ok we have the children.  Make a title off of them
 #. translators: needed for Arabic, ignore otherwise
-#: ../gramps/cli/plug/__init__.py:449 ../gramps/cli/plug/__init__.py:530
+#: ../gramps/cli/plug/__init__.py:463 ../gramps/cli/plug/__init__.py:553
 #: ../gramps/gen/lib/date.py:441 ../gramps/gen/lib/date.py:452
 #: ../gramps/gen/plug/report/endnotes.py:118
 #: ../gramps/gen/plug/report/endnotes.py:197
@@ -912,13 +912,13 @@ msgstr "   Käytettävissä olevat valinnat:"
 msgid ", "
 msgstr ", "
 
-#: ../gramps/cli/plug/__init__.py:451 ../gramps/cli/plug/__init__.py:532
-#: ../gramps/cli/plug/__init__.py:612
+#: ../gramps/cli/plug/__init__.py:465 ../gramps/cli/plug/__init__.py:555
+#: ../gramps/cli/plug/__init__.py:635
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
 msgstr "   Käytä '%(donottranslate)s' nähdäksesi kuvaus ja sallitut arvot"
 
-#: ../gramps/cli/plug/__init__.py:504
+#: ../gramps/cli/plug/__init__.py:527
 #, python-format
 msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s="
@@ -927,31 +927,31 @@ msgstr ""
 "Hylätään '%(notranslate1)s=%(notranslate2)s' ja käytetään '%(notranslate1)s="
 "%(notranslate3)s'."
 
-#: ../gramps/cli/plug/__init__.py:510
+#: ../gramps/cli/plug/__init__.py:533
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
 msgstr "Käytä '%(notranslate)s' nähdäksesi sallitut arvot."
 
-#: ../gramps/cli/plug/__init__.py:528
+#: ../gramps/cli/plug/__init__.py:551
 #: ../gramps/gen/plug/report/stdoptions.py:281
 #, python-format
 msgid "Ignoring unknown option: %s"
 msgstr "Ohitetaan tuntematon valinta: %s"
 
-#: ../gramps/cli/plug/__init__.py:601
+#: ../gramps/cli/plug/__init__.py:624
 msgid "   Available options:"
 msgstr "   Käytettävissä olevat valinnat:"
 
-#: ../gramps/cli/plug/__init__.py:610
+#: ../gramps/cli/plug/__init__.py:633
 msgid "(no help available)"
 msgstr "(ohjetta ei saatavilla)"
 
-#: ../gramps/cli/plug/__init__.py:618
+#: ../gramps/cli/plug/__init__.py:641
 msgid "   Available values are:"
 msgstr "   Käytettävissä on arvot:"
 
 #. there was a show option given, but the option is invalid
-#: ../gramps/cli/plug/__init__.py:629
+#: ../gramps/cli/plug/__init__.py:652
 #, python-format
 msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
@@ -960,11 +960,11 @@ msgstr ""
 "valinta '%(optionname)s' ei ole oikea. Käytä '%(donottranslate)s' nähdäksesi "
 "kaikki käytettävissä olevat valinnat."
 
-#: ../gramps/cli/plug/__init__.py:646
+#: ../gramps/cli/plug/__init__.py:669
 msgid "Failed to write report. "
 msgstr "Raportin kirjoitus epäonnistui. "
 
-#: ../gramps/cli/plug/__init__.py:795
+#: ../gramps/cli/plug/__init__.py:818
 #, python-format
 msgid "Failed to make '%s' report."
 msgstr "Raportti '%s' epäonnistui."
@@ -5752,7 +5752,8 @@ msgstr "Lapsiviite"
 msgid "Handle"
 msgstr "Painike"
 
-#: ../gramps/gen/lib/childreftype.py:67 ../gramps/gui/configure.py:81
+#: ../gramps/gen/lib/childreftype.py:67 ../gramps/gen/plug/docgen/treedoc.py:70
+#: ../gramps/gui/configure.py:81
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:201
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:175
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:209
@@ -6065,7 +6066,7 @@ msgstr "Arvot"
 
 #: ../gramps/gen/lib/date.py:719 ../gramps/gen/lib/placename.py:99
 #: ../gramps/gen/lib/styledtext.py:321
-#: ../gramps/gen/plug/report/_constants.py:53 ../gramps/gui/clipboard.py:640
+#: ../gramps/gen/plug/report/_constants.py:54 ../gramps/gui/clipboard.py:640
 #: ../gramps/gui/clipboard.py:648 ../gramps/gui/configure.py:1241
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:101
 #: ../gramps/plugins/textreport/custombooktext.py:132
@@ -6432,7 +6433,8 @@ msgstr "Eläkkeelle jääminen"
 msgid "Will"
 msgstr "Testamentti"
 
-#: ../gramps/gen/lib/eventtype.py:198 ../gramps/gui/merge/mergeperson.py:258
+#: ../gramps/gen/lib/eventtype.py:198 ../gramps/gen/plug/docgen/treedoc.py:132
+#: ../gramps/gui/merge/mergeperson.py:258
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:219
 #: ../gramps/plugins/textreport/familygroup.py:404
@@ -7183,9 +7185,9 @@ msgstr "Avionimi"
 #. ###############################
 #. 3
 #: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:254
-#: ../gramps/gui/clipboard.py:397 ../gramps/gui/configure.py:570
-#: ../gramps/gui/editors/editlink.py:95 ../gramps/gui/editors/editmedia.py:98
-#: ../gramps/gui/editors/editmedia.py:181
+#: ../gramps/gen/plug/docgen/treedoc.py:181 ../gramps/gui/clipboard.py:397
+#: ../gramps/gui/configure.py:570 ../gramps/gui/editors/editlink.py:95
+#: ../gramps/gui/editors/editmedia.py:98 ../gramps/gui/editors/editmedia.py:181
 #: ../gramps/gui/editors/editmediaref.py:146
 #: ../gramps/gui/editors/filtereditor.py:300
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
@@ -7199,7 +7201,7 @@ msgstr "Avionimi"
 #: ../gramps/gui/glade/editnote.glade.h:17 ../gramps/gui/viewmanager.py:617
 #: ../gramps/gui/views/treemodels/mediamodel.py:117
 #: ../gramps/plugins/drawreport/ancestortree.py:974
-#: ../gramps/plugins/drawreport/descendtree.py:1694
+#: ../gramps/plugins/drawreport/descendtree.py:1696
 #: ../gramps/plugins/export/exportcsv.py:361
 #: ../gramps/plugins/export/exportcsv.py:466
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:111
@@ -7834,7 +7836,8 @@ msgstr "Päänimi"
 msgid "%(first)s %(second)s"
 msgstr "%(first)s %(second)s"
 
-#: ../gramps/gen/lib/tag.py:125 ../gramps/gui/glade/styleeditor.glade.h:11
+#: ../gramps/gen/lib/tag.py:125 ../gramps/gen/plug/docgen/treedoc.py:150
+#: ../gramps/gui/glade/styleeditor.glade.h:11
 #: ../gramps/gui/plug/_guioptions.py:1503 ../gramps/gui/views/tags.py:409
 msgid "Color"
 msgstr "Väri"
@@ -8005,7 +8008,7 @@ msgstr "Gramps näkymä"
 msgid "Relationships"
 msgstr "Suhteet"
 
-#: ../gramps/gen/plug/_pluginreg.py:88 ../gramps/gen/plug/_pluginreg.py:423
+#: ../gramps/gen/plug/_pluginreg.py:88 ../gramps/gen/plug/_pluginreg.py:425
 #: ../gramps/gui/glade/grampletpane.glade.h:9
 #: ../gramps/gui/widgets/grampletbar.py:627
 #: ../gramps/gui/widgets/grampletpane.py:220
@@ -8018,7 +8021,7 @@ msgid "Sidebar"
 msgstr "Sivupalkki"
 
 #. add miscellaneous column
-#: ../gramps/gen/plug/_pluginreg.py:514
+#: ../gramps/gen/plug/_pluginreg.py:516
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
 #: ../gramps/plugins/webreport/basepage.py:1678
 #: ../gramps/plugins/webreport/statistics.py:150
@@ -8026,14 +8029,14 @@ msgstr "Sivupalkki"
 msgid "Miscellaneous"
 msgstr "Muut"
 
-#: ../gramps/gen/plug/_pluginreg.py:1142 ../gramps/gen/plug/_pluginreg.py:1168
-#: ../gramps/gen/plug/_pluginreg.py:1173
+#: ../gramps/gen/plug/_pluginreg.py:1145 ../gramps/gen/plug/_pluginreg.py:1171
+#: ../gramps/gen/plug/_pluginreg.py:1176
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr ""
 "VIRHE: Laajennusten rekisteröinnin tiedostojen %(filename)s luku epäonnistui"
 
-#: ../gramps/gen/plug/_pluginreg.py:1151
+#: ../gramps/gen/plug/_pluginreg.py:1154
 #, python-format
 msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
@@ -8042,7 +8045,7 @@ msgstr ""
 "VAROITUS: %(plugin_name)s laajennusta ei ole käännetty asetuksissasi "
 "oleville kielille, käytetään US English sen sijaan"
 
-#: ../gramps/gen/plug/_pluginreg.py:1188
+#: ../gramps/gen/plug/_pluginreg.py:1191
 #, python-format
 msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
@@ -8052,13 +8055,13 @@ msgstr ""
 "\"%(gramps_target_version)s\" mikä ei kelpaa Gramps versioille "
 "\"%(gramps_version)s\"."
 
-#: ../gramps/gen/plug/_pluginreg.py:1209
+#: ../gramps/gen/plug/_pluginreg.py:1212
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr ""
 "VIRHE: Väärä Python tiedosto %(filename)s rekisteritiedostossa %(regfile)s"
 
-#: ../gramps/gen/plug/_pluginreg.py:1217
+#: ../gramps/gen/plug/_pluginreg.py:1220
 #, python-format
 msgid ""
 "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
@@ -8126,6 +8129,8 @@ msgstr "Kohdetta %s ei voitu luoda"
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/gen/plug/docgen/graphdoc.py:66
+#: ../gramps/gen/plug/docgen/treedoc.py:65
+#: ../gramps/gen/plug/docgen/treedoc.py:71
 #: ../gramps/gen/plug/report/stdoptions.py:59
 #: ../gramps/gen/plug/report/stdoptions.py:73
 #: ../gramps/gen/plug/report/stdoptions.py:243
@@ -8206,11 +8211,13 @@ msgid "Expand uniformly"
 msgstr "Laajenna tasapuolisesti"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:88
+#: ../gramps/gen/plug/docgen/treedoc.py:84
 #: ../gramps/gui/glade/styleeditor.glade.h:46
 msgid "Top"
 msgstr "Ylhäällä"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:89
+#: ../gramps/gen/plug/docgen/treedoc.py:85
 #: ../gramps/gui/glade/styleeditor.glade.h:47
 msgid "Bottom"
 msgstr "Alhaalla"
@@ -8417,14 +8424,17 @@ msgid "This text will be added to the graph."
 msgstr "Annettu teksti lisätään kaavioon."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:262
+#: ../gramps/gen/plug/docgen/treedoc.py:188
 msgid "Note location"
 msgstr "Tekstin sijainti"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:265
+#: ../gramps/gen/plug/docgen/treedoc.py:191
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Tuleeko teksti sivun ylä- vai alaosaan."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:269
+#: ../gramps/gen/plug/docgen/treedoc.py:195
 msgid "Note size"
 msgstr "Lisätiedon koko"
 
@@ -8481,6 +8491,261 @@ msgstr "Legal"
 msgid "Custom Size"
 msgstr "Käyttäjän koko"
 
+# 20180127
+#. -------------------------------------------------------------------------
+#.
+#. Private Constants
+#.
+#. -------------------------------------------------------------------------
+#: ../gramps/gen/plug/docgen/treedoc.py:61
+msgid "Full"
+msgstr "Täysi"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:62
+#: ../gramps/plugins/tool/finddupes.py:61
+msgid "Medium"
+msgstr "Normaali"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:63
+msgid "Short"
+msgstr "Suppea"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:66
+msgid "Above"
+msgstr "Yläpuolella"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:67
+msgid "Below"
+msgstr "Alapuolella"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:68
+msgid "Not shown"
+msgstr "Ei näytetä"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:72 ../gramps/gui/configure.py:156
+#: ../gramps/gui/configure.py:1719 ../gramps/gui/views/pageview.py:590
+msgid "Preferences"
+msgstr "Asetukset"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:74
+msgid "Down (↓)"
+msgstr "Alas (↓)"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:75
+msgid "Up (↑)"
+msgstr "Ylös (↑)"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:76
+msgid "Right (→)"
+msgstr "Oikealle (→)"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:77
+msgid "Left (←)"
+msgstr "Vasemmalle (←)"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:79
+msgid "Perpendicular"
+msgstr "Pystysuoraan"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:80
+msgid "Rounded"
+msgstr "Pyöristetty"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:81
+msgid "Swing"
+msgstr "Käännetty"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:82
+msgid "Mesh"
+msgstr "Liitos"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:87
+msgid "Tiny"
+msgstr "Pieni"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:88
+msgid "Script"
+msgstr "Script"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:89
+msgid "Footnote"
+msgstr "Alaviite"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:90
+msgid "Small"
+msgstr "Pieni"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:91 ../gramps/gen/utils/string.py:57
+#: ../gramps/gui/editors/editcitation.py:212
+#: ../gramps/plugins/graph/gvfamilylines.py:255
+msgid "Normal"
+msgstr "Normaali"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:92
+#: ../gramps/plugins/graph/gvfamilylines.py:256
+msgid "Large"
+msgstr "Suuri"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:93
+msgid "Very large"
+msgstr "Suurempi"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:94
+msgid "Extra large"
+msgstr "Suurin"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:95
+msgid "Huge"
+msgstr "Valtava"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:96
+msgid "Extra huge"
+msgstr "Valtavampi"
+
+#. ###############################
+#: ../gramps/gen/plug/docgen/treedoc.py:123
+msgid "Node Options"
+msgstr "Liitos valinnat"
+
+#. ###############################
+#: ../gramps/gen/plug/docgen/treedoc.py:126
+msgid "Node detail"
+msgstr "Liitoksen yksityiskohdat"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:129
+msgid "Detail of information to be shown in a node."
+msgstr "Yksityiskohtaiset tiedot liitokselle."
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:135
+msgid "Position of marriage information."
+msgstr "Position of marriage information."
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:138
+msgid "Node size"
+msgstr "Liitoksen koko"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:139
+msgid ""
+"One dimension of a node, in mm. If the timeflow is up or down then this is "
+"the width, otherwise it is the height."
+msgstr ""
+"Liitoksen ulottuvuus, mm. Jos ajanvirtaus on ylös tai alas niin tämä on "
+"leveys, muuten se on korkeus."
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:144
+msgid "Level size"
+msgstr "Tason koko"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:145
+msgid ""
+"One dimension of a node, in mm. If the timeflow is up or down then this is "
+"the height, otherwise it is the width."
+msgstr ""
+"Liitoksen ulottuvuus, mm. Jos ajanvirtaus on ylös tai alas niin tämä on "
+"korkeus, muuten se on leveys."
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:153
+msgid "Node color."
+msgstr "Liitoksen väri."
+
+#. ###############################
+#. #################
+#: ../gramps/gen/plug/docgen/treedoc.py:157
+#: ../gramps/plugins/drawreport/ancestortree.py:791
+#: ../gramps/plugins/drawreport/descendtree.py:1522
+msgid "Tree Options"
+msgstr "Sukupuun valinnat"
+
+# 20180127
+#. ###############################
+#: ../gramps/gen/plug/docgen/treedoc.py:160
+msgid "Timeflow"
+msgstr "Ajanvirtaus"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:163
+msgid "Direction that the graph will grow over time."
+msgstr "Suunta, johon kaavio kasvaa ajan myötä."
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:166
+msgid "Edge style"
+msgstr "Reunan tyyli"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:169
+msgid "Style of the edges between nodes."
+msgstr "Tyyli reunan ja liitoksen välillä."
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:172
+msgid "Level distance"
+msgstr "Tasoetäisyys"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:173
+msgid ""
+"The minimum amount of free space, in mm, between levels.  For vertical "
+"graphs, this corresponds to spacing between rows.  For horizontal graphs, "
+"this corresponds to spacing between columns."
+msgstr ""
+"Vapaan tilan vähimmäismäärä, mm, tasojen välillä. Pystysuuntaisille "
+"kaavioille tämä vastaa rivien välistä etäisyyttä. Vaakasuuntaisille "
+"kaavioille tämä vastaa sarakkeiden välistä etäisyyttä."
+
+# 20180127
+#. ###############################
+#: ../gramps/gen/plug/docgen/treedoc.py:184
+msgid "Note to add to the tree"
+msgstr "Lisätieto liitetään sukupuuhun"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:185
+msgid "This text will be added to the tree."
+msgstr "Tämä teksti lisätään sukupuuhun."
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:198
+msgid "The size of note text."
+msgstr "Tekstin koko lisätiedolle."
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:625
+msgid "PDF"
+msgstr "PDF"
+
+# 20180127
+#: ../gramps/gen/plug/docgen/treedoc.py:631
+msgid "LaTeX File"
+msgstr "LaTeX tiedosto"
+
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:142
 #, python-format
 msgid "Value '%(val)s' not found for option '%(opt)s'"
@@ -8525,7 +8790,12 @@ msgstr "Kirjat"
 msgid "Graphs"
 msgstr "Kaaviot"
 
-#: ../gramps/gen/plug/report/_constants.py:54
+# 20180127
+#: ../gramps/gen/plug/report/_constants.py:51
+msgid "Trees"
+msgstr "Sukupuut"
+
+#: ../gramps/gen/plug/report/_constants.py:55
 msgid "Graphics"
 msgstr "Grafiikka"
 
@@ -8571,12 +8841,11 @@ msgstr "Loppuviitteet"
 #: ../gramps/gui/editors/editfamily.py:952
 #: ../gramps/gui/plug/report/_docreportdialog.py:186
 #: ../gramps/gui/plug/report/_docreportdialog.py:237
-#: ../gramps/gui/plug/report/_graphvizreportdialog.py:150
-#: ../gramps/gui/plug/report/_reportdialog.py:323
-#: ../gramps/gui/plug/report/_reportdialog.py:376
-#: ../gramps/gui/plug/report/_reportdialog.py:400
-#: ../gramps/gui/plug/report/_reportdialog.py:471
-#: ../gramps/gui/plug/report/_reportdialog.py:619
+#: ../gramps/gui/plug/report/_reportdialog.py:324
+#: ../gramps/gui/plug/report/_reportdialog.py:377
+#: ../gramps/gui/plug/report/_reportdialog.py:401
+#: ../gramps/gui/plug/report/_reportdialog.py:472
+#: ../gramps/gui/plug/report/_reportdialog.py:620
 #: ../gramps/plugins/gramplet/statsgramplet.py:105
 #: ../gramps/plugins/gramplet/statsgramplet.py:108
 #: ../gramps/plugins/gramplet/statsgramplet.py:111
@@ -9558,11 +9827,6 @@ msgstr "Erittäin korkea"
 msgid "High"
 msgstr "Korkea"
 
-#: ../gramps/gen/utils/string.py:57 ../gramps/gui/editors/editcitation.py:212
-#: ../gramps/plugins/graph/gvfamilylines.py:255
-msgid "Normal"
-msgstr "Normaali"
-
 #: ../gramps/gen/utils/string.py:58 ../gramps/gui/editors/editcitation.py:211
 #: ../gramps/plugins/tool/finddupes.py:60
 msgid "Low"
@@ -9770,7 +10034,7 @@ msgstr "_Käytä"
 #. #################
 #: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1152
 #: ../gramps/plugins/drawreport/ancestortree.py:909
-#: ../gramps/plugins/drawreport/descendtree.py:1645
+#: ../gramps/plugins/drawreport/descendtree.py:1647
 #: ../gramps/plugins/webreport/narrativeweb.py:1698
 msgid "Display"
 msgstr "Näyttö"
@@ -9880,11 +10144,6 @@ msgstr ""
 #: ../gramps/gui/configure.py:138
 msgid " Name Editor"
 msgstr " Nimimuokkain"
-
-#: ../gramps/gui/configure.py:156 ../gramps/gui/configure.py:1719
-#: ../gramps/gui/views/pageview.py:590
-msgid "Preferences"
-msgstr "Asetukset"
 
 #: ../gramps/gui/configure.py:232 ../gramps/gui/configure.py:238
 #: ../gramps/gui/configure.py:846
@@ -10567,7 +10826,7 @@ msgstr "Valitse mediatiedostojen hakemisto"
 #: ../gramps/gui/logger/_errorview.py:173 ../gramps/gui/plug/_guioptions.py:78
 #: ../gramps/gui/plug/_guioptions.py:1738 ../gramps/gui/plug/_windows.py:440
 #: ../gramps/gui/plug/report/_fileentry.py:64
-#: ../gramps/gui/plug/report/_reportdialog.py:161 ../gramps/gui/utils.py:180
+#: ../gramps/gui/plug/report/_reportdialog.py:162 ../gramps/gui/utils.py:180
 #: ../gramps/gui/viewmanager.py:1956 ../gramps/gui/views/listview.py:1018
 #: ../gramps/gui/views/navigationview.py:363 ../gramps/gui/views/tags.py:645
 #: ../gramps/gui/widgets/progressdialog.py:437
@@ -10785,7 +11044,7 @@ msgstr "Tietokannan tiedot"
 #: ../gramps/gui/glade/reorder.glade.h:2 ../gramps/gui/glade/rule.glade.h:13
 #: ../gramps/gui/glade/styleeditor.glade.h:2
 #: ../gramps/gui/plug/_guioptions.py:79
-#: ../gramps/gui/plug/report/_reportdialog.py:165 ../gramps/gui/utils.py:194
+#: ../gramps/gui/plug/report/_reportdialog.py:166 ../gramps/gui/utils.py:194
 #: ../gramps/gui/viewmanager.py:1824 ../gramps/gui/views/tags.py:646
 #: ../gramps/plugins/tool/check.py:781 ../gramps/plugins/tool/patchnames.py:118
 #: ../gramps/plugins/tool/populatesources.py:91
@@ -11430,7 +11689,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:353
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:168
 #: ../gramps/plugins/drawreport/ancestortree.py:1095
-#: ../gramps/plugins/drawreport/descendtree.py:1803
+#: ../gramps/plugins/drawreport/descendtree.py:1805
 msgid "Cannot edit this reference"
 msgstr "Tätä viitettä ei voi muokata"
 
@@ -12978,7 +13237,7 @@ msgstr "Tagin valinta"
 #: ../gramps/gui/glade/mergesource.glade.h:3
 #: ../gramps/gui/glade/reorder.glade.h:3 ../gramps/gui/glade/rule.glade.h:2
 #: ../gramps/gui/logger/_errorview.py:175
-#: ../gramps/gui/plug/report/_reportdialog.py:158
+#: ../gramps/gui/plug/report/_reportdialog.py:159
 #: ../gramps/gui/undohistory.py:82 ../gramps/gui/viewmanager.py:515
 #: ../gramps/gui/views/bookmarks.py:287 ../gramps/gui/views/tags.py:431
 #: ../gramps/gui/views/tags.py:644 ../gramps/gui/widgets/grampletbar.py:641
@@ -16202,7 +16461,7 @@ msgid "Select color for %s"
 msgstr "Valitse väri %s varten"
 
 #: ../gramps/gui/plug/_guioptions.py:1736
-#: ../gramps/gui/plug/report/_reportdialog.py:451
+#: ../gramps/gui/plug/report/_reportdialog.py:452
 msgid "Save As"
 msgstr "Tallenna nimellä"
 
@@ -16213,7 +16472,7 @@ msgid "_Open"
 msgstr "_Avaa"
 
 #: ../gramps/gui/plug/_guioptions.py:1817
-#: ../gramps/gui/plug/report/_reportdialog.py:328
+#: ../gramps/gui/plug/report/_reportdialog.py:329
 msgid "Style Editor"
 msgstr "Tyyli muokkain"
 
@@ -16349,7 +16608,7 @@ msgid "Authors"
 msgstr "Tekijät"
 
 #: ../gramps/gui/plug/_windows.py:624
-#: ../gramps/gui/plug/report/_reportdialog.py:471
+#: ../gramps/gui/plug/report/_reportdialog.py:472
 msgid "Filename"
 msgstr "Tiedostonimi"
 
@@ -16868,7 +17127,6 @@ msgid "Gramps Book"
 msgstr "Gramps kirja"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:143
-#: ../gramps/gui/plug/report/_graphvizreportdialog.py:181
 msgid "Paper Options"
 msgstr "Paperivalinnat"
 
@@ -16877,12 +17135,10 @@ msgid "HTML Options"
 msgstr "HTML valinnat"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:186
-#: ../gramps/gui/plug/report/_graphvizreportdialog.py:150
 msgid "Output Format"
 msgstr "Tulostusmuoto"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:194
-#: ../gramps/gui/plug/report/_graphvizreportdialog.py:158
 msgid "Open with default viewer"
 msgstr "Näytä oletussovelluksella"
 
@@ -16902,11 +17158,11 @@ msgstr "Vaaka"
 msgid "inch|in."
 msgstr "in."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:142
+#: ../gramps/gui/plug/report/_reportdialog.py:143
 msgid "Configuration"
 msgstr "Asetukset"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:323
+#: ../gramps/gui/plug/report/_reportdialog.py:324
 #: ../gramps/gui/plug/report/_styleeditor.py:108
 #: ../gramps/gui/plug/report/_styleeditor.py:259
 msgid "Style"
@@ -16930,10 +17186,10 @@ msgstr "Tyyli"
 #. Report Options
 #. #########################
 #. ###############################
-#: ../gramps/gui/plug/report/_reportdialog.py:365
+#: ../gramps/gui/plug/report/_reportdialog.py:366
 #: ../gramps/plugins/drawreport/ancestortree.py:835
 #: ../gramps/plugins/drawreport/calendarreport.py:466
-#: ../gramps/plugins/drawreport/descendtree.py:1566
+#: ../gramps/plugins/drawreport/descendtree.py:1568
 #: ../gramps/plugins/drawreport/fanchart.py:685
 #: ../gramps/plugins/drawreport/statisticschart.py:986
 #: ../gramps/plugins/drawreport/timeline.py:413
@@ -16963,16 +17219,16 @@ msgid "Report Options"
 msgstr "Raportin valinnat"
 
 #. need any labels at top:
-#: ../gramps/gui/plug/report/_reportdialog.py:456
+#: ../gramps/gui/plug/report/_reportdialog.py:457
 msgid "Document Options"
 msgstr "Asiakirjan valinnat"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:502
-#: ../gramps/gui/plug/report/_reportdialog.py:529
+#: ../gramps/gui/plug/report/_reportdialog.py:503
+#: ../gramps/gui/plug/report/_reportdialog.py:530
 msgid "Permission problem"
 msgstr "Käyttövaltuusongelma"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:503
+#: ../gramps/gui/plug/report/_reportdialog.py:504
 #, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
@@ -16983,24 +17239,24 @@ msgstr ""
 "\n"
 "Valitse toinen hakemisto tai korjaa oikeudet."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:512
+#: ../gramps/gui/plug/report/_reportdialog.py:513
 msgid "File already exists"
 msgstr "Tiedosto on jo olemassa"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:513
+#: ../gramps/gui/plug/report/_reportdialog.py:514
 msgid ""
 "You can choose to either overwrite the file, or change the selected filename."
 msgstr "Voit joko ylikirjoittaa tiedoston tai vaihtaa valitun tiedoston nimen."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:515
+#: ../gramps/gui/plug/report/_reportdialog.py:516
 msgid "_Overwrite"
 msgstr "_Ylikirjoita"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:516
+#: ../gramps/gui/plug/report/_reportdialog.py:517
 msgid "_Change filename"
 msgstr "_Vaihda tiedoston nimeä"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:530
+#: ../gramps/gui/plug/report/_reportdialog.py:531
 #, python-format
 msgid ""
 "You do not have permission to create %s\n"
@@ -17011,12 +17267,12 @@ msgstr ""
 "\n"
 "Valitse toinen hakemisto tai korjaa oikeudet."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:537
+#: ../gramps/gui/plug/report/_reportdialog.py:538
 #: ../gramps/plugins/export/exportxml.py:146
 msgid "No directory"
 msgstr "Ei hakemistoa"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:538
+#: ../gramps/gui/plug/report/_reportdialog.py:539
 #: ../gramps/plugins/export/exportxml.py:147
 #, python-format
 msgid ""
@@ -17028,17 +17284,17 @@ msgstr ""
 "\n"
 "Valitse toinen hakemisto tai luo se."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:664
+#: ../gramps/gui/plug/report/_reportdialog.py:665
 #: ../gramps/gui/plug/tool.py:136 ../gramps/plugins/tool/relcalc.py:150
 msgid "Active person has not been set"
 msgstr "Aktiivista henkilöä ei ole asetettu"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:665
+#: ../gramps/gui/plug/report/_reportdialog.py:666
 msgid "You must select an active person for this report to work properly."
 msgstr "Tätä raporttia käyttääksesi sinun pitää valita aktiivinen henkilö."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:717
-#: ../gramps/gui/plug/report/_reportdialog.py:724
+#: ../gramps/gui/plug/report/_reportdialog.py:721
+#: ../gramps/gui/plug/report/_reportdialog.py:728
 msgid "Report could not be created"
 msgstr "Raportin luonti epäonnistui"
 
@@ -18658,7 +18914,7 @@ msgstr "Esivanhempien kaavio %s"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:362
 #: ../gramps/plugins/drawreport/calendarreport.py:114
-#: ../gramps/plugins/drawreport/descendtree.py:689
+#: ../gramps/plugins/drawreport/descendtree.py:690
 #: ../gramps/plugins/drawreport/fanchart.py:194
 #: ../gramps/plugins/graph/gvhourglass.py:106
 #: ../gramps/plugins/graph/gvrelgraph.py:181
@@ -18687,12 +18943,6 @@ msgstr "Luon sukupuuta..."
 #: ../gramps/plugins/drawreport/ancestortree.py:694
 msgid "Printing the Tree..."
 msgstr "Tulostan sukupuuta..."
-
-#. #################
-#: ../gramps/plugins/drawreport/ancestortree.py:791
-#: ../gramps/plugins/drawreport/descendtree.py:1520
-msgid "Tree Options"
-msgstr "Sukupuun valinnat"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:793
 #: ../gramps/plugins/drawreport/calendarreport.py:476
@@ -18723,7 +18973,7 @@ msgid ""
 msgstr "Haluatko näyttää vain keskushenkilö tai myös hänen sisaruksensa"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:804
-#: ../gramps/plugins/drawreport/descendtree.py:1531
+#: ../gramps/plugins/drawreport/descendtree.py:1533
 #: ../gramps/plugins/drawreport/fanchart.py:691
 #: ../gramps/plugins/textreport/ancestorreport.py:294
 #: ../gramps/plugins/textreport/descendreport.py:534
@@ -18733,7 +18983,7 @@ msgid "Generations"
 msgstr "Sukupolvet"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:805
-#: ../gramps/plugins/drawreport/descendtree.py:1532
+#: ../gramps/plugins/drawreport/descendtree.py:1534
 msgid "The number of generations to include in the tree"
 msgstr "Puuhun mukaan otettavien sukupolvien määrä"
 
@@ -18750,7 +19000,7 @@ msgid "The number of generations of empty boxes that will be displayed"
 msgstr "Enimmäismäärä sukupolvien tyhjille laatikoille, jotka näytetään"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:818
-#: ../gramps/plugins/drawreport/descendtree.py:1549
+#: ../gramps/plugins/drawreport/descendtree.py:1551
 msgid "Compress tree"
 msgstr "Tiivistä puu"
 
@@ -18761,13 +19011,13 @@ msgid ""
 msgstr "Välilyöntien poistaminen tuntemattomien ihmisten reunoilta"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:837
-#: ../gramps/plugins/drawreport/descendtree.py:1568
+#: ../gramps/plugins/drawreport/descendtree.py:1570
 msgid "Report Title"
 msgstr "Raportin otsikko"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:838
-#: ../gramps/plugins/drawreport/descendtree.py:1569
-#: ../gramps/plugins/drawreport/descendtree.py:1742
+#: ../gramps/plugins/drawreport/descendtree.py:1571
+#: ../gramps/plugins/drawreport/descendtree.py:1744
 msgid "Do not include a title"
 msgstr "Älä ota raportin otsikkoa mukaan"
 
@@ -18776,22 +19026,22 @@ msgid "Include Report Title"
 msgstr "Ota raportin otsikko mukaan"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:840
-#: ../gramps/plugins/drawreport/descendtree.py:1577
+#: ../gramps/plugins/drawreport/descendtree.py:1579
 msgid "Choose a title for the report"
 msgstr "Valitse raportissa käytettävä otsikko"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:843
-#: ../gramps/plugins/drawreport/descendtree.py:1581
+#: ../gramps/plugins/drawreport/descendtree.py:1583
 msgid "Include a border"
 msgstr "Lisää reunaviiva"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:844
-#: ../gramps/plugins/drawreport/descendtree.py:1582
+#: ../gramps/plugins/drawreport/descendtree.py:1584
 msgid "Whether to make a border around the report."
 msgstr "Lisätäänkö raporttiin reunaviiva."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:847
-#: ../gramps/plugins/drawreport/descendtree.py:1585
+#: ../gramps/plugins/drawreport/descendtree.py:1587
 msgid "Include Page Numbers"
 msgstr "Lisää sivunumerot"
 
@@ -18800,32 +19050,32 @@ msgid "Whether to print page numbers on each page."
 msgstr "Tulostetaanko kuhunkin sivuun sivunumero."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:851
-#: ../gramps/plugins/drawreport/descendtree.py:1589
+#: ../gramps/plugins/drawreport/descendtree.py:1591
 msgid "Scale tree to fit"
 msgstr "Skaalaa puu sopimaan"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:852
-#: ../gramps/plugins/drawreport/descendtree.py:1590
+#: ../gramps/plugins/drawreport/descendtree.py:1592
 msgid "Do not scale tree"
 msgstr "Älä skaalaa puuta"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:853
-#: ../gramps/plugins/drawreport/descendtree.py:1591
+#: ../gramps/plugins/drawreport/descendtree.py:1593
 msgid "Scale tree to fit page width only"
 msgstr "Skaalaa puu sivun levyiseksi"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:854
-#: ../gramps/plugins/drawreport/descendtree.py:1592
+#: ../gramps/plugins/drawreport/descendtree.py:1594
 msgid "Scale tree to fit the size of the page"
 msgstr "Skaalaa puu yhdelle sivulle"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:856
-#: ../gramps/plugins/drawreport/descendtree.py:1594
+#: ../gramps/plugins/drawreport/descendtree.py:1596
 msgid "Whether to scale the tree to fit a specific paper size"
 msgstr "Skaalataanko tiettyyn sivukokoon mahtuvaksi"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:863
-#: ../gramps/plugins/drawreport/descendtree.py:1601
+#: ../gramps/plugins/drawreport/descendtree.py:1603
 msgid ""
 "Resize Page to Fit Tree size\n"
 "\n"
@@ -18836,7 +19086,7 @@ msgstr ""
 "Huomaa: Menee paperivalintojen edelle ko. valintaikkunassa"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:869
-#: ../gramps/plugins/drawreport/descendtree.py:1607
+#: ../gramps/plugins/drawreport/descendtree.py:1609
 msgid ""
 "Whether to resize the page to fit the size \n"
 "of the tree.  Note:  the page will have a \n"
@@ -18868,12 +19118,12 @@ msgstr ""
 "  muutetaan jottei jää mitään eroa korkeuteen tai leveyteen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:889
-#: ../gramps/plugins/drawreport/descendtree.py:1627
+#: ../gramps/plugins/drawreport/descendtree.py:1629
 msgid "Include Blank Pages"
 msgstr "Ota mukaan tyhjät sivut"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:890
-#: ../gramps/plugins/drawreport/descendtree.py:1628
+#: ../gramps/plugins/drawreport/descendtree.py:1630
 msgid "Whether to include pages that are blank."
 msgstr "Otetaanko mukaan tyhjät sivut."
 
@@ -18887,7 +19137,7 @@ msgstr "Otetaanko mukaan tyhjät sivut."
 #. ###############################
 #: ../gramps/plugins/drawreport/ancestortree.py:896
 #: ../gramps/plugins/drawreport/calendarreport.py:494
-#: ../gramps/plugins/drawreport/descendtree.py:1632
+#: ../gramps/plugins/drawreport/descendtree.py:1634
 #: ../gramps/plugins/drawreport/fanchart.py:728
 #: ../gramps/plugins/drawreport/statisticschart.py:1045
 #: ../gramps/plugins/drawreport/timeline.py:434
@@ -18959,17 +19209,17 @@ msgid "The display format for the center person"
 msgstr "Keskushenkilön näyttömuoto"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:941
-#: ../gramps/plugins/drawreport/descendtree.py:1668
+#: ../gramps/plugins/drawreport/descendtree.py:1670
 msgid "Include Marriage box"
 msgstr "Lisää avioliiton laatikko"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:943
-#: ../gramps/plugins/drawreport/descendtree.py:1670
+#: ../gramps/plugins/drawreport/descendtree.py:1672
 msgid "Whether to include a separate marital box in the report"
 msgstr "Lisätäänkö vanhempien aviotiedot laatikkona raporttiin"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:947
-#: ../gramps/plugins/drawreport/descendtree.py:1674
+#: ../gramps/plugins/drawreport/descendtree.py:1676
 msgid ""
 "Marriage\n"
 "Display Format"
@@ -18978,19 +19228,19 @@ msgstr ""
 "näyttömuoto"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:949
-#: ../gramps/plugins/drawreport/descendtree.py:1676
+#: ../gramps/plugins/drawreport/descendtree.py:1678
 msgid "Display format for the marital box."
 msgstr "Näyttömuoto avion laatikolle."
 
 #. #################
 #: ../gramps/plugins/drawreport/ancestortree.py:954
-#: ../gramps/plugins/drawreport/descendtree.py:1681
+#: ../gramps/plugins/drawreport/descendtree.py:1683
 #: ../gramps/plugins/lib/libmetadata.py:104
 msgid "Advanced"
 msgstr "Edistynyt"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:957
-#: ../gramps/plugins/drawreport/descendtree.py:1684
+#: ../gramps/plugins/drawreport/descendtree.py:1686
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
@@ -18999,7 +19249,7 @@ msgstr ""
 "'Korvaa tämä'/'tällä'"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:959
-#: ../gramps/plugins/drawreport/descendtree.py:1686
+#: ../gramps/plugins/drawreport/descendtree.py:1688
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
@@ -19014,17 +19264,17 @@ msgstr ""
 #. _("Whether to include thumbnails of people."))
 #. menu.add_option(category_name, "includeImages", self.__include_images)
 #: ../gramps/plugins/drawreport/ancestortree.py:969
-#: ../gramps/plugins/drawreport/descendtree.py:1689
+#: ../gramps/plugins/drawreport/descendtree.py:1691
 msgid "Include a note"
 msgstr "Ota mukaan lisätiedot"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:970
-#: ../gramps/plugins/drawreport/descendtree.py:1690
+#: ../gramps/plugins/drawreport/descendtree.py:1692
 msgid "Whether to include a note on the report."
 msgstr "Otetaanko raporttiin mukaan lisätiedot."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:975
-#: ../gramps/plugins/drawreport/descendtree.py:1695
+#: ../gramps/plugins/drawreport/descendtree.py:1697
 msgid ""
 "Add a note\n"
 "\n"
@@ -19035,12 +19285,12 @@ msgstr ""
 "$T lisää tämä päivä"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:980
-#: ../gramps/plugins/drawreport/descendtree.py:1700
+#: ../gramps/plugins/drawreport/descendtree.py:1702
 msgid "Note Location"
 msgstr "Lisätietojen sijainti"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:983
-#: ../gramps/plugins/drawreport/descendtree.py:1703
+#: ../gramps/plugins/drawreport/descendtree.py:1705
 msgid "Where to place the note."
 msgstr "Lisätietojen sijaintipaikka."
 
@@ -19053,13 +19303,13 @@ msgid "Make the inter-box spacing bigger or smaller"
 msgstr "Kasvata tai pienennä laatikoiden pystyvälikerrointa"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:993
-#: ../gramps/plugins/drawreport/descendtree.py:1712
+#: ../gramps/plugins/drawreport/descendtree.py:1714
 msgid "box shadow scale factor"
 msgstr "laatikon varjon skaalauskerroin"
 
 #. down to 0
 #: ../gramps/plugins/drawreport/ancestortree.py:995
-#: ../gramps/plugins/drawreport/descendtree.py:1714
+#: ../gramps/plugins/drawreport/descendtree.py:1716
 msgid "Make the box shadow bigger or smaller"
 msgstr "Kasvata tai pienennä laatikon varjoa"
 
@@ -19076,7 +19326,7 @@ msgid " Generations of empty boxes for unknown ancestors"
 msgstr " Tuntemattomien esivanhempien tyhjät esipolvilaatikot"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1049
-#: ../gramps/plugins/drawreport/descendtree.py:1774
+#: ../gramps/plugins/drawreport/descendtree.py:1776
 #: ../gramps/plugins/drawreport/fanchart.py:769
 #: ../gramps/plugins/drawreport/timeline.py:479
 #: ../gramps/plugins/textreport/alphabeticalindex.py:120
@@ -19097,14 +19347,14 @@ msgid "The basic style used for the text display."
 msgstr "Käytettävä näyttöperustyyli tekstille."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1059
-#: ../gramps/plugins/drawreport/descendtree.py:1794
+#: ../gramps/plugins/drawreport/descendtree.py:1796
 #: ../gramps/plugins/textreport/familygroup.py:886
 #: ../gramps/plugins/textreport/tagreport.py:989
 msgid "The basic style used for the note display."
 msgstr "Käytettävä näyttöperustyyli lisätiedoille."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1068
-#: ../gramps/plugins/drawreport/descendtree.py:1765
+#: ../gramps/plugins/drawreport/descendtree.py:1767
 #: ../gramps/plugins/drawreport/fanchart.py:759
 #: ../gramps/plugins/drawreport/statisticschart.py:1130
 #: ../gramps/plugins/drawreport/timeline.py:497
@@ -19430,83 +19680,83 @@ msgstr "Jälkeläiskaavio henkilöille: %(father1)s ja %(mother1)s"
 msgid "Cousin Chart for %(names)s"
 msgstr "Serkkukaavio henkilölle %(names)s"
 
-#: ../gramps/plugins/drawreport/descendtree.py:757
+#: ../gramps/plugins/drawreport/descendtree.py:759
 #, python-format
 msgid "Family %s is not in the Database"
 msgstr "Perhettä %s ei ole tietokannassa"
 
 #. if self.name == "familial_descend_tree":
-#: ../gramps/plugins/drawreport/descendtree.py:1523
-#: ../gramps/plugins/drawreport/descendtree.py:1527
+#: ../gramps/plugins/drawreport/descendtree.py:1525
+#: ../gramps/plugins/drawreport/descendtree.py:1529
 msgid "Report for"
 msgstr "Raportti seuraavalle"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1524
+#: ../gramps/plugins/drawreport/descendtree.py:1526
 msgid "The main person for the report"
 msgstr "Raportin keskushenkilö"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1528
+#: ../gramps/plugins/drawreport/descendtree.py:1530
 msgid "The main family for the report"
 msgstr "Raportin keskusperhe"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1535
+#: ../gramps/plugins/drawreport/descendtree.py:1537
 msgid "Level of Spouses"
 msgstr "Puolisoiden taso"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1536
+#: ../gramps/plugins/drawreport/descendtree.py:1538
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
 msgstr ""
 "0=ei puolisoita, 1=puolisot mukaan, 2=puolison kaikki puolisot mukaan, jne"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1541
+#: ../gramps/plugins/drawreport/descendtree.py:1543
 msgid "Start with the parent(s) of the selected first"
 msgstr "Aloita ensin valittujen vanhemmista"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1544
+#: ../gramps/plugins/drawreport/descendtree.py:1546
 msgid "Will show the parents, brother and sisters of the selected person."
 msgstr "Näyttää valitun henkilön vanhemmat ja sisarukset."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1550
+#: ../gramps/plugins/drawreport/descendtree.py:1552
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr "Siirretäänkö henkilöitä ylöspäin pienemmän puun saamiseksi"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1554
+#: ../gramps/plugins/drawreport/descendtree.py:1556
 msgid "Bold direct descendants"
 msgstr "Vahvenna suorat jälkeläiset"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1556
+#: ../gramps/plugins/drawreport/descendtree.py:1558
 msgid ""
 "Whether to bold those people that are direct (not step or half) descendants."
 msgstr "Vahvennetaanko henkilön suorat jälkeläiset (ei puolisisaruksia)."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1561
+#: ../gramps/plugins/drawreport/descendtree.py:1563
 msgid "Indent Spouses"
 msgstr "Sisennä puolisot"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1562
+#: ../gramps/plugins/drawreport/descendtree.py:1564
 msgid "Whether to indent the spouses in the tree."
 msgstr "Sisennetäänkö puolisot sukupuussa."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1570
-#: ../gramps/plugins/drawreport/descendtree.py:1743
+#: ../gramps/plugins/drawreport/descendtree.py:1572
+#: ../gramps/plugins/drawreport/descendtree.py:1745
 msgid "Descendant Chart for [selected person(s)]"
 msgstr "Jälkeläiskaavio [valituille henkilö(i)lle]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1573
-#: ../gramps/plugins/drawreport/descendtree.py:1747
+#: ../gramps/plugins/drawreport/descendtree.py:1575
+#: ../gramps/plugins/drawreport/descendtree.py:1749
 msgid "Family Chart for [names of chosen family]"
 msgstr "Perhekaavio [valitulle perheelle]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1576
-#: ../gramps/plugins/drawreport/descendtree.py:1751
+#: ../gramps/plugins/drawreport/descendtree.py:1578
+#: ../gramps/plugins/drawreport/descendtree.py:1753
 msgid "Cousin Chart for [names of children]"
 msgstr "Serkkukaavio [valitulle lapselle]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1586
+#: ../gramps/plugins/drawreport/descendtree.py:1588
 msgid "Whether to include page numbers on each page."
 msgstr "Lisätäänkö jokaiselle sivulle sivunumero."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1647
+#: ../gramps/plugins/drawreport/descendtree.py:1649
 msgid ""
 "Descendant\n"
 "Display Format"
@@ -19514,7 +19764,7 @@ msgstr ""
 "Jälkeläinen\n"
 "näyttömuoto"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1651
+#: ../gramps/plugins/drawreport/descendtree.py:1653
 msgid "Display format for a descendant."
 msgstr "Jälkeläisen näyttömuoto."
 
@@ -19524,7 +19774,7 @@ msgstr "Jälkeläisen näyttömuoto."
 #. True)
 #. diffspouse.set_help(_("Whether spouses can have a different format."))
 #. menu.add_option(category_name, "diffspouse", diffspouse)
-#: ../gramps/plugins/drawreport/descendtree.py:1661
+#: ../gramps/plugins/drawreport/descendtree.py:1663
 msgid ""
 "Spousal\n"
 "Display Format"
@@ -19532,19 +19782,19 @@ msgstr ""
 "Puoliso\n"
 "näyttömuoto"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1665
+#: ../gramps/plugins/drawreport/descendtree.py:1667
 msgid "Display format for a spouse."
 msgstr "Puolison näyttömuoto."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1707
+#: ../gramps/plugins/drawreport/descendtree.py:1709
 msgid "inter-box Y scale factor"
 msgstr "laatikoiden Y skaalauskerroin"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1709
+#: ../gramps/plugins/drawreport/descendtree.py:1711
 msgid "Make the inter-box Y bigger or smaller"
 msgstr "Kasvata tai pienennä laatikoiden pystyvälikerrointa"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1785
+#: ../gramps/plugins/drawreport/descendtree.py:1787
 msgid "The bold style used for the text display."
 msgstr "Tekstin näytössä käytettävä vahvennettu tyyli."
 
@@ -22459,10 +22709,6 @@ msgstr "Minne pikkukuva sijoittuu suhteessa nimeen"
 #: ../gramps/plugins/graph/gvfamilylines.py:254
 msgid "Thumbnail size"
 msgstr "Pikkukuvan koko"
-
-#: ../gramps/plugins/graph/gvfamilylines.py:256
-msgid "Large"
-msgstr "Suuri"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:257
 msgid "Size of the thumbnail image"
@@ -31150,10 +31396,6 @@ msgstr "Käytä SoundEx koodeja"
 #: ../gramps/plugins/tool/finddupes.glade.h:4
 msgid "Co_mpare"
 msgstr "_Vertaa"
-
-#: ../gramps/plugins/tool/finddupes.py:61
-msgid "Medium"
-msgstr "Normaali"
 
 # WIKI_HELP_SEC tools
 #: ../gramps/plugins/tool/finddupes.py:66
