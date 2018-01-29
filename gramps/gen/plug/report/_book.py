@@ -457,79 +457,98 @@ class BookList(object):
         """
         Saves the current BookList to the associated file.
         """
-        f = open(self.file, "w")
-        f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
-        f.write('<booklist>\n')
-        for name in sorted(self.bookmap): # enable a diff of archived copies
-            book = self.get_book(name)
-            dbname = book.get_dbname()
-            f.write('<book name="%s" database="%s">\n' % (name, dbname) )
-            for item in book.get_item_list():
-                f.write('  <item name="%s" trans_name="%s">\n' % 
-                            (item.get_name(),item.get_translated_name() ) )
-                options = item.option_class.handler.options_dict
-                for option_name in sorted(options.keys()): # enable a diff
-                    option_value = options[option_name]
-                    if isinstance(option_value, (list, tuple)):
-                        f.write('    <option name="%s" value="" '
-                                'length="%d">\n' % (
-                                    escape(option_name),
-                                    len(options[option_name]) ) )
-                        for list_index in range(len(option_value)):
-                            option_type = type_name(option_value[list_index])
-                            value = escape(str(option_value[list_index]))
+        with open(self.file, "w", encoding="utf-8") as b_f:
+            b_f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
+            b_f.write('<booklist>\n')
+            for name in sorted(self.bookmap): # enable a diff of archived copies
+                book = self.get_book(name)
+                dbname = escape(book.get_dbname())
+                b_f.write('  <book name="%s" database="%s">'
+                          '\n' % (escape(name), dbname))
+                for item in book.get_item_list():
+                    b_f.write('    <item name="%s" '
+                              'trans_name="%s">\n' % (
+                                  item.get_name(),
+                                  item.get_translated_name()))
+                    options = item.option_class.handler.options_dict
+                    for option_name in sorted(options.keys()): # enable a diff
+                        option_value = options[option_name]
+                        if isinstance(option_value, (list, tuple)):
+                            b_f.write('      <option name="%s" value="" '
+                                      'length="%d">\n' % (
+                                          escape(option_name),
+                                          len(options[option_name])))
+                            for list_index in range(len(option_value)):
+                                option_type = type_name(
+                                    option_value[list_index])
+                                value = escape(str(option_value[list_index]))
+                                value = value.replace('"', '&quot;')
+                                b_f.write('        <listitem number="%d" '
+                                          'type="%s" value="%s"/>\n' % (
+                                              list_index,
+                                              option_type,
+                                              value))
+                            b_f.write('      </option>\n')
+                        else:
+                            option_type = type_name(option_value)
+                            value = escape(str(option_value))
                             value = value.replace('"', '&quot;')
-                            f.write('      <listitem number="%d" type="%s" '
-                                    'value="%s"/>\n' % (
-                                        list_index,
-                                        option_type,
-                                        value ) )
-                        f.write('    </option>\n')
-                    else:
-                        option_type = type_name(option_value)
-                        value = escape(str(option_value))
-                        value = value.replace('"', '&quot;')
-                        f.write('    <option name="%s" type="%s" '
-                                'value="%s"/>\n' % (
-                                    escape(option_name),
-                                    option_type,
-                                    value) )
+                            b_f.write('      <option name="%s" type="%s" '
+                                      'value="%s"/>\n' % (
+                                          escape(option_name),
+                                          option_type,
+                                          value))
 
-                f.write('    <style name="%s"/>\n' % item.get_style_name() )
-                f.write('  </item>\n')
-            if book.get_paper_name():
-                f.write('  <paper name="%s"/>\n' % book.get_paper_name() )
-            if book.get_orientation() is not None: # 0 is legal
-                f.write('  <orientation value="%s"/>\n' % 
-                        book.get_orientation() )
-            if book.get_paper_metric() is not None: # 0 is legal
-                f.write('  <metric value="%s"/>\n' % book.get_paper_metric() )
-            if book.get_custom_paper_size():
-                size = book.get_custom_paper_size()
-                f.write('  <size value="%f %f"/>\n' % (size[0], size[1]) )
-            if book.get_margins():
-                for pos in range(len(book.get_margins())):
-                    f.write('  <margin number="%s" value="%f"/>\n' %
-                                (pos, book.get_margin(pos)) )
-            if book.get_format_name():
-                f.write('  <format name="%s"/>\n' % book.get_format_name() )
-            if book.get_output():
-                f.write('  <output name="%s"/>\n' % book.get_output() )
-            f.write('</book>\n')
+                    b_f.write('      <style name="%s"/>'
+                              '\n' % item.get_style_name())
+                    b_f.write('    </item>\n')
+                if book.get_paper_name():
+                    b_f.write('    <paper name="%s"/>'
+                              '\n' % book.get_paper_name())
+                if book.get_orientation() is not None: # 0 is legal
+                    b_f.write('    <orientation value="%s"/>'
+                              '\n' % book.get_orientation())
+                if book.get_paper_metric() is not None: # 0 is legal
+                    b_p_metric = book.get_paper_metric()
+                    if isinstance(b_p_metric, bool):
+                        b_p_metric = int(b_p_metric)
+                    b_f.write('    <metric value="%s"/>'
+                              '\n' % b_p_metric)
+                if book.get_custom_paper_size():
+                    size = book.get_custom_paper_size()
+                    b_f.write('    <size value="%f %f"/>'
+                              '\n' % (size[0], size[1]))
+                if book.get_margins():
+                    for pos in range(len(book.get_margins())):
+                        b_f.write('    <margin number="%s" '
+                                  'value="%f"/>\n' % (
+                                      pos, book.get_margin(pos)))
+                if book.get_format_name():
+                    b_f.write('    <format name="%s"/>'
+                              '\n' % book.get_format_name())
+                if book.get_output():
+                    b_f.write('    <output name="%s"/>'
+                              '\n' % escape(book.get_output()))
+                b_f.write('  </book>\n')
 
-        f.write('</booklist>\n')
-        f.close()
-        
+            b_f.write('</booklist>\n')
+
     def parse(self):
         """
         Loads the BookList from the associated file, if it exists.
         """
         try:
-            p = make_parser()
-            p.setContentHandler(BookParser(self, self.dbase))
-            the_file = open(self.file)
-            p.parse(the_file)
-            the_file.close()
+            parser = make_parser()
+            parser.setContentHandler(BookParser(self, self.dbase))
+            # bug 10387; XML should be utf8, but was not previously saved
+            # that way.  So try to read utf8, if fails, try with system
+            # encoding.  Only an issue on non-utf8 systems.
+            try:
+                with open(self.file, encoding="utf-8") as the_file:
+                    parser.parse(the_file)
+            except UnicodeDecodeError:
+                with open(self.file) as the_file:
+                    parser.parse(the_file)
         except (IOError, OSError, ValueError, SAXParseException, KeyError,
                AttributeError):
             pass

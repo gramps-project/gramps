@@ -58,16 +58,17 @@ class DocReportDialog(ReportDialog):
     dialogs for docgen derived reports.
     """
 
-    def __init__(self, dbstate, uistate, option_class, name, trans_name):
+    def __init__(self, dbstate, uistate, option_class, name, trans_name,
+                 track=[]):
         """Initialize a dialog to request that the user select options
         for a basic *stand-alone* report."""
-        
+
         self.style_name = "default"
         self.firstpage_added = False
         self.CSS = PLUGMAN.process_plugin_data('WEBSTUFF')
         self.dbname = dbstate.db.get_dbname()
         ReportDialog.__init__(self, dbstate, uistate, option_class,
-                                  name, trans_name)
+                              name, trans_name, track=track)
 
         # Allow for post processing of the format frame, since the
         # show_all task calls events that may reset values
