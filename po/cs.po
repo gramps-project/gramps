@@ -10336,7 +10336,7 @@ msgstr "Čínština (Hongkong)"
 
 #: ../gramps/gen/utils/grampslocale.py:113
 msgid "Chinese (Traditional)"
-msgstr "Tradiční čínština"
+msgstr "Čínština (tradiční)"
 
 #: ../gramps/gen/utils/grampslocale.py:896
 msgid "the person"
@@ -10709,7 +10709,7 @@ msgstr "Zdeněk Hataš"
 #: ../gramps/gui/aboutdialog.py:131
 #, python-format
 msgid "Distribution: %s"
-msgstr "Distribuce: %s "
+msgstr "Distribuce: %s"
 
 #: ../gramps/gui/aboutdialog.py:142
 #, python-format
@@ -11643,11 +11643,11 @@ msgstr "Přihlášení"
 
 #: ../gramps/gui/dbloader.py:409
 msgid "Username: "
-msgstr "Uživatelské jméno:"
+msgstr "Uživatelské jméno: "
 
 #: ../gramps/gui/dbloader.py:414
 msgid "Password: "
-msgstr "Heslo:"
+msgstr "Heslo: "
 
 #: ../gramps/gui/dbloader.py:446
 msgid "Import Family Tree"
@@ -21055,7 +21055,7 @@ msgstr "Dokument CSV"
 
 #: ../gramps/plugins/export/export.gpr.py:35
 msgid "Comma _Separated Values Spreadsheet (CSV)"
-msgstr "Dokument CSV"
+msgstr "Dokument C_SV"
 
 #: ../gramps/plugins/export/export.gpr.py:36
 msgid "CSV is a common spreadsheet format."
