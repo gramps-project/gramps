@@ -1072,7 +1072,7 @@ class FamilyLinesReport(Report):
 
     def get_event_place(self, event):
         """ get the place of the event """
-        place_text = None
+        place_text = ''
         place_handle = event.get_place_handle()
         if place_handle:
             place = self._db.get_place_from_handle(place_handle)
