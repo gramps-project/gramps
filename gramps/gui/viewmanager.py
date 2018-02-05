@@ -55,6 +55,7 @@ LOG = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import Gdk
 
 #-------------------------------------------------------------------------
 #
@@ -394,7 +395,12 @@ class ViewManager(CLIManager):
         self.window.set_icon_from_file(ICON)
         self.window.set_default_size(width, height)
         self.window.move(horiz_position, vert_position)
-
+        #Set the mnemonic modifier on Macs to alt-ctrl so that it
+        #doesn't interfere with the extended keyboard, see
+        #https://gramps-project.org/bugs/view.php?id=6943
+        if is_quartz():
+            self.window.set_mnemonic_modifier(
+                Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK)
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.window.add(vbox)
         hpane = Gtk.Paned()
