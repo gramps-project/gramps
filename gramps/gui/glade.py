@@ -46,6 +46,7 @@ from gi.repository import Gtk
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GLADE_DIR, GRAMPS_LOCALE as glocale
+from gramps.gen.constfunc import is_quartz
 
 #------------------------------------------------------------------------
 #
@@ -142,11 +143,19 @@ class Glade(Gtk.Builder):
         # toplevel is given
         if toplevel:
             loadlist = [toplevel] + also_load
-            self.add_objects_from_file(path, loadlist)
+            with open(path, 'r', encoding='utf-8') as builder_file:
+                data = builder_file.read().replace('\n', '')
+                if is_quartz():
+                    data = data.replace('GDK_CONTROL_MASK', 'GDK_META_MASK')
+                self.add_objects_from_string(data, loadlist)
             self.__toplevel = self.get_object(toplevel)
         # toplevel not given
         else:
-            self.add_from_file(path)
+            with open(path, 'r', encoding='utf-8') as builder_file:
+                data = builder_file.read().replace('\n', '')
+                if is_quartz():
+                    data = data.replace('GDK_CONTROL_MASK', 'GDK_META_MASK')
+                self.add_from_string(data)
             # first, use filename as possible toplevel widget name
             self.__toplevel = self.get_object(filename.rpartition('.')[0])
 
