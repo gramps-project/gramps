@@ -35,6 +35,7 @@ _LOG = logging.getLogger(".dialog")
 #-------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import Gtk
+from gi.repository import Gdk
 from gi.repository import GdkPixbuf
 
 #-------------------------------------------------------------------------
@@ -46,6 +47,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.const import ICON, URL_BUGHOME
 from gramps.gen.config import config
+from gramps.gen.constfunc import is_quartz
 from .glade import Glade
 from .display import display_url
 
@@ -506,6 +508,12 @@ def main(args):
     win = Gtk.Window()
     win.set_title('Dialog test window')
     win.set_position(Gtk.WindowPosition.CENTER)
+    #Set the mnemonic modifier on Macs to alt-ctrl so that it
+    #doesn't interfere with the extended keyboard, see
+    #https://gramps-project.org/bugs/view.php?id=6943
+    if is_quartz():
+        win.set_mnemonic_modifier(
+            Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK)
     def cb(window, event):
         Gtk.main_quit()
     win.connect('delete-event', cb)

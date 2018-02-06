@@ -38,6 +38,7 @@ from io import StringIO
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import Gdk
 
 #-------------------------------------------------------------------------
 #
@@ -47,6 +48,7 @@ from gi.repository import Gtk
 from gramps.gen.const import GLADE_FILE, ICON
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.config import config
+from gramps.gen.constfunc import is_quartz
 from .glade import Glade
 
 #-------------------------------------------------------------------------
@@ -488,6 +490,13 @@ class ManagedWindow:
             #closing the Gtk.Window must also close ManagedWindow
             self.window = window
             self.window.connect('delete-event', self.close)
+        #Set the mnemonic modifier on Macs to alt-ctrl so that it
+        #doesn't interfere with the extended keyboard, see
+        #https://gramps-project.org/bugs/view.php?id=6943
+        if is_quartz():
+            self.window.set_mnemonic_modifier(
+                Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK)
+
         if self.modal:
             self.window.set_modal(True)
         # The following makes sure that we only have one modal window open;
