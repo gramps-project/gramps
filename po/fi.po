@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-27 09:14+0200\n"
-"PO-Revision-Date: 2018-01-27 15:16+0200\n"
+"PO-Revision-Date: 2018-02-08 15:24+0200\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -6474,7 +6474,7 @@ msgstr "Avioerohakemus"
 
 #: ../gramps/gen/lib/eventtype.py:206
 msgid "Annulment"
-msgstr "Mitätöinti"
+msgstr "Avioliiton mitätöinti"
 
 #: ../gramps/gen/lib/eventtype.py:207
 msgid "Alternate Marriage"
@@ -8491,7 +8491,6 @@ msgstr "Legal"
 msgid "Custom Size"
 msgstr "Käyttäjän koko"
 
-# 20180127
 #. -------------------------------------------------------------------------
 #.
 #. Private Constants
@@ -8506,22 +8505,18 @@ msgstr "Täysi"
 msgid "Medium"
 msgstr "Normaali"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:63
 msgid "Short"
 msgstr "Suppea"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:66
 msgid "Above"
 msgstr "Yläpuolella"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:67
 msgid "Below"
 msgstr "Alapuolella"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:68
 msgid "Not shown"
 msgstr "Ei näytetä"
@@ -8531,62 +8526,50 @@ msgstr "Ei näytetä"
 msgid "Preferences"
 msgstr "Asetukset"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:74
 msgid "Down (↓)"
 msgstr "Alas (↓)"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:75
 msgid "Up (↑)"
 msgstr "Ylös (↑)"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:76
 msgid "Right (→)"
 msgstr "Oikealle (→)"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:77
 msgid "Left (←)"
 msgstr "Vasemmalle (←)"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Perpendicular"
 msgstr "Pystysuoraan"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:80
 msgid "Rounded"
 msgstr "Pyöristetty"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:81
 msgid "Swing"
 msgstr "Käännetty"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:82
 msgid "Mesh"
 msgstr "Liitos"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:87
 msgid "Tiny"
-msgstr "Pieni"
+msgstr "Hento"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:88
 msgid "Script"
-msgstr "Script"
+msgstr "Kirjasin"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:89
 msgid "Footnote"
 msgstr "Alaviite"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:90
 msgid "Small"
 msgstr "Pieni"
@@ -8602,22 +8585,18 @@ msgstr "Normaali"
 msgid "Large"
 msgstr "Suuri"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:93
 msgid "Very large"
 msgstr "Suurempi"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:94
 msgid "Extra large"
 msgstr "Suurin"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:95
 msgid "Huge"
 msgstr "Valtava"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:96
 msgid "Extra huge"
 msgstr "Valtavampi"
@@ -8632,22 +8611,18 @@ msgstr "Liitos valinnat"
 msgid "Node detail"
 msgstr "Liitoksen yksityiskohdat"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:129
 msgid "Detail of information to be shown in a node."
 msgstr "Yksityiskohtaiset tiedot liitokselle."
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:135
 msgid "Position of marriage information."
-msgstr "Position of marriage information."
+msgstr "Avioliittotietojen sijainti."
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:138
 msgid "Node size"
 msgstr "Liitoksen koko"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:139
 msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
@@ -8656,12 +8631,10 @@ msgstr ""
 "Liitoksen ulottuvuus, mm. Jos ajanvirtaus on ylös tai alas niin tämä on "
 "leveys, muuten se on korkeus."
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:144
 msgid "Level size"
 msgstr "Tason koko"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:145
 msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
@@ -8670,7 +8643,6 @@ msgstr ""
 "Liitoksen ulottuvuus, mm. Jos ajanvirtaus on ylös tai alas niin tämä on "
 "korkeus, muuten se on leveys."
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:153
 msgid "Node color."
 msgstr "Liitoksen väri."
@@ -8683,33 +8655,27 @@ msgstr "Liitoksen väri."
 msgid "Tree Options"
 msgstr "Sukupuun valinnat"
 
-# 20180127
 #. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:160
 msgid "Timeflow"
 msgstr "Ajanvirtaus"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:163
 msgid "Direction that the graph will grow over time."
 msgstr "Suunta, johon kaavio kasvaa ajan myötä."
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:166
 msgid "Edge style"
 msgstr "Reunan tyyli"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:169
 msgid "Style of the edges between nodes."
 msgstr "Tyyli reunan ja liitoksen välillä."
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:172
 msgid "Level distance"
 msgstr "Tasoetäisyys"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:173
 msgid ""
 "The minimum amount of free space, in mm, between levels.  For vertical "
@@ -8720,28 +8686,23 @@ msgstr ""
 "kaavioille tämä vastaa rivien välistä etäisyyttä. Vaakasuuntaisille "
 "kaavioille tämä vastaa sarakkeiden välistä etäisyyttä."
 
-# 20180127
 #. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:184
 msgid "Note to add to the tree"
 msgstr "Lisätieto liitetään sukupuuhun"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:185
 msgid "This text will be added to the tree."
 msgstr "Tämä teksti lisätään sukupuuhun."
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:198
 msgid "The size of note text."
 msgstr "Tekstin koko lisätiedolle."
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:625
 msgid "PDF"
 msgstr "PDF"
 
-# 20180127
 #: ../gramps/gen/plug/docgen/treedoc.py:631
 msgid "LaTeX File"
 msgstr "LaTeX tiedosto"
@@ -8790,7 +8751,6 @@ msgstr "Kirjat"
 msgid "Graphs"
 msgstr "Kaaviot"
 
-# 20180127
 #: ../gramps/gen/plug/report/_constants.py:51
 msgid "Trees"
 msgstr "Sukupuut"
@@ -10208,67 +10168,54 @@ msgstr "ID muodot"
 msgid "Set the colors used for boxes in the graphical views"
 msgstr "Aseta graafisissa näkymissä käytettävät laatikoiden värit"
 
-# 20180126
 #: ../gramps/gui/configure.py:587
 msgid "Light colors"
 msgstr "Vaaleat värit"
 
-# 20180126
 #: ../gramps/gui/configure.py:588
 msgid "Dark colors"
 msgstr "Tummat värit"
 
-# 20180126
 #: ../gramps/gui/configure.py:593
 msgid "Color scheme"
 msgstr "Värijärjetelmä"
 
-# 20180126
 #: ../gramps/gui/configure.py:597
 msgid "Restore to defaults"
 msgstr "Palauta oletusasetukset"
 
-# 20180126
 #: ../gramps/gui/configure.py:603
 msgid "Male Alive"
 msgstr "Elävä mies"
 
-# 20180126
 #: ../gramps/gui/configure.py:604
 msgid "Male Dead"
 msgstr "Kuollut mies"
 
-# 20180126
 #: ../gramps/gui/configure.py:605
 msgid "Female Alive"
 msgstr "Elävä nainen"
 
-# 20180126
 #: ../gramps/gui/configure.py:606
 msgid "Female Dead"
 msgstr "Kuollut nainen"
 
-# 20180126
 #: ../gramps/gui/configure.py:607
 msgid "Unknown Alive"
 msgstr "Elossa sukupuoli tuntematon"
 
-# 20180126
 #: ../gramps/gui/configure.py:608
 msgid "Unknown Dead"
 msgstr "Kuollut sukupuoli tuntematon"
 
-# 20180126
 #: ../gramps/gui/configure.py:609
 msgid "Family Node"
 msgstr "Perhe liitossa"
 
-# 20180126
 #: ../gramps/gui/configure.py:610
 msgid "Family Divorced"
 msgstr "Perhe eronnut"
 
-# 20180126
 #: ../gramps/gui/configure.py:611
 msgid "Home Person"
 msgstr "Kotihenkilö"
@@ -10277,7 +10224,6 @@ msgstr "Kotihenkilö"
 msgid "Border Male Alive"
 msgstr "Elävän miehen reunaviiva"
 
-# 20180126
 #: ../gramps/gui/configure.py:613
 msgid "Border Male Dead"
 msgstr "Kuolleen miehen reunaviiva"
@@ -10286,7 +10232,6 @@ msgstr "Kuolleen miehen reunaviiva"
 msgid "Border Female Alive"
 msgstr "Elävän naisen reunaviiva"
 
-# 20180126
 #: ../gramps/gui/configure.py:615
 msgid "Border Female Dead"
 msgstr "Kuolleen naisen reunaviiva"
@@ -10295,17 +10240,14 @@ msgstr "Kuolleen naisen reunaviiva"
 msgid "Border Unknown Alive"
 msgstr "Elossa sukup. tuntem. reunaviiva"
 
-# 20180126
 #: ../gramps/gui/configure.py:617
 msgid "Border Unknown Dead"
 msgstr "Kuollut sukup. tuntem. reunaviiva"
 
-# 20180126
 #: ../gramps/gui/configure.py:618
 msgid "Border Family"
 msgstr "Perheen reunaviiva"
 
-# 20180126
 #: ../gramps/gui/configure.py:619
 msgid "Border Family Divorced"
 msgstr "Eronneen perheen reunaviiva"
@@ -34359,7 +34301,6 @@ msgstr "Mediatiedosto"
 msgid "Mime Type"
 msgstr "Näyttötyyppi"
 
-# 20180118
 #: ../gramps/plugins/webreport/media.py:241
 msgid "Creating list of media pages"
 msgstr "Luodaan mediasivujen luettelo"
@@ -34885,12 +34826,10 @@ msgstr ""
 "Otetaanko mukaan osoitekirjan sivut, jotka voivat sisältää sähköposti- ja "
 "nettiosoitteet sekä henkilökohtaiset osoite/asuinpaikka tapahtumat."
 
-# 20180118
 #: ../gramps/plugins/webreport/narrativeweb.py:1930
 msgid "Include the statistics page"
 msgstr "Lisää tilastosivu"
 
-# 20180118
 #: ../gramps/plugins/webreport/narrativeweb.py:1931
 msgid "Whether or not to add statistics page"
 msgstr "Lisätäänkö tilastosivut vai ei lisätä"
@@ -35249,7 +35188,7 @@ msgstr "Tuottaja %(author)s"
 #. Add a link for year_glance() if requested
 #: ../gramps/plugins/webreport/webcal.py:575
 msgid "Year Glance"
-msgstr "Vuosinäkymä"
+msgstr "Vuosi silmäyksellä"
 
 #: ../gramps/plugins/webreport/webcal.py:613
 msgid "NarrativeWeb Home"
@@ -35257,7 +35196,7 @@ msgstr "Kertovan nettisivuston kotisivu"
 
 #: ../gramps/plugins/webreport/webcal.py:615
 msgid "Full year at a Glance"
-msgstr "Koko vuoden näkymä"
+msgstr "Vuosi yhdellä silmäyksellä"
 
 #: ../gramps/plugins/webreport/webcal.py:966
 msgid "Formatting months ..."
@@ -35265,13 +35204,13 @@ msgstr "Muotoillaan kuukausia..."
 
 #: ../gramps/plugins/webreport/webcal.py:1051
 msgid "Creating Year At A Glance calendar"
-msgstr "Luodaan vuosikalenteria"
+msgstr "Luodaan 'Vuosi yhdellä silmäyksellä' kalenteria"
 
 #. page title
 #: ../gramps/plugins/webreport/webcal.py:1056
 #, python-format
 msgid "%(year)d, At A Glance"
-msgstr "Vuosikalenteri %(year)d"
+msgstr "%(year)d, yhdellä silmäyksellä"
 
 #: ../gramps/plugins/webreport/webcal.py:1071
 msgid ""
@@ -35279,13 +35218,14 @@ msgid ""
 "compressed into one page. Clicking on a date will take you to a page that "
 "shows all the events for that date, if there are any.\n"
 msgstr ""
-"Tähän kalenteriin on kerätty kaikki tiedot yhdelle sivulle. Napsauttamalla "
-"päivää näet päivän tapahtumat erillisellä sivulla, jos tapahtumia on.\n"
+"Tähän kalenterisivulle on kerätty kaikki tiedot, näytettäväksi yhdellä "
+"silmäyksellä. Napsauttamalla päivää näet tapahtumatiedot erillisellä "
+"sivulla, jos niitä on.\n"
 
 #. page title
 #: ../gramps/plugins/webreport/webcal.py:1124
 msgid "One Day Within A Year"
-msgstr "Tapahtumapäivät"
+msgstr "Valitun päivän tiedot"
 
 #: ../gramps/plugins/webreport/webcal.py:1428
 #, python-format
@@ -35468,7 +35408,7 @@ msgstr "Joulukuun lisätiedot"
 
 #: ../gramps/plugins/webreport/webcal.py:1835
 msgid "Create one day event pages for Year At A Glance calendar"
-msgstr "Luodaan tapahtumapäiville sivut vuosikalenteriin"
+msgstr "Luodaan tapahtumapäiväsivut 'Vuosi yhdellä silmäyksellä' kalenteriin"
 
 #: ../gramps/plugins/webreport/webcal.py:1837
 msgid "Whether to create one day pages or not"
@@ -35502,14 +35442,14 @@ msgstr "%(couple)s, <em>häät</em>"
 
 #: ../gramps/plugins/webreport/webcal.py:2037
 msgid "Until"
-msgstr "Saakka"
+msgstr "päättyi"
 
 #: ../gramps/plugins/webreport/webcal.py:2046
 #, python-brace-format
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
-msgstr[0] "{couple}, {years} vuosipäivä"
-msgstr[1] "{couple}, {years} vuosipäivä"
+msgstr[0] "{couple}, {years}. vuosipäivä"
+msgstr[1] "{couple}, {years}. vuosipäivä"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:34
 msgid "Narrated Web Site"
