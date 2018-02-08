@@ -18,7 +18,7 @@
   <repository type="tarball" name="oracle"
 	      href="http://download.oracle.com/"/>
   <repository type="tarball" name="pymodules"
-	      href="http://pypi.python.org/packages/"/>
+	      href="https://pypi.python.org/packages/"/>
   <repository type="tarball" name="stowers"
 	     href="http://www.johnstowers.co.nz/files/"/>
   <repository type="git" name="github" href="git://github.com/"/>
@@ -113,9 +113,12 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 	     supports-non-srcdir-builds="no">
     <branch module="nzjrs/osm-gps-map" revision="1.1.0" repo="github"/>
     <dependencies>
-      <dep package="meta-gtk-osx-gtk3"/>
       <dep package="libsoup"/>
     </dependencies>
+    <after>
+      <dep package="meta-gtk-osx-gtk3"/>
+      <dep package="meta-gtk-osx-gtk3.14"/>
+    </after>
   </autotools>
 
   <autotools id="graphviz" autogen-sh="configure"
@@ -156,8 +159,8 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </distutils>
 
  <distutils id='pyicu'>
-    <branch version='1.9' repo='pymodules'
-	    module='6e/88/f42a1297909ca6d9113ba37b37067011ae29432fe592fdd98cf52ad23b77/PyICU-1.9.7.tar.gz'/>
+    <branch version='2.0.3' repo='pymodules'
+	    module='bb/ef/3a7fcbba81bfd213e479131ae21445a2ddd14b46d70ef0109640b580bc5d/PyICU-2.0.3.tar.gz'/>
     <dependencies>
       <dep package='icu'/>
     </dependencies>
