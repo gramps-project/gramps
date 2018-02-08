@@ -1,3 +1,43 @@
+2018-02-08
+Version 4.2.7
+* Fix Export View to CSV when Unicode characters are present
+* Fix several intl date displayers for missing parameter
+* DescendantTree report; fix crashes and Title spacing
+* Fix Book XML handler to deal with unusual characters in Book name
+* Add support for new genealogy tree report category
+* Fix Media Preview Gramplet for closed db
+* Suport FTM 2017 Gedcom tags on import
+* Fix Person, Family Sidebar Filters to add custom Event types
+* Fix QuestionDialog display for html like characters in title
+* Fix FamilyRelationshpType _DATAMAP order to correspond with values
+* Fix Gedcom import for illegal Gedcom Family Attributes
+* Fix Gedcom export for bad Hebrew Months
+* Change INSTALL to replace 'python' with 'python3 for script invokes
+* Fix CSV importer for place event name using gramps_id
+* Fix Geography view 'Find' when db is closed
+* Fix interactive search for exception on click then down arrow
+* Create where_is utility to locate a binary in the standard places
+* Fix relationship Graph so Unicode chars on Multiple pages works
+* Update authors file
+* Fix Gedcom import for "1 MARR Y" issue
+* Fix Export Web Family Tree for errors on file write
+* Fix Citation Editor to Tab out of Confidence ComboBox
+* Reset the dependencies on the new meta-module
+* Use online modules
+* Consolidate Python2 and Python3 meta-modules
+* Use None as the foreground colour for untagged rows in list views
+* Fix shading colour in relationship view for dark themes
+* Fix link colour for dark themes
+* Fix default foreground colour in list views for dark themes
+* Fix Undo; crashes due to race in Gtk
+* Gedcom import with OBJE/FORM URL on event
+* EOFError [Ran out of input] in Clipboard
+* Cannot drag & drop textual value via clipboard
+* Fix 'DbBsddbRead' object has no attribute '_Callback__callback_map'
+* Reports - Narrated Web Site Failure
+* Fix link path in gramps-launcher compile instructions
+* Update translations: fi, de
+
 2017-08-01
 Version 4.2.6
 * Fix HasCitation rule in citation filter sidebar

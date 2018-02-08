@@ -1,53 +1,8 @@
-2017-08-01  romjerome <romjerome@users.noreply.github.com>
+2018-01-29  niememat <niememat@gmail.com>
 
-	* po/fr.po: typos
+	* po/fi.po: Update finnish translation
 
-2017-07-31  Zdeněk Hataš <zdenek.hatas@gmail.com>
+2018-01-27  Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/cs.po: update to recent pot
-
-2017-07-29  romjerome <romjerome@users.noreply.github.com>
-
-	* po/fr.po: Update template no modified or new message id, update references (header and
-	comments)
-
-2017-07-26  vantu5z <vantu5z@mail.ru>
-
-	* po/ru.po: update Russian translation - merge last template - fix typo - change 'е' to 'ё' in some words
-
-2017-07-15  Leonhaeuser <mirko@leonhaeuser.de>
-
-	* po/de.po: update German translation Fix #0010131
-
-2017-07-08  Lajos Nemeséri <nemeseril@gmail.com>
-
-	* po/hu.po: Update Hungarian translation
-
-2017-03-16  Paul Franklin <pf.98052@gmail.com>
-
-	* po/tr.po: add datestrings to gramps42 Turkish translation
-
-2017-02-08  Bernard Banko <beernarrd@gmail.com>
-
-	* po/sl.po: updated sl translation
-
-2017-02-08  Bernard Banko <beernarrd@gmail.com>
-
-	* po/sl.po: corrected slovenian name editor keywords
-
-2017-02-02  Peter Landgren <peter.talken@telia.com>
-
-	* po/sv.po: Update Swedish translation
-
-2017-01-25  Matti Niemelä <matti.u.niemela@gmail.com>
-
-	* po/fi.po: update finnish translation
-
-2017-01-11  Luigi Toscano <luigi.toscano@tiscali.it>
-
-	* po/it.po: Italian translation: updates and fixes
-
-2017-01-08  Luigi Toscano <luigi.toscano@tiscali.it>
-
-	* Refresh it.po using the current pot template
+	* update German translation
 
