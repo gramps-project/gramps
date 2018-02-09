@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-27 13:10+0100\n"
-"PO-Revision-Date: 2018-01-27 14:53+0100\n"
+"POT-Creation-Date: 2018-02-09 19:45+0100\n"
+"PO-Revision-Date: 2018-02-09 20:22+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1833,12 +1833,12 @@ msgid "ERROR: %s"
 msgstr "FEHLER: %s"
 
 #: ../gramps/cli/grampscli.py:106 ../gramps/cli/user.py:200
-#: ../gramps/gui/dialog.py:247
+#: ../gramps/gui/dialog.py:249
 msgid "Low level database corruption detected"
 msgstr "Ein interner Datenbankfehler wurde entdeckt"
 
 #: ../gramps/cli/grampscli.py:108 ../gramps/cli/user.py:201
-#: ../gramps/gui/dialog.py:248
+#: ../gramps/gui/dialog.py:250
 msgid ""
 "Gramps has detected a problem in the underlying Berkeley database. This can "
 "be repaired from the Family Tree Manager. Select the database and click on "
@@ -2085,11 +2085,11 @@ msgstr "Das Schreiben des Berichts ist fehlgeschlagen"
 msgid "Failed to make '%s' report."
 msgstr "Erstellen des Bericht '%s' fehlgeschlagen."
 
-#: ../gramps/cli/user.py:217 ../gramps/gui/dialog.py:233
+#: ../gramps/cli/user.py:217 ../gramps/gui/dialog.py:235
 msgid "Error detected in database"
 msgstr "In der Datenbank wurde ein Fehler entdeckt"
 
-#: ../gramps/cli/user.py:218 ../gramps/gui/dialog.py:234
+#: ../gramps/cli/user.py:218 ../gramps/gui/dialog.py:236
 #, python-format
 msgid ""
 "Gramps has detected an error in the database. This can usually be resolved "
@@ -4843,7 +4843,7 @@ msgstr "Typ:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48
 #: ../gramps/gui/glade/mergemedia.glade:245
-#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1828
+#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1834
 msgid "Path:"
 msgstr "Pfad:"
 
@@ -7008,7 +7008,7 @@ msgstr "Pflegekind"
 #: ../gramps/gui/editors/editcitation.py:119
 #: ../gramps/gui/editors/editcitation.py:125
 #: ../gramps/gui/editors/editlink.py:100
-#: ../gramps/gui/editors/filtereditor.py:301 ../gramps/gui/viewmanager.py:611
+#: ../gramps/gui/editors/filtereditor.py:301 ../gramps/gui/viewmanager.py:617
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:170
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:115
 #: ../gramps/plugins/quickview/quickview.gpr.py:209
@@ -7069,7 +7069,7 @@ msgstr "Vertraulichkeit"
 #: ../gramps/gui/clipboard.py:803 ../gramps/gui/configure.py:560
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:78
 #: ../gramps/gui/editors/editlink.py:99 ../gramps/gui/editors/editsource.py:86
-#: ../gramps/gui/editors/filtereditor.py:297 ../gramps/gui/viewmanager.py:609
+#: ../gramps/gui/editors/filtereditor.py:297 ../gramps/gui/viewmanager.py:615
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:170
 #: ../gramps/plugins/export/exportcsv.py:466
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:114
@@ -7093,7 +7093,7 @@ msgstr "Quelle"
 #: ../gramps/gen/lib/media.py:134 ../gramps/gen/lib/person.py:206
 #: ../gramps/gen/lib/place.py:166 ../gramps/gen/lib/src.py:117
 #: ../gramps/gui/clipboard.py:662 ../gramps/gui/editors/editlink.py:94
-#: ../gramps/gui/editors/filtereditor.py:298 ../gramps/gui/viewmanager.py:615
+#: ../gramps/gui/editors/filtereditor.py:298 ../gramps/gui/viewmanager.py:621
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:110
 #: ../gramps/plugins/quickview/filterbyname.py:109
 #: ../gramps/plugins/quickview/filterbyname.py:134
@@ -7333,7 +7333,7 @@ msgstr "nur Text"
 #: ../gramps/gui/editors/editlink.py:92
 #: ../gramps/gui/editors/filtereditor.py:295
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:138
-#: ../gramps/gui/viewmanager.py:605
+#: ../gramps/gui/viewmanager.py:611
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:108
 #: ../gramps/plugins/quickview/filterbyname.py:175
 #: ../gramps/plugins/quickview/filterbyname.py:246
@@ -7357,7 +7357,7 @@ msgstr "Ereignis"
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:108
 #: ../gramps/gui/glade/editevent.glade:270
 #: ../gramps/gui/plug/_guioptions.py:1348
-#: ../gramps/gui/selectors/selectevent.py:72 ../gramps/gui/viewmanager.py:607
+#: ../gramps/gui/selectors/selectevent.py:72 ../gramps/gui/viewmanager.py:613
 #: ../gramps/gui/views/treemodels/placemodel.py:305
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/export/exportcsv.py:466
@@ -7451,7 +7451,7 @@ msgstr "Lebensereignisse"
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
 #: ../gramps/gui/editors/editfamily.py:499 ../gramps/gui/editors/editlink.py:93
 #: ../gramps/gui/editors/filtereditor.py:294
-#: ../gramps/gui/glade/editldsord.glade:267 ../gramps/gui/viewmanager.py:603
+#: ../gramps/gui/glade/editldsord.glade:267 ../gramps/gui/viewmanager.py:609
 #: ../gramps/plugins/export/exportcsv.py:506
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:109
 #: ../gramps/plugins/importer/importcsv.py:211
@@ -8402,7 +8402,7 @@ msgstr "Name nach der Hochzeit"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:113
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:108
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:91
-#: ../gramps/gui/glade/editnote.glade:326 ../gramps/gui/viewmanager.py:617
+#: ../gramps/gui/glade/editnote.glade:326 ../gramps/gui/viewmanager.py:623
 #: ../gramps/gui/views/treemodels/mediamodel.py:117
 #: ../gramps/plugins/drawreport/ancestortree.py:974
 #: ../gramps/plugins/drawreport/descendtree.py:1696
@@ -8553,7 +8553,7 @@ msgstr "Kind-Referenzen Notiz"
 #: ../gramps/gen/lib/person.py:173 ../gramps/gui/clipboard.py:746
 #: ../gramps/gui/configure.py:554 ../gramps/gui/editors/editlink.py:96
 #: ../gramps/gui/editors/filtereditor.py:293
-#: ../gramps/gui/glade/editpersonref.glade:211 ../gramps/gui/viewmanager.py:601
+#: ../gramps/gui/glade/editpersonref.glade:211 ../gramps/gui/viewmanager.py:607
 #: ../gramps/plugins/export/exportcsv.py:354
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:107
 #: ../gramps/plugins/importer/importcsv.py:208
@@ -8789,7 +8789,7 @@ msgstr "Standortnummer/Signatur"
 #: ../gramps/gui/configure.py:568 ../gramps/gui/editors/editlink.py:98
 #: ../gramps/gui/editors/editrepository.py:77
 #: ../gramps/gui/editors/editrepository.py:79
-#: ../gramps/gui/editors/filtereditor.py:299 ../gramps/gui/viewmanager.py:613
+#: ../gramps/gui/editors/filtereditor.py:299 ../gramps/gui/viewmanager.py:619
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:113
 #: ../gramps/plugins/quickview/filterbyname.py:205
 #: ../gramps/plugins/quickview/filterbyname.py:264
@@ -8963,17 +8963,17 @@ msgid "Ranges"
 msgstr "Bereiche"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:61
-#: ../gramps/gui/widgets/styledtexteditor.py:454
+#: ../gramps/gui/widgets/styledtexteditor.py:456
 msgid "Bold"
 msgstr "Fett"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:62
-#: ../gramps/gui/widgets/styledtexteditor.py:452
+#: ../gramps/gui/widgets/styledtexteditor.py:454
 msgid "Italic"
 msgstr "Kursiv"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:63
-#: ../gramps/gui/widgets/styledtexteditor.py:456
+#: ../gramps/gui/widgets/styledtexteditor.py:458
 msgid "Underline"
 msgstr "Unterstrichen"
 
@@ -9001,8 +9001,8 @@ msgstr "Hochgestellt"
 #: ../gramps/gui/glade/editlink.glade:171
 #: ../gramps/gui/widgets/styledtextbuffer.py:565
 #: ../gramps/gui/widgets/styledtextbuffer.py:605
-#: ../gramps/gui/widgets/styledtexteditor.py:468
-#: ../gramps/gui/widgets/styledtexteditor.py:469
+#: ../gramps/gui/widgets/styledtexteditor.py:470
+#: ../gramps/gui/widgets/styledtexteditor.py:471
 msgid "Link"
 msgstr "Verknüpfung"
 
@@ -9451,7 +9451,7 @@ msgstr "Graphviz Layout"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:136
-#: ../gramps/gui/widgets/styledtexteditor.py:478
+#: ../gramps/gui/widgets/styledtexteditor.py:480
 msgid "Font family"
 msgstr "Schriftfamilie"
 
@@ -9465,7 +9465,7 @@ msgstr ""
 "www.nongnu.org/freefont/"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:145
-#: ../gramps/gui/widgets/styledtexteditor.py:490
+#: ../gramps/gui/widgets/styledtexteditor.py:492
 msgid "Font size"
 msgstr "Schriftgröße"
 
@@ -9735,7 +9735,7 @@ msgid "Not shown"
 msgstr "Nicht gezeigt"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:72 ../gramps/gui/configure.py:156
-#: ../gramps/gui/configure.py:1719 ../gramps/gui/views/pageview.py:590
+#: ../gramps/gui/configure.py:1719 ../gramps/gui/views/pageview.py:606
 msgid "Preferences"
 msgstr "Einstellungen"
 
@@ -9765,11 +9765,11 @@ msgstr "Abgerundet"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:81
 msgid "Swing"
-msgstr ""
+msgstr "Schwingen"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:82
 msgid "Mesh"
-msgstr ""
+msgstr "Netz"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:87
 msgid "Tiny"
@@ -9814,11 +9814,13 @@ msgstr "Riesig"
 msgid "Extra huge"
 msgstr "Extra riesig"
 
-#. ###############################: ../gramps/gen/plug/docgen/treedoc.py:123
+#. ###############################
+#: ../gramps/gen/plug/docgen/treedoc.py:123
 msgid "Node Options"
 msgstr "Knotenoptionen"
 
-#. ###############################: ../gramps/gen/plug/docgen/treedoc.py:126
+#. ###############################
+#: ../gramps/gen/plug/docgen/treedoc.py:126
 msgid "Node detail"
 msgstr "Knotendetails"
 
@@ -9839,21 +9841,20 @@ msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the width, otherwise it is the height."
 msgstr ""
-"Eine Dimension eines Knotens in mm. Wenn der Zeitablauf hoch oder runter ist,"
-" ist dies die Breite, sonst ist es die Höhe."
+"Eine Dimension eines Knotens in mm. Wenn der Zeitablauf hoch oder runter "
+"ist, ist dies die Breite, sonst ist es die Höhe."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:144
-#, fuzzy
 msgid "Level size"
-msgstr "Baumgröße"
+msgstr "Ebenengröße"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:145
 msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the height, otherwise it is the width."
 msgstr ""
-"Eine Dimension eines Knotens in mm. Wenn der Zeitablauf hoch oder runter ist,"
-" ist dies die Höhe, sonst ist es die Breite."
+"Eine Dimension eines Knotens in mm. Wenn der Zeitablauf hoch oder runter "
+"ist, ist dies die Höhe, sonst ist es die Breite."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
 msgid "Node color."
@@ -9867,7 +9868,8 @@ msgstr "Knotenfarbe."
 msgid "Tree Options"
 msgstr "Baumoptionen"
 
-#. ###############################: ../gramps/gen/plug/docgen/treedoc.py:160
+#. ###############################
+#: ../gramps/gen/plug/docgen/treedoc.py:160
 msgid "Timeflow"
 msgstr "Zeitablauf"
 
@@ -9885,7 +9887,7 @@ msgstr "Stil der Kanten zwischen Knoten."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:172
 msgid "Level distance"
-msgstr ""
+msgstr "Ebenenabstand"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:173
 msgid ""
@@ -9897,7 +9899,8 @@ msgstr ""
 "entspricht dies dem Abstand zwischen Zeilen. Für horizontale Grafen "
 "entspricht das dem Abstand zwischen Spalten."
 
-#. ###############################: ../gramps/gen/plug/docgen/treedoc.py:184
+#. ###############################
+#: ../gramps/gen/plug/docgen/treedoc.py:184
 msgid "Note to add to the tree"
 msgstr "Notiz zum hinzufügen zum Baum"
 
@@ -9933,7 +9936,7 @@ msgstr "Gültige Werte:"
 #.
 #. ------------------------------------------------------------------------
 #: ../gramps/gen/plug/report/_book.py:71 ../gramps/gui/plug/_dialogs.py:59
-#: ../gramps/gui/plug/report/_bookdialog.py:84 ../gramps/gui/viewmanager.py:121
+#: ../gramps/gui/plug/report/_bookdialog.py:84 ../gramps/gui/viewmanager.py:122
 msgid "Unsupported"
 msgstr "Nicht unterstützt"
 
@@ -10140,7 +10143,7 @@ msgstr "Ob (und wo) Gramps IDs enthalten sind"
 #. #########################
 #. ###############################
 #: ../gramps/gen/plug/report/stdoptions.py:327
-#: ../gramps/gui/viewmanager.py:1887
+#: ../gramps/gui/viewmanager.py:1893
 #: ../gramps/plugins/graph/gvfamilylines.py:211
 #: ../gramps/plugins/graph/gvrelgraph.py:819
 #: ../gramps/plugins/textreport/detancestralreport.py:888
@@ -11202,7 +11205,7 @@ msgstr "Für eine andere Reihenfolge ziehe die Spalte an eine neue Position."
 
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1619
 #: ../gramps/gui/configure.py:1641 ../gramps/gui/configure.py:1664
-#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1958
+#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1964
 #: ../gramps/plugins/lib/maps/geography.py:1009
 #: ../gramps/plugins/lib/maps/geography.py:1264
 msgid "_Apply"
@@ -11238,8 +11241,8 @@ msgstr "Namenseditor anzeigen"
 
 #. self.window.connect('response', self.close)
 #: ../gramps/gui/configure.py:107 ../gramps/gui/configure.py:181
-#: ../gramps/gui/dialog.py:213 ../gramps/gui/dialog.py:259
-#: ../gramps/gui/dialog.py:285 ../gramps/gui/glade/book.glade:466
+#: ../gramps/gui/dialog.py:215 ../gramps/gui/dialog.py:261
+#: ../gramps/gui/dialog.py:287 ../gramps/gui/glade/book.glade:466
 #: ../gramps/gui/glade/book.glade:539 ../gramps/gui/glade/clipboard.glade:71
 #: ../gramps/gui/glade/dialog.glade:20 ../gramps/gui/glade/dialog.glade:141
 #: ../gramps/gui/glade/displaystate.glade:23
@@ -11248,7 +11251,7 @@ msgstr "Namenseditor anzeigen"
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/plug/_windows.py:105
 #: ../gramps/gui/plug/_windows.py:691 ../gramps/gui/plug/_windows.py:747
 #: ../gramps/gui/plug/quick/_textbufdoc.py:60 ../gramps/gui/undohistory.py:90
-#: ../gramps/gui/viewmanager.py:537 ../gramps/gui/viewmanager.py:1822
+#: ../gramps/gui/viewmanager.py:543 ../gramps/gui/viewmanager.py:1828
 #: ../gramps/gui/views/bookmarks.py:286 ../gramps/gui/views/tags.py:430
 #: ../gramps/gui/widgets/grampletbar.py:635
 #: ../gramps/gui/widgets/grampletpane.py:232
@@ -11536,7 +11539,7 @@ msgstr "Beispiel"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:115
 #: ../gramps/gui/editors/editfamily.py:148
 #: ../gramps/gui/plug/report/_bookdialog.py:653
-#: ../gramps/gui/viewmanager.py:599 ../gramps/gui/views/tags.py:422
+#: ../gramps/gui/viewmanager.py:605 ../gramps/gui/views/tags.py:422
 #: ../gramps/gui/widgets/fanchart.py:1716
 #: ../gramps/gui/widgets/fanchart.py:1758
 #: ../gramps/plugins/view/pedigreeview.py:1627
@@ -11553,7 +11556,7 @@ msgstr "_Hinzufügen"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:116
 #: ../gramps/gui/glade/editlink.glade:222
 #: ../gramps/gui/plug/report/_bookdialog.py:627
-#: ../gramps/gui/viewmanager.py:512 ../gramps/gui/views/tags.py:423
+#: ../gramps/gui/viewmanager.py:518 ../gramps/gui/views/tags.py:423
 #: ../gramps/gui/widgets/fanchart.py:1513
 #: ../gramps/plugins/view/pedigreeview.py:1662
 #: ../gramps/plugins/view/pedigreeview.py:1890
@@ -11994,7 +11997,7 @@ msgstr "Wähle ein Medienverzeichnis"
 #: ../gramps/gui/plug/_guioptions.py:1738 ../gramps/gui/plug/_windows.py:440
 #: ../gramps/gui/plug/report/_fileentry.py:64
 #: ../gramps/gui/plug/report/_reportdialog.py:162 ../gramps/gui/utils.py:180
-#: ../gramps/gui/viewmanager.py:1956 ../gramps/gui/views/listview.py:1018
+#: ../gramps/gui/viewmanager.py:1962 ../gramps/gui/views/listview.py:1018
 #: ../gramps/gui/views/navigationview.py:363 ../gramps/gui/views/tags.py:645
 #: ../gramps/gui/widgets/progressdialog.py:437
 #: ../gramps/plugins/lib/maps/geography.py:1008
@@ -12009,7 +12012,7 @@ msgstr "_Abbrechen"
 msgid "Select database directory"
 msgstr "Wähle ein Datenbankverzeichnis."
 
-#: ../gramps/gui/configure.py:1659 ../gramps/gui/viewmanager.py:1953
+#: ../gramps/gui/configure.py:1659 ../gramps/gui/viewmanager.py:1959
 msgid "Select backup directory"
 msgstr "Sicherungsverzeichnis wählen"
 
@@ -12059,7 +12062,7 @@ msgstr ""
 #: ../gramps/gui/dbloader.py:250 ../gramps/gui/dbloader.py:265
 #: ../gramps/gui/plug/report/_bookdialog.py:243
 #: ../gramps/gui/plug/report/_bookdialog.py:739
-#: ../gramps/gui/viewmanager.py:839
+#: ../gramps/gui/viewmanager.py:845
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -12213,7 +12216,7 @@ msgstr "Datumsinformation"
 #: ../gramps/gui/glade/styleeditor.glade:1738
 #: ../gramps/gui/plug/_guioptions.py:79
 #: ../gramps/gui/plug/report/_reportdialog.py:166 ../gramps/gui/utils.py:194
-#: ../gramps/gui/viewmanager.py:1824 ../gramps/gui/views/tags.py:646
+#: ../gramps/gui/viewmanager.py:1830 ../gramps/gui/views/tags.py:646
 #: ../gramps/plugins/tool/check.py:781 ../gramps/plugins/tool/patchnames.py:118
 #: ../gramps/plugins/tool/populatesources.py:91
 #: ../gramps/plugins/tool/testcasegenerator.py:328
@@ -12510,12 +12513,12 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dialog.py:386 ../gramps/gui/dialog.py:464
+#: ../gramps/gui/dialog.py:388 ../gramps/gui/dialog.py:466
 #: ../gramps/gui/utils.py:309
 msgid "Attempt to force closing the dialog"
 msgstr "Versuch, das Schließen des Dialogs zu erzwingen"
 
-#: ../gramps/gui/dialog.py:387 ../gramps/gui/dialog.py:465
+#: ../gramps/gui/dialog.py:389 ../gramps/gui/dialog.py:467
 msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
@@ -14448,7 +14451,7 @@ msgstr "Markierungenauswahl"
 #: ../gramps/gui/glade/rule.glade:351 ../gramps/gui/glade/rule.glade:781
 #: ../gramps/gui/logger/_errorview.py:175
 #: ../gramps/gui/plug/report/_reportdialog.py:159
-#: ../gramps/gui/undohistory.py:82 ../gramps/gui/viewmanager.py:515
+#: ../gramps/gui/undohistory.py:82 ../gramps/gui/viewmanager.py:521
 #: ../gramps/gui/views/bookmarks.py:287 ../gramps/gui/views/tags.py:431
 #: ../gramps/gui/views/tags.py:644 ../gramps/gui/widgets/grampletbar.py:641
 #: ../gramps/gui/widgets/grampletpane.py:237
@@ -18824,7 +18827,7 @@ msgid "Spelling checker initialization failed: %s"
 msgstr "Die Einrichtung der Rechtschreibprüfung ist fehlgeschlagen: %s"
 
 #: ../gramps/gui/tipofday.py:67 ../gramps/gui/tipofday.py:68
-#: ../gramps/gui/tipofday.py:121 ../gramps/gui/viewmanager.py:532
+#: ../gramps/gui/tipofday.py:121 ../gramps/gui/viewmanager.py:538
 msgid "Tip of the Day"
 msgstr "Tipp des Tages"
 
@@ -18847,13 +18850,13 @@ msgstr ""
 msgid "Undo History"
 msgstr "Bearbeitungschronik"
 
-#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:641
-#: ../gramps/gui/viewmanager.py:1287
+#: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:647
+#: ../gramps/gui/viewmanager.py:1293
 msgid "_Undo"
 msgstr "_Rückgängig"
 
-#: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:646
-#: ../gramps/gui/viewmanager.py:1304
+#: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:652
+#: ../gramps/gui/viewmanager.py:1310
 msgid "_Redo"
 msgstr "_Wiederherstellen"
 
@@ -18936,190 +18939,190 @@ msgstr ""
 msgid "Cannot open new citation editor"
 msgstr "Der neue Fundstelleneditor kann nicht geöffnet werden."
 
-#: ../gramps/gui/viewmanager.py:464 ../gramps/gui/viewmanager.py:1261
+#: ../gramps/gui/viewmanager.py:470 ../gramps/gui/viewmanager.py:1267
 msgid "No Family Tree"
 msgstr "Kein Stammbaum"
 
-#: ../gramps/gui/viewmanager.py:486
+#: ../gramps/gui/viewmanager.py:492
 msgid "Connect to a recent database"
 msgstr "Mit neuer Datenbank verbinden"
 
-#: ../gramps/gui/viewmanager.py:504
+#: ../gramps/gui/viewmanager.py:510
 msgid "_Family Trees"
 msgstr "_Stammbäume"
 
-#: ../gramps/gui/viewmanager.py:505
+#: ../gramps/gui/viewmanager.py:511
 msgid "_Manage Family Trees..."
 msgstr "Stammbäume _verwalten..."
 
-#: ../gramps/gui/viewmanager.py:506
+#: ../gramps/gui/viewmanager.py:512
 msgid "Manage databases"
 msgstr "Datenbanken verwalten"
 
-#: ../gramps/gui/viewmanager.py:507
+#: ../gramps/gui/viewmanager.py:513
 msgid "Open _Recent"
 msgstr "_Zuletzt geöffnet"
 
-#: ../gramps/gui/viewmanager.py:508
+#: ../gramps/gui/viewmanager.py:514
 msgid "Open an existing database"
 msgstr "Eine existierende Datenbank öffnen"
 
-#: ../gramps/gui/viewmanager.py:509
+#: ../gramps/gui/viewmanager.py:515
 msgid "_Quit"
 msgstr "_Beenden"
 
-#: ../gramps/gui/viewmanager.py:511
+#: ../gramps/gui/viewmanager.py:517
 msgid "_View"
 msgstr "_Ansicht"
 
-#: ../gramps/gui/viewmanager.py:513
+#: ../gramps/gui/viewmanager.py:519
 msgid "_Preferences..."
 msgstr "_Einstellungen..."
 
-#: ../gramps/gui/viewmanager.py:516
+#: ../gramps/gui/viewmanager.py:522
 msgid "Gramps _Home Page"
 msgstr "Gramps _Homepage"
 
-#: ../gramps/gui/viewmanager.py:518
+#: ../gramps/gui/viewmanager.py:524
 msgid "Gramps _Mailing Lists"
 msgstr "Gramps _Mailinglisten"
 
-#: ../gramps/gui/viewmanager.py:520
+#: ../gramps/gui/viewmanager.py:526
 msgid "_Report a Bug"
 msgstr "_Programmfehler melden"
 
-#: ../gramps/gui/viewmanager.py:522
+#: ../gramps/gui/viewmanager.py:528
 msgid "_Extra Reports/Tools"
 msgstr "_Weitere Berichte/Werkzeuge"
 
-#: ../gramps/gui/viewmanager.py:524
+#: ../gramps/gui/viewmanager.py:530
 msgid "_About"
 msgstr "_Info"
 
-#: ../gramps/gui/viewmanager.py:526
+#: ../gramps/gui/viewmanager.py:532
 msgid "_Plugin Manager"
 msgstr "_Zusatzmodulverwaltung"
 
-#: ../gramps/gui/viewmanager.py:528
+#: ../gramps/gui/viewmanager.py:534
 msgid "_FAQ"
 msgstr "Häufig gestellte _Fragen"
 
-#: ../gramps/gui/viewmanager.py:529
+#: ../gramps/gui/viewmanager.py:535
 msgid "_Key Bindings"
 msgstr "Tastatur_kürzel"
 
-#: ../gramps/gui/viewmanager.py:530
+#: ../gramps/gui/viewmanager.py:536
 msgid "_User Manual"
 msgstr "_Benutzerhandbuch"
 
-#: ../gramps/gui/viewmanager.py:538
+#: ../gramps/gui/viewmanager.py:544
 msgid "Close the current database"
 msgstr "Schließe die aktuelle Datenbank"
 
-#: ../gramps/gui/viewmanager.py:539
+#: ../gramps/gui/viewmanager.py:545
 msgid "_Export..."
 msgstr "_Export..."
 
-#: ../gramps/gui/viewmanager.py:541
+#: ../gramps/gui/viewmanager.py:547
 msgid "Make Backup..."
 msgstr "Erstelle Sicherung..."
 
-#: ../gramps/gui/viewmanager.py:542
+#: ../gramps/gui/viewmanager.py:548
 msgid "Make a Gramps XML backup of the database"
 msgstr "Gramps XML Sicherung der Datenbank erstellen"
 
-#: ../gramps/gui/viewmanager.py:544
+#: ../gramps/gui/viewmanager.py:550
 msgid "_Abandon Changes and Quit"
 msgstr "Änderungen _Verwerfen und Beenden"
 
-#: ../gramps/gui/viewmanager.py:545 ../gramps/gui/viewmanager.py:548
+#: ../gramps/gui/viewmanager.py:551 ../gramps/gui/viewmanager.py:554
 msgid "_Reports"
 msgstr "Be_richte"
 
-#: ../gramps/gui/viewmanager.py:546
+#: ../gramps/gui/viewmanager.py:552
 msgid "Open the reports dialog"
 msgstr "Öffnet den Berichtsdialog"
 
-#: ../gramps/gui/viewmanager.py:547
+#: ../gramps/gui/viewmanager.py:553
 msgid "_Go"
 msgstr "_Gehe zu"
 
-#: ../gramps/gui/viewmanager.py:549
+#: ../gramps/gui/viewmanager.py:555
 msgid "Books..."
 msgstr "Bücher..."
 
-#: ../gramps/gui/viewmanager.py:550
+#: ../gramps/gui/viewmanager.py:556
 msgid "_Windows"
 msgstr "_Fenster"
 
-#: ../gramps/gui/viewmanager.py:597
+#: ../gramps/gui/viewmanager.py:603
 msgid "Clip_board"
 msgstr "Zwischena_blage"
 
-#: ../gramps/gui/viewmanager.py:598
+#: ../gramps/gui/viewmanager.py:604
 msgid "Open the Clipboard dialog"
 msgstr "Öffnet den Zwischenablagedialog"
 
 #. --------------------------------------
-#: ../gramps/gui/viewmanager.py:620
+#: ../gramps/gui/viewmanager.py:626
 msgid "_Import..."
 msgstr "_Import..."
 
-#: ../gramps/gui/viewmanager.py:622 ../gramps/gui/viewmanager.py:625
+#: ../gramps/gui/viewmanager.py:628 ../gramps/gui/viewmanager.py:631
 msgid "_Tools"
 msgstr "_Werkzeuge"
 
-#: ../gramps/gui/viewmanager.py:623
+#: ../gramps/gui/viewmanager.py:629
 msgid "Open the tools dialog"
 msgstr "Öffnet den Werkzeugdialog"
 
-#: ../gramps/gui/viewmanager.py:624
+#: ../gramps/gui/viewmanager.py:630
 msgid "_Bookmarks"
 msgstr "_Lesezeichen"
 
-#: ../gramps/gui/viewmanager.py:626
+#: ../gramps/gui/viewmanager.py:632
 msgid "_Configure..."
 msgstr "_Konfigurieren..."
 
-#: ../gramps/gui/viewmanager.py:627
+#: ../gramps/gui/viewmanager.py:633
 msgid "Configure the active view"
 msgstr "Die aktive Ansicht konfigurieren"
 
-#: ../gramps/gui/viewmanager.py:632
+#: ../gramps/gui/viewmanager.py:638
 msgid "_Navigator"
 msgstr "_Navigator"
 
-#: ../gramps/gui/viewmanager.py:634
+#: ../gramps/gui/viewmanager.py:640
 msgid "_Toolbar"
 msgstr "_Werkzeugleiste"
 
-#: ../gramps/gui/viewmanager.py:636
+#: ../gramps/gui/viewmanager.py:642
 msgid "F_ull Screen"
 msgstr "Vollbild"
 
-#: ../gramps/gui/viewmanager.py:652
+#: ../gramps/gui/viewmanager.py:658
 msgid "Undo History..."
 msgstr "Bearbeitungschronik..."
 
-#: ../gramps/gui/viewmanager.py:675
+#: ../gramps/gui/viewmanager.py:681
 #, python-format
 msgid "Key %s is not bound"
 msgstr "Schlüssel %s ist nicht eingebunden"
 
 #. registering plugins
-#: ../gramps/gui/viewmanager.py:782
+#: ../gramps/gui/viewmanager.py:788
 msgid "Registering plugins..."
 msgstr "Zusatzmodule registrieren..."
 
-#: ../gramps/gui/viewmanager.py:790
+#: ../gramps/gui/viewmanager.py:796
 msgid "Ready"
 msgstr "Bereit"
 
-#: ../gramps/gui/viewmanager.py:835
+#: ../gramps/gui/viewmanager.py:841
 msgid "Abort changes?"
 msgstr "Änderungen verwerfen?"
 
-#: ../gramps/gui/viewmanager.py:836
+#: ../gramps/gui/viewmanager.py:842
 msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
@@ -19127,15 +19130,15 @@ msgstr ""
 "Änderungen verwerfen bringt die Datenbank in den Stand vor Beginn dieser "
 "Bearbeitungssitzung zurück."
 
-#: ../gramps/gui/viewmanager.py:838
+#: ../gramps/gui/viewmanager.py:844
 msgid "Abort changes"
 msgstr "Änderungen verwerfen"
 
-#: ../gramps/gui/viewmanager.py:849
+#: ../gramps/gui/viewmanager.py:855
 msgid "Cannot abandon session's changes"
 msgstr "Die Sitzungsänderungen können nicht zurück genommen werden."
 
-#: ../gramps/gui/viewmanager.py:850
+#: ../gramps/gui/viewmanager.py:856
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
@@ -19143,31 +19146,31 @@ msgstr ""
 "Die Änderungen können nicht vollständig zurück genommen werden, da die "
 "Anzahl der Änderungen das Limit der Sitzung überschritten hat."
 
-#: ../gramps/gui/viewmanager.py:1011
+#: ../gramps/gui/viewmanager.py:1017
 msgid "View failed to load. Check error output."
 msgstr "Ansicht konnte nicht geladen werden. Fehlerbericht kontrollieren."
 
-#: ../gramps/gui/viewmanager.py:1163
+#: ../gramps/gui/viewmanager.py:1169
 msgid "Import Statistics"
 msgstr "Importstatistiken"
 
-#: ../gramps/gui/viewmanager.py:1231
+#: ../gramps/gui/viewmanager.py:1237
 msgid "Read Only"
 msgstr "Nur lesen"
 
-#: ../gramps/gui/viewmanager.py:1350
+#: ../gramps/gui/viewmanager.py:1356
 msgid "Autobackup..."
 msgstr "Automatisches Backup..."
 
-#: ../gramps/gui/viewmanager.py:1355
+#: ../gramps/gui/viewmanager.py:1361
 msgid "Error saving backup data"
 msgstr "Fehler beim speichern der Sicherungsdaten."
 
-#: ../gramps/gui/viewmanager.py:1646
+#: ../gramps/gui/viewmanager.py:1652
 msgid "Failed Loading View"
 msgstr "Laden der Ansicht fehlgeschlagen"
 
-#: ../gramps/gui/viewmanager.py:1647
+#: ../gramps/gui/viewmanager.py:1653
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -19192,11 +19195,11 @@ msgstr ""
 "Wenn du nicht willst, das Gramps weiter versucht diese Ansicht zu laden, "
 "kannst du sie in der Zusatzmodulverwaltung über das Hilfemenü verstecken."
 
-#: ../gramps/gui/viewmanager.py:1739
+#: ../gramps/gui/viewmanager.py:1745
 msgid "Failed Loading Plugin"
 msgstr "Laden des Zusatzmodul fehlgeschlagen"
 
-#: ../gramps/gui/viewmanager.py:1740
+#: ../gramps/gui/viewmanager.py:1746
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -19222,55 +19225,55 @@ msgstr ""
 "laden, kannst du es in der Zusatzmodulverwaltung über das Hilfemenü "
 "verstecken."
 
-#: ../gramps/gui/viewmanager.py:1820
+#: ../gramps/gui/viewmanager.py:1826
 msgid "Gramps XML Backup"
 msgstr "Gramps XML Sicherung"
 
-#: ../gramps/gui/viewmanager.py:1849
+#: ../gramps/gui/viewmanager.py:1855
 msgid "File:"
 msgstr "Datei:"
 
-#: ../gramps/gui/viewmanager.py:1881
+#: ../gramps/gui/viewmanager.py:1887
 msgid "Media:"
 msgstr "Medium:"
 
-#: ../gramps/gui/viewmanager.py:1888
+#: ../gramps/gui/viewmanager.py:1894
 #: ../gramps/plugins/gramplet/statsgramplet.py:139
 #: ../gramps/plugins/webreport/statistics.py:144
 msgid "Megabyte|MB"
 msgstr "MB"
 
-#: ../gramps/gui/viewmanager.py:1890
+#: ../gramps/gui/viewmanager.py:1896
 msgid "Exclude"
 msgstr "Ausschließen"
 
-#: ../gramps/gui/viewmanager.py:1910
+#: ../gramps/gui/viewmanager.py:1916
 msgid "Backup file already exists! Overwrite?"
 msgstr "Sicherungsdatei existiert bereits! Überschreiben?"
 
-#: ../gramps/gui/viewmanager.py:1911
+#: ../gramps/gui/viewmanager.py:1917
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Die Datei '%s' existiert."
 
-#: ../gramps/gui/viewmanager.py:1912
+#: ../gramps/gui/viewmanager.py:1918
 msgid "Proceed and overwrite"
 msgstr "Fortsetzen und überschreiben"
 
-#: ../gramps/gui/viewmanager.py:1913
+#: ../gramps/gui/viewmanager.py:1919
 msgid "Cancel the backup"
 msgstr "Sicherung abbrechen"
 
-#: ../gramps/gui/viewmanager.py:1928
+#: ../gramps/gui/viewmanager.py:1934
 msgid "Making backup..."
 msgstr "Erstelle Sicherung..."
 
-#: ../gramps/gui/viewmanager.py:1941
+#: ../gramps/gui/viewmanager.py:1947
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Sicherung gespeichert in '%s'"
 
-#: ../gramps/gui/viewmanager.py:1944
+#: ../gramps/gui/viewmanager.py:1950
 msgid "Backup aborted"
 msgstr "Sicherung abgebrochen"
 
@@ -19459,31 +19462,31 @@ msgstr "Springe zur Gramps-ID"
 msgid "Error: %s is not a valid Gramps ID"
 msgstr "Fehler: %s ist keine gültige Gramps ID"
 
-#: ../gramps/gui/views/pageview.py:422
+#: ../gramps/gui/views/pageview.py:438
 msgid "_Sidebar"
 msgstr "_Seitenleiste"
 
-#: ../gramps/gui/views/pageview.py:425
+#: ../gramps/gui/views/pageview.py:441
 msgid "_Bottombar"
 msgstr "_Fußleiste"
 
-#: ../gramps/gui/views/pageview.py:561
+#: ../gramps/gui/views/pageview.py:577
 #, python-format
 msgid "Configure %(cat)s - %(view)s"
 msgstr "Konfiguriere %(cat)s - %(view)s"
 
-#: ../gramps/gui/views/pageview.py:578
+#: ../gramps/gui/views/pageview.py:594
 #, python-format
 msgid "%(cat)s - %(view)s"
 msgstr "%(cat)s - %(view)s"
 
-#: ../gramps/gui/views/pageview.py:598
+#: ../gramps/gui/views/pageview.py:614
 #, python-format
 msgid "Configure %s View"
 msgstr "Ansicht %s konfigurieren"
 
 #. top widget at the top
-#: ../gramps/gui/views/pageview.py:612
+#: ../gramps/gui/views/pageview.py:628
 #, python-format
 msgid "View %(name)s: %(msg)s"
 msgstr "Ansicht %(name)s: %(msg)s"
@@ -19784,63 +19787,79 @@ msgstr "Beziehungen neu ordnen"
 msgid "Reorder Relationships: %s"
 msgstr "Beziehungen neu ordnen: %s"
 
+#: ../gramps/gui/widgets/styledtexteditor.py:318
+msgid ""
+"\n"
+"Command-Click to follow link"
+msgstr ""
+"\n"
+"Kommando-Klicken um Link zu folgen"
+
+#: ../gramps/gui/widgets/styledtexteditor.py:319
+msgid ""
+"\n"
+"Ctrl-Click to follow link"
+msgstr ""
+"\n"
+"Strg-Klicken um Link zu folgen"
+
 #. spell checker submenu
-#: ../gramps/gui/widgets/styledtexteditor.py:365
+#: ../gramps/gui/widgets/styledtexteditor.py:367
 msgid "Spellcheck"
 msgstr "Rechtschreibprüfung"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:370
+#: ../gramps/gui/widgets/styledtexteditor.py:372
 msgid "Search selection on web"
 msgstr "Suche Auswahl im Web"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:381
+#: ../gramps/gui/widgets/styledtexteditor.py:383
 msgid "_Send Mail To..."
 msgstr "E-Mail _senden an..."
 
-#: ../gramps/gui/widgets/styledtexteditor.py:383
+#: ../gramps/gui/widgets/styledtexteditor.py:385
 msgid "Copy _E-mail Address"
 msgstr "_E-Mail-Adresse kopieren"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:386
+#: ../gramps/gui/widgets/styledtexteditor.py:388
 msgid "_Open Link"
 msgstr "Link _öffnen"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:388
+#: ../gramps/gui/widgets/styledtexteditor.py:390
 msgid "Copy _Link Address"
 msgstr "_Linkadresse kopieren"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:392
+#: ../gramps/gui/widgets/styledtexteditor.py:394
 msgid "_Edit Link"
 msgstr "Verknüpfung _bearbeiten"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:464
+#: ../gramps/gui/widgets/styledtexteditor.py:466
 msgid "Font Color"
 msgstr "Schriftfarbe"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:466
+#: ../gramps/gui/widgets/styledtexteditor.py:468
 msgid "Background Color"
 msgstr "Hintergrundfarbe"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:470
-#: ../gramps/gui/widgets/styledtexteditor.py:471
+#: ../gramps/gui/widgets/styledtexteditor.py:472
+#: ../gramps/gui/widgets/styledtexteditor.py:473
 msgid "Clear Markup"
 msgstr "Markierungen löschen"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:511
-#: ../gramps/gui/widgets/styledtexteditor.py:512
+#: ../gramps/gui/widgets/styledtexteditor.py:513
+#: ../gramps/gui/widgets/styledtexteditor.py:514
 msgid "Undo"
 msgstr "Rückgängig"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:515
-#: ../gramps/gui/widgets/styledtexteditor.py:516
+#: ../gramps/gui/widgets/styledtexteditor.py:517
+#: ../gramps/gui/widgets/styledtexteditor.py:518
 msgid "Redo"
 msgstr "Wiederherstellen"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:643
+#: ../gramps/gui/widgets/styledtexteditor.py:645
 msgid "Select font color"
 msgstr "Wähle Schriftfarbe"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:647
+#: ../gramps/gui/widgets/styledtexteditor.py:649
 msgid "Select background color"
 msgstr "Wähle Hintergrundfarbe"
 
