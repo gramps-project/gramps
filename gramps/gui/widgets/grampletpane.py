@@ -48,7 +48,7 @@ from gramps.gen.errors import WindowActiveError
 from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR, COLON
 from ..editors import EditPerson, EditFamily
 from ..managedwindow import ManagedWindow
-from ..utils import is_right_click, rgb_to_hex, get_primary_mask
+from ..utils import is_right_click, get_primary_mask, get_link_color
 from .menuitem import add_menuitem
 from ..plug import make_gui_option
 from ..plug.quick import run_quick_report_by_name
@@ -196,12 +196,7 @@ class LinkTag(Gtk.TextTag):
     lid = 0
     #obtaining the theme link color once. Restart needed on theme change!
     linkcolor = Gtk.Label(label='test') #needed to avoid label destroyed to early
-    linkcolor = linkcolor.get_style_context().lookup_color('link_color')
-    if linkcolor[0]:
-        linkcolor = rgb_to_hex((linkcolor[1].red, linkcolor[1].green,
-                                linkcolor[1].blue))
-    else:
-        linkcolor = 'blue'
+    linkcolor = get_link_color(linkcolor.get_style_context())
 
     def __init__(self, buffer):
         LinkTag.lid += 1

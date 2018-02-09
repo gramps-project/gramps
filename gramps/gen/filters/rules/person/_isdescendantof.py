@@ -67,7 +67,8 @@ class IsDescendantOf(Rule):
         return person.handle in self.map
 
     def init_list(self, person, first):
-        if not person:
+        if not person or person.handle in self.map:
+            # if we have been here before, skip
             return
         if not first:
             self.map.add(person.handle)

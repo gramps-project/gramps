@@ -418,6 +418,11 @@ class NameDisplay:
         result = raw_data[_FIRSTNAME]
         return ' '.join(result.split())
 
+    def clear_custom_formats(self):
+        self.name_formats = {num: value
+                             for num, value in self.name_formats.items()
+                             if num >= 0}
+
     def set_name_format(self, formats):
 
         raw_func_dict = {

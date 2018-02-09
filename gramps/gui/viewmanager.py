@@ -39,6 +39,7 @@ import time
 import datetime
 from io import StringIO
 import posixpath
+import gc
 
 #-------------------------------------------------------------------------
 #
@@ -54,6 +55,7 @@ LOG = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import Gdk
 
 #-------------------------------------------------------------------------
 #
@@ -136,8 +138,6 @@ UIDEFAULT = '''<ui>
     <menuitem action="Quit"/>
   </menu>
   <menu action="AddMenu">
-    <menu action="AddNewMenu">
-    <separator/>
     <menuitem action="PersonAdd"/>
     <separator/>
     <menuitem action="FamilyAdd"/>
@@ -150,7 +150,6 @@ UIDEFAULT = '''<ui>
     <menuitem action="RepositoryAdd"/>
     <menuitem action="MediaAdd"/>
     <menuitem action="NoteAdd"/>
-    </menu>
   </menu>
   <menu action="EditMenu">
     <menuitem action="Undo"/>
@@ -396,7 +395,12 @@ class ViewManager(CLIManager):
         self.window.set_icon_from_file(ICON)
         self.window.set_default_size(width, height)
         self.window.move(horiz_position, vert_position)
-
+        #Set the mnemonic modifier on Macs to alt-ctrl so that it
+        #doesn't interfere with the extended keyboard, see
+        #https://gramps-project.org/bugs/view.php?id=6943
+        if is_quartz():
+            self.window.set_mnemonic_modifier(
+                Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK)
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.window.add(vbox)
         hpane = Gtk.Paned()
@@ -599,20 +603,20 @@ class ViewManager(CLIManager):
             ('Clipboard', 'edit-paste', _('Clip_board'), "<PRIMARY>b",
              _("Open the Clipboard dialog"), self.clipboard),
             ('AddMenu', None, _('_Add')),
-            ('AddNewMenu', None, _('New')),
-            ('PersonAdd', None, _('Person'), "<Alt>p", None,
+            #('AddNewMenu', None, _('New')),
+            ('PersonAdd', None, _('Person'), "<shift><Alt>p", None,
              self.add_new_person),
-            ('FamilyAdd', None, _('Family'), "<Alt>y", None,
+            ('FamilyAdd', None, _('Family'), "<shift><Alt>f", None,
              self.add_new_family),
-            ('EventAdd', None, _('Event'), "<shift>e", None,
+            ('EventAdd', None, _('Event'), "<shift><Alt>e", None,
              self.add_new_event),
-            ('PlaceAdd', None, _('Place'), "<shift><Alt>p", None,
+            ('PlaceAdd', None, _('Place'), "<shift><Alt>l", None,
              self.add_new_place),
             ('SourceAdd', None, _('Source'), "<shift><Alt>s", None,
              self.add_new_source),
             ('CitationAdd', None, _('Citation'), "<shift><Alt>c", None,
              self.add_new_citation),
-            ('RepositoryAdd', None, _('Repository'), "<shift><Alt>y", None,
+            ('RepositoryAdd', None, _('Repository'), "<shift><Alt>r", None,
              self.add_new_repository),
             ('MediaAdd', None, _('Media'), "<shift><Alt>m", None,
              self.add_new_media),
@@ -1769,6 +1773,7 @@ def run_plugin(pdata, dbstate, uistate):
                       name=pdata.id,
                       category=pdata.category,
                       callback=dbstate.db.request_rebuild)
+    gc.collect(2)
 
 def make_plugin_callback(pdata, dbstate, uistate):
     """

@@ -130,16 +130,19 @@ class PersonPages(BasePage):
         LOG.debug("obj_dict[Person]")
         for item in self.report.obj_dict[Person].items():
             LOG.debug("    %s", str(item))
-        with self.r_user.progress(_("Narrated Web Site Report"),
-                                  _('Creating individual pages'),
+        message = _('Creating individual pages')
+        with self.r_user.progress(_("Narrated Web Site Report"), message,
                                   len(self.report.obj_dict[Person]) + 1
                                  ) as step:
-            self.individuallistpage(self.report, title,
-                                    self.report.obj_dict[Person].keys())
+            index = 1
             for person_handle in sorted(self.report.obj_dict[Person]):
                 step()
+                index += 1
                 person = self.r_db.get_person_from_handle(person_handle)
                 self.individualpage(self.report, title, person)
+            step()
+            self.individuallistpage(self.report, title,
+                                    self.report.obj_dict[Person].keys())
 
 #################################################
 #

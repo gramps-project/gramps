@@ -122,7 +122,7 @@ class ThumbnailPreviewPage(BasePage):
                          "will take you to that image&#8217;s page.")
             previewpage += Html("p", msg, id="description")
 
-            with Html("table", class_="calendar") as table:
+            with Html("table", class_="calendar thumbnails") as table:
                 previewpage += table
 
                 thead = Html("thead")
@@ -153,7 +153,7 @@ class ThumbnailPreviewPage(BasePage):
                 num_of_cols = 7
                 grid_row = 0
                 while grid_row < num_of_rows:
-                    trow = Html("tr", id="RowNumber: %08d" % grid_row)
+                    trow = Html("tr", class_="thumbnail", id="RowNumber: %08d" % grid_row)
                     tbody += trow
 
                     cols = 0
@@ -163,7 +163,7 @@ class ThumbnailPreviewPage(BasePage):
                         photo = media_list[indexpos][2]
 
                         # begin table cell and attach to table row(trow)...
-                        tcell = Html("td", class_="highlight weekend")
+                        tcell = Html("td", class_="highlight weekend thumbnail")
                         trow += tcell
 
                         # attach index number...
@@ -203,6 +203,7 @@ class ThumbnailPreviewPage(BasePage):
             for emptycols in range(cols, num_of_cols):
                 trow += Html("td", class_="emptyDays", inline=True)
 
+        message = _("Creating thumbnail preview page...")
         # begin Thumbnail Reference section...
         with Html("div", class_="subsection", id="references") as section:
             body += section
@@ -225,11 +226,12 @@ class ThumbnailPreviewPage(BasePage):
                     tcell2 = Html("td", ptitle, class_="ColumnName")
                     trow += (tcell1, tcell2)
 
+                    # increase progress meter...
+                    cb_progress()
+
                     # increase index for row number...
                     index += 1
 
-                    # increase progress meter...
-                    cb_progress()
 
         # add body id element
         body.attr = 'id ="ThumbnailPreview"'

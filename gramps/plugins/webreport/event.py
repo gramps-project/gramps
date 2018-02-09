@@ -110,17 +110,18 @@ class EventPages(BasePage):
         for event_handle in event_handle_list:
             event = self.r_db.get_event_from_handle(event_handle)
             event_types.append(self._(event.get_type().xml_str()))
-        with self.r_user.progress(_("Narrated Web Site Report"),
-                                  _("Creating event pages"),
+        message = _("Creating event pages")
+        with self.r_user.progress(_("Narrated Web Site Report"), message,
                                   len(event_handle_list) + 1
                                  ) as step:
-            self.eventlistpage(self.report, title, event_types,
-                               event_handle_list)
-
+            index = 1
             for event_handle in event_handle_list:
                 step()
+                index += 1
                 self.eventpage(self.report, title, event_handle)
-
+            step()
+        self.eventlistpage(self.report, title, event_types,
+                           event_handle_list)
 
     def eventlistpage(self, report, title, event_types, event_handle_list):
         """

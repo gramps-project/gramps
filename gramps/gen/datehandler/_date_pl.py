@@ -215,7 +215,7 @@ class DateDisplayPL(DateDisplay):
         "XII"
         )
 
-    def _display_gregorian(self, date_val):
+    def _display_gregorian(self, date_val, **kwargs):
         """
         display gregorian calendar date in different format
         """

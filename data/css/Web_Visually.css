@@ -454,30 +454,30 @@ div#Individuals {
     margin: 0;
     padding: 0;
 }
-div#Individuals table.individuallist {
+div#Individuals table.IndividualList {
     border-bottom: solid 1px #5D835F;
 }
-div#Individuals table.individuallist tbody tr td {
+div#Individuals table.IndividualList tbody tr td {
     border-bottom: dashed 1px #5D835F;
     background-color: #D8F3D6;
 }
-div#Individuals table.individuallist tbody tr td a {
+div#Individuals table.IndividualList tbody tr td a {
     display: block;
     padding: .6em 10px;
 }
-div#Individuals table.individuallist tbody tr td.ColumnSurname a:hover, 
-div#Individuals table.individuallist tbody tr td.ColumnSurname a:active {
+div#Individuals table.IndividualList tbody tr td.ColumnSurname a:hover, 
+div#Individuals table.IndividualList tbody tr td.ColumnSurname a:active {
     cursor:default;
     color: #000;
     background:none;
 }
-div#Individuals table.individuallist tbody tr td.ColumnName {
+div#Individuals table.IndividualList tbody tr td.ColumnName {
     background-color: #FFF;
 }
-div#Individuals table.individuallist tbody tr td.ColumnName a {
+div#Individuals table.IndividualList tbody tr td.ColumnName a {
     vertical-align:middle;
 }
-div#Individuals table.individuallist tbody tr td.ColumnPartner {
+div#Individuals table.IndividualList tbody tr td.ColumnPartner {
     background-color: #FFF;
 }
 div#Individuals div table.infolist tr td p {

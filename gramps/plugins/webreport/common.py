@@ -31,6 +31,7 @@ from unicodedata import normalize
 from collections import defaultdict
 from hashlib import md5
 import re
+import gc
 import logging
 from xml.sax.saxutils import escape
 
@@ -859,4 +860,3 @@ def html_escape(text):
     text = text.replace("'", '&#39;')
 
     return text
-

@@ -52,7 +52,7 @@ from gi.repository import Pango
 #-------------------------------------------------------------------------
 from gramps.gen.errors import MaskError, ValidationError, WindowActiveError
 from .undoableentry import UndoableEntry
-
+from gramps.gen.constfunc import is_quartz
 #============================================================================
 #
 # MaskedEntry and ValidatableMaskedEntry copied and merged from the Kiwi
@@ -1248,6 +1248,12 @@ def main(args):
     win = Gtk.Window()
     win.set_title('ValidatableMaskedEntry test window')
     win.set_position(Gtk.WindowPosition.CENTER)
+    #Set the mnemonic modifier on Macs to alt-ctrl so that it
+    #doesn't interfere with the extended keyboard, see
+    #https://gramps-project.org/bugs/view.php?id=6943
+    if is_quartz():
+        win.set_mnemonic_modifier(
+            Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK)
     def cb(window, event):
         Gtk.main_quit()
     win.connect('delete-event', cb)

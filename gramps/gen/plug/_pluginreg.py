@@ -97,8 +97,10 @@ CATEGORY_CODE       = 2
 CATEGORY_WEB        = 3
 CATEGORY_BOOK       = 4
 CATEGORY_GRAPHVIZ   = 5
+CATEGORY_TREE       = 6
 REPORT_CAT          = [ CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE,
-                        CATEGORY_WEB, CATEGORY_BOOK, CATEGORY_GRAPHVIZ]
+                        CATEGORY_WEB, CATEGORY_BOOK, CATEGORY_GRAPHVIZ,
+                        CATEGORY_TREE]
 #possible tool categories
 TOOL_DEBUG  = -1
 TOOL_ANAL   = 0
@@ -1043,6 +1045,7 @@ def make_environment(**kwargs):
         'CATEGORY_WEB': CATEGORY_WEB,
         'CATEGORY_BOOK': CATEGORY_BOOK,
         'CATEGORY_GRAPHVIZ': CATEGORY_GRAPHVIZ,
+        'CATEGORY_TREE': CATEGORY_TREE,
         'TOOL_DEBUG': TOOL_DEBUG,
         'TOOL_ANAL': TOOL_ANAL,
         'TOOL_DBPROC': TOOL_DBPROC,
@@ -1242,8 +1245,7 @@ class PluginRegister:
         """
         Return a list of :class:`PluginData` that are of type ptype
         """
-        return [self.get_plugin(id) for id in
-                set([x.id for x in self.__plugindata if x.ptype == ptype])]
+        return [x for x in self.__plugindata if x.ptype == ptype]
 
     def report_plugins(self, gui=True):
         """
@@ -1352,6 +1354,4 @@ class PluginRegister:
         """
         Return a list of :class:`PluginData` that have load_on_reg == True
         """
-        return [self.get_plugin(id) for id in
-                set([x.id for x in self.__plugindata
-                     if x.load_on_reg == True])]
+        return [x for x in self.__plugindata if x.load_on_reg == True]

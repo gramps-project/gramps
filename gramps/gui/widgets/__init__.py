@@ -32,6 +32,7 @@ from .photo import *
 from .placeentry import *
 from .monitoredwidgets import *
 from .selectionwidget import SelectionWidget, Region
+from .shadebox import *
 from .shortlistcomboentry import *
 from .springseparator import *
 from .statusbar import Statusbar

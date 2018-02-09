@@ -898,7 +898,8 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         if node.handle is None:
             # Header rows dont get the foreground color set
             if col == self.color_column():
-                return "#000000000000"
+                #color must not be utf-8
+                return ""
 
             # Return the node name for the first column
             if col == 0:

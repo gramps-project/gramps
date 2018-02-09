@@ -628,17 +628,25 @@ class BasePage: # pylint: disable=C1001
         """
         creates the event header row for all events
         """
-        trow = Html("tr")
+        trow = Html("tr", close=None)
         trow.extend(
             Html("th", trans, class_=colclass, inline=True)
             for trans, colclass in  [
                 (self._("Event"), "ColumnEvent"),
                 (self._("Date"), "ColumnDate"),
                 (self._("Place"), "ColumnPlace"),
-                (self._("Description"), "ColumnDescription"),
-                (self._("Notes"), "ColumnNotes"),
-                (self._("Sources"), "ColumnSources")]
+                (self._("Description"), "ColumnDescription")]
         )
+        trow += Html("/tr", close=None)
+        trow2 = Html("tr", indent=False)
+        trow2.extend(
+            Html("th", trans, class_=colclass, colspan=opt, inline=True)
+            for trans, colclass, opt in  [
+                ("", "ColumnEvent", 1),
+                (self._("Sources"), "ColumnSources", 1),
+                (self._("Notes"), "ColumnNotes", 2)]
+        )
+        trow.extend(trow2)
         return trow
 
     def display_event_row(self, event, event_ref, place_lat_long,
@@ -688,6 +696,12 @@ class BasePage: # pylint: disable=C1001
             for (label, colclass, data) in event_data
         )
 
+        trow2 = Html("tr")
+        trow2 += Html("td", "", class_="ColumnSources")
+        # get event source references
+        srcrefs = self.get_citation_links(event.get_citation_list()) or "&nbsp;"
+        trow2 += Html("td", srcrefs, class_="ColumnSources")
+
         # get event notes
         notelist = event.get_note_list()
         notelist.extend(event_ref.get_note_list())
@@ -709,12 +723,9 @@ class BasePage: # pylint: disable=C1001
             if notelist:
                 htmllist.extend(self.dump_notes(notelist))
 
-        trow += Html("td", htmllist, class_="ColumnNotes")
+        trow2 += Html("td", htmllist, class_="ColumnNotes", colspan=2)
 
-        # get event source references
-        srcrefs = self.get_citation_links(event.get_citation_list()) or "&nbsp;"
-        trow += Html("td", srcrefs, class_="ColumnSources")
-
+        trow += trow2
         # return events table row to its callers
         return trow
 
@@ -1502,7 +1513,7 @@ class BasePage: # pylint: disable=C1001
             ("addressbook", self._("Address Book"),
              self.report.inc_addressbook),
             ('contact', self._("Contact"), self.report.use_contact),
-            ('statistics', self._("Statistics"), True),
+            ('statistics', self._("Statistics"), self.report.inc_stats),
             (self.target_cal_uri, self._("Web Calendar"), self.usecal)
         ]
 

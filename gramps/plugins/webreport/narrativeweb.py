@@ -200,6 +200,8 @@ class NavWebReport(Report):
         self.use_intro = self.options['intronote'] or self.options['introimg']
         self.use_home = self.options['homenote'] or self.options['homeimg']
         self.use_contact = self.opts['contactnote'] or self.opts['contactimg']
+        self.inc_stats = self.opts['inc_stats']
+        self.create_unused_media = self.opts['unused']
 
         # Do we need to include this in a cms ?
         self.usecms = self.options['usecms']
@@ -441,7 +443,8 @@ class NavWebReport(Report):
         self.tab["Source"].display_pages(self.title)
 
         # build classes StatisticsPage
-        self.statistics_preview_page(self.title)
+        if self.inc_stats:
+            self.statistics_preview_page(self.title)
 
         # copy all of the neccessary files
         self.copy_narrated_files()
@@ -458,6 +461,7 @@ class NavWebReport(Report):
             if len(_WRONGMEDIAPATH) > 10:
                 error += '\n ...'
             self.user.warn(_("Missing media objects:"), error)
+        self.database.clear_cache()
 
     def _build_obj_dict(self):
         """
@@ -488,12 +492,14 @@ class NavWebReport(Report):
         ind_list = self._db.iter_person_handles()
         ind_list = self.filter.apply(self._db, ind_list, user=self.user)
 
-        with self.user.progress(_("Narrated Web Site Report"),
-                                _('Constructing list of other objects...'),
+        message = _('Constructing list of other objects...')
+        with self.user.progress(_("Narrated Web Site Report"), message,
                                 sum(1 for _ in ind_list)) as step:
+            index = 1
             for handle in ind_list:
-                step()
                 self._add_person(handle, "", "")
+                step()
+                index += 1
 
         LOG.debug("final object dictionary \n" +
                   "".join(("%s: %s\n" % item)
@@ -1057,13 +1063,15 @@ class NavWebReport(Report):
         @param: ind_list -- The list of person to use
         """
         if self.inc_gendex:
-            with self.user.progress(_("Narrated Web Site Report"),
-                                    _('Creating GENDEX file'),
+            message = _('Creating GENDEX file')
+            with self.user.progress(_("Narrated Web Site Report"), message,
                                     len(ind_list)) as step:
                 fp_gendex, gendex_io = self.create_file("gendex", ext=".txt")
                 date = 0
+                index = 1
                 for person_handle in ind_list:
                     step()
+                    index += 1
                     person = self._db.get_person_from_handle(person_handle)
                     datex = person.get_change_time()
                     if datex > date:
@@ -1113,29 +1121,35 @@ class NavWebReport(Report):
         """
         local_list = sort_people(self._db, ind_list, self.rlocale)
 
-        with self.user.progress(_("Narrated Web Site Report"),
-                                _("Creating surname pages"),
+        message = _("Creating surname pages")
+        with self.user.progress(_("Narrated Web Site Report"), message,
                                 len(local_list)) as step:
 
             SurnameListPage(self, self.title, ind_list,
-                            SurnameListPage.ORDER_BY_NAME,
-                            self.surname_fname)
+                                SurnameListPage.ORDER_BY_NAME,
+                                self.surname_fname)
 
             SurnameListPage(self, self.title, ind_list,
-                            SurnameListPage.ORDER_BY_COUNT,
-                            "surnames_count")
+                                SurnameListPage.ORDER_BY_COUNT,
+                                "surnames_count")
 
+            index = 1
             for (surname, handle_list) in local_list:
                 SurnamePage(self, self.title, surname, sorted(handle_list))
                 step()
+                index += 1
 
     def thumbnail_preview_page(self):
         """
         creates the thumbnail preview page
         """
+        if self.create_unused_media:
+            media_count = len(self._db.get_media_handles())
+        else:
+            media_count = len(self.obj_dict[Media])
         with self.user.progress(_("Narrated Web Site Report"),
                                 _("Creating thumbnail preview page..."),
-                                len(self.obj_dict[Media])) as step:
+                                media_count) as step:
             ThumbnailPreviewPage(self, self.title, step)
 
     def statistics_preview_page(self, title):
@@ -1144,7 +1158,7 @@ class NavWebReport(Report):
         """
         with self.user.progress(_("Narrated Web Site Report"),
                                 _("Creating statistics page..."),
-                                len(self.obj_dict[Media])) as step:
+                                1) as step:
             StatisticsPage(self, title, step)
 
     def addressbook_pages(self, ind_list):
@@ -1184,12 +1198,14 @@ class NavWebReport(Report):
         # begin Address Book pages
         addr_size = len(url_addr_res)
 
-        with self.user.progress(_("Narrated Web Site Report"),
-                                _("Creating address book pages ..."),
+        message = _("Creating address book pages ...")
+        with self.user.progress(_("Narrated Web Site Report"), message,
                                 addr_size) as step:
+            index = 1
             for (sort_name, person_handle, add, res, url) in url_addr_res:
                 AddressBookPage(self, self.title, person_handle, add, res, url)
                 step()
+                index += 1
 
     def base_pages(self):
         """
@@ -1967,6 +1983,10 @@ class NavWebOptions(MenuReportOptions):
                                    "addresses and personal address/ residence "
                                    "events."))
         addopt("inc_addressbook", inc_addressbook)
+
+        inc_statistics = BooleanOption(_("Include the statistics page"), False)
+        inc_statistics.set_help(_("Whether or not to add statistics page"))
+        addopt("inc_stats", inc_statistics)
 
     def __add_place_map_options(self, menu):
         """

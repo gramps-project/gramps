@@ -71,7 +71,8 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
     def init_ancestor_list(self, handle, gen):
 #        if p.get_handle() in self.map:
 #            loop_error(self.orig,p)
-        if not handle:
+        if not handle or handle in self.map:
+            # if been here already, skip
             return
         if gen:
             self.map.add(handle)

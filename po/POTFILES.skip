@@ -431,6 +431,7 @@ gramps/gui/views/treemodels/test/node_test.py
 #
 gramps/gui/widgets/__init__.py
 gramps/gui/widgets/basicentry.py
+gramps/gui/widgets/cellrenderertextedit.py
 gramps/gui/widgets/dateentry.py
 gramps/gui/widgets/fanchart2way.py
 gramps/gui/widgets/fanchartdesc.py
@@ -441,6 +442,7 @@ gramps/gui/widgets/menuitem.py
 gramps/gui/widgets/multitreeview.py
 gramps/gui/widgets/placeentry.py
 gramps/gui/widgets/selectionwidget.py
+gramps/gui/widgets/shadebox.py
 gramps/gui/widgets/shortlistcomboentry.py
 gramps/gui/widgets/springseparator.py
 gramps/gui/widgets/statusbar.py

@@ -187,7 +187,7 @@ class DateDisplayLT(DateDisplay):
         "mmmm m. mėnesio diena d.", "Mėn diena, metai")
         # this definition must agree with its "_display_gregorian" method
 
-    def _display_gregorian(self, date_val):
+    def _display_gregorian(self, date_val, **kwargs):
         """
         display gregorian calendar date in different format
         """

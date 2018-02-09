@@ -103,16 +103,18 @@ class FamilyPages(BasePage):
         for item in self.report.obj_dict[Family].items():
             LOG.debug("    %s", str(item))
 
-        with self.r_user.progress(_("Narrated Web Site Report"),
-                                  _("Creating family pages..."),
+        message = _("Creating family pages...")
+        index = 1
+        with self.r_user.progress(_("Narrated Web Site Report"), message,
                                   len(self.report.obj_dict[Family]) + 1
                                  ) as step:
-            self.familylistpage(self.report, title,
-                                self.report.obj_dict[Family].keys())
-
             for family_handle in self.report.obj_dict[Family]:
                 step()
+                index += 1
                 self.familypage(self.report, title, family_handle)
+            step()
+            self.familylistpage(self.report, title,
+                                self.report.obj_dict[Family].keys())
 
     def familylistpage(self, report, title, fam_list):
         """
