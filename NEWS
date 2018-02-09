@@ -1,3 +1,7 @@
+2018-02-09
+Version 4.2.8
+* Fix Geography views for bad 'dbstate.is_open()' test
+
 2018-02-08
 Version 4.2.7
 * Fix Export View to CSV when Unicode characters are present
