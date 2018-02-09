@@ -314,7 +314,7 @@ class GeoClose(GeoGraphyView):
         information.
         """
         self.lifeway_layer.clear_ways()
-        if not self.dbstate.is_open():
+        if not self.dbstate.open:
             return
         active = self.get_active()
         if active:

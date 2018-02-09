@@ -178,7 +178,7 @@ class GeoFamily(GeoGraphyView):
         all handling of visibility is now in rebuild_trees, see that for more
         information.
         """
-        if not self.dbstate.is_open():
+        if not self.dbstate.open:
             return
         if self.uistate.get_active('Family'):
             self._createmap(self.uistate.get_active('Family'))
