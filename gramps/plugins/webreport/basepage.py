@@ -1296,9 +1296,8 @@ class BasePage: # pylint: disable=C1001
                 msg += self._('Last change was the %(date)s') % {'date' :
                                                                  last_modif}
             else:
-                dat_txt = ' on %(date)s' % {'date' :
-                                            self.rlocale.get_date(Today())}
-                msg += self._(dat_txt)
+                dat_txt = self._(' on %(date)s')
+                msg += dat_txt % {'date' : self.rlocale.get_date(Today())}
 
             origin1 = self.report.filter.get_name(self.rlocale)
             filt_number = self.report.options['filter']
