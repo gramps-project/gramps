@@ -25,7 +25,7 @@
 #-------------------------------------------------------------------------
 from abc import ABCMeta, abstractmethod
 import os
-import shutil
+from subprocess import Popen, PIPE
 from io import StringIO
 import tempfile
 import logging
@@ -97,6 +97,7 @@ _NOTESIZE = [{'name': _("Tiny"), 'value': "tiny"},
 
 if win():
     _LATEX_FOUND = search_for("lualatex.exe")
+    DETACHED_PROCESS = 8
 else:
     _LATEX_FOUND = search_for("lualatex")
 
@@ -582,7 +583,7 @@ class TreeTexDoc(TreeDocBase):
         if self._filename[-4:] != ".tex":
             self._filename += ".tex"
 
-        with open(self._filename, "w") as texfile:
+        with open(self._filename, 'w', encoding='utf-8') as texfile:
             texfile.write(self._tex.getvalue())
 
 
@@ -605,11 +606,14 @@ class TreePdfDoc(TreeDocBase):
             self._filename += ".pdf"
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            with open(os.path.join(tmpdir, 'temp.tex'), "w") as texfile:
-                texfile.write(self._tex.getvalue())
-            os.system('lualatex -output-directory %s temp.tex >/dev/null'
-                      % tmpdir)
-            shutil.copy(os.path.join(tmpdir, 'temp.pdf'), self._filename)
+            args = ['lualatex', '-output-directory', tmpdir,
+                    '-jobname', self._filename[:-4]]
+            if win():
+                proc = Popen(args, stdin=PIPE, stdout=PIPE, stderr=PIPE,
+                             creationflags=DETACHED_PROCESS)
+            else:
+                proc = Popen(args, stdin=PIPE, stdout=PIPE, stderr=PIPE)
+            proc.communicate(input=self._tex.getvalue().encode('utf-8'))
 
 
 #------------------------------------------------------------------------------
