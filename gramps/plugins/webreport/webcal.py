@@ -2008,8 +2008,9 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
 
             if age_at_death is not None:
                 death_symbol = "&#10014;" # latin cross for html code
-                mess = trans_text("Died %(death_date)s.") % {
-                                  'death_date' : dead_event_date}
+                trans_date = trans_text("Died %(death_date)s.")
+                translated_date = rlocale.get_date(dead_event_date)
+                mess = trans_date % {'death_date' : translated_date}
                 age = ", <font size='+1' ><b>%s</b></font> <em>%s (%s)" % (
                                                death_symbol, mess, age_at_death)
             else:
@@ -2017,9 +2018,12 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
                 # where "12 years" is already localized to your language
                 age = ', <em>'
                 date_y = date.get_year()
-                age += trans_text('%s old') % str(age_str) if date_y != 0 else \
-                                          trans_text("Born %(birth_date)s.") % {
-                                          'birth_date' : dead_event_date}
+                trans_date = trans_text("Born %(birth_date)s.")
+                old_date = trans_text('%s old')
+                tranlated_date = rlocale.get_date(dead_event_date)
+                age += old_date % str(age_str) if date_y != 0 else \
+                                      trans_date % {
+                                      'birth_date' : translated_date}
             txt_str = (text + age + '</em>')
 
         # an anniversary
@@ -2035,7 +2039,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
                     if isinstance(dead_event_date,
                                   Date) and dead_event_date.get_year() > 0:
                         txt_str += " (" + trans_text("Until") + " "
-                        txt_str += str(dead_event_date)
+                        txt_str += rlocale.get_date(dead_event_date)
                         txt_str += ")</em>"
                     else:
                         txt_str += "</em>"
