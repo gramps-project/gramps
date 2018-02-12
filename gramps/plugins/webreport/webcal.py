@@ -710,7 +710,7 @@ class WebCalReport(Report):
 
             if clickable:
                 name = th_txt + self.ext
-                url = name.lower()
+                url = name
                 linkable = Html("a", th_txt, href=url, name=url, title=th_txt)
             else:
                 linkable = th_txt
