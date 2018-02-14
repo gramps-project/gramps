@@ -26,6 +26,7 @@
 from abc import ABCMeta, abstractmethod
 import os
 import shutil
+import re
 from subprocess import Popen, PIPE
 from io import StringIO
 import tempfile
@@ -102,6 +103,21 @@ if win():
 else:
     _LATEX_FOUND = search_for("lualatex")
 
+def escape(text):
+    lookup = {
+        '&': '\\&',
+        '%': '\\%',
+        '$': '\\$',
+        '#': '\\#',
+        '_': '\\_',
+        '{': '\\{',
+        '}': '\\}',
+        '~': '\\~{}',
+        '^': '\\^{}',
+        '\\': '\\textbackslash{}'
+        }
+    pattern = re.compile('|'.join([re.escape(key) for key in lookup.keys()]))
+    return pattern.sub(lambda match: lookup[match.group(0)], text)
 
 #------------------------------------------------------------------------------
 #
@@ -417,8 +433,8 @@ class TreeDocBase(BaseDoc, TreeDoc):
         nick = name.get_nick_name()
         surn = name.get_surname()
         name_parts = [self.format_given_names(name),
-                      '\\nick{{{}}}'.format(nick) if nick else '',
-                      '\\surn{{{}}}'.format(surn) if surn else '']
+                      '\\nick{{{}}}'.format(escape(nick)) if nick else '',
+                      '\\surn{{{}}}'.format(escape(surn)) if surn else '']
         self.write(level+1, 'name = {{{}}},\n'.format(
             ' '.join([e for e in name_parts if e])))
         for eventref in person.get_event_ref_list():
@@ -434,9 +450,11 @@ class TreeDocBase(BaseDoc, TreeDoc):
                         self.write_event(db, level+1, event)
         for attr in person.get_attribute_list():
             if str(attr.get_type()) == 'Occupation':
-                self.write(level+1, 'profession = {%s},\n' % attr.get_value())
+                self.write(level+1, 'profession = {%s},\n' %
+                           escape(attr.get_value()))
             if str(attr.get_type()) == 'Comment':
-                self.write(level+1, 'comment = {%s},\n' % attr.get_value())
+                self.write(level+1, 'comment = {%s},\n' %
+                           escape(attr.get_value()))
         for mediaref in person.get_media_list():
             media = db.get_media_from_handle(mediaref.ref)
             path = media_path_full(db, media.get_path())
@@ -498,7 +516,7 @@ class TreeDocBase(BaseDoc, TreeDoc):
             stop_date = self.format_iso(date.get_stop_ymd(), calendar)
             date_str = date_str + '/' + stop_date
 
-        place = _pd.display_event(db, event)
+        place = escape(_pd.display_event(db, event))
 
         if modifier:
             event_type += '+'
@@ -521,14 +539,14 @@ class TreeDocBase(BaseDoc, TreeDoc):
             if call in first:
                 where = first.index(call)
                 return '{before}\\pref{{{call}}}{after}'.format(
-                    before=first[:where],
-                    call=call,
-                    after=first[where+len(call):])
+                    before=escape(first[:where]),
+                    call=escape(call),
+                    after=escape(first[where+len(call):]))
             else:
                 # ignore erroneous call name
-                return first
+                return escape(first)
         else:
-            return first
+            return escape(first)
 
     def format_iso(self, date_tuple, calendar):
         """
