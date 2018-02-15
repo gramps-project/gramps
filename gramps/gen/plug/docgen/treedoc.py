@@ -459,6 +459,8 @@ class TreeDocBase(BaseDoc, TreeDoc):
             media = db.get_media_from_handle(mediaref.ref)
             path = media_path_full(db, media.get_path())
             if os.path.isfile(path):
+                if win():
+                    path = path.replace('\\', '/')
                 self.write(level+1, 'image = {%s},\n' % path)
                 break # first image only
         self.write(level, '}\n')
