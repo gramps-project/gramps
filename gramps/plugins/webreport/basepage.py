@@ -2560,33 +2560,6 @@ class BasePage: # pylint: disable=C1001
                 )
                 tbody += trow
 
-        altloc = place.get_alternate_locations()
-        if altloc:
-            tbody += Html("tr") + Html("td", "&nbsp;", colspan=2)
-            trow = Html("tr") + (
-                Html("th", self._("Alternate Locations"), colspan=2,
-                     class_="ColumnAttribute", inline=True),
-            )
-            tbody += trow
-            for loc in (nonempt
-                        for nonempt in altloc if not nonempt.is_empty()):
-                for (label, data) in [(self._("Street"), loc.street),
-                                      (self._("Locality"), loc.locality),
-                                      (self._("City"), loc.city),
-                                      (self._("Church Parish"), loc.parish),
-                                      (self._("County"), loc.county),
-                                      (self._("State/ Province"), loc.state),
-                                      (self._("Postal Code"), loc.postal),
-                                      (self._("Country"), loc.country),]:
-                    if data:
-                        trow = Html("tr") + (
-                            Html("td", label, class_="ColumnAttribute",
-                                 inline=True),
-                            Html("td", data, class_="ColumnValue", inline=True)
-                        )
-                        tbody += trow
-                tbody += Html("tr") + Html("td", "&nbsp;", colspan=2)
-
         # display all related locations
         for placeref in place.get_placeref_list():
             place_date = self.rlocale.get_date(placeref.get_date_object())
@@ -2600,6 +2573,31 @@ class BasePage: # pylint: disable=C1001
                     Html("td", place_date, class_="ColumnValue", inline=True)
                 )
                 tbody += trow
+
+        altloc = place.get_alternative_names()
+        if altloc:
+            tbody += Html("tr") + Html("td", "&nbsp;", colspan=2)
+            trow = Html("tr") + (
+                Html("th", self._("Alternate Locations"), colspan=1,
+                     class_="ColumnAttribute", inline=True),
+                Html("th", self._("Language"), colspan=1,
+                     class_="ColumnAttribute", inline=True),
+                Html("th", self._("Date range in which the name is valid."), colspan=1,
+                     class_="ColumnAttribute", inline=True),
+            )
+            tbody += trow
+            for loc in altloc:
+                place_date = self.rlocale.get_date(loc.date)
+                trow = Html("tr") + (
+                    Html("td", loc.get_value(), class_="ColumnValue",
+                         inline=True),
+                    Html("td", loc.get_language(), class_="ColumnValue",
+                         inline=True),
+                    Html("td", place_date, class_="ColumnValue",
+                         inline=True),
+                )
+                tbody += trow
+                tbody += Html("tr") + Html("td", "&nbsp;", colspan=2)
 
         # return place table to its callers
         return table
