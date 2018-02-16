@@ -2597,7 +2597,6 @@ class BasePage: # pylint: disable=C1001
                          inline=True),
                 )
                 tbody += trow
-                tbody += Html("tr") + Html("td", "&nbsp;", colspan=2)
 
         altloc = place.get_alternate_locations()
         if altloc:
