@@ -158,7 +158,8 @@ class MediaPages(BasePage):
 
             total = len(self.unused_media_handles)
             idx = 1
-            prev = sorted_media_handles[len(sorted_media_handles)-1]
+            total_m = len(sorted_media_handles)
+            prev = sorted_media_handles[total_m-1] if total_m > 0 else 0
             if total > 0:
                 for media_handle in self.unused_media_handles:
                     media = self.r_db.get_media_from_handle(media_handle)
