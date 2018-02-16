@@ -76,6 +76,8 @@ from gramps.plugins.webreport.common import (get_first_letters, _KEYPERSON,
                                              MARKER_PATH, OSM_MARKERS,
                                              GOOGLE_MAPS, MARKERS, html_escape,
                                              DROPMASTERS, FAMILYLINKS)
+from gramps.plugins.webreport.layout import LayoutTree
+from gramps.plugins.webreport.buchheim import buchheim
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
@@ -87,6 +89,8 @@ _VGAP = 10
 _HGAP = 30
 _SHADOW = 5
 _XOFFSET = 5
+_YOFFSET = 5
+_LOFFSET = 20
 
 #################################################
 #
@@ -171,7 +175,7 @@ class PersonPages(BasePage):
         showparents = report.options['showparents']
 
         output_file, sio = self.report.create_file("individuals")
-        indlistpage, head, body = self.write_header(self._("Individuals"))
+        indlistpage, dummy_head, body = self.write_header(self._("Individuals"))
         date = 0
 
         # begin Individuals division
@@ -330,7 +334,7 @@ class PersonPages(BasePage):
                         family_list = person.get_family_handle_list()
                         first_family = True
                         #partner_name = None
-                        tcell = () # pylint: disable=R0204
+                        tcell = ()
                         if family_list:
                             for family_handle in family_list:
                                 family = self.r_db.get_family_from_handle(
@@ -568,7 +572,7 @@ class PersonPages(BasePage):
                 individualdetail += self.display_ind_associations(assocs)
 
             # for use in family map pages...
-            if len(place_lat_long) > 0:
+            if place_lat_long:
                 if self.report.options["familymappages"]:
                     # save output_file, string_io and cur_fname
                     # before creating a new page
@@ -625,7 +629,7 @@ class PersonPages(BasePage):
         minx, maxx = Decimal("0.00000001"), Decimal("0.00000001")
         miny, maxy = Decimal("0.00000001"), Decimal("0.00000001")
         xwidth, yheight = [], []
-        midx_, midy_, spanx, spany = [None]*4
+        midx_, midy_, dummy_spanx, spany = [None]*4
 
         number_markers = len(place_lat_long)
         if number_markers > 1:
@@ -649,7 +653,7 @@ class PersonPages(BasePage):
             midx_, midy_ = conv_lat_lon(midx_, midy_, "D.D8")
 
             # get the integer span of latitude and longitude
-            spanx = int(maxx - minx)
+            dummy_spanx = int(maxx - minx)
             spany = int(maxy - miny)
 
         # set zoom level based on span of Longitude?
@@ -940,17 +944,17 @@ class PersonPages(BasePage):
         # return family map link to its caller
         return familymap
 
-    def draw_box(self, center, col, person):
+    def draw_box(self, node, col, person):
         """
-        Draw the box around the AncestorTree Individual name box...
-
-        @param: center -- The center of the box
+        draw the box around the AncestorTree Individual name box...
+        @param: node   -- The node defining the box location
         @param: col    -- The generation number
         @param: person -- The person to set in the box
         """
-        top = center - _HEIGHT/2
-        xoff = _XOFFSET+col*(_WIDTH+_HGAP)
-        sex = person.gender
+        xoff = _XOFFSET + node.coord_x
+        top = _YOFFSET + node.coord_y
+
+        sex = person.get_gender()
         if sex == Person.MALE:
             divclass = "male"
         elif sex == Person.FEMALE:
@@ -991,9 +995,8 @@ class PersonPages(BasePage):
                                 newpath = newpath.replace('\\', "/")
                             thumbnail_url = newpath
                         else:
-                            (photo_url,
-                             thumbnail_url) = self.report.prepare_copy_media(
-                                 photo)
+                            (dummy_photo_url, thumbnail_url) = \
+                                self.report.prepare_copy_media(photo)
                             thumbnail_url = "/".join(['..']*3 + [thumbnail_url])
                             if win():
                                 thumbnail_url = thumbnail_url.replace('\\', "/")
@@ -1020,140 +1023,194 @@ class PersonPages(BasePage):
 
         return [boxbg, shadow]
 
-    def extend_line(self, coord_y0, coord_x0):
+    def extend_line(self, c_node, p_node):
         """
-        Draw and extended line
+        Draw a line 'half the distance out to the parents.  connect_line()
+        will then draw the horizontal to the parent and the vertical connector
+        to this line.
 
-        @param: coord_y0 -- The starting point
-        @param: coord_x0 -- The end of the line
+        @param c_node -- Child node to draw from
+        @param p_node -- Parent node to draw towards
         """
+        width = (p_node.coord_x - c_node.coord_x - _WIDTH + 1)/2
+        assert width > 0
+        coord_x0 = _XOFFSET + c_node.coord_x + _WIDTH
+        coord_y0 = c_node.coord_y + _LOFFSET + _VGAP/2
+
         style = "top: %dpx; left: %dpx; width: %dpx"
-        ext_bv = Html("div", class_="bvline", inline=True,
-                      style=style % (coord_y0, coord_x0, _HGAP/2)
-                     )
-        ext_gv = Html("div", class_="gvline", inline=True,
-                      style=style % (coord_y0+_SHADOW,
-                                     coord_x0, _HGAP/2+_SHADOW)
-                     )
-        return [ext_bv, ext_gv]
+        bvline = Html("div", class_="bvline", inline=True,
+                      style=style % (coord_y0, coord_x0, width))
+        gvline = Html("div", class_="gvline", inline=True,
+                      style=style % (
+                          coord_y0+_SHADOW, coord_x0, width+_SHADOW))
+        return [bvline, gvline]
 
-    def connect_line(self, coord_y0, coord_y1, col):
+    def connect_line(self, coord_xc, coord_yc, coord_xp, coord_yp):
         """
-        We need to draw a line between to points
+        Draw the line horizontally back from the parent towards the child and
+        then the vertical connecting this line to the line drawn towards us
+        from the child.
 
-        @param: coord_y0 -- The starting point
-        @param: coord_y1 -- The end of the line
-        @param: col      -- The generation number
+        @param: coord_cx -- X coordinate for the child
+        @param: coord_yp -- Y coordinate for the child
+        @param: coord_xp -- X coordinate for the parent
+        @param: coord_yp -- Y coordinate for the parent
         """
-        coord_y = min(coord_y0, coord_y1)
+        coord_y = min(coord_yc, coord_yp)
+
+        # xh is the X co-ordinate half way between the two nodes.
+        # dx is the X gap between the two nodes, remembering that the
+        # the coordinates are for the LEFT of both nodes.
+        coord_xh = (coord_xp + _WIDTH + coord_xc)/2
+        width_x = (coord_xp - _WIDTH - coord_xc)/2
+        assert width_x >= 0
         stylew = "top: %dpx; left: %dpx; width: %dpx;"
         styleh = "top: %dpx; left: %dpx; height: %dpx;"
-        coord_x0 = _XOFFSET + col * _WIDTH + (col-1)*_HGAP + _HGAP/2
         cnct_bv = Html("div", class_="bvline", inline=True,
-                       style=stylew % (coord_y1, coord_x0, _HGAP/2))
+                       style=stylew % (coord_yp, coord_xh, width_x))
         cnct_gv = Html("div", class_="gvline", inline=True,
-                       style=stylew % (coord_y1+_SHADOW,
-                                       coord_x0+_SHADOW,
-                                       _HGAP/2+_SHADOW))
+                       style=stylew % (coord_yp+_SHADOW,
+                                       coord_xh+_SHADOW,
+                                       width_x))
+        # Experience says that line heights need to be 1 longer than we
+        # expect. I suspect this is because HTML treats the lines as
+        # 'number of pixels starting at...' so to create a line between
+        # pixels 2 and 5 we need to light pixels 2, 3, 4, 5 - FOUR - and
+        # not 5 - 2 = 3.
         cnct_bh = Html("div", class_="bhline", inline=True,
-                       style=styleh % (coord_y, coord_x0,
-                                       abs(coord_y0-coord_y1)))
+                       style=styleh % (coord_y, coord_xh,
+                                       abs(coord_yp-coord_yc)+1))
         cnct_gh = Html("div", class_="gvline", inline=True,
                        style=styleh % (coord_y+_SHADOW,
-                                       coord_x0+_SHADOW,
-                                       abs(coord_y0-coord_y1)))
+                                       coord_xh+_SHADOW,
+                                       abs(coord_yp-coord_yc)+1))
+        cnct_gv = ''
+        cnct_gh = ''
         return [cnct_bv, cnct_gv, cnct_bh, cnct_gh]
 
-    def draw_connected_box(self, center1, center2, col, handle):
+    def draw_connected_box(self, p_node, c_node, gen, person):
         """
-        Draws the connected box for Ancestor Tree on the Individual Page
-
-        @param: center1 -- The first box to connect
-        @param: center2 -- The destination box to draw
-        @param: col     -- The generation number
-        @param: handle  -- The handle of the person to set in the new box
+        @param: p_node -- Parent node to draw and connect from
+        @param: c_node -- Child node to connect towards
+        @param: gen    -- Generation providing an HTML style hint
+        @param: handle -- Parent node handle
         """
+        coord_cx = _XOFFSET + c_node.coord_x
+        coord_cy = _YOFFSET + c_node.coord_y
+        coord_px = _XOFFSET+p_node.coord_x
+        coord_py = _YOFFSET+p_node.coord_y
         box = []
-        if not handle:
+        if person is None:
             return box
-        person = self.r_db.get_person_from_handle(handle)
-        box = self.draw_box(center2, col, person)
-        box += self.connect_line(center1, center2, col)
+        box = self.draw_box(p_node, gen, person)
+        box += self.connect_line(
+            coord_cx, coord_cy+_LOFFSET, coord_px, coord_py+_LOFFSET)
         return box
+
+    def create_layout_tree(self, p_handle, generations):
+        """
+        Create a family subtree in a format that is suitable to pass to
+        the Buchheim algorithm.
+
+        @param: p_handle   -- Handle for person at root of this subtree
+        @param: generation -- Generations left to add to tree.
+        """
+        family_tree = None
+        if generations:
+            if p_handle:
+                person = self.r_db.get_person_from_handle(p_handle)
+                if person is None:
+                    return None
+                family_handle = person.get_main_parents_family_handle()
+                f_layout_tree = None
+                m_layout_tree = None
+                if family_handle:
+                    family = self.r_db.get_family_from_handle(family_handle)
+                    if family is not None:
+                        f_handle = family.get_father_handle()
+                        m_handle = family.get_mother_handle()
+                        f_layout_tree = self.create_layout_tree(
+                            f_handle, generations-1)
+                        m_layout_tree = self.create_layout_tree(
+                            m_handle, generations-1)
+
+                family_tree = LayoutTree(
+                    p_handle, f_layout_tree, m_layout_tree)
+        return family_tree
 
     def display_tree(self):
         """
-        Display the Ancestor Tree
+        Display the Ancestor tree using a Buchheim tree.
+
+        Reference: Improving Walker's Algorithm to Run in Linear time
+                   Christoph Buccheim, Michael Junger, Sebastian Leipert
+
+        This is more complex than a simple binary tree but it results in a much
+        more compact, but still sensible, layout which is especially good where
+        the tree has gaps that would otherwise result in large blank areas.
         """
-        tree = []
-        if not self.person.get_main_parents_family_handle():
+        family_handle = self.person.get_main_parents_family_handle()
+        if not family_handle:
             return None
 
         generations = self.report.options['graphgens']
-        max_in_col = 1 << (generations-1)
-        max_size = _HEIGHT*max_in_col + _VGAP*(max_in_col+1)
-        center = int(max_size/2)
 
+        # Begin by building a representation of the Ancestry tree that can be
+        # fed to the Buchheim algorithm.  Note that the algorithm doesn't care
+        # who is the father and who is the mother.
+        #
+        # This routine is also about to go recursive!
+        layout_tree = self.create_layout_tree(
+            self.person.get_handle(), generations)
+
+        # We now apply the Buchheim algorith to this tree, and it assigns X
+        # and Y positions to all elements in the tree.
+        l_tree = buchheim(layout_tree, _WIDTH, _HGAP, _HEIGHT, _VGAP)
+
+        # We know the height in 'pixels' where every Ancestor will sit
+        # precisely on an integer unit boundary.
         with Html("div", id="tree", class_="subsection") as tree:
-            tree += Html("h4", self._('Ancestors'), inline=True)
+            tree += Html("h4", _('Ancestors'), inline=True)
             with Html("div", id="treeContainer",
                       style="width:%dpx; height:%dpx;" % (
-                          _XOFFSET+(generations)*_WIDTH+(generations-1)*_HGAP,
-                          max_size)
+                          l_tree.width + _XOFFSET + _WIDTH,
+                          l_tree.height + _HEIGHT + _VGAP)
                      ) as container:
                 tree += container
-                container += self.draw_tree(1, generations, max_size,
-                                            0, center, self.person.handle)
+                container += self.draw_tree(l_tree, 1, None)
+
         return tree
 
-    def draw_tree(self, gen_nr, maxgen, max_size, old_center,
-                  new_center, person_handle):
+    def draw_tree(self, l_node, gen_nr, c_node):
         """
         Draws the Ancestor Tree
 
+        @param: l_node        -- The tree node to draw
         @param: gen_nr        -- The generation number to draw
-        @param: maxgen        -- The maximum number of generations to draw
-        @param: max_size      -- The maximum size of the drawing area
-        @param: old_center    -- The position of the old box
-        @param: new_center    -- The position of the new box
-        @param: person_handle -- The handle of the person to draw
+        @param: c_node        -- Child node of this parent
         """
         tree = []
-        if gen_nr > maxgen:
-            return tree
-        gen_offset = int(max_size / pow(2, gen_nr+1))
-        if person_handle:
-            person = self.r_db.get_person_from_handle(person_handle)
-        else:
-            person = None
-        if not person:
-            return tree
+        person = self.r_db.get_person_from_handle(l_node.handle())
+        if person is None:
+            return None
 
         if gen_nr == 1:
-            tree = self.draw_box(new_center, 0, person)
+            tree = self.draw_box(l_node, 0, person)
         else:
-            tree = self.draw_connected_box(old_center, new_center,
-                                           gen_nr-1, person_handle)
+            tree = self.draw_connected_box(
+                l_node, c_node, gen_nr-1, person)
 
-        if gen_nr == maxgen:
-            return tree
+        # If there are any parents, we need to draw the extend line. We only
+        # use the parent to define the end of the line so either will do and
+        # we know we have at least one of this test passes.
+        if l_node.children:
+            tree += self.extend_line(l_node, l_node.children[0])
 
-        family_handle = person.get_main_parents_family_handle()
-        if family_handle:
-            line_offset = _XOFFSET + gen_nr*_WIDTH + (gen_nr-1)*_HGAP
-            tree += self.extend_line(new_center, line_offset)
+            # The parents are equivalent and the drawing routine figures out
+            # whether they are male or female.
+            for p_node in l_node.children:
+                tree += self.draw_tree(p_node, gen_nr+1, l_node)
 
-            family = self.r_db.get_family_from_handle(family_handle)
-
-            f_center = new_center-gen_offset
-            f_handle = family.get_father_handle()
-            tree += self.draw_tree(gen_nr+1, maxgen, max_size,
-                                   new_center, f_center, f_handle)
-
-            m_center = new_center+gen_offset
-            m_handle = family.get_mother_handle()
-            tree += self.draw_tree(gen_nr+1, maxgen, max_size,
-                                   new_center, m_center, m_handle)
         return tree
 
     def display_ind_associations(self, assoclist):
@@ -1237,7 +1294,8 @@ class PersonPages(BasePage):
                 if birthorder:
                     children = sorted(children)
 
-                for birthdate, birth, death, handle in children:
+                for dummy_birthdate, dummy_birth, \
+                        dummy_death, handle in children:
                     if handle == self.person.get_handle():
                         child_ped(ol_html)
                     elif handle:
@@ -1357,7 +1415,7 @@ class PersonPages(BasePage):
                     tcell = Html("td", pname, class_="ColumnValue")
                     # display any notes associated with this name
                     notelist = name.get_note_list()
-                    if len(notelist):
+                    if notelist:
                         unordered = Html("ul")
 
                         for notehandle in notelist:
@@ -1543,9 +1601,8 @@ class PersonPages(BasePage):
                         child_ref.get_mother_relation())
         return (None, None)
 
-    def display_ind_parent_family(self, birthmother, birthfather, family,
-                                  table,
-                                  first=False):
+    def display_ind_parent_family(
+            self, birthmother, birthfather, family, table, first=False):
         """
         Display the individual parent family
 
@@ -1610,7 +1667,7 @@ class PersonPages(BasePage):
                         # language but in the default language.
                         # Does get_sibling_relationship_string work ?
                         reln = reln[0].upper() + reln[1:]
-                    except:
+                    except Exception:
                         reln = self._("Not siblings")
 
                 val1 = "&nbsp;&nbsp;&nbsp;&nbsp;"
@@ -1709,7 +1766,6 @@ class PersonPages(BasePage):
         Display step families
 
         @param: parent_handle      -- The family parent handle to display
-        @param: family             -- The family
         @param: all_family_handles -- All known family handles
         @param: birthmother        -- The birth mother
         @param: birthfather        -- The birth father
@@ -1724,6 +1780,7 @@ class PersonPages(BasePage):
                     self.display_ind_parent_family(birthmother, birthfather,
                                                    parent_family, table)
                     all_family_handles.append(parent_family_handle)
+        return
 
     def display_ind_center_person(self):
         """
@@ -1741,7 +1798,7 @@ class PersonPages(BasePage):
                                                            center_person,
                                                            self.person)
         if relationship == "": # No relation to display
-            return
+            return None
 
         # begin center_person division
         section = ""

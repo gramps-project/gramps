@@ -289,10 +289,11 @@ class NavWebReport(Report):
                         os.mkdir(dir_name)
                     except IOError as value:
                         msg = _("Could not create the directory: %s"
-                               ) % dir_name + "\n" + value[1]
+                               ) % dir_name + "\n" + value.strerror
                         self.user.notify_error(msg)
                         return
-                    except:
+                    except Exception as exception:
+                        LOG.exception(exception)
                         msg = _("Could not create the directory: %s") % dir_name
                         self.user.notify_error(msg)
                         return
@@ -307,12 +308,13 @@ class NavWebReport(Report):
                     os.mkdir(image_dir_name)
             except IOError as value:
                 msg = _("Could not create the directory: %s"
-                       ) % image_dir_name + "\n" + value[1]
+                       ) % image_dir_name + "\n" + value.strerror
                 self.user.notify_error(msg)
                 return
-            except:
+            except Exception as exception:
+                LOG.exception(exception)
                 msg = _("Could not create the directory: %s"
-                       ) % image_dir_name + "\n" + value[1]
+                       ) % image_dir_name + "\n" + str(exception)
                 self.user.notify_error(msg)
                 return
         else:
@@ -453,7 +455,7 @@ class NavWebReport(Report):
         if self.archive:
             self.archive.close()
 
-        if len(_WRONGMEDIAPATH) > 0:
+        if _WRONGMEDIAPATH:
             error = '\n'.join([
                 _('ID=%(grampsid)s, path=%(dir)s') % {
                     'grampsid' : x[0],
@@ -856,7 +858,7 @@ class NavWebReport(Report):
         @param: bkref_class   -- The class associated to this handle (source)
         @param: bkref_handle  -- The handle associated to this source
         """
-        if len(self.obj_dict[Source][source_handle]) > 0:
+        if self.obj_dict[Source][source_handle]:
             for bkref in self.bkref_dict[Source][source_handle]:
                 if bkref_handle == bkref[1]:
                     return
@@ -893,7 +895,7 @@ class NavWebReport(Report):
         @param: bkref_class     -- The class associated to this handle
         @param: bkref_handle    -- The handle associated to this citation
         """
-        if len(self.obj_dict[Citation][citation_handle]) > 0:
+        if self.obj_dict[Citation][citation_handle]:
             for bkref in self.bkref_dict[Citation][citation_handle]:
                 if bkref_handle == bkref[1]:
                     return
@@ -926,7 +928,7 @@ class NavWebReport(Report):
         @param: bkref_class  -- The class associated to this handle (media)
         @param: bkref_handle -- The handle associated to this media
         """
-        if len(self.obj_dict[Media][media_handle]) > 0:
+        if self.obj_dict[Media][media_handle]:
             for bkref in self.bkref_dict[Media][media_handle]:
                 if bkref_handle == bkref[1]:
                     return
@@ -967,7 +969,7 @@ class NavWebReport(Report):
         @param: bkref_class  -- The class associated to this handle (source)
         @param: bkref_handle -- The handle associated to this source
         """
-        if len(self.obj_dict[Repository][repos_handle]) > 0:
+        if self.obj_dict[Repository][repos_handle]:
             for bkref in self.bkref_dict[Repository][repos_handle]:
                 if bkref_handle == bkref[1]:
                     return
@@ -1049,7 +1051,7 @@ class NavWebReport(Report):
 
         # copy all to images subdir:
         for from_path in imgs:
-            fdir, fname = os.path.split(from_path)
+            dummy_fdir, fname = os.path.split(from_path)
             self.copy_file(from_path, fname, "images")
 
         # copy Gramps marker icon for openstreetmap
@@ -1126,12 +1128,10 @@ class NavWebReport(Report):
                                 len(local_list)) as step:
 
             SurnameListPage(self, self.title, ind_list,
-                                SurnameListPage.ORDER_BY_NAME,
-                                self.surname_fname)
+                            SurnameListPage.ORDER_BY_NAME, self.surname_fname)
 
             SurnameListPage(self, self.title, ind_list,
-                                SurnameListPage.ORDER_BY_COUNT,
-                                "surnames_count")
+                            SurnameListPage.ORDER_BY_COUNT, "surnames_count")
 
             index = 1
             for (surname, handle_list) in local_list:
@@ -1493,7 +1493,8 @@ class NavWebReport(Report):
                 try:
                     shutil.copyfile(from_fname, dest)
                     os.utime(dest, (mtime, mtime))
-                except:
+                except Exception as exception:
+                    LOG.exception(exception)
                     print("Copying error: %s" % sys.exc_info()[1])
                     print("Continuing...")
             elif self.warn_dir:
@@ -1666,9 +1667,10 @@ class NavWebOptions(MenuReportOptions):
         cright.set_help(_("The copyright to be used for the web files"))
         addopt("cright", cright)
 
-        self.__css = EnumeratedListOption(_('StyleSheet'), CSS["default"]["id"])
-        for (fname, gid) in sorted([(CSS[key]["translation"], CSS[key]["id"])
-                                    for key in list(CSS.keys())]):
+        self.__css = EnumeratedListOption(('StyleSheet'), CSS["default"]["id"])
+        for (dummy_fname, gid) in sorted(
+                [(CSS[key]["translation"], CSS[key]["id"])
+                 for key in list(CSS.keys())]):
             if CSS[gid]["user"]:
                 self.__css.add_item(CSS[gid]["id"], CSS[gid]["translation"])
         self.__css.set_help(_('The stylesheet to be used for the web pages'))
@@ -1710,10 +1712,11 @@ class NavWebOptions(MenuReportOptions):
         addopt("ancestortree", self.__ancestortree)
         self.__ancestortree.connect('value-changed', self.__graph_changed)
 
-        self.__graphgens = NumberOption(_("Graph generations"), 4, 2, 5)
+        self.__graphgens = NumberOption(_("Graph generations"), 4, 2, 10)
         self.__graphgens.set_help(_("The number of generations to include in "
                                     "the ancestor graph"))
         addopt("graphgens", self.__graphgens)
+
         self.__graph_changed()
 
         self.__securesite = BooleanOption(_("This is a secure site (https)"),
@@ -1726,7 +1729,7 @@ class NavWebOptions(MenuReportOptions):
         Add more extra pages to the report
         """
         category_name = _("Extra pages")
-        addopt = partial( menu.add_option, category_name )
+        addopt = partial(menu.add_option, category_name)
         default_path_name = config.get('paths.website-extra-page-name')
         self.__extra_page_name = StringOption(_("Extra page name"),
                                               default_path_name)

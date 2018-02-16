@@ -777,12 +777,14 @@ gramps/plugins/view/view.gpr.py
 gramps/plugins/webreport/addressbook.py
 gramps/plugins/webreport/addressbooklist.py
 gramps/plugins/webreport/basepage.py
+gramps/plugins/webreport/buchheim.py
 gramps/plugins/webreport/contact.py
 gramps/plugins/webreport/download.py
 gramps/plugins/webreport/event.py
 gramps/plugins/webreport/family.py
 gramps/plugins/webreport/home.py
 gramps/plugins/webreport/introduction.py
+gramps/plugins/webreport/layout.py
 gramps/plugins/webreport/media.py
 gramps/plugins/webreport/narrativeweb.py
 gramps/plugins/webreport/person.py
