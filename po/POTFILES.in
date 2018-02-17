@@ -423,6 +423,7 @@ gramps/gui/editors/editnote.py
 gramps/gui/editors/editperson.py
 gramps/gui/editors/editpersonref.py
 gramps/gui/editors/editplace.py
+gramps/gui/editors/editplaceformat.py
 gramps/gui/editors/editplacename.py
 gramps/gui/editors/editplaceref.py
 gramps/gui/editors/editprimary.py
@@ -472,6 +473,7 @@ gramps/gui/glade/editnote.glade
 gramps/gui/glade/editperson.glade
 gramps/gui/glade/editpersonref.glade
 gramps/gui/glade/editplace.glade
+gramps/gui/glade/editplaceformat.glade
 gramps/gui/glade/editplacename.glade
 gramps/gui/glade/editplaceref.glade
 gramps/gui/glade/editreporef.glade
