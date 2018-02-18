@@ -1,95 +1,391 @@
-2017-02-20  prculley <paulr2787@gmail.com>
+2018-02-18  niememat <niememat@gmail.com>
 
-	* gramps/gui/undohistory.py: fix Undo; crashes due to race in Gtk Some Redraws occur during a model clear when the row changed signal
-	is emmitted.  Model is only partially cleared at that point.  Under
-	some conditions, some more of the model gets cleared before the
-	redraw completes, and redraw fails.  fixes #9932
+        * po/fi.po: Update finnish translation
 
-2017-08-26  prculley <paulr2787@gmail.com>
+2018-02-18  Sam Manzi <manzi.sam@gmail.com>
 
-	* gramps/gen/simple/_simpleaccess.py: Fix for deleted objects
-	referenced in Note StyledText Links Fixes #10178
+	* README: Update README for Gramps50 (#550)
+	  * Update wiki links to 5.0
+	  * Mention undocumented prerequisites
 
-2017-08-22  prculley <paulr2787@gmail.com>
+2018-02-17  prculley <paulr2787@gmail.com>
 
-	* gramps/plugins/export/exportgedcom.py,
-	gramps/plugins/lib/libgedcom.py: pylint on Gedcom importer and
-	exporter
+	* po/POTFILES.in, po/gramps.pot: Update Translation template and
+	POTFILES.in
 
-2017-09-01  vantu5z <vantu5z@mail.ru>
+2018-02-17  vantu5z <vantu5z@mail.ru>
 
 	* po/ru.po: update Russian translation
 
-2017-09-01  Paul Franklin <pf.98052@gmail.com>
+2018-02-15  Nick Hall <nick-h@gramps-project.org>
 
-	* gramps/gui/dbman.py: show correct list of buttons when FTM started
+	* gramps/gen/plug/docgen/treedoc.py: Replace backslash in image path
+	for Windows
 
-2017-08-31  Paul Franklin <pf.98052@gmail.com>
+2018-02-14  Nick Hall <nick-h@gramps-project.org>
 
-	* gramps/gui/dbman.py: don't show 'Archive' button on Windows, it
-	doesn't exist there
+	* gramps/gen/plug/docgen/treedoc.py: Escape special LaTeX characters
 
-2017-08-29  Bernard Banko <beernarrd@gmail.com>
+2018-02-16  Serge Noiraud <Serge.Noiraud@laposte.net>
 
-	* po/sl.po: update sl.po to latest .pot
+	* gramps/plugins/webreport/media.py: crash in narrative web if no
+	unused media (#549)
 
-2017-08-29  Bernard Banko <beernarrd@gmail.com>
+2018-02-16  Serge Noiraud <Serge.Noiraud@laposte.net>
 
-	* po/sl.po: updated slovenian translation
+	* gramps/plugins/webreport/basepage.py: Apply places changes to the
+	narrativeweb. (#547) 
+	* Apply places changes to the narrativeweb.  Also change order between
+	locations and locations alternate names.  Fixes #10427
+	* Put the alternate locations back.
+	* Suppress extra line in Alternate Names section.
 
-2017-08-28  Zdeněk Hataš <zdenek.hatas@gmail.com>
+2018-02-14  Nick Hall <nick-h@gramps-project.org>
 
-	* po/cs.po: Update Czech translation
+	* gramps/gen/plug/docgen/treedoc.py: Copy output file from temporary
+	directory
 
-2017-08-28  vantu5z <vantu5z@mail.ru>
+2018-02-10  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/plug/docgen/treedoc.py: Fix character encoding for new
+	tree category reports Fixes #10418.
+
+2018-02-13  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: update German translation
+
+2018-02-09  prculley <paulr2787@gmail.com>
+
+	* gramps/gui/filters/sidebar/_placesidebarfilter.py: Fix Place Tree
+	view for proper display after filter cleared.  Fixes #10416
+
+2017-03-27  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/config.py, gramps/gen/const.py,
+	gramps/gen/display/place.py, gramps/gen/plug/report/stdoptions.py,
+	gramps/gui/configure.py, gramps/gui/displaystate.py,
+	gramps/gui/editors/editplaceformat.py,
+	gramps/gui/glade/editplaceformat.glade,
+	gramps/plugins/gramplet/persondetails.py,
+	gramps/plugins/lib/libpersonview.py,
+	gramps/plugins/lib/libplaceview.py,
+	gramps/plugins/textreport/descendreport.py,
+	gramps/plugins/textreport/detancestralreport.py,
+	gramps/plugins/textreport/detdescendantreport.py,
+	gramps/plugins/textreport/familygroup.py,
+	gramps/plugins/textreport/indivcomplete.py,
+	gramps/plugins/textreport/placereport.py,
+	gramps/plugins/textreport/tagreport.py,
+	gramps/plugins/view/eventview.py,
+	gramps/plugins/view/pedigreeview.py, gramps/plugins/view/relview.py: 
+	Implement place formats
+
+2018-02-13  Serge Noiraud <Serge.Noiraud@laposte.net>
+
+	* gramps/plugins/webreport/webcal.py: Some dates are not translated
+	in webcal (#545)
+	* Some dates are not translated in webcal Fixes #10425
+	* Webcal link problem in the year glance page
+	* Link problems depending on LANGUAGES.
+
+2018-02-13  Sam Manzi <manzi.sam@gmail.com>
+
+	* gramps/gen/const.py: Increment year to 2018 for About box.
+
+2018-02-11  niememat <niememat@gmail.com>
+
+	* po/fi.po: Fix and updated translation in Finnish
+
+2018-02-11  niememat <niememat@gmail.com>
+
+	* data/holidays.xml.in: Fix holidays in Finnish
+
+2018-02-10  SNoiraud <serge.noiraud@laposte.net>
+
+	* gramps/plugins/webreport/basepage.py: Translation problem in
+	narrative web.
+
+2018-02-09  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: update German translation
+
+2017-12-27  prculley <paulr2787@gmail.com>
+
+	* gramps/gui/views/pageview.py, gramps/gui/widgets/grampletbar.py: 
+	fix Sidebar to resize better Fixes #10334 Issue #10161
+
+2018-02-08  John Ralls <jralls@ceridwen.us>
+
+	* mac/gramps.modules: Update pyicu to v 2.0.3
+
+2018-01-15  John Ralls <jralls@ceridwen.us>
+
+	* mac/gramps.modules: Consolidate Python2 and Python3 meta-modules.
+	GObject-Introspection now works with Python3 so the split isn't
+	needed any more.
+
+2018-02-08  niememat <niememat@gmail.com>
+
+	* po/fi.po: Fix and updated translation in Finnish
+
+2018-02-07  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gui/widgets/styledtexteditor.py: Add tooltip to links in
+	styled text editor Fixes #10179.
+
+2018-02-05  John Ralls <jralls@ceridwen.us>
+
+	* gramps/gui/glade.py: [MacOS] Replace GDK_CONTROL_MASK with
+	GDK_META_MASK in accelerators.
+	Fixes #10231 and works on all versions of Gtk3 by avoiding
+	GdkModifierIntent.
+
+2018-02-05  John Ralls <jralls@ceridwen.us>
+
+	* gramps/gui/dialog.py, gramps/gui/managedwindow.py,
+	gramps/gui/viewmanager.py,
+	gramps/gui/widgets/validatedmaskedentry.py: Set the mnemonic
+	modifier key to Alt-Ctrl for the Quartz Gdk backend.
+	This avoids interference with the use of the Alt/Option key for
+	extending the keyboard.  Fixes #6943.
+
+2018-02-05  prculley <paulr2787@gmail.com>
+
+	* gramps/plugins/graph/gvfamilylines.py: Fix Family Lines Graph when
+	'unknown' places are present Fixes #10402
+
+2018-02-05  prculley <paulr2787@gmail.com>
+
+	* gramps/gen/utils/docgen/csvtab.py: Fix Export View to CSV when
+	Unicode characters are present Fixes #10404
+
+2018-02-05  prculley <paulr2787@gmail.com>
+
+	* gramps/gen/datehandler/_date_de.py,
+	gramps/gen/datehandler/_date_el.py,
+	gramps/gen/datehandler/_date_lt.py,
+	gramps/gen/datehandler/_date_nl.py,
+	gramps/gen/datehandler/_date_pl.py,
+	gramps/gen/datehandler/_date_sr.py: Fix several intl date displayers
+	for missing parameter.  Fixes #10196
+
+2018-02-05  John Ralls <jralls@ceridwen.us>
+
+	* mac/gramps.accel: Update gramps.accel for gramps50
+
+2018-01-31  Zdeněk Hataš <zdenek.hatas@gmail.com>
+
+	* po/cs.po: Czech translation fixes
+
+2017-11-28  prculley <paulr2787@gmail.com>
+
+	* gramps/gen/filters/rules/person/_isdescendantfamilyof.py,
+	gramps/gen/filters/rules/person/_isdescendantof.py,
+	gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py,
+	gramps/gen/filters/rules/person/_islessthannthgenerationancestorofb
+	ookmarked.py,
+	gramps/gen/filters/rules/person/_islessthannthgenerationancestorofd
+	efaultperson.py,
+	gramps/gen/filters/rules/person/_islessthannthgenerationdescendanto
+	f.py:
+	Some filter optimizations to avoid repeated parts of tree scan
+
+2018-01-27  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: update German translation
+
+2018-01-27  niememat <niememat@gmail.com>
+
+	* po/fi.po: New update for Finnish translation
+
+2018-01-27  vantu5z <vantu5z@mail.ru>
 
 	* po/ru.po: update Russian translation
 
-2017-08-26  niememat <niememat@gmail.com>
+2018-01-26  prculley <paulr2787@gmail.com>
 
-	* po/fi.po: Update fix finnish translation
+	* gramps/gen/plug/_pluginreg.py: Fix view buttons order keeps
+	changing on different startups Fixes #10391
 
-2017-08-26  niememat <niememat@gmail.com>
+2018-01-26  prculley <paulr2787@gmail.com>
 
-	* po/fi.po: Update finnish translation
+	* gramps/plugins/lib/libtreebase.py: Fix DescendentTree report; more
+	space beneath Title Issue #10377
 
-2017-08-25  Leonhaeuser <mirko@leonhaeuser.de>
+2018-01-26  prculley <paulr2787@gmail.com>
 
-	* po/de.po: Update German translation
+	* gramps/plugins/drawreport/descendtree.py: Fix DescendentTree
+	report for crashes Fixes #10377
 
-2017-08-25  SNoiraud <serge.noiraud@laposte.net>
+2018-01-26  prculley <paulr2787@gmail.com>
 
-	* gramps/plugins/webreport/basepage.py: Apply changes from 9881 not
-	in refactoring Bug #009881, #010172
+	* gramps/gen/plug/report/_book.py: Fix Book XML handler for unusual
+	characters in report name Issue #10387
 
-2017-08-23  SNoiraud <serge.noiraud@laposte.net>
+2018-01-25  prculley <paulr2787@gmail.com>
 
-	* gramps/plugins/webreport/common.py: Strange index and surnames
-	count in narrative web Fixes #010172
+	* gramps/gui/plug/report/_bookdialog.py,
+	gramps/gui/plug/report/_docreportdialog.py:
+	Fix 'Generate Book' dialog for bad transient parent
 
-2017-08-23  SNoiraud <serge.noiraud@laposte.net>
+2018-01-25  prculley <paulr2787@gmail.com>
 
-	* gramps/plugins/webreport/narrativeweb.py: After the patch for
-	loop, some missing references Fixes #010168
+	* gramps/gen/plug/report/_book.py: Fix Book XML handler to deal with
+	unusual characters in Book name Fixes #10387
 
-2017-08-21  Paul Franklin <pf.98052@gmail.com>
+2017-10-23  Nick Hall <nick-h@gramps-project.org>
 
-	* gramps/gui/dbman.py, po/gramps.pot: new gramps.pot translation
-	template
+	* gramps/cli/plug/__init__.py, gramps/gen/plug/__init__.py,
+	gramps/gen/plug/_pluginreg.py, gramps/gen/plug/docgen/__init__.py,
+	gramps/gen/plug/docgen/treedoc.py,
+	gramps/gen/plug/report/_constants.py,
+	gramps/gui/plug/report/_graphreportdialog.py,
+	gramps/gui/plug/report/_graphvizreportdialog.py,
+	gramps/gui/plug/report/_reportdialog.py,
+	gramps/gui/plug/report/_treereportdialog.py, po/POTFILES.in: Add
+	support for new genealogy tree report category Issue #10223.
 
-2017-08-21  SNoiraud <serge.noiraud@laposte.net>
+2018-01-26  niememat <niememat@gmail.com>
 
-	* gramps/plugins/webreport/basepage.py: 10169: timestamp set to zero
-	makes gramps crash on windows.
+	* po/fi.po: Fix and updated translation in Finnish
 
-2017-08-21  Paul Franklin <pf.98052@gmail.com>
+2018-01-14  vantu5z <vantu5z@mail.ru>
 
-	* gramps/cli/plug/__init__.py,
-	gramps/gen/datehandler/_datedisplay.py,
-	gramps/gen/display/place.py,
-	gramps/gen/filters/rules/repository/_hasrepo.py,
-	gramps/gui/merge/mergeperson.py, gramps/gui/plug/_dialogs.py,
-	gramps/gui/plug/_windows.py,
+	* gramps/gen/config.py, gramps/gui/configure.py,
+	gramps/gui/utils.py: Add color schemes to config
+
+2018-01-17  prculley <paulr2787@gmail.com>
+
+	* gramps/gui/editors/displaytabs/surnametab.py,
+	gramps/gui/editors/editperson.py: Surname Editor; fix so changes
+	made update Person 'Preferred Name' Fixes #10254
+
+2018-01-17  prculley <paulr2787@gmail.com>
+
+	* gramps/gui/editors/displaytabs/embeddedlist.py,
+	gramps/gui/editors/displaytabs/surnametab.py: Surname Editor, fix
+	fields for better fit in minimum width dialogs
+
+2018-01-17  prculley <paulr2787@gmail.com>
+
+	* gramps/gui/editors/displaytabs/embeddedlist.py,
+	gramps/gui/editors/displaytabs/surnametab.py,
+	gramps/gui/widgets/cellrenderertextedit.py, po/POTFILES.skip: 
+	Surname Editor; fix loss of data if using mouse to change fields
+	Fixes #9868, #6828, #6257
+
+2018-01-18  prculley <paulr2787@gmail.com>
+
+	* gramps/gui/viewmanager.py: Add Garbage collection after
+	tools/reports Fixes #10287
+
+2018-01-22  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: update German translation
+
+2018-01-22  Sam Manzi <manzi.sam@gmail.com>
+
+	* gramps/gui/viewmanager.py: Fix duplicate Add menu keybinding after
+	PR #530
+
+2018-01-21  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/gui/viewmanager.py: Main Window menu 'Add' keyboard
+	Acellerators (Gramps50) (#530) 
+	* Fix Add menu Accelerators so they don't activate on Shift-'x' 
+	Fixes #10379
+	* Change Gramps 'Add' menu so 'New' is not used
+
+2018-01-20  niememat <niememat@gmail.com>
+
+	* po/fi.po: Fixed and updated translation in Finnish
+
+2018-01-20  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2018-01-19  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/plugins/export/exportftree.py: Export Web Family Tree;
+	error on file write is now a message, not exception. (#524)
+	* Fix Export Web Family Tree for errors on file write Fixes #10364
+	* Pylint on Web Family Tree export
+
+2018-01-19  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/gui/glade/editcitation.glade: Fix Citation Editor to Tab
+	out of Confidence ComboBox (#526) Fixes #10351
+
+2018-01-18  Serge Noiraud <Serge.Noiraud@laposte.net>
+
+	* data/css/Web_Basic-Blue.css, data/css/Web_Nebraska.css,
+	data/css/Web_Visually.css, data/css/narrative-maps.css,
+	gramps/plugins/webreport/basepage.py,
+	gramps/plugins/webreport/common.py,
+	gramps/plugins/webreport/event.py,
+	gramps/plugins/webreport/family.py,
+	gramps/plugins/webreport/media.py,
+	gramps/plugins/webreport/narrativeweb.py,
+	gramps/plugins/webreport/person.py,
+	gramps/plugins/webreport/place.py,
+	gramps/plugins/webreport/repository.py,
+	gramps/plugins/webreport/source.py,
+	gramps/plugins/webreport/statistics.py,
+	gramps/plugins/webreport/thumbnail.py: Narrative web: multiple
+	problems. (#517)
+	* Narrative web: multiple problems. 
+	1 - Added an option for the statistics page.  
+	2 - We have problems with notes : pages are too large 
+	3 - Difficult to see some page on a mobile phone when you have notes.  
+	4 - Resizing of images on a mobile 
+	5 - Maps are too bigs on a mobile 
+	6 - Split the event line to have a narrower page 
+	7 - The note is spanned on two columns (Place + Description) 
+	7 - In media pages, the progress meter doesn't work well.  
+	8 - Add a progress meter for the medialistpage 
+	Issues #10344
+	* Narrative Web: several modifications + css files
+	* Stylesheet problems and reverse set_header
+	* Removing memory cleanup.
+
+2018-01-18  niememat <niememat@gmail.com>
+
+	* po/fi.po: New update for Finnish translation
+
+2018-01-13  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gui/views/listview.py: Use None as the foreground colour
+	for untagged rows in list views 
+	The call to get_style_context is not required.  It also caused
+	problems in Windows due to excessive calls to the foreground_color
+	method.  Fixes #10365.
+
+2018-01-09  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gui/widgets/grampletpane.py,
+	gramps/gui/widgets/shadebox.py: Remove trailing whitespace
+
+2017-12-22  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/cli/grampscli.py, gramps/gen/display/name.py: Clear old
+	custom name formats when database loaded
+
+2017-12-18  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gui/widgets/__init__.py, gramps/gui/widgets/shadebox.py,
+	gramps/plugins/view/relview.py, po/POTFILES.skip: Fix shading colour
+	in relationship view for dark themes Fixes #7749.
+
+2017-12-18  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gui/utils.py, gramps/gui/widgets/grampletpane.py,
+	gramps/gui/widgets/labels.py,
+	gramps/gui/widgets/styledtexteditor.py: Fix link colour for dark
+	themes Issue #7749.
+
+2017-12-18  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gui/views/listview.py,
 	gramps/gui/views/treemodels/citationbasemodel.py,
 	gramps/gui/views/treemodels/eventmodel.py,
 	gramps/gui/views/treemodels/familymodel.py,
@@ -99,886 +395,855 @@
 	gramps/gui/views/treemodels/placemodel.py,
 	gramps/gui/views/treemodels/repomodel.py,
 	gramps/gui/views/treemodels/sourcemodel.py,
-	gramps/plugins/db/bsddb/upgrade.py,
-	gramps/plugins/docgen/cairodoc.py,
-	gramps/plugins/drawreport/fanchart.py,
-	gramps/plugins/gramplet/persondetails.py,
-	gramps/plugins/gramplet/whatsnext.py,
-	gramps/plugins/graph/gvrelgraph.py,
-	gramps/plugins/importer/importgeneweb.py,
-	gramps/plugins/importer/importprogen.py,
-	gramps/plugins/lib/libgedcom.py,
-	gramps/plugins/lib/libplaceimport.py,
-	gramps/plugins/lib/maps/geography.py,
-	gramps/plugins/mapservices/eniroswedenmap.py,
-	gramps/plugins/quickview/all_relations.py,
-	gramps/plugins/quickview/lineage.py,
-	gramps/plugins/textreport/descendreport.py,
-	gramps/plugins/tool/notrelated.py, gramps/plugins/tool/relcalc.py,
-	gramps/plugins/webreport/common.py,
-	gramps/plugins/webreport/narrativeweb.py,
-	gramps/plugins/webreport/person.py,
-	gramps/plugins/webreport/webcal.py: 7276: translate some
-	currently-untranslated punctuation marks
+	gramps/gui/views/treemodels/treebasemodel.py: Fix default foreground
+	colour in list views for dark themes Issue #7749.
 
-2017-08-21  Paul Franklin <pf.98052@gmail.com>
+2018-01-08  prculley <paulr2787@gmail.com>
 
-	* gramps/plugins/webreport/citation.py, po/POTFILES.in,
-	po/POTFILES.skip: proofread and tidy up both POTFILES.in and
-	POTFILES.skip
+	* gramps/gui/utils.py: Fix memory leak in ProgressMeter
 
-2017-08-21  vantu5z <vantu5z@mail.ru>
+2018-01-03  prculley <paulr2787@gmail.com>
 
-	* po/ru.po: update Russian translation
+	* gramps/gui/widgets/fanchart.py: fix Fan Chart for exception on
+	right-click of person with no parent Fixes #10349
 
-2017-08-21  SNoiraud <serge.noiraud@laposte.net>
+2017-12-28  prculley <paulr2787@gmail.com>
 
-	* gramps/plugins/webreport/narrativeweb.py: Better solution for
-	avoiding loop in narrativeweb.
+	* gramps/gui/widgets/fanchart.py,
+	gramps/gui/widgets/fanchart2way.py,
+	gramps/plugins/view/fanchart2wayview.py,
+	gramps/plugins/view/fanchartdescview.py,
+	gramps/plugins/view/fanchartview.py: Fix Fan Chart Print centering
+	and scaling on Windows Fixes #8460
 
-2017-08-20  SNoiraud <serge.noiraud@laposte.net>
+2018-01-02  Zdeněk Hataš <zdenek.hatas@gmail.com>
 
-	* gramps/plugins/webreport/narrativeweb.py: Avoid loop in
-	narrativeweb with citation, source, and media.
+	* po/cs.po: Update Czech translation
 
-2017-08-20  Nick Hall <nick-h@gramps-project.org>
+2017-12-31  Luigi Toscano <luigi.toscano@tiscali.it>
 
-	* gramps/gui/dbman.py: Use the default database backend for database
-	conversion
+	* po/it.po: Italian translation updates and fixes
 
-2017-08-20  Nick Hall <nick-h@gramps-project.org>
+2017-12-31  Luigi Toscano <luigi.toscano@tiscali.it>
 
-	* gramps/cli/clidbman.py, gramps/gui/dbman.py: Remove version from
-	the database type column The version is still available in the information dialog and from
-	the command line.
+	* po/it.po: Update Italian po file from latest pot template
 
-2017-08-19  Paul Franklin <pf.98052@gmail.com>
+2017-12-29  niememat <niememat@gmail.com>
 
-	* gramps/plugins/webreport/person.py: cope with pathlogical "person"
+	* po/fi.po: New update for Finnish translation
 
-2017-08-11  prculley <paulr2787@gmail.com>
-
-	* gramps/gen/plug/_gramplet.py, gramps/gen/utils/callback.py: 
-	Correct issue with exception on database change in Gramplets Fixes #10147
-
-2017-08-19  Serge Noiraud <Serge.Noiraud@laposte.net>
-
-	* gramps/plugins/webreport/addressbook.py,
-	gramps/plugins/webreport/addressbooklist.py,
-	gramps/plugins/webreport/basepage.py,
-	gramps/plugins/webreport/citation.py,
-	gramps/plugins/webreport/common.py,
-	gramps/plugins/webreport/contact.py,
-	gramps/plugins/webreport/download.py,
-	gramps/plugins/webreport/event.py,
-	gramps/plugins/webreport/family.py,
-	gramps/plugins/webreport/home.py,
-	gramps/plugins/webreport/introduction.py,
-	gramps/plugins/webreport/media.py,
-	gramps/plugins/webreport/narrativeweb.py,
-	gramps/plugins/webreport/person.py,
-	gramps/plugins/webreport/place.py,
-	gramps/plugins/webreport/repository.py,
-	gramps/plugins/webreport/source.py,
-	gramps/plugins/webreport/statistics.py,
-	gramps/plugins/webreport/surname.py,
-	gramps/plugins/webreport/surnamelist.py,
-	gramps/plugins/webreport/thumbnail.py,
-	gramps/plugins/webreport/webplugins.gpr.py: Reorganization of the
-	narrative web report. (#445) * Reorganization of the narrative web report.  Resolves  #010151, #07740 * Add empty role to person and family backref lists
-
-2017-08-11  prculley <paulr2787@gmail.com>
-
-	* gramps/gen/db/generic.py: Fix for InMemory db close error
-
-2017-08-14  niememat <niememat@gmail.com>
-
-	* po/fi.po: Update fix finnish translation
-
-2017-08-14  vantu5z <vantu5z@mail.ru>
+2017-12-29  vantu5z <vantu5z@mail.ru>
 
 	* po/ru.po: update Russian translation
 
-2017-08-12  Paul Franklin <pf.98052@gmail.com>
+2017-12-29  vantu5z <vantu5z@mail.ru>
 
-	* gramps/gen/datehandler/_date_sv.py: Cannot edit dates in Swedish
-	locale and "day month year" format Fixes #10149
+	* po/POTFILES.in, po/gramps.pot: udpate pot file after
+	00715fc530c9ea1d479f90321dac9f224be3be9f
 
-2017-08-10  Paul Franklin <pf.98052@gmail.com>
+2017-12-26  prculley <paulr2787@gmail.com>
 
-	* gramps/plugins/db/dbapi/postgresql.gpr.py: Gramps does not check
-	[for] installed DB backend on DB selector Fixes #10148
+	* gramps/plugins/gramplet/mediapreview.py: Fix Media Preview
+	Gramplet for closed db Fixes #10332
 
-2017-08-10  Paul Culley <paulr2787@gmail.com>
+2017-12-23  bertcarnell <bertcarnell@gmail.com>
 
-	* gramps/gen/lib/note.py: Typo in note get_schema (#444)
+	* gramps/plugins/docgen/cairodoc.py: Added a requirement for pango
+	and pangocairo versions 
+	Eliminates a warning that was present when calling a report from the
+	command line.  Fixes #10333.
 
-2017-08-10  Paul Franklin <pf.98052@gmail.com>
+2017-12-21  SNoiraud <serge.noiraud@laposte.net>
 
-	* gramps/plugins/importer/importxml.py: Crash when import complex
-	.gramps 5.0 current branch backup file Fixes #10152
+	* gramps/plugins/webreport/basepage.py: Narrative Web works poorly
+	on Android browser Fixes #010320
 
-2017-08-10  Paul Franklin <pf.98052@gmail.com>
+2017-12-20  prculley <paulr2787@gmail.com>
 
-	* gramps/gen/datehandler/_dateparser.py: add a few comments to the
-	date parser (since I keep forgetting)
+	* gramps/gui/widgets/styledtexteditor.py: Fix Styled Text Editor for
+	exception on non-editable text click 
+	Fixes #10309 Also prevent editing of links on non-editable text.
 
-2017-08-07  Paul Franklin <pf.98052@gmail.com>
+2017-12-12  prculley <paulr2787@gmail.com>
 
-	* gramps/gen/datehandler/_datedisplay.py: fix no-day numeric date
-	display in y-m-d locales
+	* data/tests/imp_PhonFax_dfs.ged,
+	data/tests/imp_PhonFax_dfs.gramps, gramps/plugins/lib/libgedcom.py: 
+	Suport FTM 2017 Gedcom tags on import 
+	Bug #10285 
+	FTM adds subordinate PLAC and OBJE data to INDI.ADDR
+	which is non-standard.  So treat it as a Residence Event, instead of
+	an Address.  FTM puts _DATE and _TEXT tags subordinate to OBJE, also
+	non-standard.
 
-2017-08-06  Paul Franklin <pf.98052@gmail.com>
+2017-12-07  prculley <paulr2787@gmail.com>
 
-	* gramps/gui/dialog.py: translate three small-dialog "close" buttons
+	* gramps/gui/dbman.py: Fix FTM: rename a locked db, don't open, but
+	title bar changes Fixes #10303
 
-2017-08-05  Kaj Mikkelsen <kmi@vgdata.dk>
+2017-12-01  prculley <paulr2787@gmail.com>
 
-	* po/da.po: New danish translation after review
+	* gramps/gui/filters/sidebar/_familysidebarfilter.py,
+	gramps/gui/filters/sidebar/_personsidebarfilter.py: Fix Person,
+	Family Sidebar Filters to add custom Event types 
+	Fixes #10112 
+	Also fix Family Sidebar Filter RelType init with closed db
 
-2017-08-03  Leonhaeuser <mirko@leonhaeuser.de>
-
-	* po/de.po: update Germantranslation
-
-2017-08-01  romjerome <romjerome@users.noreply.github.com>
-
-	* po/fr.po: update french translation
-
-2017-08-01  romjerome <romjerome@users.noreply.github.com>
-
-	* MANIFEST.in, NEWS: merge forward (working release steps on
-	gramps42)
-
-2017-07-31  Paulo Henrique Paiva de Moraes <paulohpmoraes@gmail.com>
-
-	* po/pt_BR.po: update Brazilian Portuguese translation
-
-2017-07-31  Paulo Henrique Paiva de Moraes <paulohpmoraes@gmail.com>
-
-	* po/pt_BR.po: update Brazilian Portuguese translation
-
-2017-07-31  Bernard Banko <beernarrd@gmail.com>
-
-	* po/sl.po: Slovenian translation update
-
-2017-07-31  Zdeněk Hataš <zdenek.hatas@gmail.com>
-
-	* po/cs.po: czech translation update
-
-2017-07-30  Kaj Mikkelsen <kmi@vgdata.dk>
-
-	* po/da.po: update Danish translation
-
-2017-07-30  Paul Franklin <pf.98052@gmail.com>
-
-	* po/it.po, po/mk.po, po/pl.po, po/sq.po: remove obsolete
-	translations (with doubled-percent-signs)
-
-2017-07-30  vantu5z <vantu5z@mail.ru>
-
-	* po/ru.po: update Russian translation
-
-2017-07-30  niememat <niememat@gmail.com>
+2017-12-28  niememat <niememat@gmail.com>
 
 	* po/fi.po: Update finnish translation
 
-2017-07-29  Paul Franklin <pf.98052@gmail.com>
+2017-12-12  Nick Hall <nick-h@gramps-project.org>
 
-	* po/gramps.pot: new gramps.pot translation template
+	* gramps/plugins/db/dbapi/dbapi.py: Use UPDATE instead of DELETE and
+	INSERT
 
-2017-07-29  Paul Franklin <pf.98052@gmail.com>
+2017-11-30  prculley <paulr2787@gmail.com>
 
-	* po/POTFILES.in, po/POTFILES.skip: tidy up POTFILES.* (add recently
-	translatable modules, etc.)
+	* gramps/gen/proxy/cache.py: Fix ProxyCache to deal with memory leak
 
-2017-07-29  prculley <paulr2787@gmail.com>
+2017-11-29  prculley <paulr2787@gmail.com>
 
-	* gramps/plugins/db/dbapi/dbapi.py: Prevent dbapi from nesting
-	transactions for metadata Fixes #10038.
+	* gramps/gen/proxy/cache.py: Fix duplicated method in ProxyCache 
+	Fixes #10291 Also changed size request to better utilize actual
+	memory
 
-2017-07-29  Nick Hall <nick-h@gramps-project.org>
+2017-12-12  Nick Hall <nick-h@gramps-project.org>
 
-	* gramps/cli/clidbman.py, gramps/gen/db/generic.py,
-	gramps/gui/dbman.py, gramps/plugins/db/bsddb/write.py,
-	gramps/plugins/db/dbapi/dbapi.py,
-	gramps/plugins/db/dbapi/postgresql.py,
-	gramps/plugins/db/dbapi/sqlite.py: Tidy up database summary
-	information
+	* gramps/cli/arghandler.py, gramps/cli/clidbman.py,
+	gramps/gen/db/base.py, gramps/gen/utils/test/file_test.py,
+	gramps/gui/dbman.py, gramps/gui/editors/test/editreference_test.py,
+	gramps/plugins/db/bsddb/test/db_test.py,
+	gramps/plugins/db/bsddb/write.py, gramps/plugins/db/dbapi/dbapi.py: 
+	Remove write_version method from the database API 
+	This is specific to the BSDDB backend.
 
-2017-07-29  romjerome <romjerome@users.noreply.github.com>
+2017-12-12  Nick Hall <nick-h@gramps-project.org>
 
-	* po/lt.po: typo
+	* gramps/gen/db/generic.py: Fixes for in-memory databases 
+	In-memory databases always allow write access and don't need to use
+	lock files.
 
-2017-07-28  Nick Hall <nick-h@gramps-project.org>
+2017-12-11  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/grampsapp.py, gramps/gui/aboutdialog.py,
+	gramps/gui/configure.py, gramps/gui/dbman.py,
+	gramps/gui/logger/_errorreportassistant.py: Enable Sqlite backend
+	for all users
+
+2017-12-11  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/plugins/db/dbapi/postgresql.gpr.py,
+	gramps/plugins/db/dbapi/postgresql.py: Move PostgreSQL backend into
+	third-party addons
+
+2017-12-11  Nick Hall <nick-h@gramps-project.org>
 
 	* gramps/gen/db/generic.py, gramps/gen/db/utils.py,
-	gramps/gui/dbman.py, gramps/plugins/db/dbapi/dbapi.gpr.py,
-	gramps/plugins/db/dbapi/dbapi.py,
-	gramps/plugins/db/dbapi/inmemorydb.gpr.py,
-	gramps/plugins/db/dbapi/inmemorydb.py,
-	gramps/plugins/db/dbapi/postgresql.gpr.py,
-	gramps/plugins/db/dbapi/postgresql.py,
-	gramps/plugins/db/dbapi/sqlite.gpr.py,
-	gramps/plugins/db/dbapi/sqlite.py,
-	gramps/plugins/db/dbapi/test/db_test.py,
-	gramps/plugins/test/db_undo_and_signals_test.py, po/POTFILES.in,
-	po/POTFILES.skip: Reorganise DBAPI plugins Add SQLite and PostgreSQL plugins.  Remove DBAPI and InMemoryDb
-	plugins.
+	gramps/plugins/db/bsddb/write.py: Implement locking for dbapi
+	backends
 
-2017-07-28  Nick Hall <nick-h@gramps-project.org>
+2017-12-11  Nick Hall <nick-h@gramps-project.org>
 
-	* gramps/plugins/db/dbapi/dbapi.py: Remove unused imports
+	* gramps/gui/widgets/fanchart2way.py: Use escape from html rather
+	than cgi package
 
-2017-07-28  Nick Hall <nick-h@gramps-project.org>
+2017-12-07  prculley <paulr2787@gmail.com>
 
-	* gramps/plugins/db/dbapi/dbapi.py,
-	gramps/plugins/db/dbapi/settings.ini,
-	gramps/plugins/db/dbapi/settings.py: Remove settings.py file
+	* gramps/gui/dialog.py: Fix QuestionDialog display for html like
+	characters in title Fixes #10298
 
-2017-07-27  Paul Franklin <pf.98052@gmail.com>
+2017-12-04  prculley <paulr2787@gmail.com>
 
-	* po/lt.po: fix another typo in the new lt.po
+	* gramps/plugins/tool/findloop.glade,
+	gramps/plugins/tool/findloop.py: Fix Find Database Loop tool for
+	faster operation and better display Fixes #10299
 
-2017-07-28  Bernard Banko <beernarrd@gmail.com>
+2017-11-27  prculley <paulr2787@gmail.com>
 
-	* po/lt.po: lt.po: Added quotes add the end of the last string
+	* gramps/gen/lib/familyreltype.py: Fix FamilyRelationshpType
+	_DATAMAP order to correspond with values Fixes #10275
 
-2017-07-27  Tadas Masiulionis <tadzikaz@gmail.com>
+2017-11-25  prculley <paulr2787@gmail.com>
 
-	* po/lt.po: update Lithuanian translation
+	* gramps/gen/filters/rules/person/__init__.py,
+	gramps/gen/filters/rules/person/_islessthannthgenerationancestorofb
+	ookmarked.py,
+	gramps/gen/filters/rules/person/_islessthannthgenerationancestorofd
+	efaultperson.py: 
+	Fix HandleError on IsLessThanNthGenerationAncestorOf filters 
+	Fixes #10286
 
-2017-07-26  niememat <niememat@gmail.com>
+2017-11-24  prculley <paulr2787@gmail.com>
 
-	* po/fi.po: Finnish translation update
+	* gramps/gen/filters/rules/test/person_rules_test.py: Add additional
+	tests to Person Filters (MatchesFilters)
 
-2017-07-25  Matti Niemelä <niememat@gmail.com>
+2017-11-22  prculley <paulr2787@gmail.com>
 
-	* po/fi.po: update Finnish translation
+	* gramps/plugins/graph/gvrelgraph.py: Fix Relationship Graph to
+	shows families if siblings but no parents
 
-2017-07-24  Frederik De Richter <frederik.de.richter@gmail.com>
+2017-11-22  prculley <paulr2787@gmail.com>
 
-	* po/nl.po: update Netherlands translation
+	* gramps/gen/filters/rules/person/_deeprelationshippathbetween.py: 
+	pylint
 
-2017-07-24  Zdeněk Hataš <zdenek.hatas@gmail.com>
+2017-11-22  prculley <paulr2787@gmail.com>
 
-	* po/cs.po: czech translation update
+	* gramps/gen/filters/rules/person/_deeprelationshippathbetween.py: 
+	Fix Deep Relationship filter to avoid recursion crash 
+	Fixes #10279 This also changes filter to use shortest paths.
 
-2017-07-24  vantu5z <vantu5z@mail.ru>
+2017-11-22  prculley <paulr2787@gmail.com>
 
-	* po/ru.po: [Russian translation] fix typo PR #439 Thanks to schoonc
+	* gramps/gui/views/treemodels/flatbasemodel.py: Fix to allow filter
+	progress meters in flat views
 
-2017-07-23  Paul Franklin <pf.98052@gmail.com>
+2017-11-21  prculley <paulr2787@gmail.com>
 
-	* gramps/gui/glade/editdate.glade: Date Editor has 'Type' and
-	'Quality' labels swapped Fixes #10135
+	* gramps/plugins/lib/libgedcom.py: Fix Gedcom import for illegal
+	Gedcom Family Attributes 
+	Issue #10262 
+	TMG Gedcom exports an illegal NCHI with sub-data for
+	FAM.  Gramps could not handle this and attached the sub-data to the
+	FAM creating some corrupted Event records.
 
-2017-07-22  Paul Franklin <pf.98052@gmail.com>
+2017-12-03  niememat <niememat@gmail.com>
 
-	* po/gramps.pot: new gramps.pot translation template
+	* po/fi.po: Update finnish translation
 
-2017-07-14  Nick Hall <nick-h@gramps-project.org>
+2017-11-25  SNoiraud <serge.noiraud@laposte.net>
 
-	* gramps/gen/db/base.py, gramps/gen/db/dummydb.py,
-	gramps/gen/proxy/filter.py, gramps/gen/proxy/proxybase.py,
-	gramps/gen/utils/grampslocale.py, gramps/plugins/db/bsddb/read.py,
-	gramps/plugins/db/dbapi/dbapi.py,
-	gramps/plugins/db/dbapi/postgresql.py,
-	gramps/plugins/db/dbapi/sqlite.py,
-	gramps/plugins/textreport/familygroup.py,
-	gramps/plugins/textreport/indivcomplete.py,
-	gramps/plugins/textreport/tagreport.py: Allow multiple collations
-	per connection This fixes collation for translated reports and multi-user access
-	for PostgreSQL.
+	* gramps/plugins/webreport/basepage.py: Narrated Web Site: warnings
+	reported to console Fixes : #10283
 
-2017-07-21  vantu5z <vantu5z@mail.ru>
+2017-11-22  Serge Noiraud <Serge.Noiraud@laposte.net>
+
+	* data/css/GeoView.css, data/css/Web_Basic-Ash.css,
+	data/css/Web_Basic-Blue.css, data/css/Web_Basic-Cypress.css,
+	data/css/Web_Basic-Lilac.css, data/css/Web_Basic-Peach.css,
+	data/css/Web_Basic-Spruce.css, data/css/Web_Mainz.css,
+	data/css/Web_Nebraska.css, data/css/Web_Visually.css,
+	data/css/ancestortree.css, data/css/narrative-maps.css,
+	gramps/plugins/webreport/family.py,
+	gramps/plugins/webreport/media.py,
+	gramps/plugins/webreport/person.py,
+	gramps/plugins/webstuff/webstuff.py: Mainz css file produces left
+	aligned FamilyMap pages (#489)
+	* Mainz css file produces left aligned FamilyMap pages 
+	Solving Mainz problem creates new ones with Basic-Blue and Nebraska
+	styles sheet.  Some cleanup with unused css file (GeoView.css) 
+	Fixes #10268
+	* Many problems with css files and the ancestor tree
+	* media file not created if we have unused media.
+
+2017-11-07  prculley <paulr2787@gmail.com>
+
+	* gramps/gui/widgets/grampletpane.py,
+	gramps/plugins/gramplet/sessionloggramplet.py: Fix Session Log for
+	exception on closed db reference click
+
+2017-11-20  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gui/widgets/styledtexteditor.py: Fix bug in previous commit
+
+2017-10-01  prculley <paulr2787@gmail.com>
+
+	* gramps/gui/widgets/styledtexteditor.py: Fix 'Welcome' Gramplet and
+	StyledTextEditor for Link handling Issue #10179
+
+2017-11-04  prculley <paulr2787@gmail.com>
+
+	* gramps/gui/editors/editprimary.py,
+	gramps/gui/plug/quick/_quickreports.py: fix Quickreport start from
+	Editor when object not yet committed Fixes #10048
+
+2017-11-04  prculley <paulr2787@gmail.com>
+
+	* gramps/plugins/tool/findloop.py: Fix Find Database Loop tool for
+	wrong transient parent for progress Fixes #10072
+
+2017-11-03  prculley <paulr2787@gmail.com>
+
+	* gramps/plugins/test/tools_test.py,
+	gramps/plugins/tool/testcasegenerator.py: Fix Test Case Generator to
+	not create illegal 'None' handles Fixes #10230
+
+2017-10-27  prculley <paulr2787@gmail.com>
+
+	* gramps/plugins/lib/libgedcom.py: Fix Gedcom export for bad Hebrew
+	Months Fixes #10245
+
+2017-11-19  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/plug/docgen/graphdoc.py: Revert "correct 'import' in
+	ac2e0a26ac" 
+	This reverts commit 620b2afa09c6a221ce8f8c4147b9b142b6e9facd.
+
+2017-11-19  vantu5z <vantu5z@mail.ru>
 
 	* po/ru.po: update Russian translation
 
-2017-07-17  Paul Culley <paulr2787@gmail.com>
+2017-11-16  niememat <niememat@gmail.com>
 
-	* gramps/gen/plug/_gramplet.py,
-	gramps/plugins/gramplet/ageondategramplet.py,
-	gramps/plugins/gramplet/agestats.py,
-	gramps/plugins/gramplet/attributes.py,
-	gramps/plugins/gramplet/backlinks.py,
-	gramps/plugins/gramplet/calendargramplet.py,
-	gramps/plugins/gramplet/children.py,
-	gramps/plugins/gramplet/coordinates.py,
-	gramps/plugins/gramplet/events.py,
-	gramps/plugins/gramplet/faqgramplet.py,
-	gramps/plugins/gramplet/gallery.py,
-	gramps/plugins/gramplet/givennamegramplet.py,
-	gramps/plugins/gramplet/mediapreview.py,
-	gramps/plugins/gramplet/notes.py,
-	gramps/plugins/gramplet/pedigreegramplet.py,
-	gramps/plugins/gramplet/persondetails.py,
-	gramps/plugins/gramplet/personresidence.py,
-	gramps/plugins/gramplet/placedetails.py,
-	gramps/plugins/gramplet/recordsgramplet.py,
-	gramps/plugins/gramplet/relativegramplet.py,
-	gramps/plugins/gramplet/repositorydetails.py,
-	gramps/plugins/gramplet/sessionloggramplet.py,
-	gramps/plugins/gramplet/statsgramplet.py,
-	gramps/plugins/gramplet/surnamecloudgramplet.py,
-	gramps/plugins/gramplet/todo.py,
-	gramps/plugins/gramplet/todogramplet.py,
-	gramps/plugins/gramplet/topsurnamesgramplet.py,
-	gramps/plugins/gramplet/whatsnext.py: Gramplets HandleErrors with
-	Family Merge and issues on close/open (#424) Unless a Gramplet has navtype=['Person'] in .gpr it will not get an
-	automatic connection to Person active-changed.  To prevent multiple
-	connections after db close/open, all connections are made through
-	Gramplet class 'connect', rather than directly to db fixes #10082, #10081, #10090, #10089
+	* po/fi.po: Update finnish translation
 
-2017-07-17  Leonhaeuser <mirko@leonhaeuser.de>
+2017-11-15  SNoiraud <serge.noiraud@laposte.net>
+
+	* gramps/plugins/lib/maps/placeselection.py: Can't link to a place
+	if wrong lat/lon in the db.  Fixes #10266
+
+2017-11-15  Zdeněk Hataš <zdenek.hatas@gmail.com>
+
+	* po/cs.po: Update Czech translation
+
+2017-11-13  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: update German translation
+
+2017-11-12  Sam Manzi <manzi.sam@gmail.com>
+
+	* gramps/plugins/importer/importxml.py: Update redirected wiki link
+	from GRAMPS_XML > Gramps_XML
+
+2017-11-11  SNoiraud <serge.noiraud@laposte.net>
+
+	* gramps/plugins/lib/maps/osmgps.py: Missing arg when right clicking
+	in geography view.  Fixes #10261
+
+2017-11-09  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2017-11-05  prculley <paulr2787@gmail.com>
+
+	* INSTALL: Change INSTALL to replace 'python' with 'python3 for
+	script invokes
+
+2017-11-04  niememat <niememat@gmail.com>
+
+	* po/fi.po: Update finnish translation
+
+2017-11-03  Paul Franklin <pf.98052@gmail.com>
+
+	* po/gramps.pot: new gramps.pot translation template
+
+2017-11-03  Paul Franklin <pf.98052@gmail.com>
+
+	* gramps/gen/plug/docgen/graphdoc.py: correct 'import' in ac2e0a26ac
+
+2017-10-29  niememat <niememat@gmail.com>
+
+	* po/fi.po: Update finnish translation
+
+2017-10-28  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2017-10-26  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gui/views/listview.py: Use new database convenience
+	function Fixes bug introduced in commit
+	875242c8d6f88e91dd839812f11b92a9326d30a2.
+
+2017-10-26  Leonhaeuser <mirko@leonhaeuser.de>
 
 	* po/de.po: Update German translation
 
-2017-07-17  prculley <paulr2787@gmail.com>
+2017-10-11  prculley <paulr2787@gmail.com>
 
-	* gramps/gen/lib/address.py, gramps/gen/lib/attribute.py,
-	gramps/gen/lib/childref.py, gramps/gen/lib/date.py,
-	gramps/gen/lib/ldsord.py, gramps/gen/lib/location.py,
-	gramps/gen/lib/mediaref.py, gramps/gen/lib/personref.py,
-	gramps/gen/lib/placename.py, gramps/gen/lib/placeref.py,
-	gramps/gen/lib/reporef.py, gramps/gen/lib/srcattribute.py,
-	gramps/gen/lib/styledtexttag.py, gramps/gen/lib/url.py: Add title
-	properties to more of schema
+	* gramps/plugins/tool/check.py: Check&Repair; add checks for
+	'backlinks' and repair if needed.
 
-2017-07-17  prculley <paulr2787@gmail.com>
+2017-10-25  prculley <paulr2787@gmail.com>
 
-	* gramps/gen/lib/citation.py, gramps/gen/lib/src.py: Fix source
-	attribute lists in schema
+	* gramps/plugins/importer/importcsv.py: Fix CSV importer for place
+	event name using gramps_id Fixes #10239
 
-2017-06-19  prculley <paulr2787@gmail.com>
+2017-10-15  prculley <paulr2787@gmail.com>
 
-	* gramps/plugins/test/db_undo_and_signals_test.py: Add db undo/redo,
-	callback, and callback manager tests for both dbs
+	* gramps/gui/views/treemodels/placemodel.py: Fix PlaceModel to avoid
+	exception following merge Fixes #10184 Bug #8377
 
-2017-06-15  prculley <paulr2787@gmail.com>
+2017-10-14  prculley <paulr2787@gmail.com>
 
-	* gramps/gen/db/generic.py, gramps/plugins/db/bsddb/undoredo.py,
-	gramps/plugins/db/bsddb/write.py, gramps/plugins/db/dbapi/dbapi.py: 
-	Guarantee order on db emits  Partial fix #10068
+	* gramps/plugins/view/geoclose.py,
+	gramps/plugins/view/geoevents.py,
+	gramps/plugins/view/geofamclose.py,
+	gramps/plugins/view/geofamily.py, gramps/plugins/view/geoperson.py,
+	gramps/plugins/view/geoplaces.py: Fix Geography view 'Find' when db
+	is closed.  Fixes #10229
 
-2017-06-04  prculley <paulr2787@gmail.com>
+2017-10-13  prculley <paulr2787@gmail.com>
 
-	* gramps/plugins/db/dbapi/dbapi.py: Undo of delete person on dbapi
-	fails; fixes #10070
+	* gramps/plugins/db/dbapi/dbapi.py: Dbapi: Fix for broken
+	'backlinks' after a delete.  Fixes #10221
 
-2017-07-15  Nick Hall <nick-h@gramps-project.org>
+2017-10-13  prculley <paulr2787@gmail.com>
 
-	* gramps/plugins/db/dbapi/dbapi.py: Fix creating new PostgreSQL
-	database PostgreSQL will rollback the entire transaction on errors.  Change
-	the code so that we know that columns created dynamically do not
-	already exist.
+	* gramps/gui/widgets/interactivesearchbox.py: Fix interactive search
+	for exception on click then down arrow Fixes #10226
 
-2017-07-15  Leonhaeuser <mirko@leonhaeuser.de>
+2017-10-24  Nick Hall <nick-h@gramps-project.org>
 
-	* po/de.po: update German translation Fix #0010131
+	* gramps/gen/plug/docgen/graphdoc.py: Revert "warn user if no
+	Ghostscript on their machine" This reverts commit ac2e0a26ac3b80ddd3f50e8cda37346714b5ee32.
 
-2017-07-13  Thomas Guyot-Sionnest <dermoth@aei.ca>
+2017-10-23  Paul Franklin <pf.98052@gmail.com>
 
-	* gramps/plugins/db/dbapi/settings.py: Use all parameters in
-	settings.ini for postgresql Read all parameters defined in settings.ini as keyword arguments for
-	postgresql. This also fixes port being ignored.
+	* gramps/gen/plug/docgen/graphdoc.py: warn user if no Ghostscript on
+	their machine This is the thread which motivated me to write this:
 
-2017-07-10  Paul Franklin <pf.98052@gmail.com>
+	http://gramps.1791082.n4.nabble.com/Re-Relationship-graph-is-limited-to-1x1-page-td4680666.html
+	but unfortunately the Nabble archive of gramps was dead at the start
+	of that thread, so it is missing.  
+	Here is a related commit, addressing part of the problem:
 
-	* gramps/gui/aboutdialog.py,
-	gramps/gui/logger/_errorreportassistant.py: ignore whether 32-bit or
-	64-bit when reporting Windows o.s.  Fixes #8832
+	https://github.com/gramps-project/gramps/pull/472/commits/90de264ccf89578888c9c653c774632cde545b49
 
-2017-07-10  Zdeněk Hataš <zdenek.hatas@gmail.com>
+2017-10-19  Nick Hall <nick-h@gramps-project.org>
 
-	* po/cs.po: czech translation update
+	* gramps/gui/glade/book.glade, gramps/gui/glade/editaddress.glade,
+	gramps/gui/glade/editattribute.glade,
+	gramps/gui/glade/editchildref.glade,
+	gramps/gui/glade/editcitation.glade,
+	gramps/gui/glade/editevent.glade,
+	gramps/gui/glade/editeventref.glade,
+	gramps/gui/glade/editfamily.glade,
+	gramps/gui/glade/editldsord.glade, gramps/gui/glade/editlink.glade,
+	gramps/gui/glade/editmedia.glade,
+	gramps/gui/glade/editmediaref.glade,
+	gramps/gui/glade/editname.glade, gramps/gui/glade/editnote.glade,
+	gramps/gui/glade/editperson.glade,
+	gramps/gui/glade/editpersonref.glade,
+	gramps/gui/glade/editplace.glade,
+	gramps/gui/glade/editplacename.glade,
+	gramps/gui/glade/editplaceref.glade,
+	gramps/gui/glade/editreporef.glade,
+	gramps/gui/glade/editrepository.glade,
+	gramps/gui/glade/editsource.glade, gramps/gui/glade/editurl.glade: 
+	Revert modifier key changes in glade files 
+	Partially reverts commit da47949b605b389ecd4181e83014443cb893b236.  
+	The modifier "primary" is only available in Gtk 3.20 and is removed
+	by the glade editor.
 
-2017-07-08  Lajos Nemeséri <nemeseril@gmail.com>
+2017-10-16  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2017-10-12  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/db/base.py, gramps/gen/db/generic.py,
+	gramps/gen/lib/test/serialize_test.py, gramps/gen/merge/diff.py,
+	gramps/gen/simple/_simpleaccess.py, gramps/gui/clipboard.py,
+	gramps/gui/editors/__init__.py, gramps/gui/editors/editlink.py,
+	gramps/gui/views/listview.py, gramps/plugins/db/bsddb/read.py,
+	gramps/plugins/webreport/narrativeweb.py: New convenience function
+	to return database methods 
+	Examples: db.method('get_%s_from_handle', 'Person')
+	db.method('get_%s_from_%s', 'Event', 'gramps_id') 
+	Returns None if the method doesn't exist.  
+	Formats 'iter_%s' and 'get_number_of_%s' use the plural forms and
+	are not yet implemented.  Replaces old get_table_metadata method.  
+	Issue #9541.
+
+2017-10-09  prculley <paulr2787@gmail.com>
+
+	* gramps/gen/plug/docgen/graphdoc.py, gramps/gen/utils/file.py: 
+	Create where_is utility to locate a binary in the standard places 
+	This is particularly useful on Mac OS X where Gramps is passed a
+	PATH that does not include elements added by the terminal shell.
+
+2017-10-05  prculley <paulr2787@gmail.com>
+
+	* gramps/gen/plug/docgen/graphdoc.py: Pylint on graphdoc
+
+2017-10-05  prculley <paulr2787@gmail.com>
+
+	* gramps/gen/plug/docgen/graphdoc.py: Fix relationship Graph so
+	Unicode chars on Multiple pages works.  
+	Fixes: #9783, #9359, #8080, #6782, #6108 Bugs: #6431, #4164, #1485,
+	#2964, #2790
+
+2017-10-12  John Ralls <jralls@ceridwen.us>
+
+	* gramps/plugins/lib/maps/osmgps.py: Use
+	Gdk.Event.triggers_context_menu in osmgpsmaps.py.
+
+2017-10-10  John Ralls <jralls@ceridwen.us>
+
+	* gramps/gui/utils.py: Replace is_right_click implementation with
+	Gdk.Event.triggers_context_menu().
+
+2017-10-08  John Ralls <jralls@ceridwen.us>
+
+	* gramps/gui/clipboard.py,
+	gramps/gui/editors/displaytabs/buttontab.py,
+	gramps/gui/editors/displaytabs/surnametab.py,
+	gramps/gui/filters/_searchbar.py,
+	gramps/gui/filters/sidebar/_sidebarfilter.py,
+	gramps/gui/glade/book.glade, gramps/gui/glade/editaddress.glade,
+	gramps/gui/glade/editattribute.glade,
+	gramps/gui/glade/editchildref.glade,
+	gramps/gui/glade/editcitation.glade,
+	gramps/gui/glade/editevent.glade,
+	gramps/gui/glade/editeventref.glade,
+	gramps/gui/glade/editfamily.glade,
+	gramps/gui/glade/editldsord.glade, gramps/gui/glade/editlink.glade,
+	gramps/gui/glade/editmedia.glade,
+	gramps/gui/glade/editmediaref.glade,
+	gramps/gui/glade/editname.glade, gramps/gui/glade/editnote.glade,
+	gramps/gui/glade/editperson.glade,
+	gramps/gui/glade/editpersonref.glade,
+	gramps/gui/glade/editplace.glade,
+	gramps/gui/glade/editplacename.glade,
+	gramps/gui/glade/editplaceref.glade,
+	gramps/gui/glade/editreporef.glade,
+	gramps/gui/glade/editrepository.glade,
+	gramps/gui/glade/editsource.glade, gramps/gui/glade/editurl.glade,
+	gramps/gui/utils.py, gramps/gui/views/navigationview.py,
+	gramps/gui/widgets/grampletpane.py,
+	gramps/gui/widgets/interactivesearchbox.py,
+	gramps/gui/widgets/multitreeview.py,
+	gramps/gui/widgets/styledtexteditor.py: Replace use of CONTROL_MASK
+	with PRIMARY_INTENT.  For better UX on Macs.
+
+2017-10-14  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/db/generic.py, gramps/plugins/db/dbapi/dbapi.py: Write
+	dbapi schema version to metadata table instead of a file
+
+2017-10-13  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/cli/clidbman.py, gramps/gui/dbman.py: Remove hardcoded
+	references to BSDDB database backend 
+	The default backend in the preferences is now used for:
+	* Archive checkout
+	* Import from the command line - python Gramps.py file
+	* Import by drag and drop onto the family tree manager
+
+2017-10-13  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/cli/grampscli.py: Fix opening recent family trees
+
+2017-09-25  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/cli/arghandler.py, gramps/cli/argparser.py,
+	gramps/cli/grampscli.py, gramps/gen/config.py, gramps/gen/const.py,
+	gramps/gen/db/base.py, gramps/gen/db/generic.py,
+	gramps/gui/configure.py, gramps/gui/dbloader.py,
+	gramps/plugins/db/bsddb/write.py, gramps/plugins/db/dbapi/dbapi.py,
+	gramps/plugins/db/dbapi/postgresql.py,
+	gramps/plugins/db/dbapi/sqlite.py: 
+	Add login dialog and username/password command line options
+
+2017-10-06  prculley <paulr2787@gmail.com>
+
+	* gramps/gui/editors/editperson.py: Fix exception when changing a
+	family with Add person editor open fixes #10187
+
+2017-09-30  prculley <paulr2787@gmail.com>
+
+	* gramps/plugins/tool/reorderids.py: Pylint improvements
+
+2017-09-30  prculley <paulr2787@gmail.com>
+
+	* gramps/plugins/tool/reorderids.py: Remove eval() and rename
+	self.dbstate
+
+2017-09-30  prculley <paulr2787@gmail.com>
+
+	* gramps/plugins/tool/reorderids.py: Another way to protect GOV IDs
+	in Gramps ID position
+
+2017-10-05  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* gramps/gen/datehandler/_date_de.py: updated German date handler:
+	added missing Latin month names and some old German month names
+
+2017-10-03  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2017-10-02  Paul Franklin <pf.98052@gmail.com>
+
+	* AUTHORS, FAQ, RELEASE_NOTES, data/authors.xml,
+	data/css/GeoView.css, data/css/Web_Basic-Ash.css,
+	data/css/Web_Basic-Cypress.css, data/css/Web_Basic-Lilac.css,
+	data/css/Web_Basic-Peach.css, data/css/Web_Basic-Spruce.css,
+	data/css/Web_Citations-Outline.css,
+	data/css/Web_DropDown-Menus.css, data/css/Web_Fade-Menus.css,
+	data/css/Web_Horizontal-Menus.css, data/css/Web_Mainz.css,
+	data/css/Web_Nebraska.css, data/css/Web_Print-Default.css,
+	data/css/Web_Visually.css, data/css/behaviour.css,
+	data/css/narrative-maps.css, data/gramps.xml.in,
+	data/gramps_canonicalize.xsl, data/grampsxml.dtd,
+	gramps/plugins/gramplet/fanchart2waygramplet.py, help/COPYING-DOCS,
+	po/bg.po, po/br.po, po/cs.po, po/da.po, po/de.po, po/el.po,
+	po/eo.po, po/es.po, po/ga.po, po/genpot.sh, po/he.po, po/hr.po,
+	po/hu.po, po/ja.po, po/lt.po, po/mk.po, po/nb.po, po/nl.po,
+	po/nn.po, po/pt_PT.po, po/ro.po, po/sk.po, po/sl.po, po/sq.po,
+	po/sr_Latn.po, po/sv.po, po/uk.po, po/vi.po, test/dates.sh,
+	test/det_ancestor_report.sh, test/det_descendant_report.sh,
+	test/impex.sh, test/runtest.sh, test/tools.sh,
+	windows/nonAIO/nsis/gramps.nsi: remove vestage of (old) SVN
+	source-control system
+
+2017-10-02  Zdeněk Hataš <zdenek.hatas@gmail.com>
+
+	* po/cs.po: Update Czech translation
+
+2017-10-01  Nemes�ri Lajos <nemeseril@gmail.com>
 
 	* po/hu.po: Update Hungarian translation
 
-2017-07-06  prculley <paulr2787@gmail.com>
+2017-10-01  prculley <paulr2787@gmail.com>
 
-	* gramps/plugins/tool/verify.glade, gramps/plugins/tool/verify.py: 
-	Fix verify tool to close and save configs properly Fixes #10121 Signed-off-by: Paul Franklin <pf.98052@gmail.com>
+	* data/authors.xml: update authors file
 
-2017-07-06  vantu5z <vantu5z@mail.ru>
+2017-09-30  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/cli/grampscli.py, gramps/gen/db/base.py,
+	gramps/gen/db/dummydb.py, gramps/gen/db/generic.py,
+	gramps/gui/dbloader.py, gramps/gui/dbman.py,
+	gramps/plugins/db/bsddb/read.py,
+	gramps/plugins/db/bsddb/test/db_test.py: 
+	Remove set_save_path method 
+	The path is already set in the database load method.
+
+2017-09-30  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/plugins/db/bsddb/test/db_test.py: Add missing methods to
+	database unit test
+
+2017-09-30  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/db/base.py: Add missing base database method Issue #9741.
+
+2017-09-30  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/db/generic.py, gramps/plugins/db/dbapi/dbapi.py: Remove
+	get_schema_version method Issue #9541.
+
+2017-09-30  vantu5z <vantu5z@mail.ru>
 
 	* po/ru.po: update Russian translation
 
-2017-07-05  Frederik De Richter <frederik.de.richter@gmail.com>
+2017-09-30  Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/nl.po: update Netherlands translation
+	* po/de.po: Update German translation
 
-2017-07-03  Paul Franklin <pf.98052@gmail.com>
+2017-09-29  Nick Hall <nick-h@gramps-project.org>
 
-	* po/eo.po: fix (more fatal) errors in Esperanto translation Travis doesn't check for string-parameter mismatches, but it would
-	have been fatal if anybody had tried to actually run gramps in
-	Esperanto.
+	* gramps/gen/db/base.py, gramps/gen/db/dummydb.py,
+	gramps/gen/db/generic.py, gramps/gen/proxy/proxybase.py,
+	gramps/plugins/db/bsddb/read.py,
+	gramps/plugins/db/bsddb/test/db_test.py,
+	gramps/plugins/db/dbapi/dbapi.py,
+	gramps/plugins/importer/importxml.py: Remove has_gramps_id method
+	from the public API Issue #9541.
 
-2017-07-03  Paul Franklin <pf.98052@gmail.com>
+2017-09-29  Nick Hall <nick-h@gramps-project.org>
 
-	* po/eo.po: add three (fatal) missing linefeeds to Esperanto
-	translation
+	* gramps/gen/db/base.py, gramps/gen/db/dummydb.py,
+	gramps/gen/db/generic.py, gramps/gen/proxy/proxybase.py,
+	gramps/plugins/db/bsddb/read.py,
+	gramps/plugins/db/bsddb/test/db_test.py,
+	gramps/plugins/db/dbapi/dbapi.py, gramps/plugins/lib/libgedcom.py: 
+	Remove get_gramps_ids method from the public API Issue #9541.
 
-2017-07-03  Pier Luigi Cinquantini <plcinquantini@gmail.com>
+2017-09-29  Nick Hall <nick-h@gramps-project.org>
 
-	* po/eo.po: update Esperanto translation
+	* gramps/gen/db/generic.py, gramps/plugins/db/dbapi/dbapi.py: Make
+	get_number_of, get_raw_data and has_handle methods protected 
+	Issue #9541.
 
-2017-07-03  Leonhaeuser <mirko@leonhaeuser.de>
+2017-09-29  Nick Hall <nick-h@gramps-project.org>
 
-	* po/de.po: update German translation
+	* gramps/gen/db/generic.py, gramps/gui/editors/editreference.py,
+	gramps/plugins/db/bsddb/read.py: Remove get_from_name_and_gramps_id
+	method Issue #9541.
 
-2017-06-30  John Ralls <jralls@ceridwen.us>
+2017-09-29  Nick Hall <nick-h@gramps-project.org>
 
-	* gramps/gui/display.py: Open web links with /usr/bin/open on Mac
-	and Python older than 3.5 Works around https://bugs.python.org/issue24452 Fixes #10105
+	* gramps/gen/db/generic.py, gramps/gen/plug/_gramplet.py,
+	gramps/plugins/db/bsddb/read.py: Remove
+	get_from_name_and_handle_method Issue #9541.
 
-2017-07-02  Paul Franklin <pf.98052@gmail.com>
+2017-09-25  prculley <paulr2787@gmail.com>
 
-	* po/fr.po: "translate" some more strings, make real omissions more
-	obvious
+	* gramps/gui/managedwindow.py: Fix ManagedWindow/GrampsWindowManager
+	for subsidiary window close fixes #10194
 
-2017-07-02  Paul Franklin <pf.98052@gmail.com>
+2017-09-22  prculley <paulr2787@gmail.com>
 
-	* gramps/gui/aboutdialog.py: translate some punctuation marks more colons for French Issue #7276
+	* gramps/plugins/lib/libgedcom.py: Fix Gedcom import for "1 MARR Y"
+	issue Fixes #10188
 
-2017-07-02  niememat <niememat@gmail.com>
+2017-08-24  prculley <paulr2787@gmail.com>
+
+	* gramps/plugins/tool/reorderids.glade,
+	gramps/plugins/tool/reorderids.py: Correct ReorderID tool for
+	several bugs and deal with GetGov ID Fixes #10177, #10175, #10176
+
+2017-09-28  niememat <niememat@gmail.com>
 
 	* po/fi.po: Update finnish translation
 
-2017-07-02  Fedik <getthesite@gmail.com>
+2017-09-27  Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/uk.po: Update Ukrainian translation
+	* po/de.po: Update German translation
 
-2017-07-01  Paul Franklin <pf.98052@gmail.com>
+2017-09-27  SNoiraud <serge.noiraud@laposte.net>
 
-	* gramps/gui/aboutdialog.py, po/gramps.pot: revert half of
-	0fa5454831 (LANG), make new gramps.pot template
+	* gramps/cli/argparser.py: Bad call to unlink function.  Bug #08835
 
-2017-07-01  Paul Franklin <pf.98052@gmail.com>
+2017-09-26  prculley <paulr2787@gmail.com>
 
-	* gramps/gui/selectors/selectsource.py, gramps/gui/undohistory.py: 
-	slight tweaks to two wiki pointers
+	* gramps/plugins/export/exportgedcom.py: Fix Gedcom export for
+	erroneously removed WriterOptionBox import
 
-2017-06-30  SNoiraud <serge.noiraud@laposte.net>
+2017-09-26  SNoiraud <serge.noiraud@laposte.net>
 
-	* gramps/plugins/webreport/narrativeweb.py: Narrated Web: path to
-	alternate image is wrong Fixes #9881
+	* gramps/cli/argparser.py: Try to handle OSError when we use the
+	--export argument in CLI mode.  Fixes #08835
 
-2017-06-30  romjerome <romjerome@users.noreply.github.com>
+2017-09-25  Nick Hall <nick-h@gramps-project.org>
 
-	* po/fr.po: merge and update french translation
+	* gramps/plugins/db/dbapi/postgresql.py: Ignore empty connection
+	settings
 
-2017-06-30  romjerome <romjerome@users.noreply.github.com>
+2017-09-25  Nick Hall <nick-h@gramps-project.org>
 
-	* po/fr.po: update french translation
+	* gramps/cli/grampscli.py: Include new PostgreSQL error handling in
+	CLI
 
-2017-06-30  vantu5z <vantu5z@mail.ru>
+2017-09-24  Paul Franklin <pf.98052@gmail.com>
 
-	* gramps/gui/aboutdialog.py, po/gramps.pot, po/ru.po: [about dialog]
-	- some strings to translate
+	* gramps/plugins/graph/gvfamilylines.py,
+	gramps/plugins/graph/gvhourglass.py,
+	gramps/plugins/graph/gvrelgraph.py: Special char in place's name
+	breaks xdot view Issue #10174
 
-2017-06-29  Paul Franklin <pf.98052@gmail.com>
-
-	* gramps/gui/logger/_errorreportassistant.py: don't print a
-	'Distribution' line in Windows error reports
-
-2017-06-29  vantu5z <vantu5z@mail.ru>
-
-	* po/ru.po: update Russian translation - merge with template (translate new strings) - add latest translators to translator-credits
-
-2017-06-26  arnaullv <arnaullv@gmail.com>
-
-	* po/ca.po: Updated catalan translation to latest template
-
-2017-06-28  Paul Franklin <pf.98052@gmail.com>
-
-	* po/is.po: fix fatal error in Finnish translation
-
-2017-06-28  Frederik De Richter <frederik.de.richter@gmail.com>
-
-	* po/nl.po: update Netherlands translation
-
-2017-06-28  Matti Niemelä <niememat@gmail.com>
-
-	* po/fi.po: update Finnish translation
-
-2017-06-28  Sveinn í Felli <sv1@fellsnet.is>
-
-	* po/is.po: update Icelandic translation
-
-2017-06-28  SNoiraud <serge.noiraud@laposte.net>
-
-	* gramps/plugins/webreport/narrativeweb.py: Narrative web : crash
-	using OSM when bad lat/lon Fixes : 10111
-
-2017-06-28  Zdeněk Hataš <zdenek.hatas@gmail.com>
-
-	* po/cs.po: czech translation update
-
-2017-06-27  Leonhaeuser <mirko@leonhaeuser.de>
-
-	* po/de.po: update German translation
-
-2017-06-27  John Ralls <jralls@ceridwen.us>
-
-	* gramps/gen/utils/grampslocale.py: FamilyGroup Report crash Python's sort routine gratuitously converts the bytearrays returned
-	by ICU::Collator::getByteArray to a string when storing it. This
-	resulted in a TypeError when attempting to compare a just-returned
-	bytearray with a stored string.  We work around this by converting the bytearray into its hexadecimal
-	representation and then decoding that into a string.  Fixes #10077.
-
-2017-06-27  Paul Franklin <pf.98052@gmail.com>
-
-	* po/gramps.pot: new gramps.pot translation template
-
-2017-06-27  Paul Franklin <pf.98052@gmail.com>
-
-	* gramps/gui/editors/filtereditor.py: typo (thanks, Sveinn Felli)
-
-2017-06-27  Paul Franklin <pf.98052@gmail.com>
-
-	* gramps/gui/aboutdialog.py: don't print a 'Distribution' line in
-	Windows' Help=>About
-
-2017-06-26  Paul Culley <paulr2787@gmail.com>
-
-	* gramps/plugins/tool/reorderids.py: ReorderIds tool crashes with
-	'bytes' error on bsddb (#428) fixes #10098
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/zh_TW.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/zh_HK.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/zh_CN.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/vi.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/uk.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/tr.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/ta.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/sv.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/sr_Latn.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/sr.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/sq.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/sl.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/sk.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/ro.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/pt_PT.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/pt_BR.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/pl.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/nn.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/nl.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/nb.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/mk.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/lt.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/ja.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/it.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/is.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/hu.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/hr.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/he.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/ga.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/fr.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/es.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/eo.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/en_GB.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/da.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/br.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/bg.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* po/ar.po: merge translation with current template
-
-2017-06-26  Paul Franklin <pf.98052@gmail.com>
-
-	* .mailmap: add another address to the mailmap
-
-2017-06-26  Matti Niemelä <niememat@gmail.com>
-
-	* po/fi.po: update Finnish translation
-
-2017-06-26  vantu5z <vantu5z@mail.ru>
+2017-09-24  vantu5z <vantu5z@mail.ru>
 
 	* po/ru.po: update Russian translation
 
-2017-06-24  John Ralls <jralls@ceridwen.us>
+2017-09-23  Paul Franklin <pf.98052@gmail.com>
 
-	* : Add 24x24 gramps-fanchart2way.png.  Missed when the plugin was added. Not having it makes for an ugly
-	charts toolbar in HiDPI.
+	* po/POTFILES.skip, po/gramps.pot: new gramps.pot translation
+	template
 
-2017-06-23  Nick Hall <nick-h@gramps-project.org>
+2017-09-23  Paul Franklin <pf.98052@gmail.com>
 
-	* gramps/gui/configure.py: typo Traceback (most recent call last):   File "C:\Program
-	    Files\GrampsAIO64-5.0.0-alpha2\gramps\gui\configure.py", line
-	    1248, in autobackup_changed self.uistate.set_autobackup_timer()
-	AttributeError: 'DisplayState' object has no attribute
-	'set_autobackup_timer' https://gramps-project.org/bugs/view.php?id=10098#c52129 Issue #10098
+	* gramps/gui/views/bookmarks.py: Organize Bookmarks Dialog doesn't
+	close with x Fixes #10207
 
-2017-06-18  prculley <paulr2787@gmail.com>
+2017-09-23  Nick Hall <nick-h@gramps-project.org>
 
-	* gramps/gen/utils/file.py: Unnecessarily long relative paths
-	generated on Windows The relative_path file utility function returns paths with '..\..'
-	on Windows unnecessarily.  fixes #10087
+	* gramps/gen/db/exceptions.py, gramps/gui/dbloader.py,
+	gramps/plugins/db/dbapi/postgresql.py: 
+	Improve PostgreSQL error handling 
+	Re-raise a DbConnectionError if the connection raises an error.
 
-2017-06-23  Nick Hall <nick-h@gramps-project.org>
+2017-09-23  Nick Hall <nick-h@gramps-project.org>
 
-	* gramps/plugins/db/bsddb/read.py, gramps/plugins/db/bsddb/write.py: 
-	The get_name_group_mapping method should return a str Fixes #10084, #10085, #10086.
+	* gramps/gen/config.py, gramps/gui/configure.py,
+	gramps/plugins/db/dbapi/postgresql.py: Add connection preferences
+	for PostgreSQL databases
 
-2017-06-22  Paul Franklin <pf.98052@gmail.com>
+2017-09-23  Nick Hall <nick-h@gramps-project.org>
 
-	* po/el.po: merge translation with current template
+	* gramps/plugins/db/bsddb/write.py: Build surname list with unique
+	names Fixes #10186.
 
-2017-06-22  Paul Franklin <pf.98052@gmail.com>
+2017-09-22  Paul Franklin <pf.98052@gmail.com>
 
-	* gramps/gen/plug/docgen/graphdoc.py: names not displayed in
-	relationship graph Issue #10093
+	* gramps/gen/datehandler/_date_hu.py,
+	gramps/gen/datehandler/_date_lt.py,
+	gramps/gen/datehandler/_dateparser.py: tweak some DateParser
+	comments
 
-2017-06-22  Leonhaeuser <mirko@leonhaeuser.de>
+2017-09-22  Paul Franklin <pf.98052@gmail.com>
 
-	* po/de.po: update German translation
+	* gramps/gen/datehandler/_dateparser.py: DateParserEN failures under
+	the DateTest tool Issue #7084
 
-2017-06-22  Zdeněk Hataš <zdenek.hatas@gmail.com>
+2017-09-19  prculley <paulr2787@gmail.com>
 
-	* po/cs.po: czech translation - small fixes
+	* gramps/gen/utils/unknown.py: Fix make_unknown to create valid
+	Place Fixes #10202
 
-2017-06-07  prculley <paulr2787@gmail.com>
+2017-09-20  Zdeněk Hataš <zdenek.hatas@gmail.com>
 
-	* gramps/plugins/gramplet/citations.py: Citations Gramplet doesn't
-	update in many cases Fixes #10069.
+	* po/cs.po: Update Czech translation
 
-2017-06-21  Nick Hall <nick-h@gramps-project.org>
+2017-09-18  vantu5z <vantu5z@mail.ru>
 
-	* gramps/gui/filters/sidebar/_citationsidebarfilter.py: Fix
-	HasCitation rule in citation filter sidebar Filter parameters should be of type str.  Fixes #10076.
+	* po/ru.po: update Russian translation
 
-2017-06-21  Paul Franklin <pf.98052@gmail.com>
+2017-09-17  Pedro Albuquerque <palbuquerque73@gmail.com>
 
-	* gramps/gen/const.py: typo
+	* po/pt_PT.po: update Portuguese (Europe) translation
 
-2017-06-21  Paul Franklin <pf.98052@gmail.com>
+2017-09-17  niememat <niememat@gmail.com>
 
-	* gramps/gen/const.py: Outdated Bugtracker link in Unexpected Error
-	reporting wizard Fixes #10100
+	* po/fi.po: Update finnish translation
 
-2017-06-21  Paul Franklin <pf.98052@gmail.com>
+2017-09-17  niememat <niememat@gmail.com>
 
-	* gramps/plugins/graph/gvfamilylines.py: Family Lines Report
-	generates empty PDFs when name [has double-quotes] Fixes #10096
+	* po/fi.po: Update finnish translation
 
-2017-06-19  Paul Franklin <pf.98052@gmail.com>
+2017-09-16  Paul Franklin <pf.98052@gmail.com>
 
-	* gramps/gui/dbman.py: non-local character in DB name causes crash
-	on Windows Fixes #10095
+	* po/gramps.pot: new gramps.pot translation template
 
-2017-06-17  Paul Franklin <pf.98052@gmail.com>
+2017-09-16  Paul Franklin <pf.98052@gmail.com>
 
-	* gramps/gui/logger/_errorreportassistant.py: make error report
-	versions closer to Help=>About ones
+	* gramps/gui/editors/editplace.py,
+	gramps/gui/editors/editplaceref.py: consolidate two strings into
+	one, for more context for translators
 
-2017-06-17  John Ralls <jralls@ceridwen.us>
+2017-09-16  Paul Franklin <pf.98052@gmail.com>
 
-	* mac/gramps.bundle: Add a gir element, needed for scriptless
-	bundles.
+	* gramps/gui/glade/editplace.glade,
+	gramps/gui/glade/editplaceref.glade: fix typos
 
-2017-06-02  SNoiraud <serge.noiraud@laposte.net>
+2017-09-16  Paul Culley <paulr2787@gmail.com>
 
-	* gramps/gen/utils/alive.py: Dead people are shown as alive Fixes #6364.
+	* gramps/gen/lib/styledtext.py,
+	gramps/gen/lib/test/styledtext_test.py: StyledText.join method fails
+	if the joint_text has StyledText Tags (#457) fixes #10192
 
-2017-05-29  prculley <paulr2787@gmail.com>
+2017-09-15  Pedro Albuquerque <palbuquerque73@gmail.com>
 
-	* data/tests/imp_MediaTest.ged, data/tests/imp_MediaTest.gramps,
-	gramps/plugins/lib/libgedcom.py: Gedcom import with OBJE/FORM URL on
-	event Fixes #7593.
+	* po/pt_PT.po: update Portuguese (Europe) translation
 
-2017-05-22  prculley <paulr2787@gmail.com>
+2017-09-15  Paul Franklin <pf.98052@gmail.com>
 
-	* gramps/gui/widgets/selectionwidget.py: Fix click/drag in media
-	reference editor Fix so click/drag creates/updates selection using left mouse button.  Fixes #8429.
+	* gramps/plugins/db/bsddb/upgrade.py: 3.4 database conversion fails 
+	Fixes #10189, #10064
 
-2017-05-22  prculley <paulr2787@gmail.com>
+2017-09-09  Paul Culley <paulr2787@gmail.com>
 
-	* gramps/gui/editors/editmediaref.py: Fix spin button updates in
-	media reference editor Fix so spin button updates visible selection when it has already
-	been clicked.  Bug #8429.
+	* data/tests/exp_sample_ged.ged, data/tests/imp_PhonFax_dfs.ged,
+	gramps/plugins/export/exportgedcom.py,
+	gramps/plugins/lib/libgedcom.py: fix invalid export (and import) of
+	Gedcom EMAIL records (#455) 
+	Gedcom spec 5.5 requires '@' in general text to be doubled '@@'
+	fixes #10167
 
-2017-05-20  prculley <paulr2787@gmail.com>
+2017-09-07  Paul Franklin <pf.98052@gmail.com>
 
-	* gramps/gui/editors/editmediaref.py,
-	gramps/gui/widgets/selectionwidget.py: Fix media preview for preview
-	size changes Bug #8429.
+	* MANIFEST.in: put the entire 'bash' tree in the tar file made by
+	'setup.py sdist'
 
-2017-06-12  prculley <paulr2787@gmail.com>
+2017-09-04  Paul Franklin <pf.98052@gmail.com>
 
-	* gramps/gui/logger/_errorreportassistant.py,
-	gramps/gui/logger/_errorview.py: _errorview dialog mapped without
-	transient parent Fixes #8128.
+	* MANIFEST.in: put the entire 'example' tree in the tar file made by
+	'setup.py sdist'
 
-2017-05-28  prculley <paulr2787@gmail.com>
+2017-09-02  Paul Franklin <pf.98052@gmail.com>
 
-	* gramps/gen/db/generic.py, gramps/plugins/db/bsddb/undoredo.py: 
-	Undo of delete doesn't update views Fixes #10056.
-
-2017-06-11  prculley <paulr2787@gmail.com>
-
-	* gramps/gui/viewmanager.py: Error on 'cancel' for db upgrade Fixes #10065.
-
-2017-06-07  prculley <paulr2787@gmail.com>
-
-	* gramps/plugins/gramplet/topsurnamesgramplet.py: Top surnames
-	Gramplet doesn't update when db is closed Fixes #10073.
-
-2017-06-16  Josip <bpisoj@gmail.com>
-
-	* gramps/plugins/db/dbapi/postgresql.py: DBAPI: PostgreSQL crash
-	(#421) Fixes #0010071.
-
-2017-06-16  SNoiraud <serge.noiraud@laposte.net>
-
-	* gramps/plugins/view/geoperson.py: 10088: Geography: try to link a
-	map position if we have an active place.
-
-2017-06-15  Doug Blank <doug.blank@gmail.com>
-
-	*
-	gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.
-	py,
-	gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.
-	py: Removes try/except and recursion in ancestor filters +/- N gens This fix rewrites the Ancestor-of +/- N filters to remove the
-	try/except and removes the recursion. The recursion would only be a
-	problem on very deep trees, but the try/except was hiding a variety
-	of problems. Most directly, if a person did not have a main family
-	then it would exit out of the loop.  (I don't have a test database to break the code other than my real
-	data, so you'll have to do that part.) I also made sure that the meaning of N is consistent in both
-	filters: 1 - root person 2 - root person's parents 3 - root person's
-	grandparents
-
-2017-05-27  prculley <paulr2787@gmail.com>
-
-	* gramps/plugins/view/relview.py: HandleError on Relationship view
-	for add child with no father Fixes #10059.
-
-2017-05-25  prculley <paulr2787@gmail.com>
-
-	* gramps/plugins/gramplet/citations.py: Fix HandleError in Citation
-	gramplet Fixes #10054.
-
-2017-06-15  Zdeněk Hataš <zdenek.hatas@gmail.com>
-
-	* gramps/gen/datehandler/_date_cs.py, po/cs.po: removed legacy code
-	from _date_cs.py fixed inflections in cs.po
-
-2017-05-23  prculley <paulr2787@gmail.com>
-
-	* gramps/plugins/tool/relcalc.py: relationship calculator fails
-	(missing uistate param) Fixes 10052
-
-2017-06-10  bpisoj <bpisoj@gmail.com>
-
-	* add build version to const.py
+	* restore git revision number to gramps50 branch
 

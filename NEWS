@@ -1,3 +1,199 @@
+2018-02-17
+Version 5.0.0-beta1
+* pt_PT, hu, cs, it, fi, de, ru: update translation
+* update Readme for Gramps 5.0.0
+* new genealogy tree report
+  * Replace backslash in image path for Windows
+  * Escape special LaTeX characters
+  * Copy output file from temporary directory
+  * Fix character encoding for new tree category reports.
+  * Add support for new genealogy tree report category.
+* Fix Place Tree view for proper display after filter cleared.
+* Implement place formats
+* Some dates are not translated in webcal
+* Some dates are not translated in webcal
+* Webcal link problem in the year glance page
+* Link problems depending on LANGUAGES.
+* Increment year to 2018 for About box.
+* data/holidays.xml.in: Fix holidays in Finnish
+* fix Sidebar to resize better
+* mac/gramps.modules: Update pyicu to v 2.0.3
+* mac/gramps.modules: Consolidate Python2 and Python3 meta-modules.
+  GObject-Introspection now works with Python3 so the split isn't needed
+  any more.
+* Add tooltip to links in styled text editor.
+* [MacOS] Replace GDK_CONTROL_MASK with GDK_META_MASK in accelerators.
+* Set the mnemonic modifier key to Alt-Ctrl for the Quartz Gdk backend.
+  This avoids interference with the use of the Alt/Option key for extending
+  the keyboard.
+* Fix Family Lines Graph when 'unknown' places are present
+* Fix Export View to CSV when Unicode characters are present
+* Fix several intl date displayers for missing parameter.
+* mac/gramps.accel: Update gramps.accel for gramps50
+* Some filter optimizations to avoid repeated parts of tree scan
+* Fix view buttons order keeps changing on different startups
+* Fix DescendentTree report; more space beneath Title
+* Fix DescendentTree report for crashes
+* Fix Book XML handler for unusual characters in report name
+* Fix 'Generate Book' dialog for bad transient parent
+* Fix Book XML handler to deal with unusual characters in Book name
+* Add color schemes to config
+* Surname Editor; fix so changes made update Person 'Preferred Name'
+* Surname Editor, fix fields for better fit in minimum width dialogs
+* Surname Editor; fix loss of data if using mouse to change fields
+* Add Garbage collection after tools/reports
+* Main Window menu 'Add' keyboard Acellerators
+* Fix Add menu Accelerators so they don't activate on Shift-'x'
+* Change Gramps 'Add' menu so 'New' is not used
+* Export Web Family Tree; error on file write is now a message, not exception.
+* Fix Export Web Family Tree for errors on file write
+* Pylint on Web Family Tree export
+* Fix Citation Editor to Tab out of Confidence ComboBox
+* Narrated Web Site:
+  * Translation problem in narrative web.
+  * crash in narrative web if no unused media
+  * Apply places changes to the narrativeweb.
+    Also change order between locations and locations alternate names.
+  * Suppress extra line in Alternate Names section.
+  * Added an option for the statistics page.
+  * We have problems with notes: pages are too large
+  * Difficult to see some page on a mobile phone when you have notes.
+  * Resizing of images on a mobile
+  * Maps are too bigs on a mobile
+  * Split the event line to have a narrower page
+  * The note is spanned on two columns (Place + Description)
+  * In media pages, the progress meter doesn't work well.
+  * Add a progress meter for the medialistpage
+  * warnings reported to console
+  * Mainz css file produces left aligned FamilyMap pages
+    Solving Mainz problem creates new ones with Basic-Blue and Nebraska
+    styles sheet.
+    Some cleanup with unused css file (GeoView.css)
+  * Many problems with css files and the ancestor tree
+  * media file not created if we have unused media.
+  * Fix Narrative Web works poorly on Android browser
+* Clear old custom name formats when database loaded
+* Fix shading colour in relationship view for dark themes.
+* Fix link colour for dark themes.
+* Fix default foreground colour in list views for dark themes.
+* fix Fan Chart for exception on right-click of person with no parent
+* Fix Fan Chart Print centering and scaling on Windows
+* Fix Media Preview Gramplet for closed db
+* Added a requirement for pango and pangocairo versions
+  Eliminates a warning that was present when calling a report from the
+  command line.
+* Fix Styled Text Editor for exception on non-editable text click
+  Also prevent editing of links on non-editable text.
+* Suport FTM 2017 Gedcom tags on import
+  FTM adds subordinate PLAC and OBJE data to INDI.ADDR which is non-standard.
+  So treat it as a Residence Event, instead of an Address.
+  FTM puts _DATE and _TEXT tags subordinate to OBJE, also non-standard.
+* Fix Family tree Manager: rename a locked db, don't open, but title bar
+  changes.
+* Fix Person, Family Sidebar Filters to add custom Event types
+  Also fix Family Sidebar Filter RelType init with closed db
+* Fix ProxyCache to deal with memory leak
+* Fix duplicated method in ProxyCache
+  Also changed size request to better utilize actual memory
+* Dbapi: Fix for broken 'backlinks' after a delete.
+* Dbapi: Use UPDATE instead of DELETE and INSERT
+* Remove write_version method from the database API
+  This is specific to the BSDDB backend.
+* Fixes for in-memory databases
+  In-memory databases always allow write access and don't need to use lock
+  files.
+* Enable Sqlite backend for all users
+* Move PostgreSQL backend into third-party addons
+* Implement locking for dbapi backends
+* New convenience function to return database methods
+  Examples: db.method('get_%s_from_handle', 'Person')
+  db.method('get_%s_from_%s', 'Event', 'gramps_id')
+  Returns None if the method doesn't exist.
+  Formats 'iter_%s' and 'get_number_of_%s' use the plural forms and are
+  not yet implemented.  Replaces old get_table_metadata method.
+* postgresql: Add login dialog and username/password command line options
+* Write dbapi schema version to metadata table instead of a file
+* Remove hardcoded references to BSDDB database backend
+  The default backend in the preferences is now used for:
+  * Archive checkout
+  * Import from the command line - python Gramps.py file
+  * Import by drag and drop onto the family tree manager
+* db:  Remove set_save_path method
+  The path is already set in the database load method.
+* Add missing methods to database unit test
+* Add missing base database method.
+* db: Remove get_schema_version method.
+* db: Remove has_gramps_id method from the public API.
+* db: Remove get_gramps_ids method from the public API.
+* db: Make get_number_of, get_raw_data and has_handle methods protected.
+* db: Remove get_from_name_and_gramps_id method.
+* db: Remove get_from_name_and_handle_method.
+* postgresql: Ignore empty connection settings
+* Include new PostgreSQL error handling in CLI
+* Improve PostgreSQL error handling
+  Re-raise a DbConnectionError if the connection raises an error.
+* Add connection preferences for PostgreSQL databases
+* bsddb: Build surname list with unique names.
+* fanchart2way: Use escape from html rather than cgi package
+* Fix QuestionDialog display for html like characters in title
+* Fix Find Database Loop tool for faster operation and better display
+* Fix FamilyRelationshpType _DATAMAP order to correspond with values
+* Fix HandleError on IsLessThanNthGenerationAncestorOf filters
+* Fix Relationship Graph to shows families if siblings but no parents
+* Fix Deep Relationship filter to avoid recursion crash
+  This also changes filter to use shortest paths.
+* Fix to allow filter progress meters in flat views
+* Fix Gedcom import for illegal Gedcom Family Attributes
+  TMG Gedcom exports an illegal NCHI with sub-data for FAM.
+  Gramps could not handle this and attached the sub-data to the FAM creating
+  some corrupted Event records.
+* Fix Session Log for exception on closed db reference click
+* Fix 'Welcome' Gramplet and StyledTextEditor for Link handling
+* fix Quickreport start from Editor when object not yet committed
+* Fix Find Database Loop tool for wrong transient parent for progress
+* Fix Test Case Generator to not create illegal 'None' handles
+* Fix Gedcom export for bad Hebrew Months
+* Can't link to a place if wrong lat/lon in the db.
+* Update redirected wiki link from GRAMPS_XML > Gramps_XML
+* Missing arg when right clicking in geography view.
+* INSTALL: Change INSTALL to replace 'python' with 'python3 for script invokes
+* Check&Repair; add checks for 'backlinks' and repair if needed.
+* Fix CSV importer for place event name using gramps_id
+* Fix PlaceModel to avoid exception following merge
+* Fix Geography view 'Find' when db is closed.
+* Fix interactive search for exception on click then down arrow
+* Create where_is utility to locate a binary in the standard places
+  This is particularly useful on Mac OS X where Gramps is passed a PATH that
+  does not include elements added by the terminal shell.
+* Fix relationship Graph so Unicode chars on Multiple pages works.
+* Use Gdk.Event.triggers_context_menu in osmgpsmaps.py.
+* Replace is_right_click implementation with Gdk.Event.triggers_context_menu().
+* Replace use of CONTROL_MASK with PRIMARY_INTENT.  For better UX on Macs.
+* Fix opening recent family trees
+* Fix exception when changing a family with Add person editor open
+* Remove eval() and rename self.dbstate
+* reorderids: Another way to protect GOV IDs in Gramps ID position
+* updated German date handler: added missing Latin month names and
+  some old German month names
+* remove vestage of (old) SVN source-control system
+* update authors file
+* Fix ManagedWindow/GrampsWindowManager for subsidiary window close
+* Fix Gedcom import for "1 MARR Y" issue
+* Correct ReorderID tool for several bugs and deal with GetGov ID
+* Bad call to unlink function.
+* Fix Gedcom export for erroneously removed WriterOptionBox import
+* Try to handle OSError when we use the --export argument in CLI mode.
+* Special char in place's name breaks xdot view
+* Organize Bookmarks Dialog doesn't close with x
+* tweak some DateParser comments
+* DateParserEN failures under the DateTest tool
+* Fix make_unknown to create valid Place
+* editplace: fix typos
+* StyledText.join method fails if the joint_text has StyledText Tags
+* 3.4 database conversion fails
+* fix invalid export (and import) of Gedcom EMAIL records
+  Gedcom spec 5.5 requires '@' in general text to be doubled '@@'
+
 2017-09-02
 Version 5.0.0-alpha3
 * Fix Undo -- crashes due to race in Gtk
