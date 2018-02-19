@@ -1,0 +1,18 @@
+gramps (4.1.0~dfsg-1) unstable; urgency=medium
+
+    This 4.1.0 release of Gramps for Debian has involved a switch to
+    Python 3. This change also means an upgrade of the database that
+    Gramps uses to store your Family History information. When you
+    first run this new version of Gramps you will receive a warning
+    that your data is about to be converted to the new database format,
+    and that you will not be able to open the database in an older
+    version of Gramps in the future.
+    As a precaution, if you do not have a backup of your Family Trees
+    (preferably in Gramps XML format), it is recommended that you copy
+    the directory with your Family Tree Database (usually ~/.gramps
+    unless you set it to a different place in Gramps Preferences) to a
+    safe place before opening one of your family trees in the new
+    version of Gramps. This is just in case something happens
+    that causes you to revert to your previous version of Gramps.  
+
+ -- Ross Gammon <rossgammon@mail.dk>  Wed, 15 Oct 2014 22:33:00 +0200
