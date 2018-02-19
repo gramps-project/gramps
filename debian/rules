@@ -9,7 +9,7 @@ export PYBUILD_INSTALL_ARGS_python3=--resourcepath=/usr/share --force
 %:
 	dh $@ --with python3 --buildsystem=pybuild
 
-# Override auto test to enable node tests
+# Override auto test to enable nose tests
 override_dh_auto_test:
 	HOME=$(CURDIR)/build \
 	nosetests3 -vv \
