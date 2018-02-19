@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-13 17:46+0100\n"
-"PO-Revision-Date: 2018-02-13 17:48+0100\n"
+"POT-Creation-Date: 2018-02-19 19:26+0100\n"
+"PO-Revision-Date: 2018-02-19 19:29+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -5457,6 +5457,7 @@ msgstr "Familienfilter"
 #: ../gramps/gen/filters/rules/place/_hasdata.py:48
 #: ../gramps/gui/glade/editfamily.glade:118
 #: ../gramps/gui/glade/editfamily.glade:372
+#: ../gramps/gui/glade/editplaceformat.glade:200
 #: ../gramps/gui/glade/editplacename.glade:183
 #: ../gramps/gui/glade/editplaceref.glade:214
 #: ../gramps/gui/glade/mergeperson.glade:222
@@ -6729,8 +6730,8 @@ msgstr "Notizen"
 #: ../gramps/plugins/webreport/basepage.py:1108
 #: ../gramps/plugins/webreport/basepage.py:2188
 #: ../gramps/plugins/webreport/event.py:176
-#: ../gramps/plugins/webreport/media.py:228
-#: ../gramps/plugins/webreport/media.py:591
+#: ../gramps/plugins/webreport/media.py:229
+#: ../gramps/plugins/webreport/media.py:592
 #: ../gramps/plugins/webreport/person.py:870
 msgid "Date"
 msgstr "Datum"
@@ -6743,7 +6744,7 @@ msgstr "Datum"
 #: ../gramps/plugins/view/repoview.py:89
 #: ../gramps/plugins/webreport/basepage.py:1109
 #: ../gramps/plugins/webreport/basepage.py:2546
-#: ../gramps/plugins/webreport/basepage.py:2573
+#: ../gramps/plugins/webreport/basepage.py:2611
 msgid "Street"
 msgstr "Straße"
 
@@ -6755,7 +6756,7 @@ msgstr "Straße"
 #: ../gramps/plugins/view/repoview.py:90
 #: ../gramps/plugins/webreport/basepage.py:1110
 #: ../gramps/plugins/webreport/basepage.py:2547
-#: ../gramps/plugins/webreport/basepage.py:2574
+#: ../gramps/plugins/webreport/basepage.py:2612
 msgid "Locality"
 msgstr "Lokalität"
 
@@ -6767,7 +6768,7 @@ msgstr "Lokalität"
 #: ../gramps/plugins/view/repoview.py:91
 #: ../gramps/plugins/webreport/basepage.py:1111
 #: ../gramps/plugins/webreport/basepage.py:2548
-#: ../gramps/plugins/webreport/basepage.py:2575
+#: ../gramps/plugins/webreport/basepage.py:2613
 msgid "City"
 msgstr "Stadt"
 
@@ -6779,7 +6780,7 @@ msgstr "Stadt"
 #: ../gramps/plugins/view/geoplaces.py:567
 #: ../gramps/plugins/webreport/basepage.py:1113
 #: ../gramps/plugins/webreport/basepage.py:2551
-#: ../gramps/plugins/webreport/basepage.py:2577
+#: ../gramps/plugins/webreport/basepage.py:2615
 msgid "County"
 msgstr "Kreis"
 
@@ -6802,7 +6803,7 @@ msgstr "Bundesland"
 #: ../gramps/plugins/view/repoview.py:93
 #: ../gramps/plugins/webreport/basepage.py:1115
 #: ../gramps/plugins/webreport/basepage.py:2555
-#: ../gramps/plugins/webreport/basepage.py:2580
+#: ../gramps/plugins/webreport/basepage.py:2618
 #: ../gramps/plugins/webreport/place.py:178
 msgid "Country"
 msgstr "Land"
@@ -6810,7 +6811,7 @@ msgstr "Land"
 #: ../gramps/gen/lib/address.py:125 ../gramps/gen/lib/location.py:103
 #: ../gramps/plugins/webreport/basepage.py:1114
 #: ../gramps/plugins/webreport/basepage.py:2554
-#: ../gramps/plugins/webreport/basepage.py:2579
+#: ../gramps/plugins/webreport/basepage.py:2617
 msgid "Postal Code"
 msgstr "Postleitzahl"
 
@@ -6879,7 +6880,7 @@ msgstr "Gesellschaftsklasse"
 #: ../gramps/plugins/webreport/basepage.py:622
 #: ../gramps/plugins/webreport/basepage.py:915
 #: ../gramps/plugins/webreport/basepage.py:2059
-#: ../gramps/plugins/webreport/basepage.py:2716
+#: ../gramps/plugins/webreport/basepage.py:2740
 #: ../gramps/plugins/webreport/download.py:127
 msgid "Description"
 msgstr "Beschreibung"
@@ -6955,7 +6956,7 @@ msgstr "Kindreferenz"
 msgid "Handle"
 msgstr "Identifikator"
 
-#: ../gramps/gen/lib/childreftype.py:67 ../gramps/gen/plug/docgen/treedoc.py:70
+#: ../gramps/gen/lib/childreftype.py:67 ../gramps/gen/plug/docgen/treedoc.py:72
 #: ../gramps/gui/configure.py:83
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:201
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:175
@@ -6966,6 +6967,7 @@ msgstr "Identifikator"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:191
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:171
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:154
+#: ../gramps/gui/glade/editplaceformat.glade:185
 #: ../gramps/plugins/tool/check.py:2459
 msgid "None"
 msgstr "Ohne"
@@ -7044,7 +7046,7 @@ msgstr "Fundstelle"
 #: ../gramps/plugins/webreport/basepage.py:2521
 #: ../gramps/plugins/webreport/event.py:177
 #: ../gramps/plugins/webreport/event.py:389
-#: ../gramps/plugins/webreport/media.py:568
+#: ../gramps/plugins/webreport/media.py:569
 #: ../gramps/plugins/webreport/person.py:1394
 #: ../gramps/plugins/webreport/repository.py:243
 #: ../gramps/plugins/webreport/source.py:259
@@ -7111,8 +7113,8 @@ msgstr "Quelle"
 #: ../gramps/plugins/webreport/basepage.py:1627
 #: ../gramps/plugins/webreport/basepage.py:1674
 #: ../gramps/plugins/webreport/basepage.py:1963
-#: ../gramps/plugins/webreport/media.py:195
-#: ../gramps/plugins/webreport/media.py:389
+#: ../gramps/plugins/webreport/media.py:196
+#: ../gramps/plugins/webreport/media.py:390
 msgid "Media"
 msgstr "Medien"
 
@@ -7492,7 +7494,7 @@ msgstr "Juristisch"
 #: ../gramps/gen/lib/eventtype.py:153 ../gramps/gen/lib/eventtype.py:195
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:463
 #: ../gramps/plugins/webreport/addressbooklist.py:113
-#: ../gramps/plugins/webreport/basepage.py:2694
+#: ../gramps/plugins/webreport/basepage.py:2718
 msgid "Residence"
 msgstr "Wohnort"
 
@@ -7637,7 +7639,7 @@ msgstr "Pensionierung"
 msgid "Will"
 msgstr "Testament"
 
-#: ../gramps/gen/lib/eventtype.py:198 ../gramps/gen/plug/docgen/treedoc.py:132
+#: ../gramps/gen/lib/eventtype.py:198 ../gramps/gen/plug/docgen/treedoc.py:150
 #: ../gramps/gui/merge/mergeperson.py:258
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:219
@@ -8031,7 +8033,7 @@ msgstr "Gesetzliche Partnerschaft"
 #: ../gramps/plugins/webreport/basepage.py:941
 #: ../gramps/plugins/webreport/basepage.py:1243
 #: ../gramps/plugins/webreport/basepage.py:2058
-#: ../gramps/plugins/webreport/basepage.py:2651
+#: ../gramps/plugins/webreport/basepage.py:2675
 #: ../gramps/plugins/webreport/event.py:175
 #: ../gramps/plugins/webreport/repository.py:162
 #: ../gramps/plugins/webreport/repository.py:251
@@ -8279,7 +8281,7 @@ msgstr "Suffix"
 #: ../gramps/plugins/textreport/tagreport.py:745
 #: ../gramps/plugins/view/mediaview.py:94
 #: ../gramps/plugins/view/sourceview.py:82
-#: ../gramps/plugins/webreport/basepage.py:2649
+#: ../gramps/plugins/webreport/basepage.py:2673
 msgid "Title"
 msgstr "Titel"
 
@@ -8389,7 +8391,7 @@ msgstr "Name nach der Hochzeit"
 #. ###############################
 #. 3
 #: ../gramps/gen/lib/note.py:109 ../gramps/gen/plug/docgen/graphdoc.py:254
-#: ../gramps/gen/plug/docgen/treedoc.py:181 ../gramps/gui/clipboard.py:397
+#: ../gramps/gen/plug/docgen/treedoc.py:199 ../gramps/gui/clipboard.py:397
 #: ../gramps/gui/configure.py:571 ../gramps/gui/editors/editlink.py:95
 #: ../gramps/gui/editors/editmedia.py:98 ../gramps/gui/editors/editmedia.py:181
 #: ../gramps/gui/editors/editmediaref.py:146
@@ -8421,6 +8423,7 @@ msgid "Note"
 msgstr "Notiz"
 
 #: ../gramps/gen/lib/note.py:119 ../gramps/gui/configure.py:864
+#: ../gramps/gui/editors/editplaceformat.py:72
 #: ../gramps/plugins/tool/reorderids.glade:1447
 msgid "Format"
 msgstr "Format"
@@ -8700,6 +8703,7 @@ msgstr "Orte"
 
 #: ../gramps/gen/lib/place.py:154 ../gramps/gui/merge/mergeperson.py:199
 #: ../gramps/plugins/textreport/indivcomplete.py:391
+#: ../gramps/plugins/webreport/basepage.py:2581
 msgid "Alternate Names"
 msgstr "Alternative Namen"
 
@@ -8711,7 +8715,7 @@ msgstr "Alternative Namen"
 msgid "Code"
 msgstr "Kennung"
 
-#: ../gramps/gen/lib/place.py:160 ../gramps/plugins/webreport/basepage.py:2567
+#: ../gramps/gen/lib/place.py:160 ../gramps/plugins/webreport/basepage.py:2605
 msgid "Alternate Locations"
 msgstr "Alternative Ortsangaben"
 
@@ -8726,6 +8730,7 @@ msgstr "Ortsname"
 
 #: ../gramps/gen/lib/placename.py:103
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:65
+#: ../gramps/plugins/webreport/basepage.py:2583
 msgid "Language"
 msgstr "Sprache"
 
@@ -8779,7 +8784,7 @@ msgstr "Gebäude"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:89
 #: ../gramps/plugins/view/geoplaces.py:558
-#: ../gramps/plugins/webreport/basepage.py:2647
+#: ../gramps/plugins/webreport/basepage.py:2671
 #: ../gramps/plugins/webreport/source.py:163
 msgid "Number"
 msgstr "Standortnummer/Signatur"
@@ -8875,7 +8880,7 @@ msgstr "Abkürzung"
 #: ../gramps/plugins/view/view.gpr.py:260
 #: ../gramps/plugins/webreport/basepage.py:1491
 #: ../gramps/plugins/webreport/basepage.py:1620
-#: ../gramps/plugins/webreport/basepage.py:2638
+#: ../gramps/plugins/webreport/basepage.py:2662
 #: ../gramps/plugins/webreport/repository.py:138
 #: ../gramps/plugins/webreport/repository.py:223
 msgid "Repositories"
@@ -9043,7 +9048,7 @@ msgstr "Primär"
 msgid "%(first)s %(second)s"
 msgstr "%(first)s %(second)s"
 
-#: ../gramps/gen/lib/tag.py:125 ../gramps/gen/plug/docgen/treedoc.py:150
+#: ../gramps/gen/lib/tag.py:125 ../gramps/gen/plug/docgen/treedoc.py:168
 #: ../gramps/gui/glade/styleeditor.glade:384
 #: ../gramps/gui/glade/styleeditor.glade:1433
 #: ../gramps/gui/plug/_guioptions.py:1503 ../gramps/gui/views/tags.py:409
@@ -9339,8 +9344,8 @@ msgstr "Konnte %s nicht erstellen"
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/gen/plug/docgen/graphdoc.py:66
-#: ../gramps/gen/plug/docgen/treedoc.py:65
-#: ../gramps/gen/plug/docgen/treedoc.py:71
+#: ../gramps/gen/plug/docgen/treedoc.py:67
+#: ../gramps/gen/plug/docgen/treedoc.py:73
 #: ../gramps/gen/plug/report/stdoptions.py:60
 #: ../gramps/gen/plug/report/stdoptions.py:74
 #: ../gramps/gen/plug/report/stdoptions.py:244
@@ -9422,13 +9427,13 @@ msgid "Expand uniformly"
 msgstr "Gleichmäßig ausdehnen"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:88
-#: ../gramps/gen/plug/docgen/treedoc.py:84
+#: ../gramps/gen/plug/docgen/treedoc.py:86
 #: ../gramps/gui/glade/styleeditor.glade:1343
 msgid "Top"
 msgstr "Oben"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:89
-#: ../gramps/gen/plug/docgen/treedoc.py:85
+#: ../gramps/gen/plug/docgen/treedoc.py:87
 #: ../gramps/gui/glade/styleeditor.glade:1358
 msgid "Bottom"
 msgstr "Unten"
@@ -9638,17 +9643,17 @@ msgid "This text will be added to the graph."
 msgstr "Dieser Text wird der Grafik hinzugefügt."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:262
-#: ../gramps/gen/plug/docgen/treedoc.py:188
+#: ../gramps/gen/plug/docgen/treedoc.py:206
 msgid "Note location"
 msgstr "Position der Notiz"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:265
-#: ../gramps/gen/plug/docgen/treedoc.py:191
+#: ../gramps/gen/plug/docgen/treedoc.py:209
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Legt fest, ob die Notiz oben oder unten auf der Seite erscheint."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:269
-#: ../gramps/gen/plug/docgen/treedoc.py:195
+#: ../gramps/gen/plug/docgen/treedoc.py:213
 msgid "Note size"
 msgstr "Notizgröße"
 
@@ -9710,134 +9715,134 @@ msgstr "Selbst definierte Größe"
 #. Private Constants
 #.
 #. -------------------------------------------------------------------------
-#: ../gramps/gen/plug/docgen/treedoc.py:61
+#: ../gramps/gen/plug/docgen/treedoc.py:63
 msgid "Full"
 msgstr "Vollständig"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:62
+#: ../gramps/gen/plug/docgen/treedoc.py:64
 #: ../gramps/plugins/tool/finddupes.py:61
 msgid "Medium"
 msgstr "Mittel"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:63
+#: ../gramps/gen/plug/docgen/treedoc.py:65
 msgid "Short"
 msgstr "Kurz"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:66
+#: ../gramps/gen/plug/docgen/treedoc.py:68
 msgid "Above"
 msgstr "Oberhalb"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:67
+#: ../gramps/gen/plug/docgen/treedoc.py:69
 msgid "Below"
 msgstr "Unterhalb"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:68
+#: ../gramps/gen/plug/docgen/treedoc.py:70
 msgid "Not shown"
 msgstr "Nicht gezeigt"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:72 ../gramps/gui/configure.py:158
+#: ../gramps/gen/plug/docgen/treedoc.py:74 ../gramps/gui/configure.py:158
 #: ../gramps/gui/configure.py:1715 ../gramps/gui/views/pageview.py:606
 msgid "Preferences"
 msgstr "Einstellungen"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:74
+#: ../gramps/gen/plug/docgen/treedoc.py:76
 msgid "Down (↓)"
 msgstr "Runter (↓)"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:75
+#: ../gramps/gen/plug/docgen/treedoc.py:77
 msgid "Up (↑)"
 msgstr "Hoch (↑)"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:76
+#: ../gramps/gen/plug/docgen/treedoc.py:78
 msgid "Right (→)"
 msgstr "Rechts (→)"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:77
+#: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Left (←)"
 msgstr "Links (←)"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:79
+#: ../gramps/gen/plug/docgen/treedoc.py:81
 msgid "Perpendicular"
 msgstr "Senkrecht"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:80
+#: ../gramps/gen/plug/docgen/treedoc.py:82
 msgid "Rounded"
 msgstr "Abgerundet"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:81
+#: ../gramps/gen/plug/docgen/treedoc.py:83
 msgid "Swing"
 msgstr "Schwingen"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:82
+#: ../gramps/gen/plug/docgen/treedoc.py:84
 msgid "Mesh"
 msgstr "Netz"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:87
+#: ../gramps/gen/plug/docgen/treedoc.py:89
 msgid "Tiny"
 msgstr "Winzig"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:88
+#: ../gramps/gen/plug/docgen/treedoc.py:90
 msgid "Script"
 msgstr "Schrift"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:89
+#: ../gramps/gen/plug/docgen/treedoc.py:91
 msgid "Footnote"
 msgstr "Fußnote"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:90
+#: ../gramps/gen/plug/docgen/treedoc.py:92
 msgid "Small"
 msgstr "Klein"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:91 ../gramps/gen/utils/string.py:57
+#: ../gramps/gen/plug/docgen/treedoc.py:93 ../gramps/gen/utils/string.py:57
 #: ../gramps/gui/editors/editcitation.py:212
 #: ../gramps/plugins/graph/gvfamilylines.py:255
 msgid "Normal"
 msgstr "Normal"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:92
+#: ../gramps/gen/plug/docgen/treedoc.py:94
 #: ../gramps/plugins/graph/gvfamilylines.py:256
 msgid "Large"
 msgstr "Groß"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:93
+#: ../gramps/gen/plug/docgen/treedoc.py:95
 msgid "Very large"
 msgstr "Sehr groß"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:94
+#: ../gramps/gen/plug/docgen/treedoc.py:96
 msgid "Extra large"
 msgstr "Besonders groß"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:95
+#: ../gramps/gen/plug/docgen/treedoc.py:97
 msgid "Huge"
 msgstr "Riesig"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:96
+#: ../gramps/gen/plug/docgen/treedoc.py:98
 msgid "Extra huge"
 msgstr "Extra riesig"
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/treedoc.py:123
+#: ../gramps/gen/plug/docgen/treedoc.py:141
 msgid "Node Options"
 msgstr "Knotenoptionen"
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/treedoc.py:126
+#: ../gramps/gen/plug/docgen/treedoc.py:144
 msgid "Node detail"
 msgstr "Knotendetails"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:129
+#: ../gramps/gen/plug/docgen/treedoc.py:147
 msgid "Detail of information to be shown in a node."
 msgstr "Details der Informationen die in einem Knoten angezeigt werden."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:135
+#: ../gramps/gen/plug/docgen/treedoc.py:153
 msgid "Position of marriage information."
 msgstr "Position der Heiratsinformationen."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:138
+#: ../gramps/gen/plug/docgen/treedoc.py:156
 msgid "Node size"
 msgstr "Knotengröße"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:139
+#: ../gramps/gen/plug/docgen/treedoc.py:157
 msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the width, otherwise it is the height."
@@ -9845,11 +9850,11 @@ msgstr ""
 "Eine Dimension eines Knotens in mm. Wenn der Zeitablauf hoch oder runter "
 "ist, ist dies die Breite, sonst ist es die Höhe."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:144
+#: ../gramps/gen/plug/docgen/treedoc.py:162
 msgid "Level size"
 msgstr "Ebenengröße"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:145
+#: ../gramps/gen/plug/docgen/treedoc.py:163
 msgid ""
 "One dimension of a node, in mm. If the timeflow is up or down then this is "
 "the height, otherwise it is the width."
@@ -9857,40 +9862,40 @@ msgstr ""
 "Eine Dimension eines Knotens in mm. Wenn der Zeitablauf hoch oder runter "
 "ist, ist dies die Höhe, sonst ist es die Breite."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:153
+#: ../gramps/gen/plug/docgen/treedoc.py:171
 msgid "Node color."
 msgstr "Knotenfarbe."
 
 #. ###############################
 #. #################
-#: ../gramps/gen/plug/docgen/treedoc.py:157
+#: ../gramps/gen/plug/docgen/treedoc.py:175
 #: ../gramps/plugins/drawreport/ancestortree.py:791
 #: ../gramps/plugins/drawreport/descendtree.py:1522
 msgid "Tree Options"
 msgstr "Baumoptionen"
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/treedoc.py:160
+#: ../gramps/gen/plug/docgen/treedoc.py:178
 msgid "Timeflow"
 msgstr "Zeitablauf"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:163
+#: ../gramps/gen/plug/docgen/treedoc.py:181
 msgid "Direction that the graph will grow over time."
 msgstr "Richtung, in die der Graf mit der Zeit wächst."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:166
+#: ../gramps/gen/plug/docgen/treedoc.py:184
 msgid "Edge style"
 msgstr "Kantenstil"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:169
+#: ../gramps/gen/plug/docgen/treedoc.py:187
 msgid "Style of the edges between nodes."
 msgstr "Stil der Kanten zwischen Knoten."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:172
+#: ../gramps/gen/plug/docgen/treedoc.py:190
 msgid "Level distance"
 msgstr "Ebenenabstand"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:173
+#: ../gramps/gen/plug/docgen/treedoc.py:191
 msgid ""
 "The minimum amount of free space, in mm, between levels.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -9901,23 +9906,23 @@ msgstr ""
 "entspricht das dem Abstand zwischen Spalten."
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/treedoc.py:184
+#: ../gramps/gen/plug/docgen/treedoc.py:202
 msgid "Note to add to the tree"
 msgstr "Notiz zum hinzufügen zum Baum"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:185
+#: ../gramps/gen/plug/docgen/treedoc.py:203
 msgid "This text will be added to the tree."
 msgstr "Dieser Text wird dem Baum hinzugefügt."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:198
+#: ../gramps/gen/plug/docgen/treedoc.py:216
 msgid "The size of note text."
 msgstr "Die Größe des Notizentext."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:625
+#: ../gramps/gen/plug/docgen/treedoc.py:652
 msgid "PDF"
 msgstr "PDF"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:631
+#: ../gramps/gen/plug/docgen/treedoc.py:658
 msgid "LaTeX File"
 msgstr "LaTeX Datei"
 
@@ -11255,6 +11260,7 @@ msgstr "Namenseditor anzeigen"
 #: ../gramps/gui/glade/book.glade:539 ../gramps/gui/glade/clipboard.glade:71
 #: ../gramps/gui/glade/dialog.glade:20 ../gramps/gui/glade/dialog.glade:141
 #: ../gramps/gui/glade/displaystate.glade:23
+#: ../gramps/gui/glade/editplaceformat.glade:23
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/plug/_windows.py:105
@@ -12724,8 +12730,9 @@ msgstr "%(part1)s - %(part2)s"
 #: ../gramps/gui/glade/editfamily.glade:494
 #: ../gramps/gui/glade/editfamily.glade:501
 #: ../gramps/gui/glade/editperson.glade:22
-#: ../gramps/gui/glade/editperson.glade:361 ../gramps/gui/glade/rule.glade:422
-#: ../gramps/gui/glade/rule.glade:429
+#: ../gramps/gui/glade/editperson.glade:361
+#: ../gramps/gui/glade/editplaceformat.glade:72
+#: ../gramps/gui/glade/rule.glade:422 ../gramps/gui/glade/rule.glade:429
 #: ../gramps/gui/glade/styleeditor.glade:1832
 #: ../gramps/gui/glade/styleeditor.glade:1839
 #: ../gramps/plugins/view/relview.py:410
@@ -12737,6 +12744,7 @@ msgstr "Hinzufügen"
 #: ../gramps/gui/glade/editfamily.glade:255
 #: ../gramps/gui/glade/editfamily.glade:556
 #: ../gramps/gui/glade/editfamily.glade:563
+#: ../gramps/gui/glade/editplaceformat.glade:85
 #: ../gramps/gui/glade/grampletpane.glade:104
 #: ../gramps/gui/glade/grampletpane.glade:111
 #: ../gramps/gui/glade/rule.glade:490 ../gramps/gui/glade/rule.glade:497
@@ -14231,6 +14239,14 @@ msgstr "Ort (%s) bearbeiten"
 #, python-format
 msgid "Delete Place (%s)"
 msgstr "Ort (%s) löschen"
+
+#: ../gramps/gui/editors/editplaceformat.py:49
+msgid "Place Format Editor"
+msgstr "Orteformat Editor"
+
+#: ../gramps/gui/editors/editplaceformat.py:137
+msgid "New"
+msgstr "Neu"
 
 #: ../gramps/gui/editors/editplacename.py:49
 msgid "manual|Place_Name_Editor_dialog"
@@ -16259,11 +16275,33 @@ msgstr "Der Name dieses Ortes."
 msgid "Invoke place name editor."
 msgstr "Ortsnameeditor aufrufen"
 
+#: ../gramps/gui/glade/editplaceformat.glade:124
+msgid "Levels:"
+msgstr "Ebenen:"
+
+#: ../gramps/gui/glade/editplaceformat.glade:136
+msgid "Street format:"
+msgstr "Srassenformat:"
+
+#: ../gramps/gui/glade/editplaceformat.glade:148
 #: ../gramps/gui/glade/editplacename.glade:108
 msgid "Language:"
 msgstr "Sprache:"
 
+#: ../gramps/gui/glade/editplaceformat.glade:168
+msgid "Reverse display order"
+msgstr "Kehre Anzeigereihenfolge um"
+
+#: ../gramps/gui/glade/editplaceformat.glade:186
+msgid "Number Street"
+msgstr "Nummer Straße"
+
+#: ../gramps/gui/glade/editplaceformat.glade:187
+msgid "Street Number"
+msgstr "Straße Nummer"
+
 #: ../gramps/gui/glade/editplacename.glade:156
+#: ../gramps/plugins/webreport/basepage.py:2585
 msgid "Date range in which the name is valid."
 msgstr "Zeitraum indem der Name gültig ist."
 
@@ -22885,7 +22923,7 @@ msgstr "Gramplet zeigt die rückwärts Referenzen für eine Person"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:981
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:995
 #: ../gramps/plugins/webreport/basepage.py:2269
-#: ../gramps/plugins/webreport/basepage.py:2786
+#: ../gramps/plugins/webreport/basepage.py:2810
 #: ../gramps/plugins/webreport/person.py:856
 #: ../gramps/plugins/webreport/thumbnail.py:210
 msgid "References"
@@ -30389,7 +30427,7 @@ msgid "No references for this %s"
 msgstr "Keine Referenzen für diese %s"
 
 #: ../gramps/plugins/quickview/reporef.py:62
-#: ../gramps/plugins/webreport/basepage.py:2653
+#: ../gramps/plugins/webreport/basepage.py:2677
 msgid "Call number"
 msgstr "Standortnummer/Signatur:"
 
@@ -35570,7 +35608,7 @@ msgstr "Erzählend"
 
 #: ../gramps/plugins/webreport/basepage.py:1112
 #: ../gramps/plugins/webreport/basepage.py:2552
-#: ../gramps/plugins/webreport/basepage.py:2578
+#: ../gramps/plugins/webreport/basepage.py:2616
 #: ../gramps/plugins/webreport/place.py:177
 msgid "State/ Province"
 msgstr "Bundesland/ Provinz"
@@ -35643,12 +35681,12 @@ msgid "Web Calendar"
 msgstr "Webkalender"
 
 #: ../gramps/plugins/webreport/basepage.py:1579
-#: ../gramps/plugins/webreport/media.py:409
+#: ../gramps/plugins/webreport/media.py:410
 msgid "Previous"
 msgstr "Zurück"
 
 #: ../gramps/plugins/webreport/basepage.py:1581
-#: ../gramps/plugins/webreport/media.py:420
+#: ../gramps/plugins/webreport/media.py:421
 msgid "Next"
 msgstr "Vor"
 
@@ -35668,15 +35706,15 @@ msgid "Family Map"
 msgstr "Familienkarte"
 
 #: ../gramps/plugins/webreport/basepage.py:2549
-#: ../gramps/plugins/webreport/basepage.py:2576
+#: ../gramps/plugins/webreport/basepage.py:2614
 msgid "Church Parish"
 msgstr "Kirchengemeinde"
 
-#: ../gramps/plugins/webreport/basepage.py:2597
+#: ../gramps/plugins/webreport/basepage.py:2570
 msgid "Locations"
 msgstr "Lagen"
 
-#: ../gramps/plugins/webreport/basepage.py:2757
+#: ../gramps/plugins/webreport/basepage.py:2781
 #, python-format
 msgid " (%s) "
 msgstr " (%s) "
@@ -35710,7 +35748,7 @@ msgstr "Erstelle Ereignisseiten"
 #: ../gramps/plugins/webreport/event.py:114
 #: ../gramps/plugins/webreport/family.py:108
 #: ../gramps/plugins/webreport/media.py:114
-#: ../gramps/plugins/webreport/media.py:242
+#: ../gramps/plugins/webreport/media.py:243
 #: ../gramps/plugins/webreport/narrativeweb.py:484
 #: ../gramps/plugins/webreport/narrativeweb.py:1051
 #: ../gramps/plugins/webreport/narrativeweb.py:1109
@@ -35774,7 +35812,7 @@ msgstr "Anfang"
 msgid "Creating media pages"
 msgstr "Erstelle Medienseiten"
 
-#: ../gramps/plugins/webreport/media.py:202
+#: ../gramps/plugins/webreport/media.py:203
 msgid ""
 "This page contains an index of all the media objects in the database, sorted "
 "by their title. Clicking on the title will take you to that media "
@@ -35786,23 +35824,23 @@ msgstr ""
 "Seite des Medienobjektes. Wenn Mediengrößen über einem Bild siehst, klick "
 "auf das Bild um es in Originalgröße zu sehen.  "
 
-#: ../gramps/plugins/webreport/media.py:226
+#: ../gramps/plugins/webreport/media.py:227
 msgid "Media | Name"
 msgstr "Name"
 
-#: ../gramps/plugins/webreport/media.py:229
+#: ../gramps/plugins/webreport/media.py:230
 msgid "Mime Type"
 msgstr "Mimetyp"
 
-#: ../gramps/plugins/webreport/media.py:241
+#: ../gramps/plugins/webreport/media.py:242
 msgid "Creating list of media pages"
 msgstr "Erstelle Liste von Medienseiten"
 
-#: ../gramps/plugins/webreport/media.py:285
+#: ../gramps/plugins/webreport/media.py:286
 msgid "Below unused media objects"
 msgstr "Unten unbenutzte Medienobjekte"
 
-#: ../gramps/plugins/webreport/media.py:410
+#: ../gramps/plugins/webreport/media.py:411
 #, python-format
 msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of %(strong2_strt)s"
@@ -35812,15 +35850,15 @@ msgstr ""
 "%(total_pages)d%(strong_end)s"
 
 #. missing media error message
-#: ../gramps/plugins/webreport/media.py:423
+#: ../gramps/plugins/webreport/media.py:424
 msgid "The file has been moved or deleted."
 msgstr "Die Datei wurde verschoben oder gelöscht."
 
-#: ../gramps/plugins/webreport/media.py:579
+#: ../gramps/plugins/webreport/media.py:580
 msgid "File Type"
 msgstr "Dateityp"
 
-#: ../gramps/plugins/webreport/media.py:682
+#: ../gramps/plugins/webreport/media.py:683
 msgid "Missing media object:"
 msgstr "Fehlendes Medienobjekt"
 
@@ -37020,9 +37058,6 @@ msgstr "Kein Stylesheet"
 #~ msgid "Suppress comma after house number"
 #~ msgstr "Unterdrücke Komma nach Hausnummer"
 
-#~ msgid "Reverse display order"
-#~ msgstr "Kehre Anzeigereihenfolge um"
-
 #~ msgid "Full place name"
 #~ msgstr "Voller Ortsname"
 
@@ -37043,9 +37078,6 @@ msgstr "Kein Stylesheet"
 
 #~ msgid "Gender Unknown Death"
 #~ msgstr "Geschlecht von 'unbekannt tot'"
-
-#~ msgid "New"
-#~ msgstr "Neu"
 
 #~ msgid "PostgreSQL"
 #~ msgstr "PostgreSQL"
@@ -38352,10 +38384,6 @@ msgstr "Kein Stylesheet"
 #, fuzzy
 #~ msgid "Number (total)"
 #~ msgstr "Familienanzahl"
-
-#, fuzzy
-#~ msgid "Number (Short)"
-#~ msgstr "Standortnummer/Signatur"
 
 #~ msgid "Original repository"
 #~ msgstr "Original Aufbewahrungsort"
@@ -41641,9 +41669,6 @@ msgstr "Kein Stylesheet"
 #~ "Klammern und Kommas\n"
 #~ "werden um leeren Feldern entfernt. Andere Texte werden wörtlich "
 #~ "wiedergegeben."
-
-#~ msgid "Name Format Editor"
-#~ msgstr "Namensformat Editor"
 
 #~ msgid "The format definition is invalid"
 #~ msgstr "Formatdefinition ist ungültig"
