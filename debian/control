@@ -22,8 +22,8 @@ Build-Depends-Indep:
 Build-Depends:
  debhelper (>= 11)
 Standards-Version: 4.1.3
-Vcs-Git: https://salsa.debian.org/debian/gramps.git -b experimental
-Vcs-browser: https://salsa.debian.org/debian/gramps
+Vcs-Git: https://github.com/gramps-project/gramps.git
+Vcs-browser: https://github.com/gramps-project/gramps/tree/maintenance/gramps50
 Homepage: https://www.gramps-project.org/
 X-Python3-Version: >= 3.2
 
