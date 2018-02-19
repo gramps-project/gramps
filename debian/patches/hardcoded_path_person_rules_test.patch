@@ -1,0 +1,24 @@
+Description: Remove hard coded build path from import
+ gramps/gen/filters/rules/test/person_rules_test.py contains an import
+ that hard codes the normal build path when working in the source tree.
+ This causes the test to fail when building the Debian package, which
+ happens out of the source tree.
+ This patch imports using .... instead of build/lib for the path for the
+ MatchIdOf function (the same as the other imports in the file).
+Author: Ross Gammon <rossgammon@debian.org>
+Forwarded: not-yet
+Applied-Upstream: not-yet
+Last-Update: 2018-02-19
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- gramps.orig/gramps/gen/filters/rules/test/person_rules_test.py
++++ gramps/gramps/gen/filters/rules/test/person_rules_test.py
+@@ -17,7 +17,7 @@
+ # along with this program; if not, write to the Free Software
+ # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ #
+-from build.lib.gramps.gen.filters.rules.person._matchidof import MatchIdOf
++from ....filters.rules.person._matchidof import MatchIdOf
+ 
+ """
+ Unittest that tests person-specific filter rules
