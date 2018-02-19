@@ -1,3 +1,13 @@
+gramps (5.0.0~beta1-1) UNRELEASED; urgency=medium
+
+  * First beta release of gramps 5.0
+  * Sync debian directory with Debian experimental branch on salsa
+  * Point Vcs URLs at the Gramps Project on Github
+  * Correct spelling in debian/rules, node > nose
+  * Delete gbp.conf, not required as gbp not used to build package
+
+ -- Ross Gammon <rossgammon@debian.org>  Mon, 19 Feb 2018 07:43:11 +0100
+
 gramps (4.2.8) unstable; urgency=medium
 
   * Quick bug fix release
