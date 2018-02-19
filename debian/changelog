@@ -1,12 +1,17 @@
-gramps (5.0.0~beta1-1) UNRELEASED; urgency=medium
+gramps (5.0.0~beta1-1) unstable; urgency=medium
 
   * First beta release of gramps 5.0
   * Sync debian directory with Debian experimental branch on salsa
   * Point Vcs URLs at the Gramps Project on Github
   * Correct spelling in debian/rules, node > nose
   * Delete gbp.conf, not required as gbp not used to build package
+  * Delete NEWS file, only really applicable in Debian
+  * Fix syntax errors in d/changelog and remove trailing whitespace
+  * Patch person_rules_test.py to remove hard coded build path from
+    import. Fixes FTBFS due to test failure.
+  * Enable extra tests that were failing for alpha3
 
- -- Ross Gammon <rossgammon@debian.org>  Mon, 19 Feb 2018 07:43:11 +0100
+ -- Ross Gammon <rossgammon@debian.org>  Mon, 19 Feb 2018 19:25:25 +0100
 
 gramps (4.2.8) unstable; urgency=medium
 
@@ -101,8 +106,8 @@ gramps (4.0.3) precise; urgency=low
 gramps (4.0.2) precise; urgency=low
 
   * experimental .deb for gramps 4.0.2
- 
--- Jérôme Rapinat <romjerome@yahoo.fr>  Wed, 04 Dec 2013 10:23:36 +0100
+
+ -- Jérôme Rapinat <romjerome@yahoo.fr>  Wed, 04 Dec 2013 10:23:36 +0100
 
 gramps (4.0.1-2) precise; urgency=low
 
@@ -797,7 +802,7 @@ gramps (0.7.3-1) unstable; urgency=low
   * Added new entry to the upstream NEWS file - it was missing.
   * Added '#! usr/bin/python -O' line to src/AddMedia.py to make lintian happy.
     Also removed this line from src/DbPrompter.py for the same reason.
-  * Edited debian/rules to call '$(MAKE) clean' instead of 
+  * Edited debian/rules to call '$(MAKE) clean' instead of
     '$(MAKE) distclean' which did not exist.
   * Edited src/Makefile.in - 'clean' target should also remove *.so files.
   * Pre-built static HTMLs since the on-the-fly generation from SGML is buggy.
@@ -932,7 +937,7 @@ gramps (0.3.1-2) unstable; urgency=low
   * The author has finally addressed the issue of a missing help file. Though
     as of now none have been created the error produced before is gone and the
     author is working on better documentation.
-    Closes: #99617 
+    Closes: #99617
 
  -- Brandon L. Griffith <brandon@debian.org>  Thu, 28 Jun 2001 20:27:30 -0500
 
@@ -1009,7 +1014,7 @@ gramps (0.1.4-3) unstable; urgency=low
     This should take care of the startup problem some people have had.
     Bug Fixed. Closes: #98646
 
-  * Silly me named the menu file wrong so it never got included into the 
+  * Silly me named the menu file wrong so it never got included into the
     Debian Menu system. Gramps should now show up under Apps->Tools. Have
     no idea how I overlooked this.
 
