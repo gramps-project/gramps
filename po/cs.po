@@ -37,8 +37,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-29 15:05+0200\n"
-"PO-Revision-Date: 2016-11-28 14:35+0100\n"
+"POT-Creation-Date: 2018-02-08 17:47+0000\n"
+"PO-Revision-Date: 2018-02-19 19:10+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -1005,7 +1005,7 @@ msgstr "Rodokmeny Gramps:"
 #: ../gramps/cli/arghandler.py:431 ../gramps/cli/arghandler.py:433
 #: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:438
 #: ../gramps/cli/arghandler.py:440 ../gramps/cli/clidbman.py:67
-#: ../gramps/cli/clidbman.py:211 ../gramps/gui/clipboard.py:970
+#: ../gramps/cli/clidbman.py:211 ../gramps/gui/clipboard.py:973
 #: ../gramps/gui/configure.py:1444
 msgid "Family Tree"
 msgstr "Rodokmen"
@@ -1447,7 +1447,7 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"CHYBA: Nesprávná cesta k databázi v menu Upravit->Předvolby.\n"
+"CHYBA: Nesprávná cesta k databázi v menu Úpravy->Předvolby.\n"
 "Otevřete předvolby a nastavte správnou cestu k databázi.\n"
 "\n"
 "Podrobnosti: Nelze vytvořit adresář databáze:\n"
@@ -1467,7 +1467,7 @@ msgstr "Zamkl %s"
 #. allow deferred translation of attribute UI strings
 #: ../gramps/cli/clidbman.py:512 ../gramps/gen/lib/attrtype.py:67
 #: ../gramps/gen/lib/childreftype.py:78 ../gramps/gen/lib/eventroletype.py:58
-#: ../gramps/gen/lib/eventtype.py:168 ../gramps/gen/lib/familyreltype.py:52
+#: ../gramps/gen/lib/eventtype.py:168 ../gramps/gen/lib/familyreltype.py:55
 #: ../gramps/gen/lib/grampstype.py:34 ../gramps/gen/lib/nameorigintype.py:79
 #: ../gramps/gen/lib/nametype.py:52 ../gramps/gen/lib/notetype.py:78
 #: ../gramps/gen/lib/placetype.py:68 ../gramps/gen/lib/repotype.py:58
@@ -1476,7 +1476,7 @@ msgstr "Zamkl %s"
 #: ../gramps/gen/utils/lds.py:87 ../gramps/gen/utils/unknown.py:119
 #: ../gramps/gen/utils/unknown.py:121 ../gramps/gen/utils/unknown.py:125
 #: ../gramps/gen/utils/unknown.py:131 ../gramps/gen/utils/unknown.py:136
-#: ../gramps/gui/clipboard.py:183
+#: ../gramps/gui/clipboard.py:186
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:125
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:143
 #: ../gramps/gui/editors/editmedia.py:181
@@ -1520,14 +1520,14 @@ msgstr "Zamkl %s"
 #: ../gramps/plugins/textreport/indivcomplete.py:833
 #: ../gramps/plugins/tool/check.py:2208
 #: ../gramps/plugins/tool/dumpgenderstats.py:65
-#: ../gramps/plugins/view/geoclose.py:507
+#: ../gramps/plugins/view/geoclose.py:512
 #: ../gramps/plugins/view/geofamclose.py:260
-#: ../gramps/plugins/view/geofamclose.py:653
-#: ../gramps/plugins/view/geofamily.py:433
+#: ../gramps/plugins/view/geofamclose.py:656
+#: ../gramps/plugins/view/geofamily.py:435
 #: ../gramps/plugins/view/geomoves.py:574
-#: ../gramps/plugins/view/geoperson.py:466
-#: ../gramps/plugins/view/relview.py:458 ../gramps/plugins/view/relview.py:995
-#: ../gramps/plugins/view/relview.py:1052
+#: ../gramps/plugins/view/geoperson.py:468
+#: ../gramps/plugins/view/relview.py:449 ../gramps/plugins/view/relview.py:975
+#: ../gramps/plugins/view/relview.py:1030
 #: ../gramps/plugins/webreport/narrativeweb.py:398
 #: ../gramps/plugins/webreport/narrativeweb.py:2388
 #: ../gramps/plugins/webreport/narrativeweb.py:2549
@@ -1545,12 +1545,12 @@ msgid "ERROR: %s"
 msgstr "Chyba: %s"
 
 #: ../gramps/cli/grampscli.py:101 ../gramps/cli/user.py:180
-#: ../gramps/gui/dialog.py:214
+#: ../gramps/gui/dialog.py:217
 msgid "Low level database corruption detected"
 msgstr "Bylo zjištěno poškození databáze"
 
 #: ../gramps/cli/grampscli.py:103 ../gramps/cli/user.py:181
-#: ../gramps/gui/dialog.py:215
+#: ../gramps/gui/dialog.py:218
 msgid ""
 "Gramps has detected a problem in the underlying Berkeley database. This can "
 "be repaired from the Family Tree Manager. Select the database and click on "
@@ -1619,97 +1619,97 @@ msgstr "Detaily: %s"
 msgid "Error encountered in argument parsing: %s"
 msgstr "Při zpracovávání argumentu došlo k chybě: %s"
 
-#: ../gramps/cli/plug/__init__.py:168
+#: ../gramps/cli/plug/__init__.py:169
 msgid "ERROR: Please specify a person"
 msgstr "CHYBA: Zadejte prosím osobu"
 
-#: ../gramps/cli/plug/__init__.py:193
+#: ../gramps/cli/plug/__init__.py:194
 msgid "ERROR: Please specify a family"
 msgstr "CHYBA: Zadejte prosím rodinu"
 
-#: ../gramps/cli/plug/__init__.py:265
+#: ../gramps/cli/plug/__init__.py:275
 msgid "=filename"
 msgstr "=název souboru"
 
-#: ../gramps/cli/plug/__init__.py:265
+#: ../gramps/cli/plug/__init__.py:275
 msgid "Output file name. MANDATORY"
 msgstr "Jméno výstupního souboru. POVINNÉ"
 
-#: ../gramps/cli/plug/__init__.py:266
+#: ../gramps/cli/plug/__init__.py:276
 msgid "=format"
 msgstr "=formát"
 
-#: ../gramps/cli/plug/__init__.py:266
+#: ../gramps/cli/plug/__init__.py:276
 msgid "Output file format."
 msgstr "Formát souboru výstupu."
 
-#: ../gramps/cli/plug/__init__.py:267 ../gramps/cli/plug/__init__.py:268
+#: ../gramps/cli/plug/__init__.py:277 ../gramps/cli/plug/__init__.py:278
 msgid "=name"
 msgstr "=jméno"
 
-#: ../gramps/cli/plug/__init__.py:267
+#: ../gramps/cli/plug/__init__.py:277
 msgid "Style name."
 msgstr "Název stylu."
 
-#: ../gramps/cli/plug/__init__.py:268
+#: ../gramps/cli/plug/__init__.py:278
 msgid "Paper size name."
 msgstr "Název velikosti papíru."
 
-#: ../gramps/cli/plug/__init__.py:269 ../gramps/cli/plug/__init__.py:270
-#: ../gramps/cli/plug/__init__.py:272 ../gramps/cli/plug/__init__.py:274
-#: ../gramps/cli/plug/__init__.py:276
+#: ../gramps/cli/plug/__init__.py:279 ../gramps/cli/plug/__init__.py:280
+#: ../gramps/cli/plug/__init__.py:282 ../gramps/cli/plug/__init__.py:284
+#: ../gramps/cli/plug/__init__.py:286
 msgid "=number"
 msgstr "=číslo"
 
-#: ../gramps/cli/plug/__init__.py:269
+#: ../gramps/cli/plug/__init__.py:279
 msgid "Paper orientation number."
 msgstr "Číslo orientace papíru."
 
-#: ../gramps/cli/plug/__init__.py:270
+#: ../gramps/cli/plug/__init__.py:280
 msgid "Left paper margin"
 msgstr "Levý okraj papíru"
 
-#: ../gramps/cli/plug/__init__.py:271 ../gramps/cli/plug/__init__.py:273
-#: ../gramps/cli/plug/__init__.py:275 ../gramps/cli/plug/__init__.py:277
+#: ../gramps/cli/plug/__init__.py:281 ../gramps/cli/plug/__init__.py:283
+#: ../gramps/cli/plug/__init__.py:285 ../gramps/cli/plug/__init__.py:287
 msgid "Size in cm"
 msgstr "Velikost v cm"
 
-#: ../gramps/cli/plug/__init__.py:272
+#: ../gramps/cli/plug/__init__.py:282
 msgid "Right paper margin"
 msgstr "Pravý okraj papíru"
 
-#: ../gramps/cli/plug/__init__.py:274
+#: ../gramps/cli/plug/__init__.py:284
 msgid "Top paper margin"
 msgstr "Horní okraj papíru"
 
-#: ../gramps/cli/plug/__init__.py:276
+#: ../gramps/cli/plug/__init__.py:286
 msgid "Bottom paper margin"
 msgstr "Spodní okraj papíru"
 
-#: ../gramps/cli/plug/__init__.py:278
+#: ../gramps/cli/plug/__init__.py:288
 msgid "=css filename"
 msgstr "=soubor css"
 
-#: ../gramps/cli/plug/__init__.py:278
+#: ../gramps/cli/plug/__init__.py:288
 msgid "CSS filename to use, html format only"
 msgstr "Použitý CSS soubor, pouze html formát"
 
-#: ../gramps/cli/plug/__init__.py:427
+#: ../gramps/cli/plug/__init__.py:441
 #, python-format
 msgid "Unknown option: %s"
 msgstr "Neznámá volba: %s"
 
-#: ../gramps/cli/plug/__init__.py:428 ../gramps/cli/plug/__init__.py:510
+#: ../gramps/cli/plug/__init__.py:442 ../gramps/cli/plug/__init__.py:533
 msgid "   Valid options are:"
 msgstr "   Platné volby jsou:"
 
-#: ../gramps/cli/plug/__init__.py:431 ../gramps/cli/plug/__init__.py:513
-#: ../gramps/cli/plug/__init__.py:590
+#: ../gramps/cli/plug/__init__.py:445 ../gramps/cli/plug/__init__.py:536
+#: ../gramps/cli/plug/__init__.py:613
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
 msgstr " Popis platných hodnot získáte použitím '%(donottranslate)s'"
 
-#: ../gramps/cli/plug/__init__.py:484
+#: ../gramps/cli/plug/__init__.py:507
 #, python-format
 msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s="
@@ -1718,30 +1718,30 @@ msgstr ""
 "Ignoruje se '%(notranslate1)s=%(notranslate2)s' a používá '%(notranslate1)s="
 "%(notranslate3)s'."
 
-#: ../gramps/cli/plug/__init__.py:490
+#: ../gramps/cli/plug/__init__.py:513
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
 msgstr "Popis platných hodnot získáte použitím '%(notranslate)s'."
 
-#: ../gramps/cli/plug/__init__.py:509
+#: ../gramps/cli/plug/__init__.py:532
 #, python-format
 msgid "Ignoring unknown option: %s"
 msgstr "Ignorovaná neplatná volba: %s"
 
-#: ../gramps/cli/plug/__init__.py:579
+#: ../gramps/cli/plug/__init__.py:602
 msgid "   Available options:"
 msgstr "   Dostupné volby:"
 
-#: ../gramps/cli/plug/__init__.py:588
+#: ../gramps/cli/plug/__init__.py:611
 msgid "(no help available)"
 msgstr "(nápověda není k dispozici)"
 
-#: ../gramps/cli/plug/__init__.py:596
+#: ../gramps/cli/plug/__init__.py:619
 msgid "   Available values are:"
 msgstr "   Dostupné hodnoty jsou:"
 
 #. there was a show option given, but the option is invalid
-#: ../gramps/cli/plug/__init__.py:607
+#: ../gramps/cli/plug/__init__.py:630
 #, python-format
 msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
@@ -1750,7 +1750,7 @@ msgstr ""
 "volba  '%(optionname)s' není platná. Všechny platné volby zjistíte použitím "
 "'%(donottranslate)s'."
 
-#: ../gramps/cli/plug/__init__.py:621
+#: ../gramps/cli/plug/__init__.py:644
 msgid "Failed to write report. "
 msgstr "Nepodařilo se vytvořit sestavu. "
 
@@ -3369,11 +3369,11 @@ msgid "Miscellaneous filters"
 msgstr "Různé filtry"
 
 #: ../gramps/gen/filters/rules/_rule.py:54 ../gramps/gui/glade/rule.glade:921
-#: ../gramps/plugins/view/geoclose.py:518
-#: ../gramps/plugins/view/geofamclose.py:664
-#: ../gramps/plugins/view/geofamily.py:444
+#: ../gramps/plugins/view/geoclose.py:523
+#: ../gramps/plugins/view/geofamclose.py:667
+#: ../gramps/plugins/view/geofamily.py:446
 #: ../gramps/plugins/view/geomoves.py:586
-#: ../gramps/plugins/view/geoperson.py:475
+#: ../gramps/plugins/view/geoperson.py:477
 msgid "No description"
 msgstr "Bez popisu"
 
@@ -5913,7 +5913,7 @@ msgstr "Vyhovují prameny označené jako soukromé"
 
 #: ../gramps/gen/lib/attrtype.py:68 ../gramps/gen/lib/childreftype.py:79
 #: ../gramps/gen/lib/eventroletype.py:59 ../gramps/gen/lib/eventtype.py:169
-#: ../gramps/gen/lib/familyreltype.py:53 ../gramps/gen/lib/markertype.py:58
+#: ../gramps/gen/lib/familyreltype.py:56 ../gramps/gen/lib/markertype.py:58
 #: ../gramps/gen/lib/nameorigintype.py:80 ../gramps/gen/lib/nametype.py:53
 #: ../gramps/gen/lib/notetype.py:79 ../gramps/gen/lib/placetype.py:69
 #: ../gramps/gen/lib/repotype.py:59 ../gramps/gen/lib/srcattrtype.py:50
@@ -6005,13 +6005,14 @@ msgstr "Svědek"
 msgid "Time"
 msgstr "Čas"
 
-#: ../gramps/gen/lib/childreftype.py:72 ../gramps/gui/configure.py:80
+#: ../gramps/gen/lib/childreftype.py:72 ../gramps/gen/plug/docgen/treedoc.py:70
+#: ../gramps/gui/configure.py:80
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:201
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:172
-#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:201
+#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:209
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:155
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:150
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:245
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:250
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:172
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:167
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:154
@@ -6029,7 +6030,7 @@ msgstr "Žádný"
 #: ../gramps/plugins/textreport/familygroup.py:511
 #: ../gramps/plugins/textreport/familygroup.py:513
 #: ../gramps/plugins/textreport/tagreport.py:146
-#: ../gramps/plugins/view/relview.py:599
+#: ../gramps/plugins/view/relview.py:588
 #: ../gramps/plugins/webreport/narrativeweb.py:369
 #: ../gramps/plugins/webreport/narrativeweb.py:2954
 #: ../gramps/plugins/webreport/narrativeweb.py:5335
@@ -6062,12 +6063,12 @@ msgstr "Pěstoun"
 #: ../gramps/gen/mime/_pythonmime.py:48 ../gramps/gen/mime/_pythonmime.py:56
 #: ../gramps/gen/mime/_winmime.py:57 ../gramps/gen/utils/db.py:523
 #: ../gramps/gui/editors/editperson.py:352
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:89
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
 #: ../gramps/gui/merge/mergeperson.py:61
 #: ../gramps/gui/views/treemodels/peoplemodel.py:98
 #: ../gramps/plugins/textreport/indivcomplete.py:584
 #: ../gramps/plugins/tool/dumpgenderstats.py:35
-#: ../gramps/plugins/view/relview.py:635
+#: ../gramps/plugins/view/relview.py:624
 #: ../gramps/plugins/webreport/narrativeweb.py:5501
 msgid "unknown"
 msgstr "neznámé"
@@ -6103,7 +6104,7 @@ msgstr "mezi"
 #: ../gramps/gen/lib/date.py:295 ../gramps/gen/lib/date.py:335
 #: ../gramps/gen/lib/date.py:350 ../gramps/gui/merge/mergefamily.py:150
 #: ../gramps/plugins/quickview/all_relations.py:282
-#: ../gramps/plugins/view/relview.py:975
+#: ../gramps/plugins/view/relview.py:958
 #: ../gramps/plugins/webreport/narrativeweb.py:1157
 msgid "and"
 msgstr "a"
@@ -6238,7 +6239,7 @@ msgstr "Životní události"
 #. get the family events
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
-#: ../gramps/gen/lib/eventtype.py:145 ../gramps/gui/clipboard.py:771
+#: ../gramps/gen/lib/eventtype.py:145 ../gramps/gui/clipboard.py:774
 #: ../gramps/gui/configure.py:531
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
@@ -6254,8 +6255,8 @@ msgstr "Životní události"
 #: ../gramps/plugins/quickview/filterbyname.py:214
 #: ../gramps/plugins/quickview/quickview.gpr.py:200
 #: ../gramps/plugins/quickview/references.py:86
-#: ../gramps/plugins/view/relview.py:1367
-#: ../gramps/plugins/view/relview.py:1391
+#: ../gramps/plugins/view/relview.py:1340
+#: ../gramps/plugins/view/relview.py:1362
 #: ../gramps/plugins/webreport/narrativeweb.py:3175
 msgid "Family"
 msgstr "Rodina"
@@ -6297,7 +6298,7 @@ msgstr "Jiný"
 #: ../gramps/plugins/textreport/familygroup.py:517
 #: ../gramps/plugins/textreport/familygroup.py:519
 #: ../gramps/plugins/textreport/tagreport.py:152
-#: ../gramps/plugins/view/relview.py:608 ../gramps/plugins/view/relview.py:633
+#: ../gramps/plugins/view/relview.py:597 ../gramps/plugins/view/relview.py:622
 #: ../gramps/plugins/webreport/narrativeweb.py:373
 #: ../gramps/plugins/webreport/narrativeweb.py:2957
 #: ../gramps/plugins/webreport/narrativeweb.py:5338
@@ -6427,7 +6428,8 @@ msgstr "Odchod do důchodu"
 msgid "Will"
 msgstr "Závěť"
 
-#: ../gramps/gen/lib/eventtype.py:204 ../gramps/gui/merge/mergeperson.py:243
+#: ../gramps/gen/lib/eventtype.py:204 ../gramps/gen/plug/docgen/treedoc.py:132
+#: ../gramps/gui/merge/mergeperson.py:243
 #: ../gramps/plugins/export/exportcsv.py:464
 #: ../gramps/plugins/importer/importcsv.py:218
 #: ../gramps/plugins/textreport/familygroup.py:397
@@ -6670,17 +6672,17 @@ msgstr "pod. rozv."
 msgid "Annulment abbreviation|annul."
 msgstr "annul."
 
-#: ../gramps/gen/lib/familyreltype.py:54
-msgid "Civil Union"
-msgstr "Občanský svazek"
+#: ../gramps/gen/lib/familyreltype.py:52
+msgid "Married"
+msgstr "Manželé"
 
-#: ../gramps/gen/lib/familyreltype.py:55
+#: ../gramps/gen/lib/familyreltype.py:53
 msgid "Unmarried"
 msgstr "Svobodný"
 
-#: ../gramps/gen/lib/familyreltype.py:56
-msgid "Married"
-msgstr "Manželé"
+#: ../gramps/gen/lib/familyreltype.py:54
+msgid "Civil Union"
+msgstr "Občanský svazek"
 
 #: ../gramps/gen/lib/ldsord.py:95
 msgid "Endowment"
@@ -6707,7 +6709,7 @@ msgid "Canceled"
 msgstr "Zrušeno"
 
 #: ../gramps/gen/lib/ldsord.py:105
-#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:116
+#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:124
 #: ../gramps/gui/glade/editchildref.glade:250
 #: ../gramps/gui/merge/mergeperson.py:247
 #: ../gramps/plugins/export/exportcsv.py:505
@@ -6828,7 +6830,7 @@ msgstr "Linie otců"
 msgid "Matrilineal"
 msgstr "Linie matek"
 
-#: ../gramps/gen/lib/nameorigintype.py:92 ../gramps/gui/clipboard.py:323
+#: ../gramps/gen/lib/nameorigintype.py:92 ../gramps/gui/clipboard.py:326
 #: ../gramps/gui/plug/_windows.py:612
 msgid "Location"
 msgstr "Místo"
@@ -6876,7 +6878,7 @@ msgstr "Rukopis"
 msgid "Source text"
 msgstr "Pramen"
 
-#: ../gramps/gen/lib/notetype.py:84 ../gramps/gui/clipboard.py:490
+#: ../gramps/gen/lib/notetype.py:84 ../gramps/gui/clipboard.py:493
 #: ../gramps/gui/configure.py:537 ../gramps/gui/editors/editcitation.py:119
 #: ../gramps/gui/editors/editcitation.py:125
 #: ../gramps/gui/editors/filtereditor.py:301
@@ -6925,7 +6927,7 @@ msgid "LDS Note"
 msgstr "SPD poznámka"
 
 #: ../gramps/gen/lib/notetype.py:97
-#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:119
+#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:127
 msgid "Family Note"
 msgstr "Poznámka k rodině"
 
@@ -7178,17 +7180,17 @@ msgid "Video"
 msgstr "Video"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:64
-#: ../gramps/gui/widgets/styledtexteditor.py:458
+#: ../gramps/gui/widgets/styledtexteditor.py:454
 msgid "Bold"
 msgstr "Tučné"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:65
-#: ../gramps/gui/widgets/styledtexteditor.py:456
+#: ../gramps/gui/widgets/styledtexteditor.py:452
 msgid "Italic"
 msgstr "Kurzíva (italic)"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:66
-#: ../gramps/gui/widgets/styledtexteditor.py:460
+#: ../gramps/gui/widgets/styledtexteditor.py:456
 msgid "Underline"
 msgstr "Podtržené"
 
@@ -7216,7 +7218,7 @@ msgstr "Horní index"
 #: ../gramps/gui/glade/editlink.glade:172
 #: ../gramps/gui/widgets/styledtextbuffer.py:565
 #: ../gramps/gui/widgets/styledtextbuffer.py:602
-#: ../gramps/gui/widgets/styledtexteditor.py:472
+#: ../gramps/gui/widgets/styledtexteditor.py:468
 msgid "Link"
 msgstr "Odkaz"
 
@@ -7396,11 +7398,11 @@ msgstr "Pohled Gramps"
 msgid "Relationships"
 msgstr "Vztahy"
 
-#: ../gramps/gen/plug/_pluginreg.py:86 ../gramps/gen/plug/_pluginreg.py:412
+#: ../gramps/gen/plug/_pluginreg.py:86 ../gramps/gen/plug/_pluginreg.py:414
 #: ../gramps/gui/glade/grampletpane.glade:156
 #: ../gramps/gui/widgets/grampletbar.py:628
-#: ../gramps/gui/widgets/grampletpane.py:226
-#: ../gramps/gui/widgets/grampletpane.py:968
+#: ../gramps/gui/widgets/grampletpane.py:221
+#: ../gramps/gui/widgets/grampletpane.py:963
 msgid "Gramplet"
 msgstr "Gramplet"
 
@@ -7409,19 +7411,19 @@ msgid "Sidebar"
 msgstr "Postranní lišta"
 
 #. add miscellaneous column
-#: ../gramps/gen/plug/_pluginreg.py:500
+#: ../gramps/gen/plug/_pluginreg.py:502
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
 #: ../gramps/plugins/webreport/narrativeweb.py:1936
 msgid "Miscellaneous"
 msgstr "Různé"
 
-#: ../gramps/gen/plug/_pluginreg.py:1102 ../gramps/gen/plug/_pluginreg.py:1125
-#: ../gramps/gen/plug/_pluginreg.py:1130
+#: ../gramps/gen/plug/_pluginreg.py:1105 ../gramps/gen/plug/_pluginreg.py:1128
+#: ../gramps/gen/plug/_pluginreg.py:1133
 #, python-format
 msgid "ERROR: Failed reading plugin registration %(filename)s"
 msgstr "CHYBA: Selhalo čtení registrace zásuvného modulu %(filename)s"
 
-#: ../gramps/gen/plug/_pluginreg.py:1113
+#: ../gramps/gen/plug/_pluginreg.py:1116
 #, python-format
 msgid ""
 "WARNING: Plugin %(plugin_name)s has no translation for any of your "
@@ -7430,7 +7432,7 @@ msgstr ""
 "POZOR: Zásuvný modul %(plugin_name)s není přeložen do žádného z nastavených "
 "jazyků, použije se US English"
 
-#: ../gramps/gen/plug/_pluginreg.py:1144
+#: ../gramps/gen/plug/_pluginreg.py:1147
 #, python-format
 msgid ""
 "ERROR: Plugin file %(filename)s has a version of \"%(gramps_target_version)s"
@@ -7439,13 +7441,13 @@ msgstr ""
 "CHYBA: Zásuvný modul %(filename)s je verze  \"%(gramps_target_version)s\" "
 "která není platná pro Gramps \"%(gramps_version)s\"."
 
-#: ../gramps/gen/plug/_pluginreg.py:1165
+#: ../gramps/gen/plug/_pluginreg.py:1168
 #, python-format
 msgid "ERROR: Wrong python file %(filename)s in register file %(regfile)s"
 msgstr ""
 "CHYBA:  Chybný python soubor %(filename)s v souboru registru %(regfile)s"
 
-#: ../gramps/gen/plug/_pluginreg.py:1173
+#: ../gramps/gen/plug/_pluginreg.py:1176
 #, python-format
 msgid ""
 "ERROR: Python file %(filename)s in register file %(regfile)s does not exist"
@@ -7511,106 +7513,110 @@ msgstr "Nemohu vytvořit %s"
 #. Private Constants
 #.
 #. -------------------------------------------------------------------------------
-#: ../gramps/gen/plug/docgen/graphdoc.py:66
+#: ../gramps/gen/plug/docgen/graphdoc.py:68
+#: ../gramps/gen/plug/docgen/treedoc.py:65
+#: ../gramps/gen/plug/docgen/treedoc.py:71
 #: ../gramps/gen/plug/report/stdoptions.py:51
 #: ../gramps/gen/plug/report/stdoptions.py:64
 msgid "Default"
 msgstr "Výchozí"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:67
+#: ../gramps/gen/plug/docgen/graphdoc.py:69
 msgid "PostScript / Helvetica"
 msgstr "Postscript / Helvetica"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:68
+#: ../gramps/gen/plug/docgen/graphdoc.py:70
 msgid "TrueType / FreeSans"
 msgstr "Truetype / FreeSans"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:70
+#: ../gramps/gen/plug/docgen/graphdoc.py:72
 #: ../gramps/plugins/view/pedigreeview.py:2028
 msgid "Vertical (↓)"
-msgstr "Svislý  (↓)"
-
-#: ../gramps/gen/plug/docgen/graphdoc.py:71
-#: ../gramps/plugins/view/pedigreeview.py:2029
-msgid "Vertical (↑)"
-msgstr "Svislý (↑)"
-
-#: ../gramps/gen/plug/docgen/graphdoc.py:72
-#: ../gramps/plugins/view/pedigreeview.py:2030
-msgid "Horizontal (→)"
-msgstr "Vodorovný (→)"
+msgstr "Shora dolů  (↓)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:73
-#: ../gramps/plugins/view/pedigreeview.py:2031
-msgid "Horizontal (←)"
-msgstr "Vodorovný (←)"
+#: ../gramps/plugins/view/pedigreeview.py:2029
+msgid "Vertical (↑)"
+msgstr "Zdola nahoru (↑)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:74
+#: ../gramps/plugins/view/pedigreeview.py:2030
+msgid "Horizontal (→)"
+msgstr "Zleva doprava (→)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:75
+#: ../gramps/plugins/view/pedigreeview.py:2031
+msgid "Horizontal (←)"
+msgstr "Zprava doleva (←)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:77
 msgid "Bottom, left"
 msgstr "Dole, vlevo"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:76
+#: ../gramps/gen/plug/docgen/graphdoc.py:78
 msgid "Bottom, right"
 msgstr "Dole, vpravo"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:77
+#: ../gramps/gen/plug/docgen/graphdoc.py:79
 msgid "Top, left"
 msgstr "Nahoře, vlevo"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:78
+#: ../gramps/gen/plug/docgen/graphdoc.py:80
 msgid "Top, Right"
 msgstr "Nahoře, vpravo"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:79
+#: ../gramps/gen/plug/docgen/graphdoc.py:81
 msgid "Right, bottom"
 msgstr "Vpravo, dole"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:80
+#: ../gramps/gen/plug/docgen/graphdoc.py:82
 msgid "Right, top"
 msgstr "Vpravo, nahoře"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:81
+#: ../gramps/gen/plug/docgen/graphdoc.py:83
 msgid "Left, bottom"
 msgstr "Vlevo, dole"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:82
+#: ../gramps/gen/plug/docgen/graphdoc.py:84
 msgid "Left, top"
 msgstr "Vlevo, nahoře"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:84
+#: ../gramps/gen/plug/docgen/graphdoc.py:86
 msgid "Compress to minimal size"
 msgstr "Komprimovat na minimální velikost"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:85
+#: ../gramps/gen/plug/docgen/graphdoc.py:87
 msgid "Fill the given area"
 msgstr "Vyplnit daný prostor"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:86
+#: ../gramps/gen/plug/docgen/graphdoc.py:88
 msgid "Expand uniformly"
 msgstr "Rozbalit jednotně"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:88
+#: ../gramps/gen/plug/docgen/graphdoc.py:90
+#: ../gramps/gen/plug/docgen/treedoc.py:84
 #: ../gramps/gui/glade/styleeditor.glade:1343
 msgid "Top"
 msgstr "Nahoře"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:89
+#: ../gramps/gen/plug/docgen/graphdoc.py:91
+#: ../gramps/gen/plug/docgen/treedoc.py:85
 #: ../gramps/gui/glade/styleeditor.glade:1358
 msgid "Bottom"
 msgstr "Dole"
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:135
+#: ../gramps/gen/plug/docgen/graphdoc.py:134
 msgid "Graphviz Layout"
 msgstr "Nastavení Graphviz"
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:137
-#: ../gramps/gui/widgets/styledtexteditor.py:481
+#: ../gramps/gen/plug/docgen/graphdoc.py:136
+#: ../gramps/gui/widgets/styledtexteditor.py:477
 msgid "Font family"
 msgstr "Řez písma"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:140
+#: ../gramps/gen/plug/docgen/graphdoc.py:139
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -7618,28 +7624,28 @@ msgstr ""
 "Zvolte rodinu písem. Jestliže se nezobrazují mezinárodní znaky, použijte "
 "písmo FreeSans. FreeSans je dostupné z http://www.nongnu.org/freefont/"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:146
-#: ../gramps/gui/widgets/styledtexteditor.py:493
+#: ../gramps/gen/plug/docgen/graphdoc.py:145
+#: ../gramps/gui/widgets/styledtexteditor.py:489
 msgid "Font size"
 msgstr "Velikost písma"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:147
+#: ../gramps/gen/plug/docgen/graphdoc.py:146
 msgid "The font size, in points."
 msgstr "Velikost písma v bodech."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:150
+#: ../gramps/gen/plug/docgen/graphdoc.py:149
 msgid "Graph Direction"
 msgstr "Směr grafu"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:153
+#: ../gramps/gen/plug/docgen/graphdoc.py:152
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Zda-li graf směřuje odshora dolů nebo zleva doprava."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:157
+#: ../gramps/gen/plug/docgen/graphdoc.py:156
 msgid "Number of Horizontal Pages"
 msgstr "Počet horizontálních stránek"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:158
+#: ../gramps/gen/plug/docgen/graphdoc.py:157
 msgid ""
 "Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -7649,11 +7655,11 @@ msgstr ""
 "polí stránek. Toto pole určuje počet stránek vodorovně. Platné pouze pro dot "
 "a pdf s využitím Ghostscriptu."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:165
+#: ../gramps/gen/plug/docgen/graphdoc.py:164
 msgid "Number of Vertical Pages"
 msgstr "Počet vertikálních stránek"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:166
+#: ../gramps/gen/plug/docgen/graphdoc.py:165
 msgid ""
 "Graphviz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -7663,11 +7669,11 @@ msgstr ""
 "polí stránek. Toto pole určuje počet stránek svisle. Platné pouze pro dot a "
 "pdf s využitím Ghostscriptu."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:173
+#: ../gramps/gen/plug/docgen/graphdoc.py:172
 msgid "Paging Direction"
 msgstr "Směr stránkování"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:176
+#: ../gramps/gen/plug/docgen/graphdoc.py:175
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
@@ -7676,16 +7682,16 @@ msgstr ""
 "pokud je počet svislých nebo vodorovných stran větší než 1."
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:194
+#: ../gramps/gen/plug/docgen/graphdoc.py:193
 msgid "Graphviz Options"
 msgstr "Nastavení Graphviz"
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:197
+#: ../gramps/gen/plug/docgen/graphdoc.py:196
 msgid "Aspect ratio"
 msgstr "Poměr stran"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:200
+#: ../gramps/gen/plug/docgen/graphdoc.py:199
 msgid ""
 "Affects node spacing and scaling of the graph.\n"
 "If the graph is smaller than the print area:\n"
@@ -7712,11 +7718,11 @@ msgstr ""
 " Vyplnit zmenší graf tak aby se vešel, nejdříve ale zvětší rozteč uzlů.\n"
 " Rozšířit stejnoměrně zmenší graf tak aby se vešel do oblasti tisku."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:216
+#: ../gramps/gen/plug/docgen/graphdoc.py:215
 msgid "DPI"
 msgstr "DPI"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:217
+#: ../gramps/gen/plug/docgen/graphdoc.py:216
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 100 or 300 DPI.  PostScript and PDF files always use 72 "
@@ -7726,11 +7732,11 @@ msgstr ""
 "zkuste velikost 100 nebo 300 DPI. Vytváříte-li PostScript nebo PDF soubory, "
 "použijte 72 DPI."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:224
+#: ../gramps/gen/plug/docgen/graphdoc.py:223
 msgid "Node spacing"
 msgstr "Vzdálenost uzlů"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:225
+#: ../gramps/gen/plug/docgen/graphdoc.py:224
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -7740,11 +7746,11 @@ msgstr ""
 "grafů parametr odpovídá mezerám mezi sloupci. U horizontálních odpovídá "
 "mezerám mezi řádky."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:232
+#: ../gramps/gen/plug/docgen/graphdoc.py:231
 msgid "Rank spacing"
 msgstr "Odstup řad"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:233
+#: ../gramps/gen/plug/docgen/graphdoc.py:232
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -7754,11 +7760,11 @@ msgstr ""
 "parametr odpovídá mezerám mezi sloupci. U horizontálních odpovídá mezerám "
 "mezi řádky."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:240
+#: ../gramps/gen/plug/docgen/graphdoc.py:239
 msgid "Use subgraphs"
 msgstr "Použít podgrafy"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:241
+#: ../gramps/gen/plug/docgen/graphdoc.py:240
 msgid ""
 "Subgraphs can help Graphviz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
@@ -7768,7 +7774,8 @@ msgstr ""
 
 #. ###############################
 #. 3
-#: ../gramps/gen/plug/docgen/graphdoc.py:248 ../gramps/gui/clipboard.py:394
+#: ../gramps/gen/plug/docgen/graphdoc.py:247
+#: ../gramps/gen/plug/docgen/treedoc.py:181 ../gramps/gui/clipboard.py:397
 #: ../gramps/gui/configure.py:545 ../gramps/gui/editors/editlink.py:92
 #: ../gramps/gui/editors/editmedia.py:99 ../gramps/gui/editors/editmedia.py:184
 #: ../gramps/gui/editors/editmediaref.py:146
@@ -7777,14 +7784,14 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:115
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:106
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:92
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:134
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:139
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:105
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:104
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:91
 #: ../gramps/gui/glade/editnote.glade:328
 #: ../gramps/gui/views/treemodels/mediamodel.py:133
 #: ../gramps/plugins/drawreport/ancestortree.py:965
-#: ../gramps/plugins/drawreport/descendtree.py:1674
+#: ../gramps/plugins/drawreport/descendtree.py:1676
 #: ../gramps/plugins/export/exportcsv.py:360
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:110
@@ -7798,64 +7805,67 @@ msgid "Note"
 msgstr "Poznámka"
 
 #. ###############################
-#: ../gramps/gen/plug/docgen/graphdoc.py:251
+#: ../gramps/gen/plug/docgen/graphdoc.py:250
 msgid "Note to add to the graph"
 msgstr "Poznámka přidaná do grafu"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:253
+#: ../gramps/gen/plug/docgen/graphdoc.py:252
 msgid "This text will be added to the graph."
 msgstr "Text bude přidán ke grafu."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:256
+#: ../gramps/gen/plug/docgen/graphdoc.py:255
+#: ../gramps/gen/plug/docgen/treedoc.py:188
 msgid "Note location"
 msgstr "Umístění poznámky"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:259
+#: ../gramps/gen/plug/docgen/graphdoc.py:258
+#: ../gramps/gen/plug/docgen/treedoc.py:191
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Zda se poznámky objeví na začátku, nebo na konci stránky."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:263
+#: ../gramps/gen/plug/docgen/graphdoc.py:262
+#: ../gramps/gen/plug/docgen/treedoc.py:195
 msgid "Note size"
 msgstr "Velikost poznámky"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:264
+#: ../gramps/gen/plug/docgen/graphdoc.py:263
 msgid "The size of note text, in points."
 msgstr "Velikost textu poznámky v bodech."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:969
+#: ../gramps/gen/plug/docgen/graphdoc.py:1011
 msgid "PDF (Ghostscript)"
 msgstr "PDF (pomocí Ghostscript)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:975
+#: ../gramps/gen/plug/docgen/graphdoc.py:1017
 msgid "PDF (Graphviz)"
 msgstr "PDF (pomocí Graphviz)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:981
+#: ../gramps/gen/plug/docgen/graphdoc.py:1023
 #: ../gramps/plugins/docgen/docgen.gpr.py:158
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:987
+#: ../gramps/gen/plug/docgen/graphdoc.py:1029
 msgid "Structured Vector Graphics (SVG)"
 msgstr "SVG (Scalable Vector Graphics)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:993
+#: ../gramps/gen/plug/docgen/graphdoc.py:1035
 msgid "Compressed Structured Vector Graphs (SVGZ)"
 msgstr "Komprimovaný SVG (SVGZ)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:999
+#: ../gramps/gen/plug/docgen/graphdoc.py:1041
 msgid "JPEG image"
 msgstr "Obrázek JPEG"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1005
+#: ../gramps/gen/plug/docgen/graphdoc.py:1047
 msgid "GIF image"
 msgstr "Obrázek GIF"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1011
+#: ../gramps/gen/plug/docgen/graphdoc.py:1053
 msgid "PNG image"
 msgstr "Obrázek PNG"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1017
+#: ../gramps/gen/plug/docgen/graphdoc.py:1059
 msgid "Graphviz File"
 msgstr "Soubor Graphviz"
 
@@ -7870,6 +7880,227 @@ msgstr "Legal"
 #: ../gramps/gen/plug/docgen/paperstyle.py:82
 msgid "Custom Size"
 msgstr "Vlastní velikost"
+
+#. -------------------------------------------------------------------------
+#.
+#. Private Constants
+#.
+#. -------------------------------------------------------------------------
+#: ../gramps/gen/plug/docgen/treedoc.py:61
+msgid "Full"
+msgstr "Úplný"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:62
+#: ../gramps/plugins/tool/finddupes.py:61
+msgid "Medium"
+msgstr "Střední"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:63
+msgid "Short"
+msgstr "Zkrácený"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:66
+msgid "Above"
+msgstr "Nad"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:67
+msgid "Below"
+msgstr "Pod"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:68
+msgid "Not shown"
+msgstr "Není zobrazeno"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:72 ../gramps/gui/configure.py:157
+#: ../gramps/gui/configure.py:1538 ../gramps/gui/views/pageview.py:607
+msgid "Preferences"
+msgstr "Předvolby"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:74
+msgid "Down (↓)"
+msgstr "Dolů  (↓)"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:75
+msgid "Up (↑)"
+msgstr "Nahoru (↑)"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:76
+msgid "Right (→)"
+msgstr "Vpravo  (→)"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:77
+msgid "Left (←)"
+msgstr "Vlevo (←)"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:79
+msgid "Perpendicular"
+msgstr "Kolmé"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:80
+msgid "Rounded"
+msgstr "Zaoblené"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:81
+msgid "Swing"
+msgstr ""
+
+#: ../gramps/gen/plug/docgen/treedoc.py:82
+msgid "Mesh"
+msgstr "Síť"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:87
+msgid "Tiny"
+msgstr "Drobný"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:88
+msgid "Script"
+msgstr "Skript"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:89
+msgid "Footnote"
+msgstr "Patička"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:90
+msgid "Small"
+msgstr "Malý"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:91 ../gramps/gen/utils/string.py:57
+#: ../gramps/gui/editors/editcitation.py:214
+msgid "Normal"
+msgstr "Standardní"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:92
+msgid "Large"
+msgstr "Velký"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:93
+msgid "Very large"
+msgstr "Velmi velký"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:94
+msgid "Extra large"
+msgstr "\t"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:95
+msgid "Huge"
+msgstr "Obrovský"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:96
+msgid "Extra huge"
+msgstr "Extrémě obrovský"
+
+#. ###############################
+#: ../gramps/gen/plug/docgen/treedoc.py:123
+msgid "Node Options"
+msgstr "Možnosti uzlu"
+
+#. ###############################
+#: ../gramps/gen/plug/docgen/treedoc.py:126
+msgid "Node detail"
+msgstr "Podrobnosti uzlu"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:129
+msgid "Detail of information to be shown in a node."
+msgstr "Úroveň detailu informací o uzlu."
+
+#: ../gramps/gen/plug/docgen/treedoc.py:135
+msgid "Position of marriage information."
+msgstr "Umístění informací o sňatku"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:138
+msgid "Node size"
+msgstr "Velikost uzlu"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:139
+msgid ""
+"One dimension of a node, in mm. If the timeflow is up or down then this is "
+"the width, otherwise it is the height."
+msgstr ""
+"Jeden z rozměrů uzlu v mm. Pokud jde časový průběh nahoru nebo dolů, je "
+"rozměr šířka. Jinak je to výška."
+
+#: ../gramps/gen/plug/docgen/treedoc.py:144
+msgid "Level size"
+msgstr "Velikost úrovně"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:145
+msgid ""
+"One dimension of a node, in mm. If the timeflow is up or down then this is "
+"the height, otherwise it is the width."
+msgstr ""
+"Jeden z rozměrů uzlu v mm. Pokud jde časový průběh nahoru nebo dolů, je "
+"rozměr výška. Jinak je to šířka."
+
+#: ../gramps/gen/plug/docgen/treedoc.py:150
+#: ../gramps/gui/glade/styleeditor.glade:384
+#: ../gramps/gui/glade/styleeditor.glade:1433
+#: ../gramps/gui/plug/_guioptions.py:1470 ../gramps/gui/views/tags.py:398
+msgid "Color"
+msgstr "Barva"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:153
+msgid "Node color."
+msgstr "Barva uzlu."
+
+#. ###############################
+#. #################
+#: ../gramps/gen/plug/docgen/treedoc.py:157
+#: ../gramps/plugins/drawreport/ancestortree.py:773
+#: ../gramps/plugins/drawreport/descendtree.py:1496
+msgid "Tree Options"
+msgstr "Nastavení stromu"
+
+#. ###############################
+#: ../gramps/gen/plug/docgen/treedoc.py:160
+msgid "Timeflow"
+msgstr "Časová osa"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:163
+msgid "Direction that the graph will grow over time."
+msgstr "Směr růstu grafu podle průběhu času."
+
+#: ../gramps/gen/plug/docgen/treedoc.py:166
+msgid "Edge style"
+msgstr "Styl okraje"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:169
+msgid "Style of the edges between nodes."
+msgstr "Styl okrajů mezi uzly."
+
+#: ../gramps/gen/plug/docgen/treedoc.py:172
+msgid "Level distance"
+msgstr "Vzdálenost úrovní"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:173
+msgid ""
+"The minimum amount of free space, in mm, between levels.  For vertical "
+"graphs, this corresponds to spacing between rows.  For horizontal graphs, "
+"this corresponds to spacing between columns."
+msgstr ""
+"Minimální množství prázdného místa v milimetrech mezi úrovněmi. U "
+"vertikálních grafů parametr odpovídá mezerám mezi řádky. U horizontálních "
+"odpovídá mezerám mezi sloupci."
+
+#. ###############################
+#: ../gramps/gen/plug/docgen/treedoc.py:184
+msgid "Note to add to the tree"
+msgstr "Poznámka přidaná do stromu"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:185
+msgid "This text will be added to the tree."
+msgstr "Text bude přidán do stromu."
+
+#: ../gramps/gen/plug/docgen/treedoc.py:198
+msgid "The size of note text."
+msgstr "Velikost textu poznámky."
+
+#: ../gramps/gen/plug/docgen/treedoc.py:624
+msgid "PDF"
+msgstr "PDF"
+
+#: ../gramps/gen/plug/docgen/treedoc.py:630
+msgid "LaTeX File"
+msgstr "Soubor LaTeX"
 
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:124
 #, python-format
@@ -7910,15 +8141,19 @@ msgstr "Knihy"
 msgid "Graphs"
 msgstr "Grafy"
 
-#: ../gramps/gen/plug/report/_constants.py:53 ../gramps/gui/clipboard.py:637
-#: ../gramps/gui/clipboard.py:645 ../gramps/gui/configure.py:1191
+#: ../gramps/gen/plug/report/_constants.py:51
+msgid "Trees"
+msgstr "Stromy"
+
+#: ../gramps/gen/plug/report/_constants.py:54 ../gramps/gui/clipboard.py:640
+#: ../gramps/gui/clipboard.py:648 ../gramps/gui/configure.py:1191
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:97
 #: ../gramps/plugins/textreport/custombooktext.py:126
 #: ../gramps/plugins/textreport/tagreport.py:483
 msgid "Text"
 msgstr "Text"
 
-#: ../gramps/gen/plug/report/_constants.py:54
+#: ../gramps/gen/plug/report/_constants.py:55
 msgid "Graphics"
 msgstr "Grafika"
 
@@ -8658,7 +8893,7 @@ msgid "SURNAME"
 msgstr "PŘÍJMENÍ"
 
 #. show surname and first name
-#: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:621
+#: ../gramps/gen/utils/keyword.py:56 ../gramps/gui/clipboard.py:624
 #: ../gramps/gui/configure.py:640 ../gramps/gui/configure.py:642
 #: ../gramps/gui/configure.py:644 ../gramps/gui/configure.py:646
 #: ../gramps/gui/configure.py:649 ../gramps/gui/configure.py:650
@@ -8839,7 +9074,7 @@ msgid "%(west_longitude)s W"
 msgstr "%(west_longitude)s Z"
 
 #: ../gramps/gen/utils/string.py:46 ../gramps/gui/editors/editperson.py:351
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:89
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
 #: ../gramps/gui/merge/mergeperson.py:61
 #: ../gramps/gui/views/treemodels/peoplemodel.py:98
 #: ../gramps/plugins/tool/dumpgenderstats.py:35
@@ -8848,7 +9083,7 @@ msgid "male"
 msgstr "muž"
 
 #: ../gramps/gen/utils/string.py:47 ../gramps/gui/editors/editperson.py:350
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:89
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
 #: ../gramps/gui/merge/mergeperson.py:61
 #: ../gramps/gui/views/treemodels/peoplemodel.py:98
 #: ../gramps/plugins/tool/dumpgenderstats.py:35
@@ -8872,10 +9107,6 @@ msgstr "Velmi vysoká"
 #: ../gramps/plugins/tool/finddupes.py:62
 msgid "High"
 msgstr "Vysoká"
-
-#: ../gramps/gen/utils/string.py:57 ../gramps/gui/editors/editcitation.py:214
-msgid "Normal"
-msgstr "Standardní"
 
 #: ../gramps/gen/utils/string.py:58 ../gramps/gui/editors/editcitation.py:213
 #: ../gramps/plugins/tool/finddupes.py:60
@@ -9003,32 +9234,32 @@ msgstr "Příspěvky od"
 msgid "translator-credits"
 msgstr "Zdeněk Hataš"
 
-#: ../gramps/gui/clipboard.py:69
+#: ../gramps/gui/clipboard.py:71
 msgid "manual|Using_the_Clipboard"
 msgstr "Using_the_Clipboard"
 
-#: ../gramps/gui/clipboard.py:186 ../gramps/gui/clipboard.py:187
+#: ../gramps/gui/clipboard.py:189 ../gramps/gui/clipboard.py:190
 #: ../gramps/gui/plug/_windows.py:483
 msgid "Unavailable"
 msgstr "Nedostupné"
 
 #. We encounter a PLAC, having previously encountered an ADDR
-#: ../gramps/gui/clipboard.py:303 ../gramps/gui/configure.py:511
+#: ../gramps/gui/clipboard.py:306 ../gramps/gui/configure.py:511
 #: ../gramps/gui/editors/editaddress.py:166
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:102
 #: ../gramps/plugins/gramplet/repositorydetails.py:122
-#: ../gramps/plugins/lib/libgedcom.py:5627
-#: ../gramps/plugins/lib/libgedcom.py:5793
+#: ../gramps/plugins/lib/libgedcom.py:5676
+#: ../gramps/plugins/lib/libgedcom.py:5842
 #: ../gramps/plugins/textreport/familygroup.py:343
 #: ../gramps/plugins/webreport/narrativeweb.py:6859
 msgid "Address"
 msgstr "Adresa"
 
 #. 0 this order range above
-#: ../gramps/gui/clipboard.py:340 ../gramps/gui/configure.py:541
+#: ../gramps/gui/clipboard.py:343 ../gramps/gui/configure.py:541
 #: ../gramps/gui/editors/editlink.py:89
 #: ../gramps/gui/editors/filtereditor.py:295
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:133
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:138
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:107
 #: ../gramps/plugins/quickview/filterbyname.py:149
 #: ../gramps/plugins/quickview/filterbyname.py:220
@@ -9041,7 +9272,7 @@ msgid "Event"
 msgstr "Událost"
 
 #. 5
-#: ../gramps/gui/clipboard.py:367 ../gramps/gui/configure.py:533
+#: ../gramps/gui/clipboard.py:370 ../gramps/gui/configure.py:533
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:81
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:65
@@ -9076,41 +9307,41 @@ msgstr "Událost"
 msgid "Place"
 msgstr "Místo"
 
-#: ../gramps/gui/clipboard.py:427
-#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:118
+#: ../gramps/gui/clipboard.py:430
+#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:126
 msgid "Family Event"
 msgstr "Rodinná událost"
 
-#: ../gramps/gui/clipboard.py:443
+#: ../gramps/gui/clipboard.py:446
 msgid "Url"
 msgstr "Url"
 
-#: ../gramps/gui/clipboard.py:459 ../gramps/gui/editors/editattribute.py:137
+#: ../gramps/gui/clipboard.py:462 ../gramps/gui/editors/editattribute.py:137
 msgid "Attribute"
 msgstr "Atribut"
 
-#: ../gramps/gui/clipboard.py:474
+#: ../gramps/gui/clipboard.py:477
 msgid "Family Attribute"
 msgstr "Rodinné atributy"
 
-#: ../gramps/gui/clipboard.py:505
+#: ../gramps/gui/clipboard.py:508
 msgid "not available|NA"
 msgstr "Není k dispozici"
 
-#: ../gramps/gui/clipboard.py:514
+#: ../gramps/gui/clipboard.py:517
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
 msgstr "Svazek/Strana: %(pag)s -- %(sourcetext)s"
 
-#: ../gramps/gui/clipboard.py:535
+#: ../gramps/gui/clipboard.py:538
 msgid "Repository ref"
 msgstr "Archiv odk"
 
-#: ../gramps/gui/clipboard.py:553
+#: ../gramps/gui/clipboard.py:556
 msgid "Event ref"
 msgstr "Událost odk"
 
-#: ../gramps/gui/clipboard.py:571
+#: ../gramps/gui/clipboard.py:574
 msgid "Place ref"
 msgstr "Místo odk"
 
@@ -9118,7 +9349,7 @@ msgstr "Místo odk"
 #. Priority
 #. Handle
 #. Add column with object name
-#: ../gramps/gui/clipboard.py:589 ../gramps/gui/configure.py:510
+#: ../gramps/gui/clipboard.py:592 ../gramps/gui/configure.py:510
 #: ../gramps/gui/editors/displaytabs/backreflist.py:61
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:73
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:64
@@ -9128,7 +9359,7 @@ msgstr "Místo odk"
 #: ../gramps/gui/editors/editname.py:311
 #: ../gramps/gui/editors/filtereditor.py:798
 #: ../gramps/gui/editors/filtereditor.py:952
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:126
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:131
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:101
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:100
 #: ../gramps/gui/plug/_guioptions.py:1143 ../gramps/gui/plug/_windows.py:127
@@ -9160,13 +9391,13 @@ msgstr "Místo odk"
 msgid "Name"
 msgstr "Jméno"
 
-#: ../gramps/gui/clipboard.py:605 ../gramps/gui/editors/editplacename.py:134
+#: ../gramps/gui/clipboard.py:608 ../gramps/gui/editors/editplacename.py:134
 msgid "Place Name"
 msgstr "Název místa"
 
 #. 2
 #. add media column
-#: ../gramps/gui/clipboard.py:659 ../gramps/gui/editors/editlink.py:91
+#: ../gramps/gui/clipboard.py:662 ../gramps/gui/editors/editlink.py:91
 #: ../gramps/gui/editors/filtereditor.py:298
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:109
 #: ../gramps/plugins/quickview/filterbyname.py:108
@@ -9188,19 +9419,19 @@ msgstr "Název místa"
 msgid "Media"
 msgstr "Média"
 
-#: ../gramps/gui/clipboard.py:686
+#: ../gramps/gui/clipboard.py:689
 msgid "Media ref"
 msgstr "Médium odk"
 
-#: ../gramps/gui/clipboard.py:704
+#: ../gramps/gui/clipboard.py:707
 msgid "Person ref"
 msgstr "Osoba odk"
 
-#: ../gramps/gui/clipboard.py:722
+#: ../gramps/gui/clipboard.py:725
 msgid "Child ref"
 msgstr "Potomek odk"
 
-#: ../gramps/gui/clipboard.py:731
+#: ../gramps/gui/clipboard.py:734
 #, python-format
 msgid "%(frel)s %(mrel)s"
 msgstr "%(frel)s %(mrel)s"
@@ -9212,7 +9443,7 @@ msgstr "%(frel)s %(mrel)s"
 #.
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
-#: ../gramps/gui/clipboard.py:743 ../gramps/gui/configure.py:529
+#: ../gramps/gui/clipboard.py:746 ../gramps/gui/configure.py:529
 #: ../gramps/gui/editors/editlink.py:93
 #: ../gramps/gui/editors/filtereditor.py:293
 #: ../gramps/gui/glade/editpersonref.glade:211
@@ -9247,7 +9478,7 @@ msgid "Person"
 msgstr "Osoba"
 
 #. 7
-#: ../gramps/gui/clipboard.py:800 ../gramps/gui/configure.py:535
+#: ../gramps/gui/clipboard.py:803 ../gramps/gui/configure.py:535
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:78
 #: ../gramps/gui/editors/editlink.py:96 ../gramps/gui/editors/editsource.py:86
 #: ../gramps/gui/editors/filtereditor.py:297
@@ -9266,7 +9497,7 @@ msgid "Source"
 msgstr "Pramen"
 
 #. 6
-#: ../gramps/gui/clipboard.py:827 ../gramps/gui/configure.py:543
+#: ../gramps/gui/clipboard.py:830 ../gramps/gui/configure.py:543
 #: ../gramps/gui/editors/editlink.py:95
 #: ../gramps/gui/editors/editrepository.py:77
 #: ../gramps/gui/editors/editrepository.py:79
@@ -9279,7 +9510,7 @@ msgstr "Archiv"
 
 #. Create the tree columns
 #. 0 selected?
-#: ../gramps/gui/clipboard.py:961
+#: ../gramps/gui/clipboard.py:964
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:62
 #: ../gramps/gui/editors/displaytabs/backreflist.py:59
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:77
@@ -9340,7 +9571,7 @@ msgstr "Archiv"
 msgid "Type"
 msgstr "Typ"
 
-#: ../gramps/gui/clipboard.py:964
+#: ../gramps/gui/clipboard.py:967
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:81
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:105
@@ -9350,7 +9581,7 @@ msgstr "Typ"
 #: ../gramps/gui/selectors/selectplace.py:74
 #: ../gramps/gui/selectors/selectrepository.py:70
 #: ../gramps/gui/selectors/selectsource.py:70
-#: ../gramps/gui/widgets/grampletpane.py:1560
+#: ../gramps/gui/widgets/grampletpane.py:1555
 #: ../gramps/plugins/export/exportcsv.py:285
 #: ../gramps/plugins/gramplet/persondetails.py:125
 #: ../gramps/plugins/lib/libplaceview.py:86
@@ -9363,7 +9594,7 @@ msgstr "Typ"
 msgid "Title"
 msgstr "Název"
 
-#: ../gramps/gui/clipboard.py:967
+#: ../gramps/gui/clipboard.py:970
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:63
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:64
 #: ../gramps/plugins/gramplet/attributes.py:46
@@ -9375,24 +9606,24 @@ msgstr "Název"
 msgid "Value"
 msgstr "Hodnota"
 
-#: ../gramps/gui/clipboard.py:1390 ../gramps/gui/clipboard.py:1396
-#: ../gramps/gui/clipboard.py:1434 ../gramps/gui/clipboard.py:1478
+#: ../gramps/gui/clipboard.py:1428 ../gramps/gui/clipboard.py:1434
+#: ../gramps/gui/clipboard.py:1472 ../gramps/gui/clipboard.py:1516
 #: ../gramps/gui/glade/clipboard.glade:7
 msgid "Clipboard"
 msgstr "Schránka"
 
-#: ../gramps/gui/clipboard.py:1522 ../gramps/gui/plug/quick/_quicktable.py:130
+#: ../gramps/gui/clipboard.py:1560 ../gramps/gui/plug/quick/_quicktable.py:130
 #, python-format
 msgid "the object|See %s details"
 msgstr "Zobrazit  %s detaily"
 
 #. ---------------------------
-#: ../gramps/gui/clipboard.py:1528 ../gramps/gui/plug/quick/_quicktable.py:140
+#: ../gramps/gui/clipboard.py:1566 ../gramps/gui/plug/quick/_quicktable.py:140
 #, python-format
 msgid "the object|Make %s active"
 msgstr "Nastavit aktivní %s"
 
-#: ../gramps/gui/clipboard.py:1544
+#: ../gramps/gui/clipboard.py:1582
 #, python-format
 msgid "the object|Create Filter from %s selected..."
 msgstr "Vytvořit filtr z vybraného %s..."
@@ -9417,7 +9648,7 @@ msgstr "_Použít"
 #. #################
 #: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1104
 #: ../gramps/plugins/drawreport/ancestortree.py:837
-#: ../gramps/plugins/drawreport/descendtree.py:1535
+#: ../gramps/plugins/drawreport/descendtree.py:1537
 msgid "Display"
 msgstr "Zobrazení"
 
@@ -9454,7 +9685,7 @@ msgstr "Zobrazit editor jmen"
 #: ../gramps/gui/plug/quick/_textbufdoc.py:62 ../gramps/gui/undohistory.py:90
 #: ../gramps/gui/viewmanager.py:1228 ../gramps/gui/views/bookmarks.py:236
 #: ../gramps/gui/views/tags.py:419 ../gramps/gui/widgets/grampletbar.py:636
-#: ../gramps/gui/widgets/grampletpane.py:238
+#: ../gramps/gui/widgets/grampletpane.py:233
 #: ../gramps/plugins/lib/maps/placeselection.py:120
 msgid "_Close"
 msgstr "_Zavřít"
@@ -9528,11 +9759,6 @@ msgstr ""
 msgid " Name Editor"
 msgstr " Editor jmen"
 
-#: ../gramps/gui/configure.py:157 ../gramps/gui/configure.py:1538
-#: ../gramps/gui/views/pageview.py:607
-msgid "Preferences"
-msgstr "Předvolby"
-
 #: ../gramps/gui/configure.py:232 ../gramps/gui/configure.py:237
 #: ../gramps/gui/configure.py:799
 msgid "Invalid or incomplete format definition."
@@ -9559,8 +9785,8 @@ msgstr "PSČ"
 
 #: ../gramps/gui/configure.py:517
 #: ../gramps/plugins/gramplet/repositorydetails.py:110
-#: ../gramps/plugins/lib/libgedcom.py:4146
-#: ../gramps/plugins/lib/libgedcom.py:5900
+#: ../gramps/plugins/lib/libgedcom.py:4175
+#: ../gramps/plugins/lib/libgedcom.py:5949
 #: ../gramps/plugins/webreport/narrativeweb.py:387
 msgid "Phone"
 msgstr "Telefon"
@@ -10037,7 +10263,7 @@ msgstr "Co kontrolovat"
 
 #: ../gramps/gui/configure.py:1384
 msgid "Where to check"
-msgstr "Co kontrolovat"
+msgstr "Kde kontrolovat"
 
 #: ../gramps/gui/configure.py:1388
 msgid "Do not ask about previously notified addons"
@@ -10136,8 +10362,8 @@ msgstr "Vybrat adresář pro média"
 #: ../gramps/gui/logger/_errorview.py:139 ../gramps/gui/plug/_guioptions.py:79
 #: ../gramps/gui/plug/_guioptions.py:1698 ../gramps/gui/plug/_windows.py:427
 #: ../gramps/gui/plug/report/_fileentry.py:63
-#: ../gramps/gui/plug/report/_reportdialog.py:160 ../gramps/gui/utils.py:170
-#: ../gramps/gui/viewmanager.py:1346 ../gramps/gui/views/listview.py:1006
+#: ../gramps/gui/plug/report/_reportdialog.py:161 ../gramps/gui/utils.py:170
+#: ../gramps/gui/viewmanager.py:1346 ../gramps/gui/views/listview.py:1004
 #: ../gramps/gui/views/navigationview.py:361 ../gramps/gui/views/tags.py:631
 #: ../gramps/gui/widgets/progressdialog.py:438
 #: ../gramps/plugins/lib/maps/geography.py:949
@@ -10522,11 +10748,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dialog.py:202
+#: ../gramps/gui/dialog.py:205
 msgid "Error detected in database"
 msgstr "V databázi byla detekována chyba"
 
-#: ../gramps/gui/dialog.py:203
+#: ../gramps/gui/dialog.py:206
 #, python-format
 msgid ""
 "Gramps has detected an error in the database. This can usually be resolved "
@@ -10543,12 +10769,12 @@ msgstr ""
 "hlášení o chybě na %(gramps_bugtracker_url)s\n"
 "\n"
 
-#: ../gramps/gui/dialog.py:336 ../gramps/gui/dialog.py:409
+#: ../gramps/gui/dialog.py:339 ../gramps/gui/dialog.py:412
 #: ../gramps/gui/utils.py:299
 msgid "Attempt to force closing the dialog"
 msgstr "Pokus o vynucené uzavření dialogu"
 
-#: ../gramps/gui/dialog.py:337 ../gramps/gui/dialog.py:410
+#: ../gramps/gui/dialog.py:340 ../gramps/gui/dialog.py:413
 msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
@@ -10769,10 +10995,10 @@ msgstr "_Atributy"
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:104
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:111
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:100
-#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:113
+#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:121
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:87
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:96
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:127
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:132
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:100
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:99
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:86
@@ -10802,7 +11028,7 @@ msgstr "_Atributy"
 #: ../gramps/plugins/view/eventview.py:83
 #: ../gramps/plugins/view/familyview.py:79
 #: ../gramps/plugins/view/mediaview.py:96 ../gramps/plugins/view/noteview.py:80
-#: ../gramps/plugins/view/relview.py:589 ../gramps/plugins/view/repoview.py:86
+#: ../gramps/plugins/view/relview.py:578 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/view/sourceview.py:83
 msgid "ID"
 msgstr "ID"
@@ -10831,7 +11057,7 @@ msgstr "%(part1)s - %(part2)s"
 #: ../gramps/gui/glade/rule.glade:432
 #: ../gramps/gui/glade/styleeditor.glade:1833
 #: ../gramps/gui/glade/styleeditor.glade:1840
-#: ../gramps/gui/widgets/fanchart.py:1847 ../gramps/plugins/view/relview.py:408
+#: ../gramps/gui/widgets/fanchart.py:1847 ../gramps/plugins/view/relview.py:399
 msgid "Add"
 msgstr "Přidat"
 
@@ -10851,7 +11077,7 @@ msgstr "Odstranit"
 #: ../gramps/gui/editors/displaytabs/buttontab.py:71
 #: ../gramps/gui/editors/displaytabs/embeddedlist.py:152
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:129
-#: ../gramps/plugins/view/relview.py:412
+#: ../gramps/plugins/view/relview.py:403
 msgid "Share"
 msgstr "Sdílet"
 
@@ -10942,7 +11168,7 @@ msgstr ""
 #. may be a step family. However, it will be odd to display the
 #. parent as anything other than "Father"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:60
-#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:114
+#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:122
 #: ../gramps/gui/glade/editfamily.glade:192
 #: ../gramps/gui/merge/mergeperson.py:220
 #: ../gramps/gui/selectors/selectfamily.py:71
@@ -10957,13 +11183,13 @@ msgstr ""
 #: ../gramps/plugins/textreport/indivcomplete.py:822
 #: ../gramps/plugins/textreport/tagreport.py:227
 #: ../gramps/plugins/view/familyview.py:80
-#: ../gramps/plugins/view/relview.py:886
+#: ../gramps/plugins/view/relview.py:873
 #: ../gramps/plugins/webreport/narrativeweb.py:6440
 msgid "Father"
 msgstr "Otec"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:61
-#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:115
+#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:123
 #: ../gramps/gui/glade/editfamily.glade:470
 #: ../gramps/gui/merge/mergeperson.py:222
 #: ../gramps/gui/selectors/selectfamily.py:72
@@ -10978,7 +11204,7 @@ msgstr "Otec"
 #: ../gramps/plugins/textreport/indivcomplete.py:823
 #: ../gramps/plugins/textreport/tagreport.py:233
 #: ../gramps/plugins/view/familyview.py:81
-#: ../gramps/plugins/view/relview.py:887
+#: ../gramps/plugins/view/relview.py:874
 #: ../gramps/plugins/webreport/narrativeweb.py:6454
 msgid "Mother"
 msgstr "Matka"
@@ -11411,7 +11637,7 @@ msgid "Move the selected surname downwards"
 msgstr "Posunout zvolené příjmení níže"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:78
-#: ../gramps/plugins/lib/libgedcom.py:602
+#: ../gramps/plugins/lib/libgedcom.py:605
 msgid "Origin"
 msgstr "Původ"
 
@@ -11633,15 +11859,15 @@ msgid "New Event"
 msgstr "Nová událost"
 
 #: ../gramps/gui/editors/editevent.py:230
-#: ../gramps/plugins/view/geoclose.py:530
-#: ../gramps/plugins/view/geoevents.py:324
-#: ../gramps/plugins/view/geoevents.py:358
-#: ../gramps/plugins/view/geofamclose.py:675
-#: ../gramps/plugins/view/geofamily.py:401
+#: ../gramps/plugins/view/geoclose.py:535
+#: ../gramps/plugins/view/geoevents.py:326
+#: ../gramps/plugins/view/geoevents.py:360
+#: ../gramps/plugins/view/geofamclose.py:678
+#: ../gramps/plugins/view/geofamily.py:403
 #: ../gramps/plugins/view/geomoves.py:597
-#: ../gramps/plugins/view/geoperson.py:426
-#: ../gramps/plugins/view/geoperson.py:447
-#: ../gramps/plugins/view/geoperson.py:486
+#: ../gramps/plugins/view/geoperson.py:428
+#: ../gramps/plugins/view/geoperson.py:449
+#: ../gramps/plugins/view/geoperson.py:488
 msgid "Edit Event"
 msgstr "Upravit událost"
 
@@ -11739,7 +11965,7 @@ msgid "#"
 msgstr "#"
 
 #: ../gramps/gui/editors/editfamily.py:125
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:128
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:133
 #: ../gramps/gui/merge/mergeperson.py:180
 #: ../gramps/gui/selectors/selectperson.py:96
 #: ../gramps/plugins/drawreport/statisticschart.py:331
@@ -11821,7 +12047,7 @@ msgstr "Upravit vztah"
 
 #: ../gramps/gui/editors/editfamily.py:220
 #: ../gramps/gui/editors/editfamily.py:235
-#: ../gramps/plugins/view/relview.py:1568
+#: ../gramps/plugins/view/relview.py:1535
 msgid "Select Child"
 msgstr "Vybrat dítě"
 
@@ -11873,7 +12099,7 @@ msgstr "Nová rodina"
 
 #: ../gramps/gui/editors/editfamily.py:507
 #: ../gramps/gui/editors/editfamily.py:1135
-#: ../gramps/plugins/view/geofamily.py:393
+#: ../gramps/plugins/view/geofamily.py:395
 msgid "Edit Family"
 msgstr "Změnit rodinu"
 
@@ -11924,10 +12150,10 @@ msgstr ""
 "existující rodinu"
 
 #: ../gramps/gui/editors/editfamily.py:956
-#: ../gramps/plugins/view/relview.py:567 ../gramps/plugins/view/relview.py:989
-#: ../gramps/plugins/view/relview.py:1046
-#: ../gramps/plugins/view/relview.py:1170
-#: ../gramps/plugins/view/relview.py:1276
+#: ../gramps/plugins/view/relview.py:558 ../gramps/plugins/view/relview.py:969
+#: ../gramps/plugins/view/relview.py:1024
+#: ../gramps/plugins/view/relview.py:1143
+#: ../gramps/plugins/view/relview.py:1249
 #, python-format
 msgid "Edit %s"
 msgstr "Upravit %s"
@@ -12244,7 +12470,7 @@ msgid "manual|Editing_information_about_people"
 msgstr "Editing_information_about_people"
 
 #: ../gramps/gui/editors/editperson.py:607
-#: ../gramps/plugins/view/geofamily.py:397
+#: ../gramps/plugins/view/geofamily.py:399
 msgid "Edit Person"
 msgstr "Upravit osobu"
 
@@ -12382,8 +12608,8 @@ msgstr "48.21\"E, -18.2412 nebo -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:195
 #: ../gramps/plugins/lib/maps/geography.py:864
-#: ../gramps/plugins/view/geoplaces.py:327
-#: ../gramps/plugins/view/geoplaces.py:353
+#: ../gramps/plugins/view/geoplaces.py:329
+#: ../gramps/plugins/view/geoplaces.py:355
 msgid "Edit Place"
 msgstr "Upravit místo"
 
@@ -12592,10 +12818,10 @@ msgstr "Upravit štítky"
 #: ../gramps/gui/editors/edittaglist.py:107
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:116
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:107
-#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:120
+#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:128
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:93
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:99
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:135
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:140
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:106
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:105
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:92
@@ -12643,11 +12869,11 @@ msgstr "Štítek"
 #: ../gramps/gui/glade/mergesource.glade:54 ../gramps/gui/glade/rule.glade:43
 #: ../gramps/gui/glade/rule.glade:354 ../gramps/gui/glade/rule.glade:784
 #: ../gramps/gui/logger/_errorview.py:141
-#: ../gramps/gui/plug/report/_reportdialog.py:157
+#: ../gramps/gui/plug/report/_reportdialog.py:158
 #: ../gramps/gui/undohistory.py:82 ../gramps/gui/viewmanager.py:484
 #: ../gramps/gui/views/bookmarks.py:237 ../gramps/gui/views/tags.py:420
 #: ../gramps/gui/views/tags.py:630 ../gramps/gui/widgets/grampletbar.py:642
-#: ../gramps/gui/widgets/grampletpane.py:242
+#: ../gramps/gui/widgets/grampletpane.py:237
 #: ../gramps/plugins/tool/testcasegenerator.py:257
 msgid "_Help"
 msgstr "_Nápověda"
@@ -12693,7 +12919,7 @@ msgstr "_Nápověda"
 #: ../gramps/gui/glade/rule.glade:767 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1739
 #: ../gramps/gui/plug/_guioptions.py:79
-#: ../gramps/gui/plug/report/_reportdialog.py:164 ../gramps/gui/utils.py:184
+#: ../gramps/gui/plug/report/_reportdialog.py:165 ../gramps/gui/utils.py:184
 #: ../gramps/gui/viewmanager.py:1226 ../gramps/gui/views/tags.py:632
 #: ../gramps/plugins/tool/check.py:695 ../gramps/plugins/tool/patchnames.py:117
 #: ../gramps/plugins/tool/populatesources.py:90
@@ -12811,10 +13037,10 @@ msgstr "Zahrnout pouze přímé účastníky"
 #: ../gramps/gui/editors/filtereditor.py:595
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:76
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:77
-#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:89
+#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:97
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:66
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:73
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:92
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:97
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:80
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:76
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:65
@@ -13053,8 +13279,8 @@ msgstr "%s není"
 msgid "%s does not contain"
 msgstr "%s neobsahuje"
 
-#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1145
-#: ../gramps/gui/views/listview.py:1165
+#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1143
+#: ../gramps/gui/views/listview.py:1163
 msgid "Updating display..."
 msgstr "Aktualizace zobrazení..."
 
@@ -13091,10 +13317,10 @@ msgstr "Citace: Min. důvěrnost"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:108
-#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:121
+#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:129
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:94
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:100
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:136
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:141
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:107
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:93
@@ -13106,7 +13332,7 @@ msgstr "Vlastní filtr"
 msgid "Participants"
 msgstr "Účastníci"
 
-#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:117
+#: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:125
 #: ../gramps/gui/widgets/reorderfam.py:90
 #: ../gramps/plugins/textreport/tagreport.py:239
 #: ../gramps/plugins/view/familyview.py:82
@@ -13114,22 +13340,22 @@ msgstr "Účastníci"
 msgid "Relationship"
 msgstr "Vztah"
 
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:89
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
 msgid "any"
 msgstr "jakékoli"
 
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:129
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:134
 #: ../gramps/plugins/export/exportcsv.py:356
 msgid "Birth date"
 msgstr "Datum narození"
 
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:130
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:132
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:135
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:137
 #, python-format
 msgid "example: \"%(msg1)s\" or \"%(msg2)s\""
 msgstr "příklad: \"%(msg1)s\" nebo \"%(msg2)s\""
 
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:131
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:136
 #: ../gramps/plugins/export/exportcsv.py:358
 msgid "Death date"
 msgstr "Datum úmrtí"
@@ -13375,8 +13601,8 @@ msgstr "Zavřít _bez uložení"
 #. widget
 #: ../gramps/gui/glade/dialog.glade:859
 #: ../gramps/gui/plug/report/_bookdialog.py:671
-#: ../gramps/gui/views/listview.py:1007
-#: ../gramps/gui/widgets/grampletpane.py:575
+#: ../gramps/gui/views/listview.py:1005
+#: ../gramps/gui/widgets/grampletpane.py:570
 #: ../gramps/plugins/tool/eventcmp.py:398
 msgid "_Save"
 msgstr "_Uložit"
@@ -14817,7 +15043,7 @@ msgid "Note 2"
 msgstr "Poznámka 2"
 
 #: ../gramps/gui/glade/mergenote.glade:279
-#: ../gramps/gui/glade/mergenote.glade:295 ../gramps/gui/views/listview.py:1011
+#: ../gramps/gui/glade/mergenote.glade:295 ../gramps/gui/views/listview.py:1009
 msgid "Format:"
 msgstr "Formát:"
 
@@ -15128,7 +15354,7 @@ msgstr "_Swiss (Arial, Helvetica, sans-serif)"
 #. #################
 #: ../gramps/gui/glade/styleeditor.glade:339
 #: ../gramps/plugins/drawreport/ancestortree.py:882
-#: ../gramps/plugins/drawreport/descendtree.py:1588
+#: ../gramps/plugins/drawreport/descendtree.py:1590
 msgid "Size"
 msgstr "Velikost"
 
@@ -15136,12 +15362,6 @@ msgstr "Velikost"
 #: ../gramps/gui/plug/report/_styleeditor.py:229
 msgid "point size|pt"
 msgstr "pt"
-
-#: ../gramps/gui/glade/styleeditor.glade:384
-#: ../gramps/gui/glade/styleeditor.glade:1433
-#: ../gramps/gui/plug/_guioptions.py:1470 ../gramps/gui/views/tags.py:398
-msgid "Color"
-msgstr "Barva"
 
 #: ../gramps/gui/glade/styleeditor.glade:416
 msgid "_Bold"
@@ -15795,8 +16015,8 @@ msgstr "Události"
 #: ../gramps/plugins/quickview/all_relations.py:305
 #: ../gramps/plugins/tool/notrelated.py:126
 #: ../gramps/plugins/view/pedigreeview.py:1781
-#: ../gramps/plugins/view/relview.py:525 ../gramps/plugins/view/relview.py:849
-#: ../gramps/plugins/view/relview.py:885
+#: ../gramps/plugins/view/relview.py:516 ../gramps/plugins/view/relview.py:838
+#: ../gramps/plugins/view/relview.py:872
 #: ../gramps/plugins/webreport/narrativeweb.py:382
 #: ../gramps/plugins/webreport/narrativeweb.py:2963
 #: ../gramps/plugins/webreport/narrativeweb.py:5344
@@ -15827,7 +16047,7 @@ msgstr "Partneři(ky)"
 #: ../gramps/plugins/gramplet/children.py:86
 #: ../gramps/plugins/lib/libpersonview.py:105
 #: ../gramps/plugins/textreport/familygroup.py:553
-#: ../gramps/plugins/view/relview.py:1394
+#: ../gramps/plugins/view/relview.py:1365
 msgid "Spouse"
 msgstr "Partner"
 
@@ -15954,7 +16174,7 @@ msgid "Select color for %s"
 msgstr "Vybrat barvu pro %s"
 
 #: ../gramps/gui/plug/_guioptions.py:1697
-#: ../gramps/gui/plug/report/_reportdialog.py:448
+#: ../gramps/gui/plug/report/_reportdialog.py:449
 msgid "Save As"
 msgstr "Uložit jako"
 
@@ -15965,7 +16185,7 @@ msgid "_Open"
 msgstr "_Otevřít"
 
 #: ../gramps/gui/plug/_guioptions.py:1777
-#: ../gramps/gui/plug/report/_reportdialog.py:325
+#: ../gramps/gui/plug/report/_reportdialog.py:326
 msgid "Style Editor"
 msgstr "Editor stylů"
 
@@ -16102,7 +16322,7 @@ msgstr "Autoři"
 
 #. Save Frame
 #: ../gramps/gui/plug/_windows.py:611
-#: ../gramps/gui/plug/report/_reportdialog.py:467
+#: ../gramps/gui/plug/report/_reportdialog.py:468
 msgid "Filename"
 msgstr "Název souboru"
 
@@ -16623,26 +16843,23 @@ msgstr "Ukládáte knihu s názvem, který již existuje."
 msgid "Gramps Book"
 msgstr "Gramps kniha"
 
-#: ../gramps/gui/plug/report/_docreportdialog.py:128
-#: ../gramps/gui/plug/report/_graphvizreportdialog.py:180
+#: ../gramps/gui/plug/report/_docreportdialog.py:129
 msgid "Paper Options"
 msgstr "Nastavení papíru"
 
-#: ../gramps/gui/plug/report/_docreportdialog.py:133
+#: ../gramps/gui/plug/report/_docreportdialog.py:134
 msgid "HTML Options"
 msgstr "Nastavení HTML stránky"
 
-#: ../gramps/gui/plug/report/_docreportdialog.py:170
-#: ../gramps/gui/plug/report/_graphvizreportdialog.py:150
+#: ../gramps/gui/plug/report/_docreportdialog.py:171
 msgid "Output Format"
 msgstr "Formát výstupu"
 
-#: ../gramps/gui/plug/report/_docreportdialog.py:177
-#: ../gramps/gui/plug/report/_graphvizreportdialog.py:157
+#: ../gramps/gui/plug/report/_docreportdialog.py:178
 msgid "Open with default viewer"
 msgstr "Zobrazit výchozím prohlížečem"
 
-#: ../gramps/gui/plug/report/_docreportdialog.py:219
+#: ../gramps/gui/plug/report/_docreportdialog.py:220
 msgid "CSS file"
 msgstr "Soubor CSS"
 
@@ -16658,12 +16875,12 @@ msgstr "Na šířku"
 msgid "inch|in."
 msgstr "palec"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:141
+#: ../gramps/gui/plug/report/_reportdialog.py:142
 msgid "Configuration"
 msgstr "Nastavení"
 
 #. Styles Frame
-#: ../gramps/gui/plug/report/_reportdialog.py:320
+#: ../gramps/gui/plug/report/_reportdialog.py:321
 #: ../gramps/gui/plug/report/_styleeditor.py:101
 #: ../gramps/gui/plug/report/_styleeditor.py:231
 msgid "Style"
@@ -16686,7 +16903,7 @@ msgstr "Styl"
 #. Report Options
 #. #########################
 #. ###############################
-#: ../gramps/gui/plug/report/_reportdialog.py:363
+#: ../gramps/gui/plug/report/_reportdialog.py:364
 #: ../gramps/plugins/drawreport/ancestortree.py:814
 #: ../gramps/plugins/drawreport/calendarreport.py:464
 #: ../gramps/plugins/drawreport/fanchart.py:650
@@ -16718,16 +16935,16 @@ msgid "Report Options"
 msgstr "Nastavení sestavy"
 
 #. need any labels at top:
-#: ../gramps/gui/plug/report/_reportdialog.py:452
+#: ../gramps/gui/plug/report/_reportdialog.py:453
 msgid "Document Options"
 msgstr "Nastavení dokumentu"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:498
-#: ../gramps/gui/plug/report/_reportdialog.py:525
+#: ../gramps/gui/plug/report/_reportdialog.py:499
+#: ../gramps/gui/plug/report/_reportdialog.py:526
 msgid "Permission problem"
 msgstr "Problém oprávnění"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:499
+#: ../gramps/gui/plug/report/_reportdialog.py:500
 #, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
@@ -16738,24 +16955,24 @@ msgstr ""
 "\n"
 "Zvolte prosím jiný adresář s odpovídajícím oprávněním."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:508
+#: ../gramps/gui/plug/report/_reportdialog.py:509
 msgid "File already exists"
 msgstr "Soubor již existuje"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:509
+#: ../gramps/gui/plug/report/_reportdialog.py:510
 msgid ""
 "You can choose to either overwrite the file, or change the selected filename."
 msgstr "Můžete buď soubor přepsat nebo změnit vybrané jméno souboru."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:511
+#: ../gramps/gui/plug/report/_reportdialog.py:512
 msgid "_Overwrite"
 msgstr "_Přepsat"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:512
+#: ../gramps/gui/plug/report/_reportdialog.py:513
 msgid "_Change filename"
 msgstr "_Změnit jméno souboru"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:526
+#: ../gramps/gui/plug/report/_reportdialog.py:527
 #, python-format
 msgid ""
 "You do not have permission to create %s\n"
@@ -16766,12 +16983,12 @@ msgstr ""
 "\n"
 "Vyberte prosím jinou cestu, nebo opravte oprávnění."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:533
+#: ../gramps/gui/plug/report/_reportdialog.py:534
 #: ../gramps/plugins/export/exportxml.py:143
 msgid "No directory"
 msgstr "Žádný adresář"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:534
+#: ../gramps/gui/plug/report/_reportdialog.py:535
 #: ../gramps/plugins/export/exportxml.py:144
 #, python-format
 msgid ""
@@ -16783,17 +17000,17 @@ msgstr ""
 "\n"
 "Zvolte prosím jiný adresář nebo jej vytvořte."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:661
+#: ../gramps/gui/plug/report/_reportdialog.py:662
 #: ../gramps/gui/plug/tool.py:136 ../gramps/plugins/tool/relcalc.py:149
 msgid "Active person has not been set"
 msgstr "Nebyla zvolena aktivní osoba"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:662
+#: ../gramps/gui/plug/report/_reportdialog.py:663
 msgid "You must select an active person for this report to work properly."
 msgstr "Aby report pracoval správně, musíte zvolit aktivní osobu."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:714
-#: ../gramps/gui/plug/report/_reportdialog.py:720
+#: ../gramps/gui/plug/report/_reportdialog.py:718
+#: ../gramps/gui/plug/report/_reportdialog.py:724
 msgid "Report could not be created"
 msgstr "Sestavu nelze vytvořit"
 
@@ -17039,23 +17256,23 @@ msgstr "Původní čas"
 msgid "Action"
 msgstr "Akce"
 
-#: ../gramps/gui/undohistory.py:197
+#: ../gramps/gui/undohistory.py:198
 msgid "Delete confirmation"
 msgstr "Potvrzení smazání"
 
-#: ../gramps/gui/undohistory.py:198
+#: ../gramps/gui/undohistory.py:199
 msgid "Are you sure you want to clear the Undo history?"
 msgstr "Jste si jistí že chcete vyčistit historii operací?"
 
-#: ../gramps/gui/undohistory.py:199 ../gramps/plugins/gramplet/eval.py:80
+#: ../gramps/gui/undohistory.py:200 ../gramps/plugins/gramplet/eval.py:80
 msgid "Clear"
 msgstr "Vymazat"
 
-#: ../gramps/gui/undohistory.py:235
+#: ../gramps/gui/undohistory.py:237
 msgid "Database opened"
 msgstr "Databáze byla otevřena"
 
-#: ../gramps/gui/undohistory.py:237
+#: ../gramps/gui/undohistory.py:239
 msgid "History cleared"
 msgstr "Historie byla smazána"
 
@@ -17075,7 +17292,7 @@ msgstr "Spuštění externího programu selhalo nebo skončilo chybou"
 msgid "Error from external program"
 msgstr "Chyba externího programu"
 
-#: ../gramps/gui/utils.py:574
+#: ../gramps/gui/utils.py:589
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -17092,7 +17309,7 @@ msgstr ""
 "\n"
 "Před úpravou citace zavřete editor pramene a otevřete editor citace samotný"
 
-#: ../gramps/gui/utils.py:587
+#: ../gramps/gui/utils.py:602
 msgid "Cannot open new citation editor"
 msgstr "Nelze otevřít nový editor citací"
 
@@ -17339,7 +17556,7 @@ msgstr "Média:"
 #. ###############################
 #: ../gramps/gui/viewmanager.py:1290
 #: ../gramps/plugins/drawreport/ancestortree.py:943
-#: ../gramps/plugins/drawreport/descendtree.py:1639
+#: ../gramps/plugins/drawreport/descendtree.py:1641
 #: ../gramps/plugins/graph/gvfamilylines.py:184
 #: ../gramps/plugins/graph/gvrelgraph.py:599
 #: ../gramps/plugins/textreport/detancestralreport.py:817
@@ -17486,11 +17703,11 @@ msgstr "Exportovat pohled..."
 msgid "action|_Edit..."
 msgstr "Ú_pravy..."
 
-#: ../gramps/gui/views/listview.py:438
+#: ../gramps/gui/views/listview.py:436
 msgid "Active object not visible"
 msgstr "Aktivní objekt není viditelný"
 
-#: ../gramps/gui/views/listview.py:449
+#: ../gramps/gui/views/listview.py:447
 #: ../gramps/gui/views/navigationview.py:255
 #: ../gramps/plugins/lib/maps/geography.py:186
 #: ../gramps/plugins/lib/maps/geography.py:199
@@ -17498,15 +17715,15 @@ msgstr "Aktivní objekt není viditelný"
 msgid "Could Not Set a Bookmark"
 msgstr "Nelze přidat záložku"
 
-#: ../gramps/gui/views/listview.py:450
+#: ../gramps/gui/views/listview.py:448
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Záložka nemůže být nastavena, protože nikdo není vybrán."
 
-#: ../gramps/gui/views/listview.py:542
+#: ../gramps/gui/views/listview.py:540
 msgid "Multiple Selection Delete"
 msgstr "Mazání vícenásobného výběru"
 
-#: ../gramps/gui/views/listview.py:543
+#: ../gramps/gui/views/listview.py:541
 msgid ""
 "More than one item has been selected for deletion. Select the option "
 "indicating how to delete the items:"
@@ -17514,15 +17731,15 @@ msgstr ""
 "Pro smazání byl označen více než jeden objekt. Vyberte volbu určující jak "
 "mazat tyto položky:"
 
-#: ../gramps/gui/views/listview.py:545
+#: ../gramps/gui/views/listview.py:543
 msgid "Delete All"
 msgstr "Odstranit vše"
 
-#: ../gramps/gui/views/listview.py:546
+#: ../gramps/gui/views/listview.py:544
 msgid "Confirm Each Delete"
 msgstr "Potvrdit každé mazání"
 
-#: ../gramps/gui/views/listview.py:557
+#: ../gramps/gui/views/listview.py:555
 msgid ""
 "This item is currently being used. Deleting it will remove it from the "
 "database and from all other items that reference it."
@@ -17530,38 +17747,38 @@ msgstr ""
 "Tato záznam je právě používán. Pokud jej odstraníte, bude vymazán z databáze "
 "a ze všech záznamů, z kterých je odkazován."
 
-#: ../gramps/gui/views/listview.py:561 ../gramps/plugins/view/familyview.py:268
+#: ../gramps/gui/views/listview.py:559 ../gramps/plugins/view/familyview.py:268
 msgid "Deleting item will remove it from the database."
 msgstr "Smazáním bude záznam odstraněn z databáze."
 
-#: ../gramps/gui/views/listview.py:568
+#: ../gramps/gui/views/listview.py:566
 #: ../gramps/plugins/lib/libpersonview.py:312
 #: ../gramps/plugins/view/familyview.py:261
 #, python-format
 msgid "Delete %s?"
 msgstr "Odstranit %s?"
 
-#: ../gramps/gui/views/listview.py:569
+#: ../gramps/gui/views/listview.py:567
 msgid "_Delete Item"
 msgstr "O_dstranit záznam"
 
-#: ../gramps/gui/views/listview.py:611
+#: ../gramps/gui/views/listview.py:609
 msgid "Column clicked, sorting..."
 msgstr "Kliknuto na sloupec, třídí se..."
 
-#: ../gramps/gui/views/listview.py:1003
+#: ../gramps/gui/views/listview.py:1001
 msgid "Export View as Spreadsheet"
 msgstr "Exportovat pohled jako tabulku"
 
-#: ../gramps/gui/views/listview.py:1016
+#: ../gramps/gui/views/listview.py:1014
 msgid "CSV"
 msgstr "Dokument CSV"
 
-#: ../gramps/gui/views/listview.py:1017
+#: ../gramps/gui/views/listview.py:1015
 msgid "OpenDocument Spreadsheet"
 msgstr "Tabulka OpenDocument"
 
-#: ../gramps/gui/views/listview.py:1213
+#: ../gramps/gui/views/listview.py:1211
 msgid "Columns"
 msgstr "Sloupce"
 
@@ -17796,11 +18013,11 @@ msgstr "Sbalit tuto skupinu"
 msgid "People Menu"
 msgstr "Menu osob"
 
-#: ../gramps/gui/widgets/fanchart.py:1617 ../gramps/plugins/view/relview.py:798
+#: ../gramps/gui/widgets/fanchart.py:1617 ../gramps/plugins/view/relview.py:787
 msgid "Edit family"
 msgstr "Změnit rodinu"
 
-#: ../gramps/gui/widgets/fanchart.py:1636 ../gramps/plugins/view/relview.py:799
+#: ../gramps/gui/widgets/fanchart.py:1636 ../gramps/plugins/view/relview.py:788
 msgid "Reorder families"
 msgstr "Přeskupit rodiny"
 
@@ -17814,7 +18031,7 @@ msgstr "_Kopírovat"
 #: ../gramps/gui/widgets/fanchart.py:1688
 #: ../gramps/plugins/quickview/quickview.gpr.py:316
 #: ../gramps/plugins/view/pedigreeview.py:1696
-#: ../gramps/plugins/view/relview.py:901
+#: ../gramps/plugins/view/relview.py:888
 msgid "Siblings"
 msgstr "Sourozenci"
 
@@ -17825,7 +18042,7 @@ msgstr "Sourozenci"
 #: ../gramps/plugins/textreport/familygroup.py:626
 #: ../gramps/plugins/textreport/indivcomplete.py:599
 #: ../gramps/plugins/view/pedigreeview.py:1741
-#: ../gramps/plugins/view/relview.py:1409
+#: ../gramps/plugins/view/relview.py:1380
 #: ../gramps/plugins/webreport/narrativeweb.py:755
 msgid "Children"
 msgstr "Děti"
@@ -17845,12 +18062,12 @@ msgid "Add a person"
 msgstr "Přidat osobu"
 
 #: ../gramps/gui/widgets/fanchart.py:1949
-#: ../gramps/plugins/view/relview.py:1550
+#: ../gramps/plugins/view/relview.py:1517
 msgid "Add Child to Family"
 msgstr "Přidat dítě do rodiny"
 
 #: ../gramps/gui/widgets/grampletbar.py:208
-#: ../gramps/gui/widgets/grampletpane.py:1178
+#: ../gramps/gui/widgets/grampletpane.py:1173
 msgid "Unnamed Gramplet"
 msgstr "Gramplet bez jména"
 
@@ -17892,44 +18109,44 @@ msgstr ""
 "nelze odvolat."
 
 #. default tooltip
-#: ../gramps/gui/widgets/grampletpane.py:800
+#: ../gramps/gui/widgets/grampletpane.py:795
 msgid "Drag Properties Button to move and click it for setup"
 msgstr "Táhněte tlačítko Vlastnosti pro přesun, klikněte na něj pro nastavení"
 
 #. build the GUI:
-#: ../gramps/gui/widgets/grampletpane.py:996
+#: ../gramps/gui/widgets/grampletpane.py:991
 msgid "Right click to add gramplets"
 msgstr "Pravým tlačítkem myši přidejte gramplety"
 
-#: ../gramps/gui/widgets/grampletpane.py:1043
+#: ../gramps/gui/widgets/grampletpane.py:1038
 msgid "Untitled Gramplet"
 msgstr "Gramplet bez jména"
 
-#: ../gramps/gui/widgets/grampletpane.py:1532
+#: ../gramps/gui/widgets/grampletpane.py:1527
 msgid "Number of Columns"
 msgstr "Počet sloupců"
 
-#: ../gramps/gui/widgets/grampletpane.py:1537
+#: ../gramps/gui/widgets/grampletpane.py:1532
 msgid "Gramplet Layout"
 msgstr "Rozložení grampletu"
 
-#: ../gramps/gui/widgets/grampletpane.py:1567
+#: ../gramps/gui/widgets/grampletpane.py:1562
 msgid "Use maximum height available"
 msgstr "Použít maximální možnou výšku"
 
-#: ../gramps/gui/widgets/grampletpane.py:1573
+#: ../gramps/gui/widgets/grampletpane.py:1568
 msgid "Height if not maximized"
 msgstr "Výška pokud není maximalizovaný"
 
-#: ../gramps/gui/widgets/grampletpane.py:1580
+#: ../gramps/gui/widgets/grampletpane.py:1575
 msgid "Detached width"
 msgstr "Samostatná šířka"
 
-#: ../gramps/gui/widgets/grampletpane.py:1587
+#: ../gramps/gui/widgets/grampletpane.py:1582
 msgid "Detached height"
 msgstr "Samostatná výška"
 
-#: ../gramps/gui/widgets/labels.py:125
+#: ../gramps/gui/widgets/labels.py:121
 msgid ""
 "Click to make this person active\n"
 "Right click to display the edit menu\n"
@@ -17968,61 +18185,61 @@ msgid "Reorder Relationships: %s"
 msgstr "Přeskupit vazby: %s"
 
 #. spell checker submenu
-#: ../gramps/gui/widgets/styledtexteditor.py:369
+#: ../gramps/gui/widgets/styledtexteditor.py:365
 msgid "Spellcheck"
 msgstr "Pravopis"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:374
+#: ../gramps/gui/widgets/styledtexteditor.py:370
 msgid "Search selection on web"
 msgstr "Hledat výběr na webu"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:385
+#: ../gramps/gui/widgets/styledtexteditor.py:381
 msgid "_Send Mail To..."
 msgstr "Po_slat email ..."
 
-#: ../gramps/gui/widgets/styledtexteditor.py:387
+#: ../gramps/gui/widgets/styledtexteditor.py:383
 msgid "Copy _E-mail Address"
 msgstr "Kopírovat _emailovou adresu"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:390
+#: ../gramps/gui/widgets/styledtexteditor.py:386
 msgid "_Open Link"
 msgstr "_Otevřít odkaz"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:392
+#: ../gramps/gui/widgets/styledtexteditor.py:388
 msgid "Copy _Link Address"
 msgstr "_Kopírovat adresu odkazu"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:396
+#: ../gramps/gui/widgets/styledtexteditor.py:392
 msgid "_Edit Link"
 msgstr "Uprav_it odkaz"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:468
+#: ../gramps/gui/widgets/styledtexteditor.py:464
 msgid "Font Color"
 msgstr "Barva písma"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:470
+#: ../gramps/gui/widgets/styledtexteditor.py:466
 msgid "Background Color"
 msgstr "Barva pozadí"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:474
+#: ../gramps/gui/widgets/styledtexteditor.py:470
 msgid "Clear Markup"
 msgstr "Vymazat značku"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:514
-#: ../gramps/gui/widgets/styledtexteditor.py:515
+#: ../gramps/gui/widgets/styledtexteditor.py:510
+#: ../gramps/gui/widgets/styledtexteditor.py:511
 msgid "Undo"
 msgstr "Zpět"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:518
-#: ../gramps/gui/widgets/styledtexteditor.py:519
+#: ../gramps/gui/widgets/styledtexteditor.py:514
+#: ../gramps/gui/widgets/styledtexteditor.py:515
 msgid "Redo"
 msgstr "Znovu"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:642
+#: ../gramps/gui/widgets/styledtexteditor.py:638
 msgid "Select font color"
 msgstr "Vybrat barvu písma"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:644
+#: ../gramps/gui/widgets/styledtexteditor.py:640
 msgid "Select background color"
 msgstr "Vyberat barvu pozadí"
 
@@ -18285,12 +18502,6 @@ msgstr "Vytváří se strom..."
 msgid "Printing the Tree..."
 msgstr "Tiskne se strom..."
 
-#. #################
-#: ../gramps/plugins/drawreport/ancestortree.py:773
-#: ../gramps/plugins/drawreport/descendtree.py:1494
-msgid "Tree Options"
-msgstr "Nastavení stromu"
-
 #: ../gramps/plugins/drawreport/ancestortree.py:775
 #: ../gramps/plugins/drawreport/calendarreport.py:474
 #: ../gramps/plugins/drawreport/fanchart.py:652
@@ -18321,7 +18532,7 @@ msgid ""
 msgstr "Zda zobrazit pouze ústřední osobu, nebo také všechny její příbuzné"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:784
-#: ../gramps/plugins/drawreport/descendtree.py:1518
+#: ../gramps/plugins/drawreport/descendtree.py:1520
 #: ../gramps/plugins/drawreport/fanchart.py:658
 #: ../gramps/plugins/textreport/ancestorreport.py:274
 #: ../gramps/plugins/textreport/descendreport.py:416
@@ -18331,7 +18542,7 @@ msgid "Generations"
 msgstr "Generace"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:785
-#: ../gramps/plugins/drawreport/descendtree.py:1519
+#: ../gramps/plugins/drawreport/descendtree.py:1521
 msgid "The number of generations to include in the tree"
 msgstr "Počet generací zahrnutých ve stromu"
 
@@ -18348,7 +18559,7 @@ msgid "The number of generations of empty boxes that will be displayed"
 msgstr "Počet generací prázdných boxů který bude zobrazen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:798
-#: ../gramps/plugins/drawreport/descendtree.py:1527
+#: ../gramps/plugins/drawreport/descendtree.py:1529
 msgid "Compress tree"
 msgstr "Komprimovat strom"
 
@@ -18359,13 +18570,13 @@ msgid ""
 msgstr "Zda odstranit jakékoli další mezery u osob které jsou neznámé"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:816
-#: ../gramps/plugins/drawreport/descendtree.py:1641
+#: ../gramps/plugins/drawreport/descendtree.py:1643
 msgid "Report Title"
 msgstr "Název sestavy"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:817
-#: ../gramps/plugins/drawreport/descendtree.py:1642
-#: ../gramps/plugins/drawreport/descendtree.py:1697
+#: ../gramps/plugins/drawreport/descendtree.py:1644
+#: ../gramps/plugins/drawreport/descendtree.py:1699
 msgid "Do not include a title"
 msgstr "Nezahrnovat název"
 
@@ -18374,22 +18585,22 @@ msgid "Include Report Title"
 msgstr "Zahrnout název sestavy"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:819
-#: ../gramps/plugins/drawreport/descendtree.py:1650
+#: ../gramps/plugins/drawreport/descendtree.py:1652
 msgid "Choose a title for the report"
 msgstr "Zvolte název této sestavy"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:822
-#: ../gramps/plugins/drawreport/descendtree.py:1654
+#: ../gramps/plugins/drawreport/descendtree.py:1656
 msgid "Include a border"
 msgstr "Zahrnout okraje"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:823
-#: ../gramps/plugins/drawreport/descendtree.py:1655
+#: ../gramps/plugins/drawreport/descendtree.py:1657
 msgid "Whether to make a border around the report."
 msgstr "Zda orámovat sestavu."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:826
-#: ../gramps/plugins/drawreport/descendtree.py:1658
+#: ../gramps/plugins/drawreport/descendtree.py:1660
 msgid "Include Page Numbers"
 msgstr "Zahrnout čísla stran"
 
@@ -18449,17 +18660,17 @@ msgid "Which Display format to use the center person"
 msgstr "Jaký formát zobrazení použít pro ústřední osobu"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:872
-#: ../gramps/plugins/drawreport/descendtree.py:1569
+#: ../gramps/plugins/drawreport/descendtree.py:1571
 msgid "Include Marriage box"
 msgstr "Zahrnout box sňatku"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:874
-#: ../gramps/plugins/drawreport/descendtree.py:1571
+#: ../gramps/plugins/drawreport/descendtree.py:1573
 msgid "Whether to include a separate marital box in the report"
 msgstr "Zda do sestavy zahrnout separátní martial box"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:877
-#: ../gramps/plugins/drawreport/descendtree.py:1574
+#: ../gramps/plugins/drawreport/descendtree.py:1576
 msgid ""
 "Marriage\n"
 "Display Format"
@@ -18468,37 +18679,37 @@ msgstr ""
 "Formát zobrazení"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:878
-#: ../gramps/plugins/drawreport/descendtree.py:1575
+#: ../gramps/plugins/drawreport/descendtree.py:1577
 msgid "Display format for the marital box."
 msgstr "Formát zobrazení pro martial box."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:884
-#: ../gramps/plugins/drawreport/descendtree.py:1590
+#: ../gramps/plugins/drawreport/descendtree.py:1592
 msgid "Scale tree to fit"
 msgstr "Přizpůsobit strom velikosti"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:885
-#: ../gramps/plugins/drawreport/descendtree.py:1591
+#: ../gramps/plugins/drawreport/descendtree.py:1593
 msgid "Do not scale tree"
 msgstr "Nepřizpůsobovat strom"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:886
-#: ../gramps/plugins/drawreport/descendtree.py:1592
+#: ../gramps/plugins/drawreport/descendtree.py:1594
 msgid "Scale tree to fit page width only"
 msgstr "Přizpůsobit strom pouze šířce stránky"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:887
-#: ../gramps/plugins/drawreport/descendtree.py:1593
+#: ../gramps/plugins/drawreport/descendtree.py:1595
 msgid "Scale tree to fit the size of the page"
 msgstr "Přizpůsobit strom velikosti stránky"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:889
-#: ../gramps/plugins/drawreport/descendtree.py:1595
+#: ../gramps/plugins/drawreport/descendtree.py:1597
 msgid "Whether to scale the tree to fit a specific paper size"
 msgstr "Zda přizpůsobit strom  konkrétní velikosti papíru"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:895
-#: ../gramps/plugins/drawreport/descendtree.py:1601
+#: ../gramps/plugins/drawreport/descendtree.py:1603
 msgid ""
 "Resize Page to Fit Tree size\n"
 "\n"
@@ -18510,7 +18721,7 @@ msgstr ""
 "papíru'"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:901
-#: ../gramps/plugins/drawreport/descendtree.py:1607
+#: ../gramps/plugins/drawreport/descendtree.py:1609
 msgid ""
 "Whether to resize the page to fit the size \n"
 "of the tree.  Note:  the page will have a \n"
@@ -18552,24 +18763,24 @@ msgid "Make the inter-box spacing bigger or smaller"
 msgstr "Zvětšit nebo zmenšit výšku vnitřního rámečku"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:926
-#: ../gramps/plugins/drawreport/descendtree.py:1632
+#: ../gramps/plugins/drawreport/descendtree.py:1634
 msgid "box shadow scale factor"
 msgstr "poměr velikosti stínování pole"
 
 #. down to 0
 #: ../gramps/plugins/drawreport/ancestortree.py:928
-#: ../gramps/plugins/drawreport/descendtree.py:1634
+#: ../gramps/plugins/drawreport/descendtree.py:1636
 msgid "Make the box shadow bigger or smaller"
 msgstr "Zvětšit nebo zmenšit stín pole"
 
 #. #################
 #: ../gramps/plugins/drawreport/ancestortree.py:933
-#: ../gramps/plugins/drawreport/descendtree.py:1579
+#: ../gramps/plugins/drawreport/descendtree.py:1581
 msgid "Replace"
 msgstr "Nahradit"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:936
-#: ../gramps/plugins/drawreport/descendtree.py:1582
+#: ../gramps/plugins/drawreport/descendtree.py:1584
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
@@ -18578,7 +18789,7 @@ msgstr ""
 "'Nahradit toto'/' tímto'"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:938
-#: ../gramps/plugins/drawreport/descendtree.py:1584
+#: ../gramps/plugins/drawreport/descendtree.py:1586
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
@@ -18587,12 +18798,12 @@ msgstr ""
 "Spojené státy americké/U.S.A"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:945
-#: ../gramps/plugins/drawreport/descendtree.py:1662
+#: ../gramps/plugins/drawreport/descendtree.py:1664
 msgid "Include Blank Pages"
 msgstr "Vkládat prázdné stránky"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:946
-#: ../gramps/plugins/drawreport/descendtree.py:1663
+#: ../gramps/plugins/drawreport/descendtree.py:1665
 msgid "Whether to include pages that are blank."
 msgstr "Zda vkládat stránky, které jsou prázdné."
 
@@ -18604,17 +18815,17 @@ msgstr "Zda vkládat stránky, které jsou prázdné."
 #. menu.add_option(category_name, "includeImages", self.__include_images)
 #. category_name = _("Notes")
 #: ../gramps/plugins/drawreport/ancestortree.py:960
-#: ../gramps/plugins/drawreport/descendtree.py:1668
+#: ../gramps/plugins/drawreport/descendtree.py:1670
 msgid "Include a note"
 msgstr "Zahrnout poznámku"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:961
-#: ../gramps/plugins/drawreport/descendtree.py:1670
+#: ../gramps/plugins/drawreport/descendtree.py:1672
 msgid "Whether to include a note on the report."
 msgstr "Zda do sestavy zahrnout poznámku."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:966
-#: ../gramps/plugins/drawreport/descendtree.py:1675
+#: ../gramps/plugins/drawreport/descendtree.py:1677
 msgid ""
 "Add a note\n"
 "\n"
@@ -18625,12 +18836,12 @@ msgstr ""
 "$T vloží dnešní datum"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:971
-#: ../gramps/plugins/drawreport/descendtree.py:1680
+#: ../gramps/plugins/drawreport/descendtree.py:1682
 msgid "Note Location"
 msgstr "Umístění poznámky"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:974
-#: ../gramps/plugins/drawreport/descendtree.py:1683
+#: ../gramps/plugins/drawreport/descendtree.py:1685
 msgid "Where to place the note."
 msgstr "Kde bude umístěna poznámka."
 
@@ -18647,7 +18858,7 @@ msgid " Generations of empty boxes for unknown ancestors"
 msgstr " generací prázdných rámečků neznámých předků"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1013
-#: ../gramps/plugins/drawreport/descendtree.py:1731
+#: ../gramps/plugins/drawreport/descendtree.py:1733
 #: ../gramps/plugins/textreport/ancestorreport.py:353
 #: ../gramps/plugins/textreport/detancestralreport.py:920
 #: ../gramps/plugins/textreport/detdescendantreport.py:1103
@@ -18665,14 +18876,14 @@ msgid "The basic style used for the text display."
 msgstr "Základní styl používaný pro zobrazení textu."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1023
-#: ../gramps/plugins/drawreport/descendtree.py:1753
+#: ../gramps/plugins/drawreport/descendtree.py:1755
 #: ../gramps/plugins/textreport/familygroup.py:786
 #: ../gramps/plugins/textreport/tagreport.py:939
 msgid "The basic style used for the note display."
 msgstr "Základní styl používaný pro zobrazení poznámky."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1033
-#: ../gramps/plugins/drawreport/descendtree.py:1721
+#: ../gramps/plugins/drawreport/descendtree.py:1723
 msgid "The basic style used for the title display."
 msgstr "Základní styl používaný pro zobrazení titulku."
 
@@ -18686,7 +18897,7 @@ msgid "Produced with Gramps"
 msgstr "Vytvořeno v Gramps"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:113
-#: ../gramps/plugins/drawreport/descendtree.py:679
+#: ../gramps/plugins/drawreport/descendtree.py:680
 #: ../gramps/plugins/drawreport/fanchart.py:187
 #: ../gramps/plugins/graph/gvhourglass.py:94
 #: ../gramps/plugins/textreport/ancestorreport.py:104
@@ -19007,47 +19218,47 @@ msgstr "Graf rodiny pro rodiče %(father1)s a %(mother1)s"
 msgid "Cousin Chart for %(names)s"
 msgstr "Graf blízkých příbuzných osoby %(names)s"
 
-#: ../gramps/plugins/drawreport/descendtree.py:747
+#: ../gramps/plugins/drawreport/descendtree.py:749
 #, python-format
 msgid "Family %s is not in the Database"
 msgstr "Rodina %s není v databázi"
 
 #. if self.name == "familial_descend_tree":
-#: ../gramps/plugins/drawreport/descendtree.py:1497
-#: ../gramps/plugins/drawreport/descendtree.py:1501
+#: ../gramps/plugins/drawreport/descendtree.py:1499
+#: ../gramps/plugins/drawreport/descendtree.py:1503
 msgid "Report for"
 msgstr "Sestava pro"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1498
+#: ../gramps/plugins/drawreport/descendtree.py:1500
 msgid "The main person for the report"
 msgstr "Výchozí osoba pro zprávu"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1502
+#: ../gramps/plugins/drawreport/descendtree.py:1504
 msgid "The main family for the report"
 msgstr "Výchozí rodina pro sestavu"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1510
+#: ../gramps/plugins/drawreport/descendtree.py:1512
 msgid "Start with the parent(s) of the selected first"
 msgstr "Začít nejprve s rodičem/či zvoleného"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1513
+#: ../gramps/plugins/drawreport/descendtree.py:1515
 msgid "Will show the parents, brother and sisters of the selected person."
 msgstr "Zobrazí rodiče, bratry a sestry zvolené osoby."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1522
+#: ../gramps/plugins/drawreport/descendtree.py:1524
 msgid "Level of Spouses"
 msgstr "Úroveň partnerů"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1523
+#: ../gramps/plugins/drawreport/descendtree.py:1525
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
 msgstr ""
 "0=bez partnerů, 1=zahrnout partnery, 2=zahrnout partnery partnera(ky), atd"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1528
+#: ../gramps/plugins/drawreport/descendtree.py:1530
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr "Zda posunout osoby výše pokud to bude vést k menšímu stromu"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1537
+#: ../gramps/plugins/drawreport/descendtree.py:1539
 msgid ""
 "Descendant\n"
 "Display Format"
@@ -19055,15 +19266,15 @@ msgstr ""
 "Potomek\n"
 "Formát zobrazení"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1541
+#: ../gramps/plugins/drawreport/descendtree.py:1543
 msgid "Display format for a descendant."
 msgstr "Formát zobrazení potomka."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1544
+#: ../gramps/plugins/drawreport/descendtree.py:1546
 msgid "Bold direct descendants"
 msgstr "Zvýraznit přímé potomky"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1546
+#: ../gramps/plugins/drawreport/descendtree.py:1548
 msgid ""
 "Whether to bold those people that are direct (not step or half) descendants."
 msgstr ""
@@ -19076,15 +19287,15 @@ msgstr ""
 #. True)
 #. diffspouse.set_help(_("Whether spouses can have a different format."))
 #. menu.add_option(category_name, "diffspouse", diffspouse)
-#: ../gramps/plugins/drawreport/descendtree.py:1558
+#: ../gramps/plugins/drawreport/descendtree.py:1560
 msgid "Indent Spouses"
 msgstr "Odsadit partnery"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1559
+#: ../gramps/plugins/drawreport/descendtree.py:1561
 msgid "Whether to indent the spouses in the tree."
 msgstr "Zda ve stromu odsadit partnery."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1562
+#: ../gramps/plugins/drawreport/descendtree.py:1564
 msgid ""
 "Spousal\n"
 "Display Format"
@@ -19092,38 +19303,38 @@ msgstr ""
 "Manželský\n"
 "Formát zobrazení"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1566
+#: ../gramps/plugins/drawreport/descendtree.py:1568
 msgid "Display format for a spouse."
 msgstr "Formát zobrazení partnera."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1627
+#: ../gramps/plugins/drawreport/descendtree.py:1629
 msgid "inter-box Y scale factor"
 msgstr "poměr zvětšení výšky rámu"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1629
+#: ../gramps/plugins/drawreport/descendtree.py:1631
 msgid "Make the inter-box Y bigger or smaller"
 msgstr "Zvětšit nebo zmenšit výšku vnitřního rámečku"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1643
-#: ../gramps/plugins/drawreport/descendtree.py:1698
+#: ../gramps/plugins/drawreport/descendtree.py:1645
+#: ../gramps/plugins/drawreport/descendtree.py:1700
 msgid "Descendant Chart for [selected person(s)]"
 msgstr "Graf potomků osoby  [selected person(s)]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1646
-#: ../gramps/plugins/drawreport/descendtree.py:1702
+#: ../gramps/plugins/drawreport/descendtree.py:1648
+#: ../gramps/plugins/drawreport/descendtree.py:1704
 msgid "Family Chart for [names of chosen family]"
 msgstr "Rodinný graf osoby [names of chosen family]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1649
-#: ../gramps/plugins/drawreport/descendtree.py:1706
+#: ../gramps/plugins/drawreport/descendtree.py:1651
+#: ../gramps/plugins/drawreport/descendtree.py:1708
 msgid "Cousin Chart for [names of children]"
 msgstr "Graf blízkých příbuzných osoby [names of children]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1659
+#: ../gramps/plugins/drawreport/descendtree.py:1661
 msgid "Whether to include page numbers on each page."
 msgstr "Zda vkládat čísla stran na každou stránku."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1743
+#: ../gramps/plugins/drawreport/descendtree.py:1745
 msgid "The bold style used for the text display."
 msgstr "Styl zvýraznění používaný pro zobrazení textu."
 
@@ -22691,7 +22902,7 @@ msgid "Change Name"
 msgstr "Změnit název"
 
 #: ../gramps/plugins/importer/importgeneweb.py:90
-#: ../gramps/plugins/lib/libgedcom.py:587
+#: ../gramps/plugins/lib/libgedcom.py:590
 msgid "Circumcision"
 msgstr "Obřízka"
 
@@ -22704,7 +22915,7 @@ msgid "Dotation"
 msgstr "Dotace"
 
 #: ../gramps/plugins/importer/importgeneweb.py:101
-#: ../gramps/plugins/lib/libgedcom.py:593
+#: ../gramps/plugins/lib/libgedcom.py:596
 msgid "Excommunication"
 msgstr "Vyloučení"
 
@@ -22713,7 +22924,7 @@ msgid "LDS Family Link"
 msgstr "SPD odkaz na rodinu"
 
 #: ../gramps/plugins/importer/importgeneweb.py:104
-#: ../gramps/plugins/lib/libgedcom.py:595
+#: ../gramps/plugins/lib/libgedcom.py:598
 msgid "Funeral"
 msgstr "Funeral"
 
@@ -23498,116 +23709,116 @@ msgstr ""
 "Nesoulad mezi zvolenou koncovkou %(ext)s a aktuálním formátem.\n"
 "   Zapisuje se do souboru %(filename)s ve formátu %(impliedext)s."
 
-#: ../gramps/plugins/lib/libgedcom.py:588
+#: ../gramps/plugins/lib/libgedcom.py:591
 msgid "Common Law Marriage"
 msgstr "Neformální sňatek"
 
-#: ../gramps/plugins/lib/libgedcom.py:589
+#: ../gramps/plugins/lib/libgedcom.py:592
 #: ../gramps/plugins/webreport/narrativeweb.py:8130
 #: ../gramps/plugins/webreport/webcal.py:1328
 msgid "Destination"
 msgstr "Cíl"
 
-#: ../gramps/plugins/lib/libgedcom.py:590
+#: ../gramps/plugins/lib/libgedcom.py:593
 msgid "DNA"
 msgstr "DNA"
 
-#: ../gramps/plugins/lib/libgedcom.py:591
+#: ../gramps/plugins/lib/libgedcom.py:594
 msgid "Cause of Death"
 msgstr "Příčina úmrtí"
 
-#: ../gramps/plugins/lib/libgedcom.py:592
+#: ../gramps/plugins/lib/libgedcom.py:595
 msgid "Employment"
 msgstr "Zaměstnání"
 
-#: ../gramps/plugins/lib/libgedcom.py:594
+#: ../gramps/plugins/lib/libgedcom.py:597
 msgid "Eye Color"
 msgstr "Barva očí"
 
-#: ../gramps/plugins/lib/libgedcom.py:596
+#: ../gramps/plugins/lib/libgedcom.py:599
 msgid "Height"
 msgstr "Výška"
 
-#: ../gramps/plugins/lib/libgedcom.py:597
+#: ../gramps/plugins/lib/libgedcom.py:600
 msgid "Initiatory (LDS)"
 msgstr "Zasvěcující (SPD)"
 
-#: ../gramps/plugins/lib/libgedcom.py:598
+#: ../gramps/plugins/lib/libgedcom.py:601
 msgid "Military ID"
 msgstr "Vojenský průkaz"
 
-#: ../gramps/plugins/lib/libgedcom.py:599
+#: ../gramps/plugins/lib/libgedcom.py:602
 msgid "Mission (LDS)"
 msgstr "Misie (SPD)"
 
-#: ../gramps/plugins/lib/libgedcom.py:600
+#: ../gramps/plugins/lib/libgedcom.py:603
 msgid "Namesake"
 msgstr "Jmenovec"
 
-#: ../gramps/plugins/lib/libgedcom.py:601
+#: ../gramps/plugins/lib/libgedcom.py:604
 msgid "Ordinance"
 msgstr "Vysvěcení"
 
-#: ../gramps/plugins/lib/libgedcom.py:603
+#: ../gramps/plugins/lib/libgedcom.py:606
 msgid "Separation"
 msgstr "Rozluka"
 
 #. Applies to Families
-#: ../gramps/plugins/lib/libgedcom.py:604
+#: ../gramps/plugins/lib/libgedcom.py:607
 msgid "Weight"
 msgstr "Hmotnost"
 
-#: ../gramps/plugins/lib/libgedcom.py:809
+#: ../gramps/plugins/lib/libgedcom.py:812
 msgid "Line ignored "
 msgstr "Linka ignorována"
 
 #. e.g. Illegal character (oxAB) (0xCB)... 1 NOTE xyz?pqr?lmn
-#: ../gramps/plugins/lib/libgedcom.py:1608
+#: ../gramps/plugins/lib/libgedcom.py:1612
 #, python-format
 msgid "Illegal character%s"
 msgstr "neplatný znak%s"
 
-#: ../gramps/plugins/lib/libgedcom.py:1883
+#: ../gramps/plugins/lib/libgedcom.py:1887
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "Váš GEDCOM soubor je porušený. Zdá se, že byl zkrácen."
 
-#: ../gramps/plugins/lib/libgedcom.py:1966
+#: ../gramps/plugins/lib/libgedcom.py:1970
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Importovat z GEDCOM (%s)"
 
-#: ../gramps/plugins/lib/libgedcom.py:2798
-#: ../gramps/plugins/lib/libgedcom.py:3241
+#: ../gramps/plugins/lib/libgedcom.py:2804
+#: ../gramps/plugins/lib/libgedcom.py:3247
 msgid "GEDCOM import"
 msgstr "GEDCOM Import"
 
-#: ../gramps/plugins/lib/libgedcom.py:2826
+#: ../gramps/plugins/lib/libgedcom.py:2832
 msgid "GEDCOM import report: No errors detected"
 msgstr "GEDCOM import report: Nebyly detekovány chyby"
 
-#: ../gramps/plugins/lib/libgedcom.py:2828
+#: ../gramps/plugins/lib/libgedcom.py:2834
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "GEDCOM import report: %s detekovaných chyb"
 
-#: ../gramps/plugins/lib/libgedcom.py:3141
-#: ../gramps/plugins/lib/libgedcom.py:3173
+#: ../gramps/plugins/lib/libgedcom.py:3147
+#: ../gramps/plugins/lib/libgedcom.py:3179
 msgid "Line ignored as not understood"
 msgstr "Řádek byl ignorovnán jako nesrozumitelný"
 
-#: ../gramps/plugins/lib/libgedcom.py:3162
+#: ../gramps/plugins/lib/libgedcom.py:3168
 msgid "Tag recognized but not supported"
 msgstr "Štítek byl rozpoznán ale není podporován"
 
-#: ../gramps/plugins/lib/libgedcom.py:3198
+#: ../gramps/plugins/lib/libgedcom.py:3204
 msgid "Skipped subordinate line"
 msgstr "Vynechaná podřízená řádka"
 
-#: ../gramps/plugins/lib/libgedcom.py:3232
+#: ../gramps/plugins/lib/libgedcom.py:3238
 msgid "Records not imported into "
 msgstr "Záznamy neimportované do "
 
-#: ../gramps/plugins/lib/libgedcom.py:3268
+#: ../gramps/plugins/lib/libgedcom.py:3274
 #, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -23616,7 +23827,7 @@ msgstr ""
 "Chyba: %(msg)s  '%(gramps_id)s' (vložené jako @%(xref)s@) není v GEDCOM "
 "vstupu. Záznam byl sloučen"
 
-#: ../gramps/plugins/lib/libgedcom.py:3277
+#: ../gramps/plugins/lib/libgedcom.py:3283
 #, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -23625,7 +23836,7 @@ msgstr ""
 "Chyba: %(msg)s '%(gramps_id)s' (vloženo jako @%(xref)s@) není v GEDCOM "
 "vstupu. Byl vytvořen záznam s typizačním atributem 'Neznámý'"
 
-#: ../gramps/plugins/lib/libgedcom.py:3316
+#: ../gramps/plugins/lib/libgedcom.py:3322
 #, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
@@ -23636,7 +23847,7 @@ msgstr ""
 "(vložena jako %(orig_person)s) není členem odkazované rodiny. Odkaz na "
 "rodinu byl osobě odejmut"
 
-#: ../gramps/plugins/lib/libgedcom.py:3394
+#: ../gramps/plugins/lib/libgedcom.py:3400
 #, python-format
 msgid ""
 "\n"
@@ -23656,203 +23867,203 @@ msgstr ""
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
 #. truncated for output
-#: ../gramps/plugins/lib/libgedcom.py:3466
+#: ../gramps/plugins/lib/libgedcom.py:3472
 #, python-format
 msgid "ADDR element ignored '%s'"
 msgstr "ADDR element ignorován '%s'"
 
-#: ../gramps/plugins/lib/libgedcom.py:3486
+#: ../gramps/plugins/lib/libgedcom.py:3492
 msgid "TRLR (trailer)"
 msgstr "TRLR (trailer)"
 
-#: ../gramps/plugins/lib/libgedcom.py:3515
+#: ../gramps/plugins/lib/libgedcom.py:3521
 msgid "(Submitter):"
 msgstr "(Vkladatel ):"
 
-#: ../gramps/plugins/lib/libgedcom.py:3539
-#: ../gramps/plugins/lib/libgedcom.py:7315
+#: ../gramps/plugins/lib/libgedcom.py:3545
+#: ../gramps/plugins/lib/libgedcom.py:7364
 msgid "GEDCOM data"
 msgstr "GEDCOM data"
 
-#: ../gramps/plugins/lib/libgedcom.py:3585
+#: ../gramps/plugins/lib/libgedcom.py:3591
 msgid "Unknown tag"
 msgstr "Neznámý štítek"
 
-#: ../gramps/plugins/lib/libgedcom.py:3587
-#: ../gramps/plugins/lib/libgedcom.py:3601
-#: ../gramps/plugins/lib/libgedcom.py:3605
-#: ../gramps/plugins/lib/libgedcom.py:3626
+#: ../gramps/plugins/lib/libgedcom.py:3593
+#: ../gramps/plugins/lib/libgedcom.py:3607
+#: ../gramps/plugins/lib/libgedcom.py:3611
+#: ../gramps/plugins/lib/libgedcom.py:3632
 msgid "Top Level"
 msgstr "Nejvyšší úroveň"
 
-#: ../gramps/plugins/lib/libgedcom.py:3701
+#: ../gramps/plugins/lib/libgedcom.py:3707
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (jednotlivec) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:3820
+#: ../gramps/plugins/lib/libgedcom.py:3826
 msgid "Empty Alias <NAME PERSONAL> ignored"
 msgstr "Prázdný alias <NAME PERSONAL> ignorován"
 
-#: ../gramps/plugins/lib/libgedcom.py:4161
-#: ../gramps/plugins/lib/libgedcom.py:5912
-#: ../gramps/plugins/lib/libgedcom.py:7058
+#: ../gramps/plugins/lib/libgedcom.py:4190
+#: ../gramps/plugins/lib/libgedcom.py:5961
+#: ../gramps/plugins/lib/libgedcom.py:7107
 msgid "FAX"
 msgstr "FAX"
 
-#: ../gramps/plugins/lib/libgedcom.py:4985
+#: ../gramps/plugins/lib/libgedcom.py:5014
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (rodina) Gramps ID: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5337
-#: ../gramps/plugins/lib/libgedcom.py:6743
+#: ../gramps/plugins/lib/libgedcom.py:5376
+#: ../gramps/plugins/lib/libgedcom.py:6792
 msgid "Filename omitted"
 msgstr "Vynechaný název souboru"
 
-#: ../gramps/plugins/lib/libgedcom.py:5360
-#: ../gramps/plugins/lib/libgedcom.py:6783
+#: ../gramps/plugins/lib/libgedcom.py:5409
+#: ../gramps/plugins/lib/libgedcom.py:6832
 #, python-format
 msgid "Could not import %s"
 msgstr "Nemohu importovat %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5417
-#: ../gramps/plugins/lib/libgedcom.py:6884
+#: ../gramps/plugins/lib/libgedcom.py:5466
+#: ../gramps/plugins/lib/libgedcom.py:6933
 msgid "Media-Type"
 msgstr "Typ média"
 
-#: ../gramps/plugins/lib/libgedcom.py:5441
-#: ../gramps/plugins/lib/libgedcom.py:6774
+#: ../gramps/plugins/lib/libgedcom.py:5490
+#: ../gramps/plugins/lib/libgedcom.py:6823
 msgid "Multiple FILE in a single OBJE ignored"
 msgstr "Více FILE a jeden OBJE ignorovány"
 
-#: ../gramps/plugins/lib/libgedcom.py:5474
-#: ../gramps/plugins/lib/libgedcom.py:7618
-#: ../gramps/plugins/lib/libgedcom.py:7658
+#: ../gramps/plugins/lib/libgedcom.py:5523
+#: ../gramps/plugins/lib/libgedcom.py:7667
+#: ../gramps/plugins/lib/libgedcom.py:7707
 msgid "Empty note ignored"
 msgstr "Prázdná poznámka byla ignorována"
 
 #. We have previously found a PLAC
-#: ../gramps/plugins/lib/libgedcom.py:5629
+#: ../gramps/plugins/lib/libgedcom.py:5678
 msgid "A second PLAC ignored"
 msgstr "Druhý PLAC ignorován"
 
 #. For RootsMagic etc. Place Details e.g. address, hospital, cemetary
-#: ../gramps/plugins/lib/libgedcom.py:5767
+#: ../gramps/plugins/lib/libgedcom.py:5816
 msgid "Detail"
 msgstr "Podrobnosti"
 
 #. We have perviously found an ADDR, or have populated location
 #. from PLAC title
-#: ../gramps/plugins/lib/libgedcom.py:5780
+#: ../gramps/plugins/lib/libgedcom.py:5829
 msgid "Location already populated; ADDR ignored"
 msgstr "Místo již naplněno; ADDR ignorována"
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../gramps/plugins/lib/libgedcom.py:5853
+#: ../gramps/plugins/lib/libgedcom.py:5902
 msgid "Empty event note ignored"
 msgstr "Prázdná poznámka události byla ignorována"
 
-#: ../gramps/plugins/lib/libgedcom.py:5924
+#: ../gramps/plugins/lib/libgedcom.py:5973
 msgid "EMAIL"
 msgstr "EMAIL"
 
-#: ../gramps/plugins/lib/libgedcom.py:5936
+#: ../gramps/plugins/lib/libgedcom.py:5985
 msgid "WWW"
 msgstr "WWW"
 
-#: ../gramps/plugins/lib/libgedcom.py:6195
-#: ../gramps/plugins/lib/libgedcom.py:7095
+#: ../gramps/plugins/lib/libgedcom.py:6244
+#: ../gramps/plugins/lib/libgedcom.py:7144
 msgid "Warn: ADDR overwritten"
 msgstr "Pozor: ADDR přepsáno"
 
-#: ../gramps/plugins/lib/libgedcom.py:6360
+#: ../gramps/plugins/lib/libgedcom.py:6409
 msgid "Citation Justification"
 msgstr "Zarovnání citace"
 
-#: ../gramps/plugins/lib/libgedcom.py:6387
+#: ../gramps/plugins/lib/libgedcom.py:6436
 msgid "REFN ignored"
 msgstr "REFN ignorován"
 
 #. SOURce with the given gramps_id had no title
-#: ../gramps/plugins/lib/libgedcom.py:6486
+#: ../gramps/plugins/lib/libgedcom.py:6535
 #, python-format
 msgid "No title - ID %s"
 msgstr "Žádný titulek - ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6491
+#: ../gramps/plugins/lib/libgedcom.py:6540
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (pramen) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6750
+#: ../gramps/plugins/lib/libgedcom.py:6799
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (multimediální objekt) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6984
+#: ../gramps/plugins/lib/libgedcom.py:7033
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (archiv) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7045
-#: ../gramps/plugins/lib/libgedcom.py:8018
+#: ../gramps/plugins/lib/libgedcom.py:7094
+#: ../gramps/plugins/lib/libgedcom.py:8067
 msgid "Only one phone number supported"
 msgstr "Podporováno je pouze jedno telefonní číslo"
 
-#: ../gramps/plugins/lib/libgedcom.py:7230
+#: ../gramps/plugins/lib/libgedcom.py:7279
 msgid "HEAD (header)"
 msgstr "Hlavička"
 
-#: ../gramps/plugins/lib/libgedcom.py:7252
+#: ../gramps/plugins/lib/libgedcom.py:7301
 msgid "Approved system identification"
 msgstr "Schválená identifikace systému"
 
-#: ../gramps/plugins/lib/libgedcom.py:7264
+#: ../gramps/plugins/lib/libgedcom.py:7313
 msgid "Generated By"
 msgstr "Vytvořeno v"
 
-#: ../gramps/plugins/lib/libgedcom.py:7280
+#: ../gramps/plugins/lib/libgedcom.py:7329
 msgid "Name of software product"
 msgstr "Název softwarového produktu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7294
+#: ../gramps/plugins/lib/libgedcom.py:7343
 msgid "Version number of software product"
 msgstr "Číslo verze softwarového produktu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7312
+#: ../gramps/plugins/lib/libgedcom.py:7361
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Tvůrce produktu: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7334
+#: ../gramps/plugins/lib/libgedcom.py:7383
 msgid "Name of source data"
 msgstr "Název zdrojových dat"
 
-#: ../gramps/plugins/lib/libgedcom.py:7351
+#: ../gramps/plugins/lib/libgedcom.py:7400
 msgid "Copyright of source data"
 msgstr "Autorská práva zdrojových dat"
 
-#: ../gramps/plugins/lib/libgedcom.py:7368
+#: ../gramps/plugins/lib/libgedcom.py:7417
 msgid "Publication date of source data"
 msgstr "Datum vydání zdrojových dat"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/lib/libgedcom.py:7382
+#: ../gramps/plugins/lib/libgedcom.py:7431
 #, python-format
 msgid "Import from %s"
 msgstr "Importovat z %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7421
+#: ../gramps/plugins/lib/libgedcom.py:7470
 msgid "Submission record identifier"
 msgstr "Identifikátor záznamu vkladu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7434
+#: ../gramps/plugins/lib/libgedcom.py:7483
 msgid "Language of GEDCOM text"
 msgstr "Jazyk textu GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7460
+#: ../gramps/plugins/lib/libgedcom.py:7509
 #, python-format
 msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
@@ -23861,83 +24072,83 @@ msgstr ""
 "Import GEDCOM souboru %(filename)s s DEST=%(by)s může ve výsledné databázi "
 "způsobit problémy!"
 
-#: ../gramps/plugins/lib/libgedcom.py:7463
+#: ../gramps/plugins/lib/libgedcom.py:7512
 msgid "Look for nameless events."
 msgstr "Najít nepojmenované události."
 
-#: ../gramps/plugins/lib/libgedcom.py:7487
+#: ../gramps/plugins/lib/libgedcom.py:7536
 msgid "Character set"
 msgstr "Znaková sada"
 
-#: ../gramps/plugins/lib/libgedcom.py:7492
+#: ../gramps/plugins/lib/libgedcom.py:7541
 msgid "Character set and version"
 msgstr "Znaková sada a verze"
 
-#: ../gramps/plugins/lib/libgedcom.py:7509
+#: ../gramps/plugins/lib/libgedcom.py:7558
 msgid "GEDCOM version not supported"
 msgstr "Verze GEDCOM není podporována"
 
-#: ../gramps/plugins/lib/libgedcom.py:7513
+#: ../gramps/plugins/lib/libgedcom.py:7562
 msgid "GEDCOM version"
 msgstr "Verze GEDCOM"
 
 #. Allow Lineage-Linked etc. though it should be in uppercase
-#: ../gramps/plugins/lib/libgedcom.py:7521
+#: ../gramps/plugins/lib/libgedcom.py:7570
 msgid "GEDCOM FORM should be in uppercase"
 msgstr "GEDCOM forma by měla být velkými písmeny"
 
-#: ../gramps/plugins/lib/libgedcom.py:7523
+#: ../gramps/plugins/lib/libgedcom.py:7572
 msgid "GEDCOM FORM not supported"
 msgstr "Nepodporovaná GEDCOM forma"
 
-#: ../gramps/plugins/lib/libgedcom.py:7526
+#: ../gramps/plugins/lib/libgedcom.py:7575
 msgid "GEDCOM form"
 msgstr "GEDCOM formulář"
 
-#: ../gramps/plugins/lib/libgedcom.py:7575
+#: ../gramps/plugins/lib/libgedcom.py:7624
 msgid "Creation date of GEDCOM"
 msgstr "Datum vytvoření GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7580
+#: ../gramps/plugins/lib/libgedcom.py:7629
 msgid "Creation date and time of GEDCOM"
 msgstr "Datum a čas vytvoření GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7673
+#: ../gramps/plugins/lib/libgedcom.py:7722
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "NOTE Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7723
+#: ../gramps/plugins/lib/libgedcom.py:7772
 msgid "Submission: Submitter"
 msgstr "Zařazení: Vkladatel"
 
-#: ../gramps/plugins/lib/libgedcom.py:7725
+#: ../gramps/plugins/lib/libgedcom.py:7774
 msgid "Submission: Family file"
 msgstr "Vklad: soubor rodiny"
 
-#: ../gramps/plugins/lib/libgedcom.py:7727
+#: ../gramps/plugins/lib/libgedcom.py:7776
 msgid "Submission: Temple code"
 msgstr "Vklad: Kód kostela"
 
-#: ../gramps/plugins/lib/libgedcom.py:7729
+#: ../gramps/plugins/lib/libgedcom.py:7778
 msgid "Submission: Generations of ancestors"
 msgstr "Zařazení: Genrací předků"
 
-#: ../gramps/plugins/lib/libgedcom.py:7731
+#: ../gramps/plugins/lib/libgedcom.py:7780
 msgid "Submission: Generations of descendants"
 msgstr "Zařazení: Genrací  potomků"
 
-#: ../gramps/plugins/lib/libgedcom.py:7733
+#: ../gramps/plugins/lib/libgedcom.py:7782
 msgid "Submission: Ordinance process flag"
 msgstr "Vklad: Příznak průběhu obřadu"
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../gramps/plugins/lib/libgedcom.py:7957
+#: ../gramps/plugins/lib/libgedcom.py:8006
 msgid "Invalid temple code"
 msgstr "Neplatný kód kostela"
 
-#: ../gramps/plugins/lib/libgedcom.py:8051
+#: ../gramps/plugins/lib/libgedcom.py:8100
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -23945,7 +24156,7 @@ msgstr ""
 "Váš GEDCOM soubor je porušený. Zdá se, že soubor je v UTF-16 kódování, ale "
 "neobsahuje značku BOM."
 
-#: ../gramps/plugins/lib/libgedcom.py:8054
+#: ../gramps/plugins/lib/libgedcom.py:8103
 msgid "Your GEDCOM file is empty."
 msgstr "GEDCOM soubor je prázdný."
 
@@ -27254,7 +27465,7 @@ msgstr "Odstranit osobu (%s)"
 
 #: ../gramps/plugins/lib/libpersonview.py:369
 #: ../gramps/plugins/view/pedigreeview.py:663
-#: ../gramps/plugins/view/relview.py:421
+#: ../gramps/plugins/view/relview.py:412
 msgid "Person Filter Editor"
 msgstr "Editor filtrů osob"
 
@@ -27579,17 +27790,17 @@ msgid "Your Gtk version is too old."
 msgstr "Verze Vašeho Gtk je příliš stará."
 
 #: ../gramps/plugins/lib/maps/geography.py:868
-#: ../gramps/plugins/view/geoclose.py:535
-#: ../gramps/plugins/view/geoevents.py:329
-#: ../gramps/plugins/view/geoevents.py:362
-#: ../gramps/plugins/view/geofamclose.py:680
-#: ../gramps/plugins/view/geofamily.py:405
+#: ../gramps/plugins/view/geoclose.py:540
+#: ../gramps/plugins/view/geoevents.py:331
+#: ../gramps/plugins/view/geoevents.py:364
+#: ../gramps/plugins/view/geofamclose.py:683
+#: ../gramps/plugins/view/geofamily.py:407
 #: ../gramps/plugins/view/geomoves.py:602
-#: ../gramps/plugins/view/geoperson.py:431
-#: ../gramps/plugins/view/geoperson.py:452
-#: ../gramps/plugins/view/geoperson.py:490
-#: ../gramps/plugins/view/geoplaces.py:332
-#: ../gramps/plugins/view/geoplaces.py:357
+#: ../gramps/plugins/view/geoperson.py:433
+#: ../gramps/plugins/view/geoperson.py:454
+#: ../gramps/plugins/view/geoperson.py:492
+#: ../gramps/plugins/view/geoplaces.py:334
+#: ../gramps/plugins/view/geoplaces.py:359
 msgid "Center on this place"
 msgstr "Vystředit na tomto místě"
 
@@ -27883,7 +28094,7 @@ msgid "Parent"
 msgstr "Rodič"
 
 #: ../gramps/plugins/quickview/all_relations.py:286
-#: ../gramps/plugins/view/relview.py:404
+#: ../gramps/plugins/view/relview.py:395
 #: ../gramps/plugins/webreport/narrativeweb.py:384
 #: ../gramps/plugins/webreport/narrativeweb.py:2494
 #: ../gramps/plugins/webreport/narrativeweb.py:2496
@@ -29026,7 +29237,7 @@ msgstr "Zda začít koncové poznámky na nové stránce."
 #. Content
 #: ../gramps/plugins/textreport/detancestralreport.py:782
 #: ../gramps/plugins/textreport/detdescendantreport.py:945
-#: ../gramps/plugins/view/relview.py:1715
+#: ../gramps/plugins/view/relview.py:1682
 msgid "Content"
 msgstr "Obsah"
 
@@ -30920,10 +31131,6 @@ msgstr "Po_rovnat"
 msgid "Please be patient. This may take a while."
 msgstr "Prosím čekejte. Může to chvíli trvat."
 
-#: ../gramps/plugins/tool/finddupes.py:61
-msgid "Medium"
-msgstr "Střední"
-
 #: ../gramps/plugins/tool/finddupes.py:66
 msgid "manual|Find_Possible_Duplicate_People"
 msgstr "Find_Possible_Duplicate_People"
@@ -32566,7 +32773,7 @@ msgstr "Velikost proporcionálně k počtu potomků"
 #: ../gramps/plugins/view/fanchartdescview.py:329
 #: ../gramps/plugins/view/fanchartview.py:323
 #: ../gramps/plugins/view/pedigreeview.py:2037
-#: ../gramps/plugins/view/relview.py:1698
+#: ../gramps/plugins/view/relview.py:1665
 msgid "Layout"
 msgstr "Uspořádání"
 
@@ -32626,20 +32833,20 @@ msgstr "Zvolte osobu, která bude referenční pro"
 msgid "Select the person which will be our reference."
 msgstr "Vyberte osobu, která bude referencí."
 
-#: ../gramps/plugins/view/geoclose.py:399
-#: ../gramps/plugins/view/geofamclose.py:462
-#: ../gramps/plugins/view/geofamily.py:210
+#: ../gramps/plugins/view/geoclose.py:404
+#: ../gramps/plugins/view/geofamclose.py:465
+#: ../gramps/plugins/view/geofamily.py:212
 #: ../gramps/plugins/view/geomoves.py:291
-#: ../gramps/plugins/view/geoperson.py:333
+#: ../gramps/plugins/view/geoperson.py:335
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../gramps/plugins/view/geoclose.py:552
+#: ../gramps/plugins/view/geoclose.py:557
 msgid "Choose and bookmark the new reference person"
 msgstr "Zvolit referenční osobu a uložit záložku"
 
-#: ../gramps/plugins/view/geoclose.py:575
+#: ../gramps/plugins/view/geoclose.py:580
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -32655,8 +32862,8 @@ msgstr ""
 "Hodnota 1 znamená kolem 4.6 mil nebo 7.5 km.\n"
 "Hodnota je v desetinách stupně."
 
-#: ../gramps/plugins/view/geoclose.py:586
-#: ../gramps/plugins/view/geofamclose.py:731
+#: ../gramps/plugins/view/geoclose.py:591
+#: ../gramps/plugins/view/geofamclose.py:734
 msgid "The selection parameters"
 msgstr "Parametry výběru"
 
@@ -32668,23 +32875,23 @@ msgstr "Mapa míst událostí"
 msgid "GeoEvents"
 msgstr "GeoUdálosti"
 
-#: ../gramps/plugins/view/geoevents.py:254
+#: ../gramps/plugins/view/geoevents.py:256
 msgid "incomplete or unreferenced event ?"
 msgstr "nekompletní nebo neodkazovaná událost?"
 
-#: ../gramps/plugins/view/geoevents.py:336
-#: ../gramps/plugins/view/geoevents.py:368
+#: ../gramps/plugins/view/geoevents.py:338
+#: ../gramps/plugins/view/geoevents.py:370
 msgid "Bookmark this event"
 msgstr "Záložka pro tuto událost"
 
-#: ../gramps/plugins/view/geoevents.py:383
+#: ../gramps/plugins/view/geoevents.py:385
 msgid "Show all events"
 msgstr "Zobrazit všechny události"
 
-#: ../gramps/plugins/view/geoevents.py:387
-#: ../gramps/plugins/view/geoevents.py:392
-#: ../gramps/plugins/view/geoplaces.py:382
-#: ../gramps/plugins/view/geoplaces.py:387
+#: ../gramps/plugins/view/geoevents.py:389
+#: ../gramps/plugins/view/geoevents.py:394
+#: ../gramps/plugins/view/geoplaces.py:384
+#: ../gramps/plugins/view/geoplaces.py:389
 msgid "Centering on Place"
 msgstr "Centruje se na místo"
 
@@ -32698,7 +32905,7 @@ msgid "GeoFamClose"
 msgstr "GeoFamClose"
 
 #: ../gramps/plugins/view/geofamclose.py:206
-#: ../gramps/plugins/view/geofamily.py:279
+#: ../gramps/plugins/view/geofamily.py:281
 #, python-format
 msgid "%(gramps_id)s : %(father)s and %(mother)s"
 msgstr "%(gramps_id)s : %(father)s a %(mother)s"
@@ -32734,35 +32941,35 @@ msgstr "re_ferenční rodina"
 msgid "Select the family which is the reference for life ways"
 msgstr "Zvolte rodinu, která bude referenční pro cestu životem"
 
-#: ../gramps/plugins/view/geofamclose.py:561
-#: ../gramps/plugins/view/geofamily.py:324
+#: ../gramps/plugins/view/geofamclose.py:564
+#: ../gramps/plugins/view/geofamily.py:326
 #, python-format
 msgid "Father : %(id)s : %(name)s"
 msgstr "Otec :  %(id)s : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:567
-#: ../gramps/plugins/view/geofamily.py:331
+#: ../gramps/plugins/view/geofamclose.py:570
+#: ../gramps/plugins/view/geofamily.py:333
 #, python-format
 msgid "Mother : %(id)s : %(name)s"
 msgstr "Matka :  %(id)s : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:577
-#: ../gramps/plugins/view/geofamily.py:342
+#: ../gramps/plugins/view/geofamclose.py:580
+#: ../gramps/plugins/view/geofamily.py:344
 #, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
 msgstr "Potomek : %(id)s - %(index)d : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:585
-#: ../gramps/plugins/view/geofamily.py:351
+#: ../gramps/plugins/view/geofamclose.py:588
+#: ../gramps/plugins/view/geofamily.py:353
 #, python-format
 msgid "Person : %(id)s %(name)s has no family."
 msgstr "Osoba: %(id)s %(name)s nemá rodinu."
 
-#: ../gramps/plugins/view/geofamclose.py:697
+#: ../gramps/plugins/view/geofamclose.py:700
 msgid "Choose and bookmark the new reference family"
 msgstr "Zvolit referenční rodinu a uložit záložku"
 
-#: ../gramps/plugins/view/geofamclose.py:720
+#: ../gramps/plugins/view/geofamclose.py:723
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -32786,7 +32993,7 @@ msgstr "Mapa míst rodiny"
 msgid "GeoFamily"
 msgstr "GeoRodina"
 
-#: ../gramps/plugins/view/geofamily.py:306
+#: ../gramps/plugins/view/geofamily.py:308
 #, python-format
 msgid "Family places for %s"
 msgstr "Místa rodiny %s"
@@ -32919,24 +33126,24 @@ msgstr "Mapa míst osoby"
 msgid "GeoPerson"
 msgstr "GeoOsoba"
 
-#: ../gramps/plugins/view/geoperson.py:313
+#: ../gramps/plugins/view/geoperson.py:315
 #, python-format
 msgid "Person places for %s"
 msgstr "Místa osoby %s"
 
-#: ../gramps/plugins/view/geoperson.py:506
+#: ../gramps/plugins/view/geoperson.py:508
 msgid "Animate"
 msgstr "Animovat"
 
-#: ../gramps/plugins/view/geoperson.py:529
+#: ../gramps/plugins/view/geoperson.py:531
 msgid "Animation speed in milliseconds (big value means slower)"
 msgstr "Rychlost animace v milisekundách (větší hodnota znamená pomaleji)"
 
-#: ../gramps/plugins/view/geoperson.py:536
+#: ../gramps/plugins/view/geoperson.py:538
 msgid "How many steps between two markers when we are on large move ?"
 msgstr "Kolik kroků mezi dvěma značkami, indikující velké stěhování?"
 
-#: ../gramps/plugins/view/geoperson.py:543
+#: ../gramps/plugins/view/geoperson.py:545
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
@@ -32944,7 +33151,7 @@ msgstr ""
 "Minimální zem. délka/šířka označující velké stěhování.\n"
 "Hodnota je v desetinách stupně."
 
-#: ../gramps/plugins/view/geoperson.py:550
+#: ../gramps/plugins/view/geoperson.py:552
 msgid "The animation parameters"
 msgstr "Parametry animace"
 
@@ -32956,37 +33163,37 @@ msgstr "Mapa míst"
 msgid "GeoPlaces"
 msgstr "GeoMísta"
 
-#: ../gramps/plugins/view/geoplaces.py:293
+#: ../gramps/plugins/view/geoplaces.py:295
 msgid "The place name in the status bar is disabled."
 msgstr "Název místa ve stavové liště byl zakázán."
 
-#: ../gramps/plugins/view/geoplaces.py:298
+#: ../gramps/plugins/view/geoplaces.py:300
 #, python-format
 msgid "The maximum number of places is reached (%d)."
 msgstr "Bylo dosaženo maximálního počtu míst (%d)."
 
-#: ../gramps/plugins/view/geoplaces.py:301
+#: ../gramps/plugins/view/geoplaces.py:303
 msgid "Some information are missing."
 msgstr "Část informací chybí."
 
-#: ../gramps/plugins/view/geoplaces.py:303
+#: ../gramps/plugins/view/geoplaces.py:305
 msgid "Please, use filtering to reduce this number."
 msgstr "Pro omezení tohoto počtu použijte filtr prosím."
 
-#: ../gramps/plugins/view/geoplaces.py:305
+#: ../gramps/plugins/view/geoplaces.py:307
 msgid "You can modify this value in the geography option."
 msgstr "Tuto hodnotu můžete měnit v geografických předvolbách."
 
-#: ../gramps/plugins/view/geoplaces.py:307
+#: ../gramps/plugins/view/geoplaces.py:309
 msgid "In this case, it may take time to show all markers."
 msgstr "V tomto případě může zobrazení všech značek trvat delší dobu."
 
-#: ../gramps/plugins/view/geoplaces.py:339
-#: ../gramps/plugins/view/geoplaces.py:363
+#: ../gramps/plugins/view/geoplaces.py:341
+#: ../gramps/plugins/view/geoplaces.py:365
 msgid "Bookmark this place"
 msgstr "Záložka pro toto místo"
 
-#: ../gramps/plugins/view/geoplaces.py:378
+#: ../gramps/plugins/view/geoplaces.py:380
 msgid "Show all places"
 msgstr "Zobrazit všechna místa"
 
@@ -33115,7 +33322,7 @@ msgid "Left <-> Right"
 msgstr "vlevo <-> vpravo"
 
 #: ../gramps/plugins/view/pedigreeview.py:1818
-#: ../gramps/plugins/view/relview.py:410
+#: ../gramps/plugins/view/relview.py:401
 msgid "Add New Parents..."
 msgstr "Přidat nové rodiče..."
 
@@ -33183,72 +33390,72 @@ msgstr "Rozbalit tuto celou skupinu"
 msgid "Collapse this Entire Group"
 msgstr "Sbalit tuto celou skupinu"
 
-#: ../gramps/plugins/view/relview.py:396
+#: ../gramps/plugins/view/relview.py:387
 msgid "_Reorder"
 msgstr "Pře_skupit"
 
-#: ../gramps/plugins/view/relview.py:397
+#: ../gramps/plugins/view/relview.py:388
 msgid "Change order of parents and families"
 msgstr "Změnit pořadí rodičů a rodin"
 
-#: ../gramps/plugins/view/relview.py:402
+#: ../gramps/plugins/view/relview.py:393
 msgid "Edit..."
 msgstr "Upravit..."
 
-#: ../gramps/plugins/view/relview.py:403
+#: ../gramps/plugins/view/relview.py:394
 msgid "Edit the active person"
 msgstr "Upravit zvolenou osobu"
 
-#: ../gramps/plugins/view/relview.py:405 ../gramps/plugins/view/relview.py:407
-#: ../gramps/plugins/view/relview.py:796
+#: ../gramps/plugins/view/relview.py:396 ../gramps/plugins/view/relview.py:398
+#: ../gramps/plugins/view/relview.py:785
 msgid "Add a new family with person as parent"
 msgstr "Přidat novou rodinu s osobou jako rodičem"
 
-#: ../gramps/plugins/view/relview.py:406
+#: ../gramps/plugins/view/relview.py:397
 msgid "Add Partner..."
 msgstr "Přidat partnera..."
 
-#: ../gramps/plugins/view/relview.py:409 ../gramps/plugins/view/relview.py:411
-#: ../gramps/plugins/view/relview.py:790
+#: ../gramps/plugins/view/relview.py:400 ../gramps/plugins/view/relview.py:402
+#: ../gramps/plugins/view/relview.py:779
 msgid "Add a new set of parents"
 msgstr "Přidá nové rodiče"
 
-#: ../gramps/plugins/view/relview.py:413 ../gramps/plugins/view/relview.py:417
-#: ../gramps/plugins/view/relview.py:791
+#: ../gramps/plugins/view/relview.py:404 ../gramps/plugins/view/relview.py:408
+#: ../gramps/plugins/view/relview.py:780
 msgid "Add person as child to an existing family"
 msgstr "Přidat osobu jako potomka k existující rodině"
 
-#: ../gramps/plugins/view/relview.py:416
+#: ../gramps/plugins/view/relview.py:407
 msgid "Add Existing Parents..."
 msgstr "Vybrat existující rodiče..."
 
-#: ../gramps/plugins/view/relview.py:628
+#: ../gramps/plugins/view/relview.py:617
 msgid "Alive"
 msgstr "Naživu"
 
-#: ../gramps/plugins/view/relview.py:695 ../gramps/plugins/view/relview.py:722
+#: ../gramps/plugins/view/relview.py:684 ../gramps/plugins/view/relview.py:711
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr "%(date)s v %(place)s"
 
-#: ../gramps/plugins/view/relview.py:792
+#: ../gramps/plugins/view/relview.py:781
 msgid "Edit parents"
 msgstr "Změnit rodiče"
 
-#: ../gramps/plugins/view/relview.py:793
+#: ../gramps/plugins/view/relview.py:782
 msgid "Reorder parents"
 msgstr "Přeskupit rodiče"
 
-#: ../gramps/plugins/view/relview.py:794
+#: ../gramps/plugins/view/relview.py:783
 msgid "Remove person as child of these parents"
 msgstr "Odstranit osobu jako potomka těchto rodičů"
 
-#: ../gramps/plugins/view/relview.py:800
+#: ../gramps/plugins/view/relview.py:789
 msgid "Remove person as parent in this family"
 msgstr "Odstranit osobu jako otce v této rodině"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/view/relview.py:860 ../gramps/plugins/view/relview.py:916
+#: ../gramps/plugins/view/relview.py:849 ../gramps/plugins/view/relview.py:903
 #, python-brace-format
 msgid " ({number_of} sibling)"
 msgid_plural " ({number_of} siblings)"
@@ -33256,72 +33463,72 @@ msgstr[0] " ({number_of} sourozenec)"
 msgstr[1] " ({number_of} sourozenci)"
 msgstr[2] " ({number_of} sourozenců)"
 
-#: ../gramps/plugins/view/relview.py:867 ../gramps/plugins/view/relview.py:923
+#: ../gramps/plugins/view/relview.py:856 ../gramps/plugins/view/relview.py:910
 msgid " (1 brother)"
 msgstr " (1 bratr)"
 
-#: ../gramps/plugins/view/relview.py:869 ../gramps/plugins/view/relview.py:925
+#: ../gramps/plugins/view/relview.py:858 ../gramps/plugins/view/relview.py:912
 msgid " (1 sister)"
 msgstr "(1 sestra)"
 
-#: ../gramps/plugins/view/relview.py:871 ../gramps/plugins/view/relview.py:927
+#: ../gramps/plugins/view/relview.py:860 ../gramps/plugins/view/relview.py:914
 msgid " (1 sibling)"
 msgstr " (1 sourozenec)"
 
-#: ../gramps/plugins/view/relview.py:873 ../gramps/plugins/view/relview.py:929
+#: ../gramps/plugins/view/relview.py:862 ../gramps/plugins/view/relview.py:916
 msgid " (only child)"
 msgstr " (jedináček)"
 
-#: ../gramps/plugins/view/relview.py:943 ../gramps/plugins/view/relview.py:1441
+#: ../gramps/plugins/view/relview.py:928 ../gramps/plugins/view/relview.py:1410
 msgid "Add new child to family"
 msgstr "Přidat nové dítě do rodiny"
 
-#: ../gramps/plugins/view/relview.py:947 ../gramps/plugins/view/relview.py:1445
+#: ../gramps/plugins/view/relview.py:932 ../gramps/plugins/view/relview.py:1414
 msgid "Add existing child to family"
 msgstr "Přidat dítě do rodiny"
 
-#: ../gramps/plugins/view/relview.py:1225
+#: ../gramps/plugins/view/relview.py:1198
 #, python-format
 msgid "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 
-#: ../gramps/plugins/view/relview.py:1232
-#: ../gramps/plugins/view/relview.py:1234
+#: ../gramps/plugins/view/relview.py:1205
+#: ../gramps/plugins/view/relview.py:1207
 #, python-format
 msgid "%(event)s %(date)s"
 msgstr "%(event)s %(date)s"
 
-#: ../gramps/plugins/view/relview.py:1295
+#: ../gramps/plugins/view/relview.py:1268
 #, python-format
 msgid "Relationship type: %s"
 msgstr "Vztah: %s"
 
-#: ../gramps/plugins/view/relview.py:1333
+#: ../gramps/plugins/view/relview.py:1306
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s: %(date)s, %(place)s"
 
-#: ../gramps/plugins/view/relview.py:1337
+#: ../gramps/plugins/view/relview.py:1310
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s: %(date)s"
 
-#: ../gramps/plugins/view/relview.py:1341
+#: ../gramps/plugins/view/relview.py:1314
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
-#: ../gramps/plugins/view/relview.py:1352
+#: ../gramps/plugins/view/relview.py:1325
 msgid "Broken family detected"
 msgstr "Zjištěna rozpadlá rodina"
 
-#: ../gramps/plugins/view/relview.py:1353
+#: ../gramps/plugins/view/relview.py:1326
 msgid "Please run the Check and Repair Database tool"
 msgstr "Spusťte prosím nástroj pro ověření integrity/opravy databáze"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/view/relview.py:1376
-#: ../gramps/plugins/view/relview.py:1423
+#: ../gramps/plugins/view/relview.py:1349
+#: ../gramps/plugins/view/relview.py:1394
 #, python-brace-format
 msgid " ({number_of} child)"
 msgid_plural " ({number_of} children)"
@@ -33329,28 +33536,28 @@ msgstr[0] "({number_of} potomek)"
 msgstr[1] "({number_of} potomci)"
 msgstr[2] "({number_of} potomků)"
 
-#: ../gramps/plugins/view/relview.py:1380
-#: ../gramps/plugins/view/relview.py:1427
+#: ../gramps/plugins/view/relview.py:1353
+#: ../gramps/plugins/view/relview.py:1398
 msgid " (no children)"
 msgstr "(bez dětí)"
 
-#: ../gramps/plugins/view/relview.py:1687
+#: ../gramps/plugins/view/relview.py:1654
 msgid "Use shading"
 msgstr "Použít stínování"
 
-#: ../gramps/plugins/view/relview.py:1690
+#: ../gramps/plugins/view/relview.py:1657
 msgid "Display edit buttons"
 msgstr "Zobrazit tlačítka úprav"
 
-#: ../gramps/plugins/view/relview.py:1692
+#: ../gramps/plugins/view/relview.py:1659
 msgid "View links as website links"
 msgstr "Zobrazit odkazy jako odkazy na web"
 
-#: ../gramps/plugins/view/relview.py:1709
+#: ../gramps/plugins/view/relview.py:1676
 msgid "Show Details"
 msgstr "Zobrazit detaily"
 
-#: ../gramps/plugins/view/relview.py:1712
+#: ../gramps/plugins/view/relview.py:1679
 msgid "Show Siblings"
 msgstr "Zobrazit sourozence"
 
@@ -35778,9 +35985,6 @@ msgstr "Žádná šablona"
 
 #~ msgid "Household (Short)"
 #~ msgstr "Domácnost (zkráceně)"
-
-#~ msgid "Id (Short)"
-#~ msgstr "Id (zkráceně)"
 
 #~ msgid "Institution"
 #~ msgstr "Instituce"
