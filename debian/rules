@@ -14,7 +14,6 @@ override_dh_auto_test:
 	HOME=$(CURDIR)/build \
 	nosetests3 -vv \
 	--exclude=TestcaseGenerator \
-	--exclude=test_tcg_and_check_and_repair \
 	--exclude=test4_arbitrary_uncode_path \
 	--exclude-dir=gramps/plugins/test/ \
 	gramps
