@@ -522,6 +522,7 @@ gramps/gui/plug/quick/_textbufdoc.py
 gramps/gui/plug/report/_bookdialog.py
 gramps/gui/plug/report/_docreportdialog.py
 gramps/gui/plug/report/_fileentry.py
+gramps/gui/plug/report/_graphreportdialog.py
 gramps/gui/plug/report/_graphvizreportdialog.py
 gramps/gui/plug/report/_papermenu.py
 gramps/gui/plug/report/_reportdialog.py
@@ -593,6 +594,7 @@ gramps/plugins/drawreport/statisticschart.py
 gramps/plugins/drawreport/timeline.py
 gramps/plugins/export/export.gpr.py
 gramps/plugins/export/exportcsv.py
+gramps/plugins/export/exportftree.py
 gramps/plugins/export/exportgedcom.py
 gramps/plugins/export/exportgeneweb.py
 gramps/plugins/export/exportpkg.py
