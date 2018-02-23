@@ -1,35 +1,38 @@
 #!/usr/bin/make -f
 
 # Uncomment this to turn on verbose mode.
-export DH_VERBOSE=1
-export DH_OPTIONS=-v
+#export DH_VERBOSE=1
+#export DH_OPTIONS=-v
+export PYBUILD_NAME=gramps
+export PYBUILD_INSTALL_ARGS_python3=--resourcepath=/usr/share --force
 
 %:
 	dh $@ --with python3 --buildsystem=pybuild
 
-# Override auto test because upstream do not use the standard unittest discover
+# Override auto test to enable nose tests
 override_dh_auto_test:
-
-# Override of auto_build
-override_dh_auto_build:
-	python3 setup.py build
+	HOME=$(CURDIR)/build \
+	nosetests3 -vv \
+	--exclude=TestcaseGenerator \
+	--exclude=test4_arbitrary_uncode_path \
+	--exclude-dir=gramps/plugins/test/ \
+	gramps
 
 # Override of auto_install to remove information from package
 override_dh_auto_install:
-	#dh_auto_install
-	python3 setup.py install --resourcepath=/usr/share --root=debian/python3-gramps --install-layout=deb
-	# Remove duplicate license/copyright information
-	rm $(CURDIR)/debian/python3-gramps/usr/share/doc/gramps/COPYING
+	dh_installchangelogs NEWS
+	dh_auto_install
 	# Remove install file as it is not needed by package users
-	rm $(CURDIR)/debian/python3-gramps/usr/share/doc/gramps/INSTALL
-	# Link license/copyright information to debians
-	ln -s /usr/share/common-licenses/GPL-2 $(CURDIR)/debian/python3-gramps/usr/share/doc/gramps/COPYING
+	rm $(CURDIR)/debian/gramps/usr/share/doc/gramps/INSTALL
+	# Remove NEWS file as it is now installed as the changelog
+	rm $(CURDIR)/debian/gramps/usr/share/doc/gramps/NEWS
+	#Remove license information in COPYING file & link to system license
+	rm $(CURDIR)/debian/gramps/usr/share/doc/gramps/COPYING
+	ln -s /usr/share/common-licenses/GPL-2 $(CURDIR)/debian/gramps/usr/share/doc/gramps/COPYING
 
-# Make css style sheets and png icons non-executable
-override_dh_fixperms:
-	dh_fixperms
-	chmod a-x $(CURDIR)/debian/python3-gramps/usr/share/gramps/css/Web_*.css
-
-# Avoid compressing COPYING file so that it can appear in the "About" dialog
-override_dh_compress:
-	dh_compress -X COPYING
+# Fix clean target
+override_dh_clean:
+	rm -rf data/tips.xml
+	rm -rf gramps/plugins/lib/holidays.xml
+	rm -rf po/.intltool-merge-cache
+	dh_clean

@@ -1,0 +1,157 @@
+Run gramps -v from the commandline and check dependencies:
+- From the commandline type $ gramps -v
+	- The gramps version and versions of library dependencies are output
+	- Check that all dependencies have been installed, show their versions, and that there are no error messages
+- If required, install the dependencies that have not been found (typically icu, osmgpsmap & gexiv)
+- Type $ gramps -v again
+        - Check that all dependencies have been installed, show their versions, and that there are no error messages
+
+Open Gramps, create an empty Family Tree, and check the Gramps version, credits & license:
+- Run gramps
+	- Family Trees window opens
+- Click "New" to create an empty Family Tree
+- Type a name for your family tree (e.g. Sample), and press "Enter"
+- Click "Load Family Tree"
+	- Gramps displays the "Welcome to Gramps!" start screen
+- Choose Help > About from the menu
+	- The "About gramps" window is displayed with Version information
+- Click on "Credits"
+	- A list of Authors and Contributors to Gramps is displayed
+- Click on "License"
+	- The GNU General Public License is displayed
+- Click on the "X" to close the "About gramps" window
+	- Gramps closes the "About gramps" window and returns to the "Welcome to Gramps!" start screen
+
+Import a GEDCOM file into Gramps
+If you do not have one to hand, the provided example can be extracted to your home directory and imported from there.
+/usr/share/doc/gramps/example/gedcom/sample.ged.gz
+- From your open and empty Family Tree, choose Family Trees > Import from the menu
+	- The Gramps: Import Family Tree window opens
+- Locate your GEDCOM file, select it and click on "Import"
+	- The Import Statistics window displays "Results: done"
+- Click on "Close"
+	- The GEDCOM import report window displays "No errors detected"
+- CLick on "Close"
+	- The Top Surnames gramplet displays the surnames of the people imported into the Tree
+
+Test aspects of the People View
+- Click on the People View
+	- A list of people in "Group View" mode are shown
+- Click on the arrow for a surname (e.g. Hansdotter)
+	- The people with this surname are revealed
+- Select a person and click in the "Edit selcted person" icon (or just double click on the person)
+	- The "Person" window opens showing the details of this person
+- Click on Cancel
+	- The "Person" window closes
+- Choose the person list view (not grouped) by clicking on the "People" icon
+	- The people are now listed without any grouping by surname
+- Click on the "+" icon to create a new person
+	- An empty "Person" window opens
+- Enter some details about the person (e.g. given name, surname, and gender)
+- Click on the "+" button to create a new event for this person
+	- The "Event Reference Editor" window opens
+- Create an event (e.g. birth) by entering a date
+- Click on the "+" button to add a new place
+	- The "New Place" window opens
+- Type in some details about the place (Name, Type, Latitude & Longitude)
+- Click on OK
+	- The "New Place" window closes
+- In the "Event Reference Editor" click OK
+- In the "Person" window click OK
+	- The "Person" window closes and you can find the person just created in the list of people
+
+Test aspects of the Relationships View
+- Click on Anna Hansdotter to select her
+- Click on the Relationships View
+	- Details of Anna and her family are displayed
+- Click on one of her children, Hjalmar Smith
+	- Details of Hjalmar and his family are displayed
+- Click on the "Add existing Child to family" icon just above Halmar's children
+	- The "Select Child" window opens
+- Find the person you entered previously and select it
+- Click OK
+	- The "Select Child" window closes and you can see the new person listed as a child in Hjalmar's family
+
+Test aspects of the Charts View
+- Click on the Charts View
+	- The Pedigree View is shown
+- Click somewhere in the Pedigree View and drag the chart around
+	- The mouse pointer changes to a hand and the chart can be move around
+- Click on the left and right arrows (when going left you need to choose the child to move to)
+	- The chart will move to reveal the next generation in the family
+- Make sure there are several families in view, then Click on the "Fan Chart" icon
+	- A fan chart showing the ancesters of the main person is shown
+- Click on the Descendant Fan icon
+	- A fan chart showing the descendants of the same person is shown
+
+Test aspects of the Geography View
+- Click on the Geography View
+	- The map may take some time to load, then a pin for the person you entered early should be shown on the map at the coordinates you entered
+- Click on the pin
+	- A choice of the place, or the person will be offered
+- Hover over the place name, and choose "Edit Place"
+	- The "Place Selection in a region" opens
+- Double click on the place
+	- The "Place:" editor opens
+- Click on Cancel
+- Click on the pin
+	- A choice of the place, or the person will be offered
+- Hover over the persons name, and choose "Edit Event"
+	- The "Event:" window opens
+- Click on Cancel
+
+Import a Gramps Xml file (*.gramps) into Gramps
+An existing Gramps *.gramps file with links to media will be needed for this and the next test. If you do not have one to hand, the provided example can be extracted to your home directory and imported from there.
+/usr/share/doc/gramps/example/gramps/example.gramps.gz
+- From the "Family Trees" menu, choose "Manage Family Trees"
+	- The Family Trees window opens
+- Click "New" to create an empty Family Tree
+- Type a name for your family tree (e.g. Example), and press "Enter"
+- Click "Load Family Tree"
+	- Gramps opens an empty database
+- From your open and empty Family Tree, choose Family Trees > Import from the menu
+	- The Gramps: Import Family Tree window opens
+- Locate your *.gramps file, select it and click on "Import"
+	- The import may take some minutes, then the Import Statistics window displays the number of objects imported.
+- Click on "Close"
+	- The Import Statistics window closes.
+
+View Media for a person, and add new media
+The media for the example file you may have used in the previous test can be found in /usr/share/doc/gramps/example/gramps/. Create a folder in your home directory to store Gramps media, and then copy the media there.
+You will also need a photo to add to Gramps. Any photo will do (e.g. *.jpg file - but you can use the ones provided with Gramps).
+You also need to set the base media patch for Gramps.
+- In the "Edit" menu, choose "Preferences".
+	- The Preferences window opens on the "General" tab.
+- Click the "Folder" icon to set the "Base path for relative media paths".
+	- The "Select media directory" window opens
+- Choose the directory where your media is stored and then click "Apply"
+	- The "Select media directory" window closes
+- Click Close
+	- The "Preferences" window closes
+- In the "People" View, find a person with media associated (e.g. Eugene Stanley Garner, Jr. in the example database) and select him/her.
+	- Below the Detials tab, a thumbnail image of the person should appear (in the case of Eugene Stanley Garner, Jr. you should see him yawning). It may be necessary to restart Gramps to see the Thumbnail.
+- Double click on the person's name in the People View.
+	- The "Person:" window opens, and the image is dispayed for the person in the Image square in the top left corner of the "Person:" window.
+- Double click on the image.
+	- The Media Reference Editor opens showing details about the image.
+- Double click in the bottom image Preview.
+	- An external viewer opens giving details of the image metadata and allowing some basic manipulation of the image.
+- Click on the "X" to close the external viewer
+- Click "Cancel" on the Media Reference Editor
+- Click "Cancel" on the "Person:" window.
+	- All three windows close.
+- Click on the "Media View".
+	- A list of available media is shown.
+- Click on the "+" icon.
+	- The "Select a media object" window opens.
+- Move to the folder where the media is and select the new photo (if you are using the examples provided with Gramps, I can recommend choosing O3.jpg).
+- Click on "OK".
+	- The "New Media" window opens.
+- Click on "OK".
+	- The media is added to the list of media.
+- Select the new media.
+	- A preview (thumbnail) image is shown.
+- Close Gramps by choosing "Quit" from the "Family Trees" menu.
+	- Gramps closes.
+
+TODO: Tagging & Filtering
