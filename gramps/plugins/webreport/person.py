@@ -1668,6 +1668,8 @@ class PersonPages(BasePage):
             self.report.options['pid'])
         if center_person is None:
             return
+        if probably_alive(center_person, self.r_db, Today()):
+            return
         relationship = self.rel_class.get_one_relationship(self.r_db,
                                                            self.person,
                                                            center_person)
