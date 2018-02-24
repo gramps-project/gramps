@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps50\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-17 07:54-0300\n"
-"PO-Revision-Date: 2018-02-17 08:29-0300\n"
+"POT-Creation-Date: 2018-02-24 10:44-0300\n"
+"PO-Revision-Date: 2018-02-24 10:48-0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -5383,6 +5383,7 @@ msgstr "Семейные фильтры"
 #: ../gramps/gen/filters/rules/place/_hasdata.py:48
 #: ../gramps/gui/glade/editfamily.glade:118
 #: ../gramps/gui/glade/editfamily.glade:372
+#: ../gramps/gui/glade/editplaceformat.glade:200
 #: ../gramps/gui/glade/editplacename.glade:183
 #: ../gramps/gui/glade/editplaceref.glade:214
 #: ../gramps/gui/glade/mergeperson.glade:222
@@ -6852,6 +6853,7 @@ msgstr "Указатель"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:191
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:171
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:154
+#: ../gramps/gui/glade/editplaceformat.glade:185
 #: ../gramps/plugins/tool/check.py:2459
 msgid "None"
 msgstr "Нет"
@@ -7245,7 +7247,7 @@ msgstr "Событие"
 #: ../gramps/gui/editors/filtereditor.py:296
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:108
 #: ../gramps/gui/glade/editevent.glade:270
-#: ../gramps/gui/plug/_guioptions.py:1348
+#: ../gramps/gui/plug/_guioptions.py:1352
 #: ../gramps/gui/selectors/selectevent.py:72 ../gramps/gui/viewmanager.py:613
 #: ../gramps/gui/views/treemodels/placemodel.py:305
 #: ../gramps/plugins/export/exportcsv.py:286
@@ -8104,7 +8106,7 @@ msgstr "Регион"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:131
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:108
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:104
-#: ../gramps/gui/plug/_guioptions.py:1170 ../gramps/gui/plug/_windows.py:130
+#: ../gramps/gui/plug/_guioptions.py:1174 ../gramps/gui/plug/_windows.py:130
 #: ../gramps/gui/plug/_windows.py:1104
 #: ../gramps/gui/plug/report/_bookdialog.py:373
 #: ../gramps/gui/selectors/selectperson.py:93
@@ -8134,7 +8136,7 @@ msgstr "Регион"
 #: ../gramps/plugins/tool/removeunused.py:201
 #: ../gramps/plugins/tool/verify.py:576 ../gramps/plugins/view/repoview.py:85
 #: ../gramps/plugins/webreport/basepage.py:378
-#: ../gramps/plugins/webreport/person.py:1718
+#: ../gramps/plugins/webreport/person.py:1720
 msgid "Name"
 msgstr "Имя"
 
@@ -8325,6 +8327,7 @@ msgid "Note"
 msgstr "Заметка"
 
 #: ../gramps/gen/lib/note.py:119 ../gramps/gui/configure.py:864
+#: ../gramps/gui/editors/editplaceformat.py:72
 #: ../gramps/plugins/tool/reorderids.glade:1447
 msgid "Format"
 msgstr "Формат"
@@ -8920,7 +8923,7 @@ msgstr "Ссылка"
 #: ../gramps/gui/configure.py:697 ../gramps/gui/configure.py:698
 #: ../gramps/gui/configure.py:699 ../gramps/gui/configure.py:700
 #: ../gramps/gui/editors/displaytabs/surnametab.py:75
-#: ../gramps/gui/plug/_guioptions.py:87 ../gramps/gui/plug/_guioptions.py:1502
+#: ../gramps/gui/plug/_guioptions.py:88 ../gramps/gui/plug/_guioptions.py:1506
 #: ../gramps/plugins/drawreport/statisticschart.py:334
 #: ../gramps/plugins/export/exportcsv.py:354
 #: ../gramps/plugins/importer/importcsv.py:159
@@ -8952,7 +8955,7 @@ msgstr "%(first)s %(second)s"
 #: ../gramps/gen/lib/tag.py:125 ../gramps/gen/plug/docgen/treedoc.py:168
 #: ../gramps/gui/glade/styleeditor.glade:384
 #: ../gramps/gui/glade/styleeditor.glade:1433
-#: ../gramps/gui/plug/_guioptions.py:1503 ../gramps/gui/views/tags.py:409
+#: ../gramps/gui/plug/_guioptions.py:1507 ../gramps/gui/views/tags.py:409
 msgid "Color"
 msgstr "Цвет"
 
@@ -9220,6 +9223,7 @@ msgstr "Файл %s уже открыт, сначала закройте его.
 #: ../gramps/plugins/docgen/svgdrawdoc.py:91
 #: ../gramps/plugins/export/exportcsv.py:261
 #: ../gramps/plugins/export/exportcsv.py:265
+#: ../gramps/plugins/export/exportftree.py:135
 #: ../gramps/plugins/export/exportgedcom.py:1567
 #: ../gramps/plugins/export/exportgeneweb.py:108
 #: ../gramps/plugins/export/exportgeneweb.py:112
@@ -9917,6 +9921,7 @@ msgstr "Сноски"
 #: ../gramps/gui/editors/editfamily.py:952
 #: ../gramps/gui/plug/report/_docreportdialog.py:186
 #: ../gramps/gui/plug/report/_docreportdialog.py:237
+#: ../gramps/gui/plug/report/_graphreportdialog.py:154
 #: ../gramps/gui/plug/report/_reportdialog.py:324
 #: ../gramps/gui/plug/report/_reportdialog.py:377
 #: ../gramps/gui/plug/report/_reportdialog.py:401
@@ -10119,15 +10124,15 @@ msgstr "Предки %s"
 msgid "People with common ancestor with %s"
 msgstr "Лица, имеющие общего предка с %s"
 
-#: ../gramps/gen/plug/report/utils.py:354 ../gramps/gui/plug/_guioptions.py:891
+#: ../gramps/gen/plug/report/utils.py:354 ../gramps/gui/plug/_guioptions.py:895
 msgid "unknown father"
 msgstr "неизвестный отец"
 
-#: ../gramps/gen/plug/report/utils.py:360 ../gramps/gui/plug/_guioptions.py:897
+#: ../gramps/gen/plug/report/utils.py:360 ../gramps/gui/plug/_guioptions.py:901
 msgid "unknown mother"
 msgstr "неизвестная мать"
 
-#: ../gramps/gen/plug/report/utils.py:362 ../gramps/gui/plug/_guioptions.py:899
+#: ../gramps/gen/plug/report/utils.py:362 ../gramps/gui/plug/_guioptions.py:903
 #, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
 msgstr "%(father_name)s и %(mother_name)s (%(family_id)s)"
@@ -11147,6 +11152,7 @@ msgstr "Показать «Редактор имён»"
 #: ../gramps/gui/glade/book.glade:539 ../gramps/gui/glade/clipboard.glade:71
 #: ../gramps/gui/glade/dialog.glade:20 ../gramps/gui/glade/dialog.glade:141
 #: ../gramps/gui/glade/displaystate.glade:23
+#: ../gramps/gui/glade/editplaceformat.glade:23
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/plug/_windows.py:105
@@ -11867,8 +11873,8 @@ msgstr "Выбрать каталог документов"
 #: ../gramps/gui/glade/reorder.glade:22 ../gramps/gui/glade/rule.glade:316
 #: ../gramps/gui/glade/rule.glade:747 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1721
-#: ../gramps/gui/logger/_errorview.py:173 ../gramps/gui/plug/_guioptions.py:78
-#: ../gramps/gui/plug/_guioptions.py:1738 ../gramps/gui/plug/_windows.py:440
+#: ../gramps/gui/logger/_errorview.py:173 ../gramps/gui/plug/_guioptions.py:79
+#: ../gramps/gui/plug/_guioptions.py:1742 ../gramps/gui/plug/_windows.py:440
 #: ../gramps/gui/plug/report/_fileentry.py:64
 #: ../gramps/gui/plug/report/_reportdialog.py:162 ../gramps/gui/utils.py:180
 #: ../gramps/gui/viewmanager.py:1962 ../gramps/gui/views/listview.py:1018
@@ -12084,7 +12090,7 @@ msgstr "Информация о базе данных"
 #: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
 #: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1738
-#: ../gramps/gui/plug/_guioptions.py:79
+#: ../gramps/gui/plug/_guioptions.py:80
 #: ../gramps/gui/plug/report/_reportdialog.py:166 ../gramps/gui/utils.py:194
 #: ../gramps/gui/viewmanager.py:1830 ../gramps/gui/views/tags.py:646
 #: ../gramps/plugins/tool/check.py:781 ../gramps/plugins/tool/patchnames.py:118
@@ -12554,8 +12560,8 @@ msgstr "Атрибуты"
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:103
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:86
 #: ../gramps/gui/merge/mergeperson.py:182
-#: ../gramps/gui/plug/_guioptions.py:1171
-#: ../gramps/gui/plug/_guioptions.py:1349
+#: ../gramps/gui/plug/_guioptions.py:1175
+#: ../gramps/gui/plug/_guioptions.py:1353
 #: ../gramps/gui/selectors/selectcitation.py:75
 #: ../gramps/gui/selectors/selectevent.py:74
 #: ../gramps/gui/selectors/selectfamily.py:69
@@ -12604,8 +12610,9 @@ msgstr "%(part1)s - %(part2)s"
 #: ../gramps/gui/glade/editfamily.glade:494
 #: ../gramps/gui/glade/editfamily.glade:501
 #: ../gramps/gui/glade/editperson.glade:22
-#: ../gramps/gui/glade/editperson.glade:361 ../gramps/gui/glade/rule.glade:422
-#: ../gramps/gui/glade/rule.glade:429
+#: ../gramps/gui/glade/editperson.glade:361
+#: ../gramps/gui/glade/editplaceformat.glade:72
+#: ../gramps/gui/glade/rule.glade:422 ../gramps/gui/glade/rule.glade:429
 #: ../gramps/gui/glade/styleeditor.glade:1832
 #: ../gramps/gui/glade/styleeditor.glade:1839
 #: ../gramps/plugins/view/relview.py:410
@@ -12617,6 +12624,7 @@ msgstr "Добавить"
 #: ../gramps/gui/glade/editfamily.glade:255
 #: ../gramps/gui/glade/editfamily.glade:556
 #: ../gramps/gui/glade/editfamily.glade:563
+#: ../gramps/gui/glade/editplaceformat.glade:85
 #: ../gramps/gui/glade/grampletpane.glade:104
 #: ../gramps/gui/glade/grampletpane.glade:111
 #: ../gramps/gui/glade/rule.glade:490 ../gramps/gui/glade/rule.glade:497
@@ -12884,13 +12892,13 @@ msgstr "Сделать базовым именем"
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/gui/editors/displaytabs/namemodel.py:56
-#: ../gramps/gui/plug/_guioptions.py:1252 ../gramps/gui/views/tags.py:496
+#: ../gramps/gui/plug/_guioptions.py:1256 ../gramps/gui/views/tags.py:496
 #: ../gramps/plugins/quickview/all_relations.py:306
 msgid "Yes"
 msgstr "Да"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:57
-#: ../gramps/gui/plug/_guioptions.py:1251 ../gramps/gui/views/tags.py:497
+#: ../gramps/gui/plug/_guioptions.py:1255 ../gramps/gui/views/tags.py:497
 #: ../gramps/plugins/quickview/all_relations.py:310
 msgid "No"
 msgstr "Нет"
@@ -14093,6 +14101,14 @@ msgstr "Редактирование места (%s)"
 msgid "Delete Place (%s)"
 msgstr "Удалить место (%s)"
 
+#: ../gramps/gui/editors/editplaceformat.py:49
+msgid "Place Format Editor"
+msgstr "Редактор формата мест"
+
+#: ../gramps/gui/editors/editplaceformat.py:137
+msgid "New"
+msgstr "Создать"
+
 #: ../gramps/gui/editors/editplacename.py:49
 msgid "manual|Place_Name_Editor_dialog"
 msgstr "Редактор_названия_местоположений"
@@ -14565,7 +14581,7 @@ msgstr ""
 "Для выбора документа пользуйтесь кнопками или перетаскиванием с помощью мыши"
 
 #: ../gramps/gui/editors/objectentries.py:389
-#: ../gramps/gui/plug/_guioptions.py:1110
+#: ../gramps/gui/plug/_guioptions.py:1114
 msgid "No image given, click button to select one"
 msgstr "Не указано изображение, нажмите кнопку для выбора"
 
@@ -14574,7 +14590,7 @@ msgid "Edit media object"
 msgstr "Редактировать документ"
 
 #: ../gramps/gui/editors/objectentries.py:391
-#: ../gramps/gui/plug/_guioptions.py:1088
+#: ../gramps/gui/plug/_guioptions.py:1092
 msgid "Select an existing media object"
 msgstr "Выбрать существующий документ"
 
@@ -14593,12 +14609,12 @@ msgstr ""
 "Для выбора заметки пользуйтесь кнопками или перетаскиванием с помощью мыши"
 
 #: ../gramps/gui/editors/objectentries.py:435
-#: ../gramps/gui/plug/_guioptions.py:1008
+#: ../gramps/gui/plug/_guioptions.py:1012
 msgid "No note given, click button to select one"
 msgstr "Заметка не указана; нажмите кнопку чтобы выбрать"
 
 #: ../gramps/gui/editors/objectentries.py:437
-#: ../gramps/gui/plug/_guioptions.py:983
+#: ../gramps/gui/plug/_guioptions.py:987
 msgid "Select an existing note"
 msgstr "Выбрать существующую заметку"
 
@@ -14701,7 +14717,7 @@ msgstr "любой"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:134
 #: ../gramps/plugins/export/exportcsv.py:357
-#: ../gramps/plugins/webreport/person.py:1719
+#: ../gramps/plugins/webreport/person.py:1721
 msgid "Birth date"
 msgstr "Дата рождения"
 
@@ -14713,7 +14729,7 @@ msgstr "пример: «%(msg1)s» или «%(msg2)s»"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:136
 #: ../gramps/plugins/export/exportcsv.py:359
-#: ../gramps/plugins/webreport/person.py:1720
+#: ../gramps/plugins/webreport/person.py:1722
 msgid "Death date"
 msgstr "Дата смерти"
 
@@ -16085,9 +16101,30 @@ msgstr "Название этого места."
 msgid "Invoke place name editor."
 msgstr "Открыть редактор названий мест."
 
+#: ../gramps/gui/glade/editplaceformat.glade:124
+msgid "Levels:"
+msgstr "Уровни:"
+
+#: ../gramps/gui/glade/editplaceformat.glade:136
+msgid "Street format:"
+msgstr "Формат улиц:"
+
+#: ../gramps/gui/glade/editplaceformat.glade:148
 #: ../gramps/gui/glade/editplacename.glade:108
 msgid "Language:"
 msgstr "Язык:"
+
+#: ../gramps/gui/glade/editplaceformat.glade:168
+msgid "Reverse display order"
+msgstr "Изменить порядок отображения"
+
+#: ../gramps/gui/glade/editplaceformat.glade:186
+msgid "Number Street"
+msgstr "Номер Улица"
+
+#: ../gramps/gui/glade/editplaceformat.glade:187
+msgid "Street Number"
+msgstr "Улица Номер"
 
 #: ../gramps/gui/glade/editplacename.glade:156
 #: ../gramps/plugins/webreport/basepage.py:2585
@@ -17417,7 +17454,7 @@ msgstr "Объединить людей"
 #: ../gramps/plugins/view/relview.py:530 ../gramps/plugins/view/relview.py:852
 #: ../gramps/plugins/view/relview.py:886
 #: ../gramps/plugins/webreport/person.py:224
-#: ../gramps/plugins/webreport/person.py:1702
+#: ../gramps/plugins/webreport/person.py:1704
 #: ../gramps/plugins/webreport/surname.py:143
 msgid "Parents"
 msgstr "Родители"
@@ -17515,62 +17552,62 @@ msgstr "_Запуск"
 msgid "Run selected tool"
 msgstr "Запустить выбранный инструмент"
 
-#: ../gramps/gui/plug/_guioptions.py:81 ../gramps/gui/plug/_guioptions.py:162
+#: ../gramps/gui/plug/_guioptions.py:82 ../gramps/gui/plug/_guioptions.py:163
 msgid "Select surname"
 msgstr "Выберите фамилию"
 
-#: ../gramps/gui/plug/_guioptions.py:88
+#: ../gramps/gui/plug/_guioptions.py:89
 #: ../gramps/plugins/quickview/filterbyname.py:354
 msgid "Count"
 msgstr "Число"
 
-#: ../gramps/gui/plug/_guioptions.py:117
+#: ../gramps/gui/plug/_guioptions.py:118
 msgid "Finding Surnames"
 msgstr "Поиск фамилий"
 
-#: ../gramps/gui/plug/_guioptions.py:118
+#: ../gramps/gui/plug/_guioptions.py:119
 msgid "Finding surnames"
 msgstr "Поиск фамилий"
 
-#: ../gramps/gui/plug/_guioptions.py:680
+#: ../gramps/gui/plug/_guioptions.py:684
 msgid "Select a different person"
 msgstr "Выберите другое лицо"
 
-#: ../gramps/gui/plug/_guioptions.py:707
+#: ../gramps/gui/plug/_guioptions.py:711
 msgid "Select a person for the report"
 msgstr "Выберите лицо для отчёта"
 
-#: ../gramps/gui/plug/_guioptions.py:790
+#: ../gramps/gui/plug/_guioptions.py:794
 msgid "Select a different family"
 msgstr "Выберите другую семью"
 
-#: ../gramps/gui/plug/_guioptions.py:1247
+#: ../gramps/gui/plug/_guioptions.py:1251
 #, python-format
 msgid "Also include %s?"
 msgstr "Также включать %s?"
 
-#: ../gramps/gui/plug/_guioptions.py:1249
+#: ../gramps/gui/plug/_guioptions.py:1253
 #: ../gramps/gui/selectors/selectperson.py:86
 msgid "Select Person"
 msgstr "Выбрать лицо"
 
-#: ../gramps/gui/plug/_guioptions.py:1573
+#: ../gramps/gui/plug/_guioptions.py:1577
 #, python-format
 msgid "Select color for %s"
 msgstr "Выберите цвет для %s"
 
-#: ../gramps/gui/plug/_guioptions.py:1736
+#: ../gramps/gui/plug/_guioptions.py:1740
 #: ../gramps/gui/plug/report/_reportdialog.py:452
 msgid "Save As"
 msgstr "Сохранить как"
 
-#: ../gramps/gui/plug/_guioptions.py:1740 ../gramps/gui/plug/_windows.py:442
+#: ../gramps/gui/plug/_guioptions.py:1744 ../gramps/gui/plug/_windows.py:442
 #: ../gramps/gui/plug/report/_bookdialog.py:626
 #: ../gramps/gui/plug/report/_fileentry.py:66
 msgid "_Open"
 msgstr "_Открыть"
 
-#: ../gramps/gui/plug/_guioptions.py:1817
+#: ../gramps/gui/plug/_guioptions.py:1821
 #: ../gramps/gui/plug/report/_reportdialog.py:329
 msgid "Style Editor"
 msgstr "Редактор стилей"
@@ -18232,6 +18269,7 @@ msgid "Gramps Book"
 msgstr "Книга Gramps"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:143
+#: ../gramps/gui/plug/report/_graphreportdialog.py:185
 msgid "Paper Options"
 msgstr "Параметры бумаги"
 
@@ -18240,10 +18278,12 @@ msgid "HTML Options"
 msgstr "Параметры HTML"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:186
+#: ../gramps/gui/plug/report/_graphreportdialog.py:154
 msgid "Output Format"
 msgstr "Выходной формат"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:194
+#: ../gramps/gui/plug/report/_graphreportdialog.py:162
 msgid "Open with default viewer"
 msgstr "Открыть в программе по умолчанию"
 
@@ -36363,15 +36403,15 @@ msgstr "Мачеха"
 msgid "Not siblings"
 msgstr "Не братья/сестры"
 
-#: ../gramps/plugins/webreport/person.py:1680
+#: ../gramps/plugins/webreport/person.py:1682
 msgid "Relation to the center person"
 msgstr "Родство с базовым лицом"
 
-#: ../gramps/plugins/webreport/person.py:1717
+#: ../gramps/plugins/webreport/person.py:1719
 msgid "Relation to main person"
 msgstr "Родство с базовым лицом"
 
-#: ../gramps/plugins/webreport/person.py:1721
+#: ../gramps/plugins/webreport/person.py:1723
 msgid "Relation within this family (if not by birth)"
 msgstr "Отношение к этой семье (для не родных)"
 
@@ -36860,9 +36900,6 @@ msgstr "Без стилевого листа"
 #~ msgid "Suppress comma after house number"
 #~ msgstr "Не ставить запятую после номера дома"
 
-#~ msgid "Reverse display order"
-#~ msgstr "Изменить порядок отображения"
-
 #~ msgid "Full place name"
 #~ msgstr "Полное название места"
 
@@ -36874,9 +36911,6 @@ msgstr "Без стилевого листа"
 
 #~ msgid "Restrict"
 #~ msgstr "Ограничить"
-
-#~ msgid "New"
-#~ msgstr "Создать"
 
 #~ msgid "PostgreSQL"
 #~ msgstr "PostgreSQL"
