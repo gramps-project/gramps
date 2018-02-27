@@ -272,6 +272,10 @@ class BaseSelector(ManagedWindow):
             filter_info = (False, self.search_bar.get_value(), False)
         else:
             filter_info = self.filter
+        if self.model:
+            sel = self.first_selected()
+        else:
+            sel = None
 
         #set up cols the first time
         if self.setupcols :
@@ -298,6 +302,8 @@ class BaseSelector(ManagedWindow):
         self.tree.set_search_column(search_col)
 
         self.setupcols = False
+        if sel:
+            self.goto_handle(sel)
 
     def column_clicked(self, obj, data):
         if self.sort_col != data:
