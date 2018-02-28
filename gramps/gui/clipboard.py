@@ -1540,6 +1540,8 @@ class MultiTreeView(Gtk.TreeView):
         if is_right_click(event):
             selection = widget.get_selection()
             store, paths = selection.get_selected_rows()
+            if not paths:
+                return
             tpath = paths[0] if len(paths) > 0 else None
             node = store.get_iter(tpath) if tpath else None
             o = None
