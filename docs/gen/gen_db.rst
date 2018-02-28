@@ -46,7 +46,7 @@ Generic
 
 DummyDb
 ====================================
-.. automodule:: gramps.plugins.db.dummydb
+.. automodule:: gramps.gen.db.dummydb
    :members:
    :undoc-members:
    :show-inheritance:
