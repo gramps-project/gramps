@@ -1659,16 +1659,16 @@ class PersonPages(BasePage):
             bd_date = bd_event.get_date_object()
         for event_ref in family.get_event_ref_list():
             event = self.r_db.get_event_from_handle(event_ref.ref)
-            if event.type == EventType.DIVORCE and \
-                (event_ref.get_role() == EventRoleType.FAMILY or
-                 event_ref.get_role() == EventRoleType.PRIMARY ):
+            if (event.type == EventType.DIVORCE and
+                event_ref.get_role() in (EventRoleType.FAMILY,
+                                         EventRoleType.PRIMARY)):
                 dv_date = event.get_date_object()
                 if bd_date > dv_date:
                     # We have a divorce before the child birth
                     return False
-            if event.type == EventType.MARRIAGE and \
-                (event_ref.get_role() == EventRoleType.FAMILY or
-                 event_ref.get_role() == EventRoleType.PRIMARY ):
+            if (event.type == EventType.MARRIAGE and
+                event_ref.get_role() in (EventRoleType.FAMILY,
+                                          EventRoleType.PRIMARY)):
                 dm_date = event.get_date_object()
                 dd_date = Today()
                 dd_event = get_death_or_fallback(self.r_db, self.person)
