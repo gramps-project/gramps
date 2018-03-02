@@ -69,6 +69,7 @@ from .utils import is_right_click, get_primary_mask
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Navigation' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Using_the_Clipboard')
+clipdb = None  # current db to avoid different transient dbs during db change
 
 #-------------------------------------------------------------------------
 #
@@ -178,9 +179,7 @@ def model_contains(model, data):
 class ClipWrapper:
     UNAVAILABLE_ICON = 'dialog-error'
 
-    def __init__(self, dbstate, obj):
-        dbstate.connect('database-changed', self.database_changed)
-        self.database_changed(dbstate.db)
+    def __init__(self, obj):
         self._obj = obj
         self._pickle = obj
         self._type  = _("Unknown")
@@ -188,11 +187,8 @@ class ClipWrapper:
         self._handle = None
         self._title = _('Unavailable')
         self._value = _('Unavailable')
-        self._dbid = self._db.get_dbid()
-        self._dbname = self._db.get_dbname()
-
-    def database_changed(self,db):
-        self._db = db
+        self._dbid = clipdb.get_dbid()
+        self._dbname = clipdb.get_dbname()
 
     def get_type(self):
         return self._type
@@ -234,13 +230,19 @@ class ClipWrapper:
                 return asuni.encode('utf-8')
 
     def is_valid(self):
+        if self._objclass and obj2class(self._objclass):
+            # we have a primary object
+            data = pickle.loads(self._obj)
+            handle = data[2]
+            return clipdb.method("has_%s_handle", self._objclass)(handle)
         return True
+
 
 class ClipHandleWrapper(ClipWrapper):
 
-    def __init__(self,dbstate, obj):
-        super(ClipHandleWrapper, self).__init__(dbstate, obj)
-        #unpack object
+    def __init__(self, obj):
+        super(ClipHandleWrapper, self).__init__(obj)
+        # unpack object
         (drag_type, idval, data, val) = pickle.loads(obj)
         if isinstance(data, dict):
             self.set_data(data)
@@ -253,8 +255,8 @@ class ClipHandleWrapper(ClipWrapper):
 
 class ClipObjWrapper(ClipWrapper):
 
-    def __init__(self,dbstate, obj):
-        super(ClipObjWrapper, self).__init__(dbstate, obj)
+    def __init__(self, obj):
+        super(ClipObjWrapper, self).__init__(obj)
         #unpack object
         (drag_type, idval, self._obj, val) = pickle.loads(obj)
         self._pickle = obj
@@ -280,16 +282,10 @@ class ClipObjWrapper(ClipWrapper):
     def is_valid(self):
         if self._obj is None:
             return False
-        valid_func_map = {'Person': self._db.get_person_from_handle,
-                          'Family': self._db.get_family_from_handle,
-                          'Event':  self._db.get_event_from_handle,
-                          'Place': self._db.get_place_from_handle,
-                          'Media': self._db.get_media_from_handle,
-                          'Source': self._db.get_source_from_handle}
 
-        for (classname, handle) in self._obj.get_referenced_handles_recursively():
-            if classname in valid_func_map:
-                if not valid_func_map[classname](handle):
+        for (clname, handle) in self._obj.get_referenced_handles_recursively():
+            if obj2class(clname):  # a class we care about (not tag)
+                if not clipdb.method("has_%s_handle", clname)(handle):
                     return False
 
         return True
@@ -301,9 +297,9 @@ class ClipAddress(ClipObjWrapper):
     DRAG_TARGET  = DdTargets.ADDRESS
     ICON         = ICONS['address']
 
-    def __init__(self, dbstate, obj):
-        super(ClipAddress, self).__init__(dbstate, obj)
-        self._type  = _("Address")
+    def __init__(self, obj):
+        super(ClipAddress, self).__init__(obj)
+        self._type = _("Address")
         self.refresh()
 
     def refresh(self):
@@ -321,9 +317,9 @@ class ClipLocation(ClipObjWrapper):
     DRAG_TARGET  = DdTargets.LOCATION
     ICON         = ICONS['location']
 
-    def __init__(self, dbstate, obj):
-        super(ClipLocation, self).__init__(dbstate, obj)
-        self._type  = _("Location")
+    def __init__(self, obj):
+        super(ClipLocation, self).__init__(obj)
+        self._type = _("Location")
         self.refresh()
 
     def refresh(self):
@@ -338,26 +334,19 @@ class ClipEvent(ClipHandleWrapper):
     DRAG_TARGET  = DdTargets.EVENT
     ICON         = ICONS["event"]
 
-    def __init__(self, dbstate, obj):
-        super(ClipEvent, self).__init__(dbstate, obj)
-        self._type  = _("Event")
+    def __init__(self, obj):
+        super(ClipEvent, self).__init__(obj)
+        self._type = _("Event")
         self._objclass = 'Event'
         self.refresh()
 
     def refresh(self):
         if self._handle:
-            value = self._db.get_event_from_handle(self._handle)
+            value = clipdb.get_event_from_handle(self._handle)
             if value:
                 self._title = str(value.get_type())
                 self._value = value.get_description()
 
-    def is_valid(self):
-        data = pickle.loads(self._obj)
-        handle = data[2]
-        obj = self._db.get_event_from_handle(handle)
-        if obj:
-            return True
-        return False
 
 class ClipPlace(ClipHandleWrapper):
 
@@ -365,26 +354,19 @@ class ClipPlace(ClipHandleWrapper):
     DRAG_TARGET  = DdTargets.PLACE_LINK
     ICON         = ICONS["place"]
 
-    def __init__(self, dbstate, obj):
-        super(ClipPlace, self).__init__(dbstate, obj)
-        self._type  = _("Place")
+    def __init__(self, obj):
+        super(ClipPlace, self).__init__(obj)
+        self._type = _("Place")
         self._objclass = 'Place'
         self.refresh()
 
     def refresh(self):
         if self._handle:
-            value = self._db.get_place_from_handle(self._handle)
+            value = clipdb.get_place_from_handle(self._handle)
             if value:
                 self._title = value.gramps_id
-                self._value = place_displayer.display(self._db, value)
+                self._value = place_displayer.display(clipdb, value)
 
-    def is_valid(self):
-        data = pickle.loads(self._obj)
-        handle = data[2]
-        obj = self._db.get_place_from_handle(handle)
-        if obj:
-            return True
-        return False
 
 class ClipNote(ClipHandleWrapper):
 
@@ -392,14 +374,14 @@ class ClipNote(ClipHandleWrapper):
     DRAG_TARGET  = DdTargets.NOTE_LINK
     ICON         = ICONS["note"]
 
-    def __init__(self, dbstate, obj):
-        super(ClipNote, self).__init__(dbstate, obj)
-        self._type  = _("Note")
+    def __init__(self, obj):
+        super(ClipNote, self).__init__(obj)
+        self._type = _("Note")
         self._objclass = 'Note'
         self.refresh()
 
     def refresh(self):
-        value = self._db.get_note_from_handle(self._handle)
+        value = clipdb.get_note_from_handle(self._handle)
         if value:
             self._title = value.get_gramps_id()
             note = value.get().replace('\n', ' ')
@@ -411,13 +393,6 @@ class ClipNote(ClipHandleWrapper):
             else:
                 self._value = note
 
-    def is_valid(self):
-        data = pickle.loads(self._obj)
-        handle = data[2]
-        obj = self._db.get_note_from_handle(handle)
-        if obj:
-            return True
-        return False
 
 class ClipFamilyEvent(ClipObjWrapper):
 
@@ -425,9 +400,9 @@ class ClipFamilyEvent(ClipObjWrapper):
     DRAG_TARGET  = DdTargets.FAMILY_EVENT
     ICON         = ICONS['family']
 
-    def __init__(self, dbstate, obj):
-        super(ClipFamilyEvent, self).__init__(dbstate, obj)
-        self._type  = _("Family Event")
+    def __init__(self, obj):
+        super(ClipFamilyEvent, self).__init__(obj)
+        self._type = _("Family Event")
         self.refresh()
 
     def refresh(self):
@@ -441,9 +416,9 @@ class ClipUrl(ClipObjWrapper):
     DRAG_TARGET  = DdTargets.URL
     ICON         = ICONS['url']
 
-    def __init__(self, dbstate, obj):
-        super(ClipUrl, self).__init__(dbstate, obj)
-        self._type  = _("Url")
+    def __init__(self, obj):
+        super(ClipUrl, self).__init__(obj)
+        self._type = _("Url")
         self.refresh()
 
     def refresh(self):
@@ -457,9 +432,9 @@ class ClipAttribute(ClipObjWrapper):
     DRAG_TARGET  = DdTargets.ATTRIBUTE
     ICON         = ICONS['attribute']
 
-    def __init__(self, dbstate, obj):
-        super(ClipAttribute, self).__init__(dbstate, obj)
-        self._type  = _("Attribute")
+    def __init__(self, obj):
+        super(ClipAttribute, self).__init__(obj)
+        self._type = _("Attribute")
         self.refresh()
 
     def refresh(self):
@@ -472,9 +447,9 @@ class ClipFamilyAttribute(ClipObjWrapper):
     DRAG_TARGET  = DdTargets.FAMILY_ATTRIBUTE
     ICON         = ICONS['attribute']
 
-    def __init__(self, dbstate, obj):
-        super(ClipFamilyAttribute, self).__init__(dbstate, obj)
-        self._type  = _("Family Attribute")
+    def __init__(self, obj):
+        super(ClipFamilyAttribute, self).__init__(obj)
+        self._type = _("Family Attribute")
         self.refresh()
 
     def refresh(self):
@@ -488,19 +463,19 @@ class ClipCitation(ClipHandleWrapper):
     DRAG_TARGET  = DdTargets.CITATION_LINK
     ICON         = ICONS["citation"]
 
-    def __init__(self, dbstate, obj):
-        super(ClipCitation, self).__init__(dbstate, obj)
-        self._type  = _("Citation")
+    def __init__(self, obj):
+        super(ClipCitation, self).__init__(obj)
+        self._type = _("Citation")
         self._objclass = 'Citation'
         self.refresh()
 
     def refresh(self):
         if self._handle:
-            citation = self._db.get_citation_from_handle(self._handle)
+            citation = clipdb.get_citation_from_handle(self._handle)
             if citation:
                 self._title = citation.get_gramps_id()
-                notelist = list(map(self._db.get_note_from_handle,
-                               citation.get_note_list()))
+                notelist = list(map(clipdb.get_note_from_handle,
+                                    citation.get_note_list()))
                 srctxtlist = [note for note in notelist
                         if note.get_type() == NoteType.SOURCE_TEXT]
                 page = citation.get_page()
@@ -519,13 +494,6 @@ class ClipCitation(ClipHandleWrapper):
                                     'sourcetext' : text,
                                     }
 
-    def is_valid(self):
-        data = pickle.loads(self._obj)
-        handle = data[2]
-        obj = self._db.get_citation_from_handle(handle)
-        if obj:
-            return True
-        return False
 
 class ClipRepoRef(ClipObjWrapper):
 
@@ -533,14 +501,14 @@ class ClipRepoRef(ClipObjWrapper):
     DRAG_TARGET  = DdTargets.REPOREF
     ICON         = LINK_PIC
 
-    def __init__(self, dbstate, obj):
-        super(ClipRepoRef, self).__init__(dbstate, obj)
-        self._type  = _("Repository ref")
+    def __init__(self, obj):
+        super(ClipRepoRef, self).__init__(obj)
+        self._type = _("Repository ref")
         self.refresh()
 
     def refresh(self):
         if self._obj:
-            base = self._db.get_repository_from_handle(self._obj.ref)
+            base = clipdb.get_repository_from_handle(self._obj.ref)
             if base:
                 self._title = str(base.get_type())
                 self._value = base.get_name()
@@ -551,14 +519,14 @@ class ClipEventRef(ClipObjWrapper):
     DRAG_TARGET  = DdTargets.EVENTREF
     ICON         = LINK_PIC
 
-    def __init__(self, dbstate, obj):
-        super(ClipEventRef, self).__init__(dbstate, obj)
-        self._type  = _("Event ref")
+    def __init__(self, obj):
+        super(ClipEventRef, self).__init__(obj)
+        self._type = _("Event ref")
         self.refresh()
 
     def refresh(self):
         if self._obj:
-            base = self._db.get_event_from_handle(self._obj.ref)
+            base = clipdb.get_event_from_handle(self._obj.ref)
             if base:
                 self._title = base.gramps_id
                 self._value = str(base.get_type())
@@ -569,17 +537,17 @@ class ClipPlaceRef(ClipObjWrapper):
     DRAG_TARGET  = DdTargets.PLACEREF
     ICON         = LINK_PIC
 
-    def __init__(self, dbstate, obj):
-        super(ClipPlaceRef, self).__init__(dbstate, obj)
-        self._type  = _("Place ref")
+    def __init__(self, obj):
+        super(ClipPlaceRef, self).__init__(obj)
+        self._type = _("Place ref")
         self.refresh()
 
     def refresh(self):
         if self._obj:
-            base = self._db.get_place_from_handle(self._obj.ref)
+            base = clipdb.get_place_from_handle(self._obj.ref)
             if base:
                 self._title = base.gramps_id
-                self._value = place_displayer.display(self._db, base)
+                self._value = place_displayer.display(clipdb, base)
 
 class ClipName(ClipObjWrapper):
 
@@ -587,9 +555,9 @@ class ClipName(ClipObjWrapper):
     DRAG_TARGET  = DdTargets.NAME
     ICON         = ICONS['name']
 
-    def __init__(self, dbstate, obj):
-        super(ClipName, self).__init__(dbstate, obj)
-        self._type  = _("Name")
+    def __init__(self, obj):
+        super(ClipName, self).__init__(obj)
+        self._type = _("Name")
         self.refresh()
 
     def refresh(self):
@@ -603,9 +571,9 @@ class ClipPlaceName(ClipObjWrapper):
     DRAG_TARGET  = DdTargets.PLACENAME
     ICON         = ICONS['name']
 
-    def __init__(self, dbstate, obj):
-        super(ClipPlaceName, self).__init__(dbstate, obj)
-        self._type  = _("Place Name")
+    def __init__(self, obj):
+        super(ClipPlaceName, self).__init__(obj)
+        self._type = _("Place Name")
         self.refresh()
 
     def refresh(self):
@@ -619,9 +587,9 @@ class ClipSurname(ClipObjWrapper):
     DRAG_TARGET  = DdTargets.SURNAME
     ICON         = ICONS['name']
 
-    def __init__(self, dbstate, obj):
-        super(ClipSurname, self).__init__(dbstate, obj)
-        self._type  = _("Surname")
+    def __init__(self, obj):
+        super(ClipSurname, self).__init__(obj)
+        self._type = _("Surname")
         self.refresh()
 
     def refresh(self):
@@ -635,9 +603,9 @@ class ClipText(ClipWrapper):
     DRAG_TARGET  = DdTargets.TEXT
     ICON         = ICONS['text']
 
-    def __init__(self, dbstate, obj):
-        super(ClipText, self).__init__(dbstate, obj)
-        self._type  = _("Text")
+    def __init__(self, obj):
+        super(ClipText, self).__init__(obj)
+        self._type = _("Text")
         if isinstance(self._obj, bytes):
             self._pickle = str(self._obj, "utf-8")
         else:
@@ -657,26 +625,19 @@ class ClipMediaObj(ClipHandleWrapper):
     DRAG_TARGET  = DdTargets.MEDIAOBJ
     ICON         = ICONS["media"]
 
-    def __init__(self, dbstate, obj):
-        super(ClipMediaObj, self).__init__(dbstate, obj)
-        self._type  = _("Media")
+    def __init__(self, obj):
+        super(ClipMediaObj, self).__init__(obj)
+        self._type = _("Media")
         self._objclass = 'Media'
         self.refresh()
 
     def refresh(self):
         if self._handle:
-            obj = self._db.get_media_from_handle(self._handle)
+            obj = clipdb.get_media_from_handle(self._handle)
             if obj:
                 self._title = obj.get_description()
                 self._value = obj.get_path()
 
-    def is_valid(self):
-        data = pickle.loads(self._obj)
-        handle = data[2]
-        obj = self._db.get_media_from_handle(handle)
-        if obj:
-            return True
-        return False
 
 class ClipMediaRef(ClipObjWrapper):
 
@@ -684,14 +645,15 @@ class ClipMediaRef(ClipObjWrapper):
     DRAG_TARGET  = DdTargets.MEDIAREF
     ICON         = LINK_PIC
 
-    def __init__(self, dbstate, obj):
-        super(ClipMediaRef, self).__init__(dbstate, obj)
-        self._type  = _("Media ref")
+    def __init__(self, obj):
+        super(ClipMediaRef, self).__init__(obj)
+        self._type = _("Media ref")
         self.refresh()
 
     def refresh(self):
         if self._obj:
-            base = self._db.get_media_from_handle(self._obj.get_reference_handle())
+            base = clipdb.get_media_from_handle(
+                self._obj.get_reference_handle())
             if base:
                 self._title = base.get_description()
                 self._value = base.get_path()
@@ -702,14 +664,15 @@ class ClipPersonRef(ClipObjWrapper):
     DRAG_TARGET  = DdTargets.PERSONREF
     ICON         = LINK_PIC
 
-    def __init__(self, dbstate, obj):
-        super(ClipPersonRef, self).__init__(dbstate, obj)
-        self._type  = _("Person ref")
+    def __init__(self, obj):
+        super(ClipPersonRef, self).__init__(obj)
+        self._type = _("Person ref")
         self.refresh()
 
     def refresh(self):
         if self._obj:
-            person = self._db.get_person_from_handle(self._obj.get_reference_handle())
+            person = clipdb.get_person_from_handle(
+                self._obj.get_reference_handle())
             if person:
                 self._title = self._obj.get_relation()
                 self._value = person.get_primary_name().get_name()
@@ -720,14 +683,15 @@ class ClipChildRef(ClipObjWrapper):
     DRAG_TARGET  = DdTargets.CHILDREF
     ICON         = LINK_PIC
 
-    def __init__(self, dbstate, obj):
-        super(ClipChildRef, self).__init__(dbstate, obj)
-        self._type  = _("Child ref")
+    def __init__(self, obj):
+        super(ClipChildRef, self).__init__(obj)
+        self._type = _("Child ref")
         self.refresh()
 
     def refresh(self):
         if self._obj:
-            person = self._db.get_person_from_handle(self._obj.get_reference_handle())
+            person = clipdb.get_person_from_handle(
+                self._obj.get_reference_handle())
             if person:
                 frel = str(self._obj.get_father_relation())
                 mrel = str(self._obj.get_mother_relation())
@@ -741,26 +705,18 @@ class ClipPersonLink(ClipHandleWrapper):
     DRAG_TARGET  = DdTargets.PERSON_LINK
     ICON         = ICONS["person"]
 
-    def __init__(self, dbstate, obj):
-        super(ClipPersonLink, self).__init__(dbstate, obj)
-        self._type  = _("Person")
+    def __init__(self, obj):
+        super(ClipPersonLink, self).__init__(obj)
+        self._type = _("Person")
         self._objclass = 'Person'
         self.refresh()
 
     def refresh(self):
         if self._handle:
-            person = self._db.get_person_from_handle(self._handle)
+            person = clipdb.get_person_from_handle(self._handle)
             if person:
                 self._title = person.gramps_id
                 self._value = person.get_primary_name().get_name()
-
-    def is_valid(self):
-        data = pickle.loads(self._obj)
-        handle = data[2]
-        obj = self._db.get_person_from_handle(handle)
-        if obj:
-            return True
-        return False
 
 
 class ClipFamilyLink(ClipHandleWrapper):
@@ -769,28 +725,21 @@ class ClipFamilyLink(ClipHandleWrapper):
     DRAG_TARGET  = DdTargets.FAMILY_LINK
     ICON         = ICONS["family"]
 
-    def __init__(self, dbstate, obj):
-        super(ClipFamilyLink, self).__init__(dbstate, obj)
-        self._type  = _("Family")
+    def __init__(self, obj):
+        super(ClipFamilyLink, self).__init__(obj)
+        self._type = _("Family")
         self._objclass = 'Family'
         self.refresh()
 
     def refresh(self):
         from gramps.gen.simple import SimpleAccess
         if self._handle:
-            family = self._db.get_family_from_handle(self._handle)
+            family = clipdb.get_family_from_handle(self._handle)
             if family:
-                sa = SimpleAccess(self._db)
+                sa = SimpleAccess(clipdb)
                 self._title = family.gramps_id
                 self._value = sa.describe(family)
 
-    def is_valid(self):
-        data = pickle.loads(self._obj)
-        handle = data[2]
-        obj = self._db.get_family_from_handle(handle)
-        if obj:
-            return True
-        return False
 
 class ClipSourceLink(ClipHandleWrapper):
 
@@ -798,26 +747,19 @@ class ClipSourceLink(ClipHandleWrapper):
     DRAG_TARGET  = DdTargets.SOURCE_LINK
     ICON         = ICONS["source"]
 
-    def __init__(self, dbstate, obj):
-        super(ClipSourceLink, self).__init__(dbstate, obj)
-        self._type  = _("Source")
+    def __init__(self, obj):
+        super(ClipSourceLink, self).__init__(obj)
+        self._type = _("Source")
         self._objclass = 'Source'
         self.refresh()
 
     def refresh(self):
         if self._handle:
-            source = self._db.get_source_from_handle(self._handle)
+            source = clipdb.get_source_from_handle(self._handle)
             if source:
                 self._title = source.get_gramps_id()
                 self._value = source.get_title()
 
-    def is_valid(self):
-        data = pickle.loads(self._obj)
-        handle = data[2]
-        obj = self._db.get_source_from_handle(handle)
-        if obj:
-            return True
-        return False
 
 class ClipRepositoryLink(ClipHandleWrapper):
 
@@ -825,26 +767,18 @@ class ClipRepositoryLink(ClipHandleWrapper):
     DRAG_TARGET  = DdTargets.REPO_LINK
     ICON         = ICONS["repository"]
 
-    def __init__(self, dbstate, obj):
-        super(ClipRepositoryLink, self).__init__(dbstate, obj)
-        self._type  = _("Repository")
+    def __init__(self, obj):
+        super(ClipRepositoryLink, self).__init__(obj)
+        self._type = _("Repository")
         self._objclass = 'Repository'
         self.refresh()
 
     def refresh(self):
         if self._handle:
-            source = self._db.get_repository_from_handle(self._handle)
+            source = clipdb.get_repository_from_handle(self._handle)
             if source:
                 self._title = str(source.get_type())
                 self._value = source.get_name()
-
-    def is_valid(self):
-        data = pickle.loads(self._obj)
-        handle = data[2]
-        obj = self._db.get_repository_from_handle(handle)
-        if obj:
-            return True
-        return False
 
 #-------------------------------------------------------------------------
 #
@@ -856,8 +790,8 @@ class ClipDropList:
     DROP_TARGETS = [DdTargets.LINK_LIST]
     DRAG_TARGET  = None
 
-    def __init__(self, dbstate, obj_list):
-        self._dbstate = dbstate
+    def __init__(self, obj_list):
+        #self._dbstate = dbstate
         # ('link-list', id, (('person-link', handle),
         #                    ('person-link', handle), ...), 0)
         self._obj_list = pickle.loads(obj_list)
@@ -868,7 +802,7 @@ class ClipDropList:
         for (target, handle) in handles:
             _class = map2class(target)
             if _class:
-                obj = _class(self._dbstate, pickle.dumps((target, id, handle, timestamp)))
+                obj = _class(pickle.dumps((target, id, handle, timestamp)))
                 if obj:
                     retval.append(obj)
         return retval
@@ -877,8 +811,8 @@ class ClipDropRawList(ClipDropList):
     DROP_TARGETS = [DdTargets.RAW_LIST]
     DRAG_TARGET  = None
 
-    def __init__(self, dbstate, obj_list):
-        self._dbstate = dbstate
+    def __init__(self, obj_list):
+        #self._dbstate = dbstate
         # ('raw-list', id, (ClipObject, ClipObject, ...), 0)
         self._obj_list = pickle.loads(obj_list)
 
@@ -890,7 +824,7 @@ class ClipDropRawList(ClipDropList):
             target = pickle.loads(item)[0]
             _class = map2class(target)
             if _class:
-                obj = _class(self._dbstate, item)
+                obj = _class(item)
                 if obj:
                     retval.append(obj)
         return retval
@@ -899,8 +833,8 @@ class ClipDropHandleList(ClipDropList):
     DROP_TARGETS = [DdTargets.HANDLE_LIST]
     DRAG_TARGET  = None
 
-    def __init__(self, dbstate, obj_list):
-        self._dbstate = dbstate
+    def __init__(self, obj_list):
+        #self._dbstate = dbstate
         # incoming:
         # ('handle-list', id, (('Person', '2763526751235'),
         #                      ('Source', '3786234743978'), ...), 0)
@@ -914,7 +848,7 @@ class ClipDropHandleList(ClipDropList):
             # outgoing:
             # (drag_type, idval, self._handle, val) = pickle.loads(self._obj)
             data = (target, id(self), handle, 0)
-            obj = _class(self._dbstate, pickle.dumps(data))
+            obj = _class(pickle.dumps(data))
             retval.append(obj)
         return retval
 
@@ -1029,7 +963,10 @@ class ClipboardListView:
         self.register_wrapper_classes()
 
     def database_changed(self,db):
-        self._db = db
+        if not db.is_open():
+            return
+        global clipdb
+        clipdb = db
         # Note: delete event is emitted before the delete, so checking
         #        if valid on this is useless !
         db_signals = (
@@ -1051,32 +988,32 @@ class ClipboardListView:
             )
 
         for signal in db_signals:
-            self._db.connect(signal,self.refresh_objects)
+            clipdb.connect(signal, self.refresh_objects)
 
-        self._db.connect('person-delete',
-                         gen_del_obj(self.delete_object, 'person-link'))
-        self._db.connect('person-delete',
-                         gen_del_obj(self.delete_object_ref, 'personref'))
-        self._db.connect('person-delete',
-                         gen_del_obj(self.delete_object_ref, 'childref'))
-        self._db.connect('source-delete',
-                         gen_del_obj(self.delete_object, 'source-link'))
-        self._db.connect('source-delete',
-                         gen_del_obj(self.delete_object_ref, 'srcref'))
-        self._db.connect('repository-delete',
-                         gen_del_obj(self.delete_object, 'repo-link'))
-        self._db.connect('event-delete',
-                         gen_del_obj(self.delete_object, 'pevent'))
-        self._db.connect('event-delete',
-                         gen_del_obj(self.delete_object_ref, 'eventref'))
-        self._db.connect('media-delete',
-                         gen_del_obj(self.delete_object, 'media'))
-        self._db.connect('media-delete',
-                         gen_del_obj(self.delete_object_ref, 'mediaref'))
-        self._db.connect('place-delete',
-                         gen_del_obj(self.delete_object, 'place-link'))
-        self._db.connect('note-delete',
-                         gen_del_obj(self.delete_object, 'note-link'))
+        clipdb.connect('person-delete',
+                       gen_del_obj(self.delete_object, 'person-link'))
+        clipdb.connect('person-delete',
+                       gen_del_obj(self.delete_object_ref, 'personref'))
+        clipdb.connect('person-delete',
+                       gen_del_obj(self.delete_object_ref, 'childref'))
+        clipdb.connect('source-delete',
+                       gen_del_obj(self.delete_object, 'source-link'))
+        clipdb.connect('source-delete',
+                       gen_del_obj(self.delete_object_ref, 'srcref'))
+        clipdb.connect('repository-delete',
+                       gen_del_obj(self.delete_object, 'repo-link'))
+        clipdb.connect('event-delete',
+                       gen_del_obj(self.delete_object, 'pevent'))
+        clipdb.connect('event-delete',
+                       gen_del_obj(self.delete_object_ref, 'eventref'))
+        clipdb.connect('media-delete',
+                       gen_del_obj(self.delete_object, 'media'))
+        clipdb.connect('media-delete',
+                       gen_del_obj(self.delete_object_ref, 'mediaref'))
+        clipdb.connect('place-delete',
+                       gen_del_obj(self.delete_object, 'place-link'))
+        clipdb.connect('note-delete',
+                       gen_del_obj(self.delete_object, 'note-link'))
         # family-delete not needed, cannot be dragged!
 
         self.refresh_objects()
@@ -1315,7 +1252,7 @@ class ClipboardListView:
         wrapper_class = self._target_type_to_wrapper_class_map[
                                                     str(possible_wrappers[0])]
         try:
-            o = wrapper_class(self.dbstate, sel_data)
+            o = wrapper_class(sel_data)
             if title:
                 o._title = title
             if value:
@@ -1554,19 +1491,25 @@ class MultiTreeView(Gtk.TreeView):
                 objclass, handle = o._objclass, o._handle
             else:
                 objclass, handle = None, None
-            if objclass in ['Person', 'Event', 'Media', 'Source', 'Citation',
-                            'Repository', 'Family', 'Note', 'Place']:
-                menu_item = Gtk.MenuItem(label=_("the object|See %s details") % glocale.trans_objclass(objclass))
-                menu_item.connect("activate",
-                   lambda widget: self.edit_obj(objclass, handle))
-                popup.append(menu_item)
-                menu_item.show()
-                # ---------------------------
-                menu_item = Gtk.MenuItem(label=_("the object|Make %s active") % glocale.trans_objclass(objclass))
-                menu_item.connect("activate",
-                      lambda widget: self.uistate.set_active(handle, objclass))
-                popup.append(menu_item)
-                menu_item.show()
+            if obj2class(objclass):
+                if self.dbstate.db.method('has_%s_handle', objclass)(handle):
+                    menu_item = Gtk.MenuItem(
+                        label=_("the object|See %s details") %
+                        glocale.trans_objclass(objclass))
+                    menu_item.connect(
+                        "activate",
+                        lambda widget: self.edit_obj(objclass, handle))
+                    popup.append(menu_item)
+                    menu_item.show()
+                    # ---------------------------
+                    menu_item = Gtk.MenuItem(
+                        label=_("the object|Make %s active") %
+                        glocale.trans_objclass(objclass))
+                    menu_item.connect(
+                        "activate", lambda widget:
+                        self.uistate.set_active(handle, objclass))
+                    popup.append(menu_item)
+                    menu_item.show()
                 # ---------------------------
                 gids = set()
                 for path in paths:
@@ -1575,17 +1518,23 @@ class MultiTreeView(Gtk.TreeView):
                         o = store.get_value(node, 1)
                         if o._objclass == objclass:
                             my_handle = o._handle
-                            obj = self.dbstate.db.method('get_%s_from_handle', objclass)(my_handle)
-                            if obj:
+                            if self.dbstate.db.method('has_%s_handle',
+                                                      objclass)(my_handle):
+                                obj = self.dbstate.db.method(
+                                    'get_%s_from_handle', objclass)(my_handle)
                                 gids.add(obj.gramps_id)
-                menu_item = Gtk.MenuItem(label=_("the object|Create Filter from %s selected...") % glocale.trans_objclass(objclass))
-                menu_item.connect("activate",
-                      lambda widget: make_filter(self.dbstate, self.uistate,
-                                      objclass, gids, title=self.title))
-                popup.append(menu_item)
-                menu_item.show()
-            # Show the popup menu:
-            popup.popup(None, None, None, None, 3, event.time)
+                if gids:
+                    menu_item = Gtk.MenuItem(
+                        label=_("the object|Create Filter from %s "
+                                "selected...") %
+                        glocale.trans_objclass(objclass))
+                    menu_item.connect("activate", lambda widget: make_filter(
+                        self.dbstate, self.uistate,
+                        objclass, gids, title=self.title))
+                    popup.append(menu_item)
+                    menu_item.show()
+            if popup.get_children():  # Show the popup menu:
+                popup.popup(None, None, None, None, 3, event.time)
             return True
         elif event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             model, paths = self.get_selection().get_selected_rows()
@@ -1627,75 +1576,13 @@ class MultiTreeView(Gtk.TreeView):
         from .editors import (EditPerson, EditEvent, EditFamily, EditSource,
                               EditPlace, EditRepository, EditNote, EditMedia,
                               EditCitation)
-        if objclass == 'Person':
-            person = self.dbstate.db.get_person_from_handle(handle)
-            if person:
+        if obj2class(objclass):  # make sure it is an editable object
+            if self.dbstate.db.method('has_%s_handle', objclass)(handle):
+                g_object = self.dbstate.db.method(
+                    'get_%s_from_handle', objclass)(handle)
                 try:
-                    EditPerson(self.dbstate,
-                               self.uistate, [], person)
-                except WindowActiveError:
-                    pass
-        elif objclass == 'Event':
-            event = self.dbstate.db.get_event_from_handle(handle)
-            if event:
-                try:
-                    EditEvent(self.dbstate,
-                              self.uistate, [], event)
-                except WindowActiveError:
-                    pass
-        elif objclass == 'Family':
-            ref = self.dbstate.db.get_family_from_handle(handle)
-            if ref:
-                try:
-                    EditFamily(self.dbstate,
-                               self.uistate, [], ref)
-                except WindowActiveError:
-                    pass
-        elif objclass == 'Source':
-            ref = self.dbstate.db.get_source_from_handle(handle)
-            if ref:
-                try:
-                    EditSource(self.dbstate,
-                               self.uistate, [], ref)
-                except WindowActiveError:
-                    pass
-        elif objclass == 'Place':
-            ref = self.dbstate.db.get_place_from_handle(handle)
-            if ref:
-                try:
-                    EditPlace(self.dbstate,
-                               self.uistate, [], ref)
-                except WindowActiveError:
-                    pass
-        elif objclass == 'Repository':
-            ref = self.dbstate.db.get_repository_from_handle(handle)
-            if ref:
-                try:
-                    EditRepository(self.dbstate,
-                               self.uistate, [], ref)
-                except WindowActiveError:
-                    pass
-        elif objclass == 'Note':
-            ref = self.dbstate.db.get_note_from_handle(handle)
-            if ref:
-                try:
-                    EditNote(self.dbstate,
-                             self.uistate, [], ref)
-                except WindowActiveError:
-                    pass
-        elif objclass == 'Media':
-            ref = self.dbstate.db.get_media_from_handle(handle)
-            if ref:
-                try:
-                    EditMedia(self.dbstate,
-                              self.uistate, [], ref)
-                except WindowActiveError:
-                    pass
-        elif objclass == 'Citation':
-            ref = self.dbstate.db.get_citation_from_handle(handle)
-            if ref:
-                try:
-                    EditCitation(self.dbstate, self.uistate, [], ref)
+                    locals()['Edit' + objclass](
+                        self.dbstate, self.uistate, [], g_object)
                 except WindowActiveError:
                     pass
 
