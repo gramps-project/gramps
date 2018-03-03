@@ -46,21 +46,20 @@ import cairo
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import IMAGE_DIR, URL_MANUAL_PAGE
-from gramps.gen.config import config
+from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.lib import NoteType
 from gramps.gen.datehandler import get_date
 from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.errors import WindowActiveError
+from gramps.gen.constfunc import mac
 from .display import display_help
 from .managedwindow import ManagedWindow
-from gramps.gen.errors import WindowActiveError
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
-from gramps.gen.constfunc import mac
 from .glade import Glade
 from .ddtargets import DdTargets
 from .makefilter import make_filter
 from .utils import is_right_click, get_primary_mask
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
@@ -80,25 +79,24 @@ clipdb = None  # current db to avoid different transient dbs during db change
 theme = Gtk.IconTheme.get_default()
 LINK_PIC = theme.load_icon('stock_link', 16, 0)
 ICONS = {}
-for (name, icon) in (
-    ("media", "gramps-media"),
-    ("note", "gramps-notes"),
-    ("person", "gramps-person"),
-    ("place", "gramps-place"),
-    ('address', 'gramps-address'),
-    ('attribute', 'gramps-attribute'),
-    ('event', 'gramps-event'),
-    ('family', 'gramps-family'),
-    ('location', 'geo-place-link'),
-    ('media', 'gramps-media'),
-    ('name', 'geo-show-person'),
-    ('repository', 'gramps-repository'),
-    ('source', 'gramps-source'),
-    ('citation', 'gramps-citation'),
-    ('text', 'gramps-font'),
-    ('url', 'gramps-geo'),
-    ):
+for (name, icon) in (("media", "gramps-media"),
+                     ("note", "gramps-notes"),
+                     ("person", "gramps-person"),
+                     ("place", "gramps-place"),
+                     ('address', 'gramps-address'),
+                     ('attribute', 'gramps-attribute'),
+                     ('event', 'gramps-event'),
+                     ('family', 'gramps-family'),
+                     ('location', 'geo-place-link'),
+                     ('media', 'gramps-media'),
+                     ('name', 'geo-show-person'),
+                     ('repository', 'gramps-repository'),
+                     ('source', 'gramps-source'),
+                     ('citation', 'gramps-citation'),
+                     ('text', 'gramps-font'),
+                     ('url', 'gramps-geo')):
     ICONS[name] = theme.load_icon(icon, 16, 0)
+
 
 #-------------------------------------------------------------------------
 #
@@ -106,49 +104,50 @@ for (name, icon) in (
 #
 #-------------------------------------------------------------------------
 def map2class(target):
-    d = {"person-link": ClipPersonLink,
-         "family-link": ClipFamilyLink,
-         'personref': ClipPersonRef,
-         'childref': ClipChildRef,
-         'source-link': ClipSourceLink,
-         'citation-link': ClipCitation,
-         'repo-link': ClipRepositoryLink,
-         'pevent': ClipEvent,
-         'eventref': ClipEventRef,
-         'media': ClipMediaObj,
-         'mediaref': ClipMediaRef,
-         'place-link': ClipPlace,
-         'placeref': ClipPlaceRef,
-         'note-link': ClipNote,
-         'TEXT': ClipText,
-         }
-    return d[target] if target in d else None
+    _d_ = {"person-link": ClipPersonLink,
+           "family-link": ClipFamilyLink,
+           'personref': ClipPersonRef,
+           'childref': ClipChildRef,
+           'source-link': ClipSourceLink,
+           'citation-link': ClipCitation,
+           'repo-link': ClipRepositoryLink,
+           'pevent': ClipEvent,
+           'eventref': ClipEventRef,
+           'media': ClipMediaObj,
+           'mediaref': ClipMediaRef,
+           'place-link': ClipPlace,
+           'placeref': ClipPlaceRef,
+           'note-link': ClipNote,
+           'TEXT': ClipText}
+    return _d_[target] if target in _d_ else None
+
 
 def obj2class(target):
-    d= {"Person": ClipPersonLink,
-        "Family": ClipFamilyLink,
-        'Source': ClipSourceLink,
-        'Citation': ClipCitation,
-        'Repository': ClipRepositoryLink,
-        'Event': ClipEvent,
-        'Media': ClipMediaObj,
-        'Place': ClipPlace,
-        'Note': ClipNote,
-        }
-    return d[target] if target in d else None
+    _d_ = {"Person": ClipPersonLink,
+           "Family": ClipFamilyLink,
+           'Source': ClipSourceLink,
+           'Citation': ClipCitation,
+           'Repository': ClipRepositoryLink,
+           'Event': ClipEvent,
+           'Media': ClipMediaObj,
+           'Place': ClipPlace,
+           'Note': ClipNote}
+    return _d_[target] if target in _d_ else None
 
 OBJ2TARGET = {"Person": Gdk.atom_intern('person-link', False),
-         "Family": Gdk.atom_intern('family-link', False),
-         'Source': Gdk.atom_intern('source-link', False),
-         'Citation': Gdk.atom_intern('citation-link', False),
-         'Repository': Gdk.atom_intern('repo-link', False),
-         'Event': Gdk.atom_intern('pevent', False),
-         'Media': Gdk.atom_intern('media', False),
-         'Place': Gdk.atom_intern('place-link', False),
-         'Note': Gdk.atom_intern('note-link', False),
-         }
+              "Family": Gdk.atom_intern('family-link', False),
+              'Source': Gdk.atom_intern('source-link', False),
+              'Citation': Gdk.atom_intern('citation-link', False),
+              'Repository': Gdk.atom_intern('repo-link', False),
+              'Event': Gdk.atom_intern('pevent', False),
+              'Media': Gdk.atom_intern('media', False),
+              'Place': Gdk.atom_intern('place-link', False),
+              'Note': Gdk.atom_intern('note-link', False)}
+
+
 def obj2target(target):
     return OBJ2TARGET[target] if target in OBJ2TARGET else None
+
 
 def model_contains(model, data):
     """
@@ -171,6 +170,7 @@ def model_contains(model, data):
             return True
     return False
 
+
 #-------------------------------------------------------------------------
 #
 # wrapper classes to provide object specific listing in the ListView
@@ -182,7 +182,7 @@ class ClipWrapper:
     def __init__(self, obj):
         self._obj = obj
         self._pickle = obj
-        self._type  = _("Unknown")
+        self._type = _("Unknown")
         self._objclass = None
         self._handle = None
         self._title = _('Unavailable')
@@ -218,16 +218,13 @@ class ClipWrapper:
                 "_title": self._title,
                 "_value": self._value,
                 "_dbid": self._dbid,
-                "_dbname": self._dbname,
-                }
+                "_dbname": self._dbname}
             return pickle.dumps(data)
-        else:
-            if isinstance(self._obj, bytes):
-                return self._obj
-            else:
-                ## don't know if this happens in Gramps, theoretically possible
-                asuni = str(self._obj)
-                return asuni.encode('utf-8')
+        if isinstance(self._obj, bytes):
+            return self._obj
+        # don't know if this happens in Gramps, theoretically possible
+        asuni = str(self._obj)
+        return asuni.encode('utf-8')
 
     def is_valid(self):
         if self._objclass and obj2class(self._objclass):
@@ -253,6 +250,7 @@ class ClipHandleWrapper(ClipWrapper):
         for item in data:
             setattr(self, item, data[item])
 
+
 class ClipObjWrapper(ClipWrapper):
 
     def __init__(self, obj):
@@ -273,11 +271,9 @@ class ClipObjWrapper(ClipWrapper):
                 "_title": self._title,
                 "_value": self._value,
                 "_dbid": self._dbid,
-                "_dbname": self._dbname,
-                }
+                "_dbname": self._dbname}
             return pickle.dumps(data)
-        else:
-            return self._pickle
+        return self._pickle
 
     def is_valid(self):
         if self._obj is None:
@@ -294,8 +290,8 @@ class ClipObjWrapper(ClipWrapper):
 class ClipAddress(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.ADDRESS]
-    DRAG_TARGET  = DdTargets.ADDRESS
-    ICON         = ICONS['address']
+    DRAG_TARGET = DdTargets.ADDRESS
+    ICON = ICONS['address']
 
     def __init__(self, obj):
         super(ClipAddress, self).__init__(obj)
@@ -308,14 +304,14 @@ class ClipAddress(ClipObjWrapper):
             self._value = "%s %s %s %s" % (self._obj.get_street(),
                                            self._obj.get_city(),
                                            self._obj.get_state(),
-                                           self._obj.get_country(),
-                                          )
+                                           self._obj.get_country())
+
 
 class ClipLocation(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.LOCATION]
-    DRAG_TARGET  = DdTargets.LOCATION
-    ICON         = ICONS['location']
+    DRAG_TARGET = DdTargets.LOCATION
+    ICON = ICONS['location']
 
     def __init__(self, obj):
         super(ClipLocation, self).__init__(obj)
@@ -325,14 +321,14 @@ class ClipLocation(ClipObjWrapper):
     def refresh(self):
         self._value = "%s %s %s" % (self._obj.get_city(),
                                     self._obj.get_state(),
-                                    self._obj.get_country(),
-                                   )
+                                    self._obj.get_country())
+
 
 class ClipEvent(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.EVENT]
-    DRAG_TARGET  = DdTargets.EVENT
-    ICON         = ICONS["event"]
+    DRAG_TARGET = DdTargets.EVENT
+    ICON = ICONS["event"]
 
     def __init__(self, obj):
         super(ClipEvent, self).__init__(obj)
@@ -351,8 +347,8 @@ class ClipEvent(ClipHandleWrapper):
 class ClipPlace(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.PLACE_LINK]
-    DRAG_TARGET  = DdTargets.PLACE_LINK
-    ICON         = ICONS["place"]
+    DRAG_TARGET = DdTargets.PLACE_LINK
+    ICON = ICONS["place"]
 
     def __init__(self, obj):
         super(ClipPlace, self).__init__(obj)
@@ -371,8 +367,8 @@ class ClipPlace(ClipHandleWrapper):
 class ClipNote(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.NOTE_LINK]
-    DRAG_TARGET  = DdTargets.NOTE_LINK
-    ICON         = ICONS["note"]
+    DRAG_TARGET = DdTargets.NOTE_LINK
+    ICON = ICONS["note"]
 
     def __init__(self, obj):
         super(ClipNote, self).__init__(obj)
@@ -385,11 +381,11 @@ class ClipNote(ClipHandleWrapper):
         if value:
             self._title = value.get_gramps_id()
             note = value.get().replace('\n', ' ')
-            #String must be unicode for truncation to work for non
-            #ascii characters
+            # String must be unicode for truncation to work for non
+            # ascii characters
             note = str(note)
             if len(note) > 80:
-                self._value = note[:80]+"..."
+                self._value = note[:80] + "..."
             else:
                 self._value = note
 
@@ -397,8 +393,8 @@ class ClipNote(ClipHandleWrapper):
 class ClipFamilyEvent(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.FAMILY_EVENT]
-    DRAG_TARGET  = DdTargets.FAMILY_EVENT
-    ICON         = ICONS['family']
+    DRAG_TARGET = DdTargets.FAMILY_EVENT
+    ICON = ICONS['family']
 
     def __init__(self, obj):
         super(ClipFamilyEvent, self).__init__(obj)
@@ -410,11 +406,12 @@ class ClipFamilyEvent(ClipObjWrapper):
             self._title = str(self._obj.get_type())
             self._value = self._obj.get_description()
 
+
 class ClipUrl(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.URL]
-    DRAG_TARGET  = DdTargets.URL
-    ICON         = ICONS['url']
+    DRAG_TARGET = DdTargets.URL
+    ICON = ICONS['url']
 
     def __init__(self, obj):
         super(ClipUrl, self).__init__(obj)
@@ -426,11 +423,12 @@ class ClipUrl(ClipObjWrapper):
             self._title = self._obj.get_path()
             self._value = self._obj.get_description()
 
+
 class ClipAttribute(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.ATTRIBUTE]
-    DRAG_TARGET  = DdTargets.ATTRIBUTE
-    ICON         = ICONS['attribute']
+    DRAG_TARGET = DdTargets.ATTRIBUTE
+    ICON = ICONS['attribute']
 
     def __init__(self, obj):
         super(ClipAttribute, self).__init__(obj)
@@ -441,11 +439,12 @@ class ClipAttribute(ClipObjWrapper):
         self._title = str(self._obj.get_type())
         self._value = self._obj.get_value()
 
+
 class ClipFamilyAttribute(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.FAMILY_ATTRIBUTE]
-    DRAG_TARGET  = DdTargets.FAMILY_ATTRIBUTE
-    ICON         = ICONS['attribute']
+    DRAG_TARGET = DdTargets.FAMILY_ATTRIBUTE
+    ICON = ICONS['attribute']
 
     def __init__(self, obj):
         super(ClipFamilyAttribute, self).__init__(obj)
@@ -457,11 +456,12 @@ class ClipFamilyAttribute(ClipObjWrapper):
             self._title = str(self._obj.get_type())
             self._value = self._obj.get_value()
 
+
 class ClipCitation(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.CITATION_LINK]
-    DRAG_TARGET  = DdTargets.CITATION_LINK
-    ICON         = ICONS["citation"]
+    DRAG_TARGET = DdTargets.CITATION_LINK
+    ICON = ICONS["citation"]
 
     def __init__(self, obj):
         super(ClipCitation, self).__init__(obj)
@@ -477,29 +477,28 @@ class ClipCitation(ClipHandleWrapper):
                 notelist = list(map(clipdb.get_note_from_handle,
                                     citation.get_note_list()))
                 srctxtlist = [note for note in notelist
-                        if note.get_type() == NoteType.SOURCE_TEXT]
+                              if note.get_type() == NoteType.SOURCE_TEXT]
                 page = citation.get_page()
                 if not page:
                     page = _('not available|NA')
                 text = ""
-                if len(srctxtlist) > 0:
+                if srctxtlist:
                     text = " ".join(srctxtlist[0].get().split())
                 #String must be unicode for truncation to work for non
                 #ascii characters
                     text = str(text)
                     if len(text) > 60:
-                        text =  text[:60]+"..."
+                        text = text[:60] + "..."
                 self._value = _("Volume/Page: %(pag)s -- %(sourcetext)s") % {
-                                    'pag'        : page,
-                                    'sourcetext' : text,
-                                    }
+                    'pag' : page,
+                    'sourcetext' : text}
 
 
 class ClipRepoRef(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.REPOREF]
-    DRAG_TARGET  = DdTargets.REPOREF
-    ICON         = LINK_PIC
+    DRAG_TARGET = DdTargets.REPOREF
+    ICON = LINK_PIC
 
     def __init__(self, obj):
         super(ClipRepoRef, self).__init__(obj)
@@ -513,11 +512,12 @@ class ClipRepoRef(ClipObjWrapper):
                 self._title = str(base.get_type())
                 self._value = base.get_name()
 
+
 class ClipEventRef(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.EVENTREF]
-    DRAG_TARGET  = DdTargets.EVENTREF
-    ICON         = LINK_PIC
+    DRAG_TARGET = DdTargets.EVENTREF
+    ICON = LINK_PIC
 
     def __init__(self, obj):
         super(ClipEventRef, self).__init__(obj)
@@ -531,11 +531,12 @@ class ClipEventRef(ClipObjWrapper):
                 self._title = base.gramps_id
                 self._value = str(base.get_type())
 
+
 class ClipPlaceRef(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.PLACEREF]
-    DRAG_TARGET  = DdTargets.PLACEREF
-    ICON         = LINK_PIC
+    DRAG_TARGET = DdTargets.PLACEREF
+    ICON = LINK_PIC
 
     def __init__(self, obj):
         super(ClipPlaceRef, self).__init__(obj)
@@ -549,11 +550,12 @@ class ClipPlaceRef(ClipObjWrapper):
                 self._title = base.gramps_id
                 self._value = place_displayer.display(clipdb, base)
 
+
 class ClipName(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.NAME]
-    DRAG_TARGET  = DdTargets.NAME
-    ICON         = ICONS['name']
+    DRAG_TARGET = DdTargets.NAME
+    ICON = ICONS['name']
 
     def __init__(self, obj):
         super(ClipName, self).__init__(obj)
@@ -565,11 +567,12 @@ class ClipName(ClipObjWrapper):
             self._title = str(self._obj.get_type())
             self._value = self._obj.get_name()
 
+
 class ClipPlaceName(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.PLACENAME]
-    DRAG_TARGET  = DdTargets.PLACENAME
-    ICON         = ICONS['name']
+    DRAG_TARGET = DdTargets.PLACENAME
+    ICON = ICONS['name']
 
     def __init__(self, obj):
         super(ClipPlaceName, self).__init__(obj)
@@ -581,11 +584,12 @@ class ClipPlaceName(ClipObjWrapper):
             self._title = get_date(self._obj)
             self._value = self._obj.get_value()
 
+
 class ClipSurname(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.SURNAME]
-    DRAG_TARGET  = DdTargets.SURNAME
-    ICON         = ICONS['name']
+    DRAG_TARGET = DdTargets.SURNAME
+    ICON = ICONS['name']
 
     def __init__(self, obj):
         super(ClipSurname, self).__init__(obj)
@@ -597,11 +601,12 @@ class ClipSurname(ClipObjWrapper):
             self._title = self._obj.get_surname()
             self._value = self._obj.get_surname()
 
+
 class ClipText(ClipWrapper):
 
     DROP_TARGETS = DdTargets.all_text()
-    DRAG_TARGET  = DdTargets.TEXT
-    ICON         = ICONS['text']
+    DRAG_TARGET = DdTargets.TEXT
+    ICON = ICONS['text']
 
     def __init__(self, obj):
         super(ClipText, self).__init__(obj)
@@ -619,11 +624,12 @@ class ClipText(ClipWrapper):
         else:
             self._value = self._obj
 
+
 class ClipMediaObj(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.MEDIAOBJ]
-    DRAG_TARGET  = DdTargets.MEDIAOBJ
-    ICON         = ICONS["media"]
+    DRAG_TARGET = DdTargets.MEDIAOBJ
+    ICON = ICONS["media"]
 
     def __init__(self, obj):
         super(ClipMediaObj, self).__init__(obj)
@@ -642,8 +648,8 @@ class ClipMediaObj(ClipHandleWrapper):
 class ClipMediaRef(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.MEDIAREF]
-    DRAG_TARGET  = DdTargets.MEDIAREF
-    ICON         = LINK_PIC
+    DRAG_TARGET = DdTargets.MEDIAREF
+    ICON = LINK_PIC
 
     def __init__(self, obj):
         super(ClipMediaRef, self).__init__(obj)
@@ -658,11 +664,12 @@ class ClipMediaRef(ClipObjWrapper):
                 self._title = base.get_description()
                 self._value = base.get_path()
 
+
 class ClipPersonRef(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.PERSONREF]
-    DRAG_TARGET  = DdTargets.PERSONREF
-    ICON         = LINK_PIC
+    DRAG_TARGET = DdTargets.PERSONREF
+    ICON = LINK_PIC
 
     def __init__(self, obj):
         super(ClipPersonRef, self).__init__(obj)
@@ -677,11 +684,12 @@ class ClipPersonRef(ClipObjWrapper):
                 self._title = self._obj.get_relation()
                 self._value = person.get_primary_name().get_name()
 
+
 class ClipChildRef(ClipObjWrapper):
 
     DROP_TARGETS = [DdTargets.CHILDREF]
-    DRAG_TARGET  = DdTargets.CHILDREF
-    ICON         = LINK_PIC
+    DRAG_TARGET = DdTargets.CHILDREF
+    ICON = LINK_PIC
 
     def __init__(self, obj):
         super(ClipChildRef, self).__init__(obj)
@@ -699,11 +707,12 @@ class ClipChildRef(ClipObjWrapper):
                                                         'mrel': mrel}
                 self._value = person.get_primary_name().get_name()
 
+
 class ClipPersonLink(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.PERSON_LINK]
-    DRAG_TARGET  = DdTargets.PERSON_LINK
-    ICON         = ICONS["person"]
+    DRAG_TARGET = DdTargets.PERSON_LINK
+    ICON = ICONS["person"]
 
     def __init__(self, obj):
         super(ClipPersonLink, self).__init__(obj)
@@ -722,8 +731,8 @@ class ClipPersonLink(ClipHandleWrapper):
 class ClipFamilyLink(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.FAMILY_LINK]
-    DRAG_TARGET  = DdTargets.FAMILY_LINK
-    ICON         = ICONS["family"]
+    DRAG_TARGET = DdTargets.FAMILY_LINK
+    ICON = ICONS["family"]
 
     def __init__(self, obj):
         super(ClipFamilyLink, self).__init__(obj)
@@ -736,16 +745,16 @@ class ClipFamilyLink(ClipHandleWrapper):
         if self._handle:
             family = clipdb.get_family_from_handle(self._handle)
             if family:
-                sa = SimpleAccess(clipdb)
+                _sa = SimpleAccess(clipdb)
                 self._title = family.gramps_id
-                self._value = sa.describe(family)
+                self._value = _sa.describe(family)
 
 
 class ClipSourceLink(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.SOURCE_LINK]
-    DRAG_TARGET  = DdTargets.SOURCE_LINK
-    ICON         = ICONS["source"]
+    DRAG_TARGET = DdTargets.SOURCE_LINK
+    ICON = ICONS["source"]
 
     def __init__(self, obj):
         super(ClipSourceLink, self).__init__(obj)
@@ -764,8 +773,8 @@ class ClipSourceLink(ClipHandleWrapper):
 class ClipRepositoryLink(ClipHandleWrapper):
 
     DROP_TARGETS = [DdTargets.REPO_LINK]
-    DRAG_TARGET  = DdTargets.REPO_LINK
-    ICON         = ICONS["repository"]
+    DRAG_TARGET = DdTargets.REPO_LINK
+    ICON = ICONS["repository"]
 
     def __init__(self, obj):
         super(ClipRepositoryLink, self).__init__(obj)
@@ -786,33 +795,33 @@ class ClipRepositoryLink(ClipHandleWrapper):
 #
 #-------------------------------------------------------------------------
 
+
 class ClipDropList:
     DROP_TARGETS = [DdTargets.LINK_LIST]
-    DRAG_TARGET  = None
+    DRAG_TARGET = None
 
     def __init__(self, obj_list):
-        #self._dbstate = dbstate
         # ('link-list', id, (('person-link', handle),
         #                    ('person-link', handle), ...), 0)
         self._obj_list = pickle.loads(obj_list)
 
     def get_objects(self):
-        list_type, id, handles, timestamp = self._obj_list
+        list_type, _id, handles, timestamp = self._obj_list
         retval = []
         for (target, handle) in handles:
             _class = map2class(target)
             if _class:
-                obj = _class(pickle.dumps((target, id, handle, timestamp)))
+                obj = _class(pickle.dumps((target, _id, handle, timestamp)))
                 if obj:
                     retval.append(obj)
         return retval
 
+
 class ClipDropRawList(ClipDropList):
     DROP_TARGETS = [DdTargets.RAW_LIST]
-    DRAG_TARGET  = None
+    DRAG_TARGET = None
 
     def __init__(self, obj_list):
-        #self._dbstate = dbstate
         # ('raw-list', id, (ClipObject, ClipObject, ...), 0)
         self._obj_list = pickle.loads(obj_list)
 
@@ -829,12 +838,12 @@ class ClipDropRawList(ClipDropList):
                     retval.append(obj)
         return retval
 
+
 class ClipDropHandleList(ClipDropList):
     DROP_TARGETS = [DdTargets.HANDLE_LIST]
-    DRAG_TARGET  = None
+    DRAG_TARGET = None
 
     def __init__(self, obj_list):
-        #self._dbstate = dbstate
         # incoming:
         # ('handle-list', id, (('Person', '2763526751235'),
         #                      ('Source', '3786234743978'), ...), 0)
@@ -854,6 +863,7 @@ class ClipDropHandleList(ClipDropList):
 
 # FIXME: add family
 
+
 #-------------------------------------------------------------------------
 #
 # ClipboardListModel class
@@ -863,14 +873,13 @@ class ClipboardListModel(Gtk.ListStore):
 
     def __init__(self):
         Gtk.ListStore.__init__(self,
-                               str,    # 0: object type
-                               object, # 1: object
-                               object, # 2: tooltip callback
-                               str,    # 3: type
-                               str,    # 4: value
-                               str,    # 5: unique database id (dbid)
-                               str,    # 6: db name (may be old)
-                               )
+                               str,     # 0: object type
+                               object,  # 1: object
+                               object,  # 2: tooltip callback
+                               str,     # 3: type
+                               str,     # 4: value
+                               str,     # 5: unique database id (dbid)
+                               str)     # 6: db name (may be old)
 
 
 #-------------------------------------------------------------------------
@@ -880,7 +889,7 @@ class ClipboardListModel(Gtk.ListStore):
 #-------------------------------------------------------------------------
 class ClipboardListView:
 
-    LOCAL_DRAG_TYPE   = 'MY_TREE_MODEL_ROW'
+    LOCAL_DRAG_TYPE = 'MY_TREE_MODEL_ROW'
     LOCAL_DRAG_ATOM_TYPE = Gdk.atom_intern(LOCAL_DRAG_TYPE, False)
     LOCAL_DRAG_TARGET = (LOCAL_DRAG_ATOM_TYPE, Gtk.TargetFlags.SAME_WIDGET, 0)
 
@@ -942,13 +951,13 @@ class ClipboardListView:
         targ_data = DdTargets.all_dtype()
         tglist = Gtk.TargetList.new([])
         tglist.add(ClipboardListView.LOCAL_DRAG_TARGET[0],
-                    ClipboardListView.LOCAL_DRAG_TARGET[1],
-                    ClipboardListView.LOCAL_DRAG_TARGET[2])
-        for tg in targ_data:
-            tglist.add(tg.atom_drag_type, tg.target_flags, tg.app_id)
-        self._widget.enable_model_drag_dest([],
-                                    Gdk.DragAction.COPY)
-        #TODO GTK3: workaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
+                   ClipboardListView.LOCAL_DRAG_TARGET[1],
+                   ClipboardListView.LOCAL_DRAG_TARGET[2])
+        for _tg in targ_data:
+            tglist.add(_tg.atom_drag_type, _tg.target_flags, _tg.app_id)
+        self._widget.enable_model_drag_dest([], Gdk.DragAction.COPY)
+        #TODO GTK3: workaround here for bug
+        # https://bugzilla.gnome.org/show_bug.cgi?id=680638
         self._widget.drag_dest_set_target_list(tglist)
         #self._widget.drag_dest_set(Gtk.DestDefaults.ALL, targ_data,
         #                            Gdk.DragAction.COPY)
@@ -962,7 +971,7 @@ class ClipboardListView:
 
         self.register_wrapper_classes()
 
-    def database_changed(self,db):
+    def database_changed(self, db):
         if not db.is_open():
             return
         global clipdb
@@ -984,8 +993,7 @@ class ClipboardListView:
             'event-rebuild',
             'repository-update',
             'repository-rebuild',
-            'note-rebuild'
-            )
+            'note-rebuild')
 
         for signal in db_signals:
             clipdb.connect(signal, self.refresh_objects)
@@ -1018,36 +1026,36 @@ class ClipboardListView:
 
         self.refresh_objects()
 
-    def refresh_objects(self,dummy=None):
+    def refresh_objects(self, dummy=None):
         model = self._widget.get_model()
 
         if model:
-            for o in model:
-                if not o[1].is_valid():
-                    model.remove(o.iter)
+            for _ob in model:
+                if not _ob[1].is_valid():
+                    model.remove(_ob.iter)
                 else:
-                    o[1].refresh()
-                    o[4] = o[1].get_value() # Force listview to update
+                    _ob[1].refresh()
+                    _ob[4] = _ob[1].get_value()  # Force listview to update
 
     def delete_object(self, handle_list, link_type):
         model = self._widget.get_model()
 
         if model:
-            for o in model:
-                if o[0] == link_type:
-                    data = pickle.loads(o[1]._obj)
+            for _ob in model:
+                if _ob[0] == link_type:
+                    data = pickle.loads(_ob[1]._obj)
                     if data[2] in handle_list:
-                        model.remove(o.iter)
+                        model.remove(_ob.iter)
 
     def delete_object_ref(self, handle_list, link_type):
         model = self._widget.get_model()
 
         if model:
-            for o in model:
-                if o[0] == link_type:
-                    data = o[1]._obj.get_reference_handle()
+            for _ob in model:
+                if _ob[0] == link_type:
+                    data = _ob[1]._obj.get_reference_handle()
                     if data in handle_list:
-                        model.remove(o.iter)
+                        model.remove(_ob.iter)
 
     # Method to manage the wrapper classes.
 
@@ -1080,40 +1088,40 @@ class ClipboardListView:
         self.register_wrapper_class(ClipText)
         self.register_wrapper_class(ClipNote)
 
-    def register_wrapper_class(self,wrapper_class):
+    def register_wrapper_class(self, wrapper_class):
         for drop_target in wrapper_class.DROP_TARGETS:
-            self._target_type_to_wrapper_class_map[drop_target.drag_type] = wrapper_class
+            self._target_type_to_wrapper_class_map[
+                drop_target.drag_type] = wrapper_class
 
     # Methods for rendering the cells.
 
     def object_pixbuf(self, column, cell, model, node, user_data=None):
-        o = model.get_value(node, 1)
-        if o._dbid is not None and o._dbid != self.dbstate.db.get_dbid():
-            if isinstance(o.__class__.UNAVAILABLE_ICON, str):
+        _ob = model.get_value(node, 1)
+        if _ob._dbid is not None and _ob._dbid != self.dbstate.db.get_dbid():
+            if isinstance(_ob.__class__.UNAVAILABLE_ICON, str):
                 cell.set_property('icon-name',
-                                  o.__class__.UNAVAILABLE_ICON)
+                                  _ob.__class__.UNAVAILABLE_ICON)
             else:
                 cell.set_property('pixbuf',
-                                  o.__class__.UNAVAILABLE_ICON)
+                                  _ob.__class__.UNAVAILABLE_ICON)
         else:
-            cell.set_property('pixbuf', o.__class__.ICON)
+            cell.set_property('pixbuf', _ob.__class__.ICON)
 
     def object_type(self, column, cell, model, node, user_data=None):
-        o = model.get_value(node, 1)
-        cell.set_property('text', o.get_type())
+        _ob = model.get_value(node, 1)
+        cell.set_property('text', _ob.get_type())
 
     def object_title(self, column, cell, model, node, user_data=None):
-        o = model.get_value(node, 1)
-        cell.set_property('text', o.get_title())
+        _ob = model.get_value(node, 1)
+        cell.set_property('text', _ob.get_title())
 
     def object_value(self, column, cell, model, node, user_data=None):
-        o = model.get_value(node, 1)
-        cell.set_property('text', o.get_value())
+        _ob = model.get_value(node, 1)
+        cell.set_property('text', _ob.get_value())
 
     def get_dbname(self, column, cell, model, node, user_data=None):
-        o = model.get_value(node, 1)
-        cell.set_property('text', o.get_dbname())
-
+        _ob = model.get_value(node, 1)
+        cell.set_property('text', _ob.get_dbname())
 
     # handlers for the drag and drop events.
 
@@ -1121,23 +1129,26 @@ class ClipboardListView:
         tree_selection = self._widget.get_selection()
         model, paths = tree_selection.get_selected_rows()
         if len(paths) > 1:
-            targets = [(DdTargets.RAW_LIST.atom_drag_type, Gtk.TargetFlags.SAME_WIDGET, 0),
+            targets = [(DdTargets.RAW_LIST.atom_drag_type,
+                        Gtk.TargetFlags.SAME_WIDGET, 0),
                        ClipboardListView.LOCAL_DRAG_TARGET]
         else:
             targets = [ClipboardListView.LOCAL_DRAG_TARGET]
         for path in paths:
             node = model.get_iter(path)
             if node is not None:
-                o = model.get_value(node,1)
-                targets += [target.target_data_atom() for target in o.__class__.DROP_TARGETS]
+                _ob = model.get_value(node, 1)
+                targets += [target.target_data_atom()
+                            for target in _ob.__class__.DROP_TARGETS]
 
-        #TODO GTK3: workaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
-        self._widget.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
-                            [],
-                            Gdk.DragAction.COPY | Gdk.DragAction.MOVE)
+        #TODO GTK3: workaround here for bug
+        # https://bugzilla.gnome.org/show_bug.cgi?id=680638
+        self._widget.enable_model_drag_source(
+            Gdk.ModifierType.BUTTON1_MASK, [],
+            Gdk.DragAction.COPY | Gdk.DragAction.MOVE)
         tglist = Gtk.TargetList.new([])
-        for tg in targets:
-            tglist.add(tg[0], tg[1], tg[2])
+        for _tg in targets:
+            tglist.add(_tg[0], _tg[1], _tg[2])
         self._widget.drag_source_set_target_list(tglist)
 
     def object_drag_begin(self, widget, drag_context):
@@ -1152,11 +1163,11 @@ class ClipboardListView:
             node = model.get_iter(path)
             target = model.get_value(node, 0)
             if target == "TEXT":
-                layout = widget.create_pango_layout(model.get_value(node,4))
+                layout = widget.create_pango_layout(model.get_value(node, 4))
                 layout.set_alignment(Pango.Alignment.CENTER)
                 width, height = layout.get_pixel_size()
                 surface = cairo.ImageSurface(cairo.FORMAT_RGB24,
-                                                  width, height)
+                                             width, height)
                 ctx = cairo.Context(surface)
                 style_ctx = self._widget.get_style_context()
                 Gtk.render_background(style_ctx, ctx, 0, 0, width, height)
@@ -1186,17 +1197,17 @@ class ClipboardListView:
         if len(paths) == 1:
             path = paths[0]
             node = model.get_iter(path)
-            o = model.get_value(node,1)
+            _ob = model.get_value(node, 1)
             if model.get_value(node, 0) == 'TEXT':
-                sel_data.set_text(o._value, -1)
+                sel_data.set_text(_ob._value, -1)
             else:
-                sel_data.set(tgs[0], 8, o.pack())
+                sel_data.set(tgs[0], 8, _ob.pack())
         elif len(paths) > 1:
             raw_list = []
             for path in paths:
                 node = model.get_iter(path)
-                o = model.get_value(node,1)
-                raw_list.append(o.pack())
+                _ob = model.get_value(node, 1)
+                raw_list.append(_ob.pack())
             sel_data.set(tgs[0], 8, pickle.dumps(raw_list))
 
     def object_drag_data_received(self, widget, context, x, y, selection, info,
@@ -1206,15 +1217,15 @@ class ClipboardListView:
         if hasattr(selection, "data"):
             sel_data = selection.data
         else:
-            sel_data = selection.get_data() # GtkSelectionData
+            sel_data = selection.get_data()  # GtkSelectionData
         # In Windows time is always zero. Until that is fixed, use the seconds
         # of the local time to filter out double drops.
-        realTime = strftime("%S")
+        real_time = strftime("%S")
 
         # There is a strange bug that means that if there is a selection
         # in the list we get multiple drops of the same object. Luckily
         # the time values are the same so we can drop all but the first.
-        if (realTime == self._previous_drop_time) and (time != -1):
+        if (real_time == self._previous_drop_time) and (time != -1):
             return None
 
         # Find a wrapper class
@@ -1241,49 +1252,52 @@ class ClipboardListView:
                 tgs = context.targets
             else:
                 tgs = [atm.name() for atm in context.list_targets()]
-            possible_wrappers = [target for target in tgs
-                        if target in self._target_type_to_wrapper_class_map]
+            possible_wrappers = [
+                target for target in tgs
+                if target in self._target_type_to_wrapper_class_map]
 
-        if len(possible_wrappers) == 0:
+        if not possible_wrappers:
             # No wrapper for this class
             return None
 
         # Just select the first match.
         wrapper_class = self._target_type_to_wrapper_class_map[
-                                                    str(possible_wrappers[0])]
+            str(possible_wrappers[0])]
         try:
-            o = wrapper_class(sel_data)
+            _ob = wrapper_class(sel_data)
             if title:
-                o._title = title
+                _ob._title = title
             if value:
-                o._value = value
+                _ob._value = value
             if dbid:
-                o._dbid = dbid
+                _ob._dbid = dbid
             if dbname:
-                o._dbname = dbname
+                _ob._dbname = dbname
 
             # If the wrapper object is a subclass of ClipDropList then
             # the drag data was a list of objects and we need to decode
             # all of them.
-            if isinstance(o,ClipDropList):
-                o_list = o.get_objects()
+            if isinstance(_ob, ClipDropList):
+                o_list = _ob.get_objects()
             else:
-                o_list = [o]
-            for o in o_list:
-                if o.__class__.DRAG_TARGET is None:
+                o_list = [_ob]
+            for _ob in o_list:
+                if _ob.__class__.DRAG_TARGET is None:
                     continue
-                data = [o.__class__.DRAG_TARGET.drag_type, o, None,
-                        o._type, o._value, o._dbid, o._dbname]
+                data = [_ob.__class__.DRAG_TARGET.drag_type, _ob, None,
+                        _ob._type, _ob._value, _ob._dbid, _ob._dbname]
                 contains = model_contains(model, data)
-                if ((context.action if hasattr(context, "action") else context.get_actions())
-                    != Gdk.DragAction.MOVE) and contains:
+                if (contains and
+                        ((context.action if hasattr(context, "action") else
+                          context.get_actions()) != Gdk.DragAction.MOVE)):
                     continue
                 drop_info = widget.get_dest_row_at_pos(x, y)
                 if drop_info:
                     path, position = drop_info
                     node = model.get_iter(path)
-                    if (position == Gtk.TreeViewDropPosition.BEFORE
-                        or position == Gtk.TreeViewDropPosition.INTO_OR_BEFORE):
+                    if position == Gtk.TreeViewDropPosition.BEFORE or \
+                       position == Gtk.TreeViewDropPosition.INTO_OR_BEFORE:
+
                         model.insert_before(node, data)
                     else:
                         model.insert_after(node, data)
@@ -1293,21 +1307,22 @@ class ClipboardListView:
             # FIXME: there is one bug here: if you multi-select and drop
             # on self, then it moves the first, and copies the rest.
 
-            if ((context.action if hasattr(context, "action") else context.get_actions()) ==
-                Gdk.DragAction.MOVE):
+            if ((context.action if hasattr(context, "action") else
+                 context.get_actions()) == Gdk.DragAction.MOVE):
                 context.finish(True, True, time)
 
             # remember time for double drop workaround.
-            self._previous_drop_time = realTime
+            self._previous_drop_time = real_time
             return o_list
         except EOFError:
             return None
 
     # proxy methods to provide access to the real widget functions.
 
-    def set_model(self,model=None):
+    def set_model(self, model=None):
         self._widget.set_model(model)
-        self._widget.get_selection().connect('changed',self.on_object_select_row)
+        self._widget.get_selection().connect('changed',
+                                             self.on_object_select_row)
         self._widget.get_selection().set_mode(Gtk.SelectionMode.MULTIPLE)
 
     def get_model(self):
@@ -1316,8 +1331,9 @@ class ClipboardListView:
     def get_selection(self):
         return self._widget.get_selection()
 
-    def set_search_column(self,col):
+    def set_search_column(self, col):
         return self._widget.set_search_column(col)
+
 
 #-------------------------------------------------------------------------
 #
@@ -1352,7 +1368,7 @@ class ClipboardWindow(ManagedWindow):
     def __init__(self, dbstate, uistate):
         """Initialize the ClipboardWindow class, and display the window"""
 
-        ManagedWindow.__init__(self,uistate,[],self.__class__)
+        ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.dbstate = dbstate
 
         self.database_changed(self.dbstate.db)
@@ -1370,8 +1386,8 @@ class ClipboardWindow(ManagedWindow):
         scrolledwindow.remove(objectlist)
         scrolledwindow.add(mtv)
         self.object_list = ClipboardListView(self.dbstate, mtv)
-        self.object_list.get_selection().connect('changed',
-                                                 self.set_clear_btn_sensitivity)
+        self.object_list.get_selection().connect(
+            'changed', self.set_clear_btn_sensitivity)
         self.object_list.get_selection().set_mode(Gtk.SelectionMode.MULTIPLE)
         self.set_clear_btn_sensitivity(sel=self.object_list.get_selection())
 
@@ -1380,9 +1396,9 @@ class ClipboardWindow(ManagedWindow):
 
         self.set_clear_all_btn_sensitivity(treemodel=ClipboardWindow.otree)
         ClipboardWindow.otree.connect('row-deleted',
-                                       self.set_clear_all_btn_sensitivity)
+                                      self.set_clear_all_btn_sensitivity)
         ClipboardWindow.otree.connect('row-inserted',
-                                       self.set_clear_all_btn_sensitivity)
+                                      self.set_clear_all_btn_sensitivity)
 
         self.object_list.set_model(ClipboardWindow.otree)
 
@@ -1393,27 +1409,27 @@ class ClipboardWindow(ManagedWindow):
         self.top.connect_signals({
             "on_close_clipboard" : self.close,
             "on_clear_clicked": self.on_clear_clicked,
-            "on_help_clicked": self.on_help_clicked,
-            })
+            "on_help_clicked": self.on_help_clicked})
 
         self.clear_all_btn.connect_object('clicked', Gtk.ListStore.clear,
                                           ClipboardWindow.otree)
-        self.db.connect('database-changed', lambda x: ClipboardWindow.otree.clear())
+        self.db.connect('database-changed',
+                        lambda x: ClipboardWindow.otree.clear())
 
         self.show()
 
     def build_menu_names(self, obj):
-        return (_('Clipboard'),None)
+        return (_('Clipboard'), None)
 
-    def database_changed(self,database):
+    def database_changed(self, database):
         self.db = database
 
     def set_clear_all_btn_sensitivity(self, treemodel=None,
                                       path=None, node=None, user_param1=None):
-        if len(treemodel) == 0:
-            self.clear_all_btn.set_sensitive(False)
-        else:
+        if treemodel:
             self.clear_all_btn.set_sensitive(True)
+        else:
+            self.clear_all_btn.set_sensitive(False)
 
     def set_clear_btn_sensitivity(self, sel=None, user_param1=None):
         if sel.count_selected_rows() == 0:
@@ -1434,6 +1450,7 @@ class ClipboardWindow(ManagedWindow):
             node = model.get_iter(path)
             if node:
                 model.remove(node)
+
 
 #-------------------------------------------------------------------------
 #
@@ -1460,7 +1477,7 @@ class MultiTreeView(Gtk.TreeView):
             if event.keyval == Gdk.KEY_Delete:
                 model, paths = self.get_selection().get_selected_rows()
                 # reverse, to delete from the end
-                paths.sort(key=lambda x:-x[0])
+                paths.sort(key=lambda x: -x[0])
                 for path in paths:
                     try:
                         node = model.get_iter(path)
@@ -1479,16 +1496,16 @@ class MultiTreeView(Gtk.TreeView):
             store, paths = selection.get_selected_rows()
             if not paths:
                 return
-            tpath = paths[0] if len(paths) > 0 else None
+            tpath = paths[0] if paths else None
             node = store.get_iter(tpath) if tpath else None
-            o = None
+            _ob = None
             if node:
-                o = store.get_value(node, 1)
+                _ob = store.get_value(node, 1)
             self.newmenu = Gtk.Menu()
             popup = self.newmenu
             # ---------------------------
-            if o:
-                objclass, handle = o._objclass, o._handle
+            if _ob:
+                objclass, handle = _ob._objclass, _ob._handle
             else:
                 objclass, handle = None, None
             if obj2class(objclass):
@@ -1515,9 +1532,9 @@ class MultiTreeView(Gtk.TreeView):
                 for path in paths:
                     node = store.get_iter(path)
                     if node:
-                        o = store.get_value(node, 1)
-                        if o._objclass == objclass:
-                            my_handle = o._handle
+                        _ob = store.get_value(node, 1)
+                        if _ob._objclass == objclass:
+                            my_handle = _ob._handle
                             if self.dbstate.db.method('has_%s_handle',
                                                       objclass)(my_handle):
                                 obj = self.dbstate.db.method(
@@ -1541,18 +1558,20 @@ class MultiTreeView(Gtk.TreeView):
             for path in paths:
                 node = model.get_iter(path)
                 if node is not None:
-                    o = model.get_value(node,1)
-                    objclass = o._objclass
-                    handle = o._handle
+                    _ob = model.get_value(node, 1)
+                    objclass = _ob._objclass
+                    handle = _ob._handle
                     self.edit_obj(objclass, handle)
             return True
         # otherwise:
-        if (target
-            and event.type == Gdk.EventType.BUTTON_PRESS
-            and not (event.get_state() & get_primary_mask(Gdk.ModifierType.SHIFT_MASK))
-            and self.get_selection().path_is_selected(target[0])):
+        if (target and
+                event.type == Gdk.EventType.BUTTON_PRESS and
+                self.get_selection().path_is_selected(target[0]) and not
+                (event.get_state() &
+                 get_primary_mask(Gdk.ModifierType.SHIFT_MASK))):
             # disable selection
-            self.get_selection().set_select_function(lambda *ignore: False, None)
+            self.get_selection().set_select_function(
+                lambda *ignore: False, None)
             self.defer_select = target[0]
 
     def on_button_release(self, widget, event):
@@ -1560,17 +1579,18 @@ class MultiTreeView(Gtk.TreeView):
         self.get_selection().set_select_function(lambda *ignore: True, None)
 
         target = self.get_path_at_pos(int(event.x), int(event.y))
-        if (self.defer_select and target
-            and self.defer_select == target[0]
-            and not (event.x==0 and event.y==0)): # certain drag and drop
+        if (self.defer_select and target and
+                self.defer_select == target[0] and not
+                (event.x == 0 and
+                 event.y == 0)):  # certain drag and drop
             self.set_cursor(target[0], target[1], False)
 
-        self.defer_select=False
+        self.defer_select = False
 
     def on_drag_end(self, widget, event):
         # re-enable selection
         self.get_selection().set_select_function(lambda *ignore: True, None)
-        self.defer_select=False
+        self.defer_select = False
 
     def edit_obj(self, objclass, handle):
         from .editors import (EditPerson, EditEvent, EditFamily, EditSource,
@@ -1587,22 +1607,24 @@ class MultiTreeView(Gtk.TreeView):
                     pass
 
 
-def short(val,size=60):
+def short(val, size=60):
     if len(val) > size:
         return "%s..." % val[0:size]
-    else:
-        return val
+    return val
+
 
 def place_title(db, event):
     return place_displayer.display_event(db, event)
 
+
 def gen_del_obj(func, t):
     return lambda l : func(l, t)
+
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-def Clipboard(database,person,callback,parent=None):
-    ClipboardWindow(database,parent)
+def Clipboard(database, person, callback, parent=None):
+    ClipboardWindow(database, parent)
