@@ -334,10 +334,9 @@ def add_place_format_option(menu, category):
     Insert an option for changing the report's place format to a
     report-specific format instead of the user's Edit=>Preferences choice
     """
-    place_format = EnumeratedListOption(_("Place format"), None)
-    place_format.add_item(None, _("Default"))
+    place_format = EnumeratedListOption(_("Place format"), -1)
+    place_format.add_item(-1, _("Default"))
     for number, fmt in enumerate(_pd.get_formats()):
         place_format.add_item(number, fmt.name)
     place_format.set_help(_("Select the format to display places"))
     menu.add_option(category, "place_format", place_format)
-    return place_format
