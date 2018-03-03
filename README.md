@@ -16,14 +16,15 @@ The following packages **MUST** be installed in order for Gramps to work:
 
 The following three packages with GObject Introspection bindings (the gi packages)
 
-* **cairo** - a 2D graphics library with support for multiple output devices. http://cairographics.org/
+* **cairo** 1.13.1 or greater - a 2D graphics library with support for multiple output devices. http://cairographics.org/
+* **Pycairo** 1.13.3 or greater - GObject Introspection bindings for cairo. https://github.com/pygobject/pycairo
 * **pango** - a library for laying out and rendering of text, with an emphasis on internationalization. http://www.pango.org/
 * **pangocairo** - Allows you to use Pango with Cairo http://www.pango.org/
 
 * **librsvg2** - (SVG icon view) a library to render SVG files using cairo. http://live.gnome.org/LibRsvg
 * **xdg-utils** - Desktop integration utilities from freedesktop.org
 * **bsddb3** - Python bindings for Oracle Berkeley DB https://pypi.python.org/pypi/bsddb3/
-
+* **sqlite3** - Python bindings for SQLite Database library
 
 The following package is needed for full translation of the interface
 to your language:
@@ -44,7 +45,7 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
  It may be osmgpsmap, osm-gps-map, or python-osmgpsmap,
  but the Python bindings for this must also be present, so gir1.2-osmgpsmap-1.0.
  Without this the GeoView will not be active, see
- https://gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_Categories#Geography_Category
+ https://gramps-project.org/wiki/index.php?title=Gramps_5.0_Wiki_Manual_-_Categories#Geography_Category
 
 * **Graphviz**
 
@@ -65,6 +66,10 @@ The following packages are **STRONGLY RECOMMENDED** to be installed:
  (These are Python bindings for the ICU package. 
  https://pypi.python.org/pypi/PyICU/)
 
+* **Ghostscript**
+
+  Used by Graphviz reports to help create PDF's
+
 The following packages are optional:
 ------------------------------------
 * **gtkspell** 
@@ -77,12 +82,12 @@ The following packages are optional:
 
  The GNU Revision Control System (RCS) can be used to manage
  multiple revisions of your family trees. See info at
- https://gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_Manage_Family_Trees#Archiving_a_Family_Tree
+ https://gramps-project.org/wiki/index.php?title=Gramps_5.0_Wiki_Manual_-_Manage_Family_Trees#Archiving_a_Family_Tree
  Only rcs is needed, NO python bindings are required
 
 * **PIL**
 
- Python Image Library is needed to crop
+ Python Image Library (PILLOW) is needed to crop
  images and also to convert non-JPG images to
  JPG so as to include them in LaTeX output.
  (For Python3 a different source may be needed,
@@ -123,6 +128,9 @@ Prerequistes required for the following Addons to work:
 
 * **Graph View** - Requires: PyGoocanvas and Goocanvas (python-pygoocanvas, gir1.2-goocanvas-2.0).
 ( https://gramps-project.org/wiki/index.php?title=Graph_View )
+
+* **Network Chart** - Requires: networkx and pygraphviz
+( https://gramps-project.org/wiki/index.php?title=NetworkChart )
 
 * **PedigreeChart** - Can optionally use - numpy if installed
 ( https://gramps-project.org/wiki/index.php?title=PedigreeChart )

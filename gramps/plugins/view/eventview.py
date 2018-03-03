@@ -125,6 +125,7 @@ class EventView(ListView):
             })
 
         uistate.connect('nameformat-changed', self.build_tree)
+        uistate.connect('placeformat-changed', self.build_tree)
 
         self.additional_uis.append(self.additional_ui())
 

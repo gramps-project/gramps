@@ -493,7 +493,6 @@ gramps/plugins/drawreport/__init__.py
 # plugins/export directory
 #
 gramps/plugins/export/__init__.py
-gramps/plugins/export/exportftree.py
 #
 # plugins/export/test directory
 #

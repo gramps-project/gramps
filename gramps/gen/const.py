@@ -112,6 +112,7 @@ VERSION_DIR = os.path.join(
 CUSTOM_FILTERS = os.path.join(VERSION_DIR, "custom_filters.xml")
 REPORT_OPTIONS = os.path.join(HOME_DIR, "report_options.xml")
 TOOL_OPTIONS = os.path.join(HOME_DIR, "tool_options.xml")
+PLACE_FORMATS = os.path.join(HOME_DIR, "place_formats.xml")
 
 ENV_DIR = os.path.join(HOME_DIR, "env")
 TEMP_DIR = os.path.join(HOME_DIR, "temp")
@@ -217,7 +218,7 @@ GTK_GETTEXT_DOMAIN = 'gtk30'
 #
 #-------------------------------------------------------------------------
 COPYRIGHT_MSG = "© 2001-2006 Donald N. Allingham\n" \
-                "© 2007-2017 The Gramps Developers"
+                "© 2007-2018 The Gramps Developers"
 COMMENTS = _("Gramps\n (Genealogical Research and Analysis "
              "Management Programming System)\n"
              "is a personal genealogy program.")

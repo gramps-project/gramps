@@ -1002,7 +1002,7 @@ class GVPdfGsDoc(GVDocBase):
             os.system(command)
         # Merge pieces to single multipage PDF ;
         command = '%s -q -dBATCH -dNOPAUSE '\
-            '-sOUTPUTFILE=%s -r72 -sDEVICE=pdfwrite %s '\
+            '-sOUTPUTFILE="%s" -r72 -sDEVICE=pdfwrite %s '\
             % (_GS_CMD, self._filename, ' '.join(list_of_pieces))
         os.system(command)
 

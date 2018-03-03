@@ -32,6 +32,7 @@ from ...config import config
 from ...datehandler import get_date_formats, LANG_TO_DISPLAY, main_locale
 from ...display.name import displayer as global_name_display
 from ...lib.date import Today
+from ...display.place import displayer as _pd
 from ..menu import EnumeratedListOption, BooleanOption, NumberOption
 from ...proxy import PrivateProxyDb, LivingProxyDb
 from ...utils.grampslocale import GrampsLocale
@@ -327,3 +328,16 @@ def add_gramps_id_option(menu, category, ownline=False):
         include_id.add_item(1, _('Include'))
         include_id.set_help(_("Whether to include Gramps IDs"))
     menu.add_option(category, 'inc_id', include_id)
+
+def add_place_format_option(menu, category):
+    """
+    Insert an option for changing the report's place format to a
+    report-specific format instead of the user's Edit=>Preferences choice
+    """
+    place_format = EnumeratedListOption(_("Place format"), None)
+    place_format.add_item(None, _("Default"))
+    for number, fmt in enumerate(_pd.get_formats()):
+        place_format.add_item(number, fmt.name)
+    place_format.set_help(_("Select the format to display places"))
+    menu.add_option(category, "place_format", place_format)
+    return place_format

@@ -201,12 +201,12 @@
     <date name="Pääsiäispäivä" type="religious" value="> easter(y)" />
     <date name="2. Pääsiäispäivä" type="religious" value="> easter(y)" offset="1" />
     <date name="Helatorstai" type="religious" value="> easter(y)" offset="39" if="not(y>=1973)" />
-    <date name="Kristuksen taivaaseenastumisen päivä." type="religious" value="> easter(y)" offset="34" if="(y>=1973) and not(y>=1992)" />
+    <date name="Kristuksen taivaaseenastumisen päivä" type="religious" value="> easter(y)" offset="34" if="(y>=1973) and not(y>=1992)" />
     <date name="Helatorstai" type="religious" value="> easter(y)" offset="39" if="(y>=1992)" />
     <date name="Helluntaipäivä" value="easter(y)" offset="49" type="religious" />
     <date name="Pyhän Kolminaisuuden päivä" value="easter(y)" offset="56" type="religious" />
     <date name="Apostolienpäivä" value="easter(y)" offset="91" type="religious" />
-    <date name="Kirkastussunnuntai." value="easter(y)" offset="105" type="religious" />
+    <date name="Kirkastussunnuntai" value="easter(y)" offset="105" type="religious" />
     <date name="Juhannusaatto" value="*/jun/19" offset="fri" type="religious" if="(y>=1955)" />
     <date name="Juhannusaatto" value="*/jun/23" type="religious" if="not(y>=1955)"  />
     <date name="Juhannuspäivä" value="*/jun/20" offset="sat" type="religious" if="(y>=1955)" />
@@ -224,12 +224,12 @@
     <date name="Joulupäivä" value="*/12/25" type="religious" />
     <date name="Tapaninpäivä" value="*/12/26" type="religious" />
     <date name="Johannes Evankelistan päivä" value="*/dec/27" type="religious" if="not(y>=1774)" />
-    <date name="Apostoli Johanneksen päivä." value="*/dec/27" type="religious" if="dow(y, m, d) == 7 and (y>=2000)" />
+    <date name="Apostoli Johanneksen päivä" value="*/dec/27" type="religious" if="dow(y, m, d) == 7 and (y>=2000)" />
     <date name="Viattomien lasten päivä" value="*/12/28" type="religious" />
     <date name="Uudenvuodenpäivä" value="*/1/1" type="national" />
     <date name="Vainojen uhrien muistopäivä" value="*/1/27" type="national" if="(y>=2002)" />
     <date name="J.L. Runebergin päivä" value="*/2/5" type="national" if="(y>=1854)" />
-    <date name="Saamelaisten kansallis päivä" value="*/2/6" type="religious" if="(y>=2004)" />
+    <date name="Saamelaisten kansallispäivä" value="*/2/6" type="religious" if="(y>=2004)" />
     <date name="Ystävänpäivä" value="*/2/14" type="national" if="(y>=1987)" />
     <date name="Kalevalan päivä" value="*/2/28" type="national" if="(y>=1978)" />
     <date name="Naistenpäivä" value="*/3/8" type="national" if="(y>=1975)" />

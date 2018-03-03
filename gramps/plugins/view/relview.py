@@ -144,6 +144,7 @@ class RelationshipView(NavigationView):
 
         dbstate.connect('database-changed', self.change_db)
         uistate.connect('nameformat-changed', self.build_tree)
+        uistate.connect('placeformat-changed', self.build_tree)
         self.redrawing = False
 
         self.child = None

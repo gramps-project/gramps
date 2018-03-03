@@ -423,6 +423,7 @@ gramps/gui/editors/editnote.py
 gramps/gui/editors/editperson.py
 gramps/gui/editors/editpersonref.py
 gramps/gui/editors/editplace.py
+gramps/gui/editors/editplaceformat.py
 gramps/gui/editors/editplacename.py
 gramps/gui/editors/editplaceref.py
 gramps/gui/editors/editprimary.py
@@ -472,6 +473,7 @@ gramps/gui/glade/editnote.glade
 gramps/gui/glade/editperson.glade
 gramps/gui/glade/editpersonref.glade
 gramps/gui/glade/editplace.glade
+gramps/gui/glade/editplaceformat.glade
 gramps/gui/glade/editplacename.glade
 gramps/gui/glade/editplaceref.glade
 gramps/gui/glade/editreporef.glade
@@ -520,6 +522,7 @@ gramps/gui/plug/quick/_textbufdoc.py
 gramps/gui/plug/report/_bookdialog.py
 gramps/gui/plug/report/_docreportdialog.py
 gramps/gui/plug/report/_fileentry.py
+gramps/gui/plug/report/_graphreportdialog.py
 gramps/gui/plug/report/_graphvizreportdialog.py
 gramps/gui/plug/report/_papermenu.py
 gramps/gui/plug/report/_reportdialog.py
@@ -591,6 +594,7 @@ gramps/plugins/drawreport/statisticschart.py
 gramps/plugins/drawreport/timeline.py
 gramps/plugins/export/export.gpr.py
 gramps/plugins/export/exportcsv.py
+gramps/plugins/export/exportftree.py
 gramps/plugins/export/exportgedcom.py
 gramps/plugins/export/exportgeneweb.py
 gramps/plugins/export/exportpkg.py

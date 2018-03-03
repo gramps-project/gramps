@@ -26,6 +26,8 @@
 from abc import ABCMeta, abstractmethod
 import os
 import shutil
+import re
+from subprocess import Popen, PIPE
 from io import StringIO
 import tempfile
 import logging
@@ -97,9 +99,25 @@ _NOTESIZE = [{'name': _("Tiny"), 'value': "tiny"},
 
 if win():
     _LATEX_FOUND = search_for("lualatex.exe")
+    DETACHED_PROCESS = 8
 else:
     _LATEX_FOUND = search_for("lualatex")
 
+def escape(text):
+    lookup = {
+        '&': '\\&',
+        '%': '\\%',
+        '$': '\\$',
+        '#': '\\#',
+        '_': '\\_',
+        '{': '\\{',
+        '}': '\\}',
+        '~': '\\~{}',
+        '^': '\\^{}',
+        '\\': '\\textbackslash{}'
+        }
+    pattern = re.compile('|'.join([re.escape(key) for key in lookup.keys()]))
+    return pattern.sub(lambda match: lookup[match.group(0)], text)
 
 #------------------------------------------------------------------------------
 #
@@ -415,8 +433,8 @@ class TreeDocBase(BaseDoc, TreeDoc):
         nick = name.get_nick_name()
         surn = name.get_surname()
         name_parts = [self.format_given_names(name),
-                      '\\nick{{{}}}'.format(nick) if nick else '',
-                      '\\surn{{{}}}'.format(surn) if surn else '']
+                      '\\nick{{{}}}'.format(escape(nick)) if nick else '',
+                      '\\surn{{{}}}'.format(escape(surn)) if surn else '']
         self.write(level+1, 'name = {{{}}},\n'.format(
             ' '.join([e for e in name_parts if e])))
         for eventref in person.get_event_ref_list():
@@ -432,13 +450,17 @@ class TreeDocBase(BaseDoc, TreeDoc):
                         self.write_event(db, level+1, event)
         for attr in person.get_attribute_list():
             if str(attr.get_type()) == 'Occupation':
-                self.write(level+1, 'profession = {%s},\n' % attr.get_value())
+                self.write(level+1, 'profession = {%s},\n' %
+                           escape(attr.get_value()))
             if str(attr.get_type()) == 'Comment':
-                self.write(level+1, 'comment = {%s},\n' % attr.get_value())
+                self.write(level+1, 'comment = {%s},\n' %
+                           escape(attr.get_value()))
         for mediaref in person.get_media_list():
             media = db.get_media_from_handle(mediaref.ref)
             path = media_path_full(db, media.get_path())
             if os.path.isfile(path):
+                if win():
+                    path = path.replace('\\', '/')
                 self.write(level+1, 'image = {%s},\n' % path)
                 break # first image only
         self.write(level, '}\n')
@@ -496,7 +518,7 @@ class TreeDocBase(BaseDoc, TreeDoc):
             stop_date = self.format_iso(date.get_stop_ymd(), calendar)
             date_str = date_str + '/' + stop_date
 
-        place = _pd.display_event(db, event)
+        place = escape(_pd.display_event(db, event))
 
         if modifier:
             event_type += '+'
@@ -519,14 +541,14 @@ class TreeDocBase(BaseDoc, TreeDoc):
             if call in first:
                 where = first.index(call)
                 return '{before}\\pref{{{call}}}{after}'.format(
-                    before=first[:where],
-                    call=call,
-                    after=first[where+len(call):])
+                    before=escape(first[:where]),
+                    call=escape(call),
+                    after=escape(first[where+len(call):]))
             else:
                 # ignore erroneous call name
-                return first
+                return escape(first)
         else:
-            return first
+            return escape(first)
 
     def format_iso(self, date_tuple, calendar):
         """
@@ -582,7 +604,7 @@ class TreeTexDoc(TreeDocBase):
         if self._filename[-4:] != ".tex":
             self._filename += ".tex"
 
-        with open(self._filename, "w") as texfile:
+        with open(self._filename, 'w', encoding='utf-8') as texfile:
             texfile.write(self._tex.getvalue())
 
 
@@ -605,11 +627,16 @@ class TreePdfDoc(TreeDocBase):
             self._filename += ".pdf"
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            with open(os.path.join(tmpdir, 'temp.tex'), "w") as texfile:
-                texfile.write(self._tex.getvalue())
-            os.system('lualatex -output-directory %s temp.tex >/dev/null'
-                      % tmpdir)
-            shutil.copy(os.path.join(tmpdir, 'temp.pdf'), self._filename)
+            basename = os.path.basename(self._filename)
+            args = ['lualatex', '-output-directory', tmpdir,
+                    '-jobname', basename[:-4]]
+            if win():
+                proc = Popen(args, stdin=PIPE, stdout=PIPE, stderr=PIPE,
+                             creationflags=DETACHED_PROCESS)
+            else:
+                proc = Popen(args, stdin=PIPE, stdout=PIPE, stderr=PIPE)
+            proc.communicate(input=self._tex.getvalue().encode('utf-8'))
+            shutil.copy(os.path.join(tmpdir, basename), self._filename)
 
 
 #------------------------------------------------------------------------------

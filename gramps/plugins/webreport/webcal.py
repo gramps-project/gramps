@@ -529,6 +529,7 @@ class WebCalReport(Report):
                 # each year will link to current month.
                 # this will always need an extension added
                 month = int(self.today.get_month())
+                month = month.lower()
                 full_month_name = self.rlocale.date_displayer.long_months[month]
 
                 # Note. We use '/' here because it is a URL, not a OS dependent
@@ -589,6 +590,7 @@ class WebCalReport(Report):
                     # Note. We use '/' here because it is a URL, not a OS
                     # dependent pathname need to leave home link alone,
                     # so look for it ...
+                    url_fname = url_fname.lower()
                     url = url_fname
                     add_subdirs = False
                     if not (url.startswith('http:') or url.startswith('/')):
@@ -718,20 +720,20 @@ class WebCalReport(Report):
                     self.end_year = self.start_year
                 if month > 1:
                     full_month_name = date_displayer.long_months[month-1]
-                    url = full_month_name + self.ext
+                    url = full_month_name.lower() + self.ext
                     prevm = Date(int(year), int(month-1), 0)
                     my_title = Html("a", _escape("<"), href=url,
                                     title=date_displayer.display(prevm))
                 elif self.multiyear and year > self.start_year:
                     full_month_name = date_displayer.long_months[12]
-                    url = full_month_name + self.ext
+                    url = full_month_name.lower() + self.ext
                     dest = os.path.join("../", str(year-1), url)
                     prevm = Date(int(year-1), 12, 0)
                     my_title = Html("a", _escape("<"), href=dest,
                                     title=date_displayer.display(prevm))
                 else:
                     full_month_name = date_displayer.long_months[12]
-                    url = full_month_name + self.ext
+                    url = full_month_name.lower() + self.ext
                     dest = os.path.join("../", str(self.end_year), url)
                     prevy = Date(self.end_year, 12, 0)
                     my_title = Html("a", _escape("<"), href=dest,
@@ -739,20 +741,20 @@ class WebCalReport(Report):
                 my_title += Html("</a>&nbsp;")
                 if month < 12:
                     full_month_name = date_displayer.long_months[month+1]
-                    url = full_month_name + self.ext
+                    url = full_month_name.lower() + self.ext
                     nextd = Date(int(year), int(month+1), 0)
                     my_title += Html("a", _escape(">"), href=url,
                                      title=date_displayer.display(nextd))
                 elif self.multiyear and year < self.end_year:
                     full_month_name = date_displayer.long_months[1]
-                    url = full_month_name + self.ext
+                    url = full_month_name.lower() + self.ext
                     dest = os.path.join("../", str(year+1), url)
                     nextd = Date(int(year+1), 1, 0)
                     my_title += Html("a", _escape(">"), href=dest,
                                      title=date_displayer.display(nextd))
                 else:
                     full_month_name = date_displayer.long_months[1]
-                    url = full_month_name + self.ext
+                    url = full_month_name.lower() + self.ext
                     dest = os.path.join("../", str(self.start_year), url)
                     nexty = Date(self.start_year, 1, 0)
                     my_title += Html("a", _escape(">"), href=dest,
@@ -967,6 +969,7 @@ class WebCalReport(Report):
 
             for month in range(1, 13):
                 cal_fname = self.rlocale.date_displayer.long_months[int(month)]
+                cal_fname = cal_fname.lower()
                 open_file = self.create_file(cal_fname, str(year))
 
                 # Add xml, doctype, meta and stylesheets
@@ -2008,8 +2011,9 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
 
             if age_at_death is not None:
                 death_symbol = "&#10014;" # latin cross for html code
-                mess = trans_text("Died %(death_date)s.") % {
-                                  'death_date' : dead_event_date}
+                trans_date = trans_text("Died %(death_date)s.")
+                translated_date = rlocale.get_date(dead_event_date)
+                mess = trans_date % {'death_date' : translated_date}
                 age = ", <font size='+1' ><b>%s</b></font> <em>%s (%s)" % (
                                                death_symbol, mess, age_at_death)
             else:
@@ -2017,9 +2021,12 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
                 # where "12 years" is already localized to your language
                 age = ', <em>'
                 date_y = date.get_year()
-                age += trans_text('%s old') % str(age_str) if date_y != 0 else \
-                                          trans_text("Born %(birth_date)s.") % {
-                                          'birth_date' : dead_event_date}
+                trans_date = trans_text("Born %(birth_date)s.")
+                old_date = trans_text('%s old')
+                tranlated_date = rlocale.get_date(dead_event_date)
+                age += old_date % str(age_str) if date_y != 0 else \
+                                      trans_date % {
+                                      'birth_date' : translated_date}
             txt_str = (text + age + '</em>')
 
         # an anniversary
@@ -2035,7 +2042,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
                     if isinstance(dead_event_date,
                                   Date) and dead_event_date.get_year() > 0:
                         txt_str += " (" + trans_text("Until") + " "
-                        txt_str += str(dead_event_date)
+                        txt_str += rlocale.get_date(dead_event_date)
                         txt_str += ")</em>"
                     else:
                         txt_str += "</em>"

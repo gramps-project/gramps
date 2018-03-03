@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# Author: Ross Gammon <rossgammon@mail.dk>
+#
+# autopkgtest check: Tests that gramps can import the sample gedcom file and
+# export it in the .gpkg format, and then import the example gramps database
+# and export it in gedcom format.
+
+set -e
+
+echo "--------------------------------"
+echo "GEDCOM to Gramps conversion test"
+echo "--------------------------------"
+echo "Retrieving sample gedcom"
+cp /usr/share/doc/gramps/example/gedcom/sample.ged.gz .
+echo "Unzipping sample gedcom"
+gunzip sample.ged.gz
+echo "Importing gedcom into gramps and exporting a gramps .gpkg file"
+gramps -i sample.ged -e sample.gpkg
+echo "-----------------------------------"
+echo "GEDCOM to Gramps conversion SUCCESS"
+echo "-----------------------------------"
+echo
+
+echo "--------------------------------"
+echo "Gramps to GEDCOM conversion test"
+echo "--------------------------------"
+echo "Retrieving example gramps file"
+cp /usr/share/doc/gramps/example/gramps/example.gramps.gz .
+echo "Unzipping example gramps file"
+gunzip example.gramps.gz
+echo "Importing gramps file into gramps and exporting a gedcom"
+gramps -i example.gramps -e example.ged
+echo "-----------------------------------"
+echo "Gramps to GEDCOM conversion SUCCESS"
+echo "-----------------------------------"
+echo
+echo "gramps-import-export: TEST PASSED"

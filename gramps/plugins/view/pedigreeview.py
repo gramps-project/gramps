@@ -536,6 +536,7 @@ class PedigreeView(NavigationView):
         self.dbstate = dbstate
         self.dbstate.connect('database-changed', self.change_db)
         uistate.connect('nameformat-changed', self.person_rebuild)
+        uistate.connect('placeformat-changed', self.person_rebuild)
 
         self.format_helper = FormattingHelper(self.dbstate)
 

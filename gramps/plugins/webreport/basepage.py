@@ -1312,9 +1312,8 @@ class BasePage: # pylint: disable=C1001
                 msg += self._('Last change was the %(date)s') % {'date' :
                                                                  last_modif}
             else:
-                dat_txt = ' on %(date)s' % {'date' :
-                                            self.rlocale.get_date(Today())}
-                msg += self._(dat_txt)
+                dat_txt = self._(' on %(date)s')
+                msg += dat_txt % {'date' : self.rlocale.get_date(Today())}
 
             origin1 = self.report.filter.get_name(self.rlocale)
             filt_number = self.report.options['filter']
@@ -2578,6 +2577,44 @@ class BasePage: # pylint: disable=C1001
                 )
                 tbody += trow
 
+        # display all related locations
+        for placeref in place.get_placeref_list():
+            place_date = self.rlocale.get_date(placeref.get_date_object())
+            if place_date != "":
+                parent_place = self.r_db.get_place_from_handle(placeref.ref)
+                parent_name = parent_place.get_name().get_value()
+                trow = Html('tr') + (
+                    Html("td", self._("Locations"), class_="ColumnAttribute",
+                         inline=True),
+                    Html("td", parent_name, class_="ColumnValue", inline=True),
+                    Html("td", place_date, class_="ColumnValue", inline=True)
+                )
+                tbody += trow
+
+        altloc = place.get_alternative_names()
+        if altloc:
+            tbody += Html("tr") + Html("td", "&nbsp;", colspan=2)
+            trow = Html("tr") + (
+                Html("th", self._("Alternate Names"), colspan=1,
+                     class_="ColumnAttribute", inline=True),
+                Html("th", self._("Language"), colspan=1,
+                     class_="ColumnAttribute", inline=True),
+                Html("th", self._("Date range in which the name is valid."), colspan=1,
+                     class_="ColumnAttribute", inline=True),
+            )
+            tbody += trow
+            for loc in altloc:
+                place_date = self.rlocale.get_date(loc.date)
+                trow = Html("tr") + (
+                    Html("td", loc.get_value(), class_="ColumnValue",
+                         inline=True),
+                    Html("td", loc.get_language(), class_="ColumnValue",
+                         inline=True),
+                    Html("td", place_date, class_="ColumnValue",
+                         inline=True),
+                )
+                tbody += trow
+
         altloc = place.get_alternate_locations()
         if altloc:
             tbody += Html("tr") + Html("td", "&nbsp;", colspan=2)
@@ -2604,20 +2641,6 @@ class BasePage: # pylint: disable=C1001
                         )
                         tbody += trow
                 tbody += Html("tr") + Html("td", "&nbsp;", colspan=2)
-
-        # display all related locations
-        for placeref in place.get_placeref_list():
-            place_date = self.rlocale.get_date(placeref.get_date_object())
-            if place_date != "":
-                parent_place = self.r_db.get_place_from_handle(placeref.ref)
-                parent_name = parent_place.get_name().get_value()
-                trow = Html('tr') + (
-                    Html("td", self._("Locations"), class_="ColumnAttribute",
-                         inline=True),
-                    Html("td", parent_name, class_="ColumnValue", inline=True),
-                    Html("td", place_date, class_="ColumnValue", inline=True)
-                )
-                tbody += trow
 
         # return place table to its callers
         return table

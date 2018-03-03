@@ -226,7 +226,7 @@ class Printinfo:
     This class must first be initialized with set_class_vars
     """
     def __init__(self, doc, database, numbering, showmarriage, showdivorce,
-                 name_display, rlocale, want_ids):
+                 name_display, rlocale, want_ids, pformat):
         #classes
         self._name_display = name_display
         self.doc = doc
@@ -238,6 +238,7 @@ class Printinfo:
         self.want_ids = want_ids
         self._ = rlocale.translation.sgettext # needed for English
         self._get_date = rlocale.get_date
+        self.pformat = pformat
 
     def __date_place(self, event):
         """ return the date and/or place an event happened """
@@ -245,7 +246,7 @@ class Printinfo:
             date = self._get_date(event.get_date_object())
             place_handle = event.get_place_handle()
             if place_handle:
-                place = _pd.display_event(self.database, event)
+                place = _pd.display_event(self.database, event, self.pformat)
                 return("%(event_abbrev)s %(date)s - %(place)s" % {
                     'event_abbrev': event.type.get_abbreviation(self._),
                     'date' : date,
@@ -474,9 +475,11 @@ class DescendantReport(Report):
 
         stdoptions.run_name_format_option(self, menu)
 
+        pformat = menu.get_option_by_name("place_format").get_value()
+
         self.obj_print = Printinfo(self.doc, self.database, obj, marrs, divs,
                                    self._name_display, self._locale,
-                                   self.want_ids)
+                                   self.want_ids, pformat)
 
     def write_report(self):
         self.doc.start_paragraph("DR-Title")
@@ -554,6 +557,8 @@ class DescendantOptions(MenuReportOptions):
         category_name = _("Report Options (2)")
 
         stdoptions.add_name_format_option(menu, category_name)
+
+        stdoptions.add_place_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name)
 

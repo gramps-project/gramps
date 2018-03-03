@@ -121,7 +121,7 @@ class PlaceSidebarFilter(SidebarFilter):
         self.filter_code.set_text('')
         self.filter_enclosed.set_text('')
         self.filter_note.set_text('')
-        self.filter_within.set_value(0, 0)
+        self.filter_within.set_value('', 0)
         self.ptype.get_child().set_text('')
         self.tag.set_active(0)
         self.generic.set_active(0)
@@ -133,7 +133,7 @@ class PlaceSidebarFilter(SidebarFilter):
         code = str(self.filter_code.get_text()).strip()
         enclosed = str(self.filter_enclosed.get_text()).strip()
         note = str(self.filter_note.get_text()).strip()
-        within = self.filter_within.get_value()
+        within = self.filter_within.get_value()[0]
         regex = self.filter_regex.get_active()
         tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0

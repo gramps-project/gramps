@@ -55,6 +55,7 @@ from .. import widgets
 from ..managedwindow import ManagedWindow
 from ..dialog import OptionDialog
 from ..selectors import SelectorFactory
+from gramps.gen.errors import HandleError
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.filters import GenericFilterFactory, GenericFilter, rules
@@ -653,19 +654,22 @@ class GuiPersonOption(Gtk.Box):
         gid = self.__option.get_value()
 
         # Pick up the active person
-        person_handle = self.__uistate.get_active('Person')
-        person = self.__dbstate.db.get_person_from_handle(person_handle)
+        try:
+            person_handle = self.__uistate.get_active('Person')
+            person = self.__dbstate.db.get_person_from_handle(person_handle)
 
-        if override or not person:
-            # Pick up the stored option value if there is one
-            person = self.__db.get_person_from_gramps_id(gid)
+            if override or not person:
+                # Pick up the stored option value if there is one
+                person = self.__db.get_person_from_gramps_id(gid)
 
-        if not person:
-            # If all else fails, get the default person to avoid bad values
-            person = self.__db.get_default_person()
+            if not person:
+                # If all else fails, get the default person to avoid bad values
+                person = self.__db.get_default_person()
 
-        if not person:
-            person = self.__db.find_initial_person()
+            if not person:
+                person = self.__db.find_initial_person()
+        except HandleError:
+            person = None
 
         self.__update_person(person)
 
