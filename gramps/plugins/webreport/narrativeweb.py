@@ -1566,6 +1566,7 @@ class NavWebOptions(MenuReportOptions):
         self.__securesite = False
         self.__extra_page_name = None
         self.__extra_page = None
+        self.__relation = False
         db_options = name + ' ' + dbase.get_dbname()
         MenuReportOptions.__init__(self, db_options, dbase)
 
@@ -1627,6 +1628,16 @@ class NavWebOptions(MenuReportOptions):
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter"))
         addopt("pid", self.__pid)
+        self.__pid.connect('value-changed', self.__update_filters)
+
+        self.__relation = BooleanOption(_("Show the relationship between the "
+                                          "current person and the active person"
+                                          ), False)
+        self.__relation.set_help(_("For each person page, show the relationship"
+                                   " between this person and the active person."
+                                   ))
+        addopt("relation", self.__relation)
+
         self.__pid.connect('value-changed', self.__update_filters)
 
         self.__update_filters()

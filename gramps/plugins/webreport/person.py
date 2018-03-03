@@ -494,10 +494,11 @@ class PersonPages(BasePage):
             if sect2 is not None:
                 individualdetail += sect2
 
-            # display relationship to the center person
-            sect3 = self.display_ind_center_person()
-            if sect3 is not None:
-                individualdetail += sect3
+            if self.report.options['relation']:
+                # display relationship to the center person
+                sect3 = self.display_ind_center_person()
+                if sect3 is not None:
+                    individualdetail += sect3
 
             # display parents
             sect4 = self.display_ind_parents()
