@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-18 08:52+0200\n"
-"PO-Revision-Date: 2018-02-18 09:05+0200\n"
+"PO-Revision-Date: 2018-03-03 20:45+0200\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -17649,23 +17649,23 @@ msgstr "Ladatut laajennukset"
 #. self.addon_list.connect('button-press-event', self.button_press)
 #: ../gramps/gui/plug/_windows.py:235
 msgid "Addon Name"
-msgstr "Liitännäisen nimi"
+msgstr "Laajennuksen nimi"
 
 #: ../gramps/gui/plug/_windows.py:250
 msgid "Path to Addon:"
-msgstr "Liitännäispolku:"
+msgstr "Laajennuksen polku:"
 
 #: ../gramps/gui/plug/_windows.py:270
 msgid "Install Addon"
-msgstr "Asenne liitännäinen"
+msgstr "Asenna laajennus"
 
 #: ../gramps/gui/plug/_windows.py:273
 msgid "Install All Addons"
-msgstr "Asenna kaikki liitännäiset"
+msgstr "Asenna kaikki laajennukset"
 
 #: ../gramps/gui/plug/_windows.py:276
 msgid "Refresh Addon List"
-msgstr "Tuoreista liitännäiset"
+msgstr "Päivitä laajennusluettelo"
 
 #. Only show the "Reload" button when in debug mode
 #. (without -O on the command line)
@@ -17675,7 +17675,7 @@ msgstr "Lataa uudelleen"
 
 #: ../gramps/gui/plug/_windows.py:316
 msgid "Refreshing Addon List"
-msgstr "Tuoreistan liitännäisiä"
+msgstr "Päivitän laajennusluettelon"
 
 #: ../gramps/gui/plug/_windows.py:318 ../gramps/gui/plug/_windows.py:323
 #: ../gramps/gui/plug/_windows.py:418
@@ -17684,7 +17684,7 @@ msgstr "Luen Gramps-project.org..."
 
 #: ../gramps/gui/plug/_windows.py:341
 msgid "Checking addon..."
-msgstr "Kerätään tietoja..."
+msgstr "Tarkastetaan laajennuksia..."
 
 #: ../gramps/gui/plug/_windows.py:349
 msgid "Unknown Help URL"
@@ -17696,7 +17696,7 @@ msgstr "Tuntematon nettiosoite"
 
 #: ../gramps/gui/plug/_windows.py:396
 msgid "Install all Addons"
-msgstr "Asenna liitännäiset"
+msgstr "Asenna laajennukset"
 
 #: ../gramps/gui/plug/_windows.py:396
 msgid "Installing..."
@@ -17704,11 +17704,11 @@ msgstr "Asennetaan..."
 
 #: ../gramps/gui/plug/_windows.py:416
 msgid "Installing Addon"
-msgstr "Asennetaan liitännäistä"
+msgstr "Asennetaan laajennukset"
 
 #: ../gramps/gui/plug/_windows.py:438
 msgid "Load Addon"
-msgstr "Lataa liitännäinen"
+msgstr "Lataa laajennukset"
 
 #: ../gramps/gui/plug/_windows.py:500
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:188
@@ -18818,7 +18818,7 @@ msgstr "_Tietoja"
 
 #: ../gramps/gui/viewmanager.py:532
 msgid "_Plugin Manager"
-msgstr "_Lisäosien hallinta"
+msgstr "_Laajennusten hallinta"
 
 #: ../gramps/gui/viewmanager.py:534
 msgid "_FAQ"
