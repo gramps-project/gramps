@@ -327,7 +327,6 @@ class OrganizeTagsDialog(ManagedWindow):
         self.setup_configs('interface.organizetagsdialog', 400, 350)
         self.show()
         self.run()
-        self.close()
 
     # this is meaningless while it's modal, but since this ManagedWindow can
     # have an EditTag ManagedWindow child it needs a non-None second argument
@@ -350,9 +349,11 @@ class OrganizeTagsDialog(ManagedWindow):
                 break
 
         # Save changed priority values
-        if self.__priorities_changed():
+        if response == Gtk.ResponseType.CLOSE and self.__priorities_changed():
             with DbTxn(_('Change Tag Priority'), self.db) as trans:
                 self.__change_tag_priority(trans)
+        if response != Gtk.ResponseType.DELETE_EVENT:
+            self.close()
 
     def __priorities_changed(self):
         """
@@ -567,7 +568,6 @@ class EditTag(ManagedWindow):
         self.setup_configs('interface.edittag', 320, 100)
         self.show()
         self.run()
-        self.close()
 
     def build_menu_names(self, obj): # this is meaningless while it's modal
         return (self.title, None)
@@ -588,6 +588,8 @@ class EditTag(ManagedWindow):
 
         if response == Gtk.ResponseType.OK:
             self._save()
+        if response != Gtk.ResponseType.DELETE_EVENT:
+            self.close()
 
     def _save(self):
         """
