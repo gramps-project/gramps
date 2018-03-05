@@ -256,7 +256,8 @@ class FanChart2WayView(fanchart2way.FanChart2WayGrampsGUI, NavigationView):
         widthpx = 2 * self.fan.halfdist()
         heightpx = widthpx
 
-        prt = CairoPrintSave(widthpx, heightpx, self.fan.on_draw, self.uistate.window)
+        prt = CairoPrintSave(widthpx, heightpx, self.fan.prt_draw,
+                             self.uistate.window)
         prt.run()
 
     def on_childmenu_changed(self, obj, person_handle):

@@ -359,23 +359,33 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
         cr.fill()
         cr.restore()
 
-
-    def on_draw(self, widget, cr, scale=1.):
+    def draw(self, cr=None, scale=1.0):
         """
         The main method to do the drawing.
-        If widget is given, we assume we draw in GTK3 and use the allocation.
-        To draw raw on the cairo context cr, set widget=None.
+        If cr is given, we assume we draw draw raw on the cairo context cr
+        To draw in GTK3 and use the allocation, set cr=None.
+        Note: when drawing for display, to counter a Gtk issue with scrolling
+        or resizing the drawing window, we draw on a surface, then copy to the
+        drawing context when the Gtk 'draw' signal arrives.
         """
         # first do size request of what we will need
         halfdist = self.halfdist()
-        if widget:
-            self.set_size_request(2 * halfdist, 2 * halfdist)
+        if not cr:  # Display
+            size_w = size_h = 2 * halfdist
 
-        cr.scale(scale, scale)
-        if widget:
+            size_w_a = self.get_allocated_width()
+            size_h_a = self.get_allocated_height()
+            self.set_size_request(max(size_w, size_w_a), max(size_h, size_h_a))
+            size_w = self.get_allocated_width()
+            size_h = self.get_allocated_height()
+            self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
+                                              size_w, size_h)
+            cr = cairo.Context(self.surface)
             self.center_xy = self.center_xy_from_delta()
             cr.translate(*self.center_xy)
-        else:
+        else:  # printing
+            self.center_xy = halfdist, halfdist
+            cr.scale(scale, scale)
             cr.translate(halfdist, halfdist)
 
         cr.save()
@@ -444,7 +454,7 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
         cr.restore()
 
         if self.background in [BACKGROUND_GRAD_AGE, BACKGROUND_GRAD_PERIOD]:
-            self.draw_gradient_legend(cr, widget, halfdist)
+            self.draw_gradient_legend(cr, halfdist)
 
     def cell_address_under_cursor(self, curx, cury):
         """
@@ -542,6 +552,7 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
         # no drag occured, expand or collapse the section
         self.toggle_cell_state(self._mouse_click_cell_address)
         self._mouse_click = False
+        self.draw()
         self.queue_draw()
 
     def expand_parents(self, generation, selected, current):
@@ -624,4 +635,5 @@ class FanChart2WayGrampsGUI(FanChartGrampsGUI):
                         self.generic_filter, self.alpha_filter,
                         self.angle_algo, self.dupcolor)
         self.fan.reset()
+        self.fan.draw()
         self.fan.queue_draw()
