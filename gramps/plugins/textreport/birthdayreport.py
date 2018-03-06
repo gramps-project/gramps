@@ -322,13 +322,13 @@ class BirthdayReport(Report):
                         if (not alive):
                             deadtxt = self.deadtxt
                         if nyears == 0:
-                            text = self._('%(person)s, birth%(relation)s') % {
+                            text = self._('* %(person)s, birth%(relation)s') % {
                                 'person'   : short_name,
                                 'relation' : comment}
                         else:
                             # translators: leave all/any {...} untranslated
-                            text = ngettext('{person}{dead}, {age}{relation}',
-                                            '{person}{dead}, {age}{relation}',
+                            text = ngettext('* {person}{dead}, {age}{relation}',
+                                            '* {person}{dead}, {age}{relation}',
                                             nyears).format(person=short_name,
                                                            dead=deadtxt,
                                                            age=nyears,
@@ -387,13 +387,13 @@ class BirthdayReport(Report):
                                             if (not alive2):
                                                 deadtxt2 = self.deadtxt
                                             if nyears == 0:
-                                                text = self._("%(spouse)s and\n %(person)s, wedding") % {
+                                                text = self._("⚭ %(spouse)s and\n %(person)s, wedding") % {
                                                          'spouse' : spouse_name,
                                                          'person' : short_name}
                                             else:
                                                 # translators: leave all/any {...} untranslated
-                                                text = ngettext("{spouse}{deadtxt2} and\n {person}{deadtxt1}, {nyears}",
-                                                                "{spouse}{deadtxt2} and\n {person}{deadtxt1}, {nyears}",
+                                                text = ngettext("⚭ {spouse}{deadtxt2} and\n {person}{deadtxt1}, {nyears}",
+                                                                "⚭ {spouse}{deadtxt2} and\n {person}{deadtxt1}, {nyears}",
                                                                 nyears).format(spouse=spouse_name, deadtxt2=deadtxt2, person=short_name, deadtxt1=deadtxt1, nyears=nyears)
                                                 if (self.alive and alive1 and alive2) or not self.alive:
                                                     self.add_day_item(text, month, day, spouse)
