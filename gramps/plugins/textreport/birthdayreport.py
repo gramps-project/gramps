@@ -65,6 +65,7 @@ def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
 _TITLE0 = _T_("Birthday and Anniversary Report")
 _TITLE1 = _T_("My Birthday Report")
 _TITLE2 = _T_("Produced with Gramps")
+_DEADTXT = _T_("✝")
 
 #------------------------------------------------------------------------
 #
@@ -316,15 +317,19 @@ class BirthdayReport(Report):
                             if relation:
                                 # FIXME this won't work for RTL languages
                                 comment = " --- %s" % relation
+                        deadtxt = ""
+                        if (not alive):
+                            deadtxt = _DEADTXT
                         if nyears == 0:
                             text = self._('%(person)s, birth%(relation)s') % {
                                 'person'   : short_name,
                                 'relation' : comment}
                         else:
                             # translators: leave all/any {...} untranslated
-                            text = ngettext('{person}, {age}{relation}',
-                                            '{person}, {age}{relation}',
+                            text = ngettext('{person}{dead}, {age}{relation}',
+                                            '{person}{dead}, {age}{relation}',
                                             nyears).format(person=short_name,
+                                                           dead=deadtxt,
                                                            age=nyears,
                                                            relation=comment)
 
@@ -369,21 +374,26 @@ class BirthdayReport(Report):
                                         nyears = self.year - year
 
                                         if event_obj.is_valid():
+                                            prob_alive_date = Date(self.year, month, day)
+                                            alive1 = probably_alive(person, self.database,
+                                                                        prob_alive_date)
+                                            alive2 = probably_alive(spouse, self.database,
+                                                                        prob_alive_date)
+                                            deadtxt1 = ""
+                                            deadtxt2 = ""
+                                            if (not alive1):
+                                                deadtxt1 = _DEADTXT
+                                            if (not alive2):
+                                                deadtxt2 = _DEADTXT
                                             if nyears == 0:
                                                 text = self._("%(spouse)s and\n %(person)s, wedding") % {
                                                          'spouse' : spouse_name,
                                                          'person' : short_name}
                                             else:
                                                 # translators: leave all/any {...} untranslated
-                                                text = ngettext("{spouse} and\n {person}, {nyears}",
-                                                                "{spouse} and\n {person}, {nyears}",
-                                                                nyears).format(spouse=spouse_name, person=short_name, nyears=nyears)
-
-                                                prob_alive_date = Date(self.year, month, day)
-                                                alive1 = probably_alive(person, self.database,
-                                                                        prob_alive_date)
-                                                alive2 = probably_alive(spouse, self.database,
-                                                                        prob_alive_date)
+                                                text = ngettext("{spouse}{deadtxt2} and\n {person}{deadtxt1}, {nyears}",
+                                                                "{spouse}{deadtxt2} and\n {person}{deadtxt1}, {nyears}",
+                                                                nyears).format(spouse=spouse_name, deadtxt2=deadtxt2, person=short_name, deadtxt1=deadtxt1, nyears=nyears)
                                                 if (self.alive and alive1 and alive2) or not self.alive:
                                                     self.add_day_item(text, month, day, spouse)
 
@@ -445,6 +455,10 @@ class BirthdayOptions(MenuReportOptions):
         alive = BooleanOption(_("Include only living people"), True)
         alive.set_help(_("Include only living people in the report"))
         menu.add_option(category_name, "alive", alive)
+
+        deadtxt = StringOption(_("Dead Symbol"), _(_DEADTXT))
+        deadtxt.set_help(_("This will show after name to indicate that person is dead"))
+        menu.add_option(category_name, "deadtxt", deadtxt)
 
         self.__update_filters()
 
