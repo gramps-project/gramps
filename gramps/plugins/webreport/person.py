@@ -50,7 +50,8 @@ import logging
 # Gramps module
 #------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.lib import (ChildRefType, Date, Name, Person, EventRoleType)
+from gramps.gen.lib import (ChildRefType, Date, Name, Person, EventRoleType,
+                            EventType)
 from gramps.gen.lib.date import Today
 from gramps.gen.plug.report import Bibliography
 from gramps.gen.plug.report import utils
@@ -1555,11 +1556,10 @@ class PersonPages(BasePage):
                 # parent as anything other than "Father"
                 reln = self._("Father")
             else:
-                # Stepfather may not always be quite right (for example, it may
-                # actually be StepFather-in-law), but it is too expensive to
-                # calculate out the correct relationship using the Relationship
-                # Calculator
-                reln = self._("Stepfather")
+                if self.step_or_not(family, father_handle):
+                    reln = self._("Stepfather")
+                else:
+                    reln = ""
             trow = Html("tr") + (self.display_parent(father_handle, reln, None))
             table += trow
 
@@ -1569,7 +1569,10 @@ class PersonPages(BasePage):
             if mother_handle == birthmother:
                 reln = self._("Mother")
             else:
-                reln = self._("Stepmother")
+                if self.step_or_not(family, mother_handle):
+                    reln = self._("Stepmother")
+                else:
+                    reln = ""
             trow = Html("tr") + (self.display_parent(mother_handle, reln, None))
             table += trow
 
@@ -1634,6 +1637,55 @@ class PersonPages(BasePage):
                              inline=True)
                 trow += tcell
                 table += trow
+
+    def step_or_not(self, family, handle):
+        """
+        Quickly check to see if this person is a stepmother or stepfather
+
+        We assume this is not a stepmother or a stepfather if :
+         1 - The father or mother died before the child birth
+         2 - The father or the mother divorced before the child birth
+         3 - The father or the mother married after the child death
+
+        In all other cases, they are stepfather or stepmother.
+
+        @param: family The family we examine
+        @param: handle The handle of the father or the mother
+        self.person    The child for whom we need this result
+        """
+        bd_date = Today()
+        bd_event = get_birth_or_fallback(self.r_db, self.person)
+        if bd_event:
+            bd_date = bd_event.get_date_object()
+        for event_ref in family.get_event_ref_list():
+            event = self.r_db.get_event_from_handle(event_ref.ref)
+            if (event.type == EventType.DIVORCE and
+                    event_ref.get_role() in (EventRoleType.FAMILY,
+                                             EventRoleType.PRIMARY)):
+                dv_date = event.get_date_object()
+                if bd_date > dv_date:
+                    # We have a divorce before the child birth
+                    return False
+            if (event.type == EventType.MARRIAGE and
+                    event_ref.get_role() in (EventRoleType.FAMILY,
+                                             EventRoleType.PRIMARY)):
+                dm_date = event.get_date_object()
+                dd_date = Today()
+                dd_event = get_death_or_fallback(self.r_db, self.person)
+                if dd_event:
+                    dd_date = dd_event.get_date_object()
+                if dd_date < dm_date:
+                    # We have a child death before the marriage
+                    return False
+        pers = self.r_db.get_person_from_handle(handle)
+        death_date = Today()
+        death_event = get_death_or_fallback(self.r_db, pers)
+        if death_event:
+            death_date = death_event.get_date_object()
+        if bd_date > death_date:
+            # We have a death before the child birth
+            return False
+        return True
 
     def display_step_families(self, parent_handle,
                               family,
