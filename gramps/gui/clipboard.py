@@ -1274,6 +1274,12 @@ class ClipboardListView:
             if dbname:
                 _ob._dbname = dbname
 
+            # If this was a ClipPersonLink with a list for a handle, we don't
+            # want it.  Can happen in People Treeview with attemp to drag last
+            # name group.
+            if (isinstance(_ob, ClipHandleWrapper) and
+                    isinstance(_ob._handle, list)):
+                return None
             # If the wrapper object is a subclass of ClipDropList then
             # the drag data was a list of objects and we need to decode
             # all of them.
