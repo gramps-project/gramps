@@ -102,6 +102,7 @@ class BirthdayReport(Report):
         self.deadtxt = mgobn('deadtxt')
         self.filter_option =  menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
+        self.showyear = mgobn('showyear')
         pid = mgobn('pid')
 
         self.set_locale(menu.get_option_by_name('trans').get_value())
@@ -321,15 +322,19 @@ class BirthdayReport(Report):
                         deadtxt = ""
                         if (not alive):
                             deadtxt = self.deadtxt
+                        yeartxt = ""
+                        if self.showyear:
+                            yeartxt = "(%s) " % year
                         if nyears == 0:
                             text = self._('* %(person)s, birth%(relation)s') % {
                                 'person'   : short_name,
                                 'relation' : comment}
                         else:
                             # translators: leave all/any {...} untranslated
-                            text = ngettext('* {person}{dead}, {age}{relation}',
-                                            '* {person}{dead}, {age}{relation}',
-                                            nyears).format(person=short_name,
+                            text = ngettext('* {year}{person}{dead}, {age}{relation}',
+                                            '* {year}{person}{dead}, {age}{relation}',
+                                            nyears).format(year=yeartxt,
+                                                           person=short_name,
                                                            dead=deadtxt,
                                                            age=nyears,
                                                            relation=comment)
@@ -386,15 +391,18 @@ class BirthdayReport(Report):
                                                 deadtxt1 = self.deadtxt
                                             if (not alive2):
                                                 deadtxt2 = self.deadtxt
+                                            yeartxt = ""
+                                            if self.showyear:
+                                                yeartxt = "(%s) " % year
                                             if nyears == 0:
                                                 text = self._("⚭ %(spouse)s and\n %(person)s, wedding") % {
                                                          'spouse' : spouse_name,
                                                          'person' : short_name}
                                             else:
                                                 # translators: leave all/any {...} untranslated
-                                                text = ngettext("⚭ {spouse}{deadtxt2} and\n {person}{deadtxt1}, {nyears}",
-                                                                "⚭ {spouse}{deadtxt2} and\n {person}{deadtxt1}, {nyears}",
-                                                                nyears).format(spouse=spouse_name, deadtxt2=deadtxt2, person=short_name, deadtxt1=deadtxt1, nyears=nyears)
+                                                text = ngettext("⚭ {year}{spouse}{deadtxt2} and\n {person}{deadtxt1}, {nyears}",
+                                                                "⚭ {year}{spouse}{deadtxt2} and\n {person}{deadtxt1}, {nyears}",
+                                                                nyears).format(year=yeartxt, spouse=spouse_name, deadtxt2=deadtxt2, person=short_name, deadtxt1=deadtxt1, nyears=nyears)
                                                 if (self.alive and alive1 and alive2) or not self.alive:
                                                     self.add_day_item(text, month, day, spouse)
 
@@ -464,6 +472,10 @@ class BirthdayOptions(MenuReportOptions):
         self.__update_filters()
 
         stdoptions.add_localization_option(menu, category_name)
+
+        showyear = BooleanOption(_("Show event year"), True)
+        showyear.set_help(_("Prints the year the event took place in the report"))
+        menu.add_option(category_name, "showyear", showyear)
 
         category_name = _("Content")
 
