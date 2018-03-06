@@ -75,7 +75,7 @@ class PlaceDisplay:
             pf = PlaceFormat('Full', ':', '', 0, False)
             self.place_formats.append(pf)
 
-    def display_event(self, db, event, fmt=None):
+    def display_event(self, db, event, fmt=-1):
         if not event:
             return ""
         place_handle = event.get_place_handle()
@@ -85,13 +85,13 @@ class PlaceDisplay:
         else:
             return ""
 
-    def display(self, db, place, date=None, fmt=None):
+    def display(self, db, place, date=None, fmt=-1):
         if not place:
             return ""
         if not config.get('preferences.place-auto'):
             return place.title
         else:
-            if fmt is None:
+            if fmt == -1:
                 fmt = config.get('preferences.place-format')
             pf = self.place_formats[fmt]
             lang = pf.language
