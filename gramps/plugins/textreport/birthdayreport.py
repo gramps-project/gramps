@@ -99,6 +99,7 @@ class BirthdayReport(Report):
         self.text1 = mgobn('text1')
         self.text2 = mgobn('text2')
         self.text3 = mgobn('text3')
+        self.deadtxt = mgobn('deadtxt')
         self.filter_option =  menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
         pid = mgobn('pid')
@@ -319,7 +320,7 @@ class BirthdayReport(Report):
                                 comment = " --- %s" % relation
                         deadtxt = ""
                         if (not alive):
-                            deadtxt = _DEADTXT
+                            deadtxt = self.deadtxt
                         if nyears == 0:
                             text = self._('%(person)s, birth%(relation)s') % {
                                 'person'   : short_name,
@@ -382,9 +383,9 @@ class BirthdayReport(Report):
                                             deadtxt1 = ""
                                             deadtxt2 = ""
                                             if (not alive1):
-                                                deadtxt1 = _DEADTXT
+                                                deadtxt1 = self.deadtxt
                                             if (not alive2):
-                                                deadtxt2 = _DEADTXT
+                                                deadtxt2 = self.deadtxt
                                             if nyears == 0:
                                                 text = self._("%(spouse)s and\n %(person)s, wedding") % {
                                                          'spouse' : spouse_name,
