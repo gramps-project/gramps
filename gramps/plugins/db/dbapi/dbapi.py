@@ -56,6 +56,15 @@ class DBAPI(DbGeneric):
     def _initialize(self, directory, username, password):
         raise NotImplementedError
 
+    def _schema_exists(self):
+        """
+        Check to see if the schema exists.
+
+        We use the existence of the person table as a proxy for the database
+        being new.
+        """
+        return self.dbapi.table_exists("person")
+
     def _create_schema(self):
         """
         Create and update schema.

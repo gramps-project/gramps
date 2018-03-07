@@ -625,9 +625,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # run backend-specific code:
         self._initialize(directory, username, password)
 
-        # We use the existence of the person table as a proxy for the database
-        # being new
-        if not self.dbapi.table_exists("person"):
+        if not self._schema_exists():
             self._create_schema()
             self._set_metadata('version', str(self.VERSION[0]))
 
