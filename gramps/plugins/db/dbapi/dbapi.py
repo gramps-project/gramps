@@ -879,6 +879,39 @@ class DBAPI(DbGeneric):
                                [key, female, male, unknown])
         self._txn_commit()
 
+    def undo_reference(self, data, handle):
+        """
+        Helper method to undo a reference map entry
+        """
+        if data is None:
+            sql = ("DELETE FROM reference " +
+                   "WHERE obj_handle = ? AND ref_handle = ?")
+            self.dbapi.execute(sql, [handle[0], handle[1]])
+        else:
+            sql = ("INSERT INTO reference " +
+                   "(obj_handle, obj_class, ref_handle, ref_class) " +
+                   "VALUES(?, ?, ?, ?)")
+            self.dbapi.execute(sql, data)
+
+    def undo_data(self, data, handle, obj_key):
+        """
+        Helper method to undo/redo the changes made
+        """
+        cls = KEY_TO_CLASS_MAP[obj_key]
+        table = cls.lower()
+        if data is None:
+            sql = "DELETE FROM %s WHERE handle = ?" % table
+            self.dbapi.execute(sql, [handle])
+        else:
+            if self._has_handle(obj_key, handle):
+                sql = "UPDATE %s SET blob_data = ? WHERE handle = ?" % table
+                self.dbapi.execute(sql, [pickle.dumps(data), handle])
+            else:
+                sql = "INSERT INTO %s (handle, blob_data) VALUES (?, ?)" % table
+                self.dbapi.execute(sql, [handle, pickle.dumps(data)])
+            obj = self._get_table_func(cls)["class_func"].create(data)
+            self._update_secondary_values(obj)
+
     def get_surname_list(self):
         """
         Return the list of locale-sorted surnames contained in the database.
