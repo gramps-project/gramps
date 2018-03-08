@@ -54,6 +54,7 @@ from gramps.gen.const import HOME_DIR
 from gramps.gen.config import config
 from gramps.gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
 from gramps.gui.selectors.selectplace import SelectPlace
+from gramps.gen.utils.file import media_path_full
 
 import gi
 gi.require_version('OsmGpsMap', '1.0')
@@ -866,6 +867,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                 path = media_obj.get_path()
                 name, extension = os.path.splitext(path)
                 if extension == ".kml":
+                    path = media_path_full(self.dbstate.db, path)
                     if os.path.isfile(path):
                         self.kml_layer.add_kml(path)
 
