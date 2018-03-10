@@ -252,6 +252,7 @@ class GeoPlaces(GeoGraphyView):
         longitude = place.get_longitude()
         latitude = place.get_latitude()
         latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
+        self.load_kml_files(place)
         # place.get_longitude and place.get_latitude return
         # one string. We have coordinates when the two values
         # contains non null string.
@@ -266,7 +267,6 @@ class GeoPlaces(GeoGraphyView):
                                         None, # family.gramps_id
                                         color=self.plc_color[int(place.get_type())+1]
                                        )
-            self.load_kml_files(place)
 
     def _createmap(self, place_x):
         """
