@@ -56,6 +56,7 @@ class PlaceDetails(Gramplet):
         self.photo = Photo(self.uistate.screen_height() < 1000)
         self.title = Gtk.Label(halign=Gtk.Align.START)
         self.title.override_font(Pango.FontDescription('sans bold 12'))
+        self.title.set_selectable(True)
         vbox.pack_start(self.title, False, True, 7)
         self.grid = Gtk.Grid(orientation=Gtk.Orientation.VERTICAL)
         self.grid.set_column_spacing(10)
@@ -71,8 +72,10 @@ class PlaceDetails(Gramplet):
         """
         label = Gtk.Label(label=title + COLON, halign=Gtk.Align.END,
                           valign=Gtk.Align.START)
+        label.set_selectable(True)
         label.show()
         value = Gtk.Label(label=value, halign=Gtk.Align.START)
+        value.set_selectable(True)
         value.show()
         self.grid.add(label)
         self.grid.attach_next_to(value, label, Gtk.PositionType.RIGHT, 1, 1)
@@ -157,6 +160,7 @@ class PlaceDetails(Gramplet):
         """
         label = Gtk.Label(label='')
         label.override_font(Pango.FontDescription('sans 4'))
+        label.set_selectable(True)
         label.show()
         self.grid.add(label)
 
