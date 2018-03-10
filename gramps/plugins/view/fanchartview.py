@@ -252,7 +252,8 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
             heightpx = heightpx / 2 + self.fan.CENTER + fanchart.PAD_PX
             widthpx = heightpx
 
-        prt = CairoPrintSave(widthpx, heightpx, self.fan.on_draw, self.uistate.window)
+        prt = CairoPrintSave(widthpx, heightpx, self.fan.prt_draw,
+                             self.uistate.window)
         prt.run()
 
     def on_childmenu_changed(self, obj, person_handle):
