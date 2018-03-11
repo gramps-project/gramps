@@ -466,6 +466,8 @@ class RelationshipView(NavigationView):
             self.change_person(active_person)
         else:
             self.change_person(None)
+            print("no active person")
+            print("empty_database", self.dbstate.db.is_empty()) # add a person icon
 
     def change_person(self, obj):
         self.change_active(obj)
@@ -508,6 +510,16 @@ class RelationshipView(NavigationView):
             self.family_action.set_sensitive(False)
             self.order_action.set_sensitive(False)
             self.redrawing = False
+            # Display message?
+            print("no person")
+            self.write_add_new_person_message()
+
+            self.child = Gtk.Grid()
+            self.child.set_border_width(12)
+            self.child.set_column_spacing(12)
+            self.child.set_row_spacing(0)
+            self.row = 0
+
             return
         self.family_action.set_sensitive(True)
 
@@ -553,6 +565,38 @@ class RelationshipView(NavigationView):
         self.dirty = False
 
         return True
+
+    def write_add_new_person_message(self):
+
+        list(map(self.header.remove, self.header.get_children()))
+        grid = Gtk.Grid()
+        grid.set_column_spacing(12)
+        grid.set_row_spacing(0)
+
+        # Add new person message and button
+        name = "Add a new person first"
+        fmt = '<span size="larger" weight="bold">%s</span>'
+        text = fmt % escape(name)
+        label = widgets.DualMarkupLabel(text, "Use the Menu",
+                                        halign=Gtk.Align.END)
+        button = widgets.IconButton(self.add_button_press,
+                                    "Random Text")  ## ????
+        button.set_tooltip_text(_('Add a New Person (%s)') % name)
+
+        eventbox = Gtk.EventBox()
+        eventbox.set_visible_window(False)
+        hbox = widgets.LinkBox(label, button)
+        eventbox.add(hbox)
+
+        grid.attach(eventbox, 0, 0, 2, 1)
+
+        eventbox = Gtk.EventBox()
+
+        mbox = Gtk.Box()
+        mbox.add(grid)
+        ### media box here
+        mbox.show_all()
+        self.header.pack_start(mbox, False, True, 0)
 
     def write_title(self, person):
 
@@ -1443,6 +1487,14 @@ class RelationshipView(NavigationView):
                 self.child.attach(eventbox, _CDATA_START-1, self.row,
                                   _CDATA_STOP-_CDATA_START+1, 1)
                 self.row += 1
+
+    def add_button_press(self, obj, event, handle):
+        if button_activated(event, _LEFT_BUTTON):
+            self.add_person(obj, handle)
+
+    def add_person(self, obj, handle):
+        print("Add new person - button pressed")
+        pass
 
     def edit_button_press(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
