@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2016-08-31" version="5.0.0"/>
+    <created date="2018-03-08" version="5.0.0"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
     </researcher>
@@ -13946,10 +13946,10 @@
       <place hlink="_VDCKQCZX3MEHKVDR8S"/>
       <description>Death of Schultz, Rev.Isaac</description>
     </event>
-    <event handle="_a5af0ed3f64432fb742" change="1284030595" id="E2618">
+    <event handle="_a5af0ed3f64432fb742" change="1520536150" id="E2618">
       <type>Burial</type>
       <dateval val="1818" type="about"/>
-      <place hlink="_4ECKQCWCLO5YIHXEXZ"/>
+      <place hlink="_c965872633b600e8b5ca4d5e6db"/>
       <description>Burial of Schultz, Rev.Isaac</description>
     </event>
     <event handle="_a5af0ed3f9b07f938fb" change="1284030602" id="E2619">
@@ -59379,10 +59379,6 @@
       <ptitle>USA</ptitle>
       <pname value="USA"/>
     </placeobj>
-    <placeobj handle="_4ECKQCWCLO5YIHXEXZ" change="1234373374" id="P1704" type="Country">
-      <ptitle>Puerto Rico</ptitle>
-      <pname value="Puerto Rico"/>
-    </placeobj>
     <placeobj handle="_4FUJQCDFTJJJNKKJMH" change="1234390522" id="P0958" type="City">
       <ptitle>Boone, IA</ptitle>
       <pname value="Boone"/>
@@ -65622,29 +65618,44 @@
       <pname value="St. Lawrence"/>
       <placeref hlink="_c96587263cc11e217c35cc9003f"/>
     </placeobj>
-    <placeobj handle="_d583a5b7ab21971300a" change="1467134436" id="P0435" type="Unknown">
+    <placeobj handle="_d583a5b7ab21971300a" change="1520535854" id="P0435" type="City">
       <ptitle>Δράμα</ptitle>
-      <pname value="Δράμα"/>
+      <pname value="Δράμα" lang="el"/>
+      <pname value="Drama" lang="en"/>
+      <placeref hlink="_dd445e5bfcc17bd1838"/>
     </placeobj>
-    <placeobj handle="_d583a5b8614206a939d" change="1467134581" id="P0436" type="Unknown">
+    <placeobj handle="_d583a5b8614206a939d" change="1520535887" id="P0436" type="City">
       <ptitle>Θεσσαλονίκη</ptitle>
-      <pname value="Θεσσαλονίκη"/>
+      <pname value="Θεσσαλονίκη" lang="el"/>
+      <pname value="Thessaloniki" lang="en"/>
+      <placeref hlink="_dd445e5bfcc17bd1838"/>
     </placeobj>
-    <placeobj handle="_d583a5b8a8c1474357d" change="1467135440" id="P0437" type="Unknown">
+    <placeobj handle="_d583a5b8a8c1474357d" change="1520535915" id="P0437" type="City">
       <ptitle>Ιωάννινα</ptitle>
-      <pname value="Ιωάννινα"/>
+      <pname value="Ιωάννινα" lang="el"/>
+      <pname value="Ioannina" lang="en"/>
+      <placeref hlink="_dd445e5bfcc17bd1838"/>
     </placeobj>
-    <placeobj handle="_d583a5b8b586fb992c8" change="1467135553" id="P0438" type="Unknown">
+    <placeobj handle="_d583a5b8b586fb992c8" change="1520535978" id="P0438" type="City">
       <ptitle>Σιάτιστα</ptitle>
-      <pname value="Σιάτιστα"/>
+      <pname value="Σιάτιστα" lang="el"/>
+      <pname value="Siatista" lang="en"/>
+      <placeref hlink="_dd445e5bfcc17bd1838"/>
     </placeobj>
-    <placeobj handle="_d583a5b8c380fb024c9" change="1467136002" id="P0439" type="Unknown">
+    <placeobj handle="_d583a5b8c380fb024c9" change="1520535800" id="P0439" type="City">
       <ptitle>Άργος</ptitle>
-      <pname value="Άργος"/>
+      <pname value="Άργος" lang="el"/>
+      <pname value="Argos" lang="en"/>
+      <placeref hlink="_dd445e5bfcc17bd1838"/>
     </placeobj>
-    <placeobj handle="_d583a5b8d1106cda712" change="1467136077" id="P0440" type="Unknown">
+    <placeobj handle="_d583a5b8d1106cda712" change="1520535947" id="P0440" type="City">
       <ptitle>Μεσολόγγι</ptitle>
-      <pname value="Μεσολόγγι"/>
+      <pname value="Μεσολόγγι" lang="el"/>
+      <pname value="Missolonghi" lang="en"/>
+      <placeref hlink="_dd445e5bfcc17bd1838"/>
+    </placeobj>
+    <placeobj handle="_dd445e5bfcc17bd1838" change="1520535973" id="P0441" type="Country">
+      <pname value="Greece" lang="en"/>
     </placeobj>
   </places>
   <objects>
