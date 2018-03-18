@@ -81,7 +81,7 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
             self.citation_page,
             self.citation_id,
             self.citation_sort_date,
-            self.citation_confidence,
+            self.citation_sort_confidence,
             self.citation_private,
             self.citation_tags,
             self.citation_sort_change,
