@@ -105,7 +105,10 @@ class PlaceDisplay:
                 if len(parts) == 1:
                     offset = _get_offset(parts[0], index)
                     if offset is not None:
-                        places.append(all_places[offset])
+                        try:
+                            places.append(all_places[offset])
+                        except IndexError:
+                            pass
                 elif len(parts) == 2:
                     start = _get_offset(parts[0], index)
                     end = _get_offset(parts[1], index)
