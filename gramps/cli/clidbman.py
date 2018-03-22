@@ -70,6 +70,7 @@ DEFAULT_TITLE = _("Family Tree")
 NAME_FILE = "name.txt"
 BACKEND_FILE = "database.txt"
 META_NAME = "meta_data.db"
+UNAVAILABLE = _('Unavailable')
 
 #-------------------------------------------------------------------------
 #
@@ -183,7 +184,7 @@ class CLIDbManager:
         for plugin in pmgr.get_reg_databases():
             if plugin.id == dbid:
                 return plugin._name
-        return _("Unknown")
+        return UNAVAILABLE
 
     def print_family_tree_summaries(self, database_names=None):
         """
