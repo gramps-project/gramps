@@ -57,7 +57,7 @@ from gramps.gen.const import URL_WIKISTRING, URL_MANUAL_PAGE
 from .user import User
 from .dialog import ErrorDialog, QuestionDialog, QuestionDialog2, ICON
 from .pluginmanager import GuiPluginManager
-from gramps.cli.clidbman import CLIDbManager, NAME_FILE, time_val
+from gramps.cli.clidbman import CLIDbManager, NAME_FILE, time_val, UNAVAILABLE
 from .managedwindow import ManagedWindow
 from .ddtargets import DdTargets
 from gramps.gen.recentfiles import rename_filename, remove_filename
@@ -313,6 +313,12 @@ class DbManager(CLIDbManager, ManagedWindow):
             self.connect_btn.set_sensitive(False)
             if _RCS_FOUND:
                 self.rcs_btn.set_sensitive(True)
+        elif store.get_value(node, BACKEND_COL) == UNAVAILABLE:
+            self.close_btn.set_sensitive(False)
+            self.convert_btn.set_sensitive(False)
+            self.connect_btn.set_sensitive(False)
+            self.rcs_btn.set_sensitive(False)
+            self.repair_btn.set_sensitive(False)
         else:
             self.close_btn.set_sensitive(False)
             dbid = config.get('database.backend')
@@ -361,6 +367,10 @@ class DbManager(CLIDbManager, ManagedWindow):
         # Put some help on the buttons:
         dbid = config.get('database.backend')
         backend_type = self.get_backend_name_from_dbid(dbid)
+        if backend_type == UNAVAILABLE:
+            dbid = 'bsddb'
+            config.set('database.backend', dbid)
+            backend_type = self.get_backend_name_from_dbid(dbid)
         self.new_btn.set_tooltip_text(backend_type)
 
         # build the database name column
