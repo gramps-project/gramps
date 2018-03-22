@@ -114,6 +114,11 @@ class CitationBaseModel:
     def citation_page(self, data):
         return data[COLUMN_PAGE]
 
+    def citation_sort_confidence(self, data):
+        if data[COLUMN_CONFIDENCE]:
+            return str(data[COLUMN_CONFIDENCE])
+        return ''
+
     def citation_confidence(self, data):
         return _(conf_strings[data[COLUMN_CONFIDENCE]])
 
