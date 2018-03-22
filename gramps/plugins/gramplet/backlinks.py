@@ -64,7 +64,7 @@ class Backlinks(Gramplet):
         Display the back references for an object.
         """
         for classname, handle in \
-                        self.dbstate.db.find_backlink_handles(active_handle):
+                self.dbstate.db.find_backlink_handles(active_handle):
             name = navigation_label(self.dbstate.db, classname, handle)[0]
             self.model.add((_(classname), name, handle, classname))
         self.set_has_data(self.model.count > 0)
@@ -73,7 +73,7 @@ class Backlinks(Gramplet):
         """
         Return True if the gramplet has data, else return False.
         """
-        if active_handle is None:
+        if not active_handle:
             return False
         for handle in self.dbstate.db.find_backlink_handles(active_handle):
             return True

@@ -506,10 +506,9 @@ class GrampsImportFileDialog(ManagedWindow):
 
                 for plugin in pmgr.get_import_plugins():
                     if extension == plugin.get_extension():
-                        self.do_import(import_dialog,
-                                       plugin.get_import_function(),
-                                       filename)
                         self.close()
+                        self.do_import(plugin.get_import_function(),
+                                       filename)
                         if callback is not None:
                             callback(self.import_info)
                         return
@@ -565,12 +564,10 @@ class GrampsImportFileDialog(ManagedWindow):
 
         return False
 
-    def do_import(self, dialog, importer, filename):
+    def do_import(self, importer, filename):
         self.import_info = None
-        position = self.window.get_position() # crock
-        dialog.hide()
-        self.window.move(position[0], position[1])
         self._begin_progress()
+        self.uistate.window.set_sensitive(False)
 
         try:
             #an importer can return an object with info, object.info_text()
@@ -590,6 +587,7 @@ class GrampsImportFileDialog(ManagedWindow):
                 parent=self.uistate.window)
         except Exception:
             _LOG.error("Failed to import database.", exc_info=True)
+        self.uistate.window.set_sensitive(True)
         self._end_progress()
 
     def build_menu_names(self, obj): # this is meaningless since it's modal
