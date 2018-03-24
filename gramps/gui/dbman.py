@@ -710,7 +710,7 @@ class DbManager(CLIDbManager, ManagedWindow):
         # close the database if the user has requested to delete the
         # active database
         if self.data_to_delete[PATH_COL] == self.active:
-            self.dbstate.no_database()
+            self.uistate.viewmanager.close_database()
 
         store, node = self.selection.get_selected()
         path = store.get_path(node)
