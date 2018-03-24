@@ -85,6 +85,7 @@ class EmbeddedList(ButtonTab):
                            move_buttons, jump_button, top_label)
 
         self.changed = False
+        self.reload = False
         self.model = None
         self.build_model = build_model
         #renderer for pixbuf
@@ -598,12 +599,13 @@ class EmbeddedList(ButtonTab):
         """
         pass
 
-    def rebuild_callback(self):
+    def rebuild_callback(self, changed=True, reload=False):
         """
         The view must be remade when data changes outside this tab.
         Use this method to connect to after a db change. It makes sure the
         data is obtained again from the present object and the db what is not
         present in the obj, and the view rebuild
         """
-        self.changed = True
+        self.changed = changed
+        self.reload = reload
         self.rebuild()

@@ -455,6 +455,9 @@ class EditFamily(EditPrimary):
                 self.obj.child_ref_list = objreal.child_ref_list
                 self.reload_people()
 
+                #refresh embedded grouped event list
+                self.event_list.rebuild_callback(changed=True, reload=True)
+
             # No matter why the family changed (eg delete of a source), we notify
             # the user
             WarningDialog(

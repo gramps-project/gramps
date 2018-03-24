@@ -29,6 +29,7 @@ Provide the event view.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+import copy
 import logging
 _LOG = logging.getLogger(".plugins.eventview")
 
@@ -97,6 +98,7 @@ class EventView(ListView):
     EDIT_MSG    = _("Edit the selected event")
     DEL_MSG     = _("Delete the selected event")
     MERGE_MSG   = _("Merge the selected events")
+    CLONE_MSG   = _("Clone the selected event")
     FILTER_TYPE = "Event"
     QR_CATEGORY = CATEGORY_QR_EVENT
 
@@ -124,6 +126,8 @@ class EventView(ListView):
             '<PRIMARY>BackSpace' : self.key_delete,
             })
 
+        # Identify the requested action in several sublevel
+        uistate.action = ''
         uistate.connect('nameformat-changed', self.build_tree)
         uistate.connect('placeformat-changed', self.build_tree)
 
@@ -174,6 +178,7 @@ class EventView(ListView):
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
                 <menuitem action="Merge"/>
+                <menuitem action="Clone"/>
               </placeholder>
               <menuitem action="FilterEdit"/>
             </menu>
@@ -188,6 +193,7 @@ class EventView(ListView):
               <toolitem action="Edit"/>
               <toolitem action="Remove"/>
               <toolitem action="Merge"/>
+              <toolitem action="Clone"/>
             </placeholder>
           </toolbar>
           <popup name="Popup">
@@ -198,6 +204,7 @@ class EventView(ListView):
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
             <menuitem action="Merge"/>
+            <menuitem action="Clone"/>
             <separator/>
             <menu name="QuickReport" action="QuickReport"/>
           </popup>
@@ -205,8 +212,12 @@ class EventView(ListView):
 
     def define_actions(self):
         ListView.define_actions(self)
-        self._add_action('FilterEdit', None,
-                         _('Event Filter Editor'), callback=self.filter_editor)
+        self.edit_action.add_actions([
+            ('Clone', 'gramps-clone', _('Clone...'), None,
+              self.CLONE_MSG, self.clone),
+        ])
+        self._add_action('FilterEdit', None, _('Event Filter Editor'),
+                        callback=self.filter_editor,)
         self._add_action('QuickReport', None,
                          _("Quick View"), None, None, None)
 
@@ -219,6 +230,7 @@ class EventView(ListView):
 
     def add(self, obj):
         try:
+            self.uistate.action = 'event-add'
             EditEvent(self.dbstate, self.uistate, [], Event())
         except WindowActiveError:
             pass
@@ -250,8 +262,11 @@ class EventView(ListView):
         """
         Header format for remove dialogs.
         """
-        return _('Delete {type} [{gid}]?').format(type=str(event.type),
-                                                  gid=event.gramps_id)
+        event_type = event.type._I2SMAP[event.type.value]
+        message1_string = \
+            _('Delete {typ}-Event [{gid}]?').format(typ=event_type, gid=event.gramps_id)
+
+        return message1_string
 
     def _message2_format(self, event):
         """
@@ -282,6 +297,7 @@ class EventView(ListView):
         for handle in self.selected_handles():
             event = self.dbstate.db.get_event_from_handle(handle)
             try:
+                self.uistate.action = 'event-edit'
                 EditEvent(self.dbstate, self.uistate, [], event)
             except WindowActiveError:
                 pass
@@ -290,16 +306,38 @@ class EventView(ListView):
         """
         Merge the selected events.
         """
-        mlist = self.selected_handles()
+        merge_list = self.selected_handles()
 
-        if len(mlist) != 2:
+        if len(merge_list) != 2:
             msg = _("Cannot merge event objects.")
             msg2 = _("Exactly two events must be selected to perform a merge. "
                      "A second object can be selected by holding down the "
                      "control key while clicking on the desired event.")
             ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
-            MergeEvent(self.dbstate, self.uistate, [], mlist[0], mlist[1])
+            self.uistate.action = 'event-merge'
+            MergeEvent(self.dbstate, self.uistate, [], merge_list[0], merge_list[1])
+
+    def clone(self, obj):
+        """
+        Clones the selected event.
+        """
+        event_list = self.selected_handles()
+
+        if len(event_list) != 1:
+            msg = _("Cannot clone event object.")
+            msg2 = _("Exactly one event must be selected to perform a clone.")
+            ErrorDialog(msg, msg2, parent=self.uistate.window)
+        else:
+            event = Event()
+            event = copy.deepcopy(self.dbstate.db.get_event_from_handle(event_list[0]))
+            event.gramps_id = None
+
+            try:
+                self.uistate.action = 'event-clone'
+                EditEvent(self.dbstate, self.uistate, [], event)
+            except WindowActiveError:
+                pass
 
     def tag_updated(self, handle_list):
         """
