@@ -48,8 +48,8 @@ import logging
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.config import config
 from gramps.gen.constfunc import win
-from gramps.gen.db.dbconst import DBLOGNAME
-from gramps.gen.db.utils import make_database
+from gramps.gen.db.dbconst import DBLOGNAME, DBBACKEND
+from gramps.gen.db.utils import make_database, get_dbid_from_path
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -68,7 +68,6 @@ _LOG = logging.getLogger(DBLOGNAME)
 #-------------------------------------------------------------------------
 DEFAULT_TITLE = _("Family Tree")
 NAME_FILE = "name.txt"
-BACKEND_FILE = "database.txt"
 META_NAME = "meta_data.db"
 UNAVAILABLE = _('Unavailable')
 
@@ -156,11 +155,7 @@ class CLIDbManager:
         _("Version")
         _("Schema version")
         """
-        dbid = "bsddb"
-        dbid_path = os.path.join(dirpath, "database.txt")
-        if os.path.isfile(dbid_path):
-            with open(dbid_path) as file:
-                dbid = file.read().strip()
+        dbid = get_dbid_from_path(dirpath)
         if not self.is_locked(dirpath):
             try:
                 database = make_database(dbid)
@@ -237,11 +232,7 @@ class CLIDbManager:
             for dpath in os.listdir(dbdir):
                 dirpath = os.path.join(dbdir, dpath)
                 path_name = os.path.join(dirpath, NAME_FILE)
-                try:
-                    with open(os.path.join(dirpath, "database.txt")) as file:
-                        backend_type = file.read()
-                except:
-                    backend_type = "bsddb"
+                backend_type = get_dbid_from_path(dirpath)
                 if os.path.isfile(path_name):
                     with open(path_name, 'r', encoding='utf8') as file:
                         name = file.readline().strip()
@@ -309,7 +300,7 @@ class CLIDbManager:
                 dbid = config.get('database.backend')
             newdb = make_database(dbid)
 
-        backend_path = os.path.join(new_path, BACKEND_FILE)
+        backend_path = os.path.join(new_path, DBBACKEND)
         with open(backend_path, "w", encoding='utf8') as backend_file:
             backend_file.write(dbid)
 
@@ -402,6 +393,13 @@ class CLIDbManager:
         if os.path.isfile(os.path.join(dbpath, "need_recover")):
             return True
         return False
+
+    def backend_unavailable(self, dbpath):
+        """
+        Returns True if the database in dirpath has an unavailable backend
+        """
+        dbid = get_dbid_from_path(dbpath)
+        return self.get_backend_name_from_dbid(dbid) == UNAVAILABLE
 
     def remove_database(self, dbname, user=None):
         """

@@ -41,7 +41,7 @@ from ..plug import BasePluginManager
 from ..const import PLUGINS_DIR, USER_PLUGINS
 from ..constfunc import win, get_env_var
 from ..config import config
-from .dbconst import DBLOGNAME, DBLOCKFN
+from .dbconst import DBLOGNAME, DBLOCKFN, DBBACKEND
 
 #-------------------------------------------------------------------------
 #
@@ -109,13 +109,7 @@ def lookup_family_tree(dbname):
             if dbname == name:
                 locked = False
                 locked_by = None
-                backend = None
-                fname = os.path.join(dirpath, "database.txt")
-                if os.path.isfile(fname):
-                    with open(fname, 'r', encoding='utf8') as ifile:
-                        backend = ifile.read().strip()
-                else:
-                    backend = "bsddb"
+                backend = get_dbid_from_path(dirpath)
                 try:
                     fname = os.path.join(dirpath, "lock")
                     with open(fname, 'r', encoding='utf8') as ifile:
@@ -125,6 +119,17 @@ def lookup_family_tree(dbname):
                     pass
                 return (dirpath, locked, locked_by, backend)
     return None
+
+def get_dbid_from_path(dirpath):
+    """
+    Return a database backend from a directory path.
+    """
+    dbid = "bsddb"
+    dbid_path = os.path.join(dirpath, DBBACKEND)
+    if os.path.isfile(dbid_path):
+        with open(dbid_path) as file:
+            dbid = file.read().strip()
+    return dbid
 
 def import_as_dict(filename, user, skp_imp_adds=True):
     """
