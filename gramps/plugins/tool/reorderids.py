@@ -42,7 +42,7 @@ from gi.repository import Gtk, Gdk
 #------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+_ = glocale.translation.sgettext
 
 from gramps.gen.config import config
 from gramps.gen.db import DbTxn
