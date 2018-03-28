@@ -554,6 +554,9 @@ class ArgHandler:
         if self.dbman.needs_recovery(dbpath):
             self.__error(_("Database needs recovery, cannot open it!"))
             return False
+        if self.dbman.backend_unavailable(dbpath):
+            self.__error(_("Database backend unavailable, cannot open it!"))
+            return False
         return True
 
     #-------------------------------------------------------------------------
