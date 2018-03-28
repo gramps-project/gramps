@@ -318,12 +318,6 @@ class BaseSelector(ManagedWindow):
             self.model.reverse_order()
         self.build_tree()
 
-        handle = self.first_selected()
-        if handle:
-            path = self.model.on_get_path(handle)
-            self.selection.select_path(path)
-            self.tree.scroll_to_cell(path, None, 1, 0.5, 0)
-
         return True
 
     def show_toggle(self, obj):
