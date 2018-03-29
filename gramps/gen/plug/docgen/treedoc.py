@@ -461,7 +461,8 @@ class TreeDocBase(BaseDoc, TreeDoc):
             if os.path.isfile(path):
                 if win():
                     path = path.replace('\\', '/')
-                self.write(level+1, 'image = {%s},\n' % path)
+                self.write(level+1, 'image = {{%s}%s},\n' %
+                           os.path.splitext(path))
                 break # first image only
         self.write(level, '}\n')
 
