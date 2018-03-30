@@ -33662,7 +33662,7 @@ msgid ""
 "Generate low level database errors\n"
 "Correction needs database reload"
 msgstr ""
-"Generiere Datenbankfehler auf niedriger Ebene \ n"
+"Generiere Datenbankfehler auf niedriger Ebene \n"
 "Die Korrektur erfordert das erneute Laden der Datenbank"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:290
