@@ -529,8 +529,8 @@ class WebCalReport(Report):
                 # each year will link to current month.
                 # this will always need an extension added
                 month = int(self.today.get_month())
-                month = month.lower()
                 full_month_name = self.rlocale.date_displayer.long_months[month]
+                full_month_name = full_month_name.lower()
 
                 # Note. We use '/' here because it is a URL, not a OS dependent
                 # pathname.
@@ -1880,6 +1880,10 @@ class WebCalOptions(MenuReportOptions):
         """
         Handles the ability to print multiple year calendars or not?
         """
+        mgobn = lambda name: self.menu.get_option_by_name(name)
+        self.__multiyear = mgobn('multiyear')
+        self.__start_year = mgobn('start_year')
+        self.__end_year = mgobn('end_year')
 
         if self.__start_year:
             self.__start_year.set_available(True)
