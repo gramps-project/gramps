@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-25 19:18+0300\n"
-"PO-Revision-Date: 2018-03-25 19:33+0300\n"
+"POT-Creation-Date: 2018-04-01 11:31+0300\n"
+"PO-Revision-Date: 2018-04-01 11:34+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -13058,9 +13058,8 @@ msgstr "Muuta arkistoa"
 msgid "Add Repository"
 msgstr "Lisää arkisto"
 
-# WIKI_HELP_SEC osa2
 #: ../gramps/gui/editors/editrepository.py:60
-msgid "manual|New_Repositories_dialog"
+msgid "manual|New_Repository_dialog"
 msgstr "Uusi_arkisto_ikkuna"
 
 #: ../gramps/gui/editors/editrepository.py:92
@@ -19898,7 +19897,7 @@ msgstr "Kaavion tyyppi"
 
 #: ../gramps/plugins/drawreport/fanchart.py:697
 msgid "full circle"
-msgstr "täysi ympyrä"
+msgstr "ympyrä"
 
 #: ../gramps/plugins/drawreport/fanchart.py:698
 msgid "half circle"
@@ -19910,7 +19909,7 @@ msgstr "neljännesympyrä"
 
 #: ../gramps/plugins/drawreport/fanchart.py:700
 msgid "The form of the graph: full circle, half circle, or quarter circle."
-msgstr "Kaavion muoto: täysi-, puoli- tai neljännesympyrä."
+msgstr "Kaavion muoto: ympyrä, puoli- tai neljännesympyrä."
 
 #: ../gramps/plugins/drawreport/fanchart.py:706
 msgid "generation dependent"
@@ -20043,7 +20042,7 @@ msgstr "Avioitumisikä"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:369
 msgid "Age at death"
-msgstr "Ikä kuollessa"
+msgstr "Kuolinikä"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:373
 msgid "Event type"
@@ -22307,7 +22306,7 @@ msgstr ""
 "on mahdollista jokaisessa näkymässä lisäämällä siihen ao. sivupalkki tai "
 "alapalkki ja napsauttamalla niitä hiiren oikealla.\n"
 "\n"
-"Työkalupalkissa on asutusten määritysikoni, jota napsauttamalla hiiren "
+"Työkalupalkissa on asetusten määritysikoni, jota napsauttamalla hiiren "
 "vasemmalla pääsee lisäämään sarakkeita ja taustaa hiiren oikealla "
 "napsauttamalla lisäämään grampleteja. Ominaisuudet-painiketta raahaamalla "
 "voit muuttaa grampletin paikkaa ja jopa vetää sen muualle grampletin "
@@ -33012,7 +33011,7 @@ msgstr "Yksivärinen"
 #: ../gramps/plugins/view/fanchartdescview.py:308
 #: ../gramps/plugins/view/fanchartview.py:304
 msgid "Time period based gradient"
-msgstr "Ajanjaksoista rakennettu liukukuvaaja (gradientti)"
+msgstr "Ajanjaksoista rakennettu liukukuvaaja"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:312
 #: ../gramps/plugins/view/fanchartdescview.py:309
@@ -33115,7 +33114,7 @@ msgstr "Viuhkakaavio"
 #: ../gramps/plugins/view/fanchartdescview.py:336
 #: ../gramps/plugins/view/fanchartview.py:329
 msgid "Full Circle"
-msgstr "Täysi ympyrä"
+msgstr "Ympyrä"
 
 #: ../gramps/plugins/view/fanchartdescview.py:337
 #: ../gramps/plugins/view/fanchartview.py:329
@@ -36606,6 +36605,10 @@ msgid ""
 msgstr ""
 "Kaikki tutkimuksesi pidetään juuri niin hallittuna, haettavissa ja tarkkana "
 "kuin sinulle on tarpeen."
+
+# WIKI_HELP_SEC osa2
+#~ msgid "manual|New_Repositories_dialog"
+#~ msgstr "Uusi_arkisto_ikkuna"
 
 #~ msgid ""
 #~ "Conveys the submitter's quantitative evaluation of the credibility of a "
