@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps50\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-26 11:24+0300\n"
-"PO-Revision-Date: 2018-03-26 11:29+0300\n"
+"POT-Creation-Date: 2018-04-03 08:20+0300\n"
+"PO-Revision-Date: 2018-04-03 08:26+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -9818,11 +9818,11 @@ msgstr "Этот текст будет добавлен в древо."
 msgid "The size of note text."
 msgstr "Размер шрифта для комментариев."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:652
+#: ../gramps/gen/plug/docgen/treedoc.py:653
 msgid "PDF"
 msgstr "PDF"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:658
+#: ../gramps/gen/plug/docgen/treedoc.py:659
 msgid "LaTeX File"
 msgstr "Файл LaTeX"
 
@@ -14187,8 +14187,8 @@ msgid "Add Repository"
 msgstr "Добавить хранилище"
 
 #: ../gramps/gui/editors/editrepository.py:60
-msgid "manual|New_Repositories_dialog"
-msgstr "Новые_хранилища"
+msgid "manual|New_Repository_dialog"
+msgstr "Диалог_создания_хранилища"
 
 #: ../gramps/gui/editors/editrepository.py:92
 msgid "Edit Repository"
