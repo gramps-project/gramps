@@ -288,6 +288,7 @@ class GeoPlaces(GeoGraphyView):
         longitude = ""
         self.nbmarkers = 0
         self.nbplaces = 0
+        self.remove_all_markers()
         self.message_layer.clear_messages()
         self.message_layer.clear_font_attributes()
         self.kml_layer.clear()
@@ -363,6 +364,8 @@ class GeoPlaces(GeoGraphyView):
                 self._create_one_place(place)
                 progress.step()
             progress.close()
+            # reset completely the filter. It will be recreated next time.
+            self.generic_filter = None
         elif place_x != None:
             place = dbstate.db.get_place_from_handle(place_x)
             self._create_one_place(place)
