@@ -142,6 +142,8 @@ class BasePersonView(ListView):
             'family-update'  : self.object_build,
             'family-add'     : self.object_build,
             'family-delete'  : self.object_build,
+            'event-update'   : self.object_build,
+            'place-update'   : self.object_build,
             }
 
         ListView.__init__(
