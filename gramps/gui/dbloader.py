@@ -567,7 +567,8 @@ class GrampsImportFileDialog(ManagedWindow):
     def do_import(self, importer, filename):
         self.import_info = None
         self._begin_progress()
-        self.uistate.window.set_sensitive(False)
+        self.uistate.set_sensitive(False)
+        self.uistate.viewmanager.enable_menu(False)
 
         try:
             #an importer can return an object with info, object.info_text()
@@ -587,7 +588,8 @@ class GrampsImportFileDialog(ManagedWindow):
                 parent=self.uistate.window)
         except Exception:
             _LOG.error("Failed to import database.", exc_info=True)
-        self.uistate.window.set_sensitive(True)
+        self.uistate.set_sensitive(True)
+        self.uistate.viewmanager.enable_menu(True)
         self._end_progress()
 
     def build_menu_names(self, obj): # this is meaningless since it's modal
