@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-01 11:31+0300\n"
-"PO-Revision-Date: 2018-04-01 11:34+0300\n"
+"POT-Creation-Date: 2018-04-12 08:55+0300\n"
+"PO-Revision-Date: 2018-04-12 08:59+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -70,11 +70,11 @@ msgid "OK to overwrite?"
 msgstr "Onko korvaaminen OK?"
 
 #: ../gramps/cli/arghandler.py:296 ../gramps/cli/arghandler.py:297
-#: ../gramps/cli/clidbman.py:430
+#: ../gramps/cli/clidbman.py:429
 msgid "yes"
 msgstr "kyllä"
 
-#: ../gramps/cli/arghandler.py:296 ../gramps/cli/clidbman.py:430
+#: ../gramps/cli/arghandler.py:296 ../gramps/cli/clidbman.py:429
 msgid "no"
 msgstr "ei"
 
@@ -97,7 +97,7 @@ msgstr "Tietokantapolussasi olevien sukupuiden luettelo\n"
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
 msgstr "%(full_DB_path)s nimeltään \"%(f_t_name)s\""
 
-#: ../gramps/cli/arghandler.py:430 ../gramps/cli/clidbman.py:192
+#: ../gramps/cli/arghandler.py:430 ../gramps/cli/clidbman.py:188
 msgid "Gramps Family Trees:"
 msgstr "Gramps Sukupuut:"
 
@@ -111,7 +111,7 @@ msgstr "Gramps Sukupuut:"
 #: ../gramps/cli/arghandler.py:436 ../gramps/cli/arghandler.py:438
 #: ../gramps/cli/arghandler.py:443 ../gramps/cli/arghandler.py:444
 #: ../gramps/cli/arghandler.py:446 ../gramps/cli/clidbman.py:69
-#: ../gramps/cli/clidbman.py:173 ../gramps/cli/clidbman.py:201
+#: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
 #: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1574
 msgid "Family Tree"
 msgstr "Sukupuu"
@@ -176,24 +176,28 @@ msgstr "  Tiedot: %s"
 msgid "Database needs recovery, cannot open it!"
 msgstr "Tietokanta pitää palauttaa (recovery), sitä ei voi avata!"
 
-#: ../gramps/cli/arghandler.py:606 ../gramps/cli/arghandler.py:655
-#: ../gramps/cli/arghandler.py:702
+#: ../gramps/cli/arghandler.py:558
+msgid "Database backend unavailable, cannot open it!"
+msgstr "Tietokannan taustaosa ei ole käytettävissä, sitä ei voi avata!"
+
+#: ../gramps/cli/arghandler.py:609 ../gramps/cli/arghandler.py:658
+#: ../gramps/cli/arghandler.py:705
 msgid "Ignoring invalid options string."
 msgstr "Virheellinen merkkijono valinta ohitetaan."
 
 #. name exists, but is not in the list of valid report names
-#: ../gramps/cli/arghandler.py:630
+#: ../gramps/cli/arghandler.py:633
 msgid "Unknown report name."
 msgstr "Raportin nimi tuntematon."
 
-#: ../gramps/cli/arghandler.py:632
+#: ../gramps/cli/arghandler.py:635
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
 "Raportin nimeä ei annettu. Käytä jotain näistä %(donottranslate)s=reportname"
 
-#: ../gramps/cli/arghandler.py:636 ../gramps/cli/arghandler.py:684
-#: ../gramps/cli/arghandler.py:718
+#: ../gramps/cli/arghandler.py:639 ../gramps/cli/arghandler.py:687
+#: ../gramps/cli/arghandler.py:721
 #, python-format
 msgid ""
 "%s\n"
@@ -202,26 +206,26 @@ msgstr ""
 "%s\n"
 " Saatavilla olevat nimet ovat:"
 
-#: ../gramps/cli/arghandler.py:678
+#: ../gramps/cli/arghandler.py:681
 msgid "Unknown tool name."
 msgstr "Työkalun nimi tuntematon."
 
-#: ../gramps/cli/arghandler.py:680
+#: ../gramps/cli/arghandler.py:683
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
 "Työkalun nimi puuttuu. Käytä jotain näistä %(donottranslate)s=toolname."
 
-#: ../gramps/cli/arghandler.py:712
+#: ../gramps/cli/arghandler.py:715
 msgid "Unknown book name."
 msgstr "Tuntematon kirjan nimi."
 
-#: ../gramps/cli/arghandler.py:714
+#: ../gramps/cli/arghandler.py:717
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr "Kirjan nimi puuttuu. Käytä jotain näistä %(donottranslate)s=bookname."
 
-#: ../gramps/cli/arghandler.py:723
+#: ../gramps/cli/arghandler.py:726
 #, python-format
 msgid "Unknown action: %s."
 msgstr "Toimenpide tuntematon: %s."
@@ -485,6 +489,12 @@ msgstr ""
 "Käyttääksesi komentorivitilaa anna ainakin yksi syöttötiedosto "
 "käsiteltäväksi."
 
+#: ../gramps/cli/clidbman.py:72 ../gramps/cli/clidbman.py:166
+#: ../gramps/cli/clidbman.py:168 ../gramps/gui/clipboard.py:188
+#: ../gramps/gui/clipboard.py:189 ../gramps/gui/plug/_windows.py:496
+msgid "Unavailable"
+msgstr "Ei saatavilla"
+
 #: ../gramps/cli/clidbman.py:83
 #, python-format
 msgid ""
@@ -494,13 +504,7 @@ msgstr ""
 "VIRHE: %(title)s \n"
 "       %(message)s"
 
-#: ../gramps/cli/clidbman.py:170 ../gramps/cli/clidbman.py:172
-#: ../gramps/gui/clipboard.py:188 ../gramps/gui/clipboard.py:189
-#: ../gramps/gui/plug/_windows.py:496
-msgid "Unavailable"
-msgstr "Ei saatavilla"
-
-#: ../gramps/cli/clidbman.py:174 ../gramps/gen/lib/media.py:143
+#: ../gramps/cli/clidbman.py:170 ../gramps/gen/lib/media.py:143
 #: ../gramps/gen/lib/url.py:94
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:66
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:90
@@ -510,17 +514,110 @@ msgstr "Ei saatavilla"
 msgid "Path"
 msgstr "Polku"
 
-#: ../gramps/cli/clidbman.py:175 ../gramps/gen/plug/_pluginreg.py:90
+#: ../gramps/cli/clidbman.py:171 ../gramps/gen/plug/_pluginreg.py:90
 msgid "Database"
 msgstr "Tietokanta"
 
-#: ../gramps/cli/clidbman.py:176 ../gramps/gui/dbman.py:401
+#: ../gramps/cli/clidbman.py:172 ../gramps/gui/dbman.py:411
 msgid "Last accessed"
 msgstr "Käytetty viimeksi"
 
-#: ../gramps/cli/clidbman.py:177
+#: ../gramps/cli/clidbman.py:173
 msgid "Locked?"
 msgstr "Lukittu?"
+
+#: ../gramps/cli/clidbman.py:197
+#, python-format
+msgid "Family Tree \"%s\":"
+msgstr "Sukupuu \"%s\":"
+
+#. translators: needed for French, ignore otherwise
+#. translators: for French, else ignore
+#. translators: needed for French, ignore otherwise
+#: ../gramps/cli/clidbman.py:201 ../gramps/gen/plug/report/utils.py:160
+#: ../gramps/gui/editors/editattribute.py:135
+#: ../gramps/gui/editors/editname.py:310 ../gramps/gui/plug/_windows.py:685
+#: ../gramps/gui/plug/_windows.py:1116
+#: ../gramps/plugins/gramplet/whatsnext.py:493
+#: ../gramps/plugins/textreport/detancestralreport.py:471
+#: ../gramps/plugins/textreport/detdescendantreport.py:503
+#: ../gramps/plugins/textreport/familygroup.py:140
+#: ../gramps/plugins/textreport/familygroup.py:306
+#: ../gramps/plugins/textreport/indivcomplete.py:916
+#: ../gramps/plugins/textreport/indivcomplete.py:956
+#: ../gramps/plugins/textreport/indivcomplete.py:1027
+#: ../gramps/plugins/textreport/placereport.py:185
+#: ../gramps/plugins/webreport/basepage.py:700
+#: ../gramps/plugins/webreport/basepage.py:2194
+#: ../gramps/plugins/webreport/basepage.py:2239
+#, python-format
+msgid "%(str1)s: %(str2)s"
+msgstr "%(str1)s, %(str2)s"
+
+#: ../gramps/cli/clidbman.py:274
+#, python-format
+msgid "Starting Import, %s"
+msgstr "Aloitetaan tuonti, %s"
+
+#: ../gramps/cli/clidbman.py:280
+msgid "Import finished..."
+msgstr "Tuonti valmis..."
+
+#. Create a new database
+#: ../gramps/cli/clidbman.py:366 ../gramps/plugins/importer/importcsv.py:343
+msgid "Importing data..."
+msgstr "Tuodaan tietoja..."
+
+#: ../gramps/cli/clidbman.py:425
+msgid "Remove family tree warning"
+msgstr "Poista sukupuu varoitus"
+
+#: ../gramps/cli/clidbman.py:426
+#, python-format
+msgid ""
+"Are you sure you want to remove the family tree named\n"
+"\"%s\"?"
+msgstr ""
+"Oletko varma, että haluat poistaa sukupuun nimeltä\n"
+"\"%s\"?"
+
+#: ../gramps/cli/clidbman.py:436 ../gramps/gui/dbman.py:739
+msgid "Could not delete Family Tree"
+msgstr "Sukupuun poisto epäonnistui"
+
+#: ../gramps/cli/clidbman.py:450
+msgid "Could not rename Family Tree"
+msgstr "Sukupuun nimeäminen epäonnistui"
+
+#: ../gramps/cli/clidbman.py:483
+#, python-format
+msgid ""
+"\n"
+"ERROR: Wrong database path in Edit Menu->Preferences.\n"
+"Open preferences and set correct database path.\n"
+"\n"
+"Details: Could not make database directory:\n"
+"    %s\n"
+"\n"
+msgstr ""
+"\n"
+"VIRHE: Väärä tietokantapolku valinnassa Muokkaa->Asetukset.\n"
+"Avaa asetukset ja aseta oikea polku.\n"
+"\n"
+"Yksityiskohta: Tietokannan hakemiston luonti ei onnistunut:\n"
+"    %s\n"
+"\n"
+
+#: ../gramps/cli/clidbman.py:535 ../gramps/gui/configure.py:1415
+#: ../gramps/gui/configure.py:1562
+msgid "Never"
+msgstr "Ei koskaan"
+
+#. feature request 2356: avoid genitive form
+#: ../gramps/cli/clidbman.py:551
+#, python-format
+msgid "Locked by %s"
+msgstr "Lukittu %s toimesta"
 
 #. allow deferred translation of attribute UI strings
 #. Pro-Gen has a text field for the date.
@@ -534,19 +631,18 @@ msgstr "Lukittu?"
 #. dd-mm-00 (does this mean we do not know about the year?)
 #. This function tries to parse the text and create a proper Gramps Date()
 #. object. If all else fails we create a MOD_TEXTONLY Date() object.
-#: ../gramps/cli/clidbman.py:186 ../gramps/cli/clidbman.py:554
-#: ../gramps/gen/lib/attrtype.py:62 ../gramps/gen/lib/childreftype.py:73
-#: ../gramps/gen/lib/eventroletype.py:52 ../gramps/gen/lib/eventtype.py:162
-#: ../gramps/gen/lib/familyreltype.py:50 ../gramps/gen/lib/grampstype.py:34
-#: ../gramps/gen/lib/nameorigintype.py:73 ../gramps/gen/lib/nametype.py:46
-#: ../gramps/gen/lib/notetype.py:73 ../gramps/gen/lib/placetype.py:63
-#: ../gramps/gen/lib/repotype.py:52 ../gramps/gen/lib/srcattrtype.py:43
-#: ../gramps/gen/lib/srcmediatype.py:56 ../gramps/gen/lib/urltype.py:47
-#: ../gramps/gen/utils/lds.py:80 ../gramps/gen/utils/lds.py:86
-#: ../gramps/gen/utils/unknown.py:119 ../gramps/gen/utils/unknown.py:120
-#: ../gramps/gen/utils/unknown.py:122 ../gramps/gen/utils/unknown.py:126
-#: ../gramps/gen/utils/unknown.py:132 ../gramps/gen/utils/unknown.py:137
-#: ../gramps/gui/clipboard.py:185
+#: ../gramps/cli/clidbman.py:553 ../gramps/gen/lib/attrtype.py:62
+#: ../gramps/gen/lib/childreftype.py:73 ../gramps/gen/lib/eventroletype.py:52
+#: ../gramps/gen/lib/eventtype.py:162 ../gramps/gen/lib/familyreltype.py:50
+#: ../gramps/gen/lib/grampstype.py:34 ../gramps/gen/lib/nameorigintype.py:73
+#: ../gramps/gen/lib/nametype.py:46 ../gramps/gen/lib/notetype.py:73
+#: ../gramps/gen/lib/placetype.py:63 ../gramps/gen/lib/repotype.py:52
+#: ../gramps/gen/lib/srcattrtype.py:43 ../gramps/gen/lib/srcmediatype.py:56
+#: ../gramps/gen/lib/urltype.py:47 ../gramps/gen/utils/lds.py:80
+#: ../gramps/gen/utils/lds.py:86 ../gramps/gen/utils/unknown.py:119
+#: ../gramps/gen/utils/unknown.py:120 ../gramps/gen/utils/unknown.py:122
+#: ../gramps/gen/utils/unknown.py:126 ../gramps/gen/utils/unknown.py:132
+#: ../gramps/gen/utils/unknown.py:137 ../gramps/gui/clipboard.py:185
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:125
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:143
 #: ../gramps/gui/editors/editmedia.py:178
@@ -601,7 +697,7 @@ msgstr "Lukittu?"
 #: ../gramps/plugins/view/geofamily.py:467
 #: ../gramps/plugins/view/geomoves.py:596
 #: ../gramps/plugins/view/geoperson.py:477
-#: ../gramps/plugins/view/geoplaces.py:528
+#: ../gramps/plugins/view/geoplaces.py:531
 #: ../gramps/plugins/view/relview.py:460 ../gramps/plugins/view/relview.py:995
 #: ../gramps/plugins/view/relview.py:1050
 #: ../gramps/plugins/webreport/basepage.py:1759
@@ -613,99 +709,6 @@ msgstr "Lukittu?"
 #: ../gramps/plugins/webreport/basepage.py:2395
 msgid "Unknown"
 msgstr "Tuntematon"
-
-#: ../gramps/cli/clidbman.py:201
-#, python-format
-msgid "Family Tree \"%s\":"
-msgstr "Sukupuu \"%s\":"
-
-#. translators: needed for French, ignore otherwise
-#. translators: for French, else ignore
-#. translators: needed for French, ignore otherwise
-#: ../gramps/cli/clidbman.py:205 ../gramps/gen/plug/report/utils.py:160
-#: ../gramps/gui/editors/editattribute.py:135
-#: ../gramps/gui/editors/editname.py:310 ../gramps/gui/plug/_windows.py:685
-#: ../gramps/gui/plug/_windows.py:1116
-#: ../gramps/plugins/gramplet/whatsnext.py:493
-#: ../gramps/plugins/textreport/detancestralreport.py:471
-#: ../gramps/plugins/textreport/detdescendantreport.py:503
-#: ../gramps/plugins/textreport/familygroup.py:140
-#: ../gramps/plugins/textreport/familygroup.py:306
-#: ../gramps/plugins/textreport/indivcomplete.py:916
-#: ../gramps/plugins/textreport/indivcomplete.py:956
-#: ../gramps/plugins/textreport/indivcomplete.py:1027
-#: ../gramps/plugins/textreport/placereport.py:185
-#: ../gramps/plugins/webreport/basepage.py:700
-#: ../gramps/plugins/webreport/basepage.py:2194
-#: ../gramps/plugins/webreport/basepage.py:2239
-#, python-format
-msgid "%(str1)s: %(str2)s"
-msgstr "%(str1)s, %(str2)s"
-
-#: ../gramps/cli/clidbman.py:282
-#, python-format
-msgid "Starting Import, %s"
-msgstr "Aloitetaan tuonti, %s"
-
-#: ../gramps/cli/clidbman.py:288
-msgid "Import finished..."
-msgstr "Tuonti valmis..."
-
-#. Create a new database
-#: ../gramps/cli/clidbman.py:374 ../gramps/plugins/importer/importcsv.py:343
-msgid "Importing data..."
-msgstr "Tuodaan tietoja..."
-
-#: ../gramps/cli/clidbman.py:426
-msgid "Remove family tree warning"
-msgstr "Poista sukupuu varoitus"
-
-#: ../gramps/cli/clidbman.py:427
-#, python-format
-msgid ""
-"Are you sure you want to remove the family tree named\n"
-"\"%s\"?"
-msgstr ""
-"Oletko varma, että haluat poistaa sukupuun nimeltä\n"
-"\"%s\"?"
-
-#: ../gramps/cli/clidbman.py:437 ../gramps/gui/dbman.py:729
-msgid "Could not delete Family Tree"
-msgstr "Sukupuun poisto epäonnistui"
-
-#: ../gramps/cli/clidbman.py:451
-msgid "Could not rename Family Tree"
-msgstr "Sukupuun nimeäminen epäonnistui"
-
-#: ../gramps/cli/clidbman.py:484
-#, python-format
-msgid ""
-"\n"
-"ERROR: Wrong database path in Edit Menu->Preferences.\n"
-"Open preferences and set correct database path.\n"
-"\n"
-"Details: Could not make database directory:\n"
-"    %s\n"
-"\n"
-msgstr ""
-"\n"
-"VIRHE: Väärä tietokantapolku valinnassa Muokkaa->Asetukset.\n"
-"Avaa asetukset ja aseta oikea polku.\n"
-"\n"
-"Yksityiskohta: Tietokannan hakemiston luonti ei onnistunut:\n"
-"    %s\n"
-"\n"
-
-#: ../gramps/cli/clidbman.py:536 ../gramps/gui/configure.py:1415
-#: ../gramps/gui/configure.py:1562
-msgid "Never"
-msgstr "Ei koskaan"
-
-#. feature request 2356: avoid genitive form
-#: ../gramps/cli/clidbman.py:552
-#, python-format
-msgid "Locked by %s"
-msgstr "Lukittu %s toimesta"
 
 #: ../gramps/cli/grampscli.py:85
 #, python-format
@@ -5535,7 +5538,7 @@ msgstr "Päivämäärä"
 #: ../gramps/gen/lib/placetype.py:71
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:72
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:54
-#: ../gramps/plugins/view/geoplaces.py:537
+#: ../gramps/plugins/view/geoplaces.py:540
 #: ../gramps/plugins/view/repoview.py:89
 #: ../gramps/plugins/webreport/basepage.py:1109
 #: ../gramps/plugins/webreport/basepage.py:2546
@@ -5547,7 +5550,7 @@ msgstr "Katu"
 #: ../gramps/gen/lib/placetype.py:70 ../gramps/gui/configure.py:538
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:73
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:55
-#: ../gramps/plugins/view/geoplaces.py:534
+#: ../gramps/plugins/view/geoplaces.py:537
 #: ../gramps/plugins/view/repoview.py:90
 #: ../gramps/plugins/webreport/basepage.py:1110
 #: ../gramps/plugins/webreport/basepage.py:2547
@@ -5559,7 +5562,7 @@ msgstr "Taajama"
 #: ../gramps/gen/lib/placetype.py:68 ../gramps/gui/configure.py:539
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:74
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
-#: ../gramps/plugins/view/geoplaces.py:585
+#: ../gramps/plugins/view/geoplaces.py:588
 #: ../gramps/plugins/view/repoview.py:91
 #: ../gramps/plugins/webreport/basepage.py:1111
 #: ../gramps/plugins/webreport/basepage.py:2548
@@ -5572,7 +5575,7 @@ msgstr "Paikkakunta"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:57
 #: ../gramps/gui/views/treemodels/placemodel.py:305
 #: ../gramps/plugins/lib/maps/placeselection.py:137
-#: ../gramps/plugins/view/geoplaces.py:567
+#: ../gramps/plugins/view/geoplaces.py:570
 #: ../gramps/plugins/webreport/basepage.py:1113
 #: ../gramps/plugins/webreport/basepage.py:2551
 #: ../gramps/plugins/webreport/basepage.py:2615
@@ -5584,7 +5587,7 @@ msgstr "Maakunta"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:58
 #: ../gramps/gui/views/treemodels/placemodel.py:305
 #: ../gramps/plugins/lib/maps/placeselection.py:136
-#: ../gramps/plugins/view/geoplaces.py:564
+#: ../gramps/plugins/view/geoplaces.py:567
 msgid "State"
 msgstr "Lääni tai Osavaltio"
 
@@ -5594,7 +5597,7 @@ msgstr "Lääni tai Osavaltio"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:59
 #: ../gramps/gui/views/treemodels/placemodel.py:305
 #: ../gramps/plugins/lib/maps/placeselection.py:135
-#: ../gramps/plugins/view/geoplaces.py:561
+#: ../gramps/plugins/view/geoplaces.py:564
 #: ../gramps/plugins/view/repoview.py:93
 #: ../gramps/plugins/webreport/basepage.py:1115
 #: ../gramps/plugins/webreport/basepage.py:2555
@@ -5647,7 +5650,7 @@ msgstr "Arvo"
 #: ../gramps/gen/lib/srcmediatype.py:57 ../gramps/gen/lib/urltype.py:48
 #: ../gramps/gui/autocomp.py:179
 #: ../gramps/plugins/textreport/indivcomplete.py:74
-#: ../gramps/plugins/view/geoplaces.py:531
+#: ../gramps/plugins/view/geoplaces.py:534
 msgid "Custom"
 msgstr "Käyttäjän antama"
 
@@ -6758,7 +6761,7 @@ msgid "LDS ordinances"
 msgstr "MAP-lisätietoja"
 
 #: ../gramps/gen/lib/familyreltype.py:47
-#: ../gramps/plugins/webreport/webcal.py:2040
+#: ../gramps/plugins/webreport/webcal.py:2044
 msgid "Married"
 msgstr "Avioliitto"
 
@@ -6930,7 +6933,7 @@ msgstr "Temppeli"
 
 #. icon_column = Gtk.TreeViewColumn(_('Status'), render,
 #. icon_name=ICON_COL)
-#: ../gramps/gen/lib/ldsord.py:192 ../gramps/gui/dbman.py:385
+#: ../gramps/gen/lib/ldsord.py:192 ../gramps/gui/dbman.py:395
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../gramps/gui/plug/_windows.py:127 ../gramps/gui/plug/_windows.py:184
@@ -6948,7 +6951,7 @@ msgid "Location"
 msgstr "Sijainti"
 
 #: ../gramps/gen/lib/location.py:107 ../gramps/gen/lib/placetype.py:69
-#: ../gramps/plugins/view/geoplaces.py:582
+#: ../gramps/plugins/view/geoplaces.py:585
 msgid "Parish"
 msgstr "Seurakunta"
 
@@ -6974,7 +6977,7 @@ msgid "Media ref"
 msgstr "Median viite"
 
 #: ../gramps/gen/lib/mediaref.py:110 ../gramps/gen/lib/placetype.py:73
-#: ../gramps/plugins/view/geoplaces.py:573
+#: ../gramps/plugins/view/geoplaces.py:576
 msgid "Region"
 msgstr "Seutu"
 
@@ -7530,52 +7533,52 @@ msgstr "Kieli"
 msgid "Place ref"
 msgstr "Paikkaviite"
 
-#: ../gramps/gen/lib/placetype.py:72 ../gramps/plugins/view/geoplaces.py:570
+#: ../gramps/gen/lib/placetype.py:72 ../gramps/plugins/view/geoplaces.py:573
 msgid "Province"
 msgstr "Provinssi"
 
-#: ../gramps/gen/lib/placetype.py:74 ../gramps/plugins/view/geoplaces.py:576
+#: ../gramps/gen/lib/placetype.py:74 ../gramps/plugins/view/geoplaces.py:579
 msgid "Department"
 msgstr "Virasto"
 
-#: ../gramps/gen/lib/placetype.py:75 ../gramps/plugins/view/geoplaces.py:540
+#: ../gramps/gen/lib/placetype.py:75 ../gramps/plugins/view/geoplaces.py:543
 msgid "Neighborhood"
 msgstr "Kulmakunta"
 
-#: ../gramps/gen/lib/placetype.py:76 ../gramps/plugins/view/geoplaces.py:579
+#: ../gramps/gen/lib/placetype.py:76 ../gramps/plugins/view/geoplaces.py:582
 msgid "District"
 msgstr "Piirikunta"
 
-#: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:543
+#: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:546
 msgid "Borough"
 msgstr "Kaupunginosa"
 
-#: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:591
+#: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:594
 msgid "Municipality"
 msgstr "Kunta"
 
-#: ../gramps/gen/lib/placetype.py:79 ../gramps/plugins/view/geoplaces.py:588
+#: ../gramps/gen/lib/placetype.py:79 ../gramps/plugins/view/geoplaces.py:591
 msgid "Town"
 msgstr "Kaupunki"
 
-#: ../gramps/gen/lib/placetype.py:80 ../gramps/plugins/view/geoplaces.py:546
+#: ../gramps/gen/lib/placetype.py:80 ../gramps/plugins/view/geoplaces.py:549
 msgid "Village"
 msgstr "Kylä"
 
-#: ../gramps/gen/lib/placetype.py:81 ../gramps/plugins/view/geoplaces.py:549
+#: ../gramps/gen/lib/placetype.py:81 ../gramps/plugins/view/geoplaces.py:552
 msgid "Hamlet"
 msgstr "Taloryhmä tai Osakylä"
 
-#: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:552
+#: ../gramps/gen/lib/placetype.py:82 ../gramps/plugins/view/geoplaces.py:555
 msgid "Farm"
 msgstr "Tila tai Talo"
 
-#: ../gramps/gen/lib/placetype.py:83 ../gramps/plugins/view/geoplaces.py:555
+#: ../gramps/gen/lib/placetype.py:83 ../gramps/plugins/view/geoplaces.py:558
 msgid "Building"
 msgstr "Rakennus tai Torppa"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:89
-#: ../gramps/plugins/view/geoplaces.py:558
+#: ../gramps/plugins/view/geoplaces.py:561
 #: ../gramps/plugins/webreport/basepage.py:2671
 #: ../gramps/plugins/webreport/source.py:163
 msgid "Number"
@@ -8705,11 +8708,11 @@ msgstr "Tämä teksti lisätään sukupuuhun."
 msgid "The size of note text."
 msgstr "Tekstin koko lisätiedolle."
 
-#: ../gramps/gen/plug/docgen/treedoc.py:652
+#: ../gramps/gen/plug/docgen/treedoc.py:653
 msgid "PDF"
 msgstr "PDF"
 
-#: ../gramps/gen/plug/docgen/treedoc.py:658
+#: ../gramps/gen/plug/docgen/treedoc.py:659
 msgid "LaTeX File"
 msgstr "LaTeX tiedosto"
 
@@ -10993,20 +10996,20 @@ msgstr "Asetus"
 msgid "Family Trees"
 msgstr "Sukupuut"
 
-#: ../gramps/gui/dbman.py:372
+#: ../gramps/gui/dbman.py:382
 msgid "Family Tree name"
 msgstr "Sukupuun nimi"
 
-#: ../gramps/gui/dbman.py:392
+#: ../gramps/gui/dbman.py:402
 msgid "Database Type"
 msgstr "Tietokannan tyyppi"
 
-#: ../gramps/gui/dbman.py:499
+#: ../gramps/gui/dbman.py:509
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Rikotaanko sukupuun '%s' lukitus?"
 
-#: ../gramps/gui/dbman.py:500
+#: ../gramps/gui/dbman.py:510
 msgid ""
 "Gramps believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -11018,15 +11021,15 @@ msgstr ""
 "sukupuuta ollaan muokkaamassa jossain muussa (Gramps) ohjelmassa ja rikot "
 "lukon, sukupuu vahingoittuu."
 
-#: ../gramps/gui/dbman.py:506
+#: ../gramps/gui/dbman.py:516
 msgid "Break lock"
 msgstr "Riko lukko"
 
-#: ../gramps/gui/dbman.py:598
+#: ../gramps/gui/dbman.py:608
 msgid "Rename failed"
 msgstr "Uudelleen nimeäminen epäonnistui"
 
-#: ../gramps/gui/dbman.py:599
+#: ../gramps/gui/dbman.py:609
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -11037,54 +11040,54 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dbman.py:617
+#: ../gramps/gui/dbman.py:627
 msgid "Could not rename the Family Tree."
 msgstr "Sukupuun uudelleen nimeäminen epäonnistui."
 
-#: ../gramps/gui/dbman.py:618
+#: ../gramps/gui/dbman.py:628
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Sukupuu on jo olemassa, valitse toinen nimi."
 
-#: ../gramps/gui/dbman.py:665
+#: ../gramps/gui/dbman.py:675
 msgid "Extracting archive..."
 msgstr "Puretaan arkistoa..."
 
-#: ../gramps/gui/dbman.py:670
+#: ../gramps/gui/dbman.py:680
 msgid "Importing archive..."
 msgstr "Tuodaan arkistoa..."
 
-#: ../gramps/gui/dbman.py:686
+#: ../gramps/gui/dbman.py:696
 #, python-format
 msgid "Remove the '%s' Family Tree?"
 msgstr "Poista sukupuu '%s'?"
 
-#: ../gramps/gui/dbman.py:687
+#: ../gramps/gui/dbman.py:697
 msgid "Removing this Family Tree will permanently destroy the data."
 msgstr "Tämän sukupuun poisto tuhoaa tiedot pysyvästi."
 
-#: ../gramps/gui/dbman.py:689
+#: ../gramps/gui/dbman.py:699
 msgid "Remove Family Tree"
 msgstr "Poista sukupuu"
 
-#: ../gramps/gui/dbman.py:694
+#: ../gramps/gui/dbman.py:704
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Poista '%(database)s' tietokannan versio '%(revision)s'"
 
-#: ../gramps/gui/dbman.py:698
+#: ../gramps/gui/dbman.py:708
 msgid ""
 "Removing this version will prevent you from extracting it in the future."
 msgstr "Tämän version poisto estää sen palauttamisen tulevaisuudessa."
 
-#: ../gramps/gui/dbman.py:700
+#: ../gramps/gui/dbman.py:710
 msgid "Remove version"
 msgstr "Poista versio"
 
-#: ../gramps/gui/dbman.py:755
+#: ../gramps/gui/dbman.py:765
 msgid "Deletion failed"
 msgstr "Poisto epäonnistui"
 
-#: ../gramps/gui/dbman.py:756
+#: ../gramps/gui/dbman.py:766
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -11095,57 +11098,57 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dbman.py:774
+#: ../gramps/gui/dbman.py:784
 #, python-format
 msgid "Convert the '%s' database?"
 msgstr "Muunnetaanko '%s' tietokanta?"
 
-#: ../gramps/gui/dbman.py:775
+#: ../gramps/gui/dbman.py:785
 #, python-format
 msgid ""
 "Do you wish to convert this family tree into a %(database_type)s database?"
 msgstr "Haluatko muuttaa tämän sukupuun %(database_type)s tietokannaksi?"
 
-#: ../gramps/gui/dbman.py:777
+#: ../gramps/gui/dbman.py:787
 msgid "Convert"
 msgstr "Muunna"
 
-#: ../gramps/gui/dbman.py:787
+#: ../gramps/gui/dbman.py:797
 #, python-format
 msgid "Opening the '%s' database"
 msgstr "Avaa '%s' tietokanta"
 
-#: ../gramps/gui/dbman.py:788
+#: ../gramps/gui/dbman.py:798
 msgid "An attempt to convert the database failed. Perhaps it needs updating."
 msgstr "Tietokannan muuntaminen epäonnistui. Ehkä se on päivitettävä."
 
-#: ../gramps/gui/dbman.py:799 ../gramps/gui/dbman.py:825
+#: ../gramps/gui/dbman.py:809 ../gramps/gui/dbman.py:835
 #, python-format
 msgid "Converting the '%s' database"
 msgstr "Muunnetaa '%s' tietokanta"
 
-#: ../gramps/gui/dbman.py:800
+#: ../gramps/gui/dbman.py:810
 msgid "An attempt to export the database failed."
 msgstr "Tietokannan vieminen epäonnistui."
 
-#: ../gramps/gui/dbman.py:804
+#: ../gramps/gui/dbman.py:814
 msgid "Converting data..."
 msgstr "Muunnetaan tiedot..."
 
-#: ../gramps/gui/dbman.py:809 ../gramps/gui/dbman.py:812
+#: ../gramps/gui/dbman.py:819 ../gramps/gui/dbman.py:822
 #, python-format
 msgid "(Converted #%d)"
 msgstr "(Muunnettu #%d)"
 
-#: ../gramps/gui/dbman.py:826
+#: ../gramps/gui/dbman.py:836
 msgid "An attempt to import into the database failed."
 msgstr "Tuonti tietokantaan epäonnistui."
 
-#: ../gramps/gui/dbman.py:883
+#: ../gramps/gui/dbman.py:893
 msgid "Repair Family Tree?"
 msgstr "Korjataanko sukupuu?"
 
-#: ../gramps/gui/dbman.py:884
+#: ../gramps/gui/dbman.py:894
 #, python-format
 msgid ""
 "If you click %(bold_start)sProceed%(bold_end)s, Gramps will attempt to "
@@ -11193,31 +11196,31 @@ msgstr ""
 "korjauspainikkeen pois päältä poistamalla tiedoston %(recover_file)s "
 "sukupuun hakemistosta."
 
-#: ../gramps/gui/dbman.py:915
+#: ../gramps/gui/dbman.py:925
 msgid "Proceed, I have taken a backup"
 msgstr "Jatka, olen ottanut varmuuskopion"
 
-#: ../gramps/gui/dbman.py:916
+#: ../gramps/gui/dbman.py:926
 msgid "Stop"
 msgstr "_Keskeytä"
 
-#: ../gramps/gui/dbman.py:935
+#: ../gramps/gui/dbman.py:945
 msgid "Rebuilding database from backup files"
 msgstr "Uudelleen rakenna tietokanta varmennustiedostoista"
 
-#: ../gramps/gui/dbman.py:940
+#: ../gramps/gui/dbman.py:950
 msgid "Error restoring backup data"
 msgstr "Virhe varmuuskopion palautuksessa"
 
-#: ../gramps/gui/dbman.py:979
+#: ../gramps/gui/dbman.py:989
 msgid "Could not create Family Tree"
 msgstr "Sukupuun luonti epäonnistui"
 
-#: ../gramps/gui/dbman.py:1100
+#: ../gramps/gui/dbman.py:1110
 msgid "Retrieve failed"
 msgstr "Palautus epäonnistui"
 
-#: ../gramps/gui/dbman.py:1101
+#: ../gramps/gui/dbman.py:1111
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -11228,11 +11231,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dbman.py:1140 ../gramps/gui/dbman.py:1166
+#: ../gramps/gui/dbman.py:1150 ../gramps/gui/dbman.py:1176
 msgid "Archiving failed"
 msgstr "Arkistointi epäonnistui"
 
-#: ../gramps/gui/dbman.py:1141
+#: ../gramps/gui/dbman.py:1151
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -11243,15 +11246,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../gramps/gui/dbman.py:1146
+#: ../gramps/gui/dbman.py:1156
 msgid "Creating data to be archived..."
 msgstr "Luodaan arkistoitavia tietoja..."
 
-#: ../gramps/gui/dbman.py:1155
+#: ../gramps/gui/dbman.py:1165
 msgid "Saving archive..."
 msgstr "Tallennetaan arkistoa..."
 
-#: ../gramps/gui/dbman.py:1167
+#: ../gramps/gui/dbman.py:1177
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -11275,44 +11278,48 @@ msgstr ""
 "Älä yritä väkisin sulkea tätä tärkeää ikkunaa.\n"
 "Valitse sen sijaan jokin esitetyistä vaihtoehdoista"
 
-#: ../gramps/gui/displaystate.py:383
+#: ../gramps/gui/displaystate.py:268
+msgid "Cannot load database"
+msgstr "Tietokantaa ei voi ladata"
+
+#: ../gramps/gui/displaystate.py:388
 #: ../gramps/plugins/gramplet/persondetails.py:173
 msgid "No active person"
 msgstr "Ei aktiivista henkilöä"
 
-#: ../gramps/gui/displaystate.py:384
+#: ../gramps/gui/displaystate.py:389
 msgid "No active family"
 msgstr "Ei aktiivista perhettä"
 
-#: ../gramps/gui/displaystate.py:385
+#: ../gramps/gui/displaystate.py:390
 msgid "No active event"
 msgstr "Ei aktiivista tapahtumaa"
 
-#: ../gramps/gui/displaystate.py:386
+#: ../gramps/gui/displaystate.py:391
 msgid "No active place"
 msgstr "Aktiivista paikkaa ei ole asetettu"
 
-#: ../gramps/gui/displaystate.py:387
+#: ../gramps/gui/displaystate.py:392
 msgid "No active source"
 msgstr "Aktiivista lähdettä ei ole asetettu"
 
-#: ../gramps/gui/displaystate.py:388
+#: ../gramps/gui/displaystate.py:393
 msgid "No active citation"
 msgstr "Aktiivista lainausta ei ole asetettu"
 
-#: ../gramps/gui/displaystate.py:389
+#: ../gramps/gui/displaystate.py:394
 msgid "No active repository"
 msgstr "Aktiivista arkistoa ei ole asetettu"
 
-#: ../gramps/gui/displaystate.py:390
+#: ../gramps/gui/displaystate.py:395
 msgid "No active media"
 msgstr "Aktiivista mediatiedostoa ei ole asetettu"
 
-#: ../gramps/gui/displaystate.py:391
+#: ../gramps/gui/displaystate.py:396
 msgid "No active note"
 msgstr "Aktiivista lisätietoa ei ole asetettu"
 
-#: ../gramps/gui/displaystate.py:622
+#: ../gramps/gui/displaystate.py:627
 msgid "No active object"
 msgstr "Ei aktiivista kohdetta"
 
@@ -12938,8 +12945,8 @@ msgstr ""
 
 #: ../gramps/gui/editors/editplace.py:217
 #: ../gramps/plugins/lib/maps/geography.py:924
-#: ../gramps/plugins/view/geoplaces.py:432
-#: ../gramps/plugins/view/geoplaces.py:458
+#: ../gramps/plugins/view/geoplaces.py:435
+#: ../gramps/plugins/view/geoplaces.py:461
 msgid "Edit Place"
 msgstr "Muokkaa paikkaa"
 
@@ -18842,48 +18849,48 @@ msgstr ""
 msgid "Could not open %s"
 msgstr "Tiedoston %s avaus epäonnistui"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:341
+#: ../gramps/plugins/docgen/svgdrawdoc.py:348
 msgid "SVG background color"
 msgstr "SVG taustaväri"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:343
+#: ../gramps/plugins/docgen/svgdrawdoc.py:350
 msgid "transparent background"
 msgstr "läpinäkyvä tausta"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:344
+#: ../gramps/plugins/docgen/svgdrawdoc.py:351
 #: ../gramps/plugins/drawreport/fanchart.py:705
 msgid "white"
 msgstr "valkoinen"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:345
+#: ../gramps/plugins/docgen/svgdrawdoc.py:352
 msgid "black"
 msgstr "musta"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:346
+#: ../gramps/plugins/docgen/svgdrawdoc.py:353
 msgid "red"
 msgstr "punainen"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:347
+#: ../gramps/plugins/docgen/svgdrawdoc.py:354
 msgid "green"
 msgstr "vihreä"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:348
+#: ../gramps/plugins/docgen/svgdrawdoc.py:355
 msgid "blue"
 msgstr "sininen"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:349
+#: ../gramps/plugins/docgen/svgdrawdoc.py:356
 msgid "cyan"
 msgstr "sinivihreä"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:350
+#: ../gramps/plugins/docgen/svgdrawdoc.py:357
 msgid "magenta"
 msgstr "magenta"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:351
+#: ../gramps/plugins/docgen/svgdrawdoc.py:358
 msgid "yellow"
 msgstr "keltainen"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:352
+#: ../gramps/plugins/docgen/svgdrawdoc.py:359
 msgid "The color, if any, of the SVG background"
 msgstr "Skaalautuvan vektorigrafiikan taustaväri, jos olemassa"
 
@@ -24578,7 +24585,7 @@ msgid "She was born on %(birth_date)s."
 msgstr "Hän syntyi %(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:125
-#: ../gramps/plugins/webreport/webcal.py:2024
+#: ../gramps/plugins/webreport/webcal.py:2028
 #, python-format
 msgid "Born %(birth_date)s."
 msgstr "Syntyi %(birth_date)s."
@@ -24932,7 +24939,7 @@ msgstr "Kuoli %(death_date)s, ikä %(age)s."
 #. latin cross for html code
 #: ../gramps/plugins/lib/libnarrate.py:283
 #: ../gramps/plugins/lib/libnarrate.py:316
-#: ../gramps/plugins/webreport/webcal.py:2014
+#: ../gramps/plugins/webreport/webcal.py:2018
 #, python-format
 msgid "Died %(death_date)s."
 msgstr "Kuoli %(death_date)s."
@@ -28142,8 +28149,8 @@ msgstr "GTK versio on liian vanha."
 #: ../gramps/plugins/view/geoperson.py:442
 #: ../gramps/plugins/view/geoperson.py:463
 #: ../gramps/plugins/view/geoperson.py:503
-#: ../gramps/plugins/view/geoplaces.py:437
-#: ../gramps/plugins/view/geoplaces.py:462
+#: ../gramps/plugins/view/geoplaces.py:440
+#: ../gramps/plugins/view/geoplaces.py:465
 msgid "Center on this place"
 msgstr "Keskitä tähän paikkaan"
 
@@ -33239,8 +33246,8 @@ msgstr "Näytä kaikki tapahtumapaikat"
 
 #: ../gramps/plugins/view/geoevents.py:406
 #: ../gramps/plugins/view/geoevents.py:411
-#: ../gramps/plugins/view/geoplaces.py:487
-#: ../gramps/plugins/view/geoplaces.py:492
+#: ../gramps/plugins/view/geoplaces.py:490
+#: ../gramps/plugins/view/geoplaces.py:495
 msgid "Centering on Place"
 msgstr "Keskitä paikkaan"
 
@@ -33507,12 +33514,12 @@ msgstr "Paikat kartalla"
 msgid "GeoPlaces"
 msgstr "Karttapaikat"
 
-#: ../gramps/plugins/view/geoplaces.py:347
-#: ../gramps/plugins/view/geoplaces.py:360
+#: ../gramps/plugins/view/geoplaces.py:348
+#: ../gramps/plugins/view/geoplaces.py:361
 msgid "Selecting all places"
 msgstr "Valitaan kaikki paikat"
 
-#: ../gramps/plugins/view/geoplaces.py:370
+#: ../gramps/plugins/view/geoplaces.py:373
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can change the markers color depending on place type. "
@@ -33522,7 +33529,7 @@ msgstr ""
 "näyttää kaikkien paikkojen tunnetut sijainnit. Voit muuttaa markkerien väriä "
 "paikkatyypeittäin. Voit käyttää suodatusta."
 
-#: ../gramps/plugins/view/geoplaces.py:383
+#: ../gramps/plugins/view/geoplaces.py:386
 msgid ""
 "Right click on the map and select 'show all places' to show all known places "
 "with coordinates. You can use the history to navigate on the map. You can "
@@ -33533,41 +33540,41 @@ msgstr ""
 "haluat navigoida kartalla. Voit muuttaa markkerien väriä paikkatyypeittäin. "
 "Voit käyttää suodatusta."
 
-#: ../gramps/plugins/view/geoplaces.py:398
+#: ../gramps/plugins/view/geoplaces.py:401
 msgid "The place name in the status bar is disabled."
 msgstr "Paikannimi tilapalkissa on poistettu käytöstä."
 
-#: ../gramps/plugins/view/geoplaces.py:403
+#: ../gramps/plugins/view/geoplaces.py:406
 #, python-format
 msgid "The maximum number of places is reached (%d)."
 msgstr "Enin määrä paikkoja saavutettu (%d)."
 
-#: ../gramps/plugins/view/geoplaces.py:406
+#: ../gramps/plugins/view/geoplaces.py:409
 msgid "Some information are missing."
 msgstr "Joitakin tietoja puuttuu."
 
-#: ../gramps/plugins/view/geoplaces.py:408
+#: ../gramps/plugins/view/geoplaces.py:411
 msgid "Please, use filtering to reduce this number."
 msgstr "Tämän luvun pienentämiseksi käytä suodatusta."
 
-#: ../gramps/plugins/view/geoplaces.py:410
+#: ../gramps/plugins/view/geoplaces.py:413
 msgid "You can modify this value in the geography option."
 msgstr "Voit muuttaa tämän arvon karttavalinnoissa."
 
-#: ../gramps/plugins/view/geoplaces.py:412
+#: ../gramps/plugins/view/geoplaces.py:415
 msgid "In this case, it may take time to show all markers."
 msgstr "Tässä tapauksessa kaikkien markkereiden näyttäminen vie aikaa."
 
-#: ../gramps/plugins/view/geoplaces.py:444
-#: ../gramps/plugins/view/geoplaces.py:468
+#: ../gramps/plugins/view/geoplaces.py:447
+#: ../gramps/plugins/view/geoplaces.py:471
 msgid "Bookmark this place"
 msgstr "Kirjanmerkkaa tämä paikka"
 
-#: ../gramps/plugins/view/geoplaces.py:483
+#: ../gramps/plugins/view/geoplaces.py:486
 msgid "Show all places"
 msgstr "Näytä kaikki paikat"
 
-#: ../gramps/plugins/view/geoplaces.py:593
+#: ../gramps/plugins/view/geoplaces.py:596
 msgid "The places marker color"
 msgstr "Paikkojen merkintävärit"
 
@@ -35475,21 +35482,21 @@ msgstr "Linkin etuliite"
 msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr "Etuliite linkeissä joilla siirryt Kertova-nettisivusto raporttiin"
 
-#: ../gramps/plugins/webreport/webcal.py:2025
+#: ../gramps/plugins/webreport/webcal.py:2029
 #, python-format
 msgid "%s old"
 msgstr "%s vanha"
 
-#: ../gramps/plugins/webreport/webcal.py:2036
+#: ../gramps/plugins/webreport/webcal.py:2040
 #, python-format
 msgid "%(couple)s, <em>wedding</em>"
 msgstr "%(couple)s, <em>häät</em>"
 
-#: ../gramps/plugins/webreport/webcal.py:2044
+#: ../gramps/plugins/webreport/webcal.py:2048
 msgid "Until"
 msgstr "päättyi"
 
-#: ../gramps/plugins/webreport/webcal.py:2053
+#: ../gramps/plugins/webreport/webcal.py:2057
 #, python-brace-format
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
