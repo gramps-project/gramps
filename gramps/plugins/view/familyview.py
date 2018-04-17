@@ -108,6 +108,7 @@ class FamilyView(ListView):
             'family-update'  : self.row_update,
             'family-delete'  : self.row_delete,
             'family-rebuild' : self.object_build,
+            'event-update'   : self.object_build,
             }
 
         ListView.__init__(
