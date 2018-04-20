@@ -370,6 +370,7 @@ class OrganizeTagsDialog(ManagedWindow):
         """
         for new_priority, row in enumerate(self.namemodel.model):
             if row[0] != new_priority:
+                row[0] = new_priority
                 tag = self.db.get_tag_from_handle(row[1])
                 if tag:
                     tag.set_priority(new_priority)
@@ -530,6 +531,7 @@ class OrganizeTagsDialog(ManagedWindow):
             pmon.add_op(status)
 
             msg = _('Delete Tag (%s)') % tag_name
+            self.namemodel.remove(iter_)
             with DbTxn(msg, self.db) as trans:
                 for classname, handle in links:
                     status.heartbeat()
@@ -539,7 +541,6 @@ class OrganizeTagsDialog(ManagedWindow):
 
                 self.db.remove_tag(tag_handle, trans)
                 self.__change_tag_priority(trans)
-            self.namemodel.remove(iter_)
             status.end()
 
 #-------------------------------------------------------------------------
