@@ -159,7 +159,7 @@ class CitationTreeView(ListView):
     def change_active(self, handle):
         try:
             self.dbstate.db.get_citation_from_handle(handle)
-            super(CitationTreeView, self).change_active(handle)
+            super().change_active(handle)
         except HandleError:
             # FIXME: See http://www.gramps-project.org/bugs/view.php?id=6352 a
             # more comprehensive solution is needed in the long term. See also
