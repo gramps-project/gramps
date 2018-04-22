@@ -817,6 +817,19 @@ class ListView(NavigationView):
                 self.change_active(handle)
                 break
 
+    def related_update(self, hndl_list):
+        """ Find handles pointing to the view from a related object update;
+        for example if an event update occurs, find person handles referenced
+        by that event. Use this list to perfom row_updates.
+        """
+        nav_type = self.navigation_type()
+        for hndl in hndl_list:
+            hndls = [handl for cl_name, handl in
+                     self.dbstate.db.find_backlink_handles(
+                         hndl, include_classes=[nav_type])]
+        if hndls:
+            self.row_update(hndls)
+
     def _button_press(self, obj, event):
         """
         Called when a mouse is clicked.

@@ -113,6 +113,7 @@ class EventView(ListView):
             'event-update'  : self.row_update,
             'event-delete'  : self.row_delete,
             'event-rebuild' : self.object_build,
+            'place-update'  : self.related_update,
             }
 
         ListView.__init__(
