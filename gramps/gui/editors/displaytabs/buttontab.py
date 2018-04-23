@@ -79,7 +79,8 @@ class ButtonTab(GrampsTab):
 
     def __init__(self, dbstate, uistate, track, name,
                  share_button=False, clone_button=False,
-                 move_buttons=False, jump_button=False, top_label=None):
+                 move_buttons=False, jump_button=False,
+                 top_label=None):
         """
         Similar to the base class, except after Build.
 

@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2018       Alois Poettker
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -71,6 +72,9 @@ WIKI_HELP_SEC = _('manual|New_Event_dialog')
 class EditEvent(EditPrimary):
 
     def __init__(self, dbstate, uistate, track, event, callback=None):
+        """"""
+        self.callback = callback
+        self.action = uistate.action.split('-')[1]
 
         EditPrimary.__init__(self, dbstate, uistate, track,
                              event, dbstate.db.get_event_from_handle,
@@ -86,18 +90,27 @@ class EditEvent(EditPrimary):
         return Event()
 
     def get_menu_title(self):
+        """ compile menu title out of different actions """
         handle = self.obj.get_handle()
+
+        event_action, event_name = '', ''
         if handle:
+            if self.action == 'clone':
+                event_action = _('Clone')
+            if self.action == 'edit':
+                event_action = _('Edit')
+
             who = get_participant_from_event(self.db, handle)
             desc = self.obj.get_description()
-            event_name = self.obj.get_type()
-            if desc:
-                event_name = '%s - %s' % (event_name, desc)
+            event_name = self.obj.get_type().string
             if who:
-                event_name = '%s - %s' % (event_name, who)
-            dialog_title = _('Event: %s')  % event_name
+                event_name = ': %s - %s' % (event_name, who)
+            elif desc:
+                event_name = ': %s - %s' % (event_name, desc)
         else:
-            dialog_title = _('New Event')
+            event_action = _('New')
+
+        dialog_title = _('%s Event%s') % (event_action, event_name)
         return dialog_title
 
     def get_custom_events(self):
@@ -207,10 +220,14 @@ class EditEvent(EditPrimary):
         self._add_tab(notebook, self.attr_list)
 
         handle_list = self.dbstate.db.find_backlink_handles(self.obj.handle)
+        # Additional variables in 'EventBackRefList' injected via 'option'
+        backref_option = {}
+        backref_option['action'] = self.action == 'clone'
         self.backref_list = EventBackRefList(self.dbstate,
                                              self.uistate,
                                              self.track,
-                                             handle_list)
+                                             handle_list,
+                                             option=backref_option)
         self._add_tab(notebook, self.backref_list)
 
         self._setup_notebook_tabs(notebook)
@@ -269,7 +286,11 @@ class EditEvent(EditPrimary):
                        self.db) as trans:
                 self.db.add_event(self.obj, trans)
         else:
-            if self.data_has_changed():
+            if self.action == 'clone':
+                with DbTxn(_("Clone Event"), self.db) as trans:
+                    self.obj.handle = None
+                    self.db.add_event(self.obj, trans)
+            elif self.data_has_changed():
                 with DbTxn(_("Edit Event (%s)") % self.obj.get_gramps_id(),
                            self.db) as trans:
                     if not self.obj.get_gramps_id():
@@ -287,7 +308,6 @@ class EditEvent(EditPrimary):
         entered date when importing from a XML file, so we can get an
         incorrect fail.
         """
-
         if self.db.readonly:
             return False
         elif self.obj.handle:
