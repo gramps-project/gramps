@@ -33,6 +33,7 @@ from abc import abstractmethod
 import pickle
 import time
 import logging
+from collections import deque
 
 LOG = logging.getLogger('.gui.listview')
 
@@ -820,15 +821,29 @@ class ListView(NavigationView):
     def related_update(self, hndl_list):
         """ Find handles pointing to the view from a related object update;
         for example if an event update occurs, find person handles referenced
-        by that event. Use this list to perfom row_updates.
+        by that event. Use the created list to perfom row_updates.
+        Places need a bit more work, as they could be enclosing other places.
+        In addition, for People view the birth/death place name could change.
+        So we recursively check places and events until we find our class
+        object handle to use for updating rows.
         """
         nav_type = self.navigation_type()
-        for hndl in hndl_list:
-            hndls = [handl for cl_name, handl in
-                     self.dbstate.db.find_backlink_handles(
-                         hndl, include_classes=[nav_type])]
-        if hndls:
-            self.row_update(hndls)
+        upd_list = []
+        done = set()
+        queue = deque(hndl_list)
+        while queue:
+            hndl = queue.pop()
+            if hndl in done:  # make sure we aren't in infinite loop
+                continue      # in case places can enclose each other
+            done.add(hndl)
+            for cl_name, handle in self.dbstate.db.find_backlink_handles(hndl):
+                if cl_name == nav_type:
+                    upd_list.append(handle)
+                if (cl_name == 'Place' or cl_name == 'Event' and
+                        nav_type == 'Person'):
+                    queue.append(handle)
+        if upd_list:
+            self.row_update(upd_list)
 
     def _button_press(self, obj, event):
         """
