@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2009       B. Malengier
+# Copyright (C) 2018       Alois Poettker
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,6 +25,8 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
+import copy
+
 from gi.repository import Gtk
 from gi.repository import GObject
 from gi.repository import GLib
@@ -65,6 +68,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         'del'   : _('Remove the selected family event'),
         'edit'  : _('Edit the selected family event or edit person'),
         'share' : _('Share an existing event'),
+        'merge' : _('Merge two existing events'),
         'up'    : _('Move the selected event upwards'),
         'down'  : _('Move the selected event downwards'),
         }
@@ -96,8 +100,33 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         self._data = []
         DbGUIElement.__init__(self, dbstate.db)
         GroupEmbeddedList.__init__(self, dbstate, uistate, track, _('_Events'),
-                              build_model, share_button=True,
+                              build_model, share_button=True, merge_button=True,
                               move_buttons=True, **kwargs)
+
+        # Gtk mode to allow multiple selection of list entries
+        self.selection.set_mode(Gtk.SelectionMode.MULTIPLE)
+
+    def _selection_changed(self, obj=None):
+        """"""
+        self.selected_list = []   # Selection list (eg. multiselection)
+        if self.selection.get_mode() == Gtk.SelectionMode.MULTIPLE:
+            (model, pathlist) = self.selection.get_selected_rows()
+            for path in pathlist:
+                iter_ = model.get_iter(path)
+                if iter_ is not None:
+                    value = model.get_value(iter_, self._HANDLE_COL)   # (Index, EventRef)
+                    handle = value[1].ref if value[1] else None
+                    if not handle in self.selected_list:
+                        self.selected_list.append(handle)   # EventRef handle
+        else:
+            pass
+
+        btn = True if len(self.selected_list) > 0 else False
+        self.edit_btn.set_sensitive(btn)
+        if self.merge_btn:
+            merge_btn = True if len(self.selected_list) > 1 else False
+            self.merge_btn.set_sensitive(merge_btn)
+        self.del_btn.set_sensitive(btn)
 
     def _connect_db_signals(self):
         """
@@ -130,18 +159,25 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         for handle in obj:
             refs = self.get_data()[self._WORKGROUP]
             ref_list = [eref.ref for eref in refs]
+            if handle in ref_list:
+                index = ref_list.index(handle)
+                del refs[index]
+            """
             indexlist = []
             last = 0
-            while True:
+            while True:   # endless loop?
                 try:
                     last = ref_list.index(handle)
                     indexlist.append(last)
                 except ValueError:
                     break
-            #remove the deleted workgroup events from the object
+
+            # remove the deleted workgroup events from the object
             for index in indexlist.reverse():
                 del refs[index]
-        #now rebuild the display tab
+            """
+
+        # now rebuild the display tab
         self.rebuild_callback()
 
     def get_ref_editor(self):
@@ -152,11 +188,17 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         return 'gramps-event'
 
     def get_data(self):
-        #family events
+        if self.reload:
+            # reload obj from DB (may changed, eg. EventMerge)
+            family = self.dbstate.db.get_family_from_gramps_id(self.obj.gramps_id)
+            eventref_list = family.get_event_ref_list()
+            self.obj.event_ref_list = copy.deepcopy(eventref_list)
+
+        # Family events
         if not self._data or self.changed:
             self._data = [self.obj.get_event_ref_list()]
             self._groups = [(self.obj.get_handle(), self._WORKNAME, '')]
-            #father events
+            # Father events
             fhandle = self.obj.get_father_handle()
             if fhandle:
                 fdata = self.dbstate.db.get_person_from_handle(fhandle).\
@@ -164,7 +206,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                 if fdata:
                     self._groups.append((fhandle, self._FATHNAME, ''))
                     self._data.append(fdata)
-            #mother events
+            # Mother events
             mhandle = self.obj.get_mother_handle()
             if mhandle:
                 mdata = self.dbstate.db.get_person_from_handle(mhandle).\
@@ -172,7 +214,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                 if mdata:
                     self._groups.append((mhandle, self._MOTHNAME, ''))
                     self._data.append(mdata)
-            #we register all events that need to be tracked
+            # we register all events that need to be tracked
             for group in self._data:
                 self.callman.register_handles(
                                     {'event': [eref.ref for eref in group]})
@@ -269,7 +311,18 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                               parent=self.uistate.window)
 
     def edit_button_clicked(self, obj):
-        ref = self.get_selected()
+        """
+        Function called with the Edit button is clicked.
+        """
+        # Events can be multiselected!
+        if self.selection.get_mode() == Gtk.SelectionMode.MULTIPLE:
+            (model, pathlist) = self.selection.get_selected_rows()
+            iter_ = model.get_iter(pathlist[0])   # only first object will be edited
+            if iter_ is not None:
+                ref = model.get_value(iter_, self._HANDLE_COL)   # (Index, EventRef)
+        else:
+            ref = self.get_selected()
+
         if ref and ref[1] is not None and ref[0] == self._WORKGROUP:
             event = self.dbstate.db.get_event_from_handle(ref[1].ref)
             try:
@@ -282,9 +335,23 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                               self.__blocked_text(),
                               parent=self.uistate.window)
         elif ref and ref[0] != self._WORKGROUP:
-            #bring up family editor
+            # bring up family editor
             key = self._groups[ref[0]][0]
             self.editnotworkgroup(key)
+
+    def merge_button_clicked(self, obj):
+        """
+        Function called with the Merge button is clicked.
+        """
+        if self.selection.count_selected_rows() == 2:
+            try:
+                self.reload = True
+                from ...merge import MergeEvent
+                MergeEvent(self.dbstate, self.uistate, self.track, \
+                           self.selected_list[0], self.selected_list[1])
+            except WindowActiveError:
+                self.reload = False
+                pass
 
     def object_added(self, reference, primary):
         reference.ref = primary.handle
@@ -414,6 +481,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         @param prebuildpath: path selected before rebuild, None if none
         @type prebuildpath: tree path
         """
+        self.reload = False
         self.tree.expand_all()
         if prebuildpath is not None:
             self.selection.select_path(prebuildpath)

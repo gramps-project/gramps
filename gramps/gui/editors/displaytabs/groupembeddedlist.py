@@ -60,17 +60,21 @@ class GroupEmbeddedList(EmbeddedList):
     _WORKGROUP = 0
 
     def __init__(self, dbstate, uistate, track, name, build_model,
-                 share_button=False, move_buttons=False, jump_button=False, **kwargs):
+                 share_button=False, merge_button=False,
+                 move_buttons=False, jump_button=False, **kwargs):
         """
         Create a new list, using the passed build_model to populate the list.
         """
         self.kwargs = kwargs
-        EmbeddedList.__init__(self,  dbstate, uistate, track, name, build_model,
-                            share_button, move_buttons, jump_button)
-        #connect click on the first column
+        EmbeddedList.__init__(self, dbstate, uistate, track, name, build_model,
+                              share_button, merge_button,
+                              move_buttons, jump_button)
+
+        # connect click on the first column
         self.columns[0].connect('clicked', self.groupcol_click)
         for col in self.columns[1:]:
             col.connect('clicked', self.col_click)
+
         self.dbsort = True
 
     def construct_model(self):
@@ -367,7 +371,15 @@ class GroupEmbeddedList(EmbeddedList):
         return 'format-justify-fill'
 
     def del_button_clicked(self, obj):
-        ref = self.get_selected()
+        # events can be multiselected!
+        if self.selection.get_mode() == Gtk.SelectionMode.MULTIPLE:
+            (model, pathlist) = self.selection.get_selected_rows()
+            iter_ = model.get_iter(pathlist[0])   # only first object will be deleted
+            if iter_ is not None:
+                ref = model.get_value(iter_, self._HANDLE_COL)   # (Index, EventRef)
+        else:
+            ref = self.get_selected()
+
         if ref and ref[1] is not None:
             if ref[0]==self._WORKGROUP:
                 ref_list = self.get_data()[self._WORKGROUP]

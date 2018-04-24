@@ -48,7 +48,6 @@ _ = glocale.translation.gettext
 from ...utils import is_right_click
 from .buttontab import ButtonTab
 
-
 #----------------------------------------------------------------
 #
 # Constants
@@ -76,15 +75,19 @@ class EmbeddedList(ButtonTab):
     _DND_EXTRA  = None
 
     def __init__(self, dbstate, uistate, track, name, build_model,
-                 share_button=False, move_buttons=False, jump_button=False,
+                 share_button=False, merge_button=False,
+                 move_buttons=False, jump_button=False,
                  top_label=None):
         """
         Create a new list, using the passed build_model to populate the list.
         """
-        ButtonTab.__init__(self, dbstate, uistate, track, name, share_button,
-                           move_buttons, jump_button, top_label)
+        ButtonTab.__init__(self, dbstate, uistate, track, name,
+                           share_button, merge_button,
+                           move_buttons, jump_button,
+                           top_label)
 
         self.changed = False
+        self.reload = False
         self.model = None
         self.build_model = build_model
         #renderer for pixbuf
@@ -116,7 +119,7 @@ class EmbeddedList(ButtonTab):
         """
         wx, wy = self.tree.convert_bin_window_to_widget_coords(x, y)
         row = self.tree.get_dest_row_at_pos(wx, wy)
-        if row:
+        if row and self.selection.get_mode() != Gtk.SelectionMode.MULTIPLE:
             self.tree.get_selection().select_path(row[0])
 
     def _on_button_press(self, obj, event):
@@ -142,19 +145,15 @@ class EmbeddedList(ButtonTab):
         An entry is
             ( needs_write_access, title, function)
         """
+        itemlist = [(True, _('_Add'), self.add_button_clicked)]
         if self.share_btn:
-            itemlist = [
-                (True, _('_Add'), self.add_button_clicked),
-                (True,  _('Share'), self.share_button_clicked),
-                (False, _('_Edit'), self.edit_button_clicked),
-                (True, _('_Remove'), self.del_button_clicked),
-                ]
-        else:
-            itemlist = [
-                (True, _('_Add'), self.add_button_clicked),
-                (False, _('_Edit'), self.edit_button_clicked),
-                (True, _('_Remove'), self.del_button_clicked),
-            ]
+            itemlist.append((True,  _('Share'), self.share_button_clicked))
+        itemlist.append((False, _('_Edit'), self.edit_button_clicked))
+        if self.merge_btn:
+            itemlist.append((False, _('_Merge'), self.merge_button_clicked))
+        if self.del_btn:
+            itemlist.append((True, _('_Remove'), self.del_button_clicked))
+
         return itemlist
 
     def get_middle_click(self):
@@ -321,11 +320,12 @@ class EmbeddedList(ButtonTab):
         else :
             dlist = self.get_data()
         del dlist[row_from]
-        dlist.insert(row_from-1, obj)
+        dlist.insert(row_from -1, obj)
         self.changed = True
         self.rebuild()
-        #select the row
-        path = '%d' % (row_from-1)
+        # select the row
+        self.tree.get_selection().unselect_all()
+        path = '%d' % (row_from -1)
         self.tree.get_selection().select_path(path)
         # The height/location of Gtk.treecells is calculated in an idle handler
         # so use idle_add to scroll cell into view.
@@ -341,7 +341,7 @@ class EmbeddedList(ButtonTab):
         else :
             dlist = self.get_data()
         del dlist[row_from]
-        dlist.insert(row_from+1, obj)
+        dlist.insert(row_from +1, obj)
         self.changed = True
         self.rebuild()
         #select the row
@@ -359,7 +359,15 @@ class EmbeddedList(ButtonTab):
         return 'format-justify-fill'
 
     def del_button_clicked(self, obj):
-        ref = self.get_selected()
+        # Events can be multiselected!
+        if self.selection.get_mode() == Gtk.SelectionMode.MULTIPLE:
+            (model, pathlist) = self.selection.get_selected_rows()
+            iter_ = model.get_iter(pathlist[0])   # only first object will be deleted
+            if iter_ is not None:
+                ref = model.get_value(iter_, self._HANDLE_COL)   # (Index, EventRef)
+        else:
+            ref = self.get_selected()
+
         if ref:
             ref_list = self.get_data()
             ref_list.remove(ref)
@@ -409,9 +417,16 @@ class EmbeddedList(ButtonTab):
         to indicate what the returned value should be. If no selection
         has been made, None is returned.
         """
-        (model, node) = self.selection.get_selected()
+        if self.selection.get_mode() == Gtk.SelectionMode.MULTIPLE:
+            (model, pathlist) = self.selection.get_selected_rows()
+            path = pathlist[0] if len(pathlist) > 0 else None
+            node = model.get_iter(path) if path else None
+        else:
+            (model, node) = self.selection.get_selected()
+
         if node:
             return model.get_value(node, self._HANDLE_COL)
+
         return None
 
     def is_empty(self):
@@ -561,7 +576,14 @@ class EmbeddedList(ButtonTab):
         offset = self.tree.get_visible_rect()
         #during rebuild, don't do _selection_changed
         self.dirty_selection = True
-        (model, node) = self.selection.get_selected()
+
+        if self.selection.get_mode() == Gtk.SelectionMode.MULTIPLE:
+            (model, pathlist) = self.selection.get_selected_rows()
+            path = pathlist[0] if len(pathlist) > 0 else None
+            node = model.get_iter(path) if path else None
+        else:
+            (model, node) = self.selection.get_selected()
+
         selectedpath = None
         if node:
             selectedpath = model.get_path(node)

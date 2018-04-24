@@ -24,6 +24,8 @@
 # python
 #
 #-------------------------------------------------------------------------
+import copy
+
 from gi.repository import GObject
 from gi.repository import GLib
 
@@ -57,16 +59,24 @@ class PersonEventEmbedList(EventEmbedList):
         'del'   : _('Remove the selected personal event'),
         'edit'  : _('Edit the selected personal event or edit family'),
         'share' : _('Share an existing event'),
+        'merge' : _('Merge two existing events'),
         'up'    : _('Move the selected event upwards or change family order'),
         'down'  : _('Move the selected event downwards or change family order'),
         }
 
     def __init__(self, dbstate, uistate, track, obj, **kwargs):
+        """"""
         self.dbstate = dbstate
         EventEmbedList.__init__(self, dbstate, uistate, track, obj,
                                 build_model=EventRefModel, **kwargs)
 
     def get_data(self):
+        if self.reload:
+            # Reload obj/person from DBase (may changed, eg. EventMerge)
+            person = self.dbstate.db.get_person_from_gramps_id(self.obj.gramps_id)
+            eventref_list = person.get_event_ref_list()
+            self.obj.event_ref_list = copy.deepcopy(eventref_list)
+
         if not self._data or self.changed:
             self._data = [self.obj.get_event_ref_list()]
             self._groups = [(self.obj.get_handle(), self._WORKNAME, '')]
