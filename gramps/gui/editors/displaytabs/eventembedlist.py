@@ -124,7 +124,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         btn = True if len(self.selected_list) > 0 else False
         self.edit_btn.set_sensitive(btn)
         if self.merge_btn:
-            merge_btn = True if len(self.selected_list) > 1 else False
+            merge_btn = True if len(self.selected_list) == 2 else False
             self.merge_btn.set_sensitive(merge_btn)
         self.del_btn.set_sensitive(btn)
 

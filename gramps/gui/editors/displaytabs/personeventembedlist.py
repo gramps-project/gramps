@@ -80,7 +80,7 @@ class PersonEventEmbedList(EventEmbedList):
         if not self._data or self.changed:
             self._data = [self.obj.get_event_ref_list()]
             self._groups = [(self.obj.get_handle(), self._WORKNAME, '')]
-            # own family events
+            # own Family events
             family_handle_list = self.obj.get_family_handle_list()
             if family_handle_list:
                 for family_handle in family_handle_list:
@@ -89,7 +89,7 @@ class PersonEventEmbedList(EventEmbedList):
                         continue
                     father_handle = family.get_father_handle()
                     mother_handle = family.get_mother_handle()
-                    if self.obj.get_handle()  == father_handle:
+                    if self.obj.get_handle() == father_handle:
                         handlepartner = mother_handle
                     else:
                         handlepartner = father_handle
