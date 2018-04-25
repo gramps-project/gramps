@@ -121,7 +121,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         else:
             pass
 
-        btn = True if len(self.selected_list) > 0 else False
+        btn = True if len(self.selected_list) == 1 else False
         self.edit_btn.set_sensitive(btn)
         if self.merge_btn:
             merge_btn = True if len(self.selected_list) == 2 else False
@@ -189,7 +189,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
 
     def get_data(self):
         if self.reload:
-            # reload obj from DB (may changed, eg. EventMerge)
+            # reload obj/family from DB (may changed, eg. EventMerge)
             family = self.dbstate.db.get_family_from_gramps_id(self.obj.gramps_id)
             eventref_list = family.get_event_ref_list()
             self.obj.event_ref_list = copy.deepcopy(eventref_list)
@@ -314,14 +314,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         """
         Function called with the Edit button is clicked.
         """
-        # Events can be multiselected!
-        if self.selection.get_mode() == Gtk.SelectionMode.MULTIPLE:
-            (model, pathlist) = self.selection.get_selected_rows()
-            iter_ = model.get_iter(pathlist[0])   # only first object will be edited
-            if iter_ is not None:
-                ref = model.get_value(iter_, self._HANDLE_COL)   # (Index, EventRef)
-        else:
-            ref = self.get_selected()
+        ref = self.get_selected()
 
         if ref and ref[1] is not None and ref[0] == self._WORKGROUP:
             event = self.dbstate.db.get_event_from_handle(ref[1].ref)
@@ -343,14 +336,14 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         """
         Function called with the Merge button is clicked.
         """
-        if self.selection.count_selected_rows() == 2:
+        if len(self.selected_list) == 2:
             try:
                 self.reload = True
+                self.merge_active = True
                 from ...merge import MergeEvent
                 MergeEvent(self.dbstate, self.uistate, self.track, \
                            self.selected_list[0], self.selected_list[1])
             except WindowActiveError:
-                self.reload = False
                 pass
 
     def object_added(self, reference, primary):

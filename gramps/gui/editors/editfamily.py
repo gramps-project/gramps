@@ -432,6 +432,11 @@ class EditFamily(EditPrimary):
             from db.
         2. Changes in other families are of no consequence to the family shown
         """
+        #no warning messages due to a regular:
+        if self.event_list.merge_active:   # EventMerge
+            self.event_list.merge_active = False
+            return
+
         if self.obj.get_handle() in handles:
             #rebuild data
             ## Todo: Gallery and note tab are not rebuild ??
@@ -704,7 +709,6 @@ class EditFamily(EditPrimary):
                                          self.track,
                                          self.obj,
                                          start_date=self.get_start_date())
-
         self._add_tab(notebook, self.event_list)
         self.track_ref_for_deletion("event_list")
 

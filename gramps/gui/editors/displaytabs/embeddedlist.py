@@ -359,14 +359,7 @@ class EmbeddedList(ButtonTab):
         return 'format-justify-fill'
 
     def del_button_clicked(self, obj):
-        # Events can be multiselected!
-        if self.selection.get_mode() == Gtk.SelectionMode.MULTIPLE:
-            (model, pathlist) = self.selection.get_selected_rows()
-            iter_ = model.get_iter(pathlist[0])   # only first object will be deleted
-            if iter_ is not None:
-                ref = model.get_value(iter_, self._HANDLE_COL)   # (Index, EventRef)
-        else:
-            ref = self.get_selected()
+        ref = self.get_selected()
 
         if ref:
             ref_list = self.get_data()

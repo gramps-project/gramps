@@ -301,15 +301,19 @@ class GroupEmbeddedList(EmbeddedList):
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 2
         """
         if row_from[0] == self._WORKGROUP:
-            if selmethod :
+            if selmethod:
                 dlist = selmethod()
-            else :
+            else:
                 dlist = self.get_data()[self._WORKGROUP]
             del dlist[row_from[1]]
             dlist.insert(row_from[1]-1, obj)
+
+            # rebuild the model
             self.changed = True
             self.rebuild()
-            #select the row
+
+            # select the row
+            self.tree.get_selection().unselect_all()
             path = (self._WORKGROUP, row_from[1]-1)
             self.tree.get_selection().select_path(path)
             GLib.idle_add(self.tree.scroll_to_cell, path)
@@ -334,15 +338,19 @@ class GroupEmbeddedList(EmbeddedList):
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 1
         """
         if row_from[0] == self._WORKGROUP:
-            if selmethod :
+            if selmethod:
                 dlist = selmethod()
-            else :
+            else:
                 dlist = self.get_data()[self._WORKGROUP]
             del dlist[row_from[1]]
             dlist.insert(row_from[1]+1, obj)
+
+            # rebuild the model
             self.changed = True
             self.rebuild()
-            #select the row
+
+            # select the row
+            self.tree.get_selection().unselect_all()
             path = (self._WORKGROUP, row_from[1]+1)
             self.tree.get_selection().select_path(path)
             GLib.idle_add(self.tree.scroll_to_cell, path)
@@ -371,14 +379,7 @@ class GroupEmbeddedList(EmbeddedList):
         return 'format-justify-fill'
 
     def del_button_clicked(self, obj):
-        # Events can be multiselected!
-        if self.selection.get_mode() == Gtk.SelectionMode.MULTIPLE:
-            (model, pathlist) = self.selection.get_selected_rows()
-            iter_ = model.get_iter(pathlist[0])   # only first object will be deleted
-            if iter_ is not None:
-                ref = model.get_value(iter_, self._HANDLE_COL)   # (Index, EventRef)
-        else:
-            ref = self.get_selected()
+        ref = self.get_selected()
 
         if ref and ref[1] is not None:
             if ref[0]==self._WORKGROUP:
