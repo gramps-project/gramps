@@ -87,6 +87,7 @@ class EmbeddedList(ButtonTab):
                            move_buttons, jump_button,
                            top_label)
 
+        self.action = ''
         self.changed = False
         self.model = None
         self.build_model = build_model
@@ -145,27 +146,15 @@ class EmbeddedList(ButtonTab):
         An entry is
             ( needs_write_access, title, function)
         """
+        itemlist = [(True, _('_Add'), self.add_button_clicked)]
+        if self.share_btn:
+            itemlist.append((True,  _('Share'), self.share_button_clicked))
+        itemlist.append((False, _('_Edit'), self.edit_button_clicked))
         if self.clone_btn:
-            itemlist = [
-                (True, _('_Add'), self.add_button_clicked),
-                (True,  _('Share'), self.share_button_clicked),
-                (False, _('_Edit'), self.edit_button_clicked),
-                (False, _('_Clone'), self.clone_button_clicked),
-                (True, _('_Remove'), self.del_button_clicked),
-                ]
-        elif self.share_btn:
-            itemlist = [
-                (True, _('_Add'), self.add_button_clicked),
-                (True,  _('Share'), self.share_button_clicked),
-                (False, _('_Edit'), self.edit_button_clicked),
-                (True, _('_Remove'), self.del_button_clicked),
-                ]
-        else:
-            itemlist = [
-                (True, _('_Add'), self.add_button_clicked),
-                (False, _('_Edit'), self.edit_button_clicked),
-                (True, _('_Remove'), self.del_button_clicked),
-            ]
+            itemlist.append((False, _('Clone'), self.clone_button_clicked))
+        if self.del_btn:
+            itemlist.append((True, _('_Remove'), self.del_button_clicked))
+
         return itemlist
 
     def get_middle_click(self):

@@ -289,7 +289,10 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             self.editnotworkgroup(key)
 
     def clone_button_clicked(self, obj):
-        'Function called with the Clone button is clicked.'
+        """
+        Function called with the Clone button is clicked.
+        """
+        self.action = ''   # Reset event action
         source_ref = self.get_selected()
         if source_ref and \
            source_ref[1] is not None \
@@ -303,6 +306,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                 event.set_gramps_id(self.dbstate.db.find_next_event_gramps_id())
                 event.set_handle(None)
 
+                self.action = 'Event-Clone'
                 self.get_ref_editor()(
                     self.dbstate, self.uistate, self.track,
                     event, ref, self.object_added)
