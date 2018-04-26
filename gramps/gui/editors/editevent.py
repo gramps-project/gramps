@@ -177,8 +177,7 @@ class EditEvent(EditPrimary):
 
     def _create_tabbed_pages(self):
         """
-        Create the notebook tabs and inserts them into the main
-        window.
+        Create the notebook tabs and inserts them into the main window.
         """
         notebook = Gtk.Notebook()
 

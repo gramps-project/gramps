@@ -291,6 +291,9 @@ class EventView(ListView):
         pass
 
     def edit(self, obj):
+        """
+        Edit the selected events.
+        """
         for handle in self.selected_handles():
             event = self.dbstate.db.get_event_from_handle(handle)
             try:
