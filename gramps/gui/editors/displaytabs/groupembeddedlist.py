@@ -300,13 +300,14 @@ class GroupEmbeddedList(EmbeddedList):
         Move the item a position up in the EmbeddedList.
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 2
         """
+        self.action = ''   # Reset event action
         if row_from[0] == self._WORKGROUP:
             if selmethod:
                 dlist = selmethod()
             else:
                 dlist = self.get_data()[self._WORKGROUP]
             del dlist[row_from[1]]
-            dlist.insert(row_from[1]-1, obj)
+            dlist.insert(row_from[1] -1, obj)
 
             # rebuild the model
             self.changed = True
@@ -314,7 +315,7 @@ class GroupEmbeddedList(EmbeddedList):
 
             # select the row
             self.tree.get_selection().unselect_all()
-            path = (self._WORKGROUP, row_from[1]-1)
+            path = (self._WORKGROUP, row_from[1] -1)
             self.tree.get_selection().select_path(path)
             GLib.idle_add(self.tree.scroll_to_cell, path)
         else:
@@ -337,13 +338,14 @@ class GroupEmbeddedList(EmbeddedList):
         Move the item a position down in the EmbeddedList.
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 1
         """
+        self.action = ''   # Reset event action
         if row_from[0] == self._WORKGROUP:
             if selmethod:
                 dlist = selmethod()
             else:
                 dlist = self.get_data()[self._WORKGROUP]
             del dlist[row_from[1]]
-            dlist.insert(row_from[1]+1, obj)
+            dlist.insert(row_from[1] +1, obj)
 
             # rebuild the model
             self.changed = True
@@ -351,7 +353,7 @@ class GroupEmbeddedList(EmbeddedList):
 
             # select the row
             self.tree.get_selection().unselect_all()
-            path = (self._WORKGROUP, row_from[1]+1)
+            path = (self._WORKGROUP, row_from[1] +1)
             self.tree.get_selection().select_path(path)
             GLib.idle_add(self.tree.scroll_to_cell, path)
         else:

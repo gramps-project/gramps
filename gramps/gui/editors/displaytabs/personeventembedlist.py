@@ -36,7 +36,8 @@ from gi.repository import GLib
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.lib import EventRoleType, EventType
+from gramps.gen.db import DbTxn
+from gramps.gen.lib import EventRoleType, EventType, EventRef
 from gramps.gen.display.name import displayer as name_displayer
 from .eventembedlist import EventEmbedList
 from .eventrefmodel import EventRefModel
@@ -196,3 +197,54 @@ class PersonEventEmbedList(EventEmbedList):
         path = (index + 2,)
         self.tree.get_selection().select_path(path)
         GLib.idle_add(self.tree.scroll_to_cell, path)
+
+    def merge_button_clicked(self, obj):
+        """
+        Method called with the Merge button is clicked.
+        Overrides merge_button_clicked method from eventembedlist.py
+        """
+        self.action = ''   # Reset event action
+        if len(self.selected_list) == 2:
+            try:
+                person = self.dbstate.db.get_person_from_gramps_id(self.obj.gramps_id)
+                if person:
+                    event_ref_list = [event_ref.ref for event_ref in person.event_ref_list]
+
+                    # Checks if event 1 is stored in DB. Note: if not, will be!
+                    selected0_ref = self.selected_list[0][1].ref
+                    if selected0_ref not in event_ref_list:
+                        event_ref = EventRef()
+                        event_ref.ref = selected0_ref
+                        event_ref.role = EventRoleType.PRIMARY
+                        person.add_event_ref(event_ref)
+                        with DbTxn(_("Edit Person (%s)") % person.gramps_id,
+                                   self.dbstate.db) as trans:
+                            self.dbstate.db.commit_person(person, trans)
+
+                    # Checks if event 2 is stored in DB. Note: if not, will be!
+                    selected1_ref = self.selected_list[1][1].ref
+                    if selected1_ref not in event_ref_list:
+                        event_ref = EventRef()
+                        event_ref.ref = selected1_ref
+                        event_ref.role = EventRoleType.PRIMARY
+                        person.add_event_ref(event_ref)
+                        with DbTxn(_("Edit Person (%s)") % person.gramps_id,
+                                   self.dbstate.db) as trans:
+                            self.dbstate.db.commit_person(person, trans)
+
+                    self.reload = True
+                    self.action = 'Event-Merge'
+                    from ...merge import MergeEvent
+                    MergeEvent(self.dbstate, self.uistate, self.track, \
+                               selected0_ref, selected1_ref)
+                else:
+                    from ...dialog import WarningDialog
+                    WarningDialog(
+                        _("Cannot merge this references"),
+                        _("This events cannot be merged at this time. "
+                          "The person is not saved in database.\n\nTo merge this event "
+                          "references, you need to press the OK button first."),
+                        parent=self.uistate.window)
+
+            except WindowActiveError:
+                pass

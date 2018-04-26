@@ -38,6 +38,7 @@ from gi.repository import GLib
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gen.db import DbTxn
 from gramps.gen.lib import Event, EventRef, EventRoleType, EventType
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
@@ -107,24 +108,26 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         self.selection.set_mode(Gtk.SelectionMode.MULTIPLE)
 
     def _selection_changed(self, obj=None):
-        """"""
+        """
+        Picks the actual selected rows.
+        Manage the sensitivity of several buttons to avoid warning messages.
+        """
         self.selected_list = []   # Selection list (eg. multiselection)
         if self.selection.get_mode() == Gtk.SelectionMode.MULTIPLE:
             (model, pathlist) = self.selection.get_selected_rows()
             for path in pathlist:
-                iter_ = model.get_iter(path)
+                iter_ = model.get_iter(path)   # group number in person/family editor
                 if iter_ is not None:
                     value = model.get_value(iter_, self._HANDLE_COL)   # (Index, EventRef)
-                    handle = value[1].ref if value[1] else None
-                    if not handle in self.selected_list:
-                        self.selected_list.append(handle)   # EventRef handle
+                    self.selected_list.append(value)   # EventRef handle
         else:
             pass
 
         btn = True if len(self.selected_list) == 1 else False
         self.edit_btn.set_sensitive(btn)
         if self.merge_btn:
-            merge_btn = True if len(self.selected_list) == 2 else False
+            merge_list = [item for item in self.selected_list if item[0] == 0]
+            merge_btn = True if len(merge_list) == 2 else False
             self.merge_btn.set_sensitive(merge_btn)
         self.del_btn.set_sensitive(btn)
 
@@ -214,6 +217,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                 if mdata:
                     self._groups.append((mhandle, self._MOTHNAME, ''))
                     self._data.append(mdata)
+
             # we register all events that need to be tracked
             for group in self._data:
                 self.callman.register_handles(
@@ -271,11 +275,14 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         return EventRoleType(EventRoleType.FAMILY)
 
     def add_button_clicked(self, obj):
+        self.action = ''   # Reset event action
         try:
             ref = EventRef()
             event = Event()
             ref.set_role(self.default_role())
             event.set_type(self.default_type())
+
+            self.action = 'Event-Add'
             self.get_ref_editor()(
                 self.dbstate, self.uistate, self.track,
                 event, ref, self.object_added)
@@ -293,6 +300,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                     "reference, you need to close the event.")
 
     def share_button_clicked(self, obj):
+        self.action = ''   # Reset event action
         SelectEvent = SelectorFactory('Event')
 
         sel = SelectEvent(self.dbstate, self.uistate, self.track)
@@ -301,6 +309,8 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             try:
                 ref = EventRef()
                 ref.set_role(self.default_role())
+
+                self.action = 'Event-Share'
                 self.get_ref_editor()(
                     self.dbstate, self.uistate, self.track,
                     event, ref, self.object_added)
@@ -311,14 +321,12 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                               parent=self.uistate.window)
 
     def edit_button_clicked(self, obj):
-        """
-        Function called with the Edit button is clicked.
-        """
+        self.action = ''   # Reset event action
         ref = self.get_selected()
-
         if ref and ref[1] is not None and ref[0] == self._WORKGROUP:
             event = self.dbstate.db.get_event_from_handle(ref[1].ref)
             try:
+                self.action = 'Event-Edit'
                 self.get_ref_editor()(
                     self.dbstate, self.uistate, self.track,
                     event, ref[1], self.object_edited)
@@ -328,21 +336,57 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                               self.__blocked_text(),
                               parent=self.uistate.window)
         elif ref and ref[0] != self._WORKGROUP:
-            # bring up family editor
+            #bring up family editor
             key = self._groups[ref[0]][0]
             self.editnotworkgroup(key)
 
     def merge_button_clicked(self, obj):
         """
-        Function called with the Merge button is clicked.
+        Method called with the Merge button is clicked.
         """
+        self.action = ''   # Reset event action
         if len(self.selected_list) == 2:
             try:
-                self.reload = True
-                self.merge_active = True
-                from ...merge import MergeEvent
-                MergeEvent(self.dbstate, self.uistate, self.track, \
-                           self.selected_list[0], self.selected_list[1])
+                family = self.dbstate.db.get_family_from_gramps_id(self.obj.gramps_id)
+                if family:
+                    event_ref_list = [event_ref.ref for event_ref in family.event_ref_list]
+
+                    # Checks if event 1 is stored in DB. Note: if not, will be!
+                    selected0_ref = self.selected_list[0][1].ref
+                    if selected0_ref not in event_ref_list:
+                        event_ref = EventRef()
+                        event_ref.ref = selected0_ref
+                        event_ref.role = EventRoleType.FAMILY
+                        family.add_event_ref(event_ref)
+                        with DbTxn(_("Edit Family (%s)") % family.gramps_id,
+                                   self.dbstate.db) as trans:
+                            self.dbstate.db.commit_family(family, trans)
+
+                    # Checks if event 2 is stored in DB. Note: if not, will be!
+                    selected1_ref = self.selected_list[1][1].ref
+                    if selected1_ref not in event_ref_list:
+                        event_ref = EventRef()
+                        event_ref.ref = selected1_ref
+                        event_ref.role = EventRoleType.FAMILY
+                        family.add_event_ref(event_ref)
+                        with DbTxn(_("Edit Family (%s)") % family.gramps_id,
+                                   self.dbstate.db) as trans:
+                            self.dbstate.db.commit_family(family, trans)
+
+                    self.reload = True
+                    self.action = 'Event-Merge'
+                    from ...merge import MergeEvent
+                    MergeEvent(self.dbstate, self.uistate, self.track, \
+                               selected0_ref, selected1_ref)
+                else:
+                    from ...dialog import WarningDialog
+                    WarningDialog(
+                        _("Cannot merge this references"),
+                        _("This events cannot be merged at this time. "
+                          "The family is not saved in database.\n\nTo merge this event "
+                          "references, you need to press the OK button first."),
+                        parent=self.uistate.window)
+
             except WindowActiveError:
                 pass
 

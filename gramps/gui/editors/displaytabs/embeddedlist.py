@@ -86,6 +86,7 @@ class EmbeddedList(ButtonTab):
                            move_buttons, jump_button,
                            top_label)
 
+        self.action = ''
         self.changed = False
         self.reload = False
         self.model = None
