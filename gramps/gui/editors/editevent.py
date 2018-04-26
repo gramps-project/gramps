@@ -73,6 +73,7 @@ class EditEvent(EditPrimary):
 
     def __init__(self, dbstate, uistate, track, event, callback=None):
         """"""
+
         self.action = uistate.action.split('-')[1]
 
         EditPrimary.__init__(self, dbstate, uistate, track,
@@ -209,10 +210,14 @@ class EditEvent(EditPrimary):
         self._add_tab(notebook, self.attr_list)
 
         handle_list = self.dbstate.db.find_backlink_handles(self.obj.handle)
+        # Additional variables in 'EventBackRefList' injected via 'option'
+        backref_option = {}
+        backref_option['action'] = self.action == 'clone'
         self.backref_list = EventBackRefList(self.dbstate,
                                              self.uistate,
                                              self.track,
-                                             handle_list)
+                                             handle_list,
+                                             option=backref_option)
         self._add_tab(notebook, self.backref_list)
 
         self._setup_notebook_tabs(notebook)

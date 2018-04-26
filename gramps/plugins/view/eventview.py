@@ -29,6 +29,7 @@ Provide the event view.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+import copy
 import logging
 _LOG = logging.getLogger(".plugins.eventview")
 
