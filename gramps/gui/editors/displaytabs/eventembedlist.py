@@ -38,7 +38,6 @@ from gi.repository import GLib
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.db import DbTxn
 from gramps.gen.lib import Event, EventRef, EventRoleType, EventType
 from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
@@ -109,9 +108,10 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
 
     def _selection_changed(self, obj=None):
         """
-        Picks the actual selected rows.
-        Manage the sensitivity of several buttons to avoid warning messages.
+        Callback method called after user selection of a row
+        Overwrites method in buttontab.py
         """
+        # picks the actual selected rows
         self.selected_list = []   # Selection list (eg. multiselection)
         if self.selection.get_mode() == Gtk.SelectionMode.MULTIPLE:
             (model, pathlist) = self.selection.get_selected_rows()
@@ -120,9 +120,8 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                 if iter_ is not None:
                     value = model.get_value(iter_, self._HANDLE_COL)   # (Index, EventRef)
                     self.selected_list.append(value)   # EventRef handle
-        else:
-            pass
 
+        # manage the sensitivity of several buttons to avoid warning messages
         btn = True if len(self.selected_list) == 1 else False
         self.edit_btn.set_sensitive(btn)
         if self.merge_btn:
@@ -339,56 +338,6 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             #bring up family editor
             key = self._groups[ref[0]][0]
             self.editnotworkgroup(key)
-
-    def merge_button_clicked(self, obj):
-        """
-        Method called with the Merge button is clicked.
-        """
-        self.action = ''   # Reset event action
-        if len(self.selected_list) == 2:
-            try:
-                family = self.dbstate.db.get_family_from_gramps_id(self.obj.gramps_id)
-                if family:
-                    event_ref_list = [event_ref.ref for event_ref in family.event_ref_list]
-
-                    # Checks if event 1 is stored in DB. Note: if not, will be!
-                    selected0_ref = self.selected_list[0][1].ref
-                    if selected0_ref not in event_ref_list:
-                        event_ref = EventRef()
-                        event_ref.ref = selected0_ref
-                        event_ref.role = EventRoleType.FAMILY
-                        family.add_event_ref(event_ref)
-                        with DbTxn(_("Edit Family (%s)") % family.gramps_id,
-                                   self.dbstate.db) as trans:
-                            self.dbstate.db.commit_family(family, trans)
-
-                    # Checks if event 2 is stored in DB. Note: if not, will be!
-                    selected1_ref = self.selected_list[1][1].ref
-                    if selected1_ref not in event_ref_list:
-                        event_ref = EventRef()
-                        event_ref.ref = selected1_ref
-                        event_ref.role = EventRoleType.FAMILY
-                        family.add_event_ref(event_ref)
-                        with DbTxn(_("Edit Family (%s)") % family.gramps_id,
-                                   self.dbstate.db) as trans:
-                            self.dbstate.db.commit_family(family, trans)
-
-                    self.reload = True
-                    self.action = 'Event-Merge'
-                    from ...merge import MergeEvent
-                    MergeEvent(self.dbstate, self.uistate, self.track, \
-                               selected0_ref, selected1_ref)
-                else:
-                    from ...dialog import WarningDialog
-                    WarningDialog(
-                        _("Cannot merge this references"),
-                        _("This events cannot be merged at this time. "
-                          "The family is not saved in database.\n\nTo merge this event "
-                          "references, you need to press the OK button first."),
-                        parent=self.uistate.window)
-
-            except WindowActiveError:
-                pass
 
     def object_added(self, reference, primary):
         reference.ref = primary.handle

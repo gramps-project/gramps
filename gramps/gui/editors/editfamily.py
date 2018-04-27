@@ -67,8 +67,8 @@ from .editprimary import EditPrimary
 from .editchildref import EditChildRef
 from .editperson import EditPerson
 from .displaytabs import (EmbeddedList, EventEmbedList, CitationEmbedList,
-                         FamilyAttrEmbedList, NoteTab, GalleryTab,
-                         FamilyLdsEmbedList, ChildModel,
+                         FamilyAttrEmbedList, FamilyEventEmbedList, NoteTab,
+                         GalleryTab, FamilyLdsEmbedList, ChildModel,
                          TEXT_COL, MARKUP_COL, ICON_COL)
 from ..widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType,
                          MonitoredTagList)
@@ -703,11 +703,11 @@ class EditFamily(EditPrimary):
         self.track_ref_for_deletion("child_list")
         self.track_ref_for_deletion("child_tab")
 
-        self.event_list = EventEmbedList(self.dbstate,
-                                         self.uistate,
-                                         self.track,
-                                         self.obj,
-                                         start_date=self.get_start_date())
+        self.event_list = FamilyEventEmbedList(self.dbstate,
+                                               self.uistate,
+                                               self.track,
+                                               self.obj,
+                                               start_date=self.get_start_date())
         self._add_tab(notebook, self.event_list)
         self.track_ref_for_deletion("event_list")
 

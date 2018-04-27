@@ -41,6 +41,7 @@ from .eventattrembedlist import EventAttrEmbedList
 from .eventbackreflist import EventBackRefList
 from .eventembedlist import EventEmbedList
 from .familyattrembedlist import FamilyAttrEmbedList
+from .familyeventembedlist import FamilyEventEmbedList
 from .familyldsembedlist import FamilyLdsEmbedList
 from .gallerytab import GalleryTab
 from .ldsembedlist import LdsEmbedList
