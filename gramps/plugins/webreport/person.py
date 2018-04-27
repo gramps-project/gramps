@@ -61,6 +61,7 @@ from gramps.gen.display.name import displayer as _nd
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.plugins.lib.libhtml import Html
 from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.proxy import LivingProxyDb
 
 #------------------------------------------------
 # specific narrative web import
@@ -1720,11 +1721,13 @@ class PersonPages(BasePage):
             self.report.options['pid'])
         if center_person is None:
             return
-        if probably_alive(center_person, self.r_db, Today()):
-            return
+        if (int(self.report.options['living_people']) !=
+            LivingProxyDb.MODE_INCLUDE_ALL):
+            if probably_alive(center_person, self.r_db, Today()):
+                return
         relationship = self.rel_class.get_one_relationship(self.r_db,
-                                                           self.person,
-                                                           center_person)
+                                                           center_person,
+                                                           self.person)
         if relationship == "": # No relation to display
             return
 
