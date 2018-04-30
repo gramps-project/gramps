@@ -139,11 +139,10 @@ class BasePersonView(ListView):
             'person-rebuild' : self.object_build,
             'person-groupname-rebuild' : self.object_build,
             'no-database': self.no_database,
-            'family-update'  : self.object_build,
-            'family-add'     : self.object_build,
-            'family-delete'  : self.object_build,
-            'event-update'   : self.object_build,
-            'place-update'   : self.object_build,
+            'family-update'  : self.related_update,
+            'family-add'     : self.related_update,
+            'event-update'   : self.related_update,
+            'place-update'   : self.related_update,
             }
 
         ListView.__init__(
