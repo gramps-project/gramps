@@ -1279,6 +1279,44 @@ class ViewManager(CLIManager):
         config.set('paths.recent-file', '')
         config.save()
 
+    def enable_menu(self, enable):
+        """ Enable/disable the menues.  Used by the dbloader for import to
+        prevent other operations during import.  Needed because simpler methods
+        don't work under Gnome with application menus at top of screen (instead
+        of Gramps window).
+        Note: enable must be set to False on first call.
+        """
+        if not enable:
+            self.action_st = (
+                self.actiongroup.get_sensitive(),
+                self.readonlygroup.get_sensitive(),
+                self.undoactions.get_sensitive(),
+                self.redoactions.get_sensitive(),
+                self.undohistoryactions.get_sensitive(),
+                self.fileactions.get_sensitive(),
+                self.toolactions.get_sensitive(),
+                self.reportactions.get_sensitive(),
+                self.recent_manager.action_group.get_sensitive())
+            self.actiongroup.set_sensitive(enable)
+            self.readonlygroup.set_sensitive(enable)
+            self.undoactions.set_sensitive(enable)
+            self.redoactions.set_sensitive(enable)
+            self.undohistoryactions.set_sensitive(enable)
+            self.fileactions.set_sensitive(enable)
+            self.toolactions.set_sensitive(enable)
+            self.reportactions.set_sensitive(enable)
+            self.recent_manager.action_group.set_sensitive(enable)
+        else:
+            self.actiongroup.set_sensitive(self.action_st[0])
+            self.readonlygroup.set_sensitive(self.action_st[1])
+            self.undoactions.set_sensitive(self.action_st[2])
+            self.redoactions.set_sensitive(self.action_st[3])
+            self.undohistoryactions.set_sensitive(self.action_st[4])
+            self.fileactions.set_sensitive(self.action_st[5])
+            self.toolactions.set_sensitive(self.action_st[6])
+            self.reportactions.set_sensitive(self.action_st[7])
+            self.recent_manager.action_group.set_sensitive(self.action_st[8])
+
     def __change_undo_label(self, label):
         """
         Change the UNDO label
