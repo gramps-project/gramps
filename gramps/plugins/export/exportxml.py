@@ -1011,6 +1011,8 @@ class GrampsXmlWriter(UpdateCallback):
         self.g.write('>\n')
         self.write_line("first", firstname, index+1)
         self.write_line("call", name.get_call_name(), index+1)
+        if name.get_surname_list() == []: # Fixes 0010078
+            name.get_primary_surname() # initialize a empty null surname_list
         for surname in name.get_surname_list():
             self.write_surname(surname,index+1)
         self.write_line("suffix", name.get_suffix(), index+1)
