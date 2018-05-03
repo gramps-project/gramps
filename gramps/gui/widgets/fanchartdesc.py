@@ -615,7 +615,7 @@ class FanChartDescWidget(FanChartBaseWidget):
         elif nrparent <= 4:
             angleinc = math.pi/2
         else:
-            angleinc = 2 * math.pi / nrchild
+            angleinc = 2 * math.pi / nrparent
         for data in self.parentsroot:
             self.draw_innerring(cr, data[0], data[1], startangle, angleinc)
             startangle += angleinc
