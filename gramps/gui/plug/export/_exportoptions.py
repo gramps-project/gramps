@@ -436,8 +436,11 @@ class WriterOptionBox:
         widget2 = self.proxy_widget[proxy2]
         parent1 = widget1.get_parent()
         parent2 = widget2.get_parent()
-        widget1.reparent(parent2)
-        widget2.reparent(parent1)
+        # widget reparent is deprecated from Gtk 3.14. use remove then add.
+        parent1.remove(widget1)
+        parent2.remove(widget2)
+        parent1.add(widget2)
+        parent2.add(widget1)
         self.swap_proxy_order(row1, row2)
         self.mark_dirty(widget)
 
