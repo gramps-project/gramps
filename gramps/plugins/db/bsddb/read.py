@@ -129,9 +129,12 @@ def find_fullname(key, data):
     #   surname primary,
     #   surname origin type,
     #   surname connector)]
-    fullname_data = [(data[3][5][0][0] + ' ' + data[3][4], # surname givenname
-                      data[3][5][0][1], data[3][5][0][2],
-                      data[3][5][0][3], data[3][5][0][4])]
+    if data[3][5]:  # if Surname available
+        fullname_data = [(data[3][5][0][0] + ' ' + data[3][4],  # combined
+                          data[3][5][0][1], data[3][5][0][2],
+                          data[3][5][0][3], data[3][5][0][4])]
+    else:  # Some importers don't add any Surname at all
+        fullname_data = [(' ' + data[3][4], '', True, (1, ''), '')]
     # ignore if origin type is PATRONYMIC or MATRONYMIC
     return __index_surname(fullname_data)
 
