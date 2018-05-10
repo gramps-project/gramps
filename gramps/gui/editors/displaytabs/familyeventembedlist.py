@@ -32,11 +32,16 @@
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+
 from gramps.gen.db import DbTxn
+from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import EventRoleType, EventRef
+
 from .eventembedlist import EventEmbedList
 from .eventrefmodel import EventRefModel
-from gramps.gen.errors import WindowActiveError
+
+from ...dialog import WarningDialog
+from ...merge import MergeEvent
 
 #-------------------------------------------------------------------------
 #
@@ -60,47 +65,51 @@ class FamilyEventEmbedList(EventEmbedList):
         if len(self.selected_list) != 2:
             return
 
-        try:
-            family = self.dbstate.db.get_family_from_gramps_id(self.obj.gramps_id)
-            if family:
-                self.reload = True
-                self.action = 'Event-Merge'
-                event_ref_list = [event_ref.ref for event_ref in family.event_ref_list]
+        family = self.dbstate.db.get_family_from_gramps_id(self.obj.gramps_id)
+        if family:
+            self.reload = True
+            self.action = 'Event-Merge'
+            event_ref_list = [event_ref.ref for event_ref in family.event_ref_list]
 
-                # Checks if event 1 is stored in DB. Note: if not, will be!
-                selected0_ref = self.selected_list[0][1].ref
-                if selected0_ref not in event_ref_list:
-                    event_ref = EventRef()
-                    event_ref.ref = selected0_ref
-                    event_ref.role = EventRoleType.FAMILY
-                    family.add_event_ref(event_ref)
-                    with DbTxn(_("Edit Family (%s)") % family.gramps_id,
-                               self.dbstate.db) as trans:
-                        self.dbstate.db.commit_family(family, trans)
+            selected0_ref = self.selected_list[0][1].ref
+            selected1_ref = self.selected_list[1][1].ref
 
-                # Checks if event 2 is stored in DB. Note: if not, will be!
-                selected1_ref = self.selected_list[1][1].ref
-                if selected1_ref not in event_ref_list:
-                    event_ref = EventRef()
-                    event_ref.ref = selected1_ref
-                    event_ref.role = EventRoleType.FAMILY
-                    family.add_event_ref(event_ref)
-                    with DbTxn(_("Edit Family (%s)") % family.gramps_id,
-                               self.dbstate.db) as trans:
-                        self.dbstate.db.commit_family(family, trans)
-
-                from ...merge import MergeEvent
-                MergeEvent(self.dbstate, self.uistate, self.track, \
-                           selected0_ref, selected1_ref)
-            else:
-                from ...dialog import WarningDialog
+            # Checks if event are not equal
+            if selected0_ref == selected1_ref:
                 WarningDialog(
                     _("Cannot merge this references"),
-                    _("This events cannot be merged at this time. "
-                      "The family is not saved in database.\n\nTo merge this event "
-                      "references, you need to press the OK button first."),
+                    _("This event is one, but with different roles."),
                     parent=self.uistate.window)
+                return
 
-        except WindowActiveError:
-            pass
+            # Checks if event 1 is stored in DB. Note: if not, will be!
+            if selected0_ref not in event_ref_list:
+                event_ref = EventRef()
+                event_ref.ref = selected0_ref
+                event_ref.role = EventRoleType.FAMILY
+                family.add_event_ref(event_ref)
+                with DbTxn(_("Edit Family (%s)") % family.gramps_id,
+                           self.dbstate.db) as trans:
+                    self.dbstate.db.commit_family(family, trans)
+
+            # Checks if event 2 is stored in DB. Note: if not, will be!
+            selected1_ref = self.selected_list[1][1].ref
+            if selected1_ref not in event_ref_list:
+                event_ref = EventRef()
+                event_ref.ref = selected1_ref
+                event_ref.role = EventRoleType.FAMILY
+                family.add_event_ref(event_ref)
+                with DbTxn(_("Edit Family (%s)") % family.gramps_id,
+                           self.dbstate.db) as trans:
+                    self.dbstate.db.commit_family(family, trans)
+
+            MergeEvent(self.dbstate, self.uistate, self.track, \
+                       selected0_ref, selected1_ref)
+        else:
+            WarningDialog(
+                _("Cannot merge this references"),
+                _("This events cannot be merged at this time. "
+                  "The family is not saved in database.\n\nTo merge this event "
+                  "references, you need to press the OK button first."),
+                parent=self.uistate.window)
 
