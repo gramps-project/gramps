@@ -73,7 +73,6 @@ class EditEvent(EditPrimary):
 
     def __init__(self, dbstate, uistate, track, event, callback=None):
         """"""
-        self.callback = callback
         self.action = uistate.action.split('-')[1]
 
         EditPrimary.__init__(self, dbstate, uistate, track,
@@ -93,24 +92,17 @@ class EditEvent(EditPrimary):
         """ compile menu title out of different actions """
         handle = self.obj.get_handle()
 
-        event_action, event_name = '', ''
+        event_name = ''
         if handle:
-            if self.action == 'clone':
-                event_action = _('Clone')
-            if self.action == 'edit':
-                event_action = _('Edit')
-
+            event_name = self.obj.get_type().string
             who = get_participant_from_event(self.db, handle)
             desc = self.obj.get_description()
-            event_name = self.obj.get_type().string
             if who:
                 event_name = ': %s - %s' % (event_name, who)
             elif desc:
                 event_name = ': %s - %s' % (event_name, desc)
-        else:
-            event_action = _('New')
 
-        dialog_title = _('%s Event%s') % (event_action, event_name)
+        dialog_title = _('%s Event%s') % (_(self.action), event_name)
         return dialog_title
 
     def get_custom_events(self):
@@ -144,9 +136,7 @@ class EditEvent(EditPrimary):
         self._add_db_signal('event-delete', self.check_for_close)
 
     def _setup_fields(self):
-
-        # place, select_place, add_del_place
-
+        """"""
         self.place_field = PlaceEntry(self.dbstate, self.uistate, self.track,
                                       self.top.get_object("place"),
                                       self.top.get_object("place_event_box"),
@@ -220,14 +210,10 @@ class EditEvent(EditPrimary):
         self._add_tab(notebook, self.attr_list)
 
         handle_list = self.dbstate.db.find_backlink_handles(self.obj.handle)
-        # Additional variables in 'EventBackRefList' injected via 'option'
-        backref_option = {}
-        backref_option['action'] = self.action == 'clone'
         self.backref_list = EventBackRefList(self.dbstate,
                                              self.uistate,
                                              self.track,
-                                             handle_list,
-                                             option=backref_option)
+                                             handle_list)
         self._add_tab(notebook, self.backref_list)
 
         self._setup_notebook_tabs(notebook)
@@ -266,8 +252,8 @@ class EditEvent(EditPrimary):
             msg2 = _("You have attempted to use the existing Gramps ID with "
                          "value %(id)s. This value is already used by '"
                          "%(prim_object)s'. Please enter a different ID or leave "
-                         "blank to get the next available ID value.") % {
-                         'id' : id, 'prim_object' : name }
+                         "blank to get the next available ID value.") % \
+                        {'id' : id, 'prim_object' : name}
             ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
@@ -281,24 +267,17 @@ class EditEvent(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        if not self.obj.handle:
-            with DbTxn(_("Add Event (%s)") % self.obj.get_gramps_id(),
+        if not self.obj.handle:   # Add or Clone event
+            with DbTxn(_("%s Event (%s)") % (self.action, self.obj.get_gramps_id()),
                        self.db) as trans:
                 self.db.add_event(self.obj, trans)
-        else:
-            if self.action == 'clone':
-                with DbTxn(_("Clone Event"), self.db) as trans:
-                    self.obj.handle = None
-                    self.db.add_event(self.obj, trans)
-            elif self.data_has_changed():
-                with DbTxn(_("Edit Event (%s)") % self.obj.get_gramps_id(),
-                           self.db) as trans:
-                    if not self.obj.get_gramps_id():
-                        self.obj.set_gramps_id(self.db.find_next_event_gramps_id())
-                    self.db.commit_event(self.obj, trans)
+        elif self.data_has_changed():   # Edit event
+            with DbTxn(_("%s Event (%s)") % (self.action, self.obj.get_gramps_id()),
+                       self.db) as trans:
+                if not self.obj.get_gramps_id():
+                    self.obj.set_gramps_id(self.db.find_next_event_gramps_id())
+                self.db.commit_event(self.obj, trans)
 
-        if self.callback:
-            self.callback(self.obj)
         self._do_close()
 
     def data_has_changed(self):

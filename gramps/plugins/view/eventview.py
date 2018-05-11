@@ -29,7 +29,6 @@ Provide the event view.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import copy
 import logging
 _LOG = logging.getLogger(".plugins.eventview")
 
@@ -46,11 +45,12 @@ from gramps.gen.lib import Event
 from gramps.gen.plug import CATEGORY_QR_EVENT
 from gramps.gen.utils.string import data_recover_msg
 
-from gramps.gui.dialog import ErrorDialog, MultiSelectDialog, QuestionDialog
 from gramps.gui.ddtargets import DdTargets
+from gramps.gui.dialog import ErrorDialog, MultiSelectDialog, QuestionDialog
 from gramps.gui.editors import EditEvent, DeleteEventQuery
 from gramps.gui.filters.sidebar import EventSidebarFilter
 from gramps.gui.merge import MergeEvent
+
 from gramps.gui.views.bookmarks import EventBookmarks
 from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import EventModel
@@ -97,8 +97,8 @@ class EventView(ListView):
     ADD_MSG     = _("Add a new event")
     EDIT_MSG    = _("Edit the selected event")
     DEL_MSG     = _("Delete the selected event")
+    CLONE_MSG   = _("Clone the selected event")
     MERGE_MSG   = _("Merge the selected events")
-    CLONE_MSG   = _("Clones the selected event")
     FILTER_TYPE = "Event"
     QR_CATEGORY = CATEGORY_QR_EVENT
 
@@ -311,9 +311,9 @@ class EventView(ListView):
             msg2 = _("Exactly one event must be selected to perform a clone.")
             ErrorDialog(msg, msg2, parent=self.uistate.window)
         else:
-            event = Event()
-            event = copy.deepcopy(self.dbstate.db.get_event_from_handle(event_list[0]))
-            event.gramps_id = None
+            source_event = self.dbstate.db.get_event_from_handle(event_list[0])
+            event = Event(source=source_event)
+            event.handle, event.gramps_id = None, None
 
             try:
                 self.uistate.action = 'Event-Clone'
