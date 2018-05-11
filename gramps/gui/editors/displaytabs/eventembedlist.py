@@ -68,6 +68,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         'del'   : _('Remove the selected family event'),
         'edit'  : _('Edit the selected family event or edit person'),
         'share' : _('Share an existing event'),
+        'clone' : _('Clone an existing event'),
         'merge' : _('Merge two existing events'),
         'up'    : _('Move the selected event upwards'),
         'down'  : _('Move the selected event downwards'),
@@ -100,7 +101,8 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         self._data = []
         DbGUIElement.__init__(self, dbstate.db)
         GroupEmbeddedList.__init__(self, dbstate, uistate, track, _('_Events'),
-                              build_model, share_button=True, merge_button=True,
+                              build_model, share_button=True, 
+                              clone_button=True, merge_button=True,
                               move_buttons=True, **kwargs)
 
         # Gtk mode to allow multiple selection of list entries
@@ -338,6 +340,27 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
             #bring up family editor
             key = self._groups[ref[0]][0]
             self.editnotworkgroup(key)
+
+    def clone_button_clicked(self, obj):
+        'Function called with the Clone button is clicked.'
+        source_ref = self.get_selected()
+        if source_ref and \
+           source_ref[1] is not None \
+           and source_ref[0] == self._WORKGROUP:
+            source_event = self.dbstate.db.get_event_from_handle(source_ref[1].ref)
+
+            try:
+                ref = EventRef(source=source_ref[1])
+
+                event = Event(source=source_event)
+                event.set_gramps_id(self.dbstate.db.find_next_event_gramps_id())
+                event.set_handle(None)
+
+                self.get_ref_editor()(
+                    self.dbstate, self.uistate, self.track,
+                    event, ref, self.object_added)
+            except WindowActiveError:
+                pass
 
     def object_added(self, reference, primary):
         reference.ref = primary.handle
