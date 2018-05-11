@@ -72,7 +72,7 @@ class ButtonTab(GrampsTab):
         'edit'  : _('Edit'),
         'share' : _('Share'),
         'clone' : _('Clone'),
-        'merge' : _('Merge'),      
+        'merge' : _('Merge'),
         'jump'  : _('Jump To'),
         'up'    : _('Move Up'),
         'down'  : _('Move Down'),
@@ -99,8 +99,8 @@ class ButtonTab(GrampsTab):
         @type name: str/unicode
         @param share_button: Add a share button to the Notebook tab or not
         @type name: bool
-        @param merge_button: Add a merge button to the Notebook tab or not
         @param clone_button: Add a clone button to the Notebook tab or not
+        @param merge_button: Add a merge button to the Notebook tab or not
         @type name: bool
         @param move_buttons: Add up and down button to the Notebook tab or not
         @type name: bool
@@ -116,7 +116,7 @@ class ButtonTab(GrampsTab):
                              top_label)
 
     def _create_buttons(self,
-                        share_button, clone_button, merge_button, 
+                        share_button, clone_button, merge_button,
                         move_buttons, jump_button, top_label):
         """
         Create a button box consisting of three buttons, one for Add,
@@ -213,7 +213,6 @@ class ButtonTab(GrampsTab):
                 self.clone_btn.set_sensitive(False)
             if merge_button:
                 self.merge_btn.set_sensitive(False)
-
             if jump_button and self.jump_btn:
                 self.jump_btn.set_sensitive(False)
             if move_buttons:

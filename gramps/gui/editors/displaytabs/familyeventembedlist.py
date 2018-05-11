@@ -78,7 +78,7 @@ class FamilyEventEmbedList(EventEmbedList):
             if selected0_ref == selected1_ref:
                 WarningDialog(
                     _("Cannot merge this references"),
-                    _("This event is one, but with different roles."),
+                    _("This is one event, but with different roles."),
                     parent=self.uistate.window)
                 return
 

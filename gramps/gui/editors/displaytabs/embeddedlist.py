@@ -75,17 +75,14 @@ class EmbeddedList(ButtonTab):
     _DND_EXTRA  = None
 
     def __init__(self, dbstate, uistate, track, name, build_model,
-                 share_button=False, clone_button=False, 
-                 merge_button=False, share_button=False, 
-                 move_buttons=False, jump_button=False,
-                 top_label=None):
+                 share_button=False, clone_button=False, merge_button=False,
+                 move_buttons=False, jump_button=False, top_label=None):
         """
         Create a new list, using the passed build_model to populate the list.
         """
         ButtonTab.__init__(self, dbstate, uistate, track, name,
                            share_button, clone_button, merge_button,
-                           share_button, move_buttons, jump_button,
-                           top_label)
+                           move_buttons, jump_button, top_label)
 
         self.action = ''
         self.changed = False
@@ -151,6 +148,8 @@ class EmbeddedList(ButtonTab):
         if self.share_btn:
             itemlist.append((True,  _('Share'), self.share_button_clicked))
         itemlist.append((False, _('_Edit'), self.edit_button_clicked))
+        if self.clone_btn:
+            itemlist.append((False, _('_Clone'), self.clone_button_clicked))
         if self.merge_btn:
             itemlist.append((False, _('_Merge'), self.merge_button_clicked))
         if self.del_btn:

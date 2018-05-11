@@ -96,14 +96,15 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         ]
 
     def __init__(self, dbstate, uistate, track, obj, build_model=EventRefModel, **kwargs):
+        """"""
         self.obj = obj
         self._groups = []
         self._data = []
+
         DbGUIElement.__init__(self, dbstate.db)
         GroupEmbeddedList.__init__(self, dbstate, uistate, track, _('_Events'),
-                              build_model, share_button=True, 
-                              clone_button=True, merge_button=True,
-                              move_buttons=True, **kwargs)
+                              build_model, share_button=True, clone_button=True,
+                              merge_button=True, move_buttons=True, **kwargs)
 
         # Gtk mode to allow multiple selection of list entries
         self.selection.set_mode(Gtk.SelectionMode.MULTIPLE)
@@ -126,6 +127,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         # manage the sensitivity of several buttons to avoid warning messages
         btn = True if len(self.selected_list) == 1 else False
         self.edit_btn.set_sensitive(btn)
+        self.clone_btn.set_sensitive(btn)
         if self.merge_btn:
             merge_list = [item for item in self.selected_list if item[0] == 0]
             merge_btn = True if len(merge_list) == 2 else False
@@ -343,10 +345,10 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
 
     def clone_button_clicked(self, obj):
         'Function called with the Clone button is clicked.'
+        self.action = ''   # Reset event action
         source_ref = self.get_selected()
-        if source_ref and \
-           source_ref[1] is not None \
-           and source_ref[0] == self._WORKGROUP:
+        if source_ref and source_ref[1] is not None and \
+           source_ref[0] == self._WORKGROUP:
             source_event = self.dbstate.db.get_event_from_handle(source_ref[1].ref)
 
             try:
@@ -356,6 +358,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                 event.set_gramps_id(self.dbstate.db.find_next_event_gramps_id())
                 event.set_handle(None)
 
+                self.action = 'Event-Clone'
                 self.get_ref_editor()(
                     self.dbstate, self.uistate, self.track,
                     event, ref, self.object_added)

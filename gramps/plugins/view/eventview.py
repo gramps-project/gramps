@@ -177,8 +177,8 @@ class EventView(ListView):
                 <menuitem action="Add"/>
                 <menuitem action="Edit"/>
                 <menuitem action="Remove"/>
-                <menuitem action="Merge"/>
                 <menuitem action="Clone"/>
+                <menuitem action="Merge"/>
               </placeholder>
               <menuitem action="FilterEdit"/>
             </menu>
@@ -192,8 +192,8 @@ class EventView(ListView):
               <toolitem action="Add"/>
               <toolitem action="Edit"/>
               <toolitem action="Remove"/>
-              <toolitem action="Merge"/>
               <toolitem action="Clone"/>
+              <toolitem action="Merge"/>
             </placeholder>
           </toolbar>
           <popup name="Popup">
@@ -203,8 +203,8 @@ class EventView(ListView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
-            <menuitem action="Merge"/>
             <menuitem action="Clone"/>
+            <menuitem action="Merge"/>
             <separator/>
             <menu name="QuickReport" action="QuickReport"/>
           </popup>
@@ -231,7 +231,7 @@ class EventView(ListView):
 
     def add(self, obj):
         try:
-            self.uistate.action = 'event-add'
+            self.uistate.action = 'Event-Add'
             EditEvent(self.dbstate, self.uistate, [], Event())
         except WindowActiveError:
             pass
@@ -295,26 +295,10 @@ class EventView(ListView):
         for handle in self.selected_handles():
             event = self.dbstate.db.get_event_from_handle(handle)
             try:
-                self.uistate.action = 'event-edit'
+                self.uistate.action = 'Event-Edit'
                 EditEvent(self.dbstate, self.uistate, [], event)
             except WindowActiveError:
                 pass
-
-    def merge(self, obj):
-        """
-        Merge the selected events.
-        """
-        merge_list = self.selected_handles()
-
-        if len(merge_list) != 2:
-            msg = _("Cannot merge event objects.")
-            msg2 = _("Exactly two events must be selected to perform a merge. "
-                     "A second object can be selected by holding down the "
-                     "control key while clicking on the desired event.")
-            ErrorDialog(msg, msg2, parent=self.uistate.window)
-        else:
-            self.uistate.action = 'event-merge'
-            MergeEvent(self.dbstate, self.uistate, [], merge_list[0], merge_list[1])
 
     def clone(self, obj):
         """
@@ -332,10 +316,26 @@ class EventView(ListView):
             event.gramps_id = None
 
             try:
-                self.uistate.action = 'event-clone'
+                self.uistate.action = 'Event-Clone'
                 EditEvent(self.dbstate, self.uistate, [], event)
             except WindowActiveError:
                 pass
+
+    def merge(self, obj):
+        """
+        Merge the selected events.
+        """
+        merge_list = self.selected_handles()
+
+        if len(merge_list) != 2:
+            msg = _("Cannot merge event objects.")
+            msg2 = _("Exactly two events must be selected to perform a merge. "
+                     "A second object can be selected by holding down the "
+                     "control key while clicking on the desired event.")
+            ErrorDialog(msg, msg2, parent=self.uistate.window)
+        else:
+            self.uistate.action = 'Event-Merge'
+            MergeEvent(self.dbstate, self.uistate, [], merge_list[0], merge_list[1])
 
     def tag_updated(self, handle_list):
         """
