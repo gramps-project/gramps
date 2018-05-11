@@ -94,7 +94,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     def get_parents(self, level):
         if level > len(_parents_level)-1:
-            return "vzdáleení příbuzní"
+            return "vzdálení příbuzní"
         else:
             return _parents_level[level]
 
