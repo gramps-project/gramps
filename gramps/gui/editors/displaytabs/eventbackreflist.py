@@ -2,7 +2,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2018       Alois Poettker
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,24 +27,10 @@ from .backrefmodel import BackRefModel
 from .backreflist import BackRefList
 
 class EventBackRefList(BackRefList):
-    """"""
-    def __init__(self, dbstate, uistate, track, obj, option=None, callback=None):
-        """
-        Connector class between events and back reference mechanism
-        """
-        self.option = option
 
+    def __init__(self, dbstate, uistate, track, obj, callback=None):
         BackRefList.__init__(self, dbstate, uistate, track, obj,
                              BackRefModel, callback)
 
     def get_icon_name(self):
         return 'gramps-event'
-
-    def get_data(self):
-        """
-        Method overrides 'get_data' from BackRefList.py
-        """
-        if self.option and self.option['action']:
-            return []
-        else:
-            return self.obj
