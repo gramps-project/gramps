@@ -322,13 +322,16 @@ class EmbeddedList(ButtonTab):
             dlist = self.get_data()
         del dlist[row_from]
         dlist.insert(row_from -1, obj)
+
+        # rebuild the model
         self.changed = True
         self.rebuild()
+
         # select the row
         self.tree.get_selection().unselect_all()
         path = '%d' % (row_from -1)
         self.tree.get_selection().select_path(path)
-        # The height/location of Gtk.treecells is calculated in an idle handler
+        # the height/location of Gtk.treecells is calculated in an idle handler
         # so use idle_add to scroll cell into view.
         GLib.idle_add(self.tree.scroll_to_cell, path)
 
@@ -343,10 +346,14 @@ class EmbeddedList(ButtonTab):
             dlist = self.get_data()
         del dlist[row_from]
         dlist.insert(row_from +1, obj)
+
+        # rebuild the model
         self.changed = True
         self.rebuild()
-        #select the row
-        path = '%d' % (row_from+1)
+
+        # select the row
+        self.tree.get_selection().unselect_all()
+        path = '%d' % (row_from +1)
         self.tree.get_selection().select_path(path)
         GLib.idle_add(self.tree.scroll_to_cell, path)
 

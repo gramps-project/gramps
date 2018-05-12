@@ -79,7 +79,7 @@ class ButtonTab(GrampsTab):
     }
 
     def __init__(self, dbstate, uistate, track, name,
-                 share_button=False, merge_button=False, clone_button=False,
+                 share_button=False, clone_button=False, merge_button=False,
                  move_buttons=False, jump_button=False, top_label=None):
         """
         Similar to the base class, except after Build.
@@ -112,12 +112,11 @@ class ButtonTab(GrampsTab):
         self.dirty_selection = False
         GrampsTab.__init__(self, dbstate, uistate, track, name)
         self._create_buttons(share_button, clone_button, merge_button,
-                             move_buttons, jump_button,
-                             top_label)
+                             move_buttons, jump_button, top_label)
 
     def _create_buttons(self,
-                        share_button, clone_button, merge_button,
-                        move_buttons, jump_button, top_label):
+                        share_button=False, clone_button=False, merge_button=False,
+                        move_buttons=False, jump_button=False, top_label=None):
         """
         Create a button box consisting of three buttons, one for Add,
         one for Edit, and one for Delete.

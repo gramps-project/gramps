@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2018       Alois Poettker
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,21 +24,23 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-from gi.repository import GObject
-from gi.repository import GLib
+from gi.repository import GLib, GObject, Gtk
 
 #-------------------------------------------------------------------------
 #
 # Gramps classes
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+
 from gramps.gen.lib import PersonRef
 from gramps.gen.errors import WindowActiveError
-from ...ddtargets import DdTargets
+
 from .personrefmodel import PersonRefModel
 from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
+
+from ...ddtargets import DdTargets
 
 #-------------------------------------------------------------------------
 #
@@ -54,6 +57,7 @@ class PersonRefEmbedList(EmbeddedList):
         'add'   : _('Create and add a new association'),
         'del'   : _('Remove the existing association'),
         'edit'  : _('Edit the selected association'),
+        'merge' : _('Merge two existing association'),
         'up'    : _('Move the selected association upwards'),
         'down'  : _('Move the selected association downwards'),
     }
@@ -71,7 +75,34 @@ class PersonRefEmbedList(EmbeddedList):
         self.data = data
         EmbeddedList.__init__(self, dbstate, uistate, track,
                               _('_Associations'), PersonRefModel,
-                              move_buttons=True)
+                              merge_button=True, move_buttons=True)
+
+        # Gtk mode to allow multiple selection of list entries
+        self.selection.set_mode(Gtk.SelectionMode.MULTIPLE)
+
+    def _selection_changed(self, obj=None):
+        """
+        Callback method called after user selection of a row
+        Overwrites method in buttontab.py
+        """
+        # picks the actual selected rows
+        self.selected_list = []   # Selection list (eg. multiselection)
+        if self.selection.get_mode() == Gtk.SelectionMode.MULTIPLE:
+            (model, pathlist) = self.selection.get_selected_rows()
+            for path in pathlist:
+                iter_ = model.get_iter(path)
+                if iter_ is not None:
+                    handle = model.get_value(iter_, self._HANDLE_COL)   # PersonRefHandle
+                    if not handle in self.selected_list:
+                        self.selected_list.append(handle)
+
+        # manage the sensitivity of several buttons
+        btn = True if len(self.selected_list) > 0 else False
+        self.edit_btn.set_sensitive(btn)
+        self.del_btn.set_sensitive(btn)
+
+        merge_btn = True if len(self.selected_list) == 2 else False
+        self.merge_btn.set_sensitive(merge_btn)
 
     def get_ref_editor(self):
         from .. import EditPersonRef
@@ -114,9 +145,47 @@ class PersonRefEmbedList(EmbeddedList):
     def edit_callback(self, obj):
         self.rebuild()
 
+    def merge_button_clicked(self, obj):
+        """
+        Method called with the Merge button is clicked.
+        """
+        self.action = ''   # reset event action
+        # double check for properly work; see _selection_changed
+        if len(self.selected_list) != 2:
+            return
+
+        # process merge through addition of objects
+        # combines all privacies, citations and notes in first association
+        try:
+            # Privacy
+            self.selected_list[0].private = \
+                self.selected_list[0].private or self.selected_list[1].private
+            # Citations
+            phoenix = self.selected_list[0].citation_list
+            titanic = self.selected_list[1].citation_list
+            for addendum in titanic:
+                if addendum not in phoenix:
+                    phoenix.append(addendum)
+            # Notes
+            phoenix = self.selected_list[0].note_list
+            titanic = self.selected_list[1].note_list
+            for addendum in titanic:
+                if addendum not in phoenix:
+                    phoenix.append(addendum)
+
+            # cleaning up
+            for handle in self.data:
+                if handle == self.selected_list[1]:
+                    self.data.remove(handle)
+                    break
+            self.rebuild()
+
+        except WindowActiveError:
+            pass
+
     def _handle_drag(self, row, obj):
         """
-        And event reference that is from a drag and drop has
+        An event reference that is from a drag and drop has
         an unknown event reference type
         """
         from .. import EditPersonRef
@@ -128,7 +197,6 @@ class PersonRefEmbedList(EmbeddedList):
                 ref, self.add_callback)
         except WindowActiveError:
             pass
-
 
     def handle_extra_type(self, objtype, obj):
         """
