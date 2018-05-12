@@ -57,7 +57,6 @@ class PersonEventEmbedList(EventEmbedList):
         'del'   : _('Remove the selected personal event'),
         'edit'  : _('Edit the selected personal event or edit family'),
         'share' : _('Share an existing event'),
-        'clone' : _('Clone an existing event'),
         'up'    : _('Move the selected event upwards or change family order'),
         'down'  : _('Move the selected event downwards or change family order'),
         }

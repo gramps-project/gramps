@@ -3,7 +3,6 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2009-2011  Gary Burton
-# Copyright (C) 2018       Alois Poettker
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -71,16 +70,13 @@ class ButtonTab(GrampsTab):
         'del'   : _('Remove'),
         'edit'  : _('Edit'),
         'share' : _('Share'),
-        'clone' : _('Clone'),
         'jump'  : _('Jump To'),
         'up'    : _('Move Up'),
         'down'  : _('Move Down'),
     }
 
-    def __init__(self, dbstate, uistate, track, name,
-                 share_button=False, clone_button=False,
-                 move_buttons=False, jump_button=False,
-                 top_label=None):
+    def __init__(self, dbstate, uistate, track, name, share_button=False,
+                    move_buttons=False, jump_button=False, top_label=None):
         """
         Similar to the base class, except after Build.
 
@@ -99,8 +95,6 @@ class ButtonTab(GrampsTab):
         @type name: str/unicode
         @param share_button: Add a share button to the Notebook tab or not
         @type name: bool
-        @param clone_button: Add a clone button to the Notebook tab or not
-        @type name: bool
         @param move_buttons: Add up and down button to the Notebook tab or not
         @type name: bool
         @param jump_button: Add a goto button
@@ -109,20 +103,17 @@ class ButtonTab(GrampsTab):
         @type top_label: string or None for no label
         """
         self.dirty_selection = False
-        GrampsTab.__init__(self, dbstate, uistate, track, name)
-        self._create_buttons(share_button, clone_button,
-                             move_buttons, jump_button,
-                             top_label)
+        GrampsTab.__init__(self,dbstate, uistate, track, name)
+        self._create_buttons(share_button, move_buttons, jump_button, top_label)
 
-    def _create_buttons(self,
-                        share_button, clone_button, move_buttons, jump_button,
-                        top_label):
+    def _create_buttons(self, share_button, move_buttons, jump_button,
+                         top_label):
         """
         Create a button box consisting of three buttons, one for Add,
         one for Edit, and one for Delete.
 
-        Add buttons for Share, Clone, Move and Jump depending on parameters.
-        This button box is then appended hbox (self).
+        Add buttons for Share, Move and Jump depending on parameters. This
+        button box is then appended hbox (self).
         Prepend a label if top_label given
 
         Note: some ButtonTab subclasses override this method.
@@ -150,13 +141,6 @@ class ButtonTab(GrampsTab):
         else:
             self.share_btn = None
 
-        if clone_button:
-            self.clone_btn = SimpleButton('gramps-clone', self.clone_button_clicked)
-            self.clone_btn.set_tooltip_text(self._MSG['clone'])
-            self.track_ref_for_deletion("clone_btn")
-        else:
-            self.clone_btn = None
-
         if move_buttons:
             self.up_btn = SimpleButton('go-up', self.up_button_clicked)
             self.up_btn.set_tooltip_text(self._MSG['up'])
@@ -183,8 +167,6 @@ class ButtonTab(GrampsTab):
         if share_button:
             hbox.pack_start(self.share_btn, False, True, 0)
         hbox.pack_start(self.edit_btn, False, True, 0)
-        if clone_button:
-            hbox.pack_start(self.clone_btn, False, True, 0)
         hbox.pack_start(self.del_btn, False, True, 0)
         if move_buttons:
             hbox.pack_start(self.up_btn, False, True, 0)
@@ -200,8 +182,6 @@ class ButtonTab(GrampsTab):
             self.del_btn.set_sensitive(False)
             if share_button:
                 self.share_btn.set_sensitive(False)
-            if clone_button:
-                self.clone_btn.set_sensitive(False)
             if jump_button and self.jump_btn:
                 self.jump_btn.set_sensitive(False)
             if move_buttons:
@@ -266,13 +246,6 @@ class ButtonTab(GrampsTab):
         """
         print("Uncaught Share clicked")
 
-    def clone_button_clicked(self, obj):
-        """
-        Function called with the Clone button is clicked. This function
-        should be overridden by the derived class.
-        """
-        print("Uncaught Clone clicked")
-
     def jump_button_clicked(self, obj):
         """
         Function called with the Jump button is clicked. This function
@@ -311,8 +284,8 @@ class ButtonTab(GrampsTab):
 
     def _selection_changed(self, obj=None):
         """
-        Attached to the selection's 'changed' signal. Checks to see
-        if anything is selected. If it is, the edit, clone and
+        Attached to the selection's 'changed' signal. Checks
+        to see if anything is selected. If it is, the edit and
         delete buttons are enabled, otherwise the are disabled.
         """
         # Comparing to None is important, as empty strings
@@ -323,8 +296,6 @@ class ButtonTab(GrampsTab):
             return
         if self.get_selected() is not None:
             self.edit_btn.set_sensitive(True)
-            if self.clone_btn:
-                self.clone_btn.set_sensitive(True)
             if self.jump_btn:
                 self.jump_btn.set_sensitive(True)
             if not self.dbstate.db.readonly:
@@ -336,8 +307,6 @@ class ButtonTab(GrampsTab):
             #    self.down_btn.set_sensitive(True)
         else:
             self.edit_btn.set_sensitive(False)
-            if self.clone_btn:
-                self.clone_btn.set_sensitive(False)
             if self.jump_btn:
                 self.jump_btn.set_sensitive(False)
             if not self.dbstate.db.readonly:
