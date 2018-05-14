@@ -226,12 +226,15 @@ class HourGlassReport(Report):
         else:
             death = ""
 
+        if death:
+            death = " – %s" % death
+
         if self.includeid == 0: # no ID
-            label = "%s \\n(%s – %s)" % (name, birth, death)
+            label = "%s \\n(%s%s)" % (name, birth, death)
         elif self.includeid == 1: # same line
-            label = "%s (%s)\\n(%s – %s)" % (name, p_id, birth, death)
+            label = "%s (%s)\\n(%s%s)" % (name, p_id, birth, death)
         elif self.includeid == 2: # own line
-            label = "%s \\n(%s – %s)\\n(%s)" % (name, birth, death, p_id)
+            label = "%s \\n(%s%s)\\n(%s)" % (name, birth, death, p_id)
 
         label = label.replace('"', '\\\"')
 
