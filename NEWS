@@ -1,3 +1,106 @@
+2018-05-20
+Version 5.0.0-rc1
+* po/fi.po: Update Finnish translation
+* po/ru.po: Update Russian translation
+* po/de.po: update German translation
+* po/cs.po: Update Czech translation
+* po/ca.po: Update Catalan translation
+* Fix merge persons when removed person was the Home (default) person
+* Fix FanChartDesc for typo (copy/paste error). Bug occurs when selected
+  person has more than 4 parents.
+* Fix Tag editor for multiple tag removes
+* In Narweb, Relationship to Center person reversed
+* Fix Citation Tree view for crash after plugin reload
+* Fix 'References' Gramplet for issue when activated during an import 
+* disable Application Menu during import
+* Fix Person/Family/Event view updates on various associated changes
+  * Fix Event view for changes in Main Participants
+  * Fix Person/Event/Place views for update to a Place or enclosing place
+  * Fix Person views to update on changes in birth/death event/place
+* Allow unicode characters in json export
+* Filtering problems in the geography view
+* Crash when looking for a place within an area
+* use same box margin for SVG and PDF.
+* Webcal crashes after Narrative Web site exists
+  multiyear select option problem
+* Catch exceptions when loading recent files
+* Check that backend exists before loading database
+* Disable family tree manager features when a backend is unavailable
+  If the default backend is unavailable, then reset it to bsddb.
+* Enclose tree report image path and file name in braces
+* Crash when selecting an old note, event, media, ...
+  Try to sort on another column.
+* [NewRepositoryEditor]Fix help link
+* [ReorderGrampsID]Fix broken help link
+* Fix FTM for delete tree, followed by close; Title etc. shows old tree
+* Fix Relationship path between filter for silent fail
+* setup: Add configuration flag --no-compress-manpages.
+* glade: Don't strip newlines from builder files.
+* List sort by number for citation confidence level
+* Fix confidence level sort in list views -based on the date-sort code.
+* Fix confidence level tooltip -Stop run on text.
+* Fix error in place displayer when offset is outside valid range
+* Fix places in example.gramps 
+  - Moved Greek places into top level Greece entry & added English names.
+  - Removed Puerto Rico as a country as part of USA
+* Use sgettext for Name Format dialog
+* Enable copying the birth & death fields for relationship view 
+* Allow Copying of text fields for Details tabs in selected views with
+  Details gramplets.
+  - Person Details
+  - Place Details
+  - Repository Details
+* Geography: KML media objects not shown on map. Geography doesn't conform to the
+  relative paths If a place has no coordinates, KML files are not displayed.
+* Fix Fan charts for scrolling/resizing of window; bad rendering
+* Fix Clipboard for HandleErrors during db changes
+* Fix Clipboard for Drop/Edit of Surname group in People Tree view
+* Fix Relationship Graph for extraneous families when using filter
+* Fix export gpkg when media files have fractional timestamps.
+* Remove reference to postgresql in core code
+* Move dbapi-specific code out of DbGeneric
+* Create db _schema_exists method
+* Fix place format option in place report
+  * Use -1 instead of None for default place format
+  * adds New [Place format:] option on the [Report Options (2)] tab
+* [Narrative Web Report] Incorrect heading for stepmother or stepfather
+* Cairodoc: Fix Book TOC and Index numbering and placement
+* Fix Fan Chart(s) so they don't crash when opened as last view
+* Fix Organize Tag editor for exception on 'x' close
+* selectors: Change BaseSelector so that selection is kept during Find/Clear
+* Fix multi-page Graph output to pdf with filenames containg spaces
+* Fix Clipboard for right-click on empty clipboard
+* docs/conf.py, docs/gen/gen_db.rst: Fix ImportError & update API docs year 2018
+  - Fixes ImportError: No module named 'gramps.plugins.db.dummydb'
+  - Update Copyright to 2018
+* Webreport: Privacy problem with the relation to the center person.
+* Fix Report Options when used with empty db
+* debian/changelog: Finalise debian/changelog for beta1 release.
+  Also fix old syntax & trailing whitespace issues
+* debian/rules: Enable extra tests that were failing for alpha3
+* debian/patches: Patch person_rules_test.py To remove hard coded build path
+  from import. Fixes FTBFS due to test failure.
+* debian/NEWS: Delete debian/NEWS file, only really applies in Debian
+* debian/changelog: First beta release of gramps 5.0
+  * Sync debian directory with Debian experimental branch on salsa
+  * Point Vcs URLs at the Gramps Project on Github
+  * Correct spelling in debian/rules, node > nose
+  * Delete gbp.conf, not required as gbp not used to build package
+* debian/gbp.conf: Remove gbp.conf, will not be using gbp to build
+  deb package Avoids updating it for every branch used to build it
+* debian/rules: Fix spelling in d/rules node > nose
+* debian/control: Update Vcs URLs to point at Gramps Github repo
+* debian/NEWS, debian/README.Debian, debian/README.test,
+  debian/compat, debian/control, debian/copyright, debian/gbp.conf,
+  debian/gramps.docs, debian/rules, debian/source/format,
+  debian/source/local-options, debian/tests/control,
+  debian/tests/gramps-import-export, debian/upstream/metadata,
+  debian/watch: Resync debian dir from Debian 5.0 experimental branch
+* debian/changelog: Update debian/changelog with releases since 4.0.3
+* Fix testsuite failure when build happens out of the source tree.
+  Build path was hardcoded in an import in: person_rules_test.py
+* mac/Info.plist, mac/gramps.modules: Release Gramps 5.0.0-beta1 on MacOS.
+
 2018-02-17
 Version 5.0.0-beta1
 * pt_PT, hu, cs, it, fi, de, ru: update translation
