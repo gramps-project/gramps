@@ -363,6 +363,7 @@ class VCardCheck(unittest.TestCase):
         self.vcard.insert(4, "NICKNAME:Ton")
         attribs = {"alt": "1", "type": "Birth Name"}
         name = ET.SubElement(self.person, 'name', attribs)
+        ET.SubElement(name, 'surname')
         ET.SubElement(name, 'nick').text = "Ton"
         self.do_case("\r\n".join(self.vcard), self.gramps)
 
@@ -374,9 +375,11 @@ class VCardCheck(unittest.TestCase):
         self.vcard.insert(4, "NICKNAME:A,B\,C")
         attribs = {"alt": "1", "type": "Birth Name"}
         name = ET.SubElement(self.person, 'name', attribs)
+        ET.SubElement(name, 'surname')
         ET.SubElement(name, 'nick').text = "A"
         attribs = {"alt": "1", "type": "Birth Name"}
         name = ET.SubElement(self.person, 'name', attribs)
+        ET.SubElement(name, 'surname')
         ET.SubElement(name, 'nick').text = "B,C"
         self.do_case("\r\n".join(self.vcard), self.gramps)
 
