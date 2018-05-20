@@ -60,8 +60,6 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
             revision="maintenance/gramps50"
 	    checkoutdir="gramps-git"/>
     <dependencies>
-      <dep package="meta-python2-modules"/>
-      <dep package="meta-python3-modules"/>
     </dependencies>
   </distutils>
 
@@ -70,8 +68,6 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 	    repo="github-tarball" version="5.0.0"
 	    checkoutdir="gramps-gramps-5.0.0-beta12"/>
     <dependencies>
-      <dep package="meta-python2-modules"/>
-      <dep package="meta-python3-modules"/>
     </dependencies>
   </distutils>
 
