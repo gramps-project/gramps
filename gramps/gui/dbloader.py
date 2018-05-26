@@ -485,9 +485,10 @@ class GrampsImportFileDialog(ManagedWindow):
             # the import_dialog.run() makes it modal, so any change to that
             # line would require the ManagedWindow.__init__ to be changed also
             response = import_dialog.run()
-            if response in (Gtk.ResponseType.CANCEL,
-                            Gtk.ResponseType.DELETE_EVENT):
+            if response == Gtk.ResponseType.CANCEL:
                 break
+            elif response == Gtk.ResponseType.DELETE_EVENT:
+                return
             elif response == Gtk.ResponseType.OK:
                 filename = import_dialog.get_filename()
                 if self.check_errors(filename):
