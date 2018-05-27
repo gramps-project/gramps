@@ -255,7 +255,11 @@ class DocReportDialog(ReportDialog):
         displayed on the screen.  The subclass will know whether this
         entry was enabled.  This is for simplicity of programming."""
 
-        self.css_filename = self.CSS[self.css_combo.get_active()]["filename"]
+        indx = self.css_combo.get_active()
+        if indx >= 0:
+            self.css_filename = self.CSS[indx]["filename"]
+        else:
+            self.css_filename = ''
         self.options.handler.set_css_filename(self.css_filename)
 
     def on_ok_clicked(self, obj):
