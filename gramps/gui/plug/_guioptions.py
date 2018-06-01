@@ -156,7 +156,9 @@ class LastNameDialog(ManagedWindow):
                 tree_iter = self.__model.get_iter(path)
                 surname = self.__model.get_value(tree_iter, 0)
                 surname_set.add(surname)
-        self.close() # ManagedWindow: set the parent dialog to be modal again
+        if response != Gtk.ResponseType.DELETE_EVENT:
+            # ManagedWindow: set the parent dialog to be modal again
+            self.close()
         return surname_set
 
     def build_menu_names(self, obj):
