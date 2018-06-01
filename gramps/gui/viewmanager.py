@@ -1986,7 +1986,8 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
             config.set('paths.quick-backup-directory', path_entry.get_text())
         else:
             self.uistate.push_message(self.dbstate, _("Backup aborted"))
-        self.close()
+        if dbackup != Gtk.ResponseType.DELETE_EVENT:
+            self.close()
 
     def select_backup_path(self, widget, path_entry):
         """
