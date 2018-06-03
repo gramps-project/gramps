@@ -138,6 +138,16 @@ def import_as_dict(filename, user, skp_imp_adds=True):
     db = make_database("sqlite")
     db.load(":memory:")
     db.set_feature("skip-import-additions", skp_imp_adds)
+    db.set_prefixes(
+        config.get('preferences.iprefix'),
+        config.get('preferences.oprefix'),
+        config.get('preferences.fprefix'),
+        config.get('preferences.sprefix'),
+        config.get('preferences.cprefix'),
+        config.get('preferences.pprefix'),
+        config.get('preferences.eprefix'),
+        config.get('preferences.rprefix'),
+        config.get('preferences.nprefix'))
     status = import_from_filename(db, filename, user)
     return db if status else None
 
