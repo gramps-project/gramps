@@ -426,11 +426,22 @@ class Extract:
 
     def get_month(self, event):
         "return month for given event"
+        date_displayer = self._locale.date_displayer
+        CAL_TO_LONG_MONTHS_NAMES = {
+            Date.CAL_GREGORIAN  : date_displayer.long_months,
+            Date.CAL_JULIAN     : date_displayer.long_months,
+            Date.CAL_HEBREW     : date_displayer.hebrew,
+            Date.CAL_FRENCH     : date_displayer.french,
+            Date.CAL_PERSIAN    : date_displayer.persian,
+            Date.CAL_ISLAMIC    : date_displayer.islamic,
+            Date.CAL_SWEDISH    : date_displayer.swedish }
+
         date = event.get_date_object()
         if date:
             month = date.get_month()
             if month:
-                return [self._locale.date_displayer.long_months[month]]
+                month_names = CAL_TO_LONG_MONTHS_NAMES[date.get_calendar()]
+                return [month_names[month]]
         return [_T_("Date(s) missing")]
 
     def get_place(self, event):
