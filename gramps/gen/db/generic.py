@@ -671,7 +671,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if update is False, don't change access times, etc.
         """
         if self._directory != ":memory:":
-            if update:
+            if update and not self.readonly:
                 # This is just a dummy file to indicate last modified time of
                 # the database for gramps.cli.clidbman:
                 filename = os.path.join(self._directory, "meta_data.db")
