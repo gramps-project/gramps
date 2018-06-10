@@ -101,7 +101,7 @@ class LastNameDialog(ManagedWindow):
                                    Gtk.PolicyType.AUTOMATIC)
         scrolled_window.set_shadow_type(Gtk.ShadowType.OUT)
         self.__dlg.vbox.pack_start(scrolled_window, True, True, 0)
-        scrolled_window.show_all()
+        self.show()
 
         if len(surnames) == 0:
             # we could use database.get_surname_list(), but if we do that
