@@ -1233,26 +1233,24 @@ class ViewManager(CLIManager):
         if title:
             name = title
 
-        if self.dbstate.db.readonly:
-            msg = "%s (%s) - Gramps" % (name, _('Read Only'))
-            self.uistate.window.set_title(msg)
-            self.actiongroup.set_sensitive(False)
-        else:
+        rw = not self.dbstate.db.readonly
+        if rw:
             msg = "%s - Gramps" % name
-            self.uistate.window.set_title(msg)
-            self.actiongroup.set_sensitive(True)
+        else:
+            msg = "%s (%s) - Gramps" % (name, _('Read Only'))
+        self.uistate.window.set_title(msg)
 
         self.__change_page(self.notebook.get_current_page())
-        self.actiongroup.set_visible(True)
+        self.actiongroup.set_visible(rw)
         self.readonlygroup.set_visible(True)
-        self.undoactions.set_visible(True)
-        self.redoactions.set_visible(True)
-        self.undohistoryactions.set_visible(True)
-        self.actiongroup.set_sensitive(True)
+        self.undoactions.set_visible(rw)
+        self.redoactions.set_visible(rw)
+        self.undohistoryactions.set_visible(rw)
+        self.actiongroup.set_sensitive(rw)
         self.readonlygroup.set_sensitive(True)
-        self.undoactions.set_sensitive(True)
-        self.redoactions.set_sensitive(True)
-        self.undohistoryactions.set_sensitive(True)
+        self.undoactions.set_sensitive(rw)
+        self.redoactions.set_sensitive(rw)
+        self.undohistoryactions.set_sensitive(rw)
 
         self.recent_manager.build()
 
