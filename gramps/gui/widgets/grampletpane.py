@@ -566,19 +566,17 @@ class GuiGramplet:
         if len(self.pui.option_order) == 0: return
         frame = Gtk.Frame()
         topbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        hbox = Gtk.Box(spacing=5)
-        labels = Gtk.Box(orientation=Gtk.Orientation.VERTICAL,
-                         homogeneous=True)
-        options = Gtk.Box(orientation=Gtk.Orientation.VERTICAL,
-                          homogeneous=True)
-        hbox.pack_start(labels, False, True, 0)
-        hbox.pack_start(options, True, True, 0)
+        hbox = Gtk.Grid()
+        hbox.set_column_spacing(5)
         topbox.pack_start(hbox, False, False, 0)
+        row = 0
         for item in self.pui.option_order:
             label = Gtk.Label(label=item + COLON)
             label.set_halign(Gtk.Align.END)
-            labels.pack_start(label, True, True, 0)
-            options.pack_start(self.pui.option_dict[item][0], True, True, 0) # widget
+            hbox.attach(label, 0, row, 1, 1)
+            # put Widget next to label
+            hbox.attach(self.pui.option_dict[item][0], 1, row, 1, 1)
+            row += 1
         save_button = Gtk.Button.new_with_mnemonic(_('_Save'))
         topbox.pack_end(save_button, False, False, 0)
         save_button.connect('clicked', self.pui.save_update_options)
