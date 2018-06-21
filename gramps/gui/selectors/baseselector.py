@@ -107,7 +107,6 @@ class BaseSelector(ManagedWindow):
         self.sortorder = Gtk.SortType.ASCENDING
 
         self.skip_list=skip
-        self.build_tree()
         self.selection = self.tree.get_selection()
         self.track_ref_for_deletion("selection")
 
@@ -123,6 +122,12 @@ class BaseSelector(ManagedWindow):
             self.showall.show()
         else:
             self.showall.hide()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
+        self.build_tree()
+        loading = self.glade.get_object('loading')
+        loading.hide()
+
         if default:
             self.goto_handle(default)
 
