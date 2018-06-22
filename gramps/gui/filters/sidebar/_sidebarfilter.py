@@ -267,7 +267,7 @@ class SidebarFilter(DbGUIElement):
         from gramps.gen.filters import reload_custom_filters
         filterdb.save()
         reload_custom_filters()
-        self.on_filters_changed(self.namespace)
+        self.uistate.emit('filters-changed', (self.namespace,))
         self.set_filters_to_name(filter_name)
 
     def set_filters_to_name(self, filter_name):
