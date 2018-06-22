@@ -763,11 +763,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
         env_flags = db.DB_CREATE | db.DB_PRIVATE |\
-                    db.DB_INIT_MPOOL |\
-                    db.DB_INIT_LOG | db.DB_INIT_TXN
-
-        # As opposed to before, we always try recovery on databases
-        env_flags |= db.DB_RECOVER
+                    db.DB_INIT_MPOOL
+        if not self.readonly:
+            env_flags |= db.DB_INIT_LOG | db.DB_INIT_TXN
+            # As opposed to before, we always try recovery on databases
+            env_flags |= db.DB_RECOVER
 
         # Environment name is now based on the filename
         env_name = name
@@ -782,7 +782,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 pass
             raise DbEnvironmentError(msg)
 
-        self.env.txn_checkpoint()
+        if not self.readonly:
+            self.env.txn_checkpoint()
 
         if callback:
             callback(25)
@@ -1478,7 +1479,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             return
         if self.txn:
             self.transaction_abort(self.transaction)
-        self.env.txn_checkpoint()
+        if not self.readonly:
+            self.env.txn_checkpoint()
 
         self.__close_metadata()
         self.name_group.close()
