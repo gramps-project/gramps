@@ -49,7 +49,7 @@ from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR, COLON
 from ..editors import EditPerson, EditFamily
 from ..managedwindow import ManagedWindow
 from ..utils import is_right_click, match_primary_mask, get_link_color
-from .menuitem import add_menuitem
+from ..uimanager import ActionGroup
 from ..plug import make_gui_option
 from ..plug.quick import run_quick_report_by_name
 from ..display import display_help, display_url
@@ -188,6 +188,13 @@ def logical_true(value):
     Used for converting text file values to booleans.
     """
     return value in ["True", True, 1, "1"]
+
+def make_callback(func, arg):
+    """
+    Generates a callback function based off the passed arguments
+    """
+    return lambda x, y: func(arg)
+
 
 class LinkTag(Gtk.TextTag):
     """
@@ -999,6 +1006,8 @@ class GrampletPane(Gtk.ScrolledWindow):
         self.pageview = pageview
         self.pane = self
         self._popup_xy = None
+        self.at_popup_action = None
+        self.at_popup_menu = None
         user_gramplets = self.load_gramplets()
         # build the GUI:
         msg = _("Right click to add gramplets")
@@ -1349,8 +1358,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         self.place_gramplets(recolumn=True)
         self.show()
 
-    def restore_gramplet(self, obj):
-        name = obj.get_child().get_label()
+    def restore_gramplet(self, name):
         ############### First kind: from current session
         for gramplet in self.closed_gramplets:
             if gramplet.title == name:
@@ -1392,8 +1400,7 @@ class GrampletPane(Gtk.ScrolledWindow):
             else:
                 self.drop_widget(self, gramplet, 0, 0, 0)
 
-    def add_gramplet(self, obj):
-        tname = obj.get_child().get_label()
+    def add_gramplet(self, tname):
         all_opts = get_gramplet_options_by_tname(tname)
         name = all_opts["name"]
         if all_opts is None:
@@ -1437,39 +1444,73 @@ class GrampletPane(Gtk.ScrolledWindow):
             LOG.warning("Can't make gramplet of type '%s'.", name)
 
     def _button_press(self, obj, event):
+        ui_def = (
+            '''    <menu id="Popup">
+        <submenu>
+          <attribute name="action">win.AddGramplet</attribute>
+          <attribute name="label" translatable="yes">Add a gramplet</attribute>
+          %s
+        </submenu>
+        <submenu>
+          <attribute name="action">win.RestoreGramplet</attribute>
+          <attribute name="label" translatable="yes">'''
+            '''Restore a gramplet</attribute>
+          %s
+        </submenu>
+        </menu>
+        ''')
+        menuitem = ('<item>\n'
+                    '<attribute name="action">win.%s</attribute>\n'
+                    '<attribute name="label" translatable="yes">'
+                    '%s</attribute>\n'
+                    '</item>\n')
+
         if is_right_click(event):
             self._popup_xy = (event.x, event.y)
             uiman = self.uistate.uimanager
-            ag_menu = uiman.get_widget('/GrampletPopup/AddGramplet')
-            if ag_menu:
-                qr_menu = ag_menu.get_submenu()
-                qr_menu = Gtk.Menu()
-                names = [gplug.name for gplug in PLUGMAN.get_reg_gramplets()
-                         if gplug.navtypes == []
-                            or 'Dashboard' in gplug.navtypes]
-                names.sort()
+            actions = []
+            r_menuitems = ''
+            a_menuitems = ''
+            names = [gplug.name for gplug in PLUGMAN.get_reg_gramplets()
+                     if gplug.navtypes == []
+                        or 'Dashboard' in gplug.navtypes]
+            names.sort()
+            for name in names:
+                action_name = name.replace(' ', '-')
+                a_menuitems += menuitem % (action_name, name)
+                actions.append((action_name,
+                                make_callback(self.add_gramplet, name)))
+            names = [gramplet.title for gramplet in self.closed_gramplets]
+            names.extend(opts["title"] for opts in self.closed_opts)
+            names.sort()
+            if len(names) > 0:
                 for name in names:
-                    add_menuitem(qr_menu, name, None,
-                                           self.add_gramplet)
-                ag_menu.set_submenu(qr_menu)
-            rg_menu = uiman.get_widget('/GrampletPopup/RestoreGramplet')
-            if rg_menu:
-                qr_menu = rg_menu.get_submenu()
-                if qr_menu is not None:
-                    rg_menu.set_submenu(None)
-                names = [gramplet.title for gramplet in self.closed_gramplets]
-                names.extend(opts["title"] for opts in self.closed_opts)
-                names.sort()
-                if len(names) > 0:
-                    qr_menu = Gtk.Menu()
-                    for name in names:
-                        add_menuitem(qr_menu, name, None,
-                                               self.restore_gramplet)
-                    rg_menu.set_submenu(qr_menu)
-            self.menu = uiman.get_widget('/GrampletPopup')
-            if self.menu:
-                #GTK3 does not show the popup, workaround: menu as attribute
-                self.menu.popup(None, None, None, None, event.button, event.time)
+                    action_name = name.replace(' ', '-')
+                    r_menuitems += menuitem % (action_name, name)
+                    actions.append((action_name,
+                                    make_callback(self.restore_gramplet,
+                                                  name)))
+
+            if self.at_popup_action:
+                uiman.remove_ui(self.at_popup_menu)
+                uiman.remove_action_group(self.at_popup_action)
+            self.at_popup_action = ActionGroup('AtPopupActions',
+                                               actions)
+            uiman.insert_action_group(self.at_popup_action)
+            self.at_popup_menu = uiman.add_ui_from_string([
+                ui_def % (a_menuitems, r_menuitems)])
+            uiman.update_menu()
+
+            menu = uiman.get_widget('Popup')
+            popup_menu = Gtk.Menu.new_from_model(menu)
+            popup_menu.attach_to_widget(obj, None)
+            popup_menu.show_all()
+            if Gtk.MINOR_VERSION < 22:
+                # ToDo The following is reported to work poorly with Wayland
+                popup_menu.popup(None, None, None, None,
+                                 event.button, event.time)
+            else:
+                popup_menu.popup_at_pointer(event)
                 return True
         return False
 

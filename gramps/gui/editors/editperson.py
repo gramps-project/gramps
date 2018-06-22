@@ -676,33 +676,33 @@ class EditPerson(EditPrimary):
             EditMediaRef(self.dbstate, self.uistate, self.track,
                          media_obj, media_ref, self.load_photo)
 
-    def _top_contextmenu(self):
+    def _top_contextmenu(self, prefix):
         """
         Override from base class, the menuitems and actiongroups for the top
         of context menu.
         """
-        self.all_action    = Gtk.ActionGroup(name="/PersonAll")
-        self.home_action   = Gtk.ActionGroup(name="/PersonHome")
-        self.track_ref_for_deletion("all_action")
-        self.track_ref_for_deletion("home_action")
+        if self.added:
+            # Don't add items if not a real person yet
+            return '', []
 
-        self.all_action.add_actions([
-                ('ActivePerson', None, _("Make Active Person"),
-                    None, None, self._make_active),
-                ])
-        self.home_action.add_actions([
-                ('HomePerson', 'go-home', _("Make Home Person"),
-                    None, None, self._make_home_person),
-                ])
+        _actions = [('ActivePerson', self._make_active),
+                    ('HomePerson', self._make_home_person)]
 
-        self.all_action.set_visible(not self.added)
-        self.home_action.set_visible(not self.added)
+        ui_top_cm = (
+            '''
+        <item>
+          <attribute name="action">{prefix}.ActivePerson</attribute>
+          <attribute name="label" translatable="yes">Make Active Person'''
+            '''</attribute>
+        </item>
+        <item>
+          <attribute name="action">{prefix}.HomePerson</attribute>
+          <attribute name="label" translatable="yes">Make Home Person'''
+            '''</attribute>
+        </item>
+        '''.format(prefix=prefix))
 
-        ui_top_cm = '''
-            <menuitem action="ActivePerson"/>
-            <menuitem action="HomePerson"/>'''
-
-        return ui_top_cm, [self.all_action, self.home_action]
+        return ui_top_cm, _actions
 
     def _top_drag_data_get(self, widget, context, sel_data, info, time):
         if info == DdTargets.PERSON_LINK.app_id:
@@ -713,17 +713,21 @@ class EditPerson(EditPrimary):
         """
         Override base class, make inactive home action if not needed.
         """
+        if self.added:
+            return
+        home_action = self.uistate.uimanager.get_action(self.action_group,
+                                                        'HomePerson')
         if (self.dbstate.db.get_default_person() and
                 self.obj.get_handle() ==
                     self.dbstate.db.get_default_person().get_handle()):
-            self.home_action.set_sensitive(False)
+            home_action.set_enabled(False)
         else:
-            self.home_action.set_sensitive(True)
+            home_action.set_enabled(True)
 
-    def _make_active(self, obj):
+    def _make_active(self, obj, value):
         self.uistate.set_active(self.obj.get_handle(), 'Person')
 
-    def _make_home_person(self, obj):
+    def _make_home_person(self, obj, value):
         handle = self.obj.get_handle()
         if handle:
             self.dbstate.db.set_default_person_handle(handle)

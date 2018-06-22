@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2009 Benny Malengier
+# Copyright (C) 2018 Paul Culley
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,7 +51,365 @@ _ = glocale.translation.gettext
 
 MIN_PYGOBJECT_VERSION = (3, 12, 0)
 PYGOBJ_ERR = False
-MIN_GTK_VERSION = (3, 10)
+MIN_GTK_VERSION = (3, 12)
+UIDEFAULT = (
+    '''<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <menu id="menubar"><section id="menubar-update">
+    <submenu id='m1'>
+      <attribute name="label" translatable="yes">_Family Trees</attribute>
+      <section id="ftree">
+        <item>
+          <attribute name="action">win.Open</attribute>
+          <attribute name="label" translatable="yes">'''
+    '''_Manage Family Trees</attribute>
+        </item>
+        <submenu>
+          <attribute name="action">win.OpenRecent</attribute>
+          <attribute name="label" translatable="yes">Open _Recent</attribute>
+          <placeholder id="OpenRecentMenu">
+          </placeholder>
+        </submenu>
+        <item groups='RO'>
+          <attribute name="action">win.Close</attribute>
+          <attribute name="label" translatable="yes">_Close</attribute>
+        </item>
+      </section>
+      <section groups='RO RW'>
+        <item groups='RW'>
+          <attribute name="action">win.Import</attribute>
+          <attribute name="label" translatable="yes">_Import...</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Export</attribute>
+          <attribute name="label" translatable="yes">_Export...</attribute>
+        </item>
+        <placeholder id="LocalExport">
+        </placeholder>
+        <item>
+          <attribute name="action">win.Backup</attribute>
+          <attribute name="label" translatable="yes">Make Backup...</attribute>
+        </item>
+      </section>
+      <section>
+        <item groups='RO'>
+          <attribute name="action">win.Abandon</attribute>
+          <attribute name="label" translatable="yes">'''
+    '''_Abandon Changes and Quit</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Quit</attribute>
+          <attribute name="label" translatable="yes">_Quit</attribute>
+        </item>
+      </section>
+    </submenu>
+    <submenu id='m2' groups='RW'>
+      <attribute name="label" translatable="yes">_Add</attribute>
+      <section>
+        <item>
+          <attribute name="action">win.PersonAdd</attribute>
+          <attribute name="label" translatable="yes">Person</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="action">win.FamilyAdd</attribute>
+          <attribute name="label" translatable="yes">Family</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="action">win.EventAdd</attribute>
+          <attribute name="label" translatable="yes">Event</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="action">win.PlaceAdd</attribute>
+          <attribute name="label" translatable="yes">Place</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.SourceAdd</attribute>
+          <attribute name="label" translatable="yes">Source</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.CitationAdd</attribute>
+          <attribute name="label" translatable="yes">Citation</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.RepositoryAdd</attribute>
+          <attribute name="label" translatable="yes">Repository</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.MediaAdd</attribute>
+          <attribute name="label" translatable="yes">Media</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.NoteAdd</attribute>
+          <attribute name="label" translatable="yes">Note</attribute>
+        </item>
+      </section>
+    </submenu>
+    <submenu id='m3'>
+      <attribute name="label" translatable="yes">_Edit</attribute>
+      <section groups='RW'>
+        <placeholder id="undo">
+        </placeholder>
+        <placeholder id="redo">
+        </placeholder>
+        <item>
+          <attribute name="action">win.UndoHistory</attribute>
+          <attribute name="label" translatable="yes">Undo History</attribute>
+        </item>
+      </section>
+      <section id='CommonEdit' groups='RW'>
+      </section>
+      <section id='TagMenu' groups='RW'>
+      </section>
+      <section groups='RW'>
+        <item>
+          <attribute name="action">win.Clipboard</attribute>
+          <attribute name="label" translatable="yes">Clip_board</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="action">win.Preferences</attribute>
+          <attribute name="label" translatable="yes">'''
+    '''_Preferences...</attribute>
+        </item>
+        <placeholder id='otheredit'>
+        </placeholder>
+      </section>
+    </submenu>
+    <submenu id='m4'>
+      <attribute name="label" translatable="yes">_View</attribute>
+      <section>
+        <item>
+          <attribute name="action">win.ConfigView</attribute>
+          <attribute name="label" translatable="yes">_Configure...</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Navigator</attribute>
+          <attribute name="label" translatable="yes">_Navigator</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Toolbar</attribute>
+          <attribute name="label" translatable="yes">_Toolbar</attribute>
+        </item>
+        <placeholder id='Bars'>
+        </placeholder>
+        <item>
+          <attribute name="action">win.Fullscreen</attribute>
+          <attribute name="label" translatable="yes">F_ull Screen</attribute>
+        </item>
+      </section>
+      <section id="ViewsInCatagory">
+      </section>
+    </submenu>
+    <submenu id="m5" groups='RO'>
+      <attribute name="label" translatable="yes">_Go</attribute>
+      <placeholder id="CommonGo">
+      </placeholder>
+      <section id="CommonHistory">
+      </section>
+    </submenu>
+    <submenu id='m6' groups='RW'>
+      <attribute name="label" translatable="yes">_Bookmarks</attribute>
+      <section id="AddEditBook">
+      </section>
+      <section id="GoToBook">
+      </section>
+    </submenu>
+    <submenu id='m7' groups='RO'>
+      <attribute name="label" translatable="yes">_Reports</attribute>
+      <section>
+        <item>
+          <attribute name="action">win.Books</attribute>
+          <attribute name="label" translatable="yes">Books...</attribute>
+        </item>
+      </section>
+      <section id="P_ReportsMenu">
+      </section>
+    </submenu>
+    <submenu id='m8' groups='RW'>
+      <attribute name="label" translatable="yes">_Tools</attribute>
+      <section id="P_ToolsMenu">
+      </section>
+    </submenu>
+    <submenu id='m9' groups='RO'>
+      <attribute name="label" translatable="yes">_Windows</attribute>
+      <section id="WinMenu">
+      </section>
+    </submenu>
+    <submenu id='m10'>
+      <attribute name="label" translatable="yes">_Help</attribute>
+      <section>
+        <item>
+          <attribute name="action">win.UserManual</attribute>
+          <attribute name="label" translatable="yes">_User Manual</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.FAQ</attribute>
+          <attribute name="label" translatable="yes">_FAQ</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.KeyBindings</attribute>
+          <attribute name="label" translatable="yes">_Key Bindings</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.TipOfDay</attribute>
+          <attribute name="label" translatable="yes">Tip of the Day</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.PluginStatus</attribute>
+          <attribute name="label" translatable="yes">'''
+    '''_Plugin Manager</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="action">win.HomePage</attribute>
+          <attribute name="label" translatable="yes">'''
+    '''Gramps _Home Page</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.MailingLists</attribute>
+          <attribute name="label" translatable="yes">'''
+    '''Gramps _Mailing Lists</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.ReportBug</attribute>
+          <attribute name="label" translatable="yes">_Report a Bug</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.ExtraPlugins</attribute>
+          <attribute name="label" translatable="yes">'''
+    '''_Extra Reports/Tools</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="action">win.About</attribute>
+          <attribute name="label" translatable="yes">_About</attribute>
+        </item>
+      </section>
+    </submenu>
+  </section></menu>
+
+  <object class="GtkMenu"  id="OpenBtnMenu">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+  </object>
+
+  <object class="GtkToolbar" id="ToolBar">
+    <property name="hexpand">1</property>
+    <property name="toolbar-style">GTK_TOOLBAR_ICONS</property>
+    <style>
+      <class name="primary-toolbar"/>
+    </style>
+    <child>
+      <object class="GtkToolButton">
+        <property name="icon-name">gramps</property>
+        <property name="action-name">win.Open</property>
+        <property name="tooltip_text" translatable="yes">'''
+    '''Manage databases</property>
+        <property name="label" translatable="yes">_Family Trees</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToolItem">
+        <child>
+          <object class="GtkMenuButton">
+            <property name="tooltip_text" translatable="yes">'''
+    '''Connect to a recent database</property>
+            <property name="popup">OpenBtnMenu</property>
+            <property name="relief">GTK_RELIEF_NONE</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <placeholder id='CommonNavigation'>
+    </placeholder>
+    <placeholder id='BarCommonEdit'>
+    </placeholder>
+    <placeholder id='TagTool'>
+    </placeholder>
+    <child groups='RW'>
+      <object class="GtkToolButton" id="Clipboard">
+        <property name="icon-name">edit-paste</property>
+        <property name="action-name">win.Clipboard</property>
+        <property name="tooltip_text" translatable="yes">'''
+    '''Open the Clipboard dialog</property>
+        <property name="label" translatable="yes">Clip_board</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+     </child>
+    <child>
+      <object class="GtkSeparatorToolItem"/>
+    </child>
+    <child>
+      <object class="GtkToolButton" id="ConfigView">
+        <property name="icon-name">gramps-config</property>
+        <property name="action-name">win.ConfigView</property>
+        <property name="tooltip_text" translatable="yes">'''
+    '''Configure the active view</property>
+        <property name="label" translatable="yes">_Configure...</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+     </child>
+    <placeholder id='ViewsInCategoryBar'>
+    </placeholder>
+    <child>
+      <object class="GtkSeparatorToolItem" id="sep"/>
+    </child>
+    <placeholder id="MoreButtons">
+    </placeholder>
+    <child groups='RO'>
+      <object class="GtkToolButton" id="Reports">
+        <property name="icon-name">gramps-reports</property>
+        <property name="action-name">win.Reports</property>
+        <property name="tooltip_text" translatable="yes">'''
+    '''Open the reports dialog</property>
+        <property name="label" translatable="yes">_Reports</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+     </child>
+    <child groups='RW'>
+      <object class="GtkToolButton" id="Tools">
+        <property name="icon-name">gramps-tools</property>
+        <property name="action-name">win.Tools</property>
+        <property name="tooltip_text" translatable="yes">'''
+    '''Open the tools dialog</property>
+        <property name="label" translatable="yes">_Tools</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+     </child>
+    <placeholder id='AfterTools'>
+    </placeholder>
+  </object>
+
+  <menu id="Popup">
+  </menu>
+
+</interface>
+''')
 
 try:
     #import gnome introspection, part of pygobject
@@ -235,9 +594,8 @@ class Gramps:
     process. It may spawn several windows and control several databases.
     """
 
-    def __init__(self, argparser):
+    def __init__(self, argparser, app):
         from gramps.gen.dbstate import DbState
-        from . import viewmanager
         from .viewmanager import ViewManager
         from gramps.cli.arghandler import ArgHandler
         from .tipofday import TipOfDay
@@ -248,7 +606,7 @@ class Gramps:
         theme.append_search_path(IMAGE_DIR)
 
         dbstate = DbState()
-        self._vm = ViewManager(dbstate,
+        self._vm = ViewManager(app, dbstate,
                                config.get("interface.view-categories"))
 
         if (lin()
@@ -303,68 +661,18 @@ class Gramps:
 #
 #-------------------------------------------------------------------------
 
-def __startgramps(errors, argparser):
+def startgramps(errors, argparser):
     """
     Main startup function started via GObject.timeout_add
     First action inside the gtk loop
     """
-    try:
-        from .dialog import ErrorDialog
-        #handle first existing errors in GUI fashion
-        if errors:
-            for error in errors:
-                ErrorDialog(error[0], error[1]) # TODO no-parent
-            Gtk.main_quit()
-            sys.exit(1)
-
-        if argparser.errors:
-            for error in argparser.errors:
-                ErrorDialog(error[0], error[1]) # TODO no-parent
-            Gtk.main_quit()
-            sys.exit(1)
-
-        # add gui logger
-        from .logger import RotateHandler, GtkHandler
-        form = logging.Formatter(
-            fmt="%(relativeCreated)d: %(levelname)s: "
-                "%(filename)s: line %(lineno)d: %(message)s")
-        # Create the log handlers
-        rot_h = RotateHandler(capacity=20)
-        rot_h.setFormatter(form)
-        # Only error and critical log records should
-        # trigger the GUI handler.
-        gtkh = GtkHandler(rotate_handler=rot_h)
-        gtkh.setFormatter(form)
-        gtkh.setLevel(logging.ERROR)
-        logger = logging.getLogger()
-        logger.addHandler(rot_h)
-        logger.addHandler(gtkh)
-
-    except:
-        #make sure there is a clean exit if there is an error in above steps
-        quit_now = True
-        exit_code = 1
-        LOG.error(_("\nGramps failed to start. "
-                    "Please report a bug about this.\n"
-                    "This could be because of an error "
-                    "in a (third party) View on startup.\n"
-                    "To use another view, don't load a Family Tree, "
-                    "change view, and then load your Family Tree.\n"
-                    "You can also change manually "
-                    "the startup view in the gramps.ini file \n"
-                    "by changing the last-view parameter.\n"
-                   ), exc_info=True)
-
-    # start Gramps, errors stop the gtk loop
+    app = GrampsApplication(errors, argparser)
     try:
         quit_now = False
         exit_code = 0
-        if has_display():
-            Gramps(argparser)
-        else:
+        if app.run():
             print(_("Gramps terminated because of no DISPLAY"))
-            quit_now = True
-            exit_code = 1
+
     except SystemExit as err:
         quit_now = True
         if err.code:
@@ -395,18 +703,85 @@ def __startgramps(errors, argparser):
                    ), exc_info=True)
 
     if quit_now:
-        #stop gtk loop and quit
-        Gtk.main_quit()
+        app.quit()
         sys.exit(exit_code)
 
-    #function finished, return False to stop the timeout_add function calls
     return False
 
-def startgtkloop(errors, argparser):
-    """
-    We start the gtk loop and run the function to start up Gramps
-    """
-    GLib.timeout_add(100, __startgramps, errors, argparser, priority=100)
-    if os.path.exists(os.path.join(DATA_DIR, "gramps.accel")):
-        Gtk.AccelMap.load(os.path.join(DATA_DIR, "gramps.accel"))
-    Gtk.main()
+# we do the following import here to avoid the Gtk require version warning
+from .uimanager import UIManager
+
+
+class GrampsApplication(Gtk.Application):
+
+    def __init__(self, errors, argparser):
+        super().__init__(application_id="org.gramps-project.Gramps")
+        self.window = None
+        self.errors = errors
+        self.argparser = argparser
+
+    def do_startup(self):
+        Gtk.Application.do_startup(self)
+        self.uimanager = UIManager(self, UIDEFAULT)
+        self.uimanager.update_menu(init=True)
+
+        if os.path.exists(os.path.join(DATA_DIR, "gramps.accel")):
+            self.uimanager.load_accels(os.path.join(DATA_DIR, "gramps.accel"))
+        try:
+            from .dialog import ErrorDialog
+            #handle first existing errors in GUI fashion
+            if self.errors:
+                for error in self.errors:
+                    ErrorDialog(error[0], error[1])  # TODO no-parent
+                Gtk.main_quit()
+                sys.exit(1)
+
+            if self.argparser.errors:
+                for error in self.argparser.errors:
+                    ErrorDialog(error[0], error[1])  # TODO no-parent
+                Gtk.main_quit()
+                sys.exit(1)
+
+            # add gui logger
+            from .logger import RotateHandler, GtkHandler
+            form = logging.Formatter(
+                fmt="%(relativeCreated)d: %(levelname)s: "
+                    "%(filename)s: line %(lineno)d: %(message)s")
+            # Create the log handlers
+            rot_h = RotateHandler(capacity=20)
+            rot_h.setFormatter(form)
+            # Only error and critical log records should
+            # trigger the GUI handler.
+            gtkh = GtkHandler(rotate_handler=rot_h)
+            gtkh.setFormatter(form)
+            gtkh.setLevel(logging.ERROR)
+            logger = logging.getLogger()
+            logger.addHandler(rot_h)
+            logger.addHandler(gtkh)
+
+        except:
+            #make sure there is a clean exit if error in above steps
+            exit_code = 1
+            LOG.error(_("\nGramps failed to start. "
+                        "Please report a bug about this.\n"
+                        "This could be because of an error "
+                        "in a (third party) View on startup.\n"
+                        "To use another view, don't load a Family Tree, "
+                        "change view, and then load your Family Tree.\n"
+                        "You can also change manually "
+                        "the startup view in the gramps.ini file \n"
+                        "by changing the last-view parameter.\n"
+                       ), exc_info=True)
+            #stop gtk loop and quit
+            self.quit()
+            sys.exit(exit_code)
+
+    def do_activate(self):
+        # We only allow a single window and raise any existing ones
+        if not self.window:
+            # Windows are associated with the application
+            # when the last one is closed the application shuts down
+            Gramps(self.argparser, self)
+        else:
+            print('Gramps is already running.')
+        self.window.present()

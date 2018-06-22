@@ -49,12 +49,7 @@ class DashboardView(PageView):
         Create a DashboardView, with the current dbstate and uistate
         """
         PageView.__init__(self, _('Dashboard'), pdata, dbstate, uistate)
-        self.ui_def = '''<ui>
-         <popup name="GrampletPopup">
-            <menuitem action="AddGramplet"/>
-            <menuitem action="RestoreGramplet"/>
-          </popup>
-        </ui>'''
+        self.ui_def = []  # No special menu for Dashboard, Popup in GrampletPane
 
     def build_interface(self):
         """
@@ -101,10 +96,11 @@ class DashboardView(PageView):
 
     def define_actions(self):
         """
-        Defines the UIManager actions.
+        Defines the UIManager actions. Called by the ViewManager to set up the
+        View. The user typically defines self.action_list and
+        self.action_toggle_list in this function.
         """
-        self._add_action("AddGramplet", 'list-add', _("Add a gramplet"))
-        self._add_action("RestoreGramplet", None, _("Restore a gramplet"))
+        pass
 
     def set_inactive(self):
         self.active = False

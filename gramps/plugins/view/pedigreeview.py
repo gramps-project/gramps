@@ -63,7 +63,6 @@ from gramps.gui.ddtargets import DdTargets
 from gramps.gen.config import config
 from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.gen.const import CUSTOM_FILTERS
-from gramps.gen.constfunc import is_quartz, win
 from gramps.gui.dialog import RunDatabaseRepair, ErrorDialog
 from gramps.gui.utils import color_graph_box, hex_to_rgb_float, is_right_click
 from gramps.gen.constfunc import lin
@@ -528,11 +527,6 @@ class PedigreeView(NavigationView):
         NavigationView.__init__(self, _('Pedigree'), pdata, dbstate, uistate,
                                 PersonBookmarks, nav_group)
 
-        self.func_list.update({
-            'F2' : self.kb_goto_home,
-            '<PRIMARY>J' : self.jump,
-            })
-
         self.dbstate = dbstate
         self.dbstate.connect('database-changed', self.change_db)
         uistate.connect('nameformat-changed', self.person_rebuild)
@@ -551,7 +545,7 @@ class PedigreeView(NavigationView):
         self.scrolledwindow = None
         self.table = None
 
-        self.additional_uis.append(self.additional_ui())
+        self.additional_uis.append(self.additional_ui)
 
         # Automatic resize
         self.force_size = self._config.get('interface.pedview-tree-size')
@@ -571,10 +565,6 @@ class PedigreeView(NavigationView):
         # Default - not show, for mo fast display hight tree
         self.show_unknown_people = self._config.get(
                                 'interface.pedview-show-unknown-people')
-
-        self.func_list.update({
-            '<PRIMARY>J' : self.jump,
-            })
 
     def get_handle_from_gramps_id(self, gid):
         """
@@ -642,41 +632,91 @@ class PedigreeView(NavigationView):
 
         return self.scrolledwindow
 
-    def additional_ui(self):
-        """
-        Specifies the UIManager XML code that defines the menus and buttons
-        associated with the interface.
-        """
-        return '''<ui>
-          <menubar name="MenuBar">
-            <menu action="GoMenu">
-              <placeholder name="CommonGo">
-                <menuitem action="Back"/>
-                <menuitem action="Forward"/>
-                <separator/>
-                <menuitem action="HomePerson"/>
-                <separator/>
-              </placeholder>
-            </menu>
-            <menu action="EditMenu">
-              <menuitem action="SetActive"/>
-              <menuitem action="FilterEdit"/>
-            </menu>
-            <menu action="BookMenu">
-              <placeholder name="AddEditBook">
-                <menuitem action="AddBook"/>
-                <menuitem action="EditBook"/>
-              </placeholder>
-            </menu>
-          </menubar>
-          <toolbar name="ToolBar">
-            <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>
-              <toolitem action="Forward"/>
-              <toolitem action="HomePerson"/>
-            </placeholder>
-          </toolbar>
-        </ui>'''
+    additional_ui = [  # Defines the UI string for UIManager
+        '''
+      <placeholder id="CommonGo">
+      <section>
+        <item>
+          <attribute name="action">win.Back</attribute>
+          <attribute name="label" translatable="yes">_Back</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Forward</attribute>
+          <attribute name="label" translatable="yes">_Forward</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="action">win.HomePerson</attribute>
+          <attribute name="label" translatable="yes">_Home</attribute>
+        </item>
+      </section>
+      </placeholder>
+''',
+        '''
+      <section id="AddEditBook">
+        <item>
+          <attribute name="action">win.AddBook</attribute>
+          <attribute name="label" translatable="yes">_Add Bookmark</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.EditBook</attribute>
+          <attribute name="label" translatable="no">%s...</attribute>
+        </item>
+      </section>
+''' % _('Organize Bookmarks'),
+        '''
+        <placeholder id='otheredit'>
+        <item>
+          <attribute name="action">win.FilterEdit</attribute>
+          <attribute name="label" translatable="yes">'''
+        '''Person Filter Editor</attribute>
+        </item>
+        </placeholder>
+''',  # Following are the Toolbar items
+        '''
+    <placeholder id='CommonNavigation'>
+    <child groups='RO'>
+      <object class="GtkToolButton">
+        <property name="icon-name">go-previous</property>
+        <property name="action-name">win.Back</property>
+        <property name="tooltip_text" translatable="yes">'''
+        '''Go to the previous object in the history</property>
+        <property name="label" translatable="yes">_Back</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RO'>
+      <object class="GtkToolButton">
+        <property name="icon-name">go-next</property>
+        <property name="action-name">win.Forward</property>
+        <property name="tooltip_text" translatable="yes">'''
+        '''Go to the next object in the history</property>
+        <property name="label" translatable="yes">_Forward</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RO'>
+      <object class="GtkToolButton">
+        <property name="icon-name">go-home</property>
+        <property name="action-name">win.HomePerson</property>
+        <property name="tooltip_text" translatable="yes">'''
+        '''Go to the default person</property>
+        <property name="label" translatable="yes">_Home</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    </placeholder>
+    ''']
 
     def define_actions(self):
         """
@@ -693,10 +733,11 @@ class PedigreeView(NavigationView):
         """
         NavigationView.define_actions(self)
 
-        self._add_action('FilterEdit',  None, _('Person Filter Editor'),
-                        callback=self.cb_filter_editor)
+        self._add_action('FilterEdit', self.cb_filter_editor)
+        self._add_action('F2', self.kb_goto_home, 'F2')
+        self._add_action('PRIMARY-J', self.jump, '<PRIMARY>J')
 
-    def cb_filter_editor(self, obj):
+    def cb_filter_editor(self, *obj):
         """
         Display the person filter editor.
         """
@@ -1520,7 +1561,7 @@ class PedigreeView(NavigationView):
         else:
             self.scroll_direction = False
 
-    def kb_goto_home(self):
+    def kb_goto_home(self, *obj):
         """Goto home person from keyboard."""
         self.cb_home(None)
 

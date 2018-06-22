@@ -39,7 +39,6 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Place
 from gramps.gui.views.listview import ListView, TEXT, ICON
-from gramps.gui.widgets.menuitem import add_menuitem
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.views.bookmarks import PlaceBookmarks
 from gramps.gen.config import config
@@ -51,6 +50,7 @@ from gramps.gui.filters.sidebar import PlaceSidebarFilter
 from gramps.gui.merge import MergePlace
 from gramps.gen.plug import CATEGORY_QR_PLACE
 from gramps.gen.utils.location import located_in
+from gramps.gui.uimanager import ActionGroup
 
 #-------------------------------------------------------------------------
 #
@@ -58,7 +58,7 @@ from gramps.gen.utils.location import located_in
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+_ = glocale.translation.sgettext
 
 
 #-------------------------------------------------------------------------
@@ -117,6 +117,7 @@ class PlaceBaseView(ListView):
 
         self.mapservice = config.get('interface.mapservice')
         self.mapservicedata = {}
+        self.map_action_group = None
 
         ListView.__init__(
             self, title, pdata, dbstate, uistate,
@@ -125,42 +126,17 @@ class PlaceBaseView(ListView):
             multiple=True,
             filter_class=PlaceSidebarFilter)
 
-        self.func_list.update({
-            '<PRIMARY>J' : self.jump,
-            '<PRIMARY>BackSpace' : self.key_delete,
-            })
-        self.maptoolbtn = None
-
         uistate.connect('placeformat-changed', self.build_tree)
 
-        self.additional_uis.append(self.additional_ui())
+        _ui = self.__create_maps_menu_actions()
+        self.additional_uis.append(_ui)
 
     def navigation_type(self):
         return 'Place'
 
     def define_actions(self):
         ListView.define_actions(self)
-        self._add_toolmenu_action('MapsList', _('Loading...'),
-                        _("Attempt to see selected locations with a Map "
-                                "Service (OpenstreetMap, Google Maps, ...)"),
-                        self.gotomap,
-                        _('Select a Map Service'))
-        self._add_action('GotoMap', 'go-jump',
-                        _('_Look up with Map Service'),
-                        callback=self.gotomap,
-                        tip=_("Attempt to see this location with a Map "
-                                "Service (OpenstreetMap, Google Maps, ...)"))
-        self._add_action('FilterEdit', None, _('Place Filter Editor'),
-                         callback=self.filter_editor)
-        self._add_action('QuickReport', None, _("Quick View"), None, None, None)
-
-    def set_inactive(self):
-        """called by viewmanager when moving away from the page
-        Here we need to remove the menutoolbutton from the menu
-        """
-        tb = self.uistate.viewmanager.uimanager.get_widget('/ToolBar')
-        tb.remove(self.maptoolbtn)
-        ListView.set_inactive(self)
+        self._add_action('GotoMap', self.gotomap)
 
     def change_page(self):
         """
@@ -173,39 +149,6 @@ class PlaceBaseView(ListView):
           5. store label so it can be changed when selection changes
         """
         ListView.change_page(self)
-        #menutoolbutton has to be made and added in correct place on toolbar
-        if not self.maptoolbtn:
-            self.maptoolbtn = Gtk.MenuToolButton()
-            self.maptoolbtn.set_icon_name('go-jump')
-            self.maptoolbtn.connect('clicked', self.gotomap)
-            self.mmenu = self.__create_maps_menu_actions()
-            self.maptoolbtn.set_menu(self.mmenu)
-            self.maptoolbtn.show()
-        tb = self.uistate.viewmanager.uimanager.get_widget('/ToolBar')
-        ind = tb.get_item_index(self.uistate.viewmanager.uimanager.get_widget(
-                        '/ToolBar/CommonEdit/Merge'))
-        tb.insert(self.maptoolbtn, ind+1)
-        widget = self.maptoolbtn
-
-        if not self.mapservicedata:
-            return
-
-        self.mapslistlabel = []
-        if not self.mapservice in self.mapservicedata:
-            #stored val no longer exists, use the first key instead
-            self.set_mapservice(list(self.mapservicedata.keys())[0])
-
-        #store all gtk labels to be able to update label on selection change_('Loading...'),
-        widget.set_menu(self.mmenu)
-        widget.set_arrow_tooltip_text(_('Select a Map Service'))
-        widget.set_tooltip_text(
-                          _("Attempt to see selected locations with a Map "
-                            "Service (OpenstreetMap, Google Maps, ...)"))
-        lbl = Gtk.Label(label=self.mapservice_label())
-        lbl.show()
-        self.mapslistlabel.append(lbl)
-        widget.set_label_widget(self.mapslistlabel[-1])
-        widget.set_icon_name('go-jump')
         if self.drag_info():
             self.list.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
               [],
@@ -222,30 +165,52 @@ class PlaceBaseView(ListView):
         Function creating a menu and actions that are used as dropdown menu
         from the menutoolbutton
         """
-        menu = Gtk.Menu()
+        _bar = '''
+            <item>
+              <attribute name="action">win.MapChoice</attribute>
+              <attribute name="target">%s</attribute>
+              <attribute name="label" translatable="yes">%s</attribute>
+            </item>
+            '''
+        menu = ''
 
         #select the map services to show
         self.mapservicedata = {}
         servlist = GuiPluginManager.get_instance().get_reg_mapservices()
-        for i, pdata in enumerate(servlist):
+        for pdata in servlist:
             key = pdata.id.replace(' ', '-')
-            add_menuitem(menu, pdata.name, None,
-                               make_callback(self.set_mapservice, key))
+            menu += _bar % (key, pdata.name)
             self.mapservicedata[key] = pdata
 
-        return menu
+        if not self.mapservicedata:
+            return self.additional_ui
+        if self.mapservice not in self.mapservicedata:
+            #stored val no longer exists, use the most recent key instead
+            self.set_mapservice(None, key)
 
-    def set_mapservice(self, mapkey):
+        self._add_toggle_action('MapChoice', self.set_mapservice, '',
+                                self.mapservice)
+
+        label = self.mapservice_label()
+        _ui = self.additional_ui[:]
+        _ui.append(self.map_ui_menu % menu)
+        _ui.append(self.map_ui % label)
+        return _ui
+
+    def set_mapservice(self, action, value):
         """
         change the service that runs on click of the menutoolbutton
         used as callback menu on menu clicks
         """
-        self.mapservice = mapkey
-        for label in self.mapslistlabel:
-            label.set_label(self.mapservice_label())
-            label.show()
+        if action:
+            action.set_state(value)
+        self.mapservice = mapkey = value.get_string()
         config.set('interface.mapservice', mapkey)
         config.save()
+        _ui = self.__create_maps_menu_actions()
+        self.uimanager.add_ui_from_string(_ui)
+        self.uimanager.update_menu()
+        return False
 
     def mapservice_label(self):
         """
@@ -253,7 +218,7 @@ class PlaceBaseView(ListView):
         """
         return self.mapservicedata[self.mapservice].name
 
-    def gotomap(self, obj):
+    def gotomap(self, *obj):
         """
         Run the map service
         """
@@ -295,72 +260,245 @@ class PlaceBaseView(ListView):
     def get_stock(self):
         return 'gramps-place'
 
-    def additional_ui(self):
-        return '''<ui>
-          <menubar name="MenuBar">
-            <menu action="FileMenu">
-              <placeholder name="LocalExport">
-                <menuitem action="ExportTab"/>
-              </placeholder>
-            </menu>
-            <menu action="BookMenu">
-              <placeholder name="AddEditBook">
-                <menuitem action="AddBook"/>
-                <menuitem action="EditBook"/>
-              </placeholder>
-            </menu>
-            <menu action="GoMenu">
-              <placeholder name="CommonGo">
-                <menuitem action="Back"/>
-                <menuitem action="Forward"/>
-                <separator/>
-              </placeholder>
-            </menu>
-            <menu action="EditMenu">
-              <placeholder name="CommonEdit">
-                <menuitem action="Add"/>
-                <menuitem action="Edit"/>
-                <menuitem action="Remove"/>
-                <menuitem action="Merge"/>
-              </placeholder>
-              <menuitem action="FilterEdit"/>
-            </menu>
-          </menubar>
-          <toolbar name="ToolBar">
-            <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>
-              <toolitem action="Forward"/>
-            </placeholder>
-            <placeholder name="CommonEdit">
-              <toolitem action="Add"/>
-              <toolitem action="Edit"/>
-              <toolitem action="Remove"/>
-              <toolitem action="Merge"/>
-              <separator/>
-            </placeholder>
-          </toolbar>
-          <popup name="Popup">
-            <menuitem action="Back"/>
-            <menuitem action="Forward"/>
-            <separator/>
-            <menuitem action="Add"/>
-            <menuitem action="Edit"/>
-            <menuitem action="Remove"/>
-            <menuitem action="Merge"/>
-            <separator/>
-            <menu name="QuickReport" action="QuickReport"/>
-            <separator/>
-            <menuitem action="GotoMap"/>
-          </popup>
-        </ui>'''
+    #
+    # Defines the UI string for UIManager
+    #
+    additional_ui = [
+        '''
+      <placeholder id="LocalExport">
+        <item>
+          <attribute name="action">win.ExportTab</attribute>
+          <attribute name="label" translatable="yes">Export View...</attribute>
+        </item>
+      </placeholder>
+''',
+        '''
+      <section id="AddEditBook">
+        <item>
+          <attribute name="action">win.AddBook</attribute>
+          <attribute name="label" translatable="yes">_Add Bookmark</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.EditBook</attribute>
+          <attribute name="label" translatable="no">%s...</attribute>
+        </item>
+      </section>
+''' % _('Organize Bookmarks'),
+        '''
+      <placeholder id="CommonGo">
+      <section>
+        <item>
+          <attribute name="action">win.Back</attribute>
+          <attribute name="label" translatable="yes">_Back</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Forward</attribute>
+          <attribute name="label" translatable="yes">_Forward</attribute>
+        </item>
+      </section>
+      </placeholder>
+''',
+        '''
+      <section id='CommonEdit' groups='RW'>
+        <item>
+          <attribute name="action">win.Add</attribute>
+          <attribute name="label" translatable="yes">_Add...</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Edit</attribute>
+          <attribute name="label" translatable="yes">%s</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Remove</attribute>
+          <attribute name="label" translatable="yes">_Delete</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Merge</attribute>
+          <attribute name="label" translatable="yes">_Merge...</attribute>
+        </item>
+      </section>
+''' % _("action|_Edit..."),  # to use sgettext()
+        '''
+        <placeholder id='otheredit'>
+        <item>
+          <attribute name="action">win.FilterEdit</attribute>
+          <attribute name="label" translatable="yes">'''
+        '''Place Filter Editor</attribute>
+        </item>
+        </placeholder>
+''',  # Following are the Toolbar items
+        '''
+    <placeholder id='CommonNavigation'>
+    <child groups='RO'>
+      <object class="GtkToolButton">
+        <property name="icon-name">go-previous</property>
+        <property name="action-name">win.Back</property>
+        <property name="tooltip_text" translatable="yes">'''
+        '''Go to the previous object in the history</property>
+        <property name="label" translatable="yes">_Back</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RO'>
+      <object class="GtkToolButton">
+        <property name="icon-name">go-next</property>
+        <property name="action-name">win.Forward</property>
+        <property name="tooltip_text" translatable="yes">'''
+        '''Go to the next object in the history</property>
+        <property name="label" translatable="yes">_Forward</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    </placeholder>
+''',
+        '''
+    <placeholder id='BarCommonEdit'>
+    <child groups='RW'>
+      <object class="GtkToolButton">
+        <property name="icon-name">list-add</property>
+        <property name="action-name">win.Add</property>
+        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="label" translatable="yes">_Add...</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RW'>
+      <object class="GtkToolButton">
+        <property name="icon-name">gtk-edit</property>
+        <property name="action-name">win.Edit</property>
+        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="label" translatable="yes">Edit...</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RW'>
+      <object class="GtkToolButton">
+        <property name="icon-name">list-remove</property>
+        <property name="action-name">win.Remove</property>
+        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="label" translatable="yes">_Delete</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RW'>
+      <object class="GtkToolButton">
+        <property name="icon-name">gramps-merge</property>
+        <property name="action-name">win.Merge</property>
+        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="label" translatable="yes">_Merge...</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <placeholder id="PlaceMapUi"> </placeholder>
+    </placeholder>
+''' % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
+        '''
+    <menu id="Popup">
+      <section id="PopUpTree">
+        <item>
+          <attribute name="action">win.Back</attribute>
+          <attribute name="label" translatable="yes">_Back</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Forward</attribute>
+          <attribute name="label" translatable="yes">Forward</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="action">win.Add</attribute>
+          <attribute name="label" translatable="yes">_Add...</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Edit</attribute>
+          <attribute name="label" translatable="yes">%s</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Remove</attribute>
+          <attribute name="label" translatable="yes">_Delete</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Merge</attribute>
+          <attribute name="label" translatable="yes">_Merge...</attribute>
+        </item>
+      </section>
+      <section>
+        <placeholder id='QuickReport'>
+        </placeholder>
+      </section>
+      <section>
+        <item>
+          <attribute name="action">win.GotoMap</attribute>
+          <attribute name="label" translatable="yes">'''
+        '''_Look up with Map Service</attribute>
+        </item>
+      </section>
+    </menu>
+''' % _('action|_Edit...')]  # to use sgettext()
 
-    def add(self, obj):
+    map_ui_menu = '''
+      <menu id="MapBtnMenu">
+        %s
+      </menu>
+    '''
+
+    map_ui = (
+        '''<placeholder id="PlaceMapUi">
+    <child>
+      <object class="GtkToolButton" id="GotoMap">
+        <property name="icon-name">go-jump</property>
+        <property name="action-name">win.GotoMap</property>
+        <property name="tooltip_text" translatable="yes">'''
+        '''Attempt to see selected locations with a Map Service '''
+        '''(OpenstreetMap, Google Maps, ...)</property>
+        <property name="label" translatable="yes">%s</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+     </child>
+    <child>
+      <object class="GtkToolItem">
+        <child>
+          <object class="GtkMenuButton">
+            <property name="tooltip_text" translatable="yes">'''
+        '''Select a Map Service</property>
+            <property name="menu-model">MapBtnMenu</property>
+            <property name="relief">GTK_RELIEF_NONE</property>
+            <property name="use-popover">False</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    </placeholder>
+    ''')
+
+    def add(self, *obj):
         try:
             EditPlace(self.dbstate, self.uistate, [], Place())
         except WindowActiveError:
             pass
 
-    def remove(self, obj):
+    def remove(self, *obj):
         for handle in self.selected_handles():
             for link in self.dbstate.db.find_backlink_handles(handle,['Place']):
                 msg = _("Cannot delete place.")
@@ -390,7 +528,7 @@ class PlaceBaseView(ListView):
         is_used = len(person_list) + len(family_list) + len(event_list) > 0
         return (query, is_used, object)
 
-    def edit(self, obj):
+    def edit(self, *obj):
         for handle in self.selected_handles():
             place = self.dbstate.db.get_place_from_handle(handle)
             try:
@@ -398,7 +536,7 @@ class PlaceBaseView(ListView):
             except WindowActiveError:
                 pass
 
-    def merge(self, obj):
+    def merge(self, *obj):
         """
         Merge the selected places.
         """
@@ -468,5 +606,6 @@ class PlaceBaseView(ListView):
                  "Place Notes",
                  "Place Backlinks"))
 
+
 def make_callback(func, val):
-    return lambda x: func(val)
+    return lambda x, y: func(val)

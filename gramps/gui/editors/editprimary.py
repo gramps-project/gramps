@@ -32,6 +32,7 @@ import abc
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository.Gio import SimpleActionGroup
 
 #-------------------------------------------------------------------------
 #
@@ -49,6 +50,8 @@ from ..display import display_help
 from ..dialog import SaveDialog
 from gramps.gen.lib import PrimaryObject
 from ..dbguielement import DbGUIElement
+from ..uimanager import ActionGroup
+
 
 class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
 
@@ -75,6 +78,7 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         self.get_from_gramps_id = get_from_gramps_id
         self.contexteventbox = None
         self.__tabs = []
+        self.action_group = None
 
         ManagedWindow.__init__(self, uistate, track, obj)
         DbGUIElement.__init__(self, self.db)
@@ -184,6 +188,8 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         self.dbstate.disconnect(self.dbstate_connect_key)
         self._cleanup_connects()
         self._cleanup_on_exit()
+        if self.action_group:
+            self.uistate.uimanager.remove_action_group(self.action_group)
         self.get_from_handle = None
         self.get_from_gramps_id = None
         ManagedWindow.close(self)
@@ -283,48 +289,62 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
                 return False
 
             #build the possible popup menu
-            self._build_popup_ui()
+            menu_model = self._build_popup_ui()
+            if not menu_model:
+                return False
             #set or unset sensitivity in popup
             self._post_build_popup_ui()
 
-            menu = self.popupmanager.get_widget('/Popup')
-            if menu:
-                menu.popup(None, None, None, None, event.button, event.time)
-                return True
+            menu = Gtk.Menu.new_from_model(menu_model)
+            menu.attach_to_widget(obj, None)
+            menu.show_all()
+            if Gtk.MINOR_VERSION < 22:
+                # ToDo The following is reported to work poorly with Wayland
+                menu.popup(None, None, None, None,
+                           event.button, event.time)
+            else:
+                menu.popup_at_pointer(event)
+            return True
         return False
 
     def _build_popup_ui(self):
         """
         Create actions and ui of context menu
+        If you don't need a popup, override this and return None
         """
         from ..plug.quick import create_quickreport_menu
 
-        self.popupmanager = Gtk.UIManager()
-        #add custom actions
-        (ui_top, action_groups) = self._top_contextmenu()
-        for action in action_groups :
-            self.popupmanager.insert_action_group(action, -1)
+        prefix = str(id(self))
+        #get custom ui and actions
+        (ui_top, actions) = self._top_contextmenu(prefix)
         #see which quick reports are available now:
         ui_qr = ''
         if self.QR_CATEGORY > -1 :
-            (ui_qr, reportactions) = create_quickreport_menu(self.QR_CATEGORY,
-                                    self.dbstate, self.uistate,
-                                    self.obj, track=self.track)
-            self.report_action = Gtk.ActionGroup(name="/PersonReport")
-            self.report_action.add_actions(reportactions)
-            self.report_action.set_visible(True)
-            self.popupmanager.insert_action_group(self.report_action, -1)
+            (ui_qr, reportactions) = create_quickreport_menu(
+                self.QR_CATEGORY, self.dbstate, self.uistate,
+                self.obj, prefix, track=self.track)
+            actions.extend(reportactions)
 
-        popupui = '''
-        <ui>
-          <popup name="Popup">''' + ui_top + '''
-            <separator/>''' + ui_qr + '''
-          </popup>
-        </ui>'''
+        popupui = '''<?xml version="1.0" encoding="UTF-8"?>
+            <interface>
+            <menu id="Popup">''' + ui_top + '''
+              <section>
+            ''' + ui_qr + '''
+              </section>
+            </menu>
+            </interface>'''
 
-        self.popupmanager.add_ui_from_string(popupui)
+        builder = Gtk.Builder.new_from_string(popupui, -1)
 
-    def _top_contextmenu(self):
+        self.action_group = ActionGroup('EditPopup' + prefix, actions,
+                                        prefix)
+        act_grp = SimpleActionGroup()
+        self.window.insert_action_group(prefix, act_grp)
+        self.window.set_application(self.uistate.uimanager.app)
+        self.uistate.uimanager.insert_action_group(self.action_group, act_grp)
+        return builder.get_object('Popup')
+
+    def _top_contextmenu(self, prefix):
         """
         Derived class can create a ui with menuitems and corresponding list of
         actiongroups

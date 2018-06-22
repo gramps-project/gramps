@@ -53,7 +53,7 @@ from gramps.gen.plug import CATEGORY_QR_REPOSITORY
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+_ = glocale.translation.sgettext
 
 
 #-------------------------------------------------------------------------
@@ -132,12 +132,7 @@ class RepositoryView(ListView):
             multiple=True,
             filter_class=RepoSidebarFilter)
 
-        self.func_list.update({
-            '<PRIMARY>J' : self.jump,
-            '<PRIMARY>BackSpace' : self.key_delete,
-            })
-
-        self.additional_uis.append(self.additional_ui())
+        self.additional_uis.append(self.additional_ui)
 
     def navigation_type(self):
         return 'Repository'
@@ -145,76 +140,199 @@ class RepositoryView(ListView):
     def drag_info(self):
         return DdTargets.REPO_LINK
 
-    def define_actions(self):
-        ListView.define_actions(self)
-        self._add_action('FilterEdit', None, _('Repository Filter Editor'),
-                         callback=self.filter_editor,)
-        self._add_action('QuickReport', None,
-                         _("Quick View"), None, None, None)
-
     def get_stock(self):
         return 'gramps-repository'
 
-    def additional_ui(self):
-        return '''<ui>
-          <menubar name="MenuBar">
-            <menu action="FileMenu">
-              <placeholder name="LocalExport">
-                <menuitem action="ExportTab"/>
-              </placeholder>
-            </menu>
-            <menu action="BookMenu">
-              <placeholder name="AddEditBook">
-                <menuitem action="AddBook"/>
-                <menuitem action="EditBook"/>
-              </placeholder>
-            </menu>
-            <menu action="GoMenu">
-              <placeholder name="CommonGo">
-                <menuitem action="Back"/>
-                <menuitem action="Forward"/>
-                <separator/>
-              </placeholder>
-            </menu>
-            <menu action="EditMenu">
-              <placeholder name="CommonEdit">
-                <menuitem action="Add"/>
-                <menuitem action="Edit"/>
-                <menuitem action="Remove"/>
-                <menuitem action="Merge"/>
-              </placeholder>
-              <menuitem action="FilterEdit"/>
-            </menu>
-          </menubar>
-          <toolbar name="ToolBar">
-            <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>
-              <toolitem action="Forward"/>
-            </placeholder>
-            <placeholder name="CommonEdit">
-              <toolitem action="Add"/>
-              <toolitem action="Edit"/>
-              <toolitem action="Remove"/>
-              <toolitem action="Merge"/>
-            </placeholder>
-          </toolbar>
-          <popup name="Popup">
-            <menuitem action="Back"/>
-            <menuitem action="Forward"/>
-            <separator/>
-            <menuitem action="Add"/>
-            <menuitem action="Edit"/>
-            <menuitem action="Remove"/>
-            <menuitem action="Merge"/>
-            <separator/>
-            <menu name="QuickReport" action="QuickReport"/>
-          </popup>
-        </ui>'''
+    additional_ui = [  # Defines the UI string for UIManager
+        '''
+      <placeholder id="LocalExport">
+        <item>
+          <attribute name="action">win.ExportTab</attribute>
+          <attribute name="label" translatable="yes">Export View...</attribute>
+        </item>
+      </placeholder>
+''',
+        '''
+      <section id="AddEditBook">
+        <item>
+          <attribute name="action">win.AddBook</attribute>
+          <attribute name="label" translatable="yes">_Add Bookmark</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.EditBook</attribute>
+          <attribute name="label" translatable="no">%s...</attribute>
+        </item>
+      </section>
+''' % _('Organize Bookmarks'),
+        '''
+      <placeholder id="CommonGo">
+      <section>
+        <item>
+          <attribute name="action">win.Back</attribute>
+          <attribute name="label" translatable="yes">_Back</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Forward</attribute>
+          <attribute name="label" translatable="yes">_Forward</attribute>
+        </item>
+      </section>
+      </placeholder>
+''',
+        '''
+      <section id='CommonEdit' groups='RW'>
+        <item>
+          <attribute name="action">win.Add</attribute>
+          <attribute name="label" translatable="yes">_Add...</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Edit</attribute>
+          <attribute name="label" translatable="yes">%s</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Remove</attribute>
+          <attribute name="label" translatable="yes">_Delete</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Merge</attribute>
+          <attribute name="label" translatable="yes">_Merge...</attribute>
+        </item>
+      </section>
+''' % _("action|_Edit..."),  # to use sgettext()
+        '''
+        <placeholder id='otheredit'>
+        <item>
+          <attribute name="action">win.FilterEdit</attribute>
+          <attribute name="label" translatable="yes">'''
+        '''Repository Filter Editor</attribute>
+        </item>
+        </placeholder>
+''',  # Following are the Toolbar items
+        '''
+    <placeholder id='CommonNavigation'>
+    <child groups='RO'>
+      <object class="GtkToolButton">
+        <property name="icon-name">go-previous</property>
+        <property name="action-name">win.Back</property>
+        <property name="tooltip_text" translatable="yes">'''
+        '''Go to the previous object in the history</property>
+        <property name="label" translatable="yes">_Back</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RO'>
+      <object class="GtkToolButton">
+        <property name="icon-name">go-next</property>
+        <property name="action-name">win.Forward</property>
+        <property name="tooltip_text" translatable="yes">'''
+        '''Go to the next object in the history</property>
+        <property name="label" translatable="yes">_Forward</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    </placeholder>
+''',
+        '''
+    <placeholder id='BarCommonEdit'>
+    <child groups='RW'>
+      <object class="GtkToolButton">
+        <property name="icon-name">list-add</property>
+        <property name="action-name">win.Add</property>
+        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="label" translatable="yes">_Add...</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RW'>
+      <object class="GtkToolButton">
+        <property name="icon-name">gtk-edit</property>
+        <property name="action-name">win.Edit</property>
+        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="label" translatable="yes">Edit...</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RW'>
+      <object class="GtkToolButton">
+        <property name="icon-name">list-remove</property>
+        <property name="action-name">win.Remove</property>
+        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="label" translatable="yes">_Delete</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RW'>
+      <object class="GtkToolButton">
+        <property name="icon-name">gramps-merge</property>
+        <property name="action-name">win.Merge</property>
+        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="label" translatable="yes">_Merge...</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    </placeholder>
+''' % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
+        '''
+    <menu id="Popup">
+      <section>
+        <item>
+          <attribute name="action">win.Back</attribute>
+          <attribute name="label" translatable="yes">_Back</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Forward</attribute>
+          <attribute name="label" translatable="yes">Forward</attribute>
+        </item>
+      </section>
+      <section id="PopUpTree">
+      </section>
+      <section>
+        <item>
+          <attribute name="action">win.Add</attribute>
+          <attribute name="label" translatable="yes">_Add...</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Edit</attribute>
+          <attribute name="label" translatable="yes">%s</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Remove</attribute>
+          <attribute name="label" translatable="yes">_Delete</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Merge</attribute>
+          <attribute name="label" translatable="yes">_Merge...</attribute>
+        </item>
+      </section>
+      <section>
+        <placeholder id='QuickReport'>
+        </placeholder>
+      </section>
+    </menu>
+    ''' % _('action|_Edit...')  # to use sgettext()
+    ]
 
-    def add(self, obj):
+    def add(self, *obj):
         EditRepository(self.dbstate, self.uistate, [], Repository())
 
-    def remove(self, obj):
+    def remove(self, *obj):
         self.remove_selected_objects()
 
     def remove_object_from_handle(self, handle):
@@ -227,7 +345,7 @@ class RepositoryView(ListView):
         is_used = len(source_list) > 0
         return (query, is_used, object)
 
-    def edit(self, obj):
+    def edit(self, *obj):
         for handle in self.selected_handles():
             repos = self.dbstate.db.get_repository_from_handle(handle)
             try:
@@ -235,7 +353,7 @@ class RepositoryView(ListView):
             except WindowActiveError:
                 pass
 
-    def merge(self, obj):
+    def merge(self, *obj):
         """
         Merge the selected repositories.
         """

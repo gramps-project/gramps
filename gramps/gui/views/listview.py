@@ -55,7 +55,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from .pageview import PageView
 from .navigationview import NavigationView
-from ..actiongroup import ActionGroup
+from ..uimanager import ActionGroup
 from ..columnorder import ColumnOrder
 from gramps.gen.config import config
 from gramps.gen.errors import WindowActiveError, FilterError, HandleError
@@ -64,6 +64,7 @@ from ..widgets.menuitem import add_menuitem
 from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.utils.debug import profile
 from gramps.gen.utils.string import data_recover_msg
+from gramps.gen.plug import CATEGORY_QR_PERSON
 from ..dialog import QuestionDialog, QuestionDialog2, ErrorDialog
 from ..editors import FilterEditor
 from ..ddtargets import DdTargets
@@ -122,6 +123,8 @@ class ListView(NavigationView):
         self.generic_filter = None
         dbstate.connect('database-changed', self.change_db)
         self.connect_signals()
+        self.at_popup_action = None
+        self.at_popup_menu = None
 
     def no_database(self):
         ## TODO GTK3: This is never called!! Dbguielement disconnects
@@ -206,24 +209,19 @@ class ListView(NavigationView):
 
         NavigationView.define_actions(self)
 
-        self.edit_action = ActionGroup(name=self.title + '/ChangeOrder')
+        self.edit_action = ActionGroup(name=self.title + '/Edits')
         self.edit_action.add_actions([
-                ('Add', 'list-add', _("_Add..."), "<PRIMARY>Insert",
-                    self.ADD_MSG, self.add),
-                ('Remove', 'list-remove', _("_Delete"), "<PRIMARY>Delete",
-                    self.DEL_MSG, self.remove),
-                ('Merge', 'gramps-merge', _('_Merge...'), None,
-                    self.MERGE_MSG, self.merge),
-                ('ExportTab', None, _('Export View...'), None, None,
-                    self.export),
-                ])
+            ('Add', self.add, '<Primary>Insert'),
+            ('Remove', self.remove, '<Primary>Delete'),
+            ('PRIMARY-BackSpace', self.remove, '<PRIMARY>BackSpace'),
+            ('Merge', self.merge), ])
 
         self._add_action_group(self.edit_action)
-
-        self._add_action('Edit', 'gtk-edit', _("action|_Edit..."),
-                         accel="<PRIMARY>Return",
-                         tip=self.EDIT_MSG,
-                         callback=self.edit)
+        self.action_list.extend([
+            ('ExportTab', self.export),
+            ('Edit', self.edit, '<Primary>Return'),
+            ('PRIMARY-J', self.jump, '<PRIMARY>J'),
+            ('FilterEdit', self.filter_editor)])
 
     def build_columns(self):
         list(map(self.list.remove_column, self.columns))
@@ -291,7 +289,7 @@ class ListView(NavigationView):
         Called when the page is displayed.
         """
         NavigationView.set_active(self)
-        self.uistate.viewmanager.tags.tag_enable()
+        self.uistate.viewmanager.tags.tag_enable(update_menu=False)
         self.uistate.show_filter_results(self.dbstate,
                                          self.model.displayed(),
                                          self.model.total())
@@ -302,9 +300,6 @@ class ListView(NavigationView):
         """
         NavigationView.set_inactive(self)
         self.uistate.viewmanager.tags.tag_disable()
-
-    def __build_tree(self):
-        profile(self._build_tree)
 
     def build_tree(self, force_sidebar=False):
         if self.active:
@@ -372,7 +367,7 @@ class ListView(NavigationView):
         """
         return 'gramps-tree-list'
 
-    def filter_editor(self, obj):
+    def filter_editor(self, *obj):
         try:
             FilterEditor(self.FILTER_TYPE , CUSTOM_FILTERS,
                          self.dbstate, self.uistate)
@@ -441,7 +436,7 @@ class ListView(NavigationView):
             self.uistate.push_message(self.dbstate,
                                       _("Active object not visible"))
 
-    def add_bookmark(self, obj):
+    def add_bookmark(self, *obj):
         mlist = []
         self.selection.selected_foreach(self.blist, mlist)
 
@@ -851,6 +846,7 @@ class ListView(NavigationView):
         """
         if not self.dbstate.is_open():
             return False
+        menu = self.uimanager.get_widget('Popup')
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             if self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY:
                 self.edit(obj)
@@ -866,48 +862,53 @@ class ListView(NavigationView):
                     else:
                         self.edit(obj)
                         return True
-        elif is_right_click(event):
-            menu = self.uistate.uimanager.get_widget('/Popup')
-            if menu:
-                # Quick Reports
-                qr_menu = self.uistate.uimanager.\
-                            get_widget('/Popup/QuickReport')
-                if qr_menu and self.QR_CATEGORY > -1 :
-                    (ui, qr_actions) = create_quickreport_menu(
-                                            self.QR_CATEGORY,
-                                            self.dbstate,
-                                            self.uistate,
-                                            self.first_selected())
-                    self.__build_menu(qr_menu, qr_actions)
+        elif is_right_click(event) and menu:
+            prefix = 'win'
+            self.at_popup_menu = []
+            actions = []
+            # Quick Reports
+            if self.QR_CATEGORY > -1:
+                (qr_ui, qr_actions) = create_quickreport_menu(
+                    self.QR_CATEGORY, self.dbstate, self.uistate,
+                    self.first_selected(), prefix)
+                if self.get_active() and qr_actions:
+                    actions.extend(qr_actions)
+                    qr_ui = ("<placeholder id='QuickReport'>%s</placeholder>" %
+                             qr_ui)
+                    self.at_popup_menu.append(qr_ui)
 
-                # Web Connects
-                web_menu = self.uistate.uimanager.\
-                                get_widget('/Popup/WebConnect')
-                if web_menu:
-                    web_actions = create_web_connect_menu(
-                                        self.dbstate,
-                                        self.uistate,
-                                        self.navigation_type(),
-                                        self.first_selected())
-                    self.__build_menu(web_menu, web_actions)
+            # Web Connects
+            if self.QR_CATEGORY == CATEGORY_QR_PERSON:
+                (web_ui, web_actions) = create_web_connect_menu(
+                    self.dbstate, self.uistate, self.navigation_type(),
+                    self.first_selected(), prefix)
+                if self.get_active() and web_actions:
+                    actions.extend(web_actions)
+                    self.at_popup_menu.append(web_ui)
 
-                menu.popup(None, None, None, None, event.button, event.time)
-                return True
+            if self.at_popup_action:
+                self.uimanager.remove_ui(self.at_popup_menu)
+                self.uimanager.remove_action_group(self.at_popup_action)
+            self.at_popup_action = ActionGroup('AtPopupActions',
+                                               actions)
+            self.uimanager.insert_action_group(self.at_popup_action)
+            self.at_popup_menu = self.uimanager.add_ui_from_string(
+                self.at_popup_menu)
+            self.uimanager.update_menu()
+
+            menu = self.uimanager.get_widget('Popup')
+            popup_menu = Gtk.Menu.new_from_model(menu)
+            popup_menu.attach_to_widget(obj, None)
+            popup_menu.show_all()
+            if Gtk.MINOR_VERSION < 22:
+                # ToDo The following is reported to work poorly with Wayland
+                popup_menu.popup(None, None, None, None,
+                                 event.button, event.time)
+            else:
+                popup_menu.popup_at_pointer(event)
+            return True
 
         return False
-
-    def __build_menu(self, menu, actions):
-        """
-        Build a submenu for quick reports and web connects
-        """
-        if self.get_active() and len(actions) > 1:
-            sub_menu = Gtk.Menu()
-            for action in actions[1:]:
-                add_menuitem(sub_menu, action[2], None, action[5])
-            menu.set_submenu(sub_menu)
-            menu.show()
-        else:
-            menu.hide()
 
     def _key_press(self, obj, event):
         """
@@ -1002,9 +1003,6 @@ class ListView(NavigationView):
             return True
         return False
 
-    def key_delete(self):
-        self.remove(None)
-
     def change_page(self):
         """
         Called when a page is changed.
@@ -1014,8 +1012,9 @@ class ListView(NavigationView):
             self.uistate.show_filter_results(self.dbstate,
                                              self.model.displayed(),
                                              self.model.total())
-        self.edit_action.set_visible(True)
-        self.edit_action.set_sensitive(not self.dbstate.db.readonly)
+        self.uimanager.set_actions_visible(self.edit_action, True)
+        self.uimanager.set_actions_sensitive(self.edit_action,
+                                             not self.dbstate.db.readonly)
 
     def on_delete(self):
         """
@@ -1038,7 +1037,7 @@ class ListView(NavigationView):
     ####################################################################
     # Export data
     ####################################################################
-    def export(self, obj):
+    def export(self, *obj):
         chooser = Gtk.FileChooserDialog(
             _("Export View as Spreadsheet"),
             self.uistate.window,
@@ -1140,25 +1139,25 @@ class ListView(NavigationView):
     # Template functions
     ####################################################################
     @abstractmethod
-    def edit(self, obj, data=None):
+    def edit(self, *obj):
         """
         Template function to allow the editing of the selected object
         """
 
     @abstractmethod
-    def remove(self, handle, data=None):
+    def remove(self, *obj):
         """
         Template function to allow the removal of an object by its handle
         """
 
     @abstractmethod
-    def add(self, obj, data=None):
+    def add(self, *obj):
         """
         Template function to allow the adding of a new object
         """
 
     @abstractmethod
-    def merge(self, obj, data=None):
+    def merge(self, *obj):
         """
         Template function to allow the merger of two objects.
         """
@@ -1169,7 +1168,7 @@ class ListView(NavigationView):
         Template function to allow the removal of an object by its handle
         """
 
-    def open_all_nodes(self, obj):
+    def open_all_nodes(self, *obj):
         """
         Method for Treeviews to open all groups
         obj: for use of method in event callback
@@ -1182,14 +1181,14 @@ class ListView(NavigationView):
         self.uistate.set_busy_cursor(False)
         self.uistate.modify_statusbar(self.dbstate)
 
-    def close_all_nodes(self, obj):
+    def close_all_nodes(self, *obj):
         """
         Method for Treeviews to close all groups
         obj: for use of method in event callback
         """
         self.list.collapse_all()
 
-    def open_branch(self, obj):
+    def open_branch(self, *obj):
         """
         Expand the selected branches and all children.
         obj: for use of method in event callback
@@ -1204,7 +1203,7 @@ class ListView(NavigationView):
         self.uistate.set_busy_cursor(False)
         self.uistate.modify_statusbar(self.dbstate)
 
-    def close_branch(self, obj):
+    def close_branch(self, *obj):
         """
         Collapse the selected branches.
         :param obj: not used, present only to allow the use of the method in

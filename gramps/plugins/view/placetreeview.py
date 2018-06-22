@@ -67,80 +67,39 @@ class PlaceTreeView(PlaceBaseView):
         """
         PlaceBaseView.define_actions(self)
 
-        self._add_action('OpenBranch', None, _("Expand this Entire Group"),
-                         callback=self.open_branch)
-        self._add_action('CloseBranch', None, _("Collapse this Entire Group"),
-                         callback=self.close_branch)
-        self._add_action('OpenAllNodes', None, _("Expand all Nodes"),
-                         callback=self.open_all_nodes)
-        self._add_action('CloseAllNodes', None, _("Collapse all Nodes"),
-                         callback=self.close_all_nodes)
+        self._add_action('OpenBranch', self.open_branch)
+        self._add_action('CloseBranch', self.close_branch)
+        self._add_action('OpenAllNodes', self.open_all_nodes)
+        self._add_action('CloseAllNodes', self.close_all_nodes)
 
-    def additional_ui(self):
-        """
-        A user interface definition including tree specific actions.
-        """
-        return '''<ui>
-          <menubar name="MenuBar">
-            <menu action="FileMenu">
-              <placeholder name="LocalExport">
-                <menuitem action="ExportTab"/>
-              </placeholder>
-            </menu>
-            <menu action="BookMenu">
-              <placeholder name="AddEditBook">
-                <menuitem action="AddBook"/>
-                <menuitem action="EditBook"/>
-              </placeholder>
-            </menu>
-            <menu action="GoMenu">
-              <placeholder name="CommonGo">
-                <menuitem action="Back"/>
-                <menuitem action="Forward"/>
-                <separator/>
-              </placeholder>
-            </menu>
-            <menu action="EditMenu">
-              <placeholder name="CommonEdit">
-                <menuitem action="Add"/>
-                <menuitem action="Edit"/>
-                <menuitem action="Remove"/>
-                <menuitem action="Merge"/>
-              </placeholder>
-              <menuitem action="FilterEdit"/>
-            </menu>
-          </menubar>
-          <toolbar name="ToolBar">
-            <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>
-              <toolitem action="Forward"/>
-            </placeholder>
-            <placeholder name="CommonEdit">
-              <toolitem action="Add"/>
-              <toolitem action="Edit"/>
-              <toolitem action="Remove"/>
-              <toolitem action="Merge"/>
-              <separator/>
-            </placeholder>
-          </toolbar>
-          <popup name="Popup">
-            <menuitem action="OpenBranch"/>
-            <menuitem action="CloseBranch"/>
-            <menuitem action="OpenAllNodes"/>
-            <menuitem action="CloseAllNodes"/>
-            <separator/>
-            <menuitem action="Add"/>
-            <menuitem action="Edit"/>
-            <menuitem action="Remove"/>
-            <menuitem action="Merge"/>
-            <separator/>
-            <menu name="QuickReport" action="QuickReport"/>
-            <separator/>
-            <menuitem action="GotoMap"/>
-          </popup>
-        </ui>'''
+    additional_ui = PlaceBaseView.additional_ui[:]
+    additional_ui.append(
+        '''
+        <section id="PopUpTree">
+          <item>
+            <attribute name="action">win.OpenBranch</attribute>
+            <attribute name="label" translatable="yes">'''
+        '''Expand this Entire Group</attribute>
+          </item>
+          <item>
+            <attribute name="action">win.CloseBranch</attribute>
+            <attribute name="label" translatable="yes">'''
+        '''Collapse this Entire Group</attribute>
+          </item>
+          <item>
+            <attribute name="action">win.OpenAllNodes</attribute>
+            <attribute name="label" translatable="yes">'''
+        '''Expand all Nodes</attribute>
+          </item>
+          <item>
+            <attribute name="action">win.CloseAllNodes</attribute>
+            <attribute name="label" translatable="yes">'''
+        '''Collapse all Nodes</attribute>
+          </item>
+        </section>
+        ''')
 
-    def add(self, obj):
+    def add(self, *obj):
         """
         Add a new place.  Use the currently selected rows as parent places.
         """

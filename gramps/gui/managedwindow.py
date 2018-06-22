@@ -31,7 +31,7 @@ the create/deletion of dialog windows.
 #-------------------------------------------------------------------------
 import os
 from io import StringIO
-
+import html
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK
@@ -49,6 +49,7 @@ from gramps.gen.const import GLADE_FILE, ICON
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.config import config
 from gramps.gen.constfunc import is_quartz
+from .uimanager import ActionGroup
 from .glade import Glade
 
 #-------------------------------------------------------------------------
@@ -57,8 +58,8 @@ from .glade import Glade
 #
 #-------------------------------------------------------------------------
 
-_win_top = '<ui><menubar name="MenuBar"><menu action="WindowsMenu">'
-_win_btm = '</menu></menubar></ui>'
+_win_top = '<section id="WinMenu">\n'
+_win_btm = '</section>\n'
 DISABLED = -1
 
 #-----------------------------------------------------------------------
@@ -108,7 +109,7 @@ class GrampsWindowManager:
         self.uimanager = uimanager
         self.window_tree = []
         self.id2item = {}
-        self.action_group = Gtk.ActionGroup(name='WindowManger')
+        self.action_group = ActionGroup(name='WindowManger')
         self.active = DISABLED
         self.ui = _win_top + _win_btm
 
@@ -125,9 +126,9 @@ class GrampsWindowManager:
         """
         Enables the UI and action groups
         """
-        self.uimanager.insert_action_group(self.action_group, 1)
-        self.active = self.uimanager.add_ui_from_string(self.ui)
-        self.uimanager.ensure_update()
+        self.uimanager.insert_action_group(self.action_group)
+        self.active = self.uimanager.add_ui_from_string([self.ui])
+        self.uimanager.update_menu()
 
     def get_item_from_track(self, track):
         # Recursively find an item given track sequence
@@ -270,31 +271,35 @@ class GrampsWindowManager:
 
     def call_back_factory(self, item):
         if not isinstance(item, list):
-            def func(obj):
+            def func(*obj):
                 if item.window_id and self.id2item.get(item.window_id):
                     self.id2item[item.window_id]._present()
         else:
-            def func(obj):
+            def func(*obj):
                 pass
         return func
 
     def generate_id(self, item):
-        return str(item.window_id)
+        return 'wm/' + str(item.window_id)
 
     def display_menu_list(self, data, action_data, mlist):
+        menuitem = ('<item>\n'
+                    '<attribute name="action">win.%s</attribute>\n'
+                    '<attribute name="label" translatable="yes">'
+                    '%s...</attribute>\n'
+                    '</item>\n')
         if isinstance(mlist, (list, tuple)):
             i = mlist[0]
             idval = self.generate_id(i)
-            data.write('<menu action="M:%s">' % idval)
-            action_data.append(("M:"+idval, None, i.submenu_label,
-                                None, None, None))
+            data.write('<submenu>\n<attribute name="label"'
+                       ' translatable="yes">%s</attribute>\n' %
+                       html.escape(i.submenu_label))
         else:
             i = mlist
             idval = self.generate_id(i)
 
-        data.write('<menuitem action="%s"/>' % idval)
-        action_data.append((idval, None, i.menu_label, None, None,
-                            self.call_back_factory(i)))
+        data.write(menuitem % (idval, html.escape(i.menu_label)))
+        action_data.append((idval, self.call_back_factory(i)))
 
         if isinstance(mlist, (list, tuple)) and (len(mlist) > 1):
             for i in mlist[1:]:
@@ -302,20 +307,17 @@ class GrampsWindowManager:
                     self.display_menu_list(data, action_data, i)
                 else:
                     idval = self.generate_id(i)
-                    data.write('<menuitem action="%s"/>'
-                               % self.generate_id(i))
-                    action_data.append((idval, None, i.menu_label,
-                                        None, None,
-                                        self.call_back_factory(i)))
+                    data.write(menuitem % (idval, html.escape(i.menu_label)))
+                    action_data.append((idval, self.call_back_factory(i)))
         if isinstance(mlist, (list, tuple)):
-            data.write('</menu>')
+            data.write('</submenu>\n')
 
     def build_windows_menu(self):
         if self.active != DISABLED:
             self.uimanager.remove_ui(self.active)
             self.uimanager.remove_action_group(self.action_group)
 
-        self.action_group = Gtk.ActionGroup(name='WindowManger')
+        self.action_group = ActionGroup(name='WindowManger')
         action_data = []
 
         data = StringIO()

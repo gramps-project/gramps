@@ -1,149 +1,85 @@
-; Gramps.py GtkAccelMap rc-file         -*- scheme -*-
-; this file is an automated accelerator map dump
-;
-; (gtk_accel_path "<Actions>/ToolWindow/relcalc" "")
-; (gtk_accel_path "<Actions>/ReportWindow/place_report" "")
-; (gtk_accel_path "<Actions>/ToolWindow/mediaman" "")
- (gtk_accel_path "<Actions>/MainWindow/SourceAdd" "<Shift><ctrl><alt>s")
-; (gtk_accel_path "<Actions>/ReportWindow/summary" "")
-; (gtk_accel_path "<Actions>/ToolWindow/rebuild_refmap" "")
-; (gtk_accel_path "<Actions>/Redo/Redo" "<Primary><Shift>z")
-; (gtk_accel_path "<Actions>/ToolWindow/ToolAnExp" "")
-; (gtk_accel_path "<Actions>/FileWindow/Toolbar" "")
-; (gtk_accel_path "<Actions>/ToolWindow/editowner" "")
-; (gtk_accel_path "<Actions>/FileWindow/Preferences" "")
- (gtk_accel_path "<Actions>/MainWindow/MediaAdd" "<Shift><ctrl><alt>m")
-; (gtk_accel_path "<Actions>/ToolWindow/sortevents" "")
-; (gtk_accel_path "<Actions>/AllMainWindow/<PRIMARY>Delete" "<Primary>Delete")
-; (gtk_accel_path "<Actions>/FileWindow/ReportBug" "")
-; (gtk_accel_path "<Actions>/ReportWindow/hourglass_graph" "")
-; (gtk_accel_path "<Actions>/Undo/Undo" "<Primary>z")
-; (gtk_accel_path "<Actions>/ToolWindow/reorder_ids" "")
-; (gtk_accel_path "<Actions>/ReportWindow/rel_graph" "")
-; (gtk_accel_path "<Actions>/MainWindow/ConfigView" "<Primary><Shift>c")
-; (gtk_accel_path "<Actions>/ReportWindow/descend_report" "")
-; (gtk_accel_path "<Actions>/ReportWindow/ancestor_chart" "")
-; (gtk_accel_path "<Actions>/MainWindow/Clipboard" "<Primary>b")
-; (gtk_accel_path "<Actions>/FileWindow/MailingLists" "")
-; (gtk_accel_path "<Actions>/AllMainWindow/GoMenu" "")
-; (gtk_accel_path "<Actions>/ToolWindow/verify" "")
-; (gtk_accel_path "<Actions>/ToolWindow/mergecitations" "")
-; (gtk_accel_path "<Actions>/FileWindow/HomePage" "")
-; (gtk_accel_path "<Actions>/ToolWindow/populatesources" "")
-; (gtk_accel_path "<Actions>/FileWindow/Open" "<Primary>o")
-; (gtk_accel_path "<Actions>/ReportWindow/endofline_report" "")
- (gtk_accel_path "<Actions>/MainWindow/CitationAdd" "<Shift><ctrl><alt>c")
- (gtk_accel_path "<Actions>/UndoHistory/UndoHistory" "<shift><Meta>h")
-; (gtk_accel_path "<Actions>/ReportWindow/family_descend_chart" "")
- (gtk_accel_path "<Actions>/AllMainWindow/Close" "<Primary>w")
-; (gtk_accel_path "<Actions>/FileWindow/HelpMenu" "")
-; (gtk_accel_path "<Actions>/ToolWindow/loop" "")
-; (gtk_accel_path "<Actions>/ReportWindow/descend_chart" "")
- (gtk_accel_path "<Actions>/MainWindow/EventAdd" "<Shift><ctrl><alt>e")
-; (gtk_accel_path "<Actions>/FileWindow/ExtraPlugins" "")
- (gtk_accel_path "<Actions>/MainWindow/RepositoryAdd" "<Shift><ctrl><alt>r")
-; (gtk_accel_path "<Actions>/MainWindow/BookMenu" "")
-; (gtk_accel_path "<Actions>/ToolWindow/ToolProc" "")
- (gtk_accel_path "<Actions>/MainWindow/NoteAdd" "<Shift><ctrl><alt>n")
- (gtk_accel_path "<Actions>/MainWindow/PlaceAdd" "<Shift><ctrl><alt>l")
-; (gtk_accel_path "<Actions>/ReportWindow/navwebpage" "")
-; (gtk_accel_path "<Actions>/ReportWindow/birthday_report" "")
-; (gtk_accel_path "<Actions>/RecentFiles/RecentMenu8" "")
-; (gtk_accel_path "<Actions>/FileWindow/ViewMenu" "")
-; (gtk_accel_path "<Actions>/ReportWindow/fan_chart" "")
-; (gtk_accel_path "<Actions>/RecentFiles/RecentMenu7" "")
-; (gtk_accel_path "<Actions>/ReportWindow/calendar" "")
-; (gtk_accel_path "<Actions>/RecentFiles/RecentMenu6" "")
-; (gtk_accel_path "<Actions>/RecentFiles/RecentMenu5" "")
-; (gtk_accel_path "<Actions>/RecentFiles/RecentMenu4" "")
-; (gtk_accel_path "<Actions>/RecentFiles/RecentMenu3" "")
-; (gtk_accel_path "<Actions>/RecentFiles/RecentMenu2" "")
-; (gtk_accel_path "<Actions>/RecentFiles/RecentMenu1" "")
-; (gtk_accel_path "<Actions>/RecentFiles/RecentMenu0" "")
-; (gtk_accel_path "<Actions>/ReportWindow/RepWeb" "")
-; (gtk_accel_path "<Actions>/ReportWindow/indiv_complete" "")
-; (gtk_accel_path "<Actions>/ToolWindow/rebuild_genstats" "")
-; (gtk_accel_path "<Actions>/FileWindow/FAQ" "")
-; (gtk_accel_path "<Actions>/ReportWindow/det_ancestor_report" "")
-; (gtk_accel_path "<Actions>/ReportWindow/timeline" "")
-; (gtk_accel_path "<Actions>/ToolWindow/eventcmp" "")
-; (gtk_accel_path "<Actions>/AllMainWindow/ReportsMenu" "")
-; (gtk_accel_path "<Actions>/FileWindow/EditMenu" "")
- (gtk_accel_path "<Actions>/MainWindow/FamilyAdd" "<Shift><ctrl><alt>f")
-; (gtk_accel_path "<Actions>/ToolWindow/chname" "")
-; (gtk_accel_path "<Actions>/AllMainWindow/<PRIMARY>Insert" "<Primary>Insert")
-; (gtk_accel_path "<Actions>/AllMainWindow/F9" "F9")
-; (gtk_accel_path "<Actions>/AllMainWindow/F8" "F8")
-; (gtk_accel_path "<Actions>/AllMainWindow/F7" "F7")
-; (gtk_accel_path "<Actions>/AllMainWindow/F6" "F6")
-; (gtk_accel_path "<Actions>/AllMainWindow/F5" "F5")
-; (gtk_accel_path "<Actions>/AllMainWindow/F4" "F4")
-; (gtk_accel_path "<Actions>/AllMainWindow/F3" "F3")
-; (gtk_accel_path "<Actions>/AllMainWindow/F2" "F2")
-; (gtk_accel_path "<Actions>/FileWindow/Navigator" "<Primary>m")
-; (gtk_accel_path "<Actions>/FileWindow/PluginStatus" "")
-; (gtk_accel_path "<Actions>/AllMainWindow/F12" "F12")
-; (gtk_accel_path "<Actions>/AllMainWindow/F11" "F11")
-; (gtk_accel_path "<Actions>/ToolWindow/ToolUtil" "")
-; (gtk_accel_path "<Actions>/MainWindow/Import" "<Primary>i")
-; (gtk_accel_path "<Actions>/ReportWindow/statistics_chart" "")
-; (gtk_accel_path "<Actions>/FileWindow/UserManual" "F1")
-; (gtk_accel_path "<Actions>/AllMainWindow/Books" "")
-; (gtk_accel_path "<Actions>/FileWindow/OpenRecent" "")
-; (gtk_accel_path "<Actions>/Dashboard/RestoreGramplet" "")
-; (gtk_accel_path "<Actions>/WindowManger/4722902520" "")
-; (gtk_accel_path "<Actions>/ReportWindow/RepGraph" "")
-; (gtk_accel_path "<Actions>/ReportWindow/familylines_graph" "")
-; (gtk_accel_path "<Actions>/ReportWindow/kinship_report" "")
-; (gtk_accel_path "<Actions>/ToolWindow/testcasegenerator" "")
-; (gtk_accel_path "<Actions>/FileWindow/KeyBindings" "")
-; (gtk_accel_path "<Actions>/ReportWindow/tag_report" "")
-; (gtk_accel_path "<Actions>/ToolWindow/dgenstats" "")
-; (gtk_accel_path "<Actions>/FileWindow/Quit" "<Primary>q")
-; (gtk_accel_path "<Actions>/FileWindow/TipOfDay" "")
-; (gtk_accel_path "<Actions>/ReportWindow/ancestor_report" "")
-; (gtk_accel_path "<Actions>/ToolWindow/check" "")
-; (gtk_accel_path "<Actions>/FileWindow/Fullscreen" "F11")
- (gtk_accel_path "<Actions>/MainWindow/PersonAdd" "<Shift><ctrl><alt>p")
-; (gtk_accel_path "<Actions>/AllMainWindow/<PRIMARY>P" "<Primary>p")
-; (gtk_accel_path "<Actions>/ToolWindow/remove_unused" "")
-; (gtk_accel_path "<Actions>/AllMainWindow/<PRIMARY>N" "<Primary>n")
-; (gtk_accel_path "<Actions>/ReportWindow/WebCal" "")
-; (gtk_accel_path "<Actions>/ReportWindow/records" "")
-; (gtk_accel_path "<Actions>/AllMainWindow/<PRIMARY>J" "<Primary>j")
-; (gtk_accel_path "<Actions>/ReportWindow/number_of_ancestors" "")
-; (gtk_accel_path "<Actions>/ToolWindow/evname" "")
-; (gtk_accel_path "<Actions>/Dashboard/AddGramplet" "")
-; (gtk_accel_path "<Actions>/ReportWindow/notelinkreport" "")
-; (gtk_accel_path "<Actions>/ReportWindow/det_descendant_report" "")
-; (gtk_accel_path "<Actions>/MainWindow/AddMenu" "")
-; (gtk_accel_path "<Actions>/AllMainWindow/WindowsMenu" "")
-; (gtk_accel_path "<Actions>/ToolWindow/test_for_date_parser_and_displayer" "")
-; (gtk_accel_path "<Actions>/AllMainWindow/Abandon" "")
-; (gtk_accel_path "<Actions>/ReportWindow/family_group" "")
-; (gtk_accel_path "<Actions>/AllMainWindow/<PRIMARY>9" "<Primary>9")
-; (gtk_accel_path "<Actions>/AllMainWindow/<PRIMARY>8" "<Primary>8")
-; (gtk_accel_path "<Actions>/ToolWindow/not_related" "")
-; (gtk_accel_path "<Actions>/AllMainWindow/<PRIMARY>7" "<Primary>7")
-; (gtk_accel_path "<Actions>/AllMainWindow/<PRIMARY>6" "<Primary>6")
-; (gtk_accel_path "<Actions>/AllMainWindow/<PRIMARY>5" "<Primary>5")
-; (gtk_accel_path "<Actions>/AllMainWindow/<PRIMARY>4" "<Primary>4")
-; (gtk_accel_path "<Actions>/AllMainWindow/<PRIMARY>3" "<Primary>3")
-; (gtk_accel_path "<Actions>/AllMainWindow/<PRIMARY>2" "<Primary>2")
-; (gtk_accel_path "<Actions>/AllMainWindow/<PRIMARY>1" "<Primary>1")
-; (gtk_accel_path "<Actions>/AllMainWindow/<PRIMARY>0" "<Primary>0")
-; (gtk_accel_path "<Actions>/WindowManger/M:4722902520" "")
-; (gtk_accel_path "<Actions>/FileWindow/About" "")
-; (gtk_accel_path "<Actions>/MainWindow/ToolsMenu" "")
-; (gtk_accel_path "<Actions>/FileWindow/FileMenu" "")
-; (gtk_accel_path "<Actions>/AllMainWindow/<PRIMARY>BackSpace" "<Primary>BackSpace")
-; (gtk_accel_path "<Actions>/AllMainWindow/Export" "<Primary>e")
-; (gtk_accel_path "<Actions>/AllMainWindow/Backup" "")
-; (gtk_accel_path "<Actions>/ToolWindow/ToolDebug" "")
-; (gtk_accel_path "<Actions>/ReportWindow/Graphs" "")
-; (gtk_accel_path "<Actions>/ReportWindow/RepText" "")
-; (gtk_accel_path "<Actions>/ToolWindow/dupfind" "")
-; (gtk_accel_path "<Actions>/ToolWindow/rebuild" "")
-; (gtk_accel_path "<Actions>/ToolWindow/patchnames" "")
-; (gtk_accel_path "<Actions>/ToolWindow/chtype" "")
-; (gtk_accel_path "<Actions>/ToolWindow/ToolRep" "")
+{
+# this file was generated wih UIManager.dump_all_accels and then manually
+# edited to fix up some accels for MAC OSX.
+# "win.Clipboard": "<Primary>b",
+ "win.PersonAdd": "<Shift><Alt><ctrl>p",
+ "win.FamilyAdd": "<Shift><Alt><ctrl>f",
+ "win.EventAdd": "<Shift><Alt><ctrl>e",
+ "win.PlaceAdd": "<Shift><Alt><ctrl>l",
+ "win.SourceAdd": "<Shift><Alt><ctrl>s",
+ "win.CitationAdd": "<Shift><Alt><ctrl>c",
+ "win.RepositoryAdd": "<Shift><Alt><ctrl>r",
+ "win.MediaAdd": "<Shift><Alt><ctrl>m",
+ "win.NoteAdd": "<Shift><Alt><ctrl>n",
+# "win.UndoHistory": "<Primary>h",
+# "win.Import": "<Primary>i",
+# "win.Tools": "",
+# "win.ConfigView": "<Primary><Shift>c",
+# "win.Close": "<Primary>w",
+# "win.Export": "<Primary>e",
+# "win.Backup": "",
+# "win.Abandon": "",
+# "win.Reports": "",
+# "win.Books": "",
+# "win.F3": "F3",
+# "win.F4": "F4",
+# "win.F5": "F5",
+# "win.F6": "F6",
+# "win.F7": "F7",
+# "win.F8": "F8",
+# "win.F9": "F9",
+# "win.F12": "F12",
+# "win.PRIMARY-1": "<Primary>1",
+# "win.PRIMARY-2": "<Primary>2",
+# "win.PRIMARY-3": "<Primary>3",
+# "win.PRIMARY-4": "<Primary>4",
+# "win.PRIMARY-5": "<Primary>5",
+# "win.PRIMARY-6": "<Primary>6",
+# "win.PRIMARY-7": "<Primary>7",
+# "win.PRIMARY-8": "<Primary>8",
+# "win.PRIMARY-9": "<Primary>9",
+# "win.PRIMARY-0": "<Primary>0",
+# "win.PRIMARY-N": "<Primary>n",
+# "win.PRIMARY-P": "<Primary>p",
+# "win.Open": "<Primary>o",
+# "win.Quit": "<Primary>q",
+# "win.Navigator": "<Primary>m",
+# "win.Toolbar": "",
+# "win.Fullscreen": "F11",
+# "win.Preferences": "",
+# "win.HomePage": "",
+# "win.MailingLists": "",
+# "win.ReportBug": "",
+# "win.ExtraPlugins": "",
+# "win.About": "",
+# "win.PluginStatus": "",
+# "win.FAQ": "",
+# "win.KeyBindings": "",
+# "win.UserManual": "F1",
+# "win.TipOfDay": "",
+# "win.Undo": "<Primary>z",
+# "win.Redo": "<Primary><Shift>z",
+# "win.ViewInCatagory": "",
+# "win.HomePerson": "<Alt>Home",
+# "win.ExportTab": "",
+# "win.Edit": "<Primary>Return",
+# "win.PRIMARY-J": "<Primary>j",
+# "win.FilterEdit": "",
+# "win.OpenAllNodes": "",
+# "win.CloseAllNodes": "",
+# "win.Sidebar": "",
+# "win.Bottombar": "",
+# "win.AddBook": "<Primary>d",
+# "win.EditBook": "<Primary><Shift>d",
+# "win.Back": "<Alt>Left",
+# "win.Forward": "<Alt>Right",
+# "win.SetActive": "",
+# "win.Add": "<Primary>Insert",
+# "win.Remove": "<Primary>Delete",
+# "win.PRIMARY-BackSpace": "<Primary>BackSpace",
+# "win.Merge": "",
+# "win.NewTag": "",
+# "win.OrganizeTags": "",
+# "win.TagButton": "",
+# "win.Person00": "<Alt>0"
+}

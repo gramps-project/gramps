@@ -50,7 +50,7 @@ from gramps.gen.const import URL_MANUAL_PAGE
 from ..display import display_help
 from ..dialog import ErrorDialog, QuestionDialog2
 import gramps.gui.widgets.progressdialog as progressdlg
-from ..actiongroup import ActionGroup
+from ..uimanager import ActionGroup
 from ..managedwindow import ManagedWindow
 
 #-------------------------------------------------------------------------
@@ -58,29 +58,54 @@ from ..managedwindow import ManagedWindow
 # Constants
 #
 #-------------------------------------------------------------------------
-TAG_1 = '''<ui>
-  <menubar name="MenuBar">
-    <menu action="EditMenu">
-      <placeholder name="TagMenu">
-        <menu action="Tag">
-'''
+TAG_1 = '''
+      <section id='TagMenu' groups='RW'>
+        <submenu>
+        <attribute name="label" translatable="yes">Tag</attribute>
+        %s
+        </submenu>
+      </section>
+    '''
 
-TAG_2 = '''
-        </menu>
-      </placeholder>
-    </menu>
-  </menubar>
-  <toolbar name="ToolBar">
-    <placeholder name="TagTool">
-      <toolitem action="TagButton"/>
+TAG_2 = (
+    '''    <placeholder id='TagTool' groups='RW'>
+    <child groups='RO'>
+      <object class="GtkToolButton" id="TagButton">
+        <property name="icon-name">gramps-tag</property>
+        <property name="action-name">win.TagButton</property>
+        <property name="tooltip_text" translatable="yes">'''
+    '''Tag selected rows</property>
+        <property name="label" translatable="yes">Tag</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+     </child>
     </placeholder>
-  </toolbar>
-  <popup name="TagPopup">
-'''
+    ''')
 
 TAG_3 = '''
-  </popup>
-</ui>'''
+      <menu id='TagPopup' groups='RW'>
+        %s
+      </menu>'''
+
+TAG_MENU = (
+    '''<section>
+        <item>
+          <attribute name="action">win.NewTag</attribute>
+          <attribute name="label" translatable="yes">'''
+    '''New Tag...</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.OrganizeTags</attribute>
+          <attribute name="label" translatable="yes">'''
+    '''Organize Tags...</attribute>
+        </item>
+        </section>
+        <section>
+        %s
+        </section>
+    ''')
 
 WIKI_HELP_PAGE = '%s_-_Filters' % \
                                 URL_MANUAL_PAGE
@@ -119,13 +144,14 @@ class Tags(DbGUIElement):
 
         self._build_tag_menu()
 
-    def tag_enable(self):
+    def tag_enable(self, update_menu=True):
         """
         Enables the UI and action groups for the tag menu.
         """
-        self.uistate.uimanager.insert_action_group(self.tag_action, 1)
+        self.uistate.uimanager.insert_action_group(self.tag_action)
         self.tag_id = self.uistate.uimanager.add_ui_from_string(self.tag_ui)
-        self.uistate.uimanager.ensure_update()
+        if update_menu:
+            self.uistate.uimanager.update_menu()
 
     def tag_disable(self):
         """
@@ -134,7 +160,6 @@ class Tags(DbGUIElement):
         if self.tag_id is not None:
             self.uistate.uimanager.remove_ui(self.tag_id)
             self.uistate.uimanager.remove_action_group(self.tag_action)
-            self.uistate.uimanager.ensure_update()
             self.tag_id = None
 
     def _db_changed(self, db):
@@ -209,46 +234,55 @@ class Tags(DbGUIElement):
         actions = []
 
         if not self.dbstate.is_open():
-            self.tag_ui = ''
+            self.tag_ui = ['']
             self.tag_action = ActionGroup(name='Tag')
             return
 
-        tag_menu = '<menuitem action="NewTag"/>'
-        tag_menu += '<menuitem action="OrganizeTags"/>'
-        tag_menu += '<separator/>'
+        tag_menu = ''
+        menuitem = '''
+        <item>
+          <attribute name="action">win.TAG_%s</attribute>
+          <attribute name="label" translatable="yes">%s</attribute>
+        </item>'''
+
         for tag_name, handle in self.__tag_list:
-            tag_menu += '<menuitem action="TAG_%s"/>' % handle
-            actions.append(('TAG_%s' % handle, None, tag_name, None, None,
-                         make_callback(self.tag_selected_rows, handle)))
+            tag_menu += menuitem % (handle, tag_name)
+            actions.append(('TAG_%s' % handle,
+                            make_callback(self.tag_selected_rows, handle)))
+        tag_menu = TAG_MENU % tag_menu
 
-        self.tag_ui = TAG_1 + tag_menu + TAG_2 + tag_menu + TAG_3
+        self.tag_ui = [TAG_1 % tag_menu, TAG_2, TAG_3 % tag_menu]
 
-        actions.append(('Tag', 'gramps-tag', _('Tag'), None, None, None))
-        actions.append(('NewTag', 'gramps-tag-new', _('New Tag...'), None, None,
-                        self.cb_new_tag))
-        actions.append(('OrganizeTags', None, _('Organize Tags...'), None, None,
-                        self.cb_organize_tags))
-        actions.append(('TagButton', 'gramps-tag', _('Tag'), None,
-                        _('Tag selected rows'), self.cb_tag_button))
+        actions.append(('NewTag', self.cb_new_tag))
+        actions.append(('OrganizeTags', self.cb_organize_tags))
+        actions.append(('TagButton', self.cb_tag_button))
 
         self.tag_action = ActionGroup(name='Tag')
         self.tag_action.add_actions(actions)
 
-    def cb_tag_button(self, action):
+    def cb_tag_button(self, *args):
         """
         Display the popup menu when the toolbar button is clicked.
         """
-        menu = self.uistate.uimanager.get_widget('/TagPopup')
-        button = self.uistate.uimanager.get_widget('/ToolBar/TagTool/TagButton')
-        menu.popup(None, None, cb_menu_position, button, 0, 0)
+        menu = self.uistate.uimanager.get_widget('TagPopup')
+        button = self.uistate.uimanager.get_widget('TagButton')
+        popup_menu = Gtk.Menu.new_from_model(menu)
+        popup_menu.attach_to_widget(button, None)
+        popup_menu.show_all()
+        if Gtk.MINOR_VERSION < 22:
+            # ToDo The following is reported to work poorly with Wayland
+            popup_menu.popup(None, None, cb_menu_position, button, 0, 0)
+        else:
+            popup_menu.popup_at_widget(button, Gdk.Gravity.SOUTH,
+                                       Gdk.Gravity.NORTH_WEST, None)
 
-    def cb_organize_tags(self, action):
+    def cb_organize_tags(self, *action):
         """
         Display the Organize Tags dialog.
         """
         OrganizeTagsDialog(self.db, self.uistate, [])
 
-    def cb_new_tag(self, action):
+    def cb_new_tag(self, *action):
         """
         Create a new tag and tag the selected objects.
         """
@@ -304,7 +338,7 @@ def make_callback(func, tag_handle):
     """
     Generates a callback function based off the passed arguments
     """
-    return lambda x: func(tag_handle)
+    return lambda x, y: func(tag_handle)
 
 #-------------------------------------------------------------------------
 #

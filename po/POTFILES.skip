@@ -298,7 +298,6 @@ gramps/gen/utils/test/place_test.py
 # gui - GUI code
 #
 gramps/gui/__init__.py
-gramps/gui/actiongroup.py
 gramps/gui/basesidebar.py
 gramps/gui/dbguielement.py
 gramps/gui/ddtargets.py
@@ -308,6 +307,7 @@ gramps/gui/listmodel.py
 gramps/gui/managedwindow.py
 gramps/gui/navigator.py
 gramps/gui/pluginmanager.py
+gramps/gui/uimanager.py
 gramps/gui/user.py
 gramps/gui/utilscairo.py
 #
@@ -444,15 +444,11 @@ gramps/gui/widgets/placeentry.py
 gramps/gui/widgets/selectionwidget.py
 gramps/gui/widgets/shadebox.py
 gramps/gui/widgets/shortlistcomboentry.py
-gramps/gui/widgets/springseparator.py
 gramps/gui/widgets/statusbar.py
-gramps/gui/widgets/toolcomboentry.py
 gramps/gui/widgets/undoablebuffer.py
 gramps/gui/widgets/undoableentry.py
 gramps/gui/widgets/undoablestyledbuffer.py
 gramps/gui/widgets/validatedcomboentry.py
-gramps/gui/widgets/valueaction.py
-gramps/gui/widgets/valuetoolitem.py
 #
 # plugins
 #

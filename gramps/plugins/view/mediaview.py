@@ -30,7 +30,7 @@ Media View.
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+_ = glocale.translation.sgettext
 import os
 from urllib.parse import urlparse
 from urllib.request import url2pathname
@@ -133,12 +133,7 @@ class MediaView(ListView):
             filter_class=MediaSidebarFilter,
             multiple=True)
 
-        self.func_list.update({
-            '<PRIMARY>J' : self.jump,
-            '<PRIMARY>BackSpace' : self.key_delete,
-            })
-
-        self.additional_uis.append(self.additional_ui())
+        self.additional_uis.append(self.additional_ui)
         self.uistate = uistate
 
     def navigation_type(self):
@@ -206,19 +201,10 @@ class MediaView(ListView):
         """
         ListView.define_actions(self)
 
-        self._add_action('FilterEdit', None, _('Media Filter Editor'),
-                         callback=self.filter_editor)
-        self._add_action('OpenMedia', 'gramps-viewmedia', _('View'),
-                         tip=_("View in the default viewer"),
-                         callback=self.view_media)
-        self._add_action('OpenContainingFolder', None,
-                         _('Open Containing _Folder'),
-                         tip=_("Open the folder containing the media file"),
-                         callback=self.open_containing_folder)
+        self._add_action('OpenMedia', self.view_media)
+        self._add_action('OpenContainingFolder', self.open_containing_folder)
 
-        self._add_action('QuickReport', None, _("Quick View"), None, None, None)
-
-    def view_media(self, obj):
+    def view_media(self, *obj):
         """
         Launch external viewers for the selected objects.
         """
@@ -227,7 +213,7 @@ class MediaView(ListView):
             mpath = media_path_full(self.dbstate.db, ref_obj.get_path())
             open_file_with_default_application(mpath, self.uistate)
 
-    def open_containing_folder(self, obj):
+    def open_containing_folder(self, *obj):
         """
         Launch external viewers for the selected objects.
         """
@@ -244,78 +230,225 @@ class MediaView(ListView):
         """
         return 'gramps-media'
 
-    def additional_ui(self):
-        """
-        Return the UIManager XML description of the menus
-        """
-        return '''<ui>
-          <menubar name="MenuBar">
-            <menu action="FileMenu">
-              <placeholder name="LocalExport">
-                <menuitem action="ExportTab"/>
-              </placeholder>
-            </menu>
-            <menu action="EditMenu">
-              <placeholder name="CommonEdit">
-                <menuitem action="Add"/>
-                <menuitem action="Edit"/>
-                <menuitem action="Remove"/>
-                <menuitem action="Merge"/>
-              </placeholder>
-              <menuitem action="FilterEdit"/>
-            </menu>
-            <menu action="BookMenu">
-              <placeholder name="AddEditBook">
-                <menuitem action="AddBook"/>
-                <menuitem action="EditBook"/>
-              </placeholder>
-            </menu>
-            <menu action="GoMenu">
-              <placeholder name="CommonGo">
-                <menuitem action="Back"/>
-                <menuitem action="Forward"/>
-                <separator/>
-              </placeholder>
-            </menu>
-          </menubar>
-          <toolbar name="ToolBar">
-            <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>
-              <toolitem action="Forward"/>
-            </placeholder>
-            <placeholder name="CommonEdit">
-              <toolitem action="Add"/>
-              <toolitem action="Edit"/>
-              <toolitem action="Remove"/>
-              <toolitem action="Merge"/>
-            </placeholder>
-            <separator/>
-            <toolitem action="OpenMedia"/>
-          </toolbar>
-          <popup name="Popup">
-            <menuitem action="Back"/>
-            <menuitem action="Forward"/>
-            <separator/>
-            <menuitem action="OpenMedia"/>
-            <menuitem action="OpenContainingFolder"/>
-            <separator/>
-            <menuitem action="Add"/>
-            <menuitem action="Edit"/>
-            <menuitem action="Remove"/>
-            <menuitem action="Merge"/>
-            <separator/>
-            <menu name="QuickReport" action="QuickReport"/>
-          </popup>
-        </ui>'''
+    additional_ui = [  # Defines the UI string for UIManager
+        '''
+      <placeholder id="LocalExport">
+        <item>
+          <attribute name="action">win.ExportTab</attribute>
+          <attribute name="label" translatable="yes">Export View...</attribute>
+        </item>
+      </placeholder>
+''',
+        '''
+      <section id="AddEditBook">
+        <item>
+          <attribute name="action">win.AddBook</attribute>
+          <attribute name="label" translatable="yes">_Add Bookmark</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.EditBook</attribute>
+          <attribute name="label" translatable="no">%s...</attribute>
+        </item>
+      </section>
+''' % _('Organize Bookmarks'),
+        '''
+      <placeholder id="CommonGo">
+      <section>
+        <item>
+          <attribute name="action">win.Back</attribute>
+          <attribute name="label" translatable="yes">_Back</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Forward</attribute>
+          <attribute name="label" translatable="yes">_Forward</attribute>
+        </item>
+      </section>
+      </placeholder>
+''',
+        '''
+      <section id='CommonEdit' groups='RW'>
+        <item>
+          <attribute name="action">win.Add</attribute>
+          <attribute name="label" translatable="yes">_Add...</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Edit</attribute>
+          <attribute name="label" translatable="yes">%s</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Remove</attribute>
+          <attribute name="label" translatable="yes">_Delete</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Merge</attribute>
+          <attribute name="label" translatable="yes">_Merge...</attribute>
+        </item>
+      </section>
+''' % _("action|_Edit..."),  # to use sgettext()
+        '''
+        <placeholder id='otheredit'>
+        <item>
+          <attribute name="action">win.FilterEdit</attribute>
+          <attribute name="label" translatable="yes">'''
+        '''Media Filter Editor</attribute>
+        </item>
+        </placeholder>
+''',  # Following are the Toolbar items
+        '''
+    <placeholder id='CommonNavigation'>
+    <child groups='RO'>
+      <object class="GtkToolButton">
+        <property name="icon-name">go-previous</property>
+        <property name="action-name">win.Back</property>
+        <property name="tooltip_text" translatable="yes">'''
+        '''Go to the previous object in the history</property>
+        <property name="label" translatable="yes">_Back</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RO'>
+      <object class="GtkToolButton">
+        <property name="icon-name">go-next</property>
+        <property name="action-name">win.Forward</property>
+        <property name="tooltip_text" translatable="yes">'''
+        '''Go to the next object in the history</property>
+        <property name="label" translatable="yes">_Forward</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    </placeholder>
+''',
+        '''
+    <placeholder id='BarCommonEdit'>
+    <child groups='RW'>
+      <object class="GtkToolButton">
+        <property name="icon-name">list-add</property>
+        <property name="action-name">win.Add</property>
+        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="label" translatable="yes">_Add...</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RW'>
+      <object class="GtkToolButton">
+        <property name="icon-name">gtk-edit</property>
+        <property name="action-name">win.Edit</property>
+        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="label" translatable="yes">Edit...</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RW'>
+      <object class="GtkToolButton">
+        <property name="icon-name">list-remove</property>
+        <property name="action-name">win.Remove</property>
+        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="label" translatable="yes">_Delete</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RW'>
+      <object class="GtkToolButton">
+        <property name="icon-name">gramps-merge</property>
+        <property name="action-name">win.Merge</property>
+        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="label" translatable="yes">_Merge...</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    </placeholder>
+''' % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
+        '''
+    <placeholder id='AfterTools'>
+    <child>
+      <object class="GtkToolButton">
+        <property name="icon-name">gramps-viewmedia</property>
+        <property name="action-name">win.OpenMedia</property>
+        <property name="tooltip_text" translatable="yes">'''
+        '''View in the default viewer</property>
+        <property name="label" translatable="yes">View</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    </placeholder>
+''',
+        '''
+    <menu id="Popup">
+      <section>
+        <item>
+          <attribute name="action">win.Back</attribute>
+          <attribute name="label" translatable="yes">_Back</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Forward</attribute>
+          <attribute name="label" translatable="yes">Forward</attribute>
+        </item>
+      </section>
+      <section id="PopUpTree">
+        <item>
+          <attribute name="action">win.OpenMedia</attribute>
+          <attribute name="label" translatable="yes">View</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.OpenContainingFolder</attribute>
+          <attribute name="label" translatable="yes">'''
+        '''Open Containing _Folder</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="action">win.Add</attribute>
+          <attribute name="label" translatable="yes">_Add...</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Edit</attribute>
+          <attribute name="label" translatable="yes">%s</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Remove</attribute>
+          <attribute name="label" translatable="yes">_Delete</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Merge</attribute>
+          <attribute name="label" translatable="yes">_Merge...</attribute>
+        </item>
+      </section>
+      <section>
+        <placeholder id='QuickReport'>
+        </placeholder>
+      </section>
+    </menu>
+''' % _('action|_Edit...')  # to use sgettext()
+    ]
 
-    def add(self, obj):
+    def add(self, *obj):
         """Add a new media object to the media list"""
         try:
             EditMedia(self.dbstate, self.uistate, [], Media())
         except WindowActiveError:
             pass
 
-    def remove(self, obj):
+    def remove(self, *obj):
         self.remove_selected_objects()
 
     def remove_object_from_handle(self, handle):
@@ -329,7 +462,7 @@ class MediaView(ListView):
         is_used = any(the_lists)
         return (query, is_used, object)
 
-    def edit(self, obj):
+    def edit(self, *obj):
         """
         Edit the selected objects in the EditMedia dialog
         """
@@ -340,7 +473,7 @@ class MediaView(ListView):
             except WindowActiveError:
                 pass
 
-    def merge(self, obj):
+    def merge(self, *obj):
         """
         Merge the selected objects.
         """

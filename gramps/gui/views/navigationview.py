@@ -29,6 +29,7 @@ Provide the base classes for GRAMPS' DataView classes
 #
 #----------------------------------------------------------------
 from abc import abstractmethod
+import html
 import logging
 
 _LOG = logging.getLogger('.navigationview')
@@ -49,7 +50,7 @@ from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from .pageview import PageView
-from ..actiongroup import ActionGroup
+from ..uimanager import ActionGroup
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.constfunc import mod_key
 from ..utils import match_primary_mask
@@ -57,19 +58,9 @@ from ..utils import match_primary_mask
 DISABLED = -1
 MRU_SIZE = 10
 
-MRU_TOP = [
-    '<ui>'
-    '<menubar name="MenuBar">'
-    '<menu action="GoMenu">'
-    '<placeholder name="CommonHistory">'
-    ]
+MRU_TOP = '<section id="CommonHistory">'
+MRU_BTM = '</section>'
 
-MRU_BTM = [
-    '</placeholder>'
-    '</menu>'
-    '</menubar>'
-    '</ui>'
-    ]
 #------------------------------------------------------------------------------
 #
 # NavigationView
@@ -94,6 +85,7 @@ class NavigationView(PageView):
         self.mru_signal = None
         self.nav_group = nav_group
         self.mru_active = DISABLED
+        self.uimanager = uistate.uimanager
 
         self.uistate.register(state, self.navigation_type(), self.nav_group)
 
@@ -122,8 +114,8 @@ class NavigationView(PageView):
         """
         PageView.disable_action_group(self)
 
-        self.fwd_action.set_visible(False)
-        self.back_action.set_visible(False)
+        self.uimanager.set_actions_visible(self.fwd_action, False)
+        self.uimanager.set_actions_visible(self.back_action, False)
 
     def enable_action_group(self, obj):
         """
@@ -133,20 +125,25 @@ class NavigationView(PageView):
         """
         PageView.enable_action_group(self, obj)
 
-        self.fwd_action.set_visible(True)
-        self.back_action.set_visible(True)
+        self.uimanager.set_actions_visible(self.fwd_action, True)
+        self.uimanager.set_actions_visible(self.back_action, True)
         hobj = self.get_history()
-        self.fwd_action.set_sensitive(not hobj.at_end())
-        self.back_action.set_sensitive(not hobj.at_front())
+        self.uimanager.set_actions_sensitive(self.fwd_action,
+                                             not hobj.at_end())
+        self.uimanager.set_actions_sensitive(self.back_action,
+                                             not hobj.at_front())
 
     def change_page(self):
         """
         Called when the page changes.
         """
         hobj = self.get_history()
-        self.fwd_action.set_sensitive(not hobj.at_end())
-        self.back_action.set_sensitive(not hobj.at_front())
-        self.other_action.set_sensitive(not self.dbstate.db.readonly)
+        self.uimanager.set_actions_sensitive(self.fwd_action,
+                                             not hobj.at_end())
+        self.uimanager.set_actions_sensitive(self.back_action,
+                                             not hobj.at_front())
+        self.uimanager.set_actions_sensitive(self.other_action,
+                                             not self.dbstate.db.readonly)
         self.uistate.modify_statusbar(self.dbstate)
 
     def set_active(self):
@@ -159,7 +156,7 @@ class NavigationView(PageView):
         hobj = self.get_history()
         self.active_signal = hobj.connect('active-changed', self.goto_active)
         self.mru_signal = hobj.connect('mru-changed', self.update_mru_menu)
-        self.update_mru_menu(hobj.mru)
+        self.update_mru_menu(hobj.mru, update_menu=False)
 
         self.goto_active(None)
 
@@ -199,8 +196,10 @@ class NavigationView(PageView):
             self.goto_handle(active_handle)
 
         hobj = self.get_history()
-        self.fwd_action.set_sensitive(not hobj.at_end())
-        self.back_action.set_sensitive(not hobj.at_front())
+        self.uimanager.set_actions_sensitive(self.fwd_action,
+                                             not hobj.at_end())
+        self.uimanager.set_actions_sensitive(self.back_action,
+                                             not hobj.at_front())
 
     def get_active(self):
         """
@@ -238,7 +237,7 @@ class NavigationView(PageView):
     ####################################################################
     # BOOKMARKS
     ####################################################################
-    def add_bookmark(self, obj):
+    def add_bookmark(self, *obj):
         """
         Add a bookmark to the list.
         """
@@ -259,7 +258,7 @@ class NavigationView(PageView):
                   "no one was selected."),
                 parent=self.uistate.window)
 
-    def edit_bookmarks(self, obj):
+    def edit_bookmarks(self, *obj):
         """
         Call the bookmark editor.
         """
@@ -271,12 +270,8 @@ class NavigationView(PageView):
         """
         self.book_action = ActionGroup(name=self.title + '/Bookmark')
         self.book_action.add_actions([
-            ('AddBook', 'gramps-bookmark-new', _('_Add Bookmark'),
-             '<PRIMARY>d', None, self.add_bookmark),
-            ('EditBook', 'gramps-bookmark-edit',
-             _("%(title)s...") % {'title': _("Organize Bookmarks")},
-             '<shift><PRIMARY>D', None,
-             self.edit_bookmarks),
+            ('AddBook', self.add_bookmark, '<PRIMARY>d'),
+            ('EditBook', self.edit_bookmarks, '<shift><PRIMARY>D'),
             ])
 
         self._add_action_group(self.book_action)
@@ -290,35 +285,25 @@ class NavigationView(PageView):
         """
         # add the Forward action group to handle the Forward button
         self.fwd_action = ActionGroup(name=self.title + '/Forward')
-        self.fwd_action.add_actions([
-            ('Forward', 'go-next', _("_Forward"),
-             "%sRight" % mod_key(), _("Go to the next object in the history"),
-             self.fwd_clicked)
-            ])
+        self.fwd_action.add_actions([('Forward', self.fwd_clicked,
+                                      "%sRight" % mod_key())])
 
         # add the Backward action group to handle the Forward button
         self.back_action = ActionGroup(name=self.title + '/Backward')
-        self.back_action.add_actions([
-            ('Back', 'go-previous', _("_Back"),
-             "%sLeft" % mod_key(), _("Go to the previous object in the history"),
-             self.back_clicked)
-            ])
+        self.back_action.add_actions([('Back', self.back_clicked,
+                                       "%sLeft" % mod_key())])
 
-        self._add_action('HomePerson', 'go-home', _("_Home"),
-                         accel="%sHome" % mod_key(),
-                         tip=_("Go to the default person"), callback=self.home)
+        self._add_action('HomePerson', self.home, "%sHome" % mod_key())
 
         self.other_action = ActionGroup(name=self.title + '/PersonOther')
         self.other_action.add_actions([
-                ('SetActive', 'go-home', _("Set _Home Person"), None,
-                 None, self.set_default_person),
-                ])
+            ('SetActive', self.set_default_person)])
 
         self._add_action_group(self.back_action)
         self._add_action_group(self.fwd_action)
         self._add_action_group(self.other_action)
 
-    def set_default_person(self, obj):
+    def set_default_person(self, *obj):
         """
         Set the default person.
         """
@@ -326,7 +311,7 @@ class NavigationView(PageView):
         if active:
             self.dbstate.db.set_default_person_handle(active)
 
-    def home(self, obj):
+    def home(self, *obj):
         """
         Move to the default person.
         """
@@ -342,7 +327,7 @@ class NavigationView(PageView):
                   "via the menu Edit ->Set Home Person."),
                 parent=self.uistate.window)
 
-    def jump(self):
+    def jump(self, *obj):
         """
         A dialog to move to a Gramps ID entered by the user.
         """
@@ -383,7 +368,7 @@ class NavigationView(PageView):
         """
         pass
 
-    def fwd_clicked(self, obj):
+    def fwd_clicked(self, *obj):
         """
         Move forward one object in the history.
         """
@@ -392,11 +377,12 @@ class NavigationView(PageView):
         if not hobj.at_end():
             hobj.forward()
             self.uistate.modify_statusbar(self.dbstate)
-        self.fwd_action.set_sensitive(not hobj.at_end())
-        self.back_action.set_sensitive(True)
+        self.uimanager.set_actions_sensitive(self.fwd_action,
+                                             not hobj.at_end())
+        self.uimanager.set_actions_sensitive(self.back_action, True)
         hobj.lock = False
 
-    def back_clicked(self, obj):
+    def back_clicked(self, *obj):
         """
         Move backward one object in the history.
         """
@@ -405,8 +391,9 @@ class NavigationView(PageView):
         if not hobj.at_front():
             hobj.back()
             self.uistate.modify_statusbar(self.dbstate)
-        self.back_action.set_sensitive(not hobj.at_front())
-        self.fwd_action.set_sensitive(True)
+        self.uimanager.set_actions_sensitive(self.back_action,
+                                             not hobj.at_front())
+        self.uimanager.set_actions_sensitive(self.fwd_action, True)
         hobj.lock = False
 
     ####################################################################
@@ -418,44 +405,52 @@ class NavigationView(PageView):
         Remove the UI and action groups for the MRU list.
         """
         if self.mru_active != DISABLED:
-            self.uistate.uimanager.remove_ui(self.mru_active)
-            self.uistate.uimanager.remove_action_group(self.mru_action)
+            self.uimanager.remove_ui(self.mru_active)
+            self.uimanager.remove_action_group(self.mru_action)
             self.mru_active = DISABLED
 
-    def mru_enable(self):
+    def mru_enable(self, update_menu=False):
         """
         Enables the UI and action groups for the MRU list.
         """
         if self.mru_active == DISABLED:
-            self.uistate.uimanager.insert_action_group(self.mru_action, 1)
-            self.mru_active = self.uistate.uimanager.add_ui_from_string(self.mru_ui)
-            self.uistate.uimanager.ensure_update()
+            self.uimanager.insert_action_group(self.mru_action)
+            self.mru_active = self.uimanager.add_ui_from_string(self.mru_ui)
+            if update_menu:
+                self.uimanager.update_menu()
 
-    def update_mru_menu(self, items):
+    def update_mru_menu(self, items, update_menu=True):
         """
         Builds the UI and action group for the MRU list.
         """
+        menuitem = '''        <item>
+              <attribute name="action">win.%s%02d</attribute>
+              <attribute name="label" translatable="yes">%s</attribute>
+            </item>
+            '''
+        menus = ''
         self.mru_disable()
         nav_type = self.navigation_type()
         hobj = self.get_history()
         menu_len = min(len(items) - 1, MRU_SIZE)
 
-        entry = '<menuitem action="%s%02d"/>'
-        data = [entry % (nav_type, index) for index in range(0, menu_len)]
-        self.mru_ui = "".join(MRU_TOP) + "".join(data) + "".join(MRU_BTM)
+        for index in range(0, menu_len):
+            name, obj = navigation_label(self.dbstate.db, nav_type,
+                                         items[index])
+            menus += menuitem % (nav_type, index, html.escape(name))
+        self.mru_ui = [MRU_TOP + menus + MRU_BTM]
 
         mitems = items[-MRU_SIZE - 1:-1] # Ignore current handle
         mitems.reverse()
         data = []
         for index, handle in enumerate(mitems):
-            name, obj = navigation_label(self.dbstate.db, nav_type, handle)
-            data.append(('%s%02d'%(nav_type, index), None,  name,
-                         "%s%d" % (mod_key(), index), None,
-                         make_callback(hobj.push, handle)))
+            data.append(('%s%02d'%(nav_type, index),
+                         make_callback(hobj.push, handle),
+                         "%s%d" % (mod_key(), index)))
 
         self.mru_action = ActionGroup(name=self.title + '/MRU')
         self.mru_action.add_actions(data)
-        self.mru_enable()
+        self.mru_enable(update_menu)
 
     ####################################################################
     # Template functions
@@ -503,4 +498,4 @@ def make_callback(func, handle):
     """
     Generates a callback function based off the passed arguments
     """
-    return lambda x: func(handle)
+    return lambda x, y: func(handle)

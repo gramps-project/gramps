@@ -78,82 +78,28 @@ class PersonTreeView(BasePersonView):
         """
         BasePersonView.define_actions(self)
 
-        self.all_action.add_actions([
-                ('OpenAllNodes', None, _("Expand all Nodes"), None, None,
-                 self.open_all_nodes),
-                ('CloseAllNodes', None, _("Collapse all Nodes"), None, None,
-                 self.close_all_nodes),
-                ])
+        self.action_list.extend([
+            ('OpenAllNodes', self.open_all_nodes),
+            ('CloseAllNodes', self.close_all_nodes)])
 
-    def additional_ui(self):
-        """
-        Defines the UI string for UIManager
-        """
-        return '''<ui>
-          <menubar name="MenuBar">
-            <menu action="FileMenu">
-              <placeholder name="LocalExport">
-                <menuitem action="ExportTab"/>
-              </placeholder>
-            </menu>
-            <menu action="BookMenu">
-              <placeholder name="AddEditBook">
-                <menuitem action="AddBook"/>
-                <menuitem action="EditBook"/>
-              </placeholder>
-            </menu>
-            <menu action="GoMenu">
-              <placeholder name="CommonGo">
-                <menuitem action="Back"/>
-                <menuitem action="Forward"/>
-                <separator/>
-                <menuitem action="HomePerson"/>
-                <separator/>
-              </placeholder>
-            </menu>
-            <menu action="EditMenu">
-              <placeholder name="CommonEdit">
-                <menuitem action="Add"/>
-                <menuitem action="Edit"/>
-                <menuitem action="Remove"/>
-                <menuitem action="Merge"/>
-             </placeholder>
-              <menuitem action="SetActive"/>
-              <menuitem action="FilterEdit"/>
-            </menu>
-          </menubar>
-          <toolbar name="ToolBar">
-            <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>
-              <toolitem action="Forward"/>
-              <toolitem action="HomePerson"/>
-            </placeholder>
-            <placeholder name="CommonEdit">
-              <toolitem action="Add"/>
-              <toolitem action="Edit"/>
-              <toolitem action="Remove"/>
-              <toolitem action="Merge"/>
-            </placeholder>
-          </toolbar>
-          <popup name="Popup">
-            <menuitem action="Back"/>
-            <menuitem action="Forward"/>
-            <menuitem action="HomePerson"/>
-            <separator/>
-            <menuitem action="OpenAllNodes"/>
-            <menuitem action="CloseAllNodes"/>
-            <separator/>
-            <menuitem action="Add"/>
-            <menuitem action="Edit"/>
-            <menuitem action="Remove"/>
-            <menuitem action="Merge"/>
-            <separator/>
-            <menu name="QuickReport" action="QuickReport"/>
-            <menu name="WebConnect" action="WebConnect"/>
-          </popup>
-        </ui>'''
+    additional_ui = BasePersonView.additional_ui[:]
+    additional_ui.append(  # Defines the UI string for UIManager
+        '''
+      <section id="PopUpTree">
+        <item>
+          <attribute name="action">win.OpenAllNodes</attribute>
+          <attribute name="label" translatable="yes">'''
+        '''Expand all Nodes</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.CloseAllNodes</attribute>
+          <attribute name="label" translatable="yes">'''
+        '''Collapse all Nodes</attribute>
+        </item>
+      </section>
+    ''')
 
-    def add(self, obj):
+    def add(self, *obj):
         person = Person()
 
         # attempt to get the current surname

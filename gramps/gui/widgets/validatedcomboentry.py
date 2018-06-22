@@ -65,7 +65,8 @@ class ValidatedComboEntry(Gtk.ComboBox):
     __gtype_name__ = "ValidatedComboEntry"
 
     def __init__(self, datatype, model=None, column=-1, validator=None, width=-1):
-        Gtk.ComboBox.__init__(self, model=model)
+        Gtk.ComboBox.__init__(self)
+        self.set_model(model)
 
         self._entry = Gtk.Entry()
         self._entry.set_width_chars(width)
@@ -201,6 +202,9 @@ class ValidatedComboEntry(Gtk.ComboBox):
         self._internal_change = True
         new_iter = self._is_in_model(new_data)
         if new_iter is None:
+            if self.get_active_iter() is None:
+                # allows response when changing between two non-model values
+                self.set_active(0)
             self.set_active(-1)
         else:
             self.set_active_iter(new_iter)

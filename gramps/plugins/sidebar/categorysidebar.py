@@ -88,14 +88,6 @@ class CategorySidebar(BaseSidebar):
             button.drag_dest_set(0, [], 0)
             button.connect('drag_motion', self.cb_switch_page_on_dnd, cat_num)
 
-            # toollbar buttons for switching views in a category
-            uitoolitems = ''
-            for view_num, view_name, view_icon in views[cat_num]:
-                pageid = 'page_%i_%i' % (cat_num, view_num)
-                uitoolitems += '\n<toolitem action="%s"/>' % pageid
-            if len(views[cat_num]) > 1:
-                self.ui_category[cat_num] = UICATEGORY % uitoolitems
-
         vbox.show_all()
 
     def get_top(self):

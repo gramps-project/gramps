@@ -48,7 +48,7 @@ _LOG = logging.getLogger(".gui.personview")
 from gramps.gen.lib import Person, Surname
 from gramps.gen.db import DbTxn
 from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
-from gramps.gui.actiongroup import ActionGroup
+from gramps.gui.uimanager import ActionGroup
 from gramps.gen.utils.string import data_recover_msg
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gui.dialog import ErrorDialog, MultiSelectDialog, QuestionDialog
@@ -152,15 +152,10 @@ class BasePersonView(ListView):
             multiple=True,
             filter_class=PersonSidebarFilter)
 
-        self.func_list.update({
-            '<PRIMARY>J' : self.jump,
-            '<PRIMARY>BackSpace' : self.key_delete,
-            })
-
         uistate.connect('nameformat-changed', self.build_tree)
         uistate.connect('placeformat-changed', self.build_tree)
 
-        self.additional_uis.append(self.additional_ui())
+        self.additional_uis.append(self.additional_ui)
 
     def navigation_type(self):
         """
@@ -187,70 +182,226 @@ class BasePersonView(ListView):
         """
         return 'gramps-person'
 
-    def additional_ui(self):
-        """
-        Defines the UI string for UIManager
-        """
-        return '''<ui>
-          <menubar name="MenuBar">
-            <menu action="FileMenu">
-              <placeholder name="LocalExport">
-                <menuitem action="ExportTab"/>
-              </placeholder>
-            </menu>
-            <menu action="BookMenu">
-              <placeholder name="AddEditBook">
-                <menuitem action="AddBook"/>
-                <menuitem action="EditBook"/>
-              </placeholder>
-            </menu>
-            <menu action="GoMenu">
-              <placeholder name="CommonGo">
-                <menuitem action="Back"/>
-                <menuitem action="Forward"/>
-                <separator/>
-                <menuitem action="HomePerson"/>
-                <separator/>
-              </placeholder>
-            </menu>
-            <menu action="EditMenu">
-              <placeholder name="CommonEdit">
-                <menuitem action="Add"/>
-                <menuitem action="Edit"/>
-                <menuitem action="Remove"/>
-                <menuitem action="Merge"/>
-              </placeholder>
-              <menuitem action="SetActive"/>
-              <menuitem action="FilterEdit"/>
-            </menu>
-          </menubar>
-          <toolbar name="ToolBar">
-            <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>
-              <toolitem action="Forward"/>
-              <toolitem action="HomePerson"/>
-            </placeholder>
-            <placeholder name="CommonEdit">
-              <toolitem action="Add"/>
-              <toolitem action="Edit"/>
-              <toolitem action="Remove"/>
-              <toolitem action="Merge"/>
-            </placeholder>
-          </toolbar>
-          <popup name="Popup">
-            <menuitem action="Back"/>
-            <menuitem action="Forward"/>
-            <menuitem action="HomePerson"/>
-            <separator/>
-            <menuitem action="Add"/>
-            <menuitem action="Edit"/>
-            <menuitem action="Remove"/>
-            <menuitem action="Merge"/>
-            <separator/>
-            <menu name="QuickReport" action="QuickReport"/>
-            <menu name="WebConnect" action="WebConnect"/>
-          </popup>
-        </ui>'''
+    additional_ui = [  # Defines the UI string for UIManager
+        '''
+      <placeholder id="LocalExport">
+        <item>
+          <attribute name="action">win.ExportTab</attribute>
+          <attribute name="label" translatable="yes">Export View...</attribute>
+        </item>
+      </placeholder>
+''',
+        '''
+      <section id="AddEditBook">
+        <item>
+          <attribute name="action">win.AddBook</attribute>
+          <attribute name="label" translatable="yes">_Add Bookmark</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.EditBook</attribute>
+          <attribute name="label" translatable="no">%s...</attribute>
+        </item>
+      </section>
+''' % _('Organize Bookmarks'),
+        '''
+      <placeholder id="CommonGo">
+      <section>
+        <item>
+          <attribute name="action">win.Back</attribute>
+          <attribute name="label" translatable="yes">_Back</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Forward</attribute>
+          <attribute name="label" translatable="yes">_Forward</attribute>
+        </item>
+      </section>
+      <section>
+        <item>
+          <attribute name="action">win.HomePerson</attribute>
+          <attribute name="label" translatable="yes">_Home</attribute>
+        </item>
+      </section>
+      </placeholder>
+''',
+        '''
+      <section id='CommonEdit' groups='RW'>
+        <item>
+          <attribute name="action">win.Add</attribute>
+          <attribute name="label" translatable="yes">_Add...</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Edit</attribute>
+          <attribute name="label" translatable="yes">%s</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Remove</attribute>
+          <attribute name="label" translatable="yes">_Delete</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Merge</attribute>
+          <attribute name="label" translatable="yes">_Merge...</attribute>
+        </item>
+      </section>
+''' % _("action|_Edit..."),  # to use sgettext()
+        '''
+        <placeholder id='otheredit'>
+        <item>
+          <attribute name="action">win.SetActive</attribute>
+          <attribute name="label" translatable="yes">'''
+        '''Set _Home Person</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.FilterEdit</attribute>
+          <attribute name="label" translatable="yes">'''
+        '''Person Filter Editor</attribute>
+        </item>
+        </placeholder>
+''',  # Following are the Toolbar items
+        '''
+    <placeholder id='CommonNavigation'>
+    <child groups='RO'>
+      <object class="GtkToolButton">
+        <property name="icon-name">go-previous</property>
+        <property name="action-name">win.Back</property>
+        <property name="tooltip_text" translatable="yes">'''
+        '''Go to the previous object in the history</property>
+        <property name="label" translatable="yes">_Back</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RO'>
+      <object class="GtkToolButton">
+        <property name="icon-name">go-next</property>
+        <property name="action-name">win.Forward</property>
+        <property name="tooltip_text" translatable="yes">'''
+        '''Go to the next object in the history</property>
+        <property name="label" translatable="yes">_Forward</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RO'>
+      <object class="GtkToolButton">
+        <property name="icon-name">go-home</property>
+        <property name="action-name">win.HomePerson</property>
+        <property name="tooltip_text" translatable="yes">'''
+        '''Go to the default person</property>
+        <property name="label" translatable="yes">_Home</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    </placeholder>
+''',
+        '''
+    <placeholder id='BarCommonEdit'>
+    <child groups='RW'>
+      <object class="GtkToolButton">
+        <property name="icon-name">list-add</property>
+        <property name="action-name">win.Add</property>
+        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="label" translatable="yes">_Add...</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RW'>
+      <object class="GtkToolButton">
+        <property name="icon-name">gtk-edit</property>
+        <property name="action-name">win.Edit</property>
+        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="label" translatable="yes">Edit...</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RW'>
+      <object class="GtkToolButton">
+        <property name="icon-name">list-remove</property>
+        <property name="action-name">win.Remove</property>
+        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="label" translatable="yes">_Delete</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RW'>
+      <object class="GtkToolButton">
+        <property name="icon-name">gramps-merge</property>
+        <property name="action-name">win.Merge</property>
+        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="label" translatable="yes">_Merge...</property>
+        <property name="use-underline">True</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    </placeholder>
+''' % (ADD_MSG, EDIT_MSG, DEL_MSG, MERGE_MSG),
+        '''
+    <menu id="Popup">
+      <section>
+        <item>
+          <attribute name="action">win.Back</attribute>
+          <attribute name="label" translatable="yes">_Back</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Forward</attribute>
+          <attribute name="label" translatable="yes">Forward</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.HomePerson</attribute>
+          <attribute name="label" translatable="yes">_Home</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.SetActive</attribute>
+          <attribute name="label" translatable="yes">'''
+        '''Set _Home Person</attribute>
+        </item>
+      </section>
+      <section id="PopUpTree">
+      </section>
+      <section>
+        <item>
+          <attribute name="action">win.Add</attribute>
+          <attribute name="label" translatable="yes">_Add...</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Edit</attribute>
+          <attribute name="label" translatable="yes">%s</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Remove</attribute>
+          <attribute name="label" translatable="yes">_Delete</attribute>
+        </item>
+        <item>
+          <attribute name="action">win.Merge</attribute>
+          <attribute name="label" translatable="yes">_Merge...</attribute>
+        </item>
+      </section>
+      <section>
+        <placeholder id='QuickReport'>
+        </placeholder>
+        <placeholder id='WebConnect'>
+        </placeholder>
+      </section>
+    </menu>
+    ''' % _('action|_Edit...')  # to use sgettext()
+    ]
 
     def get_handle_from_gramps_id(self, gid):
         """
@@ -262,7 +413,7 @@ class BasePersonView(ListView):
         else:
             return None
 
-    def add(self, obj):
+    def add(self, *obj):
         """
         Add a new person to the database.
         """
@@ -276,7 +427,7 @@ class BasePersonView(ListView):
         except WindowActiveError:
             pass
 
-    def edit(self, obj):
+    def edit(self, *obj):
         """
         Edit an existing person in the database.
         """
@@ -287,7 +438,7 @@ class BasePersonView(ListView):
             except WindowActiveError:
                 pass
 
-    def remove(self, obj):
+    def remove(self, *obj):
         """
         Remove a person from the database.
         """
@@ -373,53 +524,7 @@ class BasePersonView(ListView):
 
         ListView.define_actions(self)
 
-        self.all_action = ActionGroup(name=self.title + "/PersonAll")
-        self.edit_action = ActionGroup(name=self.title + "/PersonEdit")
-
-        self.all_action.add_actions([
-                ('FilterEdit', None, _('Person Filter Editor'), None, None,
-                self.filter_editor),
-                ('Edit', 'gtk-edit', _("action|_Edit..."),
-                "<PRIMARY>Return", self.EDIT_MSG, self.edit),
-                ('QuickReport', None, _("Quick View"), None, None, None),
-                ('WebConnect', None, _("Web Connection"), None, None, None),
-                ])
-
-
-        self.edit_action.add_actions(
-            [
-                ('Add', 'list-add', _("_Add..."), "<PRIMARY>Insert",
-                 self.ADD_MSG, self.add),
-                ('Remove', 'list-remove', _("_Delete"), "<PRIMARY>Delete",
-                 self.DEL_MSG, self.remove),
-                ('Merge', 'gramps-merge', _('_Merge...'), None,
-                 self.MERGE_MSG, self.merge),
-                ('ExportTab', None, _('Export View...'), None, None,
-                 self.export),
-                ])
-
-        self._add_action_group(self.edit_action)
-        self._add_action_group(self.all_action)
-
-    def enable_action_group(self, obj):
-        """
-        Turns on the visibility of the View's action group.
-        """
-        ListView.enable_action_group(self, obj)
-        self.all_action.set_visible(True)
-        self.edit_action.set_visible(True)
-        self.edit_action.set_sensitive(not self.dbstate.db.readonly)
-
-    def disable_action_group(self):
-        """
-        Turns off the visibility of the View's action group.
-        """
-        ListView.disable_action_group(self)
-
-        self.all_action.set_visible(False)
-        self.edit_action.set_visible(False)
-
-    def merge(self, obj):
+    def merge(self, *obj):
         """
         Merge the selected people.
         """

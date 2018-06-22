@@ -70,7 +70,10 @@ class ShortlistComboEntry(ValidatedComboEntry):
     """
     __gtype_name__ = "ShortlistComboEntry"
 
-    def __init__(self, items, shortlist=True, validator=None):
+    def __init__(self):
+        pass
+
+    def init(self, items, shortlist=True, validator=None):
         if not items:
             raise ValueError
 

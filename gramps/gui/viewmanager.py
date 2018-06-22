@@ -40,6 +40,7 @@ import datetime
 from io import StringIO
 import posixpath
 import gc
+import html
 
 #-------------------------------------------------------------------------
 #
@@ -92,7 +93,7 @@ from .configure import GrampsPreferences
 from .aboutdialog import GrampsAboutDialog
 from .navigator import Navigator
 from .views.tags import Tags
-from .actiongroup import ActionGroup
+from .uimanager import ActionGroup
 from gramps.gen.lib import (Person, Surname, Family, Media, Note, Place,
                             Source, Repository, Citation, Event, EventType,
                             ChildRef)
@@ -107,147 +108,19 @@ from .managedwindow import ManagedWindow
 # Constants
 #
 #-------------------------------------------------------------------------
-if is_quartz():
-    try:
-        import gi
-        gi.require_version('GtkosxApplication', '1.0')
-        from gi.repository import GtkosxApplication as QuartzApp
-        _GTKOSXAPPLICATION = True
-    except:
-        print("Failed to import gtk_osxapplication")
-        _GTKOSXAPPLICATION = False
-else:
-    _GTKOSXAPPLICATION = False
+# if is_quartz():
+    # try:
+        # import gi
+        # gi.require_version('GtkosxApplication', '1.0')
+        # from gi.repository import GtkosxApplication as QuartzApp
+        # _GTKOSXAPPLICATION = True
+    # except:
+        # print("Failed to import gtk_osxapplication")
+        # _GTKOSXAPPLICATION = False
+# else:
+    # _GTKOSXAPPLICATION = False
 
 _UNSUPPORTED = ("Unsupported", _("Unsupported"))
-
-UIDEFAULT = '''<ui>
-<menubar name="MenuBar">
-  <menu action="FileMenu">
-    <menuitem action="Open"/>
-    <menu action="OpenRecent">
-    </menu>
-    <menuitem action="Close"/>
-    <separator/>
-    <menuitem action="Import"/>
-    <menuitem action="Export"/>
-    <placeholder name="LocalExport"/>
-    <menuitem action="Backup"/>
-    <separator/>
-    <menuitem action="Abandon"/>
-    <menuitem action="Quit"/>
-  </menu>
-  <menu action="AddMenu">
-    <menuitem action="PersonAdd"/>
-    <separator/>
-    <menuitem action="FamilyAdd"/>
-    <separator/>
-    <menuitem action="EventAdd"/>
-    <separator/>
-    <menuitem action="PlaceAdd"/>
-    <menuitem action="SourceAdd"/>
-    <menuitem action="CitationAdd"/>
-    <menuitem action="RepositoryAdd"/>
-    <menuitem action="MediaAdd"/>
-    <menuitem action="NoteAdd"/>
-  </menu>
-  <menu action="EditMenu">
-    <menuitem action="Undo"/>
-    <menuitem action="Redo"/>
-    <menuitem action="UndoHistory"/>
-    <separator/>
-    <placeholder name="CommonEdit"/>
-    <separator/>
-    <placeholder name="TagMenu"/>
-    <separator/>
-    <menuitem action="Clipboard"/>
-    <separator/>
-    <menuitem action="Preferences"/>
-  </menu>
-  <menu action="ViewMenu">
-    <menuitem action="ConfigView"/>
-    <menuitem action="Navigator"/>
-    <menuitem action="Toolbar"/>
-    <placeholder name="Bars"/>
-    <menuitem action="Fullscreen"/>
-    <separator/>
-    <placeholder name="ViewsInCategory"/>
-    <separator/>
-  </menu>
-  <menu action="GoMenu">
-    <placeholder name="CommonGo"/>
-    <placeholder name="CommonHistory"/>
-  </menu>
-  <menu action="BookMenu">
-    <placeholder name="AddEditBook"/>
-    <separator/>
-    <placeholder name="GoToBook"/>
-  </menu>
-  <menu action="ReportsMenu">
-    <menuitem action="Books"/>
-    <separator/>
-    <placeholder name="P_ReportsMenu"/>
-  </menu>
-  <menu action="ToolsMenu">
-    <placeholder name="P_ToolsMenu"/>
-  </menu>
-  <menu action="WindowsMenu">
-    <placeholder name="WinMenu"/>
-  </menu>
-  <menu action="HelpMenu">
-    <menuitem action="UserManual"/>
-    <menuitem action="FAQ"/>
-    <menuitem action="KeyBindings"/>
-    <menuitem action="TipOfDay"/>
-    <menuitem action="PluginStatus"/>
-    <separator/>
-    <menuitem action="HomePage"/>
-    <menuitem action="MailingLists"/>
-    <menuitem action="ReportBug"/>
-    <menuitem action="ExtraPlugins"/>
-    <separator/>
-    <menuitem action="About"/>
-  </menu>
-</menubar>
-<toolbar name="ToolBar">
-  <placeholder name="CommonNavigation"/>
-  <separator/>
-  <placeholder name="CommonEdit"/>
-  <placeholder name="TagTool"/>
-  <toolitem action="Clipboard"/>
-  <separator/>
-  <toolitem action="ConfigView"/>
-  <placeholder name="ViewsInCategory"/>
-  <separator/>
-  <toolitem action="Reports"/>
-  <toolitem action="Tools"/>
-</toolbar>
-<accelerator action="F2"/>
-<accelerator action="F3"/>
-<accelerator action="F4"/>
-<accelerator action="F5"/>
-<accelerator action="F6"/>
-<accelerator action="F7"/>
-<accelerator action="F8"/>
-<accelerator action="F9"/>
-<accelerator action="F11"/>
-<accelerator action="F12"/>
-<accelerator action="<PRIMARY>1"/>
-<accelerator action="<PRIMARY>2"/>
-<accelerator action="<PRIMARY>3"/>
-<accelerator action="<PRIMARY>4"/>
-<accelerator action="<PRIMARY>5"/>
-<accelerator action="<PRIMARY>6"/>
-<accelerator action="<PRIMARY>7"/>
-<accelerator action="<PRIMARY>8"/>
-<accelerator action="<PRIMARY>9"/>
-<accelerator action="<PRIMARY>0"/>
-<accelerator action="<PRIMARY>BackSpace"/>
-<accelerator action="<PRIMARY>J"/>
-<accelerator action="<PRIMARY>N"/>
-<accelerator action="<PRIMARY>P"/>
-</ui>
-'''
 
 WIKI_HELP_PAGE_FAQ = '%s_-_FAQ' % URL_MANUAL_PAGE
 WIKI_HELP_PAGE_KEY = '%s_-_Keybindings' % URL_MANUAL_PAGE
@@ -289,18 +162,19 @@ class ViewManager(CLIManager):
 
     """
 
-    def __init__(self, dbstate, view_category_order, user=None):
+    def __init__(self, app, dbstate, view_category_order, user=None):
         """
         The viewmanager is initialised with a dbstate on which Gramps is
         working, and a fixed view_category_order, which is the order in which
         the view categories are accessible in the sidebar.
         """
         CLIManager.__init__(self, dbstate, setloader=False, user=user)
-        if _GTKOSXAPPLICATION:
-            self.macapp = QuartzApp.Application()
-            self.macapp.set_use_quartz_accelerators(False)
+        # if _GTKOSXAPPLICATION:
+            # self.macapp = QuartzApp.Application()
+            # self.macapp.set_use_quartz_accelerators(False)
 
         self.view_category_order = view_category_order
+        self.app = app
 
         #set pluginmanager to GUI one
         self._pmgr = GuiPluginManager.get_instance()
@@ -329,8 +203,8 @@ class ViewManager(CLIManager):
                              uistate=self.uistate,
                              dbstate=self.dbstate)
         self.__connect_signals()
-        if _GTKOSXAPPLICATION:
-            self.macapp.ready()
+        # if _GTKOSXAPPLICATION:
+            # self.macapp.ready()
 
         self.do_reg_plugins(self.dbstate, self.uistate)
         #plugins loaded now set relationship class
@@ -391,7 +265,8 @@ class ViewManager(CLIManager):
         horiz_position = config.get('interface.main-window-horiz-position')
         vert_position = config.get('interface.main-window-vert-position')
 
-        self.window = Gtk.Window()
+        self.window = Gtk.ApplicationWindow(application=self.app)
+        self.app.window = self.window
         self.window.set_icon_from_file(ICON)
         self.window.set_default_size(width, height)
         self.window.move(horiz_position, vert_position)
@@ -419,14 +294,12 @@ class ViewManager(CLIManager):
         self.__build_ui_manager()
 
         hpane.add2(self.notebook)
-        self.menubar = self.uimanager.get_widget('/MenuBar')
-        self.toolbar = self.uimanager.get_widget('/ToolBar')
-        self.__attach_menubar(vbox)
-        vbox.pack_start(self.toolbar, False, True, 0)
-        vbox.pack_start(hpane, True, True, 0)
+        toolbar = self.uimanager.get_widget('ToolBar')
         self.statusbar = Statusbar()
         self.statusbar.show()
         vbox.pack_end(self.statusbar, False, True, 0)
+        vbox.pack_start(toolbar, False, True, 0)
+        vbox.pack_end(hpane, True, True, 0)
         vbox.show()
 
         self.uistate = DisplayState(self.window, self.statusbar,
@@ -441,28 +314,21 @@ class ViewManager(CLIManager):
 
         self.tags = Tags(self.uistate, self.dbstate)
 
-        self.sidebar_menu = self.uimanager.get_widget(
-            '/MenuBar/ViewMenu/Sidebar/')
-
-        # handle OPEN button, insert it into the toolbar. Unfortunately,
-        # UIManager has no built in support for and Open Recent button
-
-        openbtn = self.__build_open_button()
-        self.uistate.set_open_widget(openbtn)
-        self.toolbar.insert(openbtn, 0)
-
+        # handle OPEN Recent Menu, insert it into the toolbar.
         self.recent_manager = RecentDocsMenu(
             self.uistate, self.dbstate, self._read_recent_file)
-        self.recent_manager.build()
+        self.recent_manager.build(update_menu=False)
 
         self.db_loader = DbLoader(self.dbstate, self.uistate)
 
         self.__setup_navigator()
 
+        # need to get toolbar again, because it is a new object now.
+        toolbar = self.uimanager.get_widget('ToolBar')
         if self.show_toolbar:
-            self.toolbar.show()
+            toolbar.show()
         else:
-            self.toolbar.hide()
+            toolbar.hide()
 
         if self.fullscreen:
             self.window.fullscreen()
@@ -480,185 +346,110 @@ class ViewManager(CLIManager):
         else:
             self.ebox.hide()
 
-    def __build_open_button(self):
-        """
-        Build the OPEN button. Since GTK's UIManager does not have support for
-        the Open Recent button, we must build in on our own.
-        """
-        openbtn = Gtk.MenuToolButton()
-        openbtn.set_icon_name('gramps')
-        openbtn.connect('clicked', self.__open_activate)
-        openbtn.set_sensitive(False)
-        openbtn.set_tooltip_text(_("Connect to a recent database"))
-        openbtn.show()
-        return openbtn
-
     def __connect_signals(self):
         """
         Connects the signals needed
         """
         self.window.connect('delete-event', self.quit)
         self.notebook.connect('switch-page', self.view_changed)
-        if _GTKOSXAPPLICATION:
-            self.macapp.connect('NSApplicationWillTerminate', self.quit)
+        # if _GTKOSXAPPLICATION:
+            # self.macapp.connect('NSApplicationWillTerminate', self.quit)
 
     def __init_lists(self):
         """
         Initialize the actions lists for the UIManager
         """
         self._file_action_list = [
-            ('FileMenu', None, _('_Family Trees')),
-            ('Open', 'gramps-db', _('_Manage Family Trees...'), "<PRIMARY>o",
-             _("Manage databases"), self.__open_activate),
-            ('OpenRecent', None, _('Open _Recent'), None,
-             _("Open an existing database")),
-            ('Quit', 'application-exit', _('_Quit'), "<PRIMARY>q", None,
-             self.quit),
-            ('ViewMenu', None, _('_View')),
-            ('EditMenu', None, _('_Edit')),
-            ('Preferences', 'preferences-system', _('_Preferences...'), None,
-             None, self.preferences_activate),
-            ('HelpMenu', None, _('_Help')),
-            ('HomePage', None, _('Gramps _Home Page'), None, None,
-             home_page_activate),
-            ('MailingLists', None, _('Gramps _Mailing Lists'), None, None,
-             mailing_lists_activate),
-            ('ReportBug', None, _('_Report a Bug'), None, None,
-             report_bug_activate),
-            ('ExtraPlugins', None, _('_Extra Reports/Tools'), None, None,
-             extra_plugins_activate),
-            ('About', 'help-about', _('_About'), None, None,
-             self.display_about_box),
-            ('PluginStatus', None, _('_Plugin Manager'), None, None,
-             self.__plugin_status),
-            ('FAQ', None, _('_FAQ'), None, None, faq_activate),
-            ('KeyBindings', None, _('_Key Bindings'), None, None, key_bindings),
-            ('UserManual', 'help-browser', _('_User Manual'), 'F1', None,
-             manual_activate),
-            ('TipOfDay', None, _('Tip of the Day'), None, None,
-             self.tip_of_day_activate),
-            ]
+            #('FileMenu', None, _('_Family Trees')),
+            ('Open', self.__open_activate, "<PRIMARY>o"),
+            #('OpenRecent'_("Open an existing database")),
+            ('Quit', self.quit, "<PRIMARY>q"),
+            #('ViewMenu', None, _('_View')),
+            ('Navigator', self.navigator_toggle, "<PRIMARY>m",
+             self.show_navigator),
+            ('Toolbar', self.toolbar_toggle, '', self.show_toolbar),
+            ('Fullscreen', self.fullscreen_toggle, "F11", self.fullscreen),
+            #('EditMenu', None, _('_Edit')),
+            ('Preferences', self.preferences_activate),
+            #('HelpMenu', None, _('_Help')),
+            ('HomePage', home_page_activate),
+            ('MailingLists', mailing_lists_activate),
+            ('ReportBug', report_bug_activate),
+            ('ExtraPlugins', extra_plugins_activate),
+            ('About', self.display_about_box),
+            ('PluginStatus', self.__plugin_status),
+            ('FAQ', faq_activate),
+            ('KeyBindings', key_bindings),
+            ('UserManual', manual_activate, 'F1'),
+            ('TipOfDay', self.tip_of_day_activate), ]
 
         self._readonly_action_list = [
-            ('Close', None, _('_Close'), "<control>w",
-             _("Close the current database"), self.close_database),
-            ('Export', 'gramps-export', _('_Export...'), "<PRIMARY>e", None,
-             self.export_data),
-            ('Backup', None, _("Make Backup..."), None,
-             _("Make a Gramps XML backup of the database"), self.quick_backup),
-            ('Abandon', 'document-revert',
-             _('_Abandon Changes and Quit'), None, None, self.abort),
-            ('Reports', 'gramps-reports', _('_Reports'), None,
-             _("Open the reports dialog"), self.reports_clicked),
-            ('GoMenu', None, _('_Go')),
-            ('ReportsMenu', None, _('_Reports')),
-            ('Books', None, _('Books...'), None, None, self.run_book),
-            ('WindowsMenu', None, _('_Windows')),
-            ('F2', None, 'F2', "F2", None, self.__keypress),
-            ('F3', None, 'F3', "F3", None, self.__keypress),
-            ('F4', None, 'F4', "F4", None, self.__keypress),
-            ('F5', None, 'F5', "F5", None, self.__keypress),
-            ('F6', None, 'F6', "F6", None, self.__keypress),
-            ('F7', None, 'F7', "F7", None, self.__keypress),
-            ('F8', None, 'F9', "F8", None, self.__keypress),
-            ('F9', None, 'F9', "F9", None, self.__keypress),
-            ('F11', None, 'F11', "F11", None, self.__keypress),
-            ('<PRIMARY>1', None, '<PRIMARY>1', "<PRIMARY>1", None,
-             self.__gocat),
-            ('<PRIMARY>2', None, '<PRIMARY>2', "<PRIMARY>2", None,
-             self.__gocat),
-            ('<PRIMARY>3', None, '<PRIMARY>3', "<PRIMARY>3", None,
-             self.__gocat),
-            ('<PRIMARY>4', None, '<PRIMARY>4', "<PRIMARY>4", None,
-             self.__gocat),
-            ('<PRIMARY>5', None, '<PRIMARY>5', "<PRIMARY>5", None,
-             self.__gocat),
-            ('<PRIMARY>6', None, '<PRIMARY>6', "<PRIMARY>6", None,
-             self.__gocat),
-            ('<PRIMARY>7', None, '<PRIMARY>7', "<PRIMARY>7", None,
-             self.__gocat),
-            ('<PRIMARY>8', None, '<PRIMARY>8', "<PRIMARY>8", None,
-             self.__gocat),
-            ('<PRIMARY>9', None, '<PRIMARY>9', "<PRIMARY>9", None,
-             self.__gocat),
-            ('<PRIMARY>0', None, '<PRIMARY>0', "<PRIMARY>0", None,
-             self.__gocat),
-            # NOTE: CTRL+ALT+NUMBER is set in src/plugins/sidebar/cat...py
-            ('<PRIMARY>BackSpace', None, '<PRIMARY>BackSpace',
-             "<PRIMARY>BackSpace", None, self.__keypress),
-            ('<PRIMARY>Delete', None, '<PRIMARY>Delete',
-             "<PRIMARY>Delete", None, self.__keypress),
-            ('<PRIMARY>Insert', None, '<PRIMARY>Insert',
-             "<PRIMARY>Insert", None, self.__keypress),
-            ('F12', None, 'F12', "F12", None, self.__keypress),
-            ('<PRIMARY>J', None, '<PRIMARY>J',
-             "<PRIMARY>J", None, self.__keypress),
-            ('<PRIMARY>N', None, '<PRIMARY>N', "<PRIMARY>N", None,
-             self.__next_view),
-            ('<PRIMARY>P', None, '<PRIMARY>P', "<PRIMARY>P", None,
-             self.__prev_view),
-            ]
+            ('Close', self.close_database, "<control>w"),
+            ('Export', self.export_data, "<PRIMARY>e"),
+            ('Backup', self.quick_backup),
+            ('Abandon', self.abort),
+            ('Reports', self.reports_clicked),
+            #('GoMenu', None, _('_Go')),
+            #('ReportsMenu', None, _('_Reports')),
+            ('Books', self.run_book),
+            #('WindowsMenu', None, _('_Windows')),
+            #('F2', self.__keypress, 'F2'),   #pedigreeview
+            #('F3', self.__keypress, 'F3'),     # timelinepedigreeview
+            #('F4', self.__keypress, 'F4'),     # timelinepedigreeview
+            #('F5', self.__keypress, 'F5'),     # timelinepedigreeview
+            #('F6', self.__keypress, 'F6'),     # timelinepedigreeview
+            #('F7', self.__keypress, 'F7'),
+            #('F8', self.__keypress, 'F8'),
+            #('F9', self.__keypress, 'F9'),
+            #('F11', self.__keypress, 'F11'),  # used to go full screen
+            #('F12', self.__keypress, 'F12'),
+            #('<PRIMARY>BackSpace', self.__keypress, '<PRIMARY>BackSpace'),
+            #('<PRIMARY>Delete', self.__keypress, '<PRIMARY>Delete'),
+            #('<PRIMARY>Insert', self.__keypress, '<PRIMARY>Insert'),
+            #('<PRIMARY>J', self.__keypress, '<PRIMARY>J'),
+            ('PRIMARY-1', self.__gocat, '<PRIMARY>1'),
+            ('PRIMARY-2', self.__gocat, '<PRIMARY>2'),
+            ('PRIMARY-3', self.__gocat, '<PRIMARY>3'),
+            ('PRIMARY-4', self.__gocat, '<PRIMARY>4'),
+            ('PRIMARY-5', self.__gocat, '<PRIMARY>5'),
+            ('PRIMARY-6', self.__gocat, '<PRIMARY>6'),
+            ('PRIMARY-7', self.__gocat, '<PRIMARY>7'),
+            ('PRIMARY-8', self.__gocat, '<PRIMARY>8'),
+            ('PRIMARY-9', self.__gocat, '<PRIMARY>9'),
+            ('PRIMARY-0', self.__gocat, '<PRIMARY>0'),
+            # NOTE: CTRL+ALT+NUMBER is set in gramps.gui.navigator
+            ('PRIMARY-N', self.__next_view, '<PRIMARY>N'),
+            # the following conflicts with PrintView!!!
+            ('PRIMARY-P', self.__prev_view, '<PRIMARY>P'), ]
 
         self._action_action_list = [
-            ('Clipboard', 'edit-paste', _('Clip_board'), "<PRIMARY>b",
-             _("Open the Clipboard dialog"), self.clipboard),
-            ('AddMenu', None, _('_Add')),
+            ('Clipboard', self.clipboard, "<PRIMARY>b"),
+            #('AddMenu', None, _('_Add')),
             #('AddNewMenu', None, _('New')),
-            ('PersonAdd', None, _('Person'), "<shift><Alt>p", None,
-             self.add_new_person),
-            ('FamilyAdd', None, _('Family'), "<shift><Alt>f", None,
-             self.add_new_family),
-            ('EventAdd', None, _('Event'), "<shift><Alt>e", None,
-             self.add_new_event),
-            ('PlaceAdd', None, _('Place'), "<shift><Alt>l", None,
-             self.add_new_place),
-            ('SourceAdd', None, _('Source'), "<shift><Alt>s", None,
-             self.add_new_source),
-            ('CitationAdd', None, _('Citation'), "<shift><Alt>c", None,
-             self.add_new_citation),
-            ('RepositoryAdd', None, _('Repository'), "<shift><Alt>r", None,
-             self.add_new_repository),
-            ('MediaAdd', None, _('Media'), "<shift><Alt>m", None,
-             self.add_new_media),
-            ('NoteAdd', None, _('Note'), "<shift><Alt>n", None,
-             self.add_new_note),
+            ('PersonAdd', self.add_new_person, "<shift><Alt>p"),
+            ('FamilyAdd', self.add_new_family, "<shift><Alt>f"),
+            ('EventAdd', self.add_new_event, "<shift><Alt>e"),
+            ('PlaceAdd', self.add_new_place, "<shift><Alt>l"),
+            ('SourceAdd', self.add_new_source, "<shift><Alt>s"),
+            ('CitationAdd', self.add_new_citation, "<shift><Alt>c"),
+            ('RepositoryAdd', self.add_new_repository, "<shift><Alt>r"),
+            ('MediaAdd', self.add_new_media, "<shift><Alt>m"),
+            ('NoteAdd', self.add_new_note, "<shift><Alt>n"),
+            ('UndoHistory', self.undo_history, "<PRIMARY>H"),
             #--------------------------------------
-            ('Import', 'gramps-import', _('_Import...'), "<PRIMARY>i", None,
-             self.import_data),
-            ('Tools', 'gramps-tools', _('_Tools'), None,
-             _("Open the tools dialog"), self.tools_clicked),
-            ('BookMenu', None, _('_Bookmarks')),
-            ('ToolsMenu', None, _('_Tools')),
-            ('ConfigView', 'gramps-config', _('_Configure...'),
-             '<shift><PRIMARY>c', _('Configure the active view'),
-             self.config_view),
-            ]
-
-        self._file_toggle_action_list = [
-            ('Navigator', None, _('_Navigator'), "<PRIMARY>m", None,
-             self.navigator_toggle, self.show_navigator),
-            ('Toolbar', None, _('_Toolbar'), None, None, self.toolbar_toggle,
-             self.show_toolbar),
-            ('Fullscreen', None, _('F_ull Screen'), "F11", None,
-             self.fullscreen_toggle, self.fullscreen),
-            ]
+            ('Import', self.import_data, "<PRIMARY>i"),
+            ('Tools', self.tools_clicked),
+            #('BookMenu', None, _('_Bookmarks')),
+            #('ToolsMenu', None, _('_Tools')),
+            ('ConfigView', self.config_view, '<shift><PRIMARY>c'), ]
 
         self._undo_action_list = [
-            ('Undo', 'edit-undo', _('_Undo'), '<PRIMARY>z', None,
-             self.undo),
-            ]
+            ('Undo', self.undo, '<PRIMARY>z'), ]
 
         self._redo_action_list = [
-            ('Redo', 'edit-redo', _('_Redo'), '<shift><PRIMARY>z', None,
-             self.redo),
-            ]
+            ('Redo', self.redo, '<shift><PRIMARY>z'), ]
 
-        self._undo_history_action_list = [
-            ('UndoHistory', 'gramps-undo-history',
-             _('Undo History...'), "<PRIMARY>H", None, self.undo_history),
-            ]
-
-    def run_book(self, action):
+    def run_book(self, *action):
         """
         Run a book.
         """
@@ -667,20 +458,7 @@ class ViewManager(CLIManager):
         except WindowActiveError:
             return
 
-    def __keypress(self, action):
-        """
-        Callback that is called on a keypress. It works by extracting the
-        name of the associated action, and passes that to the active page
-        (current view) so that it can take the associated action.
-        """
-        name = action.get_name()
-        try:
-            self.active_page.call_function(name)
-        except Exception:
-            self.uistate.push_message(self.dbstate,
-                                      _("Key %s is not bound") % name)
-
-    def __gocat(self, action):
+    def __gocat(self, action, value):
         """
         Callback that is called on ctrl+number press. It moves to the
         requested category like __next_view/__prev_view. 0 is 10
@@ -694,7 +472,7 @@ class ViewManager(CLIManager):
             return False
         self.goto_page(cat, None)
 
-    def __next_view(self, action):
+    def __next_view(self, action, value):
         """
         Callback that is called when the next category action is selected.  It
         selects the next category as the active category. If we reach the end,
@@ -712,7 +490,7 @@ class ViewManager(CLIManager):
         else:
             self.goto_page(cat_num+1, None)
 
-    def __prev_view(self, action):
+    def __prev_view(self, action, value):
         """
         Callback that is called when the previous category action is selected.
         It selects the previous category as the active category. If we reach
@@ -743,25 +521,18 @@ class ViewManager(CLIManager):
 
         self.goto_page(defaults[0], defaults[1])
 
-        self.fileactions.set_sensitive(False)
+        self.uimanager.set_actions_sensitive(self.fileactions, False)
         self.__build_tools_menu(self._pmgr.get_reg_tools())
         self.__build_report_menu(self._pmgr.get_reg_reports())
         self._pmgr.connect('plugins-reloaded',
                            self.__rebuild_report_and_tool_menus)
-        self.fileactions.set_sensitive(True)
-        self.uistate.widget.set_sensitive(True)
+        self.uimanager.set_actions_sensitive(self.fileactions, True)
         if not self.file_loaded:
-            self.actiongroup.set_sensitive(False)
-            self.readonlygroup.set_sensitive(False)
-            self.undoactions.set_sensitive(False)
-            self.redoactions.set_sensitive(False)
-            self.undohistoryactions.set_sensitive(False)
-            self.actiongroup.set_visible(False)
-            self.readonlygroup.set_visible(False)
-            self.undoactions.set_visible(False)
-            self.redoactions.set_visible(False)
-            self.undohistoryactions.set_visible(False)
-        self.uimanager.ensure_update()
+            self.uimanager.set_actions_visible(self.actiongroup, False)
+            self.uimanager.set_actions_visible(self.readonlygroup, False)
+            self.uimanager.set_actions_visible(self.undoactions, False)
+            self.uimanager.set_actions_visible(self.redoactions, False)
+        self.uimanager.update_menu()
         config.connect("interface.statusbar", self.__statusbar_key_update)
 
     def __statusbar_key_update(self, client, cnxn_id, entry, data):
@@ -777,7 +548,7 @@ class ViewManager(CLIManager):
         """
         self.window.show()
         if not self.dbstate.is_open() and show_manager:
-            self.__open_activate(None)
+            self.__open_activate(None, None)
 
     def do_reg_plugins(self, dbstate, uistate, rescan=False):
         """
@@ -829,9 +600,9 @@ class ViewManager(CLIManager):
         config.set('interface.main-window-horiz-position', horiz_position)
         config.set('interface.main-window-vert-position', vert_position)
         config.save()
-        Gtk.main_quit()
+        self.app.quit()
 
-    def abort(self, obj=None):
+    def abort(self, *obj):
         """
         Abandon changes and quit.
         """
@@ -861,56 +632,43 @@ class ViewManager(CLIManager):
         """
         Initialize an action group for the UIManager
         """
-        new_group = ActionGroup(name=name)
-        new_group.add_actions(actions)
-        if toggles:
-            new_group.add_toggle_actions(toggles)
-        new_group.set_sensitive(sensitive)
-        self.uimanager.insert_action_group(new_group, 1)
+        new_group = ActionGroup(name, actions)
+        self.uimanager.insert_action_group(new_group)
+        self.uimanager.set_actions_sensitive(new_group, sensitive)
         return new_group
 
     def __build_ui_manager(self):
         """
-        Builds the UIManager, and the associated action groups
+        Builds the action groups
         """
-        self.uimanager = Gtk.UIManager()
-
-        accelgroup = self.uimanager.get_accel_group()
+        self.uimanager = self.app.uimanager
 
         self.actiongroup = self.__init_action_group(
-            'MainWindow', self._action_action_list)
+            'RW', self._action_action_list)
         self.readonlygroup = self.__init_action_group(
-            'AllMainWindow', self._readonly_action_list)
-        self.undohistoryactions = self.__init_action_group(
-            'UndoHistory', self._undo_history_action_list)
+            'RO', self._readonly_action_list)
         self.fileactions = self.__init_action_group(
-            'FileWindow', self._file_action_list,
-            toggles=self._file_toggle_action_list)
+            'FileWindow', self._file_action_list)
         self.undoactions = self.__init_action_group(
             'Undo', self._undo_action_list, sensitive=False)
         self.redoactions = self.__init_action_group(
             'Redo', self._redo_action_list, sensitive=False)
-        self.window.add_accel_group(accelgroup)
 
-        self.uimanager.add_ui_from_string(UIDEFAULT)
-        self.uimanager.ensure_update()
+#     def __attach_menubar(self, vbox):
+#         """
+#         Attach the menubar
+#         """
+#         vbox.pack_start(self.menubar, False, True, 0)
+#         if _GTKOSXAPPLICATION:
+#             self.menubar.hide()
+#             quit_item = self.uimanager.get_widget("Quit")
+#             about_item = self.uimanager.get_widget("About")
+#             prefs_item = self.uimanager.get_widget("Preferences")
+#             self.macapp.set_menu_bar(self.menubar)
+#             self.macapp.insert_app_menu_item(about_item, 0)
+#             self.macapp.insert_app_menu_item(prefs_item, 1)
 
-    def __attach_menubar(self, vbox):
-        """
-        Attach the menubar
-        """
-        vbox.pack_start(self.menubar, False, True, 0)
-        if _GTKOSXAPPLICATION:
-            self.menubar.hide()
-            quit_item = self.uimanager.get_widget("/MenuBar/FileMenu/Quit")
-            about_item = self.uimanager.get_widget("/MenuBar/HelpMenu/About")
-            prefs_item = self.uimanager.get_widget(
-                "/MenuBar/EditMenu/Preferences")
-            self.macapp.set_menu_bar(self.menubar)
-            self.macapp.insert_app_menu_item(about_item, 0)
-            self.macapp.insert_app_menu_item(prefs_item, 1)
-
-    def preferences_activate(self, obj):
+    def preferences_activate(self, *obj):
         """
         Open the preferences dialog.
         """
@@ -919,7 +677,7 @@ class ViewManager(CLIManager):
         except WindowActiveError:
             return
 
-    def tip_of_day_activate(self, obj):
+    def tip_of_day_activate(self, *obj):
         """
         Display Tip of the day
         """
@@ -935,12 +693,13 @@ class ViewManager(CLIManager):
         except WindowActiveError:
             pass
 
-    def navigator_toggle(self, obj, data=None):
+    def navigator_toggle(self, action, value):
         """
         Set the sidebar based on the value of the toggle button. Save the
         results in the configuration settings
         """
-        if obj.get_active():
+        action.set_state(value)
+        if value.get_boolean():
             self.ebox.show()
             config.set('interface.view', True)
             self.show_navigator = True
@@ -950,25 +709,28 @@ class ViewManager(CLIManager):
             self.show_navigator = False
         config.save()
 
-    def toolbar_toggle(self, obj, data=None):
+    def toolbar_toggle(self, action, value):
         """
         Set the toolbar based on the value of the toggle button. Save the
         results in the configuration settings
         """
-        if obj.get_active():
-            self.toolbar.show()
+        action.set_state(value)
+        toolbar = self.uimanager.get_widget('ToolBar')
+        if value.get_boolean():
+            toolbar.show_all()
             config.set('interface.toolbar-on', True)
         else:
-            self.toolbar.hide()
+            toolbar.hide()
             config.set('interface.toolbar-on', False)
         config.save()
 
-    def fullscreen_toggle(self, obj, data=None):
+    def fullscreen_toggle(self, action, value):
         """
-        Set the main Granps window fullscreen based on the value of the
+        Set the main Gramps window fullscreen based on the value of the
         toggle button. Save the setting in the config file.
         """
-        if obj.get_active():
+        action.set_state(value)
+        if value.get_boolean():
             self.window.fullscreen()
             config.set('interface.fullscreen', True)
         else:
@@ -1051,17 +813,10 @@ class ViewManager(CLIManager):
         hbox.show_all()
         page_num = self.notebook.append_page(page.get_display(), hbox)
         if not self.file_loaded:
-            self.actiongroup.set_sensitive(False)
-            self.readonlygroup.set_sensitive(False)
-            self.undoactions.set_sensitive(False)
-            self.redoactions.set_sensitive(False)
-            self.undohistoryactions.set_sensitive(False)
-            self.actiongroup.set_visible(False)
-            self.readonlygroup.set_visible(False)
-            self.undoactions.set_visible(False)
-            self.redoactions.set_visible(False)
-            self.undohistoryactions.set_visible(False)
-        self.uimanager.ensure_update()
+            self.uimanager.set_actions_visible(self.actiongroup, False)
+            self.uimanager.set_actions_visible(self.readonlygroup, False)
+            self.uimanager.set_actions_visible(self.undoactions, False)
+            self.uimanager.set_actions_visible(self.redoactions, False)
         return page
 
     def view_changed(self, notebook, page, page_num):
@@ -1103,12 +858,14 @@ class ViewManager(CLIManager):
         self.__disconnect_previous_page()
 
         self.active_page = self.pages[page_num]
-        self.active_page.set_active()
         self.__connect_active_page(page_num)
+        self.active_page.set_active()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
-        self.uimanager.ensure_update()
-        if _GTKOSXAPPLICATION:
-            self.macapp.sync_menubar()
+        self.uimanager.update_menu()
+        # if _GTKOSXAPPLICATION:
+            # self.macapp.sync_menubar()
 
         while Gtk.events_pending():
             Gtk.main_iteration()
@@ -1143,7 +900,7 @@ class ViewManager(CLIManager):
         into the UIManager
         """
         for grp in self.active_page.get_actions():
-            self.uimanager.insert_action_group(grp, 1)
+            self.uimanager.insert_action_group(grp)
 
         uidef = self.active_page.ui_definition()
         self.merge_ids = [self.uimanager.add_ui_from_string(uidef)]
@@ -1152,13 +909,14 @@ class ViewManager(CLIManager):
             mergeid = self.uimanager.add_ui_from_string(uidef)
             self.merge_ids.append(mergeid)
 
-        configaction = self.actiongroup.get_action('ConfigView')
+        configaction = self.uimanager.get_action(self.actiongroup,
+                                                 'ConfigView')
         if self.active_page.can_configure():
-            configaction.set_sensitive(True)
+            configaction.set_enabled(True)
         else:
-            configaction.set_sensitive(False)
+            configaction.set_enabled(False)
 
-    def import_data(self, obj):
+    def import_data(self, *obj):
         """
         Imports a file
         """
@@ -1170,7 +928,7 @@ class ViewManager(CLIManager):
                            parent=self.window)
             self.__post_load()
 
-    def __open_activate(self, obj):
+    def __open_activate(self, obj, value):
         """
         Called when the Open button is clicked, opens the DbManager
         """
@@ -1208,8 +966,8 @@ class ViewManager(CLIManager):
         """
         self.dbstate.db.undo_callback = self.__change_undo_label
         self.dbstate.db.redo_callback = self.__change_redo_label
-        self.__change_undo_label(None)
-        self.__change_redo_label(None)
+        self.__change_undo_label(None, update_menu=False)
+        self.__change_redo_label(None, update_menu=False)
         self.dbstate.db.undo_history_callback = self.undo_history_update
         self.undo_history_close()
 
@@ -1241,16 +999,10 @@ class ViewManager(CLIManager):
         self.uistate.window.set_title(msg)
 
         self.__change_page(self.notebook.get_current_page())
-        self.actiongroup.set_visible(rw)
-        self.readonlygroup.set_visible(True)
-        self.undoactions.set_visible(rw)
-        self.redoactions.set_visible(rw)
-        self.undohistoryactions.set_visible(rw)
-        self.actiongroup.set_sensitive(rw)
-        self.readonlygroup.set_sensitive(True)
-        self.undoactions.set_sensitive(rw)
-        self.redoactions.set_sensitive(rw)
-        self.undohistoryactions.set_sensitive(rw)
+        self.uimanager.set_actions_visible(self.actiongroup, rw)
+        self.uimanager.set_actions_visible(self.readonlygroup, True)
+        self.uimanager.set_actions_visible(self.undoactions, rw)
+        self.uimanager.set_actions_visible(self.redoactions, rw)
 
         self.recent_manager.build()
 
@@ -1263,17 +1015,13 @@ class ViewManager(CLIManager):
         """
         self.undo_history_close()
         self.uistate.window.set_title("%s - Gramps" % _('No Family Tree'))
-        self.actiongroup.set_sensitive(False)
-        self.readonlygroup.set_sensitive(False)
-        self.undohistoryactions.set_sensitive(False)
         self.uistate.clear_filter_results()
         self.__disconnect_previous_page()
-        self.actiongroup.set_visible(False)
-        self.readonlygroup.set_visible(False)
-        self.undoactions.set_visible(False)
-        self.redoactions.set_visible(False)
-        self.undohistoryactions.set_visible(False)
-        self.uimanager.ensure_update()
+        self.uimanager.set_actions_visible(self.actiongroup, False)
+        self.uimanager.set_actions_visible(self.readonlygroup, False)
+        self.uimanager.set_actions_visible(self.undoactions, False)
+        self.uimanager.set_actions_visible(self.redoactions, False)
+        self.uimanager.update_menu()
         config.set('paths.recent-file', '')
         config.save()
 
@@ -1286,67 +1034,81 @@ class ViewManager(CLIManager):
         """
         if not enable:
             self.action_st = (
-                self.actiongroup.get_sensitive(),
-                self.readonlygroup.get_sensitive(),
-                self.undoactions.get_sensitive(),
-                self.redoactions.get_sensitive(),
-                self.undohistoryactions.get_sensitive(),
-                self.fileactions.get_sensitive(),
-                self.toolactions.get_sensitive(),
-                self.reportactions.get_sensitive(),
-                self.recent_manager.action_group.get_sensitive())
-            self.actiongroup.set_sensitive(enable)
-            self.readonlygroup.set_sensitive(enable)
-            self.undoactions.set_sensitive(enable)
-            self.redoactions.set_sensitive(enable)
-            self.undohistoryactions.set_sensitive(enable)
-            self.fileactions.set_sensitive(enable)
-            self.toolactions.set_sensitive(enable)
-            self.reportactions.set_sensitive(enable)
-            self.recent_manager.action_group.set_sensitive(enable)
+                self.uimanager.get_actions_sensitive(self.actiongroup),
+                self.uimanager.get_actions_sensitive(self.readonlygroup),
+                self.uimanager.get_actions_sensitive(self.undoactions),
+                self.uimanager.get_actions_sensitive(self.redoactions),
+                self.uimanager.get_actions_sensitive(self.fileactions),
+                self.uimanager.get_actions_sensitive(self.toolactions),
+                self.uimanager.get_actions_sensitive(self.reportactions),
+                self.uimanager.get_actions_sensitive(
+                    self.recent_manager.action_group))
+            self.uimanager.set_actions_sensitive(self.actiongroup, enable)
+            self.uimanager.set_actions_sensitive(self.readonlygroup, enable)
+            self.uimanager.set_actions_sensitive(self.undoactions, enable)
+            self.uimanager.set_actions_sensitive(self.redoactions, enable)
+            self.uimanager.set_actions_sensitive(self.fileactions, enable)
+            self.uimanager.set_actions_sensitive(self.toolactions, enable)
+            self.uimanager.set_actions_sensitive(self.reportactions, enable)
+            self.uimanager.set_actions_sensitive(
+                self.recent_manager.action_group, enable)
         else:
-            self.actiongroup.set_sensitive(self.action_st[0])
-            self.readonlygroup.set_sensitive(self.action_st[1])
-            self.undoactions.set_sensitive(self.action_st[2])
-            self.redoactions.set_sensitive(self.action_st[3])
-            self.undohistoryactions.set_sensitive(self.action_st[4])
-            self.fileactions.set_sensitive(self.action_st[5])
-            self.toolactions.set_sensitive(self.action_st[6])
-            self.reportactions.set_sensitive(self.action_st[7])
-            self.recent_manager.action_group.set_sensitive(self.action_st[8])
+            self.uimanager.set_actions_sensitive(
+                self.actiongroup, self.action_st[0])
+            self.uimanager.set_actions_sensitive(
+                self.readonlygroup, self.action_st[1])
+            self.uimanager.set_actions_sensitive(
+                self.undoactions, self.action_st[2])
+            self.uimanager.set_actions_sensitive(
+                self.redoactions, self.action_st[3])
+            self.uimanager.set_actions_sensitive(
+                self.fileactions, self.action_st[4])
+            self.uimanager.set_actions_sensitive(
+                self.toolactions, self.action_st[5])
+            self.uimanager.set_actions_sensitive(
+                self.reportactions, self.action_st[6])
+            self.uimanager.set_actions_sensitive(
+                self.recent_manager.action_group, self.action_st[7])
 
-    def __change_undo_label(self, label):
+    def __change_undo_label(self, label, update_menu=True):
         """
         Change the UNDO label
         """
-        self.uimanager.remove_action_group(self.undoactions)
-        self.undoactions = Gtk.ActionGroup(name='Undo')
-        if label:
-            self.undoactions.add_actions([
-                ('Undo', 'edit-undo', label, '<PRIMARY>z', None, self.undo)])
+        _menu = '''<placeholder id="undo">
+        <item>
+          <attribute name="action">win.Undo</attribute>
+          <attribute name="label" translatable="yes">%s</attribute>
+        </item>
+        </placeholder>
+        '''
+        if not label:
+            label = _('_Undo')
+            self.uimanager.set_actions_sensitive(self.undoactions, False)
         else:
-            self.undoactions.add_actions([
-                ('Undo', 'edit-undo', _('_Undo'),
-                 '<PRIMARY>z', None, self.undo)])
-            self.undoactions.set_sensitive(False)
-        self.uimanager.insert_action_group(self.undoactions, 1)
+            self.uimanager.set_actions_sensitive(self.undoactions, True)
+        self.uimanager.add_ui_from_string([_menu % html.escape(label)])
+        if update_menu:
+            self.uimanager.update_menu()
 
-    def __change_redo_label(self, label):
+    def __change_redo_label(self, label, update_menu=True):
         """
         Change the REDO label
         """
-        self.uimanager.remove_action_group(self.redoactions)
-        self.redoactions = Gtk.ActionGroup(name='Redo')
-        if label:
-            self.redoactions.add_actions([
-                ('Redo', 'edit-redo', label, '<shift><PRIMARY>z',
-                 None, self.redo)])
+        _menu = '''<placeholder id="redo">
+        <item>
+          <attribute name="action">win.Redo</attribute>
+          <attribute name="label" translatable="yes">%s</attribute>
+        </item>
+        </placeholder>
+        '''
+        if not label:
+            label = _('_Redo')
+            self.uimanager.set_actions_sensitive(self.redoactions, False)
         else:
-            self.redoactions.add_actions([
-                ('Redo', 'edit-undo', _('_Redo'),
-                 '<shift><PRIMARY>z', None, self.redo)])
-            self.redoactions.set_sensitive(False)
-        self.uimanager.insert_action_group(self.redoactions, 1)
+            self.uimanager.set_actions_sensitive(self.redoactions, True)
+        self.uimanager.add_ui_from_string([_menu % html.escape(label)])
+        if update_menu:
+            self.uimanager.update_menu()
 
     def undo_history_update(self):
         """
@@ -1373,7 +1135,7 @@ class ViewManager(CLIManager):
             # Let it go: history window does not exist
             return
 
-    def quick_backup(self, obj):
+    def quick_backup(self, *obj):
         """
         Make a quick XML back with or without media.
         """
@@ -1413,7 +1175,7 @@ class ViewManager(CLIManager):
         filename = os.path.join(backup_path, backup_name)
         writer.write(filename)
 
-    def reports_clicked(self, obj):
+    def reports_clicked(self, *obj):
         """
         Displays the Reports dialog
         """
@@ -1422,7 +1184,7 @@ class ViewManager(CLIManager):
         except WindowActiveError:
             return
 
-    def tools_clicked(self, obj):
+    def tools_clicked(self, *obj):
         """
         Displays the Tools dialog
         """
@@ -1431,7 +1193,7 @@ class ViewManager(CLIManager):
         except WindowActiveError:
             return
 
-    def clipboard(self, obj):
+    def clipboard(self, *obj):
         """
         Displays the Clipboard
         """
@@ -1442,7 +1204,7 @@ class ViewManager(CLIManager):
             return
 
     # ---------------Add new xxx --------------------------------
-    def add_new_person(self, obj):
+    def add_new_person(self, *obj):
         """
         Add a new person to the database.  (Global keybinding)
         """
@@ -1456,7 +1218,7 @@ class ViewManager(CLIManager):
         except WindowActiveError:
             pass
 
-    def add_new_family(self, obj):
+    def add_new_family(self, *obj):
         """
         Add a new family to the database.  (Global keybinding)
         """
@@ -1466,7 +1228,7 @@ class ViewManager(CLIManager):
         except WindowActiveError:
             pass
 
-    def add_new_event(self, obj):
+    def add_new_event(self, *obj):
         """
         Add a new custom/unknown event (Note you type first letter of event)
         """
@@ -1477,28 +1239,28 @@ class ViewManager(CLIManager):
         except WindowActiveError:
             pass
 
-    def add_new_place(self, obj):
+    def add_new_place(self, *obj):
         """Add a new place to the place list"""
         try:
             EditPlace(self.dbstate, self.uistate, [], Place())
         except WindowActiveError:
             pass
 
-    def add_new_source(self, obj):
+    def add_new_source(self, *obj):
         """Add a new source to the source list"""
         try:
             EditSource(self.dbstate, self.uistate, [], Source())
         except WindowActiveError:
             pass
 
-    def add_new_repository(self, obj):
+    def add_new_repository(self, *obj):
         """Add a new repository to the repository list"""
         try:
             EditRepository(self.dbstate, self.uistate, [], Repository())
         except WindowActiveError:
             pass
 
-    def add_new_citation(self, obj):
+    def add_new_citation(self, *obj):
         """
         Add a new citation
         """
@@ -1507,14 +1269,14 @@ class ViewManager(CLIManager):
         except WindowActiveError:
             pass
 
-    def add_new_media(self, obj):
+    def add_new_media(self, *obj):
         """Add a new media object to the media list"""
         try:
             EditMedia(self.dbstate, self.uistate, [], Media())
         except WindowActiveError:
             pass
 
-    def add_new_note(self, obj):
+    def add_new_note(self, *obj):
         """Add a new note to the note list"""
         try:
             EditNote(self.dbstate, self.uistate, [], Note())
@@ -1522,13 +1284,13 @@ class ViewManager(CLIManager):
             pass
     # ------------------------------------------------------------------------
 
-    def config_view(self, obj):
+    def config_view(self, *obj):
         """
         Displays the configuration dialog for the active view
         """
         self.active_page.configure()
 
-    def undo(self, obj):
+    def undo(self, *obj):
         """
         Calls the undo function on the database
         """
@@ -1536,7 +1298,7 @@ class ViewManager(CLIManager):
         self.dbstate.db.undo()
         self.uistate.set_busy_cursor(False)
 
-    def redo(self, obj):
+    def redo(self, *obj):
         """
         Calls the redo function on the database
         """
@@ -1544,7 +1306,7 @@ class ViewManager(CLIManager):
         self.dbstate.db.redo()
         self.uistate.set_busy_cursor(False)
 
-    def undo_history(self, obj):
+    def undo_history(self, *obj):
         """
         Displays the Undo history window
         """
@@ -1553,7 +1315,7 @@ class ViewManager(CLIManager):
         except WindowActiveError:
             return
 
-    def export_data(self, obj):
+    def export_data(self, *obj):
         """
         Calls the ExportAssistant to export data
         """
@@ -1579,14 +1341,13 @@ class ViewManager(CLIManager):
         if self.toolactions:
             self.uistate.uimanager.remove_action_group(self.toolactions)
             self.uistate.uimanager.remove_ui(self.tool_menu_ui_id)
-        self.toolactions = Gtk.ActionGroup(name='ToolWindow')
+        self.toolactions = ActionGroup(name='ToolWindow')
         (uidef, actions) = self.build_plugin_menu(
             'ToolsMenu', tool_menu_list, tool.tool_categories,
             make_plugin_callback)
         self.toolactions.add_actions(actions)
         self.tool_menu_ui_id = self.uistate.uimanager.add_ui_from_string(uidef)
-        self.uimanager.insert_action_group(self.toolactions, 1)
-        self.uistate.uimanager.ensure_update()
+        self.uimanager.insert_action_group(self.toolactions)
 
     def __build_report_menu(self, report_menu_list):
         """
@@ -1595,26 +1356,27 @@ class ViewManager(CLIManager):
         if self.reportactions:
             self.uistate.uimanager.remove_action_group(self.reportactions)
             self.uistate.uimanager.remove_ui(self.report_menu_ui_id)
-        self.reportactions = Gtk.ActionGroup(name='ReportWindow')
+        self.reportactions = ActionGroup(name='ReportWindow')
         (udef, actions) = self.build_plugin_menu(
             'ReportsMenu', report_menu_list, standalone_categories,
             make_plugin_callback)
         self.reportactions.add_actions(actions)
         self.report_menu_ui_id = self.uistate.uimanager.add_ui_from_string(udef)
-        self.uimanager.insert_action_group(self.reportactions, 1)
-        self.uistate.uimanager.ensure_update()
+        self.uimanager.insert_action_group(self.reportactions)
 
     def build_plugin_menu(self, text, item_list, categories, func):
         """
         Builds a new XML description for a menu based on the list of plugindata
         """
+        menuitem = ('<item>\n'
+                    '<attribute name="action">win.%s</attribute>\n'
+                    '<attribute name="label" translatable="yes">'
+                    '%s...</attribute>\n'
+                    '</item>\n')
+
         actions = []
         ofile = StringIO()
-        ofile.write('<ui><menubar name="MenuBar"><menu action="%s">'
-                    '<placeholder name="%s">' % (text, 'P_'+ text))
-
-        menu = Gtk.Menu()
-        menu.show()
+        ofile.write('<section id="%s">' % ('P_' + text))
 
         hash_data = defaultdict(list)
         for pdata in item_list:
@@ -1628,39 +1390,36 @@ class ViewManager(CLIManager):
         catlist = sorted(item for item in hash_data if item != _UNSUPPORTED)
 
         for key in catlist:
-            new_key = key[0].replace(' ', '-')
-            ofile.write('<menu action="%s">' % new_key)
-            actions.append((new_key, None, key[1]))
+            ofile.write('<submenu>\n<attribute name="label"'
+                        ' translatable="yes">%s</attribute>\n' % key[1])
             pdatas = hash_data[key]
             pdatas.sort(key=lambda x: x.name)
             for pdata in pdatas:
                 new_key = pdata.id.replace(' ', '-')
-                menu_name = ("%s...") % pdata.name
-                ofile.write('<menuitem action="%s"/>' % new_key)
-                actions.append((new_key, None, menu_name, None, None,
-                                func(pdata, self.dbstate, self.uistate)))
-            ofile.write('</menu>')
+                ofile.write(menuitem % (new_key, pdata.name))
+                actions.append((new_key, func(pdata, self.dbstate,
+                                self.uistate)))
+            ofile.write('</submenu>\n')
 
         # If there are any unsupported items we add separator
         # and the unsupported category at the end of the menu
         if _UNSUPPORTED in hash_data:
-            ofile.write('<separator/>')
-            ofile.write('<menu action="%s">' % _UNSUPPORTED[0])
-            actions.append((_UNSUPPORTED[0], None, _UNSUPPORTED[1]))
+            ofile.write('<submenu>\n<attribute name="label"'
+                        ' translatable="yes">%s</attribute>\n' %
+                        _UNSUPPORTED[1])
             pdatas = hash_data[_UNSUPPORTED]
             pdatas.sort(key=lambda x: x.name)
             for pdata in pdatas:
                 new_key = pdata.id.replace(' ', '-')
-                menu_name = ("%s...") % pdata.name
-                ofile.write('<menuitem action="%s"/>' % new_key)
-                actions.append((new_key, None, menu_name, None, None,
-                                func(pdata, self.dbstate, self.uistate)))
-            ofile.write('</menu>')
+                ofile.write(menuitem % (new_key, pdata.name))
+                actions.append((new_key, func(pdata, self.dbstate,
+                                self.uistate)))
+            ofile.write('</submenu>\n')
 
-        ofile.write('</placeholder></menu></menubar></ui>')
-        return (ofile.getvalue(), actions)
+        ofile.write('</section>\n')
+        return ([ofile.getvalue()], actions)
 
-    def display_about_box(self, obj):
+    def display_about_box(self, *obj):
         """Display the About box."""
         about = GrampsAboutDialog(self.uistate.window)
         about.run()
@@ -1720,43 +1479,43 @@ class ViewManager(CLIManager):
                            if viewstoshow[cat] not in resultorder)
         return resultorder
 
-def key_bindings(obj):
+def key_bindings(*obj):
     """
     Display key bindings
     """
     display_help(webpage=WIKI_HELP_PAGE_KEY)
 
-def manual_activate(obj):
+def manual_activate(*obj):
     """
     Display the Gramps manual
     """
     display_help(webpage=WIKI_HELP_PAGE_MAN)
 
-def report_bug_activate(obj):
+def report_bug_activate(*obj):
     """
     Display the bug tracker web site
     """
     display_url(URL_BUGTRACKER)
 
-def home_page_activate(obj):
+def home_page_activate(*obj):
     """
     Display the Gramps home page
     """
     display_url(URL_HOMEPAGE)
 
-def mailing_lists_activate(obj):
+def mailing_lists_activate(*obj):
     """
     Display the mailing list web page
     """
     display_url(URL_MAILINGLIST)
 
-def extra_plugins_activate(obj):
+def extra_plugins_activate(*obj):
     """
     Display the wiki page with extra plugins
     """
     display_url(URL_WIKISTRING+WIKI_EXTRAPLUGINS)
 
-def faq_activate(obj):
+def faq_activate(*obj):
     """
     Display FAQ
     """
@@ -1815,7 +1574,7 @@ def make_plugin_callback(pdata, dbstate, uistate):
     """
     Makes a callback for a report/tool menu item
     """
-    return lambda x: run_plugin(pdata, dbstate, uistate)
+    return lambda x, y: run_plugin(pdata, dbstate, uistate)
 
 def views_to_show(views, use_last=True):
     """

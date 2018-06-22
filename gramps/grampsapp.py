@@ -459,12 +459,12 @@ def run():
     if argpars.need_gui():
         LOG.debug("A GUI is needed, set it up")
         try:
-            from .gui.grampsgui import startgtkloop
+            from .gui.grampsgui import startgramps
             # no DISPLAY is a RuntimeError in an older pygtk (e.g. F14's 2.17)
         except RuntimeError as msg:
             error += [(_("Configuration error:"), str(msg))]
             return error
-        startgtkloop(error, argpars)
+        startgramps(error, argpars)
     else:
         # CLI use of Gramps
         argpars.print_help()

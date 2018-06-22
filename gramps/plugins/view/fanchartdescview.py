@@ -46,6 +46,7 @@ import gramps.gui.widgets.fanchartdesc as fanchartdesc
 from gramps.gui.views.navigationview import NavigationView
 from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.gui.utils import SystemFonts
+from gramps.plugins.view.fanchartview import FanChartView
 
 # the print settings to remember between print sessions
 PRINT_SETTINGS = None
@@ -96,12 +97,8 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         dbstate.connect('active-changed', self.active_changed)
         dbstate.connect('database-changed', self.change_db)
 
-        self.additional_uis.append(self.additional_ui())
+        self.additional_uis.append(FanChartView.additional_ui)
         self.allfonts = [x for x in enumerate(SystemFonts().get_system_fonts())]
-
-        self.func_list.update({
-            '<PRIMARY>J' : self.jump,
-            })
 
     def navigation_type(self):
         return 'Person'
@@ -139,43 +136,6 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         """
         return 'gramps-fanchart'
 
-    def additional_ui(self):
-        return '''<ui>
-          <menubar name="MenuBar">
-            <menu action="GoMenu">
-              <placeholder name="CommonGo">
-                <menuitem action="Back"/>
-                <menuitem action="Forward"/>
-                <separator/>
-                <menuitem action="HomePerson"/>
-                <separator/>
-              </placeholder>
-            </menu>
-            <menu action="EditMenu">
-              <placeholder name="CommonEdit">
-                <menuitem action="PrintView"/>
-              </placeholder>
-            </menu>
-            <menu action="BookMenu">
-              <placeholder name="AddEditBook">
-                <menuitem action="AddBook"/>
-                <menuitem action="EditBook"/>
-              </placeholder>
-            </menu>
-          </menubar>
-          <toolbar name="ToolBar">
-            <placeholder name="CommonNavigation">
-              <toolitem action="Back"/>
-              <toolitem action="Forward"/>
-              <toolitem action="HomePerson"/>
-            </placeholder>
-            <placeholder name="CommonEdit">
-              <toolitem action="PrintView"/>
-            </placeholder>
-          </toolbar>
-        </ui>
-        '''
-
     def define_actions(self):
         """
         Required define_actions function for PageView. Builds the action
@@ -183,10 +143,9 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         """
         NavigationView.define_actions(self)
 
-        self._add_action('PrintView', 'document-print', _("_Print..."),
-                         accel="<PRIMARY>P",
-                         tip=_("Print or save the Fan Chart View"),
-                         callback=self.printview)
+        self._add_action('PrintView', self.printview, "<PRIMARY>P")
+        self._add_action('PRIMARY-J', self.jump, '<PRIMARY>J')
+
     def build_tree(self):
         """
         Generic method called by PageView to construct the view.
@@ -244,7 +203,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         if self.active:
             self.bookmarks.redraw()
 
-    def printview(self, obj):
+    def printview(self, *obj):
         """
         Print or save the view that is currently shown
         """

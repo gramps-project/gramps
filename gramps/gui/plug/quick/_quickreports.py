@@ -63,6 +63,12 @@ from gramps.gen.plug import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY, CATEGORY_QR
 from ._textbufdoc import TextBufDoc
 from gramps.gen.simple import make_basic_stylesheet
 
+MENUITEM = ('<item>\n'
+            '<attribute name="action">{prefix}.{action}</attribute>\n'
+            '<attribute name="label" translatable="yes">'
+            '{label}</attribute>\n'
+            '</item>\n')
+
 def flatten(L):
     """
     Flattens a possibly nested list. Removes None results, too.
@@ -77,7 +83,7 @@ def flatten(L):
         retval.append(L)
     return retval
 
-def create_web_connect_menu(dbstate, uistate, nav_group, handle):
+def create_web_connect_menu(dbstate, uistate, nav_group, handle, prefix):
     """
     This functions querries the registered web connects.  It collects
     the connects of the requested category, which must be one of
@@ -88,12 +94,12 @@ def create_web_connect_menu(dbstate, uistate, nav_group, handle):
     handle as input method.  A tuple is returned, containing the ui
     string of the menu, and its associated actions.
     """
+    top = ("<placeholder id='WebConnect'><submenu>\n"
+           '<attribute name="label" translatable="yes">'
+           'Web Connection</attribute>\n')
     actions = []
     ofile = StringIO()
-    ofile.write('<menu action="WebConnect">')
-    actions.append(('WebConnect', None, _("Web Connect"), None, None, None))
-    menu = Gtk.Menu()
-    menu.show()
+    ofile.write(top)
     #select the web connects to show
     showlst = []
     pmgr = GuiPluginManager.get_instance()
@@ -109,16 +115,17 @@ def create_web_connect_menu(dbstate, uistate, nav_group, handle):
     connections.sort(key=lambda plug: plug.name)
     actions = []
     for connect in connections:
-        ofile.write('<menuitem action="%s"/>' % connect.key)
-        actions.append((connect.key, None, connect.name, None, None,
-                        connect(dbstate, uistate, nav_group, handle)))
-    ofile.write('</menu>')
-    retval = [ofile.getvalue()]
-    retval.extend(actions)
-    return retval
+        action = connect.key.replace(' ', '-')
+        ofile.write(MENUITEM.format(prefix=prefix, action=action,
+                                    label=connect.name))
+        callback = connect(dbstate, uistate, nav_group, handle)
+        actions.append((action,
+                        lambda x, y: callback(x)))
+    ofile.write('</submenu></placeholder>\n')
+    return (ofile.getvalue(), actions)
 
 
-def create_quickreport_menu(category, dbstate, uistate, handle, track=[]):
+def create_quickreport_menu(category, dbstate, uistate, handle, prefix, track=[]):
     """ This functions querries the registered quick reports with
             quick_report_list of _PluginMgr.py
         It collects the reports of the requested category, which must be one of
@@ -132,39 +139,35 @@ def create_quickreport_menu(category, dbstate, uistate, handle, track=[]):
         A tuple is returned, containing the ui string of the quick report menu,
         and its associated actions
     """
-
+    top = ("<submenu>\n"
+           '<attribute name="label" translatable="yes">'
+           'Quick View</attribute>\n')
     actions = []
     ofile = StringIO()
-    ofile.write('<menu action="QuickReport">')
-
-    actions.append(('QuickReport', None, _("Quick View"), None, None, None))
-
-    menu = Gtk.Menu()
-    menu.show()
+    ofile.write(top)
 
     #select the reports to show
     showlst = []
     pmgr = GuiPluginManager.get_instance()
     for pdata in pmgr.get_reg_quick_reports():
         if pdata.supported and pdata.category == category :
-            #add tuple function, translated name, name, status
             showlst.append(pdata)
 
     showlst.sort(key=lambda x: x.name)
     for pdata in showlst:
         new_key = pdata.id.replace(' ', '-')
-        ofile.write('<menuitem action="%s"/>' % new_key)
-        actions.append((new_key, None, pdata.name, None, None,
-                make_quick_report_callback(pdata, category, dbstate,
-                                           uistate, handle, track=track)))
-    ofile.write('</menu>')
+        ofile.write(MENUITEM.format(prefix=prefix, action=new_key,
+                                    label=pdata.name))
+        actions.append((new_key, make_quick_report_callback(
+            pdata, category, dbstate, uistate, handle, track=track)))
+    ofile.write('</submenu>\n')
 
     return (ofile.getvalue(), actions)
 
 def make_quick_report_callback(pdata, category, dbstate, uistate, handle,
                                track=[]):
-    return lambda x: run_report(dbstate, uistate, category, handle, pdata,
-                                track=track)
+    return lambda x, y: run_report(dbstate, uistate, category, handle, pdata,
+                                   track=track)
 
 def get_quick_report_list(qv_category=None):
     """

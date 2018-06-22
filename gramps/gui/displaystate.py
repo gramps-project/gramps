@@ -28,6 +28,7 @@
 #-------------------------------------------------------------------------
 import os
 from io import StringIO
+import html
 
 #-------------------------------------------------------------------------
 #
@@ -65,6 +66,7 @@ from .glade import Glade
 from gramps.gen.utils.db import navigation_label
 from .widgets.progressdialog import ProgressMonitor, GtkProgressDialog
 from .dialog import ErrorDialog
+from .uimanager import ActionGroup
 
 DISABLED = -1
 
@@ -246,14 +248,34 @@ class History(Callback):
 #
 #-------------------------------------------------------------------------
 
-_RCT_TOP = '<ui><menubar name="MenuBar"><menu action="FileMenu"><menu action="OpenRecent">'
-_RCT_BTM = '</menu></menu></menubar></ui>'
+_RCT_TOP = '<placeholder id="OpenRecentMenu">'
+_RCT_MENU = '''
+            <item>
+              <attribute name="action">win.%s</attribute>
+              <attribute name="label" translatable="no">%s</attribute>
+            </item>'''
+_RCT_BTM = '\n          </placeholder>\n'
+_RCT_BAR_TOP = ('<object class="GtkMenu"  id="OpenBtnMenu">\n'
+                '<property name="visible">True</property>\n'
+                '<property name="can_focus">False</property>')
+_RCT_BAR = '''
+<child>
+    <object class="GtkMenuItem">
+        <property name="action-name">win.%s</property>
+        <property name="label" translatable="yes">%s</property>
+        <property name="use_underline">False</property>
+        <property name="visible">True</property>
+    </object>
+</child>'''
+_RCT_BAR_BTM = '\n</object>\n'
+
 
 from gramps.gen.recentfiles import RecentFiles
 
 class RecentDocsMenu:
     def __init__(self, uistate, state, fileopen):
-        self.action_group = Gtk.ActionGroup(name='RecentFiles')
+        self.ui_xml = []
+        self.action_group = ActionGroup('RecentFiles')
         self.active = DISABLED
         self.uistate = uistate
         self.uimanager = uistate.uimanager
@@ -268,55 +290,52 @@ class RecentDocsMenu:
             ErrorDialog(_('Cannot load database'), str(err),
                         parent=self.uistate.window)
 
-    def build(self):
-        buf = StringIO()
-        buf.write(_RCT_TOP)
+    def build(self, update_menu=True):
         gramps_rf = RecentFiles()
 
         count = 0
 
         if self.active != DISABLED:
-            self.uimanager.remove_ui(self.active)
+            self.uimanager.remove_ui(self.ui_xml)
             self.uimanager.remove_action_group(self.action_group)
-            self.action_group = Gtk.ActionGroup(name='RecentFiles')
             self.active = DISABLED
 
-        actions = []
+        actionlist = []
+        menu = _RCT_TOP
+        bar = _RCT_BAR_TOP
         rfiles = gramps_rf.gramps_recent_files
         rfiles.sort(key=lambda x: x.get_time(), reverse=True)
 
-        new_menu = Gtk.Menu()
+        #new_menu = Gtk.Menu()
+        #new_menu.set_tooltip_text(_("Connect to a recent database"))
 
         for item in rfiles:
             try:
-                title = item.get_name()
+                title = html.escape(item.get_name())
                 filename = os.path.basename(item.get_path())
                 action_id = "RecentMenu%d" % count
-                buf.write('<menuitem action="%s"/>' % action_id)
-                actions.append((action_id, None, title, None, None,
-                                make_callback(item, self.load)))
-                mitem = Gtk.MenuItem(label=title, use_underline=False)
-                mitem.connect('activate', make_callback(item, self.load))
-                mitem.show()
-                new_menu.append(mitem)
+                # add the menuitem for this file
+                menu += _RCT_MENU % (action_id, title)
+                # add the action for this file
+                actionlist.append((action_id, make_callback(item, self.load)))
+                # add the toolbar menuitem
+                bar += _RCT_BAR % (action_id, title)
             except RuntimeError:
                 # ignore no longer existing files
                 _LOG.info("Ignoring the RecentItem %s (%s)" % (title, filename))
 
             count += 1
-        buf.write(_RCT_BTM)
-        self.action_group.add_actions(actions)
-        self.uimanager.insert_action_group(self.action_group, 1)
-        self.active = self.uimanager.add_ui_from_string(buf.getvalue())
-        self.uimanager.ensure_update()
-        buf.close()
-
-        if len(rfiles) > 0:
-            new_menu.show()
-            self.uistate.set_open_recent_menu(new_menu)
+        menu += _RCT_BTM
+        bar += _RCT_BAR_BTM
+        self.ui_xml = [menu, bar]
+        self.action_group.add_actions(actionlist)
+        self.uimanager.insert_action_group(self.action_group)
+        self.active = self.uimanager.add_ui_from_string(self.ui_xml)
+        if update_menu:
+            self.uimanager.update_menu()
 
 def make_callback(val, func):
-    return lambda x: func(val)
+    return lambda x, y: func(val)
 
 from .logger import RotateHandler
 

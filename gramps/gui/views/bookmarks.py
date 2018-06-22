@@ -28,6 +28,7 @@
 #-------------------------------------------------------------------------
 from abc import ABCMeta, abstractmethod
 from io import StringIO
+import html
 
 #-------------------------------------------------------------------------
 #
@@ -51,6 +52,7 @@ from gi.repository import Gtk
 from ..display import display_help
 from ..listmodel import ListModel
 from ..managedwindow import ManagedWindow
+from ..uimanager import ActionGroup
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -71,9 +73,6 @@ WIKI_HELP_SEC = _('manual|Bookmarks')
 #
 #-------------------------------------------------------------------------
 
-TOP = '''<ui><menubar name="MenuBar"><menu action="BookMenu">'''
-BTM = '''</menu></menubar></ui>'''
-
 DISABLED = -1
 
 class Bookmarks(metaclass=ABCMeta):
@@ -93,7 +92,7 @@ class Bookmarks(metaclass=ABCMeta):
         if self.dbstate.is_open():
             self.update_bookmarks()
         self.active = DISABLED
-        self.action_group = Gtk.ActionGroup(name='Bookmarks')
+        self.action_group = ActionGroup(name='Bookmarks')
         if self.dbstate.is_open():
             self.connect_signals()
         self.dbstate.connect('database-changed', self.db_changed)
@@ -129,7 +128,8 @@ class Bookmarks(metaclass=ABCMeta):
         """
         Redraw the display.
         """
-        self.redraw()
+        # used by navigationview; other updates follow
+        self.redraw(update_menu=False)
 
     def undisplay(self):
         """
@@ -138,8 +138,7 @@ class Bookmarks(metaclass=ABCMeta):
         if self.active != DISABLED:
             self.uistate.uimanager.remove_ui(self.active)
             self.uistate.uimanager.remove_action_group(self.action_group)
-            self.action_group = Gtk.ActionGroup(name='Bookmarks')
-            self.uistate.uimanager.ensure_update()
+            self.action_group = ActionGroup(name='Bookmarks')
             self.active = DISABLED
 
     def redraw_and_report_change(self):
@@ -147,10 +146,14 @@ class Bookmarks(metaclass=ABCMeta):
         self.dbstate.db.report_bm_change()
         self.redraw()
 
-    def redraw(self):
+    def redraw(self, update_menu=True):
         """Create the pulldown menu."""
+        menuitem = ('<item>\n'
+                    '<attribute name="action">win.%s</attribute>\n'
+                    '<attribute name="label" translatable="yes">'
+                    '%s</attribute>\n'
+                    '</item>\n')
         text = StringIO()
-        text.write(TOP)
 
         self.undisplay()
 
@@ -158,24 +161,25 @@ class Bookmarks(metaclass=ABCMeta):
         count = 0
 
         if self.dbstate.is_open() and len(self.bookmarks.get()) > 0:
-            text.write('<placeholder name="GoToBook">')
+            text.write('<section id="GoToBook">\n')
             for item in self.bookmarks.get():
                 try:
                     label, dummy_obj = self.make_label(item)
                     func = self.callback(item)
-                    action_id = "BM:%s" % item
-                    actions.append((action_id, None, label, None, None, func))
-                    text.write('<menuitem action="%s"/>' % action_id)
+                    action_id = "BM.%s" % item
+                    actions.append((action_id, func))
+                    text.write(menuitem % (action_id, html.escape(label)))
                     count += 1
                 except AttributeError:
                     pass
-            text.write('</placeholder>')
+            text.write('</section>\n')
 
-        text.write(BTM)
         self.action_group.add_actions(actions)
-        self.uistate.uimanager.insert_action_group(self.action_group, 1)
-        self.active = self.uistate.uimanager.add_ui_from_string(text.getvalue())
-        self.uistate.uimanager.ensure_update()
+        self.uistate.uimanager.insert_action_group(self.action_group)
+        self.active = self.uistate.uimanager.add_ui_from_string(
+            [text.getvalue()])
+        if update_menu:
+            self.uistate.uimanager.update_menu()
         text.close()
 
     @abstractmethod
@@ -538,4 +542,4 @@ def make_callback(handle, function):
     """
     Build a unique call to the function with the associated handle.
     """
-    return lambda x: function(handle)
+    return lambda x, y: function(handle)
