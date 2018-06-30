@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps50\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-15 08:28+0300\n"
-"PO-Revision-Date: 2018-05-15 09:38+0300\n"
+"POT-Creation-Date: 2018-06-30 18:30+0300\n"
+"PO-Revision-Date: 2018-06-30 18:40+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -1736,7 +1736,7 @@ msgstr "Заблокировано %s"
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:143
 #: ../gramps/gui/editors/editmedia.py:178
 #: ../gramps/gui/editors/editmediaref.py:143
-#: ../gramps/plugins/db/bsddb/write.py:2292
+#: ../gramps/plugins/db/bsddb/write.py:2294
 #: ../gramps/plugins/gramplet/persondetails.py:213
 #: ../gramps/plugins/gramplet/persondetails.py:219
 #: ../gramps/plugins/gramplet/persondetails.py:221
@@ -1830,7 +1830,7 @@ msgid "Read only database"
 msgstr "База данных только для чтения"
 
 #: ../gramps/cli/grampscli.py:154 ../gramps/gui/dbloader.py:166
-#: ../gramps/gui/dbloader.py:561
+#: ../gramps/gui/dbloader.py:562
 msgid "You do not have write access to the selected file."
 msgstr "У Вас нет доступа для записи выбранного файла."
 
@@ -1846,7 +1846,7 @@ msgid "Cannot open database"
 msgstr "Ошибка открытия базы данных"
 
 #: ../gramps/cli/grampscli.py:211 ../gramps/gui/dbloader.py:296
-#: ../gramps/gui/dbloader.py:518
+#: ../gramps/gui/dbloader.py:519
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Ошибка открытия файла: %s"
@@ -3227,7 +3227,7 @@ msgstr ""
 #: ../gramps/gen/db/generic.py:161 ../gramps/gen/db/generic.py:211
 #: ../gramps/gen/db/generic.py:2018 ../gramps/plugins/db/bsddb/undoredo.py:251
 #: ../gramps/plugins/db/bsddb/undoredo.py:293
-#: ../gramps/plugins/db/bsddb/write.py:2139
+#: ../gramps/plugins/db/bsddb/write.py:2141
 #, python-format
 msgid "_Undo %s"
 msgstr "_Откатить %s"
@@ -3240,12 +3240,12 @@ msgid "_Redo %s"
 msgstr "Ве_рнуть %s"
 
 #: ../gramps/gen/db/generic.py:2410 ../gramps/plugins/db/bsddb/read.py:1935
-#: ../gramps/plugins/db/bsddb/write.py:2294
+#: ../gramps/plugins/db/bsddb/write.py:2296
 msgid "Number of people"
 msgstr "Количество людей"
 
 #: ../gramps/gen/db/generic.py:2411 ../gramps/plugins/db/bsddb/read.py:1936
-#: ../gramps/plugins/db/bsddb/write.py:2295
+#: ../gramps/plugins/db/bsddb/write.py:2297
 #: ../gramps/plugins/gramplet/statsgramplet.py:117
 #: ../gramps/plugins/webreport/statistics.py:130
 #: ../gramps/plugins/webreport/statistics.py:195
@@ -3253,56 +3253,56 @@ msgid "Number of families"
 msgstr "Количество семей"
 
 #: ../gramps/gen/db/generic.py:2412 ../gramps/plugins/db/bsddb/read.py:1937
-#: ../gramps/plugins/db/bsddb/write.py:2296
+#: ../gramps/plugins/db/bsddb/write.py:2298
 #: ../gramps/plugins/webreport/statistics.py:158
 #: ../gramps/plugins/webreport/statistics.py:207
 msgid "Number of sources"
 msgstr "Количество источников"
 
 #: ../gramps/gen/db/generic.py:2413 ../gramps/plugins/db/bsddb/read.py:1938
-#: ../gramps/plugins/db/bsddb/write.py:2297
+#: ../gramps/plugins/db/bsddb/write.py:2299
 #: ../gramps/plugins/webreport/statistics.py:162
 #: ../gramps/plugins/webreport/statistics.py:210
 msgid "Number of citations"
 msgstr "Количество цитат"
 
 #: ../gramps/gen/db/generic.py:2414 ../gramps/plugins/db/bsddb/read.py:1939
-#: ../gramps/plugins/db/bsddb/write.py:2298
+#: ../gramps/plugins/db/bsddb/write.py:2300
 #: ../gramps/plugins/webreport/statistics.py:151
 #: ../gramps/plugins/webreport/statistics.py:201
 msgid "Number of events"
 msgstr "Количество событий"
 
 #: ../gramps/gen/db/generic.py:2415 ../gramps/plugins/db/bsddb/read.py:1940
-#: ../gramps/plugins/db/bsddb/write.py:2299
+#: ../gramps/plugins/db/bsddb/write.py:2301
 msgid "Number of media"
 msgstr "Количество документов"
 
 #: ../gramps/gen/db/generic.py:2416 ../gramps/plugins/db/bsddb/read.py:1941
-#: ../gramps/plugins/db/bsddb/write.py:2300
+#: ../gramps/plugins/db/bsddb/write.py:2302
 #: ../gramps/plugins/webreport/statistics.py:154
 #: ../gramps/plugins/webreport/statistics.py:204
 msgid "Number of places"
 msgstr "Количество мест"
 
 #: ../gramps/gen/db/generic.py:2417 ../gramps/plugins/db/bsddb/read.py:1942
-#: ../gramps/plugins/db/bsddb/write.py:2301
+#: ../gramps/plugins/db/bsddb/write.py:2303
 #: ../gramps/plugins/webreport/statistics.py:166
 #: ../gramps/plugins/webreport/statistics.py:213
 msgid "Number of repositories"
 msgstr "Количество хранилищ"
 
 #: ../gramps/gen/db/generic.py:2418 ../gramps/plugins/db/bsddb/read.py:1943
-#: ../gramps/plugins/db/bsddb/write.py:2302
+#: ../gramps/plugins/db/bsddb/write.py:2304
 msgid "Number of notes"
 msgstr "Количество заметок"
 
 #: ../gramps/gen/db/generic.py:2419 ../gramps/plugins/db/bsddb/read.py:1944
-#: ../gramps/plugins/db/bsddb/write.py:2303
+#: ../gramps/plugins/db/bsddb/write.py:2305
 msgid "Number of tags"
 msgstr "Количество меток"
 
-#: ../gramps/gen/db/generic.py:2420 ../gramps/plugins/db/bsddb/write.py:2304
+#: ../gramps/gen/db/generic.py:2420 ../gramps/plugins/db/bsddb/write.py:2306
 msgid "Schema version"
 msgstr "Версия схемы"
 
@@ -3486,7 +3486,7 @@ msgstr "Применение ..."
 #: ../gramps/gen/filters/_genericfilter.py:169
 #: ../gramps/gui/editors/filtereditor.py:1105
 #: ../gramps/plugins/drawreport/calendarreport.py:470
-#: ../gramps/plugins/drawreport/statisticschart.py:990
+#: ../gramps/plugins/drawreport/statisticschart.py:1001
 #: ../gramps/plugins/drawreport/timeline.py:415
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1009
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1023
@@ -4785,7 +4785,7 @@ msgstr "Тип:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48
 #: ../gramps/gui/glade/mergemedia.glade:245
-#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1872
+#: ../gramps/gui/glade/mergemedia.glade:261 ../gramps/gui/viewmanager.py:1870
 msgid "Path:"
 msgstr "Путь:"
 
@@ -7250,7 +7250,7 @@ msgstr "Событие"
 #: ../gramps/gui/editors/filtereditor.py:296
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:108
 #: ../gramps/gui/glade/editevent.glade:270
-#: ../gramps/gui/plug/_guioptions.py:1352
+#: ../gramps/gui/plug/_guioptions.py:1354
 #: ../gramps/gui/selectors/selectevent.py:72 ../gramps/gui/viewmanager.py:613
 #: ../gramps/gui/views/treemodels/placemodel.py:305
 #: ../gramps/plugins/export/exportcsv.py:286
@@ -8109,7 +8109,7 @@ msgstr "Регион"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:131
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:108
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:104
-#: ../gramps/gui/plug/_guioptions.py:1174 ../gramps/gui/plug/_windows.py:130
+#: ../gramps/gui/plug/_guioptions.py:1176 ../gramps/gui/plug/_windows.py:130
 #: ../gramps/gui/plug/_windows.py:1104
 #: ../gramps/gui/plug/report/_bookdialog.py:373
 #: ../gramps/gui/selectors/selectperson.py:93
@@ -8179,7 +8179,7 @@ msgstr "Суффикс"
 #: ../gramps/gui/selectors/selectplace.py:73
 #: ../gramps/gui/selectors/selectrepository.py:69
 #: ../gramps/gui/selectors/selectsource.py:69
-#: ../gramps/gui/widgets/grampletpane.py:1570
+#: ../gramps/gui/widgets/grampletpane.py:1568
 #: ../gramps/plugins/export/exportcsv.py:286
 #: ../gramps/plugins/gramplet/persondetails.py:164
 #: ../gramps/plugins/lib/libplaceview.py:86
@@ -8926,7 +8926,7 @@ msgstr "Ссылка"
 #: ../gramps/gui/configure.py:697 ../gramps/gui/configure.py:698
 #: ../gramps/gui/configure.py:699 ../gramps/gui/configure.py:700
 #: ../gramps/gui/editors/displaytabs/surnametab.py:75
-#: ../gramps/gui/plug/_guioptions.py:88 ../gramps/gui/plug/_guioptions.py:1506
+#: ../gramps/gui/plug/_guioptions.py:88 ../gramps/gui/plug/_guioptions.py:1508
 #: ../gramps/plugins/drawreport/statisticschart.py:334
 #: ../gramps/plugins/export/exportcsv.py:354
 #: ../gramps/plugins/importer/importcsv.py:159
@@ -8958,7 +8958,7 @@ msgstr "%(first)s %(second)s"
 #: ../gramps/gen/lib/tag.py:125 ../gramps/gen/plug/docgen/treedoc.py:168
 #: ../gramps/gui/glade/styleeditor.glade:384
 #: ../gramps/gui/glade/styleeditor.glade:1433
-#: ../gramps/gui/plug/_guioptions.py:1507 ../gramps/gui/views/tags.py:411
+#: ../gramps/gui/plug/_guioptions.py:1509 ../gramps/gui/views/tags.py:411
 msgid "Color"
 msgstr "Цвет"
 
@@ -9133,7 +9133,7 @@ msgstr "Отношения"
 #: ../gramps/gui/glade/grampletpane.glade:156
 #: ../gramps/gui/widgets/grampletbar.py:627
 #: ../gramps/gui/widgets/grampletpane.py:220
-#: ../gramps/gui/widgets/grampletpane.py:979
+#: ../gramps/gui/widgets/grampletpane.py:977
 msgid "Gramplet"
 msgstr "Грамплет"
 
@@ -9685,7 +9685,7 @@ msgstr "Мелкий"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:90
 msgid "Script"
-msgstr "Script"
+msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:91
 msgid "Footnote"
@@ -10048,7 +10048,7 @@ msgstr "Как и где включать номера-идентификато�
 #. #########################
 #. ###############################
 #: ../gramps/gen/plug/report/stdoptions.py:328
-#: ../gramps/gui/viewmanager.py:1931
+#: ../gramps/gui/viewmanager.py:1929
 #: ../gramps/plugins/graph/gvfamilylines.py:211
 #: ../gramps/plugins/graph/gvrelgraph.py:819
 #: ../gramps/plugins/textreport/detancestralreport.py:892
@@ -10127,15 +10127,15 @@ msgstr "Предки %s"
 msgid "People with common ancestor with %s"
 msgstr "Лица, имеющие общего предка с %s"
 
-#: ../gramps/gen/plug/report/utils.py:354 ../gramps/gui/plug/_guioptions.py:895
+#: ../gramps/gen/plug/report/utils.py:354 ../gramps/gui/plug/_guioptions.py:897
 msgid "unknown father"
 msgstr "неизвестный отец"
 
-#: ../gramps/gen/plug/report/utils.py:360 ../gramps/gui/plug/_guioptions.py:901
+#: ../gramps/gen/plug/report/utils.py:360 ../gramps/gui/plug/_guioptions.py:903
 msgid "unknown mother"
 msgstr "неизвестная мать"
 
-#: ../gramps/gen/plug/report/utils.py:362 ../gramps/gui/plug/_guioptions.py:903
+#: ../gramps/gen/plug/report/utils.py:362 ../gramps/gui/plug/_guioptions.py:905
 #, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
 msgstr "%(father_name)s и %(mother_name)s (%(family_id)s)"
@@ -11113,7 +11113,7 @@ msgstr "Перетаскивайте столбцы с помощью мыши, 
 
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1615
 #: ../gramps/gui/configure.py:1637 ../gramps/gui/configure.py:1660
-#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:2002
+#: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:2001
 #: ../gramps/plugins/lib/maps/geography.py:1011
 #: ../gramps/plugins/lib/maps/geography.py:1266
 msgid "_Apply"
@@ -11160,7 +11160,7 @@ msgstr "Показать «Редактор имён»"
 #: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/plug/_windows.py:105
 #: ../gramps/gui/plug/_windows.py:691 ../gramps/gui/plug/_windows.py:747
 #: ../gramps/gui/plug/quick/_textbufdoc.py:60 ../gramps/gui/undohistory.py:90
-#: ../gramps/gui/viewmanager.py:543 ../gramps/gui/viewmanager.py:1866
+#: ../gramps/gui/viewmanager.py:543 ../gramps/gui/viewmanager.py:1864
 #: ../gramps/gui/views/bookmarks.py:286 ../gramps/gui/views/tags.py:432
 #: ../gramps/gui/widgets/grampletbar.py:635
 #: ../gramps/gui/widgets/grampletpane.py:232
@@ -11876,10 +11876,10 @@ msgstr "Выбрать каталог документов"
 #: ../gramps/gui/glade/rule.glade:747 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1721
 #: ../gramps/gui/logger/_errorview.py:173 ../gramps/gui/plug/_guioptions.py:79
-#: ../gramps/gui/plug/_guioptions.py:1742 ../gramps/gui/plug/_windows.py:440
+#: ../gramps/gui/plug/_guioptions.py:1744 ../gramps/gui/plug/_windows.py:440
 #: ../gramps/gui/plug/report/_fileentry.py:64
 #: ../gramps/gui/plug/report/_reportdialog.py:162 ../gramps/gui/utils.py:180
-#: ../gramps/gui/viewmanager.py:2000 ../gramps/gui/views/listview.py:1046
+#: ../gramps/gui/viewmanager.py:1999 ../gramps/gui/views/listview.py:1046
 #: ../gramps/gui/views/navigationview.py:363 ../gramps/gui/views/tags.py:648
 #: ../gramps/gui/widgets/progressdialog.py:437
 #: ../gramps/plugins/lib/maps/geography.py:1010
@@ -11894,7 +11894,7 @@ msgstr "_Отменить"
 msgid "Select database directory"
 msgstr "Выбрать каталог базы данных"
 
-#: ../gramps/gui/configure.py:1655 ../gramps/gui/viewmanager.py:1997
+#: ../gramps/gui/configure.py:1655 ../gramps/gui/viewmanager.py:1996
 msgid "Select backup directory"
 msgstr "Выберите каталог для резервного копирования"
 
@@ -11989,7 +11989,7 @@ msgstr "Импортировать семейное древо"
 msgid "Import"
 msgstr "Импорт"
 
-#: ../gramps/gui/dbloader.py:519
+#: ../gramps/gui/dbloader.py:520
 #, python-format
 msgid ""
 "File type \"%s\" is unknown to Gramps.\n"
@@ -12002,28 +12002,28 @@ msgstr ""
 "Известные типы: база данных GRAMPS, GRAMPS XML, пакет GRAMPS, GEDCOM и "
 "другие."
 
-#: ../gramps/gui/dbloader.py:542 ../gramps/gui/dbloader.py:549
+#: ../gramps/gui/dbloader.py:543 ../gramps/gui/dbloader.py:550
 msgid "Cannot open file"
 msgstr "Не удалось открыть файл"
 
-#: ../gramps/gui/dbloader.py:543
+#: ../gramps/gui/dbloader.py:544
 msgid "The selected file is a directory, not a file.\n"
 msgstr "Выбранное имя является каталогом, а не файлом.\n"
 
-#: ../gramps/gui/dbloader.py:550
+#: ../gramps/gui/dbloader.py:551
 msgid "You do not have read access to the selected file."
 msgstr "У вас нет доступа для чтения выбранного файла."
 
-#: ../gramps/gui/dbloader.py:560
+#: ../gramps/gui/dbloader.py:561
 msgid "Cannot create file"
 msgstr "Не удалось создать файл"
 
-#: ../gramps/gui/dbloader.py:584
+#: ../gramps/gui/dbloader.py:585
 #, python-format
 msgid "Could not import file: %s"
 msgstr "Ошибка импорта файла %s"
 
-#: ../gramps/gui/dbloader.py:585
+#: ../gramps/gui/dbloader.py:586
 msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
@@ -12094,7 +12094,7 @@ msgstr "Информация о базе данных"
 #: ../gramps/gui/glade/styleeditor.glade:1738
 #: ../gramps/gui/plug/_guioptions.py:80
 #: ../gramps/gui/plug/report/_reportdialog.py:166 ../gramps/gui/utils.py:194
-#: ../gramps/gui/viewmanager.py:1868 ../gramps/gui/views/tags.py:649
+#: ../gramps/gui/viewmanager.py:1866 ../gramps/gui/views/tags.py:649
 #: ../gramps/plugins/tool/check.py:781 ../gramps/plugins/tool/patchnames.py:118
 #: ../gramps/plugins/tool/populatesources.py:91
 #: ../gramps/plugins/tool/testcasegenerator.py:328
@@ -12566,8 +12566,8 @@ msgstr "Атрибуты"
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:103
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:86
 #: ../gramps/gui/merge/mergeperson.py:182
-#: ../gramps/gui/plug/_guioptions.py:1175
-#: ../gramps/gui/plug/_guioptions.py:1353
+#: ../gramps/gui/plug/_guioptions.py:1177
+#: ../gramps/gui/plug/_guioptions.py:1355
 #: ../gramps/gui/selectors/selectcitation.py:75
 #: ../gramps/gui/selectors/selectevent.py:74
 #: ../gramps/gui/selectors/selectfamily.py:69
@@ -12898,13 +12898,13 @@ msgstr "Сделать базовым именем"
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/gui/editors/displaytabs/namemodel.py:56
-#: ../gramps/gui/plug/_guioptions.py:1256 ../gramps/gui/views/tags.py:498
+#: ../gramps/gui/plug/_guioptions.py:1258 ../gramps/gui/views/tags.py:498
 #: ../gramps/plugins/quickview/all_relations.py:306
 msgid "Yes"
 msgstr "Да"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:57
-#: ../gramps/gui/plug/_guioptions.py:1255 ../gramps/gui/views/tags.py:499
+#: ../gramps/gui/plug/_guioptions.py:1257 ../gramps/gui/views/tags.py:499
 #: ../gramps/plugins/quickview/all_relations.py:310
 msgid "No"
 msgstr "Нет"
@@ -14587,7 +14587,7 @@ msgstr ""
 "Для выбора документа пользуйтесь кнопками или перетаскиванием с помощью мыши"
 
 #: ../gramps/gui/editors/objectentries.py:389
-#: ../gramps/gui/plug/_guioptions.py:1114
+#: ../gramps/gui/plug/_guioptions.py:1116
 msgid "No image given, click button to select one"
 msgstr "Не указано изображение, нажмите кнопку для выбора"
 
@@ -14596,7 +14596,7 @@ msgid "Edit media object"
 msgstr "Редактировать документ"
 
 #: ../gramps/gui/editors/objectentries.py:391
-#: ../gramps/gui/plug/_guioptions.py:1092
+#: ../gramps/gui/plug/_guioptions.py:1094
 msgid "Select an existing media object"
 msgstr "Выбрать существующий документ"
 
@@ -14615,12 +14615,12 @@ msgstr ""
 "Для выбора заметки пользуйтесь кнопками или перетаскиванием с помощью мыши"
 
 #: ../gramps/gui/editors/objectentries.py:435
-#: ../gramps/gui/plug/_guioptions.py:1012
+#: ../gramps/gui/plug/_guioptions.py:1014
 msgid "No note given, click button to select one"
 msgstr "Заметка не указана; нажмите кнопку чтобы выбрать"
 
 #: ../gramps/gui/editors/objectentries.py:437
-#: ../gramps/gui/plug/_guioptions.py:987
+#: ../gramps/gui/plug/_guioptions.py:989
 msgid "Select an existing note"
 msgstr "Выбрать существующую заметку"
 
@@ -14998,11 +14998,10 @@ msgstr "метка"
 msgid "Close _without saving"
 msgstr "Закрыть _без сохранения"
 
-#. widget
 #: ../gramps/gui/glade/dialog.glade:859
 #: ../gramps/gui/plug/report/_bookdialog.py:625
 #: ../gramps/gui/views/listview.py:1047
-#: ../gramps/gui/widgets/grampletpane.py:582
+#: ../gramps/gui/widgets/grampletpane.py:580
 #: ../gramps/plugins/tool/eventcmp.py:400
 msgid "_Save"
 msgstr "_Сохранить"
@@ -15398,7 +15397,7 @@ msgstr "М_есто:"
 #: ../gramps/gui/glade/editlink.glade:164
 #: ../gramps/gui/glade/editpersonref.glade:201
 msgid "Selector"
-msgstr ""
+msgstr "Выбор"
 
 #: ../gramps/gui/glade/editevent.glade:292
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
@@ -17559,7 +17558,7 @@ msgstr "_Запуск"
 msgid "Run selected tool"
 msgstr "Запустить выбранный инструмент"
 
-#: ../gramps/gui/plug/_guioptions.py:82 ../gramps/gui/plug/_guioptions.py:163
+#: ../gramps/gui/plug/_guioptions.py:82 ../gramps/gui/plug/_guioptions.py:165
 msgid "Select surname"
 msgstr "Выберите фамилию"
 
@@ -17576,45 +17575,45 @@ msgstr "Поиск фамилий"
 msgid "Finding surnames"
 msgstr "Поиск фамилий"
 
-#: ../gramps/gui/plug/_guioptions.py:684
+#: ../gramps/gui/plug/_guioptions.py:686
 msgid "Select a different person"
 msgstr "Выберите другое лицо"
 
-#: ../gramps/gui/plug/_guioptions.py:711
+#: ../gramps/gui/plug/_guioptions.py:713
 msgid "Select a person for the report"
 msgstr "Выберите лицо для отчёта"
 
-#: ../gramps/gui/plug/_guioptions.py:794
+#: ../gramps/gui/plug/_guioptions.py:796
 msgid "Select a different family"
 msgstr "Выберите другую семью"
 
-#: ../gramps/gui/plug/_guioptions.py:1251
+#: ../gramps/gui/plug/_guioptions.py:1253
 #, python-format
 msgid "Also include %s?"
 msgstr "Также включать %s?"
 
-#: ../gramps/gui/plug/_guioptions.py:1253
+#: ../gramps/gui/plug/_guioptions.py:1255
 #: ../gramps/gui/selectors/selectperson.py:86
 msgid "Select Person"
 msgstr "Выбрать лицо"
 
-#: ../gramps/gui/plug/_guioptions.py:1577
+#: ../gramps/gui/plug/_guioptions.py:1579
 #, python-format
 msgid "Select color for %s"
 msgstr "Выберите цвет для %s"
 
-#: ../gramps/gui/plug/_guioptions.py:1740
+#: ../gramps/gui/plug/_guioptions.py:1742
 #: ../gramps/gui/plug/report/_reportdialog.py:452
 msgid "Save As"
 msgstr "Сохранить как"
 
-#: ../gramps/gui/plug/_guioptions.py:1744 ../gramps/gui/plug/_windows.py:442
+#: ../gramps/gui/plug/_guioptions.py:1746 ../gramps/gui/plug/_windows.py:442
 #: ../gramps/gui/plug/report/_bookdialog.py:626
 #: ../gramps/gui/plug/report/_fileentry.py:66
 msgid "_Open"
 msgstr "_Открыть"
 
-#: ../gramps/gui/plug/_guioptions.py:1821
+#: ../gramps/gui/plug/_guioptions.py:1823
 #: ../gramps/gui/plug/report/_reportdialog.py:329
 msgid "Style Editor"
 msgstr "Редактор стилей"
@@ -18343,7 +18342,7 @@ msgstr "Стиль"
 #: ../gramps/plugins/drawreport/calendarreport.py:466
 #: ../gramps/plugins/drawreport/descendtree.py:1568
 #: ../gramps/plugins/drawreport/fanchart.py:685
-#: ../gramps/plugins/drawreport/statisticschart.py:986
+#: ../gramps/plugins/drawreport/statisticschart.py:997
 #: ../gramps/plugins/drawreport/timeline.py:413
 #: ../gramps/plugins/graph/gvfamilylines.py:115
 #: ../gramps/plugins/graph/gvhourglass.py:315
@@ -18686,12 +18685,12 @@ msgid "Undo History"
 msgstr "История откатов"
 
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:647
-#: ../gramps/gui/viewmanager.py:1331
+#: ../gramps/gui/viewmanager.py:1329
 msgid "_Undo"
 msgstr "_Отменить"
 
 #: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:652
-#: ../gramps/gui/viewmanager.py:1348
+#: ../gramps/gui/viewmanager.py:1346
 msgid "_Redo"
 msgstr "Ве_рнуть"
 
@@ -18771,7 +18770,7 @@ msgstr ""
 msgid "Cannot open new citation editor"
 msgstr "Не удалось открыть новый редактор цитат"
 
-#: ../gramps/gui/viewmanager.py:470 ../gramps/gui/viewmanager.py:1267
+#: ../gramps/gui/viewmanager.py:470 ../gramps/gui/viewmanager.py:1265
 msgid "No Family Tree"
 msgstr "Нет семейного древа"
 
@@ -18989,23 +18988,23 @@ msgstr ""
 msgid "Import Statistics"
 msgstr "Статистика импорта"
 
-#: ../gramps/gui/viewmanager.py:1237
+#: ../gramps/gui/viewmanager.py:1240
 msgid "Read Only"
 msgstr "Только чтение"
 
-#: ../gramps/gui/viewmanager.py:1394
+#: ../gramps/gui/viewmanager.py:1392
 msgid "Autobackup..."
 msgstr "Автоматическое резервное копирование..."
 
-#: ../gramps/gui/viewmanager.py:1399
+#: ../gramps/gui/viewmanager.py:1397
 msgid "Error saving backup data"
 msgstr "Ошибка сохранения резервной копии"
 
-#: ../gramps/gui/viewmanager.py:1690
+#: ../gramps/gui/viewmanager.py:1688
 msgid "Failed Loading View"
 msgstr "Не удалось загрузить вид"
 
-#: ../gramps/gui/viewmanager.py:1691
+#: ../gramps/gui/viewmanager.py:1689
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -19030,11 +19029,11 @@ msgstr ""
 "Если вы не хотите, чтобы Gramps пыталась загрузить этот вид в следующий раз, "
 "спрячьте его,с помощью «Справка / Менеджер дополнений»."
 
-#: ../gramps/gui/viewmanager.py:1783
+#: ../gramps/gui/viewmanager.py:1781
 msgid "Failed Loading Plugin"
 msgstr "Ошибка загрузки модуля"
 
-#: ../gramps/gui/viewmanager.py:1784
+#: ../gramps/gui/viewmanager.py:1782
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -19059,55 +19058,55 @@ msgstr ""
 "Если вы не хотите, чтобы Gramps пыталась загрузить этот модуль в следующий "
 "раз, спрячьте его,с помощью «Справка / Менеджер дополнений»."
 
-#: ../gramps/gui/viewmanager.py:1864
+#: ../gramps/gui/viewmanager.py:1862
 msgid "Gramps XML Backup"
 msgstr "Резервная копия Gramps в XML"
 
-#: ../gramps/gui/viewmanager.py:1893
+#: ../gramps/gui/viewmanager.py:1891
 msgid "File:"
 msgstr "Файл:"
 
-#: ../gramps/gui/viewmanager.py:1925
+#: ../gramps/gui/viewmanager.py:1923
 msgid "Media:"
 msgstr "Альбом:"
 
-#: ../gramps/gui/viewmanager.py:1932
+#: ../gramps/gui/viewmanager.py:1930
 #: ../gramps/plugins/gramplet/statsgramplet.py:139
 #: ../gramps/plugins/webreport/statistics.py:144
 msgid "Megabyte|MB"
 msgstr "Мб"
 
-#: ../gramps/gui/viewmanager.py:1934
+#: ../gramps/gui/viewmanager.py:1932
 msgid "Exclude"
 msgstr "Исключить"
 
-#: ../gramps/gui/viewmanager.py:1954
+#: ../gramps/gui/viewmanager.py:1952
 msgid "Backup file already exists! Overwrite?"
 msgstr "Файл с резервной копией уже существует! Перезаписать?"
 
-#: ../gramps/gui/viewmanager.py:1955
+#: ../gramps/gui/viewmanager.py:1953
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Файл «%s» уже существует."
 
-#: ../gramps/gui/viewmanager.py:1956
+#: ../gramps/gui/viewmanager.py:1954
 msgid "Proceed and overwrite"
 msgstr "Продолжить и перезаписать"
 
-#: ../gramps/gui/viewmanager.py:1957
+#: ../gramps/gui/viewmanager.py:1955
 msgid "Cancel the backup"
 msgstr "Отменить резервное копирование"
 
-#: ../gramps/gui/viewmanager.py:1972
+#: ../gramps/gui/viewmanager.py:1970
 msgid "Making backup..."
 msgstr "Создание резервной копии..."
 
-#: ../gramps/gui/viewmanager.py:1985
+#: ../gramps/gui/viewmanager.py:1983
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Резервная копия сохранена в '%s'"
 
-#: ../gramps/gui/viewmanager.py:1988
+#: ../gramps/gui/viewmanager.py:1986
 msgid "Backup aborted"
 msgstr "Резервное копирование прервано"
 
@@ -19493,7 +19492,7 @@ msgid "Add Child to Family"
 msgstr "Добавить ребёнка в семью"
 
 #: ../gramps/gui/widgets/grampletbar.py:206
-#: ../gramps/gui/widgets/grampletpane.py:1189
+#: ../gramps/gui/widgets/grampletpane.py:1187
 msgid "Unnamed Gramplet"
 msgstr "Безымянный грамплет"
 
@@ -19535,33 +19534,33 @@ msgstr ""
 "невозможно отменить."
 
 #. default tooltip
-#: ../gramps/gui/widgets/grampletpane.py:811
+#: ../gramps/gui/widgets/grampletpane.py:809
 msgid "Drag Properties Button to move and click it for setup"
 msgstr ""
 "Потяните мышкой кнопку «свойства» для перемещения или кликните для настроек"
 
 #. build the GUI:
-#: ../gramps/gui/widgets/grampletpane.py:1007
+#: ../gramps/gui/widgets/grampletpane.py:1005
 msgid "Right click to add gramplets"
 msgstr "Щёлкните правой кнопкой мыши, чтобы добавить грамплеты"
 
-#: ../gramps/gui/widgets/grampletpane.py:1054
+#: ../gramps/gui/widgets/grampletpane.py:1052
 msgid "Untitled Gramplet"
 msgstr "Безымянный грамплет"
 
-#: ../gramps/gui/widgets/grampletpane.py:1542
+#: ../gramps/gui/widgets/grampletpane.py:1540
 msgid "Number of Columns"
 msgstr "Количество колонок"
 
-#: ../gramps/gui/widgets/grampletpane.py:1547
+#: ../gramps/gui/widgets/grampletpane.py:1545
 msgid "Gramplet Layout"
 msgstr "Размещение грамплета"
 
-#: ../gramps/gui/widgets/grampletpane.py:1577
+#: ../gramps/gui/widgets/grampletpane.py:1575
 msgid "Use maximum height available"
 msgstr "Использовать всю доступную высоту"
 
-#: ../gramps/gui/widgets/grampletpane.py:1583
+#: ../gramps/gui/widgets/grampletpane.py:1581
 msgid "Height if not maximized"
 msgstr "Высота не максимизирована"
 
@@ -19787,7 +19786,7 @@ msgstr ""
 msgid "Upgrade Statistics"
 msgstr "Итоги обновления"
 
-#: ../gramps/plugins/db/bsddb/write.py:1153
+#: ../gramps/plugins/db/bsddb/write.py:1154
 #, python-format
 msgid ""
 "An attempt is made to save a reference key which is partly bytecode, this is "
@@ -19800,11 +19799,11 @@ msgstr ""
 
 #. Make a tuple of the functions and classes that we need for
 #. each of the primary object tables.
-#: ../gramps/plugins/db/bsddb/write.py:1220
+#: ../gramps/plugins/db/bsddb/write.py:1221
 msgid "Rebuild reference map"
 msgstr "Воссоздать таблицу ссылок"
 
-#: ../gramps/plugins/db/bsddb/write.py:1984
+#: ../gramps/plugins/db/bsddb/write.py:1986
 #, python-format
 msgid ""
 "A second transaction is started while there is still a transaction, \"%s\", "
@@ -19813,7 +19812,7 @@ msgstr ""
 "Начата вторая транзакция с базой данных, хотя текущая транзакция, «%s», ещё "
 "не завершилась."
 
-#: ../gramps/plugins/db/bsddb/write.py:2305
+#: ../gramps/plugins/db/bsddb/write.py:2307
 #: ../gramps/plugins/db/dbapi/sqlite.py:61
 msgid "Database version"
 msgstr "Версия базы данных"
@@ -20295,7 +20294,7 @@ msgstr "Включать ли пустые страницы."
 #: ../gramps/plugins/drawreport/calendarreport.py:494
 #: ../gramps/plugins/drawreport/descendtree.py:1634
 #: ../gramps/plugins/drawreport/fanchart.py:728
-#: ../gramps/plugins/drawreport/statisticschart.py:1045
+#: ../gramps/plugins/drawreport/statisticschart.py:1056
 #: ../gramps/plugins/drawreport/timeline.py:434
 #: ../gramps/plugins/graph/gvfamilylines.py:162
 #: ../gramps/plugins/graph/gvhourglass.py:352
@@ -20514,7 +20513,7 @@ msgstr "Основной стиль используемый для отобра
 #: ../gramps/plugins/drawreport/ancestortree.py:1068
 #: ../gramps/plugins/drawreport/descendtree.py:1767
 #: ../gramps/plugins/drawreport/fanchart.py:759
-#: ../gramps/plugins/drawreport/statisticschart.py:1130
+#: ../gramps/plugins/drawreport/statisticschart.py:1141
 #: ../gramps/plugins/drawreport/timeline.py:497
 #: ../gramps/plugins/textreport/alphabeticalindex.py:103
 #: ../gramps/plugins/textreport/ancestorreport.py:363
@@ -21025,10 +21024,10 @@ msgstr "Создаёт веерные карты"
 
 #. extract requested items from the database and count them
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:197
-#: ../gramps/plugins/drawreport/statisticschart.py:801
-#: ../gramps/plugins/drawreport/statisticschart.py:811
-#: ../gramps/plugins/drawreport/statisticschart.py:845
-#: ../gramps/plugins/drawreport/statisticschart.py:846
+#: ../gramps/plugins/drawreport/statisticschart.py:812
+#: ../gramps/plugins/drawreport/statisticschart.py:822
+#: ../gramps/plugins/drawreport/statisticschart.py:856
+#: ../gramps/plugins/drawreport/statisticschart.py:857
 msgid "Statistics Charts"
 msgstr "Статистические графики"
 
@@ -21145,14 +21144,14 @@ msgstr "Оба"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:311
 #: ../gramps/plugins/drawreport/statisticschart.py:413
-#: ../gramps/plugins/drawreport/statisticschart.py:774
+#: ../gramps/plugins/drawreport/statisticschart.py:785
 #: ../gramps/plugins/tool/verify.glade:645
 msgid "Men"
 msgstr "Мужчины"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:312
 #: ../gramps/plugins/drawreport/statisticschart.py:415
-#: ../gramps/plugins/drawreport/statisticschart.py:776
+#: ../gramps/plugins/drawreport/statisticschart.py:787
 #: ../gramps/plugins/tool/verify.glade:525
 msgid "Women"
 msgstr "Женщины"
@@ -21244,43 +21243,43 @@ msgstr "Пол неизвестен"
 # !!!FIXME!!!
 #. inadequate information
 #: ../gramps/plugins/drawreport/statisticschart.py:425
-#: ../gramps/plugins/drawreport/statisticschart.py:434
-#: ../gramps/plugins/drawreport/statisticschart.py:541
+#: ../gramps/plugins/drawreport/statisticschart.py:445
+#: ../gramps/plugins/drawreport/statisticschart.py:552
 msgid "Date(s) missing"
 msgstr "Отсутствуют даты"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:443
-#: ../gramps/plugins/drawreport/statisticschart.py:457
+#: ../gramps/plugins/drawreport/statisticschart.py:454
+#: ../gramps/plugins/drawreport/statisticschart.py:468
 msgid "Place missing"
 msgstr "Отсутствует место"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:465
+#: ../gramps/plugins/drawreport/statisticschart.py:476
 msgid "Already dead"
 msgstr "Умерший"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:472
+#: ../gramps/plugins/drawreport/statisticschart.py:483
 msgid "Still alive"
 msgstr "Живой"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:480
-#: ../gramps/plugins/drawreport/statisticschart.py:492
+#: ../gramps/plugins/drawreport/statisticschart.py:491
+#: ../gramps/plugins/drawreport/statisticschart.py:503
 msgid "Events missing"
 msgstr "Отсутствуют события"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:500
-#: ../gramps/plugins/drawreport/statisticschart.py:508
+#: ../gramps/plugins/drawreport/statisticschart.py:511
+#: ../gramps/plugins/drawreport/statisticschart.py:519
 msgid "Children missing"
 msgstr "Отсутствуют дети"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:530
+#: ../gramps/plugins/drawreport/statisticschart.py:541
 msgid "Birth missing"
 msgstr "Отсутствует рождение"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:631
+#: ../gramps/plugins/drawreport/statisticschart.py:642
 msgid "Personal information missing"
 msgstr "Личная информация отсутствует"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:769
+#: ../gramps/plugins/drawreport/statisticschart.py:780
 #: ../gramps/plugins/drawreport/timeline.py:118
 #: ../gramps/plugins/textreport/placereport.py:99
 #: ../gramps/plugins/textreport/recordsreport.py:91
@@ -21289,40 +21288,40 @@ msgstr "Личная информация отсутствует"
 msgid "(Living people: %(option_name)s)"
 msgstr "(Живые люди: %(option_name)s)"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:788
+#: ../gramps/plugins/drawreport/statisticschart.py:799
 #, python-format
 msgid "%(genders)s born %(year_from)04d-%(year_to)04d"
 msgstr "%(genders)s рождённые %(year_from)04d-%(year_to)04d"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:792
+#: ../gramps/plugins/drawreport/statisticschart.py:803
 #, python-format
 msgid "Persons born %(year_from)04d-%(year_to)04d"
 msgstr "Лица, рождённые %(year_from)04d-%(year_to)04d"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:802
+#: ../gramps/plugins/drawreport/statisticschart.py:813
 msgid "Collecting data..."
 msgstr "Сборка данных..."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:812
+#: ../gramps/plugins/drawreport/statisticschart.py:823
 msgid "Sorting data..."
 msgstr "Сортировка данных..."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:847
+#: ../gramps/plugins/drawreport/statisticschart.py:858
 msgid "Saving charts..."
 msgstr "Сохранение графиков..."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:901
-#: ../gramps/plugins/drawreport/statisticschart.py:939
+#: ../gramps/plugins/drawreport/statisticschart.py:912
+#: ../gramps/plugins/drawreport/statisticschart.py:950
 #, python-format
 msgid "%s (persons):"
 msgstr "%s (люди):"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:991
+#: ../gramps/plugins/drawreport/statisticschart.py:1002
 #: ../gramps/plugins/textreport/recordsreport.py:219
 msgid "Determines what people are included in the report."
 msgstr "Определяет какие люди будут включены в отчёт."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:996
+#: ../gramps/plugins/drawreport/statisticschart.py:1007
 #: ../gramps/plugins/drawreport/timeline.py:421
 #: ../gramps/plugins/textreport/birthdayreport.py:417
 #: ../gramps/plugins/textreport/indivcomplete.py:1067
@@ -21334,88 +21333,88 @@ msgid "Filter Person"
 msgstr "Фильтр по лицу"
 
 # !!!FIXME!!!
-#: ../gramps/plugins/drawreport/statisticschart.py:997
+#: ../gramps/plugins/drawreport/statisticschart.py:1008
 #: ../gramps/plugins/textreport/birthdayreport.py:418
 #: ../gramps/plugins/textreport/indivcomplete.py:1068
 msgid "The center person for the filter."
 msgstr "Главное лицо для фильтра."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1001
+#: ../gramps/plugins/drawreport/statisticschart.py:1012
 msgid "Sort chart items by"
 msgstr "Упорядочить элементы карты по"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1006
+#: ../gramps/plugins/drawreport/statisticschart.py:1017
 msgid "Select how the statistical data is sorted."
 msgstr "Выбрать метод сортировки данных."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1009
+#: ../gramps/plugins/drawreport/statisticschart.py:1020
 msgid "Sort in reverse order"
 msgstr "Сортировать в обратном порядке"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1010
+#: ../gramps/plugins/drawreport/statisticschart.py:1021
 msgid "Check to reverse the sorting order."
 msgstr "Отметьте для сортировки в обратном порядке."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1014
+#: ../gramps/plugins/drawreport/statisticschart.py:1025
 msgid "People Born After"
 msgstr "Лица, родившиеся после"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1016
+#: ../gramps/plugins/drawreport/statisticschart.py:1027
 msgid "Birth year from which to include people."
 msgstr "Год рождения, с которого включать лиц."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1019
+#: ../gramps/plugins/drawreport/statisticschart.py:1030
 msgid "People Born Before"
 msgstr "Лица, родившиеся до"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1021
+#: ../gramps/plugins/drawreport/statisticschart.py:1032
 msgid "Birth year until which to include people"
 msgstr "Год рождения, до которого включать лиц"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1024
+#: ../gramps/plugins/drawreport/statisticschart.py:1035
 msgid "Include people without known birth years"
 msgstr "Включать лиц с неизвестным годом рождения"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1026
+#: ../gramps/plugins/drawreport/statisticschart.py:1037
 msgid "Whether to include people without known birth years."
 msgstr "Включать ли лиц с неизвестным годом рождения."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1030
+#: ../gramps/plugins/drawreport/statisticschart.py:1041
 msgid "Genders included"
 msgstr "Включить пол"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1035
+#: ../gramps/plugins/drawreport/statisticschart.py:1046
 msgid "Select which genders are included into statistics."
 msgstr "Выбрать пол, включённый в статистику."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1039
+#: ../gramps/plugins/drawreport/statisticschart.py:1050
 msgid "Max. items for a pie"
 msgstr "Макс. элем. для круг. диаг."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1040
+#: ../gramps/plugins/drawreport/statisticschart.py:1051
 msgid ""
 "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
 "При меньшем количестве элементов вместо гистограммы будет использована "
 "круговая диаграмма."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1073
+#: ../gramps/plugins/drawreport/statisticschart.py:1084
 msgid "Charts 3"
 msgstr "Графики 3"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1075
+#: ../gramps/plugins/drawreport/statisticschart.py:1086
 msgid "Charts 2"
 msgstr "Графики 2"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1077
+#: ../gramps/plugins/drawreport/statisticschart.py:1088
 msgid "Charts 1"
 msgstr "Графики 1"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1079
+#: ../gramps/plugins/drawreport/statisticschart.py:1090
 msgid "Include charts with indicated data."
 msgstr "Добавить график для этого вида данных."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1121
+#: ../gramps/plugins/drawreport/statisticschart.py:1132
 #: ../gramps/plugins/textreport/placereport.py:601
 msgid "The style used for the items and values."
 msgstr "Стиль полей и значений."
