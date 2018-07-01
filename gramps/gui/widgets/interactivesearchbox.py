@@ -43,7 +43,7 @@ from gi.repository import Gtk, Gdk, GLib
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..utils import get_primary_mask
+from ..utils import match_primary_mask
 #-------------------------------------------------------------------------
 #
 # InteractiveSearchBox class
@@ -106,7 +106,7 @@ class InteractiveSearchBox:
         self._search_entry.disconnect(popup_menu_id)
 
         # Intercept CTRL+F keybinding because Gtk do not allow to _replace_ it.
-        if ((event.state & get_primary_mask())
+        if (match_primary_mask(event.state)
                 and event.keyval in [Gdk.KEY_f, Gdk.KEY_F]):
             self.__imcontext_changed = True
             # self.real_start_interactive_search(event.get_device(), True)
