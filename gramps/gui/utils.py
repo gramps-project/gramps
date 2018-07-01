@@ -714,11 +714,22 @@ def text_to_clipboard(text):
                                               Gdk.SELECTION_CLIPBOARD)
     clipboard.set_text(text, -1)
 
-def get_primary_mask(addl_mask=0):
+def match_primary_mask(test_mask, addl_mask=0):
     """
-    Obtain the IntentPrimary mask for the platform bitwise-ored with a
-    passed-in additional mask.
+    Return True if test_mask fully matches all bits of
+    GdkModifierIntent.PRIMARY_ACCELERATOR and addl_mask, False
+    otherwise.
     """
     keymap = Gdk.Keymap.get_default()
     primary = keymap.get_modifier_mask(Gdk.ModifierIntent.PRIMARY_ACCELERATOR)
-    return primary | addl_mask
+    return ((test_mask & (primary | addl_mask)) == (primary | addl_mask))
+
+def no_match_primary_mask(test_mask, addl_mask=0):
+    """
+    Return False if test_mask matches any bit of
+    GdkModifierIntent.PRIMARY_ACCELERATOR or addl_mask, True
+    otherwise.
+    """
+    keymap = Gdk.Keymap.get_default()
+    primary = keymap.get_modifier_mask(Gdk.ModifierIntent.PRIMARY_ACCELERATOR)
+    return (test_mask & (primary | addl_mask)) == 0

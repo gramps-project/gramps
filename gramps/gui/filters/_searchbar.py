@@ -32,7 +32,7 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ..utils import get_primary_mask
+from ..utils import no_match_primary_mask
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 
@@ -139,7 +139,7 @@ class SearchBar:
             self.clear_button.set_sensitive(True)
 
     def key_press(self, obj, event):
-        if not (event.get_state() & get_primary_mask()):
+        if no_match_primary_mask(event.get_state()):
             if event.keyval in (_RETURN, _KP_ENTER):
                 self.filter_button.set_sensitive(False)
                 self.clear_button.set_sensitive(True)

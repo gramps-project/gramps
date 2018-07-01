@@ -52,7 +52,7 @@ from .pageview import PageView
 from ..actiongroup import ActionGroup
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.constfunc import mod_key
-from ..utils import get_primary_mask
+from ..utils import match_primary_mask
 
 DISABLED = -1
 MRU_SIZE = 10
@@ -481,7 +481,7 @@ class NavigationView(PageView):
         if self.active:
             if event.type == Gdk.EventType.KEY_PRESS:
                 if (event.keyval == Gdk.KEY_c and
-                    (event.get_state() & get_primary_mask())):
+                    match_primary_mask(event.get_state())):
                     self.call_copy()
                     return True
         return super(NavigationView, self).key_press_handler(widget, event)

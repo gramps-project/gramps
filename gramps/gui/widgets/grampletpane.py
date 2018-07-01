@@ -48,7 +48,7 @@ from gramps.gen.errors import WindowActiveError
 from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR, COLON
 from ..editors import EditPerson, EditFamily
 from ..managedwindow import ManagedWindow
-from ..utils import is_right_click, get_primary_mask, get_link_color
+from ..utils import is_right_click, match_primary_mask, get_link_color
 from .menuitem import add_menuitem
 from ..plug import make_gui_option
 from ..plug.quick import run_quick_report_by_name
@@ -400,12 +400,11 @@ class GuiGramplet:
 
         """
         if ((Gdk.keyval_name(event.keyval) == 'Z') and
-            (event.get_state() &
-             get_primary_mask(Gdk.ModifierType.SHIFT_MASK))):
+            match_primary_mask(event.get_state(), Gdk.ModifierType.SHIFT_MASK)):
             self.redo()
             return True
         elif ((Gdk.keyval_name(event.keyval) == 'z') and
-              (event.get_state() & get_primary_mask())):
+              match_primary_mask(event.get_state())):
             self.undo()
             return True
 

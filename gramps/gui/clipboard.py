@@ -57,7 +57,7 @@ from .managedwindow import ManagedWindow
 from .glade import Glade
 from .ddtargets import DdTargets
 from .makefilter import make_filter
-from .utils import is_right_click, get_primary_mask
+from .utils import is_right_click, no_match_primary_mask
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
@@ -1572,9 +1572,9 @@ class MultiTreeView(Gtk.TreeView):
         # otherwise:
         if (target and
                 event.type == Gdk.EventType.BUTTON_PRESS and
-                self.get_selection().path_is_selected(target[0]) and not
-                (event.get_state() &
-                 get_primary_mask(Gdk.ModifierType.SHIFT_MASK))):
+                self.get_selection().path_is_selected(target[0]) and
+                no_match_primary_mask(event.get_state(),
+                                      Gdk.ModifierType.SHIFT_MASK)):
             # disable selection
             self.get_selection().set_select_function(
                 lambda *ignore: False, None)

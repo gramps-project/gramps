@@ -43,7 +43,7 @@ _ = glocale.translation.gettext
 from ...widgets import SimpleButton
 from .grampstab import GrampsTab
 from gramps.gen.errors import WindowActiveError
-from ...utils import get_primary_mask
+from ...utils import match_primary_mask
 
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 _RETURN = Gdk.keyval_from_name("Return")
@@ -220,7 +220,7 @@ class ButtonTab(GrampsTab):
                     return
                 self.add_button_clicked(obj)
             elif event.keyval in (_OPEN,) and self.share_btn and \
-                    (event.get_state() & get_primary_mask()):
+                    match_primary_mask(event.get_state()):
                 self.share_button_clicked(obj)
             elif event.keyval in (_LEFT,) and \
                     (event.get_state() & Gdk.ModifierType.MOD1_MASK):
