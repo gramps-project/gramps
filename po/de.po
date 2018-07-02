@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-20 09:31-0500\n"
-"PO-Revision-Date: 2018-04-11 19:24+0100\n"
+"PO-Revision-Date: 2018-07-02 20:18+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -24498,7 +24498,7 @@ msgstr "Geburtsort ID"
 
 #: ../gramps/plugins/importer/importcsv.py:179
 msgid "birth source"
-msgstr "Geburtsquelle"
+msgstr "Geburt Quellenangabe"
 
 #: ../gramps/plugins/importer/importcsv.py:181
 msgid "baptism place"
@@ -24514,7 +24514,7 @@ msgstr "Taufdatum"
 
 #: ../gramps/plugins/importer/importcsv.py:187
 msgid "baptism source"
-msgstr "Taufquelle"
+msgstr "Taufe Quellenangabe"
 
 #: ../gramps/plugins/importer/importcsv.py:188
 msgid "burial place"
