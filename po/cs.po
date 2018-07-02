@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Gramps package.
 # Radek Malcic <malcic@atlas.cz>, 2004
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005
-# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2017
+# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2018
 #
 # Common terms and translations:
 #  ancestor        předek
@@ -38,7 +38,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-20 09:31-0500\n"
-"PO-Revision-Date: 2018-02-26 15:08+0100\n"
+"PO-Revision-Date: 2018-07-02 19:08+0200\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -1261,9 +1261,8 @@ msgid "Database needs recovery, cannot open it!"
 msgstr "Databázi nelze otevřít, je nutná obnova!"
 
 #: ../gramps/cli/arghandler.py:558
-#, fuzzy
 msgid "Database backend unavailable, cannot open it!"
-msgstr "Databázi nelze otevřít, protože je uzamčená!"
+msgstr "Databázový backend není k dispozici, nelze jej otevřít!"
 
 #: ../gramps/cli/arghandler.py:609 ../gramps/cli/arghandler.py:658
 #: ../gramps/cli/arghandler.py:705
@@ -9598,7 +9597,7 @@ msgstr "Zaoblené"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:83
 msgid "Swing"
-msgstr ""
+msgstr "Swing"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:84
 msgid "Mesh"
@@ -12304,9 +12303,8 @@ msgstr ""
 "Vyberte si jednu z nabízených možností"
 
 #: ../gramps/gui/displaystate.py:268
-#, fuzzy
 msgid "Cannot load database"
-msgstr "Databázi nelze otevřít"
+msgstr "Databázi nelze nahrát"
 
 #: ../gramps/gui/displaystate.py:388
 #: ../gramps/plugins/gramplet/persondetails.py:173
@@ -14099,7 +14097,6 @@ msgid "Add Repository"
 msgstr "Přidat archiv"
 
 #: ../gramps/gui/editors/editrepository.py:60
-#, fuzzy
 msgid "manual|New_Repository_dialog"
 msgstr "New_Repositories_dialog"
 
@@ -15145,7 +15142,6 @@ msgstr ""
 "domu během sčítání osob nebo datum kdy byl pořízen záznam do matriky. "
 
 #: ../gramps/gui/glade/editcitation.glade:201
-#, fuzzy
 msgid ""
 "Conveys the submitter's quantitative evaluation of the credibility of a "
 "piece of information, based upon its supporting evidence. It is not intended "
@@ -15160,11 +15156,11 @@ msgstr ""
 "Zprostředkuje poskytovatelem provedené kvantitativní zhodnocení "
 "důvěryhodnosti informace založené na dalších podpůrných důkazech. Hodnocení "
 "nenahrazuje potřebu příjemce zajistit si vlastní důkazy.\n"
-"Velmi nízká = Nedůvěryhodné důkazy nebo odhadovaná data\n"
-"Nízká = Diskutabilní spolehlivost důkazů (rozhovory, sčítání osob a domů, "
-"genealogie \"per huba\" jiný potenciál pro  zkreslení, autobiografie)\n"
-"Vysoká = Nepřímý důkaz, data kýmkoli oficiálně zaznamenaná po události\n"
-"Velmi vysoká = Přímé důkazy nebo převaha důkazů "
+"-Velmi nízká = Nedůvěryhodné důkazy nebo odhadovaná data.\n"
+"-Nízká = Diskutabilní spolehlivost důkazů (rozhovory, sčítání osob a domů, "
+"genealogie \"per huba\" jiný potenciál pro  zkreslení, autobiografie).\n"
+"-Vysoká = Nepřímý důkaz, data kýmkoli oficiálně zaznamenaná po události.\n"
+"-Velmi vysoká = Přímé důkazy nebo převaha důkazů."
 
 #: ../gramps/gui/glade/editcitation.glade:226
 #: ../gramps/gui/glade/editevent.glade:312
@@ -19485,12 +19481,16 @@ msgid ""
 "\n"
 "Command-Click to follow link"
 msgstr ""
+"\n"
+"Command-klik pro následování odkazu"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:319
 msgid ""
 "\n"
 "Ctrl-Click to follow link"
 msgstr ""
+"\n"
+"Ctrl-klik pro následování odkazu"
 
 #. spell checker submenu
 #: ../gramps/gui/widgets/styledtexteditor.py:367
