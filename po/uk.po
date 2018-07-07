@@ -1,7 +1,7 @@
 # Ukrainian translation for Gramps
 # This file is distributed under the same license as the Gramps package.
-# Copyright (c) 2017 Gramps
-# Fedir Zinchuk <fedikw@gmail.com>, 2011-2017.
+# Copyright (c) 2018 Gramps
+# Fedir Zinchuk <fedikw@gmail.com>, 2011-2018.
 # Oleh Petriv, 2013.
 #
 msgid ""
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-20 09:31-0500\n"
-"PO-Revision-Date: 2017-07-02 16:42+0300\n"
+"PO-Revision-Date: 2018-07-07 17:30+0300\n"
 "Last-Translator: Fedir Zinchuk <fedikw@gmail.com>\n"
 "Language-Team: Ukrainian <fedikw@gmail.com>\n"
 "Language: uk\n"
@@ -1242,9 +1242,8 @@ msgid "Database needs recovery, cannot open it!"
 msgstr "База даних потребує відновлення, не можу відкрити!"
 
 #: ../gramps/cli/arghandler.py:558
-#, fuzzy
 msgid "Database backend unavailable, cannot open it!"
-msgstr "Базу даних заблоковано, не можу відкрити!"
+msgstr "База даних не доступна, не можу відкрити!"
 
 #: ../gramps/cli/arghandler.py:609 ../gramps/cli/arghandler.py:658
 #: ../gramps/cli/arghandler.py:705
@@ -1301,7 +1300,6 @@ msgid "Unknown action: %s."
 msgstr "Невідома дія: %s."
 
 #: ../gramps/cli/argparser.py:55
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -1348,6 +1346,8 @@ msgstr ""
 "\n"
 "Опції програми\n"
 "  -O, --open=FAMILY_TREE                 Відкрити сімейне дерево\n"
+"  -U, --username=USERNAME                Ім'я користувача бази даних\n"
+"  -P, --password=PASSWORD                Пароль користувача бази даних\n"
 "  -C, --create=FAMILY_TREE               Створити та відкрити нове дерево\n"
 "  -i, --import=FILENAME                  Імпортувати файл\n"
 "  -e, --export=FILENAME                  Експортувати файл\n"
@@ -1514,6 +1514,8 @@ msgid ""
 "WARNING: %(strerr)s (errno=%(errno)s):\n"
 "WARNING: %(name)s\n"
 msgstr ""
+"УВАГА: %(strerr)s (errno=%(errno)s):\n"
+"УВАГА: %(name)s\n"
 
 #: ../gramps/cli/argparser.py:324
 #, python-format
@@ -2040,7 +2042,7 @@ msgstr "Помилка запису звіту. "
 #: ../gramps/cli/plug/__init__.py:818
 #, python-format
 msgid "Failed to make '%s' report."
-msgstr "Помилка створення звіту '%s'"
+msgstr "Помилка створення звіту '%s'."
 
 #: ../gramps/cli/user.py:217 ../gramps/gui/dialog.py:235
 msgid "Error detected in database"
@@ -3191,6 +3193,11 @@ msgid ""
 "Please check your connection settings file:\n"
 "%(settings_file)s"
 msgstr ""
+"Не вдалося з'єднатися з базою даних.\n"
+"\n"
+"%(message)s\n"
+"Перевірте файл налаштувань з'єднання:\n"
+"%(settings_file)s"
 
 #: ../gramps/gen/db/generic.py:161 ../gramps/gen/db/generic.py:211
 #: ../gramps/gen/db/generic.py:2018 ../gramps/plugins/db/bsddb/undoredo.py:251
@@ -3271,9 +3278,8 @@ msgid "Number of tags"
 msgstr "Кількість теґів"
 
 #: ../gramps/gen/db/generic.py:2420 ../gramps/plugins/db/bsddb/write.py:2304
-#, fuzzy
 msgid "Schema version"
-msgstr "Вилучити версію"
+msgstr "Версія схеми"
 
 #. translators: needed for Arabic, ignore otherwise
 #. need for spacing on the french translation
@@ -4010,7 +4016,7 @@ msgstr "Відбирає цитати, Розділ/сторінка місти�
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:43
 #: ../gramps/gui/editors/filtereditor.py:532
 msgid "Repository filter name:"
-msgstr "Назва фільтру сховищ"
+msgstr "Назва фільтру сховищ:"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:46
 msgid ""
@@ -7085,12 +7091,10 @@ msgid "Calendar"
 msgstr "Календар"
 
 #: ../gramps/gen/lib/date.py:712
-#, fuzzy
 msgid "Modifier"
-msgstr "Змінено:"
+msgstr "Модифікатор"
 
 #: ../gramps/gen/lib/date.py:714
-#, fuzzy
 msgid "Quality"
 msgstr "Якість"
 
@@ -7110,14 +7114,12 @@ msgid "Text"
 msgstr "Текст"
 
 #: ../gramps/gen/lib/date.py:721
-#, fuzzy
 msgid "Sort value"
-msgstr "Сортувати як"
+msgstr "Сортувати значення"
 
 #: ../gramps/gen/lib/date.py:723
-#, fuzzy
 msgid "New year begins"
-msgstr "Початок нового року:  "
+msgstr "Початок нового року"
 
 #: ../gramps/gen/lib/date.py:1856
 msgid "date-quality|none"
@@ -8796,9 +8798,8 @@ msgid "Tag"
 msgstr "Мітка"
 
 #: ../gramps/gen/lib/styledtexttag.py:112
-#, fuzzy
 msgid "Ranges"
-msgstr "Діапазон"
+msgstr "Діапазони"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:61
 #: ../gramps/gui/widgets/styledtexteditor.py:456
@@ -9363,7 +9364,7 @@ msgstr "Лінії зв'язку"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:183
 msgid "How the lines between objects will be drawn."
-msgstr "Як буде намальовано лінії між об'єктами"
+msgstr "Як буде намальовано лінії між об'єктами."
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:199
@@ -9542,9 +9543,8 @@ msgstr "Нестандартний розмір"
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/gen/plug/docgen/treedoc.py:63
-#, fuzzy
 msgid "Full"
-msgstr "Повне Ім'я"
+msgstr "Повне"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:64
 #: ../gramps/plugins/tool/finddupes.py:61
@@ -9553,21 +9553,19 @@ msgstr "Середнє"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:65
 msgid "Short"
-msgstr ""
+msgstr "Коротко"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:68
 msgid "Above"
-msgstr ""
+msgstr "Вгорі"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:69
-#, fuzzy
 msgid "Below"
-msgstr "Під:"
+msgstr "Під"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:70
-#, fuzzy
 msgid "Not shown"
-msgstr "Не знайдено"
+msgstr "Не показано"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74 ../gramps/gui/configure.py:158
 #: ../gramps/gui/configure.py:1715 ../gramps/gui/views/pageview.py:606
@@ -9576,29 +9574,27 @@ msgstr "Налаштування"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:76
 msgid "Down (↓)"
-msgstr ""
+msgstr "Вниз (↓)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:77
 msgid "Up (↑)"
-msgstr ""
+msgstr "Вгору (↑)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:78
-#, fuzzy
 msgid "Right (→)"
-msgstr "Праворуч"
+msgstr "Праворуч (→)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Left (←)"
-msgstr ""
+msgstr "Ліворуч (←)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:81
 msgid "Perpendicular"
-msgstr ""
+msgstr "Перпендикулярно"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:82
-#, fuzzy
 msgid "Rounded"
-msgstr "не визначено"
+msgstr "Заокруглено"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:83
 msgid "Swing"
@@ -9610,21 +9606,19 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:89
 msgid "Tiny"
-msgstr ""
+msgstr "Мініатюрний"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:90
-#, fuzzy
 msgid "Script"
-msgstr "PostScript"
+msgstr "Скрипт"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:91
-#, fuzzy
 msgid "Footnote"
-msgstr "Нижній колонтитул"
+msgstr "Виноска"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:92
 msgid "Small"
-msgstr ""
+msgstr "Малий"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:93 ../gramps/gen/utils/string.py:57
 #: ../gramps/gui/editors/editcitation.py:212
@@ -9638,48 +9632,42 @@ msgid "Large"
 msgstr "Великий"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:95
-#, fuzzy
 msgid "Very large"
-msgstr "Всі місця"
+msgstr "Дуже великий"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:96
-#, fuzzy
 msgid "Extra large"
-msgstr "Витягнути дані про місце"
+msgstr "Екстра великий"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:97
 msgid "Huge"
-msgstr ""
+msgstr "Величезний"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:98
 msgid "Extra huge"
-msgstr ""
+msgstr "Надзвичайно величезний"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:141
-#, fuzzy
 msgid "Node Options"
-msgstr "Параметри дерева"
+msgstr "Параметри вузла"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:144
-#, fuzzy
 msgid "Node detail"
-msgstr "Див. деталі"
+msgstr "Деталі вузла"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:147
 msgid "Detail of information to be shown in a node."
-msgstr ""
+msgstr "Деталі що буде показано у вузлі."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
-#, fuzzy
 msgid "Position of marriage information."
-msgstr "Включити інформацію про Шлюб"
+msgstr "Розташування інформації про Шлюб."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:156
-#, fuzzy
 msgid "Node size"
-msgstr "розмір примітки"
+msgstr "Розмір вузла"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:157
 msgid ""
@@ -9688,9 +9676,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:162
-#, fuzzy
 msgid "Level size"
-msgstr "Розмір дерева"
+msgstr "Розмір рівня"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:163
 msgid ""
@@ -9699,9 +9686,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:171
-#, fuzzy
 msgid "Node color."
-msgstr "Кольори статі"
+msgstr "Колір вузла."
 
 #. ###############################
 #. #################
@@ -9713,62 +9699,55 @@ msgstr "Параметри дерева"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:178
-#, fuzzy
 msgid "Timeflow"
-msgstr "Час"
+msgstr "Часовий потік"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:181
 msgid "Direction that the graph will grow over time."
-msgstr ""
+msgstr "Напрям в якому граф буде розширюватися з часом."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:184
-#, fuzzy
 msgid "Edge style"
-msgstr "Стиль дерева"
+msgstr "Стиль краю"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:187
 msgid "Style of the edges between nodes."
-msgstr ""
+msgstr "Стиль країв між вузлами."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:190
 msgid "Level distance"
-msgstr ""
+msgstr "Відстань між рівнями"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:191
-#, fuzzy
 msgid ""
 "The minimum amount of free space, in mm, between levels.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
 "this corresponds to spacing between columns."
 msgstr ""
-"Мінімальна відстань в дюймах, між окремими рівнями діаграми. У вертикальних "
+"Мінімальна відстань, в міліметрах, між окремими рівнями. У вертикальних "
 "діаграмах, відповідає за відстань між рядками. В горизонтальних - за "
 "відстань між колонками."
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:202
-#, fuzzy
 msgid "Note to add to the tree"
-msgstr "Примітка, що буде розміщена на графіку"
+msgstr "Примітка, що буде додана до дерева"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:203
-#, fuzzy
 msgid "This text will be added to the tree."
-msgstr "Цей текст буде додано до графіка."
+msgstr "Цей текст буде додано до дерева."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:216
-#, fuzzy
 msgid "The size of note text."
-msgstr "Розмір шрифту для тексту примітки, в точках."
+msgstr "Розмір шрифту для примітки."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:653
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:659
-#, fuzzy
 msgid "LaTeX File"
-msgstr "LaTeX"
+msgstr "LaTeX файл"
 
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:142
 #, python-format
@@ -9815,9 +9794,8 @@ msgid "Graphs"
 msgstr "Діаграми"
 
 #: ../gramps/gen/plug/report/_constants.py:51
-#, fuzzy
 msgid "Trees"
-msgstr "Розмір дерева"
+msgstr "Дерева"
 
 #: ../gramps/gen/plug/report/_constants.py:55
 msgid "Graphics"
@@ -9981,7 +9959,7 @@ msgstr "На власній лінії"
 
 #: ../gramps/gen/plug/report/stdoptions.py:326
 msgid "Whether (and where) to include Gramps IDs"
-msgstr "Чи потрібно (та де) показувати Gramps ID біля імені."
+msgstr "Чи потрібно (та де) показувати Gramps ID біля імені"
 
 #. --------------------
 #. ###############################
@@ -10009,9 +9987,8 @@ msgid "Place format"
 msgstr "Формат розташування"
 
 #: ../gramps/gen/plug/report/stdoptions.py:341
-#, fuzzy
 msgid "Select the format to display places"
-msgstr "Оберіть формат показу імен"
+msgstr "Оберіть формат показу місць"
 
 #: ../gramps/gen/plug/report/utils.py:158
 #: ../gramps/plugins/textreport/indivcomplete.py:918
@@ -11240,106 +11217,88 @@ msgid "Set the colors used for boxes in the graphical views"
 msgstr "Вкажіть кольори, що будуть використані для блоків діаграми"
 
 #: ../gramps/gui/configure.py:588
-#, fuzzy
 msgid "Light colors"
-msgstr "Кольори сім'ї"
+msgstr "Світлі кольори"
 
 #: ../gramps/gui/configure.py:589
-#, fuzzy
 msgid "Dark colors"
-msgstr "Кольори сім'ї"
+msgstr "Темні кольори"
 
 #: ../gramps/gui/configure.py:594
-#, fuzzy
 msgid "Color scheme"
-msgstr "Кольори"
+msgstr "Схема кольорів"
 
 #: ../gramps/gui/configure.py:598
-#, fuzzy
 msgid "Restore to defaults"
-msgstr "Обнулити до стандартних?"
+msgstr "Обнулити до стандартних"
 
 #: ../gramps/gui/configure.py:604
-#, fuzzy
 msgid "Male Alive"
-msgstr "Стать чоловіча, живий"
+msgstr "Чоловік, живий"
 
 #: ../gramps/gui/configure.py:605
-#, fuzzy
 msgid "Male Dead"
-msgstr "Чоловік в якості дружини"
+msgstr "Чоловік, помер"
 
 #: ../gramps/gui/configure.py:606
-#, fuzzy
 msgid "Female Alive"
-msgstr "Стать жіноча, жива"
+msgstr "Жінка, жива"
 
 #: ../gramps/gui/configure.py:607
-#, fuzzy
 msgid "Female Dead"
-msgstr "Жінок: %d"
+msgstr "Жінка померла"
 
 #: ../gramps/gui/configure.py:608
-#, fuzzy
 msgid "Unknown Alive"
-msgstr "Стать невідомо, живе"
+msgstr "Невідомо, живий"
 
 #: ../gramps/gui/configure.py:609
-#, fuzzy
 msgid "Unknown Dead"
-msgstr "Невідома мітка"
+msgstr "Невідомий, помер"
 
 #: ../gramps/gui/configure.py:610
-#, fuzzy
 msgid "Family Node"
-msgstr "Примітка до сім'ї"
+msgstr "Вузоло Сім'ї"
 
 #: ../gramps/gui/configure.py:611
-#, fuzzy
 msgid "Family Divorced"
-msgstr "Джерела для сім’ї"
+msgstr "Сім'я розлучена"
 
 #: ../gramps/gui/configure.py:612
-#, fuzzy
 msgid "Home Person"
-msgstr "Базову особу не вказано"
+msgstr "Базова особа"
 
 #: ../gramps/gui/configure.py:613
 msgid "Border Male Alive"
 msgstr "Рамка, чоловіча, живий"
 
 #: ../gramps/gui/configure.py:614
-#, fuzzy
 msgid "Border Male Dead"
-msgstr "Рамка, чоловіча, помер"
+msgstr "Рамка, Чоловік помер"
 
 #: ../gramps/gui/configure.py:615
 msgid "Border Female Alive"
 msgstr "Рамка, жіноча, жива"
 
 #: ../gramps/gui/configure.py:616
-#, fuzzy
 msgid "Border Female Dead"
-msgstr "Рамка, жіноча, померла"
+msgstr "Рамка, Жінока померла"
 
 #: ../gramps/gui/configure.py:617
 msgid "Border Unknown Alive"
 msgstr "Рамка, невідомо, живе"
 
 #: ../gramps/gui/configure.py:618
-#, fuzzy
 msgid "Border Unknown Dead"
-msgstr "Рамка, невідомо, помер"
+msgstr "Рамка, Невідомий, помер"
 
 #: ../gramps/gui/configure.py:619
-#, fuzzy
 msgid "Border Family"
-msgstr "Об'єднати сім'ю"
+msgstr "Рамка Сім'ї"
 
 #: ../gramps/gui/configure.py:620
-#, fuzzy
 msgid "Border Family Divorced"
-msgstr "Рамка, жіноча, жива"
+msgstr "Рамка, Розлучена сім'я"
 
 #: ../gramps/gui/configure.py:628
 msgid "Colors"
@@ -11745,12 +11704,11 @@ msgstr "Рушій бази даних"
 
 #: ../gramps/gui/configure.py:1522
 msgid "Host"
-msgstr ""
+msgstr "Хост"
 
 #: ../gramps/gui/configure.py:1526
-#, fuzzy
 msgid "Port"
-msgstr "Портрет"
+msgstr "Порт"
 
 #: ../gramps/gui/configure.py:1534
 msgid "Family Tree Database path"
@@ -11930,17 +11888,15 @@ msgstr "Обрати _тип файлу:"
 
 #: ../gramps/gui/dbloader.py:401 ../gramps/gui/dbloader.py:423
 msgid "Login"
-msgstr ""
+msgstr "Користувач"
 
 #: ../gramps/gui/dbloader.py:409
-#, fuzzy
 msgid "Username: "
-msgstr "прізвище"
+msgstr "Ім'я користувача: "
 
 #: ../gramps/gui/dbloader.py:414
-#, fuzzy
 msgid "Password: "
-msgstr "Пароль:"
+msgstr "Пароль: "
 
 #: ../gramps/gui/dbloader.py:446
 msgid "Import Family Tree"
@@ -12182,6 +12138,7 @@ msgstr "Ковертувати базу даних '%s' ?"
 msgid ""
 "Do you wish to convert this family tree into a %(database_type)s database?"
 msgstr ""
+"Ви бажаєте конвертувати це сімейне дерево в %(database_type)s базу даних?"
 
 #: ../gramps/gui/dbman.py:787
 msgid "Convert"
@@ -12203,7 +12160,7 @@ msgstr "Ковертую базу даних '%s'"
 
 #: ../gramps/gui/dbman.py:810
 msgid "An attempt to export the database failed."
-msgstr "Експорт бази даних не вдався"
+msgstr "Експорт бази даних не вдався."
 
 #: ../gramps/gui/dbman.py:814
 msgid "Converting data..."
@@ -12216,7 +12173,7 @@ msgstr "(Конвертовано #%d)"
 
 #: ../gramps/gui/dbman.py:836
 msgid "An attempt to import into the database failed."
-msgstr "Імпорт в базу даних не вдався"
+msgstr "Імпорт в базу даних не вдався."
 
 #: ../gramps/gui/dbman.py:893
 msgid "Repair Family Tree?"
@@ -12355,9 +12312,8 @@ msgstr ""
 "Замість цього оберіть один із запропонованих варіантів"
 
 #: ../gramps/gui/displaystate.py:268
-#, fuzzy
 msgid "Cannot load database"
-msgstr "Не можу відкрити базу даних"
+msgstr "Не можу завантажити базу даних"
 
 #: ../gramps/gui/displaystate.py:388
 #: ../gramps/plugins/gramplet/persondetails.py:173
@@ -13089,7 +13045,7 @@ msgstr "Кілька Прізвищ"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:89
 msgid "Family Surnames"
-msgstr "Прізвища сім'ї:"
+msgstr "Прізвища сім'ї"
 
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:54
 msgid "Create and add a new web address"
@@ -13713,7 +13669,7 @@ msgid ""
 "exist! Please enter a different path"
 msgstr ""
 "Ви намагаєтесь використовувати шлях із значенням %(path)s. Цей шлях не "
-"існує! Будь ласка, вкажіть інший шлях."
+"існує! Будь ласка, вкажіть інший шлях"
 
 #: ../gramps/gui/editors/editmedia.py:324
 #: ../gramps/gui/editors/editmediaref.py:526
@@ -14008,20 +13964,22 @@ msgstr "Нове Місце"
 #. translators: translate the "S" too (and the "or" of course)
 #: ../gramps/gui/editors/editplace.py:201
 #: ../gramps/gui/editors/editplaceref.py:194
-#, fuzzy
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
-msgstr "Помилкова широта (приклад: 18\\u00b09'"
+msgstr ""
+"Помилкова широта\n"
+"(синтаксис: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 
 #. translators: translate the "E" too (and the "or" of course)
 #: ../gramps/gui/editors/editplace.py:206
 #: ../gramps/gui/editors/editplaceref.py:199
-#, fuzzy
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
-msgstr "Помилкова довгота (приклад: 18\\u00b09'"
+msgstr ""
+"Помилкова довгота\n"
+"(синтаксис: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:217
 #: ../gramps/plugins/lib/maps/geography.py:924
@@ -14060,9 +14018,8 @@ msgid "Delete Place (%s)"
 msgstr "Видалити місце (%s)"
 
 #: ../gramps/gui/editors/editplaceformat.py:49
-#, fuzzy
 msgid "Place Format Editor"
-msgstr "Редактор фільтра місць"
+msgstr "Редактор формату місць"
 
 #: ../gramps/gui/editors/editplaceformat.py:137
 msgid "New"
@@ -14146,9 +14103,8 @@ msgid "Add Repository"
 msgstr "Додати Сховище"
 
 #: ../gramps/gui/editors/editrepository.py:60
-#, fuzzy
 msgid "manual|New_Repository_dialog"
-msgstr "Нове Сховище"
+msgstr ""
 
 #: ../gramps/gui/editors/editrepository.py:92
 msgid "Edit Repository"
@@ -14783,7 +14739,7 @@ msgstr "Назва формату:"
 
 #: ../gramps/gui/glade/configure.glade:93
 msgid "Format _definition:"
-msgstr "Визначення формату"
+msgstr "Визначення формату:"
 
 #: ../gramps/gui/glade/configure.glade:140
 msgid ""
@@ -15466,7 +15422,7 @@ msgstr "Ритуал:"
 
 #: ../gramps/gui/glade/editldsord.glade:192
 msgid "LDS _Temple:"
-msgstr "Храм LDS"
+msgstr "Храм LDS:"
 
 #: ../gramps/gui/glade/editldsord.glade:223
 msgid "_Family:"
@@ -15735,7 +15691,7 @@ msgstr "Описове ім'я, що дається замість, або в д
 
 #: ../gramps/gui/glade/editname.glade:333
 msgid "Given Name(s) "
-msgstr "Ім'я"
+msgstr "Ім'я "
 
 #: ../gramps/gui/glade/editname.glade:384
 msgid "_Family Nick Name:"
@@ -15751,7 +15707,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editname.glade:424
 msgid "Family Names "
-msgstr "Прізвища"
+msgstr "Прізвища "
 
 #: ../gramps/gui/glade/editname.glade:462
 msgid "G_roup as:"
@@ -15956,7 +15912,6 @@ msgstr "Виберіть особу, яка має асоціацію з осо�
 
 #: ../gramps/gui/glade/editplace.glade:105
 #: ../gramps/gui/glade/editplaceref.glade:228
-#, fuzzy
 msgid ""
 "Either use the two fields below to enter coordinates (latitude and "
 "longitude),"
@@ -16023,7 +15978,7 @@ msgid ""
 "Field used to paste info from a web page like google, openstreetmap, ... "
 msgstr ""
 "Поле яке використовується для додавання інформації з веб ресурсів як google, "
-"openstreetmap, ..."
+"openstreetmap, ... "
 
 #: ../gramps/gui/glade/editplace.glade:264
 #: ../gramps/gui/glade/editplaceref.glade:495
@@ -16049,17 +16004,15 @@ msgstr "Назва цього місця."
 #: ../gramps/gui/glade/editplace.glade:455
 #: ../gramps/gui/glade/editplaceref.glade:617
 msgid "Invoke place name editor."
-msgstr "Викликати редактор назви місця"
+msgstr "Викликати редактор назви місця."
 
 #: ../gramps/gui/glade/editplaceformat.glade:124
-#, fuzzy
 msgid "Levels:"
-msgstr "Верхній рівень"
+msgstr "Рівні:"
 
 #: ../gramps/gui/glade/editplaceformat.glade:136
-#, fuzzy
 msgid "Street format:"
-msgstr "Формат дат"
+msgstr "Формат вулиці:"
 
 #: ../gramps/gui/glade/editplaceformat.glade:148
 #: ../gramps/gui/glade/editplacename.glade:108
@@ -16071,14 +16024,12 @@ msgid "Reverse display order"
 msgstr "Зворотній порядок показу"
 
 #: ../gramps/gui/glade/editplaceformat.glade:186
-#, fuzzy
 msgid "Number Street"
-msgstr "Кількість подій"
+msgstr "Номер вулиці"
 
 #: ../gramps/gui/glade/editplaceformat.glade:187
-#, fuzzy
 msgid "Street Number"
-msgstr "Вулиця"
+msgstr "Номер вулиці"
 
 #: ../gramps/gui/glade/editplacename.glade:156
 #: ../gramps/plugins/webreport/basepage.py:2585
@@ -16775,15 +16726,15 @@ msgstr "Колір фону"
 
 #: ../gramps/gui/glade/styleeditor.glade:587
 msgid "First li_ne:"
-msgstr "Перший рядок"
+msgstr "Перший рядок:"
 
 #: ../gramps/gui/glade/styleeditor.glade:642
 msgid "R_ight:"
-msgstr "Праворуч"
+msgstr "Праворуч:"
 
 #: ../gramps/gui/glade/styleeditor.glade:658
 msgid "L_eft:"
-msgstr "Ліворуч"
+msgstr "Ліворуч:"
 
 #: ../gramps/gui/glade/styleeditor.glade:676
 msgid "Spacing"
@@ -16901,7 +16852,7 @@ msgstr "Заповнення:"
 
 #: ../gramps/gui/glade/styleeditor.glade:1506
 msgid "Shadow"
-msgstr "Тінь:"
+msgstr "Тінь"
 
 #: ../gramps/gui/glade/styleeditor.glade:1582
 msgid "pt"
@@ -17707,7 +17658,7 @@ msgstr "Помилка встановлення"
 
 #: ../gramps/gui/plug/_windows.py:1211
 msgid "The following addons had errors: "
-msgstr "Наступні додатки мають помилки:"
+msgstr "Наступні додатки мають помилки: "
 
 #: ../gramps/gui/plug/_windows.py:1217 ../gramps/gui/plug/_windows.py:1225
 msgid "Done downloading and installing addons"
@@ -19544,12 +19495,16 @@ msgid ""
 "\n"
 "Command-Click to follow link"
 msgstr ""
+"\n"
+"Command-клік щоб перейти за посиланням"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:319
 msgid ""
 "\n"
 "Ctrl-Click to follow link"
 msgstr ""
+"\n"
+"Ctrl-клік щоб відкрити посилання"
 
 #. spell checker submenu
 #: ../gramps/gui/widgets/styledtexteditor.py:367
@@ -19628,7 +19583,7 @@ msgstr "'%s' не є коректною датою"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:26
 msgid "BSDDB"
-msgstr ""
+msgstr "BSDDB"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:27
 msgid "_BSDDB Database"
@@ -19732,33 +19687,28 @@ msgstr ""
 
 #: ../gramps/plugins/db/bsddb/write.py:2305
 #: ../gramps/plugins/db/dbapi/sqlite.py:61
-#, fuzzy
 msgid "Database version"
-msgstr "Версія бази даних db"
+msgstr "Версія бази даних"
 
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:26
 msgid "SQLite"
-msgstr ""
+msgstr "SQLite"
 
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:27
-#, fuzzy
 msgid "_SQLite Database"
-msgstr "Вся база даних"
+msgstr "_SQLite база даних"
 
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:28
-#, fuzzy
 msgid "SQLite Database"
-msgstr "Вся база даних"
+msgstr "SQLite база даних"
 
 #: ../gramps/plugins/db/dbapi/sqlite.py:62
-#, fuzzy
 msgid "Database module version"
-msgstr "Версія бази даних db"
+msgstr "Версія моделі бази даних"
 
 #: ../gramps/plugins/db/dbapi/sqlite.py:63
-#, fuzzy
 msgid "Database module location"
-msgstr "Інформація про базу даних"
+msgstr "Розташування моделі бази даних"
 
 #: ../gramps/plugins/docgen/asciidoc.py:469
 msgid "Characters per line"
@@ -23836,7 +23786,7 @@ msgstr "Кількість сімей, які представляють інт�
 
 #: ../gramps/plugins/graph/gvfamilylines.py:471
 msgid "Additional people removed:"
-msgstr ""
+msgstr "Додаткові особи вилучено:"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:474
 msgid "Additional families removed:"
@@ -25099,7 +25049,7 @@ msgstr "Вага"
 
 #: ../gramps/plugins/lib/libgedcom.py:934
 msgid "Line ignored "
-msgstr "Рядок проігноровано"
+msgstr "Рядок проігноровано "
 
 #. e.g. Illegal character (oxAB) (0xCB)... 1 NOTE xyz?pqr?lmn
 #: ../gramps/plugins/lib/libgedcom.py:1547
@@ -25314,7 +25264,7 @@ msgstr "REPO (сховище) Gramps ID %s"
 #: ../gramps/plugins/lib/libgedcom.py:7003
 #: ../gramps/plugins/lib/libgedcom.py:7988
 msgid "Only one phone number supported"
-msgstr ""
+msgstr "Підтримується лише один номер телефону"
 
 #: ../gramps/plugins/lib/libgedcom.py:7189
 msgid "HEAD (header)"
@@ -29315,7 +29265,7 @@ msgstr "Мапа"
 
 #: ../gramps/plugins/lib/maps/geography.py:1261
 msgid "Select tile cache directory for offline mode"
-msgstr "Вкажіть каталог кешування для режиму поза мережею."
+msgstr "Вкажіть каталог кешування для режиму поза мережею"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:138
 #, python-format
@@ -29362,7 +29312,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/maps/placeselection.py:283
 msgid "you have a wrong longitude for:"
-msgstr ""
+msgstr "хибна довгота для:"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:53
 msgid "Denmark"
@@ -30605,6 +30555,7 @@ msgstr "%s, "
 #, python-format
 msgid "%(event_role)s at %(event_name)s of %(primary_person)s: %(event_text)s"
 msgstr ""
+"%(event_role)s на %(event_name)s від %(primary_person)s: %(event_text)s"
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:491
@@ -30894,7 +30845,7 @@ msgstr "Стиль для заголовків другого рівня."
 #: ../gramps/plugins/textreport/endoflinereport.py:335
 #: ../gramps/plugins/textreport/placereport.py:544
 msgid "The style used for details."
-msgstr "Стиль для детальної інформації"
+msgstr "Стиль для детальної інформації."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/detdescendantreport.py:340
@@ -30926,7 +30877,7 @@ msgstr "показати осіб за поколінням"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1019
 msgid "show people by lineage"
-msgstr ""
+msgstr "показати осіб за походженням"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1020
 msgid "How people are organized in the report"
@@ -31237,7 +31188,7 @@ msgstr "Базовий стиль для назв таблиці."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1256
 msgid "The style used for image notes."
-msgstr "Стиль для приміток до зображення"
+msgstr "Стиль для приміток до зображення."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1266
 msgid "The style used for image descriptions."
@@ -31288,7 +31239,7 @@ msgstr "Примітка ID"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:83
 msgid "Link Type"
-msgstr "Тип посилання:"
+msgstr "Тип посилання"
 
 #: ../gramps/plugins/textreport/notelinkreport.py:89
 msgid "Links To"
@@ -31334,7 +31285,7 @@ msgstr "Звіт Місця"
 
 #: ../gramps/plugins/textreport/placereport.py:129
 msgid "Please select at least one place before running this."
-msgstr "Будь ласка оберіть що найменше одне місце перед початком"
+msgstr "Будь ласка оберіть що найменше одне місце перед початком."
 
 #: ../gramps/plugins/textreport/placereport.py:182
 #, python-format
@@ -31832,9 +31783,8 @@ msgstr "Перевірка цілісності"
 #. for bsddb the check_backlinks doesn't work in 'batch' mode because
 #. the table used for backlinks is closed.
 #: ../gramps/plugins/tool/check.py:230
-#, fuzzy
 msgid "Check Backlink Integrity"
-msgstr "Перевірка цілісності"
+msgstr "Перевірка цілісності зворотних посилань"
 
 #: ../gramps/plugins/tool/check.py:237
 #: ../gramps/plugins/tool/rebuildrefmap.py:78
@@ -31953,9 +31903,8 @@ msgid "Looking for event problems"
 msgstr "Пошук пошкоджених подій"
 
 #: ../gramps/plugins/tool/check.py:1240
-#, fuzzy
 msgid "Looking for backlink reference problems"
-msgstr "Пошук пошкоджених посилань на місце"
+msgstr "Пошук пошкоджених зворотних посилань"
 
 #: ../gramps/plugins/tool/check.py:1294
 msgid "Looking for person reference problems"
@@ -32282,7 +32231,7 @@ msgstr ""
 #: ../gramps/plugins/tool/check.py:2712
 #, python-format
 msgid "%d bad backlinks were fixed;\n"
-msgstr ""
+msgstr "%d хибних зворотніх посилань було виправлено;\n"
 
 #: ../gramps/plugins/tool/check.py:2714
 #: ../gramps/plugins/tool/rebuildrefmap.py:92
@@ -32307,6 +32256,8 @@ msgid ""
 "This test will create many persons and events in the current database. Do "
 "you really want to run this test?"
 msgstr ""
+"Цей тест згенерую багато випадкових осіб та подій в поточній базі даних. "
+"Дійсно бажаєте продовжити?"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:71
 msgid "Run test"
@@ -33235,13 +33186,13 @@ msgid "Reorder %s IDs ..."
 msgstr "Впорядкування %s IDs..."
 
 #: ../gramps/plugins/tool/reorderids.py:625
-#, fuzzy, python-format
+#, python-format
 msgid "Do you want to replace %s?"
-msgstr "Не включати дати та місця"
+msgstr "Бажаєте замінити %s?"
 
 #: ../gramps/plugins/tool/reorderids.py:684
 msgid "Finding and assigning unused IDs."
-msgstr "Пошук та призначення невикористаних ID"
+msgstr "Пошук та призначення невикористаних ID."
 
 #: ../gramps/plugins/tool/sortevents.py:76
 msgid "Sort Events"
@@ -33560,7 +33511,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:466
 msgid "Searches the entire database, looking for a possible loop."
-msgstr "Пошук по всій базі даних, шукаючи можливий цикл (замикання)"
+msgstr "Пошук по всій базі даних, шукаючи можливий цикл (замикання)."
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:64
 msgid "Dump Gender Statistics"
@@ -34655,7 +34606,7 @@ msgstr "Показати всі місця"
 
 #: ../gramps/plugins/view/geoplaces.py:596
 msgid "The places marker color"
-msgstr ""
+msgstr "Колір маркеру Місця"
 
 #: ../gramps/plugins/view/mediaview.py:113
 msgid "Edit the selected media object"
@@ -35218,7 +35169,7 @@ msgstr "Розповідь"
 #: ../gramps/plugins/webreport/basepage.py:2616
 #: ../gramps/plugins/webreport/place.py:177
 msgid "State/ Province"
-msgstr "Штат/Провінція:"
+msgstr "Штат/Провінція"
 
 #: ../gramps/plugins/webreport/basepage.py:1286
 #, python-format
@@ -35324,7 +35275,7 @@ msgstr "Розташування"
 #: ../gramps/plugins/webreport/basepage.py:2781
 #, python-format
 msgid " (%s) "
-msgstr ""
+msgstr " (%s) "
 
 #: ../gramps/plugins/webreport/download.py:100
 msgid ""
@@ -35437,21 +35388,20 @@ msgid "Mime Type"
 msgstr "МІМЕ тип"
 
 #: ../gramps/plugins/webreport/media.py:242
-#, fuzzy
 msgid "Creating list of media pages"
-msgstr "Створення сторінки медіа"
+msgstr "Створення списку сторінок для медіа"
 
 #: ../gramps/plugins/webreport/media.py:286
 msgid "Below unused media objects"
 msgstr "Нижче невикористовувані медіа об'єкти"
 
 #: ../gramps/plugins/webreport/media.py:411
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of %(strong2_strt)s"
 "%(total_pages)d%(strong_end)s"
 msgstr ""
-"%(strong1_start)s%(page_number)d%(strong_end)s з %(strong2_start)s"
+"%(strong1_strt)s%(page_number)d%(strong_end)s з %(strong2_strt)s"
 "%(total_pages)d%(strong_end)s"
 
 #. missing media error message
@@ -35656,11 +35606,11 @@ msgstr "Кількість поколінь для включення до гр�
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1689
 msgid "This is a secure site (https)"
-msgstr ""
+msgstr "Це безпечний сайт (https)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1691
 msgid "Whether to use http:// or https://"
-msgstr ""
+msgstr "Використовувати  http:// або https://"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1707
 msgid "Suppress Gramps ID"
@@ -35962,14 +35912,12 @@ msgstr ""
 "також адреси осіб, місця подій."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1930
-#, fuzzy
 msgid "Include the statistics page"
-msgstr "Створення сторінок статистики..."
+msgstr "Включити статичні сторінки"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1931
-#, fuzzy
 msgid "Whether or not to add statistics page"
-msgstr "Чи додавати сімейні сторінки."
+msgstr "Чи додавати статичні сторінки"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1938
 msgid "Place Map Options"
@@ -36044,7 +35992,7 @@ msgstr "Ключ API використовуються для Google maps"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1995
 msgid "Other inclusion (CMS, Web Calendar, Php)"
-msgstr ""
+msgstr "Інші включення (CMS, Web Calendar, Php)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1999
 msgid "Do we include these pages in a cms web ?"
