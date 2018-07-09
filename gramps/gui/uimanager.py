@@ -24,6 +24,7 @@ A replacement UIManager and ActionGroup.
 
 import copy
 import sys
+from ..gen.config import config
 import logging
 import xml.etree.ElementTree as ET
 
@@ -232,6 +233,8 @@ class UIManager():
         tb_show = toolbar.get_visible()
         toolbar_parent.remove(toolbar)
         toolbar = self.builder.get_object("ToolBar")  # new toolbar
+        if config.get('interface.toolbar-text'):
+            toolbar.set_style(Gtk.ToolbarStyle.BOTH)
         toolbar_parent.pack_start(toolbar, False, True, 0)
         if tb_show:
             toolbar.show_all()
