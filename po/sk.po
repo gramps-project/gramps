@@ -36700,6 +36700,193 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Nepoužiť šablónu štýlu"
 
+#: ../gramps/cli/argparser.py:53
+#, fuzzy
+msgid ""
+"\n"
+"Usage: gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
+"\n"
+"Help options\n"
+"  -?, --help                             Show this help message\n"
+"  --usage                                Display brief usage message\n"
+"\n"
+"Application options\n"
+"  -O, --open=FAMILY_TREE                 Open Family Tree\n"
+"  -C, --create=FAMILY_TREE               Create on open if new Family Tree\n"
+"  -i, --import=FILENAME                  Import file\n"
+"  -e, --export=FILENAME                  Export file\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) (use "
+"regular expressions)\n"
+"  -f, --format=FORMAT                    Specify Family Tree format\n"
+"  -a, --action=ACTION                    Specify action\n"
+"  -p, --options=OPTIONS_STRING           Specify options\n"
+"  -d, --debug=LOGGER_NAME                Enable debug logs\n"
+"  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
+"  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
+"  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab delimited\n"
+"  -u, --force-unlock                     Force unlock of Family Tree\n"
+"  -s, --show                             Show config settings\n"
+"  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
+"Gramps\n"
+"  -y, --yes                              Don't ask to confirm dangerous "
+"actions (non-GUI mode only)\n"
+"  -q, --quiet                            Suppress progress indication output "
+"(non-GUI mode only)\n"
+"  -v, --version                          Show versions\n"
+msgstr ""
+"\n"
+"Použitie: gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Dynamické moduly ktoré sa majú "
+"zaviesť\n"
+"\n"
+"Možnosti nápovedy\n"
+"  -?, --help                             Zobraziť nápovedu\n"
+"  --usage                                Zobraziť krátky popis použitia\n"
+"\n"
+"Voľby pre program\n"
+"  -O, --open=FAMILY_TREE                 Otvoriť rod. strom\n"
+"  -C, --create=FAMILY_TREE               Vytvoriť pri otvorení ak je nový "
+"rod. strom\n"
+"  -i, --import=FILENAME                  Importovať súbor\n"
+"  -e, --export=FILENAME                  Exportovať súbor\n"
+"  -f, --format=FORMAT                    Zvoliť formát rod. stromu\n"
+"  -a, --action=ACTION                    Zvoliť akciu\n"
+"  -p, --options=OPTIONS_STRING           Určiť voľby\n"
+"  -d, --debug=LOGGER_NAME                Umožniť zápis pre ladenie prog.\n"
+"  -l                                     Vypísať zoznam rodinných stromov\n"
+"  -L                                     Uviesť podrobnosti rod. stromov\n"
+"  -t                                     Vypísať zoznam rodinných stromov "
+"oddelený tabulátormi\n"
+"  -u, --force-unlock                     Odomknúť rod. strom -voľba force\n"
+"  -s, --show                             Zobraziť konfig. hodnoty\n"
+"  -c, --config=[config.setting[:value]]  Nastaviť konfig. hodnoty a spustiť "
+"Gramps\n"
+"  -y, --yes                              Nepýtať potvrdenie nebezpečných "
+"akcií (len režim bez GUI)\n"
+"  -q, --quiet                            Potlačiť zobrazenie indikácie "
+"priebehu (len režim bez GUI)\n"
+"  -v, --version                          Zobraziť verzie\n"
+
+#: ../gramps/gui/configure.py:565
+msgid "Gender Male Alive"
+msgstr "Muž, žijúci"
+
+#: ../gramps/gui/configure.py:571
+msgid "Border Male Death"
+msgstr "Lemovanie, muž nežijúci"
+
+#: ../gramps/gui/configure.py:573
+msgid "Gender Female Alive"
+msgstr "Žena, žijúca"
+
+#: ../gramps/gui/configure.py:579
+msgid "Border Female Death"
+msgstr "Lemovanie, žena nežijúca"
+
+#. #        self.add_color(grid, _('Gender Other Alive'), 5,
+#. #                        'preferences.color-gender-other-alive')
+#. #        self.add_color(grid, _('Border Other Alive'), 6,
+#. #                        'preferences.bordercolor-gender-other-alive')
+#. #        self.add_color(grid, _('Gender Other Death'), 7,
+#. #                        'preferences.color-gender-other-death')
+#. #        self.add_color(grid, _('Border Other Death'), 8,
+#. #                        'preferences.bordercolor-gender-other-death')
+#: ../gramps/gui/configure.py:589
+msgid "Gender Unknown Alive"
+msgstr "Pohlavie neuvedené, žijúci"
+
+#: ../gramps/gui/configure.py:595
+msgid "Border Unknown Death"
+msgstr "Lemovanie, pohlavia neuvedené, nežijúci"
+
+#: ../gramps/gui/configure.py:1145
+msgid "-> Hamlet/Village/Town/City"
+msgstr ""
+
+#: ../gramps/gui/configure.py:1146
+msgid "Hamlet/Village/Town/City ->"
+msgstr ""
+
+#: ../gramps/gui/dbman.py:773
+msgid "You wish to convert this database into the new DB-API format?"
+msgstr ""
+
+#: ../gramps/gui/editors/editplace.py:199
+#: ../gramps/gui/editors/editplaceref.py:192
+msgid "Invalid latitude (syntax: 18\\u00b09'"
+msgstr "Zem. šírka neplatná (syntax: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editplace.py:202
+#: ../gramps/gui/editors/editplaceref.py:195
+msgid "Invalid longitude (syntax: 18\\u00b09'"
+msgstr "Zem. dĺžka neplatná(syntax: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editrepository.py:60
+#, fuzzy
+msgid "manual|New_Repositories_dialog"
+msgstr "manual|Merge_Repositories"
+
+#: ../gramps/gui/editors/filtereditor.py:1186
+msgid ""
+"This filter is currently being used as the base for other filters. "
+"Deletingthis filter will result in removing all other filters that depend on "
+"it."
+msgstr ""
+"Tento filter sa práve používa ako základ pre ostatné filtre. Ak ho zmažete, "
+"odstránia sa všetky ktoré na ňom závisia."
+
+#: ../gramps/gui/glade/editcitation.glade:201
+msgid ""
+"Conveys the submitter's quantitative evaluation of the credibility of a "
+"piece of information, based upon its supporting evidence. It is not intended "
+"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
+"Very Low =Unreliable evidence or estimated data\n"
+"Low =Questionable reliability of evidence (interviews, census, oral "
+"genealogies, or potential for bias for example, an autobiography)\n"
+"High =Secondary evidence, data officially recorded sometime after event\n"
+"Very High =Direct and primary evidence used, or by dominance of the evidence "
+msgstr ""
+"Vyjadruje hodnotenie stupňa dôveryhodnosti informácie na základe podporných "
+"dôkazov. Jeho cieľom nie je zbaviť príjemcu potreby overovať dôkazy.\n"
+"Veľmi nízky =Nespoľahlivé dôkazy alebo odhadované údaje\n"
+"Nízky =Možné pochybnosti (rozhovory, výsledky sčítania, ústne údaje, "
+"prípadne diskutabilné, ako napr.autobiografia)\n"
+"Vysoký =Sekundárne dôkazy, dáta zaznamenané oficiálne po udalosti\n"
+"Veľmi vysoký =Priame a prvotné dôkazy alebo nesporné údaje "
+
+#: ../gramps/gui/glade/editplace.glade:105
+#: ../gramps/gui/glade/editplaceref.glade:228
+msgid ""
+"Either use the two fields below to enter coordinates(latitude and longitude),"
+msgstr ""
+
+#: ../gramps/gui/undohistory.py:57
+msgid "11"
+msgstr ""
+
+#: ../gramps/plugins/db/bsddb/write.py:2303
+#, fuzzy
+msgid "Database db version"
+msgstr "Verzia Dsddb"
+
+#: ../gramps/plugins/db/dbapi/dbapi.gpr.py:26
+msgid "DB-API"
+msgstr ""
+
+#: ../gramps/plugins/db/dbapi/inmemorydb.gpr.py:26
+msgid "In-Memory"
+msgstr ""
+
+#: ../gramps/plugins/webreport/narrativeweb.py:5367
+#, python-format
+msgid ""
+"%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+msgstr ""
+"%(strong1_start)s%(page_number)d%(strong_end)s z %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+
 #, fuzzy
 #~ msgid "Data version"
 #~ msgstr "Verzia schémy"
@@ -39592,3 +39779,18 @@ msgstr "Nepoužiť šablónu štýlu"
 
 #~ msgid "Step Siblings"
 #~ msgstr "Nevlastní súrodenci"
+
+#~ msgid "Extract Place data"
+#~ msgstr "Extrahovať údaje o mieste"
+
+#~ msgid "Description: "
+#~ msgstr "Popis: "
+
+#~ msgid "Modified: "
+#~ msgstr "Zmenený: "
+
+#~ msgid "Password:"
+#~ msgstr "Heslo:"
+
+#~ msgid "Family Sources"
+#~ msgstr "Zdroje k rodine"

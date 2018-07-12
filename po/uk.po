@@ -36590,6 +36590,190 @@ msgstr "Небраска"
 msgid "No style sheet"
 msgstr "Без таблиці стилів"
 
+#: ../gramps/cli/argparser.py:53
+msgid ""
+"\n"
+"Usage: gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
+"\n"
+"Help options\n"
+"  -?, --help                             Show this help message\n"
+"  --usage                                Display brief usage message\n"
+"\n"
+"Application options\n"
+"  -O, --open=FAMILY_TREE                 Open Family Tree\n"
+"  -C, --create=FAMILY_TREE               Create on open if new Family Tree\n"
+"  -i, --import=FILENAME                  Import file\n"
+"  -e, --export=FILENAME                  Export file\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) (use "
+"regular expressions)\n"
+"  -f, --format=FORMAT                    Specify Family Tree format\n"
+"  -a, --action=ACTION                    Specify action\n"
+"  -p, --options=OPTIONS_STRING           Specify options\n"
+"  -d, --debug=LOGGER_NAME                Enable debug logs\n"
+"  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
+"  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
+"  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab delimited\n"
+"  -u, --force-unlock                     Force unlock of Family Tree\n"
+"  -s, --show                             Show config settings\n"
+"  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
+"Gramps\n"
+"  -y, --yes                              Don't ask to confirm dangerous "
+"actions (non-GUI mode only)\n"
+"  -q, --quiet                            Suppress progress indication output "
+"(non-GUI mode only)\n"
+"  -v, --version                          Show versions\n"
+msgstr ""
+"\n"
+"Використання: gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Динамічні модулі для завантаження\n"
+"\n"
+"Параметри допомоги\n"
+"  -?, --help                             Показати цю допомогу\n"
+"  --usage                                Показати коротку довідку з "
+"використання\n"
+"\n"
+"Опції програми\n"
+"  -O, --open=FAMILY_TREE                 Відкрити сімейне дерево\n"
+"  -C, --create=FAMILY_TREE               Створити та відкрити нове дерево\n"
+"  -i, --import=FILENAME                  Імпортувати файл\n"
+"  -e, --export=FILENAME                  Експортувати файл\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       Вилучити відповідне сімейне "
+"дерево(ва) (використовує регулярний вираз)\n"
+"  -f, --format=FORMAT                    Вказати формат сімейного дерева\n"
+"  -a, --action=ACTION                    Вказати дію\n"
+"  -p, --options=OPTIONS_STRING           Вказати параметри\n"
+"  -d, --debug=LOGGER_NAME                Увімкнути журналювання\n"
+"  -l [FAMILY_TREE_PATTERN...]            Список родинних дерев\n"
+"  -L [FAMILY_TREE_PATTERN...]            Детальний список родинних дерев\n"
+"  -t [FAMILY_TREE_PATTERN...]            Список родинних дерев, розділених "
+"табуляцією\n"
+"  -u, --force-unlock                     Примусово розблокувати сімейне "
+"дерево\n"
+"  -s, --show                             Показати налаштування\n"
+"  -c, --config=[config.setting[:value]]  Встановити параметр(и) конфігурації "
+"та запустити Gramps\n"
+"  -y, --yes                              Не запитувати підтвердження в "
+"небезпечних випадках (лише режим без GUI)\n"
+"  -q, --quiet                            Не виводити індикацію прогресу "
+"(лише режим без GUI)\n"
+"  -v, --version                          Показати версію\n"
+"\n"
+
+#: ../gramps/gui/configure.py:565
+msgid "Gender Male Alive"
+msgstr "Стать чоловіча, живий"
+
+#: ../gramps/gui/configure.py:571
+msgid "Border Male Death"
+msgstr "Рамка, чоловіча, помер"
+
+#: ../gramps/gui/configure.py:573
+msgid "Gender Female Alive"
+msgstr "Стать жіноча, жива"
+
+#: ../gramps/gui/configure.py:579
+msgid "Border Female Death"
+msgstr "Рамка, жіноча, померла"
+
+#. #        self.add_color(grid, _('Gender Other Alive'), 5,
+#. #                        'preferences.color-gender-other-alive')
+#. #        self.add_color(grid, _('Border Other Alive'), 6,
+#. #                        'preferences.bordercolor-gender-other-alive')
+#. #        self.add_color(grid, _('Gender Other Death'), 7,
+#. #                        'preferences.color-gender-other-death')
+#. #        self.add_color(grid, _('Border Other Death'), 8,
+#. #                        'preferences.bordercolor-gender-other-death')
+#: ../gramps/gui/configure.py:589
+msgid "Gender Unknown Alive"
+msgstr "Стать невідомо, живе"
+
+#: ../gramps/gui/configure.py:595
+msgid "Border Unknown Death"
+msgstr "Рамка, невідомо, помер"
+
+#: ../gramps/gui/editors/editplace.py:199
+#: ../gramps/gui/editors/editplaceref.py:192
+msgid "Invalid latitude (syntax: 18\\u00b09'"
+msgstr "Помилкова широта (приклад: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editplace.py:202
+#: ../gramps/gui/editors/editplaceref.py:195
+msgid "Invalid longitude (syntax: 18\\u00b09'"
+msgstr "Помилкова довгота (приклад: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editrepository.py:60
+msgid "manual|New_Repositories_dialog"
+msgstr ""
+
+#: ../gramps/gui/editors/filtereditor.py:1186
+#, fuzzy
+msgid ""
+"This filter is currently being used as the base for other filters. "
+"Deletingthis filter will result in removing all other filters that depend on "
+"it."
+msgstr ""
+"Цей фільтр зараз використовується в якості базового для інших фільтрів. Його "
+"видалення спричинить видалення залежних від нього фільтрів."
+
+#: ../gramps/gui/glade/editcitation.glade:201
+msgid ""
+"Conveys the submitter's quantitative evaluation of the credibility of a "
+"piece of information, based upon its supporting evidence. It is not intended "
+"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
+"Very Low =Unreliable evidence or estimated data\n"
+"Low =Questionable reliability of evidence (interviews, census, oral "
+"genealogies, or potential for bias for example, an autobiography)\n"
+"High =Secondary evidence, data officially recorded sometime after event\n"
+"Very High =Direct and primary evidence used, or by dominance of the evidence "
+msgstr ""
+"Кількісно передає оцінку достовірності джерела, чи інформації, основану на "
+"доказах. Це не виключає потребу читача оцінювати докази самостійно.\n"
+"Дуже Низька =Недостовірне джерело, чи дата\n"
+"Низька =Достовірність доказів під питанням (антерв'ю, перепис населення, "
+"усний переказ, потенційно суб'єктивна думка, (напр. автобіграфія)\n"
+"Висока =Вторинні докази, дані офіційно зафіксовані після події\n"
+"Дуже Висока =Прямі і первинні докази "
+
+#: ../gramps/gui/glade/editplace.glade:105
+#: ../gramps/gui/glade/editplaceref.glade:228
+msgid ""
+"Either use the two fields below to enter coordinates(latitude and longitude),"
+msgstr ""
+"Використовуйте два поля нижче, щоб ввести координати (широта та довгота),"
+
+#. -------------------------------------------------------------------------
+#.
+#. Constants
+#.
+#. -------------------------------------------------------------------------
+#. FIXME
+#: ../gramps/gui/selectors/selectsource.py:46
+#, fuzzy
+msgid "manual|xxxx"
+msgstr "Мітки"
+
+#: ../gramps/plugins/db/bsddb/write.py:2303
+msgid "Database db version"
+msgstr "Версія бази даних db"
+
+#: ../gramps/plugins/db/dbapi/dbapi.gpr.py:26
+msgid "DB-API"
+msgstr ""
+
+#: ../gramps/plugins/db/dbapi/inmemorydb.gpr.py:26
+msgid "In-Memory"
+msgstr ""
+
+#: ../gramps/plugins/webreport/narrativeweb.py:5367
+#, python-format
+msgid ""
+"%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+msgstr ""
+"%(strong1_start)s%(page_number)d%(strong_end)s з %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+
 #~ msgid "Data version"
 #~ msgstr "Версія даних"
 
@@ -39901,3 +40085,22 @@ msgstr "Без таблиці стилів"
 
 #~ msgid "<b>Options</b>"
 #~ msgstr "<b>Параметри</b>"
+
+#~ msgid "Extract Place data"
+#~ msgstr "Витягнути дані про місце"
+
+#, fuzzy
+#~ msgid "Description: "
+#~ msgstr "Опис:"
+
+#~ msgid "Modified: "
+#~ msgstr "Змінено:"
+
+#~ msgid "Password:"
+#~ msgstr "Пароль:"
+
+#~ msgid "Family Sources"
+#~ msgstr "Джерела для сім’ї"
+
+#~ msgid "Include Marriage information"
+#~ msgstr "Включити інформацію про Шлюб"

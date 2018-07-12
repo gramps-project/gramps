@@ -11,7 +11,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: GRAMPS 5.1.X\n"
+"Project-Id-Version: GRAMPS 4.2.X\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-20 09:31-0500\n"
 "PO-Revision-Date: 2017-09-24 11:44+0200\n"
@@ -36838,6 +36838,171 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Nincs stíluslap"
 
+#: ../gramps/cli/argparser.py:53
+msgid ""
+"\n"
+"Usage: gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
+"\n"
+"Help options\n"
+"  -?, --help                             Show this help message\n"
+"  --usage                                Display brief usage message\n"
+"\n"
+"Application options\n"
+"  -O, --open=FAMILY_TREE                 Open Family Tree\n"
+"  -C, --create=FAMILY_TREE               Create on open if new Family Tree\n"
+"  -i, --import=FILENAME                  Import file\n"
+"  -e, --export=FILENAME                  Export file\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) (use "
+"regular expressions)\n"
+"  -f, --format=FORMAT                    Specify Family Tree format\n"
+"  -a, --action=ACTION                    Specify action\n"
+"  -p, --options=OPTIONS_STRING           Specify options\n"
+"  -d, --debug=LOGGER_NAME                Enable debug logs\n"
+"  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
+"  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
+"  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab delimited\n"
+"  -u, --force-unlock                     Force unlock of Family Tree\n"
+"  -s, --show                             Show config settings\n"
+"  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
+"Gramps\n"
+"  -y, --yes                              Don't ask to confirm dangerous "
+"actions (non-GUI mode only)\n"
+"  -q, --quiet                            Suppress progress indication output "
+"(non-GUI mode only)\n"
+"  -v, --version                          Show versions\n"
+msgstr ""
+"\n"
+"Használat: gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     A betöltendő dinamikus modulok\n"
+"\n"
+"Súgó opciók\n"
+"  -?, --help                             Ennek a Súgóüzeneteknek a mutatása\n"
+"  --usage                                Rövid használati üzenetek mutatása\n"
+"\n"
+"Alkalmazás opciók\n"
+"  -O, --open=FAMILY_TREE                 Családfa megnyitása\n"
+"  -C, --create=FAMILY_TREE               Ha új Családfa, annak létrehozása a "
+"megnyitotton\n"
+"  -i, --import=FILENAME                  Fájl importálása\n"
+"  -e, --export=FILENAME                  Fájl exportálása\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       Az egyező Családfa(ák) eltávolítása "
+"(reguláris kifejezések használatával)\n"
+"  -f, --format=FORMAT                    Családfa formátum meghatározása\n"
+"  -a, --action=ACTION                    Tevékenység meghatározása\n"
+"  -p, --options=OPTIONS_STRING           Opciók meghatározása\n"
+"  -d, --debug=LOGGER_NAME                Hibakereső logok bekapcsolása\n"
+"  -l [FAMILY_TREE_PATTERN...]            Családfák listázása\n"
+"  -L [FAMILY_TREE_PATTERN...]            Családfák részletes listázása\n"
+"  -t [FAMILY_TREE_PATTERN...]            Családfák listázása tabulátor "
+"korlátozással\n"
+"  -u, --force-unlock                     Családfa kényszerített feloldása\n"
+"  -s, --show                             Beállítások mutatása\n"
+"  -c, --config=[config.setting[:value]]  Beállítás(ok) megadása és a GRAMPS "
+"indítása\n"
+"  .y, --yes                              Ne kérdezzen rá a veszélyes "
+"műveletekre (csak nem grafikus módban)\n"
+"  -q, --quiet                            A haladásjelző kimenet elrejtése "
+"(csak nem grafikus módban)\n"
+"  -v, --version                          Verziók mutatása\n"
+
+#: ../gramps/gui/configure.py:565
+msgid "Gender Male Alive"
+msgstr "Élő férfi"
+
+#: ../gramps/gui/configure.py:571
+msgid "Border Male Death"
+msgstr "Halott férfi határa"
+
+#: ../gramps/gui/configure.py:573
+msgid "Gender Female Alive"
+msgstr "Élő nő"
+
+#: ../gramps/gui/configure.py:579
+msgid "Border Female Death"
+msgstr "Halott nő határa"
+
+#. #        self.add_color(grid, _('Gender Other Alive'), 5,
+#. #                        'preferences.color-gender-other-alive')
+#. #        self.add_color(grid, _('Border Other Alive'), 6,
+#. #                        'preferences.bordercolor-gender-other-alive')
+#. #        self.add_color(grid, _('Gender Other Death'), 7,
+#. #                        'preferences.color-gender-other-death')
+#. #        self.add_color(grid, _('Border Other Death'), 8,
+#. #                        'preferences.bordercolor-gender-other-death')
+#: ../gramps/gui/configure.py:589
+msgid "Gender Unknown Alive"
+msgstr "Élő ismeretlen nemű"
+
+#: ../gramps/gui/configure.py:595
+msgid "Border Unknown Death"
+msgstr "Ismeretlen halott határa"
+
+#: ../gramps/gui/editors/editplace.py:199
+#: ../gramps/gui/editors/editplaceref.py:192
+msgid "Invalid latitude (syntax: 18\\u00b09'"
+msgstr "Érvénytelen szélességi fok (szintaktika: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editplace.py:202
+#: ../gramps/gui/editors/editplaceref.py:195
+msgid "Invalid longitude (syntax: 18\\u00b09'"
+msgstr "Érvénytelen hosszúsági fok (szintaktika: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editrepository.py:60
+msgid "manual|New_Repositories_dialog"
+msgstr "manual|Új_Tárolók_párbeszéd_ablak"
+
+#: ../gramps/gui/editors/filtereditor.py:1186
+msgid ""
+"This filter is currently being used as the base for other filters. "
+"Deletingthis filter will result in removing all other filters that depend on "
+"it."
+msgstr ""
+"Ez a szűrő alapja más szűrőknek. A szűrő törlése minden más tőle függő "
+"szűrőt is eltávolít."
+
+#: ../gramps/gui/glade/editcitation.glade:201
+msgid ""
+"Conveys the submitter's quantitative evaluation of the credibility of a "
+"piece of information, based upon its supporting evidence. It is not intended "
+"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
+"Very Low =Unreliable evidence or estimated data\n"
+"Low =Questionable reliability of evidence (interviews, census, oral "
+"genealogies, or potential for bias for example, an autobiography)\n"
+"High =Secondary evidence, data officially recorded sometime after event\n"
+"Very High =Direct and primary evidence used, or by dominance of the evidence "
+msgstr ""
+"Az előterjesztő információdarabjának hitelességét mutatja a támogató "
+"bizonyíték alapján végzett minőségellenőrzést követően. Ez nem csökkenti a "
+"befogadó kötelességét magának a bizonyítéknak az ellenőrzésében.\n"
+"Nagyon alacsony =Megbízhatatlan bizonyíték, vagy feltételezett adat\n"
+"Alacsony =A bizonyíték (riport, népszámlálás, szóbeli származástan, vagy "
+"potenciálisan elfogult, például egy önéletrajz) kérdéses megbízhatóságú\n"
+"Magas =Másodlagos bizonyíték, az adatokat hivatalosan néha az esemény után "
+"rögzítették\n"
+"Nagyon magas =Közvetlen és elsődleges bizonyíték ismert, vagy a bizonyíték "
+"túlsúlya alapján "
+
+#: ../gramps/gui/glade/editplace.glade:105
+#: ../gramps/gui/glade/editplaceref.glade:228
+msgid ""
+"Either use the two fields below to enter coordinates(latitude and longitude),"
+msgstr ""
+"A lenti két mezőt használja koordináták (szélesség és hosszúság) bevitelére,"
+
+#: ../gramps/plugins/db/bsddb/write.py:2303
+msgid "Database db version"
+msgstr "Adatbázis db verzió"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:5367
+#, python-format
+msgid ""
+"%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+msgstr ""
+"%(strong1_start)s%(page_number)d%(strong_end)s a(z) %(strong2_start)s"
+"%(total_pages)d%(strong_end)s-bó(ő)l"
+
 #~ msgid "Gender Male Death"
 #~ msgstr "Halott férfi"
 
@@ -39831,3 +39996,18 @@ msgstr "Nincs stíluslap"
 
 #~ msgid "State/County:"
 #~ msgstr "Állam/Megye:"
+
+#~ msgid "Extract Place data"
+#~ msgstr "Pontos hely adatok"
+
+#~ msgid "Description: "
+#~ msgstr "Leírás: "
+
+#~ msgid "Modified: "
+#~ msgstr "Módosított: "
+
+#~ msgid "Password:"
+#~ msgstr "Jelszó:"
+
+#~ msgid "Family Sources"
+#~ msgstr "Család források"

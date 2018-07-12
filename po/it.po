@@ -36950,6 +36950,77 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Nessun foglio di stile"
 
+#: ../gramps/gui/configure.py:565
+msgid "Gender Male Alive"
+msgstr "Maschio in vita"
+
+#: ../gramps/gui/configure.py:571
+msgid "Border Male Death"
+msgstr "Maschio deceduto, bordo"
+
+#: ../gramps/gui/configure.py:573
+msgid "Gender Female Alive"
+msgstr "Femmina in vita"
+
+#: ../gramps/gui/configure.py:579
+msgid "Border Female Death"
+msgstr "Femmina deceduta, bordo"
+
+#. #        self.add_color(grid, _('Gender Other Alive'), 5,
+#. #                        'preferences.color-gender-other-alive')
+#. #        self.add_color(grid, _('Border Other Alive'), 6,
+#. #                        'preferences.bordercolor-gender-other-alive')
+#. #        self.add_color(grid, _('Gender Other Death'), 7,
+#. #                        'preferences.color-gender-other-death')
+#. #        self.add_color(grid, _('Border Other Death'), 8,
+#. #                        'preferences.bordercolor-gender-other-death')
+#: ../gramps/gui/configure.py:589
+msgid "Gender Unknown Alive"
+msgstr "Sesso sconosciuto in vita"
+
+#: ../gramps/gui/configure.py:595
+msgid "Border Unknown Death"
+msgstr "Sesso sconosciuto deceduto, bordo"
+
+#: ../gramps/gui/configure.py:1145
+msgid "-> Hamlet/Village/Town/City"
+msgstr ""
+
+#: ../gramps/gui/configure.py:1146
+msgid "Hamlet/Village/Town/City ->"
+msgstr ""
+
+#: ../gramps/gui/configure.py:1151
+msgid "Restrict"
+msgstr ""
+
+#: ../gramps/gui/editors/editrepository.py:60
+#, fuzzy
+msgid "manual|New_Repositories_dialog"
+msgstr "Finestra_nuovo_deposito"
+
+#: ../gramps/gui/glade/editcitation.glade:201
+msgid ""
+"Conveys the submitter's quantitative evaluation of the credibility of a "
+"piece of information, based upon its supporting evidence. It is not intended "
+"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
+"Very Low =Unreliable evidence or estimated data\n"
+"Low =Questionable reliability of evidence (interviews, census, oral "
+"genealogies, or potential for bias for example, an autobiography)\n"
+"High =Secondary evidence, data officially recorded sometime after event\n"
+"Very High =Direct and primary evidence used, or by dominance of the evidence "
+msgstr ""
+"Comunica la valutazione quantitativa della credibilità di un'informazione da "
+"parte di chi l'ha segnalata, sulla base delle prove a supporto. Non è "
+"pensata per eliminare la necessità, da parte di chi la riceve, di valutare "
+"la prova per sé stesso.\n"
+"Molto bassa =prova o dati stimati non affidabili\n"
+"Bassa =affidabilità discutibile della prova (interviste, censimento, "
+"genealogia orale, o possibile imparzialità - ad esempio un'autobiografia)\n"
+"Alta =prova secondaria, dati registrati in modo ufficiale qualche tempo dopo "
+"l'evento\n"
+"Molto alta =prova diretta o primaria, o per evidenza della prova "
+
 #~ msgid "Gender Male Death"
 #~ msgstr "Maschio deceduto"
 
@@ -43802,3 +43873,18 @@ msgstr "Nessun foglio di stile"
 #~ msgid "Matches notes who contain text "
 #~ msgstr ""
 #~ "Estrae le persone che sono ascendenti di qualcuno estratto con un filtro"
+
+#~ msgid "Extract Place data"
+#~ msgstr "Estrai dati dei luoghi"
+
+#~ msgid "Family Sources"
+#~ msgstr "Fonti familiari"
+
+#~ msgid "Include Marriage information"
+#~ msgstr "Includi le informazioni matrimoniali"
+
+#~ msgid "Marker Colors"
+#~ msgstr "Colori marcatore"
+
+#~ msgid "Name Format Editor"
+#~ msgstr "Editor formato nome"

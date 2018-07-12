@@ -37066,6 +37066,166 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Kein Stylesheet"
 
+#: ../gramps/cli/argparser.py:53
+msgid ""
+"\n"
+"Usage: gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
+"\n"
+"Help options\n"
+"  -?, --help                             Show this help message\n"
+"  --usage                                Display brief usage message\n"
+"\n"
+"Application options\n"
+"  -O, --open=FAMILY_TREE                 Open Family Tree\n"
+"  -C, --create=FAMILY_TREE               Create on open if new Family Tree\n"
+"  -i, --import=FILENAME                  Import file\n"
+"  -e, --export=FILENAME                  Export file\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) (use "
+"regular expressions)\n"
+"  -f, --format=FORMAT                    Specify Family Tree format\n"
+"  -a, --action=ACTION                    Specify action\n"
+"  -p, --options=OPTIONS_STRING           Specify options\n"
+"  -d, --debug=LOGGER_NAME                Enable debug logs\n"
+"  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
+"  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
+"  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab delimited\n"
+"  -u, --force-unlock                     Force unlock of Family Tree\n"
+"  -s, --show                             Show config settings\n"
+"  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
+"Gramps\n"
+"  -y, --yes                              Don't ask to confirm dangerous "
+"actions (non-GUI mode only)\n"
+"  -q, --quiet                            Suppress progress indication output "
+"(non-GUI mode only)\n"
+"  -v, --version                          Show versions\n"
+msgstr ""
+"\n"
+"Aufruf: gramps.py [OPTION...]\n"
+"  --load-modules=MODUL1,MODUL2,...     Dynamische Module zum nachladen\n"
+"\n"
+"Hilfeoptionen\n"
+"  -?, --help                             Zeigt diese Hilfe\n"
+"  --usage                               Zeigt eine kurze "
+"Verwendungsnachricht\n"
+"\n"
+"Anwendungsoptionen\n"
+" -O, --open=STAMMBAUM                 Stammbaum öffnen\n"
+" -C, --create=Stammbaum                 Stammbaum wird beim Öffnen erstellt "
+"wenn neu\n"
+" -i, --import=DATEINAME                 Importiert eine Datei\n"
+" -e, --export=DATEINAME                 Exportiert eine Datei\n"
+" -r, --remove=STAMMBAUMMUSTER       Entfernt passende Stammbäume (verwende "
+"Reguläre Ausdrücke)\n"
+" -f, --format=FORMAT                    Format festlegen\n"
+" -a, --action=AKTION                    Aktion festlegen\n"
+" -p, --options=OPTIONENZEICHENKETTE           Optionen festlegen\n"
+" -d, --debug=LOGGER_NAME                Fehleranalyse: Aufzeichnung "
+"einschalten\n"
+" -l [STAMMBAUMMUSTER...]                 Liste die Stammbäume\n"
+" -L [STAMMBAUMMUSTER..]                 Listet die Stammbäume im Detail\n"
+" -t [STAMMBAUMMUSTER..]                  Listet die Stammbäume, mit "
+"Tabulator getrennt\n"
+" -u, --force-unlock                     Erzwingt die Entsperrung des "
+"Stammbaums\n"
+" -s, --show                             Zeigt die "
+"Konfigurationseinstellung(en)\n"
+" -c ,--config=[config.setting[:Wert]]   Setzt die "
+"Konfigurationseinstellung(en) und startet Gramps\n"
+" -y, --yes                               Bei gefährlichen Aktion nicht "
+"nachfragen (nur nicht-GUI Modus)\n"
+" -q, --quiet                            Blendet die Fortschrittsanzeige aus "
+"(nur nicht-GUI Modus 'Graphical User Interface')\n"
+"  -v,--version                          Zeigt die Versionen\n"
+"  -b, --databases                  Zeigt verfügbare Datenbankbackends\n"
+
+#: ../gramps/gui/configure.py:565
+msgid "Gender Male Alive"
+msgstr "Geschlecht von 'männlich lebt'"
+
+#: ../gramps/gui/configure.py:571
+msgid "Border Male Death"
+msgstr "Rand von 'männlich tot'"
+
+#: ../gramps/gui/configure.py:573
+msgid "Gender Female Alive"
+msgstr "Geschlecht von 'weiblich lebt'"
+
+#: ../gramps/gui/configure.py:579
+msgid "Border Female Death"
+msgstr "Rand von 'weiblich tot'"
+
+#. #        self.add_color(grid, _('Gender Other Alive'), 5,
+#. #                        'preferences.color-gender-other-alive')
+#. #        self.add_color(grid, _('Border Other Alive'), 6,
+#. #                        'preferences.bordercolor-gender-other-alive')
+#. #        self.add_color(grid, _('Gender Other Death'), 7,
+#. #                        'preferences.color-gender-other-death')
+#. #        self.add_color(grid, _('Border Other Death'), 8,
+#. #                        'preferences.bordercolor-gender-other-death')
+#: ../gramps/gui/configure.py:589
+msgid "Gender Unknown Alive"
+msgstr "Geschlecht von 'unbekannt lebt'"
+
+#: ../gramps/gui/configure.py:595
+msgid "Border Unknown Death"
+msgstr "Rand von 'unbekannt tot'"
+
+#: ../gramps/gui/editors/editplace.py:199
+#: ../gramps/gui/editors/editplaceref.py:192
+msgid "Invalid latitude (syntax: 18\\u00b09'"
+msgstr "Ungültiger Breitengrad (Syntax: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editplace.py:202
+#: ../gramps/gui/editors/editplaceref.py:195
+msgid "Invalid longitude (syntax: 18\\u00b09'"
+msgstr "Ungültiger Längengrad (Syntax: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editrepository.py:60
+msgid "manual|New_Repositories_dialog"
+msgstr "Neue_Aufbewahrungsorte_Dialog"
+
+#: ../gramps/gui/glade/editcitation.glade:201
+msgid ""
+"Conveys the submitter's quantitative evaluation of the credibility of a "
+"piece of information, based upon its supporting evidence. It is not intended "
+"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
+"Very Low =Unreliable evidence or estimated data\n"
+"Low =Questionable reliability of evidence (interviews, census, oral "
+"genealogies, or potential for bias for example, an autobiography)\n"
+"High =Secondary evidence, data officially recorded sometime after event\n"
+"Very High =Direct and primary evidence used, or by dominance of the evidence "
+msgstr ""
+"Vermittelt die vom Einsender stammende quantitative "
+"Glaubwürdigkeitsbewertung einer Information, basierend auf den "
+"Anhaltspunkten in den Belegen. Dies befreit den Datenempfänger nicht von der "
+"Notwendigkeit, die Daten für sich selbst zu bewerten.  "
+"Bewertungsschlüssel: \n"
+"Sehr niedrig = Unzuverlässige Beweismittel oder geschätzte Daten.\n"
+"Niedrig      = Fragwürdige Zuverlässigkeit, also Belege, wo die Möglichkeit "
+"für Beeinflussungen gegeben ist, z.B. Interviews, Volkszählungen, mündliche "
+"Genealogien, eine Autobiographie.\n"
+"Hoch         = Sekundäre Belege, z.B. Daten, die nach dem Ereignis offiziell "
+"aufgezeichnet wurden.\n"
+"Sehr hoch    = Direkte, primäre Belege oder logische Ableitungen."
+
+#: ../gramps/gui/glade/editplace.glade:105
+#: ../gramps/gui/glade/editplaceref.glade:228
+msgid ""
+"Either use the two fields below to enter coordinates(latitude and longitude),"
+msgstr ""
+"Verwende entweder die beiden Felder unten  um die Koordinaten (Längen- und "
+"Breitengrad) einzugeben,"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:5365
+#, python-format
+msgid ""
+"%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+msgstr ""
+"%(strong1_start)s%(page_number)d%(strong_end)s von %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+
 #~ msgid "Suppress comma after house number"
 #~ msgstr "Unterdrücke Komma nach Hausnummer"
 
@@ -41931,3 +42091,25 @@ msgstr "Kein Stylesheet"
 
 #~ msgid "Creating event page %02d of %02d"
 #~ msgstr "Erstelle Ereignisseite %02d von %02d"
+
+#~ msgid "Extract Place data"
+#~ msgstr "Ortsdaten extrahieren"
+
+#, fuzzy
+#~ msgid "Number (Short)"
+#~ msgstr "Standortnummer/Signatur"
+
+#~ msgid "Password:"
+#~ msgstr "Kennwort:"
+
+#~ msgid "Family Sources"
+#~ msgstr "Familienquellen"
+
+#~ msgid "Include Marriage information"
+#~ msgstr "Heiratsinformationen aufnehmen"
+
+#~ msgid "Marker Colors"
+#~ msgstr "Markierungsfarben"
+
+#~ msgid "Name Format Editor"
+#~ msgstr "Namensformat Editor"

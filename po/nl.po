@@ -37543,6 +37543,162 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Geen stijlblad"
 
+#: ../gramps/cli/argparser.py:53
+msgid ""
+"\n"
+"Usage: gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
+"\n"
+"Help options\n"
+"  -?, --help                             Show this help message\n"
+"  --usage                                Display brief usage message\n"
+"\n"
+"Application options\n"
+"  -O, --open=FAMILY_TREE                 Open Family Tree\n"
+"  -C, --create=FAMILY_TREE               Create on open if new Family Tree\n"
+"  -i, --import=FILENAME                  Import file\n"
+"  -e, --export=FILENAME                  Export file\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) (use "
+"regular expressions)\n"
+"  -f, --format=FORMAT                    Specify Family Tree format\n"
+"  -a, --action=ACTION                    Specify action\n"
+"  -p, --options=OPTIONS_STRING           Specify options\n"
+"  -d, --debug=LOGGER_NAME                Enable debug logs\n"
+"  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
+"  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
+"  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab delimited\n"
+"  -u, --force-unlock                     Force unlock of Family Tree\n"
+"  -s, --show                             Show config settings\n"
+"  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
+"Gramps\n"
+"  -y, --yes                              Don't ask to confirm dangerous "
+"actions (non-GUI mode only)\n"
+"  -q, --quiet                            Suppress progress indication output "
+"(non-GUI mode only)\n"
+"  -v, --version                          Show versions\n"
+msgstr ""
+"\n"
+"Gebruik: gramps.py [OPTIE...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Welke dynamische modules geladen "
+"worden\n"
+"\n"
+"Hulpopties\n"
+"  -?, --help                             deze helpboodschap tonen\n"
+" --usage                                korte boodschap over het gebruik "
+"tonen\n"
+" \n"
+"Toepassingsopties\n"
+"  -O, --open=STAMBOOM                 stamboom openen\n"
+"  -C, --create=STAMBOOM               nieuwe stamboom aanmaken en openen\n"
+"  -i, --import=BESTANDSNAAM                  bestand importeren\n"
+"  -e, --export=BESTANDSNAAM                  bestand exporteren\n"
+"  -r, --remove=BESTANDSNAAM                bestand verwijderen\n"
+"  -f, --format=FORMAAT                    een bestandsformaat opgeven\n"
+"  -a, --action=ACTIE                    actie opgeven\n"
+"  -p, --options=OPTIETEKST           opties opgeven\n"
+"  -d, --debug=LOG_NAAM                foutmeldingenrapportage activeren\n"
+"  -l  [STAMBOOMPATROON...]      Lijst van stambomen\n"
+"  -L [STAMBOOMPATROON...]      Lijst van stambomen met details\n"
+"  -t  [STAMBOOMPATROON...]      Lijst van stambomen, tabgescheiden\n"
+"  -u, --force-unlock                     ontgrendelen van stamboom forceren\n"
+"  -s, --show                        instellingen tonen\n"
+"  -c, --config=[config.setting[:waarde]]  instellingen vastleggen en Gramps "
+"starten\n"
+"  -y, --yes                              niet om bevestiging vragen bij het "
+"uitvoeren van gevaarlijke acties (alleen in tekstmodus)\n"
+"  -q, --quiet                            weergave voortgangsindicator "
+"onderdrukken (alleen in tekstmodus)\n"
+"  -v, --version                          versies tonen\n"
+
+#: ../gramps/gui/configure.py:565
+msgid "Gender Male Alive"
+msgstr "Achtergrond mannen nog in leven"
+
+#: ../gramps/gui/configure.py:571
+msgid "Border Male Death"
+msgstr "Rand overleden mannen"
+
+#: ../gramps/gui/configure.py:573
+msgid "Gender Female Alive"
+msgstr "Achtergrond vrouwen nog in leven"
+
+#: ../gramps/gui/configure.py:579
+msgid "Border Female Death"
+msgstr "Rand overleden vrouwen"
+
+#. #        self.add_color(grid, _('Gender Other Alive'), 5,
+#. #                        'preferences.color-gender-other-alive')
+#. #        self.add_color(grid, _('Border Other Alive'), 6,
+#. #                        'preferences.bordercolor-gender-other-alive')
+#. #        self.add_color(grid, _('Gender Other Death'), 7,
+#. #                        'preferences.color-gender-other-death')
+#. #        self.add_color(grid, _('Border Other Death'), 8,
+#. #                        'preferences.bordercolor-gender-other-death')
+#: ../gramps/gui/configure.py:589
+msgid "Gender Unknown Alive"
+msgstr "Achtergrond onbekend geslacht nog in leven"
+
+#: ../gramps/gui/configure.py:595
+msgid "Border Unknown Death"
+msgstr "Rand onbekend geslacht overleden"
+
+#: ../gramps/gui/editors/editplace.py:199
+#: ../gramps/gui/editors/editplaceref.py:192
+msgid "Invalid latitude (syntax: 18\\u00b09'"
+msgstr "Ongeldige breedtegraad (syntax: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editplace.py:202
+#: ../gramps/gui/editors/editplaceref.py:195
+msgid "Invalid longitude (syntax: 18\\u00b09'"
+msgstr "Ongeldige lengtegraad (syntax: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editrepository.py:60
+msgid "manual|New_Repositories_dialog"
+msgstr "_Bibliotheken"
+
+#: ../gramps/gui/glade/editcitation.glade:201
+msgid ""
+"Conveys the submitter's quantitative evaluation of the credibility of a "
+"piece of information, based upon its supporting evidence. It is not intended "
+"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
+"Very Low =Unreliable evidence or estimated data\n"
+"Low =Questionable reliability of evidence (interviews, census, oral "
+"genealogies, or potential for bias for example, an autobiography)\n"
+"High =Secondary evidence, data officially recorded sometime after event\n"
+"Very High =Direct and primary evidence used, or by dominance of the evidence "
+msgstr ""
+"Een kwantitatieve beoordeling van de geloofwaardigheid van de informatie "
+"gebaseerd op ondersteund bewijs. Het is echter niet bedoeld om de evaluatie "
+"van de geloofwaardigheid zelf te vervangen.\n"
+"Zeer laag =onbetrouwbaar bewijs of geschatte gegevens\n"
+"Laag =Betrouwbaarheid van het bewijs is twijfelachtig (interviews, "
+"volkstellingen, mondelinge genealogieën of een mogelijk vertekend beeld "
+"zoals in een autobiografie)\n"
+"Hoog =Secondair bewijs, officiële gegevens die zijn opgetekend na de "
+"gebeurtenis\n"
+"Zeer hoog =Direct en primair bewijs of overtuigende bewijzen "
+
+#: ../gramps/gui/glade/editplace.glade:105
+#: ../gramps/gui/glade/editplaceref.glade:228
+msgid ""
+"Either use the two fields below to enter coordinates(latitude and longitude),"
+msgstr ""
+"Ofwel kunt u in de twee onderstaande velden de coördinaten (breedte en "
+"lengte) invullen,"
+
+#: ../gramps/plugins/db/bsddb/write.py:2305
+msgid "Database db version"
+msgstr "Database db versie"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:5365
+#, python-format
+msgid ""
+"%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+msgstr ""
+"%(strong1_start)s%(page_number)d%(strong_end)s van %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+
 #~ msgid "Data version"
 #~ msgstr "Gegevensversie"
 
@@ -41859,3 +42015,18 @@ msgstr "Geen stijlblad"
 
 #~ msgid "Suppress warning when GExiv2 not installed."
 #~ msgstr "Onderdruk waarschuwing als 'GExiv2' niet is geïnstalleerd."
+
+#~ msgid "Extract Place data"
+#~ msgstr "Locatiegegevens ophalen"
+
+#, fuzzy
+#~ msgid "Password:"
+#~ msgstr "Pesach"
+
+#, fuzzy
+#~ msgid "Family Sources"
+#~ msgstr "Familienamen"
+
+#, fuzzy
+#~ msgid "Include Marriage information"
+#~ msgstr "Broninformatie bijvoegen"

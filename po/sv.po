@@ -36850,6 +36850,194 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Inget mallblad"
 
+#: ../gramps/cli/argparser.py:53
+#, fuzzy
+msgid ""
+"\n"
+"Usage: gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
+"\n"
+"Help options\n"
+"  -?, --help                             Show this help message\n"
+"  --usage                                Display brief usage message\n"
+"\n"
+"Application options\n"
+"  -O, --open=FAMILY_TREE                 Open Family Tree\n"
+"  -C, --create=FAMILY_TREE               Create on open if new Family Tree\n"
+"  -i, --import=FILENAME                  Import file\n"
+"  -e, --export=FILENAME                  Export file\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) (use "
+"regular expressions)\n"
+"  -f, --format=FORMAT                    Specify Family Tree format\n"
+"  -a, --action=ACTION                    Specify action\n"
+"  -p, --options=OPTIONS_STRING           Specify options\n"
+"  -d, --debug=LOGGER_NAME                Enable debug logs\n"
+"  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
+"  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
+"  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab delimited\n"
+"  -u, --force-unlock                     Force unlock of Family Tree\n"
+"  -s, --show                             Show config settings\n"
+"  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
+"Gramps\n"
+"  -y, --yes                              Don't ask to confirm dangerous "
+"actions (non-GUI mode only)\n"
+"  -q, --quiet                            Suppress progress indication output "
+"(non-GUI mode only)\n"
+"  -v, --version                          Show versions\n"
+msgstr ""
+"\n"
+"Användning: gramps.py [ALTERNATIV...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Dynamiska moduler att ladda\n"
+"\n"
+"Hjälpalternativ\n"
+"  -?, --help                             Visa detta meddelande\n"
+"  --usage                                Kortfattade anvisningar\n"
+"\n"
+"Tillämpningsalternativ\n"
+"  -O, --open=FAMILY_TREE                 Öppna släktträd\n"
+"  -C, --create=FAMILY_TREE               Skapa vid öppning ett nytt "
+"släktträd\n"
+"  -i, --import=FILENAME                  Importera fil\n"
+"  -e, --export=FILENAME                  Exportera fil\n"
+"  -f, --format=FORMAT                    Specificera släkträdsformat\n"
+"  -a, --action=ACTION                    Specificera åtgärd\n"
+"  -p, --options=OPTIONS_STRING           Specificera alternativ\n"
+"  -d, --debug=LOGGER_NAME                Tillåt avlusningsloggar\n"
+"  -l                                     Lista släktträd\n"
+"  -L                                     Lista släktträd med detaljer\n"
+"  -t                                     Lista släktträd i tabellform (med "
+"tab)\n"
+"  -u, --force-unlock                     Tvinga frisläppning av låst "
+"släktträd\n"
+"  -s, --show                             Visar alla "
+"konfigurationsparametrar\n"
+"  -c, --config=[config.setting[:value]]  Visar/ställer in specificerad "
+"konfigurationsparameter och startar Gramps\n"
+"  -y, --yes                              Fråga ej för att bekräfta, farligt "
+"åtgärd (endast icke-GUI- mode)   -q, --quiet                            "
+"Undertryck indikator om hur det går  -v, --version                          "
+"Visar versioner\n"
+
+#: ../gramps/gui/configure.py:565
+msgid "Gender Male Alive"
+msgstr "Levande mansperson"
+
+#: ../gramps/gui/configure.py:571
+msgid "Border Male Death"
+msgstr "Kant för död mansperson"
+
+#: ../gramps/gui/configure.py:573
+msgid "Gender Female Alive"
+msgstr "Levande kvinnoperson"
+
+#: ../gramps/gui/configure.py:579
+msgid "Border Female Death"
+msgstr "Kant för död kvinnoperson"
+
+#. #        self.add_color(grid, _('Gender Other Alive'), 5,
+#. #                        'preferences.color-gender-other-alive')
+#. #        self.add_color(grid, _('Border Other Alive'), 6,
+#. #                        'preferences.bordercolor-gender-other-alive')
+#. #        self.add_color(grid, _('Gender Other Death'), 7,
+#. #                        'preferences.color-gender-other-death')
+#. #        self.add_color(grid, _('Border Other Death'), 8,
+#. #                        'preferences.bordercolor-gender-other-death')
+#: ../gramps/gui/configure.py:589
+msgid "Gender Unknown Alive"
+msgstr "Levande av okänt kön"
+
+#: ../gramps/gui/configure.py:595
+msgid "Border Unknown Death"
+msgstr "Kant för person av okänt kön"
+
+#: ../gramps/gui/dbman.py:773
+msgid "You wish to convert this database into the new DB-API format?"
+msgstr ""
+
+#: ../gramps/gui/editors/editplace.py:199
+#: ../gramps/gui/editors/editplaceref.py:192
+msgid "Invalid latitude (syntax: 18\\u00b09'"
+msgstr "Ogiltig latitud (syntax: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editplace.py:202
+#: ../gramps/gui/editors/editplaceref.py:195
+msgid "Invalid longitude (syntax: 18\\u00b09'"
+msgstr "Ogiltig longitud (syntax: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editrepository.py:60
+msgid "manual|New_Repositories_dialog"
+msgstr "manual|Dialog för ny arkivplats"
+
+#: ../gramps/gui/editors/filtereditor.py:1186
+msgid ""
+"This filter is currently being used as the base for other filters. "
+"Deletingthis filter will result in removing all other filters that depend on "
+"it."
+msgstr ""
+"Detta filter används nu som bas för andra filter. Genom att ta bort detta "
+"filter kommer alla filter, som beror på detta att tas bort."
+
+#: ../gramps/gui/glade/editcitation.glade:201
+msgid ""
+"Conveys the submitter's quantitative evaluation of the credibility of a "
+"piece of information, based upon its supporting evidence. It is not intended "
+"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
+"Very Low =Unreliable evidence or estimated data\n"
+"Low =Questionable reliability of evidence (interviews, census, oral "
+"genealogies, or potential for bias for example, an autobiography)\n"
+"High =Secondary evidence, data officially recorded sometime after event\n"
+"Very High =Direct and primary evidence used, or by dominance of the evidence "
+msgstr ""
+"Överför uppgiftlämnares kvantitativa utvärdering  av tillförlitligheten hos "
+"ett stycke information, grundat på stödjande källor. Det är ej avsett för "
+"att eliminera mottagarens behov att utvärdera källorna själva.\n"
+"Mycket låg = Otillförlitliga källor eller uppskattade data\n"
+"Låg = Ifrågasatt tillförlitlighet hos källor (intervjuer, folkräkning, "
+"muntliga uppgifter eller möjlighet till påverkan från t. ex en "
+"självbiografiMycket hög = Direkt eller primär källa använd"
+
+#: ../gramps/gui/glade/editplace.glade:105
+#: ../gramps/gui/glade/editplaceref.glade:228
+msgid ""
+"Either use the two fields below to enter coordinates(latitude and longitude),"
+msgstr ""
+
+#. -------------------------------------------------------------------------
+#.
+#. Constants
+#.
+#. -------------------------------------------------------------------------
+#. FIXME
+#: ../gramps/gui/selectors/selectsource.py:46
+msgid "manual|xxxx"
+msgstr ""
+
+#: ../gramps/plugins/db/bsddb/write.py:2303
+#, fuzzy
+msgid "Database db version"
+msgstr "Bsddb-version"
+
+#: ../gramps/plugins/db/dbapi/dbapi.gpr.py:26
+msgid "DB-API"
+msgstr ""
+
+#: ../gramps/plugins/db/dbapi/dbapi.gpr.py:27
+msgid "DB-_API Database"
+msgstr ""
+
+#: ../gramps/plugins/db/dbapi/inmemorydb.gpr.py:26
+msgid "In-Memory"
+msgstr ""
+
+#: ../gramps/plugins/webreport/narrativeweb.py:5367
+#, python-format
+msgid ""
+"%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+msgstr ""
+"%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+
 #, fuzzy
 #~ msgid "Data version"
 #~ msgstr "Schema-version"
@@ -41271,3 +41459,27 @@ msgstr "Inget mallblad"
 
 #~ msgid "Their common ancestors are %s and %s."
 #~ msgstr "Deras gemensamma ana är %s och %s."
+
+#~ msgid "Extract Place data"
+#~ msgstr "Extrahera platsdata"
+
+#~ msgid "Description: "
+#~ msgstr "Beskrivning: "
+
+#~ msgid "Modified: "
+#~ msgstr "Ändrat: "
+
+#~ msgid "Password:"
+#~ msgstr "Lösenord:"
+
+#~ msgid "Family Sources"
+#~ msgstr "Familjekällor"
+
+#~ msgid "Include Marriage information"
+#~ msgstr "Ta med giftermålsinformation"
+
+#~ msgid "Marker Colors"
+#~ msgstr "Markeringsfärger"
+
+#~ msgid "Name Format Editor"
+#~ msgstr "Namnformatsredigerare"

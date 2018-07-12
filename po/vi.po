@@ -36987,6 +36987,207 @@ msgstr "Nebraska "
 msgid "No style sheet"
 msgstr "Không có style sheet "
 
+#: ../gramps/cli/argparser.py:53
+#, fuzzy
+msgid ""
+"\n"
+"Usage: gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
+"\n"
+"Help options\n"
+"  -?, --help                             Show this help message\n"
+"  --usage                                Display brief usage message\n"
+"\n"
+"Application options\n"
+"  -O, --open=FAMILY_TREE                 Open Family Tree\n"
+"  -C, --create=FAMILY_TREE               Create on open if new Family Tree\n"
+"  -i, --import=FILENAME                  Import file\n"
+"  -e, --export=FILENAME                  Export file\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) (use "
+"regular expressions)\n"
+"  -f, --format=FORMAT                    Specify Family Tree format\n"
+"  -a, --action=ACTION                    Specify action\n"
+"  -p, --options=OPTIONS_STRING           Specify options\n"
+"  -d, --debug=LOGGER_NAME                Enable debug logs\n"
+"  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
+"  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
+"  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab delimited\n"
+"  -u, --force-unlock                     Force unlock of Family Tree\n"
+"  -s, --show                             Show config settings\n"
+"  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
+"Gramps\n"
+"  -y, --yes                              Don't ask to confirm dangerous "
+"actions (non-GUI mode only)\n"
+"  -q, --quiet                            Suppress progress indication output "
+"(non-GUI mode only)\n"
+"  -v, --version                          Show versions\n"
+msgstr ""
+"\n"
+"Cách dùng: gramps.py [OPTION...]\n"
+"  --lload-modules=MODULE1,MODULE2,...     tải động mô dun\n"
+"\n"
+"Các tùy chọn trợ giúp\n"
+"  -?, --help                             Hiện các văn bản hỗ trợ này\n"
+"  --usage                                Hiện các văn bản giản đơn về cách "
+"dùng\n"
+"\n"
+"Các tùy chọn áp dụng\n"
+"  -O, --open=FAMILY_TREE                 Mở cây gia đình\n"
+"  -i, --import=FILENAME                  Nhập tập tin\n"
+"  -e, --export=FILENAME                  Xuât tập tin\n"
+"  -f, --format=FORMAT                    Nêu cụ thể dạng thức của cây gia "
+"đình\n"
+"  -a, --action=ACTION                    Nêu cụ thể hành động\n"
+"  -p, --options=OPTIONS_STRING           Nêu cụ thể tùy chọn\n"
+"  -d, --debug=LOGGER_NAME                Kích hoạt chức năng ghi chép gỡ "
+"rối\n"
+"  -l                                     Liệt kê cây gia đình\n"
+"  -L                                     Liệt kê chi tiết cây gia đình\n"
+"  -u, --force-unlock                     Cưỡng bức mở khóa cây gia đình\n"
+"  -s, --show                             Hiện có thiết đặt cầu hình\n"
+"  -c, --config=[config.setting[:value]]  Đặt thiết đặt cấu hình và khởi động "
+"Gramps\n"
+"  -v, --version                          Hiện phiên bản\n"
+
+#: ../gramps/gui/configure.py:565
+msgid "Gender Male Alive"
+msgstr ""
+
+#: ../gramps/gui/configure.py:571
+#, fuzzy
+msgid "Border Male Death"
+msgstr "Tuổi chết "
+
+#: ../gramps/gui/configure.py:573
+msgid "Gender Female Alive"
+msgstr ""
+
+#: ../gramps/gui/configure.py:577
+msgid "Gender Female Death"
+msgstr ""
+
+#: ../gramps/gui/configure.py:579
+msgid "Border Female Death"
+msgstr ""
+
+#. #        self.add_color(grid, _('Gender Other Alive'), 5,
+#. #                        'preferences.color-gender-other-alive')
+#. #        self.add_color(grid, _('Border Other Alive'), 6,
+#. #                        'preferences.bordercolor-gender-other-alive')
+#. #        self.add_color(grid, _('Gender Other Death'), 7,
+#. #                        'preferences.color-gender-other-death')
+#. #        self.add_color(grid, _('Border Other Death'), 8,
+#. #                        'preferences.bordercolor-gender-other-death')
+#: ../gramps/gui/configure.py:589
+#, fuzzy
+msgid "Gender Unknown Alive"
+msgstr "Giới tính không rõ "
+
+#: ../gramps/gui/configure.py:595
+#, fuzzy
+msgid "Border Unknown Death"
+msgstr "Không biết cha "
+
+#: ../gramps/gui/configure.py:1132
+msgid "Suppress comma after house number"
+msgstr ""
+
+#: ../gramps/gui/configure.py:1145
+msgid "-> Hamlet/Village/Town/City"
+msgstr ""
+
+#: ../gramps/gui/configure.py:1146
+msgid "Hamlet/Village/Town/City ->"
+msgstr ""
+
+#: ../gramps/gui/dbman.py:773
+msgid "You wish to convert this database into the new DB-API format?"
+msgstr ""
+
+#: ../gramps/gui/editors/editplace.py:199
+#: ../gramps/gui/editors/editplaceref.py:192
+#, fuzzy
+msgid "Invalid latitude (syntax: 18\\u00b09'"
+msgstr "Kinh tuyền sai (cấu trúc: 18°9'"
+
+#: ../gramps/gui/editors/editplace.py:202
+#: ../gramps/gui/editors/editplaceref.py:195
+#, fuzzy
+msgid "Invalid longitude (syntax: 18\\u00b09'"
+msgstr "Kinh tuyến sai (cấu trúc: 18°9'"
+
+#: ../gramps/gui/editors/editrepository.py:60
+#, fuzzy
+msgid "manual|New_Repositories_dialog"
+msgstr "thủ công|Hòa_Kho tư liệu "
+
+#: ../gramps/gui/editors/filtereditor.py:1186
+msgid ""
+"This filter is currently being used as the base for other filters. "
+"Deletingthis filter will result in removing all other filters that depend on "
+"it."
+msgstr ""
+"Bộ lọc này hiện được dùng làm cơ sở cho các bộ lọc khác. Xóa bộ lọc này sẽ "
+"dẫn đến xóa bỏ tất cả các bộ lọc khác phụ thuộc vào nó. "
+
+#: ../gramps/gui/glade/editcitation.glade:201
+msgid ""
+"Conveys the submitter's quantitative evaluation of the credibility of a "
+"piece of information, based upon its supporting evidence. It is not intended "
+"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
+"Very Low =Unreliable evidence or estimated data\n"
+"Low =Questionable reliability of evidence (interviews, census, oral "
+"genealogies, or potential for bias for example, an autobiography)\n"
+"High =Secondary evidence, data officially recorded sometime after event\n"
+"Very High =Direct and primary evidence used, or by dominance of the evidence "
+msgstr ""
+"Chuyển tại đánh giá của người gửi về độ tin cậy của thông tin, căn cứ vào "
+"các chứng cứ hỗ trợ. Nó không nhằm loại bỏ nhu cầu đánh giá bằng chứng của "
+"người nhận.\n"
+"Rất thấp=Chứng cứ không đáng tin cậy hay số liệu phỏng đoán \n"
+" Thấp=bằng chứng đáng nghi ngờ (phỏng vấn, thống kê, chuyện kể miệng, hoặc "
+"có khả năng thiên vị, thí dụ: tự truyện)\n"
+"Cao=Có bằng chứa thứ cấp, số liệu ghi chép chính thức vào thời gian nào đó "
+"sau sự kiện\n"
+"Rất cao= Bằng chứng trực tiếp và chủ yếu được dùng, hay làm chủ của chứng cứ "
+"đó. "
+
+#: ../gramps/gui/glade/editplace.glade:105
+#: ../gramps/gui/glade/editplaceref.glade:228
+msgid ""
+"Either use the two fields below to enter coordinates(latitude and longitude),"
+msgstr ""
+
+#: ../gramps/gui/undohistory.py:57
+msgid "11"
+msgstr ""
+
+#: ../gramps/plugins/db/bsddb/write.py:2303
+#, fuzzy
+msgid "Database db version"
+msgstr "Phiên bản "
+
+#: ../gramps/plugins/db/dbapi/dbapi.gpr.py:26
+msgid "DB-API"
+msgstr ""
+
+#: ../gramps/plugins/db/dbapi/dbapi.gpr.py:27
+msgid "DB-_API Database"
+msgstr ""
+
+#: ../gramps/plugins/db/dbapi/inmemorydb.gpr.py:26
+msgid "In-Memory"
+msgstr ""
+
+#: ../gramps/plugins/webreport/narrativeweb.py:5367
+#, fuzzy, python-format
+msgid ""
+"%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+msgstr ""
+"<strong id = \"GalleryCurrent\">%(page_number)d</strong> / <strong id = "
+"\"GalleryTotal\">%(total_pages)d</strong>"
+
 #, fuzzy
 #~ msgid "Data version"
 #~ msgstr "Loại bỏ phiên bản "
@@ -40084,3 +40285,21 @@ msgstr "Không có style sheet "
 #~ "\n"
 #~ "\n"
 #~ "Đối tượng hòa chép đè khi nhập:\n"
+
+#~ msgid "Extract Place data"
+#~ msgstr "Rút dữ liệu địa điểm "
+
+#~ msgid "Description: "
+#~ msgstr "Mô tả:"
+
+#~ msgid "Modified: "
+#~ msgstr "Được sửa "
+
+#~ msgid "Password:"
+#~ msgstr "Mật khẩu: "
+
+#~ msgid "Username:"
+#~ msgstr "Tên người dùng: "
+
+#~ msgid "Family Sources"
+#~ msgstr "Nguồn gia đình "

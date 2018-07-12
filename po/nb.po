@@ -1941,10 +1941,10 @@ msgid "CSS filename to use, html format only"
 msgstr "CSS-filnavn som skal brukes, bare html-format"
 
 #. translators: needed for French, Hebrew and Arabic
-#: ../gramps/cli/plug/__init__.py:416
-#, fuzzy, python-format
+#: ../gramps/cli/plug/__init__.py:402
+#, python-format
 msgid "%(id)s:\t%(father)s, %(mother)s"
-msgstr "%(gramps_id)s : %(father)s og %(mother)s"
+msgstr "%(id)s:+t%(father)s, %(mother)s"
 
 #: ../gramps/cli/plug/__init__.py:461
 #, python-format
@@ -2899,38 +2899,32 @@ msgstr "lørdag"
 
 #. Icelandic needs them
 #: ../gramps/gen/datehandler/_datestrings.py:252
-#, fuzzy
 msgid "Sun"
-msgstr "Kjør"
+msgstr "Søn"
 
 #: ../gramps/gen/datehandler/_datestrings.py:253
-#, fuzzy
 msgid "Mon"
-msgstr "Menn"
+msgstr "Man"
 
 #: ../gramps/gen/datehandler/_datestrings.py:254
-#, fuzzy
 msgid "Tue"
-msgstr "Sann"
+msgstr "Tir"
 
 #: ../gramps/gen/datehandler/_datestrings.py:255
-#, fuzzy
 msgid "Wed"
-msgstr "rød"
+msgstr "Ons"
 
 #: ../gramps/gen/datehandler/_datestrings.py:256
 msgid "Thu"
-msgstr ""
+msgstr "Tor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:257
-#, fuzzy
 msgid "Fri"
-msgstr "fredag"
+msgstr "Fre"
 
 #: ../gramps/gen/datehandler/_datestrings.py:258
-#, fuzzy
 msgid "Sat"
-msgstr "Stat"
+msgstr "lør"
 
 #: ../gramps/gen/db/base.py:1816 ../gramps/gui/widgets/fanchart.py:1798
 msgid "Add child to family"
@@ -3276,10 +3270,9 @@ msgstr "Antall notater"
 msgid "Number of tags"
 msgstr "Antall merker"
 
-#: ../gramps/gen/db/generic.py:2420 ../gramps/plugins/db/bsddb/write.py:2304
-#, fuzzy
+#: ../gramps/gen/db/generic.py:2469 ../gramps/plugins/db/bsddb/write.py:2303
 msgid "Schema version"
-msgstr "Fjern versjon"
+msgstr "Skjemaversjon"
 
 #. translators: needed for Arabic, ignore otherwise
 #. need for spacing on the french translation
@@ -3450,9 +3443,8 @@ msgstr "FEIL: filter %s ble ikke kjørt riktig. Rediger filteret!"
 
 #: ../gramps/gen/filters/_genericfilter.py:139
 #: ../gramps/gen/filters/_genericfilter.py:169
-#, fuzzy
 msgid "Applying ..."
-msgstr "Bruker filter..."
+msgstr "Bruker ..."
 
 #. #########################
 #. ###############################
@@ -5395,15 +5387,16 @@ msgid "Name:"
 msgstr "Navn:"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:42
-#, fuzzy
 msgid "Soundex match of People with the <name>"
-msgstr "Personer med <navn>"
+msgstr "Soundex samsvarer med personer med <navn>"
 
 #: ../gramps/gen/filters/rules/person/_hassoundexname.py:43
 msgid ""
 "Soundex Match of people with a specified name. First name, Surname, Call "
 "name, and Nickname are searched in primary and alternate names."
 msgstr ""
+"Soundex samsvarer med personer med et bestemt navn. Det søkes i primære og "
+"alternative Fornavn, Etternavn, Tiltalsnavn og Klengenavn."
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:45
 msgid "People with <count> sources"
@@ -6170,14 +6163,12 @@ msgid "Units:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:51
-#, fuzzy
 msgid "Places within an area"
-msgstr "Steder med <antall> media"
+msgstr "Steder med et areal"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:52
-#, fuzzy
 msgid "Matches places within a given distance of another place"
-msgstr "Samsvarer med steder som har siteringer av en bestemt verdi"
+msgstr "Samsvarer med steder som har en gitt avstand til et annet sted"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
@@ -7168,9 +7159,8 @@ msgid "Modifier"
 msgstr "Sist endret"
 
 #: ../gramps/gen/lib/date.py:714
-#, fuzzy
 msgid "Quality"
-msgstr "_Kvalitet"
+msgstr "Kvalitet"
 
 #: ../gramps/gen/lib/date.py:716 ../gramps/gui/editors/filtereditor.py:820
 #: ../gramps/gui/glade/rule.glade:967
@@ -7188,14 +7178,12 @@ msgid "Text"
 msgstr "Tekst"
 
 #: ../gramps/gen/lib/date.py:721
-#, fuzzy
 msgid "Sort value"
-msgstr "Sorter som"
+msgstr "Sorteringsverdi"
 
 #: ../gramps/gen/lib/date.py:723
-#, fuzzy
 msgid "New year begins"
-msgstr "Nytt år _begynner:  "
+msgstr "Nytt år begynner"
 
 #: ../gramps/gen/lib/date.py:1856
 msgid "date-quality|none"
@@ -7297,7 +7285,6 @@ msgid "Place"
 msgstr "Sted"
 
 #: ../gramps/gen/lib/eventref.py:95
-#, fuzzy
 msgid "Event reference"
 msgstr "Hendelsesreferanser"
 
@@ -8772,7 +8759,6 @@ msgid "Author"
 msgstr "Forfatter"
 
 #: ../gramps/gen/lib/src.py:110
-#, fuzzy
 msgid "Publication info"
 msgstr "Publikasjonsinformasjon"
 
@@ -8851,9 +8837,8 @@ msgid "Video"
 msgstr "Video"
 
 #: ../gramps/gen/lib/styledtext.py:317
-#, fuzzy
 msgid "Styled Text"
-msgstr "Tekstbehandler med stiler"
+msgstr "Stilet tekst"
 
 #: ../gramps/gen/lib/styledtext.py:324
 #, fuzzy
@@ -8878,7 +8863,6 @@ msgid "Tag"
 msgstr "Merke"
 
 #: ../gramps/gen/lib/styledtexttag.py:112
-#, fuzzy
 msgid "Ranges"
 msgstr "Område"
 
@@ -8954,7 +8938,6 @@ msgid "Prefix"
 msgstr "Forstavelse"
 
 #: ../gramps/gen/lib/surname.py:95
-#, fuzzy
 msgid "Primary"
 msgstr "Primær"
 
@@ -10036,10 +10019,9 @@ msgstr "Hvordan håndtere levende personer"
 msgid "Years from death to consider living"
 msgstr "Antall år fra død til antatt levende"
 
-#: ../gramps/gen/plug/report/stdoptions.py:192
-#, fuzzy
+#: ../gramps/gen/plug/report/stdoptions.py:191
 msgid "Whether to restrict data on recently-dead people"
-msgstr "Ta ba_re med levende personer"
+msgstr "Om data på nylig avdøde personer skal begrenses"
 
 #: ../gramps/gen/plug/report/stdoptions.py:257 ../gramps/gui/configure.py:1058
 msgid "Date format"
@@ -10082,8 +10064,7 @@ msgstr "Om Gramps ID skal tas med eller ikke"
 msgid "Include"
 msgstr "Ta med"
 
-#: ../gramps/gen/plug/report/stdoptions.py:329
-#, fuzzy
+#: ../gramps/gen/plug/report/stdoptions.py:328
 msgid "Whether to include Gramps IDs"
 msgstr "Om Gramps ID skal tas med eller ikke"
 
@@ -10660,9 +10641,8 @@ msgid "Swedish"
 msgstr "svensk"
 
 #: ../gramps/gen/utils/grampslocale.py:107
-#, fuzzy
 msgid "Tamil"
-msgstr "Familie"
+msgstr "tamil"
 
 #. Windows has no codepage for Tamil
 #: ../gramps/gen/utils/grampslocale.py:108
@@ -11056,14 +11036,14 @@ msgid "translator-credits"
 msgstr "oversettelsesheder"
 
 #: ../gramps/gui/aboutdialog.py:131
-#, fuzzy, python-format
+#, python-format
 msgid "Distribution: %s"
-msgstr "Beskrivelse:"
+msgstr "Distribusjon: %s"
 
-#: ../gramps/gui/aboutdialog.py:142
-#, fuzzy, python-format
+#: ../gramps/gui/aboutdialog.py:144
+#, python-format
 msgid "OS: %s"
-msgstr ": %s\n"
+msgstr "OS: %s"
 
 #: ../gramps/gui/clipboard.py:70
 msgid "manual|Using_the_Clipboard"
@@ -11263,21 +11243,20 @@ msgstr "Ugtldig eller ikke komplett formatdefinisjon."
 
 #. label for the combo
 #. translators: needed for French, ignore otherwise
-#: ../gramps/gui/configure.py:342 ../gramps/gui/configure.py:366
-#: ../gramps/gui/configure.py:387 ../gramps/gui/configure.py:403
-#: ../gramps/gui/configure.py:434 ../gramps/gui/configure.py:471
-#: ../gramps/gui/configure.py:493 ../gramps/gui/configure.py:594
-#: ../gramps/gui/configure.py:1030 ../gramps/gui/configure.py:1058
-#: ../gramps/gui/configure.py:1072 ../gramps/gui/configure.py:1107
-#: ../gramps/gui/configure.py:1121 ../gramps/gui/configure.py:1134
-#: ../gramps/gui/configure.py:1147 ../gramps/gui/configure.py:1171
-#: ../gramps/gui/configure.py:1424 ../gramps/gui/configure.py:1442
-#: ../gramps/gui/configure.py:1515 ../gramps/gui/configure.py:1570
-#: ../gramps/gui/views/navigationview.py:358
-#: ../gramps/plugins/gramplet/sessionloggramplet.py:90
-#, fuzzy, python-format
+#: ../gramps/gui/configure.py:330 ../gramps/gui/configure.py:354
+#: ../gramps/gui/configure.py:375 ../gramps/gui/configure.py:388
+#: ../gramps/gui/configure.py:413 ../gramps/gui/configure.py:450
+#: ../gramps/gui/configure.py:472 ../gramps/gui/configure.py:981
+#: ../gramps/gui/configure.py:1009 ../gramps/gui/configure.py:1030
+#: ../gramps/gui/configure.py:1044 ../gramps/gui/configure.py:1057
+#: ../gramps/gui/configure.py:1070 ../gramps/gui/configure.py:1094
+#: ../gramps/gui/configure.py:1151 ../gramps/gui/configure.py:1375
+#: ../gramps/gui/configure.py:1393 ../gramps/gui/configure.py:1456
+#: ../gramps/gui/configure.py:1500 ../gramps/gui/views/navigationview.py:357
+#: ../gramps/plugins/gramplet/sessionloggramplet.py:84
+#, python-format
 msgid "%s: "
-msgstr "   %s: %s"
+msgstr "%s: "
 
 #: ../gramps/gui/configure.py:533
 msgid ""
@@ -11753,10 +11732,9 @@ msgstr "En gang hver dag"
 msgid "Always"
 msgstr "Alltid"
 
-#: ../gramps/gui/configure.py:1424
-#, fuzzy
+#: ../gramps/gui/configure.py:1375
 msgid "Check for addon updates"
-msgstr "Søk etter oppdateringer"
+msgstr "Søk etter oppdateringer av tillegg"
 
 #: ../gramps/gui/configure.py:1430
 msgid "Updated addons only"
@@ -11782,10 +11760,9 @@ msgstr "Hvor det skal sjekkes"
 msgid "Do not ask about previously notified addons"
 msgstr "Ikke spør om programmtillegg som allerede er nevnt"
 
-#: ../gramps/gui/configure.py:1456
-#, fuzzy
+#: ../gramps/gui/configure.py:1407
 msgid "Check for updated addons now"
-msgstr "Søk etter oppdateringer"
+msgstr "Se etter oppdaterte tillegg nå"
 
 #: ../gramps/gui/configure.py:1466
 msgid "Checking Addons Failed"
@@ -11840,35 +11817,29 @@ msgstr "Databasesti"
 msgid "Automatically load last Family Tree"
 msgstr "Last inn den siste databasen automatisk"
 
-#: ../gramps/gui/configure.py:1549
-#, fuzzy
+#: ../gramps/gui/configure.py:1479
 msgid "Backup path"
-msgstr "Sikkerhetskopi, siste"
+msgstr "Sti for sikkerhetskopi"
 
-#: ../gramps/gui/configure.py:1556
-#, fuzzy
+#: ../gramps/gui/configure.py:1486
 msgid "Backup on exit"
-msgstr "Sikkerhetskopi, antall"
+msgstr "Ta sikkerhetskopi ved avslutning"
 
-#: ../gramps/gui/configure.py:1563
-#, fuzzy
+#: ../gramps/gui/configure.py:1493
 msgid "Every 15 minutes"
-msgstr "Alle notater"
+msgstr "Hvert 15. minutt"
 
-#: ../gramps/gui/configure.py:1564
-#, fuzzy
+#: ../gramps/gui/configure.py:1494
 msgid "Every 30 minutes"
-msgstr "Alle notater"
+msgstr "Hvert 30. minutt"
 
-#: ../gramps/gui/configure.py:1565
-#, fuzzy
+#: ../gramps/gui/configure.py:1495
 msgid "Every hour"
-msgstr "Alle kilder"
+msgstr "Hver time"
 
-#: ../gramps/gui/configure.py:1570
-#, fuzzy
+#: ../gramps/gui/configure.py:1500
 msgid "Autobackup"
-msgstr "Automatisk sikkerhetskopi..."
+msgstr "Automatisk sikkerhetskopi"
 
 #: ../gramps/gui/configure.py:1610
 msgid "Select media directory"
@@ -12029,10 +12000,9 @@ msgstr "etternavn"
 msgid "Password: "
 msgstr "Passover"
 
-#: ../gramps/gui/dbloader.py:446
-#, fuzzy
+#: ../gramps/gui/dbloader.py:391
 msgid "Import Family Tree"
-msgstr "Gramps: Importere slektsdatabase"
+msgstr "Importere slektsdatabase"
 
 #: ../gramps/gui/dbloader.py:457
 msgid "Import"
@@ -36790,6 +36760,146 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Ingen stilsett"
 
+#: ../gramps/cli/argparser.py:53
+msgid ""
+"\n"
+"Usage: gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
+"\n"
+"Help options\n"
+"  -?, --help                             Show this help message\n"
+"  --usage                                Display brief usage message\n"
+"\n"
+"Application options\n"
+"  -O, --open=FAMILY_TREE                 Open Family Tree\n"
+"  -C, --create=FAMILY_TREE               Create on open if new Family Tree\n"
+"  -i, --import=FILENAME                  Import file\n"
+"  -e, --export=FILENAME                  Export file\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) (use "
+"regular expressions)\n"
+"  -f, --format=FORMAT                    Specify Family Tree format\n"
+"  -a, --action=ACTION                    Specify action\n"
+"  -p, --options=OPTIONS_STRING           Specify options\n"
+"  -d, --debug=LOGGER_NAME                Enable debug logs\n"
+"  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
+"  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
+"  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab delimited\n"
+"  -u, --force-unlock                     Force unlock of Family Tree\n"
+"  -s, --show                             Show config settings\n"
+"  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
+"Gramps\n"
+"  -y, --yes                              Don't ask to confirm dangerous "
+"actions (non-GUI mode only)\n"
+"  -q, --quiet                            Suppress progress indication output "
+"(non-GUI mode only)\n"
+"  -v, --version                          Show versions\n"
+msgstr ""
+"\n"
+"Bruk: gramps.py [OPSJON...]\n"
+"  --load-modules=MODUL1,MODUL2,...       Dynamiske moduler som skal lastes\n"
+"\n"
+"Hjelpeopsjoner\n"
+"  -?, --help                             Vis denne hjelpeteksten\n"
+"  --usage                                Vis et sammendrag av denne "
+"brukermeldingen\n"
+"\n"
+"Programopsjoner\n"
+"  -O, --open=SLEKTSDATABASE              Åpne slektsdatabase\n"
+"  -i, --import=FILNAVN                   Importfil\n"
+"  -e, --export=FILNAVN                   Eksportfil\n"
+"  -r, --remove=MØNSTER_FOR_DATABASE      Slette samsvarende "
+"Slektsdatabase(r) (bruker regulære uttrykk)\n"
+"  -f, --format=FORMAT                    Angi filformat på slektsdatabasen\n"
+"  -a, --action=AKSJON                    Angi hva som skal gjøres\n"
+"  -p, --options=OPSJONSSTRENG            Angi opsjoner\n"
+"  -d, --debug=LOGGENAVN                  Aktivere feillogging\n"
+"  -l [MØNSTER_FOR_DATABASE]              Liste over slektsdatabaser\n"
+"  -L [MØNSTER_FOR_DATABASE]              Detaljert liste over "
+"slektsdatabaser\n"
+"  -t [MØNSTER_FOR_DATABASE]              Liste over slektsdatabaser, "
+"tabulatorseparert\n"
+"  -u, --force-unlock                     Bryt låsen på en slektsdatabase\n"
+"  -s, --show                             Vis innstillingene og start Gramps\n"
+"  -c, --config=[config.setting[:value]]  Angi innstilling(er) og start "
+"Gramps\n"
+"  -y, --yes                              Ikke be om å bekrefte farlige "
+"aksjoner (ikke tilgjengelig i GUI)\n"
+"  -q, --quiet                            Undertrykk fremdriftsindikatoren "
+"(ikke tilgjengelig i GUI)\n"
+"  -v, --version                          Vis versjoner\n"
+"  -b, --databases                        Vis alle databaser\n"
+
+#: ../gramps/gui/configure.py:565
+msgid "Gender Male Alive"
+msgstr "Mannlig kjønn levende"
+
+#: ../gramps/gui/configure.py:571
+msgid "Border Male Death"
+msgstr "Kant mann død"
+
+#: ../gramps/gui/configure.py:573
+msgid "Gender Female Alive"
+msgstr "Levende kvinneperson"
+
+#: ../gramps/gui/configure.py:579
+msgid "Border Female Death"
+msgstr "Kant kvinne død"
+
+#. #        self.add_color(grid, _('Gender Other Alive'), 5,
+#. #                        'preferences.color-gender-other-alive')
+#. #        self.add_color(grid, _('Border Other Alive'), 6,
+#. #                        'preferences.bordercolor-gender-other-alive')
+#. #        self.add_color(grid, _('Gender Other Death'), 7,
+#. #                        'preferences.color-gender-other-death')
+#. #        self.add_color(grid, _('Border Other Death'), 8,
+#. #                        'preferences.bordercolor-gender-other-death')
+#: ../gramps/gui/configure.py:589
+msgid "Gender Unknown Alive"
+msgstr "Levende ukjent kjønn"
+
+#: ../gramps/gui/configure.py:595
+msgid "Border Unknown Death"
+msgstr "Kant ukjent død"
+
+#: ../gramps/gui/editors/editrepository.py:60
+msgid "manual|New_Repositories_dialog"
+msgstr "Behandler_for_nytt_Oppbevaringssted"
+
+#: ../gramps/gui/glade/editcitation.glade:201
+msgid ""
+"Conveys the submitter's quantitative evaluation of the credibility of a "
+"piece of information, based upon its supporting evidence. It is not intended "
+"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
+"Very Low =Unreliable evidence or estimated data\n"
+"Low =Questionable reliability of evidence (interviews, census, oral "
+"genealogies, or potential for bias for example, an autobiography)\n"
+"High =Secondary evidence, data officially recorded sometime after event\n"
+"Very High =Direct and primary evidence used, or by dominance of the evidence "
+msgstr ""
+"Overfor giveren av informasjonens kvantitative utredning av troverdigheten "
+"av et stykke informasjon, begrunnet av andre støttende kilder. Det er ikke "
+"hensikten å eliminere mottakerens behov for å etterprøve kildene selv.\n"
+"Veldig lav = Upålitelige bevis eller antatte data\n"
+"Lav = Tvilsom troverdighet på bevisene (intervjuer, folketellinger, muntlige "
+"overleveringer eller mulighet for påvirkning fra f.eks. en selvbiografi)\n"
+"Høy = Sekundære kilder, offentlige data som er publisert en tid etter "
+"hendelsen\n"
+"Veldig høy = Direkte og primærkilder er anvendt "
+
+#: ../gramps/plugins/db/dbapi/postgresql.gpr.py:33
+msgid "PostgreSQL"
+msgstr ""
+
+#: ../gramps/plugins/db/dbapi/postgresql.gpr.py:34
+#, fuzzy
+msgid "_PostgreSQL Database"
+msgstr "Hele databasen"
+
+#: ../gramps/plugins/db/dbapi/postgresql.gpr.py:35
+#, fuzzy
+msgid "PostgreSQL Database"
+msgstr "Hele databasen"
+
 #~ msgid "Gender Male Death"
 #~ msgstr "Død mannsperson"
 
@@ -37606,3 +37716,6 @@ msgstr "Ingen stilsett"
 #~ "for å laste inn en nettside på denne siden\n"
 #~ "<br>\n"
 #~ "For eksempel: "
+
+#~ msgid "Extract Place data"
+#~ msgstr "Hent ut stedsdata"

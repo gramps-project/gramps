@@ -39193,6 +39193,220 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Aucune feuille de style"
 
+# master
+#: ../gramps/cli/argparser.py:53
+msgid ""
+"\n"
+"Usage: gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
+"\n"
+"Help options\n"
+"  -?, --help                             Show this help message\n"
+"  --usage                                Display brief usage message\n"
+"\n"
+"Application options\n"
+"  -O, --open=FAMILY_TREE                 Open Family Tree\n"
+"  -C, --create=FAMILY_TREE               Create on open if new Family Tree\n"
+"  -i, --import=FILENAME                  Import file\n"
+"  -e, --export=FILENAME                  Export file\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) (use "
+"regular expressions)\n"
+"  -f, --format=FORMAT                    Specify Family Tree format\n"
+"  -a, --action=ACTION                    Specify action\n"
+"  -p, --options=OPTIONS_STRING           Specify options\n"
+"  -d, --debug=LOGGER_NAME                Enable debug logs\n"
+"  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
+"  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
+"  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab delimited\n"
+"  -u, --force-unlock                     Force unlock of Family Tree\n"
+"  -s, --show                             Show config settings\n"
+"  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
+"Gramps\n"
+"  -y, --yes                              Don't ask to confirm dangerous "
+"actions (non-GUI mode only)\n"
+"  -q, --quiet                            Suppress progress indication output "
+"(non-GUI mode only)\n"
+"  -v, --version                          Show versions\n"
+msgstr ""
+"\n"
+"Utilisation : gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Modules dynamiques à charger\n"
+"\n"
+"Options d'aide\n"
+"  -?, --help                             Affiche ce message d'aide\n"
+"  --usage                                Affiche une aide à l'utilisation\n"
+"\n"
+"Options de l'application\n"
+"  -O, --open=ARBRE_FAMILIAL              Ouvre l'arbre familial\n"
+"  -C, --create=ARBRE_FAMILIAL            Créé à l'ouverture si arbre "
+"familial\n"
+"  -i, --import=FICHIER                   Importe un fichier\n"
+"  -e, --export=FICHIER                   Exporte un fichier\n"
+"  -r, --remove=MODELE_ARBRE       Enlever les arbres correspondants "
+"(utilisez les expressions rationnelles)\n"
+"  -f, --format=FORMAT                    Spécifie le format de l'arbre\n"
+"  -a, --action=ACTION                    Spécifie l'action\n"
+"  -p, --options=OPTIONS                  Spécifie les options\n"
+"  -d, --debug=NOM_DE_LOGGER              Active les logs de déboguage\n"
+"  -l  [MODÈLE_ARBRE_FAMILIAL...]                 Liste les arbres familiaux\n"
+"  -L[MODÈLE_ARBRE_FAMILIAL...]                 Liste les arbres familiaux en "
+"détail\n"
+"  -t [MODÈLE_ARBRE_FAMILIAL...]                Liste les arbres familiaux "
+"dans un format tabulaire (tab)\n"
+"  -u, --force-unlock                     Force le déverrouillage de l'arbre\n"
+"                                         familial\n"
+"  -s, --show                             Affiche les paramètres de "
+"configuration\n"
+"  -c, --config=[config.setting[:value]]  Définit un ou plusieurs paramètres "
+"de\n"
+"                                         configuration et lance Gramps\n"
+"  -y, --yes                              Ne pas demander de confirmation "
+"pour les actions dangereuses\n"
+"                                              (hors interface graphique)\n"
+"  -q, --quiet                            Supprimer l'indication de "
+"progression pour la sortie\n"
+"                                               (hors interface graphique)\n"
+"  -v, --version                          Affiche les versions des "
+"bibliothèques\n"
+
+# master
+#: ../gramps/gen/db/generic.py:2464 ../gramps/plugins/db/bsddb/write.py:2304
+msgid "Data version"
+msgstr "Version des données"
+
+# trunk
+#: ../gramps/gui/configure.py:565
+msgid "Gender Male Alive"
+msgstr "Masculin vivant"
+
+# trunk
+#: ../gramps/gui/configure.py:571
+msgid "Border Male Death"
+msgstr "Bordure masculin décédé"
+
+# trunk
+#: ../gramps/gui/configure.py:573
+msgid "Gender Female Alive"
+msgstr "Féminin vivante"
+
+# trunk
+#: ../gramps/gui/configure.py:579
+msgid "Border Female Death"
+msgstr "Bordure féminin décédée"
+
+# trunk
+#. #        self.add_color(grid, _('Gender Other Alive'), 5,
+#. #                        'preferences.color-gender-other-alive')
+#. #        self.add_color(grid, _('Border Other Alive'), 6,
+#. #                        'preferences.bordercolor-gender-other-alive')
+#. #        self.add_color(grid, _('Gender Other Death'), 7,
+#. #                        'preferences.color-gender-other-death')
+#. #        self.add_color(grid, _('Border Other Death'), 8,
+#. #                        'preferences.bordercolor-gender-other-death')
+#: ../gramps/gui/configure.py:589
+msgid "Gender Unknown Alive"
+msgstr "Inconnu vivant"
+
+# trunk
+#: ../gramps/gui/configure.py:595
+msgid "Border Unknown Death"
+msgstr "Bordure inconnu décédé"
+
+#: ../gramps/gui/editors/editplace.py:199
+#: ../gramps/gui/editors/editplaceref.py:192
+msgid "Invalid latitude (syntax: 18\\u00b09'"
+msgstr "Latitude invalide (syntaxe : 18\\u00b09'"
+
+#: ../gramps/gui/editors/editplace.py:202
+#: ../gramps/gui/editors/editplaceref.py:195
+msgid "Invalid longitude (syntax: 18\\u00b09'"
+msgstr "Longitude invalide (syntaxe : 18\\u00b09'"
+
+# manuel wiki
+#: ../gramps/gui/editors/editrepository.py:60
+msgid "manual|New_Repositories_dialog"
+msgstr "Nouveau_dépôts"
+
+# trunk
+#: ../gramps/gui/glade/editcitation.glade:201
+msgid ""
+"Conveys the submitter's quantitative evaluation of the credibility of a "
+"piece of information, based upon its supporting evidence. It is not intended "
+"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
+"Very Low =Unreliable evidence or estimated data\n"
+"Low =Questionable reliability of evidence (interviews, census, oral "
+"genealogies, or potential for bias for example, an autobiography)\n"
+"High =Secondary evidence, data officially recorded sometime after event\n"
+"Very High =Direct and primary evidence used, or by dominance of the evidence "
+msgstr ""
+"Traduit la confiance placée dans la qualité de la source transmise ou la "
+"crédibilité de cette partie d'information, basé sur les preuves. Il ne vise "
+"pas à éliminer les besoins de vérifier les preuves.\n"
+"Très bas = preuve non-liée ou date estimée\n"
+"Bas = preuve qui nécessite une vérification (interview, recensement, "
+"généalogie orale, ou une possibilité par le biais, par exemple, d'une "
+"autobiographie)\n"
+"Haut = preuve secondaire, données officiellement enregistrées parfois après "
+"un événement\n"
+"Très haut = preuve directe et principale, ou qui n'entraîne pas de doute"
+
+# master
+#: ../gramps/gui/glade/editplace.glade:105
+#: ../gramps/gui/glade/editplaceref.glade:228
+msgid ""
+"Either use the two fields below to enter coordinates(latitude and longitude),"
+msgstr ""
+"Utilisez soit les deux champs suivants pour entrer les coordonnées (latitude "
+"et longitude),"
+
+# trunk
+#: ../gramps/plugins/db/bsddb/write.py:2293
+msgid "DB-API version"
+msgstr "Version DB-API"
+
+# master
+#: ../gramps/plugins/db/bsddb/write.py:2305
+msgid "Database db version"
+msgstr "Version de la base de données db"
+
+#: ../gramps/plugins/db/dbapi/dbapi.gpr.py:26
+msgid "DB-API"
+msgstr ""
+
+# master
+#: ../gramps/plugins/db/dbapi/dbapi.gpr.py:27
+msgid "DB-_API Database"
+msgstr "Base de données DB-_API"
+
+# master
+#: ../gramps/plugins/db/dbapi/dbapi.gpr.py:28
+msgid "DB-API Database"
+msgstr "Base de données DB-API"
+
+#: ../gramps/plugins/db/dbapi/inmemorydb.gpr.py:26
+msgid "In-Memory"
+msgstr "En-Mémoire"
+
+# master
+#: ../gramps/plugins/db/dbapi/inmemorydb.gpr.py:27
+msgid "In-_Memory Database"
+msgstr "Base de données En-_Mémoire"
+
+# master
+#: ../gramps/plugins/db/dbapi/inmemorydb.gpr.py:28
+msgid "In-Memory Database"
+msgstr "Base de données En-Mémoire"
+
+# master
+#: ../gramps/plugins/webreport/narrativeweb.py:5365
+#, python-format
+msgid ""
+"%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+msgstr ""
+"%(strong1_start)s%(page_number)d%(strong_end)s sur %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+
 # trunk
 #~ msgid "Gender Male Death"
 #~ msgstr "Masculin décédé"

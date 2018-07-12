@@ -7,7 +7,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps_51_fi\n"
+"Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-01 12:10+0300\n"
 "PO-Revision-Date: 2018-07-01 12:11+0300\n"
@@ -36707,6 +36707,477 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:143
 msgid "No style sheet"
 msgstr "Ei tyylitiedostoa"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:192
+msgid "Alternate line attachment"
+msgstr "Vaihtoehtoinen viivojen liittäminen"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:193
+msgid "Whether lines attach to nodes differently"
+msgstr "Liitetäänkö solut viivoilla toisiinsa"
+
+#: ../gramps/plugins/gramplet/leak.py:99
+msgid "Referrer"
+msgstr "Viitteet"
+
+#: ../gramps/plugins/gramplet/leak.py:122
+msgid "Press Refresh to see initial results"
+msgstr "Näet ensimmäiset tulokset painamalla Päivitä"
+
+#: ../gramps/plugins/gramplet/leak.py:238
+msgid "Reference Error"
+msgstr "Viitevirhe"
+
+#: ../gramps/plugins/gramplet/relativegramplet.py:88
+#, python-format
+msgid "%(count)d. %(relation)s: "
+msgstr "%(count)d. %(relation)s: "
+
+#: ../gramps/plugins/importer/importprogen.glade.h:1
+msgid ""
+"Source reference\n"
+"(out of Settings)"
+msgstr ""
+"Lähdeviite\n"
+"(asetusten ulkopuolella)"
+
+#: ../gramps/plugins/importer/importprogen.glade.h:6
+msgid ""
+"Source reference text\n"
+"(Text & import Filename)."
+msgstr ""
+"Lähteen viiteteksti\n"
+"(Teksti & tuontitiedoston nimi)."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:9
+msgid "Attribut"
+msgstr "Ominaisuus"
+
+#: ../gramps/plugins/importer/importprogen.glade.h:10
+msgid ""
+"Source attribute text\n"
+"(Text, import Filename & (System-)Date)."
+msgstr ""
+"Lähteen ominaisuus teksti\n"
+"(Teksti, tuodaan tiedostonimi ja (System-) päivämäärä)."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:12
+msgid "Citation reference."
+msgstr "Lainausviite."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:15
+msgid ""
+"Citation confidence level\n"
+"(Very low - very high)."
+msgstr ""
+"Lainauksen luotettavuustaso\n"
+"(Erittäin matala - erittäin korkea)."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:18
+msgid ""
+"Citation volume/page text\n"
+"(Text & (System-)Date)."
+msgstr ""
+"Lainausten osan/sivun teksti\n"
+"(Teksti & (järjestelmän-) päiväys)."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:20
+msgid ""
+"Citation attribute text\n"
+"(Text, import Filename & (System-)Date)."
+msgstr ""
+"Lainauksen ominaisuus teksti\n"
+"(Teksti, tuotavan tiedoston nimi ja (järjestelmän-) päiväys)."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:22
+msgid "Import Text"
+msgstr "Tuo teksti"
+
+#: ../gramps/plugins/importer/importprogen.glade.h:25
+msgid ""
+"Default Tagtext\n"
+"(out of Settings)."
+msgstr ""
+"Tagi-tekstin oletus\n"
+"(asetusten ulkopuolella)."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:28
+msgid "Import Filename."
+msgstr "Tuo tiedostonimi."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:31
+msgid "Default (System-)Date."
+msgstr "Oletus (Järjestelmä-)päivämäärä."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:38
+msgid "Combined default text + filename + date."
+msgstr "Yhdistetty oletusteksti + tiedostonimi + päivämäärä."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:39
+msgid ""
+"Copy Default Text\n"
+"to all Tag Text'."
+msgstr ""
+"Kopioi oletusteksti\n"
+"kaikkiin Tagi-teksteihin \"."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:41
+msgid ""
+"Copy Default Filename\n"
+"to all sensitive Tag Text'."
+msgstr ""
+"Kopioi oletustiedostonimi\n"
+"kaikkiin arkaluontoisiin Tagi-teksteihin."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:43
+msgid ""
+"Copy Default Date\n"
+"to all sensitive Tag Text'."
+msgstr ""
+"Kopioi oletuspäivämäärä\n"
+"kaikkiin arkaluontoisiin Tagi-teksteihin."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:45
+msgid "  Objects"
+msgstr "  Kohteet"
+
+#: ../gramps/plugins/importer/importprogen.glade.h:46
+msgid ""
+"Enable/Disable\n"
+"all object tags."
+msgstr ""
+"Ota käyttöön/poista käytöstä\n"
+"kaikki Tagi kohteet."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:48
+msgid "Tag Text"
+msgstr "Tagi-teksti"
+
+#: ../gramps/plugins/importer/importprogen.glade.h:49
+msgid "Import Objects"
+msgstr "Tuo kohteet"
+
+#: ../gramps/plugins/importer/importprogen.glade.h:50
+msgid ""
+"Enable/Disable\n"
+"Person import."
+msgstr ""
+"Ota käyttöön/poista käytöstä\n"
+"henkilöiden tuonti."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:52
+msgid ""
+"Enable/Disable\n"
+"Family import."
+msgstr ""
+"Ota käyttöön/poista käytöstä\n"
+"perheiden tuonti."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:55
+msgid ""
+"Enable/Disable\n"
+"Child import."
+msgstr ""
+"Ota käyttöön/poista käytöstä\n"
+"lasten tuonti."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:58
+msgid ""
+"Use original Person\n"
+"Identifier as Gramps ID."
+msgstr ""
+"Käytä alkuperäistä\n"
+"henkilötunnistetta Gramps ID:nä."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:60
+msgid ""
+"Use original Family\n"
+"Identifier as Gramps ID."
+msgstr ""
+"Käytä alkuperäistä\n"
+"perhetunnistetta Gramps ID:nä."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:62
+msgid "Identifier"
+msgstr "Tunniste"
+
+#: ../gramps/plugins/importer/importprogen.glade.h:63
+msgid "Name change"
+msgstr "Nimenmuutos"
+
+#: ../gramps/plugins/importer/importprogen.glade.h:64
+msgid "Event date"
+msgstr "Tapahtumapäivä"
+
+#: ../gramps/plugins/importer/importprogen.glade.h:66
+msgid ""
+"Store birth date in\n"
+"event description."
+msgstr ""
+"Tallenna syntymäpäivä\n"
+"tapahtumakuvaukseen."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:69
+msgid ""
+"Store death date in\n"
+"event description."
+msgstr ""
+"Tallenna kuolinpäivä\n"
+"tapahtumakuvaukseen."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:71
+msgid "Diverse"
+msgstr "Monipuolinen"
+
+#: ../gramps/plugins/importer/importprogen.glade.h:72
+msgid "REFN"
+msgstr "REFN"
+
+#: ../gramps/plugins/importer/importprogen.glade.h:73
+msgid ""
+"Store REFN number\n"
+"in event description."
+msgstr ""
+"Tallenna REFN  numero\n"
+"tapahtumakuvaukseen."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:75
+msgid ""
+"Use death information\n"
+"as death cause event."
+msgstr ""
+"Käytä kuolintietoja\n"
+"kuolinsyy tapahtumana."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:77
+msgid "(-cause)"
+msgstr "(-syy)"
+
+#: ../gramps/plugins/importer/importprogen.glade.h:78
+msgid "Male surname"
+msgstr "Miehen sukunimi"
+
+#: ../gramps/plugins/importer/importprogen.glade.h:79
+msgid ""
+"Change name of male\n"
+"to e.g. wifes name."
+msgstr ""
+"Vaihda miehen nimi\n"
+"esim. vaimon nimeen."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:81
+msgid "Female surname"
+msgstr "Naisen sukunimi"
+
+#: ../gramps/plugins/importer/importprogen.glade.h:82
+msgid ""
+"Change name of female\n"
+"to e.g. husbands name."
+msgstr ""
+"Vaihda naisen nimi\n"
+"esim. aviopuolison nimeen."
+
+#: ../gramps/plugins/importer/importprogen.glade.h:84
+msgid "Option"
+msgstr "Valinnat"
+
+#: ../gramps/plugins/importer/importprogen.glade.h:86
+msgid "_Ok"
+msgstr "_Ok"
+
+#: ../gramps/plugins/importer/importprogen.py:62
+msgid "manual|Import_from_another_genealogy_program"
+msgstr "Tuonti_toisesta_sukuohjelmasta"
+
+#: ../gramps/plugins/importer/importprogen.py:457
+#: ../gramps/plugins/importer/importprogen.py:465
+msgid "Import Pro-Gen"
+msgstr "Pro-Gen tuonti"
+
+#: ../gramps/plugins/lib/libplugins.gpr.py:247
+msgid "Provides common functionality for Pro-Gen import"
+msgstr "Tarjoaa yhteisiä toimintoja Pro-Gen tuonnille"
+
+#: ../gramps/plugins/lib/libprogen.py:491
+#, python-format
+msgid "Not a (right) DEF file: %(dname)s"
+msgstr "Ei (oikea) DEF-tiedosto: %(dname)s"
+
+#. start feedback about import progress (GUI / TXT)
+#: ../gramps/plugins/lib/libprogen.py:498
+msgid "Initializing."
+msgstr "Alustetaan."
+
+#: ../gramps/plugins/lib/libprogen.py:498
+#: ../gramps/plugins/lib/libprogen.py:732
+msgid "Import from Pro-Gen"
+msgstr "Tuo Pro-Gen ohjelmasta"
+
+#: ../gramps/plugins/lib/libprogen.py:539
+msgid "Saving."
+msgstr "Tallennus."
+
+#: ../gramps/plugins/lib/libprogen.py:928
+msgid "Pro-Gen Import"
+msgstr "Pro-Gen tuonti"
+
+#: ../gramps/plugins/lib/libprogen.py:1152
+#, python-format
+msgid "Time: %s"
+msgstr "Aika: %s"
+
+#. start feedback about import progress (GUI/TXT)
+#: ../gramps/plugins/lib/libprogen.py:1206
+msgid "Importing persons."
+msgstr "Henkilöiden tuonti."
+
+#: ../gramps/plugins/lib/libprogen.py:1412
+msgid "see address on "
+msgstr "katso osoite "
+
+#: ../gramps/plugins/lib/libprogen.py:1415
+msgid "see also address"
+msgstr "katso myös osoite"
+
+#: ../gramps/plugins/lib/libprogen.py:1515
+msgid "Death cause"
+msgstr "Kuolinsyy"
+
+#. start feedback about import progress (GUI/TXT)
+#: ../gramps/plugins/lib/libprogen.py:1584
+msgid "Importing families."
+msgstr "Perheiden tuonti."
+
+#: ../gramps/plugins/lib/libprogen.py:1689
+msgid "Civil union"
+msgstr "Parisuhteessa"
+
+#: ../gramps/plugins/lib/libprogen.py:1794
+msgid "Wedding"
+msgstr "Häät"
+
+#: ../gramps/plugins/lib/libprogen.py:1829
+msgid "future"
+msgstr "tulevaisuus"
+
+#. We have seen some case insensitivity in DEF files ...
+#. F13: Father
+#. F14: Mother
+#. start feedback about import progress (GUI/TXT)
+#: ../gramps/plugins/lib/libprogen.py:1901
+msgid "Adding children."
+msgstr "Lisätään lapset."
+
+#: ../gramps/plugins/lib/libprogen.py:1927
+msgid "Cannot find father for I%(person)s (Father=%(father))"
+msgstr "Isää ei löydy henkilölle I%(person)s (Father=%(father))"
+
+#: ../gramps/plugins/lib/libprogen.py:1930
+msgid "Cannot find mother for I%(person)s (Mother=%(mother))"
+msgstr "Äitiä ei löydy henkilölle I%(person)s (Father=%(father))"
+
+#: ../gramps/plugins/lib/maps/placeselection.py:125
+msgid ""
+"\n"
+"In the following table you may have :\n"
+" - a green row related to a selected place."
+msgstr ""
+"\n"
+"Seuraavassa taulukossa voi olla :\n"
+" - vihreä rivi liittyy valittuun paikkaan."
+
+#: ../gramps/plugins/lib/maps/placeselection.py:128
+msgid ""
+"\n"
+" - a red row related to a geocoding result."
+msgstr ""
+"\n"
+"- punainen rivi liittyy geokoodauksen tulokseen."
+
+#: ../gramps/plugins/tool/verify.py:1801
+msgid "Birth equals death"
+msgstr "Syntymä ja kuolema ovat yhtä suuret"
+
+#: ../gramps/plugins/tool/verify.py:1819
+msgid "Birth equals marriage"
+msgstr "Syntymä ja avioliitto ovat yhtä suuret"
+
+#: ../gramps/plugins/tool/verify.py:1837
+msgid "Death equals marriage"
+msgstr "Avioliitto ja kuolema ovat yhtä suuret"
+
+#: ../gramps/plugins/view/eventview.py:237
+msgid "_Delete Event"
+msgstr "_Poista tapahtuma"
+
+#: ../gramps/plugins/view/eventview.py:252
+#, python-brace-format
+msgid "Delete {type} [{gid}]?"
+msgstr "Poista {type} [{gid}]?"
+
+#: ../gramps/plugins/view/geography.gpr.py:68
+msgid ""
+"Geography functionality will not be available.\n"
+"Try to install:\n"
+" gir1.2-osmgpsmap-1.0 (debian, ubuntu, ...)\n"
+" osm-gps-map-gobject-1.0.1 for fedora, ...\n"
+" typelib-1_0-OsmGpsMap-1_0 for openSuse\n"
+" ...\n"
+"To build it for Gramps see the Wiki (<F1>)\n"
+" and search for 'build from source'"
+msgstr ""
+"Karttatoiminto ei ole käytettävissä.\n"
+"Yritä asentaa:\n"
+" gir1.2-osmgpsmap-1.0 (debian, ubuntu, ...)\n"
+" osm-gps-map-gobject-1.0.1 for fedora, ...\n"
+" typelib-1_0-OsmGpsMap-1_0 for openSuse\n"
+" ...\n"
+"Käännä/asenna se Grampsille, katso Wiki(<F1>)\n"
+"ja etsi \"build from source\""
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1717
+msgid "Extra pages"
+msgstr "Lisäsivut"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1720
+msgid "Extra page name"
+msgstr "Lisäsivun nimi"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1723
+msgid "Your extra page name like it is shown in the menubar"
+msgstr "Lisäsivun nimi näkyy valikkorivillä"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1728
+msgid "Your extra page path"
+msgstr "Lisäsivun polku"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1731
+msgid "Your extra page path without extension"
+msgstr "Lisäsivun polku ilman päätettä"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1760
+msgid "Do we display coordinates in the places list?"
+msgstr "Näytämmekö koordinaatit paikkaluettelossa?"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1762
+msgid "Whether to display latitude/longitude in the places list?"
+msgstr "Näytetäänkö leveysaste/pituusaste paikkaluettelossa?"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1960
+msgid "Include places pages"
+msgstr "Lisää paikkasivut"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1962
+msgid "Whether or not to include the places Pages."
+msgstr "Lisätäänkö vai ei paikkasivut."
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1965
+msgid "Include sources pages"
+msgstr "Lisää lähdesivut"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:1967
+msgid "Whether or not to include the sources Pages."
+msgstr "Lisätäänkö vai ei lähdesivut."
 
 # WIKI_HELP_SEC osa2
 #~ msgid "manual|New_Repositories_dialog"

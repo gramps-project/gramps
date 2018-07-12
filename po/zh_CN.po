@@ -36796,6 +36796,195 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "无样式表"
 
+#: ../gramps/cli/argparser.py:53
+#, fuzzy
+msgid ""
+"\n"
+"Usage: gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
+"\n"
+"Help options\n"
+"  -?, --help                             Show this help message\n"
+"  --usage                                Display brief usage message\n"
+"\n"
+"Application options\n"
+"  -O, --open=FAMILY_TREE                 Open Family Tree\n"
+"  -C, --create=FAMILY_TREE               Create on open if new Family Tree\n"
+"  -i, --import=FILENAME                  Import file\n"
+"  -e, --export=FILENAME                  Export file\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) (use "
+"regular expressions)\n"
+"  -f, --format=FORMAT                    Specify Family Tree format\n"
+"  -a, --action=ACTION                    Specify action\n"
+"  -p, --options=OPTIONS_STRING           Specify options\n"
+"  -d, --debug=LOGGER_NAME                Enable debug logs\n"
+"  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
+"  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
+"  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab delimited\n"
+"  -u, --force-unlock                     Force unlock of Family Tree\n"
+"  -s, --show                             Show config settings\n"
+"  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
+"Gramps\n"
+"  -y, --yes                              Don't ask to confirm dangerous "
+"actions (non-GUI mode only)\n"
+"  -q, --quiet                            Suppress progress indication output "
+"(non-GUI mode only)\n"
+"  -v, --version                          Show versions\n"
+msgstr ""
+"\n"
+"用法：gramps.py [选项...]\n"
+"  --load-modules=MODULE1,MODULE2,...     要载入的动态模块\n"
+"\n"
+"帮助选项\n"
+"  -?, --help                             显示本帮助信息\n"
+"  --usage                                显示简短的使用信息\n"
+"\n"
+"应用选项\n"
+"  -O, --open=FAMILY_TREE                 打开家族树\n"
+"  -C, --create=FAMILY_TREE               创建新的家族树\n"
+"  -i, --import=FILENAME                  导入文件\n"
+"  -e, --export=FILENAME                  导出文件\n"
+"  -f, --format=FORMAT                    指定家族树的格式\n"
+"  -a, --action=ACTION                    指定动作\n"
+"  -p, --options=OPTIONS_STRING           指定选项\n"
+"  -d, --debug=LOGGER_NAME                启用调试日志\n"
+"  -l                                     列表家族树\n"
+"  -L                                     详细列出家族树\n"
+"  -t                                     列出家族树，以跳格(Tab)分隔\n"
+"  -u, --force-unlock                     强制解锁家族树\n"
+"  -s, --show                             显示配置参数\n"
+"  -c, --config=[config.setting[:value]]  设置配置参数并启动 Gramps\n"
+"  -y, --yes                              不询问确认，直接执行危险动作（限于非"
+"图形界面模式）\n"
+"  -q, --quiet                            抑制进度指示输出（仅限于非图形界面模"
+"式）\n"
+"  -v, --version                          显示版本信息\n"
+
+#: ../gramps/gui/configure.py:565
+msgid "Gender Male Alive"
+msgstr "健在男性方框填充色"
+
+#: ../gramps/gui/configure.py:571
+msgid "Border Male Death"
+msgstr "已故男性边框颜色"
+
+#: ../gramps/gui/configure.py:573
+msgid "Gender Female Alive"
+msgstr "健在女性方框填充色"
+
+#: ../gramps/gui/configure.py:579
+msgid "Border Female Death"
+msgstr "已故女性边框颜色"
+
+#. #        self.add_color(grid, _('Gender Other Alive'), 5,
+#. #                        'preferences.color-gender-other-alive')
+#. #        self.add_color(grid, _('Border Other Alive'), 6,
+#. #                        'preferences.bordercolor-gender-other-alive')
+#. #        self.add_color(grid, _('Gender Other Death'), 7,
+#. #                        'preferences.color-gender-other-death')
+#. #        self.add_color(grid, _('Border Other Death'), 8,
+#. #                        'preferences.bordercolor-gender-other-death')
+#: ../gramps/gui/configure.py:589
+msgid "Gender Unknown Alive"
+msgstr "健在未知性别方框填充色"
+
+#: ../gramps/gui/configure.py:595
+msgid "Border Unknown Death"
+msgstr "已故未知性别边框颜色"
+
+#: ../gramps/gui/configure.py:1132
+msgid "Suppress comma after house number"
+msgstr ""
+
+#: ../gramps/gui/configure.py:1145
+msgid "-> Hamlet/Village/Town/City"
+msgstr ""
+
+#: ../gramps/gui/configure.py:1146
+msgid "Hamlet/Village/Town/City ->"
+msgstr ""
+
+#: ../gramps/gui/dbman.py:773
+msgid "You wish to convert this database into the new DB-API format?"
+msgstr ""
+
+#: ../gramps/gui/editors/editplace.py:199
+#: ../gramps/gui/editors/editplaceref.py:192
+#, fuzzy
+msgid "Invalid latitude (syntax: 18\\u00b09'"
+msgstr "无效的纬度 (syntax: 18°9'"
+
+#: ../gramps/gui/editors/editplace.py:202
+#: ../gramps/gui/editors/editplaceref.py:195
+#, fuzzy
+msgid "Invalid longitude (syntax: 18\\u00b09'"
+msgstr "无效的经度 (syntax: 18°9'"
+
+#: ../gramps/gui/editors/editrepository.py:60
+#, fuzzy
+msgid "manual|New_Repositories_dialog"
+msgstr "合并文库"
+
+#: ../gramps/gui/editors/filtereditor.py:1186
+msgid ""
+"This filter is currently being used as the base for other filters. "
+"Deletingthis filter will result in removing all other filters that depend on "
+"it."
+msgstr ""
+"现在正在使用的筛查器作为其他筛查器的基础。删除本筛查器将会移除所有依赖本筛查"
+"器的其他筛查器。"
+
+#: ../gramps/gui/glade/editcitation.glade:201
+msgid ""
+"Conveys the submitter's quantitative evaluation of the credibility of a "
+"piece of information, based upon its supporting evidence. It is not intended "
+"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
+"Very Low =Unreliable evidence or estimated data\n"
+"Low =Questionable reliability of evidence (interviews, census, oral "
+"genealogies, or potential for bias for example, an autobiography)\n"
+"High =Secondary evidence, data officially recorded sometime after event\n"
+"Very High =Direct and primary evidence used, or by dominance of the evidence "
+msgstr ""
+
+#: ../gramps/gui/glade/editplace.glade:105
+#: ../gramps/gui/glade/editplaceref.glade:228
+msgid ""
+"Either use the two fields below to enter coordinates(latitude and longitude),"
+msgstr ""
+
+#: ../gramps/gui/undohistory.py:57
+msgid "11"
+msgstr ""
+
+#: ../gramps/plugins/db/bsddb/write.py:2303
+#, fuzzy
+msgid "Database db version"
+msgstr "PyBSDDB 版本"
+
+#: ../gramps/plugins/db/dbapi/dbapi.gpr.py:26
+msgid "DB-API"
+msgstr ""
+
+#: ../gramps/plugins/db/dbapi/inmemorydb.gpr.py:26
+msgid "In-Memory"
+msgstr ""
+
+#: ../gramps/plugins/webreport/narrativeweb.py:5367
+#, fuzzy, python-format
+msgid ""
+"%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+msgstr ""
+"<strong id = \"GalleryCurrent\">%(page_number)d</strong> 在 <strong id = "
+"\"GalleryTotal\">%(total_pages)d</strong>"
+
+#. adding title to hyperlink menu for screen readers and
+#. braille writers
+#: ../gramps/plugins/webreport/narrativeweb.py:10671
+#, python-format
+msgid "Alphabet Menu: %s"
+msgstr ""
+
 #, fuzzy
 #~ msgid "Data version"
 #~ msgstr "数据库 Schema 版本"
@@ -41242,3 +41431,39 @@ msgstr "无样式表"
 #~ msgstr ""
 #~ "免费/自由和开源软件 (FLOSS) 开发模型意味着 Gramps 可以被任何程序员扩展，因"
 #~ "为所有源代码都开源的。"
+
+#~ msgid "Extract Place data"
+#~ msgstr "解压地点数据"
+
+#~ msgid "Description: "
+#~ msgstr "描述："
+
+#, fuzzy
+#~ msgid "Modified: "
+#~ msgstr "上次修订"
+
+#~ msgid "Password:"
+#~ msgstr "密码："
+
+#~ msgid "Username:"
+#~ msgstr "用户名："
+
+#, fuzzy
+#~ msgid "Family Sources"
+#~ msgstr "家族姓"
+
+#~ msgid "Include Marriage information"
+#~ msgstr "包含婚姻信息"
+
+#~ msgid "Marker Colors"
+#~ msgstr "标记颜色"
+
+#~ msgid "Name Format Editor"
+#~ msgstr "名称格式编辑器"
+
+#, fuzzy
+#~ msgid "Tree"
+#~ msgstr "希腊语"
+
+#~ msgid "%d invalid birth event names were fixed\n"
+#~ msgstr "%d 个无效的出生事件名字被修复\n"

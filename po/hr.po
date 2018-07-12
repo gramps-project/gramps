@@ -36384,6 +36384,183 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Nema određenog stila"
 
+#: ../gramps/cli/argparser.py:53
+#, fuzzy
+msgid ""
+"\n"
+"Usage: gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
+"\n"
+"Help options\n"
+"  -?, --help                             Show this help message\n"
+"  --usage                                Display brief usage message\n"
+"\n"
+"Application options\n"
+"  -O, --open=FAMILY_TREE                 Open Family Tree\n"
+"  -C, --create=FAMILY_TREE               Create on open if new Family Tree\n"
+"  -i, --import=FILENAME                  Import file\n"
+"  -e, --export=FILENAME                  Export file\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) (use "
+"regular expressions)\n"
+"  -f, --format=FORMAT                    Specify Family Tree format\n"
+"  -a, --action=ACTION                    Specify action\n"
+"  -p, --options=OPTIONS_STRING           Specify options\n"
+"  -d, --debug=LOGGER_NAME                Enable debug logs\n"
+"  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
+"  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
+"  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab delimited\n"
+"  -u, --force-unlock                     Force unlock of Family Tree\n"
+"  -s, --show                             Show config settings\n"
+"  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
+"Gramps\n"
+"  -y, --yes                              Don't ask to confirm dangerous "
+"actions (non-GUI mode only)\n"
+"  -q, --quiet                            Suppress progress indication output "
+"(non-GUI mode only)\n"
+"  -v, --version                          Show versions\n"
+msgstr ""
+"\n"
+"Upotreba: gramps.py [POSTAVKE...]\n"
+"  --load-modules=MODUL1,MODUL2,...     Dinamički moduli za učitanje\n"
+"\n"
+"Postavke pomoći\n"
+"  -?, --help                             Prikazuje ovu poruku\n"
+"  --usage                                Prikazuje kratka uputstva za "
+"upotrebu\n"
+"\n"
+"Postavke programa\n"
+"  -O, --open=OBITELJSKO_STABLO                 Otvara obiteljsko stablo\n"
+"  -C, --create=OBITELJSKO_STABLO                Stvara novo prilikom "
+"otvaranja\n"
+"  -i, --import=DATOTEKA                  Uvoz datoteke\n"
+"  -e, --export=DATOTEKA                 Izvoz datoteke\n"
+"  -f, --format=FORMAT                    Odabir formata obiteljskog stabla\n"
+"  -a, --action=ACTION                    Odabir akcije\n"
+"  -p, --options=OPTIONS_STRING           Odabir postavki\n"
+"  -d, --debug=LOGGER_NAME                Enable debug logs\n"
+"  -l                                     Popis obiteljskih stabala\n"
+"  -L                                     Detaljni popis obiteljskih stabala\n"
+"  -t                                     Popis obiteljskih stabalas, "
+"odijeljena tabovima\n"
+"  -u, --force-unlock                     Prisilno otključavanje obiteljskog "
+"stabla\n"
+"  -s, --show                             Prikazuje postavke\n"
+"  -c, --config=[config.setting[:value]]  Postavlja postavke i pokreče "
+"Gramps\n"
+"  -y, --yes                              Ne pitaj za potvrde opasnih akcija "
+"(non-GUI mode only)\n"
+"  -q, --quiet                            Ne prikazuj napredak (non-GUI mode "
+"only)\n"
+"  -v, --version                          Prikaz inačice programa\n"
+
+#: ../gramps/gui/configure.py:565
+msgid "Gender Male Alive"
+msgstr "Živući muškarci (pozadina)"
+
+#: ../gramps/gui/configure.py:571
+msgid "Border Male Death"
+msgstr "Umrli muškarci (okvir)"
+
+#: ../gramps/gui/configure.py:573
+msgid "Gender Female Alive"
+msgstr "Živuće žene (pozadina)"
+
+#: ../gramps/gui/configure.py:579
+msgid "Border Female Death"
+msgstr "Umrle žene (okvir)"
+
+#. #        self.add_color(grid, _('Gender Other Alive'), 5,
+#. #                        'preferences.color-gender-other-alive')
+#. #        self.add_color(grid, _('Border Other Alive'), 6,
+#. #                        'preferences.bordercolor-gender-other-alive')
+#. #        self.add_color(grid, _('Gender Other Death'), 7,
+#. #                        'preferences.color-gender-other-death')
+#. #        self.add_color(grid, _('Border Other Death'), 8,
+#. #                        'preferences.bordercolor-gender-other-death')
+#: ../gramps/gui/configure.py:589
+msgid "Gender Unknown Alive"
+msgstr "Živući nepoznata spola (pozadina)"
+
+#: ../gramps/gui/configure.py:595
+msgid "Border Unknown Death"
+msgstr "Umrli nepoznata spola (okvir)"
+
+#: ../gramps/gui/configure.py:1132
+msgid "Suppress comma after house number"
+msgstr ""
+
+#: ../gramps/gui/dbman.py:773
+msgid "You wish to convert this database into the new DB-API format?"
+msgstr ""
+
+#: ../gramps/gui/editors/editplace.py:199
+#: ../gramps/gui/editors/editplaceref.py:192
+msgid "Invalid latitude (syntax: 18\\u00b09'"
+msgstr "Nepravilna zemljopisna širina (syntax: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editplace.py:202
+#: ../gramps/gui/editors/editplaceref.py:195
+msgid "Invalid longitude (syntax: 18\\u00b09'"
+msgstr "Nepravilna zemljopisna dužina (syntax: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editrepository.py:60
+#, fuzzy
+msgid "manual|New_Repositories_dialog"
+msgstr "Spajanje spremišta"
+
+#: ../gramps/gui/editors/filtereditor.py:1186
+msgid ""
+"This filter is currently being used as the base for other filters. "
+"Deletingthis filter will result in removing all other filters that depend on "
+"it."
+msgstr ""
+"Ovaj filtar je trenutačno u upotrebi kao temelj za druge filtre. Uklanjanje "
+"ovog filtra ukloniti će i sve ostale filtre koji su izrađeni na osnovi njega."
+
+#: ../gramps/gui/glade/editcitation.glade:201
+msgid ""
+"Conveys the submitter's quantitative evaluation of the credibility of a "
+"piece of information, based upon its supporting evidence. It is not intended "
+"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
+"Very Low =Unreliable evidence or estimated data\n"
+"Low =Questionable reliability of evidence (interviews, census, oral "
+"genealogies, or potential for bias for example, an autobiography)\n"
+"High =Secondary evidence, data officially recorded sometime after event\n"
+"Very High =Direct and primary evidence used, or by dominance of the evidence "
+msgstr ""
+
+#: ../gramps/gui/glade/editplace.glade:105
+#: ../gramps/gui/glade/editplaceref.glade:228
+msgid ""
+"Either use the two fields below to enter coordinates(latitude and longitude),"
+msgstr ""
+
+#: ../gramps/gui/undohistory.py:57
+msgid "11"
+msgstr ""
+
+#: ../gramps/plugins/db/bsddb/write.py:2303
+#, fuzzy
+msgid "Database db version"
+msgstr "Bsddb verzija"
+
+#: ../gramps/plugins/db/dbapi/dbapi.gpr.py:26
+msgid "DB-API"
+msgstr ""
+
+#: ../gramps/plugins/db/dbapi/inmemorydb.gpr.py:26
+msgid "In-Memory"
+msgstr ""
+
+#: ../gramps/plugins/webreport/narrativeweb.py:5367
+#, fuzzy, python-format
+msgid ""
+"%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+msgstr ""
+"<strong id=\"GalleryCurrent\">%(page_number)d</strong> od <strong id="
+"\"GalleryTotal\">%(total_pages)d</strong>"
+
 #, fuzzy
 #~ msgid "Data version"
 #~ msgstr "Verzija sheme"
@@ -41025,3 +41202,30 @@ msgstr "Nema određenog stila"
 #~ msgstr ""
 #~ "Možete povezati bilo koji elektronički medij (uključujući ne-tekstualne "
 #~ "informacije) i druge vrste datoteka sa vašim GRAMPS obiteljskim stablom."
+
+#~ msgid "Extract Place data"
+#~ msgstr "Izvuci podatke o mjestu"
+
+#~ msgid "Description: "
+#~ msgstr "Opis:"
+
+#~ msgid "Modified: "
+#~ msgstr "Mijenjano:"
+
+#~ msgid "Password:"
+#~ msgstr "Zaporka:"
+
+#~ msgid "Username:"
+#~ msgstr "Korisničko ime:"
+
+#~ msgid "Family Sources"
+#~ msgstr "Izvori obitelji"
+
+#~ msgid "Include Marriage information"
+#~ msgstr "Uključi informacije o vjenčanju"
+
+#~ msgid "Marker Colors"
+#~ msgstr "Boje oznaka"
+
+#~ msgid "Name Format Editor"
+#~ msgstr "Uređivač formata imena"

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-20 09:31-0500\n"
-"PO-Revision-Date: 2017-12-27 08:54+0100\n"
+"PO-Revision-Date: 2014-06-04 01:28+0100\n"
 "Last-Translator: Łukasz Rymarczyk <yenidai@poczta.onet.pl>\n"
 "Language-Team: Łukasz Rymarczyk <yenidai@poczta.onet.pl>\n"
 "Language: pl_PL\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.0.5\n"
+"X-Generator: Poedit 1.6\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -1801,8 +1801,8 @@ msgstr "Zablokowany przez %s"
 #: ../gramps/plugins/view/geomoves.py:596
 #: ../gramps/plugins/view/geoperson.py:477
 #: ../gramps/plugins/view/geoplaces.py:531
-#: ../gramps/plugins/view/relview.py:468
-#: ../gramps/plugins/view/relview.py:1008
+#: ../gramps/plugins/view/relview.py:460 ../gramps/plugins/view/relview.py:995
+#: ../gramps/plugins/view/relview.py:1050
 #: ../gramps/plugins/webreport/basepage.py:1759
 #: ../gramps/plugins/webreport/basepage.py:1788
 #: ../gramps/plugins/webreport/basepage.py:1793
@@ -13233,13 +13233,13 @@ msgstr "Przenieś zaznaczone nazwisko w dół"
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:71
 #: ../gramps/plugins/gramplet/placedetails.py:146
 msgid "Alternative Names"
-msgstr "Alternatywne nazwy"
+msgstr "Alternatywne nazwiy"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:69
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:111
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1302
 msgid "Enclosed By"
-msgstr "Zawarte w"
+msgstr "Dodany przez"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:141
 msgid "Place cycle detected"
@@ -37307,6 +37307,201 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Bez arkusza stylów"
 
+#: ../gramps/cli/argparser.py:53
+#, fuzzy
+msgid ""
+"\n"
+"Usage: gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
+"\n"
+"Help options\n"
+"  -?, --help                             Show this help message\n"
+"  --usage                                Display brief usage message\n"
+"\n"
+"Application options\n"
+"  -O, --open=FAMILY_TREE                 Open Family Tree\n"
+"  -C, --create=FAMILY_TREE               Create on open if new Family Tree\n"
+"  -i, --import=FILENAME                  Import file\n"
+"  -e, --export=FILENAME                  Export file\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) (use "
+"regular expressions)\n"
+"  -f, --format=FORMAT                    Specify Family Tree format\n"
+"  -a, --action=ACTION                    Specify action\n"
+"  -p, --options=OPTIONS_STRING           Specify options\n"
+"  -d, --debug=LOGGER_NAME                Enable debug logs\n"
+"  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
+"  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
+"  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab delimited\n"
+"  -u, --force-unlock                     Force unlock of Family Tree\n"
+"  -s, --show                             Show config settings\n"
+"  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
+"Gramps\n"
+"  -y, --yes                              Don't ask to confirm dangerous "
+"actions (non-GUI mode only)\n"
+"  -q, --quiet                            Suppress progress indication output "
+"(non-GUI mode only)\n"
+"  -v, --version                          Show versions\n"
+msgstr ""
+"\n"
+"Użycie: gramps.py [OPCJA...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Dynamiczne moduły do załadowania\n"
+"\n"
+"Opcje pomocy\n"
+"  -?, --help                             Pokazuje to okno pomocy\n"
+"  --usage                                Pokazuje krótkie info jak używać\n"
+"\n"
+"Opcje aplikacji\n"
+"  -O, --open=DRZEWO_RODZINNE             Otwiera drzewo rodzinne\n"
+"  -C, --create=DRZEWO_RODZINNE          Tworzy przy otwarciu drzewo "
+"rodzinne\n"
+"  -i, --import=NAZWA_PLIKU \t\t         Importuje plik\n"
+"  -e, --export=NAZWA_PLIKU               Eksportuje plik\n"
+"  -f, --format=FORMAT                    Określa format pliku drzewa\n"
+"  -a, --action=AKCJA                     Określa akcję\n"
+"  -p, --options=CIĄG_OPCJI               Określa opcje\n"
+"  -d, --debug=PLIK_LOGU                  Włącza pliki logów debuggera\n"
+"  -l                                     Wyświetla listę drzewe rodzinnych\n"
+"  -L                                     Wyświetla szczegółową listę drzew "
+"rodzinnych\n"
+"  -t                                     Wyświetla listę drzew, oddzieloną "
+"tabulatorami\n"
+"  -u, --force-unlock                     Wymusza odblokowanie drzewa "
+"rodzinego\n"
+"  -s, --show                             Pokazuje ustawienia konfiguracji\n"
+"  -c, --config=[config.setting[:value]]  Ustawia wartość(ci) "
+"konfiguracyjną(e) i uruchamia program\n"
+"  -y, --yes                              Nie pytaj rpzy potwierdzaniu "
+"niebezpiecznych akcji (tylko tryb bez GUI)\n"
+"  -q, --quiet                            Pomiń wskaźnik postępu  (tylko tryb "
+"bez GUI)\n"
+"  -v, --version                         Pokazuje wersję\n"
+
+#: ../gramps/gui/configure.py:565
+msgid "Gender Male Alive"
+msgstr "Żyjąca osoba męska"
+
+#: ../gramps/gui/configure.py:571
+msgid "Border Male Death"
+msgstr "Granica śmierci osoby męskiej"
+
+#: ../gramps/gui/configure.py:573
+msgid "Gender Female Alive"
+msgstr "Żyjąca osoba żeńska"
+
+#: ../gramps/gui/configure.py:579
+msgid "Border Female Death"
+msgstr "Granica śmierci osoby żeńskiej"
+
+#. #        self.add_color(grid, _('Gender Other Alive'), 5,
+#. #                        'preferences.color-gender-other-alive')
+#. #        self.add_color(grid, _('Border Other Alive'), 6,
+#. #                        'preferences.bordercolor-gender-other-alive')
+#. #        self.add_color(grid, _('Gender Other Death'), 7,
+#. #                        'preferences.color-gender-other-death')
+#. #        self.add_color(grid, _('Border Other Death'), 8,
+#. #                        'preferences.bordercolor-gender-other-death')
+#: ../gramps/gui/configure.py:589
+msgid "Gender Unknown Alive"
+msgstr "Żyjąca osoba płci nieznanej"
+
+#: ../gramps/gui/configure.py:595
+msgid "Border Unknown Death"
+msgstr "Granica śmierci osoby płci nieznanej"
+
+#: ../gramps/gui/configure.py:1132
+msgid "Suppress comma after house number"
+msgstr ""
+
+#: ../gramps/gui/configure.py:1145
+msgid "-> Hamlet/Village/Town/City"
+msgstr ""
+
+#: ../gramps/gui/configure.py:1146
+msgid "Hamlet/Village/Town/City ->"
+msgstr ""
+
+#: ../gramps/gui/dbman.py:773
+msgid "You wish to convert this database into the new DB-API format?"
+msgstr ""
+
+#: ../gramps/gui/editors/editplace.py:199
+#: ../gramps/gui/editors/editplaceref.py:192
+msgid "Invalid latitude (syntax: 18\\u00b09'"
+msgstr "Błędna szerokość (składnia: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editplace.py:202
+#: ../gramps/gui/editors/editplaceref.py:195
+msgid "Invalid longitude (syntax: 18\\u00b09'"
+msgstr "Błędna długość (składnia: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editrepository.py:60
+#, fuzzy
+msgid "manual|New_Repositories_dialog"
+msgstr "Połącz_magazyny"
+
+#: ../gramps/gui/editors/filtereditor.py:1186
+msgid ""
+"This filter is currently being used as the base for other filters. "
+"Deletingthis filter will result in removing all other filters that depend on "
+"it."
+msgstr ""
+"Ten filtr jest aktualnie używany jako podstawa innych filtrów. Usunięcie go, "
+"spowoduje usunięcie wszystkich filtrów, które od niego zależą."
+
+#: ../gramps/gui/glade/editcitation.glade:201
+msgid ""
+"Conveys the submitter's quantitative evaluation of the credibility of a "
+"piece of information, based upon its supporting evidence. It is not intended "
+"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
+"Very Low =Unreliable evidence or estimated data\n"
+"Low =Questionable reliability of evidence (interviews, census, oral "
+"genealogies, or potential for bias for example, an autobiography)\n"
+"High =Secondary evidence, data officially recorded sometime after event\n"
+"Very High =Direct and primary evidence used, or by dominance of the evidence "
+msgstr ""
+"Przekazuje ilościowe oznaczenie wiarygodności źródła danej informacji, "
+"bazujące na pomocniczych danych. Jego zadaniem nie jest eliminacja "
+"konieczności odczytującego do wyznaczenia tej ewidencji w stosunku do siebie."
+"Bardzo niska = Niewiarygodna ewidencja albo dane szacowane\n"
+"Niska =Wątpliwa wiarogodność ewidencji (wywiad, spis powszechny, ustna "
+"genealogia albo potencjalne także autobiografia)\n"
+"Wysoka =Pomocnicza ewidencja, dane w nim są zapisywane dopiero po jakimś "
+"czasie przenoszone do właściwego indeksu.\n"
+"Bardzo wysoka =Bezpośrednia i podstawowa ewidencja jest użyta, albo jest to "
+"ewidencja dominująca w danym obszarze "
+
+#: ../gramps/gui/glade/editplace.glade:105
+#: ../gramps/gui/glade/editplaceref.glade:228
+msgid ""
+"Either use the two fields below to enter coordinates(latitude and longitude),"
+msgstr ""
+
+#: ../gramps/gui/undohistory.py:57
+msgid "11"
+msgstr ""
+
+#: ../gramps/plugins/db/bsddb/write.py:2303
+#, fuzzy
+msgid "Database db version"
+msgstr "Wersja Bsddb"
+
+#: ../gramps/plugins/db/dbapi/dbapi.gpr.py:26
+msgid "DB-API"
+msgstr ""
+
+#: ../gramps/plugins/db/dbapi/inmemorydb.gpr.py:26
+msgid "In-Memory"
+msgstr ""
+
+#: ../gramps/plugins/webreport/narrativeweb.py:5367
+#, fuzzy, python-format
+msgid ""
+"%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+msgstr ""
+"<strong id = \"GalleryCurrent\">%(page_number)d</strong> z <strong id = "
+"\"GalleryTotal\">%(total_pages)d</strong>"
+
 #, fuzzy
 #~ msgid "Data version"
 #~ msgstr "Wersja schematu"
@@ -43978,3 +44173,33 @@ msgstr "Bez arkusza stylów"
 
 #~ msgid "To Do"
 #~ msgstr "Do zrobienia"
+
+#~ msgid "Extract Place data"
+#~ msgstr "Wyodrębnij dane miejsca"
+
+#~ msgid "Description: "
+#~ msgstr "Opis: "
+
+#~ msgid "Modified: "
+#~ msgstr "Modyfikowany: "
+
+#~ msgid "Password:"
+#~ msgstr "Hasło:"
+
+#~ msgid "Username:"
+#~ msgstr "Użytkownik:"
+
+#~ msgid "Family Sources"
+#~ msgstr "Źródła rodziny"
+
+#~ msgid "Include Marriage information"
+#~ msgstr "Dołącz informacje o małżeństwach"
+
+#~ msgid "Marker Colors"
+#~ msgstr "Kolory zakreślacza"
+
+#~ msgid "Name Format Editor"
+#~ msgstr "Edytor formatu nazw"
+
+#~ msgid "%d invalid birth event names were fixed\n"
+#~ msgstr "Naprawiono %d nieprawidłowych zdarzeń urodzin\n"

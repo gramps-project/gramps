@@ -36796,6 +36796,145 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Brez lista slogov"
 
+#: ../gramps/cli/argparser.py:53
+msgid ""
+"\n"
+"Usage: gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
+"\n"
+"Help options\n"
+"  -?, --help                             Show this help message\n"
+"  --usage                                Display brief usage message\n"
+"\n"
+"Application options\n"
+"  -O, --open=FAMILY_TREE                 Open Family Tree\n"
+"  -C, --create=FAMILY_TREE               Create on open if new Family Tree\n"
+"  -i, --import=FILENAME                  Import file\n"
+"  -e, --export=FILENAME                  Export file\n"
+"  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) (use "
+"regular expressions)\n"
+"  -f, --format=FORMAT                    Specify Family Tree format\n"
+"  -a, --action=ACTION                    Specify action\n"
+"  -p, --options=OPTIONS_STRING           Specify options\n"
+"  -d, --debug=LOGGER_NAME                Enable debug logs\n"
+"  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
+"  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
+"  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab delimited\n"
+"  -u, --force-unlock                     Force unlock of Family Tree\n"
+"  -s, --show                             Show config settings\n"
+"  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
+"Gramps\n"
+"  -y, --yes                              Don't ask to confirm dangerous "
+"actions (non-GUI mode only)\n"
+"  -q, --quiet                            Suppress progress indication output "
+"(non-GUI mode only)\n"
+"  -v, --version                          Show versions\n"
+msgstr ""
+"\n"
+"Uporaba: gramps.py [MOŽNOSTI ...]\n"
+"  --load-modules=MODUL1,MODUL2,...     Dinamični moduli, ki naj bodo "
+"naloženi\n"
+"\n"
+"Možnosti pomoči\n"
+"  -?, --help                           Pokaži to sporočilo s pomočjo\n"
+"  --usage                              Pokaži kratko sporočilo o uporabi\n"
+"\n"
+"Možnosti programa\n"
+"  -O, --open=RODOVNIK                  Odpri rodovnik\n"
+"  -C, --create=RODOVNIK                Ustvari rodovnik, če ne obstaja\n"
+"  -i, --import=IME_DATOTEKE            Uvozi datoteko\n"
+"  -e, --export=IME_DATOTEKE            Izvozi datoteko\n"
+"  -r, --remove=IZRAZ_RODOVNIKA         Odstrani ujemajoče se rodovnike "
+"(regularni izraz)\n"
+"  -f, --format=OBLIKA                  Določi obliko rodovnika\n"
+"  -a, --action=DEJANJE                 Določi dejanje\n"
+"  -p, --options=NIZ_MOŽNOSTI           Dodatne možnosti\n"
+"  -d, --debug=IME_BELEŽKE              Vklopi beleženje razhroščevalnika\n"
+"  -l [IZRAZ_RODOVNIKA...]              Izpiši rodovnike\n"
+"  -L [IZRAZ_RODOVNIKA...]              Izpiši rodovnike s podrobnostmi\n"
+"  -t [IZRAZ_RODOVNIKA...]              Izpiši rodovnike ločeno s presledki\n"
+"  -u, --force-unlock                   Prisilno odkleni rodovnik\n"
+"  -s, --show                           Pokaži nastavitev\n"
+"  -c, --config=[nastavitev[:vrednost]] Določi nastavitve in zaženi Gramps\n"
+"  -y, --yes                            Ne sprašuj pri potrjevanju nevarnih "
+"dejanj (samo negrafično)\n"
+"  -q, --quiet                          Ne prikazuj kazalnika napredka (samo "
+"negrafično)\n"
+"  -v, --version                        Pokaži različice\n"
+
+#: ../gramps/gui/configure.py:565
+msgid "Gender Male Alive"
+msgstr "Notranjost za žive moške"
+
+#: ../gramps/gui/configure.py:571
+msgid "Border Male Death"
+msgstr "Okvir za umrle moške"
+
+#: ../gramps/gui/configure.py:573
+msgid "Gender Female Alive"
+msgstr "Notranjost za žive ženske"
+
+#: ../gramps/gui/configure.py:579
+msgid "Border Female Death"
+msgstr "Okvir za umrle ženske"
+
+#. #        self.add_color(grid, _('Gender Other Alive'), 5,
+#. #                        'preferences.color-gender-other-alive')
+#. #        self.add_color(grid, _('Border Other Alive'), 6,
+#. #                        'preferences.bordercolor-gender-other-alive')
+#. #        self.add_color(grid, _('Gender Other Death'), 7,
+#. #                        'preferences.color-gender-other-death')
+#. #        self.add_color(grid, _('Border Other Death'), 8,
+#. #                        'preferences.bordercolor-gender-other-death')
+#: ../gramps/gui/configure.py:589
+msgid "Gender Unknown Alive"
+msgstr "Notranjost za žive neznanega spola"
+
+#: ../gramps/gui/configure.py:595
+msgid "Border Unknown Death"
+msgstr "Okvir za umrle neznanega spola"
+
+#: ../gramps/gui/editors/editplace.py:199
+#: ../gramps/gui/editors/editplaceref.py:192
+msgid "Invalid latitude (syntax: 18\\u00b09'"
+msgstr "Napačna z. širina (sintaksa: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editplace.py:202
+#: ../gramps/gui/editors/editplaceref.py:195
+msgid "Invalid longitude (syntax: 18\\u00b09'"
+msgstr "Napačna z. dolžina (sintaksa: 18\\u00b09'"
+
+#: ../gramps/gui/editors/editrepository.py:60
+msgid "manual|New_Repositories_dialog"
+msgstr "Novo_nahajališče"
+
+#: ../gramps/gui/glade/editcitation.glade:201
+msgid ""
+"Conveys the submitter's quantitative evaluation of the credibility of a "
+"piece of information, based upon its supporting evidence. It is not intended "
+"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
+"Very Low =Unreliable evidence or estimated data\n"
+"Low =Questionable reliability of evidence (interviews, census, oral "
+"genealogies, or potential for bias for example, an autobiography)\n"
+"High =Secondary evidence, data officially recorded sometime after event\n"
+"Very High =Direct and primary evidence used, or by dominance of the evidence "
+msgstr ""
+"Navedba ocene zanesljivosti podatka, kot jo vidi izdajatelj glede na svoje "
+"dokaze. Ne gre za to, da potem prejemniku ni treba podati lastne ocene "
+"zanesljivosti.\n"
+"Zelo nizka: nezanesljivo gradivo ali ocenjen podatek.\n"
+"Nizka: vprašljiva zanesljivost gradiva (intervju, popis, ustni rodovniki, "
+"avtobiografije).\n"
+"Visoka: sekundarno gradivo, uradno zabeleženi podatki kmalu po dogodku.\n"
+"Zelo visoka: neposredno ali primarno gradivo uporabljeno, velika prevlada "
+"gradiva "
+
+#: ../gramps/gui/glade/editplace.glade:105
+#: ../gramps/gui/glade/editplaceref.glade:228
+msgid ""
+"Either use the two fields below to enter coordinates(latitude and longitude),"
+msgstr "Uporabite spodnji polji za vnos koordinat (širinga, dolžina):"
+
 #~ msgid "Gender Male Death"
 #~ msgstr "Notranjost za umrle moške"
 

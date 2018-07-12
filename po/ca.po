@@ -37039,6 +37039,31 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Sense full d'estil"
 
+#: ../gramps/gui/editors/editrepository.py:60
+msgid "manual|New_Repositories_dialog"
+msgstr "Dialeg_Nous_Repositoris"
+
+#: ../gramps/gui/glade/editcitation.glade:201
+msgid ""
+"Conveys the submitter's quantitative evaluation of the credibility of a "
+"piece of information, based upon its supporting evidence. It is not intended "
+"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
+"Very Low =Unreliable evidence or estimated data\n"
+"Low =Questionable reliability of evidence (interviews, census, oral "
+"genealogies, or potential for bias for example, an autobiography)\n"
+"High =Secondary evidence, data officially recorded sometime after event\n"
+"Very High =Direct and primary evidence used, or by dominance of the evidence "
+msgstr ""
+"Expressa l'avaluació quantitativa de la credibilitat d'una informació, "
+"segons qui l'aporta, basant-se en les proves que la suporten. No és per "
+"eliminar la necessitat del receptor d'avaluar les proves per si mateix.\n"
+"Molt Baix =Proves no fiables o dades estimades\n"
+"Baix =Fiabilitat de la prova qüestionable (entrevistes, cens, genealogies "
+"orals, o biaix potencial, per exemple, una autobiografia)\n"
+"Alt =Prova secundària, dades registrades oficialment algun temps després de "
+"l'esdeveniment\n"
+"Molt Alt =Prova directa i primària, o per evidència aclaparadora "
+
 #~ msgid "Data version"
 #~ msgstr "Versió de BD"
 
