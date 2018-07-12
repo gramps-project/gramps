@@ -603,7 +603,9 @@ class RelationshipView(NavigationView):
             birth_title = _("Birth")
 
         subgrid.attach(widgets.BasicLabel(_("%s:") % birth_title), 1, 1, 1, 1)
-        subgrid.attach(widgets.BasicLabel(self.format_event(birth)), 2, 1, 1, 1)
+        birthwidget = widgets.BasicLabel(self.format_event(birth))
+        birthwidget.set_selectable(True)
+        subgrid.attach(birthwidget, 2, 1, 1, 1)
 
         death = get_death_or_fallback(self.dbstate.db, person)
         if death:
@@ -621,9 +623,11 @@ class RelationshipView(NavigationView):
                         age = death_date - birth_date
                         subgrid.attach(widgets.BasicLabel(_("%s:") % death_title),
                                       1, 2, 1, 1)
-                        subgrid.attach(widgets.BasicLabel("%s (%s)" %
+                        deathwidget = widgets.BasicLabel("%s (%s)" %
                                                          (self.format_event(death), age),
-                                                         Pango.EllipsizeMode.END),
+                                                         Pango.EllipsizeMode.END)
+                        deathwidget.set_selectable(True)
+                        subgrid.attach(deathwidget,
                                       2, 2, 1, 1)
                         showed_death = True
                 if not showed_death:
@@ -644,7 +648,9 @@ class RelationshipView(NavigationView):
         if not showed_death:
             subgrid.attach(widgets.BasicLabel(_("%s:") % death_title),
                           1, 2, 1, 1)
-            subgrid.attach(widgets.BasicLabel(self.format_event(death)),
+            deathwidget = widgets.BasicLabel(self.format_event(death))
+            deathwidget.set_selectable(True)
+            subgrid.attach(deathwidget,
                           2, 2, 1, 1)
 
         mbox = Gtk.Box()
@@ -1177,8 +1183,10 @@ class RelationshipView(NavigationView):
                 vbox.add(l)
 
     def write_data(self, box, title, start_col=_SDATA_START,
-                   stop_col=_SDATA_STOP):
-        box.add(widgets.BasicLabel(title))
+                   stop_col=_SDATA_STOP, selectable=False):
+        label=widgets.BasicLabel(title)
+        label.set_selectable(selectable)
+        box.add(label)
 
     def info_string(self, handle):
         person = self.dbstate.db.get_person_from_handle(handle)
@@ -1317,7 +1325,7 @@ class RelationshipView(NavigationView):
             if pname:
                 self.write_data(
                     vbox, _('%(event_type)s: %(date)s in %(place)s') %
-                    value, start_col, stop_col)
+                    value, start_col, stop_col, True)
             else:
                 self.write_data(
                     vbox, _('%(event_type)s: %(date)s') % value,

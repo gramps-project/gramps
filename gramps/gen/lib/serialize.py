@@ -75,7 +75,7 @@ def to_json(obj):
     :returns: A JSON string.
     :rtype: str
     """
-    return json.dumps(obj, default=__default)
+    return json.dumps(obj, default=__default, ensure_ascii=False)
 
 def from_json(data):
     """

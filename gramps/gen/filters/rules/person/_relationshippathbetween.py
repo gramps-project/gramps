@@ -55,7 +55,7 @@ class RelationshipPathBetween(Rule):
         try:
             root1_handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
             root2_handle = db.get_person_from_gramps_id(self.list[1]).get_handle()
-            self.init_list(root1_handle,root2_handle)
+            self.init_list(root1_handle, root2_handle)
         except:
             pass
 
@@ -82,6 +82,8 @@ class RelationshipPathBetween(Rule):
         pmap[person.get_handle()] = rank
 
         fam_id = person.get_main_parents_family_handle()
+        if not fam_id:
+            return
         family = self.db.get_family_from_handle(fam_id)
         if family is not None:
             self.apply_filter(rank+1, family.get_father_handle(), plist, pmap)

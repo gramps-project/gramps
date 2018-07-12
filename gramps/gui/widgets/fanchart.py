@@ -93,6 +93,11 @@ from gramps.gen.const import (
 _ = glocale.translation.gettext
 from ..utilscairo import warpPath
 
+# following are used in name_displayer format def
+# (must not conflict with standard defs)
+TWO_LINE_FORMAT_1 = 100
+TWO_LINE_FORMAT_2 = 101
+
 #-------------------------------------------------------------------------
 #
 # FanChartBaseWidget
@@ -115,13 +120,18 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         self.dbstate = dbstate
         self.uistate = uistate
         self.translating = False
+        self.surface = None
         self.goto = None
         self.on_popup = callback_popup
         self.last_x, self.last_y = None, None
         self.fontdescr = "Sans"
         self.fontsize = 8
-        self.twolineformat_nums=(name_displayer.add_name_format('fanchart_name_line1', '%l'),
-                                 name_displayer.add_name_format('fanchart_name_line2', '%f %s'))
+        # add parts of a two line name format to the displayer.  We add them
+        # as standard names, but set them inactive so they don't show up in
+        # name editor or selector.
+        name_displayer.set_name_format(
+            [(TWO_LINE_FORMAT_1, 'fanchart_name_line1', '%l', False),
+             (TWO_LINE_FORMAT_2, 'fanchart_name_line2', '%f %s', False)])
         self.connect("button_release_event", self.on_mouse_up)
         self.connect("motion_notify_event", self.on_mouse_move)
         self.connect("button-press-event", self.on_mouse_down)
@@ -170,10 +180,6 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         #(re)compute everything
         self.reset()
         self.set_size_request(120, 120)
-
-    def __del__(self):
-        for num in self.twolineformat_nums:
-            name_displayer.del_name_format(num)
 
     def reset(self):
         """
@@ -243,7 +249,15 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         """
         callback to draw the fanchart
         """
-        raise NotImplementedError
+        if self.surface:
+            cr.set_source_surface(self.surface, 0, 0)
+            cr.paint()
+
+    def prt_draw(self, widget, cr, scale=1.0):
+        """
+        method to allow direct drawing to cairo context for printing
+        """
+        self.draw(cr=cr, scale=scale)
 
     def people_generator(self):
         """
@@ -578,8 +592,8 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                        fontcolor, bold)
         else:
             text=name_displayer.display(person)
-            text_line1=name_displayer.display_format(person,self.twolineformat_nums[0])
-            text_line2=name_displayer.display_format(person,self.twolineformat_nums[1])
+            text_line1=name_displayer.display_format(person, TWO_LINE_FORMAT_1)
+            text_line2=name_displayer.display_format(person, TWO_LINE_FORMAT_2)
             if draw_radial:
                 split_frac_line1=0.5
                 flipped = can_flip and ((math.degrees((start+stop)/2.0) + self.rotate_value - 90) % 360 < 179 and self.flipupsidedownname)
@@ -744,7 +758,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         return lambda x, y: \
             (rho(y) * math.cos(phi(x)), rho(y) * math.sin(phi(x)))
 
-    def draw_gradient_legend(self, cr, widget, halfdist):
+    def draw_gradient_legend(self, cr, halfdist):
         gradwidth = 10
         gradheight = 10
         starth = 15
@@ -919,6 +933,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             diff_angle = (end_angle - start_angle) % (math.pi * 2.0)
             self.rotate_value -= math.degrees(diff_angle)
             self.last_x, self.last_y = event.x, event.y
+        self.draw()
         self.queue_draw()
         return True
 
@@ -949,8 +964,12 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             return True
         if self.translating:
             self.translating = False
+        else:
+            self.center_delta_xy = -1, 0
+            self.center_xy = self.center_xy_from_delta()
 
         self.last_x, self.last_y = None, None
+        self.draw()
         self.queue_draw()
         return True
 
@@ -1202,27 +1221,39 @@ class FanChartWidget(FanChartBaseWidget):
             (person, parents, child, userdata) = childdata
             yield (person, userdata)
 
-    def on_draw(self, widget, cr, scale=1.):
+    def draw(self, cr=None, scale=1.0):
         """
         The main method to do the drawing.
-        If widget is given, we assume we draw in GTK3 and use the allocation.
-        To draw raw on the cairo context cr, set widget=None.
+        If cr is given, we assume we draw draw raw on the cairo context cr
+        To draw in GTK3 and use the allocation, set cr=None.
+        Note: when drawing for display, to counter a Gtk issue with scrolling
+        or resizing the drawing window, we draw on a surface, then copy to the
+        drawing context when the Gtk 'draw' signal arrives.
         """
         # first do size request of what we will need
         halfdist = self.halfdist()
-        if widget:
+        if not cr:  # Display
             if self.form == FORM_CIRCLE:
-                self.set_size_request(2 * halfdist, 2 * halfdist)
+                size_w = size_h = 2 * halfdist
             elif self.form == FORM_HALFCIRCLE:
-                self.set_size_request(2 * halfdist, halfdist + self.CENTER + PAD_PX)
+                size_w = 2 * halfdist
+                size_h = halfdist + self.CENTER + PAD_PX
             elif self.form == FORM_QUADRANT:
-                self.set_size_request(halfdist + self.CENTER + PAD_PX, halfdist + self.CENTER + PAD_PX)
+                size_w = size_h = halfdist + self.CENTER + PAD_PX
 
-        cr.scale(scale, scale)
-        if widget:
+            size_w_a = self.get_allocated_width()
+            size_h_a = self.get_allocated_height()
+            self.set_size_request(max(size_w, size_w_a), max(size_h, size_h_a))
+            size_w = self.get_allocated_width()
+            size_h = self.get_allocated_height()
+            self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
+                                              size_w, size_h)
+            cr = cairo.Context(self.surface)
             self.center_xy = self.center_xy_from_delta()
             cr.translate(*self.center_xy)
-        else:
+        else:  # printing
+            self.center_xy = halfdist, halfdist
+            cr.scale(scale, scale)
             cr.translate(halfdist, halfdist)
 
         cr.save()
@@ -1257,7 +1288,7 @@ class FanChartWidget(FanChartBaseWidget):
             if child and self.childring:
                 self.draw_childring(cr)
         if self.background in [BACKGROUND_GRAD_AGE, BACKGROUND_GRAD_PERIOD]:
-            self.draw_gradient_legend(cr, widget, halfdist)
+            self.draw_gradient_legend(cr, halfdist)
 
     def draw_childring(self, cr):
         cr.move_to(TRANSLATE_PX + CHILDRING_WIDTH, 0)
@@ -1455,6 +1486,7 @@ class FanChartWidget(FanChartBaseWidget):
         # no drag occured, expand or collapse the section
         self.toggle_cell_state(self._mouse_click_cell_address)
         self._mouse_click = False
+        self.draw()
         self.queue_draw()
 
 class FanChartGrampsGUI:
@@ -1489,6 +1521,7 @@ class FanChartGrampsGUI:
                         self.grad_start, self.grad_end,
                         self.generic_filter, self.alpha_filter, self.form)
         self.fan.reset()
+        self.fan.draw()
         self.fan.queue_draw()
 
     def on_popup(self, obj, event, person_handle, family_handle=None):

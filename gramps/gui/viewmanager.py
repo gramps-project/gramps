@@ -1233,26 +1233,24 @@ class ViewManager(CLIManager):
         if title:
             name = title
 
-        if self.dbstate.db.readonly:
-            msg = "%s (%s) - Gramps" % (name, _('Read Only'))
-            self.uistate.window.set_title(msg)
-            self.actiongroup.set_sensitive(False)
-        else:
+        rw = not self.dbstate.db.readonly
+        if rw:
             msg = "%s - Gramps" % name
-            self.uistate.window.set_title(msg)
-            self.actiongroup.set_sensitive(True)
+        else:
+            msg = "%s (%s) - Gramps" % (name, _('Read Only'))
+        self.uistate.window.set_title(msg)
 
         self.__change_page(self.notebook.get_current_page())
-        self.actiongroup.set_visible(True)
+        self.actiongroup.set_visible(rw)
         self.readonlygroup.set_visible(True)
-        self.undoactions.set_visible(True)
-        self.redoactions.set_visible(True)
-        self.undohistoryactions.set_visible(True)
-        self.actiongroup.set_sensitive(True)
+        self.undoactions.set_visible(rw)
+        self.redoactions.set_visible(rw)
+        self.undohistoryactions.set_visible(rw)
+        self.actiongroup.set_sensitive(rw)
         self.readonlygroup.set_sensitive(True)
-        self.undoactions.set_sensitive(True)
-        self.redoactions.set_sensitive(True)
-        self.undohistoryactions.set_sensitive(True)
+        self.undoactions.set_sensitive(rw)
+        self.redoactions.set_sensitive(rw)
+        self.undohistoryactions.set_sensitive(rw)
 
         self.recent_manager.build()
 
@@ -1278,6 +1276,44 @@ class ViewManager(CLIManager):
         self.uimanager.ensure_update()
         config.set('paths.recent-file', '')
         config.save()
+
+    def enable_menu(self, enable):
+        """ Enable/disable the menues.  Used by the dbloader for import to
+        prevent other operations during import.  Needed because simpler methods
+        don't work under Gnome with application menus at top of screen (instead
+        of Gramps window).
+        Note: enable must be set to False on first call.
+        """
+        if not enable:
+            self.action_st = (
+                self.actiongroup.get_sensitive(),
+                self.readonlygroup.get_sensitive(),
+                self.undoactions.get_sensitive(),
+                self.redoactions.get_sensitive(),
+                self.undohistoryactions.get_sensitive(),
+                self.fileactions.get_sensitive(),
+                self.toolactions.get_sensitive(),
+                self.reportactions.get_sensitive(),
+                self.recent_manager.action_group.get_sensitive())
+            self.actiongroup.set_sensitive(enable)
+            self.readonlygroup.set_sensitive(enable)
+            self.undoactions.set_sensitive(enable)
+            self.redoactions.set_sensitive(enable)
+            self.undohistoryactions.set_sensitive(enable)
+            self.fileactions.set_sensitive(enable)
+            self.toolactions.set_sensitive(enable)
+            self.reportactions.set_sensitive(enable)
+            self.recent_manager.action_group.set_sensitive(enable)
+        else:
+            self.actiongroup.set_sensitive(self.action_st[0])
+            self.readonlygroup.set_sensitive(self.action_st[1])
+            self.undoactions.set_sensitive(self.action_st[2])
+            self.redoactions.set_sensitive(self.action_st[3])
+            self.undohistoryactions.set_sensitive(self.action_st[4])
+            self.fileactions.set_sensitive(self.action_st[5])
+            self.toolactions.set_sensitive(self.action_st[6])
+            self.reportactions.set_sensitive(self.action_st[7])
+            self.recent_manager.action_group.set_sensitive(self.action_st[8])
 
     def __change_undo_label(self, label):
         """
@@ -1948,7 +1984,8 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
             config.set('paths.quick-backup-directory', path_entry.get_text())
         else:
             self.uistate.push_message(self.dbstate, _("Backup aborted"))
-        self.close()
+        if dbackup != Gtk.ResponseType.DELETE_EVENT:
+            self.close()
 
     def select_backup_path(self, widget, path_entry):
         """

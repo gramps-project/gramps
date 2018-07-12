@@ -67,6 +67,8 @@ resource_path = ''
 packaging = False
 argparser = argparse.ArgumentParser(add_help=False)
 argparser.add_argument("--resourcepath", dest="resource_path")
+argparser.add_argument("--no-compress-manpages", dest="no_compress_manpages",
+                       action="store_true")
 args, passthrough = argparser.parse_known_args()
 if args.resource_path:
     resource_path = args.resource_path
@@ -159,27 +161,30 @@ def build_man(build_cmd):
             subst_vars = (('@VERSION@', VERSION), )
             substitute_variables(filename, newfile, subst_vars)
 
-            import gzip
-            man_file_gz = os.path.join(newdir, 'gramps.1.gz')
-            if os.path.exists(man_file_gz):
-                if newer(filename, man_file_gz):
-                    os.remove(man_file_gz)
-                else:
-                    filename = False
+            src = 'gramps.1'
+            if not args.no_compress_manpages:
+                import gzip
+                src += '.gz'
+                man_file_gz = os.path.join(newdir, src)
+                if os.path.exists(man_file_gz):
+                    if newer(filename, man_file_gz):
+                        os.remove(man_file_gz)
+                    else:
+                        filename = False
+                        os.remove(newfile)
+
+                if filename:
+                    #Binary io, so open is OK
+                    with open(newfile, 'rb') as f_in,\
+                            gzip.open(man_file_gz, 'wb') as f_out:
+                        f_out.writelines(f_in)
+                        log.info('Compiling %s >> %s', filename, man_file_gz)
+
                     os.remove(newfile)
-
-            if filename:
-                #Binary io, so open is OK
-                with open(newfile, 'rb') as f_in,\
-                        gzip.open(man_file_gz, 'wb') as f_out:
-                    f_out.writelines(f_in)
-                    log.info('Compiling %s >> %s', filename, man_file_gz)
-
-                os.remove(newfile)
-                filename = False
+                    filename = False
 
             lang = man_dir[8:]
-            src = build_cmd.build_base  + '/data/man' + lang  + '/gramps.1.gz'
+            src = build_cmd.build_base  + '/data/man' + lang  + '/' + src
             target = 'share/man' + lang + '/man1'
             data_files.append((target, [src]))
 

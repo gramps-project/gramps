@@ -182,5 +182,7 @@ class MergePersonQuery:
                 self.database.commit_family(family, trans)
             parent_list.append(parents)
 
+        if self.database.get_default_handle() == old_handle:
+            self.database.set_default_person_handle(None)
         self.database.remove_person(old_handle, trans)
         return family_merge_ok

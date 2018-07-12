@@ -327,7 +327,6 @@ class OrganizeTagsDialog(ManagedWindow):
         self.setup_configs('interface.organizetagsdialog', 400, 350)
         self.show()
         self.run()
-        self.close()
 
     # this is meaningless while it's modal, but since this ManagedWindow can
     # have an EditTag ManagedWindow child it needs a non-None second argument
@@ -350,9 +349,11 @@ class OrganizeTagsDialog(ManagedWindow):
                 break
 
         # Save changed priority values
-        if self.__priorities_changed():
+        if response == Gtk.ResponseType.CLOSE and self.__priorities_changed():
             with DbTxn(_('Change Tag Priority'), self.db) as trans:
                 self.__change_tag_priority(trans)
+        if response != Gtk.ResponseType.DELETE_EVENT:
+            self.close()
 
     def __priorities_changed(self):
         """
@@ -369,6 +370,7 @@ class OrganizeTagsDialog(ManagedWindow):
         """
         for new_priority, row in enumerate(self.namemodel.model):
             if row[0] != new_priority:
+                row[0] = new_priority
                 tag = self.db.get_tag_from_handle(row[1])
                 if tag:
                     tag.set_priority(new_priority)
@@ -529,6 +531,7 @@ class OrganizeTagsDialog(ManagedWindow):
             pmon.add_op(status)
 
             msg = _('Delete Tag (%s)') % tag_name
+            self.namemodel.remove(iter_)
             with DbTxn(msg, self.db) as trans:
                 for classname, handle in links:
                     status.heartbeat()
@@ -538,7 +541,6 @@ class OrganizeTagsDialog(ManagedWindow):
 
                 self.db.remove_tag(tag_handle, trans)
                 self.__change_tag_priority(trans)
-            self.namemodel.remove(iter_)
             status.end()
 
 #-------------------------------------------------------------------------
@@ -567,7 +569,6 @@ class EditTag(ManagedWindow):
         self.setup_configs('interface.edittag', 320, 100)
         self.show()
         self.run()
-        self.close()
 
     def build_menu_names(self, obj): # this is meaningless while it's modal
         return (self.title, None)
@@ -588,6 +589,8 @@ class EditTag(ManagedWindow):
 
         if response == Gtk.ResponseType.OK:
             self._save()
+        if response != Gtk.ResponseType.DELETE_EVENT:
+            self.close()
 
     def _save(self):
         """

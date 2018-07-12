@@ -1,3 +1,11 @@
+gramps (5.0.0~rc1-1) unstable; urgency=medium
+
+  * First release candidate for Gramps 5.0
+  * Drop patch applied upstream
+  * Update copyrights
+
+ -- Ross Gammon <rossgammon@debian.org>  Sun, 01 Jul 2018 21:57:10 +0200
+
 gramps (5.0.0~beta1-1) unstable; urgency=medium
 
   * First beta release of gramps 5.0

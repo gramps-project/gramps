@@ -86,6 +86,12 @@ def writeData(database, filename, user, option_box=None):
     writer = PackageWriter(database, filename, user)
     return writer.export()
 
+
+def fix_mtime(tarinfo):
+    """ this fixes a bug in the python tarfile GNU_FORMAT where if mtime has
+    a fractional component, it fails."""
+    tarinfo.mtime = int(tarinfo.mtime)
+    return tarinfo
 #-------------------------------------------------------------------------
 #
 # PackageWriter
@@ -186,7 +192,7 @@ class PackageWriter:
             filename = media_path_full(self.db, mobject.get_path())
             archname = str(mobject.get_path())
             if os.path.isfile(filename) and os.access(filename, os.R_OK):
-                archive.add(filename, archname)
+                archive.add(filename, archname, filter=fix_mtime)
 
         # Write XML now
         g = BytesIO()

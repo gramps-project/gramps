@@ -306,6 +306,9 @@ class LivingProxyDb(ProxyDbBase):
             new_name.set_first_name(old_name.get_first_name())
             new_name.set_suffix(old_name.get_suffix())
             new_name.set_title(old_name.get_title())
+            new_name.set_call_name(old_name.get_call_name())
+            new_name.set_nick_name(old_name.get_nick_name())
+            new_name.set_family_nick_name(old_name.get_family_nick_name())
 
         surnlst = []
         if self.mode == self.MODE_REPLACE_COMPLETE_NAME:

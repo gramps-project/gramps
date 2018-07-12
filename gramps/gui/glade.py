@@ -144,7 +144,7 @@ class Glade(Gtk.Builder):
         if toplevel:
             loadlist = [toplevel] + also_load
             with open(path, 'r', encoding='utf-8') as builder_file:
-                data = builder_file.read().replace('\n', '')
+                data = builder_file.read()
                 if is_quartz():
                     data = data.replace('GDK_CONTROL_MASK', 'GDK_META_MASK')
                 self.add_objects_from_string(data, loadlist)
@@ -152,7 +152,7 @@ class Glade(Gtk.Builder):
         # toplevel not given
         else:
             with open(path, 'r', encoding='utf-8') as builder_file:
-                data = builder_file.read().replace('\n', '')
+                data = builder_file.read()
                 if is_quartz():
                     data = data.replace('GDK_CONTROL_MASK', 'GDK_META_MASK')
                 self.add_from_string(data)

@@ -243,7 +243,14 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
             font = para.get_font()
             font_size = font.get_size()
             lines = text.split('\n')
-            mar = 10/28.35
+
+            # horizontal position of the text is not included in the style,
+            # we assume that it is the size of the shadow, or 0.2mm
+            if box_style.get_shadow():
+                mar = box_style.get_shadow_space()
+            else:
+                mar = 0.2
+
             fsize = (font_size/28.35) * 1.2
             center = y + (h + fsize)/2.0 + (fsize*0.2)
             ystart = center - (fsize/2.0) * len(lines)

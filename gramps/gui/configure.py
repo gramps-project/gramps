@@ -1496,13 +1496,13 @@ class GrampsPreferences(ConfigureDialog):
 
     def set_connection_widgets(self, db_choice):
         """
-        Sets the connection widgets sensitive for PostgreSQL.
+        Sets the connection widgets insensitive for embedded databases.
         """
         for widget in self.connection_widgets:
-            if db_choice == 'postgresql':
-                widget.set_sensitive(True)
-            else:
+            if db_choice in ('bsddb', 'sqlite'):
                 widget.set_sensitive(False)
+            else:
+                widget.set_sensitive(True)
 
     def add_famtree_panel(self, configdialog):
         grid = Gtk.Grid()

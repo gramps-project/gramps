@@ -272,6 +272,10 @@ class BaseSelector(ManagedWindow):
             filter_info = (False, self.search_bar.get_value(), False)
         else:
             filter_info = self.filter
+        if self.model:
+            sel = self.first_selected()
+        else:
+            sel = None
 
         #set up cols the first time
         if self.setupcols :
@@ -298,6 +302,8 @@ class BaseSelector(ManagedWindow):
         self.tree.set_search_column(search_col)
 
         self.setupcols = False
+        if sel:
+            self.goto_handle(sel)
 
     def column_clicked(self, obj, data):
         if self.sort_col != data:
@@ -311,12 +317,6 @@ class BaseSelector(ManagedWindow):
                 self.sortorder = Gtk.SortType.DESCENDING
             self.model.reverse_order()
         self.build_tree()
-
-        handle = self.first_selected()
-        if handle:
-            path = self.model.on_get_path(handle)
-            self.selection.select_path(path)
-            self.tree.scroll_to_cell(path, None, 1, 0.5, 0)
 
         return True
 

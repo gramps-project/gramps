@@ -1,0 +1,420 @@
+2018-05-19  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/gen/merge/mergepersonquery.py: Fix merge persons when
+	removed person was the Home (default) person (#619) Fixes #10597 If a person merge removes the default (Home) person, the previous
+	code started having HandleError crashes.  This checks for and
+	corrects this issue.  Did not see the issue with 4.2.x because there
+	were no HandleErrors.
+
+2018-05-15  niememat <niememat@gmail.com>
+
+	* po/fi.po: Update finnish translation
+
+2018-05-15  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: Update Russian translation
+
+2018-05-08  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/gui/widgets/fanchartdesc.py: Fix FanChartDesc for typo
+	(copy/paste error). (#611) Fixes #10565 - Bug occurs when selected person has more than 4 parents.
+
+2018-05-01  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/gui/views/tags.py: Fix Tag editor for multiple tag removes
+	(#601) Fixes #10552
+
+2018-05-01  Serge Noiraud <Serge.Noiraud@laposte.net>
+
+	* gramps/plugins/webreport/person.py: In Narweb, Relationship to
+	Center person reversed (#606) Fixes #10553
+
+2018-04-30  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/plugins/view/citationtreeview.py: Fix Citation Tree view
+	for crash after plugin reload (#602) Fixes #10541
+
+2018-04-30  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/gui/dbloader.py, gramps/gui/viewmanager.py,
+	gramps/plugins/gramplet/backlinks.py: Fix 'References' Gramplet for
+	issue when activated during an import (#584) * Fix 'References' Gramplet for issue when activated during an
+	import Fixes #10507 * disable Application Menu during import
+
+2018-04-30  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/gui/views/listview.py,
+	gramps/plugins/lib/libpersonview.py,
+	gramps/plugins/view/eventview.py, gramps/plugins/view/familyview.py: 
+	Fix Person/Family/Event view updates on various associated changes
+	(#603) * Fix Person/Family/Event view updates on various associated changes Fixes #10532 * Fix Event view for changes in Main Participants * Fix Person/Event/Place views for update to a Place or enclosing
+	place
+
+2018-04-17  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/plugins/lib/libpersonview.py,
+	gramps/plugins/view/familyview.py: Fix Person views to update on
+	changes in birth/death event/place (#597) Fixes #10532
+
+2018-04-13  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2018-04-12  niememat <niememat@gmail.com>
+
+	* po/fi.po: Update finnish translation
+
+2018-04-11  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: update German translation
+
+2018-04-08  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/lib/serialize.py: Allow unicode characters in json
+	export
+
+2018-04-04  SNoiraud <serge.noiraud@laposte.net>
+
+	* gramps/plugins/view/geoplaces.py: Filtering problems in the
+	geography view
+
+2018-04-04  SNoiraud <serge.noiraud@laposte.net>
+
+	* gramps/gui/filters/sidebar/_placesidebarfilter.py: Crash when
+	looking for a place within an area Fixes #10531
+
+2018-04-09  Joachim Kuebart <joachim.kuebart@gmail.com>
+
+	* gramps/plugins/docgen/svgdrawdoc.py: Bugfix: use same box margin
+	for SVG and PDF When drawing text boxes in SVG, the text is often placed too far to
+	the right and touches the right frame. For an example, generate a
+	»Descendent tree« in SVG format. In the PDF version, the text does
+	not touch the frame of any boxes.  This PR fixes the problem by using the same text displacement
+	(margin) inside the box as the PDF driver. The code is taken from
+	gramps/plugins/lib/libcairodoc.py.
+
+2018-04-01  SNoiraud <serge.noiraud@laposte.net>
+
+	* gramps/plugins/webreport/webcal.py: Webcal crashes after Narrative
+	Web site exists + multiyear select option problem Fixes #10524
+
+2018-03-28  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gui/displaystate.py: Catch exceptions when loading recent
+	files
+
+2018-03-28  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/cli/arghandler.py, gramps/cli/clidbman.py,
+	gramps/gen/db/utils.py: Check that backend exists before loading
+	database
+
+2018-03-22  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/cli/clidbman.py, gramps/gui/dbman.py: Disable family tree
+	manager features when a backend is unavailable If the default backend is unavailable, then reset it to bsddb.
+
+2018-04-03  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2018-04-01  niememat <niememat@gmail.com>
+
+	* po/fi.po: Update finnish translation
+
+2018-03-29  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/plug/docgen/treedoc.py: Enclose tree report image path
+	and file name in braces Fixes #10495.
+
+2018-03-30  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: fix syntax error in German translation file
+
+2018-03-30  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: update German translation
+
+2018-03-28  SNoiraud <serge.noiraud@laposte.net>
+
+	* gramps/gui/selectors/baseselector.py: Crash when selecting an old
+	note, event, media, ...  Try to sort on another column.  Fixes #10519
+
+2018-03-28  Sam Manzi <manzi.sam@gmail.com>
+
+	* gramps/gui/editors/editrepository.py: [NewRepositoryEditor]Fix
+	help link
+
+2018-03-28  Sam Manzi <manzi.sam@gmail.com>
+
+	* gramps/plugins/tool/reorderids.py: [ReorderGrampsID]Fix broken
+	help link
+
+2018-03-26  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/gui/dbman.py: Fix FTM for delete tree, followed by close;
+	Title etc. shows old tree (#587) Fixes #10513
+
+2018-03-26  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/gen/filters/rules/person/_relationshippathbetween.py: Fix
+	Relationship path between filter for silent fail (#586) Fixes #10509
+
+2018-03-24  Herb Miller Jr <herb@hlmjr.com>
+
+	* setup.py: Add configuration flag --no-compress-manpages.
+
+2018-03-26  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2018-03-25  niememat <niememat@gmail.com>
+
+	* po/fi.po: Update finnish translation
+
+2018-03-25  John Ralls <jralls@ceridwen.us>
+
+	* gramps/gui/glade.py, gramps/gui/glade/editcitation.glade: Don't
+	strip newlines from builder files.  Fixes #10514.
+
+2018-03-25  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: update German translation
+
+2018-03-24  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2018-03-22  Sam Manzi <manzi.sam@gmail.com>
+
+	* gramps/gui/glade/editcitation.glade,
+	gramps/gui/views/treemodels/citationbasemodel.py,
+	gramps/gui/views/treemodels/citationlistmodel.py,
+	gramps/gui/views/treemodels/citationtreemodel.py: List sort by
+	number for citation confidence level (#583) * Fix confidence level sort in list views -based on the date-sort code.  Fixes #10506 * Fix confidence level tooltip -Stop run on text.  Resolves #10506
+
+2018-03-21  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/display/place.py: Fix error in place displayer when
+	offset is outside valid range Resolves #10493.
+
+2018-03-15  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2018-03-14  Sam Manzi <manzi.sam@gmail.com>
+
+	* example/gramps/example.gramps: Fix places in example.gramps (#578) - Moved Greek places into top level Greece entry & added English
+	names.  - Removed Puerto Rico as a country as part of USA
+
+2018-03-14  Sam Manzi <manzi.sam@gmail.com>
+
+	* gramps/gen/utils/keyword.py: Use sgettext for Name Format dialog
+	(#580) Fixes #10484
+
+2018-03-11  Sam Manzi <manzi.sam@gmail.com>
+
+	* gramps/plugins/view/relview.py: Enable copying the birth & death
+	fields for relationship view (#579) ...I did something similar(as in #575) for the relationship view...  Resolves #7874
+
+2018-03-11  Sam Manzi <manzi.sam@gmail.com>
+
+	* gramps/plugins/gramplet/persondetails.py,
+	gramps/plugins/gramplet/placedetails.py,
+	gramps/plugins/gramplet/repositorydetails.py: Allow Copying of text
+	fields for Details tabs (#575) Allow selection of text fields from details tab in selected views
+	with Details gramplets.  -  Person Details -  Place Details -  Repository Details Resolves #7874
+
+2018-03-10  Serge Noiraud <Serge.Noiraud@laposte.net>
+
+	* gramps/plugins/lib/maps/geography.py,
+	gramps/plugins/view/geoplaces.py: Geography: KML media objects not
+	shown on map. (#577) Geography doesn't conform to the relative paths If a place has no
+	coordinates, KML files are not displayed.  Fixes #10487
+
+2018-03-09  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/gui/widgets/fanchart.py,
+	gramps/gui/widgets/fanchart2way.py,
+	gramps/gui/widgets/fanchartdesc.py,
+	gramps/plugins/view/fanchart2wayview.py,
+	gramps/plugins/view/fanchartdescview.py,
+	gramps/plugins/view/fanchartview.py: Fix Fan charts for
+	scrolling/resizing of window; bad rendering (#572) Fixes #10381
+
+2018-03-09  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/gui/clipboard.py: Fix up Clipboard for various issues
+	(#569) * Fix Clipboard for HandleErrors during db changes Fixes #10475 * Clipboard pylint * Fix Clipboard for Drop/Edit of Surname group in People Tree view
+
+2018-03-08  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/plugins/graph/gvrelgraph.py: Fix Relationship Graph for
+	extraneous families when using filter (#576) Fixes #10492
+
+2018-02-23  prculley <paulr2787@gmail.com>
+
+	* gramps/plugins/export/exportpkg.py: Fix export gpkg when media
+	files have fractional timestamps.  Fixes #10424
+
+2018-03-07  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gui/configure.py: Remove reference to postgresql in core
+	code
+
+2018-03-07  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/db/generic.py, gramps/plugins/db/dbapi/dbapi.py: Move
+	dbapi-specific code out of DbGeneric
+
+2018-03-07  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/db/generic.py, gramps/plugins/db/dbapi/dbapi.py: Create
+	_schema_exists method
+
+2018-03-06  Nick Hall <nick-h@gramps-project.org>
+
+	* gramps/gen/display/place.py,
+	gramps/gen/plug/report/stdoptions.py,
+	gramps/plugins/textreport/placereport.py: Fix place format option in
+	place report (#561) * Fix place format option in place report Resolves #10467.  * Use -1 instead of None for default place format * adds New [Place format:] option on the [Report Options (2)] tab
+
+2018-03-06  Serge Noiraud <Serge.Noiraud@laposte.net>
+
+	* gramps/plugins/webreport/person.py: [Narrative Web
+	Report]Incorrect heading for stepmother or stepfather (#567) Fixes #10478
+
+2018-03-06  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/plugins/docgen/cairodoc.py: Fix Book TOC and Index
+	numbering and placement (#565) Fixes #10452
+
+2018-03-04  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/gui/widgets/fanchart.py: Fix Fan Chart(s) so they don't
+	crash when opened as last view (#571) Fixes #10440
+
+2018-03-04  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/gui/views/tags.py: Fix Organize Tag editor for exception on
+	'x' close (#570) Fix Organize Tags editor for exception on 'x' close
+
+2018-03-03  niememat <niememat@gmail.com>
+
+	* po/fi.po: Fix and updated translation in Finnish
+
+2018-02-27  prculley <paulr2787@gmail.com>
+
+	* gramps/gui/selectors/baseselector.py: Change BaseSelector so that
+	selection is kept during Find/Clear Fixes #10421
+
+2018-03-02  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/gen/plug/docgen/graphdoc.py: Fix multi-page Graph output to
+	pdf with filenames containg spaces (#560) Fixes #10470
+
+2018-02-28  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/gui/clipboard.py: Fix Clipboard for right-click on empty
+	clipboard (#566) Issues #10473
+
+2018-02-28  Sam Manzi <manzi.sam@gmail.com>
+
+	* docs/conf.py, docs/gen/gen_db.rst: Fix ImportError & update API
+	docs year 2018 (#564) - Fixes ImportError: No module named 'gramps.plugins.db.dummydb' -  Update Copyright to 2018
+
+2018-02-26  Zdeněk Hataš <zdenek.hatas@gmail.com>
+
+	* po/cs.po: Update Czech translation
+
+2018-02-24  vantu5z <vantu5z@mail.ru>
+
+	* po/ru.po: update Russian translation
+
+2018-02-24  Serge Noiraud <Serge.Noiraud@laposte.net>
+
+	* gramps/plugins/webreport/person.py: Privacy problem with the
+	relation to the center person. (#555) Bug #12345
+
+2018-02-23  Paul Culley <paulr2787@gmail.com>
+
+	* gramps/gui/plug/_guioptions.py: Fix Report Options when used with
+	empty db (#554) Fixes #10457
+
+2018-02-23  arnaullv <arnaullv@gmail.com>
+
+	* po/ca.po: Updated Catalan translation
+
+2018-02-19  Ross Gammon <rossgammon@mail.dk>
+
+	* debian/changelog: Finalise debian/changelog for beta1 release.  Also fix old syntax & trailing whitespace issues
+
+2018-02-19  Ross Gammon <rossgammon@mail.dk>
+
+	* debian/rules: Enable extra tests that were failing for alpha3
+
+2018-02-19  Ross Gammon <rossgammon@mail.dk>
+
+	* debian/patches/hardcoded_path_person_rules_test.patch,
+	debian/patches/series: Patch person_rules_test.py To remove hard coded build path from import. Fixes FTBFS due to test
+	failure.
+
+2018-02-19  Ross Gammon <rossgammon@mail.dk>
+
+	* debian/NEWS: Delete debian/NEWS file, only really applies in
+	Debian
+
+2018-02-19  Ross Gammon <rossgammon@mail.dk>
+
+	* debian/changelog: First beta release of gramps 5.0 * First beta release of gramps 5.0 * Sync debian directory with Debian experimental branch on salsa * Point Vcs URLs at the Gramps Project on Github * Correct spelling in debian/rules, node > nose * Delete gbp.conf, not required as gbp not used to build package
+
+2018-02-19  Ross Gammon <rossgammon@mail.dk>
+
+	* debian/gbp.conf: Remove gbp.conf, will not be using gbp to build
+	deb package Avoids updating it for every branch used to build it
+
+2018-02-19  Ross Gammon <rossgammon@mail.dk>
+
+	* debian/rules: Fix spelling in d/rules node > nose
+
+2018-02-19  Ross Gammon <rossgammon@mail.dk>
+
+	* debian/control: Update Vcs URLs to point at Gramps Github repo
+
+2018-02-19  Ross Gammon <rossgammon@mail.dk>
+
+	* debian/NEWS, debian/README.Debian, debian/README.test,
+	debian/compat, debian/control, debian/copyright, debian/gbp.conf,
+	debian/gramps.docs, debian/rules, debian/source/format,
+	debian/source/local-options, debian/tests/control,
+	debian/tests/gramps-import-export, debian/upstream/metadata,
+	debian/watch: Resync debian dir from Debian 5.0 experimental branch
+
+2018-02-18  Ross Gammon <rossgammon@mail.dk>
+
+	* debian/changelog: Update debian/changelog with releases since
+	4.0.3
+
+2018-02-19  Ross Gammon <rossgammon@mail.dk>
+
+	* gramps/gen/filters/rules/test/person_rules_test.py: Fix testsuite
+	failure when build happens out of the source tree.  Build path was hardcoded in an import in:
+	gramps/gen/filters/rules/test/person_rules_test.py Fixes #10450.
+
+2018-02-20  prculley <paulr2787@gmail.com>
+
+	* po/POTFILES.in, po/POTFILES.skip: Some POTFILES fixes
+
+2018-02-19  Leonhaeuser <mirko@leonhaeuser.de>
+
+	* po/de.po: update German translation
+
+2018-02-18  John Ralls <jralls@ceridwen.us>
+
+	* mac/Info.plist, mac/gramps.modules: Release Gramps 5.0.0-beta1 on
+	MacOS.
+
+2018-02-18  prculley <paulr2787@gmail.com>
+
+	* Bump to 5.0.0-beta2
+

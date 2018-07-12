@@ -133,13 +133,13 @@ class PlaceSidebarFilter(SidebarFilter):
         code = str(self.filter_code.get_text()).strip()
         enclosed = str(self.filter_enclosed.get_text()).strip()
         note = str(self.filter_note.get_text()).strip()
-        within = self.filter_within.get_value()[0]
+        within = self.filter_within.get_value()
         regex = self.filter_regex.get_active()
         tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
 
         empty = not (gid or name or ptype or code or enclosed or note or regex
-                     or within or tag or gen)
+                     or within[0] or tag or gen)
         if empty:
             generic_filter = None
         else:

@@ -146,6 +146,8 @@ class CairoDocgen(libcairodoc.CairoDoc):
                     if offset > 0:
                         self.__increment_pages(toc, index, toc_page, offset)
                         rebuild_required = True
+                    if index_page and toc_page < index_page:
+                        index_page += offset
                 else:
                     toc_pages = []
 
@@ -157,6 +159,8 @@ class CairoDocgen(libcairodoc.CairoDoc):
                     if offset > 0:
                         self.__increment_pages(toc, index, index_page, offset)
                         rebuild_required = True
+                    if toc_page and toc_page > index_page:
+                        toc_page += offset
                 else:
                     index_pages = []
 
@@ -200,6 +204,7 @@ class CairoDocgen(libcairodoc.CairoDoc):
         """
         Increment the page numbers in the table of contents and index.
         """
+        start_page += 1  # toc/index numbers start at 1
         for n, value in enumerate(toc):
             page_nr = toc[n][1]
             toc[n][1] = page_nr + (offset if page_nr > start_page else 0)

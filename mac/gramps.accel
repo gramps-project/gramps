@@ -33,7 +33,7 @@
 ; (gtk_accel_path "<Actions>/FileWindow/Open" "<Primary>o")
 ; (gtk_accel_path "<Actions>/ReportWindow/endofline_report" "")
  (gtk_accel_path "<Actions>/MainWindow/CitationAdd" "<Shift><ctrl><alt>c")
-; (gtk_accel_path "<Actions>/UndoHistory/UndoHistory" "<Primary>h")
+ (gtk_accel_path "<Actions>/UndoHistory/UndoHistory" "<shift><Meta>h")
 ; (gtk_accel_path "<Actions>/ReportWindow/family_descend_chart" "")
  (gtk_accel_path "<Actions>/AllMainWindow/Close" "<Primary>w")
 ; (gtk_accel_path "<Actions>/FileWindow/HelpMenu" "")

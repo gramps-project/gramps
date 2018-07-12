@@ -64,6 +64,7 @@ from gramps.gen.relationship import get_relationship_calculator
 from .glade import Glade
 from gramps.gen.utils.db import navigation_label
 from .widgets.progressdialog import ProgressMonitor, GtkProgressDialog
+from .dialog import ErrorDialog
 
 DISABLED = -1
 
@@ -261,7 +262,11 @@ class RecentDocsMenu:
 
     def load(self, item):
         filename = item.get_path()
-        self.fileopen(filename)
+        try:
+            self.fileopen(filename)
+        except Exception as err:
+            ErrorDialog(_('Cannot load database'), str(err),
+                        parent=self.uistate.window)
 
     def build(self):
         buf = StringIO()
