@@ -1,7 +1,7 @@
 # English (United Kingdom) translation for Gramps
 # This file is distributed under the same license as the Gramps package.
-# Copyright (C) 2012-2014 The Gramps Project
-# Nick Hall, 2012-2014.
+# Copyright (C) 2012-2018 The Gramps Project
+# Nick Hall, 2012-2018.
 #
 # analyzing -> analysing
 # baptized -> baptised
@@ -1827,18 +1827,16 @@ msgstr ""
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:241
-#, fuzzy, python-brace-format
 msgid "estimated|{long_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #. If "calculated <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:248
-#, fuzzy, python-brace-format
 msgid "calculated|{long_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:253
 #, python-brace-format
@@ -1917,18 +1915,16 @@ msgstr ""
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:313
-#, fuzzy, python-brace-format
 msgid "estimated|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #. If "calculated <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:320
-#, fuzzy, python-brace-format
 msgid "calculated|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #. If there is no special inflection for "from <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
@@ -7822,9 +7818,8 @@ msgid "Gender"
 msgstr ""
 
 #: ../gramps/gen/lib/person.py:188
-#, fuzzy
 msgid "Alternate names"
-msgstr "Analysing names"
+msgstr "Alternative names"
 
 #: ../gramps/gen/lib/person.py:190
 msgid "Death reference index"
@@ -8305,9 +8300,8 @@ msgid "Family Tree Differences"
 msgstr ""
 
 #: ../gramps/gen/merge/diff.py:107
-#, fuzzy
 msgid "Searching..."
-msgstr "Cancelling..."
+msgstr ""
 
 #: ../gramps/gen/merge/mergecitationquery.py:61
 msgid "Merge Citation"
@@ -9026,9 +9020,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:171
-#, fuzzy
 msgid "Node color."
-msgstr "Gender colours"
+msgstr "Node colour."
 
 #. ###############################
 #. #################
@@ -9076,9 +9069,8 @@ msgid "This text will be added to the tree."
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:216
-#, fuzzy
 msgid "The size of note text."
-msgstr "Centre on this place"
+msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:653
 msgid "PDF"
@@ -10493,19 +10485,16 @@ msgid "Set the colors used for boxes in the graphical views"
 msgstr "Set the colours used for boxes in the graphical views"
 
 #: ../gramps/gui/configure.py:588
-#, fuzzy
 msgid "Light colors"
-msgstr "Family colours"
+msgstr "Light colours"
 
 #: ../gramps/gui/configure.py:589
-#, fuzzy
 msgid "Dark colors"
-msgstr "Family colours"
+msgstr "Dark colours"
 
 #: ../gramps/gui/configure.py:594
-#, fuzzy
 msgid "Color scheme"
-msgstr "Colours"
+msgstr "Colour scheme"
 
 #: ../gramps/gui/configure.py:598
 msgid "Restore to defaults"
@@ -10536,19 +10525,16 @@ msgid "Unknown Dead"
 msgstr ""
 
 #: ../gramps/gui/configure.py:610
-#, fuzzy
 msgid "Family Node"
-msgstr "Family Colours"
+msgstr ""
 
 #: ../gramps/gui/configure.py:611
-#, fuzzy
 msgid "Family Divorced"
-msgstr "Family Colours"
+msgstr ""
 
 #: ../gramps/gui/configure.py:612
-#, fuzzy
 msgid "Home Person"
-msgstr "Centre Person"
+msgstr ""
 
 #: ../gramps/gui/configure.py:613
 msgid "Border Male Alive"
@@ -10575,14 +10561,12 @@ msgid "Border Unknown Dead"
 msgstr ""
 
 #: ../gramps/gui/configure.py:619
-#, fuzzy
 msgid "Border Family"
-msgstr "Centre Family"
+msgstr "Border Family"
 
 #: ../gramps/gui/configure.py:620
-#, fuzzy
 msgid "Border Family Divorced"
-msgstr "Family Colours"
+msgstr ""
 
 #: ../gramps/gui/configure.py:628
 msgid "Colors"
@@ -10899,9 +10883,8 @@ msgid "Always"
 msgstr ""
 
 #: ../gramps/gui/configure.py:1424
-#, fuzzy
 msgid "Check for addon updates"
-msgstr "Colour for duplicates"
+msgstr ""
 
 #: ../gramps/gui/configure.py:1430
 msgid "Updated addons only"
@@ -11066,9 +11049,8 @@ msgstr ""
 #: ../gramps/plugins/tool/check.py:780 ../gramps/plugins/tool/eventcmp.py:398
 #: ../gramps/plugins/tool/populatesources.py:90
 #: ../gramps/plugins/tool/testcasegenerator.py:327
-#, fuzzy
 msgid "_Cancel"
-msgstr "Cancelled"
+msgstr ""
 
 #: ../gramps/gui/configure.py:1633
 msgid "Select database directory"
@@ -11273,9 +11255,8 @@ msgid "Setting"
 msgstr ""
 
 #: ../gramps/gui/dbman.py:200
-#, fuzzy
 msgid "Family Trees"
-msgstr "Family Colours"
+msgstr ""
 
 #: ../gramps/gui/dbman.py:382
 msgid "Family Tree name"
@@ -15030,9 +15011,8 @@ msgid "Date range in which the name is valid."
 msgstr ""
 
 #: ../gramps/gui/glade/editplacename.glade:169
-#, fuzzy
 msgid "The name of the place."
-msgstr "Centre on this place"
+msgstr ""
 
 #: ../gramps/gui/glade/editplacename.glade:196
 msgid ""
@@ -16868,9 +16848,8 @@ msgid "Name of the book. MANDATORY"
 msgstr ""
 
 #: ../gramps/gui/plug/report/_bookdialog.py:323
-#, fuzzy
 msgid "Manage Books"
-msgstr "Organise Bookmarks"
+msgstr ""
 
 #: ../gramps/gui/plug/report/_bookdialog.py:362
 msgid "New Book"
@@ -16964,9 +16943,8 @@ msgid "You are about to save away a book with a name which already exists."
 msgstr ""
 
 #: ../gramps/gui/plug/report/_bookdialog.py:926
-#, fuzzy
 msgid "Generate Book"
-msgstr "Analysing names"
+msgstr ""
 
 #: ../gramps/gui/plug/report/_bookdialog.py:969
 msgid "Gramps Book"
@@ -17444,9 +17422,8 @@ msgid "Cannot open new citation editor"
 msgstr ""
 
 #: ../gramps/gui/viewmanager.py:470 ../gramps/gui/viewmanager.py:1267
-#, fuzzy
 msgid "No Family Tree"
-msgstr "Family Colours"
+msgstr ""
 
 #: ../gramps/gui/viewmanager.py:492
 msgid "Connect to a recent database"
@@ -17964,9 +17941,8 @@ msgid "View %(name)s: %(msg)s"
 msgstr ""
 
 #: ../gramps/gui/views/tags.py:87
-#, fuzzy
 msgid "manual|Organize_Tags_Window"
-msgstr "Organise Tags"
+msgstr ""
 
 #: ../gramps/gui/views/tags.py:88
 msgid "manual|New_Tag_dialog"
@@ -18719,14 +18695,14 @@ msgid "The center person for the tree"
 msgstr "The centre person for the tree"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:798
-#, fuzzy
 msgid "Include siblings of the center person"
-msgstr "Include relationship to centre person"
+msgstr "Include siblings of the centre person"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:800
 msgid ""
 "Whether to only display the center person or all of his/her siblings too"
 msgstr ""
+"Whether to only display the centre person or all of his/her siblings too"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:804
 #: ../gramps/plugins/drawreport/descendtree.py:1533
@@ -18939,9 +18915,8 @@ msgid "Use Mothers display format"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:938
-#, fuzzy
 msgid "The display format for the center person"
-msgstr "Which Display format to use the centre person"
+msgstr "The display format for the centre person"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:941
 #: ../gramps/plugins/drawreport/descendtree.py:1670
@@ -21218,9 +21193,8 @@ msgid "Gramplet showing the backlink references for an event"
 msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:903
-#, fuzzy
 msgid "Family References"
-msgstr "Family Colours"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:904
 msgid "Gramplet showing the backlink references for a family"
@@ -22136,9 +22110,8 @@ msgstr ""
 
 #. ---------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:119
-#, fuzzy
 msgid "Follow parents to determine \"family lines\""
-msgstr "Colours to use for various family lines."
+msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:121
 msgid ""
@@ -22413,24 +22386,20 @@ msgid "child: %s"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvhourglass.py:61
-#, fuzzy
 msgid "Center -> Others"
-msgstr "Centre here"
+msgstr "Centre -> Others"
 
 #: ../gramps/plugins/graph/gvhourglass.py:62
-#, fuzzy
 msgid "Center <- Others"
-msgstr "Centre here"
+msgstr "Centre <- Others"
 
 #: ../gramps/plugins/graph/gvhourglass.py:63
-#, fuzzy
 msgid "Center <-> Other"
-msgstr "Centre here"
+msgstr "Centre <-> Other"
 
 #: ../gramps/plugins/graph/gvhourglass.py:64
-#, fuzzy
 msgid "Center - Other"
-msgstr "Centre here"
+msgstr "Centre - Other"
 
 #: ../gramps/plugins/graph/gvhourglass.py:318
 msgid "The Center person for the graph"
@@ -22558,9 +22527,8 @@ msgid "Do not include any occupation"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvrelgraph.py:875
-#, fuzzy
 msgid "Include description of most recent occupation"
-msgstr "Include relationship to centre person"
+msgstr ""
 
 #: ../gramps/plugins/graph/gvrelgraph.py:877
 msgid "Include date, description and place of all occupations"
@@ -22957,9 +22925,8 @@ msgid "Funeral"
 msgstr ""
 
 #: ../gramps/plugins/importer/importgeneweb.py:105
-#, fuzzy
 msgid "Hospitalisation"
-msgstr "Capitalisation Change"
+msgstr ""
 
 #: ../gramps/plugins/importer/importgeneweb.py:106
 msgid "Illness"
@@ -23526,9 +23493,8 @@ msgid "Employment"
 msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:712
-#, fuzzy
 msgid "Eye Color"
-msgstr "Colour"
+msgstr "Eye Colour"
 
 #: ../gramps/plugins/lib/libgedcom.py:714
 msgid "Height"
@@ -25356,7 +25322,7 @@ msgstr "He was baptised%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:710
 #, python-format
 msgid "%(female_name)s was baptized%(endnotes)s."
-msgstr ""
+msgstr "%(female_name)s was baptised%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:711
 #, python-format
@@ -27046,9 +27012,8 @@ msgid "Edit the selected person"
 msgstr ""
 
 #: ../gramps/plugins/lib/libpersonview.py:126
-#, fuzzy
 msgid "Delete the selected person"
-msgstr "Include relationship to centre person"
+msgstr ""
 
 #: ../gramps/plugins/lib/libpersonview.py:127
 msgid "Merge the selected persons"
@@ -28471,9 +28436,8 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/alphabeticalindex.py:89
 #: ../gramps/plugins/textreport/tableofcontents.py:88
-#, fuzzy
 msgid "Entire Book"
-msgstr "Analysing names"
+msgstr ""
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/ancestorreport.py:197
@@ -28568,9 +28532,8 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/birthdayreport.py:496
 #: ../gramps/plugins/textreport/indivcomplete.py:1146
-#, fuzzy
 msgid "Whether to include relationships to the center person"
-msgstr "Include relationships to centre person"
+msgstr "Whether to include relationships to the centre person"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:565
 msgid "Title text style"
@@ -29030,9 +28993,8 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/detancestralreport.py:1013
 #: ../gramps/plugins/textreport/detdescendantreport.py:1218
-#, fuzzy
 msgid "The style used for the note header."
-msgstr "The centre person for the filter."
+msgstr ""
 
 #: ../gramps/plugins/textreport/detancestralreport.py:1027
 #: ../gramps/plugins/textreport/detdescendantreport.py:1232
@@ -29089,7 +29051,7 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1020
 msgid "How people are organized in the report"
-msgstr ""
+msgstr "How people are organised in the report"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1090
 #: ../gramps/plugins/textreport/kinshipreport.py:370
@@ -29177,9 +29139,8 @@ msgid "Center Family"
 msgstr "Centre Family"
 
 #: ../gramps/plugins/textreport/familygroup.py:721
-#, fuzzy
 msgid "The center family for the filter"
-msgstr "The centre family for the report"
+msgstr "The centre family for the filter"
 
 #: ../gramps/plugins/textreport/familygroup.py:725
 msgid "Recursive (down)"
@@ -29872,9 +29833,8 @@ msgid "_Accept changes and close"
 msgstr ""
 
 #: ../gramps/plugins/tool/changenames.py:64
-#, fuzzy
 msgid "manual|Fix_Capitalization_of_Family_Names"
-msgstr "Fix Capitalisation of Family Names"
+msgstr ""
 
 #: ../gramps/plugins/tool/changenames.py:75
 #: ../gramps/plugins/tool/changenames.py:236
@@ -30657,9 +30617,8 @@ msgid "Merge candidates"
 msgstr ""
 
 #: ../gramps/plugins/tool/finddupes.py:583
-#, fuzzy
 msgid "Merge persons"
-msgstr "Centre Person"
+msgstr ""
 
 #: ../gramps/plugins/tool/findloop.py:58
 msgid "manual|Find_database_loop"
@@ -31343,9 +31302,8 @@ msgid "Generate dummy data"
 msgstr ""
 
 #: ../gramps/plugins/tool/testcasegenerator.py:299
-#, fuzzy
 msgid "Generate long names"
-msgstr "Analysing names"
+msgstr ""
 
 #: ../gramps/plugins/tool/testcasegenerator.py:304
 msgid "Add special characters"
@@ -32051,14 +32009,12 @@ msgid "Make Mother Active Person"
 msgstr ""
 
 #: ../gramps/plugins/view/familyview.py:247
-#, fuzzy
 msgid "_Delete Family"
-msgstr "Centre Family"
+msgstr ""
 
 #: ../gramps/plugins/view/familyview.py:283
-#, fuzzy, python-format
 msgid "Family [%s]"
-msgstr "Family Colours"
+msgstr ""
 
 #: ../gramps/plugins/view/familyview.py:307
 msgid "Cannot merge families."
@@ -32147,7 +32103,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/fanchart2wayview.py:332
 msgid "Add global background colored gradient"
-msgstr ""
+msgstr "Add global background coloured gradient"
 
 #. colors, stored as hex values
 #: ../gramps/plugins/view/fanchart2wayview.py:336
@@ -32610,6 +32566,9 @@ msgid ""
 "with coordinates. You can change the markers color depending on place type. "
 "You can use filtering."
 msgstr ""
+"Right click on the map and select 'show all places' to show all known places "
+"with coordinates. You can change the markers colour depending on place type. "
+"You can use filtering."
 
 #: ../gramps/plugins/view/geoplaces.py:386
 msgid ""
@@ -32617,6 +32576,9 @@ msgid ""
 "with coordinates. You can use the history to navigate on the map. You can "
 "change the markers color depending on place type. You can use filtering."
 msgstr ""
+"Right click on the map and select 'show all places' to show all known places "
+"with coordinates. You can use the history to navigate on the map. You can "
+"change the markers colour depending on place type. You can use filtering."
 
 #: ../gramps/plugins/view/geoplaces.py:401
 msgid "The place name in the status bar is disabled."
@@ -32654,7 +32616,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/geoplaces.py:596
 msgid "The places marker color"
-msgstr ""
+msgstr "The places marker colour"
 
 #: ../gramps/plugins/view/mediaview.py:113
 msgid "Edit the selected media object"
@@ -34089,9 +34051,8 @@ msgid "Not siblings"
 msgstr ""
 
 #: ../gramps/plugins/webreport/person.py:1737
-#, fuzzy
 msgid "Relation to the center person"
-msgstr "Include relationship to centre person"
+msgstr "Relation to the centre person"
 
 #: ../gramps/plugins/webreport/person.py:1774
 msgid "Relation to main person"
@@ -34566,7 +34527,6 @@ msgstr ""
 msgid "No style sheet"
 msgstr ""
 
-#, fuzzy
 #~ msgid "Family Relationship"
 #~ msgstr "Family Colours"
 
