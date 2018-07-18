@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-01 12:10+0300\n"
-"PO-Revision-Date: 2018-07-01 12:11+0300\n"
+"PO-Revision-Date: 2018-07-18 17:30+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.0.6\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
@@ -11658,19 +11658,23 @@ msgstr ""
 msgid "Dates"
 msgstr "Päivämäärät"
 
+# 20180716
+# Käytä vaihtoehtoista fontin käsittelijää GUI:ssa ja raporteissa (vaatii uudelleenkäynnistyksen)
 #: ../gramps/gui/configure.py:1355
 msgid "Use alternate Font handler for GUI and Reports (requires restart)"
 msgstr ""
-"Käytä vaihtoehtoista fontin käsittelijää GUI:ssa ja raporteissa (vaatii "
-"uudelleenkäynnistyksen)"
+"Käytä vaihtoehtoista fontin käsittelijää käyttöliittymässä ja raporteissa "
+"(vaatii uudelleenkäynnistyksen)"
 
 #: ../gramps/gui/configure.py:1361
 msgid "Add default source on GEDCOM import"
 msgstr "Lisää oletuslähde GEDCOM-tuonnissa"
 
+# 20180716
+# Lisää oletuslähde tuonnissa
 #: ../gramps/gui/configure.py:1365
 msgid "Add tag on import"
-msgstr "Lisää oletuslähde tuonnissa"
+msgstr "Lisää oletustagi tuonnissa"
 
 #: ../gramps/gui/configure.py:1376
 msgid "Enable spelling checker"
@@ -17021,6 +17025,9 @@ msgstr ""
 "Tarvitset versio, jossa on funktio \"require_version\" käynnistääksesi "
 "Grampsin"
 
+# 20180716
+# Python-versiosi ei vastaa vaatimuksia. Gramps tarvitsee vähintään Pythonista version %(major)d.%(feature)d.%(minor)d .
+# Gramps suljetaan nyt.
 #: ../gramps/gui/grampsgui.py:74
 #, python-format
 msgid ""
@@ -17030,8 +17037,9 @@ msgid ""
 "\n"
 "Gramps will terminate now."
 msgstr ""
-"Python-versiosi ei vastaa vaatimuksia. Gramps tarvitsee vähintään Pythonista "
-"version %(major)d.%(feature)d.%(minor)d .\n"
+"Pygobject-versiosi ei täytä vaatimuksia\n"
+"Tarvitaan vähintään pygobject-versio %(major)d.%(feature)d.%(minor)d "
+"Grampsin käynnistykseen käyttöliittymässä.\n"
 "\n"
 "Gramps suljetaan nyt."
 
@@ -17049,6 +17057,8 @@ msgstr ""
 "\n"
 "Gramps suljetaan nyt."
 
+# 20180716
+# Vähintään %(major)d.%(minor)d tarvitaan käynnistettäessä Gramps GUI:ssa.
 #: ../gramps/gui/grampsgui.py:103
 #, python-format
 msgid ""
@@ -17058,7 +17068,8 @@ msgid ""
 "Gramps will terminate now."
 msgstr ""
 "Gtk-versiosi ei täytä vaatimuksia.\n"
-"Vähintään %(major)d.%(minor)d tarvitaan käynnistettäessä Gramps GUI:ssa.\n"
+"Tarvitaan vähintään %(major)d.%(minor)d versio käynnistettäessä Gramps "
+"käyttöliittymässä.\n"
 "\n"
 "Gramps suljetaan nyt."
 
