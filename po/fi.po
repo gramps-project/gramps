@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-01 12:10+0300\n"
-"PO-Revision-Date: 2018-07-20 14:14+0300\n"
+"PO-Revision-Date: 2018-07-20 22:58+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -1248,7 +1248,7 @@ msgstr "Tietokanta pitää palauttaa (recovery), sitä ei voi avata!"
 # 20180720
 #: ../gramps/cli/arghandler.py:558
 msgid "Database backend unavailable, cannot open it!"
-msgstr "Tietokantaohjelmisto ei ole käytettävissä, sitä ei voi avata!"
+msgstr "Tietokantaohjelmisto ei ole käytettävissä, sukupuuta ei voi avata!"
 
 #: ../gramps/cli/arghandler.py:609 ../gramps/cli/arghandler.py:658
 #: ../gramps/cli/arghandler.py:705
@@ -7722,7 +7722,7 @@ msgstr "aatelisarvo"
 
 #: ../gramps/gen/lib/eventtype.py:239
 msgid "Number of Marriages abbreviation|n.o.mar."
-msgstr "aviol lkm"
+msgstr "aviol. lkm"
 
 #: ../gramps/gen/lib/eventtype.py:240
 msgid "Occupation abbreviation|occ."
@@ -10236,6 +10236,7 @@ msgid "Unable to open list of recent DBs file {fname}: {error}"
 msgstr ""
 "Ei voi avata luetteloa viimeksi käytetyistä DBs tiedostoista {fname}: {error}"
 
+# 20180720
 #: ../gramps/gen/recentfiles.py:269
 #, python-brace-format
 msgid ""
@@ -10246,8 +10247,8 @@ msgid ""
 msgstr ""
 "Virhe koottaessa listaa viimeksi käytetyistä DBs tiedostoista {fname}: "
 "{error}.\n"
-"Tämä saattaa olla merkki vahingosta tiedostoissa.\n"
-"Jos olet varma, että ei ole mitään ongelmaa muissa tiedostoissa, poista se, "
+"Tämä saattaa olla merkki vaurioista tiedostoissa.\n"
+"Jos olet varma, että muissa tiedostoissa ei ole mitään ongelmaa, poista se, "
 "ja käynnistä Gramps."
 
 #: ../gramps/gen/relationship.py:1273
@@ -11666,11 +11667,12 @@ msgstr ""
 msgid "Dates"
 msgstr "Päivämäärät"
 
+# 20180720
 #: ../gramps/gui/configure.py:1355
 msgid "Use alternate Font handler for GUI and Reports (requires restart)"
 msgstr ""
-"Käytä vaihtoehtoista fontin käsittelijää käyttöliittymässä ja raporteissa "
-"(vaatii uudelleenkäynnistyksen)"
+"Käytä vaihtoehtoista fonttien käsittelijää käyttöliittymää ja raportteja "
+"varten (vaatii uudelleenkäynnistyksen)"
 
 #: ../gramps/gui/configure.py:1361
 msgid "Add default source on GEDCOM import"
@@ -17027,7 +17029,7 @@ msgid ""
 "version which has the function 'require_version' to start Gramps"
 msgstr ""
 "Käyttämäsi versio gi (gnome introspection) ohjelmasta lienee liian vanha. "
-"Tarvitset versio, jossa on funktio \"require_version\" käynnistääksesi "
+"Tarvitset version, jossa on funktio \"require_version\" käynnistääksesi "
 "Grampsin"
 
 #: ../gramps/gui/grampsgui.py:74
@@ -18985,7 +18987,7 @@ msgstr ""
 
 #: ../gramps/gui/viewmanager.py:1017
 msgid "View failed to load. Check error output."
-msgstr "Näkymän lataus epännistui. Tarkista virheyhteenveto."
+msgstr "Näkymän lataus epäonnistui. Tarkista virheyhteenveto."
 
 #: ../gramps/gui/viewmanager.py:1169
 msgid "Import Statistics"
@@ -19222,7 +19224,7 @@ msgstr "CSV"
 
 #: ../gramps/gui/views/listview.py:1057
 msgid "OpenDocument Spreadsheet"
-msgstr "Open Document laskentataulukko"
+msgstr "OpenDocument laskentataulukko"
 
 #: ../gramps/gui/views/listview.py:1245
 msgid "Columns"
@@ -19510,7 +19512,7 @@ msgid ""
 "Select the down arrow on the right corner for adding, removing or restoring "
 "gramplets."
 msgstr ""
-"Valitse alasnuoli oikeassa kulmassa lisätäksesi, poistaaksesi tai "
+"Valitse alas nuoli oikeassa kulmassa lisätäksesi, poistaaksesi tai "
 "palauttaaksesi grampletit."
 
 #: ../gramps/gui/widgets/grampletbar.py:486
@@ -19630,7 +19632,6 @@ msgstr ""
 "\n"
 "Command-Click seuraavaan linkkiin"
 
-# 20180209
 #: ../gramps/gui/widgets/styledtexteditor.py:319
 msgid ""
 "\n"
@@ -24127,7 +24128,7 @@ msgstr "Lisätäänkö viimeinen ammatti"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:883
 msgid "Include relationship debugging numbers also"
-msgstr "Ota mukaan suhteen debuggauksen numerot myös"
+msgstr "Lisää myös suhteiden virheenkorjausnumerot"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:886
 msgid ""
@@ -24511,7 +24512,7 @@ msgstr "Kirkosta erottaminen"
 
 #: ../gramps/plugins/importer/importgeneweb.py:102
 msgid "LDS Family Link"
-msgstr "LDS Family Link"
+msgstr "MAP-perhepalvelut Linkki"
 
 #: ../gramps/plugins/importer/importgeneweb.py:103
 #: ../gramps/plugins/lib/libgedcom.py:713
@@ -32977,7 +32978,7 @@ msgstr "Hiiren kakkospainikkeella kopioidaan / Tutkija asetuksiin"
 # WIKI_HELP_SEC tools
 #: ../gramps/plugins/tool/ownereditor.py:56
 msgid "manual|Edit_Database_Owner_Information"
-msgstr "Muokkaa_tietokannan_ylläpitäjän_tietoja"
+msgstr "Muokkaa_tietokannan_yll.C3.A4pit.C3.A4j.C3.A4n_tietoja"
 
 #: ../gramps/plugins/tool/ownereditor.py:102
 msgid "Database Owner Editor"
@@ -32985,7 +32986,7 @@ msgstr "Tietokannan ylläpitäjä"
 
 #: ../gramps/plugins/tool/ownereditor.py:164
 msgid "Edit database owner information"
-msgstr "Muokkaa tietokannan ylläpitäjän tietoja"
+msgstr "Muokkaa_tietokannan_yll.C3.A4pit.C3.A4j.C3.A4n_tietoja"
 
 #: ../gramps/plugins/tool/patchnames.glade:84
 msgid "_Accept and close"
