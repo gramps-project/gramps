@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-01 12:10+0300\n"
-"PO-Revision-Date: 2018-07-18 17:30+0300\n"
+"PO-Revision-Date: 2018-07-20 14:14+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -21,7 +21,13 @@ msgstr ""
 "X-Generator: Poedit 2.0.6\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: gramps\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: gramps/cli\n"
+"X-Poedit-SearchPath-2: gramps/gen\n"
+"X-Poedit-SearchPath-3: gramps/gui\n"
+"X-Poedit-SearchPath-4: gramps/plugins\n"
+"X-Poedit-SearchPath-5: gramps/__pycache__\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""
@@ -1239,9 +1245,10 @@ msgstr "  Tiedot: %s"
 msgid "Database needs recovery, cannot open it!"
 msgstr "Tietokanta pitää palauttaa (recovery), sitä ei voi avata!"
 
+# 20180720
 #: ../gramps/cli/arghandler.py:558
 msgid "Database backend unavailable, cannot open it!"
-msgstr "Tietokannan taustaosa ei ole käytettävissä, sitä ei voi avata!"
+msgstr "Tietokantaohjelmisto ei ole käytettävissä, sitä ei voi avata!"
 
 #: ../gramps/cli/arghandler.py:609 ../gramps/cli/arghandler.py:658
 #: ../gramps/cli/arghandler.py:705
@@ -10237,9 +10244,9 @@ msgid ""
 "If you're sure there is no problem with other files, delete it, and restart "
 "Gramps."
 msgstr ""
-"Virhe koottaessa listaa viimeeksi käytetyistä DBs tiedostoista {fname}: "
+"Virhe koottaessa listaa viimeksi käytetyistä DBs tiedostoista {fname}: "
 "{error}.\n"
-"Tämä saattaa olla merkki vahinkosta tiedostoissa.\n"
+"Tämä saattaa olla merkki vahingosta tiedostoissa.\n"
 "Jos olet varma, että ei ole mitään ongelmaa muissa tiedostoissa, poista se, "
 "ja käynnistä Gramps."
 
@@ -11304,9 +11311,10 @@ msgstr "Vaaleat värit"
 msgid "Dark colors"
 msgstr "Tummat värit"
 
+# 20180720
 #: ../gramps/gui/configure.py:594
 msgid "Color scheme"
-msgstr "Värijärjetelmä"
+msgstr "Värijärjestelmä"
 
 #: ../gramps/gui/configure.py:598
 msgid "Restore to defaults"
@@ -11658,8 +11666,6 @@ msgstr ""
 msgid "Dates"
 msgstr "Päivämäärät"
 
-# 20180716
-# Käytä vaihtoehtoista fontin käsittelijää GUI:ssa ja raporteissa (vaatii uudelleenkäynnistyksen)
 #: ../gramps/gui/configure.py:1355
 msgid "Use alternate Font handler for GUI and Reports (requires restart)"
 msgstr ""
@@ -11670,8 +11676,6 @@ msgstr ""
 msgid "Add default source on GEDCOM import"
 msgstr "Lisää oletuslähde GEDCOM-tuonnissa"
 
-# 20180716
-# Lisää oletuslähde tuonnissa
 #: ../gramps/gui/configure.py:1365
 msgid "Add tag on import"
 msgstr "Lisää oletustagi tuonnissa"
@@ -11784,9 +11788,10 @@ msgstr "uusi"
 msgid "update"
 msgstr "päivitä"
 
+# 20180720
 #: ../gramps/gui/configure.py:1515
 msgid "Database backend"
-msgstr "Tietokannan taustaosa"
+msgstr "Tietokantaohjelmisto"
 
 #: ../gramps/gui/configure.py:1522
 msgid "Host"
@@ -17025,9 +17030,6 @@ msgstr ""
 "Tarvitset versio, jossa on funktio \"require_version\" käynnistääksesi "
 "Grampsin"
 
-# 20180716
-# Python-versiosi ei vastaa vaatimuksia. Gramps tarvitsee vähintään Pythonista version %(major)d.%(feature)d.%(minor)d .
-# Gramps suljetaan nyt.
 #: ../gramps/gui/grampsgui.py:74
 #, python-format
 msgid ""
@@ -17057,8 +17059,6 @@ msgstr ""
 "\n"
 "Gramps suljetaan nyt."
 
-# 20180716
-# Vähintään %(major)d.%(minor)d tarvitaan käynnistettäessä Gramps GUI:ssa.
 #: ../gramps/gui/grampsgui.py:103
 #, python-format
 msgid ""
@@ -19461,7 +19461,7 @@ msgstr "Muokkaa perhettä"
 
 #: ../gramps/gui/widgets/fanchart.py:1570 ../gramps/plugins/view/relview.py:808
 msgid "Reorder families"
-msgstr "Uudelleen järjestä perheet"
+msgstr "Järjestä uudelleen perheet"
 
 #: ../gramps/gui/widgets/fanchart.py:1576
 #: ../gramps/plugins/view/pedigreeview.py:1668
@@ -19722,9 +19722,10 @@ msgstr "BSDDB"
 msgid "_BSDDB Database"
 msgstr "_BSDDB tietokanta"
 
+# 20180720
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:28
 msgid "Berkeley Software Distribution Database Backend"
-msgstr "Berkeley Software Distribution tietokannan taustaosa"
+msgstr "Berkeley Software Distribution tietokantaohjelmisto"
 
 #: ../gramps/plugins/db/bsddb/upgrade.py:410
 #, python-format
@@ -32685,11 +32686,10 @@ msgstr ""
 "sisältää vain tiedostojen nimet ja polut.\n"
 "\n"
 "Tällä työkalulla voit muokata vain Grampsin tietokannan tietoja. "
-"Siirtääksesi tai uudelleen nimetäksesi Varsinaisten tiedostojen siirtäminen "
-"tai nimen vaihto tehdään erikseen Grampsin ulkopuolella (esim. koneesi "
-"tiedostohallinnalla). Voit sitten käyttää tätä työkalua muokataksesi "
-"tiedostopolkuja, jotta varsinaisten tiedostojen sijainnit ovat oikein myös "
-"Grampsin mediatiedostoissa."
+"Varsinaisten tiedostojen siirtäminen tai nimen vaihto tehdään erikseen "
+"Grampsin ulkopuolella (esim. koneesi tiedostohallinnalla). Voit sitten "
+"käyttää tätä työkalua muokataksesi tiedostopolkuja, jotta varsinaisten "
+"tiedostojen sijainnit ovat oikein myös Grampsin mediatiedostoissa."
 
 #: ../gramps/plugins/tool/mediamanager.py:340
 msgid "Affected path"
@@ -33270,7 +33270,7 @@ msgstr ""
 # WIKI nettiosoite tarkistettava
 #: ../gramps/plugins/tool/reorderids.py:64
 msgid "manual|Reorder_Gramps_ID"
-msgstr "Uudelleenjärjestä_Gramps_ID:t"
+msgstr "Järjestä_uudeleen_Gramps_ID:t"
 
 #. self.top.set_icon(ICON)
 #: ../gramps/plugins/tool/reorderids.py:218
@@ -33286,7 +33286,7 @@ msgstr "Järjestä Gramps ID-tunnukset"
 #: ../gramps/plugins/tool/reorderids.py:549
 #, python-format
 msgid "Reorder %s IDs ..."
-msgstr "Uudelleenjärjestä %s ID:t ..."
+msgstr "Järjestä uudelleen %s ID:t ..."
 
 #: ../gramps/plugins/tool/reorderids.py:625
 #, python-format
@@ -34158,7 +34158,7 @@ msgstr "Sukupolviin perustuva liukuväri"
 #: ../gramps/plugins/view/fanchartdescview.py:305
 #: ../gramps/plugins/view/fanchartview.py:301
 msgid "Age (0-100) based gradient"
-msgstr "Ikäperusteinen liukukuväri (0-100)"
+msgstr "Ikäperusteinen liukuväri (0-100)"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:310
 #: ../gramps/plugins/view/fanchartdescview.py:307
@@ -34644,7 +34644,7 @@ msgstr "Animaation nopeus millisekunteina (suurempi arvo merkitsee hitaampaa)"
 
 #: ../gramps/plugins/view/geoperson.py:550
 msgid "How many steps between two markers when we are on large move ?"
-msgstr "Askelten lukumäärä kahden markerin välillä kun muutto on pitkä ?"
+msgstr "Askelten lukumäärä kahden markkerin välillä kun muutto on pitkä ?"
 
 #: ../gramps/plugins/view/geoperson.py:557
 msgid ""
@@ -34923,7 +34923,7 @@ msgstr "Pienennä tätä osaa"
 
 #: ../gramps/plugins/view/relview.py:398
 msgid "_Reorder"
-msgstr "_Uudelleenjärjestä"
+msgstr "_Uudelleenjärjestely"
 
 #: ../gramps/plugins/view/relview.py:399
 msgid "Change order of parents and families"
@@ -34975,7 +34975,7 @@ msgstr "Muokkaa vanhempia"
 
 #: ../gramps/plugins/view/relview.py:802
 msgid "Reorder parents"
-msgstr "Uudelleen järjestä vanhemmat"
+msgstr "Järjestä uudelleen vanhemmat"
 
 #: ../gramps/plugins/view/relview.py:803
 msgid "Remove person as child of these parents"
@@ -35498,7 +35498,7 @@ msgid ""
 msgstr ""
 "Tällä sivulla on hakemisto sukupuun kaikista mediatiedostoista lajiteltuna "
 "niiden nimikkeen mukaan. Nimikkeen napsauttaminen vie sinut valitun "
-"mediatiedoston sivulle. Jos näet median kokotiedot kuvan yläpuolella, kuvaa "
+"mediatiedoston sivulle.  Jos näet median kokotiedot kuvan yläpuolella, kuvaa "
 "napsauttamalla näet täysimittaisen version kuvasta.  "
 
 #: ../gramps/plugins/webreport/media.py:227
@@ -35678,9 +35678,10 @@ msgstr "Vaakasuoraan -- oletus"
 msgid "Vertical   -- Left Side"
 msgstr "Pystysuoraan -- vasen sivu"
 
+# 20180720
 #: ../gramps/plugins/webreport/narrativeweb.py:1651
 msgid "Fade       -- WebKit Browsers Only"
-msgstr "Häivennä     -- vain WebKit moottoria käyttävät selaimet"
+msgstr "Häivennä     -- vain WebKit-selaimet"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1652
 #: ../gramps/plugins/webreport/narrativeweb.py:1666
@@ -36104,7 +36105,7 @@ msgstr "Google/Perhekartan valinnat"
 msgid ""
 "Select which option that you would like to have for the Google Maps Family "
 "Map pages..."
-msgstr "Valitse miten haluat GoogleMapin näyttävän perhekarttasi..."
+msgstr "Valitse miten haluat Google Mapin näyttävän perhekarttasi..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1985
 msgid "Google maps API key"
