@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-01 12:10+0300\n"
-"PO-Revision-Date: 2018-07-22 09:08+0300\n"
+"PO-Revision-Date: 2018-07-22 13:48+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -34496,7 +34496,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/geofamily.py:115
 msgid "Family places map"
-msgstr "Perhelinja-kaavio"
+msgstr "Perheen paikkakartta"
 
 #: ../gramps/plugins/view/geofamily.py:137
 msgid "GeoFamily"
@@ -36088,7 +36088,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1973
 msgid "Family Links"
-msgstr "Perhelinja-kaavio"
+msgstr "Perheyhteydet"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1974
 msgid "Drop"
