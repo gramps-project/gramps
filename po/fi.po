@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-01 12:10+0300\n"
-"PO-Revision-Date: 2018-07-20 22:58+0300\n"
+"PO-Revision-Date: 2018-07-22 09:08+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -11221,7 +11221,7 @@ msgstr ""
 "  <b>Loputnimet</b>     - ei päänimiä         <b>Eipatronyymi</b>  - kaikki "
 "sukunimet, paitsi pa/matronyymi &amp; päänimi\n"
 "  <b>Perhelempinimi</b> - perheen lisänimi    <b>Rawsukunimet</b>  - "
-"sukunimet (ei etuliitteitä ja liittäjä)\n"
+"sukunimet (ei etuliitteitä ja liittäjiä)\n"
 "  <b>Päänimi, Päänimi[etu] tai [suk] tai [yle]</b> - koko päänimi, etuliite, "
 "vain sukunimi, liittäjä\n"
 "  <b>Patronyymi, tai [etu] tai [suk] tai [yle]</b> - koko pa/matronyymi "
@@ -11574,7 +11574,7 @@ msgstr "Puuttuva etunimi"
 
 #: ../gramps/gui/configure.py:1210
 msgid "Missing record"
-msgstr "Puuttuva tieto"
+msgstr "Puuttuva tietue"
 
 #: ../gramps/gui/configure.py:1213
 msgid "Private surname"
@@ -11586,7 +11586,7 @@ msgstr "Yksityinen etunimi"
 
 #: ../gramps/gui/configure.py:1221
 msgid "Private record"
-msgstr "Yksityinen tieto"
+msgstr "Yksityinen tietue"
 
 #: ../gramps/gui/configure.py:1286
 msgid "Change is not immediate"

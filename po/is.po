@@ -3,13 +3,13 @@
 # Copyright (C) Icelandic translators of Gramps
 # This file is distributed under the same license as the GRAMPS package.
 #
-# Sveinn í Felli <sv1@fellsnet.is>, 2015, 2016, 2017.
+# Sveinn í Felli <sv1@fellsnet.is>, 2015, 2016, 2017, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-20 09:31-0500\n"
-"PO-Revision-Date: 2017-06-27 11:08+0000\n"
+"PO-Revision-Date: 2018-06-30 13:51+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "Language: is\n"
@@ -1442,6 +1442,8 @@ msgid ""
 "WARNING: %(strerr)s (errno=%(errno)s):\n"
 "WARNING: %(name)s\n"
 msgstr ""
+"AÐVÖRUN: %(strerr)s (errno=%(errno)s):\n"
+"AÐVÖRUN: %(name)s\n"
 
 #: ../gramps/cli/argparser.py:324
 #, python-format
@@ -3101,9 +3103,8 @@ msgid "Number of tags"
 msgstr "Fjöldi merkja"
 
 #: ../gramps/gen/db/generic.py:2420 ../gramps/plugins/db/bsddb/write.py:2304
-#, fuzzy
 msgid "Schema version"
-msgstr "Fjarlægja útgáfu"
+msgstr "Útgáfa gagnagrunnsskema"
 
 #. translators: needed for Arabic, ignore otherwise
 #. need for spacing on the french translation
@@ -6976,14 +6977,12 @@ msgid "Calendar"
 msgstr "Dagatal"
 
 #: ../gramps/gen/lib/date.py:712
-#, fuzzy
 msgid "Modifier"
-msgstr "Síðast breytt"
+msgstr "Breytitákn"
 
 #: ../gramps/gen/lib/date.py:714
-#, fuzzy
 msgid "Quality"
-msgstr "_Gæði"
+msgstr "Gæði"
 
 #: ../gramps/gen/lib/date.py:716 ../gramps/gui/editors/filtereditor.py:820
 #: ../gramps/gui/glade/rule.glade:967
@@ -7001,14 +7000,12 @@ msgid "Text"
 msgstr "Texti"
 
 #: ../gramps/gen/lib/date.py:721
-#, fuzzy
 msgid "Sort value"
-msgstr "Raða sem"
+msgstr "Röðunargildi"
 
 #: ../gramps/gen/lib/date.py:723
-#, fuzzy
 msgid "New year begins"
-msgstr "Nýtt ár b_yrjar:  "
+msgstr "Nýtt ár byrjar"
 
 #: ../gramps/gen/lib/date.py:1856
 msgid "date-quality|none"
@@ -8036,7 +8033,7 @@ msgstr "Viðurnefni fjölskyldu"
 #: ../gramps/gen/lib/name.py:461 ../gramps/gen/lib/name.py:476
 #, python-format
 msgid "%(surname)s, %(first)s %(suffix)s"
-msgstr ""
+msgstr "%(surname)s, %(first)s %(suffix)s"
 
 #. translators: needed for Arabic, ignore otherwise
 #. translators: needed for Arabic, ignore othewise
@@ -8054,13 +8051,13 @@ msgstr ""
 #: ../gramps/plugins/textreport/indivcomplete.py:1017
 #, python-format
 msgid "%(str1)s, %(str2)s"
-msgstr ""
+msgstr "%(str1)s, %(str2)s"
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:493
 #, python-format
 msgid "%(first)s %(surname)s, %(suffix)s"
-msgstr ""
+msgstr "%(first)s %(surname)s, %(suffix)s"
 
 #: ../gramps/gen/lib/nameorigintype.py:76
 msgid "Surname|Inherited"
@@ -8687,7 +8684,6 @@ msgid "Tag"
 msgstr "Merki"
 
 #: ../gramps/gen/lib/styledtexttag.py:112
-#, fuzzy
 msgid "Ranges"
 msgstr "Svið"
 
@@ -9512,15 +9508,16 @@ msgstr "Allir staðir"
 #: ../gramps/gen/plug/docgen/treedoc.py:96
 #, fuzzy
 msgid "Extra large"
-msgstr "Sækja staðagögn"
+msgstr "Aukasíður"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:97
 msgid "Huge"
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:98
+#, fuzzy
 msgid "Extra huge"
-msgstr ""
+msgstr "Aukasíður"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:141
@@ -10839,14 +10836,14 @@ msgid "translator-credits"
 msgstr "Sveinn í Felli, sv1@fellsnet.is"
 
 #: ../gramps/gui/aboutdialog.py:131
-#, fuzzy, python-format
+#, python-format
 msgid "Distribution: %s"
-msgstr "Lýsing:"
+msgstr "Dreifing: %s"
 
 #: ../gramps/gui/aboutdialog.py:142
-#, fuzzy, python-format
+#, python-format
 msgid "OS: %s"
-msgstr ": %s\n"
+msgstr "Stýrikerfi: %s"
 
 #: ../gramps/gui/clipboard.py:70
 msgid "manual|Using_the_Clipboard"
@@ -11575,12 +11572,11 @@ msgstr "Gagnagrunnsbakendi"
 
 #: ../gramps/gui/configure.py:1522
 msgid "Host"
-msgstr ""
+msgstr "Vél"
 
 #: ../gramps/gui/configure.py:1526
-#, fuzzy
 msgid "Port"
-msgstr "Lóðrétt"
+msgstr "Gátt"
 
 #: ../gramps/gui/configure.py:1534
 msgid "Family Tree Database path"
@@ -11761,17 +11757,15 @@ msgstr "Veldu skráa_tegund:"
 
 #: ../gramps/gui/dbloader.py:401 ../gramps/gui/dbloader.py:423
 msgid "Login"
-msgstr ""
+msgstr "Innskráning"
 
 #: ../gramps/gui/dbloader.py:409
-#, fuzzy
 msgid "Username: "
-msgstr "kenninafn"
+msgstr "Notandanafn:"
 
 #: ../gramps/gui/dbloader.py:414
-#, fuzzy
 msgid "Password: "
-msgstr "Pesach"
+msgstr "Lykilorð:"
 
 #: ../gramps/gui/dbloader.py:446
 msgid "Import Family Tree"
@@ -13774,20 +13768,22 @@ msgstr "Nýr staður"
 #. translators: translate the "S" too (and the "or" of course)
 #: ../gramps/gui/editors/editplace.py:201
 #: ../gramps/gui/editors/editplaceref.py:194
-#, fuzzy
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
-msgstr "Ógild breiddargráða (form: 18\\u00b09'"
+msgstr ""
+"Ógild breiddargráða\n"
+"(form: 18\\u00b09'48.21\"S, -18.2412 eða -18:9:48.21)"
 
 #. translators: translate the "E" too (and the "or" of course)
 #: ../gramps/gui/editors/editplace.py:206
 #: ../gramps/gui/editors/editplaceref.py:199
-#, fuzzy
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
-msgstr "Ógild lengdargráða (form: 18\\u00b09'"
+msgstr ""
+"Ógild lengdargráða\n"
+"(form: 18\\u00b09'48.21\"E, -18.2412 eða -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:217
 #: ../gramps/plugins/lib/maps/geography.py:924
@@ -14228,7 +14224,6 @@ msgid "Delete Filter?"
 msgstr "Eyða síu?"
 
 #: ../gramps/gui/editors/filtereditor.py:1186
-#, fuzzy
 msgid ""
 "This filter is currently being used as the base for other filters. Deleting "
 "this filter will result in removing all other filters that depend on it."
@@ -19121,6 +19116,8 @@ msgid ""
 "Matches places within a given distance of the active place. You have no "
 "active place."
 msgstr ""
+"Samsvarar stöðum innan ákveðiðinna fjarlægðar frá virkum stað. Þú ert ekki "
+"með neinn virkan stað."
 
 #: ../gramps/gui/widgets/progressdialog.py:298
 msgid "Progress Information"
@@ -19335,33 +19332,28 @@ msgstr ""
 
 #: ../gramps/plugins/db/bsddb/write.py:2305
 #: ../gramps/plugins/db/dbapi/sqlite.py:61
-#, fuzzy
 msgid "Database version"
 msgstr "Útgáfa gagnagrunns"
 
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:26
 msgid "SQLite"
-msgstr ""
+msgstr "SQLite"
 
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:27
-#, fuzzy
 msgid "_SQLite Database"
-msgstr "Allur gagnagrunnurinn"
+msgstr "_SQLite gagnagrunnur"
 
 #: ../gramps/plugins/db/dbapi/sqlite.gpr.py:28
-#, fuzzy
 msgid "SQLite Database"
-msgstr "Allur gagnagrunnurinn"
+msgstr "SQLite gagnagrunnur"
 
 #: ../gramps/plugins/db/dbapi/sqlite.py:62
-#, fuzzy
 msgid "Database module version"
-msgstr "Útgáfa gagnagrunns"
+msgstr "Útgáfa forritseiningar gagnagrunns"
 
 #: ../gramps/plugins/db/dbapi/sqlite.py:63
-#, fuzzy
 msgid "Database module location"
-msgstr "Upplýsingar um gagnagrunn"
+msgstr "Staðsetning forritseiningar gagnagrunns"
 
 #: ../gramps/plugins/docgen/asciidoc.py:469
 msgid "Characters per line"
@@ -24150,9 +24142,9 @@ msgid "Field '%(fldname)s' not found"
 msgstr "Gagnasviðið '%(fldname)s' fannst ekki"
 
 #: ../gramps/plugins/importer/importprogen.py:460
-#, python-format
+#, fuzzy, python-format
 msgid "Cannot find DEF file: %(dname)s"
-msgstr "Finn ekki DEF-skrána: %(dname)s"
+msgstr "Ekki rétt DEF-skrá: %(dname)s"
 
 #. Raise a error message
 #: ../gramps/plugins/importer/importprogen.py:516
@@ -24176,14 +24168,14 @@ msgid "Date did not match: '%(text)s' (%(msg)s)"
 msgstr "Dagsetning samsvarar ekki: '%(text)s' (%(msg)s)"
 
 #: ../gramps/plugins/importer/importprogen.py:1790
-#, python-format
+#, fuzzy, python-format
 msgid "Cannot find father for I%(person)s (Father=%(id)d)"
-msgstr "Finn ekki föður fyrir I%(person)s (faðir=%(id)d)"
+msgstr "Finn ekki föður fyrir I%(person)s (faðir=%(father))"
 
 #: ../gramps/plugins/importer/importprogen.py:1793
-#, python-format
+#, fuzzy, python-format
 msgid "Cannot find mother for I%(person)s (Mother=%(mother)d)"
-msgstr "Finn ekki móður fyrir I%(person)s (móðir=%(mother)d)"
+msgstr "Finn ekki móður fyrir I%(person)s (móðir=%(mother))"
 
 #: ../gramps/plugins/importer/importvcard.py:228
 #, python-format
@@ -28693,16 +28685,16 @@ msgstr "Nýr staður með auðum færslum"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:273
 msgid "you have a wrong latitude for:"
-msgstr ""
+msgstr "Þú ert með ranga breiddargráðu fyrir:"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:275
 #: ../gramps/plugins/lib/maps/placeselection.py:285
 msgid "Please, correct this before linking"
-msgstr ""
+msgstr "Leiðréttu þetta áður en þú tengir"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:283
 msgid "you have a wrong longitude for:"
-msgstr ""
+msgstr "Þú ert með ranga lengdargráðu fyrir:"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:53
 msgid "Denmark"
@@ -32068,7 +32060,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mergecitations.py:164
 msgid "Merge citations tool"
-msgstr ""
+msgstr "Verkfæri til að sameina tilvitnanir"
 
 #: ../gramps/plugins/tool/mergecitations.py:185
 msgid "Checking Sources"
@@ -32080,7 +32072,7 @@ msgstr "Leita að sviðum tilvitnana"
 
 #: ../gramps/plugins/tool/mergecitations.py:233
 msgid "Number of merges done"
-msgstr ""
+msgstr "Fjöldi framkvæmdra sameininga"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/mergecitations.py:235
@@ -32119,8 +32111,8 @@ msgstr "Allir í gagnagrunninum eru venslaðir við %s"
 #, python-brace-format
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Set merki fyrir {number_of} einstakling"
+msgstr[1] "Set merki fyrir {number_of} einstaklinga"
 
 #. translators: leave all/any {...} untranslated
 #. TRANS: No singular form is needed.
@@ -32149,11 +32141,11 @@ msgstr[1] "Leita að nöfnum á {number_of} einstaklingum"
 
 #: ../gramps/plugins/tool/ownereditor.glade:10
 msgid "Copy from DB to Preferences"
-msgstr ""
+msgstr "Afrita úr gagnagrunni í kjörstillingar"
 
 #: ../gramps/plugins/tool/ownereditor.glade:23
 msgid "Copy from Preferences to DB"
-msgstr ""
+msgstr "Afrita úr kjörstillingum í gagnagrunn"
 
 #: ../gramps/plugins/tool/ownereditor.glade:164
 msgid "_Street:"
@@ -32397,7 +32389,7 @@ msgstr "Fjarlægja ónotaða hluti"
 
 #: ../gramps/plugins/tool/reorderids.glade:1406
 msgid "Enable ID reordering."
-msgstr ""
+msgstr "Leyfa endurröðun auðkenna"
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
 msgid ""
@@ -32411,7 +32403,7 @@ msgstr "  Raunverulegt"
 
 #: ../gramps/plugins/tool/reorderids.glade:1436
 msgid "Amount of ID in use."
-msgstr ""
+msgstr "Fjöldi auðkenna í notkun."
 
 #: ../gramps/plugins/tool/reorderids.glade:1438
 msgid " Quantity"
@@ -32478,9 +32470,9 @@ msgid "Reorder %s IDs ..."
 msgstr "Endurraða %s auðkennum..."
 
 #: ../gramps/plugins/tool/reorderids.py:625
-#, fuzzy, python-format
+#, python-format
 msgid "Do you want to replace %s?"
-msgstr "Ekki hafa með neinar dagsetningar og/eða staði"
+msgstr "Viltu skipta út %s?"
 
 #: ../gramps/plugins/tool/reorderids.py:684
 msgid "Finding and assigning unused IDs."
@@ -33011,11 +33003,11 @@ msgstr "Ung móðir"
 
 #: ../gramps/plugins/tool/verify.py:1555
 msgid "Unborn father"
-msgstr ""
+msgstr "Ófæddur faðir"
 
 #: ../gramps/plugins/tool/verify.py:1559
 msgid "Unborn mother"
-msgstr ""
+msgstr "Ófædd móðir"
 
 #: ../gramps/plugins/tool/verify.py:1610
 msgid "Dead father"
@@ -33125,7 +33117,7 @@ msgstr ""
 #: ../gramps/plugins/view/citationtreeview.py:528
 #: ../gramps/plugins/view/citationtreeview.py:541
 msgid "Cannot merge citations."
-msgstr ""
+msgstr "Tókst ekki að sameina tilvitnanir."
 
 #: ../gramps/plugins/view/citationlistview.py:312
 #: ../gramps/plugins/view/citationtreeview.py:529
@@ -33477,12 +33469,12 @@ msgstr ""
 #: ../gramps/plugins/view/geoclose.py:230
 #, python-format
 msgid "Reference : %(name)s ( %(birth)s - %(death)s )"
-msgstr ""
+msgstr "Tilvísun : %(name)s ( %(birth)s - %(death)s )"
 
 #: ../gramps/plugins/view/geoclose.py:236
 #, python-format
 msgid "The other : %(name)s ( %(birth)s - %(death)s )"
-msgstr ""
+msgstr "Hitt : %(name)s ( %(birth)s - %(death)s )"
 
 #: ../gramps/plugins/view/geoclose.py:241
 msgid "The other person is unknown"
@@ -33521,7 +33513,7 @@ msgstr "%(eventtype)s : %(name)s"
 
 #: ../gramps/plugins/view/geoclose.py:570
 msgid "Choose and bookmark the new reference person"
-msgstr ""
+msgstr "Veldu og bókamerktu nýja viðmiðunareinstaklinginn"
 
 #: ../gramps/plugins/view/geoclose.py:593
 msgid ""
@@ -33540,7 +33532,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/geoevents.py:116
 msgid "Events places map"
-msgstr ""
+msgstr "Kort yfir staði atburða"
 
 #: ../gramps/plugins/view/geoevents.py:141
 msgid "GeoEvents"
@@ -33548,7 +33540,7 @@ msgstr "GeoEvents"
 
 #: ../gramps/plugins/view/geoevents.py:260
 msgid "incomplete or unreferenced event ?"
-msgstr ""
+msgstr "Ófullgerður atburður eða án tilvísana ?"
 
 #: ../gramps/plugins/view/geoevents.py:297
 #: ../gramps/plugins/view/geoevents.py:310
@@ -33589,7 +33581,7 @@ msgstr "%(gramps_id)s : %(father)s og %(mother)s"
 #: ../gramps/plugins/view/geofamclose.py:264
 #, python-format
 msgid "Family reference : %s"
-msgstr ""
+msgstr "Viðmiðun fjölskyldu : %s"
 
 #: ../gramps/plugins/view/geofamclose.py:267
 #: ../gramps/plugins/view/geofamclose.py:270
@@ -33599,7 +33591,7 @@ msgstr "Hin fjölskyldan : %s"
 
 #: ../gramps/plugins/view/geofamclose.py:277
 msgid "You must choose one reference family."
-msgstr ""
+msgstr "Þú verður að velja eina fjölskyldu til viðmiðunar."
 
 #: ../gramps/plugins/view/geofamclose.py:279
 msgid ""
@@ -33609,7 +33601,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/geofamclose.py:295
 msgid "reference _Family"
-msgstr ""
+msgstr "Viðmiðunar_fjölskylda"
 
 #: ../gramps/plugins/view/geofamclose.py:296
 msgid "Select the family which is the reference for life ways"
@@ -33641,7 +33633,7 @@ msgstr "Einstaklingur : %(id)s %(name)s á ekki fjölskyldu."
 
 #: ../gramps/plugins/view/geofamclose.py:761
 msgid "Choose and bookmark the new reference family"
-msgstr ""
+msgstr "Veldu og bókamerktu nýju viðmiðunarfjölskylduna"
 
 #: ../gramps/plugins/view/geofamclose.py:784
 msgid ""
@@ -33876,7 +33868,7 @@ msgstr "Birta alla staði"
 
 #: ../gramps/plugins/view/geoplaces.py:596
 msgid "The places marker color"
-msgstr ""
+msgstr "Litur staðarmerkja"
 
 #: ../gramps/plugins/view/mediaview.py:113
 msgid "Edit the selected media object"
@@ -34662,12 +34654,12 @@ msgid "Below unused media objects"
 msgstr "Fyrir neðan ónotaða gagnahluta"
 
 #: ../gramps/plugins/webreport/media.py:411
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of %(strong2_strt)s"
 "%(total_pages)d%(strong_end)s"
 msgstr ""
-"%(strong1_start)s%(page_number)d%(strong_end)s af %(strong2_start)s"
+"%(strong1_strt)s%(page_number)d%(strong_end)s of %(strong2_strt)s"
 "%(total_pages)d%(strong_end)s"
 
 #. missing media error message
@@ -34870,11 +34862,11 @@ msgstr "Fjöldi kynslóða forfeðra sem tekinn er með í forfeðragrafinu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1689
 msgid "This is a secure site (https)"
-msgstr ""
+msgstr "Þetta er öruggur vefur (https)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1691
 msgid "Whether to use http:// or https://"
-msgstr ""
+msgstr "Hvort nota eigi http:// eða https://"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1707
 msgid "Suppress Gramps ID"
@@ -34956,7 +34948,7 @@ msgstr "HTML síðuhaus notanda"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1756
 msgid "A note to be used as the page header"
-msgstr ""
+msgstr "Minnispunktur sem á að nota sem síðuhaus"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1759
 msgid "HTML user footer"
@@ -35162,7 +35154,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:1930
 #, fuzzy
 msgid "Include the statistics page"
-msgstr "Útbý tölfræðisíður..."
+msgstr "Taka með síðu yfir staði"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1931
 #, fuzzy
@@ -35834,8 +35826,13 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Ekkert stílblað"
 
-#~ msgid "Data version"
-#~ msgstr "Útgáfa gagna"
+#, fuzzy
+#~ msgid "Alternate line attachment"
+#~ msgstr "Varanöfn"
+
+#, fuzzy
+#~ msgid "Whether lines attach to nodes differently"
+#~ msgstr "Hvort tengja eigi gögn við vefskýrslu"
 
 #~ msgid "Gender Male Death"
 #~ msgstr "Flötur látins karlmanns"
@@ -35860,6 +35857,165 @@ msgstr "Ekkert stílblað"
 
 #~ msgid "Restrict"
 #~ msgstr "Takmarka"
+
+#~ msgid "Referrer"
+#~ msgstr "Tilvísandi"
+
+#~ msgid "Reference Error"
+#~ msgstr "Villa í tilvísun"
+
+#~ msgid "%(count)d. %(relation)s: "
+#~ msgstr "%(count)d. %(relation)s: "
+
+#~ msgid ""
+#~ "Source reference\n"
+#~ "(out of Settings)"
+#~ msgstr ""
+#~ "Tilvísun heimildar\n"
+#~ "(úr Stillingum)"
+
+#~ msgid "Attribut"
+#~ msgstr "Eigindi"
+
+#~ msgid "Citation reference."
+#~ msgstr "Tilvísanir í tilvitnanir."
+
+#~ msgid "Import Text"
+#~ msgstr "Flytja inn texta"
+
+#~ msgid "Import Filename."
+#~ msgstr "Skráarheiti Innflutnings"
+
+#~ msgid "Default (System-)Date."
+#~ msgstr "Sjálfgefin (kerfis-)dagsetning."
+
+#~ msgid "  Objects"
+#~ msgstr "  Hlutir"
+
+#~ msgid "Tag Text"
+#~ msgstr "Merkja texta"
+
+#~ msgid "Import Objects"
+#~ msgstr "Flytja inn hluti"
+
+#~ msgid "Identifier"
+#~ msgstr "Aðgreinir"
+
+#~ msgid "Name change"
+#~ msgstr "Breyting á nafni"
+
+#~ msgid "Event date"
+#~ msgstr "Dagsetning atburðar"
+
+#~ msgid ""
+#~ "Store birth date in\n"
+#~ "event description."
+#~ msgstr ""
+#~ "Geyma fæðingardag í\n"
+#~ "atburðalýsingu"
+
+#~ msgid ""
+#~ "Store death date in\n"
+#~ "event description."
+#~ msgstr ""
+#~ "Geyma dánardag í\n"
+#~ "atburðalýsingu"
+
+#~ msgid "REFN"
+#~ msgstr "REFN"
+
+#~ msgid "(-cause)"
+#~ msgstr "(-ástæða)"
+
+#~ msgid "Male surname"
+#~ msgstr "Karlkyns kenninafn"
+
+#~ msgid "Female surname"
+#~ msgstr "Kvenkyns kenninafn"
+
+#~ msgid "Option"
+#~ msgstr "Valkostir"
+
+#~ msgid "_Ok"
+#~ msgstr "Í la_gi"
+
+#~ msgid "Import Pro-Gen"
+#~ msgstr "Flytja inn Pro-Gen"
+
+#~ msgid "Provides common functionality for Pro-Gen import"
+#~ msgstr "Gefur grunnvirkni fyrir innflutning úr Pro-Gen"
+
+#~ msgid "Initializing."
+#~ msgstr "Frumstilli."
+
+#~ msgid "Import from Pro-Gen"
+#~ msgstr "Flytja inn úr Pro-Gen"
+
+#~ msgid "Saving."
+#~ msgstr "Vista."
+
+#~ msgid "Pro-Gen Import"
+#~ msgstr "Pro-Gen innflutningur"
+
+#~ msgid "Time: %s"
+#~ msgstr "Tími: %s"
+
+#~ msgid "Importing persons."
+#~ msgstr "Innflutningur á einstaklingum."
+
+#~ msgid "see address on "
+#~ msgstr "sjá vistfang á "
+
+#~ msgid "see also address"
+#~ msgstr "sjá einnig vistfang"
+
+#~ msgid "Death cause"
+#~ msgstr "Dánarorsök"
+
+#~ msgid "Importing families."
+#~ msgstr "Innflutningur á fjölskyldum."
+
+#~ msgid "Civil union"
+#~ msgstr "Borgaraleg athöfn"
+
+#~ msgid "Wedding"
+#~ msgstr "Brúðkaup"
+
+#~ msgid "future"
+#~ msgstr "framtíð"
+
+#~ msgid "Adding children."
+#~ msgstr "Bæti við börnum."
+
+#~ msgid "Birth equals death"
+#~ msgstr "Fæðingardagur sami og dánardægur"
+
+#~ msgid "Birth equals marriage"
+#~ msgstr "Fæðingardagur sami og brúðkaupsdagur"
+
+#~ msgid "Death equals marriage"
+#~ msgstr "Dánardægur sama og brúðkaupsdagur"
+
+#~ msgid "_Delete Event"
+#~ msgstr "Eyða at_burði"
+
+#~ msgid "Delete {type} [{gid}]?"
+#~ msgstr "Eyða {type} [{gid}]?"
+
+#~ msgid "Extra page name"
+#~ msgstr "Nafn aukasíðu"
+
+#~ msgid "Whether or not to include the places Pages."
+#~ msgstr "Hvort innifela eigi staðasíður."
+
+#~ msgid "Include sources pages"
+#~ msgstr "Innihalda heimildasíður"
+
+#~ msgid "Whether or not to include the sources Pages."
+#~ msgstr "Hvort innifela eigi heimildasíður."
+
+#~ msgid "Data version"
+#~ msgstr "Útgáfa gagna"
 
 #~ msgid "You wish to convert this database into the new DB-API format?"
 #~ msgstr "Viltu umbreyta þessum gagnagrunni yfir á nýja DB-API sniðið?"
@@ -36049,9 +36205,6 @@ msgstr "Ekkert stílblað"
 #~ msgid "Death place id"
 #~ msgstr "Auðkenni dánarstaðar"
 
-#~ msgid "Death cause"
-#~ msgstr "Dánarorsök"
-
 #~ msgid "Gramps id"
 #~ msgstr "Gramps auðkenni"
 
@@ -36084,12 +36237,6 @@ msgstr "Ekkert stílblað"
 
 #~ msgid "Importing individuals"
 #~ msgstr "Innflutningur á einstaklingum"
-
-#~ msgid "Importing families"
-#~ msgstr "Innflutningur á fjölskyldum"
-
-#~ msgid "Adding children"
-#~ msgstr "Bæta við börnum"
 
 #~ msgid "Empty event note ignored"
 #~ msgstr "Auður minnispunktur atburðar hunsaður"
@@ -36330,6 +36477,9 @@ msgstr "Ekkert stílblað"
 
 #~ msgid "Place title"
 #~ msgstr "Titill staðar"
+
+#~ msgid "Extract Place data"
+#~ msgstr "Sækja staðagögn"
 
 #~ msgid "Looking for place fields"
 #~ msgstr "Leita að sviðum staða"
