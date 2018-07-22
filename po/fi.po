@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-01 12:10+0300\n"
-"PO-Revision-Date: 2018-07-22 13:48+0300\n"
+"PO-Revision-Date: 2018-07-22 21:06+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -31793,7 +31793,7 @@ msgstr "_Hyväksy muutokset ja sulje"
 # WIKI_HELP_SEC tools
 #: ../gramps/plugins/tool/changenames.py:64
 msgid "manual|Fix_Capitalization_of_Family_Names"
-msgstr "Korjaa_sukunimen_alkukirjaimet"
+msgstr "Korjaa_sukunimien_isot_alkukirjaimet"
 
 #: ../gramps/plugins/tool/changenames.py:75
 #: ../gramps/plugins/tool/changenames.py:236
@@ -32547,7 +32547,7 @@ msgstr "_Vertaa"
 # WIKI_HELP_SEC tools
 #: ../gramps/plugins/tool/finddupes.py:66
 msgid "manual|Find_Possible_Duplicate_People"
-msgstr "Etsi_mahdolliset_henkilöiden_kahdennukset"
+msgstr "Etsi_mahdolliset_henkil.C3.B6iden_kahdennukset"
 
 #: ../gramps/plugins/tool/finddupes.py:126
 #: ../gramps/plugins/tool/tools.gpr.py:153
@@ -32836,7 +32836,7 @@ msgstr "Sovita yhteen sivuun/osan, päivämäärän ja luottamustason kanssa"
 
 #: ../gramps/plugins/tool/mergecitations.py:77
 msgid "Ignore Date"
-msgstr "Ikä päivämäärällä"
+msgstr "Ohita päivämäärä"
 
 #: ../gramps/plugins/tool/mergecitations.py:78
 msgid "Ignore Confidence"
@@ -32844,7 +32844,7 @@ msgstr "Ohita luotettavuus"
 
 #: ../gramps/plugins/tool/mergecitations.py:79
 msgid "Ignore Date and Confidence"
-msgstr "Ohita päiväys ja luottamustaso"
+msgstr "Ohita päivämäärä ja luottettavuus"
 
 # WIKI_HELP_SEC osa3
 #: ../gramps/plugins/tool/mergecitations.py:83
@@ -33271,7 +33271,7 @@ msgstr ""
 # WIKI nettiosoite tarkistettava
 #: ../gramps/plugins/tool/reorderids.py:64
 msgid "manual|Reorder_Gramps_ID"
-msgstr "Järjestä_uudeleen_Gramps_ID:t"
+msgstr "J.C3.A4rjest.C3.A4_uudelleen_Gramps_ID:t"
 
 #. self.top.set_icon(ICON)
 #: ../gramps/plugins/tool/reorderids.py:218
@@ -33281,7 +33281,7 @@ msgstr "Järjestä_uudeleen_Gramps_ID:t"
 #: ../gramps/plugins/tool/reorderids.py:621
 #: ../gramps/plugins/tool/tools.gpr.py:375
 msgid "Reorder Gramps IDs"
-msgstr "Järjestä Gramps ID-tunnukset"
+msgstr "Järjestä uudelleen Gramps ID:t"
 
 #: ../gramps/plugins/tool/reorderids.py:544
 #: ../gramps/plugins/tool/reorderids.py:549
@@ -33476,7 +33476,7 @@ msgstr "Testitapaus generaattorin askel %d"
 
 #: ../gramps/plugins/tool/tools.gpr.py:38
 msgid "Fix Capitalization of Family Names"
-msgstr "Korjaa sukunimien alkukirjaimet"
+msgstr "Korjaa sukunimien isot alkukirjaimet"
 
 #: ../gramps/plugins/tool/tools.gpr.py:39
 msgid ""
