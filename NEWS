@@ -1,3 +1,25 @@
+2018-07-24
+Version 5.0.0
+* Correct binary test logic for primary mask.
+* Fix BaseSelector to avoid long delay before display on large trees.
+* Export options > Gui alignment issue.
+* Fix dialog button order on non-Mac systems.
+* Update Debian directory after Gramps 5.0.0-rc1 release.
+* Fix Custom filter update when created via sidebar.
+* Fix Gramplet configure (View/Configure) for large options.
+* Fix IndexError crash in Statistics Charts.
+* [Mac] Change accel for Undo History.  So that it doesn't conflict with a
+  system binding for hiding the window.
+* Fix Family Lines/Family Colors picker for bad transient parent.
+* Fix import_as_dict to utilize user gramps_id prefixes.
+* Fix error when opening bsddb db in read-only mode.
+* Fix dbapi dbs for closeing read-only db crash.
+* Fix menus when operating with read-only db.
+* Fix Name formats to show all parts.
+* Fix dialogs for crash when canceling via 'x'.
+* Remove obsolete omeat-python-modules dependencies.
+* Update translations: cs, da, de, en_GB, eo, fi, hu, is, it, nb, pt_BR, ru, sk, uk, vi
+
 2018-05-20
 Version 5.0.0-rc1
 * po/fi.po: Update Finnish translation
