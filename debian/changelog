@@ -1,3 +1,9 @@
+gramps (5.0.0-1) unstable; urgency=medium
+
+  * New Gramps release
+
+ -- Ross Gammon <rossgammon@debian.org>  Wed, 25 Jul 2018 21:19:00 +0200
+
 gramps (5.0.0~rc1-1) unstable; urgency=medium
 
   * First release candidate for Gramps 5.0
