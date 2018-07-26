@@ -79,6 +79,11 @@ _ARROWS = [ { 'name' : _("Descendants <- Ancestors"),  'value' : 'd' },
             { 'name' : _("Descendants <-> Ancestors"), 'value' : 'da' },
             { 'name' : _("Descendants - Ancestors"),   'value' : '' }]
 
+_CORNERS = [ { 'name' : _("None"),  'value' : '' },
+             { 'name' : _("Female"), 'value' : 'f' },
+             { 'name' : _("Male"),   'value' : 'm' },
+             { 'name' : _("Both"),  'value' : 'fm' }]
+
 #------------------------------------------------------------------------
 #
 # A quick overview of the classes we'll be using:
@@ -151,9 +156,11 @@ class FamilyLinesOptions(MenuReportOptions):
                          "is unknown it will be shown with gray."))
         add_option("color", color)
 
-        roundedcorners = BooleanOption(_('Use rounded corners'), False)
-        roundedcorners.set_help(
-            _("Use rounded corners to differentiate between women and men."))
+        roundedcorners = EnumeratedListOption(_("Rounded corners"), '')
+        for i in range( 0, len(_CORNERS) ):
+            roundedcorners.add_item(_CORNERS[i]["value"], _CORNERS[i]["name"])
+        roundedcorners.set_help(_("Use rounded corners e.g. to differentiate "
+                         "between women and men."))
         add_option("useroundedcorners", roundedcorners)
 
         stdoptions.add_gramps_id_option(menu, category_name, ownline=True)
@@ -910,7 +917,9 @@ class FamilyLinesReport(Report):
                 border = ""
                 fill = ""
 
-            if gender == person.FEMALE and self._useroundedcorners:
+            if gender == person.FEMALE and ("f" in self._useroundedcorners):
+                style = "rounded"
+            elif gender == person.MALE and ("m" in self._useroundedcorners):
                 style = "rounded"
             elif gender == person.UNKNOWN:
                 shape = "hexagon"
