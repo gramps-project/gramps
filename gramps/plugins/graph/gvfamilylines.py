@@ -874,22 +874,20 @@ class FamilyLinesReport(Report):
             elif self.includeid == 2: # own line
                 label += "%s(%s)" % (line_delimiter, p_id)
 
-            if birth_str or death_str:
-                label += '%s(' % line_delimiter
+            if birth_str or birthplace:
+                label += '%s* ' % line_delimiter
                 if birth_str:
                     label += '%s' % birth_str
-                label += ' - '
-                if death_str:
-                    label += '%s' % death_str
-                label += ')'
-            if birthplace or deathplace:
-                if birthplace == deathplace:
-                    deathplace = None    # no need to print the same name twice
-                label += '%s' % line_delimiter
+                if birth_str and birthplace:
+                    label += ' - '
                 if birthplace:
                     label += '%s' % birthplace
-                if birthplace and deathplace:
-                    label += ' / '
+            if death_str or deathplace:
+                label += '%s† ' % line_delimiter
+                if death_str:
+                    label += '%s' % death_str
+                if death_str and deathplace:
+                    label += ' - '
                 if deathplace:
                     label += '%s' % deathplace
 
