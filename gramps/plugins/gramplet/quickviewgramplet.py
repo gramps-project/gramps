@@ -49,7 +49,8 @@ class QuickViewGramplet(Gramplet):
     def active_changed(self, handle):
         self.update()
 
-    def post_init(self):
+    def db_changed(self):
+        self.connect_signal('Person', self._active_changed)
         self.connect_signal('Family', self._active_changed)
         self.connect_signal('Event', self._active_changed)
         self.connect_signal('Place', self._active_changed)
