@@ -222,8 +222,15 @@
     ${project}/settings.ini
   </data>
 
-  <data recurse="True">
-    ${prefix}/share/doc/gramps
+  <data>
+    ${prefix}/share/doc/gramps/*
+  </data>
+  
+  <data>
+    ${prefix}/share/doc/gramps/example/gedcom/sample.ged
   </data>
 
+  <data>
+    ${prefix}/share/doc/gramps/example/gramps/*
+  </data>
 </app-bundle>
