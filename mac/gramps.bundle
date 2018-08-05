@@ -159,7 +159,6 @@
     ${prefix}/include/python3.6m/pyconfig.h
   </data>
 
-
   <data>
     ${prefix}/share/xml/iso-codes
   </data>
@@ -220,6 +219,10 @@
   <!-- Default settings file to set the theme. -->
   <data dest="${bundle}/Contents/Resources/etc/gtk-3.0/settings.ini">
     ${project}/settings.ini
+  </data>
+
+  <data recurse="True">
+    ${prefix}/share/doc/gramps
   </data>
 
 </app-bundle>
