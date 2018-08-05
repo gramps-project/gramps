@@ -231,4 +231,8 @@
     ${project}/settings.ini
   </data>
 
+  <data recurse="True">
+    ${prefix}/share/doc/gramps
+  </data>
+
 </app-bundle>
