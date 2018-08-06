@@ -225,7 +225,13 @@ class ListView(NavigationView):
                          tip=self.EDIT_MSG,
                          callback=self.edit)
 
-    def build_columns(self):
+    def build_columns(self, preserve_col=True):
+        """
+        build the columns
+        """
+        # Preserve the column widths if rebuilding the view.
+        if self.columns and preserve_col:
+            self.save_column_info()
         list(map(self.list.remove_column, self.columns))
 
         self.columns = []
@@ -306,7 +312,7 @@ class ListView(NavigationView):
     def __build_tree(self):
         profile(self._build_tree)
 
-    def build_tree(self, force_sidebar=False):
+    def build_tree(self, force_sidebar=False, preserve_col=True):
         if self.active:
             cput0 = time.clock()
             if not self.search_bar.is_visible():
@@ -335,7 +341,7 @@ class ListView(NavigationView):
                                 parent=self.uistate.window)
 
             cput1 = time.clock()
-            self.build_columns()
+            self.build_columns(preserve_col)
             cput2 = time.clock()
             self.list.set_model(self.model)
             cput3 = time.clock()
@@ -512,7 +518,7 @@ class ListView(NavigationView):
         self.sort_col = 0
         self.sort_order = Gtk.SortType.ASCENDING
         self.setup_filter()
-        self.build_tree()
+        self.build_tree(preserve_col=False)
 
     def column_order(self):
         """
@@ -1021,19 +1027,26 @@ class ListView(NavigationView):
         """
         Save the column widths when the view is shutdown.
         """
+        self.save_column_info()
+        PageView.on_delete(self)
+
+    def save_column_info(self):
+        """
+        Save the column widths, order, and view settings
+        """
         widths = self.get_column_widths()
         order = self._config.get('columns.rank')
         size = self._config.get('columns.size')
-        vis =  self._config.get('columns.visible')
+        vis = self._config.get('columns.visible')
         newsize = []
         index = 0
         for val, size in zip(order, size):
             if val in vis:
-                size = widths[index]
+                if widths[index]:
+                    size = widths[index]
                 index += 1
             newsize.append(size)
         self._config.set('columns.size', newsize)
-        PageView.on_delete(self)
 
     ####################################################################
     # Export data
