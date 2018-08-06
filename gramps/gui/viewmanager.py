@@ -108,17 +108,6 @@ from .managedwindow import ManagedWindow
 # Constants
 #
 #-------------------------------------------------------------------------
-# if is_quartz():
-    # try:
-        # import gi
-        # gi.require_version('GtkosxApplication', '1.0')
-        # from gi.repository import GtkosxApplication as QuartzApp
-        # _GTKOSXAPPLICATION = True
-    # except:
-        # print("Failed to import gtk_osxapplication")
-        # _GTKOSXAPPLICATION = False
-# else:
-    # _GTKOSXAPPLICATION = False
 
 _UNSUPPORTED = ("Unsupported", _("Unsupported"))
 
@@ -169,9 +158,6 @@ class ViewManager(CLIManager):
         the view categories are accessible in the sidebar.
         """
         CLIManager.__init__(self, dbstate, setloader=False, user=user)
-        # if _GTKOSXAPPLICATION:
-            # self.macapp = QuartzApp.Application()
-            # self.macapp.set_use_quartz_accelerators(False)
 
         self.view_category_order = view_category_order
         self.app = app
@@ -203,8 +189,6 @@ class ViewManager(CLIManager):
                              uistate=self.uistate,
                              dbstate=self.dbstate)
         self.__connect_signals()
-        # if _GTKOSXAPPLICATION:
-            # self.macapp.ready()
 
         self.do_reg_plugins(self.dbstate, self.uistate)
         #plugins loaded now set relationship class
@@ -352,31 +336,34 @@ class ViewManager(CLIManager):
         """
         self.window.connect('delete-event', self.quit)
         self.notebook.connect('switch-page', self.view_changed)
-        # if _GTKOSXAPPLICATION:
-            # self.macapp.connect('NSApplicationWillTerminate', self.quit)
 
     def __init_lists(self):
         """
         Initialize the actions lists for the UIManager
         """
+        self._app_actionlist = [
+            ('quit', self.quit, "<PRIMARY>q"),
+            ('preferences', self.preferences_activate),
+            ('about', self.display_about_box), ]
+
         self._file_action_list = [
             #('FileMenu', None, _('_Family Trees')),
             ('Open', self.__open_activate, "<PRIMARY>o"),
             #('OpenRecent'_("Open an existing database")),
-            ('Quit', self.quit, "<PRIMARY>q"),
+            #('quit', self.quit, "<PRIMARY>q"),
             #('ViewMenu', None, _('_View')),
             ('Navigator', self.navigator_toggle, "<PRIMARY>m",
              self.show_navigator),
             ('Toolbar', self.toolbar_toggle, '', self.show_toolbar),
             ('Fullscreen', self.fullscreen_toggle, "F11", self.fullscreen),
             #('EditMenu', None, _('_Edit')),
-            ('Preferences', self.preferences_activate),
+            #('preferences', self.preferences_activate),
             #('HelpMenu', None, _('_Help')),
             ('HomePage', home_page_activate),
             ('MailingLists', mailing_lists_activate),
             ('ReportBug', report_bug_activate),
             ('ExtraPlugins', extra_plugins_activate),
-            ('About', self.display_about_box),
+            #('about', self.display_about_box),
             ('PluginStatus', self.__plugin_status),
             ('FAQ', faq_activate),
             ('KeyBindings', key_bindings),
@@ -653,20 +640,8 @@ class ViewManager(CLIManager):
             'Undo', self._undo_action_list, sensitive=False)
         self.redoactions = self.__init_action_group(
             'Redo', self._redo_action_list, sensitive=False)
-
-#     def __attach_menubar(self, vbox):
-#         """
-#         Attach the menubar
-#         """
-#         vbox.pack_start(self.menubar, False, True, 0)
-#         if _GTKOSXAPPLICATION:
-#             self.menubar.hide()
-#             quit_item = self.uimanager.get_widget("Quit")
-#             about_item = self.uimanager.get_widget("About")
-#             prefs_item = self.uimanager.get_widget("Preferences")
-#             self.macapp.set_menu_bar(self.menubar)
-#             self.macapp.insert_app_menu_item(about_item, 0)
-#             self.macapp.insert_app_menu_item(prefs_item, 1)
+        self.appactions = ActionGroup('AppActions', self._app_actionlist, 'app')
+        self.uimanager.insert_action_group(self.appactions, gio_group=self.app)
 
     def preferences_activate(self, *obj):
         """
@@ -864,8 +839,6 @@ class ViewManager(CLIManager):
             Gtk.main_iteration()
 
         self.uimanager.update_menu()
-        # if _GTKOSXAPPLICATION:
-            # self.macapp.sync_menubar()
 
         while Gtk.events_pending():
             Gtk.main_iteration()

@@ -135,7 +135,7 @@ class UIManager():
         self.builder = None
         self.toolbar = None
         self.action_groups = []  # current list of action groups
-        self.show_groups = ['RW', 'RO']  # groups to show at the moment
+        self.show_groups = []  # groups to show at the moment
         self.accel_dict = {}  # used to store accel overrides from file
 
     def update_menu(self, init=False):

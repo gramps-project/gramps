@@ -97,10 +97,12 @@ UIDEFAULT = (
           <attribute name="label" translatable="yes">'''
     '''_Abandon Changes and Quit</attribute>
         </item>
-        <item>
-          <attribute name="action">win.Quit</attribute>
-          <attribute name="label" translatable="yes">_Quit</attribute>
-        </item>
+        <placeholder groups='OSX' id='osxquit'>
+          <item>
+            <attribute name="action">app.quit</attribute>
+            <attribute name="label" translatable="yes">_Quit</attribute>
+          </item>
+        </placeholder>
       </section>
     </submenu>
     <submenu id='m2' groups='RW'>
@@ -173,11 +175,13 @@ UIDEFAULT = (
         </item>
       </section>
       <section>
-        <item>
-          <attribute name="action">win.Preferences</attribute>
-          <attribute name="label" translatable="yes">'''
+        <placeholder groups='OSX' id='osxpref'>
+          <item>
+            <attribute name="action">app.preferences</attribute>
+            <attribute name="label" translatable="yes">'''
     '''_Preferences...</attribute>
-        </item>
+          </item>
+        </placeholder>
         <placeholder id='otheredit'>
         </placeholder>
       </section>
@@ -288,9 +292,9 @@ UIDEFAULT = (
     '''_Extra Reports/Tools</attribute>
         </item>
       </section>
-      <section>
+      <section groups='OSX'>
         <item>
-          <attribute name="action">win.About</attribute>
+          <attribute name="action">app.about</attribute>
           <attribute name="label" translatable="yes">_About</attribute>
         </item>
       </section>
@@ -710,6 +714,7 @@ def startgramps(errors, argparser):
 
 # we do the following import here to avoid the Gtk require version warning
 from .uimanager import UIManager
+from gramps.gen.constfunc import is_quartz
 
 
 class GrampsApplication(Gtk.Application):
@@ -723,6 +728,8 @@ class GrampsApplication(Gtk.Application):
     def do_startup(self):
         Gtk.Application.do_startup(self)
         self.uimanager = UIManager(self, UIDEFAULT)
+        if not is_quartz():
+            self.uimanager.show_groups = ['OSX']
         self.uimanager.update_menu(init=True)
 
         if os.path.exists(os.path.join(DATA_DIR, "gramps.accel")):
