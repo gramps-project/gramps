@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-24 14:13+0100\n"
-"PO-Revision-Date: 2018-08-05 16:39+0300\n"
+"PO-Revision-Date: 2018-08-08 14:40+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -23,11 +23,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: gramps\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPath-1: gramps/cli\n"
-"X-Poedit-SearchPath-2: gramps/gen\n"
-"X-Poedit-SearchPath-3: gramps/gui\n"
-"X-Poedit-SearchPath-4: gramps/plugins\n"
-"X-Poedit-SearchPath-5: gramps/__pycache__\n"
+"X-Poedit-SearchPath-1: gramps\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""
@@ -1245,7 +1241,6 @@ msgstr "  Tiedot: %s"
 msgid "Database needs recovery, cannot open it!"
 msgstr "Tietokanta pitää palauttaa (recovery), sitä ei voi avata!"
 
-# 20180720
 #: ../gramps/cli/arghandler.py:558
 msgid "Database backend unavailable, cannot open it!"
 msgstr "Tietokantaohjelmisto ei ole käytettävissä, sukupuuta ei voi avata!"
@@ -10236,7 +10231,6 @@ msgid "Unable to open list of recent DBs file {fname}: {error}"
 msgstr ""
 "Ei voi avata luetteloa viimeksi käytetyistä DBs tiedostoista {fname}: {error}"
 
-# 20180720
 #: ../gramps/gen/recentfiles.py:269
 #, python-brace-format
 msgid ""
@@ -11312,7 +11306,6 @@ msgstr "Vaaleat värit"
 msgid "Dark colors"
 msgstr "Tummat värit"
 
-# 20180720
 #: ../gramps/gui/configure.py:594
 msgid "Color scheme"
 msgstr "Värijärjestelmä"
@@ -11667,7 +11660,6 @@ msgstr ""
 msgid "Dates"
 msgstr "Päivämäärät"
 
-# 20180720
 #: ../gramps/gui/configure.py:1355
 msgid "Use alternate Font handler for GUI and Reports (requires restart)"
 msgstr ""
@@ -11790,7 +11782,6 @@ msgstr "uusi"
 msgid "update"
 msgstr "päivitä"
 
-# 20180720
 #: ../gramps/gui/configure.py:1515
 msgid "Database backend"
 msgstr "Tietokantaohjelmisto"
@@ -12150,7 +12141,7 @@ msgstr "Riko lukko"
 
 #: ../gramps/gui/dbman.py:608
 msgid "Rename failed"
-msgstr "Uudelleen nimeäminen epäonnistui"
+msgstr "Uudelleennimeäminen epäonnistui"
 
 #: ../gramps/gui/dbman.py:609
 #, python-format
@@ -12159,13 +12150,13 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Version uudelleen nimeämisyritys epäonnistui ja tuotti seuraavan viestin:\n"
+"Version uudelleennimeäminen epäonnistui ja tuotti seuraavan viestin:\n"
 "\n"
 "%s"
 
 #: ../gramps/gui/dbman.py:627
 msgid "Could not rename the Family Tree."
-msgstr "Sukupuun uudelleen nimeäminen epäonnistui."
+msgstr "Sukupuun uudelleennimeäminen epäonnistui."
 
 #: ../gramps/gui/dbman.py:628
 msgid "Family Tree already exists, choose a unique name."
@@ -19623,7 +19614,6 @@ msgstr "Järjestä uudelleen suhteet"
 msgid "Reorder Relationships: %s"
 msgstr "Järjestä uudelleen suhteet: %s"
 
-# 20170209
 #: ../gramps/gui/widgets/styledtexteditor.py:317
 msgid ""
 "\n"
@@ -19723,7 +19713,6 @@ msgstr "BSDDB"
 msgid "_BSDDB Database"
 msgstr "_BSDDB tietokanta"
 
-# 20180720
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:28
 msgid "Berkeley Software Distribution Database Backend"
 msgstr "Berkeley Software Distribution tietokantaohjelmisto"
@@ -31750,7 +31739,7 @@ msgstr "Nimiösivu"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:327
 msgid "Produces a title page for book reports."
-msgstr "Tuottaa otsikkosivun kirjaraportteihin."
+msgstr "Tuottaa nimiösivun kirjaraportteihin."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:349
 msgid "Provides a summary of the current database"
@@ -33487,7 +33476,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/tools.gpr.py:61
 msgid "Rename Event Types"
-msgstr "Uudelleen nimeä tapahtumatyyppejä"
+msgstr "Nimeä uudelleen tapahtumatyyppejä"
 
 #: ../gramps/plugins/tool/tools.gpr.py:62
 msgid "Allows all the events of a certain name to be renamed to a new name."
@@ -35679,7 +35668,6 @@ msgstr "Vaakasuoraan -- oletus"
 msgid "Vertical   -- Left Side"
 msgstr "Pystysuoraan -- vasen sivu"
 
-# 20180720
 #: ../gramps/plugins/webreport/narrativeweb.py:1651
 msgid "Fade       -- WebKit Browsers Only"
 msgstr "Häivennä     -- vain WebKit-selaimet"
