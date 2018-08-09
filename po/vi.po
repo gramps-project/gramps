@@ -36495,9 +36495,6 @@ msgstr "Không có style sheet "
 #~ msgid "Gender Unknown Death"
 #~ msgstr "Giới tính không rõ đã mất"
 
-#~ msgid "Suppress comma after house number"
-#~ msgstr "Bỏ phẩy sau số nhà"
-
 #~ msgid "Full place name"
 #~ msgstr "Tên địa điểm đầy đủ "
 
@@ -36559,10 +36556,6 @@ msgstr "Tuổi chết "
 msgid "Gender Female Alive"
 msgstr ""
 
-#: ../gramps/gui/configure.py:577
-msgid "Gender Female Death"
-msgstr ""
-
 #: ../gramps/gui/configure.py:579
 msgid "Border Female Death"
 msgstr ""
@@ -36603,7 +36596,7 @@ msgstr "Không biết cha "
 
 #: ../gramps/gui/configure.py:1132
 msgid "Suppress comma after house number"
-msgstr ""
+msgstr "Bỏ phẩy sau số nhà"
 
 #~ msgid ""
 #~ "Citation attribute text\n"
@@ -36706,7 +36699,7 @@ msgstr ""
 
 #: ../gramps/gui/undohistory.py:57
 msgid "11"
-msgstr ""
+msgstr "11"
 
 #: ../gramps/plugins/db/bsddb/write.py:2303
 #, fuzzy
@@ -36715,7 +36708,7 @@ msgstr "Phiên bản "
 
 #: ../gramps/plugins/db/dbapi/dbapi.gpr.py:26
 msgid "DB-API"
-msgstr ""
+msgstr "DB-API"
 #~ msgid "Import Objects"
 #~ msgstr "Đối tượng nhập"
 
@@ -36765,9 +36758,6 @@ msgid ""
 msgstr ""
 "<strong id = \"GalleryCurrent\">%(page_number)d</strong> / <strong id = "
 "\"GalleryTotal\">%(total_pages)d</strong>"
-
-#~ "Mô tả ngày tháng chết ở\n"
-#~ "mô tả sự kiện."
 
 #~ msgid "Diverse"
 #~ msgstr "Khác"
@@ -36926,14 +36916,8 @@ msgstr ""
 #~ msgid "manual|xxxx"
 #~ msgstr "XXXX"
 
-#~ msgid "11"
-#~ msgstr "11"
-
 #~ msgid "DB-API version"
 #~ msgstr "Phiên bản  DB-API"
-
-#~ msgid "DB-API"
-#~ msgstr "DB-API"
 
 #~ msgid "DB-_API Database"
 #~ msgstr "CSDL DB-_API"
@@ -39994,9 +39978,6 @@ msgstr ""
 #~ "\n"
 #~ "\n"
 #~ "Đối tượng hòa chép đè khi nhập:\n"
-
-#~ msgid "Extract Place data"
-#~ msgstr "Rút dữ liệu địa điểm "
 
 #~ msgid "Description: "
 #~ msgstr "Mô tả:"

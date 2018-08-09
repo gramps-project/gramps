@@ -36690,6 +36690,3 @@ msgstr ""
 
 #~ msgid "Requested page type not known"
 #~ msgstr "Umbeðin tegund síðu er ekki þekkt"
-
-#~ msgid "Extract Place data"
-#~ msgstr "Sækja staðagögn"
