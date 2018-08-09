@@ -34,7 +34,7 @@ import unicodedata
 # constants
 #
 #-------------------------------------------------------------------------
-IGNORE = "HW~!@#$%^&*()_+=-`[]\|;:'/?.,<>\" \t\f\v"
+IGNORE = "HW~!@#$%^&*()_+=-`[]\\|;:'/?.,<>\" \t\f\v"
 TABLE = bytes.maketrans(b'ABCDEFGIJKLMNOPQRSTUVXYZ',
                         b'012301202245501262301202')
 

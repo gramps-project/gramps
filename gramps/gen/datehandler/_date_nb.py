@@ -90,11 +90,12 @@ class DateParserNb(DateParser):
     def init_strings(self):
         DateParser.init_strings(self)
         # match day. month year
-        self._numeric  = re.compile("((\d+)[\.])?\s*((\d+))?\s*(\d+)$")
-        self._span     = re.compile("(fra)?\s*(?P<start>.+)\s*(til|--|–)\s*(?P<stop>.+)",
-                                    re.IGNORECASE)
-        self._range    = re.compile("(mellom)\s+(?P<start>.+)\s+og\s+(?P<stop>.+)",
-                                    re.IGNORECASE)
+        self._numeric = re.compile(r"((\d+)[\.])?\s*((\d+))?\s*(\d+)$")
+        self._span = re.compile(
+            r"(fra)?\s*(?P<start>.+)\s*(til|--|–)\s*(?P<stop>.+)",
+            re.IGNORECASE)
+        self._range = re.compile(
+            r"(mellom)\s+(?P<start>.+)\s+og\s+(?P<stop>.+)", re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #

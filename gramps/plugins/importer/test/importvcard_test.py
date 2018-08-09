@@ -144,11 +144,12 @@ class VCardCheck(unittest.TestCase):
                          "TEL:012\\345,67;89")
 
     def test_unesc_list(self):
-        self.assertEqual(VCardParser.unesc(["Last\,name", "First\;name"]),
+        self.assertEqual(VCardParser.unesc([r"Last\,name", r"First\;name"]),
                          ["Last,name", "First;name"])
 
     def test_unesc_tuple(self):
-        self.assertRaises(TypeError, VCardParser.unesc, ("Last\,name", "First\;name"))
+        self.assertRaises(TypeError, VCardParser.unesc,
+                          (r"Last\,name", r"First\;name"))
 
     def test_count_escapes_null(self):
         self.assertEqual(VCardParser.count_escapes("Lastname"), 0)
@@ -371,7 +372,7 @@ class VCardCheck(unittest.TestCase):
         self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_nicknames_multiple(self):
-        self.vcard.insert(4, "NICKNAME:A,B\,C")
+        self.vcard.insert(4, r"NICKNAME:A,B\,C")
         attribs = {"alt": "1", "type": "Birth Name"}
         name = ET.SubElement(self.person, 'name', attribs)
         ET.SubElement(name, 'nick').text = "A"
@@ -391,7 +392,7 @@ class VCardCheck(unittest.TestCase):
         self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_address_too_many(self):
-        self.vcard.insert(4, "ADR:;;Broadway 11; New\,York; ;; USA; Earth")
+        self.vcard.insert(4, r"ADR:;;Broadway 11; New\,York; ;; USA; Earth")
         address = ET.SubElement(self.person, 'address')
         ET.SubElement(address, 'street').text = 'Broadway 11'
         ET.SubElement(address, 'city').text = 'New,York'

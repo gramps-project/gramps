@@ -256,7 +256,7 @@ def get_participant_from_event(db, event_handle, all_=False):
     Obtain the first primary or family participant to an event we find in the
     database. Note that an event can have more than one primary or
     family participant, only one is returned, adding ellipses if there are
-    more. If the all\_ parameter is true a comma-space separated string with
+    more. If the all_ parameter is true a comma-space separated string with
     the names of all primary participants is returned and no ellipses is used.
     """
     participant = ""

@@ -228,19 +228,19 @@ class DateParserHU(DateParser):
         DateParser.init_strings(self)
 
         self._numeric = re.compile(
-                            "((\d+)[/\.])?\s*((\d+)[/\.])?\s*(\d+)[/\. ]?$")
+            r"((\d+)[/\.])?\s*((\d+)[/\.])?\s*(\d+)[/\. ]?$")
         # this next RE has the (possibly-slashed) year at the string's start
-        self._text2 = re.compile('((\d+)(/\d+)?\.)?\s+?%s\.?\s*(\d+\.)?\s*$'
-                                       % self._mon_str, re.IGNORECASE)
-        _span_1 = ['-tó\(ő\)l', '-tól', '-től']
+        self._text2 = re.compile(r'((\d+)(/\d+)?\.)?\s+?%s\.?\s*(\d+\.)?\s*$'
+                                 % self._mon_str, re.IGNORECASE)
+        _span_1 = [r'-tó\(ő\)l', '-tól', '-től']
         _span_2 = ['-ig']
         _range_1 = ['és']
         _range_2 = ['között']
-        self._span  = re.compile("(?P<start>.+)(%s)\s+(?P<stop>.+)(%s)" %
-                                     ('|'.join(_span_1), '|'.join(_span_2)),
-                                 re.IGNORECASE)
-        self._range = re.compile("(?P<start>.+)\s+(%s)\s+(?P<stop>.+)\s+(%s)" %
-                                     ('|'.join(_range_1), '|'.join(_range_2)),
+        self._span = re.compile(r"(?P<start>.+)(%s)\s+(?P<stop>.+)(%s)" %
+                                ('|'.join(_span_1), '|'.join(_span_2)),
+                                re.IGNORECASE)
+        self._range = re.compile(r"(?P<start>.+)\s+(%s)\s+(?P<stop>.+)\s+(%s)"
+                                 % ('|'.join(_range_1), '|'.join(_range_2)),
                                  re.IGNORECASE)
 
 

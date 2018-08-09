@@ -102,7 +102,7 @@ class RTFDoc(BaseDoc, TextDoc):
             '{\\fonttbl\n'
             '{\\f0\\froman\\fcharset0\\fprq0 Times New Roman;}\n'
             '{\\f1\\fswiss\\fcharset0\\fprq0 Arial;}}\n'
-            '{\colortbl\n'
+            '{\\colortbl\n'
             )
 
         self.color_map = {}
@@ -442,7 +442,7 @@ class RTFDoc(BaseDoc, TextDoc):
         act_height = size[1]
 
         if self.in_table:
-            self.text += '{\*\shppict{\\pict\\jpegblip'
+            self.text += '{\\*\\shppict{\\pict\\jpegblip'
             self.text += '\\picwgoal%d\\pichgoal%d\n' % (act_width, act_height)
             index = 1
             for i in buf:
@@ -452,7 +452,7 @@ class RTFDoc(BaseDoc, TextDoc):
                 index = index+1
             self.text += '}}\\par\n'
         else:
-            self.file.write('{\*\shppict{\\pict\\jpegblip')
+            self.file.write('{\\*\\shppict{\\pict\\jpegblip')
             self.file.write('\\picwgoal%d\\pichgoal%d\n' % (act_width, act_height))
             index = 1
             for i in buf:

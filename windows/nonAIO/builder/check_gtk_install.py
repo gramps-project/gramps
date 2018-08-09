@@ -138,7 +138,8 @@ def ScanDependencyFileForErrors(fname):
             parts = line[pthend_idx:].split()
             OK = False
             if dirname.startswith(os.path.join(sysroot, 'winsxs').lower()) \
-            or dirname.startswith(os.path.join(sys.prefix, 'lib\site-packages\gtk-2.0').lower()):
+                or dirname.startswith(os.path.join(
+                    sys.prefix, r'lib\site-packages\gtk-2.0').lower()):
                 OK = True
 
             for pth in acceptablePaths:

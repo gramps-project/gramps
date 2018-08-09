@@ -56,17 +56,17 @@ class ChangedSinceBase(Rule):
     category    = _('General filters')
 
     def add_time(self, date):
-        if re.search("\d.*\s+\d{1,2}:\d{2}:\d{2}", date):
+        if re.search(r"\d.*\s+\d{1,2}:\d{2}:\d{2}", date):
             return date
-        elif re.search("\d.*\s+\d{1,2}:\d{2}", date):
+        elif re.search(r"\d.*\s+\d{1,2}:\d{2}", date):
             return date + ":00"
-        elif re.search("\d.*\s+\d{1,2}", date):
+        elif re.search(r"\d.*\s+\d{1,2}", date):
             return date + ":00:00"
-        elif re.search("\d{4}-\d{1,2}-\d{1,2}", date):
+        elif re.search(r"\d{4}-\d{1,2}-\d{1,2}", date):
             return date + " 00:00:00"
-        elif re.search("\d{4}-\d{1,2}", date):
+        elif re.search(r"\d{4}-\d{1,2}", date):
             return date + "-01 00:00:00"
-        elif re.search("\d{4}", date):
+        elif re.search(r"\d{4}", date):
             return date + "-01-01 00:00:00"
         else:
             return date

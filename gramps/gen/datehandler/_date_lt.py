@@ -131,18 +131,19 @@ class DateParserLT(DateParser):
     def init_strings(self):
         DateParser.init_strings(self)
         # this next RE has the (possibly-slashed) year at the string's start
-        self._text2 = re.compile('((\d+)(/\d+)?)?\s+?m\.\s+%s\s*(\d+)?\s*d?\.?$'
-                                 % self._mon_str, re.IGNORECASE)
+        self._text2 = re.compile(
+            r'((\d+)(/\d+)?)?\s+?m\.\s+%s\s*(\d+)?\s*d?\.?$'
+            % self._mon_str, re.IGNORECASE)
         _span_1 = ['nuo']
         _span_2 = ['iki']
         _range_1 = ['tarp']
         _range_2 = ['ir']
-        self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                 ('|'.join(_span_1), '|'.join(_span_2)),
-                                 re.IGNORECASE)
-        self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                 ('|'.join(_range_1), '|'.join(_range_2)),
-                                 re.IGNORECASE)
+        self._span = re.compile(r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+                                ('|'.join(_span_1), '|'.join(_span_2)),
+                                re.IGNORECASE)
+        self._range = re.compile(
+            r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+            ('|'.join(_range_1), '|'.join(_range_2)), re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #

@@ -248,14 +248,16 @@ class DateParserDE(DateParser):
 
     def init_strings(self):
         DateParser.init_strings(self)
-        self._span   = re.compile("(von|vom)\s+(?P<start>.+)\s+(bis)\s+(?P<stop>.+)",
-                                  re.IGNORECASE)
-        self._range  = re.compile("zwischen\s+(?P<start>.+)\s+und\s+(?P<stop>.+)",
-                                  re.IGNORECASE)
-        self._text2  = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
-                                  re.IGNORECASE)
-        self._jtext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str,
-                                  re.IGNORECASE)
+        self._span = re.compile(
+            r"(von|vom)\s+(?P<start>.+)\s+(bis)\s+(?P<stop>.+)", re.IGNORECASE)
+        self._range = re.compile(
+            r"zwischen\s+(?P<start>.+)\s+und\s+(?P<stop>.+)", re.IGNORECASE)
+        self._text2 = re.compile(
+            r'(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
+            re.IGNORECASE)
+        self._jtext2 = re.compile(
+            r'(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str,
+            re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #

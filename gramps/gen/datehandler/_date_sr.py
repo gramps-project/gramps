@@ -208,21 +208,22 @@ class DateParserSR(DateParser):
         """
         DateParser.init_strings(self)
         # match 'Day. MONTH year.' format with or without dots
-        self._text2 = re.compile('(\d+)?\.?\s*?%s\s*((\d+)(/\d+)?)?\.?\s*$'
-                                % self._mon_str, re.IGNORECASE)
+        self._text2 = re.compile(r'(\d+)?\.?\s*?%s\s*((\d+)(/\d+)?)?\.?\s*$'
+                                 % self._mon_str, re.IGNORECASE)
 
         # match Day.Month.Year.
-        self._numeric  = re.compile("((\d+)[/\. ])?\s*((\d+)[/\.])?\s*(\d+)\.?$")
+        self._numeric = re.compile(
+            r"((\d+)[/\. ])?\s*((\d+)[/\.])?\s*(\d+)\.?$")
 
         _span_1 = ['od', 'од']
         _span_2 = ['do', 'до']
         _range_1 = ['između', 'између']
         _range_2 = ['i', 'и']
-        self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                 ('|'.join(_span_1), '|'.join(_span_2)),
-                                 re.IGNORECASE)
-        self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                 ('|'.join(_range_1), '|'.join(_range_2)),
+        self._span = re.compile(r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
+                                % ('|'.join(_span_1), '|'.join(_span_2)),
+                                re.IGNORECASE)
+        self._range = re.compile(r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
+                                 % ('|'.join(_range_1), '|'.join(_range_2)),
                                  re.IGNORECASE)
 
 #-------------------------------------------------------------------------

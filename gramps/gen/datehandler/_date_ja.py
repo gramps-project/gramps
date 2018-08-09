@@ -166,13 +166,13 @@ class DateParserJA(DateParser):
         _span_2 = ['まで', '']
         _range_1 = ['から', 'と', '~', '〜']
         _range_2 = ['までの間', 'の間']
-        self._span =  re.compile("(?P<start>.+)(%s)(?P<stop>\d+)(%s)" %
-                                 ('|'.join(_span_1), '|'.join(_span_2)),
-                                 re.IGNORECASE)
-        self._range = re.compile("(?P<start>.+)(%s)(?P<stop>.+)(%s)" %
+        self._span = re.compile(r"(?P<start>.+)(%s)(?P<stop>\d+)(%s)" %
+                                ('|'.join(_span_1), '|'.join(_span_2)),
+                                re.IGNORECASE)
+        self._range = re.compile(r"(?P<start>.+)(%s)(?P<stop>.+)(%s)" %
                                  ('|'.join(_range_1), '|'.join(_range_2)),
                                  re.IGNORECASE)
-        self._numeric = re.compile("((\d+)年\s*)?((\d+)月\s*)?(\d+)?日?\s*$")
+        self._numeric = re.compile(r"((\d+)年\s*)?((\d+)月\s*)?(\d+)?日?\s*$")
 
 #-------------------------------------------------------------------------
 #

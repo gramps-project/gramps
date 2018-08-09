@@ -90,22 +90,23 @@ class DateParserIs(DateParser):
         }
 
     def dhformat_changed(self):
-        self._dhformat_parse = re.compile(".*%(\S).*%(\S).*%(\S).*%(\S).*")
+        self._dhformat_parse = re.compile(r".*%(\S).*%(\S).*%(\S).*%(\S).*")
 
     def init_strings(self):
         DateParser.init_strings(self)
 
         # match 'day. month year' format
-        self._text2 = re.compile('(\d+)?\.?\s*?%s\.?\s*((\d+)(/\d+)?)?\s*$'
+        self._text2 = re.compile(r'(\d+)?\.?\s*?%s\.?\s*((\d+)(/\d+)?)?\s*$'
                                  % self._mon_str, re.IGNORECASE)
         # match 'short-day day.month year' format
         short_day_str = '(' + '|'.join(self._ds.short_days[1:]) + ')'
-        self._numeric = re.compile("%s\s*((\d+)[\.]\s*)?((\d+)\s*)?(\d+)\s*$"
+        self._numeric = re.compile(r"%s\s*((\d+)[\.]\s*)?((\d+)\s*)?(\d+)\s*$"
                                    % short_day_str, re.IGNORECASE)
-        self._span     = re.compile("(frá)?\s*(?P<start>.+)\s*(til|--|–)\s*(?P<stop>.+)",
-                                    re.IGNORECASE)
-        self._range    = re.compile("(milli)\s+(?P<start>.+)\s+og\s+(?P<stop>.+)",
-                                    re.IGNORECASE)
+        self._span = re.compile(
+            r"(frá)?\s*(?P<start>.+)\s*(til|--|–)\s*(?P<stop>.+)",
+            re.IGNORECASE)
+        self._range = re.compile(
+            r"(milli)\s+(?P<start>.+)\s+og\s+(?P<stop>.+)", re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #

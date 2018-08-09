@@ -119,16 +119,14 @@ class DateParserNL(DateParser):
 
     def init_strings(self):
         DateParser.init_strings(self)
-        self._span  = re.compile("(van)\s+(?P<start>.+)\s+(tot)\s+(?P<stop>.+)",
+        self._span = re.compile(
+            r"(van)\s+(?P<start>.+)\s+(tot)\s+(?P<stop>.+)", re.IGNORECASE)
+        self._range = re.compile(r"tussen\s+(?P<start>.+)\s+en\s+(?P<stop>.+)",
                                  re.IGNORECASE)
-        self._range  = re.compile("tussen\s+(?P<start>.+)\s+en\s+(?P<stop>.+)",
-                                  re.IGNORECASE)
-        self._text2  = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
-                                  % self._mon_str,
-                                  re.IGNORECASE)
-        self._jtext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
-                                  % self._jmon_str,
-                                  re.IGNORECASE)
+        self._text2 = re.compile(r'(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
+                                 % self._mon_str, re.IGNORECASE)
+        self._jtext2 = re.compile(r'(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
+                                  % self._jmon_str, re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #

@@ -80,7 +80,8 @@ def intltool_version():
     Return the version of intltool as a tuple.
     '''
     if sys.platform == 'win32':
-        cmd = ["perl", "-e print qx(intltool-update --version) =~ m/(\d+.\d+.\d+)/;"]
+        cmd = ["perl",
+               r"-e print qx(intltool-update --version) =~ m/(\d+.\d+.\d+)/;"]
         try:
             ver, ret = subprocess.Popen(cmd ,stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE, shell=True).communicate()

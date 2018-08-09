@@ -89,10 +89,11 @@ class DateParserDa(DateParser):
 
     def init_strings(self):
         DateParser.init_strings(self)
-        self._span     = re.compile("(fra)?\s*(?P<start>.+)\s*(til|--|–)\s*(?P<stop>.+)",
-                                    re.IGNORECASE)
-        self._range    = re.compile("(mellem)\s+(?P<start>.+)\s+og\s+(?P<stop>.+)",
-                                    re.IGNORECASE)
+        self._span = re.compile(
+            r"(fra)?\s*(?P<start>.+)\s*(til|--|–)\s*(?P<stop>.+)",
+            re.IGNORECASE)
+        self._range = re.compile(
+            r"(mellem)\s+(?P<start>.+)\s+og\s+(?P<stop>.+)", re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
