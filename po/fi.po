@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-24 14:13+0100\n"
-"PO-Revision-Date: 2018-08-08 14:40+0300\n"
+"PO-Revision-Date: 2018-08-11 18:21+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -21,9 +21,8 @@ msgstr ""
 "X-Generator: Poedit 2.0.6\n"
 "Generated-By: pygettext.py 1.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: gramps\n"
+"X-Poedit-Basepath: ../gramps/gramps\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPath-1: gramps\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""
@@ -14641,7 +14640,7 @@ msgstr "_Etsi"
 #: ../gramps/gui/filters/_searchbar.py:57
 #: ../gramps/gui/glade/clipboard.glade:54 ../gramps/gui/undohistory.py:88
 msgid "_Clear"
-msgstr "_Tyhjennä"
+msgstr "_Tyhjennä valitut"
 
 #: ../gramps/gui/filters/_searchbar.py:107
 #, python-format
@@ -26651,33 +26650,33 @@ msgstr "Haudattiin %(modified_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:557
 #, python-format
 msgid "%(male_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s on haudattu paikkaan, %(burial_place)s:n%(endnotes)s."
+msgstr "%(male_name)s on haudattu paikkaan, %(burial_place)s %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:558
 #, python-format
 msgid "He was buried in %(burial_place)s%(endnotes)s."
-msgstr "Hänen hautapaikka on %(burial_place)s:n%(endnotes)s."
+msgstr "Hänen hautapaikka on %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:561
 #, python-format
 msgid "%(female_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s on haudattu paikkaan, %(burial_place)s:n%(endnotes)s."
+msgstr "%(female_name)s on haudattu paikkaan, %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:562
 #, python-format
 msgid "She was buried in %(burial_place)s%(endnotes)s."
-msgstr "Hänet hautapaikka on %(burial_place)s:n%(endnotes)s."
+msgstr "Hänen hautapaikka on %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:565
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s on haudattu paikkaan, %(burial_place)s:n%(endnotes)s."
+"%(unknown_gender_name)s on haudattu paikkaan, %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:566
 #, python-format
 msgid "This person was buried in %(burial_place)s%(endnotes)s."
-msgstr "Hänen hautapaikka on %(burial_place)s:n%(endnotes)s."
+msgstr "Hänen hautapaikka on %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:568
 #, python-format
@@ -27376,7 +27375,7 @@ msgstr "%(male_name)s on vanhempien %(father)s ja %(mother)s lapsi."
 #: ../gramps/plugins/lib/libnarrate.py:862
 #, python-format
 msgid "%(male_name)s was the child of %(father)s and %(mother)s."
-msgstr "%(male_name)s oli vanhempien %(father)s:n ja %(mother)s:n lapsi."
+msgstr "%(male_name)s oli vanhempien %(father)s ja %(mother)s lapsi."
 
 #: ../gramps/plugins/lib/libnarrate.py:865
 #, python-format
