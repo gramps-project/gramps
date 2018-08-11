@@ -30,7 +30,7 @@ Reports/Text Reports/Database Summary Report.
 # standard python modules
 #
 #------------------------------------------------------------------------
-import posixpath
+import os
 
 #------------------------------------------------------------------------
 #
@@ -233,7 +233,7 @@ class SummaryReport(Report):
         for media_id in self.__db.get_media_handles():
             media = self.__db.get_media_from_handle(media_id)
             try:
-                size_in_bytes += posixpath.getsize(
+                size_in_bytes += os.path.getsize(
                     media_path_full(self.__db, media.get_path()))
                 length = len(str(size_in_bytes))
                 if size_in_bytes <= 999999:
