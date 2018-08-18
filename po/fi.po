@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-24 14:13+0100\n"
-"PO-Revision-Date: 2018-08-11 18:21+0300\n"
+"PO-Revision-Date: 2018-08-18 12:24+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -4574,7 +4574,7 @@ msgstr "Perheet, joilla on <lähde>"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:48
 msgid "Matches families who have a particular source"
-msgstr "Poimii henkilöt, joilla on tietty lähde"
+msgstr "Poimii perheet, joilla on tietty lähde"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:49
 msgid "Families with the <tag>"
@@ -4582,7 +4582,7 @@ msgstr "Perheet, joilla on <tagi>"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:50
 msgid "Matches families with the particular tag"
-msgstr "Poimii tapahtumat, joilla on tietty tagi"
+msgstr "Poimii perheet, joilla on tietty tagi"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:45
 msgid "Families with twins"
@@ -4590,7 +4590,7 @@ msgstr "Perheet, joilla on kaksoset"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:46
 msgid "Matches families with twins"
-msgstr "Poimii tapahtumat, joilla on kaksoset"
+msgstr "Poimii perheet, joilla on kaksoset"
 
 #: ../gramps/gen/filters/rules/family/_isancestorof.py:44
 #: ../gramps/gen/filters/rules/family/_isdescendantof.py:44
@@ -8543,7 +8543,7 @@ msgstr "Perheet"
 
 #: ../gramps/gen/lib/person.py:203
 msgid "Parent families"
-msgstr "Yksinhuoltaja perheet"
+msgstr "Vanhempien perheet"
 
 #: ../gramps/gen/lib/person.py:209 ../gramps/gen/lib/repo.py:103
 #: ../gramps/gui/merge/mergeperson.py:268
@@ -15671,10 +15671,9 @@ msgid ""
 "corner of the region you want, dragging the mouse to the bottom right corner "
 "of the region, and then releasing the mouse button."
 msgstr ""
-"Kuvan viitattu alue.\n"
-"Valitse alue napsauta hiiren vasemmalla alueen yläkulmassa ja vetämällä "
-"sitten painike alhaalla alueen oikeaan alakulmaan. Sitten voit vapauttaa "
-"painikkeen."
+"Kuva-alueen valinta.\n"
+"Tartu napsauttamalla hiiren vasemmalla painikkeella kuva-alueen kulmassa tai "
+"reunassa, vedä kohdistin halumaasi kohtaan ja vapauta painike."
 
 #: ../gramps/gui/glade/editmediaref.glade:208
 msgid "_Corner 1:  X"
@@ -16439,8 +16438,8 @@ msgid ""
 "Events, lds_ord, media objects, attributes, notes, sources and tags of both "
 "families will be combined."
 msgstr ""
-"Molempien perheiden tapahtumat, ominaisuudet, lisätiedot, mediatiedostot, "
-"lähteet ja tagit sulautetaan."
+"Molempien perheiden tapahtumat, MAP-toimitukset, ominaisuudet, lisätiedot, "
+"mediatiedostot, lähteet ja tagit sulautetaan."
 
 #: ../gramps/gui/glade/mergemedia.glade:97
 msgid ""
@@ -19453,7 +19452,7 @@ msgstr "Muokkaa perhettä"
 
 #: ../gramps/gui/widgets/fanchart.py:1570 ../gramps/plugins/view/relview.py:808
 msgid "Reorder families"
-msgstr "Järjestä uudelleen perheet"
+msgstr "Järjestä perheet uudelleen"
 
 #: ../gramps/gui/widgets/fanchart.py:1576
 #: ../gramps/plugins/view/pedigreeview.py:1668
@@ -25168,7 +25167,7 @@ msgstr "Korkeus"
 
 #: ../gramps/plugins/lib/libgedcom.py:715
 msgid "Initiatory (LDS)"
-msgstr "initiaattori (LDS)"
+msgstr "Initiaattori (MAP)"
 
 #: ../gramps/plugins/lib/libgedcom.py:716
 msgid "Military ID"
@@ -25176,7 +25175,7 @@ msgstr "Sotilastunnus"
 
 #: ../gramps/plugins/lib/libgedcom.py:717
 msgid "Mission (LDS)"
-msgstr "Lähetystyö (LDS)"
+msgstr "Lähetystyö (MAP)"
 
 #: ../gramps/plugins/lib/libgedcom.py:718
 msgid "Namesake"
@@ -31591,7 +31590,7 @@ msgstr "Henkilöitä, joihin liittyy mediatiedostoja: %d"
 #: ../gramps/plugins/textreport/summary.py:215
 #, python-format
 msgid "Number of families: %d"
-msgstr "Perheitä: %d"
+msgstr "Perheiden määrä: %d"
 
 #: ../gramps/plugins/textreport/summary.py:247
 #, python-format
