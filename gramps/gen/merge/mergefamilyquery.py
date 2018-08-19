@@ -164,8 +164,16 @@ class MergeFamilyQuery:
             self.phoenix = self.database.get_family_from_handle(new_handle)
             self.titanic = self.database.get_family_from_handle(old_handle)
 
-            phoenix_father = self.database.get_person_from_handle(self.phoenix_fh)
-            phoenix_mother = self.database.get_person_from_handle(self.phoenix_mh)
+            if self.phoenix_fh:
+                phoenix_father = self.database.get_person_from_handle(
+                    self.phoenix_fh)
+            else:
+                phoenix_father = None
+            if self.phoenix_mh:
+                phoenix_mother = self.database.get_person_from_handle(
+                    self.phoenix_mh)
+            else:
+                phoenix_mother = None
             self.phoenix = self.database.get_family_from_handle(new_handle)
             self.titanic = self.database.get_family_from_handle(old_handle)
             self.phoenix.merge(self.titanic)
