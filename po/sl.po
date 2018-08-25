@@ -19510,7 +19510,9 @@ msgstr ""
 msgid ""
 "\n"
 "Ctrl-Click to follow link"
-msgstr "Kontrolna tipka in klik za sledenje povezavi"
+msgstr ""
+"\n"
+"Kontrolna tipka in klik za sledenje povezavi"
 
 #. spell checker submenu
 #: ../gramps/gui/widgets/styledtexteditor.py:366
