@@ -1237,52 +1237,80 @@ class CheckIntegrity:
 
         total = self.db.get_total()
 
-        self.progress.set_pass(_('Looking for backlink reference problems'),
-                               total)
+        self.progress.set_pass(_('Looking for backlink reference problems') +
+                               ' (1)', total)
         logging.info('Looking for backlink reference problems')
 
+        # dict of object handles indexed by forward link created here
+        my_blinks = defaultdict(list)
+        my_items = 0  # count of my backlinks for progress meter
+        # dict of object handles indexed by forward link from db
+        db_blinks = {}
+        db_items = 0  # count of db backlinks for progress meter
+
+        # first we assemble our own backlinks table, and while we have the
+        # handle, gather up a second table with the db's backlinks
         for obj_class in CLASS_TO_KEY_MAP.keys():
-            obj_type = obj_class.lower()
-            for handle in getattr(self.db, "iter_%s_handles" % obj_type)():
+            for handle in self.db.method("iter_%s_handles", obj_class)():
                 self.progress.step()
-                pri_obj = getattr(self.db, "get_%s_from_handle"
-                                  % obj_type)(handle)
+                blinks = list(self.db.find_backlink_handles(handle))
+                db_blinks[(obj_class, handle)] = blinks
+                db_items += len(blinks)
+                pri_obj = self.db.method('get_%s_from_handle',
+                                         obj_class)(handle)
                 handle_list = pri_obj.get_referenced_handles_recursively()
-                # check that each reference has a backlink
+                my_items += len(handle_list)
+
                 for item in handle_list:
-                    bl_list = list(self.db.find_backlink_handles(item[1]))
-                    if (obj_class, handle) not in bl_list:
-                        # Object has reference with no cooresponding backlink
-                        self.bad_backlinks += 1
-                        logging.warning('    FAIL: the "%(cls)s" [%(gid)s] '
-                                        'has a "%(cls2)s" reference'
-                                        ' with no corresponding backlink.',
-                                        {'gid': pri_obj.gramps_id,
-                                         'cls': obj_class, 'cls2': item[0]})
-                # Check for backlinks that don't have a reference
-                bl_list = self.db.find_backlink_handles(handle)
-                for item in bl_list:
-                    if not getattr(self.db, "has_%s_handle"
-                                   % item[0].lower())(item[1]):
-                        # backlink to object entirely missing
-                        self.bad_backlinks += 1
-                        logging.warning('    FAIL: the "%(cls)s" [%(gid)s] '
-                                        'has a backlink to a missing'
-                                        ' "%(cls2)s".',
-                                        {'gid': pri_obj.gramps_id,
-                                         'cls': obj_class, 'cls2': item[0]})
-                        continue
-                    obj = getattr(self.db, "get_%s_from_handle"
-                                  % item[0].lower())(item[1])
-                    handle_list = obj.get_referenced_handles_recursively()
-                    if (obj_class, handle) not in handle_list:
-                        # backlink to object which doesn't have reference
-                        self.bad_backlinks += 1
-                        logging.warning('    FAIL: the "%(cls)s" [%(gid)s] '
-                                        'has a backlink to a "%(cls2)s"'
-                                        ' with no corresponding reference.',
-                                        {'gid': pri_obj.gramps_id,
-                                         'cls': obj_class, 'cls2': item[0]})
+                    my_blinks[item].append((obj_class, handle))
+
+        # Now we go through our backlinks and the dbs table comparing them
+        # check that each real reference has a backlink in the db table
+        self.progress.set_pass(_('Looking for backlink reference problems') +
+                               ' (2)', my_items)
+        for key, blinks in my_blinks.items():
+            for item in blinks:
+                self.progress.step()
+                if item not in db_blinks[key]:
+                    # Object has reference with no cooresponding backlink
+                    self.bad_backlinks += 1
+                    pri_obj = self.db.method('get_%s_from_handle',
+                                             key[0])(key[1])
+                    logging.warning('    FAIL: the "%(cls)s" [%(gid)s] '
+                                    'has a "%(cls2)s" reference'
+                                    ' with no corresponding backlink.',
+                                    {'gid': pri_obj.gramps_id,
+                                     'cls': key[0], 'cls2': item[0]})
+
+        # Now we go through the db table and make checks against ours
+        # Check for db backlinks that don't have a reference object at all
+        self.progress.set_pass(_('Looking for backlink reference problems') +
+                               ' (3)', db_items)
+        for key, blinks in db_blinks.items():
+            for item in blinks:
+                self.progress.step()
+                if item not in db_blinks:
+                    # backlink to object entirely missing
+                    self.bad_backlinks += 1
+                    pri_obj = self.db.method('get_%s_from_handle',
+                                             key[0])(key[1])
+                    logging.warning('    FAIL: the "%(cls)s" [%(gid)s] '
+                                    'has a backlink to a missing'
+                                    ' "%(cls2)s" object.',
+                                    {'gid': pri_obj.gramps_id,
+                                     'cls': key[0], 'cls2': item[0]})
+                    continue
+                # Check if the object has a reference to the backlinked one
+                if key not in my_blinks or item not in my_blinks[key]:
+                    # backlink to object which doesn't have reference
+                    self.bad_backlinks += 1
+                    pri_obj = self.db.method('get_%s_from_handle',
+                                             key[0])(key[1])
+                    logging.warning('    FAIL: the "%(cls)s" [%(gid)s] '
+                                    'has a backlink to a "%(cls2)s"'
+                                    ' with no corresponding reference.',
+                                    {'gid': pri_obj.gramps_id,
+                                     'cls': key[0], 'cls2': item[0]})
 
     def callback(self, *args):
         self.progress.step()
