@@ -1271,6 +1271,13 @@ class CheckIntegrity:
         for key, blinks in my_blinks.items():
             for item in blinks:
                 self.progress.step()
+                if key not in db_blinks:
+                    # object has reference to something not in db;
+                    # should have been found in previous checks
+                    logging.warning('    Fail: reference to an object %(obj)s'
+                                    ' not in the db by %(ref)s!',
+                                    {'obj': key, 'ref': item})
+                    continue
                 if item not in db_blinks[key]:
                     # Object has reference with no cooresponding backlink
                     self.bad_backlinks += 1
