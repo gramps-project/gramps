@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-24 14:13+0100\n"
-"PO-Revision-Date: 2018-08-18 12:24+0300\n"
+"PO-Revision-Date: 2018-09-03 22:06+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -15623,7 +15623,7 @@ msgstr ""
 #: ../gramps/gui/glade/editmedia.glade:219
 #: ../gramps/gui/glade/editmediaref.glade:423
 msgid "Descriptive title for this media object."
-msgstr "Mediatiedoston kuvaava nimi."
+msgstr "Mediatiedostoa kuvaava nimi."
 
 #: ../gramps/gui/glade/editmedia.glade:270
 msgid "Open File Browser to select a media file on your computer."
@@ -35291,7 +35291,7 @@ msgstr "Viimeisin muutos %(date)s"
 #: ../gramps/plugins/webreport/basepage.py:1299
 #, python-format
 msgid " on %(date)s"
-msgstr " on %(date)s"
+msgstr " versiolla %(date)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1320
 #: ../gramps/plugins/webreport/basepage.py:1325
