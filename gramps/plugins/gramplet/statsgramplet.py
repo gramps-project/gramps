@@ -21,7 +21,7 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-import posixpath
+import os
 
 #------------------------------------------------------------------------
 #
@@ -81,7 +81,7 @@ class StatsGramplet(Gramplet):
         for media in database.iter_media():
             fullname = media_path_full(database, media.get_path())
             try:
-                bytes += posixpath.getsize(fullname)
+                bytes += os.path.getsize(fullname)
                 length = len(str(bytes))
                 if bytes <= 999999:
                     mbytes = _("less than 1")
