@@ -54,6 +54,7 @@ from ..managedwindow import ManagedWindow
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.errors import HandleError
 _ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
@@ -156,6 +157,7 @@ class Bookmarks(metaclass=ABCMeta):
 
         actions = []
         count = 0
+        bad_bookmarks = []  # list of bad bookmarks
 
         if self.dbstate.is_open() and len(self.bookmarks.get()) > 0:
             text.write('<placeholder name="GoToBook">')
@@ -169,6 +171,9 @@ class Bookmarks(metaclass=ABCMeta):
                     count += 1
                 except AttributeError:
                     pass
+                except HandleError:
+                    # if bookmark contains handle to something missing now
+                    bad_bookmarks.append(item)
             text.write('</placeholder>')
 
         text.write(BTM)
@@ -177,6 +182,10 @@ class Bookmarks(metaclass=ABCMeta):
         self.active = self.uistate.uimanager.add_ui_from_string(text.getvalue())
         self.uistate.uimanager.ensure_update()
         text.close()
+        # Clean up any bad bookmarks (can happen if Gramps crashes;
+        # modified bookmarks set is saved only on normal Gramps close)
+        for handle in bad_bookmarks:
+            self.bookmarks.remove(handle)
 
     @abstractmethod
     def make_label(self, handle):
