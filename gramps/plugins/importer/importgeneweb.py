@@ -55,8 +55,9 @@ from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Citation,
 from gramps.gen.db import DbTxn
 from html.entities import name2codepoint
 
-_date_parse = re.compile('([kmes~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|H|F])?')
-_text_parse = re.compile('0\((.*)\)')
+_date_parse = re.compile(
+    r'([kmes~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|H|F])?')
+_text_parse = re.compile(r'0\((.*)\)')
 
 _mod_map = {
     '>' : Date.MOD_AFTER,
@@ -312,7 +313,7 @@ class GeneWebParser:
         return None
 
     def read_relationship_person(self,line,fields):
-        LOG.debug("\Relationships:")
+        LOG.debug(r"\Relationships:")
         (idx,person) = self.parse_person(fields,1,Person.UNKNOWN,None)
         if person:
             self.current_relationship_person_handle = person.get_handle()
@@ -607,7 +608,7 @@ class GeneWebParser:
             firstname = self.decode(fields[idx])
         idx += 1
         if idx < len(fields) and father_surname:
-            noSurnameRe = re.compile("^[({\[~><?0-9#].*$")
+            noSurnameRe = re.compile(r"^[({\[~><?0-9#].*$")
             if not noSurnameRe.match(fields[idx]):
                 surname = self.decode(fields[idx])
                 idx += 1
@@ -623,7 +624,7 @@ class GeneWebParser:
         if person.get_gender() == Person.UNKNOWN and gender is not None:
             person.set_gender(gender)
         self.db.commit_person(person,self.trans)
-        personDataRe = re.compile("^[kmes0-9<>~#\[({!].*$")
+        personDataRe = re.compile(r"^[kmes0-9<>~#\[({!].*$")
         dateRe = re.compile("^[kmes0-9~<>?]+.*$")
 
         source = None

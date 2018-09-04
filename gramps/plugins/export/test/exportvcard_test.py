@@ -170,7 +170,7 @@ class VCardCheck(unittest.TestCase):
 
     def test_write_name_honsuffix(self):
         ET.SubElement(self.name, "suffix").text = "Jr."
-        self.expect[3] = "FN:Lastname\, Jr."
+        self.expect[3] = "FN:Lastname\\, Jr."
         self.expect[4] = "N:Lastname;;;;Jr."
         self.expect[5] = "SORT-STRING:" + "Lastname".ljust(55)+ "Jr."
         self.do_case(self.database, self.expect)

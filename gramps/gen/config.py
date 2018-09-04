@@ -325,7 +325,7 @@ if not os.path.exists(CONFIGMAN.filename):
     # check previous version of gramps:
     fullpath, filename = os.path.split(CONFIGMAN.filename)
     fullpath, previous = os.path.split(fullpath)
-    match = re.match('gramps(\d*)', previous)
+    match = re.match(r'gramps(\d*)', previous)
     if match:
         # cycle back looking for previous versions of gramps
         for i in range(1, 20): # check back 2 gramps versions

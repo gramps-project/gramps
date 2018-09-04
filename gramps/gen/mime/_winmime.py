@@ -85,7 +85,7 @@ def _get_extension(mime_type):
     extension = None
     try:
         hcr = ConnectRegistry(None, HKEY_CLASSES_ROOT)
-        subkey = OpenKey(hcr, "MIME\DataBase\Content Type")
+        subkey = OpenKey(hcr, r"MIME\DataBase\Content Type")
         mimekey = OpenKey(subkey, mime_type)
         extension, value_type = QueryValueEx(mimekey, "Extension")
         CloseKey(mimekey)

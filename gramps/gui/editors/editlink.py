@@ -142,7 +142,7 @@ class EditLink(ManagedWindow):
     def update_ui(self, widget):
         url = self.url_link.get_text()
         # text needs to have 3 or more chars://and at least one char
-        match = re.match("\w{3,}://\w+", url)
+        match = re.match(r"\w{3,}://\w+", url)
         if match:
             self.ok_button.set_sensitive(True)
         else:

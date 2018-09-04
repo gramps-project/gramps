@@ -139,7 +139,7 @@ def writeLauncher(language, langcode, runtimepath, grampspath):
 @rem During the boot process of GRAMPS there is a check for an environment variable
 @rem called GRAMPSHOME. Without this environment variable GRAMPS uses the default
 @rem windows path as the location to save all configuration files:
-@rem <system drive>\<userpath>\<application data>\gramps
+@rem <system drive>\\<userpath>\\<application data>\\gramps
 @rem If required, uncomment GRAMPSHOME line and edit to suit your use.
  ''')
     lines.append('\n@rem set the path for GRAMPS configuration files')
