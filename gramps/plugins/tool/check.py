@@ -1078,7 +1078,7 @@ class CheckIntegrity:
             none_handle = False
             if birth_ref:
                 newref = birth_ref
-                if birth_ref.ref is None:
+                if not birth_ref.ref:
                     none_handle = True
                     birth_ref.ref = create_id()
                 birth_handle = birth_ref.ref
@@ -1117,7 +1117,7 @@ class CheckIntegrity:
             death_ref = person.get_death_ref()
             if death_ref:
                 newref = death_ref
-                if death_ref.ref is None:
+                if not death_ref.ref:
                     none_handle = True
                     death_ref.ref = create_id()
                 death_handle = death_ref.ref
@@ -1158,7 +1158,7 @@ class CheckIntegrity:
             if person.get_event_ref_list():
                 for event_ref in person.get_event_ref_list():
                     newlist.append(event_ref)
-                    if event_ref.ref is None:
+                    if not event_ref.ref:
                         none_handle = True
                         event_ref.ref = create_id()
                     event_handle = event_ref.ref
@@ -1199,7 +1199,7 @@ class CheckIntegrity:
                 newlist = []
                 for event_ref in family.get_event_ref_list():
                     newlist.append(event_ref)
-                    if event_ref.ref is None:
+                    if not event_ref.ref:
                         none_handle = True
                         event_ref.ref = create_id()
                     event_handle = event_ref.ref
@@ -1337,7 +1337,7 @@ class CheckIntegrity:
             person = self.db.get_person_from_handle(key)
             for pref in person.get_person_ref_list():
                 newlist.append(pref)
-                if pref.ref is None:
+                if not pref.ref:
                     none_handle = True
                     pref.ref = create_id()
                 try:
@@ -1396,7 +1396,7 @@ class CheckIntegrity:
             source = self.db.get_source_from_handle(key)
             for reporef in source.get_reporef_list():
                 newlist.append(reporef)
-                if reporef.ref is None:
+                if not reporef.ref:
                     none_handle = True
                     reporef.ref = create_id()
                 try:
@@ -1431,7 +1431,7 @@ class CheckIntegrity:
             place = self.db.get_place_from_handle(key)
             for placeref in place.get_placeref_list():
                 newlist.append(placeref)
-                if placeref.ref is None:
+                if not placeref.ref:
                     none_handle = True
                     placeref.ref = create_id()
                 try:
@@ -1541,7 +1541,7 @@ class CheckIntegrity:
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         person.replace_citation_references(None, new_handle)
                         self.db.commit_person(person, self.trans)
@@ -1555,7 +1555,7 @@ class CheckIntegrity:
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         family.replace_citation_references(None, new_handle)
                         self.db.commit_family(family, self.trans)
@@ -1569,7 +1569,7 @@ class CheckIntegrity:
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         place.replace_citation_references(None, new_handle)
                         self.db.commit_place(place, self.trans)
@@ -1583,7 +1583,7 @@ class CheckIntegrity:
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         citation.replace_citation_references(None, new_handle)
                         self.db.commit_citation(citation, self.trans)
@@ -1597,7 +1597,7 @@ class CheckIntegrity:
             handle_list = repository.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         repository.replace_citation_references(None,
                                                                new_handle)
@@ -1612,7 +1612,7 @@ class CheckIntegrity:
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         obj.replace_citation_references(None, new_handle)
                         self.db.commit_media(obj, self.trans)
@@ -1626,7 +1626,7 @@ class CheckIntegrity:
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         event.replace_citation_references(None, new_handle)
                         self.db.commit_event(event, self.trans)
@@ -1657,7 +1657,7 @@ class CheckIntegrity:
             self.progress.step()
             citation = self.db.get_citation_from_handle(key)
             source_handle = citation.get_reference_handle()
-            if source_handle is None:
+            if not source_handle:
                 source_handle = create_id()
                 citation.set_reference_handle(source_handle)
                 self.db.commit_citation(citation, self.trans)
@@ -1701,7 +1701,7 @@ class CheckIntegrity:
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         person.replace_media_references(None, new_handle)
                         self.db.commit_person(person, self.trans)
@@ -1715,7 +1715,7 @@ class CheckIntegrity:
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         family.replace_media_references(None, new_handle)
                         self.db.commit_family(family, self.trans)
@@ -1729,7 +1729,7 @@ class CheckIntegrity:
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         place.replace_media_references(None, new_handle)
                         self.db.commit_place(place, self.trans)
@@ -1743,7 +1743,7 @@ class CheckIntegrity:
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         event.replace_media_references(None, new_handle)
                         self.db.commit_event(event, self.trans)
@@ -1757,7 +1757,7 @@ class CheckIntegrity:
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         citation.replace_media_references(None, new_handle)
                         self.db.commit_citation(citation, self.trans)
@@ -1771,7 +1771,7 @@ class CheckIntegrity:
             handle_list = source.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         source.replace_media_references(None, new_handle)
                         self.db.commit_source(source, self.trans)
@@ -1823,7 +1823,7 @@ class CheckIntegrity:
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         person.replace_note_references(None, new_handle)
                         self.db.commit_person(person, self.trans)
@@ -1837,7 +1837,7 @@ class CheckIntegrity:
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         family.replace_note_references(None, new_handle)
                         self.db.commit_family(family, self.trans)
@@ -1851,7 +1851,7 @@ class CheckIntegrity:
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         place.replace_note_references(None, new_handle)
                         self.db.commit_place(place, self.trans)
@@ -1865,7 +1865,7 @@ class CheckIntegrity:
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         citation.replace_note_references(None, new_handle)
                         self.db.commit_citation(citation, self.trans)
@@ -1879,7 +1879,7 @@ class CheckIntegrity:
             handle_list = source.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         source.replace_note_references(None, new_handle)
                         self.db.commit_source(source, self.trans)
@@ -1893,7 +1893,7 @@ class CheckIntegrity:
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         obj.replace_note_references(None, new_handle)
                         self.db.commit_media(obj, self.trans)
@@ -1907,7 +1907,7 @@ class CheckIntegrity:
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         event.replace_note_references(None, new_handle)
                         self.db.commit_event(event, self.trans)
@@ -1921,7 +1921,7 @@ class CheckIntegrity:
             handle_list = repo.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         repo.replace_note_references(None, new_handle)
                         self.db.commit_repository(repo, self.trans)
@@ -1977,7 +1977,7 @@ class CheckIntegrity:
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         person.replace_tag_references(None, new_handle)
                         self.db.commit_person(person, self.trans)
@@ -1991,7 +1991,7 @@ class CheckIntegrity:
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         family.replace_tag_references(None, new_handle)
                         self.db.commit_family(family, self.trans)
@@ -2005,7 +2005,7 @@ class CheckIntegrity:
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         obj.replace_tag_references(None, new_handle)
                         self.db.commit_media(obj, self.trans)
@@ -2019,7 +2019,7 @@ class CheckIntegrity:
             handle_list = note.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         note.replace_tag_references(None, new_handle)
                         self.db.commit_note(note, self.trans)
@@ -2033,7 +2033,7 @@ class CheckIntegrity:
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         event.replace_tag_references(None, new_handle)
                         self.db.commit_event(event, self.trans)
@@ -2047,7 +2047,7 @@ class CheckIntegrity:
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         citation.replace_tag_references(None, new_handle)
                         self.db.commit_citation(citation, self.trans)
@@ -2061,7 +2061,7 @@ class CheckIntegrity:
             handle_list = source.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         source.replace_tag_references(None, new_handle)
                         self.db.commit_source(source, self.trans)
@@ -2075,7 +2075,7 @@ class CheckIntegrity:
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         place.replace_tag_references(None, new_handle)
                         self.db.commit_place(place, self.trans)
@@ -2089,7 +2089,7 @@ class CheckIntegrity:
             handle_list = repository.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         repository.replace_tag_references(None, new_handle)
                         self.db.commit_repository(repository, self.trans)
