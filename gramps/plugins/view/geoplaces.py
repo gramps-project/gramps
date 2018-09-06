@@ -33,6 +33,7 @@ import operator
 from gi.repository import Gdk
 KEY_TAB = Gdk.KEY_Tab
 from gi.repository import Gtk
+from collections import defaultdict
 
 #-------------------------------------------------------------------------
 #
@@ -176,7 +177,8 @@ class GeoPlaces(GeoGraphyView):
         self.itemoption = None
         self.menu = None
         self.cal = config.get('preferences.calendar-format-report')
-        self.plc_color  = []
+        self.plc_color = []
+        self.plc_custom_color = defaultdict(set)
 
     def get_title(self):
         """
@@ -257,6 +259,13 @@ class GeoPlaces(GeoGraphyView):
         # one string. We have coordinates when the two values
         # contains non null string.
         if longitude and latitude:
+            colour = self.plc_color[int(place.get_type())+1]
+            if int(place.get_type()) == PlaceType.CUSTOM:
+                try:
+                    colour = (str(place.get_type()),
+                              self.plc_custom_color[str(place.get_type())])
+                except:
+                    colour = self.plc_color[PlaceType.CUSTOM + 1]
             self._append_to_places_list(descr, None, "",
                                         latitude, longitude,
                                         None, None,
@@ -265,7 +274,7 @@ class GeoPlaces(GeoGraphyView):
                                         place.gramps_id,
                                         None, # event.gramps_id
                                         None, # family.gramps_id
-                                        color=self.plc_color[int(place.get_type())+1]
+                                        color=colour
                                        )
 
     def _createmap(self, place_x):
@@ -335,6 +344,7 @@ class GeoPlaces(GeoGraphyView):
         #               create_markers: 0'01"; draw markers: 0'07"
         _LOG.debug("%s", time.strftime("start createmap : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
+        self.custom_places()
         if self.show_all:
             self.show_all = False
             try:
@@ -593,4 +603,32 @@ class GeoPlaces(GeoGraphyView):
         configdialog.add_color(grid,
                 _("Municipality"),
                 11, 'geography.color.municipality', col=4)
+        self.custom_places()
+        if len(self.plc_custom_color) > 0:
+            configdialog.add_text(grid, _("Custom places name"), 12)
+            start = 13
+            for color in self.plc_custom_color.keys():
+                cust_col = 'geography.color.' + color.lower()
+                row = start if start % 2 else start -1
+                column = 1 if start %2 else 4
+                configdialog.add_color(grid, color,
+                        row, cust_col, col=column)
+                start += 1
         return _('The places marker color'), grid
+
+    def custom_places(self):
+        """
+        looking for custom places
+        if not registered, register it.
+        """
+        self.plc_custom_color = defaultdict(set)
+        for place in self.dbstate.db.iter_places():
+            if int(place.get_type()) == PlaceType.CUSTOM:
+                cust_col = 'geography.color.' + str(place.get_type()).lower()
+                try:
+                    color = self._config.get(cust_col)
+                except:
+                    color = '#008b00'
+                    self._config.register(cust_col, color)
+                if str(place.get_type()) not in self.plc_custom_color.keys():
+                    self.plc_custom_color[str(place.get_type())] = color.lower()
