@@ -147,6 +147,10 @@ class WebCalReport(Report):
         self.multiyear = mgobn('multiyear')
         self.start_year = mgobn('start_year')
         self.end_year = mgobn('end_year')
+        if not self.multiyear:
+            self.end_year = self.start_year
+        if self.end_year < self.start_year:
+            self.end_year = self.start_year
 
         self.maiden_name = mgobn('maiden_name')
 
@@ -1566,8 +1570,7 @@ class WebCalReport(Report):
 
         # create Year Navigation menu
         current_year = time.strftime("%Y", time.gmtime())
-        if self.multiyear and ((self.end_year - self.start_year) >= 0):
-            body += self.year_navigation(nr_up, str(current_year))
+        body += self.year_navigation(nr_up, str(current_year))
 
         # create blank line for stylesheets
         # write footer section
