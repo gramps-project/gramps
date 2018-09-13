@@ -8,7 +8,7 @@
 # Copyright (C) 2008-2011 Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2008      Jason Simanek
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2015-2016 Serge Noiraud
+# Copyright (C) 2015-     Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,6 +34,7 @@ Web Calendar generator.
 #------------------------------------------------------------------------
 import os, shutil
 import datetime
+import time
 import calendar # Python module
 
 #------------------------------------------------------------------------
@@ -512,6 +513,7 @@ class WebCalReport(Report):
         # limit number of years to eighteen (18) years and only one row of years
         nyears = ((self.end_year - self.start_year) + 1)
         num_years = nyears if 0 < nyears < 19 else 18
+        self.end_year = (self.start_year + 17) if nyears > 18 else self.end_year
 
         # begin year division and begin unordered list
         with Html("div", id="subnavigation",
@@ -1563,8 +1565,9 @@ class WebCalReport(Report):
         index, body = self.write_header(nr_up, title, "index", False)
 
         # create Year Navigation menu
-        if self.multiyear and ((self.end_year - self.start_year) > 0):
-            body += self.year_navigation(nr_up, str(2016))
+        current_year = time.strftime("%Y", time.gmtime())
+        if self.multiyear and ((self.end_year - self.start_year) >= 0):
+            body += self.year_navigation(nr_up, str(current_year))
 
         # create blank line for stylesheets
         # write footer section
