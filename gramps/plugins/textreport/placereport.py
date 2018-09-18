@@ -413,6 +413,7 @@ class PlaceOptions(MenuReportOptions):
         self.__db = dbase
         self.__filter = None
         self.__places = None
+        self.__pf = None
         MenuReportOptions.__init__(self, name, dbase)
 
     def get_subject(self):
@@ -428,7 +429,7 @@ class PlaceOptions(MenuReportOptions):
                     subject += " + "
                 place = self.__db.get_place_from_gramps_id(place_id)
                 subject += _pd.display(self.__db, place, None,
-                                       self.place_format)
+                                       self.__pf.get_value())
         return subject
 
     def add_menu_options(self, menu):
@@ -462,7 +463,7 @@ class PlaceOptions(MenuReportOptions):
 
         stdoptions.add_name_format_option(menu, category_name)
 
-        stdoptions.add_place_format_option(menu, category_name)
+        self.__pf = stdoptions.add_place_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name)
 
