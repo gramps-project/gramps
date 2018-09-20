@@ -144,6 +144,7 @@ class RelGraphReport(Report):
         self.use_roundedcorners = get_value('useroundedcorners')
         self.adoptionsdashed = get_value('dashed')
         self.show_families = get_value('showfamily')
+        self.show_family_leaves = get_value('show_family_leaves')
         self.use_subgraphs = get_value('usesubgraphs')
         self.event_choice = get_value('event_choice')
         self.occupation = get_value('occupation')
@@ -373,13 +374,18 @@ class RelGraphReport(Report):
                     if family is None:
                         continue
                     if fam_handle not in families_done:
-                        families_done.add(fam_handle)
+                        if not self.show_family_leaves:
+                            family_members = {family.father_handle, family.mother_handle}.union(
+                                child_ref.ref for child_ref in family.child_ref_list) - {None}
+                            if len(family_members.intersection(person_handles)) < 2:
+                                continue
                         self.__add_family(fam_handle)
+                        families_done.add(fam_handle)
                     # If subgraphs are not chosen then each parent is linked
                     # separately to the family. This gives Graphviz greater
                     # control over the layout of the whole graph but
                     # may leave spouses not positioned together.
-                    if not self.use_subgraphs:
+                    if not self.use_subgraphs and fam_handle in families_done:
                         self.doc.add_link(p_id, family.get_gramps_id(), "",
                                           self.arrowheadstyle,
                                           self.arrowtailstyle)
@@ -838,6 +844,11 @@ class RelGraphOptions(MenuReportOptions):
         self.event_choice.set_help(
             _("Whether to include dates and/or places"))
         add_option("event_choice", self.event_choice)
+
+        show_family_leaves = BooleanOption(_("Show all family nodes"), True)
+        show_family_leaves.set_help(_("Show family nodes even if the output "
+                                      "contains only one member of the family."))
+        add_option("show_family_leaves", show_family_leaves)
 
         url = BooleanOption(_("Include URLs"), False)
         url.set_help(_("Include a URL in each graph node so "
