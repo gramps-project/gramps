@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-20 09:31-0500\n"
-"PO-Revision-Date: 2018-09-25 19:31+0200\n"
+"PO-Revision-Date: 2018-09-25 19:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -39371,7 +39371,7 @@ msgstr "Version de la base de données db"
 
 #: ../gramps/plugins/db/dbapi/dbapi.gpr.py:26
 msgid "DB-API"
-msgstr ""
+msgstr "DB-API"
 
 # master
 #: ../gramps/plugins/db/dbapi/dbapi.gpr.py:27
@@ -39385,17 +39385,17 @@ msgstr "Base de données DB-API"
 
 #: ../gramps/plugins/db/dbapi/inmemorydb.gpr.py:26
 msgid "In-Memory"
-msgstr "En-Mémoire"
+msgstr "In-Memory"
 
 # master
 #: ../gramps/plugins/db/dbapi/inmemorydb.gpr.py:27
 msgid "In-_Memory Database"
-msgstr "Base de données En-_Mémoire"
+msgstr "Base de données In-_Memory"
 
 # master
 #: ../gramps/plugins/db/dbapi/inmemorydb.gpr.py:28
 msgid "In-Memory Database"
-msgstr "Base de données En-Mémoire"
+msgstr "Base de données In-Memory"
 
 # master
 #: ../gramps/plugins/webreport/narrativeweb.py:5365
