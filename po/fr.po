@@ -21,6 +21,7 @@
 # Frederic Chateaux, 2007-2008.
 # Jérôme Rapinat <romjerome@yahoo.fr>, 2005-2017.
 # Mathieu MD <mathieu.md@gmail.com>, 2012.
+# Christophe <khrys63>, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
