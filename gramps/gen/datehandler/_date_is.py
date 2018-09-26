@@ -186,7 +186,8 @@ class DateDisplayIs(DateDisplay):
                                  text, scal)
 
     def _get_weekday(self, date_val):
-        if date_val[0] == 0 or date_val[1] == 0: # no day or no month or both
+        if (date_val[0] == 0 or date_val[1] == 0 # no day or no month or both
+                or date_val[2] > datetime.MAXYEAR): # bug 10815
             return ''
         w_day = datetime.date(date_val[2], date_val[1], date_val[0]) # y, m, d
         return self.short_days[((w_day.weekday() + 1) % 7) + 1]
