@@ -878,7 +878,7 @@ class FamilyLinesReport(Report):
                 label += '%s(' % line_delimiter
                 if birth_str:
                     label += '%s' % birth_str
-                label += ' - '
+                label += ' – '
                 if death_str:
                     label += '%s' % death_str
                 label += ')'

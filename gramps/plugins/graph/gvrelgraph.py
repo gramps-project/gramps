@@ -597,7 +597,7 @@ class RelGraphReport(Report):
                 label += '%s(' % line_delimiter
                 if b_date:
                     label += '%s' % b_date
-                label += ' - '
+                label += ' – '
                 if d_date:
                     label += '%s' % d_date
                 label += ')'
@@ -608,7 +608,7 @@ class RelGraphReport(Report):
                 label += '%s(' % line_delimiter
                 if b_place:
                     label += '%s' % b_place
-                label += ' - '
+                label += ' – '
                 if d_place:
                     label += '%s' % d_place
                 label += ')'
