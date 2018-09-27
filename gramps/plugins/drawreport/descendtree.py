@@ -770,16 +770,19 @@ class MakeFamilyTree(RecurseDown):
             father1 = self.database.get_person_from_handle(father1_h)
             if  self.do_parents:  #b3 - remove grandparents?
                 family2_h = father1.get_main_parents_family_handle()
-                family2 = self.database.get_family_from_handle(family2_h)
+                if family2_h:
+                    family2 = self.database.get_family_from_handle(family2_h)
         if mother1_h:
             mother1 = self.database.get_person_from_handle(mother1_h)
 
-        mother2_h = father2_h = None
+        mother2_h = father2_h = father2 = mother2 = None
         if family2: #family2 = fathers parents
             mother2_h = family2.get_mother_handle()
-            mother2 = self.database.get_person_from_handle(mother2_h)
+            if mother2_h:
+                mother2 = self.database.get_person_from_handle(mother2_h)
             father2_h = family2.get_father_handle()
-            father2 = self.database.get_person_from_handle(father2_h)
+            if father2_h:
+                father2 = self.database.get_person_from_handle(father2_h)
 
         #Helper variables.  Assigned in one section, used in another.
         father2_id = family2_id = None
@@ -878,14 +881,17 @@ class MakeFamilyTree(RecurseDown):
             mother1 = self.database.get_person_from_handle(mother1_h)
             if  self.do_parents:  #b3 - remove grandparents?
                 family2_h = mother1.get_main_parents_family_handle()
-                family2 = self.database.get_family_from_handle(family2_h)
+                if family2_h:
+                    family2 = self.database.get_family_from_handle(family2_h)
 
-        mother2_h = father2_h = None
+        mother2_h = father2_h = mother2 = father2 = None
         if family2:
             mother2_h = family2.get_mother_handle()
-            mother2 = self.database.get_person_from_handle(mother2_h)
+            if mother2_h:
+                mother2 = self.database.get_person_from_handle(mother2_h)
             father2_h = family2.get_father_handle()
-            father2 = self.database.get_person_from_handle(father2_h)
+            if father2_h:
+                father2 = self.database.get_person_from_handle(father2_h)
 
         #######################
         #don't do my parents family.
