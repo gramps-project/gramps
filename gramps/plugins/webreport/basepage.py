@@ -676,7 +676,7 @@ class BasePage: # pylint: disable=C1001
         trow2 += Html("td", "", class_="ColumnEvent")
         # get event source references
         srcrefs = self.get_citation_links(event.get_citation_list()) or "&nbsp;"
-        trow += Html("td", srcrefs, class_="ColumnSources")
+        trow += Html("td", srcrefs, class_="ColumnSources", rowspan=2)
 
         # get event notes
         notelist = event.get_note_list()
@@ -1391,10 +1391,10 @@ class BasePage: # pylint: disable=C1001
         # create stylesheet and favicon links
         links = Html("link", type="image/x-icon",
                      href=url4, rel="shortcut icon") + (
+                         Html("link", type="text/css", href=url3,
+                              media='print', rel="stylesheet", indent=False),
                          Html("link", type="text/css", href=url2,
                               media="screen", rel="stylesheet", indent=False),
-                         Html("link", type="text/css", href=url3,
-                              media='print', rel="stylesheet", indent=False)
                          )
 
         # Link to Navigation Menus stylesheet

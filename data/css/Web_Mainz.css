@@ -312,6 +312,10 @@ table#SortByCount thead th.ColumnQuantity a:after {
     content: "";
 }
 
+table.eventlist tbody tr td.ColumnSources {
+    width: 5%;
+}
+
 /* Gallery
 -----------------------------------------------------------------*/
 #GalleryNav {
