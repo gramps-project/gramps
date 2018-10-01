@@ -585,6 +585,10 @@ class DateDisplay:
         w_day = datetime.date(date_val[2], date_val[1], date_val[0]) # y, m, d
         return self.long_days[((w_day.weekday() + 1) % 7) + 1]
 
+    def _get_localized_year(self, year):
+        """ Allow a subclass to modify the year, e.g. add a period """
+        return year
+
     def dd_dformat01(self, date_val):
         """
         numerical
@@ -596,7 +600,7 @@ class DateDisplay:
             return self.display_iso(date_val)
         else:
             if date_val[0] == date_val[1] == 0:
-                return str(date_val[2])
+                return self._get_localized_year(str(date_val[2]))
             else:
                 value = self.dhformat.replace('%m', str(date_val[1]))
                 if '%b' in value or '%B' in value:
@@ -634,7 +638,7 @@ class DateDisplay:
         year = self._slash_year(date_val[2], date_val[3])
         if date_val[0] == 0:
             if date_val[1] == 0:
-                return year
+                return self._get_localized_year(year)
             else:
                 return self.format_long_month_year(date_val[1], year,
                                                    inflect, long_months)
@@ -660,7 +664,7 @@ class DateDisplay:
         year = self._slash_year(date_val[2], date_val[3])
         if date_val[0] == 0:
             if date_val[1] == 0:
-                return year
+                return self._get_localized_year(year)
             else:
                 return self.format_short_month_year(date_val[1], year,
                                                     inflect, short_months)
@@ -686,7 +690,7 @@ class DateDisplay:
         year = self._slash_year(date_val[2], date_val[3])
         if date_val[0] == 0:
             if date_val[1] == 0:
-                return year
+                return self._get_localized_year(year)
             else:
                 return self.format_long_month_year(date_val[1], year,
                                                    inflect, long_months)
@@ -712,7 +716,7 @@ class DateDisplay:
         year = self._slash_year(date_val[2], date_val[3])
         if date_val[0] == 0:
             if date_val[1] == 0:
-                return year
+                return self._get_localized_year(year)
             else:
                 return self.format_short_month_year(date_val[1], year,
                                                     inflect, short_months)
