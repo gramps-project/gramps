@@ -227,13 +227,9 @@ class Calendar(Report):
         self.doc.draw_box("CAL-Title", "", 0, 0, width, header, mark)
         self.doc.draw_line("CAL-Border", 0, header, width, header)
         year = self.year
-        # TRANSLATORS: see
-        # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-        # to learn how to select proper inflection for your language.
-        title = self._("{long_month} {year}").format(
-                                long_month = self._ldd.long_months[month],
-                                year = year
-                                ).capitalize()
+        # assume every calendar header in the world is "<month-name> <year>"
+        title = "%s %s" % (self._ldd.long_months[month].capitalize(),
+                           self._get_date(Date(self.year))) # localized year
         mark = IndexMark(title, INDEX_TYPE_TOC, 2)
         font_height = pt2cm(ptitle.get_font().get_size())
         self.doc.center_text("CAL-Title", title,

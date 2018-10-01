@@ -180,10 +180,13 @@ class BirthdayReport(Report):
         # generate the report:
         self.doc.start_paragraph('BIR-Title')
         if self.titletext == _(_TITLE0):
-            title = self._(_TITLE0) + ": " + str(self.year)
+            title = self._("%(str1)s: %(str2)s") % {
+                'str1' : self._(_TITLE0),
+                'str2' : self._get_date(Date(self.year))} # localized year
         else:
-            title = str(self.titletext) + ": " + str(self.year)
-        # FIXME those concatenated strings won't work for RTL languages
+            title = self._("%(str1)s: %(str2)s") % {
+                'str1' : str(self.titletext),
+                'str2' : self._get_date(Date(self.year))}
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()

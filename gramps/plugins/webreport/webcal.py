@@ -541,8 +541,8 @@ class WebCalReport(Report):
                 # Note. We use '/' here because it is a URL, not a OS dependent
                 # pathname.
                 url = '/'.join(subdirs + [full_month_name]) + self.ext
-                hyper = Html("a", str(cal_year), href=url,
-                             title=str(cal_year))
+                hyper = Html("a", self.rlocale.get_date(Date(cal_year)),
+                             href=url, title=str(cal_year))
 
                 # Figure out if we need <li class="CurrentSection">
                 # or just plain <li>
