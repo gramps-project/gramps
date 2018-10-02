@@ -1252,9 +1252,12 @@ class FanChartWidget(FanChartBaseWidget):
             self.center_xy = self.center_xy_from_delta()
             cr.translate(*self.center_xy)
         else:  # printing
-            self.center_xy = halfdist, halfdist
+            if self.form == FORM_QUADRANT:
+                self.center_xy = self.CENTER + PIXELS_PER_GENERATION, halfdist
+            else:
+                self.center_xy = halfdist + PIXELS_PER_GENERATION, halfdist
             cr.scale(scale, scale)
-            cr.translate(halfdist, halfdist)
+            cr.translate(*self.center_xy)
 
         cr.save()
         cr.rotate(math.radians(self.rotate_value))
