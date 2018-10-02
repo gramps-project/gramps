@@ -7,6 +7,7 @@
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2013-2014 Paul Franklin
 # Copyright (C) 2015      Detlef Wolz <detlef.wolz@t-online.de>
+# Copyright (C) 2018      Christophe aka khrys63
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -98,6 +99,8 @@ class HourGlassReport(Report):
         self.__family_father = [] # links allocated from family to father
         self.__family_mother = [] # links allocated from family to mother
 
+        self.__node_label = {} # labels of node for merge sosa number
+
         self.max_descend = menu.get_option_by_name('maxdescend').get_value()
         self.max_ascend = menu.get_option_by_name('maxascend').get_value()
         pid = menu.get_option_by_name('pid').get_value()
@@ -112,6 +115,10 @@ class HourGlassReport(Report):
             'family': menu.get_option_by_name('colorfamilies').get_value()
         }
         self.roundcorners = menu.get_option_by_name('roundcorners').get_value()
+
+        self.ahnentafel = menu.get_option_by_name('ahnentafel').get_value()
+
+        self.ahnentafelnum = menu.get_option_by_name('ahnentafelnum').get_value()
 
         self.includeid = menu.get_option_by_name('inc_id').get_value()
 
@@ -131,8 +138,8 @@ class HourGlassReport(Report):
         """
         Generate the report.
         """
-        self.add_person(self.center_person)
-        self.traverse_up(self.center_person, 1)
+        self.add_person(self.center_person, 1)
+        self.traverse_up(self.center_person, 1, 1)
         self.traverse_down(self.center_person, 1)
 
     def traverse_down(self, person, gen):
@@ -153,27 +160,32 @@ class HourGlassReport(Report):
                     # Avoid going down paths twice when descendant cousins marry
                     self.__used_people.append(child_handle)
                     child = self.__db.get_person_from_handle(child_handle)
-                    self.add_person(child)
+                    self.add_person(child, 0)
                     self.doc.add_link(family.get_gramps_id(),
                                       child.get_gramps_id(),
                                       head=self.arrowheadstyle,
                                       tail=self.arrowtailstyle)
                     self.traverse_down(child, gen+1)
 
-    def traverse_up(self, person, gen):
+    def traverse_up(self, person, gen, sosanumber):
         """
         Recursively find the ancestors of the given person.
         """
+        fathersosanumber = sosanumber * 2
+        mothersosanumber = fathersosanumber + 1
         if gen > self.max_ascend:
             return
         family_handle = person.get_main_parents_family_handle()
+        person_id=person.get_gramps_id()
         if family_handle:
             family = self.__db.get_family_from_handle(family_handle)
             family_id = family.get_gramps_id()
             self.add_family(family)
-            self.doc.add_link(family_id, person.get_gramps_id(),
+            self.doc.add_link(family_id, person_id,
                               head=self.arrowtailstyle,
                               tail=self.arrowheadstyle )
+            father_id = ''
+            mother_id = ''
 
             # create link from family to father
             father_handle = family.get_father_handle()
@@ -181,14 +193,19 @@ class HourGlassReport(Report):
                 # allocate only one father per family
                 self.__family_father.append(family_handle)
                 father = self.__db.get_person_from_handle(father_handle)
-                self.add_person(father)
+                self.add_person(father, fathersosanumber)
+                father_id = father.get_gramps_id()
                 self.doc.add_link(father.get_gramps_id(), family_id,
                                   head=self.arrowtailstyle,
                                   tail=self.arrowheadstyle )
+                # update node with its father node id
+                self.__node_label[person_id] = [self.__node_label[person_id][0], father_id, self.__node_label[person_id][2]]
                 # no need to go up if he is a father in another family
                 if father_handle not in self.__used_people:
                     self.__used_people.append(father_handle)
-                    self.traverse_up(father, gen+1)
+                    self.traverse_up(father, gen+1, fathersosanumber)
+            elif family_handle in self.__family_father and self.ahnentafelnum:
+                self.rewrite_sosa_number(self.__db.get_person_from_handle(father_handle).get_gramps_id(), fathersosanumber)
 
             # create link from family to mother
             mother_handle = family.get_mother_handle()
@@ -196,16 +213,39 @@ class HourGlassReport(Report):
                 # allocate only one mother per family
                 self.__family_mother.append(family_handle)
                 mother = self.__db.get_person_from_handle(mother_handle)
-                self.add_person(mother)
+                self.add_person(mother, mothersosanumber)
+                mother_id = mother.get_gramps_id()
                 self.doc.add_link(mother.get_gramps_id(), family_id,
                                   head=self.arrowtailstyle,
                                   tail=self.arrowheadstyle)
+                # update node with its mother node id
+                self.__node_label[person_id] = [self.__node_label[person_id][0], self.__node_label[person_id][1], mother_id]
                 # no need to go up if she is a mother in another family
                 if mother_handle not in self.__used_people:
                     self.__used_people.append(mother_handle)
-                    self.traverse_up(mother, gen+1)
+                    self.traverse_up(mother, gen+1, mothersosanumber)
+            elif family_handle in self.__family_mother and self.ahnentafelnum:
+                self.rewrite_sosa_number(self.__db.get_person_from_handle(mother_handle).get_gramps_id(), mothersosanumber)
 
-    def add_person(self, person):
+            if self.ahnentafel and mother_handle and father_handle and father_id != '' and mother_id != '':
+                self.doc.add_link(father_id, mother_id,
+                                  style='invis')
+                self.doc.add_samerank(father_id, mother_id)
+
+    def rewrite_sosa_number(self, pid, sosanumber):
+        """
+        Rewrite the Sosa number of a node for multiple sosa member in the tree.
+        """
+        self.__node_label[pid][0]+=" - #%s" % (sosanumber)
+        self.doc.rewrite_label(pid,self.__node_label[pid][0])
+
+        # Recursively rewrite for all ancestors
+        if self.__node_label[pid][1] != '':
+            self.rewrite_sosa_number(self.__node_label[pid][1], sosanumber*2)
+        if self.__node_label[pid][2] != '':
+            self.rewrite_sosa_number(self.__node_label[pid][2], sosanumber*2+1)
+
+    def add_person(self, person, sosanumber):
         """
         Add a person to the Graph. The node id will be the person's gramps id.
         """
@@ -236,10 +276,16 @@ class HourGlassReport(Report):
         elif self.includeid == 2: # own line
             label = "%s \\n(%s%s)\\n(%s)" % (name, birth, death, p_id)
 
+        if self.ahnentafelnum and sosanumber != 0:
+            label +="\\n #%s" % (sosanumber)
+
         label = label.replace('"', '\\\"')
 
         (shape, style, color, fill) = self.get_gender_style(person)
         self.doc.add_node(p_id, label, shape, color, style, fill)
+
+        # save node with them label, father node id, mother node id and sosanumber
+        self.__node_label[p_id] = [label, '', '']
 
     def add_family(self, family):
         """
@@ -352,7 +398,9 @@ class HourGlassOptions(MenuReportOptions):
 
         stdoptions.add_gramps_id_option(menu, category_name, ownline=True)
 
+        ################################
         category_name = _("Report Options (2)")
+        ################################
 
         stdoptions.add_name_format_option(menu, category_name)
 
@@ -384,3 +432,13 @@ class HourGlassOptions(MenuReportOptions):
         color_family = ColorOption(_('Families'), '#ffffe0')
         color_family.set_help(_('The color to use to display families.'))
         menu.add_option(category_name, 'colorfamilies', color_family)
+
+        ahnentafelorder = BooleanOption(_("Force Ahnentafel order"), False) # 10826
+        ahnentafelorder.set_help(
+            _("Force Sosa / Sosa-Stradonitz / Ahnentafel layout order for all ancestors, so that fathers are always on the left branch and mothers are on the right branch."))
+        menu.add_option(category_name, "ahnentafel", ahnentafelorder)
+
+        ahnentafelnumvisible = BooleanOption(_("Ahnentafel number visible"), False) # 10826
+        ahnentafelnumvisible.set_help(
+            _("Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others informations."))
+        menu.add_option(category_name, "ahnentafelnum", ahnentafelnumvisible)
