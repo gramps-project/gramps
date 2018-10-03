@@ -186,8 +186,10 @@ class PersonSidebarFilter(SidebarFilter):
             # if the name is not empty, choose either the regular expression
             # version or the normal text match
             if name:
-                rule = RegExpName([name], use_regex=regex)
-                generic_filter.add_rule(rule)
+                name_parts = name.split(sep=" ")
+                for name_part in name_parts:
+                    rule = RegExpName([name_part], use_regex=regex)
+                    generic_filter.add_rule(rule)
 
             # if the id is not empty, choose either the regular expression
             # version or the normal text match
