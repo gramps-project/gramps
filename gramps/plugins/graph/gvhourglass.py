@@ -112,6 +112,7 @@ class HourGlassReport(Report):
             'family': menu.get_option_by_name('colorfamilies').get_value()
         }
         self.roundcorners = menu.get_option_by_name('roundcorners').get_value()
+        self.hiddennodes = menu.get_option_by_name('hiddennodes').get_value()
 
         self.includeid = menu.get_option_by_name('inc_id').get_value()
 
@@ -126,6 +127,7 @@ class HourGlassReport(Report):
             self.arrowtailstyle = 'none'
 
         stdoptions.run_name_format_option(self, menu)
+        self.hiddennode_count = 0
 
     def write_report(self):
         """
@@ -166,7 +168,17 @@ class HourGlassReport(Report):
         """
         if gen > self.max_ascend:
             return
-        family_handle = person.get_main_parents_family_handle()
+        
+        try:
+            family_handle = person.get_main_parents_family_handle()
+        except AttributeError:
+            family_handle = None
+            
+        try:
+            person_id = person.get_gramps_id()
+        except AttributeError:
+            person_id = person    
+            
         if family_handle:
             family = self.__db.get_family_from_handle(family_handle)
             family_id = family.get_gramps_id()
@@ -189,6 +201,12 @@ class HourGlassReport(Report):
                 if father_handle not in self.__used_people:
                     self.__used_people.append(father_handle)
                     self.traverse_up(father, gen+1)
+            elif self.hiddennodes:
+                father_id = self.hiddennode_count        
+                self.doc.add_node(father_id, label = "DummyFather" +str(father_id), style="invis")
+                self.hiddennode_count += 1
+                self.doc.add_link(father_id, family_id, style = "invis" )
+                self.traverse_up(father_id, gen+1)        
 
             # create link from family to mother
             mother_handle = family.get_mother_handle()
@@ -204,6 +222,42 @@ class HourGlassReport(Report):
                 if mother_handle not in self.__used_people:
                     self.__used_people.append(mother_handle)
                     self.traverse_up(mother, gen+1)
+            elif self.hiddennodes:
+                mother_id = self.hiddennode_count        
+                self.doc.add_node(mother_id, label = "DummyMother" +str(mother_id), style="invis")
+                self.hiddennode_count += 1
+                self.doc.add_link(mother_id, family_id, style = "invis" )
+                self.traverse_up(mother_id, gen+1)
+        elif self.hiddennodes:
+            #if there are no known parents
+            family_id = self.hiddennode_count
+            father_id = self.hiddennode_count+1
+            mother_id = self.hiddennode_count+2
+            self.hiddennode_count += 3
+            
+            self.doc.add_node(family_id, label = "DummyFam" +str(family_id), 
+                              #shape = "ellipse", color = self.colors['family'], 
+                              style="invis")
+            self.doc.add_node(father_id, label = "DummyFather" +str(father_id),
+                              style="invis")
+            
+            
+            self.traverse_up(father_id, gen+1)
+            
+            self.doc.add_node(mother_id, label = "DummyMother" +str(mother_id),
+                              style="invis")
+            self.traverse_up(mother_id, gen+1)
+            
+            
+            
+            self.doc.add_link(family_id, person_id, style = "invis" )
+            self.doc.add_link(mother_id, family_id, style = "invis" )
+            self.doc.add_link(father_id, family_id, style = "invis" )
+            
+                
+                
+            
+        
 
     def add_person(self, person):
         """
@@ -349,6 +403,11 @@ class HourGlassOptions(MenuReportOptions):
         roundedcorners.set_help(
             _("Use rounded corners to differentiate between women and men."))
         menu.add_option(category_name, "roundcorners", roundedcorners)
+        
+        hiddennodes = BooleanOption(_("Use hidden nodes to lay out missing ancestors"), False)
+        hiddennodes.set_help(
+            _("Use empty space to fill the positions where unknown ancestors would go on the graph.  Enabling this option produces a more symmetrical graph."))
+        menu.add_option(category_name, "hiddennodes", hiddennodes)
 
         stdoptions.add_gramps_id_option(menu, category_name, ownline=True)
 
