@@ -143,8 +143,10 @@ class ColumnOrder(Gtk.Box):
         index = 0
         for val, size in zip(self.oldorder, self.oldsize):
             if val in self.oldvis:
-                size = widths[index]
-                index += 1
+                if val != self.oldvis[-1]:
+                    # don't use last col width, its wrong
+                    size = widths[index]
+                    index += 1
                 colord.append((1, val, size))
             else:
                 colord.append((0, val, size))

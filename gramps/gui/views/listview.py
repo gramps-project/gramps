@@ -1041,7 +1041,7 @@ class ListView(NavigationView):
         newsize = []
         index = 0
         for val, size in zip(order, size):
-            if val in vis:
+            if val in vis[:-1]:  # don't use last column size, it's wrong
                 if widths[index]:
                     size = widths[index]
                 index += 1
