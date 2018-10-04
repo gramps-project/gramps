@@ -207,6 +207,7 @@ class DetDescendantReport(Report):
                                    use_call, use_fulldate,
                                    empty_date, empty_place,
                                    nlocale=self._locale,
+                                   place_format=self.place_format,
                                    get_endnote_numbers=self.endnotes)
 
         self.bibli = Bibliography(Bibliography.MODE_DATE|Bibliography.MODE_PAGE)

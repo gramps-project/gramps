@@ -1351,7 +1351,7 @@ class Narrator:
 
     def __init__(self, dbase, verbose=True,
                  use_call_name=False, use_fulldate=False,
-                 empty_date="", empty_place="",
+                 empty_date="", empty_place="", place_format=-1,
                  nlocale=glocale,
                  get_endnote_numbers=_get_empty_endnote_numbers):
         """
@@ -1380,6 +1380,8 @@ class Narrator:
             callable( :class:`~gen.lib.CitationBase` )
         :param nlocale: allow deferred translation of dates and strings
         :type nlocale: a GrampsLocale instance
+        :param place_format: allow display of places in any place format
+        :type place_format: int
         """
         self.__db = dbase
         self.__verbose = verbose
@@ -1395,6 +1397,7 @@ class Narrator:
         self.__translate_text = nlocale.translation.gettext
         self.__get_date = nlocale.get_date
         self._locale = nlocale
+        self._place_format = place_format
 
     def set_subject(self, person):
         """
@@ -1453,7 +1456,8 @@ class Narrator:
                 bplace_handle = birth_event.get_place_handle()
                 if bplace_handle:
                     place = self.__db.get_place_from_handle(bplace_handle)
-                    bplace = _pd.display_event(self.__db, birth_event)
+                    bplace = _pd.display_event(self.__db, birth_event,
+                                               fmt=self._place_format)
                 bdate_obj = birth_event.get_date_object()
                 bdate_full = bdate_obj and bdate_obj.get_day_valid()
                 bdate_mod = bdate_obj and \
@@ -1562,7 +1566,8 @@ class Narrator:
                 dplace_handle = death_event.get_place_handle()
                 if dplace_handle:
                     place = self.__db.get_place_from_handle(dplace_handle)
-                    dplace = _pd.display_event(self.__db, death_event)
+                    dplace = _pd.display_event(self.__db, death_event,
+                                               fmt=self._place_format)
                 ddate_obj = death_event.get_date_object()
                 ddate_full = ddate_obj and ddate_obj.get_day_valid()
                 ddate_mod = ddate_obj and \
@@ -1681,7 +1686,8 @@ class Narrator:
             bplace_handle = burial.get_place_handle()
             if bplace_handle:
                 place = self.__db.get_place_from_handle(bplace_handle)
-                bplace = _pd.display_event(self.__db, burial)
+                bplace = _pd.display_event(self.__db, burial,
+                                           fmt=self._place_format)
             bdate_obj = burial.get_date_object()
             bdate_full = bdate_obj and bdate_obj.get_day_valid()
             bdate_mod = bdate_obj and bdate_obj.get_modifier() != Date.MOD_NONE
@@ -1791,7 +1797,8 @@ class Narrator:
             bplace_handle = baptism.get_place_handle()
             if bplace_handle:
                 place = self.__db.get_place_from_handle(bplace_handle)
-                bplace = _pd.display_event(self.__db, baptism)
+                bplace = _pd.display_event(self.__db, baptism,
+                                           fmt=self._place_format)
             bdate_obj = baptism.get_date_object()
             bdate_full = bdate_obj and bdate_obj.get_day_valid()
             bdate_mod = bdate_obj and bdate_obj.get_modifier() != Date.MOD_NONE
@@ -1901,7 +1908,8 @@ class Narrator:
              cplace_handle = christening.get_place_handle()
              if cplace_handle:
                 place = self.__db.get_place_from_handle(cplace_handle)
-                cplace = _pd.display_event(self.__db, christening)
+                cplace = _pd.display_event(self.__db, christening,
+                                           fmt=self._place_format)
              cdate_obj = christening.get_date_object()
              cdate_full = cdate_obj and cdate_obj.get_day_valid()
              cdate_mod = cdate_obj and cdate_obj.get_modifier() != Date.MOD_NONE
@@ -2014,7 +2022,8 @@ class Narrator:
             place_handle = event.get_place_handle()
             if place_handle:
                 place_obj = self.__db.get_place_from_handle(place_handle)
-                place = _pd.display_event(self.__db, event)
+                place = _pd.display_event(self.__db, event,
+                                          fmt=self._place_format)
         relationship = family.get_relationship()
 
         value_map = {
