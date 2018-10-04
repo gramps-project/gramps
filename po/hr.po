@@ -20981,7 +20981,7 @@ msgstr "Spremanje dijagrama..."
 #: ../gramps/plugins/drawreport/statisticschart.py:939
 #, python-format
 msgid "%s (persons):"
-msgstr "%s (persons):"
+msgstr "%s (osobe):"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:991
 #: ../gramps/plugins/textreport/recordsreport.py:219

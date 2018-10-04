@@ -45,6 +45,7 @@ from gramps.gen.sort import Sort
 from gramps.gen.config import config
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.proxy import CacheProxyDb
+from gramps.gen.lib import Date
 
 #------------------------------------------------------------------------
 #
@@ -297,7 +298,7 @@ class TimeLine(Report):
         delta = (stop_pos - start_pos) / 5
         for val in range(0, 6):
             xpos = start_pos + (val * delta)
-            year_str = str(int(year_low + (incr * val)))
+            year_str = self._get_date(Date(year_low + int(incr * val)))
             self.doc.center_text('TLG-label', year_str, xpos, label_y)
 
     def draw_no_date_heading(self):

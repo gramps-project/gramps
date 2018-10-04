@@ -57,7 +57,7 @@ from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.config import config
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
-from gramps.gen.lib import EventType
+from gramps.gen.lib import EventType, Date
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.display.name import displayer as _nd
 
@@ -329,7 +329,8 @@ class FanChart(Report):
         bth = ""
         if birth:
             bth = birth.get_date_object()
-            bth = str(bth.to_calendar(self.calendar).get_year())
+            bth = self._get_date(
+                Date(bth.to_calendar(self.calendar).get_year())) # localized
             if bth == 0:
                 bth = ""
             elif birth.get_type() != EventType.BIRTH:
@@ -339,7 +340,8 @@ class FanChart(Report):
         dth = ""
         if death:
             dth = death.get_date_object()
-            dth = str(dth.to_calendar(self.calendar).get_year())
+            dth = self._get_date(
+                Date(dth.to_calendar(self.calendar).get_year())) # localized
             if dth == 0:
                 dth = ""
             elif death.get_type() != EventType.DEATH:
