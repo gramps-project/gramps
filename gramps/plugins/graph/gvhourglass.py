@@ -58,10 +58,11 @@ _COLORS = [{'name' : _("B&W outline"), 'value' : "outline"},
            {'name' : _("Colored outline"), 'value' : "colored"},
            {'name' : _("Color fill"), 'value' : "filled"}]
 
-_ARROWS = [ { 'name' : _("Center -> Others"),  'value' : 'o' },
-            { 'name' : _("Center <- Others"),  'value' : 'c' },
+_ARROWS = [ { 'name' : _("Center -> Others"), 'value' : 'o' },
+            { 'name' : _("Center <- Others"), 'value' : 'c' },
             { 'name' : _("Center <-> Other"), 'value' : 'co' },
-            { 'name' : _("Center - Other"),   'value' : '' }]
+            { 'name' : _("Center - Other"), 'value' : '' }]
+
 
 #------------------------------------------------------------------------
 #
@@ -72,6 +73,7 @@ class HourGlassReport(Report):
     """
     An hourglass report displays ancestors and descendants of a center person.
     """
+
     def __init__(self, database, options, user):
         """
         Create HourGlass object that produces the report.
@@ -95,8 +97,8 @@ class HourGlassReport(Report):
         self.__db = self.database
 
         self.__used_people = []
-        self.__family_father = [] # links allocated from family to father
-        self.__family_mother = [] # links allocated from family to mother
+        self.__family_father = []  # links allocated from family to father
+        self.__family_mother = []  # links allocated from family to mother
 
         self.max_descend = menu.get_option_by_name('maxdescend').get_value()
         self.max_ascend = menu.get_option_by_name('maxascend').get_value()
@@ -160,7 +162,7 @@ class HourGlassReport(Report):
                                       child.get_gramps_id(),
                                       head=self.arrowheadstyle,
                                       tail=self.arrowtailstyle)
-                    self.traverse_down(child, gen+1)
+                    self.traverse_down(child, gen + 1)
 
     def traverse_up(self, person, gen):
         """
@@ -168,24 +170,24 @@ class HourGlassReport(Report):
         """
         if gen > self.max_ascend:
             return
-        
+
         try:
             family_handle = person.get_main_parents_family_handle()
         except AttributeError:
             family_handle = None
-            
+
         try:
             person_id = person.get_gramps_id()
         except AttributeError:
-            person_id = person    
-            
+            person_id = person
+
         if family_handle:
             family = self.__db.get_family_from_handle(family_handle)
             family_id = family.get_gramps_id()
             self.add_family(family)
             self.doc.add_link(family_id, person.get_gramps_id(),
                               head=self.arrowtailstyle,
-                              tail=self.arrowheadstyle )
+                              tail=self.arrowheadstyle)
 
             # create link from family to father
             father_handle = family.get_father_handle()
@@ -196,17 +198,17 @@ class HourGlassReport(Report):
                 self.add_person(father)
                 self.doc.add_link(father.get_gramps_id(), family_id,
                                   head=self.arrowtailstyle,
-                                  tail=self.arrowheadstyle )
+                                  tail=self.arrowheadstyle)
                 # no need to go up if he is a father in another family
                 if father_handle not in self.__used_people:
                     self.__used_people.append(father_handle)
-                    self.traverse_up(father, gen+1)
+                    self.traverse_up(father, gen + 1)
             elif self.hiddennodes:
-                father_id = self.hiddennode_count        
-                self.doc.add_node(father_id, label = "DummyFather" +str(father_id), style="invis")
+                father_id = self.hiddennode_count
+                self.doc.add_node(father_id, label="DummyFather" + str(father_id), style="invis")
                 self.hiddennode_count += 1
-                self.doc.add_link(father_id, family_id, style = "invis" )
-                self.traverse_up(father_id, gen+1)        
+                self.doc.add_link(father_id, family_id, style="invis")
+                self.traverse_up(father_id, gen + 1)
 
             # create link from family to mother
             mother_handle = family.get_mother_handle()
@@ -221,43 +223,35 @@ class HourGlassReport(Report):
                 # no need to go up if she is a mother in another family
                 if mother_handle not in self.__used_people:
                     self.__used_people.append(mother_handle)
-                    self.traverse_up(mother, gen+1)
+                    self.traverse_up(mother, gen + 1)
             elif self.hiddennodes:
-                mother_id = self.hiddennode_count        
-                self.doc.add_node(mother_id, label = "DummyMother" +str(mother_id), style="invis")
+                mother_id = self.hiddennode_count
+                self.doc.add_node(mother_id, label="DummyMother" + str(mother_id), style="invis")
                 self.hiddennode_count += 1
-                self.doc.add_link(mother_id, family_id, style = "invis" )
-                self.traverse_up(mother_id, gen+1)
+                self.doc.add_link(mother_id, family_id, style="invis")
+                self.traverse_up(mother_id, gen + 1)
         elif self.hiddennodes:
-            #if there are no known parents
+            # if there are no known parents
             family_id = self.hiddennode_count
-            father_id = self.hiddennode_count+1
-            mother_id = self.hiddennode_count+2
+            father_id = self.hiddennode_count + 1
+            mother_id = self.hiddennode_count + 2
             self.hiddennode_count += 3
-            
-            self.doc.add_node(family_id, label = "DummyFam" +str(family_id), 
-                              #shape = "ellipse", color = self.colors['family'], 
+
+            self.doc.add_node(family_id, label="DummyFam" + str(family_id),
+                              # shape = "ellipse", color = self.colors['family'],
                               style="invis")
-            self.doc.add_node(father_id, label = "DummyFather" +str(father_id),
+            self.doc.add_node(father_id, label="DummyFather" + str(father_id),
                               style="invis")
-            
-            
-            self.traverse_up(father_id, gen+1)
-            
-            self.doc.add_node(mother_id, label = "DummyMother" +str(mother_id),
+
+            self.traverse_up(father_id, gen + 1)
+
+            self.doc.add_node(mother_id, label="DummyMother" + str(mother_id),
                               style="invis")
-            self.traverse_up(mother_id, gen+1)
-            
-            
-            
-            self.doc.add_link(family_id, person_id, style = "invis" )
-            self.doc.add_link(mother_id, family_id, style = "invis" )
-            self.doc.add_link(father_id, family_id, style = "invis" )
-            
-                
-                
-            
-        
+            self.traverse_up(mother_id, gen + 1)
+
+            self.doc.add_link(family_id, person_id, style="invis")
+            self.doc.add_link(mother_id, family_id, style="invis")
+            self.doc.add_link(father_id, family_id, style="invis")
 
     def add_person(self, person):
         """
@@ -304,11 +298,11 @@ class HourGlassReport(Report):
         marriage = utils.find_marriage(self.__db, family)
         if marriage:
             label = self._get_date(marriage.get_date_object())
-        if self.includeid == 1 and label: # same line
+        if self.includeid == 1 and label:  # same line
             label = "%s (%s)" % (label, family_id)
         elif self.includeid == 1 and not label:
             label = "(%s)" % family_id
-        elif self.includeid == 2 and label: # own line
+        elif self.includeid == 2 and label:  # own line
             label = "%s\\n(%s)" % (label, family_id)
         elif self.includeid == 2 and not label:
             label = "(%s)" % family_id
@@ -362,6 +356,7 @@ class HourGlassOptions(MenuReportOptions):
     """
     Defines options for the HourGlass report.
     """
+
     def __init__(self, name, dbase):
         MenuReportOptions.__init__(self, name, dbase)
 
@@ -386,7 +381,7 @@ class HourGlassOptions(MenuReportOptions):
         menu.add_option(category_name, "maxascend", max_gen_a)
 
         arrow = EnumeratedListOption(_("Arrowhead direction"), 'o')
-        for i in range( 0, len(_ARROWS) ):
+        for i in range(0, len(_ARROWS)):
             arrow.add_item(_ARROWS[i]["value"], _ARROWS[i]["name"])
         arrow.set_help(_("Choose the direction that the arrows point."))
         menu.add_option(category_name, "arrow", arrow)
@@ -399,11 +394,11 @@ class HourGlassOptions(MenuReportOptions):
                          "is unknown it will be shown with gray."))
         menu.add_option(category_name, "color", color)
 
-        roundedcorners = BooleanOption(_("Use rounded corners"), False) # 2180
+        roundedcorners = BooleanOption(_("Use rounded corners"), False)  # 2180
         roundedcorners.set_help(
             _("Use rounded corners to differentiate between women and men."))
         menu.add_option(category_name, "roundcorners", roundedcorners)
-        
+
         hiddennodes = BooleanOption(_("Use hidden nodes to lay out missing ancestors"), False)
         hiddennodes.set_help(
             _("Use empty space to fill the positions where unknown ancestors would go on the graph.  Enabling this option produces a more symmetrical graph."))
