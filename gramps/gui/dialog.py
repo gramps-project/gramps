@@ -168,6 +168,52 @@ class QuestionDialog2:
             self.parent.set_modal(True)
         return (response == Gtk.ResponseType.ACCEPT)
 
+class QuestionDialog3:
+    """ Like QuestionDialog2, but includes cancel button,
+    returns: 1  (okbutton, label_msg1)
+             0  (no button label_msg2)
+             -1 (cancel button)
+    """
+    def __init__(self, msg1, msg2, label_msg1, label_msg2, parent=None):
+        self.xml = Glade(toplevel='questiondialog')
+
+        self.top = self.xml.toplevel
+        self.top.set_icon(ICON)
+        self.top.set_title("%s - Gramps" % msg1)
+
+        label1 = self.xml.get_object('qd_label1')
+        label1.set_text('<span weight="bold" size="larger">%s</span>' %
+                        html.escape(msg1))
+        label1.set_use_markup(True)
+
+        label2 = self.xml.get_object('qd_label2')
+        # see https://github.com/emesene/emesene/issues/723
+        label2.connect('activate-link', on_activate_link)
+        label2.set_text(msg2)
+        label2.set_use_markup(True)
+
+        self.xml.get_object('okbutton').set_label(label_msg1)
+        self.xml.get_object('okbutton').set_use_underline(True)
+        self.xml.get_object('no').set_label(label_msg2)
+        self.xml.get_object('no').set_use_underline(True)
+        self.xml.get_object('cancelbutton').show()
+
+        self.parent = parent
+        if parent:
+            self.top.set_transient_for(parent)
+            self.parent_modal = parent.get_modal()
+            if self.parent_modal:
+                parent.set_modal(False)
+        self.top.show()
+
+    def run(self):
+        response = self.top.run()
+        self.top.destroy()
+        if self.parent and self.parent_modal:
+            self.parent.set_modal(True)
+        return (-1 if response == Gtk.ResponseType.DELETE_EVENT
+                else response == Gtk.ResponseType.ACCEPT)
+
 class OptionDialog:
     def __init__(self, msg1, msg2, btnmsg1, task1, btnmsg2, task2, parent=None):
         self.xml = Glade(toplevel='optiondialog')

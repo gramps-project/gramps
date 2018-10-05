@@ -65,7 +65,7 @@ from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.utils.debug import profile
 from gramps.gen.utils.string import data_recover_msg
 from gramps.gen.plug import CATEGORY_QR_PERSON
-from ..dialog import QuestionDialog, QuestionDialog2, ErrorDialog
+from ..dialog import QuestionDialog, QuestionDialog3, ErrorDialog
 from ..editors import FilterEditor
 from ..ddtargets import DdTargets
 from ..plug.quick import create_quickreport_menu, create_web_connect_menu
@@ -536,14 +536,18 @@ class ListView(NavigationView):
         """
         prompt = True
         if len(self.selected_handles()) > 1:
-            q = QuestionDialog2(
+            ques = QuestionDialog3(
                 _("Multiple Selection Delete"),
                 _("More than one item has been selected for deletion. "
                   "Select the option indicating how to delete the items:"),
                 _("Delete All"),
                 _("Confirm Each Delete"),
                 parent=self.uistate.window)
-            prompt = not q.run()
+            res = ques.run()
+            if res == -1:  # Cancel
+                return
+            else:
+                prompt = not res  # we prompt on 'Confirm Each Delete'
 
         if not prompt:
             self.uistate.set_busy_cursor(True)
@@ -562,11 +566,16 @@ class ListView(NavigationView):
                 #descr = object.get_description()
                 #if descr == "":
                 descr = object.get_gramps_id()
-                self.uistate.set_busy_cursor(True)
-                QuestionDialog(_('Delete %s?') % descr, msg,
-                               _('_Delete Item'), query.query_response,
-                               parent=self.uistate.window)
-                self.uistate.set_busy_cursor(False)
+                ques = QuestionDialog3(_('Delete %s?') % descr, msg,
+                                       _('_Yes'), _('_No'),
+                                       parent=self.uistate.window)
+                res = ques.run()
+                if res == -1:  # Cancel
+                    return
+                elif res:  # If true, perfom the delete
+                    self.uistate.set_busy_cursor(True)
+                    query.query_response()
+                    self.uistate.set_busy_cursor(False)
             else:
                 query.query_response()
 
