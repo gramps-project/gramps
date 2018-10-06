@@ -256,7 +256,7 @@ class IndivCompleteReport(Report):
 
     def write_note(self):
         """ write a note """
-        notelist = self.person.get_note_list()
+        notelist = self.person.get_note_list()[:]  # we don't want to modify cached original
         notelist += self.family_notes_list
         if self.names_notes_list:
             for note_handle in self.names_notes_list:

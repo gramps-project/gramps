@@ -509,7 +509,7 @@ class DetDescendantReport(Report):
 
         if self.inc_attrs:
             text = ""
-            attr_list = event.get_attribute_list()
+            attr_list = event.get_attribute_list()[:]  # we don't want to modify cached original
             attr_list.extend(event_ref.get_attribute_list())
             for attr in attr_list:
                 if text:
@@ -529,7 +529,7 @@ class DetDescendantReport(Report):
         if self.inc_notes:
             # if the event or event reference has a note attached to it,
             # get the text and format it correctly
-            notelist = event.get_note_list()
+            notelist = event.get_note_list()[:]  # we don't want to modify cached original
             notelist.extend(event_ref.get_note_list())
             for notehandle in notelist:
                 note = self._db.get_note_from_handle(notehandle)
