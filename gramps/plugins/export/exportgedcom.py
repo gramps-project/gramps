@@ -281,7 +281,8 @@ class GedcomWriter(UpdateCallback):
             textlines = textlines.replace('\n\r', '\n')
             textlines = textlines.replace('\r', '\n')
             # Need to double '@' See Gedcom 5.5 spec 'any_char'
-            if not textlines.startswith('@'):  # avoid xrefs
+            # but avoid xrefs and escapes
+            if not textlines.startswith('@') and '@#' not in textlines:
                 textlines = textlines.replace('@', '@@')
             textlist = textlines.split('\n')
             token_level = level
