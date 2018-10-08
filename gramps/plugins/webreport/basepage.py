@@ -58,7 +58,8 @@ import logging
 #------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import (FamilyRelType, NoteType, NameType, Person, UrlType,
-                            Name, PlaceType, EventRoleType, Family, Citation)
+                            Name, PlaceType, EventRoleType, Family, Citation,
+                            Place)
 from gramps.gen.lib.date import Today
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
 from gramps.version import VERSION
@@ -2616,6 +2617,51 @@ class BasePage: # pylint: disable=C1001
                         )
                         tbody += trow
                 tbody += Html("tr") + Html("td", "&nbsp;", colspan=2)
+
+        # enclosed by
+        tbody += Html("tr") + Html("td", "&nbsp;")
+        trow = Html("tr") + (
+            Html("th", self._("Enclosed By"),
+                 class_="ColumnAttribute", inline=True),
+        )
+        tbody += trow
+        for placeref in place.get_placeref_list():
+            parent_place = self.r_db.get_place_from_handle(placeref.ref)
+            place_name = parent_place.get_name().get_value()
+            if parent_place.handle in self.report.obj_dict[Place]:
+                place_hyper = self.place_link(parent_place.handle,
+                                              place_name,
+                                              uplink=self.uplink)
+            else:
+                place_hyper = place_name
+            trow = Html("tr") + (
+                Html("td", place_hyper, class_="ColumnValue", inline=True))
+            tbody += trow
+
+        # enclose
+        tbody += Html("tr") + Html("td", "&nbsp;")
+        trow = Html("tr") + (
+            Html("th", self._("Place Encloses"),
+                 class_="ColumnAttribute", inline=True),
+        )
+        tbody += trow
+        for link in self.r_db.find_backlink_handles(
+                place.handle, include_classes=['Place']):
+            child_place = self.r_db.get_place_from_handle(link[1])
+            placeref = None
+            for placeref in child_place.get_placeref_list():
+                if placeref.ref == place.handle:
+                    place_name = child_place.get_name().get_value()
+                    if child_place.handle in self.report.obj_dict[Place]:
+                        place_hyper = self.place_link(child_place.handle,
+                                                      place_name,
+                                                      uplink=self.uplink)
+                    else:
+                        place_hyper = place_name
+                    trow = Html("tr") + (
+                        Html("td", place_hyper,
+                             class_="ColumnValue", inline=True))
+            tbody += trow
 
         # return place table to its callers
         return table
