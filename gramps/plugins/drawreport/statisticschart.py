@@ -421,7 +421,7 @@ class Extract:
         if date:
             year = date.get_year()
             if year:
-                return [self._get_date(Date(year))] # localized year
+                return [str(year)]
         return [_T_("Date(s) missing")]
 
     def get_month(self, event):
@@ -672,7 +672,6 @@ class Extract:
         self._locale = rlocale
         self._ = rlocale.translation.sgettext
         self._get_type = rlocale.get_type
-        self._get_date = rlocale.get_date
 
         data = []
         ext = self.extractors
@@ -789,12 +788,21 @@ class StatisticsChart(Report):
         else:
             genders = None
 
+        # needed for keyword based localization
+        mapping = {
+            'genders': genders,
+            'year_from': year_from,
+            'year_to': year_to
+        }
+
         if genders:
-            span_string = self._("%s born") % genders
+            span_string = self._("%(genders)s born "
+                                 "%(year_from)04d-%(year_to)04d"
+                                ) % mapping
         else:
-            span_string = self._("Persons born")
-        span_string += " %s-%s" % (self._get_date(Date(year_from)), # localized
-                                   self._get_date(Date(year_to)))
+            span_string = self._("Persons born "
+                                 "%(year_from)04d-%(year_to)04d"
+                                ) % mapping
 
         people = self.filter.apply(self.database,
                                    self.database.iter_person_handles(),

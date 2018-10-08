@@ -708,7 +708,8 @@ class WebCalReport(Report):
         th_txt = month_name
         if cal == 'wc': # webcalendar()
             if not self.multiyear:
-                th_txt = '%s %04d' % (month_name, year)
+                th_txt = '%s %s' % (month_name,
+                                    self._get_date(Date(year))) # localized
 
         # begin calendar table and table head
         with Html("table", class_="calendar",
