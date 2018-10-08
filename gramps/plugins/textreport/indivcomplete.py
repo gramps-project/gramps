@@ -840,6 +840,7 @@ class IndivCompleteReport(Report):
             if self.person is None:
                 continue
             self.family_notes_list = []
+            self.names_notes_list = []
             self.write_person(count)
         if self._user:
             self._user.end_progress()
