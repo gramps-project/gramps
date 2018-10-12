@@ -44,6 +44,7 @@ fname_map = {'all': _('Filtering_on|all'),
              'Inverse Event': _('Filtering_on|Inverse Event'),
              'Inverse Place': _('Filtering_on|Inverse Place'),
              'Inverse Source': _('Filtering_on|Inverse Source'),
+             'Inverse Citation': _('Filtering_on|Inverse Citation'),
              'Inverse Repository': _('Filtering_on|Inverse Repository'),
              'Inverse Media': _('Filtering_on|Inverse Media'),
              'Inverse Note': _('Filtering_on|Inverse Note'),
@@ -52,6 +53,7 @@ fname_map = {'all': _('Filtering_on|all'),
              'all events': _('Filtering_on|all events'),
              'all places': _('Filtering_on|all places'),
              'all sources': _('Filtering_on|all sources'),
+             'all citations': _('Filtering_on|all citations'),
              'all repositories': _('Filtering_on|all repositories'),
              'all media': _('Filtering_on|all media'),
              'all notes': _('Filtering_on|all notes'),
@@ -200,6 +202,16 @@ def run(database, document, filter_name, *args, **kwargs):
                 stab.row(source, source.gramps_id)
                 matches += 1
 
+    elif (filter_name == 'Inverse Citation'):
+        sdb.dbase = database.db
+        stab.columns(_("Citation"), _("Gramps ID"))
+        proxy_handles = set(database.iter_citation_handles())
+
+        for citation in database.db.iter_citations():
+            if citation.handle not in proxy_handles:
+                stab.row(citation, citation.gramps_id)
+                matches += 1
+
     elif (filter_name == 'Inverse Repository'):
         sdb.dbase = database.db
         stab.columns(_("Repository"), _("Gramps ID"))
@@ -257,6 +269,12 @@ def run(database, document, filter_name, *args, **kwargs):
     elif (filter_name in ['all sources', 'Source']):
         stab.columns(_("Source"), _("Gramps ID"))
         for obj in database.iter_sources():
+            stab.row(obj, obj.gramps_id)
+            matches += 1
+
+    elif (filter_name in ['all citations', 'Citation']):
+        stab.columns(_("Citation"), _("Gramps ID"))
+        for obj in database.iter_citations():
             stab.row(obj, obj.gramps_id)
             matches += 1
 
