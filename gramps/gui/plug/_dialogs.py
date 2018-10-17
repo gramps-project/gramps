@@ -250,8 +250,8 @@ class PluginDialog(ManagedWindow):
             active_handle = self.uistate.get_active('Person')
             report(self.state, self.uistate,
                    self.state.db.get_person_from_handle(active_handle),
-                   eval('mod.' + pdata.reportclass),
-                   eval('mod.' + pdata.optionclass),
+                   getattr(mod, pdata.reportclass),
+                   getattr(mod, pdata.optionclass),
                    pdata.name, pdata.id,
                    pdata.category, pdata.require_active)
         else:
@@ -259,8 +259,8 @@ class PluginDialog(ManagedWindow):
             tool.gui_tool(
                     dbstate = self.state,
                     user = User(uistate=self.uistate),
-                    tool_class = eval('mod.' + pdata.toolclass),
-                    options_class = eval('mod.' + pdata.optionclass),
+                    tool_class = getattr(mod, pdata.toolclass),
+                    options_class = getattr(mod, pdata.optionclass),
                     translated_name = pdata.name,
                     name = pdata.id,
                     category = pdata.category,

@@ -2310,7 +2310,7 @@ def get_relationship_calculator(reinit=False, clocale=glocale):
                 # the loaded module is put in variable mod
                 mod = pmgr.load_plugin(plugin)
                 if mod:
-                    __RELCALC_CLASS = eval('mod.' + plugin.relcalcclass)
+                    __RELCALC_CLASS = getattr(mod, plugin.relcalcclass)
                     relation_translation_found = True
                     break
         if not relation_translation_found and \

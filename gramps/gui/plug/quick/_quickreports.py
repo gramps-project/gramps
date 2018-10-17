@@ -222,7 +222,7 @@ def run_quick_report_by_name_direct(report_name, database, document, handle):
         d.open("")
         mod = pmgr.load_plugin(report)
         if mod:
-            reportfunc = eval('mod.' +  report.runfunc)
+            reportfunc = getattr(mod, report.runfunc)
             retval = reportfunc(database, d, handle)
             d.close()
             return retval
@@ -246,7 +246,7 @@ def run_report(dbstate, uistate, category, handle, pdata, container=None,
         if not mod:
             print("QuickView Error: plugin does not load")
             return
-        func =  eval('mod.' +  pdata.runfunc)
+        func =  getattr(mod, pdata.runfunc)
         if handle:
             d = TextBufDoc(make_basic_stylesheet(), None, track=track)
             d.dbstate = dbstate

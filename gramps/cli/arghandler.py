@@ -619,8 +619,8 @@ class ArgHandler:
                             #import of plugin failed
                             return
                         category = pdata.category
-                        report_class = eval('mod.' + pdata.reportclass)
-                        options_class = eval('mod.' + pdata.optionclass)
+                        report_class = getattr(mod, pdata.reportclass)
+                        options_class = getattr(mod, pdata.optionclass)
                         if category in (CATEGORY_BOOK, CATEGORY_CODE):
                             options_class(self.dbstate.db, name, category,
                                           options_str_dict)
@@ -668,8 +668,8 @@ class ArgHandler:
                             #import of plugin failed
                             return
                         category = pdata.category
-                        tool_class = eval('mod.' + pdata.toolclass)
-                        options_class = eval('mod.' + pdata.optionclass)
+                        tool_class = getattr(mod, pdata.toolclass)
+                        options_class = getattr(mod, pdata.optionclass)
                         tool.cli_tool(dbstate=self.dbstate,
                                       name=name,
                                       category=category,

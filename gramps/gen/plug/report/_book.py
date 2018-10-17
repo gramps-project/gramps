@@ -100,9 +100,9 @@ class BookItem:
                 else:
                     self.category = book_categories[pdata.category]
                 mod = pmgr.load_plugin(pdata)
-                self.write_item = eval('mod.' + pdata.reportclass)
+                self.write_item = getattr(mod, pdata.reportclass)
                 self.name = pdata.id
-                oclass = eval('mod.' + pdata.optionclass)
+                oclass = getattr(mod, pdata.optionclass)
                 self.option_class = oclass(self.name, self.dbase)
                 self.option_class.load_previous_values()
 
