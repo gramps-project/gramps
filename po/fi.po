@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-06 19:55+0300\n"
-"PO-Revision-Date: 2018-09-06 22:07+0300\n"
+"POT-Creation-Date: 2018-10-06 19:00+0300\n"
+"PO-Revision-Date: 2018-10-12 22:03+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -540,20 +540,22 @@ msgstr "Sukupuu \"%s\":"
 #: ../gramps/gui/editors/editname.py:310 ../gramps/gui/plug/_windows.py:685
 #: ../gramps/gui/plug/_windows.py:1116
 #: ../gramps/plugins/gramplet/whatsnext.py:494
-#: ../gramps/plugins/textreport/detancestralreport.py:471
-#: ../gramps/plugins/textreport/detdescendantreport.py:503
+#: ../gramps/plugins/textreport/birthdayreport.py:183
+#: ../gramps/plugins/textreport/birthdayreport.py:187
+#: ../gramps/plugins/textreport/detancestralreport.py:472
+#: ../gramps/plugins/textreport/detdescendantreport.py:504
 #: ../gramps/plugins/textreport/familygroup.py:140
 #: ../gramps/plugins/textreport/familygroup.py:306
 #: ../gramps/plugins/textreport/indivcomplete.py:916
 #: ../gramps/plugins/textreport/indivcomplete.py:956
 #: ../gramps/plugins/textreport/indivcomplete.py:1027
 #: ../gramps/plugins/textreport/placereport.py:185
-#: ../gramps/plugins/webreport/basepage.py:700
-#: ../gramps/plugins/webreport/basepage.py:2194
-#: ../gramps/plugins/webreport/basepage.py:2239
+#: ../gramps/plugins/webreport/basepage.py:692
+#: ../gramps/plugins/webreport/basepage.py:2186
+#: ../gramps/plugins/webreport/basepage.py:2231
 #, python-format
 msgid "%(str1)s: %(str2)s"
-msgstr "%(str1)s, %(str2)s"
+msgstr "%(str1)s: %(str2)s"
 
 #: ../gramps/cli/clidbman.py:274
 #, python-format
@@ -665,34 +667,34 @@ msgstr "Lukittu %s toimesta"
 #: ../gramps/plugins/quickview/all_relations.py:277
 #: ../gramps/plugins/quickview/all_relations.py:294
 #: ../gramps/plugins/textreport/descendreport.py:322
-#: ../gramps/plugins/textreport/detancestralreport.py:211
-#: ../gramps/plugins/textreport/detancestralreport.py:295
-#: ../gramps/plugins/textreport/detancestralreport.py:585
-#: ../gramps/plugins/textreport/detancestralreport.py:587
-#: ../gramps/plugins/textreport/detancestralreport.py:594
-#: ../gramps/plugins/textreport/detancestralreport.py:596
-#: ../gramps/plugins/textreport/detancestralreport.py:611
-#: ../gramps/plugins/textreport/detancestralreport.py:666
-#: ../gramps/plugins/textreport/detancestralreport.py:668
-#: ../gramps/plugins/textreport/detancestralreport.py:675
-#: ../gramps/plugins/textreport/detancestralreport.py:677
-#: ../gramps/plugins/textreport/detancestralreport.py:735
-#: ../gramps/plugins/textreport/detdescendantreport.py:335
-#: ../gramps/plugins/textreport/detdescendantreport.py:433
-#: ../gramps/plugins/textreport/detdescendantreport.py:609
-#: ../gramps/plugins/textreport/detdescendantreport.py:649
-#: ../gramps/plugins/textreport/detdescendantreport.py:651
-#: ../gramps/plugins/textreport/detdescendantreport.py:658
-#: ../gramps/plugins/textreport/detdescendantreport.py:660
-#: ../gramps/plugins/textreport/detdescendantreport.py:688
-#: ../gramps/plugins/textreport/detdescendantreport.py:833
+#: ../gramps/plugins/textreport/detancestralreport.py:212
+#: ../gramps/plugins/textreport/detancestralreport.py:296
+#: ../gramps/plugins/textreport/detancestralreport.py:586
+#: ../gramps/plugins/textreport/detancestralreport.py:588
+#: ../gramps/plugins/textreport/detancestralreport.py:595
+#: ../gramps/plugins/textreport/detancestralreport.py:597
+#: ../gramps/plugins/textreport/detancestralreport.py:612
+#: ../gramps/plugins/textreport/detancestralreport.py:667
+#: ../gramps/plugins/textreport/detancestralreport.py:669
+#: ../gramps/plugins/textreport/detancestralreport.py:676
+#: ../gramps/plugins/textreport/detancestralreport.py:678
+#: ../gramps/plugins/textreport/detancestralreport.py:736
+#: ../gramps/plugins/textreport/detdescendantreport.py:336
+#: ../gramps/plugins/textreport/detdescendantreport.py:434
+#: ../gramps/plugins/textreport/detdescendantreport.py:610
+#: ../gramps/plugins/textreport/detdescendantreport.py:650
+#: ../gramps/plugins/textreport/detdescendantreport.py:652
+#: ../gramps/plugins/textreport/detdescendantreport.py:659
+#: ../gramps/plugins/textreport/detdescendantreport.py:661
+#: ../gramps/plugins/textreport/detdescendantreport.py:689
+#: ../gramps/plugins/textreport/detdescendantreport.py:834
 #: ../gramps/plugins/textreport/indivcomplete.py:85
 #: ../gramps/plugins/textreport/indivcomplete.py:939
 #: ../gramps/plugins/tool/check.py:2440 ../gramps/plugins/tool/check.py:2466
 #: ../gramps/plugins/tool/dumpgenderstats.py:74
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:100
-#: ../gramps/plugins/view/geoclose.py:523
+#: ../gramps/plugins/view/geoclose.py:525
 #: ../gramps/plugins/view/geofamclose.py:271
 #: ../gramps/plugins/view/geofamclose.py:715
 #: ../gramps/plugins/view/geofamily.py:467
@@ -701,13 +703,13 @@ msgstr "Lukittu %s toimesta"
 #: ../gramps/plugins/view/geoplaces.py:531
 #: ../gramps/plugins/view/relview.py:460 ../gramps/plugins/view/relview.py:995
 #: ../gramps/plugins/view/relview.py:1050
-#: ../gramps/plugins/webreport/basepage.py:1759
-#: ../gramps/plugins/webreport/basepage.py:1788
-#: ../gramps/plugins/webreport/basepage.py:1793
-#: ../gramps/plugins/webreport/basepage.py:1800
-#: ../gramps/plugins/webreport/basepage.py:2183
-#: ../gramps/plugins/webreport/basepage.py:2280
-#: ../gramps/plugins/webreport/basepage.py:2395
+#: ../gramps/plugins/webreport/basepage.py:1751
+#: ../gramps/plugins/webreport/basepage.py:1780
+#: ../gramps/plugins/webreport/basepage.py:1785
+#: ../gramps/plugins/webreport/basepage.py:1792
+#: ../gramps/plugins/webreport/basepage.py:2175
+#: ../gramps/plugins/webreport/basepage.py:2272
+#: ../gramps/plugins/webreport/basepage.py:2387
 msgid "Unknown"
 msgstr "Tuntematon"
 
@@ -899,8 +901,8 @@ msgstr "   Käytettävissä olevat valinnat:"
 #: ../gramps/gen/plug/report/endnotes.py:204
 #: ../gramps/gen/plug/report/endnotes.py:210
 #: ../gramps/plugins/drawreport/descendtree.py:352
-#: ../gramps/plugins/drawreport/fanchart.py:362
-#: ../gramps/plugins/drawreport/fanchart.py:378
+#: ../gramps/plugins/drawreport/fanchart.py:364
+#: ../gramps/plugins/drawreport/fanchart.py:380
 #: ../gramps/plugins/gramplet/persondetails.py:237
 #: ../gramps/plugins/gramplet/whatsnext.py:371
 #: ../gramps/plugins/gramplet/whatsnext.py:393
@@ -1095,11 +1097,7 @@ msgstr "Päivä Kuukausi Vuosi"
 msgid "DAY MON YEAR"
 msgstr "PÄIVÄ KUUKAUSI VUOSI"
 
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection for your language.
 #: ../gramps/gen/datehandler/_datedisplay.py:181
-#: ../gramps/plugins/drawreport/calendarreport.py:233
 #, python-brace-format
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
@@ -1379,25 +1377,25 @@ msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:639
+#: ../gramps/gen/datehandler/_datedisplay.py:649
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
 msgstr "{long_month} {day:d}, {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:665
+#: ../gramps/gen/datehandler/_datedisplay.py:675
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
 msgstr "{short_month} {day:d}, {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:691
+#: ../gramps/gen/datehandler/_datedisplay.py:701
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
 msgstr "{day:d} {long_month} {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:717
+#: ../gramps/gen/datehandler/_datedisplay.py:727
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
 msgstr "{day:d} {short_month} {year}"
@@ -2187,12 +2185,12 @@ msgstr "_Peru %s"
 msgid "_Redo %s"
 msgstr "_Tee uudelleen %s"
 
-#: ../gramps/gen/db/generic.py:2410 ../gramps/plugins/db/bsddb/read.py:1935
+#: ../gramps/gen/db/generic.py:2410 ../gramps/plugins/db/bsddb/read.py:1938
 #: ../gramps/plugins/db/bsddb/write.py:2296
 msgid "Number of people"
 msgstr "Henkilöiden määrä"
 
-#: ../gramps/gen/db/generic.py:2411 ../gramps/plugins/db/bsddb/read.py:1936
+#: ../gramps/gen/db/generic.py:2411 ../gramps/plugins/db/bsddb/read.py:1939
 #: ../gramps/plugins/db/bsddb/write.py:2297
 #: ../gramps/plugins/gramplet/statsgramplet.py:170
 #: ../gramps/plugins/webreport/statistics.py:130
@@ -2200,52 +2198,52 @@ msgstr "Henkilöiden määrä"
 msgid "Number of families"
 msgstr "Perheitä"
 
-#: ../gramps/gen/db/generic.py:2412 ../gramps/plugins/db/bsddb/read.py:1937
+#: ../gramps/gen/db/generic.py:2412 ../gramps/plugins/db/bsddb/read.py:1940
 #: ../gramps/plugins/db/bsddb/write.py:2298
 #: ../gramps/plugins/webreport/statistics.py:158
 #: ../gramps/plugins/webreport/statistics.py:207
 msgid "Number of sources"
 msgstr "Lähteiden määrä"
 
-#: ../gramps/gen/db/generic.py:2413 ../gramps/plugins/db/bsddb/read.py:1938
+#: ../gramps/gen/db/generic.py:2413 ../gramps/plugins/db/bsddb/read.py:1941
 #: ../gramps/plugins/db/bsddb/write.py:2299
 #: ../gramps/plugins/webreport/statistics.py:162
 #: ../gramps/plugins/webreport/statistics.py:210
 msgid "Number of citations"
 msgstr "Lainausten määrä"
 
-#: ../gramps/gen/db/generic.py:2414 ../gramps/plugins/db/bsddb/read.py:1939
+#: ../gramps/gen/db/generic.py:2414 ../gramps/plugins/db/bsddb/read.py:1942
 #: ../gramps/plugins/db/bsddb/write.py:2300
 #: ../gramps/plugins/webreport/statistics.py:151
 #: ../gramps/plugins/webreport/statistics.py:201
 msgid "Number of events"
 msgstr "Tapahtumien määrä"
 
-#: ../gramps/gen/db/generic.py:2415 ../gramps/plugins/db/bsddb/read.py:1940
+#: ../gramps/gen/db/generic.py:2415 ../gramps/plugins/db/bsddb/read.py:1943
 #: ../gramps/plugins/db/bsddb/write.py:2301
 msgid "Number of media"
 msgstr "Median määrä"
 
-#: ../gramps/gen/db/generic.py:2416 ../gramps/plugins/db/bsddb/read.py:1941
+#: ../gramps/gen/db/generic.py:2416 ../gramps/plugins/db/bsddb/read.py:1944
 #: ../gramps/plugins/db/bsddb/write.py:2302
 #: ../gramps/plugins/webreport/statistics.py:154
 #: ../gramps/plugins/webreport/statistics.py:204
 msgid "Number of places"
 msgstr "Paikkojen määrä"
 
-#: ../gramps/gen/db/generic.py:2417 ../gramps/plugins/db/bsddb/read.py:1942
+#: ../gramps/gen/db/generic.py:2417 ../gramps/plugins/db/bsddb/read.py:1945
 #: ../gramps/plugins/db/bsddb/write.py:2303
 #: ../gramps/plugins/webreport/statistics.py:166
 #: ../gramps/plugins/webreport/statistics.py:213
 msgid "Number of repositories"
 msgstr "Arkistojen määrä"
 
-#: ../gramps/gen/db/generic.py:2418 ../gramps/plugins/db/bsddb/read.py:1943
+#: ../gramps/gen/db/generic.py:2418 ../gramps/plugins/db/bsddb/read.py:1946
 #: ../gramps/plugins/db/bsddb/write.py:2304
 msgid "Number of notes"
 msgstr "Lisätietojen määrä"
 
-#: ../gramps/gen/db/generic.py:2419 ../gramps/plugins/db/bsddb/read.py:1944
+#: ../gramps/gen/db/generic.py:2419 ../gramps/plugins/db/bsddb/read.py:1947
 #: ../gramps/plugins/db/bsddb/write.py:2305
 msgid "Number of tags"
 msgstr "Tagien määrä"
@@ -2429,9 +2427,9 @@ msgstr "VIRHE: suodinta %s ei voi ladata virheettömästi. Muokkaa suodinta!"
 #: ../gramps/gen/filters/_genericfilter.py:139
 #: ../gramps/gen/filters/_genericfilter.py:169
 #: ../gramps/gui/editors/filtereditor.py:1105
-#: ../gramps/plugins/drawreport/calendarreport.py:470
-#: ../gramps/plugins/drawreport/statisticschart.py:1001
-#: ../gramps/plugins/drawreport/timeline.py:415
+#: ../gramps/plugins/drawreport/calendarreport.py:466
+#: ../gramps/plugins/drawreport/statisticschart.py:993
+#: ../gramps/plugins/drawreport/timeline.py:416
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1009
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1023
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1037
@@ -2443,13 +2441,13 @@ msgstr "VIRHE: suodinta %s ei voi ladata virheettömästi. Muokkaa suodinta!"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1121
 #: ../gramps/plugins/graph/gvrelgraph.py:767
 #: ../gramps/plugins/quickview/quickview.gpr.py:130
-#: ../gramps/plugins/textreport/birthdayreport.py:411
+#: ../gramps/plugins/textreport/birthdayreport.py:414
 #: ../gramps/plugins/textreport/familygroup.py:714
 #: ../gramps/plugins/textreport/indivcomplete.py:1061
 #: ../gramps/plugins/textreport/recordsreport.py:217
 #: ../gramps/plugins/tool/sortevents.py:167
 #: ../gramps/plugins/webreport/narrativeweb.py:1602
-#: ../gramps/plugins/webreport/webcal.py:1626
+#: ../gramps/plugins/webreport/webcal.py:1632
 msgid "Filter"
 msgstr "Suodin"
 
@@ -2740,7 +2738,7 @@ msgid "Miscellaneous filters"
 msgstr "Muut suotimet"
 
 #: ../gramps/gen/filters/rules/_rule.py:54 ../gramps/gui/glade/rule.glade.h:30
-#: ../gramps/plugins/view/geoclose.py:535
+#: ../gramps/plugins/view/geoclose.py:537
 #: ../gramps/plugins/view/geofamclose.py:727
 #: ../gramps/plugins/view/geofamily.py:480
 #: ../gramps/plugins/view/geomoves.py:609
@@ -5466,8 +5464,7 @@ msgstr "Lainaukset"
 #: ../gramps/plugins/textreport/tagreport.py:488
 #: ../gramps/plugins/view/noteview.py:110 ../gramps/plugins/view/view.gpr.py:97
 #: ../gramps/plugins/view/view.gpr.py:105
-#: ../gramps/plugins/webreport/basepage.py:631
-#: ../gramps/plugins/webreport/basepage.py:1245
+#: ../gramps/plugins/webreport/basepage.py:1237
 #: ../gramps/plugins/webreport/person.py:1169
 msgid "Notes"
 msgstr "Lisätiedot"
@@ -5524,10 +5521,10 @@ msgstr "Lisätiedot"
 #: ../gramps/plugins/view/eventview.py:85
 #: ../gramps/plugins/view/mediaview.py:98
 #: ../gramps/plugins/webreport/basepage.py:620
-#: ../gramps/plugins/webreport/basepage.py:912
-#: ../gramps/plugins/webreport/basepage.py:942
-#: ../gramps/plugins/webreport/basepage.py:1108
-#: ../gramps/plugins/webreport/basepage.py:2188
+#: ../gramps/plugins/webreport/basepage.py:904
+#: ../gramps/plugins/webreport/basepage.py:934
+#: ../gramps/plugins/webreport/basepage.py:1100
+#: ../gramps/plugins/webreport/basepage.py:2180
 #: ../gramps/plugins/webreport/event.py:176
 #: ../gramps/plugins/webreport/media.py:229
 #: ../gramps/plugins/webreport/media.py:592
@@ -5541,9 +5538,9 @@ msgstr "Päivämäärä"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:54
 #: ../gramps/plugins/view/geoplaces.py:540
 #: ../gramps/plugins/view/repoview.py:89
-#: ../gramps/plugins/webreport/basepage.py:1109
-#: ../gramps/plugins/webreport/basepage.py:2546
-#: ../gramps/plugins/webreport/basepage.py:2611
+#: ../gramps/plugins/webreport/basepage.py:1101
+#: ../gramps/plugins/webreport/basepage.py:2538
+#: ../gramps/plugins/webreport/basepage.py:2603
 msgid "Street"
 msgstr "Katu"
 
@@ -5553,9 +5550,9 @@ msgstr "Katu"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:55
 #: ../gramps/plugins/view/geoplaces.py:537
 #: ../gramps/plugins/view/repoview.py:90
-#: ../gramps/plugins/webreport/basepage.py:1110
-#: ../gramps/plugins/webreport/basepage.py:2547
-#: ../gramps/plugins/webreport/basepage.py:2612
+#: ../gramps/plugins/webreport/basepage.py:1102
+#: ../gramps/plugins/webreport/basepage.py:2539
+#: ../gramps/plugins/webreport/basepage.py:2604
 msgid "Locality"
 msgstr "Taajama"
 
@@ -5565,9 +5562,9 @@ msgstr "Taajama"
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
 #: ../gramps/plugins/view/geoplaces.py:588
 #: ../gramps/plugins/view/repoview.py:91
-#: ../gramps/plugins/webreport/basepage.py:1111
-#: ../gramps/plugins/webreport/basepage.py:2548
-#: ../gramps/plugins/webreport/basepage.py:2613
+#: ../gramps/plugins/webreport/basepage.py:1103
+#: ../gramps/plugins/webreport/basepage.py:2540
+#: ../gramps/plugins/webreport/basepage.py:2605
 msgid "City"
 msgstr "Paikkakunta"
 
@@ -5577,9 +5574,9 @@ msgstr "Paikkakunta"
 #: ../gramps/gui/views/treemodels/placemodel.py:305
 #: ../gramps/plugins/lib/maps/placeselection.py:137
 #: ../gramps/plugins/view/geoplaces.py:570
-#: ../gramps/plugins/webreport/basepage.py:1113
-#: ../gramps/plugins/webreport/basepage.py:2551
-#: ../gramps/plugins/webreport/basepage.py:2615
+#: ../gramps/plugins/webreport/basepage.py:1105
+#: ../gramps/plugins/webreport/basepage.py:2543
+#: ../gramps/plugins/webreport/basepage.py:2607
 msgid "County"
 msgstr "Maakunta"
 
@@ -5600,17 +5597,17 @@ msgstr "Lääni tai Osavaltio"
 #: ../gramps/plugins/lib/maps/placeselection.py:135
 #: ../gramps/plugins/view/geoplaces.py:564
 #: ../gramps/plugins/view/repoview.py:93
-#: ../gramps/plugins/webreport/basepage.py:1115
-#: ../gramps/plugins/webreport/basepage.py:2555
-#: ../gramps/plugins/webreport/basepage.py:2618
+#: ../gramps/plugins/webreport/basepage.py:1107
+#: ../gramps/plugins/webreport/basepage.py:2547
+#: ../gramps/plugins/webreport/basepage.py:2610
 #: ../gramps/plugins/webreport/place.py:178
 msgid "Country"
 msgstr "Valtio tai Liittovaltio"
 
 #: ../gramps/gen/lib/address.py:125 ../gramps/gen/lib/location.py:103
-#: ../gramps/plugins/webreport/basepage.py:1114
-#: ../gramps/plugins/webreport/basepage.py:2554
-#: ../gramps/plugins/webreport/basepage.py:2617
+#: ../gramps/plugins/webreport/basepage.py:1106
+#: ../gramps/plugins/webreport/basepage.py:2546
+#: ../gramps/plugins/webreport/basepage.py:2609
 msgid "Postal Code"
 msgstr "Postinumero"
 
@@ -5620,7 +5617,7 @@ msgstr "Postinumero"
 #: ../gramps/plugins/gramplet/repositorydetails.py:124
 #: ../gramps/plugins/lib/libgedcom.py:4135
 #: ../gramps/plugins/lib/libgedcom.py:5871
-#: ../gramps/plugins/webreport/basepage.py:1116
+#: ../gramps/plugins/webreport/basepage.py:1108
 msgid "Phone"
 msgstr "Puhelin"
 
@@ -5637,8 +5634,8 @@ msgstr "Ominaisuus"
 #: ../gramps/plugins/gramplet/attributes.py:57
 #: ../gramps/plugins/lib/libmetadata.py:173
 #: ../gramps/plugins/tool/patchnames.py:410
-#: ../gramps/plugins/webreport/basepage.py:1007
-#: ../gramps/plugins/webreport/basepage.py:1244
+#: ../gramps/plugins/webreport/basepage.py:999
+#: ../gramps/plugins/webreport/basepage.py:1236
 msgid "Value"
 msgstr "Arvo"
 
@@ -5678,9 +5675,9 @@ msgstr "Kasti"
 #: ../gramps/plugins/tool/sortevents.py:57
 #: ../gramps/plugins/view/eventview.py:82
 #: ../gramps/plugins/webreport/basepage.py:622
-#: ../gramps/plugins/webreport/basepage.py:915
-#: ../gramps/plugins/webreport/basepage.py:2059
-#: ../gramps/plugins/webreport/basepage.py:2740
+#: ../gramps/plugins/webreport/basepage.py:907
+#: ../gramps/plugins/webreport/basepage.py:2051
+#: ../gramps/plugins/webreport/basepage.py:2732
 #: ../gramps/plugins/webreport/download.py:127
 msgid "Description"
 msgstr "Kuvaus"
@@ -5843,7 +5840,7 @@ msgstr "Lainaus"
 #: ../gramps/plugins/quickview/filterbyname.py:276
 #: ../gramps/plugins/tool/findloop.py:112
 #: ../gramps/plugins/tool/findloop.py:116
-#: ../gramps/plugins/webreport/basepage.py:2521
+#: ../gramps/plugins/webreport/basepage.py:2513
 #: ../gramps/plugins/webreport/event.py:177
 #: ../gramps/plugins/webreport/event.py:389
 #: ../gramps/plugins/webreport/media.py:569
@@ -5855,14 +5852,14 @@ msgstr "Gramps ID"
 
 #: ../gramps/gen/lib/citation.py:108
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:82
-#: ../gramps/plugins/webreport/basepage.py:2190
+#: ../gramps/plugins/webreport/basepage.py:2182
 msgid "Page"
 msgstr "Sivu"
 
 #: ../gramps/gen/lib/citation.py:112
 #: ../gramps/plugins/view/citationlistview.py:101
 #: ../gramps/plugins/view/citationtreeview.py:96
-#: ../gramps/plugins/webreport/basepage.py:2191
+#: ../gramps/plugins/webreport/basepage.py:2183
 msgid "Confidence"
 msgstr "Luotettavuus"
 
@@ -5908,11 +5905,11 @@ msgstr "Lähde"
 #: ../gramps/plugins/tool/reorderids.glade.h:14
 #: ../gramps/plugins/view/mediaview.py:129
 #: ../gramps/plugins/view/view.gpr.py:82 ../gramps/plugins/view/view.gpr.py:90
-#: ../gramps/plugins/webreport/basepage.py:1492
-#: ../gramps/plugins/webreport/basepage.py:1558
-#: ../gramps/plugins/webreport/basepage.py:1627
-#: ../gramps/plugins/webreport/basepage.py:1674
-#: ../gramps/plugins/webreport/basepage.py:1963
+#: ../gramps/plugins/webreport/basepage.py:1484
+#: ../gramps/plugins/webreport/basepage.py:1550
+#: ../gramps/plugins/webreport/basepage.py:1619
+#: ../gramps/plugins/webreport/basepage.py:1666
+#: ../gramps/plugins/webreport/basepage.py:1955
 #: ../gramps/plugins/webreport/media.py:196
 #: ../gramps/plugins/webreport/media.py:390
 msgid "Media"
@@ -6007,7 +6004,7 @@ msgstr "välillä"
 #: ../gramps/gen/lib/date.py:360 ../gramps/gui/merge/mergefamily.py:155
 #: ../gramps/plugins/quickview/all_relations.py:282
 #: ../gramps/plugins/view/relview.py:978
-#: ../gramps/plugins/webreport/basepage.py:830
+#: ../gramps/plugins/webreport/basepage.py:822
 msgid "and"
 msgstr "ja"
 
@@ -6141,7 +6138,7 @@ msgstr "vain tekstinä"
 #: ../gramps/plugins/quickview/filterbyname.py:246
 #: ../gramps/plugins/quickview/quickview.gpr.py:204
 #: ../gramps/plugins/quickview/references.py:87
-#: ../gramps/plugins/textreport/placereport.py:457
+#: ../gramps/plugins/textreport/placereport.py:458
 #: ../gramps/plugins/tool/reorderids.glade.h:9
 #: ../gramps/plugins/webreport/basepage.py:619
 msgid "Event"
@@ -6181,8 +6178,8 @@ msgstr "Tapahtuma"
 #: ../gramps/plugins/tool/sortevents.py:58
 #: ../gramps/plugins/view/eventview.py:86
 #: ../gramps/plugins/webreport/basepage.py:621
-#: ../gramps/plugins/webreport/basepage.py:914
-#: ../gramps/plugins/webreport/basepage.py:944
+#: ../gramps/plugins/webreport/basepage.py:906
+#: ../gramps/plugins/webreport/basepage.py:936
 msgid "Place"
 msgstr "Paikka"
 
@@ -6202,8 +6199,8 @@ msgstr "Tapahtumaviite"
 #: ../gramps/plugins/textreport/indivcomplete.py:472
 #: ../gramps/plugins/textreport/indivcomplete.py:692
 #: ../gramps/plugins/webreport/basepage.py:428
-#: ../gramps/plugins/webreport/basepage.py:996
-#: ../gramps/plugins/webreport/basepage.py:1228
+#: ../gramps/plugins/webreport/basepage.py:988
+#: ../gramps/plugins/webreport/basepage.py:1220
 msgid "Attributes"
 msgstr "Ominaisuudet"
 
@@ -6294,7 +6291,7 @@ msgstr "Oikeudellinen"
 #: ../gramps/gen/lib/eventtype.py:153 ../gramps/gen/lib/eventtype.py:195
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:463
 #: ../gramps/plugins/webreport/addressbooklist.py:113
-#: ../gramps/plugins/webreport/basepage.py:2718
+#: ../gramps/plugins/webreport/basepage.py:2710
 msgid "Residence"
 msgstr "Asuinpaikka"
 
@@ -6748,9 +6745,9 @@ msgstr "Lapset"
 #: ../gramps/plugins/textreport/tagreport.py:324
 #: ../gramps/plugins/view/eventview.py:126
 #: ../gramps/plugins/view/view.gpr.py:37 ../gramps/plugins/view/view.gpr.py:45
-#: ../gramps/plugins/webreport/basepage.py:1488
-#: ../gramps/plugins/webreport/basepage.py:1555
-#: ../gramps/plugins/webreport/basepage.py:1617
+#: ../gramps/plugins/webreport/basepage.py:1480
+#: ../gramps/plugins/webreport/basepage.py:1547
+#: ../gramps/plugins/webreport/basepage.py:1609
 #: ../gramps/plugins/webreport/event.py:141
 #: ../gramps/plugins/webreport/event.py:365
 #: ../gramps/plugins/webreport/person.py:1455
@@ -6762,7 +6759,7 @@ msgid "LDS ordinances"
 msgstr "MAP-lisätietoja"
 
 #: ../gramps/gen/lib/familyreltype.py:47
-#: ../gramps/plugins/webreport/webcal.py:2044
+#: ../gramps/plugins/webreport/webcal.py:2050
 msgid "Married"
 msgstr "Avioliitto"
 
@@ -6829,10 +6826,10 @@ msgstr "Rekisteröity parisuhde"
 #: ../gramps/plugins/view/eventview.py:84
 #: ../gramps/plugins/view/mediaview.py:96 ../gramps/plugins/view/noteview.py:81
 #: ../gramps/plugins/view/repoview.py:87
-#: ../gramps/plugins/webreport/basepage.py:941
-#: ../gramps/plugins/webreport/basepage.py:1243
-#: ../gramps/plugins/webreport/basepage.py:2058
-#: ../gramps/plugins/webreport/basepage.py:2675
+#: ../gramps/plugins/webreport/basepage.py:933
+#: ../gramps/plugins/webreport/basepage.py:1235
+#: ../gramps/plugins/webreport/basepage.py:2050
+#: ../gramps/plugins/webreport/basepage.py:2667
 #: ../gramps/plugins/webreport/event.py:175
 #: ../gramps/plugins/webreport/repository.py:162
 #: ../gramps/plugins/webreport/repository.py:251
@@ -6928,7 +6925,7 @@ msgstr "Mormonisakramentti"
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:64
 #: ../gramps/plugins/textreport/indivcomplete.py:509
 #: ../gramps/plugins/textreport/indivcomplete.py:708
-#: ../gramps/plugins/webreport/basepage.py:943
+#: ../gramps/plugins/webreport/basepage.py:935
 msgid "Temple"
 msgstr "Temppeli"
 
@@ -6942,7 +6939,7 @@ msgstr "Temppeli"
 #: ../gramps/plugins/textreport/indivcomplete.py:508
 #: ../gramps/plugins/textreport/indivcomplete.py:707
 #: ../gramps/plugins/textreport/notelinkreport.py:95
-#: ../gramps/plugins/webreport/basepage.py:945
+#: ../gramps/plugins/webreport/basepage.py:937
 msgid "Status"
 msgstr "Tila"
 
@@ -6980,7 +6977,7 @@ msgstr "Median viite"
 #: ../gramps/gen/lib/mediaref.py:110 ../gramps/gen/lib/placetype.py:73
 #: ../gramps/plugins/view/geoplaces.py:576
 msgid "Region"
-msgstr "Seutu"
+msgstr "Seutukunta"
 
 #. 1 new gramplet
 #. Priority
@@ -7039,10 +7036,10 @@ msgstr "Nimi"
 msgid "Given name"
 msgstr "Etunimi"
 
-#: ../gramps/gen/lib/name.py:162 ../gramps/plugins/webreport/basepage.py:1486
-#: ../gramps/plugins/webreport/basepage.py:1538
-#: ../gramps/plugins/webreport/basepage.py:1541
-#: ../gramps/plugins/webreport/basepage.py:1609
+#: ../gramps/gen/lib/name.py:162 ../gramps/plugins/webreport/basepage.py:1478
+#: ../gramps/plugins/webreport/basepage.py:1530
+#: ../gramps/plugins/webreport/basepage.py:1533
+#: ../gramps/plugins/webreport/basepage.py:1601
 #: ../gramps/plugins/webreport/person.py:275
 #: ../gramps/plugins/webreport/surnamelist.py:97
 #: ../gramps/plugins/webreport/surnamelist.py:147
@@ -7080,7 +7077,7 @@ msgstr "Loppuliite"
 #: ../gramps/plugins/textreport/tagreport.py:745
 #: ../gramps/plugins/view/mediaview.py:94
 #: ../gramps/plugins/view/sourceview.py:82
-#: ../gramps/plugins/webreport/basepage.py:2673
+#: ../gramps/plugins/webreport/basepage.py:2665
 msgid "Title"
 msgstr "Nimike"
 
@@ -7123,8 +7120,8 @@ msgstr "%(surname)s, %(first)s %(suffix)s"
 #: ../gramps/gen/lib/name.py:465 ../gramps/gen/lib/name.py:480
 #: ../gramps/gen/plug/report/utils.py:257
 #: ../gramps/plugins/graph/gvfamilylines.py:483
-#: ../gramps/plugins/textreport/detancestralreport.py:450
-#: ../gramps/plugins/textreport/detdescendantreport.py:485
+#: ../gramps/plugins/textreport/detancestralreport.py:451
+#: ../gramps/plugins/textreport/detdescendantreport.py:486
 #: ../gramps/plugins/textreport/indivcomplete.py:202
 #: ../gramps/plugins/textreport/indivcomplete.py:210
 #: ../gramps/plugins/textreport/indivcomplete.py:1017
@@ -7206,7 +7203,7 @@ msgstr "Avionimi"
 #: ../gramps/gui/glade/editnote.glade.h:17 ../gramps/gui/viewmanager.py:622
 #: ../gramps/gui/views/treemodels/mediamodel.py:117
 #: ../gramps/plugins/drawreport/ancestortree.py:974
-#: ../gramps/plugins/drawreport/descendtree.py:1696
+#: ../gramps/plugins/drawreport/descendtree.py:1702
 #: ../gramps/plugins/export/exportcsv.py:361
 #: ../gramps/plugins/export/exportcsv.py:466
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:112
@@ -7374,7 +7371,7 @@ msgstr "Lapsiviitteen lisätietoja"
 #: ../gramps/plugins/quickview/samesurnames.py:160
 #: ../gramps/plugins/textreport/placereport.py:226
 #: ../gramps/plugins/textreport/placereport.py:302
-#: ../gramps/plugins/textreport/placereport.py:457
+#: ../gramps/plugins/textreport/placereport.py:458
 #: ../gramps/plugins/tool/eventcmp.py:253
 #: ../gramps/plugins/tool/reorderids.glade.h:7
 #: ../gramps/plugins/webreport/event.py:179
@@ -7425,9 +7422,9 @@ msgstr "Tapahtumaviitteet"
 #: ../gramps/plugins/view/view.gpr.py:52 ../gramps/plugins/view/view.gpr.py:60
 #: ../gramps/plugins/webreport/basepage.py:256
 #: ../gramps/plugins/webreport/basepage.py:304
-#: ../gramps/plugins/webreport/basepage.py:1487
-#: ../gramps/plugins/webreport/basepage.py:1546
-#: ../gramps/plugins/webreport/basepage.py:1610
+#: ../gramps/plugins/webreport/basepage.py:1479
+#: ../gramps/plugins/webreport/basepage.py:1538
+#: ../gramps/plugins/webreport/basepage.py:1602
 #: ../gramps/plugins/webreport/family.py:131
 msgid "Families"
 msgstr "Perheet"
@@ -7439,7 +7436,7 @@ msgstr "Vanhempien perheet"
 #: ../gramps/gen/lib/person.py:209 ../gramps/gen/lib/repo.py:103
 #: ../gramps/gui/merge/mergeperson.py:268
 #: ../gramps/plugins/textreport/indivcomplete.py:420
-#: ../gramps/plugins/webreport/basepage.py:1065
+#: ../gramps/plugins/webreport/basepage.py:1057
 msgid "Addresses"
 msgstr "Osoitteet"
 
@@ -7468,7 +7465,7 @@ msgstr "Liitos"
 #: ../gramps/plugins/gramplet/coordinates.py:96
 #: ../gramps/plugins/gramplet/placedetails.py:136
 #: ../gramps/plugins/lib/libplaceview.py:90
-#: ../gramps/plugins/webreport/basepage.py:2538
+#: ../gramps/plugins/webreport/basepage.py:2530
 #: ../gramps/plugins/webreport/place.py:180
 msgid "Longitude"
 msgstr "Pituusaste"
@@ -7477,7 +7474,7 @@ msgstr "Pituusaste"
 #: ../gramps/plugins/gramplet/coordinates.py:95
 #: ../gramps/plugins/gramplet/placedetails.py:134
 #: ../gramps/plugins/lib/libplaceview.py:89
-#: ../gramps/plugins/webreport/basepage.py:2530
+#: ../gramps/plugins/webreport/basepage.py:2522
 #: ../gramps/plugins/webreport/place.py:179
 msgid "Latitude"
 msgstr "Leveysaste"
@@ -7489,9 +7486,9 @@ msgstr "Leveysaste"
 #: ../gramps/plugins/view/view.gpr.py:221
 #: ../gramps/plugins/view/view.gpr.py:229
 #: ../gramps/plugins/view/view.gpr.py:244
-#: ../gramps/plugins/webreport/basepage.py:1489
-#: ../gramps/plugins/webreport/basepage.py:1552
-#: ../gramps/plugins/webreport/basepage.py:1618
+#: ../gramps/plugins/webreport/basepage.py:1481
+#: ../gramps/plugins/webreport/basepage.py:1544
+#: ../gramps/plugins/webreport/basepage.py:1610
 #: ../gramps/plugins/webreport/place.py:138
 #: ../gramps/plugins/webreport/place.py:292
 msgid "Places"
@@ -7499,7 +7496,7 @@ msgstr "Paikat"
 
 #: ../gramps/gen/lib/place.py:154 ../gramps/gui/merge/mergeperson.py:199
 #: ../gramps/plugins/textreport/indivcomplete.py:391
-#: ../gramps/plugins/webreport/basepage.py:2581
+#: ../gramps/plugins/webreport/basepage.py:2573
 msgid "Alternate Names"
 msgstr "Vaihtoehtoiset nimet"
 
@@ -7511,7 +7508,7 @@ msgstr "Vaihtoehtoiset nimet"
 msgid "Code"
 msgstr "Koodi"
 
-#: ../gramps/gen/lib/place.py:160 ../gramps/plugins/webreport/basepage.py:2605
+#: ../gramps/gen/lib/place.py:160 ../gramps/plugins/webreport/basepage.py:2597
 msgid "Alternate Locations"
 msgstr "Vaihtoehtoiset sijainnit"
 
@@ -7526,7 +7523,7 @@ msgstr "Nimi/Nimike"
 
 #: ../gramps/gen/lib/placename.py:103
 #: ../gramps/gui/editors/displaytabs/placenameembedlist.py:65
-#: ../gramps/plugins/webreport/basepage.py:2583
+#: ../gramps/plugins/webreport/basepage.py:2575
 msgid "Language"
 msgstr "Kieli"
 
@@ -7580,7 +7577,7 @@ msgstr "Rakennus tai Torppa"
 
 #: ../gramps/gen/lib/placetype.py:84 ../gramps/plugins/gramplet/leak.py:89
 #: ../gramps/plugins/view/geoplaces.py:561
-#: ../gramps/plugins/webreport/basepage.py:2671
+#: ../gramps/plugins/webreport/basepage.py:2663
 #: ../gramps/plugins/webreport/source.py:163
 msgid "Number"
 msgstr "Kutsunumero"
@@ -7674,9 +7671,9 @@ msgstr "Lyhennys"
 #: ../gramps/plugins/view/repoview.py:129
 #: ../gramps/plugins/view/view.gpr.py:252
 #: ../gramps/plugins/view/view.gpr.py:260
-#: ../gramps/plugins/webreport/basepage.py:1491
-#: ../gramps/plugins/webreport/basepage.py:1620
-#: ../gramps/plugins/webreport/basepage.py:2662
+#: ../gramps/plugins/webreport/basepage.py:1483
+#: ../gramps/plugins/webreport/basepage.py:1612
+#: ../gramps/plugins/webreport/basepage.py:2654
 #: ../gramps/plugins/webreport/repository.py:138
 #: ../gramps/plugins/webreport/repository.py:223
 msgid "Repositories"
@@ -8031,7 +8028,7 @@ msgstr "Sivupalkki"
 #. add miscellaneous column
 #: ../gramps/gen/plug/_pluginreg.py:516
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
-#: ../gramps/plugins/webreport/basepage.py:1677
+#: ../gramps/plugins/webreport/basepage.py:1669
 #: ../gramps/plugins/webreport/statistics.py:150
 #: ../gramps/plugins/webreport/statistics.py:200
 msgid "Miscellaneous"
@@ -8661,7 +8658,7 @@ msgstr "Liitoksen väri."
 #. #################
 #: ../gramps/gen/plug/docgen/treedoc.py:175
 #: ../gramps/plugins/drawreport/ancestortree.py:791
-#: ../gramps/plugins/drawreport/descendtree.py:1522
+#: ../gramps/plugins/drawreport/descendtree.py:1528
 msgid "Tree Options"
 msgstr "Sukupuun valinnat"
 
@@ -8771,8 +8768,8 @@ msgstr "Grafiikka"
 
 #: ../gramps/gen/plug/report/endnotes.py:61
 #: ../gramps/plugins/textreport/ancestorreport.py:376
-#: ../gramps/plugins/textreport/detancestralreport.py:982
-#: ../gramps/plugins/textreport/detdescendantreport.py:1187
+#: ../gramps/plugins/textreport/detancestralreport.py:983
+#: ../gramps/plugins/textreport/detdescendantreport.py:1188
 #: ../gramps/plugins/textreport/endoflinereport.py:326
 msgid "The style used for the generation header."
 msgstr "Käytettävä tyyli sukupolven ylätunnisteelle."
@@ -8855,12 +8852,12 @@ msgid "The translation to be used for the report."
 msgstr "Raportissa käytettävä käännös."
 
 #: ../gramps/gen/plug/report/stdoptions.py:73 ../gramps/gui/configure.py:1030
-#: ../gramps/plugins/webreport/webcal.py:1675
+#: ../gramps/plugins/webreport/webcal.py:1681
 msgid "Name format"
 msgstr "Nimen muoto"
 
 #: ../gramps/gen/plug/report/stdoptions.py:78
-#: ../gramps/plugins/webreport/webcal.py:1679
+#: ../gramps/plugins/webreport/webcal.py:1685
 msgid "Select the format to display names"
 msgstr "Valitse nimien näyttömuoto"
 
@@ -8944,8 +8941,8 @@ msgstr "Lisätäänkö (ja minne) Gramps ID"
 #: ../gramps/gui/viewmanager.py:1928
 #: ../gramps/plugins/graph/gvfamilylines.py:211
 #: ../gramps/plugins/graph/gvrelgraph.py:819
-#: ../gramps/plugins/textreport/detancestralreport.py:892
-#: ../gramps/plugins/textreport/detdescendantreport.py:1079
+#: ../gramps/plugins/textreport/detancestralreport.py:893
+#: ../gramps/plugins/textreport/detdescendantreport.py:1080
 #: ../gramps/plugins/textreport/familygroup.py:752
 #: ../gramps/plugins/textreport/indivcomplete.py:1101
 #: ../gramps/plugins/webreport/narrativeweb.py:1901
@@ -8972,10 +8969,10 @@ msgstr "Tiedostoa ei ole olemassa"
 #: ../gramps/gen/plug/report/utils.py:159
 #: ../gramps/plugins/textreport/indivcomplete.py:914
 #: ../gramps/plugins/textreport/simplebooktitle.py:106
-#: ../gramps/plugins/webreport/basepage.py:1720
-#: ../gramps/plugins/webreport/basepage.py:1923
+#: ../gramps/plugins/webreport/basepage.py:1712
+#: ../gramps/plugins/webreport/basepage.py:1915
+#: ../gramps/plugins/webreport/basepage.py:1981
 #: ../gramps/plugins/webreport/basepage.py:1989
-#: ../gramps/plugins/webreport/basepage.py:1997
 msgid "Could not add photo to page"
 msgstr "Kuvan lisäys sivulle epäonnistui"
 
@@ -10016,7 +10013,7 @@ msgstr "_Käytä"
 #. #################
 #: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1188
 #: ../gramps/plugins/drawreport/ancestortree.py:909
-#: ../gramps/plugins/drawreport/descendtree.py:1647
+#: ../gramps/plugins/drawreport/descendtree.py:1653
 #: ../gramps/plugins/webreport/narrativeweb.py:1698
 msgid "Display"
 msgstr "Näyttö"
@@ -11637,7 +11634,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:353
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:168
 #: ../gramps/plugins/drawreport/ancestortree.py:1095
-#: ../gramps/plugins/drawreport/descendtree.py:1805
+#: ../gramps/plugins/drawreport/descendtree.py:1811
 msgid "Cannot edit this reference"
 msgstr "Tätä viitettä ei voi muokata"
 
@@ -11827,7 +11824,7 @@ msgstr "_Lisätiedot"
 
 #. add personal column
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:50
-#: ../gramps/plugins/webreport/basepage.py:1663
+#: ../gramps/plugins/webreport/basepage.py:1655
 msgid "Personal"
 msgstr "Henkilökohtainen"
 
@@ -12218,7 +12215,7 @@ msgid "New Event"
 msgstr "Uusi tapahtuma"
 
 #: ../gramps/gui/editors/editevent.py:228
-#: ../gramps/plugins/view/geoclose.py:547
+#: ../gramps/plugins/view/geoclose.py:549
 #: ../gramps/plugins/view/geoevents.py:343
 #: ../gramps/plugins/view/geoevents.py:377
 #: ../gramps/plugins/view/geofamclose.py:738
@@ -14996,7 +14993,7 @@ msgid "Street Number"
 msgstr "Katu numero"
 
 #: ../gramps/gui/glade/editplacename.glade.h:9
-#: ../gramps/plugins/webreport/basepage.py:2585
+#: ../gramps/plugins/webreport/basepage.py:2577
 msgid "Date range in which the name is valid."
 msgstr "Ajanjakso, jonka nimi on voimassa."
 
@@ -15658,7 +15655,7 @@ msgid "Alignment"
 msgstr "Kohdistus"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:18
-#: ../gramps/plugins/drawreport/fanchart.py:704
+#: ../gramps/plugins/drawreport/fanchart.py:706
 msgid "Background color"
 msgstr "Taustaväri"
 
@@ -15687,7 +15684,7 @@ msgid "Belo_w:"
 msgstr "_Alla:"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:26
-#: ../gramps/plugins/drawreport/calendarreport.py:653
+#: ../gramps/plugins/drawreport/calendarreport.py:649
 msgid "Borders"
 msgstr "Reunukset"
 
@@ -17174,33 +17171,33 @@ msgstr "Tyyli"
 #. ###############################
 #: ../gramps/gui/plug/report/_reportdialog.py:366
 #: ../gramps/plugins/drawreport/ancestortree.py:835
-#: ../gramps/plugins/drawreport/calendarreport.py:466
-#: ../gramps/plugins/drawreport/descendtree.py:1568
-#: ../gramps/plugins/drawreport/fanchart.py:685
-#: ../gramps/plugins/drawreport/statisticschart.py:997
-#: ../gramps/plugins/drawreport/timeline.py:413
+#: ../gramps/plugins/drawreport/calendarreport.py:462
+#: ../gramps/plugins/drawreport/descendtree.py:1574
+#: ../gramps/plugins/drawreport/fanchart.py:687
+#: ../gramps/plugins/drawreport/statisticschart.py:989
+#: ../gramps/plugins/drawreport/timeline.py:414
 #: ../gramps/plugins/graph/gvfamilylines.py:115
 #: ../gramps/plugins/graph/gvhourglass.py:315
 #: ../gramps/plugins/graph/gvrelgraph.py:763
 #: ../gramps/plugins/textreport/alphabeticalindex.py:93
 #: ../gramps/plugins/textreport/ancestorreport.py:288
-#: ../gramps/plugins/textreport/birthdayreport.py:409
+#: ../gramps/plugins/textreport/birthdayreport.py:412
 #: ../gramps/plugins/textreport/descendreport.py:520
-#: ../gramps/plugins/textreport/detancestralreport.py:820
-#: ../gramps/plugins/textreport/detdescendantreport.py:997
+#: ../gramps/plugins/textreport/detancestralreport.py:821
+#: ../gramps/plugins/textreport/detdescendantreport.py:998
 #: ../gramps/plugins/textreport/endoflinereport.py:270
 #: ../gramps/plugins/textreport/familygroup.py:710
 #: ../gramps/plugins/textreport/indivcomplete.py:1058
 #: ../gramps/plugins/textreport/kinshipreport.py:356
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:202
-#: ../gramps/plugins/textreport/placereport.py:438
+#: ../gramps/plugins/textreport/placereport.py:439
 #: ../gramps/plugins/textreport/recordsreport.py:215
 #: ../gramps/plugins/textreport/simplebooktitle.py:134
 #: ../gramps/plugins/textreport/summary.py:286
 #: ../gramps/plugins/textreport/tableofcontents.py:92
 #: ../gramps/plugins/textreport/tagreport.py:901
 #: ../gramps/plugins/webreport/narrativeweb.py:1576
-#: ../gramps/plugins/webreport/webcal.py:1611
+#: ../gramps/plugins/webreport/webcal.py:1617
 msgid "Report Options"
 msgstr "Raportin valinnat"
 
@@ -17309,8 +17306,8 @@ msgstr "Tyylitiedoston tallennus epäonnistui"
 #. How to handle missing information
 #: ../gramps/gui/plug/report/_styleeditor.py:166
 #: ../gramps/gui/plug/report/_styleeditor.py:180
-#: ../gramps/plugins/textreport/detancestralreport.py:952
-#: ../gramps/plugins/textreport/detdescendantreport.py:1155
+#: ../gramps/plugins/textreport/detancestralreport.py:953
+#: ../gramps/plugins/textreport/detdescendantreport.py:1156
 msgid "Missing information"
 msgstr "Puuttuvat tiedot"
 
@@ -18812,13 +18809,13 @@ msgstr "/ %d"
 
 #: ../gramps/plugins/docgen/htmldoc.py:273
 #: ../gramps/plugins/webreport/narrativeweb.py:1485
-#: ../gramps/plugins/webreport/webcal.py:269
+#: ../gramps/plugins/webreport/webcal.py:274
 msgid "Possible destination error"
 msgstr "Mahdollinen kohdevirhe"
 
 #: ../gramps/plugins/docgen/htmldoc.py:274
 #: ../gramps/plugins/webreport/narrativeweb.py:1486
-#: ../gramps/plugins/webreport/webcal.py:270
+#: ../gramps/plugins/webreport/webcal.py:275
 msgid ""
 "You appear to have set your target directory to a directory used for data "
 "storage. This could create problems with file management. It is recommended "
@@ -18862,7 +18859,7 @@ msgid "transparent background"
 msgstr "läpinäkyvä tausta"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:351
-#: ../gramps/plugins/drawreport/fanchart.py:705
+#: ../gramps/plugins/drawreport/fanchart.py:707
 msgid "white"
 msgstr "valkoinen"
 
@@ -18942,14 +18939,14 @@ msgid "Printing the Tree..."
 msgstr "Tulostan sukupuuta..."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:793
-#: ../gramps/plugins/drawreport/calendarreport.py:476
-#: ../gramps/plugins/drawreport/fanchart.py:687
+#: ../gramps/plugins/drawreport/calendarreport.py:472
+#: ../gramps/plugins/drawreport/fanchart.py:689
 #: ../gramps/plugins/graph/gvhourglass.py:317
 #: ../gramps/plugins/graph/gvrelgraph.py:773
 #: ../gramps/plugins/textreport/ancestorreport.py:290
 #: ../gramps/plugins/textreport/descendreport.py:522
-#: ../gramps/plugins/textreport/detancestralreport.py:823
-#: ../gramps/plugins/textreport/detdescendantreport.py:1000
+#: ../gramps/plugins/textreport/detancestralreport.py:824
+#: ../gramps/plugins/textreport/detdescendantreport.py:1001
 #: ../gramps/plugins/textreport/endoflinereport.py:272
 #: ../gramps/plugins/textreport/kinshipreport.py:358
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:204
@@ -18970,17 +18967,17 @@ msgid ""
 msgstr "Haluatko näyttää vain keskushenkilö tai myös hänen sisaruksensa"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:804
-#: ../gramps/plugins/drawreport/descendtree.py:1533
-#: ../gramps/plugins/drawreport/fanchart.py:691
+#: ../gramps/plugins/drawreport/descendtree.py:1539
+#: ../gramps/plugins/drawreport/fanchart.py:693
 #: ../gramps/plugins/textreport/ancestorreport.py:294
 #: ../gramps/plugins/textreport/descendreport.py:537
-#: ../gramps/plugins/textreport/detancestralreport.py:832
-#: ../gramps/plugins/textreport/detdescendantreport.py:1023
+#: ../gramps/plugins/textreport/detancestralreport.py:833
+#: ../gramps/plugins/textreport/detdescendantreport.py:1024
 msgid "Generations"
 msgstr "Sukupolvet"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:805
-#: ../gramps/plugins/drawreport/descendtree.py:1534
+#: ../gramps/plugins/drawreport/descendtree.py:1540
 msgid "The number of generations to include in the tree"
 msgstr "Puuhun mukaan otettavien sukupolvien määrä"
 
@@ -18997,7 +18994,7 @@ msgid "The number of generations of empty boxes that will be displayed"
 msgstr "Enimmäismäärä sukupolvien tyhjille laatikoille, jotka näytetään"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:818
-#: ../gramps/plugins/drawreport/descendtree.py:1551
+#: ../gramps/plugins/drawreport/descendtree.py:1557
 msgid "Compress tree"
 msgstr "Tiivistä puu"
 
@@ -19008,13 +19005,13 @@ msgid ""
 msgstr "Välilyöntien poistaminen tuntemattomien ihmisten reunoilta"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:837
-#: ../gramps/plugins/drawreport/descendtree.py:1570
+#: ../gramps/plugins/drawreport/descendtree.py:1576
 msgid "Report Title"
 msgstr "Raportin otsikko"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:838
-#: ../gramps/plugins/drawreport/descendtree.py:1571
-#: ../gramps/plugins/drawreport/descendtree.py:1744
+#: ../gramps/plugins/drawreport/descendtree.py:1577
+#: ../gramps/plugins/drawreport/descendtree.py:1750
 msgid "Do not include a title"
 msgstr "Älä ota raportin otsikkoa mukaan"
 
@@ -19023,22 +19020,22 @@ msgid "Include Report Title"
 msgstr "Ota raportin otsikko mukaan"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:840
-#: ../gramps/plugins/drawreport/descendtree.py:1579
+#: ../gramps/plugins/drawreport/descendtree.py:1585
 msgid "Choose a title for the report"
 msgstr "Valitse raportissa käytettävä otsikko"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:843
-#: ../gramps/plugins/drawreport/descendtree.py:1583
+#: ../gramps/plugins/drawreport/descendtree.py:1589
 msgid "Include a border"
 msgstr "Lisää reunaviiva"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:844
-#: ../gramps/plugins/drawreport/descendtree.py:1584
+#: ../gramps/plugins/drawreport/descendtree.py:1590
 msgid "Whether to make a border around the report."
 msgstr "Lisätäänkö raporttiin reunaviiva."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:847
-#: ../gramps/plugins/drawreport/descendtree.py:1587
+#: ../gramps/plugins/drawreport/descendtree.py:1593
 msgid "Include Page Numbers"
 msgstr "Lisää sivunumerot"
 
@@ -19047,32 +19044,32 @@ msgid "Whether to print page numbers on each page."
 msgstr "Tulostetaanko kuhunkin sivuun sivunumero."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:851
-#: ../gramps/plugins/drawreport/descendtree.py:1591
+#: ../gramps/plugins/drawreport/descendtree.py:1597
 msgid "Scale tree to fit"
 msgstr "Skaalaa puu sopimaan"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:852
-#: ../gramps/plugins/drawreport/descendtree.py:1592
+#: ../gramps/plugins/drawreport/descendtree.py:1598
 msgid "Do not scale tree"
 msgstr "Älä skaalaa puuta"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:853
-#: ../gramps/plugins/drawreport/descendtree.py:1593
+#: ../gramps/plugins/drawreport/descendtree.py:1599
 msgid "Scale tree to fit page width only"
 msgstr "Skaalaa puu sivun levyiseksi"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:854
-#: ../gramps/plugins/drawreport/descendtree.py:1594
+#: ../gramps/plugins/drawreport/descendtree.py:1600
 msgid "Scale tree to fit the size of the page"
 msgstr "Skaalaa puu yhdelle sivulle"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:856
-#: ../gramps/plugins/drawreport/descendtree.py:1596
+#: ../gramps/plugins/drawreport/descendtree.py:1602
 msgid "Whether to scale the tree to fit a specific paper size"
 msgstr "Skaalataanko tiettyyn sivukokoon mahtuvaksi"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:863
-#: ../gramps/plugins/drawreport/descendtree.py:1603
+#: ../gramps/plugins/drawreport/descendtree.py:1609
 msgid ""
 "Resize Page to Fit Tree size\n"
 "\n"
@@ -19083,7 +19080,7 @@ msgstr ""
 "Huomaa: Menee paperivalintojen edelle ko. valintaikkunassa"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:869
-#: ../gramps/plugins/drawreport/descendtree.py:1609
+#: ../gramps/plugins/drawreport/descendtree.py:1615
 msgid ""
 "Whether to resize the page to fit the size \n"
 "of the tree.  Note:  the page will have a \n"
@@ -19115,12 +19112,12 @@ msgstr ""
 "  muutetaan jottei jää mitään eroa korkeuteen tai leveyteen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:889
-#: ../gramps/plugins/drawreport/descendtree.py:1629
+#: ../gramps/plugins/drawreport/descendtree.py:1635
 msgid "Include Blank Pages"
 msgstr "Ota mukaan tyhjät sivut"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:890
-#: ../gramps/plugins/drawreport/descendtree.py:1630
+#: ../gramps/plugins/drawreport/descendtree.py:1636
 msgid "Whether to include pages that are blank."
 msgstr "Otetaanko mukaan tyhjät sivut."
 
@@ -19133,25 +19130,25 @@ msgstr "Otetaanko mukaan tyhjät sivut."
 #. #########################
 #. ###############################
 #: ../gramps/plugins/drawreport/ancestortree.py:896
-#: ../gramps/plugins/drawreport/calendarreport.py:494
-#: ../gramps/plugins/drawreport/descendtree.py:1634
-#: ../gramps/plugins/drawreport/fanchart.py:728
-#: ../gramps/plugins/drawreport/statisticschart.py:1056
-#: ../gramps/plugins/drawreport/timeline.py:434
+#: ../gramps/plugins/drawreport/calendarreport.py:490
+#: ../gramps/plugins/drawreport/descendtree.py:1640
+#: ../gramps/plugins/drawreport/fanchart.py:730
+#: ../gramps/plugins/drawreport/statisticschart.py:1048
+#: ../gramps/plugins/drawreport/timeline.py:435
 #: ../gramps/plugins/graph/gvfamilylines.py:162
 #: ../gramps/plugins/graph/gvhourglass.py:352
 #: ../gramps/plugins/graph/gvrelgraph.py:801
 #: ../gramps/plugins/textreport/ancestorreport.py:310
-#: ../gramps/plugins/textreport/birthdayreport.py:438
+#: ../gramps/plugins/textreport/birthdayreport.py:441
 #: ../gramps/plugins/textreport/descendreport.py:557
-#: ../gramps/plugins/textreport/detancestralreport.py:848
-#: ../gramps/plugins/textreport/detdescendantreport.py:1039
+#: ../gramps/plugins/textreport/detancestralreport.py:849
+#: ../gramps/plugins/textreport/detdescendantreport.py:1040
 #: ../gramps/plugins/textreport/familygroup.py:732
 #: ../gramps/plugins/textreport/indivcomplete.py:1082
 #: ../gramps/plugins/textreport/kinshipreport.py:382
-#: ../gramps/plugins/textreport/placereport.py:461
+#: ../gramps/plugins/textreport/placereport.py:462
 #: ../gramps/plugins/textreport/recordsreport.py:243
-#: ../gramps/plugins/webreport/webcal.py:1664
+#: ../gramps/plugins/webreport/webcal.py:1670
 msgid "Report Options (2)"
 msgstr "Raportin valinnat (2)"
 
@@ -19206,17 +19203,17 @@ msgid "The display format for the center person"
 msgstr "Keskushenkilön näyttömuoto"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:941
-#: ../gramps/plugins/drawreport/descendtree.py:1670
+#: ../gramps/plugins/drawreport/descendtree.py:1676
 msgid "Include Marriage box"
 msgstr "Lisää avioliiton laatikko"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:943
-#: ../gramps/plugins/drawreport/descendtree.py:1672
+#: ../gramps/plugins/drawreport/descendtree.py:1678
 msgid "Whether to include a separate marital box in the report"
 msgstr "Lisätäänkö vanhempien aviotiedot laatikkona raporttiin"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:947
-#: ../gramps/plugins/drawreport/descendtree.py:1676
+#: ../gramps/plugins/drawreport/descendtree.py:1682
 msgid ""
 "Marriage\n"
 "Display Format"
@@ -19225,19 +19222,19 @@ msgstr ""
 "näyttömuoto"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:949
-#: ../gramps/plugins/drawreport/descendtree.py:1678
+#: ../gramps/plugins/drawreport/descendtree.py:1684
 msgid "Display format for the marital box."
 msgstr "Näyttömuoto avion laatikolle."
 
 #. #################
 #: ../gramps/plugins/drawreport/ancestortree.py:954
-#: ../gramps/plugins/drawreport/descendtree.py:1683
+#: ../gramps/plugins/drawreport/descendtree.py:1689
 #: ../gramps/plugins/lib/libmetadata.py:104
 msgid "Advanced"
 msgstr "Edistynyt"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:957
-#: ../gramps/plugins/drawreport/descendtree.py:1686
+#: ../gramps/plugins/drawreport/descendtree.py:1692
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
@@ -19246,7 +19243,7 @@ msgstr ""
 "'Korvaa tämä'/'tällä'"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:959
-#: ../gramps/plugins/drawreport/descendtree.py:1688
+#: ../gramps/plugins/drawreport/descendtree.py:1694
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
@@ -19261,17 +19258,17 @@ msgstr ""
 #. _("Whether to include thumbnails of people."))
 #. menu.add_option(category_name, "includeImages", self.__include_images)
 #: ../gramps/plugins/drawreport/ancestortree.py:969
-#: ../gramps/plugins/drawreport/descendtree.py:1691
+#: ../gramps/plugins/drawreport/descendtree.py:1697
 msgid "Include a note"
 msgstr "Ota mukaan lisätiedot"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:970
-#: ../gramps/plugins/drawreport/descendtree.py:1692
+#: ../gramps/plugins/drawreport/descendtree.py:1698
 msgid "Whether to include a note on the report."
 msgstr "Otetaanko raporttiin mukaan lisätiedot."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:975
-#: ../gramps/plugins/drawreport/descendtree.py:1697
+#: ../gramps/plugins/drawreport/descendtree.py:1703
 msgid ""
 "Add a note\n"
 "\n"
@@ -19282,12 +19279,12 @@ msgstr ""
 "$T lisää tämä päivä"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:980
-#: ../gramps/plugins/drawreport/descendtree.py:1702
+#: ../gramps/plugins/drawreport/descendtree.py:1708
 msgid "Note Location"
 msgstr "Lisätietojen sijainti"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:983
-#: ../gramps/plugins/drawreport/descendtree.py:1705
+#: ../gramps/plugins/drawreport/descendtree.py:1711
 msgid "Where to place the note."
 msgstr "Lisätietojen sijaintipaikka."
 
@@ -19300,13 +19297,13 @@ msgid "Make the inter-box spacing bigger or smaller"
 msgstr "Kasvata tai pienennä laatikoiden pystyvälikerrointa"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:993
-#: ../gramps/plugins/drawreport/descendtree.py:1714
+#: ../gramps/plugins/drawreport/descendtree.py:1720
 msgid "box shadow scale factor"
 msgstr "laatikon varjon skaalauskerroin"
 
 #. down to 0
 #: ../gramps/plugins/drawreport/ancestortree.py:995
-#: ../gramps/plugins/drawreport/descendtree.py:1716
+#: ../gramps/plugins/drawreport/descendtree.py:1722
 msgid "Make the box shadow bigger or smaller"
 msgstr "Kasvata tai pienennä laatikon varjoa"
 
@@ -19323,20 +19320,20 @@ msgid " Generations of empty boxes for unknown ancestors"
 msgstr " Tuntemattomien esivanhempien tyhjät esipolvilaatikot"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1049
-#: ../gramps/plugins/drawreport/descendtree.py:1776
-#: ../gramps/plugins/drawreport/fanchart.py:769
-#: ../gramps/plugins/drawreport/timeline.py:479
+#: ../gramps/plugins/drawreport/descendtree.py:1782
+#: ../gramps/plugins/drawreport/fanchart.py:771
+#: ../gramps/plugins/drawreport/timeline.py:480
 #: ../gramps/plugins/textreport/alphabeticalindex.py:120
 #: ../gramps/plugins/textreport/ancestorreport.py:386
-#: ../gramps/plugins/textreport/detancestralreport.py:1020
-#: ../gramps/plugins/textreport/detdescendantreport.py:1225
+#: ../gramps/plugins/textreport/detancestralreport.py:1021
+#: ../gramps/plugins/textreport/detdescendantreport.py:1226
 #: ../gramps/plugins/textreport/endoflinereport.py:317
 #: ../gramps/plugins/textreport/familygroup.py:878
 #: ../gramps/plugins/textreport/indivcomplete.py:1236
 #: ../gramps/plugins/textreport/kinshipreport.py:424
 #: ../gramps/plugins/textreport/notelinkreport.py:206
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:233
-#: ../gramps/plugins/textreport/placereport.py:570
+#: ../gramps/plugins/textreport/placereport.py:571
 #: ../gramps/plugins/textreport/recordsreport.py:335
 #: ../gramps/plugins/textreport/summary.py:329
 #: ../gramps/plugins/textreport/tagreport.py:975
@@ -19344,29 +19341,29 @@ msgid "The basic style used for the text display."
 msgstr "Käytettävä näyttöperustyyli tekstille."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1059
-#: ../gramps/plugins/drawreport/descendtree.py:1796
+#: ../gramps/plugins/drawreport/descendtree.py:1802
 #: ../gramps/plugins/textreport/familygroup.py:890
 #: ../gramps/plugins/textreport/tagreport.py:993
 msgid "The basic style used for the note display."
 msgstr "Käytettävä näyttöperustyyli lisätiedoille."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1068
-#: ../gramps/plugins/drawreport/descendtree.py:1767
-#: ../gramps/plugins/drawreport/fanchart.py:759
-#: ../gramps/plugins/drawreport/statisticschart.py:1141
-#: ../gramps/plugins/drawreport/timeline.py:497
+#: ../gramps/plugins/drawreport/descendtree.py:1773
+#: ../gramps/plugins/drawreport/fanchart.py:761
+#: ../gramps/plugins/drawreport/statisticschart.py:1133
+#: ../gramps/plugins/drawreport/timeline.py:498
 #: ../gramps/plugins/textreport/alphabeticalindex.py:103
 #: ../gramps/plugins/textreport/ancestorreport.py:363
 #: ../gramps/plugins/textreport/descendreport.py:584
-#: ../gramps/plugins/textreport/detancestralreport.py:972
-#: ../gramps/plugins/textreport/detdescendantreport.py:1177
+#: ../gramps/plugins/textreport/detancestralreport.py:973
+#: ../gramps/plugins/textreport/detdescendantreport.py:1178
 #: ../gramps/plugins/textreport/endoflinereport.py:299
 #: ../gramps/plugins/textreport/familygroup.py:869
 #: ../gramps/plugins/textreport/indivcomplete.py:1204
 #: ../gramps/plugins/textreport/kinshipreport.py:406
 #: ../gramps/plugins/textreport/notelinkreport.py:186
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:226
-#: ../gramps/plugins/textreport/placereport.py:503
+#: ../gramps/plugins/textreport/placereport.py:504
 #: ../gramps/plugins/textreport/recordsreport.py:308
 #: ../gramps/plugins/textreport/simplebooktitle.py:171
 #: ../gramps/plugins/textreport/summary.py:310
@@ -19388,36 +19385,36 @@ msgstr "Tuotettu Grampsilla"
 #. to see "nearby" comments
 #: ../gramps/plugins/drawreport/calendarreport.py:199
 #: ../gramps/plugins/drawreport/calendarreport.py:225
-#: ../gramps/plugins/drawreport/calendarreport.py:319
+#: ../gramps/plugins/drawreport/calendarreport.py:315
 msgid "Calendar Report"
 msgstr "Kalenteriraportti"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:200
-#: ../gramps/plugins/textreport/birthdayreport.py:218
+#: ../gramps/plugins/textreport/birthdayreport.py:221
 msgid "Formatting months..."
 msgstr "Muotoillaan kuukausia..."
 
-#: ../gramps/plugins/drawreport/calendarreport.py:320
-#: ../gramps/plugins/textreport/birthdayreport.py:263
-#: ../gramps/plugins/webreport/webcal.py:1275
+#: ../gramps/plugins/drawreport/calendarreport.py:316
+#: ../gramps/plugins/textreport/birthdayreport.py:266
+#: ../gramps/plugins/webreport/webcal.py:1281
 msgid "Reading database..."
 msgstr "Luetaan tietokantaa..."
 
-#: ../gramps/plugins/drawreport/calendarreport.py:365
+#: ../gramps/plugins/drawreport/calendarreport.py:361
 #, python-format
 msgid "%(person)s, birth"
 msgstr "%(person)s, syntyi"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/drawreport/calendarreport.py:369
+#: ../gramps/plugins/drawreport/calendarreport.py:365
 #, python-brace-format
 msgid "{person}, {age}"
 msgid_plural "{person}, {age}"
 msgstr[0] "{person}, {age}"
 msgstr[1] "{person}, {age}"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:425
-#: ../gramps/plugins/textreport/birthdayreport.py:373
+#: ../gramps/plugins/drawreport/calendarreport.py:421
+#: ../gramps/plugins/textreport/birthdayreport.py:376
 #, python-format
 msgid ""
 "%(spouse)s and\n"
@@ -19427,8 +19424,8 @@ msgstr ""
 " %(person)s, häät"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/drawreport/calendarreport.py:431
-#: ../gramps/plugins/textreport/birthdayreport.py:378
+#: ../gramps/plugins/drawreport/calendarreport.py:427
+#: ../gramps/plugins/textreport/birthdayreport.py:381
 #, python-brace-format
 msgid ""
 "{spouse} and\n"
@@ -19443,186 +19440,186 @@ msgstr[1] ""
 "{spouse} ja\n"
 " {person}, {nyears}"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:472
-#: ../gramps/plugins/webreport/webcal.py:1628
+#: ../gramps/plugins/drawreport/calendarreport.py:468
+#: ../gramps/plugins/webreport/webcal.py:1634
 msgid "Select filter to restrict people that appear on calendar"
 msgstr "Valitse suodin kalenteriin tuleville henkilöille"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:477
-#: ../gramps/plugins/drawreport/fanchart.py:688
+#: ../gramps/plugins/drawreport/calendarreport.py:473
+#: ../gramps/plugins/drawreport/fanchart.py:690
 #: ../gramps/plugins/graph/gvrelgraph.py:774
 #: ../gramps/plugins/textreport/ancestorreport.py:291
 #: ../gramps/plugins/textreport/descendreport.py:523
-#: ../gramps/plugins/textreport/detancestralreport.py:824
-#: ../gramps/plugins/textreport/detdescendantreport.py:1001
+#: ../gramps/plugins/textreport/detancestralreport.py:825
+#: ../gramps/plugins/textreport/detdescendantreport.py:1002
 #: ../gramps/plugins/textreport/endoflinereport.py:273
 #: ../gramps/plugins/textreport/kinshipreport.py:359
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:205
 msgid "The center person for the report"
 msgstr "Raportin keskushenkilö"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:481
-#: ../gramps/plugins/textreport/birthdayreport.py:426
+#: ../gramps/plugins/drawreport/calendarreport.py:477
+#: ../gramps/plugins/textreport/birthdayreport.py:429
 msgid "Text Area 1"
 msgstr "Tekstialue 1"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:482
+#: ../gramps/plugins/drawreport/calendarreport.py:478
 msgid "First line of text at bottom of calendar"
 msgstr "Ensimmäinen tekstirivi kalenterin alla"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:485
-#: ../gramps/plugins/textreport/birthdayreport.py:430
+#: ../gramps/plugins/drawreport/calendarreport.py:481
+#: ../gramps/plugins/textreport/birthdayreport.py:433
 msgid "Text Area 2"
 msgstr "Tekstialue 2"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:486
+#: ../gramps/plugins/drawreport/calendarreport.py:482
 msgid "Second line of text at bottom of calendar"
 msgstr "Toinen tekstirivi kalenterin alla"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:489
-#: ../gramps/plugins/textreport/birthdayreport.py:434
+#: ../gramps/plugins/drawreport/calendarreport.py:485
+#: ../gramps/plugins/textreport/birthdayreport.py:437
 msgid "Text Area 3"
 msgstr "Tekstialue 3"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:490
+#: ../gramps/plugins/drawreport/calendarreport.py:486
 msgid "Third line of text at bottom of calendar"
 msgstr "Kolmas tekstirivi kalenterin alla"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:505
-#: ../gramps/plugins/textreport/birthdayreport.py:445
-#: ../gramps/plugins/webreport/webcal.py:1684
+#: ../gramps/plugins/drawreport/calendarreport.py:501
+#: ../gramps/plugins/textreport/birthdayreport.py:448
+#: ../gramps/plugins/webreport/webcal.py:1690
 msgid "Include only living people"
 msgstr "Ota mukaan vain elossa olevat henkilöt"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:506
-#: ../gramps/plugins/webreport/webcal.py:1685
+#: ../gramps/plugins/drawreport/calendarreport.py:502
+#: ../gramps/plugins/webreport/webcal.py:1691
 msgid "Include only living people in the calendar"
 msgstr "Ota kalenteriin mukaan vain elossa olevat henkilöt"
 
 #. #########################
 #. Content options
 #. Content
-#: ../gramps/plugins/drawreport/calendarreport.py:512
-#: ../gramps/plugins/textreport/birthdayreport.py:453
-#: ../gramps/plugins/textreport/detancestralreport.py:865
-#: ../gramps/plugins/textreport/detdescendantreport.py:1056
+#: ../gramps/plugins/drawreport/calendarreport.py:508
+#: ../gramps/plugins/textreport/birthdayreport.py:456
+#: ../gramps/plugins/textreport/detancestralreport.py:866
+#: ../gramps/plugins/textreport/detdescendantreport.py:1057
 #: ../gramps/plugins/view/relview.py:1703
 msgid "Content"
 msgstr "Sisältö"
 
 #. #########################
-#: ../gramps/plugins/drawreport/calendarreport.py:516
-#: ../gramps/plugins/drawreport/calendarreport.py:518
+#: ../gramps/plugins/drawreport/calendarreport.py:512
+#: ../gramps/plugins/drawreport/calendarreport.py:514
 msgid "Year of calendar"
 msgstr "Kalenterivuosi"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:521
-#: ../gramps/plugins/textreport/birthdayreport.py:460
-#: ../gramps/plugins/webreport/webcal.py:1721
+#: ../gramps/plugins/drawreport/calendarreport.py:517
+#: ../gramps/plugins/textreport/birthdayreport.py:463
+#: ../gramps/plugins/webreport/webcal.py:1727
 msgid "Country for holidays"
 msgstr "Juhlapyhien valtio"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:532
-#: ../gramps/plugins/textreport/birthdayreport.py:471
+#: ../gramps/plugins/drawreport/calendarreport.py:528
+#: ../gramps/plugins/textreport/birthdayreport.py:474
 msgid "Select the country to see associated holidays"
 msgstr "Valitse valtio nähdäksesi sen juhlapyhät"
 
 #. Default selection ????
-#: ../gramps/plugins/drawreport/calendarreport.py:535
-#: ../gramps/plugins/webreport/webcal.py:1737
+#: ../gramps/plugins/drawreport/calendarreport.py:531
+#: ../gramps/plugins/webreport/webcal.py:1743
 msgid "First day of week"
 msgstr "Viikon ensimmäinen päivä"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:543
-#: ../gramps/plugins/webreport/webcal.py:1740
+#: ../gramps/plugins/drawreport/calendarreport.py:539
+#: ../gramps/plugins/webreport/webcal.py:1746
 msgid "Select the first day of the week for the calendar"
 msgstr "Valitse viikon ensimmäinen päivä kalenteria varten"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:546
-#: ../gramps/plugins/textreport/birthdayreport.py:474
-#: ../gramps/plugins/webreport/webcal.py:1744
+#: ../gramps/plugins/drawreport/calendarreport.py:542
+#: ../gramps/plugins/textreport/birthdayreport.py:477
+#: ../gramps/plugins/webreport/webcal.py:1750
 msgid "Birthday surname"
 msgstr "Syntymäpäivä sukunimi"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:549
-#: ../gramps/plugins/textreport/birthdayreport.py:477
-#: ../gramps/plugins/webreport/webcal.py:1745
+#: ../gramps/plugins/drawreport/calendarreport.py:545
+#: ../gramps/plugins/textreport/birthdayreport.py:480
+#: ../gramps/plugins/webreport/webcal.py:1751
 msgid "Wives use husband's surname (from first family listed)"
 msgstr ""
 "Vaimoilla on aviomiehensä sukunimi (ensimmäisestä listatusta perheestä)"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:552
-#: ../gramps/plugins/textreport/birthdayreport.py:480
-#: ../gramps/plugins/webreport/webcal.py:1747
+#: ../gramps/plugins/drawreport/calendarreport.py:548
+#: ../gramps/plugins/textreport/birthdayreport.py:483
+#: ../gramps/plugins/webreport/webcal.py:1753
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "Vaimoilla on aviomiehensä sukunimi (viimeisestä listatusta perheestä)"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:553
-#: ../gramps/plugins/textreport/birthdayreport.py:481
-#: ../gramps/plugins/webreport/webcal.py:1749
+#: ../gramps/plugins/drawreport/calendarreport.py:549
+#: ../gramps/plugins/textreport/birthdayreport.py:484
+#: ../gramps/plugins/webreport/webcal.py:1755
 msgid "Wives use their own surname"
 msgstr "Vaimot käyttävät tyttönimeään"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:554
-#: ../gramps/plugins/textreport/birthdayreport.py:482
-#: ../gramps/plugins/webreport/webcal.py:1750
+#: ../gramps/plugins/drawreport/calendarreport.py:550
+#: ../gramps/plugins/textreport/birthdayreport.py:485
+#: ../gramps/plugins/webreport/webcal.py:1756
 msgid "Select married women's displayed surname"
 msgstr "Valitse näytettävä sukunimi avioituneille naisille"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:557
-#: ../gramps/plugins/textreport/birthdayreport.py:485
-#: ../gramps/plugins/webreport/webcal.py:1760
+#: ../gramps/plugins/drawreport/calendarreport.py:553
+#: ../gramps/plugins/textreport/birthdayreport.py:488
+#: ../gramps/plugins/webreport/webcal.py:1766
 msgid "Include birthdays"
 msgstr "Ota mukaan syntymäpäivät"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:558
-#: ../gramps/plugins/textreport/birthdayreport.py:486
+#: ../gramps/plugins/drawreport/calendarreport.py:554
+#: ../gramps/plugins/textreport/birthdayreport.py:489
 msgid "Whether to include birthdays"
 msgstr "Lisätäänkö syntymäpäivät"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:561
-#: ../gramps/plugins/textreport/birthdayreport.py:489
-#: ../gramps/plugins/webreport/webcal.py:1764
+#: ../gramps/plugins/drawreport/calendarreport.py:557
+#: ../gramps/plugins/textreport/birthdayreport.py:492
+#: ../gramps/plugins/webreport/webcal.py:1770
 msgid "Include anniversaries"
 msgstr "Ota mukaan vuosipäivät"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:562
-#: ../gramps/plugins/textreport/birthdayreport.py:490
+#: ../gramps/plugins/drawreport/calendarreport.py:558
+#: ../gramps/plugins/textreport/birthdayreport.py:493
 msgid "Whether to include anniversaries"
 msgstr "Lisätäänkö vuosipäivät"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:631
+#: ../gramps/plugins/drawreport/calendarreport.py:627
 msgid "Title text and background color"
 msgstr "Otsikkotekstin ja taustan väri"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:635
+#: ../gramps/plugins/drawreport/calendarreport.py:631
 msgid "Calendar day numbers"
 msgstr "Kalenterin päivänumerot"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:638
+#: ../gramps/plugins/drawreport/calendarreport.py:634
 msgid "Daily text display"
 msgstr "Päivittäinen teksti"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:640
+#: ../gramps/plugins/drawreport/calendarreport.py:636
 msgid "Holiday text display"
 msgstr "Juhlapäivien teksti"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:643
+#: ../gramps/plugins/drawreport/calendarreport.py:639
 msgid "Days of the week text"
 msgstr "Viikonpäivien teksti"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:647
-#: ../gramps/plugins/textreport/birthdayreport.py:575
+#: ../gramps/plugins/drawreport/calendarreport.py:643
+#: ../gramps/plugins/textreport/birthdayreport.py:578
 msgid "Text at bottom, line 1"
 msgstr "Alateksti, rivi 1"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:649
-#: ../gramps/plugins/textreport/birthdayreport.py:577
+#: ../gramps/plugins/drawreport/calendarreport.py:645
+#: ../gramps/plugins/textreport/birthdayreport.py:580
 msgid "Text at bottom, line 2"
 msgstr "Alateksti, rivi 2"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:651
-#: ../gramps/plugins/textreport/birthdayreport.py:579
+#: ../gramps/plugins/drawreport/calendarreport.py:647
+#: ../gramps/plugins/textreport/birthdayreport.py:582
 msgid "Text at bottom, line 3"
 msgstr "Alateksti, rivi 3"
 
@@ -19683,77 +19680,77 @@ msgid "Family %s is not in the Database"
 msgstr "Perhettä %s ei ole tietokannassa"
 
 #. if self.name == "familial_descend_tree":
-#: ../gramps/plugins/drawreport/descendtree.py:1525
-#: ../gramps/plugins/drawreport/descendtree.py:1529
+#: ../gramps/plugins/drawreport/descendtree.py:1531
+#: ../gramps/plugins/drawreport/descendtree.py:1535
 msgid "Report for"
 msgstr "Raportti seuraavalle"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1526
+#: ../gramps/plugins/drawreport/descendtree.py:1532
 msgid "The main person for the report"
 msgstr "Raportin keskushenkilö"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1530
+#: ../gramps/plugins/drawreport/descendtree.py:1536
 msgid "The main family for the report"
 msgstr "Raportin keskusperhe"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1537
+#: ../gramps/plugins/drawreport/descendtree.py:1543
 msgid "Level of Spouses"
 msgstr "Puolisoiden taso"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1538
+#: ../gramps/plugins/drawreport/descendtree.py:1544
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
 msgstr ""
 "0=ei puolisoita, 1=puolisot mukaan, 2=puolison kaikki puolisot mukaan, jne"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1543
+#: ../gramps/plugins/drawreport/descendtree.py:1549
 msgid "Start with the parent(s) of the selected first"
 msgstr "Aloita ensin valittujen vanhemmista"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1546
+#: ../gramps/plugins/drawreport/descendtree.py:1552
 msgid "Will show the parents, brother and sisters of the selected person."
 msgstr "Näyttää valitun henkilön vanhemmat ja sisarukset."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1552
+#: ../gramps/plugins/drawreport/descendtree.py:1558
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr "Siirretäänkö henkilöitä ylöspäin pienemmän puun saamiseksi"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1556
+#: ../gramps/plugins/drawreport/descendtree.py:1562
 msgid "Bold direct descendants"
 msgstr "Vahvenna suorat jälkeläiset"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1558
+#: ../gramps/plugins/drawreport/descendtree.py:1564
 msgid ""
 "Whether to bold those people that are direct (not step or half) descendants."
 msgstr "Vahvennetaanko henkilön suorat jälkeläiset (ei puolisisaruksia)."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1563
+#: ../gramps/plugins/drawreport/descendtree.py:1569
 msgid "Indent Spouses"
 msgstr "Sisennä puolisot"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1564
+#: ../gramps/plugins/drawreport/descendtree.py:1570
 msgid "Whether to indent the spouses in the tree."
 msgstr "Sisennetäänkö puolisot sukupuussa."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1572
-#: ../gramps/plugins/drawreport/descendtree.py:1745
+#: ../gramps/plugins/drawreport/descendtree.py:1578
+#: ../gramps/plugins/drawreport/descendtree.py:1751
 msgid "Descendant Chart for [selected person(s)]"
 msgstr "Jälkeläiskaavio [valituille henkilö(i)lle]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1575
-#: ../gramps/plugins/drawreport/descendtree.py:1749
+#: ../gramps/plugins/drawreport/descendtree.py:1581
+#: ../gramps/plugins/drawreport/descendtree.py:1755
 msgid "Family Chart for [names of chosen family]"
 msgstr "Perhekaavio [valitulle perheelle]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1578
-#: ../gramps/plugins/drawreport/descendtree.py:1753
+#: ../gramps/plugins/drawreport/descendtree.py:1584
+#: ../gramps/plugins/drawreport/descendtree.py:1759
 msgid "Cousin Chart for [names of children]"
 msgstr "Serkkukaavio [valitulle lapselle]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1588
+#: ../gramps/plugins/drawreport/descendtree.py:1594
 msgid "Whether to include page numbers on each page."
 msgstr "Lisätäänkö jokaiselle sivulle sivunumero."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1649
+#: ../gramps/plugins/drawreport/descendtree.py:1655
 msgid ""
 "Descendant\n"
 "Display Format"
@@ -19761,7 +19758,7 @@ msgstr ""
 "Jälkeläinen\n"
 "näyttömuoto"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1653
+#: ../gramps/plugins/drawreport/descendtree.py:1659
 msgid "Display format for a descendant."
 msgstr "Jälkeläisen näyttömuoto."
 
@@ -19771,7 +19768,7 @@ msgstr "Jälkeläisen näyttömuoto."
 #. True)
 #. diffspouse.set_help(_("Whether spouses can have a different format."))
 #. menu.add_option(category_name, "diffspouse", diffspouse)
-#: ../gramps/plugins/drawreport/descendtree.py:1663
+#: ../gramps/plugins/drawreport/descendtree.py:1669
 msgid ""
 "Spousal\n"
 "Display Format"
@@ -19779,19 +19776,19 @@ msgstr ""
 "Puoliso\n"
 "näyttömuoto"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1667
+#: ../gramps/plugins/drawreport/descendtree.py:1673
 msgid "Display format for a spouse."
 msgstr "Puolison näyttömuoto."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1709
+#: ../gramps/plugins/drawreport/descendtree.py:1715
 msgid "inter-box Y scale factor"
 msgstr "laatikoiden Y skaalauskerroin"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1711
+#: ../gramps/plugins/drawreport/descendtree.py:1717
 msgid "Make the inter-box Y bigger or smaller"
 msgstr "Kasvata tai pienennä laatikoiden pystyvälikerrointa"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1787
+#: ../gramps/plugins/drawreport/descendtree.py:1793
 msgid "The bold style used for the text display."
 msgstr "Tekstin näytössä käytettävä vahvennettu tyyli."
 
@@ -19857,10 +19854,10 @@ msgstr "Tuottaa viuhkakaavioita"
 
 #. extract requested items from the database and count them
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:197
-#: ../gramps/plugins/drawreport/statisticschart.py:812
-#: ../gramps/plugins/drawreport/statisticschart.py:822
-#: ../gramps/plugins/drawreport/statisticschart.py:856
-#: ../gramps/plugins/drawreport/statisticschart.py:857
+#: ../gramps/plugins/drawreport/statisticschart.py:804
+#: ../gramps/plugins/drawreport/statisticschart.py:814
+#: ../gramps/plugins/drawreport/statisticschart.py:848
+#: ../gramps/plugins/drawreport/statisticschart.py:849
 msgid "Statistics Charts"
 msgstr "Tilastokaaviot"
 
@@ -19871,7 +19868,7 @@ msgstr ""
 "henkilöistä"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:221
-#: ../gramps/plugins/drawreport/timeline.py:274
+#: ../gramps/plugins/drawreport/timeline.py:275
 msgid "Timeline Chart"
 msgstr "Aikajanakaavio"
 
@@ -19894,78 +19891,78 @@ msgstr ""
 "%(generations)d sukupolven viuhkakaavio\n"
 "henkilölle %(person)s"
 
-#: ../gramps/plugins/drawreport/fanchart.py:692
+#: ../gramps/plugins/drawreport/fanchart.py:694
 #: ../gramps/plugins/textreport/ancestorreport.py:296
 #: ../gramps/plugins/textreport/descendreport.py:538
-#: ../gramps/plugins/textreport/detancestralreport.py:833
-#: ../gramps/plugins/textreport/detdescendantreport.py:1024
+#: ../gramps/plugins/textreport/detancestralreport.py:834
+#: ../gramps/plugins/textreport/detdescendantreport.py:1025
 msgid "The number of generations to include in the report"
 msgstr "Raporttiin mukaan otettavien sukupolvien lukumäärä"
 
-#: ../gramps/plugins/drawreport/fanchart.py:696
+#: ../gramps/plugins/drawreport/fanchart.py:698
 msgid "Type of graph"
 msgstr "Kaavion tyyppi"
 
-#: ../gramps/plugins/drawreport/fanchart.py:697
+#: ../gramps/plugins/drawreport/fanchart.py:699
 msgid "full circle"
 msgstr "ympyrä"
 
-#: ../gramps/plugins/drawreport/fanchart.py:698
+#: ../gramps/plugins/drawreport/fanchart.py:700
 msgid "half circle"
 msgstr "puoliympyrä"
 
-#: ../gramps/plugins/drawreport/fanchart.py:699
+#: ../gramps/plugins/drawreport/fanchart.py:701
 msgid "quarter circle"
 msgstr "neljännesympyrä"
 
-#: ../gramps/plugins/drawreport/fanchart.py:700
+#: ../gramps/plugins/drawreport/fanchart.py:702
 msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgstr "Kaavion muoto: ympyrä, puoli- tai neljännesympyrä."
 
-#: ../gramps/plugins/drawreport/fanchart.py:706
+#: ../gramps/plugins/drawreport/fanchart.py:708
 msgid "generation dependent"
 msgstr "sukupolvesta riippuva"
 
-#: ../gramps/plugins/drawreport/fanchart.py:707
+#: ../gramps/plugins/drawreport/fanchart.py:709
 msgid "Background color is either white or generation dependent"
 msgstr "Taustaväri on joko valkoinen tai riippuu sukupolvesta"
 
-#: ../gramps/plugins/drawreport/fanchart.py:711
+#: ../gramps/plugins/drawreport/fanchart.py:713
 msgid "Orientation of radial texts"
 msgstr "Kaaritekstien suunta"
 
-#: ../gramps/plugins/drawreport/fanchart.py:713
+#: ../gramps/plugins/drawreport/fanchart.py:715
 msgid "upright"
 msgstr "pystysuora"
 
-#: ../gramps/plugins/drawreport/fanchart.py:714
+#: ../gramps/plugins/drawreport/fanchart.py:716
 msgid "roundabout"
 msgstr "kiertävä"
 
-#: ../gramps/plugins/drawreport/fanchart.py:715
+#: ../gramps/plugins/drawreport/fanchart.py:717
 msgid "Print radial texts upright or roundabout"
 msgstr "Tulosta kaaritekstit pystysuoraan tai kiertäen"
 
-#: ../gramps/plugins/drawreport/fanchart.py:717
+#: ../gramps/plugins/drawreport/fanchart.py:719
 msgid "Draw empty boxes"
 msgstr "Piirrä tyhjät laatikot"
 
-#: ../gramps/plugins/drawreport/fanchart.py:718
+#: ../gramps/plugins/drawreport/fanchart.py:720
 msgid "Draw the background although there is no information"
 msgstr "Piirrä tausta vaikkei tietoja ole"
 
-#: ../gramps/plugins/drawreport/fanchart.py:722
+#: ../gramps/plugins/drawreport/fanchart.py:724
 msgid "Use one font style for all generations"
 msgstr "Käytä yhtä kirjaintyyppiä kaikille sukupolville"
 
-#: ../gramps/plugins/drawreport/fanchart.py:724
+#: ../gramps/plugins/drawreport/fanchart.py:726
 msgid ""
 "You can customize font and color for each generation in the style editor"
 msgstr ""
 "Voit määrittää kullekin sukupolvelle kirjaintyypin ja -värin "
 "tyylimuokkaimessa"
 
-#: ../gramps/plugins/drawreport/fanchart.py:780
+#: ../gramps/plugins/drawreport/fanchart.py:782
 #, python-format
 msgid "The style used for the text display of generation \"%d\""
 msgstr "Käytettävä perustyyli sukupolven tekstin näytölle \"%d\""
@@ -19980,14 +19977,14 @@ msgstr "Molemmat"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:311
 #: ../gramps/plugins/drawreport/statisticschart.py:413
-#: ../gramps/plugins/drawreport/statisticschart.py:785
+#: ../gramps/plugins/drawreport/statisticschart.py:786
 #: ../gramps/plugins/tool/verify.glade.h:17
 msgid "Men"
 msgstr "Miehet"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:312
 #: ../gramps/plugins/drawreport/statisticschart.py:415
-#: ../gramps/plugins/drawreport/statisticschart.py:787
+#: ../gramps/plugins/drawreport/statisticschart.py:788
 #: ../gramps/plugins/tool/verify.glade.h:14
 msgid "Women"
 msgstr "Naiset"
@@ -20075,6 +20072,7 @@ msgstr "(Ensisijainen) sukunimi puuttuu"
 msgid "Gender unknown"
 msgstr "Sukupuoli tuntematon"
 
+#. localized year
 #. inadequate information
 #: ../gramps/plugins/drawreport/statisticschart.py:425
 #: ../gramps/plugins/drawreport/statisticschart.py:445
@@ -20113,8 +20111,8 @@ msgstr "Syntymä puuttuu"
 msgid "Personal information missing"
 msgstr "Henkilökohtaiset tiedot puuttuvat"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:780
-#: ../gramps/plugins/drawreport/timeline.py:118
+#: ../gramps/plugins/drawreport/statisticschart.py:781
+#: ../gramps/plugins/drawreport/timeline.py:119
 #: ../gramps/plugins/textreport/placereport.py:99
 #: ../gramps/plugins/textreport/recordsreport.py:91
 #: ../gramps/plugins/textreport/tagreport.py:100
@@ -20122,199 +20120,198 @@ msgstr "Henkilökohtaiset tiedot puuttuvat"
 msgid "(Living people: %(option_name)s)"
 msgstr "(Elävät henkilöt: %(option_name)s)"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:799
+#: ../gramps/plugins/drawreport/statisticschart.py:793
 #, python-format
-msgid "%(genders)s born %(year_from)04d-%(year_to)04d"
-msgstr "%(genders)s syntyi %(year_from)04d-%(year_to)04d"
+msgid "%s born"
+msgstr "%s syntyi"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:803
-#, python-format
-msgid "Persons born %(year_from)04d-%(year_to)04d"
-msgstr "Syntyneet välillä %(year_from)04d-%(year_to)04d"
+#: ../gramps/plugins/drawreport/statisticschart.py:795
+msgid "Persons born"
+msgstr "Henkilö syntyi"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:813
+#: ../gramps/plugins/drawreport/statisticschart.py:805
 msgid "Collecting data..."
 msgstr "Kerätään tietoja..."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:823
+#: ../gramps/plugins/drawreport/statisticschart.py:815
 msgid "Sorting data..."
 msgstr "Järjestetään tietoja..."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:858
+#: ../gramps/plugins/drawreport/statisticschart.py:850
 msgid "Saving charts..."
 msgstr "Tallennetaan kaavioita..."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:912
-#: ../gramps/plugins/drawreport/statisticschart.py:950
+#: ../gramps/plugins/drawreport/statisticschart.py:904
+#: ../gramps/plugins/drawreport/statisticschart.py:942
 #, python-format
 msgid "%s (persons):"
 msgstr "%s (henkilöä):"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1002
+#: ../gramps/plugins/drawreport/statisticschart.py:994
 #: ../gramps/plugins/textreport/recordsreport.py:219
 msgid "Determines what people are included in the report."
 msgstr "Määrittää henkilöt, jotka otetaan mukaan raporttiin."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1007
-#: ../gramps/plugins/drawreport/timeline.py:421
-#: ../gramps/plugins/textreport/birthdayreport.py:417
+#: ../gramps/plugins/drawreport/statisticschart.py:999
+#: ../gramps/plugins/drawreport/timeline.py:422
+#: ../gramps/plugins/textreport/birthdayreport.py:420
 #: ../gramps/plugins/textreport/indivcomplete.py:1067
 #: ../gramps/plugins/textreport/recordsreport.py:223
 #: ../gramps/plugins/tool/sortevents.py:172
 #: ../gramps/plugins/webreport/narrativeweb.py:1608
-#: ../gramps/plugins/webreport/webcal.py:1632
+#: ../gramps/plugins/webreport/webcal.py:1638
 msgid "Filter Person"
 msgstr "Suodinhenkilö"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1008
-#: ../gramps/plugins/textreport/birthdayreport.py:418
+#: ../gramps/plugins/drawreport/statisticschart.py:1000
+#: ../gramps/plugins/textreport/birthdayreport.py:421
 #: ../gramps/plugins/textreport/indivcomplete.py:1068
 msgid "The center person for the filter."
 msgstr "Suotimen keskushenkilö."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1012
+#: ../gramps/plugins/drawreport/statisticschart.py:1004
 msgid "Sort chart items by"
 msgstr "Järjestä kaavion tiedot seuraavan mukaan"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1017
+#: ../gramps/plugins/drawreport/statisticschart.py:1009
 msgid "Select how the statistical data is sorted."
 msgstr "Valitse miten tilastotiedot järjestetään."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1020
+#: ../gramps/plugins/drawreport/statisticschart.py:1012
 msgid "Sort in reverse order"
 msgstr "Järjestä käänteisessä järjestyksessä"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1021
+#: ../gramps/plugins/drawreport/statisticschart.py:1013
 msgid "Check to reverse the sorting order."
 msgstr "Valitse käyttääksesi käänteistä järjestystä."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1025
+#: ../gramps/plugins/drawreport/statisticschart.py:1017
 msgid "People Born After"
 msgstr "Ihmiset syntyneet jälkeen"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1027
+#: ../gramps/plugins/drawreport/statisticschart.py:1019
 msgid "Birth year from which to include people."
 msgstr "Ota mukaan henkilöt, jotka ovat syntyneet annetusta vuodesta alkaen."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1030
+#: ../gramps/plugins/drawreport/statisticschart.py:1022
 msgid "People Born Before"
 msgstr "Ihmiset syntyneet ennen"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1032
+#: ../gramps/plugins/drawreport/statisticschart.py:1024
 msgid "Birth year until which to include people"
 msgstr "Syntymävuosi, johon asti ihmiset otetaan mukaan"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1035
+#: ../gramps/plugins/drawreport/statisticschart.py:1027
 msgid "Include people without known birth years"
 msgstr "Ota mukaan ihmiset, joiden syntymävuosi ei ole tiedossa"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1037
+#: ../gramps/plugins/drawreport/statisticschart.py:1029
 msgid "Whether to include people without known birth years."
 msgstr "Otetanko mukaan ihmiset, joiden syntymävuosi ei ole tiedossa."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1041
+#: ../gramps/plugins/drawreport/statisticschart.py:1033
 msgid "Genders included"
 msgstr "Mukaan otetut sukupuolet"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1046
+#: ../gramps/plugins/drawreport/statisticschart.py:1038
 msgid "Select which genders are included into statistics."
 msgstr "Valitse tilastoon mukaan otettavat sukupuolet."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1050
+#: ../gramps/plugins/drawreport/statisticschart.py:1042
 msgid "Max. items for a pie"
 msgstr "Suurin määrä kohteita piirakkaan"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1051
+#: ../gramps/plugins/drawreport/statisticschart.py:1043
 msgid ""
 "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
 "Jos näytettäviä tietoja on vähemmän, piirakkakaaviota käytetään "
 "pylväskaavion sijaan."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1084
+#: ../gramps/plugins/drawreport/statisticschart.py:1076
 msgid "Charts 3"
 msgstr "Kaavio 3"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1086
+#: ../gramps/plugins/drawreport/statisticschart.py:1078
 msgid "Charts 2"
 msgstr "Kaaviot 2"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1088
+#: ../gramps/plugins/drawreport/statisticschart.py:1080
 msgid "Charts 1"
 msgstr "Kaaviot 1"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1090
+#: ../gramps/plugins/drawreport/statisticschart.py:1082
 msgid "Include charts with indicated data."
 msgstr "Ota mukaan kaaviot valituilla tiedoilla."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1132
-#: ../gramps/plugins/textreport/placereport.py:601
+#: ../gramps/plugins/drawreport/statisticschart.py:1124
+#: ../gramps/plugins/textreport/placereport.py:602
 msgid "The style used for the items and values."
 msgstr "Käytettävä tyyli kohteille ja niiden arvoille."
 
-#: ../gramps/plugins/drawreport/timeline.py:65
+#: ../gramps/plugins/drawreport/timeline.py:66
 msgid "sorted by|Birth Date"
 msgstr "Syntymäaika"
 
-#: ../gramps/plugins/drawreport/timeline.py:66
+#: ../gramps/plugins/drawreport/timeline.py:67
 msgid "sorted by|Name"
 msgstr "Nimi"
 
 #. Sort the people as requested
-#: ../gramps/plugins/drawreport/timeline.py:156
-#: ../gramps/plugins/drawreport/timeline.py:168
-#: ../gramps/plugins/drawreport/timeline.py:337
+#: ../gramps/plugins/drawreport/timeline.py:157
+#: ../gramps/plugins/drawreport/timeline.py:169
+#: ../gramps/plugins/drawreport/timeline.py:338
 msgid "Timeline"
 msgstr "Aikajana"
 
-#: ../gramps/plugins/drawreport/timeline.py:157
+#: ../gramps/plugins/drawreport/timeline.py:158
 msgid "Sorting dates..."
 msgstr "Järjestetään päivämääriä..."
 
-#: ../gramps/plugins/drawreport/timeline.py:168
+#: ../gramps/plugins/drawreport/timeline.py:169
 msgid "Calculating timeline..."
 msgstr "Lasketaan aikajanaa..."
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/drawreport/timeline.py:276
+#: ../gramps/plugins/drawreport/timeline.py:277
 #, python-format
 msgid "Sorted by %s"
 msgstr "Lajitteluperuste %s"
 
-#: ../gramps/plugins/drawreport/timeline.py:311
+#: ../gramps/plugins/drawreport/timeline.py:312
 msgid "No Date Information"
 msgstr "Päivämäärätietoa ei ole"
 
-#: ../gramps/plugins/drawreport/timeline.py:338
+#: ../gramps/plugins/drawreport/timeline.py:339
 msgid "Finding date range..."
 msgstr "Haetaan aikaväliltä..."
 
-#: ../gramps/plugins/drawreport/timeline.py:417
+#: ../gramps/plugins/drawreport/timeline.py:418
 msgid "Determines what people are included in the report"
 msgstr "Määrittää henkilöt, jotka otetaan mukaan raporttiin"
 
-#: ../gramps/plugins/drawreport/timeline.py:422
+#: ../gramps/plugins/drawreport/timeline.py:423
 #: ../gramps/plugins/textreport/recordsreport.py:224
 #: ../gramps/plugins/tool/sortevents.py:173
 #: ../gramps/plugins/webreport/narrativeweb.py:1609
-#: ../gramps/plugins/webreport/webcal.py:1633
+#: ../gramps/plugins/webreport/webcal.py:1639
 msgid "The center person for the filter"
 msgstr "Suotimen keskushenkilö"
 
-#: ../gramps/plugins/drawreport/timeline.py:426
+#: ../gramps/plugins/drawreport/timeline.py:427
 #: ../gramps/plugins/tool/sortevents.py:179
 msgid "Sort by"
 msgstr "Järjestä seuraavan mukaan"
 
-#: ../gramps/plugins/drawreport/timeline.py:431
+#: ../gramps/plugins/drawreport/timeline.py:432
 #: ../gramps/plugins/tool/sortevents.py:184
 msgid "Sorting method to use"
 msgstr "Käytettävä järjestysmenetelmä"
 
-#: ../gramps/plugins/drawreport/timeline.py:488
+#: ../gramps/plugins/drawreport/timeline.py:489
 #: ../gramps/plugins/textreport/indivcomplete.py:1216
 #: ../gramps/plugins/textreport/notelinkreport.py:196
-#: ../gramps/plugins/textreport/placereport.py:532
+#: ../gramps/plugins/textreport/placereport.py:533
 #: ../gramps/plugins/textreport/recordsreport.py:327
 #: ../gramps/plugins/textreport/tagreport.py:965
 msgid "The style used for the section headers."
@@ -20476,8 +20473,8 @@ msgid "Include marriages"
 msgstr "Avioliitot mukaan"
 
 #: ../gramps/plugins/export/exportcsv.py:138
-#: ../gramps/plugins/textreport/detancestralreport.py:894
-#: ../gramps/plugins/textreport/detdescendantreport.py:1081
+#: ../gramps/plugins/textreport/detancestralreport.py:895
+#: ../gramps/plugins/textreport/detdescendantreport.py:1082
 msgid "Include children"
 msgstr "Lapset mukaan"
 
@@ -20534,14 +20531,14 @@ msgstr "Kuolintiedon lähde"
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:217
 #: ../gramps/plugins/textreport/familygroup.py:627
-#: ../gramps/plugins/webreport/basepage.py:2325
+#: ../gramps/plugins/webreport/basepage.py:2317
 msgid "Husband"
 msgstr "Aviomies"
 
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:214
 #: ../gramps/plugins/textreport/familygroup.py:636
-#: ../gramps/plugins/webreport/basepage.py:2323
+#: ../gramps/plugins/webreport/basepage.py:2315
 msgid "Wife"
 msgstr "Vaimo"
 
@@ -20705,7 +20702,7 @@ msgstr "Äidin ja lapsen iän välinen ikäjakauma"
 #: ../gramps/plugins/gramplet/agestats.py:235
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:262
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:269
-#: ../gramps/plugins/webreport/basepage.py:1498
+#: ../gramps/plugins/webreport/basepage.py:1490
 #: ../gramps/plugins/webreport/statistics.py:84
 msgid "Statistics"
 msgstr "Tilasto"
@@ -20758,7 +20755,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/attributes.py:56
 #: ../gramps/plugins/lib/libmetadata.py:172
-#: ../gramps/plugins/webreport/basepage.py:1005
+#: ../gramps/plugins/webreport/basepage.py:997
 msgid "Key"
 msgstr "Avain"
 
@@ -21566,8 +21563,8 @@ msgstr "Gramplet näyttää henkilöön tulevat linkit"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:967
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:981
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:995
-#: ../gramps/plugins/webreport/basepage.py:2269
-#: ../gramps/plugins/webreport/basepage.py:2810
+#: ../gramps/plugins/webreport/basepage.py:2261
+#: ../gramps/plugins/webreport/basepage.py:2802
 #: ../gramps/plugins/webreport/person.py:858
 #: ../gramps/plugins/webreport/thumbnail.py:210
 msgid "References"
@@ -21598,7 +21595,7 @@ msgid "Gramplet showing the backlink references for a place"
 msgstr "Gramplet näyttää paikkaan tulevat linkit"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:931
-#: ../gramps/plugins/webreport/basepage.py:2153
+#: ../gramps/plugins/webreport/basepage.py:2145
 msgid "Source References"
 msgstr "Lähdeviitteet"
 
@@ -21941,8 +21938,8 @@ msgstr " 1 henkilöstä on käsitelty 1 eli (%(percent)s valmis)\n"
 #. Create the Generation title, set an index marker
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:267
 #: ../gramps/plugins/textreport/ancestorreport.py:218
-#: ../gramps/plugins/textreport/detancestralreport.py:226
-#: ../gramps/plugins/textreport/detdescendantreport.py:353
+#: ../gramps/plugins/textreport/detancestralreport.py:227
+#: ../gramps/plugins/textreport/detdescendantreport.py:354
 #: ../gramps/plugins/textreport/endoflinereport.py:186
 #, python-format
 msgid "Generation %d"
@@ -22103,9 +22100,9 @@ msgstr "vähemmän kuin 1"
 #: ../gramps/plugins/gramplet/statsgramplet.py:140
 #: ../gramps/plugins/graph/gvfamilylines.py:269
 #: ../gramps/plugins/textreport/summary.py:113
-#: ../gramps/plugins/webreport/basepage.py:1485
-#: ../gramps/plugins/webreport/basepage.py:1543
-#: ../gramps/plugins/webreport/basepage.py:1608
+#: ../gramps/plugins/webreport/basepage.py:1477
+#: ../gramps/plugins/webreport/basepage.py:1535
+#: ../gramps/plugins/webreport/basepage.py:1600
 #: ../gramps/plugins/webreport/person.py:174
 #: ../gramps/plugins/webreport/statistics.py:116
 #: ../gramps/plugins/webreport/statistics.py:182
@@ -22948,7 +22945,7 @@ msgstr ""
 "voivat sisältää aktiivisia linkkejä luotuun Kertova-nettisivustoon."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:851
-#: ../gramps/plugins/textreport/birthdayreport.py:494
+#: ../gramps/plugins/textreport/birthdayreport.py:497
 #: ../gramps/plugins/textreport/indivcomplete.py:1144
 msgid "Include relationship to center person"
 msgstr "Lisää suhteet keskushenkilöön"
@@ -24014,7 +24011,7 @@ msgstr "Avoliitto"
 
 #: ../gramps/plugins/lib/libgedcom.py:707
 #: ../gramps/plugins/webreport/narrativeweb.py:1589
-#: ../gramps/plugins/webreport/webcal.py:1615
+#: ../gramps/plugins/webreport/webcal.py:1621
 msgid "Destination"
 msgstr "Kohde"
 
@@ -24605,7 +24602,7 @@ msgid "She was born on %(birth_date)s."
 msgstr "Hän syntyi %(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:125
-#: ../gramps/plugins/webreport/webcal.py:2028
+#: ../gramps/plugins/webreport/webcal.py:2034
 #, python-format
 msgid "Born %(birth_date)s."
 msgstr "Syntyi %(birth_date)s."
@@ -24959,7 +24956,7 @@ msgstr "Kuoli %(death_date)s, ikä %(age)s."
 #. latin cross for html code
 #: ../gramps/plugins/lib/libnarrate.py:283
 #: ../gramps/plugins/lib/libnarrate.py:316
-#: ../gramps/plugins/webreport/webcal.py:2018
+#: ../gramps/plugins/webreport/webcal.py:2024
 #, python-format
 msgid "Died %(death_date)s."
 msgstr "Kuoli %(death_date)s."
@@ -28160,7 +28157,7 @@ msgid "Your Gtk version is too old."
 msgstr "GTK versio on liian vanha."
 
 #: ../gramps/plugins/lib/maps/geography.py:928
-#: ../gramps/plugins/view/geoclose.py:552
+#: ../gramps/plugins/view/geoclose.py:554
 #: ../gramps/plugins/view/geoevents.py:348
 #: ../gramps/plugins/view/geoevents.py:381
 #: ../gramps/plugins/view/geofamclose.py:743
@@ -28498,8 +28495,8 @@ msgstr "Vanhempi"
 
 #: ../gramps/plugins/quickview/all_relations.py:286
 #: ../gramps/plugins/view/relview.py:406
-#: ../gramps/plugins/webreport/basepage.py:2327
-#: ../gramps/plugins/webreport/basepage.py:2329
+#: ../gramps/plugins/webreport/basepage.py:2319
+#: ../gramps/plugins/webreport/basepage.py:2321
 #: ../gramps/plugins/webreport/person.py:221
 #: ../gramps/plugins/webreport/surname.py:138
 msgid "Partner"
@@ -28687,13 +28684,13 @@ msgstr "Henkilöt"
 #: ../gramps/plugins/view/view.gpr.py:267
 #: ../gramps/plugins/view/view.gpr.py:275
 #: ../gramps/plugins/view/view.gpr.py:306
-#: ../gramps/plugins/webreport/basepage.py:630
-#: ../gramps/plugins/webreport/basepage.py:946
-#: ../gramps/plugins/webreport/basepage.py:1120
-#: ../gramps/plugins/webreport/basepage.py:1246
-#: ../gramps/plugins/webreport/basepage.py:1490
-#: ../gramps/plugins/webreport/basepage.py:1549
-#: ../gramps/plugins/webreport/basepage.py:1619
+#: ../gramps/plugins/webreport/basepage.py:623
+#: ../gramps/plugins/webreport/basepage.py:938
+#: ../gramps/plugins/webreport/basepage.py:1112
+#: ../gramps/plugins/webreport/basepage.py:1238
+#: ../gramps/plugins/webreport/basepage.py:1482
+#: ../gramps/plugins/webreport/basepage.py:1541
+#: ../gramps/plugins/webreport/basepage.py:1611
 #: ../gramps/plugins/webreport/person.py:1170
 #: ../gramps/plugins/webreport/source.py:130
 #: ../gramps/plugins/webreport/source.py:227
@@ -29021,7 +29018,7 @@ msgid "Type of media"
 msgstr "Mediatyyppi"
 
 #: ../gramps/plugins/quickview/reporef.py:62
-#: ../gramps/plugins/webreport/basepage.py:2677
+#: ../gramps/plugins/webreport/basepage.py:2669
 msgid "Call number"
 msgstr "Hakuavain"
 
@@ -29259,14 +29256,14 @@ msgid "Ahnentafel Report for %s"
 msgstr "Sukupolviraportti henkilölle %s"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:301
-#: ../gramps/plugins/textreport/detancestralreport.py:838
-#: ../gramps/plugins/textreport/detdescendantreport.py:1029
+#: ../gramps/plugins/textreport/detancestralreport.py:839
+#: ../gramps/plugins/textreport/detdescendantreport.py:1030
 msgid "Page break between generations"
 msgstr "Sivunvaihto sukupolvien välillä"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:303
-#: ../gramps/plugins/textreport/detancestralreport.py:840
-#: ../gramps/plugins/textreport/detdescendantreport.py:1031
+#: ../gramps/plugins/textreport/detancestralreport.py:841
+#: ../gramps/plugins/textreport/detdescendantreport.py:1032
 msgid "Whether to start a new page after each generation."
 msgstr "Aloitetaanko joka sukupolven jälkeen uusi sivu."
 
@@ -29279,8 +29276,8 @@ msgid "Whether a line break should follow the name."
 msgstr "Pitääkö rivinvaihdon tulla jokaisen nimen jälkeen."
 
 #: ../gramps/plugins/textreport/birthdayreport.py:65
-#: ../gramps/plugins/textreport/birthdayreport.py:217
-#: ../gramps/plugins/textreport/birthdayreport.py:262
+#: ../gramps/plugins/textreport/birthdayreport.py:220
+#: ../gramps/plugins/textreport/birthdayreport.py:265
 #: ../gramps/plugins/textreport/textplugins.gpr.py:59
 msgid "Birthday and Anniversary Report"
 msgstr "Syntymä- ja vuosipäiväraportti"
@@ -29290,77 +29287,77 @@ msgid "My Birthday Report"
 msgstr "Syntymäpäiväni raportti"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/birthdayreport.py:214
+#: ../gramps/plugins/textreport/birthdayreport.py:217
 #, python-format
 msgid "Relationships shown are to %s"
 msgstr "Näytetyt suhteet ovat henkilöön %s"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:320
+#: ../gramps/plugins/textreport/birthdayreport.py:323
 #, python-format
 msgid "%(person)s, birth%(relation)s"
 msgstr "%(person)s, syntymä%(relation)s"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/textreport/birthdayreport.py:325
+#: ../gramps/plugins/textreport/birthdayreport.py:328
 #, python-brace-format
 msgid "{person}, {age}{relation}"
 msgid_plural "{person}, {age}{relation}"
 msgstr[0] "{person}, {age}{relation}"
 msgstr[1] "{person}, {age}{relation}"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:413
+#: ../gramps/plugins/textreport/birthdayreport.py:416
 #: ../gramps/plugins/textreport/familygroup.py:716
 #: ../gramps/plugins/textreport/indivcomplete.py:1063
 msgid "Select the filter to be applied to the report."
 msgstr "Valitse raporttiin käytettävä suodin."
 
-#: ../gramps/plugins/textreport/birthdayreport.py:422
+#: ../gramps/plugins/textreport/birthdayreport.py:425
 msgid "Title text"
 msgstr "Otsikkoteksti"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:423
+#: ../gramps/plugins/textreport/birthdayreport.py:426
 msgid "Title of report"
 msgstr "Raportin otsikko"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:427
+#: ../gramps/plugins/textreport/birthdayreport.py:430
 msgid "First line of text at bottom of report"
 msgstr "Ensimmäinen tekstirivi raportin alaosassa"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:431
+#: ../gramps/plugins/textreport/birthdayreport.py:434
 msgid "Second line of text at bottom of report"
 msgstr "Toinen tekstirivi raportin alaosassa"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:435
+#: ../gramps/plugins/textreport/birthdayreport.py:438
 msgid "Third line of text at bottom of report"
 msgstr "Kolmas tekstirivi raportin alaosassa"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:446
+#: ../gramps/plugins/textreport/birthdayreport.py:449
 msgid "Include only living people in the report"
 msgstr "Lisää vain elossa olevat henkilöt raporttiin"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:455
-#: ../gramps/plugins/textreport/birthdayreport.py:457
+#: ../gramps/plugins/textreport/birthdayreport.py:458
+#: ../gramps/plugins/textreport/birthdayreport.py:460
 msgid "Year of report"
 msgstr "Raportin vuosi"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:496
+#: ../gramps/plugins/textreport/birthdayreport.py:499
 #: ../gramps/plugins/textreport/indivcomplete.py:1146
 msgid "Whether to include relationships to the center person"
 msgstr "Lisätäänkö suhteet keskushenkilöön"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:565
+#: ../gramps/plugins/textreport/birthdayreport.py:568
 msgid "Title text style"
 msgstr "Otsikon tekstityyli"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:568
+#: ../gramps/plugins/textreport/birthdayreport.py:571
 msgid "Data text display"
 msgstr "Näytettävät tiedot"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:570
+#: ../gramps/plugins/textreport/birthdayreport.py:573
 msgid "Day text style"
 msgstr "Päivän tekstityyli"
 
-#: ../gramps/plugins/textreport/birthdayreport.py:573
+#: ../gramps/plugins/textreport/birthdayreport.py:576
 msgid "Month text style"
 msgstr "Kuukauden tekstityyli"
 
@@ -29416,7 +29413,7 @@ msgid "%s sp."
 msgstr "%s p."
 
 #: ../gramps/plugins/textreport/descendreport.py:526
-#: ../gramps/plugins/textreport/detdescendantreport.py:1005
+#: ../gramps/plugins/textreport/detdescendantreport.py:1006
 msgid "Numbering system"
 msgstr "Numerointijärjestelmä"
 
@@ -29425,17 +29422,17 @@ msgid "Simple numbering"
 msgstr "Yksinkertainen numerointi"
 
 #: ../gramps/plugins/textreport/descendreport.py:529
-#: ../gramps/plugins/textreport/detdescendantreport.py:1009
+#: ../gramps/plugins/textreport/detdescendantreport.py:1010
 msgid "d'Aboville numbering"
 msgstr "d'Aboville numerointi"
 
 #: ../gramps/plugins/textreport/descendreport.py:530
-#: ../gramps/plugins/textreport/detdescendantreport.py:1007
+#: ../gramps/plugins/textreport/detdescendantreport.py:1008
 msgid "Henry numbering"
 msgstr "Henry numerointi"
 
 #: ../gramps/plugins/textreport/descendreport.py:531
-#: ../gramps/plugins/textreport/detdescendantreport.py:1008
+#: ../gramps/plugins/textreport/detdescendantreport.py:1009
 msgid "Modified Henry numbering"
 msgstr "Muunnettu Henry numerointi"
 
@@ -29448,7 +29445,7 @@ msgid "Meurgey de Tupigny numbering"
 msgstr "Meurgey de Tupigny numerointi"
 
 #: ../gramps/plugins/textreport/descendreport.py:534
-#: ../gramps/plugins/textreport/detdescendantreport.py:1012
+#: ../gramps/plugins/textreport/detdescendantreport.py:1013
 msgid "The numbering system to be used"
 msgstr "Käytettävä numerointijärjestelmä"
 
@@ -29487,57 +29484,57 @@ msgid "The style used for the spouse level %d display."
 msgstr "Käytettävä tyyli tason %d puolison näyttämiselle."
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/detancestralreport.py:214
+#: ../gramps/plugins/textreport/detancestralreport.py:215
 #, python-format
 msgid "Ancestral Report for %s"
 msgstr "Esivanhempien raportti %s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:277
-#: ../gramps/plugins/textreport/detdescendantreport.py:888
-#: ../gramps/plugins/textreport/detdescendantreport.py:906
-#: ../gramps/plugins/textreport/detdescendantreport.py:917
-#: ../gramps/plugins/textreport/detdescendantreport.py:943
+#: ../gramps/plugins/textreport/detancestralreport.py:278
+#: ../gramps/plugins/textreport/detdescendantreport.py:889
+#: ../gramps/plugins/textreport/detdescendantreport.py:907
+#: ../gramps/plugins/textreport/detdescendantreport.py:918
+#: ../gramps/plugins/textreport/detdescendantreport.py:944
 #, python-format
 msgid "More about %(person_name)s:"
 msgstr "Tapahtumat: %(person_name)s:"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:315
+#: ../gramps/plugins/textreport/detancestralreport.py:316
 #, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr "%(name)s on sama henkilö kuin [%(id_str)s]."
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/detancestralreport.py:357
-#: ../gramps/plugins/textreport/detdescendantreport.py:875
+#: ../gramps/plugins/textreport/detancestralreport.py:358
+#: ../gramps/plugins/textreport/detdescendantreport.py:876
 #, python-format
 msgid "Notes for %s"
 msgstr "Lisätietoja: %s"
 
 #. translators: needed for French, ignore otherwise
-#: ../gramps/plugins/textreport/detancestralreport.py:375
-#: ../gramps/plugins/textreport/detancestralreport.py:426
-#: ../gramps/plugins/textreport/detancestralreport.py:494
-#: ../gramps/plugins/textreport/detdescendantreport.py:519
-#: ../gramps/plugins/textreport/detdescendantreport.py:811
-#: ../gramps/plugins/textreport/detdescendantreport.py:896
-#: ../gramps/plugins/textreport/detdescendantreport.py:952
+#: ../gramps/plugins/textreport/detancestralreport.py:376
+#: ../gramps/plugins/textreport/detancestralreport.py:427
+#: ../gramps/plugins/textreport/detancestralreport.py:495
+#: ../gramps/plugins/textreport/detdescendantreport.py:520
+#: ../gramps/plugins/textreport/detdescendantreport.py:812
+#: ../gramps/plugins/textreport/detdescendantreport.py:897
+#: ../gramps/plugins/textreport/detdescendantreport.py:953
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr "%(type)s: %(value)s%(endnotes)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:404
-#: ../gramps/plugins/textreport/detdescendantreport.py:930
+#: ../gramps/plugins/textreport/detancestralreport.py:405
+#: ../gramps/plugins/textreport/detdescendantreport.py:931
 msgid "Address: "
 msgstr "Osoite: "
 
 #. translators: needed for Arabic, ignore otherwise
-#: ../gramps/plugins/textreport/detancestralreport.py:413
-#: ../gramps/plugins/textreport/detdescendantreport.py:933
+#: ../gramps/plugins/textreport/detancestralreport.py:414
+#: ../gramps/plugins/textreport/detdescendantreport.py:934
 #, python-format
 msgid "%s, "
 msgstr "%s, "
 
-#: ../gramps/plugins/textreport/detancestralreport.py:475
+#: ../gramps/plugins/textreport/detancestralreport.py:476
 #, python-format
 msgid "%(event_role)s at %(event_name)s of %(primary_person)s: %(event_text)s"
 msgstr ""
@@ -29545,198 +29542,198 @@ msgstr ""
 "%(event_text)s"
 
 #. translators: needed for Arabic, ignore otherwise
-#: ../gramps/plugins/textreport/detancestralreport.py:491
-#: ../gramps/plugins/textreport/detdescendantreport.py:413
-#: ../gramps/plugins/textreport/detdescendantreport.py:516
+#: ../gramps/plugins/textreport/detancestralreport.py:492
+#: ../gramps/plugins/textreport/detdescendantreport.py:414
+#: ../gramps/plugins/textreport/detdescendantreport.py:517
 #: ../gramps/plugins/textreport/familygroup.py:137
 msgid "; "
 msgstr "; "
 
-#: ../gramps/plugins/textreport/detancestralreport.py:600
-#: ../gramps/plugins/textreport/detdescendantreport.py:677
+#: ../gramps/plugins/textreport/detancestralreport.py:601
+#: ../gramps/plugins/textreport/detdescendantreport.py:678
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
 msgstr "Lapset: %(mother_name)s ja %(father_name)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:684
-#: ../gramps/plugins/textreport/detdescendantreport.py:784
-#: ../gramps/plugins/textreport/detdescendantreport.py:803
+#: ../gramps/plugins/textreport/detancestralreport.py:685
+#: ../gramps/plugins/textreport/detdescendantreport.py:785
+#: ../gramps/plugins/textreport/detdescendantreport.py:804
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr "Tapahtumat: %(mother_name)s ja %(father_name)s:"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:739
-#: ../gramps/plugins/textreport/detdescendantreport.py:612
+#: ../gramps/plugins/textreport/detancestralreport.py:740
+#: ../gramps/plugins/textreport/detdescendantreport.py:613
 #, python-format
 msgid "Spouse: %s"
 msgstr "Puoliso: %s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:743
-#: ../gramps/plugins/textreport/detdescendantreport.py:616
+#: ../gramps/plugins/textreport/detancestralreport.py:744
+#: ../gramps/plugins/textreport/detdescendantreport.py:617
 #, python-format
 msgid "Relationship with: %s"
 msgstr "Suhde henkilöön: %s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:827
+#: ../gramps/plugins/textreport/detancestralreport.py:828
 msgid "Sosa-Stradonitz number"
 msgstr "Sosa-Stradonitz numero"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:829
+#: ../gramps/plugins/textreport/detancestralreport.py:830
 msgid "The Sosa-Stradonitz number of the central person."
 msgstr "Keskushenkilön Sosa-Stradonitz numero."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:843
-#: ../gramps/plugins/textreport/detdescendantreport.py:1034
+#: ../gramps/plugins/textreport/detancestralreport.py:844
+#: ../gramps/plugins/textreport/detdescendantreport.py:1035
 #: ../gramps/plugins/textreport/indivcomplete.py:1076
 msgid "Page break before end notes"
 msgstr "Sivunvaihto ennen loppuviitteitä"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:845
-#: ../gramps/plugins/textreport/detdescendantreport.py:1036
+#: ../gramps/plugins/textreport/detancestralreport.py:846
+#: ../gramps/plugins/textreport/detdescendantreport.py:1037
 #: ../gramps/plugins/textreport/indivcomplete.py:1078
 msgid "Whether to start a new page before the end notes."
 msgstr "Aloitetaanko uusi sivu ennen loppuviitteitä."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:867
-#: ../gramps/plugins/textreport/detdescendantreport.py:1058
+#: ../gramps/plugins/textreport/detancestralreport.py:868
+#: ../gramps/plugins/textreport/detdescendantreport.py:1059
 msgid "Use complete sentences"
 msgstr "Käytä täysiä lauseita"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:869
-#: ../gramps/plugins/textreport/detdescendantreport.py:1060
+#: ../gramps/plugins/textreport/detancestralreport.py:870
+#: ../gramps/plugins/textreport/detdescendantreport.py:1061
 msgid "Whether to use complete sentences or succinct language."
 msgstr "Käytetäänkö täysiä lauseita vai tiiviimpää kieltä."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:873
-#: ../gramps/plugins/textreport/detdescendantreport.py:1064
+#: ../gramps/plugins/textreport/detancestralreport.py:874
+#: ../gramps/plugins/textreport/detdescendantreport.py:1065
 msgid "Use full dates instead of only the year"
 msgstr "Käytä kokonaispäivämäärää pelkän vuoden sijaan"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:875
-#: ../gramps/plugins/textreport/detdescendantreport.py:1066
+#: ../gramps/plugins/textreport/detancestralreport.py:876
+#: ../gramps/plugins/textreport/detdescendantreport.py:1067
 msgid "Whether to use full dates instead of just year."
 msgstr "Käytetäänkö kokonaispäivämäärää pelkän vuoden sijaan."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:878
-#: ../gramps/plugins/textreport/detdescendantreport.py:1069
+#: ../gramps/plugins/textreport/detancestralreport.py:879
+#: ../gramps/plugins/textreport/detdescendantreport.py:1070
 msgid "Compute death age"
 msgstr "Laske kuolinikä"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:879
-#: ../gramps/plugins/textreport/detdescendantreport.py:1070
+#: ../gramps/plugins/textreport/detancestralreport.py:880
+#: ../gramps/plugins/textreport/detdescendantreport.py:1071
 msgid "Whether to compute a person's age at death."
 msgstr "Lasketaanko henkilön kuolinikä."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:882
+#: ../gramps/plugins/textreport/detancestralreport.py:883
 msgid "Omit duplicate ancestors"
 msgstr "Jätä toistuvat esivanhemmat pois"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:883
+#: ../gramps/plugins/textreport/detancestralreport.py:884
 msgid "Whether to omit duplicate ancestors."
 msgstr "Jätetäänkö toistuvat esivanhemmat pois."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:886
-#: ../gramps/plugins/textreport/detdescendantreport.py:1073
+#: ../gramps/plugins/textreport/detancestralreport.py:887
+#: ../gramps/plugins/textreport/detdescendantreport.py:1074
 msgid "Use callname for common name"
 msgstr "Käytä kutsumanimeä yleisnimenä"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:887
-#: ../gramps/plugins/textreport/detdescendantreport.py:1074
+#: ../gramps/plugins/textreport/detancestralreport.py:888
+#: ../gramps/plugins/textreport/detdescendantreport.py:1075
 msgid "Whether to use the call name as the first name."
 msgstr "Käytetäänkö kutsumanimeä ensimmäisenä nimenä."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:895
-#: ../gramps/plugins/textreport/detdescendantreport.py:1082
+#: ../gramps/plugins/textreport/detancestralreport.py:896
+#: ../gramps/plugins/textreport/detdescendantreport.py:1083
 msgid "Whether to list children."
 msgstr "Listataanko lapset."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:898
-#: ../gramps/plugins/textreport/detdescendantreport.py:1085
+#: ../gramps/plugins/textreport/detancestralreport.py:899
+#: ../gramps/plugins/textreport/detdescendantreport.py:1086
 msgid "Include spouses of children"
 msgstr "Lisää lasten puolisot"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:900
-#: ../gramps/plugins/textreport/detdescendantreport.py:1087
+#: ../gramps/plugins/textreport/detancestralreport.py:901
+#: ../gramps/plugins/textreport/detdescendantreport.py:1088
 msgid "Whether to list the spouses of the children."
 msgstr "Listataanko lasten puolisot."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:903
-#: ../gramps/plugins/textreport/detdescendantreport.py:1099
+#: ../gramps/plugins/textreport/detancestralreport.py:904
+#: ../gramps/plugins/textreport/detdescendantreport.py:1100
 msgid "Include events"
 msgstr "Lisää tapahtumat"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:904
-#: ../gramps/plugins/textreport/detdescendantreport.py:1100
+#: ../gramps/plugins/textreport/detancestralreport.py:905
+#: ../gramps/plugins/textreport/detdescendantreport.py:1101
 msgid "Whether to include events."
 msgstr "Lisätäänkö tapahtumat."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:907
+#: ../gramps/plugins/textreport/detancestralreport.py:908
 msgid "Include other events"
 msgstr "Lisää muita tapahtumia"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:908
+#: ../gramps/plugins/textreport/detancestralreport.py:909
 msgid "Whether to include other events people participated in."
 msgstr "Lisätäänkö muita tapahtumia osallistuville henkilöille."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:913
-#: ../gramps/plugins/textreport/detdescendantreport.py:1104
+#: ../gramps/plugins/textreport/detancestralreport.py:914
+#: ../gramps/plugins/textreport/detdescendantreport.py:1105
 msgid "Include descendant reference in child list"
 msgstr "Lisää jälkeläisviite lapsilistaan"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:915
-#: ../gramps/plugins/textreport/detdescendantreport.py:1106
+#: ../gramps/plugins/textreport/detancestralreport.py:916
+#: ../gramps/plugins/textreport/detdescendantreport.py:1107
 msgid "Whether to add descendant references in child list."
 msgstr "Lisätäänkö jälkeläisviitteet lapsilistaan."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:919
-#: ../gramps/plugins/textreport/detdescendantreport.py:1110
+#: ../gramps/plugins/textreport/detancestralreport.py:920
+#: ../gramps/plugins/textreport/detdescendantreport.py:1111
 #: ../gramps/plugins/textreport/indivcomplete.py:1121
 msgid "Include Photo/Images from Gallery"
 msgstr "Lisää valo- ja muut kuvat Galleriasta"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:920
-#: ../gramps/plugins/textreport/detdescendantreport.py:1111
+#: ../gramps/plugins/textreport/detancestralreport.py:921
+#: ../gramps/plugins/textreport/detdescendantreport.py:1112
 #: ../gramps/plugins/textreport/indivcomplete.py:1122
 msgid "Whether to include images."
 msgstr "Lisätäänkö kuvat."
 
 #. #########################
 #. ###############################
-#: ../gramps/plugins/textreport/detancestralreport.py:923
-#: ../gramps/plugins/textreport/detdescendantreport.py:1114
+#: ../gramps/plugins/textreport/detancestralreport.py:924
+#: ../gramps/plugins/textreport/detdescendantreport.py:1115
 #: ../gramps/plugins/textreport/familygroup.py:782
 #: ../gramps/plugins/textreport/indivcomplete.py:1126
 msgid "Include (2)"
 msgstr "Ota mukaan (2)"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:925
-#: ../gramps/plugins/textreport/detdescendantreport.py:1116
+#: ../gramps/plugins/textreport/detancestralreport.py:926
+#: ../gramps/plugins/textreport/detdescendantreport.py:1117
 msgid "Include notes"
 msgstr "Lisää lisätiedot"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:926
-#: ../gramps/plugins/textreport/detdescendantreport.py:1117
+#: ../gramps/plugins/textreport/detancestralreport.py:927
+#: ../gramps/plugins/textreport/detdescendantreport.py:1118
 msgid "Whether to include notes."
 msgstr "Lisätäänkö myös lisätiedot."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:929
-#: ../gramps/plugins/textreport/detdescendantreport.py:1120
+#: ../gramps/plugins/textreport/detancestralreport.py:930
+#: ../gramps/plugins/textreport/detdescendantreport.py:1121
 msgid "Include sources"
 msgstr "Lisää lähteet"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:930
-#: ../gramps/plugins/textreport/detdescendantreport.py:1121
+#: ../gramps/plugins/textreport/detancestralreport.py:931
+#: ../gramps/plugins/textreport/detdescendantreport.py:1122
 msgid "Whether to include source references."
 msgstr "Lisätäänkö lähdeviitteet."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:933
-#: ../gramps/plugins/textreport/detdescendantreport.py:1124
+#: ../gramps/plugins/textreport/detancestralreport.py:934
+#: ../gramps/plugins/textreport/detdescendantreport.py:1125
 #: ../gramps/plugins/textreport/indivcomplete.py:1113
 msgid "Include sources notes"
 msgstr "Lisää lähteiden lisätiedot"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:935
-#: ../gramps/plugins/textreport/detdescendantreport.py:1126
+#: ../gramps/plugins/textreport/detancestralreport.py:936
+#: ../gramps/plugins/textreport/detdescendantreport.py:1127
 #: ../gramps/plugins/textreport/indivcomplete.py:1115
 msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
@@ -29745,153 +29742,153 @@ msgstr ""
 "Näytetäänkö lähteiden lisätiedot loppuviitteiden osiossa. Toimii vain jos "
 "'Lisää lähdetiedot' on valittuna."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:939
-#: ../gramps/plugins/textreport/detdescendantreport.py:1130
+#: ../gramps/plugins/textreport/detancestralreport.py:940
+#: ../gramps/plugins/textreport/detdescendantreport.py:1131
 msgid "Include attributes"
 msgstr "Lisää ominaisuudet"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:940
-#: ../gramps/plugins/textreport/detdescendantreport.py:1131
+#: ../gramps/plugins/textreport/detancestralreport.py:941
+#: ../gramps/plugins/textreport/detdescendantreport.py:1132
 #: ../gramps/plugins/textreport/familygroup.py:773
 #: ../gramps/plugins/textreport/indivcomplete.py:1136
 msgid "Whether to include attributes."
 msgstr "Lisätäänkö myös ominaisuudet."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:943
-#: ../gramps/plugins/textreport/detdescendantreport.py:1134
+#: ../gramps/plugins/textreport/detancestralreport.py:944
+#: ../gramps/plugins/textreport/detdescendantreport.py:1135
 msgid "Include addresses"
 msgstr "Lisää osoitteet"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:944
-#: ../gramps/plugins/textreport/detdescendantreport.py:1135
+#: ../gramps/plugins/textreport/detancestralreport.py:945
+#: ../gramps/plugins/textreport/detdescendantreport.py:1136
 msgid "Whether to include addresses."
 msgstr "Lisätäänkö osoitteet."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:947
-#: ../gramps/plugins/textreport/detdescendantreport.py:1138
+#: ../gramps/plugins/textreport/detancestralreport.py:948
+#: ../gramps/plugins/textreport/detdescendantreport.py:1139
 msgid "Include alternative names"
 msgstr "Lisää vaihtoehtoiset nimet"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:948
-#: ../gramps/plugins/textreport/detdescendantreport.py:1139
+#: ../gramps/plugins/textreport/detancestralreport.py:949
+#: ../gramps/plugins/textreport/detdescendantreport.py:1140
 msgid "Whether to include other names."
 msgstr "Lisätäänkö muut nimet."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:954
-#: ../gramps/plugins/textreport/detdescendantreport.py:1158
+#: ../gramps/plugins/textreport/detancestralreport.py:955
+#: ../gramps/plugins/textreport/detdescendantreport.py:1159
 msgid "Replace missing places with ______"
 msgstr "Korvaa puuttuvat paikat tällä: ______"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:955
-#: ../gramps/plugins/textreport/detdescendantreport.py:1160
+#: ../gramps/plugins/textreport/detancestralreport.py:956
+#: ../gramps/plugins/textreport/detdescendantreport.py:1161
 msgid "Whether to replace missing Places with blanks."
 msgstr "Korvataanko puuttuvat paikat tällä: ______."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:958
-#: ../gramps/plugins/textreport/detdescendantreport.py:1163
+#: ../gramps/plugins/textreport/detancestralreport.py:959
+#: ../gramps/plugins/textreport/detdescendantreport.py:1164
 msgid "Replace missing dates with ______"
 msgstr "Korvaa puuttuvat päivämäärät tällä: ______"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:959
-#: ../gramps/plugins/textreport/detdescendantreport.py:1164
+#: ../gramps/plugins/textreport/detancestralreport.py:960
+#: ../gramps/plugins/textreport/detdescendantreport.py:1165
 msgid "Whether to replace missing Dates with blanks."
 msgstr "Korvataanko puuttuvat päivämäärät tällä: ______."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:992
-#: ../gramps/plugins/textreport/detdescendantreport.py:1197
+#: ../gramps/plugins/textreport/detancestralreport.py:993
+#: ../gramps/plugins/textreport/detdescendantreport.py:1198
 msgid "The style used for the children list title."
 msgstr "Käytettävä tyyli lapsilistan otsikolle."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:1003
-#: ../gramps/plugins/textreport/detdescendantreport.py:1208
+#: ../gramps/plugins/textreport/detancestralreport.py:1004
+#: ../gramps/plugins/textreport/detdescendantreport.py:1209
 #: ../gramps/plugins/textreport/familygroup.py:900
 msgid "The style used for the text related to the children."
 msgstr "Käytettävä tyyli lapsiin liittyvälle tekstille."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:1013
-#: ../gramps/plugins/textreport/detdescendantreport.py:1218
+#: ../gramps/plugins/textreport/detancestralreport.py:1014
+#: ../gramps/plugins/textreport/detdescendantreport.py:1219
 msgid "The style used for the note header."
 msgstr "Lisätiedon otsikossa käytetty tyyli."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:1027
-#: ../gramps/plugins/textreport/detdescendantreport.py:1232
+#: ../gramps/plugins/textreport/detancestralreport.py:1028
+#: ../gramps/plugins/textreport/detdescendantreport.py:1233
 #: ../gramps/plugins/textreport/tableofcontents.py:117
 msgid "The style used for first level headings."
 msgstr "Käytettävä tyyli otsikolle."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:1037
-#: ../gramps/plugins/textreport/detdescendantreport.py:1242
+#: ../gramps/plugins/textreport/detancestralreport.py:1038
+#: ../gramps/plugins/textreport/detdescendantreport.py:1243
 #: ../gramps/plugins/textreport/kinshipreport.py:416
 #: ../gramps/plugins/textreport/summary.py:319
 #: ../gramps/plugins/textreport/tableofcontents.py:123
 msgid "The style used for second level headings."
 msgstr "Käytettävä tyyli otsikolle."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:1047
-#: ../gramps/plugins/textreport/detdescendantreport.py:1252
+#: ../gramps/plugins/textreport/detancestralreport.py:1048
+#: ../gramps/plugins/textreport/detdescendantreport.py:1253
 #: ../gramps/plugins/textreport/endoflinereport.py:335
-#: ../gramps/plugins/textreport/placereport.py:544
+#: ../gramps/plugins/textreport/placereport.py:545
 msgid "The style used for details."
 msgstr "Lisätiedossa käytettävä tyyli."
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/detdescendantreport.py:340
+#: ../gramps/plugins/textreport/detdescendantreport.py:341
 #, python-format
 msgid "Descendant Report for %(person_name)s"
 msgstr "Jälkeläisraportti %(person_name)s"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:634
+#: ../gramps/plugins/textreport/detdescendantreport.py:635
 #, python-format
 msgid "Ref: %(number)s. %(name)s"
 msgstr "Viite: %(number)s. %(name)s"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:761
+#: ../gramps/plugins/textreport/detdescendantreport.py:762
 #, python-format
 msgid "Notes for %(mother_name)s and %(father_name)s:"
 msgstr "Lisätietoja henkilöille %(mother_name)s ja %(father_name)s:"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1011
+#: ../gramps/plugins/textreport/detdescendantreport.py:1012
 msgid "Record (Modified Register) numbering"
 msgstr "Muunnettu Record numerointi"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1015
+#: ../gramps/plugins/textreport/detdescendantreport.py:1016
 msgid "Report structure"
 msgstr "Raportin rakenne"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1018
+#: ../gramps/plugins/textreport/detdescendantreport.py:1019
 msgid "show people by generations"
 msgstr "näyttää henkilöt sukupolvittain"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1019
+#: ../gramps/plugins/textreport/detdescendantreport.py:1020
 msgid "show people by lineage"
 msgstr "näyttää henkilöt sukuhaaroittain"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1020
+#: ../gramps/plugins/textreport/detdescendantreport.py:1021
 msgid "How people are organized in the report"
 msgstr "Miten raportin henkilöt järjestetään"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1090
+#: ../gramps/plugins/textreport/detdescendantreport.py:1091
 #: ../gramps/plugins/textreport/kinshipreport.py:370
 msgid "Include spouses"
 msgstr "Lisää puolisot"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1092
+#: ../gramps/plugins/textreport/detdescendantreport.py:1093
 msgid "Whether to include detailed spouse information."
 msgstr "Lisätäänkö yksityiskohtaisemmat puolisotiedot."
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1095
+#: ../gramps/plugins/textreport/detdescendantreport.py:1096
 msgid "Include spouse reference"
 msgstr "Lisää puolisoviite"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1096
+#: ../gramps/plugins/textreport/detdescendantreport.py:1097
 msgid "Whether to include reference to spouse."
 msgstr "Lisätäänkö viite puolisoon."
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1143
+#: ../gramps/plugins/textreport/detdescendantreport.py:1144
 msgid "Include sign of succession ('+') in child-list"
 msgstr "Lisää lasten listaan ('+') merkitsemään jälkeläisiä"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1144
+#: ../gramps/plugins/textreport/detdescendantreport.py:1145
 msgid ""
 "Whether to include a sign ('+') before the descendant number in the child-"
 "list to indicate a child has succession."
@@ -29899,11 +29896,11 @@ msgstr ""
 "Lisätäänkö lasten listaan ('+') jälkeläisen numeron eteen merkitsemään "
 "jälkeläisiä."
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1149
+#: ../gramps/plugins/textreport/detdescendantreport.py:1150
 msgid "Include path to start-person"
 msgstr "Lisää suhteet lähtöhenkilöön"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1150
+#: ../gramps/plugins/textreport/detdescendantreport.py:1151
 msgid ""
 "Whether to include the path of descendancy from the start-person to each "
 "descendant."
@@ -29922,7 +29919,7 @@ msgid "All the ancestors of %s who are missing a parent"
 msgstr "%s esivanhemmat, joilta puuttuu vanhempi"
 
 #: ../gramps/plugins/textreport/endoflinereport.py:308
-#: ../gramps/plugins/textreport/placereport.py:518
+#: ../gramps/plugins/textreport/placereport.py:519
 #: ../gramps/plugins/textreport/recordsreport.py:318
 #: ../gramps/plugins/textreport/simplebooktitle.py:181
 #: ../gramps/plugins/textreport/tagreport.py:955
@@ -30168,7 +30165,7 @@ msgstr "Käytettävä tyyli puolison nimelle."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1246
 #: ../gramps/plugins/textreport/notelinkreport.py:217
-#: ../gramps/plugins/textreport/placereport.py:556
+#: ../gramps/plugins/textreport/placereport.py:557
 #: ../gramps/plugins/textreport/tagreport.py:986
 msgid "The basic style used for table headings."
 msgstr "Käytettävä perustyyli taulukko-otsikoille."
@@ -30306,27 +30303,27 @@ msgstr "Henkilöt, jotka liittyvät tähän paikkaan"
 msgid "%(father)s (%(father_id)s) and %(mother)s (%(mother_id)s)"
 msgstr "%(father)s (%(father_id)s) ja %(mother)s (%(mother_id)s)"
 
-#: ../gramps/plugins/textreport/placereport.py:444
+#: ../gramps/plugins/textreport/placereport.py:445
 msgid "Select using filter"
 msgstr "Valitse käyttäen suodinta"
 
-#: ../gramps/plugins/textreport/placereport.py:445
+#: ../gramps/plugins/textreport/placereport.py:446
 msgid "Select places using a filter"
 msgstr "Valitse paikat käyttäen suodinta"
 
-#: ../gramps/plugins/textreport/placereport.py:452
+#: ../gramps/plugins/textreport/placereport.py:453
 msgid "Select places individually"
 msgstr "Valitse paikat yksittäin"
 
-#: ../gramps/plugins/textreport/placereport.py:453
+#: ../gramps/plugins/textreport/placereport.py:454
 msgid "List of places to report on"
 msgstr "Raporttiin tulevien paikkojen lista"
 
-#: ../gramps/plugins/textreport/placereport.py:456
+#: ../gramps/plugins/textreport/placereport.py:457
 msgid "Center on"
 msgstr "Keskuskohde"
 
-#: ../gramps/plugins/textreport/placereport.py:458
+#: ../gramps/plugins/textreport/placereport.py:459
 msgid "If report is event or person centered"
 msgstr "Jos raportti on tapahtuma- tai henkilökeskeinen"
 
@@ -31515,8 +31512,8 @@ msgid "Media Manager"
 msgstr "Medianhallinta"
 
 #: ../gramps/plugins/tool/mediamanager.py:97
-#: ../gramps/plugins/webreport/basepage.py:1483
-#: ../gramps/plugins/webreport/basepage.py:1606
+#: ../gramps/plugins/webreport/basepage.py:1475
+#: ../gramps/plugins/webreport/basepage.py:1598
 #: ../gramps/plugins/webreport/introduction.py:78
 msgid "Introduction"
 msgstr "Johdanto"
@@ -33217,11 +33214,11 @@ msgstr "Valitse henkilö, joka on viitteemme."
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../gramps/plugins/view/geoclose.py:570
+#: ../gramps/plugins/view/geoclose.py:572
 msgid "Choose and bookmark the new reference person"
 msgstr "Valitse ja kirjanmerkkaa uusi viitehenkilö"
 
-#: ../gramps/plugins/view/geoclose.py:593
+#: ../gramps/plugins/view/geoclose.py:595
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -33237,7 +33234,7 @@ msgstr ""
 "Arvo 1 tarkoittaa n. 7,5 kilometriä (4,6 mailia).\n"
 "Arvo on annettu asteen kymmenysosissa."
 
-#: ../gramps/plugins/view/geoclose.py:604
+#: ../gramps/plugins/view/geoclose.py:606
 #: ../gramps/plugins/view/geofamclose.py:795
 msgid "The selection parameters"
 msgstr "Lisätiedot jotka vastaavat annettuja arvoja"
@@ -34122,9 +34119,9 @@ msgstr "Näkymässä ovat lainaukset ja lähteet puumuodossa."
 #. Add xml, doctype, meta and stylesheets
 #: ../gramps/plugins/webreport/addressbook.py:87
 #: ../gramps/plugins/webreport/addressbooklist.py:81
-#: ../gramps/plugins/webreport/basepage.py:1495
-#: ../gramps/plugins/webreport/basepage.py:1561
-#: ../gramps/plugins/webreport/basepage.py:1636
+#: ../gramps/plugins/webreport/basepage.py:1487
+#: ../gramps/plugins/webreport/basepage.py:1553
+#: ../gramps/plugins/webreport/basepage.py:1628
 msgid "Address Book"
 msgstr "Osoitekirja"
 
@@ -34145,40 +34142,40 @@ msgid "Full Name"
 msgstr "Koko nimi"
 
 #: ../gramps/plugins/webreport/addressbooklist.py:114
-#: ../gramps/plugins/webreport/basepage.py:2045
+#: ../gramps/plugins/webreport/basepage.py:2037
 msgid "Web Links"
 msgstr "Nettilinkit"
 
 #. add section title
 #: ../gramps/plugins/webreport/basepage.py:350
-#: ../gramps/plugins/webreport/basepage.py:2026
+#: ../gramps/plugins/webreport/basepage.py:2018
 msgid "Narrative"
 msgstr "Kerrottua"
 
-#: ../gramps/plugins/webreport/basepage.py:1112
-#: ../gramps/plugins/webreport/basepage.py:2552
-#: ../gramps/plugins/webreport/basepage.py:2616
+#: ../gramps/plugins/webreport/basepage.py:1104
+#: ../gramps/plugins/webreport/basepage.py:2544
+#: ../gramps/plugins/webreport/basepage.py:2608
 #: ../gramps/plugins/webreport/place.py:177
 msgid "State/ Province"
 msgstr "Lääni, Osavaltio tai Provinssi"
 
-#: ../gramps/plugins/webreport/basepage.py:1286
+#: ../gramps/plugins/webreport/basepage.py:1278
 #, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
 msgstr "Tuotettu %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1296
+#: ../gramps/plugins/webreport/basepage.py:1288
 #, python-format
 msgid "Last change was the %(date)s"
 msgstr "Viimeisin muutos %(date)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1299
+#: ../gramps/plugins/webreport/basepage.py:1291
 #, python-format
 msgid " on %(date)s"
 msgstr " versiolla %(date)s"
 
-#: ../gramps/plugins/webreport/basepage.py:1320
-#: ../gramps/plugins/webreport/basepage.py:1325
+#: ../gramps/plugins/webreport/basepage.py:1312
+#: ../gramps/plugins/webreport/basepage.py:1317
 #, python-format
 msgid "%(http_break)sCreated for %(subject_url)s"
 msgstr "%(http_break)sLinkki kotihenkilöön %(subject_url)s"
@@ -34187,83 +34184,83 @@ msgstr "%(http_break)sLinkki kotihenkilöön %(subject_url)s"
 #. is the style sheet either Basic-Blue or Visually Impaired,
 #. and menu layout is Drop Down?
 #. Basic Blue style sheet with navigation menus
-#: ../gramps/plugins/webreport/basepage.py:1441
+#: ../gramps/plugins/webreport/basepage.py:1433
 #: ../gramps/plugins/webstuff/webstuff.py:64
 msgid "Basic-Blue"
 msgstr "Perus -Sininen"
 
 #. Visually Impaired style sheet with its navigation menus
-#: ../gramps/plugins/webreport/basepage.py:1442
+#: ../gramps/plugins/webreport/basepage.py:1434
 #: ../gramps/plugins/webstuff/webstuff.py:96
 msgid "Visually Impaired"
 msgstr "Visuaalisesti heikentynyt"
 
-#: ../gramps/plugins/webreport/basepage.py:1481
-#: ../gramps/plugins/webreport/basepage.py:1659
+#: ../gramps/plugins/webreport/basepage.py:1473
+#: ../gramps/plugins/webreport/basepage.py:1651
 msgid "Html|Home"
 msgstr "Koti"
 
-#: ../gramps/plugins/webreport/basepage.py:1493
-#: ../gramps/plugins/webreport/basepage.py:1628
+#: ../gramps/plugins/webreport/basepage.py:1485
+#: ../gramps/plugins/webreport/basepage.py:1620
 #: ../gramps/plugins/webreport/thumbnail.py:111
 msgid "Thumbnails"
 msgstr "Pikkukuvat"
 
-#: ../gramps/plugins/webreport/basepage.py:1494
-#: ../gramps/plugins/webreport/basepage.py:1635
+#: ../gramps/plugins/webreport/basepage.py:1486
+#: ../gramps/plugins/webreport/basepage.py:1627
 #: ../gramps/plugins/webreport/download.py:94
 #: ../gramps/plugins/webreport/narrativeweb.py:1814
 msgid "Download"
 msgstr "Lataus"
 
 #. add contact column
-#: ../gramps/plugins/webreport/basepage.py:1497
-#: ../gramps/plugins/webreport/basepage.py:1643
-#: ../gramps/plugins/webreport/basepage.py:1680
+#: ../gramps/plugins/webreport/basepage.py:1489
+#: ../gramps/plugins/webreport/basepage.py:1635
+#: ../gramps/plugins/webreport/basepage.py:1672
 #: ../gramps/plugins/webreport/contact.py:76
 msgid "Contact"
 msgstr "Yhteystieto"
 
-#: ../gramps/plugins/webreport/basepage.py:1499
+#: ../gramps/plugins/webreport/basepage.py:1491
 #: ../gramps/plugins/webreport/webplugins.gpr.py:58
 msgid "Web Calendar"
 msgstr "Nettikalenteri"
 
-#: ../gramps/plugins/webreport/basepage.py:1579
+#: ../gramps/plugins/webreport/basepage.py:1571
 #: ../gramps/plugins/webreport/media.py:410
 msgid "Previous"
 msgstr "Edellinen"
 
-#: ../gramps/plugins/webreport/basepage.py:1581
+#: ../gramps/plugins/webreport/basepage.py:1573
 #: ../gramps/plugins/webreport/media.py:421
 msgid "Next"
 msgstr "Seuraava"
 
-#: ../gramps/plugins/webreport/basepage.py:2093
+#: ../gramps/plugins/webreport/basepage.py:2085
 msgid " [Click to Go]"
 msgstr " [Napsauta siirtymiseksi]"
 
-#: ../gramps/plugins/webreport/basepage.py:2117
+#: ../gramps/plugins/webreport/basepage.py:2109
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr "Mormonisakramentti"
 
-#: ../gramps/plugins/webreport/basepage.py:2303
-#: ../gramps/plugins/webreport/basepage.py:2304
+#: ../gramps/plugins/webreport/basepage.py:2295
+#: ../gramps/plugins/webreport/basepage.py:2296
 #: ../gramps/plugins/webreport/person.py:611
 #: ../gramps/plugins/webreport/person.py:921
 msgid "Family Map"
 msgstr "Perhekartta"
 
-#: ../gramps/plugins/webreport/basepage.py:2549
-#: ../gramps/plugins/webreport/basepage.py:2614
+#: ../gramps/plugins/webreport/basepage.py:2541
+#: ../gramps/plugins/webreport/basepage.py:2606
 msgid "Church Parish"
 msgstr "Seurakunta"
 
-#: ../gramps/plugins/webreport/basepage.py:2570
+#: ../gramps/plugins/webreport/basepage.py:2562
 msgid "Locations"
 msgstr "Sijainnit"
 
-#: ../gramps/plugins/webreport/basepage.py:2781
+#: ../gramps/plugins/webreport/basepage.py:2773
 #, python-format
 msgid " (%s) "
 msgstr " (%s) "
@@ -34353,7 +34350,7 @@ msgid "Families beginning with letter "
 msgstr "Annetulla kirjaimella alkavat perheet "
 
 #: ../gramps/plugins/webreport/home.py:77
-#: ../gramps/plugins/webreport/webcal.py:570
+#: ../gramps/plugins/webreport/webcal.py:576
 msgid "Home"
 msgstr "Koti"
 
@@ -34488,7 +34485,7 @@ msgid "Whether to store the web pages in an archive file"
 msgstr "Talletetaanko nettisivut .tar.gz arkistoon"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1592
-#: ../gramps/plugins/webreport/webcal.py:1618
+#: ../gramps/plugins/webreport/webcal.py:1624
 msgid "The destination directory for the web files"
 msgstr "Kohdehakemisto nettitiedostoille"
 
@@ -34513,32 +34510,32 @@ msgid "Html options"
 msgstr "Html valinnat"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1627
-#: ../gramps/plugins/webreport/webcal.py:1639
+#: ../gramps/plugins/webreport/webcal.py:1645
 msgid "File extension"
 msgstr "Tiedostotarkennin"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1630
-#: ../gramps/plugins/webreport/webcal.py:1642
+#: ../gramps/plugins/webreport/webcal.py:1648
 msgid "The extension to be used for the web files"
 msgstr "Nettisivujen tiedostotarkennin"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1633
-#: ../gramps/plugins/webreport/webcal.py:1645
+#: ../gramps/plugins/webreport/webcal.py:1651
 msgid "Copyright"
 msgstr "Tekijänoikeudet"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1636
-#: ../gramps/plugins/webreport/webcal.py:1648
+#: ../gramps/plugins/webreport/webcal.py:1654
 msgid "The copyright to be used for the web files"
 msgstr "Nettisivujen tekijänoikeudet"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1639
-#: ../gramps/plugins/webreport/webcal.py:1654
+#: ../gramps/plugins/webreport/webcal.py:1660
 msgid "StyleSheet"
 msgstr "Tyylitiedosto"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1644
-#: ../gramps/plugins/webreport/webcal.py:1657
+#: ../gramps/plugins/webreport/webcal.py:1663
 msgid "The stylesheet to be used for the web pages"
 msgstr "Nettisivuilla käytettävä tyylitiedosto"
 
@@ -34796,17 +34793,17 @@ msgid "Johnson Family Tree"
 msgstr "Johnson Sukupuu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1853
-#: ../gramps/plugins/webreport/webcal.py:1829
+#: ../gramps/plugins/webreport/webcal.py:1835
 msgid "Advanced Options"
 msgstr "Lisävalinnat"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1856
-#: ../gramps/plugins/webreport/webcal.py:1831
+#: ../gramps/plugins/webreport/webcal.py:1837
 msgid "Character set encoding"
 msgstr "Merkistön koodaus"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1860
-#: ../gramps/plugins/webreport/webcal.py:1835
+#: ../gramps/plugins/webreport/webcal.py:1841
 msgid "The encoding to be used for the web files"
 msgstr "Nettisivuilla käytettävä merkistökoodaus"
 
@@ -35237,58 +35234,58 @@ msgstr "Pikkukuvien esikatselu"
 #. Number of directory levels up to get to self.html_dir / root
 #. Number of directory levels up to get to root
 #. generate progress pass for "Year At A Glance"
-#: ../gramps/plugins/webreport/webcal.py:328
-#: ../gramps/plugins/webreport/webcal.py:967
-#: ../gramps/plugins/webreport/webcal.py:1053
-#: ../gramps/plugins/webreport/webcal.py:1274
+#: ../gramps/plugins/webreport/webcal.py:333
+#: ../gramps/plugins/webreport/webcal.py:973
+#: ../gramps/plugins/webreport/webcal.py:1059
+#: ../gramps/plugins/webreport/webcal.py:1280
 msgid "Web Calendar Report"
 msgstr "Nettikalenteriraportti"
 
-#: ../gramps/plugins/webreport/webcal.py:329
+#: ../gramps/plugins/webreport/webcal.py:334
 #, python-format
 msgid "Calculating Holidays for year %04d"
 msgstr "Laskee juhlapyhiä vuodeksi %04d"
 
-#: ../gramps/plugins/webreport/webcal.py:486
+#: ../gramps/plugins/webreport/webcal.py:491
 #, python-format
 msgid ""
 "the \"WebCal\" will be the potential-email Subject|Created for "
 "%(html_email_author_start)sWebCal%(html_email_author_end)s"
 msgstr "Tuottaja %(html_email_author_start)sWebCal%(html_email_author_end)s"
 
-#: ../gramps/plugins/webreport/webcal.py:494
+#: ../gramps/plugins/webreport/webcal.py:499
 #, python-format
 msgid "Created for %(author)s"
 msgstr "Tuottaja %(author)s"
 
 #. Add a link for year_glance() if requested
-#: ../gramps/plugins/webreport/webcal.py:576
+#: ../gramps/plugins/webreport/webcal.py:582
 msgid "Year Glance"
 msgstr "Vuosi silmäyksellä"
 
-#: ../gramps/plugins/webreport/webcal.py:615
+#: ../gramps/plugins/webreport/webcal.py:621
 msgid "NarrativeWeb Home"
 msgstr "Kertovan nettisivuston kotisivu"
 
-#: ../gramps/plugins/webreport/webcal.py:617
+#: ../gramps/plugins/webreport/webcal.py:623
 msgid "Full year at a Glance"
 msgstr "Vuosi yhdellä silmäyksellä"
 
-#: ../gramps/plugins/webreport/webcal.py:968
+#: ../gramps/plugins/webreport/webcal.py:974
 msgid "Formatting months ..."
 msgstr "Muotoillaan kuukausia..."
 
-#: ../gramps/plugins/webreport/webcal.py:1054
+#: ../gramps/plugins/webreport/webcal.py:1060
 msgid "Creating Year At A Glance calendar"
 msgstr "Luodaan 'Vuosi yhdellä silmäyksellä' kalenteria"
 
 #. page title
-#: ../gramps/plugins/webreport/webcal.py:1059
+#: ../gramps/plugins/webreport/webcal.py:1065
 #, python-format
 msgid "%(year)d, At A Glance"
 msgstr "%(year)d, yhdellä silmäyksellä"
 
-#: ../gramps/plugins/webreport/webcal.py:1074
+#: ../gramps/plugins/webreport/webcal.py:1080
 msgid ""
 "This calendar is meant to give you access to all your data at a glance "
 "compressed into one page. Clicking on a date will take you to a page that "
@@ -35299,228 +35296,228 @@ msgstr ""
 "sivulla, jos niitä on.\n"
 
 #. page title
-#: ../gramps/plugins/webreport/webcal.py:1127
+#: ../gramps/plugins/webreport/webcal.py:1133
 msgid "One Day Within A Year"
 msgstr "Valitun päivän tiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1431
+#: ../gramps/plugins/webreport/webcal.py:1437
 #, python-format
 msgid "%(spouse)s and %(person)s"
 msgstr "%(spouse)s ja %(person)s"
 
 #. Display date as user set in preferences
-#: ../gramps/plugins/webreport/webcal.py:1451
+#: ../gramps/plugins/webreport/webcal.py:1457
 #, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s on %(date)s"
 msgstr ""
 "Tuotettu %(gramps_home_html_start)s Gramps%(html_end)s ohjelmalla %(date)s"
 
 #. page title
-#: ../gramps/plugins/webreport/webcal.py:1557
-#: ../gramps/plugins/webreport/webcal.py:1622
+#: ../gramps/plugins/webreport/webcal.py:1563
+#: ../gramps/plugins/webreport/webcal.py:1628
 msgid "My Family Calendar"
 msgstr "Sukukalenterini"
 
-#: ../gramps/plugins/webreport/webcal.py:1622
+#: ../gramps/plugins/webreport/webcal.py:1628
 msgid "Calendar Title"
 msgstr "Kalenteriotsikko"
 
-#: ../gramps/plugins/webreport/webcal.py:1623
+#: ../gramps/plugins/webreport/webcal.py:1629
 msgid "The title of the calendar"
 msgstr "Kalenterin otsikko"
 
-#: ../gramps/plugins/webreport/webcal.py:1695
+#: ../gramps/plugins/webreport/webcal.py:1701
 msgid "Content Options"
 msgstr "Sisältövalinnat"
 
-#: ../gramps/plugins/webreport/webcal.py:1700
+#: ../gramps/plugins/webreport/webcal.py:1706
 msgid "Create multiple year calendars"
 msgstr "Luo kalenteri useammalle vuodelle"
 
-#: ../gramps/plugins/webreport/webcal.py:1702
+#: ../gramps/plugins/webreport/webcal.py:1708
 msgid "Whether to create Multiple year calendars or not."
 msgstr "Luodaanko kalenteri useammalle vuodelle vai ei."
 
-#: ../gramps/plugins/webreport/webcal.py:1707
+#: ../gramps/plugins/webreport/webcal.py:1713
 msgid "Start Year for the Calendar(s)"
 msgstr "Kalenterien aloitusvuosi"
 
-#: ../gramps/plugins/webreport/webcal.py:1709
+#: ../gramps/plugins/webreport/webcal.py:1715
 msgid "Enter the starting year for the calendars between 1900 - 3000"
 msgstr "Syötä aloitusvuosi kalenteriin väliltä 1900-3000"
 
-#: ../gramps/plugins/webreport/webcal.py:1713
+#: ../gramps/plugins/webreport/webcal.py:1719
 msgid "End Year for the Calendar(s)"
 msgstr "Kalenterien päättymisvuosi"
 
-#: ../gramps/plugins/webreport/webcal.py:1715
+#: ../gramps/plugins/webreport/webcal.py:1721
 msgid "Enter the ending year for the calendars between 1900 - 3000."
 msgstr "Syötä päättymisvuosi kalenteriin väliltä 1900-3000."
 
-#: ../gramps/plugins/webreport/webcal.py:1732
+#: ../gramps/plugins/webreport/webcal.py:1738
 msgid "Holidays will be included for the selected country"
 msgstr "Lisää valitun valtion juhlapyhät"
 
-#: ../gramps/plugins/webreport/webcal.py:1755
+#: ../gramps/plugins/webreport/webcal.py:1761
 msgid "Home link"
 msgstr "Kotisivu-linkki"
 
-#: ../gramps/plugins/webreport/webcal.py:1756
+#: ../gramps/plugins/webreport/webcal.py:1762
 msgid ""
 "The link to be included to direct the user to the main page of the web site"
 msgstr "Lisätäänkö linkki, joka ohjaa käyttäjän nettisivuston pääsivulle"
 
-#: ../gramps/plugins/webreport/webcal.py:1761
+#: ../gramps/plugins/webreport/webcal.py:1767
 msgid "Include birthdays in the calendar"
 msgstr "Ota kalenteriin mukaan syntymäpäivät"
 
-#: ../gramps/plugins/webreport/webcal.py:1765
+#: ../gramps/plugins/webreport/webcal.py:1771
 msgid "Include anniversaries in the calendar"
 msgstr "Ota kalenteriin mukaan vuosipäivät"
 
-#: ../gramps/plugins/webreport/webcal.py:1772
+#: ../gramps/plugins/webreport/webcal.py:1778
 msgid "Jan - Jun Notes"
 msgstr "Tammi-kesäkuun tiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1774
+#: ../gramps/plugins/webreport/webcal.py:1780
 msgid "January Note"
 msgstr "Tammikuun tiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1775
+#: ../gramps/plugins/webreport/webcal.py:1781
 msgid "The note for the month of January"
 msgstr "Lisätiedot tammikuulle"
 
-#: ../gramps/plugins/webreport/webcal.py:1778
+#: ../gramps/plugins/webreport/webcal.py:1784
 msgid "February Note"
 msgstr "Helmikuun tiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1779
+#: ../gramps/plugins/webreport/webcal.py:1785
 msgid "The note for the month of February"
 msgstr "Lisätiedot helmikuulle"
 
-#: ../gramps/plugins/webreport/webcal.py:1782
+#: ../gramps/plugins/webreport/webcal.py:1788
 msgid "March Note"
 msgstr "Maaliskuun tiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1783
+#: ../gramps/plugins/webreport/webcal.py:1789
 msgid "The note for the month of March"
 msgstr "Lisätiedot maaliskuulle"
 
-#: ../gramps/plugins/webreport/webcal.py:1786
+#: ../gramps/plugins/webreport/webcal.py:1792
 msgid "April Note"
 msgstr "Huhtikuun tiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1787
+#: ../gramps/plugins/webreport/webcal.py:1793
 msgid "The note for the month of April"
 msgstr "Lisätiedot huhtikuulle"
 
-#: ../gramps/plugins/webreport/webcal.py:1790
+#: ../gramps/plugins/webreport/webcal.py:1796
 msgid "May Note"
 msgstr "Toukokuun tiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1791
+#: ../gramps/plugins/webreport/webcal.py:1797
 msgid "The note for the month of May"
 msgstr "Lisätiedot toukokuulle"
 
-#: ../gramps/plugins/webreport/webcal.py:1794
+#: ../gramps/plugins/webreport/webcal.py:1800
 msgid "June Note"
 msgstr "Kesäkuun tiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1795
+#: ../gramps/plugins/webreport/webcal.py:1801
 msgid "The note for the month of June"
 msgstr "Lisätiedot kesäkuulle"
 
-#: ../gramps/plugins/webreport/webcal.py:1798
+#: ../gramps/plugins/webreport/webcal.py:1804
 msgid "Jul - Dec Notes"
 msgstr "Heinä- joulukuun tiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1800
+#: ../gramps/plugins/webreport/webcal.py:1806
 msgid "July Note"
 msgstr "Heinäkuun tiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1801
+#: ../gramps/plugins/webreport/webcal.py:1807
 msgid "The note for the month of July"
 msgstr "Heinäkuun lisätiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1804
+#: ../gramps/plugins/webreport/webcal.py:1810
 msgid "August Note"
 msgstr "Elokuun tiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1805
+#: ../gramps/plugins/webreport/webcal.py:1811
 msgid "The note for the month of August"
 msgstr "Elokuun lisätiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1808
+#: ../gramps/plugins/webreport/webcal.py:1814
 msgid "September Note"
 msgstr "Syyskuun tiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1809
+#: ../gramps/plugins/webreport/webcal.py:1815
 msgid "The note for the month of September"
 msgstr "Syyskuun lisätiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1812
+#: ../gramps/plugins/webreport/webcal.py:1818
 msgid "October Note"
 msgstr "Lokakuun tiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1813
+#: ../gramps/plugins/webreport/webcal.py:1819
 msgid "The note for the month of October"
 msgstr "Lokakuun lisätiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1816
+#: ../gramps/plugins/webreport/webcal.py:1822
 msgid "November Note"
 msgstr "Marraskuun tiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1817
+#: ../gramps/plugins/webreport/webcal.py:1823
 msgid "The note for the month of November"
 msgstr "Marraskuun lisätiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1820
+#: ../gramps/plugins/webreport/webcal.py:1826
 msgid "December Note"
 msgstr "Joulukuun tiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1821
+#: ../gramps/plugins/webreport/webcal.py:1827
 msgid "The note for the month of December"
 msgstr "Joulukuun lisätiedot"
 
-#: ../gramps/plugins/webreport/webcal.py:1838
+#: ../gramps/plugins/webreport/webcal.py:1844
 msgid "Create one day event pages for Year At A Glance calendar"
 msgstr "Luodaan tapahtumapäiväsivut 'Vuosi yhdellä silmäyksellä' kalenteriin"
 
-#: ../gramps/plugins/webreport/webcal.py:1840
+#: ../gramps/plugins/webreport/webcal.py:1846
 msgid "Whether to create one day pages or not"
 msgstr "Luodaanko päiväsivut vai ei"
 
-#: ../gramps/plugins/webreport/webcal.py:1843
+#: ../gramps/plugins/webreport/webcal.py:1849
 msgid "Link to Narrated Web Report"
 msgstr "Linkki Kertova-nettisivusto raporttiin"
 
-#: ../gramps/plugins/webreport/webcal.py:1844
+#: ../gramps/plugins/webreport/webcal.py:1850
 msgid "Whether to link data to web report or not"
 msgstr "Linkittäänkö tiedot Kertova-nettisivusto raporttiin vai ei"
 
-#: ../gramps/plugins/webreport/webcal.py:1850
+#: ../gramps/plugins/webreport/webcal.py:1856
 msgid "Link prefix"
 msgstr "Linkin etuliite"
 
-#: ../gramps/plugins/webreport/webcal.py:1851
+#: ../gramps/plugins/webreport/webcal.py:1857
 msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr "Etuliite linkeissä joilla siirryt Kertova-nettisivusto raporttiin"
 
-#: ../gramps/plugins/webreport/webcal.py:2029
+#: ../gramps/plugins/webreport/webcal.py:2035
 #, python-format
 msgid "%s old"
 msgstr "%s vanha"
 
-#: ../gramps/plugins/webreport/webcal.py:2040
+#: ../gramps/plugins/webreport/webcal.py:2046
 #, python-format
 msgid "%(couple)s, <em>wedding</em>"
 msgstr "%(couple)s, <em>häät</em>"
 
-#: ../gramps/plugins/webreport/webcal.py:2048
+#: ../gramps/plugins/webreport/webcal.py:2054
 msgid "Until"
 msgstr "päättyi"
 
-#: ../gramps/plugins/webreport/webcal.py:2057
+#: ../gramps/plugins/webreport/webcal.py:2063
 #, python-brace-format
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
@@ -36636,6 +36633,12 @@ msgid ""
 msgstr ""
 "Kaikki tutkimuksesi pidetään juuri niin hallittuna, haettavissa ja tarkkana "
 "kuin sinulle on tarpeen."
+
+#~ msgid "%(genders)s born %(year_from)04d-%(year_to)04d"
+#~ msgstr "%(genders)s syntyi %(year_from)04d-%(year_to)04d"
+
+#~ msgid "Persons born %(year_from)04d-%(year_to)04d"
+#~ msgstr "Syntyneet välillä %(year_from)04d-%(year_to)04d"
 
 #~ msgid " "
 #~ msgstr " "
