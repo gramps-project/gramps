@@ -55,7 +55,7 @@ from gi.repository import GdkPixbuf
 #
 #-------------------------------------------------------------------------
 
-from gramps.gen.const import USER_HOME, ICON, SPLASH, GRAMPS_LOCALE as glocale
+from gramps.gen.const import ICON, SPLASH, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.config import config
 from ...pluginmanager import GuiPluginManager
@@ -558,12 +558,7 @@ class ExportAssistant(ManagedWindow, Gtk.Assistant):
         ix = self.get_selected_format_index()
         ext = self.map_exporters[ix].get_extension()
 
-        # Suggested folder: try last export, then last import, then home.
         default_dir = config.get('paths.recent-export-dir')
-        if len(default_dir)<=1:
-            default_dir = config.get('paths.recent-import-dir')
-        if len(default_dir)<=1:
-            default_dir = USER_HOME
 
         if ext == 'gramps':
             new_filename = os.path.join(default_dir,'data.gramps')
