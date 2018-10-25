@@ -736,7 +736,7 @@ table.download {
     width:100%;
 }
 table.download img {
-    float:center;
+    float:none;
 }
 table.download thead tr th {
     text-align:center;
@@ -1097,7 +1097,7 @@ div#pedigree {
     margin-right: 10px;
 }
 #footer p#copyright img {
-    margin-right: 10px[
+    margin-right: 10px;
 }
 #user_footer {
     width: 70%;
