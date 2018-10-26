@@ -250,7 +250,8 @@ class EditPerson(EditPrimary):
         self.eventbox.connect('button-press-event',
                                 self._image_button_press)
         # allow to initiate a drag-and-drop with this person if it has a handle
-        #if self.obj.get_handle():
+        if self.added:
+            return  # Avoid HandleError if dragging an objet not in db yet
         tglist = Gtk.TargetList.new([])
         tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
                    DdTargets.PERSON_LINK.target_flags,
