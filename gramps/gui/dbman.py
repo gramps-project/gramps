@@ -216,11 +216,9 @@ class DbManager(CLIDbManager, ManagedWindow):
         Connects the signals to the buttons on the interface.
         """
         ddtarget = DdTargets.URI_LIST
-        self.top.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
-        tglist = Gtk.TargetList.new([])
-        tglist.add(ddtarget.atom_drag_type, ddtarget.target_flags,
-                   ddtarget.app_id)
-        self.top.drag_dest_set_target_list(tglist)
+        self.top.drag_dest_set(Gtk.DestDefaults.ALL,
+                               [DdTargets.URI_LIST.target()],
+                               Gdk.DragAction.COPY)
 
         self.remove_btn.connect('clicked', self.__remove_db)
         self.new_btn.connect('clicked', self.__new_db)

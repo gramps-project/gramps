@@ -1182,12 +1182,7 @@ class RelationshipView(NavigationView):
         Register the given eventbox as a drag_source with given object_h
         """
         eventbox.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
-                                 [], Gdk.DragAction.COPY)
-        tglist = Gtk.TargetList.new([])
-        tglist.add(dnd_type.atom_drag_type,
-                   dnd_type.target_flags,
-                   dnd_type.app_id)
-        eventbox.drag_source_set_target_list(tglist)
+                                 [dnd_type.target()], Gdk.DragAction.COPY)
         eventbox.drag_source_set_icon_name(stock_icon)
         eventbox.connect('drag_data_get',
                          self._make_drag_data_get_func(object_h, dnd_type))

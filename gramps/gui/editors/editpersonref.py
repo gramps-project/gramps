@@ -97,14 +97,9 @@ class EditPersonRef(EditSecondary):
 
         #allow for drop:
         self.person_label.drag_dest_set(Gtk.DestDefaults.MOTION |
-                            Gtk.DestDefaults.DROP,
-                            [],
-                            Gdk.DragAction.COPY)
-        tglist = Gtk.TargetList.new([])
-        tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
-                   DdTargets.PERSON_LINK.target_flags,
-                   DdTargets.PERSON_LINK.app_id)
-        self.person_label.drag_dest_set_target_list(tglist)
+                                        Gtk.DestDefaults.DROP,
+                                        [DdTargets.PERSON_LINK.target()],
+                                        Gdk.DragAction.COPY)
         self.person_label.connect('drag_data_received', self.on_drag_persondata_received)
         self._update_dnd_capability()
 
@@ -112,13 +107,9 @@ class EditPersonRef(EditSecondary):
         self.label_event_box = self.top.get_object('person_event_box')
         # Set the drag action from the label
         if self.obj.ref:
-            self.label_event_box.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
-                                       [], Gdk.DragAction.COPY)
-            tglist = Gtk.TargetList.new([])
-            tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
-                       DdTargets.PERSON_LINK.target_flags,
-                       DdTargets.PERSON_LINK.app_id)
-            self.label_event_box.drag_source_set_target_list(tglist)
+            self.label_event_box.drag_source_set(
+                Gdk.ModifierType.BUTTON1_MASK,
+                [DdTargets.PERSON_LINK.target()], Gdk.DragAction.COPY)
             self.label_event_box.drag_source_set_icon_name('gramps-person')
             self.label_event_box.connect('drag_data_get', self.drag_data_get)
         else:

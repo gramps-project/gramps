@@ -172,11 +172,6 @@ class ListView(NavigationView):
                                     [self.drag_dest_info().target()],
                                     Gdk.DragAction.MOVE |
                                     Gdk.DragAction.COPY)
-            tglist = Gtk.TargetList.new([])
-            tglist.add(self.drag_dest_info().atom_drag_type,
-                       self.drag_dest_info().target_flags,
-                       self.drag_dest_info().app_id)
-            self.list.drag_dest_set_target_list(tglist)
 
         scrollwindow = Gtk.ScrolledWindow()
         scrollwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
@@ -729,23 +724,13 @@ class ListView(NavigationView):
         if len(selected_ids) == 1:
             if self.drag_info():
                 self.list.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
-                                      [],
-                                      Gdk.DragAction.COPY)
-                #TODO GTK3: wourkaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
-                tglist = Gtk.TargetList.new([])
-                dtype = self.drag_info()
-                tglist.add(dtype.atom_drag_type, dtype.target_flags, dtype.app_id)
-                self.list.drag_source_set_target_list(tglist)
+                                          [self.drag_info().target()],
+                                          Gdk.DragAction.COPY)
         elif len(selected_ids) > 1:
             if self.drag_list_info():
                 self.list.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
-                                      [],
-                                      Gdk.DragAction.COPY)
-                #TODO GTK3: wourkaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
-                tglist = Gtk.TargetList.new([])
-                dtype = self.drag_list_info()
-                tglist.add(dtype.atom_drag_type, dtype.target_flags, dtype.app_id)
-                self.list.drag_source_set_target_list(tglist)
+                                          [self.drag_list_info().target()],
+                                          Gdk.DragAction.COPY)
 
         self.uistate.modify_statusbar(self.dbstate)
 

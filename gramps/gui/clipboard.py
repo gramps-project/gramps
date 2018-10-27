@@ -890,8 +890,8 @@ class ClipboardListModel(Gtk.ListStore):
 class ClipboardListView:
 
     LOCAL_DRAG_TYPE = 'MY_TREE_MODEL_ROW'
-    LOCAL_DRAG_ATOM_TYPE = Gdk.atom_intern(LOCAL_DRAG_TYPE, False)
-    LOCAL_DRAG_TARGET = (LOCAL_DRAG_ATOM_TYPE, Gtk.TargetFlags.SAME_WIDGET, 0)
+    LOCAL_DRAG_TARGET = Gtk.TargetEntry.new(LOCAL_DRAG_TYPE,
+                                            Gtk.TargetFlags.SAME_WIDGET, 0)
 
     def __init__(self, dbstate, widget):
 
@@ -948,19 +948,10 @@ class ClipboardListView:
         self._widget.set_enable_search(True)
         #self._widget.set_search_column(3)
 
-        targ_data = DdTargets.all_dtype()
-        tglist = Gtk.TargetList.new([])
-        tglist.add(ClipboardListView.LOCAL_DRAG_TARGET[0],
-                   ClipboardListView.LOCAL_DRAG_TARGET[1],
-                   ClipboardListView.LOCAL_DRAG_TARGET[2])
-        for _tg in targ_data:
-            tglist.add(_tg.atom_drag_type, _tg.target_flags, _tg.app_id)
-        self._widget.enable_model_drag_dest([], Gdk.DragAction.COPY)
-        #TODO GTK3: workaround here for bug
-        # https://bugzilla.gnome.org/show_bug.cgi?id=680638
-        self._widget.drag_dest_set_target_list(tglist)
-        #self._widget.drag_dest_set(Gtk.DestDefaults.ALL, targ_data,
-        #                            Gdk.DragAction.COPY)
+        targ_data = ((ClipboardListView.LOCAL_DRAG_TARGET,) +
+                     DdTargets.all_targets())
+        self._widget.drag_dest_set(Gtk.DestDefaults.ALL, targ_data,
+                                   Gdk.DragAction.COPY)
 
         self._widget.connect('drag-data-get', self.object_drag_data_get)
         self._widget.connect('drag-begin', self.object_drag_begin)
@@ -1129,8 +1120,7 @@ class ClipboardListView:
         tree_selection = self._widget.get_selection()
         model, paths = tree_selection.get_selected_rows()
         if len(paths) > 1:
-            targets = [(DdTargets.RAW_LIST.atom_drag_type,
-                        Gtk.TargetFlags.SAME_WIDGET, 0),
+            targets = [DdTargets.RAW_LIST.target(),
                        ClipboardListView.LOCAL_DRAG_TARGET]
         else:
             targets = [ClipboardListView.LOCAL_DRAG_TARGET]
@@ -1138,18 +1128,12 @@ class ClipboardListView:
             node = model.get_iter(path)
             if node is not None:
                 _ob = model.get_value(node, 1)
-                targets += [target.target_data_atom()
+                targets += [target.target()
                             for target in _ob.__class__.DROP_TARGETS]
 
-        #TODO GTK3: workaround here for bug
-        # https://bugzilla.gnome.org/show_bug.cgi?id=680638
         self._widget.enable_model_drag_source(
-            Gdk.ModifierType.BUTTON1_MASK, [],
+            Gdk.ModifierType.BUTTON1_MASK, targets,
             Gdk.DragAction.COPY | Gdk.DragAction.MOVE)
-        tglist = Gtk.TargetList.new([])
-        for _tg in targets:
-            tglist.add(_tg[0], _tg[1], _tg[2])
-        self._widget.drag_source_set_target_list(tglist)
 
     def object_drag_begin(self, widget, drag_context):
         """ Handle the beginning of a drag operation. """

@@ -404,22 +404,14 @@ class GalleryTab(ButtonTab, DbGUIElement):
         variable defined that points to an entry in DdTargets.
         """
 
-        dnd_types = [ self._DND_TYPE, self._DND_EXTRA, DdTargets.MEDIAOBJ]
+        dnd_types = [self._DND_TYPE.target(), self._DND_EXTRA.target(),
+                     DdTargets.MEDIAOBJ.target()]
 
-        #TODO GTK3: wourkaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
-        self.iconlist.enable_model_drag_dest([],
-                                    Gdk.DragAction.MOVE|Gdk.DragAction.COPY)
+        self.iconlist.enable_model_drag_dest(
+            dnd_types, Gdk.DragAction.MOVE | Gdk.DragAction.COPY)
         self.iconlist.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
-                                  [],
-                                  Gdk.DragAction.COPY)
-        tglist = Gtk.TargetList.new([])
-        for tg in dnd_types:
-            tglist.add(tg.atom_drag_type, tg.target_flags, tg.app_id)
-        self.iconlist.drag_dest_set_target_list(tglist)
-        tglist = Gtk.TargetList.new([])
-        tglist.add(self._DND_TYPE.atom_drag_type, self._DND_TYPE.target_flags,
-                   self._DND_TYPE.app_id)
-        self.iconlist.drag_source_set_target_list(tglist)
+                                               [self._DND_TYPE.target()],
+                                               Gdk.DragAction.COPY)
         self.iconlist.connect('drag_data_get', self.drag_data_get)
         if not self.dbstate.db.readonly:
             self.iconlist.connect('drag_data_received', self.drag_data_received)

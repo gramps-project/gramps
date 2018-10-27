@@ -192,23 +192,15 @@ class EmbeddedList(ButtonTab):
         """
 
         if self._DND_EXTRA:
-            dnd_types = [self._DND_TYPE,
-                         self._DND_EXTRA]
+            dnd_types = [self._DND_TYPE.target(),
+                         self._DND_EXTRA.target()]
         else:
-            dnd_types = [self._DND_TYPE]
+            dnd_types = [self._DND_TYPE.target()]
 
-        #TODO GTK3: wourkaround here for bug https://bugzilla.gnome.org/show_bug.cgi?id=680638
-        self.tree.enable_model_drag_dest([], Gdk.DragAction.COPY)
-        self.tree.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK, [],
+        self.tree.enable_model_drag_dest(dnd_types, Gdk.DragAction.COPY)
+        self.tree.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
+                                           [self._DND_TYPE.target()],
                                            Gdk.DragAction.COPY)
-        tglist = Gtk.TargetList.new([])
-        for tg in dnd_types:
-            tglist.add(tg.atom_drag_type, tg.target_flags, tg.app_id)
-        self.tree.drag_dest_set_target_list(tglist)
-        tglist = Gtk.TargetList.new([])
-        tglist.add(self._DND_TYPE.atom_drag_type, self._DND_TYPE.target_flags,
-                   self._DND_TYPE.app_id)
-        self.tree.drag_source_set_target_list(tglist)
 
         self.tree.connect('drag_data_get', self.drag_data_get)
         self.tree.connect_after('drag-begin', self.after_drag_begin)

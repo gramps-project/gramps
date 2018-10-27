@@ -162,13 +162,8 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         # Enable drop
         self.drag_dest_set(Gtk.DestDefaults.MOTION |
                             Gtk.DestDefaults.DROP,
-                            [],
+                            [DdTargets.PERSON_LINK.target()],
                             Gdk.DragAction.COPY)
-        tglist = Gtk.TargetList.new([])
-        tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
-                   DdTargets.PERSON_LINK.target_flags,
-                   DdTargets.PERSON_LINK.app_id)
-        self.drag_dest_set_target_list(tglist)
         self.connect('drag_data_received', self.on_drag_data_received)
 
         self._mouse_click = False
