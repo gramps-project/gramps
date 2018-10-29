@@ -2080,7 +2080,7 @@ msgstr "D MMM GGGG"
 #. to learn how to select proper inflection for your language.
 #: ../gramps/gen/datehandler/_datedisplay.py:181
 #: ../gramps/plugins/drawreport/calendarreport.py:233
-#, fuzzy, python-brace-format
+#, python-format
 msgid "{long_month} {year}"
 msgstr "{long_month.f[G]} {year}."
 
@@ -2090,7 +2090,7 @@ msgstr "{long_month.f[G]} {year}."
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:189
-#, fuzzy, python-brace-format
+#, python-format
 msgid "from|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}."
 
@@ -2100,7 +2100,7 @@ msgstr "{long_month.f[G]} {year}."
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:197
-#, fuzzy, python-brace-format
+#, python-format
 msgid "to|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}."
 
@@ -2110,7 +2110,7 @@ msgstr "{long_month.f[G]} {year}."
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:205
-#, fuzzy, python-brace-format
+#, python-format
 msgid "between|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}."
 
@@ -2120,7 +2120,7 @@ msgstr "{long_month.f[G]} {year}."
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:213
-#, fuzzy, python-brace-format
+#, python-format
 msgid "and|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}."
 
@@ -2129,7 +2129,7 @@ msgstr "{long_month.f[G]} {year}."
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:220
-#, fuzzy, python-brace-format
+#, python-format
 msgid "before|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}."
 
@@ -2138,7 +2138,7 @@ msgstr "{long_month.f[G]} {year}."
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:227
-#, fuzzy, python-brace-format
+#, python-format
 msgid "after|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}."
 
@@ -2147,7 +2147,7 @@ msgstr "{long_month.f[G]} {year}."
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:234
-#, fuzzy, python-brace-format
+#, python-format
 msgid "about|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}."
 
@@ -2156,7 +2156,7 @@ msgstr "{long_month.f[G]} {year}."
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:241
-#, fuzzy, python-brace-format
+#, python-format
 msgid "estimated|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}."
 
@@ -2165,7 +2165,7 @@ msgstr "{long_month.f[G]} {year}."
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:248
-#, fuzzy, python-brace-format
+#, python-format
 msgid "calculated|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}."
 
@@ -2276,7 +2276,7 @@ msgstr "to"
 #: ../gramps/gen/datehandler/_datedisplay.py:433
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
-msgstr "{date_quality} od {date_start} do {date_stop}{nonstd_calendar_and_ny}"
+msgstr "{date_quality}od {date_start} do {date_stop}{nonstd_calendar_and_ny}"
 
 #. If there is no special inflection for "between <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
@@ -2297,7 +2297,7 @@ msgstr "and"
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
-"{date_quality} između {date_start} i {date_stop}{nonstd_calendar_and_ny}"
+"{date_quality}između {date_start} i {date_stop}{nonstd_calendar_and_ny}"
 
 #. If there is no special inflection for "before <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
@@ -20270,13 +20270,13 @@ msgid_plural ""
 "{spouse} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"{spouse} and\n"
+"{spouse} i\n"
 " {person}, {nyears}"
 msgstr[1] ""
-"{spouse} and\n"
+"{spouse} i\n"
 " {person}, {nyears}"
 msgstr[2] ""
-"{spouse} and\n"
+"{spouse} i\n"
 " {person}, {nyears}"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:472
@@ -20981,7 +20981,7 @@ msgstr "Spremanje dijagrama..."
 #: ../gramps/plugins/drawreport/statisticschart.py:939
 #, python-format
 msgid "%s (persons):"
-msgstr "%s (persons):"
+msgstr "%s (osobe):"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:991
 #: ../gramps/plugins/textreport/recordsreport.py:219

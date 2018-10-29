@@ -251,11 +251,17 @@ def create_checksum(full_path):
     Create a md5 hash for the given file.
     """
     full_path = os.path.normpath(full_path)
+    md5 = hashlib.md5()
     try:
         with open(full_path, 'rb') as media_file:
-            md5sum = hashlib.md5(media_file.read()).hexdigest()
+            while True:
+                buf = media_file.read(65536)
+                if not buf:
+                    break
+                md5.update(buf)
+        md5sum = md5.hexdigest()
     except IOError:
-            md5sum = ''
+        md5sum = ''
     except UnicodeEncodeError:
-            md5sum = ''
+        md5sum = ''
     return md5sum

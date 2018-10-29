@@ -35,7 +35,8 @@ import xml.dom.minidom
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..const import PLACE_FORMATS
+from ..const import PLACE_FORMATS, GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from ..config import config
 from ..utils.location import get_location_list
 from ..lib import PlaceType
@@ -72,7 +73,7 @@ class PlaceDisplay:
         if os.path.exists(PLACE_FORMATS):
             self.load_formats()
         else:
-            pf = PlaceFormat('Full', ':', '', 0, False)
+            pf = PlaceFormat(_('Full'), ':', '', 0, False)
             self.place_formats.append(pf)
 
     def display_event(self, db, event, fmt=-1):

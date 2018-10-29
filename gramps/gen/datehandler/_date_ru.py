@@ -94,13 +94,13 @@ class DateParserRU(DateParser):
         _span_1 = ['с', 'от']
         #_span_2 = ['по', 'до'] # <-- clashes with bce parsing :-(
         _span_2 = ['по']
-        _range_1 = ['между', 'меж\.', 'меж']
+        _range_1 = ['между', r'меж\.', 'меж']
         _range_2 = ['и']
-        self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                 ('|'.join(_span_1), '|'.join(_span_2)),
-                                 re.IGNORECASE)
-        self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                 ('|'.join(_range_1), '|'.join(_range_2)),
+        self._span = re.compile(r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
+                                % ('|'.join(_span_1), '|'.join(_span_2)),
+                                re.IGNORECASE)
+        self._range = re.compile(r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
+                                 % ('|'.join(_range_1), '|'.join(_range_2)),
                                  re.IGNORECASE)
 
 #-------------------------------------------------------------------------

@@ -4,7 +4,7 @@
 #
 # Copyright (C) 2004-2006  Donald N. Allingham
 # Copyright (C) 2013       Vassilii Khachaturov
-# Copyright (C) 2014-2017  Paul Franklin
+# Copyright (C) 2014-2018  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -570,6 +570,7 @@ class DateDisplay:
     def _get_short_weekday(self, date_val):
         if (date_val[0] == 0 or date_val[1] == 0 # no day or no month or both
                 or date_val[1] == 13 # Hebrew has 13 months
+                or date_val[2] > datetime.MAXYEAR # bug 10815
                 or date_val[2] < 0): # B.C.E. date
             return ''
         w_day = datetime.date(date_val[2], date_val[1], date_val[0]) # y, m, d
@@ -578,10 +579,15 @@ class DateDisplay:
     def _get_long_weekday(self, date_val):
         if (date_val[0] == 0 or date_val[1] == 0 # no day or no month or both
                 or date_val[1] == 13 # Hebrew has 13 months
+                or date_val[2] > datetime.MAXYEAR # bug 10815
                 or date_val[2] < 0): # B.C.E. date
             return ''
         w_day = datetime.date(date_val[2], date_val[1], date_val[0]) # y, m, d
         return self.long_days[((w_day.weekday() + 1) % 7) + 1]
+
+    def _get_localized_year(self, year):
+        """ Allow a subclass to modify the year, e.g. add a period """
+        return year
 
     def dd_dformat01(self, date_val):
         """
@@ -594,19 +600,23 @@ class DateDisplay:
             return self.display_iso(date_val)
         else:
             if date_val[0] == date_val[1] == 0:
-                return str(date_val[2])
+                return self._get_localized_year(str(date_val[2]))
             else:
                 value = self.dhformat.replace('%m', str(date_val[1]))
-                # some locales have %b for the month, e.g. ar_EG, is_IS, nb_NO
-                # so it would be "Jan" but as it's "numeric" I'll make it "1"
-                value = value.replace('%b', str(date_val[1]))
-                # some locales have %B for the month, e.g. ta_IN
-                # so it would be "January" but as it's "numeric" I'll make it 1
-                value = value.replace('%B', str(date_val[1]))
-                # some locales have %a for the abbreviated day, e.g. is_IS
-                value = value.replace('%a', self._get_short_weekday(date_val))
-                # some locales have %A for the long/full day, e.g. ta_IN
-                value = value.replace('%A', self._get_long_weekday(date_val))
+                if '%b' in value or '%B' in value:
+                    # some locales have %b for the month (ar_EG, is_IS, nb_NO)
+                    # so it would be "Jan" but as it's "numeric" make it "1"
+                    value = value.replace('%b', str(date_val[1]))
+                    # some locales have %B for the month, e.g. ta_IN
+                    # so it would be "January" but as it's "numeric" make it 1
+                    value = value.replace('%B', str(date_val[1]))
+                if '%a' in value or '%A' in value:
+                    # some locales have %a for the abbreviated day, e.g. is_IS
+                    value = value.replace('%a',
+                                          self._get_short_weekday(date_val))
+                    # some locales have %A for the long/full day, e.g. ta_IN
+                    value = value.replace('%A',
+                                          self._get_long_weekday(date_val))
                 if date_val[0] == 0: # ignore the zero day and its delimiter
                     i_day = value.find('%d')
                     if len(value) == i_day + 2: # delimiter is left of the day
@@ -628,7 +638,7 @@ class DateDisplay:
         year = self._slash_year(date_val[2], date_val[3])
         if date_val[0] == 0:
             if date_val[1] == 0:
-                return year
+                return self._get_localized_year(year)
             else:
                 return self.format_long_month_year(date_val[1], year,
                                                    inflect, long_months)
@@ -654,7 +664,7 @@ class DateDisplay:
         year = self._slash_year(date_val[2], date_val[3])
         if date_val[0] == 0:
             if date_val[1] == 0:
-                return year
+                return self._get_localized_year(year)
             else:
                 return self.format_short_month_year(date_val[1], year,
                                                     inflect, short_months)
@@ -680,7 +690,7 @@ class DateDisplay:
         year = self._slash_year(date_val[2], date_val[3])
         if date_val[0] == 0:
             if date_val[1] == 0:
-                return year
+                return self._get_localized_year(year)
             else:
                 return self.format_long_month_year(date_val[1], year,
                                                    inflect, long_months)
@@ -706,7 +716,7 @@ class DateDisplay:
         year = self._slash_year(date_val[2], date_val[3])
         if date_val[0] == 0:
             if date_val[1] == 0:
-                return year
+                return self._get_localized_year(year)
             else:
                 return self.format_short_month_year(date_val[1], year,
                                                     inflect, short_months)

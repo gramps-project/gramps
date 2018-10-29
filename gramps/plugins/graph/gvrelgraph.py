@@ -54,7 +54,7 @@ from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
-from gramps.gen.lib import ChildRefType, EventRoleType, EventType
+from gramps.gen.lib import ChildRefType, EventRoleType, EventType, Date
 from gramps.gen.utils.file import media_path_full, find_file
 from gramps.gen.utils.thumbnails import get_thumbnail_path
 from gramps.gen.relationship import get_relationship_calculator
@@ -724,7 +724,8 @@ class RelGraphReport(Report):
             event_date = event.get_date_object()
             if event_date.get_year_valid():
                 if self.event_choice in [4, 5]:
-                    return '%i' % event_date.get_year()
+                    return self._get_date( # localized year
+                        Date(event_date.get_year()))
                 elif self.event_choice in [1, 2, 3, 7]:
                     return self._get_date(event_date)
         return ''

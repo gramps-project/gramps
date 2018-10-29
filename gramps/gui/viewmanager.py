@@ -38,7 +38,6 @@ import os
 import time
 import datetime
 from io import StringIO
-import posixpath
 import gc
 import html
 
@@ -1644,7 +1643,7 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
         for media in self.dbstate.db.iter_media():
             fullname = media_path_full(self.dbstate.db, media.get_path())
             try:
-                fbytes += posixpath.getsize(fullname)
+                fbytes += os.path.getsize(fullname)
                 length = len(str(fbytes))
                 if fbytes <= 999999:
                     mbytes = "< 1"

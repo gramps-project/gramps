@@ -222,7 +222,7 @@ class buildbase(GObject.GObject):
             os.makedirs(mo_dir)
         #TODO: find a better way to handle  different platforms
         if sys.platform == 'win32':
-            po_files = glob.glob(po_dir + "\*.po")
+            po_files = glob.glob(po_dir + r"\*.po")
             # no longer using python msgfmt as it doesn't handle plurals (april 2010)
             # msgfmtCmd = path.normpath(path.join(sys.prefix, "Tools/i18n/msgfmt.py") )
 

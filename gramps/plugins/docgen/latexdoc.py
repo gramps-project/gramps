@@ -579,7 +579,7 @@ class LaTeXBackend(DocBackend):
             LaTeXBackend.ESCAPE_FUNC = lambda x: latexescapeverbatim
 
     def _create_xmltag(self, type, value):
-        """
+        r"""
         overwrites the method in DocBackend.
         creates the latex tags needed for non bool style types we support:
             FONTSIZE : use different \large denomination based
@@ -1267,7 +1267,8 @@ class LaTeXDoc(BaseDoc, TextDoc):
             text = re.sub(URL_PATTERN, _CLICKABLE, text)
 
         #hard coded replace of the underline used for missing names/data
-        text = text.replace('\\_'*13, '\\underline{\hspace{3\\grbaseindent}}')
+        text = text.replace('\\_' * 13,
+                            '\\underline{\\hspace{3\\grbaseindent}}')
         self.emit(text + ' ')
 
 

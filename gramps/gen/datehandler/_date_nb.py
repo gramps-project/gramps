@@ -58,6 +58,7 @@ class DateParserNb(DateParser):
         'innen'  : Date.MOD_BEFORE,
         'etter'   : Date.MOD_AFTER,
         'omkring' : Date.MOD_ABOUT,
+        'omtrent' : Date.MOD_ABOUT,
         'ca'      : Date.MOD_ABOUT
         }
 
@@ -89,12 +90,13 @@ class DateParserNb(DateParser):
 
     def init_strings(self):
         DateParser.init_strings(self)
-        # match day. month year
-        self._numeric  = re.compile("((\d+)[\.])?\s*((\d+))?\s*(\d+)$")
-        self._span     = re.compile("(fra)?\s*(?P<start>.+)\s*(til|--|–)\s*(?P<stop>.+)",
-                                    re.IGNORECASE)
-        self._range    = re.compile("(mellom)\s+(?P<start>.+)\s+og\s+(?P<stop>.+)",
-                                    re.IGNORECASE)
+        self._numeric = re.compile(
+            r"((\d+)[/\.\s]\s*)?((\d+)[/\.\-\s]\s*)?(\d+)\s*$")
+        self._span = re.compile(
+            r"(fra)?\s*(?P<start>.+)\s*(til|--|–)\s*(?P<stop>.+)",
+            re.IGNORECASE)
+        self._range = re.compile(
+            r"(mellom)\s+(?P<start>.+)\s+og\s+(?P<stop>.+)", re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
@@ -172,6 +174,10 @@ class DateDisplayNb(DateDisplay):
             scal = self.format_extras(cal, newyear)
             return "%s%s%s%s" % (qual_str, self._mod_str[mod],
                                  text, scal)
+
+    def dd_dformat01(self, date_val):
+        """ numerical -- for Norwegian dates """
+        return DateDisplay.dd_dformat01(self, date_val).lstrip()
 
 #-------------------------------------------------------------------------
 #

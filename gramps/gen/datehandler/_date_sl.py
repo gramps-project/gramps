@@ -88,18 +88,18 @@ class DateParserSL(DateParser):
 
         DateParser.init_strings(self)
         # match 'Day. MONTH year.' format with or without dots
-        self._text2 = re.compile('(\d+)?\.?\s*?%s\.?\s*((\d+)(/\d+)?)?\s*\.?$'
-                                % self._mon_str, re.IGNORECASE)
+        self._text2 = re.compile(r'(\d+)?\.?\s*?%s\.?\s*((\d+)(/\d+)?)?\s*\.?$'
+                                 % self._mon_str, re.IGNORECASE)
         # match Day.Month.Year.
-        self._numeric  = re.compile("((\d+)[/\.-])?\s*((\d+)[/\.-])?\s*(\d+)\.?$")
+        self._numeric = re.compile(
+            r"((\d+)[/\.-])?\s*((\d+)[/\.-])?\s*(\d+)\.?$")
 
-        self._span  = re.compile("od\s+(?P<start>.+)\s+do\s+(?P<stop>.+)",
+        self._span = re.compile(r"od\s+(?P<start>.+)\s+do\s+(?P<stop>.+)",
                                 re.IGNORECASE)
         self._range = re.compile(
-                            "med\s+(?P<start>.+)\s+in\s+(?P<stop>.+)",
-                            re.IGNORECASE)
-        self._jtext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'\
-                                % self._jmon_str, re.IGNORECASE)
+            r"med\s+(?P<start>.+)\s+in\s+(?P<stop>.+)", re.IGNORECASE)
+        self._jtext2 = re.compile(r'(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
+                                  % self._jmon_str, re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #

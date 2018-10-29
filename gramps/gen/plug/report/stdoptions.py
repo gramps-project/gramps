@@ -340,3 +340,4 @@ def add_place_format_option(menu, category):
         place_format.add_item(number, fmt.name)
     place_format.set_help(_("Select the format to display places"))
     menu.add_option(category, "place_format", place_format)
+    return place_format

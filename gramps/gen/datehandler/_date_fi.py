@@ -98,12 +98,12 @@ class DateParserFI(DateParser):
 
     def init_strings(self):
         DateParser.init_strings(self)
-        self._text2 = re.compile('(\d+)?\.?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$'
-                                         % self._mon_str, re.IGNORECASE)
-        self._span = re.compile("(?P<start>.+)\s+(-)\s+(?P<stop>.+)",
-                           re.IGNORECASE)
+        self._text2 = re.compile(r'(\d+)?\.?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$'
+                                 % self._mon_str, re.IGNORECASE)
+        self._span = re.compile(r"(?P<start>.+)\s+(-)\s+(?P<stop>.+)",
+                                re.IGNORECASE)
         self._range = re.compile(
-            "(vuosien\s*)?(?P<start>.+)\s+ja\s+(?P<stop>.+)\s+välillä",
+            r"(vuosien\s*)?(?P<start>.+)\s+ja\s+(?P<stop>.+)\s+välillä",
             re.IGNORECASE)
 
 #-------------------------------------------------------------------------

@@ -561,10 +561,10 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
             print('\nDone.')
 
     # finds integer portion in a GrampsID
-    _findint = re.compile('^[^\d]*(\d+)[^\d]*$')
+    _findint = re.compile(r'^[^\d]*(\d+)[^\d]*$')
     # finds prefix, number, suffix of a Gramps ID ignoring a leading or
     # trailing space.  The number must be at least three digits.
-    _prob_id = re.compile('^ *([^\d]*)(\d{3,9})([^\d]*) *$')
+    _prob_id = re.compile(r'^ *([^\d]*)(\d{3,9})([^\d]*) *$')
 
     def _reorder(self, prim_obj):
         """ reorders all selected objects with a (new) style, start & step """

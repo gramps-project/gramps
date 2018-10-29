@@ -79,15 +79,27 @@ class DateParserHR(DateParser):
             #~ 'персидский'    : Date.CAL_PERSIAN,
             #~ 'п'             : Date.CAL_PERSIAN,
         #~ })
+
+        # match 'Day. MONTH year.' format with or without dots
+        self._text2 = re.compile(r'(\d+)?\.?\s*?%s\.?\s*((\d+)(/\d+)?)?\s*\.?$'
+                                 % self._mon_str, re.IGNORECASE)
+
+        # match Day.Month.Year.
+        self._numeric = re.compile(
+                            r"((\d+)[/\. ])?\s*((\d+)[/\.])?\s*(\d+)\.?$")
+
+        self._jtext2 = re.compile(r'(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
+                                  % self._jmon_str, re.IGNORECASE)
+
         _span_1 = ['od']
         _span_2 = ['do']
         _range_1 = ['između']
         _range_2 = ['i']
-        self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                 ('|'.join(_span_1), '|'.join(_span_2)),
-                                 re.IGNORECASE)
-        self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                 ('|'.join(_range_1), '|'.join(_range_2)),
+        self._span = re.compile(r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
+                                % ('|'.join(_span_1), '|'.join(_span_2)),
+                                re.IGNORECASE)
+        self._range = re.compile(r"(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)"
+                                 % ('|'.join(_range_1), '|'.join(_range_2)),
                                  re.IGNORECASE)
 
 #-------------------------------------------------------------------------
@@ -105,11 +117,35 @@ class DateDisplayHR(DateDisplay):
 
     display = DateDisplay.display_formatted
 
+    def format_short_month_year(self, month, year, inflect, short_months):
+        """ Allow a subclass to modify the year, e.g. add a period """
+        if not hasattr(short_months[1], 'f'): # not a Lexeme: no inflection
+            return "{short_month} {year}.".format(
+                     short_month = short_months[month], year = year)
+        return self.FORMATS_short_month_year[inflect].format(
+                     short_month = short_months[month], year = year)
+
+    def _get_localized_year(self, year):
+        """ Allow a subclass to modify the year, e.g. add a period """
+        return year + '.'
+
+    # FIXME probably there should be a Croatian-specific "formats" (and this
+    # ("American comma") format (and dd_dformat03 too) should be eliminated)
+    def dd_dformat02(self, date_val, inflect, long_months):
+        """ month_name day, year """
+        return DateDisplay.dd_dformat02(
+            self, date_val, inflect, long_months).replace(' .', '')
+
+    def dd_dformat04(self, date_val, inflect, long_months):
+        """ day month_name year """
+        return DateDisplay.dd_dformat04(
+            self, date_val, inflect, long_months).replace(' .', '')
+
 #-------------------------------------------------------------------------
 #
 # Register classes
 #
 #-------------------------------------------------------------------------
 register_datehandler(
-    ('hr_HR', 'hr', 'HR', 'croatian', 'Croatian', 'hrvatski', ('%d.%m.%Y',)),
+    ('hr_HR', 'hr', 'HR', 'croatian', 'Croatian', 'hrvatski', ('%d.%m.%Y.',)),
     DateParserHR, DateDisplayHR)

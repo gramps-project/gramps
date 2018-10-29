@@ -24142,9 +24142,9 @@ msgid "Field '%(fldname)s' not found"
 msgstr "Gagnasviðið '%(fldname)s' fannst ekki"
 
 #: ../gramps/plugins/importer/importprogen.py:460
-#, fuzzy, python-format
+#, python-format
 msgid "Cannot find DEF file: %(dname)s"
-msgstr "Ekki rétt DEF-skrá: %(dname)s"
+msgstr "Finn ekki DEF-skrána: %(dname)s"
 
 #. Raise a error message
 #: ../gramps/plugins/importer/importprogen.py:516
@@ -24168,14 +24168,14 @@ msgid "Date did not match: '%(text)s' (%(msg)s)"
 msgstr "Dagsetning samsvarar ekki: '%(text)s' (%(msg)s)"
 
 #: ../gramps/plugins/importer/importprogen.py:1790
-#, fuzzy, python-format
+#, python-format
 msgid "Cannot find father for I%(person)s (Father=%(id)d)"
-msgstr "Finn ekki föður fyrir I%(person)s (faðir=%(father))"
+msgstr "Finn ekki föður fyrir I%(person)s (faðir=%(id)d)"
 
 #: ../gramps/plugins/importer/importprogen.py:1793
-#, fuzzy, python-format
+#, python-format
 msgid "Cannot find mother for I%(person)s (Mother=%(mother)d)"
-msgstr "Finn ekki móður fyrir I%(person)s (móðir=%(mother))"
+msgstr "Finn ekki móður fyrir I%(person)s (móðir=%(mother)d)"
 
 #: ../gramps/plugins/importer/importvcard.py:228
 #, python-format
@@ -35826,14 +35826,6 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Ekkert stílblað"
 
-#, fuzzy
-#~ msgid "Alternate line attachment"
-#~ msgstr "Varanöfn"
-
-#, fuzzy
-#~ msgid "Whether lines attach to nodes differently"
-#~ msgstr "Hvort tengja eigi gögn við vefskýrslu"
-
 #: ../gramps/gui/configure.py:565
 msgid "Gender Male Alive"
 msgstr "Flötur lifandi karlmanns"
@@ -35920,6 +35912,13 @@ msgstr ""
 "%(strong1_start)s%(page_number)d%(strong_end)s af %(strong2_start)s"
 "%(total_pages)d%(strong_end)s"
 
+#, fuzzy
+#~ msgid "Alternate line attachment"
+#~ msgstr "Varanöfn"
+
+#, fuzzy
+#~ msgid "Whether lines attach to nodes differently"
+#~ msgstr "Hvort tengja eigi gögn við vefskýrslu"
 
 #~ msgid "Gender Male Death"
 #~ msgstr "Flötur látins karlmanns"
@@ -36690,3 +36689,9 @@ msgstr ""
 
 #~ msgid "Requested page type not known"
 #~ msgstr "Umbeðin tegund síðu er ekki þekkt"
+
+#~ msgid "Importing families"
+#~ msgstr "Innflutningur á fjölskyldum"
+
+#~ msgid "Adding children"
+#~ msgstr "Bæta við börnum"

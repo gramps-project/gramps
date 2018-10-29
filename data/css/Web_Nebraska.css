@@ -576,6 +576,10 @@ table.relationships tbody tr td.ColumnPartner a:hover {
     content: "";
 }
 
+table.eventlist tbody tr td.ColumnSources {
+    width: 5%;
+}
+
 /* Gallery
 ----------------------------------------------------- */
 #Gallery {  }

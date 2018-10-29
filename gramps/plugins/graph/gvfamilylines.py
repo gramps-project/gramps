@@ -49,7 +49,7 @@ LOG = logging.getLogger(".FamilyLines")
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.lib import EventRoleType, EventType, Person, PlaceType
+from gramps.gen.lib import EventRoleType, EventType, Person, PlaceType, Date
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.thumbnails import (get_thumbnail_path, SIZE_NORMAL,
                                          SIZE_LARGE)
@@ -818,7 +818,8 @@ class FamilyLinesReport(Report):
             if bth_event and self._incdates:
                 date = bth_event.get_date_object()
                 if self._just_years and date.get_year_valid():
-                    birth_str = '%i' % date.get_year()
+                    birth_str = self._get_date( # localized year
+                        Date(date.get_year()))
                 else:
                     birth_str = self._get_date(date)
 
@@ -833,7 +834,8 @@ class FamilyLinesReport(Report):
             if dth_event and self._incdates:
                 date = dth_event.get_date_object()
                 if self._just_years and date.get_year_valid():
-                    death_str = '%i' % date.get_year()
+                    death_str = self._get_date( # localized year
+                        Date(date.get_year()))
                 else:
                     death_str = self._get_date(date)
 
@@ -962,7 +964,8 @@ class FamilyLinesReport(Report):
                         if self._incdates:
                             date = event.get_date_object()
                             if self._just_years and date.get_year_valid():
-                                wedding_date = '%i' % date.get_year()
+                                wedding_date = self._get_date( # localized year
+                                    Date(date.get_year()))
                             else:
                                 wedding_date = self._get_date(date)
                         # get the wedding location

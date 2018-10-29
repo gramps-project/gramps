@@ -520,11 +520,11 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         Return a list of alternate :class:`~.location.Location` objects the
         present alternate information about the current Place.
 
-        A Place can have more than one :class:`~.location.Location`, since names
-        and jurisdictions can change over time for the same place.
+        A Place can have more than one :class:`~.location.Location`, since
+        names and jurisdictions can change over time for the same place.
 
-        :returns: Returns the alternate :class:`~.location.Location`\ s for the
-                  Place
+        :returns: Returns the alternate :class:`~.location.Location` objects
+                  for the Place
         :rtype: list of :class:`~.location.Location` objects
         """
         return self.alt_loc

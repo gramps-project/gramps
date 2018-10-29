@@ -635,18 +635,10 @@ class BasePage: # pylint: disable=C1001
                 (self._("Event"), "ColumnEvent"),
                 (self._("Date"), "ColumnDate"),
                 (self._("Place"), "ColumnPlace"),
-                (self._("Description"), "ColumnDescription")]
+                (self._("Description"), "ColumnDescription"),
+                (self._("Sources"), "ColumnSources")]
         )
         trow += Html("/tr", close=None)
-        trow2 = Html("tr", indent=False)
-        trow2.extend(
-            Html("th", trans, class_=colclass, colspan=opt, inline=True)
-            for trans, colclass, opt in  [
-                ("", "ColumnEvent", 1),
-                (self._("Sources"), "ColumnSources", 1),
-                (self._("Notes"), "ColumnNotes", 2)]
-        )
-        trow.extend(trow2)
         return trow
 
     def display_event_row(self, event, event_ref, place_lat_long,
@@ -697,10 +689,10 @@ class BasePage: # pylint: disable=C1001
         )
 
         trow2 = Html("tr")
-        trow2 += Html("td", "", class_="ColumnSources")
+        trow2 += Html("td", "", class_="ColumnEvent")
         # get event source references
         srcrefs = self.get_citation_links(event.get_citation_list()) or "&nbsp;"
-        trow2 += Html("td", srcrefs, class_="ColumnSources")
+        trow += Html("td", srcrefs, class_="ColumnSources", rowspan=2)
 
         # get event notes
         notelist = event.get_note_list()
@@ -723,7 +715,7 @@ class BasePage: # pylint: disable=C1001
             if notelist:
                 htmllist.extend(self.dump_notes(notelist))
 
-        trow2 += Html("td", htmllist, class_="ColumnNotes", colspan=2)
+        trow2 += Html("td", htmllist, class_="ColumnNotes", colspan=3)
 
         trow += trow2
         # return events table row to its callers
@@ -1415,10 +1407,10 @@ class BasePage: # pylint: disable=C1001
         # create stylesheet and favicon links
         links = Html("link", type="image/x-icon",
                      href=url4, rel="shortcut icon") + (
+                         Html("link", type="text/css", href=url3,
+                              media='print', rel="stylesheet", indent=False),
                          Html("link", type="text/css", href=url2,
                               media="screen", rel="stylesheet", indent=False),
-                         Html("link", type="text/css", href=url3,
-                              media='print', rel="stylesheet", indent=False)
                          )
 
         # Link to Navigation Menus stylesheet

@@ -32,7 +32,7 @@ from gramps.gui.plug.quick import run_quick_report_by_name_direct
 from gramps.gen.lib import Person
 from gramps.gen.datehandler import get_date
 
-import posixpath
+import os
 from collections import defaultdict
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
@@ -389,7 +389,7 @@ def run(database, document, filter_name, *args, **kwargs):
         for photo in database.iter_media():
             fullname = media_path_full(database, photo.get_path())
             try:
-                posixpath.getsize(fullname)
+                os.path.getsize(fullname)
             except:
                 stab.row(fullname)
                 matches += 1
@@ -399,7 +399,7 @@ def run(database, document, filter_name, *args, **kwargs):
         for photo in database.iter_media():
             fullname = media_path_full(database, photo.get_path())
             try:
-                bytes = posixpath.getsize(fullname)
+                bytes = os.path.getsize(fullname)
                 stab.row(fullname, str(bytes))
                 matches += 1
             except:

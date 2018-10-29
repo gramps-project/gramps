@@ -156,13 +156,16 @@ class DateParserPL(DateParser):
 
     def init_strings(self):
         DateParser.init_strings(self)
-        self._span  = re.compile("(od)\s+(?P<start>.+)\s+(do)\s+(?P<stop>.+)", re.IGNORECASE)
+        self._span = re.compile(
+            r"(od)\s+(?P<start>.+)\s+(do)\s+(?P<stop>.+)", re.IGNORECASE)
         # Also handle a common mistakes
-        self._range = re.compile("((?:po)?mi(?:ę|e)dzy)\s+(?P<start>.+)\s+(a)\s+(?P<stop>.+)", re.IGNORECASE)
-        self._text2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
-                                 re.IGNORECASE)
-        self._jtext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str,
-                                 re.IGNORECASE)
+        self._range = re.compile(
+            r"((?:po)?mi(?:ę|e)dzy)\s+(?P<start>.+)\s+(a)\s+(?P<stop>.+)",
+            re.IGNORECASE)
+        self._text2 = re.compile(r'(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
+                                 % self._mon_str, re.IGNORECASE)
+        self._jtext2 = re.compile(r'(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'
+                                  % self._jmon_str, re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #

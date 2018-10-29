@@ -95,14 +95,16 @@ class DateParserSv(DateParser):
     def init_strings(self):
         """ Define, in Swedish, span and range regular expressions"""
         DateParser.init_strings(self)
-        self._numeric = re.compile("((\d+)/)?\s*((\d+)/)?\s*(\d+)[/ ]?$")
+        self._numeric = re.compile(r"((\d+)/)?\s*((\d+)/)?\s*(\d+)[/ ]?$")
         # this next RE has the (possibly-slashed) year at the string's start
-        self._text2 = re.compile('((\d+)(/\d+)?)?\s+?%s\s*(\d+)?\s*$'
-                                     % self._mon_str, re.IGNORECASE)
-        self._span     = re.compile("(från)?\s*(?P<start>.+)\s*(till|--|–)\s*(?P<stop>.+)",
-                                    re.IGNORECASE)
-        self._range    = re.compile("(mellan)\s+(?P<start>.+)\s+och\s+(?P<stop>.+)",
-                                    re.IGNORECASE)
+        self._text2 = re.compile(r'((\d+)(/\d+)?)?\s+?%s\s*(\d+)?\s*$'
+                                 % self._mon_str, re.IGNORECASE)
+        self._span = re.compile(
+            r"(från)?\s*(?P<start>.+)\s*(till|--|–)\s*(?P<stop>.+)",
+            re.IGNORECASE)
+        self._range = re.compile(
+            r"(mellan)\s+(?P<start>.+)\s+och\s+(?P<stop>.+)",
+            re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #

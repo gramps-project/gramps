@@ -1059,13 +1059,13 @@ class NameDisplay:
             format_str = format_str[1:]
         else:
             patterns = [
-                ",\W*\"%(" + ("|".join(codes)) + ")\"",  # ,\W*"%s"
-                ",\W*\(%(" + ("|".join(codes)) + ")\)",  # ,\W*(%s)
-                ",\W*%(" + ("|".join(codes)) + ")",      # ,\W*%s
-                "\"%(" + ("|".join(codes)) + ")\"",      # "%s"
-                "_%(" + ("|".join(codes)) + ")_",        # _%s_
-                "\(%(" + ("|".join(codes)) + ")\)",      # (%s)
-                "%(" + ("|".join(codes)) + ")",          # %s
+                ",\\W*\"%(" + ("|".join(codes)) + ")\"",    # ,\W*"%s"
+                ",\\W*\\(%(" + ("|".join(codes)) + ")\\)",  # ,\W*(%s)
+                ",\\W*%(" + ("|".join(codes)) + ")",        # ,\W*%s
+                "\"%(" + ("|".join(codes)) + ")\"",         # "%s"
+                "_%(" + ("|".join(codes)) + ")_",           # _%s_
+                "\\(%(" + ("|".join(codes)) + ")\\)",       # (%s)
+                "%(" + ("|".join(codes)) + ")",             # %s
                 ]
         new_fmt = format_str
 

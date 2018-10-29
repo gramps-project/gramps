@@ -276,7 +276,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
                     def get_data(self):
                         return self.data
                 class Context:
-                    targets = [drag_type]
+                    targets = [drag_type.name()]
                     action = 1
                     def list_targets(self):
                         return Context.targets

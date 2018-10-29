@@ -74,7 +74,7 @@ class StatisticsPage(BasePage):
                                  for this report
         @param: title         -- Is the title of the web page
         """
-        import posixpath
+        import os
         BasePage.__init__(self, report, title)
         self.bibli = Bibliography()
         self.uplink = False
@@ -99,7 +99,7 @@ class StatisticsPage(BasePage):
             total_media += 1
             fullname = media_path_full(report.database, media.get_path())
             try:
-                chars += posixpath.getsize(fullname)
+                chars += os.path.getsize(fullname)
                 length = len(str(chars))
                 if chars <= 999999:
                     mbytes = _("less than 1")

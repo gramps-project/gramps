@@ -1048,8 +1048,8 @@ def find_revisions(name):
     """
     import re
 
-    rev = re.compile("\s*revision\s+([\d\.]+)")
-    date = re.compile("date:\s+(\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d)[-+]\d\d;")
+    rev = re.compile(r"\s*revision\s+([\d\.]+)")
+    date = re.compile(r"date:\s+(\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d)[-+]\d\d;")
 
     if not os.path.isfile(name) or not _RCS_FOUND:
         return []

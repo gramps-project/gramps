@@ -1078,7 +1078,7 @@ class CheckIntegrity:
             none_handle = False
             if birth_ref:
                 newref = birth_ref
-                if birth_ref.ref is None:
+                if not birth_ref.ref:
                     none_handle = True
                     birth_ref.ref = create_id()
                 birth_handle = birth_ref.ref
@@ -1117,7 +1117,7 @@ class CheckIntegrity:
             death_ref = person.get_death_ref()
             if death_ref:
                 newref = death_ref
-                if death_ref.ref is None:
+                if not death_ref.ref:
                     none_handle = True
                     death_ref.ref = create_id()
                 death_handle = death_ref.ref
@@ -1158,7 +1158,7 @@ class CheckIntegrity:
             if person.get_event_ref_list():
                 for event_ref in person.get_event_ref_list():
                     newlist.append(event_ref)
-                    if event_ref.ref is None:
+                    if not event_ref.ref:
                         none_handle = True
                         event_ref.ref = create_id()
                     event_handle = event_ref.ref
@@ -1199,7 +1199,7 @@ class CheckIntegrity:
                 newlist = []
                 for event_ref in family.get_event_ref_list():
                     newlist.append(event_ref)
-                    if event_ref.ref is None:
+                    if not event_ref.ref:
                         none_handle = True
                         event_ref.ref = create_id()
                     event_handle = event_ref.ref
@@ -1237,52 +1237,87 @@ class CheckIntegrity:
 
         total = self.db.get_total()
 
-        self.progress.set_pass(_('Looking for backlink reference problems'),
-                               total)
+        self.progress.set_pass(_('Looking for backlink reference problems') +
+                               ' (1)', total)
         logging.info('Looking for backlink reference problems')
 
+        # dict of object handles indexed by forward link created here
+        my_blinks = defaultdict(list)
+        my_items = 0  # count of my backlinks for progress meter
+        # dict of object handles indexed by forward link from db
+        db_blinks = {}
+        db_items = 0  # count of db backlinks for progress meter
+
+        # first we assemble our own backlinks table, and while we have the
+        # handle, gather up a second table with the db's backlinks
         for obj_class in CLASS_TO_KEY_MAP.keys():
-            obj_type = obj_class.lower()
-            for handle in getattr(self.db, "iter_%s_handles" % obj_type)():
+            for handle in self.db.method("iter_%s_handles", obj_class)():
                 self.progress.step()
-                pri_obj = getattr(self.db, "get_%s_from_handle"
-                                  % obj_type)(handle)
+                blinks = list(self.db.find_backlink_handles(handle))
+                db_blinks[(obj_class, handle)] = blinks
+                db_items += len(blinks)
+                pri_obj = self.db.method('get_%s_from_handle',
+                                         obj_class)(handle)
                 handle_list = pri_obj.get_referenced_handles_recursively()
-                # check that each reference has a backlink
+                my_items += len(handle_list)
+
                 for item in handle_list:
-                    bl_list = list(self.db.find_backlink_handles(item[1]))
-                    if (obj_class, handle) not in bl_list:
-                        # Object has reference with no cooresponding backlink
-                        self.bad_backlinks += 1
-                        logging.warning('    FAIL: the "%(cls)s" [%(gid)s] '
-                                        'has a "%(cls2)s" reference'
-                                        ' with no corresponding backlink.',
-                                        {'gid': pri_obj.gramps_id,
-                                         'cls': obj_class, 'cls2': item[0]})
-                # Check for backlinks that don't have a reference
-                bl_list = self.db.find_backlink_handles(handle)
-                for item in bl_list:
-                    if not getattr(self.db, "has_%s_handle"
-                                   % item[0].lower())(item[1]):
-                        # backlink to object entirely missing
-                        self.bad_backlinks += 1
-                        logging.warning('    FAIL: the "%(cls)s" [%(gid)s] '
-                                        'has a backlink to a missing'
-                                        ' "%(cls2)s".',
-                                        {'gid': pri_obj.gramps_id,
-                                         'cls': obj_class, 'cls2': item[0]})
-                        continue
-                    obj = getattr(self.db, "get_%s_from_handle"
-                                  % item[0].lower())(item[1])
-                    handle_list = obj.get_referenced_handles_recursively()
-                    if (obj_class, handle) not in handle_list:
-                        # backlink to object which doesn't have reference
-                        self.bad_backlinks += 1
-                        logging.warning('    FAIL: the "%(cls)s" [%(gid)s] '
-                                        'has a backlink to a "%(cls2)s"'
-                                        ' with no corresponding reference.',
-                                        {'gid': pri_obj.gramps_id,
-                                         'cls': obj_class, 'cls2': item[0]})
+                    my_blinks[item].append((obj_class, handle))
+
+        # Now we go through our backlinks and the dbs table comparing them
+        # check that each real reference has a backlink in the db table
+        self.progress.set_pass(_('Looking for backlink reference problems') +
+                               ' (2)', my_items)
+        for key, blinks in my_blinks.items():
+            for item in blinks:
+                self.progress.step()
+                if key not in db_blinks:
+                    # object has reference to something not in db;
+                    # should have been found in previous checks
+                    logging.warning('    Fail: reference to an object %(obj)s'
+                                    ' not in the db by %(ref)s!',
+                                    {'obj': key, 'ref': item})
+                    continue
+                if item not in db_blinks[key]:
+                    # Object has reference with no cooresponding backlink
+                    self.bad_backlinks += 1
+                    pri_obj = self.db.method('get_%s_from_handle',
+                                             key[0])(key[1])
+                    logging.warning('    FAIL: the "%(cls)s" [%(gid)s] '
+                                    'has a "%(cls2)s" reference'
+                                    ' with no corresponding backlink.',
+                                    {'gid': pri_obj.gramps_id,
+                                     'cls': key[0], 'cls2': item[0]})
+
+        # Now we go through the db table and make checks against ours
+        # Check for db backlinks that don't have a reference object at all
+        self.progress.set_pass(_('Looking for backlink reference problems') +
+                               ' (3)', db_items)
+        for key, blinks in db_blinks.items():
+            for item in blinks:
+                self.progress.step()
+                if item not in db_blinks:
+                    # backlink to object entirely missing
+                    self.bad_backlinks += 1
+                    pri_obj = self.db.method('get_%s_from_handle',
+                                             key[0])(key[1])
+                    logging.warning('    FAIL: the "%(cls)s" [%(gid)s] '
+                                    'has a backlink to a missing'
+                                    ' "%(cls2)s" object.',
+                                    {'gid': pri_obj.gramps_id,
+                                     'cls': key[0], 'cls2': item[0]})
+                    continue
+                # Check if the object has a reference to the backlinked one
+                if key not in my_blinks or item not in my_blinks[key]:
+                    # backlink to object which doesn't have reference
+                    self.bad_backlinks += 1
+                    pri_obj = self.db.method('get_%s_from_handle',
+                                             key[0])(key[1])
+                    logging.warning('    FAIL: the "%(cls)s" [%(gid)s] '
+                                    'has a backlink to a "%(cls2)s"'
+                                    ' with no corresponding reference.',
+                                    {'gid': pri_obj.gramps_id,
+                                     'cls': key[0], 'cls2': item[0]})
 
     def callback(self, *args):
         self.progress.step()
@@ -1302,7 +1337,7 @@ class CheckIntegrity:
             person = self.db.get_person_from_handle(key)
             for pref in person.get_person_ref_list():
                 newlist.append(pref)
-                if pref.ref is None:
+                if not pref.ref:
                     none_handle = True
                     pref.ref = create_id()
                 try:
@@ -1361,7 +1396,7 @@ class CheckIntegrity:
             source = self.db.get_source_from_handle(key)
             for reporef in source.get_reporef_list():
                 newlist.append(reporef)
-                if reporef.ref is None:
+                if not reporef.ref:
                     none_handle = True
                     reporef.ref = create_id()
                 try:
@@ -1396,7 +1431,7 @@ class CheckIntegrity:
             place = self.db.get_place_from_handle(key)
             for placeref in place.get_placeref_list():
                 newlist.append(placeref)
-                if placeref.ref is None:
+                if not placeref.ref:
                     none_handle = True
                     placeref.ref = create_id()
                 try:
@@ -1506,7 +1541,7 @@ class CheckIntegrity:
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         person.replace_citation_references(None, new_handle)
                         self.db.commit_person(person, self.trans)
@@ -1520,7 +1555,7 @@ class CheckIntegrity:
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         family.replace_citation_references(None, new_handle)
                         self.db.commit_family(family, self.trans)
@@ -1534,7 +1569,7 @@ class CheckIntegrity:
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         place.replace_citation_references(None, new_handle)
                         self.db.commit_place(place, self.trans)
@@ -1548,7 +1583,7 @@ class CheckIntegrity:
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         citation.replace_citation_references(None, new_handle)
                         self.db.commit_citation(citation, self.trans)
@@ -1562,7 +1597,7 @@ class CheckIntegrity:
             handle_list = repository.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         repository.replace_citation_references(None,
                                                                new_handle)
@@ -1577,7 +1612,7 @@ class CheckIntegrity:
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         obj.replace_citation_references(None, new_handle)
                         self.db.commit_media(obj, self.trans)
@@ -1591,7 +1626,7 @@ class CheckIntegrity:
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Citation':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         event.replace_citation_references(None, new_handle)
                         self.db.commit_event(event, self.trans)
@@ -1622,7 +1657,7 @@ class CheckIntegrity:
             self.progress.step()
             citation = self.db.get_citation_from_handle(key)
             source_handle = citation.get_reference_handle()
-            if source_handle is None:
+            if not source_handle:
                 source_handle = create_id()
                 citation.set_reference_handle(source_handle)
                 self.db.commit_citation(citation, self.trans)
@@ -1666,7 +1701,7 @@ class CheckIntegrity:
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         person.replace_media_references(None, new_handle)
                         self.db.commit_person(person, self.trans)
@@ -1680,7 +1715,7 @@ class CheckIntegrity:
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         family.replace_media_references(None, new_handle)
                         self.db.commit_family(family, self.trans)
@@ -1694,7 +1729,7 @@ class CheckIntegrity:
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         place.replace_media_references(None, new_handle)
                         self.db.commit_place(place, self.trans)
@@ -1708,7 +1743,7 @@ class CheckIntegrity:
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         event.replace_media_references(None, new_handle)
                         self.db.commit_event(event, self.trans)
@@ -1722,7 +1757,7 @@ class CheckIntegrity:
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         citation.replace_media_references(None, new_handle)
                         self.db.commit_citation(citation, self.trans)
@@ -1736,7 +1771,7 @@ class CheckIntegrity:
             handle_list = source.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Media':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         source.replace_media_references(None, new_handle)
                         self.db.commit_source(source, self.trans)
@@ -1788,7 +1823,7 @@ class CheckIntegrity:
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         person.replace_note_references(None, new_handle)
                         self.db.commit_person(person, self.trans)
@@ -1802,7 +1837,7 @@ class CheckIntegrity:
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         family.replace_note_references(None, new_handle)
                         self.db.commit_family(family, self.trans)
@@ -1816,7 +1851,7 @@ class CheckIntegrity:
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         place.replace_note_references(None, new_handle)
                         self.db.commit_place(place, self.trans)
@@ -1830,7 +1865,7 @@ class CheckIntegrity:
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         citation.replace_note_references(None, new_handle)
                         self.db.commit_citation(citation, self.trans)
@@ -1844,7 +1879,7 @@ class CheckIntegrity:
             handle_list = source.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         source.replace_note_references(None, new_handle)
                         self.db.commit_source(source, self.trans)
@@ -1858,7 +1893,7 @@ class CheckIntegrity:
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         obj.replace_note_references(None, new_handle)
                         self.db.commit_media(obj, self.trans)
@@ -1872,7 +1907,7 @@ class CheckIntegrity:
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         event.replace_note_references(None, new_handle)
                         self.db.commit_event(event, self.trans)
@@ -1886,7 +1921,7 @@ class CheckIntegrity:
             handle_list = repo.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Note':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         repo.replace_note_references(None, new_handle)
                         self.db.commit_repository(repo, self.trans)
@@ -1942,7 +1977,7 @@ class CheckIntegrity:
             handle_list = person.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         person.replace_tag_references(None, new_handle)
                         self.db.commit_person(person, self.trans)
@@ -1956,7 +1991,7 @@ class CheckIntegrity:
             handle_list = family.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         family.replace_tag_references(None, new_handle)
                         self.db.commit_family(family, self.trans)
@@ -1970,7 +2005,7 @@ class CheckIntegrity:
             handle_list = obj.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         obj.replace_tag_references(None, new_handle)
                         self.db.commit_media(obj, self.trans)
@@ -1984,7 +2019,7 @@ class CheckIntegrity:
             handle_list = note.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         note.replace_tag_references(None, new_handle)
                         self.db.commit_note(note, self.trans)
@@ -1998,7 +2033,7 @@ class CheckIntegrity:
             handle_list = event.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         event.replace_tag_references(None, new_handle)
                         self.db.commit_event(event, self.trans)
@@ -2012,7 +2047,7 @@ class CheckIntegrity:
             handle_list = citation.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         citation.replace_tag_references(None, new_handle)
                         self.db.commit_citation(citation, self.trans)
@@ -2026,7 +2061,7 @@ class CheckIntegrity:
             handle_list = source.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         source.replace_tag_references(None, new_handle)
                         self.db.commit_source(source, self.trans)
@@ -2040,7 +2075,7 @@ class CheckIntegrity:
             handle_list = place.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         place.replace_tag_references(None, new_handle)
                         self.db.commit_place(place, self.trans)
@@ -2054,7 +2089,7 @@ class CheckIntegrity:
             handle_list = repository.get_referenced_handles_recursively()
             for item in handle_list:
                 if item[0] == 'Tag':
-                    if item[1] is None:
+                    if not item[1]:
                         new_handle = create_id()
                         repository.replace_tag_references(None, new_handle)
                         self.db.commit_repository(repository, self.trans)

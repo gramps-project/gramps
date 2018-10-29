@@ -7744,18 +7744,18 @@ msgid "Marriage Contract abbreviation|m.con."
 msgstr "ægtesk.kontr."
 
 # Fra: http://genealogytipoftheday.blogspot.com/2010/08/marriage-bann.html
-#
+# 
 # Marriage Bann?
 # A marriage bann is an announcement of an upcoming marriage.
 # Usually made for three consecutive weeks in church, banns may also be
 # publicly published announcements of an upcoming marriage.
-#
+# 
 # Usually done so that anyone with knowledge of why the couple should not be
 # married could come forth with the reason.
-#
+# 
 # The publication (or announcement) of the banns does not necessarily mean
 # that the marriage actually took place.
-#
+# 
 # Dansk oversættelse ...bryllupskundgørelse? -MBJ
 #: ../gramps/gen/lib/eventtype.py:251
 msgid "Marriage Banns abbreviation|m.ban."

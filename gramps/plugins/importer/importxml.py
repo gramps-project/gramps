@@ -708,7 +708,7 @@ class GrampsParser(UpdateCallback):
             "rname": (None, self.stop_rname),
         }
         self.grampsuri = re.compile(r"^gramps://(?P<object_class>[A-Z][a-z]+)/"
-            "handle/(?P<handle>\w+)$")
+                                    r"handle/(?P<handle>\w+)$")
 
     def inaugurate(self, handle, target, prim_obj):
         """

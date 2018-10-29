@@ -36480,6 +36480,151 @@ msgstr "Nebraska "
 msgid "No style sheet"
 msgstr "Không có style sheet "
 
+#: ../gramps/gui/configure.py:565
+msgid "Gender Male Alive"
+msgstr ""
+
+#: ../gramps/gui/configure.py:571
+#, fuzzy
+msgid "Border Male Death"
+msgstr "Tuổi chết "
+
+#: ../gramps/gui/configure.py:573
+msgid "Gender Female Alive"
+msgstr ""
+
+#: ../gramps/gui/configure.py:579
+msgid "Border Female Death"
+msgstr ""
+
+#. #        self.add_color(grid, _('Gender Other Alive'), 5,
+#. #                        'preferences.color-gender-other-alive')
+#. #        self.add_color(grid, _('Border Other Alive'), 6,
+#. #                        'preferences.bordercolor-gender-other-alive')
+#. #        self.add_color(grid, _('Gender Other Death'), 7,
+#. #                        'preferences.color-gender-other-death')
+#. #        self.add_color(grid, _('Border Other Death'), 8,
+#. #                        'preferences.bordercolor-gender-other-death')
+#: ../gramps/gui/configure.py:589
+#, fuzzy
+msgid "Gender Unknown Alive"
+msgstr "Giới tính không rõ "
+
+#: ../gramps/gui/configure.py:595
+#, fuzzy
+msgid "Border Unknown Death"
+msgstr "Không biết cha "
+
+#: ../gramps/gui/configure.py:1132
+msgid "Suppress comma after house number"
+msgstr "Bỏ phẩy sau số nhà"
+
+#: ../gramps/gui/editors/editplace.py:199
+#: ../gramps/gui/editors/editplaceref.py:192
+#, fuzzy
+msgid "Invalid latitude (syntax: 18\\u00b09'"
+msgstr "Kinh tuyền sai (cấu trúc: 18°9'"
+
+#: ../gramps/gui/editors/editplace.py:202
+#: ../gramps/gui/editors/editplaceref.py:195
+#, fuzzy
+msgid "Invalid longitude (syntax: 18\\u00b09'"
+msgstr "Kinh tuyến sai (cấu trúc: 18°9'"
+
+#: ../gramps/gui/editors/editrepository.py:60
+#, fuzzy
+msgid "manual|New_Repositories_dialog"
+msgstr "thủ công|Hòa_Kho tư liệu "
+
+#: ../gramps/gui/editors/filtereditor.py:1186
+msgid ""
+"This filter is currently being used as the base for other filters. "
+"Deletingthis filter will result in removing all other filters that depend on "
+"it."
+msgstr ""
+"Bộ lọc này hiện được dùng làm cơ sở cho các bộ lọc khác. Xóa bộ lọc này sẽ "
+"dẫn đến xóa bỏ tất cả các bộ lọc khác phụ thuộc vào nó. "
+
+#: ../gramps/gui/glade/editcitation.glade:201
+msgid ""
+"Conveys the submitter's quantitative evaluation of the credibility of a "
+"piece of information, based upon its supporting evidence. It is not intended "
+"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
+"Very Low =Unreliable evidence or estimated data\n"
+"Low =Questionable reliability of evidence (interviews, census, oral "
+"genealogies, or potential for bias for example, an autobiography)\n"
+"High =Secondary evidence, data officially recorded sometime after event\n"
+"Very High =Direct and primary evidence used, or by dominance of the evidence "
+msgstr ""
+"Chuyển tại đánh giá của người gửi về độ tin cậy của thông tin, căn cứ vào "
+"các chứng cứ hỗ trợ. Nó không nhằm loại bỏ nhu cầu đánh giá bằng chứng của "
+"người nhận.\n"
+"Rất thấp=Chứng cứ không đáng tin cậy hay số liệu phỏng đoán \n"
+" Thấp=bằng chứng đáng nghi ngờ (phỏng vấn, thống kê, chuyện kể miệng, hoặc "
+"có khả năng thiên vị, thí dụ: tự truyện)\n"
+"Cao=Có bằng chứa thứ cấp, số liệu ghi chép chính thức vào thời gian nào đó "
+"sau sự kiện\n"
+"Rất cao= Bằng chứng trực tiếp và chủ yếu được dùng, hay làm chủ của chứng cứ "
+"đó. "
+
+#: ../gramps/gui/glade/editplace.glade:105
+#: ../gramps/gui/glade/editplaceref.glade:228
+msgid ""
+"Either use the two fields below to enter coordinates(latitude and longitude),"
+msgstr ""
+
+#: ../gramps/gui/undohistory.py:57
+msgid "11"
+msgstr "11"
+
+#: ../gramps/plugins/db/bsddb/write.py:2303
+#, fuzzy
+msgid "Database db version"
+msgstr "Phiên bản "
+
+#: ../gramps/plugins/db/dbapi/dbapi.gpr.py:26
+msgid "DB-API"
+msgstr "DB-API"
+
+#: ../gramps/plugins/webreport/narrativeweb.py:5367
+#, fuzzy, python-format
+msgid ""
+"%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
+msgstr ""
+"<strong id = \"GalleryCurrent\">%(page_number)d</strong> / <strong id = "
+"\"GalleryTotal\">%(total_pages)d</strong>"
+
+#, fuzzy
+msgid "Person or Place|Title"
+msgstr "Chức danh "
+
+#, fuzzy
+msgid "manual|Merge_citations..."
+msgstr "Hòa_trích dẫn...."
+
+msgid "HtmlView"
+msgstr "Xem "
+
+msgid "short for married|m."
+msgstr "kh. "
+
+msgid "manual|Interactive_Descendant_Browser..."
+msgstr "Bộ_duyệt_con_cháu_tương_tác..."
+
+msgid "manual|Generate_SoundEx_codes"
+msgstr "Tạo_mã_SoundEx "
+
+msgid "Media |Gallery"
+msgstr " Kho hình"
+
+msgid "Media | Gallery"
+msgstr " Kho hình"
+
+#, fuzzy
+msgid "html|Home"
+msgstr "Trang chủ "
+
 #~ msgid "Alternate line attachment"
 #~ msgstr "Tệp kèm dòng khác"
 
@@ -36543,22 +36688,6 @@ msgstr "Không có style sheet "
 #~ "Văn bản thông số  nguồn\n"
 #~ "(Văn bản, tên tập tin nhập & (System-)Date)."
 
-#: ../gramps/gui/configure.py:565
-msgid "Gender Male Alive"
-msgstr ""
-
-#: ../gramps/gui/configure.py:571
-#, fuzzy
-msgid "Border Male Death"
-msgstr "Tuổi chết "
-
-#: ../gramps/gui/configure.py:573
-msgid "Gender Female Alive"
-msgstr ""
-
-#: ../gramps/gui/configure.py:579
-msgid "Border Female Death"
-msgstr ""
 #~ msgid "Citation reference."
 #~ msgstr "Tham chiếu trích dẫn"
 
@@ -36575,28 +36704,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Văn bản quyển/trang trích\n"
 #~ "(văn bản & (System-)Date)."
-
-#. #        self.add_color(grid, _('Gender Other Alive'), 5,
-#. #                        'preferences.color-gender-other-alive')
-#. #        self.add_color(grid, _('Border Other Alive'), 6,
-#. #                        'preferences.bordercolor-gender-other-alive')
-#. #        self.add_color(grid, _('Gender Other Death'), 7,
-#. #                        'preferences.color-gender-other-death')
-#. #        self.add_color(grid, _('Border Other Death'), 8,
-#. #                        'preferences.bordercolor-gender-other-death')
-#: ../gramps/gui/configure.py:589
-#, fuzzy
-msgid "Gender Unknown Alive"
-msgstr "Giới tính không rõ "
-
-#: ../gramps/gui/configure.py:595
-#, fuzzy
-msgid "Border Unknown Death"
-msgstr "Không biết cha "
-
-#: ../gramps/gui/configure.py:1132
-msgid "Suppress comma after house number"
-msgstr "Bỏ phẩy sau số nhà"
 
 #~ msgid ""
 #~ "Citation attribute text\n"
@@ -36624,31 +36731,6 @@ msgstr "Bỏ phẩy sau số nhà"
 #~ msgid "Combined default text + filename + date."
 #~ msgstr "Văn bản mặc định kết hợp + tên tập tin + ngày tháng. "
 
-#: ../gramps/gui/editors/editplace.py:199
-#: ../gramps/gui/editors/editplaceref.py:192
-#, fuzzy
-msgid "Invalid latitude (syntax: 18\\u00b09'"
-msgstr "Kinh tuyền sai (cấu trúc: 18°9'"
-
-#: ../gramps/gui/editors/editplace.py:202
-#: ../gramps/gui/editors/editplaceref.py:195
-#, fuzzy
-msgid "Invalid longitude (syntax: 18\\u00b09'"
-msgstr "Kinh tuyến sai (cấu trúc: 18°9'"
-
-#: ../gramps/gui/editors/editrepository.py:60
-#, fuzzy
-msgid "manual|New_Repositories_dialog"
-msgstr "thủ công|Hòa_Kho tư liệu "
-
-#: ../gramps/gui/editors/filtereditor.py:1186
-msgid ""
-"This filter is currently being used as the base for other filters. "
-"Deletingthis filter will result in removing all other filters that depend on "
-"it."
-msgstr ""
-"Bộ lọc này hiện được dùng làm cơ sở cho các bộ lọc khác. Xóa bộ lọc này sẽ "
-"dẫn đến xóa bỏ tất cả các bộ lọc khác phụ thuộc vào nó. "
 #~ msgid ""
 #~ "Copy Default Date\n"
 #~ "to all sensitive Tag Text'."
@@ -36669,46 +36751,6 @@ msgstr ""
 #~ msgid "Tag Text"
 #~ msgstr "Văn bản thẻ"
 
-#: ../gramps/gui/glade/editcitation.glade:201
-msgid ""
-"Conveys the submitter's quantitative evaluation of the credibility of a "
-"piece of information, based upon its supporting evidence. It is not intended "
-"to eliminate the receiver's need to evaluate the evidence for themselves.\n"
-"Very Low =Unreliable evidence or estimated data\n"
-"Low =Questionable reliability of evidence (interviews, census, oral "
-"genealogies, or potential for bias for example, an autobiography)\n"
-"High =Secondary evidence, data officially recorded sometime after event\n"
-"Very High =Direct and primary evidence used, or by dominance of the evidence "
-msgstr ""
-"Chuyển tại đánh giá của người gửi về độ tin cậy của thông tin, căn cứ vào "
-"các chứng cứ hỗ trợ. Nó không nhằm loại bỏ nhu cầu đánh giá bằng chứng của "
-"người nhận.\n"
-"Rất thấp=Chứng cứ không đáng tin cậy hay số liệu phỏng đoán \n"
-" Thấp=bằng chứng đáng nghi ngờ (phỏng vấn, thống kê, chuyện kể miệng, hoặc "
-"có khả năng thiên vị, thí dụ: tự truyện)\n"
-"Cao=Có bằng chứa thứ cấp, số liệu ghi chép chính thức vào thời gian nào đó "
-"sau sự kiện\n"
-"Rất cao= Bằng chứng trực tiếp và chủ yếu được dùng, hay làm chủ của chứng cứ "
-"đó. "
-
-#: ../gramps/gui/glade/editplace.glade:105
-#: ../gramps/gui/glade/editplaceref.glade:228
-msgid ""
-"Either use the two fields below to enter coordinates(latitude and longitude),"
-msgstr ""
-
-#: ../gramps/gui/undohistory.py:57
-msgid "11"
-msgstr "11"
-
-#: ../gramps/plugins/db/bsddb/write.py:2303
-#, fuzzy
-msgid "Database db version"
-msgstr "Phiên bản "
-
-#: ../gramps/plugins/db/dbapi/dbapi.gpr.py:26
-msgid "DB-API"
-msgstr "DB-API"
 #~ msgid "Import Objects"
 #~ msgstr "Đối tượng nhập"
 
@@ -36749,15 +36791,6 @@ msgstr "DB-API"
 
 #~ msgid "Identifier"
 #~ msgstr "Số nhận diện"
-
-#: ../gramps/plugins/webreport/narrativeweb.py:5367
-#, fuzzy, python-format
-msgid ""
-"%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
-"%(total_pages)d%(strong_end)s"
-msgstr ""
-"<strong id = \"GalleryCurrent\">%(page_number)d</strong> / <strong id = "
-"\"GalleryTotal\">%(total_pages)d</strong>"
 
 #~ msgid "Diverse"
 #~ msgstr "Khác"
@@ -37248,10 +37281,6 @@ msgstr ""
 #~ msgstr "%(type)s: %(list)s"
 
 #, fuzzy
-#~ msgid "Person or Place|Title"
-#~ msgstr "Chức danh "
-
-#, fuzzy
 #~ msgid "Birth place id"
 #~ msgstr "Nơi sinh "
 
@@ -37479,10 +37508,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Dưới đây là danh sách các địa điểm với các dữ liệu có thể được rút ra từ "
 #~ "tiêu đề địa điểm.Chọn địa điểm bạn muốn Gramps đổi. "
-
-#, fuzzy
-#~ msgid "manual|Merge_citations..."
-#~ msgstr "Hòa_trích dẫn...."
 
 #~ msgid "Extract Place Data from a Place Title"
 #~ msgstr "Rúa số liệu địa điểm từ tên địa điểm "
@@ -37833,9 +37858,6 @@ msgstr ""
 
 #~ msgid "Web"
 #~ msgstr "Web "
-
-#~ msgid "HtmlView"
-#~ msgstr "Xem "
 
 #~ msgid "Go to the previous page in the history"
 #~ msgstr "Đi đến trang trước trong lịch sử "
@@ -38224,9 +38246,6 @@ msgstr ""
 #~ msgid "<no name>"
 #~ msgstr "<không tên> "
 
-#~ msgid "short for married|m."
-#~ msgstr "kh. "
-
 #~ msgid "Active person: <b>%s</b>"
 #~ msgstr "Người hoạt động: <b>%s</b>"
 
@@ -38291,9 +38310,6 @@ msgstr ""
 #~ msgid "<i>Double-click on the row to edit personal information</i>"
 #~ msgstr "<i>Nhấp đúp vào dòng để sửa thông tin cá nhân</i> "
 
-#~ msgid "manual|Interactive_Descendant_Browser..."
-#~ msgstr "Bộ_duyệt_con_cháu_tương_tác..."
-
 #~ msgid "Descendant Browser tool"
 #~ msgstr "Công cụ duyệt con cháu "
 
@@ -38314,9 +38330,6 @@ msgstr ""
 
 #~ msgid "Close Window"
 #~ msgstr "Đóng cửa sổ "
-
-#~ msgid "manual|Generate_SoundEx_codes"
-#~ msgstr "Tạo_mã_SoundEx "
 
 #~ msgid "Interactive Descendant Browser"
 #~ msgstr "Trình duyệt con cháu tương tác "
@@ -38896,12 +38909,6 @@ msgstr ""
 
 #~ msgid "Source Reference: %s"
 #~ msgstr "Tham chiếu nguồn:%s "
-
-#~ msgid "Media |Gallery"
-#~ msgstr " Kho hình"
-
-#~ msgid "Media | Gallery"
-#~ msgstr " Kho hình"
 
 #~ msgid "Partner 1"
 #~ msgstr "Bạn đời 1 "
@@ -39586,10 +39593,6 @@ msgstr ""
 #~ msgstr "Mục menu di chuyển alphabet "
 
 #, fuzzy
-#~ msgid "html|Home"
-#~ msgstr "Trang chủ "
-
-#, fuzzy
 #~ msgid "Main Navigation Menu Item: %s"
 #~ msgstr "Mục di chuyển chính %s "
 
@@ -39993,3 +39996,43 @@ msgstr ""
 
 #~ msgid "Family Sources"
 #~ msgstr "Nguồn gia đình "
+
+#~ msgid ""
+#~ "Copy Default Text\n"
+#~ "to all Tag Text'."
+#~ msgstr ""
+#~ "Sao chép văn bản mặc định\n"
+#~ "sang tất cả văn bản thẻ'."
+
+#~ msgid ""
+#~ "Copy Default Filename\n"
+#~ "to all sensitive Tag Text'."
+#~ msgstr ""
+#~ "Chép tên tập tin mặc định\n"
+#~ "sang tất cả văn bản thẻ nhạy cảm'."
+
+#~ msgid "Name change"
+#~ msgstr "Thay đổi tên"
+
+#~ msgid "Event date"
+#~ msgstr "Ngày sự kiện"
+
+#~ msgid ""
+#~ "Store birth date in\n"
+#~ "event description."
+#~ msgstr ""
+#~ "Lưu ngày tháng sinh ở\n"
+#~ "mô tả sự kiện."
+
+#~ msgid ""
+#~ "Store death date in\n"
+#~ "event description."
+#~ msgstr ""
+#~ "Mô tả ngày tháng chết ở\n"
+#~ "mô tả sự kiện."
+
+#~ msgid "Importing families"
+#~ msgstr "Nhập gia đình "
+
+#~ msgid "Adding children"
+#~ msgstr "Thêm con "
