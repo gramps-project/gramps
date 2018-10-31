@@ -243,6 +243,7 @@ register(
 register("interface.filter", False)
 register("interface.fullscreen", False)
 register("interface.grampletbar-close", True)
+register("interface.grampletbar-freeze", False)
 register("interface.ignore-gexiv2", False)
 register("interface.ignore-pil", False)
 register("interface.ignore-osmgpsmap", False)
