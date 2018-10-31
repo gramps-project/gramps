@@ -984,6 +984,12 @@ class GrampsPreferences(ConfigureDialog):
         """
         self.uistate.emit('grampletbar-close-changed')
 
+    def cb_grampletbar_refresh(self, obj):
+        """
+        Gramplet bar refresh button preference callback
+        """
+        self.uistate.emit('grampletbar-refresh-changed')
+
     def add_formats_panel(self, configdialog):
         row = 0
         grid = Gtk.Grid()
@@ -1184,6 +1190,13 @@ class GrampsPreferences(ConfigureDialog):
                           _("Show close button in gramplet bar tabs"),
                           row, 'interface.grampletbar-close', stop=3,
                           extra_callback=self.cb_grampletbar_close)
+        row += 1
+
+        # Gramplet bar refresh button:
+        self.add_checkbox(grid,
+                          _("Enable manual refresh for the active gramplet"),
+                          row, 'interface.grampletbar-refresh', stop=3,
+                          extra_callback=self.cb_grampletbar_refresh)
         row += 1
         return _('Display'), grid
 

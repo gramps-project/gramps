@@ -196,6 +196,7 @@ register('interface.view-categories',
 register('interface.filter', False)
 register('interface.fullscreen', False)
 register('interface.grampletbar-close', False)
+register('interface.grampletbar-refresh', False)
 register('interface.ignore-gexiv2', False)
 register('interface.ignore-pil', False)
 register('interface.ignore-osmgpsmap', False)

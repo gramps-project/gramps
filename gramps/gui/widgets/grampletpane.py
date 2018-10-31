@@ -34,6 +34,7 @@ from gi.repository import Pango
 import time
 import os
 import configparser
+from gramps.gen.config import config
 
 import logging
 
@@ -242,6 +243,8 @@ class GrampletWindow(ManagedWindow):
         self.setup_configs('interface.' + cfg_name,
                            gramplet.detached_width, gramplet.detached_height)
         self.window.add_button(_('_Help'), Gtk.ResponseType.HELP)
+        if config.get('interface.grampletbar-refresh'):
+            self.window.add_button(_('Refresh'), Gtk.ResponseType.APPLY)
         # add gramplet:
         if self.gramplet.pui:
             self.gramplet.pui.active = True
@@ -274,12 +277,20 @@ class GrampletWindow(ManagedWindow):
             else:
                 display_help(WIKI_HELP_PAGE,
                                    self.gramplet.tname.replace(" ", "_"))
+        elif response == Gtk.ResponseType.APPLY:
+            self.refresh()
 
     def build_menu_names(self, obj):
         """
         Part of the Gramps window interface.
         """
         return (self.title, 'Gramplet')
+
+    def refresh(self):
+        """
+        Refresh the detached gramplet
+        """
+        self.gramplet.pui.main() # refresh
 
     def get_title(self):
         """
