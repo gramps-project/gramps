@@ -398,6 +398,7 @@ class DisplayState(Callback):
         'nameformat-changed' : None,
         'placeformat-changed' : None,
         'grampletbar-close-changed' : None,
+        'grampletbar-freeze-changed' : None,
         'update-available' : (list, ),
         'autobackup' : None,
         }

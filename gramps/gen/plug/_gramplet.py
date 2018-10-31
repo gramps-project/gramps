@@ -291,17 +291,46 @@ class Gramplet:
         """
         The main interface for running the :meth:`main` method.
         """
-        from gi.repository import GLib
         if ((not self.active) and
             not self.gui.force_update):
             self.dirty = True
             if self.dbstate.is_open():
-                #print "  %s is not active" % self.gui.gname
+                #print("  %s is not active" % self.gui.gname)
                 self.update_has_data()
             else:
                 self.set_has_data(False)
             return
-        #print "     %s is UPDATING" % self.gui.gname
+        #print("     %s is UPDATING" % self.gui.gname)
+        uva = self.uistate.viewmanager.active_page
+        # The dashboard has no sidebar or bottombar
+        if uva.bottombar:
+            for gramplets in [uva.bottombar.get_children()]:
+                for gramplet in gramplets:
+                    for i in range(gramplet.pui.gui.pane.get_n_pages()):
+                        child = gramplet.pui.gui.pane.get_nth_page(i)
+                        label = gramplet.pui.gui.pane.get_tab_label(child)
+                        act_grplet = (i == gramplet.pui.gui.pane.get_current_page())
+                        if (gramplet.title == child.get_title() and
+                            gramplet.title == self.gui.title and
+                            not label.get_freeze().get_active() and
+                            act_grplet):
+                            self._really_update()
+            for gramplets in [uva.sidebar.get_children()]:
+                for gramplet in gramplets:
+                    for i in range(gramplet.pui.gui.pane.get_n_pages()):
+                        child = gramplet.pui.gui.pane.get_nth_page(i)
+                        label = gramplet.pui.gui.pane.get_tab_label(child)
+                        act_grplet = (i == gramplet.pui.gui.pane.get_current_page())
+                        if (gramplet.title == child.get_title() and
+                            gramplet.title == self.gui.title and
+                            not label.get_freeze().get_active() and
+                            act_grplet):
+                            self._really_update()
+        else:
+            self._really_update()
+
+    def _really_update(self):
+        from gi.repository import GLib
         self.dirty = False
         LOG.debug("gramplet updater: %s: running" % self.gui.title)
         if self._idle_id != 0:
