@@ -73,6 +73,7 @@ from gramps.gen.utils.db import family_name
 from gramps.gen.utils.string import conf_strings
 from ..widgets import DateEntry
 from gramps.gen.datehandler import displayer
+from gramps.gen.config import config
 
 #-------------------------------------------------------------------------
 #
@@ -684,6 +685,9 @@ class EditRule(ManagedWindow):
         self.rname_filter.connect('changed', self.on_rname_filter_changed)
 
         self._set_size()
+        config.register('interface.edit-rule-pane', 205)
+        panepos = config.get('interface.edit-rule-pane')
+        self.get_widget('hpaned1').set_position(panepos)
         self.show()
 
     def select_iter(self, data):
@@ -728,6 +732,8 @@ class EditRule(ManagedWindow):
                                    section=WIKI_HELP_SEC)
 
     def close_window(self, obj):
+        panepos = self.get_widget('hpaned1').get_position()
+        config.set('interface.edit-rule-pane', panepos)
         self.close()
 
     def on_node_selected(self, obj):
