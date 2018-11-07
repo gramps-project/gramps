@@ -17,7 +17,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-from ....filters.rules.person._matchidof import MatchIdOf
 
 """
 Unittest that tests person-specific filter rules
@@ -27,6 +26,8 @@ import os
 from time import perf_counter
 import inspect
 
+from ....filters import reload_custom_filters
+reload_custom_filters()
 from ....db.utils import import_as_dict
 from ....filters import GenericFilter, CustomFilters
 from ....const import DATA_DIR

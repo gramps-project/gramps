@@ -100,6 +100,7 @@ from gramps.gui.editors import (EditPerson, EditFamily, EditMedia, EditNote,
                                 EditPlace, EditSource, EditRepository,
                                 EditCitation, EditEvent)
 from gramps.gen.db.exceptions import DbWriteFailure
+from gramps.gen.filters import reload_custom_filters
 from .managedwindow import ManagedWindow
 
 #-------------------------------------------------------------------------
@@ -195,6 +196,7 @@ class ViewManager(CLIManager):
         self.__connect_signals()
 
         self.do_reg_plugins(self.dbstate, self.uistate)
+        reload_custom_filters()
         #plugins loaded now set relationship class
         self.rel_class = get_relationship_calculator()
         self.uistate.set_relationship_class()
