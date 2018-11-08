@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-24 14:13+0100\n"
-"PO-Revision-Date: 2018-11-08 18:29+0100\n"
+"PO-Revision-Date: 2018-11-08 19:21+0100\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27118,17 +27118,17 @@ msgstr "Hon döptes %(month_year)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:783
 #, python-format
 msgid "%(unknown_gender_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s döptes %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:784
 #, python-format
 msgid "This person was christened in %(month_year)s%(endnotes)s."
-msgstr ""
+msgstr "Personen döptes %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:786
 #, python-format
 msgid "Christened %(month_year)s%(endnotes)s."
-msgstr ""
+msgstr "Döpt %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:791
 #, python-format
@@ -27136,12 +27136,13 @@ msgid ""
 "%(male_name)s was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
+"%(male_name)s döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:792
 #, python-format
 msgid ""
 "He was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "Han döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:795
 #, python-format
@@ -27149,12 +27150,13 @@ msgid ""
 "%(female_name)s was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
+"%(female_name)s döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:796
 #, python-format
 msgid ""
 "She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "Hon döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:799
 #, python-format
@@ -27162,412 +27164,419 @@ msgid ""
 "%(unknown_gender_name)s was christened %(modified_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
+"%(unknown_gender_name)s döptes %(modified_date)s i %(christening_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:800
 #, python-format
 msgid ""
 "This person was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
-msgstr ""
+msgstr "Personen döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:802
 #, python-format
 msgid "Christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "Döpt %(modified_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:807
 #, python-format
 msgid "%(male_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(male_name)s döptes %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:808
 #, python-format
 msgid "He was christened %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Han döptes %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:811
 #, python-format
 msgid "%(female_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(female_name)s döptes %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:812
 #, python-format
 msgid "She was christened %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Hon döptes %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:815
 #, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s döptes %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:816
 #, python-format
 msgid "This person was christened %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Personen döptes %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:818
 #, python-format
 msgid "Christened %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Döpt %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:823
 #, python-format
 msgid "%(male_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(male_name)s döptes i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:824
 #, python-format
 msgid "He was christened in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "Han döptes i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:827
 #, python-format
 msgid "%(female_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(female_name)s döptes i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:828
 #, python-format
 msgid "She was christened in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "Hon döptes i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:831
 #, python-format
 msgid ""
 "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s döptes i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:832
 #, python-format
 msgid "This person was christened in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "Personen döptes i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:834
 #, python-format
 msgid "Christened in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "Döpt i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:839
 #, python-format
 msgid "%(male_name)s was christened%(endnotes)s."
-msgstr ""
+msgstr "%(male_name)s döpt%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:840
 #, python-format
 msgid "He was christened%(endnotes)s."
-msgstr ""
+msgstr "Han döptes%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:843
 #, python-format
 msgid "%(female_name)s was christened%(endnotes)s."
-msgstr ""
+msgstr "%(female_name)s döptes%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:844
 #, python-format
 msgid "She was christened%(endnotes)s."
-msgstr ""
+msgstr "Hon döptes%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:847
 #, python-format
 msgid "%(unknown_gender_name)s was christened%(endnotes)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s döptes%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:848
 #, python-format
 msgid "This person was christened%(endnotes)s."
-msgstr ""
+msgstr "Personen döptes%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:850
 #, python-format
 msgid "Christened%(endnotes)s."
-msgstr ""
+msgstr "Döpt%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:861
 #, python-format
 msgid "%(male_name)s is the child of %(father)s and %(mother)s."
-msgstr ""
+msgstr "%(male_name)s är barn till %(father)s och %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:862
 #, python-format
 msgid "%(male_name)s was the child of %(father)s and %(mother)s."
-msgstr ""
+msgstr "%(male_name)s var barn till %(father)s och %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:865
 #, python-format
 msgid "This person is the child of %(father)s and %(mother)s."
-msgstr ""
+msgstr "Personen är barn till %(father)s och %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:866
 #, python-format
 msgid "This person was the child of %(father)s and %(mother)s."
-msgstr ""
+msgstr "Personen var barn till %(father)s och %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:868
 #, python-format
 msgid "Child of %(father)s and %(mother)s."
-msgstr ""
+msgstr "Barn till %(father)s och %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:872
 #, python-format
 msgid "%(male_name)s is the son of %(father)s and %(mother)s."
-msgstr ""
+msgstr "%(male_name)s är son till %(father)s och %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:873
 #, python-format
 msgid "%(male_name)s was the son of %(father)s and %(mother)s."
-msgstr ""
+msgstr "%(male_name)s var son till %(father)s och %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:876
 #, python-format
 msgid "He is the son of %(father)s and %(mother)s."
-msgstr ""
+msgstr "Han är son till %(father)s och %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:877
 #, python-format
 msgid "He was the son of %(father)s and %(mother)s."
-msgstr ""
+msgstr "Han var son till %(father)s och %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:879
 #, python-format
 msgid "Son of %(father)s and %(mother)s."
-msgstr ""
+msgstr "Son till %(father)s och %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:883
 #, python-format
 msgid "%(female_name)s is the daughter of %(father)s and %(mother)s."
-msgstr ""
+msgstr "%(female_name)s är dotter till %(father)s och %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:884
 #, python-format
 msgid "%(female_name)s was the daughter of %(father)s and %(mother)s."
-msgstr ""
+msgstr "%(female_name)s var dotter till %(father)s och %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:887
 #, python-format
 msgid "She is the daughter of %(father)s and %(mother)s."
-msgstr ""
+msgstr "Hon är dotter till %(father)s och %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:888
 #, python-format
 msgid "She was the daughter of %(father)s and %(mother)s."
-msgstr ""
+msgstr "Hon var dotter till %(father)s och %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:890
 #, python-format
 msgid "Daughter of %(father)s and %(mother)s."
-msgstr ""
+msgstr "Dotter till %(father)s och %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:897
 #, python-format
 msgid "%(male_name)s is the child of %(father)s."
-msgstr ""
+msgstr "%(male_name)s är barn till %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:898
 #, python-format
 msgid "%(male_name)s was the child of %(father)s."
-msgstr ""
+msgstr "%(male_name)s var barn till %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:901
 #, python-format
 msgid "This person is the child of %(father)s."
-msgstr ""
+msgstr "Personen är barn till %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:902
 #, python-format
 msgid "This person was the child of %(father)s."
-msgstr ""
+msgstr "Personen var barn till %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:904
 #, python-format
 msgid "Child of %(father)s."
-msgstr ""
+msgstr "Barn till %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:908
 #, python-format
 msgid "%(male_name)s is the son of %(father)s."
-msgstr ""
+msgstr "%(male_name)s är son till %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:909
 #, python-format
 msgid "%(male_name)s was the son of %(father)s."
-msgstr ""
+msgstr "%(male_name)s var son till %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:912
 #, python-format
 msgid "He is the son of %(father)s."
-msgstr ""
+msgstr "Han är son till %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:913
 #, python-format
 msgid "He was the son of %(father)s."
-msgstr ""
+msgstr "Han var son till %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:915
 #, python-format
 msgid "Son of %(father)s."
-msgstr ""
+msgstr "Son till %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:919
 #, python-format
 msgid "%(female_name)s is the daughter of %(father)s."
-msgstr ""
+msgstr "%(female_name)s är dotter till %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:920
 #, python-format
 msgid "%(female_name)s was the daughter of %(father)s."
-msgstr ""
+msgstr "%(female_name)s var dotter till %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:923
 #, python-format
 msgid "She is the daughter of %(father)s."
-msgstr ""
+msgstr "Hon är dotter till %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:924
 #, python-format
 msgid "She was the daughter of %(father)s."
-msgstr ""
+msgstr "Hon var dotter till %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:926
 #, python-format
 msgid "Daughter of %(father)s."
-msgstr ""
+msgstr "Dotter till %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:933
 #, python-format
 msgid "%(male_name)s is the child of %(mother)s."
-msgstr ""
+msgstr "%(male_name)s är barn till %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:934
 #, python-format
 msgid "%(male_name)s was the child of %(mother)s."
-msgstr ""
+msgstr "%(male_name)s var barn till %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:937
 #, python-format
 msgid "This person is the child of %(mother)s."
-msgstr ""
+msgstr "Personen är barn till %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:938
 #, python-format
 msgid "This person was the child of %(mother)s."
-msgstr ""
+msgstr "Personen var barn till %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:940
 #, python-format
 msgid "Child of %(mother)s."
-msgstr ""
+msgstr "Barn till %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:944
 #, python-format
 msgid "%(male_name)s is the son of %(mother)s."
-msgstr ""
+msgstr "%(male_name)s är son till %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:945
 #, python-format
 msgid "%(male_name)s was the son of %(mother)s."
-msgstr ""
+msgstr "%(male_name)s var son till %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:948
 #, python-format
 msgid "He is the son of %(mother)s."
-msgstr ""
+msgstr "Han är son till %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:949
 #, python-format
 msgid "He was the son of %(mother)s."
-msgstr ""
+msgstr "Han var son till %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:951
 #, python-format
 msgid "Son of %(mother)s."
-msgstr ""
+msgstr "Son till %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:955
 #, python-format
 msgid "%(female_name)s is the daughter of %(mother)s."
-msgstr ""
+msgstr "%(female_name)s är dotter till %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:956
 #, python-format
 msgid "%(female_name)s was the daughter of %(mother)s."
-msgstr ""
+msgstr "%(female_name)s var dotter till %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:959
 #, python-format
 msgid "She is the daughter of %(mother)s."
-msgstr ""
+msgstr "Hon är dotter till %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:960
 #, python-format
 msgid "She was the daughter of %(mother)s."
-msgstr ""
+msgstr "Hon var dotter till %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:962
 #, python-format
 msgid "Daughter of %(mother)s."
-msgstr ""
+msgstr "Dotter till %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:973
 #, python-format
 msgid ""
 "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Personen gifte sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:974
 #, python-format
 msgid ""
 "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Personen gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:975
 #, python-format
 msgid ""
 "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Personen gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:978
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Han gifte sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:979
 #, python-format
 msgid "He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Han gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:980
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Han gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:983
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Hon gifte sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:984
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Hon gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:985
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Hon gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:988
 #, python-format
 msgid "Married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Gifte sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:989
 #, python-format
 msgid "Married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:990
 #, python-format
 msgid "Married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:996
 #, python-format
@@ -27575,6 +27584,8 @@ msgid ""
 "This person also married %(spouse)s in %(partial_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Personen gifte om sig med %(spouse)s %(partial_date)s i %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:997
 #, python-format
@@ -27582,6 +27593,7 @@ msgid ""
 "This person also married %(spouse)s on %(full_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Personen gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:998
 #, python-format
@@ -27589,148 +27601,154 @@ msgid ""
 "This person also married %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
 msgstr ""
+"Personen gifte om sig med %(spouse)s %(modified_date)s i %(place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1001
 #, python-format
 msgid ""
 "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Han gifte om sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1002
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Han gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1003
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Han gifte om sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1006
 #, python-format
 msgid ""
 "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Hon gifte om sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1007
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Hon gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1008
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
+"Hon gifte om sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1011
 #, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Även gift med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1012
 #, python-format
 msgid "Also married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Även gift med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1013
 #, python-format
 msgid "Also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Även gift med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1019
 #, python-format
 msgid "This person married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "Personen gifte sig med %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1020
 #, python-format
 msgid "This person married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Personen gifte sig med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1021
 #, python-format
 msgid "This person married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Personen gifte sig med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1024
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "Han gifte sig med %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1025
 #, python-format
 msgid "He married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Han gifte sig med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1026
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Han gifte sig med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1029
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "Hon gifte sig med %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1030
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Hon gifte sig med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1031
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Hon gifte sig med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1034
 #, python-format
 msgid "Married %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "Gift %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1035
 #, python-format
 msgid "Married %(spouse)s %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Gift %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1036
 #, python-format
 msgid "Married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Gift %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1042
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "Personen gifte om sig med %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1043
 #, python-format
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Personen gifte om sig med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1044
 #, python-format
 msgid "This person also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Personen gifte om sig med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1047
 #, python-format
 msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "Han gifte om sig med %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1048
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Han gifte om sig med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1049
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Han gifte om sig med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1052
 #, python-format
 msgid "She also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "Hon gifte om sig med %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1053
 #, python-format
