@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-24 14:13+0100\n"
-"PO-Revision-Date: 2018-11-08 14:30+0100\n"
+"PO-Revision-Date: 2018-11-08 18:29+0100\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27058,7 +27058,7 @@ msgstr ""
 #, python-format
 msgid ""
 "He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "Han döptes %(month_year)s i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:763
 #, python-format
@@ -27066,12 +27066,13 @@ msgid ""
 "%(female_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
+"%(female_name)s döptes %(month_year)s i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:764
 #, python-format
 msgid ""
 "She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "Hon döptes %(month_year)s i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:767
 #, python-format
@@ -27079,38 +27080,40 @@ msgid ""
 "%(unknown_gender_name)s was christened in %(month_year)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
+"%(unknown_gender_name)s döptes %(month_year)s i %(christening_place)s"
+"%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:768
 #, python-format
 msgid ""
 "This person was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
-msgstr ""
+msgstr "Personen döptes %(month_year)s i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:770
 #, python-format
 msgid "Christened %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr ""
+msgstr "Döpt %(month_year)s i %(christening_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:775
 #, python-format
 msgid "%(male_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr ""
+msgstr "%(male_name)s döptes %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:776
 #, python-format
 msgid "He was christened in %(month_year)s%(endnotes)s."
-msgstr ""
+msgstr "Han döptes %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:779
 #, python-format
 msgid "%(female_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr ""
+msgstr "%(female_name)s döptes %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:780
 #, python-format
 msgid "She was christened in %(month_year)s%(endnotes)s."
-msgstr ""
+msgstr "Hon döptes %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:783
 #, python-format
