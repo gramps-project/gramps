@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-24 14:13+0100\n"
-"PO-Revision-Date: 2018-11-09 19:24+0100\n"
+"PO-Revision-Date: 2018-11-10 17:50+0100\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29243,144 +29243,151 @@ msgid ""
 "Either we choose the + and - from the keypad if we select this,\n"
 "or we use the characters from the keyboard."
 msgstr ""
+"Använd knappsatsen för genvägar:\n"
+"Antingen väljer vi + och - från knappsatsen om vi väljer detta,\n"
+"eller så använder vi tecken från tangentbordet."
 
 #: ../gramps/plugins/lib/maps/geography.py:1245
 msgid "The map"
-msgstr ""
+msgstr "Kartan"
 
 #: ../gramps/plugins/lib/maps/geography.py:1261
 msgid "Select tile cache directory for offline mode"
-msgstr ""
+msgstr "Välj cache-katalog för delrutor vid arbete utan internet"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:138
 #, python-format
 msgid "Can't create tiles cache directory %s"
-msgstr ""
+msgstr "Kan inte skapa cache-katalog %s för delrutor"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:161
 #: ../gramps/plugins/lib/maps/osmgps.py:226
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
-msgstr ""
+msgstr "Kan inte skapa cache-katalog för delrutor för '%s'."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:110
 #: ../gramps/plugins/lib/maps/placeselection.py:112
 msgid "Place Selection in a region"
-msgstr ""
+msgstr "Placera val i en region"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:113
 msgid ""
 "Choose the radius of the selection.\n"
 "On the map you should see a circle or an oval depending on the latitude."
 msgstr ""
+"Välj radie på valet.\n"
+"På kartan bör du nu se en cirkel eller oval beroende på latitud."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:151
 msgid "The green values in the row correspond to the current place values."
-msgstr ""
+msgstr "De gröna värdena på en rad motsvarar den aktuella platsens värde."
 
 #. here, we could add value from geography names services ...
 #. if we found no place, we must create a default place.
 #: ../gramps/plugins/lib/maps/placeselection.py:198
 msgid "New place with empty fields"
-msgstr ""
+msgstr "Ny plats med tomma fält"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:273
 msgid "you have a wrong latitude for:"
-msgstr ""
+msgstr "du har en felaktig latitud för:"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:275
 #: ../gramps/plugins/lib/maps/placeselection.py:285
 msgid "Please, correct this before linking"
-msgstr ""
+msgstr "Korrigera detta före länkning"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:283
 msgid "you have a wrong longitude for:"
-msgstr ""
+msgstr "du har en felaktig longitud för:"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:53
 msgid "Denmark"
-msgstr ""
+msgstr "Danmark"
 
 #. TODO for Arabic, should the next line's comma be translated?
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:81
 msgid " parish"
-msgstr ""
+msgstr " församling"
 
 #. TODO for Arabic, should the next line's comma be translated?
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:87
 msgid " state"
-msgstr ""
+msgstr " län"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:150
 msgid "Latitude not within '54.55' to '69.05'\n"
-msgstr ""
+msgstr "Latitud ej inom '54.55' till '69.05'\n"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:151
 msgid "Longitude not within '8.05' to '24.15'"
-msgstr ""
+msgstr "Longitud ej inom '8.05' till '24.15'"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:152
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:180
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:186
 msgid "Eniro map not available"
-msgstr ""
+msgstr "Eniros karta ej tillgänglig"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:181
 msgid "Coordinates needed in Denmark"
-msgstr ""
+msgstr "Koordinater behövs i Danmark"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:187
 msgid ""
 "Latitude and longitude,\n"
 "or street and city needed"
 msgstr ""
+"Latitud och longitud,\n"
+"eller gata och stad behövs"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:33
 msgid "EniroMaps"
-msgstr ""
+msgstr "Eniros kartor"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:34
 msgid "Opens on kartor.eniro.se"
-msgstr ""
+msgstr "Öppnar på kartor.eniro.se"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:52
 msgid "GoogleMaps"
-msgstr ""
+msgstr "Google-kartor"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:53
 msgid "Open on maps.google.com"
-msgstr ""
+msgstr "Öppnar på maps.google.com"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:71
 #: ../gramps/plugins/webreport/narrativeweb.py:1942
 msgid "OpenStreetMap"
-msgstr ""
+msgstr "OpenStreetMap"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:72
 msgid "Open on openstreetmap.org"
-msgstr ""
+msgstr "Öppnar på openstreetmap.org"
 
 #: ../gramps/plugins/quickview/ageondate.py:49
 #, python-format
 msgid "People and their ages the %s"
-msgstr ""
+msgstr "Personer och deras ålder den %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:52
 #, python-format
 msgid "People and their ages on %s"
-msgstr ""
+msgstr "Personer och deras ålder på %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:64
 #: ../gramps/plugins/quickview/ageondate.py:67
 #, python-format
 msgid "Alive: %s"
-msgstr ""
+msgstr "Levande: %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:73
 #: ../gramps/plugins/quickview/ageondate.py:76
 #, python-format
 msgid "Deceased: %s"
-msgstr ""
+msgstr "Avlidna: %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:81
 #, python-format
@@ -29388,32 +29395,34 @@ msgid ""
 "\n"
 "Living matches: %(alive)d, Deceased matches: %(dead)d\n"
 msgstr ""
+"\n"
+"Levandes matchningar: %(alive)d, avlidnas matchningar: %(dead)d\n"
 
 #. display the results
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/quickview/all_events.py:57
 #, python-format
 msgid "Sorted events of %s"
-msgstr ""
+msgstr "Sorterade händelser för %s"
 
 #: ../gramps/plugins/quickview/all_events.py:60
 #: ../gramps/plugins/quickview/all_events.py:110
 #: ../gramps/plugins/quickview/all_events.py:125
 msgid "Event Date"
-msgstr ""
+msgstr "Händelsedatum"
 
 #: ../gramps/plugins/quickview/all_events.py:60
 #: ../gramps/plugins/quickview/all_events.py:110
 #: ../gramps/plugins/quickview/all_events.py:125
 msgid "Event Place"
-msgstr ""
+msgstr "Händelseplats"
 
 #: ../gramps/plugins/quickview/all_events.py:60
 #: ../gramps/plugins/quickview/all_events.py:109
 #: ../gramps/plugins/quickview/all_events.py:124
 #: ../gramps/plugins/webreport/person.py:874
 msgid "Event Type"
-msgstr ""
+msgstr "Händelsetyp"
 
 #: ../gramps/plugins/quickview/all_events.py:70
 #: ../gramps/plugins/quickview/all_events.py:120
@@ -29422,7 +29431,7 @@ msgstr ""
 #: ../gramps/plugins/quickview/reporef.py:83
 #: ../gramps/plugins/quickview/siblings.py:72
 msgid "Not found"
-msgstr ""
+msgstr "Inte funnen"
 
 #. display the results
 #: ../gramps/plugins/quickview/all_events.py:103
@@ -29431,60 +29440,62 @@ msgid ""
 "Sorted events of family\n"
 " %(father)s - %(mother)s"
 msgstr ""
+"Sorterade händelser för familj\n"
+" %(father)s - %(mother)s"
 
 #: ../gramps/plugins/quickview/all_events.py:109
 #: ../gramps/plugins/quickview/all_events.py:124
 msgid "Family Member"
-msgstr ""
+msgstr "Familjemedlem"
 
 #: ../gramps/plugins/quickview/all_events.py:123
 msgid "Personal events of the children"
-msgstr ""
+msgstr "Personliga händelser för barnen"
 
 #: ../gramps/plugins/quickview/all_relations.py:70
 msgid "Home person not set."
-msgstr ""
+msgstr "Hemperson är inte bestämd."
 
 #: ../gramps/plugins/quickview/all_relations.py:79
 #: ../gramps/plugins/tool/relcalc.py:194
 #, python-format
 msgid "%(person)s and %(active_person)s are the same person."
-msgstr ""
+msgstr "%(person)s och %(active_person)s är samma person."
 
 #: ../gramps/plugins/quickview/all_relations.py:88
 #: ../gramps/plugins/tool/relcalc.py:207
 #, python-format
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
-msgstr ""
+msgstr "%(person)s är %(relationship)s till %(active_person)s."
 
 #: ../gramps/plugins/quickview/all_relations.py:102
 #, python-format
 msgid "%(person)s and %(active_person)s are not directly related."
-msgstr ""
+msgstr "%(person)s och %(active_person)s är inte släkt."
 
 #: ../gramps/plugins/quickview/all_relations.py:151
 #, python-format
 msgid "%(person)s and %(active_person)s have following in-law relations:"
-msgstr ""
+msgstr "%(person)s och %(active_person)s har följande ingiftesrelationer:"
 
 #: ../gramps/plugins/quickview/all_relations.py:205
 #, python-format
 msgid "Relationships of %(person)s to %(active_person)s"
-msgstr ""
+msgstr "Släktskap mellan %(person)s och %(active_person)s"
 
 #: ../gramps/plugins/quickview/all_relations.py:266
 #, python-format
 msgid "Detailed path from %(person)s to common ancestor"
-msgstr ""
+msgstr "Detaljerad väg från %(person)s till gemensam förfader"
 
 #: ../gramps/plugins/quickview/all_relations.py:269
 msgid "Name Common ancestor"
-msgstr ""
+msgstr "Ange gemensam förfader"
 
 #: ../gramps/plugins/quickview/all_relations.py:270
 #: ../gramps/plugins/tool/findloop.py:114
 msgid "Parent"
-msgstr ""
+msgstr "Förälder"
 
 #: ../gramps/plugins/quickview/all_relations.py:286
 #: ../gramps/plugins/view/relview.py:406
@@ -29493,171 +29504,171 @@ msgstr ""
 #: ../gramps/plugins/webreport/person.py:221
 #: ../gramps/plugins/webreport/surname.py:138
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #: ../gramps/plugins/quickview/all_relations.py:313
 msgid "Partial"
-msgstr ""
+msgstr "Delvis"
 
 #: ../gramps/plugins/quickview/all_relations.py:333
 msgid "Remarks with inlaw family"
-msgstr ""
+msgstr "Kommentarer för ingift släkt"
 
 #: ../gramps/plugins/quickview/all_relations.py:335
 msgid "Remarks"
-msgstr ""
+msgstr "Anmärkningar"
 
 #: ../gramps/plugins/quickview/all_relations.py:337
 msgid "The following problems were encountered:"
-msgstr ""
+msgstr "Följande problem uppstod:"
 
 #: ../gramps/plugins/quickview/attributematch.py:32
 #, python-format
 msgid "People who have the '%s' Attribute"
-msgstr ""
+msgstr "Personer som har '%s' attributet"
 
 #: ../gramps/plugins/quickview/attributematch.py:46
 #, python-format
 msgid "There are %d people with a matching attribute name.\n"
-msgstr ""
+msgstr "Det finns %d personer med ett matchande attributnamn.\n"
 
 #. else "nearby" comments are ignored
 #: ../gramps/plugins/quickview/filterbyname.py:41
 msgid "Filtering_on|all"
-msgstr ""
+msgstr "alla"
 
 #: ../gramps/plugins/quickview/filterbyname.py:42
 msgid "Filtering_on|Inverse Person"
-msgstr ""
+msgstr "ej utvald(a) person(er)"
 
 #: ../gramps/plugins/quickview/filterbyname.py:43
 msgid "Filtering_on|Inverse Family"
-msgstr ""
+msgstr "ej utvald(a) familj(er)"
 
 #: ../gramps/plugins/quickview/filterbyname.py:44
 msgid "Filtering_on|Inverse Event"
-msgstr ""
+msgstr "ej utvald(a) händelse(r)"
 
 #: ../gramps/plugins/quickview/filterbyname.py:45
 msgid "Filtering_on|Inverse Place"
-msgstr ""
+msgstr "ej utvald(a) plats(er)"
 
 #: ../gramps/plugins/quickview/filterbyname.py:46
 msgid "Filtering_on|Inverse Source"
-msgstr ""
+msgstr "ej utvald(a) källa/källor"
 
 #: ../gramps/plugins/quickview/filterbyname.py:47
 msgid "Filtering_on|Inverse Repository"
-msgstr ""
+msgstr "ej utvald(a) arkivplats(er)"
 
 #: ../gramps/plugins/quickview/filterbyname.py:48
 msgid "Filtering_on|Inverse Media"
-msgstr ""
+msgstr "ej utvalt/utvalda mediaobjekt"
 
 #: ../gramps/plugins/quickview/filterbyname.py:49
 msgid "Filtering_on|Inverse Note"
-msgstr ""
+msgstr "ej utvald(a) notis(er)"
 
 #: ../gramps/plugins/quickview/filterbyname.py:50
 msgid "Filtering_on|all people"
-msgstr ""
+msgstr "samtliga personer"
 
 #: ../gramps/plugins/quickview/filterbyname.py:51
 msgid "Filtering_on|all families"
-msgstr ""
+msgstr "samtliga familjer"
 
 #: ../gramps/plugins/quickview/filterbyname.py:52
 msgid "Filtering_on|all events"
-msgstr ""
+msgstr "samtliga händelser"
 
 #: ../gramps/plugins/quickview/filterbyname.py:53
 msgid "Filtering_on|all places"
-msgstr ""
+msgstr "samtliga platser"
 
 #: ../gramps/plugins/quickview/filterbyname.py:54
 msgid "Filtering_on|all sources"
-msgstr ""
+msgstr "samtliga källor"
 
 #: ../gramps/plugins/quickview/filterbyname.py:55
 msgid "Filtering_on|all repositories"
-msgstr ""
+msgstr "samtliga arkivplatser"
 
 #: ../gramps/plugins/quickview/filterbyname.py:56
 msgid "Filtering_on|all media"
-msgstr ""
+msgstr "samtliga mediaobjekt"
 
 #: ../gramps/plugins/quickview/filterbyname.py:57
 msgid "Filtering_on|all notes"
-msgstr ""
+msgstr "samtliga notiser"
 
 #: ../gramps/plugins/quickview/filterbyname.py:58
 msgid "Filtering_on|males"
-msgstr ""
+msgstr "män"
 
 #: ../gramps/plugins/quickview/filterbyname.py:59
 msgid "Filtering_on|females"
-msgstr ""
+msgstr "kvinnor"
 
 #: ../gramps/plugins/quickview/filterbyname.py:61
 msgid "Filtering_on|people with unknown gender"
-msgstr ""
+msgstr "personer med okänt kön"
 
 #: ../gramps/plugins/quickview/filterbyname.py:63
 msgid "Filtering_on|incomplete names"
-msgstr ""
+msgstr "ej kompletta namn"
 
 #: ../gramps/plugins/quickview/filterbyname.py:65
 msgid "Filtering_on|people with missing birth dates"
-msgstr ""
+msgstr "personer utan känt födelsedatum"
 
 #: ../gramps/plugins/quickview/filterbyname.py:66
 msgid "Filtering_on|disconnected people"
-msgstr ""
+msgstr "släktlösa personer"
 
 #: ../gramps/plugins/quickview/filterbyname.py:67
 msgid "Filtering_on|unique surnames"
-msgstr ""
+msgstr "unika efternamn"
 
 #: ../gramps/plugins/quickview/filterbyname.py:68
 msgid "Filtering_on|people with media"
-msgstr ""
+msgstr "personer med bilder/media"
 
 #: ../gramps/plugins/quickview/filterbyname.py:69
 msgid "Filtering_on|media references"
-msgstr ""
+msgstr "mediareferenser"
 
 #: ../gramps/plugins/quickview/filterbyname.py:70
 msgid "Filtering_on|unique media"
-msgstr ""
+msgstr "unikt media"
 
 #: ../gramps/plugins/quickview/filterbyname.py:71
 msgid "Filtering_on|missing media"
-msgstr ""
+msgstr "saknade media"
 
 #: ../gramps/plugins/quickview/filterbyname.py:72
 msgid "Filtering_on|media by size"
-msgstr ""
+msgstr "media i storleksordning"
 
 #: ../gramps/plugins/quickview/filterbyname.py:73
 msgid "Filtering_on|list of people"
-msgstr ""
+msgstr "lista av personer"
 
 #: ../gramps/plugins/quickview/filterbyname.py:85
 msgid "Summary counts of current selection"
-msgstr ""
+msgstr "Summering av antal för aktuellt val"
 
 #: ../gramps/plugins/quickview/filterbyname.py:87
 msgid "Right-click row (or press ENTER) to see selected items."
-msgstr ""
+msgstr "Högerklicka på rad (eller tryck ENTER) för att se valda poster."
 
 #: ../gramps/plugins/quickview/filterbyname.py:89
 msgid "Count/Total"
-msgstr ""
+msgstr "Antal/totalt"
 
 #: ../gramps/plugins/quickview/filterbyname.py:89
 #: ../gramps/plugins/tool/reorderids.glade:1401
 msgid "Object"
-msgstr ""
+msgstr "Objekt"
 
 #: ../gramps/plugins/quickview/filterbyname.py:91
 #: ../gramps/plugins/quickview/filterbyname.py:116
@@ -29666,7 +29677,7 @@ msgstr ""
 #: ../gramps/plugins/view/view.gpr.py:205
 #: ../gramps/plugins/view/view.gpr.py:214
 msgid "People"
-msgstr ""
+msgstr "Personer"
 
 #: ../gramps/plugins/quickview/filterbyname.py:103
 #: ../gramps/plugins/quickview/filterbyname.py:128
@@ -29685,13 +29696,13 @@ msgstr ""
 #: ../gramps/plugins/webreport/source.py:130
 #: ../gramps/plugins/webreport/source.py:227
 msgid "Sources"
-msgstr ""
+msgstr "Källor"
 
 #: ../gramps/plugins/quickview/filterbyname.py:146
 #: ../gramps/plugins/quickview/filterbyname.py:148
 #, python-format
 msgid "Filtering on %s"
-msgstr ""
+msgstr "Filtrering av %s"
 
 #: ../gramps/plugins/quickview/filterbyname.py:282
 #: ../gramps/plugins/quickview/filterbyname.py:290
@@ -29702,19 +29713,19 @@ msgstr ""
 #: ../gramps/plugins/quickview/samesurnames.py:115
 #: ../gramps/plugins/quickview/samesurnames.py:160
 msgid "Name type"
-msgstr ""
+msgstr "Namntyp"
 
 #: ../gramps/plugins/quickview/filterbyname.py:332
 msgid "birth event but no date"
-msgstr ""
+msgstr "födelse men inget datum"
 
 #: ../gramps/plugins/quickview/filterbyname.py:335
 msgid "missing birth event"
-msgstr ""
+msgstr "saknar födelse"
 
 #: ../gramps/plugins/quickview/filterbyname.py:365
 msgid "Media count"
-msgstr ""
+msgstr "Mediaräknare"
 
 #: ../gramps/plugins/quickview/filterbyname.py:373
 #: ../gramps/plugins/quickview/linkreferences.py:45
@@ -29723,281 +29734,288 @@ msgstr ""
 #: ../gramps/plugins/quickview/onthisday.py:82
 #: ../gramps/plugins/quickview/references.py:70
 msgid "Reference"
-msgstr ""
+msgstr "Referens"
 
 #: ../gramps/plugins/quickview/filterbyname.py:377
 msgid "media"
-msgstr ""
+msgstr "media"
 
 #: ../gramps/plugins/quickview/filterbyname.py:381
 msgid "Unique Media"
-msgstr ""
+msgstr "Unikt media"
 
 #: ../gramps/plugins/quickview/filterbyname.py:388
 msgid "Missing Media"
-msgstr ""
+msgstr "Saknade media"
 
 #: ../gramps/plugins/quickview/filterbyname.py:398
 msgid "Size in bytes"
-msgstr ""
+msgstr "Storlek i byte"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/quickview/filterbyname.py:420
 #, python-brace-format
 msgid "Filter matched {number_of} record."
 msgid_plural "Filter matched {number_of} records."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Filter matchande  {number_of} post."
+msgstr[1] "Filter matchande  {number_of} poster."
 
 #. display the results
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/quickview/lineage.py:52
 #, python-format
 msgid "Father lineage for %s"
-msgstr ""
+msgstr "Faders släktlinje för %s"
 
 #: ../gramps/plugins/quickview/lineage.py:54
 msgid ""
 "This report shows the father lineage, also called patronymic lineage or Y-"
 "line. People in this lineage all share the same Y-chromosome."
 msgstr ""
+"Denna rapport visar släktlinjen för fader, även kallad den patronymiska "
+"härkomsten eller Y-linjen. Personer i denna släktlinje delar alla samma Y-"
+"kromosom."
 
 #: ../gramps/plugins/quickview/lineage.py:61
 msgid "Name Father"
-msgstr ""
+msgstr "Fadersnamn"
 
 #: ../gramps/plugins/quickview/lineage.py:61
 #: ../gramps/plugins/quickview/lineage.py:93
 #: ../gramps/plugins/quickview/lineage.py:183
 msgid "Remark"
-msgstr ""
+msgstr "Anmärkning"
 
 #: ../gramps/plugins/quickview/lineage.py:69
 msgid "Direct line male descendants"
-msgstr ""
+msgstr "Direkta manliga ättlingar"
 
 #. display the results
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/quickview/lineage.py:83
 #, python-format
 msgid "Mother lineage for %s"
-msgstr ""
+msgstr "Moders släktlinje för %s"
 
 #: ../gramps/plugins/quickview/lineage.py:85
 msgid ""
 "This report shows the mother lineage, also called matronymic lineage mtDNA "
 "lineage. People in this lineage all share the same Mitochondrial DNA (mtDNA)."
 msgstr ""
+"Denna rapport visar släktlinjen för moder, även kallad den matronymiska "
+"härkomsten eller mtDNA-linjen. Personer i denna släktlinje delar alla samma "
+"mitokondrie-DNA (mtDNA)."
 
 #: ../gramps/plugins/quickview/lineage.py:93
 msgid "Name Mother"
-msgstr ""
+msgstr "Modersnamn"
 
 #: ../gramps/plugins/quickview/lineage.py:101
 msgid "Direct line female descendants"
-msgstr ""
+msgstr "Direkta kvinnliga ättlingar"
 
 #: ../gramps/plugins/quickview/lineage.py:125
 #: ../gramps/plugins/quickview/lineage.py:221
 msgid "ERROR : Too many levels in the tree (perhaps a loop?)."
-msgstr ""
+msgstr "FEL : För många nivåer i trädet (kanske en slinga?)."
 
 #: ../gramps/plugins/quickview/lineage.py:156
 msgid "No birth relation with child"
-msgstr ""
+msgstr "Ingen födelserelation med barn"
 
 #: ../gramps/plugins/quickview/lineage.py:160
 #: ../gramps/plugins/quickview/lineage.py:180
 #: ../gramps/plugins/tool/verify.py:1058
 msgid "Unknown gender"
-msgstr ""
+msgstr "Okänt kön"
 
 #. display the title
 #: ../gramps/plugins/quickview/linkreferences.py:43
 msgid "Link References for this note"
-msgstr ""
+msgstr "Länkreferenser till denna notis"
 
 #: ../gramps/plugins/quickview/linkreferences.py:45
 msgid "Link check"
-msgstr ""
+msgstr "Länkkontroll"
 
 #: ../gramps/plugins/quickview/linkreferences.py:53
 #: ../gramps/plugins/textreport/notelinkreport.py:114
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: ../gramps/plugins/quickview/linkreferences.py:56
 msgid "Failed: missing object"
-msgstr ""
+msgstr "Misslyckades: objekt saknas"
 
 #: ../gramps/plugins/quickview/linkreferences.py:58
 #: ../gramps/plugins/textreport/notelinkreport.py:119
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: ../gramps/plugins/quickview/linkreferences.py:67
 msgid "No link references for this note"
-msgstr ""
+msgstr "Inga länkreferenser för denna notis"
 
 #. display the title
 #: ../gramps/plugins/quickview/onthisday.py:77
 #, python-format
 msgid "Events of %(date)s"
-msgstr ""
+msgstr "Händelser %(date)s"
 
 #: ../gramps/plugins/quickview/onthisday.py:115
 msgid "Events on this exact date"
-msgstr ""
+msgstr "Händelser på denna dag"
 
 #: ../gramps/plugins/quickview/onthisday.py:118
 msgid "No events on this exact date"
-msgstr ""
+msgstr "Inga händelser på denna dag"
 
 #: ../gramps/plugins/quickview/onthisday.py:124
 msgid "Other events on this month/day in history"
-msgstr ""
+msgstr "Övriga händelser på denna månad/dag i historien"
 
 #: ../gramps/plugins/quickview/onthisday.py:127
 msgid "No other events on this month/day in history"
-msgstr ""
+msgstr "Inga övriga händelser på denna månad/dag i historien"
 
 #: ../gramps/plugins/quickview/onthisday.py:133
 #, python-format
 msgid "Other events in %(year)d"
-msgstr ""
+msgstr "Övriga händelser under %(year)d"
 
 #: ../gramps/plugins/quickview/onthisday.py:137
 #, python-format
 msgid "No other events in %(year)d"
-msgstr ""
+msgstr "Inga övriga händelser under %(year)d"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:36
 msgid "Display people and ages on a particular date"
-msgstr ""
+msgstr "Visar personer och åldrar på en särskild dag"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:55
 msgid "Attribute Match"
-msgstr ""
+msgstr "Attributmatchning"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:56
 msgid "Display people with same attribute."
-msgstr ""
+msgstr "Visa personer med samma attribut."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:75
 msgid "All Events"
-msgstr ""
+msgstr "Alla händelser"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:76
 msgid "Display a person's events, both personal and family."
-msgstr ""
+msgstr "Visa händelser för en person, både personliga och familjerelaterade."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:90
 msgid "All Family Events"
-msgstr ""
+msgstr "Alla familjehändelser"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:91
 msgid "Display the family and family members events."
-msgstr ""
+msgstr "Visa släkten och släktmedlemmarnas händelser."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:110
 msgid "Relation to Home Person"
-msgstr ""
+msgstr "Släktskap till hemperson"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:111
 msgid "Display all relationships between person and home person."
-msgstr ""
+msgstr "Visa alla släktskap mellan person och hemperson."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:131
 msgid "Display filtered data"
-msgstr ""
+msgstr "Visa filtrerade data"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:150
 msgid "Father lineage"
-msgstr ""
+msgstr "Faders släktlinje"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:151
 msgid "Display father lineage"
-msgstr ""
+msgstr "Visa faders släktlinje"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:164
 msgid "Mother lineage"
-msgstr ""
+msgstr "Moders släktlinje"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:165
 msgid "Display mother lineage"
-msgstr ""
+msgstr "Visa moders släktlinje"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:184
 msgid "On This Day"
-msgstr ""
+msgstr "På denna dag"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:185
 msgid "Display events on a particular day"
-msgstr ""
+msgstr "Visar händelser på en speciell dag"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:211
 #: ../gramps/plugins/quickview/references.py:91
 msgid "Source or Citation"
-msgstr ""
+msgstr "Källa eller citering"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:217
 #, python-format
 msgid "%s References"
-msgstr ""
+msgstr "%s referenser"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:218
 #, python-format
 msgid "Display references for a %s"
-msgstr ""
+msgstr "Visa referenser för en %s"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:231
 msgid "Link References"
-msgstr ""
+msgstr "Länkreferenser"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:232
 msgid "Display link references for a note"
-msgstr ""
+msgstr "Visa länkreferenser för en notis"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:252
 msgid ""
 "Display the repository reference for sources related to the active repository"
 msgstr ""
+"Visa arkivplatsreferensen för källor relaterade till den aktiva arkivplatsen"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:272
 msgid "Same Surnames"
-msgstr ""
+msgstr "Samma efternamn"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:273
 msgid "Display people with the same surname as a person."
-msgstr ""
+msgstr "Visa personer med samma efternamn som en person."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:286
 msgid "Same Given Names"
-msgstr ""
+msgstr "Samma förnamn"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:287
 #: ../gramps/plugins/quickview/quickview.gpr.py:301
 msgid "Display people with the same given name as a person."
-msgstr ""
+msgstr "Visa personer med samma förnamn som en person."
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:300
 msgid "Same Given Names - stand-alone"
-msgstr ""
+msgstr "Samma förnamn - fristående"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:320
 msgid "Display a person's siblings."
-msgstr ""
+msgstr "Visa en persons syskon."
 
 #. display the title
 #: ../gramps/plugins/quickview/references.py:68
 #, python-format
 msgid "References for this %s"
-msgstr ""
+msgstr "Referenser för denna %s"
 
 #: ../gramps/plugins/quickview/references.py:80
 #, python-format
 msgid "No references for this %s"
-msgstr ""
+msgstr "Inga referenser för denna %s"
 
 #: ../gramps/plugins/quickview/reporef.py:62
 #: ../gramps/plugins/webreport/basepage.py:2677
@@ -30006,45 +30024,45 @@ msgstr "Referensnummer"
 
 #: ../gramps/plugins/quickview/reporef.py:62
 msgid "Type of media"
-msgstr ""
+msgstr "Mediatyp"
 
 #: ../gramps/plugins/quickview/samesurnames.py:39
 msgid "People with incomplete surnames"
-msgstr ""
+msgstr "Personer med ofullständiga efternamn"
 
 #: ../gramps/plugins/quickview/samesurnames.py:40
 msgid "Matches people with lastname missing"
-msgstr ""
+msgstr "Matchar personer utan efternamn"
 
 #: ../gramps/plugins/quickview/samesurnames.py:51
 msgid "People matching the <surname>"
-msgstr ""
+msgstr "Personer som matchar <efternamn>"
 
 #: ../gramps/plugins/quickview/samesurnames.py:52
 msgid "Matches people with same lastname"
-msgstr ""
+msgstr "Matchar personer med samma efternamn"
 
 #: ../gramps/plugins/quickview/samesurnames.py:64
 msgid "People matching the <given>"
-msgstr ""
+msgstr "Personer matchande <förnamn>"
 
 #: ../gramps/plugins/quickview/samesurnames.py:65
 msgid "Matches people with same given name"
-msgstr ""
+msgstr "Matchar personer med samma förnamn"
 
 #: ../gramps/plugins/quickview/samesurnames.py:88
 msgid "People with incomplete given names"
-msgstr ""
+msgstr "Personer med ofullständiga förnamn"
 
 #: ../gramps/plugins/quickview/samesurnames.py:89
 msgid "Matches people with firstname missing"
-msgstr ""
+msgstr "Matchar personer utan förnamn"
 
 #. display the title
 #: ../gramps/plugins/quickview/samesurnames.py:113
 #, python-format
 msgid "People sharing the surname '%s'"
-msgstr ""
+msgstr "Personer som delar på efternamnet '%s'"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/quickview/samesurnames.py:135
@@ -30054,32 +30072,36 @@ msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
 msgstr[0] ""
+"Det finns {number_of} person med ett matchande namn, eller alternativt "
+"namn.\n"
 msgstr[1] ""
+"Det finns {number_of} personer med ett matchande namn, eller alternativt "
+"namn.\n"
 
 #. display the title
 #: ../gramps/plugins/quickview/samesurnames.py:158
 #, python-format
 msgid "People with the given name '%s'"
-msgstr ""
+msgstr "Personer med förnamnet '%s'"
 
 #. display the title
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/quickview/siblings.py:46
 #, python-format
 msgid "Siblings of %s"
-msgstr ""
+msgstr "Syskon till %s"
 
 #: ../gramps/plugins/quickview/siblings.py:48
 msgid "Sibling"
-msgstr ""
+msgstr "Syskon"
 
 #: ../gramps/plugins/quickview/siblings.py:62
 msgid "self"
-msgstr ""
+msgstr "själv"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:34
 msgid "Catalan Relationship Calculator"
-msgstr ""
+msgstr "Katalansk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:35
 #: ../gramps/plugins/rel/relplugins.gpr.py:49
@@ -30102,249 +30124,249 @@ msgstr ""
 #: ../gramps/plugins/rel/relplugins.gpr.py:303
 #: ../gramps/plugins/rel/relplugins.gpr.py:317
 msgid "Calculates relationships between people"
-msgstr ""
+msgstr "Beräknar släktskap mellan personer"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:48
 msgid "Czech Relationship Calculator"
-msgstr ""
+msgstr "Tjeckisk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:61
 msgid "Danish Relationship Calculator"
-msgstr ""
+msgstr "Dansk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:77
 msgid "German Relationship Calculator"
-msgstr ""
+msgstr "Tysk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:93
 msgid "Spanish Relationship Calculator"
-msgstr ""
+msgstr "Spansk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:108
 msgid "Finnish Relationship Calculator"
-msgstr ""
+msgstr "Finsk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:123
 msgid "French Relationship Calculator"
-msgstr ""
+msgstr "Fransk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:140
 msgid "Croatian Relationship Calculator"
-msgstr ""
+msgstr "Kroatisk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:154
 msgid "Hungarian Relationship Calculator"
-msgstr ""
+msgstr "Ungersk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:167
 msgid "Icelandic Relationship Calculator"
-msgstr ""
+msgstr "Isländsk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:180
 msgid "Italian Relationship Calculator"
-msgstr ""
+msgstr "Italiensk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:193
 msgid "Dutch Relationship Calculator"
-msgstr ""
+msgstr "Holländsk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:210
 msgid "Norwegian Relationship Calculator"
-msgstr ""
+msgstr "Norsk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:227
 msgid "Polish Relationship Calculator"
-msgstr ""
+msgstr "Polsk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:243
 msgid "Portuguese Relationship Calculator"
-msgstr ""
+msgstr "Portugisisk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:259
 msgid "Russian Relationship Calculator"
-msgstr ""
+msgstr "Rysk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:275
 msgid "Slovak Relationship Calculator"
-msgstr ""
+msgstr "Slovakisk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:289
 msgid "Slovenian Relationship Calculator"
-msgstr ""
+msgstr "Slovensk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:302
 msgid "Swedish Relationship Calculator"
-msgstr ""
+msgstr "Svensk släktskapsberäknare"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:316
 msgid "Ukrainian Relationship Calculator"
-msgstr ""
+msgstr "Ukrainsk släktskapsberäknare"
 
 #: ../gramps/plugins/sidebar/dropdownsidebar.py:164
 msgid "Click to select a view"
-msgstr ""
+msgstr "Klicka för att välja en vy"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:33
 msgid "Category Sidebar"
-msgstr ""
+msgstr "Kategori-sidopanel"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:34
 msgid "A sidebar to allow the selection of view categories"
-msgstr ""
+msgstr "En sidopanel som tillåter att välja vykategorier"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:42
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:48
 msgid "Drop-down Sidebar"
-msgstr ""
+msgstr "Rullgardinsmeny i sidopanel"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:49
 msgid "Selection of categories and views from drop-down lists"
-msgstr ""
+msgstr "Val av kategorier och vyer från rullgardinslistor"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:57
 msgid "Drop-Down"
-msgstr ""
+msgstr "Rullgardinsmeny"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:63
 msgid "Expander Sidebar"
-msgstr ""
+msgstr "Expandersidopanel"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:64
 msgid "Selection of views from lists with expanders"
-msgstr ""
+msgstr "Val av vyer från listor med expandering"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:72
 msgid "Expander"
-msgstr ""
+msgstr "Expander"
 
 #: ../gramps/plugins/textreport/alphabeticalindex.py:65
 #: ../gramps/plugins/textreport/textplugins.gpr.py:393
 msgid "Alphabetical Index"
-msgstr ""
+msgstr "Alfabetiskt index"
 
 #: ../gramps/plugins/textreport/alphabeticalindex.py:69
 msgid "Index"
-msgstr ""
+msgstr "Index"
 
 #: ../gramps/plugins/textreport/alphabeticalindex.py:89
 #: ../gramps/plugins/textreport/tableofcontents.py:88
 msgid "Entire Book"
-msgstr ""
+msgstr "Hel bok"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/ancestorreport.py:197
 #, python-format
 msgid "Ahnentafel Report for %s"
-msgstr ""
+msgstr "Ahnentafel-rapport för %s"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:301
 #: ../gramps/plugins/textreport/detancestralreport.py:838
 #: ../gramps/plugins/textreport/detdescendantreport.py:1029
 msgid "Page break between generations"
-msgstr ""
+msgstr "Sidbrytning mellan generationer"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:303
 #: ../gramps/plugins/textreport/detancestralreport.py:840
 #: ../gramps/plugins/textreport/detdescendantreport.py:1031
 msgid "Whether to start a new page after each generation."
-msgstr ""
+msgstr "Huruvida påbörja en ny sida efter varje generation."
 
 #: ../gramps/plugins/textreport/ancestorreport.py:306
 msgid "Add linebreak after each name"
-msgstr ""
+msgstr "Lägg till radbrytning efter varje namn"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:307
 msgid "Whether a line break should follow the name."
-msgstr ""
+msgstr "Huruvida en radbrytning ska komma efter namnet."
 
 #: ../gramps/plugins/textreport/birthdayreport.py:65
 #: ../gramps/plugins/textreport/birthdayreport.py:217
 #: ../gramps/plugins/textreport/birthdayreport.py:262
 #: ../gramps/plugins/textreport/textplugins.gpr.py:59
 msgid "Birthday and Anniversary Report"
-msgstr ""
+msgstr "Födelsedags- och årsdagsrapport"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:66
 msgid "My Birthday Report"
-msgstr ""
+msgstr "Min födelsedagsrapport"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/birthdayreport.py:214
 #, python-format
 msgid "Relationships shown are to %s"
-msgstr ""
+msgstr "Visade släktskap är till %s"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:320
 #, python-format
 msgid "%(person)s, birth%(relation)s"
-msgstr ""
+msgstr "%(person)s, födelse%(relation)s"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:325
 #, python-brace-format
 msgid "{person}, {age}{relation}"
 msgid_plural "{person}, {age}{relation}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{person}, {age}{relation}"
+msgstr[1] "{person}, {age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:413
 #: ../gramps/plugins/textreport/familygroup.py:716
 #: ../gramps/plugins/textreport/indivcomplete.py:1063
 msgid "Select the filter to be applied to the report."
-msgstr ""
+msgstr "Välj det filter som skall tillämpas för rapporten."
 
 #: ../gramps/plugins/textreport/birthdayreport.py:422
 msgid "Title text"
-msgstr ""
+msgstr "Titeltext"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:423
 msgid "Title of report"
-msgstr ""
+msgstr "Titel på rapporten"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:427
 msgid "First line of text at bottom of report"
-msgstr ""
+msgstr "Första textraden nertill på rapporten"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:431
 msgid "Second line of text at bottom of report"
-msgstr ""
+msgstr "Andra textraden nertill på rapporten"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:435
 msgid "Third line of text at bottom of report"
-msgstr ""
+msgstr "Tredje textraden nertill på rapporten"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:446
 msgid "Include only living people in the report"
-msgstr ""
+msgstr "Ta bara med nu levande personer i rapporten"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:455
 #: ../gramps/plugins/textreport/birthdayreport.py:457
 msgid "Year of report"
-msgstr ""
+msgstr "År för rapporten"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:496
 #: ../gramps/plugins/textreport/indivcomplete.py:1146
 msgid "Whether to include relationships to the center person"
-msgstr ""
+msgstr "Huruvida ta med släktskap till centralpersonen"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:565
 msgid "Title text style"
-msgstr ""
+msgstr "Titeltextmall"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:568
 msgid "Data text display"
-msgstr ""
+msgstr "Datatextvisning"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:570
 msgid "Day text style"
-msgstr ""
+msgstr "Dagtextmall"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:573
 msgid "Month text style"
-msgstr ""
+msgstr "Månadstextmall"
 
 #: ../gramps/plugins/textreport/custombooktext.py:87
 #: ../gramps/plugins/textreport/custombooktext.py:89
@@ -30352,127 +30374,127 @@ msgstr ""
 #: ../gramps/plugins/textreport/custombooktext.py:93
 #: ../gramps/plugins/textreport/textplugins.gpr.py:81
 msgid "Custom Text"
-msgstr ""
+msgstr "Anpassad text"
 
 #: ../gramps/plugins/textreport/custombooktext.py:134
 msgid "Initial Text"
-msgstr ""
+msgstr "Inledande text"
 
 #: ../gramps/plugins/textreport/custombooktext.py:135
 #: ../gramps/plugins/textreport/custombooktext.py:164
 msgid "Text to display at the top"
-msgstr ""
+msgstr "Text som skall visas upptill"
 
 #: ../gramps/plugins/textreport/custombooktext.py:138
 msgid "Middle Text"
-msgstr ""
+msgstr "Mittentext"
 
 #: ../gramps/plugins/textreport/custombooktext.py:139
 #: ../gramps/plugins/textreport/custombooktext.py:173
 msgid "Text to display in the middle"
-msgstr ""
+msgstr "Text som skall visas i mitten"
 
 #: ../gramps/plugins/textreport/custombooktext.py:142
 msgid "Final Text"
-msgstr ""
+msgstr "Avslutande text"
 
 #: ../gramps/plugins/textreport/custombooktext.py:143
 #: ../gramps/plugins/textreport/custombooktext.py:182
 msgid "Text to display at the bottom"
-msgstr ""
+msgstr "Text som skall visas nedtill"
 
 #: ../gramps/plugins/textreport/descendreport.py:314
 #: ../gramps/plugins/textreport/descendreport.py:322
 #, python-format
 msgid "sp. %(spouse)s"
-msgstr ""
+msgstr "m. %(spouse)s"
 
 #: ../gramps/plugins/textreport/descendreport.py:333
 #, python-format
 msgid "sp. see %(reference)s: %(spouse)s"
-msgstr ""
+msgstr "m. se  %(reference)s : %(spouse)s"
 
 #: ../gramps/plugins/textreport/descendreport.py:393
 #, python-format
 msgid "%s sp."
-msgstr ""
+msgstr "%s m."
 
 #: ../gramps/plugins/textreport/descendreport.py:526
 #: ../gramps/plugins/textreport/detdescendantreport.py:1005
 msgid "Numbering system"
-msgstr ""
+msgstr "Numreringssystem"
 
 #: ../gramps/plugins/textreport/descendreport.py:528
 msgid "Simple numbering"
-msgstr ""
+msgstr "Enkel numrering"
 
 #: ../gramps/plugins/textreport/descendreport.py:529
 #: ../gramps/plugins/textreport/detdescendantreport.py:1009
 msgid "d'Aboville numbering"
-msgstr ""
+msgstr "d'Aboville-numrering"
 
 #: ../gramps/plugins/textreport/descendreport.py:530
 #: ../gramps/plugins/textreport/detdescendantreport.py:1007
 msgid "Henry numbering"
-msgstr ""
+msgstr "Henry-numrering"
 
 #: ../gramps/plugins/textreport/descendreport.py:531
 #: ../gramps/plugins/textreport/detdescendantreport.py:1008
 msgid "Modified Henry numbering"
-msgstr ""
+msgstr "Modifierad Henry-numrering"
 
 #: ../gramps/plugins/textreport/descendreport.py:532
 msgid "de Villiers/Pama numbering"
-msgstr ""
+msgstr "de Villiers/Pama-numrering"
 
 #: ../gramps/plugins/textreport/descendreport.py:533
 msgid "Meurgey de Tupigny numbering"
-msgstr ""
+msgstr "Meurgey de Tupigny-numrering"
 
 #: ../gramps/plugins/textreport/descendreport.py:534
 #: ../gramps/plugins/textreport/detdescendantreport.py:1012
 msgid "The numbering system to be used"
-msgstr ""
+msgstr "Det numreringssystem som skall användas"
 
 #: ../gramps/plugins/textreport/descendreport.py:543
 msgid "Show marriage info"
-msgstr ""
+msgstr "Visa giftermålsdata"
 
 #: ../gramps/plugins/textreport/descendreport.py:545
 msgid "Whether to show marriage information in the report."
-msgstr ""
+msgstr "Huruvida ta med giftermålsinformation i rapporten."
 
 #: ../gramps/plugins/textreport/descendreport.py:548
 msgid "Show divorce info"
-msgstr ""
+msgstr "Visa skilsmässoinformation"
 
 #: ../gramps/plugins/textreport/descendreport.py:549
 msgid "Whether to show divorce information in the report."
-msgstr ""
+msgstr "Huruvida ta med skilsmässoinformation i rapporten."
 
 #: ../gramps/plugins/textreport/descendreport.py:552
 msgid "Show duplicate trees"
-msgstr ""
+msgstr "Visa dubblerade träd"
 
 #: ../gramps/plugins/textreport/descendreport.py:554
 msgid "Whether to show duplicate Family Trees in the report."
-msgstr ""
+msgstr "Huruvida ta med dubblerade släktträd i rapporten."
 
 #: ../gramps/plugins/textreport/descendreport.py:598
 #, python-format
 msgid "The style used for the level %d display."
-msgstr ""
+msgstr "Mall som används för visning av nivå %d."
 
 #: ../gramps/plugins/textreport/descendreport.py:609
 #, python-format
 msgid "The style used for the spouse level %d display."
-msgstr ""
+msgstr "Mall som används för visning av makar på nivå %d."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/detancestralreport.py:214
 #, python-format
 msgid "Ancestral Report for %s"
-msgstr ""
+msgstr "Antavle-rapport för %s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:277
 #: ../gramps/plugins/textreport/detdescendantreport.py:888
@@ -30481,19 +30503,19 @@ msgstr ""
 #: ../gramps/plugins/textreport/detdescendantreport.py:943
 #, python-format
 msgid "More about %(person_name)s:"
-msgstr ""
+msgstr "Mer om %(person_name)s:"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:315
 #, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
-msgstr ""
+msgstr "%(name)s är samma person som [%(id_str)s]."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/detancestralreport.py:357
 #: ../gramps/plugins/textreport/detdescendantreport.py:875
 #, python-format
 msgid "Notes for %s"
-msgstr ""
+msgstr "Notiser om %s"
 
 #. translators: needed for French, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:375
@@ -30505,24 +30527,25 @@ msgstr ""
 #: ../gramps/plugins/textreport/detdescendantreport.py:952
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
-msgstr ""
+msgstr "%(type)s: %(value)s%(endnotes)s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:404
 #: ../gramps/plugins/textreport/detdescendantreport.py:930
 msgid "Address: "
-msgstr ""
+msgstr "Adress: "
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:413
 #: ../gramps/plugins/textreport/detdescendantreport.py:933
 #, python-format
 msgid "%s, "
-msgstr ""
+msgstr "%s, "
 
 #: ../gramps/plugins/textreport/detancestralreport.py:475
 #, python-format
 msgid "%(event_role)s at %(event_name)s of %(primary_person)s: %(event_text)s"
 msgstr ""
+"%(event_role)s vid %(event_name)s för %(primary_person)s: %(event_text)s"
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:491
@@ -30530,155 +30553,155 @@ msgstr ""
 #: ../gramps/plugins/textreport/detdescendantreport.py:516
 #: ../gramps/plugins/textreport/familygroup.py:137
 msgid "; "
-msgstr ""
+msgstr "; "
 
 #: ../gramps/plugins/textreport/detancestralreport.py:600
 #: ../gramps/plugins/textreport/detdescendantreport.py:677
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
-msgstr ""
+msgstr "Barn till %(mother_name)s och %(father_name)s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:684
 #: ../gramps/plugins/textreport/detdescendantreport.py:784
 #: ../gramps/plugins/textreport/detdescendantreport.py:803
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
-msgstr ""
+msgstr "Mer om %(mother_name)s och %(father_name)s:"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:739
 #: ../gramps/plugins/textreport/detdescendantreport.py:612
 #, python-format
 msgid "Spouse: %s"
-msgstr ""
+msgstr "Make/Maka: %s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:743
 #: ../gramps/plugins/textreport/detdescendantreport.py:616
 #, python-format
 msgid "Relationship with: %s"
-msgstr ""
+msgstr "Släktskap med: %s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:827
 msgid "Sosa-Stradonitz number"
-msgstr ""
+msgstr "Sosa-Stradonitz nummer"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:829
 msgid "The Sosa-Stradonitz number of the central person."
-msgstr ""
+msgstr "Sosa-Stradonitz- numret på centralpersonen."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:843
 #: ../gramps/plugins/textreport/detdescendantreport.py:1034
 #: ../gramps/plugins/textreport/indivcomplete.py:1076
 msgid "Page break before end notes"
-msgstr ""
+msgstr "Sidbrytning före slutnotiser"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:845
 #: ../gramps/plugins/textreport/detdescendantreport.py:1036
 #: ../gramps/plugins/textreport/indivcomplete.py:1078
 msgid "Whether to start a new page before the end notes."
-msgstr ""
+msgstr "Huruvida påbörja en ny sida före slutnotiserna."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:867
 #: ../gramps/plugins/textreport/detdescendantreport.py:1058
 msgid "Use complete sentences"
-msgstr ""
+msgstr "Använd fullständiga meningar"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:869
 #: ../gramps/plugins/textreport/detdescendantreport.py:1060
 msgid "Whether to use complete sentences or succinct language."
-msgstr ""
+msgstr "Huruvida använda fullständiga meningar eller ett kortfattat språk."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:873
 #: ../gramps/plugins/textreport/detdescendantreport.py:1064
 msgid "Use full dates instead of only the year"
-msgstr ""
+msgstr "Använd fullständiga datum i stället för enbart årtal"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:875
 #: ../gramps/plugins/textreport/detdescendantreport.py:1066
 msgid "Whether to use full dates instead of just year."
-msgstr ""
+msgstr "Huruvida använda fullständiga datum i stället för enbart årtal."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:878
 #: ../gramps/plugins/textreport/detdescendantreport.py:1069
 msgid "Compute death age"
-msgstr ""
+msgstr "Beräkna ålder vid död"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:879
 #: ../gramps/plugins/textreport/detdescendantreport.py:1070
 msgid "Whether to compute a person's age at death."
-msgstr ""
+msgstr "Huruvida beräkna persons ålder vid död."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:882
 msgid "Omit duplicate ancestors"
-msgstr ""
+msgstr "Utelämna dubblerade anor"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:883
 msgid "Whether to omit duplicate ancestors."
-msgstr ""
+msgstr "Huruvida utelämna dubblerade anor."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:886
 #: ../gramps/plugins/textreport/detdescendantreport.py:1073
 msgid "Use callname for common name"
-msgstr ""
+msgstr "Använd tilltalsnamn"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:887
 #: ../gramps/plugins/textreport/detdescendantreport.py:1074
 msgid "Whether to use the call name as the first name."
-msgstr ""
+msgstr "Huruvida använda tilltalsnamn som första namn."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:895
 #: ../gramps/plugins/textreport/detdescendantreport.py:1082
 msgid "Whether to list children."
-msgstr ""
+msgstr "Huruvida lista barn."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:898
 #: ../gramps/plugins/textreport/detdescendantreport.py:1085
 msgid "Include spouses of children"
-msgstr ""
+msgstr "Ta med makar till barn"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:900
 #: ../gramps/plugins/textreport/detdescendantreport.py:1087
 msgid "Whether to list the spouses of the children."
-msgstr ""
+msgstr "Huruvida lista makarna till barnen."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:903
 #: ../gramps/plugins/textreport/detdescendantreport.py:1099
 msgid "Include events"
-msgstr ""
+msgstr "Ta med händelser"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:904
 #: ../gramps/plugins/textreport/detdescendantreport.py:1100
 msgid "Whether to include events."
-msgstr ""
+msgstr "Huruvida ta med händelser."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:907
 msgid "Include other events"
-msgstr ""
+msgstr "Ta med andra händelser"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:908
 msgid "Whether to include other events people participated in."
-msgstr ""
+msgstr "Huruvida ta med andra händelser personer deltog i."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:913
 #: ../gramps/plugins/textreport/detdescendantreport.py:1104
 msgid "Include descendant reference in child list"
-msgstr ""
+msgstr "Lägg till ättlingareferens i barnlista"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:915
 #: ../gramps/plugins/textreport/detdescendantreport.py:1106
 msgid "Whether to add descendant references in child list."
-msgstr ""
+msgstr "Huruvida lägga till ättlingareferenser i barnlista."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:919
 #: ../gramps/plugins/textreport/detdescendantreport.py:1110
 #: ../gramps/plugins/textreport/indivcomplete.py:1121
 msgid "Include Photo/Images from Gallery"
-msgstr ""
+msgstr "Ta med foton/bilder från galleri"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:920
 #: ../gramps/plugins/textreport/detdescendantreport.py:1111
 #: ../gramps/plugins/textreport/indivcomplete.py:1122
 msgid "Whether to include images."
-msgstr ""
+msgstr "Huruvida ta med bilder."
 
 #. #########################
 #. ###############################
@@ -30687,33 +30710,33 @@ msgstr ""
 #: ../gramps/plugins/textreport/familygroup.py:782
 #: ../gramps/plugins/textreport/indivcomplete.py:1126
 msgid "Include (2)"
-msgstr ""
+msgstr "Ta med (2)"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:925
 #: ../gramps/plugins/textreport/detdescendantreport.py:1116
 msgid "Include notes"
-msgstr ""
+msgstr "Ta med notiser"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:926
 #: ../gramps/plugins/textreport/detdescendantreport.py:1117
 msgid "Whether to include notes."
-msgstr ""
+msgstr "Huruvida ta med notiser."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:929
 #: ../gramps/plugins/textreport/detdescendantreport.py:1120
 msgid "Include sources"
-msgstr ""
+msgstr "Ta med källor"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:930
 #: ../gramps/plugins/textreport/detdescendantreport.py:1121
 msgid "Whether to include source references."
-msgstr ""
+msgstr "Huruvida ta med källreferenser."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:933
 #: ../gramps/plugins/textreport/detdescendantreport.py:1124
 #: ../gramps/plugins/textreport/indivcomplete.py:1113
 msgid "Include sources notes"
-msgstr ""
+msgstr "Ta med källnotiser"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:935
 #: ../gramps/plugins/textreport/detdescendantreport.py:1126
@@ -30722,80 +30745,82 @@ msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
 "Include sources is selected."
 msgstr ""
+"Huruvida ta med källnotiser i notförteckningen. Fungerar bara om källor "
+"medtages."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:939
 #: ../gramps/plugins/textreport/detdescendantreport.py:1130
 msgid "Include attributes"
-msgstr ""
+msgstr "Ta med attribut"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:940
 #: ../gramps/plugins/textreport/detdescendantreport.py:1131
 #: ../gramps/plugins/textreport/familygroup.py:773
 #: ../gramps/plugins/textreport/indivcomplete.py:1136
 msgid "Whether to include attributes."
-msgstr ""
+msgstr "Huruvida ta med attribut."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:943
 #: ../gramps/plugins/textreport/detdescendantreport.py:1134
 msgid "Include addresses"
-msgstr ""
+msgstr "Ta med adresser"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:944
 #: ../gramps/plugins/textreport/detdescendantreport.py:1135
 msgid "Whether to include addresses."
-msgstr ""
+msgstr "Huruvida ta med adresser."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:947
 #: ../gramps/plugins/textreport/detdescendantreport.py:1138
 msgid "Include alternative names"
-msgstr ""
+msgstr "Ta med alternativa namn"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:948
 #: ../gramps/plugins/textreport/detdescendantreport.py:1139
 msgid "Whether to include other names."
-msgstr ""
+msgstr "Huruvida ta med andra namn."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:954
 #: ../gramps/plugins/textreport/detdescendantreport.py:1158
 msgid "Replace missing places with ______"
-msgstr ""
+msgstr "Ersätt saknade platser med ______"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:955
 #: ../gramps/plugins/textreport/detdescendantreport.py:1160
 msgid "Whether to replace missing Places with blanks."
-msgstr ""
+msgstr "Huruvida ersätta saknade platser med mellanslag."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:958
 #: ../gramps/plugins/textreport/detdescendantreport.py:1163
 msgid "Replace missing dates with ______"
-msgstr ""
+msgstr "Ersätt saknade datum med ______"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:959
 #: ../gramps/plugins/textreport/detdescendantreport.py:1164
 msgid "Whether to replace missing Dates with blanks."
-msgstr ""
+msgstr "Huruvida ersätta saknade datum med mellanslag."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:992
 #: ../gramps/plugins/textreport/detdescendantreport.py:1197
 msgid "The style used for the children list title."
-msgstr ""
+msgstr "Mall som används för barnlistetiteln."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:1003
 #: ../gramps/plugins/textreport/detdescendantreport.py:1208
 #: ../gramps/plugins/textreport/familygroup.py:900
 msgid "The style used for the text related to the children."
-msgstr ""
+msgstr "Mall som används för text angående barnen."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:1013
 #: ../gramps/plugins/textreport/detdescendantreport.py:1218
 msgid "The style used for the note header."
-msgstr ""
+msgstr "Mall som används för notisrubriken."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:1027
 #: ../gramps/plugins/textreport/detdescendantreport.py:1232
 #: ../gramps/plugins/textreport/tableofcontents.py:117
 msgid "The style used for first level headings."
-msgstr ""
+msgstr "Mall som används för första nivån på rubriker."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:1037
 #: ../gramps/plugins/textreport/detdescendantreport.py:1242
@@ -30803,81 +30828,83 @@ msgstr ""
 #: ../gramps/plugins/textreport/summary.py:319
 #: ../gramps/plugins/textreport/tableofcontents.py:123
 msgid "The style used for second level headings."
-msgstr ""
+msgstr "Mall som används för andra nivån på rubriker."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:1047
 #: ../gramps/plugins/textreport/detdescendantreport.py:1252
 #: ../gramps/plugins/textreport/endoflinereport.py:335
 #: ../gramps/plugins/textreport/placereport.py:544
 msgid "The style used for details."
-msgstr ""
+msgstr "Mall som används för detaljer."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/detdescendantreport.py:340
 #, python-format
 msgid "Descendant Report for %(person_name)s"
-msgstr ""
+msgstr "Stamtavle-rapport för %(person_name)s"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:634
 #, python-format
 msgid "Ref: %(number)s. %(name)s"
-msgstr ""
+msgstr "Ref: %(number)s. %(name)s"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:761
 #, python-format
 msgid "Notes for %(mother_name)s and %(father_name)s:"
-msgstr ""
+msgstr "Notiser för %(mother_name)s och %(father_name)s:"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1011
 msgid "Record (Modified Register) numbering"
-msgstr ""
+msgstr "Post(modifierat register)-numrering"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1015
 msgid "Report structure"
-msgstr ""
+msgstr "Rapportstruktur"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1018
 msgid "show people by generations"
-msgstr ""
+msgstr "visa personer efter generationer"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1019
 msgid "show people by lineage"
-msgstr ""
+msgstr "visa personer efter släktlinjer"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1020
 msgid "How people are organized in the report"
-msgstr ""
+msgstr "Hur personer är organiserade i rapporten"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1090
 #: ../gramps/plugins/textreport/kinshipreport.py:370
 msgid "Include spouses"
-msgstr ""
+msgstr "Ta med makar"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1092
 msgid "Whether to include detailed spouse information."
-msgstr ""
+msgstr "Huruvida ta med detaljerad information om make/maka."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1095
 msgid "Include spouse reference"
-msgstr ""
+msgstr "Ta med make/maka-referens"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1096
 msgid "Whether to include reference to spouse."
-msgstr ""
+msgstr "Huruvida ta med referenser till make/maka."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1143
 msgid "Include sign of succession ('+') in child-list"
-msgstr ""
+msgstr "Tag med tecken på avkomma ('+') i barnlista"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1144
 msgid ""
 "Whether to include a sign ('+') before the descendant number in the child-"
 "list to indicate a child has succession."
 msgstr ""
+"Huruvida ta med ett tecken ('+') före ättlingsnummer i barnlistan för att "
+"indikera att barnet har avkomma."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
 msgid "Include path to start-person"
-msgstr ""
+msgstr "Ta med släktskapsförhållande till startperson"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1150
 msgid ""
