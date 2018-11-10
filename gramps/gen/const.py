@@ -104,6 +104,13 @@ elif 'USERPROFILE' in os.environ:
 else:
     USER_HOME = get_env_var('HOME')
     HOME_DIR = os.path.join(USER_HOME, '.gramps')
+ORIG_HOME_DIR = HOME_DIR
+if 'SAFEMODE' in os.environ:
+    if 'USERPROFILE' in os.environ:
+        USER_HOME = get_env_var('USERPROFILE')
+    else:
+        USER_HOME = get_env_var('HOME')
+    HOME_DIR = get_env_var('SAFEMODE')
 
 
 VERSION_DIR = os.path.join(
@@ -267,6 +274,7 @@ LONGOPTS = [
     "class=",
     "config=",
     "debug=",
+    "default=",
     "display=",
     "disable-sound",
     "disable-crash-dialog",
@@ -294,6 +302,7 @@ LONGOPTS = [
     "password=",
     "create=",
     "options=",
+    "safe",
     "screen=",
     "show",
     "sm-client-id=",
@@ -307,7 +316,7 @@ LONGOPTS = [
     "quiet",
 ]
 
-SHORTOPTS = "O:U:P:C:i:e:f:a:p:d:c:r:lLthuv?syq"
+SHORTOPTS = "O:U:P:C:i:e:f:a:p:d:c:r:lLthuv?syqSD:"
 
 GRAMPS_UUID = uuid.UUID('516cd010-5a41-470f-99f8-eb22f1098ad6')
 

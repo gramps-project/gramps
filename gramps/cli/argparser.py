@@ -39,15 +39,16 @@ import sys
 import os
 import getopt
 import logging
+import shutil
+from glob import glob
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import LONGOPTS, SHORTOPTS, PLUGINS_DIR, USER_PLUGINS
-from gramps.gen.plug import BasePluginManager
-from gramps.gen.config import config
+from gramps.gen.const import (LONGOPTS, SHORTOPTS, USER_PLUGINS, VERSION_DIR,
+                              HOME_DIR, TEMP_DIR, THUMB_DIR, ENV_DIR, USER_CSS)
 from gramps.gen.utils.cast import get_type_converter
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -81,6 +82,14 @@ Application options
   -y, --yes                              Don't ask to confirm dangerous actions (non-GUI mode only)
   -q, --quiet                            Suppress progress indication output (non-GUI mode only)
   -v, --version                          Show versions
+  -S, --safe                             Start Gramps in 'Safe mode'
+                                          (temporarily use default settings)
+  -D, --default=[APXFE]                  Reset settings to default;
+                 A - addons are cleared
+                 P - Preferences to default
+                 X - Books are cleared, reports and tool settings to default
+                 F - filters are cleared
+                 E - Everything is set to default or cleared
 """)
 
 _USAGE = _("""
@@ -342,6 +351,7 @@ class ArgParser:
             elif option in ['-t']:
                 self.list_table = True
             elif option in ['-s', '--show']:
+                from gramps.gen.config import config
                 print(_("Gramps config settings from %s:"
                        ) % config.filename)
                 for sect in config.data:
@@ -351,6 +361,7 @@ class ArgParser:
                     print()
                 sys.exit(0)
             elif option in ['-c', '--config']:
+                from gramps.gen.config import config
                 cfg_name = value
                 set_value = False
                 if cfg_name:
@@ -396,6 +407,44 @@ class ArgParser:
                 self.auto_accept = True
             elif option in ['-q', '--quiet']:
                 self.quiet = True
+            elif option in ['-S', '--safe']:
+                cleandbg += [opt_ix]
+            elif option in ['-D', '--default']:
+                def rmtree(path):
+                    if os.path.isdir(path):
+                        shutil.rmtree(path, ignore_errors=True)
+
+                if 'E' in value or 'A' in value:  # clear addons
+                    rmtree(USER_PLUGINS)
+                if 'E' in value or 'P' in value:  # clear ini preferences
+                    for fil in glob(os.path.join(VERSION_DIR, "*.*")):
+                        if "custom_filters.xml" in fil:
+                            continue
+                        os.remove(fil)
+                    # create gramps.ini so config won't load the one from an
+                    # older version of Gramps.
+                    with open(os.path.join(VERSION_DIR, 'gramps.ini'), 'w'):
+                        pass
+                if 'E' in value or 'F' in value:  # clear filters
+                    fil = os.path.join(VERSION_DIR, "custom_filters.xml")
+                    if os.path.isfile(fil):
+                        os.remove(fil)
+                if 'E' in value or 'X' in value:  # clear xml reports/tools
+                    for fil in glob(os.path.join(HOME_DIR, "*.xml")):
+                        os.remove(fil)
+                if 'E' in value or 'Z' in value:  # clear upgrade zips
+                    for fil in glob(os.path.join(HOME_DIR, "*.zip")):
+                        os.remove(fil)
+                if 'E' in value:  # Everything else
+                    rmtree(TEMP_DIR)
+                    rmtree(THUMB_DIR)
+                    rmtree(USER_CSS)
+                    rmtree(ENV_DIR)
+                    rmtree(os.path.join(HOME_DIR, "maps"))
+                    for fil in glob(os.path.join(HOME_DIR, "*")):
+                        if os.path.isfile(fil):
+                            os.remove(fil)
+                sys.exit(0)  # Done with Default
 
         #clean options list
         cleandbg.reverse()
