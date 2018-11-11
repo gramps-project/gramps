@@ -540,7 +540,7 @@ class DuplicatePeopleToolMatches(ManagedWindow):
     def __init__(self, dbstate, uistate, track, the_list, the_map, callback):
         ManagedWindow.__init__(self,uistate,track,self.__class__)
 
-        self.dellist = {}
+        self.dellist = set()
         self.list = the_list
         self.map = the_map
         self.length = len(self.list)
@@ -566,6 +566,7 @@ class DuplicatePeopleToolMatches(ManagedWindow):
             "on_delete_merge_event" : self.__dummy,
             "on_delete_event"       : self.__dummy,
             })
+        self.db.connect("person-delete", self.person_delete)
 
         mtitles = [
                 (_('Rating'),3,75),
@@ -621,22 +622,21 @@ class DuplicatePeopleToolMatches(ManagedWindow):
 
     def on_update(self):
         if self.db.has_person_handle(self.p1):
-            phoenix = self.p1
             titanic = self.p2
         else:
-            phoenix = self.p2
             titanic = self.p1
-
-        self.dellist[titanic] = phoenix
-        for key, data in self.dellist.items():
-            if data == titanic:
-                self.dellist[key] = phoenix
+        self.dellist.add(titanic)
         self.update()
         self.redraw()
 
     def update_and_destroy(self, obj):
         self.update(1)
         self.close()
+
+    def person_delete(self, handle_list):
+        """ deal with person deletes outside of the tool """
+        self.dellist.update(handle_list)
+        self.redraw()
 
     def __dummy(self, obj):
         """dummy callback, needed because a shared glade file is used for
