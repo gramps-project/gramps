@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-24 14:13+0100\n"
-"PO-Revision-Date: 2018-11-11 17:14+0100\n"
+"PO-Revision-Date: 2018-11-12 17:47+0100\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31840,160 +31840,167 @@ msgid ""
 "You may choose to either remove the reference from the database,\n"
 "keep the reference to the missing file, or select a new file."
 msgstr ""
+"Filen:\n"
+"%(file_name)s \n"
+"refereras till i databasen, men finns inte längre.\n"
+"Filen kan ha blivit raderad eller flyttats till en annan plats.\n"
+"Du kan välja antingen att ta bort referensen från databasen,\n"
+"\n"
+"behålla referensen till den saknade filen, eller välja en ny fil."
 
 #: ../gramps/plugins/tool/check.py:894
 msgid "Looking for empty people records"
-msgstr ""
+msgstr "Söker efter tomma personposter"
 
 #: ../gramps/plugins/tool/check.py:901
 msgid "Looking for empty family records"
-msgstr ""
+msgstr "Söker efter tomma familjeposter"
 
 #: ../gramps/plugins/tool/check.py:908
 msgid "Looking for empty event records"
-msgstr ""
+msgstr "Söker efter tomma händelseposter"
 
 #: ../gramps/plugins/tool/check.py:915
 msgid "Looking for empty source records"
-msgstr ""
+msgstr "Söker efter tomma källposter"
 
 #: ../gramps/plugins/tool/check.py:922
 msgid "Looking for empty citation records"
-msgstr ""
+msgstr "Söker efter tomma citeringsposter"
 
 #: ../gramps/plugins/tool/check.py:929
 msgid "Looking for empty place records"
-msgstr ""
+msgstr "Söker efter tomma platsposter"
 
 #: ../gramps/plugins/tool/check.py:936
 msgid "Looking for empty media records"
-msgstr ""
+msgstr "Söker efter tomma mediaposter"
 
 #: ../gramps/plugins/tool/check.py:943
 msgid "Looking for empty repository records"
-msgstr ""
+msgstr "Söker efter tomma arkivplatsposter"
 
 #: ../gramps/plugins/tool/check.py:950
 msgid "Looking for empty note records"
-msgstr ""
+msgstr "Söker efter tomma notisposter"
 
 #: ../gramps/plugins/tool/check.py:994
 msgid "Looking for empty families"
-msgstr ""
+msgstr "Söker efter tomma familjer"
 
 #: ../gramps/plugins/tool/check.py:1029
 msgid "Looking for broken parent relationships"
-msgstr ""
+msgstr "Söker efter trasiga föräldrarelationer"
 
 #: ../gramps/plugins/tool/check.py:1068
 msgid "Looking for event problems"
-msgstr ""
+msgstr "Söker efter problem med händelser"
 
 #: ../gramps/plugins/tool/check.py:1240
 msgid "Looking for backlink reference problems"
-msgstr ""
+msgstr "Söker efter problem med länkreferenser"
 
 #: ../gramps/plugins/tool/check.py:1294
 msgid "Looking for person reference problems"
-msgstr ""
+msgstr "Söker efter problem med personreferenser"
 
 #: ../gramps/plugins/tool/check.py:1327
 msgid "Looking for family reference problems"
-msgstr ""
+msgstr "Söker efter problem med familjereferenser"
 
 #: ../gramps/plugins/tool/check.py:1353
 msgid "Looking for repository reference problems"
-msgstr ""
+msgstr "Söker efter problem med arkivplatsreferenser"
 
 #: ../gramps/plugins/tool/check.py:1388
 msgid "Looking for place reference problems"
-msgstr ""
+msgstr "Söker efter problem med platsreferenser"
 
 #: ../gramps/plugins/tool/check.py:1499
 msgid "Looking for citation reference problems"
-msgstr ""
+msgstr "Söker efter problem med citeringsreferenser"
 
 #: ../gramps/plugins/tool/check.py:1617
 msgid "Looking for source reference problems"
-msgstr ""
+msgstr "Söker efter problem med källreferenser"
 
 #: ../gramps/plugins/tool/check.py:1659
 msgid "Looking for media object reference problems"
-msgstr ""
+msgstr "Söker efter problem med mediaobjektsreferenser"
 
 #: ../gramps/plugins/tool/check.py:1781
 msgid "Looking for note reference problems"
-msgstr ""
+msgstr "Söker efter problem med notisreferenser"
 
 #: ../gramps/plugins/tool/check.py:1909
 msgid "Updating checksums on media"
-msgstr ""
+msgstr "Uppdaterar kontrollsummor för media"
 
 #: ../gramps/plugins/tool/check.py:1935
 msgid "Looking for tag reference problems"
-msgstr ""
+msgstr "Söker efter problem med flaggreferenser"
 
 #: ../gramps/plugins/tool/check.py:2080
 msgid "Looking for media source reference problems"
-msgstr ""
+msgstr "Söker efter problem med referenser i mediakällor"
 
 #: ../gramps/plugins/tool/check.py:2148
 msgid "Looking for Duplicated Gramps ID problems"
-msgstr ""
+msgstr "Söker efter problem med dubblerade Gramps-ID"
 
 #: ../gramps/plugins/tool/check.py:2380
 msgid "No errors were found"
-msgstr ""
+msgstr "Inga fel upptäcktes"
 
 #: ../gramps/plugins/tool/check.py:2381
 msgid "The database has passed internal checks"
-msgstr ""
+msgstr "Databasen har klarat interna kontroller"
 
 #: ../gramps/plugins/tool/check.py:2384
 msgid "No errors were found: the database has passed internal checks."
-msgstr ""
+msgstr "Inga fel hittades: databasen har klarat interna kontroller."
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2391
 #, python-brace-format
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} trasig barn/familjelänk lagades\n"
+msgstr[1] "{quantity} trasiga barn/familjelänkar lagades\n"
 
 #: ../gramps/plugins/tool/check.py:2399
 msgid "Non existing child"
-msgstr ""
+msgstr "Ickeexisterande barn"
 
 #: ../gramps/plugins/tool/check.py:2410
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
-msgstr ""
+msgstr "%(person)s togs bort från familjen %(family)s\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2417
 #, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} trasig maka-/make-/familjelänk lagades\n"
+msgstr[1] "{quantity} trasiga maka-/make-/familjelänkar lagades\n"
 
 #: ../gramps/plugins/tool/check.py:2425 ../gramps/plugins/tool/check.py:2453
 msgid "Non existing person"
-msgstr ""
+msgstr "Ickeexisterande person"
 
 #: ../gramps/plugins/tool/check.py:2436 ../gramps/plugins/tool/check.py:2464
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
-msgstr ""
+msgstr "%(person)s återställdes till familjen %(family)s\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2443
 #, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} duplicerad maka-/make-/familjelänk hittades\n"
+msgstr[1] "{quantity} duplicerade maka-/make-/familjelänkar hittades\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2471
@@ -32001,170 +32008,171 @@ msgstr[1] ""
 msgid "{quantity} family with no parents or children found, removed.\n"
 msgid_plural ""
 "{quantity} families with no parents or children found, removed.\n"
-msgstr[0] ""
+msgstr[0] "{quantity} familj utan föräldrar eller barn funnen, tog bort den.\n"
 msgstr[1] ""
+"{quantity} familjer utan föräldrar eller barn funna, tog bort dem.\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2483
 #, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} förstört familjesläktskap lagat\n"
+msgstr[1] "{quantity} förstörda familjesläktskap lagade\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2491
 #, python-brace-format
 msgid "{quantity} place alternate name fixed\n"
 msgid_plural "{quantity} place alternate names fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} ogiltigt platsnamn rättat\n"
+msgstr[1] "{quantity} ogiltiga platsnamn rättade\n"
 
 #: ../gramps/plugins/tool/check.py:2500
 #, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} person som refererats till kunde inte hittas\n"
+msgstr[1] "{quantity} personer som refererats till kunde inte hittas\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2508
 #, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} familj som refererats till kunde inte hittas\n"
+msgstr[1] "{quantity} familjer som refererats till kunde inte hittas\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2518
 #, python-brace-format
 msgid "{quantity} date was corrected\n"
 msgid_plural "{quantity} dates were corrected\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} datum rättades\n"
+msgstr[1] "{quantity} datum rättades\n"
 
 #: ../gramps/plugins/tool/check.py:2527
 #, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} arkivplats som refererats till kunde inte hittas\n"
+msgstr[1] "{quantity} arkivplatser som refererats till kunde inte hittas\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2537 ../gramps/plugins/tool/check.py:2624
 #, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} mediaobjekt som refererats till kunde inte hittas\n"
+msgstr[1] "{quantity} mediaobjekt som refererats till kunde inte hittas\n"
 
 #: ../gramps/plugins/tool/check.py:2548
 #, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} media objects were kept\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Referens till {quantity} saknat mediaobjekt behölls\n"
+msgstr[1] "Referens till {quantity} saknade mediaobjekt behölls\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2556
 #, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} saknat mediaobjekt ersattes\n"
+msgstr[1] "{quantity} saknade mediaobjekt ersattes\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2564
 #, python-brace-format
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} saknat mediaobjekt togs bort\n"
+msgstr[1] "{quantity} saknade mediaobjekt togs bort\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2572
 #, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} händelse som refererats till kunde inte hittas\n"
+msgstr[1] "{quantity} händelser som refererats till kunde inte hittas\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2580
 #, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} ogiltigt födelsehändelsenamn lagades\n"
+msgstr[1] "{quantity} ogiltiga födelsehändelsenamn lagades\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2588
 #, python-brace-format
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} ogiltigt dödshändelsenamn lagades\n"
+msgstr[1] "{quantity} ogiltiga dödshändelsenamn lagades\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2596
 #, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} plats som refererats till kunde inte hittas\n"
+msgstr[1] "{quantity} platser som refererats till kunde inte hittas\n"
 
 #: ../gramps/plugins/tool/check.py:2605
 #, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} citering som refererats till kunde inte hittas\n"
+msgstr[1] "{quantity} citeringar som refererats till kunde inte hittas\n"
 
 #: ../gramps/plugins/tool/check.py:2615
 #, python-brace-format
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} källa som refererats till kunde inte hittas\n"
+msgstr[1] "{quantity} källor som refererats till kunde inte hittas\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2633
 #, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} notisobjekt som refererats till kunde inte hittas\n"
+msgstr[1] "{quantity} notisobjekt som refererats till kunde inte hittas\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2643 ../gramps/plugins/tool/check.py:2653
 #, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} flagga som refererats till kunde inte hittas\n"
+msgstr[1] "{quantity} flaggor som refererats till kunde inte hittas\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2663
 #, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} ogiltig namnformatsreferens togs bort\n"
+msgstr[1] "{quantity} ogiltiga namnformatsreferenser togs bort\n"
 
 #: ../gramps/plugins/tool/check.py:2674
 #, python-brace-format
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} ogiltig källcitering lagades\n"
+msgstr[1] "{quantity} ogiltiga källciteringar lagades\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2683
 #, python-brace-format
 msgid "{quantity} Duplicated Gramps ID fixed\n"
 msgid_plural "{quantity} Duplicated Gramps IDs fixed\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} Dubblerat Gramps-ID lagades\n"
+msgstr[1] "{quantity} Dubblerade Gramps-ID lagades\n"
 
 #: ../gramps/plugins/tool/check.py:2690
 #, python-format
@@ -32179,48 +32187,59 @@ msgid ""
 "   %(repo)d repository objects\n"
 "   %(note)d note objects\n"
 msgstr ""
+"%(empty_obj)d tomma objekt borttagna:\n"
+"   %(person)d personobjekt\n"
+"   %(family)d familjeobjekt\n"
+"   %(event)d händelseobjekt\n"
+"   %(source)d källobjekt\n"
+"   %(media)d mediaobjekt\n"
+"   %(place)d platsobjekt\n"
+"   %(repo)d arkivplatsobjekt\n"
+"   %(note)d notisobjekt\n"
 
 #: ../gramps/plugins/tool/check.py:2712
 #, python-format
 msgid "%d bad backlinks were fixed;\n"
-msgstr ""
+msgstr "%d felaktiga länkar lagades;\n"
 
 #: ../gramps/plugins/tool/check.py:2714
 #: ../gramps/plugins/tool/rebuildrefmap.py:92
 #: ../gramps/plugins/tool/rebuildrefmap.py:95
 msgid "All reference maps have been rebuilt."
-msgstr ""
+msgstr "Alla referenskartor har byggts om."
 
 #: ../gramps/plugins/tool/check.py:2742
 msgid "Integrity Check Results"
-msgstr ""
+msgstr "Resultat av integritetskontroll"
 
 #: ../gramps/plugins/tool/check.py:2748
 msgid "Check and Repair"
-msgstr ""
+msgstr "Kontrollera och reparera"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:67
 msgid "Start date test?"
-msgstr ""
+msgstr "Påbörja datumtest?"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:68
 msgid ""
 "This test will create many persons and events in the current database. Do "
 "you really want to run this test?"
 msgstr ""
+"Detta test kommer att skapa många personer och händelser i den aktuella "
+"databasen. Vill du verkligen starta detta test?"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:71
 msgid "Run test"
-msgstr ""
+msgstr "Kör test"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:80
 msgid "Running Date Test"
-msgstr ""
+msgstr "Kör datumtest"
 
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:82
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:183
 msgid "Generating dates"
-msgstr ""
+msgstr "Skapar datum"
 
 #. test invalid dates
 #. dateval = (4,7,1789,False,5,8,1876,False)
@@ -32270,238 +32289,240 @@ msgstr ""
 #. dates.append( d)
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:181
 msgid "Date Test Plugin"
-msgstr ""
+msgstr "Datumtestinsticksmodul"
 
 #. create pass and fail tags
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:187
 msgid "Pass"
-msgstr ""
+msgstr "Pass"
 
 #: ../gramps/plugins/tool/dumpgenderstats.py:57
 msgid "Gender Statistics tool"
-msgstr ""
+msgstr "Könsstatistikverktyg"
 
 #: ../gramps/plugins/tool/dumpgenderstats.py:75
 #: ../gramps/plugins/tool/dumpgenderstats.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:100
 msgid "Guess"
-msgstr ""
+msgstr "Gissa"
 
 #: ../gramps/plugins/tool/eventcmp.glade:225
 msgid "_Filter:"
-msgstr ""
+msgstr "_Filter:"
 
 #: ../gramps/plugins/tool/eventcmp.glade:239
 msgid ""
 "The event comparison utility uses the filters defined in the Custom Filter "
 "Editor."
 msgstr ""
+"Verktyget för jämförelse av händelser använder de filter som definierats i "
+"redigeraren för anpassade filter."
 
 #: ../gramps/plugins/tool/eventcmp.glade:249
 msgid "Custom filter _editor"
-msgstr ""
+msgstr "_Redigerare för anpassade filter"
 
 #: ../gramps/plugins/tool/eventcmp.py:70
 msgid "manual|Compare_Individual_Events"
-msgstr ""
+msgstr "Jämför personliga händelser"
 
 #: ../gramps/plugins/tool/eventcmp.py:138
 msgid "Event comparison filter selection"
-msgstr ""
+msgstr "Händelsejämförelsefilterval"
 
 #: ../gramps/plugins/tool/eventcmp.py:168
 msgid "Event Comparison tool"
-msgstr ""
+msgstr "Verktyg för händelsejämförelse"
 
 #: ../gramps/plugins/tool/eventcmp.py:168
 msgid "Filter selection"
-msgstr ""
+msgstr "Filterval"
 
 #: ../gramps/plugins/tool/eventcmp.py:180
 msgid "Comparing events"
-msgstr ""
+msgstr "Jämför händelser"
 
 #: ../gramps/plugins/tool/eventcmp.py:182
 msgid "Selecting people"
-msgstr ""
+msgstr "Väljer personer"
 
 #: ../gramps/plugins/tool/eventcmp.py:194
 msgid "No matches were found"
-msgstr ""
+msgstr "Inga träffar upptäcktes"
 
 #: ../gramps/plugins/tool/eventcmp.py:244
 #: ../gramps/plugins/tool/eventcmp.py:278
 msgid "Event Comparison Results"
-msgstr ""
+msgstr "Resultat av händelsejämförelse"
 
 #: ../gramps/plugins/tool/eventcmp.py:255
 #, python-format
 msgid "%(event_name)s Date"
-msgstr ""
+msgstr "%(event_name)s Datum"
 
 #. This won't be shown in a tree
 #: ../gramps/plugins/tool/eventcmp.py:259
 #, python-format
 msgid "%(event_name)s Place"
-msgstr ""
+msgstr "%(event_name)s Plats"
 
 #: ../gramps/plugins/tool/eventcmp.py:312
 msgid "Comparing Events"
-msgstr ""
+msgstr "Jämför händelser"
 
 #: ../gramps/plugins/tool/eventcmp.py:313
 msgid "Building data"
-msgstr ""
+msgstr "Konstruerar data"
 
 #: ../gramps/plugins/tool/eventcmp.py:395
 msgid "Select filename"
-msgstr ""
+msgstr "Välj fil"
 
 #: ../gramps/plugins/tool/eventnames.py:79
 msgid "Event name changes"
-msgstr ""
+msgstr "Händelsenamnsändringar"
 
 #: ../gramps/plugins/tool/eventnames.py:85
 #: ../gramps/plugins/tool/tools.gpr.py:131
 msgid "Extract Event Description"
-msgstr ""
+msgstr "Ta fram händelsebeskrivning"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/eventnames.py:120
 #, python-brace-format
 msgid "{quantity} event description has been added"
 msgid_plural "{quantity} event descriptions have been added"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{quantity} händelsebeskrivning har lagts till"
+msgstr[1] "{quantity} händelsebeskrivningar har lagts till"
 
 #: ../gramps/plugins/tool/eventnames.py:123
 msgid "Modifications made"
-msgstr ""
+msgstr "Gjorda ändringar"
 
 #: ../gramps/plugins/tool/eventnames.py:127
 msgid "No event description has been added."
-msgstr ""
+msgstr "Ingen händelsebeskrivning har lagts till."
 
 #: ../gramps/plugins/tool/finddupes.glade:117
 #: ../gramps/plugins/tool/mergecitations.glade:117
 msgid "Match Threshold"
-msgstr ""
+msgstr "Tröskelvärde för matchning"
 
 #: ../gramps/plugins/tool/finddupes.glade:144
 msgid "Use soundex codes"
-msgstr ""
+msgstr "Använd soundexkoder"
 
 #: ../gramps/plugins/tool/finddupes.glade:239
 msgid "Co_mpare"
-msgstr ""
+msgstr "_Jämför"
 
 #: ../gramps/plugins/tool/finddupes.py:66
 msgid "manual|Find_Possible_Duplicate_People"
-msgstr ""
+msgstr "Hitta möjliga dubblerade personer"
 
 #: ../gramps/plugins/tool/finddupes.py:126
 #: ../gramps/plugins/tool/tools.gpr.py:153
 msgid "Find Possible Duplicate People"
-msgstr ""
+msgstr "Hitta möjliga dubblerade personer"
 
 #: ../gramps/plugins/tool/finddupes.py:143
 msgid "Find Duplicates tool"
-msgstr ""
+msgstr "Hitta dubbletter"
 
 #: ../gramps/plugins/tool/finddupes.py:143
 #: ../gramps/plugins/tool/mergecitations.py:164
 #: ../gramps/plugins/tool/verify.py:347
 msgid "Tool settings"
-msgstr ""
+msgstr "Verktygsinställningar"
 
 #: ../gramps/plugins/tool/finddupes.py:177
 msgid "No matches found"
-msgstr ""
+msgstr "Inga träffar hittades"
 
 #: ../gramps/plugins/tool/finddupes.py:178
 msgid "No potential duplicate people were found"
-msgstr ""
+msgstr "Inga potentiella duplicerade personer hittades"
 
 #: ../gramps/plugins/tool/finddupes.py:189
 msgid "Find Duplicates"
-msgstr ""
+msgstr "Hitta dubbletter"
 
 #: ../gramps/plugins/tool/finddupes.py:190
 msgid "Looking for duplicate people"
-msgstr ""
+msgstr "Söker efter dubblerade personer"
 
 #: ../gramps/plugins/tool/finddupes.py:199
 msgid "Pass 1: Building preliminary lists"
-msgstr ""
+msgstr "Pass 1: Konstruerar preliminära listor"
 
 #: ../gramps/plugins/tool/finddupes.py:217
 msgid "Pass 2: Calculating potential matches"
-msgstr ""
+msgstr "Pass 2: Beräknar potentiella träffar"
 
 #: ../gramps/plugins/tool/finddupes.py:555
 msgid "Potential Merges"
-msgstr ""
+msgstr "Möjliga sammanslagningar"
 
 #: ../gramps/plugins/tool/finddupes.py:571
 msgid "Rating"
-msgstr ""
+msgstr "Gradering"
 
 #: ../gramps/plugins/tool/finddupes.py:572
 msgid "First Person"
-msgstr ""
+msgstr "Första personen"
 
 #: ../gramps/plugins/tool/finddupes.py:573
 msgid "Second Person"
-msgstr ""
+msgstr "Andra personen"
 
 #: ../gramps/plugins/tool/finddupes.py:583
 msgid "Merge candidates"
-msgstr ""
+msgstr "kandidater för sammanslagning"
 
 #: ../gramps/plugins/tool/finddupes.py:583
 msgid "Merge persons"
-msgstr ""
+msgstr "Slå ihop personer"
 
 #: ../gramps/plugins/tool/findloop.py:58
 msgid "manual|Find_database_loop"
-msgstr ""
+msgstr "Hitta databasslinga"
 
 #: ../gramps/plugins/tool/findloop.py:73
 #: ../gramps/plugins/tool/tools.gpr.py:465
 msgid "Find database loop"
-msgstr ""
+msgstr "Hitta databasslinga"
 
 #. start the progress indicator
 #: ../gramps/plugins/tool/findloop.py:93
 #: ../gramps/plugins/tool/notrelated.py:112
 #: ../gramps/plugins/tool/notrelated.py:257
 msgid "Starting"
-msgstr ""
+msgstr "Börjar"
 
 #: ../gramps/plugins/tool/findloop.py:95
 msgid "Looking for possible loop for each person"
-msgstr ""
+msgstr "Söker efter möjliga slingor för alla personer"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
 msgid "manual|Media_Manager..."
-msgstr ""
+msgstr "Media_hanterare..."
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114
 #: ../gramps/plugins/tool/tools.gpr.py:176
 msgid "Media Manager"
-msgstr ""
+msgstr "Mediahanterare"
 
 #: ../gramps/plugins/tool/mediamanager.py:97
 #: ../gramps/plugins/webreport/basepage.py:1483
 #: ../gramps/plugins/webreport/basepage.py:1606
 #: ../gramps/plugins/webreport/introduction.py:78
 msgid "Introduction"
-msgstr ""
+msgstr "Introduktion"
 
 #: ../gramps/plugins/tool/mediamanager.py:100
 msgid "Selection"
-msgstr ""
+msgstr "Val"
 
 #: ../gramps/plugins/tool/mediamanager.py:229
 #, python-format
@@ -32523,35 +32544,56 @@ msgid ""
 "outside of Gramps. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
+"Det här verktyget möjliggör flera operationer på mediaobjekt i Gramps. En "
+"viktig distinktion måste göras mellan ett mediaobjekt och dess datafil.\n"
+"\n"
+"Ett mediaobjekt är en samling information om ett mediaobjekts datafil: namn, "
+"sökväg, beskrivning, ID, notiser, källreferenser etc. Dessa data "
+"%(bold_start)sinnehåller inte datafilen självf%(bold_end)s.\n"
+"\n"
+"De datafiler som innehåller bilder, ljud, video etc, lagras separat på "
+"hårddisken. Dessa filer ligger utanför Gramps kontroll och tas inte med i "
+"Gramps databaser. I databasen lagras endast sökväg och filnamn.\n"
+"\n"
+"Det här verktyget låter dig ändra posterna i Gramps-databasen. Om du vill "
+"flytta eller byta namn på datafilerna måste du göra det på egen hand, "
+"utanför Gramps. Därefter kan du justera sökvägarna med detta verktyg så att "
+"mediaobjekten innehåller rätt filplatser."
 
 #: ../gramps/plugins/tool/mediamanager.py:340
 msgid "Affected path"
-msgstr ""
+msgstr "Berörd sökväg"
 
 #: ../gramps/plugins/tool/mediamanager.py:347
 msgid ""
 "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgstr ""
+"Tryck Tillämpa för att fortsätta, Avbryt för att avbryta eller Bakåt för att "
+"återse dina alternativ."
 
 #: ../gramps/plugins/tool/mediamanager.py:385
 msgid "Operation successfully finished"
-msgstr ""
+msgstr "Åtgärden avslutades med lyckat resultat"
 
 #: ../gramps/plugins/tool/mediamanager.py:387
 msgid ""
 "The operation you requested has finished successfully. You may press Close "
 "now to continue."
 msgstr ""
+"Åtgärden du begärde har utförts med lyckat resultat. Tryck på OK för att "
+"fortsätta."
 
 #: ../gramps/plugins/tool/mediamanager.py:390
 msgid "Operation failed"
-msgstr ""
+msgstr "Åtgärden misslyckades"
 
 #: ../gramps/plugins/tool/mediamanager.py:392
 msgid ""
 "There was an error while performing the requested operation. You may try "
 "starting the tool again."
 msgstr ""
+"Det uppstod ett fel när den önskade åtgärden utfördes. Du kan eventuellt "
+"försöka starta verktyget på nytt."
 
 #: ../gramps/plugins/tool/mediamanager.py:427
 #, python-format
@@ -32560,10 +32602,13 @@ msgid ""
 "\n"
 "Operation:\t%s"
 msgstr ""
+"Följande åtgärder kommer att utföras:\n"
+"\n"
+"Åtgärd:\t%s"
 
 #: ../gramps/plugins/tool/mediamanager.py:484
 msgid "Replace _substrings in the path"
-msgstr ""
+msgstr "Ersätt _delsträngar i sökvägen"
 
 #: ../gramps/plugins/tool/mediamanager.py:485
 msgid ""
@@ -32571,18 +32616,21 @@ msgid ""
 "with another substring. This can be useful when you move your media files "
 "from one directory to another"
 msgstr ""
+"Detta verktyg ändrar den angivna delsträngen i mediaobjektens sökväg till en "
+"annan delsträng. Detta kan vara användbart när du flyttar dina mediafiler "
+"från en katalog till en annan"
 
 #: ../gramps/plugins/tool/mediamanager.py:491
 msgid "Replace substring settings"
-msgstr ""
+msgstr "Inställningar för ersätt delsträng"
 
 #: ../gramps/plugins/tool/mediamanager.py:504
 msgid "_Replace:"
-msgstr ""
+msgstr "_Ersätt:"
 
 #: ../gramps/plugins/tool/mediamanager.py:514
 msgid "_With:"
-msgstr ""
+msgstr "_Med:"
 
 #: ../gramps/plugins/tool/mediamanager.py:528
 #, python-format
@@ -32593,10 +32641,15 @@ msgid ""
 "Replace:\t\t%(src_fname)s\n"
 "With:\t\t%(dest_fname)s"
 msgstr ""
+"Följande åtgärd kommer att utföras:\n"
+"\n"
+"Åtgärd:\t%(title)s\n"
+"Byt ut:\t\t%(src_fname)s\n"
+"Mot:\t\t%(dest_fname)s"
 
 #: ../gramps/plugins/tool/mediamanager.py:569
 msgid "Convert paths from relative to _absolute"
-msgstr ""
+msgstr "Konvertera relativa sökvägar till absol_uta"
 
 #: ../gramps/plugins/tool/mediamanager.py:570
 msgid ""
@@ -32604,10 +32657,13 @@ msgid ""
 "does this by prepending the base path as given in the Preferences, or if "
 "that is not set, it prepends user's directory."
 msgstr ""
+"Det här verktyget omvandlar relativa mediasökvägar till absoluta sådana. "
+"Detta sker genom att komplettera den grundläggande sökvägen som anges i "
+"'Inställningar' eller om denna inte är bestämd, kompletteras hemmappen."
 
 #: ../gramps/plugins/tool/mediamanager.py:603
 msgid "Convert paths from absolute to r_elative"
-msgstr ""
+msgstr "Konvertera absoluta sökvägar till _relativa"
 
 #: ../gramps/plugins/tool/mediamanager.py:604
 msgid ""
@@ -32616,96 +32672,105 @@ msgid ""
 "Preferences, or if that is not set, user's directory. A relative path allows "
 "to tie the file location to a base path that can change to your needs."
 msgstr ""
+"Det här verktyget omvandlar absoluta mediasökvägar till relativa. Den "
+"relativa sökvägen är relativ visavi den grundläggande sökvägen som anges i "
+"'Inställningar' eller om den inte är bestämd, din hemmapp. En relativ sökväg "
+"tillåter att knyta filplatsen till en grundläggande sökväg, som kan anpassas "
+"för dina behov."
 
 #: ../gramps/plugins/tool/mediamanager.py:640
 msgid "Add images not included in database"
-msgstr ""
+msgstr "Lägg till bilder som ej ingår i databasen"
 
 #: ../gramps/plugins/tool/mediamanager.py:641
 msgid "Check directories for images not included in database"
-msgstr ""
+msgstr "Kontrollera mappar efter bilder som ej ingår i databasen"
 
 #: ../gramps/plugins/tool/mediamanager.py:642
 msgid ""
 "This tool adds images in directories that are referenced by existing images "
 "in the database."
 msgstr ""
+"Detta verktyg lägger till bilder i mappar som är refererade av befintliga "
+"bilder i databasen."
 
 #: ../gramps/plugins/tool/mergecitations.glade:144
 msgid "Don't merge if citation has notes"
-msgstr ""
+msgstr "Slå ej samman citeringar som har notiser"
 
 #: ../gramps/plugins/tool/mergecitations.py:76
 msgid "Match on Page/Volume, Date and Confidence"
-msgstr ""
+msgstr "Matcha mot Sida/Volym, datum samt tillförlitlighet"
 
 #: ../gramps/plugins/tool/mergecitations.py:77
 msgid "Ignore Date"
-msgstr ""
+msgstr "Ignorera datum"
 
 #: ../gramps/plugins/tool/mergecitations.py:78
 msgid "Ignore Confidence"
-msgstr ""
+msgstr "Ignorera tillförlitlighet"
 
 #: ../gramps/plugins/tool/mergecitations.py:79
 msgid "Ignore Date and Confidence"
-msgstr ""
+msgstr "Ignorera datum och tillförlitlighet"
 
 #: ../gramps/plugins/tool/mergecitations.py:83
 msgid "manual|Merge_citations"
-msgstr ""
+msgstr "Slå samman citeringar"
 
 #: ../gramps/plugins/tool/mergecitations.py:133
 msgid ""
 "Notes, media objects and data-items of matching citations will be combined."
 msgstr ""
+"Notiser, mediaobjekt och dataposter för matchande citeringar kommer att "
+"kombineras."
 
 #: ../gramps/plugins/tool/mergecitations.py:164
 msgid "Merge citations tool"
-msgstr ""
+msgstr "Verktyg för att slå samman citeringar"
 
 #: ../gramps/plugins/tool/mergecitations.py:185
 msgid "Checking Sources"
-msgstr ""
+msgstr "Kontrollerar källor"
 
 #: ../gramps/plugins/tool/mergecitations.py:187
 msgid "Looking for citation fields"
-msgstr ""
+msgstr "Söker efter citeringsfält"
 
 #: ../gramps/plugins/tool/mergecitations.py:233
 msgid "Number of merges done"
-msgstr ""
+msgstr "Antal utförda sammanslagningar"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/mergecitations.py:235
 #, python-brace-format
 msgid "{number_of} citation merged"
 msgid_plural "{number_of} citations merged"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number_of} citering sammanslagen"
+msgstr[1] "{number_of} citeringar sammanslagna"
 
 #: ../gramps/plugins/tool/notrelated.glade:162
 msgid "_Tag"
-msgstr ""
+msgstr "_Flagga"
 
 #: ../gramps/plugins/tool/notrelated.py:60
 msgid "manual|Not_Related"
-msgstr ""
+msgstr "Ej släkt"
 
 #: ../gramps/plugins/tool/notrelated.py:80
 #, python-format
 msgid "Not related to \"%s\""
-msgstr ""
+msgstr "Ej släkt med \"%s\""
 
 #: ../gramps/plugins/tool/notrelated.py:104
 msgid "NotRelated"
-msgstr ""
+msgstr "Ej släkt"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/tool/notrelated.py:173
 #, python-format
 msgid "Everyone in the database is related to %s"
-msgstr ""
+msgstr "Samtliga i databasen är släkt med %s"
 
 #. translators: leave all/any {...} untranslated
 #. TRANS: no singular form needed, as rows is always > 1
@@ -32713,8 +32778,8 @@ msgstr ""
 #, python-brace-format
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Anger flagga för {number_of} person"
+msgstr[1] "Anger flaggor för {number_of} personer"
 
 #. translators: leave all/any {...} untranslated
 #. TRANS: No singular form is needed.
@@ -32722,76 +32787,76 @@ msgstr[1] ""
 #, python-brace-format
 msgid "Finding relationships between {number_of} person"
 msgid_plural "Finding relationships between {number_of} people"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Letar släktskap mellan {number_of} person"
+msgstr[1] "Letar släktskap mellan {number_of} personer"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:385
 #, python-brace-format
 msgid "Looking for {number_of} person"
 msgid_plural "Looking for {number_of} people"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Söker efter {number_of} person"
+msgstr[1] "Söker efter {number_of} personer"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:413
 #, python-brace-format
 msgid "Looking up the name of {number_of} person"
 msgid_plural "Looking up the names of {number_of} people"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Slår upp namnet för {number_of} person"
+msgstr[1] "Slår upp namnen för {number_of} personer"
 
 #: ../gramps/plugins/tool/ownereditor.glade:10
 msgid "Copy from DB to Preferences"
-msgstr ""
+msgstr "Kopiera från DB till inställningar"
 
 #: ../gramps/plugins/tool/ownereditor.glade:23
 msgid "Copy from Preferences to DB"
-msgstr ""
+msgstr "Kopiera från inställningar till DB"
 
 #: ../gramps/plugins/tool/ownereditor.glade:164
 msgid "_Street:"
-msgstr ""
+msgstr "_Gatuadress:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:178
 msgid "_City:"
-msgstr ""
+msgstr "_Stad/Kommun:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:206
 msgid "_Country:"
-msgstr ""
+msgstr "_Land:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:220
 msgid "_ZIP/Postal Code:"
-msgstr ""
+msgstr "_Postnummer:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:234
 msgid "_Phone:"
-msgstr ""
+msgstr "_Telefon:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:248
 msgid "_Email:"
-msgstr ""
+msgstr "_E-post:"
 
 #: ../gramps/plugins/tool/ownereditor.glade:383
 msgid "Right-click to copy from/to Researcher Preferences"
-msgstr ""
+msgstr "Högerklicka för att kopiera från/till forskarinställningar"
 
 #: ../gramps/plugins/tool/ownereditor.py:56
 msgid "manual|Edit_Database_Owner_Information"
-msgstr ""
+msgstr "Redigera information om databasägare"
 
 #: ../gramps/plugins/tool/ownereditor.py:102
 msgid "Database Owner Editor"
-msgstr ""
+msgstr "Databasägarredigerare"
 
 #: ../gramps/plugins/tool/ownereditor.py:164
 msgid "Edit database owner information"
-msgstr ""
+msgstr "Redigera information om databasägare"
 
 #: ../gramps/plugins/tool/patchnames.glade:84
 msgid "_Accept and close"
-msgstr ""
+msgstr "_Godkänn och stäng"
 
 #: ../gramps/plugins/tool/patchnames.glade:135
 msgid ""
@@ -32808,252 +32873,269 @@ msgid ""
 "Run this tool several times to correct names that have multiple information "
 "that can be extracted."
 msgstr ""
+"Nedan finner du en lista på de smeknamn, titlar, prefix och sammansatta "
+"efternamn som Gramps kan extrahera från familjeträdet.\n"
+"Om du accepterar ändringarna kommer Gramps att ändra de poster som valts.\n"
+"\n"
+"Sammansatta efternamn visas som listor av [prefix, efternamn, bindeord].\n"
+"Exempelvis med standardinställningarna kommer namnet \"de Mascarenhas da "
+"Silva e Lencastre\" visas som:\n"
+"       [de, Mascarenhas]-[da, Silva, e]-[,Lencastre]\n"
+"\n"
+"Kör detta verktyg flera gånger för att korrigera namn som har flera "
+"informationsbitar som kan extraheras."
 
 #: ../gramps/plugins/tool/patchnames.py:63
 msgid "manual|Extract_Information_from_Names"
-msgstr ""
+msgstr "Extrahera information från namn"
 
 #: ../gramps/plugins/tool/patchnames.py:105
 msgid "Name and title extraction tool"
-msgstr ""
+msgstr "Verktyg för namn- och titelextrahering"
 
 #: ../gramps/plugins/tool/patchnames.py:115
 msgid "Default prefix and connector settings"
-msgstr ""
+msgstr "Standardinställningar för prefix och bindeord"
 
 #: ../gramps/plugins/tool/patchnames.py:121
 msgid "Prefixes to search for:"
-msgstr ""
+msgstr "Prefix att leta efter:"
 
 #: ../gramps/plugins/tool/patchnames.py:128
 msgid "Connectors splitting surnames:"
-msgstr ""
+msgstr "Bindeord som delar efternamn:"
 
 #: ../gramps/plugins/tool/patchnames.py:135
 msgid "Connectors not splitting surnames:"
-msgstr ""
+msgstr "Bindeord som inte delar efternamn:"
 
 #: ../gramps/plugins/tool/patchnames.py:173
 msgid "Extracting Information from Names"
-msgstr ""
+msgstr "Hämtar information från namn"
 
 #: ../gramps/plugins/tool/patchnames.py:175
 msgid "Analyzing names"
-msgstr ""
+msgstr "Analyserar namn"
 
 #: ../gramps/plugins/tool/patchnames.py:369
 msgid "No titles, nicknames or prefixes were found"
-msgstr ""
+msgstr "Inga titlar, smeknamn eller prefix (von, af m.m.) upptäcktes"
 
 #: ../gramps/plugins/tool/patchnames.py:413
 msgid "Current Name"
-msgstr ""
+msgstr "Aktuellt namn"
 
 #: ../gramps/plugins/tool/patchnames.py:457
 msgid "Prefix in given name"
-msgstr ""
+msgstr "Prefix i förnamn"
 
 #: ../gramps/plugins/tool/patchnames.py:469
 msgid "Compound surname"
-msgstr ""
+msgstr "Sammansatt efternamn"
 
 #: ../gramps/plugins/tool/patchnames.py:496
 msgid "Extract information from names"
-msgstr ""
+msgstr "Hämta information från namn"
 
 #: ../gramps/plugins/tool/rebuild.py:77
 msgid "Rebuilding secondary indexes..."
-msgstr ""
+msgstr "Rekonstruerar sekundärindex..."
 
 #: ../gramps/plugins/tool/rebuild.py:86
 msgid "Secondary indexes rebuilt"
-msgstr ""
+msgstr "Sekundärindex rekonstruerat"
 
 #: ../gramps/plugins/tool/rebuild.py:87
 msgid "All secondary indexes have been rebuilt."
-msgstr ""
+msgstr "Alla sekundärindex har rekonstruerats."
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:82
 msgid "Rebuilding gender statistics for name gender guessing..."
-msgstr ""
+msgstr "Återskapande av könsstatistik för att gissa kön utifrån namnet..."
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:95
 msgid "Gender statistics rebuilt"
-msgstr ""
+msgstr "Könsstatistik skapad"
 
 #: ../gramps/plugins/tool/rebuildgenderstat.py:96
 msgid "Gender statistics for name gender guessing have been rebuilt."
-msgstr ""
+msgstr "Könsstatistik för att gissa kön utifrån namnet har skapats."
 
 #: ../gramps/plugins/tool/rebuildrefmap.py:91
 msgid "Reference maps rebuilt"
-msgstr ""
+msgstr "Referenskartor ombyggda"
 
 #: ../gramps/plugins/tool/relcalc.glade:76
 msgid "Select a person to determine the relationship"
-msgstr ""
+msgstr "Välj en person att avgöra släktskap till"
 
 #: ../gramps/plugins/tool/relcalc.py:106
 #, python-format
 msgid "Relationship calculator: %(person_name)s"
-msgstr ""
+msgstr "Släktskapsberäknare: %(person_name)s"
 
 #: ../gramps/plugins/tool/relcalc.py:111
 #, python-format
 msgid "Relationship to %(person_name)s"
-msgstr ""
+msgstr "Släktskap med %(person_name)s"
 
 #: ../gramps/plugins/tool/relcalc.py:168
 msgid "Relationship Calculator tool"
-msgstr ""
+msgstr "Verktyg för att beräkna släktskap"
 
 #: ../gramps/plugins/tool/relcalc.py:200
 #, python-format
 msgid "%(person)s and %(active_person)s are not related."
-msgstr ""
+msgstr "%(person)s och %(active_person)s är inte släkt."
 
 #: ../gramps/plugins/tool/relcalc.py:219
 #, python-format
 msgid "Their common ancestor is %s."
-msgstr ""
+msgstr "Deras gemensamma ana är %s."
 
 #: ../gramps/plugins/tool/relcalc.py:225
 #, python-format
 msgid "Their common ancestors are %(ancestor1)s and %(ancestor2)s."
-msgstr ""
+msgstr "Deras gemensamma anor är %(ancestor1)s och %(ancestor2)s."
 
 #: ../gramps/plugins/tool/relcalc.py:231
 msgid "Their common ancestors are: "
-msgstr ""
+msgstr "Deras gemensamma anor är: "
 
 #: ../gramps/plugins/tool/removeunused.glade:92
 msgid "Search for events"
-msgstr ""
+msgstr "Leta efter händelser"
 
 #: ../gramps/plugins/tool/removeunused.glade:110
 msgid "Search for sources"
-msgstr ""
+msgstr "Leta efter källor"
 
 #: ../gramps/plugins/tool/removeunused.glade:128
 msgid "Search for citations"
-msgstr ""
+msgstr "Leta efter citeringar"
 
 #: ../gramps/plugins/tool/removeunused.glade:143
 msgid "Search for places"
-msgstr ""
+msgstr "Leta efter platser"
 
 #: ../gramps/plugins/tool/removeunused.glade:161
 msgid "Search for media"
-msgstr ""
+msgstr "Leta efter media"
 
 #: ../gramps/plugins/tool/removeunused.glade:179
 msgid "Search for repositories"
-msgstr ""
+msgstr "Leta efter arkivplatser"
 
 #: ../gramps/plugins/tool/removeunused.glade:197
 msgid "Search for notes"
-msgstr ""
+msgstr "Leta efter notiser"
 
 #: ../gramps/plugins/tool/removeunused.glade:287
 #: ../gramps/plugins/tool/verify.glade:929
 msgid "_Mark all"
-msgstr ""
+msgstr "_Markera alla"
 
 #: ../gramps/plugins/tool/removeunused.glade:303
 #: ../gramps/plugins/tool/verify.glade:945
 msgid "_Unmark all"
-msgstr ""
+msgstr "A_vmarkera alla"
 
 #: ../gramps/plugins/tool/removeunused.glade:319
 #: ../gramps/plugins/tool/verify.glade:961
 msgid "In_vert marks"
-msgstr ""
+msgstr "In_vertera markeringar"
 
 #: ../gramps/plugins/tool/removeunused.glade:344
 #: ../gramps/plugins/tool/verify.glade:904
 msgid "Double-click on a row to view/edit data"
-msgstr ""
+msgstr "Dubbelklicka på en rad för att visa/redigera information"
 
 #: ../gramps/plugins/tool/removeunused.py:69
 msgid "Unused Objects"
-msgstr ""
+msgstr "Oanvända objekt"
 
 #. Add mark column
 #. Add ignore column
 #: ../gramps/plugins/tool/removeunused.py:184
 #: ../gramps/plugins/tool/verify.py:551
 msgid "Mark"
-msgstr ""
+msgstr "Markera"
 
 #: ../gramps/plugins/tool/removeunused.py:299
 msgid "Remove unused objects"
-msgstr ""
+msgstr "Ta bort oanvända objekt"
 
 #: ../gramps/plugins/tool/reorderids.glade:1406
 msgid "Enable ID reordering."
-msgstr ""
+msgstr "Aktivera omsortering av ID:n."
 
 #: ../gramps/plugins/tool/reorderids.glade:1420
 msgid ""
 "List next ID available\n"
 "(maynot be continuous)."
 msgstr ""
+"Visa nästa tillgängliga ID\n"
+"(behöver inte vara i ordning)."
 
 #: ../gramps/plugins/tool/reorderids.glade:1424
 msgid "  Actual"
-msgstr ""
+msgstr "  Faktisk"
 
 #: ../gramps/plugins/tool/reorderids.glade:1436
 msgid "Amount of ID in use."
-msgstr ""
+msgstr "Antal ID som används."
 
 #: ../gramps/plugins/tool/reorderids.glade:1438
 msgid " Quantity"
-msgstr ""
+msgstr " Antal"
 
 #: ../gramps/plugins/tool/reorderids.glade:1452
 msgid "Actual / Upcoming ID format."
-msgstr ""
+msgstr "Faktiskt / Kommande ID-format."
 
 #: ../gramps/plugins/tool/reorderids.glade:1465
 msgid "Change"
-msgstr ""
+msgstr "Ändra"
 
 #: ../gramps/plugins/tool/reorderids.glade:1470
 msgid ""
 "Enable ID reordering\n"
 "with Start / Step sequence."
 msgstr ""
+"Aktivera omsortering av ID:n\n"
+"med start / stegvis sekvens."
 
 #: ../gramps/plugins/tool/reorderids.glade:1483
 msgid "Start"
-msgstr ""
+msgstr "Starta"
 
 #: ../gramps/plugins/tool/reorderids.glade:1488
 msgid "Reorder ID start number."
-msgstr ""
+msgstr "Sortera om startnummer för ID:n."
 
 #: ../gramps/plugins/tool/reorderids.glade:1501
 msgid "Step"
-msgstr ""
+msgstr "Steg"
 
 #: ../gramps/plugins/tool/reorderids.glade:1506
 msgid "Reorder ID step width."
-msgstr ""
+msgstr "Sortera om ID-stegvidd."
 
 #: ../gramps/plugins/tool/reorderids.glade:1518
 msgid "Keep"
-msgstr ""
+msgstr "Behåll"
 
 #: ../gramps/plugins/tool/reorderids.glade:1523
 msgid ""
 "Keep IDs with alternate\n"
 "prefixes untouched."
 msgstr ""
+"Behåll ID:n med alternativa\n"
+"prefix orörda."
 
 #: ../gramps/plugins/tool/reorderids.py:64
 msgid "manual|Reorder_Gramps_ID"
-msgstr ""
+msgstr "Sortera om Gramps-ID:n"
 
 #. self.top.set_icon(ICON)
 #: ../gramps/plugins/tool/reorderids.py:218
@@ -33063,125 +33145,129 @@ msgstr ""
 #: ../gramps/plugins/tool/reorderids.py:621
 #: ../gramps/plugins/tool/tools.gpr.py:375
 msgid "Reorder Gramps IDs"
-msgstr ""
+msgstr "Sortera om Gramps-ID:n"
 
 #: ../gramps/plugins/tool/reorderids.py:544
 #: ../gramps/plugins/tool/reorderids.py:549
 #, python-format
 msgid "Reorder %s IDs ..."
-msgstr ""
+msgstr "Sortera om %s ID:n ..."
 
 #: ../gramps/plugins/tool/reorderids.py:625
 #, python-format
 msgid "Do you want to replace %s?"
-msgstr ""
+msgstr "Vill du byta ut %s?"
 
 #: ../gramps/plugins/tool/reorderids.py:684
 msgid "Finding and assigning unused IDs."
-msgstr ""
+msgstr "Söker och tilldelar oanvända ID:n."
 
 #: ../gramps/plugins/tool/sortevents.py:76
 msgid "Sort Events"
-msgstr ""
+msgstr "Sortera händelser"
 
 #: ../gramps/plugins/tool/sortevents.py:97
 msgid "Sort event changes"
-msgstr ""
+msgstr "Sortera händelseändringar"
 
 #: ../gramps/plugins/tool/sortevents.py:112
 msgid "Sorting personal events..."
-msgstr ""
+msgstr "Sorterar personhändelser..."
 
 #: ../gramps/plugins/tool/sortevents.py:134
 msgid "Sorting family events..."
-msgstr ""
+msgstr "Sorterar familjehändelser..."
 
 #: ../gramps/plugins/tool/sortevents.py:165
 msgid "Tool Options"
-msgstr ""
+msgstr "Verktygsalternativ"
 
 #: ../gramps/plugins/tool/sortevents.py:168
 msgid "Select the people to sort"
-msgstr ""
+msgstr "Välj personer för sortering"
 
 #: ../gramps/plugins/tool/sortevents.py:187
 msgid "Sort descending"
-msgstr ""
+msgstr "Sortera fallande"
 
 #: ../gramps/plugins/tool/sortevents.py:188
 msgid "Set the sort order"
-msgstr ""
+msgstr "Välj sorteringsordning"
 
 #: ../gramps/plugins/tool/sortevents.py:191
 msgid "Include family events"
-msgstr ""
+msgstr "Ta med familjehändelser"
 
 #: ../gramps/plugins/tool/sortevents.py:192
 msgid "Sort family events of the person"
-msgstr ""
+msgstr "Sortera familjehändelser för personen"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:91
 msgid "Generate_Testcases_for_Persons_and_Families"
-msgstr ""
+msgstr "Skapa testfall för personer och familjer"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:274
 #: ../gramps/plugins/tool/testcasegenerator.py:280
 msgid "Generate testcases"
-msgstr ""
+msgstr "Skapa testfall"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:285
 msgid ""
 "Generate low level database errors\n"
 "Correction needs database reload"
 msgstr ""
+"Skapa lågnivådatabasfel\n"
+"För korrigering måste databasen laddas om"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:290
 msgid "Generate database errors"
-msgstr ""
+msgstr "Skapa databasfel"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:294
 msgid "Generate dummy data"
-msgstr ""
+msgstr "Skapa nonsensdata"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:299
 msgid "Generate long names"
-msgstr ""
+msgstr "Skapa långa namn"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:304
 msgid "Add special characters"
-msgstr ""
+msgstr "Lägg till specialtecken"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:308
 msgid "Add serial number"
-msgstr ""
+msgstr "Lägg till serienummer"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:312
 msgid "Add line break"
-msgstr ""
+msgstr "Lägg till radbrytning"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:317
 msgid ""
 "Number of people to generate\n"
 "(Number is approximate because families are generated)"
 msgstr ""
+"Antal personer att skapa\n"
+"(Antal är ungefärligt på grund av att familjer skapas)"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:375
 #: ../gramps/plugins/tool/testcasegenerator.py:385
 #: ../gramps/plugins/tool/testcasegenerator.py:391
 msgid "Generating testcases"
-msgstr ""
+msgstr "Skapar testfall"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:376
 msgid "Generating low level database errors"
-msgstr ""
+msgstr "Skapar lågnivådatabasfel"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:386
 msgid "Generating database errors"
-msgstr ""
+msgstr "Skapar databasfel"
 
 #: ../gramps/plugins/tool/testcasegenerator.py:392
 msgid "Generating families"
-msgstr ""
+msgstr "Skapar familjer"
 
 #. Create a family, that links to father and mother, but father does not
 #. link back
@@ -33249,20 +33335,20 @@ msgstr ""
 #: ../gramps/plugins/tool/testcasegenerator.py:1683
 #, python-format
 msgid "Testcase generator step %d"
-msgstr ""
+msgstr "Testfallsgenerator steg %d"
 
 #: ../gramps/plugins/tool/tools.gpr.py:38
 msgid "Fix Capitalization of Family Names"
-msgstr ""
+msgstr "Normera stor bokstav för efternamn"
 
 #: ../gramps/plugins/tool/tools.gpr.py:39
 msgid ""
 "Searches the entire database and attempts to fix capitalization of the names."
-msgstr ""
+msgstr "Söker i hela databasen och försöker rätta stor bokstav för namnen."
 
 #: ../gramps/plugins/tool/tools.gpr.py:61
 msgid "Rename Event Types"
-msgstr ""
+msgstr "Ändra namn på händelsetyper"
 
 #: ../gramps/plugins/tool/tools.gpr.py:62
 msgid "Allows all the events of a certain name to be renamed to a new name."
