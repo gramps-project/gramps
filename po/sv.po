@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-24 14:13+0100\n"
-"PO-Revision-Date: 2018-11-12 17:47+0100\n"
+"PO-Revision-Date: 2018-11-13 18:35+0100\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33352,430 +33352,436 @@ msgstr "Ändra namn på händelsetyper"
 
 #: ../gramps/plugins/tool/tools.gpr.py:62
 msgid "Allows all the events of a certain name to be renamed to a new name."
-msgstr ""
+msgstr "Tillåter alla händelser med ett speciellt namn att få ett nytt namn."
 
 #: ../gramps/plugins/tool/tools.gpr.py:84
 msgid "Check and Repair Database"
-msgstr ""
+msgstr "Kontrollera och reparera databasen"
 
 #: ../gramps/plugins/tool/tools.gpr.py:85
 msgid ""
 "Checks the database for integrity problems, fixing the problems that it can"
-msgstr ""
+msgstr "Kontrollerar databasen för integritetsfel och lagar dessa om möjligt"
 
 #: ../gramps/plugins/tool/tools.gpr.py:107
 msgid "Compare Individual Events"
-msgstr ""
+msgstr "Jämför individuella händelser"
 
 #: ../gramps/plugins/tool/tools.gpr.py:108
 msgid ""
 "Aids in the analysis of data by allowing the development of custom filters "
 "that can be applied to the database to find similar events"
 msgstr ""
+"Hjälper vid analys av data genom att tillåta utveckling av anpassade filter, "
+"som kan användas mot databasen för att hitta liknande händelser"
 
 #: ../gramps/plugins/tool/tools.gpr.py:132
 msgid "Extracts event descriptions from the event data"
-msgstr ""
+msgstr "Hämtar händelsebeskrivningar från händelsedata"
 
 #: ../gramps/plugins/tool/tools.gpr.py:154
 msgid ""
 "Searches the entire database, looking for individual entries that may "
 "represent the same person."
-msgstr ""
+msgstr "Söker i hela databasen efter individer som kan vara samma person."
 
 #: ../gramps/plugins/tool/tools.gpr.py:177
 msgid "Manages batch operations on media files"
-msgstr ""
+msgstr "Hanterar batch-operationer på mediafiler"
 
 #: ../gramps/plugins/tool/tools.gpr.py:198
 msgid "Not Related"
-msgstr ""
+msgstr "Ej släkt"
 
 #: ../gramps/plugins/tool/tools.gpr.py:199
 msgid "Find people who are not in any way related to the selected person"
-msgstr ""
+msgstr "Hitta personer som inte på något sätt är släkt med den valda personen"
 
 #: ../gramps/plugins/tool/tools.gpr.py:221
 msgid "Edit Database Owner Information"
-msgstr ""
+msgstr "Redigera information om databasägare"
 
 #: ../gramps/plugins/tool/tools.gpr.py:222
 msgid "Allow editing database owner information."
-msgstr ""
+msgstr "Tillåt redigering av information om databasägare."
 
 #: ../gramps/plugins/tool/tools.gpr.py:243
 msgid "Extract Information from Names"
-msgstr ""
+msgstr "Hämtar information från namn"
 
 #: ../gramps/plugins/tool/tools.gpr.py:244
 msgid ""
 "Extract titles, prefixes and compound surnames from given name or family "
 "name."
 msgstr ""
+"Extraherar titlar, prefix och sammansatta efternamn från förnamn eller "
+"släktnamn."
 
 #: ../gramps/plugins/tool/tools.gpr.py:265
 msgid "Rebuild Secondary Indexes"
-msgstr ""
+msgstr "Rekonstruera sekundärindex"
 
 #: ../gramps/plugins/tool/tools.gpr.py:266
 msgid "Rebuilds secondary indexes"
-msgstr ""
+msgstr "Rekonstruerar sekundärindex"
 
 #: ../gramps/plugins/tool/tools.gpr.py:287
 msgid "Rebuild Reference Maps"
-msgstr ""
+msgstr "Rekonstruera referenskartor"
 
 #: ../gramps/plugins/tool/tools.gpr.py:288
 msgid "Rebuilds reference maps"
-msgstr ""
+msgstr "Rekonstruerar referenskartor"
 
 #: ../gramps/plugins/tool/tools.gpr.py:309
 msgid "Rebuild Gender Statistics"
-msgstr ""
+msgstr "Rekonstruera könsstatistik"
 
 #: ../gramps/plugins/tool/tools.gpr.py:310
 msgid "Rebuilds gender statistics for name gender guessing..."
-msgstr ""
+msgstr "Rekonstruerar könsstatistik för att gissa kön utifrån namnet..."
 
 #: ../gramps/plugins/tool/tools.gpr.py:331
 msgid "Relationship Calculator"
-msgstr ""
+msgstr "Släktskapsberäknare"
 
 #: ../gramps/plugins/tool/tools.gpr.py:332
 msgid "Calculates the relationship between two people"
-msgstr ""
+msgstr "Beräknar släktskap mellan två personer"
 
 #: ../gramps/plugins/tool/tools.gpr.py:353
 msgid "Remove Unused Objects"
-msgstr ""
+msgstr "Ta bort oanvända objekt"
 
 #: ../gramps/plugins/tool/tools.gpr.py:354
 msgid "Removes unused objects from the database"
-msgstr ""
+msgstr "Tar bort oanvända objekt från databasen"
 
 #: ../gramps/plugins/tool/tools.gpr.py:376
 msgid "Reorders the Gramps IDs according to Gramps' default rules."
-msgstr ""
+msgstr "Sorterar om Gramps-ID:n efter Gramps standardregler."
 
 #: ../gramps/plugins/tool/tools.gpr.py:398
 #: ../gramps/plugins/tool/tools.gpr.py:399
 msgid "Sorts events"
-msgstr ""
+msgstr "Sorterar händelser"
 
 #: ../gramps/plugins/tool/tools.gpr.py:420
 msgid "Verify the Data"
-msgstr ""
+msgstr "Verifiera data"
 
 #: ../gramps/plugins/tool/tools.gpr.py:421
 msgid "Verifies the data against user-defined tests"
-msgstr ""
+msgstr "Verifiera data gentemot användardefinierade tester"
 
 #: ../gramps/plugins/tool/tools.gpr.py:443
 msgid ""
 "Searches the entire database, looking for citations that have the same "
 "Volume/Page, Date and Confidence."
 msgstr ""
+"Söker i hela databasen efter citeringar som har samma Volym/sida, datum och "
+"tillförlitlighet."
 
 #: ../gramps/plugins/tool/tools.gpr.py:466
 msgid "Searches the entire database, looking for a possible loop."
-msgstr ""
+msgstr "Söker i hela databasen efter möjliga slingor."
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:64
 msgid "Dump Gender Statistics"
-msgstr ""
+msgstr "Framställer könsstatistik"
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:65
 msgid "Will dump the statistics for guessing the gender from the first name."
-msgstr ""
+msgstr "Kommer att framställa statistik för att gissa könet från förnamnet."
 
 #: ../gramps/plugins/tool/verify.glade:215
 msgid "Maximum _age"
-msgstr ""
+msgstr "M_aximiålder"
 
 #: ../gramps/plugins/tool/verify.glade:230
 msgid "Mi_nimum age to marry"
-msgstr ""
+msgstr "Mi_nimiålder vid giftermål"
 
 #: ../gramps/plugins/tool/verify.glade:257
 msgid "Ma_ximum age to marry"
-msgstr ""
+msgstr "Ma_ximiålder vid giftermål"
 
 #: ../gramps/plugins/tool/verify.glade:284
 msgid "Maximum number of _spouses for a person"
-msgstr ""
+msgstr "Maximalt antal _makar för en person"
 
 #: ../gramps/plugins/tool/verify.glade:323
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
-msgstr ""
+msgstr "Maximalt antal sammanhängande år av _änkestånd innan nästa giftermål"
 
 #: ../gramps/plugins/tool/verify.glade:338
 msgid "Maximum age for an _unmarried person"
-msgstr ""
+msgstr "Maximiålder för en ogi_ft person"
 
 #: ../gramps/plugins/tool/verify.glade:361
 msgid "_Estimate missing or inexact dates"
-msgstr ""
+msgstr "_Gör uppskattning för saknade eller oprecisa datum"
 
 #: ../gramps/plugins/tool/verify.glade:378
 msgid "_Identify invalid dates"
-msgstr ""
+msgstr "_Identifiera ogiltiga datum"
 
 #: ../gramps/plugins/tool/verify.glade:432
 msgid "Mi_nimum age to bear a child"
-msgstr ""
+msgstr "Mi_nimiålder för att föda barn"
 
 #: ../gramps/plugins/tool/verify.glade:451
 msgid "Ma_ximum age to bear a child"
-msgstr ""
+msgstr "Ma_ximiålder för att föda barn"
 
 #: ../gramps/plugins/tool/verify.glade:470
 #: ../gramps/plugins/tool/verify.glade:590
 msgid "Maximum number of chil_dren"
-msgstr ""
+msgstr "Maximalt antal ba_rn"
 
 #: ../gramps/plugins/tool/verify.glade:552
 msgid "Mi_nimum age to father a child"
-msgstr ""
+msgstr "Mi_nimiålder för att bli far till ett barn"
 
 #: ../gramps/plugins/tool/verify.glade:571
 msgid "Ma_ximum age to father a child"
-msgstr ""
+msgstr "Ma_ximiålder för att bli far till ett barn"
 
 #: ../gramps/plugins/tool/verify.glade:704
 msgid "Maximum husband-wife age _difference"
-msgstr ""
+msgstr "Maximal ål_dersskillnad mellan make och maka"
 
 #: ../gramps/plugins/tool/verify.glade:719
 msgid "Maximum number of years _between children"
-msgstr ""
+msgstr "Maximalt antal år m_ellan barn"
 
 #: ../gramps/plugins/tool/verify.glade:734
 msgid "Maximum _span of years for all children"
-msgstr ""
+msgstr "Maximal ålders_skillnad för alla barn"
 
 #: ../gramps/plugins/tool/verify.glade:984 ../gramps/plugins/tool/verify.py:670
 msgid "_Hide marked"
-msgstr ""
+msgstr "_Göm markerade"
 
 #: ../gramps/plugins/tool/verify.py:83
 msgid "manual|Verify_the_Data"
-msgstr ""
+msgstr "Verifiera data"
 
 #: ../gramps/plugins/tool/verify.py:295
 msgid "Data Verify tool"
-msgstr ""
+msgstr "Verktyg för dataverifiering"
 
 #. translators: needed for French+Arabic, ignore otherwise
 #: ../gramps/plugins/tool/verify.py:318
 #, python-format
 msgid "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
-msgstr ""
+msgstr "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 
 #: ../gramps/plugins/tool/verify.py:499
 msgid "Data Verification Results"
-msgstr ""
+msgstr "Resultat av dataverifiering"
 
 #: ../gramps/plugins/tool/verify.py:660
 msgid "_Show all"
-msgstr ""
+msgstr "_Visa alla"
 
 #: ../gramps/plugins/tool/verify.py:941
 msgid "Baptism before birth"
-msgstr ""
+msgstr "Dop före födelse"
 
 #: ../gramps/plugins/tool/verify.py:957
 msgid "Death before baptism"
-msgstr ""
+msgstr "Död före dop"
 
 #: ../gramps/plugins/tool/verify.py:973
 msgid "Burial before birth"
-msgstr ""
+msgstr "Begravning före födelse"
 
 #: ../gramps/plugins/tool/verify.py:989
 msgid "Burial before death"
-msgstr ""
+msgstr "Begravning före död"
 
 #: ../gramps/plugins/tool/verify.py:1005
 msgid "Death before birth"
-msgstr ""
+msgstr "Död före födelse"
 
 #: ../gramps/plugins/tool/verify.py:1021
 msgid "Burial before baptism"
-msgstr ""
+msgstr "Begravning före dop"
 
 #: ../gramps/plugins/tool/verify.py:1044
 msgid "Old age at death"
-msgstr ""
+msgstr "Hög ålder vid död"
 
 #: ../gramps/plugins/tool/verify.py:1071
 msgid "Multiple parents"
-msgstr ""
+msgstr "Flera föräldrar"
 
 #: ../gramps/plugins/tool/verify.py:1093
 msgid "Married often"
-msgstr ""
+msgstr "Gift ofta"
 
 #: ../gramps/plugins/tool/verify.py:1117
 msgid "Old and unmarried"
-msgstr ""
+msgstr "Gammal och ogift"
 
 #: ../gramps/plugins/tool/verify.py:1149
 msgid "Too many children"
-msgstr ""
+msgstr "För många barn"
 
 #: ../gramps/plugins/tool/verify.py:1167
 msgid "Same sex marriage"
-msgstr ""
+msgstr "Enkönat äktenskap"
 
 #: ../gramps/plugins/tool/verify.py:1180
 msgid "Female husband"
-msgstr ""
+msgstr "Kvinnlig make"
 
 #: ../gramps/plugins/tool/verify.py:1193
 msgid "Male wife"
-msgstr ""
+msgstr "Manlig hustru"
 
 #: ../gramps/plugins/tool/verify.py:1223
 msgid "Husband and wife with the same surname"
-msgstr ""
+msgstr "Make och maka med samma efternamn"
 
 #: ../gramps/plugins/tool/verify.py:1253
 msgid "Large age difference between spouses"
-msgstr ""
+msgstr "Stor åldersskillnad mellan makar"
 
 #: ../gramps/plugins/tool/verify.py:1289
 msgid "Marriage before birth"
-msgstr ""
+msgstr "Giftermål före födelse"
 
 #: ../gramps/plugins/tool/verify.py:1325
 msgid "Marriage after death"
-msgstr ""
+msgstr "Giftermål efter död"
 
 #: ../gramps/plugins/tool/verify.py:1366
 msgid "Early marriage"
-msgstr ""
+msgstr "Tidigt giftermål"
 
 #: ../gramps/plugins/tool/verify.py:1405
 msgid "Late marriage"
-msgstr ""
+msgstr "Sent giftermål"
 
 #: ../gramps/plugins/tool/verify.py:1454
 msgid "Old father"
-msgstr ""
+msgstr "Gammal far"
 
 #: ../gramps/plugins/tool/verify.py:1458
 msgid "Old mother"
-msgstr ""
+msgstr "Gammal mor"
 
 #: ../gramps/plugins/tool/verify.py:1507
 msgid "Young father"
-msgstr ""
+msgstr "Ung far"
 
 #: ../gramps/plugins/tool/verify.py:1511
 msgid "Young mother"
-msgstr ""
+msgstr "Ung mor"
 
 #: ../gramps/plugins/tool/verify.py:1555
 msgid "Unborn father"
-msgstr ""
+msgstr "Ofödd far"
 
 #: ../gramps/plugins/tool/verify.py:1559
 msgid "Unborn mother"
-msgstr ""
+msgstr "Ofödd mor"
 
 #: ../gramps/plugins/tool/verify.py:1610
 msgid "Dead father"
-msgstr ""
+msgstr "Död far"
 
 #: ../gramps/plugins/tool/verify.py:1614
 msgid "Dead mother"
-msgstr ""
+msgstr "Död mor"
 
 #: ../gramps/plugins/tool/verify.py:1640
 msgid "Large year span for all children"
-msgstr ""
+msgstr "Stort åldersomfång för alla barn"
 
 #: ../gramps/plugins/tool/verify.py:1667
 msgid "Large age differences between children"
-msgstr ""
+msgstr "Stora åldersskillnader mellan barn"
 
 #: ../gramps/plugins/tool/verify.py:1680
 msgid "Disconnected individual"
-msgstr ""
+msgstr "Släktlös person"
 
 #: ../gramps/plugins/tool/verify.py:1707
 msgid "Invalid birth date"
-msgstr ""
+msgstr "Ogiltigt födelsedatum"
 
 #: ../gramps/plugins/tool/verify.py:1734
 msgid "Invalid death date"
-msgstr ""
+msgstr "Ogiltigt dödsdatum"
 
 #: ../gramps/plugins/tool/verify.py:1754
 msgid "Marriage date but not married"
-msgstr ""
+msgstr "Giftermålsdatum, men ej gifta"
 
 #: ../gramps/plugins/tool/verify.py:1782
 msgid "Old age but no death"
-msgstr ""
+msgstr "Hög ålder men ej död"
 
 #: ../gramps/plugins/view/citationlistview.py:105
 msgid "Source: Title"
-msgstr ""
+msgstr "Källa: Titel"
 
 #: ../gramps/plugins/view/citationlistview.py:106
 msgid "Source: ID"
-msgstr ""
+msgstr "Källa: ID"
 
 #: ../gramps/plugins/view/citationlistview.py:107
 #: ../gramps/plugins/view/citationtreeview.py:100
 msgid "Source: Author"
-msgstr ""
+msgstr "Källa: Författare"
 
 #: ../gramps/plugins/view/citationlistview.py:108
 #: ../gramps/plugins/view/citationtreeview.py:101
 msgid "Source: Abbreviation"
-msgstr ""
+msgstr "Källa: Förkortning"
 
 #: ../gramps/plugins/view/citationlistview.py:109
 #: ../gramps/plugins/view/citationtreeview.py:102
 msgid "Source: Publication Information"
-msgstr ""
+msgstr "Källa: Publiceringsinformation"
 
 #: ../gramps/plugins/view/citationlistview.py:110
 msgid "Source: Private"
-msgstr ""
+msgstr "Källa: Privat"
 
 #: ../gramps/plugins/view/citationlistview.py:111
 msgid "Source: Last Changed"
-msgstr ""
+msgstr "Källa: Senast ändrad"
 
 #: ../gramps/plugins/view/citationlistview.py:124
 #: ../gramps/plugins/view/citationtreeview.py:121
 msgid "Add a new citation and a new source"
-msgstr ""
+msgstr "Lägg till en ny citering och en ny källa"
 
 #: ../gramps/plugins/view/citationlistview.py:126
 #: ../gramps/plugins/view/citationtreeview.py:123
 msgid "Add a new citation to an existing source"
-msgstr ""
+msgstr "Lägg till en ny citering till en existerande källa"
 
 #: ../gramps/plugins/view/citationlistview.py:128
 msgid "Delete the selected citation"
-msgstr ""
+msgstr "Radera den valda citeringen"
 
 #: ../gramps/plugins/view/citationlistview.py:129
 msgid "Merge the selected citations"
-msgstr ""
+msgstr "Slå ihop de valda citeringarna"
 
 #: ../gramps/plugins/view/citationlistview.py:143
 msgid "Citation View"
-msgstr ""
+msgstr "Citeringsvy"
 
 #: ../gramps/plugins/view/citationlistview.py:180
 #: ../gramps/plugins/view/citationtreeview.py:314
 msgid "Citation Filter Editor"
-msgstr ""
+msgstr "Redigerare för citeringsfilter"
 
 #: ../gramps/plugins/view/citationlistview.py:298
 msgid ""
@@ -33785,13 +33791,18 @@ msgid ""
 "\n"
 "To edit this citation, you need to close the object."
 msgstr ""
+"Den här citeringen kan inte redigeras just nu. Antingen redigeras den "
+"associerade citeringen eller ett annat objekt som är associerat till samma "
+"citering.\n"
+"\n"
+"För att redigera den här citeringen, måste du stänga objektet."
 
 #: ../gramps/plugins/view/citationlistview.py:311
 #: ../gramps/plugins/view/citationlistview.py:322
 #: ../gramps/plugins/view/citationtreeview.py:528
 #: ../gramps/plugins/view/citationtreeview.py:541
 msgid "Cannot merge citations."
-msgstr ""
+msgstr "Kan inte slå samman citeringar."
 
 #: ../gramps/plugins/view/citationlistview.py:312
 #: ../gramps/plugins/view/citationtreeview.py:529
@@ -33800,6 +33811,9 @@ msgid ""
 "can be selected by holding down the control key while clicking on the "
 "desired citation."
 msgstr ""
+"Exakt två citeringar måste vara valda för att kunna slås ihop. En andra "
+"citering kan väljas genom att hålla ned ctrl-tangenten medan man klickar på "
+"den önskade citeringen."
 
 #: ../gramps/plugins/view/citationlistview.py:323
 #: ../gramps/plugins/view/citationtreeview.py:542
@@ -33807,42 +33821,45 @@ msgid ""
 "The two selected citations must have the same source to perform a merge. If "
 "you want to merge these two citations, then you must merge the sources first."
 msgstr ""
+"De två valda citeringarna måste ha samma källa för att kunna göra en "
+"sammanslagning. Om du vill slå samman dessa två citeringar, så måste du slå "
+"samman källorna först."
 
 #: ../gramps/plugins/view/citationtreeview.py:124
 msgid "Edit the selected citation or source"
-msgstr ""
+msgstr "Redigera den valda citeringen eller källan"
 
 #: ../gramps/plugins/view/citationtreeview.py:125
 msgid "Delete the selected citation or source"
-msgstr ""
+msgstr "Radera den valda citeringen eller källan"
 
 #: ../gramps/plugins/view/citationtreeview.py:126
 msgid "Merge the selected citations or selected sources"
-msgstr ""
+msgstr "Slå ihop de valda citeringarna eller de valda källorna"
 
 #: ../gramps/plugins/view/citationtreeview.py:144
 msgid "Citation Tree View"
-msgstr ""
+msgstr "Hierarkisk citeringsvy"
 
 #: ../gramps/plugins/view/citationtreeview.py:301
 msgid "Add source..."
-msgstr ""
+msgstr "Lägg till källa..."
 
 #: ../gramps/plugins/view/citationtreeview.py:306
 msgid "Add citation..."
-msgstr ""
+msgstr "Lägg till citering..."
 
 #: ../gramps/plugins/view/citationtreeview.py:322
 #: ../gramps/plugins/view/persontreeview.py:82
 #: ../gramps/plugins/view/placetreeview.py:74
 msgid "Expand all Nodes"
-msgstr ""
+msgstr "Expandera alla noder"
 
 #: ../gramps/plugins/view/citationtreeview.py:324
 #: ../gramps/plugins/view/persontreeview.py:84
 #: ../gramps/plugins/view/placetreeview.py:76
 msgid "Collapse all Nodes"
-msgstr ""
+msgstr "Fäll ihop alla noder"
 
 #: ../gramps/plugins/view/citationtreeview.py:515
 msgid ""
@@ -33852,49 +33869,55 @@ msgid ""
 "\n"
 "To edit this source, you need to close the object."
 msgstr ""
+"Den här källan kan inte redigeras just nu. Antingen redigeras den "
+"associerade källan eller en annan citering associerad med samma källa.\n"
+"\n"
+"För att redigera den här källan, måste du stänga objektet."
 
 #: ../gramps/plugins/view/citationtreeview.py:554
 msgid "Cannot perform merge."
-msgstr ""
+msgstr "Kan inte slå samman."
 
 #: ../gramps/plugins/view/citationtreeview.py:555
 msgid ""
 "Both objects must be of the same type, either both must be sources, or both "
 "must be citations."
 msgstr ""
+"Bägge objekten måste vara av samma typ, antingen båda källor eller båda "
+"citeringar."
 
 #: ../gramps/plugins/view/dashboardview.py:51
 #: ../gramps/plugins/view/view.gpr.py:67 ../gramps/plugins/view/view.gpr.py:75
 msgid "Dashboard"
-msgstr ""
+msgstr "Anslagstavla"
 
 #: ../gramps/plugins/view/dashboardview.py:101
 msgid "Restore a gramplet"
-msgstr ""
+msgstr "Återställ en Gramplet"
 
 #: ../gramps/plugins/view/eventview.py:100
 msgid "Add a new event"
-msgstr ""
+msgstr "Lägg till ny händelse"
 
 #: ../gramps/plugins/view/eventview.py:101
 msgid "Edit the selected event"
-msgstr ""
+msgstr "Redigera den valda händelsen"
 
 #: ../gramps/plugins/view/eventview.py:102
 msgid "Delete the selected event"
-msgstr ""
+msgstr "Radera den valda händelsen"
 
 #: ../gramps/plugins/view/eventview.py:103
 msgid "Merge the selected events"
-msgstr ""
+msgstr "Slå ihop de valda händelserna"
 
 #: ../gramps/plugins/view/eventview.py:244
 msgid "Event Filter Editor"
-msgstr ""
+msgstr "Redigera händelsefilter"
 
 #: ../gramps/plugins/view/eventview.py:296
 msgid "Cannot merge event objects."
-msgstr ""
+msgstr "Kan inte slå samman händelser."
 
 #: ../gramps/plugins/view/eventview.py:297
 msgid ""
@@ -33902,51 +33925,54 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "event."
 msgstr ""
+"Exakt två händelser måste vara valda för att kunna slås ihop. Ett andra "
+"objekt kan väljas genom att hålla ned ctrl-tangenten medan man klickar på "
+"den önskade händelsen."
 
 #: ../gramps/plugins/view/familyview.py:83
 msgid "Marriage Date"
-msgstr ""
+msgstr "Giftermålsdatum"
 
 #: ../gramps/plugins/view/familyview.py:97
 msgid "Add a new family"
-msgstr ""
+msgstr "Lägg till en ny familj"
 
 #: ../gramps/plugins/view/familyview.py:98
 msgid "Edit the selected family"
-msgstr ""
+msgstr "Redigera den valda familjen"
 
 #: ../gramps/plugins/view/familyview.py:99
 msgid "Delete the selected family"
-msgstr ""
+msgstr "Radera den valda familjen"
 
 #: ../gramps/plugins/view/familyview.py:100
 msgid "Merge the selected families"
-msgstr ""
+msgstr "Slå ihop de valda familjerna"
 
 #: ../gramps/plugins/view/familyview.py:202
 msgid "Family Filter Editor"
-msgstr ""
+msgstr "Redigera familjefilter"
 
 #: ../gramps/plugins/view/familyview.py:207
 msgid "Make Father Active Person"
-msgstr ""
+msgstr "Gör far till aktiv person"
 
 #: ../gramps/plugins/view/familyview.py:209
 msgid "Make Mother Active Person"
-msgstr ""
+msgstr "Gör mor till aktiv person"
 
 #: ../gramps/plugins/view/familyview.py:247
 msgid "_Delete Family"
-msgstr ""
+msgstr "_Ta bort familj"
 
 #: ../gramps/plugins/view/familyview.py:283
 #, python-format
 msgid "Family [%s]"
-msgstr ""
+msgstr "Familj [%s]"
 
 #: ../gramps/plugins/view/familyview.py:307
 msgid "Cannot merge families."
-msgstr ""
+msgstr "Kan inte slå samman familjer."
 
 #: ../gramps/plugins/view/familyview.py:308
 msgid ""
@@ -33954,130 +33980,133 @@ msgid ""
 "can be selected by holding down the control key while clicking on the "
 "desired family."
 msgstr ""
+"Exakt två familjer måste vara valda för att kunna slås ihop. En andra familj "
+"kan väljas genom att hålla ned ctrl-tangenten medan man klickar på den "
+"önskade familjen."
 
 #: ../gramps/plugins/view/fanchart2wayview.py:193
 #: ../gramps/plugins/view/fanchartdescview.py:188
 #: ../gramps/plugins/view/fanchartview.py:184
 msgid "Print or save the Fan Chart View"
-msgstr ""
+msgstr "Skriv ut eller spara cirkeldiagram"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:295
 msgid "Max ancestor generations"
-msgstr ""
+msgstr "Maximalt antal förfadersgenerationer"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:298
 msgid "Max descendant generations"
-msgstr ""
+msgstr "Maximalt antal ättlingsgenerationer"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:302
 #: ../gramps/plugins/view/fanchartdescview.py:299
 #: ../gramps/plugins/view/fanchartview.py:295
 msgid "Text Font"
-msgstr ""
+msgstr "Texttypsnitt"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:306
 #: ../gramps/plugins/view/fanchartdescview.py:303
 #: ../gramps/plugins/view/fanchartview.py:299
 msgid "Gender colors"
-msgstr ""
+msgstr "Färg för kön"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:307
 #: ../gramps/plugins/view/fanchartdescview.py:304
 #: ../gramps/plugins/view/fanchartview.py:300
 msgid "Generation based gradient"
-msgstr ""
+msgstr "Generationsrelaterad gradient"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:308
 #: ../gramps/plugins/view/fanchartdescview.py:305
 #: ../gramps/plugins/view/fanchartview.py:301
 msgid "Age (0-100) based gradient"
-msgstr ""
+msgstr "Åldersrelaterad (0-100) gradient"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:310
 #: ../gramps/plugins/view/fanchartdescview.py:307
 #: ../gramps/plugins/view/fanchartview.py:303
 msgid "Single main (filter) color"
-msgstr ""
+msgstr "Enhetlig huvud (filter) färg"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:311
 #: ../gramps/plugins/view/fanchartdescview.py:308
 #: ../gramps/plugins/view/fanchartview.py:304
 msgid "Time period based gradient"
-msgstr ""
+msgstr "Tidsperiodsrelaterad gradient"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:312
 #: ../gramps/plugins/view/fanchartdescview.py:309
 #: ../gramps/plugins/view/fanchartview.py:305
 msgid "White"
-msgstr ""
+msgstr "Vit"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:313
 #: ../gramps/plugins/view/fanchartdescview.py:310
 #: ../gramps/plugins/view/fanchartview.py:306
 msgid "Color scheme classic report"
-msgstr ""
+msgstr "Färgschema enligt klassisk rapport"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:314
 #: ../gramps/plugins/view/fanchartdescview.py:311
 #: ../gramps/plugins/view/fanchartview.py:307
 msgid "Color scheme classic view"
-msgstr ""
+msgstr "Färgschema enligt klassisk vy"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:323
 #: ../gramps/plugins/view/fanchartdescview.py:320
 #: ../gramps/plugins/view/fanchartview.py:316
 msgid "Background"
-msgstr ""
+msgstr "Bakgrund"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:332
 msgid "Add global background colored gradient"
-msgstr ""
+msgstr "Lägg till global bakgrund som färgad gradient"
 
 #. colors, stored as hex values
 #: ../gramps/plugins/view/fanchart2wayview.py:336
 #: ../gramps/plugins/view/fanchartdescview.py:327
 #: ../gramps/plugins/view/fanchartview.py:322
 msgid "Start gradient/Main color"
-msgstr ""
+msgstr "Start för gradient/huvudfärg"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:338
 #: ../gramps/plugins/view/fanchartdescview.py:329
 #: ../gramps/plugins/view/fanchartview.py:324
 msgid "End gradient/2nd color"
-msgstr ""
+msgstr "Slut för gradient/andra färg"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:340
 #: ../gramps/plugins/view/fanchartdescview.py:331
 msgid "Color for duplicates"
-msgstr ""
+msgstr "Färg för dubbletter"
 
 #. algo for the fan angle distribution
 #: ../gramps/plugins/view/fanchart2wayview.py:343
 #: ../gramps/plugins/view/fanchartdescview.py:341
 msgid "Fan chart distribution"
-msgstr ""
+msgstr "Cirkeldiagramsfördelning"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:346
 #: ../gramps/plugins/view/fanchartdescview.py:344
 msgid "Homogeneous children distribution"
-msgstr ""
+msgstr "Jämn fördelning av barn"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:348
 #: ../gramps/plugins/view/fanchartdescview.py:346
 msgid "Size  proportional to number of descendants"
-msgstr ""
+msgstr "Storleken proportionell till antalet ättlingar"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:354
 #: ../gramps/plugins/view/fanchartdescview.py:352
 #: ../gramps/plugins/view/fanchartview.py:335
 msgid "Show names on two lines"
-msgstr ""
+msgstr "Visa namn på två rader"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:359
 #: ../gramps/plugins/view/fanchartdescview.py:357
 #: ../gramps/plugins/view/fanchartview.py:340
 msgid "Flip name on the left of the fan"
-msgstr ""
+msgstr "Vänd namnet på vänster sida om cirkeldiagrammet"
 
 #. options we don't show on the dialog
 #. #configdialog.add_checkbox(table,
@@ -34089,13 +34118,13 @@ msgstr ""
 #: ../gramps/plugins/view/pedigreeview.py:2053
 #: ../gramps/plugins/view/relview.py:1686
 msgid "Layout"
-msgstr ""
+msgstr "Layout"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:561
 #: ../gramps/plugins/view/fanchartdescview.py:549
 #: ../gramps/plugins/view/fanchartview.py:556
 msgid "No preview available"
-msgstr ""
+msgstr "Ingen förhandsgranskning är tillgänglig"
 
 #. form of the fan
 #: ../gramps/plugins/view/fanchartdescview.py:334
