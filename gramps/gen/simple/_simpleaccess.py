@@ -787,7 +787,8 @@ class SimpleAccess:
 
         with self.dbase.get_person_cursor() as cursor:
             # data[3] is primary_name; data[3][5][0][0] is surname
-            slist = sorted((data[3][5][0][0], key) for key, data in cursor)
+            slist = sorted((data[3][5][0][0] if data[3][5] else '', key)
+                           for key, data in cursor)
 
         for info in slist:
             obj = self.dbase.get_person_from_handle(info[1])
