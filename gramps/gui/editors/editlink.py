@@ -74,7 +74,7 @@ class EditLink(ManagedWindow):
         self.simple_access = SimpleAccess(self.dbstate.db)
         self.callback = callback
 
-        ManagedWindow.__init__(self, uistate, track, url)
+        ManagedWindow.__init__(self, uistate, track, url, modal=True)
 
         self._local_init()
         self._connect_signals()
