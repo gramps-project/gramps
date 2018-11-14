@@ -61,6 +61,7 @@ from gramps.gen.datehandler import parser
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
 
+
 #------------------------------------------------------------------------
 #
 # Private Functions
@@ -154,10 +155,11 @@ def draw_pie_chart(doc, center_x, center_y, radius, data, start=0):
         total += item[1]
 
     for item in data:
-        incr = 360.0*(item[1]/total)
+        incr = 360.0 * (item[1] / total)
         draw_wedge(doc, item[0], center_x, center_y, radius,
                    start, start + incr)
         start += incr
+
 
 def draw_legend(doc, start_x, start_y, data, title, label_style):
     """
@@ -186,7 +188,7 @@ def draw_legend(doc, start_x, start_y, data, title, label_style):
         pstyle = style_sheet.get_paragraph_style(pstyle_name)
         size = utils.pt2cm(pstyle.get_font().get_size())
         doc.draw_text(label_style, title,
-                      start_x + (3*size), start_y - (size*0.25))
+                      start_x + (3 * size), start_y - (size * 0.25))
         start_y += size * 1.3
 
     for (sformat, size, legend) in data:
@@ -194,13 +196,15 @@ def draw_legend(doc, start_x, start_y, data, title, label_style):
         pstyle_name = gstyle.get_paragraph_style()
         pstyle = style_sheet.get_paragraph_style(pstyle_name)
         size = utils.pt2cm(pstyle.get_font().get_size())
-        doc.draw_box(sformat, "", start_x, start_y, (2*size), size)
+        doc.draw_box(sformat, "", start_x, start_y, (2 * size), size)
         doc.draw_text(label_style, legend,
-                      start_x + (3*size), start_y - (size*0.25))
+                      start_x + (3 * size), start_y - (size * 0.25))
         start_y += size * 1.3
+
 
 _TTT = time.localtime(time.time())
 _TODAY = parser.parse("%04d-%02d-%02d" % _TTT[:3])
+
 
 def estimate_age(dbase, person,
                  end_handle=None, start_handle=None, today=_TODAY):
@@ -292,6 +296,7 @@ def estimate_age(dbase, person,
         age = (lower, upper)
     return age
 
+
 #------------------------------------------------------------------------
 #
 # Global options and their names
@@ -313,9 +318,10 @@ class _options:
     ]
 
 
-def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
+def _T_(value):  # enable deferred translations (see Python docs 22.1.3.4)
     return value
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
+
 
 #------------------------------------------------------------------------
 #
@@ -635,9 +641,9 @@ class Extract:
             # get the information
             type_func = chart[2]
             data_func = chart[3]
-            obj = type_func(person)        # e.g. get_date()
+            obj = type_func(person)  # e.g. get_date()
             if obj:
-                value = data_func(obj)        # e.g. get_year()
+                value = data_func(obj)  # e.g. get_year()
             else:
                 value = [_T_("Personal information missing")]
             # list of information found
@@ -646,7 +652,6 @@ class Extract:
                     chart[1][key] += 1
                 else:
                     chart[1][key] = 1
-
 
     def collect_data(self, dbase, people, menu, genders,
                      year_from, year_to, no_years, cb_progress, rlocale):
@@ -668,7 +673,7 @@ class Extract:
         - Dict of values with their counts
         (- Method)
         """
-        self.db = dbase        # store for use by methods
+        self.db = dbase  # store for use by methods
         self._locale = rlocale
         self._ = rlocale.translation.sgettext
         self._get_type = rlocale.get_type
@@ -722,9 +727,11 @@ class Extract:
             self.get_person_data(person, data)
         return data
 
+
 # GLOBAL: required so that we get access to _Extract.extractors[]
 # Unfortunately class variables cannot reference instance methods :-/
 _Extract = Extract()
+
 
 #------------------------------------------------------------------------
 #
@@ -852,8 +859,8 @@ class StatisticsChart(Report):
         for data in sorted(self.data):
             self.doc.start_page()
             if mark:
-                self.doc.draw_text('SC-title', '', 0, 0, mark) # put it in TOC
-                mark = None # crock, but we only want one of them
+                self.doc.draw_text('SC-title', '', 0, 0, mark)  # put it in TOC
+                mark = None  # crock, but we only want one of them
             if len(data[3]) < self.bar_items:
                 self.output_piechart(*data[:4])
             else:
@@ -861,7 +868,6 @@ class StatisticsChart(Report):
             self.doc.end_page()
             self._user.step_progress()
         self._user.end_progress()
-
 
     def output_piechart(self, title1, typename, data, lookup):
 
@@ -888,23 +894,22 @@ class StatisticsChart(Report):
             text = "%s (%d)" % (self._(key), data[key])
             # graphics style, value, and it's label
             chart_data.append((style, data[key], text))
-            color = (color+1) % 7    # There are only 7 color styles defined
+            color = (color + 1) % 7  # There are only 7 color styles defined
 
         margin = 1.0
         legendx = 2.0
 
         # output data...
-        radius = middle - 2*margin
+        radius = middle - 2 * margin
         yoffset += margin + radius
         draw_pie_chart(self.doc, middle_w, yoffset, radius, chart_data, -90)
-        yoffset += radius + 2*margin
-        if middle == middle_h:   # Landscape
+        yoffset += radius + 2 * margin
+        if middle == middle_h:  # Landscape
             legendx = 1.0
             yoffset = margin
 
         text = self._("%s (persons):") % self._(typename)
         draw_legend(self.doc, legendx, yoffset, chart_data, text, 'SC-legend')
-
 
     def output_barchart(self, title1, typename, data, lookup):
 
@@ -935,9 +940,9 @@ class StatisticsChart(Report):
         max_value = max(data[k] for k in lookup) if lookup else 0
         # horizontal area for the gfx bars
         margin = 1.0
-        middle = width/2.0
-        textx = middle + margin/2.0
-        stopx = middle - margin/2.0
+        middle = width / 2.0
+        textx = middle + margin / 2.0
+        stopx = middle - margin / 2.0
         maxsize = stopx - margin
 
         # start output
@@ -967,12 +972,13 @@ class StatisticsChart(Report):
             value = data[key]
             startx = stopx - (maxsize * value / max_value)
             self.doc.draw_box('SC-bar', "",
-                              startx, yoffset, stopx-startx, row_h)
+                              startx, yoffset, stopx - startx, row_h)
             # text after bar
             text = "%s (%d)" % (self._(key), data[key])
             self.doc.draw_text('SC-text', text, textx, yoffset)
 
         return
+
 
 #------------------------------------------------------------------------
 #
@@ -1126,7 +1132,7 @@ class StatisticsChartOptions(MenuReportOptions):
         disable the person option
         """
         filter_value = self.__filter.get_value()
-        if filter_value == 0: # "Entire Database" (as "include_single=False")
+        if filter_value == 0:  # "Entire Database" (as "include_single=False")
             self.__pid.set_available(False)
         else:
             # The other filters need a center person (assume custom ones too)
