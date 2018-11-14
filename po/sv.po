@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-24 14:13+0100\n"
-"PO-Revision-Date: 2018-11-13 18:35+0100\n"
+"PO-Revision-Date: 2018-11-14 19:40+0100\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34130,71 +34130,73 @@ msgstr "Ingen förhandsgranskning är tillgänglig"
 #: ../gramps/plugins/view/fanchartdescview.py:334
 #: ../gramps/plugins/view/fanchartview.py:327
 msgid "Fan chart type"
-msgstr ""
+msgstr "Typ av cirkeldiagram"
 
 #: ../gramps/plugins/view/fanchartdescview.py:336
 #: ../gramps/plugins/view/fanchartview.py:329
 msgid "Full Circle"
-msgstr ""
+msgstr "Helcirkel"
 
 #: ../gramps/plugins/view/fanchartdescview.py:337
 #: ../gramps/plugins/view/fanchartview.py:329
 msgid "Half Circle"
-msgstr ""
+msgstr "Halvcirkel"
 
 #: ../gramps/plugins/view/fanchartdescview.py:338
 #: ../gramps/plugins/view/fanchartview.py:330
 msgid "Quadrant"
-msgstr ""
+msgstr "Kvartscirkel"
 
 #: ../gramps/plugins/view/fanchartview.py:345
 msgid "Show children ring"
-msgstr ""
+msgstr "Visa ring med barn"
 
 #: ../gramps/plugins/view/geoclose.py:143
 #: ../gramps/plugins/view/geography.gpr.py:159
 msgid "Have they been able to meet?"
-msgstr ""
+msgstr "Har de haft möjlighet att mötas?"
 
 #: ../gramps/plugins/view/geoclose.py:177
 msgid "GeoClose"
-msgstr ""
+msgstr "GeoClose"
 
 #: ../gramps/plugins/view/geoclose.py:230
 #, python-format
 msgid "Reference : %(name)s ( %(birth)s - %(death)s )"
-msgstr ""
+msgstr "Referens : %(name)s ( %(birth)s - %(death)s )"
 
 #: ../gramps/plugins/view/geoclose.py:236
 #, python-format
 msgid "The other : %(name)s ( %(birth)s - %(death)s )"
-msgstr ""
+msgstr "Den andra : %(name)s ( %(birth)s - %(death)s )"
 
 #: ../gramps/plugins/view/geoclose.py:241
 msgid "The other person is unknown"
-msgstr ""
+msgstr "Den andra personen är okänd"
 
 #: ../gramps/plugins/view/geoclose.py:248
 msgid "You must choose one reference person."
-msgstr ""
+msgstr "Du måste välja en referensperson."
 
 #: ../gramps/plugins/view/geoclose.py:249
 msgid ""
 "Go to the person view and select the people you want to compare. Return to "
 "this view and use the history."
 msgstr ""
+"Gå till personvyn och välj de personer du vill jämföra. Återvänd till denna "
+"vy och använd historiken."
 
 #: ../gramps/plugins/view/geoclose.py:299
 msgid "reference _Person"
-msgstr ""
+msgstr "referens_person"
 
 #: ../gramps/plugins/view/geoclose.py:300
 msgid "Select the person which is the reference for life ways"
-msgstr ""
+msgstr "Välj den person som är referens för levnadsvägar"
 
 #: ../gramps/plugins/view/geoclose.py:315
 msgid "Select the person which will be our reference."
-msgstr ""
+msgstr "Välj den person som kommer att vara vår referens."
 
 #: ../gramps/plugins/view/geoclose.py:414
 #: ../gramps/plugins/view/geofamclose.py:499
@@ -34203,11 +34205,11 @@ msgstr ""
 #: ../gramps/plugins/view/geoperson.py:336
 #, python-format
 msgid "%(eventtype)s : %(name)s"
-msgstr ""
+msgstr "%(eventtype)s : %(name)s"
 
 #: ../gramps/plugins/view/geoclose.py:570
 msgid "Choose and bookmark the new reference person"
-msgstr ""
+msgstr "Välj och bokmärk den nya referenspersonen"
 
 #: ../gramps/plugins/view/geoclose.py:593
 msgid ""
@@ -34218,116 +34220,124 @@ msgid ""
 "The value 1 means about 4.6 miles or 7.5 kms.\n"
 "The value is in tenth of degree."
 msgstr ""
+"Sannolikheten för mötesområdesradien.\n"
+"Den färgade sonen är ungefärlig.\n"
+"Mötsesområdet visas bara för referenspersonen.\n"
+"Värdet 9 innebär ca 42 miles eller 67 km.\n"
+"Värdet 1 innebär ca 4.6 miles eller 7.5 km.\n"
+"Värdet är i tiondels grad."
 
 #: ../gramps/plugins/view/geoclose.py:604
 #: ../gramps/plugins/view/geofamclose.py:795
 msgid "The selection parameters"
-msgstr ""
+msgstr "Urvalsparametrarna"
 
 #: ../gramps/plugins/view/geoevents.py:116
 msgid "Events places map"
-msgstr ""
+msgstr "Karta för händelseplatser"
 
 #: ../gramps/plugins/view/geoevents.py:141
 msgid "GeoEvents"
-msgstr ""
+msgstr "GeoHändelser"
 
 #: ../gramps/plugins/view/geoevents.py:260
 msgid "incomplete or unreferenced event ?"
-msgstr ""
+msgstr "ofullständig eller orefererad händelse?"
 
 #: ../gramps/plugins/view/geoevents.py:297
 #: ../gramps/plugins/view/geoevents.py:310
 msgid "Selecting all events"
-msgstr ""
+msgstr "Välj alla händelser"
 
 #: ../gramps/plugins/view/geoevents.py:355
 #: ../gramps/plugins/view/geoevents.py:387
 msgid "Bookmark this event"
-msgstr ""
+msgstr "Bokmärk denna händelse"
 
 #: ../gramps/plugins/view/geoevents.py:402
 msgid "Show all events"
-msgstr ""
+msgstr "Visa alla händelser"
 
 #: ../gramps/plugins/view/geoevents.py:406
 #: ../gramps/plugins/view/geoevents.py:411
 #: ../gramps/plugins/view/geoplaces.py:490
 #: ../gramps/plugins/view/geoplaces.py:495
 msgid "Centering on Place"
-msgstr ""
+msgstr "Centrera på plats"
 
 #: ../gramps/plugins/view/geofamclose.py:143
 #: ../gramps/plugins/view/geography.gpr.py:141
 msgid "Have these two families been able to meet?"
-msgstr ""
+msgstr "Har dessa två familjer haft möjlighet att mötas?"
 
 #: ../gramps/plugins/view/geofamclose.py:174
 msgid "GeoFamClose"
-msgstr ""
+msgstr "GeoFamClose"
 
 #: ../gramps/plugins/view/geofamclose.py:217
 #: ../gramps/plugins/view/geofamily.py:293
 #, python-format
 msgid "%(gramps_id)s : %(father)s and %(mother)s"
-msgstr ""
+msgstr "%(gramps_id)s : %(father)s och %(mother)s"
 
 #: ../gramps/plugins/view/geofamclose.py:264
 #, python-format
 msgid "Family reference : %s"
-msgstr ""
+msgstr "Familjereferens : %s"
 
 #: ../gramps/plugins/view/geofamclose.py:267
 #: ../gramps/plugins/view/geofamclose.py:270
 #, python-format
 msgid "The other family : %s"
-msgstr ""
+msgstr "Den andra familjen : %s"
 
 #: ../gramps/plugins/view/geofamclose.py:277
 msgid "You must choose one reference family."
-msgstr ""
+msgstr "Du måste välja en referensfamilj."
 
 #: ../gramps/plugins/view/geofamclose.py:279
 msgid ""
 "Go to the family view and select the families you want to compare. Return to "
 "this view and use the history."
 msgstr ""
+"Gå till familjevyn och välj de familjer du vill jämföra. Återvänd till denna "
+"vy och använd historiken."
 
 #: ../gramps/plugins/view/geofamclose.py:295
 msgid "reference _Family"
-msgstr ""
+msgstr "referens _Familj"
 
 #: ../gramps/plugins/view/geofamclose.py:296
 msgid "Select the family which is the reference for life ways"
-msgstr ""
+msgstr "Välj den familj som är referens för levnadsvägar"
 
 #: ../gramps/plugins/view/geofamclose.py:611
 #: ../gramps/plugins/view/geofamily.py:347
 #, python-format
 msgid "Father : %(id)s : %(name)s"
-msgstr ""
+msgstr "Far : %(id)s : %(name)s"
 
 #: ../gramps/plugins/view/geofamclose.py:620
 #: ../gramps/plugins/view/geofamily.py:356
 #, python-format
 msgid "Mother : %(id)s : %(name)s"
-msgstr ""
+msgstr "Mor : %(id)s : %(name)s"
 
 #: ../gramps/plugins/view/geofamclose.py:632
 #: ../gramps/plugins/view/geofamily.py:368
 #, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
-msgstr ""
+msgstr "Barn : %(id)s - %(index)d : %(name)s"
 
 #: ../gramps/plugins/view/geofamclose.py:642
 #: ../gramps/plugins/view/geofamily.py:377
 #, python-format
 msgid "Person : %(id)s %(name)s has no family."
-msgstr ""
+msgstr "Person : %(id)s %(name)s har ingen familj."
 
 #: ../gramps/plugins/view/geofamclose.py:761
 msgid "Choose and bookmark the new reference family"
-msgstr ""
+msgstr "Välj och bokmärk den nya referensfamiljen"
 
 #: ../gramps/plugins/view/geofamclose.py:784
 msgid ""
@@ -34338,23 +34348,29 @@ msgid ""
 "The value 1 means about 4.6 miles or 7.5 kms.\n"
 "The value is in tenth of degree."
 msgstr ""
+"Sannolikheten för mötesområdesradien.\n"
+"Den färgade sonen är ungefärlig.\n"
+"Mötsesområdet visas bara för referensfamiljen.\n"
+"Värdet 9 innebär ca 42 miles eller 67 km.\n"
+"Värdet 1 innebär ca 4.6 miles eller 7.5 km.\n"
+"Värdet är i tiondels grad."
 
 #: ../gramps/plugins/view/geofamily.py:115
 msgid "Family places map"
-msgstr ""
+msgstr "Karta för familjeplatser"
 
 #: ../gramps/plugins/view/geofamily.py:137
 msgid "GeoFamily"
-msgstr ""
+msgstr "GeoFamilj"
 
 #: ../gramps/plugins/view/geofamily.py:321
 #, python-format
 msgid "Family places for %s"
-msgstr ""
+msgstr "Familjeplatser för %s"
 
 #: ../gramps/plugins/view/geography.gpr.py:71
 msgid "OsmGpsMap module not loaded."
-msgstr ""
+msgstr "OsmGpsMap-modul ej laddad."
 
 #: ../gramps/plugins/view/geography.gpr.py:72
 #, python-format
@@ -34362,14 +34378,16 @@ msgid ""
 "Geography functionality will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_osmgps_url)s"
 msgstr ""
+"Geografi-funktionalitet kommer ej att vara tillgänglig.\n"
+"För att åstadkomma det för Gramps se %(gramps_wiki_build_osmgps_url)s"
 
 #: ../gramps/plugins/view/geography.gpr.py:86
 msgid "All known places for one Person"
-msgstr ""
+msgstr "Alla kända platser för en person"
 
 #: ../gramps/plugins/view/geography.gpr.py:87
 msgid "A view showing the places visited by one person during his life."
-msgstr ""
+msgstr "En vy som visar platser besökta av en person under dess liv."
 
 #: ../gramps/plugins/view/geography.gpr.py:95
 #: ../gramps/plugins/view/geography.gpr.py:112
@@ -34379,19 +34397,19 @@ msgstr ""
 #: ../gramps/plugins/view/geography.gpr.py:185
 #: ../gramps/plugins/view/geography.gpr.py:202
 msgid "Geography"
-msgstr ""
+msgstr "Geografi"
 
 #: ../gramps/plugins/view/geography.gpr.py:103
 msgid "All known places for one Family"
-msgstr ""
+msgstr "Alla kända platser för en familj"
 
 #: ../gramps/plugins/view/geography.gpr.py:104
 msgid "A view showing the places visited by one family during all their life."
-msgstr ""
+msgstr "En vy som visar platser besökta av en familj under dess levnad."
 
 #: ../gramps/plugins/view/geography.gpr.py:120
 msgid "Every residence or move for a person and any descendants"
-msgstr ""
+msgstr "Alla boenden eller förflyttningar för en person och dess ättlingar"
 
 #: ../gramps/plugins/view/geography.gpr.py:122
 msgid ""
@@ -34399,111 +34417,120 @@ msgid ""
 "This is for a person and any descendant.\n"
 "You can see the dates corresponding to the period."
 msgstr ""
+"En vy som visar alla platser besökta av alla personer under livet.\n"
+"Detta är för en person och dess ättlingar.\n"
+"Du kan se datum motsvarande för perioden."
 
 #: ../gramps/plugins/view/geography.gpr.py:142
 msgid ""
 "A view showing the places visited by all family's members during their life: "
 "have these two people been able to meet?"
 msgstr ""
+"En vy som visar platser besökta av alla familjemedlemmar under deras levnad: "
+"har dessa två personer haft möjlighet att mötas?"
 
 #: ../gramps/plugins/view/geography.gpr.py:160
 msgid ""
 "A view showing the places visited by two persons during their life: have "
 "these two people been able to meet?"
 msgstr ""
+"En vy som visar platser besökta av två personer under deras liv: har dessa "
+"två personer haft möjlighet att mötas?"
 
 #: ../gramps/plugins/view/geography.gpr.py:177
 msgid "All known Places"
-msgstr ""
+msgstr "Alla kända platser"
 
 #: ../gramps/plugins/view/geography.gpr.py:178
 msgid "A view showing all places of the database."
-msgstr ""
+msgstr "En vy som visar alla platser i databasen."
 
 #: ../gramps/plugins/view/geography.gpr.py:193
 msgid "All places related to Events"
-msgstr ""
+msgstr "Samtliga platser kopplade till händelser"
 
 #: ../gramps/plugins/view/geography.gpr.py:194
 msgid "A view showing all the event places of the database."
-msgstr ""
+msgstr "En vy som visar alla platser för händelser i databasen."
 
 #: ../gramps/plugins/view/geomoves.py:142
 msgid "Descendance of the active person."
-msgstr ""
+msgstr "Ättlingar till den aktiva personen."
 
 #: ../gramps/plugins/view/geomoves.py:173
 msgid "GeoMoves"
-msgstr ""
+msgstr "GeoMoves"
 
 #: ../gramps/plugins/view/geomoves.py:490
 #, python-format
 msgid "All descendance for %s"
-msgstr ""
+msgstr "Alla ättlingar till %s"
 
 #: ../gramps/plugins/view/geomoves.py:632
 msgid "Bookmark this person"
-msgstr ""
+msgstr "Bokmärk denna person"
 
 #: ../gramps/plugins/view/geomoves.py:664
 msgid "The maximum number of generations.\n"
-msgstr ""
+msgstr "Maximalt antal generationer.\n"
 
 #: ../gramps/plugins/view/geomoves.py:671
 msgid "Time in milliseconds between drawing two generations.\n"
-msgstr ""
+msgstr "Tid i ms mellan ritande av två generationer.\n"
 
 #: ../gramps/plugins/view/geomoves.py:677
 msgid "The parameters for moves"
-msgstr ""
+msgstr "Parametrarna för förflyttningar"
 
 #: ../gramps/plugins/view/geoperson.py:146
 msgid "Person places map"
-msgstr ""
+msgstr "Karta för personplatser"
 
 #: ../gramps/plugins/view/geoperson.py:170
 msgid "GeoPerson"
-msgstr ""
+msgstr "GeoPerson"
 
 #: ../gramps/plugins/view/geoperson.py:315
 #, python-format
 msgid "Person places for %s"
-msgstr ""
+msgstr "Personplatser för %s"
 
 #: ../gramps/plugins/view/geoperson.py:519
 msgid "Animate"
-msgstr ""
+msgstr "Animera"
 
 #: ../gramps/plugins/view/geoperson.py:542
 msgid "Animation speed in milliseconds (big value means slower)"
-msgstr ""
+msgstr "Animeringshastighet i millisekunder (stort värde innebär långsammare)"
 
 #: ../gramps/plugins/view/geoperson.py:550
 msgid "How many steps between two markers when we are on large move ?"
-msgstr ""
+msgstr "Antal steg mellan två markeringar när det gäller långa förflyttningar?"
 
 #: ../gramps/plugins/view/geoperson.py:557
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
 msgstr ""
+"Den minsta latitud/longitud för att välja lång förflyttning.\n"
+"Värdet är i tiondels grad."
 
 #: ../gramps/plugins/view/geoperson.py:564
 msgid "The animation parameters"
-msgstr ""
+msgstr "Animeringsparametrar"
 
 #: ../gramps/plugins/view/geoplaces.py:157
 msgid "Places map"
-msgstr ""
+msgstr "Platskarta"
 
 #: ../gramps/plugins/view/geoplaces.py:185
 msgid "GeoPlaces"
-msgstr ""
+msgstr "GeoPlatser"
 
 #: ../gramps/plugins/view/geoplaces.py:348
 #: ../gramps/plugins/view/geoplaces.py:361
 msgid "Selecting all places"
-msgstr ""
+msgstr "Väljer alla platser"
 
 #: ../gramps/plugins/view/geoplaces.py:373
 msgid ""
@@ -34511,6 +34538,9 @@ msgid ""
 "with coordinates. You can change the markers color depending on place type. "
 "You can use filtering."
 msgstr ""
+"Högerklicka på kartan och välj 'visa alla platser' för att visa alla kända "
+"platser med koordinater. Du kan ändra markeringarnas färg beroende på "
+"platstyp. Du kan använda filtrering."
 
 #: ../gramps/plugins/view/geoplaces.py:386
 msgid ""
@@ -34518,72 +34548,76 @@ msgid ""
 "with coordinates. You can use the history to navigate on the map. You can "
 "change the markers color depending on place type. You can use filtering."
 msgstr ""
+"Högerklicka på kartan och välj 'visa alla platser' för att visa alla kända "
+"platser med koordinater. Du kan använda historiken för att navigera på "
+"kartan. Du kan ändra markeringarnas färg beroende på platstyp. Du kan "
+"använda filtrering."
 
 #: ../gramps/plugins/view/geoplaces.py:401
 msgid "The place name in the status bar is disabled."
-msgstr ""
+msgstr "Platsnamn på statusraden är bortkopplat."
 
 #: ../gramps/plugins/view/geoplaces.py:406
 #, python-format
 msgid "The maximum number of places is reached (%d)."
-msgstr ""
+msgstr "Maximalt antal platser är uppnått (%d)."
 
 #: ../gramps/plugins/view/geoplaces.py:409
 msgid "Some information are missing."
-msgstr ""
+msgstr "Viss information saknas."
 
 #: ../gramps/plugins/view/geoplaces.py:411
 msgid "Please, use filtering to reduce this number."
-msgstr ""
+msgstr "Använd filter för att minska antalet."
 
 #: ../gramps/plugins/view/geoplaces.py:413
 msgid "You can modify this value in the geography option."
-msgstr ""
+msgstr "Du kan ändra detta värde i geografialternativen."
 
 #: ../gramps/plugins/view/geoplaces.py:415
 msgid "In this case, it may take time to show all markers."
-msgstr ""
+msgstr "I detta fall kan det ta tid att visa alla markörer."
 
 #: ../gramps/plugins/view/geoplaces.py:447
 #: ../gramps/plugins/view/geoplaces.py:471
 msgid "Bookmark this place"
-msgstr ""
+msgstr "Bokmärk denna plats"
 
 #: ../gramps/plugins/view/geoplaces.py:486
 msgid "Show all places"
-msgstr ""
+msgstr "Visa alla platser"
 
 #: ../gramps/plugins/view/geoplaces.py:596
 msgid "The places marker color"
-msgstr ""
+msgstr "Markeringsfärg för platser"
 
 #: ../gramps/plugins/view/mediaview.py:113
 msgid "Edit the selected media object"
-msgstr ""
+msgstr "Redigera det valda mediaobjektet"
 
 #: ../gramps/plugins/view/mediaview.py:114
 msgid "Delete the selected media object"
-msgstr ""
+msgstr "Radera det valda mediaobjektet"
 
 #: ../gramps/plugins/view/mediaview.py:115
 msgid "Merge the selected media objects"
-msgstr ""
+msgstr "Slå ihop de valda mediaobjekten"
 
 #: ../gramps/plugins/view/mediaview.py:209
 msgid "Media Filter Editor"
-msgstr ""
+msgstr "Redigera mediafilter"
 
 #: ../gramps/plugins/view/mediaview.py:212
 msgid "View in the default viewer"
-msgstr ""
+msgstr "Visa i standardvisaren"
 
 #: ../gramps/plugins/view/mediaview.py:216
 msgid "Open the folder containing the media file"
-msgstr ""
+msgstr "Öppnar den mapp som innehåller mediafilen"
 
 #: ../gramps/plugins/view/mediaview.py:350
 msgid "Cannot merge media objects."
-msgstr ""
+msgstr "Kan inte slå samman mediaobjekt."
 
 #: ../gramps/plugins/view/mediaview.py:351
 msgid ""
@@ -34591,293 +34625,299 @@ msgid ""
 "object can be selected by holding down the control key while clicking on the "
 "desired object."
 msgstr ""
+"Exakt två mediaobjekt måste vara valda för att kunna slås ihop. Ett andra "
+"objekt kan väljas genom att hålla ned ctrl-tangenten medan man klickar på "
+"det önskade objektet."
 
 #: ../gramps/plugins/view/noteview.py:95
 msgid "Delete the selected note"
-msgstr ""
+msgstr "Radera den valda notisen"
 
 #: ../gramps/plugins/view/noteview.py:96
 msgid "Merge the selected notes"
-msgstr ""
+msgstr "Slå ihop de valda notiserna"
 
 #: ../gramps/plugins/view/noteview.py:199
 msgid "Note Filter Editor"
-msgstr ""
+msgstr "Redigera notisfilter"
 
 #: ../gramps/plugins/view/noteview.py:241
 msgid "Cannot merge notes."
-msgstr ""
+msgstr "Kan inte slå samman notiser."
 
 #: ../gramps/plugins/view/noteview.py:242
 msgid ""
 "Exactly two notes must be selected to perform a merge. A second note can be "
 "selected by holding down the control key while clicking on the desired note."
 msgstr ""
+"Exakt två notiser måste vara valda för att kunna slås ihop. En andra notis "
+"kan väljas genom att hålla ned ctrl-tangenten medan man klickar på den "
+"önskade notisen."
 
 #: ../gramps/plugins/view/pedigreeview.py:80
 msgid "short for born|b."
-msgstr ""
+msgstr "f."
 
 #: ../gramps/plugins/view/pedigreeview.py:81
 msgid "short for died|d."
-msgstr ""
+msgstr "d."
 
 #: ../gramps/plugins/view/pedigreeview.py:82
 msgid "short for baptized|bap."
-msgstr ""
+msgstr "döpt"
 
 #: ../gramps/plugins/view/pedigreeview.py:83
 msgid "short for christened|chr."
-msgstr ""
+msgstr "döpt"
 
 #: ../gramps/plugins/view/pedigreeview.py:84
 msgid "short for buried|bur."
-msgstr ""
+msgstr "begr."
 
 #: ../gramps/plugins/view/pedigreeview.py:85
 msgid "short for cremated|crem."
-msgstr ""
+msgstr "krem."
 
 #: ../gramps/plugins/view/pedigreeview.py:1146
 msgid "Jump to child..."
-msgstr ""
+msgstr "Gå till barn..."
 
 #: ../gramps/plugins/view/pedigreeview.py:1160
 msgid "Jump to father"
-msgstr ""
+msgstr "Gå till fader"
 
 #: ../gramps/plugins/view/pedigreeview.py:1174
 msgid "Jump to mother"
-msgstr ""
+msgstr "Gå till moder"
 
 #: ../gramps/plugins/view/pedigreeview.py:1532
 msgid "A person was found to be his/her own ancestor."
-msgstr ""
+msgstr "En person har befunnits vara sin egen förfader."
 
 #: ../gramps/plugins/view/pedigreeview.py:1576
 msgid "Pre_vious"
-msgstr ""
+msgstr "_Föregående"
 
 #: ../gramps/plugins/view/pedigreeview.py:1577
 msgid "_Next"
-msgstr ""
+msgstr "_Nästa"
 
 #. Mouse scroll direction setting.
 #: ../gramps/plugins/view/pedigreeview.py:1600
 msgid "Mouse scroll direction"
-msgstr ""
+msgstr "Riktning för musskrollning"
 
 #: ../gramps/plugins/view/pedigreeview.py:1604
 msgid "Top <-> Bottom"
-msgstr ""
+msgstr "Uppifrån <-> neråt"
 
 #: ../gramps/plugins/view/pedigreeview.py:1611
 msgid "Left <-> Right"
-msgstr ""
+msgstr "Vänster <-> höger"
 
 #: ../gramps/plugins/view/pedigreeview.py:1828
 #: ../gramps/plugins/view/relview.py:412
 msgid "Add New Parents..."
-msgstr ""
+msgstr "Lägg till föräldrar..."
 
 #: ../gramps/plugins/view/pedigreeview.py:2023
 msgid "Show images"
-msgstr ""
+msgstr "Visa bilder"
 
 #: ../gramps/plugins/view/pedigreeview.py:2026
 msgid "Show marriage data"
-msgstr ""
+msgstr "Visa giftermålsdata"
 
 #: ../gramps/plugins/view/pedigreeview.py:2029
 msgid "Show unknown people"
-msgstr ""
+msgstr "Visa okända personer"
 
 #: ../gramps/plugins/view/pedigreeview.py:2032
 msgid "Show tags"
-msgstr ""
+msgstr "Visa flaggor"
 
 #: ../gramps/plugins/view/pedigreeview.py:2035
 msgid "Tree style"
-msgstr ""
+msgstr "Trädmall"
 
 #: ../gramps/plugins/view/pedigreeview.py:2037
 msgid "Standard"
-msgstr ""
+msgstr "Standard"
 
 #: ../gramps/plugins/view/pedigreeview.py:2038
 msgid "Compact"
-msgstr ""
+msgstr "Kompakt"
 
 #: ../gramps/plugins/view/pedigreeview.py:2039
 msgid "Expanded"
-msgstr ""
+msgstr "Expanderad"
 
 #: ../gramps/plugins/view/pedigreeview.py:2042
 msgid "Tree direction"
-msgstr ""
+msgstr "Trädriktning"
 
 #: ../gramps/plugins/view/pedigreeview.py:2049
 msgid "Tree size"
-msgstr ""
+msgstr "Trädstorlek"
 
 #: ../gramps/plugins/view/personlistview.py:54
 msgid "Person View"
-msgstr ""
+msgstr "Personvy"
 
 #: ../gramps/plugins/view/persontreeview.py:66
 msgid "People Tree View"
-msgstr ""
+msgstr "Hierarkisk personvy"
 
 #: ../gramps/plugins/view/placelistview.py:51
 msgid "Place View"
-msgstr ""
+msgstr "Platsvy"
 
 #: ../gramps/plugins/view/placetreeview.py:55
 msgid "Place Tree View"
-msgstr ""
+msgstr "Hierarkisk platsvy"
 
 #: ../gramps/plugins/view/placetreeview.py:70
 msgid "Expand this Entire Group"
-msgstr ""
+msgstr "Expandera hela denna grupp"
 
 #: ../gramps/plugins/view/placetreeview.py:72
 msgid "Collapse this Entire Group"
-msgstr ""
+msgstr "Komprimera hela denna grupp"
 
 #: ../gramps/plugins/view/relview.py:398
 msgid "_Reorder"
-msgstr ""
+msgstr "_Omordna"
 
 #: ../gramps/plugins/view/relview.py:399
 msgid "Change order of parents and families"
-msgstr ""
+msgstr "Ändra på ordningen för föräldrar och familjer"
 
 #: ../gramps/plugins/view/relview.py:404
 msgid "Edit..."
-msgstr ""
+msgstr "Redigera..."
 
 #: ../gramps/plugins/view/relview.py:405
 msgid "Edit the active person"
-msgstr ""
+msgstr "Redigera den aktiva personen"
 
 #: ../gramps/plugins/view/relview.py:407 ../gramps/plugins/view/relview.py:409
 #: ../gramps/plugins/view/relview.py:805
 msgid "Add a new family with person as parent"
-msgstr ""
+msgstr "Lägg till en ny familj med personen som förälder"
 
 #: ../gramps/plugins/view/relview.py:408
 msgid "Add Partner..."
-msgstr ""
+msgstr "Lägg till partner..."
 
 #: ../gramps/plugins/view/relview.py:411 ../gramps/plugins/view/relview.py:413
 #: ../gramps/plugins/view/relview.py:799
 msgid "Add a new set of parents"
-msgstr ""
+msgstr "Lägg till ett nytt föräldrapar"
 
 #: ../gramps/plugins/view/relview.py:415 ../gramps/plugins/view/relview.py:419
 #: ../gramps/plugins/view/relview.py:800
 msgid "Add person as child to an existing family"
-msgstr ""
+msgstr "Lägg till personen som barn i en befintlig familj"
 
 #: ../gramps/plugins/view/relview.py:418
 msgid "Add Existing Parents..."
-msgstr ""
+msgstr "Lägg till befintliga föräldrar..."
 
 #: ../gramps/plugins/view/relview.py:635
 msgid "Alive"
-msgstr ""
+msgstr "Levande"
 
 #: ../gramps/plugins/view/relview.py:704 ../gramps/plugins/view/relview.py:731
 #, python-format
 msgid "%(date)s in %(place)s"
-msgstr ""
+msgstr "%(date)s i %(place)s"
 
 #: ../gramps/plugins/view/relview.py:801
 msgid "Edit parents"
-msgstr ""
+msgstr "Redigera föräldrar"
 
 #: ../gramps/plugins/view/relview.py:802
 msgid "Reorder parents"
-msgstr ""
+msgstr "Sortera om föräldrar"
 
 #: ../gramps/plugins/view/relview.py:803
 msgid "Remove person as child of these parents"
-msgstr ""
+msgstr "Ta bort personen som barn till dessa föräldrar"
 
 #: ../gramps/plugins/view/relview.py:809
 msgid "Remove person as parent in this family"
-msgstr ""
+msgstr "Ta bort personen som förälder i denna familj"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/view/relview.py:869 ../gramps/plugins/view/relview.py:923
 #, python-brace-format
 msgid " ({number_of} sibling)"
 msgid_plural " ({number_of} siblings)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " ({number_of} syskon)"
+msgstr[1] " ({number_of} syskon)"
 
 #: ../gramps/plugins/view/relview.py:876 ../gramps/plugins/view/relview.py:930
 msgid " (1 brother)"
-msgstr ""
+msgstr " (en bror)"
 
 #: ../gramps/plugins/view/relview.py:878 ../gramps/plugins/view/relview.py:932
 msgid " (1 sister)"
-msgstr ""
+msgstr " (en syster)"
 
 #: ../gramps/plugins/view/relview.py:880 ../gramps/plugins/view/relview.py:934
 msgid " (1 sibling)"
-msgstr ""
+msgstr " (ett syskon)"
 
 #: ../gramps/plugins/view/relview.py:882 ../gramps/plugins/view/relview.py:936
 msgid " (only child)"
-msgstr ""
+msgstr " (enda barn)"
 
 #: ../gramps/plugins/view/relview.py:948 ../gramps/plugins/view/relview.py:1430
 msgid "Add new child to family"
-msgstr ""
+msgstr "Lägg till nytt barn till familjen"
 
 #: ../gramps/plugins/view/relview.py:952 ../gramps/plugins/view/relview.py:1434
 msgid "Add existing child to family"
-msgstr ""
+msgstr "Lägg till befintligt barn till familjen"
 
 #: ../gramps/plugins/view/relview.py:1220
 #, python-format
 msgid "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
-msgstr ""
+msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
 
 #: ../gramps/plugins/view/relview.py:1227
 #: ../gramps/plugins/view/relview.py:1229
 #, python-format
 msgid "%(event)s %(date)s"
-msgstr ""
+msgstr "%(event)s %(date)s"
 
 #: ../gramps/plugins/view/relview.py:1288
 #, python-format
 msgid "Relationship type: %s"
-msgstr ""
+msgstr "Typ av släktskap: %s"
 
 #: ../gramps/plugins/view/relview.py:1326
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
-msgstr ""
+msgstr "%(event_type)s: %(date)s i %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1330
 #, python-format
 msgid "%(event_type)s: %(date)s"
-msgstr ""
+msgstr "%(event_type)s: %(date)s"
 
 #: ../gramps/plugins/view/relview.py:1334
 #, python-format
 msgid "%(event_type)s: %(place)s"
-msgstr ""
+msgstr "%(event_type)s: %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1345
 msgid "Broken family detected"
-msgstr ""
+msgstr "Trasigt familjeband upptäckt"
 
 #: ../gramps/plugins/view/relview.py:1346
 msgid "Please run the Check and Repair Database tool"
-msgstr ""
+msgstr "Kör verktyget \"kontrollera och reparera databasen\""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/view/relview.py:1369
@@ -34885,61 +34925,61 @@ msgstr ""
 #, python-brace-format
 msgid " ({number_of} child)"
 msgid_plural " ({number_of} children)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " ({number_of} barn)"
+msgstr[1] " ({number_of} barn)"
 
 #: ../gramps/plugins/view/relview.py:1373
 #: ../gramps/plugins/view/relview.py:1418
 msgid " (no children)"
-msgstr ""
+msgstr " (inga barn)"
 
 #: ../gramps/plugins/view/relview.py:1675
 msgid "Use shading"
-msgstr ""
+msgstr "Använd skuggning"
 
 #: ../gramps/plugins/view/relview.py:1678
 msgid "Display edit buttons"
-msgstr ""
+msgstr "Visa redigeringsknappar"
 
 #: ../gramps/plugins/view/relview.py:1680
 msgid "View links as website links"
-msgstr ""
+msgstr "Visa länkar som webbside-länkar"
 
 #: ../gramps/plugins/view/relview.py:1697
 msgid "Show Details"
-msgstr ""
+msgstr "Visa detaljer"
 
 #: ../gramps/plugins/view/relview.py:1700
 msgid "Show Siblings"
-msgstr ""
+msgstr "Visa syskon"
 
 #: ../gramps/plugins/view/repoview.py:88
 msgid "Home URL"
-msgstr ""
+msgstr "Hemsida"
 
 #: ../gramps/plugins/view/repoview.py:96
 msgid "Search URL"
-msgstr ""
+msgstr "Webbadress för sökning"
 
 #: ../gramps/plugins/view/repoview.py:112
 msgid "Add a new repository"
-msgstr ""
+msgstr "Lägg till ny arkivplats"
 
 #: ../gramps/plugins/view/repoview.py:114
 msgid "Delete the selected repository"
-msgstr ""
+msgstr "Radera den valda arkivplatsen"
 
 #: ../gramps/plugins/view/repoview.py:115
 msgid "Merge the selected repositories"
-msgstr ""
+msgstr "Slå ihop de valda arkivplatserna"
 
 #: ../gramps/plugins/view/repoview.py:150
 msgid "Repository Filter Editor"
-msgstr ""
+msgstr "Redigera filter för arkivplatser"
 
 #: ../gramps/plugins/view/repoview.py:245
 msgid "Cannot merge repositories."
-msgstr ""
+msgstr "Kan inte slå samman arkivplatser."
 
 #: ../gramps/plugins/view/repoview.py:246
 msgid ""
@@ -34947,26 +34987,29 @@ msgid ""
 "repository can be selected by holding down the control key while clicking on "
 "the desired repository."
 msgstr ""
+"Exakt två arkivplatser måste vara valda för att kunna slås ihop. En andra "
+"arkivplats kan väljas genom att hålla ned ctrl-tangenten medan man klickar "
+"på den önskade arkivplatsen."
 
 #: ../gramps/plugins/view/sourceview.py:99
 msgid "Edit the selected source"
-msgstr ""
+msgstr "Redigera den valda källan"
 
 #: ../gramps/plugins/view/sourceview.py:100
 msgid "Delete the selected source"
-msgstr ""
+msgstr "Radera den valda källan"
 
 #: ../gramps/plugins/view/sourceview.py:101
 msgid "Merge the selected sources"
-msgstr ""
+msgstr "Slå ihop de valda källorna"
 
 #: ../gramps/plugins/view/sourceview.py:136
 msgid "Source Filter Editor"
-msgstr ""
+msgstr "Redigera källfilter"
 
 #: ../gramps/plugins/view/sourceview.py:229
 msgid "Cannot merge sources."
-msgstr ""
+msgstr "Kan inte slå samman källor."
 
 #: ../gramps/plugins/view/sourceview.py:230
 msgid ""
@@ -34974,97 +35017,100 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "source."
 msgstr ""
+"Exakt två källor måste vara valda för att kunna slås ihop. En andra källa "
+"kan väljas genom att hålla ned ctrl-tangenten medan man klickar på den "
+"önskade källan."
 
 #: ../gramps/plugins/view/view.gpr.py:38
 msgid "The view showing all the events"
-msgstr ""
+msgstr "Vyn visar samtliga händelser"
 
 #: ../gramps/plugins/view/view.gpr.py:53
 msgid "The view showing all families"
-msgstr ""
+msgstr "Vyn visar samtliga familjer"
 
 #: ../gramps/plugins/view/view.gpr.py:68
 msgid "The view showing Gramplets"
-msgstr ""
+msgstr "Översikt över Gramplets"
 
 #: ../gramps/plugins/view/view.gpr.py:83
 msgid "The view showing all the media objects"
-msgstr ""
+msgstr "Vyn visar samtliga mediaobjekt"
 
 #: ../gramps/plugins/view/view.gpr.py:98
 msgid "The view showing all the notes"
-msgstr ""
+msgstr "Vyn visar samtliga notiser"
 
 #: ../gramps/plugins/view/view.gpr.py:113
 msgid "The view showing all relationships of the selected person"
-msgstr ""
+msgstr "Vyn visar alla släktskap för den valda personen"
 
 #: ../gramps/plugins/view/view.gpr.py:128
 msgid "The view showing an ancestor pedigree of the selected person"
-msgstr ""
+msgstr "Vyn visar en antavla för den valda personen"
 
 #: ../gramps/plugins/view/view.gpr.py:135
 #: ../gramps/plugins/view/view.gpr.py:144
 #: ../gramps/plugins/view/view.gpr.py:159
 #: ../gramps/plugins/view/view.gpr.py:174
 msgid "Charts"
-msgstr ""
+msgstr "Diagram"
 
 #: ../gramps/plugins/view/view.gpr.py:145
 msgid "A view showing parents through a fanchart"
-msgstr ""
+msgstr "En vy som visar föräldrar i form av ett cirkeldiagram"
 
 #: ../gramps/plugins/view/view.gpr.py:160
 msgid "Showing descendants through a fanchart"
-msgstr ""
+msgstr "Visar ättlingar i form av ett cirkeldiagram"
 
 #: ../gramps/plugins/view/view.gpr.py:175
 msgid "Showing ascendants and descendants through a fanchart"
-msgstr ""
+msgstr "Visar anor och ättlingar i form av ett cirkeldiagram"
 
 #: ../gramps/plugins/view/view.gpr.py:188
 msgid "Grouped People"
-msgstr ""
+msgstr "Grupperade personer"
 
 #: ../gramps/plugins/view/view.gpr.py:189
 msgid "The view showing all people in the Family Tree grouped per family name"
-msgstr ""
+msgstr "Vyn visar alla personer i släktträdet grupperade på efternamn"
 
 #: ../gramps/plugins/view/view.gpr.py:206
 msgid "The view showing all people in the Family Tree in a flat list"
-msgstr ""
+msgstr "Vyn visar alla personer i släktträdet i en rak lista"
 
 #: ../gramps/plugins/view/view.gpr.py:222
 msgid "The view showing all the places of the Family Tree"
-msgstr ""
+msgstr "Vyn visar alla platser i släktträdet"
 
 #: ../gramps/plugins/view/view.gpr.py:236
 msgid "Place Tree"
-msgstr ""
+msgstr "Hierarkisk platsvy"
 
 #: ../gramps/plugins/view/view.gpr.py:237
 msgid "A view displaying places in a tree format."
-msgstr ""
+msgstr "En vy som visar platser i en trädformad struktur."
 
 #: ../gramps/plugins/view/view.gpr.py:253
 msgid "The view showing all the repositories"
-msgstr ""
+msgstr "Vyn visar alla arkivplatser"
 
 #: ../gramps/plugins/view/view.gpr.py:268
 msgid "The view showing all the sources"
-msgstr ""
+msgstr "Vyn visar alla källor"
 
 #: ../gramps/plugins/view/view.gpr.py:284
 msgid "The view showing all the citations"
-msgstr ""
+msgstr "Vyn visar alla citeringar"
 
 #: ../gramps/plugins/view/view.gpr.py:298
 msgid "Citation Tree"
-msgstr ""
+msgstr "Hierarkisk citeringsvy"
 
 #: ../gramps/plugins/view/view.gpr.py:299
 msgid "A view displaying citations and sources in a tree format."
-msgstr ""
+msgstr "En vy som visar citeringar och källor i en trädformad struktur."
 
 #. Add xml, doctype, meta and stylesheets
 #: ../gramps/plugins/webreport/addressbook.py:87
@@ -35073,7 +35119,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:1561
 #: ../gramps/plugins/webreport/basepage.py:1636
 msgid "Address Book"
-msgstr ""
+msgstr "Adressbok"
 
 #. Address Book Page message
 #: ../gramps/plugins/webreport/addressbooklist.py:89
@@ -35083,49 +35129,52 @@ msgid ""
 "Links. Selecting the person&#8217;s name will take you to their individual "
 "Address Book page."
 msgstr ""
+"Denna sida är en förteckning över alla personer i databasen, sorterade på "
+"efternamn med länkar till en av följande: adress, bostad eller hemsida. Val "
+"av personens namn tar dig till den personens adressboks individuella sida."
 
 #: ../gramps/plugins/webreport/addressbooklist.py:111
 msgid "Full Name"
-msgstr ""
+msgstr "Komplett namn"
 
 #: ../gramps/plugins/webreport/addressbooklist.py:114
 #: ../gramps/plugins/webreport/basepage.py:2045
 msgid "Web Links"
-msgstr ""
+msgstr "Internetlänkar"
 
 #. add section title
 #: ../gramps/plugins/webreport/basepage.py:350
 #: ../gramps/plugins/webreport/basepage.py:2026
 msgid "Narrative"
-msgstr ""
+msgstr "Berättelse"
 
 #: ../gramps/plugins/webreport/basepage.py:1112
 #: ../gramps/plugins/webreport/basepage.py:2552
 #: ../gramps/plugins/webreport/basepage.py:2616
 #: ../gramps/plugins/webreport/place.py:177
 msgid "State/ Province"
-msgstr ""
+msgstr "Län/delstat"
 
 #: ../gramps/plugins/webreport/basepage.py:1286
 #, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
-msgstr ""
+msgstr "Skapad av %(gramps_home_html_start)sGramps%(html_end)s %(version)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1296
 #, python-format
 msgid "Last change was the %(date)s"
-msgstr ""
+msgstr "Senast ändrat %(date)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1299
 #, python-format
 msgid " on %(date)s"
-msgstr ""
+msgstr " den %(date)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1320
 #: ../gramps/plugins/webreport/basepage.py:1325
 #, python-format
 msgid "%(http_break)sCreated for %(subject_url)s"
-msgstr ""
+msgstr "%(http_break)sSkapad för %(subject_url)s"
 
 #. Begin Navigation Menu--
 #. is the style sheet either Basic-Blue or Visually Impaired,
@@ -35134,31 +35183,31 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:1441
 #: ../gramps/plugins/webstuff/webstuff.py:64
 msgid "Basic-Blue"
-msgstr ""
+msgstr "Basic-Blue"
 
 #. Visually Impaired style sheet with its navigation menus
 #: ../gramps/plugins/webreport/basepage.py:1442
 #: ../gramps/plugins/webstuff/webstuff.py:96
 msgid "Visually Impaired"
-msgstr ""
+msgstr "Synskadade"
 
 #: ../gramps/plugins/webreport/basepage.py:1481
 #: ../gramps/plugins/webreport/basepage.py:1659
 msgid "Html|Home"
-msgstr ""
+msgstr "Hem"
 
 #: ../gramps/plugins/webreport/basepage.py:1493
 #: ../gramps/plugins/webreport/basepage.py:1628
 #: ../gramps/plugins/webreport/thumbnail.py:111
 msgid "Thumbnails"
-msgstr ""
+msgstr "Minatyrbilder"
 
 #: ../gramps/plugins/webreport/basepage.py:1494
 #: ../gramps/plugins/webreport/basepage.py:1635
 #: ../gramps/plugins/webreport/download.py:94
 #: ../gramps/plugins/webreport/narrativeweb.py:1814
 msgid "Download"
-msgstr ""
+msgstr "Nedladdning"
 
 #. add contact column
 #: ../gramps/plugins/webreport/basepage.py:1497
@@ -35166,51 +35215,51 @@ msgstr ""
 #: ../gramps/plugins/webreport/basepage.py:1680
 #: ../gramps/plugins/webreport/contact.py:76
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #: ../gramps/plugins/webreport/basepage.py:1499
 #: ../gramps/plugins/webreport/webplugins.gpr.py:58
 msgid "Web Calendar"
-msgstr ""
+msgstr "Webbkalender"
 
 #: ../gramps/plugins/webreport/basepage.py:1579
 #: ../gramps/plugins/webreport/media.py:410
 msgid "Previous"
-msgstr ""
+msgstr "Föregående"
 
 #: ../gramps/plugins/webreport/basepage.py:1581
 #: ../gramps/plugins/webreport/media.py:421
 msgid "Next"
-msgstr ""
+msgstr "Nästa"
 
 #: ../gramps/plugins/webreport/basepage.py:2093
 msgid " [Click to Go]"
-msgstr ""
+msgstr " [Klicka för att starta]"
 
 #: ../gramps/plugins/webreport/basepage.py:2117
 msgid "Latter-Day Saints/ LDS Ordinance"
-msgstr ""
+msgstr "Mormonkyrkoceremoni"
 
 #: ../gramps/plugins/webreport/basepage.py:2303
 #: ../gramps/plugins/webreport/basepage.py:2304
 #: ../gramps/plugins/webreport/person.py:611
 #: ../gramps/plugins/webreport/person.py:921
 msgid "Family Map"
-msgstr ""
+msgstr "Familjekarta"
 
 #: ../gramps/plugins/webreport/basepage.py:2549
 #: ../gramps/plugins/webreport/basepage.py:2614
 msgid "Church Parish"
-msgstr ""
+msgstr "Församling"
 
 #: ../gramps/plugins/webreport/basepage.py:2570
 msgid "Locations"
-msgstr ""
+msgstr "Platser"
 
 #: ../gramps/plugins/webreport/basepage.py:2781
 #, python-format
 msgid " (%s) "
-msgstr ""
+msgstr " (%s) "
 
 #: ../gramps/plugins/webreport/download.py:100
 msgid ""
@@ -35220,18 +35269,22 @@ msgid ""
 "download page and files have the same copyright as the remainder of these "
 "web pages."
 msgstr ""
+"Denna sida är till för användare/skapare av detta Släktträd/Hemsida för att "
+"dela några filer med dig angående sin familj. Om det finns några filer "
+"listade nedan, klicka på dem kommer att ge dig möjlighet att ladda ner dem. "
+"Nerladdningssidan och filer har samma copyright som resten av webbsidan."
 
 #: ../gramps/plugins/webreport/download.py:126
 msgid "File Name"
-msgstr ""
+msgstr "Filnamn"
 
 #: ../gramps/plugins/webreport/download.py:128
 msgid "Last Modified"
-msgstr ""
+msgstr "Senast ändrat"
 
 #: ../gramps/plugins/webreport/event.py:113
 msgid "Creating event pages"
-msgstr ""
+msgstr "Skapar händelseförteckning"
 
 #: ../gramps/plugins/webreport/event.py:114
 #: ../gramps/plugins/webreport/family.py:108
@@ -35248,7 +35301,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/repository.py:102
 #: ../gramps/plugins/webreport/source.py:103
 msgid "Narrated Web Site Report"
-msgstr ""
+msgstr "Rapport som webbplats"
 
 #: ../gramps/plugins/webreport/event.py:147
 msgid ""
@@ -35256,22 +35309,25 @@ msgid ""
 "their type and date (if one is present). Clicking on an event&#8217;s Gramps "
 "ID will open a page for that event."
 msgstr ""
+"Denna sida är en förteckning över alla händelser i databasen, sorterade "
+"efter typ, datum (om givet). Klickar du på en händelses Gramps-ID kommer en "
+"sida att laddas med denna händelse."
 
 #: ../gramps/plugins/webreport/event.py:173
 #: ../gramps/plugins/webreport/family.py:185
 #: ../gramps/plugins/webreport/place.py:175
 #: ../gramps/plugins/webreport/surnamelist.py:139
 msgid "Letter"
-msgstr ""
+msgstr "Bokstav"
 
 #: ../gramps/plugins/webreport/event.py:245
 #, python-format
 msgid "Event types beginning with letter %s"
-msgstr ""
+msgstr "Händelsetyper som börjar med bokstaven %s"
 
 #: ../gramps/plugins/webreport/family.py:106
 msgid "Creating family pages..."
-msgstr ""
+msgstr "Skapar familjesidor..."
 
 #. Families list page message
 #: ../gramps/plugins/webreport/family.py:140
@@ -35280,19 +35336,22 @@ msgid ""
 "database, sorted by their family name/ surname. Clicking on a person&#8217;s "
 "name will take you to their family/ relationship&#8217;s page."
 msgstr ""
+"Denna sida är en förteckning över alla familjer/släktskap i databasen, "
+"sorterade efter släktnamn/efternamn. Klickar du på en person kommer sidan "
+"för personens familjer/släktskap att öppnas."
 
 #: ../gramps/plugins/webreport/family.py:231
 msgid "Families beginning with letter "
-msgstr ""
+msgstr "Familjer som börjar på bokstaven "
 
 #: ../gramps/plugins/webreport/home.py:77
 #: ../gramps/plugins/webreport/webcal.py:570
 msgid "Home"
-msgstr ""
+msgstr "Hem"
 
 #: ../gramps/plugins/webreport/media.py:113
 msgid "Creating media pages"
-msgstr ""
+msgstr "Skapar mediasidor"
 
 #: ../gramps/plugins/webreport/media.py:203
 msgid ""
@@ -35301,22 +35360,26 @@ msgid ""
 "object&#8217;s page.  If you see media size dimensions above an image, click "
 "on the image to see the full sized version.  "
 msgstr ""
+"Denna sida är en förteckning över alla mediaobjekt i databasen, sorterade "
+"efter deras titel. Klickar du på en titel kommer sidan med mediaobjektet att "
+"öppnas. Om du ser mediets storlek anges ovanför en bild, klicka på bilden så "
+"ser du den i full storlek."
 
 #: ../gramps/plugins/webreport/media.py:227
 msgid "Media | Name"
-msgstr ""
+msgstr " Namn"
 
 #: ../gramps/plugins/webreport/media.py:230
 msgid "Mime Type"
-msgstr ""
+msgstr "Mimetyp"
 
 #: ../gramps/plugins/webreport/media.py:242
 msgid "Creating list of media pages"
-msgstr ""
+msgstr "Skapar mediasidor"
 
 #: ../gramps/plugins/webreport/media.py:286
 msgid "Below unused media objects"
-msgstr ""
+msgstr "Nedanför oanvända mediaobjekt"
 
 #: ../gramps/plugins/webreport/media.py:411
 #, python-format
@@ -35324,24 +35387,26 @@ msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of %(strong2_strt)s"
 "%(total_pages)d%(strong_end)s"
 msgstr ""
+"%(strong1_strt)s%(page_number)d%(strong_end)s av %(strong2_strt)s"
+"%(total_pages)d%(strong_end)s"
 
 #. missing media error message
 #: ../gramps/plugins/webreport/media.py:424
 msgid "The file has been moved or deleted."
-msgstr ""
+msgstr "Filen har flyttats eller raderats."
 
 #: ../gramps/plugins/webreport/media.py:580
 msgid "File Type"
-msgstr ""
+msgstr "Filtyp"
 
 #: ../gramps/plugins/webreport/media.py:683
 msgid "Missing media object:"
-msgstr ""
+msgstr "Mediaobjekt saknas:"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:270
 #, python-format
 msgid "Neither %(current)s nor %(parent)s are directories"
-msgstr ""
+msgstr "Varken %(current)s eller %(parent)s är kataloger"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:279
 #: ../gramps/plugins/webreport/narrativeweb.py:284
@@ -35349,33 +35414,33 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:302
 #, python-format
 msgid "Could not create the directory: %s"
-msgstr ""
+msgstr "Kunde inte skapa katalogen: %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:309
 msgid "Invalid file name"
-msgstr ""
+msgstr "Ogiltigt filnamn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:310
 msgid "The archive file must be a file, not a directory"
-msgstr ""
+msgstr "Arkivet måste vara en fil, inte en katalog"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:446
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
-msgstr ""
+msgstr "ID=%(grampsid)s, sökväg=%(dir)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:451
 msgid "Missing media objects:"
-msgstr ""
+msgstr "Saknade mediaobjekt:"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:483
 msgid "Constructing list of other objects..."
-msgstr ""
+msgstr "Bygger lista med andra objekt..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:728
 #, python-format
 msgid "Family of %(husband)s and %(spouse)s"
-msgstr ""
+msgstr "Familj för %(husband)s och %(spouse)s"
 
 #. Only the name of the husband is known
 #. Only the name of the wife is known
@@ -35383,153 +35448,153 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:738
 #, python-format
 msgid "Family of %s"
-msgstr ""
+msgstr "Familj %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1050
 msgid "Creating GENDEX file"
-msgstr ""
+msgstr "Skapar GENDEX-fil"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1108
 msgid "Creating surname pages"
-msgstr ""
+msgstr "Skapar efternamnssidor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1135
 #: ../gramps/plugins/webreport/thumbnail.py:206
 msgid "Creating thumbnail preview page..."
-msgstr ""
+msgstr "Skapar förhandsgranskningssida med miniatyrbilder..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1144
 msgid "Creating statistics page..."
-msgstr ""
+msgstr "Skapar statistiksida..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1185
 msgid "Creating address book pages ..."
-msgstr ""
+msgstr "Skapar adressbokssidor ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1579
 msgid "Store web pages in .tar.gz archive"
-msgstr ""
+msgstr "Lagra webbsidor i tar.gz-arkiv"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1581
 msgid "Whether to store the web pages in an archive file"
-msgstr ""
+msgstr "Huruvida lagra webbsidor i en arkivfil"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1592
 #: ../gramps/plugins/webreport/webcal.py:1618
 msgid "The destination directory for the web files"
-msgstr ""
+msgstr "Målmappen för webbfiler"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1598
 msgid "My Family Tree"
-msgstr ""
+msgstr "Mitt släktträd"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1598
 msgid "Web site title"
-msgstr ""
+msgstr "Webbplatstitel"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1599
 msgid "The title of the web site"
-msgstr ""
+msgstr "Webbsidans titel"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1604
 msgid "Select filter to restrict people that appear on web site"
-msgstr ""
+msgstr "Välj ett filter som begränsar vilka personer som visas på en webbsida"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1624
 msgid "Html options"
-msgstr ""
+msgstr "HTML-alternativ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1627
 #: ../gramps/plugins/webreport/webcal.py:1639
 msgid "File extension"
-msgstr ""
+msgstr "Filändelse"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1630
 #: ../gramps/plugins/webreport/webcal.py:1642
 msgid "The extension to be used for the web files"
-msgstr ""
+msgstr "Filändelse som skall användas för webbfiler"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1633
 #: ../gramps/plugins/webreport/webcal.py:1645
 msgid "Copyright"
-msgstr ""
+msgstr "Copyright"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1636
 #: ../gramps/plugins/webreport/webcal.py:1648
 msgid "The copyright to be used for the web files"
-msgstr ""
+msgstr "Den copyright som skall användas för webbfiler"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1639
 #: ../gramps/plugins/webreport/webcal.py:1654
 msgid "StyleSheet"
-msgstr ""
+msgstr "Mallblad"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1644
 #: ../gramps/plugins/webreport/webcal.py:1657
 msgid "The stylesheet to be used for the web pages"
-msgstr ""
+msgstr "Det mallblad som skall användas för webbsidan"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1649
 msgid "Horizontal -- Default"
-msgstr ""
+msgstr "Horisontell -- Förvalt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1650
 msgid "Vertical   -- Left Side"
-msgstr ""
+msgstr "Vertikal   -- vänster sida"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1651
 msgid "Fade       -- WebKit Browsers Only"
-msgstr ""
+msgstr "Avklinga       -- Endast WebKit-webbläsare"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1652
 #: ../gramps/plugins/webreport/narrativeweb.py:1666
 msgid "Drop-Down  -- WebKit Browsers Only"
-msgstr ""
+msgstr "Rullgardin  --- Endast WebKit-webbläsare"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1654
 msgid "Navigation Menu Layout"
-msgstr ""
+msgstr "Navigationsmenylayout"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1658
 msgid "Choose which layout for the Navigation Menus."
-msgstr ""
+msgstr "Välj vilken layout för navigationsmenyer."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1665
 msgid "Normal Outline Style"
-msgstr ""
+msgstr "Normal skissmall"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1669
 msgid "Citation Referents Layout"
-msgstr ""
+msgstr "Citeringsreferensmall"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1673
 msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
-msgstr ""
+msgstr "Bestäm standardmallen för referens delen av källsidans citeringar"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1677
 msgid "Include ancestor's tree"
-msgstr ""
+msgstr "Ta med antavla"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1678
 msgid "Whether to include an ancestor graph on each individual page"
-msgstr ""
+msgstr "Huruvida ta med förfädersdiagram på varje enskild sida"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1683
 msgid "Graph generations"
-msgstr ""
+msgstr "Generationer i diagram"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1684
 msgid "The number of generations to include in the ancestor graph"
-msgstr ""
+msgstr "Antal generationer som skall tas med i förfädersdiagrammet"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1689
 msgid "This is a secure site (https)"
-msgstr ""
+msgstr "Detta är en säker sida (https)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1691
 msgid "Whether to use http:// or https://"
-msgstr ""
+msgstr "Huruvida använda http:// eller https://"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1707
 msgid "Suppress Gramps ID"
@@ -35935,7 +36000,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/surname.py:93
 #: ../gramps/plugins/webreport/surnamelist.py:190
 msgid "<absent>"
-msgstr ""
+msgstr "<saknas>"
 
 #: ../gramps/plugins/webreport/person.py:264
 #, python-format
@@ -35991,7 +36056,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/person.py:1737
 msgid "Relation to the center person"
-msgstr ""
+msgstr "Släktskap till huvudperson"
 
 #: ../gramps/plugins/webreport/person.py:1774
 msgid "Relation to main person"
@@ -36064,11 +36129,11 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/statistics.py:113
 msgid "Database overview"
-msgstr ""
+msgstr "Databasöversikt"
 
 #: ../gramps/plugins/webreport/statistics.py:178
 msgid "Narrative web content report for"
-msgstr ""
+msgstr "Rapport som webbplats för"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/webreport/surname.py:109
