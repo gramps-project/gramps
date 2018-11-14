@@ -769,6 +769,7 @@ class StatisticsChart(Report):
         self.fil_name = "(%s)" % self.filter.get_name(self._locale)
 
         self.bar_items = get_value('bar_items')
+        self.show_empty_information = get_value('show_empty_information')
         year_from = get_value('year_from')
         year_to = get_value('year_to')
         gender = get_value('gender')
@@ -918,6 +919,18 @@ class StatisticsChart(Report):
         max_y = self.doc.get_usable_height() - row_h
         pad = row_h * 0.5
 
+        # the list of keys that represent "missing" information
+        excluded_keys = [_T_("(Preferred) forename missing"),
+                        _T_("Date(s) missing"),
+                        _T_("Personal information missing"),
+                        _T_("Birth missing"),
+                        _T_("Children missing"),
+
+            ]
+        # hide empty information
+        if not self.show_empty_information:
+            lookup = [k for k in lookup if k not in excluded_keys]
+
         # check maximum value
         max_value = max(data[k] for k in lookup) if lookup else 0
         # horizontal area for the gfx bars
@@ -1043,6 +1056,13 @@ class StatisticsChartOptions(MenuReportOptions):
         bar_items.set_help(_("With fewer items pie chart and legend will be "
                              "used instead of a bar chart."))
         add_option("bar_items", bar_items)
+
+        show_empty_information = BooleanOption(_("Include counts of missing information"),
+                                 False)
+        show_empty_information.set_help(_("Whether to include counts of the "
+                                          "number of people who lack the given "
+                                          "information."))
+        add_option("show_empty_information", show_empty_information)
 
         ################################
         category_name = _("Report Options (2)")
