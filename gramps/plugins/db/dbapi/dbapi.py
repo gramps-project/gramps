@@ -572,6 +572,7 @@ class DBAPI(DbGeneric):
         """
         Set the default grouping name for a surname.
         """
+        self._txn_begin()
         self.dbapi.execute("SELECT 1 FROM name_group WHERE name = ?",
                            [name])
         row = self.dbapi.fetchone()
@@ -582,6 +583,7 @@ class DBAPI(DbGeneric):
             self.dbapi.execute(
                 "INSERT INTO name_group (name, grouping) VALUES (?, ?)",
                 [name, grouping])
+        self._txn_commit()
 
     def _commit_base(self, obj, obj_key, trans, change_time):
         """
