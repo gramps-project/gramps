@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-24 14:13+0100\n"
-"PO-Revision-Date: 2018-11-14 20:13+0100\n"
+"PO-Revision-Date: 2018-11-15 18:11+0100\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35602,15 +35602,15 @@ msgstr "Dölj Gramps-ID:n"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1708
 msgid "Whether to include the Gramps ID of objects"
-msgstr ""
+msgstr "Huruvida ta med Gramps-ID för objekt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1713
 msgid "Sort all children in birth order"
-msgstr ""
+msgstr "Sortera samtliga barn i födelseordning"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1715
 msgid "Whether to display children in birth order or in entry order?"
-msgstr ""
+msgstr "Huruvida visa barn i födelseordning eller i inmatningsordning?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1722
 msgid "Page Generation"
@@ -35622,7 +35622,7 @@ msgstr "Hemsidenotis"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1726
 msgid "A note to be used on the home page"
-msgstr ""
+msgstr "En notis för användning på hemsidan"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1729
 msgid "Home page image"
@@ -35630,23 +35630,23 @@ msgstr "Hemsidebild"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1730
 msgid "An image to be used on the home page"
-msgstr ""
+msgstr "En bild för användning på hemsidan"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1733
 msgid "Introduction note"
-msgstr ""
+msgstr "Introduktionsnotis"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1734
 msgid "A note to be used as the introduction"
-msgstr ""
+msgstr "En notis som skall användas som introduktion"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1737
 msgid "Introduction image"
-msgstr ""
+msgstr "Introduktionsbild"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1738
 msgid "An image to be used as the introduction"
-msgstr ""
+msgstr "En bild som skall användas som introduktion"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1741
 msgid "Publisher contact note"
@@ -35658,6 +35658,9 @@ msgid ""
 "If no publisher information is given,\n"
 "no contact page will be created"
 msgstr ""
+"En notis som används till utgivarens kontaktinformation.\n"
+"Om ingen utgivarinformation ges,\n"
+"blir ingen kontaktsida skapad"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1748
 msgid "Publisher contact image"
@@ -35669,46 +35672,49 @@ msgid ""
 "If no publisher information is given,\n"
 "no contact page will be created"
 msgstr ""
+"En bild som används till utgivarens kontaktinformation.\n"
+"Om ingen utgivarinformation ges,\n"
+"blir ingen kontaktsida skapad"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1755
 msgid "HTML user header"
-msgstr ""
+msgstr "HTML sidhuvud"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1756
 msgid "A note to be used as the page header"
-msgstr ""
+msgstr "En notis som skall användas som sidhuvud"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1759
 msgid "HTML user footer"
-msgstr ""
+msgstr "HTML sidfot"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1760
 msgid "A note to be used as the page footer"
-msgstr ""
+msgstr "En notis som skall användas som sidfot"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1767
 msgid "Images Generation"
-msgstr ""
+msgstr "Bildgenerering"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1770
 msgid "Include images and media objects"
-msgstr ""
+msgstr "Ta med bilder och mediaobjekt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1772
 msgid "Whether to include a gallery of media objects"
-msgstr ""
+msgstr "Huruvida ta med galleri med mediaobjekt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1778
 msgid "Include unused images and media objects"
-msgstr ""
+msgstr "Ta med oanvända bilder och mediaobjekt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1779
 msgid "Whether to include unused or unreferenced media objects"
-msgstr ""
+msgstr "Huruvida ta med oanvända eller orefererade mediaobjekt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1784
 msgid "Create and only use thumbnail- sized images"
-msgstr ""
+msgstr "Skapa och använd bara miniatyrbilder"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1786
 msgid ""
@@ -35716,176 +35722,187 @@ msgid ""
 "sized images on the Media Page. This will allow you to have a much smaller "
 "total upload size to your web hosting site."
 msgstr ""
+"Detta alternativ tillåter dig att välja att inte skapa bilder i full storlek "
+"som på mediasidan utan endast miniatyrbilder. Detta gör att du får en mycket "
+"mindre total storlek när du laddar upp till din hemsideleverantör."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1795
 msgid "Max width of initial image"
-msgstr ""
+msgstr "Största bredd på första bild"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1797
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page. Set to 0 for no limit."
 msgstr ""
+"Detta tillåter dig att ställa in den största bredden för bilden som visas på "
+"mediasidan. Sätt till 0 för obegränsad bredd."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1802
 msgid "Max height of initial image"
-msgstr ""
+msgstr "Största höjd på första bild"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1804
 msgid ""
 "This allows you to set the maximum height of the image shown on the media "
 "page. Set to 0 for no limit."
 msgstr ""
+"Detta tillåter dig att ställa in den största höjden för bilden som visas på "
+"mediasidan. Sätt till 0 för obegränsad höjd."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1817
 msgid "Include download page"
-msgstr ""
+msgstr "Ta med nedladdningssida"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1819
 msgid "Whether to include a database download option"
-msgstr ""
+msgstr "Huruvida ta med alternativ för databasnedladdning"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1824
 #: ../gramps/plugins/webreport/narrativeweb.py:1836
 msgid "Download Filename"
-msgstr ""
+msgstr "Nedladdningsfilnamn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1827
 #: ../gramps/plugins/webreport/narrativeweb.py:1839
 msgid "File to be used for downloading of database"
-msgstr ""
+msgstr "Fil som skall användas vid nedladdning av databas"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1830
 #: ../gramps/plugins/webreport/narrativeweb.py:1842
 msgid "Description for download"
-msgstr ""
+msgstr "Beskrivning på nedladdning"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1831
 msgid "Smith Family Tree"
-msgstr ""
+msgstr "Smiths släktträd"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1832
 #: ../gramps/plugins/webreport/narrativeweb.py:1844
 msgid "Give a description for this file."
-msgstr ""
+msgstr "Ge en beskrivning på denna fil."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1843
 msgid "Johnson Family Tree"
-msgstr ""
+msgstr "Johanssons släktträd"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1853
 #: ../gramps/plugins/webreport/webcal.py:1829
 msgid "Advanced Options"
-msgstr ""
+msgstr "Avancerade alternativ"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1856
 #: ../gramps/plugins/webreport/webcal.py:1831
 msgid "Character set encoding"
-msgstr ""
+msgstr "Teckentabell"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1860
 #: ../gramps/plugins/webreport/webcal.py:1835
 msgid "The encoding to be used for the web files"
-msgstr ""
+msgstr "Den kodning som skall användas för webbfiler"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1864
 msgid "Include link to active person on every page"
-msgstr ""
+msgstr "Ta med länk till den aktiva personen på varje sida"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1866
 msgid "Include a link to the active person (if they have a webpage)"
-msgstr ""
+msgstr "Ta med länk till den aktiva personen (om det finns en hemsida)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1870
 msgid "Include a column for birth dates on the index pages"
-msgstr ""
+msgstr "Ta med en kolumn för födelsedatum på indexsidorna"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1871
 msgid "Whether to include a birth column"
-msgstr ""
+msgstr "Huruvida ta med en födelsekolumn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1875
 msgid "Include a column for death dates on the index pages"
-msgstr ""
+msgstr "Ta med en kolumn för dödsdatum på indexsidorna"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1876
 msgid "Whether to include a death column"
-msgstr ""
+msgstr "Huruvida ta med en dödkolumn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1879
 msgid "Include a column for partners on the index pages"
-msgstr ""
+msgstr "Ta med en kolumn för partner på indexsidorna"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1881
 msgid "Whether to include a partners column"
-msgstr ""
+msgstr "Huruvida ta med en partnerkolumn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1884
 msgid "Include a column for parents on the index pages"
-msgstr ""
+msgstr "Ta med en kolumn för föräldrar på indexsidorna"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1886
 msgid "Whether to include a parents column"
-msgstr ""
+msgstr "Huruvida ta med en föräldrakolumn"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1890
 msgid "Include half and/ or step-siblings on the individual pages"
-msgstr ""
+msgstr "Ta med halv- och/eller styvsyskon på de individuella sidorna"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1893
 msgid ""
 "Whether to include half and/ or step-siblings with the parents and siblings"
 msgstr ""
+"Huruvida ta med halv- och/eller styvsyskon med föräldrarna och syskonen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1904
 msgid "Include family pages"
-msgstr ""
+msgstr "Ta med familjesidor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1905
 msgid "Whether or not to include family pages."
-msgstr ""
+msgstr "Huruvida ta med familjesidor eller inte."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1908
 msgid "Include event pages"
-msgstr ""
+msgstr "Ta med händelsesidor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1910
 msgid "Add a complete events list and relevant pages or not"
 msgstr ""
+"Lägga till en fullständig lista med händelser och relevanta sidor eller inte"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1913
 msgid "Include repository pages"
-msgstr ""
+msgstr "Ta med arkivplatssidor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1915
 msgid "Whether or not to include the Repository Pages."
-msgstr ""
+msgstr "Huruvida ta med arkivplatssidor eller inte."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1919
 msgid "Include GENDEX file (/gendex.txt)"
-msgstr ""
+msgstr "Ta med GENDEX-fil (/gendex.txt)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1920
 msgid "Whether to include a GENDEX file or not"
-msgstr ""
+msgstr "Huruvida ta med en GENDEX-fil eller inte"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1923
 msgid "Include address book pages"
-msgstr ""
+msgstr "Ta med adressbokssidor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1924
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
 msgstr ""
+"Huruvida ta med adressbokssidor eller inte, vilket kan inkludera e-post och "
+"internetadresser samt personliga uppgifter om adress/boende."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1930
 msgid "Include the statistics page"
-msgstr ""
+msgstr "Ta med statistiksidan"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1931
 msgid "Whether or not to add statistics page"
-msgstr ""
+msgstr "Huruvida ta med statistiksida eller inte"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1938
 msgid "Place Map Options"
@@ -35901,27 +35918,31 @@ msgstr "Karttjänst"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1948
 msgid "Choose your choice of map service for creating the Place Map Pages."
-msgstr ""
+msgstr "Välj din karttjänst för skapande av platskartsidor."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1954
 msgid "Include Place map on Place Pages"
-msgstr ""
+msgstr "Ta med platskarta på platssidor"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1956
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
 msgstr ""
+"Huruvida ta med en platskarta i platssidorna, där Latitud/Longitud finns "
+"tillgängliga."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1961
 msgid "Include Family Map Pages with all places shown on the map"
-msgstr ""
+msgstr "Ta med familjekartsidor med alla platser visade på kartan"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1965
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
 msgstr ""
+"Huruvida ta med en individuell platskarta som visar alla platser på den "
+"sidan eller inte. Det gör att du kan se hur din familj reste runt i landet."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1973
 msgid "Family Links"
@@ -35937,29 +35958,29 @@ msgstr "Markörer"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1976
 msgid "Google/ FamilyMap Option"
-msgstr ""
+msgstr "Google/ Familjekartval"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1981
 msgid ""
 "Select which option that you would like to have for the Google Maps Family "
 "Map pages..."
-msgstr ""
+msgstr "Välj vilket val du vill ha för Googlekartornas familjekartsidor..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1985
 msgid "Google maps API key"
-msgstr ""
+msgstr "Google maps API key"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1986
 msgid "The API key used for the Google maps"
-msgstr ""
+msgstr "API-nyckeln som används för Google-maps"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1995
 msgid "Other inclusion (CMS, Web Calendar, Php)"
-msgstr ""
+msgstr "Andra som ingår (CMS, webbkalender, Php)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1999
 msgid "Do we include these pages in a cms web ?"
-msgstr ""
+msgstr "Ska dessa sidor tas med i CMS-webbsidor ?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2003
 #: ../gramps/plugins/webreport/narrativeweb.py:2020
@@ -35968,19 +35989,19 @@ msgstr "URI"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2009
 msgid "Where do you place your web site ? default = /NAVWEB"
-msgstr ""
+msgstr "Var vill du spara din webbsida ? standard = /NAVWEB"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2016
 msgid "Do we include the web calendar ?"
-msgstr ""
+msgstr "Ska webbkalendern tas med ?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2026
 msgid "Where do you place your web site ? default = /WEBCAL"
-msgstr ""
+msgstr "Var vill du spara din webbsida ? standard = /WEBCAL"
 
 #: ../gramps/plugins/webreport/person.py:135
 msgid "Creating individual pages"
-msgstr ""
+msgstr "Skapar individuella sidor"
 
 #. Individual List page message
 #: ../gramps/plugins/webreport/person.py:182
@@ -35989,6 +36010,8 @@ msgid ""
 "by their last names. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
 msgstr ""
+"Denna sida är en förteckning över alla personer i databasen, sorterade på "
+"efternamn. Val av personens namn öppnar den personens egen sida."
 
 #. Name Column
 #: ../gramps/plugins/webreport/person.py:209
@@ -36005,7 +36028,7 @@ msgstr "<saknas>"
 #: ../gramps/plugins/webreport/person.py:264
 #, python-format
 msgid "Surnames %(surname)s beginning with letter %(letter)s"
-msgstr ""
+msgstr "Efternamn %(surname)s som börjar på bokstaven %(letter)s"
 
 #: ../gramps/plugins/webreport/person.py:772
 #, python-format
@@ -36021,6 +36044,11 @@ msgid ""
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
 msgstr ""
+"Denna kartsida representerar endast personen och dess ättlingar med alla "
+"sina händelser/platser. Om du för musen över markören, kommer den att visa "
+"platsens namn. Markörerna och hänvisninglistan är sorterad i kronologisk "
+"ordning (om datum finns). Genom att klicka på en plats namn i "
+"hänvisningsdelen, kommer sidan för den platsen att öppnas."
 
 #: ../gramps/plugins/webreport/person.py:848
 msgid "Drop Markers"
@@ -36097,7 +36125,7 @@ msgstr "Platskarta"
 #. set progress bar pass for Repositories
 #: ../gramps/plugins/webreport/repository.py:101
 msgid "Creating repository pages"
-msgstr ""
+msgstr "Skapar arkivplatssidor"
 
 #: ../gramps/plugins/webreport/repository.py:146
 msgid ""
@@ -36105,14 +36133,17 @@ msgid ""
 "by their title. Clicking on a repositories&#8217;s title will take you to "
 "that repositories&#8217;s page."
 msgstr ""
+"Denna sida är en förteckning över alla arkivplatser i databasen, sorterade "
+"på titel. Genom att klicka på en arkivplats titel kommer den arkivplatsens "
+"sida att öppnas."
 
 #: ../gramps/plugins/webreport/repository.py:164
 msgid "Repository |Name"
-msgstr ""
+msgstr "Namn"
 
 #: ../gramps/plugins/webreport/source.py:102
 msgid "Creating source pages"
-msgstr ""
+msgstr "Skapar källsidor"
 
 #: ../gramps/plugins/webreport/source.py:146
 msgid ""
@@ -36120,14 +36151,17 @@ msgid ""
 "their title. Clicking on a source&#8217;s title will take you to that "
 "source&#8217;s page."
 msgstr ""
+"Denna sida är en förteckning över alla källor i databasen, sorterade på "
+"titel. Genom att klicka på en källas titel kommer den källans sida att "
+"öppnas."
 
 #: ../gramps/plugins/webreport/source.py:165
 msgid "Source Name|Name"
-msgstr ""
+msgstr "Namn"
 
 #: ../gramps/plugins/webreport/source.py:263
 msgid "Publication information"
-msgstr ""
+msgstr "Publiceringsinformation "
 
 #: ../gramps/plugins/webreport/statistics.py:113
 msgid "Database overview"
@@ -36145,10 +36179,12 @@ msgid ""
 "surname of %s. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
 msgstr ""
+"Denna sida är en förteckning över alla individer i databasen med efternamnet "
+"%s. Val av personens namn öppnar den personens egen sida."
 
 #: ../gramps/plugins/webreport/surnamelist.py:101
 msgid "Surnames by person count"
-msgstr ""
+msgstr "Antal personer per efternamn"
 
 #. page message
 #: ../gramps/plugins/webreport/surnamelist.py:108
@@ -36157,15 +36193,18 @@ msgid ""
 "link will lead to a list of individuals in the database with this same "
 "surname."
 msgstr ""
+"Denna sida är en förteckning över alla efternamn i databasen. Genom att "
+"klicka på ett efternamn kommer en lista med individer med det efternamnet "
+"att öppnas."
 
 #: ../gramps/plugins/webreport/surnamelist.py:154
 msgid "Number of People"
-msgstr ""
+msgstr "Antal personer"
 
 #: ../gramps/plugins/webreport/surnamelist.py:203
 #, python-format
 msgid "Surnames beginning with letter %s"
-msgstr ""
+msgstr "Efternamn som börjar med bokstaven %s"
 
 #: ../gramps/plugins/webreport/thumbnail.py:116
 msgid ""
@@ -36174,10 +36213,13 @@ msgid ""
 "objects in this database.  Clicking on a thumbnail will take you to that "
 "image&#8217;s page."
 msgstr ""
+"Denna sida är en förteckning över alla mediaobjekt i databasen, sorterad "
+"efter mediatitel. Klickar du på en miniatyrbild kommer den bildens sida att "
+"öppnas."
 
 #: ../gramps/plugins/webreport/thumbnail.py:135
 msgid "Thumbnail Preview"
-msgstr ""
+msgstr "Förhandsgranskning av minatyrbild"
 
 #. _('translation')
 #. Number of directory levels up to get to self.html_dir / root
@@ -36188,51 +36230,51 @@ msgstr ""
 #: ../gramps/plugins/webreport/webcal.py:1053
 #: ../gramps/plugins/webreport/webcal.py:1274
 msgid "Web Calendar Report"
-msgstr ""
+msgstr "Webb-kalender-rapport"
 
 #: ../gramps/plugins/webreport/webcal.py:329
 #, python-format
 msgid "Calculating Holidays for year %04d"
-msgstr ""
+msgstr "Beräknar helgdagar för år %04d"
 
 #: ../gramps/plugins/webreport/webcal.py:486
 #, python-format
 msgid ""
 "the \"WebCal\" will be the potential-email Subject|Created for "
 "%(html_email_author_start)sWebCal%(html_email_author_end)s"
-msgstr ""
+msgstr "Skapat för %(html_email_author_start)sWebCal%(html_email_author_end)s"
 
 #: ../gramps/plugins/webreport/webcal.py:494
 #, python-format
 msgid "Created for %(author)s"
-msgstr ""
+msgstr "Skapad för %(author)s"
 
 #. Add a link for year_glance() if requested
 #: ../gramps/plugins/webreport/webcal.py:576
 msgid "Year Glance"
-msgstr ""
+msgstr "Årsöversikt"
 
 #: ../gramps/plugins/webreport/webcal.py:615
 msgid "NarrativeWeb Home"
-msgstr ""
+msgstr "NarrativeWeb Hem"
 
 #: ../gramps/plugins/webreport/webcal.py:617
 msgid "Full year at a Glance"
-msgstr ""
+msgstr "Översikt av helt år"
 
 #: ../gramps/plugins/webreport/webcal.py:968
 msgid "Formatting months ..."
-msgstr ""
+msgstr "Formaterar månader ..."
 
 #: ../gramps/plugins/webreport/webcal.py:1054
 msgid "Creating Year At A Glance calendar"
-msgstr ""
+msgstr "Skapar en årsöversiktskalender"
 
 #. page title
 #: ../gramps/plugins/webreport/webcal.py:1059
 #, python-format
 msgid "%(year)d, At A Glance"
-msgstr ""
+msgstr "Översikt av %(year)d"
 
 #: ../gramps/plugins/webreport/webcal.py:1074
 msgid ""
@@ -36240,85 +36282,90 @@ msgid ""
 "compressed into one page. Clicking on a date will take you to a page that "
 "shows all the events for that date, if there are any.\n"
 msgstr ""
+"Denna kalender avser att ge dig snabb tillgång till alla dina data "
+"komprimerat till en sida. Genom att klicka på ett datum kommer en sida att "
+"öppnas som visar alla händelser på detta datum, om det finns några.\n"
 
 #. page title
 #: ../gramps/plugins/webreport/webcal.py:1127
 msgid "One Day Within A Year"
-msgstr ""
+msgstr "En dag inom ett år"
 
 #: ../gramps/plugins/webreport/webcal.py:1431
 #, python-format
 msgid "%(spouse)s and %(person)s"
-msgstr ""
+msgstr "%(spouse)s och %(person)s"
 
 #. Display date as user set in preferences
 #: ../gramps/plugins/webreport/webcal.py:1451
 #, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s on %(date)s"
-msgstr ""
+msgstr "Skapad av %(gramps_home_html_start)sGramps%(html_end)s den %(date)s"
 
 #. page title
 #: ../gramps/plugins/webreport/webcal.py:1557
 #: ../gramps/plugins/webreport/webcal.py:1622
 msgid "My Family Calendar"
-msgstr ""
+msgstr "Min släktkalender"
 
 #: ../gramps/plugins/webreport/webcal.py:1622
 msgid "Calendar Title"
-msgstr ""
+msgstr "Kalendertitel"
 
 #: ../gramps/plugins/webreport/webcal.py:1623
 msgid "The title of the calendar"
-msgstr ""
+msgstr "Titel på kalender"
 
 #: ../gramps/plugins/webreport/webcal.py:1695
 msgid "Content Options"
-msgstr ""
+msgstr "Innehållsalternativ"
 
 #: ../gramps/plugins/webreport/webcal.py:1700
 msgid "Create multiple year calendars"
-msgstr ""
+msgstr "Skapa kalendrar för flera år"
 
 #: ../gramps/plugins/webreport/webcal.py:1702
 msgid "Whether to create Multiple year calendars or not."
-msgstr ""
+msgstr "Huruvida skapa flerårskalendrar eller inte."
 
 #: ../gramps/plugins/webreport/webcal.py:1707
 msgid "Start Year for the Calendar(s)"
-msgstr ""
+msgstr "Begynnelseår för kalendrar"
 
 #: ../gramps/plugins/webreport/webcal.py:1709
 msgid "Enter the starting year for the calendars between 1900 - 3000"
-msgstr ""
+msgstr "Skriv in begynnelseår för kalendrar mellan 1900 - 3000"
 
 #: ../gramps/plugins/webreport/webcal.py:1713
 msgid "End Year for the Calendar(s)"
-msgstr ""
+msgstr "Slutår för kalendrar"
 
 #: ../gramps/plugins/webreport/webcal.py:1715
 msgid "Enter the ending year for the calendars between 1900 - 3000."
-msgstr ""
+msgstr "Skriv in slutår för kalendrar mellan 1900 och 3000."
 
 #: ../gramps/plugins/webreport/webcal.py:1732
 msgid "Holidays will be included for the selected country"
-msgstr ""
+msgstr "Helgdagar kommer att tas med för det valda landet"
 
 #: ../gramps/plugins/webreport/webcal.py:1755
 msgid "Home link"
-msgstr ""
+msgstr "Hemlänk"
 
 #: ../gramps/plugins/webreport/webcal.py:1756
 msgid ""
 "The link to be included to direct the user to the main page of the web site"
 msgstr ""
+"Den länk som skall tas med för att hänvisa användaren till webbplatsens "
+"huvudsida"
 
 #: ../gramps/plugins/webreport/webcal.py:1761
 msgid "Include birthdays in the calendar"
-msgstr ""
+msgstr "Ta med födelsedagar i kalendern"
 
 #: ../gramps/plugins/webreport/webcal.py:1765
 msgid "Include anniversaries in the calendar"
-msgstr ""
+msgstr "Ta med årsdagar i kalendern"
 
 #: ../gramps/plugins/webreport/webcal.py:1772
 msgid "Jan - Jun Notes"
@@ -36426,48 +36473,49 @@ msgstr "Notisen för december månad"
 
 #: ../gramps/plugins/webreport/webcal.py:1838
 msgid "Create one day event pages for Year At A Glance calendar"
-msgstr ""
+msgstr "Skapar endags händelsesidor för årsöversiktskalender"
 
 #: ../gramps/plugins/webreport/webcal.py:1840
 msgid "Whether to create one day pages or not"
-msgstr ""
+msgstr "Huruvida skapa endagssidor eller inte"
 
 #: ../gramps/plugins/webreport/webcal.py:1843
 msgid "Link to Narrated Web Report"
-msgstr ""
+msgstr "Länk till rapport som webbplats"
 
 #: ../gramps/plugins/webreport/webcal.py:1844
 msgid "Whether to link data to web report or not"
-msgstr ""
+msgstr "Huruvida data ska länkas till webb-rapport eller inte"
 
 #: ../gramps/plugins/webreport/webcal.py:1850
 msgid "Link prefix"
-msgstr ""
+msgstr "Länkprefix"
 
 #: ../gramps/plugins/webreport/webcal.py:1851
 msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr ""
+"Ett prefix till länkarna som tar dig till den berättande webb-rapporten"
 
 #: ../gramps/plugins/webreport/webcal.py:2029
 #, python-format
 msgid "%s old"
-msgstr ""
+msgstr "%s gammal"
 
 #: ../gramps/plugins/webreport/webcal.py:2040
 #, python-format
 msgid "%(couple)s, <em>wedding</em>"
-msgstr ""
+msgstr "%(couple)s, <em>bröllop</em>"
 
 #: ../gramps/plugins/webreport/webcal.py:2048
 msgid "Until"
-msgstr ""
+msgstr "Tills"
 
 #: ../gramps/plugins/webreport/webcal.py:2057
 #, python-brace-format
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{couple}, {years}-års jubileum"
+msgstr[1] "{couple}, {years} års jubileum"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:34
 msgid "Narrated Web Site"
