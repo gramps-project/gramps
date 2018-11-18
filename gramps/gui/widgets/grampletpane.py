@@ -1216,6 +1216,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                             for key in base_opts:
                                 if key in gramplet.__dict__:
                                     base_opts[key] = gramplet.__dict__[key]
+                            base_opts['state'] = gramplet.gstate
                             fp.write("[%s]\n" % gramplet.title)  # section
                             for key in base_opts:
                                 if key == "content": continue
@@ -1244,6 +1245,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                         for key in base_opts:
                             if key in gramplet.__dict__:
                                 base_opts[key] = gramplet.__dict__[key]
+                        base_opts['state'] = gramplet.gstate
                         fp.write("[%s]\n" % gramplet.title)
                         for key in base_opts:
                             if key == "content": continue
