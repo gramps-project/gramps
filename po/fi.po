@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-09 18:12+0200\n"
-"PO-Revision-Date: 2018-11-10 04:39+0200\n"
+"PO-Revision-Date: 2018-11-18 20:08+0200\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -33715,7 +33715,7 @@ msgstr "Hiiren rullauksen suunta"
 
 #: ../gramps/plugins/view/pedigreeview.py:1604
 msgid "Top <-> Bottom"
-msgstr "Ylhäältä <-> Alas"
+msgstr "Ylös <-> Alas"
 
 #: ../gramps/plugins/view/pedigreeview.py:1611
 msgid "Left <-> Right"
