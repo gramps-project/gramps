@@ -21,6 +21,7 @@
 # Frederic Chateaux, 2007-2008.
 # Jérôme Rapinat <romjerome@yahoo.fr>, 2005-2017.
 # Mathieu MD <mathieu.md@gmail.com>, 2012.
+# Christophe <khrys63@gmail.com>, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: 5.0.0\n"
@@ -15416,7 +15417,7 @@ msgid ""
 msgstr ""
 "Interprète le contenu des champs comme des expressions rationnelles.\n"
 "Un point décimal va correspondre à un caractère quelconque. Un point "
-"d'intérogation va correspondre à une ou aucune valeur pour le précédent "
+"d'interrogation va correspondre à une ou aucune valeur pour le précédent "
 "caractère ou groupe. L'astérisque va correspondre à aucune ou plusieurs "
 "occurences. Un signe + va correspondre à une valeur ou plus. Utilisez les "
 "parenthèses pour grouper les expressions. Spécifiez les alternatives en "
@@ -23185,7 +23186,7 @@ msgstr "L'exportation Gedcom a échoué"
 
 #: ../gramps/plugins/export/exportgeneweb.py:96
 msgid "No families matched by selected filter"
-msgstr "Aucune famille ne correspondent au filtre sélectionné"
+msgstr "Aucune famille ne correspond au filtre sélectionné"
 
 #: ../gramps/plugins/export/exportpkg.py:185
 #: ../gramps/plugins/export/exportxml.py:139
@@ -33980,7 +33981,7 @@ msgstr "Analyse des événements"
 
 #: ../gramps/plugins/tool/changetypes.py:134
 msgid "No event record was modified."
-msgstr "Aucun événement a été modifié."
+msgstr "Aucun événement n'a été modifié."
 
 # trunk
 #. translators: leave all/any {...} untranslated
@@ -34739,7 +34740,7 @@ msgstr "Modifications réalisées"
 
 #: ../gramps/plugins/tool/eventnames.py:127
 msgid "No event description has been added."
-msgstr "Aucune description de l'événement a été ajoutée."
+msgstr "Aucune description de l'événement n'a été ajoutée."
 
 # trunk
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
