@@ -266,6 +266,18 @@ class CitationBaseModel:
             self.set_cached_value(source_handle, "SRC_CHAN", value)
         return value
 
+    def citation_src_sort_change(self, data):
+        source_handle = data[COLUMN_SOURCE]
+        cached, value = self.get_cached_value(source_handle, "SRC_CHAN")
+        if not cached:
+            try:
+                source = self.db.get_source_from_handle(source_handle)
+                value = "%012x" % source.change
+            except:
+                value = ''
+            self.set_cached_value(source_handle, "SRC_CHAN", value)
+        return value
+
 # Fields access when 'data' is a Source
 
     def source_src_title(self, data):
