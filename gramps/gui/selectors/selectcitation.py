@@ -39,7 +39,6 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..views.treemodels import CitationTreeModel
 from .baseselector import BaseSelector
-from ..display import display_help
 from gramps.gen.const import URL_MANUAL_SECT2
 
 #-------------------------------------------------------------------------
@@ -47,8 +46,6 @@ from gramps.gen.const import URL_MANUAL_SECT2
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = URL_MANUAL_SECT2
-WIKI_HELP_SEC = _('manual|Select_Source_or_Citation_selector')
 
 #-------------------------------------------------------------------------
 #
@@ -84,3 +81,6 @@ class SelectCitation(BaseSelector):
             return self.db.get_source_from_handle(handle)
         else:
             return self.db.get_citation_from_handle(handle)
+
+    WIKI_HELP_PAGE = URL_MANUAL_SECT2
+    WIKI_HELP_SEC = _('manual|Select_Source_or_Citation_selector')

@@ -34,16 +34,13 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..views.treemodels import SourceModel
 from .baseselector import BaseSelector
-from ..display import display_help
-from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gen.const import URL_MANUAL_SECT2
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-# WIKI_HELP_PAGE = '%s_-_xxx' % URL_MANUAL_PAGE # FIXME
-# WIKI_HELP_SEC = _('manual|xxxx') # FIXME
 
 #-------------------------------------------------------------------------
 #
@@ -74,3 +71,6 @@ class SelectSource(BaseSelector):
 
     def get_from_handle_func(self):
         return self.db.get_source_from_handle
+
+    WIKI_HELP_PAGE = URL_MANUAL_SECT2
+    WIKI_HELP_SEC = _('manual|Select_Source_selector')

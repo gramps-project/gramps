@@ -36,6 +36,8 @@ from ..managedwindow import ManagedWindow
 from ..filters import SearchBar
 from ..glade import Glade
 from ..widgets.interactivesearchbox import InteractiveSearchBox
+from ..display import display_help
+from gramps.gen.const import URL_MANUAL_PAGE
 
 #-------------------------------------------------------------------------
 #
@@ -86,6 +88,9 @@ class BaseSelector(ManagedWindow):
         self.tree.set_headers_clickable(True)
         self.tree.connect('row-activated', self._on_row_activated)
         self.tree.grab_focus()
+        self.define_help_button(
+            self.glade.get_object('help'), self.WIKI_HELP_PAGE,
+            self.WIKI_HELP_SEC)
 
         # connect to signal for custom interactive-search
         self.searchbox = InteractiveSearchBox(self.tree)
@@ -358,3 +363,7 @@ class BaseSelector(ManagedWindow):
     def close(self, *obj):
         ManagedWindow.close(self)
         self._cleanup_on_exit()
+
+    def define_help_button(self, button, webpage='', section=''):
+        """ Setup to deal with help button """
+        button.connect('clicked', lambda x: display_help(webpage, section))

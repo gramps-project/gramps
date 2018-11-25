@@ -48,7 +48,6 @@ from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.thumbnails import get_thumbnail_image
 from ..views.treemodels import MediaModel
 from .baseselector import BaseSelector
-from ..display import display_help
 from gramps.gen.const import URL_MANUAL_SECT1
 
 #-------------------------------------------------------------------------
@@ -56,8 +55,6 @@ from gramps.gen.const import URL_MANUAL_SECT1
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = URL_MANUAL_SECT1
-WIKI_HELP_SEC = _('manual|Select_Media_Object_selector')
 
 #-------------------------------------------------------------------------
 #
@@ -106,3 +103,6 @@ class SelectObject(BaseSelector):
         pix = get_thumbnail_image(media_path_full(self.db, obj.get_path()))
         self.preview.set_from_pixbuf(pix)
         gc.collect()
+
+    WIKI_HELP_PAGE = URL_MANUAL_SECT1
+    WIKI_HELP_SEC = _('manual|Select_Media_Object_selector')
