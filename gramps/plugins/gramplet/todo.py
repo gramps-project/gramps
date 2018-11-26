@@ -197,8 +197,9 @@ class ToDo(Gramplet):
                 pass
         else:
             WarningDialog(_("No active object"),
-                          _("No active object") + _(":") + _(nav_type),
-                          parent=self.uistate.window)
+                _("First select the object to which you want to attach a note")
+                    + _(":") + _(nav_type),
+                parent=self.uistate.window)
 
 class PersonToDo(ToDo):
     """
