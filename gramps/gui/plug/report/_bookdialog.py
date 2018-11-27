@@ -929,7 +929,10 @@ class BookDialog(DocReportDialog):
                                  'book', self.title, track=track)
         self.options.options_dict['bookname'] = self.book.get_name()
 
-        response = self.window.run()
+        while True:
+            response = self.window.run()
+            if response != Gtk.ResponseType.HELP:
+                break
         if response == Gtk.ResponseType.OK:
             handler = self.options.handler
             if self.book.get_paper_name() != handler.get_paper_name():

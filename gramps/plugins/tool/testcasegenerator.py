@@ -329,7 +329,13 @@ class TestcaseGenerator(tool.BatchTool):
         self.top.add_button(_('_Help'), Gtk.ResponseType.HELP)
         self.top.show_all()
 
-        response = self.top.run()
+        while True:
+            response = self.top.run()
+            if response == Gtk.ResponseType.HELP:
+                display_help(webpage=WIKI_HELP_PAGE,
+                             section=WIKI_HELP_SEC)
+            else:
+                break
         self.options_dict['lowlevel'] = int(
             self.check_lowlevel.get_active())
         self.options_dict['bugs'] = int(
@@ -348,14 +354,10 @@ class TestcaseGenerator(tool.BatchTool):
             self.entry_count.get_text())
         self.top.destroy()
 
-        if response == Gtk.ResponseType.HELP:
-            display_help(webpage=WIKI_HELP_PAGE,
-                         section=WIKI_HELP_SEC)
-        else:
-            if response == Gtk.ResponseType.OK:
-                self.run_tool(cli=False)
-                # Save options
-                self.options.handler.save_options()
+        if response == Gtk.ResponseType.OK:
+            self.run_tool(cli=False)
+            # Save options
+            self.options.handler.save_options()
 
     def on_dummy_data_clicked(self, obj):
         self.label.set_sensitive(obj.get_active())

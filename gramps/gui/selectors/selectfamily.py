@@ -34,7 +34,6 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..views.treemodels import FamilyModel
 from .baseselector import BaseSelector
-from ..display import display_help
 from gramps.gen.const import URL_MANUAL_PAGE
 
 #-------------------------------------------------------------------------
@@ -42,8 +41,6 @@ from gramps.gen.const import URL_MANUAL_PAGE
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Categories' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Select_Family_selector')
 
 #-------------------------------------------------------------------------
 #
@@ -74,3 +71,6 @@ class SelectFamily(BaseSelector):
 
     def get_from_handle_func(self):
         return self.db.get_family_from_handle
+
+    WIKI_HELP_PAGE = '%s_-_Categories' % URL_MANUAL_PAGE
+    WIKI_HELP_SEC = _('manual|Select_Family_selector')
