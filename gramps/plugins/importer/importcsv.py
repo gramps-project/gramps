@@ -451,6 +451,7 @@ class CSVParser:
             if new:
                 mar_ref = EventRef()
                 mar_ref.set_reference_handle(marriage.get_handle())
+                mar_ref.set_role(EventRoleType(EventRoleType.FAMILY))
                 family.add_event_ref(mar_ref)
                 self.db.commit_family(family, self.trans)
             # only add note to event:
