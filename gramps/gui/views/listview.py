@@ -30,6 +30,7 @@ Provide the base classes for GRAMPS' DataView classes
 #
 #----------------------------------------------------------------
 from abc import abstractmethod
+import os
 import pickle
 import time
 import logging
@@ -1071,6 +1072,8 @@ class ListView(NavigationView):
         combobox.set_active(0)
         box.show_all()
         chooser.set_extra_widget(box)
+        default_dir = config.get('paths.recent-export-dir')
+        chooser.set_current_folder(default_dir)
 
         while True:
             value = chooser.run()
@@ -1083,6 +1086,7 @@ class ListView(NavigationView):
             else:
                 chooser.destroy()
                 return
+        config.set('paths.recent-export-dir', os.path.split(fn)[0])
         self.write_tabbed_file(fn, fl)
 
     def write_tabbed_file(self, name, type):

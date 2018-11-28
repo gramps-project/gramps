@@ -35,6 +35,7 @@ from gramps.gui.widgets import SimpleButton
 from gramps.gui.dialog import WarningDialog
 from gramps.gen.lib import StyledText, Note, NoteType
 from gramps.gen.db import DbTxn
+from gramps.gen.errors import WindowActiveError
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -178,7 +179,7 @@ class ToDo(Gramplet):
         note = self.dbstate.db.get_note_from_handle(note_handle)
         try:
             EditNote(self.gui.dbstate, self.gui.uistate, [], note)
-        except AttributeError:
+        except WindowActiveError:
             pass
 
     def new_clicked(self, obj):

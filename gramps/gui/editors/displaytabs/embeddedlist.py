@@ -211,6 +211,7 @@ class EmbeddedList(ButtonTab):
         self.tree.drag_source_set_target_list(tglist)
 
         self.tree.connect('drag_data_get', self.drag_data_get)
+        self.tree.connect_after('drag-begin', self.after_drag_begin)
         if not self.dbstate.db.readonly:
             self.tree.connect('drag_data_received', self.drag_data_received)
             self.tree.connect('drag_motion', self.tree_drag_motion)
@@ -281,6 +282,12 @@ class EmbeddedList(ButtonTab):
         representation so it is clear how save will change the data.
         """
         pass
+
+    def after_drag_begin(self, widget, drag_context):
+        """
+        We want to show the icon during drag instead of the long row entry
+        """
+        Gtk.drag_set_icon_name(drag_context, self.get_icon_name(), 0, 0)
 
     def handle_extra_type(self, objtype, obj):
         pass

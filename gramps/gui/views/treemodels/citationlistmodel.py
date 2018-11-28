@@ -91,7 +91,7 @@ class CitationListModel(CitationBaseModel, FlatBaseModel):
             self.citation_src_abbr,
             self.citation_src_pinfo,
             self.citation_src_private,
-            self.citation_src_chan,
+            self.citation_src_sort_chan,
             self.citation_tag_color
             ]
         FlatBaseModel.__init__(self, db, uistate, scol, order, search=search,

@@ -1293,9 +1293,9 @@ class ClipboardListView:
                 data = [_ob.__class__.DRAG_TARGET.drag_type, _ob, None,
                         _ob._type, _ob._value, _ob._dbid, _ob._dbname]
                 contains = model_contains(model, data)
-                if (contains and
+                if (contains and not
                         ((context.action if hasattr(context, "action") else
-                          context.get_actions()) != Gdk.DragAction.MOVE)):
+                          context.get_actions()) & Gdk.DragAction.MOVE)):
                     continue
                 drop_info = widget.get_dest_row_at_pos(x, y)
                 if drop_info:
@@ -1314,7 +1314,7 @@ class ClipboardListView:
             # on self, then it moves the first, and copies the rest.
 
             if ((context.action if hasattr(context, "action") else
-                 context.get_actions()) == Gdk.DragAction.MOVE):
+                 context.get_actions()) & Gdk.DragAction.MOVE):
                 context.finish(True, True, time)
 
             # remember time for double drop workaround.

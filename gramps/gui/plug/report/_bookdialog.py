@@ -929,7 +929,10 @@ class BookDialog(DocReportDialog):
                                  'book', self.title, track=track)
         self.options.options_dict['bookname'] = self.book.get_name()
 
-        response = self.window.run()
+        while True:
+            response = self.window.run()
+            if response != Gtk.ResponseType.HELP:
+                break
         if response == Gtk.ResponseType.OK:
             handler = self.options.handler
             if self.book.get_paper_name() != handler.get_paper_name():
@@ -951,7 +954,8 @@ class BookDialog(DocReportDialog):
                 self.make_book()
             except (IOError, OSError) as msg:
                 ErrorDialog(str(msg), parent=self.window)
-        self.close()
+        if response != Gtk.ResponseType.DELETE_EVENT:  # already closed
+            self.close()
 
     def setup_style_frame(self):
         pass
