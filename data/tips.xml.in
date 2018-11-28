@@ -57,7 +57,7 @@
 
 <_tip number="29"><b>Show All Checkbutton</b><br/>When adding an existing person as a spouse, the list of people shown is filtered to display only people who could realistically fit the role (based on dates in the database). In case Gramps is wrong in making this choice, you can override the filter by checking the Show All checkbutton.</_tip>
 
-<_tip number="31"><b>Improving Gramps</b><br/>Users are encouraged to request enhancements to Gramps. Requesting an enhancement can be done either through the gramps-users or gramps-devel mailing lists, or by going to http://bugs.gramps-project.org and creating a Feature Request. Filing a Feature Request is preferred but it can be good to discuss your ideas on the email lists.</_tip>
+<_tip number="31"><b>Improving Gramps</b><br/>Users are encouraged to request enhancements to Gramps. Requesting an enhancement can be done either through the gramps-users or gramps-devel mailing lists, or by going to https://gramps-project.org/bugs/ and creating a Feature Request. Filing a Feature Request is preferred but it can be good to discuss your ideas on the email lists.</_tip>
 
 <_tip number="32"><b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? Check out the gramps-users email list. Many helpful people are on the list, so you're likely to get an answer quickly. If you have questions related to the development of Gramps, try the gramps-devel list. You can see the lists by selecting &quot;Help &gt; Gramps Mailing Lists&quot;.</_tip>
 
@@ -91,7 +91,7 @@
 
 <_tip number="49"><b>Making a Genealogy Website</b><br/>You can easily export your family tree to a web page. Select the entire database, family lines or selected individuals to a collection of web pages ready for upload to the World Wide Web.</_tip>
 
-<_tip number="50"><b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps is to use the Gramps bug tracking system at http://bugs.gramps-project.org</_tip>
+<_tip number="50"><b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps is to use the Gramps bug tracking system at https://gramps-project.org/bugs/</_tip>
 
 <_tip number="51"><b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-project.org/</_tip>
 

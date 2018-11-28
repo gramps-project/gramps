@@ -657,14 +657,13 @@ msgstr ""
 msgid ""
 "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
 "Gramps. Requesting an enhancement can be done either through the gramps-"
-"users or gramps-devel mailing lists, or by going to http://bugs.gramps-"
-"project.org and creating a Feature Request. Filing a Feature Request is "
+"users or gramps-devel mailing lists, or by going to https://gramps-project.org/bugs/ and creating a Feature Request. Filing a Feature Request is "
 "preferred but it can be good to discuss your ideas on the email lists."
 msgstr ""
 "<b>Përmirësimi i GRAMPS</b>: Përdoruesit nxiten të kërkojnë përmirësimin e "
 "GRAMPS. Kërkimi i një përmirësim  mund të bëhet përmes gramps-përdoruesve "
 "ose listën postale të gramps-zhvilluesit, apo duke krijuar një Kërkesë për "
-"Tipare në http://bugs.gramps-project.org preferohet Plotësimi i Këkesës për "
+"Tipare në https://gramps-project.org/bugs/ preferohet Plotësimi i Këkesës për "
 "Tipare."
 
 #: ../data/tips.xml.in.h:30
@@ -884,10 +883,10 @@ msgstr ""
 #, fuzzy
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
-"is to use the Gramps bug tracking system at http://bugs.gramps-project.org"
+"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
 msgstr ""
 "Mënyra më e mirë për të raportuar një virus në GRAMPS është përdorimi i "
-"sistemit GRAMPS të gjurmimit të viruseve tek http://bugs.gramps-project.org"
+"sistemit GRAMPS të gjurmimit të viruseve tek https://gramps-project.org/bugs/"
 
 #: ../data/tips.xml.in.h:47
 #, fuzzy
@@ -1952,7 +1951,7 @@ msgstr ""
 "zgjodhet me ekzekutimin e veglës \"Kontrollo dhe Riparo\".\n"
 "\n"
 "Nëse ky problem vazhdon të ekzistojë pas ekzekutimit të kësaj vegle, ju "
-"lutem skedoni një virus tek  http://bugs.gramps-project.org\n"
+"lutem skedoni një virus tek  https://gramps-project.org/bugs/\n"
 "\n"
 
 #: ../gramps/gen/config.py:242
