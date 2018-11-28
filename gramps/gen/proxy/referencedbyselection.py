@@ -427,9 +427,10 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
     def process_lds_ord(self, lds_ord):
         """ Find all of the primary objects referred to """
         fam_handle = lds_ord.get_family_handle()
-        fam = self.db.get_family_from_handle(fam_handle)
-        if fam:
-            self.queue_object("Family", fam_handle)
+        if fam_handle:
+            fam = self.db.get_family_from_handle(fam_handle)
+            if fam:
+                self.queue_object("Family", fam_handle)
 
         place_handle = lds_ord.get_place_handle()
         if place_handle:
