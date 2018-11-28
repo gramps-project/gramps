@@ -206,16 +206,6 @@ class PlaceBaseView(ListView):
         self.mapslistlabel.append(lbl)
         widget.set_label_widget(self.mapslistlabel[-1])
         widget.set_icon_name('go-jump')
-        if self.drag_info():
-            self.list.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
-              [],
-              Gdk.DragAction.COPY)
-            tglist = Gtk.TargetList.new([])
-            tglist.add(self.drag_info().atom_drag_type,
-                       self.drag_info().target_flags,
-                       self.drag_info().app_id)
-            tglist.add_text_targets (0)
-            self.list.drag_source_set_target_list(tglist)
 
     def __create_maps_menu_actions(self):
         """
