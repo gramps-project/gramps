@@ -193,7 +193,7 @@ class ToDo(Gramplet):
             note.set_type(NoteType.TODO)
             try:
                 EditNote(self.gui.dbstate, self.gui.uistate, [], note, self.created)
-            except AttributeError:
+            except WindowActiveError:
                 pass
         else:
             WarningDialog(_("No active object"),
