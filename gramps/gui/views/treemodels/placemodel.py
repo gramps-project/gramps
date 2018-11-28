@@ -81,7 +81,8 @@ class PlaceBaseModel:
             self.column_private,
             self.column_tags,
             self.column_change,
-            self.column_tag_color
+            self.column_tag_color,
+            self.search_name,
             ]
         self.smap = [
             self.column_name,
@@ -94,7 +95,8 @@ class PlaceBaseModel:
             self.column_private,
             self.column_tags,
             self.sort_change,
-            self.column_tag_color
+            self.column_tag_color,
+            self.search_name,
             ]
 
     def destroy(self):
@@ -127,8 +129,13 @@ class PlaceBaseModel:
         return value
 
     def column_name(self, data):
-        # need for spacing on the french translation
-        return _(',').join([data[6][0]] + [name[0] for name in data[7]])
+        """ Return the primary name """
+        return data[6][0]
+
+    def search_name(self, data):
+        """ The search name includes all alt names to enable finding by alt name
+        """
+        return ','.join([data[6][0]] + [name[0] for name in data[7]])
 
     def column_longitude(self, data):
         if not data[3]:
