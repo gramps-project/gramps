@@ -119,6 +119,7 @@ h4 {
 a {
     color: #7D5925;
     text-decoration: none;
+    word-wrap: break-word;
 }
 a[href]:hover, a[href]:active {
     background-color: #FFFFE7;
@@ -436,8 +437,7 @@ div#families table.fixed_subtables table.eventlist th:last-child {
 }
 #indivgallery .thumbnail {
     float: left;
-    max-width: 130px;
-    max-height: 150px;
+    width: 130px;
     font-size: smaller;
     text-align: center;
     margin: 0.5em;
@@ -533,7 +533,6 @@ div#map_canvas {
 table.calendar {
     table-layout: fixed;
     empty-cells: show;
-    width: 950px;
     margin: 0px auto;
     background: url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
 }
