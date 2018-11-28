@@ -72,18 +72,15 @@ class IsDuplicatedAncestorOf(Rule):
                 f_id = fam.get_father_handle()
                 m_id = fam.get_mother_handle()
                 if m_id:
-                    self.mother_side(db, db.get_person_from_handle(m_id))
+                    self.go_deeper(db, db.get_person_from_handle(m_id))
                 if f_id:
-                    self.father_side(db, db.get_person_from_handle(f_id))
+                    self.go_deeper(db, db.get_person_from_handle(f_id))
 
-    def mother_side(self, db, person):
+    def go_deeper(self, db, person):
         if person and person.handle in self.map:
             self.map2.add((person.handle))
-        self.map.add((person.handle))
-        self.init_ancestor_list(db, person)
-
-    def father_side(self, db, person):
-        if person and person.handle in self.map:
-            self.map2.add((person.handle))
+            # the following keeps from scanning same parts of tree multiple
+            # times and avoids crash on tree loops.
+            return
         self.map.add((person.handle))
         self.init_ancestor_list(db, person)
