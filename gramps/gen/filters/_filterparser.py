@@ -62,6 +62,9 @@ class FilterParser(handler.ContentHandler):
                 self.namespace = attrs['type']
             else:
                 self.namespace = "generic"
+            if self.namespace == 'MediaObject':
+                # deals with older custom filters
+                self.namespace = 'Media'
         elif tag == "filter":
             self.f = GenericFilterFactory(self.namespace)()
             self.f.set_name(attrs['name'])

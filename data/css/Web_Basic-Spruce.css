@@ -110,6 +110,7 @@ p#description {
 a {
     color: black;
     text-decoration: none;
+    word-wrap: break-word;
 }
 a[href]:hover, a[href]:active {
     background-color: #EAEEF4
@@ -493,8 +494,7 @@ div#families table.attrlist td.ColumnType {
 ----------------------------------------------------- */
 #indivgallery .thumbnail {
     float: left;
-    max-width: 130px;
-    max-height: 150px;
+    width: 130px;
     font-size: smaller;
     text-align: center;
     margin: 0.8em 0.5em;

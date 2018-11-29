@@ -37,7 +37,6 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..views.treemodels import NoteModel
 from .baseselector import BaseSelector
-from ..display import display_help
 from gramps.gen.const import URL_MANUAL_SECT1
 
 #-------------------------------------------------------------------------
@@ -45,8 +44,6 @@ from gramps.gen.const import URL_MANUAL_SECT1
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = URL_MANUAL_SECT1
-WIKI_HELP_SEC = _('manual|Select_Note_selector')
 
 #-------------------------------------------------------------------------
 #
@@ -80,3 +77,6 @@ class SelectNote(BaseSelector):
 
     def get_from_handle_func(self):
         return self.db.get_note_from_handle
+
+    WIKI_HELP_PAGE = URL_MANUAL_SECT1
+    WIKI_HELP_SEC = _('manual|Select_Note_selector')

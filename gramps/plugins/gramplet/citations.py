@@ -249,9 +249,10 @@ class Citations(Gramplet, DbGUIElement):
             if self.check_citations(lds):
                 return True
             place_handle = lds.get_place_handle()
-            place = self.dbstate.db.get_place_from_handle(place_handle)
-            if place and self.check_place_citations(place):
-                return True
+            if place_handle:
+                place = self.dbstate.db.get_place_from_handle(place_handle)
+                if place and self.check_place_citations(place):
+                    return True
         return False
 
     def check_association_citations(self, obj):

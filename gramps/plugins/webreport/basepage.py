@@ -2204,7 +2204,7 @@ class BasePage: # pylint: disable=C1001
                                         self.report.copy_file(
                                             media_path_full(self.r_db,
                                                             media.get_path()),
-                                            new_path)
+                                            real_path)
 
                                         tmp += Html("li",
                                                     self.media_link(

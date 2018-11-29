@@ -1093,7 +1093,6 @@ div.Residence table.infolist tr td {
     margin: 0;
     float: left;
     width: 130px;
-    height: 150px;
     text-align: center;
 }
 #indivgallery div.thumbnail a {
@@ -1102,6 +1101,7 @@ div.Residence table.infolist tr td {
     padding: 0;
     text-decoration: none;
     cursor: pointer;
+    word-wrap: break-word;
 }
 #indivgallery div.thumbnail a img {
     padding: 0;

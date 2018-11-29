@@ -736,7 +736,7 @@ table.download {
     width:100%;
 }
 table.download img {
-    float:center;
+    float:none;
 }
 table.download thead tr th {
     text-align:center;
@@ -933,7 +933,6 @@ div#Addresses table.infolist tr td a, div#Addresses table.infolist tr td p a {
     margin:0;
     float:left;
     width:130px;
-    height:150px;
     text-align:center;
 }
 #indivgallery .thumbnail a {
@@ -941,6 +940,7 @@ div#Addresses table.infolist tr td a, div#Addresses table.infolist tr td p a {
     margin:0;
     padding:0;
     background:none;
+    word-wrap: break-word;
 }
 #indivgallery .thumbnail a img {
     margin:0;
@@ -1097,7 +1097,7 @@ div#pedigree {
     margin-right: 10px;
 }
 #footer p#copyright img {
-    margin-right: 10px[
+    margin-right: 10px;
 }
 #user_footer {
     width: 70%;

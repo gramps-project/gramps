@@ -93,6 +93,10 @@ def gedfilt(line):
     The differences are not functional, but are related to changes in Gramps
     version, file date/time and filename.
     """
+    def get_prev_token(back):
+        if back > gedfilt.indx:
+            return None
+        return gedfilt.prev[gedfilt.indx - back][0]
     #pylint: disable=unsubscriptable-object
     if line.startswith('@@'):
         gedfilt.prev = [None] * 8
@@ -112,13 +116,13 @@ def gedfilt(line):
         # save the line for later if needed to figure out the data element
         gedfilt.prev[gedfilt.indx] = token, level, line
         gedfilt.indx = (gedfilt.indx + 1) % 8
-        if token == "VERS" and gedfilt.prev[gedfilt.indx-2][0] == "SOUR":
+        if token == "VERS" and get_prev_token(2) == "SOUR":
             # we must have a header with Gramps version
             retval = False
-        elif token == "DATE" and gedfilt.prev[gedfilt.indx-2][0] == "NAME":
+        elif token == "DATE" and get_prev_token(2) == "NAME":
             # we must have a header with file date
             retval = False
-        elif token == "TIME" and gedfilt.prev[gedfilt.indx-2][0] == "DATE":
+        elif token == "TIME" and get_prev_token(2) == "DATE":
             # probably have a header with file time
             retval = False
         elif token == "FILE" and line.endswith('.ged\n'):
@@ -131,15 +135,15 @@ def gedfilt(line):
             # probably have a copyright line with year
             retval = False
     else:   # this is an addition
-        if token == "VERS" and gedfilt.prev[gedfilt.indx-1][0] == "VERS":
+        if token == "VERS" and get_prev_token(1) == "VERS":
             # we must have a header with Gramps version
             retval = False
-        elif token == "DATE" and (gedfilt.prev[gedfilt.indx-2][0] == "NAME" or
-                                  gedfilt.prev[gedfilt.indx-3][0] == "NAME"):
+        elif token == "DATE" and (get_prev_token(2) == "NAME" or
+                                  get_prev_token(3) == "NAME"):
             # we must have a header with file date
             retval = False
-        elif token == "TIME" and (gedfilt.prev[gedfilt.indx-2][0] == "DATE" or
-                                  gedfilt.prev[gedfilt.indx-3][0] == "DATE"):
+        elif token == "TIME" and (get_prev_token(2) == "DATE" or
+                                  get_prev_token(3) == "DATE"):
             # probably have a header with file time
             retval = False
         elif token == "FILE" and line.endswith('.ged\n'):

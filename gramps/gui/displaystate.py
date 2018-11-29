@@ -621,18 +621,16 @@ class DisplayState(Callback):
 
         self.status.pop(self.status_id)
 
-        if active_handle:
+        if active_handle and dbstate.is_open():
             name, obj = navigation_label(dbstate.db, nav_type, active_handle)
+            # Append relationship to default person if funtionality is enabled.
+            if nav_type == 'Person' and config.get('interface.statusbar') > 1:
+                if active_handle != dbstate.db.get_default_handle():
+                    msg = self.display_relationship(dbstate, active_handle)
+                    if msg:
+                        name = '%s (%s)' % (name, msg.strip())
         else:
             name = _('No active object')
-
-        # Append relationship to default person if funtionality is enabled.
-        if nav_type == 'Person' and active_handle \
-                                and config.get('interface.statusbar') > 1:
-            if active_handle != dbstate.db.get_default_handle():
-                msg = self.display_relationship(dbstate, active_handle)
-                if msg:
-                    name = '%s (%s)' % (name, msg.strip())
 
         if not name:
             name = self.NAV2MES[nav_type]
