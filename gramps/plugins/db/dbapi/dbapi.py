@@ -813,15 +813,33 @@ class DBAPI(DbGeneric):
                              ref_class_name])
         callback(5)
 
-    def rebuild_secondary(self, update):
+    def rebuild_secondary(self, callback=None):
         """
         Rebuild secondary indices
         """
+        if self.readonly:
+            return
+
         # First, expand blob to individual fields:
-        self._update_secondary_values()
+        self._txn_begin()
+        index = 1
+        for obj_type in ('Person', 'Family', 'Event', 'Place', 'Repository',
+                         'Source', 'Citation', 'Media', 'Note', 'Tag'):
+            for handle in self.method('get_%s_handles', obj_type)():
+                obj = self.method('get_%s_from_handle', obj_type)(handle)
+                self._update_secondary_values(obj)
+            if callback:
+                callback(index)
+            index += 1
+        self._txn_commit()
+        if callback:
+            callback(11)
+
         # Next, rebuild stats:
         gstats = self.get_gender_stats()
         self.genderStats = GenderStats(gstats)
+        if callback:
+            callback(12)
 
     def _has_handle(self, obj_key, handle):
         table = KEY_TO_NAME_MAP[obj_key]
