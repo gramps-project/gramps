@@ -72,8 +72,9 @@ RELCALC = 9
 GRAMPLET = 10
 SIDEBAR = 11
 DATABASE = 12
-PTYPE = [REPORT , QUICKREPORT, TOOL, IMPORT, EXPORT, DOCGEN, GENERAL,
-               MAPSERVICE, VIEW, RELCALC, GRAMPLET, SIDEBAR, DATABASE]
+RULE = 13
+PTYPE = [REPORT, QUICKREPORT, TOOL, IMPORT, EXPORT, DOCGEN, GENERAL,
+         MAPSERVICE, VIEW, RELCALC, GRAMPLET, SIDEBAR, DATABASE, RULE]
 PTYPE_STR = {
         REPORT: _('Report') ,
         QUICKREPORT: _('Quickreport'),
@@ -88,6 +89,7 @@ PTYPE_STR = {
         GRAMPLET: _('Gramplet'),
         SIDEBAR: _('Sidebar'),
         DATABASE: _('Database'),
+        RULE: _('Rule')
         }
 
 #possible report categories
@@ -211,7 +213,7 @@ class PluginData:
        The python path where the plugin implementation can be found
     .. attribute:: ptype
        The plugin type. One of REPORT , QUICKREPORT, TOOL, IMPORT,
-        EXPORT, DOCGEN, GENERAL, MAPSERVICE, VIEW, GRAMPLET, DATABASE
+        EXPORT, DOCGEN, GENERAL, MAPSERVICE, VIEW, GRAMPLET, DATABASE, RULE
     .. attribute:: authors
        List of authors of the plugin, default=[]
     .. attribute:: authors_email
@@ -362,6 +364,13 @@ class PluginData:
     .. attribute:: reset_system
        Boolean to indicate that the system (sys.modules) should
        be reset.
+
+    Attributes for RULE plugins
+
+    .. attribute:: namespace
+       The class (Person, Event, Media, etc.) the rule applies to.
+    .. attribute:: ruleclass
+       The exact class name of the rule; ex: HasSourceParameter
     """
 
     def __init__(self):
@@ -440,6 +449,9 @@ class PluginData:
         #GENERAL attr
         self._data = []
         self._process = None
+        #RULE attr
+        self._ruleclass = None
+        self._namespace = None
 
     def _set_id(self, id):
        self._id = id
@@ -987,6 +999,26 @@ class PluginData:
     data = property(_get_data, _set_data)
     process = property(_get_process, _set_process)
 
+    #RULE attr
+    def _set_ruleclass(self, data):
+        if self._ptype != RULE:
+            raise ValueError('ruleclass may only be set for RULE plugins')
+        self._ruleclass = data
+
+    def _get_ruleclass(self):
+        return self._ruleclass
+
+    def _set_namespace(self, data):
+        if self._ptype != RULE:
+            raise ValueError('namespace may only be set for RULE plugins')
+        self._namespace = data
+
+    def _get_namespace(self):
+        return self._namespace
+
+    ruleclass = property(_get_ruleclass, _set_ruleclass)
+    namespace = property(_get_namespace, _set_namespace)
+
 def newplugin():
     """
     Function to create a new plugindata object, add it to list of
@@ -1034,6 +1066,7 @@ def make_environment(**kwargs):
         'EXPORT': EXPORT,
         'DOCGEN': DOCGEN,
         'GENERAL': GENERAL,
+        'RULE': RULE,
         'MAPSERVICE': MAPSERVICE,
         'VIEW': VIEW,
         'RELCALC': RELCALC,
@@ -1349,6 +1382,12 @@ class PluginRegister:
         Return a list of :class:`PluginData` that are of type DATABASE
         """
         return self.type_plugins(DATABASE)
+
+    def rule_plugins(self):
+        """
+        Return a list of :class:`PluginData` that are of type RULE
+        """
+        return self.type_plugins(RULE)
 
     def filter_load_on_reg(self):
         """
