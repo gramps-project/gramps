@@ -39,6 +39,7 @@ import os
 import sys
 import re
 import logging
+import importlib
 LOG = logging.getLogger('._manager')
 LOG.progagate = True
 from ..const import GRAMPS_LOCALE as glocale
@@ -197,6 +198,18 @@ class BasePluginManager:
                         plugin.data += results
                     except:
                         plugin.data = results
+        # Get the addon rules and import them and make them findable
+        for plugin in self.__pgr.rule_plugins():
+            mod = self.load_plugin(plugin)  # load the addon rule
+            # get place in rule heirarchy to put the new rule
+            obj_rules = importlib.import_module(
+                'gramps.gen.filters.rules.' + plugin.namespace.lower())
+            # get the new rule class object
+            r_class = getattr(mod, plugin.ruleclass)
+            # make the new rule findable via import statements
+            setattr(obj_rules, plugin.ruleclass, r_class)
+            # and add it to the correct fiter editor list
+            obj_rules.editor_rule_list.append(r_class)
 
     def is_loaded(self, pdata_id):
         """
