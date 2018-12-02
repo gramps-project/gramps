@@ -501,7 +501,11 @@ class EditRule(ManagedWindow):
             grid.set_row_spacing(6)
             grid.show()
             for v in arglist:
-                l = Gtk.Label(label=v, halign=Gtk.Align.END)
+                if isinstance(v, tuple):
+                    # allows filter to create its own GUI element
+                    l = Gtk.Label(label=v[0], halign=Gtk.Align.END)
+                else:
+                    l = Gtk.Label(label=v, halign=Gtk.Align.END)
                 l.show()
                 if v == _('Place:'):
                     t = MyPlaces([])
@@ -585,6 +589,9 @@ class EditRule(ManagedWindow):
                 elif v == _('Units:'):
                     t = MyList([0, 1, 2],
                                [_('kilometers'), _('miles'), _('degrees')])
+                elif isinstance(v, tuple):
+                    # allow filter to create its own GUI element
+                    t = v[1](self.db)
                 else:
                     t = MyEntry()
                 t.set_hexpand(True)
