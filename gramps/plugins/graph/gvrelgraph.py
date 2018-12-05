@@ -494,6 +494,31 @@ class RelGraphReport(Report):
             self.doc.start_subgraph(fam_id)
             f_handle = fam.get_father_handle()
             m_handle = fam.get_mother_handle()
+            if f_handle and m_handle:
+                father = self._db.get_person_from_handle(f_handle)
+                mother = self._db.get_person_from_handle(m_handle)
+                fcount = 0
+                mcount = 0
+                family_list = father.get_parent_family_handle_list()
+                for fam_handle in family_list:
+                    family = self._db.get_family_from_handle(fam_handle)
+                    if family is not None:
+                        fcount = fcount + 1
+                family_list = mother.get_parent_family_handle_list()
+                for fam_handle in family_list:
+                    family = self._db.get_family_from_handle(fam_handle)
+                    if family is not None:
+                        mcount = mcount + 1
+                first = father
+                second = mother
+                if fcount < mcount:
+                    first = mother
+                    second = father
+                self.doc.add_link(first.get_gramps_id(),
+                                  second.get_gramps_id(),
+                                  "invis",
+                                  "none",
+                                  "none")
             if f_handle in self.persons:
                 father = self._db.get_person_from_handle(f_handle)
                 self.doc.add_link(father.get_gramps_id(),
