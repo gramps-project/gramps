@@ -449,10 +449,12 @@ class TreeDocBase(BaseDoc, TreeDoc):
                         event = db.get_event_from_handle(eventref.ref)
                         self.write_event(db, level+1, event)
         for attr in person.get_attribute_list():
-            if str(attr.get_type()) == 'Occupation':
+            # Comparison with 'Occupation' for backwards compatibility with Gramps 5.0
+            attr_type = str(attr.get_type())
+            if attr_type in ('Occupation', _('Occupation')):
                 self.write(level+1, 'profession = {%s},\n' %
                            escape(attr.get_value()))
-            if str(attr.get_type()) == 'Comment':
+            if attr_type == 'Comment':
                 self.write(level+1, 'comment = {%s},\n' %
                            escape(attr.get_value()))
         for mediaref in person.get_media_list():
