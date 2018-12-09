@@ -206,7 +206,7 @@ class DocBackend:
 
         if not self.STYLETYPE_MAP or \
         self.CLASSMAP != tagtype.__class__.__name__ :
-            self.CLASSMAP == tagtype.__class__.__name__
+            self.CLASSMAP = tagtype.__class__.__name__
             self.STYLETYPE_MAP[tagtype.BOLD]        = self.BOLD
             self.STYLETYPE_MAP[tagtype.ITALIC]      = self.ITALIC
             self.STYLETYPE_MAP[tagtype.UNDERLINE]   = self.UNDERLINE
@@ -217,7 +217,7 @@ class DocBackend:
             self.STYLETYPE_MAP[tagtype.SUPERSCRIPT] = self.SUPERSCRIPT
             self.STYLETYPE_MAP[tagtype.LINK]        = self.LINK
 
-        if s_tag.name == 'Link':
+        if s_tag.name == tagtype.LINK:
             return self.format_link(s_tag.value)
         typeval = int(s_tag.name)
         s_tagvalue = s_tag.value
