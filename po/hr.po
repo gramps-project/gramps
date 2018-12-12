@@ -32583,8 +32583,8 @@ msgid "Looking for possible loop for each person"
 msgstr "Traženje moguće petlje za svaku osobu"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr "Upravljač_medija ..."
+msgid "manual|Media_Manager"
+msgstr "Upravljač_medija"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

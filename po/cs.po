@@ -32435,8 +32435,8 @@ msgid "Looking for possible loop for each person"
 msgstr "Hledá se možné zacyklení pro každou osobu"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr "Správce médií..."
+msgid "manual|Media_Manager"
+msgstr "Správce médií"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

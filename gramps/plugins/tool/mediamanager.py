@@ -65,7 +65,7 @@ from gramps.gui.managedwindow import ManagedWindow
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Media_Manager...')
+WIKI_HELP_SEC = _('manual|Media_Manager')
 
 #-------------------------------------------------------------------------
 #
@@ -87,6 +87,10 @@ class MediaMan(ManagedWindow, tool.Tool):
         self.assistant = Gtk.Assistant()
         self.set_window(self.assistant, None, _('Media Manager'))
         self.setup_configs('interface.mediaman', 780, 600)
+
+        help_btn = Gtk.Button.new_with_label(_('Help'))
+        help_btn.connect('clicked', self.on_help_clicked)
+        self.assistant.add_action_widget(help_btn)
 
         self.assistant.connect('close', self.do_close)
         self.assistant.connect('cancel', self.do_close)

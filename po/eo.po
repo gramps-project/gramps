@@ -32172,7 +32172,7 @@ msgid "Descendant"
 msgstr "Praido"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
+msgid "manual|Media_Manager"
 msgstr "Aŭdvidaĵa-administrilo..."
 
 #: ../gramps/plugins/tool/mediamanager.py:88

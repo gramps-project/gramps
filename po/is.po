@@ -31869,8 +31869,8 @@ msgid "Looking for possible loop for each person"
 msgstr "Leita að mögulegum hringbeiningum fyrir hvern einstakling"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr "Gagnastjórnun..."
+msgid "manual|Media_Manager"
+msgstr "Gagnastjórnun"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

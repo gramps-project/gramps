@@ -32696,8 +32696,8 @@ msgid "Looking for possible loop for each person"
 msgstr "Lehetséges hurok keresése minden személynél"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr "_Médiakezelő..."
+msgid "manual|Media_Manager"
+msgstr "_Médiakezelő"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

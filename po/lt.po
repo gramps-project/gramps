@@ -32719,8 +32719,8 @@ msgid "Looking for possible loop for each person"
 msgstr "Ieškoma kiekvieno asmens galimų ciklų"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr "Garso/vaizdo tvarkymo įrankis..."
+msgid "manual|Media_Manager"
+msgstr "Garso/vaizdo tvarkymo įrankis"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

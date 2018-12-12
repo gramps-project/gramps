@@ -30945,8 +30945,8 @@ msgid "Looking for possible loop for each person"
 msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr "Ortam_Yöneticisi..."
+msgid "manual|Media_Manager"
+msgstr "Ortam_Yöneticisi"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

@@ -32737,8 +32737,8 @@ msgid "Looking for possible loop for each person"
 msgstr "A procurar possível ciclo para cada indivíduo"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr "Gestor_de_multimédia..."
+msgid "manual|Media_Manager"
+msgstr "Gestor_de_multimédia"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

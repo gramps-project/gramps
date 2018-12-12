@@ -33870,7 +33870,7 @@ msgid "Looking for possible loop for each person"
 msgstr "Αναζήτηση για %d άτομο"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
+msgid "manual|Media_Manager"
 msgstr "Διαχειριστής Μέσων"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
