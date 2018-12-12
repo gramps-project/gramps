@@ -978,6 +978,9 @@ class BookDialog(DocReportDialog):
         whether the document requires table support, etc."""
         self.format_menu = _BookFormatComboBox(active)
 
+    def on_help_clicked(self, *obj):
+        display_help(WIKI_HELP_PAGE, GENERATE_WIKI_HELP_SEC)
+
     def make_document(self):
         """Create a document of the type requested by the user."""
         user = User(uistate=self.uistate)
