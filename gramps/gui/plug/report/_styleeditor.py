@@ -58,6 +58,10 @@ from ...listmodel import ListModel
 from ...managedwindow import ManagedWindow
 from ...glade import Glade
 from ...dialog import ErrorDialog
+from ...display import display_help
+from gramps.gen.const import URL_MANUAL_PAGE
+
+WIKI_HELP_PAGE = URL_MANUAL_PAGE + "_-_Settings"
 
 #------------------------------------------------------------------------
 #
@@ -100,8 +104,11 @@ class StyleListDisplay(ManagedWindow):
             "on_button_press" : self.on_button_press,
             "on_edit_clicked" : self.on_edit_clicked,
             "on_cancel_clicked" : self.__cancel,
+            "on_help_btn_clicked" : lambda x: display_help(
+                WIKI_HELP_PAGE, _('manual|Document_Styles_dialog')),
             "on_cancel_style_clicked" : dummy_callback,
             "on_save_style_clicked" : dummy_callback,
+            "on_help_btn_style_clicked" : dummy_callback,
             })
 
         self.list = ListModel(self.top.get_object("list"),
@@ -230,12 +237,15 @@ class StyleEditor(ManagedWindow):
         self.top.connect_signals({
             "on_save_style_clicked" : self.on_save_style_clicked,
             "on_cancel_style_clicked" : self.__cancel,
+            "on_help_btn_style_clicked" : lambda x: display_help(
+                WIKI_HELP_PAGE, _('manual|Style_editor_dialog')),
             "on_cancel_clicked" : dummy_callback,
             "on_ok_clicked" : dummy_callback,
             "on_add_clicked" : dummy_callback,
             "on_delete_clicked" : dummy_callback,
             "on_button_press" : dummy_callback,
             "on_edit_clicked" : dummy_callback,
+            "on_help_btn_clicked" : dummy_callback,
             })
 
         self.pname = self.top.get_object('pname')
