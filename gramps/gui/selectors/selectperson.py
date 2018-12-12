@@ -67,7 +67,7 @@ class SelectPerson(BaseSelector):
         elif title == _("Select Child"):
             self.WIKI_HELP_SEC = _('manual|Select_Child_selector')
         else:
-            self.WIKI_HELP_SEC = _('manual|Person_Reference_Editor')
+            self.WIKI_HELP_SEC = _('manual|Select_Person_selector')
 
         BaseSelector.__init__(self, dbstate, uistate, track, filter,
                               skip, show_search_bar, default)
