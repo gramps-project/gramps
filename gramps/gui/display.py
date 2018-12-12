@@ -26,6 +26,7 @@
 import os
 import webbrowser
 import sys
+from urllib.parse import quote
 #------------------------------------------------------------------------
 #
 # Gramps modules
@@ -65,9 +66,9 @@ def display_help(webpage='', section=''):
     if not webpage:
         link = URL_WIKISTRING + URL_MANUAL_PAGE + EXTENSION
     else:
-        link = URL_WIKISTRING + webpage + EXTENSION
+        link = URL_WIKISTRING + quote(webpage) + EXTENSION
         if section:
-            link = link + '#' + section
+            link += '#' + quote(section.replace(' ', '_')).replace('%', '.')
     display_url(link)
 
 def display_url(link, uistate=None):
