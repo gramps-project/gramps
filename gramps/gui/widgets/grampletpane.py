@@ -365,6 +365,8 @@ class GuiGramplet:
         self.gstate = kwargs.get("state", "maximized")
         self.data = kwargs.get("data", [])
         self.help_url = kwargs.get("help_url", WIKI_HELP_PAGE)
+        if self.help_url == 'None':
+            self.help_url = None  # to fix up the config file vers of None
         ##########
         self.use_markup = False
         self.pui = None # user code
