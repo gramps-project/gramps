@@ -60,7 +60,6 @@ def impData(database, name, user):
     # Create tempdir, if it does not exist, then check for writability
     #     THE TEMP DIR is named as the filname.gpkg.media and is created
     #     in the mediapath dir of the family tree we import to
-    oldmediapath = database.get_mediapath()
     #use home dir if no media path
     my_media_path = media_path(database)
     media_dir = "%s.media" % os.path.basename(name)
@@ -94,38 +93,6 @@ def impData(database, name, user):
 
     importer = importData
     info = importer(database, imp_db_name, user)
-
-    newmediapath = database.get_mediapath()
-    #import of gpkg should not change media path as all media has new paths!
-    if not oldmediapath == newmediapath :
-        database.set_mediapath(oldmediapath)
-
-    # Set correct media dir if possible, complain if problems
-    if oldmediapath is None:
-        database.set_mediapath(tmpdir_path)
-        user.warn(
-                _("Base path for relative media set"),
-                _("The base media path of this Family Tree has been set to "
-                    "%s. Consider taking a simpler path. You can change this "
-                    "in the Preferences, while moving your media files to the "
-                    "new position, and using the media manager tool, option "
-                    "'Replace substring in the path' to set"
-                    " correct paths in your media objects."
-                 ) % tmpdir_path)
-    else:
-        user.warn(
-                _("Cannot set base media path"),
-                _("The Family Tree you imported into already has a base media "
-                    "path: %(orig_path)s. The imported media objects however "
-                    "are relative from the path %(path)s. You can change the "
-                    "media path in the Preferences or you can convert the "
-                    "imported files to the existing base media path. You can "
-                    "do that by moving your media files to the "
-                    "new position, and using the media manager tool, option "
-                    "'Replace substring in the path' to set"
-                    " correct paths in your media objects."
-                    ) % {'orig_path': oldmediapath, 'path': tmpdir_path}
-                    )
 
     # Remove xml file extracted to media dir we imported from
     os.remove(imp_db_name)

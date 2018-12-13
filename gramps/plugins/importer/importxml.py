@@ -116,6 +116,7 @@ INSTANTIATED = 1
 def importData(database, filename, user):
     filename = os.path.normpath(filename)
     basefile = os.path.dirname(filename)
+    oldmediapath = database.get_mediapath()
     database.smap = {}
     database.pmap = {}
     database.fmap = {}
@@ -163,6 +164,38 @@ def importData(database, filename, user):
             return
 
     database.readonly = read_only
+
+    newmediapath = database.get_mediapath()
+    #import of gpkg should not change media path as all media has new paths!
+    if not oldmediapath == newmediapath :
+        database.set_mediapath(oldmediapath)
+
+    # Set correct media dir if possible, complain if problems
+    if oldmediapath is None:
+        database.set_mediapath(basefile)
+        user.warn(
+                _("Base path for relative media set"),
+                _("The base media path of this Family Tree has been set to "
+                    "%s. Consider taking a simpler path. You can change this "
+                    "in the Preferences, while moving your media files to the "
+                    "new position, and using the media manager tool, option "
+                    "'Replace substring in the path' to set"
+                    " correct paths in your media objects."
+                 ) % basefile)
+    else:
+        user.warn(
+                _("Cannot set base media path"),
+                _("The Family Tree you imported into already has a base media "
+                    "path: %(orig_path)s. The imported media objects however "
+                    "are relative from the path %(path)s. You can change the "
+                    "media path in the Preferences or you can convert the "
+                    "imported files to the existing base media path. You can "
+                    "do that by moving your media files to the "
+                    "new position, and using the media manager tool, option "
+                    "'Replace substring in the path' to set"
+                    " correct paths in your media objects."
+                    ) % {'orig_path': oldmediapath, 'path': basefile}
+                    )
     return info
 
 
