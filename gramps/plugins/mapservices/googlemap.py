@@ -51,7 +51,7 @@ class GoogleMapService(MapService):
         place = self._get_first_place()[0]
         latitude, longitude = self._lat_lon(place)
         if longitude and latitude:
-            self.url = "http://maps.google.com/maps/mm?sll=%s,%s&z=15" % (latitude,
+            self.url = "http://www.google.com/maps/place/?q=%s,%s" % (latitude,
                                                                longitude)
             return
 
@@ -59,9 +59,9 @@ class GoogleMapService(MapService):
         city = location.get(PlaceType.CITY)
         country = location.get(PlaceType.COUNTRY)
         if city and country:
-            self.url = "http://maps.google.com/maps?q=%s,%s" % (city, country)
+            self.url = "http://www.google.com/maps/place/?q=%s,%s" % (city, country)
             return
 
         titledescr = place_displayer.display(self.database, place)
-        self.url = "http://maps.google.com/maps?q=%s" % \
+        self.url = "http://www.google.com/maps/place/?q=%s" % \
                                             '+'.join(titledescr.split())
