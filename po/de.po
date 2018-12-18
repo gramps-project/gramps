@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-04 18:11+0100\n"
-"PO-Revision-Date: 2018-12-04 18:31+0100\n"
+"POT-Creation-Date: 2018-12-18 20:54+0100\n"
+"PO-Revision-Date: 2018-12-18 21:03+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -10035,7 +10035,7 @@ msgstr "Schlussnotizen"
 #: ../gramps/gui/plug/report/_reportdialog.py:377
 #: ../gramps/gui/plug/report/_reportdialog.py:401
 #: ../gramps/gui/plug/report/_reportdialog.py:472
-#: ../gramps/gui/plug/report/_reportdialog.py:620
+#: ../gramps/gui/plug/report/_reportdialog.py:623
 #: ../gramps/plugins/gramplet/statsgramplet.py:146
 #: ../gramps/plugins/gramplet/statsgramplet.py:149
 #: ../gramps/plugins/gramplet/statsgramplet.py:152
@@ -18641,17 +18641,17 @@ msgstr ""
 "\n"
 "Bitte wähle ein anderes Verzeichnis oder erstelle es."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:665
+#: ../gramps/gui/plug/report/_reportdialog.py:668
 #: ../gramps/gui/plug/tool.py:136 ../gramps/plugins/tool/relcalc.py:150
 msgid "Active person has not been set"
 msgstr "Keine Person ausgewählt"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:666
+#: ../gramps/gui/plug/report/_reportdialog.py:669
 msgid "You must select an active person for this report to work properly."
 msgstr "Du musst eine aktive Person wählen, um einen Bericht zu erstellen."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:721
-#: ../gramps/gui/plug/report/_reportdialog.py:728
+#: ../gramps/gui/plug/report/_reportdialog.py:724
+#: ../gramps/gui/plug/report/_reportdialog.py:731
 msgid "Report could not be created"
 msgstr "Der Bericht konnte nicht erzeugt werden"
 
@@ -23610,7 +23610,7 @@ msgstr "Eine neue 'noch zu erledigen' Notiz hinzufügen"
 
 #: ../gramps/plugins/gramplet/todo.py:201
 msgid "First select the object to which you want to attach a note"
-msgstr ""
+msgstr "Wähle erst das Objekt, zudem du eine Notiz hinzufügen möchtest"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:149
 msgid "Unattached"
