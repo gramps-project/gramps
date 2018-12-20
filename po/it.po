@@ -32759,8 +32759,8 @@ msgstr "Ricerca di {number_of} persona"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
 #, fuzzy
-msgid "manual|Media_Manager..."
-msgstr "Gestore_oggetti_multimediali..."
+msgid "manual|Media_Manager"
+msgstr "Gestore_oggetti_multimediali"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

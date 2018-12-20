@@ -32968,8 +32968,8 @@ msgid "Looking for possible loop for each person"
 msgstr "Suche nach möglicher Schleife für jede Person"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr "Medienverwalter..."
+msgid "manual|Media_Manager"
+msgstr "Medienverwaltung"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

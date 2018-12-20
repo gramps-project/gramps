@@ -32648,8 +32648,8 @@ msgid "Looking for possible loop for each person"
 msgstr "Iskanje morebitne zanke pri vsaki osebi"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr "Upravljalnik_zunanjih_predmetov..."
+msgid "manual|Media_Manager"
+msgstr "Upravljalnik_zunanjih_predmetov"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

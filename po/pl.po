@@ -33158,8 +33158,8 @@ msgid "Looking for possible loop for each person"
 msgstr "Wyszukiwanie dla {number_of} osoby"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr "Zarządzanie mediami..."
+msgid "manual|Media_Manager"
+msgstr "Zarządzanie mediami"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

@@ -31696,8 +31696,8 @@ msgid "Looking for possible loop for each person"
 msgstr "מחפש אדם %d"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr ""
+msgid "manual|Media_Manager"
+msgstr "מנהל מדיה"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

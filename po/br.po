@@ -32756,8 +32756,8 @@ msgid "Looking for possible loop for each person"
 msgstr "O klask restroù roadennoù"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr ""
+msgid "manual|Media_Manager"
+msgstr "Ardoer_molladoù"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

@@ -32661,8 +32661,8 @@ msgid "Looking for possible loop for each person"
 msgstr "Leder efter mulige løkker for alle personer"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr "manual|Media_Manager..."
+msgid "manual|Media_Manager"
+msgstr "Mediehåndtering"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

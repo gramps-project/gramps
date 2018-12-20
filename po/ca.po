@@ -32910,8 +32910,8 @@ msgid "Looking for possible loop for each person"
 msgstr "Buscant possibles bucles en cada persona"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr "Gestor_audiovisuals..."
+msgid "manual|Media_Manager"
+msgstr "Gestor_audiovisuals"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

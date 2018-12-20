@@ -32676,8 +32676,8 @@ msgid "Looking for possible loop for each person"
 msgstr "尋找 %d 個成員"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr "媒體管理器(_M)..."
+msgid "manual|Media_Manager"
+msgstr "媒體管理器(_M)"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

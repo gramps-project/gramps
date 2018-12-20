@@ -34856,7 +34856,7 @@ msgstr "Recherche d'une éventuelle boucle pour chaque individu"
 # manuel wiki
 # points de suspension et url ?
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
+msgid "manual|Media_Manager"
 msgstr "Gestionnaire de media"
 
 #: ../gramps/plugins/tool/mediamanager.py:88

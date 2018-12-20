@@ -26477,7 +26477,7 @@ msgid "Looking for possible loop for each person"
 msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
+msgid "manual|Media_Manager"
 msgstr "Mediabehandler..."
 
 #: ../gramps/plugins/tool/mediamanager.py:88 ../gramps/plugins/tool/mediamanager.py:114 ../gramps/plugins/tool/tools.gpr.py:176

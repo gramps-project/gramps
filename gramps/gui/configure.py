@@ -49,7 +49,7 @@ from gi.repository import Pango
 #-------------------------------------------------------------------------
 from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.const import HOME_DIR, URL_WIKISTRING
+from gramps.gen.const import HOME_DIR, URL_WIKISTRING, URL_MANUAL_PAGE
 from gramps.gen.datehandler import get_date_formats
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.name import NameDisplayError
@@ -64,6 +64,7 @@ from .managedwindow import ManagedWindow
 from .widgets import MarkupLabel, BasicLabel
 from .dialog import ErrorDialog, QuestionDialog2, OkDialog
 from .editors.editplaceformat import EditPlaceFormat
+from .display import display_help
 from .glade import Glade
 from gramps.gen.plug.utils import available_updates
 from .plug import PluginWindows
@@ -90,6 +91,9 @@ COL_NUM  = 0
 COL_NAME = 1
 COL_FMT  = 2
 COL_EXPL = 3
+
+WIKI_HELP_PAGE = URL_MANUAL_PAGE + "_-_Settings"
+WIKI_HELP_SEC = _('Preferences')
 
 #-------------------------------------------------------------------------
 #
@@ -204,6 +208,8 @@ class ConfigureDialog(ManagedWindow):
             self.panel.append_page(widget, MarkupLabel(labeltitle))
 
     def done(self, obj, value):
+        if value == Gtk.ResponseType.HELP:
+            return
         if self.__on_close:
             self.__on_close()
         self.close()
@@ -523,6 +529,9 @@ class GrampsPreferences(ConfigureDialog):
         ConfigureDialog.__init__(self, uistate, dbstate, page_funcs,
                                  GrampsPreferences, config,
                                  on_close=update_constants)
+        help_btn = self.window.add_button(_('_Help'), Gtk.ResponseType.HELP)
+        help_btn.connect(
+            'clicked', lambda x: display_help(WIKI_HELP_PAGE, WIKI_HELP_SEC))
         self.setup_configs('interface.grampspreferences', 700, 450)
 
     def add_researcher_panel(self, configdialog):
