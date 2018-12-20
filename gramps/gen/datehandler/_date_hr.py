@@ -22,6 +22,7 @@
 #
 
 # Croatian version 2008 by Josip
+# Croatian version 2018 by Milo
 
 """
 Croatian-specific classes for parsing and displaying dates.
@@ -51,13 +52,15 @@ from ._datehandler import register_datehandler
 #-------------------------------------------------------------------------
 class DateParserHR(DateParser):
     modifier_to_int = {
-        'prije'    : Date.MOD_BEFORE,
+        'prije'   : Date.MOD_BEFORE,
         'pr. '    : Date.MOD_BEFORE,
-        'poslije'   : Date.MOD_AFTER,
-        'po. '   : Date.MOD_AFTER,
-        'okolo'  : Date.MOD_ABOUT,
-        'ok. '     : Date.MOD_ABOUT,
-
+        'poslije' : Date.MOD_AFTER,
+        'po. '    : Date.MOD_AFTER,
+        'nakon'   : Date.MOD_AFTER,
+        'na. '    : Date.MOD_AFTER,
+        'oko'     : Date.MOD_ABOUT,
+        'okolo'   : Date.MOD_ABOUT,
+        'ok. '    : Date.MOD_ABOUT,
         }
 
     quality_to_int = {
@@ -75,10 +78,6 @@ class DateParserHR(DateParser):
         compiles regular expression strings for matching dates
         """
         DateParser.init_strings(self)
-        #~ DateParser.calendar_to_int.update({
-            #~ 'персидский'    : Date.CAL_PERSIAN,
-            #~ 'п'             : Date.CAL_PERSIAN,
-        #~ })
 
         # match 'Day. MONTH year.' format with or without dots
         self._text2 = re.compile(r'(\d+)?\.?\s*?%s\.?\s*((\d+)(/\d+)?)?\s*\.?$'
@@ -147,5 +146,5 @@ class DateDisplayHR(DateDisplay):
 #
 #-------------------------------------------------------------------------
 register_datehandler(
-    ('hr_HR', 'hr', 'HR', 'croatian', 'Croatian', 'hrvatski', ('%d.%m.%Y.',)),
+    ('hr_HR', 'hr', 'HR', 'croatian', 'Croatian', 'hrvatski', ('%d. %m. %Y.',)),
     DateParserHR, DateDisplayHR)
