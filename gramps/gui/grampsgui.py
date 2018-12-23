@@ -681,8 +681,11 @@ def startgramps(errors, argparser):
         quit_now = True
         if err.code:
             exit_code = err.code
-            LOG.error("Gramps terminated with exit code: %d.", err.code,
-                      exc_info=True)
+            if isinstance(err.code, str):
+                LOG.error(err.code, exc_info=False)
+            else:
+                LOG.error("Gramps terminated with exit code: %d.", err.code,
+                          exc_info=False)
     except OSError as err:
         quit_now = True
         exit_code = err.errno or 1

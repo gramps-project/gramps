@@ -37007,6 +37007,34 @@ msgstr ""
 "%(strong1_start)s%(page_number)d%(strong_end)s од %(strong2_start)s"
 "%(total_pages)d%(strong_end)s"
 
+#: ../data/tips.xml.in.h:29
+msgid ""
+"<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
+"Gramps. Requesting an enhancement can be done either through the gramps-"
+"users or gramps-devel mailing lists, or by going to https://gramps-project."
+"org/bugs/ and creating a Feature Request. Filing a Feature Request is "
+"preferred but it can be good to discuss your ideas on the email lists."
+msgstr ""
+"<b>Побољшавање Дедовника</b><br/>Корисници се охрабрују да затраже побољшања "
+"Дедовника. Захтевање побољшања може бити учињено посредством дописних листа "
+"корисника дедовника или програмера дедовника, или стварањем захтева за "
+"побољшањем на „https://gramps-project.org/bugs/. Попуњавање захтева за "
+"побољшањем је пожељније али може бити добро и расправљање о вашим замислима "
+"на дописним листама."
+
+#: ../data/tips.xml.in.h:46
+msgid ""
+"<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
+"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
+msgstr ""
+"<b>Пријавите грешке у Дедовнику</b><br/>Најбољи начин извештавања о грешци у "
+"Дедовнику је коришћење Дедовниковог система за праћење грешака на „https://"
+"gramps-project.org/bugs/“-у"
+
+#: ../gramps/plugins/tool/mediamanager.py:68
+msgid "manual|Media_Manager"
+msgstr "Управник_медија"
+
 #, fuzzy
 #~ msgid "Data version"
 #~ msgstr "Издање шеме"

@@ -1692,8 +1692,8 @@ msgstr ""
 "התוכנה גילתה שגיאה במסד הנתונים. בדרך כלל ניתן לפתור בעיה זו על ידי הרצת כלי "
 "\"בדוק ותקן מסד נתונים\"\n"
 "\n"
-"אם הבעיה ממשיכה גם אחרי הרצת הכלי אנא מלאי דוח באג ב http://bugs.gramps-"
-"project.org\n"
+"אם הבעיה ממשיכה גם אחרי הרצת הכלי אנא מלאי דוח באג ב https://gramps-project."
+"org/bugs/\n"
 "\n"
 
 #: ../gramps/gen/config.py:242
@@ -35945,6 +35945,27 @@ msgstr ""
 #, python-format
 msgid "Alphabet Menu: %s"
 msgstr ""
+
+#: ../data/tips.xml.in.h:29
+msgid ""
+"<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
+"Gramps. Requesting an enhancement can be done either through the gramps-"
+"users or gramps-devel mailing lists, or by going to https://gramps-project."
+"org/bugs/ and creating a Feature Request. Filing a Feature Request is "
+"preferred but it can be good to discuss your ideas on the email lists."
+msgstr ""
+
+#: ../data/tips.xml.in.h:46
+msgid ""
+"<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
+"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
+msgstr ""
+"<b>דיווח באגים ב-Gramps</b><br/>הדרך הטובה ביותר לדווח על באגים היא להשתמש "
+"במערכת שנמצאת ב https://gramps-project.org/bugs/"
+
+#: ../gramps/plugins/tool/mediamanager.py:68
+msgid "manual|Media_Manager"
+msgstr "מנהל מדיה"
 
 #, fuzzy
 #~ msgid "Data version"

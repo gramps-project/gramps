@@ -37064,6 +37064,34 @@ msgstr ""
 "l'esdeveniment\n"
 "Molt Alt =Prova directa i primària, o per evidència aclaparadora "
 
+#: ../data/tips.xml.in.h:29
+msgid ""
+"<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
+"Gramps. Requesting an enhancement can be done either through the gramps-"
+"users or gramps-devel mailing lists, or by going to https://gramps-project."
+"org/bugs/ and creating a Feature Request. Filing a Feature Request is "
+"preferred but it can be good to discuss your ideas on the email lists."
+msgstr ""
+"<b>Millorar Gramps</b><br/>Animem als usuaris que sol·licitin millores a "
+"Gramps. Es pot demanar una millora mitjançant les llistes de correu gramps-"
+"users o gramps-devel, o bé anant a https://gramps-project.org/bugs/ i creant "
+"una Sol·licitud de Funció. És preferible omplir una Sol·licitud de Funció "
+"(Feature Request), però també pot ser bo de comentar les seves idees a les "
+"llistes de correu."
+
+#: ../data/tips.xml.in.h:46
+msgid ""
+"<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
+"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
+msgstr ""
+"<b>Informar d'Errors a Gramps</b><br/>La millor manera d'informar d'un error "
+"de programa a Gramps és fer servir el seu sistema de seguiment d'errors a "
+"https://gramps-project.org/bugs/"
+
+#: ../gramps/plugins/tool/mediamanager.py:68
+msgid "manual|Media_Manager"
+msgstr "Gestor_audiovisuals"
+
 #~ msgid "Data version"
 #~ msgstr "Versió de BD"
 

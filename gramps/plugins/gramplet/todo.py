@@ -32,8 +32,10 @@ from gi.repository import Gtk
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets.styledtexteditor import StyledTextEditor
 from gramps.gui.widgets import SimpleButton
+from gramps.gui.dialog import WarningDialog
 from gramps.gen.lib import StyledText, Note, NoteType
 from gramps.gen.db import DbTxn
+from gramps.gen.errors import WindowActiveError
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -177,20 +179,28 @@ class ToDo(Gramplet):
         note = self.dbstate.db.get_note_from_handle(note_handle)
         try:
             EditNote(self.gui.dbstate, self.gui.uistate, [], note)
-        except AttributeError:
+        except WindowActiveError:
             pass
 
     def new_clicked(self, obj):
         """
         Create a new To Do note.
         """
-        from gramps.gui.editors import EditNote
-        note = Note()
-        note.set_type(NoteType.TODO)
-        try:
-            EditNote(self.gui.dbstate, self.gui.uistate, [], note, self.created)
-        except AttributeError:
-            pass
+        nav_type = self.uistate.viewmanager.active_page.navigation_type()
+        active_handle = self.get_active(nav_type)
+        if active_handle:
+            from gramps.gui.editors import EditNote
+            note = Note()
+            note.set_type(NoteType.TODO)
+            try:
+                EditNote(self.gui.dbstate, self.gui.uistate, [], note, self.created)
+            except WindowActiveError:
+                pass
+        else:
+            WarningDialog(_("No active object"),
+                _("First select the object to which you want to attach a note")
+                    + _(":") + _(nav_type),
+                parent=self.uistate.window)
 
 class PersonToDo(ToDo):
     """

@@ -94,7 +94,7 @@ class FanChartDescWidget(FanChartBaseWidget):
     """
     Interactive Fan Chart Widget.
     """
-    CENTER = 50    # we require a larger center as CENTER includes the 1st partner
+    CENTER = 60    # we require a larger center as CENTER includes the 1st partner
 
     def __init__(self, dbstate, uistate, callback_popup=None):
         """
@@ -152,7 +152,7 @@ class FanChartDescWidget(FanChartBaseWidget):
         elif self.form == FORM_HALFCIRCLE:
             self.rootangle_rad = [math.radians(90), math.radians(90 + 180)]
         elif self.form == FORM_QUADRANT:
-            self.rootangle_rad = [math.radians(90), math.radians(90 + 90)]
+            self.rootangle_rad = [math.radians(180), math.radians(270)]
 
         self.handle2desc = {}
         self.famhandle2desc = {}
@@ -361,12 +361,10 @@ class FanChartDescWidget(FanChartBaseWidget):
         """
         Compute the half radius of the circle
         """
-        radius = PIXELS_PER_GEN_SMALL * N_GEN_SMALL + PIXELS_PER_GEN_LARGE \
-                * ( self.nrgen() - N_GEN_SMALL ) + self.CENTER
-        return radius
+        return self.get_radiusinout_for_generation(self.nrgen())[1]
 
     def get_radiusinout_for_generation(self,generation):
-        radius_first_gen = self.CENTER - (1-PIXELS_PER_GENPERSON_RATIO) * PIXELS_PER_GEN_SMALL
+        radius_first_gen = 14  # fudged to make inner circle a bit tighter
         if generation < N_GEN_SMALL:
             radius_start = PIXELS_PER_GEN_SMALL * generation + radius_first_gen
             return (radius_start,radius_start + PIXELS_PER_GEN_SMALL)
@@ -435,9 +433,12 @@ class FanChartDescWidget(FanChartBaseWidget):
             self.center_xy = self.center_xy_from_delta()
             cr.translate(*self.center_xy)
         else:  # printing
-            self.center_xy = halfdist, halfdist
+            if self.form == FORM_QUADRANT:
+                self.center_xy = self.CENTER, halfdist
+            else:
+                self.center_xy = halfdist, halfdist
             cr.scale(scale, scale)
-            cr.translate(halfdist, halfdist)
+            cr.translate(*self.center_xy)
 
         cr.save()
         # Draw center person:

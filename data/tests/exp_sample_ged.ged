@@ -1,12 +1,12 @@
 0 HEAD
 1 SOUR Gramps
-2 VERS 5.0.0-alpha2
+2 VERS 5.0.1
 2 NAME Gramps
-1 DATE 1 SEP 2017
-2 TIME 12:10:38
+1 DATE 7 NOV 2018
+2 TIME 16:03:33
 1 SUBM @SUBM@
 1 FILE C:\Users\prc\AppData\Roaming\gramps\temp\exp_sample_ged.ged
-1 COPR Copyright (c) 2017 Alex Roitman,,,.
+1 COPR Copyright (c) 2018 Alex Roitman,,,.
 1 GEDC
 2 VERS 5.5.1
 2 FORM LINEAGE-LINKED
@@ -786,11 +786,7 @@
 3 ADOP BOTH
 1 FAMC @F0005@
 2 PEDI adopted
-1 OBJE
-2 FORM jpeg
-2 TITL Michael O'Toole 2015-11
-2 FILE c:\grampsaio64-5.0.0\share\gramps\tests\O0.jpg
-2 NOTE @N0019@
+1 OBJE @O0000@
 1 NOTE @N0007@
 1 CHAN
 2 DATE 18 JUN 2016
@@ -1423,4 +1419,12 @@
 0 @N0017@ NOTE A citation Note Source text
 0 @N0018@ NOTE Another Citation Note
 0 @N0019@ NOTE A bad photo for sure
+0 @O0000@ OBJE
+1 FILE c:\users\prc\workspace\grampsm\main\data\tests\O0.jpg
+2 FORM jpeg
+2 TITL Michael O'Toole 2015-11
+1 NOTE @N0019@
+1 CHAN
+2 DATE 29 OCT 2016
+3 TIME 15:23:37
 0 TRLR

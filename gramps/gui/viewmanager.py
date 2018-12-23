@@ -333,7 +333,7 @@ class ViewManager(CLIManager):
         """
         Connects the signals needed
         """
-        self.window.connect('delete-event', self.quit)
+        self.del_event = self.window.connect('delete-event', self.quit)
         self.notebook.connect('switch-page', self.view_changed)
 
     def __init_lists(self):
@@ -559,12 +559,22 @@ class ViewManager(CLIManager):
         self.dbstate.no_database()
         self.post_close_db()
 
+    def no_del_event(self, *obj):
+        """ Routine to prevent window destroy with default handler if user
+        hits 'x' multiple times. """
+        return True
+
     def quit(self, *obj):
         """
         Closes out the program, backing up data
         """
         # mark interface insenstitive to prevent unexpected events
         self.uistate.set_sensitive(False)
+        # the following prevents reentering quit if user hits 'x' again
+        self.window.disconnect(self.del_event)
+        # the following prevents premature closing of main window if user
+        # hits 'x' multiple times.
+        self.window.connect('delete-event', self.no_del_event)
 
         # backup data
         if config.get('database.backup-on-exit'):

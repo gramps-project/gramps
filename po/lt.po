@@ -36999,6 +36999,34 @@ msgstr ""
 "%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
 "%(total_pages)d%(strong_end)s"
 
+#: ../data/tips.xml.in.h:29
+msgid ""
+"<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
+"Gramps. Requesting an enhancement can be done either through the gramps-"
+"users or gramps-devel mailing lists, or by going to https://gramps-project."
+"org/bugs/ and creating a Feature Request. Filing a Feature Request is "
+"preferred but it can be good to discuss your ideas on the email lists."
+msgstr ""
+"<b>Gramps tobulinimas</b><br/> Naudotojai yra raginami užsakyti Gramps "
+"patobulinimus. Patobulinimų užsakymas gali būti pateiktas arba naudojant "
+"gramps-users arba gramps-devel elektroninėse konferencijose, arba sukuriant "
+"prašymą patobulinimui puslapyje https://gramps-project.org/bugs/ "
+"Pageidaujamas būdas yra užpildyti prašymą patobulinimui, bet kartais gerai "
+"aptarti idėją elektroninėse konferencijose."
+
+#: ../data/tips.xml.in.h:46
+msgid ""
+"<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
+"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
+msgstr ""
+"<b>Gramps klaidų pranešimas</b><br/>Apie Gramps problemas geriausiai "
+"pranešti Gramps klaidų registravimo sistemai adresu https://gramps-project."
+"org/bugs/"
+
+#: ../gramps/plugins/tool/mediamanager.py:68
+msgid "manual|Media_Manager"
+msgstr "Garso/vaizdo tvarkymo įrankis"
+
 #~ msgid "Data version"
 #~ msgstr "Duomenų versija"
 
@@ -40002,3 +40030,23 @@ msgstr ""
 
 #~ msgid "Include Marriage information"
 #~ msgstr "Įtraukti santuokos informaciją"
+
+#~ msgid ""
+#~ "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
+#~ "Use https://gramps-project.org/bugs/ to submit bugs of official plugins, "
+#~ "contact the plugin author otherwise. "
+#~ msgstr ""
+#~ "Įskiepis neužkrautas. Detalės yra Pagalba -> Įskiepių Tvarkymas.  \n"
+#~ "Oficialių įskiepių klaidas raportuokite  https://gramps-project.org/"
+#~ "bugs/, arba susisiekite su autoriumi  kitu atveju. "
+
+#~ msgid ""
+#~ "The view %(name)s did not load. See Help Menu, Plugin Manager for more "
+#~ "info.\n"
+#~ "Use https://gramps-project.org/bugs/ to submit bugs of official views, "
+#~ "contact the view author (%(firstauthoremail)s) otherwise. "
+#~ msgstr ""
+#~ "Vaizdas %(name)s neužsikrovė. Detales žiūrėkite meniu Pagalba, Įskiepių "
+#~ "Tvarkymas.\n"
+#~ "Oficialių vaizdų  klaidas raportuokite  https://gramps-project.org/bugs/, "
+#~ "arba susisiekite su autoriumi  (%(firstauthoremail)s)  kitu atveju. "

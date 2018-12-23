@@ -259,6 +259,7 @@ class GedcomWriter(UpdateCallback):
             self._sources()
             self._repos()
             self._notes()
+            self._all_media()
 
             self._writeln(0, "TRLR")
 
@@ -281,7 +282,8 @@ class GedcomWriter(UpdateCallback):
             textlines = textlines.replace('\n\r', '\n')
             textlines = textlines.replace('\r', '\n')
             # Need to double '@' See Gedcom 5.5 spec 'any_char'
-            if not textlines.startswith('@'):  # avoid xrefs
+            # but avoid xrefs and escapes
+            if not textlines.startswith('@') and '@#' not in textlines:
                 textlines = textlines.replace('@', '@@')
             textlist = textlines.split('\n')
             token_level = level
@@ -1420,27 +1422,68 @@ class GedcomWriter(UpdateCallback):
 
     def _photo(self, photo, level):
         """
-        n OBJE {1:1}
-        +1 FORM <MULTIMEDIA_FORMAT> {1:1}
-        +1 TITL <DESCRIPTIVE_TITLE> {0:1}
-        +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
-        +1 <<NOTE_STRUCTURE>> {0:M}
+        n OBJE @<XREF:OBJE>@ {1:1}
         """
         photo_obj_id = photo.get_reference_handle()
         photo_obj = self.dbase.get_media_from_handle(photo_obj_id)
         if photo_obj:
-            mime = photo_obj.get_mime_type()
-            form = MIME2GED.get(mime, mime)
-            path = media_path_full(self.dbase, photo_obj.get_path())
-            if not os.path.isfile(path):
-                return
-            self._writeln(level, 'OBJE')
-            if form:
-                self._writeln(level + 1, 'FORM', form)
-            self._writeln(level + 1, 'TITL', photo_obj.get_description())
-            self._writeln(level + 1, 'FILE', path, limit=255)
+            # if not os.path.isfile(path):
+                # return
+            self._writeln(level, 'OBJE @%s@' % photo_obj.get_gramps_id())
 
-            self._note_references(photo_obj.get_note_list(), level + 1)
+    def _all_media(self):
+        """
+        Write out the list of media, sorting by Gramps ID.
+        """
+        self.set_text(_("Writing media"))
+        # generate a list of (GRAMPS_ID, HANDLE) pairs. This list
+        # can then be sorted by the sort routine, which will use the
+        # first value of the tuple as the sort key.
+        sorted_list = sort_handles_by_id(self.dbase.get_media_handles(),
+                                         self.dbase.get_media_from_handle)
+
+        # loop through the sorted list, pulling of the handle. This list
+        # has already been sorted by GRAMPS_ID
+        for media_handle in [hndl[1] for hndl in sorted_list]:
+            self.update()
+            self._media(self.dbase.get_media_from_handle(media_handle))
+
+    def _media(self, media):
+        """
+        n @XREF:OBJE@ OBJE {1:1}
+        +1 FILE <MULTIMEDIA_FILE_REFN> {1:M}
+        +2 FORM <MULTIMEDIA_FORMAT> {1:1}
+        +3 TYPE <SOURCE_MEDIA_TYPE> {0:1}
+        +2 TITL <DESCRIPTIVE_TITLE> {0:1} p.48
+        +1 REFN <USER_REFERENCE_NUMBER> {0:M}
+        +2 TYPE <USER_REFERENCE_TYPE> {0:1}
+        +1 RIN <AUTOMATED_RECORD_ID> {0:1}
+        +1 <<NOTE_STRUCTURE>> {0:M}
+        +1 <<SOURCE_CITATION>> {0:M}
+        +1 <<CHANGE_DATE>> {0:1}
+        """
+        if media is None:
+            return
+        gramps_id = media.get_gramps_id()
+
+        self._writeln(0, '@%s@' % gramps_id, 'OBJE')
+        mime = media.get_mime_type()
+        form = MIME2GED.get(mime, mime)
+        path = media_path_full(self.dbase, media.get_path())
+        self._writeln(1, 'FILE', path, limit=255)
+        if form:
+            self._writeln(2, 'FORM', form)
+        self._writeln(2, 'TITL', media.get_description())
+
+        for attr in media.get_attribute_list():
+            key = str(attr.get_type())
+            value = attr.get_value().replace('\r', ' ')
+            if key in ("RIN", "RFN", "REFN"):
+                self._writeln(1, key, value)
+                continue
+        self._note_references(media.get_note_list(), 1)
+        self._source_references(media.get_citation_list(), 1)
+        self._change(media.get_change_time(), 1)
 
     def _place(self, place, dateobj, level):
         """

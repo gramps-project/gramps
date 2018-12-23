@@ -34,7 +34,6 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..views.treemodels import RepositoryModel
 from .baseselector import BaseSelector
-from ..display import display_help
 from gramps.gen.const import URL_MANUAL_SECT2
 
 #-------------------------------------------------------------------------
@@ -42,8 +41,6 @@ from gramps.gen.const import URL_MANUAL_SECT2
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = URL_MANUAL_SECT2
-WIKI_HELP_SEC = _('manual|Repositories')
 
 #-------------------------------------------------------------------------
 #
@@ -73,3 +70,6 @@ class SelectRepository(BaseSelector):
 
     def get_from_handle_func(self):
         return self.db.get_repository_from_handle
+
+    WIKI_HELP_PAGE = URL_MANUAL_SECT2
+    WIKI_HELP_SEC = _('manual|Select_Repository_selector')

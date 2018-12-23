@@ -36810,6 +36810,34 @@ msgstr "Hele databasen"
 msgid "PostgreSQL Database"
 msgstr "Hele databasen"
 
+#: ../data/tips.xml.in.h:29
+msgid ""
+"<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
+"Gramps. Requesting an enhancement can be done either through the gramps-"
+"users or gramps-devel mailing lists, or by going to https://gramps-project."
+"org/bugs/ and creating a Feature Request. Filing a Feature Request is "
+"preferred but it can be good to discuss your ideas on the email lists."
+msgstr ""
+"<b>Forbedre Gramps</b><br/>Brukere er oppfordret til å etterspørre "
+"forbedringer i Gramps. Å etterspørre forbedringer i Gramps kan gjøres ved å "
+"sende e-post til e-postlistene gramps-user eller gramps-devel, eller ved å "
+"lage et &quot;Funksjonalitetsønske&quot; på https://gramps-project.org/"
+"bugs/. Det foretrukne er å legge inn et &quot;Funksjonalitetsønske&quot;, "
+"men det kan være fint å diskutere dine ideer på e-postelistene også."
+
+#: ../data/tips.xml.in.h:46
+msgid ""
+"<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
+"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
+msgstr ""
+"<b>Rapportere feil i Gramps</b><br/>Den beste måten å rapportere en feil i "
+"Gramps på, er ved å bruke Gramps sitt feilsporingssystem på https://gramps-"
+"project.org/bugs/"
+
+#: ../gramps/plugins/tool/mediamanager.py:68
+msgid "manual|Media_Manager"
+msgstr "Mediabehandler..."
+
 #~ msgid "Gender Male Death"
 #~ msgstr "Død mannsperson"
 

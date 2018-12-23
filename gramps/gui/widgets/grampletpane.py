@@ -372,6 +372,8 @@ class GuiGramplet:
         self.gstate = kwargs.get("state", "maximized")
         self.data = kwargs.get("data", [])
         self.help_url = kwargs.get("help_url", WIKI_HELP_PAGE)
+        if self.help_url == 'None':
+            self.help_url = None  # to fix up the config file vers of None
         ##########
         self.use_markup = False
         self.pui = None # user code
@@ -1161,7 +1163,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         retval = []
         filename = self.configfile
         if filename and os.path.exists(filename):
-            cp = configparser.ConfigParser()
+            cp = configparser.ConfigParser(strict=False)
             try:
                 cp.read(filename, encoding='utf-8')
             except Exception as err:
@@ -1225,12 +1227,10 @@ class GrampletPane(Gtk.ScrolledWindow):
                             for key in base_opts:
                                 if key in gramplet.__dict__:
                                     base_opts[key] = gramplet.__dict__[key]
-                            fp.write("[%s]\n" % gramplet.gname)
+                            base_opts['state'] = gramplet.gstate
+                            fp.write("[%s]\n" % gramplet.title)  # section
                             for key in base_opts:
                                 if key == "content": continue
-                                elif key == "title":
-                                    if gramplet.title_override:
-                                        fp.write("title=%s\n" % base_opts[key])
                                 elif key == "tname": continue
                                 elif key == "column": continue
                                 elif key == "row": continue
@@ -1256,6 +1256,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                         for key in base_opts:
                             if key in gramplet.__dict__:
                                 base_opts[key] = gramplet.__dict__[key]
+                        base_opts['state'] = gramplet.gstate
                         fp.write("[%s]\n" % gramplet.title)
                         for key in base_opts:
                             if key == "content": continue
@@ -1275,7 +1276,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                                         fp.write("data[%d]=%s\n" % (cnt, item))
                                         cnt += 1
                             else:
-                                fp.write("%s=%s\n\n" % (key, base_opts[key]))
+                                fp.write("%s=%s\n" % (key, base_opts[key]))
 
         except IOError as err:
             LOG.warning("Failed to open %s because $s; gramplets not saved",

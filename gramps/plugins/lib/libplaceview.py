@@ -79,6 +79,7 @@ class PlaceBaseView(ListView):
     COL_PRIV = 7
     COL_TAGS = 8
     COL_CHAN = 9
+    COL_SEARCH = 11
     # column definitions
     COLUMNS = [
         (_('Name'), TEXT, None),
@@ -134,6 +135,17 @@ class PlaceBaseView(ListView):
     def navigation_type(self):
         return 'Place'
 
+    def setup_filter(self):
+        """Build the default filters and add them to the filter menu.
+        This overrides the listview method because we use the hidden
+        COL_SEARCH that has alt names as well as primary name for name
+        searching"""
+        self.search_bar.setup_filter(
+            [(self.COLUMNS[pair[1]][0],
+              self.COL_SEARCH if pair[1] == self.COL_NAME else pair[1],
+              pair[1] in self.exact_search())
+                for pair in self.column_order() if pair[0]])
+
     def define_actions(self):
         ListView.define_actions(self)
         self._add_action('GotoMap', self.gotomap)
@@ -149,16 +161,6 @@ class PlaceBaseView(ListView):
           5. store label so it can be changed when selection changes
         """
         ListView.change_page(self)
-        if self.drag_info():
-            self.list.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
-              [],
-              Gdk.DragAction.COPY)
-            tglist = Gtk.TargetList.new([])
-            tglist.add(self.drag_info().atom_drag_type,
-                       self.drag_info().target_flags,
-                       self.drag_info().app_id)
-            tglist.add_text_targets (0)
-            self.list.drag_source_set_target_list(tglist)
 
     def __create_maps_menu_actions(self):
         """

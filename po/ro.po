@@ -539,8 +539,7 @@ msgstr ""
 msgid ""
 "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
 "Gramps. Requesting an enhancement can be done either through the gramps-"
-"users or gramps-devel mailing lists, or by going to http://bugs.gramps-"
-"project.org and creating a Feature Request. Filing a Feature Request is "
+"users or gramps-devel mailing lists, or by going to https://gramps-project.org/bugs/ and creating a Feature Request. Filing a Feature Request is "
 "preferred but it can be good to discuss your ideas on the email lists."
 msgstr ""
 
@@ -684,7 +683,7 @@ msgstr ""
 #: ../data/tips.xml.in.h:46
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
-"is to use the Gramps bug tracking system at http://bugs.gramps-project.org"
+"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
 msgstr ""
 
 #: ../data/tips.xml.in.h:47
@@ -33512,7 +33511,7 @@ msgid "Looking for possible loop for each person"
 msgstr "Caută posibile persoane duplicate"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
+msgid "manual|Media_Manager"
 msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:88

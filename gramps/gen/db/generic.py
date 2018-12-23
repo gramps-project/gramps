@@ -2461,4 +2461,5 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         enclosed_by = ""
         for placeref in place.get_placeref_list():
             enclosed_by = placeref.ref
+            break
         return enclosed_by

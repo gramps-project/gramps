@@ -36,7 +36,6 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..views.treemodels import PeopleBaseModel, PersonTreeModel
 from .baseselector import BaseSelector
-from ..display import display_help
 from gramps.gen.const import URL_MANUAL_SECT1
 
 #-------------------------------------------------------------------------
@@ -45,17 +44,6 @@ from gramps.gen.const import URL_MANUAL_SECT1
 #
 #-------------------------------------------------------------------------
 
-# This dialog changes depending on the string pass for the title.
-# https://gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1#Select_Child_selector
-# https://gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1#Select_Father_selector
-# https://gramps-project.org/wiki/index.php?title=Gramps_4.2_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1#Select_Mother_selector
-
-WIKI_HELP_PAGE = URL_MANUAL_SECT1
-WIKI_HELP_SEC = _('manual|Select_Child_selector')
-WIKI_HELP_PAGE2 = URL_MANUAL_SECT1
-WIKI_HELP_SEC2 = _('manual|Select_Father_selector')
-WIKI_HELP_PAGE3 = URL_MANUAL_SECT1
-WIKI_HELP_SEC3 = _('manual|Select_Mother_selector')
 
 #-------------------------------------------------------------------------
 #
@@ -71,6 +59,15 @@ class SelectPerson(BaseSelector):
         # instead of the default defined for get_window_title()
         if title is not None:
             self.title = title
+        self.WIKI_HELP_PAGE = URL_MANUAL_SECT1
+        if title == _("Select Father"):
+            self.WIKI_HELP_SEC = _('manual|Select_Father_selector')
+        elif title == _("Select Mother"):
+            self.WIKI_HELP_SEC = _('manual|Select_Mother_selector')
+        elif title == _("Select Child"):
+            self.WIKI_HELP_SEC = _('manual|Select_Child_selector')
+        else:
+            self.WIKI_HELP_SEC = _('manual|Select_Person_selector')
 
         BaseSelector.__init__(self, dbstate, uistate, track, filter,
                               skip, show_search_bar, default)

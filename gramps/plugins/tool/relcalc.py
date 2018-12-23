@@ -49,6 +49,8 @@ from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.views.treemodels import PeopleBaseModel, PersonTreeModel
 from gramps.plugins.lib.libpersonview import BasePersonView
 from gramps.gen.relationship import get_relationship_calculator
+from gramps.gen.const import URL_MANUAL_PAGE
+from gramps.gui.display import display_help
 
 from gramps.gui.dialog import ErrorDialog
 from gramps.gui.plug import tool
@@ -61,6 +63,8 @@ from gramps.gui.glade import Glade
 #-------------------------------------------------------------------------
 
 column_names = [column[0] for column in BasePersonView.COLUMNS]
+WIKI_HELP_PAGE = URL_MANUAL_PAGE + "_-_Tools"
+WIKI_HELP_SEC = _('Relationship Calculator')
 
 #-------------------------------------------------------------------------
 #
@@ -144,6 +148,9 @@ class RelCalc(tool.Tool, ManagedWindow):
         self.changedkey = self.sel.connect('changed',self.on_apply_clicked)
         self.closebtn = self.glade.get_object("button5")
         self.closebtn.connect('clicked', self.close)
+        help_btn = self.glade.get_object("help_btn")
+        help_btn.connect('clicked', lambda x: display_help(WIKI_HELP_PAGE,
+                                                           WIKI_HELP_SEC))
 
         if not self.person:
             self.window.hide()

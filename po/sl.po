@@ -37091,6 +37091,33 @@ msgid ""
 "Either use the two fields below to enter coordinates(latitude and longitude),"
 msgstr "Uporabite spodnji polji za vnos koordinat (širinga, dolžina):"
 
+#: ../data/tips.xml.in.h:29
+msgid ""
+"<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
+"Gramps. Requesting an enhancement can be done either through the gramps-"
+"users or gramps-devel mailing lists, or by going to https://gramps-project."
+"org/bugs/ and creating a Feature Request. Filing a Feature Request is "
+"preferred but it can be good to discuss your ideas on the email lists."
+msgstr ""
+"<b>Izboljševanje Gramps-a</b><br/>Uporabnike vabimo, da prispevajo predloge "
+"za Gramps. Predloge za izboljšave lahko pošljete preko poštnih skupin gramps-"
+"users ali gramps-devel. Še bolje pa je, če izpolnite Prošnjo za izboljšavo "
+"na naslovu https://gramps-project.org/bugs/ potem, ko predebatirate svoje "
+"ideje na dopisnih seznamih."
+
+#: ../data/tips.xml.in.h:46
+msgid ""
+"<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
+"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
+msgstr ""
+"<b>Javljanje napak v programu Gramps</b><br/>Najboljši način za sporočanje "
+"napak v programu Gramps je uporaba Gramps-ovega sistema za spremljanje napak "
+"na naslovu https://gramps-project.org/bugs/"
+
+#: ../gramps/plugins/tool/mediamanager.py:68
+msgid "manual|Media_Manager"
+msgstr "Upravljalnik_zunanjih_predmetov"
+
 #~ msgid "Gender Male Death"
 #~ msgstr "Notranjost za umrle moške"
 

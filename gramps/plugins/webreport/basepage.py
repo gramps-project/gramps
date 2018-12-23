@@ -695,13 +695,13 @@ class BasePage: # pylint: disable=C1001
         trow += Html("td", srcrefs, class_="ColumnSources", rowspan=2)
 
         # get event notes
-        notelist = event.get_note_list()
+        notelist = event.get_note_list()[:]  # we don't want to modify cached original
         notelist.extend(event_ref.get_note_list())
         htmllist = self.dump_notes(notelist)
 
         # if the event or event reference has an attribute attached to it,
         # get the text and format it correctly?
-        attrlist = event.get_attribute_list()
+        attrlist = event.get_attribute_list()[:]  # we don't want to modify cached original
         attrlist.extend(event_ref.get_attribute_list())
         for attr in attrlist:
             htmllist.extend(Html("p",
@@ -2221,7 +2221,7 @@ class BasePage: # pylint: disable=C1001
                                         self.report.copy_file(
                                             media_path_full(self.r_db,
                                                             media.get_path()),
-                                            new_path)
+                                            real_path)
 
                                         tmp += Html("li",
                                                     self.media_link(

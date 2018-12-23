@@ -28,9 +28,11 @@ Base class for filter rules.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
+import re
+
+from ...errors import FilterError
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-import re
 
 #-------------------------------------------------------------------------
 #
@@ -88,6 +90,10 @@ class Rule:
                 self.match_substring = self.match_regex
             self.prepare(db, user)
         self.nrprepare += 1
+        if self.nrprepare > 20:  # more references to a filter than expected
+            raise FilterError(_("The filter definition contains a loop."),
+                              _("One rule references another which eventually"
+                                " references the first."))
 
     def prepare(self, db, user):
         """prepare so the rule can be executed efficiently"""

@@ -650,14 +650,13 @@ msgstr ""
 msgid ""
 "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
 "Gramps. Requesting an enhancement can be done either through the gramps-"
-"users or gramps-devel mailing lists, or by going to http://bugs.gramps-"
-"project.org and creating a Feature Request. Filing a Feature Request is "
+"users or gramps-devel mailing lists, or by going to https://gramps-project.org/bugs/ and creating a Feature Request. Filing a Feature Request is "
 "preferred but it can be good to discuss your ideas on the email lists."
 msgstr ""
 "<b>Подобрување на GRAMPS</b>: Корисниците се охрабрени да бараат подобрувања "
 "на GRAMPS. Побарување на подобрување може да се направи или преку дописната "
 "листа на gramps-users или gramps-devel или со правење Побарување на "
-"карактеристика на http://bugs.gramps-project.org Пополнување на побарување "
+"карактеристика на https://gramps-project.org/bugs/ Пополнување на побарување "
 "карактеристика е претпочитано."
 
 #: ../data/tips.xml.in.h:30
@@ -875,10 +874,10 @@ msgstr ""
 #, fuzzy
 msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
-"is to use the Gramps bug tracking system at http://bugs.gramps-project.org"
+"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
 msgstr ""
 "Најдобриот начин за да известите за бубачка во GRAMPS е да го употребите "
-"системот на GRAMPS за трагање на бубачки на http://bugs.gramps-project.org"
+"системот на GRAMPS за трагање на бубачки на https://gramps-project.org/bugs/"
 
 #: ../data/tips.xml.in.h:47
 #, fuzzy
@@ -1939,7 +1938,7 @@ msgstr ""
 "на алатката „Провери и поправи база“.\n"
 "\n"
 "Ако проблемот продолжи да постои по извршувањето на оваа операција, "
-"пополнете извештај за грешки на http://bugs.gramps-project.org\n"
+"пополнете извештај за грешки на https://gramps-project.org/bugs/\n"
 "\n"
 
 #: ../gramps/gen/config.py:242
@@ -33885,8 +33884,8 @@ msgstr "Пребарување на настани со проблеми"
 # медиски?!?!?
 #: ../gramps/plugins/tool/mediamanager.py:68
 #, fuzzy
-msgid "manual|Media_Manager..."
-msgstr "Медиумски управувач"
+msgid "manual|Media_Manager"
+msgstr "Управувач на медиуми"
 
 # медиски?!?!?
 #: ../gramps/plugins/tool/mediamanager.py:88

@@ -387,12 +387,11 @@ class EditFamily(EditPrimary):
         return Family()
 
     def _local_init(self):
-        self.build_interface()
-
         self.added = self.obj.handle is None
         if self.added:
             self.obj.handle = create_id()
 
+        self.build_interface()
         self.load_data()
 
     def _connect_db_signals(self):
@@ -558,6 +557,8 @@ class EditFamily(EditPrimary):
         self.fbutton_del.connect('clicked', self.del_father_clicked)
         self.fbutton_add.connect('clicked', self.add_father_clicked)
 
+        if self.added:
+            return      # avoids crash on drag because not in db yet
         #allow for a context menu
         self.set_contexteventbox(self.top.get_object("eventboxtop"))
         #allow for drag of the family object from eventboxtop

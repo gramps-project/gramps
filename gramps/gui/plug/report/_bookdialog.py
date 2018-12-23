@@ -59,6 +59,8 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from ...listmodel import ListModel
 from gramps.gen.errors import FilterError, ReportError
+from gramps.gen.const import URL_MANUAL_PAGE
+from ...display import display_help
 from ...pluginmanager import GuiPluginManager
 from ...dialog import WarningDialog, ErrorDialog, QuestionDialog2
 from gramps.gen.plug.menu import PersonOption, FamilyOption
@@ -85,6 +87,10 @@ _UNSUPPORTED = _("Unsupported")
 
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
+WIKI_HELP_PAGE = URL_MANUAL_PAGE + "_-_Reports_-_part_3"
+WIKI_HELP_SEC = _('Books')
+GENERATE_WIKI_HELP_SEC = _('Generate_Book_dialog')
+
 #------------------------------------------------------------------------
 #
 # Private Functions
@@ -173,6 +179,7 @@ class BookListDisplay:
             "on_booklist_ok_clicked"     : self.on_booklist_ok_clicked,
             "on_booklist_delete_clicked" : self.on_booklist_delete_clicked,
             "on_book_ok_clicked"         : self.do_nothing,
+            "on_book_help_clicked"       : self.do_nothing,
             "destroy_passed_object"      : self.do_nothing,
             "on_setup_clicked"           : self.do_nothing,
             "on_down_clicked"            : self.do_nothing,
@@ -342,6 +349,8 @@ class BookSelector(ManagedWindow):
             "on_save_clicked"       : self.on_save_clicked,
             "on_open_clicked"       : self.on_open_clicked,
             "on_edit_clicked"       : self.on_edit_clicked,
+            "on_book_help_clicked"  : lambda x: display_help(WIKI_HELP_PAGE,
+                                                             WIKI_HELP_SEC),
             "on_book_ok_clicked"    : self.on_book_ok_clicked,
             "destroy_passed_object" : self.on_close_clicked,
 
@@ -929,7 +938,10 @@ class BookDialog(DocReportDialog):
                                  'book', self.title, track=track)
         self.options.options_dict['bookname'] = self.book.get_name()
 
-        response = self.window.run()
+        while True:
+            response = self.window.run()
+            if response != Gtk.ResponseType.HELP:
+                break
         if response == Gtk.ResponseType.OK:
             handler = self.options.handler
             if self.book.get_paper_name() != handler.get_paper_name():
@@ -951,7 +963,8 @@ class BookDialog(DocReportDialog):
                 self.make_book()
             except (IOError, OSError) as msg:
                 ErrorDialog(str(msg), parent=self.window)
-        self.close()
+        if response != Gtk.ResponseType.DELETE_EVENT:  # already closed
+            self.close()
 
     def setup_style_frame(self):
         pass
@@ -973,6 +986,9 @@ class BookDialog(DocReportDialog):
         this text report.  This menu will be generated based upon
         whether the document requires table support, etc."""
         self.format_menu = _BookFormatComboBox(active)
+
+    def on_help_clicked(self, *obj):
+        display_help(WIKI_HELP_PAGE, GENERATE_WIKI_HELP_SEC)
 
     def make_document(self):
         """Create a document of the type requested by the user."""

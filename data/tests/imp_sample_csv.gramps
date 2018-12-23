@@ -3,405 +3,398 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2016-09-05" version="5.0.0-alpha1"/>
+    <created date="2018-11-28" version="5.0.1"/>
     <researcher>
-      <resname>Paul Culley</resname>
-      <resaddr>11210 Olde Mint House Ln</resaddr>
-      <rescity>Tomball</rescity>
-      <resstate>Tx</resstate>
-      <rescountry>USA</rescountry>
-      <respostal>77375</respostal>
-      <resemail>paulr2787@gmail.com</resemail>
     </researcher>
   </header>
   <events>
-    <event handle="_0000001f0000001f" change="1473110503" id="E0000">
+    <event handle="_0000001f0000001f" change="1" id="E00000">
       <type>Birth</type>
       <dateval val="1965-08-26"/>
       <place hlink="_0000000e0000000e"/>
     </event>
-    <event handle="_0000002100000021" change="1473110503" id="E0001">
+    <event handle="_0000002100000021" change="1" id="E00001">
       <type>Birth</type>
       <dateval val="1907-11-05"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000002200000022" change="1473110503" id="E0002">
+    <event handle="_0000002200000022" change="1" id="E00002">
       <type>Death</type>
       <datestr val="29-May-85"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000002400000024" change="1473110503" id="E0003">
+    <event handle="_0000002400000024" change="1" id="E00003">
       <type>Birth</type>
       <dateval val="1775" type="about"/>
       <place hlink="_0000000900000009"/>
     </event>
-    <event handle="_0000002600000026" change="1473110503" id="E0004">
+    <event handle="_0000002600000026" change="1" id="E00004">
       <type>Birth</type>
       <dateval val="1935-12-02"/>
     </event>
-    <event handle="_0000002800000028" change="1473110503" id="E0005">
+    <event handle="_0000002800000028" change="1" id="E00005">
       <type>Birth</type>
       <dateval val="1864-10-02"/>
       <place hlink="_0000000100000001"/>
     </event>
-    <event handle="_0000002900000029" change="1473110503" id="E0006">
+    <event handle="_0000002900000029" change="1" id="E00006">
       <type>Death</type>
       <datestr val="29-Sep-45"/>
       <place hlink="_0000000200000002"/>
     </event>
-    <event handle="_0000002b0000002b" change="1473110503" id="E0007">
+    <event handle="_0000002b0000002b" change="1" id="E00007">
       <type>Birth</type>
       <dateval val="1832-11-29"/>
       <place hlink="_0000001100000011"/>
     </event>
-    <event handle="_0000002c0000002c" change="1473110503" id="E0008">
+    <event handle="_0000002c0000002c" change="1" id="E00008">
       <type>Death</type>
       <dateval val="1908" type="before"/>
       <place hlink="_0000000900000009"/>
     </event>
-    <event handle="_0000002e0000002e" change="1473110503" id="E0009">
+    <event handle="_0000002e0000002e" change="1" id="E00009">
       <type>Birth</type>
       <dateval val="1966-07-02"/>
       <place hlink="_0000001a0000001a"/>
     </event>
-    <event handle="_0000003000000030" change="1473110503" id="E0010">
+    <event handle="_0000003000000030" change="1" id="E00010">
       <type>Birth</type>
       <dateval val="1800-09-14"/>
       <place hlink="_0000000500000005"/>
     </event>
-    <event handle="_0000003100000031" change="1473110503" id="E0011">
+    <event handle="_0000003100000031" change="1" id="E00011">
       <type>Death</type>
       <place hlink="_0000000900000009"/>
     </event>
-    <event handle="_0000003300000033" change="1473110503" id="E0012">
+    <event handle="_0000003300000033" change="1" id="E00012">
       <type>Birth</type>
       <dateval val="1910-05-02"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000003400000034" change="1473110503" id="E0013">
+    <event handle="_0000003400000034" change="1" id="E00013">
       <type>Death</type>
       <datestr val="26-Jun-90"/>
     </event>
-    <event handle="_0000003600000036" change="1473110503" id="E0014">
+    <event handle="_0000003600000036" change="1" id="E00014">
       <type>Birth</type>
       <dateval val="1897" type="about"/>
     </event>
-    <event handle="_0000003800000038" change="1473110503" id="E0015">
+    <event handle="_0000003800000038" change="1" id="E00015">
       <type>Birth</type>
       <dateval val="1889-08-31"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000003900000039" change="1473110503" id="E0016">
+    <event handle="_0000003900000039" change="1" id="E00016">
       <type>Death</type>
       <dateval val="1945"/>
     </event>
-    <event handle="_0000003b0000003b" change="1473110503" id="E0017">
+    <event handle="_0000003b0000003b" change="1" id="E00017">
       <type>Birth</type>
       <dateval val="1903-06-03"/>
       <place hlink="_0000001c0000001c"/>
     </event>
-    <event handle="_0000003c0000003c" change="1473110503" id="E0018">
+    <event handle="_0000003c0000003c" change="1" id="E00018">
       <type>Death</type>
       <datestr val="22-Jun-80"/>
       <place hlink="_0000000600000006"/>
     </event>
-    <event handle="_0000003e0000003e" change="1473110503" id="E0019">
+    <event handle="_0000003e0000003e" change="1" id="E00019">
       <type>Birth</type>
       <dateval val="1933-11-22"/>
       <place hlink="_0000000200000002"/>
     </event>
-    <event handle="_0000004000000040" change="1473110503" id="E0020">
+    <event handle="_0000004000000040" change="1" id="E00020">
       <type>Birth</type>
       <dateval val="1998-04-12"/>
       <place hlink="_0000000700000007"/>
     </event>
-    <event handle="_0000004200000042" change="1473110503" id="E0021">
+    <event handle="_0000004200000042" change="1" id="E00021">
       <type>Birth</type>
       <dateval val="1889-01-31"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000004300000043" change="1473110503" id="E0022">
+    <event handle="_0000004300000043" change="1" id="E00022">
       <type>Death</type>
       <datestr val="21-Dec-63"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000004500000045" change="1473110503" id="E0023">
+    <event handle="_0000004500000045" change="1" id="E00023">
       <type>Birth</type>
       <dateval val="1899-12-20"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000004600000046" change="1473110503" id="E0024">
+    <event handle="_0000004600000046" change="1" id="E00024">
       <type>Death</type>
       <datestr val="28-Jan-59"/>
       <place hlink="_0000000600000006"/>
     </event>
-    <event handle="_0000004800000048" change="1473110503" id="E0025">
+    <event handle="_0000004800000048" change="1" id="E00025">
       <type>Birth</type>
       <dateval val="1966" type="after"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000004c0000004c" change="1473110503" id="E0026">
+    <event handle="_0000004c0000004c" change="1" id="E00026">
       <type>Birth</type>
       <dateval val="1961-05-24"/>
       <place hlink="_0000001000000010"/>
       <citationref hlink="_0000004b0000004b"/>
     </event>
-    <event handle="_0000004e0000004e" change="1473110503" id="E0027">
+    <event handle="_0000004e0000004e" change="1" id="E00027">
       <type>Birth</type>
       <dateval val="1860-09-27"/>
       <place hlink="_0000000d0000000d"/>
     </event>
-    <event handle="_0000005000000050" change="1473110503" id="E0028">
+    <event handle="_0000005000000050" change="1" id="E00028">
       <type>Birth</type>
       <dateval val="1963-08-28"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000005200000052" change="1473110503" id="E0029">
+    <event handle="_0000005200000052" change="1" id="E00029">
       <type>Birth</type>
       <dateval val="1897-09-11"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000005300000053" change="1473110503" id="E0030">
+    <event handle="_0000005300000053" change="1" id="E00030">
       <type>Death</type>
       <datestr val="21-Oct-63"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000005500000055" change="1473110503" id="E0031">
+    <event handle="_0000005500000055" change="1" id="E00031">
       <type>Birth</type>
       <dateval val="1862-11-28"/>
       <place hlink="_0000000a0000000a"/>
     </event>
-    <event handle="_0000005600000056" change="1473110503" id="E0032">
+    <event handle="_0000005600000056" change="1" id="E00032">
       <type>Death</type>
       <dateval val="1930-07-23" type="before"/>
       <place hlink="_0000000200000002"/>
     </event>
-    <event handle="_0000005800000058" change="1473110503" id="E0033">
+    <event handle="_0000005800000058" change="1" id="E00033">
       <type>Birth</type>
       <dateval val="1821-01-29"/>
       <place hlink="_0000000500000005"/>
     </event>
-    <event handle="_0000005c0000005c" change="1473110503" id="E0034">
+    <event handle="_0000005c0000005c" change="1" id="E00034">
       <type>Birth</type>
       <dateval val="1904-04-17"/>
       <place hlink="_0000000400000004"/>
       <citationref hlink="_0000005b0000005b"/>
     </event>
-    <event handle="_0000005d0000005d" change="1473110503" id="E0035">
+    <event handle="_0000005d0000005d" change="1" id="E00035">
       <type>Death</type>
       <datestr val="29-Jan-77"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000006000000060" change="1473110503" id="E0036">
+    <event handle="_0000006000000060" change="1" id="E00036">
       <type>Burial</type>
       <datestr val="5-Feb-77"/>
       <place hlink="_0000000300000003"/>
       <citationref hlink="_0000005f0000005f"/>
     </event>
-    <event handle="_0000006200000062" change="1473110503" id="E0037">
+    <event handle="_0000006200000062" change="1" id="E00037">
       <type>Birth</type>
       <dateval val="1893-01-31"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000006300000063" change="1473110503" id="E0038">
+    <event handle="_0000006300000063" change="1" id="E00038">
       <type>Death</type>
       <dateval val="1894-09-25"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000006500000065" change="1473110503" id="E0039">
+    <event handle="_0000006500000065" change="1" id="E00039">
       <type>Birth</type>
       <dateval val="1895-04-07"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000006600000066" change="1473110503" id="E0040">
+    <event handle="_0000006600000066" change="1" id="E00040">
       <type>Baptism</type>
       <dateval val="1895-06-03"/>
       <place hlink="_0000001300000013"/>
     </event>
-    <event handle="_0000006700000067" change="1473110503" id="E0041">
+    <event handle="_0000006700000067" change="1" id="E00041">
       <type>Death</type>
       <datestr val="26-Jun-75"/>
       <place hlink="_0000000600000006"/>
     </event>
-    <event handle="_0000006900000069" change="1473110503" id="E0042">
+    <event handle="_0000006900000069" change="1" id="E00042">
       <type>Birth</type>
       <dateval val="1823" type="after"/>
       <place hlink="_0000000500000005"/>
     </event>
-    <event handle="_0000006b0000006b" change="1473110503" id="E0043">
+    <event handle="_0000006b0000006b" change="1" id="E00043">
       <type>Birth</type>
       <dateval val="1770" type="about"/>
       <place hlink="_0000000900000009"/>
     </event>
-    <event handle="_0000006d0000006d" change="1473110503" id="E0044">
+    <event handle="_0000006d0000006d" change="1" id="E00044">
       <type>Birth</type>
       <dateval val="1826-01-29"/>
       <place hlink="_0000000500000005"/>
     </event>
-    <event handle="_0000006f0000006f" change="1473110503" id="E0045">
+    <event handle="_0000006f0000006f" change="1" id="E00045">
       <type>Birth</type>
       <dateval val="1932-01-30"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000007100000071" change="1473110503" id="E0046">
+    <event handle="_0000007100000071" change="1" id="E00046">
       <type>Birth</type>
       <dateval val="1966-08-11"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000007300000073" change="1473110503" id="E0047">
+    <event handle="_0000007300000073" change="1" id="E00047">
       <type>Birth</type>
       <dateval val="1886-12-15"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000007400000074" change="1473110503" id="E0048">
+    <event handle="_0000007400000074" change="1" id="E00048">
       <type>Death</type>
       <datestr val="18-Jul-66"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000007600000076" change="1473110503" id="E0049">
+    <event handle="_0000007600000076" change="1" id="E00049">
       <type>Birth</type>
       <dateval val="1991-09-16"/>
       <place hlink="_0000000f0000000f"/>
     </event>
-    <event handle="_0000007800000078" change="1473110503" id="E0050">
+    <event handle="_0000007800000078" change="1" id="E00050">
       <type>Birth</type>
       <dateval val="1935-03-13"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_0000007a0000007a" change="1473110503" id="E0051">
+    <event handle="_0000007a0000007a" change="1" id="E00051">
       <type>Birth</type>
       <dateval val="1858-10-06"/>
       <place hlink="_0000000d0000000d"/>
     </event>
-    <event handle="_0000007b0000007b" change="1473110503" id="E0052">
+    <event handle="_0000007b0000007b" change="1" id="E00052">
       <type>Death</type>
       <datestr val="20-Feb-10"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000007d0000007d" change="1473110503" id="E0053">
+    <event handle="_0000007d0000007d" change="1" id="E00053">
       <type>Birth</type>
       <dateval val="1960-02-05"/>
       <place hlink="_0000001000000010"/>
     </event>
-    <event handle="_0000007f0000007f" change="1473110503" id="E0054">
+    <event handle="_0000007f0000007f" change="1" id="E00054">
       <type>Birth</type>
       <dateval val="1934-11-04"/>
       <place hlink="_0000000600000006"/>
     </event>
-    <event handle="_0000008100000081" change="1473110503" id="E0055">
+    <event handle="_0000008100000081" change="1" id="E00055">
       <type>Birth</type>
       <dateval val="1830-11-19"/>
       <place hlink="_0000000500000005"/>
     </event>
-    <event handle="_0000008200000082" change="1473110503" id="E0056">
+    <event handle="_0000008200000082" change="1" id="E00056">
       <type>Baptism</type>
       <dateval val="1830-11-23"/>
       <place hlink="_0000000500000005"/>
     </event>
-    <event handle="_0000008300000083" change="1473110503" id="E0057">
+    <event handle="_0000008300000083" change="1" id="E00057">
       <type>Death</type>
       <daterange start="1899" stop="1905"/>
       <place hlink="_0000000900000009"/>
     </event>
-    <event handle="_0000008500000085" change="1473110503" id="E0058">
+    <event handle="_0000008500000085" change="1" id="E00058">
       <type>Birth</type>
       <daterange start="1794" stop="1796"/>
       <place hlink="_0000001200000012"/>
     </event>
-    <event handle="_0000008600000086" change="1473110503" id="E0059">
+    <event handle="_0000008600000086" change="1" id="E00059">
       <type>Death</type>
       <place hlink="_0000000900000009"/>
     </event>
-    <event handle="_0000008800000088" change="1473110503" id="E0060">
+    <event handle="_0000008800000088" change="1" id="E00060">
       <type>Birth</type>
       <dateval val="1996-06-26"/>
       <place hlink="_0000000700000007"/>
     </event>
-    <event handle="_0000008a0000008a" change="1473110503" id="E0061">
+    <event handle="_0000008a0000008a" change="1" id="E00061">
       <type>Birth</type>
       <dateval val="1860-09-23"/>
       <place hlink="_0000000c0000000c"/>
     </event>
-    <event handle="_0000008b0000008b" change="1473110503" id="E0062">
+    <event handle="_0000008b0000008b" change="1" id="E00062">
       <type>Death</type>
       <datestr val="2-Feb-27"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000008d0000008d" change="1473110503" id="E0063">
+    <event handle="_0000008d0000008d" change="1" id="E00063">
       <type>Birth</type>
       <dateval val="1886" type="about"/>
     </event>
-    <event handle="_0000008f0000008f" change="1473110503" id="E0064">
+    <event handle="_0000008f0000008f" change="1" id="E00064">
       <type>Birth</type>
       <datestr val="1-Jan-70"/>
       <place hlink="_0000001d0000001d"/>
     </event>
-    <event handle="_0000009200000092" change="1473110503" id="E0065">
+    <event handle="_0000009200000092" change="1" id="E00065">
       <type>Marriage</type>
       <dateval val="1816" type="about"/>
       <place hlink="_0000000500000005"/>
     </event>
-    <event handle="_0000009400000094" change="1473110503" id="E0066">
+    <event handle="_0000009400000094" change="1" id="E00066">
       <type>Marriage</type>
       <dateval val="1790" type="about"/>
       <place hlink="_0000000900000009"/>
     </event>
-    <event handle="_0000009600000096" change="1473110503" id="E0067">
+    <event handle="_0000009600000096" change="1" id="E00067">
       <type>Marriage</type>
       <dateval val="1856" type="about"/>
     </event>
-    <event handle="_0000009800000098" change="1473110503" id="E0068">
+    <event handle="_0000009800000098" change="1" id="E00068">
       <type>Marriage</type>
       <dateval val="1885-11-27"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_0000009a0000009a" change="1473110503" id="E0069">
+    <event handle="_0000009a0000009a" change="1" id="E00069">
       <type>Marriage</type>
       <dateval val="1910" type="about"/>
     </event>
-    <event handle="_0000009c0000009c" change="1473110503" id="E0070">
+    <event handle="_0000009c0000009c" change="1" id="E00070">
       <type>Marriage</type>
       <dateval val="1927-10-31"/>
       <place hlink="_0000000600000006"/>
     </event>
-    <event handle="_0000009e0000009e" change="1473110503" id="E0071">
+    <event handle="_0000009e0000009e" change="1" id="E00071">
       <type>Marriage</type>
       <dateval val="1920" type="about"/>
     </event>
-    <event handle="_000000a0000000a0" change="1473110504" id="E0072">
+    <event handle="_000000a0000000a0" change="1" id="E00072">
       <type>Marriage</type>
       <dateval val="1958-08-10"/>
       <place hlink="_0000000300000003"/>
     </event>
-    <event handle="_000000a3000000a3" change="1473110504" id="E0073">
+    <event handle="_000000a3000000a3" change="1" id="E00073">
       <type>Marriage</type>
       <dateval val="1986-07-12"/>
       <place hlink="_0000001400000014"/>
     </event>
-    <event handle="_000000a5000000a5" change="1473110504" id="E0074">
+    <event handle="_000000a5000000a5" change="1" id="E00074">
       <type>Marriage</type>
       <dateval val="1884-08-24"/>
       <place hlink="_0000000400000004"/>
     </event>
-    <event handle="_000000a9000000a9" change="1473110504" id="E0075">
+    <event handle="_000000a9000000a9" change="1" id="E00075">
       <type>Marriage</type>
       <dateval val="1954-06-04"/>
       <place hlink="_0000000200000002"/>
       <citationref hlink="_000000a8000000a8"/>
     </event>
-    <event handle="_000000ab000000ab" change="1473110504" id="E0076">
+    <event handle="_000000ab000000ab" change="1" id="E00076">
       <type>Marriage</type>
       <dateval val="1995-05-27"/>
       <place hlink="_0000001500000015"/>
     </event>
-    <event handle="_000000ae000000ae" change="1473110504" id="E0077">
+    <event handle="_000000ae000000ae" change="1" id="E00077">
       <type>Marriage</type>
       <dateval val="1912-11-30"/>
       <place hlink="_0000000400000004"/>
     </event>
   </events>
   <people>
-    <person handle="_0000001e0000001e" change="1473110504" id="I0030">
+    <person handle="_0000001e0000001e" change="1" id="I0030">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Janice Ann</first>
@@ -410,7 +403,7 @@
       <eventref hlink="_0000001f0000001f" role="Primary"/>
       <parentin hlink="_000000aa000000aa"/>
     </person>
-    <person handle="_0000002000000020" change="1473110504" id="I0016">
+    <person handle="_0000002000000020" change="1" id="I0016">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Jennifer</first>
@@ -420,7 +413,7 @@
       <eventref hlink="_0000002200000022" role="Primary"/>
       <parentin hlink="_000000ac000000ac"/>
     </person>
-    <person handle="_0000002300000023" change="1473110503" id="I0025">
+    <person handle="_0000002300000023" change="1" id="I0025">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Marta</first>
@@ -429,7 +422,7 @@
       <eventref hlink="_0000002400000024" role="Primary"/>
       <parentin hlink="_0000009300000093"/>
     </person>
-    <person handle="_0000002500000025" change="1473110504" id="I0041">
+    <person handle="_0000002500000025" change="1" id="I0041">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Janis Elaine</first>
@@ -438,7 +431,7 @@
       <eventref hlink="_0000002600000026" role="Primary"/>
       <parentin hlink="_0000009f0000009f"/>
     </person>
-    <person handle="_0000002700000027" change="1473110503" id="I0000">
+    <person handle="_0000002700000027" change="1" id="I0000">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Anna</first>
@@ -448,7 +441,7 @@
       <eventref hlink="_0000002900000029" role="Primary"/>
       <parentin hlink="_0000009700000097"/>
     </person>
-    <person handle="_0000002a0000002a" change="1473110503" id="I0038">
+    <person handle="_0000002a0000002a" change="1" id="I0038">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Kerstina</first>
@@ -458,7 +451,7 @@
       <eventref hlink="_0000002c0000002c" role="Primary"/>
       <parentin hlink="_0000009500000095"/>
     </person>
-    <person handle="_0000002d0000002d" change="1473110504" id="I0032">
+    <person handle="_0000002d0000002d" change="1" id="I0032">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Darcy</first>
@@ -467,7 +460,7 @@
       <eventref hlink="_0000002e0000002e" role="Primary"/>
       <parentin hlink="_000000a2000000a2"/>
     </person>
-    <person handle="_0000002f0000002f" change="1473110503" id="I0036">
+    <person handle="_0000002f0000002f" change="1" id="I0036">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Elna</first>
@@ -477,7 +470,7 @@
       <eventref hlink="_0000003100000031" role="Primary"/>
       <parentin hlink="_0000009100000091"/>
     </person>
-    <person handle="_0000003200000032" change="1473110504" id="I0017">
+    <person handle="_0000003200000032" change="1" id="I0017">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Lillie Harriet</first>
@@ -487,7 +480,7 @@
       <eventref hlink="_0000003400000034" role="Primary"/>
       <parentin hlink="_000000a1000000a1"/>
     </person>
-    <person handle="_0000003500000035" change="1473110503" id="I0013">
+    <person handle="_0000003500000035" change="1" id="I0013">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Evelyn</first>
@@ -496,7 +489,7 @@
       <eventref hlink="_0000003600000036" role="Primary"/>
       <parentin hlink="_0000009d0000009d"/>
     </person>
-    <person handle="_0000003700000037" change="1473110504" id="I0012">
+    <person handle="_0000003700000037" change="1" id="I0012">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Herman Julius</first>
@@ -506,7 +499,7 @@
       <eventref hlink="_0000003900000039" role="Primary"/>
       <parentin hlink="_000000ad000000ad"/>
     </person>
-    <person handle="_0000003a0000003a" change="1473110503" id="I0031">
+    <person handle="_0000003a0000003a" change="1" id="I0031">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Marjorie</first>
@@ -516,7 +509,7 @@
       <eventref hlink="_0000003c0000003c" role="Primary"/>
       <parentin hlink="_0000009b0000009b"/>
     </person>
-    <person handle="_0000003d0000003d" change="1473110504" id="I0034">
+    <person handle="_0000003d0000003d" change="1" id="I0034">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Alice Paula</first>
@@ -525,7 +518,7 @@
       <eventref hlink="_0000003e0000003e" role="Primary"/>
       <parentin hlink="_000000a6000000a6"/>
     </person>
-    <person handle="_0000003f0000003f" change="1473110504" id="I0002">
+    <person handle="_0000003f0000003f" change="1" id="I0002">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Amber Marie</first>
@@ -534,7 +527,7 @@
       <eventref hlink="_0000004000000040" role="Primary"/>
       <childof hlink="_000000aa000000aa"/>
     </person>
-    <person handle="_0000004100000041" change="1473110504" id="I0023">
+    <person handle="_0000004100000041" change="1" id="I0023">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Astrid Shermanna Augusta</first>
@@ -545,7 +538,7 @@
       <childof hlink="_0000009700000097"/>
       <parentin hlink="_000000ad000000ad"/>
     </person>
-    <person handle="_0000004400000044" change="1473110504" id="I0020">
+    <person handle="_0000004400000044" change="1" id="I0020">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Carl Emil</first>
@@ -555,7 +548,7 @@
       <eventref hlink="_0000004600000046" role="Primary"/>
       <childof hlink="_0000009700000097"/>
     </person>
-    <person handle="_0000004700000047" change="1473110504" id="I0029">
+    <person handle="_0000004700000047" change="1" id="I0029">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Craig Peter</first>
@@ -564,7 +557,7 @@
       <eventref hlink="_0000004800000048" role="Primary"/>
       <childof hlink="_0000009f0000009f"/>
     </person>
-    <person handle="_0000004900000049" change="1473110504" id="I0037">
+    <person handle="_0000004900000049" change="1" id="I0037">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Edwin Michael</first>
@@ -574,7 +567,7 @@
       <childof hlink="_000000a6000000a6"/>
       <parentin hlink="_000000aa000000aa"/>
     </person>
-    <person handle="_0000004d0000004d" change="1473110504" id="I0009">
+    <person handle="_0000004d0000004d" change="1" id="I0009">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Emil</first>
@@ -583,7 +576,7 @@
       <eventref hlink="_0000004e0000004e" role="Primary"/>
       <childof hlink="_0000009500000095"/>
     </person>
-    <person handle="_0000004f0000004f" change="1473110504" id="I0019">
+    <person handle="_0000004f0000004f" change="1" id="I0019">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Eric Lloyd</first>
@@ -594,7 +587,7 @@
       <childof hlink="_0000009f0000009f"/>
       <parentin hlink="_000000a2000000a2"/>
     </person>
-    <person handle="_0000005100000051" change="1473110504" id="I0015">
+    <person handle="_0000005100000051" change="1" id="I0015">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Gus</first>
@@ -605,7 +598,7 @@
       <childof hlink="_0000009700000097"/>
       <parentin hlink="_0000009d0000009d"/>
     </person>
-    <person handle="_0000005400000054" change="1473110504" id="I0024">
+    <person handle="_0000005400000054" change="1" id="I0024">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Gustaf</first>
@@ -617,7 +610,7 @@
       <childof hlink="_0000009500000095"/>
       <parentin hlink="_0000009700000097"/>
     </person>
-    <person handle="_0000005700000057" change="1473110504" id="I0011">
+    <person handle="_0000005700000057" change="1" id="I0011">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Hanna</first>
@@ -626,7 +619,7 @@
       <eventref hlink="_0000005800000058" role="Primary"/>
       <childof hlink="_0000009100000091"/>
     </person>
-    <person handle="_0000005900000059" change="1473110504" id="I0010">
+    <person handle="_0000005900000059" change="1" id="I0010">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Hans Peter</first>
@@ -639,7 +632,7 @@
       <parentin hlink="_000000a1000000a1"/>
       <parentin hlink="_000000ac000000ac"/>
     </person>
-    <person handle="_0000006100000061" change="1473110504" id="I0021">
+    <person handle="_0000006100000061" change="1" id="I0021">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Hjalmar</first>
@@ -649,7 +642,7 @@
       <eventref hlink="_0000006300000063" role="Primary"/>
       <childof hlink="_0000009700000097"/>
     </person>
-    <person handle="_0000006400000064" change="1473110504" id="I0008">
+    <person handle="_0000006400000064" change="1" id="I0008">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Hjalmar</first>
@@ -661,7 +654,7 @@
       <childof hlink="_0000009700000097"/>
       <parentin hlink="_0000009b0000009b"/>
     </person>
-    <person handle="_0000006800000068" change="1473110504" id="I0007">
+    <person handle="_0000006800000068" change="1" id="I0007">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Ingar</first>
@@ -670,7 +663,7 @@
       <eventref hlink="_0000006900000069" role="Primary"/>
       <childof hlink="_0000009100000091"/>
     </person>
-    <person handle="_0000006a0000006a" change="1473110503" id="I0027">
+    <person handle="_0000006a0000006a" change="1" id="I0027">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Ingeman</first>
@@ -679,7 +672,7 @@
       <eventref hlink="_0000006b0000006b" role="Primary"/>
       <parentin hlink="_0000009300000093"/>
     </person>
-    <person handle="_0000006c0000006c" change="1473110504" id="I0004">
+    <person handle="_0000006c0000006c" change="1" id="I0004">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Ingeman</first>
@@ -688,7 +681,7 @@
       <eventref hlink="_0000006d0000006d" role="Primary"/>
       <childof hlink="_0000009100000091"/>
     </person>
-    <person handle="_0000006e0000006e" change="1473110504" id="I0018">
+    <person handle="_0000006e0000006e" change="1" id="I0018">
       <gender>M</gender>
       <name type="Birth Name">
         <first>John Hjalmar</first>
@@ -698,7 +691,7 @@
       <childof hlink="_0000009b0000009b"/>
       <parentin hlink="_000000a6000000a6"/>
     </person>
-    <person handle="_0000007000000070" change="1473110504" id="I0001">
+    <person handle="_0000007000000070" change="1" id="I0001">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Keith Lloyd</first>
@@ -707,7 +700,7 @@
       <eventref hlink="_0000007100000071" role="Primary"/>
       <childof hlink="_0000009f0000009f"/>
     </person>
-    <person handle="_0000007200000072" change="1473110504" id="I0026">
+    <person handle="_0000007200000072" change="1" id="I0026">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Kirsti Marie</first>
@@ -718,7 +711,7 @@
       <childof hlink="_0000009700000097"/>
       <parentin hlink="_0000009900000099"/>
     </person>
-    <person handle="_0000007500000075" change="1473110504" id="I0035">
+    <person handle="_0000007500000075" change="1" id="I0035">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Lars Peter</first>
@@ -727,7 +720,7 @@
       <eventref hlink="_0000007600000076" role="Primary"/>
       <childof hlink="_000000a2000000a2"/>
     </person>
-    <person handle="_0000007700000077" change="1473110504" id="I0033">
+    <person handle="_0000007700000077" change="1" id="I0033">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Lloyd</first>
@@ -737,7 +730,7 @@
       <childof hlink="_000000a1000000a1"/>
       <parentin hlink="_0000009f0000009f"/>
     </person>
-    <person handle="_0000007900000079" change="1473110504" id="I0003">
+    <person handle="_0000007900000079" change="1" id="I0003">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Magnes</first>
@@ -748,7 +741,7 @@
       <childof hlink="_0000009500000095"/>
       <parentin hlink="_000000a4000000a4"/>
     </person>
-    <person handle="_0000007c0000007c" change="1473110504" id="I0040">
+    <person handle="_0000007c0000007c" change="1" id="I0040">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Marjorie Alice</first>
@@ -757,7 +750,7 @@
       <eventref hlink="_0000007d0000007d" role="Primary"/>
       <childof hlink="_000000a6000000a6"/>
     </person>
-    <person handle="_0000007e0000007e" change="1473110504" id="I0014">
+    <person handle="_0000007e0000007e" change="1" id="I0014">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Marjorie Lee</first>
@@ -766,7 +759,7 @@
       <eventref hlink="_0000007f0000007f" role="Primary"/>
       <childof hlink="_0000009b0000009b"/>
     </person>
-    <person handle="_0000008000000080" change="1473110504" id="I0022">
+    <person handle="_0000008000000080" change="1" id="I0022">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Martin</first>
@@ -778,7 +771,7 @@
       <childof hlink="_0000009100000091"/>
       <parentin hlink="_0000009500000095"/>
     </person>
-    <person handle="_0000008400000084" change="1473110504" id="I0039">
+    <person handle="_0000008400000084" change="1" id="I0039">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Martin</first>
@@ -789,7 +782,7 @@
       <childof hlink="_0000009300000093"/>
       <parentin hlink="_0000009100000091"/>
     </person>
-    <person handle="_0000008700000087" change="1473110504" id="I0005">
+    <person handle="_0000008700000087" change="1" id="I0005">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Mason Michael</first>
@@ -798,7 +791,7 @@
       <eventref hlink="_0000008800000088" role="Primary"/>
       <childof hlink="_000000aa000000aa"/>
     </person>
-    <person handle="_0000008900000089" change="1473110504" id="I0028">
+    <person handle="_0000008900000089" change="1" id="I0028">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Anna</first>
@@ -808,7 +801,7 @@
       <eventref hlink="_0000008b0000008b" role="Primary"/>
       <parentin hlink="_000000a4000000a4"/>
     </person>
-    <person handle="_0000008c0000008c" change="1473110503" id="I0006">
+    <person handle="_0000008c0000008c" change="1" id="I0006">
       <gender>M</gender>
       <name type="Birth Name">
         <first>Edwin</first>
@@ -817,7 +810,7 @@
       <eventref hlink="_0000008d0000008d" role="Primary"/>
       <parentin hlink="_0000009900000099"/>
     </person>
-    <person handle="_0000008e0000008e" change="1473110504" id="I0058">
+    <person handle="_0000008e0000008e" change="1" id="I0058">
       <gender>M</gender>
       <name type="Birth Name">
         <first>雪</first>
@@ -826,7 +819,7 @@
       <eventref hlink="_0000008f0000008f" role="Primary"/>
       <childof hlink="_000000ad000000ad"/>
     </person>
-    <person handle="_0000009000000090" change="1473110504" id="I0059">
+    <person handle="_0000009000000090" change="1" id="I0059">
       <gender>M</gender>
       <name type="Birth Name">
         <first>ピーター</first>
@@ -836,37 +829,37 @@
     </person>
   </people>
   <families>
-    <family handle="_0000009100000091" change="1473110504" id="F0000">
+    <family handle="_0000009100000091" change="1" id="F0000">
       <rel type="Married"/>
       <father hlink="_0000008400000084"/>
       <mother hlink="_0000002f0000002f"/>
-      <eventref hlink="_0000009200000092" role="Primary"/>
+      <eventref hlink="_0000009200000092" role="Family"/>
       <childref hlink="_0000005700000057"/>
       <childref hlink="_0000006800000068"/>
       <childref hlink="_0000006c0000006c"/>
       <childref hlink="_0000008000000080"/>
     </family>
-    <family handle="_0000009300000093" change="1473110504" id="F0001">
+    <family handle="_0000009300000093" change="1" id="F0001">
       <rel type="Married"/>
       <father hlink="_0000006a0000006a"/>
       <mother hlink="_0000002300000023"/>
-      <eventref hlink="_0000009400000094" role="Primary"/>
+      <eventref hlink="_0000009400000094" role="Family"/>
       <childref hlink="_0000008400000084"/>
     </family>
-    <family handle="_0000009500000095" change="1473110504" id="F0002">
+    <family handle="_0000009500000095" change="1" id="F0002">
       <rel type="Married"/>
       <father hlink="_0000008000000080"/>
       <mother hlink="_0000002a0000002a"/>
-      <eventref hlink="_0000009600000096" role="Primary"/>
+      <eventref hlink="_0000009600000096" role="Family"/>
       <childref hlink="_0000007900000079"/>
       <childref hlink="_0000004d0000004d"/>
       <childref hlink="_0000005400000054"/>
     </family>
-    <family handle="_0000009700000097" change="1473110504" id="F0003">
+    <family handle="_0000009700000097" change="1" id="F0003">
       <rel type="Married"/>
       <father hlink="_0000005400000054"/>
       <mother hlink="_0000002700000027"/>
-      <eventref hlink="_0000009800000098" role="Primary"/>
+      <eventref hlink="_0000009800000098" role="Family"/>
       <childref hlink="_0000007200000072"/>
       <childref hlink="_0000004100000041"/>
       <childref hlink="_0000006100000061"/>
@@ -875,243 +868,243 @@
       <childref hlink="_0000004400000044"/>
       <childref hlink="_0000005900000059"/>
     </family>
-    <family handle="_0000009900000099" change="1473110503" id="F0004">
+    <family handle="_0000009900000099" change="1" id="F0004">
       <rel type="Married"/>
       <father hlink="_0000008c0000008c"/>
       <mother hlink="_0000007200000072"/>
-      <eventref hlink="_0000009a0000009a" role="Primary"/>
+      <eventref hlink="_0000009a0000009a" role="Family"/>
     </family>
-    <family handle="_0000009b0000009b" change="1473110504" id="F0006">
+    <family handle="_0000009b0000009b" change="1" id="F0006">
       <rel type="Married"/>
       <father hlink="_0000006400000064"/>
       <mother hlink="_0000003a0000003a"/>
-      <eventref hlink="_0000009c0000009c" role="Primary"/>
+      <eventref hlink="_0000009c0000009c" role="Family"/>
       <childref hlink="_0000006e0000006e"/>
       <childref hlink="_0000007e0000007e"/>
     </family>
-    <family handle="_0000009d0000009d" change="1473110503" id="F0007">
+    <family handle="_0000009d0000009d" change="1" id="F0007">
       <rel type="Married"/>
       <father hlink="_0000005100000051"/>
       <mother hlink="_0000003500000035"/>
-      <eventref hlink="_0000009e0000009e" role="Primary"/>
+      <eventref hlink="_0000009e0000009e" role="Family"/>
     </family>
-    <family handle="_0000009f0000009f" change="1473110504" id="F0008">
+    <family handle="_0000009f0000009f" change="1" id="F0008">
       <rel type="Married"/>
       <father hlink="_0000007700000077"/>
       <mother hlink="_0000002500000025"/>
-      <eventref hlink="_000000a0000000a0" role="Primary"/>
+      <eventref hlink="_000000a0000000a0" role="Family"/>
       <childref hlink="_0000004f0000004f"/>
       <childref hlink="_0000007000000070"/>
       <childref hlink="_0000004700000047"/>
     </family>
-    <family handle="_000000a1000000a1" change="1473110504" id="F0009">
+    <family handle="_000000a1000000a1" change="1" id="F0009">
       <rel type="Married"/>
       <father hlink="_0000005900000059"/>
       <mother hlink="_0000003200000032"/>
       <childref hlink="_0000007700000077"/>
     </family>
-    <family handle="_000000a2000000a2" change="1473110504" id="F0010">
+    <family handle="_000000a2000000a2" change="1" id="F0010">
       <rel type="Married"/>
       <father hlink="_0000004f0000004f"/>
       <mother hlink="_0000002d0000002d"/>
-      <eventref hlink="_000000a3000000a3" role="Primary"/>
+      <eventref hlink="_000000a3000000a3" role="Family"/>
       <childref hlink="_0000007500000075"/>
     </family>
-    <family handle="_000000a4000000a4" change="1473110504" id="F0011">
+    <family handle="_000000a4000000a4" change="1" id="F0011">
       <rel type="Married"/>
       <father hlink="_0000007900000079"/>
       <mother hlink="_0000008900000089"/>
-      <eventref hlink="_000000a5000000a5" role="Primary"/>
+      <eventref hlink="_000000a5000000a5" role="Family"/>
     </family>
-    <family handle="_000000a6000000a6" change="1473110504" id="F0012">
+    <family handle="_000000a6000000a6" change="1" id="F0012">
       <rel type="Married"/>
       <father hlink="_0000006e0000006e"/>
       <mother hlink="_0000003d0000003d"/>
-      <eventref hlink="_000000a9000000a9" role="Primary"/>
+      <eventref hlink="_000000a9000000a9" role="Family"/>
       <childref hlink="_0000007c0000007c"/>
       <childref hlink="_0000004900000049"/>
     </family>
-    <family handle="_000000aa000000aa" change="1473110504" id="F0013">
+    <family handle="_000000aa000000aa" change="1" id="F0013">
       <rel type="Married"/>
       <father hlink="_0000004900000049"/>
       <mother hlink="_0000001e0000001e"/>
-      <eventref hlink="_000000ab000000ab" role="Primary"/>
+      <eventref hlink="_000000ab000000ab" role="Family"/>
       <childref hlink="_0000008700000087"/>
       <childref hlink="_0000003f0000003f"/>
     </family>
-    <family handle="_000000ac000000ac" change="1473110504" id="F0014">
+    <family handle="_000000ac000000ac" change="1" id="F0014">
       <rel type="Married"/>
       <father hlink="_0000005900000059"/>
       <mother hlink="_0000002000000020"/>
     </family>
-    <family handle="_000000ad000000ad" change="1473110504" id="F0005">
+    <family handle="_000000ad000000ad" change="1" id="F0005">
       <rel type="Married"/>
       <father hlink="_0000003700000037"/>
       <mother hlink="_0000004100000041"/>
-      <eventref hlink="_000000ae000000ae" role="Primary"/>
+      <eventref hlink="_000000ae000000ae" role="Family"/>
       <childref hlink="_0000008e0000008e"/>
       <childref hlink="_0000009000000090"/>
     </family>
   </families>
   <citations>
-    <citation handle="_0000004b0000004b" change="1473110503" id="C0000">
+    <citation handle="_0000004b0000004b" change="1" id="C0000">
       <confidence>2</confidence>
       <sourceref hlink="_0000004a0000004a"/>
     </citation>
-    <citation handle="_0000005b0000005b" change="1473110503" id="C0001">
+    <citation handle="_0000005b0000005b" change="1" id="C0001">
       <confidence>2</confidence>
       <sourceref hlink="_0000005a0000005a"/>
     </citation>
-    <citation handle="_0000005f0000005f" change="1473110503" id="C0002">
+    <citation handle="_0000005f0000005f" change="1" id="C0002">
       <confidence>2</confidence>
       <sourceref hlink="_0000005e0000005e"/>
     </citation>
-    <citation handle="_000000a8000000a8" change="1473110504" id="C0003">
+    <citation handle="_000000a8000000a8" change="1" id="C0003">
       <confidence>2</confidence>
       <sourceref hlink="_000000a7000000a7"/>
     </citation>
   </citations>
   <sources>
-    <source handle="_0000004a0000004a" change="1473110503" id="S0000">
+    <source handle="_0000004a0000004a" change="1" id="S0000">
       <stitle>Birth, Death and Marriage Records</stitle>
     </source>
-    <source handle="_0000005a0000005a" change="1473110503" id="S0001">
+    <source handle="_0000005a0000005a" change="1" id="S0001">
       <stitle>Birth Records</stitle>
     </source>
-    <source handle="_0000005e0000005e" change="1473110503" id="S0002">
+    <source handle="_0000005e0000005e" change="1" id="S0002">
       <stitle>findagrave.com</stitle>
     </source>
-    <source handle="_000000a7000000a7" change="1473110504" id="S0003">
+    <source handle="_000000a7000000a7" change="1" id="S0003">
       <stitle>Marriage Certificae</stitle>
     </source>
   </sources>
   <places>
-    <placeobj handle="_0000000100000001" change="1473110503" id="P0000" type="Unknown">
+    <placeobj handle="_0000000100000001" change="1" id="P0000" type="Unknown">
       <ptitle>Löderup, Malmöhus Län, Sweden</ptitle>
       <pname value="Löderup, Malmöhus Län, Sweden"/>
     </placeobj>
-    <placeobj handle="_0000000200000002" change="1473110503" id="P0001" type="Unknown">
+    <placeobj handle="_0000000200000002" change="1" id="P0001" type="Unknown">
       <ptitle>Sparks, Washoe Co., NV</ptitle>
       <pname value="Sparks, Washoe Co., NV"/>
     </placeobj>
-    <placeobj handle="_0000000300000003" change="1473110503" id="P0002" type="Unknown">
+    <placeobj handle="_0000000300000003" change="1" id="P0002" type="Unknown">
       <ptitle>San Francisco, San Francisco Co., CA</ptitle>
       <pname value="San Francisco, San Francisco Co., CA"/>
     </placeobj>
-    <placeobj handle="_0000000400000004" change="1473110503" id="P0003" type="Unknown">
+    <placeobj handle="_0000000400000004" change="1" id="P0003" type="Unknown">
       <ptitle>Rønne, Bornholm, Denmark</ptitle>
       <pname value="Rønne, Bornholm, Denmark"/>
     </placeobj>
-    <placeobj handle="_0000000500000005" change="1473110503" id="P0004" type="Unknown">
+    <placeobj handle="_0000000500000005" change="1" id="P0004" type="Unknown">
       <ptitle>Gladsax, Kristianstad Län, Sweden</ptitle>
       <pname value="Gladsax, Kristianstad Län, Sweden"/>
     </placeobj>
-    <placeobj handle="_0000000600000006" change="1473110503" id="P0005" type="Unknown">
+    <placeobj handle="_0000000600000006" change="1" id="P0005" type="Unknown">
       <ptitle>Reno, Washoe Co., NV</ptitle>
       <pname value="Reno, Washoe Co., NV"/>
     </placeobj>
-    <placeobj handle="_0000000700000007" change="1473110503" id="P0006" type="Unknown">
+    <placeobj handle="_0000000700000007" change="1" id="P0006" type="Unknown">
       <ptitle>Hayward, Alameda Co., CA</ptitle>
       <pname value="Hayward, Alameda Co., CA"/>
     </placeobj>
-    <placeobj handle="_0000000800000008" change="1473110503" id="P0007" type="Unknown">
+    <placeobj handle="_0000000800000008" change="1" id="P0007" type="Unknown">
       <ptitle>Community Presbyterian Church, Danville, CA</ptitle>
       <pname value="Community Presbyterian Church, Danville, CA"/>
     </placeobj>
-    <placeobj handle="_0000000900000009" change="1473110503" id="P0008" type="Unknown">
+    <placeobj handle="_0000000900000009" change="1" id="P0008" type="Unknown">
       <ptitle>Sweden</ptitle>
       <pname value="Sweden"/>
     </placeobj>
-    <placeobj handle="_0000000a0000000a" change="1473110503" id="P0009" type="Unknown">
+    <placeobj handle="_0000000a0000000a" change="1" id="P0009" type="Unknown">
       <ptitle>Grostorp, Kristianstad Län, Sweden</ptitle>
       <pname value="Grostorp, Kristianstad Län, Sweden"/>
     </placeobj>
-    <placeobj handle="_0000000b0000000b" change="1473110503" id="P0010" type="Unknown">
+    <placeobj handle="_0000000b0000000b" change="1" id="P0010" type="Unknown">
       <ptitle>Copenhagen, Denmark</ptitle>
       <pname value="Copenhagen, Denmark"/>
     </placeobj>
-    <placeobj handle="_0000000c0000000c" change="1473110503" id="P0011" type="Unknown">
+    <placeobj handle="_0000000c0000000c" change="1" id="P0011" type="Unknown">
       <ptitle>Hoya/Jona/Hoia, Sweden</ptitle>
       <pname value="Hoya/Jona/Hoia, Sweden"/>
     </placeobj>
-    <placeobj handle="_0000000d0000000d" change="1473110503" id="P0012" type="Unknown">
+    <placeobj handle="_0000000d0000000d" change="1" id="P0012" type="Unknown">
       <ptitle>Simrishamn, Kristianstad Län, Sweden</ptitle>
       <pname value="Simrishamn, Kristianstad Län, Sweden"/>
     </placeobj>
-    <placeobj handle="_0000000e0000000e" change="1473110503" id="P0013" type="Unknown">
+    <placeobj handle="_0000000e0000000e" change="1" id="P0013" type="Unknown">
       <ptitle>Fremont, Alameda Co., CA</ptitle>
       <pname value="Fremont, Alameda Co., CA"/>
     </placeobj>
-    <placeobj handle="_0000000f0000000f" change="1473110503" id="P0016" type="Unknown">
+    <placeobj handle="_0000000f0000000f" change="1" id="P0016" type="Unknown">
       <ptitle>Santa Rosa, Sonoma Co., CA</ptitle>
       <pname value="Santa Rosa, Sonoma Co., CA"/>
     </placeobj>
-    <placeobj handle="_0000001000000010" change="1473110503" id="P0017" type="Unknown">
+    <placeobj handle="_0000001000000010" change="1" id="P0017" type="Unknown">
       <ptitle>San Jose, Santa Clara Co., CA</ptitle>
       <pname value="San Jose, Santa Clara Co., CA"/>
     </placeobj>
-    <placeobj handle="_0000001100000011" change="1473110503" id="P0019" type="Unknown">
+    <placeobj handle="_0000001100000011" change="1" id="P0019" type="Unknown">
       <ptitle>Smestorp, Kristianstad Län, Sweden</ptitle>
       <pname value="Smestorp, Kristianstad Län, Sweden"/>
     </placeobj>
-    <placeobj handle="_0000001200000012" change="1473110503" id="P0020" type="Unknown">
+    <placeobj handle="_0000001200000012" change="1" id="P0020" type="Unknown">
       <ptitle>Tommarp, Kristianstad Län, Sweden</ptitle>
       <pname value="Tommarp, Kristianstad Län, Sweden"/>
     </placeobj>
-    <placeobj handle="_0000001300000013" change="1473110503" id="P0021" type="Unknown">
+    <placeobj handle="_0000001300000013" change="1" id="P0021" type="Unknown">
       <ptitle>Rønne Bornholm, Denmark</ptitle>
       <pname value="Rønne Bornholm, Denmark"/>
     </placeobj>
-    <placeobj handle="_0000001400000014" change="1473110503" id="P0022" type="Unknown">
+    <placeobj handle="_0000001400000014" change="1" id="P0022" type="Unknown">
       <ptitle>Woodland, Yolo Co., CA</ptitle>
       <pname value="Woodland, Yolo Co., CA"/>
     </placeobj>
-    <placeobj handle="_0000001500000015" change="1473110503" id="P0023" type="Unknown">
+    <placeobj handle="_0000001500000015" change="1" id="P0023" type="Unknown">
       <ptitle>San Ramon, Conta Costa Co., CA</ptitle>
       <pname value="San Ramon, Conta Costa Co., CA"/>
     </placeobj>
-    <placeobj handle="_0000001600000016" change="1473110503" id="P0026" type="Country">
+    <placeobj handle="_0000001600000016" change="1" id="P0026" type="Country">
       <ptitle>United States of America</ptitle>
       <pname value="USA"/>
     </placeobj>
-    <placeobj handle="_0000001700000017" change="1473110503" id="P0028" type="State">
+    <placeobj handle="_0000001700000017" change="1" id="P0028" type="State">
       <ptitle>California, USA</ptitle>
       <pname value="California"/>
       <placeref hlink="_0000001600000016">
         <dateval val="2016-06-04"/>
       </placeref>
     </placeobj>
-    <placeobj handle="_0000001800000018" change="1473110503" id="P0025" type="State">
+    <placeobj handle="_0000001800000018" change="1" id="P0025" type="State">
       <ptitle>Colorado, USA</ptitle>
       <pname value="Colorado"/>
       <placeref hlink="_0000001600000016"/>
     </placeobj>
-    <placeobj handle="_0000001900000019" change="1473110503" id="P0027" type="County">
+    <placeobj handle="_0000001900000019" change="1" id="P0027" type="County">
       <ptitle>Sacramento Co., California, USA</ptitle>
       <pname value="Sacramento Co."/>
       <placeref hlink="_0000001700000017">
         <dateval val="2016-06-01"/>
       </placeref>
     </placeobj>
-    <placeobj handle="_0000001a0000001a" change="1473110503" id="P0015" type="City">
+    <placeobj handle="_0000001a0000001a" change="1" id="P0015" type="City">
       <ptitle>Sacramento, Sacramento Co., CA</ptitle>
       <pname value="Sacramento, Sacramento Co., CA"/>
       <placeref hlink="_0000001900000019">
         <dateval val="2016-06-04"/>
       </placeref>
     </placeobj>
-    <placeobj handle="_0000001b0000001b" change="1473110503" id="P0024" type="County">
+    <placeobj handle="_0000001b0000001b" change="1" id="P0024" type="County">
       <ptitle>Denver Co., Colorado, USA</ptitle>
       <pname value="Denver Co."/>
       <placeref hlink="_0000001800000018"/>
     </placeobj>
-    <placeobj handle="_0000001c0000001c" change="1473110503" id="P0014" type="City">
+    <placeobj handle="_0000001c0000001c" change="1" id="P0014" type="City">
       <ptitle>Denver, Denver Co., CO</ptitle>
       <pname value="Denver, Denver Co., CO"/>
       <coord long="104.9903 W" lat="39.7392"/>
       <placeref hlink="_0000001b0000001b"/>
     </placeobj>
-    <placeobj handle="_0000001d0000001d" change="1473110503" id="P0033" type="Unknown">
+    <placeobj handle="_0000001d0000001d" change="1" id="P0033" type="Unknown">
       <ptitle>UC Berkeley</ptitle>
       <pname value="UC Berkeley"/>
     </placeobj>

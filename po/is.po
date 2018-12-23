@@ -35912,6 +35912,35 @@ msgstr ""
 "%(strong1_start)s%(page_number)d%(strong_end)s af %(strong2_start)s"
 "%(total_pages)d%(strong_end)s"
 
+#: ../data/tips.xml.in.h:29
+msgid ""
+"<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
+"Gramps. Requesting an enhancement can be done either through the gramps-"
+"users or gramps-devel mailing lists, or by going to https://gramps-project."
+"org/bugs/ and creating a Feature Request. Filing a Feature Request is "
+"preferred but it can be good to discuss your ideas on the email lists."
+msgstr ""
+"<b>Að bæta Gramps</b><br/>Notendur eru hvattir til að senda inn hugmyndir um "
+"atriði sem þeir halda að geti bætt Gramps. Beiðnir um slíkar endurbætur má "
+"senda inn á annan hvorn póstlistann gramps-users eða gramps-devel, nú eða "
+"með því að fara á https://gramps-project.org/bugs/ og búa til "
+"endurbótabeiðni (Feature Request). Best er að senda inn slíka "
+"endurbótabeiðni en oft getur verið gott að ræða hugmyndirnar fyrst á "
+"póstlistunum."
+
+#: ../data/tips.xml.in.h:46
+msgid ""
+"<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
+"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
+msgstr ""
+"<b>Tilkynna um villur í Gramps</b><br/>Besta leiðin til að tilkynna um "
+"villur í Gramps er að nota villuskýrslukerfi Gramps á vefsvæðinu https://"
+"gramps-project.org/bugs/"
+
+#: ../gramps/plugins/tool/mediamanager.py:68
+msgid "manual|Media_Manager"
+msgstr "Gagnastjórnun"
+
 #, fuzzy
 #~ msgid "Alternate line attachment"
 #~ msgstr "Varanöfn"

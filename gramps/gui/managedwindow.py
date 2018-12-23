@@ -578,8 +578,8 @@ class ManagedWindow:
         self.opened = False
         self._save_position(save_config=False)  # the next line will save it
         self._save_size()
-        self.clean_up()
         self.uistate.gwm.close_track(self.track)
+        self.clean_up()
         # put a previously modal window back to modal, now that we are closing
         if self.other_modal_window:
             self.other_modal_window.set_modal(True)

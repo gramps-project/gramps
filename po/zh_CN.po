@@ -1884,7 +1884,7 @@ msgid ""
 msgstr ""
 "Gramps 数据库中侦测到了一个错误.可以通过运行“检查和修复数据库”工具来解决.\n"
 "\n"
-"如果运行工具后问题依然存在，请到 http://bugs.gramps-project.org\n"
+"如果运行工具后问题依然存在，请到 %(gramps_bugtracker_url)s\n"
 "提交错误报告.\n"
 
 #: ../gramps/gen/config.py:242
@@ -36985,6 +36985,31 @@ msgstr ""
 msgid "Alphabet Menu: %s"
 msgstr ""
 
+#: ../data/tips.xml.in.h:29
+msgid ""
+"<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
+"Gramps. Requesting an enhancement can be done either through the gramps-"
+"users or gramps-devel mailing lists, or by going to https://gramps-project."
+"org/bugs/ and creating a Feature Request. Filing a Feature Request is "
+"preferred but it can be good to discuss your ideas on the email lists."
+msgstr ""
+"<b>改善 Gramps</b><br/>我们鼓励用户提出增强 Gramps 功能的建议。您可以通过 "
+"gramps-users 或者 gramps-devel 的邮件列表提出增强功能的建议，或者访问 "
+"https://gramps-project.org/bugs/ 并创建一项新功能建议 (Feature Request)。提交"
+"新功能建议固然很棒，不过有时候在邮件列表中讨论您的想法也是一个好主意。"
+
+#: ../data/tips.xml.in.h:46
+msgid ""
+"<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
+"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
+msgstr ""
+"<b>汇报 Gramps 的错误</b><br/>汇报 Gramps 错误的最有效的方式是，登录 https://"
+"gramps-project.org/bugs/ 使用 Gramps 的报告追踪系统"
+
+#: ../gramps/plugins/tool/mediamanager.py:68
+msgid "manual|Media_Manager"
+msgstr "媒体管理器(_M)"
+
 #, fuzzy
 #~ msgid "Data version"
 #~ msgstr "数据库 Schema 版本"
@@ -41467,3 +41492,22 @@ msgstr ""
 
 #~ msgid "%d invalid birth event names were fixed\n"
 #~ msgstr "%d 个无效的出生事件名字被修复\n"
+
+#~ msgid ""
+#~ "The plugin did not load. See Help Menu, Plugin Manager for more info.\n"
+#~ "Use https://gramps-project.org/bugs/ to submit bugs of official plugins, "
+#~ "contact the plugin author otherwise. "
+#~ msgstr ""
+#~ "插件未加载。请参照帮助菜单，插件管理料及更多信息。\n"
+#~ "使用https://gramps-project.org/bugs/ 提交官方插件的故障报告，同时联系插件"
+#~ "作者。"
+
+#~ msgid ""
+#~ "The view %(name)s did not load. See Help Menu, Plugin Manager for more "
+#~ "info.\n"
+#~ "Use https://gramps-project.org/bugs/ to submit bugs of official views, "
+#~ "contact the view author (%(firstauthoremail)s) otherwise. "
+#~ msgstr ""
+#~ "视图 %(name)s 未读取. 参照帮助菜单，插件管理了解更多信息。\n"
+#~ "利用 https://gramps-project.org/bugs/  提交官方视图的故障报告,  或者联系视"
+#~ "图的作者 (%(firstauthoremail)s) . "

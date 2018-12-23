@@ -382,7 +382,7 @@ class ArgHandler:
                 self.open = db_path
                 self.__open_action()
             else:
-                sys.exit(1)
+                sys.exit(_("Error: cannot open '%s'") % self.open_gui)
             return db_path
 
         # if not open_gui, parse any command line args. We can only have one

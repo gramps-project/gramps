@@ -581,7 +581,10 @@ class ReportDialog(ManagedWindow):
         pass
 
     def on_help_clicked(self, *obj):
-        from ...display import display_help
+        from ...display import display_help, display_url
+        if hasattr(self.options, 'help_url'):
+            display_url(self.options.help_url)
+            return
         display_help(URL_REPORT_PAGE, self.report_name.replace(" ", "_"))
 
     def on_style_edit_clicked(self, *obj):

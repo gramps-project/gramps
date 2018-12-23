@@ -305,27 +305,6 @@ class DbLoader(CLIDbLoader):
 
 #-------------------------------------------------------------------------
 #
-# default dir selection
-#
-#-------------------------------------------------------------------------
-def get_default_dir():
-    # Suggested folder: try last open file, last import, last export,
-    # then home.
-    default_dir = os.path.dirname(config.get('paths.recent-file'))
-    if default_dir:
-        default_dir += os.path.sep
-        if len(default_dir)<=1:
-            default_dir = config.get('paths.recent-import-dir')
-        if len(default_dir)<=1:
-            default_dir = config.get('paths.recent-export-dir')
-        if len(default_dir)<=1:
-            default_dir = '~/'
-    else:
-        default_dir = "~/"
-    return default_dir
-
-#-------------------------------------------------------------------------
-#
 # FileChooser filters: what to show in the file chooser
 #
 #-------------------------------------------------------------------------
@@ -474,13 +453,7 @@ class GrampsImportFileDialog(ManagedWindow):
         (box, type_selector) = format_maker()
         import_dialog.set_extra_widget(box)
 
-        # Suggested folder: try last open file, import, then last export,
-        # then home.
-        default_dir = config.get('paths.recent-import-dir')
-        if len(default_dir)<=1:
-            default_dir = get_default_dir()
-
-        import_dialog.set_current_folder(default_dir)
+        import_dialog.set_current_folder(config.get('paths.recent-import-dir'))
         while True:
             # the import_dialog.run() makes it modal, so any change to that
             # line would require the ManagedWindow.__init__ to be changed also

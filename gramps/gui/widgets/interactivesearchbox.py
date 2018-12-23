@@ -239,6 +239,8 @@ class InteractiveSearchBox:
             return
 
         model = self._treeview.get_model()
+        if not model:
+            return
         selection = self._treeview.get_selection()
         # disable flush timeout while searching
         if self._entry_flush_timeout:

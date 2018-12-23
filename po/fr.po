@@ -15416,7 +15416,7 @@ msgid ""
 msgstr ""
 "Interprète le contenu des champs comme des expressions rationnelles.\n"
 "Un point décimal va correspondre à un caractère quelconque. Un point "
-"d'intérogation va correspondre à une ou aucune valeur pour le précédent "
+"d'interrogation va correspondre à une ou aucune valeur pour le précédent "
 "caractère ou groupe. L'astérisque va correspondre à aucune ou plusieurs "
 "occurences. Un signe + va correspondre à une valeur ou plus. Utilisez les "
 "parenthèses pour grouper les expressions. Spécifiez les alternatives en "
@@ -23185,7 +23185,7 @@ msgstr "L'exportation Gedcom a échoué"
 
 #: ../gramps/plugins/export/exportgeneweb.py:96
 msgid "No families matched by selected filter"
-msgstr "Aucune famille ne correspondent au filtre sélectionné"
+msgstr "Aucune famille ne correspond au filtre sélectionné"
 
 #: ../gramps/plugins/export/exportpkg.py:185
 #: ../gramps/plugins/export/exportxml.py:139
@@ -33980,7 +33980,7 @@ msgstr "Analyse des événements"
 
 #: ../gramps/plugins/tool/changetypes.py:134
 msgid "No event record was modified."
-msgstr "Aucun événement a été modifié."
+msgstr "Aucun événement n'a été modifié."
 
 # trunk
 #. translators: leave all/any {...} untranslated
@@ -34739,7 +34739,7 @@ msgstr "Modifications réalisées"
 
 #: ../gramps/plugins/tool/eventnames.py:127
 msgid "No event description has been added."
-msgstr "Aucune description de l'événement a été ajoutée."
+msgstr "Aucune description de l'événement n'a été ajoutée."
 
 # trunk
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
@@ -39406,6 +39406,37 @@ msgid ""
 msgstr ""
 "%(strong1_start)s%(page_number)d%(strong_end)s sur %(strong2_start)s"
 "%(total_pages)d%(strong_end)s"
+
+# Substantif (GNOME fr)
+#: ../data/tips.xml.in.h:29
+msgid ""
+"<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
+"Gramps. Requesting an enhancement can be done either through the gramps-"
+"users or gramps-devel mailing lists, or by going to https://gramps-project."
+"org/bugs/ and creating a Feature Request. Filing a Feature Request is "
+"preferred but it can be good to discuss your ideas on the email lists."
+msgstr ""
+"<b>Amélioration de Gramps</b><br/>Vous êtes encouragé(e) à proposer des "
+"améliorations pour Gramps. Proposer une amélioration est possible par les "
+"listes de diffusion gramps-users ou gramps-devel ou en créant une demande "
+"d'amélioration (Request for Enhancement - RFE) sur https://gramps-project."
+"org/bugs//. Il est également apprécié d'en discuter sur l'une des listes "
+"Gramps."
+
+#: ../data/tips.xml.in.h:46
+msgid ""
+"<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
+"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
+msgstr ""
+"<b>Rapporter un problème dans Gramps</b><br/>Le meilleur moyen de rapporter "
+"un bogue dans Gramps est d'utiliser le système de suivi de bogue, https://"
+"gramps-project.org/bugs/"
+
+# manuel wiki
+# points de suspension et url ?
+#: ../gramps/plugins/tool/mediamanager.py:68
+msgid "manual|Media_Manager"
+msgstr "Gestionnaire de media"
 
 # trunk
 #~ msgid "Gender Male Death"
