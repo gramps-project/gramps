@@ -48,6 +48,7 @@ from gi.repository import Pango, PangoCairo
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.constfunc import is_quartz
 
 #-------------------------------------------------------------------------
 #
@@ -131,6 +132,8 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         ctx.save()
         ctx.move_to(100, 5)
         layout = PangoCairo.create_layout(ctx)
+        if is_quartz():
+            PangoCairo.context_set_resolution(layout.get_context(), 72)
         layout.set_font_description(descr)
         layout.set_indent(Pango.SCALE * 0)
         layout.set_alignment(Pango.Alignment.LEFT)

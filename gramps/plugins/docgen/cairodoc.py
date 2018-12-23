@@ -46,6 +46,7 @@ import cairo
 # Gramps modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.constfunc import is_quartz
 import gramps.plugins.lib.libcairodoc as libcairodoc
 from gramps.gen.plug.docgen import INDEX_TYPE_ALP, INDEX_TYPE_TOC
 from gramps.gen.errors import ReportError
@@ -109,6 +110,8 @@ class CairoDocgen(libcairodoc.CairoDoc):
                 pango_context = fontmap.create_context()
                 options = cairo.FontOptions()
                 options.set_hint_metrics(cairo.HINT_METRICS_OFF)
+                if is_quartz():
+                    PangoCairo.context_set_resolution(pango_context, 72)
                 PangoCairo.context_set_font_options(pango_context, options)
                 layout = Pango.Layout(pango_context)
                 PangoCairo.update_context(cr, pango_context)

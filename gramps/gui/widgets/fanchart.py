@@ -63,6 +63,7 @@ from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.libformatting import FormattingHelper
 from gramps.gen.utils.db import (find_children, find_parents, find_witnessed_people,
                                  get_age, get_timeperiod, preset_name)
+from gramps.gen.constfunc import is_quartz
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.const import (
     PIXELS_PER_GENERATION,
@@ -675,6 +676,8 @@ class FanChartBaseWidget(Gtk.DrawingArea):
 
     def draw_radial_text(self, cr, text, radiusin, radiusout, start_rad, stop_rad, font, flipped):
         layout = self.create_pango_layout(text)
+        if is_quartz():
+            PangoCairo.context_set_resolution(layout.get_context(), 72)
         layout.set_font_description(font)
         layout.set_wrap(Pango.WrapMode.WORD_CHAR)
 
@@ -706,6 +709,8 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         Text not fitting a single line will be char-wrapped away.
         """
         layout = self.create_pango_layout(text)
+        if is_quartz():
+            PangoCairo.context_set_resolution(layout.get_context(), 72)
         layout.set_font_description(font)
         layout.set_wrap(Pango.WrapMode.WORD_CHAR)
 
@@ -776,6 +781,8 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             cr.set_source_rgb(color[0], color[1], color[2])
             cr.fill()
             layout = self.create_pango_layout(text)
+            if is_quartz():
+                PangoCairo.context_set_resolution(layout.get_context(), 72)
             layout.set_font_description(font)
             cr.move_to(startw+gradwidth+4, starth)
             cr.set_source_rgb(0, 0, 0) #black
