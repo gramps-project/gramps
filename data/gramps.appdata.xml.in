@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component type="desktop">
-  <id>gramps.desktop</id>
-  <metadata_license>CC0</metadata_license>
+<component type="desktop-application">
+  <id>org.gramps.gramps</id>
+  <metadata_license>CC0-1.0</metadata_license>
   <name>Gramps</name>
   <summary>Genealogical research program</summary>
 
@@ -11,6 +11,7 @@
     <_p>All of your research is kept organized, searchable and as precise as you need it to be.</_p>
   </description>
 
+  <launchable type="desktop-id">gramps.desktop</launchable>
   <url type="homepage">https://gramps-project.org/</url>
   <url type="bugtracker">https://gramps-project.org/bugs/</url>
   <url type="help">https://gramps-project.org/wiki/index.php?title=Main_page</url>
@@ -18,11 +19,21 @@
   <developer_name>Gramps Development Team</developer_name>
 
   <screenshots>
-    <screenshot width="1226" height="740">http://www.gramps-project.org/wiki/images/5/5f/AppData1.png</screenshot>
-    <screenshot width="1226" height="740">http://www.gramps-project.org/wiki/images/6/68/AppData2.png</screenshot>
-    <screenshot type="default" width="1226" height="740">http://www.gramps-project.org/wiki/images/e/e9/AppData3.png</screenshot>
-    <screenshot width="1226" height="740">http://www.gramps-project.org/wiki/images/6/68/AppData4.png</screenshot>
-    <screenshot width="1226" height="740">http://www.gramps-project.org/wiki/images/5/50/AppData5.png</screenshot>
+    <screenshot>
+      <image width="1226" height="740">https://www.gramps-project.org/wiki/images/5/5f/AppData1.png</image>
+    </screenshot>
+    <screenshot>
+      <image width="1226" height="740">https://www.gramps-project.org/wiki/images/6/68/AppData2.png</image>
+    </screenshot>
+    <screenshot type="default">
+      <image width="1226" height="740">https://www.gramps-project.org/wiki/images/e/e9/AppData3.png</image>
+    </screenshot>
+    <screenshot>
+      <image width="1226" height="740">https://www.gramps-project.org/wiki/images/6/68/AppData4.png</image>
+    </screenshot>
+    <screenshot>
+      <image width="1226" height="740">https://www.gramps-project.org/wiki/images/5/50/AppData5.png</image>
+    </screenshot>
   </screenshots>
 
   <provides>
