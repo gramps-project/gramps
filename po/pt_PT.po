@@ -1,26 +1,25 @@
 # Portuguese (Portugal) translation for Gramps
 # This file is distributed under the same license as the Gramps package.
-# Tradução em Português (Europeu) do GRAMPS
 # Copyright (C) 2002 Free Software Foundation, Inc.
 # Marcos Bedinelli <bedinelli@sourceforge.net>, 2002-2006.
 # Luiz Gonzaga dos Santos Filho <lfilho@gmail.com>, 2007-2007.
 # lcc <lcc@6zap.com>, 2009-2009.
-# Frederico Muñoz <fsmunoz@gmail.com>, 2010-201, 2013.
-# Pedro Albuquerque <palbuquerque73@gmail.com>, 2017.
+# Frederico Muñoz <fsmunoz@gmail.com>, 2010-2011, 2013.
+# Pedro Albuquerque <pmra@gmx.com>, 2017, 2018.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: GRAMPS 4.0\n"
+"Project-Id-Version: GRAMPS 5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-20 09:31-0500\n"
 "PO-Revision-Date: 2017-09-17 08:28+0100\n"
-"Last-Translator: Pedro Albuquerque <palbuquerque73@gmail.com>\n"
-"Language-Team: Português <palbuquerque73@gmail.com>\n"
+"Last-Translator: Pedro Albuquerque <pmra@gmx.com>\n"
+"Language-Team: Portuguese <pmra@gmx.com>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural= n==1 || n%10==1 ? 0 : 1;\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Gtranslator 2.91.6\n"
 
 #: ../data/gramps.appdata.xml.in.h:1

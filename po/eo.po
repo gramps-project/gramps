@@ -4,7 +4,7 @@
 # translation of eo.po to Esperanto
 # translation of template.po to Esperanto
 # Copyright (C) YEAR ORGANIZATION
-# 
+#
 # Pier Luigi Cinquantini <plcinquantini@gmail.com>, 2003, 2014, 2017, 2018.
 # Robin van der Vliet <info@robinvandervliet.com>, 2018.
 msgid ""
@@ -1172,9 +1172,9 @@ msgstr "Genealogiaj arboj de Gramps:"
 #. We have to construct the line elements together, to avoid
 #. insertion of blank spaces when print on the same line is used
 #. -------------------------------------------------------------------------
-#. 
+#.
 #. constants
-#. 
+#.
 #. -------------------------------------------------------------------------
 #: ../gramps/cli/arghandler.py:434 ../gramps/cli/arghandler.py:436
 #: ../gramps/cli/arghandler.py:441 ../gramps/cli/arghandler.py:442
@@ -1747,8 +1747,7 @@ msgstr "Blokita de %s"
 #: ../gramps/plugins/view/geomoves.py:596
 #: ../gramps/plugins/view/geoperson.py:480
 #: ../gramps/plugins/view/geoplaces.py:526
-#: ../gramps/plugins/view/relview.py:468
-#: ../gramps/plugins/view/relview.py:1008
+#: ../gramps/plugins/view/relview.py:468 ../gramps/plugins/view/relview.py:1008
 #: ../gramps/plugins/view/relview.py:1065
 #: ../gramps/plugins/webreport/narrativeweb.py:2192
 #: ../gramps/plugins/webreport/narrativeweb.py:2221
@@ -6364,8 +6363,7 @@ msgstr "Kasto"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:75
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:104
-#: ../gramps/gui/glade/rule.glade:931
-#: ../gramps/gui/glade/styleeditor.glade:262
+#: ../gramps/gui/glade/rule.glade:931 ../gramps/gui/glade/styleeditor.glade:262
 #: ../gramps/gui/plug/_windows.py:134 ../gramps/gui/plug/_windows.py:243
 #: ../gramps/gui/plug/_windows.py:620 ../gramps/gui/plug/_windows.py:1105
 #: ../gramps/gui/selectors/selectevent.py:73
@@ -6664,8 +6662,7 @@ msgstr "Fonto"
 #: ../gramps/plugins/quickview/filterbyname.py:137
 #: ../gramps/plugins/textreport/indivcomplete.py:268
 #: ../gramps/plugins/textreport/tagreport.py:486
-#: ../gramps/plugins/view/noteview.py:110
-#: ../gramps/plugins/view/view.gpr.py:97
+#: ../gramps/plugins/view/noteview.py:110 ../gramps/plugins/view/view.gpr.py:97
 #: ../gramps/plugins/view/view.gpr.py:105
 #: ../gramps/plugins/webreport/narrativeweb.py:1044
 #: ../gramps/plugins/webreport/narrativeweb.py:1679
@@ -6692,8 +6689,7 @@ msgstr "Notoj"
 #: ../gramps/plugins/textreport/tagreport.py:555
 #: ../gramps/plugins/tool/reorderids.glade:743
 #: ../gramps/plugins/view/mediaview.py:129
-#: ../gramps/plugins/view/view.gpr.py:82
-#: ../gramps/plugins/view/view.gpr.py:90
+#: ../gramps/plugins/view/view.gpr.py:82 ../gramps/plugins/view/view.gpr.py:90
 #: ../gramps/plugins/webreport/narrativeweb.py:1925
 #: ../gramps/plugins/webreport/narrativeweb.py:1991
 #: ../gramps/plugins/webreport/narrativeweb.py:2060
@@ -6736,7 +6732,7 @@ msgstr "Laste modifita"
 #: ../gramps/plugins/view/eventview.py:88
 #: ../gramps/plugins/view/familyview.py:85
 #: ../gramps/plugins/view/mediaview.py:100
-#: ../gramps/plugins/view/noteview.py:83 ../gramps/plugins/view/repoview.py:98
+#: ../gramps/plugins/view/noteview.py:83 ../gramps/plugins/view/repoview.py:98
 #: ../gramps/plugins/view/sourceview.py:88
 msgid "Tags"
 msgstr "Etikedoj"
@@ -6788,17 +6784,17 @@ msgstr "Etikedoj"
 #: ../gramps/plugins/view/citationtreeview.py:97
 #: ../gramps/plugins/view/eventview.py:87
 #: ../gramps/plugins/view/familyview.py:84
-#: ../gramps/plugins/view/mediaview.py:99
-#: ../gramps/plugins/view/noteview.py:82 ../gramps/plugins/view/repoview.py:97
+#: ../gramps/plugins/view/mediaview.py:99 ../gramps/plugins/view/noteview.py:82
+#: ../gramps/plugins/view/repoview.py:97
 #: ../gramps/plugins/view/sourceview.py:87
 msgid "Private"
 msgstr "Privata"
 
 #. -------------------------------------------------------------------------
-#. 
+#.
 #. Short hand function to return either the person's name, or an empty
 #. string if the person is None
-#. 
+#.
 #. -------------------------------------------------------------------------
 #: ../gramps/gen/lib/date.py:274 ../gramps/gen/lib/date.py:422
 #: ../gramps/gen/mime/_pythonmime.py:48 ../gramps/gen/mime/_pythonmime.py:56
@@ -7082,8 +7078,7 @@ msgstr "Viveventoj"
 #: ../gramps/gui/clipboard.py:771 ../gramps/gui/configure.py:537
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
-#: ../gramps/gui/editors/editfamily.py:499
-#: ../gramps/gui/editors/editlink.py:93
+#: ../gramps/gui/editors/editfamily.py:499 ../gramps/gui/editors/editlink.py:93
 #: ../gramps/gui/editors/filtereditor.py:294
 #: ../gramps/gui/glade/editldsord.glade:267 ../gramps/gui/viewmanager.py:604
 #: ../gramps/plugins/export/exportcsv.py:506
@@ -7320,9 +7315,9 @@ msgstr "Alternativa geedziĝo"
 
 #. cm2pt = utils.cm2pt
 #. ------------------------------------------------------------------------
-#. 
+#.
 #. Constants
-#. 
+#.
 #. ------------------------------------------------------------------------
 #: ../gramps/gen/lib/eventtype.py:211
 #: ../gramps/plugins/drawreport/ancestortree.py:61
@@ -7580,8 +7575,7 @@ msgstr "Gefiloj"
 #: ../gramps/plugins/quickview/filterbyname.py:122
 #: ../gramps/plugins/textreport/tagreport.py:322
 #: ../gramps/plugins/view/eventview.py:119
-#: ../gramps/plugins/view/view.gpr.py:37
-#: ../gramps/plugins/view/view.gpr.py:45
+#: ../gramps/plugins/view/view.gpr.py:37 ../gramps/plugins/view/view.gpr.py:45
 #: ../gramps/plugins/webreport/narrativeweb.py:1921
 #: ../gramps/plugins/webreport/narrativeweb.py:1988
 #: ../gramps/plugins/webreport/narrativeweb.py:2050
@@ -7661,8 +7655,8 @@ msgstr "Geedzo"
 #: ../gramps/plugins/tool/patchnames.py:407
 #: ../gramps/plugins/tool/sortevents.py:55
 #: ../gramps/plugins/view/eventview.py:84
-#: ../gramps/plugins/view/mediaview.py:96
-#: ../gramps/plugins/view/noteview.py:81 ../gramps/plugins/view/repoview.py:87
+#: ../gramps/plugins/view/mediaview.py:96 ../gramps/plugins/view/noteview.py:81
+#: ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/webreport/narrativeweb.py:1351
 #: ../gramps/plugins/webreport/narrativeweb.py:1677
 #: ../gramps/plugins/webreport/narrativeweb.py:2503
@@ -8134,16 +8128,16 @@ msgstr "Gefila referencnoto"
 
 #. 4
 #. ------------------------------------------------------------------------
-#. 
+#.
 #. References
-#. 
+#.
 #. ------------------------------------------------------------------------
 #. functions for the actual quickreports
 #: ../gramps/gen/lib/person.py:173 ../gramps/gui/clipboard.py:743
 #: ../gramps/gui/configure.py:535 ../gramps/gui/editors/editlink.py:96
 #: ../gramps/gui/editors/filtereditor.py:293
-#: ../gramps/gui/glade/editpersonref.glade:211
-#: ../gramps/gui/viewmanager.py:602 ../gramps/plugins/export/exportcsv.py:354
+#: ../gramps/gui/glade/editpersonref.glade:211 ../gramps/gui/viewmanager.py:602
+#: ../gramps/plugins/export/exportcsv.py:354
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:107
 #: ../gramps/plugins/importer/importcsv.py:208
 #: ../gramps/plugins/quickview/ageondate.py:54
@@ -8203,8 +8197,7 @@ msgstr "Naskreferenca indekso"
 msgid "Event references"
 msgstr "Eventreferencoj"
 
-#: ../gramps/gen/lib/person.py:199
-#: ../gramps/plugins/graph/gvfamilylines.py:285
+#: ../gramps/gen/lib/person.py:199 ../gramps/plugins/graph/gvfamilylines.py:285
 #: ../gramps/plugins/graph/gvhourglass.py:379
 #: ../gramps/plugins/graph/gvrelgraph.py:894
 #: ../gramps/plugins/quickview/filterbyname.py:94
@@ -8500,8 +8493,7 @@ msgstr "Publikaĵaj informoj"
 msgid "Abbreviation"
 msgstr "Mallongigo"
 
-#: ../gramps/gen/lib/src.py:127
-#: ../gramps/plugins/quickview/filterbyname.py:106
+#: ../gramps/gen/lib/src.py:127 ../gramps/plugins/quickview/filterbyname.py:106
 #: ../gramps/plugins/quickview/filterbyname.py:131
 #: ../gramps/plugins/textreport/tagreport.py:639
 #: ../gramps/plugins/view/repoview.py:129
@@ -8749,8 +8741,7 @@ msgstr "Kunfandu familion"
 msgid "Merge Media Objects"
 msgstr "Kunfandu aŭdvideajn objektojn"
 
-#: ../gramps/gen/merge/mergenotequery.py:58
-#: ../gramps/gui/merge/mergenote.py:66
+#: ../gramps/gen/merge/mergenotequery.py:58 ../gramps/gui/merge/mergenote.py:66
 msgid "Merge Notes"
 msgstr "Kunfandu notojn"
 
@@ -8786,9 +8777,9 @@ msgid "Gramplet %s caused an error"
 msgstr "Gramplet %s kaŭzis eraron"
 
 #. -------------------------------------------------------------------------
-#. 
+#.
 #. Constants
-#. 
+#.
 #. -------------------------------------------------------------------------
 #: ../gramps/gen/plug/_manager.py:61
 msgid "No description was provided"
@@ -8943,8 +8934,7 @@ msgstr "La dosiero %s estas jam malfermita, unue fermu ĝin"
 #: ../gramps/plugins/docgen/cairodoc.py:193
 #: ../gramps/plugins/docgen/odfdoc.py:1154
 #: ../gramps/plugins/docgen/odfdoc.py:1157
-#: ../gramps/plugins/docgen/rtfdoc.py:93
-#: ../gramps/plugins/docgen/rtfdoc.py:96
+#: ../gramps/plugins/docgen/rtfdoc.py:93 ../gramps/plugins/docgen/rtfdoc.py:96
 #: ../gramps/plugins/docgen/svgdrawdoc.py:89
 #: ../gramps/plugins/docgen/svgdrawdoc.py:91
 #: ../gramps/plugins/export/exportcsv.py:261
@@ -8966,9 +8956,9 @@ msgid "Could not create %s"
 msgstr "Ne eblis krei %s"
 
 #. -------------------------------------------------------------------------------
-#. 
+#.
 #. Private Constants
-#. 
+#.
 #. -------------------------------------------------------------------------------
 #: ../gramps/gen/plug/docgen/graphdoc.py:65
 #: ../gramps/gen/plug/report/stdoptions.py:59
@@ -9332,13 +9322,12 @@ msgid "Valid values: "
 msgstr "Validaj valoroj:"
 
 #. ------------------------------------------------------------------------
-#. 
+#.
 #. Private Constants
-#. 
+#.
 #. ------------------------------------------------------------------------
 #: ../gramps/gen/plug/report/_book.py:71 ../gramps/gui/plug/_dialogs.py:59
-#: ../gramps/gui/plug/report/_bookdialog.py:84
-#: ../gramps/gui/viewmanager.py:119
+#: ../gramps/gui/plug/report/_bookdialog.py:84 ../gramps/gui/viewmanager.py:119
 msgid "Unsupported"
 msgstr "Nesubtenata"
 
@@ -9437,8 +9426,7 @@ msgstr "Finaj notoj"
 #: ../gramps/plugins/view/relview.py:614 ../gramps/plugins/view/relview.py:631
 #: ../gramps/plugins/view/relview.py:641 ../gramps/plugins/view/relview.py:646
 #: ../gramps/plugins/view/relview.py:654 ../gramps/plugins/view/relview.py:862
-#: ../gramps/plugins/view/relview.py:898
-#: ../gramps/plugins/view/relview.py:1378
+#: ../gramps/plugins/view/relview.py:898 ../gramps/plugins/view/relview.py:1378
 #: ../gramps/plugins/view/relview.py:1402
 #, python-format
 msgid "%s:"
@@ -9608,18 +9596,15 @@ msgstr "Prauloj de %s"
 msgid "People with common ancestor with %s"
 msgstr "Personoj havantaj komunan praulon kun %s"
 
-#: ../gramps/gen/plug/report/utils.py:354
-#: ../gramps/gui/plug/_guioptions.py:891
+#: ../gramps/gen/plug/report/utils.py:354 ../gramps/gui/plug/_guioptions.py:891
 msgid "unknown father"
 msgstr "nekonata patro"
 
-#: ../gramps/gen/plug/report/utils.py:360
-#: ../gramps/gui/plug/_guioptions.py:897
+#: ../gramps/gen/plug/report/utils.py:360 ../gramps/gui/plug/_guioptions.py:897
 msgid "unknown mother"
 msgstr "nekonata patrino"
 
-#: ../gramps/gen/plug/report/utils.py:362
-#: ../gramps/gui/plug/_guioptions.py:899
+#: ../gramps/gen/plug/report/utils.py:362 ../gramps/gui/plug/_guioptions.py:899
 #, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
 msgstr "%(father_name)s kaj %(mother_name)s (%(family_id)s)"
@@ -9860,13 +9845,11 @@ msgstr ""
 "La tradukilo por la familiaj parencecoj ne disponeblas por la lingvo '%s'. "
 "Oni antataŭas per la angla."
 
-#: ../gramps/gen/utils/alive.py:148
-#: ../gramps/plugins/importer/importcsv.py:201
+#: ../gramps/gen/utils/alive.py:148 ../gramps/plugins/importer/importcsv.py:201
 msgid "death date"
 msgstr "mortodato"
 
-#: ../gramps/gen/utils/alive.py:153
-#: ../gramps/plugins/importer/importcsv.py:177
+#: ../gramps/gen/utils/alive.py:153 ../gramps/plugins/importer/importcsv.py:177
 msgid "birth date"
 msgstr "naskiĝdato"
 
@@ -10684,9 +10667,8 @@ msgstr "Montru nomredaktilon"
 #: ../gramps/gui/glade/displaystate.glade:23
 #: ../gramps/gui/glade/plugins.glade:22 ../gramps/gui/glade/rule.glade:24
 #: ../gramps/gui/glade/rule.glade:1024 ../gramps/gui/glade/tipofday.glade:117
-#: ../gramps/gui/glade/updateaddons.glade:25
-#: ../gramps/gui/plug/_windows.py:105 ../gramps/gui/plug/_windows.py:691
-#: ../gramps/gui/plug/_windows.py:747
+#: ../gramps/gui/glade/updateaddons.glade:25 ../gramps/gui/plug/_windows.py:105
+#: ../gramps/gui/plug/_windows.py:691 ../gramps/gui/plug/_windows.py:747
 #: ../gramps/gui/plug/quick/_textbufdoc.py:60 ../gramps/gui/undohistory.py:90
 #: ../gramps/gui/viewmanager.py:538 ../gramps/gui/viewmanager.py:1821
 #: ../gramps/gui/views/bookmarks.py:287 ../gramps/gui/views/tags.py:430
@@ -10958,7 +10940,7 @@ msgstr "Ekzemplo"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:115
 #: ../gramps/gui/editors/editfamily.py:148
 #: ../gramps/gui/plug/report/_bookdialog.py:653
-#: ../gramps/gui/viewmanager.py:600 ../gramps/gui/views/tags.py:422
+#: ../gramps/gui/viewmanager.py:600 ../gramps/gui/views/tags.py:422
 #: ../gramps/gui/widgets/fanchart.py:1712
 #: ../gramps/gui/widgets/fanchart.py:1754
 #: ../gramps/plugins/view/pedigreeview.py:1627
@@ -10975,7 +10957,7 @@ msgstr "_Aldonu"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:116
 #: ../gramps/gui/glade/editlink.glade:222
 #: ../gramps/gui/plug/report/_bookdialog.py:627
-#: ../gramps/gui/viewmanager.py:513 ../gramps/gui/views/tags.py:423
+#: ../gramps/gui/viewmanager.py:513 ../gramps/gui/views/tags.py:423
 #: ../gramps/gui/widgets/fanchart.py:1511
 #: ../gramps/plugins/view/pedigreeview.py:1662
 #: ../gramps/plugins/view/pedigreeview.py:1890
@@ -11001,7 +10983,7 @@ msgstr "_Forigu"
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:516 ../gramps/gui/glade/rule.glade:463
 #: ../gramps/gui/glade/styleeditor.glade:1871
-#: ../gramps/gui/plug/_windows.py:152 ../gramps/gui/plug/_windows.py:207
+#: ../gramps/gui/plug/_windows.py:152 ../gramps/gui/plug/_windows.py:207
 #: ../gramps/plugins/gramplet/coordinates.py:142
 #: ../gramps/plugins/gramplet/descendant.py:110
 msgid "Edit"
@@ -11373,8 +11355,7 @@ msgstr "Elektu aŭdvidaĵan dosierujon"
 #: ../gramps/gui/glade/editattribute.glade:21
 #: ../gramps/gui/glade/editchildref.glade:22
 #: ../gramps/gui/glade/editcitation.glade:42
-#: ../gramps/gui/glade/editdate.glade:69
-#: ../gramps/gui/glade/editevent.glade:21
+#: ../gramps/gui/glade/editdate.glade:69 ../gramps/gui/glade/editevent.glade:21
 #: ../gramps/gui/glade/editeventref.glade:38
 #: ../gramps/gui/glade/editfamily.glade:21
 #: ../gramps/gui/glade/editldsord.glade:39
@@ -11390,8 +11371,7 @@ msgstr "Elektu aŭdvidaĵan dosierujon"
 #: ../gramps/gui/glade/editplaceref.glade:38
 #: ../gramps/gui/glade/editreporef.glade:22
 #: ../gramps/gui/glade/editrepository.glade:22
-#: ../gramps/gui/glade/editsource.glade:23
-#: ../gramps/gui/glade/editurl.glade:21
+#: ../gramps/gui/glade/editsource.glade:23 ../gramps/gui/glade/editurl.glade:21
 #: ../gramps/gui/glade/mergecitation.glade:21
 #: ../gramps/gui/glade/mergedata.glade:25
 #: ../gramps/gui/glade/mergedata.glade:246
@@ -11405,9 +11385,8 @@ msgstr "Elektu aŭdvidaĵan dosierujon"
 #: ../gramps/gui/glade/mergeplace.glade:21
 #: ../gramps/gui/glade/mergerepository.glade:21
 #: ../gramps/gui/glade/mergesource.glade:21
-#: ../gramps/gui/glade/reorder.glade:22 ../gramps/gui/glade/rule.glade:316
-#: ../gramps/gui/glade/rule.glade:747
-#: ../gramps/gui/glade/styleeditor.glade:86
+#: ../gramps/gui/glade/reorder.glade:22 ../gramps/gui/glade/rule.glade:316
+#: ../gramps/gui/glade/rule.glade:747 ../gramps/gui/glade/styleeditor.glade:86
 #: ../gramps/gui/glade/styleeditor.glade:1721
 #: ../gramps/gui/logger/_errorview.py:168 ../gramps/gui/plug/_guioptions.py:78
 #: ../gramps/gui/plug/_guioptions.py:1738 ../gramps/gui/plug/_windows.py:440
@@ -11578,15 +11557,13 @@ msgstr "Informoj pri la datumbazo"
 
 #: ../gramps/gui/dbman.py:121 ../gramps/gui/editors/edittaglist.py:120
 #: ../gramps/gui/glade/addmedia.glade:38
-#: ../gramps/gui/glade/baseselector.glade:40
-#: ../gramps/gui/glade/book.glade:482 ../gramps/gui/glade/book.glade:555
-#: ../gramps/gui/glade/configure.glade:39 ../gramps/gui/glade/dbman.glade:24
-#: ../gramps/gui/glade/editaddress.glade:36
+#: ../gramps/gui/glade/baseselector.glade:40 ../gramps/gui/glade/book.glade:482
+#: ../gramps/gui/glade/book.glade:555 ../gramps/gui/glade/configure.glade:39
+#: ../gramps/gui/glade/dbman.glade:24 ../gramps/gui/glade/editaddress.glade:36
 #: ../gramps/gui/glade/editattribute.glade:37
 #: ../gramps/gui/glade/editchildref.glade:38
 #: ../gramps/gui/glade/editcitation.glade:57
-#: ../gramps/gui/glade/editdate.glade:85
-#: ../gramps/gui/glade/editevent.glade:40
+#: ../gramps/gui/glade/editdate.glade:85 ../gramps/gui/glade/editevent.glade:40
 #: ../gramps/gui/glade/editeventref.glade:54
 #: ../gramps/gui/glade/editfamily.glade:40
 #: ../gramps/gui/glade/editldsord.glade:55
@@ -11602,8 +11579,7 @@ msgstr "Informoj pri la datumbazo"
 #: ../gramps/gui/glade/editplaceref.glade:54
 #: ../gramps/gui/glade/editreporef.glade:41
 #: ../gramps/gui/glade/editrepository.glade:40
-#: ../gramps/gui/glade/editsource.glade:40
-#: ../gramps/gui/glade/editurl.glade:37
+#: ../gramps/gui/glade/editsource.glade:40 ../gramps/gui/glade/editurl.glade:37
 #: ../gramps/gui/glade/mergecitation.glade:37
 #: ../gramps/gui/glade/mergedata.glade:262
 #: ../gramps/gui/glade/mergedata.glade:451
@@ -11616,15 +11592,13 @@ msgstr "Informoj pri la datumbazo"
 #: ../gramps/gui/glade/mergeplace.glade:36
 #: ../gramps/gui/glade/mergerepository.glade:37
 #: ../gramps/gui/glade/mergesource.glade:37
-#: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
-#: ../gramps/gui/glade/rule.glade:764
-#: ../gramps/gui/glade/styleeditor.glade:103
+#: ../gramps/gui/glade/reorder.glade:38 ../gramps/gui/glade/rule.glade:333
+#: ../gramps/gui/glade/rule.glade:764 ../gramps/gui/glade/styleeditor.glade:103
 #: ../gramps/gui/glade/styleeditor.glade:1738
 #: ../gramps/gui/plug/_guioptions.py:79
 #: ../gramps/gui/plug/report/_reportdialog.py:165 ../gramps/gui/utils.py:192
 #: ../gramps/gui/viewmanager.py:1823 ../gramps/gui/views/tags.py:646
-#: ../gramps/plugins/tool/check.py:764
-#: ../gramps/plugins/tool/patchnames.py:118
+#: ../gramps/plugins/tool/check.py:764 ../gramps/plugins/tool/patchnames.py:118
 #: ../gramps/plugins/tool/populatesources.py:91
 #: ../gramps/plugins/tool/testcasegenerator.py:328
 msgid "_OK"
@@ -12110,15 +12084,13 @@ msgstr "_Atributoj"
 #: ../gramps/plugins/tool/notrelated.py:127
 #: ../gramps/plugins/tool/patchnames.py:404
 #: ../gramps/plugins/tool/removeunused.py:195
-#: ../gramps/plugins/tool/sortevents.py:56
-#: ../gramps/plugins/tool/verify.py:571
+#: ../gramps/plugins/tool/sortevents.py:56 ../gramps/plugins/tool/verify.py:571
 #: ../gramps/plugins/view/citationlistview.py:99
 #: ../gramps/plugins/view/citationtreeview.py:94
 #: ../gramps/plugins/view/eventview.py:83
 #: ../gramps/plugins/view/familyview.py:79
-#: ../gramps/plugins/view/mediaview.py:95
-#: ../gramps/plugins/view/noteview.py:80 ../gramps/plugins/view/relview.py:602
-#: ../gramps/plugins/view/repoview.py:86
+#: ../gramps/plugins/view/mediaview.py:95 ../gramps/plugins/view/noteview.py:80
+#: ../gramps/plugins/view/relview.py:602 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/view/sourceview.py:83
 msgid "ID"
 msgstr "ID"
@@ -12157,7 +12129,7 @@ msgstr "Aldonu"
 #: ../gramps/gui/glade/editfamily.glade:563
 #: ../gramps/gui/glade/grampletpane.glade:104
 #: ../gramps/gui/glade/grampletpane.glade:111
-#: ../gramps/gui/glade/rule.glade:490 ../gramps/gui/glade/rule.glade:497
+#: ../gramps/gui/glade/rule.glade:490 ../gramps/gui/glade/rule.glade:497
 #: ../gramps/gui/glade/styleeditor.glade:1896
 #: ../gramps/gui/glade/styleeditor.glade:1903
 msgid "Remove"
@@ -12424,9 +12396,9 @@ msgid "Set as default name"
 msgstr "Agordu kiel defaŭltan nomon"
 
 #. -------------------------------------------------------------------------
-#. 
+#.
 #. NameModel
-#. 
+#.
 #. -------------------------------------------------------------------------
 #: ../gramps/gui/editors/displaytabs/namemodel.py:56
 #: ../gramps/gui/plug/_guioptions.py:1252 ../gramps/gui/views/tags.py:496
@@ -13532,8 +13504,7 @@ msgid "Add Person (%s)"
 msgstr "Aldonu personon (%s)"
 
 #: ../gramps/gui/editors/editperson.py:866
-#: ../gramps/plugins/view/relview.py:580
-#: ../gramps/plugins/view/relview.py:1002
+#: ../gramps/plugins/view/relview.py:580 ../gramps/plugins/view/relview.py:1002
 #: ../gramps/plugins/view/relview.py:1059
 #: ../gramps/plugins/view/relview.py:1183
 #: ../gramps/plugins/view/relview.py:1288
@@ -13591,8 +13562,7 @@ msgid "manual|Place_Editor_dialog"
 msgstr "Lokredaktila_dialogo"
 
 #: ../gramps/gui/editors/editplace.py:91
-#: ../gramps/gui/glade/editplace.glade:354
-#: ../gramps/gui/merge/mergeplace.py:55
+#: ../gramps/gui/glade/editplace.glade:354 ../gramps/gui/merge/mergeplace.py:55
 msgid "place|Name:"
 msgstr "Loknomo:"
 
@@ -13832,8 +13802,7 @@ msgstr "Etiked-elekto"
 #: ../gramps/gui/glade/editattribute.glade:54
 #: ../gramps/gui/glade/editchildref.glade:58
 #: ../gramps/gui/glade/editcitation.glade:27
-#: ../gramps/gui/glade/editdate.glade:53
-#: ../gramps/gui/glade/editevent.glade:58
+#: ../gramps/gui/glade/editdate.glade:53 ../gramps/gui/glade/editevent.glade:58
 #: ../gramps/gui/glade/editeventref.glade:22
 #: ../gramps/gui/glade/editfamily.glade:60
 #: ../gramps/gui/glade/editldsord.glade:75
@@ -13849,8 +13818,7 @@ msgstr "Etiked-elekto"
 #: ../gramps/gui/glade/editplaceref.glade:22
 #: ../gramps/gui/glade/editreporef.glade:61
 #: ../gramps/gui/glade/editrepository.glade:59
-#: ../gramps/gui/glade/editsource.glade:58
-#: ../gramps/gui/glade/editurl.glade:57
+#: ../gramps/gui/glade/editsource.glade:58 ../gramps/gui/glade/editurl.glade:57
 #: ../gramps/gui/glade/mergecitation.glade:53
 #: ../gramps/gui/glade/mergedata.glade:77
 #: ../gramps/gui/glade/mergedata.glade:278
@@ -13864,8 +13832,8 @@ msgstr "Etiked-elekto"
 #: ../gramps/gui/glade/mergeplace.glade:51
 #: ../gramps/gui/glade/mergerepository.glade:53
 #: ../gramps/gui/glade/mergesource.glade:53
-#: ../gramps/gui/glade/reorder.glade:54 ../gramps/gui/glade/rule.glade:41
-#: ../gramps/gui/glade/rule.glade:351 ../gramps/gui/glade/rule.glade:781
+#: ../gramps/gui/glade/reorder.glade:54 ../gramps/gui/glade/rule.glade:41
+#: ../gramps/gui/glade/rule.glade:351 ../gramps/gui/glade/rule.glade:781
 #: ../gramps/gui/logger/_errorview.py:170
 #: ../gramps/gui/plug/report/_reportdialog.py:158
 #: ../gramps/gui/undohistory.py:82 ../gramps/gui/viewmanager.py:516
@@ -14033,8 +14001,7 @@ msgid "Rule Name"
 msgstr "Regulnomo"
 
 #: ../gramps/gui/editors/filtereditor.py:758
-#: ../gramps/gui/editors/filtereditor.py:762
-#: ../gramps/gui/glade/rule.glade:914
+#: ../gramps/gui/editors/filtereditor.py:762 ../gramps/gui/glade/rule.glade:914
 msgid "No rule selected"
 msgstr "Neniu regulo elektita"
 
@@ -14042,8 +14009,7 @@ msgstr "Neniu regulo elektita"
 msgid "Define filter"
 msgstr "Difinu filtrilon"
 
-#: ../gramps/gui/editors/filtereditor.py:820
-#: ../gramps/gui/glade/rule.glade:967
+#: ../gramps/gui/editors/filtereditor.py:820 ../gramps/gui/glade/rule.glade:967
 msgid "Values"
 msgstr "Valoroj"
 
@@ -14194,7 +14160,7 @@ msgid "_Find"
 msgstr "_Trovu"
 
 #: ../gramps/gui/filters/_searchbar.py:57
-#: ../gramps/gui/glade/clipboard.glade:54 ../gramps/gui/undohistory.py:88
+#: ../gramps/gui/glade/clipboard.glade:54 ../gramps/gui/undohistory.py:88
 msgid "_Clear"
 msgstr "_Purigu"
 
@@ -14218,8 +14184,8 @@ msgstr "%s ne estas"
 msgid "%s does not contain"
 msgstr "%s ne entenas"
 
-#: ../gramps/gui/filters/_searchbar.py:168
-#: ../gramps/gui/views/listview.py:1153 ../gramps/gui/views/listview.py:1173
+#: ../gramps/gui/filters/_searchbar.py:168 ../gramps/gui/views/listview.py:1153
+#: ../gramps/gui/views/listview.py:1173
 msgid "Updating display..."
 msgstr "Aktualigas la vidigon..."
 
@@ -14567,14 +14533,13 @@ msgstr "Gramps-Avertoj"
 #: ../gramps/gui/glade/editevent.glade:47
 #: ../gramps/gui/glade/editfamily.glade:49
 #: ../gramps/gui/glade/editldsord.glade:64
-#: ../gramps/gui/glade/editlink.glade:47 ../gramps/gui/glade/editname.glade:48
+#: ../gramps/gui/glade/editlink.glade:47 ../gramps/gui/glade/editname.glade:48
 #: ../gramps/gui/glade/editperson.glade:70
 #: ../gramps/gui/glade/editpersonref.glade:46
 #: ../gramps/gui/glade/editplacename.glade:44
 #: ../gramps/gui/glade/editreporef.glade:50
 #: ../gramps/gui/glade/editrepository.glade:48
-#: ../gramps/gui/glade/editsource.glade:46
-#: ../gramps/gui/glade/editurl.glade:46
+#: ../gramps/gui/glade/editsource.glade:46 ../gramps/gui/glade/editurl.glade:46
 msgid "Accept changes and close window"
 msgstr "Akceptu ŝanĝojn kaj fermu la fenestron"
 
@@ -16017,8 +15982,7 @@ msgid "Note 2"
 msgstr "Noto 2"
 
 #: ../gramps/gui/glade/mergenote.glade:278
-#: ../gramps/gui/glade/mergenote.glade:294
-#: ../gramps/gui/views/listview.py:1027
+#: ../gramps/gui/glade/mergenote.glade:294 ../gramps/gui/views/listview.py:1027
 msgid "Format:"
 msgstr "Formo:"
 
@@ -16276,8 +16240,7 @@ msgstr "Redaktu la elektitan regulon"
 msgid "Delete the selected rule"
 msgstr "Forigu la elektitan regulon"
 
-#: ../gramps/gui/glade/rule.glade:521
-#: ../gramps/gui/glade/styleeditor.glade:403
+#: ../gramps/gui/glade/rule.glade:521 ../gramps/gui/glade/styleeditor.glade:403
 #: ../gramps/plugins/tool/finddupes.glade:132
 #: ../gramps/plugins/tool/mergecitations.glade:132
 #: ../gramps/plugins/tool/sortevents.py:82
@@ -17956,7 +17919,7 @@ msgstr ""
 "Elektu alian dosierujon aŭ krei ĝin."
 
 #: ../gramps/gui/plug/report/_reportdialog.py:664
-#: ../gramps/gui/plug/tool.py:136 ../gramps/plugins/tool/relcalc.py:150
+#: ../gramps/gui/plug/tool.py:136 ../gramps/plugins/tool/relcalc.py:150
 msgid "Active person has not been set"
 msgstr "Ne estis agordita la aktivan personon"
 
@@ -18156,9 +18119,9 @@ msgid "Select Repository"
 msgstr "Elektu deponejon"
 
 #. -------------------------------------------------------------------------
-#. 
+#.
 #. Constants
-#. 
+#.
 #. -------------------------------------------------------------------------
 #. FIXME
 #: ../gramps/gui/selectors/selectsource.py:46
@@ -18724,8 +18687,7 @@ msgstr ""
 "Ĉi tiu fonto estas daŭre utiligata. Ĝia forigo forprenos ĝin el la datumbazo "
 "kaj el ĉiuj aliaj rikordoj kiuj referencas ĝin."
 
-#: ../gramps/gui/views/listview.py:565
-#: ../gramps/plugins/view/familyview.py:267
+#: ../gramps/gui/views/listview.py:565 ../gramps/plugins/view/familyview.py:267
 msgid "Deleting item will remove it from the database."
 msgstr "Forigante la elementon oni forigus ĝin ankaŭ el la datumbazo."
 
@@ -18987,13 +18949,11 @@ msgstr "Etendu ĉi tiun sekcion"
 msgid "Collapse this section"
 msgstr "Maletendu ĉi tiun sekcion"
 
-#: ../gramps/gui/widgets/fanchart.py:1519
-#: ../gramps/plugins/view/relview.py:811
+#: ../gramps/gui/widgets/fanchart.py:1519 ../gramps/plugins/view/relview.py:811
 msgid "Edit family"
 msgstr "Redaktu familion"
 
-#: ../gramps/gui/widgets/fanchart.py:1535
-#: ../gramps/plugins/view/relview.py:812
+#: ../gramps/gui/widgets/fanchart.py:1535 ../gramps/plugins/view/relview.py:812
 msgid "Reorder families"
 msgstr "Reordigu familiojn"
 
@@ -23159,9 +23119,9 @@ msgid "Produces relationship graphs using Graphviz."
 msgstr "Kreas parencecan grafikaĵojn uzante GraphViz."
 
 #. ------------------------------------------------------------------------
-#. 
+#.
 #. Constant options items
-#. 
+#.
 #. ------------------------------------------------------------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:73
 #: ../gramps/plugins/graph/gvhourglass.py:57
@@ -24310,9 +24270,9 @@ msgstr ""
 
 #. feature requests 2356, 1658: avoid genitive form
 #. -------------------------------------------------------------------------
-#. 
+#.
 #. Support functions
-#. 
+#.
 #. -------------------------------------------------------------------------
 #. feature requests 2356, 1658: avoid genitive form
 #: ../gramps/plugins/importer/importxml.py:103
@@ -28480,7 +28440,7 @@ msgstr "Nombro de farotaj notoj"
 #: ../gramps/plugins/view/eventview.py:89
 #: ../gramps/plugins/view/familyview.py:86
 #: ../gramps/plugins/view/mediaview.py:101
-#: ../gramps/plugins/view/noteview.py:84 ../gramps/plugins/view/repoview.py:99
+#: ../gramps/plugins/view/noteview.py:84 ../gramps/plugins/view/repoview.py:99
 #: ../gramps/plugins/view/sourceview.py:89
 msgid "Last Changed"
 msgstr "Laste modifita"
@@ -33237,8 +33197,7 @@ msgstr "Maksimuma nombro de jaroj i_nter gefiloj"
 msgid "Maximum _span of years for all children"
 msgstr "Mak_simuma etendo de jaroj por ĉiuj gefiloj"
 
-#: ../gramps/plugins/tool/verify.glade:985
-#: ../gramps/plugins/tool/verify.py:677
+#: ../gramps/plugins/tool/verify.glade:985 ../gramps/plugins/tool/verify.py:677
 msgid "_Hide marked"
 msgstr "_Kaŝu markitajn"
 
@@ -34545,13 +34504,11 @@ msgstr " (1 fratino)"
 msgid " (only child)"
 msgstr " (nur gefilo)"
 
-#: ../gramps/plugins/view/relview.py:956
-#: ../gramps/plugins/view/relview.py:1452
+#: ../gramps/plugins/view/relview.py:956 ../gramps/plugins/view/relview.py:1452
 msgid "Add new child to family"
 msgstr "Aldonu novan gefilon al familio"
 
-#: ../gramps/plugins/view/relview.py:960
-#: ../gramps/plugins/view/relview.py:1456
+#: ../gramps/plugins/view/relview.py:960 ../gramps/plugins/view/relview.py:1456
 msgid "Add existing child to family"
 msgstr "Aldonu ekzistantan gefilon al familio"
 
@@ -36284,6 +36241,21 @@ msgid "manual|Media_Manager"
 msgstr "Aŭdvidaĵa-administrilo..."
 
 #, fuzzy
+msgid "Add a Family Tree"
+msgstr ""
+"Genealogia Arbo"
+
+#, fuzzy
+msgid "State/Province:"
+msgstr ""
+"Ŝtato/Distrikto:"
+
+#, fuzzy
+msgid "State/County:"
+msgstr ""
+"Urbo/Distrikto:"
+
+#, fuzzy
 #~ msgid "   %(item)s: %(summary)s"
 #~ msgstr "%(type)s: %(list)s"
 
@@ -36728,10 +36700,6 @@ msgstr "Aŭdvidaĵa-administrilo..."
 
 #~ msgid "Constructing column data"
 #~ msgstr "Konstruas kolumnodatumojn"
-
-#, fuzzy
-#~ msgid "Add a Family Tree"
-#~ msgstr "Genealogia arbo"
 
 #~ msgid "Metadata Viewer"
 #~ msgstr "Metadatuma vidigilo"
@@ -37734,9 +37702,6 @@ msgstr "Aŭdvidaĵa-administrilo..."
 #, fuzzy
 #~ msgid "window1"
 #~ msgstr "Fermu la fenestron"
-
-#~ msgid "State/Province:"
-#~ msgstr "Ŝtato/distrikto:"
 
 #~ msgid "ZIP/Postal code:"
 #~ msgstr "Poŝtkodo:"
@@ -38922,7 +38887,3 @@ msgstr "Aŭdvidaĵa-administrilo..."
 #, fuzzy
 #~ msgid "Top:"
 #~ msgstr "_Supra"
-
-#, fuzzy
-#~ msgid "State/County:"
-#~ msgstr "Urbo/distrikto:"

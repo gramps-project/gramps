@@ -11438,7 +11438,6 @@ msgstr "Utklippstavle"
 msgid "the object|See %s details"
 msgstr "Sjå %s detaljar"
 
-#. ---------------------------
 #: ../gramps/gui/clipboard.py:1525 ../gramps/gui/plug/quick/_quicktable.py:149
 #: ../gramps/gui/clipboard.py:1529
 #, python-format
@@ -34687,6 +34686,7 @@ msgstr ""
 msgid "manual|Reorder_Gramps_ID"
 msgstr "Reorganiserar_Gramps-IDar"
 
+#. self.top.set_icon(ICON)
 #: ../gramps/plugins/tool/reorderids.py:203
 #: ../gramps/plugins/tool/reorderids.py:422
 #: ../gramps/plugins/tool/reorderids.py:514

@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps50\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-30 18:30+0300\n"
-"PO-Revision-Date: 2018-06-30 18:40+0300\n"
+"POT-Creation-Date: 2018-12-04 14:34+0300\n"
+"PO-Revision-Date: 2018-12-04 15:57+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -22039,6 +22039,8 @@ msgstr "Отсутствует (главная) фамилия"
 msgid "Gender unknown"
 msgstr "Пол неизвестен"
 
+# Предположение
+# !!!FIXME!!!
 #. localized year
 #. inadequate information
 #: ../gramps/plugins/drawreport/statisticschart.py:425

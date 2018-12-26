@@ -2,14 +2,15 @@
 # This file is distributed under the same license as the Gramps package.
 # Copyright (C) Gramps project
 # josip <josip@pisoj.com>, 2008-2011.
+# mivir <mivir@milotype.de>, 2018.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps 4.2\n"
+"Project-Id-Version: Gramps 5.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-20 09:31-0500\n"
-"PO-Revision-Date: 2015-07-13 23:42+0100\n"
-"Last-Translator: josip <josip@pisoj.com>\n"
+"POT-Creation-Date: 2018-07-24 14:13+0100\n"
+"PO-Revision-Date: 2018-12-16 17:10+0100\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -18,10 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: C:\\msys32.old\\home\\jole\\Gramps\\po\n"
-"X-Generator: Poedit 1.7.5\n"
-"X-Poedit-SearchPath-0: C:\\msys32.old\\home\\jole\\Gramps\n"
-"X-Poedit-SearchPath-1: C:\\msys32.old\\home\\jole\\Gramps\\gramps\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 2.2\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""

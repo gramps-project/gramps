@@ -6,15 +6,14 @@
 # Egyeki Gergely <egeri@elte.hu>, 2003, 2004.
 # Arpad Horvath <horvath.arpad@szgti.bmf.hu>, 2006.
 # Kolesár András <translation@kolesar.hu>, 2009.
-# Lajos Nemeséri <nemeseril@gmail.com>, 2016.
 # Nemeséri Lajos <nemeseril@gmail.com>,2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: GRAMPS 4.2.X\n"
+"Project-Id-Version: GRAMPS 5.0.X\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-20 09:31-0500\n"
-"PO-Revision-Date: 2018-07-07 09:28+0200\n"
+"POT-Creation-Date: 2018-07-24 14:13+0100\n"
+"PO-Revision-Date: 2018-12-20 13:49+0100\n"
 "Last-Translator: Nemeséri Lajos <nemeseril@gmail.com>\n"
 "Language-Team: magyar <>\n"
 "Language: hu\n"

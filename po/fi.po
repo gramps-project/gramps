@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-24 14:13+0100\n"
-"PO-Revision-Date: 2018-08-08 14:40+0300\n"
+"POT-Creation-Date: 2018-11-29 06:08+0200\n"
+"PO-Revision-Date: 2018-11-29 06:48+0200\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -3388,7 +3388,6 @@ msgid "Schema version"
 msgstr "Skeema versio"
 
 #. translators: needed for Arabic, ignore otherwise
-#. need for spacing on the french translation
 #: ../gramps/gen/display/name.py:349
 #: ../gramps/gui/views/treemodels/placemodel.py:131
 #: ../gramps/plugins/lib/libtreebase.py:707

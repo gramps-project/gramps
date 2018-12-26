@@ -14961,7 +14961,6 @@ msgstr "oznaka"
 msgid "Close _without saving"
 msgstr "Zapri _brez shranjevanja"
 
-#. widget
 #: ../gramps/gui/glade/dialog.glade:859
 #: ../gramps/gui/plug/report/_bookdialog.py:625
 #: ../gramps/gui/views/listview.py:1047
