@@ -38,7 +38,7 @@
 # matches: matcher (fremfor det tidligere 'passer med')
 # locale: landestandard (i mangel af bedre)
 #
-# Kaj Mikkelsen <kmi@vgdata.dk>, 2016, 2017., 2018.
+# Kaj Mikkelsen <kmi@vgdata.dk>, 2016, 2017, 2018.
 #
 msgid ""
 msgstr ""
