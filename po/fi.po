@@ -31529,8 +31529,8 @@ msgstr "Haetaan mahdollinen silmukka jokaiselle henkilölle"
 
 # WIKI_HELP_SEC tools
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr "Median_hallinta..."
+msgid "manual|Media_Manager"
+msgstr "Median_hallinta"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

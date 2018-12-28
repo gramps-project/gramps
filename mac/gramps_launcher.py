@@ -26,10 +26,6 @@ environ['PANGO_SYSCONFDIR'] = bundle_etc
 environ['PANGO_LIBDIR'] = bundle_lib
 environ['GDK_PIXBUF_MODULE_FILE'] = join(bundle_lib, 'gdk-pixbuf-2.0',
                                                 '2.10.0', 'loaders.cache')
-if int(release().split('.')[0]) > 10:
-    environ['GTK_IM_MODULE_FILE'] = join(bundle_etc, 'gtk-3.0',
-                                            'gtk.immodules')
-
 environ['GI_TYPELIB_PATH'] = join(bundle_lib, 'girepository-1.0')
 environ['GVBINDIR'] = join(bundle_lib, 'graphviz')
 environ['ENCHANT_MODULE_PATH'] = join(bundle_lib, 'enchant')

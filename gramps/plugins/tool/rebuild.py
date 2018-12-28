@@ -92,6 +92,7 @@ class Rebuild(tool.Tool, UpdateCallback):
             print("All secondary indexes have been rebuilt.")
 
         self.db.enable_signals()
+        self.db.request_rebuild()
 
 #------------------------------------------------------------------------
 #

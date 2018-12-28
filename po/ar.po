@@ -13638,7 +13638,7 @@ msgstr "محرر الموقع"
 #: ../gramps/gui/editors/editmedia.py:68
 #, fuzzy
 msgid "manual|New_Media_dialog"
-msgstr "manual|Media_Manager..."
+msgstr "manual|Media_Manager"
 
 #: ../gramps/gui/editors/editmedia.py:99
 #: ../gramps/gui/editors/editmediaref.py:409
@@ -32221,8 +32221,8 @@ msgid "Looking for possible loop for each person"
 msgstr "بحث عن {number_of} من الأشخاص"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr "manual|Media_Manager..."
+msgid "manual|Media_Manager"
+msgstr "manual|Media_Manager"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

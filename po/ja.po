@@ -32127,8 +32127,8 @@ msgid "Looking for possible loop for each person"
 msgstr "月 (0 で全て)"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr "メディアマネージャ(_M)..."
+msgid "manual|Media_Manager"
+msgstr "メディアマネージャ(_M)"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

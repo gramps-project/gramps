@@ -33606,7 +33606,7 @@ msgstr "Kërkim i 1 personi"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
 #, fuzzy
-msgid "manual|Media_Manager..."
+msgid "manual|Media_Manager"
 msgstr "Media Menaxher"
 
 #: ../gramps/plugins/tool/mediamanager.py:88

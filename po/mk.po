@@ -33884,8 +33884,8 @@ msgstr "Пребарување на настани со проблеми"
 # медиски?!?!?
 #: ../gramps/plugins/tool/mediamanager.py:68
 #, fuzzy
-msgid "manual|Media_Manager..."
-msgstr "Медиумски управувач"
+msgid "manual|Media_Manager"
+msgstr "Управувач на медиуми"
 
 # медиски?!?!?
 #: ../gramps/plugins/tool/mediamanager.py:88

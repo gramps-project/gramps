@@ -32410,8 +32410,8 @@ msgid "Looking for possible loop for each person"
 msgstr "Tìm trùng lắp có thể có cho cá nhân"
 
 #: ../gramps/plugins/tool/mediamanager.py:68
-msgid "manual|Media_Manager..."
-msgstr "Quản_lý_đa_phương_tiện..."
+msgid "manual|Media_Manager"
+msgstr "Quản_lý_đa_phương_tiện"
 
 #: ../gramps/plugins/tool/mediamanager.py:88
 #: ../gramps/plugins/tool/mediamanager.py:114

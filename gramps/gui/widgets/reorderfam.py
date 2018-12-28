@@ -46,10 +46,22 @@ _LOG = logging.getLogger("gui.widgets.reorderfam")
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.db import DbTxn
+from gramps.gen.const import URL_MANUAL_PAGE
 from ..listmodel import ListModel
+from ..display import display_help
 from ..managedwindow import ManagedWindow
 from ..glade import Glade
 from gramps.gen.display.name import displayer as name_displayer
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+
+WIKI_HELP_PAGE = URL_MANUAL_PAGE + "_-_Categories"
+WIKI_HELP_SEC = _('manual|Reorder_Relationships_dialog')
+
 
 #-------------------------------------------------------------------------
 #
@@ -93,7 +105,8 @@ class Reorder(ManagedWindow):
 
         xml.get_object('ok').connect('clicked', self.ok_clicked)
         xml.get_object('cancel').connect('clicked', self.cancel_clicked)
-
+        xml.get_object('help').connect(
+            'clicked', lambda x: display_help(WIKI_HELP_PAGE, WIKI_HELP_SEC))
         fup = xml.get_object('fup')
         fup.connect('clicked', self.fup_clicked)
         fup.set_sensitive(fenable)
