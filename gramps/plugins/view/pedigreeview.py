@@ -260,6 +260,8 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         alh = self.get_allocated_height()
         if not self.textlayout:
             self.textlayout = PangoCairo.create_layout(context)
+            if is_quartz():
+                PangoCairo.context_set_resolution(self.textlayout.get_context(), 72)
             # The following seems like it Should work, but it doesn't
             # font_desc = self.get_style_context().get_property(
             #     "font", Gtk.StateFlags.NORMAL)
