@@ -2,7 +2,6 @@
 # This file is distributed under the same license as the Gramps package.
 # translation of de.po to Deutsch
 #
-#
 # Anton Huber <anton_huber@gmx.de>, 2005,2006.
 # Sebastian Vöcking <sebastian_voecking@gmx.de>, 2005.
 # Sebastian Vöcking <voeck@web.de>, 2005.
@@ -17,14 +16,14 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-24 14:13+0100\n"
-"PO-Revision-Date: 2018-12-30 12:38+0100\n"
-"Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
+"PO-Revision-Date: 2019-01-02 16:29+0100\n"
+"Last-Translator: Christian Aigner <github@sys-admin.at>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Poedit 2.1.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -26988,13 +26987,14 @@ msgid ""
 "%(male_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s wurde getauft am %(baptism_date)s in %(baptism_place)s"
+"%(male_name)s wurde am %(baptism_date)s in %(baptism_place)s getauft "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:595
 #, python-format
 msgid "He was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Er wurde getauft am %(baptism_date)s in %(baptism_place)s%(endnotes)s."
+msgstr ""
+"Er wurde am %(baptism_date)s in %(baptism_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:598
 #, python-format
@@ -27002,14 +27002,14 @@ msgid ""
 "%(female_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s wurde getauft am %(baptism_date)s in %(baptism_place)s"
+"%(female_name)s wurde am %(baptism_date)s in %(baptism_place)s getauft "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:599
 #, python-format
 msgid "She was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"Sie wurde getauft am %(baptism_date)s in %(baptism_place)s%(endnotes)s."
+"Sie wurde am %(baptism_date)s in %(baptism_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:602
 #, python-format
@@ -27017,8 +27017,8 @@ msgid ""
 "%(unknown_gender_name)s was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde getauft am %(baptism_date)s in "
-"%(baptism_place)s%(endnotes)s."
+"%(unknown_gender_name)s wurde am %(baptism_date)s in %(baptism_place)s "
+"getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:603
 #, python-format
@@ -27026,7 +27026,7 @@ msgid ""
 "This person was baptized on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"Diese Person wurde getauft am %(baptism_date)s in %(baptism_place)s"
+"Diese Person wurde am %(baptism_date)s in %(baptism_place)s getauft "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:605
@@ -27037,32 +27037,33 @@ msgstr "Getauft %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:610
 #, python-format
 msgid "%(male_name)s was baptized on %(baptism_date)s%(endnotes)s."
-msgstr "%(male_name)s wurde getauft am %(baptism_date)s%(endnotes)s."
+msgstr "%(male_name)s wurde am %(baptism_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:611
 #, python-format
 msgid "He was baptized on %(baptism_date)s%(endnotes)s."
-msgstr "Er wurde getauft am %(baptism_date)s%(endnotes)s."
+msgstr "Er wurde am %(baptism_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:614
 #, python-format
 msgid "%(female_name)s was baptized on %(baptism_date)s%(endnotes)s."
-msgstr "%(female_name)s wurde getauft am %(baptism_date)s%(endnotes)s."
+msgstr "%(female_name)s wurde am %(baptism_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:615
 #, python-format
 msgid "She was baptized on %(baptism_date)s%(endnotes)s."
-msgstr "Sie wurde getauft am %(baptism_date)s%(endnotes)s."
+msgstr "Sie wurde am %(baptism_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:618
 #, python-format
 msgid "%(unknown_gender_name)s was baptized on %(baptism_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s wurde getauft am %(baptism_date)s%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s wurde am %(baptism_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:619
 #, python-format
 msgid "This person was baptized on %(baptism_date)s%(endnotes)s."
-msgstr "Diese Person wurde getauft am %(baptism_date)s%(endnotes)s."
+msgstr "Diese Person wurde am %(baptism_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:621
 #, python-format
@@ -27075,12 +27076,12 @@ msgid ""
 "%(male_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s wurde getauft %(month_year)s in %(baptism_place)s%(endnotes)s."
+"%(male_name)s wurde %(month_year)s in %(baptism_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:627
 #, python-format
 msgid "He was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "Er wurde getauft %(month_year)s in %(baptism_place)s%(endnotes)s."
+msgstr "Er wurde %(month_year)s in %(baptism_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:630
 #, python-format
@@ -27088,13 +27089,13 @@ msgid ""
 "%(female_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s wurde getauft %(month_year)s in %(baptism_place)s"
+"%(female_name)s wurde %(month_year)s in %(baptism_place)s getauft "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:631
 #, python-format
 msgid "She was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "Sie wurde getauft %(month_year)s in %(baptism_place)s%(endnotes)s."
+msgstr "Sie wurde %(month_year)s in %(baptism_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:634
 #, python-format
@@ -27102,7 +27103,7 @@ msgid ""
 "%(unknown_gender_name)s was baptized in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde getauft %(month_year)s in %(baptism_place)s"
+"%(unknown_gender_name)s wurde %(month_year)s in %(baptism_place)s getauft "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:635
@@ -27110,7 +27111,7 @@ msgstr ""
 msgid ""
 "This person was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"Diese Person wurde getauft %(month_year)s in %(baptism_place)s%(endnotes)s."
+"Diese Person wurde %(month_year)s in %(baptism_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:637
 #, python-format
@@ -27120,32 +27121,32 @@ msgstr "Getauft %(month_year)s in %(baptism_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:642
 #, python-format
 msgid "%(male_name)s was baptized in %(month_year)s%(endnotes)s."
-msgstr "%(male_name)s wurde getauft %(month_year)s%(endnotes)s."
+msgstr "%(male_name)s wurde %(month_year)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:643
 #, python-format
 msgid "He was baptized in %(month_year)s%(endnotes)s."
-msgstr "Er wurde getauft %(month_year)s%(endnotes)s."
+msgstr "Er wurde %(month_year)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:646
 #, python-format
 msgid "%(female_name)s was baptized in %(month_year)s%(endnotes)s."
-msgstr "%(female_name)s wurde getauft %(month_year)s%(endnotes)s."
+msgstr "%(female_name)s wurde %(month_year)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:647
 #, python-format
 msgid "She was baptized in %(month_year)s%(endnotes)s."
-msgstr "Sie wurde getauft %(month_year)s%(endnotes)s."
+msgstr "Sie wurde %(month_year)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:650
 #, python-format
 msgid "%(unknown_gender_name)s was baptized in %(month_year)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s wurde getauft %(month_year)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s wurde %(month_year)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:651
 #, python-format
 msgid "This person was baptized in %(month_year)s%(endnotes)s."
-msgstr "Diese Person wurde getauft %(month_year)s%(endnotes)s."
+msgstr "Diese Person wurde %(month_year)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:653
 #, python-format
@@ -27158,13 +27159,13 @@ msgid ""
 "%(male_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s wurde getauft %(modified_date)s in %(baptism_place)s"
+"%(male_name)s wurde %(modified_date)s in %(baptism_place)s getauft "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:659
 #, python-format
 msgid "He was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Er wurde getauft %(modified_date)s in %(baptism_place)s%(endnotes)s."
+msgstr "Er wurde %(modified_date)s in %(baptism_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:662
 #, python-format
@@ -27172,13 +27173,13 @@ msgid ""
 "%(female_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s wurde getauft %(modified_date)s in %(baptism_place)s"
+"%(female_name)s wurde %(modified_date)s in %(baptism_place)s getauft "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:663
 #, python-format
 msgid "She was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Sie wurde getauft %(modified_date)s in %(baptism_place)s%(endnotes)s."
+msgstr "Sie wurde %(modified_date)s in %(baptism_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:666
 #, python-format
@@ -27186,7 +27187,7 @@ msgid ""
 "%(unknown_gender_name)s was baptized %(modified_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde getauft %(modified_date)s in %(baptism_place)s"
+"%(unknown_gender_name)s wurde %(modified_date)s in %(baptism_place)s getauft "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:667
@@ -27194,7 +27195,7 @@ msgstr ""
 msgid ""
 "This person was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"Diese Person wurde getauft %(modified_date)s in %(baptism_place)s"
+"Diese Person wurde %(modified_date)s in %(baptism_place)s getauft "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:669
@@ -27205,32 +27206,32 @@ msgstr "Getauft %(modified_date)s in %(baptism_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:674
 #, python-format
 msgid "%(male_name)s was baptized %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s wurde getauft %(modified_date)s%(endnotes)s."
+msgstr "%(male_name)s wurde %(modified_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:675
 #, python-format
 msgid "He was baptized %(modified_date)s%(endnotes)s."
-msgstr "Er wurde getauft %(modified_date)s%(endnotes)s."
+msgstr "Er wurde %(modified_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:678
 #, python-format
 msgid "%(female_name)s was baptized %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s wurde getauft %(modified_date)s%(endnotes)s."
+msgstr "%(female_name)s wurde %(modified_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:679
 #, python-format
 msgid "She was baptized %(modified_date)s%(endnotes)s."
-msgstr "Sie wurde getauft %(modified_date)s%(endnotes)s."
+msgstr "Sie wurde %(modified_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:682
 #, python-format
 msgid "%(unknown_gender_name)s was baptized %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s wurde getauft %(modified_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s wurde %(modified_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:683
 #, python-format
 msgid "This person was baptized %(modified_date)s%(endnotes)s."
-msgstr "Diese Person wurde getauft %(modified_date)s%(endnotes)s."
+msgstr "Diese Person wurde %(modified_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:685
 #, python-format
@@ -27240,33 +27241,33 @@ msgstr "Getauft %(modified_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:690
 #, python-format
 msgid "%(male_name)s was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "%(male_name)s wurde getauft in %(baptism_place)s%(endnotes)s."
+msgstr "%(male_name)s wurde in %(baptism_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:691
 #, python-format
 msgid "He was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "Er wurde getauft in %(baptism_place)s%(endnotes)s."
+msgstr "Er wurde in %(baptism_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:694
 #, python-format
 msgid "%(female_name)s was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "%(female_name)s wurde getauft in %(baptism_place)s%(endnotes)s."
+msgstr "%(female_name)s wurde in %(baptism_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:695
 #, python-format
 msgid "She was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "Sie wurde getauft in %(baptism_place)s%(endnotes)s."
+msgstr "Sie wurde in %(baptism_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:698
 #, python-format
 msgid "%(unknown_gender_name)s was baptized in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde getauft in %(baptism_place)s%(endnotes)s."
+"%(unknown_gender_name)s wurde in %(baptism_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:699
 #, python-format
 msgid "This person was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "Diese Person wurde getauft in %(baptism_place)s%(endnotes)s."
+msgstr "Diese Person wurde in %(baptism_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:701
 #, python-format
@@ -27314,7 +27315,7 @@ msgid ""
 "%(male_name)s was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s wurde getauft am %(christening_date)s in %(christening_place)s"
+"%(male_name)s wurde am %(christening_date)s in %(christening_place)s getauft "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:728
@@ -27323,7 +27324,7 @@ msgid ""
 "He was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Er wurde getauft am %(christening_date)s in %(christening_place)s"
+"Er wurde am %(christening_date)s in %(christening_place)s getauft "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:731
@@ -27332,8 +27333,8 @@ msgid ""
 "%(female_name)s was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s wurde getauft am %(christening_date)s in "
-"%(christening_place)s%(endnotes)s."
+"%(female_name)s wurde am %(christening_date)s in "
+"%(christening_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:732
 #, python-format
@@ -27341,7 +27342,7 @@ msgid ""
 "She was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Sie wurde getauft am %(christening_date)s in %(christening_place)s"
+"Sie wurde am %(christening_date)s in %(christening_place)s getauft "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:735
@@ -27350,8 +27351,8 @@ msgid ""
 "%(unknown_gender_name)s was christened on %(christening_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde getauft am %(christening_date)s in "
-"%(christening_place)s%(endnotes)s."
+"%(unknown_gender_name)s wurde am %(christening_date)s in "
+"%(christening_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:736
 #, python-format
@@ -27359,7 +27360,7 @@ msgid ""
 "This person was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Diese Person wurde getauft am %(christening_date)s in %(christening_place)s"
+"Diese Person wurde am %(christening_date)s in %(christening_place)s getauft "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:738
@@ -27370,34 +27371,34 @@ msgstr "Getauft %(christening_date)s in %(christening_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:743
 #, python-format
 msgid "%(male_name)s was christened on %(christening_date)s%(endnotes)s."
-msgstr "%(male_name)s wurde getauft am %(christening_date)s%(endnotes)s."
+msgstr "%(male_name)s wurde am %(christening_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:744
 #, python-format
 msgid "He was christened on %(christening_date)s%(endnotes)s."
-msgstr "Er wurde getauft am %(christening_date)s%(endnotes)s."
+msgstr "Er wurde am %(christening_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:747
 #, python-format
 msgid "%(female_name)s was christened on %(christening_date)s%(endnotes)s."
-msgstr "%(female_name)s wurde getauft am %(christening_date)s%(endnotes)s."
+msgstr "%(female_name)s wurde am %(christening_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:748
 #, python-format
 msgid "She was christened on %(christening_date)s%(endnotes)s."
-msgstr "Sie wurde getauft am %(christening_date)s%(endnotes)s."
+msgstr "Sie wurde am %(christening_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:751
 #, python-format
 msgid ""
 "%(unknown_gender_name)s was christened on %(christening_date)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde getauft am %(christening_date)s%(endnotes)s."
+"%(unknown_gender_name)s wurde am %(christening_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:752
 #, python-format
 msgid "This person was christened on %(christening_date)s%(endnotes)s."
-msgstr "Diese Person wurde getauft am %(christening_date)s%(endnotes)s."
+msgstr "Diese Person wurde am %(christening_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:754
 #, python-format
@@ -27410,14 +27411,14 @@ msgid ""
 "%(male_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s wurde getauft %(month_year)s in %(christening_place)s"
+"%(male_name)s wurde %(month_year)s in %(christening_place)s getauft "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:760
 #, python-format
 msgid ""
 "He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "Er wurde getauft %(month_year)s in %(christening_place)s%(endnotes)s."
+msgstr "Er wurde %(month_year)s in %(christening_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:763
 #, python-format
@@ -27425,14 +27426,14 @@ msgid ""
 "%(female_name)s was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s wurde getauft %(month_year)s in %(christening_place)s"
+"%(female_name)s wurde %(month_year)s in %(christening_place)s getauft "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:764
 #, python-format
 msgid ""
 "She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "Sie wurde getauft %(month_year)s in %(christening_place)s%(endnotes)s."
+msgstr "Sie wurde %(month_year)s in %(christening_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:767
 #, python-format
@@ -27440,7 +27441,7 @@ msgid ""
 "%(unknown_gender_name)s was christened in %(month_year)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde getauft %(month_year)s in %(christening_place)s"
+"%(unknown_gender_name)s wurde %(month_year)s in %(christening_place)s getauft "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:768
@@ -27449,7 +27450,7 @@ msgid ""
 "This person was christened in %(month_year)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Diese Person wurde getauft %(month_year)s in %(christening_place)s"
+"Diese Person wurde %(month_year)s in %(christening_place)s getauft "
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:770
@@ -27460,32 +27461,32 @@ msgstr "Getauft %(month_year)s in %(christening_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:775
 #, python-format
 msgid "%(male_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(male_name)s wurde getauft %(month_year)s%(endnotes)s."
+msgstr "%(male_name)s wurde %(month_year)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:776
 #, python-format
 msgid "He was christened in %(month_year)s%(endnotes)s."
-msgstr "Er wurde getauft %(month_year)s%(endnotes)s."
+msgstr "Er wurde %(month_year)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:779
 #, python-format
 msgid "%(female_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(female_name)s wurde getauft %(month_year)s%(endnotes)s."
+msgstr "%(female_name)s wurde %(month_year)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:780
 #, python-format
 msgid "She was christened in %(month_year)s%(endnotes)s."
-msgstr "Sie wurde getauft %(month_year)s%(endnotes)s."
+msgstr "Sie wurde %(month_year)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:783
 #, python-format
 msgid "%(unknown_gender_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s wurde getauft %(month_year)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s wurde %(month_year)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:784
 #, python-format
 msgid "This person was christened in %(month_year)s%(endnotes)s."
-msgstr "Diese Person wurde getauft %(month_year)s%(endnotes)s."
+msgstr "Diese Person wurde %(month_year)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:786
 #, python-format
@@ -27498,7 +27499,7 @@ msgid ""
 "%(male_name)s was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s wurde getauft %(modified_date)s in %(christening_place)s"
+"%(male_name)s wurde %(modified_date)s in %(christening_place)s getauft"
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:792
@@ -27506,7 +27507,7 @@ msgstr ""
 msgid ""
 "He was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr ""
-"Er wurde getauft %(modified_date)s in %(christening_place)s%(endnotes)s."
+"Er wurde %(modified_date)s in %(christening_place)s getauft%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:795
 #, python-format
@@ -27514,7 +27515,7 @@ msgid ""
 "%(female_name)s was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(female_name)s wurde getauft %(modified_date)s in %(christening_place)s"
+"%(female_name)s wurde %(modified_date)s in %(christening_place)s getauft"
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:796
@@ -27522,7 +27523,7 @@ msgstr ""
 msgid ""
 "She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr ""
-"Sie wurde getauft %(modified_date)s in %(christening_place)s%(endnotes)s."
+"Sie wurde %(modified_date)s in %(christening_place)s getauft%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:799
 #, python-format
@@ -27530,8 +27531,8 @@ msgid ""
 "%(unknown_gender_name)s was christened %(modified_date)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde getauft %(modified_date)s in "
-"%(christening_place)s%(endnotes)s."
+"%(unknown_gender_name)s wurde %(modified_date)s in "
+"%(christening_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:800
 #, python-format
@@ -27539,7 +27540,7 @@ msgid ""
 "This person was christened %(modified_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"Diese Person wurde getauft %(modified_date)s in %(christening_place)s"
+"Diese Person wurde %(modified_date)s in %(christening_place)s getauft"
 "%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:802
@@ -27550,32 +27551,32 @@ msgstr "Getauft %(modified_date)s in %(christening_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:807
 #, python-format
 msgid "%(male_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s wurde getauft %(modified_date)s%(endnotes)s."
+msgstr "%(male_name)s wurde %(modified_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:808
 #, python-format
 msgid "He was christened %(modified_date)s%(endnotes)s."
-msgstr "Er wurde getauft %(modified_date)s%(endnotes)s."
+msgstr "Er wurde %(modified_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:811
 #, python-format
 msgid "%(female_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s wurde getauft %(modified_date)s%(endnotes)s."
+msgstr "%(female_name)s wurde %(modified_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:812
 #, python-format
 msgid "She was christened %(modified_date)s%(endnotes)s."
-msgstr "Sie wurde getauft %(modified_date)s%(endnotes)s."
+msgstr "Sie wurde %(modified_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:815
 #, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s wurde getauft %(modified_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s wurde %(modified_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:816
 #, python-format
 msgid "This person was christened %(modified_date)s%(endnotes)s."
-msgstr "Diese Person wurde getauft %(modified_date)s%(endnotes)s."
+msgstr "Diese Person wurde %(modified_date)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:818
 #, python-format
@@ -27585,34 +27586,34 @@ msgstr "Getauft %(modified_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:823
 #, python-format
 msgid "%(male_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr "%(male_name)s wurde getauft in %(christening_place)s%(endnotes)s."
+msgstr "%(male_name)s wurde in %(christening_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:824
 #, python-format
 msgid "He was christened in %(christening_place)s%(endnotes)s."
-msgstr "Er wurde getauft in %(christening_place)s%(endnotes)s."
+msgstr "Er wurde in %(christening_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:827
 #, python-format
 msgid "%(female_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr "%(female_name)s wurde getauft in %(christening_place)s%(endnotes)s."
+msgstr "%(female_name)s wurde in %(christening_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:828
 #, python-format
 msgid "She was christened in %(christening_place)s%(endnotes)s."
-msgstr "Sie wurde getauft in %(christening_place)s%(endnotes)s."
+msgstr "Sie wurde in %(christening_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:831
 #, python-format
 msgid ""
 "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde getauft in %(christening_place)s%(endnotes)s."
+"%(unknown_gender_name)s wurde in %(christening_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:832
 #, python-format
 msgid "This person was christened in %(christening_place)s%(endnotes)s."
-msgstr "Diese Person wurde getauft in %(christening_place)s%(endnotes)s."
+msgstr "Diese Person wurde in %(christening_place)s getauft %(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:834
 #, python-format
