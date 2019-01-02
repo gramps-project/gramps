@@ -245,12 +245,13 @@ class EditMedia(EditPrimary):
             self.view_media(obj)
 
     def view_media(self, obj):
-        ref_obj = self.dbstate.db.get_media_from_handle(self.obj.handle)
+        if self.obj.handle:
+            ref_obj = self.dbstate.db.get_media_from_handle(self.obj.handle)
 
-        if ref_obj:
-            media_path = media_path_full(self.dbstate.db,
-                                               ref_obj.get_path())
-            open_file_with_default_application(media_path, self.uistate)
+            if ref_obj:
+                media_path = media_path_full(self.dbstate.db,
+                                             ref_obj.get_path())
+                open_file_with_default_application(media_path, self.uistate)
 
     def select_file(self, val):
         self.determine_mime()
