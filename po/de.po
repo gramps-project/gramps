@@ -10,6 +10,8 @@
 # Alex Roitman <shura@gramps-project.org>, 2006.
 # Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018.
 # Alois Pöttker <alois.poettker@gmx.de>, 2017.
+# Christian Aigner <github@sys-admin.at>, 2018, 2019
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
@@ -25869,7 +25871,7 @@ msgstr "GPS"
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."
 msgstr ""
-"%(unknown_gender_name)s wurde geboren am %(birth_date)s in %(birth_place)s."
+"%(unknown_gender_name)s wurde am %(birth_date)s in %(birth_place)s geboren."
 
 #: ../gramps/plugins/lib/libnarrate.py:89
 #, python-format
@@ -25879,7 +25881,7 @@ msgstr "%(male_name)s wurde am %(birth_date)s in %(birth_place)s geboren."
 #: ../gramps/plugins/lib/libnarrate.py:90
 #, python-format
 msgid "%(female_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr "%(female_name)s wurde geboren am %(birth_date)s in %(birth_place)s."
+msgstr "%(female_name)s wurde am %(birth_date)s in %(birth_place)s geboren."
 
 #: ../gramps/plugins/lib/libnarrate.py:93
 #, python-format
@@ -25940,7 +25942,7 @@ msgstr "Geboren %(modified_date)s in %(birth_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:116
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s."
-msgstr "%(unknown_gender_name)s wurde geboren am %(birth_date)s."
+msgstr "%(unknown_gender_name)s wurde am %(birth_date)s geboren."
 
 #: ../gramps/plugins/lib/libnarrate.py:117
 #, python-format
@@ -25950,7 +25952,7 @@ msgstr "%(male_name)s wurde am %(birth_date)s geboren."
 #: ../gramps/plugins/lib/libnarrate.py:118
 #, python-format
 msgid "%(female_name)s was born on %(birth_date)s."
-msgstr "%(female_name)s wurde geboren am %(birth_date)s."
+msgstr "%(female_name)s wurde am %(birth_date)s geboren."
 
 #: ../gramps/plugins/lib/libnarrate.py:121
 #, python-format
@@ -26017,12 +26019,12 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:145
 #, python-format
 msgid "%(male_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr "%(male_name)s wurde geboren %(month_year)s in %(birth_place)s."
+msgstr "%(male_name)s wurde im %(month_year)s in %(birth_place)s geboren."
 
 #: ../gramps/plugins/lib/libnarrate.py:146
 #, python-format
 msgid "%(female_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr "%(female_name)s wurde geboren %(month_year)s in %(birth_place)s."
+msgstr "%(female_name)s wurde im %(month_year)s in %(birth_place)s geboren."
 
 #: ../gramps/plugins/lib/libnarrate.py:149
 #, python-format
@@ -26047,17 +26049,17 @@ msgstr "Geboren %(month_year)s in %(birth_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:158
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s."
-msgstr "%(unknown_gender_name)s wurde geboren %(month_year)s."
+msgstr "%(unknown_gender_name)s wurde %(month_year)s geboren."
 
 #: ../gramps/plugins/lib/libnarrate.py:159
 #, python-format
 msgid "%(male_name)s was born in %(month_year)s."
-msgstr "%(male_name)s wurde geboren %(month_year)s."
+msgstr "%(male_name)s wurde %(month_year)s geboren."
 
 #: ../gramps/plugins/lib/libnarrate.py:160
 #, python-format
 msgid "%(female_name)s was born in %(month_year)s."
-msgstr "%(female_name)s wurde geboren %(month_year)s."
+msgstr "%(female_name)s wurde %(month_year)s geboren."
 
 #: ../gramps/plugins/lib/libnarrate.py:163
 #, python-format
@@ -26087,12 +26089,12 @@ msgstr "%(unknown_gender_name)s wurde in %(birth_place)s geboren."
 #: ../gramps/plugins/lib/libnarrate.py:173
 #, python-format
 msgid "%(male_name)s was born in %(birth_place)s."
-msgstr "%(male_name)s wurde geboren in %(birth_place)s."
+msgstr "%(male_name)s wurde in %(birth_place)s geboren."
 
 #: ../gramps/plugins/lib/libnarrate.py:174
 #, python-format
 msgid "%(female_name)s was born in %(birth_place)s."
-msgstr "%(female_name)s wurde geboren in %(birth_place)s."
+msgstr "%(female_name)s wurde in %(birth_place)s geboren."
 
 #: ../gramps/plugins/lib/libnarrate.py:177
 #, python-format
