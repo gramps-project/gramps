@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5343778d61bc4d95876139f6d32ff32b)](https://app.codacy.com/app/Nick-Hall/gramps?utm_source=github.com&utm_medium=referral&utm_content=gramps-project/gramps&utm_campaign=Badge_Grade_Settings)
 The Gramps Project ( https://gramps-project.org ) [![Build Status](https://travis-ci.org/gramps-project/gramps.svg?branch=master)](https://travis-ci.org/gramps-project/gramps)[![codecov.io](https://codecov.io/github/gramps-project/gramps/coverage.svg?branch=master)](https://codecov.io/github/gramps-project/gramps?branch=master)
 ===================
 We strive to produce a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists.
