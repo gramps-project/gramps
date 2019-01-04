@@ -300,9 +300,9 @@ msgid ""
 "different calendars. Try the button next to the date field in the Events "
 "Editor."
 msgstr ""
-"<b>Mit Daten arbeiten</b><br/>Ein Zeitraum von Daten kann durch die "
-"Verwendung des Formats &quot;zwischen 4.1.200 und 20.3.2003&quot; gegeben "
-"werden. Du kannst auch den Vertrauensgrad eines Datums und sogar zwischen "
+"<b>Mit Daten arbeiten</b><br/>Ein Zeitraum kann durch die "
+"Verwendung des Formats &quot;zwischen 4.1.2000 und 20.3.2003&quot; angegeben "
+"werden. Du kannst auch Dein Vertrauen in ein Datum eintragen und sogar zwischen "
 "sieben verschiedenen Kalendern wählen. Probiere die Schaltfläche neben dem "
 "Datumsfeld im Ereigniseditor."
 
@@ -3686,7 +3686,7 @@ msgstr "Datum:"
 #: ../gramps/gui/glade/mergecitation.glade:278
 #: ../gramps/gui/glade/mergecitation.glade:294
 msgid "Confidence:"
-msgstr "Vertraulichkeit:"
+msgstr "Vertrauen:"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:52
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:51
@@ -7057,7 +7057,7 @@ msgstr "Seite"
 #: ../gramps/plugins/view/citationtreeview.py:96
 #: ../gramps/plugins/webreport/basepage.py:2191
 msgid "Confidence"
-msgstr "Vertraulichkeit"
+msgstr "Vertrauen"
 
 #. 7
 #: ../gramps/gen/lib/citation.py:115 ../gramps/gen/lib/src.py:97
@@ -33124,7 +33124,7 @@ msgstr "Nicht zusammenfassen, wenn die Fundstelle Notizen enthält"
 
 #: ../gramps/plugins/tool/mergecitations.py:76
 msgid "Match on Page/Volume, Date and Confidence"
-msgstr "Liefert Seite/Band, Datum und Vertraulichkeit"
+msgstr "Liefert Seite/Band, Datum und Vertrauen"
 
 #: ../gramps/plugins/tool/mergecitations.py:77
 msgid "Ignore Date"
@@ -33132,11 +33132,11 @@ msgstr "Datum ignorieren"
 
 #: ../gramps/plugins/tool/mergecitations.py:78
 msgid "Ignore Confidence"
-msgstr "Vertraulichkeit ignorieren"
+msgstr "Vertrauen ignorieren"
 
 #: ../gramps/plugins/tool/mergecitations.py:79
 msgid "Ignore Date and Confidence"
-msgstr "Datum und Vertraulichkeit ignorieren"
+msgstr "Datum und Vertrauen ignorieren"
 
 #: ../gramps/plugins/tool/mergecitations.py:83
 msgid "manual|Merge_citations"
@@ -33918,7 +33918,7 @@ msgid ""
 "Volume/Page, Date and Confidence."
 msgstr ""
 "Durchsucht die gesamte Datenbank nach Fundstellen mit identischen Band/"
-"Seite, Datum und Vertraulichkeit."
+"Seite, Datum und Vertrauen."
 
 #: ../gramps/plugins/tool/tools.gpr.py:466
 msgid "Searches the entire database, looking for a possible loop."
