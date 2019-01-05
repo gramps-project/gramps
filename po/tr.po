@@ -18101,7 +18101,7 @@ msgstr ""
 msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit ->Set Home Person."
+"Edit -> Set Home Person."
 msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:349
