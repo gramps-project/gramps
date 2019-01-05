@@ -14924,7 +14924,7 @@ msgid "No Home Person"
 msgstr "Startperson er ikke valgt"
 
 #: ../gramps/gui/views/navigationview.py:339
-msgid "You need to set a 'default person' to go to. Select the People View, select the person you want as 'Home Person', then confirm your choice via the menu Edit ->Set Home Person."
+msgid "You need to set a 'default person' to go to. Select the People View, select the person you want as 'Home Person', then confirm your choice via the menu Edit -> Set Home Person."
 msgstr "Du må angi en startperson. Velg personvisningen, velg den personen du vil ha som startperson og bekreft dette valget i menyen Edit->Angi som startperson."
 
 #: ../gramps/gui/views/navigationview.py:349 ../gramps/gui/views/navigationview.py:352

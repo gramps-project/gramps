@@ -14949,7 +14949,7 @@ msgid "No Home Person"
 msgstr "Hemperson är inte bestämd"
 
 #: ../gramps/gui/views/navigationview.py:339
-msgid "You need to set a 'default person' to go to. Select the People View, select the person you want as 'Home Person', then confirm your choice via the menu Edit ->Set Home Person."
+msgid "You need to set a 'default person' to go to. Select the People View, select the person you want as 'Home Person', then confirm your choice via the menu Edit -> Set Home Person."
 msgstr "Du behöver definiera en 'standardperson' att gå till. Välj Personvy, välj den person du vill ha som 'hemperson'. Bekräfta ditt val via menyn Redigera -> Välj Hemperson."
 
 #: ../gramps/gui/views/navigationview.py:349 ../gramps/gui/views/navigationview.py:352
