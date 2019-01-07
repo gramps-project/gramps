@@ -1747,7 +1747,7 @@ class GrampsParser(UpdateCallback):
         key = attrs['key']
         value = attrs['value']
         if type == 'group_as':
-            if self.db.has_name_group_key(key) :
+            if self.db.has_name_group_key(key):
                 present = self.db.get_name_group_mapping(key)
                 if not value == present:
                     msg = _('Your Family Tree groups name "%(key)s" together'

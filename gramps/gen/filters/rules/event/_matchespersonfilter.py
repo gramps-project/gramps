@@ -81,10 +81,10 @@ class MatchesPersonFilter(MatchesFilterBase):
                                             event.get_handle(), ['Family']):
                     family = db.get_family_from_handle(handle)
                     if family.father_handle and filt.check(db,
-                                                    family.father_handle) :
+                                                    family.father_handle):
                         return True
                     if family.mother_handle and filt.check(db,
-                                                    family.mother_handle) :
+                                                    family.mother_handle):
                         return True
 
         return False

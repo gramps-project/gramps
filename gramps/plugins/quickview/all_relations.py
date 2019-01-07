@@ -290,7 +290,7 @@ class AllRelReport:
             else:
                 ind1 = 4
                 ind2 = 5
-            for rel,fam in zip(relation[ind1],relation[ind2]) :
+            for rel,fam in zip(relation[ind1],relation[ind2]):
                 par_str = _('Unknown') #when sibling, parent is unknown
                 if rel == rel_class.REL_MOTHER \
                         or rel == rel_class.REL_MOTHER_NOTBIRTH:

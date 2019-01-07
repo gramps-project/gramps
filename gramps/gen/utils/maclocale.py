@@ -270,7 +270,7 @@ def mac_setup_localization(glocale):
                 language = translations
                 LOG.debug("Returning Translations %s", ':'.join(translations))
 
-        if not (language and language[0]) :
+        if not (language and language[0]):
             if glocale.lang:
                 glocale.language = [glocale.lang[:5]]
             else:

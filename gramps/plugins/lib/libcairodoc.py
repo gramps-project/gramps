@@ -645,7 +645,7 @@ class GtkDocParagraph(GtkDocBaseElement):
 ##          workaround: https://github.com/matasbbb/pitivit/commit/da815339e5ce3631b122a72158ba9ffcc9ee4372
 ##      OLD EASY CODE:
 ##        oldattrlist = newattrlist.get_iterator()
-##        while oldattrlist.next() :
+##        while oldattrlist.next():
 ##            vals = oldattrlist.get_attrs()
 ##            #print (vals)
 ##            for attr in vals:

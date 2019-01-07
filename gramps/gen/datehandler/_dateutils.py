@@ -66,7 +66,7 @@ def set_format(value):
     except:
         pass
 
-def set_date(date_base, text) :
+def set_date(date_base, text):
     """
     Set the date of the :class:`.DateBase` instance.
 
@@ -79,7 +79,7 @@ def set_date(date_base, text) :
     """
     parser.set_date(date_base.get_date_object(), text)
 
-def get_date(date_base) :
+def get_date(date_base):
     """
     Return a string representation of the date of the :class:`.DateBase`
     instance.
