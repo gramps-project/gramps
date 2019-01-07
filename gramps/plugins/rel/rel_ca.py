@@ -711,9 +711,9 @@ def _get_oncle_valencia(levela, levelb, inlaw="", step=""):
     """
     if levela <= levelb:
         return "error a _get_oncle_valencia"
-    val_level  = levela-levelb
-    amplada    = levelb-1
-    retorn     = _get_uncle(val_level+1, "", step)
+    val_level = levela-levelb
+    amplada = levelb-1
+    retorn = _get_uncle(val_level+1, "", step)
     if amplada == 1:
         stramplada = ""
     else:
@@ -728,9 +728,9 @@ def _get_oncles_valencians(levela, levelb, inlaw=""):
         inlaw += "s"
     if levela <= levelb:
         return "error a _get_oncles_valencians"
-    val_level  = levela-levelb
-    amplada    = levelb-1
-    retorn     = _get_uncles(val_level+1, "")
+    val_level = levela-levelb
+    amplada = levelb-1
+    retorn = _get_uncles(val_level+1, "")
     if amplada == 1:
         stramplada = ""
     else:
@@ -743,9 +743,9 @@ def _get_nebot_valencia(levela, levelb, inlaw="", step=""):
     """
     if levelb <= levela:
         return "error a _get_nebot_valencia"
-    val_level  = levelb-levela
-    amplada    = levela - 1
-    retorn     = _get_nephew(val_level, "", step)
+    val_level = levelb-levela
+    amplada = levela - 1
+    retorn = _get_nephew(val_level, "", step)
     if amplada == 1:
         stramplada = ""
     else:
@@ -761,9 +761,9 @@ def _get_nebots_valencians(levela, levelb, inlaw=""):
         inlaw += "s"
     if levelb <= levela:
         return "error a _get_nebots_valencians"
-    val_level  = levelb-levela
-    amplada    = levela - 1
-    retorn     = _get_nephews(val_level+1, "")
+    val_level = levelb-levela
+    amplada = levela - 1
+    retorn = _get_nephews(val_level+1, "")
     if amplada == 1:
         stramplada = ""
     else:
@@ -779,9 +779,9 @@ def _get_tia_valenciana(levela, levelb, inlaw="", step=""):
         inlaw += "a"
     if levela <= levelb:
         return "error a _get_tia_valenciana"
-    val_level  = levela-levelb
-    amplada    = levelb-1
-    retorn     = _get_aunt(val_level+1, "", step)
+    val_level = levela-levelb
+    amplada = levelb-1
+    retorn = _get_aunt(val_level+1, "", step)
     if amplada == 1:
         stramplada = ""
     else:
@@ -797,9 +797,9 @@ def _get_neboda_valenciana(levela, levelb, inlaw="", step=""):
         inlaw += "a"
     if levelb <= levela:
         return "error a _get_neboda_valenciana"
-    val_level  = levelb-levela
-    amplada    = levela - 1
-    retorn     = _get_niece(val_level, "", step)
+    val_level = levelb-levela
+    amplada = levela - 1
+    retorn = _get_niece(val_level, "", step)
     if amplada == 1:
         stramplada = ""
     else:

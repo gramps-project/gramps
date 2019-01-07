@@ -44,11 +44,11 @@ class HasAttributeBase(Rule):
     Rule that checks for an object with a particular attribute.
     """
 
-    labels      = [ 'Attribute:', 'Value:' ]
-    name        = 'Objects with the <attribute>'
+    labels = [ 'Attribute:', 'Value:' ]
+    name = 'Objects with the <attribute>'
     description = "Matches objects with the given attribute " \
                    "of a particular value"
-    category    = _('General filters')
+    category = _('General filters')
     allow_regex = True
 
     def apply(self, db, obj):

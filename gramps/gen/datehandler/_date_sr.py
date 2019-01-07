@@ -54,95 +54,95 @@ class DateParserSR(DateParser):
     """
     month_to_int = DateParser.month_to_int
 
-    month_to_int["januar"]  = 1
+    month_to_int["januar"] = 1
     month_to_int["januara"] = 1
-    month_to_int["jan"]     = 1
-    month_to_int["јан"]     = 1
+    month_to_int["jan"] = 1
+    month_to_int["јан"] = 1
     month_to_int["јануара"] = 1
-    month_to_int["јануар"]  = 1
-    month_to_int["i"]       = 1
+    month_to_int["јануар"] = 1
+    month_to_int["i"] = 1
 
-    month_to_int["februar"]  = 2
+    month_to_int["februar"] = 2
     month_to_int["februara"] = 2
-    month_to_int["feb"]      = 2
-    month_to_int["феб"]      = 2
-    month_to_int["фебруар"]  = 2
+    month_to_int["feb"] = 2
+    month_to_int["феб"] = 2
+    month_to_int["фебруар"] = 2
     month_to_int["фебруара"] = 2
-    month_to_int["ii"]       = 2
+    month_to_int["ii"] = 2
 
-    month_to_int["mart"]  = 3
+    month_to_int["mart"] = 3
     month_to_int["marta"] = 3
-    month_to_int["mar"]   = 3
-    month_to_int["мар"]   = 3
-    month_to_int["март"]  = 3
+    month_to_int["mar"] = 3
+    month_to_int["мар"] = 3
+    month_to_int["март"] = 3
     month_to_int["марта"] = 3
-    month_to_int["iii"]   = 3
+    month_to_int["iii"] = 3
 
-    month_to_int["april"]  = 4
+    month_to_int["april"] = 4
     month_to_int["aprila"] = 4
-    month_to_int["apr"]    = 4
-    month_to_int["апр"]    = 4
-    month_to_int["април"]  = 4
+    month_to_int["apr"] = 4
+    month_to_int["апр"] = 4
+    month_to_int["април"] = 4
     month_to_int["априла"] = 4
-    month_to_int["iv"]     = 4
+    month_to_int["iv"] = 4
 
-    month_to_int["maj"]  = 5
+    month_to_int["maj"] = 5
     month_to_int["maja"] = 5
-    month_to_int["мај"]  = 5
+    month_to_int["мај"] = 5
     month_to_int["маја"] = 5
-    month_to_int["v"]    = 5
+    month_to_int["v"] = 5
 
-    month_to_int["jun"]  = 6
+    month_to_int["jun"] = 6
     month_to_int["juna"] = 6
-    month_to_int["јун"]  = 6
+    month_to_int["јун"] = 6
     month_to_int["јуна"] = 6
-    month_to_int["vi"]   = 6
+    month_to_int["vi"] = 6
 
-    month_to_int["jul"]  = 7
+    month_to_int["jul"] = 7
     month_to_int["jula"] = 7
-    month_to_int["јул"]  = 7
+    month_to_int["јул"] = 7
     month_to_int["јула"] = 7
-    month_to_int["vii"]  = 7
+    month_to_int["vii"] = 7
 
-    month_to_int["avgust"]  = 8
+    month_to_int["avgust"] = 8
     month_to_int["avgusta"] = 8
-    month_to_int["avg"]     = 8
-    month_to_int["авг"]     = 8
-    month_to_int["август"]  = 8
+    month_to_int["avg"] = 8
+    month_to_int["авг"] = 8
+    month_to_int["август"] = 8
     month_to_int["августа"] = 8
-    month_to_int["viii"]    = 8
+    month_to_int["viii"] = 8
 
     month_to_int["septembar"] = 9
     month_to_int["septembra"] = 9
-    month_to_int["sep"]       = 9
-    month_to_int["сеп"]       = 9
+    month_to_int["sep"] = 9
+    month_to_int["сеп"] = 9
     month_to_int["септембар"] = 9
     month_to_int["септембра"] = 9
-    month_to_int["ix"]        = 9
+    month_to_int["ix"] = 9
 
-    month_to_int["oktobar"]  = 10
-    month_to_int["oktobra"]  = 10
-    month_to_int["okt"]      = 10
-    month_to_int["окт"]      = 10
-    month_to_int["октобар"]  = 10
-    month_to_int["октобра"]  = 10
-    month_to_int["x"]        = 10
+    month_to_int["oktobar"] = 10
+    month_to_int["oktobra"] = 10
+    month_to_int["okt"] = 10
+    month_to_int["окт"] = 10
+    month_to_int["октобар"] = 10
+    month_to_int["октобра"] = 10
+    month_to_int["x"] = 10
 
-    month_to_int["novembar"]  = 11
-    month_to_int["novembra"]  = 11
-    month_to_int["nov"]       = 11
-    month_to_int["нов"]       = 11
-    month_to_int["новембар"]  = 11
-    month_to_int["новембра"]  = 11
-    month_to_int["xi"]        = 11
+    month_to_int["novembar"] = 11
+    month_to_int["novembra"] = 11
+    month_to_int["nov"] = 11
+    month_to_int["нов"] = 11
+    month_to_int["новембар"] = 11
+    month_to_int["новембра"] = 11
+    month_to_int["xi"] = 11
 
-    month_to_int["decembar"]  = 12
-    month_to_int["decembra"]  = 12
-    month_to_int["dec"]       = 12
-    month_to_int["дец"]       = 12
-    month_to_int["децембар"]  = 12
-    month_to_int["децембра"]  = 12
-    month_to_int["xii"]       = 12
+    month_to_int["decembar"] = 12
+    month_to_int["decembra"] = 12
+    month_to_int["dec"] = 12
+    month_to_int["дец"] = 12
+    month_to_int["децембар"] = 12
+    month_to_int["децембра"] = 12
+    month_to_int["xii"] = 12
 
     modifier_to_int = {
         'pre'    : Date.MOD_BEFORE,

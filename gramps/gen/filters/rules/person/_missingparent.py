@@ -40,11 +40,11 @@ from .. import Rule
 class MissingParent(Rule):
     """People with less than two parents"""
 
-    name        = _('People missing parents')
+    name = _('People missing parents')
     description = _("Matches people that are children"
                     " in a family with less than two parents"
                     " or are not children in any family.")
-    category    = _('Family filters')
+    category = _('Family filters')
 
     def apply(self,db,person):
         families = person.get_parent_family_handle_list()

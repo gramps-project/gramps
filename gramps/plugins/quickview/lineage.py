@@ -36,7 +36,7 @@ from gramps.gui.plug.quick import QuickTable
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
-__FMT     = "%-30s\t%-12s\t%-12s"
+__FMT = "%-30s\t%-12s\t%-12s"
 __FMT_REM = "   %s: %s"
 __MAX_GEN = 100
 

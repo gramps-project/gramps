@@ -43,12 +43,12 @@ class HasNote(Rule):
     """Rule that checks for a note with a particular value"""
 
 
-    labels      = [ _('Text:'),
+    labels = [ _('Text:'),
                     _('Note type:'),
                     ]
-    name        = _('Notes matching parameters')
+    name = _('Notes matching parameters')
     description = _("Matches Notes with particular parameters")
-    category    = _('General filters')
+    category = _('General filters')
     allow_regex = True
 
     def prepare(self, db, user):

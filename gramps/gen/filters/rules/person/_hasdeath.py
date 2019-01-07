@@ -45,10 +45,10 @@ from .. import Rule
 class HasDeath(Rule):
     """Rule that checks for a person with a death of a particular value"""
 
-    labels      = [ _('Date:'), _('Place:'), _('Description:') ]
-    name        = _('People with the <death data>')
+    labels = [ _('Date:'), _('Place:'), _('Description:') ]
+    name = _('People with the <death data>')
     description = _("Matches people with death data of a particular value")
-    category    = _('Event filters')
+    category = _('Event filters')
     allow_regex = True
 
     def prepare(self, db, user):

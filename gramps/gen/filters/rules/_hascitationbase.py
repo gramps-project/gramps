@@ -46,12 +46,12 @@ class HasCitationBase(Rule):
     First parameter is [Volume/page, Date, Confidence]
     """
 
-    labels      = [ _('Volume/Page:'),
+    labels = [ _('Volume/Page:'),
                     _('Date:'),
                     _('Confidence:') ]
-    name        = _('Citations matching parameters')
+    name = _('Citations matching parameters')
     description = _("Matches citations with particular parameters")
-    category    = _('Citation/source filters')
+    category = _('Citation/source filters')
     allow_regex = True
 
     def prepare(self, db, user):

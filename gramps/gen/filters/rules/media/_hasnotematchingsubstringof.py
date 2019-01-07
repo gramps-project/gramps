@@ -39,7 +39,7 @@ from .._hasnotesubstrbase import HasNoteSubstrBase
 class HasNoteMatchingSubstringOf(HasNoteSubstrBase):
     """Media having notes containing <substring>"""
 
-    name        = _('Media objects having notes containing <substring>')
+    name = _('Media objects having notes containing <substring>')
     description = _("Matches media objects whose notes contain text "
                     "matching a substring")
 

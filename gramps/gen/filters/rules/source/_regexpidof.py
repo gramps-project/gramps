@@ -44,6 +44,6 @@ class RegExpIdOf(RegExpIdBase):
     matches regular expression.
     """
 
-    name        = _('Sources with Id containing <text>')
+    name = _('Sources with Id containing <text>')
     description = _("Matches sources whose Gramps ID matches "
                     "the regular expression")

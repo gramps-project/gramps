@@ -41,5 +41,5 @@ from .. import HasGrampsId
 class HasIdOf(HasGrampsId):
     """Rule that checks for a family with a specific Gramps ID"""
 
-    name        = _('Event with <Id>')
+    name = _('Event with <Id>')
     description = _("Matches an event with a specified Gramps ID")

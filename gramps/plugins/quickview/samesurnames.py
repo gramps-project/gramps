@@ -36,9 +36,9 @@ from gramps.gen.filters import GenericFilterFactory
 
 class IncompleteSurname(Rule):
     """People with incomplete surnames"""
-    name        = _('People with incomplete surnames')
+    name = _('People with incomplete surnames')
     description = _("Matches people with lastname missing")
-    category    = _('General filters')
+    category = _('General filters')
     def apply(self, db, person):
         for name in [person.get_primary_name()] + person.get_alternate_names():
             if name.get_group_name() == "":
@@ -47,10 +47,10 @@ class IncompleteSurname(Rule):
 
 class SameSurname(Rule):
     """People with same surname"""
-    labels      = [_('Substring:')]
-    name        = _('People matching the <surname>')
+    labels = [_('Substring:')]
+    name = _('People matching the <surname>')
     description = _("Matches people with same lastname")
-    category    = _('General filters')
+    category = _('General filters')
     def apply(self, db, person):
         src = self.list[0].upper()
         for name in [person.get_primary_name()] + person.get_alternate_names():
@@ -60,10 +60,10 @@ class SameSurname(Rule):
 
 class SameGiven(Rule):
     """People with same given name"""
-    labels      = [_('Substring:')]
-    name        = _('People matching the <given>')
+    labels = [_('Substring:')]
+    name = _('People matching the <given>')
     description = _("Matches people with same given name")
-    category    = _('General filters')
+    category = _('General filters')
     def apply(self, db, person):
         src = self.list[0].upper()
         for name in [person.get_primary_name()] + person.get_alternate_names():
@@ -85,9 +85,9 @@ class SameGiven(Rule):
 
 class IncompleteGiven(Rule):
     """People with incomplete given names"""
-    name        = _('People with incomplete given names')
+    name = _('People with incomplete given names')
     description = _("Matches people with firstname missing")
-    category    = _('General filters')
+    category = _('General filters')
     def apply(self, db, person):
         for name in [person.get_primary_name()] + person.get_alternate_names():
             if name.get_first_name() == "":

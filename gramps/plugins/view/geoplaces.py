@@ -352,7 +352,7 @@ class GeoPlaces(GeoGraphyView):
         self.kml_layer.clear()
         self.no_show_places_in_status_bar = False
         _col = self._config.get
-        self.plc_color  = [
+        self.plc_color = [
             (PlaceType.UNKNOWN, _col('geography.color.unknown')),
             (PlaceType.CUSTOM, _col('geography.color.custom')),
             (PlaceType.COUNTRY, _col('geography.color.country')),

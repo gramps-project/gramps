@@ -41,8 +41,8 @@ from .. import Rule
 class Everyone(Rule):
     """Match Everyone."""
 
-    name        = _('Everyone')
-    category    = _('General filters')
+    name = _('Everyone')
+    category = _('General filters')
     description = _('Matches everyone in the database')
 
     def is_empty(self):

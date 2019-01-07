@@ -39,5 +39,5 @@ from .._isprivate import IsPrivate
 class SourcePrivate(IsPrivate):
     """Source marked private"""
 
-    name        = _('Sources marked private')
+    name = _('Sources marked private')
     description = _("Matches sources that are indicated as private")

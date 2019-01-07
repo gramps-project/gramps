@@ -35,10 +35,10 @@ _ = glocale.translation.gettext
 class HasDayOfWeek(Rule):
     """Rule that matches an event occurring on a particular day of the week."""
 
-    labels      = [ _('Day of Week:') ]
-    name        = _('Events occurring on a particular day of the week')
+    labels = [ _('Day of Week:') ]
+    name = _('Events occurring on a particular day of the week')
     description = _('Matches events occurring on a particular day of the week')
-    category    = _('General filters')
+    category = _('General filters')
 
     def apply(self, db, event):
         if not self.list[0]:

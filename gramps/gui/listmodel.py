@@ -35,12 +35,12 @@ from gramps.gen.const import THUMBSCALE
 # constants
 #
 #-------------------------------------------------------------------------
-TEXT    = 0
-TOGGLE  = 1
-COMBO   = 2
-IMAGE   = 3
+TEXT = 0
+TOGGLE = 1
+COMBO = 2
+IMAGE = 3
 INTEGER = 4
-COLOR   = 5
+COLOR = 5
 
 NOSORT = -1
 

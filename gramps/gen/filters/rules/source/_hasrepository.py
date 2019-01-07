@@ -43,10 +43,10 @@ from .. import Rule
 class HasRepository(Rule):
     """Objects which reference repositories"""
 
-    labels      = [  _('Number of instances:'), _('Number must be:')]
-    name        = _('Sources with <count> Repository references')
+    labels = [  _('Number of instances:'), _('Number must be:')]
+    name = _('Sources with <count> Repository references')
     description = _("Matches sources with a certain number of repository references")
-    category    = _('General filters')
+    category = _('General filters')
 
     def prepare(self, db, user):
         # things we want to do just once, not for every handle

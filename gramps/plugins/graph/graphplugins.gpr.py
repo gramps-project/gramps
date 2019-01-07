@@ -32,8 +32,8 @@ MODULE_VERSION="5.1"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'familylines_graph'
-plg.name  = _("Family Lines Graph")
+plg.id = 'familylines_graph'
+plg.name = _("Family Lines Graph")
 plg.description =  _("Produces family line graphs using Graphviz.")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -55,8 +55,8 @@ plg.require_active = False
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'hourglass_graph'
-plg.name  = _("Hourglass Graph")
+plg.id = 'hourglass_graph'
+plg.name = _("Hourglass Graph")
 plg.description =  _("Produces an hourglass graph using Graphviz.")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -77,8 +77,8 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'rel_graph'
-plg.name  = _("Relationship Graph")
+plg.id = 'rel_graph'
+plg.name = _("Relationship Graph")
 plg.description =  _("Produces relationship graphs using Graphviz.")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION

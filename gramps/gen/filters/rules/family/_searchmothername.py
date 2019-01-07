@@ -42,9 +42,9 @@ from ._memberbase import mother_base
 class SearchMotherName(SearchName):
     """Rule that checks for full or partial name matches"""
 
-    name        = _('Families with mother matching the <name>')
+    name = _('Families with mother matching the <name>')
     description = _("Matches families whose mother has a specified "
                     "(partial) name")
-    category    = _('Mother filters')
+    category = _('Mother filters')
     base_class = SearchName
     apply = mother_base

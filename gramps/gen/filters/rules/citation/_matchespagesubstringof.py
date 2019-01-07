@@ -39,11 +39,11 @@ from .. import Rule
 class MatchesPageSubstringOf(Rule):
     """Citation Volume/Page title containing <substring>"""
 
-    labels      = [ _('Text:')]
-    name        = _('Citations with Volume/Page containing <text>')
+    labels = [ _('Text:')]
+    name = _('Citations with Volume/Page containing <text>')
     description = _("Matches citations whose Volume/Page contains a "
                     "certain substring")
-    category    = _('General filters')
+    category = _('General filters')
     allow_regex = True
 
     def apply(self, db, object):

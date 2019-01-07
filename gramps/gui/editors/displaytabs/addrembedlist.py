@@ -55,7 +55,7 @@ class AddrEmbedList(EmbeddedList):
     """
 
     _HANDLE_COL = 7
-    _DND_TYPE   = DdTargets.ADDRESS
+    _DND_TYPE = DdTargets.ADDRESS
 
     _MSG = {
         'add'   : _('Create and add a new address'),

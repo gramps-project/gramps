@@ -39,7 +39,7 @@ from .._hasnotesubstrbase import HasNoteSubstrBase
 class HasNoteMatchingSubstringOf(HasNoteSubstrBase):
     """Repos having notes containing <substring>"""
 
-    name        = _('Repositories having notes containing <substring>')
+    name = _('Repositories having notes containing <substring>')
     description = _("Matches repositories whose notes contain text "
                     "matching a substring")
 

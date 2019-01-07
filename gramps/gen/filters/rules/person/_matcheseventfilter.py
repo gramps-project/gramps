@@ -48,11 +48,11 @@ class MatchesEventFilter(MatchesEventFilterBase):
 
     """
 
-    labels      = [_('Event filter name:')]
-    name        = _('Persons with events matching the <event filter>')
+    labels = [_('Event filter name:')]
+    name = _('Persons with events matching the <event filter>')
     description = _("Matches persons who have events that match a certain"
                     " event filter")
-    category    = _('General filters')
+    category = _('General filters')
 
     # we want to have this filter show event filters
-    namespace   = 'Event'
+    namespace = 'Event'

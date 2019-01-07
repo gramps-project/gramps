@@ -44,10 +44,10 @@ class HasNoLatOrLon(Rule):
     """Rule that checks if Latitude or Longitude are not given"""
 
 
-    labels      = []
-    name        = _('Places with no latitude or longitude given')
+    labels = []
+    name = _('Places with no latitude or longitude given')
     description = _("Matches places with empty latitude or longitude")
-    category    = _('Position filters')
+    category = _('Position filters')
 
     def apply(self,db,place):
         if place.get_latitude().strip and place.get_longitude().strip():

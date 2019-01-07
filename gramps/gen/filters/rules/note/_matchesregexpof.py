@@ -40,11 +40,11 @@ from .. import Rule
 #-------------------------------------------------------------------------
 class MatchesRegexpOf(Rule):
 
-    labels      = [ _('Text:')]
-    name        = _('Notes containing <text>')
+    labels = [ _('Text:')]
+    name = _('Notes containing <text>')
     description = _("Matches notes that contain a substring "
                     "or match a regular expression")
-    category    = _('General filters')
+    category = _('General filters')
     allow_regex = True
 
     def apply(self, db, note):

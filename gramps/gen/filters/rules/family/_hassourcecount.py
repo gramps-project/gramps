@@ -42,5 +42,5 @@ from .._hassourcecountbase import HasSourceCountBase
 class HasSourceCount(HasSourceCountBase):
     """Families with sources"""
 
-    name        = _('Families with <count> sources')
+    name = _('Families with <count> sources')
     description = _("Matches families with a certain number of sources connected to it")

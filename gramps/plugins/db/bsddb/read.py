@@ -94,7 +94,7 @@ _SIGBASE = ('person', 'family', 'source', 'citation',
             'event',  'media', 'place', 'repository',
             'reference', 'note', 'tag')
 
-DBERRS      = (db.DBRunRecoveryError, db.DBAccessError,
+DBERRS = (db.DBRunRecoveryError, db.DBAccessError,
                db.DBPageNotFoundError, db.DBInvalidArgError)
 
 #-------------------------------------------------------------------------
@@ -324,8 +324,8 @@ class DbBsddbRead(DbReadBase, Callback):
         self.open = 0
         self.genderStats = GenderStats()
 
-        self.undodb    = []
-        self.id_trans  = {}
+        self.undodb = []
+        self.id_trans = {}
         self.fid_trans = {}
         self.pid_trans = {}
         self.sid_trans = {}
@@ -338,23 +338,23 @@ class DbBsddbRead(DbReadBase, Callback):
         self.env = None
         self.person_map = {}
         self.family_map = {}
-        self.place_map  = {}
+        self.place_map = {}
         self.source_map = {}
         self.citation_map = {}
-        self.repository_map  = {}
+        self.repository_map = {}
         self.note_map = {}
         self.tag_map = {}
-        self.media_map  = {}
-        self.event_map  = {}
-        self.metadata   = {}
+        self.media_map = {}
+        self.event_map = {}
+        self.metadata = {}
         self.name_group = {}
         self.undo_callback = None
         self.redo_callback = None
         self.undo_history_callback = None
-        self.modified   = 0
+        self.modified = 0
 
-        #self.undoindex  = -1
-        #self.translist  = [None] * DBUNDO
+        #self.undoindex = -1
+        #self.translist = [None] * DBUNDO
         self.abort_possible = True
         #self.undo_history_timestamp = 0
         self.default = None
@@ -1134,16 +1134,16 @@ class DbBsddbRead(DbReadBase, Callback):
 
     # Use closure to define iterators for each primary object type
 
-    iter_person_handles       = _f(get_person_cursor)
-    iter_family_handles       = _f(get_family_cursor)
-    iter_event_handles        = _f(get_event_cursor)
-    iter_place_handles        = _f(get_place_cursor)
-    iter_source_handles       = _f(get_source_cursor)
-    iter_citation_handles     = _f(get_citation_cursor)
+    iter_person_handles = _f(get_person_cursor)
+    iter_family_handles = _f(get_family_cursor)
+    iter_event_handles = _f(get_event_cursor)
+    iter_place_handles = _f(get_place_cursor)
+    iter_source_handles = _f(get_source_cursor)
+    iter_citation_handles = _f(get_citation_cursor)
     iter_media_handles = _f(get_media_cursor)
-    iter_repository_handles   = _f(get_repository_cursor)
-    iter_note_handles         = _f(get_note_cursor)
-    iter_tag_handles          = _f(get_tag_cursor)
+    iter_repository_handles = _f(get_repository_cursor)
+    iter_note_handles = _f(get_note_cursor)
+    iter_tag_handles = _f(get_tag_cursor)
     del _f
 
     def _f(curs_, obj_):
@@ -1160,16 +1160,16 @@ class DbBsddbRead(DbReadBase, Callback):
 
     # Use closure to define iterators for each primary object type
 
-    iter_people        = _f(get_person_cursor, Person)
-    iter_families      = _f(get_family_cursor, Family)
-    iter_events        = _f(get_event_cursor, Event)
-    iter_places        = _f(get_place_cursor, Place)
-    iter_sources       = _f(get_source_cursor, Source)
-    iter_citations     = _f(get_citation_cursor, Citation)
+    iter_people = _f(get_person_cursor, Person)
+    iter_families = _f(get_family_cursor, Family)
+    iter_events = _f(get_event_cursor, Event)
+    iter_places = _f(get_place_cursor, Place)
+    iter_sources = _f(get_source_cursor, Source)
+    iter_citations = _f(get_citation_cursor, Citation)
     iter_media = _f(get_media_cursor, Media)
-    iter_repositories  = _f(get_repository_cursor, Repository)
-    iter_notes         = _f(get_note_cursor, Note)
-    iter_tags          = _f(get_tag_cursor, Tag)
+    iter_repositories = _f(get_repository_cursor, Repository)
+    iter_notes = _f(get_note_cursor, Note)
+    iter_tags = _f(get_tag_cursor, Tag)
     del _f
 
     def find_initial_person(self):

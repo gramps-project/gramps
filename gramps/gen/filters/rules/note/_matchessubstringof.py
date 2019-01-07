@@ -40,11 +40,11 @@ from .. import Rule
 class MatchesSubstringOf(Rule):
     """Notes having notes containing <substring>"""
 
-    labels      = [ _('Substring:')]
-    name        = _('Notes containing <substring>')
+    labels = [ _('Substring:')]
+    name = _('Notes containing <substring>')
     description = _("Matches notes that contain text "
                     "which matches a substring")
-    category    = _('General filters')
+    category = _('General filters')
 
     def apply(self, db, note):
         """ Apply the filter """

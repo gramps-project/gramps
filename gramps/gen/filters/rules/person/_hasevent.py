@@ -45,13 +45,13 @@ from .._haseventbase import HasEventBase
 class HasEvent(HasEventBase):
     """Rule that checks for a person with a particular value"""
 
-    labels      = [ _('Personal event:'),
+    labels = [ _('Personal event:'),
                     _('Date:'),
                     _('Place:'),
                     _('Description:'),
                     _('Main Participants:'),
                     _('Primary Role:') ]
-    name        =  _('People with the personal <event>')
+    name =  _('People with the personal <event>')
     description = _("Matches people with a personal event of a particular "
                     "value")
 

@@ -45,7 +45,7 @@ from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 class LdsEmbedList(EmbeddedList):
 
     _HANDLE_COL = 6
-#    _DND_TYPE   = DdTargets.ADDRESS
+#    _DND_TYPE = DdTargets.ADDRESS
 
     _MSG = {
         'add'   : _('Create and add a new LDS ordinance'),

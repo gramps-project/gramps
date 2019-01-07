@@ -42,10 +42,10 @@ from .. import Rule
 class SearchName(Rule):
     """Rule that checks for full or partial name matches"""
 
-    labels      = [_('Substring:')]
-    name        = _('People matching the <name>')
+    labels = [_('Substring:')]
+    name = _('People matching the <name>')
     description = _("Matches people with a specified (partial) name")
-    category    = _('General filters')
+    category = _('General filters')
 
     def apply(self, db, person):
         src = self.list[0].upper()

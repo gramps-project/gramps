@@ -39,9 +39,9 @@ from .. import Rule
 class NoBirthdate(Rule):
     """People without a birth date"""
 
-    name        = _('People without a known birth date')
+    name = _('People without a known birth date')
     description = _("Matches people without a known birthdate")
-    category    = _('General filters')
+    category = _('General filters')
 
     def apply(self,db,person):
         birth_ref = person.get_birth_ref()

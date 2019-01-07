@@ -46,7 +46,7 @@ from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 class AttrEmbedList(EmbeddedList):
 
     _HANDLE_COL = 3
-    _DND_TYPE   = DdTargets.ATTRIBUTE
+    _DND_TYPE = DdTargets.ATTRIBUTE
 
     _MSG = {
         'add'   : _('Create and add a new attribute'),

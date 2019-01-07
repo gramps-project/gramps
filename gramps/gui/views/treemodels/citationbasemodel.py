@@ -52,26 +52,26 @@ from gramps.gen.config import config
 #-------------------------------------------------------------------------
 # These are the column numbers in the serialize/unserialize interfaces in
 # the Citation object
-COLUMN_HANDLE      = 0
-COLUMN_ID          = 1
-COLUMN_DATE        = 2
-COLUMN_PAGE        = 3
-COLUMN_CONFIDENCE  = 4
-COLUMN_SOURCE      = 5
-COLUMN_CHANGE      = 9
-COLUMN_TAGS        = 10
-COLUMN_PRIV        = 11
+COLUMN_HANDLE = 0
+COLUMN_ID = 1
+COLUMN_DATE = 2
+COLUMN_PAGE = 3
+COLUMN_CONFIDENCE = 4
+COLUMN_SOURCE = 5
+COLUMN_CHANGE = 9
+COLUMN_TAGS = 10
+COLUMN_PRIV = 11
 
 # Data for the Source object
-COLUMN2_HANDLE     = 0
-COLUMN2_ID         = 1
-COLUMN2_TITLE      = 2
-COLUMN2_AUTHOR     = 3
-COLUMN2_PUBINFO    = 4
-COLUMN2_ABBREV     = 7
-COLUMN2_CHANGE     = 8
-COLUMN2_TAGS       = 11
-COLUMN2_PRIV       = 12
+COLUMN2_HANDLE = 0
+COLUMN2_ID = 1
+COLUMN2_TITLE = 2
+COLUMN2_AUTHOR = 3
+COLUMN2_PUBINFO = 4
+COLUMN2_ABBREV = 7
+COLUMN2_CHANGE = 8
+COLUMN2_TAGS = 11
+COLUMN2_PRIV = 12
 
 INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 

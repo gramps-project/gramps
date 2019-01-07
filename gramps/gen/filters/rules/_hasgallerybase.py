@@ -42,10 +42,10 @@ from . import Rule
 class HasGalleryBase(Rule):
     """Objects who have Media Object"""
 
-    labels      = [  _('Number of instances:'), _('Number must be:')]
-    name        = 'Object with <count> Media references'
+    labels = [  _('Number of instances:'), _('Number must be:')]
+    name = 'Object with <count> Media references'
     description = "Matches objects with certain number of items in the gallery"
-    category    = _('General filters')
+    category = _('General filters')
 
     def prepare(self, db, user):
         # things we want to do just once, not for every handle

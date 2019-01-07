@@ -39,9 +39,9 @@ from .. import Rule
 class MultipleMarriages(Rule):
     """People with multiple marriage records"""
 
-    name        = _('People with multiple marriage records')
+    name = _('People with multiple marriage records')
     description = _("Matches people who have more than one spouse")
-    category    = _('Family filters')
+    category = _('Family filters')
 
     def apply(self,db,person):
         return len(person.get_family_handle_list()) > 1

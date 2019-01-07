@@ -52,7 +52,7 @@ class PlaceRefEmbedList(DbGUIElement, EmbeddedList):
 
     _HANDLE_COL = 4
     _DND_TYPE = DdTargets.PLACEREF
-    _DND_EXTRA  = DdTargets.PLACE_LINK
+    _DND_EXTRA = DdTargets.PLACE_LINK
 
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col

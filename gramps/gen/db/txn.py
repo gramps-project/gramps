@@ -120,7 +120,7 @@ class DbTxn(defaultdict):
         data = Python list where:
             list element = (handle, data) where:
                 handle = handle (database key) of the object in the transaction
-                data   = pickled representation of the object
+                data = pickled representation of the object
         """
 
         # Conditional on __debug__ because all that frame stuff may be slow

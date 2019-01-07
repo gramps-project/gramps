@@ -43,9 +43,9 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
     """Rule that checks for a person that is a descendant
     of someone matched by a filter"""
 
-    labels      = [ _('Filter name:') ]
-    name        = _('Descendants of <filter> match')
-    category    = _('Descendant filters')
+    labels = [ _('Filter name:') ]
+    name = _('Descendants of <filter> match')
+    category = _('Descendant filters')
     description = _("Matches people that are descendants "
                     "of anybody matched by a filter")
 

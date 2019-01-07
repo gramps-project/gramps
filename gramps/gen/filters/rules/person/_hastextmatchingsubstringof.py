@@ -43,12 +43,12 @@ from .. import Rule
 class HasTextMatchingSubstringOf(Rule):
     """Rule that checks for string matches in any textual information"""
 
-    labels      = [ _('Substring:'),
+    labels = [ _('Substring:'),
                     _('Case sensitive:')]
-    name        = _('People with records containing <substring>')
+    name = _('People with records containing <substring>')
     description = _("Matches people whose records contain text "
                     "matching a substring")
-    category    = _('General filters')
+    category = _('General filters')
     allow_regex = True
 
     def prepare(self, db, user):

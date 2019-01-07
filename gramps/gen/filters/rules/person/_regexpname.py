@@ -42,11 +42,11 @@ from .. import Rule
 class RegExpName(Rule):
     """Rule that checks for full or partial name matches"""
 
-    labels      = [_('Text:')]
-    name        = _('People with a name matching <text>')
+    labels = [_('Text:')]
+    name = _('People with a name matching <text>')
     description = _("Matches people's names containing a substring or "
                     "matching a regular expression")
-    category    = _('General filters')
+    category = _('General filters')
     allow_regex = True
 
     def apply(self,db,person):

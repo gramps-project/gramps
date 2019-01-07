@@ -39,5 +39,5 @@ from .._isprivate import IsPrivate
 class PlacePrivate(IsPrivate):
     """Place marked private"""
 
-    name        = _('Places marked private')
+    name = _('Places marked private')
     description = _("Matches places that are indicated as private")

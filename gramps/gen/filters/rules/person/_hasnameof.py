@@ -43,7 +43,7 @@ from ....lib.nameorigintype import NameOriginType
 class HasNameOf(Rule):
     """Rule that checks for full or partial name matches"""
 
-    labels      =  [_('Given name:'),
+    labels =  [_('Given name:'),
                     _('Full Family name:'),
                     _('person|Title:'),
                     _('Suffix:'),
@@ -54,9 +54,9 @@ class HasNameOf(Rule):
                     _('Connector'),
                     _('Patronymic:'),
                     _('Family Nick Name:')]
-    name        = _('People with the <name>')
+    name = _('People with the <name>')
     description = _("Matches people with a specified (partial) name")
-    category    = _('General filters')
+    category = _('General filters')
     allow_regex = True
 
     def apply(self, db, person):

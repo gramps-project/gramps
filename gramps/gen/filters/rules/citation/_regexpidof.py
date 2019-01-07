@@ -45,6 +45,6 @@ class RegExpIdOf(RegExpIdBase):
     matches regular expression.
     """
 
-    name        = _('Citations with Id containing <text>')
+    name = _('Citations with Id containing <text>')
     description = _("Matches citations whose Gramps ID matches "
                     "the regular expression")

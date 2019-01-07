@@ -538,7 +538,7 @@ class GrampsParser(UpdateCallback):
         self.media_file_map = {}
 
         # List of new name formats and a dict for remapping them
-        self.name_formats  = []
+        self.name_formats = []
         self.name_formats_map = {}
         self.taken_name_format_numbers = [num[0]
                                           for num in self.db.name_formats]
@@ -2353,7 +2353,7 @@ class GrampsParser(UpdateCallback):
             date_value = self.place_name.get_date_object()
 
         start = attrs['start'].split('-')
-        stop  = attrs['stop'].split('-')
+        stop = attrs['stop'].split('-')
 
         try:
             year = int(start[0])

@@ -40,5 +40,5 @@ from .._isprivate import IsPrivate
 class CitationPrivate(IsPrivate):
     """Citation marked private"""
 
-    name        = _('Citations marked private')
+    name = _('Citations marked private')
     description = _("Matches citations that are indicated as private")

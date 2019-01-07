@@ -89,37 +89,37 @@ LOG = logging.getLogger(".citation")
 _MINVERSION = 9
 _DBVERSION = 19
 
-IDTRANS     = "person_id"
-FIDTRANS    = "family_id"
-PIDTRANS    = "place_id"
-OIDTRANS    = "media_id"
-EIDTRANS    = "event_id"
-RIDTRANS    = "repo_id"
-NIDTRANS    = "note_id"
-SIDTRANS    = "source_id"
-CIDTRANS    = "citation_id"
-TAGTRANS    = "tag_name"
-SURNAMES    = "surnames"
-NAME_GROUP  = "name_group"
-META        = "meta_data"
-PPARENT     = "place_parent"
+IDTRANS = "person_id"
+FIDTRANS = "family_id"
+PIDTRANS = "place_id"
+OIDTRANS = "media_id"
+EIDTRANS = "event_id"
+RIDTRANS = "repo_id"
+NIDTRANS = "note_id"
+SIDTRANS = "source_id"
+CIDTRANS = "citation_id"
+TAGTRANS = "tag_name"
+SURNAMES = "surnames"
+NAME_GROUP = "name_group"
+META = "meta_data"
+PPARENT = "place_parent"
 
-FAMILY_TBL  = "family"
-PLACES_TBL  = "place"
+FAMILY_TBL = "family"
+PLACES_TBL = "place"
 SOURCES_TBL = "source"
 CITATIONS_TBL = "citation"
-MEDIA_TBL   = "media"
-EVENTS_TBL  = "event"
-PERSON_TBL  = "person"
-REPO_TBL    = "repo"
-NOTE_TBL    = "note"
-TAG_TBL     = "tag"
+MEDIA_TBL = "media"
+EVENTS_TBL = "event"
+PERSON_TBL = "person"
+REPO_TBL = "repo"
+NOTE_TBL = "note"
+TAG_TBL = "tag"
 
-REF_MAP     = "reference_map"
-REF_PRI     = "primary_map"
-REF_REF     = "referenced_map"
+REF_MAP = "reference_map"
+REF_PRI = "primary_map"
+REF_REF = "referenced_map"
 
-DBERRS      = (db.DBRunRecoveryError, db.DBAccessError,
+DBERRS = (db.DBRunRecoveryError, db.DBAccessError,
                db.DBPageNotFoundError, db.DBInvalidArgError)
 
 # The following two dictionaries provide fast translation
@@ -1206,7 +1206,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             callback(index+1)
 
         # Open reference_map and primary map
-        self.reference_map  = self.__open_shelf(self.full_name, REF_MAP,
+        self.reference_map = self.__open_shelf(self.full_name, REF_MAP,
                                   dbtype=db.DB_BTREE)
 
         self.reference_map_primary_map = self.__open_db(self.full_name,
@@ -1317,8 +1317,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if hasattr(self, 'metadata') and self.metadata:
             self.metadata.close()
         self.env.close()
-        self.metadata   = None
-        self.env        = None
+        self.metadata = None
+        self.env = None
         self.db_is_open = False
 
     @catch_db_error
@@ -1368,20 +1368,20 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.env.close()
         self.__close_undodb()
 
-        self.person_map     = None
-        self.family_map     = None
+        self.person_map = None
+        self.family_map = None
         self.repository_map = None
-        self.note_map       = None
-        self.place_map      = None
-        self.source_map     = None
-        self.citation_map   = None
-        self.media_map      = None
-        self.event_map      = None
-        self.tag_map        = None
-        self.surnames       = None
-        self.env            = None
-        self.metadata       = None
-        self.db_is_open     = False
+        self.note_map = None
+        self.place_map = None
+        self.source_map = None
+        self.citation_map = None
+        self.media_map = None
+        self.event_map = None
+        self.tag_map = None
+        self.surnames = None
+        self.env = None
+        self.metadata = None
+        self.db_is_open = False
         self.surname_list = None
 
         DbBsddbRead.close(self)
@@ -2235,7 +2235,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.env.open(env_name, env_flags)
         self.env.txn_checkpoint()
 
-        self.metadata  = self.__open_shelf(full_name, META)
+        self.metadata = self.__open_shelf(full_name, META)
 
         _LOG.debug("Write schema version %s" % _DBVERSION)
         with BSDDBTxn(self.env, self.metadata) as txn:

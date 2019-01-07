@@ -49,10 +49,10 @@ class BaseSelector(ManagedWindow):
         one of the primary objects
     """
 
-    NONE   = -1
-    TEXT   =  0
+    NONE = -1
+    TEXT =  0
     MARKUP =  1
-    IMAGE  =  2
+    IMAGE =  2
 
     def __init__(self, dbstate, uistate, track=[], filter=None, skip=set(),
                  show_search_bar = True, default=None):

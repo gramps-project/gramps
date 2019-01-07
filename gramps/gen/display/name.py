@@ -83,21 +83,21 @@ except ImportError:
 # Constants
 #
 #-------------------------------------------------------------------------
-_FIRSTNAME    = 4
+_FIRSTNAME = 4
 _SURNAME_LIST = 5
-_SUFFIX       = 6
-_TITLE        = 7
-_TYPE         = 8
-_GROUP        = 9
-_SORT         = 10
-_DISPLAY      = 11
-_CALL         = 12
-_NICK         = 13
-_FAMNICK      = 14
-_SURNAME_IN_LIST   = 0
-_PREFIX_IN_LIST    = 1
-_PRIMARY_IN_LIST   = 2
-_TYPE_IN_LIST      = 3
+_SUFFIX = 6
+_TITLE = 7
+_TYPE = 8
+_GROUP = 9
+_SORT = 10
+_DISPLAY = 11
+_CALL = 12
+_NICK = 13
+_FAMNICK = 14
+_SURNAME_IN_LIST = 0
+_PREFIX_IN_LIST = 1
+_PRIMARY_IN_LIST = 2
+_TYPE_IN_LIST = 3
 _CONNECTOR_IN_LIST = 4
 _ORIGINPATRO = NameOriginType.PATRONYMIC
 _ORIGINMATRO = NameOriginType.MATRONYMIC
@@ -570,13 +570,13 @@ class NameDisplay:
                    raw_data[_SUFFIX])
 
         Specific symbols for parts of a name are defined (keywords given):
-        't' : title      = title
-        'f' : given      = given (first names)
-        'l' : surname    = full surname (lastname)
-        'c' : call       = callname
-        'x' : common     = nick name, call, otherwise first first name (common name)
-        'i' : initials   = initials of the first names
-        'm' : primary    = primary surname (main)
+        't' : title = title
+        'f' : given = given (first names)
+        'l' : surname = full surname (lastname)
+        'c' : call = callname
+        'x' : common = nick name, call, otherwise first first name (common name)
+        'i' : initials = initials of the first names
+        'm' : primary = primary surname (main)
         '0m': primary[pre]= prefix primary surname (main)
         '1m': primary[sur]= surname primary surname (main)
         '2m': primary[con]= connector primary surname (main)
@@ -585,11 +585,11 @@ class NameDisplay:
         '1y': patronymic[sur] = surname     "
         '2y': patronymic[con] = connector   "
         'o' : notpatronymic = surnames without pa/matronymic and primary
-        'r' : rest       = non primary surnames
-        'p' : prefix     = list of all prefixes
+        'r' : rest = non primary surnames
+        'p' : prefix = list of all prefixes
         'q' : rawsurnames = surnames without prefixes and connectors
-        's' : suffix     = suffix
-        'n' : nickname   = nick name
+        's' : suffix = suffix
+        'n' : nickname = nick name
         'g' : familynick = family nick name
 
 
@@ -671,13 +671,13 @@ class NameDisplay:
             return "%s %s" % (first,suffix)
 
         Specific symbols for parts of a name are defined (keywords given):
-        't' : title      = title
-        'f' : given      = given (first names)
-        'l' : surname    = full surname (lastname)
-        'c' : call       = callname
-        'x' : common     = nick name, call, or otherwise first first name (common name)
-        'i' : initials   = initials of the first names
-        'm' : primary    = primary surname (main)
+        't' : title = title
+        'f' : given = given (first names)
+        'l' : surname = full surname (lastname)
+        'c' : call = callname
+        'x' : common = nick name, call, or otherwise first first name (common name)
+        'i' : initials = initials of the first names
+        'm' : primary = primary surname (main)
         '0m': primary[pre]= prefix primary surname (main)
         '1m': primary[sur]= surname primary surname (main)
         '2m': primary[con]= connector primary surname (main)
@@ -686,11 +686,11 @@ class NameDisplay:
         '1y': patronymic[sur] = surname     "
         '2y': patronymic[con] = connector   "
         'o' : notpatronymic = surnames without pa/matronymic and primary
-        'r' : rest       = non primary surnames
-        'p' : prefix     = list of all prefixes
+        'r' : rest = non primary surnames
+        'p' : prefix = list of all prefixes
         'q' : rawsurnames = surnames without prefixes and connectors
-        's' : suffix     = suffix
-        'n' : nickname   = nick name
+        's' : suffix = suffix
+        'n' : nickname = nick name
         'g' : familynick = family nick name
 
         """

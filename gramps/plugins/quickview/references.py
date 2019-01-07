@@ -84,11 +84,11 @@ def run(database, document, object, item, trans):
 #functions for the actual quickreports
 run_person = lambda db, doc, obj: run(db, doc, obj, 'person', _("Person"))
 run_family = lambda db, doc, obj: run(db, doc, obj, 'family', _("Family"))
-run_event  = lambda db, doc, obj: run(db, doc, obj, 'event', _("Event"))
+run_event = lambda db, doc, obj: run(db, doc, obj, 'event', _("Event"))
 run_source = lambda db, doc, obj: run(db, doc, obj, 'source', _("Source"))
 run_citation = lambda db, doc, obj: run(db, doc, obj, 'citation', _("Citation"))
 run_source_or_citation = lambda db, doc, obj: run(db, doc, obj,
                                 'source or citation', _("Source or Citation"))
-run_place  = lambda db, doc, obj: run(db, doc, obj, 'place', _("Place"))
-run_media  = lambda db, doc, obj: run(db, doc, obj, 'media', _("Media"))
-run_note  = lambda db, doc, obj: run(db, doc, obj, 'note', _("Note"))
+run_place = lambda db, doc, obj: run(db, doc, obj, 'place', _("Place"))
+run_media = lambda db, doc, obj: run(db, doc, obj, 'media', _("Media"))
+run_note = lambda db, doc, obj: run(db, doc, obj, 'note', _("Note"))

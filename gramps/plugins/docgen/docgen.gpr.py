@@ -30,8 +30,8 @@ MODULE_VERSION="5.1"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'asciidoc'
-plg.name  = _("Plain Text")
+plg.id = 'asciidoc'
+plg.name = _("Plain Text")
 plg.description =  _("Generates documents in plain text format (.txt).")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -51,8 +51,8 @@ plg.extension = "txt"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'gtkprint'
-plg.name  = _('Print...')
+plg.id = 'gtkprint'
+plg.name = _('Print...')
 plg.description =  _("Generates documents and prints them directly.")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -72,8 +72,8 @@ plg.extension = ""
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'htmldoc'
-plg.name  = _('HTML')
+plg.id = 'htmldoc'
+plg.name = _('HTML')
 plg.description =  _("Generates documents in HTML format.")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -93,8 +93,8 @@ plg.extension = "html"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'latexdoc'
-plg.name  = _('LaTeX')
+plg.id = 'latexdoc'
+plg.name = _('LaTeX')
 plg.description =  _("Generates documents in LaTeX format.")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -114,8 +114,8 @@ plg.extension = "tex"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'odfdoc'
-plg.name  = _('OpenDocument Text')
+plg.id = 'odfdoc'
+plg.name = _('OpenDocument Text')
 plg.description =  _("Generates documents in OpenDocument "
                      "Text format (.odt).")
 plg.version = '1.0'
@@ -136,8 +136,8 @@ plg.extension = "odt"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'pdfdoc'
-plg.name  = _('PDF document')
+plg.id = 'pdfdoc'
+plg.name = _('PDF document')
 plg.description =  _("Generates documents in PDF format (.pdf).")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -157,8 +157,8 @@ plg.extension = "pdf"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'psdrawdoc'
-plg.name  = _('PostScript')
+plg.id = 'psdrawdoc'
+plg.name = _('PostScript')
 plg.description =  _("Generates documents in PostScript format (.ps).")
 plg.version = '2.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -178,8 +178,8 @@ plg.extension = "ps"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'rftdoc'
-plg.name  = _('RTF document')
+plg.id = 'rftdoc'
+plg.name = _('RTF document')
 plg.description =  _("Generates documents in Rich Text format (.rtf).")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -199,8 +199,8 @@ plg.extension = "rtf"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'SVG (Scalable Vector Graphics)'
-plg.name  = _('SVG document')
+plg.id = 'SVG (Scalable Vector Graphics)'
+plg.name = _('SVG document')
 plg.description =  _("Generates documents in Scalable "
                      "Vector Graphics format (.svg).")
 plg.version = '1.0'

@@ -45,9 +45,9 @@ from .._hascitationbase import HasCitationBase
 class HasCitation(HasCitationBase):
     """Rule that checks for a family with a particular value"""
 
-    labels      = [ _('Volume/Page:'),
+    labels = [ _('Volume/Page:'),
                     _('Date:'),
                     _('Confidence level:')]
-    name        =  _('Place with the <citation>')
+    name =  _('Place with the <citation>')
     description = _("Matches places with a citation of a particular "
                     "value")

@@ -39,6 +39,6 @@ from .._hasreferencecountbase import HasReferenceCountBase
 class HasReferenceCountOf(HasReferenceCountBase):
     """Repositories with a reference count of <count>"""
 
-    name        = _('Repositories with a reference count of <count>')
+    name = _('Repositories with a reference count of <count>')
     description = _("Matches repositories with a certain reference count")
 

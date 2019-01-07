@@ -76,8 +76,8 @@ def make_launcher(path, uistate):
 #-------------------------------------------------------------------------
 class GalleryTab(ButtonTab, DbGUIElement):
 
-    _DND_TYPE   = DdTargets.MEDIAREF
-    _DND_EXTRA  = DdTargets.URI_LIST
+    _DND_TYPE = DdTargets.MEDIAREF
+    _DND_EXTRA = DdTargets.URI_LIST
 
     def __init__(self, dbstate, uistate, track,  media_list, update=None):
         self.iconlist = Gtk.IconView()

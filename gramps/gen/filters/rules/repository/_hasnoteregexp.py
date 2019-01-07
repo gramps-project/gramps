@@ -38,6 +38,6 @@ from .._hasnoteregexbase import HasNoteRegexBase
 #-------------------------------------------------------------------------
 class HasNoteRegexp(HasNoteRegexBase):
 
-    name        = _('Repositories having notes containing <text>')
+    name = _('Repositories having notes containing <text>')
     description = _("Matches repositories whose notes contain text "
                     "matching a regular expression")

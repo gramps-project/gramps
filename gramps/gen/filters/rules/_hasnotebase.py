@@ -43,10 +43,10 @@ from . import Rule
 class HasNoteBase(Rule):
     """Objects having notes"""
 
-    labels      = [  _('Number of instances:'), _('Number must be:')]
-    name        = 'Object with notes'
+    labels = [  _('Number of instances:'), _('Number must be:')]
+    name = 'Object with notes'
     description = "Matches objects that have a certain number of notes"
-    category    = _('General filters')
+    category = _('General filters')
 
     def __init__(self, arg, use_regex=False):
         # Upgrade from pre 3.1 HasNote filter, use defaults that correspond

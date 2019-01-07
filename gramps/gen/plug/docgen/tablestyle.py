@@ -66,7 +66,7 @@ class TableStyle:
         if obj:
             self.width = obj.width
             self.columns = obj.columns
-            self.colwid  = obj.colwid[:]
+            self.colwid = obj.colwid[:]
             self.description = obj.description
         else:
             self.width = 0

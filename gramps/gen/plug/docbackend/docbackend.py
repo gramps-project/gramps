@@ -207,15 +207,15 @@ class DocBackend:
         if not self.STYLETYPE_MAP or \
         self.CLASSMAP != tagtype.__class__.__name__ :
             self.CLASSMAP = tagtype.__class__.__name__
-            self.STYLETYPE_MAP[tagtype.BOLD]        = self.BOLD
-            self.STYLETYPE_MAP[tagtype.ITALIC]      = self.ITALIC
-            self.STYLETYPE_MAP[tagtype.UNDERLINE]   = self.UNDERLINE
-            self.STYLETYPE_MAP[tagtype.FONTFACE]    = self.FONTFACE
-            self.STYLETYPE_MAP[tagtype.FONTSIZE]    = self.FONTSIZE
-            self.STYLETYPE_MAP[tagtype.FONTCOLOR]   = self.FONTCOLOR
-            self.STYLETYPE_MAP[tagtype.HIGHLIGHT]   = self.HIGHLIGHT
+            self.STYLETYPE_MAP[tagtype.BOLD] = self.BOLD
+            self.STYLETYPE_MAP[tagtype.ITALIC] = self.ITALIC
+            self.STYLETYPE_MAP[tagtype.UNDERLINE] = self.UNDERLINE
+            self.STYLETYPE_MAP[tagtype.FONTFACE] = self.FONTFACE
+            self.STYLETYPE_MAP[tagtype.FONTSIZE] = self.FONTSIZE
+            self.STYLETYPE_MAP[tagtype.FONTCOLOR] = self.FONTCOLOR
+            self.STYLETYPE_MAP[tagtype.HIGHLIGHT] = self.HIGHLIGHT
             self.STYLETYPE_MAP[tagtype.SUPERSCRIPT] = self.SUPERSCRIPT
-            self.STYLETYPE_MAP[tagtype.LINK]        = self.LINK
+            self.STYLETYPE_MAP[tagtype.LINK] = self.LINK
 
         if s_tag.name == tagtype.LINK:
             return self.format_link(s_tag.value)

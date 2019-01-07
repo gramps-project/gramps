@@ -41,5 +41,5 @@ from .. import HasGrampsId
 class HasIdOf(HasGrampsId):
     """Rule that checks for a place with a specific Gramps ID"""
 
-    name        = _('Place with <Id>')
+    name = _('Place with <Id>')
     description = _("Matches a place with a specified Gramps ID")

@@ -48,8 +48,8 @@ class RelationshipPathBetweenBookmarks(Rule):
     bookmarked individuals.
     """
 
-    name        = _("Relationship path between bookmarked persons")
-    category    = _('Relationship filters')
+    name = _("Relationship path between bookmarked persons")
+    category = _('Relationship filters')
     description = _("Matches the ancestors of bookmarked individuals "
                     "back to common ancestors, producing the relationship "
                     "path(s) between bookmarked persons.")

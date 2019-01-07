@@ -443,7 +443,7 @@ class FanChartDescWidget(FanChartBaseWidget):
         cr.save()
         # Draw center person:
         (person, dup, start, slice, parentfampos, nrfam, userdata, status) \
-                = self.gen2people[0][0]
+ = self.gen2people[0][0]
         if person:
             r, g, b, a = self.background_box(person, 0, userdata)
             radiusin_pers,radiusout_pers,radiusin_partner,radiusout_partner = \
@@ -511,7 +511,7 @@ class FanChartDescWidget(FanChartBaseWidget):
             generation = None
             for gen in range(self.generations):
                 radiusin_pers,radiusout_pers,radiusin_partner,radiusout_partner \
-                    = self.get_radiusinout_for_generation_pair(gen)
+ = self.get_radiusinout_for_generation_pair(gen)
                 if radiusin_pers <= radius <= radiusout_pers:
                     generation, btype = gen, TYPE_BOX_NORMAL
                     break

@@ -1377,7 +1377,7 @@ if __name__ == '__main__':
     name_to_test = Name()
 
     def name_set():
-        #code  = "tfcnxslg"
+        #code = "tfcnxslg"
         name_to_test.set_call_name("Bob" if 0 in y_or_n else "")
         name_to_test.set_title("Dr." if 1 in y_or_n else "")
         name_to_test.set_first_name("Billy" if 2 in y_or_n else "")

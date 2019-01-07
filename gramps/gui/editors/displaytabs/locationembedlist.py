@@ -46,7 +46,7 @@ from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 class LocationEmbedList(EmbeddedList):
 
     _HANDLE_COL = 6
-    _DND_TYPE   = DdTargets.LOCATION
+    _DND_TYPE = DdTargets.LOCATION
 
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col

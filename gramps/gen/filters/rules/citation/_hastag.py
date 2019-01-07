@@ -45,6 +45,6 @@ class HasTag(HasTagBase):
     """
     Rule that checks for a citation with a particular tag.
     """
-    labels      = [ _('Tag:') ]
-    name        = _('Citations with the <tag>')
+    labels = [ _('Tag:') ]
+    name = _('Citations with the <tag>')
     description = _("Matches citations with the particular tag")

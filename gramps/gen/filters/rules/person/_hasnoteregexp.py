@@ -38,7 +38,7 @@ from .._hasnoteregexbase import HasNoteRegexBase
 #-------------------------------------------------------------------------
 class HasNoteRegexp(HasNoteRegexBase):
 
-    name        = _('People having notes containing <text>')
+    name = _('People having notes containing <text>')
     description = _("Matches people whose notes contain text "
                     "matching a regular expression")
 

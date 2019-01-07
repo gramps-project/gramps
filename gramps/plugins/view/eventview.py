@@ -93,10 +93,10 @@ class EventView(ListView):
                           COL_ID, COL_PRIV, COL_TAGS, COL_CHAN]),
         ('columns.size', [100, 230, 150, 200, 100, 75, 40, 100, 100])
         )
-    ADD_MSG     = _("Add a new event")
-    EDIT_MSG    = _("Edit the selected event")
-    DEL_MSG     = _("Delete the selected event")
-    MERGE_MSG   = _("Merge the selected events")
+    ADD_MSG = _("Add a new event")
+    EDIT_MSG = _("Edit the selected event")
+    DEL_MSG = _("Delete the selected event")
+    MERGE_MSG = _("Merge the selected events")
     FILTER_TYPE = "Event"
     QR_CATEGORY = CATEGORY_QR_EVENT
 

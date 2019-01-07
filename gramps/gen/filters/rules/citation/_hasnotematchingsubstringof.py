@@ -40,7 +40,7 @@ from .._hasnotesubstrbase import HasNoteSubstrBase
 class HasNoteMatchingSubstringOf(HasNoteSubstrBase):
     """Citations having notes containing <substring>"""
 
-    name        = _('Citations having notes containing <substring>')
+    name = _('Citations having notes containing <substring>')
     description = _("Matches citations whose notes contain text "
                     "matching a substring")
 

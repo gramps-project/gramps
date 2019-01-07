@@ -42,9 +42,9 @@ from .. import Rule
 class HasAlternateName(Rule):
     """Rule that checks an alternate name"""
 
-    name        = _('People with an alternate name')
+    name = _('People with an alternate name')
     description = _("Matches people with an alternate name")
-    category    = _('General filters')
+    category = _('General filters')
 
     def apply(self, db, person):
         if person.get_alternate_names():

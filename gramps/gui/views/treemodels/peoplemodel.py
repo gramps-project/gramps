@@ -70,18 +70,18 @@ from gramps.gen.config import config
 # COLUMN constants; positions in raw data structure
 #
 #-------------------------------------------------------------------------
-COLUMN_ID     = 1
+COLUMN_ID = 1
 COLUMN_GENDER = 2
-COLUMN_NAME   = 3
-COLUMN_DEATH  = 5
-COLUMN_BIRTH  = 6
-COLUMN_EVENT  = 7
+COLUMN_NAME = 3
+COLUMN_DEATH = 5
+COLUMN_BIRTH = 6
+COLUMN_EVENT = 7
 COLUMN_FAMILY = 8
 COLUMN_PARENT = 9
-COLUMN_NOTES  = 16
+COLUMN_NOTES = 16
 COLUMN_CHANGE = 17
-COLUMN_TAGS   = 18
-COLUMN_PRIV   = 19
+COLUMN_TAGS = 18
+COLUMN_PRIV = 19
 
 invalid_date_format = config.get('preferences.invalid-date-format')
 

@@ -61,13 +61,13 @@ class EditLocation(EditSecondary):
             self.obj.get_locality,
             self.db.readonly)
 
-        self.city   = MonitoredEntry(
+        self.city = MonitoredEntry(
             self.top.get_object("city"),
             self.obj.set_city,
             self.obj.get_city,
             self.db.readonly)
 
-        self.state  = MonitoredEntry(
+        self.state = MonitoredEntry(
             self.top.get_object("state"),
             self.obj.set_state,
             self.obj.get_state,

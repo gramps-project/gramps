@@ -43,9 +43,9 @@ class IsDuplicatedAncestorOf(Rule):
     """Rule that checks for a person that is a duplicated ancestor of
     a specified person"""
 
-    labels      = [ _('ID:')]
-    name        = _('Duplicated ancestors of <person>')
-    category    = _("Ancestral filters")
+    labels = [ _('ID:')]
+    name = _('Duplicated ancestors of <person>')
+    category = _("Ancestral filters")
     description = _("Matches people that are ancestors twice or more "
                     "of a specified person")
 

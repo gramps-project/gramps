@@ -39,6 +39,6 @@ from .._hasreferencecountbase import HasReferenceCountBase
 class HasReferenceCountOf(HasReferenceCountBase):
     """Events with a reference count of <count>"""
 
-    name        = _('Events with a reference count of <count>')
+    name = _('Events with a reference count of <count>')
     description = _("Matches events with a certain reference count")
 

@@ -39,9 +39,9 @@ from .. import Rule
 class HaveChildren(Rule):
     """People with children"""
 
-    name        = _('People with children')
+    name = _('People with children')
     description = _("Matches people who have children")
-    category    = _('Family filters')
+    category = _('Family filters')
 
     def apply(self,db,person):
         for family_handle in person.get_family_handle_list():

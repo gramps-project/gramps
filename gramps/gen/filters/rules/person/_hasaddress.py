@@ -45,10 +45,10 @@ from .. import Rule
 class HasAddress(Rule):
     """Rule that checks for a person with a personal address"""
 
-    labels      = [  _('Number of instances:'), _('Number must be:')]
-    name        = _('People with <count> addresses')
+    labels = [  _('Number of instances:'), _('Number must be:')]
+    name = _('People with <count> addresses')
     description = _("Matches people with a certain number of personal addresses")
-    category    = _('General filters')
+    category = _('General filters')
 
 
     def prepare(self, db, user):
