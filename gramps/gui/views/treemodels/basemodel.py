@@ -34,7 +34,7 @@ class BaseModel:
     _CACHE_SIZE = config.get('interface.treemodel-cache-size')
 
     def __init__(self):
-        self.lru_data  = LRU(BaseModel._CACHE_SIZE)
+        self.lru_data = LRU(BaseModel._CACHE_SIZE)
         self.lru_path = LRU(BaseModel._CACHE_SIZE)
 
     def destroy(self):

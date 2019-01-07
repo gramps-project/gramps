@@ -39,5 +39,5 @@ from .._isprivate import IsPrivate
 class FamilyPrivate(IsPrivate):
     """Family marked private"""
 
-    name        = _('Families marked private')
+    name = _('Families marked private')
     description = _("Matches families that are indicated as private")

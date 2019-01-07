@@ -41,8 +41,8 @@ from . import Rule
 class Everything(Rule):
     """Match Everyone."""
 
-    name        = 'Every object'
-    category    = _('General filters')
+    name = 'Every object'
+    category = _('General filters')
     description = 'Matches every object in the database'
 
     def is_empty(self):

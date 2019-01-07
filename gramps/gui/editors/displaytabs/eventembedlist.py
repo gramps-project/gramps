@@ -52,8 +52,8 @@ from ...selectors import SelectorFactory
 class EventEmbedList(DbGUIElement, GroupEmbeddedList):
 
     _HANDLE_COL = 8
-    _DND_TYPE   = DdTargets.EVENTREF
-    _DND_EXTRA  = DdTargets.EVENT
+    _DND_TYPE = DdTargets.EVENTREF
+    _DND_EXTRA = DdTargets.EVENT
     _WORKGROUP = EventRefModel._ROOTINDEX
 
     _WORKNAME = _("Family")

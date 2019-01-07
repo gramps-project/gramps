@@ -45,7 +45,7 @@ class LivingProxyDb(ProxyDbBase):
     A proxy to a Gramps database. This proxy will act like a Gramps database,
     but all living people will be hidden from the user.
     """
-    MODE_EXCLUDE_ALL  = 0
+    MODE_EXCLUDE_ALL = 0
     MODE_INCLUDE_LAST_NAME_ONLY = 1
     MODE_INCLUDE_FULL_NAME_ONLY = 2
     MODE_REPLACE_COMPLETE_NAME = 3

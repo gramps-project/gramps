@@ -53,28 +53,28 @@ LOG = logging.getLogger('._manager')
 #-------------------------------------------------------------------------
 
 #a plugin is stable or unstable
-STABLE   = 0
+STABLE = 0
 UNSTABLE = 1
-STATUS   = [STABLE, UNSTABLE]
+STATUS = [STABLE, UNSTABLE]
 STATUSTEXT = {STABLE: _('Stable'), UNSTABLE: _('Unstable')}
 #possible plugin types
-REPORT      = 0
+REPORT = 0
 QUICKREPORT = 1 # deprecated
-QUICKVIEW   = 1
-TOOL        = 2
-IMPORT      = 3
-EXPORT      = 4
-DOCGEN      = 5
-GENERAL     = 6
-MAPSERVICE  = 7
-VIEW        = 8
-RELCALC     = 9
-GRAMPLET    = 10
-SIDEBAR     = 11
-DATABASE    = 12
-PTYPE       = [REPORT , QUICKREPORT, TOOL, IMPORT, EXPORT, DOCGEN, GENERAL,
+QUICKVIEW = 1
+TOOL = 2
+IMPORT = 3
+EXPORT = 4
+DOCGEN = 5
+GENERAL = 6
+MAPSERVICE = 7
+VIEW = 8
+RELCALC = 9
+GRAMPLET = 10
+SIDEBAR = 11
+DATABASE = 12
+PTYPE = [REPORT , QUICKREPORT, TOOL, IMPORT, EXPORT, DOCGEN, GENERAL,
                MAPSERVICE, VIEW, RELCALC, GRAMPLET, SIDEBAR, DATABASE]
-PTYPE_STR   = {
+PTYPE_STR = {
         REPORT: _('Report') ,
         QUICKREPORT: _('Quickreport'),
         TOOL: _('Tool'),
@@ -91,54 +91,54 @@ PTYPE_STR   = {
         }
 
 #possible report categories
-CATEGORY_TEXT       = 0
-CATEGORY_DRAW       = 1
-CATEGORY_CODE       = 2
-CATEGORY_WEB        = 3
-CATEGORY_BOOK       = 4
-CATEGORY_GRAPHVIZ   = 5
-CATEGORY_TREE       = 6
-REPORT_CAT          = [ CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE,
+CATEGORY_TEXT = 0
+CATEGORY_DRAW = 1
+CATEGORY_CODE = 2
+CATEGORY_WEB = 3
+CATEGORY_BOOK = 4
+CATEGORY_GRAPHVIZ = 5
+CATEGORY_TREE = 6
+REPORT_CAT = [ CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_CODE,
                         CATEGORY_WEB, CATEGORY_BOOK, CATEGORY_GRAPHVIZ,
                         CATEGORY_TREE]
 #possible tool categories
-TOOL_DEBUG  = -1
-TOOL_ANAL   = 0
+TOOL_DEBUG = -1
+TOOL_ANAL = 0
 TOOL_DBPROC = 1
-TOOL_DBFIX  = 2
+TOOL_DBFIX = 2
 TOOL_REVCTL = 3
-TOOL_UTILS  = 4
-TOOL_CAT    = [ TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX, TOOL_REVCTL,
+TOOL_UTILS = 4
+TOOL_CAT = [ TOOL_DEBUG, TOOL_ANAL, TOOL_DBPROC, TOOL_DBFIX, TOOL_REVCTL,
                 TOOL_UTILS]
 
 #possible quickreport categories
-CATEGORY_QR_MISC       = -1
-CATEGORY_QR_PERSON     = 0
-CATEGORY_QR_FAMILY     = 1
-CATEGORY_QR_EVENT      = 2
-CATEGORY_QR_SOURCE     = 3
-CATEGORY_QR_PLACE      = 4
+CATEGORY_QR_MISC = -1
+CATEGORY_QR_PERSON = 0
+CATEGORY_QR_FAMILY = 1
+CATEGORY_QR_EVENT = 2
+CATEGORY_QR_SOURCE = 3
+CATEGORY_QR_PLACE = 4
 CATEGORY_QR_REPOSITORY = 5
-CATEGORY_QR_NOTE       = 6
-CATEGORY_QR_DATE       = 7
-CATEGORY_QR_MEDIA      = 8
-CATEGORY_QR_CITATION   = 9
+CATEGORY_QR_NOTE = 6
+CATEGORY_QR_DATE = 7
+CATEGORY_QR_MEDIA = 8
+CATEGORY_QR_CITATION = 9
 CATEGORY_QR_SOURCE_OR_CITATION = 10
 
 # Modes for generating reports
 REPORT_MODE_GUI = 1    # Standalone report using GUI
 REPORT_MODE_BKI = 2    # Book Item interface using GUI
 REPORT_MODE_CLI = 4    # Command line interface (CLI)
-REPORT_MODES    = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
+REPORT_MODES = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 
 # Modes for running tools
 TOOL_MODE_GUI = 1    # Standard tool using GUI
 TOOL_MODE_CLI = 2    # Command line interface (CLI)
-TOOL_MODES    = [TOOL_MODE_GUI, TOOL_MODE_CLI]
+TOOL_MODES = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 
 # possible view orders
 START = 1
-END   = 2
+END = 2
 
 #-------------------------------------------------------------------------
 #
@@ -169,10 +169,10 @@ def valid_plugin_version(plugin_version_string):
     if not isinstance(plugin_version_string, str): return False
     dots = plugin_version_string.count(".")
     if dots == 1:
-        plugin_version  = tuple(map(int, plugin_version_string.split(".", 1)))
+        plugin_version = tuple(map(int, plugin_version_string.split(".", 1)))
         return plugin_version == VERSION_TUPLE[:2]
     elif dots == 2:
-        plugin_version  = tuple(map(int, plugin_version_string.split(".", 2)))
+        plugin_version = tuple(map(int, plugin_version_string.split(".", 2)))
         return (plugin_version[:2] == VERSION_TUPLE[:2] and
                 plugin_version <= VERSION_TUPLE)
     return False
@@ -934,7 +934,7 @@ class PluginData:
         return self._menu_label
 
     sidebarclass = property(_get_sidebarclass, _set_sidebarclass)
-    menu_label   = property(_get_menu_label, _set_menu_label)
+    menu_label = property(_get_menu_label, _set_menu_label)
 
     #VIEW and SIDEBAR attributes
     def _set_order(self, order):
@@ -1108,7 +1108,7 @@ class PluginRegister:
         self.stable_only = True
         if __debug__:
             self.stable_only = False
-        self.__plugindata  = []
+        self.__plugindata = []
         self.__id_to_pdata = {}
 
     def add_plugindata(self, plugindata):

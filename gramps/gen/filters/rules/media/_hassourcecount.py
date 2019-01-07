@@ -42,5 +42,5 @@ from .._hassourcecountbase import HasSourceCountBase
 class HasSourceCount(HasSourceCountBase):
     """Media with sources"""
 
-    name        = _('Media with <count> sources')
+    name = _('Media with <count> sources')
     description = _("Matches media with a certain number of sources connected to it")

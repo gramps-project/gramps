@@ -50,9 +50,9 @@ LOG = logging.getLogger(".")
 class Rule:
     """Base rule class."""
 
-    labels      = []
-    name        = ''
-    category    = _('Miscellaneous filters')
+    labels = []
+    name = ''
+    category = _('Miscellaneous filters')
     description = _('No description')
     allow_regex = False
 

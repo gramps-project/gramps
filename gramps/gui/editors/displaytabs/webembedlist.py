@@ -48,7 +48,7 @@ from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 class WebEmbedList(EmbeddedList):
 
     _HANDLE_COL = 4
-    _DND_TYPE   = DdTargets.URL
+    _DND_TYPE = DdTargets.URL
 
     _MSG = {
         'add'   : _('Create and add a new web address'),

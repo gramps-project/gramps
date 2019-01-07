@@ -42,9 +42,9 @@ from . import Rule
 class HasSourceOfBase(Rule):
     """Rule that checks for objects that have a particular source."""
 
-    labels      = [ _('Source ID:') ]
-    name        = 'Object with the <source>'
-    category    = _('Citation/source filters')
+    labels = [ _('Source ID:') ]
+    name = 'Object with the <source>'
+    category = _('Citation/source filters')
     description = 'Matches objects who have a particular source'
 
     def prepare(self, db, user):

@@ -41,5 +41,5 @@ from .._everything import Everything
 class AllSources(Everything):
     """Matches Everyone"""
 
-    name        = _('Every source')
+    name = _('Every source')
     description = _('Matches every source in the database')

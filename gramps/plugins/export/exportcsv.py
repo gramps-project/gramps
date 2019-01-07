@@ -76,7 +76,7 @@ def exportData(database, filename, user, option_box=None):
 #-------------------------------------------------------------------------
 def sortable_string_representation(text):
     numeric = ""
-    alpha   = ""
+    alpha = ""
     for s in text:
         if s.isdigit():
             numeric += s

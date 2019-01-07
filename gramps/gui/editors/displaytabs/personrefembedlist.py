@@ -49,7 +49,7 @@ from ...dbguielement import DbGUIElement
 class PersonRefEmbedList(DbGUIElement, EmbeddedList):
 
     _HANDLE_COL = 4
-    _DND_TYPE   = DdTargets.PERSONREF
+    _DND_TYPE = DdTargets.PERSONREF
     _DND_EXTRA = DdTargets.PERSON_LINK
 
     _MSG = {

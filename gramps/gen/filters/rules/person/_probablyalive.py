@@ -41,10 +41,10 @@ from ....datehandler import parser
 class ProbablyAlive(Rule):
     """People probably alive"""
 
-    labels      = [_("On date:")]
-    name        =  _('People probably alive')
+    labels = [_("On date:")]
+    name =  _('People probably alive')
     description = _("Matches people without indications of death that are not too old")
-    category    = _('General filters')
+    category = _('General filters')
 
     def prepare(self, db, user):
         try:

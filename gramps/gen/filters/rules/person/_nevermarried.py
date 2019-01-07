@@ -39,9 +39,9 @@ from .. import Rule
 class NeverMarried(Rule):
     """People with no marriage records"""
 
-    name        = _('People with no marriage records')
+    name = _('People with no marriage records')
     description = _("Matches people who have no spouse")
-    category    = _('Family filters')
+    category = _('Family filters')
 
     def apply(self,db,person):
         return len(person.get_family_handle_list()) == 0

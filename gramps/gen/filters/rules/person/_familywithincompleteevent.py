@@ -39,10 +39,10 @@ from .. import Rule
 class FamilyWithIncompleteEvent(Rule):
     """Families with incomplete events"""
 
-    name        = _('Families with incomplete events')
+    name = _('Families with incomplete events')
     description = _("Matches people with missing date or "
                     "place in an event of the family")
-    category    = _('Event filters')
+    category = _('Event filters')
 
     def apply(self,db,person):
         for family_handle in person.get_family_handle_list():

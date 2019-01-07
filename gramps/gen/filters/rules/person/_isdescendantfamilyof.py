@@ -46,9 +46,9 @@ class IsDescendantFamilyOf(Rule):
     """Rule that checks for a person that is a descendant or the spouse
     of a descendant of a specified person"""
 
-    labels      = [ _('ID:'), _('Inclusive:') ]
-    name        = _('Descendant family members of <person>')
-    category    = _('Descendant filters')
+    labels = [ _('ID:'), _('Inclusive:') ]
+    name = _('Descendant family members of <person>')
+    category = _('Descendant filters')
     description = _("Matches people that are descendants or the spouse "
                     "of a descendant of a specified person")
 

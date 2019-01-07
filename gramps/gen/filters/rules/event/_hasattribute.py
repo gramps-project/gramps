@@ -41,7 +41,7 @@ from .._hasattributebase import HasAttributeBase
 class HasAttribute(HasAttributeBase):
     """Rule that checks for an event with a particular event attribute"""
 
-    labels      = [ _('Event attribute:'), _('Value:') ]
-    name        = _('Events with the attribute <attribute>')
+    labels = [ _('Event attribute:'), _('Value:') ]
+    name = _('Events with the attribute <attribute>')
     description = _("Matches events with the event attribute "
                     "of a particular value")

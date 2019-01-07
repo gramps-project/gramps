@@ -58,7 +58,7 @@ from ...utils import match_primary_mask, no_match_primary_mask
 class SurnameTab(EmbeddedList):
 
     _HANDLE_COL = 5
-    _DND_TYPE   = DdTargets.SURNAME
+    _DND_TYPE = DdTargets.SURNAME
 
     _MSG = {
         'add'   : _('Create and add a new surname'),

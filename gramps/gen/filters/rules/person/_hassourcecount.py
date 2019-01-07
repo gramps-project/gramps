@@ -42,5 +42,5 @@ from .._hassourcecountbase import HasSourceCountBase
 class HasSourceCount(HasSourceCountBase):
     """People with sources"""
 
-    name        = _('People with <count> sources')
+    name = _('People with <count> sources')
     description = _("Matches people with a certain number of sources connected to it")

@@ -39,36 +39,36 @@ __all__ = ( 'DBPAGE', 'DBMODE', 'DBCACHE', 'DBLOCKS', 'DBOBJECTS', 'DBUNDO',
             "CLASS_TO_KEY_MAP", "KEY_TO_CLASS_MAP", "KEY_TO_NAME_MAP"
         )
 
-DBEXT     = ".db"           # File extension to be used for database files
-DBUNDOFN  = "undo.db"       # File name of 'undo' database
-DBLOCKFN  = "lock"          # File name of lock file
+DBEXT = ".db"           # File extension to be used for database files
+DBUNDOFN = "undo.db"       # File name of 'undo' database
+DBLOCKFN = "lock"          # File name of lock file
 DBRECOVFN = "need_recover"  # File name of recovery file
 BDBVERSFN = "bdbversion.txt"# File name of Berkeley DB version file
 DBBACKEND = "database.txt"  # File name of Database backend file
 SCHVERSFN = "schemaversion.txt"# File name of schema version file
 PCKVERSFN = "pickleupgrade.txt" # Indicator that pickle has been upgrade t Python3
 DBLOGNAME = ".Db"           # Name of logger
-DBMODE_R  = "r"             # Read-only access
-DBMODE_W  = "w"             # Full Read/Write access
-DBPAGE    = 16384           # Size of the pages used to hold items in the database
-DBMODE    = 0o666            # Unix mode for database creation
-DBCACHE   = 0x4000000       # Size of the shared memory buffer pool
-DBLOCKS   = 100000          # Maximum number of locks supported
+DBMODE_R = "r"             # Read-only access
+DBMODE_W = "w"             # Full Read/Write access
+DBPAGE = 16384           # Size of the pages used to hold items in the database
+DBMODE = 0o666            # Unix mode for database creation
+DBCACHE = 0x4000000       # Size of the shared memory buffer pool
+DBLOCKS = 100000          # Maximum number of locks supported
 DBOBJECTS = 100000          # Maximum number of simultaneously locked objects
-DBUNDO    = 1000            # Maximum size of undo buffer
+DBUNDO = 1000            # Maximum size of undo buffer
 ARRAYSIZE = 1000            # The arraysize for a SQL cursor
 
-PERSON_KEY     = 0
-FAMILY_KEY     = 1
-SOURCE_KEY     = 2
-EVENT_KEY      = 3
-MEDIA_KEY      = 4
-PLACE_KEY      = 5
+PERSON_KEY = 0
+FAMILY_KEY = 1
+SOURCE_KEY = 2
+EVENT_KEY = 3
+MEDIA_KEY = 4
+PLACE_KEY = 5
 REPOSITORY_KEY = 6
-REFERENCE_KEY  = 7
-NOTE_KEY       = 8
-TAG_KEY        = 9
-CITATION_KEY   = 10
+REFERENCE_KEY = 7
+NOTE_KEY = 8
+TAG_KEY = 9
+CITATION_KEY = 10
 
 TXNADD, TXNUPD, TXNDEL = 0, 1, 2
 

@@ -45,6 +45,6 @@ class HasTag(HasTagBase):
     """
     Rule that checks for a note with a particular tag.
     """
-    labels      = [ _('Tag:') ]
-    name        = _('Notes with the <tag>')
+    labels = [ _('Tag:') ]
+    name = _('Notes with the <tag>')
     description = _("Matches notes with the particular tag")

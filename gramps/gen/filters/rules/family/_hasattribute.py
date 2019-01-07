@@ -41,7 +41,7 @@ from .._hasattributebase import HasAttributeBase
 class HasAttribute(HasAttributeBase):
     """Rule that checks for a family with a particular family attribute"""
 
-    labels      = [ _('Family attribute:'), _('Value:') ]
-    name        = _('Families with the family <attribute>')
+    labels = [ _('Family attribute:'), _('Value:') ]
+    name = _('Families with the family <attribute>')
     description = _("Matches families with the family attribute "
                     "of a particular value")

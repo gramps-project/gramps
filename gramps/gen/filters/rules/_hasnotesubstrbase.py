@@ -39,11 +39,11 @@ from . import Rule
 class HasNoteSubstrBase(Rule):
     """People having notes containing <substring>."""
 
-    labels      = [ _('Substring:')]
-    name        = 'Objects having notes containing <substring>'
+    labels = [ _('Substring:')]
+    name = 'Objects having notes containing <substring>'
     description = "Matches objects whose notes contain text matching a " \
                     "substring"
-    category    = _('General filters')
+    category = _('General filters')
 
     def apply(self, db, person):
         notelist = person.get_note_list()

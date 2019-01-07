@@ -58,7 +58,7 @@ from gramps.gen.display.place import displayer as place_displayer
 #
 #-------------------------------------------------------------------------
 invalid_date_format = config.get('preferences.invalid-date-format')
-age_precision       = config.get('preferences.age-display-precision')
+age_precision = config.get('preferences.age-display-precision')
 
 #-------------------------------------------------------------------------
 #

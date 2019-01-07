@@ -41,7 +41,7 @@ from .._hasattributebase import HasAttributeBase
 class HasAttribute(HasAttributeBase):
     """Rule that checks for a media object with a particular attribute"""
 
-    labels      = [ _('Media attribute:'), _('Value:') ]
-    name        = _('Media objects with the attribute <attribute>')
+    labels = [ _('Media attribute:'), _('Value:') ]
+    name = _('Media objects with the attribute <attribute>')
     description = _("Matches media objects with the attribute "
                     "of a particular value")

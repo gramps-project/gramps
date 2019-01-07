@@ -140,8 +140,8 @@ class CSVParser:
         self.fam_count = 0
         self.indi_count = 0
         self.place_count = 0
-        self.pref  = {} # person ref, internal to this sheet
-        self.fref  = {} # family ref, internal to this sheet
+        self.pref = {} # person ref, internal to this sheet
+        self.fref = {} # family ref, internal to this sheet
         self.placeref = {}
         self.place_types = {}
         # Build reverse dictionary, name to type number
@@ -365,8 +365,8 @@ class CSVParser:
         self.fam_count = 0
         self.indi_count = 0
         self.place_count = 0
-        self.pref  = {} # person ref, internal to this sheet
-        self.fref  = {} # family ref, internal to this sheet
+        self.pref = {} # person ref, internal to this sheet
+        self.fref = {} # family ref, internal to this sheet
         self.placeref = {}
         header = None
         line_number = 0
@@ -402,9 +402,9 @@ class CSVParser:
 
     def _parse_marriage(self, line_number, row, col):
         "Parse the content of a Marriage,Husband,Wife line."
-        marriage_ref   = rd(line_number, row, col, "marriage")
-        husband  = rd(line_number, row, col, "husband")
-        wife     = rd(line_number, row, col, "wife")
+        marriage_ref = rd(line_number, row, col, "marriage")
+        husband = rd(line_number, row, col, "husband")
+        wife = rd(line_number, row, col, "wife")
         marriagedate = rd(line_number, row, col, "date")
         marriageplace = rd(line_number, row, col, "place")
         marriageplace_id = rd(line_number, row, col, "place_id")
@@ -484,15 +484,15 @@ class CSVParser:
 
     def _parse_family(self, line_number, row, col):
         "Parse the content of a family line"
-        family_ref   = rd(line_number, row, col, "family")
+        family_ref = rd(line_number, row, col, "family")
         if family_ref is None:
             LOG.warning("no family reference found for family on line %d" %
                         line_number)
             return # required
-        child   = rd(line_number, row, col, "child")
-        source  = rd(line_number, row, col, "source")
-        note  = rd(line_number, row, col, "note")
-        gender  = rd(line_number, row, col, "gender")
+        child = rd(line_number, row, col, "child")
+        source = rd(line_number, row, col, "source")
+        note = rd(line_number, row, col, "note")
+        gender = rd(line_number, row, col, "gender")
         child = self.lookup("person", child)
         family = self.lookup("family", family_ref)
         if family is None:
@@ -560,34 +560,34 @@ class CSVParser:
 
     def _parse_person(self, line_number, row, col):
         "Parse the content of a Person line."
-        surname   = rd(line_number, row, col, "surname")
+        surname = rd(line_number, row, col, "surname")
         firstname = rd(line_number, row, col, "firstname", "")
-        callname  = rd(line_number, row, col, "callname")
-        title     = rd(line_number, row, col, "title")
-        prefix    = rd(line_number, row, col, "prefix")
-        suffix    = rd(line_number, row, col, "suffix")
-        gender    = rd(line_number, row, col, "gender")
-        source    = rd(line_number, row, col, "source")
-        note      = rd(line_number, row, col, "note")
-        birthplace  = rd(line_number, row, col, "birthplace")
-        birthplace_id  = rd(line_number, row, col, "birthplace_id")
-        birthdate   = rd(line_number, row, col, "birthdate")
+        callname = rd(line_number, row, col, "callname")
+        title = rd(line_number, row, col, "title")
+        prefix = rd(line_number, row, col, "prefix")
+        suffix = rd(line_number, row, col, "suffix")
+        gender = rd(line_number, row, col, "gender")
+        source = rd(line_number, row, col, "source")
+        note = rd(line_number, row, col, "note")
+        birthplace = rd(line_number, row, col, "birthplace")
+        birthplace_id = rd(line_number, row, col, "birthplace_id")
+        birthdate = rd(line_number, row, col, "birthdate")
         birthsource = rd(line_number, row, col, "birthsource")
-        baptismplace  = rd(line_number, row, col, "baptismplace")
-        baptismplace_id  = rd(line_number, row, col, "baptismplace_id")
-        baptismdate   = rd(line_number, row, col, "baptismdate")
+        baptismplace = rd(line_number, row, col, "baptismplace")
+        baptismplace_id = rd(line_number, row, col, "baptismplace_id")
+        baptismdate = rd(line_number, row, col, "baptismdate")
         baptismsource = rd(line_number, row, col, "baptismsource")
-        burialplace  = rd(line_number, row, col, "burialplace")
-        burialplace_id  = rd(line_number, row, col, "burialplace_id")
-        burialdate   = rd(line_number, row, col, "burialdate")
+        burialplace = rd(line_number, row, col, "burialplace")
+        burialplace_id = rd(line_number, row, col, "burialplace_id")
+        burialdate = rd(line_number, row, col, "burialdate")
         burialsource = rd(line_number, row, col, "burialsource")
-        deathplace  = rd(line_number, row, col, "deathplace")
-        deathplace_id  = rd(line_number, row, col, "deathplace_id")
-        deathdate   = rd(line_number, row, col, "deathdate")
+        deathplace = rd(line_number, row, col, "deathplace")
+        deathplace_id = rd(line_number, row, col, "deathplace_id")
+        deathdate = rd(line_number, row, col, "deathdate")
         deathsource = rd(line_number, row, col, "deathsource")
-        deathcause  = rd(line_number, row, col, "deathcause")
-        grampsid    = rd(line_number, row, col, "grampsid")
-        person_ref  = rd(line_number, row, col, "person")
+        deathcause = rd(line_number, row, col, "deathcause")
+        grampsid = rd(line_number, row, col, "grampsid")
+        person_ref = rd(line_number, row, col, "person")
         #########################################################
         # if this person already exists, don't create them
         person = self.lookup("person", person_ref)

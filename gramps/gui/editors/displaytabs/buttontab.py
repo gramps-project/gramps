@@ -123,9 +123,9 @@ class ButtonTab(GrampsTab):
             self.top_label.set_use_markup(True)
             self.track_ref_for_deletion("top_label")
 
-        self.add_btn  = SimpleButton('list-add', self.add_button_clicked)
+        self.add_btn = SimpleButton('list-add', self.add_button_clicked)
         self.edit_btn = SimpleButton('gtk-edit', self.edit_button_clicked)
-        self.del_btn  = SimpleButton('list-remove', self.del_button_clicked)
+        self.del_btn = SimpleButton('list-remove', self.del_button_clicked)
         self.track_ref_for_deletion("add_btn")
         self.track_ref_for_deletion("edit_btn")
         self.track_ref_for_deletion("del_btn")

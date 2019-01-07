@@ -41,9 +41,9 @@ from .. import Rule
 class IsAncestorOf(Rule):
     """Rule that checks for a person that is an ancestor of a specified person"""
 
-    labels      = [ _('ID:'), _('Inclusive:') ]
-    name        = _('Ancestors of <person>')
-    category    = _("Ancestral filters")
+    labels = [ _('ID:'), _('Inclusive:') ]
+    name = _('Ancestors of <person>')
+    category = _("Ancestral filters")
     description = _("Matches people that are ancestors of a specified person")
 
     def prepare(self, db, user):

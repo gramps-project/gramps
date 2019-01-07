@@ -42,7 +42,7 @@ from .._hassourceofbase import HasSourceOfBase
 class HasSourceOf(HasSourceOfBase):
     """Rule that checks family that have a particular source."""
 
-    labels      = [ _('Source ID:') ]
-    name        = _('Families with the <source>')
-    category    = _('Citation/source filters')
+    labels = [ _('Source ID:') ]
+    name = _('Families with the <source>')
+    category = _('Citation/source filters')
     description = _('Matches families who have a particular source')

@@ -60,7 +60,7 @@ class Span:
     Span is used to represent the difference between two dates for three
     main purposes: sorting, ranking, and describing.
 
-    sort   = (base day count, offset)
+    sort = (base day count, offset)
     minmax = (min days, max days)
 
     """

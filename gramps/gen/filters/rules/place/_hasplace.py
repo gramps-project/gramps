@@ -45,7 +45,7 @@ from ....utils.location import get_locations
 class HasPlace(Rule):
     """Rule that checks for a place with a particular value"""
 
-    labels      = [ _('Title:'),
+    labels = [ _('Title:'),
                     _('Street:'),
                     _('Locality:'),
                     _('City:'),
@@ -55,9 +55,9 @@ class HasPlace(Rule):
                     _('ZIP/Postal Code:'),
                     _('Church Parish:'),
                     ]
-    name        = _('Places matching parameters')
+    name = _('Places matching parameters')
     description = _("Matches places with particular parameters")
-    category    = _('General filters')
+    category = _('General filters')
     allow_regex = True
 
     TYPE2FIELD = {PlaceType.STREET: 1,

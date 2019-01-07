@@ -46,14 +46,14 @@ class InLatLonNeighborhood(Rule):
         Latitude or Longitude or"""
 
 
-    labels      = [_('Latitude:'), _('Longitude:'),
+    labels = [_('Latitude:'), _('Longitude:'),
                     _('Rectangle height:'), _('Rectangle width:')]
-    name        = _('Places in neighborhood of given position')
+    name = _('Places in neighborhood of given position')
     description = _("Matches places with latitude or longitude positioned in "
                     "a rectangle of given height and width (in degrees), and "
                     "with middlepoint the given latitude and longitude."
                     )
-    category    = _('Position filters')
+    category = _('Position filters')
 
     def prepare(self, db, user):
         if self.list[0] :
@@ -110,13 +110,13 @@ class InLatLonNeighborhood(Rule):
                     self.doublesquares = True
                     self.E2 = self.E -360.
                     self.W2 = -180.
-                    self.E  = 180
+                    self.E = 180
                 if self.W < -180. :
                     #we need to check in two squares:
                     self.doublesquares = True
                     self.W2 = self.W + 360.
                     self.E2 = 180.
-                    self.W  = -180
+                    self.W = -180
 
 
     def apply(self,db,place):

@@ -43,9 +43,9 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
     """Rule that checks for a person that is an ancestor of
     someone matched by a filter"""
 
-    labels      = [ _('Filter name:') ]
-    name        = _('Ancestors of <filter> match')
-    category    =  _("Ancestral filters")
+    labels = [ _('Filter name:') ]
+    name = _('Ancestors of <filter> match')
+    category =  _("Ancestral filters")
     description = _("Matches people that are ancestors "
                     "of anybody matched by a filter")
 

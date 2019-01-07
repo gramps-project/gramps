@@ -39,9 +39,9 @@ from .. import Rule
 class PersonWithIncompleteEvent(Rule):
     """People with incomplete events"""
 
-    name        = _('People with incomplete events')
+    name = _('People with incomplete events')
     description = _("Matches people with missing date or place in an event")
-    category    = _('Event filters')
+    category = _('Event filters')
 
     def apply(self,db,person):
         for event_ref in person.get_event_ref_list():

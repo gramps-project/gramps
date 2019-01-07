@@ -577,18 +577,18 @@ class EditFamily(EditPrimary):
         # FIXME: remove if we can use show()
         self.window.show_all = self.window.show
 
-        self.fbirth  = self.top.get_object('fbirth')
-        self.fdeath  = self.top.get_object('fdeath')
+        self.fbirth = self.top.get_object('fbirth')
+        self.fdeath = self.top.get_object('fdeath')
         self.fbirth_label = self.top.get_object('label578')
         self.fdeath_label = self.top.get_object('label579')
 
-        self.mbirth  = self.top.get_object('mbirth')
-        self.mdeath  = self.top.get_object('mdeath')
+        self.mbirth = self.top.get_object('mbirth')
+        self.mdeath = self.top.get_object('mdeath')
         self.mbirth_label = self.top.get_object('label567')
         self.mdeath_label = self.top.get_object('label568')
 
-        self.mname    = self.top.get_object('mname')
-        self.fname    = self.top.get_object('fname')
+        self.mname = self.top.get_object('mname')
+        self.fname = self.top.get_object('fname')
 
         self.mbutton_index = self.top.get_object('mbutton_index')
         self.mbutton_add = self.top.get_object('mbutton_add')

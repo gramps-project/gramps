@@ -42,12 +42,12 @@ from ....lib.familyreltype import FamilyRelType
 class HasRelationship(Rule):
     """Rule that checks for a person who has a particular relationship"""
 
-    labels      = [ _('Number of relationships:'),
+    labels = [ _('Number of relationships:'),
                     _('Relationship type:'),
                     _('Number of children:') ]
-    name        = _('People with the <relationships>')
+    name = _('People with the <relationships>')
     description = _("Matches people with a particular relationship")
-    category    = _('Family filters')
+    category = _('Family filters')
 
     def apply(self,db,person):
         rel_type = 0

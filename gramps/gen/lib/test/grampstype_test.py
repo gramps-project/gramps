@@ -27,7 +27,7 @@ from ..grampstype import GrampsType
 # some simple map items to test with
 vals = "zz ab cd ef".split()
 keys = list(range(len(vals)))
-MAP  = [(k, v*2, v) for (k, v) in zip(keys, vals)]
+MAP = [(k, v*2, v) for (k, v) in zip(keys, vals)]
 BLIST= [1,3]
 
 class GT0(GrampsType):

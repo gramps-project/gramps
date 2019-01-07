@@ -45,6 +45,6 @@ class HasTag(HasTagBase):
     """
     Rule that checks for a repository with a particular tag.
     """
-    labels      = [ _('Tag:') ]
-    name        = _('Repositories with the <tag>')
+    labels = [ _('Tag:') ]
+    name = _('Repositories with the <tag>')
     description = _("Matches repositories with the particular tag")

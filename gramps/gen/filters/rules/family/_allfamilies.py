@@ -41,6 +41,6 @@ from .._everything import Everything
 class AllFamilies(Everything):
     """Matches Everyone"""
 
-    name        = _('Every family')
+    name = _('Every family')
     description = _('Matches every family in the database')
 

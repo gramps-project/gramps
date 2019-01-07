@@ -43,10 +43,10 @@ from ....lib.nametype import NameType
 class HasNameType(Rule):
     """Rule that checks the type of name"""
 
-    labels      = [ _('Name type:')]
-    name        = _('People with the <Name type>')
+    labels = [ _('Name type:')]
+    name = _('People with the <Name type>')
     description = _("Matches people with a type of name")
-    category    = _('General filters')
+    category = _('General filters')
 
     def apply(self, db, person):
         if not self.list[0]:

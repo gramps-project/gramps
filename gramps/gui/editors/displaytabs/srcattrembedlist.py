@@ -47,7 +47,7 @@ from .embeddedlist import (EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL,
 class SrcAttrEmbedList(EmbeddedList):
 
     _HANDLE_COL = 3
-    _DND_TYPE   = DdTargets.SRCATTRIBUTE
+    _DND_TYPE = DdTargets.SRCATTRIBUTE
 
     _MSG = {
         'add'   : _('Create and add a new attribute'),

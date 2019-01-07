@@ -45,11 +45,11 @@ class RegExpIdBase(Rule):
     regular expression.
     """
 
-    labels      = [ _('Text:') ]
-    name        = 'Objects with <Id>'
+    labels = [ _('Text:') ]
+    name = 'Objects with <Id>'
     description = "Matches objects whose Gramps ID contains a substring " \
                    "or matches a regular expression"
-    category    = _('General filters')
+    category = _('General filters')
     allow_regex = True
 
     def apply(self, db, obj):

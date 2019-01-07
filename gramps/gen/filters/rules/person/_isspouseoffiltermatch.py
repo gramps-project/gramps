@@ -43,10 +43,10 @@ class IsSpouseOfFilterMatch(Rule):
     """Rule that checks for a person married to someone matching
     a filter"""
 
-    labels      = [_('Filter name:')]
-    name        = _('Spouses of <filter> match')
+    labels = [_('Filter name:')]
+    name = _('Spouses of <filter> match')
     description = _("Matches people married to anybody matching a filter")
-    category    = _('Family filters')
+    category = _('Family filters')
 
     def prepare(self, db, user):
         self.filt = MatchesFilter (self.list)

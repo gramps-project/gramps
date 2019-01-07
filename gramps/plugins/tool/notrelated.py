@@ -150,14 +150,14 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
         self.treeView.connect('row-activated', self.rowActivated)
 
         # initialize a few variables we're going to need
-        self.numberOfPeopleInDatabase    = self.db.get_number_of_people()
-        self.numberOfRelatedPeople       = 0
-        self.numberOfUnrelatedPeople     = 0
+        self.numberOfPeopleInDatabase = self.db.get_number_of_people()
+        self.numberOfRelatedPeople = 0
+        self.numberOfUnrelatedPeople = 0
 
         # create the sets used to track related and unrelated people
-        self.handlesOfPeopleToBeProcessed       = set()
-        self.handlesOfPeopleAlreadyProcessed    = set()
-        self.handlesOfPeopleNotRelated          = set()
+        self.handlesOfPeopleToBeProcessed = set()
+        self.handlesOfPeopleAlreadyProcessed = set()
+        self.handlesOfPeopleNotRelated = set()
 
         # build a set of all people related to the selected person
         self.handlesOfPeopleToBeProcessed.add(person.get_handle())
@@ -234,10 +234,10 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
         display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
 
-    def applyTagClicked(self, button):
-        progress    = None
-        rows        = self.treeSelection.count_selected_rows()
-        tag_name    = str(self.tagcombo.get_active_text())
+    def applyTagClicked(self, button) :
+        progress = None
+        rows = self.treeSelection.count_selected_rows()
+        tag_name = str(self.tagcombo.get_active_text())
 
         # start the db transaction
         with DbTxn("Tag not related", self.db) as transaction:
@@ -273,9 +273,9 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
                     progress.step()
 
                 # for the current row, get the GID and the person from the database
-                iter        = self.model.get_iter(path)
-                personGid   = self.model.get_value(iter, 1)
-                person      = self.db.get_person_from_gramps_id(personGid)
+                iter = self.model.get_iter(path)
+                personGid = self.model.get_value(iter, 1)
+                person = self.db.get_person_from_gramps_id(personGid)
 
                 # add the tag to the person
                 person.add_tag(tag_handle)
@@ -287,9 +287,9 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
         # refresh the tags column
         self.treeView.set_model(None)
         for path in paths:
-            iter        = self.model.get_iter(path)
-            personGid   = self.model.get_value(iter, 1)
-            person      = self.db.get_person_from_gramps_id(personGid)
+            iter = self.model.get_iter(path)
+            personGid = self.model.get_value(iter, 1)
+            person = self.db.get_person_from_gramps_id(personGid)
             self.model.set_value(iter, 3, self.get_tag_list(person))
         self.treeView.set_model(self.model)
         self.treeView.expand_all()
@@ -419,32 +419,32 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow):
         # loop through the entire list of unrelated people
         for handle in self.handlesOfPeopleNotRelated:
             self.progress.step()
-            person      = self.db.get_person_from_handle(handle)
+            person = self.db.get_person_from_handle(handle)
             primaryname = person.get_primary_name()
-            surname     = primaryname.get_surname()
-            name        = primaryname.get_name()
-            gid         = person.get_gramps_id()
+            surname = primaryname.get_surname()
+            name = primaryname.get_name()
+            gid = person.get_gramps_id()
 
             # Retrieve the sorted tag list
             tag_list = self.get_tag_list(person)
 
             # find the names of the parents
-            familygid   = ''
+            familygid = ''
             parentNames = ''
             parentFamilyHandle = person.get_main_parents_family_handle()
             if parentFamilyHandle:
                 parentFamily = self.db.get_family_from_handle(parentFamilyHandle)
-                familygid    = parentFamily.get_gramps_id()
-                fatherName   = None
-                motherName   = None
+                familygid = parentFamily.get_gramps_id()
+                fatherName = None
+                motherName = None
                 fatherHandle = parentFamily.get_father_handle()
                 if fatherHandle:
-                    father      = self.db.get_person_from_handle(fatherHandle)
-                    fatherName  = father.get_primary_name().get_first_name()
+                    father = self.db.get_person_from_handle(fatherHandle)
+                    fatherName = father.get_primary_name().get_first_name()
                 motherHandle = parentFamily.get_mother_handle()
                 if motherHandle:
-                    mother      = self.db.get_person_from_handle(motherHandle)
-                    motherName  = mother.get_primary_name().get_first_name()
+                    mother = self.db.get_person_from_handle(motherHandle)
+                    motherName = mother.get_primary_name().get_first_name()
 
                 # now that we have the names, come up with a label we can use
                 if fatherName:

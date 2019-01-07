@@ -759,7 +759,7 @@ class GridGramplet(GuiGramplet):
     Class that handles the plugin interfaces for the GrampletView.
     """
     TARGET_TYPE_FRAME = 80
-    LOCAL_DRAG_TYPE   = 'GRAMPLET'
+    LOCAL_DRAG_TYPE = 'GRAMPLET'
     LOCAL_DRAG_TARGET = Gtk.TargetEntry.new(LOCAL_DRAG_TYPE, 0,
                                             TARGET_TYPE_FRAME)
 

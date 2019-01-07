@@ -43,5 +43,5 @@ from .._hasnotebase import HasNoteBase
 class HasNote(HasNoteBase):
     """Citations having notes"""
 
-    name        = _('Citations having <count> notes')
+    name = _('Citations having <count> notes')
     description = _("Matches citations having a certain number of notes")

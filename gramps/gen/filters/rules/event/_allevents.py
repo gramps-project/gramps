@@ -41,5 +41,5 @@ from .._everything import Everything
 class AllEvents(Everything):
     """Matches Everyone"""
 
-    name        = _('Every event')
+    name = _('Every event')
     description = _('Matches every event in the database')

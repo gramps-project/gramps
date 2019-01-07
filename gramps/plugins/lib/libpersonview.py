@@ -121,10 +121,10 @@ class BasePersonView(ListView):
         ('columns.size', [250, 75, 75, 100, 175, 100, 175, 100, 30, 30, 30, 30,
                           30, 100, 100])
         )
-    ADD_MSG     = _("Add a new person")
-    EDIT_MSG    = _("Edit the selected person")
-    DEL_MSG     = _("Delete the selected person")
-    MERGE_MSG   = _("Merge the selected persons")
+    ADD_MSG = _("Add a new person")
+    EDIT_MSG = _("Edit the selected person")
+    DEL_MSG = _("Delete the selected person")
+    MERGE_MSG = _("Merge the selected persons")
     FILTER_TYPE = "Person"
     QR_CATEGORY = CATEGORY_QR_PERSON
 

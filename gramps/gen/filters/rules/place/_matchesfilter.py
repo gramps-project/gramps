@@ -41,6 +41,6 @@ from .._matchesfilterbase import MatchesFilterBase
 class MatchesFilter(MatchesFilterBase):
     """Rule that checks against another filter"""
 
-    name        = _('Places matching the <filter>')
+    name = _('Places matching the <filter>')
     description = _("Matches places matched by the specified filter name")
-    namespace   = 'Place'
+    namespace = 'Place'

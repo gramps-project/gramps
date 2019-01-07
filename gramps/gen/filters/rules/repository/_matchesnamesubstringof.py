@@ -39,10 +39,10 @@ from .. import Rule
 class MatchesNameSubstringOf(Rule):
     """Repository name containing <substring>"""
 
-    labels      = [ _('Text:')]
-    name        = _('Repositories with name containing <text>')
+    labels = [ _('Text:')]
+    name = _('Repositories with name containing <text>')
     description = _("Matches repositories whose name contains a certain substring")
-    category    = _('General filters')
+    category = _('General filters')
     allow_regex = True
 
     def apply(self, db, repository):

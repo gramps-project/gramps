@@ -57,30 +57,30 @@ class DateParserNL(DateParser):
     # Always add dutch and flemish name variants
     # no matter what the current locale is
     month_to_int["januari"] = 1
-    month_to_int["jan"]    = 1
+    month_to_int["jan"] = 1
     # Add other common latin, local and historical variants
     month_to_int["januaris"] = 1
-    month_to_int["feber"]  = 2
-    month_to_int["februaris"]  = 2
-    month_to_int["merz"]  = 3
+    month_to_int["feber"] = 2
+    month_to_int["februaris"] = 2
+    month_to_int["merz"] = 3
     #make sure on all distro mrt and maa are accepted
-    month_to_int["maa"]  = 3
-    month_to_int["mrt"]  = 3
-    month_to_int["aprilis"]  = 4
-    month_to_int["maius"]  = 5
-    month_to_int["junius"]  = 6
-    month_to_int["julius"]  = 7
-    month_to_int["augst"]  = 8
-    month_to_int["7ber"]  = 9
-    month_to_int["7bris"]  = 9
-    month_to_int["8ber"]  = 10
-    month_to_int["8bris"]  = 10
-    month_to_int["9ber"]  = 11
-    month_to_int["9bris"]  = 11
-    month_to_int["10ber"]  = 12
-    month_to_int["10bris"]  = 12
-    month_to_int["xber"]  = 12
-    month_to_int["xbris"]  = 12
+    month_to_int["maa"] = 3
+    month_to_int["mrt"] = 3
+    month_to_int["aprilis"] = 4
+    month_to_int["maius"] = 5
+    month_to_int["junius"] = 6
+    month_to_int["julius"] = 7
+    month_to_int["augst"] = 8
+    month_to_int["7ber"] = 9
+    month_to_int["7bris"] = 9
+    month_to_int["8ber"] = 10
+    month_to_int["8bris"] = 10
+    month_to_int["9ber"] = 11
+    month_to_int["9bris"] = 11
+    month_to_int["10ber"] = 12
+    month_to_int["10bris"] = 12
+    month_to_int["xber"] = 12
+    month_to_int["xbris"] = 12
 
     modifier_to_int = {
         'voor'    : Date.MOD_BEFORE,

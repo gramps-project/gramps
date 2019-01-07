@@ -43,14 +43,14 @@ class HasMedia(Rule):
     """Rule that checks for a media with a particular value"""
 
 
-    labels      = [ _('Title:'),
+    labels = [ _('Title:'),
                     _('Type:'),
                     _('Path:'),
                     _('Date:'),
                     ]
-    name        = _('Media objects matching parameters')
+    name = _('Media objects matching parameters')
     description = _("Matches media objects with particular parameters")
-    category    = _('General filters')
+    category = _('General filters')
     allow_regex = True
 
     def prepare(self, db, user):

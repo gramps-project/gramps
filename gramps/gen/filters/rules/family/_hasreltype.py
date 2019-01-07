@@ -42,11 +42,11 @@ from .. import Rule
 class HasRelType(Rule):
     """Rule that checks for a person with a particular personal attribute"""
 
-    labels      = [ _('Relationship type:') ]
-    name        = _('Families with the relationship type')
+    labels = [ _('Relationship type:') ]
+    name = _('Families with the relationship type')
     description = _("Matches families with the relationship type "
                     "of a particular value")
-    category    = _('General filters')
+    category = _('General filters')
 
     def prepare(self, db, user):
         if self.list[0]:

@@ -39,6 +39,6 @@ from .._hasreferencecountbase import HasReferenceCountBase
 class HasReferenceCountOf(HasReferenceCountBase):
     """Family objects with a reference count of <count>"""
 
-    name        = _('Families with a reference count of <count>')
+    name = _('Families with a reference count of <count>')
     description = _("Matches family objects with a certain reference count")
 

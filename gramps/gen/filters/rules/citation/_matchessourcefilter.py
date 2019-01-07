@@ -45,14 +45,14 @@ class MatchesSourceFilter(MatchesFilterBase):
     Rule that checks against another filter.
     """
 
-    labels      = [_('Source filter name:')]
-    name        = _('Citations with source matching the <source filter>')
+    labels = [_('Source filter name:')]
+    name = _('Citations with source matching the <source filter>')
     description = _("Matches citations with sources that match the "
                     "specified source filter name")
-    category    = _('General filters')
+    category = _('General filters')
 
     # we want to have this filter show source filters
-    namespace   = 'Source'
+    namespace = 'Source'
 
     def prepare(self, db, user):
         MatchesFilterBase.prepare(self, db, user)

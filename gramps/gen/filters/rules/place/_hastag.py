@@ -45,6 +45,6 @@ class HasTag(HasTagBase):
     """
     Rule that checks for a place with a particular tag.
     """
-    labels      = [ _('Tag:') ]
-    name        = _('Places with the <tag>')
+    labels = [ _('Tag:') ]
+    name = _('Places with the <tag>')
     description = _("Matches places with the particular tag")

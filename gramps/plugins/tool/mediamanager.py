@@ -407,7 +407,7 @@ class BatchOp(UpdateCallback):
     """
     Base class for the sub-tools.
     """
-    title       = 'Untitled operation'
+    title = 'Untitled operation'
     description = 'This operation needs to be described'
 
     def __init__(self, db, callback):
@@ -485,7 +485,7 @@ class BatchOp(UpdateCallback):
 # Simple op to replace substrings in the paths
 #------------------------------------------------------------------------
 class PathChange(BatchOp):
-    title       = _('Replace _substrings in the path')
+    title = _('Replace _substrings in the path')
     description = _('This tool allows replacing specified substring in the '
                     'path of media objects with another substring. '
                     'This can be useful when you move your media files '
@@ -570,7 +570,7 @@ class PathChange(BatchOp):
 #An op to convert relative paths to absolute
 #------------------------------------------------------------------------
 class Convert2Abs(BatchOp):
-    title       = _('Convert paths from relative to _absolute')
+    title = _('Convert paths from relative to _absolute')
     description = _("This tool allows converting relative media paths "
                     "to the absolute ones. It does this by prepending "
                     "the base path as given in the Preferences, or if "
@@ -604,7 +604,7 @@ class Convert2Abs(BatchOp):
 #An op to convert absolute paths to relative
 #------------------------------------------------------------------------
 class Convert2Rel(BatchOp):
-    title       = _('Convert paths from absolute to r_elative')
+    title = _('Convert paths from absolute to r_elative')
     description = _("This tool allows converting absolute media paths "
                     "to a relative path. The relative path is relative "
                     "viz-a-viz the base path as given in the Preferences, "
@@ -641,7 +641,7 @@ class Convert2Rel(BatchOp):
 #An op to look for images that may have been forgotten.
 #------------------------------------------------------------------------
 class ImagesNotIncluded(BatchOp):
-    title       = _('Add images not included in database')
+    title = _('Add images not included in database')
     description = _("Check directories for images not included in database")
     description = _("This tool adds images in directories that are "
                     "referenced by existing images in the database.")

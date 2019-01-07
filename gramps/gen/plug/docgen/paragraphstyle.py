@@ -48,9 +48,9 @@ log = logging.getLogger(".paragraphstyle")
 # Paragraph alignment
 #
 #-------------------------------------------------------------------------
-PARA_ALIGN_CENTER  = 0
-PARA_ALIGN_LEFT    = 1
-PARA_ALIGN_RIGHT   = 2
+PARA_ALIGN_CENTER = 0
+PARA_ALIGN_LEFT = 1
+PARA_ALIGN_RIGHT = 2
 PARA_ALIGN_JUSTIFY = 3
 
 #------------------------------------------------------------------------

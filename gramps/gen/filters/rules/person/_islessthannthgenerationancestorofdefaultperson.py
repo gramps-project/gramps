@@ -43,10 +43,10 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
     """Rule that checks for a person that is an ancestor of the default person
     not more than N generations away"""
 
-    labels      = [ _('Number of generations:') ]
-    name        = _('Ancestors of the default person '
+    labels = [ _('Number of generations:') ]
+    name = _('Ancestors of the default person '
                     'not more than <N> generations away')
-    category    = _('Ancestral filters')
+    category = _('Ancestral filters')
     description = _("Matches ancestors of the default person "
                     "not more than N generations away")
 

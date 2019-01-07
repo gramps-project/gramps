@@ -42,9 +42,9 @@ from .. import Rule
 class HasCommonAncestorWith(Rule):
     """Rule that checks for a person that has a common ancestor with a specified person"""
 
-    labels      = [ _('ID:') ]
-    name        = _('People with a common ancestor with <person>')
-    category    = _("Ancestral filters")
+    labels = [ _('ID:') ]
+    name = _('People with a common ancestor with <person>')
+    category = _("Ancestral filters")
     description = _("Matches people that have a common ancestor "
                     "with a specified person")
 

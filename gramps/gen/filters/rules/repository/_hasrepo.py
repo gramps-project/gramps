@@ -43,14 +43,14 @@ class HasRepo(Rule):
     """Rule that checks for a repo with a particular value"""
 
 
-    labels      = [ _('repo|Name:'),
+    labels = [ _('repo|Name:'),
                     _('Type:'),
                     _('Address:'),
                     _('URL:'),
                     ]
-    name        = _('Repositories matching parameters')
+    name = _('Repositories matching parameters')
     description = _("Matches Repositories with particular parameters")
-    category    = _('General filters')
+    category = _('General filters')
     allow_regex = True
 
     def prepare(self, db, user):

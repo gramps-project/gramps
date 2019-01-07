@@ -45,13 +45,13 @@ class HasData(Rule):
     Rule that checks for a place with a particular value
     """
 
-    labels      = [ _('Name:'),
+    labels = [ _('Name:'),
                     _('Place type:'),
                     _('Code:'),
                     ]
-    name        = _('Places matching parameters')
+    name = _('Places matching parameters')
     description = _('Matches places with particular parameters')
-    category    = _('General filters')
+    category = _('General filters')
     allow_regex = True
 
     def prepare(self, db, user):

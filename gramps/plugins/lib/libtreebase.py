@@ -861,7 +861,7 @@ class LineBase:
 
         xbegin = start.x_cm + start.width - page.page_x_offset
         # out 3/4 of the way and x_cm end point(s)
-        x34    = xbegin + (report_opts.col_width * 3/4)
+        x34 = xbegin + (report_opts.col_width * 3/4)
         xend = xbegin + report_opts.col_width
 
         if x34 > 0:  # > 0 tell us we are printing on this page.
