@@ -248,7 +248,8 @@ class DbManager(CLIDbManager, ManagedWindow):
         treat a double click as if it was OK button press. However, we have
         to make sure that an item was selected first.
         """
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             if self.connect_btn.get_property('sensitive'):
                 self.top.response(Gtk.ResponseType.OK)
                 return True

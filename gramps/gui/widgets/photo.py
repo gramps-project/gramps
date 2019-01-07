@@ -77,7 +77,8 @@ class Photo(Gtk.EventBox):
         """
         Display the image with the default external viewer.
         """
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             open_file_with_default_application(self.full_path, self.uistate)
             return True
         elif is_right_click(event):
