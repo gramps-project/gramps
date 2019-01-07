@@ -854,7 +854,8 @@ class ListView(NavigationView):
         if not self.dbstate.is_open():
             return False
         menu = self.uimanager.get_widget('Popup')
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             if self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY:
                 self.edit(obj)
                 return True

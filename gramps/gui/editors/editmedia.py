@@ -241,7 +241,8 @@ class EditMedia(EditPrimary):
         return (_('Edit Media Object'), self.get_menu_title())
 
     def button_press_event(self, obj, event):
-        if event.button == 1 and event.type == Gdk.EventType._2BUTTON_PRESS:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             self.view_media(obj)
 
     def view_media(self, obj):

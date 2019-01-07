@@ -615,7 +615,8 @@ class EditPerson(EditPrimary):
         main form.
 
         """
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
 
             media_list = self.obj.get_media_list()
             if media_list:

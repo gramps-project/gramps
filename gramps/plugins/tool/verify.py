@@ -708,7 +708,8 @@ class VerifyResults(ManagedWindow):
 
     def double_click(self, obj, event):
         """ the user wants to edit the selected person or family """
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             (model, node) = self.selection.get_selected()
             if not node:
                 return
