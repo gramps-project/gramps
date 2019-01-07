@@ -90,7 +90,7 @@ def run_fam(database, document, family):
 
     # children events
     event_list_children = []
-    for child in sdb.children(family) :
+    for child in sdb.children(family):
         #name = sdb.first_name(child)
         event_list_children += [(child, x) for x in sdb.events(child)]
 
