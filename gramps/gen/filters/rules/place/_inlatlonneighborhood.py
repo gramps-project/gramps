@@ -153,9 +153,9 @@ class InLatLonNeighborhood(Rule):
                 if self.doublesquares :
                     #two squares to look in :
                     if (lonpl <self.W or lonpl > self.E) and \
-                        (lonpl <self.W2 or lonpl > self.E2) :
+                        (lonpl <self.W2 or lonpl > self.E2):
                         return False
-                elif (lonpl <self.W or lonpl > self.E) :
+                elif (lonpl <self.W or lonpl > self.E):
                     return False
 
             return True

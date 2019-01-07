@@ -354,7 +354,7 @@ def _get_mother(level, inlaw="", step=""):
         taula = _MOTHER_LEVEL_STP
         nom = "aviastra"
 
-    if level < len(taula) :
+    if level < len(taula):
         return taula[level] % inlaw
 
         # limitation gen = 30
@@ -579,10 +579,10 @@ def _get_uncles(level, inlaw=""):
 
     if inlaw != "" and level == 1 :
         return "els cunyats i les cunyades"
-    elif level < len(_SIBLINGS_LEVEL) :
+    elif level < len(_SIBLINGS_LEVEL):
         return "%s%s" % \
             (_SIBLINGS_LEVEL[level], inlaw)
-    elif level <= len(_LEVEL_NAME_P) :
+    elif level <= len(_LEVEL_NAME_P):
         return "els oncles i les ties %s%s" % \
             (_LEVEL_NAME_P[level-1], inlaw)
     else:
@@ -690,12 +690,12 @@ def _get_nephews(level, inlaw=""):
     """
     if (inlaw != ""):
         inlaw += "s"
-    if level <= len(_NEPHEWS_NIECES_LEVEL) :
+    if level <= len(_NEPHEWS_NIECES_LEVEL):
 
         # limitation gen = 30
 
         return "%s%s" % (_NEPHEWS_NIECES_LEVEL[level-1], inlaw)
-    elif level <= len(_LEVEL_NAME_P) :
+    elif level <= len(_LEVEL_NAME_P):
 
         return "els nebots i les nebodes %s%s" % \
              (_LEVEL_NAME_P[level-1], inlaw)

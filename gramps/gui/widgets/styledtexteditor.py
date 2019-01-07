@@ -431,7 +431,7 @@ class StyledTextEditor(Gtk.TextView):
             flavor = self.url_match[MATCH_FLAVOR]
             url = self.url_match[MATCH_STRING]
             self._open_url_cb(None, url, flavor)
-        elif (event.type == Gdk.EventType.BUTTON_PRESS and event.button == 1) :
+        elif (event.type == Gdk.EventType.BUTTON_PRESS and event.button == 1):
             #on release we will copy selected data to clipboard
             self.selclick = True
         #propagate click

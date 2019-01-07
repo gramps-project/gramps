@@ -64,7 +64,7 @@ WIKI_HELP_SEC = _('manual|Not_Related')
 # NotRelated class
 #
 #------------------------------------------------------------------------
-class NotRelated(tool.ActivePersonTool, ManagedWindow) :
+class NotRelated(tool.ActivePersonTool, ManagedWindow):
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
@@ -184,14 +184,14 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
         self.show()
 
 
-    def iterIsSeparator(self, model, iter) :
+    def iterIsSeparator(self, model, iter):
         # return True only if the row is to be treated as a separator
         if self.model.get_value(iter, 1) == '':  # does the row have a GID?
             return True
         return False
 
 
-    def selectIsAllowed(self, selection, model, path, isSelected, userData) :
+    def selectIsAllowed(self, selection, model, path, isSelected, userData):
         # return True/False depending on if the row being selected is a leaf node
         iter = self.model.get_iter(path)
         if self.model.get_value(iter, 1) == '': # does the row have a GID?
@@ -199,13 +199,13 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
         return True
 
 
-    def rowSelectionChanged(self, selection) :
+    def rowSelectionChanged(self, selection):
         state = selection.count_selected_rows() > 0
         self.tagcombo.set_sensitive(state)
         self.tagapply.set_sensitive(state)
 
 
-    def rowActivated(self, treeView, path, column) :
+    def rowActivated(self, treeView, path, column):
         # first we need to check that the row corresponds to a person
         iter = self.model.get_iter(path)
         personGid = self.model.get_value(iter, 1)
@@ -234,7 +234,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
         display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
 
-    def applyTagClicked(self, button) :
+    def applyTagClicked(self, button):
         progress    = None
         rows        = self.treeSelection.count_selected_rows()
         tag_name    = str(self.tagcombo.get_active_text())
@@ -297,7 +297,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
         if progress:
             progress.close()
 
-    def findRelatedPeople(self) :
+    def findRelatedPeople(self):
 
         self.progress.set_pass(
             # translators: leave all/any {...} untranslated
@@ -370,7 +370,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
                         self.handlesOfPeopleToBeProcessed.add(childHandle)
 
 
-    def findUnrelatedPeople(self) :
+    def findUnrelatedPeople(self):
 
         # update our numbers
         self.numberOfRelatedPeople = len(self.handlesOfPeopleAlreadyProcessed)
@@ -406,7 +406,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
                 self.handlesOfPeopleNotRelated.add(handle)
 
 
-    def populateModel(self) :
+    def populateModel(self):
 
         self.progress.set_pass(
             # translators: leave all/any {...} untranslated

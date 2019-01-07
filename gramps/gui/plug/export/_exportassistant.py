@@ -457,7 +457,7 @@ class ExportAssistant(ManagedWindow, Gtk.Assistant):
             else:
                 #Allow for exotic error: file is still not correct
                 self.check_fileselect(self.chooser, show=False)
-                if self.get_page_complete(self.chooser) :
+                if self.get_page_complete(self.chooser):
                     filename = self.chooser.get_filename()
                     name = os.path.split(filename)[1]
                     folder = os.path.split(filename)[0]

@@ -278,7 +278,7 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         self.contexteventbox.connect('button-press-event',
                                 self._contextmenu_button_press)
 
-    def _contextmenu_button_press(self, obj, event) :
+    def _contextmenu_button_press(self, obj, event):
         """
         Button press event that is caught when a mousebutton has been
         pressed while on contexteventbox
