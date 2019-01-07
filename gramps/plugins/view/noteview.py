@@ -90,10 +90,10 @@ class NoteView(ListView):
                           COL_CHAN]),
         ('columns.size', [350, 75, 100, 40, 100, 100]))
 
-    ADD_MSG     = _("Add a new note")
-    EDIT_MSG    = _("Edit the selected note")
-    DEL_MSG     = _("Delete the selected note")
-    MERGE_MSG   = _("Merge the selected notes")
+    ADD_MSG = _("Add a new note")
+    EDIT_MSG = _("Edit the selected note")
+    DEL_MSG = _("Delete the selected note")
+    MERGE_MSG = _("Merge the selected notes")
     FILTER_TYPE = "Note"
     QR_CATEGORY = CATEGORY_QR_NOTE
 

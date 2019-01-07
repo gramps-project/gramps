@@ -288,7 +288,7 @@ class MyPlaces(Gtk.Entry):
 #-------------------------------------------------------------------------
 class MyID(Gtk.Box):
     _invalid_id_txt = _('Not a valid ID')
-    _empty_id_txt  = _invalid_id_txt
+    _empty_id_txt = _invalid_id_txt
 
     obj_name = {
         'Person' : _('Person'),

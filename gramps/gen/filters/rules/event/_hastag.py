@@ -45,6 +45,6 @@ class HasTag(HasTagBase):
     """
     Rule that checks for an event with a particular tag.
     """
-    labels      = [ _('Tag:') ]
-    name        = _('Events with the <tag>')
+    labels = [ _('Tag:') ]
+    name = _('Events with the <tag>')
     description = _("Matches events with the particular tag")

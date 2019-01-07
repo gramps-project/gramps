@@ -43,7 +43,7 @@ from gramps.gen.lib import LdsOrd
 class FamilyLdsEmbedList(LdsEmbedList):
 
     _HANDLE_COL = 6
-#    _DND_TYPE   = DdTargets.ADDRESS
+#    _DND_TYPE = DdTargets.ADDRESS
 
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col

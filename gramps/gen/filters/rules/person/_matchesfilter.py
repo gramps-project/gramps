@@ -41,6 +41,6 @@ from .. import MatchesFilterBase
 class MatchesFilter(MatchesFilterBase):
     """Rule that checks against another filter."""
 
-    name        = _('People matching the <filter>')
+    name = _('People matching the <filter>')
     description = _("Matches people matched by the specified filter name")
-    namespace   = 'Person'
+    namespace = 'Person'

@@ -41,11 +41,11 @@ from .. import Rule
 class HasFamilyAttribute(Rule):
     """Rule that checks for a person with a particular family attribute"""
 
-    labels      = [ _('Family attribute:'), _('Value:') ]
-    name        = _('People with the family <attribute>')
+    labels = [ _('Family attribute:'), _('Value:') ]
+    name = _('People with the family <attribute>')
     description = _("Matches people with the family attribute "
                     "of a particular value")
-    category    = _('General filters')
+    category = _('General filters')
     allow_regex = True
 
     def apply(self,db,person):

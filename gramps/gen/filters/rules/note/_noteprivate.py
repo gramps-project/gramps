@@ -39,5 +39,5 @@ from .._isprivate import IsPrivate
 class NotePrivate(IsPrivate):
     """Note marked private"""
 
-    name        = _('Notes marked private')
+    name = _('Notes marked private')
     description = _("Matches notes that are indicated as private")

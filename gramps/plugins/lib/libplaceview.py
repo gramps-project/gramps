@@ -100,10 +100,10 @@ class PlaceBaseView(ListView):
                           COL_LAT, COL_LON, COL_PRIV, COL_TAGS, COL_CHAN]),
         ('columns.size', [250, 250, 75, 100, 100, 150, 150, 40, 100, 100])
         )
-    ADD_MSG     = _("Add a new place")
-    EDIT_MSG    = _("Edit the selected place")
-    DEL_MSG     = _("Delete the selected place")
-    MERGE_MSG   = _("Merge the selected places")
+    ADD_MSG = _("Add a new place")
+    EDIT_MSG = _("Edit the selected place")
+    DEL_MSG = _("Delete the selected place")
+    MERGE_MSG = _("Merge the selected places")
     FILTER_TYPE = "Place"
     QR_CATEGORY = CATEGORY_QR_PLACE
 

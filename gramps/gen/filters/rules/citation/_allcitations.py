@@ -42,5 +42,5 @@ from .._everything import Everything
 class AllCitations(Everything):
     """Matches every citation"""
 
-    name        = _('Every citation')
+    name = _('Every citation')
     description = _('Matches every citation in the database')

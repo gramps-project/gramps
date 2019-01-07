@@ -40,6 +40,6 @@ from .._ispublic import IsPublic
 class PeoplePublic(IsPublic):
     """People not marked private"""
 
-    name        = _('People not marked private')
+    name = _('People not marked private')
     description = _("Matches people that are not indicated as private")
-    category    = _('General filters')
+    category = _('General filters')

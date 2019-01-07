@@ -41,9 +41,9 @@ from .. import Rule
 class IsRelatedWith(Rule):
     """Rule that checks if a person is related to a specified person"""
 
-    labels      = [ _('ID:') ]
-    name        = _('People related to <Person>')
-    category    = _("Relationship filters")
+    labels = [ _('ID:') ]
+    name = _('People related to <Person>')
+    category = _("Relationship filters")
     description = _("Matches people related to a specified person")
 
     def prepare(self, db, user):

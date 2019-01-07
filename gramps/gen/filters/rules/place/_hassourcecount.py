@@ -42,5 +42,5 @@ from .._hassourcecountbase import HasSourceCountBase
 class HasSourceCount(HasSourceCountBase):
     """Place with sources"""
 
-    name        = _('Place with <count> sources')
+    name = _('Place with <count> sources')
     description = _("Matches places with a certain number of sources connected to it")

@@ -37,9 +37,9 @@ from . import Rule
 class IsPrivate(Rule):
     """Objects marked private."""
 
-    name        = 'Objects marked private'
+    name = 'Objects marked private'
     description = "Matches objects that are indicated as private"
-    category    = _('General filters')
+    category = _('General filters')
 
     def apply(self, db, obj):
         return obj.get_privacy()

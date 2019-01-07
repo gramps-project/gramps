@@ -44,10 +44,10 @@ from . import Rule
 class MatchesSourceConfidenceBase(Rule):
     """Objects with a specific confidence level on 'direct' Source references"""
 
-    labels    = ['Confidence level:']
-    name        = 'Object with at least one direct source >= <confidence level>'
+    labels = ['Confidence level:']
+    name = 'Object with at least one direct source >= <confidence level>'
     description = "Matches objects with at least one direct source with confidence level(s)"
-    category    = _('Citation/source filters')
+    category = _('Citation/source filters')
 
     def apply(self, db, obj):
         required_conf = int(self.list[0])

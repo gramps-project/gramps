@@ -43,10 +43,10 @@ class HasSourceIdOf(HasGrampsId):
     """Rule that checks for a citation with a source which has a specific
     Gramps ID"""
 
-    name        = _('Citation with Source <Id>')
+    name = _('Citation with Source <Id>')
     description = _("Matches a citation with a source with a specified Gramps "
                     "ID")
-    category    = _('Source filters')
+    category = _('Source filters')
 
     def apply(self, dbase, citation):
         source = dbase.get_source_from_handle(

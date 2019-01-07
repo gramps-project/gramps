@@ -42,9 +42,9 @@ from .. import Rule
 class HasNickname(Rule):
     """Rule that checks a nickname"""
 
-    name        = _('People with a nickname')
+    name = _('People with a nickname')
     description = _("Matches people with a nickname")
-    category    = _('General filters')
+    category = _('General filters')
 
     def apply(self, db, person):
         if person.get_nick_name():

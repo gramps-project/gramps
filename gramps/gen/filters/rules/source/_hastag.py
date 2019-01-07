@@ -45,6 +45,6 @@ class HasTag(HasTagBase):
     """
     Rule that checks for a source with a particular tag.
     """
-    labels      = [ _('Tag:') ]
-    name        = _('Sources with the <tag>')
+    labels = [ _('Tag:') ]
+    name = _('Sources with the <tag>')
     description = _("Matches sources with the particular tag")

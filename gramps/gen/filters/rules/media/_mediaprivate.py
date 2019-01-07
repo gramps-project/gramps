@@ -39,5 +39,5 @@ from .._isprivate import IsPrivate
 class MediaPrivate(IsPrivate):
     """Media marked private"""
 
-    name        = _('Media objects marked private')
+    name = _('Media objects marked private')
     description = _("Matches Media objects that are indicated as private")

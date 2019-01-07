@@ -48,10 +48,10 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
     """Rule that checks for a person that is an ancestor of bookmarked persons
     not more than N generations away"""
 
-    labels      = [ _('Number of generations:') ]
-    name        = _('Ancestors of bookmarked people not more '
+    labels = [ _('Number of generations:') ]
+    name = _('Ancestors of bookmarked people not more '
                     'than <N> generations away')
-    category    = _('Ancestral filters')
+    category = _('Ancestral filters')
     description = _("Matches ancestors of the people on the bookmark list "
                     "not more than N generations away")
 

@@ -42,8 +42,8 @@ from ....lib.person import Person
 class HasUnknownGender(Rule):
     """Rule that checks for a person that has unknown gender"""
 
-    name        = _('People with unknown gender')
-    category    = _('General filters')
+    name = _('People with unknown gender')
+    category = _('General filters')
     description = _('Matches all people with unknown gender')
 
     def apply(self,db,person):

@@ -42,9 +42,9 @@ from ._matchesfilter import MatchesFilter
 class IsSiblingOfFilterMatch(Rule):
     """Rule that checks for siblings of someone matched by a filter"""
 
-    labels      = [ _('Filter name:') ]
-    name        = _('Siblings of <filter> match')
-    category    = _('Family filters')
+    labels = [ _('Filter name:') ]
+    name = _('Siblings of <filter> match')
+    category = _('Family filters')
     description = _("Matches siblings of anybody matched by a filter")
 
     def prepare(self, db, user):

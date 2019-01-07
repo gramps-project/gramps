@@ -118,13 +118,13 @@ class BsddbBaseCursor:
     # Use closure to define access methods
 
     current = _get(db.DB_CURRENT)
-    first   = _get(db.DB_FIRST)
+    first = _get(db.DB_FIRST)
     ##python2 iterator
-    next    = _get(db.DB_NEXT)
+    next = _get(db.DB_NEXT)
     ##python3 iterator
     __next__ = _get(db.DB_NEXT)
-    last    = _get(db.DB_LAST)
-    prev    = _get(db.DB_PREV)
+    last = _get(db.DB_LAST)
+    prev = _get(db.DB_PREV)
 
     def update(self, key, data, flags=0, **kwargs):
         """

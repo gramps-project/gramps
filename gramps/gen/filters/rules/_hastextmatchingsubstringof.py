@@ -39,13 +39,13 @@ from . import Rule
 class HasTextMatchingSubstringOf(Rule):
     """Rule that checks for string matches in any textual information."""
 
-    labels      = [ 'Substring:',
+    labels = [ 'Substring:',
                     'Case sensitive:',
                     'Regular-Expression matching:']
-    name        = 'Objects with records containing <substring>'
+    name = 'Objects with records containing <substring>'
     description = "Matches objects whose records contain text " \
                    "matching a substring"
-    category    = _('General filters')
+    category = _('General filters')
 
     # FIXME: This needs to be written for an arbitrary object
     # if possible

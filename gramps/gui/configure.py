@@ -87,9 +87,9 @@ _surname_styles = [
     ]
 
 # column numbers for the 'name format' model
-COL_NUM  = 0
+COL_NUM = 0
 COL_NAME = 1
-COL_FMT  = 2
+COL_FMT = 2
 COL_EXPL = 3
 
 WIKI_HELP_PAGE = URL_MANUAL_PAGE + "_-_Settings"

@@ -41,10 +41,10 @@ from ....lib.eventtype import EventType
 class IsWitness(Rule):
     """Witnesses"""
 
-    labels      = [_('Event type:')]
-    name        = _('Witnesses')
+    labels = [_('Event type:')]
+    name = _('Witnesses')
     description = _("Matches people who are witnesses in any event")
-    category    = _('Event filters')
+    category = _('Event filters')
 
     def apply(self,db,person):
         for event_ref in person.event_ref_list:

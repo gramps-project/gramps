@@ -42,5 +42,5 @@ from .. import HasGrampsId
 class HasIdOf(HasGrampsId):
     """Rule that checks for a citation with a specific Gramps ID"""
 
-    name        = _('Citation with <Id>')
+    name = _('Citation with <Id>')
     description = _("Matches a citation with a specified Gramps ID")

@@ -46,10 +46,10 @@ class HasTagBase(Rule):
     Rule that checks for an object with a particular tag.
     """
 
-    labels      = [ 'Tag:' ]
-    name        = 'Objects with the <tag>'
+    labels = [ 'Tag:' ]
+    name = 'Objects with the <tag>'
     description = "Matches objects with the given tag"
-    category    = _('General filters')
+    category = _('General filters')
 
     def prepare(self, db, user):
         """

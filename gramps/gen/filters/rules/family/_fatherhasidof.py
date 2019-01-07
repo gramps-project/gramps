@@ -42,10 +42,10 @@ from ._memberbase import father_base
 class FatherHasIdOf(RegExpIdBase):
     """Rule that checks for a person with a specific Gramps ID"""
 
-    labels      = [ _('Person ID:') ]
-    name        = _('Families having father with Id containing <text>')
+    labels = [ _('Person ID:') ]
+    name = _('Families having father with Id containing <text>')
     description = _("Matches families whose father has a specified "
                     "Gramps ID")
-    category    = _('Father filters')
+    category = _('Father filters')
     base_class = RegExpIdBase
     apply = father_base

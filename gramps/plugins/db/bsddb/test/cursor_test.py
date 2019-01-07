@@ -79,7 +79,7 @@ class CursorTest(unittest.TestCase):
         dbmap.db.set_pagesize(16384)
         dbmap.open(self.full_name, 'person', db.DB_HASH,
                        db.DB_CREATE|db.DB_AUTO_COMMIT, 0o666)
-        person_map     = dbmap
+        person_map = dbmap
 
         table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
 
@@ -103,7 +103,7 @@ class CursorTest(unittest.TestCase):
         dbmap.db.set_pagesize(16384)
         dbmap.open(self.full_name, 'places', db.DB_HASH,
                        db.DB_CREATE|db.DB_AUTO_COMMIT, 0o666)
-        place_map     = dbmap
+        place_map = dbmap
 
         table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
 

@@ -30,8 +30,8 @@ MODULE_VERSION="5.1"
 
 # ca
 plg = newplugin()
-plg.id    = 'relcalc_ca'
-plg.name  = _("Catalan Relationship Calculator")
+plg.id = 'relcalc_ca'
+plg.name = _("Catalan Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -44,8 +44,8 @@ plg.lang_list = ['ca_ES', 'ca', 'català', 'Catalan', 'ca_FR', 'ca_AD', 'ca_IT']
 
 # cs
 plg = newplugin()
-plg.id    = 'relcalc_cs'
-plg.name  = _("Czech Relationship Calculator")
+plg.id = 'relcalc_cs'
+plg.name = _("Czech Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -57,8 +57,8 @@ plg.lang_list = ["cs", "CZ", "cs_CZ", "česky", "czech", "Czech", "cs_CZ.UTF8", 
 
 # da
 plg = newplugin()
-plg.id    = 'relcalc_da'
-plg.name  = _("Danish Relationship Calculator")
+plg.id = 'relcalc_da'
+plg.name = _("Danish Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -73,8 +73,8 @@ plg.lang_list = [ "da", "DA", "da_DK", "danish", "Danish", "da_DK.UTF8",
 
 # de
 plg = newplugin()
-plg.id    = 'relcalc_de'
-plg.name  = _("German Relationship Calculator")
+plg.id = 'relcalc_de'
+plg.name = _("German Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -89,8 +89,8 @@ plg.lang_list = ["de", "DE", "de_DE", "deutsch", "Deutsch", "de_DE.UTF8",
 
 # es
 plg = newplugin()
-plg.id    = 'relcalc_es'
-plg.name  = _("Spanish Relationship Calculator")
+plg.id = 'relcalc_es'
+plg.name = _("Spanish Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -104,8 +104,8 @@ plg.lang_list = ["es", "ES", "es_ES", "espanol", "Espanol", "es_ES.UTF8",
 
 # fi
 plg = newplugin()
-plg.id    = 'relcalc_fi'
-plg.name  = _("Finnish Relationship Calculator")
+plg.id = 'relcalc_fi'
+plg.name = _("Finnish Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -119,8 +119,8 @@ plg.lang_list = ["fi", "FI", "fi_FI", "finnish", "Finnish", "fi_FI.UTF8",
 
 # fr
 plg = newplugin()
-plg.id    = 'relcalc_fr'
-plg.name  = _("French Relationship Calculator")
+plg.id = 'relcalc_fr'
+plg.name = _("French Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -136,8 +136,8 @@ plg.lang_list = ["fr", "FR", "fr_FR", "fr_CA", "français",
 
 # hr
 plg = newplugin()
-plg.id    = 'relcalc_hr'
-plg.name  = _("Croatian Relationship Calculator")
+plg.id = 'relcalc_hr'
+plg.name = _("Croatian Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -150,8 +150,8 @@ plg.lang_list = ["hrvatski", "Hrvatski", "croatian", "Croatian", "hr", "HR",
 
 # hu
 plg = newplugin()
-plg.id    = 'relcalc_hu'
-plg.name  = _("Hungarian Relationship Calculator")
+plg.id = 'relcalc_hu'
+plg.name = _("Hungarian Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -163,8 +163,8 @@ plg.lang_list = ["hu", "HU", "hu_HU", "hu_HU.utf8", "hu_HU.UTF8"]
 
 # is
 plg = newplugin()
-plg.id    = 'relcalc_is'
-plg.name  = _("Icelandic Relationship Calculator")
+plg.id = 'relcalc_is'
+plg.name = _("Icelandic Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -176,8 +176,8 @@ plg.lang_list = ["is", "IS", "is_IS", "is_IS@euro", "is_IS.utf8"]
 
 # it
 plg = newplugin()
-plg.id    = 'relcalc_it'
-plg.name  = _("Italian Relationship Calculator")
+plg.id = 'relcalc_it'
+plg.name = _("Italian Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -189,8 +189,8 @@ plg.lang_list = ["it", "IT", "it_IT", "it_IT@euro", "it_IT.utf8"]
 
 # nl
 plg = newplugin()
-plg.id    = 'relcalc_nl'
-plg.name  = _("Dutch Relationship Calculator")
+plg.id = 'relcalc_nl'
+plg.name = _("Dutch Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -206,8 +206,8 @@ plg.lang_list = ["nl", "NL", "nl_NL", "nl_BE", "nederlands", "Nederlands",
 
 # no
 plg = newplugin()
-plg.id    = 'relcalc_no'
-plg.name  = _("Norwegian Relationship Calculator")
+plg.id = 'relcalc_no'
+plg.name = _("Norwegian Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -223,8 +223,8 @@ plg.lang_list = ["nb", "nn", "no", "nb_NO", "nn_NO", "no_NO", "nb_NO.UTF8",
 
 # pl
 plg = newplugin()
-plg.id    = 'relcalc_pl'
-plg.name  = _("Polish Relationship Calculator")
+plg.id = 'relcalc_pl'
+plg.name = _("Polish Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -239,8 +239,8 @@ plg.lang_list = ["pl", "PL", "pl_PL", "polski", "Polski",
 
 # pt
 plg = newplugin()
-plg.id    = 'relcalc_pt'
-plg.name  = _("Portuguese Relationship Calculator")
+plg.id = 'relcalc_pt'
+plg.name = _("Portuguese Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -255,8 +255,8 @@ plg.lang_list = ["pt", "PT", "pt_PT", "pt_BR", "portugues", "Portugues",
 
 # ru
 plg = newplugin()
-plg.id    = 'relcalc_ru'
-plg.name  = _("Russian Relationship Calculator")
+plg.id = 'relcalc_ru'
+plg.name = _("Russian Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -271,8 +271,8 @@ plg.lang_list = ["ru", "RU", "ru_RU", "koi8r", "ru_koi8r", "russian",
 
 # sk
 plg = newplugin()
-plg.id    = 'relcalc_sk'
-plg.name  = _("Slovak Relationship Calculator")
+plg.id = 'relcalc_sk'
+plg.name = _("Slovak Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -285,8 +285,8 @@ plg.lang_list = ["sk", "SK", "sk_SK", "slovensky", "slovak", "Slovak",
 
 # sl
 plg = newplugin()
-plg.id    = 'relcalc_sl'
-plg.name  = _("Slovenian Relationship Calculator")
+plg.id = 'relcalc_sl'
+plg.name = _("Slovenian Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -298,8 +298,8 @@ plg.lang_list = ["sl", "SL", "sl_SI", "slovenščina", "slovenian", "Slovenian",
                  "sl_SI.UTF8", "sl_SI.UTF-8", "sl_SI.utf-8", "sl_SI.utf8"]
 # sv
 plg = newplugin()
-plg.id    = 'relcalc_sv'
-plg.name  = _("Swedish Relationship Calculator")
+plg.id = 'relcalc_sv'
+plg.name = _("Swedish Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -312,8 +312,8 @@ plg.lang_list = ["sv", "SV", "sv_SE", "swedish", "Swedish", "sv_SE.UTF8",
                  "sv_SE.UTF-8", "sv_SE.utf-8", "sv_SE.utf8", "Swedish_Sweden"]
 # uk
 plg = newplugin()
-plg.id    = 'relcalc_uk'
-plg.name  = _("Ukrainian Relationship Calculator")
+plg.id = 'relcalc_uk'
+plg.name = _("Ukrainian Relationship Calculator")
 plg.description =  _("Calculates relationships between people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION

@@ -39,7 +39,7 @@ from .._hasnotesubstrbase import HasNoteSubstrBase
 class HasNoteMatchingSubstringOf(HasNoteSubstrBase):
     """People having notes containing <substring>"""
 
-    name        = _('Events having notes containing <substring>')
+    name = _('Events having notes containing <substring>')
     description = _("Matches events whose notes contain text "
                     "matching a substring")
 

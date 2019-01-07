@@ -41,5 +41,5 @@ from .. import HasGrampsId
 class HasIdOf(HasGrampsId):
     """Rule that checks for a source with a specific Gramps ID"""
 
-    name        = _('Source with <Id>')
+    name = _('Source with <Id>')
     description = _("Matches a source with a specified Gramps ID")

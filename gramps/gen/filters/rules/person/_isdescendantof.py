@@ -42,9 +42,9 @@ class IsDescendantOf(Rule):
     """Rule that checks for a person that is a descendant
     of a specified person"""
 
-    labels      = [ _('ID:'), _('Inclusive:') ]
-    name        = _('Descendants of <person>')
-    category    = _('Descendant filters')
+    labels = [ _('ID:'), _('Inclusive:') ]
+    name = _('Descendants of <person>')
+    category = _('Descendant filters')
     description = _('Matches all descendants for the specified person')
 
     def prepare(self, db, user):

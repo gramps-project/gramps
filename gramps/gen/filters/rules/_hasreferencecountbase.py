@@ -39,10 +39,10 @@ from . import Rule
 class HasReferenceCountBase(Rule):
     """Objects with a reference count of <count>."""
 
-    labels      = [ _('Reference count must be:'), _('Reference count:')]
-    name        = 'Objects with a reference count of <count>'
+    labels = [ _('Reference count must be:'), _('Reference count:')]
+    name = 'Objects with a reference count of <count>'
     description = "Matches objects with a certain reference count"
-    category    = _('General filters')
+    category = _('General filters')
 
 
     def prepare(self, db, user):

@@ -42,9 +42,9 @@ from ._memberbase import child_base
 class SearchChildName(SearchName):
     """Rule that checks for full or partial name matches"""
 
-    name        = _('Families with any child matching the <name>')
+    name = _('Families with any child matching the <name>')
     description = _("Matches families where any child has a specified "
                     "(partial) name")
-    category    = _('Child filters')
+    category = _('Child filters')
     base_class = SearchName
     apply = child_base

@@ -45,10 +45,10 @@ from .. import Rule
 class HasAssociation(Rule):
     """Rule that checks for a person with a personal association"""
 
-    labels      = [  _('Number of instances:'), _('Number must be:')]
-    name        = _('People with <count> associations')
+    labels = [  _('Number of instances:'), _('Number must be:')]
+    name = _('People with <count> associations')
     description = _("Matches people with a certain number of associations")
-    category    = _('General filters')
+    category = _('General filters')
 
     def prepare(self, db, user):
         # things we want to do just once, not for every handle

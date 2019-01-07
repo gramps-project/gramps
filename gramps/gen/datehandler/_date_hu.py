@@ -55,7 +55,7 @@ class DateParserHU(DateParser):
     month_to_int["-"]=0   #to make the Zero month to work
 
     month_to_int["január"] = 1
-    month_to_int["jan"]    = 1
+    month_to_int["jan"] = 1
     month_to_int["jan."] = 1
     month_to_int["I"] = 1
 #    month_to_int["i"] = 1
@@ -64,67 +64,67 @@ class DateParserHU(DateParser):
     month_to_int["feb"] = 2
     month_to_int["feb."] = 2
     month_to_int["II"] = 2
-#    month_to_int["ii"]  = 2
+#    month_to_int["ii"] = 2
 
     month_to_int["március"] = 3
     month_to_int["márc"] = 3
     month_to_int["márc."] = 3
     month_to_int["III"] = 3
-#    month_to_int["iii"]  = 3
+#    month_to_int["iii"] = 3
 
     month_to_int["április"] = 4
     month_to_int["ápr"] = 4
     month_to_int["ápr."] = 4
-    month_to_int["IV"]  = 4
-#    month_to_int["iv"]  = 4
+    month_to_int["IV"] = 4
+#    month_to_int["iv"] = 4
 
     month_to_int["május"] = 5
     month_to_int["máj"] = 5
     month_to_int["máj."] = 5
-    month_to_int["V"]  = 5
-#    month_to_int["v"]  = 5
+    month_to_int["V"] = 5
+#    month_to_int["v"] = 5
 
     month_to_int["június"] = 6
     month_to_int["jún"] = 6
     month_to_int["jún."] = 6
-    month_to_int["VI"]  = 6
-#    month_to_int["vi"]  = 6
+    month_to_int["VI"] = 6
+#    month_to_int["vi"] = 6
 
-    month_to_int["július"]  = 7
-    month_to_int["júl"]  = 7
-    month_to_int["júl."]  = 7
-    month_to_int["VII"]  = 7
-#    month_to_int["vii"]  = 7
+    month_to_int["július"] = 7
+    month_to_int["júl"] = 7
+    month_to_int["júl."] = 7
+    month_to_int["VII"] = 7
+#    month_to_int["vii"] = 7
 
-    month_to_int["augusztus"]  = 8
-    month_to_int["aug"]  = 8
-    month_to_int["aug."]  = 8
-    month_to_int["VIII"]  = 8
-#    month_to_int["viii"]  = 8
+    month_to_int["augusztus"] = 8
+    month_to_int["aug"] = 8
+    month_to_int["aug."] = 8
+    month_to_int["VIII"] = 8
+#    month_to_int["viii"] = 8
 
-    month_to_int["szeptember"]  = 9
-    month_to_int["szept"]  = 9
+    month_to_int["szeptember"] = 9
+    month_to_int["szept"] = 9
     month_to_int["szept."] = 9
-    month_to_int["IX"]  = 9
-#    month_to_int["ix"]  = 9
+    month_to_int["IX"] = 9
+#    month_to_int["ix"] = 9
 
-    month_to_int["október"]  = 10
-    month_to_int["okt"]  = 10
-    month_to_int["okt."]  = 10
-    month_to_int["X"]  = 10
-#    month_to_int["x"]  = 10
+    month_to_int["október"] = 10
+    month_to_int["okt"] = 10
+    month_to_int["okt."] = 10
+    month_to_int["X"] = 10
+#    month_to_int["x"] = 10
 
-    month_to_int["november"]  = 11
-    month_to_int["nov"]  = 11
+    month_to_int["november"] = 11
+    month_to_int["nov"] = 11
     month_to_int["nov."] = 11
-    month_to_int["XI"]  = 11
-#    month_to_int["xi"]  = 11
+    month_to_int["XI"] = 11
+#    month_to_int["xi"] = 11
 
-    month_to_int["december"]  = 12
-    month_to_int["dec"]  = 12
-    month_to_int["dec."]  = 12
-    month_to_int["XII"]  = 12
-#    month_to_int["xii"]  = 12
+    month_to_int["december"] = 12
+    month_to_int["dec"] = 12
+    month_to_int["dec."] = 12
+    month_to_int["XII"] = 12
+#    month_to_int["xii"] = 12
 
 
 #-----------------------------------------------------------------------

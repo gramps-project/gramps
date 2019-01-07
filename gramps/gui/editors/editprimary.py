@@ -65,9 +65,9 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         Associate a person with the window.
 
         """
-        self.dp  = parser
-        self.dd  = displayer
-        self.name_displayer  = name_displayer
+        self.dp = parser
+        self.dd = displayer
+        self.name_displayer = name_displayer
         self.obj = obj
         self.dbstate = state
         self.uistate = uistate

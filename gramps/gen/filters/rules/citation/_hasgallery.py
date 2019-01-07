@@ -42,5 +42,5 @@ from .._hasgallerybase import HasGalleryBase
 class HasGallery(HasGalleryBase):
     """Rule that checks for citation who has media object reference"""
 
-    name        = _('Citations with <count> media')
+    name = _('Citations with <count> media')
     description = _("Matches citations with a certain number of items in the gallery")

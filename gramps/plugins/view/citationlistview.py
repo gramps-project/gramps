@@ -79,20 +79,20 @@ class CitationListView(ListView):
     """
     # The data items here have to correspond, in order, to the items in
     # src/giu/views/treemodels/citationlismodel.py
-    COL_TITLE_PAGE     =  0
-    COL_ID             =  1
-    COL_DATE           =  2
-    COL_CONFIDENCE     =  3
-    COL_PRIV           =  4
-    COL_TAGS           =  5
-    COL_CHAN           =  6
-    COL_SRC_TITLE      =  7
-    COL_SRC_ID         =  8
-    COL_SRC_AUTH       =  9
-    COL_SRC_ABBR       = 10
-    COL_SRC_PINFO      = 11
-    COL_SRC_PRIV       = 12
-    COL_SRC_CHAN       = 13
+    COL_TITLE_PAGE =  0
+    COL_ID =  1
+    COL_DATE =  2
+    COL_CONFIDENCE =  3
+    COL_PRIV =  4
+    COL_TAGS =  5
+    COL_CHAN =  6
+    COL_SRC_TITLE =  7
+    COL_SRC_ID =  8
+    COL_SRC_AUTH =  9
+    COL_SRC_ABBR = 10
+    COL_SRC_PINFO = 11
+    COL_SRC_PRIV = 12
+    COL_SRC_CHAN = 13
     # column definitions
     COLUMNS = [
         (_('Volume/Page'), TEXT, None),

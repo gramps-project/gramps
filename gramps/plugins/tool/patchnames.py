@@ -96,9 +96,9 @@ _nick_re = re.compile(r"(.+) \s* [(\"] (.+) [)\"]", re.VERBOSE)
 
 class PatchNames(tool.BatchTool, ManagedWindow):
     titleid = 1
-    nickid  = 2
+    nickid = 2
     pref1id = 3
-    compid  = 4
+    compid = 4
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate

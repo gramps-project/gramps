@@ -41,8 +41,8 @@ from .. import Rule
 class IsBookmarked(Rule):
     """Rule that checks for the bookmark list in the database"""
 
-    name        = _('Bookmarked families')
-    category    = _('General filters')
+    name = _('Bookmarked families')
+    category = _('General filters')
     description = _("Matches the families on the bookmark list")
 
     def prepare(self, db, user):

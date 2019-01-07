@@ -41,7 +41,7 @@ from .._matchesfilterbase import MatchesFilterBase
 class MatchesFilter(MatchesFilterBase):
     """Rule that checks against another filter"""
 
-    name        = _('Repositories matching the <filter>')
+    name = _('Repositories matching the <filter>')
     description = _("Matches repositories matched "
                     "by the specified filter name")
-    namespace   = 'Repository'
+    namespace = 'Repository'

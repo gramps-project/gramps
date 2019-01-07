@@ -41,8 +41,8 @@ from .. import Rule
 class Disconnected(Rule):
     """Matches disconnected people"""
 
-    name        = _('Disconnected people')
-    category    = _('General filters')
+    name = _('Disconnected people')
+    category = _('General filters')
     description = _('Matches people that have no family relationships '
                     'to any other person in the database')
 

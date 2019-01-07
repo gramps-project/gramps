@@ -45,6 +45,6 @@ class HasTag(HasTagBase):
     """
     Rule that checks for a family with a particular tag.
     """
-    labels      = [ _('Tag:') ]
-    name        = _('Families with the <tag>')
+    labels = [ _('Tag:') ]
+    name = _('Families with the <tag>')
     description = _("Matches families with the particular tag")

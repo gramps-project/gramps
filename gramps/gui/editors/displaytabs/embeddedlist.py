@@ -72,8 +72,8 @@ class EmbeddedList(ButtonTab):
     """
 
     _HANDLE_COL = -1
-    _DND_TYPE   = None
-    _DND_EXTRA  = None
+    _DND_TYPE = None
+    _DND_EXTRA = None
 
     def __init__(self, dbstate, uistate, track, name, build_model,
                  share_button=False, move_buttons=False, jump_button=False,

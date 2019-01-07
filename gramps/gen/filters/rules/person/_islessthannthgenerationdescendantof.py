@@ -42,10 +42,10 @@ class IsLessThanNthGenerationDescendantOf(Rule):
     """Rule that checks for a person that is a descendant of a specified person
     not more than N generations away"""
 
-    labels      = [ _('ID:'), _('Number of generations:') ]
-    name        = _('Descendants of <person> not more than '
+    labels = [ _('ID:'), _('Number of generations:') ]
+    name = _('Descendants of <person> not more than '
                     '<N> generations away')
-    category    = _('Descendant filters')
+    category = _('Descendant filters')
     description = _("Matches people that are descendants of a "
                     "specified person not more than N generations away")
 

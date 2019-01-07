@@ -30,8 +30,8 @@ MODULE_VERSION="5.1"
 #
 #------------------------------------------------------------------------
 register(GENERAL,
-id    = 'libcairodoc',
-name  = "Cairodoc lib",
+id = 'libcairodoc',
+name = "Cairodoc lib",
 description =  _("Provides a library for using Cairo to "
                         "generate documents."),
 version = '1.0',
@@ -49,8 +49,8 @@ authors_email = ["http://gramps-project.org"],
 #
 #------------------------------------------------------------------------
 register(GENERAL,
-id    = 'libgedcom',
-name  = "GEDCOM library",
+id = 'libgedcom',
+name = "GEDCOM library",
 description =  _("Provides GEDCOM processing functionality"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -83,8 +83,8 @@ register(GENERAL,
 #
 #------------------------------------------------------------------------
 register(GENERAL,
-id    = 'libgrampsxml',
-name  = "Grampsxml lib",
+id = 'libgrampsxml',
+name = "Grampsxml lib",
 description =  _("Provides common functionality for Gramps XML "
                     "import/export."),
 version = '1.0',
@@ -102,8 +102,8 @@ authors_email = ["http://gramps-project.org"],
 #
 #------------------------------------------------------------------------
 register(GENERAL,
-id    = 'libholiday',
-name  = "holiday lib",
+id = 'libholiday',
+name = "holiday lib",
 description =  _("Provides holiday information for different countries.") ,
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -120,8 +120,8 @@ authors_email = ["http://gramps-project.org"],
 #
 #------------------------------------------------------------------------
 register(GENERAL,
-id    = 'libhtmlbackend',
-name  = "htmlbackend lib",
+id = 'libhtmlbackend',
+name = "htmlbackend lib",
 description =  _("Manages a HTML file implementing DocBackend.") ,
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -138,8 +138,8 @@ authors_email = ["http://gramps-project.org"],
 #
 #------------------------------------------------------------------------
 register(GENERAL,
-id    = 'libhtmlconst',
-name  = "htmlconst lib",
+id = 'libhtmlconst',
+name = "htmlconst lib",
 description =  _("Common constants for html files.") ,
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -156,8 +156,8 @@ authors_email = ["http://gramps-project.org"],
 #
 #------------------------------------------------------------------------
 register(GENERAL,
-id    = 'libhtml',
-name  = "html lib",
+id = 'libhtml',
+name = "html lib",
 description =  _("Manages an HTML DOM tree.") ,
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -174,8 +174,8 @@ authors_email = ["gerald.britton@gmail.com"],
 #
 #------------------------------------------------------------------------
 register(GENERAL,
-id    = 'libmapservice',
-name  = "mapservice lib",
+id = 'libmapservice',
+name = "mapservice lib",
 description =  _("Provides base functionality for map services.") ,
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -191,8 +191,8 @@ authors_email = ["http://gramps-project.org"],
 #
 #------------------------------------------------------------------------
 register(GENERAL,
-id    = 'libnarrate',
-name  = "narration lib",
+id = 'libnarrate',
+name = "narration lib",
 description =  _("Provides Textual Narration.") ,
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -208,8 +208,8 @@ authors_email = ["brian@gramps-project.org"],
 #
 #------------------------------------------------------------------------
 register(GENERAL,
-id    = 'libodfbackend',
-name  = "odfbackend lib",
+id = 'libodfbackend',
+name = "odfbackend lib",
 description =  _("Manages an ODF file implementing DocBackend.") ,
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -225,8 +225,8 @@ authors_email = ["http://gramps-project.org"],
 #
 #------------------------------------------------------------------------
 register(GENERAL,
-id    = 'libpersonview',
-name  = "person list lib",
+id = 'libpersonview',
+name = "person list lib",
 description =  _("Provides the Base needed for the List People views.") ,
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -242,8 +242,8 @@ authors_email = ["http://gramps-project.org"],
 #
 #------------------------------------------------------------------------
 register(GENERAL,
-id    = 'libprogen',
-name  = "Pro-Gen lib",
+id = 'libprogen',
+name = "Pro-Gen lib",
 description =  _("Provides common functionality for Pro-Gen import"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -260,8 +260,8 @@ authors_email = ["http://gramps-project.org"],
 #
 #------------------------------------------------------------------------
 register(GENERAL,
-id    = 'libplaceview',
-name  = "place list lib",
+id = 'libplaceview',
+name = "place list lib",
 description =  _("Provides the Base needed for the List Place views.") ,
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -277,8 +277,8 @@ authors_email = ["http://gramps-project.org"],
 #
 #------------------------------------------------------------------------
 register(GENERAL,
-id    = 'libsubstkeyword',
-name  = "Substitution Values",
+id = 'libsubstkeyword',
+name = "Substitution Values",
 description =  _("Provides variable substitution on display lines.") ,
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -294,8 +294,8 @@ authors_email = ["http://gramps-project.org"],
 #
 #------------------------------------------------------------------------
 register(GENERAL,
-id    = 'libtreebase',
-name  = "Graphical report lib",
+id = 'libtreebase',
+name = "Graphical report lib",
 description =  _("Provides the base needed for the ancestor and "
                  "descendant graphical reports.") ,
 version = '1.0',

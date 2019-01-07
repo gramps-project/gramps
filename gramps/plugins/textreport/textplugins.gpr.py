@@ -33,8 +33,8 @@ MODULE_VERSION="5.1"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'ancestor_report'
-plg.name  = _("Ahnentafel Report")
+plg.id = 'ancestor_report'
+plg.name = _("Ahnentafel Report")
 plg.description =  _("Produces a textual ancestral report")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -55,8 +55,8 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'birthday_report'
-plg.name  = _("Birthday and Anniversary Report")
+plg.id = 'birthday_report'
+plg.name = _("Birthday and Anniversary Report")
 plg.description =  _("Produces a report of birthdays and anniversaries")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -77,8 +77,8 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'custom_text'
-plg.name  = _("Custom Text")
+plg.id = 'custom_text'
+plg.name = _("Custom Text")
 plg.description =  _("Add custom text to the book report")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -99,8 +99,8 @@ plg.report_modes = [REPORT_MODE_BKI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'descend_report'
-plg.name  = _("Descendant Report")
+plg.id = 'descend_report'
+plg.name = _("Descendant Report")
 plg.description =  _("Produces a list of descendants of the active person")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -121,8 +121,8 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'det_ancestor_report'
-plg.name  = _("Detailed Ancestral Report")
+plg.id = 'det_ancestor_report'
+plg.name = _("Detailed Ancestral Report")
 plg.description =  _("Produces a detailed ancestral report")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -143,8 +143,8 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'det_descendant_report'
-plg.name  = _("Detailed Descendant Report")
+plg.id = 'det_descendant_report'
+plg.name = _("Detailed Descendant Report")
 plg.description =  _("Produces a detailed descendant report")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -165,8 +165,8 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'endofline_report'
-plg.name  = _("End of Line Report")
+plg.id = 'endofline_report'
+plg.name = _("End of Line Report")
 plg.description =  _("Produces a textual end of line report")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -187,8 +187,8 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'family_group'
-plg.name  = _("Family Group Report")
+plg.id = 'family_group'
+plg.name = _("Family Group Report")
 plg.description =  _("Produces a family group report showing information "
                     "on a set of parents and their children.")
 plg.version = '1.0'
@@ -210,8 +210,8 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'indiv_complete'
-plg.name  = _("Complete Individual Report")
+plg.id = 'indiv_complete'
+plg.name = _("Complete Individual Report")
 plg.description =  _("Produces a complete report on the selected people")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -232,8 +232,8 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'kinship_report'
-plg.name  = _("Kinship Report")
+plg.id = 'kinship_report'
+plg.name = _("Kinship Report")
 plg.description =  _("Produces a textual report of kinship for a given person")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -254,8 +254,8 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'tag_report'
-plg.name  = _("Tag Report")
+plg.id = 'tag_report'
+plg.name = _("Tag Report")
 plg.description =  _("Produces a list of people with a specified tag")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -277,8 +277,8 @@ plg.require_active = False
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'number_of_ancestors'
-plg.name  = _("Number of Ancestors Report")
+plg.id = 'number_of_ancestors'
+plg.name = _("Number of Ancestors Report")
 plg.description =  _("Counts number of ancestors of selected person")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -299,8 +299,8 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'place_report'
-plg.name  = _("Place Report")
+plg.id = 'place_report'
+plg.name = _("Place Report")
 plg.description =  _("Produces a textual place report")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -322,8 +322,8 @@ plg.require_active = False
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'simple_book_title'
-plg.name  = _("Title Page")
+plg.id = 'simple_book_title'
+plg.name = _("Title Page")
 plg.description =  _("Produces a title page for book reports.")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -344,8 +344,8 @@ plg.report_modes = [REPORT_MODE_BKI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'summary'
-plg.name  = _("Database Summary Report")
+plg.id = 'summary'
+plg.name = _("Database Summary Report")
 plg.description =  _("Provides a summary of the current database")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION

@@ -41,6 +41,6 @@ from .._matchesfilterbase import MatchesFilterBase
 class MatchesFilter(MatchesFilterBase):
     """Rule that checks against another filter"""
 
-    name        = _('Sources matching the <filter>')
+    name = _('Sources matching the <filter>')
     description = _("Matches sources matched by the specified filter name")
-    namespace   = 'Source'
+    namespace = 'Source'

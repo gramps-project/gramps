@@ -39,9 +39,9 @@ from .. import Rule
 class NoDeathdate(Rule):
     """People without a death date"""
 
-    name        = _('People without a known death date')
+    name = _('People without a known death date')
     description = _("Matches people without a known deathdate")
-    category    = _('General filters')
+    category = _('General filters')
 
     def apply(self,db,person):
         death_ref = person.get_death_ref()

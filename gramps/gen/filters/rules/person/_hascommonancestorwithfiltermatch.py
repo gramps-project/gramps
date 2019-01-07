@@ -44,11 +44,11 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
     """Rule that checks for a person that has a common ancestor with
     someone matching a filter"""
 
-    labels      = [ _('Filter name:') ]
-    name        = _('People with a common ancestor with <filter> match')
+    labels = [ _('Filter name:') ]
+    name = _('People with a common ancestor with <filter> match')
     description = _("Matches people that have a common ancestor "
                     "with anybody matched by a filter")
-    category    = _("Ancestral filters")
+    category = _("Ancestral filters")
 
     def __init__(self, list, use_regex=False):
         HasCommonAncestorWith.__init__(self, list, use_regex)

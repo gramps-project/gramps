@@ -33,8 +33,8 @@ MODULE_VERSION="5.1"
 #------------------------------------------------------------------------
 
 register(VIEW,
-id    = 'eventview',
-name  = _("Events"),
+id = 'eventview',
+name = _("Events"),
 description =  _("The view showing all the events"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -48,8 +48,8 @@ order = START,
   )
 
 register(VIEW,
-id    = 'familyview',
-name  = _("Families"),
+id = 'familyview',
+name = _("Families"),
 description =  _("The view showing all families"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -63,8 +63,8 @@ order = START,
   )
 
 register(VIEW,
-id    = 'dashboardview',
-name  = _("Dashboard"),
+id = 'dashboardview',
+name = _("Dashboard"),
 description =  _("The view showing Gramplets"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -78,8 +78,8 @@ order = START,
   )
 
 register(VIEW,
-id    = 'mediaview',
-name  = _("Media"),
+id = 'mediaview',
+name = _("Media"),
 description =  _("The view showing all the media objects"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -93,8 +93,8 @@ order = START,
   )
 
 register(VIEW,
-id    = 'noteview',
-name  = _("Notes"),
+id = 'noteview',
+name = _("Notes"),
 description =  _("The view showing all the notes"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -108,8 +108,8 @@ order = START,
   )
 
 register(VIEW,
-id    = 'relview',
-name  = _("Relationships"),
+id = 'relview',
+name = _("Relationships"),
 description =  _("The view showing all relationships of the selected person"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -123,8 +123,8 @@ order = START,
   )
 
 register(VIEW,
-id    = 'pedigreeview',
-name  = _("Pedigree"),
+id = 'pedigreeview',
+name = _("Pedigree"),
 description =  _("The view showing an ancestor pedigree of the selected person"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -139,8 +139,8 @@ stock_icon = 'gramps-pedigree',
   )
 
 register(VIEW,
-id    = 'fanchartview',
-name  = _("Fan Chart"),
+id = 'fanchartview',
+name = _("Fan Chart"),
 category = ("Ancestry", _("Charts")),
 description =  _("A view showing parents through a fanchart"),
 version = '1.0',
@@ -154,8 +154,8 @@ stock_icon = 'gramps-fanchart',
   )
 
 register(VIEW,
-id    = 'fanchartdescview',
-name  = _("Descendant Fan"),
+id = 'fanchartdescview',
+name = _("Descendant Fan"),
 category = ("Ancestry", _("Charts")),
 description =  _("Showing descendants through a fanchart"),
 version = '1.0',
@@ -169,8 +169,8 @@ stock_icon = 'gramps-fanchartdesc',
   )
 
 register(VIEW,
-id    = 'fanchart2wayview',
-name  = _("2-Way Fan"),
+id = 'fanchart2wayview',
+name = _("2-Way Fan"),
 category = ("Ancestry", _("Charts")),
 description =  _("Showing ascendants and descendants through a fanchart"),
 version = '1.0',
@@ -184,8 +184,8 @@ stock_icon = 'gramps-fanchart2way',
   )
 
 register(VIEW,
-id    = 'personview',
-name  = _("Grouped People"),
+id = 'personview',
+name = _("Grouped People"),
 description =  _("The view showing all people in the Family Tree grouped per"
                  " family name"),
 version = '1.0',
@@ -201,8 +201,8 @@ stock_icon = 'gramps-tree-group',
   )
 
 register(VIEW,
-id    = 'personlistview',
-name  = _("People"),
+id = 'personlistview',
+name = _("People"),
 description =  _("The view showing all people in the Family Tree"
                  " in a flat list"),
 version = '1.0',
@@ -217,8 +217,8 @@ stock_icon = 'gramps-tree-list',
   )
 
 register(VIEW,
-id    = 'placelistview',
-name  = _("Places"),
+id = 'placelistview',
+name = _("Places"),
 description =  _("The view showing all the places of the Family Tree"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -248,8 +248,8 @@ order = START,
   )
 
 register(VIEW,
-id    = 'repoview',
-name  = _("Repositories"),
+id = 'repoview',
+name = _("Repositories"),
 description =  _("The view showing all the repositories"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -263,8 +263,8 @@ order = START,
   )
 
 register(VIEW,
-id    = 'sourceview',
-name  = _("Sources"),
+id = 'sourceview',
+name = _("Sources"),
 description =  _("The view showing all the sources"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -279,8 +279,8 @@ stock_icon = 'gramps-tree-list',
   )
 
 register(VIEW,
-id    = 'citationlistview',
-name  = _("Citations"),
+id = 'citationlistview',
+name = _("Citations"),
 description =  _("The view showing all the citations"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,

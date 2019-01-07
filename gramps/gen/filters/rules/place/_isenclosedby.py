@@ -45,10 +45,10 @@ class IsEnclosedBy(Rule):
     Rule that checks for a place enclosed by another place
     """
 
-    labels      = [_('ID:'), _('Inclusive:')]
-    name        = _('Places enclosed by another place')
+    labels = [_('ID:'), _('Inclusive:')]
+    name = _('Places enclosed by another place')
     description = _('Matches a place enclosed by a particular place')
-    category    = _('General filters')
+    category = _('General filters')
 
     def prepare(self, db, user):
         self.handle = None

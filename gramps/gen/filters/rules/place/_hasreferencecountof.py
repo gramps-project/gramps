@@ -39,6 +39,6 @@ from .._hasreferencecountbase import HasReferenceCountBase
 class HasReferenceCountOf(HasReferenceCountBase):
     """Place objects with a reference count of <count>"""
 
-    name        = _('Places with a reference count of <count>')
+    name = _('Places with a reference count of <count>')
     description = _("Matches places with a certain reference count")
 

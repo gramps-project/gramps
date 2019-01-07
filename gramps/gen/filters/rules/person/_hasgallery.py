@@ -39,7 +39,7 @@ from .._hasgallerybase import HasGalleryBase
 class HavePhotos(HasGalleryBase):
     """Rule that checks for person who has media object reference"""
 
-    name        = _('People with <count> media')
+    name = _('People with <count> media')
     description = _("Matches people with a certain number of items in the gallery")
 
     def __init__(self, arg, use_regex=False):

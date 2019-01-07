@@ -42,10 +42,10 @@ _ = glocale.translation.gettext
 class HasType(Rule):
     """Rule that checks for a note of a particular type."""
 
-    labels      = [ _('Note type:') ]
-    name        = _('Notes with the particular type')
+    labels = [ _('Note type:') ]
+    name = _('Notes with the particular type')
     description = _("Matches notes with the particular type ")
-    category    = _('General filters')
+    category = _('General filters')
 
     def apply(self, db, note):
         if not self.list[0]:

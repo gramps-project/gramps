@@ -39,5 +39,5 @@ from .._isprivate import IsPrivate
 class EventPrivate(IsPrivate):
     """Event marked private"""
 
-    name        = _('Events marked private')
+    name = _('Events marked private')
     description = _("Matches events that are indicated as private")

@@ -29,8 +29,8 @@ MODULE_VERSION="5.1"
 #------------------------------------------------------------------------
 
 register(MAPSERVICE,
-id    = 'EniroMaps',
-name  = _("EniroMaps"),
+id = 'EniroMaps',
+name = _("EniroMaps"),
 description =  _("Opens on kartor.eniro.se"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -48,8 +48,8 @@ mapservice = 'EniroSVMapService'
 #------------------------------------------------------------------------
 
 register(MAPSERVICE,
-id    = 'GoogleMaps',
-name  = _("GoogleMaps"),
+id = 'GoogleMaps',
+name = _("GoogleMaps"),
 description =  _("Open on maps.google.com"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -67,8 +67,8 @@ mapservice = 'GoogleMapService'
 #------------------------------------------------------------------------
 
 register(MAPSERVICE,
-id    = 'OpenStreetMap',
-name  = _("OpenStreetMap"),
+id = 'OpenStreetMap',
+name = _("OpenStreetMap"),
 description =  _("Open on openstreetmap.org"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,

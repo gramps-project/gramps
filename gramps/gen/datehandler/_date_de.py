@@ -51,9 +51,9 @@ class DateParserDE(DateParser):
     # Always add german and austrian name variants no matter what the current
     # locale is
     month_to_int["januar"] = 1
-    month_to_int["jan"]    = 1
+    month_to_int["jan"] = 1
     month_to_int["jänner"] = 1
-    month_to_int["jän"]    = 1
+    month_to_int["jän"] = 1
 
     # Add other common latin,
 
@@ -121,14 +121,14 @@ class DateParserDE(DateParser):
     # local and historical variants
 
     month_to_int["jenner"] = 1
-    month_to_int["feber"]  = 2
-    month_to_int["merz"]  = 3
-    month_to_int["augst"]  = 8
-    month_to_int["7ber"]  = 9
-    month_to_int["8ber"]  = 10
-    month_to_int["9ber"]  = 11
-    month_to_int["10ber"]  = 12
-    month_to_int["xber"]  = 12
+    month_to_int["feber"] = 2
+    month_to_int["merz"] = 3
+    month_to_int["augst"] = 8
+    month_to_int["7ber"] = 9
+    month_to_int["8ber"] = 10
+    month_to_int["9ber"] = 11
+    month_to_int["10ber"] = 12
+    month_to_int["xber"] = 12
 
     # old german names
 

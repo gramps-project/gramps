@@ -45,10 +45,10 @@ from .. import Rule
 class HasBirth(Rule):
     """Rule that checks for a person with a birth of a particular value"""
 
-    labels      = [ _('Date:'), _('Place:'), _('Description:') ]
-    name        = _('People with the <birth data>')
+    labels = [ _('Date:'), _('Place:'), _('Description:') ]
+    name = _('People with the <birth data>')
     description = _("Matches people with birth data of a particular value")
-    category    = _('Event filters')
+    category = _('Event filters')
     allow_regex = True
 
     def prepare(self, db, user):

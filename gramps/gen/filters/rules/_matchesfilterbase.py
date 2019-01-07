@@ -51,10 +51,10 @@ class MatchesFilterBase(Rule):
     Subclasses need to define the namespace class attribute.
 
     """
-    labels      = [_('Filter name:')]
-    name        = 'Objects matching the <filter>'
+    labels = [_('Filter name:')]
+    name = 'Objects matching the <filter>'
     description = "Matches objects matched by the specified filter name"
-    category    = _('General filters')
+    category = _('General filters')
 
     def prepare(self, db, user):
         if gramps.gen.filters.CustomFilters:

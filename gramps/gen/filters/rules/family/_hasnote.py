@@ -42,5 +42,5 @@ from .._hasnotebase import HasNoteBase
 class HasNote(HasNoteBase):
     """Families having notes"""
 
-    name        = _('Families having <count> notes')
+    name = _('Families having <count> notes')
     description = _("Matches families having a certain number notes")

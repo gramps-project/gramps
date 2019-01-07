@@ -52,14 +52,14 @@ _ = glocale.translation.sgettext
 # cache values; use refresh_constants() if they change
 try:
     from ..config import config
-    _MAX_AGE_PROB_ALIVE   = config.get('behavior.max-age-prob-alive')
-    _MAX_SIB_AGE_DIFF     = config.get('behavior.max-sib-age-diff')
-    _AVG_GENERATION_GAP   = config.get('behavior.avg-generation-gap')
+    _MAX_AGE_PROB_ALIVE = config.get('behavior.max-age-prob-alive')
+    _MAX_SIB_AGE_DIFF = config.get('behavior.max-sib-age-diff')
+    _AVG_GENERATION_GAP = config.get('behavior.avg-generation-gap')
 except ImportError:
     # Utils used as module not part of GRAMPS
-    _MAX_AGE_PROB_ALIVE   = 110
-    _MAX_SIB_AGE_DIFF     = 20
-    _AVG_GENERATION_GAP   = 20
+    _MAX_AGE_PROB_ALIVE = 110
+    _MAX_SIB_AGE_DIFF = 20
+    _AVG_GENERATION_GAP = 20
 
 #-------------------------------------------------------------------------
 #
@@ -542,6 +542,6 @@ def update_constants():
     """
     from ..config import config
     global _MAX_AGE_PROB_ALIVE, _MAX_SIB_AGE_DIFF, _AVG_GENERATION_GAP
-    _MAX_AGE_PROB_ALIVE   = config.get('behavior.max-age-prob-alive')
-    _MAX_SIB_AGE_DIFF     = config.get('behavior.max-sib-age-diff')
-    _AVG_GENERATION_GAP   = config.get('behavior.avg-generation-gap')
+    _MAX_AGE_PROB_ALIVE = config.get('behavior.max-age-prob-alive')
+    _MAX_SIB_AGE_DIFF = config.get('behavior.max-sib-age-diff')
+    _AVG_GENERATION_GAP = config.get('behavior.avg-generation-gap')

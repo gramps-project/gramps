@@ -45,11 +45,11 @@ from ....datehandler import parser
 class HasCitation(Rule):
     """Rule that checks for a citations with a particular value"""
 
-    labels      = [ _('Volume/Page:'),
+    labels = [ _('Volume/Page:'),
                     _('Date:'),
                     _('Confidence level:')]
-    name        = _('Citations matching parameters')
-    category    = _('General filters')
+    name = _('Citations matching parameters')
+    category = _('General filters')
     description = _("Matches citations with particular parameters")
     allow_regex = True
 

@@ -50,7 +50,7 @@ log = logging.getLogger(".paperstyle")
 # Page orientation
 #
 #-------------------------------------------------------------------------
-PAPER_PORTRAIT  = 0
+PAPER_PORTRAIT = 0
 PAPER_LANDSCAPE = 1
 
 #------------------------------------------------------------------------
