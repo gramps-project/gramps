@@ -110,7 +110,8 @@ class GalleryTab(ButtonTab, DbGUIElement):
         Handle the button press event: double click or right click on iconlist.
         If the double click occurs, the Edit button handler is called.
         """
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             self.edit_button_clicked(obj)
             return True
         elif is_right_click(event):

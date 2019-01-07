@@ -193,7 +193,8 @@ class ButtonTab(GrampsTab):
         Handles the double click on list. If the double click occurs,
         the Edit button handler is called
         """
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             try:
                 self.edit_button_clicked(obj)
             except WindowActiveError:

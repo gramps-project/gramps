@@ -257,7 +257,8 @@ class BookListDisplay:
         Checks for a double click event. In the list, we want to
         treat a double click as if it was OK button press.
         """
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             store, the_iter = self.blist.get_selected()
             if not the_iter:
                 return False
@@ -601,7 +602,8 @@ class BookSelector(ManagedWindow):
         Double-click on the current book selection is the same as setup.
         Right click evokes the context menu.
         """
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             self.on_setup_clicked(obj)
         elif is_right_click(event):
             self.build_book_context_menu(event)
@@ -611,7 +613,8 @@ class BookSelector(ManagedWindow):
         Double-click on the available selection is the same as add.
         Right click evokes the context menu.
         """
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             self.on_add_clicked(obj)
         elif is_right_click(event):
             self.build_avail_context_menu(event)

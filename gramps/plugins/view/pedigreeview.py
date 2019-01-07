@@ -1478,7 +1478,8 @@ class PedigreeView(NavigationView):
             self.cb_build_full_nav_menu(obj, event,
                                         person_handle, family_handle)
             return True
-        elif event.button == 1 and event.type == Gdk.EventType._2BUTTON_PRESS:
+        elif (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                  and event.button == 1):
             self.cb_edit_person(obj, person_handle)
             return True
         return True
@@ -1492,7 +1493,8 @@ class PedigreeView(NavigationView):
         if is_right_click(event):
             self.cb_build_relation_nav_menu(obj, event, family_handle)
             return True
-        elif event.button == 1 and event.type == Gdk.EventType._2BUTTON_PRESS:
+        elif (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                  and event.button == 1):
             self.cb_edit_family(obj, family_handle)
             return True
         return True
@@ -1503,7 +1505,8 @@ class PedigreeView(NavigationView):
         Call function for not full family for mouse left button double click
         on missing persons or call submenu for mouse right click.
         """
-        if event.button == 1 and event.type == Gdk.EventType._2BUTTON_PRESS:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             self.cb_add_parents(obj, person_handle, family_handle)
             return True
         elif is_right_click(event):

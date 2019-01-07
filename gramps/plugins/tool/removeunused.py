@@ -341,7 +341,8 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
             row[RemoveUnused.MARK_COL] = not row[RemoveUnused.MARK_COL]
 
     def double_click(self, obj, event):
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             (model, node) = self.selection.get_selected()
             if not node:
                 return
