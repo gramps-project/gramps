@@ -77,6 +77,8 @@ from ..dialog import QuestionDialog
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = URL_MANUAL_PAGE + '_-_Gramplets'
+WIKI_HELP_GRAMPLETBAR = 'https://gramps-project.org/wiki/index.php/Gramps_5.0_Wiki_Manual_-_Main_Window#Bottombar_and_Sidebar' # rename section to Gramplet_bar
+WIKI_HELP_ABOUT_GRAMPLETS = 'https://gramps-project.org/wiki/index.php?title=Gramps_5.0_Wiki_Manual_-_Gramplets#What_is_a_Gramplet'
 NL = "\n"
 
 #-------------------------------------------------------------------------
@@ -115,6 +117,7 @@ class GrampletBar(Gtk.Notebook):
         book_button.add(box)
         book_button.set_relief(Gtk.ReliefStyle.NONE)
         book_button.connect('clicked', self.__button_clicked)
+        book_button.set_property("tooltip-text", _("Gramplet Bar Menu"))
         book_button.show()
         self.set_action_widget(book_button, Gtk.PackType.END)
 
@@ -508,6 +511,21 @@ class GrampletBar(Gtk.Notebook):
         rd_menu.show()
         menu.append(rd_menu)
 
+        # Separator.
+        rs_menu = Gtk.SeparatorMenuItem()
+        rs_menu.show()
+        menu.append(rs_menu)
+
+        rh_menu = Gtk.MenuItem(label=_('Gramplet Bar Help'))
+        rh_menu.connect("activate", self.on_help_grampletbar_clicked)
+        rh_menu.show()
+        menu.append(rh_menu)
+
+        rg_menu = Gtk.MenuItem(label=_('About Gramplets'))
+        rg_menu.connect("activate", self.on_help_gramplets_clicked)
+        rg_menu.show()
+        menu.append(rg_menu)
+
         menu.show_all()
         menu.popup(None, None, cb_menu_position, button, 0, 0)
 
@@ -572,6 +590,14 @@ class GrampletBar(Gtk.Notebook):
         def gramplet_panel(configdialog):
             return title, gui_options
         return gramplet_panel
+
+    def on_help_grampletbar_clicked(self, dummy):
+        """ Button: Display the relevant portion of Gramps manual"""
+        display_url(WIKI_HELP_GRAMPLETBAR)
+
+    def on_help_gramplets_clicked(self, dummy):
+        """ Button: Display the relevant portion of Gramps manual"""
+        display_url(WIKI_HELP_ABOUT_GRAMPLETS)
 
 #-------------------------------------------------------------------------
 #
