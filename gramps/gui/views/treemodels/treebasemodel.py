@@ -584,7 +584,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         self.__total += items
         assert not skip
         if dfilter:
-            for handle in dfilter.apply(self.db,
+            for handle in dfilter.apply(self.db, tree=True,
                                         user=User(parent=self.uistate.window)):
                 status_ppl.heartbeat()
                 data = data_map(handle)
