@@ -61,9 +61,9 @@ from gramps.gen.plug.menu import (NumberOption, ColorOption, BooleanOption,
                                   EnumeratedListOption, PersonListOption,
                                   SurnameColorOption)
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
-from gramps.gen.utils.location import get_main_location
 from gramps.gen.proxy import CacheProxyDb
 from gramps.gen.errors import ReportError
+from gramps.gen.display.place import displayer as _pd
 
 #------------------------------------------------------------------------
 #
@@ -1080,27 +1080,7 @@ class FamilyLinesReport(Report):
         if place_handle:
             place = self._db.get_place_from_handle(place_handle)
             if place:
-                location = get_main_location(self._db, place)
-                if location.get(PlaceType.HAMLET):
-                    place_text = location.get(PlaceType.HAMLET)
-                elif location.get(PlaceType.VILLAGE):
-                    place_text = location.get(PlaceType.VILLAGE)
-                elif location.get(PlaceType.TOWN):
-                    place_text = location.get(PlaceType.TOWN)
-                elif location.get(PlaceType.CITY):
-                     place_text = location.get(PlaceType.CITY)
-                elif location.get(PlaceType.PARISH):
-                    place_text = location.get(PlaceType.PARISH)
-                elif location.get(PlaceType.COUNTY):
-                    place_text = location.get(PlaceType.COUNTY)
-                elif location.get(PlaceType.PROVINCE):
-                    place_text = location.get(PlaceType.PROVINCE)
-                elif location.get(PlaceType.REGION):
-                    place_text = location.get(PlaceType.REGION)
-                elif location.get(PlaceType.STATE):
-                    place_text = location.get(PlaceType.STATE)
-                elif location.get(PlaceType.COUNTRY):
-                    place_text = location.get(PlaceType.COUNTRY)
+                place_text = _pd.display(self._db, place)
                 place_text = place_text.replace('<', '&#60;')
                 place_text = place_text.replace('>', '&#62;')
         return place_text
