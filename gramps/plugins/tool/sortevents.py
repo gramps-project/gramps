@@ -79,6 +79,7 @@ class SortEvents(PluginWindows.ToolManagedWindowBatch):
         """
         The name of the initial menu tab.
         """
+        self.setup_configs('interface.sortevents', 500, 350)
         return _("Options")
 
     def run(self):
