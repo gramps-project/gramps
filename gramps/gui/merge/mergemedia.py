@@ -147,9 +147,6 @@ class MergeMedia(ManagedWindow):
         else:
             phoenix = self.mo2
             titanic = self.mo1
-            # Add second handle to history so that when merge is complete,
-            # phoenix is the selected row.
-            self.uistate.set_active(phoenix.get_handle(), 'Media')
 
         if self.get_widget("path_btn1").get_active() ^ use_handle1:
             phoenix.set_path(titanic.get_path())
@@ -163,4 +160,7 @@ class MergeMedia(ManagedWindow):
 
         query = MergeMediaQuery(self.dbstate, phoenix, titanic)
         query.execute()
+        # Add the selected handle to history so that when merge is complete,
+        # phoenix is the selected row.
+        self.uistate.set_active(phoenix.get_handle(), 'Media')
         self.close()

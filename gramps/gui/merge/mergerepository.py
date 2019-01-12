@@ -140,9 +140,6 @@ class MergeRepository(ManagedWindow):
         else:
             phoenix = self.rp2
             titanic = self.rp1
-            # Add second handle to history so that when merge is complete,
-            # phoenix is the selected row.
-            self.uistate.set_active(phoenix.get_handle(), 'Repository')
 
         if self.get_widget("name_btn1").get_active() ^ use_handle1:
             phoenix.set_name(titanic.get_name())
@@ -153,5 +150,8 @@ class MergeRepository(ManagedWindow):
 
         query = MergeRepositoryQuery(self.dbstate, phoenix, titanic)
         query.execute()
+        # Add the selected handle to history so that when merge is complete,
+        # phoenix is the selected row.
+        self.uistate.set_active(phoenix.get_handle(), 'Repository')
         self.uistate.set_busy_cursor(False)
         self.close()

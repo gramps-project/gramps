@@ -167,9 +167,6 @@ class MergeEvent(ManagedWindow):
         else:
             phoenix = self.ev2
             titanic = self.ev1
-            # Add second handle to history so that when merge is complete,
-            # phoenix is the selected row.
-            self.uistate.set_active(phoenix.get_handle(), 'Event')
 
         if self.get_widget("type_btn1").get_active() ^ use_handle1:
             phoenix.set_type(titanic.get_type())
@@ -185,5 +182,8 @@ class MergeEvent(ManagedWindow):
 
         query = MergeEventQuery(self.dbstate, phoenix, titanic)
         query.execute()
+        # Add the selected handle to history so that when merge is complete,
+        # phoenix is the selected row.
+        self.uistate.set_active(phoenix.get_handle(), 'Event')
         self.uistate.set_busy_cursor(False)
         self.close()

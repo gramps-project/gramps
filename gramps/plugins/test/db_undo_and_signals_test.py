@@ -181,7 +181,7 @@ class DbTestClassBase(object):
             ('family-delete', ['0000000600000006']),
             ('person-update', ['0000000100000001', '0000000200000002',
                                '0000000100000001', '0000000200000002']),
-            ('family-update', ['0000000500000005'])]
+            ('family-update', ['0000000500000005', '0000000500000005'])]
         self.assertEqual(sigs, self.sigs, msg="merge families")
         fam_cnt = self.db.get_number_of_families()
         pers_cnt = self.db.get_number_of_people()
@@ -222,7 +222,7 @@ class DbTestClassBase(object):
             ('person-update', ['0000000200000002', '0000000100000001',
                                '0000000200000002', '0000000100000001']),
             ('family-update', ['0000000500000005', '0000000600000006',
-                               '0000000600000006'])]
+                               '0000000600000006', '0000000500000005'])]
         self.assertEqual(sigs, self.sigs, msg="undo merge signals check")
         fam_cnt = self.db.get_number_of_families()
         pers_cnt = self.db.get_number_of_people()
@@ -303,7 +303,7 @@ class DbTestClassBase(object):
             ('family-delete', ['0000000600000006']),
             ('person-update', ['0000000100000001', '0000000200000002',
                                '0000000100000001', '0000000200000002']),
-            ('family-update', ['0000000500000005'])]
+            ('family-update', ['0000000500000005', '0000000500000005'])]
         self.assertEqual(sigs, self.sigs, msg="merge families")
         fam_cnt = self.db.get_number_of_families()
         pers_cnt = self.db.get_number_of_people()
