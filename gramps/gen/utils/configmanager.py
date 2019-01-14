@@ -299,7 +299,12 @@ class ConfigManager:
                             continue # with next setting
                     ####################### End upgrade code
                     else:
-                        value = safe_eval(raw_value)
+                        try:
+                            value = safe_eval(raw_value)
+                        except:
+                            # most likely exception is SyntaxError but
+                            # others are possible  ex: '0L' from Python2 days
+                            value = None
                     ####################### Now, let's test and set:
                     if (name in self.default and
                         setting in self.default[name]):
