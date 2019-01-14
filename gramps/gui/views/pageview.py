@@ -276,7 +276,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
                     def get_data(self):
                         return self.data
                 class Context:
-                    targets = [drag_type.name()]
+                    targets = [Gdk.atom_intern(drag_type.name(), False)]
                     action = 1
                     def list_targets(self):
                         return Context.targets

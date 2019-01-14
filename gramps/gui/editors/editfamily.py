@@ -563,12 +563,8 @@ class EditFamily(EditPrimary):
         self.set_contexteventbox(self.top.get_object("eventboxtop"))
         #allow for drag of the family object from eventboxtop
         self.contexteventbox.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
-                                   [], Gdk.DragAction.COPY)
-        tglist = Gtk.TargetList.new([])
-        tglist.add(DdTargets.FAMILY_LINK.atom_drag_type,
-                   DdTargets.FAMILY_LINK.target_flags,
-                   DdTargets.FAMILY_LINK.app_id)
-        self.contexteventbox.drag_source_set_target_list(tglist)
+                                             [DdTargets.FAMILY_LINK.target()],
+                                             Gdk.DragAction.COPY)
         self.contexteventbox.drag_source_set_icon_name('gramps-family')
         self.contexteventbox.connect('drag_data_get', self.on_drag_data_get_family)
 
@@ -585,13 +581,8 @@ class EditFamily(EditPrimary):
             # Allow drag
             if not event_box.drag_source_get_target_list():
                 event_box.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
-                                           [],
-                                           Gdk.DragAction.COPY)
-                tglist = Gtk.TargetList.new([])
-                tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
-                           DdTargets.PERSON_LINK.target_flags,
-                           DdTargets.PERSON_LINK.app_id)
-                event_box.drag_source_set_target_list(tglist)
+                                          [DdTargets.PERSON_LINK.target()],
+                                          Gdk.DragAction.COPY)
                 event_box.drag_source_set_icon_name('gramps-person')
                 event_box.connect('drag_data_get', on_drag_data_get)
             #Disallow drop:
@@ -604,14 +595,9 @@ class EditFamily(EditPrimary):
             #allow for drop:
             if not event_box.drag_dest_get_target_list():
                 event_box.drag_dest_set(Gtk.DestDefaults.MOTION |
-                                    Gtk.DestDefaults.DROP,
-                                    [],
-                                    Gdk.DragAction.COPY)
-                tglist = Gtk.TargetList.new([])
-                tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
-                           DdTargets.PERSON_LINK.target_flags,
-                           DdTargets.PERSON_LINK.app_id)
-                event_box.drag_dest_set_target_list(tglist)
+                                        Gtk.DestDefaults.DROP,
+                                        [DdTargets.PERSON_LINK.target()],
+                                        Gdk.DragAction.COPY)
                 event_box.connect('drag_data_received', on_drag_data_received)
 
     def on_drag_fatherdata_get(self, widget, context, sel_data, info, time):

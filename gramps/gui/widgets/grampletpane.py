@@ -760,7 +760,8 @@ class GridGramplet(GuiGramplet):
     """
     TARGET_TYPE_FRAME = 80
     LOCAL_DRAG_TYPE   = 'GRAMPLET'
-    LOCAL_DRAG_TARGET = (Gdk.atom_intern(LOCAL_DRAG_TYPE, False), 0, TARGET_TYPE_FRAME)
+    LOCAL_DRAG_TARGET = Gtk.TargetEntry.new(LOCAL_DRAG_TYPE, 0,
+                                            TARGET_TYPE_FRAME)
 
     def __init__(self, pane, dbstate, uistate, title, **kwargs):
         """
@@ -806,12 +807,8 @@ class GridGramplet(GuiGramplet):
         # source:
         drag = self.gvproperties
         drag.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
-                             [],
+                             [GridGramplet.LOCAL_DRAG_TARGET],
                              Gdk.DragAction.COPY)
-        tglist = Gtk.TargetList.new([])
-        tg = GridGramplet.LOCAL_DRAG_TARGET
-        tglist.add(tg[0], tg[1], tg[2])
-        drag.drag_source_set_target_list(tglist)
 
         # default tooltip
         msg = _("Drag Properties Button to move and click it for setup")
@@ -1025,12 +1022,8 @@ class GrampletPane(Gtk.ScrolledWindow):
         self.drag_dest_set(Gtk.DestDefaults.MOTION |
                             Gtk.DestDefaults.HIGHLIGHT |
                             Gtk.DestDefaults.DROP,
-                            [],
+                            [GridGramplet.LOCAL_DRAG_TARGET],
                             Gdk.DragAction.COPY)
-        tglist = Gtk.TargetList.new([])
-        tg = GridGramplet.LOCAL_DRAG_TARGET
-        tglist.add(tg[0], tg[1], tg[2])
-        self.drag_dest_set_target_list(tglist)
         self.connect('drag_drop', self.drop_widget)
         self.eventb.connect('button-press-event', self._button_press)
 

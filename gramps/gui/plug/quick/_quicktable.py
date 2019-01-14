@@ -352,12 +352,8 @@ class QuickTable(SimpleTable):
             sort_index = 0
         treeview = MultiTreeView()
         treeview.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
-             [],
+                                          [DdTargets.HANDLE_LIST.target()],
                                           Gdk.DragAction.COPY)
-        tglist = Gtk.TargetList.new([])
-        tglist.add(DdTargets.HANDLE_LIST.atom_drag_type, Gtk.TargetFlags.SAME_WIDGET,
-                   0)
-        treeview.drag_source_set_target_list(tglist)
         #treeview.enable_model_drag_dest(DdTargets.all_targets(),
         #                                Gdk.DragAction.DEFAULT)
         treeview.connect('drag_data_get', self.object_drag_data_get)

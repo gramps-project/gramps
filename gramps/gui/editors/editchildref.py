@@ -107,13 +107,8 @@ class EditChildRef(EditSecondary):
         # Set the drag action from the label
         self.label_event_box = self.top.get_object('name_event_box')
         self.label_event_box.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
-                                   [],
-                                   Gdk.DragAction.COPY)
-        tglist = Gtk.TargetList.new([])
-        tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
-                   DdTargets.PERSON_LINK.target_flags,
-                   DdTargets.PERSON_LINK.app_id)
-        self.label_event_box.drag_source_set_target_list(tglist)
+                                             [DdTargets.PERSON_LINK.target()],
+                                             Gdk.DragAction.COPY)
         self.label_event_box.drag_source_set_icon_name('gramps-person')
         self.label_event_box.connect('drag_data_get', self.drag_data_get)
 

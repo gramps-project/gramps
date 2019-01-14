@@ -148,30 +148,27 @@ class ObjEntry:
             Drop is always allowed
             Drag only allowed when object is set
         """
-        if self._DND_TYPE:
-            if not self.label.drag_dest_get_target_list():
-                self.label.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
-                tglist = Gtk.TargetList.new([])
-                tglist.add(self._DND_TYPE.atom_drag_type, self._DND_TYPE.target_flags,
-                           self._DND_TYPE.app_id)
-                self.label.drag_dest_set_target_list(tglist)
-                self.label.connect('drag_data_received', self.drag_data_received)
+        if not self._DND_TYPE:
+            return
+        if not self.label.drag_dest_get_target_list():
+            self.label.drag_dest_set(Gtk.DestDefaults.ALL,
+                                     [self._DND_TYPE.target()],
+                                     Gdk.DragAction.COPY)
+            self.label.connect('drag_data_received', self.drag_data_received)
         # Set the drag action from this box
-        if self._DND_TYPE:
-            if self.get_val():
-                if not self.label.drag_source_get_target_list():
-                    self.label_event_box.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
-                                               [], Gdk.DragAction.COPY)
-                    tglist = Gtk.TargetList.new([])
-                    tglist.add(self._DND_TYPE.atom_drag_type, self._DND_TYPE.target_flags,
-                               self._DND_TYPE.app_id)
-                    self.label_event_box.drag_source_set_target_list(tglist)
-                    if self._DND_ICON:
-                        self.label_event_box.drag_source_set_icon_name(self._DND_ICON)
-                    self.label_event_box.connect('drag_data_get', self.drag_data_get)
-            else:
-                if self.label.drag_source_get_target_list():
-                    self.label_event_box.drag_source_unset()
+        if self.get_val():
+            if not self.label.drag_source_get_target_list():
+                self.label_event_box.drag_source_set(
+                    Gdk.ModifierType.BUTTON1_MASK,
+                    [self._DND_TYPE.target()], Gdk.DragAction.COPY)
+                if self._DND_ICON:
+                    self.label_event_box.drag_source_set_icon_name(
+                        self._DND_ICON)
+                self.label_event_box.connect('drag_data_get',
+                                             self.drag_data_get)
+        else:
+            if self.label.drag_source_get_target_list():
+                self.label_event_box.drag_source_unset()
 
     def _init_object(self):
         """inheriting objects can use this to set extra variables

@@ -252,14 +252,9 @@ class EditPerson(EditPrimary):
         # allow to initiate a drag-and-drop with this person if it has a handle
         if self.added:
             return  # Avoid HandleError if dragging an objet not in db yet
-        tglist = Gtk.TargetList.new([])
-        tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
-                   DdTargets.PERSON_LINK.target_flags,
-                   DdTargets.PERSON_LINK.app_id)
         self.contexteventbox.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
-                                   [],
-                                   Gdk.DragAction.COPY)
-        self.contexteventbox.drag_source_set_target_list(tglist)
+                                             [DdTargets.PERSON_LINK.target()],
+                                             Gdk.DragAction.COPY)
         self.contexteventbox.drag_source_set_icon_name('gramps-person')
         self.contexteventbox.connect('drag_data_get', self._top_drag_data_get)
 
