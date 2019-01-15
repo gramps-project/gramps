@@ -538,7 +538,6 @@ class RecurseDown:
 
                 spouse_handle = utils.find_spouse(person, family)
                 if (self.max_spouses > s_level and
-                        spouse_handle and
                         spouse_handle not in self.families_seen):
                     def _spouse_box(who):
                         return self.add_person_box((x_level, s_level+1),
