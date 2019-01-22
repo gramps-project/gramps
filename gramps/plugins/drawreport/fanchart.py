@@ -331,7 +331,7 @@ class FanChart(Report):
             bth = birth.get_date_object()
             bth = self._get_date(
                 Date(bth.to_calendar(self.calendar).get_year())) # localized
-            if bth == 0:
+            if bth == "0":
                 bth = ""
             elif birth.get_type() != EventType.BIRTH:
                 bth += '*'
@@ -342,7 +342,7 @@ class FanChart(Report):
             dth = death.get_date_object()
             dth = self._get_date(
                 Date(dth.to_calendar(self.calendar).get_year())) # localized
-            if dth == 0:
+            if dth == "0":
                 dth = ""
             elif death.get_type() != EventType.DEATH:
                 dth += '*'
