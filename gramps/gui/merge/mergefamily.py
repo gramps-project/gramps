@@ -203,9 +203,6 @@ class MergeFamily(ManagedWindow):
         else:
             phoenix = self.fy2
             titanic = self.fy1
-            # Add second handle to history so that when merge is complete,
-            # phoenix is the selected row.
-            self.uistate.set_active(phoenix.get_handle(), 'Family')
 
         phoenix_fh = phoenix.get_father_handle()
         phoenix_mh = phoenix.get_mother_handle()
@@ -223,6 +220,9 @@ class MergeFamily(ManagedWindow):
             query = MergeFamilyQuery(self.database, phoenix, titanic,
                                      phoenix_fh, phoenix_mh)
             query.execute()
+            # Add the selected handle to history so that when merge is complete,
+            # phoenix is the selected row.
+            self.uistate.set_active(phoenix.get_handle(), 'Family')
         except MergeError as err:
             ErrorDialog(_("Cannot merge people"), str(err),
                         parent=self.window)

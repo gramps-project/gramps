@@ -159,9 +159,6 @@ class MergeSource(ManagedWindow):
         else:
             phoenix = self.src2
             titanic = self.src1
-            # Add second handle to history so that when merge is complete,
-            # phoenix is the selected row.
-            self.uistate.set_active(phoenix.get_handle(), 'Source')
 
         if self.get_widget("title_btn1").get_active() ^ use_handle1:
             phoenix.set_title(titanic.get_title())
@@ -176,5 +173,8 @@ class MergeSource(ManagedWindow):
 
         query = MergeSourceQuery(self.dbstate, phoenix, titanic)
         query.execute()
+        # Add the selected handle to history so that when merge is complete,
+        # phoenix is the selected row.
+        self.uistate.set_active(phoenix.get_handle(), 'Source')
         self.uistate.set_busy_cursor(False)
         self.close()
