@@ -656,7 +656,7 @@ msgstr ""
 "<b>Eltern-Kind-Beziehung bearbeiten</b><br/> Du kannst die Beziehung eines "
 "Kindes zu seinen Eltern durch Doppelklicken des Kindes im Familieneditor "
 "bearbeiten. Beziehung kann jede Art sein von Adoptiert, Geburt, Pflege, "
-"Keine, Gefördert, Stief und Unbekannt."
+"Keine, Patenschaft, Stief und Unbekannt."
 
 #: ../data/tips.xml.in.h:28
 msgid ""
@@ -717,7 +717,7 @@ msgstr ""
 "Menschen mit vielen unterschiedlichen Qualifikationen. Mitarbeit kann sowohl "
 "das Schreiben von Dokumentation, das Testen von Entwicklungsversionen, als "
 "auch das Helfen bei der Webseite beinhalten. Beginne mit dem Eintragen in "
-"die Grampsentwicklermailingliste, gramps-devel und arbeite dich ein. "
+"die Gramps-Entwickler-Mailingliste, gramps-devel und arbeite dich ein. "
 "Informationen zum Anmelden findest du unter &quot;Hilfe &gt; Gramps "
 "Mailinglisten&quot;"
 
@@ -914,8 +914,8 @@ msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
 msgstr ""
-"<b>Fehler in Gramps melden</b><br/>Der beste Weg einen Fehler in Gramps zu "
-"melden, ist das Gramps bug tracking system auf https://gramps-project.org/"
+"<b>Fehler in Gramps melden</b><br/>Der beste Weg, einen Fehler in Gramps zu "
+"melden, ist das Gramps Bug Tracking System auf https://gramps-project.org/"
 "bugs/"
 
 #: ../data/tips.xml.in.h:47
@@ -988,8 +988,9 @@ msgid ""
 "&quot;Help &gt; Gramps Mailing Lists&quot;"
 msgstr ""
 "<b>Gramps-Ankündigungen</b><br/>Bist du daran interessiert, informiert zu "
-"werden, wenn eine neue Version von Gramps erscheint? Tritt der Gramps E-"
-"Mailliste &quot;Hilfe &gt; Gramps Mailinglisten&quot; bei"
+"werden, wenn eine neue Version von Gramps erscheint? Tritt der Gramps "
+"Ankündigungsliste (gramps-announce) auf &quot;Hilfe &gt; Gramps "
+"Mailinglisten&quot; bei."
 
 #: ../data/tips.xml.in.h:53
 msgid ""
@@ -1012,9 +1013,9 @@ msgid ""
 "time looking through thousands of records hoping for a trail when you have "
 "other unexplored leads."
 msgstr ""
-"<b>Steuere deine Recherchen</b><br/>Gehe von dem aus, was du weißt, um "
-"darauf zu schließen, was du nicht weißt. Schreibe zuerst immer alles "
-"Bekannte auf, bevor du Vermutungen aufstellst. Auch können die schon "
+"<b>Steuere deine Recherchen</b><br/>Arbeite dich von dem, was Du weißt, "
+"zu dem vor, was du nicht weißt. Schreibe zuerst immer alles "
+"Bekannte auf, bevor du Vermutungen anstellst. Auch können die schon "
 "vorhandenen Fakten eine Fülle an Hinweisen auf weitere Quellen enthalten. "
 "Verbringe daher nicht die Zeit damit, Tausende von weiteren Aufzeichnungen "
 "zu durchsuchen, wenn du selbst noch unentdeckte Anhaltspunkte vorliegen hast."
@@ -1028,7 +1029,7 @@ msgid ""
 msgstr ""
 "<b>Das &quot;Wie und Warum&quot; deiner Ahnenforschung</b><br/"
 ">Ahnenforschung beschäftigt sich nicht nur mit Daten und Namen: es geht um "
-"Menschen! Sei beschreibend. Nehme auf, warum etwas passiert und wie die "
+"Menschen! Sei beschreibend. Nimm auf, warum etwas passiert und wie die "
 "Nachkommen durch die Ereignisse geprägt sein könnten, die sie erlebt haben. "
 "Erzählungen sind eine lange erprobte Möglichkeit, deine Familiengeschichte "
 "erlebbar zu machen."
@@ -1124,7 +1125,7 @@ msgid ""
 "whichever desktop environment you prefer. As long as the required GTK "
 "libraries are installed it will run fine."
 msgstr ""
-"<b>Gramps für Gnome oder KDE?</b><br/>Für Linuxanwender läuft Gramps "
+"<b>Gramps für Gnome oder KDE?</b><br/>Für Linux-Anwender läuft Gramps "
 "hervorragend auf jeder Desktopumgebung, die du bevorzugst. Hauptsache, die "
 "benötigten GTK-Bibliotheken sind installiert."
 
@@ -1721,7 +1722,7 @@ msgstr "Der Stammbaum kann nicht umbenannt werden"
 #, python-format
 msgid ""
 "\n"
-"ERROR: Wrong database path in Edit Menu->Preferences.\n"
+"ERROR: Wrong database path in Edit Menu -> Preferences.\n"
 "Open preferences and set correct database path.\n"
 "\n"
 "Details: Could not make database directory:\n"
@@ -1729,7 +1730,7 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"Fehler: Falscher Pfad im Bearbeiten Menü->Einstellungen.\n"
+"Fehler: Falscher Pfad im Bearbeiten Menü -> Einstellungen.\n"
 "Öffne die Einstellungen und gib den korrekten Datenbankpfad ein.\n"
 "\n"
 "Details: Das Datenbankverzeichnis konnte nicht erstellt werden:\n"
@@ -5134,7 +5135,7 @@ msgid ""
 "Matches people that have no family relationships to any other person in the "
 "database"
 msgstr ""
-"Liefert Personen, die keine familiären Beziehungen zu irgend jemandem in der "
+"Liefert Personen, die keine familiären Beziehungen zu irgendjemandem in der "
 "Datenbank haben."
 
 #: ../gramps/gen/filters/rules/person/_everyone.py:44
@@ -6998,7 +6999,7 @@ msgstr "Stiefkind"
 
 #: ../gramps/gen/lib/childreftype.py:71
 msgid "Sponsored"
-msgstr "Gefördert"
+msgstr "Patenschaft"
 
 #: ../gramps/gen/lib/childreftype.py:72
 msgid "Foster"
@@ -9992,28 +9993,27 @@ msgstr "Der Stil, der für die Generation Überschriften verwendet wird."
 #: ../gramps/gen/plug/report/endnotes.py:68
 msgid "The basic style used for the endnotes source display."
 msgstr ""
-"Der Standardstil, der für die Schlussnotizen der Quellenanzeige verwendet "
-"wird."
+"Der Standardstil, der für Quellen im Quellennachweis verwendet wird."
 
 #: ../gramps/gen/plug/report/endnotes.py:76
 msgid "The basic style used for the endnotes notes display."
 msgstr ""
-"Der Standardstil, der für die Schlussnotizen der Notizanzeige verwendet wird."
+"Der Standardstil, der für Notizen im Quellennachweis verwendet wird."
 
 #: ../gramps/gen/plug/report/endnotes.py:84
 msgid "The basic style used for the endnotes reference display."
 msgstr ""
-"Der Standardstil, der für die Schlussnotizen der Referenz verwendet wird."
+"Der Standardstil, der für Referenzen im Quellennachweis verwendet wird."
 
 #: ../gramps/gen/plug/report/endnotes.py:92
 msgid "The basic style used for the endnotes reference notes display."
 msgstr ""
-"Der Standardstil, der für die Schlussnotizen der Referenznotiz verwendet "
+"Der Standardstil, der für Referenznotizen im Quellennachweis verwendet "
 "wird."
 
 #: ../gramps/gen/plug/report/endnotes.py:156
 msgid "Endnotes"
-msgstr "Schlussnotizen"
+msgstr "Quellennachweis"
 
 #. translators: needed for French, ignore otherwise
 #. Styles Frame
@@ -19506,7 +19506,7 @@ msgstr "Keine Hauptperson"
 msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit ->Set Home Person."
+"Edit -> Set Home Person."
 msgstr ""
 "Du musst zuerst eine 'Hauptperson' setzen, um dorthin zu springen. Gehe zur "
 "Personenansicht, wähle die Person, die du als 'Hauptperson' setzen willst "
@@ -21888,7 +21888,7 @@ msgstr "CSV Export unterstützt nur Hauptnachnamen, {count} ausgelassen."
 
 #: ../gramps/plugins/export/exportcsv.py:357
 msgid "Birth source"
-msgstr "Geburt Quellenangabe"
+msgstr "Geburt Quelle"
 
 #: ../gramps/plugins/export/exportcsv.py:358
 msgid "Baptism date"
@@ -21900,11 +21900,11 @@ msgstr "Taufort"
 
 #: ../gramps/plugins/export/exportcsv.py:358
 msgid "Baptism source"
-msgstr "Taufe Quellenangabe"
+msgstr "Taufe Quelle"
 
 #: ../gramps/plugins/export/exportcsv.py:359
 msgid "Death source"
-msgstr "Sterbequelle"
+msgstr "Tod Quelle"
 
 #: ../gramps/plugins/export/exportcsv.py:360
 msgid "Burial date"
@@ -21916,7 +21916,7 @@ msgstr "Beerdigungsort"
 
 #: ../gramps/plugins/export/exportcsv.py:360
 msgid "Burial source"
-msgstr "Beerdigungsquelle"
+msgstr "Beerdigung Quelle"
 
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/importer/importcsv.py:217
@@ -24544,7 +24544,7 @@ msgstr "Geburtsort-ID"
 
 #: ../gramps/plugins/importer/importcsv.py:179
 msgid "birth source"
-msgstr "Geburt Quellenangabe"
+msgstr "Geburt Quelle"
 
 #: ../gramps/plugins/importer/importcsv.py:181
 msgid "baptism place"
@@ -24560,7 +24560,7 @@ msgstr "Taufdatum"
 
 #: ../gramps/plugins/importer/importcsv.py:187
 msgid "baptism source"
-msgstr "Taufe Quellenangabe"
+msgstr "Taufe Quelle"
 
 #: ../gramps/plugins/importer/importcsv.py:188
 msgid "burial place"
@@ -31200,7 +31200,7 @@ msgstr "Quellen einbeziehen"
 #: ../gramps/plugins/textreport/detancestralreport.py:931
 #: ../gramps/plugins/textreport/detdescendantreport.py:1122
 msgid "Whether to include source references."
-msgstr "Ob Quellenangaben einbezogen werden."
+msgstr "Ob Quellennachweise einbezogen werden."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:934
 #: ../gramps/plugins/textreport/detdescendantreport.py:1125
@@ -31215,7 +31215,7 @@ msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
 "Include sources is selected."
 msgstr ""
-"Ob Quellennotizen in die Schlussnotizen aufgenommen werden. Funktioniert "
+"Ob Notizen in die Quellennachweise aufgenommen werden. Funktioniert "
 "nur, wenn 'Quellen aufnehmen' gewählt ist."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:940
