@@ -488,13 +488,13 @@ class RelGraphReport(Report):
             self.doc.start_subgraph(fam_id)
             f_handle = fam.get_father_handle()
             m_handle = fam.get_mother_handle()
-            if f_handle:
+            if f_handle in self.persons:
                 father = self._db.get_person_from_handle(f_handle)
                 self.doc.add_link(father.get_gramps_id(),
                                   fam_id, "",
                                   self.arrowheadstyle,
                                   self.arrowtailstyle)
-            if m_handle:
+            if m_handle in self.persons:
                 mother = self._db.get_person_from_handle(m_handle)
                 self.doc.add_link(mother.get_gramps_id(),
                                   fam_id, "",
