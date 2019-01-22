@@ -11424,7 +11424,7 @@ msgid ""
 "Enter your information so people can contact you when you distribute your "
 "Family Tree"
 msgstr ""
-"Gib deine Daten an, so das dich Personen kontaktieren können, wenn du deinen "
+"Gib deine Daten an, so dass dich Personen kontaktieren können, wenn du deinen "
 "Stammbaum weitergibst."
 
 #: ../gramps/gui/configure.py:549
@@ -11477,27 +11477,27 @@ msgstr "Standardwerte wiederherstellen"
 
 #: ../gramps/gui/configure.py:613
 msgid "Male Alive"
-msgstr "Lebende männlich"
+msgstr "Männlich, lebt"
 
 #: ../gramps/gui/configure.py:614
 msgid "Male Dead"
-msgstr "Verstorbene männlich"
+msgstr "Männlich, verstorben"
 
 #: ../gramps/gui/configure.py:615
 msgid "Female Alive"
-msgstr "Lebende weiblich"
+msgstr "Weiblich, lebt"
 
 #: ../gramps/gui/configure.py:616
 msgid "Female Dead"
-msgstr "Verstorbene weiblich"
+msgstr "Weiblich, verstorben"
 
 #: ../gramps/gui/configure.py:617
 msgid "Unknown Alive"
-msgstr "Lebende unbekannt"
+msgstr "Unbekannt, lebt"
 
 #: ../gramps/gui/configure.py:618
 msgid "Unknown Dead"
-msgstr "Verstorbene unbekannt"
+msgstr "Unbekannt, verstorben"
 
 #: ../gramps/gui/configure.py:619
 msgid "Family Node"
@@ -11505,7 +11505,7 @@ msgstr "Familienknoten"
 
 #: ../gramps/gui/configure.py:620
 msgid "Family Divorced"
-msgstr "Familie geschieden"
+msgstr "Familie, geschieden"
 
 #: ../gramps/gui/configure.py:621
 msgid "Home Person"
@@ -11513,35 +11513,35 @@ msgstr "Hauptperson"
 
 #: ../gramps/gui/configure.py:622
 msgid "Border Male Alive"
-msgstr "Rand Männlich Lebt"
+msgstr "Männlich, lebt Rand"
 
 #: ../gramps/gui/configure.py:623
 msgid "Border Male Dead"
-msgstr "Rand Männlich Tot"
+msgstr "Männlich, verstorben Rand"
 
 #: ../gramps/gui/configure.py:624
 msgid "Border Female Alive"
-msgstr "Rand Weiblich Lebt"
+msgstr "Weiblich, lebt Rand"
 
 #: ../gramps/gui/configure.py:625
 msgid "Border Female Dead"
-msgstr "Rand Weiblich Tot"
+msgstr "Weiblich, verstorben Rand"
 
 #: ../gramps/gui/configure.py:626
 msgid "Border Unknown Alive"
-msgstr "Rand Unbekannt Lebt"
+msgstr "Unbekannt, lebt Rand"
 
 #: ../gramps/gui/configure.py:627
 msgid "Border Unknown Dead"
-msgstr "Rand Unbekannt Tot"
+msgstr "Unbekannt, verstorben Rand"
 
 #: ../gramps/gui/configure.py:628
 msgid "Border Family"
-msgstr "Rand Familie"
+msgstr "Familie Rand"
 
 #: ../gramps/gui/configure.py:629
 msgid "Border Family Divorced"
-msgstr "Rand Familie Geschieden"
+msgstr "Familie, geschieden Rand"
 
 #: ../gramps/gui/configure.py:637
 msgid "Colors"
