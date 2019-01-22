@@ -576,14 +576,18 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("SELECT 1 FROM name_group WHERE name = ?",
                            [name])
         row = self.dbapi.fetchone()
-        if row:
+        if row and grouping is not None:
             self.dbapi.execute("UPDATE name_group SET grouping=? "
                                "WHERE name = ?", [grouping, name])
+        elif row and grouping is None:
+            self.dbapi.execute("DELETE FROM name_group WHERE name = ?", [name])
+            grouping = ''
         else:
             self.dbapi.execute(
                 "INSERT INTO name_group (name, grouping) VALUES (?, ?)",
                 [name, grouping])
         self._txn_commit()
+        self.emit('person-groupname-rebuild', (name, grouping))
 
     def _commit_base(self, obj, obj_key, trans, change_time):
         """
