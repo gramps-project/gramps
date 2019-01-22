@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-05 11:20+0100\n"
-"PO-Revision-Date: 2019-01-05 11:25+0100\n"
+"POT-Creation-Date: 2019-01-22 18:13+0100\n"
+"PO-Revision-Date: 2019-01-22 18:37+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1013,12 +1013,12 @@ msgid ""
 "time looking through thousands of records hoping for a trail when you have "
 "other unexplored leads."
 msgstr ""
-"<b>Steuere deine Recherchen</b><br/>Arbeite dich von dem, was Du weißt, "
-"zu dem vor, was du nicht weißt. Schreibe zuerst immer alles "
-"Bekannte auf, bevor du Vermutungen anstellst. Auch können die schon "
-"vorhandenen Fakten eine Fülle an Hinweisen auf weitere Quellen enthalten. "
-"Verbringe daher nicht die Zeit damit, Tausende von weiteren Aufzeichnungen "
-"zu durchsuchen, wenn du selbst noch unentdeckte Anhaltspunkte vorliegen hast."
+"<b>Steuere deine Recherchen</b><br/>Arbeite dich von dem, was Du weißt, zu "
+"dem vor, was du nicht weißt. Schreibe zuerst immer alles Bekannte auf, bevor "
+"du Vermutungen anstellst. Auch können die schon vorhandenen Fakten eine "
+"Fülle an Hinweisen auf weitere Quellen enthalten. Verbringe daher nicht die "
+"Zeit damit, Tausende von weiteren Aufzeichnungen zu durchsuchen, wenn du "
+"selbst noch unentdeckte Anhaltspunkte vorliegen hast."
 
 #: ../data/tips.xml.in.h:55
 msgid ""
@@ -1722,7 +1722,7 @@ msgstr "Der Stammbaum kann nicht umbenannt werden"
 #, python-format
 msgid ""
 "\n"
-"ERROR: Wrong database path in Edit Menu -> Preferences.\n"
+"ERROR: Wrong database path in Edit Menu->Preferences.\n"
 "Open preferences and set correct database path.\n"
 "\n"
 "Details: Could not make database directory:\n"
@@ -1730,7 +1730,7 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"Fehler: Falscher Pfad im Bearbeiten Menü -> Einstellungen.\n"
+"Fehler: Falscher Datenbankpfad im Bearbeiten Menü -> Einstellungen.\n"
 "Öffne die Einstellungen und gib den korrekten Datenbankpfad ein.\n"
 "\n"
 "Details: Das Datenbankverzeichnis konnte nicht erstellt werden:\n"
@@ -3546,7 +3546,7 @@ msgstr "Anwendung ..."
 #: ../gramps/plugins/textreport/familygroup.py:714
 #: ../gramps/plugins/textreport/indivcomplete.py:1062
 #: ../gramps/plugins/textreport/recordsreport.py:217
-#: ../gramps/plugins/tool/sortevents.py:167
+#: ../gramps/plugins/tool/sortevents.py:168
 #: ../gramps/plugins/webreport/narrativeweb.py:1602
 #: ../gramps/plugins/webreport/webcal.py:1633
 msgid "Filter"
@@ -9992,13 +9992,11 @@ msgstr "Der Stil, der für die Generation Überschriften verwendet wird."
 
 #: ../gramps/gen/plug/report/endnotes.py:68
 msgid "The basic style used for the endnotes source display."
-msgstr ""
-"Der Standardstil, der für Quellen im Quellennachweis verwendet wird."
+msgstr "Der Standardstil, der für Quellen im Quellennachweis verwendet wird."
 
 #: ../gramps/gen/plug/report/endnotes.py:76
 msgid "The basic style used for the endnotes notes display."
-msgstr ""
-"Der Standardstil, der für Notizen im Quellennachweis verwendet wird."
+msgstr "Der Standardstil, der für Notizen im Quellennachweis verwendet wird."
 
 #: ../gramps/gen/plug/report/endnotes.py:84
 msgid "The basic style used for the endnotes reference display."
@@ -10008,8 +10006,7 @@ msgstr ""
 #: ../gramps/gen/plug/report/endnotes.py:92
 msgid "The basic style used for the endnotes reference notes display."
 msgstr ""
-"Der Standardstil, der für Referenznotizen im Quellennachweis verwendet "
-"wird."
+"Der Standardstil, der für Referenznotizen im Quellennachweis verwendet wird."
 
 #: ../gramps/gen/plug/report/endnotes.py:156
 msgid "Endnotes"
@@ -11424,8 +11421,8 @@ msgid ""
 "Enter your information so people can contact you when you distribute your "
 "Family Tree"
 msgstr ""
-"Gib deine Daten an, so dass dich Personen kontaktieren können, wenn du deinen "
-"Stammbaum weitergibst."
+"Gib deine Daten an, so dass dich Personen kontaktieren können, wenn du "
+"deinen Stammbaum weitergibst."
 
 #: ../gramps/gui/configure.py:549
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:75
@@ -13427,7 +13424,7 @@ msgstr "Die Fundstelle kann nicht gespeichert werden. ID existiert bereits."
 
 #: ../gramps/gui/editors/editcitation.py:301
 #: ../gramps/gui/editors/editevent.py:249
-#: ../gramps/gui/editors/editmedia.py:298
+#: ../gramps/gui/editors/editmedia.py:299
 #: ../gramps/gui/editors/editperson.py:847
 #: ../gramps/gui/editors/editplace.py:318
 #: ../gramps/gui/editors/editreference.py:288
@@ -13921,27 +13918,27 @@ msgstr "Neues Medium"
 msgid "Edit Media Object"
 msgstr "Medienobjekt bearbeiten"
 
-#: ../gramps/gui/editors/editmedia.py:286
+#: ../gramps/gui/editors/editmedia.py:287
 msgid "Cannot save media object"
 msgstr "Das Medienobjekt kann nicht gespeichert werden."
 
-#: ../gramps/gui/editors/editmedia.py:287
+#: ../gramps/gui/editors/editmedia.py:288
 msgid ""
 "No data exists for this media object. Please enter data or cancel the edit."
 msgstr ""
 "Es existieren keine Daten für dieses Medienobjekt. Bitte gib Daten ein oder "
 "brich die Bearbeitung ab."
 
-#: ../gramps/gui/editors/editmedia.py:297
+#: ../gramps/gui/editors/editmedia.py:298
 #: ../gramps/gui/editors/editreference.py:280
 msgid "Cannot save media object. ID already exists."
 msgstr "Das Medienobjekt kann nicht gespeichert werden. ID existiert bereits."
 
-#: ../gramps/gui/editors/editmedia.py:312
+#: ../gramps/gui/editors/editmedia.py:313
 msgid "There is no media matching the current path value!"
 msgstr "Es gibt kein Medium, welches den aktuellem Pfadwerten entspricht!"
 
-#: ../gramps/gui/editors/editmedia.py:313
+#: ../gramps/gui/editors/editmedia.py:314
 #, python-format
 msgid ""
 "You have attempted to use the path with value '%(path)s'. This path does not "
@@ -13950,19 +13947,19 @@ msgstr ""
 "Du hast versucht, den Pfad mit dem Wert '%(path)s' zu verwenden. Dieser Pfad "
 "existiert nicht! Gib bitte einen anderen Pfad ein."
 
-#: ../gramps/gui/editors/editmedia.py:324
+#: ../gramps/gui/editors/editmedia.py:325
 #: ../gramps/gui/editors/editmediaref.py:526
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr "Medienobjekt (%s) hinzufügen"
 
-#: ../gramps/gui/editors/editmedia.py:329
+#: ../gramps/gui/editors/editmedia.py:330
 #: ../gramps/gui/editors/editmediaref.py:520
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "Medienobjekt (%s) bearbeiten"
 
-#: ../gramps/gui/editors/editmedia.py:369
+#: ../gramps/gui/editors/editmedia.py:370
 msgid "Remove Media Object"
 msgstr "Medienobjekt entfernen"
 
@@ -16941,7 +16938,7 @@ msgstr "Die gewählte Regel löschen"
 #: ../gramps/gui/glade/rule.glade:521 ../gramps/gui/glade/styleeditor.glade:419
 #: ../gramps/plugins/tool/finddupes.glade:132
 #: ../gramps/plugins/tool/mergecitations.glade:132
-#: ../gramps/plugins/tool/sortevents.py:82
+#: ../gramps/plugins/tool/sortevents.py:83
 msgid "Options"
 msgstr "Optionen"
 
@@ -17695,11 +17692,11 @@ msgid "No spouses or children found"
 msgstr "Keine (Ehe-)Partner oder Kinder gefunden"
 
 #. Add column with the warning text
-#: ../gramps/gui/merge/mergeperson.py:344 ../gramps/plugins/tool/verify.py:562
+#: ../gramps/gui/merge/mergeperson.py:341 ../gramps/plugins/tool/verify.py:562
 msgid "Warning"
 msgstr "Warnung"
 
-#: ../gramps/gui/merge/mergeperson.py:345
+#: ../gramps/gui/merge/mergeperson.py:342
 msgid ""
 "The persons have been merged.\n"
 "However, the families for this merge were too complex to automatically "
@@ -19506,9 +19503,9 @@ msgstr "Keine Hauptperson"
 msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit -> Set Home Person."
+"Edit ->Set Home Person."
 msgstr ""
-"Du musst zuerst eine 'Hauptperson' setzen, um dorthin zu springen. Gehe zur "
+"Du musst eine 'Hauptperson' setzen, um dorthin zu springen. Gehe zur "
 "Personenansicht, wähle die Person, die du als 'Hauptperson' setzen willst "
 "und bestätige deine Wahl über Menü Bearbeiten -> Hauptperson setzen."
 
@@ -21557,7 +21554,7 @@ msgstr "Legt fest, welche Personen im Bericht enthalten sind."
 #: ../gramps/plugins/textreport/birthdayreport.py:420
 #: ../gramps/plugins/textreport/indivcomplete.py:1068
 #: ../gramps/plugins/textreport/recordsreport.py:223
-#: ../gramps/plugins/tool/sortevents.py:172
+#: ../gramps/plugins/tool/sortevents.py:173
 #: ../gramps/plugins/webreport/narrativeweb.py:1608
 #: ../gramps/plugins/webreport/webcal.py:1639
 msgid "Filter Person"
@@ -21693,19 +21690,19 @@ msgstr "Legt fest, welche Personen im Bericht enthalten sind."
 
 #: ../gramps/plugins/drawreport/timeline.py:423
 #: ../gramps/plugins/textreport/recordsreport.py:224
-#: ../gramps/plugins/tool/sortevents.py:173
+#: ../gramps/plugins/tool/sortevents.py:174
 #: ../gramps/plugins/webreport/narrativeweb.py:1609
 #: ../gramps/plugins/webreport/webcal.py:1640
 msgid "The center person for the filter"
 msgstr "Die Hauptperson für den Filter"
 
 #: ../gramps/plugins/drawreport/timeline.py:427
-#: ../gramps/plugins/tool/sortevents.py:179
+#: ../gramps/plugins/tool/sortevents.py:180
 msgid "Sort by"
 msgstr "Sortieren nach"
 
 #: ../gramps/plugins/drawreport/timeline.py:432
-#: ../gramps/plugins/tool/sortevents.py:184
+#: ../gramps/plugins/tool/sortevents.py:185
 msgid "Sorting method to use"
 msgstr "Zu verwendendes Sortierverfahren"
 
@@ -31215,8 +31212,8 @@ msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
 "Include sources is selected."
 msgstr ""
-"Ob Notizen in die Quellennachweise aufgenommen werden. Funktioniert "
-"nur, wenn 'Quellen aufnehmen' gewählt ist."
+"Ob Notizen in die Quellennachweise aufgenommen werden. Funktioniert nur, "
+"wenn 'Quellen aufnehmen' gewählt ist."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:940
 #: ../gramps/plugins/textreport/detdescendantreport.py:1131
@@ -33670,39 +33667,39 @@ msgstr "Nicht verwendete IDs finden und neu zuordnen."
 msgid "Sort Events"
 msgstr "Ereignisse sortieren"
 
-#: ../gramps/plugins/tool/sortevents.py:97
+#: ../gramps/plugins/tool/sortevents.py:98
 msgid "Sort event changes"
 msgstr "Ereignisänderungen sortieren"
 
-#: ../gramps/plugins/tool/sortevents.py:112
+#: ../gramps/plugins/tool/sortevents.py:113
 msgid "Sorting personal events..."
 msgstr "Sortiere persönliche Ereignisse..."
 
-#: ../gramps/plugins/tool/sortevents.py:134
+#: ../gramps/plugins/tool/sortevents.py:135
 msgid "Sorting family events..."
 msgstr "Sortiere Familienereignisse..."
 
-#: ../gramps/plugins/tool/sortevents.py:165
+#: ../gramps/plugins/tool/sortevents.py:166
 msgid "Tool Options"
 msgstr "Werkzeugoptionen"
 
-#: ../gramps/plugins/tool/sortevents.py:168
+#: ../gramps/plugins/tool/sortevents.py:169
 msgid "Select the people to sort"
 msgstr "Wähle Personen zum Sortieren"
 
-#: ../gramps/plugins/tool/sortevents.py:187
+#: ../gramps/plugins/tool/sortevents.py:188
 msgid "Sort descending"
 msgstr "Absteigend sortieren"
 
-#: ../gramps/plugins/tool/sortevents.py:188
+#: ../gramps/plugins/tool/sortevents.py:189
 msgid "Set the sort order"
 msgstr "Sortiereihenfolge setzen"
 
-#: ../gramps/plugins/tool/sortevents.py:191
+#: ../gramps/plugins/tool/sortevents.py:192
 msgid "Include family events"
 msgstr "Familienereignisse aufnehmen"
 
-#: ../gramps/plugins/tool/sortevents.py:192
+#: ../gramps/plugins/tool/sortevents.py:193
 msgid "Sort family events of the person"
 msgstr "Familienereignisse der Person sortieren"
 
