@@ -980,6 +980,20 @@ class ViewManager(CLIManager):
             msg = "%s (%s) - Gramps" % (name, _('Read Only'))
         self.uistate.window.set_title(msg)
 
+        if(bool(config.get('behavior.runcheck')) and QuestionDialog2(
+           _("Gramps had a problem the last time it was run."),
+           _("Would you like to run the Check and Repair tool?"),
+           _("Yes"), _("No"), parent=self.uistate.window).run()):
+            pdata = self._pmgr.get_plugin('check')
+            mod = self._pmgr.load_plugin(pdata)
+            tool.gui_tool(dbstate=self.dbstate, user=self.user,
+                          tool_class=getattr(mod, pdata.toolclass),
+                          options_class=getattr(mod, pdata.optionclass),
+                          translated_name=pdata.name,
+                          name=pdata.id,
+                          category=pdata.category,
+                          callback=self.dbstate.db.request_rebuild)
+        config.set('behavior.runcheck', False)
         self.__change_page(self.notebook.get_current_page())
         self.uimanager.set_actions_visible(self.actiongroup, rw)
         self.uimanager.set_actions_visible(self.readonlygroup, True)
