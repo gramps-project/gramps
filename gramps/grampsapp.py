@@ -54,6 +54,8 @@ from .gen.const import APP_GRAMPS, USER_DIRLIST, HOME_DIR, ORIG_HOME_DIR
 from .gen.constfunc import mac
 from .version import VERSION_TUPLE
 from .gen.constfunc import win, get_env_var
+from .gen.config import config
+from .gen.errors import HandleError
 
 #-------------------------------------------------------------------------
 #
@@ -135,19 +137,24 @@ l = logging.getLogger()
 l.setLevel(logging.WARNING)
 l.addHandler(stderrh)
 
-# put a hook on to catch any completely unhandled exceptions.
-def exc_hook(type, value, tb):
-    if type == KeyboardInterrupt:
+
+def exc_hook(err_type, value, t_b):
+    ''' put a hook on to catch any completely unhandled exceptions. '''
+    if err_type == KeyboardInterrupt:
         # Ctrl-C is not a bug.
         return
-    if type == IOError:
+    if err_type == IOError:
         # strange Windows logging error on close
         return
+    if err_type == HandleError and 'not found' in value.value:
+        # tell Gramps to run check & repair on next start
+        config.set('behavior.runcheck', True)
+        config.save()
     # Use this to show variables in each frame:
     #from gramps.gen.utils.debug import format_exception
     import traceback
     LOG.error("Unhandled exception\n" +
-              "".join(traceback.format_exception(type, value, tb)))
+              "".join(traceback.format_exception(err_type, value, t_b)))
 
 sys.excepthook = exc_hook
 
