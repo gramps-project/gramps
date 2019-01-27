@@ -40,13 +40,15 @@ from ...ddtargets import DdTargets
 from .placerefmodel import PlaceRefModel
 from .embeddedlist import EmbeddedList, TEXT_COL
 from ...selectors import SelectorFactory
+from ...dbguielement import DbGUIElement
+
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-class PlaceRefEmbedList(EmbeddedList):
+class PlaceRefEmbedList(DbGUIElement, EmbeddedList):
 
     _HANDLE_COL = 4
     _DND_TYPE = DdTargets.PLACEREF
@@ -65,11 +67,57 @@ class PlaceRefEmbedList(EmbeddedList):
         self.data = data
         self.handle = handle
         self.callback = callback
+        DbGUIElement.__init__(self, dbstate.db)
         EmbeddedList.__init__(self, dbstate, uistate, track,
                               _('Enclosed By'), PlaceRefModel,
                               share_button=True, move_buttons=True)
 
+    def _connect_db_signals(self):
+        """
+        called on init of DbGUIElement, connect to db as required.
+        """
+        #note: place-rebuild closes the editors, so no need to connect to it
+        self.callman.register_callbacks(
+            {'place-update': self.place_change,  # change to place we track
+             'place-delete': self.place_delete,  # delete of place we track
+             })
+        self.callman.connect_all(keys=['place'])
+
+    def place_change(self, *obj):
+        """
+        Callback method called when a tracked place changes (description
+        changes...)
+        """
+        self.rebuild()
+
+    def place_delete(self, hndls):
+        """
+        Callback method called when a tracked place is deleted.
+        There are two possibilities:
+        * a tracked non-workgroup place is deleted, just rebuilding the view
+            will correct this.
+        * a workgroup place is deleted. The place must be removed from the
+            obj so that no inconsistent data is shown.
+        """
+        for handle in hndls:
+            ref_list = [pref.ref for pref in self.data]
+            indexlist = []
+            last = -1
+            while True:
+                try:
+                    last = ref_list.index(handle, last + 1)
+                    indexlist.append(last)
+                except ValueError:
+                    break
+            #remove the deleted workgroup places from the object
+            for index in reversed(indexlist):
+                del self.data[index]
+        #now rebuild the display tab
+        self.rebuild()
+
     def get_data(self):
+        self.callman.register_handles(
+            {'place': [pref.ref for pref in self.data]})
         return self.data
 
     def column_order(self):

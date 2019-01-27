@@ -80,6 +80,7 @@ from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
 from ..selectors import SelectorFactory
 from gramps.gen.utils.id import create_id
 from gramps.gen.const import URL_MANUAL_SECT1
+from ..dbguielement import DbGUIElement
 
 #-------------------------------------------------------------------------
 #
@@ -97,7 +98,8 @@ _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 _LEFT_BUTTON = 1
 _RIGHT_BUTTON = 3
 
-class ChildEmbedList(EmbeddedList):
+
+class ChildEmbedList(DbGUIElement, EmbeddedList):
     """
     The child embed list is specific to the Edit Family dialog, so it
     is contained here instead of in displaytabs.
@@ -139,8 +141,53 @@ class ChildEmbedList(EmbeddedList):
         Create the object, storing the passed family value
         """
         self.family = family
+        DbGUIElement.__init__(self, dbstate.db)
         EmbeddedList.__init__(self, dbstate, uistate, track, _('Chil_dren'),
                               ChildModel, share_button=True, move_buttons=True)
+
+    def _connect_db_signals(self):
+        """
+        called on init of DbGUIElement, connect to db as required.
+        """
+        #note: event-rebuild closes the editors, so no need to connect to it
+        self.callman.register_callbacks(
+            {'person-update': self.person_change,  # change to person we track
+             'person-delete': self.person_delete,  # delete of person we track
+             })
+        self.callman.connect_all(keys=['person'])
+
+    def person_change(self, *obj):
+        """
+        Callback method called when a tracked person changes (description
+        changes...)
+        """
+        self.rebuild()
+
+    def person_delete(self, hndls):
+        """
+        Callback method called when a tracked person is deleted.
+        There are two possibilities:
+        * a tracked non-workgroup person is deleted, just rebuilding the view
+            will correct this.
+        * a workgroup person is deleted. The person must be removed from the
+            obj so that no inconsistent data is shown.
+        """
+        for handle in hndls:
+            prefs = self.get_data()
+            ref_list = [pref.ref for pref in prefs]
+            indexlist = []
+            last = -1
+            while True:
+                try:
+                    last = ref_list.index(handle, last + 1)
+                    indexlist.append(last)
+                except ValueError:
+                    break
+            #remove the deleted workgroup persons from the object
+            for index in reversed(indexlist):
+                del prefs[index]
+        #now rebuild the display tab
+        self.rebuild()
 
     def get_popup_menu_items(self):
         return [
@@ -163,7 +210,10 @@ class ChildEmbedList(EmbeddedList):
         Normally, get_data returns a list. However, we return family
         object here instead.
         """
-        return self.family.get_child_ref_list()
+        prefs = self.family.get_child_ref_list()
+        self.callman.register_handles(
+            {'person': [eref.ref for eref in prefs]})
+        return prefs
 
     def column_order(self):
         return [(1, 13), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6),
@@ -411,10 +461,21 @@ class EditFamily(EditPrimary):
             'event-update': self.topdata_updated,  # change eg birth event fath
             'event-rebuild': self.topdata_updated,
             'event-delete': self.topdata_updated,  # delete eg birth event fath
-            'person-update': self.topdata_updated, # change eg name of father
+            'person-update': self.topdata_updated,  # change eg name of father
+            'person-delete' : self.person_delete,  # mother/father deleted?
             'person-rebuild': self._do_close,
            })
         self.callman.connect_all(keys=['family', 'event', 'person'])
+
+    def person_delete(self, handles):
+        """ This checks if mother/father is deleted, specifically when newly
+        added before data is saved """
+        for hndl in handles:
+            if self.obj.father_handle == hndl:
+                self.obj.father_handle = None
+            if self.obj.mother_handle == hndl:
+                self.obj.mother_handle = None
+            self.load_data()
 
     def check_for_family_change(self, handles):
         """

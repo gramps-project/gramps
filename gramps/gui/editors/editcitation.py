@@ -174,6 +174,8 @@ class EditCitation(EditPrimary):
 
         self._add_db_signal('citation-rebuild', self._do_close)
         self._add_db_signal('citation-delete', self.check_for_close)
+        self._add_db_signal('source-delete', self.source_delete)
+        self._add_db_signal('source-update', self.source_update)
 
     def _setup_fields(self):
         """
@@ -268,6 +270,26 @@ class EditCitation(EditPrimary):
         else:
             author = ''
         self.glade.get_object("author").set_text(author)
+
+    def source_update(self, hndls):
+        ''' Source changed outside of dialog, update text if its ours '''
+        handle = self.obj.get_reference_handle()
+        if handle and handle in hndls:
+            source = self.db.get_source_from_handle(handle)
+            s_lbl = "%s [%s]" % (source.get_title(), source.gramps_id)
+            self.glade.get_object("source").set_text(s_lbl)
+            author = source.get_author()
+            self.glade.get_object("author").set_text(author)
+
+    def source_delete(self, hndls):
+        ''' Source deleted outside of dialog, remove it if its ours'''
+        handle = self.obj.get_reference_handle()
+        if handle and handle in hndls:
+            self.obj.set_reference_handle(None)
+            self.glade.get_object("source").set_markup(
+                self.source_field.EMPTY_TEXT)
+            self.glade.get_object("author").set_text('')
+            self.source_field.set_button(False)
 
     def build_menu_names(self, source):
         """

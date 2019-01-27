@@ -38,13 +38,15 @@ from gramps.gen.errors import WindowActiveError
 from ...ddtargets import DdTargets
 from .personrefmodel import PersonRefModel
 from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
+from ...dbguielement import DbGUIElement
+
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-class PersonRefEmbedList(EmbeddedList):
+class PersonRefEmbedList(DbGUIElement, EmbeddedList):
 
     _HANDLE_COL = 4
     _DND_TYPE   = DdTargets.PERSONREF
@@ -69,15 +71,61 @@ class PersonRefEmbedList(EmbeddedList):
 
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
+        DbGUIElement.__init__(self, dbstate.db)
         EmbeddedList.__init__(self, dbstate, uistate, track,
                               _('_Associations'), PersonRefModel,
                               move_buttons=True)
+
+    def _connect_db_signals(self):
+        """
+        called on init of DbGUIElement, connect to db as required.
+        """
+        #note: person-rebuild closes the editors, so no need to connect to it
+        self.callman.register_callbacks(
+            {'person-update': self.person_change,  # change to person we track
+             'person-delete': self.person_delete,  # delete of person we track
+             })
+        self.callman.connect_all(keys=['person'])
+
+    def person_change(self, *obj):
+        """
+        Callback method called when a tracked person changes (description
+        changes...)
+        """
+        self.rebuild()
+
+    def person_delete(self, hndls):
+        """
+        Callback method called when a tracked person is deleted.
+        There are two possibilities:
+        * a tracked non-workgroup person is deleted, just rebuilding the view
+            will correct this.
+        * a workgroup person is deleted. The person must be removed from the
+            obj so that no inconsistent data is shown.
+        """
+        for handle in hndls:
+            ref_list = [pref.ref for pref in self.data]
+            indexlist = []
+            last = -1
+            while True:
+                try:
+                    last = ref_list.index(handle, last + 1)
+                    indexlist.append(last)
+                except ValueError:
+                    break
+            #remove the deleted workgroup persons from the object
+            for index in reversed(indexlist):
+                del self.data[index]
+        #now rebuild the display tab
+        self.rebuild()
 
     def get_ref_editor(self):
         from .. import EditPersonRef
         return EditPersonRef
 
     def get_data(self):
+        self.callman.register_handles(
+            {'person': [pref.ref for pref in self.data]})
         return self.data
 
     def column_order(self):
