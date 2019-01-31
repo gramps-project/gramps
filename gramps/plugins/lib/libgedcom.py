@@ -2315,8 +2315,8 @@ class GedcomParser(UpdateCallback):
             TOKEN_MEDI   : self.__media_ref_medi,        # v5.5.1
             TOKEN_TITL   : self.__media_ref_titl,
             TOKEN_FILE   : self.__media_ref_file,
-            TOKEN_NOTE   : self.__media_ref_note,
-            TOKEN_RNOTE  : self.__media_ref_note,
+            TOKEN_NOTE   : self.__obje_note,  # illegal, but often there
+            TOKEN_RNOTE  : self.__obje_note,  # illegal, but often there
             TOKEN__PRIM  : self.__media_ref_prim,        # LFT etc.
             TOKEN_IGNORE : self.__ignore,
         }
@@ -5331,7 +5331,7 @@ class GedcomParser(UpdateCallback):
         sub_state.attr = None
         sub_state.filename = ""
         sub_state.title = ""
-        sub_state.note = ""
+        sub_state.media = Media()
         sub_state.level = state.level + 1
         sub_state.prim = ""
 
@@ -5376,7 +5376,7 @@ class GedcomParser(UpdateCallback):
             else:
                 path = sub_state.filename
             # Multiple references to the same media silently drops the later
-            # ones, even if title, notes etc.  are different
+            # ones, even if title, etc.  are different
             photo_handle = self.media_map.get(path)
             if photo_handle is None:
                 photo = Media()
@@ -5391,14 +5391,17 @@ class GedcomParser(UpdateCallback):
                 else:
                     photo.set_mime_type(MIME_MAP.get(sub_state.form,
                                                      'unknown'))
-                if sub_state.note:
-                    photo.add_note(sub_state.note)
                 if sub_state.attr:
                     photo.attribute_list.append(sub_state.attr)
                 self.dbase.add_media(photo, self.trans)
                 self.media_map[path] = photo.handle
             else:
                 photo = self.dbase.get_media_from_handle(photo_handle)
+            # copy notes to our media
+            for note in sub_state.media.get_note_list():
+                photo.add_note(note)
+            self.dbase.commit_media(photo, self.trans)
+
             if sub_state.prim == "Y":
                 state.photo = photo.handle
             oref = MediaRef()
@@ -5457,21 +5460,6 @@ class GedcomParser(UpdateCallback):
             self.__skip_subordinate_levels(state.level + 1, state)
             return
         state.filename = line.data
-
-    def __media_ref_note(self, line, state):
-        """
-          +1 <<NOTE_STRUCTURE>> {0:M}
-
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        obj = Media()
-        self.__parse_note(line, obj, state)
-        nlist = obj.get_note_list()
-        if nlist:
-            state.note = nlist[0]
 
     def __media_ref_prim(self, line, state):
         """
