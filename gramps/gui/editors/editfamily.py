@@ -292,9 +292,11 @@ class ChildEmbedList(EmbeddedList):
         name.set_primary_surname(0)
         if self.family:
             father_handle = self.family.get_father_handle()
+            father = (self.dbstate.db.get_person_from_handle(father_handle) if
+                      father_handle else None)
             mother_handle = self.family.get_mother_handle()
-            father = self.dbstate.db.get_person_from_handle(father_handle)
-            mother = self.dbstate.db.get_person_from_handle(mother_handle)
+            mother = (self.dbstate.db.get_person_from_handle(mother_handle) if
+                      mother_handle else None)
             if not father and not mother:
                 return name
             if not father:
