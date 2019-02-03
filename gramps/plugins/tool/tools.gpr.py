@@ -476,3 +476,28 @@ toolclass = 'FindLoop',
 optionclass = 'FindLoopOptions',
 tool_modes = [TOOL_MODE_GUI]
   )
+
+#------------------------------------------------------------------------
+#
+# Remove leading and trailing spaces for places name
+# Remove leading and trailing spaces for surname and first names
+#
+#------------------------------------------------------------------------
+
+register(TOOL,
+id    = 'removespaces',
+name  = _("Clean input data"),
+description =  _("Searches the entire database, looking for "
+                 "trailing or leading spaces for places and people."
+                 " Search comma in coordinates fields in places."),
+version = '1.0',
+gramps_target_version = MODULE_VERSION,
+status = STABLE,
+fname = 'removespaces.py',
+authors = ["Serge Noiraud"],
+authors_email = ["serge.noiraud@free.fr"],
+category = TOOL_UTILS,
+toolclass = 'RemoveSpaces',
+optionclass = 'RemoveSpacesOptions',
+tool_modes = [TOOL_MODE_GUI]
+  )
