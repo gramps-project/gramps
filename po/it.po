@@ -1,6 +1,6 @@
 # Italian translation for GRAMPS
 # This file is distributed under the same license as the Gramps package.
-# Copyright (C) 2001-2013 the Gramps Project
+# Copyright (C) 2001-2019 the Gramps Project
 #
 # Common and noteworthy translations:
 #
@@ -55,22 +55,23 @@
 #
 #   The same rule as for "buried" applies to born, as well.
 #
-# Marco Molteni <molter@gufi.org>, 2001-2002;.
+# Marco Molteni <molter@gufi.org>, 2001-2002.
 # Lorenzo Cappelletti <lorenzo.cappelletti@email.it>, 2003.
 # Luigi Toscano <luigi.toscano@tiscali.it>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018.
+# Giansalvo Gusinu <giansalvo.gusinu@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-20 09:31-0500\n"
-"PO-Revision-Date: 2018-07-15 16:38+0100\n"
-"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
+"PO-Revision-Date: 2019-02-08 19:27+0100\n"
+"Last-Translator: Giansalvo Gusinu <giansalvo.gusinu@gmail.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Poedit 2.2.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -7934,7 +7935,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/ldsord.py:105
 msgid "Canceled"
-msgstr ""
+msgstr "Annullato"
 
 #: ../gramps/gen/lib/ldsord.py:106
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:124
@@ -7965,7 +7966,7 @@ msgstr "Non ridimensionare l'albero"
 
 #: ../gramps/gen/lib/ldsord.py:110
 msgid "Infant"
-msgstr ""
+msgstr "Bambino"
 
 #: ../gramps/gen/lib/ldsord.py:111
 msgid "Pre-1970"
@@ -23389,6 +23390,10 @@ msgid ""
 "powerful features.\n"
 "\n"
 msgstr ""
+"Gramps è un'applicazione progettata per ricerche genealogiche. Anche se "
+"simile ad altri programmi di genealogia, Gramps offre alcune utili e potenti "
+"funzionalità.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:105
 msgid "Links"
@@ -23427,6 +23432,13 @@ msgid ""
 "powerful, yet easy to use.\n"
 "\n"
 msgstr ""
+"Gramps è stato creato da genealogisti per genealogisti, organizzati nel "
+"Progetto Gramps. Gramps è un pacchetto software Libero (Open Source). Ciò "
+"vuol dire che sei libero di farne copie e distribuirlo a chiunque tu voglia. "
+"Gramps è sviluppato e  curato da un gruppo di volontari sparsi per il mondo, "
+"il cui scopo è di rendere Gramps potente ed allo stesso tempo facile da "
+"usare.\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:124
 msgid "Getting Started"
@@ -23440,6 +23452,13 @@ msgid ""
 "For more details, please read the information at the links above\n"
 "\n"
 msgstr ""
+"La prima cosa che devi fare è creare un nuovo Albero Genealogico. Per creare "
+"un nuovo Albero Genealogico (talvolta chiamato 'database') seleziona "
+"\"Alberi genealogici\" dal menu, scegli la voce \"Gestisci alberi "
+"genealogici...\", premi \"Nuovo\" e dai un nome al tuo Albero Genealogico. "
+"Per avere maggiori dettagli puoi leggere le informazioni riportate nei "
+"collegamenti seguenti\n"
+"\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:130
 msgid "Dashboard View"
@@ -23456,6 +23475,16 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet on this page, "
 "and detach the gramplet to float above Gramps."
 msgstr ""
+"In questo momento stai leggendo dalla vista \"Cruscotto\", dove puoi "
+"aggiungere le gramplet di tua scelta. Puoi anche aggiungere le gramplet a "
+"qualsiasi tipo di vista aggiungendo una barra laterale o una barra in basso "
+"e cliccando col tasto destro a destra della scheda.\n"
+"\n"
+"Cliccando sull'icona di configurazione nella barra degli strumenti puoi "
+"anche aggiungere colonne addizionali, mentre cliccando col tasto destro "
+"sullo sfondo ti permette di aggiungere altre gramplet. Puoi anche trascinare "
+"il bottone delle Proprietà per riposizionare le gramplet su questa pagina e "
+"distaccare le gramplet in modo da farle fluttuare sopra Gramps."
 
 #. Minimum number of lines we want to see. Further lines with the same
 #. distance to the main person will be added on top of this.
