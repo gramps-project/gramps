@@ -53,7 +53,7 @@ It keeps a FlatNodeMap, and obtains data from database as needed
 #-------------------------------------------------------------------------
 import logging
 import bisect
-import time
+from time import perf_counter
 
 _LOG = logging.getLogger(".gui.basetreemodel")
 
@@ -452,7 +452,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
     def __init__(self, db, uistate, scol=0, order=Gtk.SortType.ASCENDING,
                  search=None, skip=set(),
                  sort_map=None):
-        cput = time.clock()
+        cput = perf_counter()
         GObject.GObject.__init__(self)
         BaseModel.__init__(self)
         self.uistate = uistate
@@ -487,7 +487,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
 
         self.rebuild_data()
         _LOG.debug(self.__class__.__name__ + ' __init__ ' +
-                    str(time.clock() - cput) + ' sec')
+                    str(perf_counter() - cput) + ' sec')
 
     def destroy(self):
         """
