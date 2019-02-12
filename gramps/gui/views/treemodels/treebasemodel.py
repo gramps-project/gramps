@@ -32,7 +32,7 @@ This module provides the model that is used for all hierarchical treeviews.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import time
+from time import perf_counter
 import logging
 
 _LOG = logging.getLogger(".gui.treebasemodel")
@@ -278,7 +278,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
     def __init__(self, db, uistate, search=None, skip=set(), scol=0,
                  order=Gtk.SortType.ASCENDING, sort_map=None, nrgroups = 1,
                  group_can_have_handle = False, has_secondary=False):
-        cput = time.clock()
+        cput = perf_counter()
         GObject.GObject.__init__(self)
         BaseModel.__init__(self)
 
@@ -341,7 +341,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             self.rebuild_data(self.current_filter, skip=skip)
 
         _LOG.debug(self.__class__.__name__ + ' __init__ ' +
-                    str(time.clock() - cput) + ' sec')
+                    str(perf_counter() - cput) + ' sec')
 
     def destroy(self):
         """
@@ -484,7 +484,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         the filter functions. When called internally (from __init__) both
         data_filter and data_filter2 will have been set from set_search
         """
-        cput = time.clock()
+        cput = perf_counter()
         self.clear_cache()
         self._in_build = True
 
@@ -504,7 +504,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             self.current_filter2 = data_filter2
 
         _LOG.debug(self.__class__.__name__ + ' rebuild_data ' +
-                    str(time.clock() - cput) + ' sec')
+                    str(perf_counter() - cput) + ' sec')
 
     def _rebuild_search(self, dfilter, dfilter2, skip):
         """
@@ -743,7 +743,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         self.clear_path_cache()
         if self._get_node(handle) is not None:
             return # row already exists
-        cput = time.clock()
+        cput = perf_counter()
         data = self.map(handle)
         if data:
             if not self.search or \
@@ -755,7 +755,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
                 self.add_row2(handle, self.map2(handle))
 
         _LOG.debug(self.__class__.__name__ + ' add_row_by_handle ' +
-                    str(time.clock() - cput) + ' sec')
+                    str(perf_counter() - cput) + ' sec')
         _LOG.debug("displayed %d / total: %d" %
                    (self.__displayed, self.__total))
 
@@ -764,7 +764,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         Delete a row from the model.
         """
         assert isinstance(handle, str)
-        cput = time.clock()
+        cput = perf_counter()
         self.clear_cache(handle)
         node = self._get_node(handle)
         if node is None:
@@ -786,7 +786,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             parent = next_parent
 
         _LOG.debug(self.__class__.__name__ + ' delete_row_by_handle ' +
-                    str(time.clock() - cput) + ' sec')
+                    str(perf_counter() - cput) + ' sec')
         _LOG.debug("displayed %d / total: %d" %
                    (self.__displayed, self.__total))
 

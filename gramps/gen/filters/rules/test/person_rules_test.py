@@ -24,7 +24,7 @@ Unittest that tests person-specific filter rules
 """
 import unittest
 import os
-import time
+from time import perf_counter
 import inspect
 
 from ....db.utils import import_as_dict
@@ -95,11 +95,11 @@ class BaseTest(unittest.TestCase):
             filter_.add_rule(rule)
         filter_.set_logical_op(l_op)
         filter_.set_invert(invert)
-        stime = time.clock()
+        stime = perf_counter()
         results = filter_.apply(self.db)
         if __debug__:
             rulename = inspect.stack()[1][3]
-            print("%s: %.2f\n" % (rulename, time.clock() - stime))
+            print("%s: %.2f\n" % (rulename, perf_counter() - stime))
         return set(results)
 
     def test_Complex_1(self):
