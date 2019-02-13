@@ -32,7 +32,7 @@ other Gramps baggage.
 #
 #-------------------------------------------------------------------------
 import time
-import collections
+from collections import abc
 import logging
 _LOG = logging.getLogger(".gen")
 
@@ -54,7 +54,7 @@ class UpdateCallback:
         :param interval: number of seconds at most between the updates
         :type interval: int
         """
-        if isinstance(callback, collections.Callable):
+        if isinstance(callback, abc.Callable):
             # callback is really callable
             self.update = self.update_real
             self.callback = callback

@@ -38,7 +38,7 @@ from time import localtime
 #
 #------------------------------------------------------------------------
 import logging
-import collections
+from collections import abc
 log = logging.getLogger(".ExportVCal")
 
 #-------------------------------------------------------------------------
@@ -61,7 +61,7 @@ class CalendarWriter:
         self.filename = filename
         self.user = user
         self.option_box = option_box
-        if isinstance(self.user.callback, collections.Callable): # callback is really callable
+        if isinstance(self.user.callback, abc.Callable):  # is really callable
             self.update = self.update_real
         else:
             self.update = self.update_empty
