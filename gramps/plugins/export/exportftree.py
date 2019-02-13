@@ -34,7 +34,7 @@
 #
 #------------------------------------------------------------------------
 import logging
-import collections
+from collections import abc
 log = logging.getLogger(".WriteFtree")
 
 #-------------------------------------------------------------------------
@@ -73,7 +73,7 @@ class FtreeWriter:
         self.user = user
         self.option_box = option_box
         # is callback is really callable?
-        if isinstance(self.user.callback, collections.Callable):
+        if isinstance(self.user.callback, abc.Callable):
             self.update = self.update_real
         else:
             self.update = self.update_empty

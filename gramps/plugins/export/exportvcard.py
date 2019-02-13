@@ -38,7 +38,7 @@ from textwrap import TextWrapper
 #
 #------------------------------------------------------------------------
 import logging
-import collections
+from collections import abc
 log = logging.getLogger(".ExportVCard")
 
 #-------------------------------------------------------------------------
@@ -109,7 +109,7 @@ class VCardWriter:
         self.user = user
         self.filehandle = None
         self.option_box = option_box
-        if isinstance(self.user.callback, collections.Callable): # callback is really callable
+        if isinstance(self.user.callback, abc.Callable):  # is really callable
             self.update = self.update_real
         else:
             self.update = self.update_empty

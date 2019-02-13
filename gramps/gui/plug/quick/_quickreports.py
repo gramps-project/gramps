@@ -39,7 +39,7 @@ from io import StringIO
 #
 #------------------------------------------------------------------------
 import logging
-import collections
+from collections import abc
 log = logging.getLogger(".quickreports")
 
 #-------------------------------------------------------------------------
@@ -99,9 +99,9 @@ def create_web_connect_menu(dbstate, uistate, nav_group, handle):
     pmgr = GuiPluginManager.get_instance()
     plugins = pmgr.process_plugin_data('WebConnect')
     try:
-        connections = [plug(nav_group) if isinstance(plug, collections.Callable) else plug
-                       for plug in plugins]
-    except:
+        connections = [plug(nav_group) if isinstance(plug, abc.Callable) else
+                       plug for plug in plugins]
+    except BaseException:
         import traceback
         traceback.print_exc()
         connections = []
