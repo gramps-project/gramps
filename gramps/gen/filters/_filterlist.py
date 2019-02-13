@@ -27,7 +27,7 @@
 #-------------------------------------------------------------------------
 from xml.sax import make_parser, SAXParseException
 import os
-import collections
+from collections import abc
 
 #-------------------------------------------------------------------------
 #
@@ -78,7 +78,7 @@ class FilterList:
             plugin_filters = []
             try:
                 for plug in plugins:
-                    if isinstance(plug, collections.Callable):
+                    if isinstance(plug, abc.Callable):
                         plug = plug(namespace)
                     if plug:
                         if isinstance(plug, (list, tuple)):

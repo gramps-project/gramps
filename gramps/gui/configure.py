@@ -31,7 +31,7 @@
 import random
 import os
 from xml.sax.saxutils import escape
-import collections
+from collections import abc
 
 #-------------------------------------------------------------------------
 #
@@ -201,7 +201,7 @@ class ConfigureDialog(ManagedWindow):
         """
         This method builds the notebook pages in the panel
         """
-        if isinstance(configure_page_funcs, collections.Callable):
+        if isinstance(configure_page_funcs, abc.Callable):
             pages = configure_page_funcs()
         else:
             pages = configure_page_funcs
