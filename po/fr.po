@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-20 09:31-0500\n"
-"PO-Revision-Date: 2017-08-01 12:12+0100\n"
+"PO-Revision-Date: 2019-02-14 11:04+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -677,21 +677,23 @@ msgid ""
 msgstr ""
 "<b>Afficher tous les choix</b><br/>Quand vous ajoutez un conjoint ou un "
 "enfant, la liste des individus est filtrée pour n'afficher que les individus "
-"pouvant avoir ce statut (basé sur les dates de la base de données). Si "
-"Gramps a tort, vous pouvez ignorer ce filtre en cochant «  Tout Afficher  »."
+"pouvant avoir cet état (basé sur les dates de la base de données). Si Gramps "
+"a tort, vous pouvez ignorer ce filtre en cochant «  Tout Afficher  »."
 
 # Substantif (GNOME fr)
 #: ../data/tips.xml.in.h:29
 msgid ""
 "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
 "Gramps. Requesting an enhancement can be done either through the gramps-"
-"users or gramps-devel mailing lists, or by going to https://gramps-project.org/bugs/ and creating a Feature Request. Filing a Feature Request is "
+"users or gramps-devel mailing lists, or by going to https://gramps-project."
+"org/bugs/ and creating a Feature Request. Filing a Feature Request is "
 "preferred but it can be good to discuss your ideas on the email lists."
 msgstr ""
 "<b>Amélioration de Gramps</b><br/>Vous êtes encouragé(e) à proposer des "
 "améliorations pour Gramps. Proposer une amélioration est possible par les "
 "listes de diffusion gramps-users ou gramps-devel ou en créant une demande "
-"d'amélioration (Request for Enhancement - RFE) sur https://gramps-project.org/bugs//. Il est également apprécié d'en discuter sur l'une des listes "
+"d'amélioration (Request for Enhancement - RFE) sur https://gramps-project."
+"org/bugs//. Il est également apprécié d'en discuter sur l'une des listes "
 "Gramps."
 
 #: ../data/tips.xml.in.h:30
@@ -702,13 +704,13 @@ msgid ""
 "the development of Gramps, try the gramps-devel list. You can see the lists "
 "by selecting &quot;Help &gt; Gramps Mailing Lists&quot;."
 msgstr ""
-"<b>Gramps mailing listes</b><br/>Vous voulez des réponses à vos questions "
-"sur Gramps ? Allez voir la liste des utilisateurs de Gramps (gramps-users "
-"list). Beaucoup de personnes sont inscrites, vous pourrez ainsi avoir une "
-"réponse rapide. Si vous avez des questions sur le développement de Gramps, "
-"essayez gramps-devel. Toutes les informations sur les listes de diffusion "
-"peuvent être trouvées sur lists.sf.net. Vous pouvez également y accéder en "
-"sélectionnant « Aide &gt; Listes Gramps »."
+"<b>Listes de diffusion Gramps</b><br/>Vous voulez des réponses à vos "
+"questions sur Gramps ? Allez voir la liste des utilisateurs de Gramps "
+"(gramps-users list). Beaucoup de personnes sont inscrites, vous pourrez "
+"ainsi avoir une réponse rapide. Si vous avez des questions sur le "
+"développement de Gramps, essayez gramps-devel. Toutes les informations sur "
+"les listes de diffusion peuvent être trouvées sur lists.sf.net. Vous pouvez "
+"également y accéder en sélectionnant « Aide &gt; Listes Gramps »."
 
 # Substantif (GNOME fr) (aider sonne bien)
 #: ../data/tips.xml.in.h:31
@@ -917,9 +919,9 @@ msgid ""
 "<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
 "is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
 msgstr ""
-"<b>Rapporter un problème dans Gramps</b><br/>Le meilleur moyen de rapporter "
-"un bogue dans Gramps est d'utiliser le système de suivi de bogue, "
-"https://gramps-project.org/bugs/"
+"<b>Signaler un problème dans Gramps</b><br/>Le meilleur moyen de rapporter "
+"un bogue dans Gramps est d'utiliser le système de suivi de bogue, https://"
+"gramps-project.org/bugs/"
 
 #: ../data/tips.xml.in.h:47
 msgid ""
@@ -3453,7 +3455,7 @@ msgstr ""
 #: ../gramps/plugins/db/bsddb/write.py:2139
 #, python-format
 msgid "_Undo %s"
-msgstr "_Défaire %s"
+msgstr "_Annuler %s"
 
 #: ../gramps/gen/db/generic.py:166 ../gramps/gen/db/generic.py:217
 #: ../gramps/plugins/db/bsddb/undoredo.py:257
@@ -7249,7 +7251,7 @@ msgstr "Personnalisé"
 
 #: ../gramps/gen/lib/attrtype.py:64
 msgid "Caste"
-msgstr "Rang ou statut"
+msgstr "Rang ou état"
 
 #. 2 name (version)
 #: ../gramps/gen/lib/attrtype.py:65 ../gramps/gen/lib/event.py:148
@@ -8481,7 +8483,7 @@ msgstr "Scellement au conjoint"
 
 #: ../gramps/gen/lib/ldsord.py:103
 msgid "<No Status>"
-msgstr "<Sans statut>"
+msgstr "<Sans état>"
 
 # master
 # mormons
@@ -8576,7 +8578,7 @@ msgstr "Temple"
 #: ../gramps/plugins/textreport/notelinkreport.py:95
 #: ../gramps/plugins/webreport/basepage.py:945
 msgid "Status"
-msgstr "Statut"
+msgstr "État"
 
 #: ../gramps/gen/lib/location.py:87 ../gramps/gen/lib/nameorigintype.py:86
 #: ../gramps/gui/clipboard.py:318 ../gramps/gui/plug/_windows.py:625
@@ -12547,7 +12549,7 @@ msgstr "Vérifié pour « %s »"
 
 #: ../gramps/gui/configure.py:1482
 msgid "' and '"
-msgstr "' et '"
+msgstr "» et «"
 
 #. List of translated strings used here
 #. Dead code for l10n
@@ -17662,7 +17664,7 @@ msgid ""
 "Events, media objects, addresses, attributes, urls, notes, sources and tags "
 "of both persons will be combined."
 msgstr ""
-"Les événements, les objets media, les adresses, les attributs, les urls, les "
+"Les événements, les objets media, les adresses, les attributs, les URL, les "
 "notes, les sources et étiquettes des deux individus vont être rassemblés."
 
 # trunk
@@ -17685,7 +17687,7 @@ msgid ""
 "Alternative names, sources, urls, media objects and notes of both places "
 "will be combined."
 msgstr ""
-"Noms alternatifs, sources, urls, objets media et notes des deux lieux vont "
+"Noms alternatifs, sources, URL, objets media et notes des deux lieux vont "
 "être rassemblés."
 
 # trunk
@@ -17712,7 +17714,7 @@ msgstr "Dépôt 2 "
 # trunk
 #: ../gramps/gui/glade/mergerepository.glade:398
 msgid "Addresses, urls and notes of both repositories will be combined."
-msgstr "Les adresses, urls et notes des deux dépôts seront combinés."
+msgstr "Les adresses, URL et notes des deux dépôts seront combinés."
 
 # trunk
 #: ../gramps/gui/glade/mergesource.glade:97
@@ -18411,7 +18413,7 @@ msgstr "Assistant de rapport d'erreur"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:259
 msgid "Report a bug"
-msgstr "Rapporter un bogue"
+msgstr "Signaler un bogue"
 
 # master
 #: ../gramps/gui/logger/_errorreportassistant.py:266
@@ -18596,7 +18598,7 @@ msgid ""
 "bug report."
 msgstr ""
 "Vos données sont en sécurité mais il est conseillé de redémarrer Gramps "
-"immédiatement. Si vous voulez rapporter ce problème à l'équipe de Gramps "
+"immédiatement. Si vous voulez signaler ce problème à l'équipe de Gramps "
 "veuillez cliquer sur Rapport et l'assistant de rapport d'erreur vous guidera "
 "pour la rédaction du rapport de bogue."
 
@@ -19992,7 +19994,7 @@ msgstr "Historique d'annulation"
 #: ../gramps/gui/undohistory.py:84 ../gramps/gui/viewmanager.py:647
 #: ../gramps/gui/viewmanager.py:1331
 msgid "_Undo"
-msgstr "_Défaire"
+msgstr "_Annuler"
 
 #: ../gramps/gui/undohistory.py:86 ../gramps/gui/viewmanager.py:652
 #: ../gramps/gui/viewmanager.py:1348
@@ -20132,7 +20134,7 @@ msgstr "Listes de diffusion de Gra_mps"
 
 #: ../gramps/gui/viewmanager.py:526
 msgid "_Report a Bug"
-msgstr "_Rapporter un bogue"
+msgstr "_Signaler un bogue"
 
 #: ../gramps/gui/viewmanager.py:528
 msgid "_Extra Reports/Tools"
@@ -20244,7 +20246,7 @@ msgstr "Barre d'ou_tils"
 
 #: ../gramps/gui/viewmanager.py:642
 msgid "F_ull Screen"
-msgstr "_Plein Écran"
+msgstr "_Plein écran"
 
 #: ../gramps/gui/viewmanager.py:658
 msgid "Undo History..."
@@ -21011,12 +21013,12 @@ msgstr "Effacer la balise"
 #: ../gramps/gui/widgets/styledtexteditor.py:513
 #: ../gramps/gui/widgets/styledtexteditor.py:514
 msgid "Undo"
-msgstr "Défaire"
+msgstr "Annuler"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:517
 #: ../gramps/gui/widgets/styledtexteditor.py:518
 msgid "Redo"
-msgstr "Refaire"
+msgstr "Rétablir"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:645
 msgid "Select font color"
@@ -24939,7 +24941,7 @@ msgstr "/fr"
 # "/fr" non-ajouté automatiquement (voir GrampsDisplay.py)
 #: ../gramps/plugins/gramplet/welcomegramplet.py:113
 msgid "Ask questions on gramps-users mailing list"
-msgstr "Poser des questions sur la mailing liste gramps-users"
+msgstr "Poser des questions sur la liste de diffusion gramps-users"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:117
 msgid "Who makes Gramps?"
@@ -33886,7 +33888,7 @@ msgstr "Rapport liens de note"
 # master
 #: ../gramps/plugins/textreport/textplugins.gpr.py:438
 msgid "Shows status of links in notes"
-msgstr "Affiche le statut des liens dans les notes"
+msgstr "Affiche l'état des liens dans les notes"
 
 #: ../gramps/plugins/tool/changenames.glade:34
 msgid ""
@@ -35129,16 +35131,16 @@ msgstr "Étique_tte"
 # points de suspension et url ?
 #: ../gramps/plugins/tool/notrelated.py:60
 msgid "manual|Not_Related"
-msgstr "Non-lié"
+msgstr "Non lié"
 
 #: ../gramps/plugins/tool/notrelated.py:80
 #, python-format
 msgid "Not related to \"%s\""
-msgstr "Non-lié à « %s »"
+msgstr "Non lié à « %s »"
 
 #: ../gramps/plugins/tool/notrelated.py:104
 msgid "NotRelated"
-msgstr "Non-lié"
+msgstr "Non lié"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/tool/notrelated.py:173
@@ -35447,7 +35449,7 @@ msgstr "Tout _marquer"
 #: ../gramps/plugins/tool/removeunused.glade:303
 #: ../gramps/plugins/tool/verify.glade:945
 msgid "_Unmark all"
-msgstr "Tout _démarquer"
+msgstr "Tout _désélectionner"
 
 #: ../gramps/plugins/tool/removeunused.glade:319
 #: ../gramps/plugins/tool/verify.glade:961
@@ -35845,7 +35847,7 @@ msgstr "Gère des opérations groupées sur les fichiers media"
 
 #: ../gramps/plugins/tool/tools.gpr.py:198
 msgid "Not Related"
-msgstr "Non-lié"
+msgstr "Non lié"
 
 #: ../gramps/plugins/tool/tools.gpr.py:199
 msgid "Find people who are not in any way related to the selected person"
@@ -37060,7 +37062,7 @@ msgstr ""
 
 #: ../gramps/plugins/view/geoplaces.py:401
 msgid "The place name in the status bar is disabled."
-msgstr "Le nom du lieu a été désactivé dans la barre de statut."
+msgstr "Le nom du lieu a été désactivé dans la barre d'état."
 
 #: ../gramps/plugins/view/geoplaces.py:406
 #, python-format
@@ -39191,64 +39193,3 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:143
 msgid "No style sheet"
 msgstr "Aucune feuille de style"
-
-# trunk
-#~ msgid "Gender Male Death"
-#~ msgstr "Masculin décédé"
-
-# trunk
-#~ msgid "Gender Female Death"
-#~ msgstr "Féminin décédée"
-
-# trunk
-#~ msgid "Gender Unknown Death"
-#~ msgstr "Inconnu décédé"
-
-# master
-#~ msgid "Suppress comma after house number"
-#~ msgstr "Suppression de la virgule après le numéro de l'adresse"
-
-# master
-#~ msgid "Full place name"
-#~ msgstr "Nom de lieu complet"
-
-# master
-#~ msgid "-> Hamlet/Village/Town/City"
-#~ msgstr "-> Hameau/Village/Ville"
-
-# master
-#~ msgid "Hamlet/Village/Town/City ->"
-#~ msgstr "Hameau/Village/Ville ->"
-
-# master
-#~ msgid "Restrict"
-#~ msgstr "Restreindre"
-
-# master
-#~ msgid "You wish to convert this database into the new DB-API format?"
-#~ msgstr ""
-#~ "Souhaitez-vous convertir cette base de données vers le nouveau format DB-"
-#~ "API ?"
-
-#~ msgid "48.21\"S, -18.2412 or -18:9:48.21)"
-#~ msgstr "48.21\"S, -18.2412 ou -18:9:48.21)"
-
-#~ msgid "48.21\"E, -18.2412 or -18:9:48.21)"
-#~ msgstr "48.21\"E, -18.2412 ou -18:9:48.21)"
-
-#~ msgid "_PostgreSQL Database"
-#~ msgstr "Base de données _PostgreSQL"
-
-#~ msgid "PostgreSQL Database"
-#~ msgstr "Base de données PostgreSQL"
-
-# master
-#~ msgid "Ancestor"
-#~ msgstr "Ascendant"
-
-# master
-#~ msgid "Descendant"
-#~ msgstr "Descendant"
-
-#~ msgid "Alphabet Menu: %s"
-#~ msgstr "Menu alphabétique : %s"
