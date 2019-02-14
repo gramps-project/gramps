@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-26 11:20-0600\n"
-"PO-Revision-Date: 2019-02-14 11:04+0100\n"
+"PO-Revision-Date: 2019-02-14 12:19+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -4052,11 +4052,11 @@ msgstr "Pas de description"
 #. more references to a filter than expected
 #: ../gramps/gen/filters/rules/_rule.py:94
 msgid "The filter definition contains a loop."
-msgstr ""
+msgstr "La définition du filtre contient une boucle."
 
 #: ../gramps/gen/filters/rules/_rule.py:95
 msgid "One rule references another which eventually references the first."
-msgstr ""
+msgstr "Une règle qui référence une autre semble pointer vers une précédente."
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:45
 msgid "Every citation"
@@ -9118,7 +9118,7 @@ msgstr "Adresses"
 # master
 #: ../gramps/gen/lib/person.py:215
 msgid "Urls"
-msgstr ""
+msgstr "URL"
 
 # master
 #: ../gramps/gen/lib/person.py:237
@@ -9193,7 +9193,7 @@ msgstr "Noms alternatifs"
 # master
 #: ../gramps/gen/lib/place.py:163 ../gramps/gen/lib/repo.py:106
 msgid "URLs"
-msgstr ""
+msgstr "URL"
 
 #: ../gramps/gen/lib/placename.py:95 ../gramps/gui/clipboard.py:579
 #: ../gramps/gui/editors/editplacename.py:134
@@ -10235,11 +10235,11 @@ msgstr "Moyen"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:65
 msgid "Short"
-msgstr ""
+msgstr "Court"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:68
 msgid "Above"
-msgstr ""
+msgstr "Au-dessus"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:69
 #, fuzzy
@@ -10260,25 +10260,24 @@ msgstr "Préférences"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:76
 msgid "Down (↓)"
-msgstr ""
+msgstr "En bas (↓)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:77
 msgid "Up (↑)"
-msgstr ""
+msgstr "En haut (↑)"
 
 # master
 #: ../gramps/gen/plug/docgen/treedoc.py:78
-#, fuzzy
 msgid "Right (→)"
-msgstr "Droite"
+msgstr "Droit (→)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Left (←)"
-msgstr ""
+msgstr "Gauche (←)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:81
 msgid "Perpendicular"
-msgstr ""
+msgstr "Perpendiculaire"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:82
 #, fuzzy
@@ -10432,28 +10431,24 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:202
-#, fuzzy
 msgid "Note to add to the tree"
-msgstr "Note à ajouter au graphique"
+msgstr "Note à ajouter à l'arbre"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:203
-#, fuzzy
 msgid "This text will be added to the tree."
-msgstr "Ce texte sera ajouté au graphique."
+msgstr "Ce texte sera ajouté à l'arbre."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:216
-#, fuzzy
 msgid "The size of note text."
-msgstr "La taille du texte de la note, en points."
+msgstr "La taille du texte de la note."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:653
 msgid "PDF"
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:659
-#, fuzzy
 msgid "LaTeX File"
-msgstr "LaTeX"
+msgstr "Fichier LaTeX"
 
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:142
 #, python-format
@@ -10504,9 +10499,8 @@ msgid "Graphs"
 msgstr "Diagrammes"
 
 #: ../gramps/gen/plug/report/_constants.py:51
-#, fuzzy
 msgid "Trees"
-msgstr "Taille de l'arbre"
+msgstr "Arbres"
 
 #: ../gramps/gen/plug/report/_constants.py:55
 msgid "Graphics"
@@ -10715,14 +10709,12 @@ msgid "Whether to include Gramps IDs"
 msgstr "Inclure ou non les identifiants Gramps"
 
 #: ../gramps/gen/plug/report/stdoptions.py:337 ../gramps/gui/configure.py:1081
-#, fuzzy
 msgid "Place format"
-msgstr "Format de papier"
+msgstr "Format du lieu"
 
 #: ../gramps/gen/plug/report/stdoptions.py:341
-#, fuzzy
 msgid "Select the format to display places"
-msgstr "Sélection du format d'affichage pour le nom"
+msgstr "Sélection du format d'affichage pour le lieu"
 
 #: ../gramps/gen/plug/report/utils.py:158
 #: ../gramps/plugins/textreport/indivcomplete.py:919
@@ -12066,75 +12058,62 @@ msgstr "Définissez les couleurs des aires utilisées dans les vues graphiques."
 
 # trunk
 #: ../gramps/gui/configure.py:597
-#, fuzzy
 msgid "Light colors"
-msgstr "Couleurs des familles"
+msgstr "Couleurs clairs"
 
 # trunk
 #: ../gramps/gui/configure.py:598
-#, fuzzy
 msgid "Dark colors"
-msgstr "Couleurs des familles"
+msgstr "Couleurs sombres"
 
 #: ../gramps/gui/configure.py:603
-#, fuzzy
 msgid "Color scheme"
-msgstr "Couleurs"
+msgstr "Schéma des couleurs"
 
 # trunk
 #: ../gramps/gui/configure.py:607
-#, fuzzy
 msgid "Restore to defaults"
-msgstr "Rétablir les défauts ?"
+msgstr "Rétablir les défauts"
 
 # trunk
 #: ../gramps/gui/configure.py:613
-#, fuzzy
 msgid "Male Alive"
 msgstr "Masculin vivant"
 
 #: ../gramps/gui/configure.py:614
-#, fuzzy
 msgid "Male Dead"
-msgstr "Femme de genre masculin"
+msgstr "Masculin décédé"
 
 # trunk
 #: ../gramps/gui/configure.py:615
-#, fuzzy
 msgid "Female Alive"
 msgstr "Féminin vivante"
 
 #: ../gramps/gui/configure.py:616
-#, fuzzy
 msgid "Female Dead"
-msgstr "Femmes : %d"
+msgstr "Féminin décédé"
 
 # trunk
 #: ../gramps/gui/configure.py:617
-#, fuzzy
 msgid "Unknown Alive"
 msgstr "Inconnu vivant"
 
 # trunk
 #: ../gramps/gui/configure.py:618
-#, fuzzy
 msgid "Unknown Dead"
-msgstr "Balise inconnue"
+msgstr "Inconnu décédé"
 
 #: ../gramps/gui/configure.py:619
-#, fuzzy
 msgid "Family Node"
-msgstr "Note sur la famille"
+msgstr "Nœud familial"
 
 #: ../gramps/gui/configure.py:620
-#, fuzzy
 msgid "Family Divorced"
-msgstr "Arbre familial"
+msgstr "Famille divorcée"
 
 #: ../gramps/gui/configure.py:621
-#, fuzzy
 msgid "Home Person"
-msgstr "Individu souche non-défini"
+msgstr "Individu souche"
 
 # trunk
 #: ../gramps/gui/configure.py:622
@@ -12143,7 +12122,6 @@ msgstr "Bordure masculin vivant"
 
 # trunk
 #: ../gramps/gui/configure.py:623
-#, fuzzy
 msgid "Border Male Dead"
 msgstr "Bordure masculin décédé"
 
@@ -12154,7 +12132,6 @@ msgstr "Bordure féminin vivante"
 
 # trunk
 #: ../gramps/gui/configure.py:625
-#, fuzzy
 msgid "Border Female Dead"
 msgstr "Bordure féminin décédée"
 
@@ -12165,20 +12142,17 @@ msgstr "Bordure inconnu vivant"
 
 # trunk
 #: ../gramps/gui/configure.py:627
-#, fuzzy
 msgid "Border Unknown Dead"
 msgstr "Bordure inconnu décédé"
 
 #: ../gramps/gui/configure.py:628
-#, fuzzy
 msgid "Border Family"
-msgstr "Fusion de la famille"
+msgstr "Bordure familiale"
 
 # trunk
 #: ../gramps/gui/configure.py:629
-#, fuzzy
 msgid "Border Family Divorced"
-msgstr "Bordure féminin vivante"
+msgstr "Bordure famille divorcée"
 
 #: ../gramps/gui/configure.py:637
 msgid "Colors"
@@ -12631,9 +12605,8 @@ msgstr ""
 
 # numéro = astuce pour éviter la liste par ordre alphabétique
 #: ../gramps/gui/configure.py:1535
-#, fuzzy
 msgid "Port"
-msgstr "0. Portrait"
+msgstr ""
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1543
@@ -12828,14 +12801,12 @@ msgid "Login"
 msgstr ""
 
 #: ../gramps/gui/dbloader.py:388
-#, fuzzy
 msgid "Username: "
-msgstr "Nom de famille"
+msgstr "Nom d'utilisateur :"
 
 #: ../gramps/gui/dbloader.py:393
-#, fuzzy
 msgid "Password: "
-msgstr "Pâque juive"
+msgstr "Mot de passe :"
 
 # master
 #: ../gramps/gui/dbloader.py:425
@@ -13289,7 +13260,6 @@ msgstr ""
 "Sélectionnez plutôt une des options disponibles"
 
 #: ../gramps/gui/displaystate.py:268
-#, fuzzy
 msgid "Cannot load database"
 msgstr "Impossible d'ouvrir la base de données"
 
@@ -15029,20 +14999,22 @@ msgstr "Nouveau lieu"
 #. translators: translate the "S" too (and the "or" of course)
 #: ../gramps/gui/editors/editplace.py:201
 #: ../gramps/gui/editors/editplaceref.py:194
-#, fuzzy
 msgid ""
 "Invalid latitude\n"
 "(syntax: 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
-msgstr "Latitude invalide (syntaxe : 18\\u00b09'"
+msgstr ""
+"Latitude invalide\n"
+"(syntaxe : 18\\u00b09'48.21\"S, -18.2412 or -18:9:48.21)"
 
 #. translators: translate the "E" too (and the "or" of course)
 #: ../gramps/gui/editors/editplace.py:206
 #: ../gramps/gui/editors/editplaceref.py:199
-#, fuzzy
 msgid ""
 "Invalid longitude\n"
 "(syntax: 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
-msgstr "Longitude invalide (syntaxe : 18\\u00b09'"
+msgstr ""
+"Longitude invalide\n"
+"(syntaxe : 18\\u00b09'48.21\"E, -18.2412 or -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:217
 #: ../gramps/plugins/lib/maps/geography.py:924
@@ -15084,9 +15056,8 @@ msgid "Delete Place (%s)"
 msgstr "Supprimer le lieu (%s)"
 
 #: ../gramps/gui/editors/editplaceformat.py:49
-#, fuzzy
 msgid "Place Format Editor"
-msgstr "Éditeur de filtre sur le lieu"
+msgstr "Éditeur de format du lieu"
 
 # master
 #: ../gramps/gui/editors/editplaceformat.py:137
@@ -15178,9 +15149,8 @@ msgstr "Ajouter un dépôt"
 
 # manuel wiki
 #: ../gramps/gui/editors/editrepository.py:60
-#, fuzzy
 msgid "manual|New_Repository_dialog"
-msgstr "Nouveau_dépôts"
+msgstr "Nouveau_dépôt"
 
 #: ../gramps/gui/editors/editrepository.py:92
 msgid "Edit Repository"
@@ -16259,7 +16229,6 @@ msgstr ""
 
 # trunk
 #: ../gramps/gui/glade/editcitation.glade:201
-#, fuzzy
 msgid ""
 "Conveys the submitter's quantitative evaluation of the credibility of a "
 "piece of information, based upon its supporting evidence. It is not intended "
@@ -17089,7 +17058,6 @@ msgstr "Sélectionnez l'individu ayant une association avec la personne éditée
 # master
 #: ../gramps/gui/glade/editplace.glade:106
 #: ../gramps/gui/glade/editplaceref.glade:229
-#, fuzzy
 msgid ""
 "Either use the two fields below to enter coordinates (latitude and "
 "longitude),"
@@ -17202,15 +17170,13 @@ msgstr "Ouvrir l'éditeur de nom du lieu."
 
 # trunk
 #: ../gramps/gui/glade/editplaceformat.glade:124
-#, fuzzy
 msgid "Levels:"
-msgstr "Niveau supérieur"
+msgstr "Niveaux :"
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/glade/editplaceformat.glade:136
-#, fuzzy
 msgid "Street format:"
-msgstr "Format des dates "
+msgstr "Format de la rue :"
 
 # master
 #: ../gramps/gui/glade/editplaceformat.glade:148
@@ -17225,14 +17191,12 @@ msgstr "Inverser l'ordre d'affichage"
 
 # master
 #: ../gramps/gui/glade/editplaceformat.glade:186
-#, fuzzy
 msgid "Number Street"
-msgstr "Nombre d'événements"
+msgstr "Numéro Rue"
 
 #: ../gramps/gui/glade/editplaceformat.glade:187
-#, fuzzy
 msgid "Street Number"
-msgstr "Rue"
+msgstr "Rue Numéro"
 
 # trunk
 #: ../gramps/gui/glade/editplacename.glade:156
@@ -23230,9 +23194,8 @@ msgstr "Internet"
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/export/exportgedcom.py:1438
-#, fuzzy
 msgid "Writing media"
-msgstr "Écriture des notes"
+msgstr "Écriture des objets media"
 
 #: ../gramps/plugins/export/exportgedcom.py:1613
 msgid "GEDCOM Export failed"
@@ -24860,19 +24823,16 @@ msgstr "Individus sans genre"
 
 # trunk
 #: ../gramps/plugins/gramplet/statsgramplet.py:156
-#, fuzzy
 msgid "Incomplete names"
-msgstr "Noms incomplets : %d"
+msgstr "Noms incomplets"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:160
-#, fuzzy
 msgid "Individuals missing birth dates"
-msgstr "Individus sans date de naissance : %d"
+msgstr "Individus sans dates de naissance"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:164
-#, fuzzy
 msgid "Disconnected individuals"
-msgstr "Individu déconnecté"
+msgstr "Individus déconnectés"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:168
 #: ../gramps/plugins/textreport/summary.py:211
@@ -24893,9 +24853,8 @@ msgid "Media Objects"
 msgstr "Objets media"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:181
-#, fuzzy
 msgid "Individuals with media objects"
-msgstr "Individus avec media : %d"
+msgstr "Individus avec des objets media"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:185
 #: ../gramps/plugins/webreport/statistics.py:138
@@ -31499,16 +31458,16 @@ msgstr "Nouveau lieu avec des champs vides"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:273
 msgid "you have a wrong latitude for:"
-msgstr ""
+msgstr "vous avez une latitude inexacte pour :"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:275
 #: ../gramps/plugins/lib/maps/placeselection.py:285
 msgid "Please, correct this before linking"
-msgstr ""
+msgstr "S'il vous plaît, corrigez ceci avant de lier"
 
 #: ../gramps/plugins/lib/maps/placeselection.py:283
 msgid "you have a wrong longitude for:"
-msgstr ""
+msgstr "vous avez une longitude inexacte pour :"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:53
 msgid "Denmark"
@@ -34104,9 +34063,8 @@ msgstr "Contrôle d'intégrité"
 #. for bsddb the check_backlinks doesn't work in 'batch' mode because
 #. the table used for backlinks is closed.
 #: ../gramps/plugins/tool/check.py:230
-#, fuzzy
 msgid "Check Backlink Integrity"
-msgstr "Contrôle d'intégrité"
+msgstr "Contrôle d'intégrité des liens de retour"
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/check.py:237
@@ -34256,9 +34214,8 @@ msgstr "Recherche de problèmes pour les événements"
 #. Check for db backlinks that don't have a reference object at all
 #: ../gramps/plugins/tool/check.py:1240 ../gramps/plugins/tool/check.py:1269
 #: ../gramps/plugins/tool/check.py:1294
-#, fuzzy
 msgid "Looking for backlink reference problems"
-msgstr "Recherche de problèmes dans la référence du lieu"
+msgstr "Recherche de problèmes dans la référence du lien de retour"
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/check.py:1329
@@ -34607,7 +34564,7 @@ msgstr ""
 #: ../gramps/plugins/tool/check.py:2747
 #, python-format
 msgid "%d bad backlinks were fixed;\n"
-msgstr ""
+msgstr "%d liens de retour ont été corrigés;\n"
 
 #: ../gramps/plugins/tool/check.py:2749
 #: ../gramps/plugins/tool/rebuildrefmap.py:92
@@ -34952,9 +34909,8 @@ msgid "Media Manager"
 msgstr "Gérer les media"
 
 #: ../gramps/plugins/tool/mediamanager.py:91
-#, fuzzy
 msgid "Help"
-msgstr "Aid_e"
+msgstr "Aide"
 
 #: ../gramps/plugins/tool/mediamanager.py:101
 #: ../gramps/plugins/webreport/basepage.py:1475
@@ -35679,9 +35635,9 @@ msgstr "Réorganisation de %s identifiants ..."
 
 # master
 #: ../gramps/plugins/tool/reorderids.py:625
-#, fuzzy, python-format
+#, python-format
 msgid "Do you want to replace %s?"
-msgstr "Ne pas inclure de date ou de lieu"
+msgstr "Voulez-vous remplacer %s ?"
 
 # master
 # Substantif (GNOME fr)
@@ -38011,9 +37967,8 @@ msgstr "Type mime"
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/webreport/media.py:242
-#, fuzzy
 msgid "Creating list of media pages"
-msgstr "Création des pages pour le medium"
+msgstr "Création de la liste des pages pour le medium"
 
 # master
 #: ../gramps/plugins/webreport/media.py:286
@@ -38563,14 +38518,12 @@ msgstr ""
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/webreport/narrativeweb.py:1930
-#, fuzzy
 msgid "Include the statistics page"
-msgstr "Création de la page des statistiques..."
+msgstr "Création de la page des statistiques"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1931
-#, fuzzy
 msgid "Whether or not to add statistics page"
-msgstr "Inclure ou non des pages de la famille."
+msgstr "Inclure ou non des pages des statistics"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1938
 msgid "Place Map Options"
@@ -39282,7 +39235,3 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:143
 msgid "No style sheet"
 msgstr "Aucune feuille de style"
-
-# manuel wiki
-#~ msgid "manual|Repositories"
-#~ msgstr "Dépôts"
