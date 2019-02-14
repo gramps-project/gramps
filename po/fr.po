@@ -29501,7 +29501,7 @@ msgstr "Elle est la fille de %(mother)s."
 #: ../gramps/plugins/lib/libnarrate.py:960
 #, python-format
 msgid "She was the daughter of %(mother)s."
-msgstr "Elle était la file de %(mother)s."
+msgstr "Elle était la fille de %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:962
 #, python-format
