@@ -129,6 +129,8 @@ class EditEvent(EditPrimary):
         """
         self._add_db_signal('event-rebuild', self._do_close)
         self._add_db_signal('event-delete', self.check_for_close)
+        self._add_db_signal('place-delete', self.place_delete)
+        self._add_db_signal('place-update', self.place_update)
 
     def _setup_fields(self):
 
@@ -300,6 +302,24 @@ class EditEvent(EditPrimary):
         else:
             cmp_obj = self.empty_object()
             return cmp_obj.serialize(True)[1:] != self.obj.serialize()[1:]
+
+    def place_update(self, hndls):
+        ''' Place changed outside of dialog, update text if its ours '''
+        handle = self.obj.get_place_handle()
+        if handle and handle in hndls:
+            place = self.db.get_place_from_handle(handle)
+            p_lbl = "%s [%s]" % (place.get_title(), place.gramps_id)
+            self.top.get_object("place").set_text(p_lbl)
+
+    def place_delete(self, hndls):
+        ''' Place deleted outside of dialog, remove it if its ours'''
+        handle = self.obj.get_place_handle()
+        if handle and handle in hndls:
+            self.obj.set_place_handle(None)
+            self.top.get_object("place").set_markup(
+                self.place_field.EMPTY_TEXT)
+            self.place_field.set_button(False)
+
 
 #-------------------------------------------------------------------------
 #
