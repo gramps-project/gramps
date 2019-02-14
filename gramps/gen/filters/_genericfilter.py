@@ -124,6 +124,9 @@ class GenericFilter:
     def get_cursor(self, db):
         return db.get_person_cursor()
 
+    def get_tree_cursor(self, db):
+        return db.get_person_cursor()
+
     def make_obj(self):
         return Person()
 
@@ -133,13 +136,15 @@ class GenericFilter:
     def get_number(self, db):
         return db.get_number_of_people()
 
-    def check_func(self, db, id_list, task, user=None, tupleind=None):
+    def check_func(self, db, id_list, task, user=None, tupleind=None,
+                   tree=False):
         final_list = []
         if user:
             user.begin_progress(_('Filter'), _('Applying ...'),
                                 self.get_number(db))
         if id_list is None:
-            with self.get_cursor(db) as cursor:
+            with (self.get_tree_cursor(db) if tree else
+                  self.get_cursor(db)) as cursor:
                 for handle, data in cursor:
                     person = self.make_obj()
                     person.unserialize(data)
@@ -162,14 +167,15 @@ class GenericFilter:
             user.end_progress()
         return final_list
 
-    def check_and(self, db, id_list, user=None, tupleind=None):
+    def check_and(self, db, id_list, user=None, tupleind=None, tree=False):
         final_list = []
         flist = self.flist
         if user:
             user.begin_progress(_('Filter'), _('Applying ...'),
                                 self.get_number(db))
         if id_list is None:
-            with self.get_cursor(db) as cursor:
+            with (self.get_tree_cursor(db) if tree else
+                  self.get_cursor(db)) as cursor:
                 for handle, data in cursor:
                     person = self.make_obj()
                     person.unserialize(data)
@@ -194,14 +200,17 @@ class GenericFilter:
             user.end_progress()
         return final_list
 
-    def check_or(self, db, id_list, user=None, tupleind=None):
-        return self.check_func(db, id_list, self.or_test, user, tupleind)
+    def check_or(self, db, id_list, user=None, tupleind=None, tree=False):
+        return self.check_func(db, id_list, self.or_test, user, tupleind,
+                               tree=False)
 
-    def check_one(self, db, id_list, user=None, tupleind=None):
-        return self.check_func(db, id_list, self.one_test, user, tupleind)
+    def check_one(self, db, id_list, user=None, tupleind=None, tree=False):
+        return self.check_func(db, id_list, self.one_test, user, tupleind,
+                               tree=False)
 
-    def check_xor(self, db, id_list, user=None, tupleind=None):
-        return self.check_func(db, id_list, self.xor_test, user, tupleind)
+    def check_xor(self, db, id_list, user=None, tupleind=None, tree=False):
+        return self.check_func(db, id_list, self.xor_test, user, tupleind,
+                               tree=False)
 
     def xor_test(self, db, person):
         test = False
@@ -231,7 +240,7 @@ class GenericFilter:
     def check(self, db, handle):
         return self.get_check_func()(db, [handle])
 
-    def apply(self, db, id_list=None, tupleind=None, user=None):
+    def apply(self, db, id_list=None, tupleind=None, user=None, tree=False):
         """
         Apply the filter using db.
         If id_list given, the handles in id_list are used. If not given
@@ -251,7 +260,7 @@ class GenericFilter:
         m = self.get_check_func()
         for rule in self.flist:
             rule.requestprepare(db, user)
-        res = m(db, id_list, user, tupleind)
+        res = m(db, id_list, user, tupleind, tree)
         for rule in self.flist:
             rule.requestreset()
         return res
@@ -315,6 +324,9 @@ class GenericCitationFilter(GenericFilter):
     def get_cursor(self, db):
         return db.get_citation_cursor()
 
+    def get_tree_cursor(self, db):
+        return db.get_citation_cursor()
+
     def make_obj(self):
         return Citation()
 
@@ -331,6 +343,9 @@ class GenericPlaceFilter(GenericFilter):
 
     def get_cursor(self, db):
         return db.get_place_cursor()
+
+    def get_tree_cursor(self, db):
+        return db.get_place_tree_cursor()
 
     def make_obj(self):
         return Place()
