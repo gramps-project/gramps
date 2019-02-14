@@ -1758,7 +1758,7 @@ class GrampsParser(UpdateCallback):
                             ' with "%(parent)s", did not change this grouping to "%(value)s".') % {
                             'key' : key, 'parent' : present, 'value' : value }
                     self.user.warn(_("Gramps ignored a name grouping"), msg)
-            else:
+            elif value != 'None':  # None test fixes file corrupted by 11011
                 self.db.set_name_group_mapping(key, value)
 
     def start_last(self, attrs):
