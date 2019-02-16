@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: 5.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-26 11:20-0600\n"
-"PO-Revision-Date: 2019-02-14 12:19+0100\n"
+"PO-Revision-Date: 2019-02-16 09:53+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -1294,9 +1294,9 @@ msgid "Database needs recovery, cannot open it!"
 msgstr "La base de données doit être réparée, impossible de l'ouvrir !"
 
 #: ../gramps/cli/arghandler.py:558
-#, fuzzy
 msgid "Database backend unavailable, cannot open it!"
-msgstr "La base de données est verrouillée, impossible de l'ouvrir !"
+msgstr ""
+"Le support de la base de données est indisponible, impossible de l'ouvrir !"
 
 #: ../gramps/cli/arghandler.py:609 ../gramps/cli/arghandler.py:658
 #: ../gramps/cli/arghandler.py:705
@@ -1348,7 +1348,6 @@ msgstr "Action inconnue : %s."
 
 # master
 #: ../gramps/cli/argparser.py:55
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -1394,6 +1393,8 @@ msgstr ""
 "\n"
 "Options de l'application\n"
 "  -O, --open=ARBRE_FAMILIAL              Ouvre l'arbre familial\n"
+"  -U, --username=NOM_UTILISATEUR  Database username\n"
+"  -P, --password=MOT_DE_PASSE         Database password\n"
 "  -C, --create=ARBRE_FAMILIAL            Créé à l'ouverture si arbre "
 "familial\n"
 "  -i, --import=FICHIER                   Importe un fichier\n"
@@ -1405,8 +1406,8 @@ msgstr ""
 "  -p, --options=OPTIONS                  Spécifie les options\n"
 "  -d, --debug=NOM_DE_LOGGER              Active les logs de déboguage\n"
 "  -l  [MODÈLE_ARBRE_FAMILIAL...]                 Liste les arbres familiaux\n"
-"  -L[MODÈLE_ARBRE_FAMILIAL...]                 Liste les arbres familiaux en "
-"détail\n"
+"  -L [MODÈLE_ARBRE_FAMILIAL...]                 Liste les arbres familiaux "
+"en détail\n"
 "  -t [MODÈLE_ARBRE_FAMILIAL...]                Liste les arbres familiaux "
 "dans un format tabulaire (tab)\n"
 "  -u, --force-unlock                     Force le déverrouillage de l'arbre\n"
@@ -1567,6 +1568,8 @@ msgid ""
 "WARNING: %(strerr)s (errno=%(errno)s):\n"
 "WARNING: %(name)s\n"
 msgstr ""
+"ATTENTION : %(strerr)s (errno=%(errno)s):\n"
+"ATTENTION : %(name)s\n"
 
 #: ../gramps/cli/argparser.py:324
 #, python-format
@@ -3452,6 +3455,11 @@ msgid ""
 "Please check your connection settings file:\n"
 "%(settings_file)s"
 msgstr ""
+"La connexion à la base de données a échoué.\n"
+"\n"
+"%(message)s\n"
+"S'il vous plaît vérifiez votre fichier de configuration :\n"
+"%(settings_file)s"
 
 #: ../gramps/gen/db/generic.py:161 ../gramps/gen/db/generic.py:211
 #: ../gramps/gen/db/generic.py:2018 ../gramps/plugins/db/bsddb/undoredo.py:251
@@ -10224,9 +10232,8 @@ msgstr "Taille personnalisée"
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/gen/plug/docgen/treedoc.py:63
-#, fuzzy
 msgid "Full"
-msgstr "Nom complet"
+msgstr "Complet"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:64
 #: ../gramps/plugins/tool/finddupes.py:61
@@ -10269,7 +10276,7 @@ msgstr "En haut (↑)"
 # master
 #: ../gramps/gen/plug/docgen/treedoc.py:78
 msgid "Right (→)"
-msgstr "Droit (→)"
+msgstr "Droite (→)"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:79
 msgid "Left (←)"
@@ -10294,7 +10301,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:89
 msgid "Tiny"
-msgstr ""
+msgstr "Tout petit"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:90
 #, fuzzy
@@ -10308,7 +10315,7 @@ msgstr "Pied de page"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:92
 msgid "Small"
-msgstr ""
+msgstr "Petit"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:93 ../gramps/gen/utils/string.py:57
 #: ../gramps/gui/editors/editcitation.py:212
@@ -10323,47 +10330,42 @@ msgid "Large"
 msgstr "Grand"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:95
-#, fuzzy
 msgid "Very large"
-msgstr "Tous les lieux"
+msgstr "Grand"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:96
 msgid "Extra large"
-msgstr ""
+msgstr "Très grand"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:97
 msgid "Huge"
-msgstr ""
+msgstr "Très très grand"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:98
 msgid "Extra huge"
-msgstr ""
+msgstr "Immense"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:141
-#, fuzzy
 msgid "Node Options"
-msgstr "Options de l'arbre"
+msgstr "Options du nœud"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:144
-#, fuzzy
 msgid "Node detail"
-msgstr "Voir les détails"
+msgstr "Détail du nœud"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:147
 msgid "Detail of information to be shown in a node."
-msgstr ""
+msgstr "Détail de l'information à afficher dans le nœud."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:153
-#, fuzzy
 msgid "Position of marriage information."
-msgstr "Informations de publication"
+msgstr "Position de l'information sur le mariage"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:156
-#, fuzzy
 msgid "Node size"
-msgstr "Taille de la note"
+msgstr "Taille du nœud"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:157
 msgid ""
@@ -10403,7 +10405,7 @@ msgstr "Heure"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:181
 msgid "Direction that the graph will grow over time."
-msgstr ""
+msgstr "Sens dans lequel le graphique va grandir."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:184
 #, fuzzy
@@ -10416,7 +10418,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/docgen/treedoc.py:190
 msgid "Level distance"
-msgstr ""
+msgstr "Distance du niveau"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:191
 #, fuzzy
@@ -12091,7 +12093,7 @@ msgstr "Féminin vivante"
 
 #: ../gramps/gui/configure.py:616
 msgid "Female Dead"
-msgstr "Féminin décédé"
+msgstr "Féminin décédée"
 
 # trunk
 #: ../gramps/gui/configure.py:617
@@ -12601,7 +12603,7 @@ msgstr "Backend de base de données"
 
 #: ../gramps/gui/configure.py:1531
 msgid "Host"
-msgstr ""
+msgstr "Serveur"
 
 # numéro = astuce pour éviter la liste par ordre alphabétique
 #: ../gramps/gui/configure.py:1535
@@ -12798,7 +12800,7 @@ msgstr "Choisir un _type de fichier :"
 
 #: ../gramps/gui/dbloader.py:380 ../gramps/gui/dbloader.py:402
 msgid "Login"
-msgstr ""
+msgstr "Identifiant"
 
 #: ../gramps/gui/dbloader.py:388
 msgid "Username: "
@@ -13070,6 +13072,8 @@ msgstr "Convertir la base de données « %s » ?"
 msgid ""
 "Do you wish to convert this family tree into a %(database_type)s database?"
 msgstr ""
+"Souhaitez-vous convertir un arbre familial vers une base de données "
+"%(database_type)s ?"
 
 # master
 #: ../gramps/gui/dbman.py:787
@@ -24932,6 +24936,8 @@ msgstr "Ajouter une nouvelle note À faire"
 #: ../gramps/plugins/gramplet/todo.py:201
 msgid "First select the object to which you want to attach a note"
 msgstr ""
+"Tout d'abord sélectionnez l'objet pour lequel vous souhaitez attacher une "
+"note. "
 
 #: ../gramps/plugins/gramplet/todogramplet.py:149
 msgid "Unattached"
@@ -37977,12 +37983,12 @@ msgstr "Nombre de media non-référencés"
 
 # master
 #: ../gramps/plugins/webreport/media.py:411
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(strong1_strt)s%(page_number)d%(strong_end)s of %(strong2_strt)s"
 "%(total_pages)d%(strong_end)s"
 msgstr ""
-"%(strong1_start)s%(page_number)d%(strong_end)s sur %(strong2_start)s"
+"%(strong1_strt)s%(page_number)d%(strong_end)s sur %(strong2_strt)s"
 "%(total_pages)d%(strong_end)s"
 
 #. missing media error message
