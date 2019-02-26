@@ -20,16 +20,19 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+"""
+This module is the base class for all geography view module
+"""
 #-------------------------------------------------------------------------
 #
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 import os
 import re
 import time
+import logging
+import gi
 from gi.repository import GLib
 
 #-------------------------------------------------------------------------
@@ -38,6 +41,7 @@ from gi.repository import GLib
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import OsmGpsMap as osmgpsmap
 
 #-------------------------------------------------------------------------
 #
@@ -55,23 +59,22 @@ from gramps.gen.config import config
 from gramps.gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
 from gramps.gui.selectors.selectplace import SelectPlace
 from gramps.gen.utils.file import media_path_full
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
-import gi
-gi.require_version('OsmGpsMap', '1.0')
-from gi.repository import OsmGpsMap as osmgpsmap
 from . import constants
 from .osmgps import OsmGps
 from .selectionlayer import SelectionLayer
 from .placeselection import PlaceSelection
 from .cairoprint import CairoPrintSave
 from .libkml import Kml
+gi.require_version('OsmGpsMap', '1.0')
+_ = glocale.translation.sgettext
 
 #------------------------------------------------------------------------
 #
 # Set up logging
 #
 #------------------------------------------------------------------------
-import logging
 _LOG = logging.getLogger("maps.geography")
 
 #-------------------------------------------------------------------------
@@ -88,11 +91,6 @@ GEOGRAPHY_PATH = os.path.join(HOME_DIR, "maps")
 #-------------------------------------------------------------------------
 PLACE_REGEXP = re.compile('<span background="green">(.*)</span>')
 PLACE_STRING = '<span background="green">%s</span>'
-
-# pylint: disable=unused-argument
-# pylint: disable=unused-variable
-# pylint: disable=no-member
-# pylint: disable=maybe-no-member
 
 def _get_sign(value):
     """
@@ -155,20 +153,13 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.places_found = []
         self.select_fct = None
         self.geo_mainmap = None
+        self.reloadtiles = None
         theme = Gtk.IconTheme.get_default()
         self.geo_mainmap = theme.load_surface('gramps-geo-mainmap', 48, 1,
                                               None, 0)
         self.geo_altmap = theme.load_surface('gramps-geo-altmap', 48, 1,
                                              None, 0)
-        if (config.get('geography.map_service') in
-            (constants.OPENSTREETMAP,
-             constants.MAPS_FOR_FREE,
-             constants.OPENCYCLEMAP,
-             constants.OSM_PUBLIC_TRANSPORT,
-             )):
-            default_image = self.geo_mainmap
-        else:
-            default_image = self.geo_altmap
+        self.sort = []
         self.geo_othermap = {}
         for ident in (EventType.BIRTH,
                       EventType.DEATH,
@@ -190,11 +181,14 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.changemap = None
         self.clearmap = None
         self.nbplaces = 0
+        self.nbmarkers = 0
+        self.place_without_coordinates = []
 
-    def add_bookmark(self, menu):
+    def add_bookmrk(self, menu):
         """
         Add the place to the bookmark
         """
+        dummy_menu = menu
         mlist = self.selected_handles()
         if mlist:
             self.bookmarks.add(mlist[0])
@@ -210,6 +204,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Add the place to the bookmark from the popup menu
         """
+        dummy_menu = menu
         if handle:
             self.uistate.set_active(handle, self.navigation_type())
             self.bookmarks.add(handle)
@@ -264,6 +259,9 @@ class GeoGraphyView(OsmGps, NavigationView):
         self._config.save()
 
     def clear_view(self):
+        """
+        Clear the map: places, markers, tracks, messages...
+        """
         self.place_list = []
         self.remove_all_markers()
         self.remove_all_gps()
@@ -278,6 +276,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         is no need to store the database, since we will get the value
         from self.state.db
         """
+        dummy_dbse = dbse
         if self.active:
             self.bookmarks.redraw()
         self.build_tree()
@@ -318,20 +317,26 @@ class GeoGraphyView(OsmGps, NavigationView):
         use it to monitor changes in the ini file
         """
         self._config.connect("geography.path",
-                          self.set_path)
+                             self.set_path)
         self._config.connect("geography.zoom_when_center",
-                          self.set_zoom_when_center)
+                             self.set_zoom_when_center)
 
     def set_path(self, client, cnxn_id, entry, data):
         """
         All geography views must have the same path for maps
         """
+        dummy_client = client
+        dummy_cnxn_id = cnxn_id
+        dummy_data = data
         config.set("geography.path", entry)
 
     def set_zoom_when_center(self, client, cnxn_id, entry, data):
         """
         All geography views must have the same zoom_when_center for maps
         """
+        dummy_client = client
+        dummy_cnxn_id = cnxn_id
+        dummy_data = data
         config.set("geography.zoom_when_center", int(entry))
 
     #-------------------------------------------------------------------------
@@ -339,7 +344,7 @@ class GeoGraphyView(OsmGps, NavigationView):
     # Map Menu
     #
     #-------------------------------------------------------------------------
-    def build_nav_menu(self, obj, event, lat, lon):
+    def build_nav_menu(self, osm, event, lat, lon):
         """
         Builds the menu for actions on the map.
         """
@@ -394,9 +399,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         menu.append(add_item)
 
         map_name = constants.MAP_TITLE[config.get("geography.map_service")]
-        title = _("Replace '%(map)s' by =>") % {
-                   'map' : map_name
-                  }
+        title = _("Replace '%(map)s' by =>") % {'map' : map_name}
         add_item = Gtk.MenuItem(label=title)
         add_item.show()
         menu.append(add_item)
@@ -414,8 +417,7 @@ class GeoGraphyView(OsmGps, NavigationView):
             changemap.append(changemapitem)
 
         reload_text = _("Reload all visible tiles for '%(map)s'.") % {
-                   'map' : map_name
-                  }
+            'map' : map_name}
         self.reloadtiles = Gtk.MenuItem(label=reload_text)
         reloadtiles = self.reloadtiles
         reloadtiles.connect("activate", self.reload_visible_tiles)
@@ -424,13 +426,12 @@ class GeoGraphyView(OsmGps, NavigationView):
         menu.append(reloadtiles)
 
         clear_text = _("Clear the '%(map)s' tiles cache.") % {
-                   'map' : map_name
-                  }
+            'map' : map_name}
         self.clearmap = Gtk.MenuItem(label=clear_text)
         clearmap = self.clearmap
         clearmap.connect("activate", self.clear_map,
                          constants.TILES_PATH[config.get(
-                                                      "geography.map_service")])
+                             "geography.map_service")])
 
         clearmap.show()
         menu.append(clearmap)
@@ -443,12 +444,14 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         We need to reload all visible tiles for the current map
         """
+        dummy_menu = menu
         self.reload_tiles()
 
     def clear_map(self, menu, the_map):
         """
         We need to clean the tiles cache for the current map
         """
+        dummy_menu = menu
         import shutil
 
         path = "%s%c%s" % (config.get('geography.path'), os.sep, the_map)
@@ -465,6 +468,8 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Center the map at the new position then save it.
         """
+        dummy_menu = menu
+        dummy_event = event
         self.osm.set_center_and_zoom(lat, lon,
                                      config.get("geography.zoom_when_center"))
         self.save_center(lat, lon)
@@ -484,21 +489,19 @@ class GeoGraphyView(OsmGps, NavigationView):
         for mark in self.sort:
             # as we are not precise with our hand, reduce the precision
             # depending on the zoom.
-            precision = {
-                          1 : '%3.0f', 2 : '%3.1f', 3 : '%3.1f', 4 : '%3.1f',
-                          5 : '%3.2f', 6 : '%3.2f', 7 : '%3.2f', 8 : '%3.3f',
-                          9 : '%3.3f', 10 : '%3.3f', 11 : '%3.3f', 12 : '%3.3f',
+            precision = {1 : '%3.0f', 2 : '%3.1f', 3 : '%3.1f', 4 : '%3.1f',
+                         5 : '%3.2f', 6 : '%3.2f', 7 : '%3.2f', 8 : '%3.3f',
+                         9 : '%3.3f', 10 : '%3.3f', 11 : '%3.3f', 12 : '%3.3f',
                          13 : '%3.3f', 14 : '%3.4f', 15 : '%3.4f', 16 : '%3.4f',
                          17 : '%3.4f', 18 : '%3.4f'
-                         }.get(config.get("geography.zoom"), '%3.1f')
-            shift = {
-                          1 : 5.0, 2 : 5.0, 3 : 3.0,
-                          4 : 1.0, 5 : 0.5, 6 : 0.3, 7 : 0.15,
-                          8 : 0.06, 9 : 0.03, 10 : 0.015,
-                         11 : 0.005, 12 : 0.003, 13 : 0.001,
-                         14 : 0.0005, 15 : 0.0003, 16 : 0.0001,
-                         17 : 0.0001, 18 : 0.0001
-                         }.get(config.get("geography.zoom"), 5.0)
+                        }.get(config.get("geography.zoom"), '%3.1f')
+            shift = {1 : 5.0, 2 : 5.0, 3 : 3.0,
+                     4 : 1.0, 5 : 0.5, 6 : 0.3, 7 : 0.15,
+                     8 : 0.06, 9 : 0.03, 10 : 0.015,
+                     11 : 0.005, 12 : 0.003, 13 : 0.001,
+                     14 : 0.0005, 15 : 0.0003, 16 : 0.0001,
+                     17 : 0.0001, 18 : 0.0001
+                    }.get(config.get("geography.zoom"), 5.0)
             latp = precision % lat
             lonp = precision % lon
             mlatp = precision % float(mark[3])
@@ -508,7 +511,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                        " place='%s'", float(mark[3]), lat, precision, mark[0])
             _LOG.debug("compare longitude : %s with %s (precision = %s)"
                        " zoom=%d", float(mark[4]), lon, precision,
-                                     config.get("geography.zoom"))
+                       config.get("geography.zoom"))
             if (float(mlatp) >= (float(latp) - shift)) and \
                (float(mlatp) <= (float(latp) + shift)):
                 latok = True
@@ -547,6 +550,8 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Add a new marker
         """
+        dummy_menu = menu
+        dummy_event = event
         mapservice = config.get('geography.map_service')
         if (mapservice in (constants.OPENSTREETMAP,
                            constants.OPENSTREETMAP_RENDERER)):
@@ -632,7 +637,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Create a list of places without coordinates.
         """
-        if not [gid, place] in self.place_without_coordinates:
+        if [gid, place] not in self.place_without_coordinates:
             self.place_without_coordinates.append([gid, place])
             self.without += 1
 
@@ -646,19 +651,19 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.remove_all_gps()
         self.remove_all_tracks()
         if (self.current_map is not None and
-            self.current_map != config.get("geography.map_service")):
+                self.current_map != config.get("geography.map_service")):
             self.change_map(self.osm, config.get("geography.map_service"))
         last = ""
         current = ""
         differtype = False
-        #savetype = None
         lat = 0.0
         lon = 0.0
         icon = None
         count = 0
+        colour = None
         self.uistate.set_busy_cursor(True)
         _LOG.debug("%s", time.strftime("start create_marker : "
-                   "%a %d %b %Y %H:%M:%S", time.gmtime()))
+                                       "%a %d %b %Y %H:%M:%S", time.gmtime()))
         for mark in self.sort:
             current = ([mark[3], mark[4]])
             if last == "":
@@ -686,10 +691,10 @@ class GeoGraphyView(OsmGps, NavigationView):
                     differtype = True
         if lat != 0.0 and lon != 0.0:
             self.add_marker(None, None, lat, lon, icon, differtype,
-                            count, color=mark[12])
+                            count, color=colour)
             self._set_center_and_zoom()
         _LOG.debug("%s", time.strftime(" stop create_marker : "
-                   "%a %d %b %Y %H:%M:%S", time.gmtime()))
+                                       "%a %d %b %Y %H:%M:%S", time.gmtime()))
         self.uistate.set_busy_cursor(False)
 
     def _visible_marker(self, lat, lon):
@@ -714,27 +719,25 @@ class GeoGraphyView(OsmGps, NavigationView):
         We zoom in until at least one marker missing.
         """
         if ((self._visible_marker(p1lat, p1lon)
-             and self._visible_marker(p2lat, p2lon))
-             and lvl < 18):
+             and self._visible_marker(p2lat, p2lon)) and lvl < 18):
             lvl += 1
             self.osm.set_zoom(lvl)
             GLib.timeout_add(int(50), self._autozoom_in, lvl,
-                                p1lat, p1lon, p2lat, p2lon)
+                             p1lat, p1lon, p2lat, p2lon)
         else:
             GLib.timeout_add(int(50), self._autozoom_out, lvl,
-                                p1lat, p1lon, p2lat, p2lon)
+                             p1lat, p1lon, p2lat, p2lon)
 
     def _autozoom_out(self, lvl, p1lat, p1lon, p2lat, p2lon):
         """
         We zoom out until all markers visible.
         """
         if (not (self._visible_marker(p1lat, p1lon)
-                 and self._visible_marker(p2lat, p2lon))
-                 and lvl > 1):
+                 and self._visible_marker(p2lat, p2lon)) and lvl > 1):
             lvl -= 1
             self.osm.set_zoom(lvl)
             GLib.timeout_add(int(50), self._autozoom_out, lvl,
-                                p1lat, p1lon, p2lat, p2lon)
+                             p1lat, p1lon, p2lat, p2lon)
         else:
             layer = self.get_selection_layer()
             if layer:
@@ -761,7 +764,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         p2lon = self.end_selection.rlon
         # We zoom in until at least one marker missing.
         GLib.timeout_add(int(50), self._autozoom_in, level_start,
-                            p1lat, p1lon, p2lat, p2lon)
+                         p1lat, p1lon, p2lat, p2lon)
 
     def _set_center_and_zoom(self):
         """
@@ -774,54 +777,16 @@ class GeoGraphyView(OsmGps, NavigationView):
         The following is too complex. In some case, all markers are not present.
         """
         # Select the center of the map and the zoom
-        signminlon = _get_sign(self.minlon)
-        signminlat = _get_sign(self.minlat)
-        signmaxlon = _get_sign(self.maxlon)
-        signmaxlat = _get_sign(self.maxlat)
         current = osmgpsmap.MapPoint.new_degrees(self.minlat, self.minlon)
         self.end_selection = current
         current = osmgpsmap.MapPoint.new_degrees(self.maxlat, self.maxlon)
         self.begin_selection = current
-        if signminlon == signmaxlon:
-            maxlong = abs(abs(self.minlon) - abs(self.maxlon))
-        else:
-            maxlong = abs(abs(self.minlon) + abs(self.maxlon))
-        if signminlat == signmaxlat:
-            maxlat = abs(abs(self.minlat) - abs(self.maxlat))
-        else:
-            maxlat = abs(abs(self.minlat) + abs(self.maxlat))
-        latit = longt = 0.0
-        for mark in self.sort:
-            if signminlat == signmaxlat:
-                if signminlat == 1:
-                    latit = self.minlat+self.centerlat
-                else:
-                    latit = self.maxlat-self.centerlat
-            elif self.maxlat > self.centerlat:
-                latit = self.maxlat-self.centerlat
-            else:
-                latit = self.minlat+self.centerlat
-            if signminlon == signmaxlon:
-                if signminlon == 1:
-                    longt = self.minlon+self.centerlon
-                else:
-                    longt = self.maxlon-self.centerlon
-            elif self.maxlon > self.centerlon:
-                longt = self.maxlon-self.centerlon
-            else:
-                longt = self.minlon+self.centerlon
-            # all maps: 0.0 for longitude and latitude means no location.
-            if latit == longt == 0.0:
-                latit = longt = 0.00000001
-        self.latit = latit
-        self.longt = longt
         if config.get("geography.lock"):
             self.osm.set_center_and_zoom(config.get("geography.center-lat"),
                                          config.get("geography.center-lon"),
                                          config.get("geography.zoom"))
         else:
             self._autozoom()
-            self.save_center(self.latit, self.longt)
             config.set("geography.zoom", self.osm.props.zoom)
         self.end_selection = None
 
@@ -833,9 +798,8 @@ class GeoGraphyView(OsmGps, NavigationView):
         family_list = [
             dbstate.db.get_family_from_handle(ref_handle)
             for (ref_type, ref_handle) in
-                dbstate.db.find_backlink_handles(event.handle)
-                    if ref_type == 'Family'
-                      ]
+            dbstate.db.find_backlink_handles(event.handle)
+            if ref_type == 'Family']
         fnam = mnam = _("Unknown")
         if family_list:
             for family in family_list:
@@ -865,7 +829,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                 object_handle = media_ref.get_reference_handle()
                 media_obj = self.dbstate.db.get_media_from_handle(object_handle)
                 path = media_obj.get_path()
-                name, extension = os.path.splitext(path)
+                dummy_name, extension = os.path.splitext(path)
                 if extension == ".kml":
                     path = media_path_full(self.dbstate.db, path)
                     if os.path.isfile(path):
@@ -880,6 +844,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Print or save the view that is currently shown
         """
+        dummy_obj = obj
         if Gtk.MAJOR_VERSION == 3 and Gtk.MINOR_VERSION < 11:
             from gramps.gui.dialog import WarningDialog
             WarningDialog(
@@ -903,6 +868,8 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Center the map at the marker position
         """
+        dummy_lat = lat
+        dummy_lon = lon
         self.set_center(menu, event, float(mark[3]), float(mark[4]))
 
     def add_place_bubble_message(self, event, lat, lon, marks,
@@ -910,6 +877,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Create the place menu of a marker
         """
+        dummy_marks = marks
         add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)
@@ -937,21 +905,27 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Edit the selected place at the marker position
         """
+        dummy_menu = menu
+        dummy_event = event
         self.mark = mark
         place = self.dbstate.db.get_place_from_gramps_id(self.mark[9])
         parent_list = place.get_placeref_list()
-        if len(parent_list) > 0:
+        if parent_list:
             parent = parent_list[0].ref
         else:
             parent = None
         self.select_fct = PlaceSelection(self.uistate, self.dbstate, self.osm,
-                       self.selection_layer, self.place_list,
-                       lat, lon, self.__edit_place, parent)
+                                         self.selection_layer, self.place_list,
+                                         lat, lon, self.__edit_place, parent)
 
     def edit_person(self, menu, event, lat, lon, mark):
         """
         Edit the selected person at the marker position
         """
+        dummy_menu = menu
+        dummy_event = event
+        dummy_lat = lat
+        dummy_lon = lon
         _LOG.debug("edit_person : %s", mark[8])
         # need to add code here to edit the person.
         person = self.dbstate.db.get_person_from_gramps_id(mark[8])
@@ -964,6 +938,10 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Edit the selected family at the marker position
         """
+        dummy_menu = menu
+        dummy_event = event
+        dummy_lat = lat
+        dummy_lon = lon
         _LOG.debug("edit_family : %s", mark[11])
         family = self.dbstate.db.get_family_from_gramps_id(mark[11])
         try:
@@ -975,6 +953,9 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Edit the selected event at the marker position
         """
+        dummy_menu = menu
+        dummy_lat = lat
+        dummy_lon = lon
         _LOG.debug("edit_event : %s", mark[10])
         event = self.dbstate.db.get_event_from_gramps_id(mark[10])
         try:
@@ -987,9 +968,11 @@ class GeoGraphyView(OsmGps, NavigationView):
         Add a new place using longitude and latitude of location centered
         on the map
         """
+        dummy_menu = menu
+        dummy_event = event
         self.select_fct = PlaceSelection(self.uistate, self.dbstate, self.osm,
-                       self.selection_layer, self.place_list,
-                       lat, lon, self.__add_place)
+                                         self.selection_layer, self.place_list,
+                                         lat, lon, self.__add_place)
 
     def add_place_from_kml(self, menu, event, lat, lon):
         """
@@ -1000,6 +983,10 @@ class GeoGraphyView(OsmGps, NavigationView):
         3 - create the place(s) with name and title found in the kml marker.
 
         """
+        dummy_menu = menu
+        dummy_event = event
+        dummy_lat = lat
+        dummy_lon = lon
         # Ask for the kml file
         filtering = Gtk.FileFilter()
         filtering.add_pattern("*.kml")
@@ -1043,13 +1030,13 @@ class GeoGraphyView(OsmGps, NavigationView):
         If we have a place history, we must show all places to avoid an empty
         place selection in the PlaceSelection.
         """
-        if self.uistate.get_active('Place'):
-            self._createmap(None)
+        dummy_menu = menu
+        dummy_event = event
         selector = SelectPlace(self.dbstate, self.uistate, [])
         place = selector.run()
         if place:
             parent_list = place.get_placeref_list()
-            if len(parent_list) > 0:
+            if parent_list:
                 parent = parent_list[0].ref
             else:
                 parent = None
@@ -1069,20 +1056,19 @@ class GeoGraphyView(OsmGps, NavigationView):
                         gids = gids + ", " + plce.gramps_id
             if nb_places > 1:
                 from gramps.gui.dialog import WarningDialog
+                ptitle = place_title
                 WarningDialog(
-                      _('You have at least two places with the same title.'),
-                      _("The title of the places is:\n%(title)s\n"
-                        "The following places are similar: %(gid)s\n"
-                        "You should eiher rename the places or merge them.\n\n"
-                        "%(bold_start)s"
-                        "I can't proceed with your request"
-                        "%(bold_end)s.\n") % {
-                            'bold_start' : '<b>',
-                            'bold_end'   : '</b>',
-                            'title': '<b>' + place_title + '</b>',
-                            'gid': gids},
-                       parent=self.uistate.window
-                      )
+                    _('You have at least two places with the same title.'),
+                    _("The title of the places is:\n%(title)s\n"
+                      "The following places are similar: %(gid)s\n"
+                      "You should eiher rename the places or merge them.\n\n"
+                      "%(bold_start)s"
+                      "I can't proceed with your request"
+                      "%(bold_end)s.\n") % {'bold_start' : '<b>',
+                                            'bold_end'   : '</b>',
+                                            'title': '<b>' + ptitle + '</b>',
+                                            'gid': gids},
+                    parent=self.uistate.window)
             else:
                 self.mark = [None, None, None, None, None, None, None,
                              None, None, place.gramps_id, None, None]
@@ -1129,6 +1115,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Edit the selected place at the marker position
         """
+        dummy_parent = parent
         self.select_fct.close()
         place = self.dbstate.db.get_place_from_gramps_id(self.mark[9])
         place.set_latitude(str(plat))
@@ -1174,6 +1161,10 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Do we need to lock the zoom and position ?
         """
+        dummy_client = client
+        dummy_cnxn_id = cnxn_id
+        dummy_entry = entry
+        dummy_data = data
         if config.get("geography.lock"):
             config.set("geography.lock", False)
             self._set_center_and_zoom()
@@ -1185,6 +1176,10 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         We asked to change the crosshair.
         """
+        dummy_client = client
+        dummy_cnxn_id = cnxn_id
+        dummy_entry = entry
+        dummy_data = data
         if config.get("geography.show_cross"):
             config.set("geography.show_cross", False)
         else:
@@ -1219,35 +1214,37 @@ class GeoGraphyView(OsmGps, NavigationView):
         grid.set_row_spacing(6)
         self.path_entry = Gtk.Entry()
         configdialog.add_path_box(grid,
-                _('Where to save the tiles for offline mode.'),
-                0, self.path_entry, config.get('geography.path'),
-                self.set_tilepath, self.select_tilepath)
+                                  _('Where to save the tiles for offline'
+                                    ' mode.'),
+                                  0, self.path_entry,
+                                  config.get('geography.path'),
+                                  self.set_tilepath, self.select_tilepath)
         configdialog.add_text(grid,
-                _('If you have no more space in your file system. '
-                  'You can remove all tiles placed in the above path.\n'
-                  'Be careful! If you have no internet, you\'ll get no map.'),
-                2, line_wrap=False)
-        configdialog.add_slider(grid,
-                _('Zoom used when centering'),
-                3, 'geography.zoom_when_center',
-                (2, 16))
-        configdialog.add_slider(grid,
-                _('The maximum number of places to show'),
-                4, 'geography.max_places',
-                (1000, 10000))
+                              _('If you have no more space in your file system.'
+                                ' You can remove all tiles placed in the above'
+                                ' path.\nBe careful! If you have no internet,'
+                                ' you\'ll get no map.'),
+                              2, line_wrap=False)
+        configdialog.add_slider(grid, _('Zoom used when centering'),
+                                3, 'geography.zoom_when_center',
+                                (2, 16))
+        configdialog.add_slider(grid, _('The maximum number of places to show'),
+                                4, 'geography.max_places',
+                                (1000, 10000))
         configdialog.add_checkbox(grid,
-                _('Use keypad for shortcuts :\n'
-                  'Either we choose the + and - from the keypad if we '
-                  'select this,\n'
-                  'or we use the characters from the keyboard.'),
-                5, 'geography.use-keypad',
-                extra_callback=self.update_shortcuts)
+                                  _('Use keypad for shortcuts :\nEither we '
+                                    'choose the + and - from the keypad if we '
+                                    'select this,\nor we use the characters '
+                                    'from the keyboard.'),
+                                  5, 'geography.use-keypad',
+                                  extra_callback=self.update_shortcuts)
         return _('The map'), grid
 
     def set_tilepath(self, *obj):
         """
         Save the tile path in the config section.
         """
+        dummy_obj = obj
         if self.path_entry.get_text().strip():
             config.set('geography.path', self.path_entry.get_text())
         else:
@@ -1257,6 +1254,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Call a file chooser selection box to select the tile path.
         """
+        dummy_obj = obj
         selected_dir = Gtk.FileChooserDialog(
             _("Select tile cache directory for offline mode"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
