@@ -124,7 +124,7 @@ from gramps.gen.lib import (
     Surname, Tag, Url, UrlType, PlaceType, PlaceRef, PlaceName)
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
-from gramps.gen.mime import get_type
+from gramps.gen.utils.file import media_path
 from gramps.gen.utils.id import create_id
 from gramps.gen.utils.lds import TEMPLES
 from gramps.gen.utils.unknown import make_unknown, create_explanation_note
@@ -2720,7 +2720,6 @@ class GedcomParser(UpdateCallback):
 
         self.attrs = list(amap.values())
         self.gedattr = dict([key, val] for val, key in amap.items())
-        self.search_paths = []
 
     def parse_gedcom_file(self, use_trans=False):
         """
@@ -3013,6 +3012,9 @@ class GedcomParser(UpdateCallback):
             # FIXME: problem possibly caused by umlaut/accented character
             # in filename
             return (0, fullname)
+        # strip off Windows drive letter, if present
+        if len(fullname) > 3 and fullname[1] == ':':
+            fullname = fullname[2:]
         # look where we found the '.ged', using the full path in fullname
         other = os.path.join(altpath, fullname)
         if os.path.isfile(other):
@@ -3021,15 +3023,15 @@ class GedcomParser(UpdateCallback):
         other = os.path.join(altpath, os.path.basename(fullname))
         if os.path.isfile(other):
             return (1, other)
-        # I don't think the following code does anything because search_paths
-        # is never initialized...
-        if len(fullname) > 3:
-            if fullname[1] == ':':
-                fullname = fullname[2:]
-                for path in self.search_paths:
-                    other = os.path.normpath("%s/%s" % (path, fullname))
-                    if os.path.isfile(other):
-                        return (1, other)
+        # lets try using the base path for relative media paths
+        other = os.path.join(media_path(self.dbase), fullname)
+        if os.path.isfile(other):
+            return (1, fullname)
+        # lets try using the base path for relative media paths with base name
+        other = os.path.join(media_path(self.dbase),
+                             os.path.basename(fullname))
+        if os.path.isfile(other):
+            return (1, os.path.basename(fullname))
         return (0, fullname)
 
     def __get_next_line(self):
@@ -5358,8 +5360,9 @@ class GedcomParser(UpdateCallback):
             # to allow import of references to URLs (especially for import from
             # geni.com), do not try to find the file if it is blatently a URL
             res = urlparse(sub_state.filename)
-            if sub_state.filename != '' and \
-                    (res.scheme == '' or res.scheme == 'file'):
+            if sub_state.filename != '' and (res.scheme == '' or
+                                             len(res.scheme) == 1 or
+                                             res.scheme == 'file'):
                 (valid, path) = self.__find_file(sub_state.filename,
                                                  self.dir_path)
                 if not valid:
@@ -6735,12 +6738,13 @@ class GedcomParser(UpdateCallback):
             self.__skip_subordinate_levels(state.level + 1, state)
             return
         res = urlparse(line.data)
-        if line.data != '' and (res.scheme == '' or res.scheme == 'file'):
+        if line.data != '' and (res.scheme == '' or
+                                len(res.scheme) == 1 or res.scheme == 'file'):
             (file_ok, filename) = self.__find_file(line.data, self.dir_path)
             if state.form != "url":
                 # Might not work if FORM doesn't precede FILE
                 if not file_ok:
-                    self.__add_msg(_("Could not import %s") % filename, line,
+                    self.__add_msg(_("Could not import %s") % line.data, line,
                                    state)
             path = filename
         else:
