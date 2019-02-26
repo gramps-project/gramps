@@ -26,6 +26,7 @@ __all__ = ["MaskedEntry", "ValidatableMaskedEntry"]
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import string
@@ -986,6 +987,8 @@ class ValidatableMaskedEntry(MaskedEntry):
         self.mandatory = False
         self.error_icon = error_icon
         self._block_changed = False
+        scheme = config.get('colors.scheme')
+        err_color = config.get('colors.entry')[scheme]
 
         MaskedEntry.__init__(self)
 
