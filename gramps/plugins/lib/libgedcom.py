@@ -94,6 +94,7 @@ import time
 # from xml.parsers.expat import ParserCreate
 from collections import defaultdict, OrderedDict
 import string
+import mimetypes
 from io import StringIO, TextIOWrapper
 from urllib.parse import urlparse
 
@@ -530,15 +531,6 @@ PEDIGREE_TYPES = {
     'step'   : TYPE_ADOPT,
     'adopted': TYPE_ADOPT,
     'foster' : TYPE_FOSTER, }
-
-MIME_MAP = {
-    'jpeg' : 'image/jpeg', 'rtf'  : 'text/rtf',
-    'jpg'  : 'image/jpeg', 'pdf'  : 'application/pdf',
-    'mpeg' : 'video/mpeg', 'gif'  : 'image/gif',
-    'mpg'  : 'video/mpeg', 'bmp'  : 'image/x-ms-bmp',
-    'tiff' : 'image/tiff', 'aif'  : 'audio/x-aiff',
-    'text' : 'text/plain', 'w8bn' : 'application/msword',
-    'wav'  : 'audio/x-wav', 'mov' : 'video/quicktime', }
 
 FTW_BAD_PLACE = [
     EventType.OCCUPATION,
@@ -5386,11 +5378,17 @@ class GedcomParser(UpdateCallback):
                 else:
                     photo.set_description(path)
                 full_path = os.path.abspath(path)
-                if os.path.isfile(full_path):
-                    photo.set_mime_type(get_type(full_path))
-                else:
-                    photo.set_mime_type(MIME_MAP.get(sub_state.form,
-                                                     'unknown'))
+                # deal with mime types
+                value = mimetypes.guess_type(full_path)
+                if value and value[0]:  # found from filename
+                    photo.set_mime_type(value[0])
+                else:  # get from OBJE.FILE.FORM
+                    if '/' in sub_state.form:  # already has expanded mime type
+                        photo.set_mime_type(sub_state.form)
+                    else:
+                        value = mimetypes.types_map.get('.' + sub_state.form,
+                                                        _('unknown'))
+                        photo.set_mime_type(value)
                 if sub_state.attr:
                     photo.attribute_list.append(sub_state.attr)
                 self.dbase.add_media(photo, self.trans)
@@ -6691,6 +6689,17 @@ class GedcomParser(UpdateCallback):
 
         if state.media.get_path() == "":
             self.__add_msg(_("Filename omitted"), line, state)
+        # deal with mime types
+        value = mimetypes.guess_type(state.media.get_path())
+        if value and value[0]:  # found from filename
+            state.media.set_mime_type(value[0])
+        else:  # get from OBJE.FILE.FORM
+            if '/' in state.form:  # already has expanded mime type
+                state.media.set_mime_type(state.form)
+            else:
+                value = mimetypes.types_map.get('.' + state.form,
+                                                _('unknown'))
+                state.media.set_mime_type(value)
         # Add the default reference if no source has found
         self.__add_default_source(media)
 
@@ -6738,7 +6747,6 @@ class GedcomParser(UpdateCallback):
             path = line.data
 
         state.media.set_path(path)
-        state.media.set_mime_type(get_type(path))
         if not state.media.get_description():
             state.media.set_description(path)
 
