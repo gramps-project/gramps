@@ -2,12 +2,13 @@
 # This file is distributed under the same license as the Gramps package.
 # Copyright (c) 2007 gramps-project
 # Bernard Banko <beernarrd at gmail.com>, 2007-2019.
+# Bernard Banko <beernarrd at gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-26 11:20-0600\n"
-"PO-Revision-Date: 2019-02-10 18:19+0200\n"
+"PO-Revision-Date: 2019-02-24 22:16+0200\n"
 "Last-Translator: Bernard Banko <beernarrd at gmail.com>\n"
 "Language-Team: lugos.si\n"
 "Language: sl\n"
@@ -853,8 +854,8 @@ msgid ""
 "Tree (WFT) format. This format allows a family tree to be displayed online "
 "using a single file, instead of many html files."
 msgstr ""
-"<b>Zapis Web Family Tree</b><br/>Gramps lahko izvozi podatke v obliki WTF "
-"(Web Family Tree), ki omogoča prikaz rodovnika na spletu v eni sami datoteki "
+"<b>Zapis Web Family Tree</b><br/>Gramps lahko izvozi podatke v obliki WTF ("
+"Web Family Tree), ki omogoča prikaz rodovnika na spletu v eni sami datoteki "
 "in ne v več datotekah html, kot običajno."
 
 #: ../data/tips.xml.in.h:45
@@ -3089,9 +3090,9 @@ msgstr ""
 "morete naložiti rodovnika brez nadgradnje različice zapisa Rodovnika.\n"
 "\n"
 "Po nadgradnji ne boste več mogli uporabljati prejšnje različice Grampsa, "
-"čeprav %(wiki_manual_backup_html_start)snaredite varnostno kopijo"
-"%(html_end)s ali %(wiki_manual_export_html_start)sizvozite%(html_end)s "
-"nadgrajeni rodovnik.\n"
+"čeprav %(wiki_manual_backup_html_start)snaredite varnostno kopijo%(html_end)"
+"s ali %(wiki_manual_export_html_start)sizvozite%(html_end)s nadgrajeni "
+"rodovnik.\n"
 "\n"
 "Nadgradnja je zahtevno opravilo, ki lahko poškoduje rodovnik, če pri tem "
 "pride do prekinitve ali če postopek spodleti.\n"
@@ -3802,7 +3803,8 @@ msgid ""
 "mm:ss) or in the range, if a second date-time is given."
 msgstr ""
 "Vrne vse zapise navedkov, ki so bili spremenjeni po določenem datumu (LLLL-"
-"MM-DD hh:mm:ss) oziroma v določenem obdobju, če je naveden tudi drugi datum."
+"MM-DD hh:mm:ss) oziroma v določenem obdobju, če je naveden tudi drugi "
+"datum."
 
 #: ../gramps/gen/filters/rules/citation/_citationprivate.py:43
 msgid "Citations marked private"
@@ -4057,7 +4059,8 @@ msgid ""
 "ss) or in the range, if a second date/time is given."
 msgstr ""
 "Vrne vse zapise dogodkov, ki so bili spremenjeni po določenem datumu (LLLL-"
-"MM-DD hh:mm:ss) oziroma v določenem obdobju, če je naveden tudi drugi datum."
+"MM-DD hh:mm:ss) oziroma v določenem obdobju, če je naveden tudi drugi "
+"datum."
 
 #: ../gramps/gen/filters/rules/event/_eventprivate.py:42
 msgid "Events marked private"
@@ -4956,8 +4959,8 @@ msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given."
 msgstr ""
-"Vrne vse zapise oseb, ki so bili spremenjeni po določenem datumu (LLLL-MM-DD "
-"hh:mm:ss) oziroma v določenem obdobju, če je naveden tudi drugi datum."
+"Vrne vse zapise oseb, ki so bili spremenjeni po določenem datumu (LLLL-MM-"
+"DD hh:mm:ss) oziroma v določenem obdobju, če je naveden tudi drugi datum."
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:53
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:176
@@ -5854,8 +5857,8 @@ msgid ""
 "ss) or in the range, if a second date-time is given."
 msgstr ""
 "Vrne vse zapise krajev, ki so bili spremenjeni po določenem datumu in času "
-"(LLLL-MM-DD hh:mm:ss) oziroma v določenem obdobju, če je naveden tudi drugi "
-"datum."
+"(LLLL-MM-DD hh:mm:ss) oziroma v določenem obdobju, če je naveden tudi "
+"drugi datum."
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
 msgid "Place with the <citation>"
@@ -6256,8 +6259,8 @@ msgid ""
 "ss) or in the range, if a second date-time is given."
 msgstr ""
 "Vrne vse zapise virov, ki so bili spremenjeni po določenem datumu in času "
-"(LLLL-MM-DD hh:mm:ss) oziroma v določenem obdobju, če je naveden tudi drugi "
-"datum."
+"(LLLL-MM-DD hh:mm:ss) oziroma v določenem obdobju, če je naveden tudi "
+"drugi datum."
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:45
 msgid "Sources with <count> media"
@@ -21658,7 +21661,7 @@ msgstr "WWW"
 #: ../gramps/plugins/export/exportgedcom.py:1438
 #, fuzzy
 msgid "Writing media"
-msgstr "Zapisovanje pred"
+msgstr "Zapisovanje predmetov"
 
 #: ../gramps/plugins/export/exportgedcom.py:1613
 msgid "GEDCOM Export failed"
@@ -22793,12 +22796,12 @@ msgstr "Pripomoček, ki zagotavlja filter za opombe"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1138
 #: ../gramps/plugins/textreport/recordsreport.py:118
 msgid "Records"
-msgstr "Zapisi"
+msgstr "Rekordi"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1128
 #: ../gramps/plugins/textreport/textplugins.gpr.py:416
 msgid "Shows some interesting records about people and families"
-msgstr "Prikaže nekaj zanimivih zapisov o ljudeh in družinah"
+msgstr "Prikaže nekaj zanimivih rekordnih podatkov o ljudeh in družinah"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1143
 msgid "Person To Do"
@@ -25530,8 +25533,8 @@ msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
 msgstr ""
-"Datoteka GEDCOM je okvarjena. Izgleda, kot da bi bila zapisana v naboru "
-"UTF-16, vendar nima oznake BOM."
+"Datoteka GEDCOM je okvarjena. Izgleda, kot da bi bila zapisana v naboru UTF-"
+"16, vendar nima oznake BOM."
 
 #: ../gramps/plugins/lib/libgedcom.py:8025
 msgid "Your GEDCOM file is empty."
@@ -31773,7 +31776,7 @@ msgstr "Ustvari abecedno kazalo za knjižna poročila."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:415
 msgid "Records Report"
-msgstr "Poročilo o zapisih"
+msgstr "Poročilo o rekordih"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:437
 msgid "Note Link Report"
