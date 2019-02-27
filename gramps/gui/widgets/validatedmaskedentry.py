@@ -939,7 +939,7 @@ class MaskedEntry(UndoableEntry):
 VALIDATION_ICON_WIDTH = 16
 MANDATORY_ICON = 'dialog-information'
 ERROR_ICON = 'process-stop'
-FADE_TIME = 2500
+DELAY_TIME = 2500
 
 class ValidatableMaskedEntry(MaskedEntry):
     """
@@ -981,7 +981,7 @@ class ValidatableMaskedEntry(MaskedEntry):
     #allowed_data_types = (basestring, datetime.date, datetime.time,
                           #datetime.datetime, object) + number
 
-    def __init__(self, data_type=None, err_color="pink", error_icon=ERROR_ICON):
+    def __init__(self, data_type=None, error_icon=ERROR_ICON):
         self.data_type = None
         self.mandatory = False
         self.error_icon = error_icon
@@ -991,19 +991,7 @@ class ValidatableMaskedEntry(MaskedEntry):
 
         self._valid = True
         self._def_error_msg = None
-
-        self.__fade_tag = None
-        provider = Gtk.CssProvider()
-        css = '.fade {\n'
-        css += '    background: {};\n'.format(err_color)
-        css += '    transition: background {:d}ms linear;\n'.format(FADE_TIME)
-        css += '}'
-        css += '.bg {\n'
-        css += '    background: {};\n'.format(err_color)
-        css += '}'
-        provider.load_from_data(css.encode('utf8'))
-        context = self.get_style_context()
-        context.add_provider(provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+        self.__delay_tag = None
 
         # FIXME put data type support back
         #self.set_property('data-type', data_type)
@@ -1130,20 +1118,18 @@ class ValidatableMaskedEntry(MaskedEntry):
 
         self._set_valid_state(True)
 
-        if self.__fade_tag is not None:
-            GLib.source_remove(self.__fade_tag)
-            self.__fade_tag = None
+        if self.__delay_tag is not None:
+            GLib.source_remove(self.__delay_tag)
+            self.__delay_tag = None
         self.set_stock(None)
         context = self.get_style_context()
-        context.remove_class('fade')
-        context.remove_class('bg')
+        context.remove_class('error')
 
-    def set_invalid(self, text=None, fade=True):
+    def set_invalid(self, text=None):
         """
         Change the validation state to invalid.
 
         :param text: text of tooltip of None
-        :param fade: if we should fade the background
         """
         ##_LOG.debug('Setting state for %s to INVALID' % self.model_attribute)
         if not self.is_valid():
@@ -1177,12 +1163,8 @@ class ValidatableMaskedEntry(MaskedEntry):
         self.set_tooltip(text)
 
         context = self.get_style_context()
-        if fade:
-            self.__fade_tag = GLib.timeout_add(FADE_TIME, self.__fade_finished)
-            context.add_class('fade')
-        else:
-            self.set_stock(self.error_icon)
-            context.add_class('bg')
+        self.__delay_tag = GLib.timeout_add(DELAY_TIME, self.__delay_finished)
+        context.add_class('error')
 
     def set_blank(self):
         """
@@ -1229,9 +1211,9 @@ class ValidatableMaskedEntry(MaskedEntry):
         self.emit('validation-changed', state)
         self._valid = state
 
-    def __fade_finished(self):
-        """Set error icon after fade has finished."""
-        self.__fade_tag = None
+    def __delay_finished(self):
+        """Set error icon after delay has finished."""
+        self.__delay_tag = None
         self.set_stock(self.error_icon)
         return False
 
