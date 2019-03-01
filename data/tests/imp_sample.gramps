@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2016-10-24" version="5.0.0-alpha1"/>
+    <created date="2019-03-05" version="5.0.2"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
       <resaddr>Not Provided</resaddr>
@@ -163,6 +163,7 @@
     </event>
     <event handle="_0000005500000055" change="1" id="E0026">
       <type>Birth</type>
+      <description>No Date Information</description>
     </event>
     <event handle="_0000005600000056" change="1" id="E0027">
       <type>Death</type>
@@ -1506,7 +1507,8 @@
     <note handle="_0000000100000001" change="1" id="N0000" type="GEDCOM import">
       <text>Records not imported into HEAD (header):
 
-GEDCOM FORM not supported                                           Line    14: 2 FORM NOT LINEAGE-LINKED</text>
+GEDCOM FORM not supported                                           Line    14: 2 FORM NOT LINEAGE-LINKED
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="148"/>
       </style>
@@ -1514,7 +1516,8 @@ GEDCOM FORM not supported                                           Line    14: 
     <note handle="_0000000200000002" change="1" id="N0001" type="GEDCOM import">
       <text>Records not imported into SUBM (Submitter): (@SUBM@) Alex Roitman,,,:
 
-Line ignored as not understood                                      Line    23: 2 NOTE No address provided (note not supported)</text>
+Line ignored as not understood                                      Line    23: 2 NOTE No address provided (note not supported)
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="199"/>
       </style>
@@ -1523,7 +1526,8 @@ Line ignored as not understood                                      Line    23: 
       <text>Records not imported into FAM (family) Gramps ID F0003:
 
 Line ignored as not understood                                      Line    46: 2 SOUR Not really allowed here
-Filename omitted                                                    Line    48: 1 OBJE</text>
+Filename omitted                                                    Line    48: 1 OBJE 
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="256"/>
       </style>
@@ -1562,7 +1566,8 @@ Filename omitted                                                    Line    48: 
       <text>Records not imported into INDI (individual) Gramps ID I0016:
 
 Warn: ADDR overwritten                                              Line   204: 3 ADR1 456 Main St again
-ADDR element ignored '459 Main St.'                                 Line   202: 2 ADDR 459 Main St., The Village, San Francisco, CA, USA</text>
+ADDR element ignored '459 Main St.'                                 Line   202: 2 ADDR 459 Main St., The Village, San Francisco, CA, USA
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="304"/>
       </style>
@@ -1573,7 +1578,8 @@ ADDR element ignored '459 Main St.'                                 Line   202: 
     <note handle="_0000004700000047" change="1" id="N0014" type="GEDCOM import">
       <text>Records not imported into INDI (individual) Gramps ID I0018:
 
-Tag recognized but not supported                                    Line   245: 2 TYPE first generaton</text>
+Tag recognized but not supported                                    Line   245: 2 TYPE first generaton
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="165"/>
       </style>
@@ -1604,7 +1610,8 @@ Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corpo
     <note handle="_000000cf000000cf" change="1" id="N0021" type="GEDCOM import">
       <text>Records not imported into FAM (family) Gramps ID F0010:
 
-Tag recognized but not supported                                    Line   863: 2 _STAT</text>
+Tag recognized but not supported                                    Line   863: 2 _STAT 
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="146"/>
       </style>
@@ -1613,7 +1620,8 @@ Tag recognized but not supported                                    Line   863: 
       <text>Records not imported into FAM (family) Gramps ID F0011:
 
 Could not import Magnes&amp;Anna_smiths_marr_cert.jpg                   Line   878: 3 OBJE 
-Could not import Magnes&amp;Anna_smiths_marr_cert.jpg                   Line   881: 2 OBJE</text>
+Could not import Magnes&amp;Anna_smiths_marr_cert.jpg                   Line   881: 2 OBJE 
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="233"/>
       </style>
@@ -1621,7 +1629,8 @@ Could not import Magnes&amp;Anna_smiths_marr_cert.jpg                   Line   8
     <note handle="_000000d9000000d9" change="1" id="N0023" type="GEDCOM import">
       <text>Records not imported into FAM (family) Gramps ID F0012:
 
-Could not import John&amp;Alice_smiths_marr_cert.jpg                    Line   905: 1 OBJE</text>
+Could not import John&amp;Alice_smiths_marr_cert.jpg                    Line   905: 1 OBJE 
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="145"/>
       </style>
@@ -1629,7 +1638,8 @@ Could not import John&amp;Alice_smiths_marr_cert.jpg                    Line   9
     <note handle="_000000e4000000e4" change="1" id="N0024" type="GEDCOM import">
       <text>Records not imported into FAM (family) Gramps ID F0008:
 
-Tag recognized but not supported                                    Line  1005: 1 ADDR 123 Main st, Grantville, Virginia, USA</text>
+Tag recognized but not supported                                    Line  1005: 1 ADDR 123 Main st, Grantville, Virginia, USA
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="183"/>
       </style>
@@ -1653,7 +1663,8 @@ Tag recognized but not supported                                    Line  1005: 
       <text>Records not imported into SOUR (source) Gramps ID S0003:
 
 Tag recognized but not supported                                    Line  1045: 1 DATA 
-Skipped subordinate line                                            Line  1046: 2 AGNC NYC Public Library</text>
+Skipped subordinate line                                            Line  1046: 2 AGNC NYC Public Library
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="252"/>
       </style>
@@ -1669,7 +1680,8 @@ Skipped subordinate line                                            Line  1046: 
 
 REFN ignored                                                        Line  1075: 3 REFN blah blah
 Skipped subordinate line                                            Line  1076: 4 TYPE who knows
-Could not import Attic_photo.jpg                                    Line  1079: 3 OBJE</text>
+Could not import Attic_photo.jpg                                    Line  1079: 3 OBJE 
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="344"/>
       </style>
@@ -1677,7 +1689,8 @@ Could not import Attic_photo.jpg                                    Line  1079: 
     <note handle="_000000f6000000f6" change="1" id="N0034" type="GEDCOM import">
       <text>Records not imported into Top Level:
 
-Unknown tag                                                         Line  1106: 0 XXX an unknown token at level 0</text>
+Unknown tag                                                         Line  1106: 0 XXX an unknown token at level 0
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="152"/>
       </style>
@@ -1685,12 +1698,13 @@ Unknown tag                                                         Line  1106: 
     <note handle="_000000f8000000f8" change="1" id="N0035" type="GEDCOM import">
       <text>Records not imported into Top Level:
 
-Unknown tag                                                         Line  1109: 1 @X1@ XXX and unknown token xref definition</text>
+Unknown tag                                                         Line  1109: 1 @X1@ XXX and unknown token xref definition
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="163"/>
       </style>
     </note>
-    <note handle="_000000f9000000f9" change="1477325896" id="N0036" type="General">
+    <note handle="_000000f9000000f9" change="1551800790" id="N0036" type="General">
       <text>Objects referenced by this note were missing in a file imported on 12/25/1999 12:00:00 AM.</text>
     </note>
   </notes>

@@ -7815,6 +7815,9 @@ class GedcomParser(UpdateCallback):
         sub_state.pf = self.place_parser
 
         self.__parse_level(sub_state, event_map, self.__undefined)
+        if(description == 'Y' and event.date.is_empty() and
+           event.type == EventType.BIRTH and not event.place):
+            event.set_description(_("No Date Information"))
         state.msg += sub_state.msg
 
         self.__add_place(event, sub_state)
