@@ -5379,7 +5379,7 @@ class GedcomParser(UpdateCallback):
                 if sub_state.title:
                     photo.set_description(sub_state.title)
                 else:
-                    photo.set_description(path)
+                    photo.set_description(path.replace('\\', '/'))
                 full_path = os.path.abspath(path)
                 # deal with mime types
                 value = mimetypes.guess_type(full_path)
@@ -6752,7 +6752,7 @@ class GedcomParser(UpdateCallback):
 
         state.media.set_path(path)
         if not state.media.get_description():
-            state.media.set_description(path)
+            state.media.set_description(path.replace('\\', '/'))
 
     def __obje_title(self, line, state):
         """
