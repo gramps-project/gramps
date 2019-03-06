@@ -40,9 +40,9 @@ def __default(obj):
     obj_dict = {'_class': obj.__class__.__name__}
     if isinstance(obj, lib.GrampsType):
         obj_dict['string'] = getattr(obj, 'string')
-    if isinstance(obj, lib.Date):
-        if obj.is_empty() and not obj.text:
-            return None
+    #if isinstance(obj, lib.Date):
+        #if obj.is_empty() and not obj.text:
+            #return None
     for key, value in obj.__dict__.items():
         if not key.startswith('_'):
             obj_dict[key] = value
@@ -61,9 +61,9 @@ def __object_hook(obj_dict):
             if key == 'ranges':
                 value = [tuple(item) for item in value]
             setattr(obj, key, value)
-    if obj_dict['_class'] == 'Date':
-        if obj.is_empty() and not obj.text:
-            return None
+    #if obj_dict['_class'] == 'Date':
+        #if obj.is_empty() and not obj.text:
+            #return None
     return obj
 
 def to_json(obj):
