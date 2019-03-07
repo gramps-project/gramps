@@ -276,7 +276,7 @@ class DBAPI(DbGeneric):
         self.undodb.commit(txn, msg)
         self._after_commit(txn)
         txn.clear()
-        self.has_changed = True
+        self.has_changed += 1  # Also gives commits since startup
 
     def transaction_abort(self, txn):
         """

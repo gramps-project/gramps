@@ -184,6 +184,7 @@ class ViewManager(CLIManager):
         self.view_changing = False
         self.autobackup_time = time.time()  # time of start or last autobackup
         self.delay_timer = None  # autobackup delay timer for after wakeup
+        self.prev_has_changed = 0  # db commit count at autobackup time
 
         self.show_navigator = config.get('interface.view')
         self.show_toolbar = config.get('interface.toolbar-on')
@@ -1209,7 +1210,10 @@ class ViewManager(CLIManager):
             self.autobackup_time = now
             return
         self.autobackup_time = now
-        if self.dbstate.db.is_open() and self.dbstate.db.has_changed:
+        # Only backup if more commits since last time
+        if(self.dbstate.db.is_open() and
+           self.dbstate.db.has_changed > self.prev_has_changed):
+            self.prev_has_changed = self.dbstate.db.has_changed
             self.uistate.set_busy_cursor(True)
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Autobackup..."))
