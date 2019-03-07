@@ -458,6 +458,10 @@ class DisplayState(Callback):
             minutes = 30
         elif interval == 3:
             minutes = 60
+        elif interval == 4:
+            minutes = 720
+        elif interval == 5:
+            minutes = 1440
         if interval > 0:
             self.backup_timer = GLib.timeout_add_seconds(
                 minutes*60, self.__emit_autobackup)
