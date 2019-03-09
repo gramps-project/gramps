@@ -32,7 +32,8 @@ Web Calendar generator.
 #------------------------------------------------------------------------
 # python modules
 #------------------------------------------------------------------------
-import os, shutil
+import os
+import shutil
 import datetime
 import time
 import calendar # Python module
@@ -41,13 +42,11 @@ import calendar # Python module
 # Set up logging
 #------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger(".WebPage")
 
 #------------------------------------------------------------------------
 # Gramps module
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 from gramps.gen.lib import Date, Name, NameType, Person
 from gramps.gen.lib.date import Today
 from gramps.plugins.webreport.common import html_escape
@@ -82,7 +81,11 @@ from gramps.plugins.lib.libhtmlbackend import HtmlBackend
 #------------------------------------------------------------------------
 # constants
 #------------------------------------------------------------------------
+_ = glocale.translation.sgettext
+_LOG = logging.getLogger(".WebPage")
+
 # full clear line for proper styling
+
 FULLCLEAR = Html("div", class_="fullclear", inline=True)
 
 # Web page filename extensions
@@ -152,8 +155,9 @@ class WebCalReport(Report):
         self.event_list = []
 
         self.month_notes = [mgobn('note_' + month)
-            for month in ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul',
-                'aug', 'sep', 'oct', 'nov', 'dec']]
+                            for month in ['jan', 'feb', 'mar', 'apr', 'may',
+                                          'jun', 'jul', 'aug', 'sep', 'oct',
+                                          'nov', 'dec']]
 
         self.encoding = mgobn('encoding')
         self.fullyear = True
@@ -219,7 +223,7 @@ class WebCalReport(Report):
         s_tags = styledtext.get_tags()
         #FIXME: following split should be regex to match \n\s*\n instead?
         markuptext = self._backend.add_markup_from_styled(text, s_tags,
-                                                         split='\n\n')
+                                                          split='\n\n')
         htmllist = Html("div", id="grampsstylednote")
         if format_type == 1:
             #preformatted, retain whitespace.
@@ -371,7 +375,7 @@ class WebCalReport(Report):
         imgs += [CSS["favicon2"]["filename"]]
 
         for from_path in imgs:
-            fdir, fname = os.path.split(from_path)
+            dummy_fdir, fname = os.path.split(from_path)
             self.copy_file(from_path, fname, "images")
 
     def create_file(self, fname, subdir):
@@ -420,14 +424,14 @@ class WebCalReport(Report):
                  'initial-scale=1.0, maximum-scale=1.0, user-scalable=1"'
         _meta2 = 'name ="apple-mobile-web-app-capable" content="yes"'
         _meta3 = 'name="generator" content="%s %s %s"' % (
-                    PROGRAM_NAME, VERSION, URL_HOMEPAGE)
+            PROGRAM_NAME, VERSION, URL_HOMEPAGE)
         _meta4 = 'name="author" content="%s"' % self.author
 
         # create additional meta tags
         meta = Html("meta", attr=_meta1) + (
-                Html("meta", attr=_meta2, indent=False),
-                Html("meta", attr=_meta3, indent=False),
-                Html("meta", attr=_meta4, indent=False)
+            Html("meta", attr=_meta2, indent=False),
+            Html("meta", attr=_meta3, indent=False),
+            Html("meta", attr=_meta4, indent=False)
         )
 
         # begin each html page...
@@ -448,9 +452,8 @@ class WebCalReport(Report):
         # links for Gramps favicon and stylesheets
         links = Html("link", rel='shortcut icon',
                      href=fname1, type="image/x-icon") + (
-            Html("link", href=fname2, type="text/css",
-                 media="screen", rel="stylesheet", indent=False)
-        )
+                         Html("link", href=fname2, type="text/css",
+                              media="screen", rel="stylesheet", indent=False))
 
         # add horizontal menu if css == Blue or Visually because
         # there is no menus?
@@ -479,16 +482,16 @@ class WebCalReport(Report):
             # Created for ?
             msg = None
             if self.author and self.email:
+                bemail = '<a href="mailto:' + self.email + '?subject='
+                eemail = '">' + self.author + '</a>'
                 msg = self._('the "WebCal" will be the potential-email Subject|'
-                        'Created for %(html_email_author_start)s'
-                        'WebCal%(html_email_author_end)s') % {
-                            'html_email_author_start' :
-                                '<a href="mailto:' + self.email + '?subject=',
-                            'html_email_author_end' :
-                                '">' + self.author + '</a>'}
+                             'Created for %(html_email_author_start)s'
+                             'WebCal%(html_email_author_end)s') % {
+                                 'html_email_author_start' : bemail,
+                                 'html_email_author_end' : eemail}
             elif self.author:
                 msg = self._('Created for %(author)s') % {
-                                           'author' : self.author}
+                    'author' : self.author}
 
             if msg:
                 header += Html("p", msg, id="CreatorInfo")
@@ -537,8 +540,10 @@ class WebCalReport(Report):
 
                 # Figure out if we need <li class="CurrentSection">
                 # or just plain <li>
-                check_cs = str(cal_year) == currentsection and\
-                                            'class = "CurrentSection"' or False
+                if str(cal_year) == currentsection:
+                    check_cs = 'class = "CurrentSection"'
+                else:
+                    check_cs = False
                 if check_cs:
                     unordered.extend(
                         Html("li", hyper, attr=check_cs, inline=True)
@@ -567,7 +572,7 @@ class WebCalReport(Report):
             navs.append((self.home_link, self._('Home'), add_home))
         navs.extend((self.rlocale.date_displayer.long_months[int(month)],
                      self.rlocale.date_displayer.short_months[int(month)], True)
-                             for month in range(1, 13))
+                    for month in range(1, 13))
 
         # Add a link for year_glance() if requested
         navs.append(('fullyearlinked', self._('Year Glance'), self.fullyear))
@@ -592,7 +597,7 @@ class WebCalReport(Report):
                     add_subdirs = False
                     if not (url.startswith('http:') or url.startswith('/')):
                         add_subdirs = not any(url.endswith(ext)
-                                                for ext in _WEB_EXT)
+                                              for ext in _WEB_EXT)
 
                     # whether to add subdirs or not???
                     if add_subdirs:
@@ -605,8 +610,10 @@ class WebCalReport(Report):
 
                     # Figure out if we need <li class="CurrentSection"> or
                     # just plain <li>
-                    check_cs = url_fname == currentsection and \
-                                            'class = "CurrentSection"' or False
+                    if url_fname == currentsection:
+                        check_cs = 'class = "CurrentSection"'
+                    else:
+                        check_cs = False
 
                     if url == self.home_link:
                         mytitle = self._("NarrativeWeb Home")
@@ -783,8 +790,8 @@ class WebCalReport(Report):
             table += tbody
 
             # get first of the month and month information
-            current_date, current_ord, monthinfo = get_first_day_of_month(year,
-                                                                          month)
+            (dummy_current_date,
+             current_ord, monthinfo) = get_first_day_of_month(year, month)
 
             # begin calendar table rows, starting week0
             nweeks = len(monthinfo)
@@ -832,9 +839,13 @@ class WebCalReport(Report):
                         # Something this month
                         if thisday.month == month:
                             holiday_list = self.holidays.get(month,
-                                                        {}).get(thisday.day, [])
+                                                             {}).get(
+                                                                 thisday.day,
+                                                                 [])
                             bday_anniv_list = self.calendar.get(month,
-                                                        {}).get(thisday.day, [])
+                                                                {}).get(
+                                                                    thisday.day,
+                                                                    [])
 
                             # date is an instance because of subtracting
                             # abilities in date.py
@@ -883,15 +894,13 @@ class WebCalReport(Report):
                                         # without id tag
                                         tcell = Html("td", class_=hilightday,
                                                      inline=True) + (
-
-                                            # adds date division
-                                            Html("div", day, class_="date",
-                                                 inline=True)
-                                            )
+                                                         # adds date division
+                                                         Html("div", day,
+                                                              class_="date",
+                                                              inline=True))
 
                                 # WebCal
                                 else:
-
                                     # add date to table cell
                                     tcell += datediv
 
@@ -899,30 +908,27 @@ class WebCalReport(Report):
                                     unordered = Html("ul")
                                     tcell += unordered
 
-                                    for (nyears, date, text,
-                                         event, notused, notused) in day_list:
+                                    for (dummy_nyears, dummy_date, text,
+                                         event, dummy_notused,
+                                         dummy_notused) in day_list:
                                         unordered += Html("li", text,
                                                           inline=False
-                                            if event == 'Anniversary' else True)
-
+                                                          if (event ==
+                                                              'Anniversary')
+                                                          else True)
                             # no events for this day
                             else:
-
                                 # create empty day with date
                                 tcell = Html("td", class_=dayclass,
                                              inline=True) + (
-
-                                    # adds date division
-                                    Html("div", day, class_="date", inline=True)
-                                    )
-
+                                                 # adds date division
+                                                 Html("div", day, class_="date",
+                                                      inline=True))
                         # nothing for this month
                         else:
                             tcell = Html("td", class_=dayclass) + (
-
                                 # adds date division
-                                Html("div", day, class_="date", inline=True)
-                                )
+                                Html("div", day, class_="date", inline=True))
 
                     # attach table cell to table row
                     # close the day column
@@ -940,7 +946,7 @@ class WebCalReport(Report):
                               class_="week%02d" % (weeks + 1)) as six_weeks:
                         tbody += six_weeks
 
-                        for emptydays in range(7):
+                        for dummy_emptydays in range(7):
                             six_weeks += Html("td", class_="emptyDays",
                                               inline=True)
 
@@ -963,7 +969,7 @@ class WebCalReport(Report):
         nr_up = 1 # Number of directory levels up to get to self.html_dir / root
 
         with self._user.progress(_("Web Calendar Report"),
-                _('Formatting months ...'), 12) as step:
+                                 _('Formatting months ...'), 12) as step:
 
             for month in range(1, 13):
                 cal_fname = self.rlocale.date_displayer.long_months[int(month)]
@@ -1013,7 +1019,7 @@ class WebCalReport(Report):
 
                 # send calendar page to web output
                 # and close the file
-                self.XHTMLWriter(webcal, open_file)
+                self.xhtmlwriter(webcal, open_file)
 
                 step()
 
@@ -1049,7 +1055,8 @@ class WebCalReport(Report):
 
         # generate progress pass for "Year At A Glance"
         with self._user.progress(_("Web Calendar Report"),
-                _('Creating Year At A Glance calendar'), 12) as step:
+                                 _('Creating Year At A Glance calendar'),
+                                 12) as step:
 
             open_file = self.create_file('fullyearlinked', str(year))
 
@@ -1070,9 +1077,10 @@ class WebCalReport(Report):
             body += self.month_navigation(nr_up, year, "fullyearlinked", True)
 
             msg = (self._('This calendar is meant to give you access '
-                     'to all your data at a glance compressed into one page. '
-                     'Clicking on a date will take you to a page that shows all'
-                     ' the events for that date, if there are any.\n'))
+                          'to all your data at a glance compressed into one '
+                          'page. Clicking on a date will take you to a page '
+                          'that shows all the events for that date, if there '
+                          'are any.\n'))
 
             # page description
             content = Html("div", class_="content", id="YearGlance")
@@ -1097,7 +1105,7 @@ class WebCalReport(Report):
 
             # send calendar page to web output
             # and close the file
-            self.XHTMLWriter(yearglance, open_file)
+            self.xhtmlwriter(yearglance, open_file)
 
     def one_day(self, event_date, fname_date, day_list):
         """
@@ -1174,8 +1182,8 @@ class WebCalReport(Report):
         # list the events
         ordered = Html("ol")
         content += ordered
-        for (nyears, date, text, event, age_at_death,
-             dead_event_date) in day_list:
+        for (dummy_nyears, dummy_date, text, event, dummy_age_at_death,
+             dummy_dead_event_date) in day_list:
             ordered += Html("li", text,
                             inline=False if event == 'Anniversary' else True)
 
@@ -1186,7 +1194,7 @@ class WebCalReport(Report):
 
         # send calendar page to web output
         # and close the file
-        self.XHTMLWriter(oneday, one_day_file)
+        self.xhtmlwriter(oneday, one_day_file)
 
     def build_url_fname_html(self, fname, subdir=None, prefix=None):
         """
@@ -1270,7 +1278,7 @@ class WebCalReport(Report):
         people = self.filter.apply(db, people, user=self._user)
 
         with self._user.progress(_("Web Calendar Report"),
-                _("Reading database..."), len(people)) as step:
+                                 _("Reading database..."), len(people)) as step:
             for person in map(db.get_person_from_handle, people):
                 step()
 
@@ -1289,13 +1297,13 @@ class WebCalReport(Report):
                     death_date = death_event.get_date_object()
                     person_death = death_date
                     if (birth_date != Date() and birth_date.is_valid()
-                                             and death_date):
+                            and death_date):
                         age_at_death = death_date - birth_date
                         age_at_death = age_at_death.format(dlocale=self.rlocale)
 
                 # determine birthday information???
                 if (self.birthday and birth_date is not Date()
-                    and birth_date.is_valid()):
+                        and birth_date.is_valid()):
                     birth_date = gregorian(birth_date)
 
                     year = birth_date.get_year()
@@ -1324,11 +1332,11 @@ class WebCalReport(Report):
                                 if mother_handle == person.handle:
                                     if father_handle:
                                         father = db.get_person_from_handle(
-                                                                  father_handle)
+                                            father_handle)
                                         if father is not None:
                                             father_surname = _regular_surname(
-                                                      person.gender,
-                                                      father.get_primary_name())
+                                                person.gender,
+                                                father.get_primary_name())
                     short_name = self.get_name(person, father_surname)
                     alive = probably_alive(person, db, prob_alive_date)
                     if (self.alive and alive) or not self.alive:
@@ -1337,10 +1345,10 @@ class WebCalReport(Report):
                         if self.link_to_narweb:
                             prfx = self.narweb_prefix
                             text = str(Html("a", short_name,
-                                        href=self.build_url_fname_html(
-                                                                  person.handle,
-                                                                  "ppl",
-                                                                  prefix=prfx)))
+                                            href=self.build_url_fname_html(
+                                                person.handle,
+                                                "ppl",
+                                                prefix=prfx)))
                         else:
                             text = short_name
                         if age_at_death is None:
@@ -1356,8 +1364,8 @@ class WebCalReport(Report):
                     death_date = death_event.get_date_object()
                 else:
                     death_date = None
-                primary_name = person.primary_name
-                name = Name(primary_name)
+                #primary_name = person.primary_name
+                #name = Name(primary_name)
                 if self.death_anniv and death_date:
                     year = death_date.get_year() or this_year
                     month = death_date.get_month()
@@ -1402,10 +1410,10 @@ class WebCalReport(Report):
                                 spouse_death = Date()
                                 if death_ref:
                                     death_event = db.get_event_from_handle(
-                                                                  death_ref.ref)
+                                        death_ref.ref)
                                     death_date = death_event.get_date_object()
                                     if (death_date != Date() and
-                                        death_date.is_valid()):
+                                            death_date.is_valid()):
                                         spouse_death = death_date
                             first_died = Date()
                             if person_death == Date():
@@ -1422,7 +1430,7 @@ class WebCalReport(Report):
                             if marriage_event:
                                 event_date = marriage_event.get_date_object()
                                 if (event_date is not Date() and
-                                    event_date.is_valid()):
+                                        event_date.is_valid()):
                                     event_date = gregorian(event_date)
                                     year = event_date.get_year()
                                     month = event_date.get_month()
@@ -1438,14 +1446,16 @@ class WebCalReport(Report):
                                             dlocale=self.rlocale)
 
                                     if self.link_to_narweb:
+                                        prefx = self.narweb_prefix
+                                        reference = self.build_url_fname_html(
+                                            spouse_handle, 'ppl',
+                                            prefix=prefx)
                                         spouse_name = str(Html("a", spouse_name,
-                                                 href=self.build_url_fname_html(
-                                                    spouse_handle, 'ppl',
-                                                    prefix=self.narweb_prefix)))
+                                                               href=reference))
+                                        href1 = self.build_url_fname_html(
+                                            person.handle, 'ppl', prefix=prefx)
                                         short_name = str(Html("a", short_name,
-                                                 href=self.build_url_fname_html(
-                                                    person.handle, 'ppl',
-                                                    prefix=self.narweb_prefix)))
+                                                              href=href1))
 
                                     alive1 = probably_alive(person, db,
                                                             prob_alive_date)
@@ -1456,9 +1466,10 @@ class WebCalReport(Report):
                                     if ((self.alive and alive1
                                          and alive2) or not self.alive):
 
-                                        mg = self._('%(spouse)s and %(person)s')
-                                        text = mg % {'spouse' : spouse_name,
-                                                     'person' : short_name}
+                                        spse = self._('%(spouse)s and'
+                                                      ' %(person)s')
+                                        text = spse % {'spouse' : spouse_name,
+                                                       'person' : short_name}
 
                                         self.add_day_item(text, year, month,
                                                           day, 'Anniversary',
@@ -1476,12 +1487,13 @@ class WebCalReport(Report):
         with Html("div", id="footer", role="Footer-End") as footer:
 
             # Display date as user set in preferences
+            date = self.rlocale.date_displayer.display(Today())
+            bhtml = '<a href="' + URL_HOMEPAGE + '">'
             msg = self._('Generated by %(gramps_home_html_start)s'
-                    'Gramps%(html_end)s on %(date)s') % {
-                        'gramps_home_html_start' :
-                            '<a href="' + URL_HOMEPAGE + '">',
-                        'html_end' : '</a>',
-                        'date' : self.rlocale.date_displayer.display(Today())}
+                         'Gramps%(html_end)s on %(date)s') % {
+                             'gramps_home_html_start' : bhtml,
+                             'html_end' : '</a>',
+                             'date' : date}
             footer += Html("p", msg, id='createdate')
 
             copy_nr = self.copy
@@ -1503,7 +1515,7 @@ class WebCalReport(Report):
         # return footer to its callers
         return footer
 
-    def XHTMLWriter(self, page, open_file):
+    def xhtmlwriter(self, page, open_file):
         """
         This function is simply to make the web page look pretty and readable
         It is not for the browser, but for us, humans
@@ -1601,7 +1613,7 @@ class WebCalReport(Report):
 
         # send calendar page to web output
         # and close the file
-        self.XHTMLWriter(index, output_file)
+        self.xhtmlwriter(index, output_file)
 
 # -----------------------------------------------------------------------------
 #                             WebCalOptions; Creates the Menu
@@ -1640,9 +1652,9 @@ class WebCalOptions(MenuReportOptions):
 
         dbname = self.__db.get_dbname()
         default_dir = dbname + "_WEBCAL"
-        target = DestinationOption(_("Destination"),
-                        os.path.join(config.get('paths.website-directory'),
-                                     default_dir))
+        target = DestinationOption(
+            _("Destination"),
+            os.path.join(config.get('paths.website-directory'), default_dir))
         target.set_help(_("The destination directory for the web files"))
         target.set_directory_entry(True)
         menu.add_option(category_name, "target", target)
@@ -1653,7 +1665,7 @@ class WebCalOptions(MenuReportOptions):
 
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
-               _("Select filter to restrict people that appear on calendar"))
+            _("Select filter to restrict people that appear on calendar"))
         menu.add_option(category_name, "filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
 
@@ -1677,8 +1689,8 @@ class WebCalOptions(MenuReportOptions):
         menu.add_option(category_name, "cright", cright)
 
         css_list = sorted([(CSS[key]["translation"], CSS[key]["id"])
-                            for key in list(CSS.keys())
-                            if CSS[key]["user"]])
+                           for key in list(CSS.keys())
+                           if CSS[key]["user"]])
         css = EnumeratedListOption(_('StyleSheet'), css_list[0][1])
         for css_item in css_list:
             css.add_item(css_item[1], css_item[0])
@@ -1701,8 +1713,8 @@ class WebCalOptions(MenuReportOptions):
                 default = ind
                 break
         name_format = EnumeratedListOption(_("Name format"),
-                            fmt_list[default][0])
-        for num, name, fmt_str, act in fmt_list:
+                                           fmt_list[default][0])
+        for num, name, dummy_fmt_str, dummy_act in fmt_list:
             name_format.add_item(num, name)
         name_format.set_help(_("Select the format to display names"))
         menu.add_option(category_name, "name_format", name_format)
@@ -1750,15 +1762,17 @@ class WebCalOptions(MenuReportOptions):
         holiday_table = libholiday.HolidayTable()
         countries = holiday_table.get_countries()
         countries.sort()
-        if (len(countries) == 0 or
-            (len(countries) > 0 and countries[0] != '')):
+        #if (len(countries) == 0 or
+        #        (len(countries) > 0 and countries[0] != '')):
+        if (not countries or
+                (countries and countries[0] != '')):
             countries.insert(0, '')
         count = 0
         for cntry in countries:
             country.add_item(count, cntry)
             count += 1
         country.set_help(_("Holidays will be included for the selected "
-                            "country"))
+                           "country"))
         menu.add_option(category_name, "country", country)
 
         # Default selection ????
@@ -1771,9 +1785,9 @@ class WebCalOptions(MenuReportOptions):
 
         maiden_name = EnumeratedListOption(_("Birthday surname"), "own")
         maiden_name.add_item('spouse_first', _("Wives use husband's surname "
-                             "(from first family listed)"))
+                                               "(from first family listed)"))
         maiden_name.add_item('spouse_last', _("Wives use husband's surname "
-                             "(from last family listed)"))
+                                              "(from last family listed)"))
         maiden_name.add_item("own", _("Wives use their own surname"))
         maiden_name.set_help(_("Select married women's displayed surname"))
         menu.add_option(category_name, "maiden_name", maiden_name)
@@ -1782,7 +1796,7 @@ class WebCalOptions(MenuReportOptions):
         default_link = '../../' + dbname + "_NAVWEB/index.html"
         home_link = StringOption(_('Home link'), default_link)
         home_link.set_help(_("The link to be included to direct the user to "
-                         "the main page of the web site"))
+                             "the main page of the web site"))
         menu.add_option(category_name, "home_link", home_link)
 
     def __add_notes_options(self, menu):
@@ -1937,6 +1951,7 @@ def _regular_surname(sex, name):
     """
     Returns a name string built from the components of the Name instance.
     """
+    dummy_gender = sex
     surname = name.get_surname()
     suffix = name.get_suffix()
     if suffix:
@@ -2051,7 +2066,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
                 translated_date = rlocale.get_date(dead_event_date)
                 mess = trans_date % {'death_date' : translated_date}
                 age = ", <font size='+1' ><b>%s</b></font> <em>%s (%s)" % (
-                                               death_symbol, mess, age_at_death)
+                    death_symbol, mess, age_at_death)
             else:
                 # TRANSLATORS: expands to smth like "12 years old",
                 # where "12 years" is already localized to your language
@@ -2059,24 +2074,25 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
                 date_y = date.get_year()
                 trans_date = trans_text("Born %(birth_date)s.")
                 old_date = trans_text('%s old')
-                tranlated_date = rlocale.get_date(dead_event_date)
-                age += old_date % str(age_str) if date_y != 0 else \
-                                      trans_date % {
-                                      'birth_date' : translated_date}
+                translated_date = rlocale.get_date(dead_event_date)
+                age += old_date % (str(age_str) if (date_y != 0)
+                                   else trans_date % {
+                                       'birth_date' : translated_date})
             txt_str = (text + age + '</em>')
 
         # a death
         if event == 'Death':
             txt_str = (text + ', <em>'
-            + (_('%s since death') % str(age_str) if nyears else _('death'))
-            + '</em>')
+                       + (_('%s since death') % str(age_str) if nyears
+                          else _('death'))
+                       + '</em>')
 
         # an anniversary
         elif event == "Anniversary":
 
             if nyears == 0:
                 txt_str = trans_text('%(couple)s, <em>wedding</em>') % {
-                            'couple' : text}
+                    'couple' : text}
             else:
                 if age_at_death is not None:
                     age = '%s %s' % (trans_text("Married"), age_at_death)
