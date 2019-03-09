@@ -50,6 +50,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.lib import Date, Name, NameType, Person
 from gramps.gen.lib.date import Today
+from gramps.plugins.webreport.common import html_escape
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
 from gramps.version import VERSION
 from gramps.gen.constfunc import win
@@ -63,6 +64,7 @@ from gramps.gen.plug.menu import (BooleanOption, NumberOption, StringOption,
                                   PersonOption, DestinationOption, NoteOption)
 from gramps.gen.utils.config import get_researcher
 from gramps.gen.utils.alive import probably_alive
+from gramps.gen.utils.db import get_death_or_fallback
 from gramps.gen.datehandler import displayer as _dd
 
 from gramps.gen.display.name import displayer as _nd
@@ -92,18 +94,6 @@ _CALENDARPRINT = 'calendar-print.css'
 
 PLUGMAN = GuiPluginManager.get_instance()
 CSS = PLUGMAN.process_plugin_data('WEBSTUFF')
-
-def _escape(string):
-    """ replace character in text that html shows correctly
-    special characters: & < and >
-    """
-    string = string.replace('&', '&amp;') # must be the first
-    string = string.replace('<', '&lt;')
-    string = string.replace('>', '&gt;')
-    return string
-
-# pylint: disable=unused-variable
-# pylint: disable=unused-argument
 
 #------------------------------------------------------------------------
 #
@@ -157,6 +147,7 @@ class WebCalReport(Report):
         self.alive = mgobn('alive')
         self.birthday = mgobn('birthdays')
         self.anniv = mgobn('anniversaries')
+        self.death_anniv = mgobn('death_anniv')
         self.home_link = mgobn('home_link')
         self.event_list = []
 
@@ -290,7 +281,7 @@ class WebCalReport(Report):
         text -- line to be added
         year, month, day -- date to add the text to
 
-        event -- one of 'BirthDay', 'Anniversary', or 'Holiday'
+        event -- one of 'BirthDay', 'Anniversary', 'Death' or 'Holiday'
         age_at_death -- The age in text. ie : 68 years, 6 months
         dead_event_date -- The date of the event used to calculate
                            the age_at_death
@@ -302,7 +293,7 @@ class WebCalReport(Report):
             day = 1
 
         # determine which dictionary to use???
-        if event in ['Birthday', 'Anniversary']:
+        if event in ['Birthday', 'Anniversary', 'Death']:
             month_dict = self.calendar.get(month, {})
         else:
             month_dict = self.holidays.get(month, {})
@@ -321,7 +312,7 @@ class WebCalReport(Report):
         month_dict[day] = day_list
 
         # determine which dictionary to add it to???
-        if event in ['Birthday', 'Anniversary']:
+        if event in ['Birthday', 'Anniversary', 'Death']:
             self.calendar[month] = month_dict
         else:
             self.holidays[month] = month_dict
@@ -729,42 +720,42 @@ class WebCalReport(Report):
                     full_month_name = date_displayer.long_months[month-1]
                     url = full_month_name.lower() + self.ext
                     prevm = Date(int(year), int(month-1), 0)
-                    my_title = Html("a", _escape("<"), href=url,
+                    my_title = Html("a", html_escape("<"), href=url,
                                     title=date_displayer.display(prevm))
                 elif self.multiyear and year > self.start_year:
                     full_month_name = date_displayer.long_months[12]
                     url = full_month_name.lower() + self.ext
                     dest = os.path.join("../", str(year-1), url)
                     prevm = Date(int(year-1), 12, 0)
-                    my_title = Html("a", _escape("<"), href=dest,
+                    my_title = Html("a", html_escape("<"), href=dest,
                                     title=date_displayer.display(prevm))
                 else:
                     full_month_name = date_displayer.long_months[12]
                     url = full_month_name.lower() + self.ext
                     dest = os.path.join("../", str(self.end_year), url)
                     prevy = Date(self.end_year, 12, 0)
-                    my_title = Html("a", _escape("<"), href=dest,
+                    my_title = Html("a", html_escape("<"), href=dest,
                                     title=date_displayer.display(prevy))
                 my_title += Html("</a>&nbsp;")
                 if month < 12:
                     full_month_name = date_displayer.long_months[month+1]
                     url = full_month_name.lower() + self.ext
                     nextd = Date(int(year), int(month+1), 0)
-                    my_title += Html("a", _escape(">"), href=url,
+                    my_title += Html("a", html_escape(">"), href=url,
                                      title=date_displayer.display(nextd))
                 elif self.multiyear and year < self.end_year:
                     full_month_name = date_displayer.long_months[1]
                     url = full_month_name.lower() + self.ext
                     dest = os.path.join("../", str(year+1), url)
                     nextd = Date(int(year+1), 1, 0)
-                    my_title += Html("a", _escape(">"), href=dest,
+                    my_title += Html("a", html_escape(">"), href=dest,
                                      title=date_displayer.display(nextd))
                 else:
                     full_month_name = date_displayer.long_months[1]
                     url = full_month_name.lower() + self.ext
                     dest = os.path.join("../", str(self.start_year), url)
                     nexty = Date(self.start_year, 1, 0)
-                    my_title += Html("a", _escape(">"), href=dest,
+                    my_title += Html("a", html_escape(">"), href=dest,
                                      title=date_displayer.display(nexty))
                 my_title += Html("</a>")
                 trow = Html("tr") + (
@@ -1006,7 +997,7 @@ class WebCalReport(Report):
                     note = self.database.get_note_from_gramps_id(note)
                     note = self.get_note_format(note)
 
-                # table foot  section
+                # table foot section
                 cal_foot = Html("tfoot")
                 monthly_calendar += cal_foot
 
@@ -1145,7 +1136,7 @@ class WebCalReport(Report):
         currentsection = _dd.long_months[month]
         body += self.month_navigation(nr_up, year, currentsection, True)
 
-        # set date display as in user prevferences
+        # set date display as in user preferences
         content = Html("div", class_="content", id="OneDay")
         body += content
         evt = fname_date[:8]
@@ -1160,7 +1151,7 @@ class WebCalReport(Report):
             url = event[1] + self.ext
             prevd = Date(int(event[1][:4]), int(event[1][4:6]),
                          int(event[1][6:]))
-            my_title = Html("a", _escape("<"), href=url,
+            my_title = Html("a", html_escape("<"), href=url,
                             title=self.rlocale.get_date(prevd))
         else:
             my_title = Html('<em>&nbsp;&nbsp;</em>')
@@ -1169,7 +1160,7 @@ class WebCalReport(Report):
             url = event[2] + self.ext
             nextd = Date(int(event[2][:4]), int(event[2][4:6]),
                          int(event[2][6:]))
-            my_title += Html("a", _escape(">"), href=url,
+            my_title += Html("a", html_escape(">"), href=url,
                              title=self.rlocale.get_date(nextd))
         else:
             my_title += Html('<b>&nbsp;&nbsp;</b>')
@@ -1360,6 +1351,36 @@ class WebCalReport(Report):
                             self.add_day_item(text, year, month, day,
                                               'Birthday',
                                               age_at_death, person_death)
+                death_event = get_death_or_fallback(db, person)
+                if death_event:
+                    death_date = death_event.get_date_object()
+                else:
+                    death_date = None
+                primary_name = person.primary_name
+                name = Name(primary_name)
+                if self.death_anniv and death_date:
+                    year = death_date.get_year() or this_year
+                    month = death_date.get_month()
+                    day = death_date.get_day()
+
+                    short_name = self.get_name(person)
+                    prob_alive_date = Date(this_year, month, day)
+                    alive = probably_alive(person, db, prob_alive_date)
+                    if (self.alive and alive) or not self.alive:
+                        # add link to NarrativeWeb
+                        if self.link_to_narweb:
+                            prfx = self.narweb_prefix
+                            navpfx = self.build_url_fname_html(person.handle,
+                                                               "ppl",
+                                                               prefix=prfx)
+                            text = str(Html("a", short_name, href=navpfx))
+                        else:
+                            text = short_name
+                        self.add_day_item(text, year, month, day, 'Death',
+                                          age_at_death, death_date)
+                        #print('Death date for %s %s/%s/%s' % (short_name, day,
+                        #                                      month, year),
+                        #      age_at_death)
 
                 # add anniversary if requested
                 if self.anniv:
@@ -1764,14 +1785,6 @@ class WebCalOptions(MenuReportOptions):
                          "the main page of the web site"))
         menu.add_option(category_name, "home_link", home_link)
 
-        birthdays = BooleanOption(_("Include birthdays"), True)
-        birthdays.set_help(_("Include birthdays in the calendar"))
-        menu.add_option(category_name, "birthdays", birthdays)
-
-        anniversaries = BooleanOption(_("Include anniversaries"), True)
-        anniversaries.set_help(_("Include anniversaries in the calendar"))
-        menu.add_option(category_name, "anniversaries", anniversaries)
-
     def __add_notes_options(self, menu):
         """
         Options on the "Months Notes" tabs.
@@ -1846,6 +1859,18 @@ class WebCalOptions(MenuReportOptions):
                                      ' Year At A Glance calendar'), False)
         makeoneday.set_help(_('Whether to create one day pages or not'))
         menu.add_option(category_name, 'makeoneday', makeoneday)
+
+        birthdays = BooleanOption(_("Include birthdays"), True)
+        birthdays.set_help(_("Include birthdays in the calendar"))
+        menu.add_option(category_name, "birthdays", birthdays)
+
+        anniversaries = BooleanOption(_("Include anniversaries"), True)
+        anniversaries.set_help(_("Include anniversaries in the calendar"))
+        menu.add_option(category_name, "anniversaries", anniversaries)
+
+        anniversaries = BooleanOption(_('Include death dates'), False)
+        anniversaries.set_help(_('Include death anniversaries in the calendar'))
+        menu.add_option(category_name, 'death_anniv', anniversaries)
 
         self.__links = BooleanOption(_('Link to Narrated Web Report'), False)
         self.__links.set_help(_('Whether to link data to web report or not'))
@@ -2039,6 +2064,12 @@ def get_day_list(event_date, holiday_list, bday_anniv_list, rlocale=glocale):
                                       trans_date % {
                                       'birth_date' : translated_date}
             txt_str = (text + age + '</em>')
+
+        # a death
+        if event == 'Death':
+            txt_str = (text + ', <em>'
+            + (_('%s since death') % str(age_str) if nyears else _('death'))
+            + '</em>')
 
         # an anniversary
         elif event == "Anniversary":
