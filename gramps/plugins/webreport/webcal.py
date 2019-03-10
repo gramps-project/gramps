@@ -1901,9 +1901,10 @@ class WebCalOptions(MenuReportOptions):
         self.__after_year = NumberOption(_('Show data only after year'),
                                          (today.get_year() - default_before),
                                          0, today.get_year())
-        self.__after_year.set_help(_("Don't show data before this year."
-                                     " should be before current year - "
-                                     " 100"))
+        self.__after_year.set_help(_("Show data only after this year."
+                                     " Default is current year - "
+                                     " 'maximum age probably alive' which is "
+                                     "defined in the dates preference tab."))
         menu.add_option(category_name, 'after_year', self.__after_year)
 
         dbname = self.__db.get_dbname()
