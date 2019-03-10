@@ -140,6 +140,7 @@ class WebCalReport(Report):
         self.multiyear = mgobn('multiyear')
         self.start_year = mgobn('start_year')
         self.end_year = mgobn('end_year')
+        self.after_year = mgobn('after_year')
         if not self.multiyear:
             self.end_year = self.start_year
         if self.end_year < self.start_year:
@@ -290,6 +291,9 @@ class WebCalReport(Report):
         dead_event_date -- The date of the event used to calculate
                            the age_at_death
         """
+
+        if year <= self.after_year:
+            return
 
         # This may happen for certain "about" dates.
         # Use first day of the month
@@ -1633,6 +1637,7 @@ class WebCalOptions(MenuReportOptions):
         self.__multiyear = None
         self.__start_year = None
         self.__end_year = None
+        self.__after_year = None
 
     def add_menu_options(self, menu):
         """
@@ -1641,8 +1646,8 @@ class WebCalOptions(MenuReportOptions):
         self.__add_report_options(menu)
         self.__add_report2_options(menu)
         self.__add_content_options(menu)
-        self.__add_notes_options(menu)
         self.__add_advanced_options(menu)
+        self.__add_notes_options(menu)
 
     def __add_report_options(self, menu):
         """
@@ -1890,6 +1895,16 @@ class WebCalOptions(MenuReportOptions):
         self.__links.set_help(_('Whether to link data to web report or not'))
         menu.add_option(category_name, 'link_to_narweb', self.__links)
         self.__links.connect('value-changed', self.__links_changed)
+
+        today = Today()
+        default_before = config.get('behavior.max-age-prob-alive')
+        self.__after_year = NumberOption(_('Show data only after year'),
+                                         (today.get_year() - default_before),
+                                         0, today.get_year())
+        self.__after_year.set_help(_("Don't show data before this year."
+                                     " should be before current year - "
+                                     " 100"))
+        menu.add_option(category_name, 'after_year', self.__after_year)
 
         dbname = self.__db.get_dbname()
         default_prefix = '../../' + dbname + "_NAVWEB/"
