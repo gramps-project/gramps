@@ -104,15 +104,6 @@ LANGUAGES = {
 #
 #-------------------------------------------------------------------------
 
-MIME2GED = {
-    "image/bmp"   : "bmp",
-    "image/gif"   : "gif",
-    "image/jpeg"  : "jpeg",
-    "image/x-pcx" : "pcx",
-    "image/tiff"  : "tiff",
-    "audio/x-wav" : "wav"
-}
-
 QUALITY_MAP = {
     Citation.CONF_VERY_HIGH : "3",
     Citation.CONF_HIGH      : "2",
@@ -1467,8 +1458,7 @@ class GedcomWriter(UpdateCallback):
         gramps_id = media.get_gramps_id()
 
         self._writeln(0, '@%s@' % gramps_id, 'OBJE')
-        mime = media.get_mime_type()
-        form = MIME2GED.get(mime, mime)
+        form = os.path.splitext(media.get_path())[1][1:]
         path = media_path_full(self.dbase, media.get_path())
         self._writeln(1, 'FILE', path, limit=255)
         if form:
