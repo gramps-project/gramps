@@ -160,6 +160,8 @@ class RelationshipView(NavigationView):
         self.use_shade = self._config.get('preferences.relation-shade')
         self.theme = self._config.get('preferences.relation-display-theme')
         self.toolbar_visible = config.get('interface.toolbar-on')
+        self.age_precision = config.get('preferences.age-display-precision')
+
 
     def get_handle_from_gramps_id(self, gid):
         """
@@ -619,29 +621,30 @@ class RelationshipView(NavigationView):
                 if death:
                     death_date = death.get_date_object()
                     if (death_date and death_date.get_valid()):
-                        age = death_date - birth_date
-                        subgrid.attach(widgets.BasicLabel(_("%s:") % death_title),
-                                      1, 2, 1, 1)
-                        deathwidget = widgets.BasicLabel("%s (%s)" %
-                                                         (self.format_event(death), age),
-                                                         Pango.EllipsizeMode.END)
+                        age = (death_date - birth_date).format(
+                            precision=self.age_precision)
+                        subgrid.attach(widgets.BasicLabel(
+                            _("%s:") % death_title), 1, 2, 1, 1)
+                        deathwidget = widgets.BasicLabel(
+                            "%s (%s)" % (self.format_event(death), age),
+                            Pango.EllipsizeMode.END)
                         deathwidget.set_selectable(True)
-                        subgrid.attach(deathwidget,
-                                      2, 2, 1, 1)
+                        subgrid.attach(deathwidget, 2, 2, 1, 1)
                         showed_death = True
                 if not showed_death:
-                    age = Today() - birth_date
+                    age = (Today() - birth_date).format(
+                        precision=self.age_precision)
                     if probably_alive(person, self.dbstate.db):
-                        subgrid.attach(widgets.BasicLabel(_("%s:") % _("Alive")),
-                                      1, 2, 1, 1)
-                        subgrid.attach(widgets.BasicLabel("(%s)" % age, Pango.EllipsizeMode.END),
-                                      2, 2, 1, 1)
+                        subgrid.attach(widgets.BasicLabel(
+                            _("%s:") % _("Alive")), 1, 2, 1, 1)
+                        subgrid.attach(widgets.BasicLabel(
+                            "(%s)" % age, Pango.EllipsizeMode.END), 2, 2, 1, 1)
                     else:
-                        subgrid.attach(widgets.BasicLabel(_("%s:") % _("Death")),
-                                      1, 2, 1, 1)
-                        subgrid.attach(widgets.BasicLabel("%s (%s)" % (_("unknown"), age),
-                                                         Pango.EllipsizeMode.END),
-                                      2, 2, 1, 1)
+                        subgrid.attach(widgets.BasicLabel(
+                            _("%s:") % _("Death")), 1, 2, 1, 1)
+                        subgrid.attach(widgets.BasicLabel(
+                            "%s (%s)" % (_("unknown"), age),
+                            Pango.EllipsizeMode.END), 2, 2, 1, 1)
                     showed_death = True
 
         if not showed_death:
