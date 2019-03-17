@@ -41,7 +41,7 @@ from gramps.gen.datehandler import displayer
 class PlaceRefModel(Gtk.ListStore):
 
     def __init__(self, obj_list, db):
-        Gtk.ListStore.__init__(self, str, str, str, str, object)
+        Gtk.ListStore.__init__(self, str, str, str, str, str, object)
         self.db = db
         for obj in obj_list:
             place = self.db.get_place_from_handle(obj.ref)
@@ -49,4 +49,5 @@ class PlaceRefModel(Gtk.ListStore):
                              place.get_name().get_value(),
                              str(place.get_type()),
                              displayer.display(obj.date),
+                             str(obj.get_type()),
                              obj, ])

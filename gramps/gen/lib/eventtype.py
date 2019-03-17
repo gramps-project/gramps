@@ -43,6 +43,7 @@ class EventType(GrampsType):
     .. attribute DEATH:     Death
     .. attribute ADULT_CHRISTEN: Adult Christening
     .. attribute BAPTISM:      Baptism
+    .. attribute BATTLE:      Battle
     .. attribute BAR_MITZVAH:  Bar Mitzvah
     .. attribute BAS_MITZVAH:  Bas Mitzvah
     .. attribute BLESS:        Blessing
@@ -82,6 +83,7 @@ class EventType(GrampsType):
     .. attribute DIV_FILING:     Divorce Filing
     .. attribute ANNULMENT:      Annulment
     .. attribute MARR_ALT:        Alternate Marriage
+    .. attribute HISTORY:        History
     """
     UNKNOWN = -1
     CUSTOM = 0
@@ -129,6 +131,8 @@ class EventType(GrampsType):
     RESIDENCE = 42
     RETIREMENT = 43
     WILL = 44
+    HISTORY = 45
+    BATTLE = 46
 
     # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
     def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
@@ -153,7 +157,10 @@ class EventType(GrampsType):
              [_T_('Residence'),
               [RESIDENCE, CENSUS, PROPERTY]],
              [_T_('Other'),
-              [CAUSE_DEATH, MED_INFO, NOB_TITLE, NUM_MARRIAGES]]]
+              [CAUSE_DEATH, MED_INFO, NOB_TITLE, NUM_MARRIAGES]],
+             [_T_('Place'),
+              [HISTORY, BATTLE]],
+              ]
 
     _CUSTOM = CUSTOM
     _DEFAULT = BIRTH
@@ -162,6 +169,7 @@ class EventType(GrampsType):
         (UNKNOWN, _("Unknown"), "Unknown"),
         (CUSTOM, _("Custom"), "Custom"),
         (ADOPT, _("Adopted"), "Adopted"),
+        (BATTLE, _("Battle"), "Battle"),
         (BIRTH, _("Birth"), "Birth"),
         (DEATH, _("Death"), "Death"),
         (ADULT_CHRISTEN, _("Adult Christening"), "Adult Christening"),
@@ -180,6 +188,7 @@ class EventType(GrampsType):
         (ELECTED, _("Elected"), "Elected"),
         (EMIGRATION, _("Emigration"), "Emigration"),
         (FIRST_COMMUN, _("First Communion"), "First Communion"),
+        (HISTORY, _("History"), "History"),
         (IMMIGRATION, _("Immigration"), "Immigration"),
         (GRADUATION, _("Graduation"), "Graduation"),
         (MED_INFO, _("Medical Information"), "Medical Information"),
@@ -216,6 +225,7 @@ class EventType(GrampsType):
         ADOPT: _T_("Adopted abbreviation|adop."),
         ADULT_CHRISTEN : _T_("Adult Christening abbreviation|a.chr."),
         BAPTISM: _T_("Baptism abbreviation|bap."),
+        BATTLE: _T_("Battle abbreviation|battle."),
         BAR_MITZVAH : _T_("Bar Mitzvah abbreviation|bar."),
         BAS_MITZVAH : _T_("Bat Mitzvah abbreviation|bat."),
         BLESS: _T_("Blessing abbreviation|bles."),
@@ -230,6 +240,7 @@ class EventType(GrampsType):
         ELECTED: _T_("Elected abbreviation|elec."),
         EMIGRATION: _T_("Emigration abbreviation|em."),
         FIRST_COMMUN: _T_("First Communion abbreviation|f.comm."),
+        HISTORY: _T_("History abbreviation|hist."),
         IMMIGRATION: _T_("Immigration abbreviation|im."),
         GRADUATION: _T_("Graduation abbreviation|grad."),
         MED_INFO: _T_("Medical Information abbreviation|medinf."),

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2019       Paul Culley
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,7 +20,7 @@
 #
 
 """
-Provide the different event roles.
+Provide the different place Abbreviation types.
 """
 
 #-------------------------------------------------------------------------
@@ -29,58 +30,27 @@ Provide the different event roles.
 #-------------------------------------------------------------------------
 from .grampstype import GrampsType
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
+_ = glocale.translation.gettext
 
-class EventRoleType(GrampsType):
+
+class PlaceAbbrevType(GrampsType):
 
     UNKNOWN = -1
     CUSTOM = 0
-    PRIMARY = 1
-    CLERGY = 2
-    CELEBRANT = 3
-    AIDE = 4
-    BRIDE = 5
-    GROOM = 6
-    WITNESS = 7
-    FAMILY = 8
-    INFORMANT = 9
-    PLACE = 10
+    ABBR = 1
+    ISO3166 = 2
+    ANSI38 = 3
 
     _CUSTOM = CUSTOM
-    _DEFAULT = PRIMARY
+    _DEFAULT = UNKNOWN
 
     _DATAMAP = [
         (UNKNOWN, _("Unknown"), "Unknown"),
         (CUSTOM, _("Custom"), "Custom"),
-        (PRIMARY, _("Role|Primary"), "Primary"),
-        (CLERGY, _("Clergy"), "Clergy"),
-        (CELEBRANT, _("Celebrant"), "Celebrant"),
-        (AIDE, _("Aide"), "Aide"),
-        (BRIDE, _("Bride"), "Bride"),
-        (GROOM, _("Groom"), "Groom"),
-        (WITNESS, _("Witness"), "Witness"),
-        (FAMILY, _("Role|Family"), "Family"),
-        (INFORMANT, _("Informant"), "Informant"),
-        (PLACE, _("Place"), "Place"),
+        (ABBR, _("Abbreviation"), "Abbreviation"),
+        (ISO3166, _("ISO3166"), "ISO3166"),
+        (ANSI38, _("ANSI standard INCITS 38:2009"), "ANSI standard INCITS 38:2009")
     ]
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
-
-    def is_primary(self):
-        """
-        Returns True if EventRoleType is PRIMARY, False otherwise.
-        """
-        return self.value == self.PRIMARY
-
-    def is_family(self):
-        """
-        Returns True if EventRoleType is FAMILY, False otherwise.
-        """
-        return self.value == self.FAMILY
-
-    def is_place(self):
-        """
-        Returns True if EventRoleType is PLACE, False otherwise.
-        """
-        return self.value == self.PLACE

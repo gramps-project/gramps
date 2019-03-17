@@ -82,10 +82,11 @@ class Locations(Gramplet, DbGUIElement):
         self.set_tooltip(tip)
         top = Gtk.TreeView()
         titles = [('', 0, 50),
-                  (_('Name'), 1, 300),
-                  (_('Type'), 2, 150),
-                  (_('Date'), 5, 250),
-                  (_('ID'), 4, 100),
+                  (_('Name'), 1, 250),
+                  (_('Type'), 2, 100),
+                  (_('Date'), 5, 225),
+                  (_('ID'), 4, 75),
+                  (_('Hierarchy'), 5, 100),
                   ('', NOSORT, 50)]
         self.model = ListModel(top, titles, list_mode="tree",
                                event_func=self.edit_place)
@@ -133,6 +134,7 @@ class Locations(Gramplet, DbGUIElement):
         """
         place_date = get_date(placeref)
         place_sort = '%012d' % placeref.get_date_object().get_sort_value()
+        place_hier = str(placeref.get_type())
         place_name = place.get_name().get_value()
         place_type = str(place.get_type())
         place_id = place.get_gramps_id()
@@ -145,6 +147,7 @@ class Locations(Gramplet, DbGUIElement):
                                    place_type,
                                    place_date,
                                    place_id,
+                                   place_hier,
                                    place_sort],
                                   node=node)
 

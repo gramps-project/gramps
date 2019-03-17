@@ -419,7 +419,7 @@ class MonitoredDataType:
 
 
     def __init__(self, obj, set_val, get_val, readonly=False,
-                 custom_values=None, ignore_values=None):
+                 custom_values=None, ignore_values=None, changed=None):
         """
         Constructor for the MonitoredDataType class.
 
@@ -438,11 +438,14 @@ class MonitoredDataType:
         :param ignore_values: list of values not to show in the combobox. If the
                               result of get_val is in these, it is not ignored
         :type ignore_values: list of int
+        :param changed: To update an external element when we change value
+        :type callback: method
         """
         self.set_val = set_val
         self.get_val = get_val
 
         self.obj = obj
+        self.changed = changed
 
         val = get_val()
 
@@ -498,6 +501,8 @@ class MonitoredDataType:
     def on_change(self, obj):
         value = self.fix_value(self.sel.get_values())
         self.set_val(value)
+        if self.changed:
+            self.changed(obj)
 
 #-------------------------------------------------------------------------
 #

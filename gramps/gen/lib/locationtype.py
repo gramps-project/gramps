@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2013,2017  Nick Hall
+# Copyright (C) 2015,2017  Nick Hall
 # Copyright (C) 2019       Paul Culley
 #
 # This program is free software; you can redistribute it and/or modify
@@ -21,7 +21,7 @@
 #
 
 """
-Place Reference class for Gramps
+Place Location Type class for Gramps
 """
 
 #-------------------------------------------------------------------------
@@ -30,10 +30,8 @@ Place Reference class for Gramps
 #
 #-------------------------------------------------------------------------
 from .secondaryobj import SecondaryObject
-from .refbase import RefBase
 from .datebase import DateBase
 from .citationbase import CitationBase
-from .placehiertype import PlaceHierType
 from .placetype import PlaceType
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
@@ -42,50 +40,52 @@ _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
-# Place References
+# Place Name
 #
 #-------------------------------------------------------------------------
-class PlaceRef(RefBase, DateBase, CitationBase, SecondaryObject):
+class LocationType(SecondaryObject, CitationBase, DateBase):
     """
-    Place reference class.
+    Place Location Type class.
 
-    This class is for keeping information about how places link to other places
-    in the place hierarchy.
+    This class is for keeping information about place names.
     """
 
-    def __init__(self, source=None):
+    def __init__(self, source=None, **kwargs):
         """
-        Create a new PlaceRef instance, copying from the source if present.
+        Create a new LocationType instance, copying from the source if present.
         """
-        RefBase.__init__(self, source)
         DateBase.__init__(self, source)
         CitationBase.__init__(self, source)
         if source:
-            self.type = PlaceHierType(source)
+            self.type = source.type
         else:
-            self.type = PlaceHierType()
+            self.type = PlaceType()
+        for key in kwargs:
+            if key in ["type", "date", "citation_list"]:
+                setattr(self, key, kwargs[key])
+            else:
+                raise AttributeError(
+                    "LocationType does not have property '%s'" % key)
 
     def serialize(self):
         """
         Convert the object to a serialized tuple of data.
         """
         return (
-            RefBase.serialize(self),
+            self.type.serialize(),
             DateBase.serialize(self),
             CitationBase.serialize(self),
-            self.type.serialize()
         )
 
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        (ref, date, citation_list, h_type) = data
-        RefBase.unserialize(self, ref)
+        (p_type, date, citation_list) = data
+        self.type = PlaceType()
+        self.type.unserialize(p_type)
         DateBase.unserialize(self, date)
         CitationBase.unserialize(self, citation_list)
-        self.type = PlaceHierType()
-        self.type.unserialize(h_type)
         return self
 
     @classmethod
@@ -99,20 +99,16 @@ class PlaceRef(RefBase, DateBase, CitationBase, SecondaryObject):
         from .date import Date
         return {
             "type": "object",
-            "title": _("Place ref"),
+            "title": _("Place Name"),
             "properties": {
                 "_class": {"enum": [cls.__name__]},
-                "ref": {"type": "string",
-                        "title": _("Handle"),
-                        "maxLength": 50},
+                "type": PlaceType.get_schema(),
                 "date": {"oneOf": [{"type": "null"}, Date.get_schema()],
                          "title": _("Date")},
                 "citation_list": {"type": "array",
                                   "title": _("Citations"),
                                   "items": {"type": "string",
                                             "maxLength": 50}},
-                "type": {"type": PlaceHierType.get_schema(),
-                         "title": _("Type")}
             }
         }
 
@@ -163,60 +159,29 @@ class PlaceRef(RefBase, DateBase, CitationBase, SecondaryObject):
                   objects.
         :rtype: list
         """
-        return [('Place', self.ref)]
+        return []
 
     def get_handle_referents(self):
         """
         Return the list of child objects which may, directly or through their
-        children, reference primary objects..
+        children, reference primary objects.
 
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
         return []
 
-    def set_type_for_place(self, place):
-        """
-        Set the hierarchy type for the PlaceRef based on the type of the
-        enclosing place.  If place type is unknown (new place), set to ADMIN.
-        If ref.type is already set, skip.
-        """
-        if self.type == PlaceType.UNKNOWN:
-            p_type = place.get_type()
-            if(p_type == PlaceType.UNKNOWN or p_type == PlaceType.CUSTOM or
-               p_type & PlaceType.G_ADMIN):
-                self.type.set(PlaceHierType.ADMIN)
-            elif p_type & PlaceType.G_RELI:
-                self.type.set(PlaceHierType.RELI)
-            elif p_type & PlaceType.G_JUDI:
-                self.type.set(PlaceHierType.JUDI)
-            elif p_type & PlaceType.G_CULT:
-                self.type.set(PlaceHierType.CULT)
-            else:
-                self.type.set(PlaceHierType.GEOG)
-
-    def set_type(self, p_type):
-        """
-        Set the type for the PlaceRef instance.
-        """
-        self.type.set(p_type)
-
-    def get_type(self):
-        """Return the type for the PlaceRef instance."""
-        return self.type
-
     def is_equivalent(self, other):
         """
-        Return if this placeref is equivalent, that is agrees in handle and
-        role, to other.
+        Return if this LocationType is equivalent, that is agrees in type and
+        value, to other.
 
-        :param other: The placeref to compare this one to.
-        :type other: PlaceRef
+        :param other: The eventref to compare this one to.
+        :type other: LocationType
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
-        if(self.ref != other.ref or self.date != other.date or
-           self.type != other.type):
+        if(self.type != other.type or self.date != other.date):
             return DIFFERENT
         else:
             if self.is_equal(other):
@@ -224,13 +189,31 @@ class PlaceRef(RefBase, DateBase, CitationBase, SecondaryObject):
             else:
                 return EQUAL
 
+    def __eq__(self, other):
+        return self.is_equal(other)
+
+    def __ne__(self, other):
+        return not self.is_equal(other)
+
+    def set_type(self, p_type):
+        """
+        Set the type for the LocationType instance.
+        """
+        self.type.set(p_type)
+
+    def get_type(self):
+        """
+        Return the type for the LocationType instance.
+        """
+        return self.type
+
     def merge(self, acquisition):
         """
-        Merge the content of acquisition into this placeref.
+        Merge the content of acquisition into this LocationType.
 
-        Lost: hlink and role of acquisition.
+        Lost: type, date of acquisition.
 
-        :param acquisition: The placeref to merge with the present placeref.
-        :type acquisition: PlaceRef
+        :param acquisition: the LocationType to merge with.
+        :type acquisition: LocationType
         """
         self._merge_citation_list(acquisition)

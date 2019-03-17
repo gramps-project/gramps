@@ -251,19 +251,20 @@ def get_divorce_or_fallback(db, family, format=None):
 # Function to return the name of the main participant of an event
 #
 #-------------------------------------------------------------------------
-def get_participant_from_event(db, event_handle, all_=False):
+def get_participant_from_event(db, event_handle, all_=False, inc_place=False):
     """
     Obtain the first primary or family participant to an event we find in the
     database. Note that an event can have more than one primary or
     family participant, only one is returned, adding ellipses if there are
     more. If the all_ parameter is true a comma-space separated string with
     the names of all primary participants is returned and no ellipses is used.
+    If inc_place is true, we add places as well as people.
     """
     participant = ""
     ellipses = False
     try:
-        result_list = list(db.find_backlink_handles(event_handle,
-                                 include_classes=['Person', 'Family']))
+        result_list = list(db.find_backlink_handles(
+            event_handle, include_classes=['Person', 'Family', 'Place']))
     except:
         # during a magic batch transaction find_backlink_handles tries to
         # access the reference_map_referenced_map which is closed
@@ -273,6 +274,7 @@ def get_participant_from_event(db, event_handle, all_=False):
     #obtain handles without duplicates
     people = set([x[1] for x in result_list if x[0] == 'Person'])
     families = set([x[1] for x in result_list if x[0] == 'Family'])
+    places = set([x[1] for x in result_list if x[0] == 'Place'])
     for personhandle in people:
         person = db.get_person_from_handle(personhandle)
         if not person:
@@ -308,6 +310,24 @@ def get_participant_from_event(db, event_handle, all_=False):
                 break
         if ellipses:
             break
+
+    if inc_place or not (families or people):
+        for placehandle in places:
+            place = db.get_place_from_handle(placehandle)
+            for event_ref in place.get_event_ref_list():
+                if event_handle == event_ref.ref and \
+                        event_ref.get_role().is_place():
+                    if participant:
+                        if all_:
+                            participant += ', %s' % place_displayer.display(
+                                db, place)
+                        else:
+                            ellipses = True
+                    else:
+                        participant = place_displayer.display(db, place)
+                    break
+            if ellipses:
+                break
 
     if ellipses:
         return _('%s, ...') % participant

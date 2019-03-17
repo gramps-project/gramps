@@ -629,6 +629,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.media_attributes = self._get_metadata('mattr_names', set())
         self.event_attributes = self._get_metadata('eattr_names', set())
         self.place_types = self._get_metadata('place_types', set())
+        self.placeabbr_types = self._get_metadata('placeabbr_types', set())
+        self.placehier_types = self._get_metadata('placehier_types', set())
 
         # surname list
         self.surname_list = self.get_surname_list()
@@ -713,6 +715,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 self._set_metadata('mattr_names', self.media_attributes)
                 self._set_metadata('eattr_names', self.event_attributes)
                 self._set_metadata('place_types', self.place_types)
+                self._set_metadata('placeabbr_types', self.placeabbr_types)
+                self._set_metadata('placehier_types', self.placehier_types)
 
                 # Save misc items:
                 if self.has_changed:
@@ -1957,8 +1961,18 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self._commit_base(place, PLACE_KEY, trans, change_time)
 
         # Misc updates:
-        if place.get_type().is_custom():
-            self.place_types.add(str(place.get_type()))
+        for p_type in place.get_types():
+            if p_type.get_type().is_custom():
+                self.place_types.add(str(p_type.get_type()))
+        for p_name in place.get_names():
+            for abb in p_name.get_abbrevs():
+                typ = abb.get_type()
+                if typ.is_custom() and str(typ):
+                    self.placeabbr_types.add(str(typ))
+        for p_ref in place.get_placeref_list():
+            typ = p_ref.get_type()
+            if typ.is_custom() and str(typ):
+                self.placehier_types.add(str(typ))
 
         self.url_types.update([str(url.type) for url in place.urls
                                if url.type.is_custom()])
@@ -1967,6 +1981,8 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         for mref in place.media_list:
             attr_list += [str(attr.type) for attr in mref.attribute_list
                           if attr.type.is_custom() and str(attr.type)]
+        attr_list += [str(attr.type) for attr in place.attribute_list
+                      if attr.type.is_custom() and str(attr.type)]
         self.media_attributes.update(attr_list)
 
     def commit_event(self, event, trans, change_time=None):
@@ -2228,6 +2244,20 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         in the database.
         """
         return list(self.place_types)
+
+    def get_placehier_types(self):
+        """
+        Return a list of all custom place hierarchy types assocated with Place
+        instances in the database.
+        """
+        return list(self.placehier_types)
+
+    def get_placeabbr_types(self):
+        """
+        Return a list of all custom place name types assocated with Place
+        instances in the database.
+        """
+        return list(self.placeabbr_types)
 
     ################################################################
     #

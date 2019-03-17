@@ -30,6 +30,7 @@ from .editeventref import EditEventRef
 from .editfamily import EditFamily
 from .editldsord import EditLdsOrd, EditFamilyLdsOrd
 from .editlocation import EditLocation
+from .editlocationtype import EditLocationType
 from .editmedia import EditMedia, DeleteMediaQuery
 from .editmediaref import EditMediaRef
 from .editname import EditName
@@ -39,6 +40,7 @@ from .editpersonref import EditPersonRef
 from .editplace import EditPlace, DeletePlaceQuery
 from .editplacename import EditPlaceName
 from .editplaceref import EditPlaceRef
+from .editplaceabbrev import EditPlaceAbbrev
 from .editrepository import EditRepository, DeleteRepositoryQuery
 from .editreporef import EditRepoRef
 from .editsource import EditSource, DeleteSrcQuery

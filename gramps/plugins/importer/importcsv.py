@@ -806,6 +806,7 @@ class CSVParser:
                 placeref.ref = place_enclosed_by.handle
                 if place_date:
                     placeref.date = _dp.parse(place_date)
+                placeref.set_type_for_place(place_enclosed_by)
                 place.placeref_list.append(placeref)
         #########################################################
         self.db.commit_place(place, self.trans)

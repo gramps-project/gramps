@@ -193,7 +193,7 @@ class Check(tool.BatchTool):
             # then going to be deleted.
             checker.cleanup_empty_objects()
             checker.fix_encoding()
-            checker.fix_alt_place_names()
+            checker.fix_place_names()
             checker.fix_ctrlchars_in_notes()
             checker.cleanup_missing_photos(cli)
             checker.cleanup_deleted_name_formats()
@@ -452,35 +452,34 @@ class CheckIntegrity:
         if error_count == 0:
             logging.info('    OK: no ctrl characters in notes found')
 
-    def fix_alt_place_names(self):
+    def fix_place_names(self):
         """
         This scans all places and cleans up alternative names.  It removes
         Blank names, names that are duplicates of the primary name, and
         duplicates in the alt_names list.
         """
-        self.progress.set_pass(_('Looking for bad alternate place names'),
+        self.progress.set_pass(_('Looking for bad place names'),
                                self.db.get_number_of_places())
-        logging.info('Looking for bad alternate place names')
+        logging.info('Looking for bad place names')
         for handle in self.db.get_place_handles():
             place = self.db.get_place_from_handle(handle)
-            fixed_alt_names = []
+            fixed_names = []
             fixup = False
             for name in place.get_alternative_names():
                 if not name.value or \
-                        name == place.name or \
-                        name in fixed_alt_names:
+                        name in fixed_names:
                     fixup = True
                     continue
-                fixed_alt_names.append(name)
+                fixed_names.append(name)
             if fixup:
-                place.set_alternative_names(fixed_alt_names)
+                place.set_alternative_names(fixed_names)
                 self.db.commit_place(place, self.trans)
                 self.place_errors += 1
             self.progress.step()
         if self.place_errors == 0:
-            logging.info('    OK: no bad alternate places found')
+            logging.info('    OK: no bad place names found')
         else:
-            logging.info('    %d bad alternate places found and fixed',
+            logging.info('    %d bad place names found and fixed',
                          self.place_errors)
 
     def check_for_broken_family_links(self):

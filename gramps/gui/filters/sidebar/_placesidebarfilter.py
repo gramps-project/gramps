@@ -42,7 +42,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from ... import widgets
-from gramps.gen.lib import Place, PlaceType
+from gramps.gen.lib import LocationType, PlaceType
 from .. import build_filter_model
 from . import SidebarFilter
 from gramps.gen.filters import GenericFilterFactory, rules
@@ -63,7 +63,7 @@ class PlaceSidebarFilter(SidebarFilter):
 
         self.filter_id = widgets.BasicEntry()
         self.filter_name = widgets.BasicEntry()
-        self.filter_place = Place()
+        self.filter_place = LocationType()
         self.filter_place.set_type((PlaceType.CUSTOM, ''))
         self.ptype = Gtk.ComboBox(has_entry=True)
         self.dbstate = dbstate
@@ -79,7 +79,6 @@ class PlaceSidebarFilter(SidebarFilter):
             False, # read-only
             self.custom_types
         )
-        self.filter_code = widgets.BasicEntry()
         self.filter_enclosed = widgets.PlaceEntry(dbstate, uistate, [])
         self.filter_note = widgets.BasicEntry()
         self.filter_within = widgets.PlaceWithin(dbstate, uistate, [])
@@ -107,7 +106,6 @@ class PlaceSidebarFilter(SidebarFilter):
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Name'), self.filter_name)
         self.add_entry(_('Type'), self.ptype)
-        self.add_text_entry(_('Code'), self.filter_code)
         self.add_text_entry(_('Enclosed By'), self.filter_enclosed)
         self.add_text_entry(_('Within'), self.filter_within)
         self.add_text_entry(_('Note'), self.filter_note)
@@ -118,7 +116,6 @@ class PlaceSidebarFilter(SidebarFilter):
     def clear(self, obj):
         self.filter_id.set_text('')
         self.filter_name.set_text('')
-        self.filter_code.set_text('')
         self.filter_enclosed.set_text('')
         self.filter_note.set_text('')
         self.filter_within.set_value('', 0)
@@ -130,7 +127,6 @@ class PlaceSidebarFilter(SidebarFilter):
         gid = str(self.filter_id.get_text()).strip()
         name = str(self.filter_name.get_text()).strip()
         ptype = self.filter_place.get_type().xml_str()
-        code = str(self.filter_code.get_text()).strip()
         enclosed = str(self.filter_enclosed.get_text()).strip()
         note = str(self.filter_note.get_text()).strip()
         within = self.filter_within.get_value()
@@ -138,8 +134,8 @@ class PlaceSidebarFilter(SidebarFilter):
         tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
 
-        empty = not (gid or name or ptype or code or enclosed or note or regex
-                     or within[0] or tag or gen)
+        empty = not (gid or name or ptype or enclosed or note or regex or
+                     within[0] or tag or gen)
         if empty:
             generic_filter = None
         else:
@@ -152,7 +148,7 @@ class PlaceSidebarFilter(SidebarFilter):
                 rule = IsEnclosedBy([enclosed, '0'])
                 generic_filter.add_rule(rule)
 
-            rule = HasData([name, ptype, code], use_regex=regex)
+            rule = HasData([name, ptype], use_regex=regex)
             generic_filter.add_rule(rule)
 
             if note:

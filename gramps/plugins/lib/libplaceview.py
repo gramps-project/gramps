@@ -73,20 +73,18 @@ class PlaceBaseView(ListView):
     COL_ID = 1
     COL_TITLE = 2
     COL_TYPE = 3
-    COL_CODE = 4
-    COL_LAT = 5
-    COL_LON = 6
-    COL_PRIV = 7
-    COL_TAGS = 8
-    COL_CHAN = 9
-    COL_SEARCH = 11
+    COL_LAT = 4
+    COL_LON = 5
+    COL_PRIV = 6
+    COL_TAGS = 7
+    COL_CHAN = 8
+    COL_SEARCH = 10
     # column definitions
     COLUMNS = [
         (_('Name'), TEXT, None),
         (_('ID'), TEXT, None),
         (_('Title'), TEXT, None),
         (_('Type'), TEXT, None),
-        (_('Code'), TEXT, None),
         (_('Latitude'), TEXT, None),
         (_('Longitude'), TEXT, None),
         (_('Private'), ICON, 'gramps-lock'),
@@ -95,10 +93,10 @@ class PlaceBaseView(ListView):
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ('columns.visible', [COL_NAME, COL_ID, COL_TYPE, COL_CODE]),
-        ('columns.rank', [COL_NAME, COL_TITLE, COL_ID, COL_TYPE, COL_CODE,
+        ('columns.visible', [COL_NAME, COL_ID, COL_TYPE]),
+        ('columns.rank', [COL_NAME, COL_TITLE, COL_ID, COL_TYPE,
                           COL_LAT, COL_LON, COL_PRIV, COL_TAGS, COL_CHAN]),
-        ('columns.size', [250, 250, 75, 100, 100, 150, 150, 40, 100, 100])
+        ('columns.size', [250, 250, 75, 100, 150, 150, 40, 100, 100])
         )
     ADD_MSG     = _("Add a new place")
     EDIT_MSG    = _("Edit the selected place")

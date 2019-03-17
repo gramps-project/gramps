@@ -6,6 +6,7 @@
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2017       Nick Hall
+# Copyright (C) 2019       Paul Culley
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +26,7 @@
 """
 Place object for Gramps.
 """
-
+import traceback
 #-------------------------------------------------------------------------
 #
 # Gramps modules
@@ -35,21 +36,27 @@ from .primaryobj import PrimaryObject
 from .placeref import PlaceRef
 from .placename import PlaceName
 from .placetype import PlaceType
+from .locationtype import LocationType
 from .citationbase import CitationBase
+from .eventref import EventRef
+from .attrbase import AttributeBase
 from .notebase import NoteBase
 from .mediabase import MediaBase
 from .urlbase import UrlBase
 from .tagbase import TagBase
 from .location import Location
 from ..const import GRAMPS_LOCALE as glocale
+from .const import IDENTICAL, EQUAL, DIFFERENT
 _ = glocale.translation.gettext
+
 
 #-------------------------------------------------------------------------
 #
 # Place class
 #
 #-------------------------------------------------------------------------
-class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
+class Place(CitationBase, NoteBase, MediaBase, UrlBase, AttributeBase,
+            PrimaryObject):
     """
     Contains information related to a place, including multiple address
     information (since place names can change with time), longitude, latitude,
@@ -67,27 +74,26 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         CitationBase.__init__(self, source)
         NoteBase.__init__(self, source)
         MediaBase.__init__(self, source)
+        AttributeBase.__init__(self, source)
         UrlBase.__init__(self, source)
         if source:
             self.long = source.long
             self.lat = source.lat
             self.title = source.title
-            self.name = source.name
-            self.alt_names = source.alt_names
+            self.name_list = list(map(PlaceName, source.name_list))
             self.placeref_list = list(map(PlaceRef, source.placeref_list))
-            self.place_type = source.place_type
-            self.code = source.code
+            self.type_list = list(map(PlaceType, source.type_list))
             self.alt_loc = list(map(Location, source.alt_loc))
+            self.event_ref_list = list(map(EventRef, source.event_ref_list))
         else:
             self.long = ""
             self.lat = ""
             self.title = ""
-            self.name = PlaceName()
-            self.alt_names = []
+            self.name_list = []
             self.placeref_list = []
-            self.place_type = PlaceType()
-            self.code = ""
+            self.type_list = []
             self.alt_loc = []
+            self.event_ref_list = []
 
     def serialize(self):
         """
@@ -109,15 +115,16 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         return (self.handle, self.gramps_id, self.title, self.long, self.lat,
                 [pr.serialize() for pr in self.placeref_list],
-                self.name.serialize(),
-                [an.serialize() for an in self.alt_names],
-                self.place_type.serialize(), self.code,
+                [nam.serialize() for nam in self.name_list],
+                [typ.serialize() for typ in self.type_list],
+                [evt.serialize() for evt in self.event_ref_list],
                 [al.serialize() for al in self.alt_loc],
                 UrlBase.serialize(self),
                 MediaBase.serialize(self),
                 CitationBase.serialize(self),
                 NoteBase.serialize(self),
-                self.change, TagBase.serialize(self), self.private)
+                self.change, TagBase.serialize(self), self.private,
+                AttributeBase.serialize(self))
 
     @classmethod
     def get_schema(cls):
@@ -129,6 +136,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         from .url import Url
         from .mediaref import MediaRef
+        from .attribute import Attribute
         return {
             "type": "object",
             "title": _("Place"),
@@ -148,13 +156,15 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 "placeref_list": {"type": "array",
                                   "items": PlaceRef.get_schema(),
                                   "title": _("Places")},
-                "name": PlaceName.get_schema(),
-                "alt_names": {"type": "array",
+                "name_list": {"type": "array",
                               "items": PlaceName.get_schema(),
-                              "title": _("Alternate Names")},
-                "place_type": PlaceType.get_schema(),
-                "code": {"type": "string",
-                         "title": _("Code")},
+                              "title": _("Names")},
+                "type_list": {"type": "array",
+                              "items": PlaceType.get_schema(),
+                              "title": _("Types")},
+                "eventref_list": {"type": "array",
+                                  "items": EventRef.get_schema(),
+                                  "title": _("Events")},
                 "alt_loc": {"type": "array",
                             "items": Location.get_schema(),
                             "title": _("Alternate Locations")},
@@ -179,7 +189,10 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                                        "maxLength": 50},
                              "title": _("Tags")},
                 "private": {"type": "boolean",
-                            "title": _("Private")}
+                            "title": _("Private")},
+                "attribute_list": {"type": "array",
+                                   "items": Attribute.get_schema(),
+                                   "title": _("Attributes")}
             }
         }
 
@@ -193,21 +206,22 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :type data: tuple
         """
         (self.handle, self.gramps_id, self.title, self.long, self.lat,
-         placeref_list, name, alt_names, the_type, self.code,
+         placeref_list, names, types, events,
          alt_loc, urls, media_list, citation_list, note_list,
-         self.change, tag_list, self.private) = data
+         self.change, tag_list, self.private, attribs) = data
 
-        self.place_type = PlaceType()
-        self.place_type.unserialize(the_type)
+        self.placeref_list = [PlaceRef().unserialize(pr)
+                              for pr in placeref_list]
+        self.name_list = [PlaceName().unserialize(nam) for nam in names]
+        self.type_list = [LocationType().unserialize(typ) for typ in types]
+        self.event_ref_list = [EventRef().unserialize(evt) for evt in events]
         self.alt_loc = [Location().unserialize(al) for al in alt_loc]
-        self.placeref_list = [PlaceRef().unserialize(pr) for pr in placeref_list]
-        self.name = PlaceName().unserialize(name)
-        self.alt_names = [PlaceName().unserialize(an) for an in alt_names]
         UrlBase.unserialize(self, urls)
         MediaBase.unserialize(self, media_list)
         CitationBase.unserialize(self, citation_list)
         NoteBase.unserialize(self, note_list)
         TagBase.unserialize(self, tag_list)
+        AttributeBase.unserialize(self, attribs)
         return self
 
     def get_text_data_list(self):
@@ -223,22 +237,24 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         Return the list of child objects that may carry textual data.
 
-        :returns: Returns the list of child objects that may carry textual data.
+        :returns: list of child objects that may carry textual data.
         :rtype: list
         """
 
         ret = (self.media_list + self.alt_loc + self.urls +
-               self.name.get_text_data_child_list() + self.alt_names)
+               self.name_list + self.attribute_list)
         return ret
 
     def get_citation_child_list(self):
         """
         Return the list of child secondary objects that may refer citations.
 
-        :returns: List of child secondary child objects that may refer citations.
+        :returns: List of child secondary child objects that may refer
+                  citations.
         :rtype: list
         """
-        return self.media_list
+        return (self.media_list + self.attribute_list + self.event_ref_list +
+                self.name_list + self.type_list + self.placeref_list)
 
     def get_note_child_list(self):
         """
@@ -248,7 +264,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 refer notes.
         :rtype: list
         """
-        return self.media_list
+        return self.media_list + self.attribute_list + self.event_ref_list
 
     def get_handle_referents(self):
         """
@@ -258,7 +274,8 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.get_citation_child_list() + self.placeref_list
+        return (self.get_citation_child_list() + self.placeref_list +
+                self.media_list + self.event_ref_list)
 
     def get_referenced_handles(self):
         """
@@ -280,13 +297,16 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         self._merge_privacy(acquisition)
         self._merge_locations(acquisition)
-        self._merge_alt_names(acquisition)
+        self._merge_types(acquisition)
+        self._merge_names(acquisition)
         self._merge_media_list(acquisition)
         self._merge_url_list(acquisition)
         self._merge_note_list(acquisition)
         self._merge_citation_list(acquisition)
         self._merge_tag_list(acquisition)
         self._merge_placeref_list(acquisition)
+        self._merge_attribute_list(acquisition)
+        self._merge_event_ref_list(acquisition)
 
     def set_title(self, title):
         """
@@ -308,23 +328,31 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def set_name(self, name):
         """
-        Set the name of the Place object.
+        Set the first name in the list of the Place object.
 
         :param name: name to assign to the Place
         :type name: PlaceName
         """
+        print("TODO maybe")
+        traceback.print_stack(limit=2)
         if not isinstance(name, PlaceName):
             raise ValueError("Place.set_name(name) requires a PlaceName()")
-        self.name = name
+        if self.name_list:
+            self.name_list[0] = name
+        else:
+            self.add_name(name)
 
     def get_name(self):
         """
-        Return the name of the Place object.
+        Return the first name in the list of the Place object.
 
         :returns: Returns the name of the Place
         :rtype: PlaceName
         """
-        return self.name
+        if not self.name_list:
+            name = PlaceName(value='')
+            self.add_name(name)
+        return self.name_list[0]
 
     def get_all_names(self):
         """
@@ -333,7 +361,9 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: Returns a list of all names of the Place
         :rtype: list of PlaceName
         """
-        return [self.name] + self.alt_names
+        print("TODO for sure")
+        traceback.print_stack(limit=2)
+        return self.name_list
 
     def set_longitude(self, longitude):
         """
@@ -373,21 +403,79 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def set_type(self, place_type):
         """
-        Set the type of the Place object.
+        Set the first type in the list of the Place object.
+        Included so legacy code can modify the primary type.
 
         :param type: type to assign to the Place
         :type type: PlaceType
         """
-        self.place_type.set(place_type)
+        print("TODO maybe")
+        traceback.print_stack(limit=2)
+        if not self.type_list:
+            loc = LocationType()
+            self.add_type(loc)
+        self.type_list[0].type.set(place_type)
 
     def get_type(self):
         """
-        Return the type of the Place object.
+        Return the first type in the list of the Place object.
+        Included so legacy code can get the primary type.
 
         :returns: Returns the type of the Place
         :rtype: PlaceType
         """
-        return self.place_type
+        if not self.type_list:
+            loc = LocationType()
+            self.add_type(loc)
+        return self.type_list[0].type
+
+    place_type = property(get_type, set_type)
+
+    def get_types(self):
+        """
+        Return a list of types for the current Place.
+
+        :returns: Returns the types for the Place
+        :rtype: list of PlaceType
+        """
+        return self.type_list
+
+    def set_types(self, type_list):
+        """
+        Replace the current types list with the new one.
+
+        :param type_list: The list of types to assign to the Place's internal
+                          list.
+        :type type_list: list of PlaceType
+        """
+        self.type_list = type_list
+
+    def add_type(self, p_type):
+        """
+        Add a type to the types list.
+
+        :param type: PlaceType to add
+        :type type: PlaceType
+        """
+        if type not in self.type_list:
+            self.type_list.append(p_type)
+
+    def _merge_types(self, acquisition):
+        """
+        Add the types of acquisition to the types list.
+
+        :param acquisition: instance to merge
+        :type acquisition: :class:'~.place.Place
+        TODO: do we want to sort for current date type at top?
+        """
+        type_list = self.type_list[:]
+        for addendum in acquisition.type_list:
+            for loc in type_list:
+                if loc.is_equivalent(addendum) != DIFFERENT:
+                    loc.merge(addendum)
+                    break
+            else:
+                self.type_list.append(addendum)
 
     def set_code(self, code):
         """
@@ -396,7 +484,10 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :param code: code to assign to the Place
         :type code: str
         """
-        self.code = code
+        print("TODO for sure")
+        traceback.print_stack(limit=2)
+        # need to put into attribute or event
+        # self.code = code
 
     def get_code(self):
         """
@@ -405,7 +496,10 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: Returns the code of the Place
         :rtype: str
         """
-        return self.code
+        print("TODO for sure")
+        traceback.print_stack(limit=2)
+        # need to get from attribute or event
+        return ''
 
     def add_placeref(self, placeref):
         """
@@ -446,10 +540,69 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         add_list = acquisition.placeref_list
         for addendum in add_list:
             for placeref in placeref_list:
-                if placeref.is_equal(addendum):
+                if placeref.is_equivalent(addendum) != DIFFERENT:
+                    placeref.merge(addendum)
                     break
             else:
                 self.placeref_list.append(addendum)
+
+    def add_event_ref(self, event_ref):
+        """
+        Add the :class:`~.eventref.EventRef` to the Place instance's
+        :class:`~.eventref.EventRef` list.
+
+        This is accomplished by assigning the :class:`~.eventref.EventRef` for
+        the valid :class:`~.event.Event` in the current database.
+
+        :param event_ref: the :class:`~.eventref.EventRef` to be added to the
+                          Person's :class:`~.eventref.EventRef` list.
+        :type event_ref: EventRef
+        """
+        if event_ref and not isinstance(event_ref, EventRef):
+            raise ValueError("Expecting EventRef instance")
+        self.event_ref_list.append(event_ref)
+
+    def get_event_ref_list(self):
+        """
+        Return the list of :class:`~.eventref.EventRef` objects associated with
+        :class:`~.event.Event` instances.
+
+        :returns: Returns the list of :class:`~.eventref.EventRef` objects
+                  associated with the Family instance.
+        :rtype: list
+        """
+        return self.event_ref_list
+
+    def set_event_ref_list(self, event_ref_list):
+        """
+        Set the Places instance's :class:`~.eventref.EventRef` list to the
+        passed list.
+
+        :param event_ref_list: List of valid :class:`~.eventref.EventRef`
+                               objects
+        :type event_ref_list: list
+        """
+        self.event_ref_list = event_ref_list
+
+    def _merge_event_ref_list(self, acquisition):
+        """
+        Merge the list of event references from acquisition with our own.
+
+        :param acquisition: the event references list of this object will be
+                            merged with the current event references list.
+        :type acquisition: Person
+        """
+        eventref_list = self.event_ref_list[:]
+        for addendum in acquisition.get_event_ref_list():
+            for eventref in eventref_list:
+                equi = eventref.is_equivalent(addendum)
+                if equi == IDENTICAL:
+                    break
+                elif equi == EQUAL:
+                    eventref.merge(addendum)
+                    break
+            else:
+                self.event_ref_list.append(addendum)
 
     def _has_handle_reference(self, classname, handle):
         """
@@ -493,7 +646,9 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: Returns the alternative names for the Place
         :rtype: list of PlaceName
         """
-        return self.alt_names
+        print("TODO for sure")
+        traceback.print_stack(limit=2)
+        return self.name_list[1:]
 
     def set_alternative_names(self, name_list):
         """
@@ -503,7 +658,9 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                           list.
         :type name_list: list of PlaceName
         """
-        self.alt_names = name_list
+        print("TODO for sure")
+        traceback.print_stack(limit=2)
+        self.name_list = self.name_list[0] + name_list
 
     def add_alternative_name(self, name):
         """
@@ -512,8 +669,56 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :param name: name to add
         :type name: string
         """
-        if name not in self.alt_names:
-            self.alt_names.append(name)
+        print("TODO for sure")
+        traceback.print_stack(limit=2)
+        if name not in self.name_list:
+            self.name_list.append(name)
+
+    def get_names(self):
+        """
+        Return a list of names for the current Place.
+
+        :returns: Returns the names for the Place
+        :rtype: list of PlaceName
+        """
+        return self.name_list
+
+    def set_names(self, name_list):
+        """
+        Replace the current names list with the new one.
+
+        :param name_list: The list of names to assign to the Place's internal
+                          list.
+        :type name_list: list of PlaceName
+        """
+        self.name_list = name_list
+
+    def add_name(self, name):
+        """
+        Add a name to the names list.
+
+        :param name: name to add
+        :type name: string
+        TODO: do we want to sort for current date/lang name at top?
+        """
+        if name not in self.name_list:
+            self.name_list.append(name)
+
+    def _merge_names(self, acquisition):
+        """
+        Add the names of acquisition to the  names list.
+
+        :param acquisition: instance to merge
+        :type acquisition: :class:'~.place.Place
+        TODO: do we want to sort for current date/lang name at top?
+        """
+        name_list = self.name_list[:]
+        for addendum in acquisition.name_list:
+            for name in name_list:
+                if name.is_equivalent(addendum) != DIFFERENT:
+                    name.merge(addendum)
+                    break
+                self.name_list.append(addendum)
 
     def get_alternate_locations(self):
         """
@@ -567,22 +772,3 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                     break
             else:
                 self.alt_loc.append(addendum)
-
-    def _merge_alt_names(self, acquisition):
-        """
-        Add the main and alternative names of acquisition to the alternative
-        names list.
-
-        :param acquisition: instance to merge
-        :type acquisition: :class:'~.place.Place
-        """
-        if acquisition.name.value:
-            if acquisition.name != self.name:
-                if acquisition.name not in self.alt_names:
-                    self.alt_names.append(acquisition.name)
-
-        for addendum in acquisition.alt_names:
-            if addendum.value:
-                if addendum != self.name:
-                    if addendum not in self.alt_names:
-                        self.alt_names.append(addendum)

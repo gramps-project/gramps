@@ -50,12 +50,14 @@ from gramps.gen.mime import get_type
 from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
                             ChildRefType, Citation, Date, DateError, Event,
                             EventRef, EventRoleType, EventType, Family, LdsOrd,
-                            Location, Media, MediaRef, Name,
+                            Location, LocationType, Media, MediaRef, Name,
                             NameOriginType, NameType, Note, NoteType, Person,
                             PersonRef, Place, PlaceName, PlaceRef, PlaceType,
+                            PlaceAbbrev, PlaceAbbrevType, PlaceHierType,
                             RepoRef, Repository, Researcher, Source,
                             SrcAttribute, SrcAttributeType, StyledText,
-                            StyledTextTag, StyledTextTagType, Surname, Tag, Url)
+                            StyledTextTag, StyledTextTagType, Surname, Tag,
+                            Url)
 from gramps.gen.db import DbTxn
 #from gramps.gen.db.write import CLASS_TO_KEY_MAP
 from gramps.gen.errors import GrampsImportError
@@ -514,6 +516,7 @@ class GrampsParser(UpdateCallback):
         self.placeobj = None
         self.placeref = None
         self.place_name = None
+        self.place_type = None
         self.locations = 0
         self.place_names = 0
         self.place_map = {}
@@ -663,6 +666,10 @@ class GrampsParser(UpdateCallback):
             "places": (None, self.stop_places),
             "placeobj": (self.start_placeobj, self.stop_placeobj),
             "placeref": (self.start_placeref, self.stop_placeref),
+            # new in 1.8.0
+            "pabbr": (self.start_placeabbr, None),
+            "ptype": (self.start_place_type, self.stop_place_type),
+
             "ptitle": (None, self.stop_ptitle),
             "pname": (self.start_place_name, self.stop_place_name),
             "locality": (None, self.stop_locality),
@@ -1139,9 +1146,12 @@ class GrampsParser(UpdateCallback):
         if self.__xml_version == (1, 6, 0):
             place_name = PlaceName()
             place_name.set_value(attrs.get('name', ''))
-            self.placeobj.name = place_name
-        if 'type' in attrs:
-            self.placeobj.place_type.set_from_xml_str(attrs.get('type'))
+            self.placeobj.add_name(place_name)
+        if 'type' in attrs:  # 1,7,x
+            ptype = PlaceType()
+            ptype.set_from_xml_str(attrs.get('type'))
+            loc = LocationType(type=ptype)
+            self.placeobj.add_type(loc)
         self.info.add('new-object', PLACE_KEY, self.placeobj)
         self.place_names = 0
 
@@ -1185,14 +1195,28 @@ class GrampsParser(UpdateCallback):
                 place_name = PlaceName()
                 place_name.set_value(name)
                 self.placeobj.set_name(place_name)
-                type_num = 7 - level if name else PlaceType.UNKNOWN
+                type_num = PlaceType.OLD_NEW[
+                    7 - level if name else PlaceType.UNKNOWN]
                 self.placeobj.set_type(PlaceType(type_num))
-                codes = [attrs.get('postal'), attrs.get('phone')]
-                self.placeobj.set_code(' '.join(code for code in codes if code))
+                #TODO when I figure out postal locations
+                #codes = [attrs.get('postal'), attrs.get('phone')]
+                #self.placeobj.set_code(' '.join(code for code in codes if code))
+                url = Url()
+                url.set_path(attrs.get('phone'))
+                url.set_type(_('Phone'))
+                self.placeobj.add_url(url)
         else:
             self.placeobj.add_alternate_locations(loc)
 
         self.locations = self.locations + 1
+
+    def start_placeabbr(self, attrs):
+        """
+        Add an abbreviation to the Place name
+        """
+        abbr = PlaceAbbrev(value=attrs.get('value'),
+                           type=PlaceAbbrevType(attrs.get('type', None)))
+        self.place_name.add_abbrev(abbr)
 
     def start_witness(self, attrs):
         """
@@ -1315,6 +1339,8 @@ class GrampsParser(UpdateCallback):
                 self.person.set_death_ref(self.eventref)
             else:
                 self.person.add_event_ref(self.eventref)
+        elif self.placeobj:
+            self.placeobj.add_event_ref(self.eventref)
 
     def start_placeref(self, attrs):
         """
@@ -1323,6 +1349,10 @@ class GrampsParser(UpdateCallback):
         self.placeref = PlaceRef()
         handle = self.inaugurate(attrs['hlink'], "place", Place)
         self.placeref.ref = handle
+        if 'type' in attrs:  # Hierarchy type
+            self.placeref.type.set_from_xml_str(attrs["type"])
+        else:  # legacy most likely was an administrative hierarchy
+            self.placeref.type.set(PlaceHierType.ADMIN)
         self.placeobj.add_placeref(self.placeref)
 
     def start_attribute(self, attrs):
@@ -1346,6 +1376,8 @@ class GrampsParser(UpdateCallback):
             self.person.add_attribute(self.attribute)
         elif self.family:
             self.family.add_attribute(self.attribute)
+        elif self.placeobj:
+            self.placeobj.add_attribute(self.attribute)
 
     def start_srcattribute(self, attrs):
         self.srcattribute = SrcAttribute()
@@ -1695,11 +1727,18 @@ class GrampsParser(UpdateCallback):
         self.place_name = PlaceName()
         self.place_name.set_value(attrs["value"])
         if "lang" in attrs:
-             self.place_name.set_language(attrs["lang"])
-        if self.place_names == 0:
-            self.placeobj.set_name(self.place_name)
-        else:
-            self.placeobj.add_alternative_name(self.place_name)
+            self.place_name.set_language(attrs["lang"])
+        self.placeobj.add_name(self.place_name)
+        self.place_names += 1
+
+    def start_place_type(self, attrs):
+        """ added at 1.8.0 place type list with date, type, citation
+        """
+        self.place_type = LocationType()
+        typ = PlaceType()
+        typ.set_from_xml_str(attrs["type"])
+        self.place_type.set_type(typ)
+        self.placeobj.add_type(self.place_type)
         self.place_names += 1
 
     def start_person_name(self, attrs):
@@ -2046,6 +2085,12 @@ class GrampsParser(UpdateCallback):
             self.name.add_citation(citation_handle)
         elif self.placeobj:
             self.placeobj.add_citation(citation_handle)
+        elif self.placeref:
+            self.placeref.add_citation(citation_handle)
+        elif self.place_name:
+            self.place_name.add_citation(citation_handle)
+        elif self.place_type:
+            self.place_type.add_citation(citation_handle)
         elif self.childref:
             self.childref.add_citation(citation_handle)
         elif self.family:
@@ -2341,6 +2386,8 @@ class GrampsParser(UpdateCallback):
             date_value = self.placeref.get_date_object()
         elif self.place_name:
             date_value = self.place_name.get_date_object()
+        elif self.place_type:
+            date_value = self.place_type.get_date_object()
 
         start = attrs['start'].split('-')
         stop  = attrs['stop'].split('-')
@@ -2433,6 +2480,8 @@ class GrampsParser(UpdateCallback):
             date_value = self.placeref.get_date_object()
         elif self.place_name:
             date_value = self.place_name.get_date_object()
+        elif self.place_type:
+            date_value = self.place_type.get_date_object()
 
         bce = 1
         val = attrs['val']
@@ -2535,6 +2584,8 @@ class GrampsParser(UpdateCallback):
             date_value = self.event.get_date_object()
         elif self.placeref:
             date_value = self.placeref.get_date_object()
+        elif self.place_type:
+            date_value = self.place_type.get_date_object()
         else:
             date_value = self.place_name.get_date_object()
 
@@ -2609,11 +2660,11 @@ class GrampsParser(UpdateCallback):
     def stop_alt_name(self, tag):
         place_name = PlaceName()
         place_name.set_value(tag)
-        self.placeobj.add_alternative_name(place_name)
+        self.placeobj.add_name(place_name)
 
     def stop_placeobj(self, *tag):
-        if self.placeobj.name.get_value() == '':
-            self.placeobj.name.set_value(self.placeobj.title)
+        if not self.placeobj.get_names:
+            self.placeobj.add_name(PlaceName(value=self.placeobj.title))
         self.db.commit_place(self.placeobj, self.trans,
                              self.placeobj.get_change_time())
         self.placeobj = None
@@ -2692,6 +2743,10 @@ class GrampsParser(UpdateCallback):
 
     def stop_place_name(self, tag):
         self.place_name = None
+
+    def stop_place_type(self, _tag):
+        """ new 1.8.0 """
+        self.place_type = None
 
     def stop_person_name(self, tag):
         if self.in_witness:

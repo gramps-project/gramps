@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2014-2015  Nick Hall
+# Copyright (C) 2019       Paul Culley
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,6 +33,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from .editsecondary import EditSecondary
+from .displaytabs import (CitationEmbedList, PlaceAbbrevEmbedList)
 from ..glade import Glade
 from ..widgets import MonitoredDate, MonitoredEntry
 from ..dialog import ErrorDialog
@@ -92,13 +94,11 @@ class EditPlaceName(EditSecondary):
         EditSecondary.__init__(self, dbstate, uistate, track, pname, callback)
 
     def _local_init(self):
-        self.width_key = 'interface.place-name-width'
-        self.height_key = 'interface.place-name-height'
-
         self.top = Glade()
         self.set_window(self.top.toplevel,
                         self.top.get_object("title"),
                         _('Place Name Editor'))
+        self.setup_configs('interface.place-name', 450, 450)
 
     def _setup_fields(self):
         self.value = MonitoredEntry(
@@ -131,7 +131,33 @@ class EditPlaceName(EditSecondary):
         self.define_ok_button(self.top.get_object('ok'),self.save)
 
     def build_menu_names(self, obj):
-        return (_('Place Name'),_('Place Name Editor'))
+        return (_('Place Name'), _('Place Name Editor'))
+
+    def _create_tabbed_pages(self):
+        """
+        Create the notebook tabs and inserts them into the main
+        window.
+
+        """
+        notebook = self.top.get_object('notebook3')
+        self.citation_list = CitationEmbedList(self.dbstate,
+                                               self.uistate,
+                                               self.track,
+                                               self.obj.get_citation_list(),
+                                               _('Place Name Editor'))
+        self._add_tab(notebook, self.citation_list)
+        self.track_ref_for_deletion("citation_list")
+
+        self.abbr_list = PlaceAbbrevEmbedList(self.dbstate,
+                                              self.uistate,
+                                              self.track,
+                                              self.obj.abbrev_list)
+        self._add_tab(notebook, self.abbr_list)
+        self.track_ref_for_deletion("abbr_list")
+
+        self._setup_notebook_tabs(notebook)
+        notebook.show_all()
+        self.top.get_object('vbox').pack_start(notebook, True, True, 0)
 
     def save(self, *obj):
         if not self.obj.get_value():

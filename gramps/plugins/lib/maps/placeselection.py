@@ -247,25 +247,27 @@ class PlaceSelection(ManagedWindow, OsmGps):
         parent_place = None
         country = state = county = other = ''
         place = self.dbstate.db.get_place_from_gramps_id(gramps_id)
-        place_name = place.name.get_value()
+        place_name = place.get_names()[0].get_value()
         parent_list = place.get_placeref_list()
         while len(parent_list) > 0:
             place = self.dbstate.db.get_place_from_handle(parent_list[0].ref)
             parent_list = place.get_placeref_list()
-            if int(place.get_type()) == PlaceType.COUNTY:
-                county = place.name.get_value()
+            if place.get_type() & (PlaceType.G_ADM3 |  # County etc.
+                                   PlaceType.G_ADM4):
+                county = place.get_names()[0].get_value()
                 if parent_place is None:
                     parent_place = place.get_handle()
-            elif int(place.get_type()) == PlaceType.STATE:
-                state = place.name.get_value()
+            elif place.get_type() & (PlaceType.G_ADM2 |  # Terrritory
+                                     PlaceType.G_ADM1):  # State etc.
+                state = place.get_names()[0].get_value()
                 if parent_place is None:
                     parent_place = place.get_handle()
-            elif int(place.get_type()) == PlaceType.COUNTRY:
-                country = place.name.get_value()
+            elif place.get_type() & PlaceType.G_ADM0:  # Countries
+                country = place.get_names()[0].get_value()
                 if parent_place is None:
                     parent_place = place.get_handle()
             else:
-                other = place.name.get_value()
+                other = place.get_names()[0].get_value()
                 if parent_place is None:
                     parent_place = place.get_handle()
         return(country, state, county, place_name, other)

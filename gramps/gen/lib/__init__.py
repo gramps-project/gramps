@@ -32,10 +32,12 @@ from .attribute import Attribute
 from .srcattribute import SrcAttribute
 from .eventref import EventRef
 from .ldsord import LdsOrd
+from .locationtype import LocationType
 from .mediaref import MediaRef
 from .name import Name
 from .placename import PlaceName
 from .placeref import PlaceRef
+from .placeabbrev import PlaceAbbrev
 from .reporef import RepoRef
 from .surname import Surname
 from .url import Url
@@ -78,6 +80,8 @@ from .nameorigintype import NameOriginType
 from .notetype import NoteType
 from .styledtexttagtype import StyledTextTagType
 from .placetype import PlaceType
+from .placeabbrevtype import PlaceAbbrevType
+from .placehiertype import PlaceHierType
 
 # Text
 from .styledtexttag import StyledTextTag

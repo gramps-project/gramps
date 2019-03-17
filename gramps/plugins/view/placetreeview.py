@@ -107,6 +107,8 @@ class PlaceTreeView(PlaceBaseView):
         for handle in self.selected_handles():
             placeref = PlaceRef()
             placeref.ref = handle
+            placeref.set_type_for_place(
+                self.dbstate.db.get_place_from_handle(handle))
             parent_list.append(placeref)
 
         place = Place()

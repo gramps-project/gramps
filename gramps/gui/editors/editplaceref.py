@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2015       Nick Hall
+# Copyright (C) 2019       Paul Culley
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,9 +30,13 @@ from ..glade import Glade
 from ..widgets import (MonitoredDate, MonitoredEntry, MonitoredDataType,
                        PrivacyButton, MonitoredTagList)
 from .displaytabs import (PlaceRefEmbedList, PlaceNameEmbedList,
+                          PlaceTypeEmbedList, PlaceEventEmbedList,
+                          AttrEmbedList,
                           LocationEmbedList, CitationEmbedList,
                           GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
-from gramps.gen.lib import NoteType
+from .editlocationtype import EditLocationType
+
+from gramps.gen.lib import NoteType, PlaceType, PlaceHierType
 from gramps.gen.db import DbTxn
 from gramps.gen.errors import ValidationError, WindowActiveError
 from gramps.gen.utils.place import conv_lat_lon
@@ -39,7 +44,8 @@ from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
 from ..dialog import ErrorDialog
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+_ = glocale.translation.sgettext
+
 
 #-------------------------------------------------------------------------
 #
@@ -60,16 +66,19 @@ class EditPlaceRef(EditReference):
 
         self.define_warn_box(self.top.get_object("warning"))
         self.define_expander(self.top.get_object("expander"))
-        #self.place_name_label = self.top.get_object('place_name_label')
-        #self.place_name_label.set_text(_('place|Name:'))
+        self.place_name_label = self.top.get_object('place_name_label')
+        self.place_name_label.set_text(_('place|Name:'))
+        self.name = None
+        self.place_type = None
 
-        tblref =  self.top.get_object('table64')
+        tblref = self.top.get_object('table64')
         notebook = self.top.get_object('notebook_ref')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.reftab = RefTab(self.dbstate, self.uistate, self.track,
-                              _('General'), tblref)
-        tblref =  self.top.get_object('table62')
+                             _('General'), tblref)
+        tblref = self.top.get_object('maintable')
+
         notebook = self.top.get_object('notebook')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
@@ -106,7 +115,19 @@ class EditPlaceRef(EditReference):
                                         self.uistate, self.track,
                                         self.db.readonly)
 
+        # set up a default value for heirarchy type based on enclosing
+        # place type.  If place type is unknown (new place), this sets to
+        # admin.  If the ref.type is already set, nothing changes
+        self.source_ref.set_type_for_place(self.source)
+
+        custom_hier_types = sorted(self.db.get_placehier_types(),
+                                   key=lambda s: s.lower())
+        self.heir_type = MonitoredDataType(
+            self.top.get_object("heirarchy_type"), self.source_ref.set_type,
+            self.source_ref.get_type, self.db.readonly, custom_hier_types)
+
         if not config.get('preferences.place-auto'):
+            self.top.get_object("preview_title").hide()
             self.top.get_object("place_title").show()
             self.top.get_object("place_title_label").show()
             self.title = MonitoredEntry(self.top.get_object("place_title"),
@@ -115,10 +136,10 @@ class EditPlaceRef(EditReference):
                                         self.db.readonly)
 
         self.name = MonitoredEntry(self.top.get_object("name_entry"),
-                                    self.source.get_name().set_value,
-                                    self.source.get_name().get_value,
-                                    self.db.readonly,
-                                    changed=self.name_changed)
+                                   self.source.get_name().set_value,
+                                   self.source.get_name().get_value,
+                                   self.db.readonly,
+                                   changed=self.name_changed)
 
         edit_button = self.top.get_object("name_button")
         edit_button.connect('clicked', self.edit_place_name)
@@ -144,12 +165,11 @@ class EditPlaceRef(EditReference):
                                             self.source.set_type,
                                             self.source.get_type,
                                             self.db.readonly,
-                                            custom_place_types)
+                                            custom_place_types,
+                                            changed=self.type_changed)
 
-        self.code = MonitoredEntry(
-            self.top.get_object("code_entry"),
-            self.source.set_code, self.source.get_code,
-            self.db.readonly)
+        type_button = self.top.get_object("type_button")
+        type_button.connect('clicked', self.edit_place_type)
 
         self.longitude = MonitoredEntry(
             self.top.get_object("lon_entry"),
@@ -175,7 +195,7 @@ class EditPlaceRef(EditReference):
     def set_latlongitude(self, value):
         try:
             coma = value.index(',')
-            self.longitude.set_text(value[coma+1:])
+            self.longitude.set_text(value[coma + 1:])
             self.latitude.set_text(value[:coma])
             self.top.get_object("lat_entry").validate(force=True)
             self.top.get_object("lon_entry").validate(force=True)
@@ -200,11 +220,26 @@ class EditPlaceRef(EditReference):
                   '18\u00b09\'48.21"E, -18.2412 or -18:9:48.21)'))
 
     def update_title(self):
-        new_title = place_displayer.display(self.db, self.source)
-        self.top.get_object("preview_title").set_text(new_title)
+        if config.get('preferences.place-auto'):
+            new_title = place_displayer.display(self.db, self.source)
+            self.top.get_object("preview_title").set_text(new_title)
 
     def name_changed(self, obj):
         self.update_title()
+        self.name_list.rebuild()
+
+    def update_name(self):
+        if self.name:
+            self.name.get_val = self.source.get_name().get_value
+            self.name.set_val = self.source.get_name().set_value
+            self.name.update()
+
+    def type_changed(self, _obj):
+        self.type_list.rebuild()
+
+    def update_type(self):
+        if self.place_type:
+            self.place_type.update()
 
     def _create_tabbed_pages(self):
         """
@@ -220,6 +255,12 @@ class EditPlaceRef(EditReference):
         self.track_ref_for_deletion("primtab")
         self.track_ref_for_deletion("reftab")
 
+        self.srcref_list = CitationEmbedList(
+            self.dbstate, self.uistate, self.track,
+            self.source_ref.get_citation_list())
+        self._add_tab(notebook_ref, self.srcref_list)
+        self.track_ref_for_deletion("srcref_list")
+
         self.placeref_list = PlaceRefEmbedList(self.dbstate,
                                                self.uistate,
                                                self.track,
@@ -229,12 +270,21 @@ class EditPlaceRef(EditReference):
         self._add_tab(notebook, self.placeref_list)
         self.track_ref_for_deletion("placeref_list")
 
-        self.alt_name_list = PlaceNameEmbedList(self.dbstate,
-                                                self.uistate,
-                                                self.track,
-                                                self.source.alt_names)
-        self._add_tab(notebook, self.alt_name_list)
-        self.track_ref_for_deletion("alt_name_list")
+        self.name_list = PlaceNameEmbedList(self.dbstate,
+                                            self.uistate,
+                                            self.track,
+                                            self.source.name_list,
+                                            self.update_name)
+        self._add_tab(notebook, self.name_list)
+        self.track_ref_for_deletion("name_list")
+
+        self.type_list = PlaceTypeEmbedList(self.dbstate,
+                                            self.uistate,
+                                            self.track,
+                                            self.source.type_list,
+                                            self.update_type)
+        self._add_tab(notebook, self.type_list)
+        self.track_ref_for_deletion("type_list")
 
         if len(self.source.alt_loc) > 0:
             self.loc_list = LocationEmbedList(self.dbstate,
@@ -244,12 +294,28 @@ class EditPlaceRef(EditReference):
             self._add_tab(notebook, self.loc_list)
             self.track_ref_for_deletion("loc_list")
 
+        self.event_list = PlaceEventEmbedList(
+            self.dbstate,
+            self.uistate,
+            self.track,
+            self.source)
+
+        self._add_tab(notebook, self.event_list)
+        self.track_ref_for_deletion("event_list")
+
         self.citation_list = CitationEmbedList(self.dbstate,
                                                self.uistate,
                                                self.track,
                                                self.source.get_citation_list())
         self._add_tab(notebook, self.citation_list)
         self.track_ref_for_deletion("citation_list")
+
+        self.attr_list = AttrEmbedList(self.dbstate,
+                                       self.uistate,
+                                       self.track,
+                                       self.source.get_attribute_list())
+        self._add_tab(notebook, self.attr_list)
+        self.track_ref_for_deletion("attr_list")
 
         self.note_tab = NoteTab(self.dbstate,
                                 self.uistate,
@@ -294,6 +360,17 @@ class EditPlaceRef(EditReference):
     def edit_callback(self, obj):
         value = self.source.get_name().get_value()
         self.top.get_object("name_entry").set_text(value)
+
+    def edit_place_type(self, obj):
+        try:
+            EditLocationType(self.dbstate, self.uistate, self.track,
+                             self.source.get_type(), self.edit_type_callback)
+        except WindowActiveError:
+            return
+
+    def edit_type_callback(self, obj):
+        value = self.source.get_type().get_value()
+        self.top.get_object("type_entry").set_text(value)
 
     def save(self, *obj):
         self.ok_button.set_sensitive(False)

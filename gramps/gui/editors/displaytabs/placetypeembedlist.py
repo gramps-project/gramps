@@ -25,79 +25,76 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-from gi.repository import GObject, GLib
+from gi.repository import GLib
 
 #-------------------------------------------------------------------------
 #
 # Gramps classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import PlaceName
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.lib import LocationType
 from gramps.gen.errors import WindowActiveError
-from ...ddtargets import DdTargets
-from .placenamemodel import PlaceNameModel
-from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
+from ..editlocationtype import EditLocationType
+from .placetypemodel import PlaceTypeModel
+from .embeddedlist import EmbeddedList, TEXT_COL
+_ = glocale.translation.gettext
+
 
 #-------------------------------------------------------------------------
 #
-# PlaceNameEmbedList
+# PlaceTypeEmbedList
 #
 #-------------------------------------------------------------------------
-class PlaceNameEmbedList(EmbeddedList):
+class PlaceTypeEmbedList(EmbeddedList):
 
-    _HANDLE_COL = 4
-    _DND_TYPE   = DdTargets.PLACENAME
+    _HANDLE_COL = 2
 
     _MSG = {
-        'add'   : _('Create and add a new place name'),
-        'del'   : _('Remove the existing place name'),
-        'edit'  : _('Edit the selected place name'),
-        'up'    : _('Move the selected place name upwards'),
-        'down'  : _('Move the selected place name downwards'),
+        'add'   : _('Create and add a new place type'),
+        'del'   : _('Remove the existing place type'),
+        'edit'  : _('Edit the selected place type'),
+        'up'    : _('Move the selected place type upwards'),
+        'down'  : _('Move the selected place type downwards'),
     }
 
     #index = column in model. Value =
-    #  (name, sortcol in model, width, markup/text, weigth_col
+    #  (type, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Name'), 0, 250, TEXT_COL, -1, None),
+        (_('Type'), 0, 250, TEXT_COL, -1, None),
         (_('Date'), 1, 250, TEXT_COL, -1, None),
-        (_('Language'), 2, 100, TEXT_COL, -1, None),
-        (_('Abbreviations'), 3, 100, TEXT_COL, -1, None),
-        ]
+    ]
 
     def __init__(self, dbstate, uistate, track, data, update):
         self.data = data
         self.update = update
         EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _('Names'), PlaceNameModel,
+                              _('Types'), PlaceTypeModel,
                               move_buttons=True)
 
     def get_data(self):
         return self.data
 
     def column_order(self):
-        return ((1, 0), (1, 1), (1, 2), (1, 3))
+        return ((1, 0), (1, 1))
 
     def add_button_clicked(self, obj):
         """
         Called when the Add button is clicked.
         """
-        pname = PlaceName()
+        ptype = LocationType()
         try:
-            from .. import EditPlaceName
-            EditPlaceName(self.dbstate, self.uistate, self.track,
-                          pname, self.add_callback)
+            EditLocationType(self.dbstate, self.uistate, self.track,
+                             ptype, self.add_callback)
         except WindowActiveError:
             return
 
-    def add_callback(self, pname):
+    def add_callback(self, ptype):
         """
-        Called to update the screen when a new place name is added.
+        Called to update the screen when a new place type is added.
         """
         data = self.get_data()
-        data.append(pname)
+        data.append(ptype)
         self.rebuild()
         GLib.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
@@ -105,18 +102,17 @@ class PlaceNameEmbedList(EmbeddedList):
         """
         Called with the Edit button is clicked.
         """
-        pname = self.get_selected()
-        if pname:
+        ptype = self.get_selected()
+        if ptype:
             try:
-                from .. import EditPlaceName
-                EditPlaceName(self.dbstate, self.uistate, self.track,
-                              pname, self.edit_callback)
+                EditLocationType(self.dbstate, self.uistate, self.track,
+                                 ptype, self.edit_callback)
             except WindowActiveError:
                 return
 
-    def edit_callback(self, name):
+    def edit_callback(self, ptype):
         """
-        Called to update the screen when the place name changes.
+        Called to update the screen when the place type changes.
         """
         self.rebuild()
 

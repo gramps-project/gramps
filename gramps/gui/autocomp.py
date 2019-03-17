@@ -163,17 +163,27 @@ class StandardCustomSelector:
 
     def create_menu(self):
         """
-        Create a model and fill it with a two-level tree corresponding to the
-        menu.
+        Create a model and fill it with a two or three-level tree
+        corresponding to the menu.
+        If the active key is in an items list, the group under that parent
+        is expanded.
+        Items not under a parent group are also supported.
         """
         store = Gtk.TreeStore(int, str, bool)
         for heading, items in self.menu:
-            if self.active_key in items:
+            if self.active_key in items or not heading:
                 parent = None
             else:
                 parent = store.append(None, row=[None, heading, False])
             for item in items:
-                store.append(parent, row=[item, self.mapping[item], True])
+                if not isinstance(item, tuple):
+                    store.append(parent, row=[item, self.mapping[item], True])
+                    continue
+                heading_2, items_2 = item
+                parent_2 = store.append(parent, row=[None, heading_2, False])
+                for item_2 in items_2:
+                    store.append(parent_2, row=[
+                        item_2, self.mapping[item_2], True])
 
         if self.additional:
             parent = store.append(None, row=[None, _('Custom'), False])
