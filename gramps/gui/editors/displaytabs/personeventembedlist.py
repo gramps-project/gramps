@@ -92,6 +92,10 @@ class PersonEventEmbedList(EventEmbedList):
                     self._data.append(family.get_event_ref_list())
                     self._groups.append((family_handle, self._FAMNAME,
                                          groupname))
+            #we register all events that need to be tracked
+            for group in self._data:
+                self.callman.register_handles(
+                    {'event': [eref.ref for eref in group]})
             self.changed = False
 
         return self._data

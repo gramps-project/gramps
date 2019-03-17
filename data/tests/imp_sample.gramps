@@ -1457,13 +1457,13 @@
       <noteref hlink="_000000f9000000f9"/>
     </object>
     <object handle="_000000d1000000d1" change="1" id="O0001">
-      <file src="Magnes&amp;Anna_smiths_marr_cert.jpg" mime="unknown" description="Magnes&amp;Anna_smiths_marr_cert.jpg"/>
+      <file src="Magnes&amp;Anna_smiths_marr_cert.jpg" mime="image/jpeg" description="Magnes&amp;Anna_smiths_marr_cert.jpg"/>
     </object>
     <object handle="_000000d8000000d8" change="1" id="O0002">
-      <file src="John&amp;Alice_smiths_marr_cert.jpg" mime="unknown" description="John&amp;Alice_smiths_marr_cert.jpg"/>
+      <file src="John&amp;Alice_smiths_marr_cert.jpg" mime="image/jpeg" description="John&amp;Alice_smiths_marr_cert.jpg"/>
     </object>
     <object handle="_000000f1000000f1" change="1" id="O0003">
-      <file src="Attic_photo.jpg" mime="unknown" description="Attic_photo.jpg"/>
+      <file src="Attic_photo.jpg" mime="image/jpeg" description="Attic_photo.jpg"/>
     </object>
   </objects>
   <repositories>

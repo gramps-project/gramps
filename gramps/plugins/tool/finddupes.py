@@ -193,6 +193,7 @@ class DuplicatePeopleTool(tool.Tool, ManagedWindow):
         index = 0
         males = {}
         females = {}
+        self.map = {}
 
         length = self.db.get_number_of_people()
 
