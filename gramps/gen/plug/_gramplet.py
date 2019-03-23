@@ -397,6 +397,8 @@ class Gramplet:
             if hasattr(self.gui, 'navtypes') and 'Person' in self.gui.navtypes:
                 self.connect_signal('Person', self._active_changed)
             self.db_changed()
+        if hasattr(self, "callman"):  # get DbGUIElement informed if in use
+            self._change_db(db)
         self.update()
 
     def _no_db(self):
