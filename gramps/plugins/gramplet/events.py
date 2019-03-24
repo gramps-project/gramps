@@ -53,7 +53,7 @@ class Events(Gramplet, DbGUIElement):
         DbGUIElement.__init__(self, self.dbstate.db)
 
     """
-    Displays the events for a person or family.
+    Displays the events for a person, place, or family.
     """
     def init(self):
         self.gui.WIDGET = self.build_gui()
@@ -291,3 +291,74 @@ class FamilyEvents(Events):
         event = get_marriage_or_fallback(self.dbstate.db, active)
         return event.get_date_object() if event else None
 
+
+class PlaceEvents(Events):
+    """
+    Displays the events for a place.
+    """
+    def db_changed(self):
+        self.connect(self.dbstate.db, 'place-update', self.update)
+        self.connect_signal('Place', self.update)
+
+    def update_has_data(self):
+        active_handle = self.get_active('Place')
+        active = None
+        if active_handle:
+            active = self.dbstate.db.get_place_from_handle(active_handle)
+        self.set_has_data(self.get_has_data(active))
+
+    def get_has_data(self, active_place):
+        """
+        Return True if the gramplet has data, else return False.
+        """
+        if active_place:
+            for _ref in active_place.get_event_ref_list():
+                return True
+        return False
+
+    def main(self):  # return false finishes
+        active_handle = self.get_active('Place')
+
+        self.model.clear()
+        self.callman.unregister_all()
+        if active_handle:
+            self.display_place(active_handle)
+        else:
+            self.set_has_data(False)
+
+    def display_place(self, active_handle):
+        """
+        Display the events for the active place.
+        """
+        active_place = self.dbstate.db.get_place_from_handle(active_handle)
+        self.cached_start_date = self.get_start_date()
+        for event_ref in active_place.get_event_ref_list():
+            self.add_event_ref(event_ref)
+        self.set_has_data(self.model.count > 0)
+
+    def get_start_date(self):
+        """
+        Get the start date for a place, usually a marriage date, or
+        something close to marriage.
+        """
+        return None
+
+    def build_gui(self):
+        """
+        Build the GUI interface.
+        """
+        tip = _('Double-click on a row to edit the selected event.')
+        self.set_tooltip(tip)
+        top = Gtk.TreeView()
+        titles = [('', NOSORT, 50,),
+                  (_('Type'), 1, 100),
+                  (_('Description'), 2, 150),
+                  (_('Date'), 3, 100),
+                  ('', NOSORT, 50),
+                  ('', NOSORT, 50),
+                  ('', NOSORT, 50),
+                  (_('Place'), 5, 400),
+                  (_('Main Participants'), 6, 200),
+                  (_('Role'), 7, 100)]
+        self.model = ListModel(top, titles, event_func=self.edit_event)
+        return top

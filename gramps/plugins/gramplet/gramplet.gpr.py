@@ -493,6 +493,20 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET,
+         id="Place Events",
+         name=_("Place Events"),
+         description = _("Gramplet showing the events for a place"),
+         version="1.0.0",
+         gramps_target_version=MODULE_VERSION,
+         status = STABLE,
+         fname="events.py",
+         height=200,
+         gramplet = 'PlaceEvents',
+         gramplet_title=_("Events"),
+         navtypes=["Place"],
+         )
+
+register(GRAMPLET,
          id="Person Gallery",
          name=_("Person Gallery"),
          description = _("Gramplet showing media objects for a person"),

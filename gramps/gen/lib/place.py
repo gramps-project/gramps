@@ -621,6 +621,10 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, AttributeBase,
             for placeref in self.placeref_list:
                 if placeref.ref == handle:
                     return True
+        if classname == 'Event':
+            for eventref in self.event_ref_list:
+                if eventref.ref == handle:
+                    return True
         return False
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
@@ -635,9 +639,55 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, AttributeBase,
         :type new_handle: str
         """
         if classname == 'Place':
-            for placeref in self.placeref_list:
-                if placeref.ref == old_handle:
-                    placeref.ref = new_handle
+            refs_list = [ref.ref for ref in self.placeref_list]
+            new_ref = None
+            if new_handle in refs_list:
+                new_ref = self.placeref_list[refs_list.index(new_handle)]
+            n_replace = refs_list.count(old_handle)
+            for _ix_replace in range(n_replace):
+                idx = refs_list.index(old_handle)
+                self.placeref_list[idx].ref = new_handle
+                refs_list[idx] = new_handle
+                if new_ref:
+                    _ref = self.placeref_list[idx]
+                    equi = new_ref.is_equivalent(_ref)
+                    if equi != DIFFERENT:
+                        if equi == EQUAL:
+                            new_ref.merge(_ref)
+                        self.placeref_list.pop(idx)
+                        refs_list.pop(idx)
+        if classname == 'Event':
+            refs_list = [ref.ref for ref in self.event_ref_list]
+            new_ref = None
+            if new_handle in refs_list:
+                new_ref = self.event_ref_list[refs_list.index(new_handle)]
+            n_replace = refs_list.count(old_handle)
+            for _ix_replace in range(n_replace):
+                idx = refs_list.index(old_handle)
+                self.event_ref_list[idx].ref = new_handle
+                refs_list[idx] = new_handle
+                if new_ref:
+                    _ref = self.event_ref_list[idx]
+                    equi = new_ref.is_equivalent(_ref)
+                    if equi != DIFFERENT:
+                        if equi == EQUAL:
+                            new_ref.merge(_ref)
+                        self.event_ref_list.pop(idx)
+                        refs_list.pop(idx)
+
+    def _remove_handle_references(self, classname, handle_list):
+        """
+        Remove all references in this object to object handles in the list.
+
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle_list: The list of handles to be removed.
+        :type handle_list: str
+        """
+        if classname == 'Event':
+            new_list = [ref for ref in self.event_ref_list
+                        if ref.ref not in handle_list]
+            self.event_ref_list = new_list
 
     def get_alternative_names(self):
         """

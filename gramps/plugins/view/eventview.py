@@ -414,9 +414,11 @@ class EventView(ListView):
             self.dbstate.db.find_backlink_handles(event.handle, ['Person'])]
         family_list = [item[1] for item in
             self.dbstate.db.find_backlink_handles(event.handle, ['Family'])]
+        place_list = [item[1] for item in
+            self.dbstate.db.find_backlink_handles(event.handle, ['Place'])]
 
         query = DeleteEventQuery(self.dbstate, self.uistate, event,
-                                 person_list, family_list)
+                                 person_list, family_list, place_list)
         query.query_response()
 
     def remove_object_from_handle(self, handle):

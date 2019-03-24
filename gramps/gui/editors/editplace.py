@@ -339,6 +339,7 @@ class EditPlace(EditPrimary):
     def edit_callback(self, obj):
         value = self.obj.get_name().get_value()
         self.top.get_object("name_entry").set_text(value)
+        self.name_list.rebuild()
 
     def edit_place_type(self, obj):
         try:
@@ -348,8 +349,8 @@ class EditPlace(EditPrimary):
             return
 
     def edit_type_callback(self, obj):
-        value = self.obj.get_type().get_value()
-        self.top.get_object("type_entry").set_text(value)
+        self.type_list.rebuild()
+        self.update_type()
 
     def save(self, *obj):
         self.ok_button.set_sensitive(False)

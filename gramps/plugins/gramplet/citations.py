@@ -132,7 +132,14 @@ class Citations(Gramplet, DbGUIElement):
     def add_place_citations(self, place):
         self.callman.register_handles({'place': [place.handle]})
         self.add_citations(place)
+        self.add_attribute_citations(place)
         self.add_mediaref_citations(place)
+        for place_ref in place.get_placeref_list():
+            self.add_citations(place_ref)
+        for name in place.get_names():
+            self.add_citations(name)
+        for _type in place.get_types():
+            self.add_citations(_type)
 
     def add_address_citations(self, obj):
         for address in obj.get_address_list():
@@ -234,8 +241,19 @@ class Citations(Gramplet, DbGUIElement):
     def check_place_citations(self, place):
         if self.check_citations(place):
             return True
+        if self.check_attribute_citations(place):
+            return True
         if self.check_mediaref_citations(place):
             return True
+        for place_ref in place.get_placeref_list():
+            if self.check_citations(place_ref):
+                return True
+        for name in place.get_names():
+            if self.check_citations(name):
+                return True
+        for _type in place.get_types():
+            if self.check_citations(_type):
+                return True
         return False
 
     def check_address_citations(self, obj):
@@ -518,6 +536,8 @@ class PlaceCitations(Citations):
         """
         self.source_nodes = {}
         self.add_place_citations(place)
+        self.add_eventref_citations(place)
+        self.add_attribute_citations(place)
         self.set_has_data(self.model.count > 0)
         self.model.tree.expand_all()
 
@@ -528,6 +548,10 @@ class PlaceCitations(Citations):
         if place is None:
             return False
         if self.check_place_citations(place):
+            return True
+        if self.check_eventref_citations(place):
+            return True
+        if self.check_attribute_citations(place):
             return True
         return False
 

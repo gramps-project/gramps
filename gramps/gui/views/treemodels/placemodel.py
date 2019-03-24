@@ -181,7 +181,7 @@ class PlaceBaseModel:
             return ''
 
     def sort_change(self, data):
-        return "%012x" % data[15]
+        return "%012x" % data[14]
 
     def column_change(self, data):
         return format_time(data[14])

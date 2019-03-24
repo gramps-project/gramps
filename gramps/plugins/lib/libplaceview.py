@@ -601,6 +601,7 @@ class PlaceBaseView(ListView):
                 ("Place Details",
                  "Place Enclosed By",
                  "Place Encloses",
+                 "Place Events",
                  "Place Gallery",
                  "Place Citations",
                  "Place Notes",
