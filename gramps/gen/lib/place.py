@@ -457,7 +457,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, AttributeBase,
         :param type: PlaceType to add
         :type type: PlaceType
         """
-        if type not in self.type_list:
+        if p_type not in self.type_list:
             self.type_list.append(p_type)
 
     def _merge_types(self, acquisition):

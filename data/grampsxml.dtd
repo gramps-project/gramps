@@ -270,6 +270,12 @@ PLACES
 
 <!ELEMENT ptitle (#PCDATA)>
 
+<!ELEMENT placeref ((daterange|datespan|dateval|datestr)?, citationref*)>
+<!ATTLIST placeref
+        type CDATA #IMPLIED
+        hlink IDREF #REQUIRED
+>
+
 <!ELEMENT ptype ((daterange|datespan|dateval|datestr)?, citationref*)>
 <!ATTLIST ptype
         type      CDATA #IMPLIED
@@ -542,11 +548,6 @@ SHARED ELEMENTS
 <!ATTLIST objref 
         hlink IDREF #REQUIRED
         priv (0|1)  #IMPLIED
->
-
-<!ELEMENT placeref ((daterange|datespan|dateval|datestr)?)>
-<!ATTLIST placeref
-        hlink IDREF #REQUIRED
 >
 
 <!ELEMENT region EMPTY>

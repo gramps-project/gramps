@@ -1,0 +1,18 @@
+        pt = self.top.get_object("place_type")
+        pt.forall(self.find_button)
+
+
+    def find_combo_button(self, obj):
+        if type(obj) is Gtk.Box:
+            for child in obj.get_children():
+                if type(child) is Gtk.ToggleButton:
+                    child.connect('toggled', self.popup)
+                    return
+        return
+
+    def popup(self, obj):
+    """ ToggleButton goes off """
+#         if(obj[1].get_event_type() == Gdk.EventType.BUTTON_PRESS or
+#           obj[1].get_event_type() == Gdk.EventType.KEY_RELEASE):
+        print("Huh")
+

@@ -518,7 +518,6 @@ class GrampsParser(UpdateCallback):
         self.place_name = None
         self.place_type = None
         self.locations = 0
-        self.place_names = 0
         self.place_map = {}
         self.place_import = PlaceImport(self.db)
 
@@ -1153,7 +1152,6 @@ class GrampsParser(UpdateCallback):
             loc = LocationType(type=ptype)
             self.placeobj.add_type(loc)
         self.info.add('new-object', PLACE_KEY, self.placeobj)
-        self.place_names = 0
 
         # Gramps LEGACY: title in the placeobj tag
         self.placeobj.title = attrs.get('title', '')
@@ -1198,9 +1196,10 @@ class GrampsParser(UpdateCallback):
                 type_num = PlaceType.OLD_NEW[
                     7 - level if name else PlaceType.UNKNOWN]
                 self.placeobj.set_type(PlaceType(type_num))
-                #TODO when I figure out postal locations
-                #codes = [attrs.get('postal'), attrs.get('phone')]
-                #self.placeobj.set_code(' '.join(code for code in codes if code))
+                attr = Attribute()
+                attr.set_type(AttributeType.POSTAL)
+                attr.set_value(attrs.get('postal'))
+                self.placeobj.add_attribute(attr)
                 url = Url()
                 url.set_path(attrs.get('phone'))
                 url.set_type(_('Phone'))
@@ -1729,7 +1728,6 @@ class GrampsParser(UpdateCallback):
         if "lang" in attrs:
             self.place_name.set_language(attrs["lang"])
         self.placeobj.add_name(self.place_name)
-        self.place_names += 1
 
     def start_place_type(self, attrs):
         """ added at 1.8.0 place type list with date, type, citation
@@ -1739,7 +1737,6 @@ class GrampsParser(UpdateCallback):
         typ.set_from_xml_str(attrs["type"])
         self.place_type.set_type(typ)
         self.placeobj.add_type(self.place_type)
-        self.place_names += 1
 
     def start_person_name(self, attrs):
         if not self.in_witness:
@@ -2083,14 +2080,14 @@ class GrampsParser(UpdateCallback):
             self.address.add_citation(citation_handle)
         elif self.name:
             self.name.add_citation(citation_handle)
-        elif self.placeobj:
-            self.placeobj.add_citation(citation_handle)
         elif self.placeref:
             self.placeref.add_citation(citation_handle)
         elif self.place_name:
             self.place_name.add_citation(citation_handle)
         elif self.place_type:
             self.place_type.add_citation(citation_handle)
+        elif self.placeobj:
+            self.placeobj.add_citation(citation_handle)
         elif self.childref:
             self.childref.add_citation(citation_handle)
         elif self.family:
@@ -2655,7 +2652,10 @@ class GrampsParser(UpdateCallback):
         self.placeobj.title = tag
 
     def stop_code(self, tag):
-        self.placeobj.code = tag
+        attr = Attribute()
+        attr.set_type(AttributeType.POSTAL)
+        attr.set_value(tag)
+        self.placeobj.add_attribute(attr)
 
     def stop_alt_name(self, tag):
         place_name = PlaceName()
