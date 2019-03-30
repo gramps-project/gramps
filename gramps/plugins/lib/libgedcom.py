@@ -2765,8 +2765,8 @@ class GedcomParser(UpdateCallback):
 
             self.place_import.generate_hierarchy(self.trans)
 
-        if not self.dbase.get_feature("skip-check-xref"):
-            self.__check_xref()
+            if not self.dbase.get_feature("skip-check-xref"):
+                self.__check_xref()
         self.dbase.enable_signals()
         self.dbase.request_rebuild()
         if self.number_of_errors == 0:
