@@ -50,6 +50,9 @@ from ...ddtargets import DdTargets
 from gramps.gen.lib import Surname, NameOriginType
 from ...utils import match_primary_mask, no_match_primary_mask
 
+# table for skipping illegal control chars
+INVISIBLE = dict.fromkeys(list(range(32)))
+
 #-------------------------------------------------------------------------
 #
 # SurnameTab
@@ -281,7 +284,8 @@ class SurnameTab(EmbeddedList):
         colnr must be the column in the model.
         """
         node = self.model.get_iter(path)
-        self.model.set_value(node, colnr, new_text)
+        text = new_text.translate(INVISIBLE).strip()
+        self.model.set_value(node, colnr, text)
         self.update()
 
     def on_orig_edited(self, cellr, path, new_text, colnr):
