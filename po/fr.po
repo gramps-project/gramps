@@ -15066,7 +15066,7 @@ msgstr "Éditeur de format du lieu"
 # master
 #: ../gramps/gui/editors/editplaceformat.py:137
 msgid "New"
-msgstr "New"
+msgstr "Nouveau"
 
 # manuel wiki
 #: ../gramps/gui/editors/editplacename.py:49
