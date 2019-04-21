@@ -188,6 +188,11 @@ class EditPlaceRef(EditReference):
         return ""
 
     def _validate_coordinate(self, widget, text, typedeg):
+        if text.find(',') != -1:
+            # coordinates must be in english format. 43,2545 is not allowed.
+            return ValidationError(
+                _('Invalid latitude\n(syntax: '
+                  '18\u00b09\'48.21"S, -18.2412 or -18:9:48.21)'))
         if (typedeg == 'lat') and not conv_lat_lon(text, "0", "ISO-D"):
             return ValidationError(
                 # translators: translate the "S" too (and the "or" of course)
