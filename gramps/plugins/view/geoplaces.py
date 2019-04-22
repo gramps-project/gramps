@@ -378,8 +378,10 @@ class GeoPlaces(GeoGraphyView):
                 latitude, longitude = conv_lat_lon(place.get_latitude(),
                                                    place.get_longitude(),
                                                    "D.D8")
-                self.osm.set_center_and_zoom(float(latitude), float(longitude),
-                                             int(config.get(
+                if latitude and longitude:
+                    self.osm.set_center_and_zoom(float(latitude),
+                                                 float(longitude),
+                                                 int(config.get(
                                                  "geography.zoom_when_center")))
         else:
             self.message_layer.add_message(
