@@ -183,10 +183,10 @@ class PlaceTest(unittest.TestCase):
 
     def test_decimal_localization(self):
         lat, lon = '50.849888888888', '2,885897222222'
-        self._test_formats_success(lat, lon)
+        self._test_formats_fail(lat, lon)
 
         lat, lon =  '89°59\'59.9999"S', '179°59\'59,9999"W'
-        self._test_formats_success(lat, lon)
+        self._test_formats_fail(lat, lon)
 
         lat, lon =  '89°59\'1.599,999"S', '179°59\'59,9999"W'
         self._test_formats_fail(lat, lon)
