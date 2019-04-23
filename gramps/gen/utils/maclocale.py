@@ -266,7 +266,7 @@ def mac_setup_localization(glocale):
                 LOG.debug("No supported languages found in $LANGUAGE")
         if not (language and language[0]):
             translations = _mac_language_list()
-            if len(translations) > 0:
+            if translations and len(translations) > 0:
                 language = translations
                 LOG.debug("Returning Translations %s", ':'.join(translations))
 

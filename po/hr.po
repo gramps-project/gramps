@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Gramps package.
 # Copyright (C) Gramps project
 # josip <josip@pisoj.com>, 2008-2011.
-# mivir <mivir@milotype.de>, 2018.
+# Milo Ivir <mivir@milotype.de>, 2018., 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 5.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-24 14:13+0100\n"
-"PO-Revision-Date: 2018-12-16 17:10+0100\n"
+"POT-Creation-Date: 2018-12-26 11:20-0600\n"
+"PO-Revision-Date: 2019-03-10 00:58+0100\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
 "Language: hr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid ""
@@ -295,9 +295,9 @@ msgid ""
 "different calendars. Try the button next to the date field in the Events "
 "Editor."
 msgstr ""
-"<b>Rad s datumima</b><br/>Vremenski raspon može biti zadan u formatu "
-"\"između 4. siječnja 2000. i 20. ožujka 2003.\". Uz to, možete odrediti i "
-"razinu pouzdanosti datuma, te koristiti jedan od sedam kalendara. Isprobajte "
+"<b>Rad s datumima</b><br/>Vremenski raspon može biti zadan u formatu „između "
+"4. siječnja 2000. i 20. ožujka 2003.”. Uz to, možete odrediti i razinu "
+"pouzdanosti datuma, te koristiti jedan od sedam kalendara. Isprobajte "
 "mogućnosti, koristeći gumb pokraj polja datuma u uređivaču događaja."
 
 #: ../data/tips.xml.in.h:2
@@ -309,8 +309,8 @@ msgid ""
 msgstr ""
 "<b>Obrada objekata</b><br/>U većini slučajeva klikom na ime, izvor, mjesto "
 "ili medij otvarate prozor, koji omogućuje obradu dotičnog objekta. Rezultat "
-"ovisi o sadržaju. Npr., u pogledu \"Obitelji\", klikom na roditelja ili "
-"dijete otvorit će se uređivač srodstva."
+"ovisi o sadržaju. Npr., u pogledu „Obitelji”, klikom na roditelja ili dijete "
+"otvorit će se uređivač srodstva."
 
 #: ../data/tips.xml.in.h:3
 msgid ""
@@ -320,9 +320,9 @@ msgid ""
 "documents and other digital sources."
 msgstr ""
 "<b>Dodavanje slika</b><br/>Slike se mogu dodavati u bilo kojoj galeriji ili "
-"u pogledu \"Mediji\", njenim povlačenjem i ispuštanjem iz upravljača "
-"datoteka ili web preglednika. Možete dodati razne vrste datoteka, bilo da se "
-"radi o skeniranim dokumentima ili o drugim digitalnim izvorima."
+"u pogledu „Mediji”, njenim povlačenjem i ispuštanjem iz upravljača datoteka "
+"ili web preglednika. Možete dodati razne vrste datoteka, bilo da se radi o "
+"skeniranim dokumentima ili o drugim digitalnim izvorima."
 
 #: ../data/tips.xml.in.h:4
 msgid ""
@@ -331,7 +331,7 @@ msgid ""
 "they do not have birth dates."
 msgstr ""
 "<b>Redoslijed djece u obitelji</b><br/>Redoslijed rođenja djece u obitelji "
-"može biti određen korištenjem metode 'povuci-i-ispusti'. Taj redoslijed će "
+"može biti određen korištenjem metode povuci-i-ispusti. Taj redoslijed će "
 "biti sačuvan, čak i ako nema podataka o datumu njihovih rođenja."
 
 #: ../data/tips.xml.in.h:5
@@ -360,11 +360,11 @@ msgid ""
 "select it at the bottom of the Filter Sidebar, then click Apply. If the "
 "Filter Sidebar is not visible, select View &gt; Filter."
 msgstr ""
-"<b>Filtriranje osoba</b><br/>U pogledu \"Osobe\" možete ograničiti prikaz "
-"osoba, na osnovi više kriterija. Za izradu novog filtra koristite \"Uredi > "
-"Uređivač filtra osobe\". U uređivaču možete izraditi novi filtar dodavanjem "
-"i kombiniranjem već preodređenih pravila, te takav filtar spremiti pod novim "
-"nazivom. Za brzi odabir filtra, aktivirajte \"Pogled > Bočni stupac\"."
+"<b>Filtriranje osoba</b><br/>U pogledu „Osobe” možete ograničiti prikaz "
+"osoba, na osnovi više kriterija. Za izradu novog filtra koristite „Uredi > "
+"Uređivač filtra osobe”. U uređivaču možete izraditi novi filtar dodavanjem i "
+"kombiniranjem već preodređenih pravila, te takav filtar spremiti pod novim "
+"nazivom. Za brzi odabir filtra, aktivirajte „Pogled > Bočni stupac”."
 
 #: ../data/tips.xml.in.h:7
 msgid ""
@@ -373,7 +373,7 @@ msgid ""
 "filter you can select all people without children."
 msgstr ""
 "<b>Obrnuto filtriranje</b><br/>Rezultat filtra može se obrnuti, upotrebom "
-"opcije za obrtanje. Naprimjer, obrtanjem filtra \"Osobe s djecom\", možete "
+"opcije za obrtanje. Naprimjer, obrtanjem filtra „Osobe s djecom”, možete "
 "odabrati sve osobe bez djece."
 
 #: ../data/tips.xml.in.h:8
@@ -385,8 +385,8 @@ msgid ""
 "typing. The view will jump to the first Family Name matching the letters you "
 "enter."
 msgstr ""
-"<b>Traženje osoba</b><br/>Svako prezime u pogledu \"Osobe\" je prikazano "
-"samo jedanput. Pritiskom na strelicu s lijeve strane imena, popis će se "
+"<b>Traženje osoba</b><br/>Svako prezime u pogledu „Osobe” je prikazano samo "
+"jedanput. Pritiskom na strelicu s lijeve strane imena, popis će se "
 "proširiti, te prikazati sve osobe s tim prezimenom. Za nalaženje bilo kojeg "
 "prezimena u dugačkom popisu, odaberite jedno prezime (ne osobu) i započnite "
 "s unosom. Prikaz će skočiti do prvog prezimena, koje se poklapa s unešenim "
@@ -397,7 +397,7 @@ msgid ""
 "<b>The Family View</b><br/>The Family View is used to display a typical "
 "family unit as two parents and their children."
 msgstr ""
-"<b>Pogled Obitelji</b><br/>Pogled \"Obitelji\" se koristi za prikaz tipične "
+"<b>Pogled Obitelji</b><br/>Pogled „Obitelji” se koristi za prikaz tipične "
 "obiteljske jedinice s dvoje roditelja, te njihovom djecom."
 
 #: ../data/tips.xml.in.h:10
@@ -408,8 +408,8 @@ msgid ""
 "siblings, children or parents."
 msgstr ""
 "<b>Zamjena aktivne osobe</b><br/>Zamijeniti aktivnu osobu u pogledima je "
-"jednostavno. U pogledu \"Srodstva\" kliknite mišem na bilo koga. U pogledu "
-"\"Rodoslovi\" dvoklikom na osobu ili desnim-klikom za odabir njenog "
+"jednostavno. U pogledu „Srodstva” kliknite mišem na bilo koga. U pogledu "
+"„Dijagram predaka” dvoklikom na osobu ili desnim-klikom za odabir njenog "
 "supružnika, brata, sestre, djece ili roditelja."
 
 #: ../data/tips.xml.in.h:11
@@ -420,8 +420,8 @@ msgid ""
 "the birth dates of everyone in your database. You can use a custom filter to "
 "narrow the results."
 msgstr ""
-"<b>Tko je kada rođen?</b><br/>Uz pomoć \"Alati > Analiza i istraživanje > "
-"Usporedi pojedinačne događaje ...\" moguće je usporediti događaje svih osoba "
+"<b>Tko je kada rođen?</b><br/>Uz pomoć „Alati > Analiza i istraživanje > "
+"Usporedi pojedinačne događaje …” moguće je usporediti događaje svih osoba "
 "(ili samo nekih) u bazi podataka. To je korisno, npr. pri stvaranju liste "
 "rođendana svih osoba u vašoj bazi podataka. Za ograničavanje rezultata, "
 "možete koristiti prilagođeni filtar."
@@ -438,7 +438,7 @@ msgstr ""
 "mogu služiti za provjeru ispravnosti i konzistentnosti podataka. Postoje "
 "analitički i istraživački alati za usporedbu događaja, otkrivanje duplih "
 "osoba, interaktivni prikaz potomaka kao i mnogi drugi. Svi alati su dostupni "
-"preko izbornika \"Alati\"."
+"preko izbornika „Alati”."
 
 #: ../data/tips.xml.in.h:13
 msgid ""
@@ -447,9 +447,9 @@ msgid ""
 "Utilities &gt; Relationship Calculator...&quot;. The exact relationship as "
 "well as all common ancestors are reported."
 msgstr ""
-"<b>Računanje srodstva</b><br/>Ovaj alat u izborniku \"Alati > Pomoćni alati "
-"> Kalkulator srodstva\" omogućuje provjeru srodstva dviju osoba (po krvi ali "
-"ne i po braku), te prikazuje točno srodstvo i zajedničke pretke."
+"<b>Računanje srodstva</b><br/>Ovaj alat u izborniku „Alati > Pomoćni alati > "
+"Kalkulator srodstva” omogućuje provjeru srodstva dviju osoba (po krvi ali ne "
+"i po braku), te prikazuje točno srodstvo i zajedničke pretke."
 
 #: ../data/tips.xml.in.h:14
 msgid ""
@@ -466,8 +466,8 @@ msgstr ""
 "jednak za sva imena koja zvuče jednako ili slično, bez obzira kako su "
 "napisana. Često se koristi za katalogizaciju i stvaranja kazala u "
 "bibliotekama, za popisa stanovništva, itd. Za izradu SoundEx kodova "
-"prezimena u vašoj bazi podataka koristite glavni izbornik \"Alati > Pomoćni "
-"programi > Izrada SoundEx kodova\"."
+"prezimena u vašoj bazi podataka koristite glavni izbornik „Alati > Pomoćni "
+"programi > Izrada SoundEx kodova”."
 
 #: ../data/tips.xml.in.h:15
 msgid ""
@@ -477,10 +477,10 @@ msgid ""
 "needs. Each separate view can also be configured under &quot;View &gt; "
 "Configure View...&quot;"
 msgstr ""
-"<b>Podešavanje postavaka</b><br/>\"Uredi > Postavke ...\" omogućuje promjenu "
-"u postavkama, npr. mijenjanje staze do medijskih datoteka ili prilagodbu "
+"<b>Podešavanje postavaka</b><br/>„Uredi > Postavke …” omogućuje promjenu u "
+"postavkama, npr. mijenjanje staze do medijskih datoteka ili prilagodbu "
 "načina prikaza podataka. Svaki pogled može biti zasebno prilagođen, "
-"korištenjem glavnog izbornika \"Pogled > Podesi ...\""
+"korištenjem glavnog izbornika „Pogled > Podesi …”"
 
 #: ../data/tips.xml.in.h:16
 msgid ""
@@ -507,8 +507,8 @@ msgid ""
 msgstr ""
 "<b>Stvaranje novog rodoslova</b><br/>Dobar način za stvaranje novog "
 "rodoslova je unošenje svih članova obitelji u bazu podataka (koristeći "
-"\"Uredi > Dodaj ...\" ili klikom na gumb 'Dodaj' u pogledu \"Osobe\"). Nakon "
-"toga otiđite u pogled \"Srodstva\" i uredite odnose između osoba."
+"„Uredi > Dodaj …” ili klikom na gumb „Dodaj” u pogledu „Osobe”). Nakon toga "
+"otiđite u pogled „Srodstva” i uredite odnose između osoba."
 
 #: ../data/tips.xml.in.h:18
 msgid ""
@@ -528,7 +528,7 @@ msgid ""
 msgstr ""
 "<b>Ne znate točan datum?</b><br/>Ako ste nesigurni u točnost datuma, "
 "koristite jedan od mnogih formata datuma, zasnovanih na pretpostavkama ili "
-"procjenama. Na primjer, \"oko 1908.\" je valjani unos za datum rođenja u "
+"procjenama. Na primjer, „oko 1908.” je valjani unos za datum rođenja u "
 "Grampsu. Pritisnite gumb pokraj polja za unos datuma i pročitajte Grampsov "
 "priručnik."
 
@@ -538,8 +538,8 @@ msgid ""
 "Possible Duplicate People...&quot; allows you to locate (and merge) entries "
 "of the same person entered more than once in the database."
 msgstr ""
-"<b>Duplicirani unosi</b><br/>\"Alati > Obrada baze podataka > Nađi moguće "
-"duplikate osoba ...\", omogućuje otkrivanje (i spajanje) zapisa istih osoba, "
+"<b>Duplicirani unosi</b><br/>„Alati > Obrada baze podataka > Nađi moguće "
+"duplikate osoba …”, omogućuje otkrivanje (i spajanje) zapisa istih osoba, "
 "koje ste zabunom više puta unijeli u bazu podataka."
 
 #: ../data/tips.xml.in.h:21
@@ -551,10 +551,10 @@ msgid ""
 "erroneously entered differing names for one individual. This also works for "
 "the Places, Sources and Repositories views."
 msgstr ""
-"<b>Spajanje zapisa</b><br/>Funkcija \"Uredi > Usporedi i spoji ...\" "
-"omogućuje spajanje podataka više osoba u jednu osobu. Prilikom odabira "
-"drugog unosa držite pritisnutu tipku CTRL. Spajanje je moguće i u pogledima "
-"\"Mjesta\", \"Izvori\" i \"Spremišta\"."
+"<b>Spajanje zapisa</b><br/>Funkcija „Uredi > Usporedi i spoji …” omogućuje "
+"spajanje podataka više osoba u jednu osobu. Prilikom odabira drugog unosa "
+"držite pritisnutu tipku CTRL. Spajanje je moguće i u pogledima „Mjesta”, "
+"„Izvori” i „Spremišta”."
 
 #: ../data/tips.xml.in.h:22
 msgid ""
@@ -566,7 +566,7 @@ msgstr ""
 "<b>Postavke pogleda</b><br/>Većina pogleda može prikazati vaše podatke u "
 "obliku stablastog popisa ili u obliku jednostavnog popisa. Svaki pogled može "
 "biti dodatno prilagođen vašim željama. Pogledajte desnu stranu trake s "
-"alatima ili u glavni izbornik \"Pogled\"."
+"alatima ili u glavni izbornik „Pogled”."
 
 #: ../data/tips.xml.in.h:23
 msgid ""
@@ -577,7 +577,7 @@ msgid ""
 msgstr ""
 "<b>Pomicanje naprijed-natrag</b><br/>Gramps održava popis prethodno aktivnih "
 "objekata, npr. osoba, događaja itd. Možete se pomicati naprijed i natrag po "
-"tom popisu, koristeći \"Idi > Naprijed\" i \"Idi > Natrag\" ili gumbima sa "
+"tom popisu, koristeći „Idi > Naprijed” i „Idi > Natrag” ili gumbima sa "
 "strelicama."
 
 #: ../data/tips.xml.in.h:24
@@ -599,7 +599,7 @@ msgid ""
 "your time spent on genealogy more productive."
 msgstr ""
 "<b>Čitajte priručnik</b><br/>Nemojte zaboraviti čitati Grampsov priručnik, "
-"\"Pomoć > Korisnički priručnik\". Razvijatelji ovog programa su se trudili "
+"„Pomoć > Korisnički priručnik”. Razvijatelji ovog programa su se trudili "
 "učiniti njegovu upotrebu intinuitivnom, ali je priručnik pun informacija, "
 "koje će vam pomoći u još produktivnijem radu."
 
@@ -611,9 +611,9 @@ msgid ""
 "add children (or siblings) from inside the Family Editor."
 msgstr ""
 "<b>Dodavanje djece</b><br/>Dodavanje djece u Grampsu je moguće na dva "
-"načina. Možete pronaći jednog od roditelja u pogledu \"Obitelji\" i otvoriti "
+"načina. Možete pronaći jednog od roditelja u pogledu „Obitelji” i otvoriti "
 "tu obitelj, te odabrati stvaranje nove osobe ili dodavanje postojeće osobe. "
-"Također možete dodati djecu (ili braću/sestre) u pogledu \"Srodstva\"."
+"Također možete dodati djecu (ili braću/sestre) u pogledu „Srodstva”."
 
 #: ../data/tips.xml.in.h:27
 msgid ""
@@ -634,11 +634,11 @@ msgid ""
 "is wrong in making this choice, you can override the filter by checking the "
 "Show All checkbutton."
 msgstr ""
-"<b>Gumb za odabir 'Prikaži sve'</b><br/>Kada dodajete postojeću osobu kao "
+"<b>Gumb za odabir „Prikaži sve”</b><br/>Kada dodajete postojeću osobu kao "
 "supružnika, popis osoba je filtriran tako da sadrži samo osobe, koje uopće "
 "dolaze u obzir (na osnovi datuma u bazi podataka). Ako mislite da program "
 "griješi u odabiru, možete nadvladati to filtriranje, upotrebom gumba "
-"'Prikaži sve'."
+"„Prikaži sve”."
 
 #: ../data/tips.xml.in.h:29
 msgid ""
@@ -666,7 +666,7 @@ msgstr ""
 "je pretplaćeno mnogo je ljudi, koji su spremni pomoći, pa će te odgovor "
 "vjerojatno ubrzo dobiti. Ako imate pitanja vezana uz razvoj Gramps programa, "
 "pogledajte grampsovu razvijateljsku pretplatnićku listu. Za prikaz "
-"raznovrsnih listi koristite \"Pomoć > Gramps pretplatnička lista\"."
+"raznovrsnih listi koristite „Pomoć > Gramps pretplatnička lista”."
 
 #: ../data/tips.xml.in.h:31
 msgid ""
@@ -684,7 +684,7 @@ msgstr ""
 "dokumentacije do provjeravanja razvojnih inačica ili pri pomoći oko web "
 "mjesta. Započnite s prijavom na pretplatničku listu za razvijatelje Gramps "
 "programa (gramps-devel) i predstavite se. Sve potrebne informacije za "
-"prijavu mogu se naći pod \"Pomoć > Gramps pretplatnička lista\""
+"prijavu mogu se naći pod „Pomoć > Gramps pretplatnička lista”"
 
 #: ../data/tips.xml.in.h:32
 msgid ""
@@ -710,11 +710,11 @@ msgid ""
 "Person then go to &quot;Bookmarks &gt; Add Bookmark&quot; or press Ctrl+D. "
 "You can also bookmark most of the other objects."
 msgstr ""
-"<b>Knjižne oznake za osobe</b><br/>Izbornik \"Knjižne oznake\" je praktično "
+"<b>Knjižne oznake za osobe</b><br/>Izbornik „Knjižne oznake” je praktično "
 "mjesto za spremanje imena često korištenih osoba. Odabirom knjižne oznake, "
 "određujete tu osobu kao aktivnu osobu. Za dodavanje osobe u knjižne oznake, "
-"postavite ju kao aktivnu osobu, a zatim koristite izbornik \"Knjižne oznake "
-"> Dodaj knjižnu oznaku\" ili pritisnite tipke Ctrl+D. Knjižne oznake možete "
+"postavite ju kao aktivnu osobu, a zatim koristite izbornik „Knjižne oznake > "
+"Dodaj knjižnu oznaku” ili pritisnite tipke Ctrl+D. Knjižne oznake možete "
 "koristiti i za većinu drugih objekata."
 
 #: ../data/tips.xml.in.h:34
@@ -730,7 +730,7 @@ msgstr ""
 "formatu. Takav datum će biti prikazan crvenkastom pozadinom ili crvenom "
 "točkom na desnoj strani polja. Možete ga ispraviti u dijaloškom okviru "
 "datuma, pritiskom na gumb za datum. Format datuma možete postaviti "
-"korištenjem izbornika \"Uredi > Postavke > Prikaz\"."
+"korištenjem izbornika „Uredi > Postavke > Prikaz”."
 
 #: ../data/tips.xml.in.h:35
 msgid ""
@@ -739,8 +739,8 @@ msgid ""
 "preset event types. You can add your own event types by typing in the text "
 "field, they will be added to the available events, but not translated."
 msgstr ""
-"<b>Popis događaja</b><br/>Događaji se dodaju u uređivaču \"Osoba > Uredi > "
-"Događaji\". Postoji dugačak popis zadanih vrsta događaja. Možete dodati "
+"<b>Popis događaja</b><br/>Događaji se dodaju u uređivaču „Osoba > Uredi > "
+"Događaji”. Postoji dugačak popis zadanih vrsta događaja. Možete dodati "
 "vlastite vrste događaja unošenjem u polje, koje će biti pridodane postojećim "
 "vrstama, međutim neće biti prevedene u druge jezike."
 
@@ -752,8 +752,8 @@ msgid ""
 "Name section."
 msgstr ""
 "<b>Upravljanje imenima</b><br/>Upravljanje višestrukim imenima u Grampsu je "
-"vrlo jednostavno. U uređivaču osoba odaberite karticu \"Imena\". U njoj "
-"možete dodavati imena različitih vrsta i postaviti ono preferirano."
+"vrlo jednostavno. U uređivaču osoba odaberite karticu „Imena”. U njoj možete "
+"dodavati imena različitih vrsta i postaviti ono preferirano."
 
 #: ../data/tips.xml.in.h:37
 msgid ""
@@ -762,11 +762,11 @@ msgid ""
 "or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
-"<b>Pogled \"Podrijetlo\"</b><br/>Pogled \"Podrijetlo\" prikazuje "
-"tradicionalni dijagram podrijetla. Zadržite miša iznad osobe za prikaz "
+"<b>Pogled „Dijagram predaka”</b><br/>Pogled „Dijagram predaka” prikazuje "
+"tradicionalni dijagram porijekla. Zadržite miša iznad osobe za prikaz "
 "dodatnih podataka ili desnim klikom na nju, otvorite skočni izbornik za brzi "
 "odabir njezinih supružnika, braće, sestara i djece. Za razne prikaze ovog "
-"pogleda, podesite njegove postavke."
+"pogleda, podesite opcije u postavkama."
 
 #: ../data/tips.xml.in.h:38
 msgid ""
@@ -775,10 +775,10 @@ msgid ""
 "see which individuals reference each source. You can use filters to group "
 "your sources."
 msgstr ""
-"<b>Upravljanje izvorima</b><br/>Pogled \"Izvori\" prikazuje popis svih "
-"izvora u jednom dijaloškom okviru, od kuda možete započeti njihovo "
-"uređivanje, spajanje ili vidjeti, na kog se sve ti izvori odnose. Možete "
-"koristiti filtre za njihov odabir i grupiranje."
+"<b>Upravljanje izvorima</b><br/>Pogled „Izvori” prikazuje popis svih izvora "
+"u jednom dijaloškom okviru, od kuda možete započeti njihovo uređivanje, "
+"spajanje ili vidjeti, na kog se sve ti izvori odnose. Možete koristiti "
+"filtre za njihov odabir i grupiranje."
 
 #: ../data/tips.xml.in.h:39
 msgid ""
@@ -786,9 +786,9 @@ msgid ""
 "database. The list can be sorted by a number of different criteria, such as "
 "City, County or State."
 msgstr ""
-"<b>Upravljanje mjestima</b><br/>Pogled \"Mjesta\" prikazuje sva mjesta u "
-"bazi podataka. Podaci mogu biti svrstani prema različitim kriterijima kao "
-"npr. prema gradu, županiji, državi, itd."
+"<b>Upravljanje mjestima</b><br/>Pogled „Mjesta” prikazuje sva mjesta u bazi "
+"podataka. Podaci mogu biti svrstani prema različitim kriterijima kao npr. "
+"prema gradu, županiji, državi, itd."
 
 #: ../data/tips.xml.in.h:40
 msgid ""
@@ -796,7 +796,7 @@ msgid ""
 "the database. These can be graphic images, videos, sound clips, "
 "spreadsheets, documents, and more."
 msgstr ""
-"<b>Pogled Mediji</b><br/>Pogled \"Mediji\" prikazuje popis svih medija "
+"<b>Pogled Mediji</b><br/>Pogled „Mediji” prikazuje popis svih medija "
 "upisanih u bazu podataka. To mogu biti slike, video ili zvučni zapisi, "
 "tablični proračuni, dokumenti i slično."
 
@@ -807,10 +807,10 @@ msgid ""
 "limited only by your imagination. Custom filters are created from &quot;Edit "
 "&gt; Person Filter Editor&quot;."
 msgstr ""
-"<b>Filtri</b><br/>Filtri omogućuju ograničen prikaz osoba u pogledu \"Osobe"
-"\". Pored velikog izbora predodređenih filtra, možete izraditi i vlastiti, "
+"<b>Filtri</b><br/>Filtri omogućuju ograničen prikaz osoba u pogledu „Osobe”. "
+"Pored velikog izbora predodređenih filtra, možete izraditi i vlastiti, "
 "prilagođen filtar, koji će biti ograničen samo vašom maštom. Takav filtar "
-"možete izraditi korištenjem izbornika \"Uredi > Uređivač filtra osobe\"."
+"možete izraditi korištenjem izbornika „Uredi > Uređivač filtra osobe”."
 
 #: ../data/tips.xml.in.h:42
 msgid ""
@@ -848,9 +848,9 @@ msgid ""
 "Tree (WFT) format. This format allows a family tree to be displayed online "
 "using a single file, instead of many html files."
 msgstr ""
-"<b>'Web rodoslov' format</b><br/>Gramps može izvesti podatke u 'Web "
-"rodoslov' formatu (WR). Ovaj format koristi samo jednu html datoteku za web "
-"prikaz rodoslova, umjesto mnogih datoteka."
+"<b>„Web Family Tree” format</b><br/>Gramps može izvesti podatke u „Web "
+"Family Tree” formatu (WFT), format za web rodoslov. Ovaj format koristi samo "
+"jednu html datoteku za web prikaz rodoslova, umjesto mnogih datoteka."
 
 #: ../data/tips.xml.in.h:45
 msgid ""
@@ -863,6 +863,15 @@ msgstr ""
 "vrlo lako izvesti u obliku web stranice. Odaberite cijelu bazu podataka, "
 "obiteljske grane ili određene osobe za izradu zbirke web stranica, spremne "
 "za postavljanje u mrežu."
+
+#: ../data/tips.xml.in.h:46
+msgid ""
+"<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
+"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
+msgstr ""
+"<b>Prijava greške u Grampsu</b><br/>Najbolji način za prijavu greške u "
+"Grampsu je pomoću Grampsovog sustava za praćenje grešaka, na adresi: https://"
+"gramps-project.org/bugs/"
 
 #: ../data/tips.xml.in.h:46
 msgid ""
@@ -904,8 +913,8 @@ msgstr ""
 "<b>Pravilno zapisivanje podataka</b><br/>Budite točni pri zapisivanju "
 "rodoslovnih podataka. Ne koristite se pretpostavkama pri prijepisu osnovnih "
 "podataka, zapišite ih točno onako kako su zapisani. Koristite se zagradama "
-"za unos promijenjenih podataka i opažanja. Upotreba latinskog 'sic' se "
-"preporuča za potvrdu točnosti prijepisa onoga, što izgleda kao greška u "
+"za unos promijenjenih podataka i opažanja. Upotreba latinskog „sic” se "
+"preporučuje za potvrdu točnosti prijepisa onoga, što izgleda kao greška u "
 "dokumentu."
 
 #: ../data/tips.xml.in.h:50
@@ -916,8 +925,8 @@ msgid ""
 "experiment and create new functionality."
 msgstr ""
 "<b>Dodatni izvještaji i alati</b><br/>Dodatni izvještaji i alati mogu biti "
-"korišteni sustavom dodataka kroz izbornik. Vidi \"Pomoć > Dodatni izvještaji/"
-"alati\". To je najbolji način za napredne korisnike da istražuju i kreiraju "
+"korišteni sustavom dodataka kroz izbornik. Vidi „Pomoć > Dodatni izvještaji/"
+"alati”. To je najbolji način za napredne korisnike da istražuju i kreiraju "
 "nove mogućnosti programa."
 
 #: ../data/tips.xml.in.h:51
@@ -927,8 +936,8 @@ msgid ""
 "single document. This single report is easier to distribute than multiple "
 "reports, especially when printed."
 msgstr ""
-"<b>Knjiški izvještaji</b><br/>Knjiški izvještaj, pod \"Izvještaji > Knjige > "
-"Uredi knjige ...\", omogućuje spajanje raznih izvještaja u jedan dokument. "
+"<b>Knjiški izvještaji</b><br/>Knjiški izvještaj, pod „Izvještaji > Knjige > "
+"Uredi knjige …”, omogućuje spajanje raznih izvještaja u jedan dokument. "
 "Baratanje takvim dokumentom je mnogo lakše, svejedno da li se radi o slanju "
 "dokumenta drugima ili o ispisu."
 
@@ -940,7 +949,7 @@ msgid ""
 msgstr ""
 "<b>Gramps obavijesti</b><br/>Ako ste zainteresirani za primanje obavijesti o "
 "novim inačicama Grampsa pretplatite se na Gramps-announce pretplatničku "
-"listu pomoću \"Pomoć > Gramps pretplatnička lista\""
+"listu pomoću „Pomoć > Gramps pretplatnička lista”"
 
 #: ../data/tips.xml.in.h:53
 msgid ""
@@ -975,7 +984,7 @@ msgid ""
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
-"<b>'Kako i zašto' u rodoslovlju</b><br/> U rodoslovlju se ne radi samo o "
+"<b>„Kako i zašto” u rodoslovlju</b><br/> U rodoslovlju se ne radi samo o "
 "prikupljanju podataka o datumima i imenima, već o samim ljudima. Uključite "
 "podatke o tome zašto su se neke stvari dogodile u životu osobe, te kako je "
 "to moglo utjecati na živote njezinih potomaka. Priče iz života unose živost "
@@ -1018,9 +1027,9 @@ msgid ""
 "when the home button is pressed."
 msgstr ""
 "<b>Početna osoba</b><br/>Svatko može biti određen kao početna osoba u "
-"Grampsu, upotrebom \"Uredi > Postavi početnu osobu\". Početna je osoba ona "
+"Grampsu, upotrebom „Uredi > Postavi početnu osobu”. Početna je osoba ona "
 "osoba, koja je odabrana (aktivna) prilikom otvaranja baze podataka ili nakon "
-"pritiska na gumb 'Početna'."
+"pritiska na gumb „Početna”."
 
 #: ../data/tips.xml.in.h:60
 msgid ""
@@ -1078,8 +1087,8 @@ msgid ""
 "Error: Family Tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
-"Greška: Rodoslov '%s' već postoji.\n"
-"Nije moguće koristiti opciju '-C'."
+"Greška: Rodoslov „%s” već postoji.\n"
+"Nije moguće koristiti opciju -C."
 
 #: ../gramps/cli/arghandler.py:240
 #, python-format
@@ -1088,7 +1097,7 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a Family "
 "Tree instead."
 msgstr ""
-"Greška: Rodoslov \"%s\" ne postoji.\n"
+"Greška: Rodoslov „%s” ne postoji.\n"
 "Ako se radi o GEDCOM, Grampsxml ili grdb datoteci, koristite opciju -i za "
 "uvoz u rodoslov."
 
@@ -1100,8 +1109,7 @@ msgstr "Greška: Uvozna datoteka %s nije pronađena."
 #: ../gramps/cli/arghandler.py:272
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
-msgstr ""
-"Greška: Neprepoznata vrsta: \"%(format)s\" uvozne datoteke: %(filename)s"
+msgstr "Greška: Neprepoznata vrsta: „%(format)s” uvozne datoteke: %(filename)s"
 
 #: ../gramps/cli/arghandler.py:292
 #, python-format
@@ -1144,7 +1152,7 @@ msgstr "Popis poznatih rodoslova u stazi vaše baze podataka\n"
 #: ../gramps/cli/arghandler.py:412
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
-msgstr "%(full_DB_path)s s imenom \"%(f_t_name)s\""
+msgstr "%(full_DB_path)s s imenom „%(f_t_name)s”"
 
 #: ../gramps/cli/arghandler.py:430 ../gramps/cli/clidbman.py:188
 msgid "Gramps Family Trees:"
@@ -1180,7 +1188,7 @@ msgstr "Izvršavanje akcije: %s."
 #: ../gramps/cli/arghandler.py:460 ../gramps/gen/plug/report/stdoptions.py:285
 #, python-format
 msgid "Using options string: %s"
-msgstr "Korištenje niza postavka: %s"
+msgstr "Korištenje znakovnog niza opcija: %s"
 
 #: ../gramps/cli/arghandler.py:466
 #, python-format
@@ -1232,7 +1240,7 @@ msgstr "Pozadinski sustav baze podataka nije dostupan, otvaranje nije moguće!"
 #: ../gramps/cli/arghandler.py:609 ../gramps/cli/arghandler.py:658
 #: ../gramps/cli/arghandler.py:705
 msgid "Ignoring invalid options string."
-msgstr "Zanemarivanje neispravnog niza znakova u postavci."
+msgstr "Zanemarivanje neispravnog znakovnog niza opcije."
 
 #. name exists, but is not in the list of valid report names
 #: ../gramps/cli/arghandler.py:633
@@ -1428,7 +1436,7 @@ msgstr ""
 "gramps -i datoteka1.ged -i datoteka2.gpkg -e ~/novi-paket -f gramps-pkg\n"
 "\n"
 "4. Za spremanje svih poruka o greškama iz gornjeg primjera, u datoteke "
-"\"outfile\" i \"errfile\", pokrenite:\n"
+"„outfile” i „errfile”, pokrenite:\n"
 "gramps -i datoteka1.ged -i datoteka2.dpkg -e ~/novi-paket -f gramps-pkg "
 ">outfile 2>errfile\n"
 "\n"
@@ -1438,8 +1446,7 @@ msgstr ""
 "\n"
 "6. Za otvaranje baze podataka i, na osnovi tih podataka, izradu izvještaja s "
 "vremenskom\n"
-"crtom u PDF formatu, te spremanje ispisa u datoteku \"moja_kronologija.pdf"
-"\":\n"
+"crtom u PDF formatu, te spremanje ispisa u datoteku „moja_kronologija.pdf”:\n"
 "gramps -O 'Rodoslov 1' -a report -p name=timeline,off=pdf,"
 "of=moja_kronologija.pdf\n"
 "\n"
@@ -1453,7 +1460,7 @@ msgstr ""
 "name=timeline,show=off.\n"
 "Za prikaz dostupnih naziva izvještaja, koristi name=show.\n"
 "\n"
-"9. Za konvertiranje rodoslova \"u letu\" u .gramps xml datoteku:\n"
+"9. Za konvertiranje rodoslova u letu, u jednu .gramps xml datoteku:\n"
 "gramps -O 'Rodoslov 1' -e output.gramps -f gramps-xml\n"
 "\n"
 "10. Za stvaranje web stranice u nekom drugom jeziku (na hrvatskom):\n"
@@ -1463,7 +1470,7 @@ msgstr ""
 "11. Na kraju, za pokretanje normalne interaktivne sesije, unesite:\n"
 "gramps\n"
 "\n"
-"Napomena: Ovi primjeri su za \"bash shell\" komandni jezik.\n"
+"Napomena: Ovi primjeri su za „bash shell” komandni jezik.\n"
 "Sintaksa se može razlikovati u drugim komandnim jezicima i za Windows.\n"
 
 #: ../gramps/cli/argparser.py:248 ../gramps/cli/argparser.py:421
@@ -1526,7 +1533,7 @@ msgstr "    Nova Gramps konfiguracijska postavka: %(name)s:%(value)s"
 #: ../gramps/cli/argparser.py:384
 #, python-format
 msgid "Gramps: no such config setting: '%s'"
-msgstr "Gramps: nema takve konfiguracijske postavke: '%s'"
+msgstr "Gramps: nema takve konfiguracijske postavke: „%s”"
 
 #: ../gramps/cli/argparser.py:422
 #, python-format
@@ -1578,7 +1585,7 @@ msgstr "Zaključano?"
 #: ../gramps/cli/clidbman.py:197
 #, python-format
 msgid "Family Tree \"%s\":"
-msgstr "Rodoslov \"%s\":"
+msgstr "Rodoslov „%s”:"
 
 #. translators: needed for French, ignore otherwise
 #. translators: for French, else ignore
@@ -1628,7 +1635,7 @@ msgid ""
 "\"%s\"?"
 msgstr ""
 "Jeste li sigurni da želite ukloniti rodoslov pod nazivom\n"
-"\"%s\"?"
+"„%s”?"
 
 #: ../gramps/cli/clidbman.py:436 ../gramps/gui/dbman.py:739
 msgid "Could not delete Family Tree"
@@ -1650,7 +1657,7 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"GREŠKA: Pogrešna staza do baze podataka u postavkama \"Uredi > Postavke\".\n"
+"GREŠKA: Pogrešna staza do baze podataka u postavkama „Uredi > Postavke”.\n"
 "Otvorite postavke i postavite ispravnu stazu do baze podataka.\n"
 "\n"
 "Detalji: Ne mogu stvoriti stazu do baze podataka:\n"
@@ -1783,7 +1790,7 @@ msgid ""
 "the Repair button"
 msgstr ""
 "Gramps je otkrio problem u Berkeley bazi podataka. Problem možete popraviti "
-"u upravljaču rodoslova. Odaberite bazu podataka i kliknite na gumb 'Popravi'"
+"u upravljaču rodoslova. Odaberite bazu podataka i kliknite na gumb „Popravi”"
 
 #: ../gramps/cli/grampscli.py:153 ../gramps/gui/dbloader.py:165
 msgid "Read only database"
@@ -1931,7 +1938,7 @@ msgstr "%(id)s:\t%(father)s, %(mother)s"
 #: ../gramps/cli/plug/__init__.py:461
 #, python-format
 msgid "Unknown option: %s"
-msgstr "Nepoznata postavka: %s"
+msgstr "Nepoznata opcija: %s"
 
 #: ../gramps/cli/plug/__init__.py:462 ../gramps/cli/plug/__init__.py:552
 msgid "   Valid options are:"
@@ -1967,7 +1974,7 @@ msgstr ", "
 #: ../gramps/cli/plug/__init__.py:635
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
-msgstr "   Upotrijebi '%(donottranslate)s' za opis i dopuštene vrijednosti"
+msgstr "   Upotrijebi „%(donottranslate)s” za opis i dopuštene vrijednosti"
 
 #: ../gramps/cli/plug/__init__.py:527
 #, python-format
@@ -1975,19 +1982,19 @@ msgid ""
 "Ignoring '%(notranslate1)s=%(notranslate2)s' and using '%(notranslate1)s="
 "%(notranslate3)s'."
 msgstr ""
-"Zanemareno: '%(notranslate1)s=%(notranslate2)s' i korišteno: "
-"'%(notranslate1)s=%(notranslate3)s'."
+"Zanemaruje se „%(notranslate1)s=%(notranslate2)s” i koristi se "
+"„%(notranslate1)s=%(notranslate3)s”."
 
 #: ../gramps/cli/plug/__init__.py:533
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
-msgstr "Koristi '%(notranslate)s' za popis valjanih opcija."
+msgstr "Koristi „%(notranslate)s” za popis valjanih opcija."
 
 #: ../gramps/cli/plug/__init__.py:551
 #: ../gramps/gen/plug/report/stdoptions.py:282
 #, python-format
 msgid "Ignoring unknown option: %s"
-msgstr "Zanemarene nepoznate postavke: %s"
+msgstr "Zanemarivanje nepoznate opcije: %s"
 
 #: ../gramps/cli/plug/__init__.py:624
 msgid "   Available options:"
@@ -2008,7 +2015,7 @@ msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
 "options."
 msgstr ""
-"opcija '%(optionname)s' nije valjana. Upotrijebi '%(donottranslate)s' za "
+"opcija „%(optionname)s” nije valjana. Upotrijebi „%(donottranslate)s” za "
 "prikaz svih valjanih opcija."
 
 #: ../gramps/cli/plug/__init__.py:669
@@ -2018,7 +2025,7 @@ msgstr "Neuspjelo pisanje izvještaja. "
 #: ../gramps/cli/plug/__init__.py:818
 #, python-format
 msgid "Failed to make '%s' report."
-msgstr "Greška prilikom pravljenja izvještaja '%s'."
+msgstr "Greška prilikom pravljenja izvještaja „%s”."
 
 #: ../gramps/cli/user.py:217 ../gramps/gui/dialog.py:235
 msgid "Error detected in database"
@@ -2035,7 +2042,7 @@ msgid ""
 "\n"
 msgstr ""
 "Gramps je otkrio grešku u bazi podataka. U pravilu se greške mogu popraviti "
-"pokretanjem alata \"Provjeri i popravi bazu podataka\".\n"
+"pokretanjem alata „Provjeri i popravi bazu podataka”.\n"
 "\n"
 "Ako se greška pojavi i nakon pokretanja ovog alata, prijavite grešku na "
 "%(gramps_bugtracker_url)s\n"
@@ -2099,12 +2106,12 @@ msgstr ":"
 #: ../gramps/gen/datehandler/__init__.py:83
 #, python-format
 msgid "Date parser for '%s' not available, using default"
-msgstr "Parser datuma za '%s' nije dostupan, koristi se zadani"
+msgstr "Parser datuma za „%s” nije dostupan, koristi se zadani"
 
 #: ../gramps/gen/datehandler/__init__.py:100
 #, python-format
 msgid "Date displayer for '%s' not available, using default"
-msgstr "Prikazivač datuma za '%s' nije dostupan, koristi se zadani"
+msgstr "Prikazivač datuma za „%s” nije dostupan, koristi se zadani"
 
 #. format 0 - must always be ISO
 #: ../gramps/gen/datehandler/_datedisplay.py:70
@@ -3053,7 +3060,7 @@ msgid ""
 "Tree. Alternatively, it may be possible to use the Berkeley database "
 "recovery tools."
 msgstr ""
-"Gramps je otkrio problem u otvaranju 'okruženja' Berkeleyeve baze podataka, "
+"Gramps je otkrio problem u otvaranju okruženja Berkeleyeve baze podataka, "
 "korištene za spremanje ovog rodoslova. Najvjerojatniji uzrok je taj, da je "
 "baza podataka stvorena sa starom inačicom Berkeleyevog programa baze "
 "podataka, a vi sada koristite novu inačicu. Vrlo je vjerojatno, da vaša baza "
@@ -3406,22 +3413,22 @@ msgstr "Pogrešan znakovni niz za format imena %s"
 msgid "ERROR, Edit Name format in Preferences"
 msgstr "GREŠKA, uredi format imena u postavkama"
 
-#: ../gramps/gen/filters/_filterparser.py:116
+#: ../gramps/gen/filters/_filterparser.py:119
 #, python-format
 msgid ""
 "WARNING: Too many arguments in filter '%s'!\n"
 "Trying to load with subset of arguments."
 msgstr ""
-"UPOZORENJE: Previše argumenata u filtru '%s'!\n"
+"UPOZORENJE: Previše argumenata u filtru „%s”!\n"
 "Pokušaj učitavanja s podskupom argumenata."
 
-#: ../gramps/gen/filters/_filterparser.py:124
+#: ../gramps/gen/filters/_filterparser.py:127
 #, python-format
 msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
-"UPOZORENJE: Premalo argumenata u filtru '%s'!\n"
+"UPOZORENJE: Premalo argumenata u filtru „%s”!\n"
 "         Pokušaj učitavanja, u nadi, da će biti nadograđeno."
 
 #: ../gramps/gen/filters/_filterparser.py:132
@@ -3762,6 +3769,17 @@ msgstr "Razni filtri"
 #: ../gramps/plugins/view/geoperson.py:488
 msgid "No description"
 msgstr "Nema opisa"
+
+#. more references to a filter than expected
+#: ../gramps/gen/filters/rules/_rule.py:94
+msgid "The filter definition contains a loop."
+msgstr "Definicija filtra sadržava petlju."
+
+#: ../gramps/gen/filters/rules/_rule.py:95
+msgid "One rule references another which eventually references the first."
+msgstr ""
+"Ovo se pravilo referencira na jedno drugo pravilo, koje se pak referencira "
+"na prvo."
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:45
 msgid "Every citation"
@@ -4217,7 +4235,7 @@ msgstr "Događaji s <brojem> izvora"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:45
 msgid "Matches events with a certain number of sources connected to it"
-msgstr "Pronalazi događaje s određenim brojem stavki izvora"
+msgstr "Pronalazi događaje s određenim brojem povezanih izvora"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:49
 msgid "Events with the <tag>"
@@ -6346,8 +6364,7 @@ msgstr "Pronalazi izvore s određenim brojem referenca spremišta"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:44
 msgid "Sources with repository reference containing <text> in \"Call Number\""
-msgstr ""
-"Izvori s referencama spremišta, koje sadrže <tekst> u \"Pozivnom broju\""
+msgstr "Izvori s referencama spremišta, koje sadrže <tekst> u „Pozivnom broju”"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:45
 msgid ""
@@ -6355,7 +6372,7 @@ msgid ""
 "containing a substring in \"Call Number\""
 msgstr ""
 "Pronalazi izvore, čije reference spremišta\n"
-"sadrže određeni podniz znakova u \"Pozivnom broju\""
+"sadrže određeni podniz znakova u „Pozivnom broju”"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:49
 msgid "Sources with the <tag>"
@@ -7848,7 +7865,7 @@ msgstr "Nevjenčani"
 
 #: ../gramps/gen/lib/familyreltype.py:49
 msgid "Civil Union"
-msgstr "Nezakoniti brak"
+msgstr "Životno partnerstvo"
 
 #. Create the tree columns
 #. 0 selected?
@@ -8039,7 +8056,7 @@ msgstr "Potpuno"
 
 #: ../gramps/gen/lib/markertype.py:54 ../gramps/plugins/tool/notrelated.py:103
 msgid "ToDo"
-msgstr "Za obaviti"
+msgstr "Zadaci"
 
 #: ../gramps/gen/lib/media.py:145
 msgid "MIME"
@@ -8349,7 +8366,7 @@ msgstr "HTML kod"
 
 #: ../gramps/gen/lib/notetype.py:82
 msgid "notetype|To Do"
-msgstr "Za obaviti"
+msgstr "Zadatak"
 
 #: ../gramps/gen/lib/notetype.py:83
 msgid "notetype|Link"
@@ -9057,7 +9074,7 @@ msgid ""
 "Option '%(opt_name)s' is present in %(file)s\n"
 "  but is not known to the module.  Ignoring..."
 msgstr ""
-"Opcija '%(opt_name)s' je prisutna u %(file)s\n"
+"Opcija „%(opt_name)s” je prisutna u %(file)s\n"
 "  ali je modulu nepoznata.  Zanemaruje se ..."
 
 #: ../gramps/gen/plug/_pluginreg.py:59
@@ -9151,7 +9168,7 @@ msgid ""
 "\" which is invalid for Gramps \"%(gramps_version)s\"."
 msgstr ""
 "GREŠKA: Dodatak %(filename)s je izrađen za inačicu "
-"\"%(gramps_target_version)s\" i ne vrijedi za Gramps \"%(gramps_version)s\"."
+"„%(gramps_target_version)s” i ne vrijedi za Gramps „%(gramps_version)s”."
 
 #: ../gramps/gen/plug/_pluginreg.py:1212
 #, python-format
@@ -9353,8 +9370,8 @@ msgid ""
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr ""
 "Odaberite vrstu pisma. Ako uočite neispravnosti u prikazu međunarodnih "
-"slovnih znakova, koristite pismo \"FreeSans\", dostupno na: http://www."
-"nongnu.org/freefont/"
+"slovnih znakova, koristite pismo „FreeSans”, dostupno na: http://www.nongnu."
+"org/freefont/"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:145
 #: ../gramps/gui/widgets/styledtexteditor.py:492
@@ -9425,7 +9442,7 @@ msgstr "Kako prikazati crte, koje spajaju objekte."
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:199
 msgid "Graphviz Options"
-msgstr "Graphviz postavke"
+msgstr "Opcije za Graphviz"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:202
@@ -9705,7 +9722,7 @@ msgstr "Glomazno"
 #. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:141
 msgid "Node Options"
-msgstr "Opcije čvorišta"
+msgstr "Opcije za čvorište"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:144
@@ -9752,9 +9769,9 @@ msgstr "Boja čvorišta."
 #. #################
 #: ../gramps/gen/plug/docgen/treedoc.py:175
 #: ../gramps/plugins/drawreport/ancestortree.py:791
-#: ../gramps/plugins/drawreport/descendtree.py:1522
+#: ../gramps/plugins/drawreport/descendtree.py:1528
 msgid "Tree Options"
-msgstr "Postavke stabla"
+msgstr "Opcije za stablo"
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/treedoc.py:178
@@ -9810,7 +9827,7 @@ msgstr "LaTeX datoteka"
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:142
 #, python-format
 msgid "Value '%(val)s' not found for option '%(opt)s'"
-msgstr "Vrijednost '%(val)s' nije pronađena za postavku '%(opt)s'"
+msgstr "Vrijednost „%(val)s” nije pronađena za opciju „%(opt)s”"
 
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:144
 #: ../gramps/gen/plug/report/stdoptions.py:283
@@ -9989,7 +10006,7 @@ msgstr "Kako postupati sa živim osobama"
 
 #: ../gramps/gen/plug/report/stdoptions.py:189
 msgid "Years from death to consider living"
-msgstr "Broj godina nakon smrti, za određivanje 'živih' osoba"
+msgstr "Broj godina nakon smrti, za određivanje živih osoba"
 
 #: ../gramps/gen/plug/report/stdoptions.py:192
 msgid "Whether to restrict data on recently-dead people"
@@ -10147,42 +10164,42 @@ msgstr "Novi"
 #: ../gramps/gen/plug/utils.py:291 ../gramps/gen/plug/utils.py:298
 #, python-format
 msgid "Unable to open '%s'"
-msgstr "Nije moguće otvoriti '%s'"
+msgstr "Nije moguće otvoriti „%s”"
 
 #: ../gramps/gen/plug/utils.py:305
 #, python-format
 msgid "Error in reading '%s'"
-msgstr "Greška pri učitavanju '%s'"
+msgstr "Greška pri učitavanju „%s”"
 
-#: ../gramps/gen/plug/utils.py:316
+#: ../gramps/cli/arghandler.py:385 ../gramps/gen/plug/utils.py:316
 #, python-format
 msgid "Error: cannot open '%s'"
-msgstr "Greška: nije moguće otvoriti '%s'"
+msgstr "Greška: nije moguće otvoriti „%s”"
 
 #: ../gramps/gen/plug/utils.py:320
 #, python-format
 msgid "Error: unknown file type: '%s'"
-msgstr "Greška: nepoznata vrsta datoteke: '%s'"
+msgstr "Greška: nepoznata vrsta datoteke: „%s”"
 
 #: ../gramps/gen/plug/utils.py:326
 #, python-format
 msgid "Examining '%s'..."
-msgstr "Pregledavanje '%s' ..."
+msgstr "Pregledavanje „%s” ..."
 
 #: ../gramps/gen/plug/utils.py:339
 #, python-format
 msgid "Error in '%s' file: cannot load."
-msgstr "Greška u datoteci '%s': učitavanje nije moguće."
+msgstr "Greška u datoteci „%s”: učitavanje nije moguće."
 
 #: ../gramps/gen/plug/utils.py:353
 #, python-format
 msgid "'%s' is for this version of Gramps."
-msgstr "'%s' je za ovu inačicu Grampsa."
+msgstr "„%s” je za ovu inačicu Grampsa."
 
 #: ../gramps/gen/plug/utils.py:357
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
-msgstr "'%s' NIJE za ovu inačicu Grampsa."
+msgstr "„%s” NIJE za ovu inačicu Grampsa."
 
 #: ../gramps/gen/plug/utils.py:358
 #, python-format
@@ -10192,17 +10209,17 @@ msgstr "Namijenjeno je za inačicu %(v1)d.%(v2)d"
 #: ../gramps/gen/plug/utils.py:368
 #, python-format
 msgid "Error: missing gramps_target_version in '%s'..."
-msgstr "Greška: nedostaje gramps_cilj_inačica u '%s' ..."
+msgstr "Greška: nedostaje gramps_cilj_inačica u „%s” ..."
 
 #: ../gramps/gen/plug/utils.py:380
 #, python-format
 msgid "Installing '%s'..."
-msgstr "Instaliranje '%s' ..."
+msgstr "Instaliranje „%s” ..."
 
 #: ../gramps/gen/plug/utils.py:385
 #, python-format
 msgid "Registered '%s'"
-msgstr "Prijavljeno '%s'"
+msgstr "Prijavljeno „%s”"
 
 #: ../gramps/gen/recentfiles.py:204
 #, python-brace-format
@@ -10363,7 +10380,7 @@ msgid ""
 "Family relationship translator not available for language '%s'. Using "
 "'english' instead."
 msgstr ""
-"Prijevod obiteljskih srodstva za '%s' jezik nije dostupan. Koriste se "
+"Prijevod obiteljskih srodstva za „%s” jezik nije dostupan. Koriste se "
 "engleski nazivi."
 
 #: ../gramps/gen/utils/alive.py:145 ../gramps/plugins/importer/importcsv.py:201
@@ -11092,11 +11109,11 @@ msgstr "Izradi filtar od odabranog %s ..."
 #: ../gramps/gui/columnorder.py:89
 #, python-format
 msgid "Tree View: first column \"%s\" cannot be changed"
-msgstr "Stablasti pogled: prvi stupac \"%s\" ne može biti promijenjen"
+msgstr "Stablasti pogled: prvi stupac „%s” ne može biti promijenjen"
 
 #: ../gramps/gui/columnorder.py:95
 msgid "Drag and drop the columns to change the order"
-msgstr "'Povuci-i-ispusti' stupce za promjenu redoslijeda"
+msgstr "Povuci-i-ispusti stupce za promjenu redoslijeda"
 
 #: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1615
 #: ../gramps/gui/configure.py:1637 ../gramps/gui/configure.py:1660
@@ -11158,7 +11175,7 @@ msgstr "Prikaži uređivač imena"
 msgid "_Close"
 msgstr "_Zatvori"
 
-#: ../gramps/gui/configure.py:112
+#: ../gramps/gui/configure.py:116
 msgid ""
 "The following keywords are replaced with the appropriate name parts:<tt>\n"
 "  <b>Given</b>   - given name (first name)     <b>Surname</b>  - surnames "
@@ -11212,7 +11229,7 @@ msgstr ""
 "u ispisu. Dodatne zagrade i zarezi se uklanjaju. Ostali tekst se prikazuje "
 "bez promjene.\n"
 "\n"
-"<b>Primjer</b>: Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") - "
+"<b>Primjer</b>: Dr. Edwin Jose von der Smith and Weston Wilson Sr (\"Ed\") – "
 "Underhills\n"
 "     <i>Edwin Jose</i>: cjelokupno ime, <i>von der</i>: prefiks, <i>Smith</"
 "i> and <i>Weston</i>: primarno prezime, <i>and</i>: veznik, <i>Wilson</i>: "
@@ -11583,17 +11600,17 @@ msgstr ""
 "Promjena formata podataka će biti vidljiva tek nakon ponovnog pokretanja "
 "Grampsa."
 
-#: ../gramps/gui/configure.py:1306
+#: ../gramps/gui/configure.py:1315
 msgid "Date about range"
-msgstr "Raspon datuma 'oko'"
+msgstr "Raspon datuma (oko)"
 
-#: ../gramps/gui/configure.py:1309
+#: ../gramps/gui/configure.py:1318
 msgid "Date after range"
-msgstr "Raspon datuma 'nakon'"
+msgstr "Raspon datuma (nakon)"
 
-#: ../gramps/gui/configure.py:1312
+#: ../gramps/gui/configure.py:1321
 msgid "Date before range"
-msgstr "Raspon datuma 'prije'"
+msgstr "Raspon datuma (prije)"
 
 #: ../gramps/gui/configure.py:1315
 msgid "Maximum age probably alive"
@@ -11677,9 +11694,9 @@ msgstr ""
 "GtkSpell nije učitan. Provjera pravopisa neće biti dostupna.\n"
 "Za njegovo korištenje pogledajte %(gramps_wiki_build_spell_url)s"
 
-#: ../gramps/gui/configure.py:1392
+#: ../gramps/gui/configure.py:1401
 msgid "Display Tip of the Day"
-msgstr "Prikaži 'Savjet dana'"
+msgstr "Prikaži „Savjet dana”"
 
 #: ../gramps/gui/configure.py:1397
 msgid "Remember last view displayed"
@@ -11753,14 +11770,14 @@ msgstr "Spremište dodataka nije dostupno. Pokušaj opet kasnije."
 msgid "There are no available addons of this type"
 msgstr "Nema dostupnih dodataka ove vrste"
 
-#: ../gramps/gui/configure.py:1481
+#: ../gramps/gui/configure.py:1490
 #, python-format
 msgid "Checked for '%s'"
-msgstr "Provjereno za '%s'"
+msgstr "Provjereno za „%s”"
 
-#: ../gramps/gui/configure.py:1482
+#: ../gramps/gui/configure.py:1491
 msgid "' and '"
-msgstr "' i '"
+msgstr "” i „"
 
 #. List of translated strings used here
 #. Dead code for l10n
@@ -11983,7 +12000,7 @@ msgstr "Uvoz rodoslova"
 msgid "Import"
 msgstr "Uvoz"
 
-#: ../gramps/gui/dbloader.py:519 ../gramps/gui/dbloader.py:520
+#: ../gramps/gui/dbloader.py:493
 #, python-format
 msgid ""
 "File type \"%s\" is unknown to Gramps.\n"
@@ -11991,7 +12008,7 @@ msgid ""
 "Valid types are: Gramps database, Gramps XML, Gramps package, GEDCOM, and "
 "others."
 msgstr ""
-"Vrsta datoteke \"%s\" je nepoznata Grampsu.\n"
+"Vrsta datoteke „%s” je nepoznata Grampsu.\n"
 "\n"
 "Važeče vrste su: Gramps baza podataka, Gramps XML, Gramps paket, GEDCOM i "
 "druge."
@@ -12116,7 +12133,7 @@ msgstr "Vrsta baze podataka"
 #: ../gramps/gui/dbman.py:509
 #, python-format
 msgid "Break the lock on the '%s' database?"
-msgstr "Otključaj bazu podataka '%s'?"
+msgstr "Otključaj bazu podataka „%s”?"
 
 #: ../gramps/gui/dbman.py:510
 msgid ""
@@ -12168,7 +12185,7 @@ msgstr "Uvoz arhive ..."
 #: ../gramps/gui/dbman.py:696
 #, python-format
 msgid "Remove the '%s' Family Tree?"
-msgstr "Ukloni rodoslov '%s'?"
+msgstr "Ukloni rodoslov „%s”?"
 
 #: ../gramps/gui/dbman.py:697
 msgid "Removing this Family Tree will permanently destroy the data."
@@ -12181,7 +12198,7 @@ msgstr "Ukloni rodoslov"
 #: ../gramps/gui/dbman.py:704
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
-msgstr "Ukloni verziju: '%(revision)s' baze podataka: '%(database)s'"
+msgstr "Ukloni verziju: „%(revision)s” baze podataka: „%(database)s”"
 
 #: ../gramps/gui/dbman.py:708
 msgid ""
@@ -12211,7 +12228,7 @@ msgstr ""
 #: ../gramps/gui/dbman.py:784
 #, python-format
 msgid "Convert the '%s' database?"
-msgstr "Konvertiraj bazu podataka '%s'?"
+msgstr "Konvertiraj bazu podataka „%s”?"
 
 #: ../gramps/gui/dbman.py:785
 #, python-format
@@ -12227,7 +12244,7 @@ msgstr "Pretvori"
 #: ../gramps/gui/dbman.py:797
 #, python-format
 msgid "Opening the '%s' database"
-msgstr "Otvaranje baze podataka '%s'"
+msgstr "Otvaranje baze podataka „%s”"
 
 #: ../gramps/gui/dbman.py:798
 msgid "An attempt to convert the database failed. Perhaps it needs updating."
@@ -12237,7 +12254,7 @@ msgstr ""
 #: ../gramps/gui/dbman.py:809 ../gramps/gui/dbman.py:835
 #, python-format
 msgid "Converting the '%s' database"
-msgstr "Konvertiranje baze podataka '%s'"
+msgstr "Konvertiranje baze podataka „%s”"
 
 #: ../gramps/gui/dbman.py:810
 msgid "An attempt to export the database failed."
@@ -12385,7 +12402,7 @@ msgid ""
 "Instead select one of the available options"
 msgstr ""
 "Nemojte nasilno zatvoriti ovaj važni dijaloški okvir.\n"
-"Umjesto toga, izaberite jednu od dostupnih mogućnosti"
+"Umjesto toga, izaberite jednu od dostupnih opcija"
 
 #: ../gramps/gui/displaystate.py:268
 msgid "Cannot load database"
@@ -12434,7 +12451,7 @@ msgstr "Nema aktivnog objekta"
 
 #: ../gramps/gui/editors/addmedia.py:70
 msgid "manual|Select_a_media_selector"
-msgstr "Izbornik_za_odabir_medija"
+msgstr "Odaberi_medij"
 
 #: ../gramps/gui/editors/addmedia.py:104
 msgid "Select a media object"
@@ -13121,7 +13138,7 @@ msgstr "Pomakni odabrano prezime prema dolje"
 #: ../gramps/gui/editors/displaytabs/surnametab.py:78
 #: ../gramps/plugins/lib/libgedcom.py:720
 msgid "Origin"
-msgstr "Podrijetlo"
+msgstr "Porijeklo"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:82
 msgid "Multiple Surnames"
@@ -13233,7 +13250,7 @@ msgstr ""
 "Izvor je sve (osobne izjave, video snimke, fotografije, članci iz novina, "
 "nadgrobni spomenik ...) iz čega se mogu izvesti informacije. Za stvaranje "
 "citata, najprije odaberite potreban izvor, a zatim upišite mjesto "
-"referencirane informacije unutar izvora u polju 'Svezak/Stranica'."
+"referencirane informacije unutar izvora u polju „Svezak/Stranica”."
 
 #: ../gramps/gui/editors/editcitation.py:300
 msgid "Cannot save citation. ID already exists."
@@ -13242,7 +13259,7 @@ msgstr "Nije moguće spremiti citat. ID oznaka već postoji."
 #: ../gramps/gui/editors/editcitation.py:301
 #: ../gramps/gui/editors/editevent.py:249
 #: ../gramps/gui/editors/editmedia.py:298
-#: ../gramps/gui/editors/editperson.py:846
+#: ../gramps/gui/editors/editperson.py:847
 #: ../gramps/gui/editors/editplace.py:318
 #: ../gramps/gui/editors/editreference.py:288
 #: ../gramps/gui/editors/editrepository.py:189
@@ -13254,7 +13271,7 @@ msgid ""
 "leave blank to get the next available ID value."
 msgstr ""
 "Pokušali ste upotrijebiti postojeću Gramps ID oznaku: %(id)s. Ovu oznaku već "
-"koristi '%(prim_object)s'. Unesite drugu ID oznaku ili ostavite prazno za "
+"koristi „%(prim_object)s”. Unesite drugu ID oznaku ili ostavite prazno za "
 "dobivanje slijedeće dostupne ID oznake."
 
 #: ../gramps/gui/editors/editcitation.py:311
@@ -13319,7 +13336,7 @@ msgstr "Odabir datuma"
 #: ../gramps/gui/editors/editdate.py:269
 #, python-brace-format
 msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
-msgstr "Ispravi datum ili zamijeni '{cur_mode}' s '{text_mode}'"
+msgstr "Ispravi datum ili zamijeni „{cur_mode}” s „{text_mode}”"
 
 #: ../gramps/gui/editors/editevent.py:64
 msgid "manual|New_Event_dialog"
@@ -13534,7 +13551,7 @@ msgstr ""
 msgid "Family has changed"
 msgstr "Obitelj je promijenjena"
 
-#: ../gramps/gui/editors/editfamily.py:462
+#: ../gramps/gui/editors/editfamily.py:461
 #, python-format
 msgid ""
 "The %(object)s you are editing has changed outside this editor. This can be "
@@ -13545,7 +13562,7 @@ msgid ""
 msgstr ""
 "Objekt %(object)s koji uređujete je promijenjen izvan ovog uređivača. To "
 "može biti zbog promjene u jednom od glavnih pogleda, npr. ako je ovdje "
-"korišteni izvor, izbrisan u pogledu \"Izvori\".\n"
+"korišteni izvor, izbrisan u pogledu „Izvori”.\n"
 "Prikazani podaci su obnovljeni, kako bi se osigurala njihova točnost. Neke "
 "su vaše promjene možda izgubljene."
 
@@ -13753,7 +13770,7 @@ msgid ""
 "You have attempted to use the path with value '%(path)s'. This path does not "
 "exist! Please enter a different path"
 msgstr ""
-"Pokušali ste upotrijebiti stazu: '%(path)s'. Ova staza ne postoji! Unesite "
+"Pokušali ste upotrijebiti stazu: „%(path)s”. Ova staza ne postoji! Unesite "
 "drugu stazu"
 
 #: ../gramps/gui/editors/editmedia.py:324
@@ -14339,7 +14356,7 @@ msgstr "Definiraj_filtar"
 
 #: ../gramps/gui/editors/filtereditor.py:85
 msgid "manual|Custom_Filters"
-msgstr "Prilagođeni_filtar"
+msgstr "Prilagođeni_filtri"
 
 #: ../gramps/gui/editors/filtereditor.py:89
 msgid "Person Filters"
@@ -14467,12 +14484,12 @@ msgid ""
 "a line."
 msgstr ""
 "Tumači sadržaj niza znakova u polju kao regularne izraza.\n"
-"Decimalna točka \".\" označuje bilo koji znak. Upitnik \"?\" označuje niti "
-"jedno ili jedno pojavljivanje prijašnjeg znaka ili grupe znakova. Asteriks "
-"\"*\" označuje niti jedno ili više pojavljivanja. Plus \"+\" označuje jedno "
-"ili više pojavljivanja. Koristi zagrade \"()\" za grupiranje izraza. Zadaj "
-"alternative koristeći uspravnu crtu \"|\". Znak za umetanje \"^\" označuje "
-"početak retka. Dolar \"$\" označuje kraj retka."
+"Decimalna točka „.” označuje bilo koji znak. Upitnik „?” označuje niti jedno "
+"ili jedno pojavljivanje prijašnjeg znaka ili grupe znakova. Asteriks „*” "
+"označuje niti jedno ili više pojavljivanja. Plus „+” označuje jedno ili više "
+"pojavljivanja. Koristi zagrade „()” za grupiranje izraza. Zadaj alternative "
+"koristeći uspravnu crtu „|”. Znak za umetanje „^” označuje početak retka. "
+"Dolar „$” označuje kraj retka."
 
 #: ../gramps/gui/editors/filtereditor.py:627
 msgid "Rule Name"
@@ -14525,7 +14542,7 @@ msgstr "Izbriši filtar"
 
 #: ../gramps/gui/editors/objectentries.py:294
 msgid "To select a place, use drag-and-drop or use the buttons"
-msgstr "Za odabir mjesta koristi metodu 'povuci i ispusti' ili gumbe"
+msgstr "Za odabir mjesta koristi metodu povuci-i-ispusti ili gumbe"
 
 #: ../gramps/gui/editors/objectentries.py:296
 msgid "No place given, click button to select one"
@@ -14550,7 +14567,7 @@ msgstr "Ukloni mjesto"
 
 #: ../gramps/gui/editors/objectentries.py:341
 msgid "To select a source, use drag-and-drop or use the buttons"
-msgstr "Za odabir zabilješke koristi metodu 'povuci i ispusti' ili gumbe"
+msgstr "Za odabir zabilješke koristi metodu povuci-i-ispusti ili gumbe"
 
 #: ../gramps/gui/editors/objectentries.py:343
 msgid "First add a source using the button"
@@ -14577,8 +14594,7 @@ msgstr "Ukloni izvor"
 
 #: ../gramps/gui/editors/objectentries.py:387
 msgid "To select a media object, use drag-and-drop or use the buttons"
-msgstr ""
-"Za odabir medijskog objekta koristi metodu 'povuci i ispusti' ili gumbe"
+msgstr "Za odabir medijskog objekta koristi metodu povuci-i-ispusti ili gumbe"
 
 #: ../gramps/gui/editors/objectentries.py:389
 #: ../gramps/gui/plug/_guioptions.py:1114
@@ -14607,7 +14623,7 @@ msgstr "Ukloni medijski objekt"
 
 #: ../gramps/gui/editors/objectentries.py:433
 msgid "To select a note, use drag-and-drop or use the buttons"
-msgstr "Za odabir zabilješke koristi metodu 'povuci i ispusti' ili gumbe"
+msgstr "Za odabir zabilješke koristi metodu povuci-i-ispusti ili gumbe"
 
 #: ../gramps/gui/editors/objectentries.py:435
 #: ../gramps/gui/plug/_guioptions.py:1012
@@ -14706,12 +14722,12 @@ msgid "Participants"
 msgstr "Sudionici"
 
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:125
-#: ../gramps/gui/widgets/reorderfam.py:91
+#: ../gramps/gui/widgets/reorderfam.py:103
 #: ../gramps/plugins/textreport/tagreport.py:264
 #: ../gramps/plugins/view/familyview.py:82
 #: ../gramps/plugins/webreport/person.py:1168
 msgid "Relationship"
-msgstr "Srodstvo"
+msgstr "Veza"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
 msgid "any"
@@ -14727,7 +14743,7 @@ msgstr "Datum rođenja"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:137
 #, python-format
 msgid "example: \"%(msg1)s\" or \"%(msg2)s\""
-msgstr "primjer: \"%(msg1)s\" ili \"%(msg2)s\""
+msgstr "primjer: „%(msg1)s” ili „%(msg2)s”"
 
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:136
 #: ../gramps/plugins/export/exportcsv.py:359
@@ -14879,9 +14895,9 @@ msgstr "_Zatvori prozor"
 msgid "_Load Family Tree"
 msgstr "_Učitaj rodoslov"
 
-#: ../gramps/gui/glade/dbman.glade:234 ../gramps/gui/glade/editlink.glade:208
+#: ../gramps/gui/glade/dbman.glade:235 ../gramps/gui/glade/editlink.glade:208
 msgid "_New"
-msgstr "_Novo"
+msgstr "_Novi"
 
 #: ../gramps/gui/glade/dbman.glade:250
 msgid "_Info"
@@ -15315,7 +15331,7 @@ msgstr "No_va godina započinje:  "
 
 #: ../gramps/gui/glade/editdate.glade:231
 msgid "Month-Day of first day of new year (e.g., \"1-1\", \"3-1\", \"3-25\")"
-msgstr "Mjesec-dan prvog dana nove godine (npr. \"1-1\", \"3-1\", \"3-25\")"
+msgstr "Mjesec-Dan prvog dana nove godine (npr. „1-1”, „3-1”, „3-25”)"
 
 #: ../gramps/gui/glade/editdate.glade:261
 msgid "Q_uality"
@@ -15381,7 +15397,7 @@ msgid ""
 "the tool 'Extract Event Description'."
 msgstr ""
 "Opis događaja. Ostavite polje prazno, ako ga želite automatski generirati s "
-"alatom 'Izvuci opis događaja'."
+"alatom „Izvuci opis događaja”."
 
 #: ../gramps/gui/glade/editevent.glade:194
 #: ../gramps/gui/glade/editeventref.glade:270
@@ -15400,7 +15416,7 @@ msgstr "Izbornik"
 
 #: ../gramps/gui/glade/editevent.glade:292
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
-msgstr "Vrsta događaja, npr. 'Pokop', 'Matura', ... ."
+msgstr "Vrsta događaja, npr. „Pokop”, „Matura”, ... ."
 
 #: ../gramps/gui/glade/editevent.glade:326
 msgid ""
@@ -15479,7 +15495,7 @@ msgstr "Ukazuje na to, da li je zapis označen kao privatni"
 
 #: ../gramps/gui/glade/editfamily.glade:653
 msgid "Relationship Information"
-msgstr "Informacije o vrsti veze"
+msgstr "Informacije o srodstvu"
 
 #: ../gramps/gui/glade/editfamily.glade:683
 msgid "A unique ID for the family"
@@ -15500,7 +15516,7 @@ msgid ""
 "The relationship type, eg 'Married' or 'Unmarried'. Use Events for more "
 "details."
 msgstr ""
-"Vrsta veze, npr. 'Brak' ili 'Nevjenčani'. Za detalje, koristi događaje."
+"Vrsta veze, npr. „Brak” ili „Nevjenčani”. Za detalje, koristi događaje."
 
 #: ../gramps/gui/glade/editfamily.glade:733
 #: ../gramps/gui/glade/editmedia.glade:360
@@ -15616,9 +15632,9 @@ msgid ""
 "managing paths of a collection of media objects. "
 msgstr ""
 "Staza medijskih objekata na vašem računalu.\n"
-"Gramps ne čuva medije interno, već samo njihove staze! Postavite 'Relativne "
-"staze' u postavkama, kako biste izbjegnuli pretipkavanje osnovnog "
-"direktorija, gdje su vaši mediji spremljeni. Alat \"Upravljač medija\" može "
+"Gramps ne čuva medije interno, već samo njihove staze! Postavite „Relativne "
+"staze” u postavkama, kako biste izbjegnuli pretipkavanje osnovnog "
+"direktorija, gdje su vaši mediji spremljeni. Alat „Upravljač medija” može "
 "pomoći pri upravljanju staza za skup medijskih objekata. "
 
 #: ../gramps/gui/glade/editmedia.glade:219
@@ -15767,12 +15783,12 @@ msgstr ""
 #: ../gramps/gui/glade/editname.glade:291
 #: ../gramps/gui/glade/editperson.glade:211
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
-msgstr "Titula korištena za oslovljavanje osobe kao 'Dr.' ili 'Don'"
+msgstr "Titula korištena za oslovljavanje osobe kao „Dr.” ili „Don”"
 
 #: ../gramps/gui/glade/editname.glade:304
 #: ../gramps/gui/glade/editperson.glade:225
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
-msgstr "Opcionalni sufiks imenu, npr. \"Ml.\" ili \"III\""
+msgstr "Opcionalni sufiks imenu, npr. „Ml.” (mlađi) ili „III.” (teći)"
 
 #: ../gramps/gui/glade/editname.glade:317
 #: ../gramps/gui/glade/editperson.glade:259
@@ -15917,8 +15933,8 @@ msgstr ""
 "Koristi višestruka prezimena\n"
 "Označuje, da je prezime sastavljeno od više dijelova. Svako prezime ima svoj "
 "vlastiti prefiks i mogući veznik sa slijedećim prezimenom. Npr., prezime "
-"\"Ramón y Cajal\" može biti upisano kao \"Ramón\", koje je naslijeđeno od "
-"oca, veznika \"y\", te \"Cajal\", koje je naslijeđeno od majke."
+"„Ramón y Cajal” može biti upisano kao „Ramón”, koje je naslijeđeno od oca, "
+"veznika „y”, te „Cajal”, koje je naslijeđeno od majke."
 
 #: ../gramps/gui/glade/editperson.glade:399
 msgid "Set person as private data"
@@ -15934,7 +15950,7 @@ msgid ""
 "\" or \"van\"."
 msgstr ""
 "Opcionalni prefiks prezimena, koji se ne koristi za svrstavanje, kao npr. "
-"\"de\" ili \"van\"."
+"„de” ili „van”."
 
 #: ../gramps/gui/glade/editperson.glade:485
 msgid ""
@@ -15947,13 +15963,13 @@ msgstr "Idi u uređivač imena, za dodavanje dodatnih informacija o imenu"
 
 #: ../gramps/gui/glade/editperson.glade:536
 msgid "O_rigin:"
-msgstr "P_odrijetlo:"
+msgstr "P_orijeklo:"
 
 #: ../gramps/gui/glade/editperson.glade:551
 msgid ""
 "The origin of this family name for this family, eg 'Inherited' or "
 "'Patronymic'."
-msgstr "Porijeklo prezimena ove obitelji, npr. 'Patronim', itd."
+msgstr "Porijeklo prezimena ove obitelji, npr. „Patronim”, itd."
 
 #: ../gramps/gui/glade/editperson.glade:585
 msgid "G_ender:"
@@ -16090,12 +16106,10 @@ msgstr ""
 "Oznaka ili broj povezan s ovim mjestom. Npr. oznaka države ili poštanski "
 "broj."
 
-#: ../gramps/gui/glade/editplace.glade:377
-#: ../gramps/gui/glade/editplaceref.glade:396
 #: ../gramps/gui/glade/editplace.glade:378
 #: ../gramps/gui/glade/editplaceref.glade:397
 msgid "What type of place this is. Eg 'Country', 'City', ... ."
-msgstr "Vrsta mjesta, npr. 'Država', 'Grad', ..."
+msgstr "Vrsta mjesta, npr. „Država”, „Grad”, ..."
 
 #: ../gramps/gui/glade/editplace.glade:440
 #: ../gramps/gui/glade/editplaceref.glade:598
@@ -16815,9 +16829,9 @@ msgstr "_Ukošeno"
 msgid "_Underline"
 msgstr "Podcr_tano"
 
-#: ../gramps/gui/glade/styleeditor.glade:526
+#: ../gramps/gui/glade/styleeditor.glade:542
 msgid "Font options"
-msgstr "Opcije pisma"
+msgstr "Opcije za pismo"
 
 #: ../gramps/gui/glade/styleeditor.glade:551
 msgid "Alignment"
@@ -16898,9 +16912,9 @@ msgstr "_Gore"
 msgid "_Bottom"
 msgstr "D_olje"
 
-#: ../gramps/gui/glade/styleeditor.glade:1124
+#: ../gramps/gui/glade/styleeditor.glade:1140
 msgid "Paragraph options"
-msgstr "Opcije odlomka"
+msgstr "Opcije za odlomak"
 
 #: ../gramps/gui/glade/styleeditor.glade:1146
 msgid "Width"
@@ -16914,9 +16928,9 @@ msgstr "Širina stupca"
 msgid "%"
 msgstr "%"
 
-#: ../gramps/gui/glade/styleeditor.glade:1231
+#: ../gramps/gui/glade/styleeditor.glade:1247
 msgid "Table options"
-msgstr "Opcije tablice"
+msgstr "Opcije za tablicu"
 
 #: ../gramps/gui/glade/styleeditor.glade:1287
 msgid "Padding:"
@@ -16930,9 +16944,9 @@ msgstr "Lijevo"
 msgid "Right"
 msgstr "Desno"
 
-#: ../gramps/gui/glade/styleeditor.glade:1387
+#: ../gramps/gui/glade/styleeditor.glade:1403
 msgid "Cell options"
-msgstr "Opcije ćelija"
+msgstr "Opcije za ćelije"
 
 #: ../gramps/gui/glade/styleeditor.glade:1412
 msgid "Line"
@@ -16970,9 +16984,9 @@ msgstr "Razmak:"
 msgid "Draw shadow"
 msgstr "Ucrtaj sjenu"
 
-#: ../gramps/gui/glade/styleeditor.glade:1669
+#: ../gramps/gui/glade/styleeditor.glade:1685
 msgid "Draw options"
-msgstr "Opcije prikaza"
+msgstr "Opcije za crtanje"
 
 #: ../gramps/gui/glade/styleeditor.glade:1823
 msgid "Add a new style"
@@ -16997,7 +17011,7 @@ msgstr "_Naprijed"
 
 #: ../gramps/gui/glade/updateaddons.glade:41
 msgid "Install Selected _Addons"
-msgstr "Instalacija odabranih _dodataka"
+msgstr "Instaliraj odabrane _dodatke"
 
 #: ../gramps/gui/glade/updateaddons.glade:72
 #: ../gramps/gui/plug/_windows.py:1078
@@ -17019,8 +17033,8 @@ msgstr ""
 "dodatci omogućuju izvještaje, popise, poglede, gramplete i više. Ovdje "
 "možete odabrati između dostupnih dodataka, preuzetih s Grampsove internetske "
 "web stranice, te ih instalirati na vaše računalo. Ako sada zatvorite ovaj "
-"prozor, dodatke možete instalirati i kasnije, preko preglednika \"Uredi > "
-"Postavke\"."
+"prozor, dodatke možete instalirati i kasnije, preko izbornika „Uredi > "
+"Postavke”."
 
 #: ../gramps/gui/glade/updateaddons.glade:105
 msgid "_Select All"
@@ -17036,7 +17050,7 @@ msgid ""
 "version which has the function 'require_version' to start Gramps"
 msgstr ""
 "Vaša inačica gi (gnome-introspection) je zastarjela. Za pokretanje Grampsa, "
-"trebate inačicu s funkcijom 'require_version'."
+"trebate inačicu s funkcijom „require_version”."
 
 #: ../gramps/gui/grampsgui.py:74
 #, python-format
@@ -17102,7 +17116,7 @@ msgstr "Upozorenje: Ovo je nestabilan kod!"
 #: ../gramps/gui/grampsgui.py:146
 #, python-format
 msgid "This Gramps ('%s') is a development release.\n"
-msgstr "Ovaj Gramps ('%s') je razvojna inačica.\n"
+msgstr "Ovaj Gramps („%s”) je razvojna inačica.\n"
 
 #: ../gramps/gui/grampsgui.py:148
 #, python-format
@@ -17153,7 +17167,7 @@ msgstr ""
 "Kao rezultat toga, GUI (grafičko korisničko sučelje) će vrlo vjerojatno biti "
 "pokvareno, posebice za RTL-jezike (jezici, koji koriste smjer pisanja s "
 "desna na lijevo).\n"
-"Vidi Grampsovu \"README\" datoteku s dokumentacijom o preduvjetima za "
+"Vidi Grampsovu „README” datoteku s dokumentacijom o preduvjetima za "
 "instalaciju, koja se u pravilu nalazi u /usr/share/doc/gramps.\n"
 "\n"
 
@@ -17321,7 +17335,7 @@ msgid ""
 msgstr ""
 "Koristite ovaj gumb za kopiranje izvještaja o grešci u međuspremnik. Zatim, "
 "pomoću donjeg gumba otiđite na web stranicu za praćenje grešaka, prenesite "
-"taj izvještaj i pritisnite gumb za prijavu izvještaja (\"submit report\")"
+"taj izvještaj i pritisnite gumb za prijavu izvještaja (submit report)"
 
 #: ../gramps/gui/logger/_errorreportassistant.py:642
 #: ../gramps/gui/logger/_errorreportassistant.py:669
@@ -17366,7 +17380,7 @@ msgid ""
 "bug report."
 msgstr ""
 "Vaši će podaci biti sigurni, ali se proporuča ponovno pokretanje Grampsa. "
-"Ako želite prijaviti problem Grampsovom timu, odaberite \"Prijavi grešku\" i "
+"Ako želite prijaviti problem Grampsovom timu, odaberite „Prijavi grešku” i "
 "pomoćnik za prijavu greške će vam pomoći s prijavom."
 
 #: ../gramps/gui/logger/_errorview.py:152
@@ -17505,8 +17519,8 @@ msgid ""
 msgstr ""
 "Osobe su spojene.\n"
 "Međutim, obitelji nastale ovim spajanjem su pre složene, da bi bile "
-"automaski obrađene. Preporučamo, otići u pogled \"Srodstva\" i provjeriti, "
-"da li su potrebna dodatna ručna spajanja obitelji."
+"automaski obrađene. Preporučamo, otići u pogled „Srodstva” i provjeriti, da "
+"li su potrebna dodatna ručna spajanja obitelji."
 
 #: ../gramps/gui/merge/mergeplace.py:53
 msgid "manual|Merge_Places"
@@ -17799,7 +17813,7 @@ msgstr[2] "{number_of} dodataka je instalirano."
 
 #: ../gramps/gui/plug/_windows.py:1222
 msgid "If you have installed a 'Gramps View', you will need to restart Gramps."
-msgstr "Ako ste instalirali 'Gramps pogled', morate ponovno pokrenuti Gramps."
+msgstr "Ako ste instalirali „Gramps pogled”, morate ponovno pokrenuti Gramps."
 
 #: ../gramps/gui/plug/_windows.py:1226
 msgid "No addons were installed."
@@ -17820,7 +17834,7 @@ msgstr "Odaberi izlazni format"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:241
 msgid "Export options"
-msgstr "Postavke izvoza"
+msgstr "Opcije za izvoz"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:313
 msgid "Select save file"
@@ -17848,8 +17862,8 @@ msgstr ""
 "\n"
 "Format:\t%s\n"
 "\n"
-"Pritisni gumb 'U redu' za nastavak, 'Natrag' za povratak na postavke ili "
-"'Odustani' za prekid"
+"Pritisni gumb „U redu” za nastavak, „Natrag” za ispravljanje opcija ili "
+"„Odustani” za prekid"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:465
 #, python-format
@@ -17868,8 +17882,8 @@ msgstr ""
 "Ime:\t%(name)s\n"
 "Mapa:\t%(folder)s\n"
 "\n"
-"Pritisni gumb 'U redu' za nastavak, 'Natrag' za povratak na postavke ili "
-"'Odustani' za prekid"
+"Pritisni gumb „U redu” za nastavak, „Natrag” za ispravljanje opcija ili "
+"„Odustani” za prekid"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:475
 msgid ""
@@ -17880,7 +17894,7 @@ msgstr ""
 "Odabrana datoteka, te mapa za njeno spremanje, ne mogu biti izrađene ili "
 "pronađene.\n"
 "\n"
-"Pritisnite gumb \"Natrag\" i odaberite ispravno ime datoteke."
+"Pritisnite gumb „Natrag” i odaberite ispravno ime datoteke."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:502
 msgid "Your data has been saved"
@@ -17896,7 +17910,7 @@ msgid ""
 "not alter the copy you have just made. "
 msgstr ""
 "Kopija vaših podataka je uspješno spremljena. Možete pritisnuti gumb "
-"\"Zatvori\" za nastavak rada.\n"
+"„Zatvori” za nastavak rada.\n"
 "\n"
 "Napomena: baza podataka koja je trenutačno otvorena u vašem Grampsu, NIJE "
 "datoteka koju ste upravo spremili. Svako daljnje mijenjanje podataka u njoj "
@@ -17948,7 +17962,7 @@ msgstr ""
 "prijenos u druge programe.\n"
 "\n"
 "Ako se predomislite, postupak spremanja možete u svakom trenutku prekinuti "
-"pritiskom gumba 'Odustani', a vaša sadašnja baza podataka će ostati "
+"pritiskom gumba „Odustani”, a vaša sadašnja baza podataka će ostati "
 "netaknuta."
 
 #: ../gramps/gui/plug/export/_exportassistant.py:602
@@ -18155,6 +18169,10 @@ msgstr "Kopiraj sve"
 msgid "See data not in Filter"
 msgstr "Pogledaj podatke koji nisu u filtru"
 
+#: ../gramps/gui/plug/report/_bookdialog.py:92
+msgid "Generate_Book_dialog"
+msgstr "Izradi_knjigu_dijalog"
+
 #: ../gramps/gui/plug/report/_bookdialog.py:166
 msgid "Available Books"
 msgstr "Dostupne knjige"
@@ -18292,11 +18310,11 @@ msgstr "Gramps knjiga"
 #: ../gramps/gui/plug/report/_docreportdialog.py:143
 #: ../gramps/gui/plug/report/_graphreportdialog.py:185
 msgid "Paper Options"
-msgstr "Postavke stranice"
+msgstr "Opcije za stranicu"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:149
 msgid "HTML Options"
-msgstr "HTML postavke"
+msgstr "Opcije za HTML"
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:186
 #: ../gramps/gui/plug/report/_graphreportdialog.py:154
@@ -18354,41 +18372,40 @@ msgstr "Stil"
 #. ###############################
 #: ../gramps/gui/plug/report/_reportdialog.py:366
 #: ../gramps/plugins/drawreport/ancestortree.py:835
-#: ../gramps/plugins/drawreport/calendarreport.py:466
-#: ../gramps/plugins/drawreport/descendtree.py:1568
-#: ../gramps/plugins/drawreport/fanchart.py:685
-#: ../gramps/plugins/drawreport/statisticschart.py:986
-#: ../gramps/plugins/drawreport/timeline.py:413
+#: ../gramps/plugins/drawreport/calendarreport.py:462
+#: ../gramps/plugins/drawreport/descendtree.py:1574
+#: ../gramps/plugins/drawreport/fanchart.py:687
+#: ../gramps/plugins/drawreport/statisticschart.py:997
+#: ../gramps/plugins/drawreport/timeline.py:414
 #: ../gramps/plugins/graph/gvfamilylines.py:115
 #: ../gramps/plugins/graph/gvhourglass.py:315
-#: ../gramps/plugins/graph/gvrelgraph.py:763
+#: ../gramps/plugins/graph/gvrelgraph.py:764
 #: ../gramps/plugins/textreport/alphabeticalindex.py:93
 #: ../gramps/plugins/textreport/ancestorreport.py:288
-#: ../gramps/plugins/textreport/birthdayreport.py:409
+#: ../gramps/plugins/textreport/birthdayreport.py:412
 #: ../gramps/plugins/textreport/descendreport.py:520
-#: ../gramps/plugins/textreport/detancestralreport.py:820
-#: ../gramps/plugins/textreport/detdescendantreport.py:997
+#: ../gramps/plugins/textreport/detancestralreport.py:821
+#: ../gramps/plugins/textreport/detdescendantreport.py:998
 #: ../gramps/plugins/textreport/endoflinereport.py:270
 #: ../gramps/plugins/textreport/familygroup.py:710
-#: ../gramps/plugins/textreport/indivcomplete.py:1058
+#: ../gramps/plugins/textreport/indivcomplete.py:1059
 #: ../gramps/plugins/textreport/kinshipreport.py:356
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:202
-#: ../gramps/plugins/textreport/placereport.py:438
+#: ../gramps/plugins/textreport/placereport.py:439
 #: ../gramps/plugins/textreport/recordsreport.py:215
 #: ../gramps/plugins/textreport/simplebooktitle.py:134
 #: ../gramps/plugins/textreport/summary.py:286
 #: ../gramps/plugins/textreport/tableofcontents.py:92
 #: ../gramps/plugins/textreport/tagreport.py:901
 #: ../gramps/plugins/webreport/narrativeweb.py:1576
-#: ../gramps/plugins/webreport/webcal.py:1611
-#: ../gramps/plugins/drawreport/statisticschart.py:997
+#: ../gramps/plugins/webreport/webcal.py:1618
 msgid "Report Options"
-msgstr "Opcije izvještaja"
+msgstr "Opcije za izvještaj"
 
 #. need any labels at top:
 #: ../gramps/gui/plug/report/_reportdialog.py:457
 msgid "Document Options"
-msgstr "Opcije datoteke"
+msgstr "Opcije za dokument"
 
 #: ../gramps/gui/plug/report/_reportdialog.py:503
 #: ../gramps/gui/plug/report/_reportdialog.py:530
@@ -18481,6 +18498,10 @@ msgstr "zadano"
 msgid "Document Styles"
 msgstr "Stilovi dokumenta"
 
+#: ../gramps/gui/plug/report/_styleeditor.py:108
+msgid "manual|Document_Styles_dialog"
+msgstr "Stilovi_dokumenta"
+
 #: ../gramps/gui/plug/report/_styleeditor.py:140
 msgid "New Style"
 msgstr "Novi stil"
@@ -18507,6 +18528,10 @@ msgstr "Odaberi stil"
 msgid "Style editor"
 msgstr "Uređivač stila"
 
+#: ../gramps/gui/plug/report/_styleeditor.py:241
+msgid "manual|Style_editor_dialog"
+msgstr "Uređivač_stilova"
+
 #: ../gramps/gui/plug/report/_styleeditor.py:341
 #: ../gramps/gui/plug/report/_styleeditor.py:369
 #: ../gramps/gui/plug/report/_styleeditor.py:387
@@ -18514,10 +18539,10 @@ msgstr "Uređivač stila"
 msgid "No description available"
 msgstr "Nema dostupnog opisa"
 
-#: ../gramps/gui/plug/report/_styleeditor.py:344
+#: ../gramps/gui/plug/report/_styleeditor.py:354
 #, python-format
 msgid "(Embedded style '%s' must be edited separately)"
-msgstr "(Ugrađeni stil '%s' treba zasebno urediti)"
+msgstr "(Ugrađeni stil „%s” treba zasebno urediti)"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:397
 #, python-format
@@ -18573,9 +18598,9 @@ msgstr "Nastavi s _alatom"
 msgid "You must select an active person for this tool to work properly."
 msgstr "Za ispravan rad ovog alata, morate postaviti aktivnu osobu."
 
-#: ../gramps/gui/selectors/selectcitation.py:51
+#: ../gramps/gui/selectors/selectcitation.py:86
 msgid "manual|Select_Source_or_Citation_selector"
-msgstr "Izbornik_za_odabir_izvora_ili_citata"
+msgstr "Odaberi_izvor_ili_citat"
 
 #: ../gramps/gui/selectors/selectcitation.py:67
 msgid "Select Source or Citation"
@@ -18598,49 +18623,53 @@ msgstr "Izvor: naziv ili citat: svezak/stranica"
 msgid "Last Change"
 msgstr "Zadnja promjena"
 
-#: ../gramps/gui/selectors/selectevent.py:46
+#: ../gramps/gui/selectors/selectevent.py:79
 msgid "manual|Select_Event_selector"
-msgstr "Izbornik_za_odabir_događaja"
+msgstr "Odaberi_događaj"
 
 #: ../gramps/gui/selectors/selectevent.py:62
 msgid "Select Event"
 msgstr "Odaberi događaj"
 
-#: ../gramps/gui/selectors/selectfamily.py:46
+#: ../gramps/gui/selectors/selectfamily.py:76
 msgid "manual|Select_Family_selector"
-msgstr "Izbornik_za_odabir_obitelji"
+msgstr "Odaberi_obitelj"
 
-#: ../gramps/gui/selectors/selectnote.py:49
+#: ../gramps/gui/selectors/selectnote.py:82
 msgid "manual|Select_Note_selector"
-msgstr "Izbornik_za_odabir_zabilješke"
+msgstr "Odaberi_zabilješku"
 
 #: ../gramps/gui/selectors/selectnote.py:67
 msgid "Select Note"
 msgstr "Odaberi zabilješku"
 
-#: ../gramps/gui/selectors/selectobject.py:60
+#: ../gramps/gui/selectors/selectobject.py:108
 msgid "manual|Select_Media_Object_selector"
-msgstr "Izbornik_za_odabir_medijskog_objekta"
+msgstr "Odaberi_medijski_objekt"
 
 #: ../gramps/gui/selectors/selectobject.py:70
 msgid "Select Media Object"
 msgstr "Odaberi medijski objekt"
 
-#: ../gramps/gui/selectors/selectperson.py:54
+#: ../gramps/gui/selectors/selectperson.py:68
 msgid "manual|Select_Child_selector"
-msgstr "Izbornik_za_odabir_djeteta"
+msgstr "Odaberi_dijete"
 
-#: ../gramps/gui/selectors/selectperson.py:56
+#: ../gramps/gui/selectors/selectperson.py:70
+msgid "manual|Select_Person_selector"
+msgstr "Odaberi_osobu"
+
+#: ../gramps/gui/selectors/selectperson.py:64
 msgid "manual|Select_Father_selector"
-msgstr "Izbornik_za_odabir_oca"
+msgstr "Odaberi_oca"
 
-#: ../gramps/gui/selectors/selectperson.py:58
+#: ../gramps/gui/selectors/selectperson.py:66
 msgid "manual|Select_Mother_selector"
-msgstr "Izbornik_za_odabir_majke"
+msgstr "Odaberi_majku"
 
-#: ../gramps/gui/selectors/selectplace.py:47
+#: ../gramps/gui/selectors/selectplace.py:90
 msgid "manual|Select_Place_selector"
-msgstr "Izbornik_za_odabir_mjesta"
+msgstr "Odaberi_mjesto"
 
 #: ../gramps/gui/selectors/selectplace.py:63
 msgid "Select Place"
@@ -18654,9 +18683,17 @@ msgstr "Spremišta"
 msgid "Select Repository"
 msgstr "Odaberi spremište"
 
+#: ../gramps/gui/selectors/selectrepository.py:75
+msgid "manual|Select_Repository_selector"
+msgstr "Odaberi_spremište"
+
 #: ../gramps/gui/selectors/selectsource.py:62
 msgid "Select Source"
 msgstr "Odaberi izvor"
+
+#: ../gramps/gui/selectors/selectsource.py:76
+msgid "manual|Select_Source_selector"
+msgstr "Odaberi_izvor"
 
 #: ../gramps/gui/spell.py:92
 msgid "Off"
@@ -18785,7 +18822,7 @@ msgstr ""
 "neodređenost zbog dva otvorena uređivača, jedno te istog izvora.\n"
 "\n"
 "Za uređivanje izvora, zatvorite uređivač izvora i otvorite samo uređivač "
-"citata."
+"citata"
 
 #: ../gramps/gui/utils.py:626
 msgid "Cannot open new citation editor"
@@ -19021,7 +19058,7 @@ msgstr "Greška prilikom spremanja zaštitne kopije"
 msgid "Failed Loading View"
 msgstr "Neuspjelo učitavanje pogleda"
 
-#: ../gramps/gui/viewmanager.py:1689
+#: ../gramps/gui/viewmanager.py:1698
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -19044,13 +19081,13 @@ msgstr ""
 "(%(firstauthoremail)s).\n"
 "\n"
 "Ako ne želite da Gramps ponovi pokušaj učitavanja pogleda, možete ga sakriti "
-"s uređivačem dodataka u izborniku pod \"Pomoć\"."
+"s uređivačem dodataka u izborniku pod „Pomoć”."
 
 #: ../gramps/gui/viewmanager.py:1783 ../gramps/gui/viewmanager.py:1781
 msgid "Failed Loading Plugin"
 msgstr "Neuspjelo učitavanje dodatka"
 
-#: ../gramps/gui/viewmanager.py:1782
+#: ../gramps/gui/viewmanager.py:1791
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -19073,7 +19110,7 @@ msgstr ""
 "(%(firstauthoremail)s).\n"
 "\n"
 "Ako ne želite da Gramps ponovi pokušaj učitavanja dodatka, možete ga sakriti "
-"s uređivačem dodataka u izborniku pod \"Pomoć\"."
+"s uređivačem dodataka u izborniku pod „Pomoć”."
 
 #: ../gramps/gui/viewmanager.py:1864 ../gramps/gui/viewmanager.py:1862
 msgid "Gramps XML Backup"
@@ -19102,10 +19139,10 @@ msgstr "Isključi"
 msgid "Backup file already exists! Overwrite?"
 msgstr "Zaštitna kopija već postoji! Želite li je prepisati?"
 
-#: ../gramps/gui/viewmanager.py:1955 ../gramps/gui/viewmanager.py:1953
+#: ../gramps/gui/viewmanager.py:1962
 #, python-format
 msgid "The file '%s' exists."
-msgstr "Datoteka '%s' postoji."
+msgstr "Datoteka „%s” postoji."
 
 #: ../gramps/gui/viewmanager.py:1956 ../gramps/gui/viewmanager.py:1954
 msgid "Proceed and overwrite"
@@ -19119,10 +19156,10 @@ msgstr "Prekini izradu zaštitne kopije"
 msgid "Making backup..."
 msgstr "Izrada zaštitne kopije ..."
 
-#: ../gramps/gui/viewmanager.py:1985 ../gramps/gui/viewmanager.py:1983
+#: ../gramps/gui/viewmanager.py:1992
 #, python-format
 msgid "Backup saved to '%s'"
-msgstr "Zaštitna kopija je spremljena u '%s'"
+msgstr "Zaštitna kopija je spremljena u „%s”"
 
 #: ../gramps/gui/viewmanager.py:1988 ../gramps/gui/viewmanager.py:1986
 msgid "Backup aborted"
@@ -19183,12 +19220,12 @@ msgstr "Nije moguće postaviti knjižnu oznaku, budući da ništa nije odabrano.
 msgid "Multiple Selection Delete"
 msgstr "Izbriši višestruki odabir"
 
-#: ../gramps/gui/views/listview.py:546
+#: ../gramps/gui/views/listview.py:553
 msgid ""
 "More than one item has been selected for deletion. Select the option "
 "indicating how to delete the items:"
 msgstr ""
-"Više stavki je odabrano za brisanje. Odaberite opcije za način brisanja:"
+"Više stavaka je odabrano za brisanje. Odaberi opcije za način brisanja:"
 
 #: ../gramps/gui/views/listview.py:548
 msgid "Delete All"
@@ -19297,9 +19334,9 @@ msgid ""
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit ->Set Home Person."
 msgstr ""
-"Morate postaviti jednu 'zadanu osobu' do koje želite ići. Odaberite pogled "
-"\"Osobe\", odaberite osobu koju želite imati kao 'početnu osobu', zatim "
-"potvrdite vaš odabir preko preglednika \"Uredi > Postavi početnu osobu\"."
+"Morate postaviti jednu „zadanu osobu” do koje želite ići. Odaberite pogled "
+"„Osobe”, odaberite osobu koju želite imati kao „početnu osobu”, zatim "
+"potvrdite vaš odabir preko izbornika „Uredi > Postavi početnu osobu”."
 
 #: ../gramps/gui/views/navigationview.py:349
 #: ../gramps/gui/views/navigationview.py:352
@@ -19381,7 +19418,7 @@ msgstr "Promijeni prioritet etiketa"
 #: ../gramps/gui/views/tags.py:495
 #, python-format
 msgid "Remove tag '%s'?"
-msgstr "Ukloni etiketu: '%s'?"
+msgstr "Ukloni etiketu: „%s”?"
 
 #: ../gramps/gui/views/tags.py:496
 msgid ""
@@ -19553,11 +19590,10 @@ msgstr ""
 "postavkom. Ova akcija je nepovratna."
 
 #. default tooltip
-#: ../gramps/gui/widgets/grampletpane.py:811
-#: ../gramps/gui/widgets/grampletpane.py:808
+#: ../gramps/gui/widgets/grampletpane.py:810
 msgid "Drag Properties Button to move and click it for setup"
 msgstr ""
-"Za premještanje, povucite gumb za postavke, za uređivanje ga pritisnite."
+"Za premještanje, povucite gumb za postavke, za uređivanje ga pritisnite"
 
 #. build the GUI:
 #: ../gramps/gui/widgets/grampletpane.py:1007
@@ -19598,7 +19634,7 @@ msgid ""
 msgstr ""
 "Klikni za postavljanje aktivne osobe\n"
 "Desni-klik za prikaz uređivačkog izbornika\n"
-"Klikni simbol 'Uredi', za uređivanje (aktiviraj u konfiguraciji)"
+"Klikni simbol „Uredi”, za uređivanje (aktiviraj u konfiguraciji)"
 
 #: ../gramps/gui/widgets/monitoredwidgets.py:651
 msgid "Bad Date"
@@ -19630,6 +19666,10 @@ msgstr ""
 #: ../gramps/gui/widgets/progressdialog.py:298
 msgid "Progress Information"
 msgstr "Podaci o napretku rada"
+
+#: ../gramps/gui/widgets/reorderfam.py:63
+msgid "manual|Reorder_Relationships_dialog"
+msgstr "Prerasporedi_srodstva"
 
 #: ../gramps/gui/widgets/reorderfam.py:79
 msgid "Reorder Relationships"
@@ -19733,7 +19773,7 @@ msgstr "Odaberi boju pozadine"
 #: ../gramps/gui/widgets/validatedmaskedentry.py:1154
 #, python-format
 msgid "'%s' is not a valid value for this field"
-msgstr "'%s' nije ispravna vrijednost za ovo polje"
+msgstr "„%s” nije ispravna vrijednost za ovo polje"
 
 #: ../gramps/gui/widgets/validatedmaskedentry.py:1197
 msgid "This field is mandatory"
@@ -19743,7 +19783,7 @@ msgstr "Ovo je obavezno polje"
 #: ../gramps/gui/widgets/validatedmaskedentry.py:1246
 #, python-format
 msgid "'%s' is not a valid date value"
-msgstr "'%s' nije ispravna vrijednost za datum"
+msgstr "„%s” nije ispravna vrijednost za datum"
 
 #: ../gramps/plugins/db/bsddb/bsddb.gpr.py:26
 msgid "BSDDB"
@@ -19822,7 +19862,7 @@ msgstr ""
 "\n"
 "\n"
 "Možete pokrenuti\n"
-"\"Alati > Obrada rodoslova > Spoji citate\"\n"
+"„Alati > Obrada rodoslova > Spoji citate”\n"
 "kako biste spojili citate, koji sadrže slične\n"
 "informacije"
 
@@ -19854,8 +19894,8 @@ msgid ""
 "A second transaction is started while there is still a transaction, \"%s\", "
 "active in the database."
 msgstr ""
-"Pokrenut je još jedan prijenos, mada je prijenos \"%s\", još uvijek aktivan "
-"u bazi podataka."
+"Pokrenut je još jedan prijenos, mada je prijenos „%s”, još uvijek aktivan u "
+"bazi podataka."
 
 #: ../gramps/plugins/db/bsddb/write.py:2307
 #: ../gramps/plugins/db/dbapi/sqlite.py:61
@@ -20042,8 +20082,8 @@ msgid ""
 "pillow or python3-pillow"
 msgstr ""
 "Izrada jpg slika iz ne-jpg slika u LaTex dokumentima neće biti moguća. "
-"Koristite vaš paketni upravljač za instalaciju paketa 'python-imaging', "
-"'python-pillow' ili 'python3-pillow'"
+"Koristite vaš paketni upravljač za instalaciju paketa „python-imaging”, "
+"„python-pillow” ili „python3-pillow”"
 
 #: ../gramps/plugins/docgen/odfdoc.py:1182
 #, python-format
@@ -20254,33 +20294,33 @@ msgid "Do not scale tree"
 msgstr "Ne prilagođuj veličinu stabla"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:853
-#: ../gramps/plugins/drawreport/descendtree.py:1593
+#: ../gramps/plugins/drawreport/descendtree.py:1599
 msgid "Scale tree to fit page width only"
-msgstr "Prilagodi stablo širini stranice"
+msgstr "Prilagodi veličinu stabla širini stranice"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:854
-#: ../gramps/plugins/drawreport/descendtree.py:1594
+#: ../gramps/plugins/drawreport/descendtree.py:1600
 msgid "Scale tree to fit the size of the page"
-msgstr "Prilagodi stablo veličini stranice"
+msgstr "Prilagodi veličinu stabla veličini stranice"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:856
-#: ../gramps/plugins/drawreport/descendtree.py:1596
+#: ../gramps/plugins/drawreport/descendtree.py:1602
 msgid "Whether to scale the tree to fit a specific paper size"
-msgstr "Da li prilagoditi stablo veličini stranice"
+msgstr "Da li prilagoditi veličinu stabla veličini stranice"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:863
-#: ../gramps/plugins/drawreport/descendtree.py:1603
+#: ../gramps/plugins/drawreport/descendtree.py:1609
 msgid ""
 "Resize Page to Fit Tree size\n"
 "\n"
 "Note: Overrides options in the 'Paper Option' tab"
 msgstr ""
-"Uskladi veličinu papira stablu\n"
+"Prilagodi veličinu papira veličini stabla\n"
 "\n"
-"Napomena: Ova opcija poništava postavke u kartici za opcije papira"
+"Napomena: Ovo poništava opcije u kartici „Opcije za papir”"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:869
-#: ../gramps/plugins/drawreport/descendtree.py:1609
+#: ../gramps/plugins/drawreport/descendtree.py:1615
 msgid ""
 "Whether to resize the page to fit the size \n"
 "of the tree.  Note:  the page will have a \n"
@@ -20302,15 +20342,15 @@ msgstr ""
 "\n"
 "Odabirom ove opcije, desit će se sljedeće:\n"
 "\n"
-"Opcijom \"Ne mijenjaj veličinu stabla\", veličina \n"
+"Opcijom „Ne prilagođuj veličinu stabla”, veličina \n"
 "stranice ovisi o visini/širini stabla.\n"
 "\n"
-"Opcijom \"Prilagodi veličinu stabla širini stranice\", \n"
+"Opcijom „Prilagodi veličinu stabla širini stranice”, \n"
 "visina stranice ovisi o visini stabla.\n"
 "\n"
-"Opcijom \"Prilagodi veličinu stabla veličini stranice\", \n"
-"mijenja se veličina stranice, uklanjanjem praznog prostora \n"
-"kako u visini, tako i u širini."
+"Opcijom „Prilagodi veličinu stabla veličini stranice”, \n"
+"mijenja se veličina stranice, uklanjanjem praznog \n"
+"prostora kako u visini, tako i u širini."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:889
 #: ../gramps/plugins/drawreport/descendtree.py:1629
@@ -20331,27 +20371,27 @@ msgstr "Da li uključiti ispis praznih stranica."
 #. #########################
 #. ###############################
 #: ../gramps/plugins/drawreport/ancestortree.py:896
-#: ../gramps/plugins/drawreport/calendarreport.py:494
-#: ../gramps/plugins/drawreport/descendtree.py:1634
-#: ../gramps/plugins/drawreport/fanchart.py:728
+#: ../gramps/plugins/drawreport/calendarreport.py:490
+#: ../gramps/plugins/drawreport/descendtree.py:1640
+#: ../gramps/plugins/drawreport/fanchart.py:730
 #: ../gramps/plugins/drawreport/statisticschart.py:1056
-#: ../gramps/plugins/drawreport/timeline.py:434
+#: ../gramps/plugins/drawreport/timeline.py:435
 #: ../gramps/plugins/graph/gvfamilylines.py:162
 #: ../gramps/plugins/graph/gvhourglass.py:352
-#: ../gramps/plugins/graph/gvrelgraph.py:801
+#: ../gramps/plugins/graph/gvrelgraph.py:802
 #: ../gramps/plugins/textreport/ancestorreport.py:310
-#: ../gramps/plugins/textreport/birthdayreport.py:438
+#: ../gramps/plugins/textreport/birthdayreport.py:441
 #: ../gramps/plugins/textreport/descendreport.py:557
-#: ../gramps/plugins/textreport/detancestralreport.py:848
-#: ../gramps/plugins/textreport/detdescendantreport.py:1039
+#: ../gramps/plugins/textreport/detancestralreport.py:849
+#: ../gramps/plugins/textreport/detdescendantreport.py:1040
 #: ../gramps/plugins/textreport/familygroup.py:732
-#: ../gramps/plugins/textreport/indivcomplete.py:1082
+#: ../gramps/plugins/textreport/indivcomplete.py:1083
 #: ../gramps/plugins/textreport/kinshipreport.py:382
-#: ../gramps/plugins/textreport/placereport.py:461
+#: ../gramps/plugins/textreport/placereport.py:462
 #: ../gramps/plugins/textreport/recordsreport.py:243
-#: ../gramps/plugins/webreport/webcal.py:1664
+#: ../gramps/plugins/webreport/webcal.py:1671
 msgid "Report Options (2)"
-msgstr "Opcije izvještaja (2)"
+msgstr "Opcije za izvještaj (2)"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:911
 msgid ""
@@ -20435,13 +20475,13 @@ msgid "Advanced"
 msgstr "Napredno"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:957
-#: ../gramps/plugins/drawreport/descendtree.py:1686
+#: ../gramps/plugins/drawreport/descendtree.py:1692
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
 msgstr ""
 "Zamijeni format prikaza:\n"
-"'Zamijeni ovo'/'s ovim'"
+"„Zamijeni ovo”/„s ovim”"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:959
 #: ../gramps/plugins/drawreport/descendtree.py:1688
@@ -21170,14 +21210,14 @@ msgid ""
 "You can customize font and color for each generation in the style editor"
 msgstr "Možete prilagoditi pismo i boju za svaku generaciju u uređivaču stila"
 
-#: ../gramps/plugins/drawreport/fanchart.py:780
+#: ../gramps/plugins/drawreport/fanchart.py:782
 #, python-format
 msgid "The style used for the text display of generation \"%d\""
-msgstr "Stil korišten za prikaz teksta \"%d.\" generacije"
+msgstr "Stil korišten za prikaz teksta „%d.” generacije"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:306
 msgid "Item count"
-msgstr "Broj stavki"
+msgstr "Broj stavaka"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:310
 msgid "Both"
@@ -21459,17 +21499,15 @@ msgstr "Uključeni spolovi"
 msgid "Select which genders are included into statistics."
 msgstr "Odaberite spolove, koji će biti uključeni u statistike."
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1039
 #: ../gramps/plugins/drawreport/statisticschart.py:1050
 msgid "Max. items for a pie"
-msgstr "Najveći broj stavki za kružni dijagram"
+msgstr "Najveći broj stavaka za kružni dijagram"
 
-#: ../gramps/plugins/drawreport/statisticschart.py:1040
 #: ../gramps/plugins/drawreport/statisticschart.py:1051
 msgid ""
 "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
-"Pri manjem broju stavki se koristi kružni dijagram s legendom, umjesto "
+"Pri manjem broju stavaka se koristi kružni dijagram s legendom, umjesto "
 "stupčastog dijagrama."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1084
@@ -21580,23 +21618,23 @@ msgstr "CSV je uobičajeni format tabličnog proračuna."
 
 #: ../gramps/plugins/export/export.gpr.py:44
 msgid "CSV spreadsheet options"
-msgstr "Postavke CSV proračunske tablice"
+msgstr "Opcije za CSV proračunske tablice"
 
 #: ../gramps/plugins/export/export.gpr.py:55
 msgid "Web Family Tree"
-msgstr "Web rodoslov"
+msgstr "Web Family Tree (web rodoslov)"
 
 #: ../gramps/plugins/export/export.gpr.py:56
 msgid "_Web Family Tree"
-msgstr "_Web rodoslov"
+msgstr "_Web Family Tree (web rodoslov)"
 
 #: ../gramps/plugins/export/export.gpr.py:57
 msgid "Web Family Tree format"
-msgstr "Format Web rodoslova"
+msgstr "Format za Web Family Tree (web rodoslov)"
 
 #: ../gramps/plugins/export/export.gpr.py:65
 msgid "Web Family Tree export options"
-msgstr "Postavke izvoza za Web rodoslov"
+msgstr "Opcije za Web Family Tree izvoz (web rodoslov)"
 
 #: ../gramps/plugins/export/export.gpr.py:77
 msgid "GE_DCOM"
@@ -21613,7 +21651,7 @@ msgstr ""
 
 #: ../gramps/plugins/export/export.gpr.py:87
 msgid "GEDCOM export options"
-msgstr "GEDCOM postavke izvoza"
+msgstr "Opcije za GEDCOM izvoz"
 
 #: ../gramps/plugins/export/export.gpr.py:99
 msgid "_GeneWeb"
@@ -21625,7 +21663,7 @@ msgstr "GeneWeb je web bazirani geneaološki program."
 
 #: ../gramps/plugins/export/export.gpr.py:108
 msgid "GeneWeb export options"
-msgstr "Postavke GeneWeb izvoza"
+msgstr "Opcije za GeneWeb izvoz"
 
 #: ../gramps/plugins/export/export.gpr.py:119
 msgid "Gramps XML Package (family tree and media)"
@@ -21645,7 +21683,7 @@ msgstr ""
 
 #: ../gramps/plugins/export/export.gpr.py:130
 msgid "Gramps package export options"
-msgstr "Postavke izvoza Gramps paketa"
+msgstr "Opcije za izvoz Gramps paketa"
 
 #: ../gramps/plugins/export/export.gpr.py:141
 msgid "Gramps XML (family tree)"
@@ -21665,7 +21703,7 @@ msgstr ""
 
 #: ../gramps/plugins/export/export.gpr.py:153
 msgid "Gramps XML export options"
-msgstr "Gramps XML postavke izvoza"
+msgstr "Opcije za Gramps XML izvoz"
 
 #: ../gramps/plugins/export/export.gpr.py:164
 msgid "vCalendar"
@@ -21681,7 +21719,7 @@ msgstr "vCalendar format se koristi u mnogim kalendarskim i PIM programima."
 
 #: ../gramps/plugins/export/export.gpr.py:174
 msgid "vCalendar export options"
-msgstr "Postavke za izvoz vCalendar"
+msgstr "Opcije za vCalendar-izvoz"
 
 #: ../gramps/plugins/export/export.gpr.py:185
 #: ../gramps/plugins/importer/import.gpr.py:167
@@ -21698,7 +21736,7 @@ msgstr "vCard format se koristi u mnogim adresarima i PIM programima."
 
 #: ../gramps/plugins/export/export.gpr.py:195
 msgid "vCard export options"
-msgstr "Postavke za izvoz vCard"
+msgstr "Opcije za vCard-izvoz"
 
 #: ../gramps/plugins/export/exportcsv.py:136
 msgid "Include people"
@@ -21818,6 +21856,10 @@ msgstr "EMAIL"
 msgid "WWW"
 msgstr "WWW"
 
+#: ../gramps/plugins/export/exportgedcom.py:1438
+msgid "Writing media"
+msgstr "Zapisivanje medija"
+
 #: ../gramps/plugins/export/exportgedcom.py:1570
 msgid "GEDCOM Export failed"
 msgstr "GEDCOM izvoz neuspješan"
@@ -21879,7 +21921,7 @@ msgstr ""
 #. GUI setup:
 #: ../gramps/plugins/gramplet/ageondategramplet.py:52
 msgid "Enter a date, click Run"
-msgstr "Unesite datum i pritisnite gumb \"Pokreni\""
+msgstr "Unesite datum i pritisnite gumb „Pokreni”"
 
 #: ../gramps/plugins/gramplet/ageondategramplet.py:60
 msgid ""
@@ -21887,10 +21929,10 @@ msgid ""
 "will compute the ages for everyone in your Family Tree on that date. You can "
 "then sort by the age column, and double-click the row to view or edit."
 msgstr ""
-"Unesite ispravan datum (u obliku GGGG-MM-DD) i pritisnite gumb \"Pokreni\". "
-"To će izračunati starost svih osoba u rodoslovu na taj datum. Nakon toga "
-"možete svrstati podatke po starosti, i dvoklikom na redak, promijeniti ih "
-"ili urediti."
+"Unesite ispravan datum (u obliku GGGG-MM-DD) i pritisnite gumb „Pokreni”. To "
+"će izračunati starost svih osoba u rodoslovu na taj datum. Nakon toga možete "
+"svrstati podatke po starosti, i dvoklikom na redak, promijeniti ih ili "
+"urediti."
 
 #: ../gramps/plugins/gramplet/agestats.py:53
 #: ../gramps/plugins/gramplet/agestats.py:63
@@ -22075,7 +22117,7 @@ msgid ""
 msgstr ""
 "Klikni za širenje/skupljanje osobe\n"
 "Desni-klik za prikaz opcija\n"
-"Stisni i povuci za okretanje"
+"Klikni i povuci za okretanje"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:61
 #, python-format
@@ -22432,11 +22474,11 @@ msgstr "Gramplet prikazuje sva prezimena u oblacima"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1235
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1249
 msgid "gramplet|To Do"
-msgstr "Za obaviti"
+msgstr "Zadaci"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:291
 msgid "Gramplet for displaying a To Do list"
-msgstr "Gramplet prikazuje popis zadataka 'Za obaviti'"
+msgstr "Gramplet prikazuje popis zadataka"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:305
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:311
@@ -22954,67 +22996,67 @@ msgstr "Prikazuje neke zanimljive podatke o osobama i obiteljima"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1143
 msgid "Person To Do"
-msgstr "Za obaviti (osoba)"
+msgstr "Zadaci (osoba)"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1144
 msgid "Gramplet showing the To Do notes for a person"
-msgstr "Gramplet prikazuje 'Za obaviti' zabilješke za osobu"
+msgstr "Gramplet prikazuje zadatke za osobu"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1157
 msgid "Event To Do"
-msgstr "Za obaviti (događaj)"
+msgstr "Zadaci (događaj)"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1158
 msgid "Gramplet showing the To Do notes for an event"
-msgstr "Gramplet prikazuje 'Za obaviti' zabilješke za događaj"
+msgstr "Gramplet prikazuje zadatke za događaj"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1171
 msgid "Family To Do"
-msgstr "Za obaviti (obitelj)"
+msgstr "Zadaci (obitelj)"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1172
 msgid "Gramplet showing the To Do notes for a family"
-msgstr "Gramplet prikazuje 'Za obaviti' zabilješke za obitelj"
+msgstr "Gramplet prikazuje zadatke za obitelj"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1185
 msgid "Place To Do"
-msgstr "Za obaviti (mjesto)"
+msgstr "Zadaci (mjesto)"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1186
 msgid "Gramplet showing the To Do notes for a place"
-msgstr "Gramplet prikazuje 'Za obaviti' zabilješke za mjesto"
+msgstr "Gramplet prikazuje zadatke za mjesto"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1199
 msgid "Source To Do"
-msgstr "Za obaviti (izvor)"
+msgstr "Zadaci (izvor)"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1200
 msgid "Gramplet showing the To Do notes for a source"
-msgstr "Gramplet prikazuje 'Za obaviti' zabilješke za izvor"
+msgstr "Gramplet prikazuje zadatke za izvor"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1213
 msgid "Citation To Do"
-msgstr "Za obaviti (citat)"
+msgstr "Zadaci (citat)"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1214
 msgid "Gramplet showing the To Do notes for a citation"
-msgstr "Gramplet prikazuje 'Za obaviti' zabilješke za citat"
+msgstr "Gramplet prikazuje zadatke za citat"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1227
 msgid "Repository To Do"
-msgstr "Za obaviti (spremište)"
+msgstr "Zadaci (spremište)"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1228
 msgid "Gramplet showing the To Do notes for a repository"
-msgstr "Gramplet prikazuje 'Za obaviti' zabilješke za spremište"
+msgstr "Gramplet prikazuje zadatke za spremište"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1241
 msgid "Media To Do"
-msgstr "Za obaviti (medij)"
+msgstr "Zadaci (medij)"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1242
 msgid "Gramplet showing the To Do notes for a media object"
-msgstr "Gramplet prikazuje 'Za obaviti' zabilješke za medijski objekt"
+msgstr "Gramplet prikazuje zadatke za medijski objekt"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1281
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1289
@@ -23098,7 +23140,7 @@ msgstr "%(current)d od %(total)d"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:51
 msgid "Move mouse over links for options"
-msgstr "Pomakni miša na poveznice za prikaz postavki"
+msgstr "Pomakni miša na poveznice za prikaz opcija"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:58
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:67
@@ -23320,9 +23362,9 @@ msgstr "Odabrano"
 msgid "SoundEx code:"
 msgstr "SoundEx kod:"
 
-#: ../gramps/plugins/gramplet/statsgramplet.py:54
+#: ../gramps/plugins/gramplet/statsgramplet.py:59
 msgid "Double-click item to see matches"
-msgstr "Dvoklik na stavku za prikaz podudarajućih stavki"
+msgstr "Dvoklik na stavku za prikaz podudarajućih stavaka"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:87
 #: ../gramps/plugins/textreport/summary.py:240
@@ -23426,25 +23468,29 @@ msgstr "Ukupni broj jedinstvenih prezimena"
 msgid "Total surnames showing"
 msgstr "Ukupni broj prikazanih prezimena"
 
-#: ../gramps/plugins/gramplet/todo.py:58
+#: ../gramps/plugins/gramplet/todo.py:60
 #: ../gramps/plugins/gramplet/todogramplet.py:60
 msgid "Previous To Do note"
-msgstr "Prethodna 'Za obaviti' zabilješka"
+msgstr "Prethodni zadatak"
 
-#: ../gramps/plugins/gramplet/todo.py:62
+#: ../gramps/plugins/gramplet/todo.py:64
 #: ../gramps/plugins/gramplet/todogramplet.py:64
 msgid "Next To Do note"
-msgstr "Sljedeća 'Za obaviti' zabilješka"
+msgstr "Sljedeći zadatak"
 
-#: ../gramps/plugins/gramplet/todo.py:66
+#: ../gramps/plugins/gramplet/todo.py:68
 #: ../gramps/plugins/gramplet/todogramplet.py:68
 msgid "Edit the selected To Do note"
-msgstr "Uredi odabrane 'Za obaviti' zabilješke"
+msgstr "Uredi odabrane zadatke"
 
-#: ../gramps/plugins/gramplet/todo.py:70
+#: ../gramps/plugins/gramplet/todo.py:72
 #: ../gramps/plugins/gramplet/todogramplet.py:72
 msgid "Add a new To Do note"
-msgstr "Dodaj novu 'Za obaviti' zabilješku"
+msgstr "Dodaj novi zadatak"
+
+#: ../gramps/plugins/gramplet/todo.py:201
+msgid "First select the object to which you want to attach a note"
+msgstr "Najprije odaberi objekt kojem želiš dodati zabilješku"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:149
 msgid "Unattached"
@@ -23521,9 +23567,9 @@ msgid ""
 "\n"
 msgstr ""
 "Vaš prvi korak mora biti stvaranje novog rodoslova. Za stvaranje rodoslova "
-"(ponekad zvanog 'baza podataka') odaberite \"Rodoslovi\" iz izbornika, zatim "
-"\"Uredi rodoslove\", pritisnite \"Novo\" i imenujte vaš rodoslov. Za "
-"detaljne informacije, koristite gornje poveznice.\n"
+"(ponekad zvanog baza podataka) odaberite „Rodoslovi” iz izbornika, zatim "
+"„Uredi rodoslove”, pritisnite „Novi” i imenujte vaš rodoslov. Za detaljne "
+"informacije, koristite gornje poveznice.\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:130
@@ -23541,8 +23587,8 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet on this page, "
 "and detach the gramplet to float above Gramps."
 msgstr ""
-"Trenutačno se nalazite u pogledu \"Pregledna ploča\", gdje možete dodati "
-"vaše gramplete. Možete ih također dodati u bilo kojem drugom pogledu. Za to, "
+"Trenutačno se nalazite u pogledu „Pregledna ploča”, gdje možete dodati vaše "
+"gramplete. Možete ih također dodati u bilo kojem drugom pogledu. Za to, "
 "otvorite bočni stupac i/ili donju traku, te desnim klimom pored kartice.\n"
 "\n"
 "Gumbom za konfiguraciju možete dodavati stupce, a desnim klikom na površinu, "
@@ -23554,7 +23600,7 @@ msgstr ""
 #. distance to the main person will be added on top of this.
 #: ../gramps/plugins/gramplet/whatsnext.py:57
 msgid "Minimum number of items to display"
-msgstr "Najmanji broj stavki u prikazu"
+msgstr "Najmanji broj prikazanih stavaka"
 
 #. How many generations of descendants to process before we go up to the
 #. next level of ancestors.
@@ -24149,15 +24195,15 @@ msgstr "Da li uključiti datume i/ili mjesta"
 msgid "Include URLs"
 msgstr "Uključi URL adrese"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:843
+#: ../gramps/plugins/graph/gvrelgraph.py:844
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
 "Web Site' report."
 msgstr ""
 "Uključi URL u sva čvorišta dijagrama, za stvaranje PDF i imagemap datoteka s "
-"aktivnim poveznicama na stranice, stvorene izvještajem 'Narativna web "
-"stranica'."
+"aktivnim poveznicama na stranice, stvorene izvještajem „Narativna web "
+"stranica”."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:851
 #: ../gramps/plugins/textreport/birthdayreport.py:494
@@ -24202,10 +24248,10 @@ msgstr "Da li uključiti posljednje zanimanje"
 msgid "Include relationship debugging numbers also"
 msgstr "Uključi i brojeve, dobivene traženjem grešaka u srodstvu"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:886
+#: ../gramps/plugins/graph/gvrelgraph.py:887
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
-msgstr "Da li uključiti 'Ga' i 'Gb', za ispravljanje kalkulator srodstva"
+msgstr "Da li uključiti „Ga” i „Gb”, za ispravljanje kalkulator srodstva"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:914
 msgid "Indicate non-birth relationships with dotted lines"
@@ -24682,7 +24728,7 @@ msgstr ""
 "Osnovna staza za medije ovog rodoslova je %s. Razmislite o upotrebi "
 "jednostavnije staze. Nju možete promijeniti u postavkama. Pomaknite vaše "
 "medijske datoteke na novo mjesto, a zatim koristeći upravljač medija, "
-"koristite opciju 'Zamijeni podniz znakova u stazi', te postavite točnu stazu "
+"koristite opciju „Zamijeni podniz znakova u stazi”, te postavite točnu stazu "
 "do vaših medijskih objekata."
 
 #: ../gramps/plugins/importer/importgpkg.py:117
@@ -24705,7 +24751,7 @@ msgstr ""
 "%(path)s. Možete promijeniti stazu do medija u postavkama ili ju pretvoriti "
 "u već postojeću osnovnu stazu medija. Možete to učiniti premještanjem "
 "medijskih datoteka na novo mjesto, te u upravljaču medija koristiti opciju "
-"'Zamijeni podniz znakova u stazi', za postavljanje točne staze do vaših "
+"„Zamijeni podniz znakova u stazi”, za postavljanje točne staze do vaših "
 "medijskih objekata."
 
 #: ../gramps/plugins/importer/importgrdb.py:61
@@ -24746,7 +24792,7 @@ msgstr "Nije Pro-Gen datoteka"
 #: ../gramps/plugins/importer/importprogen.py:396
 #, python-format
 msgid "Field '%(fldname)s' not found"
-msgstr "Zapis '%(fldname)s' nije pronađen"
+msgstr "Zapis „%(fldname)s” nije pronađen"
 
 #: ../gramps/plugins/importer/importprogen.py:460
 #, python-format
@@ -24772,7 +24818,7 @@ msgstr "Uvoz iz Pro-Gen (%s)"
 #: ../gramps/plugins/importer/importprogen.py:1066
 #, python-format
 msgid "Date did not match: '%(text)s' (%(msg)s)"
-msgstr "Datum ne odgovara: '%(text)s' (%(msg)s)"
+msgstr "Datum ne odgovara: „%(text)s” (%(msg)s)"
 
 #: ../gramps/plugins/importer/importprogen.py:1790
 #, python-format
@@ -24995,9 +25041,9 @@ msgstr ""
 "\n"
 " Uvežena datoteka nije bila cjelokupna.\n"
 "U sklopu ispravljanja, %(new)d objekata je stvoreno, a\n"
-"njihova tipizirana svojstva su postavljena na 'Nepoznato'.\n"
+"njihova tipizirana svojstva su postavljena na „Nepoznato”.\n"
 "Raspodjela na kategorije je prikazana brojem u zagradama.\n"
-"Gdjegod moguće, objekti s oznakom 'Nepoznato' su\n"
+"Gdjegod moguće, objekti s oznakom „Nepoznato” su\n"
 "referencirani zabilješkom %(unknown)s.\n"
 
 #: ../gramps/plugins/importer/importxml.py:310
@@ -25141,11 +25187,11 @@ msgstr "Ime svjedoka: %s"
 
 #: ../gramps/plugins/importer/importxml.py:1290
 msgid "Any event reference must have a 'hlink' attribute."
-msgstr "Svaka referenca događaja mora imati 'hlink' svojstvo."
+msgstr "Svaka referenca događaja mora imati „hlink” svojstvo."
 
 #: ../gramps/plugins/importer/importxml.py:1564
 msgid "Any person reference must have a 'hlink' attribute."
-msgstr "Svaka referenca osobe mora imati 'hlink' svojstvo."
+msgstr "Svaka referenca osobe mora imati „hlink” svojstvo."
 
 #: ../gramps/plugins/importer/importxml.py:1753
 #, python-format
@@ -25153,8 +25199,8 @@ msgid ""
 "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
 msgstr ""
-"Grupno ime \"%(key)s\" zajedno sa \"%(parent)s\" nije promijenilo ovo "
-"grupiranje u \"%(value)s\"."
+"Grupno ime „%(key)s” zajedno sa „%(parent)s” nije promijenilo ovo grupiranje "
+"u „%(value)s”."
 
 #: ../gramps/plugins/importer/importxml.py:1756
 msgid "Gramps ignored a name grouping"
@@ -25166,7 +25212,7 @@ msgstr "Nepoznato pri uvozu"
 
 #: ../gramps/plugins/importer/importxml.py:1985
 msgid "Any note reference must have a 'hlink' attribute."
-msgstr "Svaka referenca zabilješke mora imati 'hlink' svojstvo."
+msgstr "Svaka referenca zabilješke mora imati „hlink” svojstvo."
 
 #. TRANSLATORS: leave the {date} and {xml} untranslated in the format string,
 #. but you may re-order them if needed.
@@ -25186,7 +25232,7 @@ msgid ""
 "Error: family '%(family)s' father '%(father)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"Greška: obitelj '%(family)s' otac '%(father)s' ne upućuje na obitelj. "
+"Greška: obitelj „%(family)s” otac „%(father)s” ne upućuje na obitelj. "
 "Referenca je dodana."
 
 #: ../gramps/plugins/importer/importxml.py:3240
@@ -25195,7 +25241,7 @@ msgid ""
 "Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"Greška: obitelj '%(family)s' majka '%(mother)s' ne upućuje na obitelj. "
+"Greška: obitelj „%(family)s” majka „%(mother)s” ne upućuje na obitelj. "
 "Referenca je dodana."
 
 #: ../gramps/plugins/importer/importxml.py:3262
@@ -25204,7 +25250,7 @@ msgid ""
 "Error: family '%(family)s' child '%(child)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
-"Greška: obitelj '%(family)s' dijete '%(child)s' ne upućuje na obitelj. "
+"Greška: obitelj „%(family)s” dijete „%(child)s” ne upućuje na obitelj. "
 "Referenca je dodana."
 
 #: ../gramps/plugins/lib/libcairodoc.py:1398
@@ -25332,7 +25378,7 @@ msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record synthesised"
 msgstr ""
-"Greška: %(msg)s '%(gramps_id)s' (učitano kao @%(xref)s@) nije u unosu "
+"Greška: %(msg)s „%(gramps_id)s” (učitano kao @%(xref)s@) nije u unosu "
 "GEDCOM. Zapis je sintetiziran"
 
 #: ../gramps/plugins/lib/libgedcom.py:3235
@@ -25341,8 +25387,8 @@ msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record with typifying attribute 'Unknown' created"
 msgstr ""
-"Greška: %(msg)s '%(gramps_id)s' (unos kao @%(xref)s@) nije u unosu GEDCOM. "
-"Stvoren je zapis s tipiziranim svojstvom 'Nepoznato'"
+"Greška: %(msg)s „%(gramps_id)s” (unos kao @%(xref)s@) nije u unosu GEDCOM. "
+"Stvoren je zapis s tipiziranim svojstvom „Nepoznato”"
 
 #: ../gramps/plugins/lib/libgedcom.py:3279
 #, python-format
@@ -25351,7 +25397,7 @@ msgid ""
 "(input as %(orig_person)s) is not a member of the referenced family. Family "
 "reference removed from person"
 msgstr ""
-"Greška: obitelj '%(family)s' (učitano kao @%(orig_family)s@) osoba "
+"Greška: obitelj „%(family)s” (učitano kao @%(orig_family)s@) osoba "
 "%(person)s (učitano kao %(orig_person)s) nije član referencirane obitelji. "
 "Obiteljska referenca je uklonjena od osobe"
 
@@ -25368,8 +25414,8 @@ msgstr ""
 "\n"
 "Uvežena datoteka nije bila cjelokupna.\n"
 "U sklopu ispravljanja, %(new)d objekata je stvoreno, a\n"
-"njihova tipizirana svojstva su postavljeni na 'Nepoznato'.\n"
-"Gdjegod moguće, objekti s oznakom 'Nepoznato' su \n"
+"njihova tipizirana svojstva su postavljeni na „Nepoznato”.\n"
+"Gdjegod moguće, objekti s oznakom „Nepoznato” su \n"
 "referencirani zabilješkom %(unknown)s.\n"
 
 #. message means that the element %s was ignored, but
@@ -25378,7 +25424,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libgedcom.py:3431
 #, python-format
 msgid "ADDR element ignored '%s'"
-msgstr "ADDR element zanemaren '%s'"
+msgstr "ADDR element zanemaren „%s”"
 
 #: ../gramps/plugins/lib/libgedcom.py:3452
 msgid "TRLR (trailer)"
@@ -28966,7 +29012,7 @@ msgstr "Broj roditelja"
 
 #: ../gramps/plugins/lib/libpersonview.py:109
 msgid "Number of To Do Notes"
-msgstr "Broj 'Za obaviti' zabilježaka"
+msgstr "Broj zadataka"
 
 #: ../gramps/plugins/lib/libpersonview.py:112
 #: ../gramps/plugins/lib/libplaceview.py:93
@@ -29147,7 +29193,7 @@ msgstr "Pruža informacije o praznicima za različite zemlje."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:124
 msgid "Manages a HTML file implementing DocBackend."
-msgstr "Upravlja HTML datotekom, koristeći 'DocBackend' pozadinski sustav."
+msgstr "Upravlja HTML datotekom, koristeći „DocBackend” pozadinski sustav."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:142
 msgid "Common constants for html files."
@@ -29167,15 +29213,15 @@ msgstr "Omogućuje tekstualnu naraciju."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:212
 msgid "Manages an ODF file implementing DocBackend."
-msgstr "Upravlja ODF datotekom, koristeći 'DocBackend' pozadinski sustav."
+msgstr "Upravlja ODF datotekom, koristeći „DocBackend” pozadinski sustav."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:229
 msgid "Provides the Base needed for the List People views."
-msgstr "Pruža osnovu za prikaz popisa u pogledu \"Osobe\""
+msgstr "Pruža osnovu za prikaz popisa u pogledu „Osobe”."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:246
 msgid "Provides the Base needed for the List Place views."
-msgstr "Pruža osnovu za prikaz popisa u pogledu \"Mjesta\""
+msgstr "Pruža osnovu za prikaz popisa u pogledu „Mjesta”."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:263
 msgid "Provides variable substitution on display lines."
@@ -29351,17 +29397,17 @@ msgstr "Centriraj ovdje"
 #: ../gramps/plugins/lib/maps/geography.py:397
 #, python-format
 msgid "Replace '%(map)s' by =>"
-msgstr "Zamijeni '%(map)s' s =>"
+msgstr "Zamijeni „%(map)s” sa =>"
 
 #: ../gramps/plugins/lib/maps/geography.py:416
 #, python-format
 msgid "Reload all visible tiles for '%(map)s'."
-msgstr "Osvježi sve vidljive odsječke karte za '%(map)s'."
+msgstr "Osvježi sve vidljive odsječke karte za „%(map)s”."
 
 #: ../gramps/plugins/lib/maps/geography.py:426
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
-msgstr "Ukloni privremenu memoriju s odsječcima karte '%(map)s'"
+msgstr "Ukloni privremenu memoriju s odsječcima karte „%(map)s”."
 
 #: ../gramps/plugins/lib/maps/geography.py:886
 msgid "You can't use the print functionality"
@@ -29448,8 +29494,8 @@ msgid ""
 "or we use the characters from the keyboard."
 msgstr ""
 "Koristi dodatnu tipkovnicu za prečace:\n"
-"ovim odabirom koristimo znakove '+' i '-' s dodatne tipkovnice,\n"
-"inače koristimo znakove sa standardne tipkovnice."
+"koristi znakove „+” i „-” s dodatne tipkovnice,\n"
+"ili koristi znakove sa standardne tipkovnice."
 
 #: ../gramps/plugins/lib/maps/geography.py:1245
 msgid "The map"
@@ -29470,7 +29516,7 @@ msgstr "Nije moguće stvoriti memorijski direktorij odsječaka karata %s"
 #: ../gramps/plugins/lib/maps/osmgps.py:226
 #, python-format
 msgid "Can't create tiles cache directory for '%s'."
-msgstr "Nije moguće stvoriti memorijski direktorij odsječaka karata za '%s'."
+msgstr "Nije moguće stvoriti memorijski direktorij odsječaka karata za „%s”."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:110
 #: ../gramps/plugins/lib/maps/placeselection.py:112
@@ -29525,11 +29571,11 @@ msgstr " država/pokrajina"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:150
 msgid "Latitude not within '54.55' to '69.05'\n"
-msgstr "Zemljopisna širina nije između '54.55' to '69.05'\n"
+msgstr "Zemljopisna širina se ne nalazi između „54.55” i „69.05”\n"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:151
 msgid "Longitude not within '8.05' to '24.15'"
-msgstr "Zemljopisna dužina nije između '8.05' to '24.15'"
+msgstr "Zemljopisna dužina se ne nalazi između „8.05” i „24.15”"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:152
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:180
@@ -29732,7 +29778,7 @@ msgstr "Sljedeći problemi su se pojavili:"
 #: ../gramps/plugins/quickview/attributematch.py:32
 #, python-format
 msgid "People who have the '%s' Attribute"
-msgstr "Osobe sa svojstvom '%s'"
+msgstr "Osobe sa svojstvom „%s”"
 
 #: ../gramps/plugins/quickview/attributematch.py:46
 #, python-format
@@ -29866,7 +29912,7 @@ msgstr "Skupni sažetak trenutačnog odabira"
 
 #: ../gramps/plugins/quickview/filterbyname.py:87
 msgid "Right-click row (or press ENTER) to see selected items."
-msgstr "Desni-klik na redak (ili pritisni ENTER), za prikaz odabranih stavki."
+msgstr "Desni-klik na redak (ili pritisni ENTER), za prikaz odabranih stavaka."
 
 #: ../gramps/plugins/quickview/filterbyname.py:89
 msgid "Count/Total"
@@ -30267,7 +30313,7 @@ msgstr "Pronalazi osobe, kojima nedostaje ime"
 #: ../gramps/plugins/quickview/samesurnames.py:113
 #, python-format
 msgid "People sharing the surname '%s'"
-msgstr "Osobe s prezimenom '%s'"
+msgstr "Osobe s prezimenom „%s”"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/quickview/samesurnames.py:135
@@ -30284,7 +30330,7 @@ msgstr[2] "Ukupno {number_of} osoba s istim imenom ili alternativnim imenom.\n"
 #: ../gramps/plugins/quickview/samesurnames.py:158
 #, python-format
 msgid "People with the given name '%s'"
-msgstr "Osobe s imenom: '%s'"
+msgstr "Osobe s imenom: „%s”"
 
 #. display the title
 #. feature request 2356: avoid genitive form
@@ -30632,9 +30678,9 @@ msgid "Simple numbering"
 msgstr "Jednostavni brojevni sustav"
 
 #: ../gramps/plugins/textreport/descendreport.py:529
-#: ../gramps/plugins/textreport/detdescendantreport.py:1009
+#: ../gramps/plugins/textreport/detdescendantreport.py:1010
 msgid "d'Aboville numbering"
-msgstr "d'Aboville brojevni sustav"
+msgstr "d’’Aboville brojevni sustav"
 
 #: ../gramps/plugins/textreport/descendreport.py:530
 #: ../gramps/plugins/textreport/detdescendantreport.py:1007
@@ -30777,11 +30823,11 @@ msgstr "Više o %(mother_name)s i %(father_name)s:"
 msgid "Spouse: %s"
 msgstr "Supružnik: %s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:743
-#: ../gramps/plugins/textreport/detdescendantreport.py:616
+#: ../gramps/plugins/textreport/detancestralreport.py:744
+#: ../gramps/plugins/textreport/detdescendantreport.py:617
 #, python-format
 msgid "Relationship with: %s"
-msgstr "Srodstvo sa: %s"
+msgstr "Veza sa: %s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:827
 msgid "Sosa-Stradonitz number"
@@ -31093,16 +31139,16 @@ msgstr "Uključi reference supružnika"
 msgid "Whether to include reference to spouse."
 msgstr "Da li uključiti podatke o supružnicima."
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1143
-msgid "Include sign of succession ('+') in child-list"
-msgstr "Uključi znak za nasljednike ('+') u popisu djece"
-
 #: ../gramps/plugins/textreport/detdescendantreport.py:1144
+msgid "Include sign of succession ('+') in child-list"
+msgstr "Uključi znak za nasljednike („+”) u popisu djece"
+
+#: ../gramps/plugins/textreport/detdescendantreport.py:1145
 msgid ""
 "Whether to include a sign ('+') before the descendant number in the child-"
 "list to indicate a child has succession."
 msgstr ""
-"Da li uključiti znak ('+') ispred broja potomka u popisu djece, kao oznaku "
+"Da li uključiti znak („+”) ispred broja potomka u popisu djece, kao oznaku "
 "da dijete ima nasljednike."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:1149
@@ -31794,7 +31840,7 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:215
 msgid "Produces a complete report on the selected people"
-msgstr "Izrađuje detaljan izvještaj o odabranim osobama."
+msgstr "Izrađuje detaljan izvještaj o odabranim osobama"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:236
 msgid "Kinship Report"
@@ -31914,7 +31960,7 @@ msgid ""
 msgstr ""
 "Ovaj alat će zamijeniti sve događaje jedne vrste, drugom vrstom događaja. "
 "Izvršene promjene se ne mogu poništiti korištenjem normalne funkcije "
-"\"Poništi\"."
+"„Poništi”."
 
 #: ../gramps/plugins/tool/changetypes.glade:112
 msgid "Original event type:"
@@ -31969,7 +32015,7 @@ msgstr ""
 "Vaš rodoslov sadrži duple upravljače u tablicama.\n"
 "To je loše, no može se ispraviti. Napravite zaštitnu kopiju\n"
 "vašeg rodoslova, a zatim uvezite tu kopiju u prazni rodoslov.\n"
-"Ostatak provjere će biti preskočeno. Alat \"Provjeri i popravi\"\n"
+"Ostatak provjere će biti preskočeno. Alat „Provjeri i popravi”\n"
 "treba ponovo pokrenuti na taj novi rodoslov."
 
 #: ../gramps/plugins/tool/check.py:187
@@ -31995,7 +32041,7 @@ msgid ""
 "they have been created when you ran Check and Repair on %s."
 msgstr ""
 "Objekti refenciranie ovom zabilješkom su referencirani, međutim nedostaju. "
-"Stoga su bile stvorene, kada ste pokrenuli \"Provjeri i popravi\" na %s."
+"Stoga su bile stvorene, kada ste primijenili „Provjeri i popravi” na %s."
 
 #: ../gramps/plugins/tool/check.py:320
 msgid "Looking for invalid name format references"
@@ -32756,6 +32802,10 @@ msgstr "Upravitelj medija..."
 msgid "Media Manager"
 msgstr "Upravljač medija"
 
+#: ../gramps/plugins/tool/mediamanager.py:91
+msgid "Help"
+msgstr "Pomoć"
+
 #: ../gramps/plugins/tool/mediamanager.py:97
 #: ../gramps/plugins/webreport/basepage.py:1483
 #: ../gramps/plugins/webreport/basepage.py:1606
@@ -32808,12 +32858,12 @@ msgstr ""
 msgid "Affected path"
 msgstr "Dotična linija/staza"
 
-#: ../gramps/plugins/tool/mediamanager.py:347
+#: ../gramps/plugins/tool/mediamanager.py:351
 msgid ""
 "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgstr ""
-"Pritisnite gumb 'U redu' za nastavak, 'Odustani' za prekid ili 'Natrag' za "
-"promjenu postavki."
+"Pritisnite gumb „U redu” za nastavak, „Odustani” za prekid ili „Natrag” za "
+"ispravljanje opcija."
 
 #: ../gramps/plugins/tool/mediamanager.py:385
 msgid "Operation successfully finished"
@@ -32854,7 +32904,7 @@ msgstr ""
 msgid "Replace _substrings in the path"
 msgstr "Zamijeni podniz znakova u stazi"
 
-#: ../gramps/plugins/tool/mediamanager.py:485
+#: ../gramps/plugins/tool/mediamanager.py:489
 msgid ""
 "This tool allows replacing specified substring in the path of media objects "
 "with another substring. This can be useful when you move your media files "
@@ -32862,7 +32912,7 @@ msgid ""
 msgstr ""
 "Ovaj alat omogućuje izmjenu zadanog podniza znakova u nazivima staza "
 "medijskih objekata, drugim podnizom. To može biti korisno pri premještanju "
-"medijskih datoteka iz jednog direktorija u drugi."
+"medijskih datoteka iz jednog direktorija u drugi"
 
 #: ../gramps/plugins/tool/mediamanager.py:491
 msgid "Replace substring settings"
@@ -33003,7 +33053,7 @@ msgstr "Bez_srodstva"
 #: ../gramps/plugins/tool/notrelated.py:80
 #, python-format
 msgid "Not related to \"%s\""
-msgstr "Bez srodstva sa \"%s\""
+msgstr "Bez srodstva sa „%s”"
 
 #: ../gramps/plugins/tool/notrelated.py:104
 msgid "NotRelated"
@@ -33125,7 +33175,7 @@ msgstr ""
 "Ako prihvatite promjene, Gramps će promijeniti unose, koji su odabrani.\n"
 "\n"
 "Sastavljena prezimena su pokazana kao popisi sa [prefiks, prezime, veznik].\n"
-"Npr. koristeći zadane postavke, ime \"de Mascarenhas da Silva e Lencastre\" "
+"Npr. koristeći zadane postavke, ime „de Mascarenhas da Silva e Lencastre” "
 "biti će pokazano kao:\n"
 "       [de, Mascarenhas]-[da, Silva, e]-[,Lencastre]\n"
 "\n"
@@ -33350,7 +33400,7 @@ msgid ""
 "with Start / Step sequence."
 msgstr ""
 "Omogući prerasporedjelu ID oznaka\n"
-"sa sekvencama 'Pokreni' / 'Korak'."
+"sa sekvencama „Pokreni”/„Korak”."
 
 #: ../gramps/plugins/tool/reorderids.glade:1483
 msgid "Start"
@@ -33427,7 +33477,7 @@ msgstr "Svrstavanje događaja obitelji ..."
 
 #: ../gramps/plugins/tool/sortevents.py:165
 msgid "Tool Options"
-msgstr "Opcije alata"
+msgstr "Opcije za alat"
 
 #: ../gramps/plugins/tool/sortevents.py:168
 msgid "Select the people to sort"
@@ -34785,7 +34835,7 @@ msgid ""
 "with coordinates. You can change the markers color depending on place type. "
 "You can use filtering."
 msgstr ""
-"Desni-klik na kartu i odaberi 'pokaži sva mjesta', za prikaz svih poznatih "
+"Desni-klik na kartu i odaberi „pokaži sva mjesta”, za prikaz svih poznatih "
 "mjesta s koordinatama. Možete promijeniti boju oznake, ovisno o vrsti "
 "mjesta. Možete koristi filtriranje."
 
@@ -34795,14 +34845,14 @@ msgid ""
 "with coordinates. You can use the history to navigate on the map. You can "
 "change the markers color depending on place type. You can use filtering."
 msgstr ""
-"Desni-klik na kartu i odaberi 'pokaži sva mjesta', za prikaz svih poznatih "
+"Desni-klik na kartu i odaberi „pokaži sva mjesta”, za prikaz svih poznatih "
 "mjesta s koordinatama. Možete koristiti kronologiju za navigaciju na karti. "
 "Možete promijeniti boju oznake, ovisno o vrsti mjesta. Možete koristi "
 "filtriranje."
 
 #: ../gramps/plugins/view/geoplaces.py:401
 msgid "The place name in the status bar is disabled."
-msgstr "Ime mjesta u statusnoj traci je deaktivirano-"
+msgstr "Ime mjesta u statusnoj traci je deaktivirano."
 
 #: ../gramps/plugins/view/geoplaces.py:406
 #, python-format
@@ -35481,9 +35531,9 @@ msgstr "Prethodna"
 msgid "Next"
 msgstr "Sljedeća"
 
-#: ../gramps/plugins/webreport/basepage.py:2093
+#: ../gramps/plugins/webreport/basepage.py:2085
 msgid " [Click to Go]"
-msgstr " [Klik za izbornik \"Idi\"]"
+msgstr " [Klik za izbornik „Idi”]"
 
 #: ../gramps/plugins/webreport/basepage.py:2117
 msgid "Latter-Day Saints/ LDS Ordinance"
@@ -35754,7 +35804,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1624
 msgid "Html options"
-msgstr "Html postavke"
+msgstr "Html opcije"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1627
 #: ../gramps/plugins/webreport/webcal.py:1639
@@ -36039,9 +36089,9 @@ msgid "Johnson Family Tree"
 msgstr "Rodoslov obitelji Johnson"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1853
-#: ../gramps/plugins/webreport/webcal.py:1829
+#: ../gramps/plugins/webreport/webcal.py:1836
 msgid "Advanced Options"
-msgstr "Napredne postavke"
+msgstr "Napredne opcije"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1856
 #: ../gramps/plugins/webreport/webcal.py:1831
@@ -36156,7 +36206,7 @@ msgstr "Da li dodati statističke stranice"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1938
 msgid "Place Map Options"
-msgstr "Postavke karte mjesta"
+msgstr "Opcije za kartu mjesta"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1943
 msgid "Google"
@@ -36210,7 +36260,7 @@ msgstr "Oznake"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1976
 msgid "Google/ FamilyMap Option"
-msgstr "Postavke za Google/ obiteljsku kartu"
+msgstr "Opcije za Google/obiteljsku kartu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1981
 msgid ""
@@ -36566,9 +36616,9 @@ msgstr "Naslov kalendara"
 msgid "The title of the calendar"
 msgstr "Naslov za kalendar"
 
-#: ../gramps/plugins/webreport/webcal.py:1695
+#: ../gramps/plugins/webreport/webcal.py:1702
 msgid "Content Options"
-msgstr "Postavke sadržaja"
+msgstr "Opcije za sadržaj"
 
 #: ../gramps/plugins/webreport/webcal.py:1700
 msgid "Create multiple year calendars"
@@ -37011,7 +37061,6 @@ msgstr ""
 "\"GalleryTotal\">%(total_pages)d</strong>"
 
 #: ../data/tips.xml.in.h:29
-#, fuzzy
 msgid ""
 "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
 "Gramps. Requesting an enhancement can be done either through the gramps-"
@@ -37022,7 +37071,7 @@ msgstr ""
 "<b>Poboljšanje Grampsa</b><br/>Korisnike se podržava u nastojanju za "
 "poboljšavanjem i proširenjem Grampsa. Tražiti poboljšanja možete preko "
 "pretplatničkih listi gramps-users i gramps-devel ili stvaranjem zahtjeva za "
-"poboljšanjem na http://bugs.gramps-project.org (što je najbolji način)."
+"poboljšanjem na https://bugs.gramps-project.org (što je najbolji način)."
 
 #: ../data/tips.xml.in.h:46
 #, fuzzy
@@ -37555,17 +37604,21 @@ msgstr "Upravljač_medija"
 #~ msgid "Gramplet showing the locations of a place over time"
 #~ msgstr "Gramplet koji prikazuje citate o  mjestu"
 
-#~ msgid "Incomplete names"
-#~ msgstr "Nepotpuna imena"
+#: ../gramps/plugins/gramplet/statsgramplet.py:156
+msgid "Incomplete names"
+msgstr "Nepotpuna imena"
 
-#~ msgid "Individuals missing birth dates"
-#~ msgstr "Osobe bez datuma rođenja"
+#: ../gramps/plugins/gramplet/statsgramplet.py:160
+msgid "Individuals missing birth dates"
+msgstr "Pojedinci kojima nedostaje datum rođenja"
 
-#~ msgid "Disconnected individuals"
-#~ msgstr "Nepovezane osobe"
+#: ../gramps/plugins/gramplet/statsgramplet.py:164
+msgid "Disconnected individuals"
+msgstr "Nepovezani pojedinci"
 
-#~ msgid "Individuals with media objects"
-#~ msgstr "Osobe s multimedijskim objektima"
+#: ../gramps/plugins/gramplet/statsgramplet.py:181
+msgid "Individuals with media objects"
+msgstr "Pojedinci s medijskim objektima"
 
 #~ msgid "%(date)s, %(place)s"
 #~ msgstr "%(date)s i %(place)s"
@@ -41706,3 +41759,4 @@ msgstr "Upravljač_medija"
 
 #~ msgid "Name Format Editor"
 #~ msgstr "Uređivač formata imena"
+

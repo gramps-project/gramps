@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Gramps package.
 # Radek Malcic <malcic@atlas.cz>, 2004
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005
-# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2018
+# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2019
 #
 # Common terms and translations:
 #  ancestor        předek
@@ -37,8 +37,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-24 14:13+0100\n"
-"PO-Revision-Date: 2018-12-22 16:24+0100\n"
+"POT-Creation-Date: 2018-12-26 11:20-0600\n"
+"PO-Revision-Date: 2019-01-11 18:01+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -898,6 +898,15 @@ msgstr ""
 "<b>Vytváření genealogického webu</b><br/>Rodinný strom můžete jednoduše "
 "uložit jako webové stránky. Celou databázi, vybrané rodiny nebo jedince lze "
 "exportovat do kolekce stránek připravených k publikaci na webu."
+
+#: ../data/tips.xml.in.h:46
+msgid ""
+"<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
+"is to use the Gramps bug tracking system at https://gramps-project.org/bugs/"
+msgstr ""
+"<b>Hlášení chyb v Gramps</b><br/>Nejlepší způsob, jak nahlásit chybu v "
+"Gramps, je použít systém sledování chyb na stránce https://gramps-project."
+"org/bugs/"
 
 #: ../data/tips.xml.in.h:46
 msgid ""
@@ -3802,6 +3811,15 @@ msgstr "Různé filtry"
 #: ../gramps/plugins/view/geoperson.py:488
 msgid "No description"
 msgstr "Bez popisu"
+
+#. more references to a filter than expected
+#: ../gramps/gen/filters/rules/_rule.py:94
+msgid "The filter definition contains a loop."
+msgstr ""
+
+#: ../gramps/gen/filters/rules/_rule.py:95
+msgid "One rule references another which eventually references the first."
+msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:45
 msgid "Every citation"
@@ -18127,6 +18145,10 @@ msgstr "Zkopírovat vše"
 msgid "See data not in Filter"
 msgstr "Zobrazit data mimo filtr"
 
+#: ../gramps/gui/plug/report/_bookdialog.py:92
+msgid "Generate_Book_dialog"
+msgstr "Generate_Book_dialog"
+
 #: ../gramps/gui/plug/report/_bookdialog.py:166
 msgid "Available Books"
 msgstr "Dostupné knihy"
@@ -18450,6 +18472,10 @@ msgstr "výchozí"
 msgid "Document Styles"
 msgstr "Styly dokumentu"
 
+#: ../gramps/gui/plug/report/_styleeditor.py:108
+msgid "manual|Document_Styles_dialog"
+msgstr "Document_Styles_dialog"
+
 #: ../gramps/gui/plug/report/_styleeditor.py:140
 msgid "New Style"
 msgstr "Nový styl"
@@ -18475,6 +18501,10 @@ msgstr "Vyberte styl"
 #: ../gramps/gui/plug/report/_styleeditor.py:298
 msgid "Style editor"
 msgstr "Editor stylů"
+
+#: ../gramps/gui/plug/report/_styleeditor.py:241
+msgid "manual|Style_editor_dialog"
+msgstr "Style_editor_dialog"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:341
 #: ../gramps/gui/plug/report/_styleeditor.py:369
@@ -18597,6 +18627,10 @@ msgstr "Vybrat mediální objekt"
 msgid "manual|Select_Child_selector"
 msgstr "Select_Child_selector"
 
+#: ../gramps/gui/selectors/selectperson.py:70
+msgid "manual|Select_Person_selector"
+msgstr "Select_Person_selector"
+
 #: ../gramps/gui/selectors/selectperson.py:56
 msgid "manual|Select_Father_selector"
 msgstr "Select_Father_selector"
@@ -18621,9 +18655,17 @@ msgstr "Repositories"
 msgid "Select Repository"
 msgstr "Vybrat archiv"
 
+#: ../gramps/gui/selectors/selectrepository.py:75
+msgid "manual|Select_Repository_selector"
+msgstr "Select_Repository_selector"
+
 #: ../gramps/gui/selectors/selectsource.py:62
 msgid "Select Source"
 msgstr "Vybrat pramen"
+
+#: ../gramps/gui/selectors/selectsource.py:76
+msgid "manual|Select_Source_selector"
+msgstr "Select_Source_selector"
 
 #: ../gramps/gui/spell.py:92
 msgid "Off"
@@ -19599,6 +19641,10 @@ msgstr ""
 #: ../gramps/gui/widgets/progressdialog.py:298
 msgid "Progress Information"
 msgstr "Informace o průběhu"
+
+#: ../gramps/gui/widgets/reorderfam.py:63
+msgid "manual|Reorder_Relationships_dialog"
+msgstr "Reorder_Relationships_dialog"
 
 #: ../gramps/gui/widgets/reorderfam.py:79
 msgid "Reorder Relationships"
@@ -21789,6 +21835,10 @@ msgstr "EMAIL"
 msgid "WWW"
 msgstr "WWW"
 
+#: ../gramps/plugins/export/exportgedcom.py:1438
+msgid "Writing media"
+msgstr "Zapisují se média"
+
 #: ../gramps/plugins/export/exportgedcom.py:1570
 msgid "GEDCOM Export failed"
 msgstr "Export GEDCOM selhal"
@@ -23415,6 +23465,10 @@ msgstr "Upravit vybranou poznámku k úkolu"
 #: ../gramps/plugins/gramplet/todogramplet.py:72
 msgid "Add a new To Do note"
 msgstr "Přidat novou poznámku k úkolu"
+
+#: ../gramps/plugins/gramplet/todo.py:201
+msgid "First select the object to which you want to attach a note"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/todogramplet.py:149
 msgid "Unattached"
@@ -32649,6 +32703,10 @@ msgstr "Správce médií..."
 msgid "Media Manager"
 msgstr "Správce médií"
 
+#: ../gramps/plugins/tool/mediamanager.py:91
+msgid "Help"
+msgstr "Nápověda"
+
 #: ../gramps/plugins/tool/mediamanager.py:97
 #: ../gramps/plugins/webreport/basepage.py:1483
 #: ../gramps/plugins/webreport/basepage.py:1606
@@ -40080,3 +40138,4 @@ msgstr "Správce médií"
 
 #~ msgid "Password:"
 #~ msgstr "Heslo:"
+

@@ -321,9 +321,6 @@ class MergePerson(ManagedWindow):
         else:
             phoenix = self.pr2
             titanic = self.pr1
-            # Add second handle to history so that when merge is complete,
-            # phoenix is the selected row.
-            self.uistate.set_active(phoenix.get_handle(), 'Person')
 
         if self.get_widget("name_btn1").get_active() ^ use_handle1:
             swapname = phoenix.get_primary_name()
@@ -347,6 +344,9 @@ class MergePerson(ManagedWindow):
                       "handle.  We recommend that you go to Relationships "
                       "view and see if additional manual merging of families "
                       "is necessary."), parent=self.window)
+            # Add the selected handle to history so that when merge is complete,
+            # phoenix is the selected row.
+            self.uistate.set_active(phoenix.get_handle(), 'Person')
         except MergeError as err:
             ErrorDialog(_("Cannot merge people"), str(err),
                         parent=self.window)

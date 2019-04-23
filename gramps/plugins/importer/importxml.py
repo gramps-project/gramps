@@ -1149,6 +1149,8 @@ class GrampsParser(UpdateCallback):
         self.placeobj.title = attrs.get('title', '')
         self.locations = 0
         self.update(self.p.CurrentLineNumber)
+        if self.default_tag:
+            self.placeobj.add_tag(self.default_tag.handle)
         return self.placeobj
 
     def start_location(self, attrs):
@@ -1276,6 +1278,8 @@ class GrampsParser(UpdateCallback):
             self.event.private = bool(attrs.get("priv"))
             self.event.change = int(attrs.get('change', self.change))
             self.info.add('new-object', EVENT_KEY, self.event)
+        if self.default_tag:
+            self.event.add_tag(self.default_tag.handle)
         return self.event
 
     def start_eventref(self, attrs):
@@ -1754,7 +1758,7 @@ class GrampsParser(UpdateCallback):
                             ' with "%(parent)s", did not change this grouping to "%(value)s".') % {
                             'key' : key, 'parent' : present, 'value' : value }
                     self.user.warn(_("Gramps ignored a name grouping"), msg)
-            else:
+            elif value != 'None':  # None test fixes file corrupted by 11011
                 self.db.set_name_group_mapping(key, value)
 
     def start_last(self, attrs):
@@ -2089,6 +2093,8 @@ class GrampsParser(UpdateCallback):
                 self.conf if self.__xml_version >= (1, 5, 1)
                 else 0 ) # See bug# 7125
         self.info.add('new-object', CITATION_KEY, self.citation)
+        if self.default_tag:
+            self.citation.add_tag(self.default_tag.handle)
         return self.citation
 
     def start_sourceref(self, attrs):
@@ -2143,6 +2149,8 @@ class GrampsParser(UpdateCallback):
         self.source.private = bool(attrs.get("priv"))
         self.source.change = int(attrs.get('change', self.change))
         self.info.add('new-object', SOURCE_KEY, self.source)
+        if self.default_tag:
+            self.source.add_tag(self.default_tag.handle)
         return self.source
 
     def start_reporef(self, attrs):
@@ -2261,6 +2269,8 @@ class GrampsParser(UpdateCallback):
         self.repo.private = bool(attrs.get("priv"))
         self.repo.change = int(attrs.get('change', self.change))
         self.info.add('new-object', REPOSITORY_KEY, self.repo)
+        if self.default_tag:
+            self.repo.add_tag(self.default_tag.handle)
         return self.repo
 
     def stop_people(self, *tag):

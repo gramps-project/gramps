@@ -197,9 +197,6 @@ class MergePlace(ManagedWindow):
         else:
             phoenix = self.pl2
             titanic = self.pl1
-            # Add second handle to history so that when merge is complete,
-            # phoenix is the selected row.
-            self.uistate.set_active(phoenix.get_handle(), 'Place')
 
         if self.get_widget("title_btn1").get_active() ^ use_handle1:
             phoenix.set_title(titanic.get_title())
@@ -218,6 +215,9 @@ class MergePlace(ManagedWindow):
 
         query = MergePlaceQuery(self.dbstate, phoenix, titanic)
         query.execute()
+        # Add the selected handle to history so that when merge is complete,
+        # phoenix is the selected row.
+        self.uistate.set_active(phoenix.get_handle(), 'Place')
 
         if self.callback:
             self.callback()

@@ -51,11 +51,18 @@ from __future__ import print_function
 
 import os
 import sys
+import shutil
 from argparse import ArgumentParser
 
 # Windows OS
 
-if sys.platform == 'win32':
+if sys.platform in ['linux', 'linux2', 'darwin', 'cygwin'] or shutil.which('msgmerge'):
+    msgmergeCmd = 'msgmerge'
+    msgfmtCmd = 'msgfmt'
+    msgattribCmd = 'msgattrib'
+    xgettextCmd = 'xgettext'
+    pythonCmd = os.path.join(sys.prefix, 'bin', 'python3')
+elif sys.platform == 'win32':
     # GetText Win 32 obtained from http://gnuwin32.sourceforge.net/packages/gettext.htm
     # ....\gettext\bin\msgmerge.exe needs to be on the path
     msgmergeCmd = os.path.join('C:', 'Program Files(x86)', 'gettext', 'bin', 'msgmerge.exe')
@@ -163,7 +170,7 @@ def TipsParse(filename, mark):
     "Editor."
     '''
 
-    with open('../data/tips.xml.in.h', 'w') as tips:
+    with open('../data/tips.xml.in.h', 'w', encoding='utf-8') as tips:
         marklist = root.iter(mark)
         for key in marklist:
             tip = ElementTree.tostring(key, encoding="UTF-8", method="xml")

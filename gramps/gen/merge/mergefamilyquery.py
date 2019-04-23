@@ -133,7 +133,8 @@ class MergeFamilyQuery:
         old_handle = self.titanic.get_handle()
 
         with DbTxn(_('Merge Family'), self.database) as trans:
-
+            # commit family in case Phoenix GrampsID, relationship has changed
+            self.database.commit_family(self.phoenix, trans)
             if self.phoenix_fh != self.titanic_fh:
                 if self.phoenix_fh:
                     phoenix_father = self.database.get_person_from_handle(
@@ -161,6 +162,8 @@ class MergeFamilyQuery:
                     titanic_mother = None
                 self.merge_person(phoenix_mother, titanic_mother,
                                   'mother', trans)
+            # Reload families from db in case the merge_person above changed
+            # them
             self.phoenix = self.database.get_family_from_handle(new_handle)
             self.titanic = self.database.get_family_from_handle(old_handle)
 
@@ -174,8 +177,6 @@ class MergeFamilyQuery:
                     self.phoenix_mh)
             else:
                 phoenix_mother = None
-            self.phoenix = self.database.get_family_from_handle(new_handle)
-            self.titanic = self.database.get_family_from_handle(old_handle)
             self.phoenix.merge(self.titanic)
             self.database.commit_family(self.phoenix, trans)
             for childref in self.titanic.get_child_ref_list():

@@ -54,11 +54,6 @@ class PlaceFormat:
         self.street = street
         self.reverse = reverse
 
-    def to_xml(self):
-        return ('  <format name="%s" levels="%s" language="%s" '
-                'street="%s" reverse="%s"/>\n' %
-                (self.name, self.levels, self.language,
-                 self.street, self.reverse))
 
 #-------------------------------------------------------------------------
 #
@@ -71,10 +66,13 @@ class PlaceDisplay:
         self.place_formats = []
         self.default_format = config.get('preferences.place-format')
         if os.path.exists(PLACE_FORMATS):
-            self.load_formats()
-        else:
-            pf = PlaceFormat(_('Full'), ':', '', 0, False)
-            self.place_formats.append(pf)
+            try:
+                self.load_formats()
+                return
+            except BaseException:
+                print(_("Error in '%s' file: cannot load.") % PLACE_FORMATS)
+        pf = PlaceFormat(_('Full'), ':', '', 0, False)
+        self.place_formats.append(pf)
 
     def display_event(self, db, event, fmt=-1):
         if not event:
@@ -164,12 +162,20 @@ class PlaceDisplay:
         dom.unlink()
 
     def save_formats(self):
-        with open(PLACE_FORMATS, 'w') as fd:
-            fd.write('<?xml version="1.0" encoding="utf-8"?>\n')
-            fd.write('<place_formats>\n')
-            for fmt in self.place_formats:
-                fd.write(fmt.to_xml())
-            fd.write('</place_formats>\n')
+        doc = xml.dom.minidom.Document()
+        place_formats = doc.createElement('place_formats')
+        doc.appendChild(place_formats)
+        for fmt in self.place_formats:
+            node = doc.createElement('format')
+            place_formats.appendChild(node)
+            node.setAttribute('name', fmt.name)
+            node.setAttribute('levels', fmt.levels)
+            node.setAttribute('language', fmt.language)
+            node.setAttribute('street', str(fmt.street))
+            node.setAttribute('reverse', str(fmt.reverse))
+        with open(PLACE_FORMATS, 'w', encoding='utf-8') as f_d:
+            doc.writexml(f_d, addindent='  ', newl='\n', encoding='utf-8')
+
 
 def _get_offset(value, index):
     if index is not None and value.startswith('p'):

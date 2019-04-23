@@ -586,7 +586,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         assert not skip
         if dfilter:
             cdb = CacheProxyDb(self.db)
-            for handle in dfilter.apply(cdb,
+            for handle in dfilter.apply(cdb, tree=True,
                                         user=User(parent=self.uistate.window)):
                 status_ppl.heartbeat()
                 data = data_map(handle)

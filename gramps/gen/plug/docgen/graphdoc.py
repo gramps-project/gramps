@@ -991,8 +991,9 @@ class GVPdfGsDoc(GVDocBase):
             tmp_pdf_piece = "%s_%d_%d.pdf" % (tmp_ps, __x, __y)
             list_of_pieces.append(tmp_pdf_piece)
             # Generate Ghostscript code
-            command = '%s -q -dBATCH -dNOPAUSE -dSAFER -g%dx%d '\
-                '-sOutputFile="%s" -r72 -sDEVICE=pdfwrite '\
+            command = '%s -q -dBATCH -dNOPAUSE -dSAFER '\
+                '-dDEVICEWIDTHPOINTS=%d -dDEVICEHEIGHTPOINTS=%d '\
+                '-sOutputFile="%s" -sDEVICE=pdfwrite '\
                 '-c "<</.HWMargins [%d %d %d %d] /PageOffset [%d %d]>> '\
                 'setpagedevice" -f "%s"' % (
                     _GS_CMD, width_pt + 10, height_pt + 10, tmp_pdf_piece,
@@ -1002,7 +1003,7 @@ class GVPdfGsDoc(GVDocBase):
             os.system(command)
         # Merge pieces to single multipage PDF ;
         command = '%s -q -dBATCH -dNOPAUSE '\
-            '-sOUTPUTFILE="%s" -r72 -sDEVICE=pdfwrite %s '\
+            '-sOUTPUTFILE="%s" -sDEVICE=pdfwrite %s '\
             % (_GS_CMD, self._filename, ' '.join(list_of_pieces))
         os.system(command)
 

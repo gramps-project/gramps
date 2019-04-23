@@ -269,9 +269,7 @@ class EditPerson(EditPrimary):
         self._add_db_signal('family-delete', self.family_change)
         self._add_db_signal('family-update', self.family_change)
         self._add_db_signal('family-add', self.family_change)
-        self._add_db_signal('event-update', self.event_updated)
         self._add_db_signal('event-rebuild', self.event_updated)
-        self._add_db_signal('event-delete', self.event_updated)
 
     def family_change(self, handle_list=[]):
         """

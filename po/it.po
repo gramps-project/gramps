@@ -1,6 +1,6 @@
 # Italian translation for GRAMPS
 # This file is distributed under the same license as the Gramps package.
-# Copyright (C) 2001-2013 the Gramps Project
+# Copyright (C) 2001-2019 the Gramps Project
 #
 # Common and noteworthy translations:
 #
@@ -57,13 +57,13 @@
 #
 # Marco Molteni <molter@gufi.org>, 2001-2002;.
 # Lorenzo Cappelletti <lorenzo.cappelletti@email.it>, 2003.
-# Luigi Toscano <luigi.toscano@tiscali.it>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018.
+# Luigi Toscano <luigi.toscano@tiscali.it>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-20 09:31-0500\n"
-"PO-Revision-Date: 2018-07-15 16:38+0100\n"
+"POT-Creation-Date: 2018-12-26 11:20-0600\n"
+"PO-Revision-Date: 2019-02-10 16:07+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
@@ -3733,6 +3733,16 @@ msgstr "Altri filtri"
 #: ../gramps/plugins/view/geoperson.py:488
 msgid "No description"
 msgstr "Nessuna descrizione"
+
+#. more references to a filter than expected
+#: ../gramps/gen/filters/rules/_rule.py:94
+#, fuzzy
+msgid "The filter definition contains a loop."
+msgstr "Definizione del formato non corretta"
+
+#: ../gramps/gen/filters/rules/_rule.py:95
+msgid "One rule references another which eventually references the first."
+msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:45
 msgid "Every citation"
@@ -9599,7 +9609,7 @@ msgstr "Sopra"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:69
 msgid "Below"
-msgstr "Sotto:"
+msgstr "Sotto"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:70
 msgid "Not shown"
@@ -9755,7 +9765,7 @@ msgstr "Stile dei bordi"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:187
 msgid "Style of the edges between nodes."
-msgstr "Stile dei bordi tra i noi"
+msgstr "Stile dei bordi tra i nodi."
 
 #: ../gramps/gen/plug/docgen/treedoc.py:190
 msgid "Level distance"
@@ -18123,6 +18133,11 @@ msgstr "Copia tutto"
 msgid "See data not in Filter"
 msgstr "Visualizzare dati non nel filtro"
 
+#: ../gramps/gui/plug/report/_bookdialog.py:92
+#, fuzzy
+msgid "Generate_Book_dialog"
+msgstr "Genera libro"
+
 #: ../gramps/gui/plug/report/_bookdialog.py:166
 msgid "Available Books"
 msgstr "Libri disponibili"
@@ -18449,6 +18464,11 @@ msgstr "predefinito"
 msgid "Document Styles"
 msgstr "Stili documenti"
 
+#: ../gramps/gui/plug/report/_styleeditor.py:108
+#, fuzzy
+msgid "manual|Document_Styles_dialog"
+msgstr "Finestra_nuova_fonti"
+
 #: ../gramps/gui/plug/report/_styleeditor.py:140
 msgid "New Style"
 msgstr "Nuovo stile"
@@ -18474,6 +18494,11 @@ msgstr "Seleziona uno stile"
 #: ../gramps/gui/plug/report/_styleeditor.py:298
 msgid "Style editor"
 msgstr "Editor stili"
+
+#: ../gramps/gui/plug/report/_styleeditor.py:241
+#, fuzzy
+msgid "manual|Style_editor_dialog"
+msgstr "Editor nomi di luoghi"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:341
 #: ../gramps/gui/plug/report/_styleeditor.py:369
@@ -18605,6 +18630,11 @@ msgstr "Seleziona oggetto multimediale"
 msgid "manual|Select_Child_selector"
 msgstr ""
 
+#: ../gramps/gui/selectors/selectperson.py:70
+#, fuzzy
+msgid "manual|Select_Person_selector"
+msgstr "Fusione_luoghi"
+
 #: ../gramps/gui/selectors/selectperson.py:56
 msgid "manual|Select_Father_selector"
 msgstr ""
@@ -18631,9 +18661,19 @@ msgstr "Depositi"
 msgid "Select Repository"
 msgstr "Seleziona deposito"
 
+#: ../gramps/gui/selectors/selectrepository.py:75
+#, fuzzy
+msgid "manual|Select_Repository_selector"
+msgstr "Fusione_note"
+
 #: ../gramps/gui/selectors/selectsource.py:62
 msgid "Select Source"
 msgstr "Seleziona fonte"
+
+#: ../gramps/gui/selectors/selectsource.py:76
+#, fuzzy
+msgid "manual|Select_Source_selector"
+msgstr "Fusione_note"
 
 #: ../gramps/gui/spell.py:92
 msgid "Off"
@@ -19604,6 +19644,11 @@ msgstr ""
 #: ../gramps/gui/widgets/progressdialog.py:298
 msgid "Progress Information"
 msgstr "Informazioni di avanzamento"
+
+#: ../gramps/gui/widgets/reorderfam.py:63
+#, fuzzy
+msgid "manual|Reorder_Relationships_dialog"
+msgstr "Riordina relazioni"
 
 #: ../gramps/gui/widgets/reorderfam.py:79
 msgid "Reorder Relationships"
@@ -21715,6 +21760,11 @@ msgstr "EMAIL"
 msgid "WWW"
 msgstr "WWW"
 
+#: ../gramps/plugins/export/exportgedcom.py:1438
+#, fuzzy
+msgid "Writing media"
+msgstr "Scrittura dati note"
+
 #: ../gramps/plugins/export/exportgedcom.py:1570
 msgid "GEDCOM Export failed"
 msgstr "Esportazione GEDCOM non riuscita"
@@ -23374,6 +23424,11 @@ msgstr "Modifica la nota selezionata"
 msgid "Add a new To Do note"
 msgstr "Aggiunge una nuova nota"
 
+#: ../gramps/plugins/gramplet/todo.py:201
+#, fuzzy
+msgid "First select the object to which you want to attach a note"
+msgstr "Selezionare il luogo per il quale mostrare il fumetto informativo."
+
 #: ../gramps/plugins/gramplet/todogramplet.py:149
 msgid "Unattached"
 msgstr "Non allegato"
@@ -23389,6 +23444,9 @@ msgid ""
 "powerful features.\n"
 "\n"
 msgstr ""
+"Gramps è un software progettato per la ricerca genealogica. Seppure simile "
+"ad altri programmi genealogici, Gramps offre alcune funzioni uniche e "
+"potenti.\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:105
 msgid "Links"
@@ -23427,6 +23485,11 @@ msgid ""
 "powerful, yet easy to use.\n"
 "\n"
 msgstr ""
+"Gramps è stato creato da genealogisti per genealogisti, organizzati nel "
+"progetto Gramps. Gramps è un software Open Source; questo vuol dire che "
+"siete liberi di copiarlo e distribuirlo a chiunque desideriate. È sviluppato "
+"e mantenuto da una squadra di volontari di tutto il mondo che ha per "
+"obiettivo quello di rendere Gramps potente, ma comunque semplice da usare.\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:124
 msgid "Getting Started"
@@ -23440,6 +23503,11 @@ msgid ""
 "For more details, please read the information at the links above\n"
 "\n"
 msgstr ""
+"La prima cosa da fare è creare un nuovo albero genealogico. Per creare un "
+"nuovo albero genealogico (talvolta chiamato database) selezionare «Alberi "
+"genealogici» dal menu, scegliere «Gestisci alberi genealogici», premere "
+"«Nuovo» e dare un nome al database. Per maggiori informazioni consultare le "
+"informazioni raggiungibili dai collegamenti segnalati precedentemente\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:130
 msgid "Dashboard View"
@@ -23456,6 +23524,17 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet on this page, "
 "and detach the gramplet to float above Gramps."
 msgstr ""
+"Questa è la vista del «cruscotto», dove è possibile aggiungere ulteriori "
+"gramplet. È possibile aggiungere ulteriori gramplet ad ogni vista "
+"aggiungendo una barra laterale o una barra in basso, tramite un clic del "
+"pulsante destro alla destra della scheda.\n"
+"\n"
+"Si possono aggiungere ulteriori colone con un clic sull'icona di "
+"configurazione nella barra degli strumenti, mentre un clic destro sullo "
+"sfondo permette di aggiungere ulteriori gramplet. È anche possibile "
+"trascinare il pulsante delle proprietà di una gramplet per cambiarne la "
+"posizione nella pagina, e staccare la gramplet in una finestra separata da "
+"quella di Gramps."
 
 #. Minimum number of lines we want to see. Further lines with the same
 #. distance to the main person will be added on top of this.
@@ -33712,7 +33791,7 @@ msgstr "Ricostruisce le mappe dei riferimenti"
 
 #: ../gramps/plugins/tool/tools.gpr.py:309
 msgid "Rebuild Gender Statistics"
-msgstr "Ricostrusci statistiche sui sessi"
+msgstr "Ricostruisci statistiche sui sessi"
 
 #: ../gramps/plugins/tool/tools.gpr.py:310
 msgid "Rebuilds gender statistics for name gender guessing..."
@@ -36305,7 +36384,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:2016
 #, fuzzy
 msgid "Do we include the web calendar ?"
-msgstr "Il titolo del calendario"
+msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2026
 msgid "Where do you place your web site ? default = /WEBCAL"
@@ -43887,3 +43966,4 @@ msgstr "Gestore_oggetti_multimediali"
 #~ "Per le segnalazioni di bug si deve usare https://gramps-project.org/bugs/ "
 #~ "per le viste ufficiali, altrimenti bisogna contattare l'autore della "
 #~ "vista (%(firstauthoremail)s). "
+

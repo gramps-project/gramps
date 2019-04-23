@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-29 06:08+0200\n"
-"PO-Revision-Date: 2018-11-29 06:48+0200\n"
+"POT-Creation-Date: 2019-01-02 11:13+0200\n"
+"PO-Revision-Date: 2019-01-05 07:31+0200\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -19292,6 +19292,11 @@ msgstr "Kopioi kaikki"
 msgid "See data not in Filter"
 msgstr "Valitse tiedot joihin suodin on kohdistunut"
 
+# 20181220 OK
+#: ../gramps/gui/plug/report/_bookdialog.py:92
+msgid "Generate_Book_dialog"
+msgstr "Tuota_kirja"
+
 #: ../gramps/gui/plug/report/_bookdialog.py:166
 msgid "Available Books"
 msgstr "Valmiit kirjamallit"
@@ -19630,6 +19635,11 @@ msgstr "oletus"
 msgid "Document Styles"
 msgstr "Asiakirjatyylit"
 
+# 20181220 ok
+#: ../gramps/gui/plug/report/_styleeditor.py:108
+msgid "manual|Document_Styles_dialog"
+msgstr "Asiakirjatyylit"
+
 #: ../gramps/gui/plug/report/_styleeditor.py:140
 msgid "New Style"
 msgstr "Uusi tyyli"
@@ -19653,10 +19663,16 @@ msgstr "Puuttuvat tiedot"
 msgid "Select a style"
 msgstr "Valitse tyyli"
 
-#: ../gramps/gui/plug/report/_styleeditor.py:226
-#: ../gramps/gui/plug/report/_styleeditor.py:298
+# 20181220
+#: ../gramps/gui/plug/report/_styleeditor.py:233
+#: ../gramps/gui/plug/report/_styleeditor.py:308
 msgid "Style editor"
-msgstr "Tyyli muokkain"
+msgstr "Tyylimuokkain"
+
+# 20181220 ok
+#: ../gramps/gui/plug/report/_styleeditor.py:241
+msgid "manual|Style_editor_dialog"
+msgstr "Tyylimuokkain"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:341
 #: ../gramps/gui/plug/report/_styleeditor.py:369
@@ -19807,6 +19823,11 @@ msgstr "Valitse mediatiedosto"
 msgid "manual|Select_Child_selector"
 msgstr "Valitse_lapsi_ikkuna"
 
+# 20190104
+#: ../gramps/gui/selectors/selectperson.py:70
+msgid "manual|Select_Person_selector"
+msgstr "Valitse_henkil.C3.B6"
+
 # WIKI_HELP_SEC osa1
 #: ../gramps/gui/selectors/selectperson.py:56
 #: ../gramps/gui/selectors/selectperson.py:64
@@ -19840,6 +19861,11 @@ msgstr "Arkistot"
 #: ../gramps/gui/selectors/selectrepository.py:59
 msgid "Select Repository"
 msgstr "Valitse arkisto"
+
+# 20190104
+#: ../gramps/gui/selectors/selectrepository.py:75
+msgid "manual|Select_Repository_selector"
+msgstr "Valitse_arkisto"
 
 #: ../gramps/gui/selectors/selectsource.py:62
 #: ../gramps/gui/selectors/selectsource.py:59
@@ -20866,6 +20892,11 @@ msgstr ""
 #: ../gramps/gui/widgets/progressdialog.py:298
 msgid "Progress Information"
 msgstr "Edistymistietoja"
+
+# 20181220
+#: ../gramps/gui/widgets/reorderfam.py:63
+msgid "manual|Reorder_Relationships_dialog"
+msgstr "Järjestä_suhteet_uudelleen"
 
 #: ../gramps/gui/widgets/reorderfam.py:79
 msgid "Reorder Relationships"
@@ -34633,6 +34664,11 @@ msgstr "Median_hallinta..."
 msgid "Media Manager"
 msgstr "Medianhallinta"
 
+# 20181220
+#: ../gramps/plugins/tool/mediamanager.py:91
+msgid "Help"
+msgstr "_Ohjeet"
+
 #: ../gramps/plugins/tool/mediamanager.py:97
 #: ../gramps/plugins/webreport/basepage.py:1483
 #: ../gramps/plugins/webreport/basepage.py:1606
@@ -39842,3 +39878,4 @@ msgstr ""
 
 #~ msgid " "
 #~ msgstr " "
+

@@ -159,9 +159,6 @@ class MergeNote(ManagedWindow):
         else:
             phoenix = self.no2
             titanic = self.no1
-            # Add second handle to history so that when merge is complete,
-            # phoenix is the selected row.
-            self.uistate.set_active(phoenix.get_handle(), 'Note')
 
         if self.get_widget("text_btn1").get_active() ^ use_handle1:
             phoenix.set_styledtext(titanic.get_styledtext())
@@ -174,4 +171,7 @@ class MergeNote(ManagedWindow):
 
         query = MergeNoteQuery(self.dbstate, phoenix, titanic)
         query.execute()
+        # Add the selected handle to history so that when merge is complete,
+        # phoenix is the selected row.
+        self.uistate.set_active(phoenix.get_handle(), 'Note')
         self.close()

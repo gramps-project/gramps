@@ -1,13 +1,13 @@
 # Slovenian translation for Gramps
 # This file is distributed under the same license as the Gramps package.
 # Copyright (c) 2007 gramps-project
-# Bernard Banko <beernarrd (at) gmail.com>, 2007-2017.
+# Bernard Banko <beernarrd at gmail.com>, 2007-2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-20 09:31-0500\n"
-"PO-Revision-Date: 2017-08-29 13:26+0200\n"
+"POT-Creation-Date: 2018-12-26 11:20-0600\n"
+"PO-Revision-Date: 2019-02-24 22:16+0200\n"
 "Last-Translator: Bernard Banko <beernarrd at gmail.com>\n"
 "Language-Team: lugos.si\n"
 "Language: sl\n"
@@ -3765,6 +3765,15 @@ msgstr "Razni filtri"
 #: ../gramps/plugins/view/geoperson.py:488
 msgid "No description"
 msgstr "Brez opisa"
+
+#. more references to a filter than expected
+#: ../gramps/gen/filters/rules/_rule.py:94
+msgid "The filter definition contains a loop."
+msgstr "Filter vsebuje samega sebe."
+
+#: ../gramps/gen/filters/rules/_rule.py:95
+msgid "One rule references another which eventually references the first."
+msgstr "Pravilo nanaša na pravilo, ki že vsebuje prvega."
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:45
 msgid "Every citation"
@@ -18143,6 +18152,10 @@ msgstr "Kopiraj vse"
 msgid "See data not in Filter"
 msgstr "Prikaži podatke zunaj filtra"
 
+#: ../gramps/gui/plug/report/_bookdialog.py:92
+msgid "Generate_Book_dialog"
+msgstr "Pogovorno_okno_Izdelaj_knjigo"
+
 #: ../gramps/gui/plug/report/_bookdialog.py:166
 msgid "Available Books"
 msgstr "Knjige na voljo"
@@ -18468,6 +18481,10 @@ msgstr "privzeto"
 msgid "Document Styles"
 msgstr "Slogi dokumentov"
 
+#: ../gramps/gui/plug/report/_styleeditor.py:108
+msgid "manual|Document_Styles_dialog"
+msgstr "Pogovorno_okno_Določi_sloge"
+
 #: ../gramps/gui/plug/report/_styleeditor.py:140
 msgid "New Style"
 msgstr "Nov slog"
@@ -18493,6 +18510,10 @@ msgstr "Izberi slog"
 #: ../gramps/gui/plug/report/_styleeditor.py:298
 msgid "Style editor"
 msgstr "Urejevalnik slogov"
+
+#: ../gramps/gui/plug/report/_styleeditor.py:241
+msgid "manual|Style_editor_dialog"
+msgstr "Pogovorno_okno_Urejevalnik_slogov"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:341
 #: ../gramps/gui/plug/report/_styleeditor.py:369
@@ -18618,6 +18639,10 @@ msgstr "Izberi predmet"
 msgid "manual|Select_Child_selector"
 msgstr "Izbor_otroka"
 
+#: ../gramps/gui/selectors/selectperson.py:70
+msgid "manual|Select_Person_selector"
+msgstr "Izbirnik_Izbor_kraja"
+
 #: ../gramps/gui/selectors/selectperson.py:56
 msgid "manual|Select_Father_selector"
 msgstr "Izbor_očeta"
@@ -18642,9 +18667,17 @@ msgstr "Nahajališča"
 msgid "Select Repository"
 msgstr "Izberi nahajališče"
 
+#: ../gramps/gui/selectors/selectrepository.py:75
+msgid "manual|Select_Repository_selector"
+msgstr "Izbirnik_Izbor_matere"
+
 #: ../gramps/gui/selectors/selectsource.py:62
 msgid "Select Source"
 msgstr "Izberi vir"
+
+#: ../gramps/gui/selectors/selectsource.py:76
+msgid "manual|Select_Source_selector"
+msgstr "Izbirnik_Izbor_opombe"
 
 #: ../gramps/gui/spell.py:92
 msgid "Off"
@@ -19619,6 +19652,10 @@ msgstr ""
 #: ../gramps/gui/widgets/progressdialog.py:298
 msgid "Progress Information"
 msgstr "Podatki o napredovanju"
+
+#: ../gramps/gui/widgets/reorderfam.py:63
+msgid "manual|Reorder_Relationships_dialog"
+msgstr "Pogovorno_okno_Preuredi_sorodstva"
 
 #: ../gramps/gui/widgets/reorderfam.py:79
 msgid "Reorder Relationships"
@@ -21818,6 +21855,11 @@ msgstr "EMAIL"
 msgid "WWW"
 msgstr "WWW"
 
+#: ../gramps/plugins/export/exportgedcom.py:1438
+#, fuzzy
+msgid "Writing media"
+msgstr "Zapisovanje predmetov"
+
 #: ../gramps/plugins/export/exportgedcom.py:1570
 msgid "GEDCOM Export failed"
 msgstr "Izvoz GEDCOM ni bil uspešen"
@@ -22951,12 +22993,12 @@ msgstr "Pripomoček, ki zagotavlja filter za opombe"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1138
 #: ../gramps/plugins/textreport/recordsreport.py:118
 msgid "Records"
-msgstr "Zapisi"
+msgstr "Rekordi"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1128
 #: ../gramps/plugins/textreport/textplugins.gpr.py:416
 msgid "Shows some interesting records about people and families"
-msgstr "Prikaže nekaj zanimivih zapisov o ljudeh in družinah"
+msgstr "Prikaže nekaj zanimivih rekordnih podatkov o ljudeh in družinah"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1143
 msgid "Person To Do"
@@ -23370,6 +23412,18 @@ msgstr "Število oseb"
 msgid "Individuals with unknown gender"
 msgstr "Osebe neznanega spola"
 
+#: ../gramps/plugins/gramplet/statsgramplet.py:156
+msgid "Incomplete names"
+msgstr "Nepopolna imena"
+
+#: ../gramps/plugins/gramplet/statsgramplet.py:160
+msgid "Individuals missing birth dates"
+msgstr "Osebe z manjkajočimi datumi rojstva"
+
+#: ../gramps/plugins/gramplet/statsgramplet.py:164
+msgid "Disconnected individuals"
+msgstr "Nepovezane osebe"
+
 #: ../gramps/plugins/gramplet/statsgramplet.py:115
 #: ../gramps/plugins/textreport/summary.py:211
 #: ../gramps/plugins/webreport/statistics.py:129
@@ -23387,6 +23441,10 @@ msgstr "Edinstveni priimki"
 #: ../gramps/plugins/webreport/statistics.py:136
 msgid "Media Objects"
 msgstr "Zunanji predmeti"
+
+#: ../gramps/plugins/gramplet/statsgramplet.py:181
+msgid "Individuals with media objects"
+msgstr "Osebe z zunajimi predmeti"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:128
 #: ../gramps/plugins/webreport/statistics.py:138
@@ -23460,6 +23518,10 @@ msgstr "Uredi izbrano opombo Narediti"
 #: ../gramps/plugins/gramplet/todogramplet.py:72
 msgid "Add a new To Do note"
 msgstr "Dodaj novo opombo Narediti"
+
+#: ../gramps/plugins/gramplet/todo.py:201
+msgid "First select the object to which you want to attach a note"
+msgstr "Najprej izberite predmet, ki bi mu radi pripeli opombo"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:149
 msgid "Unattached"
@@ -31911,7 +31973,7 @@ msgstr "Ustvari abecedno kazalo za knjižna poročila."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:415
 msgid "Records Report"
-msgstr "Poročilo o zapisih"
+msgstr "Poročilo o rekordih"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:437
 msgid "Note Link Report"
@@ -32856,6 +32918,10 @@ msgstr "Upravljalnik_zunanjih_predmetov..."
 #: ../gramps/plugins/tool/tools.gpr.py:176
 msgid "Media Manager"
 msgstr "Upravljalnik zunanjih predmetov"
+
+#: ../gramps/plugins/tool/mediamanager.py:91
+msgid "Help"
+msgstr "Pomoč"
 
 #: ../gramps/plugins/tool/mediamanager.py:97
 #: ../gramps/plugins/webreport/basepage.py:1483
@@ -37191,3 +37257,4 @@ msgstr "Upravljalnik_zunanjih_predmetov"
 
 #~ msgid "Alphabet Menu: %s"
 #~ msgstr "Abecedni meni: %s"
+

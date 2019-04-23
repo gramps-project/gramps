@@ -20,39 +20,29 @@
 # Jens Arvidsson <jya@sverige.nu>, 2002-2005.
 # Stefan Björk <betula@users.sourceforge.net>, 2005-2006.
 # Peter Landgren <peter.talken@telia.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
-# Pär Ekholm <par.ekholm@pekholm.se>, 2018.
+# Pär Ekholm <par.ekholm@pekholm.se>, 2018, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-24 14:13+0100\n"
-"PO-Revision-Date: 2018-11-15 18:11+0100\n"
+"POT-Creation-Date: 2018-12-26 11:20-0600\n"
+"PO-Revision-Date: 2019-01-02 22:39+0100\n"
+"Last-Translator: Pär Ekholm <par.ekholm@pekholm.se>\n"
 "Language-Team: \n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
-"Last-Translator: Pär Ekholm <par.ekholm@pekholm.se>\n"
-"Language: sv\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
-msgid ""
-"Gramps is a genealogy program that is both intuitive for hobbyists and "
-"feature-complete for professional genealogists."
-msgstr ""
-"Gramps är ett släktforskningsprogram som är både intuitivt för "
-"hobbyforskaren och komplett för den professionelle släktforskaren."
+msgid "Gramps is a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists."
+msgstr "Gramps är ett släktforskningsprogram som både är intuitivt för hobbyforskaren och komplett för den professionelle släktforskaren."
 
 #: ../data/gramps.appdata.xml.in.h:2
-msgid ""
-"It gives you the ability to record the many details of the life of an "
-"individual as well as the complex relationships between various people, "
-"places and events."
-msgstr ""
-"Det ger dig tillgång till möjligheten att notera många livsdetaljer hos "
-"person såväl som de komplexa släktskapen mellan många människor, platser och "
-"händelser."
+msgid "It gives you the ability to record the many details of the life of an individual as well as the complex relationships between various people, places and events."
+msgstr "Det ger dig tillgång till möjligheten att notera många livsdetaljer hos en person såväl som de komplexa släktskapen mellan många människor, platser och händelser."
 
 #: ../data/gramps.appdata.xml.in.h:3
 msgid ""
@@ -3352,7 +3342,7 @@ msgstr "suffix"
 
 #: ../gramps/gen/display/name.py:610 ../gramps/gen/display/name.py:710
 msgid "Name|call"
-msgstr "tilltalsnamnnamn"
+msgstr "tilltalsnamn"
 
 #: ../gramps/gen/display/name.py:613 ../gramps/gen/display/name.py:712
 msgid "Name|common"
@@ -3785,6 +3775,15 @@ msgstr "Diverse filter"
 #: ../gramps/plugins/view/geoperson.py:488
 msgid "No description"
 msgstr "Beskrivning saknas"
+
+#. more references to a filter than expected
+#: ../gramps/gen/filters/rules/_rule.py:94
+msgid "The filter definition contains a loop."
+msgstr "Filterdefinitionen innehåller en slinga."
+
+#: ../gramps/gen/filters/rules/_rule.py:95
+msgid "One rule references another which eventually references the first."
+msgstr "En regel hänvisar en annan som så småningom hänvisar den första."
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:45
 msgid "Every citation"
@@ -10994,7 +10993,7 @@ msgstr "Bidrag av"
 #. TRANSLATORS: Translate this to your name in your native language
 #: ../gramps/gui/aboutdialog.py:120
 msgid "translator-credits"
-msgstr "Peter Landgren, Pär Ekholm"
+msgstr "Pär Ekholm"
 
 #: ../gramps/gui/aboutdialog.py:131
 #, python-format
@@ -18150,6 +18149,10 @@ msgstr "Kopiera allt"
 msgid "See data not in Filter"
 msgstr "Se data ej i filter"
 
+#: ../gramps/gui/plug/report/_bookdialog.py:92
+msgid "Generate_Book_dialog"
+msgstr "Dialog för att skapa bok"
+
 #: ../gramps/gui/plug/report/_bookdialog.py:166
 msgid "Available Books"
 msgstr "Tillgängliga böcker"
@@ -18477,6 +18480,10 @@ msgstr "standard"
 msgid "Document Styles"
 msgstr "Dokumentmallar"
 
+#: ../gramps/gui/plug/report/_styleeditor.py:108
+msgid "manual|Document_Styles_dialog"
+msgstr "Dialog för dokumentmallar"
+
 #: ../gramps/gui/plug/report/_styleeditor.py:140
 msgid "New Style"
 msgstr "Ny mall"
@@ -18502,6 +18509,10 @@ msgstr "Välj en mall"
 #: ../gramps/gui/plug/report/_styleeditor.py:298
 msgid "Style editor"
 msgstr "Mallredigerare"
+
+#: ../gramps/gui/plug/report/_styleeditor.py:241
+msgid "manual|Style_editor_dialog"
+msgstr "Mallredigerardialog"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:341
 #: ../gramps/gui/plug/report/_styleeditor.py:369
@@ -18627,6 +18638,10 @@ msgstr "Välj mediaobjekt"
 msgid "manual|Select_Child_selector"
 msgstr "Välj barnselektor"
 
+#: ../gramps/gui/selectors/selectperson.py:70
+msgid "manual|Select_Person_selector"
+msgstr "Välj personselektor"
+
 #: ../gramps/gui/selectors/selectperson.py:56
 msgid "manual|Select_Father_selector"
 msgstr "Välj farselektor"
@@ -18651,9 +18666,17 @@ msgstr "manual|Arkivplatser"
 msgid "Select Repository"
 msgstr "Välj arkivplats"
 
+#: ../gramps/gui/selectors/selectrepository.py:75
+msgid "manual|Select_Repository_selector"
+msgstr "Välj arkivplatsselektor"
+
 #: ../gramps/gui/selectors/selectsource.py:62
 msgid "Select Source"
 msgstr "Välj källa"
+
+#: ../gramps/gui/selectors/selectsource.py:76
+msgid "manual|Select_Source_selector"
+msgstr "Välj källselektor"
 
 #: ../gramps/gui/spell.py:92
 msgid "Off"
@@ -19631,6 +19654,10 @@ msgstr ""
 #: ../gramps/gui/widgets/progressdialog.py:298
 msgid "Progress Information"
 msgstr "Framåtskridande"
+
+#: ../gramps/gui/widgets/reorderfam.py:63
+msgid "manual|Reorder_Relationships_dialog"
+msgstr "Dialog för att ordna om släktskap"
 
 #: ../gramps/gui/widgets/reorderfam.py:79
 msgid "Reorder Relationships"
@@ -21825,6 +21852,10 @@ msgstr "E-POST"
 msgid "WWW"
 msgstr "WWW"
 
+#: ../gramps/plugins/export/exportgedcom.py:1438
+msgid "Writing media"
+msgstr "Skriver media"
+
 #: ../gramps/plugins/export/exportgedcom.py:1570
 msgid "GEDCOM Export failed"
 msgstr "GEDCOM-export misslyckades"
@@ -23452,6 +23483,10 @@ msgstr "Redigera den valda Att Göra notisen"
 #: ../gramps/plugins/gramplet/todogramplet.py:72
 msgid "Add a new To Do note"
 msgstr "Lägg till ny Att Göra notis"
+
+#: ../gramps/plugins/gramplet/todo.py:201
+msgid "First select the object to which you want to attach a note"
+msgstr "Välj  först objektet som du vill koppla en notis till"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:149
 msgid "Unattached"
@@ -36415,12 +36450,10 @@ msgstr "Webb-kalender-rapport"
 msgid "Calculating Holidays for year %04d"
 msgstr "Beräknar helgdagar för år %04d"
 
-#: ../gramps/plugins/webreport/webcal.py:486
+#: ../gramps/plugins/webreport/webcal.py:491
 #, python-format
-msgid ""
-"the \"WebCal\" will be the potential-email Subject|Created for "
-"%(html_email_author_start)sWebCal%(html_email_author_end)s"
-msgstr "Skapat för %(html_email_author_start)sWebCal%(html_email_author_end)s"
+msgid "the \"WebCal\" will be the potential-email Subject|Created for %(html_email_author_start)sWebCal%(html_email_author_end)s"
+msgstr "\"WebCal\" kommer att vara den viktigaste e-postsubjektet|Skapat för %(html_email_author_start)sWebCal%(html_email_author_end)s"
 
 #: ../gramps/plugins/webreport/webcal.py:494
 #, python-format
@@ -37400,17 +37433,21 @@ msgstr "Media_hanterare"
 #~ msgid "Place Locations"
 #~ msgstr "Platslokalisering"
 
-#~ msgid "Incomplete names"
-#~ msgstr "Ofullständigt namn"
+#: ../gramps/plugins/gramplet/statsgramplet.py:156
+msgid "Incomplete names"
+msgstr "Ofullständiga namn"
 
-#~ msgid "Individuals missing birth dates"
-#~ msgstr "Personer som saknar födelsedatum"
+#: ../gramps/plugins/gramplet/statsgramplet.py:160
+msgid "Individuals missing birth dates"
+msgstr "Personer som saknar födelsedatum"
 
-#~ msgid "Disconnected individuals"
-#~ msgstr "Isolerade personer"
+#: ../gramps/plugins/gramplet/statsgramplet.py:164
+msgid "Disconnected individuals"
+msgstr "Släktlösa personer"
 
-#~ msgid "Individuals with media objects"
-#~ msgstr "Personer med mediaobjekt"
+#: ../gramps/plugins/gramplet/statsgramplet.py:181
+msgid "Individuals with media objects"
+msgstr "Personer med mediaobjekt"
 
 #~ msgid "Empty event note ignored"
 #~ msgstr "Tom händelsenotis ignorerades"
@@ -41216,8 +41253,9 @@ msgstr "Media_hanterare"
 #~ msgid "Dates on events are either about or after/before"
 #~ msgstr "Datum för händelser är antingen omkring eller efter/före"
 
-#~ msgid "Help"
-#~ msgstr "Hjälp"
+#: ../gramps/plugins/tool/mediamanager.py:91
+msgid "Help"
+msgstr "Hjälp"
 
 #~ msgid ""
 #~ "The Calculate Estimated Dates Tool is used to add and remove birth and "
@@ -41420,3 +41458,4 @@ msgstr "Media_hanterare"
 
 #~ msgid "Name Format Editor"
 #~ msgstr "Namnformatsredigerare"
+

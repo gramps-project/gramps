@@ -150,9 +150,6 @@ class MergeCitation(ManagedWindow):
         else:
             phoenix = self.citation2
             titanic = self.citation1
-            # Add second handle to history so that when merge is complete,
-            # phoenix is the selected row.
-            self.uistate.set_active(phoenix.get_handle(), 'Citation')
 
         if self.get_widget("page_btn1").get_active() ^ use_handle1:
             phoenix.set_page(titanic.get_page())
@@ -165,5 +162,8 @@ class MergeCitation(ManagedWindow):
 
         query = MergeCitationQuery(self.dbstate, phoenix, titanic)
         query.execute()
+        # Add the selected handle to history so that when merge is complete,
+        # phoenix is the selected row.
+        self.uistate.set_active(phoenix.get_handle(), 'Citation')
         self.uistate.set_busy_cursor(False)
         self.close()

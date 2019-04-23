@@ -75,6 +75,8 @@ class RelationshipPathBetween(Rule):
                         self.desc_list(child_ref.ref, map, 0)
 
     def apply_filter(self, rank, handle, plist, pmap):
+        if not handle:
+            return
         person = self.db.get_person_from_handle(handle)
         if person is None:
             return

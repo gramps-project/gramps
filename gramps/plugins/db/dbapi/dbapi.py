@@ -330,9 +330,11 @@ class DBAPI(DbGeneric):
         """
         Return the defined names that have been assigned to a default grouping.
         """
-        self.dbapi.execute("SELECT name FROM name_group ORDER BY name")
+        self.dbapi.execute("SELECT name, grouping FROM name_group "
+                           "ORDER BY name")
         rows = self.dbapi.fetchall()
-        return [row[0] for row in rows]
+        # not None test below fixes db corrupted by 11011 for export
+        return [row[0] for row in rows if row[1] is not None]
 
     def get_name_group_mapping(self, key):
         """
@@ -341,7 +343,8 @@ class DBAPI(DbGeneric):
         self.dbapi.execute(
             "SELECT grouping FROM name_group WHERE name = ?", [key])
         row = self.dbapi.fetchone()
-        if row:
+        if row and row[0] is not None:
+            # not None test fixes db corrupted by 11011
             return row[0]
         else:
             return key
@@ -566,7 +569,7 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("SELECT grouping FROM name_group WHERE name = ?",
                            [key])
         row = self.dbapi.fetchone()
-        return True if row else False
+        return row and row[0] is not None
 
     def set_name_group_mapping(self, name, grouping):
         """
@@ -576,14 +579,18 @@ class DBAPI(DbGeneric):
         self.dbapi.execute("SELECT 1 FROM name_group WHERE name = ?",
                            [name])
         row = self.dbapi.fetchone()
-        if row:
+        if row and grouping is not None:
             self.dbapi.execute("UPDATE name_group SET grouping=? "
                                "WHERE name = ?", [grouping, name])
+        elif row and grouping is None:
+            self.dbapi.execute("DELETE FROM name_group WHERE name = ?", [name])
+            grouping = ''
         else:
             self.dbapi.execute(
                 "INSERT INTO name_group (name, grouping) VALUES (?, ?)",
                 [name, grouping])
         self._txn_commit()
+        self.emit('person-groupname-rebuild', (name, grouping))
 
     def _commit_base(self, obj, obj_key, trans, change_time):
         """
