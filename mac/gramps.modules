@@ -133,7 +133,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </autotools>
 
   <autotools id="gexiv2" autogen-sh="configure" supports-non-srcdir-builds="no"
-	     autogenargs="--enable-introspection --with-libtool=libtool"
+	     autogenargs="--enable-introspection --enable-vala=no"
 	     autogen-template="%(srcdir)s/%(autogen-sh)s --prefix=%(prefix)s %(autogenargs)s">
     <branch module="gexiv2/0.10/gexiv2-0.10.6.tar.xz"
             repo="ftp.gnome.org" version="0.10.6"
