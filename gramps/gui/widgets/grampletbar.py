@@ -142,6 +142,7 @@ class GrampletBar(Gtk.Notebook):
         self.set_current_page(config_settings[1])
 
         uistate.connect('grampletbar-close-changed', self.cb_close_changed)
+        uistate.connect('grampletbar-freeze-changed', self.cb_freeze_changed)
 
         # Connect after gramplets added to prevent making them active
         self.connect('switch-page', self.__switch_page)
@@ -389,6 +390,11 @@ class GrampletBar(Gtk.Notebook):
         else: # just a function; always show yes it has data
             tablabel.set_has_data(True)
 
+        if config.get('interface.grampletbar-freeze'):
+            tablabel.use_freeze(True)
+        else:
+            tablabel.use_freeze(False)
+
         if config.get('interface.grampletbar-close'):
             tablabel.use_close(True)
         else:
@@ -403,6 +409,14 @@ class GrampletBar(Gtk.Notebook):
         for gramplet in self.get_children():
             tablabel = self.get_tab_label(gramplet)
             tablabel.use_close(config.get('interface.grampletbar-close'))
+
+    def cb_freeze_changed(self):
+        """
+        Freeze/unfreeze button preference changed.
+        """
+        for gramplet in self.get_children():
+            tablabel = self.get_tab_label(gramplet)
+            tablabel.use_freeze(config.get('interface.grampletbar-freeze'))
 
     def __delete_clicked(self, button, gramplet):
         """
@@ -475,6 +489,16 @@ class GrampletBar(Gtk.Notebook):
         """
         gramplet.detached_window.close()
         gramplet.detached_window = None
+
+    def __freeze_clicked(self, button):
+        """
+        Called when the freeze/unfreeze button is clicked.
+        """
+        for gramplet in self.get_children():
+            if gramplet and gramplet.pui:
+                if gramplet.pui.active:
+                    if not self.freeze:
+                        gramplet.pui.main()
 
     def __button_clicked(self, button):
         """
@@ -601,6 +625,7 @@ class TabGramplet(Gtk.ScrolledWindow, GuiGramplet):
         self.add(self.textview)
         self.show_all()
         self.track = []
+        self.pane = pane
 
     def get_title(self):
         return self.title
@@ -721,6 +746,11 @@ class TabLabel(Gtk.Box):
         self.label.set_tooltip_text(gramplet.tname)
         self.label.show()
 
+        self.freezebtn = Gtk.ToggleButton()
+        self.freezebtn.connect("toggled", self.update_freeze, gramplet)
+        self.freezebtn.set_active(False)
+        self.update_freeze(self.freezebtn, gramplet)
+
         self.closebtn = Gtk.Button()
         image = Gtk.Image()
         image.set_from_icon_name('window-close', Gtk.IconSize.MENU)
@@ -729,6 +759,7 @@ class TabLabel(Gtk.Box):
         self.closebtn.set_relief(Gtk.ReliefStyle.NONE)
 
         self.pack_start(self.label, True, True, 0)
+        self.pack_start(self.freezebtn, False, False, 0)
         self.pack_end(self.closebtn, False, False, 0)
 
     def set_has_data(self, has_data):
@@ -741,9 +772,42 @@ class TabLabel(Gtk.Box):
         else:
             self.label.set_text(self.text)
 
+    def update_freeze(self, obj, gramplet):
+        """
+        Display the correct icon for the button according to user
+        gramplet preference.
+        """
+        child = obj.get_child()
+        if child:
+            obj.remove(child)
+        image = Gtk.Image()
+        if obj.get_active():
+            image.set_from_icon_name('gramps-lock', Gtk.IconSize.MENU)
+            obj.set_tooltip_text(_('Gramplet update is freezed'))
+        else:
+            image.set_from_icon_name('gramps-unlock', Gtk.IconSize.MENU)
+            obj.set_tooltip_text(_('Gramplet update is allowed'))
+        image.show()
+        obj.add(image)
+
+    def get_freeze(self):
+        """
+        return the freeze button
+        """
+        return self.freezebtn
+
+    def use_freeze(self, use_freeze):
+        """
+        Display the close button according to user preference.
+        """
+        if use_freeze:
+            self.freezebtn.show()
+        else:
+            self.freezebtn.hide()
+
     def use_close(self, use_close):
         """
-        Display the cose button according to user preference.
+        Display the close button according to user preference.
         """
         if use_close:
             self.closebtn.show()

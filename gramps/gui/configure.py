@@ -993,6 +993,12 @@ class GrampsPreferences(ConfigureDialog):
         """
         self.uistate.emit('grampletbar-close-changed')
 
+    def cb_grampletbar_freeze(self, obj):
+        """
+        Gramplet bar freeze/unfreeze button preference callback
+        """
+        self.uistate.emit('grampletbar-freeze-changed')
+
     def add_formats_panel(self, configdialog):
         row = 0
         grid = Gtk.Grid()
@@ -1193,6 +1199,13 @@ class GrampsPreferences(ConfigureDialog):
                           _("Show close button in gramplet bar tabs"),
                           row, 'interface.grampletbar-close', stop=3,
                           extra_callback=self.cb_grampletbar_close)
+        row += 1
+
+        # Gramplet bar freeze button:
+        self.add_checkbox(grid,
+                          _("Enable freeze/unfreeze for the active gramplet"),
+                          row, 'interface.grampletbar-freeze', stop=3,
+                          extra_callback=self.cb_grampletbar_freeze)
         row += 1
         return _('Display'), grid
 
