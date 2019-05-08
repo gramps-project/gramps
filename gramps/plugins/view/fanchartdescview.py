@@ -67,7 +67,8 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         ('interface.color-start-grad', '#ef2929'),
         ('interface.color-end-grad', '#3d37e9'),
         ('interface.angle-algorithm', fanchartdesc.ANGLE_WEIGHT),
-        ('interface.duplicate-color', '#888a85')
+        ('interface.duplicate-color', '#888a85'),
+        ('interface.fanview-showid', False)
         )
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         self.dbstate = dbstate
@@ -91,6 +92,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self.form = self._config.get('interface.fanview-form')
         self.angle_algo = self._config.get('interface.angle-algorithm')
         self.dupcolor = self._config.get('interface.duplicate-color')
+        self.showid = self._config.get('interface.fanview-showid')
         self.generic_filter = None
         self.alpha_filter = 0.2
 
@@ -316,6 +318,11 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
                 _('Flip name on the left of the fan'),
                 9, 'interface.fanview-flipupsidedownname')
 
+        # show gramps_id
+        configdialog.add_checkbox(grid,
+                _('Show gramps id'),
+                10, 'interface.fanview-showid')
+
         return _('Layout'), grid
 
     def config_connect(self):
@@ -334,6 +341,8 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
                           self.cb_update_flipupsidedownname)
         self._config.connect('interface.fanview-twolinename',
                           self.cb_update_twolinename)
+        self._config.connect('interface.fanview-showid',
+                          self.cb_update_showid)
 
     def cb_update_maxgen(self, spinbtn, constant):
         self.maxgen = spinbtn.get_value_as_int()
@@ -382,6 +391,13 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         Called when the configuration menu changes the flipupsidedownname setting.
         """
         self.flipupsidedownname = (entry == 'True')
+        self.update()
+
+    def cb_update_showid(self, client, cnxn_id, entry, data):
+        """
+        Called when the configuration menu changes the showid setting.
+        """
+        self.showid = (entry == 'True')
         self.update()
 
     def cb_update_font(self, obj, constant):

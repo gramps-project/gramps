@@ -101,13 +101,14 @@ class FanChartDescWidget(FanChartBaseWidget):
         Fan Chart Widget. Handles visualization of data in self.data.
         See main() of FanChartGramplet for example of model format.
         """
-        self.set_values(None, 9, True, True, BACKGROUND_GRAD_GEN, 'Sans', '#0000FF',
-                    '#FF0000', None, 0.5, FORM_CIRCLE, ANGLE_WEIGHT, '#888a85')
+        self.set_values(None, 9, True, True, BACKGROUND_GRAD_GEN, 'Sans',
+                        '#0000FF', '#FF0000', None, 0.5,
+                        FORM_CIRCLE, ANGLE_WEIGHT, '#888a85', False)
         FanChartBaseWidget.__init__(self, dbstate, uistate, callback_popup)
 
-    def set_values(self, root_person_handle, maxgen, flipupsidedownname, twolinename, background,
-              fontdescr, grad_start, grad_end,
-              filter, alpha_filter, form, angle_algo, dupcolor):
+    def set_values(self, root_person_handle, maxgen, flipupsidedownname,
+                   twolinename, background, fontdescr, grad_start, grad_end,
+                   filter, alpha_filter, form, angle_algo, dupcolor, showid):
         """
         Reset the values to be used:
 
@@ -126,6 +127,7 @@ class FanChartDescWidget(FanChartBaseWidget):
         :param angle_algo: alorithm to use to calculate the sizes of the boxes
         :param dupcolor: color to use for people or families that occur a second
                          or more time
+        :param showid: to show the gramps_id or not
         """
         self.rootpersonh = root_person_handle
         self.generations = maxgen
@@ -141,6 +143,7 @@ class FanChartDescWidget(FanChartBaseWidget):
         self.childring = False
         self.flipupsidedownname = flipupsidedownname
         self.twolinename = twolinename
+        self.showid = showid
 
     def set_generations(self):
         """
@@ -654,10 +657,12 @@ class FanChartDescGrampsGUI(FanChartGrampsGUI):
         data.
         """
         root_person_handle = self.get_active('Person')
-        self.fan.set_values(root_person_handle, self.maxgen, self.flipupsidedownname, self.twolinename, self.background,
-                        self.fonttype, self.grad_start, self.grad_end,
-                        self.generic_filter, self.alpha_filter, self.form,
-                        self.angle_algo, self.dupcolor)
+        self.fan.set_values(root_person_handle, self.maxgen,
+                            self.flipupsidedownname, self.twolinename,
+                            self.background, self.fonttype, self.grad_start,
+                            self.grad_end, self.generic_filter,
+                            self.alpha_filter, self.form, self.angle_algo,
+                            self.dupcolor, self.showid)
         self.fan.reset()
         self.fan.draw()
         self.fan.queue_draw()

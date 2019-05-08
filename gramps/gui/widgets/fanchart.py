@@ -584,11 +584,17 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         draw_radial = radial and self.radialtext
         if not self.twolinename:
             name=name_displayer.display(person)
+            if self.showid:
+                name += " (" + person.gramps_id + ")"
             self.draw_text(cr, name, radiusin, radiusout, start, stop, draw_radial,
                        fontcolor, bold)
         else:
             text=name_displayer.display(person)
-            text_line1=name_displayer.display_format(person, TWO_LINE_FORMAT_1)
+            if self.showid:
+                text_line1 = "(" + person.gramps_id + ") "
+            else:
+                text_line1 = ""
+            text_line1+=name_displayer.display_format(person, TWO_LINE_FORMAT_1)
             text_line2=name_displayer.display_format(person, TWO_LINE_FORMAT_2)
             if draw_radial:
                 split_frac_line1=0.5
@@ -1048,13 +1054,14 @@ class FanChartWidget(FanChartBaseWidget):
         Fan Chart Widget. Handles visualization of data in self.data.
         See main() of FanChartGramplet for example of model format.
         """
-        self.set_values(None, 9, BACKGROUND_GRAD_GEN, True, True, True, True, 'Sans', '#0000FF',
-                    '#FF0000', None, 0.5, FORM_CIRCLE)
+        self.set_values(None, 9, BACKGROUND_GRAD_GEN, True, True, True, True,
+                        'Sans', '#0000FF', '#FF0000', None, 0.5, FORM_CIRCLE,
+                        False)
         FanChartBaseWidget.__init__(self, dbstate, uistate, callback_popup)
 
     def set_values(self, root_person_handle, maxgen, background, childring,
               flipupsidedownname, twolinename, radialtext, fontdescr,
-              grad_start, grad_end, filter, alpha_filter, form):
+              grad_start, grad_end, filter, alpha_filter, form, showid):
         """
         Reset the values to be used:
 
@@ -1073,6 +1080,7 @@ class FanChartWidget(FanChartBaseWidget):
         :param alpha: the alpha transparency value (0-1) to apply to filtered
                       out data
         :param form: the ``FORM_`` constant for the fanchart
+        :param showid: to show the gramps_id or not
         """
         self.rootpersonh = root_person_handle
         self.generations = maxgen
@@ -1087,6 +1095,7 @@ class FanChartWidget(FanChartBaseWidget):
         self.filter = filter
         self.alpha_filter = alpha_filter
         self.form = form
+        self.showid = showid
 
     def set_generations(self):
         """
@@ -1522,9 +1531,10 @@ class FanChartGrampsGUI:
         """
         root_person_handle = self.get_active('Person')
         self.fan.set_values(root_person_handle, self.maxgen, self.background,
-                        self.childring, self.flipupsidedownname, self.twolinename, self.radialtext, self.fonttype,
-                        self.grad_start, self.grad_end,
-                        self.generic_filter, self.alpha_filter, self.form)
+                        self.childring, self.flipupsidedownname,
+                        self.twolinename, self.radialtext, self.fonttype,
+                        self.grad_start, self.grad_end, self.generic_filter,
+                        self.alpha_filter, self.form, self.showid)
         self.fan.reset()
         self.fan.draw()
         self.fan.queue_draw()

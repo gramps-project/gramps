@@ -71,6 +71,7 @@ class FanChart2WayGramplet(FanChart2WayGrampsGUI, Gramplet):
         self.angle_algo = ANGLE_WEIGHT
         self.flipupsidedownname = True
         self.twolinename = True
+        self.showid = False
         self.childring = False
         self.background_gradient = True
         #self.filter = filter

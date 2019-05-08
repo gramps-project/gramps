@@ -103,8 +103,9 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
         Fan Chart Widget. Handles visualization of data in self.data.
         See main() of FanChartGramplet for example of model format.
         """
-        self.set_values(None, 6, 5, True, True, BACKGROUND_GRAD_GEN, True, 'Sans', '#0000FF',
-                    '#FF0000', None, 0.5, ANGLE_WEIGHT, '#888a85')
+        self.set_values(None, 6, 5, True, True, BACKGROUND_GRAD_GEN, True,
+                        'Sans', '#0000FF', '#FF0000', None, 0.5, ANGLE_WEIGHT,
+                        '#888a85', False)
         FanChartBaseWidget.__init__(self, dbstate, uistate, callback_popup)
 
     def reset(self):
@@ -120,9 +121,10 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
         # prepare the colors for the boxes
         self.prepare_background_box(self.generations_asc + self.generations_desc - 1)
 
-    def set_values(self, root_person_handle, maxgen_asc, maxgen_desc, flipupsidedownname, twolinename, background,
-              background_gradient, fontdescr, grad_start, grad_end,
-              filter, alpha_filter, angle_algo, dupcolor):
+    def set_values(self, root_person_handle, maxgen_asc, maxgen_desc,
+                   flipupsidedownname, twolinename, background,
+                   background_gradient, fontdescr, grad_start, grad_end,
+                   filter, alpha_filter, angle_algo, dupcolor, showid):
         """
         Reset the values to be used:
 
@@ -142,6 +144,7 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
         :param angle_algo: alorithm to use to calculate the sizes of the boxes
         :param dupcolor: color to use for people or families that occur a second
                          or more time
+        :param showid: option to show the gramps id or not
         """
         self.rootpersonh = root_person_handle
         self.generations_asc = maxgen_asc
@@ -159,6 +162,7 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
         self.childring = False
         self.flipupsidedownname = flipupsidedownname
         self.twolinename = twolinename
+        self.showid = showid
 
     def set_generations(self):
         """
@@ -630,10 +634,13 @@ class FanChart2WayGrampsGUI(FanChartGrampsGUI):
         data.
         """
         root_person_handle = self.get_active('Person')
-        self.fan.set_values(root_person_handle, self.generations_asc, self.generations_desc, self.flipupsidedownname, self.twolinename, self.background,
-                        self.background_gradient, self.fonttype, self.grad_start, self.grad_end,
-                        self.generic_filter, self.alpha_filter,
-                        self.angle_algo, self.dupcolor)
+        self.fan.set_values(root_person_handle, self.generations_asc,
+                            self.generations_desc, self.flipupsidedownname,
+                            self.twolinename, self.background,
+                            self.background_gradient, self.fonttype,
+                            self.grad_start, self.grad_end, self.generic_filter,
+                            self.alpha_filter, self.angle_algo, self.dupcolor,
+                            self.showid)
         self.fan.reset()
         self.fan.draw()
         self.fan.queue_draw()

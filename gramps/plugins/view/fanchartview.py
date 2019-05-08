@@ -63,6 +63,7 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
         ('interface.fanview-flipupsidedownname', True),
         ('interface.fanview-font', 'Sans'),
         ('interface.fanview-form', fanchart.FORM_CIRCLE),
+        ('interface.fanview-showid', False),
         ('interface.color-start-grad', '#ef2929'),
         ('interface.color-end-grad', '#3d37e9'),
         )
@@ -87,6 +88,7 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
         self.grad_start =  self._config.get('interface.color-start-grad')
         self.grad_end =  self._config.get('interface.color-end-grad')
         self.form = self._config.get('interface.fanview-form')
+        self.showid = self._config.get('interface.fanview-showid')
         self.generic_filter = None
         self.alpha_filter = 0.2
 
@@ -342,7 +344,7 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
         """
         Function that builds the widget in the configuration dialog
         """
-        nrentry = 9
+        nrentry = 10
         grid = Gtk.Grid()
         grid.set_border_width(12)
         grid.set_column_spacing(6)
@@ -403,7 +405,12 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
         # options users should not change:
         configdialog.add_checkbox(grid,
                 _('Show children ring'),
-                nrentry-1, 'interface.fanview-childrenring')
+                nrentry-2, 'interface.fanview-childrenring')
+
+        # Show the gramps_id
+        configdialog.add_checkbox(grid,
+                _('Show gramps id'),
+                nrentry-1, 'interface.fanview-showid')
         # options we don't show on the dialog
         ##configdialog.add_checkbox(table,
         ##        _('Allow radial text'),
@@ -425,6 +432,8 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
                           self.cb_update_flipupsidedownname)
         self._config.connect('interface.fanview-radialtext',
                           self.cb_update_radialtext)
+        self._config.connect('interface.fanview-showid',
+                          self.cb_update_showid)
         self._config.connect('interface.color-start-grad',
                           self.cb_update_color)
         self._config.connect('interface.color-end-grad',
@@ -468,6 +477,16 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
             self.radialtext = True
         else:
             self.radialtext = False
+        self.update()
+
+    def cb_update_showid(self, client, cnxn_id, entry, data):
+        """
+        Called when the configuration menu changes the showid setting.
+        """
+        if entry == 'True':
+            self.showid = True
+        else:
+            self.showid = False
         self.update()
 
     def cb_update_color(self, client, cnxn_id, entry, data):

@@ -67,6 +67,7 @@ class FanChart2WayView(fanchart2way.FanChart2WayGrampsGUI, NavigationView):
         ('interface.fanview-flipupsidedownname', True),
         ('interface.fanview-font', 'Sans'),
         ('interface.fanview-form', fanchart.FORM_CIRCLE),
+        ('interface.fanview-showid', False),
         ('interface.color-start-grad', '#ef2929'),
         ('interface.color-end-grad', '#3d37e9'),
         ('interface.angle-algorithm', fanchart2way.ANGLE_WEIGHT),
@@ -94,6 +95,7 @@ class FanChart2WayView(fanchart2way.FanChart2WayGrampsGUI, NavigationView):
         self.grad_start =  self._config.get('interface.color-start-grad')
         self.grad_end =  self._config.get('interface.color-end-grad')
         self.form = fanchart.FORM_CIRCLE
+        self.showid = self._config.get('interface.fanview-showid')
         self.angle_algo = self._config.get('interface.angle-algorithm')
         self.dupcolor = self._config.get('interface.duplicate-color')
         self.generic_filter = None
@@ -318,6 +320,11 @@ class FanChart2WayView(fanchart2way.FanChart2WayGrampsGUI, NavigationView):
                 _('Flip name on the left of the fan'),
                 10, 'interface.fanview-flipupsidedownname')
 
+        # Show gramps id
+        configdialog.add_checkbox(grid,
+                _('Show the gramps id'),
+                11, 'interface.fanview-showid')
+
         return _('Layout'), grid
 
     def config_connect(self):
@@ -338,6 +345,8 @@ class FanChart2WayView(fanchart2way.FanChart2WayGrampsGUI, NavigationView):
                           self.cb_update_twolinename)
         self._config.connect('interface.fanview-background-gradient',
                           self.cb_update_background_gradient)
+        self._config.connect('interface.fanview-showid',
+                          self.cb_update_showid)
 
     def cb_update_maxgen(self, spinbtn, constant):
         self._config.set(constant, spinbtn.get_value_as_int())
@@ -350,6 +359,13 @@ class FanChart2WayView(fanchart2way.FanChart2WayGrampsGUI, NavigationView):
         Called when the configuration menu changes the twolinename setting.
         """
         self.twolinename = (entry == 'True')
+        self.update()
+
+    def cb_update_showid(self, client, cnxn_id, entry, data):
+        """
+        Called when the configuration menu changes the showid setting.
+        """
+        self.showid = (entry == 'True')
         self.update()
 
     def cb_update_background(self, obj, constant):
