@@ -34,6 +34,7 @@ LOG = logging.getLogger(".Gramplets")
 #
 #------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
+from gramps.gen.config import config
 _ = glocale.translation.gettext
 
 class Gramplet:
@@ -296,12 +297,15 @@ class Gramplet:
             not self.gui.force_update):
             self.dirty = True
             if self.dbstate.is_open():
-                #print "  %s is not active" % self.gui.gname
+                #print("  %s is not active" % self.gui.gname)
                 self.update_has_data()
             else:
                 self.set_has_data(False)
             return
-        #print "     %s is UPDATING" % self.gui.gname
+        #print("     %s is UPDATING" % self.gui.gname)
+        if (config.get('interface.grampletbar-refresh') and
+            self.gui.view.navigation_type() != None): # dashboard has no navtype
+            return # Don't update the gramplet if we are in manual refresh
         self.dirty = False
         LOG.debug("gramplet updater: %s: running" % self.gui.title)
         if self._idle_id != 0:

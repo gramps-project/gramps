@@ -104,6 +104,16 @@ class GrampletBar(Gtk.Notebook):
         self.set_show_border(False)
         self.set_scrollable(True)
 
+        image = Gtk.Image(stock=Gtk.STOCK_REFRESH)
+        refresh_button = Gtk.Button(image=image)
+        refresh_button.set_relief(Gtk.ReliefStyle.NONE)
+        refresh_button.connect('clicked', self.__refresh_clicked)
+        self.set_action_widget(refresh_button, Gtk.PackType.START)
+        if config.get('interface.grampletbar-refresh'):
+            refresh_button.show()
+        else:
+            refresh_button.hide()
+
         book_button = Gtk.Button()
         # Arrow is too small unless in a box
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
@@ -142,6 +152,7 @@ class GrampletBar(Gtk.Notebook):
         self.set_current_page(config_settings[1])
 
         uistate.connect('grampletbar-close-changed', self.cb_close_changed)
+        uistate.connect('grampletbar-refresh-changed', self.cb_refresh_changed)
 
         # Connect after gramplets added to prevent making them active
         self.connect('switch-page', self.__switch_page)
@@ -404,6 +415,16 @@ class GrampletBar(Gtk.Notebook):
             tablabel = self.get_tab_label(gramplet)
             tablabel.use_close(config.get('interface.grampletbar-close'))
 
+    def cb_refresh_changed(self):
+        """
+        Refresh button preference changed.
+        """
+        button = self.get_action_widget(Gtk.PackType.START)
+        if config.get('interface.grampletbar-refresh'):
+            button.show()
+        else:
+            button.hide()
+
     def __delete_clicked(self, button, gramplet):
         """
         Called when the delete button is clicked.
@@ -475,6 +496,15 @@ class GrampletBar(Gtk.Notebook):
         """
         gramplet.detached_window.close()
         gramplet.detached_window = None
+
+    def __refresh_clicked(self, button):
+        """
+        Called when the drop-down button is clicked.
+        """
+        for gramplet in self.get_children():
+            if gramplet and gramplet.pui:
+                if gramplet.pui.active:
+                    gramplet.pui.main()
 
     def __button_clicked(self, button):
         """
@@ -743,7 +773,7 @@ class TabLabel(Gtk.Box):
 
     def use_close(self, use_close):
         """
-        Display the cose button according to user preference.
+        Display the close button according to user preference.
         """
         if use_close:
             self.closebtn.show()
