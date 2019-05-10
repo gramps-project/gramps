@@ -34,16 +34,15 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
+import math
+import colorsys
+import pickle
+from html import escape
+import cairo
 from gi.repository import Pango
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import PangoCairo
-import cairo
-import math
-import colorsys
-import sys
-import pickle
-from html import escape
 
 #-------------------------------------------------------------------------
 #
@@ -55,14 +54,10 @@ from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import ChildRef, Family, Name, Person, Surname
 from gramps.gen.lib.date import Today
-from ..editors import EditPerson, EditFamily
-from .reorderfam import Reorder
-from ..utils import color_graph_box, hex_to_rgb, is_right_click
-from ..ddtargets import DdTargets
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.libformatting import FormattingHelper
-from gramps.gen.utils.db import (find_children, find_parents, find_witnessed_people,
-                                 get_age, get_timeperiod, preset_name)
+from gramps.gen.utils.db import (find_children, find_parents, get_timeperiod,
+                                 find_witnessed_people, get_age, preset_name)
 from gramps.gen.constfunc import is_quartz
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.const import (
@@ -91,8 +86,13 @@ from gramps.gen.const import (
     EXPANDED,
     TYPE_BOX_NORMAL,
     TYPE_BOX_FAMILY)
-_ = glocale.translation.gettext
+from .reorderfam import Reorder
+from ..utils import color_graph_box, hex_to_rgb, is_right_click
+from ..ddtargets import DdTargets
+from ..editors import EditPerson, EditFamily
 from ..utilscairo import warpPath
+
+_ = glocale.translation.gettext
 
 # following are used in name_displayer format def
 # (must not conflict with standard defs)
@@ -147,9 +147,8 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                         Gdk.EventMask.KEY_PRESS_MASK)
 
         # Enable drag
-        self.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
-                            [],
-                            Gdk.DragAction.COPY)
+        self.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, [],
+                             Gdk.DragAction.COPY)
         tglist = Gtk.TargetList.new([])
         tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
                    DdTargets.PERSON_LINK.target_flags,
@@ -161,21 +160,31 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         self.connect("drag_begin", self.on_drag_begin)
         self.connect("drag_end", self.on_drag_end)
         # Enable drop
-        self.drag_dest_set(Gtk.DestDefaults.MOTION |
-                            Gtk.DestDefaults.DROP,
-                            [DdTargets.PERSON_LINK.target()],
-                            Gdk.DragAction.COPY)
+        self.drag_dest_set(Gtk.DestDefaults.MOTION | Gtk.DestDefaults.DROP,
+                           [DdTargets.PERSON_LINK.target()],
+                           Gdk.DragAction.COPY)
         self.connect('drag_data_received', self.on_drag_data_received)
 
         self._mouse_click = False
         self.rotate_value = 90 # degrees, initially, 1st gen male on right half
-        self.center_delta_xy = [0, 0] # translation of the center of the fan wrt canonical center
+        self.center_delta_xy = [0, 0] # translation of the center of the
+                                      # fan wrt canonical center
         self.center_xy = [0, 0] # coord of the center of the fan
         self.mouse_x = 0
         self.mouse_y = 0
         #(re)compute everything
         self.reset()
         self.set_size_request(120, 120)
+        self.maxperiod = 0
+        self.minperiod = 0
+        self.cstart_hsv = None
+        self.cend_hsv = None
+        self.colors = None
+        self.maincolor = None
+        self.gradval = None
+        self.gradcol = None
+        self.in_drag = False
+        self._mouse_click_cell_address = None
 
     def reset(self):
         """
@@ -238,22 +247,22 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         """
         raise NotImplementedError
 
-    def get_radiusinout_for_generation(self,generation):
+    def get_radiusinout_for_gen(self, generation):
         raise NotImplementedError
 
-    def on_draw(self, widget, cr, scale=1.):
+    def on_draw(self, widget, ctx, scale=1.):
         """
         callback to draw the fanchart
         """
         if self.surface:
-            cr.set_source_surface(self.surface, 0, 0)
-            cr.paint()
+            ctx.set_source_surface(self.surface, 0, 0)
+            ctx.paint()
 
-    def prt_draw(self, widget, cr, scale=1.0):
+    def prt_draw(self, widget, ctx, scale=1.0):
         """
         method to allow direct drawing to cairo context for printing
         """
-        self.draw(cr=cr, scale=scale)
+        self.draw(ctx=ctx, scale=scale)
 
     def people_generator(self):
         """
@@ -294,9 +303,12 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                 #now determine fraction for gradient
                 agefrac = age / MAX_AGE
                 agecol = colorsys.hsv_to_rgb(
-                (1-agefrac) * self.cstart_hsv[0] + agefrac * self.cend_hsv[0],
-                (1-agefrac) * self.cstart_hsv[1] + agefrac * self.cend_hsv[1],
-                (1-agefrac) * self.cstart_hsv[2] + agefrac * self.cend_hsv[2],
+                    ((1-agefrac) * self.cstart_hsv[0] +
+                     agefrac * self.cend_hsv[0]),
+                    ((1-agefrac) * self.cstart_hsv[1] +
+                     agefrac * self.cend_hsv[1]),
+                    ((1-agefrac) * self.cstart_hsv[2] +
+                     agefrac * self.cend_hsv[2]),
                     )
         userdata.append((agecol[0]*255, agecol[1]*255, agecol[2]*255))
 
@@ -308,25 +320,27 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         cstart = hex_to_rgb(self.grad_start)
         cend = hex_to_rgb(self.grad_end)
         self.cstart_hsv = colorsys.rgb_to_hsv(cstart[0]/255, cstart[1]/255,
-                                         cstart[2]/255)
+                                              cstart[2]/255)
         self.cend_hsv = colorsys.rgb_to_hsv(cend[0]/255, cend[1]/255,
-                                       cend[2]/255)
+                                            cend[2]/255)
         if self.background in [BACKGROUND_GENDER, BACKGROUND_SINGLE_COLOR]:
             # nothing to precompute
-            self.colors =  None
+            self.colors = None
             self.maincolor = cstart
         elif self.background == BACKGROUND_GRAD_GEN:
             #compute the colors, -1, 0, ..., maxgen
-            divs = [x/(maxgen-1) for x in range(maxgen)] if maxgen>1 else [0]
+            divs = [x/(maxgen-1) for x in range(maxgen)] if maxgen > 1 else [0]
             rgb_colors = [colorsys.hsv_to_rgb(
-                            (1-x) * self.cstart_hsv[0] + x * self.cend_hsv[0],
-                            (1-x) * self.cstart_hsv[1] + x * self.cend_hsv[1],
-                            (1-x) * self.cstart_hsv[2] + x * self.cend_hsv[2],
-                            ) for x in divs]
-            self.colors = [(255*r, 255*g, 255*b) for r, g, b in rgb_colors]
+                (1-x) * self.cstart_hsv[0] + x * self.cend_hsv[0],
+                (1-x) * self.cstart_hsv[1] + x * self.cend_hsv[1],
+                (1-x) * self.cstart_hsv[2] + x * self.cend_hsv[2],
+                ) for x in divs]
+            self.colors = [(255 * red, 255 * green, 255 * blue)
+                           for red, green, blue in rgb_colors]
         elif self.background == BACKGROUND_GRAD_PERIOD:
-            # we fill in in the data structure what the period is, None if not found
-            self.colors =  None
+            # we fill in in the data structure what the period is,
+            # None if not found
+            self.colors = None
             self.minperiod = 1e10
             self.maxperiod = -1e10
             gen_people = self.people_generator()
@@ -336,7 +350,8 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             gen_inner = self.innerpeople_generator()
             for child, userdata in gen_inner:
                 self.set_userdata_timeperiod(child, userdata)
-            #now create gradient data, 5 values from min to max rounded to nearest 50
+            # now create gradient data, 5 values from min to max rounded
+            # to nearest 50
             if self.maxperiod < self.minperiod:
                 self.maxperiod = self.minperiod = Today().get_year()
             rper = self.maxperiod // 50
@@ -346,19 +361,21 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             periodrange = self.maxperiod - self.minperiod
             steps = 2 * GRADIENTSCALE - 1
             divs = [x/(steps-1) for x in range(steps)]
-            self.gradval = ['%d' % int(self.minperiod + x * periodrange) for x in divs]
+            self.gradval = ['%d' % int(self.minperiod + x *
+                                       periodrange) for x in divs]
             for i in range(len(self.gradval)):
                 if i % 2 == 1:
                     self.gradval[i] = ''
             self.gradcol = [colorsys.hsv_to_rgb(
-                        (1-div) * self.cstart_hsv[0] + div * self.cend_hsv[0],
-                        (1-div) * self.cstart_hsv[1] + div * self.cend_hsv[1],
-                        (1-div) * self.cstart_hsv[2] + div * self.cend_hsv[2],
-                        ) for div in divs]
+                (1-div) * self.cstart_hsv[0] + div * self.cend_hsv[0],
+                (1-div) * self.cstart_hsv[1] + div * self.cend_hsv[1],
+                (1-div) * self.cstart_hsv[2] + div * self.cend_hsv[2],
+                ) for div in divs]
 
         elif self.background == BACKGROUND_GRAD_AGE:
-            # we fill in in the data structure what the color age is, white if no age
-            self.colors =  None
+            # we fill in in the data structure what the color age is,
+            # white if no age
+            self.colors = None
             gen_people = self.people_generator()
             for person, userdata in gen_people:
                 self.set_userdata_age(person, userdata)
@@ -375,10 +392,10 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                 if i % 2 == 1:
                     self.gradval[i] = ''
             self.gradcol = [colorsys.hsv_to_rgb(
-                        (1-div) * self.cstart_hsv[0] + div * self.cend_hsv[0],
-                        (1-div) * self.cstart_hsv[1] + div * self.cend_hsv[1],
-                        (1-div) * self.cstart_hsv[2] + div * self.cend_hsv[2],
-                        ) for div in divs]
+                (1-div) * self.cstart_hsv[0] + div * self.cend_hsv[0],
+                (1-div) * self.cstart_hsv[1] + div * self.cend_hsv[1],
+                (1-div) * self.cstart_hsv[2] + div * self.cend_hsv[2],
+                ) for div in divs]
         else:
             # known colors per generation, set or compute them
             self.colors = GENCOLOR[self.background]
@@ -389,8 +406,9 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         which has gender gender, and is in ring generation
         """
         if generation == 0 and self.background in [BACKGROUND_GENDER,
-                BACKGROUND_GRAD_GEN, BACKGROUND_SCHEME1,
-                BACKGROUND_SCHEME2]:
+                                                   BACKGROUND_GRAD_GEN,
+                                                   BACKGROUND_SCHEME1,
+                                                   BACKGROUND_SCHEME2]:
             # white for center person:
             color = (255, 255, 255)
         elif self.background == BACKGROUND_GENDER:
@@ -398,7 +416,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                 alive = probably_alive(person, self.dbstate.db)
             except RuntimeError:
                 alive = False
-            backgr, border = color_graph_box(alive, person.gender)
+            backgr, dummy_border = color_graph_box(alive, person.gender)
             color = hex_to_rgb(backgr)
         elif self.background == BACKGROUND_SINGLE_COLOR:
             color = self.maincolor
@@ -415,10 +433,13 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                 else:
                     periodfrac = 0.5
                 periodcol = colorsys.hsv_to_rgb(
-            (1-periodfrac) * self.cstart_hsv[0] + periodfrac * self.cend_hsv[0],
-            (1-periodfrac) * self.cstart_hsv[1] + periodfrac * self.cend_hsv[1],
-            (1-periodfrac) * self.cstart_hsv[2] + periodfrac * self.cend_hsv[2],
-                        )
+                    ((1-periodfrac) * self.cstart_hsv[0] +
+                     periodfrac * self.cend_hsv[0]),
+                    ((1-periodfrac) * self.cstart_hsv[1] +
+                     periodfrac * self.cend_hsv[1]),
+                    ((1-periodfrac) * self.cstart_hsv[2] +
+                     periodfrac * self.cend_hsv[2]),
+                    )
                 color = (periodcol[0]*255, periodcol[1]*255, periodcol[2]*255)
         else:
             if self.background == BACKGROUND_GRAD_GEN and generation < 0:
@@ -427,7 +448,8 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             if person.gender == Person.MALE:
                 color = [x*.9 for x in color]
         # now we set transparency data
-        if self.filter and not self.filter.match(person.handle, self.dbstate.db):
+        if self.filter and not self.filter.match(person.handle,
+                                                 self.dbstate.db):
             if self.background == BACKGROUND_SINGLE_COLOR:
                 alpha = 0.  # no color shown
             else:
@@ -437,65 +459,70 @@ class FanChartBaseWidget(Gtk.DrawingArea):
 
         return color[0], color[1], color[2], alpha
 
-    def fontcolor(self, r, g, b, a):
+    def fontcolor(self, red, green, blue, alpha):
         """
         return the font color based on the r, g, b of the background
         """
-        if a == 0:
+        if alpha == 0:
             return self.textcolor
         try:
-            return self.cache_fontcolor[(r, g, b)]
+            return self.cache_fontcolor[(red, green, blue)]
         except KeyError:
-            hls = colorsys.rgb_to_hls(r/255, g/255, b/255)
+            hls = colorsys.rgb_to_hls(red / 255, green / 255, blue / 255)
             # we use the lightness value to determine white or black font
             if hls[1] > 0.4:
-                self.cache_fontcolor[(r, g, b)] = (0, 0, 0)
+                self.cache_fontcolor[(red, green, blue)] = (0, 0, 0)
             else:
-                self.cache_fontcolor[(r, g, b)] = (1, 1, 1)
-        return self.cache_fontcolor[(r, g, b)]
+                self.cache_fontcolor[(red, green, blue)] = (1, 1, 1)
+        return self.cache_fontcolor[(red, green, blue)]
 
-    def fontbold(self, a):
+    def fontbold(self, alpha):
         """
         The font should be bold if no transparency and font is set.
         In that case, True is returned
         """
-        if a >= 1. and self.filter:
+        if alpha >= 1. and self.filter:
             return True
         return False
 
-    def draw_radbox(self, cr, radiusin, radiusout, start_rad, stop_rad, color,
+    def draw_radbox(self, ctx, radiusin, radiusout, start_rad, stop_rad, color,
                     thick=False):
         """
         Procedure to draw a person box in the outter ring position
         """
-        cr.move_to(radiusout * math.cos(start_rad), radiusout * math.sin(start_rad))
-        cr.arc(0, 0, radiusout, start_rad, stop_rad)
-        cr.line_to(radiusin * math.cos(stop_rad), radiusin * math.sin(stop_rad))
-        cr.arc_negative(0, 0, radiusin, stop_rad, start_rad)
-        cr.close_path()
-        ##path = cr.copy_path() # not working correct
-        cr.set_source_rgba(color[0], color[1], color[2], color[3])
-        cr.fill()
+        ctx.move_to(radiusout * math.cos(start_rad),
+                    radiusout * math.sin(start_rad))
+        ctx.arc(0, 0, radiusout, start_rad, stop_rad)
+        ctx.line_to(radiusin * math.cos(stop_rad),
+                    radiusin * math.sin(stop_rad))
+        ctx.arc_negative(0, 0, radiusin, stop_rad, start_rad)
+        ctx.close_path()
+        ##path = ctx.copy_path() # not working correct
+        ctx.set_source_rgba(color[0], color[1], color[2], color[3])
+        ctx.fill()
         #and again for the border
-        cr.move_to(radiusout * math.cos(start_rad), radiusout * math.sin(start_rad))
-        cr.arc(0, 0, radiusout, start_rad, stop_rad)
+        ctx.move_to(radiusout * math.cos(start_rad),
+                    radiusout * math.sin(start_rad))
+        ctx.arc(0, 0, radiusout, start_rad, stop_rad)
         if (start_rad - stop_rad) % (2 * math.pi) > 1e-5:
-            radial_motion_type = cr.line_to
+            radial_motion_type = ctx.line_to
         else:
-            radial_motion_type = cr.move_to
-        radial_motion_type(radiusin * math.cos(stop_rad), radiusin * math.sin(stop_rad))
-        cr.arc_negative(0, 0, radiusin, stop_rad, start_rad)
-        radial_motion_type(radiusout * math.cos(start_rad), radiusout * math.sin(start_rad))
-        ##cr.append_path(path) # not working correct
-        cr.set_source_rgb(0, 0, 0) # black
+            radial_motion_type = ctx.move_to
+        radial_motion_type(radiusin * math.cos(stop_rad),
+                           radiusin * math.sin(stop_rad))
+        ctx.arc_negative(0, 0, radiusin, stop_rad, start_rad)
+        radial_motion_type(radiusout * math.cos(start_rad),
+                           radiusout * math.sin(start_rad))
+        ##ctx.append_path(path) # not working correct
+        ctx.set_source_rgb(0, 0, 0) # black
         if thick:
-            cr.set_line_width(3)
+            ctx.set_line_width(3)
         else:
-            cr.set_line_width(1)
-        cr.stroke()
-        cr.set_line_width(1)
+            ctx.set_line_width(1)
+        ctx.stroke()
+        ctx.set_line_width(1)
 
-    def draw_innerring(self, cr, person, userdata, start, inc):
+    def draw_innerring(self, ctx, person, userdata, start, inc):
         """
         Procedure to draw a person in the inner ring position
         """
@@ -507,122 +534,159 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         # add child to angle storage
         self.angle[-2].append([thetamin, thetamax, None])
         #draw child now
-        cr.move_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
-        cr.arc(0, 0, rmin, thetamin, thetamax)
-        cr.line_to(rmax*math.cos(thetamax), rmax*math.sin(thetamax))
-        cr.arc_negative(0, 0, rmax, thetamax, thetamin)
-        cr.close_path()
-        ##path = cr.copy_path() # not working correct
-        cr.set_source_rgb(0, 0, 0) # black
-        cr.set_line_width(1)
-        cr.stroke()
+        ctx.move_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
+        ctx.arc(0, 0, rmin, thetamin, thetamax)
+        ctx.line_to(rmax*math.cos(thetamax), rmax*math.sin(thetamax))
+        ctx.arc_negative(0, 0, rmax, thetamax, thetamin)
+        ctx.close_path()
+        ##path = ctx.copy_path() # not working correct
+        ctx.set_source_rgb(0, 0, 0) # black
+        ctx.set_line_width(1)
+        ctx.stroke()
         #now again to fill
         if person:
-            r, g, b, a = self.background_box(person, -1, userdata)
+            red, green, blue, alpha = self.background_box(person, -1, userdata)
         else:
-            r=255; g=255; b=255; a=1
-        cr.move_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
-        cr.arc(0, 0, rmin, thetamin, thetamax)
-        cr.line_to(rmax*math.cos(thetamax), rmax*math.sin(thetamax))
-        cr.arc_negative(0, 0, rmax, thetamax, thetamin)
-        cr.close_path()
-        ##cr.append_path(path) # not working correct
-        cr.set_source_rgba(r/255., g/255., b/255., a)
-        cr.fill()
+            red = green = blue = 255
+            alpha = 1
+        ctx.move_to(rmin*math.cos(thetamin), rmin*math.sin(thetamin))
+        ctx.arc(0, 0, rmin, thetamin, thetamax)
+        ctx.line_to(rmax*math.cos(thetamax), rmax*math.sin(thetamax))
+        ctx.arc_negative(0, 0, rmax, thetamax, thetamin)
+        ctx.close_path()
+        ##ctx.append_path(path) # not working correct
+        ctx.set_source_rgba(red/255., green/255., blue/255., alpha)
+        ctx.fill()
 
-    def draw_person(self, cr, person, radiusin, radiusout, start_rad, stop_rad,
-                    generation, dup, userdata, thick=False, has_moregen_indicator = False,
-                    is_central_person=False):
+    def draw_person(self, ctx, person, radiusin, radiusout, start_rad, stop_rad,
+                    generation, dup, userdata, thick=False,
+                    has_moregen_indicator=False, is_central_person=False):
         """
         Display the piece of pie for a given person. start_rad and stop_rad
         are in radians.
         """
-        cr.save()
+        ctx.save()
         # If we need an indicator of more generations:
         if has_moregen_indicator:
             # draw an indicator
-            color=(1.0, 1.0, 1.0, 1.0) # white
-            self.draw_radbox(cr, radiusout, radiusout + BORDER_EDGE_WIDTH, start_rad, stop_rad, color, thick=False)
+            color = (1.0, 1.0, 1.0, 1.0) # white
+            self.draw_radbox(ctx, radiusout, radiusout + BORDER_EDGE_WIDTH,
+                             start_rad, stop_rad, color, thick=False)
 
         # get the color of the background
         if not person:
             # if called on None, let's make a transparent box
-            r, g, b, a = (255, 255, 255, 0)
+            red, green, blue, alpha = (255, 255, 255, 0)
         elif dup:
-            r, g, b = self.dupcolor #duplicate color
-            a = 1.0
+            red, green, blue = self.dupcolor #duplicate color
+            alpha = 1.0
         else:
-            r, g, b, a = self.background_box(person, generation, userdata)
-        color=(r/255., g/255., b/255., a)
+            red, green, blue, alpha = self.background_box(person, generation,
+                                                          userdata)
+        color = (red/255., green/255., blue/255., alpha)
 
         # now draw the person
         if not is_central_person:
-            self.draw_radbox(cr, radiusin, radiusout, start_rad, stop_rad, color, thick)
+            self.draw_radbox(ctx, radiusin, radiusout, start_rad, stop_rad,
+                             color, thick)
         else:
             #special box for centrer pers
-            cr.arc(0, 0, radiusout, 0, 2 * math.pi)
-            if self.childring and len(self.childrenroot)>0:
-                cr.arc_negative(0, 0, radiusin, 2 * math.pi, 0)
-                cr.close_path()
-            cr.set_source_rgba(*color)
-            cr.fill()
+            ctx.arc(0, 0, radiusout, 0, 2 * math.pi)
+            if self.childring and len(self.childrenroot) > 0:
+                ctx.arc_negative(0, 0, radiusin, 2 * math.pi, 0)
+                ctx.close_path()
+            ctx.set_source_rgba(*color)
+            ctx.fill()
 
         if self.last_x is None or self.last_y is None:
             #we are not in a move, so draw text
             radial = False
             if self.radialtext: ## and generation >= 6:
-                space_arc_text =  (radiusin+radiusout)/2 * (stop_rad-start_rad)
+                space_arc_text = (radiusin+radiusout)/2 * (stop_rad-start_rad)
                 # is there more space to print it radial ?
-                radial= (space_arc_text < (radiusout-radiusin) * 1.1)
-            self.draw_person_text(cr, person, radiusin, radiusout, start_rad, stop_rad,
-                           radial, self.fontcolor(r, g, b, a), self.fontbold(a), can_flip=not is_central_person)
-        cr.restore()
+                radial = (space_arc_text < (radiusout-radiusin) * 1.1)
+            self.draw_person_text(ctx, person, radiusin, radiusout,
+                                  start_rad, stop_rad, radial,
+                                  self.fontcolor(red, green, blue, alpha),
+                                  self.fontbold(alpha),
+                                  can_flip=not is_central_person)
+        ctx.restore()
 
-    def draw_person_text(self, cr, person, radiusin, radiusout, start, stop,
-                  radial=False, fontcolor=(0, 0, 0), bold=False, can_flip = True):
-        if not person: return
+    def draw_person_text(self, ctx, person, radiusin, radiusout, start, stop,
+                         radial=False, fontcolor=(0, 0, 0), bold=False,
+                         can_flip=True):
+        if not person:
+            return
         draw_radial = radial and self.radialtext
         if not self.twolinename:
-            name=name_displayer.display(person)
+            name = name_displayer.display(person)
             if self.showid:
                 name += " (" + person.gramps_id + ")"
-            self.draw_text(cr, name, radiusin, radiusout, start, stop, draw_radial,
-                       fontcolor, bold)
+            self.draw_text(ctx, name, radiusin, radiusout, start, stop,
+                           draw_radial, fontcolor, bold)
         else:
-            text=name_displayer.display(person)
+            #text=name_displayer.display(person)
             if self.showid:
                 text_line1 = "(" + person.gramps_id + ") "
             else:
                 text_line1 = ""
-            text_line1+=name_displayer.display_format(person, TWO_LINE_FORMAT_1)
-            text_line2=name_displayer.display_format(person, TWO_LINE_FORMAT_2)
+            text_line1 += name_displayer.display_format(person,
+                                                        TWO_LINE_FORMAT_1)
+            text_line2 = name_displayer.display_format(person,
+                                                       TWO_LINE_FORMAT_2)
             if draw_radial:
-                split_frac_line1=0.5
-                flipped = can_flip and ((math.degrees((start+stop)/2.0) + self.rotate_value - 90) % 360 < 179 and self.flipupsidedownname)
+                split_frac_line1 = 0.5
+                flipped = can_flip and ((math.degrees((start+stop)/2.0) +
+                                         self.rotate_value - 90) % 360 < 179
+                                        and self.flipupsidedownname)
                 if flipped:
-                    middle=(start*split_frac_line1+stop*(1.0-split_frac_line1))
-                    (a11,a12,a21,a22)=(middle,stop,start,middle)
+                    middle = (start * split_frac_line1 +
+                              stop * (1.0 - split_frac_line1))
+                    (a11, a12, a21, a22) = (middle, stop, start, middle)
                 else:
-                    middle=(start*(1.0-split_frac_line1)+stop*split_frac_line1)
-                    (a11,a12,a21,a22)=(start,middle,middle,stop)
-                written_textwidth=self.draw_text(cr, text_line1, radiusin, radiusout, a11, a12, draw_radial, fontcolor, bold=1, flipped=flipped)
+                    middle = (start * (1.0 - split_frac_line1) +
+                              stop * split_frac_line1)
+                    (a11, a12, a21, a22) = (start, middle, middle, stop)
+                written_textwidth = self.draw_text(ctx, text_line1, radiusin,
+                                                   radiusout, a11, a12,
+                                                   draw_radial, fontcolor,
+                                                   bold=1, flipped=flipped)
                 if written_textwidth == 0 and text_line1 != "":
                     #Not enought space for 2 line, fallback to 1 line
-                    written_textwidth=self.draw_text(cr, text_line1, radiusin, radiusout, start, stop, draw_radial, fontcolor, bold=1, flipped=flipped)
-                    self.draw_text(cr, text_line2, radiusin+written_textwidth+PAD_TEXT, radiusout, start, stop, draw_radial, fontcolor, bold, flipped)
+                    written_textwidth = self.draw_text(ctx, text_line1,
+                                                       radiusin, radiusout,
+                                                       start, stop, draw_radial,
+                                                       fontcolor, bold=1,
+                                                       flipped=flipped)
+                    self.draw_text(ctx, text_line2,
+                                   radiusin+written_textwidth+PAD_TEXT,
+                                   radiusout, start, stop, draw_radial,
+                                   fontcolor, bold, flipped)
                 else:
-                    self.draw_text(cr, text_line2, radiusin, radiusout, a21, a22, draw_radial, fontcolor, bold, flipped)
+                    self.draw_text(ctx, text_line2, radiusin, radiusout, a21,
+                                   a22, draw_radial, fontcolor, bold, flipped)
             else:
-                middle=(radiusin*.5+radiusout*.5)
-                flipped = can_flip and ((math.degrees((start+stop)/2.0) + self.rotate_value) % 360 < 179 and self.flipupsidedownname)
+                middle = (radiusin * .5 + radiusout * .5)
+                flipped = can_flip and ((math.degrees((start+stop)/2.0) +
+                                         self.rotate_value) % 360 < 179
+                                        and self.flipupsidedownname)
                 if flipped:
-                    self.draw_text(cr, text_line2, middle, radiusout, start, stop, draw_radial, fontcolor, bold=0, flipped=flipped)
-                    self.draw_text(cr, text_line1, radiusin, middle, start, stop, draw_radial, fontcolor, bold=1, flipped=flipped)
+                    self.draw_text(ctx, text_line2, middle, radiusout,
+                                   start, stop, draw_radial, fontcolor,
+                                   bold=0, flipped=flipped)
+                    self.draw_text(ctx, text_line1, radiusin, middle,
+                                   start, stop, draw_radial, fontcolor,
+                                   bold=1, flipped=flipped)
                 else:
-                    self.draw_text(cr, text_line1, middle, radiusout, start, stop, draw_radial, fontcolor, bold=1, flipped=flipped)
-                    self.draw_text(cr, text_line2, radiusin, middle, start, stop, draw_radial, fontcolor, bold=0, flipped=flipped)
+                    self.draw_text(ctx, text_line1, middle, radiusout,
+                                   start, stop, draw_radial, fontcolor,
+                                   bold=1, flipped=flipped)
+                    self.draw_text(ctx, text_line2, radiusin, middle,
+                                   start, stop, draw_radial, fontcolor,
+                                   bold=0, flipped=flipped)
 
-    def wrap_truncate_layout(self, layout, font, width_pixels, height_pixels, tryrescale=True):
+    def wrap_truncate_layout(self, layout, font, width_pixels, height_pixels,
+                             tryrescale=True):
         """
         Uses the layout to wrap and truncate its text to given width
         Returns: (w,h) as returned by layout.get_pixel_size()
@@ -637,27 +701,30 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             layout.set_text(layout.get_text(), layout.get_line(0).length)
 
         #2. we check if height is ok
-        w, h = layout.get_pixel_size()
-        if h > height_pixels:
+        dummy_width, height = layout.get_pixel_size()
+        if height > height_pixels:
             if tryrescale:
                 #try to reduce the height
-                fontsize = max(height_pixels / h * font.get_size() /1.1, font.get_size()/2.0)
+                fontsize = max(height_pixels / height * font.get_size() /1.1,
+                               font.get_size()/2.0)
                 font.set_size(fontsize)
-                layout.set_text(all_text_backup, len(all_text_backup.encode('utf-8'))) # reducing the height allows for more characters
+                # reducing the height allows for more characters
+                layout.set_text(all_text_backup,
+                                len(all_text_backup.encode('utf-8')))
                 layout.set_font_description(font)
                 if layout.get_line_count() > 1:
-                    layout.set_text(layout.get_text(), layout.get_line(0).length)
-                w, h = layout.get_pixel_size()
+                    layout.set_text(layout.get_text(),
+                                    layout.get_line(0).length)
+                dummy_width, height = layout.get_pixel_size()
             # we check again if height is ok
-            if h > height_pixels:
+            if height > height_pixels:
                 #we could not fix it, no text
-                layout.set_text("",0)
+                layout.set_text("", 0)
         layout.context_changed()
         return layout.get_pixel_size()
 
-    def draw_text(self, cr, text, radiusin, radiusout, start_rad, stop_rad,
-                  radial=False,
-                  fontcolor=(0, 0, 0), bold=False, flipped = False):
+    def draw_text(self, ctx, text, radiusin, radiusout, start_rad, stop_rad,
+                  radial=False, fontcolor=(0, 0, 0), bold=False, flipped=False):
         """
         Display text at a particular radius, between start_rad and stop_rad
         radians.
@@ -667,15 +734,18 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         font.set_size(fontsize * Pango.SCALE)
         if bold:
             font.set_weight(Pango.Weight.BOLD)
-        cr.save()
-        cr.set_source_rgb(*fontcolor)
+        ctx.save()
+        ctx.set_source_rgb(*fontcolor)
         if radial and self.radialtext:
-            self.draw_radial_text(cr, text, radiusin, radiusout, start_rad, stop_rad, font, flipped)
+            self.draw_radial_text(ctx, text, radiusin, radiusout,
+                                  start_rad, stop_rad, font, flipped)
         else:
-            self.draw_arc_text(cr, text, radiusin, radiusout, start_rad, stop_rad, font, flipped)
-        cr.restore()
+            self.draw_arc_text(ctx, text, radiusin, radiusout,
+                               start_rad, stop_rad, font, flipped)
+        ctx.restore()
 
-    def draw_radial_text(self, cr, text, radiusin, radiusout, start_rad, stop_rad, font, flipped):
+    def draw_radial_text(self, ctx, text, radiusin, radiusout,
+                         start_rad, stop_rad, font, flipped):
         layout = self.create_pango_layout(text)
         if is_quartz():
             PangoCairo.context_set_resolution(layout.get_context(), 72)
@@ -687,22 +757,26 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         avail_height = (stop_rad - start_rad) * radiusin - 2.0 * PAD_TEXT
         avail_width = radiusout - radiusin - 2.0 * PAD_TEXT
 
-        w, h = self.wrap_truncate_layout(layout, font, avail_width, avail_height, tryrescale=True)
+        dummy_width, height = self.wrap_truncate_layout(layout, font,
+                                                        avail_width,
+                                                        avail_height,
+                                                        tryrescale=True)
 
         #  2. now draw this text
         # offset for cairo-font system is 90
         if flipped:
-            angle = (start_rad + stop_rad)/2 + (h / radiusin / 2) + math.pi
+            angle = (start_rad + stop_rad)/2 + (height / radiusin / 2) + math.pi
             start_pos = -radiusout + PAD_TEXT
         else:
-            angle = (start_rad + stop_rad)/2 - (h / radiusin / 2)
+            angle = (start_rad + stop_rad)/2 - (height / radiusin / 2)
             start_pos = radiusin + PAD_TEXT
-        cr.rotate(angle)
+        ctx.rotate(angle)
         layout.context_changed()
-        cr.move_to(start_pos, 0)
-        PangoCairo.show_layout(cr, layout)
+        ctx.move_to(start_pos, 0)
+        PangoCairo.show_layout(ctx, layout)
 
-    def draw_arc_text(self, cr, text, radiusin, radiusout, start_rad, stop_rad, font, bottom_is_outside):
+    def draw_arc_text(self, ctx, text, radiusin, radiusout,
+                      start_rad, stop_rad, font, bottom_is_outside):
         """
         Display text at a particular radius, between start and stop
         degrees, setting it up along the arc, center-justified.
@@ -716,31 +790,36 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         layout.set_wrap(Pango.WrapMode.WORD_CHAR)
 
         # get height of text:
-        textheight=layout.get_size()[1]/Pango.SCALE
-        radius_text=(radiusin+radiusout)/2.0
+        textheight = layout.get_size()[1] / Pango.SCALE
+        radius_text = (radiusin + radiusout) / 2.0
 
         # 1. compute available text space
         avail_height = radiusout - radiusin - 2.0 * PAD_TEXT
         avail_width = (stop_rad - start_rad) * radius_text - 2.0 * PAD_TEXT
 
-        w, h = self.wrap_truncate_layout(layout, font, avail_width, avail_height, tryrescale=True)
+        width, dummy_height = self.wrap_truncate_layout(layout, font,
+                                                        avail_width,
+                                                        avail_height,
+                                                        tryrescale=True)
 
         # 2. Compute text position start angle
         mid_rad = (stop_rad + start_rad)/2
-        pos_rad = mid_rad - (w/2/radius_text)
-        end_rad = pos_rad + (w/radius_text)
+        pos_rad = mid_rad - (width/2/radius_text)
+        end_rad = pos_rad + (width/radius_text)
 
         # 3. Use the layout to provide us the metrics of the text box
-        cr.new_path()
-        PangoCairo.layout_path(cr, layout)
+        ctx.new_path()
+        PangoCairo.layout_path(ctx, layout)
 
         # 4. The moment of truth: map the text box onto the sector, and render!
-        warpPath(cr, \
-            self.create_map_rect_to_sector(radius_text, pos_rad, end_rad, textheight, bottom_is_outside ))
-        cr.fill()
+        warpPath(ctx, \
+            self.create_map_rect_to_sector(radius_text, pos_rad, end_rad,
+                                           textheight, bottom_is_outside))
+        ctx.fill()
 
     @staticmethod
-    def create_map_rect_to_sector(radius, start_rad, stop_rad, textheight, bottom_is_outside = False):
+    def create_map_rect_to_sector(radius, start_rad, stop_rad, textheight,
+                                  bottom_is_outside=False):
         """
         Create a 2D-transform, mapping a rectangle onto a circle sector.
 
@@ -748,48 +827,49 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         :param start_rad: start radial angle of the sector, in radians
         :param stop_rad: stop radial angle of the sector, in radians
         :param textheight height of the text
-        :param bottom_is_outside flag defining if we write with the bottom toward outside
+        :param bottom_is_outside flag defining if we write with the
+                                 bottom toward outside
         :returns: a lambda (x,y)|->(xNew,yNew) to feed to warpPath.
         """
         if bottom_is_outside:
-            def phi(x):
-                return -x/radius + stop_rad
-            def rho(y):
-                return radius + (y - textheight/2.0)
+            def phi(posx):
+                return -posx / radius + stop_rad
+            def rho(posy):
+                return radius + (posy - textheight / 2.0)
         else:
-            def phi(x):
-                return x/radius + start_rad
-            def rho(y):
-                return radius - ( y - textheight/2.0)
-        return lambda x, y: \
-            (rho(y) * math.cos(phi(x)), rho(y) * math.sin(phi(x)))
+            def phi(posx):
+                return posx / radius + start_rad
+            def rho(posy):
+                return radius - (posy - textheight / 2.0)
+        return lambda posx, posy: (rho(posy) * math.cos(phi(posx)),
+                                   rho(posy) * math.sin(phi(posx)))
 
-    def draw_gradient_legend(self, cr, halfdist):
+    def draw_gradient_legend(self, ctx, halfdist):
         gradwidth = 10
         gradheight = 10
         starth = 15
         startw = 5
-        cr.save()
+        ctx.save()
 
-        cr.translate(-self.center_xy[0], -self.center_xy[1])
+        ctx.translate(-self.center_xy[0], -self.center_xy[1])
 
         font = Pango.FontDescription(self.fontdescr)
         fontsize = self.fontsize
         font.set_size(fontsize * Pango.SCALE)
         for color, text in zip(self.gradcol, self.gradval):
-            cr.move_to(startw, starth)
-            cr.rectangle(startw, starth, gradwidth, gradheight)
-            cr.set_source_rgb(color[0], color[1], color[2])
-            cr.fill()
+            ctx.move_to(startw, starth)
+            ctx.rectangle(startw, starth, gradwidth, gradheight)
+            ctx.set_source_rgb(color[0], color[1], color[2])
+            ctx.fill()
             layout = self.create_pango_layout(text)
             if is_quartz():
                 PangoCairo.context_set_resolution(layout.get_context(), 72)
             layout.set_font_description(font)
-            cr.move_to(startw+gradwidth+4, starth)
-            cr.set_source_rgb(0, 0, 0) #black
-            PangoCairo.show_layout(cr, layout)
+            ctx.move_to(startw+gradwidth+4, starth)
+            ctx.set_source_rgb(0, 0, 0) #black
+            PangoCairo.show_layout(ctx, layout)
             starth = starth+gradheight
-        cr.restore()
+        ctx.restore()
 
     def cursor_on_tranlation_dot(self, curx, cury):
         """
@@ -800,27 +880,29 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         radius = math.sqrt((fanxy[0]) ** 2 + (fanxy[1]) ** 2)
         return radius < TRANSLATE_PX
 
-    def cursor_to_polar(self, curx, cury, get_raw_rads = False):
+    def cursor_to_polar(self, curx, cury, get_raw_rads=False):
         # compute angle, radius in unrotated fan
         fanxy = curx - self.center_xy[0], cury - self.center_xy[1]
         radius = math.sqrt((fanxy[0]) ** 2 + (fanxy[1]) ** 2)
         #angle before rotation:
         #children are in cairo angle (clockwise) from pi to 3 pi
         #rads however is clock 0 to 2 pi
-        raw_rads = math.atan2( fanxy[1], fanxy[0]) % (2 * math.pi)
-        rads = (raw_rads - math.radians(self.rotate_value) ) % (2 * math.pi)
+        raw_rads = math.atan2(fanxy[1], fanxy[0]) % (2 * math.pi)
+        rads = (raw_rads - math.radians(self.rotate_value)) % (2 * math.pi)
         if get_raw_rads:
             return radius, rads, raw_rads
         else:
             return radius, rads
 
     def radian_in_bounds(self, start_rad, rads, stop_rad):
-        assert(start_rad <= stop_rad)
-        # we compare (rads - start_rad) % (2.0 * math.pi) and (stop_rad - start_rad)
-        slice = stop_rad - start_rad
+        assert start_rad <= stop_rad
+        # we compare (rads - start_rad) % (2.0 * math.pi) and
+        #            (stop_rad - start_rad)
+        portion = stop_rad - start_rad
         dist_rads_to_start_rads = (rads - start_rad) % (2.0 * math.pi)
-        #print start_rad, rads, stop_rad, ". (rads-start), slice :", dist_rads_to_start_rads, slice
-        return dist_rads_to_start_rads < slice
+        # print(start_rad, rads, stop_rad, ". (rads-start), portion :",
+        #       dist_rads_to_start_rads, portion)
+        return dist_rads_to_start_rads < portion
 
     def cell_address_under_cursor(self, curx, cury):
         """
@@ -859,10 +941,12 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         """grab key press
         """
         if self.mouse_x and self.mouse_y:
-            cell_address = self.cell_address_under_cursor(self.mouse_x, self.mouse_y)
+            cell_address = self.cell_address_under_cursor(self.mouse_x,
+                                                          self.mouse_y)
             if cell_address is None:
                 return False
-            person, family = self.person_at(cell_address), self.family_at(cell_address)
+            person, family = (self.person_at(cell_address),
+                              self.family_at(cell_address))
             if person and (Gdk.keyval_name(eventkey.keyval) == 'e'):
                 # we edit the person
                 self.edit_person_cb(None, person.handle)
@@ -905,7 +989,8 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         #right click on person, context menu
         # Do things based on state, event.get_state(), or button, event.button
         if is_right_click(event):
-            person, family = self.person_at(cell_address), self.family_at(cell_address)
+            person, family = (self.person_at(cell_address),
+                              self.family_at(cell_address))
             fhandle = None
             if family:
                 fhandle = family.handle
@@ -919,7 +1004,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         self._mouse_click = False
         if self.last_x is None or self.last_y is None:
             # while mouse is moving, we must update the tooltip based on person
-            cell_address =  self.cell_address_under_cursor(event.x, event.y)
+            cell_address = self.cell_address_under_cursor(event.x, event.y)
             self.mouse_x, self.mouse_y = event.x, event.y
             tooltip = ""
             if cell_address:
@@ -930,13 +1015,16 @@ class FanChartBaseWidget(Gtk.DrawingArea):
 
         #translate or rotate should happen
         if self.translating:
-            canonical_center = self.center_xy_from_delta([0,0])
-            self.center_delta_xy = canonical_center[0]-event.x,canonical_center[1]-event.y
+            canonical_center = self.center_xy_from_delta([0, 0])
+            self.center_delta_xy = (canonical_center[0] - event.x,
+                                    canonical_center[1] - event.y)
             self.center_xy = self.center_xy_from_delta()
         else:
             # get the angles of the two points from the center:
-            start_angle = math.atan2(event.y - self.center_xy[1], event.x - self.center_xy[0])
-            end_angle = math.atan2(self.last_y - self.center_xy[1], self.last_x - self.center_xy[0])
+            start_angle = math.atan2(event.y - self.center_xy[1],
+                                     event.x - self.center_xy[0])
+            end_angle = math.atan2(self.last_y - self.center_xy[1],
+                                   self.last_x - self.center_xy[0])
             # now look at change in angle:
             diff_angle = (end_angle - start_angle) % (math.pi * 2.0)
             self.rotate_value -= math.degrees(diff_angle)
@@ -947,14 +1035,18 @@ class FanChartBaseWidget(Gtk.DrawingArea):
 
     def center_xy_from_delta(self, delta=None):
         alloc = self.get_allocation()
-        x, y, w, h = alloc.x, alloc.y, alloc.width, alloc.height
-        if delta is None: delta = self.center_delta_xy
+        (dummy_x, dummy_y,
+         width, height) = alloc.x, alloc.y, alloc.width, alloc.height
+        if delta is None:
+            delta = self.center_delta_xy
         if self.form == FORM_CIRCLE:
-            canvas_xy = w/2 - delta[0], h/2 - delta[1]
+            canvas_xy = width / 2 - delta[0], height / 2 - delta[1]
         elif self.form == FORM_HALFCIRCLE:
-            canvas_xy = w/2 - delta[0], h - self.CENTER - PAD_PX - delta[1]
+            canvas_xy = (width / 2 - delta[0],
+                         height - self.CENTER - PAD_PX - delta[1])
         elif self.form == FORM_QUADRANT:
-            canvas_xy = self.CENTER + PAD_PX - delta[0], h - self.CENTER - PAD_PX - delta[1]
+            canvas_xy = (self.CENTER + PAD_PX - delta[0],
+                         height - self.CENTER - PAD_PX - delta[1])
         return canvas_xy
 
     def do_mouse_click(self):
@@ -1003,19 +1095,22 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                         id(self), person.get_handle(), 0)
                 sel_data.set(sel_data.get_target(), 8, pickle.dumps(data))
             elif ('TEXT' in tgs or 'text/plain' in tgs) and info == 0:
-                sel_data.set_text(self.format_helper.format_person(person, 11), -1)
+                sel_data.set_text(self.format_helper.format_person(person,
+                                                                   11), -1)
 
-    def on_drag_data_received(self, widget, context, x, y, sel_data, info, time):
+    def on_drag_data_received(self, widget, context, pos_x, pos_y,
+                              sel_data, info, time):
         """
         Handle the standard gtk interface for drag_data_received.
 
         If the selection data is defined, extract the value from sel_data.data
         """
-        radius, rads = self.cursor_to_polar(x, y)
+        radius, dummy_rads = self.cursor_to_polar(pos_x, pos_y)
 
         if radius < self.CENTER:
             if sel_data and sel_data.get_data():
-                (drag_type, idval, handle, val) = pickle.loads(sel_data.get_data())
+                (dummy_drag_type, dummy_idval, handle,
+                 dummy_val) = pickle.loads(sel_data.get_data())
                 self.goto(self, handle)
 
     def edit_person_cb(self, obj, person_handle):
@@ -1058,10 +1153,14 @@ class FanChartWidget(FanChartBaseWidget):
                         'Sans', '#0000FF', '#FF0000', None, 0.5, FORM_CIRCLE,
                         False)
         FanChartBaseWidget.__init__(self, dbstate, uistate, callback_popup)
+        self.angle = {}
+        self.childrenroot = []
+        self.rootangle_rad = []
+        self.menu = None
 
     def set_values(self, root_person_handle, maxgen, background, childring,
-              flipupsidedownname, twolinename, radialtext, fontdescr,
-              grad_start, grad_end, filter, alpha_filter, form, showid):
+                   flipupsidedownname, twolinename, radialtext, fontdescr,
+                   grad_start, grad_end, filtr, alpha_filter, form, showid):
         """
         Reset the values to be used:
 
@@ -1071,12 +1170,13 @@ class FanChartWidget(FanChartBaseWidget):
         :type background: int
         :param childring: to show the center ring with children or not
         :param twolinename: uses two lines for the display of person's name
-        :param flipupsidedownname: flip name on the left of the fanchart for the display of person's name
+        :param flipupsidedownname: flip name on the left of the fanchart
+                                   for the display of person's name
         :param radialtext: try to use radial text or not
         :param fontdescr: string describing the font to use
         :param grad_start: colors to use for background procedure
         :param grad_end: colors to use for background procedure
-        :param filter: the person filter to apply to the people in the chart
+        :param filtr: the person filter to apply to the people in the chart
         :param alpha: the alpha transparency value (0-1) to apply to filtered
                       out data
         :param form: the ``FORM_`` constant for the fanchart
@@ -1092,7 +1192,7 @@ class FanChartWidget(FanChartBaseWidget):
         self.fontdescr = fontdescr
         self.grad_start = grad_start
         self.grad_end = grad_end
-        self.filter = filter
+        self.filter = filtr
         self.alpha_filter = alpha_filter
         self.form = form
         self.showid = showid
@@ -1116,11 +1216,12 @@ class FanChartWidget(FanChartBaseWidget):
             self.data[i] = [(None,) * 4] * 2 ** i
             self.angle[i] = []
             angle = self.rootangle_rad[0]
-            slice = 1/ (2 ** i) * (self.rootangle_rad[1] - self.rootangle_rad[0])
-            for count in range(len(self.data[i])):
+            portion = 1/ (2 ** i) * (self.rootangle_rad[1] -
+                                     self.rootangle_rad[0])
+            for dummy_count in range(len(self.data[i])):
                 # start, stop, state
-                self.angle[i].append([angle, angle + slice, NORMAL])
-                angle += slice
+                self.angle[i].append([angle, angle + portion, NORMAL])
+                angle += portion
 
     def _fill_data_structures(self):
         self.set_generations()
@@ -1145,9 +1246,10 @@ class FanChartWidget(FanChartBaseWidget):
         for current in range(1, self.generations):
             parent = 0
             # person, parents, children
-            for (p, q, c, d) in self.data[current - 1]:
+            for (pers, dummy_q, dummy_c, dummy_d) in self.data[current - 1]:
                 # Get father's and mother's details:
-                for person in [self._get_parent(p, True), self._get_parent(p, False)]:
+                for person in [self._get_parent(pers, True),
+                               self._get_parent(pers, False)]:
                     if current == self.generations - 1:
                         parents = self._have_parents(person)
                     else:
@@ -1164,9 +1266,9 @@ class FanChartWidget(FanChartBaseWidget):
         TODO: is there no util function for this
         """
         if person:
-            m = self._get_parent(person, False)
-            f = self._get_parent(person, True)
-            return not m is f is None
+            mother = self._get_parent(person, False)
+            father = self._get_parent(person, True)
+            return not mother is father is None
         return False
 
     def _get_parent(self, person, father):
@@ -1184,7 +1286,8 @@ class FanChartWidget(FanChartBaseWidget):
                     else:
                         person_handle = Family.get_mother_handle(family)
                     if person_handle:
-                        return self.dbstate.db.get_person_from_handle(person_handle)
+                        fct = self.dbstate.db.get_person_from_handle
+                        return fct(person_handle)
         return None
 
     def gen_pixels(self):
@@ -1196,8 +1299,9 @@ class FanChartWidget(FanChartBaseWidget):
     def nrgen(self):
         #compute the number of generations present
         for generation in range(self.generations - 1, 0, -1):
-            for p in range(len(self.data[generation])):
-                (person, parents, child, userdata) = self.data[generation][p]
+            for idx in range(len(self.data[generation])):
+                (person, dummy_parents, dummy_child,
+                 dummy_userdata) = self.data[generation][idx]
                 if person:
                     return generation
         return 1
@@ -1206,22 +1310,24 @@ class FanChartWidget(FanChartBaseWidget):
         """
         Compute the half radius of the circle
         """
-        return PIXELS_PER_GENERATION * self.nrgen() + self.CENTER + BORDER_EDGE_WIDTH
+        return (PIXELS_PER_GENERATION * self.nrgen() +
+                self.CENTER + BORDER_EDGE_WIDTH)
 
-    def get_radiusinout_for_generation(self,generation):
-        outerradius=generation * PIXELS_PER_GENERATION + self.CENTER
-        innerradius=(generation-1) * PIXELS_PER_GENERATION + self.CENTER
-        if generation==0:
-            innerradius= CHILDRING_WIDTH + TRANSLATE_PX
-        return (innerradius,outerradius)
+    def get_radiusinout_for_gen(self, generation):
+        outerradius = generation * PIXELS_PER_GENERATION + self.CENTER
+        innerradius = (generation - 1) * PIXELS_PER_GENERATION + self.CENTER
+        if generation == 0:
+            innerradius = CHILDRING_WIDTH + TRANSLATE_PX
+        return (innerradius, outerradius)
 
     def people_generator(self):
         """
         a generator over all people outside of the core person
         """
         for generation in range(self.generations):
-            for p in range(len(self.data[generation])):
-                (person, parents, child, userdata) = self.data[generation][p]
+            for idx in range(len(self.data[generation])):
+                (person, dummy_parents, dummy_child,
+                 userdata) = self.data[generation][idx]
                 yield (person, userdata)
 
     def innerpeople_generator(self):
@@ -1229,21 +1335,21 @@ class FanChartWidget(FanChartBaseWidget):
         a generator over all people inside of the core person
         """
         for childdata in self.childrenroot:
-            (person, parents, child, userdata) = childdata
+            (person, dummy_parents, dummy_child, userdata) = childdata
             yield (person, userdata)
 
-    def draw(self, cr=None, scale=1.0):
+    def draw(self, ctx=None, scale=1.0):
         """
         The main method to do the drawing.
-        If cr is given, we assume we draw draw raw on the cairo context cr
-        To draw in GTK3 and use the allocation, set cr=None.
+        If ctx is given, we assume we draw draw raw on the cairo context ctx
+        To draw in GTK3 and use the allocation, set ctx=None.
         Note: when drawing for display, to counter a Gtk issue with scrolling
         or resizing the drawing window, we draw on a surface, then copy to the
         drawing context when the Gtk 'draw' signal arrives.
         """
         # first do size request of what we will need
         halfdist = self.halfdist()
-        if not cr:  # Display
+        if not ctx:  # Display
             if self.form == FORM_CIRCLE:
                 size_w = size_h = 2 * halfdist
             elif self.form == FORM_HALFCIRCLE:
@@ -1259,57 +1365,65 @@ class FanChartWidget(FanChartBaseWidget):
             size_h = self.get_allocated_height()
             self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
                                               size_w, size_h)
-            cr = cairo.Context(self.surface)
+            ctx = cairo.Context(self.surface)
             self.center_xy = self.center_xy_from_delta()
-            cr.translate(*self.center_xy)
+            ctx.translate(*self.center_xy)
         else:  # printing
             if self.form == FORM_QUADRANT:
                 self.center_xy = self.CENTER + PIXELS_PER_GENERATION, halfdist
             else:
                 self.center_xy = halfdist + PIXELS_PER_GENERATION, halfdist
-            cr.scale(scale, scale)
-            cr.translate(*self.center_xy)
+            ctx.scale(scale, scale)
+            ctx.translate(*self.center_xy)
 
-        cr.save()
-        cr.rotate(math.radians(self.rotate_value))
+        ctx.save()
+        ctx.rotate(math.radians(self.rotate_value))
         for generation in range(self.generations - 1, 0, -1):
-            for p in range(len(self.data[generation])):
-                (person, parents, child, userdata) = self.data[generation][p]
+            for idx in range(len(self.data[generation])):
+                (person, parents, child, userdata) = self.data[generation][idx]
                 if person:
-                    start, stop, state = self.angle[generation][p]
+                    start, stop, state = self.angle[generation][idx]
                     if state in [NORMAL, EXPANDED]:
-                        radiusin,radiusout = self.get_radiusinout_for_generation(generation)
+                        (radiusin,
+                         radiusout) = self.get_radiusinout_for_gen(generation)
                         dup = False
-                        self.draw_person(cr, person, radiusin, radiusout, start, stop,
-                                         generation, dup, userdata, thick=(state == EXPANDED),
-                                         has_moregen_indicator = (generation == self.generations - 1 and parents) )
-        cr.restore()
+                        indicator = (generation == self.generations - 1
+                                     and parents)
+                        self.draw_person(ctx, person, radiusin, radiusout,
+                                         start, stop, generation, dup, userdata,
+                                         thick=(state == EXPANDED),
+                                         has_moregen_indicator=indicator)
+        ctx.restore()
         # Draw center person:
         (person, parents, child, userdata) = self.data[0][0]
         if person:
-            radiusin, radiusout = self.get_radiusinout_for_generation(0)
-            if not child: radiusin = TRANSLATE_PX
-            self.draw_person(cr, person, radiusin, radiusout, math.pi/2, math.pi/2 + 2*math.pi,
-                             0, False, userdata, thick = False, has_moregen_indicator = False, is_central_person = True)
+            radiusin, radiusout = self.get_radiusinout_for_gen(0)
+            if not child:
+                radiusin = TRANSLATE_PX
+            self.draw_person(ctx, person, radiusin, radiusout,
+                             math.pi/2, math.pi/2 + 2*math.pi,
+                             0, False, userdata, thick=False,
+                             has_moregen_indicator=False,
+                             is_central_person=True)
             #draw center disk to move chart
-            cr.set_source_rgb(0, 0, 0) # black
-            cr.move_to(TRANSLATE_PX, 0)
-            cr.arc(0, 0, TRANSLATE_PX, 0, 2 * math.pi)
+            ctx.set_source_rgb(0, 0, 0) # black
+            ctx.move_to(TRANSLATE_PX, 0)
+            ctx.arc(0, 0, TRANSLATE_PX, 0, 2 * math.pi)
             if child: # has at least one child
-                cr.fill()
+                ctx.fill()
             else:
-                cr.stroke()
+                ctx.stroke()
             if child and self.childring:
-                self.draw_childring(cr)
+                self.draw_childring(ctx)
         if self.background in [BACKGROUND_GRAD_AGE, BACKGROUND_GRAD_PERIOD]:
-            self.draw_gradient_legend(cr, halfdist)
+            self.draw_gradient_legend(ctx, halfdist)
 
-    def draw_childring(self, cr):
-        cr.move_to(TRANSLATE_PX + CHILDRING_WIDTH, 0)
-        cr.set_source_rgb(0, 0, 0) # black
-        cr.set_line_width(1)
-        cr.arc(0, 0, TRANSLATE_PX + CHILDRING_WIDTH, 0, 2 * math.pi)
-        cr.stroke()
+    def draw_childring(self, ctx):
+        ctx.move_to(TRANSLATE_PX + CHILDRING_WIDTH, 0)
+        ctx.set_source_rgb(0, 0, 0) # black
+        ctx.set_line_width(1)
+        ctx.arc(0, 0, TRANSLATE_PX + CHILDRING_WIDTH, 0, 2 * math.pi)
+        ctx.stroke()
         nrchild = len(self.childrenroot)
         #Y axis is downward. positve angles are hence clockwise
         startangle = math.pi
@@ -1318,40 +1432,45 @@ class FanChartWidget(FanChartBaseWidget):
         else:
             angleinc = 2 * math.pi / nrchild
         for childdata in self.childrenroot:
-            (person, parents, child, userdata) = childdata
-            self.draw_innerring(cr, person, userdata, startangle, angleinc)
+            (person, dummy_parents, dummy_child, userdata) = childdata
+            self.draw_innerring(ctx, person, userdata, startangle, angleinc)
             startangle += angleinc
 
     def expand_parents(self, generation, selected, current):
-        if generation >= self.generations: return
+        if generation >= self.generations:
+            return
         selected = 2 * selected
         start, stop, state = self.angle[generation][selected]
         if state in [NORMAL, EXPANDED]:
-            slice = (stop - start) * 2.0
-            self.angle[generation][selected] = [current, current+slice, state]
+            portion = (stop - start) * 2.0
+            self.angle[generation][selected] = [current, current + portion,
+                                                state]
             self.expand_parents(generation + 1, selected, current)
-            current += slice
+            current += portion
         start, stop, state = self.angle[generation][selected+1]
         if state in [NORMAL, EXPANDED]:
-            slice = (stop - start) * 2.0
-            self.angle[generation][selected+1] = [current,current+slice,
+            portion = (stop - start) * 2.0
+            self.angle[generation][selected+1] = [current, current + portion,
                                                   state]
-            self.expand_parents(generation + 1, selected+1, current)
+            self.expand_parents(generation + 1, selected + 1, current)
 
-    def show_parents(self, generation, selected, angle, slice):
-        if generation >= self.generations: return
+    def show_parents(self, generation, selected, angle, portion):
+        if generation >= self.generations:
+            return
         selected *= 2
         self.angle[generation][selected][0] = angle
-        self.angle[generation][selected][1] = angle + slice
+        self.angle[generation][selected][1] = angle + portion
         self.angle[generation][selected][2] = NORMAL
-        self.show_parents(generation+1, selected, angle, slice/2.0)
-        self.angle[generation][selected+1][0] = angle + slice
-        self.angle[generation][selected+1][1] = angle + slice + slice
+        self.show_parents(generation + 1, selected, angle, portion / 2.0)
+        self.angle[generation][selected+1][0] = angle + portion
+        self.angle[generation][selected+1][1] = angle + portion + portion
         self.angle[generation][selected+1][2] = NORMAL
-        self.show_parents(generation+1, selected + 1, angle + slice, slice/2.0)
+        self.show_parents(generation + 1, selected + 1, angle + portion,
+                          portion / 2.0)
 
     def hide_parents(self, generation, selected, angle):
-        if generation >= self.generations: return
+        if generation >= self.generations:
+            return
         selected = 2 * selected
         self.angle[generation][selected][0] = angle
         self.angle[generation][selected][1] = angle
@@ -1363,19 +1482,20 @@ class FanChartWidget(FanChartBaseWidget):
         self.hide_parents(generation + 1, selected+1, angle)
 
     def shrink_parents(self, generation, selected, current):
-        if generation >= self.generations: return
+        if generation >= self.generations:
+            return
         selected = 2 * selected
         start, stop, state = self.angle[generation][selected]
         if state in [NORMAL, EXPANDED]:
-            slice = (stop - start) / 2.0
-            self.angle[generation][selected] = [current, current + slice,
+            portion = (stop - start) / 2.0
+            self.angle[generation][selected] = [current, current + portion,
                                                 state]
             self.shrink_parents(generation + 1, selected, current)
-            current += slice
+            current += portion
         start, stop, state = self.angle[generation][selected+1]
         if state in [NORMAL, EXPANDED]:
-            slice = (stop - start) / 2.0
-            self.angle[generation][selected+1] = [current, current+slice,
+            portion = (stop - start) / 2.0
+            self.angle[generation][selected+1] = [current, current+portion,
                                                   state]
             self.shrink_parents(generation + 1, selected+1, current)
 
@@ -1390,7 +1510,7 @@ class FanChartWidget(FanChartBaseWidget):
                 stop = gstop + (gstop - gstart)
                 self.angle[generation][selected] = [gstart, stop, EXPANDED]
                 self.expand_parents(generation + 1, selected, gstart)
-                start, stop, state = self.angle[generation][selected+1]
+                start, stop, dummy_state = self.angle[generation][selected+1]
                 self.angle[generation][selected+1] = [stop, stop, COLLAPSED]
                 self.hide_parents(generation+1, selected+1, stop)
             else:
@@ -1398,30 +1518,30 @@ class FanChartWidget(FanChartBaseWidget):
                 start = gstart - (gstop - gstart)
                 self.angle[generation][selected] = [start, gstop, EXPANDED]
                 self.expand_parents(generation + 1, selected, start)
-                start, stop, state = self.angle[generation][selected-1]
+                start, stop, dummy_state = self.angle[generation][selected-1]
                 self.angle[generation][selected-1] = [start, start, COLLAPSED]
                 self.hide_parents(generation+1, selected-1, start)
         elif gstate == EXPANDED: # let's shrink
             if selected % 2 == 0:
                 # shrink from right
-                slice = (gstop - gstart)/2.0
-                stop = gstop - slice
+                portion = (gstop - gstart)/2.0
+                stop = gstop - portion
                 self.angle[generation][selected] = [gstart, stop, NORMAL]
                 self.shrink_parents(generation+1, selected, gstart)
                 self.angle[generation][selected+1][0] = stop # start
-                self.angle[generation][selected+1][1] = stop + slice # stop
+                self.angle[generation][selected+1][1] = stop + portion # stop
                 self.angle[generation][selected+1][2] = NORMAL
-                self.show_parents(generation+1, selected+1, stop, slice/2.0)
+                self.show_parents(generation+1, selected+1, stop, portion/2.0)
             else:
                 # shrink from left
-                slice = (gstop - gstart)/2.0
-                start = gstop - slice
+                portion = (gstop - gstart)/2.0
+                start = gstop - portion
                 self.angle[generation][selected] = [start, gstop, NORMAL]
                 self.shrink_parents(generation+1, selected, start)
-                start, stop, state = self.angle[generation][selected-1]
-                self.angle[generation][selected-1] = [start, start+slice,
+                start, stop, dummy_state = self.angle[generation][selected-1]
+                self.angle[generation][selected-1] = [start, start+portion,
                                                       NORMAL]
-                self.show_parents(generation+1, selected-1, start, slice/2.0)
+                self.show_parents(generation+1, selected-1, start, portion/2.0)
 
     def cell_address_under_cursor(self, curx, cury):
         """
@@ -1429,33 +1549,34 @@ class FanChartWidget(FanChartBaseWidget):
         position x and y.
         None if outside of diagram
         """
-        radius, rads, raw_rads = self.cursor_to_polar(curx, cury, get_raw_rads=True)
+        radius, rads, raw_rads = self.cursor_to_polar(curx, cury,
+                                                      get_raw_rads=True)
 
         # find out the generation
         if radius < TRANSLATE_PX:
             return None
         elif (self.childring and self.angle[-2] and
-                    radius < TRANSLATE_PX + CHILDRING_WIDTH):
+              radius < TRANSLATE_PX + CHILDRING_WIDTH):
             generation = -2  # indication of one of the children
         elif radius < self.CENTER:
             generation = 0
         else:
             generation = None
             for gen in range(self.generations):
-                radiusin,radiusout = self.get_radiusinout_for_generation(gen)
+                radiusin, radiusout = self.get_radiusinout_for_gen(gen)
                 if radiusin <= radius <= radiusout:
                     generation = gen
                     break
 
         # find what person at this angle:
         selected = None
-        if not (generation is None) and 0 <= generation:
+        if not (generation is None) and generation > 0:
             selected = self.personpos_at_angle(generation, rads)
         elif generation == -2:
-            for p in range(len(self.angle[generation])):
-                start, stop, state = self.angle[generation][p]
+            for idx in range(len(self.angle[generation])):
+                start, stop, dummy_state = self.angle[generation][idx]
                 if self.radian_in_bounds(start, raw_rads, stop):
-                    selected = p
+                    selected = idx
                     break
         if (generation is None or selected is None):
             return None
@@ -1468,12 +1589,13 @@ class FanChartWidget(FanChartBaseWidget):
         if generation == 0:
             return 0
         selected = None
-        for p in range(len(self.angle[generation])):
-            if self.data[generation][p][0]: # there is a person there
-                start, stop, state = self.angle[generation][p]
-                if state == COLLAPSED: continue
+        for idx in range(len(self.angle[generation])):
+            if self.data[generation][idx][0]: # there is a person there
+                start, stop, state = self.angle[generation][idx]
+                if state == COLLAPSED:
+                    continue
                 if self.radian_in_bounds(start, rads, stop):
-                    selected = p
+                    selected = idx
                     break
         return selected
 
@@ -1510,7 +1632,8 @@ class FanChartGrampsGUI:
         """
         Common part of GUI that shows Fan Chart, needs to know what to do if
         one moves via Fan Ch    def set_fan(self, fan):art to a new person
-        on_childmenu_changed: in popup, function called on moving to a new person
+        on_childmenu_changed: in popup, function called on moving
+                              to a new person
         """
         self.fan = None
         self.on_childmenu_changed = on_childmenu_changed
@@ -1531,10 +1654,10 @@ class FanChartGrampsGUI:
         """
         root_person_handle = self.get_active('Person')
         self.fan.set_values(root_person_handle, self.maxgen, self.background,
-                        self.childring, self.flipupsidedownname,
-                        self.twolinename, self.radialtext, self.fonttype,
-                        self.grad_start, self.grad_end, self.generic_filter,
-                        self.alpha_filter, self.form, self.showid)
+                            self.childring, self.flipupsidedownname,
+                            self.twolinename, self.radialtext, self.fonttype,
+                            self.grad_start, self.grad_end, self.generic_filter,
+                            self.alpha_filter, self.form, self.showid)
         self.fan.reset()
         self.fan.draw()
         self.fan.queue_draw()
@@ -1636,8 +1759,8 @@ class FanChartGrampsGUI:
         pfam_list = person.get_parent_family_handle_list()
         siblings = []
         step_siblings = []
-        for f in pfam_list:
-            fam = self.dbstate.db.get_family_from_handle(f)
+        for fhdle in pfam_list:
+            fam = self.dbstate.db.get_family_from_handle(fhdle)
             sib_list = fam.get_child_ref_list()
             for sib_ref in sib_list:
                 sib_id = sib_ref.ref
@@ -1654,8 +1777,10 @@ class FanChartGrampsGUI:
                                   if fam_id not in pfam_list]
                 for step_fam in other_families:
                     fam_stepsiblings = [sib_ref.ref
-                                        for sib_ref in step_fam.get_child_ref_list()
-                                        if not (sib_ref.ref == person.get_handle())]
+                                        for sib_ref in
+                                        step_fam.get_child_ref_list()
+                                        if not sib_ref.ref ==
+                                        person.get_handle()]
                     if fam_stepsiblings:
                         step_siblings.append(fam_stepsiblings)
 
@@ -1670,17 +1795,20 @@ class FanChartGrampsGUI:
                     sib = self.dbstate.db.get_person_from_handle(sib_id)
                     if not sib:
                         continue
-                    if find_children(self.dbstate.db,sib):
-                        label = Gtk.Label(label='<b><i>%s</i></b>' % escape(name_displayer.display(sib)))
+                    if find_children(self.dbstate.db, sib):
+                        thelabel = escape(name_displayer.display(sib))
+                        label = Gtk.Label(label='<b><i>%s</i></b>' % thelabel)
                     else:
-                        label = Gtk.Label(label=escape(name_displayer.display(sib)))
+                        thelabel = escape(name_displayer.display(sib))
+                        label = Gtk.Label(label=thelabel)
                     sib_item = Gtk.MenuItem()
                     label.set_use_markup(True)
                     label.show()
-                    label.set_alignment(0,0)
+                    label.set_alignment(0, 0)
                     sib_item.add(label)
                     linked_persons.append(sib_id)
-                    sib_item.connect("activate", self.on_childmenu_changed, sib_id)
+                    sib_item.connect("activate", self.on_childmenu_changed,
+                                     sib_id)
                     sib_item.show()
                     sib_menu.append(sib_item)
                 if sibs.index(sib_group) < len(sibs)-1:
@@ -1707,8 +1835,9 @@ class FanChartGrampsGUI:
                 child_menu = item.get_submenu()
                 child_menu.set_reserve_toggle_size(False)
 
-            if find_children(self.dbstate.db,child):
-                label = Gtk.Label(label='<b><i>%s</i></b>' % escape(name_displayer.display(child)))
+            if find_children(self.dbstate.db, child):
+                thelabel = escape(name_displayer.display(child))
+                label = Gtk.Label(label='<b><i>%s</i></b>' % thelabel)
             else:
                 label = Gtk.Label(label=escape(name_displayer.display(child)))
 
@@ -1718,7 +1847,8 @@ class FanChartGrampsGUI:
             label.set_halign(Gtk.Align.START)
             child_item.add(label)
             linked_persons.append(child_handle)
-            child_item.connect("activate", self.on_childmenu_changed, child_handle)
+            child_item.connect("activate", self.on_childmenu_changed,
+                               child_handle)
             child_item.show()
             child_menu.append(child_item)
 
@@ -1733,7 +1863,7 @@ class FanChartGrampsGUI:
         par_menu = item.get_submenu()
         par_menu.set_reserve_toggle_size(False)
         no_parents = 1
-        par_list = find_parents(self.dbstate.db,person)
+        par_list = find_parents(self.dbstate.db, person)
         for par_id in par_list:
             if not par_id:
                 continue
@@ -1744,8 +1874,9 @@ class FanChartGrampsGUI:
             if no_parents:
                 no_parents = 0
 
-            if find_parents(self.dbstate.db,par):
-                label = Gtk.Label(label='<b><i>%s</i></b>' % escape(name_displayer.display(par)))
+            if find_parents(self.dbstate.db, par):
+                thelabel = escape(name_displayer.display(par))
+                label = Gtk.Label(label='<b><i>%s</i></b>' % thelabel)
             else:
                 label = Gtk.Label(label=escape(name_displayer.display(par)))
 
@@ -1772,7 +1903,7 @@ class FanChartGrampsGUI:
         # Go over parents and build their menu
         item = Gtk.MenuItem(label=_("Related"))
         no_related = 1
-        for p_id in find_witnessed_people(self.dbstate.db,person):
+        for p_id in find_witnessed_people(self.dbstate.db, person):
             #if p_id in linked_persons:
             #    continue    # skip already listed family members
 
@@ -1820,7 +1951,7 @@ class FanChartGrampsGUI:
             add_partner_item = Gtk.MenuItem()
             add_partner_item.set_label(_("Add partner to person"))
             add_partner_item.connect("activate", self.add_partner_to_pers_cb,
-                                   person_handle)
+                                     person_handle)
             add_partner_item.show()
             add_menu.append(add_partner_item)
 
@@ -1884,7 +2015,7 @@ class FanChartGrampsGUI:
         name.set_primary_surname(0)
         family = self.dbstate.db.get_family_from_handle(family_handle)
         father = self.dbstate.db.get_person_from_handle(
-                                    family.get_father_handle())
+            family.get_father_handle())
         if father:
             preset_name(father, name)
         person.set_primary_name(name)
@@ -1938,12 +2069,15 @@ class FanChartGrampsGUI:
         except WindowActiveError:
             return
 
-    def copy_person_to_clipboard_cb(self, obj,person_handle):
-        """Renders the person data into some lines of text and puts that into the clipboard"""
+    def copy_person_to_clipboard_cb(self, obj, person_handle):
+        """
+        Renders the person data into some lines of text and puts that
+        into the clipboard
+        """
         person = self.dbstate.db.get_person_from_handle(person_handle)
         if person:
-            cb = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(),
-                        Gdk.SELECTION_CLIPBOARD)
-            cb.set_text( self.format_helper.format_person(person,11), -1)
+            cbx = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(),
+                                                Gdk.SELECTION_CLIPBOARD)
+            cbx.set_text(self.format_helper.format_person(person, 11), -1)
             return True
         return False
