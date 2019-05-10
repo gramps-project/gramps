@@ -43,8 +43,16 @@ import cairo
 #
 #-------------------------------------------------------------------------
 from ..utils import hex_to_rgb
-from .fanchart import *
-from .fanchartdesc import *
+from .fanchart import (FanChartWidget, PIXELS_PER_GENERATION, BORDER_EDGE_WIDTH)
+from .fanchartdesc import (FanChartBaseWidget,
+                           FanChartDescWidget,
+                           FanChartGrampsGUI,
+                           NORMAL, EXPANDED, COLLAPSED,
+                           TRANSLATE_PX, CHILDRING_WIDTH,
+                           BACKGROUND_GRAD_GEN,
+                           BACKGROUND_GRAD_AGE,
+                           BACKGROUND_GRAD_PERIOD,
+                           FORM_CIRCLE, TYPE_BOX_NORMAL, TYPE_BOX_FAMILY)
 
 #-------------------------------------------------------------------------
 #
@@ -87,6 +95,11 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
         Fan Chart Widget. Handles visualization of data in self.data.
         See main() of FanChartGramplet for example of model format.
         """
+        self.gen2people = {}
+        self.gen2fam = {}
+        self.rootangle_rad_desc = [math.radians(275), math.radians(275 + 170)]
+        self.rootangle_rad_asc = [math.radians(90), math.radians(270)]
+        self.data = {}
         self.set_values(None, 6, 5, True, True, BACKGROUND_GRAD_GEN, True,
                         'Sans', '#0000FF', '#FF0000', None, 0.5, ANGLE_WEIGHT,
                         '#888a85', False)
@@ -188,6 +201,9 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
                 angle += portion
 
     def _fill_data_structures(self):
+        """
+        Initialize the data structures
+        """
         self.set_generations()
         if not self.rootpersonh:
             return
@@ -230,14 +246,18 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
                     parent += 1
 
     def nrgen_desc(self):
-        # compute the number of generations present
+        """
+        compute the number of generations present
+        """
         for gen in range(self.generations_desc - 1, 0, -1):
-            if len(self.gen2people[gen]) > 0:
+            if self.gen2people[gen]:
                 return gen + 1
         return 1
 
     def nrgen_asc(self):
-        # compute the number of generations present
+        """
+        compute the number of generations present
+        """
         for generation in range(self.generations_asc - 1, 0, -1):
             for idx in range(len(self.data[generation])):
                 (person, dummy_parents, dummy_child,
@@ -342,6 +362,9 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
             yield
 
     def draw_background(self, ctx):
+        """
+        Draw the background
+        """
         ctx.save()
 
         ctx.rotate(math.radians(self.rotate_value))
@@ -482,7 +505,7 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
                  userdata, partner, status) = famdata
                 if status != COLLAPSED:
                     more_pers_flag = (gen == self.generations_desc - 1
-                                      and len(fam.get_child_ref_list()) > 0)
+                                      and fam.get_child_ref_list())
                     self.draw_person(ctx, partner,
                                      radiusin_partner, radiusout_partner,
                                      start, start + portion,
@@ -563,7 +586,7 @@ class FanChart2WayWidget(FanChartWidget, FanChartDescWidget):
                 break
 
         # find what person is in this position:
-        if not (generation is None) and 0 <= generation:
+        if not (generation is None) and generation > 0:
             selected = FanChartWidget.personpos_at_angle(self, generation, rads)
         if (generation is None or selected is None):
             return None

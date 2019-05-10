@@ -95,6 +95,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self.showid = scg('interface.fanview-showid')
         self.generic_filter = None
         self.alpha_filter = 0.2
+        self.scrolledwindow = None
 
         dbstate.connect('active-changed', self.active_changed)
         dbstate.connect('database-changed', self.change_db)
@@ -163,6 +164,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         Method called when active person changes.
         """
         # Reset everything but rotation angle (leave it as is)
+        dummy_handle = handle
         self.update()
 
     def _connect_db_signals(self):
@@ -179,28 +181,43 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self._add_db_signal('family-rebuild', self.person_rebuild)
 
     def change_db(self, db):
+        """
+        We selected a new database
+        """
         self._change_db(db)
         if self.active:
             self.bookmarks.redraw()
         self.update()
 
     def update(self):
+        """
+        Redraw the fan chart
+        """
         self.main()
 
     def goto_handle(self, handle):
+        """
+        Draw the fan chart for the active person
+        """
         self.change_active(handle)
         self.main()
 
     def get_active(self, obj):
         """overrule get_active, to support call as in Gramplets
         """
+        dummy_obj = obj
         return NavigationView.get_active(self)
 
     def person_rebuild(self, *args):
+        """
+        Redraw the fan chart for the person
+        """
+        dummy_args = args
         self.update()
 
     def person_rebuild_bm(self, *args):
         """Large change to person database"""
+        dummy_args = args
         self.person_rebuild()
         if self.active:
             self.bookmarks.redraw()
@@ -209,6 +226,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         """
         Print or save the view that is currently shown
         """
+        dummy_obj = obj
         widthpx = 2 * self.fan.halfdist()
         heightpx = widthpx
         if self.form == fanchart.FORM_HALFCIRCLE:
@@ -224,6 +242,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
     def on_childmenu_changed(self, obj, person_handle):
         """Callback for the pulldown menu selection, changing to the person
            attached with menu item."""
+        dummy_obj = obj
         self.change_active(person_handle)
         return True
 
@@ -339,6 +358,9 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
                              self.cb_update_showid)
 
     def cb_update_maxgen(self, spinbtn, constant):
+        """
+        The maximum generations in the fanchart
+        """
         self.maxgen = spinbtn.get_value_as_int()
         self._config.set(constant, self.maxgen)
         self.update()
@@ -351,6 +373,9 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self.update()
 
     def cb_update_background(self, obj, constant):
+        """
+        Change the background
+        """
         entry = obj.get_active()
         Gtk.TreePath.new_from_string('%d' % entry)
         val = int(obj.get_model().get_value(
@@ -360,12 +385,18 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self.update()
 
     def cb_update_form(self, obj, constant):
+        """
+        Update the fanchart form: CIRCLE, HALFCIRCLE or QUADRANT
+        """
         entry = obj.get_active()
         self._config.set(constant, entry)
         self.form = entry
         self.update()
 
     def cb_update_anglealgo(self, obj, constant):
+        """
+        Update the angle algorythm : homogeneous children distribution or not
+        """
         entry = obj.get_active()
         self._config.set(constant, entry)
         self.angle_algo = entry
@@ -396,6 +427,9 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self.update()
 
     def cb_update_font(self, obj, constant):
+        """
+        Change the font
+        """
         entry = obj.get_active()
         self._config.set(constant, self.allfonts[entry][1])
         self.fonttype = self.allfonts[entry][1]
@@ -430,6 +464,8 @@ class CairoPrintSave:
         self.heightpx = heightpx
         self.drawfunc = drawfunc
         self.parent = parent
+        self.preview = None
+        self.previewopr = None
 
     def run(self):
         """Create the physical output from the meta document.
@@ -484,6 +520,8 @@ class CairoPrintSave:
     def on_draw_page(self, operation, context, page_nr):
         """Draw a page on a Cairo context.
         """
+        dummy_operation = operation
+        dummy_page_nr = page_nr
         ctx = context.get_cairo_context()
         pxwidth = round(context.get_width())
         pxheight = round(context.get_height())
@@ -499,6 +537,7 @@ class CairoPrintSave:
            It will provide the start of the preview dialog, which cannot be
            started in on_preview
         """
+        dummy_context = context
         finished = True
         # update page number
         operation.set_n_pages(1)
@@ -515,6 +554,7 @@ class CairoPrintSave:
            default application is set with gir 3.3.2
            (typically evince not installed)!
         """
+        dummy_preview = preview
         dlg = Gtk.MessageDialog(parent,
                                 flags=Gtk.DialogFlags.MODAL,
                                 type=Gtk.MessageType.WARNING,
@@ -542,5 +582,10 @@ class CairoPrintSave:
         return True
 
     def previewdestroy(self, dlg, res):
+        """
+        Destroy the preview page
+        """
+        dummy_dlg = dlg
+        dummy_res = res
         self.preview.destroy()
         self.previewopr.end_preview()

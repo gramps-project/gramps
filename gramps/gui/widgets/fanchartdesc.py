@@ -33,23 +33,22 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-import cairo
 import math
+import cairo
 
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.errors import WindowActiveError
-from ..utils import hex_to_rgb
-from ..ddtargets import DdTargets
-from gramps.gen.utils.alive import probably_alive
-from gramps.gen.utils.libformatting import FormattingHelper
-from gramps.gen.utils.db import (find_children, find_parents, get_age,
-                                 find_witnessed_people, get_timeperiod)
 from gramps.gen.plug.report.utils import find_spouse
-from .fanchart import *
+from ..utils import hex_to_rgb
+from .fanchart import (FanChartBaseWidget, FanChartGrampsGUI,
+                       PAD_PX, TRANSLATE_PX,
+                       FORM_CIRCLE, FORM_HALFCIRCLE, FORM_QUADRANT,
+                       NORMAL, EXPANDED, COLLAPSED,
+                       BACKGROUND_GRAD_GEN, BACKGROUND_GRAD_AGE,
+                       BACKGROUND_GRAD_PERIOD, CHILDRING_WIDTH)
 
 #-------------------------------------------------------------------------
 #
@@ -92,16 +91,18 @@ class FanChartDescWidget(FanChartBaseWidget):
         Fan Chart Widget. Handles visualization of data in self.data.
         See main() of FanChartGramplet for example of model format.
         """
-        self.set_values(None, 9, True, True, BACKGROUND_GRAD_GEN, 'Sans',
-                        '#0000FF', '#FF0000', None, 0.5,
-                        FORM_CIRCLE, ANGLE_WEIGHT, '#888a85', False)
-        FanChartBaseWidget.__init__(self, dbstate, uistate, callback_popup)
+        self.gen2people = {}
+        self.gen2fam = {}
         self.rootangle_rad = []
         self.handle2desc = {}
         self.famhandle2desc = {}
         self.handle2fam = {}
         self.innerring = []
         self.angle = {}
+        self.set_values(None, 9, True, True, BACKGROUND_GRAD_GEN, 'Sans',
+                        '#0000FF', '#FF0000', None, 0.5,
+                        FORM_CIRCLE, ANGLE_WEIGHT, '#888a85', False)
+        FanChartBaseWidget.__init__(self, dbstate, uistate, callback_popup)
 
     def set_values(self, root_person_handle, maxgen, flipupsidedownname,
                    twolinename, background, fontdescr, grad_start, grad_end,
@@ -362,9 +363,11 @@ class FanChartDescWidget(FanChartBaseWidget):
                 offset += portion
 
     def nrgen(self):
-        #compute the number of generations present
+        """
+        compute the number of generations present
+        """
         for gen in range(self.generations - 1, 0, -1):
-            if len(self.gen2people[gen]) > 0:
+            if self.gen2people[gen]:
                 return gen + 1
         return 1
 
@@ -375,6 +378,9 @@ class FanChartDescWidget(FanChartBaseWidget):
         return self.get_radiusinout_for_generation(self.nrgen())[1]
 
     def get_radiusinout_for_generation(self, generation):
+        """
+        Get the in and out radius for the generation
+        """
         radius_first_gen = 14  # fudged to make inner circle a bit tighter
         if generation < N_GEN_SMALL:
             radius_start = PIXELS_PER_GEN_SMALL * generation + radius_first_gen
@@ -386,6 +392,9 @@ class FanChartDescWidget(FanChartBaseWidget):
             return (radius_start, radius_start + PIXELS_PER_GEN_LARGE)
 
     def get_radiusinout_for_gen_pair(self, generation):
+        """
+        Get the in and out radius for the father and mother
+        """
         radiusin, radiusout = self.get_radiusinout_for_generation(generation)
         radius_spread = (radiusout - radiusin -
                          PIXELS_CHILDREN_GAP - PIXELS_PARTNER_GAP)
@@ -501,7 +510,7 @@ class FanChartDescWidget(FanChartBaseWidget):
                  userdata, partner, status) = famdata
                 if status != COLLAPSED:
                     more_pers_flag = (gen == self.generations - 1
-                                      and len(fam.get_child_ref_list()) > 0)
+                                      and fam.get_child_ref_list())
                     self.draw_person(ctx, partner, radiusin_partner,
                                      radiusout_partner, start, start + portion,
                                      gen, dup, userdata,
@@ -543,7 +552,7 @@ class FanChartDescWidget(FanChartBaseWidget):
 
         # find what person is in this position:
         selected = None
-        if not (generation is None) and 0 <= generation:
+        if not (generation is None) and generation > 0:
             selected = self.personpos_at_angle(generation, rads, btype)
         elif generation == -2:
             for idx in range(len(self.angle[generation])):
@@ -556,6 +565,9 @@ class FanChartDescWidget(FanChartBaseWidget):
         return generation, selected, btype
 
     def draw_innerring_people(self, ctx):
+        """
+        Draw the innerring person
+        """
         ctx.move_to(TRANSLATE_PX + CHILDRING_WIDTH, 0)
         ctx.set_source_rgb(0, 0, 0) # black
         ctx.set_line_width(1)
@@ -624,7 +636,9 @@ class FanChartDescWidget(FanChartBaseWidget):
         return self.gen2fam[generation][pos][0]
 
     def do_mouse_click(self):
-        # no drag occured, expand or collapse the section
+        """
+        no drag occured, expand or collapse the section
+        """
         self.toggle_cell_state(self._mouse_click_cell_address)
         self._compute_angles(*self.rootangle_rad)
         self._mouse_click = False
@@ -632,6 +646,9 @@ class FanChartDescWidget(FanChartBaseWidget):
         self.queue_draw()
 
     def toggle_cell_state(self, cell_address):
+        """
+        Toggle the person cell (EXPAND/COLLAPSE)
+        """
         generation, selected, btype = cell_address
         if generation < 1:
             return
