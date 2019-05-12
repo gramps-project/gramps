@@ -73,7 +73,10 @@ class ButtonTab(GrampsTab):
         'jump'  : _('Jump To'),
         'up'    : _('Move Up'),
         'down'  : _('Move Down'),
+        'left'  : _('Move Left'),
+        'right' : _('Move right')
     }
+    L_R = 2  # indicator for left/right move buttons
 
     def __init__(self, dbstate, uistate, track, name, share_button=False,
                     move_buttons=False, jump_button=False, top_label=None):
@@ -123,9 +126,9 @@ class ButtonTab(GrampsTab):
             self.top_label.set_use_markup(True)
             self.track_ref_for_deletion("top_label")
 
-        self.add_btn  = SimpleButton('list-add', self.add_button_clicked)
+        self.add_btn = SimpleButton('list-add', self.add_button_clicked)
         self.edit_btn = SimpleButton('gtk-edit', self.edit_button_clicked)
-        self.del_btn  = SimpleButton('list-remove', self.del_button_clicked)
+        self.del_btn = SimpleButton('list-remove', self.del_button_clicked)
         self.track_ref_for_deletion("add_btn")
         self.track_ref_for_deletion("edit_btn")
         self.track_ref_for_deletion("del_btn")
@@ -142,10 +145,14 @@ class ButtonTab(GrampsTab):
             self.share_btn = None
 
         if move_buttons:
-            self.up_btn = SimpleButton('go-up', self.up_button_clicked)
-            self.up_btn.set_tooltip_text(self._MSG['up'])
-            self.down_btn = SimpleButton('go-down', self.down_button_clicked)
-            self.down_btn.set_tooltip_text(self._MSG['down'])
+            l_r = move_buttons == self.L_R
+            self.up_btn = SimpleButton('go-previous' if l_r else 'go-up',
+                                       self.up_button_clicked)
+            self.up_btn.set_tooltip_text(self._MSG['left' if l_r else 'up'])
+            self.down_btn = SimpleButton('go-next' if l_r else 'go-down',
+                                         self.down_button_clicked)
+            self.down_btn.set_tooltip_text(
+                self._MSG['right' if l_r else 'down'])
             self.track_ref_for_deletion("up_btn")
             self.track_ref_for_deletion("down_btn")
         else:
@@ -193,7 +200,8 @@ class ButtonTab(GrampsTab):
         Handles the double click on list. If the double click occurs,
         the Edit button handler is called
         """
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             try:
                 self.edit_button_clicked(obj)
             except WindowActiveError:

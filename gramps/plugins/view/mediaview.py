@@ -109,10 +109,10 @@ class MediaView(ListView):
         ('columns.size', [200, 75, 100, 200, 150, 40, 100, 150])
         )
 
-    ADD_MSG     = _("Add a new media object")
-    EDIT_MSG    = _("Edit the selected media object")
-    DEL_MSG     = _("Delete the selected media object")
-    MERGE_MSG   = _("Merge the selected media objects")
+    ADD_MSG = _("Add a new media object")
+    EDIT_MSG = _("Edit the selected media object")
+    DEL_MSG = _("Delete the selected media object")
+    MERGE_MSG = _("Merge the selected media objects")
     FILTER_TYPE = 'Media'
     QR_CATEGORY = CATEGORY_QR_MEDIA
 

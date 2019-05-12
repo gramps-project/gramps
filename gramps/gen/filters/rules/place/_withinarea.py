@@ -47,10 +47,10 @@ class WithinArea(Rule):
     Rule that checks for a place within an area
     """
 
-    labels      = [_('ID:'), _('Value:'), _('Units:')]
-    name        = _('Places within an area')
+    labels = [_('ID:'), _('Value:'), _('Units:')]
+    name = _('Places within an area')
     description = _('Matches places within a given distance of another place')
-    category    = _('Position filters')
+    category = _('Position filters')
 
     def prepare(self, db, user):
         ref_place = db.get_place_from_gramps_id(self.list[0])

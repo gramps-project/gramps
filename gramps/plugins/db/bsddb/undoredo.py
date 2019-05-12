@@ -61,7 +61,7 @@ from gramps.gen.errors import DbError
 # Local Constants
 #
 #-------------------------------------------------------------------------
-DBERRS      = (db.DBRunRecoveryError, db.DBAccessError,
+DBERRS = (db.DBRunRecoveryError, db.DBAccessError,
                db.DBPageNotFoundError, db.DBInvalidArgError)
 
 _SIGBASE = ('person', 'family', 'source', 'event', 'media',
@@ -507,13 +507,13 @@ def testundo():
             self.person_map = {}
             self.family_map = {}
             self.source_map = {}
-            self.event_map  = {}
-            self.media_map  = {}
-            self.place_map  = {}
-            self.note_map   = {}
-            self.tag_map   = {}
+            self.event_map = {}
+            self.media_map = {}
+            self.place_map = {}
+            self.note_map = {}
+            self.tag_map = {}
             self.repository_map = {}
-            self.reference_map  = {}
+            self.reference_map = {}
 
     print("list tests")
     undo = DbUndoList(D())

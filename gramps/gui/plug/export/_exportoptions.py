@@ -492,10 +492,10 @@ class WriterOptionBox:
 
         After this function is called, the following variables are defined:
 
-           private  = privacy requested
+           private = privacy requested
            restrict = restrict information on living people
-           cfitler  = return the GenericFilter selected
-           nfilter  = return the NoteFilter selected
+           cfitler = return the GenericFilter selected
+           nfilter = return the NoteFilter selected
            reference = restrict referenced/orphaned records
 
         """

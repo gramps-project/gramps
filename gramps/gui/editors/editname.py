@@ -120,7 +120,7 @@ class EditName(EditSecondary):
         self.set_window(self.top.toplevel, None, _("Name Editor"))
         self.setup_configs('interface.name', 600, 350)
 
-        tblgnam =  self.top.get_object('table23')
+        tblgnam = self.top.get_object('table23')
         notebook = self.top.get_object('notebook')
         hbox_surn = self.top.get_object('hboxmultsurnames')
         hbox_surn.set_size_request(-1,

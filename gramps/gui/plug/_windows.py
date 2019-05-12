@@ -112,8 +112,8 @@ class PluginStatus(ManagedWindow):
 
         #first page with all registered plugins
         vbox_reg = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        scrolled_window_reg =  Gtk.ScrolledWindow()
-        self.list_reg =  Gtk.TreeView()
+        scrolled_window_reg = Gtk.ScrolledWindow()
+        self.list_reg = Gtk.TreeView()
         #  model: plugintype, hidden, pluginname, plugindescr, pluginid
         self.model_reg = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING,
                 GObject.TYPE_STRING, GObject.TYPE_STRING, GObject.TYPE_STRING)
@@ -550,7 +550,8 @@ class PluginStatus(ManagedWindow):
 
     def button_press(self, obj, event):
         """ Callback function from the user clicking on a line """
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             model, node = self.selection.get_selected()
             data = model.get_value(node, 3)
             name = model.get_value(node, 1)
@@ -560,7 +561,8 @@ class PluginStatus(ManagedWindow):
     def button_press_reg(self, obj, event):
         """ Callback function from the user clicking on a line in reg plugin
         """
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             self.__info(obj, self.list_reg, 4)
 
     def button_press_addon(self, obj):
@@ -830,7 +832,7 @@ class ToolManagedWindowBase(ManagedWindow):
             if iter.has_tag(tag):
                 person = self.db.get_person_from_handle(person_handle)
                 if event.button == 1:
-                    if event.type == Gdk.EventType._2BUTTON_PRESS:
+                    if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
                         try:
                             EditPerson(self.dbstate, self.uistate, [], person)
                         except WindowActiveError:

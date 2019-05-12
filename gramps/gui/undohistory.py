@@ -265,7 +265,7 @@ def get_colors(obj, state):
     """
     Return the foreground and background colors for a given state.
     """
-    context =  obj.get_style_context()
+    context = obj.get_style_context()
     fg_color = gdk_color_to_str(context.get_color(state))
     bg_color = gdk_color_to_str(context.get_background_color(state))
     return (fg_color, bg_color)

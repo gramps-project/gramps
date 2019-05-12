@@ -40,9 +40,9 @@ from ....lib.childreftype import ChildRefType
 class HaveAltFamilies(Rule):
     """People who were adopted"""
 
-    name        = _('Adopted people')
+    name = _('Adopted people')
     description = _("Matches people who were adopted")
-    category    = _('Family filters')
+    category = _('Family filters')
 
     def apply(self,db,person):
         for fhandle in person.get_parent_family_handle_list():

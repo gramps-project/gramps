@@ -11,6 +11,7 @@
 # Copyright (C) 2017       Jonathan Biegert <azrdev@qrdn.de>
 # Copyright (C) 2017       Mindaugas Baranauskas
 # Copyright (C) 2017       Paul Culley
+# Copyright (C) 2018       Christophe aka khrys63
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -365,6 +366,34 @@ class GVDoc(metaclass=ABCMeta):
         """
 
     @abstractmethod
+    def add_samerank(self, id1, id2):
+        """
+        Force the same line for two linked nodes.
+
+        :param id1: The unique identifier of the starting node.
+            Example: "p55"
+        :type id1: string
+        :param id2: The unique identifier of the ending node.
+            Example: "p55"
+        :type id2: string
+        :return: nothing
+        """
+
+    @abstractmethod
+    def rewrite_label(self, id, label):
+        """
+        Rewrite the node label.
+
+        :param id: The unique identifier of the node.
+            Example: "p55"
+        :type id: string
+        :param label: The text to be displayed in the node.
+            Example: "John Smith"
+        :type label: string
+        :return: nothing
+        """
+
+    @abstractmethod
     def start_subgraph(self, graph_id):
         """
         Start a subgraph in this graph.
@@ -599,6 +628,22 @@ class GVDocBase(BaseDoc, GVDoc):
                 self.write('%s\n' % text)
             else:
                 self.write('# %s\n' % text)
+
+    def add_samerank(self, id1, id2):
+        """
+        Force the same line for two linked nodes.
+
+        Implements GVDocBase.add_samerank().
+        """
+        self.write('  {rank=same "%s" "%s"}\n' % (id1, id2))
+
+    def rewrite_label(self, id, label):
+        """
+        Rewrite the node label.
+
+        Implements GVDocBase.rewrite_label().
+        """
+        self.write('  "%s" [label = "%s"]\n' % (id, label))
 
     def start_subgraph(self, graph_id):
         """ Implement GVDocBase.start_subgraph() """

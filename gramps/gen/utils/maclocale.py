@@ -257,7 +257,7 @@ def mac_setup_localization(glocale):
             LOG.debug("Environment LC_MESSAGES value %s not supported", lang)
 
         if "LANGUAGE" in os.environ:
-            lang =  [x for x in [glocale.check_available_translations(l)
+            lang = [x for x in [glocale.check_available_translations(l)
                                  for l in os.environ["LANGUAGE"].split(":")]
                      if x]
             if lang and lang[0]:
@@ -270,7 +270,7 @@ def mac_setup_localization(glocale):
                 language = translations
                 LOG.debug("Returning Translations %s", ':'.join(translations))
 
-        if not (language and language[0]) :
+        if not (language and language[0]):
             if glocale.lang:
                 glocale.language = [glocale.lang[:5]]
             else:

@@ -33,9 +33,9 @@ MODULE_VERSION="5.1"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'ancestor_chart,BKI'
-plg.name  = _("Ancestor Chart")
-plg.description =  _("Produces a graphical ancestral chart")
+plg.id = 'ancestor_chart,BKI'
+plg.name = _("Ancestor Chart")
+plg.description = _("Produces a graphical ancestral chart")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
@@ -49,9 +49,9 @@ plg.optionclass = 'AncestorTreeOptions'
 plg.report_modes = [REPORT_MODE_BKI]
 
 plg = newplugin()
-plg.id    = 'ancestor_chart'
-plg.name  = _("Ancestor Tree")
-plg.description =  _("Produces a graphical ancestral tree")
+plg.id = 'ancestor_chart'
+plg.name = _("Ancestor Tree")
+plg.description = _("Produces a graphical ancestral tree")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
@@ -71,9 +71,9 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'calendar'
-plg.name  = _("Calendar")
-plg.description =  _("Produces a graphical calendar")
+plg.id = 'calendar'
+plg.name = _("Calendar")
+plg.description = _("Produces a graphical calendar")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
@@ -93,9 +93,9 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'descend_chart,BKI'
-plg.name  = _("Descendant Chart")
-plg.description =  _("Produces a graphical descendant chart")
+plg.id = 'descend_chart,BKI'
+plg.name = _("Descendant Chart")
+plg.description = _("Produces a graphical descendant chart")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
@@ -109,9 +109,9 @@ plg.optionclass = 'DescendTreeOptions'
 plg.report_modes = [REPORT_MODE_BKI]
 
 plg = newplugin()
-plg.id    = 'descend_chart'
-plg.name  = _("Descendant Tree")
-plg.description =  _("Produces a graphical descendant tree")
+plg.id = 'descend_chart'
+plg.name = _("Descendant Tree")
+plg.description = _("Produces a graphical descendant tree")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
@@ -131,9 +131,9 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'family_descend_chart,BKI'
-plg.name  = _("Family Descendant Chart")
-plg.description =  _("Produces a graphical descendant chart around a family")
+plg.id = 'family_descend_chart,BKI'
+plg.name = _("Family Descendant Chart")
+plg.description = _("Produces a graphical descendant chart around a family")
 plg.version = '1.0'
 plg.status = STABLE
 plg.fname = 'descendtree.py'
@@ -148,9 +148,9 @@ plg.optionclass = 'DescendTreeOptions'
 plg.report_modes = [REPORT_MODE_BKI]
 
 plg = newplugin()
-plg.id    = 'family_descend_chart'
-plg.name  = _("Family Descendant Tree")
-plg.description =  _("Produces a graphical descendant tree around a family")
+plg.id = 'family_descend_chart'
+plg.name = _("Family Descendant Tree")
+plg.description = _("Produces a graphical descendant tree around a family")
 plg.version = '1.0'
 plg.status = STABLE
 plg.fname = 'descendtree.py'
@@ -171,9 +171,9 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'fan_chart'
-plg.name  = _("Fan Chart")
-plg.description =  _("Produces fan charts")
+plg.id = 'fan_chart'
+plg.name = _("Fan Chart")
+plg.description = _("Produces fan charts")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
@@ -193,9 +193,9 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_BKI, REPORT_MODE_CLI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'statistics_chart'
-plg.name  = _("Statistics Charts")
-plg.description =  _("Produces statistical bar and pie charts of the people "
+plg.id = 'statistics_chart'
+plg.name = _("Statistics Charts")
+plg.description = _("Produces statistical bar and pie charts of the people "
                     "in the database")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -217,9 +217,9 @@ plg.require_active = False
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'timeline'
-plg.name  = _("Timeline Chart")
-plg.description =  _("Produces a timeline chart.")
+plg.id = 'timeline'
+plg.name = _("Timeline Chart")
+plg.description = _("Produces a timeline chart.")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE

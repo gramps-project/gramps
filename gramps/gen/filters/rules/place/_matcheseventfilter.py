@@ -46,13 +46,13 @@ class MatchesEventFilter(MatchesFilterBase):
     Subclasses need to define the namespace class attribute.
     """
 
-    labels      = [_('Event filter name:')]
-    name        = _('Places of events matching the <event filter>')
+    labels = [_('Event filter name:')]
+    name = _('Places of events matching the <event filter>')
     description = _("Matches places where events happened that match the "
                     "specified event filter name")
-    category    = _('General filters')
+    category = _('General filters')
     # we want to have this filter show event filters
-    namespace   = 'Event'
+    namespace = 'Event'
 
 
     def apply(self,db,event):

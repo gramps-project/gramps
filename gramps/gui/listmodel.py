@@ -35,12 +35,12 @@ from gramps.gen.const import THUMBSCALE
 # constants
 #
 #-------------------------------------------------------------------------
-TEXT    = 0
-TOGGLE  = 1
-COMBO   = 2
-IMAGE   = 3
+TEXT = 0
+TOGGLE = 1
+COMBO = 2
+IMAGE = 3
 INTEGER = 4
-COLOR   = 5
+COLOR = 5
 
 NOSORT = -1
 
@@ -481,7 +481,8 @@ class ListModel:
         Called when a button press is executed
         """
         from .utils import is_right_click
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             if self.double_click:
                 self.double_click(obj)
                 return True

@@ -42,8 +42,8 @@ from ....lib.person import Person
 class IsFemale(Rule):
     """Rule that checks for a person that is a female"""
 
-    name        = _('Females')
-    category    = _('General filters')
+    name = _('Females')
+    category = _('General filters')
     description = _('Matches all females')
 
     def apply(self,db,person):

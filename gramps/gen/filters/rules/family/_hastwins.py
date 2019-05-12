@@ -42,9 +42,9 @@ _ = glocale.translation.gettext
 class HasTwins(Rule):
     """Rule that checks for a family with twins"""
 
-    name        = _('Families with twins')
+    name = _('Families with twins')
     description = _("Matches families with twins")
-    category    = _('Child filters')
+    category = _('Child filters')
 
     def apply(self, db, family):
         date_list = []

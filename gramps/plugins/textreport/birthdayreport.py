@@ -101,7 +101,7 @@ class BirthdayReport(Report):
         self.text2 = mgobn('text2')
         self.text3 = mgobn('text3')
         self.deadtxt = mgobn('deadtxt')
-        self.filter_option =  menu.get_option_by_name('filter')
+        self.filter_option = menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
         self.showyear = mgobn('showyear')
         pid = mgobn('pid')

@@ -38,6 +38,6 @@ from .._hasnoteregexbase import HasNoteRegexBase
 #-------------------------------------------------------------------------
 class HasNoteRegexp(HasNoteRegexBase):
 
-    name        = _('Events having notes containing <text>')
+    name = _('Events having notes containing <text>')
     description = _("Matches events whose notes contain text "
                     "matching a regular expression")

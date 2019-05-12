@@ -39,6 +39,6 @@ from .._isprivate import IsPrivate
 class PeoplePrivate(IsPrivate):
     """People marked private"""
 
-    name        = _('People marked private')
+    name = _('People marked private')
     description = _("Matches people that are indicated as private")
-    category    = _('General filters')
+    category = _('General filters')

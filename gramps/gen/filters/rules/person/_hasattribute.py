@@ -41,7 +41,7 @@ from .._hasattributebase import HasAttributeBase
 class HasAttribute(HasAttributeBase):
     """Rule that checks for a person with a particular personal attribute"""
 
-    labels      = [ _('Personal attribute:'), _('Value:') ]
-    name        = _('People with the personal <attribute>')
+    labels = [ _('Personal attribute:'), _('Value:') ]
+    name = _('People with the personal <attribute>')
     description = _("Matches people with the personal attribute "
                     "of a particular value")

@@ -51,7 +51,7 @@ log = logging.getLogger(".graphicstyle")
 # Line style
 #
 #-------------------------------------------------------------------------
-SOLID  = 0
+SOLID = 0
 DASHED = 1
 DOTTED = 2
 

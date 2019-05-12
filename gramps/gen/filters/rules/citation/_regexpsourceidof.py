@@ -45,10 +45,10 @@ class RegExpSourceIdOf(RegExpIdBase):
     matches regular expression.
     """
 
-    name        = _('Citations with Source Id containing <text>')
+    name = _('Citations with Source Id containing <text>')
     description = _("Matches citations whose source has a Gramps ID that "
                     "matches the regular expression")
-    category    = _('Source filters')
+    category = _('Source filters')
 
     def apply(self, dbase, citation):
         source = dbase.get_source_from_handle(

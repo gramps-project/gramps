@@ -29,9 +29,9 @@ MODULE_VERSION="5.1"
 #------------------------------------------------------------------------
 
 register(SIDEBAR,
-id    = 'categorysidebar',
-name  = _("Category Sidebar"),
-description =  _("A sidebar to allow the selection of view categories"),
+id = 'categorysidebar',
+name = _("Category Sidebar"),
+description = _("A sidebar to allow the selection of view categories"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -44,9 +44,9 @@ order = START
 )
 
 register(SIDEBAR,
-id    = 'dropdownsidebar',
-name  = _("Drop-down Sidebar"),
-description =  _("Selection of categories and views from drop-down lists"),
+id = 'dropdownsidebar',
+name = _("Drop-down Sidebar"),
+description = _("Selection of categories and views from drop-down lists"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -59,9 +59,9 @@ order = END
 )
 
 register(SIDEBAR,
-id    = 'expandersidebar',
-name  = _("Expander Sidebar"),
-description =  _("Selection of views from lists with expanders"),
+id = 'expandersidebar',
+name = _("Expander Sidebar"),
+description = _("Selection of views from lists with expanders"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,

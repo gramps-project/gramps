@@ -41,5 +41,5 @@ from .._everything import Everything
 class AllMedia(Everything):
     """Matches Everyone"""
 
-    name        = _('Every media object')
+    name = _('Every media object')
     description = _('Matches every media object in the database')

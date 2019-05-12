@@ -41,5 +41,5 @@ from .._hassourcecountbase import HasSourceCountBase
 class HasSourceCount(HasSourceCountBase):
     """Events with sources"""
 
-    name        = _('Events with <count> sources')
+    name = _('Events with <count> sources')
     description = _("Matches events with a certain number of sources connected to it")

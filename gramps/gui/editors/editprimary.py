@@ -65,9 +65,9 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         Associate a person with the window.
 
         """
-        self.dp  = parser
-        self.dd  = displayer
-        self.name_displayer  = name_displayer
+        self.dp = parser
+        self.dd = displayer
+        self.name_displayer = name_displayer
         self.obj = obj
         self.dbstate = state
         self.uistate = uistate
@@ -278,7 +278,7 @@ class EditPrimary(ManagedWindow, DbGUIElement, metaclass=abc.ABCMeta):
         self.contexteventbox.connect('button-press-event',
                                 self._contextmenu_button_press)
 
-    def _contextmenu_button_press(self, obj, event) :
+    def _contextmenu_button_press(self, obj, event):
         """
         Button press event that is caught when a mousebutton has been
         pressed while on contexteventbox

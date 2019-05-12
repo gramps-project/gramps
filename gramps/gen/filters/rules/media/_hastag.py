@@ -45,6 +45,6 @@ class HasTag(HasTagBase):
     """
     Rule that checks for a media object with a particular tag.
     """
-    labels      = [ _('Tag:') ]
-    name        = _('Media objects with the <tag>')
+    labels = [ _('Tag:') ]
+    name = _('Media objects with the <tag>')
     description = _("Matches media objects with the particular tag")

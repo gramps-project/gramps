@@ -36,7 +36,7 @@ from gramps.gen.relationship import get_relationship_calculator
 
 # define the formatting string once as a constant. Since this is reused
 
-_FMT      = "%-3d %s"
+_FMT = "%-3d %s"
 _FMT_VOID = "    %s"
 _FMT_DET1 = "%-3s %-15s"
 _FMT_DET2 = "%-30s %-15s\t%-10s %-2s"
@@ -56,7 +56,7 @@ class AllRelReport:
     """
     def __init__(self, database, document, person):
         self.database = database
-        self.person   = person
+        self.person = person
         self.sdb = SimpleAccess(database)
         self.sdoc = SimpleDoc(document)
         self.rel_class = get_relationship_calculator(glocale)
@@ -290,7 +290,7 @@ class AllRelReport:
             else:
                 ind1 = 4
                 ind2 = 5
-            for rel,fam in zip(relation[ind1],relation[ind2]) :
+            for rel,fam in zip(relation[ind1],relation[ind2]):
                 par_str = _('Unknown') #when sibling, parent is unknown
                 if rel == rel_class.REL_MOTHER \
                         or rel == rel_class.REL_MOTHER_NOTBIRTH:

@@ -31,9 +31,9 @@ MODULE_VERSION="5.1"
 #------------------------------------------------------------------------
 
 register(QUICKREPORT,
-id    = 'ageondate',
-name  = _("Age on Date"),
-description =  _("Display people and ages on a particular date"),
+id = 'ageondate',
+name = _("Age on Date"),
+description = _("Display people and ages on a particular date"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -51,9 +51,9 @@ runfunc = 'run'
 #------------------------------------------------------------------------
 
 register(QUICKREPORT,
-id    = 'attribute_match',
-name  = _("Attribute Match"),
-description =  _("Display people with same attribute."),
+id = 'attribute_match',
+name = _("Attribute Match"),
+description = _("Display people with same attribute."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -71,9 +71,9 @@ runfunc = 'run'
 #------------------------------------------------------------------------
 
 register(QUICKREPORT,
-id    = 'all_events',
-name  = _("All Events"),
-description =  _("Display a person's events, both personal and family."),
+id = 'all_events',
+name = _("All Events"),
+description = _("Display a person's events, both personal and family."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -86,9 +86,9 @@ runfunc = 'run'
 
 
 register(QUICKREPORT,
-id    = 'all_events_fam',
-name  = _("All Family Events"),
-description =  _("Display the family and family members events."),
+id = 'all_events_fam',
+name = _("All Family Events"),
+description = _("Display the family and family members events."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -106,9 +106,9 @@ runfunc = 'run_fam'
 #------------------------------------------------------------------------
 
 register(QUICKREPORT,
-id    = 'all_relations',
-name  = _("Relation to Home Person"),
-description =  _("Display all relationships between person and home person."),
+id = 'all_relations',
+name = _("Relation to Home Person"),
+description = _("Display all relationships between person and home person."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -126,9 +126,9 @@ runfunc = 'run'
 #------------------------------------------------------------------------
 
 register(QUICKREPORT,
-id    = 'filterbyname',
-name  = _("Filter"),
-description =  _("Display filtered data"),
+id = 'filterbyname',
+name = _("Filter"),
+description = _("Display filtered data"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -146,9 +146,9 @@ runfunc = 'run'
 #------------------------------------------------------------------------
 
 register(QUICKREPORT,
-id    = 'father_lineage',
-name  = _("Father lineage"),
-description =  _("Display father lineage"),
+id = 'father_lineage',
+name = _("Father lineage"),
+description = _("Display father lineage"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -160,9 +160,9 @@ runfunc = 'run_father'
   )
 
 register(QUICKREPORT,
-id    = 'mother_lineage',
-name  = _("Mother lineage"),
-description =  _("Display mother lineage"),
+id = 'mother_lineage',
+name = _("Mother lineage"),
+description = _("Display mother lineage"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -180,9 +180,9 @@ runfunc = 'run_mother'
 #------------------------------------------------------------------------
 
 register(QUICKREPORT,
-id    = 'onthisday',
-name  = _("On This Day"),
-description =  _("Display events on a particular day"),
+id = 'onthisday',
+name = _("On This Day"),
+description = _("Display events on a particular day"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -213,9 +213,9 @@ refitems = [(CATEGORY_QR_PERSON, 'person', _("Person")),
 
 for (category, item, trans) in refitems:
     register(QUICKREPORT,
-        id    = item + 'references',
-        name  = _("%s References") % trans,
-        description =  _("Display references for a %s") % trans,
+        id = item + 'references',
+        name = _("%s References") % trans,
+        description = _("Display references for a %s") % trans,
         version = '1.0',
         gramps_target_version = MODULE_VERSION,
         status = STABLE,
@@ -227,9 +227,9 @@ for (category, item, trans) in refitems:
         )
 
 register(QUICKREPORT,
-  id    = 'link_references',
-  name  = _("Link References"),
-  description =  _("Display link references for a note"),
+  id = 'link_references',
+  name = _("Link References"),
+  description = _("Display link references for a note"),
   version = '1.0',
   gramps_target_version = MODULE_VERSION,
   status = STABLE,
@@ -247,9 +247,9 @@ register(QUICKREPORT,
 #------------------------------------------------------------------------
 
 register(QUICKREPORT,
-id    = 'RepoRef',
-name  = _("Repository References"),
-description =  _("Display the repository reference for sources related to"
+id = 'RepoRef',
+name = _("Repository References"),
+description = _("Display the repository reference for sources related to"
                  " the active repository"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -268,9 +268,9 @@ runfunc = 'run'
 #------------------------------------------------------------------------
 
 register(QUICKREPORT,
-id    = 'samesurnames',
-name  = _("Same Surnames"),
-description =  _("Display people with the same surname as a person."),
+id = 'samesurnames',
+name = _("Same Surnames"),
+description = _("Display people with the same surname as a person."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -282,9 +282,9 @@ runfunc = 'run'
   )
 
 register(QUICKREPORT,
-id    = 'samegivens',
-name  = _("Same Given Names"),
-description =  _("Display people with the same given name as a person."),
+id = 'samegivens',
+name = _("Same Given Names"),
+description = _("Display people with the same given name as a person."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -296,9 +296,9 @@ runfunc = 'run_given'
   )
 
 register(QUICKREPORT,
-id    = 'samegivens_misc',
-name  = _("Same Given Names - stand-alone"),
-description =  _("Display people with the same given name as a person."),
+id = 'samegivens_misc',
+name = _("Same Given Names - stand-alone"),
+description = _("Display people with the same given name as a person."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -315,9 +315,9 @@ runfunc = 'run_given'
 #
 #------------------------------------------------------------------------
 register(QUICKREPORT,
-id    = 'siblings',
-name  = _("Siblings"),
-description =  _("Display a person's siblings."),
+id = 'siblings',
+name = _("Siblings"),
+description = _("Display a person's siblings."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,

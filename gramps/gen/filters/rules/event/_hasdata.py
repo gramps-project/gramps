@@ -44,11 +44,11 @@ from .. import Rule
 class HasData(Rule):
     """Rule that checks for an event containing particular values"""
 
-    labels      = [ _('Event type:'), _('Date:'), _('Place:'),
+    labels = [ _('Event type:'), _('Date:'), _('Place:'),
                     _('Description:') ]
-    name        = _('Events with <data>')
+    name = _('Events with <data>')
     description = _("Matches events with data of a particular value")
-    category    = _('General filters')
+    category = _('General filters')
     allow_regex = True
 
     def prepare(self, db, user):

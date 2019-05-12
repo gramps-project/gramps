@@ -36,7 +36,7 @@ from gramps.gui.plug.quick import QuickTable
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
-__FMT     = "%-30s\t%-12s\t%-12s"
+__FMT = "%-30s\t%-12s\t%-12s"
 __FMT_REM = "   %s: %s"
 __MAX_GEN = 100
 
@@ -103,7 +103,7 @@ def run_mother(database, document, person):
 
     make_details_child(Person.FEMALE, person, sa, sd, database)
 
-def make_details(gender, person, sa, sd, database, stab) :
+def make_details(gender, person, sa, sd, database, stab):
     """ Function writing one line of ancestry on the document in
         direct lineage
     """
@@ -162,11 +162,11 @@ def make_details(gender, person, sa, sd, database, stab) :
             else :
                 person = None
 
-def make_details_child(gender, person, sa, sd, database) :
+def make_details_child(gender, person, sa, sd, database):
     """ Function that prints the details of the children in the
         male/female lineage
     """
-    def make_child_line(child, prepend, generation) :
+    def make_child_line(child, prepend, generation):
         """ Recursively called function to write one child line
             Person is the child, prepend is the string that precedes it
             on print. As the recursion grows, prepend is increased

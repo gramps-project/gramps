@@ -288,7 +288,7 @@ class MyPlaces(Gtk.Entry):
 #-------------------------------------------------------------------------
 class MyID(Gtk.Box):
     _invalid_id_txt = _('Not a valid ID')
-    _empty_id_txt  = _invalid_id_txt
+    _empty_id_txt = _invalid_id_txt
 
     obj_name = {
         'Person' : _('Person'),
@@ -702,7 +702,8 @@ class EditRule(ManagedWindow):
         self.selection.select_iter(iter)
 
     def _button_press(self, obj, event):
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             return self.expand_collapse()
 
     def _key_press(self, obj, event):

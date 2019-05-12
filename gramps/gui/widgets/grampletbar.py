@@ -115,6 +115,7 @@ class GrampletBar(Gtk.Notebook):
         book_button.add(box)
         book_button.set_relief(Gtk.ReliefStyle.NONE)
         book_button.connect('clicked', self.__button_clicked)
+        book_button.set_property("tooltip-text", _("Gramplet Bar Menu"))
         book_button.show()
         self.set_action_widget(book_button, Gtk.PackType.END)
 

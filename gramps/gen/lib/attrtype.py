@@ -54,6 +54,7 @@ class AttributeType(GrampsType):
     MOTHER_AGE = 12
     WITNESS = 13
     TIME = 14
+    OCCUPATION = 15
 
     _CUSTOM = CUSTOM
     _DEFAULT = ID
@@ -75,6 +76,7 @@ class AttributeType(GrampsType):
         (MOTHER_AGE, _T_("Mother's Age"), "Mother Age"),
         (WITNESS, _T_("Witness"), "Witness"),
         (TIME, _T_("Time"), "Time"),
+        (OCCUPATION, _T_("Occupation"), "Occupation"),
         ]
 
     _DATAMAP = [(base[0], _(base[1]), base[2]) for base in _BASEMAP]

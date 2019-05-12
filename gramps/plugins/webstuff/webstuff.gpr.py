@@ -31,10 +31,10 @@ MODULE_VERSION="5.1"
 #
 #------------------------------------------------------------------------
 register(GENERAL,
-id    = 'system webstuff',
+id = 'system webstuff',
 category = "WEBSTUFF",
-name  = _("Webstuff"),
-description =  _("Provides a collection of resources for the web"),
+name = _("Webstuff"),
+description = _("Provides a collection of resources for the web"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 fname = "webstuff.py",

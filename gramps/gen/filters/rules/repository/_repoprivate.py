@@ -39,5 +39,5 @@ from .._isprivate import IsPrivate
 class RepoPrivate(IsPrivate):
     """Repo marked private"""
 
-    name        = _('Repositories marked private')
+    name = _('Repositories marked private')
     description = _("Matches repositories that are indicated as private")

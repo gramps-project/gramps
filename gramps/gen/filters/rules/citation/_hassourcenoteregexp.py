@@ -49,10 +49,10 @@ class HasSourceNoteRegexp(HasNoteRegexBase):
     substring or matches a regular expression.
     """
 
-    name        = _('Citations having source notes containing <text>')
+    name = _('Citations having source notes containing <text>')
     description = _("Matches citations whose source notes contain a substring "
                     "or match a regular expression")
-    category    = _('Source filters')
+    category = _('Source filters')
 
     def apply(self, db, citation):
         source = db.get_source_from_handle(citation.get_reference_handle())

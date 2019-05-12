@@ -39,6 +39,6 @@ from .._hasreferencecountbase import HasReferenceCountBase
 class HasReferenceCountOf(HasReferenceCountBase):
     """Source objects with a reference count of <count>"""
 
-    name        = _('Sources with a reference count of <count>')
+    name = _('Sources with a reference count of <count>')
     description = _("Matches sources with a certain reference count")
 

@@ -45,6 +45,6 @@ class HasTag(HasTagBase):
     """
     Rule that checks for a person with a particular tag.
     """
-    labels      = [ _('Tag:') ]
-    name        = _('People with the <tag>')
+    labels = [ _('Tag:') ]
+    name = _('People with the <tag>')
     description = _("Matches people with the particular tag")

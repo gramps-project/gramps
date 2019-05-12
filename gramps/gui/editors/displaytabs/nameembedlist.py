@@ -56,7 +56,7 @@ from .groupembeddedlist import GroupEmbeddedList
 class NameEmbedList(GroupEmbeddedList):
 
     _HANDLE_COL = 2
-    _DND_TYPE   = DdTargets.NAME
+    _DND_TYPE = DdTargets.NAME
     _WORKGROUP = NameModel.ALTINDEX
 
     _MSG = {

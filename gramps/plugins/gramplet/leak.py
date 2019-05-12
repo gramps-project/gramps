@@ -124,7 +124,8 @@ class Leak(Gramplet):
         # self.display()    # We should only run this on demand
 
     def _button_press(self, obj, event):
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             self.referenced_in()
             return True
         elif is_right_click(event):

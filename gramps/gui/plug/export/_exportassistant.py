@@ -457,7 +457,7 @@ class ExportAssistant(ManagedWindow, Gtk.Assistant):
             else:
                 #Allow for exotic error: file is still not correct
                 self.check_fileselect(self.chooser, show=False)
-                if self.get_page_complete(self.chooser) :
+                if self.get_page_complete(self.chooser):
                     filename = self.chooser.get_filename()
                     name = os.path.split(filename)[1]
                     folder = os.path.split(filename)[0]
@@ -499,7 +499,7 @@ class ExportAssistant(ManagedWindow, Gtk.Assistant):
 
             #update the label and title
             if success:
-                conclusion_title =  _('Your data has been saved')
+                conclusion_title = _('Your data has been saved')
                 conclusion_text = _(
                 'The copy of your data has been '
                 'successfully saved. You may press Close button '
@@ -511,7 +511,7 @@ class ExportAssistant(ManagedWindow, Gtk.Assistant):
                 #add test, what is dir
                 conclusion_text += '\n\n' + _('Filename: %s') %self.chooser.get_filename()
             else:
-                conclusion_title =  _('Saving failed')
+                conclusion_title = _('Saving failed')
                 conclusion_text = _(
                 'There was an error while saving your data. '
                 'You may try starting the export again.\n\n'

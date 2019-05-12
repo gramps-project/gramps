@@ -34,9 +34,9 @@ _ = glocale.translation.gettext
 class IsPublic(Rule):
     """Objects not marked private."""
 
-    name        = 'Objects not marked private'
+    name = 'Objects not marked private'
     description = "Matches objects that are not indicated as private"
-    category    = _('General filters')
+    category = _('General filters')
 
     def apply(self, db, obj):
         return not obj.get_privacy()

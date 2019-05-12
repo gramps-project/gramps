@@ -30,9 +30,9 @@ MODULE_VERSION="5.1"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'navwebpage'
-plg.name  = _("Narrated Web Site")
-plg.description =  _("Produces web (HTML) pages for individuals, or a set of "
+plg.id = 'navwebpage'
+plg.name = _("Narrated Web Site")
+plg.description = _("Produces web (HTML) pages for individuals, or a set of "
                      "individuals")
 plg.version = '2.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -41,7 +41,7 @@ plg.fname = 'narrativeweb.py'
 plg.ptype = REPORT
 plg.authors = ["Donald N. Allingham", "Rob G. Healey", "Serge Noiraud"]
 plg.authors_email = ["don@gramps-project.org", "serge.noiraud@free.fr"]
-plg.category =  CATEGORY_WEB
+plg.category = CATEGORY_WEB
 plg.reportclass = 'NavWebReport'
 plg.optionclass = 'NavWebOptions'
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
@@ -54,9 +54,9 @@ plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'WebCal'
-plg.name  = _("Web Calendar")
-plg.description =  _("Produces web (HTML) calendars.")
+plg.id = 'WebCal'
+plg.name = _("Web Calendar")
+plg.description = _("Produces web (HTML) calendars.")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
@@ -64,7 +64,7 @@ plg.fname = 'webcal.py'
 plg.ptype = REPORT
 plg.authors = ["Thom Sturgill", "Rob G. Healey"]
 plg.authors_email = ["thsturgill@yahoo.com", "robhealey1@gmail.com"]
-plg.category =  CATEGORY_WEB
+plg.category = CATEGORY_WEB
 plg.reportclass = 'WebCalReport'
 plg.optionclass = 'WebCalOptions'
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]

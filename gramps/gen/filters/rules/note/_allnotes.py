@@ -41,5 +41,5 @@ from .._everything import Everything
 class AllNotes(Everything):
     """Matches every note"""
 
-    name        = _('Every note')
+    name = _('Every note')
     description = _('Matches every note in the database')

@@ -45,10 +45,10 @@ from . import Rule
 class HasLDSBase(Rule):
     """Rule that checks for object with a LDS event"""
 
-    labels      = [  _('Number of instances:'), _('Number must be:')]
-    name        = 'Objects with LDS events'
+    labels = [  _('Number of instances:'), _('Number must be:')]
+    name = 'Objects with LDS events'
     description = "Matches objects with LDS events"
-    category    = _('General filters')
+    category = _('General filters')
 
     def prepare(self, db, user):
         # things we want to do just once, not for every handle

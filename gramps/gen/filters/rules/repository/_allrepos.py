@@ -41,5 +41,5 @@ from .._everything import Everything
 class AllRepos(Everything):
     """Matches Everyone"""
 
-    name        = _('Every repository')
+    name = _('Every repository')
     description = _('Matches every repository in the database')

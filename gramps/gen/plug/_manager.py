@@ -86,18 +86,18 @@ class BasePluginManager:
             raise Exception("This class is a singleton. "
                             "Use the get_instance() method")
 
-        self.__import_plugins    = []
-        self.__export_plugins    = []
-        self.__docgen_plugins    = []
+        self.__import_plugins = []
+        self.__export_plugins = []
+        self.__docgen_plugins = []
 
-        self.__attempt_list      = []
-        self.__failmsg_list      = []
+        self.__attempt_list = []
+        self.__failmsg_list = []
         self.__external_opt_dict = {}
-        self.__success_list      = []
-        self.__docgen_names      = []
+        self.__success_list = []
+        self.__docgen_names = []
 
-        self.__mod2text          = {}
-        self.__modules           = {}
+        self.__mod2text = {}
+        self.__modules = {}
 
         self.__pgr = PluginRegister.get_instance()
         self.__loaded_plugins = {}
@@ -113,10 +113,10 @@ class BasePluginManager:
         immediately loaded so it is available for all.
         """
         if rescan:
-            self.__import_plugins    = []
-            self.__export_plugins    = []
-            self.__docgen_plugins    = []
-            self.__docgen_names      = []
+            self.__import_plugins = []
+            self.__export_plugins = []
+            self.__docgen_plugins = []
+            self.__docgen_names = []
             self.__scanned_dirs = []
             self.__pgr._PluginRegister__plugindata = []
             self.__pgr._PluginRegister__id_to_pdata = {}
@@ -536,9 +536,9 @@ class BasePluginManager:
                 mod = self.load_plugin(pdata)
                 if mod:
                     imp = ImportPlugin(name=pdata.name,
-                        description     = pdata.description,
+                        description = pdata.description,
                         import_function = getattr(mod, pdata.import_function),
-                        extension       = pdata.extension)
+                        extension = pdata.extension)
                     self.__import_plugins.append(imp)
 
         return self.__import_plugins
@@ -563,10 +563,10 @@ class BasePluginManager:
                         hasattr(mod, pdata.export_options)):
                         options = getattr(mod, pdata.export_options)
                     exp = ExportPlugin(name=pdata.name_accell,
-                        description     = pdata.description,
+                        description = pdata.description,
                         export_function = getattr(mod, pdata.export_function),
-                        extension       = pdata.extension,
-                        config          = (pdata.export_options_title, options))
+                        extension = pdata.extension,
+                        config = (pdata.export_options_title, options))
                     self.__export_plugins.append(exp)
 
         return self.__export_plugins
@@ -593,10 +593,10 @@ class BasePluginManager:
                         oclass = getattr(mod, pdata.optionclass)
                     dgp = DocGenPlugin(name=pdata.name,
                             description = pdata.description,
-                            basedoc     = getattr(mod, pdata.docclass),
-                            paper       = pdata.paper,
-                            style       = pdata.style,
-                            extension   = pdata.extension,
+                            basedoc = getattr(mod, pdata.docclass),
+                            paper = pdata.paper,
+                            style = pdata.style,
+                            extension = pdata.extension,
                             docoptclass = oclass,
                             basedocname = pdata.docclass )
                     self.__docgen_plugins.append(dgp)

@@ -644,7 +644,7 @@ class GuiGramplet:
                     person = self.dbstate.db.get_person_from_handle(handle)
                     if person is not None:
                         if event.button == 1: # left mouse
-                            if event.type == Gdk.EventType._2BUTTON_PRESS: # double
+                            if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
                                 try:
                                     EditPerson(self.dbstate,
                                                self.uistate,
@@ -652,7 +652,7 @@ class GuiGramplet:
                                     return True # handled event
                                 except WindowActiveError:
                                     pass
-                            elif event.type == Gdk.EventType.BUTTON_PRESS: # single
+                            elif event.type == Gdk.EventType.BUTTON_PRESS:
                                 self.uistate.set_active(handle, 'Person')
                                 return True # handled event
                         elif is_right_click(event):
@@ -666,7 +666,7 @@ class GuiGramplet:
                                 pass
                 elif link_type == 'Surname':
                     if event.button == 1: # left mouse
-                        if event.type == Gdk.EventType._2BUTTON_PRESS: # double
+                        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
                             run_quick_report_by_name(self.dbstate,
                                                      self.uistate,
                                                      'samesurnames',
@@ -674,7 +674,7 @@ class GuiGramplet:
                     return True
                 elif link_type == 'Given':
                     if event.button == 1: # left mouse
-                        if event.type == Gdk.EventType._2BUTTON_PRESS: # double
+                        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
                             run_quick_report_by_name(self.dbstate,
                                                      self.uistate,
                                                      'samegivens_misc',
@@ -682,7 +682,7 @@ class GuiGramplet:
                     return True
                 elif link_type == 'Filter':
                     if event.button == 1: # left mouse
-                        if event.type == Gdk.EventType._2BUTTON_PRESS: # double
+                        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
                             run_quick_report_by_name(self.dbstate,
                                                      self.uistate,
                                                      'filterbyname',
@@ -707,7 +707,7 @@ class GuiGramplet:
                     family = self.dbstate.db.get_family_from_handle(handle)
                     if family is not None:
                         if event.button == 1: # left mouse
-                            if event.type == Gdk.EventType._2BUTTON_PRESS: # double
+                            if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
                                 try:
                                     EditFamily(self.dbstate,
                                                self.uistate,
@@ -715,7 +715,7 @@ class GuiGramplet:
                                     return True # handled event
                                 except WindowActiveError:
                                     pass
-                            elif event.type == Gdk.EventType.BUTTON_PRESS: # single
+                            elif event.type == Gdk.EventType.BUTTON_PRESS:
                                 self.uistate.set_active(handle, 'Family')
                                 return True # handle event
                         elif is_right_click(event):
@@ -729,7 +729,7 @@ class GuiGramplet:
                                 pass
                 elif link_type == 'PersonList':
                     if event.button == 1: # left mouse
-                        if event.type == Gdk.EventType._2BUTTON_PRESS: # double
+                        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
                             run_quick_report_by_name(self.dbstate,
                                                      self.uistate,
                                                      'filterbyname',
@@ -738,7 +738,7 @@ class GuiGramplet:
                     return True
                 elif link_type == 'Attribute':
                     if event.button == 1: # left mouse
-                        if event.type == Gdk.EventType._2BUTTON_PRESS: # double
+                        if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
                             run_quick_report_by_name(self.dbstate,
                                                      self.uistate,
                                                      'attribute_match',
@@ -759,7 +759,7 @@ class GridGramplet(GuiGramplet):
     Class that handles the plugin interfaces for the GrampletView.
     """
     TARGET_TYPE_FRAME = 80
-    LOCAL_DRAG_TYPE   = 'GRAMPLET'
+    LOCAL_DRAG_TYPE = 'GRAMPLET'
     LOCAL_DRAG_TARGET = Gtk.TargetEntry.new(LOCAL_DRAG_TYPE, 0,
                                             TARGET_TYPE_FRAME)
 

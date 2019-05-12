@@ -40,6 +40,6 @@ from .._hasreferencecountbase import HasReferenceCountBase
 class HasReferenceCountOf(HasReferenceCountBase):
     """Citation objects with a reference count of <count>"""
 
-    name        = _('Citations with a reference count of <count>')
+    name = _('Citations with a reference count of <count>')
     description = _("Matches citations with a certain reference count")
 

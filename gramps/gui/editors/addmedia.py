@@ -95,7 +95,7 @@ class AddMedia(ManagedWindow):
         self.callback = callback
 
         self.last_directory = config.get('behavior.addmedia-image-dir')
-        self.relative_path  = config.get('behavior.addmedia-relative-path')
+        self.relative_path = config.get('behavior.addmedia-relative-path')
 
         self.glade = Glade()
         self.set_window(
@@ -205,7 +205,7 @@ class AddMedia(ManagedWindow):
         filename = fname
         basename = os.path.basename(filename)
         (root, ext) = os.path.splitext(basename)
-        old_title  = self.description.get_text()
+        old_title = self.description.get_text()
 
         if old_title == '' or old_title == self.temp_name:
             self.description.set_text(root)
@@ -236,12 +236,12 @@ class AddMedia(ManagedWindow):
         """
 
         title_msg = _("Cannot display %s") % path
-        detail_msg =  _('Gramps is not able to display the image file. '
+        detail_msg = _('Gramps is not able to display the image file. '
                         'This may be caused by a corrupt file.')
 
         try:
             image1 = GdkPixbuf.Pixbuf.new_from_file(path)
-            width  = image1.get_width()
+            width = image1.get_width()
             height = image1.get_height()
             scale = size / float(max(width, height))
             return image1.scale_simple(int(scale*width), int(scale*height),

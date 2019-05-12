@@ -45,10 +45,10 @@ class HasTitle(Rule):
     Rule that checks for a place with a title
     """
 
-    labels      = [_('Title:')]
-    name        = _('Places matching a title')
+    labels = [_('Title:')]
+    name = _('Places matching a title')
     description = _('Matches places with a particular title')
-    category    = _('General filters')
+    category = _('General filters')
     allow_regex = True
 
     def apply(self, db, place):

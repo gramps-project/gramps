@@ -82,11 +82,11 @@ class EditUrl(EditSecondary):
             display_url(self.obj.get_path())
 
     def _setup_fields(self):
-        self.des  = MonitoredEntry(self.top.get_object("url_des"),
+        self.des = MonitoredEntry(self.top.get_object("url_des"),
                                    self.obj.set_description,
                                    self.obj.get_description, self.db.readonly)
 
-        self.addr  = MonitoredEntry(self.top.get_object("url_addr"),
+        self.addr = MonitoredEntry(self.top.get_object("url_addr"),
                                     self.obj.set_path, self.obj.get_path,
                                     self.db.readonly)
 

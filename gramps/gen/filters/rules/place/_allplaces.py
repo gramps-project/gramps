@@ -41,5 +41,5 @@ from .._everything import Everything
 class AllPlaces(Everything):
     """Matches Everyone"""
 
-    name        = _('Every place')
+    name = _('Every place')
     description = _('Matches every place in the database')

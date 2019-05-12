@@ -53,7 +53,7 @@ from gi.repository import Gdk
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.lib import EventType, EventRoleType
+from gramps.gen.lib import EventType, EventRoleType, FamilyRelType
 from gramps.gen.lib.person import Person
 from gramps.gen.constfunc import has_display, is_quartz, mac, win
 from gramps.gen.config import config
@@ -488,8 +488,22 @@ def color_graph_family(family, dbstate):
                                          EventRoleType.PRIMARY)):
             return (config.get('colors.family-divorced')[scheme],
                     config.get('colors.border-family-divorced')[scheme])
-    return (config.get('colors.family')[scheme],
-            config.get('colors.border-family')[scheme])
+
+    fam_rel_type = family.get_relationship()
+
+    family_color = config.get('colors.family')[scheme]
+    border_color = config.get('colors.border-family')[scheme]
+
+    if fam_rel_type == FamilyRelType.MARRIED:
+        family_color = config.get('colors.family-married')[scheme]
+    elif fam_rel_type == FamilyRelType.UNMARRIED:
+        family_color = config.get('colors.family-unmarried')[scheme]
+    elif fam_rel_type == FamilyRelType.CIVIL_UNION:
+        family_color = config.get('colors.family-civil-union')[scheme]
+    elif fam_rel_type == FamilyRelType.UNKNOWN:
+        family_color = config.get('colors.family-unknown')[scheme]
+
+    return (family_color, border_color)
 
 def color_graph_box(alive=False, gender=Person.MALE):
     """

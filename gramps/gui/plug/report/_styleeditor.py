@@ -160,7 +160,8 @@ class StyleListDisplay(ManagedWindow):
             log.error("Failed to save stylesheet", exc_info=True)
 
     def on_button_press(self, obj, event):
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             self.on_edit_clicked(obj)
 
     def on_edit_clicked(self, obj):
@@ -590,7 +591,7 @@ class StyleEditor(ManagedWindow):
         # Then change to new paragraph
         objs = self.plist.get_selected_objects()
         store, node = self.plist.get_selected()
-        self.current_name =  store.get_value(node, 0)
+        self.current_name = store.get_value(node, 0)
         self.current_style = objs[0]
         self.draw()
 

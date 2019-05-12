@@ -47,14 +47,14 @@ class MatchesPersonFilter(MatchesFilterBase):
 
     """
 
-    labels      = [_('Person filter name:'), _('Include Family events:')]
-    name        = _('Events of persons matching the <person filter>')
+    labels = [_('Person filter name:'), _('Include Family events:')]
+    name = _('Events of persons matching the <person filter>')
     description = _("Matches events of persons matched by the specified "
                     "person filter name")
-    category    = _('General filters')
+    category = _('General filters')
 
     # we want to have this filter show person filters
-    namespace   = 'Person'
+    namespace = 'Person'
 
     def prepare(self, db, user):
         MatchesFilterBase.prepare(self, db, user)
@@ -81,10 +81,10 @@ class MatchesPersonFilter(MatchesFilterBase):
                                             event.get_handle(), ['Family']):
                     family = db.get_family_from_handle(handle)
                     if family.father_handle and filt.check(db,
-                                                    family.father_handle) :
+                                                    family.father_handle):
                         return True
                     if family.mother_handle and filt.check(db,
-                                                    family.mother_handle) :
+                                                    family.mother_handle):
                         return True
 
         return False

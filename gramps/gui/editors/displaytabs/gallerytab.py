@@ -76,12 +76,13 @@ def make_launcher(path, uistate):
 #-------------------------------------------------------------------------
 class GalleryTab(ButtonTab, DbGUIElement):
 
-    _DND_TYPE   = DdTargets.MEDIAREF
-    _DND_EXTRA  = DdTargets.URI_LIST
+    _DND_TYPE = DdTargets.MEDIAREF
+    _DND_EXTRA = DdTargets.URI_LIST
 
     def __init__(self, dbstate, uistate, track,  media_list, update=None):
         self.iconlist = Gtk.IconView()
-        ButtonTab.__init__(self, dbstate, uistate, track, _('_Gallery'), True)
+        ButtonTab.__init__(self, dbstate, uistate, track, _('_Gallery'), True,
+                           move_buttons=ButtonTab.L_R)
         DbGUIElement.__init__(self, dbstate.db)
         self.track_ref_for_deletion("iconlist")
         self.media_list = media_list
@@ -110,7 +111,8 @@ class GalleryTab(ButtonTab, DbGUIElement):
         Handle the button press event: double click or right click on iconlist.
         If the double click occurs, the Edit button handler is called.
         """
-        if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             self.edit_button_clicked(obj)
             return True
         elif is_right_click(event):
@@ -397,6 +399,50 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 self.rebuild()
                 break
 
+    def up_button_clicked(self, obj):
+        """ Deal with up button """
+        ref = self.get_selected()
+        if ref:
+            pos = self.find_index(ref)
+            if pos > 0 :
+                self._move_up(pos, ref)
+
+    def down_button_clicked(self, obj):
+        """ Deal with down button """
+        ref = self.get_selected()
+        if ref:
+            pos = self.find_index(ref)
+            if pos >= 0 and pos < len(self.get_data()) - 1:
+                self._move_down(pos, ref)
+
+    def _move_up(self, row_from, obj):
+        """
+        Move the item a position up in the EmbeddedList.
+        Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 2
+        """
+        dlist = self.get_data()
+        del dlist[row_from]
+        dlist.insert(row_from - 1, obj)
+        self.changed = True
+        self.rebuild()
+        #select the row
+        path = Gtk.TreePath.new_from_string(str(row_from - 1))
+        self.iconlist.select_path(path)
+
+    def _move_down(self, row_from, obj):
+        """
+        Move the item a position down in the EmbeddedList.
+        Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 1
+        """
+        dlist = self.get_data()
+        del dlist[row_from]
+        dlist.insert(row_from + 1, obj)
+        self.changed = True
+        self.rebuild()
+        #select the row
+        path = Gtk.TreePath.new_from_string(str(row_from + 1))
+        self.iconlist.select_path(path)
+
     def _set_dnd(self):
         """
         Set up drag-n-drop. The source and destination are set by calling .target()
@@ -509,7 +555,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                     elif self._DND_EXTRA and mytype == self._DND_EXTRA.drag_type:
                         self.handle_extra_type(mytype, obj)
             except pickle.UnpicklingError:
-                files =  sel_data.get_uris()
+                files = sel_data.get_uris()
                 for file in files:
                     protocol, site, mfile, j, k, l = urlparse(file)
                     if protocol == "file":

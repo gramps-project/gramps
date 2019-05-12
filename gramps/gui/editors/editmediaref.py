@@ -97,7 +97,7 @@ class EditMediaRef(EditReference):
         self.top.get_object("label427").set_text(_("Y coordinate|Y"))
         self.top.get_object("label428").set_text(_("Y coordinate|Y"))
 
-        tblref =  self.top.get_object('table50')
+        tblref = self.top.get_object('table50')
         self.notebook_ref = self.top.get_object('notebook_ref')
         self.track_ref_for_deletion("notebook_ref")
         self.expander = self.top.get_object('expander1')
@@ -106,7 +106,7 @@ class EditMediaRef(EditReference):
         self.reftab = RefTab(self.dbstate, self.uistate, self.track,
                               _('General'), tblref)
         self.track_ref_for_deletion("reftab")
-        tblref =  self.top.get_object('table2')
+        tblref = self.top.get_object('table2')
         self.notebook_shared = self.top.get_object('notebook_shared')
         #recreate start page as GrampsTab
         self.notebook_shared.remove_page(0)
@@ -412,7 +412,8 @@ class EditMediaRef(EditReference):
         return (_('Media Reference Editor'),submenu_label)
 
     def button_press_event(self, obj, event):
-        if event.button==1 and event.type == Gdk.EventType._2BUTTON_PRESS:
+        if (event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS
+                and event.button == 1):
             photo_path = media_path_full(self.db, self.source.get_path())
             open_file_with_default_application(photo_path, self.uistate)
 

@@ -43,13 +43,13 @@ class HasSourceBase(Rule):
     """Rule that checks for a source with a particular value"""
 
 
-    labels      = [ 'Title:',
+    labels = [ 'Title:',
                     'Author:',
                     'Abbreviation:',
                     'Publication:' ]
-    name        = 'Sources matching parameters'
+    name = 'Sources matching parameters'
     description = "Matches sources with particular parameters"
-    category    = _('Citation/source filters')
+    category = _('Citation/source filters')
     allow_regex = True
 
     def apply(self,db,source):

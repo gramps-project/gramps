@@ -50,8 +50,8 @@ log = logging.getLogger(".fontstyle")
 #
 #-------------------------------------------------------------------------
 FONT_SANS_SERIF = 0
-FONT_SERIF      = 1
-FONT_MONOSPACE  = 2
+FONT_SERIF = 1
+FONT_MONOSPACE = 2
 
 #------------------------------------------------------------------------
 #
@@ -78,19 +78,19 @@ class FontStyle:
                       FontStyle instead of using the defaults.
         """
         if style:
-            self.face   = style.face
-            self.size   = style.size
+            self.face = style.face
+            self.size = style.size
             self.italic = style.italic
-            self.bold   = style.bold
-            self.color  = style.color
-            self.under  = style.under
+            self.bold = style.bold
+            self.color = style.color
+            self.under = style.under
         else:
-            self.face   = FONT_SERIF
-            self.size   = 12
+            self.face = FONT_SERIF
+            self.size = 12
             self.italic = 0
-            self.bold   = 0
-            self.color  = (0, 0, 0)
-            self.under  = 0
+            self.bold = 0
+            self.color = (0, 0, 0)
+            self.under = 0
 
     def set(self, face=None, size=None, italic=None, bold=None,
             underline=None, color=None):

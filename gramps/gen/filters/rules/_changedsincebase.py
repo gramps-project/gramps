@@ -48,12 +48,12 @@ class ChangedSinceBase(Rule):
     Rule that checks for primary objects changed since a specific time.
     """
 
-    labels      = [ 'Changed after:', 'but before:' ]
-    name        = 'Objects changed after <date time>'
+    labels = [ 'Changed after:', 'but before:' ]
+    name = 'Objects changed after <date time>'
     description = "Matches object records changed after a specified " \
                     "date/time (yyyy-mm-dd hh:mm:ss) or in range, if a second " \
                     "date/time is given."
-    category    = _('General filters')
+    category = _('General filters')
 
     def add_time(self, date):
         if re.search(r"\d.*\s+\d{1,2}:\d{2}:\d{2}", date):

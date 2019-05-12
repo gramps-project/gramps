@@ -43,9 +43,9 @@ class IsParentOfFilterMatch(Rule):
     """Rule that checks for a person that is a parent
     of someone matched by a filter"""
 
-    labels      = [ _('Filter name:') ]
-    name        = _('Parents of <filter> match')
-    category    = _('Family filters')
+    labels = [ _('Filter name:') ]
+    name = _('Parents of <filter> match')
+    category = _('Family filters')
     description = _("Matches parents of anybody matched by a filter")
 
     def prepare(self, db, user):

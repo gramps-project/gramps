@@ -66,7 +66,7 @@ class SearchBar:
         self.on_apply_callback = None
         self.apply_done_callback = None
         self.dbstate = None
-        self.uistate =  None
+        self.uistate = None
 
     def build( self):
         self.filterbar.set_spacing(4)

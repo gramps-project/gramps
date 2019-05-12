@@ -56,7 +56,7 @@ from ._datestrings import DateStrings
 # Top-level module functions
 #
 #-------------------------------------------------------------------------
-_max_days  = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
+_max_days = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
 _leap_days = [ 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
 
 def gregorian_valid(date_tuple):
@@ -400,8 +400,8 @@ class DateParser:
         _ = self._locale.translation.gettext
         self.__init_prefix_tables()
 
-        self._rfc_mon_str  = '(' + '|'.join(list(self._rfc_mons_to_int.keys())) + ')'
-        self._rfc_day_str  = '(' + '|'.join(self._rfc_days) + ')'
+        self._rfc_mon_str = '(' + '|'.join(list(self._rfc_mons_to_int.keys())) + ')'
+        self._rfc_day_str = '(' + '|'.join(self._rfc_days) + ')'
 
         self._bce_str = self.re_longest_first(self.bce)
         self._qual_str = self.re_longest_first(list(self.quality_to_int.keys()))
@@ -409,14 +409,14 @@ class DateParser:
         self._mod_after_str = self.re_longest_first(
             list(self.modifier_after_to_int.keys()))
 
-        self._mon_str  = self.re_longest_first(list(self.month_to_int.keys()))
+        self._mon_str = self.re_longest_first(list(self.month_to_int.keys()))
         self._jmon_str = self.re_longest_first(list(self.hebrew_to_int.keys()))
         self._fmon_str = self.re_longest_first(list(self.french_to_int.keys()))
         self._pmon_str = self.re_longest_first(list(self.persian_to_int.keys()))
         self._imon_str = self.re_longest_first(list(self.islamic_to_int.keys()))
         self._smon_str = self.re_longest_first(list(self.swedish_to_int.keys()))
-        self._cal_str  = self.re_longest_first(list(self.calendar_to_int.keys()))
-        self._ny_str   = self.re_longest_first(list(self.newyear_to_int.keys()))
+        self._cal_str = self.re_longest_first(list(self.calendar_to_int.keys()))
+        self._ny_str = self.re_longest_first(list(self.newyear_to_int.keys()))
 
         self._today_str = self.re_longest_first(self.today + [_("today"),])
 
@@ -911,7 +911,7 @@ class DateParser:
         text = text.strip() # otherwise spaces can make it a bad date
         date.set_text_value(text)
         qual = Date.QUAL_NONE
-        cal  = Date.CAL_GREGORIAN
+        cal = Date.CAL_GREGORIAN
         newyear = Date.NEWYEAR_JAN1
 
         (text, cal, newyear) = self.match_calendar_newyear(text, cal, newyear)

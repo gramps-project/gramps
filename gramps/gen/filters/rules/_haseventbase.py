@@ -46,14 +46,14 @@ class HasEventBase(Rule):
     """Rule that checks for an event with a particular value."""
 
 
-    labels      = [ 'Event type:',
+    labels = [ 'Event type:',
                     'Date:',
                     'Place:',
                     'Description:',
                     'Main Participants:' ]
-    name        =  'Events matching parameters'
-    description =  "Matches events with particular parameters"
-    category    = _('Event filters')
+    name = 'Events matching parameters'
+    description = "Matches events with particular parameters"
+    category = _('Event filters')
     allow_regex = True
 
     def prepare(self, db, user):

@@ -32,9 +32,9 @@ MODULE_VERSION="5.1"
 _mime_type = "text/x-comma-separated-values" # CSV Document
 _mime_type_rfc_4180 = "text/csv" # CSV Document   See rfc4180 for mime type
 plg = newplugin()
-plg.id    = 'im_csv'
-plg.name  = _("Comma Separated Values Spreadsheet (CSV)")
-plg.description =  _("Import data from CSV files")
+plg.id = 'im_csv'
+plg.name = _("Comma Separated Values Spreadsheet (CSV)")
+plg.description = _("Import data from CSV files")
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
@@ -50,9 +50,9 @@ plg.extension = "csv"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'im_ged'
-plg.name  = _('GEDCOM')
-plg.description =  _('GEDCOM is used to transfer data between genealogy programs. '
+plg.id = 'im_ged'
+plg.name = _('GEDCOM')
+plg.description = _('GEDCOM is used to transfer data between genealogy programs. '
                 'Most genealogy software will accept a GEDCOM file as input.')
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -69,9 +69,9 @@ plg.extension = "ged"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'im_geneweb'
-plg.name  = _('GeneWeb')
-plg.description =  _('Import data from GeneWeb files')
+plg.id = 'im_geneweb'
+plg.name = _('GeneWeb')
+plg.description = _('Import data from GeneWeb files')
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
@@ -87,9 +87,9 @@ plg.extension = "gw"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'im_gpkg'
-plg.name  = _('Gramps package (portable XML)')
-plg.description =  _('Import data from a Gramps package (an archived XML '
+plg.id = 'im_gpkg'
+plg.name = _('Gramps package (portable XML)')
+plg.description = _('Import data from a Gramps package (an archived XML '
                      'Family Tree together with the media object files.)')
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
@@ -106,9 +106,9 @@ plg.extension = "gpkg"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'im_gramps'
-plg.name  = _('Gramps XML Family Tree')
-plg.description =  _('The Gramps XML format is a text '
+plg.id = 'im_gramps'
+plg.name = _('Gramps XML Family Tree')
+plg.description = _('The Gramps XML format is a text '
                      'version of a Family Tree. It is '
                      'read-write compatible with the '
                      'present Gramps database format.')
@@ -127,9 +127,9 @@ plg.extension = "gramps"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'im_grdb'
-plg.name  = _('Gramps 2.x database')
-plg.description =  _('Import data from Gramps 2.x database files')
+plg.id = 'im_grdb'
+plg.name = _('Gramps 2.x database')
+plg.description = _('Import data from Gramps 2.x database files')
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
@@ -145,9 +145,9 @@ plg.extension = "grdb"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'im_progen'
-plg.name  = _('Pro-Gen')
-plg.description =  _('Import data from Pro-Gen files')
+plg.id = 'im_progen'
+plg.name = _('Pro-Gen')
+plg.description = _('Import data from Pro-Gen files')
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
@@ -163,9 +163,9 @@ plg.extension = "def"
 #------------------------------------------------------------------------
 
 plg = newplugin()
-plg.id    = 'im_vcard'
-plg.name  = _('vCard')
-plg.description =  _('Import data from vCard files')
+plg.id = 'im_vcard'
+plg.name = _('vCard')
+plg.description = _('Import data from vCard files')
 plg.version = '1.0'
 plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE

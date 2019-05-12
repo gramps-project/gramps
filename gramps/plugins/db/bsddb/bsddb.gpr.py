@@ -22,10 +22,10 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 plg = newplugin()
-plg.id    = 'bsddb'
-plg.name  = _("BSDDB")
-plg.name_accell  = _("_BSDDB Database")
-plg.description =  _("Berkeley Software Distribution Database Backend")
+plg.id = 'bsddb'
+plg.name = _("BSDDB")
+plg.name_accell = _("_BSDDB Database")
+plg.description = _("Berkeley Software Distribution Database Backend")
 plg.version = '1.0'
 plg.gramps_target_version = "5.1"
 plg.status = STABLE

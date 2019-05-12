@@ -52,15 +52,15 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 # Positions in raw data structure
 #
 #-------------------------------------------------------------------------
-COLUMN_HANDLE      = 0
-COLUMN_ID          = 1
-COLUMN_TYPE        = 2
-COLUMN_DATE        = 3
+COLUMN_HANDLE = 0
+COLUMN_ID = 1
+COLUMN_TYPE = 2
+COLUMN_DATE = 3
 COLUMN_DESCRIPTION = 4
-COLUMN_PLACE       = 5
-COLUMN_CHANGE      = 10
-COLUMN_TAGS        = 11
-COLUMN_PRIV        = 12
+COLUMN_PLACE = 5
+COLUMN_CHANGE = 10
+COLUMN_TAGS = 11
+COLUMN_PRIV = 12
 
 INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 
@@ -156,7 +156,7 @@ class EventModel(FlatBaseModel):
         if data[COLUMN_DATE]:
             event = Event()
             event.unserialize(data)
-            date_str =  get_date(event)
+            date_str = get_date(event)
             if date_str != "":
                 retval = escape(date_str)
             if not get_date_valid(event):

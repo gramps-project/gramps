@@ -42,6 +42,6 @@ from .._matchesfilterbase import MatchesFilterBase
 class MatchesFilter(MatchesFilterBase):
     """Rule that checks against another filter"""
 
-    name        = _('Citations matching the <filter>')
+    name = _('Citations matching the <filter>')
     description = _("Matches citations matched by the specified filter name")
-    namespace   = 'Citation'
+    namespace = 'Citation'

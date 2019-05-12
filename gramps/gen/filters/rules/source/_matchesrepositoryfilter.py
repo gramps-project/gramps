@@ -40,11 +40,11 @@ from .. import MatchesFilterBase
 class MatchesRepositoryFilter(MatchesFilterBase):
     """Sources which reference the selected repository"""
 
-    labels      = [ _('Repository filter name:') ]
-    name        = _('Sources with repository reference matching the <repository filter>')
+    labels = [ _('Repository filter name:') ]
+    name = _('Sources with repository reference matching the <repository filter>')
     description = _("Matches sources with a repository reference that match a certain\n"
                   "repository filter")
-    category    = _('General filters')
+    category = _('General filters')
 
     # we want to have this filter show repository filters
     namespace = 'Repository'

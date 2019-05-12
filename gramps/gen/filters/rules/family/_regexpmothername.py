@@ -42,9 +42,9 @@ from ._memberbase import mother_base
 class RegExpMotherName(RegExpName):
     """Rule that checks for full or partial name matches"""
 
-    name        = _('Families with mother matching the <regex_name>')
+    name = _('Families with mother matching the <regex_name>')
     description = _("Matches families whose mother has a name "
                     "matching a specified regular expression")
-    category    = _('Mother filters')
+    category = _('Mother filters')
     base_class = RegExpName
     apply = mother_base

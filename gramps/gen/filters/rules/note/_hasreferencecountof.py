@@ -39,6 +39,6 @@ from .._hasreferencecountbase import HasReferenceCountBase
 class HasReferenceCountOf(HasReferenceCountBase):
     """Notes with a reference count of <count>"""
 
-    name        = _('Notes with a reference count of <count>')
+    name = _('Notes with a reference count of <count>')
     description = _("Matches notes with a certain reference count")
 

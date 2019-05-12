@@ -41,9 +41,9 @@ from .. import Rule
 class IncompleteNames(Rule):
     """People with incomplete names"""
 
-    name        = _('People with incomplete names')
+    name = _('People with incomplete names')
     description = _("Matches people with firstname or lastname missing")
-    category    = _('General filters')
+    category = _('General filters')
 
     def apply(self,db,person):
         for name in [person.get_primary_name()] + person.get_alternate_names():
