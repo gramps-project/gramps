@@ -180,7 +180,7 @@ class EditNote(EditPrimary):
         self.set_window(win, None, self.get_menu_title())
         self.setup_configs('interface.note', 700, 500)
 
-        vboxnote =  self.top.get_object('vbox131')
+        vboxnote = self.top.get_object('vbox131')
         notebook = self.top.get_object('note_notebook')
         #recreate start page as GrampsTab
         notebook.remove_page(0)

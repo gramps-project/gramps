@@ -244,7 +244,7 @@ class PaperFrame(Gtk.Box):
         and worst case fallback to A4 size.
 
         """
-        papersize, papername =  self.papersize_menu.get_value()
+        papersize, papername = self.papersize_menu.get_value()
         if papername == 'Custom Size':
             try:
                 h = float(str(self.pheight.get_text().replace(",", ".")))

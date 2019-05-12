@@ -48,6 +48,6 @@ class HasCitation(HasCitationBase):
     labels = [ _('Volume/Page:'),
                     _('Date:'),
                     _('Confidence level:')]
-    name =  _('Place with the <citation>')
+    name = _('Place with the <citation>')
     description = _("Matches places with a citation of a particular "
                     "value")

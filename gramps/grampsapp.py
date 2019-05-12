@@ -76,7 +76,7 @@ try:
     # On Darwin sys.getdefaultencoding() is correct, on Win32 it's
     # sys.stdout.enoding, and on Linux they're both right.
     if mac():
-        _encoding =  sys.getdefaultencoding()
+        _encoding = sys.getdefaultencoding()
     else:
         _encoding = sys.stdout.encoding
 except:

@@ -286,7 +286,7 @@ def get_participant_from_event(db, event_handle, all_=False):
                     else:
                         ellipses = True
                 else:
-                    participant =  name_displayer.display(person)
+                    participant = name_displayer.display(person)
                 break
         if ellipses:
             break

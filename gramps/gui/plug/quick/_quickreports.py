@@ -246,7 +246,7 @@ def run_report(dbstate, uistate, category, handle, pdata, container=None,
         if not mod:
             print("QuickView Error: plugin does not load")
             return
-        func =  getattr(mod, pdata.runfunc)
+        func = getattr(mod, pdata.runfunc)
         if handle:
             d = TextBufDoc(make_basic_stylesheet(), None, track=track)
             d.dbstate = dbstate

@@ -62,7 +62,7 @@ class HasAssociation(Rule):
         self.selected_count = int(self.list[0])
 
     def apply(self, db, person):
-        count =  len(person.get_person_ref_list())
+        count = len(person.get_person_ref_list())
         if self.count_type == 0:     # "less than"
             return count < self.selected_count
         elif self.count_type == 2:   # "greater than"

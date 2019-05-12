@@ -112,8 +112,8 @@ class PluginStatus(ManagedWindow):
 
         #first page with all registered plugins
         vbox_reg = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        scrolled_window_reg =  Gtk.ScrolledWindow()
-        self.list_reg =  Gtk.TreeView()
+        scrolled_window_reg = Gtk.ScrolledWindow()
+        self.list_reg = Gtk.TreeView()
         #  model: plugintype, hidden, pluginname, plugindescr, pluginid
         self.model_reg = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING,
                 GObject.TYPE_STRING, GObject.TYPE_STRING, GObject.TYPE_STRING)

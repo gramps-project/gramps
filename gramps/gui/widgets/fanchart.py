@@ -313,7 +313,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                                        cend[2]/255)
         if self.background in [BACKGROUND_GENDER, BACKGROUND_SINGLE_COLOR]:
             # nothing to precompute
-            self.colors =  None
+            self.colors = None
             self.maincolor = cstart
         elif self.background == BACKGROUND_GRAD_GEN:
             #compute the colors, -1, 0, ..., maxgen
@@ -326,7 +326,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             self.colors = [(255*r, 255*g, 255*b) for r, g, b in rgb_colors]
         elif self.background == BACKGROUND_GRAD_PERIOD:
             # we fill in in the data structure what the period is, None if not found
-            self.colors =  None
+            self.colors = None
             self.minperiod = 1e10
             self.maxperiod = -1e10
             gen_people = self.people_generator()
@@ -358,7 +358,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
 
         elif self.background == BACKGROUND_GRAD_AGE:
             # we fill in in the data structure what the color age is, white if no age
-            self.colors =  None
+            self.colors = None
             gen_people = self.people_generator()
             for person, userdata in gen_people:
                 self.set_userdata_age(person, userdata)
@@ -571,7 +571,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             #we are not in a move, so draw text
             radial = False
             if self.radialtext: ## and generation >= 6:
-                space_arc_text =  (radiusin+radiusout)/2 * (stop_rad-start_rad)
+                space_arc_text = (radiusin+radiusout)/2 * (stop_rad-start_rad)
                 # is there more space to print it radial ?
                 radial= (space_arc_text < (radiusout-radiusin) * 1.1)
             self.draw_person_text(cr, person, radiusin, radiusout, start_rad, stop_rad,
@@ -913,7 +913,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         self._mouse_click = False
         if self.last_x is None or self.last_y is None:
             # while mouse is moving, we must update the tooltip based on person
-            cell_address =  self.cell_address_under_cursor(event.x, event.y)
+            cell_address = self.cell_address_under_cursor(event.x, event.y)
             self.mouse_x, self.mouse_y = event.x, event.y
             tooltip = ""
             if cell_address:

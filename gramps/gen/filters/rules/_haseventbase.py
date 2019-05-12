@@ -51,8 +51,8 @@ class HasEventBase(Rule):
                     'Place:',
                     'Description:',
                     'Main Participants:' ]
-    name =  'Events matching parameters'
-    description =  "Matches events with particular parameters"
+    name = 'Events matching parameters'
+    description = "Matches events with particular parameters"
     category = _('Event filters')
     allow_regex = True
 

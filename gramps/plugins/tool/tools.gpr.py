@@ -36,7 +36,7 @@ MODULE_VERSION="5.1"
 register(TOOL,
 id = 'chname',
 name = _("Fix Capitalization of Family Names"),
-description =  _("Searches the entire database and attempts to "
+description = _("Searches the entire database and attempts to "
                     "fix capitalization of the names."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -59,7 +59,7 @@ tool_modes = [TOOL_MODE_GUI]
 register(TOOL,
 id = 'chtype',
 name = _("Rename Event Types"),
-description =  _("Allows all the events of a certain name "
+description = _("Allows all the events of a certain name "
                     "to be renamed to a new name."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -82,7 +82,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 register(TOOL,
 id = 'check',
 name = _("Check and Repair Database"),
-description =  _("Checks the database for integrity problems, fixing the "
+description = _("Checks the database for integrity problems, fixing the "
                    "problems that it can"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -105,7 +105,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 register(TOOL,
 id = 'eventcmp',
 name = _("Compare Individual Events"),
-description =  _("Aids in the analysis of data by allowing the "
+description = _("Aids in the analysis of data by allowing the "
                     "development of custom filters that can be applied "
                     "to the database to find similar events"),
 version = '1.0',
@@ -129,7 +129,7 @@ tool_modes = [TOOL_MODE_GUI]
 register(TOOL,
 id = 'evname',
 name = _("Extract Event Description"),
-description =  _("Extracts event descriptions from the event data"),
+description = _("Extracts event descriptions from the event data"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -151,7 +151,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 register(TOOL,
 id = 'dupfind',
 name = _("Find Possible Duplicate People"),
-description =  _("Searches the entire database, looking for "
+description = _("Searches the entire database, looking for "
                     "individual entries that may represent the same person."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -174,7 +174,7 @@ tool_modes = [TOOL_MODE_GUI]
 register(TOOL,
 id = 'mediaman',
 name = _("Media Manager"),
-description =  _("Manages batch operations on media files"),
+description = _("Manages batch operations on media files"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -196,7 +196,7 @@ tool_modes = [TOOL_MODE_GUI]
 register(TOOL,
 id = 'not_related',
 name = _("Not Related"),
-description =  _("Find people who are not in any way related to the "
+description = _("Find people who are not in any way related to the "
                     "selected person"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -219,7 +219,7 @@ tool_modes = [TOOL_MODE_GUI]
 register(TOOL,
 id = 'editowner',
 name = _("Edit Database Owner Information"),
-description =  _("Allow editing database owner information."),
+description = _("Allow editing database owner information."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -241,7 +241,7 @@ tool_modes = [TOOL_MODE_GUI]
 register(TOOL,
 id = 'patchnames',
 name = _("Extract Information from Names"),
-description =  _("Extract titles, prefixes and compound surnames from given name or family name."),
+description = _("Extract titles, prefixes and compound surnames from given name or family name."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -263,7 +263,7 @@ tool_modes = [TOOL_MODE_GUI]
 register(TOOL,
 id = 'rebuild',
 name = _("Rebuild Secondary Indexes"),
-description =  _("Rebuilds secondary indexes"),
+description = _("Rebuilds secondary indexes"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -285,7 +285,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 register(TOOL,
 id = 'rebuild_refmap',
 name = _("Rebuild Reference Maps"),
-description =  _("Rebuilds reference maps"),
+description = _("Rebuilds reference maps"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -307,7 +307,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 register(TOOL,
 id = 'rebuild_genstats',
 name = _("Rebuild Gender Statistics"),
-description =  _("Rebuilds gender statistics for name gender guessing..."),
+description = _("Rebuilds gender statistics for name gender guessing..."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -329,7 +329,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 register(TOOL,
 id = 'relcalc',
 name = _("Relationship Calculator"),
-description =  _("Calculates the relationship between two people"),
+description = _("Calculates the relationship between two people"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -351,7 +351,7 @@ tool_modes = [TOOL_MODE_GUI]
 register(TOOL,
 id = 'remove_unused',
 name = _("Remove Unused Objects"),
-description =  _("Removes unused objects from the database"),
+description = _("Removes unused objects from the database"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -373,7 +373,7 @@ tool_modes = [TOOL_MODE_GUI]
 register(TOOL,
 id = 'reorder_ids',
 name = _("Reorder Gramps IDs"),
-description =  _("Reorders the Gramps IDs "
+description = _("Reorders the Gramps IDs "
                     "according to Gramps' default rules."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -396,7 +396,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 register(TOOL,
 id = 'sortevents',
 name = _("Sorts events"),
-description =  _("Sorts events"),
+description = _("Sorts events"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -418,7 +418,7 @@ tool_modes = [TOOL_MODE_GUI]
 register(TOOL,
 id = 'verify',
 name = _("Verify the Data"),
-description =  _("Verifies the data against user-defined tests"),
+description = _("Verifies the data against user-defined tests"),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
 status = STABLE,
@@ -440,7 +440,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 register(TOOL,
 id = 'mergecitations',
 name = _("Merge Citations"),
-description =  _("Searches the entire database, looking for "
+description = _("Searches the entire database, looking for "
                     "citations that have the same Volume/Page, Date and Confidence."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,
@@ -463,7 +463,7 @@ tool_modes = [TOOL_MODE_GUI]
 register(TOOL,
 id = 'loop',
 name = _("Find database loop"),
-description =  _("Searches the entire database, looking for "
+description = _("Searches the entire database, looking for "
                     "a possible loop."),
 version = '1.0',
 gramps_target_version = MODULE_VERSION,

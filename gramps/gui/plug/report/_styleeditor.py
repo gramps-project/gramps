@@ -591,7 +591,7 @@ class StyleEditor(ManagedWindow):
         # Then change to new paragraph
         objs = self.plist.get_selected_objects()
         store, node = self.plist.get_selected()
-        self.current_name =  store.get_value(node, 0)
+        self.current_name = store.get_value(node, 0)
         self.current_style = objs[0]
         self.draw()
 

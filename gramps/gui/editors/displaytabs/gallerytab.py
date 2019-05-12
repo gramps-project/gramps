@@ -510,7 +510,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                     elif self._DND_EXTRA and mytype == self._DND_EXTRA.drag_type:
                         self.handle_extra_type(mytype, obj)
             except pickle.UnpicklingError:
-                files =  sel_data.get_uris()
+                files = sel_data.get_uris()
                 for file in files:
                     protocol, site, mfile, j, k, l = urlparse(file)
                     if protocol == "file":

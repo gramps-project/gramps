@@ -97,7 +97,7 @@ class EditMediaRef(EditReference):
         self.top.get_object("label427").set_text(_("Y coordinate|Y"))
         self.top.get_object("label428").set_text(_("Y coordinate|Y"))
 
-        tblref =  self.top.get_object('table50')
+        tblref = self.top.get_object('table50')
         self.notebook_ref = self.top.get_object('notebook_ref')
         self.track_ref_for_deletion("notebook_ref")
         self.expander = self.top.get_object('expander1')
@@ -106,7 +106,7 @@ class EditMediaRef(EditReference):
         self.reftab = RefTab(self.dbstate, self.uistate, self.track,
                               _('General'), tblref)
         self.track_ref_for_deletion("reftab")
-        tblref =  self.top.get_object('table2')
+        tblref = self.top.get_object('table2')
         self.notebook_shared = self.top.get_object('notebook_shared')
         #recreate start page as GrampsTab
         self.notebook_shared.remove_page(0)

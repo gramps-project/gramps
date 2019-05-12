@@ -156,7 +156,7 @@ class EventModel(FlatBaseModel):
         if data[COLUMN_DATE]:
             event = Event()
             event.unserialize(data)
-            date_str =  get_date(event)
+            date_str = get_date(event)
             if date_str != "":
                 retval = escape(date_str)
             if not get_date_valid(event):

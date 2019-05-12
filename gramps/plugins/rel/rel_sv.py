@@ -403,7 +403,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 rel_str = "förfäders " + self._get_cousin_kinship(Ga) + \
                     " i "+ _level_name[Gb] +  " generationen"
             else:
-                rel_str =  "avlägsna kusiner"
+                rel_str = "avlägsna kusiner"
         elif Gb > 1 and Gb > Ga:
             # These are cousins in different generations with the second person
             # being in a lower generation from the common ancestor than the
@@ -415,7 +415,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                     result.append("barn")
                 rel_str = self.pair_up(result,'')
             else:
-                rel_str =  "avlägsna kusiner"
+                rel_str = "avlägsna kusiner"
 
         if in_law_b == True:
             rel_str = "makar till %s" % rel_str

@@ -63,13 +63,13 @@ class EditRepoRef(EditReference):
         self.define_warn_box(self.top.get_object("warn_box"))
         self.define_expander(self.top.get_object("src_expander"))
 
-        tblref =  self.top.get_object('table70')
+        tblref = self.top.get_object('table70')
         notebook = self.top.get_object('notebook_ref')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.reftab = RefTab(self.dbstate, self.uistate, self.track,
                               _('General'), tblref)
-        tblref =  self.top.get_object('table69')
+        tblref = self.top.get_object('table69')
         notebook = self.top.get_object('notebook_src')
         #recreate start page as GrampsTab
         notebook.remove_page(0)

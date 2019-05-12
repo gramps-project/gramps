@@ -43,7 +43,7 @@ from ....lib.nameorigintype import NameOriginType
 class HasNameOf(Rule):
     """Rule that checks for full or partial name matches"""
 
-    labels =  [_('Given name:'),
+    labels = [_('Given name:'),
                     _('Full Family name:'),
                     _('person|Title:'),
                     _('Suffix:'),
