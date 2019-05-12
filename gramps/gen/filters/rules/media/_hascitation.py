@@ -47,6 +47,6 @@ class HasCitation(HasCitationBase):
     labels = [ _('Volume/Page:'),
                     _('Date:'),
                     _('Confidence level:')]
-    name =  _('Media with the <citation>')
+    name = _('Media with the <citation>')
     description = _("Matches media with a citation of a particular "
                     "value")

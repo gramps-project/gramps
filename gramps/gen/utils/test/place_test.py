@@ -70,7 +70,7 @@ class PlaceTest(unittest.TestCase):
         lat, lon = ' 50 : 50 : 59.60 ', ' -2:53 : 9.23   '
         self._test_formats_success(lat, lon)
 
-        lat, lon =  '+50:1', '-2:1:2'
+        lat, lon = '+50:1', '-2:1:2'
         self._test_formats_success(lat, lon)
 
     def test_bad_latitude(self):
@@ -82,138 +82,138 @@ class PlaceTest(unittest.TestCase):
         self._test_formats_fail(lat, lon)
 
     def test_dm_ds(self):
-        lat, lon =  ' 50°59.60\'N', '  2°53\'E'
+        lat, lon = ' 50°59.60\'N', '  2°53\'E'
         self._test_formats_success(lat, lon)
 
     def test_both_in_latitude(self):
-        lat, lon =  ' 11° 11\' 11" N, 11° 11\' 11" O', ' '
+        lat, lon = ' 11° 11\' 11" N, 11° 11\' 11" O', ' '
         self._test_formats_fail(lat, lon)
 
     def test_very_small_negative(self):
-        lat, lon =  '-0.00006', '-0.00006'
+        lat, lon = '-0.00006', '-0.00006'
         self._test_formats_success(lat, lon)
 
     def test_missing_direction(self):
-        lat, lon =  ' 50°59.60"', '  2°53\'E'
+        lat, lon = ' 50°59.60"', '  2°53\'E'
         self._test_formats_fail(lat, lon)
 
     def test_wrong_direction(self):
-        lat, lon =  ' 50°59.60"E', '  2°53\'N'
+        lat, lon = ' 50°59.60"E', '  2°53\'N'
         self._test_formats_fail(lat, lon)
 
-        lat, lon =  ' 50°59.99"E', '  2°59\'59.99"N'
+        lat, lon = ' 50°59.99"E', '  2°59\'59.99"N'
         self._test_formats_fail(lat, lon)
 
     def test_precision(self):
-        lat, lon =  ' 50°59\'59.99"S', '  2°59\'59.99"E'
+        lat, lon = ' 50°59\'59.99"S', '  2°59\'59.99"E'
         self._test_formats_success(lat, lon)
 
         lat, lon = 'N50.849888888888', 'E2.885897222222'
         self._test_formats_success(lat, lon)
 
     def test_large_latitude(self):
-        lat, lon =  '90.849888888888', '2.885897222222'
+        lat, lon = '90.849888888888', '2.885897222222'
         self._test_formats_fail(lat, lon)
 
-        lat, lon =  '-91.2', '-1'
+        lat, lon = '-91.2', '-1'
         self._test_formats_fail(lat, lon)
 
     def test_extreme_values(self):
-        lat, lon =  '90', '-180'
+        lat, lon = '90', '-180'
         self._test_formats_success(lat, lon)
 
-        lat, lon =  '90° 00\' 00.00" S ', '179° 59\'59.99"W'
+        lat, lon = '90° 00\' 00.00" S ', '179° 59\'59.99"W'
         self._test_formats_success(lat, lon)
 
-        lat, lon =  '90° 00\' 00.00" N', '180° 00\'00.00" E'
+        lat, lon = '90° 00\' 00.00" N', '180° 00\'00.00" E'
         self._test_formats_fail(lat, lon)
 
-        lat, lon =  '90: 00: 00.00 ', '-179: 59:59.99'
+        lat, lon = '90: 00: 00.00 ', '-179: 59:59.99'
         self._test_formats_success(lat, lon)
 
-        lat, lon =  '90° 00\' 00.00" N', '180:00:00.00'
+        lat, lon = '90° 00\' 00.00" N', '180:00:00.00'
         self._test_formats_fail(lat, lon)
 
-        lat, lon =  '90', '180'
+        lat, lon = '90', '180'
         self._test_formats_fail(lat, lon)
 
-        lat, lon =  ' 89°59\'60"N', '  2°53\'W'
+        lat, lon = ' 89°59\'60"N', '  2°53\'W'
         self._test_formats_fail(lat, lon)
 
-        lat, lon =  ' 89°60\'00"N', '  2°53\'W'
+        lat, lon = ' 89°60\'00"N', '  2°53\'W'
         self._test_formats_fail(lat, lon)
 
-        lat, lon =  ' 89.1°40\'00"N', '  2°53\'W'
+        lat, lon = ' 89.1°40\'00"N', '  2°53\'W'
         self._test_formats_fail(lat, lon)
 
-        lat, lon =  ' 89°40\'00"N', '  2°53.1\'W'
+        lat, lon = ' 89°40\'00"N', '  2°53.1\'W'
         self._test_formats_success(lat, lon)
 
         lat, lon = '+61° 43\' 60.00"', '+17° 7\' 60.00"'
         self._test_formats_fail(lat, lon)
 
     def test_zero_crossing(self):
-        lat, lon =  '0', '0'
+        lat, lon = '0', '0'
         self._test_formats_success(lat, lon)
 
     def test_near_equator(self):
-        lat, lon =  ' 1°1"N', '  1°1\'E'
+        lat, lon = ' 1°1"N', '  1°1\'E'
         self._test_formats_success(lat, lon)
 
     def test_roundoff(self):
-        lat, lon =  ' 1°59.999\'N', '  1°59.999\'E'
+        lat, lon = ' 1°59.999\'N', '  1°59.999\'E'
         self._test_formats_success(lat, lon)
 
-        lat, lon =  ' 1°59\'59.9999"N', '  1°59\'59.9999"E'
+        lat, lon = ' 1°59\'59.9999"N', '  1°59\'59.9999"E'
         self._test_formats_success(lat, lon)
 
-        lat, lon =  '89°59\'59.9999"S', '179°59\'59.9999"W'
+        lat, lon = '89°59\'59.9999"S', '179°59\'59.9999"W'
         self._test_formats_success(lat, lon)
 
-        lat, lon =  '89°59\'59.9999"N', '179°59\'59.9999"E'
+        lat, lon = '89°59\'59.9999"N', '179°59\'59.9999"E'
         self._test_formats_success(lat, lon)
 
     def test_number_of_decimals(self):
-        lat, lon =  '89°59\'59.99999999"N', '179°59\'59.99999999"E'
+        lat, lon = '89°59\'59.99999999"N', '179°59\'59.99999999"E'
         self._test_formats_success(lat, lon)
 
     def test_quote_notation(self):
-        lat, lon =  '89°59\'59.99\'\' N', '179°59\'59.99\'\'E'
+        lat, lon = '89°59\'59.99\'\' N', '179°59\'59.99\'\'E'
         self._test_formats_success(lat, lon)
 
     def test_decimal_localization(self):
         lat, lon = '50.849888888888', '2,885897222222'
         self._test_formats_success(lat, lon)
 
-        lat, lon =  '89°59\'59.9999"S', '179°59\'59,9999"W'
+        lat, lon = '89°59\'59.9999"S', '179°59\'59,9999"W'
         self._test_formats_success(lat, lon)
 
-        lat, lon =  '89°59\'1.599,999"S', '179°59\'59,9999"W'
+        lat, lon = '89°59\'1.599,999"S', '179°59\'59,9999"W'
         self._test_formats_fail(lat, lon)
 
     def test_large_longitude(self):
-        lat, lon =  '81.2', '-182.3'
+        lat, lon = '81.2', '-182.3'
         self._test_formats_fail(lat, lon)
 
     def test_bad_sign(self):
-        lat, lon =  '++50:10:1', '2:1:2'
+        lat, lon = '++50:10:1', '2:1:2'
         self._test_formats_fail(lat, lon)
 
-        lat, lon =  '-50:10:1', '-+2:1:2'
+        lat, lon = '-50:10:1', '-+2:1:2'
         self._test_formats_fail(lat, lon)
 
     def test_missing_minute(self):
-        lat, lon =  '-50::1', '-2:1:2'
+        lat, lon = '-50::1', '-2:1:2'
         self._test_formats_fail(lat, lon)
 
-        lat, lon =  '+50:', '-2:1:2'
+        lat, lon = '+50:', '-2:1:2'
         self._test_formats_fail(lat, lon)
 
     def test_extra_whitespace(self):
-        lat, lon =  '- 50  : 2 : 1 ', '-2:1:2'
+        lat, lon = '- 50  : 2 : 1 ', '-2:1:2'
         self._test_formats_success(lat, lon)
 
-        lat, lon =  '+ 50:2 :  1', '-2:1:2'
+        lat, lon = '+ 50:2 :  1', '-2:1:2'
         self._test_formats_success(lat, lon)
 
     def test_sign_and_direction(self):
@@ -221,11 +221,11 @@ class PlaceTest(unittest.TestCase):
         self._test_formats_success(lat, lon)
 
     def test_extra_colon(self):
-        lat, lon =  '+50: 0 : 1 : 1', '-2:1:2'
+        lat, lon = '+50: 0 : 1 : 1', '-2:1:2'
         self._test_formats_fail(lat, lon)
 
     def test_leading_colon(self):
-        lat, lon =  ': 0 : 1 : 1', ':1:2'
+        lat, lon = ': 0 : 1 : 1', ':1:2'
         self._test_formats_fail(lat, lon)
 
     def test_degree_symbol(self):

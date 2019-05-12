@@ -91,8 +91,8 @@ class FanChart2WayView(fanchart2way.FanChart2WayGrampsGUI, NavigationView):
         self.flipupsidedownname = self._config.get('interface.fanview-flipupsidedownname')
         self.fonttype = self._config.get('interface.fanview-font')
 
-        self.grad_start =  self._config.get('interface.color-start-grad')
-        self.grad_end =  self._config.get('interface.color-end-grad')
+        self.grad_start = self._config.get('interface.color-start-grad')
+        self.grad_end = self._config.get('interface.color-end-grad')
         self.form = fanchart.FORM_CIRCLE
         self.angle_algo = self._config.get('interface.angle-algorithm')
         self.dupcolor = self._config.get('interface.duplicate-color')
@@ -342,7 +342,7 @@ class FanChart2WayView(fanchart2way.FanChart2WayGrampsGUI, NavigationView):
     def cb_update_maxgen(self, spinbtn, constant):
         self._config.set(constant, spinbtn.get_value_as_int())
         self.generations_asc = int(self._config.get('interface.fanview-maxgen-asc'))
-        self.generations_desc =  int(self._config.get('interface.fanview-maxgen-desc'))
+        self.generations_desc = int(self._config.get('interface.fanview-maxgen-desc'))
         self.update()
 
     def cb_update_twolinename(self, client, cnxn_id, entry, data):

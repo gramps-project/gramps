@@ -155,7 +155,7 @@ class EniroSVMapService(MapService):
 
         if coord_ok:
             place_title = _build_title(self.database, place)
-            place_city =  _build_city(self.database, place)
+            place_city = _build_city(self.database, place)
             x_coord, y_coord = self._lat_lon(place, format="RT90")
             # Set zoom level to 5 if Sweden/Denmark, others 3
             zoom = 5

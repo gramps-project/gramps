@@ -62,7 +62,7 @@ def _caller_context():
 #     so, always take the abspath.
 def _caller_dir():
     """Return directory of caller function (caller outside this module)"""
-    tb =  _caller_context()
+    tb = _caller_context()
     return os.path.dirname(os.path.abspath(tb[0]))
 
 

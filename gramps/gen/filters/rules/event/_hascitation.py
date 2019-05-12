@@ -48,6 +48,6 @@ class HasCitation(HasCitationBase):
     labels = [ _('Volume/Page:'),
                     _('Date:'),
                     _('Confidence level:')]
-    name =  _('Events with the <citation>')
+    name = _('Events with the <citation>')
     description = _("Matches events with a citation of a particular "
                     "value")

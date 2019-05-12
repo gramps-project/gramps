@@ -36,7 +36,7 @@ MODULE_VERSION="5.1"
 register(TOOL,
 id = 'test_for_date_parser_and_displayer',
 name = "Check Localized Date Displayer and Parser",
-description =  ("This test tool will create many people showing all"
+description = ("This test tool will create many people showing all"
                 " different date variants as birth. The death date is"
                 " created by parsing the result of the date displayer for"
                 " the birth date. This way you can ensure that dates"
@@ -85,7 +85,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 register(TOOL,
 id = 'testcasegenerator',
 name = "Generate Testcases for Persons and Families",
-description =  ("The testcase generator will generate some persons "
+description = ("The testcase generator will generate some persons "
                 "and families that have broken links in the database "
                 "or data that is in conflict to a relation."),
 version = '1.0',
@@ -109,7 +109,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 register(TOOL,
 id = 'populatesources',
 name = "Populate Sources and Citations",
-description =  ("This tool generates sources and citations for each source in "
+description = ("This tool generates sources and citations for each source in "
                 "order to populate the database for testing with significant "
                 "numbers of sources and citations."),
 version = '1.0',

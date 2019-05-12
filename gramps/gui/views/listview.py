@@ -523,7 +523,7 @@ class ListView(NavigationView):
         """
         order = self._config.get('columns.rank')
         size = self._config.get('columns.size')
-        vis =  self._config.get('columns.visible')
+        vis = self._config.get('columns.visible')
 
         colord = [(1 if val in vis else 0, val, size)
             for val, size in zip(order, size)]

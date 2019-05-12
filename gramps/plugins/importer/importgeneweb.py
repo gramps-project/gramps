@@ -667,13 +667,13 @@ class GeneWebParser:
                 titleparts = self.decode(field[1:-1]).split(":")
                 tname = ttitle = tplace = tstart = tend = tnth = None
                 try:
-                    tname =  titleparts[0]
+                    tname = titleparts[0]
                     ttitle = titleparts[1]
                     if titleparts[2]:
                         tplace = self.get_or_create_place(titleparts[2])
                     tstart = self.parse_date(titleparts[3])
-                    tend =   self.parse_date(titleparts[4])
-                    tnth =   titleparts[5]
+                    tend = self.parse_date(titleparts[4])
+                    tnth = titleparts[5]
                 except IndexError:  # not all parts are written all the time
                     pass
                 if tnth:    # Append title numer to title

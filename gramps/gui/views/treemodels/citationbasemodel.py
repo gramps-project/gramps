@@ -88,7 +88,7 @@ class CitationBaseModel:
         if data[COLUMN_DATE]:
             citation = Citation()
             citation.unserialize(data)
-            date_str =  get_date(citation)
+            date_str = get_date(citation)
             if date_str != "":
                 retval = escape(date_str)
             if not get_date_valid(citation):

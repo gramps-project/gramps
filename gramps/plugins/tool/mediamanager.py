@@ -386,12 +386,12 @@ class ConclusionPage(Gtk.Box):
 
     def set_result(self, success):
         if success:
-            conclusion_title =  _('Operation successfully finished')
+            conclusion_title = _('Operation successfully finished')
             conclusion_text = _(
                 'The operation you requested has finished successfully. '
                 'You may press Close now to continue.')
         else:
-            conclusion_title =  _('Operation failed')
+            conclusion_title = _('Operation failed')
             conclusion_text = _(
                 'There was an error while performing the requested '
                 'operation. You may try starting the tool again.')

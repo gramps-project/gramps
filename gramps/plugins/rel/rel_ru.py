@@ -470,7 +470,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 rel_str = "%s %s" % ( _cousin_level[Gb-1],
                                                   _seniors_removed_level[Ga-Gb] )
             else:
-                rel_str =  "(старшие) дальние родственники"
+                rel_str = "(старшие) дальние родственники"
         else:
             # These are cousins in different generations with the second person
             # being in a lower generation from the common ancestor than the
@@ -479,7 +479,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 rel_str = "%s %s" % ( _cousin_level[Ga-1],
                                                     _juniors_removed_level[Gb-Ga] )
             else:
-                rel_str =  "(младшие) дальние родственники"
+                rel_str = "(младшие) дальние родственники"
 
         if in_law_b == True:
             # TODO: Translate this!

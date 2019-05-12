@@ -78,14 +78,14 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
         #set needed values
         self.maxgen = self._config.get('interface.fanview-maxgen')
         self.background = self._config.get('interface.fanview-background')
-        self.childring =  self._config.get('interface.fanview-childrenring')
+        self.childring = self._config.get('interface.fanview-childrenring')
         self.radialtext = self._config.get('interface.fanview-radialtext')
         self.twolinename = self._config.get('interface.fanview-twolinename')
         self.flipupsidedownname = self._config.get('interface.fanview-flipupsidedownname')
         self.fonttype = self._config.get('interface.fanview-font')
 
-        self.grad_start =  self._config.get('interface.color-start-grad')
-        self.grad_end =  self._config.get('interface.color-end-grad')
+        self.grad_start = self._config.get('interface.color-start-grad')
+        self.grad_end = self._config.get('interface.color-end-grad')
         self.form = self._config.get('interface.fanview-form')
         self.generic_filter = None
         self.alpha_filter = 0.2

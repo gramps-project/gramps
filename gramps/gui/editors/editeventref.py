@@ -81,13 +81,13 @@ class EditEventRef(EditReference):
         self.share_btn = self.top.get_object('share_place')
         self.add_del_btn = self.top.get_object('add_del_place')
 
-        tblref =  self.top.get_object('table64')
+        tblref = self.top.get_object('table64')
         notebook = self.top.get_object('notebook_ref')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.reftab = RefTab(self.dbstate, self.uistate, self.track,
                               _('General'), tblref)
-        tblref =  self.top.get_object('table62')
+        tblref = self.top.get_object('table62')
         notebook = self.top.get_object('notebook')
         #recreate start page as GrampsTab
         notebook.remove_page(0)

@@ -50,9 +50,9 @@ class BaseSelector(ManagedWindow):
     """
 
     NONE = -1
-    TEXT =  0
-    MARKUP =  1
-    IMAGE =  2
+    TEXT = 0
+    MARKUP = 1
+    IMAGE = 2
 
     def __init__(self, dbstate, uistate, track=[], filter=None, skip=set(),
                  show_search_bar = True, default=None):
@@ -80,10 +80,10 @@ class BaseSelector(ManagedWindow):
         self.glade = Glade()
 
         window = self.glade.toplevel
-        self.showall =  self.glade.get_object('showall')
+        self.showall = self.glade.get_object('showall')
         title_label = self.glade.get_object('title')
         vbox = self.glade.get_object('select_person_vbox')
-        self.tree =  self.glade.get_object('plist')
+        self.tree = self.glade.get_object('plist')
         self.tree.set_headers_visible(True)
         self.tree.set_headers_clickable(True)
         self.tree.connect('row-activated', self._on_row_activated)
