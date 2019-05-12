@@ -49,7 +49,7 @@ class HasEvent(HasEventBase):
                     _('Place:'),
                     _('Description:'),
                     _('Main Participants') ]
-    name =  _('Families with the <event>')
+    name = _('Families with the <event>')
     description = _("Matches families with an event of a particular value")
 
     def apply(self, dbase, family):

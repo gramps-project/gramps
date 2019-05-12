@@ -307,7 +307,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
                 civ = " a do %s stupňa (civ.)" % ( _removed_level[Ga+Gb+1] )
                 rel_str = "synovci a netere" + can + civ
             elif Ga < len(_level_name):
-                rel_str =  "synovci a netere" + bygen % (
+                rel_str = "synovci a netere" + bygen % (
                                 Gb)
         if in_law_b == True:
             # TODO: Translate this!

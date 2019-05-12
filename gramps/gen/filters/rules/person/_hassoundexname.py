@@ -38,7 +38,7 @@ _ = glocale.translation.sgettext
 class HasSoundexName(Rule):
     """Rule that checks for full or partial name matches"""
 
-    labels =  [_('Name:')]
+    labels = [_('Name:')]
     name = _('Soundex match of People with the <name>')
     description = _("Soundex Match of people with a specified name. First "
                     "name, Surname, Call name, and Nickname are searched in "

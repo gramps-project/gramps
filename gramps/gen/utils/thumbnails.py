@@ -97,7 +97,7 @@ def __get_gconf_string(key):
     :rtype: unicode
     """
     try:
-        val =  CLIENT.get_string(key)
+        val = CLIENT.get_string(key)
     except GObject.GError:
         val = None
     return str(val)

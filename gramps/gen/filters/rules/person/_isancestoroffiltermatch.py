@@ -45,7 +45,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
 
     labels = [ _('Filter name:') ]
     name = _('Ancestors of <filter> match')
-    category =  _("Ancestral filters")
+    category = _("Ancestral filters")
     description = _("Matches people that are ancestors "
                     "of anybody matched by a filter")
 

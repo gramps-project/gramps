@@ -138,7 +138,7 @@ class ColumnOrder(Gtk.Box):
         #obtain the columns from config file
         self.oldorder = self.config.get('columns.rank')
         self.oldsize = self.config.get('columns.size')
-        self.oldvis =  self.config.get('columns.visible')
+        self.oldvis = self.config.get('columns.visible')
         colord = []
         index = 0
         for val, size in zip(self.oldorder, self.oldsize):
