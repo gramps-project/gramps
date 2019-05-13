@@ -296,6 +296,7 @@ class GeoClose(GeoGraphyView):
         self.remove_all_markers()
         self.lifeway_layer.clear_ways()
         self.message_layer.clear_messages()
+        self.message_layer.set_font_attributes(None, None, None)
         active = self.get_active()
         if active:
             indiv1 = self.dbstate.db.get_person_from_handle(active)

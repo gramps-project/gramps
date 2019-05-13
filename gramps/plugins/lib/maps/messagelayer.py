@@ -48,6 +48,7 @@ from gi.repository import Pango, PangoCairo
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.config import config
 from gramps.gen.constfunc import is_quartz
 
 #-------------------------------------------------------------------------
@@ -78,7 +79,7 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         GObject.GObject.__init__(self)
         self.message = ""
         self.color = "black"
-        self.font = "Sans"
+        self.font = config.get('utf8.selected-font')
         self.size = 13
 
     def clear_messages(self):
@@ -92,7 +93,7 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
         reset the font attributes.
         """
         self.color = "black"
-        self.font = "Sans"
+        self.font = config.get('utf8.selected-font')
         self.size = 13
 
     def set_font_attributes(self, font, size, color):
@@ -103,6 +104,8 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
             self.color = color
         if font is not None:
             self.font = font
+        else:
+            self.font = config.get('utf8.selected-font')
         if size is not None:
             self.size = size
 

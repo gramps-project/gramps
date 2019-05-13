@@ -68,6 +68,7 @@ from gramps.gui.utils import color_graph_box, hex_to_rgb_float, is_right_click
 from gramps.gen.constfunc import lin
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
+from gramps.gen.utils.symbols import Symbols
 
 #-------------------------------------------------------------------------
 #
@@ -530,11 +531,13 @@ class PedigreeView(NavigationView):
                                 PersonBookmarks, nav_group)
 
         self.dbstate = dbstate
+        self.uistate = uistate
         self.dbstate.connect('database-changed', self.change_db)
         uistate.connect('nameformat-changed', self.person_rebuild)
         uistate.connect('placeformat-changed', self.person_rebuild)
+        uistate.connect('font-changed', self.person_rebuild)
 
-        self.format_helper = FormattingHelper(self.dbstate)
+        self.format_helper = FormattingHelper(self.dbstate, self.uistate)
 
         # Depth of tree.
         self._depth = 1
@@ -567,6 +570,23 @@ class PedigreeView(NavigationView):
         # Default - not show, for mo fast display hight tree
         self.show_unknown_people = self._config.get(
                                 'interface.pedview-show-unknown-people')
+
+        self.func_list.update({
+            '<PRIMARY>J' : self.jump,
+            })
+
+        # use symbols
+        self.symbols = Symbols()
+        self.uistate.connect('font-changed', self.reload_symbols)
+
+    def reload_symbols(self):
+        dth_idx = self.uistate.death_symbol
+        if self.uistate.symbols:
+            self.bth = self.symbols.get_symbol_for_string(self.symbols.SYMBOL_BIRTH)
+            self.dth = self.symbols.get_death_symbol_for_char(dth_idx)
+        else:
+            self.bth = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_BIRTH)
+            self.dth = self.symbols.get_death_symbol_fallback(dth_idx)
 
     def get_handle_from_gramps_id(self, gid):
         """
@@ -833,6 +853,7 @@ class PedigreeView(NavigationView):
     def person_rebuild(self, dummy=None):
         """Callback function for signals of change database."""
         self.format_helper.clear_cache()
+        self.format_helper.reload_symbols()
         self.dirty = True
         if self.active:
             self.rebuild_trees(self.get_active())
