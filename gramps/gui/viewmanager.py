@@ -114,6 +114,11 @@ WIKI_HELP_PAGE_FAQ = '%s_-_FAQ' % URL_MANUAL_PAGE
 WIKI_HELP_PAGE_KEY = '%s_-_Keybindings' % URL_MANUAL_PAGE
 WIKI_HELP_PAGE_MAN = '%s' % URL_MANUAL_PAGE
 
+CSS_FONT = """
+#view {
+    font-family: %s;
+  }
+"""
 #-------------------------------------------------------------------------
 #
 # ViewManager
@@ -247,12 +252,17 @@ class ViewManager(CLIManager):
         height = config.get('interface.main-window-height')
         horiz_position = config.get('interface.main-window-horiz-position')
         vert_position = config.get('interface.main-window-vert-position')
+        font = config.get('utf8.selected-font')
 
         self.window = Gtk.ApplicationWindow(application=self.app)
         self.app.window = self.window
         self.window.set_icon_from_file(ICON)
         self.window.set_default_size(width, height)
         self.window.move(horiz_position, vert_position)
+
+        self.provider = Gtk.CssProvider()
+        self.change_font(font)
+
         #Set the mnemonic modifier on Macs to alt-ctrl so that it
         #doesn't interfere with the extended keyboard, see
         #https://gramps-project.org/bugs/view.php?id=6943
@@ -660,6 +670,33 @@ class ViewManager(CLIManager):
             GrampsPreferences(self.uistate, self.dbstate)
         except WindowActiveError:
             return
+
+    def reset_font(self):
+        """
+        Reset to the default application font.
+        """
+        Gtk.StyleContext.remove_provider_for_screen(self.window.get_screen(),
+                                                    self.provider)
+
+    def change_font(self, font):
+        """
+        Change the default application font.
+        Only in the case we use symbols.
+        """
+        if config.get('utf8.in-use') and font != "":
+            css_font = CSS_FONT % font
+            try:
+                self.provider.load_from_data(css_font.encode('UTF-8'))
+                Gtk.StyleContext.add_provider_for_screen(
+                                 self.window.get_screen(), self.provider,
+                                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+                return True
+            except:
+                # Force gramps to use the standard font.
+                print("I can't set the new font :", font)
+                config.set('utf8.in-use', False)
+                config.set('utf8.selected-font', "")
+        return False
 
     def tip_of_day_activate(self, *obj):
         """

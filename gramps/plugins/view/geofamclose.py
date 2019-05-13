@@ -329,6 +329,7 @@ class GeoFamClose(GeoGraphyView):
         self.remove_all_markers()
         self.lifeway_layer.clear_ways()
         self.message_layer.clear_messages()
+        self.message_layer.set_font_attributes(None, None, None)
         active = self.get_active()
         family = None
         if active:

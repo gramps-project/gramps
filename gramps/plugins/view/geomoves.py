@@ -299,6 +299,7 @@ class GeoMoves(GeoGraphyView):
         self.lifeway_layer.clear_ways()
         self.date_layer.clear_dates()
         self.message_layer.clear_messages()
+        self.message_layer.set_font_attributes(None, None, None)
 
     def draw(self, menu, marks, color):
         """

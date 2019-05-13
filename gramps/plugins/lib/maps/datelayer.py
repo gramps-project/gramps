@@ -48,6 +48,7 @@ import cairo
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.config import config
 
 #-------------------------------------------------------------------------
 #
@@ -77,7 +78,7 @@ class DateLayer(GObject.GObject, osmgpsmap.MapLayer):
         self.first = "    "
         self.last = "    "
         self.color = "black"
-        self.font = "Arial"
+        self.font = config.get('utf8.selected-font')
         self.size = 36
 
     def clear_dates(self):
@@ -87,7 +88,7 @@ class DateLayer(GObject.GObject, osmgpsmap.MapLayer):
         self.first = "    "
         self.last = "    "
         self.color = "black"
-        self.font = "Arial"
+        self.font = config.get('utf8.selected-font')
         self.size = 36
 
     def set_font_attributes(self, font, size, color):
@@ -95,7 +96,10 @@ class DateLayer(GObject.GObject, osmgpsmap.MapLayer):
         Set the font color, size and name
         """
         self.color = color
-        self.font = font
+        if font:
+            self.font = font
+        else:
+            self.font = config.get('utf8.selected-font')
         self.size = size
 
     def add_date(self, date):

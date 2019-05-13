@@ -144,7 +144,10 @@ class GeoGraphyView(OsmGps, NavigationView):
         if config.get('geography.path') == "":
             config.set('geography.path', GEOGRAPHY_PATH)
 
-        self.format_helper = FormattingHelper(self.dbstate)
+        self.uistate = uistate
+        self.uistate.connect('font-changed', self.font_changed)
+        self.uistate.connect('nameformat-changed', self.build_tree)
+        self.format_helper = FormattingHelper(self.dbstate, self.uistate)
         self.centerlat = self.centerlon = 0.0
         self.cross_map = None
         self.current_map = None
@@ -183,6 +186,12 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.nbplaces = 0
         self.nbmarkers = 0
         self.place_without_coordinates = []
+
+    def font_changed(self):
+        """
+        The font or the death symbol changed.
+        """
+        self.build_tree()
 
     def add_bookmark(self, menu):
         """

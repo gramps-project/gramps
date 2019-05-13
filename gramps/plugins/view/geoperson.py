@@ -368,6 +368,7 @@ class GeoPerson(GeoGraphyView):
         self.nbplaces = 0
         self.nbmarkers = 0
         self.message_layer.clear_messages()
+        self.message_layer.set_font_attributes(None, None, None)
         self.kml_layer.clear()
         person_handle = self.uistate.get_active('Person')
         person = None

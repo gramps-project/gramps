@@ -100,6 +100,15 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self.additional_uis.append(FanChartView.additional_ui)
         self.allfonts = [x for x in enumerate(SystemFonts().get_system_fonts())]
 
+        self.func_list.update({
+            '<PRIMARY>J' : self.jump,
+            })
+        self.uistate.connect('font-changed', self.font_changed)
+
+    def font_changed(self):
+        self.format_helper.reload_symbols()
+        self.update()
+
     def navigation_type(self):
         return 'Person'
 
