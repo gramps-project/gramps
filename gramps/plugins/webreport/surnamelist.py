@@ -12,7 +12,7 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2017  Serge Noiraud
+# Copyright (C) 2010-      Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
@@ -95,15 +95,15 @@ class SurnameListPage(BasePage):
 
         if order_by == self.ORDER_BY_NAME:
             output_file, sio = self.report.create_file(filename)
-            surnamelistpage, head, body = self.write_header(self._('Surnames'))
+            result = self.write_header(self._('Surnames'))
         else:
             output_file, sio = self.report.create_file("surnames_count")
-            (surnamelistpage, head,
-             body) = self.write_header(self._('Surnames by person count'))
+            result = self.write_header(self._('Surnames by person count'))
+        surnamelistpage, dummy_head, dummy_body, outerwrapper = result
 
         # begin surnames division
         with Html("div", class_="content", id="surnames") as surnamelist:
-            body += surnamelist
+            outerwrapper += surnamelist
 
             # page message
             msg = self._('This page contains an index of all the '
@@ -233,7 +233,7 @@ class SurnameListPage(BasePage):
         # create footer section
         # add clearline for proper styling
         footer = self.write_footer(None)
-        body += (FULLCLEAR, footer)
+        outerwrapper += (FULLCLEAR, footer)
 
         # send page out for processing
         # and close the file

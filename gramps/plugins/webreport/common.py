@@ -3,7 +3,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2010-2017  Serge Noiraud
+# Copyright (C) 2010-      Serge Noiraud
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,7 +31,6 @@ from unicodedata import normalize
 from collections import defaultdict
 from hashlib import md5
 import re
-import gc
 import logging
 from xml.sax.saxutils import escape
 
@@ -351,6 +350,7 @@ def sort_event_types(dbase, event_types, event_handle_list, rlocale):
 def _get_short_name(gender, name):
     """ Will get suffix for all people passed through it """
 
+    dummy_gender = gender
     short_name = name.get_first_name()
     suffix = name.get_suffix()
     if suffix:
@@ -475,6 +475,7 @@ def first_letter(string, rlocale=glocale):
     """
     Receives a string and returns the first letter
     """
+    dummy_rlocale = rlocale
     if string is None or len(string) < 1:
         return ' '
 
@@ -502,6 +503,7 @@ try:
         """
         Try to use the PyICU collation.
         """
+        dummy_rlocale = rlocale
 
         return PRIM_COLL.compare(prev_key, new_key) != 0
 
@@ -618,7 +620,7 @@ def alphabet_navigation(index_list, rlocale=glocale):
     with Html("div", id="alphanav") as alphabetnavigation:
 
         index = 0
-        for row in range(num_of_rows):
+        for dummy_row in range(num_of_rows):
             unordered = Html("ul")
 
             cols = 0

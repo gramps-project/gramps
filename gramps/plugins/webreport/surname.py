@@ -12,7 +12,7 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2017  Serge Noiraud
+# Copyright (C) 2010-      Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
@@ -95,13 +95,13 @@ class SurnamePage(BasePage):
 
         output_file, sio = self.report.create_file(name_to_md5(surname), "srn")
         self.uplink = True
-        (surnamepage, head,
-         body) = self.write_header("%s - %s" % (self._("Surname"), surname))
+        result = self.write_header("%s - %s" % (self._("Surname"), surname))
+        surnamepage, dummy_head, dummy_body, outerwrapper = result
         ldatec = 0
 
         # begin SurnameDetail division
         with Html("div", class_="content", id="SurnameDetail") as surnamedetail:
-            body += surnamedetail
+            outerwrapper += surnamedetail
 
             # section title
             # In case the user choose a format name like "*SURNAME*"
@@ -261,7 +261,7 @@ class SurnamePage(BasePage):
                                              class_="father", inline=True)
                             samerow = False
                         else:
-                            tcell = "&nbsp;" # pylint: disable=R0204
+                            tcell = "&nbsp;"
                             samerow = True
                         trow += Html("td", tcell,
                                      class_="ColumnParents", inline=samerow)
@@ -269,7 +269,7 @@ class SurnamePage(BasePage):
         # add clearline for proper styling
         # add footer section
         footer = self.write_footer(ldatec)
-        body += (FULLCLEAR, footer)
+        outerwrapper += (FULLCLEAR, footer)
 
         # send page out for processing
         # and close the file

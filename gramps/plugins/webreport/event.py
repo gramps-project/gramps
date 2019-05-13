@@ -12,7 +12,7 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2017  Serge Noiraud
+# Copyright (C) 2010-      Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
@@ -138,11 +138,12 @@ class EventPages(BasePage):
         prev_letter = " "
 
         output_file, sio = self.report.create_file("events")
-        eventslistpage, head, body = self.write_header(self._("Events"))
+        result = self.write_header(self._("Events"))
+        eventslistpage, dummy_head, dummy_body, outerwrapper = result
 
         # begin events list  division
         with Html("div", class_="content", id="EventList") as eventlist:
-            body += eventlist
+            outerwrapper += eventlist
 
             msg = self._("This page contains an index of all the events in the "
                          "database, sorted by their type and date (if one is "
@@ -196,7 +197,7 @@ class EventPages(BasePage):
                     data_list = sorted(data_list, key=itemgetter(0, 1))
                     first_event = True
 
-                    for (sort_value, event_handle) in data_list:
+                    for (dummy_sort_value, event_handle) in data_list:
                         event = self.r_db.get_event_from_handle(event_handle)
                         _type = event.get_type()
                         gid = event.get_gramps_id()
@@ -299,7 +300,7 @@ class EventPages(BasePage):
         # add clearline for proper styling
         # add footer section
         footer = self.write_footer(ldatec)
-        body += (FULLCLEAR, footer)
+        outerwrapper += (FULLCLEAR, footer)
 
         # send page ut for processing
         # and close the file
@@ -350,7 +351,7 @@ class EventPages(BasePage):
         event = report.database.get_event_from_handle(event_handle)
         BasePage.__init__(self, report, title, event.get_gramps_id())
         if not event:
-            return None
+            return
 
         ldatec = event.get_change_time()
         event_media_list = event.get_media_list()
@@ -362,11 +363,12 @@ class EventPages(BasePage):
         self.bibli = Bibliography()
 
         output_file, sio = self.report.create_file(event_handle, "evt")
-        eventpage, head, body = self.write_header(self._("Events"))
+        result = self.write_header(self._("Events"))
+        eventpage, dummy_head, dummy_body, outerwrapper = result
 
         # start event detail division
         with Html("div", class_="content", id="EventDetail") as eventdetail:
-            body += eventdetail
+            outerwrapper += eventdetail
 
             thumbnail = self.disp_first_img_as_thumbnail(event_media_list,
                                                          event)
@@ -442,7 +444,7 @@ class EventPages(BasePage):
         # add clearline for proper styling
         # add footer section
         footer = self.write_footer(ldatec)
-        body += (FULLCLEAR, footer)
+        outerwrapper += (FULLCLEAR, footer)
 
         # send page out for processing
         # and close the page

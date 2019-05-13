@@ -12,7 +12,7 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2017  Serge Noiraud
+# Copyright (C) 2010-      Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
@@ -91,11 +91,12 @@ class DownloadPage(BasePage):
         if dlfname1 or dlfname2:
 
             output_file, sio = self.report.create_file("download")
-            downloadpage, head, body = self.write_header(self._('Download'))
+            result = self.write_header(self._('Download'))
+            downloadpage, dummy_head, dummy_body, outerwrapper = result
 
             # begin download page and table
             with Html("div", class_="content", id="Download") as download:
-                body += download
+                outerwrapper += download
 
                 msg = self._("This page is for the user/ creator "
                              "of this Family Tree/ Narrative website "
@@ -188,7 +189,7 @@ class DownloadPage(BasePage):
             # clear line for proper styling
             # create footer section
             footer = self.write_footer(None)
-            body += (FULLCLEAR, footer)
+            outerwrapper += (FULLCLEAR, footer)
 
             # send page out for processing
             # and close the file
