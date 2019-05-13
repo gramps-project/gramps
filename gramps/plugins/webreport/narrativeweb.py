@@ -12,10 +12,11 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2017  Serge Noiraud
+# Copyright (C) 2010-      Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
+# Copyright (C) 2018       Theo van Rijn
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -232,6 +233,7 @@ class NavWebReport(Report):
         self.mapservice = self.options['mapservice']
         self.googleopts = self.options['googleopts']
         self.googlemapkey = self.options['googlemapkey']
+        self.reference_sort = self.options['reference_sort']
 
         if self.use_home:
             self.index_fname = "index"
@@ -824,12 +826,26 @@ class NavWebReport(Report):
         place = self._db.get_place_from_handle(place_handle)
         if place is None:
             return
+        if bkref_class == Person:
+            person = self._db.get_person_from_handle(bkref_handle)
+            name = _nd.display(person)
+        else:
+            family = self._db.get_family_from_handle(bkref_handle)
+            husband_handle = family.get_father_handle()
+            if husband_handle:
+                person = self._db.get_person_from_handle(husband_handle)
+                name = _nd.display(person)
+            else:
+                name = ""
         if config.get('preferences.place-auto'):
             place_name = _pd.display_event(self._db, event)
         else:
             place_name = place.get_title()
         if event:
-            role_or_date = str(event.get_date_object())
+            if self.reference_sort:
+                role_or_date = name
+            else:
+                role_or_date = str(event.get_date_object())
         else:
             role_or_date = ""
         place_fname = self.build_url_fname(place_handle, "plc",
@@ -864,8 +880,6 @@ class NavWebReport(Report):
                     return
         source = self._db.get_source_from_handle(source_handle)
         source_name = source.get_title()
-        #if isinstance(source_name, bytes):
-        #    print("source name :", source_name)
         source_fname = self.build_url_fname(source_handle, "src",
                                             False) + self.ext
         self.obj_dict[Source][source_handle] = (source_fname, source_name,
@@ -1465,7 +1479,7 @@ class NavWebReport(Report):
         """
         if self.usecms:
             to_dir = "/" + self.target_uri + "/" + to_dir
-        # LOG.debug("copying '%s' to '%s/%s'" % (from_fname, to_dir, to_fname))
+        LOG.debug("copying '%s' to '%s/%s'", from_fname, to_dir, to_fname)
         mtime = os.stat(from_fname).st_mtime
         if self.archive:
             def set_mtime(tarinfo):
@@ -1568,6 +1582,7 @@ class NavWebOptions(MenuReportOptions):
         self.__extra_page_name = None
         self.__extra_page = None
         self.__relation = False
+        self.__prevnext = False
         db_options = name + ' ' + dbase.get_dbname()
         MenuReportOptions.__init__(self, db_options, dbase)
 
@@ -1633,10 +1648,10 @@ class NavWebOptions(MenuReportOptions):
 
         self.__relation = BooleanOption(_("Show the relationship between the "
                                           "current person and the active person"
-                                          ), False)
+                                         ), False)
         self.__relation.set_help(_("For each person page, show the relationship"
                                    " between this person and the active person."
-                                   ))
+                                  ))
         addopt("relation", self.__relation)
 
         self.__pid.connect('value-changed', self.__update_filters)
@@ -1712,12 +1727,9 @@ class NavWebOptions(MenuReportOptions):
         addopt("ancestortree", self.__ancestortree)
         self.__ancestortree.connect('value-changed', self.__graph_changed)
 
-        self.__graphgens = NumberOption(_("Graph generations"), 4, 2, 10)
-        self.__graphgens.set_help(_("The number of generations to include in "
-                                    "the ancestor graph"))
-        addopt("graphgens", self.__graphgens)
-
-        self.__graph_changed()
+        self.__prevnext = BooleanOption(_("Add previous/next"), False)
+        self.__prevnext.set_help(_("Add previous/next to the navigation bar."))
+        addopt("prevnext", self.__prevnext)
 
         self.__securesite = BooleanOption(_("This is a secure site (https)"),
                                           False)
@@ -1759,10 +1771,7 @@ class NavWebOptions(MenuReportOptions):
         locale_opt = stdoptions.add_localization_option(menu, category_name)
         stdoptions.add_date_format_option(menu, category_name, locale_opt)
 
-        nogid = BooleanOption(_('Suppress Gramps ID'), False)
-        nogid.set_help(_('Whether to include the Gramps ID of objects'))
-        addopt("nogid", nogid)
-        addopt = partial(menu.add_option, category_name)
+        stdoptions.add_gramps_id_option(menu, category_name)
 
         birthorder = BooleanOption(
             _('Sort all children in birth order'), False)
@@ -1775,6 +1784,20 @@ class NavWebOptions(MenuReportOptions):
         coordinates.set_help(
             _('Whether to display latitude/longitude in the places list?'))
         addopt("coordinates", coordinates)
+
+        reference_sort = BooleanOption(
+            _('Sort places references either by date or by name'), False)
+        reference_sort.set_help(
+            _('Sort the places references by date or by name.'
+              ' Not set means by date.'))
+        addopt("reference_sort", reference_sort)
+
+        self.__graphgens = NumberOption(_("Graph generations"), 4, 2, 10)
+        self.__graphgens.set_help(_("The number of generations to include in "
+                                    "the ancestor graph"))
+        addopt("graphgens", self.__graphgens)
+
+        self.__graph_changed()
 
     def __add_page_generation_options(self, menu):
         """
@@ -2122,17 +2145,17 @@ class NavWebOptions(MenuReportOptions):
         """
         Update the change of the extra page name
         """
-        self._extra_page_name = self.__extra_page_name.get_value()
-        if self._extra_page_name != "":
-            config.set('paths.website-extra-page-name', self._extra_page_name)
+        extra_page_name = self.__extra_page_name.get_value()
+        if extra_page_name != "":
+            config.set('paths.website-extra-page-name', extra_page_name)
 
     def __extra_page_changed(self):
         """
         Update the change of the extra page without extension
         """
-        self._extra_page = self.__extra_page.get_value()
-        if self._extra_page != "":
-            config.set('paths.website-extra-page-uri', self._extra_page)
+        extra_page = self.__extra_page.get_value()
+        if extra_page != "":
+            config.set('paths.website-extra-page-uri', extra_page)
 
     def __archive_changed(self):
         """

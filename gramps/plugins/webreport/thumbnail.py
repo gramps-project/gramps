@@ -12,10 +12,11 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2017  Serge Noiraud
+# Copyright (C) 2010-      Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
+# Copyright (C) 2018       Theo van Rijn
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -108,10 +109,11 @@ class ThumbnailPreviewPage(BasePage):
 
         # Create thumbnail preview page...
         output_file, sio = self.report.create_file("thumbnails")
-        thumbnailpage, head, body = self.write_header(self._("Thumbnails"))
+        result = self.write_header(self._("Thumbnails"))
+        thumbnailpage, dummy_head, body, outerwrapper = result
 
         with Html("div", class_="content", id="Preview") as previewpage:
-            body += previewpage
+            outerwrapper += previewpage
 
             msg = self._("This page displays a indexed list "
                          "of all the media objects "
@@ -122,91 +124,43 @@ class ThumbnailPreviewPage(BasePage):
                          "will take you to that image&#8217;s page.")
             previewpage += Html("p", msg, id="description")
 
-            with Html("table", class_="calendar thumbnails") as table:
-                previewpage += table
+        with Html("div", id="gallery") as gallery:
+            previewpage += gallery
+            index, indexpos = 1, 0
+            num_of_images = len(media_list)
+            while index <= num_of_images:
+                ptitle = media_list[indexpos][0]
+                person_handle = media_list[indexpos][1]
+                photo = media_list[indexpos][2]
 
-                thead = Html("thead")
-                table += thead
+                # begin table cell and attach to table row(trow)...
+                gallerycell = Html("div", class_="gallerycell")
+                gallery += gallerycell
 
-                # page title...
-                trow = Html("tr")
-                thead += trow
+                # attach index number...
+                numberdiv = Html("div", class_="indexno")
+                gallerycell += numberdiv
 
-                trow += Html("th", self._("Thumbnail Preview"),
-                             class_="monthName", colspan=7, inline=True)
+                # attach anchor name to date cell in upper right
+                # corner of grid...
+                numberdiv += Html("a", index, name=index, title=index,
+                                  inline=True)
 
-                # table header cells...
-                trow = Html("tr")
-                thead += trow
+                # create thumbnail
+                (dummy_real_path,
+                 newpath) = self.report.prepare_copy_media(photo)
+                newpath = self.report.build_url_fname(newpath)
 
-                ltrs = ["&nbsp;", "&nbsp;", "&nbsp;",
-                        "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;"]
-                for ltr in ltrs:
-                    trow += Html("th", ltr, class_="weekend", inline=True)
+                # attach thumbnail to list...
+                gallerycell += self.thumb_hyper_image(newpath, "img",
+                                                      person_handle, ptitle)
 
-                tbody = Html("tbody")
-                table += tbody
+                index += 1
+                indexpos += 1
 
-                index, indexpos = 1, 0
-                num_of_images = len(media_list)
-                num_of_rows = ((num_of_images // 7) + 1)
-                num_of_cols = 7
-                grid_row = 0
-                while grid_row < num_of_rows:
-                    trow = Html("tr", class_="thumbnail", id="RowNumber: %08d" % grid_row)
-                    tbody += trow
-
-                    cols = 0
-                    while cols < num_of_cols and indexpos < num_of_images:
-                        ptitle = media_list[indexpos][0]
-                        person_handle = media_list[indexpos][1]
-                        photo = media_list[indexpos][2]
-
-                        # begin table cell and attach to table row(trow)...
-                        tcell = Html("td", class_="highlight weekend thumbnail")
-                        trow += tcell
-
-                        # attach index number...
-                        numberdiv = Html("div", class_="date")
-                        tcell += numberdiv
-
-                        # attach anchor name to date cell in upper right
-                        # corner of grid...
-                        numberdiv += Html("a", index, name=index, title=index,
-                                          inline=True)
-
-                        # begin unordered list and
-                        # attach to table cell(tcell)...
-                        unordered = Html("ul")
-                        tcell += unordered
-
-                        # create thumbnail
-                        (real_path,
-                         newpath) = self.report.prepare_copy_media(photo)
-                        newpath = self.report.build_url_fname(newpath)
-
-                        list_html = Html("li")
-                        unordered += list_html
-
-                        # attach thumbnail to list...
-                        list_html += self.thumb_hyper_image(newpath, "img",
-                                                            person_handle,
-                                                            ptitle)
-
-                        index += 1
-                        indexpos += 1
-                        cols += 1
-                    grid_row += 1
-
-        # if last row is incomplete, finish it off?
-        if grid_row == num_of_rows and cols < num_of_cols:
-            for emptycols in range(cols, num_of_cols):
-                trow += Html("td", class_="emptyDays", inline=True)
-
-        message = _("Creating thumbnail preview page...")
         # begin Thumbnail Reference section...
         with Html("div", class_="subsection", id="references") as section:
-            body += section
+            outerwrapper += section
             section += Html("h4", self._("References"), inline=True)
 
             with Html("table", class_="infolist") as table:
@@ -239,7 +193,7 @@ class ThumbnailPreviewPage(BasePage):
         # add footer section
         # add clearline for proper styling
         footer = self.write_footer(None)
-        body += (FULLCLEAR, footer)
+        outerwrapper += (FULLCLEAR, footer)
 
         # send page out for processing
         # and close the file
@@ -261,19 +215,15 @@ class ThumbnailPreviewPage(BasePage):
         url = "/".join(self.report.build_subdirs(subdir,
                                                  fname) + [fname]) + self.ext
 
-        with Html("div", class_="content", id="ThumbnailPreview") as section:
-            with Html("div", class_="snapshot") as snapshot:
-                section += snapshot
+        with Html("div", class_="thumbnail") as thumbnail:
+                    #snapshot += thumbnail
 
-                with Html("div", class_="thumbnail") as thumbnail:
-                    snapshot += thumbnail
-
-                    if not self.create_thumbs_only:
-                        thumbnail_link = Html("a", href=url, title=name) + (
-                            Html("img", src=thumbnail_url, alt=name)
-                        )
-                    else:
-                        thumbnail_link = Html("img", src=thumbnail_url,
-                                              alt=name)
-                    thumbnail += thumbnail_link
-        return section
+            if not self.create_thumbs_only:
+                thumbnail_link = Html("a", href=url, title=name) + (
+                    Html("img", src=thumbnail_url, alt=name)
+                )
+            else:
+                thumbnail_link = Html("img", src=thumbnail_url,
+                                      alt=name)
+            thumbnail += thumbnail_link
+        return thumbnail

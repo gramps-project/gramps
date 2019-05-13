@@ -12,7 +12,7 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2017  Serge Noiraud
+# Copyright (C) 2010-      Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
@@ -81,7 +81,8 @@ class StatisticsPage(BasePage):
         self.report = report
         # set the file name and open file
         output_file, sio = self.report.create_file("statistics")
-        addressbookpage, head, body = self.write_header(_("Statistics"))
+        result = self.write_header(_("Statistics"))
+        addressbookpage, dummy_head, dummy_body, outerwrapper = result
         (males,
          females,
          unknown) = self.get_gender(report.database.iter_person_handles())
@@ -111,10 +112,10 @@ class StatisticsPage(BasePage):
 
         with Html("div", class_="content", id='EventDetail') as section:
             section += Html("h3", self._("Database overview"), inline=True)
-        body += section
+        outerwrapper += section
         with Html("div", class_="content", id='subsection narrative') as sec11:
             sec11 += Html("h4", self._("Individuals"), inline=True)
-        body += sec11
+        outerwrapper += sec11
         with Html("div", class_="content", id='subsection narrative') as sec1:
             sec1 += Html("br", self._("Number of individuals") + self.colon +
                          "%d" % npersons, inline=True)
@@ -124,14 +125,14 @@ class StatisticsPage(BasePage):
                          "%d" % females, inline=True)
             sec1 += Html("br", self._("Individuals with unknown gender") +
                          self.colon + "%d" % unknown, inline=True)
-        body += sec1
+        outerwrapper += sec1
         with Html("div", class_="content", id='subsection narrative') as sec2:
             sec2 += Html("h4", self._("Family Information"), inline=True)
             sec2 += Html("br", self._("Number of families") + self.colon +
                          "%d" % nfamilies, inline=True)
             sec2 += Html("br", self._("Unique surnames") + self.colon +
                          "%d" % nsurnames, inline=True)
-        body += sec2
+        outerwrapper += sec2
         with Html("div", class_="content", id='subsection narrative') as sec3:
             sec3 += Html("h4", self._("Media Objects"), inline=True)
             sec3 += Html("br",
@@ -145,7 +146,7 @@ class StatisticsPage(BasePage):
                          inline=True)
             sec3 += Html("br", self._("Missing Media Objects") +
                          self.colon + "%d" % len(notfound), inline=True)
-        body += sec3
+        outerwrapper += sec3
         with Html("div", class_="content", id='subsection narrative') as sec4:
             sec4 += Html("h4", self._("Miscellaneous"), inline=True)
             sec4 += Html("br", self._("Number of events") + self.colon +
@@ -166,7 +167,7 @@ class StatisticsPage(BasePage):
             sec4 += Html("br", self._("Number of repositories") +
                          self.colon + "%d" % nrepo,
                          inline=True)
-        body += sec4
+        outerwrapper += sec4
 
         (males,
          females,
@@ -177,7 +178,7 @@ class StatisticsPage(BasePage):
             section += Html("h3",
                             self._("Narrative web content report for") + origin,
                             inline=True)
-        body += section
+        outerwrapper += section
         with Html("div", class_="content", id='subsection narrative') as sec5:
             sec5 += Html("h4", self._("Individuals"), inline=True)
             sec5 += Html("br", self._("Number of individuals") + self.colon +
@@ -189,13 +190,13 @@ class StatisticsPage(BasePage):
                          "%d" % females, inline=True)
             sec5 += Html("br", self._("Individuals with unknown gender") +
                          self.colon + "%d" % unknown, inline=True)
-        body += sec5
+        outerwrapper += sec5
         with Html("div", class_="content", id='subsection narrative') as sec6:
             sec6 += Html("h4", self._("Family Information"), inline=True)
             sec6 += Html("br", self._("Number of families") + self.colon +
                          "%d" % len(self.report.bkref_dict[Family]),
                          inline=True)
-        body += sec6
+        outerwrapper += sec6
         with Html("div", class_="content", id='subsection narrative') as sec7:
             sec7 += Html("h4", self._("Miscellaneous"), inline=True)
             sec7 += Html("br", self._("Number of events") + self.colon +
@@ -213,12 +214,12 @@ class StatisticsPage(BasePage):
             sec7 += Html("br", self._("Number of repositories") + self.colon +
                          "%d" % len(self.report.bkref_dict[Repository]),
                          inline=True)
-        body += sec7
+        outerwrapper += sec7
 
         # add fullclear for proper styling
         # and footer section to page
         footer = self.write_footer(None)
-        body += (FULLCLEAR, footer)
+        outerwrapper += (FULLCLEAR, footer)
 
         # send page out for processing
         # and close the file

@@ -12,7 +12,7 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2017  Serge Noiraud
+# Copyright (C) 2010-      Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
@@ -128,13 +128,14 @@ class FamilyPages(BasePage):
         BasePage.__init__(self, report, title)
 
         output_file, sio = self.report.create_file("families")
-        familieslistpage, head, body = self.write_header(self._("Families"))
+        result = self.write_header(self._("Families"))
+        familieslistpage, dummy_head, dummy_body, outerwrapper = result
         ldatec = 0
         prev_letter = " "
 
         # begin Family Division
         with Html("div", class_="content", id="Relationships") as relationlist:
-            body += relationlist
+            outerwrapper += relationlist
 
             # Families list page message
             msg = self._("This page contains an index of all the "
@@ -299,7 +300,7 @@ class FamilyPages(BasePage):
         # add clearline for proper styling
         # add footer section
         footer = self.write_footer(ldatec)
-        body += (FULLCLEAR, footer)
+        outerwrapper += (FULLCLEAR, footer)
 
         # send page out for processing
         # and close the file
@@ -328,12 +329,13 @@ class FamilyPages(BasePage):
         self.familymappages = report.options["familymappages"]
 
         output_file, sio = self.report.create_file(family.get_handle(), "fam")
-        familydetailpage, head, body = self.write_header(family_name)
+        result = self.write_header(family_name)
+        familydetailpage, dummy_head, dummy_body, outerwrapper = result
 
         # begin FamilyDetaill division
         with Html("div", class_="content",
                   id="RelationshipDetail") as relationshipdetail:
-            body += relationshipdetail
+            outerwrapper += relationshipdetail
 
             # family media list for initial thumbnail
             if self.create_media:
@@ -387,7 +389,7 @@ class FamilyPages(BasePage):
         # add clearline for proper styling
         # add footer section
         footer = self.write_footer(ldatec)
-        body += (FULLCLEAR, footer)
+        outerwrapper += (FULLCLEAR, footer)
 
         # send page out for processing
         # and close the file

@@ -12,10 +12,11 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2017  Serge Noiraud
+# Copyright (C) 2010-      Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
+# Copyright (C) 2018       Theo van Rijn
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -74,13 +75,14 @@ class HomePage(BasePage):
         ldatec = 0
 
         output_file, sio = self.report.create_file("index")
-        homepage, head, body = self.write_header(self._('Home'))
+        result = self.write_header(self._('Home'))
+        homepage, head, dummy_body, outerwrapper = result
 
         # begin home division
         with Html("div", class_="content", id="Home") as section:
-            body += section
+            outerwrapper += section
 
-            homeimg = self.add_image('homeimg')
+            homeimg = self.add_image('homeimg', head)
             if homeimg is not None:
                 section += homeimg
 
@@ -98,7 +100,7 @@ class HomePage(BasePage):
         # create clear line for proper styling
         # create footer section
         footer = self.write_footer(ldatec)
-        body += (FULLCLEAR, footer)
+        outerwrapper += (FULLCLEAR, footer)
 
         # send page out for processing
         # and close the file

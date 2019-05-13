@@ -21,6 +21,8 @@ Copyright 2008 Jason M. Simanek
 Copyright 2009 Stephane Charette
 Copyright (C) 2008-2011 Rob G. Healey <robhealey1@gmail.com>
 Copyright 2011 Michiel D. Nauta
+Copyright 2018 Theo van Rijn
+Copyright (C) 2019      Serge Noiraud
 
 This file is part of the GRAMPS program.
 
@@ -59,12 +61,19 @@ the page.
 
 body {
     font-family: sans-serif;
-    font-size: 90%;
+    font-size: 100%;
     color: #36220B;
     margin: 0px;
     background-color: #FFE09F;
 }
 body > div {
+    clear: both;
+}
+#outerwrapper {
+    margin: 5px auto;
+    width: 98%;
+}
+#outerwrapper > div {
     clear: both;
 }
 .content {
@@ -75,8 +84,18 @@ body > div {
     float: right;
     margin: 2em;
 }
+#ThumbnailPreview div.snapshot {
+    float: right;
+    margin: 0;
+}
 .fullclear {
     clear: both;
+}
+/* Less whitespace on smaller real estate. */
+@media only screen and (max-width: 1080px) {
+    .content {
+        padding: 0em 0.5em;
+    }
 }
 
 /* General Text
@@ -205,6 +224,93 @@ div#alphanav ul li a:hover {
     text-decoration: none;
     background-color: #36220B;
     color: #FFFBE7;
+}
+
+/* Responsive navigation */
+a.navIcon {
+    display: none;
+}
+
+div#header::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+div#nav::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+@media only screen and (max-width: 1080px) {
+
+    /* Use less & all realestate on mobiles. */
+    div#outerwrapper {
+        margin: 5px auto;
+        width: 100%;
+    }
+
+    .nav {
+        background: none; /* Works in IE too. */
+/*
+        width: 200px;
+        position: absolute;
+        z-index: 10;
+*/
+    }
+
+    /* Undo some of the #nav styles  - to enable the class .nav */
+    .nav ul, #subnavigation ul {
+        list-style: none;
+        min-width: unset;
+        width: 200px;
+        height: 32px;
+        margin: 0;
+        padding: 0;
+    }
+    .nav ul li, #subnavigation ul li {
+        float: unset;
+        display: unset
+    }
+
+    /* Start with hidden menu options */
+    /* .nav li:not(:first-child) {display: none;} */
+    .nav li {display: none;}
+    .nav ul {display: none;}
+
+    a.navIcon {
+        font-size:1.3em;
+        display: block;
+        margin: 0.1em 0.4em 0.4em 0.4em;
+        float: left;
+    }
+
+    .nav.responsive {position: absolute; display: block; z-index: 100;}
+    .nav.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin-right: 10px;
+    }
+    .nav.responsive li {
+        /* float: left; */
+        display: block;
+        text-align: left;
+        background-color: #FFC35E;
+        /* required by IE */
+        float: left;
+        clear: both;
+        width: 200px;
+    }
+
+    div#nav ul, #subnavigation ul {
+        padding-left: 0px;
+    }
+
+    .content {
+        padding: 0em 0.5em;
+    }
 }
 
 /* Main Table
@@ -406,6 +512,14 @@ table.eventlist tbody tr td.ColumnSources {
     margin: 0px auto;
     display: block;
     border: solid 1px #EA8414;
+    max-width: 800px;
+    height: auto;
+}
+
+@media only screen and (max-width: 1080px) {
+    #GalleryDisplay img {
+        max-width: 100%;
+    }
 }
 #GalleryDetail h3 {
     text-align: center;
@@ -423,13 +537,10 @@ div#SourceDetail {
     overflow: hidden;
 }
 #Contact #summaryarea {
-    width: 40em;
-    margin: 2em auto;
-    padding: 3em;
     background-color: #FFE09F;
     border: solid 1px #EA8414;
 }
-#Contact img {
+#Contact #summaryarea #GalleryDisplay img {
     float: right;
     border: solid 1px #EA8414;
 }
@@ -456,13 +567,24 @@ div#SourceDetail {
 
 /* Subsection
 ----------------------------------------------------- */
-#Home, #Introduction {
-    overflow: hidden;
-}
-#Home img, #Introduction img {
+#Home #GalleryDisplay, #Introduction #GalleryDisplay, #Contact #GalleryDisplay {
     float: right;
-    margin: 1em;
+    margin: 0;
+    border: 0px;
+}
+#Home #GalleryDisplay img, #Introduction #GalleryDisplay img,
+      #Contact #GalleryDisplay img {
+    display: block;
     max-width: 950px;
+    height: auto;
+    float: right;
+}
+@media only screen and (max-width: 1080px) {
+    #Home #GalleryDisplay img, #Introduction #GalleryDisplay img,
+          #Contact #GalleryDisplay img {
+        margin: 0 auto;
+        max-width: 100%;
+    }
 }
 #Home p, #Introduction p {
     padding-left: 15px;
@@ -492,12 +614,33 @@ div#families table.attrlist td.ColumnType {
 
 /* Subsection : Gallery
 ----------------------------------------------------- */
+#gallery {
+    background-color: green;
+}
+#indivgallery {
+    background-color: white;
+}
+#gallery .gallerycell {
+    float: left;
+    width: 130px;
+    height: 150px;
+    text-align: center;
+    margin: 0;
+    background-color: white;
+    border-top: solid 1px #999;
+    border-right: solid 1px #999;
+}
+#gallery .thumbnail {
+    font-size: smaller;
+    margin: 3em auto;
+}
 #indivgallery .thumbnail {
     float: left;
     width: 130px;
     font-size: smaller;
     text-align: center;
     margin: 0.8em 0.5em;
+    background-color: white;
 }
 #indivgallery h4 + .thumbnail {
     margin-left: 15px;
@@ -505,12 +648,49 @@ div#families table.attrlist td.ColumnType {
      *          first thumnail on each next row should also have a margin-left
      *          of 15 px. */
 }
+#gallery div.indexno {
+    float: right;
+    width: 1.8em;
+    font-size: large;
+    text-align: center;
+    background-color: #CCC;
+    color: #555;
+    margin: 0;
+}
+#indivgallery div.date {
+    float: right;
+    width: 1.8em;
+    font-size: large;
+    text-align: center;
+    background-color: #CCC;
+    color: #555;
+}
+#indivgallery .thumbnail ul {
+    font-size: smaller;
+    list-style: none;
+    padding: 0px;
+}
+#indivgallery .thumbnail ul li:first-child {
+    border-style: none;
+}
+#indivgallery .thumbnail ul li {
+    border-top: dashed 1px #CCC;
+    border-top-style: dashed;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+#gallery img {
+    border: solid 1px #999;
+}
 #indivgallery img {
     border: solid 1px #8C581C;
 }
 #indivgallery span {
 /* ## remove this line and the comment markers from the line below to hide description in Indivifual Gallery
     display: none; */
+}
+div.snapshot div.thumbnail {
+    text-align: center;
 }
 
 /* Subsection : Narrative
@@ -575,6 +755,7 @@ a.familymap {
 }
 #footer > * {
     background-color: #FFE09F;
+    font-size: 80%;
 }
 #footer p#createdate {
     float: left;

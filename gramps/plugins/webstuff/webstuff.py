@@ -62,7 +62,7 @@ def load_on_reg(dbstate, uistate, plugin):
 
         # Basic Blue style sheet with navigation menus
         ["Basic-Blue",    1, _("Basic-Blue"),
-         path_css('Web_Basic-Blue.css'),    "narrative-menus.css", [], [] ],
+         path_css('Web_Basic-Blue.css'),    None, [], [] ],
 
         # Basic Cypress style sheet
         ["Basic-Cypress", 1, _("Basic-Cypress"),
