@@ -89,6 +89,7 @@ from ..utils import color_graph_box, hex_to_rgb, is_right_click
 from ..ddtargets import DdTargets
 from ..editors import EditPerson, EditFamily
 from ..utilscairo import warpPath
+from gramps.gen.utils.symbols import Symbols
 
 _ = glocale.translation.gettext
 
@@ -176,6 +177,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
                            [DdTargets.PERSON_LINK.target()],
                            Gdk.DragAction.COPY)
         self.connect('drag_data_received', self.on_drag_data_received)
+        self.uistate.connect('font-changed', self.reload_symbols)
 
         self._mouse_click = False
         self.rotate_value = 90 # degrees, initially, 1st gen male on right half
@@ -197,6 +199,17 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         self.gradcol = None
         self.in_drag = False
         self._mouse_click_cell_address = None
+        self.symbols = Symbols()
+        self.reload_symbols()
+
+    def reload_symbols(self):
+        dth_idx = self.uistate.death_symbol
+        if self.uistate.symbols:
+            self.bth = self.symbols.get_symbol_for_string(self.symbols.SYMBOL_BIRTH)
+            self.dth = self.symbols.get_death_symbol_for_char(dth_idx)
+        else:
+            self.bth = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_BIRTH)
+            self.dth = self.symbols.get_death_symbol_fallback(dth_idx)
 
     def reset(self):
         """
@@ -642,10 +655,16 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         if not person:
             return
         draw_radial = radial and self.radialtext
+        try:
+            alive = probably_alive(person, self.dbstate.db)
+        except RuntimeError:
+            alive = False
         if not self.twolinename:
             name = name_displayer.display(person)
             if self.showid:
                 name += " (" + person.gramps_id + ")"
+            if self.uistate.symbols and not alive:
+                    name = self.dth + ' ' + name
             self.draw_text(ctx, name, radiusin, radiusout, start, stop,
                            draw_radial, fontcolor, bold)
         else:
@@ -753,7 +772,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         Display text at a particular radius, between start_rad and stop_rad
         radians.
         """
-        font = Pango.FontDescription(self.fontdescr)
+        font = Pango.FontDescription("")
         fontsize = self.fontsize
         font.set_size(fontsize * Pango.SCALE)
         if bold:
@@ -888,7 +907,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
 
         ctx.translate(-self.center_xy[0], -self.center_xy[1])
 
-        font = Pango.FontDescription(self.fontdescr)
+        font = Pango.FontDescription("")
         fontsize = self.fontsize
         font.set_size(fontsize * Pango.SCALE)
         for color, text in zip(self.gradcol, self.gradval):
@@ -1746,7 +1765,11 @@ class FanChartGrampsGUI:
         self.filter = None
         self.background = BACKGROUND_GRAD_GEN
         self.on_childmenu_changed = on_childmenu_changed
-        self.format_helper = FormattingHelper(self.dbstate)
+        self.format_helper = FormattingHelper(self.dbstate, self.uistate)
+        self.uistate.connect('font-changed', self.reload_symbols)
+
+    def reload_symbols(self):
+        self.format_helper.reload_symbols()
 
     def set_fan(self, fan):
         """

@@ -12,7 +12,7 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2017  Serge Noiraud
+# Copyright (C) 2010-      Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
@@ -138,13 +138,14 @@ class PlacePages(BasePage):
         BasePage.__init__(self, report, title)
 
         output_file, sio = self.report.create_file("places")
-        placelistpage, head, body = self.write_header(self._("Places"))
+        result = self.write_header(self._("Places"))
+        placelistpage, dummy_head, dummy_body, outerwrapper = result
         ldatec = 0
         prev_letter = " "
 
         # begin places division
         with Html("div", class_="content", id="Places") as placelist:
-            body += placelist
+            outerwrapper += placelist
 
             # place list page message
             msg = self._("This page contains an index of all the places in the "
@@ -278,7 +279,7 @@ class PlacePages(BasePage):
         # add clearline for proper styling
         # add footer section
         footer = self.write_footer(ldatec)
-        body += (FULLCLEAR, footer)
+        outerwrapper += (FULLCLEAR, footer)
 
         # send page out for processing
         # and close the file
@@ -295,7 +296,7 @@ class PlacePages(BasePage):
         """
         place = report.database.get_place_from_handle(place_handle)
         if not place:
-            return None
+            return
         BasePage.__init__(self, report, title, place.get_gramps_id())
         self.bibli = Bibliography()
         place_name = self.report.obj_dict[Place][place_handle][1]
@@ -304,7 +305,7 @@ class PlacePages(BasePage):
         output_file, sio = self.report.create_file(place_handle, "plc")
         self.uplink = True
         self.page_title = place_name
-        placepage, head, body = self.write_header(_("Places"))
+        placepage, head, body, outerwrapper = self.write_header(_("Places"))
 
         self.placemappages = self.report.options['placemappages']
         self.mapservice = self.report.options['mapservice']
@@ -312,7 +313,7 @@ class PlacePages(BasePage):
 
         # begin PlaceDetail Division
         with Html("div", class_="content", id="PlaceDetail") as placedetail:
-            body += placedetail
+            outerwrapper += placedetail
 
             if self.create_media:
                 media_list = place.get_media_list()
@@ -460,7 +461,7 @@ class PlacePages(BasePage):
         # add clearline for proper styling
         # add footer section
         footer = self.write_footer(ldatec)
-        body += (FULLCLEAR, footer)
+        outerwrapper += (FULLCLEAR, footer)
 
         # send page out for processing
         # and close the file

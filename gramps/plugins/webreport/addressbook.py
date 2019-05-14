@@ -12,7 +12,7 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2017  Serge Noiraud
+# Copyright (C) 2010-      Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
@@ -84,12 +84,13 @@ class AddressBookPage(BasePage):
 
         # set the file name and open file
         output_file, sio = self.report.create_file(person_handle, "addr")
-        addressbookpage, head, body = self.write_header(_("Address Book"))
+        result = self.write_header(_("Address Book"))
+        addressbookpage, dummy_head, dummy_body, outerwrapper = result
 
         # begin address book page division and section title
         with Html("div", class_="content",
                   id="AddressBookDetail") as addressbookdetail:
-            body += addressbookdetail
+            outerwrapper += addressbookdetail
 
             link = self.new_person_link(person_handle, uplink=True,
                                         person=person)
@@ -113,7 +114,7 @@ class AddressBookPage(BasePage):
         # add fullclear for proper styling
         # and footer section to page
         footer = self.write_footer(None)
-        body += (FULLCLEAR, footer)
+        outerwrapper += (FULLCLEAR, footer)
 
         # send page out for processing
         # and close the file

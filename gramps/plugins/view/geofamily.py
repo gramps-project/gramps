@@ -445,6 +445,7 @@ class GeoFamily(GeoGraphyView):
         self.minyear = 9999
         self.maxyear = 0
         self.message_layer.clear_messages()
+        self.message_layer.set_font_attributes(None, None, None)
         if self.dbstate.db.has_family_handle(handle):
             family = self.dbstate.db.get_family_from_handle(handle)
             self._createmap_for_one_family(family)

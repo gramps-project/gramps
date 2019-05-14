@@ -38,7 +38,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import re
 import logging
-import collections
+from collections import abc
 LOG = logging.getLogger(".ImportXML")
 
 #-------------------------------------------------------------------------
@@ -737,7 +737,7 @@ class GrampsParser(UpdateCallback):
         if (orig_handle in self.import_handles and
                 target in self.import_handles[orig_handle]):
             handle = self.import_handles[handle][target][HANDLE]
-            if not isinstance(prim_obj, collections.Callable):
+            if not isinstance(prim_obj, abc.Callable):
                 # This method is called by a start_<primary_object> method.
                 get_raw_obj_data = {"person": self.db.get_raw_person_data,
                                     "family": self.db.get_raw_family_data,
@@ -780,7 +780,8 @@ class GrampsParser(UpdateCallback):
                 while has_handle_func(handle):
                     handle = create_id()
             self.import_handles[orig_handle] = {target: [handle, False]}
-        if isinstance(prim_obj, collections.Callable): # method is called by a reference
+        # method is called by a reference
+        if isinstance(prim_obj, abc.Callable):
             prim_obj = prim_obj()
         else:
             self.import_handles[orig_handle][target][INSTANTIATED] = True
@@ -874,7 +875,7 @@ class GrampsParser(UpdateCallback):
             handle = create_id()
             while has_handle_func(handle):
                 handle = create_id()
-            if isinstance(prim_obj, collections.Callable):
+            if isinstance(prim_obj, abc.Callable):
                 prim_obj = prim_obj()
             prim_obj.set_handle(handle)
             prim_obj.set_gramps_id(gramps_id)

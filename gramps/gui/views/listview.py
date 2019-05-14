@@ -32,7 +32,7 @@ Provide the base classes for GRAMPS' DataView classes
 from abc import abstractmethod
 import os
 import pickle
-import time
+from time import perf_counter
 import logging
 from collections import deque
 
@@ -305,7 +305,7 @@ class ListView(NavigationView):
 
     def build_tree(self, force_sidebar=False, preserve_col=True):
         if self.active:
-            cput0 = time.clock()
+            cput0 = perf_counter()
             if not self.search_bar.is_visible():
                 filter_info = (True, self.generic_filter, False)
             else:
@@ -331,26 +331,26 @@ class ListView(NavigationView):
                     ErrorDialog(msg1, msg2,
                                 parent=self.uistate.window)
 
-            cput1 = time.clock()
+            cput1 = perf_counter()
             self.build_columns(preserve_col)
-            cput2 = time.clock()
+            cput2 = perf_counter()
             self.list.set_model(self.model)
-            cput3 = time.clock()
+            cput3 = perf_counter()
             self.__display_column_sort()
             self.goto_active(None)
 
             self.dirty = False
-            cput4 = time.clock()
+            cput4 = perf_counter()
             self.uistate.show_filter_results(self.dbstate,
                                              self.model.displayed(),
                                              self.model.total())
             LOG.debug(self.__class__.__name__ + ' build_tree ' +
-                    str(time.clock() - cput0) + ' sec')
+                    str(perf_counter() - cput0) + ' sec')
             LOG.debug('parts ' + str(cput1-cput0) + ' , '
                              + str(cput2-cput1) + ' , '
                              + str(cput3-cput2) + ' , '
                              + str(cput4-cput3) + ' , '
-                             + str(time.clock() - cput4))
+                             + str(perf_counter() - cput4))
 
         else:
             self.dirty = True
@@ -618,7 +618,7 @@ class ListView(NavigationView):
         """
         self.uistate.set_busy_cursor(True)
         self.uistate.push_message(self.dbstate, _("Column clicked, sorting..."))
-        cput = time.clock()
+        cput = perf_counter()
         same_col = False
         if self.sort_col != data:
             order = Gtk.SortType.ASCENDING
@@ -670,7 +670,7 @@ class ListView(NavigationView):
         self.uistate.set_busy_cursor(False)
 
         LOG.debug('   ' + self.__class__.__name__ + ' column_clicked ' +
-                    str(time.clock() - cput) + ' sec')
+                    str(perf_counter() - cput) + ' sec')
 
     def __display_column_sort(self):
         for i, c in enumerate(self.columns):
@@ -740,10 +740,10 @@ class ListView(NavigationView):
         """
         if self.active or \
            (not self.dirty and not self._dirty_on_change_inactive):
-            cput = time.clock()
+            cput = perf_counter()
             list(map(self.model.add_row_by_handle, handle_list))
             LOG.debug('   ' + self.__class__.__name__ + ' row_add ' +
-                    str(time.clock() - cput) + ' sec')
+                    str(perf_counter() - cput) + ' sec')
             if self.active:
                 self.uistate.show_filter_results(self.dbstate,
                                                  self.model.displayed(),
@@ -759,12 +759,12 @@ class ListView(NavigationView):
             self.model.prev_handle = None
         if self.active or \
            (not self.dirty and not self._dirty_on_change_inactive):
-            cput = time.clock()
+            cput = perf_counter()
             #store selected handles
             self._sel_handles_before_update = self.selected_handles()
             list(map(self.model.update_row_by_handle, handle_list))
             LOG.debug('   ' + self.__class__.__name__ + ' row_update ' +
-                    str(time.clock() - cput) + ' sec')
+                    str(perf_counter() - cput) + ' sec')
             # Ensure row is still selected after a change of postion in tree.
             if self._sel_handles_before_update:
                 #we can only set one selected again, we take last
@@ -780,10 +780,10 @@ class ListView(NavigationView):
         """
         if self.active or \
            (not self.dirty and not self._dirty_on_change_inactive):
-            cput = time.clock()
+            cput = perf_counter()
             list(map(self.model.delete_row_by_handle, handle_list))
             LOG.debug('   '  + self.__class__.__name__ + ' row_delete ' +
-                    str(time.clock() - cput) + ' sec')
+                    str(perf_counter() - cput) + ' sec')
             if self.active:
                 self.uistate.show_filter_results(self.dbstate,
                                                  self.model.displayed(),

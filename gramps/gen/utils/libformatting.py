@@ -41,6 +41,7 @@ from ..display.name import displayer as name_displayer
 from ..display.place import displayer as place_displayer
 from .db import (get_birth_or_fallback, get_death_or_fallback,
                  get_marriage_or_fallback)
+from gramps.gen.utils.symbols import Symbols
 
 #-------------------------------------------------------------------------
 #
@@ -51,10 +52,29 @@ class FormattingHelper:
     """Format of commonly used expressions, making use of a cache to not
     recompute
     """
-    def __init__(self, dbstate):
+    def __init__(self, dbstate, uistate=None):
         self.dbstate = dbstate
+        self.uistate = uistate
         self._text_cache = {}
         self._markup_cache = {}
+        self.symbols = Symbols()
+        self.reload_symbols()
+
+    def reload_symbols(self):
+        self.clear_cache()
+        if self.uistate and self.uistate.symbols:
+            death_idx = self.uistate.death_symbol
+            self.male = self.symbols.get_symbol_for_string(self.symbols.SYMBOL_MALE)
+            self.female = self.symbols.get_symbol_for_string(self.symbols.SYMBOL_FEMALE)
+            self.bth = self.symbols.get_symbol_for_string(self.symbols.SYMBOL_BIRTH)
+            self.marr = self.symbols.get_symbol_for_string(self.symbols.SYMBOL_MARRIAGE)
+            self.dth = self.symbols.get_death_symbol_for_char(death_idx)
+        else:
+            death_idx = self.symbols.DEATH_SYMBOL_LATIN_CROSS
+            self.male = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_MALE)
+            self.female = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_FEMALE)
+            self.marr = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_MARRIAGE)
+            self.dth = self.symbols.get_death_symbol_fallback(death_idx)
 
     def format_relation(self, family, line_count, use_markup=False):
         """ Format a relation between parents of a family
@@ -73,18 +93,15 @@ class FormattingHelper:
         text = ""
         marriage = get_marriage_or_fallback(self.dbstate.db, family)
         if marriage and use_markup and marriage.get_type() != EventType.MARRIAGE:
-            mdate = "<i>%s %s</i>" % (marriage.get_type().get_abbreviation(),
-                                       escape(get_date(marriage)))
+            mdate = "<i>%s %s</i>" % (self.marr, escape(get_date(marriage)))
             mplace = "<i>%s</i>" % escape(self.get_place_name(marriage.get_place_handle()))
             name = "<i>%s</i>" % str(marriage.get_type())
         elif marriage and use_markup:
-            mdate = "%s %s" % (marriage.get_type().get_abbreviation(),
-                                escape(get_date(marriage)))
+            mdate = "%s %s" % (self.marr, escape(get_date(marriage)))
             mplace = escape(self.get_place_name(marriage.get_place_handle()))
             name = str(marriage.get_type())
         elif marriage:
-            mdate = "%s %s" % (marriage.get_type().get_abbreviation(),
-                                get_date(marriage))
+            mdate = "%s %s" % (self.marr, get_date(marriage))
             mplace = self.get_place_name(marriage.get_place_handle())
             name = str(marriage.get_type())
         else:
@@ -178,10 +195,12 @@ class FormattingHelper:
                 dplace = ""
 
             if line_count < 5:
-                text = "%s\n* %s\n+ %s" % (name, bdate, ddate)
+                text = "%s\n%s %s\n%s %s" % (name, self.bth, bdate,
+                                             self.dth, ddate)
             else:
-                text = "%s\n* %s\n  %s\n+ %s\n  %s" % (name, bdate, bplace,
-                                                       ddate, dplace)
+                text = "%s\n%s %s\n  %s\n%s %s\n  %s" % (name, self.bth, bdate,
+                                                         bplace, self.dth,
+                                                         ddate, dplace)
         if use_markup:
             if not person.handle in self._markup_cache:
                 self._markup_cache[person.handle] = {}

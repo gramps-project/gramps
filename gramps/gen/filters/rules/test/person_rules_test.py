@@ -17,16 +17,17 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-from ....filters.rules.person._matchidof import MatchIdOf
 
 """
 Unittest that tests person-specific filter rules
 """
 import unittest
 import os
-import time
+from time import perf_counter
 import inspect
 
+from ....filters import reload_custom_filters
+reload_custom_filters()
 from ....db.utils import import_as_dict
 from ....filters import GenericFilter, CustomFilters
 from ....const import DATA_DIR
@@ -95,11 +96,11 @@ class BaseTest(unittest.TestCase):
             filter_.add_rule(rule)
         filter_.set_logical_op(l_op)
         filter_.set_invert(invert)
-        stime = time.clock()
+        stime = perf_counter()
         results = filter_.apply(self.db)
         if __debug__:
             rulename = inspect.stack()[1][3]
-            print("%s: %.2f\n" % (rulename, time.clock() - stime))
+            print("%s: %.2f\n" % (rulename, perf_counter() - stime))
         return set(results)
 
     def test_Complex_1(self):

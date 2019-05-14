@@ -12,10 +12,11 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2017  Serge Noiraud
+# Copyright (C) 2010-      Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
+# Copyright (C) 2018       Theo van Rijn
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -73,17 +74,18 @@ class ContactPage(BasePage):
         BasePage.__init__(self, report, title)
 
         output_file, sio = self.report.create_file("contact")
-        contactpage, head, body = self.write_header(self._('Contact'))
+        result = self.write_header(self._('Contact'))
+        contactpage, head, dummy_body, outerwrapper = result
 
         # begin contact division
         with Html("div", class_="content", id="Contact") as section:
-            body += section
+            outerwrapper += section
 
             # begin summaryarea division
             with Html("div", id='summaryarea') as summaryarea:
                 section += summaryarea
 
-                contactimg = self.add_image('contactimg', 200)
+                contactimg = self.add_image('contactimg', head, 200)
                 if contactimg is not None:
                     summaryarea += contactimg
 
@@ -132,7 +134,7 @@ class ContactPage(BasePage):
         # add clearline for proper styling
         # add footer section
         footer = self.write_footer(None)
-        body += (FULLCLEAR, footer)
+        outerwrapper += (FULLCLEAR, footer)
 
         # send page out for porcessing
         # and close the file

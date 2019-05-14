@@ -12,7 +12,7 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2017  Serge Noiraud
+# Copyright (C) 2010-      Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
@@ -127,11 +127,12 @@ class SourcePages(BasePage):
         source_dict = {}
 
         output_file, sio = self.report.create_file("sources")
-        sourcelistpage, head, body = self.write_header(self._("Sources"))
+        result = self.write_header(self._("Sources"))
+        sourcelistpage, dummy_head, dummy_body, outerwrapper = result
 
         # begin source list division
         with Html("div", class_="content", id="Sources") as sourceslist:
-            body += sourceslist
+            outerwrapper += sourceslist
 
             # Sort the sources
             for handle in source_handles:
@@ -195,7 +196,7 @@ class SourcePages(BasePage):
         # add clearline for proper styling
         # add footer section
         footer = self.write_footer(None)
-        body += (FULLCLEAR, footer)
+        outerwrapper += (FULLCLEAR, footer)
 
         # send page out for processing
         # and close the file
@@ -223,13 +224,14 @@ class SourcePages(BasePage):
 
         output_file, sio = self.report.create_file(source_handle, "src")
         self.uplink = True
-        sourcepage, head, body = self.write_header(
-            "%s - %s" % (self._('Sources'), self.page_title))
+        result = self.write_header("%s - %s" % (self._('Sources'),
+                                                self.page_title))
+        sourcepage, dummy_head, dummy_body, outerwrapper = result
 
         ldatec = 0
         # begin source detail division
         with Html("div", class_="content", id="SourceDetail") as sourcedetail:
-            body += sourcedetail
+            outerwrapper += sourcedetail
 
             media_list = source.get_media_list()
             if self.create_media and media_list:
@@ -301,7 +303,7 @@ class SourcePages(BasePage):
         # add clearline for proper styling
         # add footer section
         footer = self.write_footer(ldatec)
-        body += (FULLCLEAR, footer)
+        outerwrapper += (FULLCLEAR, footer)
 
         # send page out for processing
         # and close the file

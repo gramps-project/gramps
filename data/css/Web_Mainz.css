@@ -19,6 +19,8 @@ Copyright 2008 Jason M. Simanek
 Copyright 2009 Stephane Charette
 Copyright (C) 2008-2011 Rob G. Healey <robhealey1@gmail.com>
 Copyright 2011 Michiel D. Nauta
+Copyright 2018 Theo van Rijn
+Copyright (C) 2019      Serge Noiraud
 
 This file is part of the GRAMPS program.
 
@@ -62,7 +64,7 @@ General Elements
 -----------------------------------------------------------------*/
 body {
     font-family: Georgia, serif;
-    font-size: 90%;
+    font-size: 100%;
     color: #7D5925;
     background: url(../images/Web_Mainz_Bkgd.png) black repeat;
 }
@@ -73,8 +75,19 @@ body > div {
     overflow: hidden;
     padding: 0px 1.5em;
 }
+#outerwrapper {
+    margin: 5px auto;
+    width: 98%;
+}
+#outerwrapper > div {
+    clear: both;
+}
 .content {
     padding: 1.5em 1.5em;
+}
+#ThumbnailPreview div.snapshot {
+    float: right;
+    margin: 0;
 }
 div.snapshot div.thumbnail {
     text-align: center;
@@ -82,6 +95,13 @@ div.snapshot div.thumbnail {
 div.snapshot a {
     display: inline;
 }
+/* Less whitespace on smaller real estate. */
+@media only screen and (max-width: 1080px) {
+    .content {
+        padding: 0em 0.5em;
+    }
+}
+
 
 /* General Text
 -----------------------------------------------------------------*/
@@ -202,6 +222,93 @@ div#alphanav ul li a:hover {
     text-decoration: none;
     background-color: black;
     color: white;
+}
+
+/* Responsive navigation */
+a.navIcon {
+    display: none;
+}
+
+div#header::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+div#nav::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+@media only screen and (max-width: 1080px) {
+
+    /* Use less & all realestate on mobiles. */
+    div#outerwrapper {
+        margin: 5px auto;
+        width: 100%;
+    }
+
+    .nav {
+        background: none; /* Works in IE too. */
+/*
+        width: 200px;
+        position: absolute;
+        z-index: 10;
+*/
+    }
+
+    /* Undo some of the #nav styles  - to enable the class .nav */
+    .nav ul, #subnavigation ul {
+        list-style: none;
+        min-width: unset;
+        width: 200px;
+        height: 32px;
+        margin: 0;
+        padding: 0;
+    }
+    .nav ul li, #subnavigation ul li {
+        float: unset;
+        display: unset
+    }
+
+    /* Start with hidden menu options */
+    /* .nav li:not(:first-child) {display: none;} */
+    .nav li {display: none;}
+    .nav ul {display: none;}
+
+    a.navIcon {
+        font-size:1.3em;
+        display: block;
+        margin: 0.1em 0.4em 0.4em 0.4em;
+        float: left;
+    }
+
+    .nav.responsive {position: absolute; display: block; z-index: 100;}
+    .nav.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin-right: 10px;
+    }
+    .nav.responsive li {
+        /* float: left; */
+        display: block;
+        text-align: left;
+        background-color: #D8C19F;
+        /* required by IE */
+        float: left;
+        clear: both;
+        width: 200px;
+    }
+
+    div#nav ul, #subnavigation ul {
+        padding-left: 0px;
+    }
+
+    .content {
+        padding: 0em 0.5em;
+    }
 }
 
 /* Main Table
@@ -361,6 +468,14 @@ table.eventlist tbody tr td.ColumnSources {
     margin: 0px auto;
     display:block;
     border: solid 1px #7D5925;
+    max-width: 800px;
+    height: auto;
+}
+
+@media only screen and (max-width: 1080px) {
+    #GalleryDisplay img {
+        max-width: 100%;
+    }
 }
 
 /*    Sources
@@ -376,7 +491,7 @@ div#SourceDetail {
     padding-bottom: 0px;
     margin: 0px;
 }
-#Contact img {
+#Contact #summaryarea #GalleryDisplay img {
     display: block;
     margin: 0px auto 1em auto;
     border: solid 1px #7D5925;
@@ -402,16 +517,31 @@ div#SourceDetail {
 
 /* SubSection
 -----------------------------------------------------------------*/
-#Home img, #Introduction img {
+#Home #GalleryDisplay, #Introduction #GalleryDisplay, #Contact #GalleryDisplay {
+    float: right;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#Home #GalleryDisplay img, #Introduction #GalleryDisplay img,
+      #Contact #GalleryDisplay {
     display: block;
-    margin: 1em auto;
     max-width: 950px;
+    height: auto;
+    float: right;
+}
+@media only screen and (max-width: 1080px) {
+    #Home #GalleryDisplay img, #Introduction #GalleryDisplay img,
+          #Contact #GalleryDisplay {
+        margin: 0 auto;
+        max-width: 100%;
+    }
 }
 #Home a, #Introduction a, #Contact a {
     color: black;
 }
 .subsection {
     clear: both;
+    overflow: hidden;
 }
 .subsection p {
     margin: 0px;
@@ -428,9 +558,32 @@ div#families table.fixed_subtables table.eventlist th:first-child {
 div#families table.fixed_subtables table.eventlist th:last-child {
     width: 5em;
 }
+div#families .infolist h4 {
+    text-align: left;
+}
 
 /* SubSection : Gallery
 -----------------------------------------------------------------*/
+#gallery {
+    background-color: green;
+}
+#indivgallery {
+    background-color: white;
+}
+#gallery .gallerycell {
+    float: left;
+    width: 130px;
+    height: 150px;
+    text-align: center;
+    margin: 0;
+    background-color: white;
+    border-top: solid 1px #999;
+    border-right: solid 1px #999;
+}
+#gallery .thumbnail {
+    font-size: smaller;
+    margin: 3em auto;
+}
 #indivgallery {
     /* float container stretch, see www.quirksmode.org/css/clearing.html */
     overflow: hidden;
@@ -441,6 +594,7 @@ div#families table.fixed_subtables table.eventlist th:last-child {
     font-size: smaller;
     text-align: center;
     margin: 0.5em;
+    background-color: white;
 }
 #indivgallery img {
     border: solid 1px #7D5925;
@@ -448,6 +602,43 @@ div#families table.fixed_subtables table.eventlist th:last-child {
 #indivgallery span {
 /* ## remove this line and the comment markers from the line below to hide the description in Individual Gallery
     display: none; */
+}
+#gallery div.indexno {
+    float: right;
+    width: 1.8em;
+    font-size: large;
+    text-align: center;
+    background-color: #CCC;
+    color: #555;
+    margin: 0;
+}
+#indivgallery div.date {
+    float: right;
+    width: 1.8em;
+    font-size: large;
+    text-align: center;
+    background-color: #CCC;
+    color: #555;
+}
+#indivgallery .thumbnail ul {
+    font-size: smaller;
+    list-style: none;
+    padding: 0px;
+}
+#indivgallery .thumbnail ul li:first-child {
+    border-style: none;
+}
+#indivgallery .thumbnail ul li {
+    border-top: dashed 1px #CCC;
+    border-top-style: dashed;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+#gallery img {
+    border: solid 1px #999;
+}
+div.snapshot div.thumbnail {
+    text-align: center;
 }
 
 /* SubSection : Narrative
@@ -514,6 +705,9 @@ div.grampsstylednote p {
     float: right;
     width: 40%;
     text-align: right;
+}
+#footer > * {
+    font-size: 80%;
 }
 
 /* Overwritten

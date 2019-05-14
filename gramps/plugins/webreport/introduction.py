@@ -12,7 +12,7 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2017  Serge Noiraud
+# Copyright (C) 2010-      Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
@@ -75,13 +75,14 @@ class IntroductionPage(BasePage):
         ldatec = 0
 
         output_file, sio = self.report.create_file(report.intro_fname)
-        intropage, head, body = self.write_header(self._('Introduction'))
+        result = self.write_header(self._('Introduction'))
+        intropage, head, dummy_body, outerwrapper = result
 
         # begin Introduction division
         with Html("div", class_="content", id="Introduction") as section:
-            body += section
+            outerwrapper += section
 
-            introimg = self.add_image('introimg')
+            introimg = self.add_image('introimg', head)
             if introimg is not None:
                 section += introimg
 
@@ -99,7 +100,7 @@ class IntroductionPage(BasePage):
         # add clearline for proper styling
         # create footer section
         footer = self.write_footer(ldatec)
-        body += (FULLCLEAR, footer)
+        outerwrapper += (FULLCLEAR, footer)
 
         # send page out for processing
         # and close the file

@@ -137,6 +137,7 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         self.top = None
         self.sidebar = None
         self.bottombar = None
+        self.widget = None
 
         DbGUIElement.__init__(self, dbstate.db)
 
@@ -159,9 +160,10 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         hpane.show()
         vpane.show()
 
-        widget = self.build_widget()
-        widget.show_all()
-        vpane.pack1(widget, resize=True, shrink=False)
+        self.widget = self.build_widget()
+        self.widget.show_all()
+        self.widget.set_name('view')
+        vpane.pack1(self.widget, resize=True, shrink=False)
         vpane.pack2(self.bottombar, resize=False, shrink=True)
         self._setup_slider_config(vpane, 'vpane.slider-position')
 

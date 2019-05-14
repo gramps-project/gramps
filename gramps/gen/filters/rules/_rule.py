@@ -141,8 +141,10 @@ class Rule:
 
     def display_values(self):
         """Return the labels and values of this rule."""
-        l_v = ( '%s="%s"' % (_(self.labels[ix]), self.list[ix])
-                for ix in range(len(self.list)) if self.list[ix] )
+        l_v = ('%s="%s"' % (_(self.labels[ix][0] if
+                              isinstance(self.labels[ix], tuple) else
+                              self.labels[ix]), self.list[ix])
+               for ix in range(len(self.list)) if self.list[ix])
 
         return ';'.join(l_v)
 

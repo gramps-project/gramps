@@ -331,6 +331,8 @@ class GeoEvents(GeoGraphyView):
         self.nbplaces = 0
         self.without = 0
         self.cal = config.get('preferences.calendar-format-report')
+        self.message_layer.clear_messages()
+        self.message_layer.clear_font_attributes()
         self.no_show_places_in_status_bar = False
         if self.show_all:
             self.show_all = False
@@ -358,9 +360,15 @@ class GeoEvents(GeoGraphyView):
                 self._createmap_for_one_event(event)
                 progress.step()
             progress.close()
-        elif obj:
-            event = dbstate.db.get_event_from_handle(obj)
-            self._createmap_for_one_event(event)
+        else:
+            if obj:
+                event = dbstate.db.get_event_from_handle(obj)
+                self._createmap_for_one_event(event)
+            self.message_layer.add_message(
+                 _("Right click on the map and select 'show all events'"
+                   " to show all known events with coordinates. "
+                   "You can use the history to navigate on the map. "
+                   "You can use filtering."))
         self.sort = sorted(self.place_list,
                            key=operator.itemgetter(3, 4, 6)
                           )

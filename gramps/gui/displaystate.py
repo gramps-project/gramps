@@ -400,6 +400,7 @@ class DisplayState(Callback):
         'grampletbar-close-changed' : None,
         'update-available' : (list, ),
         'autobackup' : None,
+        'font-changed' : None,
         }
 
     #nav_type to message
@@ -439,6 +440,8 @@ class DisplayState(Callback):
         self.set_relationship_class()
         self.export = False
         self.backup_timer = None
+        self.symbols = config.get('utf8.in-use')
+        self.death_symbol = config.get('utf8.death-symbol')
 
         formatter = logging.Formatter('%(levelname)s %(name)s: %(message)s')
         warnbtn = status.get_warning_button()
@@ -669,3 +672,7 @@ class DisplayState(Callback):
         self.status.pop(self.status_id)
         self.status.push(self.status_id, text)
         process_pending_events()
+
+    def reload_symbols(self):
+        self.symbols = config.get('utf8.in-use')
+        self.death_symbol = config.get('utf8.death-symbol')

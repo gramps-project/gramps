@@ -22,7 +22,6 @@
 Package providing filtering framework for Gramps.
 """
 
-#SystemFilters = None
 CustomFilters = None
 
 from ..const import CUSTOM_FILTERS
@@ -32,18 +31,10 @@ from ._genericfilter import (GenericFilter, GenericFilterFactory,
 from ._paramfilter import ParamFilter
 from ._searchfilter import SearchFilter, ExactSearchFilter
 
-#def reload_system_filters():
-    #global SystemFilters
-    #SystemFilters = FilterList(SYSTEM_FILTERS)
-    #SystemFilters.load()
-
 def reload_custom_filters():
     global CustomFilters
     CustomFilters = FilterList(CUSTOM_FILTERS)
     CustomFilters.load()
 
-#if not SystemFilters:
-    #reload_system_filters()
-
-if not CustomFilters:
-    reload_custom_filters()
+# if not CustomFilters:  # moved to viewmanager
+    # reload_custom_filters()

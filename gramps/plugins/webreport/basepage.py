@@ -12,10 +12,11 @@
 # Copyright (C) 2008-2011  Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2010       Doug Blank <doug.blank@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2010-2017  Serge Noiraud
+# Copyright (C) 2010-      Serge Noiraud
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2013       Benny Malengier
 # Copyright (C) 2016       Allen Crider
+# Copyright (C) 2018       Theo van Rijn
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -58,7 +59,7 @@ import logging
 #------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import (FamilyRelType, NoteType, NameType, Person,
-                            UrlType, Date, Name, PlaceType, EventRoleType,
+                            UrlType, Name, PlaceType, EventRoleType,
                             Family, Citation, Place)
 from gramps.gen.lib.date import Today
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
@@ -124,7 +125,7 @@ class BasePage: # pylint: disable=C1001
         # are still required.
         self.html_dir = report.options['target']
         self.ext = report.options['ext']
-        self.noid = report.options['nogid']
+        self.noid = not report.options['inc_id']
         self.linkhome = report.options['linkhome']
         self.create_media = report.options['gallery']
         self.create_unused_media = report.options['unused']
@@ -132,12 +133,14 @@ class BasePage: # pylint: disable=C1001
         self.inc_families = report.options['inc_families']
         self.inc_events = report.options['inc_events']
         self.usecms = report.options['usecms']
+        self.prevnext = report.options['prevnext']
         self.target_uri = report.options['cmsuri']
         self.usecal = report.options['usecal']
         self.target_cal_uri = report.options['caluri']
         self.extrapage = report.options['extrapage']
         self.extrapagename = report.options['extrapagename']
         self.familymappages = None
+        self.reference_sort = report.options['reference_sort']
         lang = report.options['trans']
         self.rlocale = report.set_locale(lang)
         self._ = self.rlocale.translation.sgettext
@@ -233,7 +236,7 @@ class BasePage: # pylint: disable=C1001
         """
         Returns the menu column for Drop Down Menus and Drop Down Citations
         """
-        if len(data_list) == 0:
+        if not data_list:
             return
 
         elif len(data_list) == 1:
@@ -261,8 +264,10 @@ class BasePage: # pylint: disable=C1001
         Displays a person's relationships ...
 
         @param: family_handle_list -- families in this report database
-        @param: place_lat_long -- for use in Family Map Pages. This will be None
-        if called from Family pages, which do not create a Family Map
+        @param: place_lat_long     -- for use in Family Map Pages.
+                                      This will be None if called from
+                                      Family pages, which do not create
+                                      a Family Map
         """
         family_list = individual.get_family_handle_list()
         if not family_list:
@@ -284,12 +289,9 @@ class BasePage: # pylint: disable=C1001
                             family_handle,
                             self.report.obj_dict[Family][family_handle][1],
                             gid=family.get_gramps_id(), uplink=True)
+                        link1 = Html("H4", link, class_="subsection")
                         trow = Html("tr", class_="BeginFamily") + (
-                            Html("td", "&nbsp", class_="ColumnType",
-                                 inline=True),
-                            Html("td", "&nbsp", class_="ColumnAttribute",
-                                 inline=True),
-                            Html("td", link, class_="ColumnValue",
+                            Html("td", link1, class_="ColumnValue", colspan=3,
                                  inline=True)
                         )
                         table += trow
@@ -312,9 +314,10 @@ class BasePage: # pylint: disable=C1001
         """
         Displays a family's relationships ...
 
-        @param: family -- the family to be displayed
-        @param: place_lat_long -- for use in Family Map Pages. This will be None
-        if called from Family pages, which do not create a Family Map
+        @param: family         -- the family to be displayed
+        @param: place_lat_long -- for use in Family Map Pages. This will
+                                  be None if called from Family pages, which
+                                  do not create a Family Map
         """
         with Html("div", class_="subsection", id="families") as section:
             section += Html("h4", self._("Families"), inline=True)
@@ -460,10 +463,12 @@ class BasePage: # pylint: disable=C1001
         """
         completes the person column for classes EventListPage and EventPage
 
-        @param: tcell -- table cell from its caller
+        @param: tcell        -- table cell from its caller
         @param: first_person -- Not used any more, done via css
-        @param: handle_list -- handle list from the backlink of the event_handle
+        @param: handle_list  -- handle list from the backlink of
+                                the event_handle
         """
+        dummy_first_person = first_person
         for (classname, handle) in handle_list:
 
             # personal event
@@ -648,11 +653,11 @@ class BasePage: # pylint: disable=C1001
 
         @param: evt            -- Event object from report database
         @param: evt_ref        -- Event reference
-        @param: place_lat_long -- For use in Family Map Pages. This will be None
-                                  if called from Family pages, which do not
-                                  create a Family Map
-        @param: uplink         -- If True, then "../../../" is inserted in front
-                                  of the result.
+        @param: place_lat_long -- For use in Family Map Pages. This will be
+                                  None if called from Family pages, which do
+                                  not create a Family Map
+        @param: uplink         -- If True, then "../../../" is inserted in
+                                  front of the result.
         @param: hyperlink      -- Add a hyperlink or not
         @param: omit           -- Role to be omitted in output
         """
@@ -695,13 +700,15 @@ class BasePage: # pylint: disable=C1001
         trow += Html("td", srcrefs, class_="ColumnSources", rowspan=2)
 
         # get event notes
-        notelist = event.get_note_list()[:]  # we don't want to modify cached original
+        notelist = event.get_note_list()[:]  # we don't want to modify
+                                             # cached original
         notelist.extend(event_ref.get_note_list())
         htmllist = self.dump_notes(notelist)
 
         # if the event or event reference has an attribute attached to it,
         # get the text and format it correctly?
-        attrlist = event.get_attribute_list()[:]  # we don't want to modify cached original
+        attrlist = event.get_attribute_list()[:]  # we don't want to modify
+                                                  # cached original
         attrlist.extend(event_ref.get_attribute_list())
         for attr in attrlist:
             htmllist.extend(Html("p",
@@ -725,8 +732,9 @@ class BasePage: # pylint: disable=C1001
         """
         Create a list of places with coordinates.
 
-        @param: place_lat_long -- for use in Family Map Pages. This will be None
-        if called from Family pages, which do not create a Family Map
+        @param: place_lat_long -- for use in Family Map Pages. This will be
+                                  None if called from Family pages, which do
+                                  not create a Family Map
         """
         if place_lat_long is None:
             return
@@ -782,15 +790,15 @@ class BasePage: # pylint: disable=C1001
         @param: family_handle -- The handle for the family to link
         @param: name          -- The family name
         @param: gid           -- The family gramps ID
-        @param: uplink        -- If True, then "../../../" is inserted in front
-                                 of the result.
+        @param: uplink        -- If True, then "../../../" is inserted in
+                                 front of the result.
         """
         name = html_escape(name)
         if not self.noid and gid:
             gid_html = Html("span", " [%s]" % gid, class_="grampsid",
                             inline=True)
         else:
-            gid_html = "" # pylint: disable=redefined-variable-type
+            gid_html = ""
 
         result = self.report.obj_dict.get(Family).get(family_handle)
         if result is None:
@@ -867,9 +875,9 @@ class BasePage: # pylint: disable=C1001
         displays the event row for events such as marriage and divorce
 
         @param: event_ref_list -- List of events reference
-        @param: place_lat_long -- For use in Family Map Pages. This will be None
-                                  if called from Family pages, which do not
-                                  create a Family Map
+        @param: place_lat_long -- For use in Family Map Pages. This will be
+                                  None if called from Family pages, which do
+                                  not create a Family Map
         """
         with Html("table", class_="infolist eventlist") as table:
             thead = Html("thead")
@@ -901,6 +909,8 @@ class BasePage: # pylint: disable=C1001
         @param: uplink  -- If True, then "../../../" is inserted in front of
                            the result.
         """
+        dummy_evt_ref = evt_ref
+        dummy_gid = gid
         place = None
         place_handle = evt.get_place_handle()
         if place_handle:
@@ -930,6 +940,7 @@ class BasePage: # pylint: disable=C1001
         @param: ldsobj        -- Either person or family
         @param: ldssealedtype -- Either Sealed to Family or Spouse
         """
+        dummy_ldssealedtype = ldssealedtype
         objectldsord = ldsobj.get_lds_ord_list()
         if not objectldsord:
             return None
@@ -966,7 +977,7 @@ class BasePage: # pylint: disable=C1001
                     place = self.r_db.get_place_from_handle(place_handle)
                     if place:
                         place_title = _pd.display(self.r_db, place)
-                        place_hyper = self.place_link( # pylint: disable=R0204
+                        place_hyper = self.place_link(
                             place_handle, place_title,
                             place.get_gramps_id(), uplink=True)
 
@@ -996,7 +1007,7 @@ class BasePage: # pylint: disable=C1001
 
         @param: srcattr_list -- List of source attributes
         """
-        if len(srcattr_list) == 0:
+        if not srcattr_list:
             return None
 
         # begin data map division and section title...
@@ -1039,8 +1050,8 @@ class BasePage: # pylint: disable=C1001
         @param: source_title  -- Title from the source object
         @param: gid           -- Source gramps id from the source object
         @param: cindex        -- Count index
-        @param: uplink        -- If True, then "../../../" is inserted in front
-                                 of the result.
+        @param: uplink        -- If True, then "../../../" is inserted in
+                                 front of the result.
         """
         url = self.report.build_url_fname_html(source_handle, "src", uplink)
         hyper = Html("a", source_title,
@@ -1182,8 +1193,8 @@ class BasePage: # pylint: disable=C1001
         Creates a hyperlink for an address book link based on person's handle
 
         @param: person_handle -- Person's handle from the database
-        @param: uplink        -- If True, then "../../../" is inserted in front
-                                 of the result.
+        @param: uplink        -- If True, then "../../../" is inserted in
+                                 front of the result.
         """
         url = self.report.build_url_fname_html(person_handle, "addr", uplink)
         person = self.r_db.get_person_from_handle(person_handle)
@@ -1199,7 +1210,7 @@ class BasePage: # pylint: disable=C1001
         Return person's name, unless maiden_name given, unless married_name
         listed.
 
-        @param: person -- person object from database
+        @param: person      -- person object from database
         @param: maiden_name -- Female's family surname
         """
         # get name format for displaying names
@@ -1260,7 +1271,7 @@ class BasePage: # pylint: disable=C1001
         """
         Will display a list of attributes
 
-        @param: attrlist -- a list of attributes
+        @param: attrlist  -- a list of attributes
         @param: attrtable -- the table element that is being added to
         """
         tbody = Html("tbody")
@@ -1274,7 +1285,8 @@ class BasePage: # pylint: disable=C1001
         """
         Will create and display the footer section of each page...
 
-        @param: bottom -- whether to specify location of footer section or not?
+        @param: bottom -- whether to specify location of footer section
+                          or not?
         """
         # begin footer division
         with Html("div", id="footer") as footer:
@@ -1424,12 +1436,27 @@ class BasePage: # pylint: disable=C1001
         head += meta
         head += links
 
+        # Add the script to control the menu
+        menuscript = Html("<script>function navFunction() { "
+                          "var x = document.getElementById(\"dropmenu\"); "
+                          "if (x.className === \"nav\") { x.className += \""
+                          " responsive\"; } else { x.className = \"nav\"; }"
+                          " }</script>")
+        head += menuscript
+
+        # add outerwrapper to set the overall page width
+        outerwrapperdiv = Html("div", id='outerwrapper')
+        body += outerwrapperdiv
+
         # begin header section
+        #headerdiv = Html("div", id='header') + (
         headerdiv = Html("div", id='header') + (
-            Html("h1", html_escape(self.title_str),
-                 id="SiteTitle", inline=True)
-        )
-        body += headerdiv
+            Html("<a href=\"javascript:void(0);\" class=\"navIcon\""
+                 " onclick=\"navFunction()\">&#8801;</a>")) + (
+                     Html("h1", html_escape(self.title_str),
+                          id="SiteTitle", inline=True)
+                     )
+        outerwrapperdiv += headerdiv
 
         header_note = self.report.options['headernote']
         if header_note:
@@ -1449,12 +1476,17 @@ class BasePage: # pylint: disable=C1001
         if (self.report.css == _("Basic-Blue") or
                 self.report.css == _("Visually Impaired")
            ) and self.report.navigation == "dropdown":
-            body += self.display_drop_menu()
+            outerwrapperdiv += self.display_drop_menu()
         else:
-            body += self.display_nav_links(title)
+            outerwrapperdiv += self.display_nav_links(title)
 
+        # message for Codacy :
+        # body is used in some modules to add functions like onload(),
+        # initialize(), ...
+        # some modules doesn't need that, so body is an unused variable
+        # in these modules.
         # return page, head, and body to its classes...
-        return page, head, body
+        return page, head, body, outerwrapperdiv
 
     def display_nav_links(self, currentsection):
         """
@@ -1465,7 +1497,7 @@ class BasePage: # pylint: disable=C1001
         # include repositories or not?
         inc_repos = True
         if (not self.report.inc_repository or
-                not len(self.r_db.get_repository_handles())):
+                not self.r_db.get_repository_handles()):
             inc_repos = False
 
         # create media pages...
@@ -1512,89 +1544,78 @@ class BasePage: # pylint: disable=C1001
         navs = ((url_text, nav_text)
                 for url_text, nav_text, cond in navs if cond)
         menu_items = [[url, text] for url, text in navs]
-
         number_items = len(menu_items)
-        num_cols = 10
-        num_rows = ((number_items // num_cols) + 1)
 
         # begin navigation menu division...
-        with Html("div", class_="wrapper",
+        with Html("div", class_="wrappernav",
                   id="nav", role="navigation") as navigation:
             with Html("div", class_="container") as container:
 
                 index = 0
-                for rows in range(num_rows):
-                    unordered = Html("ul", class_="menu", id="dropmenu")
+                unordered = Html("ul", class_="nav", id="dropmenu")
+                while index < number_items:
+                    url_fname, nav_text = menu_items[index]
+                    hyper = self.get_nav_menu_hyperlink(url_fname, nav_text)
 
-                    cols = 0
-                    while cols <= num_cols and index < number_items:
-                        url_fname, nav_text = menu_items[index]
+                    # Define 'currentsection' to correctly set navlink item
+                    # CSS id 'CurrentSection' for Navigation styling.
+                    # Use 'self.report.cur_fname' to determine
+                    # 'CurrentSection' for individual elements for
+                    # Navigation styling.
 
-                        if url_fname.startswith('http'):
-                            hyper = Html("a", nav_text, href=url_fname, title=nav_text, inline=True)
-                        else:
-                            hyper = self.get_nav_menu_hyperlink(url_fname, nav_text)
+                    # Figure out if we need <li class = "CurrentSection">
+                    # or just <li>
 
-                        # Define 'currentsection' to correctly set navlink item
-                        # CSS id 'CurrentSection' for Navigation styling.
-                        # Use 'self.report.cur_fname' to determine
-                        # 'CurrentSection' for individual elements for
-                        # Navigation styling.
-
-                        # Figure out if we need <li class = "CurrentSection">
-                        # or just <li>
-
-                        check_cs = False
-                        if nav_text == currentsection:
+                    check_cs = False
+                    if nav_text == currentsection:
+                        check_cs = True
+                    elif nav_text == _("Surnames"):
+                        if "srn" in self.report.cur_fname:
                             check_cs = True
-                        elif nav_text == _("Surnames"):
-                            if "srn" in self.report.cur_fname:
-                                check_cs = True
-                            elif _("Surnames") in currentsection:
-                                check_cs = True
-                        elif nav_text == _("Individuals"):
-                            if "ppl" in self.report.cur_fname:
-                                check_cs = True
-                        elif nav_text == _("Families"):
-                            if "fam" in self.report.cur_fname:
-                                check_cs = True
-                        elif nav_text == _("Sources"):
-                            if "src" in self.report.cur_fname:
-                                check_cs = True
-                        elif nav_text == _("Places"):
-                            if "plc" in self.report.cur_fname:
-                                check_cs = True
-                        elif nav_text == _("Events"):
-                            if "evt" in self.report.cur_fname:
-                                check_cs = True
-                        elif nav_text == _("Media"):
-                            if "img" in self.report.cur_fname:
-                                check_cs = True
-                        elif nav_text == _("Address Book"):
-                            if "addr" in self.report.cur_fname:
-                                check_cs = True
-                        temp_cs = 'class = "CurrentSection"'
-                        check_cs = temp_cs if check_cs else False
-                        if check_cs:
-                            unordered.extend(
-                                Html("li", hyper, attr=check_cs, inline=True)
-                            )
-                        else:
-                            unordered.extend(
-                                Html("li", hyper, inline=True)
-                            )
-                        index += 1
-                        cols += 1
+                        elif _("Surnames") in currentsection:
+                            check_cs = True
+                    elif nav_text == _("Individuals"):
+                        if "ppl" in self.report.cur_fname:
+                            check_cs = True
+                    elif nav_text == _("Families"):
+                        if "fam" in self.report.cur_fname:
+                            check_cs = True
+                    elif nav_text == _("Sources"):
+                        if "src" in self.report.cur_fname:
+                            check_cs = True
+                    elif nav_text == _("Places"):
+                        if "plc" in self.report.cur_fname:
+                            check_cs = True
+                    elif nav_text == _("Events"):
+                        if "evt" in self.report.cur_fname:
+                            check_cs = True
+                    elif nav_text == _("Media"):
+                        if "img" in self.report.cur_fname:
+                            check_cs = True
+                    elif nav_text == _("Address Book"):
+                        if "addr" in self.report.cur_fname:
+                            check_cs = True
+                    temp_cs = 'class = "CurrentSection"'
+                    check_cs = temp_cs if check_cs else False
+                    if check_cs:
+                        unordered.extend(
+                            Html("li", hyper, attr=check_cs, inline=True)
+                        )
+                    else:
+                        unordered.extend(
+                            Html("li", hyper, inline=True)
+                        )
+                    index += 1
 
-                    if rows == num_rows - 1:
-                        prv = Html('<a onclick="history.go(-1);">%s</a>' %
-                                   self._("Previous"))
-                        nxt = Html('<a onclick="history.go(+1);">%s</a>' %
-                                   self._("Next"))
-                        unordered.extend(Html("li", prv, inline=True))
-                        unordered.extend(Html("li", nxt, inline=True))
-                    container += unordered
-                navigation += container
+                if self.prevnext:
+                    prv = Html('<a onclick="history.go(-1);">%s</a>' %
+                               self._("Previous"))
+                    nxt = Html('<a onclick="history.go(+1);">%s</a>' %
+                               self._("Next"))
+                    unordered.extend(Html("li", prv, inline=True))
+                    unordered.extend(Html("li", nxt, inline=True))
+                container += unordered
+            navigation += container
         return navigation
 
     def display_drop_menu(self):
@@ -1604,7 +1625,7 @@ class BasePage: # pylint: disable=C1001
         # include repositories or not?
         inc_repos = True
         if (not self.report.inc_repository or
-                not len(self.r_db.get_repository_handles())):
+                not self.r_db.get_repository_handles()):
             inc_repos = False
 
         # create media pages...
@@ -1674,7 +1695,7 @@ class BasePage: # pylint: disable=C1001
                 # add personal column
                 self.get_column_data(unordered, personal, self._("Personal"))
 
-                if len(navs1):
+                if navs1:
                     for url_fname, nav_text in navs1:
                         unordered.extend(
                             Html("li", self.get_nav_menu_hyperlink(url_fname,
@@ -1695,9 +1716,10 @@ class BasePage: # pylint: disable=C1001
             navigation += container
         return navigation
 
-    def add_image(self, option_name, height=0):
+    def add_image(self, option_name, head, height=0):
         """
         Will add an image (if present) to the page
+        If this image contains regions, try to add them.
 
         @param: option_name -- The name of the report option
         @param: height      -- Height of the image
@@ -1707,25 +1729,70 @@ class BasePage: # pylint: disable=C1001
             obj = self.r_db.get_media_from_gramps_id(pic_id)
             if obj is None:
                 return None
+            # get media rectangles
+            _region_items = self.media_ref_rect_regions(obj.get_handle(),
+                                                        linkurl=self.uplink)
+
+            # if there are media rectangle regions, attach behaviour style sheet
+            if _region_items:
+                fname = "/".join(["css", "behaviour.css"])
+                url = self.report.build_url_fname(fname, None, self.uplink)
+                head += Html("link", href=url, type="text/css",
+                             media="screen", rel="stylesheet")
             mime_type = obj.get_mime_type()
             if mime_type and mime_type.startswith("image"):
                 try:
 
-                    newpath, thumb_path = self.report.prepare_copy_media(obj)
+                    newpath, dummy_tpath = self.report.prepare_copy_media(obj)
                     self.report.copy_file(media_path_full(
                         self.r_db, obj.get_path()), newpath)
 
                     # begin image
-                    image = Html("img")
-                    image.attr = ''
-                    if height:
-                        image.attr += 'height = "%d"'  % height
+                    with Html("div", id="GalleryDisplay",
+                              style='width: auto; height: auto') as image:
+                        if _region_items:
+                            # add all regions and links to persons
+                            regions = Html("ol", class_="RegionBox")
+                            while _region_items:
+                                (name, coord_x, coord_y,
+                                 width, height, linkurl
+                                ) = _region_items.pop()
+                                regions += Html(
+                                    "li",
+                                    style="left:%d%%; "
+                                          "top:%d%%; "
+                                          "width:%d%%; "
+                                          "height:%d%%;" % (
+                                              coord_x, coord_y,
+                                              width, height)) + (
+                                                  Html("a", name,
+                                                       href=linkurl)
+                                                  )
+                            image += regions
 
-                    descr = html_escape(obj.get_description())
-                    newpath = self.report.build_url_fname(newpath)
-                    image.attr += ' src = "%s" alt = "%s"' % (newpath, descr)
+                        # add image
+                        imag = Html("img")
+                        imag.attr = ''
+                        if height:
+                            imag.attr += 'height = "%d"'  % height
 
-                    # return an image
+                        descr = html_escape(obj.get_description())
+                        newpath = self.report.build_url_fname(newpath)
+                        imag.attr += ' src = "%s" alt = "%s"' % (newpath, descr)
+                        fname = self.report.build_url_fname(obj.get_handle(),
+                                                            "img",
+                                                            False) + self.ext
+                        #image += imag
+                        inc_gallery = self.report.options['gallery']
+                        if not self.create_thumbs_only and inc_gallery:
+                            img_link = Html("a", href=fname, title=descr) + (
+                                Html("img", src=newpath, alt=descr))
+                        else:
+                            # We can't show the image html page.
+                            # This page doesn't exist.
+                            img_link = Html("img", src=newpath, alt=descr)
+                        image += img_link
+
                     return image
 
                 except (IOError, OSError) as msg:
@@ -1735,7 +1802,7 @@ class BasePage: # pylint: disable=C1001
         # no image to return
         return None
 
-    def media_ref_rect_regions(self, handle):
+    def media_ref_rect_regions(self, handle, linkurl=True):
         """
         Gramps feature #2634 -- attempt to highlight subregions in media
         objects and link back to the relevant web page.
@@ -1771,7 +1838,8 @@ class BasePage: # pylint: disable=C1001
                                  self._("Unknown")
                                 )
                         _linkurl = self.report.build_url_fname_html(_obj.handle,
-                                                                    "ppl", True)
+                                                                    "ppl",
+                                                                    linkurl)
             elif classname == "Family":
                 _obj = self.r_db.get_family_from_handle(newhandle)
                 partner1_handle = _obj.get_father_handle()
@@ -1890,7 +1958,7 @@ class BasePage: # pylint: disable=C1001
                                                 usedescr=False)
                 else:
 
-                    real_path, newpath = self.report.prepare_copy_media(photo)
+                    dummy_rpath, newpath = self.report.prepare_copy_media(photo)
                     newpath = self.report.build_url_fname(newpath, uplink=True)
 
                     # FIXME: There doesn't seem to be any point in highlighting
@@ -1901,14 +1969,15 @@ class BasePage: # pylint: disable=C1001
                     # probably too small to see, and third, on the thumbnail,
                     # the link is shown above the image (which is pretty
                     # useless!)
-                    _region_items = self.media_ref_rect_regions(photo_handle)
-                    if len(_region_items):
+                    _region_items = self.media_ref_rect_regions(photo_handle,
+                                                                linkurl=False)
+                    if _region_items:
                         with Html("div", id="GalleryDisplay") as mediadisplay:
                             snapshot += mediadisplay
 
                             ordered = Html("ol", class_="RegionBox")
                             mediadisplay += ordered
-                            while len(_region_items):
+                            while _region_items:
                                 (name, coord_x, coord_y,
                                  width, height, linkurl) = _region_items.pop()
                                 ordered += Html("li",
@@ -2264,47 +2333,6 @@ class BasePage: # pylint: disable=C1001
         # return section to its caller
         return section
 
-    def display_references(self, handlelist,
-                           uplink=False):
-        """
-        Display references for the current objects
-
-        @param: handlelist -- List of handles
-        @param: uplink     -- If True, then "../../../" is inserted in front of
-                              the result.
-        """
-        if not handlelist:
-            return None
-
-        # begin references division and title
-        with Html("div", class_="subsection", id="references") as section:
-            section += Html("h4", self._("References"), inline=True)
-
-            ordered = Html("ol")
-            section += ordered
-            sortlist = sorted(handlelist,
-                              key=lambda x: self.rlocale.sort_key(x[1]))
-
-            for (path, name, gid) in sortlist:
-                list_html = Html("li")
-                ordered += list_html
-
-                name = name or self._("Unknown")
-                if not self.noid and gid != "":
-                    gid_html = Html("span", " [%s]" % gid, class_="grampsid",
-                                    inline=True)
-                else:
-                    gid_html = "" # pylint: disable=redefined-variable-type
-
-                if path != "":
-                    url = self.report.build_url_fname(path, None, self.uplink)
-                    list_html += Html("a", href=url) + name + gid_html
-                else:
-                    list_html += name + str(gid_html)
-
-        # return references division to its caller
-        return section
-
     def family_map_link(self, handle, url):
         """
         Creates a link to the family map
@@ -2312,6 +2340,7 @@ class BasePage: # pylint: disable=C1001
         @param: handle -- The family handle
         @param: url    -- url to be linked
         """
+        dummy_handle = handle
         return Html("a", self._("Family Map"), href=url,
                     title=self._("Family Map"), class_="familymap", inline=True)
 
@@ -2321,9 +2350,9 @@ class BasePage: # pylint: disable=C1001
 
         @param: partner        -- The partner
         @param: family         -- The family
-        @param: place_lat_long -- For use in Family Map Pages. This will be None
-                                  if called from Family pages, which do not
-                                  create a Family Map
+        @param: place_lat_long -- For use in Family Map Pages. This will be
+                                  None if called from Family pages, which do
+                                  not create a Family Map
         """
         gender = partner.get_gender()
         reltype = family.get_relationship()
@@ -2381,16 +2410,16 @@ class BasePage: # pylint: disable=C1001
         """
         creates a link for a person. If a page is generated for the person, a
         hyperlink is created, else just the name of the person. The returned
-        vale will be an Html object if a hyperlink is generated, otherwise just
-        a string
+        vale will be an Html object if a hyperlink is generated, otherwise
+        just a string
 
         @param: person_handle -- Person in database
-        @param: uplink        -- If True, then "../../../" is inserted in front
-                                 of the result
-        @param: person        -- Person object. This does not need to be passed.
-                                 It should be passed if the person object has
-                                 already been retrieved, as it will be used to
-                                 improve performance
+        @param: uplink        -- If True, then "../../../" is inserted in
+                                 front of the result
+        @param: person        -- Person object. This does not need to be
+                                 passed. It should be passed if the person
+                                 object has already been retrieved, as it
+                                 will be used to improve performance
         """
         result = self.report.obj_dict.get(Person).get(person_handle)
 
@@ -2420,7 +2449,7 @@ class BasePage: # pylint: disable=C1001
             gid_html = Html("span", " [%s]" % gid, class_="grampsid",
                             inline=True)
         else:
-            gid_html = "" # pylint: disable=redefined-variable-type
+            gid_html = ""
 
         if link != "":
             url = self.report.build_url_fname(link, uplink=uplink)
@@ -2500,8 +2529,8 @@ class BasePage: # pylint: disable=C1001
         @param: handle -- repository handle from report database
         @param: name   -- repository title
         @param: gid    -- gramps id
-        @param: uplink -- If True, then "../../../" is inserted in front of the
-                          result.
+        @param: uplink -- If True, then "../../../" is inserted in front of
+                          the result.
         """
         url = self.report.build_url_fname_html(handle, "plc", uplink)
 
@@ -2521,7 +2550,7 @@ class BasePage: # pylint: disable=C1001
         @param: table -- Table from Placedetail
         """
         if place in self.report.visited:
-            return
+            return None
         self.report.visited.append(place)
         # add table body
         tbody = Html("tbody")
@@ -2589,12 +2618,13 @@ class BasePage: # pylint: disable=C1001
         altloc = place.get_alternative_names()
         if altloc:
             tbody += Html("tr") + Html("td", "&nbsp;", colspan=2)
+            date_msg = self._("Date range in which the name is valid.")
             trow = Html("tr") + (
                 Html("th", self._("Alternate Names"), colspan=1,
                      class_="ColumnAttribute", inline=True),
                 Html("th", self._("Language"), colspan=1,
                      class_="ColumnAttribute", inline=True),
-                Html("th", self._("Date range in which the name is valid."), colspan=1,
+                Html("th", date_msg, colspan=1,
                      class_="ColumnAttribute", inline=True),
             )
             tbody += trow
@@ -2653,11 +2683,12 @@ class BasePage: # pylint: disable=C1001
                         placeref = None
                         for placeref in c_place.get_placeref_list():
                             if placeref.ref == place.handle:
-                                eplace = self.r_db.get_place_from_handle(placeref.ref)
+                                gpfh = self.r_db.get_place_from_handle
+                                eplace = gpfh(placeref.ref)
                                 if not eplace:
-                                   continue
-                                table += Html("tr") + Html("td",
-                                            c_place.get_name().get_value())
+                                    continue
+                                place_name = c_place.get_name().get_value()
+                                table += Html("tr") + Html("td", place_name)
 
             # enclosed by
             with Html("div", class_='subsection encloses') as encloses:
@@ -2673,9 +2704,9 @@ class BasePage: # pylint: disable=C1001
                         visited.append(placeref.ref)
                         pplace = self.r_db.get_place_from_handle(placeref.ref)
                         if not pplace:
-                           continue
-                        table += Html("tr") + Html("td",
-                                    pplace.get_name().get_value())
+                            continue
+                        place_name = pplace.get_name().get_value()
+                        table += Html("tr") + Html("td", place_name)
 
         # enclosed by
         tbody += Html("tr") + Html("td", "&nbsp;")
@@ -2727,7 +2758,8 @@ class BasePage: # pylint: disable=C1001
         # return place table to its callers
         return table
 
-    def repository_link(self, repository_handle, name, gid=None, uplink=False):
+    def repository_link(self, repository_handle, name,
+                        gid=None, uplink=False):
         """
         Returns a hyperlink for repository links
 
@@ -2753,7 +2785,7 @@ class BasePage: # pylint: disable=C1001
 
         @param: repo_ref_list -- The list of repositories references
         """
-        if len(repo_ref_list) == 0:
+        if not repo_ref_list:
             return None
         # Repository list division...
         with Html("div", class_="subsection",
@@ -2830,7 +2862,8 @@ class BasePage: # pylint: disable=C1001
 
                     trow = Html("tr")
                     if len(table) == 3:
-                        # append description row to tbody element of dump_place
+                        # append description row to tbody element
+                        # of dump_place
                         table[-2] += trow
                     else:
                         # append description row to table element
@@ -2866,7 +2899,9 @@ class BasePage: # pylint: disable=C1001
             elif obj[2] == "Family":
                 role = "1"
             else:
-                if len(obj[2].split('-')) > 1:
+                if self.reference_sort:
+                    role = obj[2] # name
+                elif len(obj[2].split('-')) > 1:
                     role = obj[2] # date in ISO format
                 else:
                     role = "3"
@@ -2880,12 +2915,14 @@ class BasePage: # pylint: disable=C1001
             name = self.report.obj_dict[bkref_class][bkref_handle][1]
             gid = self.report.obj_dict[bkref_class][bkref_handle][2]
             if role != "":
-                if len(role.split('-')) > 1:
+                if self.reference_sort:
+                    role = ""
+                elif len(role.split('-')) > 1:
                     # conver ISO date to Date for translation.
                     if len(role.split(' - ')) > 1:
-                        (d1, d2) = role.split(' - ')
-                        role = self._("between") + " " + d1 + " "
-                        role += self._("and") + " " + d2
+                        (date1, date2) = role.split(' - ')
+                        role = self._("between") + " " + date1 + " "
+                        role += self._("and") + " " + date2
                     date = _dp.parse(role)
                     date = self.rlocale.get_date(date)
                     role = " (%s) " % date
@@ -2903,7 +2940,7 @@ class BasePage: # pylint: disable=C1001
                     gid_html = Html("span", " [%s]" % gid,
                                     class_="grampsid", inline=True)
                 else:
-                    gid_html = "" # pylint: disable=redefined-variable-type
+                    gid_html = ""
                 list_html += Html("a", href=url) + name + role + gid_html
         return ordered
 
@@ -2925,9 +2962,9 @@ class BasePage: # pylint: disable=C1001
             section += ordered
         return section
 
-    # -------------------------------------------------------------------------
+    # -----------------------------------------------------------------------
     #              # Web Page Fortmatter and writer
-    # -------------------------------------------------------------------------
+    # -----------------------------------------------------------------------
     def xhtml_writer(self, htmlinstance, output_file, sio, date):
         """
         Will format, write, and close the file
