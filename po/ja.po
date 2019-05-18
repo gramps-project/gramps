@@ -9870,27 +9870,27 @@ msgid "gender unknown|ex-spouse"
 msgstr "性別不明|前配偶者"
 
 #: ../gramps/gen/relationship.py:2184
-msgid "unmarried|husband"
+msgid "male,unmarried|partner"
 msgstr "未婚|夫"
 
 #: ../gramps/gen/relationship.py:2186
-msgid "unmarried|wife"
+msgid "female,unmarried|partner"
 msgstr "未婚|妻"
 
 #: ../gramps/gen/relationship.py:2188
-msgid "gender unknown,unmarried|spouse"
+msgid "gender unknown,unmarried|partner"
 msgstr "性別不明,未婚|配偶者"
 
 #: ../gramps/gen/relationship.py:2191
-msgid "unmarried|ex-husband"
+msgid "male,unmarried|ex-partner"
 msgstr "未婚|前夫"
 
 #: ../gramps/gen/relationship.py:2193
-msgid "unmarried|ex-wife"
+msgid "female,unmarried|ex-partner"
 msgstr "未婚|前妻"
 
 #: ../gramps/gen/relationship.py:2195
-msgid "gender unknown,unmarried|ex-spouse"
+msgid "gender unknown,unmarried|ex-partner"
 msgstr "性別不明,未婚|前配偶者"
 
 #: ../gramps/gen/relationship.py:2198

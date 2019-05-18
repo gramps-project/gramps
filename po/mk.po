@@ -10541,30 +10541,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "пол непознат|сопружник"
 
 #: ../gramps/gen/relationship.py:2184
-msgid "unmarried|husband"
+msgid "male,unmarried|partner"
 msgstr "немажен|сопруг"
 
 #: ../gramps/gen/relationship.py:2186
-msgid "unmarried|wife"
+msgid "female,unmarried|partner"
 msgstr "немажена|сопруга"
 
 #: ../gramps/gen/relationship.py:2188
-msgid "gender unknown,unmarried|spouse"
+msgid "gender unknown,unmarried|partner"
 msgstr "пол непознат, немажен|сопружник"
 
 #: ../gramps/gen/relationship.py:2191
 #, fuzzy
-msgid "unmarried|ex-husband"
+msgid "male,unmarried|ex-partner"
 msgstr "немажен|сопруг"
 
 #: ../gramps/gen/relationship.py:2193
 #, fuzzy
-msgid "unmarried|ex-wife"
+msgid "female,unmarried|ex-partner"
 msgstr "немажена|сопруга"
 
 #: ../gramps/gen/relationship.py:2195
 #, fuzzy
-msgid "gender unknown,unmarried|ex-spouse"
+msgid "gender unknown,unmarried|ex-partner"
 msgstr "пол непознат, немажен|сопружник"
 
 #: ../gramps/gen/relationship.py:2198
