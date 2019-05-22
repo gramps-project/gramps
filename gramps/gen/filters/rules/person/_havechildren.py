@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2019  Matthias Kemmer
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,8 +34,11 @@ _ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 from .. import Rule
 
+
 #-------------------------------------------------------------------------
+#
 # "People with children"
+#
 #-------------------------------------------------------------------------
 class HaveChildren(Rule):
     """People with children"""
@@ -43,7 +47,10 @@ class HaveChildren(Rule):
     description = _("Matches people who have children")
     category = _('Family filters')
 
-    def apply(self,db,person):
+    def apply(self, db, person):
+        have_children = False
         for family_handle in person.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
-            return (family is not None) and len(family.get_child_ref_list()) > 0
+            if (family is not None) and len(family.get_child_ref_list()) > 0:
+                have_children = True
+        return have_children
