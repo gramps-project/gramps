@@ -48,9 +48,8 @@ class HaveChildren(Rule):
     category = _('Family filters')
 
     def apply(self, db, person):
-        have_children = False
         for family_handle in person.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
-            if (family is not None) and len(family.get_child_ref_list()) > 0:
-                have_children = True
-        return have_children
+            if family is not None and family.get_child_ref_list():
+                return True
+        return False
