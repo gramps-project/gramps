@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-17 13:21+0300\n"
-"PO-Revision-Date: 2019-05-18 11:11+0300\n"
+"POT-Creation-Date: 2019-06-04 11:02+0300\n"
+"PO-Revision-Date: 2019-06-04 11:26+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -685,7 +685,7 @@ msgstr "Lukittu %s toimesta"
 #: ../gramps/plugins/gramplet/relativegramplet.py:137
 #: ../gramps/plugins/graph/gvfamilylines.py:287
 #: ../gramps/plugins/graph/gvhourglass.py:427
-#: ../gramps/plugins/graph/gvrelgraph.py:940
+#: ../gramps/plugins/graph/gvrelgraph.py:948
 #: ../gramps/plugins/lib/libprogen.py:1057
 #: ../gramps/plugins/lib/maps/geography.py:802
 #: ../gramps/plugins/lib/maps/geography.py:812
@@ -934,7 +934,7 @@ msgstr "   Käytettävissä olevat valinnat:"
 #: ../gramps/plugins/gramplet/whatsnext.py:441
 #: ../gramps/plugins/gramplet/whatsnext.py:474
 #: ../gramps/plugins/gramplet/whatsnext.py:496
-#: ../gramps/plugins/graph/gvrelgraph.py:705
+#: ../gramps/plugins/graph/gvrelgraph.py:707
 #: ../gramps/plugins/textreport/descendreport.py:270
 #: ../gramps/plugins/textreport/descendreport.py:280
 #: ../gramps/plugins/textreport/descendreport.py:286
@@ -1934,7 +1934,7 @@ msgstr "Fri"
 msgid "Sat"
 msgstr "Sat"
 
-#: ../gramps/gen/db/base.py:1816 ../gramps/gui/widgets/fanchart.py:1826
+#: ../gramps/gen/db/base.py:1816 ../gramps/gui/widgets/fanchart.py:2077
 msgid "Add child to family"
 msgstr "Lisää perheeseen lapsi"
 
@@ -2461,7 +2461,7 @@ msgstr "VIRHE: suodinta %s ei voi ladata virheettömästi. Muokkaa suodinta!"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1093
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1107
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1121
-#: ../gramps/plugins/graph/gvrelgraph.py:799
+#: ../gramps/plugins/graph/gvrelgraph.py:801
 #: ../gramps/plugins/quickview/quickview.gpr.py:130
 #: ../gramps/plugins/textreport/birthdayreport.py:473
 #: ../gramps/plugins/textreport/familygroup.py:714
@@ -4534,7 +4534,7 @@ msgstr "Poimii henkilön kahteen tai useampaan kertaan olevat esivanhemmat"
 #: ../gramps/plugins/gramplet/statsgramplet.py:149
 #: ../gramps/plugins/graph/gvfamilylines.py:283
 #: ../gramps/plugins/graph/gvhourglass.py:423
-#: ../gramps/plugins/graph/gvrelgraph.py:936
+#: ../gramps/plugins/graph/gvrelgraph.py:944
 #: ../gramps/plugins/webreport/statistics.py:124
 #: ../gramps/plugins/webreport/statistics.py:189
 msgid "Females"
@@ -4608,7 +4608,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/statsgramplet.py:146
 #: ../gramps/plugins/graph/gvfamilylines.py:279
 #: ../gramps/plugins/graph/gvhourglass.py:419
-#: ../gramps/plugins/graph/gvrelgraph.py:932
+#: ../gramps/plugins/graph/gvrelgraph.py:940
 #: ../gramps/plugins/webreport/statistics.py:122
 #: ../gramps/plugins/webreport/statistics.py:187
 msgid "Males"
@@ -6785,7 +6785,7 @@ msgid "Mother"
 msgstr "Äiti"
 
 #. Go over children and build their menu
-#: ../gramps/gen/lib/family.py:161 ../gramps/gui/widgets/fanchart.py:1709
+#: ../gramps/gen/lib/family.py:161 ../gramps/gui/widgets/fanchart.py:1957
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:855
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:869
 #: ../gramps/plugins/textreport/familygroup.py:646
@@ -7474,7 +7474,7 @@ msgstr "Tapahtumaviitteet"
 
 #: ../gramps/gen/lib/person.py:199 ../gramps/plugins/graph/gvfamilylines.py:292
 #: ../gramps/plugins/graph/gvhourglass.py:432
-#: ../gramps/plugins/graph/gvrelgraph.py:946
+#: ../gramps/plugins/graph/gvrelgraph.py:954
 #: ../gramps/plugins/quickview/filterbyname.py:94
 #: ../gramps/plugins/quickview/filterbyname.py:119
 #: ../gramps/plugins/textreport/indivcomplete.py:641
@@ -9018,7 +9018,7 @@ msgstr "Lisätäänkö (ja minne) Gramps ID"
 #: ../gramps/gen/plug/report/stdoptions.py:328
 #: ../gramps/gui/viewmanager.py:1723
 #: ../gramps/plugins/graph/gvfamilylines.py:218
-#: ../gramps/plugins/graph/gvrelgraph.py:851
+#: ../gramps/plugins/graph/gvrelgraph.py:859
 #: ../gramps/plugins/textreport/detancestralreport.py:900
 #: ../gramps/plugins/textreport/detdescendantreport.py:1085
 #: ../gramps/plugins/textreport/familygroup.py:752
@@ -10513,8 +10513,8 @@ msgstr "Esimerkki"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:115
 #: ../gramps/gui/editors/editfamily.py:195
 #: ../gramps/gui/plug/report/_bookdialog.py:665 ../gramps/gui/views/tags.py:458
-#: ../gramps/gui/widgets/fanchart.py:1777
-#: ../gramps/gui/widgets/fanchart.py:1819
+#: ../gramps/gui/widgets/fanchart.py:2028
+#: ../gramps/gui/widgets/fanchart.py:2070
 #: ../gramps/plugins/view/pedigreeview.py:1709
 msgid "_Add"
 msgstr "_Lisää"
@@ -10529,7 +10529,7 @@ msgstr "_Lisää"
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:116
 #: ../gramps/gui/glade/editlink.glade.h:11
 #: ../gramps/gui/plug/report/_bookdialog.py:639 ../gramps/gui/views/tags.py:459
-#: ../gramps/gui/widgets/fanchart.py:1574
+#: ../gramps/gui/widgets/fanchart.py:1817
 #: ../gramps/plugins/view/pedigreeview.py:1744
 #: ../gramps/plugins/view/pedigreeview.py:1972
 msgid "_Edit"
@@ -11064,7 +11064,7 @@ msgstr ""
 "Tämä välilehti antaa sinulle mahdollisuuden käyttää yhtä kirjasinta, joka "
 "näyttää kaikki sukututkimussymbolit\n"
 "\n"
-"Jos valitset \"Käytä symboleja\" -valintaruudun, Gramps käyttää valittua "
+"Jos valitset \"Käytä symboleja\" valintaruudun, Gramps käyttää valittua "
 "kirjasinta, jos se on olemassa."
 
 # 15052019
@@ -11089,7 +11089,7 @@ msgid ""
 "before you can continue (10 minutes or more). \n"
 "If you cancel the process, nothing will be changed."
 msgstr ""
-"Ole varovainen, jos napsautat \"Yritä löytää\" -painiketta, se voi kestää "
+"Ole varovainen, jos napsautat \"Yritä löytää\" painiketta, se voi kestää "
 "jonkin aikaa, ennen kuin voit jatkaa (10 minuuttia tai enemmän).\n"
 "Jos peruutat prosessin, mitään ei muuteta."
 
@@ -12965,7 +12965,7 @@ msgstr "%(mother)s [%(gramps_id)s]"
 msgid "manual|Link_Editor"
 msgstr "Linkkimuokkain"
 
-#: ../gramps/gui/editors/editlink.py:87 ../gramps/gui/editors/editlink.py:238
+#: ../gramps/gui/editors/editlink.py:87 ../gramps/gui/editors/editlink.py:239
 msgid "Link Editor"
 msgstr "Linkkimuokkain"
 
@@ -16621,7 +16621,7 @@ msgstr "Sulauta henkilöt"
 
 #. Go over parents and build their menu
 #: ../gramps/gui/merge/mergeperson.py:224
-#: ../gramps/gui/widgets/fanchart.py:1744
+#: ../gramps/gui/widgets/fanchart.py:1994
 #: ../gramps/plugins/quickview/all_relations.py:305
 #: ../gramps/plugins/tool/notrelated.py:128
 #: ../gramps/plugins/view/pedigreeview.py:1872
@@ -16645,7 +16645,7 @@ msgstr "Vanhempia ei löytynyt"
 
 #. Go over spouses and build their menu
 #: ../gramps/gui/merge/mergeperson.py:238
-#: ../gramps/gui/widgets/fanchart.py:1614
+#: ../gramps/gui/widgets/fanchart.py:1857
 #: ../gramps/plugins/textreport/kinshipreport.py:133
 #: ../gramps/plugins/view/pedigreeview.py:1759
 msgid "Spouses"
@@ -17502,7 +17502,7 @@ msgstr "Tyyli"
 #: ../gramps/plugins/drawreport/timeline.py:414
 #: ../gramps/plugins/graph/gvfamilylines.py:120
 #: ../gramps/plugins/graph/gvhourglass.py:364
-#: ../gramps/plugins/graph/gvrelgraph.py:795
+#: ../gramps/plugins/graph/gvrelgraph.py:797
 #: ../gramps/plugins/textreport/alphabeticalindex.py:93
 #: ../gramps/plugins/textreport/ancestorreport.py:288
 #: ../gramps/plugins/textreport/birthdayreport.py:471
@@ -18011,12 +18011,12 @@ msgstr "Kirjoitussuojattu"
 # 15052019
 #: ../gramps/gui/viewmanager.py:1023
 msgid "Gramps had a problem the last time it was run."
-msgstr "Grampsissaa oli ongelma viimeksi, kun sitä ajettiin."
+msgstr "Grampsissa oli ongelma viimeksi, kun sitä ajettiin."
 
 # 15052019
 #: ../gramps/gui/viewmanager.py:1024
 msgid "Would you like to run the Check and Repair tool?"
-msgstr "Haluatko suorittaa Tarkista ja korjaa -työkalun?"
+msgstr "Haluatko suorittaa Tarkista ja korjaa työkalun?"
 
 #: ../gramps/gui/viewmanager.py:1189
 msgid "Autobackup..."
@@ -18150,7 +18150,7 @@ msgstr "Kirjanmerkit_ikkuna"
 #: ../gramps/plugins/view/citationtreeview.py:322
 #: ../gramps/plugins/view/eventview.py:194
 #: ../gramps/plugins/view/familyview.py:153
-#: ../gramps/plugins/view/fanchartview.py:183
+#: ../gramps/plugins/view/fanchartview.py:186
 #: ../gramps/plugins/view/geoclose.py:110
 #: ../gramps/plugins/view/geoevents.py:100
 #: ../gramps/plugins/view/geofamclose.py:108
@@ -18414,22 +18414,22 @@ msgstr "Laajenna tätä osaa"
 msgid "Collapse this section"
 msgstr "Supista tätä osaa"
 
-#: ../gramps/gui/widgets/fanchart.py:1582 ../gramps/plugins/view/relview.py:966
+#: ../gramps/gui/widgets/fanchart.py:1825 ../gramps/plugins/view/relview.py:966
 msgid "Edit family"
 msgstr "Muokkaa perhettä"
 
-#: ../gramps/gui/widgets/fanchart.py:1598 ../gramps/plugins/view/relview.py:967
+#: ../gramps/gui/widgets/fanchart.py:1841 ../gramps/plugins/view/relview.py:967
 msgid "Reorder families"
 msgstr "Järjestä perheet uudelleen"
 
-#: ../gramps/gui/widgets/fanchart.py:1604
+#: ../gramps/gui/widgets/fanchart.py:1847
 #: ../gramps/plugins/view/pedigreeview.py:1749
 #: ../gramps/plugins/view/pedigreeview.py:1977
 msgid "_Copy"
 msgstr "_Kopioi"
 
 #. Go over siblings and build their menu
-#: ../gramps/gui/widgets/fanchart.py:1648
+#: ../gramps/gui/widgets/fanchart.py:1891
 #: ../gramps/plugins/quickview/quickview.gpr.py:319
 #: ../gramps/plugins/view/pedigreeview.py:1793
 #: ../gramps/plugins/view/relview.py:1068
@@ -18437,20 +18437,20 @@ msgid "Siblings"
 msgstr "Sisarukset"
 
 #. Go over parents and build their menu
-#: ../gramps/gui/widgets/fanchart.py:1786
+#: ../gramps/gui/widgets/fanchart.py:2037
 #: ../gramps/plugins/view/pedigreeview.py:1920
 msgid "Related"
 msgstr "Sukua"
 
-#: ../gramps/gui/widgets/fanchart.py:1834
+#: ../gramps/gui/widgets/fanchart.py:2085
 msgid "Add partner to person"
 msgstr "Lisää kumppani henkilölle"
 
-#: ../gramps/gui/widgets/fanchart.py:1841
+#: ../gramps/gui/widgets/fanchart.py:2092
 msgid "Add a person"
 msgstr "Lisää henkilö"
 
-#: ../gramps/gui/widgets/fanchart.py:1916
+#: ../gramps/gui/widgets/fanchart.py:2182
 #: ../gramps/plugins/view/relview.py:1709
 msgid "Add Child to Family"
 msgstr "Lisää perheeseen lapsi"
@@ -19021,7 +19021,7 @@ msgstr "Esivanhempien kaavio %s"
 #: ../gramps/plugins/drawreport/descendtree.py:689
 #: ../gramps/plugins/drawreport/fanchart.py:194
 #: ../gramps/plugins/graph/gvhourglass.py:109
-#: ../gramps/plugins/graph/gvrelgraph.py:182
+#: ../gramps/plugins/graph/gvrelgraph.py:184
 #: ../gramps/plugins/textreport/ancestorreport.py:117
 #: ../gramps/plugins/textreport/birthdayreport.py:115
 #: ../gramps/plugins/textreport/descendreport.py:453
@@ -19052,7 +19052,7 @@ msgstr "Tulostan sukupuuta..."
 #: ../gramps/plugins/drawreport/calendarreport.py:472
 #: ../gramps/plugins/drawreport/fanchart.py:689
 #: ../gramps/plugins/graph/gvhourglass.py:366
-#: ../gramps/plugins/graph/gvrelgraph.py:805
+#: ../gramps/plugins/graph/gvrelgraph.py:807
 #: ../gramps/plugins/textreport/ancestorreport.py:290
 #: ../gramps/plugins/textreport/descendreport.py:522
 #: ../gramps/plugins/textreport/detancestralreport.py:831
@@ -19247,7 +19247,7 @@ msgstr "Otetaanko mukaan tyhjät sivut."
 #: ../gramps/plugins/drawreport/timeline.py:435
 #: ../gramps/plugins/graph/gvfamilylines.py:169
 #: ../gramps/plugins/graph/gvhourglass.py:402
-#: ../gramps/plugins/graph/gvrelgraph.py:833
+#: ../gramps/plugins/graph/gvrelgraph.py:841
 #: ../gramps/plugins/textreport/ancestorreport.py:310
 #: ../gramps/plugins/textreport/birthdayreport.py:500
 #: ../gramps/plugins/textreport/descendreport.py:557
@@ -19555,7 +19555,7 @@ msgstr "Valitse suodin kalenteriin tuleville henkilöille"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:473
 #: ../gramps/plugins/drawreport/fanchart.py:690
-#: ../gramps/plugins/graph/gvrelgraph.py:806
+#: ../gramps/plugins/graph/gvrelgraph.py:808
 #: ../gramps/plugins/textreport/ancestorreport.py:291
 #: ../gramps/plugins/textreport/descendreport.py:523
 #: ../gramps/plugins/textreport/detancestralreport.py:832
@@ -20937,9 +20937,9 @@ msgstr "Käytä"
 msgid "Double-click on a row to edit the selected event."
 msgstr "Kaksoisnapsauta riviä muokataksesi valittua tapahtumaa."
 
-#: ../gramps/plugins/gramplet/fanchart2waygramplet.py:86
-#: ../gramps/plugins/gramplet/fanchartdescgramplet.py:64
-#: ../gramps/plugins/gramplet/fanchartgramplet.py:67
+#: ../gramps/plugins/gramplet/fanchart2waygramplet.py:78
+#: ../gramps/plugins/gramplet/fanchartdescgramplet.py:65
+#: ../gramps/plugins/gramplet/fanchartgramplet.py:68
 msgid ""
 "Click to expand/contract person\n"
 "Right-click for options\n"
@@ -21988,8 +21988,8 @@ msgstr "Siirrä hiiren kohdistin valintojen linkkien päälle"
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:58
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:67
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:78
-#: ../gramps/plugins/view/fanchartdescview.py:263
-#: ../gramps/plugins/view/fanchartview.py:360
+#: ../gramps/plugins/view/fanchartdescview.py:283
+#: ../gramps/plugins/view/fanchartview.py:381
 msgid "Max generations"
 msgstr "Suurin sukupolvien lukumäärä"
 
@@ -22609,7 +22609,7 @@ msgid "Produces an hourglass graph using Graphviz."
 msgstr "Tuottaa tiimalasikaavion käyttäen Graphviz-ohjelmaa."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:81
-#: ../gramps/plugins/graph/gvrelgraph.py:205
+#: ../gramps/plugins/graph/gvrelgraph.py:207
 msgid "Relationship Graph"
 msgstr "Suhdekaavio"
 
@@ -22711,19 +22711,19 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:144
 #: ../gramps/plugins/graph/gvhourglass.py:380
-#: ../gramps/plugins/graph/gvrelgraph.py:810
+#: ../gramps/plugins/graph/gvrelgraph.py:812
 msgid "Arrowhead direction"
 msgstr "Nuolenpäiden suunta"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:147
 #: ../gramps/plugins/graph/gvhourglass.py:383
-#: ../gramps/plugins/graph/gvrelgraph.py:813
+#: ../gramps/plugins/graph/gvrelgraph.py:815
 msgid "Choose the direction that the arrows point."
 msgstr "Valitse mihin suuntaan nuolet osoittavat."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:150
 #: ../gramps/plugins/graph/gvhourglass.py:386
-#: ../gramps/plugins/graph/gvrelgraph.py:816
+#: ../gramps/plugins/graph/gvrelgraph.py:818
 msgid "Graph coloring"
 msgstr "Kaavion väritys"
 
@@ -22823,7 +22823,7 @@ msgid ""
 msgstr "Lisätäänkö lapsien määrä perheille, joilla on enemmän kuin 1 lapsi."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:246
-#: ../gramps/plugins/graph/gvrelgraph.py:896
+#: ../gramps/plugins/graph/gvrelgraph.py:904
 msgid "Include thumbnail images of people"
 msgstr "Lisää henkilöiden pikkukuvat"
 
@@ -22836,17 +22836,17 @@ msgid "Thumbnail location"
 msgstr "Pikkukuvan sijainti"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:255
-#: ../gramps/plugins/graph/gvrelgraph.py:903
+#: ../gramps/plugins/graph/gvrelgraph.py:911
 msgid "Above the name"
 msgstr "Nimen yläpuolella"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:256
-#: ../gramps/plugins/graph/gvrelgraph.py:904
+#: ../gramps/plugins/graph/gvrelgraph.py:912
 msgid "Beside the name"
 msgstr "Nimen vieressä"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:257
-#: ../gramps/plugins/graph/gvrelgraph.py:906
+#: ../gramps/plugins/graph/gvrelgraph.py:914
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "Minne pikkukuva sijoittuu suhteessa nimeen"
 
@@ -22874,25 +22874,25 @@ msgstr "Perhelinjoihin käytettävät värit."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:280
 #: ../gramps/plugins/graph/gvhourglass.py:420
-#: ../gramps/plugins/graph/gvrelgraph.py:933
+#: ../gramps/plugins/graph/gvrelgraph.py:941
 msgid "The color to use to display men."
 msgstr "Miehillä käytettävä väri."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:284
 #: ../gramps/plugins/graph/gvhourglass.py:424
-#: ../gramps/plugins/graph/gvrelgraph.py:937
+#: ../gramps/plugins/graph/gvrelgraph.py:945
 msgid "The color to use to display women."
 msgstr "Naisilla käytettävä väri."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:288
 #: ../gramps/plugins/graph/gvhourglass.py:428
-#: ../gramps/plugins/graph/gvrelgraph.py:942
+#: ../gramps/plugins/graph/gvrelgraph.py:950
 msgid "The color to use when the gender is unknown."
 msgstr "Väri henkilöille, joiden sukupuolta ei tunneta."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:293
 #: ../gramps/plugins/graph/gvhourglass.py:433
-#: ../gramps/plugins/graph/gvrelgraph.py:947
+#: ../gramps/plugins/graph/gvrelgraph.py:955
 msgid "The color to use to display families."
 msgstr "Perheillä käytettävä väri."
 
@@ -22998,7 +22998,7 @@ msgid "The number of generations of ancestors to include in the graph"
 msgstr "Enimmäismäärä sukupolvia esivanhemmille, jotka lisätään kaavioon"
 
 #: ../gramps/plugins/graph/gvhourglass.py:389
-#: ../gramps/plugins/graph/gvrelgraph.py:819
+#: ../gramps/plugins/graph/gvrelgraph.py:821
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
@@ -23008,18 +23008,18 @@ msgstr ""
 
 #. see bug report #2180
 #: ../gramps/plugins/graph/gvhourglass.py:394
-#: ../gramps/plugins/graph/gvrelgraph.py:825
+#: ../gramps/plugins/graph/gvrelgraph.py:827
 msgid "Use rounded corners"
 msgstr "Käytä pyöristettyjä nurkkia"
 
 #: ../gramps/plugins/graph/gvhourglass.py:396
-#: ../gramps/plugins/graph/gvrelgraph.py:826
+#: ../gramps/plugins/graph/gvrelgraph.py:828
 msgid "Use rounded corners to differentiate between women and men."
 msgstr "Käytä pyöristettyjä kulmia erilaistamaan naiset miehistä."
 
 #. ###############################
 #: ../gramps/plugins/graph/gvhourglass.py:416
-#: ../gramps/plugins/graph/gvrelgraph.py:929
+#: ../gramps/plugins/graph/gvrelgraph.py:937
 msgid "Graph Style"
 msgstr "Kaaviotyyli"
 
@@ -23052,73 +23052,82 @@ msgstr ""
 "Näytä Sosa / Sosa-Stradonitz / Ahnentafelin numero kaikkien muiden tietojen "
 "perusteella."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:206
+#: ../gramps/plugins/graph/gvrelgraph.py:208
 #: ../gramps/plugins/textreport/indivcomplete.py:834
 #: ../gramps/plugins/textreport/notelinkreport.py:103
 #: ../gramps/plugins/textreport/placereport.py:160
 msgid "Generating report"
 msgstr "Tuotetaan raporttia"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:801
+#: ../gramps/plugins/graph/gvrelgraph.py:803
 msgid "Determines what people are included in the graph"
 msgstr "Määrittää kaavioon lisättävät ihmiset"
 
+#. see bug report #11112
+#: ../gramps/plugins/graph/gvrelgraph.py:833
+msgid "Use hexagons"
+msgstr "Käytä kuusikulmioita"
+
+#: ../gramps/plugins/graph/gvrelgraph.py:834
+msgid "Use hexagons to differentiate those of unknown gender."
+msgstr "Käytä kuusikulmiota erottamaan tuntemattoman sukupuolen."
+
 #. ###############################
-#: ../gramps/plugins/graph/gvrelgraph.py:854
+#: ../gramps/plugins/graph/gvrelgraph.py:862
 msgid "Dates and/or Places"
 msgstr "Päivämäärät ja/tai paikat"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:855
+#: ../gramps/plugins/graph/gvrelgraph.py:863
 msgid "Do not include any dates or places"
 msgstr "Ei sisällä päivämääriä tai paikkoja"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:856
+#: ../gramps/plugins/graph/gvrelgraph.py:864
 msgid "Include (birth, marriage, death) dates, but no places"
 msgstr "Lisätään (syntymä-, avio- ja kuolinajat), mutta ei paikkoja"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:858
+#: ../gramps/plugins/graph/gvrelgraph.py:866
 msgid "Include (birth, marriage, death) dates, and places"
 msgstr "Lisätään (syntymä-, avio-, kuolinajat) ja paikat"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:860
+#: ../gramps/plugins/graph/gvrelgraph.py:868
 msgid "Include (birth, marriage, death) dates, and places if no dates"
 msgstr "Lisätään (syntymä-, avio-, kuolinajat) ja paikat ellei aikaa ole"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:862
+#: ../gramps/plugins/graph/gvrelgraph.py:870
 msgid "Include (birth, marriage, death) years, but no places"
 msgstr "Lisätään (syntymä-, avio- ja kuolinajat), mutta ei paikkoja"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:864
+#: ../gramps/plugins/graph/gvrelgraph.py:872
 msgid "Include (birth, marriage, death) years, and places"
 msgstr "Lisätään (syntymä-, avio-, kuolinvuodet) ja paikat"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:866
+#: ../gramps/plugins/graph/gvrelgraph.py:874
 msgid "Include (birth, marriage, death) places, but no dates"
 msgstr "Lisätään (syntymä-, avio- ja kuolinpaikat), mutta ei aikaa"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:868
+#: ../gramps/plugins/graph/gvrelgraph.py:876
 msgid "Include (birth, marriage, death) dates and places on same line"
 msgstr ""
 "Lisätään (syntymä, avioliitto, kuolema) päivämäärät ja paikat samalla rivillä"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:871
+#: ../gramps/plugins/graph/gvrelgraph.py:879
 msgid "Whether to include dates and/or places"
 msgstr "Lisätäänkö aikamäärät ja/tai paikat"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:874
+#: ../gramps/plugins/graph/gvrelgraph.py:882
 msgid "Show all family nodes"
 msgstr "Näytä kaikki perhesolut"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:875
+#: ../gramps/plugins/graph/gvrelgraph.py:883
 msgid ""
 "Show family nodes even if the output contains only one member of the family."
 msgstr "Näytä perhesolut, vaikka tuotos sisältää vain yhden perheenjäsenen."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:879
+#: ../gramps/plugins/graph/gvrelgraph.py:887
 msgid "Include URLs"
 msgstr "Lisää URL:t (nettiosoitteet)"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:880
+#: ../gramps/plugins/graph/gvrelgraph.py:888
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
@@ -23127,67 +23136,67 @@ msgstr ""
 "Lisää URL jokaiseen kaavion kohtaan, jotta PDF- ja HTML-kuvakarttatiedostot "
 "voivat sisältää aktiivisia linkkejä luotuun Kertova-nettisivustoon."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:888
+#: ../gramps/plugins/graph/gvrelgraph.py:896
 #: ../gramps/plugins/textreport/birthdayreport.py:568
 #: ../gramps/plugins/textreport/indivcomplete.py:1145
 msgid "Include relationship to center person"
 msgstr "Lisää suhteet keskushenkilöön"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:889
+#: ../gramps/plugins/graph/gvrelgraph.py:897
 msgid "Whether to show every person's relationship to the center person"
 msgstr "Näytetäänkö jokaisen henkilön suhde keskushenkilöön"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:898
+#: ../gramps/plugins/graph/gvrelgraph.py:906
 msgid "Whether to include thumbnails of people."
 msgstr "Lisätäänkö ihmisten pikkukuvat."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:902
+#: ../gramps/plugins/graph/gvrelgraph.py:910
 msgid "Thumbnail Location"
 msgstr "Pikkukuvan sijainti"
 
 #. occupation = BooleanOption(_("Include occupation"), False)
-#: ../gramps/plugins/graph/gvrelgraph.py:910
+#: ../gramps/plugins/graph/gvrelgraph.py:918
 msgid "Include occupation"
 msgstr "Lisää ammatti"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:911
+#: ../gramps/plugins/graph/gvrelgraph.py:919
 msgid "Do not include any occupation"
 msgstr "Ammatteja ei oteta mukaan"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:912
+#: ../gramps/plugins/graph/gvrelgraph.py:920
 msgid "Include description of most recent occupation"
 msgstr "Mukaan liitetään kuvaus viimeisimmästä ammatissa"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:914
+#: ../gramps/plugins/graph/gvrelgraph.py:922
 msgid "Include date, description and place of all occupations"
 msgstr "Sisältää päivämäärän, kuvauksen ja paikan kaikissa ammateissa"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:916
+#: ../gramps/plugins/graph/gvrelgraph.py:924
 msgid "Whether to include the last occupation"
 msgstr "Lisätäänkö viimeinen ammatti"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:920
+#: ../gramps/plugins/graph/gvrelgraph.py:928
 msgid "Include relationship debugging numbers also"
 msgstr "Lisää myös suhteiden virheenkorjausnumerot"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:923
+#: ../gramps/plugins/graph/gvrelgraph.py:931
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
 msgstr "Otetaanko mukaan myös 'Ga' ja 'Gb', suhdelaskimen debuggaamiseksi"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:951
+#: ../gramps/plugins/graph/gvrelgraph.py:959
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Osoita ei-biologisia suhteita katkoviivalla"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:952
+#: ../gramps/plugins/graph/gvrelgraph.py:960
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "Ei-biologiset suhteet esitetään kaaviossa katkoviivoilla."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:956
+#: ../gramps/plugins/graph/gvrelgraph.py:964
 msgid "Show family nodes"
 msgstr "Näytä perheyksiköt"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:957
+#: ../gramps/plugins/graph/gvrelgraph.py:965
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Perheet näytetään vanhempiin ja lapsiin linkitettyinä soikioina."
 
@@ -23369,122 +23378,122 @@ msgstr "henkilö"
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:210
 msgid "occupationdescr"
-msgstr ""
+msgstr "ammattikuvaus"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:210
 msgid "Occupation description"
-msgstr ""
+msgstr "Ammatin kuvaus"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:211
 msgid "occupationdate"
-msgstr ""
+msgstr "ammattipäiväys"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:211
 msgid "Occupation date"
-msgstr ""
+msgstr "Ammatin päiväys"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:212
 msgid "occupationplace"
-msgstr ""
+msgstr "ammattipaikka"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:212
 msgid "Occupation place"
-msgstr ""
+msgstr "Ammatin paikka"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:213
 msgid "occupationplace_id"
-msgstr ""
+msgstr "ammattipaikka_ID"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:213
 msgid "Occupation place id"
-msgstr ""
+msgstr "Ammatin paikan ID"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:214
 msgid "occupationsource"
-msgstr ""
+msgstr "ammatinlähde"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:214
 msgid "Occupation source"
-msgstr ""
+msgstr "Ammatin lähde"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:216
 msgid "residencedate"
-msgstr ""
+msgstr "asuinpaikkapäiväys"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:216
 msgid "residence date"
-msgstr ""
+msgstr "Asuinpaikan päiväys"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:217
 msgid "residenceplace"
-msgstr ""
+msgstr "asuinpaikka"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:217
 msgid "residence place"
-msgstr ""
+msgstr "Asuinpaikka"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:218
 msgid "residenceplace_id"
-msgstr ""
+msgstr "asuinpaikka_ID"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:218
 msgid "residence place id"
-msgstr ""
+msgstr "Asuinpaikan ID"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:219
 msgid "residencesource"
-msgstr ""
+msgstr "asuinpaikkalähde"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:219
 msgid "residence source"
-msgstr ""
+msgstr "Asuinpaikan lähde"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:221
 msgid "attributetype"
-msgstr ""
+msgstr "ominaisuustyyppi"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:221
 msgid "attribute type"
-msgstr ""
+msgstr "Ominaisuuden tyyppi"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:222
 msgid "attributevalue"
-msgstr ""
+msgstr "ominaisuustyyppi"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:222
 msgid "attribute value"
-msgstr ""
+msgstr "Ominaisuuden arvo"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:223
 msgid "attributesource"
-msgstr ""
+msgstr "ominaisuuslähde"
 
 # 15052019
 #: ../gramps/plugins/importer/importcsv.py:223
 msgid "attribute source"
-msgstr ""
+msgstr "Ominaisuuden lähde"
 
 #. ----------------------------------
 #: ../gramps/plugins/importer/importcsv.py:226
@@ -33159,7 +33168,7 @@ msgstr "Etsii koko tietokannasta, etsii mahdollista silmukkaa."
 # 15052019
 #: ../gramps/plugins/tool/tools.gpr.py:489
 msgid "Clean input data"
-msgstr ""
+msgstr "Puhdista tuontitiedot"
 
 # 15052019
 #: ../gramps/plugins/tool/tools.gpr.py:490
@@ -33167,8 +33176,8 @@ msgid ""
 "Searches the entire database, looking for trailing or leading spaces for "
 "places and people. Search comma in coordinates fields in places."
 msgstr ""
-"Etsii koko tietokannasta, etsii paikat ja ihmiset. Etsii pilkku koordinaatit "
-"paikkojen kentissä."
+"Etsii koko tietokannasta, etsii paikat ja henkilöt. Etsii pilkku "
+"koordinaatit paikkojen kentissä."
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:64
 msgid "Dump Gender Statistics"
@@ -33643,164 +33652,179 @@ msgstr ""
 "Kaksi perhettä pitää olla valittuna sulautettaviksi. Toinen perhe voidaan "
 "valita pitämällä Control-näppäintä alhaalla napsautettaessa."
 
-#: ../gramps/plugins/view/fanchart2wayview.py:263
+#: ../gramps/plugins/view/fanchart2wayview.py:283
 msgid "Max ancestor generations"
 msgstr "Esivanhempien sukupolvien enimmäismäärä"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:266
+#: ../gramps/plugins/view/fanchart2wayview.py:286
 msgid "Max descendant generations"
 msgstr "Jälkeläissukupolvien enimmäismäärä"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:270
-#: ../gramps/plugins/view/fanchartdescview.py:267
-#: ../gramps/plugins/view/fanchartview.py:364
+#: ../gramps/plugins/view/fanchart2wayview.py:289
+#: ../gramps/plugins/view/fanchartdescview.py:286
+#: ../gramps/plugins/view/fanchartview.py:384
 msgid "Text Font"
 msgstr "Vain tekstinä"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:274
-#: ../gramps/plugins/view/fanchartdescview.py:271
-#: ../gramps/plugins/view/fanchartview.py:368
+#: ../gramps/plugins/view/fanchart2wayview.py:294
+#: ../gramps/plugins/view/fanchartdescview.py:291
+#: ../gramps/plugins/view/fanchartview.py:389
 msgid "Gender colors"
 msgstr "Sukupuoli"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:275
-#: ../gramps/plugins/view/fanchartdescview.py:272
-#: ../gramps/plugins/view/fanchartview.py:369
+#: ../gramps/plugins/view/fanchart2wayview.py:295
+#: ../gramps/plugins/view/fanchartdescview.py:292
+#: ../gramps/plugins/view/fanchartview.py:390
 msgid "Generation based gradient"
 msgstr "Sukupolviin perustuva liukuväri"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:276
-#: ../gramps/plugins/view/fanchartdescview.py:273
-#: ../gramps/plugins/view/fanchartview.py:370
+#: ../gramps/plugins/view/fanchart2wayview.py:296
+#: ../gramps/plugins/view/fanchartdescview.py:293
+#: ../gramps/plugins/view/fanchartview.py:391
 msgid "Age (0-100) based gradient"
 msgstr "Ikäperusteinen liukuväri (0-100)"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:278
-#: ../gramps/plugins/view/fanchartdescview.py:275
-#: ../gramps/plugins/view/fanchartview.py:372
+#: ../gramps/plugins/view/fanchart2wayview.py:297
+#: ../gramps/plugins/view/fanchartdescview.py:295
+#: ../gramps/plugins/view/fanchartview.py:392
 msgid "Single main (filter) color"
 msgstr "Yksivärinen"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:279
-#: ../gramps/plugins/view/fanchartdescview.py:276
-#: ../gramps/plugins/view/fanchartview.py:373
+#: ../gramps/plugins/view/fanchart2wayview.py:298
+#: ../gramps/plugins/view/fanchartdescview.py:296
+#: ../gramps/plugins/view/fanchartview.py:393
 msgid "Time period based gradient"
 msgstr "Ajanjaksoista rakennettu liukukuvaaja"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:280
-#: ../gramps/plugins/view/fanchartdescview.py:277
-#: ../gramps/plugins/view/fanchartview.py:374
+#: ../gramps/plugins/view/fanchart2wayview.py:299
+#: ../gramps/plugins/view/fanchartdescview.py:297
+#: ../gramps/plugins/view/fanchartview.py:394
 msgid "White"
 msgstr "Valkoinen"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:281
-#: ../gramps/plugins/view/fanchartdescview.py:278
-#: ../gramps/plugins/view/fanchartview.py:375
+#: ../gramps/plugins/view/fanchart2wayview.py:300
+#: ../gramps/plugins/view/fanchartdescview.py:298
+#: ../gramps/plugins/view/fanchartview.py:395
 msgid "Color scheme classic report"
 msgstr "Klassisen raportin värit"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:282
-#: ../gramps/plugins/view/fanchartdescview.py:279
-#: ../gramps/plugins/view/fanchartview.py:376
+#: ../gramps/plugins/view/fanchart2wayview.py:301
+#: ../gramps/plugins/view/fanchartdescview.py:299
+#: ../gramps/plugins/view/fanchartview.py:396
 msgid "Color scheme classic view"
 msgstr "Klassisen näkymän värit"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:291
-#: ../gramps/plugins/view/fanchartdescview.py:288
-#: ../gramps/plugins/view/fanchartview.py:385
+#: ../gramps/plugins/view/fanchart2wayview.py:309
+#: ../gramps/plugins/view/fanchartdescview.py:307
+#: ../gramps/plugins/view/fanchartview.py:404
 msgid "Background"
 msgstr "Taustaväri"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:300
+#: ../gramps/plugins/view/fanchart2wayview.py:316
 msgid "Add global background colored gradient"
 msgstr "Lisää taustalle liukuväritys"
 
 #. colors, stored as hex values
-#: ../gramps/plugins/view/fanchart2wayview.py:304
-#: ../gramps/plugins/view/fanchartdescview.py:295
-#: ../gramps/plugins/view/fanchartview.py:391
+#: ../gramps/plugins/view/fanchart2wayview.py:320
+#: ../gramps/plugins/view/fanchartdescview.py:312
+#: ../gramps/plugins/view/fanchartview.py:409
 msgid "Start gradient/Main color"
 msgstr "Väriliu'un lähtöväri"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:306
-#: ../gramps/plugins/view/fanchartdescview.py:297
-#: ../gramps/plugins/view/fanchartview.py:393
+#: ../gramps/plugins/view/fanchart2wayview.py:322
+#: ../gramps/plugins/view/fanchartdescview.py:314
+#: ../gramps/plugins/view/fanchartview.py:411
 msgid "End gradient/2nd color"
 msgstr "Väriliu'un pääteväri"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:308
-#: ../gramps/plugins/view/fanchartdescview.py:299
+#: ../gramps/plugins/view/fanchart2wayview.py:324
+#: ../gramps/plugins/view/fanchartdescview.py:316
 msgid "Color for duplicates"
 msgstr "Henkilökahdennusten väri"
 
 #. algo for the fan angle distribution
-#: ../gramps/plugins/view/fanchart2wayview.py:311
-#: ../gramps/plugins/view/fanchartdescview.py:309
+#: ../gramps/plugins/view/fanchart2wayview.py:327
+#: ../gramps/plugins/view/fanchartdescview.py:326
 msgid "Fan chart distribution"
 msgstr "Elinikä jakauma"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:314
-#: ../gramps/plugins/view/fanchartdescview.py:312
+#: ../gramps/plugins/view/fanchart2wayview.py:330
+#: ../gramps/plugins/view/fanchartdescview.py:329
 msgid "Homogeneous children distribution"
 msgstr "Tasainen lasten jakautuma"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:316
-#: ../gramps/plugins/view/fanchartdescview.py:314
-msgid "Size  proportional to number of descendants"
-msgstr "Kokoon suhteutettu määrä jälkeläisiä"
+#: ../gramps/plugins/view/fanchart2wayview.py:332
+#: ../gramps/plugins/view/fanchartdescview.py:331
+msgid "Size proportional to number of descendants"
+msgstr "Koko on verrannollinen jälkeläisten lukumäärään"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:322
-#: ../gramps/plugins/view/fanchartdescview.py:320
-#: ../gramps/plugins/view/fanchartview.py:404
+#. show names one two line
+#: ../gramps/plugins/view/fanchart2wayview.py:338
+#: ../gramps/plugins/view/fanchartdescview.py:337
+#: ../gramps/plugins/view/fanchartview.py:421
 msgid "Show names on two lines"
 msgstr "Näytä nimet kahdella rivillä"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:327
-#: ../gramps/plugins/view/fanchartdescview.py:325
-#: ../gramps/plugins/view/fanchartview.py:409
+#. Flip names
+#: ../gramps/plugins/view/fanchart2wayview.py:342
+#: ../gramps/plugins/view/fanchartdescview.py:341
+#: ../gramps/plugins/view/fanchartview.py:425
 msgid "Flip name on the left of the fan"
 msgstr "Käännä nimien suuntaa"
+
+#. Show gramps id
+#: ../gramps/plugins/view/fanchart2wayview.py:346
+msgid "Show the gramps id"
+msgstr "Näytä gramps-ID"
 
 #. options we don't show on the dialog
 #. #configdialog.add_checkbox(table,
 #. #        _('Allow radial text'),
 #. #        ??, 'interface.fanview-radialtext')
-#: ../gramps/plugins/view/fanchart2wayview.py:330
-#: ../gramps/plugins/view/fanchartdescview.py:328
-#: ../gramps/plugins/view/fanchartview.py:421
+#: ../gramps/plugins/view/fanchart2wayview.py:349
+#: ../gramps/plugins/view/fanchartdescview.py:348
+#: ../gramps/plugins/view/fanchartview.py:440
 #: ../gramps/plugins/view/pedigreeview.py:2134
 #: ../gramps/plugins/view/relview.py:1857
 msgid "Layout"
 msgstr "Asetelma"
 
-#: ../gramps/plugins/view/fanchart2wayview.py:529
-#: ../gramps/plugins/view/fanchartdescview.py:517
-#: ../gramps/plugins/view/fanchartview.py:625
+#: ../gramps/plugins/view/fanchart2wayview.py:583
+#: ../gramps/plugins/view/fanchartdescview.py:571
+#: ../gramps/plugins/view/fanchartview.py:669
 msgid "No preview available"
 msgstr "Esikatselua ei saatavilla"
 
 #. form of the fan
-#: ../gramps/plugins/view/fanchartdescview.py:302
-#: ../gramps/plugins/view/fanchartview.py:396
+#: ../gramps/plugins/view/fanchartdescview.py:319
+#: ../gramps/plugins/view/fanchartview.py:414
 msgid "Fan chart type"
 msgstr "Viuhkakaavio"
 
-#: ../gramps/plugins/view/fanchartdescview.py:304
-#: ../gramps/plugins/view/fanchartview.py:398
+#: ../gramps/plugins/view/fanchartdescview.py:321
+#: ../gramps/plugins/view/fanchartview.py:416
 msgid "Full Circle"
 msgstr "Ympyrä"
 
-#: ../gramps/plugins/view/fanchartdescview.py:305
-#: ../gramps/plugins/view/fanchartview.py:398
+#: ../gramps/plugins/view/fanchartdescview.py:322
+#: ../gramps/plugins/view/fanchartview.py:416
 msgid "Half Circle"
 msgstr "Puoliympyrä"
 
-#: ../gramps/plugins/view/fanchartdescview.py:306
-#: ../gramps/plugins/view/fanchartview.py:399
+#: ../gramps/plugins/view/fanchartdescview.py:323
+#: ../gramps/plugins/view/fanchartview.py:417
 msgid "Quadrant"
 msgstr "Sektori"
 
-#: ../gramps/plugins/view/fanchartview.py:414
+#. show gramps_id
+#. Show the gramps_id
+#: ../gramps/plugins/view/fanchartdescview.py:345
+#: ../gramps/plugins/view/fanchartview.py:433
+msgid "Show gramps id"
+msgstr "Näytä gramps-ID"
+
+#. options users should not change:
+#: ../gramps/plugins/view/fanchartview.py:429
 msgid "Show children ring"
 msgstr "Lapset puuttuvat"
 
@@ -35207,7 +35231,7 @@ msgstr "Lisää edellinen/seuraava"
 # 15052019
 #: ../gramps/plugins/webreport/narrativeweb.py:1731
 msgid "Add previous/next to the navigation bar."
-msgstr "Lisää edellinen/seuraava navikointipalkkiin."
+msgstr "Lisää edellinen/seuraava navigointipalkkiin."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1734
 msgid "This is a secure site (https)"
@@ -36179,7 +36203,7 @@ msgstr "Linkittäänkö tiedot Kertova-nettisivusto raporttiin vai ei"
 # 15052019
 #: ../gramps/plugins/webreport/webcal.py:1901
 msgid "Show data only after year"
-msgstr "Näytä vuoden jälkeiset tapahtumat"
+msgstr "Näytä vasta vuoden jälkeiset tapahtumat"
 
 # 15052019
 #: ../gramps/plugins/webreport/webcal.py:1904
@@ -36189,7 +36213,7 @@ msgid ""
 msgstr ""
 "Näytä tiedot vasta tämän vuoden jälkeen. Oletus on nykyinen vuosi-  "
 "\"Enimmäisikä todennäköisesti elossa\", joka on määritetty "
-"päivämääränvalinta-välilehdessä."
+"päivämääränvalinta välilehdessä."
 
 #: ../gramps/plugins/webreport/webcal.py:1912
 msgid "Link prefix"
@@ -37341,6 +37365,9 @@ msgid ""
 msgstr ""
 "Kaikki tutkimuksesi pidetään juuri niin hallittuna, haettavissa ja tarkkana "
 "kuin sinulle on tarpeen."
+
+#~ msgid "Size  proportional to number of descendants"
+#~ msgstr "Kokoon suhteutettu määrä jälkeläisiä"
 
 #~ msgid "Male Alive"
 #~ msgstr "Elävä mies"
