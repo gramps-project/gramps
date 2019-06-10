@@ -10498,27 +10498,27 @@ msgid "gender unknown|ex-spouse"
 msgstr "gjinia e panjohur|ish-bashkëshort"
 
 #: ../gramps/gen/relationship.py:2184
-msgid "unmarried|husband"
+msgid "male,unmarried|partner"
 msgstr "i pamartuar|bashkëshorti"
 
 #: ../gramps/gen/relationship.py:2186
-msgid "unmarried|wife"
+msgid "female,unmarried|partner"
 msgstr "e pamartuar|bashkëshorte"
 
 #: ../gramps/gen/relationship.py:2188
-msgid "gender unknown,unmarried|spouse"
+msgid "gender unknown,unmarried|partner"
 msgstr "gjinia e panjohur, pamartuar|bashkëshort"
 
 #: ../gramps/gen/relationship.py:2191
-msgid "unmarried|ex-husband"
+msgid "male,unmarried|ex-partner"
 msgstr "i pamartuar|ish-bashkëshorti"
 
 #: ../gramps/gen/relationship.py:2193
-msgid "unmarried|ex-wife"
+msgid "female,unmarried|ex-partner"
 msgstr "e pamartuar|ish-bashkëshorte"
 
 #: ../gramps/gen/relationship.py:2195
-msgid "gender unknown,unmarried|ex-spouse"
+msgid "gender unknown,unmarried|ex-partner"
 msgstr "gjinia e panjohur, pamartuar|bashkëshort"
 
 #: ../gramps/gen/relationship.py:2198
