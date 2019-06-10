@@ -116,30 +116,6 @@ class History(Callback):
             if initial_person:
                 self.push(initial_person.get_handle())
 
-    def remove(self, handle, old_id=None):
-        """
-        Remove a handle from the history list
-        """
-        if old_id:
-            del_id = old_id
-        else:
-            del_id = handle
-
-        history_count = self.history.count(del_id)
-        for c in range(history_count):
-            self.history.remove(del_id)
-            self.index -= 1
-
-        mhc = self.mru.count(del_id)
-        for c in range(mhc):
-            self.mru.remove(del_id)
-        self.emit('mru-changed', (self.mru, ))
-        if self.history:
-            newact = self.history[self.index]
-            if not isinstance(newact, str):
-                newact = str(newact)
-            self.emit('active-changed', (newact,))
-
     def push(self, handle):
         """
         Pushes the handle on the history stack
@@ -229,8 +205,21 @@ class History(Callback):
         Called in response to an object-delete signal.
         Removes a list of handles from the history.
         """
-        for handle in handle_list:
-            self.remove(handle)
+        for del_id in handle_list:
+            history_count = self.history.count(del_id)
+            for dummy in range(history_count):
+                self.history.remove(del_id)
+                self.index -= 1
+
+            mhc = self.mru.count(del_id)
+            for dummy in range(mhc):
+                self.mru.remove(del_id)
+        if self.history:
+            newact = self.history[self.index]
+            if not isinstance(newact, str):
+                newact = str(newact)
+            self.emit('active-changed', (newact,))
+        self.emit('mru-changed', (self.mru, ))
 
     def history_changed(self):
         """
