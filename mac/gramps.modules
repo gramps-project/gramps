@@ -26,7 +26,7 @@
   <repository type="tarball" name="graphviz"
               href="https://graphviz.gitlab.io/pub/graphviz/stable/SOURCES/"/>
   <repository type="tarball" name="exiv2.org"
-	      href="http://www.exiv2.org/releases/"/>
+	      href="http://exiv2.org/builds/"/>
   <repository type="tarball" name="pythonware"
 	      href="http://effbot.org/downloads/"/>
 <!--
