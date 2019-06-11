@@ -26,7 +26,7 @@
   <repository type="tarball" name="graphviz"
 	      href="http://www.graphviz.org/pub/graphviz/stable/SOURCES/"/>
   <repository type="tarball" name="exiv2.org"
-	      href="http://exiv2.org/"/>
+	      href="http://exiv2.org/builds/"/>
   <repository type="tarball" name="pythonware"
 	      href="http://effbot.org/downloads/"/>
 <!--
@@ -60,6 +60,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
             revision="maintenance/gramps50"
 	    checkoutdir="gramps-git"/>
     <dependencies>
+      <dep package="meta-gramps-modules"/>
     </dependencies>
   </distutils>
 
@@ -68,6 +69,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 	    repo="github-tarball" version="5.0.0"
 	    checkoutdir="gramps-gramps-5.0.0"/>
     <dependencies>
+      <dep package="meta-gramps-modules"/>
     </dependencies>
   </distutils>
 
@@ -127,22 +129,20 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </autotools>
 
-  <autotools id="exiv2"  supports-non-srcdir-builds="no">
-    <branch module="exiv2-0.21.1.tar.gz" repo="exiv2.org"
-            version="0.21.1"/>
-  </autotools>
+  <cmake id="exiv2" cmakeargs="-DEXIV2_ENABLE_PNG=ON">
+    <branch module="exiv2-0.27.0a-Source.tar.gz" repo="exiv2.org"
+            checkoutdir="exiv2-0.27.0-Source" version="0.27.0"/>
+  </cmake>
 
-  <autotools id="gexiv2" autogen-sh="configure" supports-non-srcdir-builds="no"
-	     autogenargs="--enable-introspection --enable-vala=no"
-	     autogen-template="%(srcdir)s/%(autogen-sh)s --prefix=%(prefix)s %(autogenargs)s">
-    <branch module="gexiv2/0.10/gexiv2-0.10.6.tar.xz"
-            repo="ftp.gnome.org" version="0.10.6"
-            hash="sha256:132788919667254b42c026ab39ab3c3a5be59be8575c05fa4b371ca8aed55825">
+  <meson id="gexiv2" mesonargs="-Dvapi=false">
+    <branch module="gexiv2/0.12/gexiv2-0.12.0.tar.xz"
+            repo="ftp.gnome.org" version="0.12.0"
+            hash="sha256:58f539b0386f36300b76f3afea3a508de4914b27e78f58ee4d142486a42f926a">
     </branch>
     <dependencies>
       <dep package="exiv2"/>
     </dependencies>
-  </autotools>
+  </meson>
 
   <distutils id="pil">
     <branch module="93/73/66854f63b1941aad9af18a1de59f9cf95ad1a87c801540222e332f6688d7/Pillow-4.1.1.tar.gz" version="4.1.1"
