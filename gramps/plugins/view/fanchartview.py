@@ -98,9 +98,6 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
         self.additional_uis.append(self.additional_ui)
         self.allfonts = [x for x in enumerate(SystemFonts().get_system_fonts())]
 
-        self.func_list.update({
-            '<PRIMARY>J' : self.jump,
-            })
         self.uistate.connect('font-changed', self.font_changed)
 
     def font_changed(self):
