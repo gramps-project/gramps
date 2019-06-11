@@ -24,9 +24,9 @@
   <repository type="git" name="github" href="git://github.com/"/>
   <repository type="tarball" name="github-tarball" href="https://github.com/"/>
   <repository type="tarball" name="graphviz"
-	      href="http://www.graphviz.org/pub/graphviz/stable/SOURCES/"/>
+              href="https://graphviz.gitlab.io/pub/graphviz/stable/SOURCES/"/>
   <repository type="tarball" name="exiv2.org"
-	      href="http://exiv2.org/builds/"/>
+	      href="http://www.exiv2.org/releases/"/>
   <repository type="tarball" name="pythonware"
 	      href="http://effbot.org/downloads/"/>
 <!--
@@ -121,7 +121,8 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
   <autotools id="graphviz" autogen-sh="configure"
 	     autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --with-pangocairo">
-    <branch module="graphviz-2.40.1.tar.gz" version="2.40.1" repo="graphviz"/>
+    <branch module="graphviz.tar.gz" version="2.40.1"
+            repo="graphviz" checkoutdir="graphviz-2.40.1"/>
     <dependencies>
       <dep package="pango"/>
       <dep package="meta-gtk-osx-freetype"/>
