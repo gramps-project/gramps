@@ -74,6 +74,7 @@ class FormattingHelper:
             self.male = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_MALE)
             self.female = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_FEMALE)
             self.marr = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_MARRIAGE)
+            self.bth = self.symbols.get_symbol_fallback(self.symbols.SYMBOL_BIRTH)
             self.dth = self.symbols.get_death_symbol_fallback(death_idx)
 
     def format_relation(self, family, line_count, use_markup=False):
