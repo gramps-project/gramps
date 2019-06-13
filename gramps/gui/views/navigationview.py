@@ -425,7 +425,7 @@ class NavigationView(PageView):
         """
         menuitem = '''        <item>
               <attribute name="action">win.%s%02d</attribute>
-              <attribute name="label" translatable="yes">%s</attribute>
+              <attribute name="label">%s</attribute>
             </item>
             '''
         menus = ''

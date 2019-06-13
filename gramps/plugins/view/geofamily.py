@@ -104,8 +104,8 @@ _UI_DEF = [
       <object class="GtkToolButton">
         <property name="icon-name">go-previous</property>
         <property name="action-name">win.Back</property>
-        <property name="tooltip_text" translatable="yes">...
-    ...Go to the previous object in the history</property>
+        <property name="tooltip_text" translatable="yes">'''
+    '''Go to the previous object in the history</property>
         <property name="label" translatable="yes">_Back</property>
         <property name="use-underline">True</property>
       </object>

@@ -1112,7 +1112,7 @@ class ViewManager(CLIManager):
         _menu = '''<placeholder id="undo">
         <item>
           <attribute name="action">win.Undo</attribute>
-          <attribute name="label" translatable="yes">%s</attribute>
+          <attribute name="label">%s</attribute>
         </item>
         </placeholder>
         '''
@@ -1132,7 +1132,7 @@ class ViewManager(CLIManager):
         _menu = '''<placeholder id="redo">
         <item>
           <attribute name="action">win.Redo</attribute>
-          <attribute name="label" translatable="yes">%s</attribute>
+          <attribute name="label">%s</attribute>
         </item>
         </placeholder>
         '''
@@ -1405,8 +1405,7 @@ class ViewManager(CLIManager):
         """
         menuitem = ('<item>\n'
                     '<attribute name="action">win.%s</attribute>\n'
-                    '<attribute name="label" translatable="yes">'
-                    '%s...</attribute>\n'
+                    '<attribute name="label">%s...</attribute>\n'
                     '</item>\n')
 
         actions = []
@@ -1426,7 +1425,7 @@ class ViewManager(CLIManager):
 
         for key in catlist:
             ofile.write('<submenu>\n<attribute name="label"'
-                        ' translatable="yes">%s</attribute>\n' % key[1])
+                        '>%s</attribute>\n' % key[1])
             pdatas = hash_data[key]
             pdatas.sort(key=lambda x: x.name)
             for pdata in pdatas:
@@ -1440,7 +1439,7 @@ class ViewManager(CLIManager):
         # and the unsupported category at the end of the menu
         if _UNSUPPORTED in hash_data:
             ofile.write('<submenu>\n<attribute name="label"'
-                        ' translatable="yes">%s</attribute>\n' %
+                        '>%s</attribute>\n' %
                         _UNSUPPORTED[1])
             pdatas = hash_data[_UNSUPPORTED]
             pdatas.sort(key=lambda x: x.name)

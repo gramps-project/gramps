@@ -252,7 +252,7 @@ _RCT_TOP = '<placeholder id="OpenRecentMenu">'
 _RCT_MENU = '''
             <item>
               <attribute name="action">win.%s</attribute>
-              <attribute name="label" translatable="no">%s</attribute>
+              <attribute name="label">%s</attribute>
             </item>'''
 _RCT_BTM = '\n          </placeholder>\n'
 _RCT_BAR_TOP = ('<object class="GtkMenu"  id="OpenBtnMenu">\n'
@@ -262,7 +262,7 @@ _RCT_BAR = '''
 <child>
     <object class="GtkMenuItem">
         <property name="action-name">win.%s</property>
-        <property name="label" translatable="yes">%s</property>
+        <property name="label">%s</property>
         <property name="use_underline">False</property>
         <property name="visible">True</property>
     </object>
