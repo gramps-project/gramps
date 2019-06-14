@@ -41,6 +41,8 @@ class MetadataViewer(Gramplet):
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add(self.gui.WIDGET)
         self.gui.WIDGET.show()
+
+    def db_changed(self):
         self.connect_signal('Media', self.update)
 
     def build_gui(self):
