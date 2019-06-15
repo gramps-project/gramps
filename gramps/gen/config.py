@@ -159,7 +159,7 @@ register('behavior.welcome', 100)
 register('behavior.web-search-url', 'http://google.com/#&q=%(text)s')
 register('behavior.addons-url', "https://raw.githubusercontent.com/gramps-project/addons/master/gramps51")
 
-register('database.backend', 'bsddb')
+register('database.backend', 'sqlite')
 register('database.compress-backup', True)
 register('database.backup-path', USER_HOME)
 register('database.backup-on-exit', True)
