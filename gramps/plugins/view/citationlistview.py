@@ -324,6 +324,7 @@ class CitationListView(ListView):
         </item>
         <item>
           <attribute name="action">win.Edit</attribute>
+          <attribute name="label">%s</attribute>
         </item>
         <item>
           <attribute name="action">win.Remove</attribute>
