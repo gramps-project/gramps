@@ -10277,6 +10277,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "bivši zakonec"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "partner"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "partnerka"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "partner"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "bivši partner"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "bivša partnerka"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "bivši partner"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "partner"
 
@@ -19312,6 +19336,16 @@ msgstr "Nastavi _izhodiščno osebo"
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
 msgstr "Izhodiščna oseba ni nastavljena"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Nastaviti morate 'privzeto osebo'. Izberite pogled Osebe, izberite osebo, ki "
+"bi jo radi nastavili za 'Izhodiščno osebo' in izbiro potrdite v meniju Uredi "
+"-> Nastavi izhodiščno osebo."
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""

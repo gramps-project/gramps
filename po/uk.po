@@ -10216,6 +10216,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "колишній(я) чоловік(дружина)"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "партнер"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "партнерша"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "партнер/партнерша"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "колишній партнер"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "колишня партнерша"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "колишній(я) партнер(партнерша)"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "партнер"
 
@@ -19146,6 +19170,16 @@ msgstr "Встановити _базову особу"
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
 msgstr "Базову особу не вказано"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Вам потрібно визначити 'кореневу особу'. Виберіть Вигляд Осіб, виберіть "
+"особу, яка вас цікавить і встановіть 'Основну Особу', тоді підтвердіть свій "
+"вибір через меню Редагувати->Встановити Основну Особу."
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""
@@ -40153,3 +40187,4 @@ msgstr ""
 #~ "Використайте https://gramps-project.org/bugs/ щоб повідомити про помилку "
 #~ "в офіційному додатку, або зв'яжіться з автором (%(firstauthoremail)s) "
 #~ "цього перегляду."
+

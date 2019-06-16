@@ -10465,6 +10465,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "полът неизвестен бивш/а съпруг/а"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "без брак съпруг"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "без брак съпруга"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "неизвестен пол, неженен брачен партньор"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "без брак бивш съпруг"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "без брак бивша съпруга"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "неизвестен пол, неженен бивш брачен партньор"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "без брак съпруг"
 
@@ -19561,6 +19585,13 @@ msgstr "Задай _основното лице"
 #, fuzzy
 msgid "No Home Person"
 msgstr "Не е зададено основно лице."
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""
@@ -40802,3 +40833,4 @@ msgstr "Управление_на_медиите"
 #~ "Използвай https://gramps-project.org/bugs/ за да докладваш грешки за "
 #~ "официалните изгледи или се свържи с автора в противен случай "
 #~ "(%(firstauthoremail)s). "
+

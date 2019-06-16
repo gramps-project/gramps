@@ -10287,6 +10287,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "fhv. ægtefælle"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "mand"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "hustru"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "ægtefælle"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "fhv. mand"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "fhv. hustru"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "fhv. ægtefælle"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "mand"
 
@@ -19274,6 +19298,15 @@ msgstr "Gør til _proband"
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
 msgstr "Proband er ikke angivet"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Du skal angive en proband. Vælg personoversigt, vælg den person der skal "
+"være proband, og bekræft dit valg via menuen Rediger->Gør til proband."
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""

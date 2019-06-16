@@ -7533,6 +7533,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "ex-make/maka"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "sambo"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "sambo"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "sambo"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "ex-make"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "ex-maka"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "ex-sambo"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "sambo"
 
@@ -15100,6 +15124,10 @@ msgstr "Bokmärke kunde ej läggas till eftersom inget hade valts."
 #: ../gramps/gui/views/navigationview.py:323
 msgid "No Home Person"
 msgstr "Hemperson är inte bestämd"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid "You need to set a 'default person' to go to. Select the People View, select the person you want as 'Home Person', then confirm your choice via the menu Edit -> Set Home Person."
+msgstr "Du behöver definiera en 'standardperson' att gå till. Välj Personvy, välj den person du vill ha som 'hemperson'. Bekräfta ditt val via menyn Redigera -> Välj Hemperson."
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid "You need to set a 'default person' to go to. Select the People View, select the person you want as 'Home Person', then confirm your choice via the menu Edit ->Set Home Person."
@@ -35107,3 +35135,4 @@ msgstr "Inget mallblad"
 
 #~ msgid "Name Format Editor"
 #~ msgstr "Namnformatsredigerare"
+

@@ -10499,6 +10499,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "gjinia e panjohur|ish-bashkëshort"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "i pamartuar|bashkëshorti"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "e pamartuar|bashkëshorte"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "gjinia e panjohur, pamartuar|bashkëshort"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "i pamartuar|ish-bashkëshorti"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "e pamartuar|ish-bashkëshorte"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "gjinia e panjohur, pamartuar|bashkëshort"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "i pamartuar|bashkëshorti"
 
@@ -19700,6 +19724,13 @@ msgstr "Vendos_Person Shtëpiak"
 #, fuzzy
 msgid "No Home Person"
 msgstr "Personi shtëpi nuk është vendosur."
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""
@@ -40945,3 +40976,4 @@ msgstr "Media Menaxher"
 #, fuzzy
 #~ msgid "Include Marriage information"
 #~ msgstr "Përfshij Informacione për Burimin"
+

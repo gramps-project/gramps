@@ -10235,6 +10235,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "زوج سابق(ـة)"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "زوج"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "زوجة"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "زوج"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "زوج سابق"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "زوجة سابقة"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "زوج سابق(ـة)"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "زوج"
 
@@ -19035,6 +19059,13 @@ msgstr "تخصيص كشخص _رئيسي"
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
 msgstr "لا يوجد شخص رئيسي"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""
@@ -38291,3 +38322,4 @@ msgstr "manual|Media_Manager"
 #, fuzzy
 #~ msgid "Include Marriage information"
 #~ msgstr "تضمين معلومات المصدر"
+

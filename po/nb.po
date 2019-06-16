@@ -10285,6 +10285,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "tidligere ektefelle"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "mann"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "kone"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "partner"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "tidligere partner"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "tidligere partner"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "tidligere partner"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "mann"
 
@@ -19254,6 +19278,10 @@ msgstr "Angi som startperson"
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
 msgstr "Startperson er ikke valgt"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid "You need to set a 'default person' to go to. Select the People View, select the person you want as 'Home Person', then confirm your choice via the menu Edit -> Set Home Person."
+msgstr "Du må angi en startperson. Velg personvisningen, velg den personen du vil ha som startperson og bekreft dette valget i menyen Edit->Angi som startperson."
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""
@@ -37657,3 +37685,4 @@ msgstr "Mediabehandler..."
 
 #~ msgid "Extract Place data"
 #~ msgstr "Hent ut stedsdata"
+

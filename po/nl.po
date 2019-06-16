@@ -10517,6 +10517,32 @@ msgid "gender unknown|ex-spouse"
 msgstr "ex echtgenoot of echtgenote"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "partner"
+
+# maitresse?
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "partner"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "partner"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "expartner"
+
+# maitresse?
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "expartner"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "expartner"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "partner"
 
@@ -19712,6 +19738,16 @@ msgstr "Be_ginpersoon instellen"
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
 msgstr "Geen beginpersoon"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"U dien een 'standaard'-persoon te bepalen. Ga naar de personen categorie, "
+"selecteer een persoon die u als 'basis' wenst en bevestig uw keuze via het "
+"menu Bewerken -> Basispersoon."
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""
@@ -42080,3 +42116,4 @@ msgstr "Media_manager..."
 #~ "Gebruik https://gramps-project.org/bugs/ om fouten te melden voor de "
 #~ "officiële schermen of anders contacteer de maker van het scherm "
 #~ "(%(firstauthoremail)s). "
+

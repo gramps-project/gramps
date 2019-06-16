@@ -9540,6 +9540,30 @@ msgid "gender unknown|ex-spouse"
 msgstr ""
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr ""
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr ""
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr ""
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr ""
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr ""
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr ""
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr ""
 
@@ -17892,6 +17916,13 @@ msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
+msgstr ""
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
 msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:339
@@ -34778,3 +34809,4 @@ msgstr "Media Manager"
 
 #~ msgid "Font Background Color"
 #~ msgstr "Font Background Colour"
+

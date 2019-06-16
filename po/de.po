@@ -10472,6 +10472,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "Ex-Partner(in)"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "Lebensgefährte"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "Lebensgefährtin"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "Partner(in)"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "Ex-Lebensgefährte"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "Ex-Lebensgefährtin"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "Ex-Lebensgefährt(e/in)"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "Lebensgefährte"
 
@@ -19564,6 +19588,16 @@ msgstr ""
 #: ../gramps/gui/views/navigationview.py:323
 msgid "No Home Person"
 msgstr "Keine Hauptperson"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Du musst eine 'Hauptperson' setzen, um dorthin zu springen. Gehe zur "
+"Personenansicht, wähle die Person, die du als 'Hauptperson' setzen willst "
+"und bestätige deine Wahl über Menü Bearbeiten -> Hauptperson setzen."
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
@@ -43096,3 +43130,4 @@ msgstr "Kein Stylesheet"
 
 #~ msgid "Creating event page %02d of %02d"
 #~ msgstr "Erstelle Ereignisseite %02d von %02d"
+

@@ -781,9 +781,19 @@ class ListView(NavigationView):
         if self.active or \
            (not self.dirty and not self._dirty_on_change_inactive):
             cput = perf_counter()
-            list(map(self.model.delete_row_by_handle, handle_list))
-            LOG.debug('   '  + self.__class__.__name__ + ' row_delete ' +
-                    str(perf_counter() - cput) + ' sec')
+            for hndl in handle_list:
+                if hndl != handle_list[-1]:
+                    # For multiple deletes, row updates can result in a
+                    # selection changed signal to a handle already
+                    # deleted.  In these cases we don't want to change the
+                    # active to non-existant handles.
+                    self.model.dont_change_active = True
+                else:
+                    # Allow active changed on last item deleted
+                    self.model.dont_change_active = False
+                self.model.delete_row_by_handle(hndl)
+            LOG.debug('   ' + self.__class__.__name__ + ' row_delete ' +
+                      str(perf_counter() - cput) + ' sec')
             if self.active:
                 self.uistate.show_filter_results(self.dbstate,
                                                  self.model.displayed(),

@@ -10243,6 +10243,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "buvęs sutuoktinis"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "vyras"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "žmona"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "sutuoktinis"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "Buvęs sugyventinis"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "Buvusi sugyventinė"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "buvęs partneris"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "vyras"
 
@@ -19227,6 +19251,17 @@ msgstr "Nustatyti _pagrindinį asmenį"
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
 msgstr "Nepasirinktas pagrindinis asmuo"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Reikia nustatyti \"numatytąjį asmenį\", kad pereiti. Pasirinkite žmonių "
+"peržiūrą, pasirinkite kurį nors asmenį kaip \"Pagrindinis asmuo\", tuomet "
+"patvirtinkite savo pasirinkimą per meniu Taisa -> Nustatyti pagrindinį "
+"asmenį."
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""
@@ -40050,3 +40085,4 @@ msgstr "Garso/vaizdo tvarkymo įrankis"
 #~ "Tvarkymas.\n"
 #~ "Oficialių vaizdų  klaidas raportuokite  https://gramps-project.org/bugs/, "
 #~ "arba susisiekite su autoriumi  (%(firstauthoremail)s)  kitu atveju. "
+

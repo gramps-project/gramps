@@ -283,13 +283,6 @@ def __convert_float_val(val, typedeg="lat"):
     # it is checked that degree >0, 0<= minutes <= 60,
     # 0<= seconds <= 60, direction is in the directions dic.
 
-    #change , to . so that , input works in non , localization
-    #this is no problem, as a number like 100,000.20 cannot appear in
-    #lat/lon
-    #change XX,YY into XX.YY
-    if val.find(r'.') == -1:
-        val = val.replace(',', '.')
-
     # format: XX.YYYY
     v = __convert_using_float_repr(val)
     if v is not None:

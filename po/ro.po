@@ -10429,31 +10429,31 @@ msgstr "necunoscut"
 
 #: ../gramps/gen/relationship.py:2184
 #, fuzzy
-msgid "unmarried|husband"
+msgid "male,unmarried|partner"
 msgstr "Necăsătorit(ă)"
 
 #: ../gramps/gen/relationship.py:2186
 #, fuzzy
-msgid "unmarried|wife"
+msgid "female,unmarried|partner"
 msgstr "Necăsătorit(ă)"
 
 #: ../gramps/gen/relationship.py:2188
-msgid "gender unknown,unmarried|spouse"
+msgid "gender unknown,unmarried|partner"
 msgstr ""
 
 #: ../gramps/gen/relationship.py:2191
 #, fuzzy
-msgid "unmarried|ex-husband"
+msgid "male,unmarried|ex-partner"
 msgstr "Necăsătorit(ă)"
 
 #: ../gramps/gen/relationship.py:2193
 #, fuzzy
-msgid "unmarried|ex-wife"
+msgid "female,unmarried|ex-partner"
 msgstr "Necăsătorit(ă)"
 
 #: ../gramps/gen/relationship.py:2195
 #, fuzzy
-msgid "gender unknown,unmarried|ex-spouse"
+msgid "gender unknown,unmarried|ex-partner"
 msgstr "necunoscut"
 
 #: ../gramps/gen/relationship.py:2198
@@ -19720,7 +19720,7 @@ msgstr "Doar numele persoanei active"
 msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
-"Edit ->Set Home Person."
+"Edit -> Set Home Person."
 msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:349

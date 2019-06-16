@@ -2,8 +2,8 @@
 # Eero Tamminen <eerot@sf>, 2005, 2006, 2007, 2008.
 # Janne Kovesjärvi <janne.kovesjarvi@gmail.com>, 2008, 200, 2013.
 # Pekka Valta <pekka.valta@kolumbus.fi>, 2014.
-# Matti Niemelä <niememat@gmail.com>, 2014, 2015, 2016, 2017.
 # Niemelä <niememat@gmail.com>, 2017, 2018.
+# Matti Niemelä <niememat@gmail.com>, 2014, 2015, 2016, 2017, 2019.
 #
 msgid ""
 msgstr ""
@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-13 17:22-0500\n"
 "PO-Revision-Date: 2019-06-15 23:43+0300\n"
-"Last-Translator: Matti Niemelä <niememat>\n"
+"Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -8731,9 +8731,9 @@ msgstr "Kulmakunta"
 msgid "District"
 msgstr "Piirikunta"
 
-#: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:605
+#: ../gramps/gen/lib/placetype.py:77 ../gramps/plugins/view/geoplaces.py:548
 msgid "Borough"
-msgstr "Kaupunginosa"
+msgstr "Kaupunginosa/Kauppala"
 
 #: ../gramps/gen/lib/placetype.py:78 ../gramps/plugins/view/geoplaces.py:653
 msgid "Municipality"
@@ -10390,6 +10390,36 @@ msgstr "ent. vaimo"
 #: ../gramps/gen/relationship.py:2181
 msgid "gender unknown|ex-spouse"
 msgstr "ent. puoliso"
+
+# 20190612
+#: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "avomies"
+
+# 20190612
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "avovaimo"
+
+# 20190612
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "avopuoliso"
+
+# 20190612
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "ent. avomies"
+
+# 20190612
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "ent. avovaimo"
+
+# 20190612
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "ent. avopuoliso"
 
 #: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
@@ -19668,6 +19698,16 @@ msgstr "Kirjanmerkin asetus epäonnistui, koska mitään ei ollut valittuna."
 #: ../gramps/gui/views/navigationview.py:323
 msgid "No Home Person"
 msgstr "Kotihenkilöä ei ole asetettu"
+
+# 20190612
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Lähtöhenkilö on valittava. Avaa Henkilöt näkymä ja valitse hänet. Vahvista "
+"valintasi Muokkaa-> Aseta kotihenkilö-valinnalla."
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
@@ -38399,3 +38439,4 @@ msgstr "Ei tyylitiedostoa"
 
 #~ msgid " (%s) "
 #~ msgstr " (%s) "
+

@@ -10423,6 +10423,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "były partner"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "kawaler"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "panna"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "partner"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "kawaler/rozwodnik"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "panna/rozwódka"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "partner"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "kawaler"
 
@@ -19558,6 +19582,16 @@ msgstr "Oznacz jako osobę początkową"
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
 msgstr "Brak osoby początkowej"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Musisz wybrać 'domyślną osobę' aby przejść dalej. Wybierz Widok osób, wskaż "
+"osobę którą chcesz jako 'osobę referencyjną', potwierdź swój wybór przez "
+"Edycja->Ustaw osobę początkową."
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""
@@ -44253,3 +44287,4 @@ msgstr "Zarządzanie mediami"
 #~ "Użyj https://gramps-project.org/bugs/ aby zgłosić błąd odnośnie "
 #~ "oficjalnych widoków, w innych przypadku skontaktuj się z jego autorem "
 #~ "(%(firstauthoremail)s). "
+

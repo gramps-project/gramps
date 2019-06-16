@@ -9765,6 +9765,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "eksgeedzo"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "fraŭlo|edzo"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "fraŭlino|edzino"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "geedzo"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "eksedzo"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "eksedzino"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "eksgeedzo"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "fraŭlo|edzo"
 
@@ -18771,6 +18795,16 @@ msgstr "_Agordu la hejmpersonon"
 #: ../gramps/gui/views/navigationview.py:337
 msgid "No Home Person"
 msgstr "Neniu hejmpersono"
+
+#: ../gramps/gui/views/navigationview.py:338
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Necesas agordi 'defaŭltan personon'. Elektu la Personvidon, elektu la "
+"personon kiun vi volas kiel 'Hejmpersono', tiam konfirmu la elekton per la "
+"menuero Redaktu -> Agordu Hejmpersonon."
 
 #: ../gramps/gui/views/navigationview.py:338
 msgid ""
@@ -38887,3 +38921,4 @@ msgstr ""
 #, fuzzy
 #~ msgid "Top:"
 #~ msgstr "_Supra"
+

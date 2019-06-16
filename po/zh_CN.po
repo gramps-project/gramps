@@ -10116,6 +10116,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "前配偶"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "男伴"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "女伴"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "伴侣"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "前男伴"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "前女伴"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "前伴侣"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "男伴"
 
@@ -19030,6 +19054,13 @@ msgstr "设置为主人翁(_H)"
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
 msgstr "未设置主人翁"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""
@@ -41511,3 +41542,4 @@ msgstr "媒体管理器(_M)"
 #~ "视图 %(name)s 未读取. 参照帮助菜单，插件管理了解更多信息。\n"
 #~ "利用 https://gramps-project.org/bugs/  提交官方视图的故障报告,  或者联系视"
 #~ "图的作者 (%(firstauthoremail)s) . "
+
