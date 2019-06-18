@@ -25,7 +25,7 @@ Provide tagging functionality.
 #
 # -------------------------------------------------------------------------
 from bisect import insort_left
-from xml.sax.saxutils import escape
+from html import escape
 
 # -------------------------------------------------------------------------
 #
