@@ -660,7 +660,8 @@ class TestcaseGenerator(tool.BatchTool):
                 alt_name3,
             ]
             plac.set_name(pri_name)
-            plac.set_alternative_names(alt_names)
+            for name in alt_names:
+                plac.add_name(name)
             self.db.add_place(plac, self.trans)
 
     def test_fix_duplicated_grampsid(self):
@@ -1421,6 +1422,13 @@ class TestcaseGenerator(tool.BatchTool):
         place = Place()
         place.set_title(message)
         place.add_citation(_choice(c_h_list))
+        pname = PlaceName(value='All Attribute Test')
+        pname.add_citation(_choice(c_h_list))
+        place.add_name(pname)
+        ptype = PlaceType(value=PlaceType.BOROUGH)
+        ptype.add_citation(_choice(c_h_list))
+        place.add_type(ptype)
+        place.add_attribute(att)
         # Place : MediaRef
         mref = MediaRef()
         mref.set_reference_handle(med.handle)
@@ -1432,6 +1440,7 @@ class TestcaseGenerator(tool.BatchTool):
         att.add_citation(_choice(c_h_list))
         mref.add_attribute(att)
         place.add_media_reference(mref)
+        place.add_attribute(att)
         self.db.add_place(place, self.trans)
 
         ref = Repository()
@@ -2032,7 +2041,6 @@ class TestcaseGenerator(tool.BatchTool):
         if isinstance(obj, Place):
             obj.set_title(self.rand_text(self.LONG))
             obj.set_name(PlaceName(value=self.rand_text(self.SHORT)))
-            obj.set_code(self.rand_text(self.SHORT))
             if _randint(0, 1) == 1:
                 if _randint(0, 4) == 1:
                     obj.set_longitude(self.rand_text(self.SHORT))

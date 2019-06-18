@@ -27,7 +27,7 @@ from time import localtime, strptime
 import tempfile
 
 from gramps.test.test_util import Gramps
-from gramps.gen.const import DATA_DIR, HOME_DIR
+from gramps.gen.const import DATA_DIR, USER_DATA
 from gramps.gen.datehandler import set_format
 from gramps.gen.user import User
 from gramps.gen.utils.config import config
@@ -35,10 +35,10 @@ from gramps.gen.utils.config import config
 TREE_NAME = "Test_exporttest"
 # the following defines where to find the test import and result files
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
-DB_DIR = os.path.join(HOME_DIR, "grampsdb")
+DB_DIR = os.path.join(USER_DATA, "grampsdb")
 # the following defines where to find test error diffs and export result files
 # this need to remain in place for developer debug
-TEMP_DIR = os.path.join(HOME_DIR, "temp")
+TEMP_DIR = os.path.join(USER_DATA, "temp")
 if not os.path.isdir(TEMP_DIR):
     os.makedirs(TEMP_DIR)
 
