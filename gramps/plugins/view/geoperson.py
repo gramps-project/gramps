@@ -90,7 +90,7 @@ _UI_DEF = [
       <section id='CommonEdit' groups='RW'>
         <item>
           <attribute name="action">win.PrintView</attribute>
-          <attribute name="label" translatable="yes">_Print...</attribute>
+          <attribute name="label" translatable="yes">Print...</attribute>
         </item>
       </section>
 ''',

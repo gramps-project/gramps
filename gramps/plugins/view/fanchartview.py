@@ -165,7 +165,7 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
       <section id='CommonEdit' groups='RW'>
         <item>
           <attribute name="action">win.PrintView</attribute>
-          <attribute name="label" translatable="yes">_Print...</attribute>
+          <attribute name="label" translatable="yes">Print...</attribute>
         </item>
       </section>
 ''',
@@ -232,7 +232,7 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
         <property name="action-name">win.PrintView</property>
         <property name="tooltip_text" translatable="yes">'''
         '''Print or save the Fan Chart View</property>
-        <property name="label" translatable="yes">_Print...</property>
+        <property name="label" translatable="yes">Print...</property>
         <property name="use-underline">True</property>
       </object>
       <packing>
@@ -249,7 +249,7 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
         """
         NavigationView.define_actions(self)
 
-        self._add_action('PrintView', self.printview, "<PRIMARY>P")
+        self._add_action('PrintView', self.printview, "<PRIMARY><SHIFT>P")
         self._add_action('PRIMARY-J', self.jump, '<PRIMARY>J')
 
     def build_tree(self):
