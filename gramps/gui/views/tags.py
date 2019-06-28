@@ -241,14 +241,21 @@ class Tags(DbGUIElement):
         tag_menu = ''
         menuitem = '''
         <item>
-          <attribute name="action">win.TAG-%s</attribute>
+          <attribute name="action">win.%s</attribute>
           <attribute name="label">%s</attribute>
         </item>'''
 
         for tag_name, handle in self.__tag_list:
-            tag_menu += menuitem % (handle, escape(tag_name))
+            tag_menu += menuitem % ("TAG-%s" % handle,
+                                    "Add tag '%s'" % tag_name)
             actions.append(('TAG-%s' % handle,
                             make_callback(self.tag_selected_rows, handle)))
+        for tag_name, handle in self.__tag_list:
+            tag_menu += menuitem % ("R-TAG-%s" % handle,
+                                    "Remove tag '%s'" % tag_name)
+            actions.append(('R-TAG-%s' % handle,
+                            make_callback(self.remove_tag_selected_rows,
+                                          handle)))
         tag_menu = TAG_MENU % tag_menu
 
         self.tag_ui = [TAG_1 % tag_menu, TAG_2, TAG_3 % tag_menu]
@@ -313,6 +320,28 @@ class Tags(DbGUIElement):
             for object_handle in selected:
                 status.heartbeat()
                 view.add_tag(trans, object_handle, tag_handle)
+        status.end()
+
+    def remove_tag_selected_rows(self, tag_handle):
+        """
+        Remove tag from selected rows.
+        """
+        view = self.uistate.viewmanager.active_page
+        selected = view.selected_handles()
+        # Make the dialog modal so that the user can't start another
+        # database transaction while the one setting tags is still running.
+        pmon = progressdlg.ProgressMonitor(progressdlg.GtkProgressDialog,
+                ("", self.uistate.window, Gtk.DialogFlags.MODAL), popup_time=2)
+        status = progressdlg.LongOpStatus(msg=_("Adding Tags"),
+                                          total_steps=len(selected),
+                                          interval=len(selected)//20)
+        pmon.add_op(status)
+        tag = self.db.get_tag_from_handle(tag_handle)
+        msg = _('Tag Selection (%s)') % tag.get_name()
+        with DbTxn(msg, self.db) as trans:
+            for object_handle in selected:
+                status.heartbeat()
+                view.remove_tag(trans, object_handle, tag_handle)
         status.end()
 
 def cb_menu_position(*args):
