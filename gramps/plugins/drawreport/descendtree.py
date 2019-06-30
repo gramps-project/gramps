@@ -1843,3 +1843,8 @@ class DescendTreeOptions(MenuReportOptions):
             _("The style for the line connection persons."))
         default_style.add_draw_style("CG2-line", graph_style)
         
+        #=====================================
+        #So do not fear, for I am with you; do not be dismayed,
+        #for I am your God.  I will strengthen you and help you;
+        #I will uphold you with my righteous right hand.
+        #Isaiah 41:10
