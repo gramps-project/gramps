@@ -1814,26 +1814,33 @@ class DescendTreeOptions(MenuReportOptions):
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Normal")
         graph_style.set_fill_color((255, 255, 255))
+        para_style.set_description(_("The style for the marrige-box."))
         default_style.add_draw_style("CG2-fam-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Normal")
         graph_style.set_shadow(1, box_shadow)
         graph_style.set_fill_color((255, 255, 255))
+        para_style.set_description(_("The style for the  spouse-box."))
         default_style.add_draw_style("CG2-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Bold")
         graph_style.set_shadow(1, box_shadow)
         graph_style.set_fill_color((255, 255, 255))
+        para_style.set_description(
+            _("The style for the direct descendant-box."))
         default_style.add_draw_style("CG2b-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Note")
         graph_style.set_fill_color((255, 255, 255))
+        para_style.set_description(_("The style for the note-box."))
         default_style.add_draw_style("CG2-note-box", graph_style)
 
         graph_style = GraphicsStyle()
+        para_style.set_description(
+            _("The style for the line connection persons."))
         default_style.add_draw_style("CG2-line", graph_style)
 
 #=====================================
