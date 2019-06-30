@@ -1814,7 +1814,7 @@ class DescendTreeOptions(MenuReportOptions):
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Normal")
         graph_style.set_fill_color((255, 255, 255))
-        para_style.set_description(_("The style for the marrige-box."))
+        para_style.set_description(_("The style for the marriage-box."))
         default_style.add_draw_style("CG2-fam-box", graph_style)
 
         graph_style = GraphicsStyle()
