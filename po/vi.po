@@ -10176,6 +10176,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "bạn đời trước "
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "vợ "
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "vợ "
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "bạn đời "
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "chồng trước "
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "vợ trước "
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "bạn đời "
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "vợ "
 
@@ -19106,6 +19130,16 @@ msgstr "Đặt người gốc "
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
 msgstr "Chưa đặt người chính"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Bạn cần đặt một 'người mặc định' để tiếp tục. Hãy chọn mục Hiện Người, chọn "
+"một người bạn muốn làm 'người cơ sở', rồi xác nhận việc chọn này qua menu "
+"Chỉnh sửa -> Chọn người cơ sở."
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""
@@ -40085,3 +40119,4 @@ msgstr "Quản_lý_đa_phương_tiện"
 #~ "cắm chạy để có thêm thông tin.\n"
 #~ "Dùng https://gramps-project.org/bugs/ để báo lỗi cho hiển thị chính thức, "
 #~ "hoặc liênhệ tác giả hiển thị (%(firstauthoremail)s). "
+

@@ -10383,6 +10383,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "ex-cônjuge"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "companheiro"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "companheira"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "companheiro(a)"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "ex-companheiro"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "ex-companheira"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "ex-companheiro(a)"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "companheiro"
 
@@ -19409,6 +19433,17 @@ msgstr "_Definir a pessoa inicial"
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
 msgstr "Não foi definida uma pessoa inicial"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Você precisa de uma \"pessoa predefinida\" para a qual deseja ir. Selecione a "
+"visualização de pessoas, selecione a pessoa que você quer que seja a \"pessoa "
+"inicial\", então confirme a sua escolha por meio do menu Editar ->Definir "
+"pessoa inicial."
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""
@@ -39755,3 +39790,4 @@ msgstr ""
 #, fuzzy
 #~ msgid "window1"
 #~ msgstr "Janela principal"
+

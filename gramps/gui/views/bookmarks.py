@@ -151,8 +151,7 @@ class Bookmarks(metaclass=ABCMeta):
         """Create the pulldown menu."""
         menuitem = ('<item>\n'
                     '<attribute name="action">win.%s</attribute>\n'
-                    '<attribute name="label" translatable="yes">'
-                    '%s</attribute>\n'
+                    '<attribute name="label">%s</attribute>\n'
                     '</item>\n')
         text = StringIO()
 

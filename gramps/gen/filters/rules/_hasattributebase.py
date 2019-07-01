@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2019  Matthias Kemmer
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,6 +35,7 @@ _ = glocale.translation.gettext
 from ...lib.attrtype import AttributeType
 from . import Rule
 
+
 #-------------------------------------------------------------------------
 #
 # HasAttribute
@@ -44,10 +46,10 @@ class HasAttributeBase(Rule):
     Rule that checks for an object with a particular attribute.
     """
 
-    labels = [ 'Attribute:', 'Value:' ]
+    labels = ['Attribute:', 'Value:']
     name = 'Objects with the <attribute>'
     description = "Matches objects with the given attribute " \
-                   "of a particular value"
+                  "of a particular value"
     category = _('General filters')
     allow_regex = True
 
@@ -60,5 +62,6 @@ class HasAttributeBase(Rule):
             name_match = attr.get_type() == specified_type
 
             if name_match:
-                return self.match_substring(1, attr.get_value())
+                if self.match_substring(1, attr.get_value()):
+                    return True
         return False

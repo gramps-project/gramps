@@ -52,6 +52,7 @@ class FanChartDescGramplet(FanChartDescGrampsGUI, Gramplet):
         self.angle_algo = ANGLE_WEIGHT
         self.flipupsidedownname = True
         self.twolinename = True
+        self.showid = False
         self.set_fan(FanChartDescWidget(self.dbstate, self.uistate,
                                         self.on_popup))
         # Replace the standard textview with the fan chart widget:
@@ -75,5 +76,6 @@ class FanChartDescGramplet(FanChartDescGrampsGUI, Gramplet):
     def on_childmenu_changed(self, obj, person_handle):
         """Callback for the pulldown menu selection, changing to the person
            attached with menu item."""
+        dummy_obj = obj
         self.set_active('Person', person_handle)
         return True

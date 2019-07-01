@@ -575,7 +575,7 @@ class BaseTest(unittest.TestCase):
         """
         rule = HaveChildren([])
         # too many to list out to test explicitly
-        self.assertEqual(len(self.filter_with_rule(rule)), 901)
+        self.assertEqual(len(self.filter_with_rule(rule)), 905)
 
     def test_incompletenames(self):
         """

@@ -25,16 +25,6 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import Pango
-from gi.repository import Gtk
-import math
-from gi.repository import Gdk
-try:
-    import cairo
-except ImportError:
-    pass
 
 #-------------------------------------------------------------------------
 #
@@ -42,13 +32,13 @@ except ImportError:
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from gramps.gen.plug import Gramplet
-from gramps.gen.errors import WindowActiveError
-from gramps.gui.editors import EditPerson
-from gramps.gui.widgets.fanchart2way import (FanChart2WayWidget, FanChart2WayGrampsGUI,
-                                      ANGLE_WEIGHT)
+from gramps.gui.widgets.fanchart2way import (FanChart2WayWidget,
+                                             FanChart2WayGrampsGUI,
+                                             ANGLE_WEIGHT)
 from gramps.gui.widgets.fanchart import FORM_HALFCIRCLE, BACKGROUND_SCHEME1
+
+_ = glocale.translation.gettext
 
 class FanChart2WayGramplet(FanChart2WayGrampsGUI, Gramplet):
     """
@@ -71,11 +61,13 @@ class FanChart2WayGramplet(FanChart2WayGrampsGUI, Gramplet):
         self.angle_algo = ANGLE_WEIGHT
         self.flipupsidedownname = True
         self.twolinename = True
+        self.showid = False
         self.childring = False
         self.background_gradient = True
         #self.filter = filter
 
-        self.set_fan(FanChart2WayWidget(self.dbstate, self.uistate, self.on_popup))
+        self.set_fan(FanChart2WayWidget(self.dbstate, self.uistate,
+                                        self.on_popup))
         # Replace the standard textview with the fan chart widget:
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add_with_viewport(self.fan)
@@ -83,7 +75,9 @@ class FanChart2WayGramplet(FanChart2WayGrampsGUI, Gramplet):
         self.fan.show()
 
     def init(self):
-        self.set_tooltip(_("Click to expand/contract person\nRight-click for options\nClick and drag in open area to rotate"))
+        self.set_tooltip(_("Click to expand/contract person\n"
+                           "Right-click for options\n"
+                           "Click and drag in open area to rotate"))
 
     def active_changed(self, handle):
         """
@@ -95,5 +89,6 @@ class FanChart2WayGramplet(FanChart2WayGrampsGUI, Gramplet):
     def on_childmenu_changed(self, obj, person_handle):
         """Callback for the pulldown menu selection, changing to the person
            attached with menu item."""
+        dummy_obj = obj
         self.set_active('Person', person_handle)
         return True

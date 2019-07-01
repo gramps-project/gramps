@@ -65,7 +65,7 @@ from gramps.gen.simple import make_basic_stylesheet
 
 MENUITEM = ('<item>\n'
             '<attribute name="action">{prefix}.{action}</attribute>\n'
-            '<attribute name="label" translatable="yes">'
+            '<attribute name="label">'
             '{label}</attribute>\n'
             '</item>\n')
 

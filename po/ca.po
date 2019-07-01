@@ -10393,6 +10393,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "ex-cònjuge"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "company"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "companya"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "parella"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "ex-company"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "ex-companya"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "ex-parella"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "company"
 
@@ -19428,6 +19452,16 @@ msgstr "Fixa Persona _Base"
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
 msgstr "Persona base no fixada"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Heu de fixar una 'persona predeterminada' on anar. Seleccioneu la Vista de "
+"Persones, seleccioneu la persona que voleu com a 'Persona Base', i llavors "
+"confirmeu l'elecció amb el menú Edita -> Fixar Persona Base."
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""
@@ -37164,3 +37198,4 @@ msgstr "Gestor_audiovisuals"
 
 #~ msgid "Alphabet Menu: %s"
 #~ msgstr "Menú d'Alfabet: %s"
+

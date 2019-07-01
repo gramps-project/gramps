@@ -62,7 +62,7 @@ UIDEFAULT = (
         <item>
           <attribute name="action">win.Open</attribute>
           <attribute name="label" translatable="yes">'''
-    '''_Manage Family Trees</attribute>
+    '''_Manage Family Trees...</attribute>
         </item>
         <submenu>
           <attribute name="action">win.OpenRecent</attribute>

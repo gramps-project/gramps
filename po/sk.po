@@ -10219,6 +10219,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "bývalý partner/-ka"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "druh"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "družka"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "druh/družka"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "druh"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "družka"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "druh/družka"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "druh"
 
@@ -19161,6 +19185,16 @@ msgstr "Nastaviť východziu osobu"
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
 msgstr "Nebola nastavená východzia osoba"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Musíte nastaviť 'východziu osobu'. Zvoľte pohľad Osoby, vyberte tú ktorá "
+"bude prednastavená a voľbu potvrďte cez menu Editovať ->Zvoliť výchdziu "
+"osobu."
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""
@@ -39850,3 +39884,4 @@ msgstr "manual|Media_Manager"
 #~ "Správca modulov.\n"
 #~ "Ohláste chybu na https://gramps-project.org/bugs/, pre ostatné doplnkové "
 #~ "pohľady kontaktujte autora (%(firstauthoremail)s). "
+

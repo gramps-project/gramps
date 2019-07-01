@@ -24,12 +24,12 @@ A replacement UIManager and ActionGroup.
 
 import copy
 import sys
-from ..gen.config import config
 import logging
 import xml.etree.ElementTree as ET
 
 from gi.repository import GLib, Gio, Gtk
 
+from ..gen.const import GRAMPS_LOCALE as glocale
 from ..gen.config import config
 
 
@@ -215,7 +215,9 @@ class UIManager():
         iterator(editable)  # clean up tree to builder specifications
         xml_str = ET.tostring(editable, encoding="unicode")
         #print(xml_str)
-        self.builder = Gtk.Builder.new_from_string(xml_str, -1)
+        self.builder = Gtk.Builder()
+        self.builder.set_translation_domain(glocale.get_localedomain())
+        self.builder.add_from_string(xml_str)
         if init:
             self.app.menubar = self.builder.get_object("menubar")
             self.app.set_menubar(self.app.menubar)

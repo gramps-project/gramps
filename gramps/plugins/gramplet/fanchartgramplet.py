@@ -56,6 +56,7 @@ class FanChartGramplet(FanChartGrampsGUI, Gramplet):
         self.generic_filter = None
         self.alpha_filter = 0.2
         self.form = FORM_HALFCIRCLE
+        self.showid = False
         self.set_fan(FanChartWidget(self.dbstate, self.uistate, self.on_popup))
         # Replace the standard textview with the fan chart widget:
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -77,5 +78,6 @@ class FanChartGramplet(FanChartGrampsGUI, Gramplet):
     def on_childmenu_changed(self, obj, person_handle):
         """Callback for the pulldown menu selection, changing to the person
            attached with menu item."""
+        dummy_obj = obj
         self.set_active('Person', person_handle)
         return True

@@ -10323,6 +10323,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "volt házastárs"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "férj"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "feleség"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "házastárs"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "volt férj"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "volt feleség"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "volt házastárs"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "férj"
 
@@ -19368,6 +19392,16 @@ msgstr "A kii_nduló személy beállítása"
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
 msgstr "Nincs kiinduló személy"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Induláshoz egy 'kiinduló személyt' kell beállítania. Válassza az Ember "
+"nézetet, válasszon egy személyt 'Kiinduló személy'-nek, majd hagyja jóvá a "
+"Szerkesztés -> Kiinduló személy beállítása menün keresztül."
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""
@@ -40188,3 +40222,4 @@ msgstr "_Médiakezelő"
 
 #~ msgid "Family Sources"
 #~ msgstr "Család források"
+

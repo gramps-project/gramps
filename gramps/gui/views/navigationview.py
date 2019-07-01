@@ -324,7 +324,7 @@ class NavigationView(PageView):
                 _("You need to set a 'default person' to go to. "
                   "Select the People View, select the person you want as "
                   "'Home Person', then confirm your choice "
-                  "via the menu Edit ->Set Home Person."),
+                  "via the menu Edit -> Set Home Person."),
                 parent=self.uistate.window)
 
     def jump(self, *obj):
@@ -425,7 +425,7 @@ class NavigationView(PageView):
         """
         menuitem = '''        <item>
               <attribute name="action">win.%s%02d</attribute>
-              <attribute name="label" translatable="yes">%s</attribute>
+              <attribute name="label">%s</attribute>
             </item>
             '''
         menus = ''

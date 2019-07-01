@@ -10105,6 +10105,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "fv-maki"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "maki"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "maki"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "maki"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "fv-maki"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "fv-maki"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "fv-maki"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "maki"
 
@@ -18789,6 +18813,17 @@ msgstr "Stilla upphafseinstakling"
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
 msgstr "Enginn upphafseinstaklingur"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Þú verður að setja einhvern einstakling sem 'sjálfgefinn' til að ganga út "
+"frá. Veldu einstaklingasýnina, veldu þann sem þú vilt að sé þessi "
+"'upphafseinstaklingur', síðan þarftu að staðfesta þetta val með því að fara "
+"í valmyndina Breyta ->Setilla upphafseinstakling."
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""
@@ -36724,3 +36759,4 @@ msgstr "Gagnastjórnun"
 
 #~ msgid "Adding children"
 #~ msgstr "Bæta við börnum"
+

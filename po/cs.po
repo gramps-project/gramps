@@ -10284,6 +10284,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "bývalý partner"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "druh"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "družka"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "druh(družka)"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "bývalý manžel"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "bývalý manželka"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "druh(družka)"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "druh"
 
@@ -19300,6 +19324,16 @@ msgstr "Na_stavit výchozí osobu"
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
 msgstr "Žádná výchozí osoba"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Pro pokračování musíte nejdříve vybrat 'výchozí osobu'. Zvolte Pohled osoby, "
+"vyberte osobu kterou chcete mít jako výchozí, poté potvrďte volbu "
+"prostřednictvím nabídky Upravit -> Nastavit výchozí osobu."
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""

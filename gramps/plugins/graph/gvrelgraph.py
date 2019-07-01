@@ -115,6 +115,7 @@ class RelGraphReport(Report):
         color_families - Colour to apply to families
         dashed         - Whether to use dashed lines for non-birth relationships
         use_roundedcorners - Whether to use rounded corners for females
+        use_hexagons   - Whether to use hexagons for individuals of unknown gender
         name_format    - Preferred format to display names
         incl_private   - Whether to include private data
         event_choice   - Whether to include dates and/or places
@@ -142,6 +143,7 @@ class RelGraphReport(Report):
         self.includeimg = get_value('includeImages')
         self.imgpos = get_value('imageOnTheSide')
         self.use_roundedcorners = get_value('useroundedcorners')
+        self.use_hexagons = get_value('usehexagons')
         self.adoptionsdashed = get_value('dashed')
         self.show_families = get_value('showfamily')
         self.show_family_leaves = get_value('show_family_leaves')
@@ -543,7 +545,7 @@ class RelGraphReport(Report):
 
         if gender == person.FEMALE and self.use_roundedcorners:
             style = "rounded"
-        elif gender == person.UNKNOWN:
+        elif gender == person.UNKNOWN and self.use_hexagons:
             shape = "hexagon"
 
         if person == self.center_person and self.increlname:
@@ -826,6 +828,12 @@ class RelGraphOptions(MenuReportOptions):
         roundedcorners.set_help(_("Use rounded corners to differentiate "
                                   "between women and men."))
         add_option("useroundedcorners", roundedcorners)
+
+        # see bug report #11112
+        hexagons = BooleanOption(_("Use hexagons"), False)
+        hexagons.set_help(_("Use hexagons to differentiate "
+                                  "those of unknown gender."))
+        add_option("usehexagons", hexagons)
 
         stdoptions.add_gramps_id_option(menu, category_name, ownline=True)
 

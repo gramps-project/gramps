@@ -147,7 +147,7 @@ class NoteView(ListView):
         </item>
         <item>
           <attribute name="action">win.EditBook</attribute>
-          <attribute name="label" translatable="no">%s...</attribute>
+          <attribute name="label">%s...</attribute>
         </item>
       </section>
 ''' % _('Organize Bookmarks'),
@@ -173,7 +173,7 @@ class NoteView(ListView):
         </item>
         <item>
           <attribute name="action">win.Edit</attribute>
-          <attribute name="label" translatable="yes">%s</attribute>
+          <attribute name="label">%s</attribute>
         </item>
         <item>
           <attribute name="action">win.Remove</attribute>
@@ -230,7 +230,7 @@ class NoteView(ListView):
       <object class="GtkToolButton">
         <property name="icon-name">list-add</property>
         <property name="action-name">win.Add</property>
-        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="tooltip_text">%s</property>
         <property name="label" translatable="yes">_Add...</property>
         <property name="use-underline">True</property>
       </object>
@@ -242,7 +242,7 @@ class NoteView(ListView):
       <object class="GtkToolButton">
         <property name="icon-name">gtk-edit</property>
         <property name="action-name">win.Edit</property>
-        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="tooltip_text">%s</property>
         <property name="label" translatable="yes">Edit...</property>
         <property name="use-underline">True</property>
       </object>
@@ -254,7 +254,7 @@ class NoteView(ListView):
       <object class="GtkToolButton">
         <property name="icon-name">list-remove</property>
         <property name="action-name">win.Remove</property>
-        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="tooltip_text">%s</property>
         <property name="label" translatable="yes">_Delete</property>
         <property name="use-underline">True</property>
       </object>
@@ -266,7 +266,7 @@ class NoteView(ListView):
       <object class="GtkToolButton">
         <property name="icon-name">gramps-merge</property>
         <property name="action-name">win.Merge</property>
-        <property name="tooltip_text" translatable="yes">%s</property>
+        <property name="tooltip_text">%s</property>
         <property name="label" translatable="yes">_Merge...</property>
         <property name="use-underline">True</property>
       </object>
@@ -297,7 +297,7 @@ class NoteView(ListView):
         </item>
         <item>
           <attribute name="action">win.Edit</attribute>
-          <attribute name="label" translatable="yes">%s</attribute>
+          <attribute name="label">%s</attribute>
         </item>
         <item>
           <attribute name="action">win.Remove</attribute>

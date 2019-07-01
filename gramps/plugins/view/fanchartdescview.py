@@ -30,11 +30,9 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import Gdk
 from gi.repository import Gtk
 import cairo
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -50,6 +48,7 @@ from gramps.plugins.view.fanchartview import FanChartView
 
 # the print settings to remember between print sessions
 PRINT_SETTINGS = None
+_ = glocale.translation.gettext
 
 class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
     """
@@ -67,32 +66,36 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         ('interface.color-start-grad', '#ef2929'),
         ('interface.color-end-grad', '#3d37e9'),
         ('interface.angle-algorithm', fanchartdesc.ANGLE_WEIGHT),
-        ('interface.duplicate-color', '#888a85')
+        ('interface.duplicate-color', '#888a85'),
+        ('interface.fanview-showid', False)
         )
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
         self.dbstate = dbstate
         self.uistate = uistate
 
         NavigationView.__init__(self, _('Descendant Fan Chart'),
-                                      pdata, dbstate, uistate,
-                                      PersonBookmarks,
-                                      nav_group)
-        fanchartdesc.FanChartDescGrampsGUI.__init__(self, self.on_childmenu_changed)
+                                pdata, dbstate, uistate,
+                                PersonBookmarks, nav_group)
+        fanchartdesc.FanChartDescGrampsGUI.__init__(self,
+                                                    self.on_childmenu_changed)
         #set needed values
-        self.maxgen = self._config.get('interface.fanview-maxgen')
-        self.background = self._config.get('interface.fanview-background')
-        self.radialtext = self._config.get('interface.fanview-radialtext')
-        self.twolinename = self._config.get('interface.fanview-twolinename')
-        self.flipupsidedownname = self._config.get('interface.fanview-flipupsidedownname')
-        self.fonttype = self._config.get('interface.fanview-font')
+        scg = self._config.get
+        self.maxgen = scg('interface.fanview-maxgen')
+        self.background = scg('interface.fanview-background')
+        self.radialtext = scg('interface.fanview-radialtext')
+        self.twolinename = scg('interface.fanview-twolinename')
+        self.flipupsidedownname = scg('interface.fanview-flipupsidedownname')
+        self.fonttype = scg('interface.fanview-font')
 
-        self.grad_start = self._config.get('interface.color-start-grad')
-        self.grad_end = self._config.get('interface.color-end-grad')
-        self.form = self._config.get('interface.fanview-form')
-        self.angle_algo = self._config.get('interface.angle-algorithm')
-        self.dupcolor = self._config.get('interface.duplicate-color')
+        self.grad_start = scg('interface.color-start-grad')
+        self.grad_end = scg('interface.color-end-grad')
+        self.form = scg('interface.fanview-form')
+        self.angle_algo = scg('interface.angle-algorithm')
+        self.dupcolor = scg('interface.duplicate-color')
+        self.showid = scg('interface.fanview-showid')
         self.generic_filter = None
         self.alpha_filter = 0.2
+        self.scrolledwindow = None
 
         dbstate.connect('active-changed', self.active_changed)
         dbstate.connect('database-changed', self.change_db)
@@ -100,9 +103,6 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self.additional_uis.append(FanChartView.additional_ui)
         self.allfonts = [x for x in enumerate(SystemFonts().get_system_fonts())]
 
-        self.func_list.update({
-            '<PRIMARY>J' : self.jump,
-            })
         self.uistate.connect('font-changed', self.font_changed)
 
     def font_changed(self):
@@ -170,6 +170,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         Method called when active person changes.
         """
         # Reset everything but rotation angle (leave it as is)
+        dummy_handle = handle
         self.update()
 
     def _connect_db_signals(self):
@@ -186,28 +187,43 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self._add_db_signal('family-rebuild', self.person_rebuild)
 
     def change_db(self, db):
+        """
+        We selected a new database
+        """
         self._change_db(db)
         if self.active:
             self.bookmarks.redraw()
         self.update()
 
     def update(self):
+        """
+        Redraw the fan chart
+        """
         self.main()
 
     def goto_handle(self, handle):
+        """
+        Draw the fan chart for the active person
+        """
         self.change_active(handle)
         self.main()
 
-    def get_active(self, object):
+    def get_active(self, obj):
         """overrule get_active, to support call as in Gramplets
         """
+        dummy_obj = obj
         return NavigationView.get_active(self)
 
     def person_rebuild(self, *args):
+        """
+        Redraw the fan chart for the person
+        """
+        dummy_args = args
         self.update()
 
     def person_rebuild_bm(self, *args):
         """Large change to person database"""
+        dummy_args = args
         self.person_rebuild()
         if self.active:
             self.bookmarks.redraw()
@@ -216,6 +232,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         """
         Print or save the view that is currently shown
         """
+        dummy_obj = obj
         widthpx = 2 * self.fan.halfdist()
         heightpx = widthpx
         if self.form == fanchart.FORM_HALFCIRCLE:
@@ -231,6 +248,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
     def on_childmenu_changed(self, obj, person_handle):
         """Callback for the pulldown menu selection, changing to the person
            attached with menu item."""
+        dummy_obj = obj
         self.change_active(person_handle)
         return True
 
@@ -254,76 +272,75 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         """
         Function that builds the widget in the configuration dialog
         """
-        nrentry = 9
         grid = Gtk.Grid()
         grid.set_border_width(12)
         grid.set_column_spacing(6)
         grid.set_row_spacing(6)
 
         configdialog.add_spinner(grid, _("Max generations"), 0,
-                'interface.fanview-maxgen', (2, 16),
-                callback=self.cb_update_maxgen)
-        configdialog.add_combo(grid,
-                _('Text Font'),
-                1, 'interface.fanview-font',
-                self.allfonts, callback=self.cb_update_font, valueactive=True)
+                                 'interface.fanview-maxgen', (2, 16),
+                                 callback=self.cb_update_maxgen)
+        configdialog.add_combo(grid, _('Text Font'),
+                               1, 'interface.fanview-font',
+                               self.allfonts, callback=self.cb_update_font,
+                               valueactive=True)
         backgrvals = (
-                (fanchart.BACKGROUND_GENDER, _('Gender colors')),
-                (fanchart.BACKGROUND_GRAD_GEN, _('Generation based gradient')),
-                (fanchart.BACKGROUND_GRAD_AGE, _('Age (0-100) based gradient')),
-                (fanchart.BACKGROUND_SINGLE_COLOR,
-                                            _('Single main (filter) color')),
-                (fanchart.BACKGROUND_GRAD_PERIOD, _('Time period based gradient')),
-                (fanchart.BACKGROUND_WHITE, _('White')),
-                (fanchart.BACKGROUND_SCHEME1, _('Color scheme classic report')),
-                (fanchart.BACKGROUND_SCHEME2, _('Color scheme classic view')),
-                )
+            (fanchart.BACKGROUND_GENDER, _('Gender colors')),
+            (fanchart.BACKGROUND_GRAD_GEN, _('Generation based gradient')),
+            (fanchart.BACKGROUND_GRAD_AGE, _('Age (0-100) based gradient')),
+            (fanchart.BACKGROUND_SINGLE_COLOR,
+	            _('Single main (filter) color')),
+            (fanchart.BACKGROUND_GRAD_PERIOD, _('Time period based gradient')),
+            (fanchart.BACKGROUND_WHITE, _('White')),
+            (fanchart.BACKGROUND_SCHEME1, _('Color scheme classic report')),
+            (fanchart.BACKGROUND_SCHEME2, _('Color scheme classic view')),
+            )
         curval = self._config.get('interface.fanview-background')
         nrval = 0
-        for nr, val in backgrvals:
-            if curval == nr:
+        for nbr, dummy_val in backgrvals:
+            if curval == nbr:
                 break
             nrval += 1
-        configdialog.add_combo(grid,
-                _('Background'),
-                2, 'interface.fanview-background',
-                backgrvals,
-                callback=self.cb_update_background, valueactive=False,
-                setactive=nrval
-                )
+        configdialog.add_combo(grid, _('Background'),
+                               2, 'interface.fanview-background',
+                               backgrvals, callback=self.cb_update_background,
+                               valueactive=False, setactive=nrval)
         #colors, stored as hex values
         configdialog.add_color(grid, _('Start gradient/Main color'), 3,
-                        'interface.color-start-grad', col=1)
+                               'interface.color-start-grad', col=1)
         configdialog.add_color(grid, _('End gradient/2nd color'), 4,
-                        'interface.color-end-grad',  col=1)
+                               'interface.color-end-grad', col=1)
         configdialog.add_color(grid, _('Color for duplicates'), 5,
-                        'interface.duplicate-color', col=1)
+                               'interface.duplicate-color', col=1)
         # form of the fan
         configdialog.add_combo(grid, _('Fan chart type'), 6,
-                        'interface.fanview-form',
-                        ((fanchart.FORM_CIRCLE, _('Full Circle')),
-                         (fanchart.FORM_HALFCIRCLE, _('Half Circle')),
-                         (fanchart.FORM_QUADRANT, _('Quadrant'))),
-                        callback=self.cb_update_form)
+                               'interface.fanview-form',
+                               ((fanchart.FORM_CIRCLE, _('Full Circle')),
+                                (fanchart.FORM_HALFCIRCLE, _('Half Circle')),
+                                (fanchart.FORM_QUADRANT, _('Quadrant'))),
+                               callback=self.cb_update_form)
         # algo for the fan angle distribution
         configdialog.add_combo(grid, _('Fan chart distribution'), 7,
-                        'interface.angle-algorithm',
-                        ((fanchartdesc.ANGLE_CHEQUI,
-                          _('Homogeneous children distribution')),
-                         (fanchartdesc.ANGLE_WEIGHT,
-                          _('Size  proportional to number of descendants')),
-                        ),
-                        callback=self.cb_update_anglealgo)
+                               'interface.angle-algorithm',
+                               ((fanchartdesc.ANGLE_CHEQUI,
+                                 _('Homogeneous children distribution')),
+                                (fanchartdesc.ANGLE_WEIGHT,
+                                 _('Size proportional to number'
+                                   ' of descendants')),
+                               ),
+                               callback=self.cb_update_anglealgo)
 
         # show names one two line
-        configdialog.add_checkbox(grid,
-                _('Show names on two lines'),
-                8, 'interface.fanview-twolinename')
+        configdialog.add_checkbox(grid, _('Show names on two lines'),
+                                  8, 'interface.fanview-twolinename')
 
         # Flip names
-        configdialog.add_checkbox(grid,
-                _('Flip name on the left of the fan'),
-                9, 'interface.fanview-flipupsidedownname')
+        configdialog.add_checkbox(grid, _('Flip name on the left of the fan'),
+                                  9, 'interface.fanview-flipupsidedownname')
+
+        # show gramps_id
+        configdialog.add_checkbox(grid, _('Show gramps id'),
+                                  10, 'interface.fanview-showid')
 
         return _('Layout'), grid
 
@@ -334,17 +351,22 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         use it to monitor changes in the ini file
         """
         self._config.connect('interface.color-start-grad',
-                          self.cb_update_color)
+                             self.cb_update_color)
         self._config.connect('interface.color-end-grad',
-                          self.cb_update_color)
+                             self.cb_update_color)
         self._config.connect('interface.duplicate-color',
-                          self.cb_update_color)
+                             self.cb_update_color)
         self._config.connect('interface.fanview-flipupsidedownname',
-                          self.cb_update_flipupsidedownname)
+                             self.cb_update_flipupsidedownname)
         self._config.connect('interface.fanview-twolinename',
-                          self.cb_update_twolinename)
+                             self.cb_update_twolinename)
+        self._config.connect('interface.fanview-showid',
+                             self.cb_update_showid)
 
     def cb_update_maxgen(self, spinbtn, constant):
+        """
+        The maximum generations in the fanchart
+        """
         self.maxgen = spinbtn.get_value_as_int()
         self._config.set(constant, self.maxgen)
         self.update()
@@ -357,21 +379,30 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self.update()
 
     def cb_update_background(self, obj, constant):
+        """
+        Change the background
+        """
         entry = obj.get_active()
         Gtk.TreePath.new_from_string('%d' % entry)
         val = int(obj.get_model().get_value(
-                obj.get_model().get_iter_from_string('%d' % entry), 0))
+            obj.get_model().get_iter_from_string('%d' % entry), 0))
         self._config.set(constant, val)
         self.background = val
         self.update()
 
     def cb_update_form(self, obj, constant):
+        """
+        Update the fanchart form: CIRCLE, HALFCIRCLE or QUADRANT
+        """
         entry = obj.get_active()
         self._config.set(constant, entry)
         self.form = entry
         self.update()
 
     def cb_update_anglealgo(self, obj, constant):
+        """
+        Update the angle algorythm : homogeneous children distribution or not
+        """
         entry = obj.get_active()
         self._config.set(constant, entry)
         self.angle_algo = entry
@@ -388,12 +419,23 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
 
     def cb_update_flipupsidedownname(self, client, cnxn_id, entry, data):
         """
-        Called when the configuration menu changes the flipupsidedownname setting.
+        Called when the configuration menu changes the
+        flipupsidedownname setting.
         """
         self.flipupsidedownname = (entry == 'True')
         self.update()
 
+    def cb_update_showid(self, client, cnxn_id, entry, data):
+        """
+        Called when the configuration menu changes the showid setting.
+        """
+        self.showid = (entry == 'True')
+        self.update()
+
     def cb_update_font(self, obj, constant):
+        """
+        Change the font
+        """
         entry = obj.get_active()
         self._config.set(constant, self.allfonts[entry][1])
         self.fonttype = self.allfonts[entry][1]
@@ -428,6 +470,8 @@ class CairoPrintSave:
         self.heightpx = heightpx
         self.drawfunc = drawfunc
         self.parent = parent
+        self.preview = None
+        self.previewopr = None
 
     def run(self):
         """Create the physical output from the meta document.
@@ -461,7 +505,8 @@ class CairoPrintSave:
         # run print dialog
         while True:
             self.preview = None
-            res = operation.run(Gtk.PrintOperationAction.PRINT_DIALOG, self.parent)
+            res = operation.run(Gtk.PrintOperationAction.PRINT_DIALOG,
+                                self.parent)
             if self.preview is None: # cancel or print
                 break
             # set up printing again; can't reuse PrintOperation?
@@ -481,20 +526,24 @@ class CairoPrintSave:
     def on_draw_page(self, operation, context, page_nr):
         """Draw a page on a Cairo context.
         """
-        cr = context.get_cairo_context()
+        dummy_operation = operation
+        dummy_page_nr = page_nr
+        ctx = context.get_cairo_context()
         pxwidth = round(context.get_width())
         pxheight = round(context.get_height())
         scale = min(pxwidth/self.widthpx, pxheight/self.heightpx)
-        self.drawfunc(None, cr, scale=scale)
+        self.drawfunc(None, ctx, scale=scale)
 
     def on_paginate(self, operation, context):
         """Paginate the whole document in chunks.
            We don't need this as there is only one page, however,
            we provide a dummy holder here, because on_preview crashes if no
-           default application is set with gir 3.3.2 (typically evince not installed)!
+           default application is set with gir 3.3.2
+           (typically evince not installed)!
            It will provide the start of the preview dialog, which cannot be
            started in on_preview
         """
+        dummy_context = context
         finished = True
         # update page number
         operation.set_n_pages(1)
@@ -508,13 +557,15 @@ class CairoPrintSave:
     def on_preview(self, operation, preview, context, parent):
         """Implement custom print preview functionality.
            We provide a dummy holder here, because on_preview crashes if no
-           default application is set with gir 3.3.2 (typically evince not installed)!
+           default application is set with gir 3.3.2
+           (typically evince not installed)!
         """
+        dummy_preview = preview
         dlg = Gtk.MessageDialog(parent,
-                                   flags=Gtk.DialogFlags.MODAL,
-                                   type=Gtk.MessageType.WARNING,
-                                   buttons=Gtk.ButtonsType.CLOSE,
-                                   message_format=_('No preview available'))
+                                flags=Gtk.DialogFlags.MODAL,
+                                type=Gtk.MessageType.WARNING,
+                                buttons=Gtk.ButtonsType.CLOSE,
+                                message_format=_('No preview available'))
         self.preview = dlg
         self.previewopr = operation
         #dlg.format_secondary_markup(msg2)
@@ -531,11 +582,16 @@ class CairoPrintSave:
         except ValueError:
             height = 0
         surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
-        cr = cairo.Context(surface)
-        context.set_cairo_context(cr, 72.0, 72.0)
+        ctx = cairo.Context(surface)
+        context.set_cairo_context(ctx, 72.0, 72.0)
 
         return True
 
     def previewdestroy(self, dlg, res):
+        """
+        Destroy the preview page
+        """
+        dummy_dlg = dlg
+        dummy_res = res
         self.preview.destroy()
         self.previewopr.end_preview()

@@ -10300,6 +10300,30 @@ msgid "gender unknown|ex-spouse"
 msgstr "ex-cônjuge"
 
 #: ../gramps/gen/relationship.py:2184
+msgid "male,unmarried|partner"
+msgstr "companheiro"
+
+#: ../gramps/gen/relationship.py:2186
+msgid "female,unmarried|partner"
+msgstr "companheira"
+
+#: ../gramps/gen/relationship.py:2188
+msgid "gender unknown,unmarried|partner"
+msgstr "companheiro(a)"
+
+#: ../gramps/gen/relationship.py:2191
+msgid "male,unmarried|ex-partner"
+msgstr "ex-companheiro"
+
+#: ../gramps/gen/relationship.py:2193
+msgid "female,unmarried|ex-partner"
+msgstr "ex-companheira"
+
+#: ../gramps/gen/relationship.py:2195
+msgid "gender unknown,unmarried|ex-partner"
+msgstr "ex-companheiro(a)"
+
+#: ../gramps/gen/relationship.py:2184
 msgid "unmarried|husband"
 msgstr "companheiro"
 
@@ -19305,6 +19329,16 @@ msgstr "_Definir indivíduo inicial"
 #: ../gramps/gui/views/navigationview.py:338
 msgid "No Home Person"
 msgstr "Sem indivíduo inicial"
+
+#: ../gramps/gui/views/navigationview.py:339
+msgid ""
+"You need to set a 'default person' to go to. Select the People View, select "
+"the person you want as 'Home Person', then confirm your choice via the menu "
+"Edit -> Set Home Person."
+msgstr ""
+"Tem de definir um \"indivíduo predefinido\". Seleccione o separador "
+"Indivíduos, seleccione o indivíduo que deseja como \"indivíduo inicial\" e "
+"confirme a sua escolha através do menu Editar->Definir indivíduo inicial."
 
 #: ../gramps/gui/views/navigationview.py:339
 msgid ""
@@ -40547,3 +40581,4 @@ msgstr "Gestor_de_multimédia"
 #~ "Use https://gramps-project.org/bugs/ para submeter erros das vistas "
 #~ "oficiais, ou em alternativa contacte o autor da vista "
 #~ "(%(firstauthoremail)s)"
+

@@ -53,7 +53,7 @@ import os
 import sys
 import shutil
 from argparse import ArgumentParser
-
+from tokenize import tokenize, STRING, COMMENT, NL, TokenError
 # Windows OS
 
 if sys.platform in ['linux', 'linux2', 'darwin', 'cygwin'] or shutil.which('msgmerge'):
@@ -536,6 +536,8 @@ def headers():
         headers.append('''../data/gramps.appdata.xml.in.h''')
     if os.path.isfile('''gtklist.h'''):
         headers.append('''gtklist.h''')
+    if os.path.isfile('''fragments.pot'''):
+        headers.append('''fragments.pot''')
 
     return headers
 
@@ -622,6 +624,76 @@ def extract_gtkbuilder():
 
     print ('Wrote gtklist.h')
 
+
+def xml_fragments():
+    """ search through the file for xml fragments that contain the
+    'translate="yes">string<' pattern.  These need to be added to the message
+    catalog """
+    with open('tmpfiles') as __f:
+        files = [file.strip() for file in __f if
+                 file and not (file[0] == '#') and file.endswith('.py\n')]
+        print("Checking for XML fragments in Python files")
+        modop = int(len(files) / 20)
+    wfp = open("fragments.pot", 'w', encoding='utf-8')
+    for indx, filename in enumerate(files):
+        if not indx % modop:
+            print(int(indx / len(files) * 100), end='\r')
+        fp = open(filename, 'rb')
+        try:
+            tokens = tokenize(fp.readline)
+            in_string = False
+            for _token, _text, _start, _end, _line in tokens:
+                if _text.startswith('"""') or _text.startswith("'''"):
+                    _text = _text[3:]
+                elif _text.startswith('"') or _text.startswith("'"):
+                    _text = _text[1:]
+                if _text.endswith('"""') or _text.endswith("'''"):
+                    _text = _text[:-3]
+                elif _text.endswith('"') or _text.endswith("'"):
+                    _text = _text[:-1]
+                if _token == STRING and not in_string:
+                    in_string = True
+                    line_no = _start[0]
+                    text = _text
+                    continue
+                elif _token == STRING and in_string:
+                    text += _text
+                    continue
+                elif _token == COMMENT or _token == NL and in_string:
+                    # need to ignore comments and concatinate strings
+                    _ml = True
+                    continue
+                elif in_string:
+                    in_string = False
+                    end = 0
+                    # _find_message_in_xml(text)
+                    while True:
+                        fnd = text.find('translatable="yes">', end)
+                        if fnd == -1:
+                            break
+                        end = text.find('<', fnd)
+                        if end == -1:
+                            print("\nBad xml fragment '%s' at %s line %d" %
+                                  (text[fnd:], filename, _start[0]))
+                            break
+                        msg = text[fnd + 19 : end]
+                        if "%s" in msg or (msg.startswith('{') and
+                                           msg.endswith('}')):
+                            print('\n#: %s:%d  Are you sure you want to '
+                                  'translate the "%%s"???' %
+                                  (filename, line_no))
+                            break
+                        wfp.write('#: %s:%d\nmsgid "%s"\nmsgstr ""\n' %
+                                  (filename, line_no, msg))
+        except TokenError as e:
+            print('\n%s: %s, line %d, column %d' % (
+                e.args[0], filename, e.args[1][0], e.args[1][1]),
+                file=sys.stderr)
+        finally:
+            fp.close()
+    wfp.close()
+
+
 def retrieve():
     """
     Extract messages from all files used by Gramps (python, glade, xml)
@@ -633,6 +705,8 @@ def retrieve():
     create_template()
 
     create_filesfile()
+    xml_fragments()
+
     listing('python.txt', ['.py', '.py.in'])
 
     # additional keywords must always be kept in sync with those in genpot.sh

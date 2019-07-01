@@ -47,6 +47,7 @@ from gramps.gen.recentfiles import recent_files
 from gramps.gen.utils.file import rm_tempdir, get_empty_tempdir
 from .clidbman import CLIDbManager, NAME_FILE, find_locker_name
 from gramps.gen.db.utils import make_database
+from gramps.gen.db.dbconst import DBBACKEND
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.plug.report import CATEGORY_BOOK, CATEGORY_CODE, BookList
 from .plug import cl_report, cl_book
@@ -504,6 +505,9 @@ class ArgHandler:
                     self.imp_db_path = get_empty_tempdir("import_dbdir")
                     dbid = config.get('database.backend')
                     newdb = make_database(dbid)
+                    versionpath = os.path.join(self.imp_db_path, str(DBBACKEND))
+                    with open(versionpath, "w") as version_file:
+                        version_file.write(dbid)
 
                 try:
                     self.smgr.open_activate(self.imp_db_path, self.username, self.password)

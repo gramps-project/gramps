@@ -242,7 +242,7 @@ class Tags(DbGUIElement):
         menuitem = '''
         <item>
           <attribute name="action">win.TAG_%s</attribute>
-          <attribute name="label" translatable="yes">%s</attribute>
+          <attribute name="label">%s</attribute>
         </item>'''
 
         for tag_name, handle in self.__tag_list:
