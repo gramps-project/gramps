@@ -624,7 +624,7 @@ class FamilyGroup(Report):
         self.doc.write_text('', mark)
         self.doc.end_paragraph()
 
-        self.dump_parent(self._("Husband"), family.get_father_handle())
+        self.dump_parent(self._("Father"), family.get_father_handle())
         self.doc.start_paragraph("FGR-blank")
         self.doc.end_paragraph()
 
@@ -633,7 +633,7 @@ class FamilyGroup(Report):
             self.doc.start_paragraph("FGR-blank")
             self.doc.end_paragraph()
 
-        self.dump_parent(self._("Wife"), family.get_mother_handle())
+        self.dump_parent(self._("Mother"), family.get_mother_handle())
 
         length = len(family.get_child_ref_list())
         if length > 0:
