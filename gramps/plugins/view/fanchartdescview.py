@@ -152,7 +152,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         """
         NavigationView.define_actions(self)
 
-        self._add_action('PrintView', self.printview, "<PRIMARY>P")
+        self._add_action('PrintView', self.printview, "<PRIMARY><SHIFT>P")
         self._add_action('PRIMARY-J', self.jump, '<PRIMARY>J')
 
     def build_tree(self):
