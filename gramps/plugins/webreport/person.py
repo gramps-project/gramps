@@ -902,15 +902,14 @@ class PersonPages(BasePage):
                          etype) in place_lat_long:
                         trow = Html("tr")
                         tbody += trow
-
                         trow.extend(
                             Html("td", data, class_=colclass, inline=True)
                             for data, colclass in [
-                                (date, "ColumnDate"),
+                                (self.rlocale.get_date(date), "ColumnDate"),
                                 (self.place_link(handle, placetitle,
                                                  uplink=True),
                                  "ColumnPlace"),
-                                (str(etype), "ColumnType")
+                                (self._(str(etype)), "ColumnType")
                             ]
                         )
 
