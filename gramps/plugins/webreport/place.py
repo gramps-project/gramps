@@ -426,7 +426,7 @@ class PlacePages(BasePage):
                                 jsc += MARKERS % ([[plce,
                                                     latitude,
                                                     longitude,
-                                                    1]],
+                                                    1,""]],
                                                   latitude, longitude,
                                                   10)
 
@@ -436,7 +436,7 @@ class PlacePages(BasePage):
                                 jsc += MARKER_PATH % marker_path
                                 jsc += OSM_MARKERS % ([[float(longitude),
                                                         float(latitude),
-                                                        placetitle]],
+                                                        placetitle,""]],
                                                       longitude, latitude, 10)
                                 jsc += OPENLAYER
                         else: # STAMEN
@@ -445,7 +445,7 @@ class PlacePages(BasePage):
                                 jsc += MARKER_PATH % marker_path
                                 jsc += STAMEN_MARKERS % ([[float(longitude),
                                                         float(latitude),
-                                                        placetitle]],
+                                                        placetitle,""]],
                                                       self.stamenopts,
                                                       longitude, latitude, 10)
                                 jsc += OPENLAYER
