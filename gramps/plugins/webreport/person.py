@@ -904,11 +904,11 @@ class PersonPages(BasePage):
                         trow.extend(
                             Html("td", data, class_=colclass, inline=True)
                             for data, colclass in [
-                                (date, "ColumnDate"),
+                                (self.rlocale.get_date(date), "ColumnDate"),
                                 (self.place_link(handle, placetitle,
                                                  uplink=True),
                                  "ColumnPlace"),
-                                (str(etype), "ColumnType")
+                                (self._(str(etype)), "ColumnType")
                             ]
                         )
 
