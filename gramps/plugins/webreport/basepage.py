@@ -742,7 +742,7 @@ class BasePage: # pylint: disable=C1001
         event_date = event.get_date_object()
 
         # 0 = latitude, 1 = longitude, 2 - placetitle,
-        # 3 = place handle, 4 = event date, 5 = event type
+        # 3 = place handle, 4 = event
         found = any(data[3] == place_handle and data[4] == event_date
                     for data in place_lat_long)
         if not found:
@@ -754,7 +754,7 @@ class BasePage: # pylint: disable=C1001
                 if latitude is not None:
                     etype = event.get_type()
                     place_lat_long.append([latitude, longitude, placetitle,
-                                           place_handle, event_date, etype])
+                                           place_handle, event])
 
     def _get_event_place(self, person, place_lat_long):
         """

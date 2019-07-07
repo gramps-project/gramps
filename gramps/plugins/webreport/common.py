@@ -120,16 +120,27 @@ DROPMASTERS = """
   function addMarker() {
     var location = tracelife[iterator];
     var myLatLng = new google.maps.LatLng(location[1], location[2]);
+    var infoWindow = new google.maps.InfoWindow;
 
-    markers.push(new google.maps.Marker({
+    var marker = new google.maps.Marker({
       position:  myLatLng,
       map:       map,
       draggable: true,
       title:     location[0],
       animation: google.maps.Animation.DROP
-    }));
+    });
+    markers.push(marker);
     iterator++;
-  }"""
+    var title = "<h2>" + location[0] + "</h2>"
+    bindInfoWindow(marker, map, infoWindow, title+location[4]);
+  }
+  function bindInfoWindow(marker, map, infoWindow, html) {
+          google.maps.event.addListener(marker, 'click', function() {
+              infoWindow.setContent(html);
+              infoWindow.open(map, marker);
+          });
+  }
+"""
 
 # javascript for Google's Markers...
 MARKERS = """
@@ -153,6 +164,7 @@ MARKERS = """
 
   function addMarkers() {
     var bounds = new google.maps.LatLngBounds();
+    var infoWindow = new google.maps.InfoWindow;
 
     for (var i = 0; i < tracelife.length; i++) {
       var location = tracelife[i];
@@ -165,16 +177,30 @@ MARKERS = """
         map:       map,
         zIndex:    location[3]
       });
+      var title = "<h2>" + location[0] + "</h2>"
+      bindInfoWindow(marker, map, infoWindow, title+location[4]);
       bounds.extend(myLatLng);
       if ( i > 1 ) { map.fitBounds(bounds); };
     }
-  }"""
+  }
+  function bindInfoWindow(marker, map, infoWindow, html) {
+          google.maps.event.addListener(marker, 'click', function() {
+              infoWindow.setContent(html);
+              infoWindow.open(map, marker);
+          });
+  }
+
+"""
 
 # javascript for OpenStreetMap's markers...
+"""
+https://openlayers.org/en/latest/examples/
+"""
+
 OSM_MARKERS = """
   function initialize(){
     var map;
-    var tracelife = %s;
+    var tracelife = %s
     var iconStyle = new ol.style.Style({
       image: new ol.style.Icon(({
         opacity: 1.0,
@@ -189,6 +215,7 @@ OSM_MARKERS = """
        geometry: new ol.geom.Point(ol.proj.transform([loc[0], loc[1]],
                                                      'EPSG:4326', 'EPSG:3857')),
        name: loc[2],
+       data: loc[3],
       });
       iconFeature.setStyle(iconStyle);
       markerSource.addFeature(iconFeature);
@@ -197,53 +224,135 @@ OSM_MARKERS = """
       source: markerSource,
       style: iconStyle
     });
+    tooltip = new ol.layer.Vector({
+      source: markerSource,
+      style: iconStyle
+    });
     var centerCoord = new ol.proj.transform([%s, %s], 'EPSG:4326', 'EPSG:3857');
-    map= new ol.Map({
+    map = new ol.Map({
                  target: 'map_canvas',
                  layers: [new ol.layer.Tile({ source: new ol.source.OSM() }),
-                          markerLayer],
+                          markerLayer, tooltip],
                  view: new ol.View({ center: centerCoord, zoom: %d })
                  });
+"""
+
+STAMEN_MARKERS = """
+  function initialize(){
+    var map;
+    var tracelife = %s
+    var layer = '%s';
+    var iconStyle = new ol.style.Style({
+      image: new ol.style.Icon(({
+        anchor: [0.2, 48],
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'pixels',
+        opacity: 1.0,
+        src: marker_png
+      }))
+    });
+    var markerSource = new ol.source.Vector({
+    });
+    for (var i = 0; i < tracelife.length; i++) {
+      var loc = tracelife[i];
+      var iconFeature = new ol.Feature({
+       geometry: new ol.geom.Point(ol.proj.transform([loc[0], loc[1]],
+                                                     'EPSG:4326', 'EPSG:3857')),
+       name: loc[2],
+       data: loc[3],
+      });
+      iconFeature.setStyle(iconStyle);
+      markerSource.addFeature(iconFeature);
+    }
+    var centerCoord = new ol.proj.transform([%s, %s], 'EPSG:4326', 'EPSG:3857');
+    markerLayer = new ol.layer.Vector({
+      source: markerSource,
+      style: iconStyle
+    });
+    tooltip = new ol.layer.Vector({
+      source: markerSource,
+      style: iconStyle
+    });
+    map = new ol.Map({
+                 target: 'map_canvas',
+                 layers: [
+                   new ol.layer.Tile({ source: new ol.source.Stamen({
+                                         layer: layer }) }),
+                          markerLayer, tooltip],
+                 view: new ol.View({ center: centerCoord, zoom: %d })
+                 });
+"""
+
+OPENLAYER = """
     var element = document.getElementById('popup');
+    var content = document.getElementById('popup-content');
+    var closer = document.getElementById('popup-closer');
+    var tip = document.getElementById('tooltip');
+    var tipcontent = document.getElementById('tooltip-content');
+
     var tooltip = new ol.Overlay({
-      element: element,
+      element: tip,
       positioning: 'bottom-center',
-      stopEvent: false
+      offset: [10, 0],
     });
     map.addOverlay(tooltip);
-    var displayFeatureInfo = function(pixel) {
-      var feature = map.forEachFeatureAtPixel(pixel, function(feature, layer) {
+
+    var popup = new ol.Overlay({
+      element: element,
+      positioning: 'bottom-center',
+      autoPan: true,
+      autoPanAnimation: { duration: 500 },
+      stopEvent: false
+    });
+    map.addOverlay(popup);
+
+    /**
+     * Add a click handler to hide the popup.
+     * @return {boolean} Don't follow the href.
+     */
+    closer.onclick = function() {
+      popup.setPosition(undefined);
+      closer.blur();
+      return false;
+      };
+
+    map.on('pointermove', function(evt) {
+      evt.preventDefault()
+      var feature = this.forEachFeatureAtPixel(evt.pixel,
+                                               function(feature, layer) {
         return feature;
       });
-      var info = document.getElementById('popup');
-      if (feature) {
-        var geometry = feature.getGeometry();
-        var coord = geometry.getCoordinates();
-        tooltip.setPosition(coord);
-        $(element).siblings('.popover').css({ width: '250px' });
-        $(element).siblings('.popover').css({ background: '#aaa' });
-        $(info).popover({
-          'placement': 'auto',
-          'html': true,
-          'content': feature.get('name')
-        });
-        $(info).popover('show');
-      } else {
-        // TODO : some warning with firebug here
-        $(info).popover('destroy');
-        $('.popover').remove();
-      }
-    };
-    map.on('pointermove', function(evt) {
+      map.getTargetElement().style.cursor = feature ? 'pointer' : '';
       if (evt.dragging) {
+        popup.setPosition(undefined);
+        tooltip.setPosition(undefined);
         return;
       }
-      var pixel = map.getEventPixel(evt.originalEvent);
-      displayFeatureInfo(pixel);
+      if (feature) {
+        var coordinate = evt.coordinate;
+        tipcontent.innerHTML = feature.get('name');
+        tooltip.setPosition(coordinate);
+      } else {
+        tooltip.setPosition(undefined);
+      }
+
     });
-    map.on('click', function(evt) {
-      displayFeatureInfo(evt.pixel);
-    });
+    map.on('singleclick', function(evt) {
+      evt.preventDefault()
+      var feature = map.forEachFeatureAtPixel(evt.pixel,
+                                              function(feature, layer) {
+        return feature;
+      });
+      if (feature) {
+      var coordinate = evt.coordinate;
+      var title = '<h2>' + feature.get('name') + '</h2>';
+      content.innerHTML = title + feature.get('data');
+      popup.setPosition(coordinate);
+      } else {
+        popup.setPosition(undefined);
+      }
+      });
+
   };
 """
 
