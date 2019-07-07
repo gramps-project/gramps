@@ -74,7 +74,8 @@ from gramps.plugins.webreport.common import (get_first_letters, _KEYPERSON,
                                              get_index_letter, add_birthdate,
                                              primary_difference, FULLCLEAR,
                                              _find_birth_date, _find_death_date,
-                                             MARKER_PATH, OSM_MARKERS,
+                                             MARKER_PATH, OPENLAYER,
+                                             OSM_MARKERS, STAMEN_MARKERS,
                                              GOOGLE_MAPS, MARKERS, html_escape,
                                              DROPMASTERS, FAMILYLINKS)
 from gramps.plugins.webreport.layout import LayoutTree
@@ -455,6 +456,7 @@ class PersonPages(BasePage):
         self.mapservice = self.report.options['mapservice']
         self.googleopts = self.report.options['googleopts']
         self.googlemapkey = self.report.options['googlemapkey']
+        self.stamenopts = self.report.options['stamenopts']
 
         # decide if we will sort the birth order of siblings...
         self.birthorder = self.report.options['birthorder']
@@ -702,7 +704,7 @@ class PersonPages(BasePage):
                 src_js += "&key=" + self.googlemapkey
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
-        else:
+        else: # OpenStreetMap, Stamen...
             url = self.secure_mode
             url += ("maxcdn.bootstrapcdn.com/bootstrap/3.3.7/"
                     "css/bootstrap.min.css")
@@ -777,8 +779,8 @@ class PersonPages(BasePage):
     ['%s', %s, %s, %d]
   ];""" % (placetitle.replace("'", "\\'"), latitude, longitude, seq_)
 
-            # are we using OpenStreetMap?
-            elif self.mapservice == "OpenStreetMap":
+            # we are using OpenStreetMap, Stamen...
+            else:
                 tracelife += """
     [%f, %f, \'%s\']
   ];""" % (float(longitude), float(latitude), placetitle.replace("'", "\\'"))
@@ -852,8 +854,8 @@ class PersonPages(BasePage):
                                 jsc += MARKERS % (tracelife, midx_, midy_,
                                                   zoomlevel)
 
-                    # we are using OpenStreetMap...
-                    else:
+                    # we are using OpenStreetMap
+                    elif self.mapservice == "OpenStreetMap":
                         if midy_ is None:
                             jsc += OSM_MARKERS % (tracelife,
                                                   longitude,
@@ -861,6 +863,23 @@ class PersonPages(BasePage):
                         else:
                             jsc += OSM_MARKERS % (tracelife, midy_, midx_,
                                                   zoomlevel)
+                        jsc += OPENLAYER
+                    # we are using StamenMap
+                    elif self.mapservice == "StamenMap":
+                        if midy_ is None:
+                            jsc += STAMEN_MARKERS % (tracelife,
+                                                     self.stamenopts,
+                                                     longitude,
+                                                     latitude,
+                                                     10,
+                                                     )
+                        else:
+                            jsc += STAMEN_MARKERS % (tracelife,
+                                                     self.stamenopts,
+                                                     midy_, midx_,
+                                                     zoomlevel,
+                                                     )
+                        jsc += OPENLAYER
 
             # if Google and Drop Markers are selected,
             # then add "Drop Markers" button?

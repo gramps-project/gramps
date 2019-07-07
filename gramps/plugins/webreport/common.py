@@ -171,6 +171,10 @@ MARKERS = """
   }"""
 
 # javascript for OpenStreetMap's markers...
+"""
+https://openlayers.org/en/latest/examples/
+"""
+
 OSM_MARKERS = """
   function initialize(){
     var map;
@@ -198,12 +202,56 @@ OSM_MARKERS = """
       style: iconStyle
     });
     var centerCoord = new ol.proj.transform([%s, %s], 'EPSG:4326', 'EPSG:3857');
-    map= new ol.Map({
+    map = new ol.Map({
                  target: 'map_canvas',
                  layers: [new ol.layer.Tile({ source: new ol.source.OSM() }),
                           markerLayer],
                  view: new ol.View({ center: centerCoord, zoom: %d })
                  });
+"""
+
+STAMEN_MARKERS = """
+  function initialize(){
+    var map;
+    var tracelife = %s;
+    var layer = '%s';
+    var iconStyle = new ol.style.Style({
+      image: new ol.style.Icon(({
+        //anchor: [0.5, 46],
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'pixels',
+        opacity: 1.0,
+        src: marker_png
+      }))
+    });
+    var markerSource = new ol.Collection();
+    for (var i = 0; i < tracelife.length; i++) {
+      var loc = tracelife[i];
+      var iconFeature = new ol.Feature({
+       geometry: new ol.geom.Point(ol.proj.transform([loc[0], loc[1]],
+                                                     'EPSG:4326', 'EPSG:3857')),
+       name: loc[2],
+      });
+      iconFeature.setStyle(iconStyle);
+      markerSource.push(iconFeature);
+    }
+    var centerCoord = new ol.proj.transform([%s, %s], 'EPSG:4326', 'EPSG:3857');
+    map = new ol.Map({
+                 target: 'map_canvas',
+                 layers: [
+                   new ol.layer.Tile({ source: new ol.source.Stamen({
+                                     layer: layer
+                                   })
+                                  }),
+                   new ol.layer.Vector({ source: new ol.source.Vector({
+                                   features: markerSource })
+                                   })
+                   ],
+                 view: new ol.View({ center: centerCoord, zoom: %d })
+                 });
+"""
+
+OPENLAYER = """
     var element = document.getElementById('popup');
     var tooltip = new ol.Overlay({
       element: element,
