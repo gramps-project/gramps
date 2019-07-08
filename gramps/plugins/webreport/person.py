@@ -644,7 +644,7 @@ class PersonPages(BasePage):
         else:
             tracelife += """
     [%f, %f, \'%s\', %s],""" % (float(longitude), float(latitude),
-                            placetitle.replace("'", "\\'"), links)
+                                placetitle.replace("'", "\\'"), links)
         return tracelife
 
     def __create_family_map(self, person, place_lat_long):
@@ -761,22 +761,21 @@ class PersonPages(BasePage):
         if number_markers > 0:
             tracelife = "["
             seq_ = 0
-
             old_place_title = ""
-            oldevent = None
             links = ""
             ln_str = "<a href='%s' title='%s' target='_self'>%s</a>"
             for index in range(0, number_markers):
                 (latitude, longitude, placetitle, handle,
                  event) = place_lat_long[index]
                 # Do we have several events for this place?
+                srbufh = self.report.build_url_fname_html
                 if placetitle == old_place_title:
                     evthdle = event.get_handle()
                     bkref_list = self.report.bkref_dict[Event][evthdle]
                     url_fct = self.report.build_url_fname_html
                     if bkref_list:
                         for ref in bkref_list:
-                            (bkref_class, bkref_hdle, role) = ref
+                            (bkref_class_, bkref_hdle, role) = ref
                             if role == "Primary":
                                 url = url_fct(bkref_hdle,
                                               "ppl", self.uplink)
@@ -785,12 +784,13 @@ class PersonPages(BasePage):
                                 ppl_lnk = ln_str % (url,
                                                     person.get_gramps_id(),
                                                     self.get_name(person))
-                    url = self.report.build_url_fname_html(event.get_handle(),
-                                                           "evt", self.uplink)
                     evt_type = self._(str(event.get_type()))
                     evt_date = self.rlocale.get_date(event.get_date_object())
-                    evt_lnk = ln_str % (url, evt_date, evt_type)
-
+                    if self.inc_events:
+                        url = srbufh(event.handle, "evt", self.uplink)
+                        evt_lnk = ln_str % (url, evt_date, evt_type)
+                    else:
+                        evt_lnk = "%s (%s)" % (evt_type, evt_date)
                     links += ' + "</br>%s"' % (ppl_lnk + self._(":") + evt_lnk)
                     if index == number_markers - 1:
                         tracelife = self._create_family_tracelife(tracelife,
@@ -817,7 +817,7 @@ class PersonPages(BasePage):
                         url_fct = self.report.build_url_fname_html
                         if bkref_list:
                             for ref in bkref_list:
-                                (bkref_class, bkref_hdle, role) = ref
+                                (bkref_class_, bkref_hdle, role) = ref
                                 if role == "Primary":
                                     url = url_fct(bkref_hdle,
                                                   "ppl", self.uplink)
@@ -826,15 +826,16 @@ class PersonPages(BasePage):
                                     ppl_lnk = ln_str % (url,
                                                         person.get_gramps_id(),
                                                         self.get_name(person))
-                        url = self.report.build_url_fname_html(event.handle,
-                                                               "evt",
-                                                               self.uplink)
                         evt_type = self._(str(event.get_type()))
-                        evt_date = self.rlocale.get_date(event.get_date_object())
-                        evt_lnk = ln_str % (url, evt_date, evt_type)
-
+                        evt_date = self.rlocale.get_date(
+                            event.get_date_object())
+                        if self.inc_events:
+                            url = srbufh(event.handle, "evt", self.uplink)
+                            evt_lnk = ln_str % (url, evt_date, evt_type)
+                        else:
+                            evt_lnk = "%s (%s)" % (evt_type, evt_date)
                         links = '"</br>%s"' % (ppl_lnk + self._(":") +
-                                                 evt_lnk)
+                                               evt_lnk)
                 elif index == number_markers:
                     tracelife = self._create_family_tracelife(tracelife,
                                                               placetitle,
@@ -848,7 +849,7 @@ class PersonPages(BasePage):
                     url_fct = self.report.build_url_fname_html
                     if bkref_list:
                         for ref in bkref_list:
-                            (bkref_class, bkref_hdle, role) = ref
+                            (bkref_class_, bkref_hdle, role) = ref
                             if role == "Primary":
                                 url = url_fct(bkref_hdle,
                                               "ppl", self.uplink)
@@ -857,15 +858,17 @@ class PersonPages(BasePage):
                                 ppl_lnk = ln_str % (url,
                                                     person.get_gramps_id(),
                                                     self.get_name(person))
-                        url = self.report.build_url_fname_html(event.handle,
-                                                               "evt",
-                                                               self.uplink)
                         evt_type = self._(str(event.get_type()))
-                        evt_lnk = ln_str % (url, evt_type, evt_type)
+                        evt_date = self.rlocale.get_date(
+                            event.get_date_object())
+                        if self.inc_events:
+                            url = srbufh(event.handle, "evt", self.uplink)
+                            evt_lnk = ln_str % (url, evt_type, evt_type)
+                        else:
+                            evt_lnk = "%s (%s)" % (evt_type, evt_date)
                     links = '"<p>%s"' % (ppl_lnk + self._(":") + evt_lnk)
                     old_place_title = placetitle
                 seq_ += 1
-
         tracelife += "];"
         # begin MapDetail division...
         with Html("div", class_="content", id="FamilyMapDetail") as mapdetail:
@@ -1014,7 +1017,7 @@ class PersonPages(BasePage):
                     # being sorted by date
                     place_lat_long = sorted(place_lat_long,
                                             key=lambda evt:
-                                                       evt[4].get_date_object())
+                                            evt[4].get_date_object())
                     for (latitude, longitude, placetitle, handle,
                          event) in place_lat_long:
                         trow = Html("tr")
