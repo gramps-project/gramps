@@ -111,3 +111,12 @@ div#FamilyMapDetail div#references table.infolist tbody tr td.ColumnPlace {
 .ol-popup-closer:after {
   content: "✖";
 }
+.ol-popup p a {
+  color: #111;
+}
+.ol-popup p a:visited {
+  color: green;
+}
+.ol-popup p a:hover {
+  color: red;
+}
