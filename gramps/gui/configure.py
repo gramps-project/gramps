@@ -2194,7 +2194,8 @@ class GrampsPreferences(ConfigureDialog):
                         my_characters +
                         "</big></big></big></big>")
         self.grid.attach(text, 1, 8, 8, 1)
-        self.grid.show_all()
+        scrollw.show_all()
+        text.show_all()
 
     def stop_looking_for_font(self, *args, **kwargs):
         self.progress.close()
