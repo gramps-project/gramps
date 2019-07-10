@@ -866,7 +866,7 @@ class PersonPages(BasePage):
                             evt_lnk = ln_str % (url, evt_type, evt_type)
                         else:
                             evt_lnk = "%s (%s)" % (evt_type, evt_date)
-                    links = '"<p>%s"' % (ppl_lnk + self._(":") + evt_lnk)
+                    links = '"<br>%s"' % (ppl_lnk + self._(":") + evt_lnk)
                     old_place_title = placetitle
                 seq_ += 1
         tracelife += "];"
@@ -982,7 +982,10 @@ class PersonPages(BasePage):
                     mapdetail += popup
                     popup += Html("a", href="#", id="popup-closer",
                                   class_="ol-popup-closer")
-                    popup += Html("div", id="popup-content")
+                    popup += Html("div", id="popup-title",
+                                  class_="ol-popup-title")
+                    popup += Html("div", id="popup-content",
+                                  class_="ol-popup-content")
                 with Html("div", id="tooltip", class_="ol-popup",
                           inline=True) as tooltip:
                     mapdetail += tooltip

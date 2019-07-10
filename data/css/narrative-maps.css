@@ -75,12 +75,12 @@ div#FamilyMapDetail div#references table.infolist tbody tr td.ColumnPlace {
   background-color: white;
   -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
   filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
-  padding: 15px;
-  border-radius: 10px;
+  padding: 5px;
+  border-radius: 8px;
   border: 2px solid #111111;
-  bottom: 12px;
-  left: -50px;
-  min-width: 450px;
+  bottom: 8px;
+  left: -10px;
+  min-width: 500px;
 }
 .ol-popup:after, .ol-popup:before {
   top: 100%;
@@ -108,15 +108,26 @@ div#FamilyMapDetail div#references table.infolist tbody tr td.ColumnPlace {
   top: 2px;
   right: 8px;
 }
+.ol-popup-title {
+  background-color: #ededed;
+  padding: 0 0.5em;
+}
 .ol-popup-closer:after {
   content: "✖";
 }
-.ol-popup p a {
+.ol-popup-content {
+  color: #111;
+  font: bold 0.9em sans-serif;
+  max-height: 200px;
+  overflow: auto;
+  padding: 0 0.5em 15px 0.5em;
+}
+.ol-popup-content a {
   color: #111;
 }
-.ol-popup p a:visited {
+.ol-popup-content a:visited {
   color: green;
 }
-.ol-popup p a:hover {
+.ol-popup-content a:hover {
   color: red;
 }
