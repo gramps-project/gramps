@@ -452,14 +452,11 @@ def run():
 
     # if in safe mode we should point the db dir back to the original dir.
     # It is ok to import config here, 'Defaults' command had its chance...
-    from .gen.config import config
     if 'SAFEMODE' in os.environ:
         config.set('database.path', os.path.join(ORIG_HOME_DIR, 'grampsdb'))
 
-    # On windows the fontconfig handler may be a better choice; ask user to
-    # choose for now.
-    if(win() and ('PANGOCAIRO_BACKEND' not in os.environ) and
-       config.get('preferences.alternate-fonthandler')):
+    # On windows the fontconfig handler is a better choice
+    if(win() and ('PANGOCAIRO_BACKEND' not in os.environ)):
         os.environ['PANGOCAIRO_BACKEND'] = "fontconfig"
 
     # Calls to LOG must be after setup_logging() and ArgParser()
