@@ -477,8 +477,7 @@ def main():
         resource_path, filename = os.path.split(os.path.abspath(__file__))
         resource_path, dirname = os.path.split(resource_path)
         os.environ['GRAMPS_RESOURCES'] = resource_path
-    if win() and ('PANGOCAIRO_BACKEND' not in os.environ) and \
-            config.get('preferences.alternate-fonthandler'):
+    if win() and ('PANGOCAIRO_BACKEND' not in os.environ):
         os.environ['PANGOCAIRO_BACKEND'] = "fontconfig"
     errors = run()
     if errors and isinstance(errors, list):

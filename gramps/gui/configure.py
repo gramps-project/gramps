@@ -1359,13 +1359,6 @@ class GrampsPreferences(ConfigureDialog):
         grid.set_row_spacing(6)
 
         current_line = 0
-        if win():
-            self.add_checkbox(grid,
-                    _('Use alternate Font handler for GUI and Reports '
-                      '(requires restart)'),
-                    current_line, 'preferences.alternate-fonthandler')
-
-            current_line += 1
         self.add_checkbox(grid,
                 _('Add default source on GEDCOM import'),
                 current_line, 'preferences.default-source')
