@@ -157,6 +157,7 @@ gramps/gen/filters/rules/person/_disconnected.py
 gramps/gen/filters/rules/person/_everyone.py
 gramps/gen/filters/rules/person/_familywithincompleteevent.py
 gramps/gen/filters/rules/person/_hasaddress.py
+gramps/gen/filters/rules/person/_hasaddresstext.py
 gramps/gen/filters/rules/person/_hasalternatename.py
 gramps/gen/filters/rules/person/_hasassociation.py
 gramps/gen/filters/rules/person/_hasattribute.py
