@@ -189,7 +189,7 @@ class PlacePages(BasePage):
                 tbody = Html("tbody")
                 table += tbody
 
-                for (pname, place_handle) in handle_list:
+                for (dummy_pname, place_handle) in handle_list:
                     place = self.r_db.get_place_from_handle(place_handle)
                     if place:
                         if place.get_change_time() > ldatec:
