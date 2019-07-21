@@ -577,12 +577,12 @@ def get_first_letters(dbase, handle_list, key, rlocale=glocale):
     index_list.sort(key=rlocale.sort_key)
     first = True
     prev_index = None
-    for key in index_list[:]:   #iterate over a slice copy of the list
-        if first or primary_difference(prev_index, key, rlocale):
+    for nkey in index_list[:]:   #iterate over a slice copy of the list
+        if first or primary_difference(prev_index, nkey, rlocale):
             first = False
-            prev_index = key
+            prev_index = nkey
         else:
-            index_list.remove(key)
+            index_list.remove(nkey)
 
     # return menu set letters for alphabet_navigation
     return index_list
