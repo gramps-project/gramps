@@ -756,7 +756,7 @@ class DummyDb(M_A_M_B("NewBaseClass", (DbReadBase, Callback, object,), {})):
         if not self.db_is_open:
             LOG.warning("database is closed")
         return 0
-    
+
     def get_number_of_citations(self):
         """
         Return the number of citations currently in the database.
