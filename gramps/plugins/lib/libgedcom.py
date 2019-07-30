@@ -1128,6 +1128,7 @@ class GedLine:
         Converts the data field to a Date object
         """
         self.data = self.__extract_date(self.data)
+        self.token = TOKEN_DATE
 
     def calc_unknown(self):
         """
@@ -2062,7 +2063,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_RFN   : self.__person_attr,
             # +1 REFN <USER_REFERENCE_NUMBER> {0:M}
             # +2 TYPE <USER_REFERENCE_TYPE> {0:1}
-            TOKEN_REFN  : self.__person_attr,
+            TOKEN_REFN  : self.__person_refn,
             # TYPE should be below REFN, but will work here anyway
             TOKEN_TYPE  : self.__person_attr,
             # +1 RIN <AUTOMATED_RECORD_ID> {0:1}
@@ -2374,7 +2375,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_NOTE   : self.__family_note,
             TOKEN_RNOTE  : self.__family_note,
             # +1 REFN <USER_REFERENCE_NUMBER>  {0:M}
-            TOKEN_REFN   : self.__family_cust_attr,
+            TOKEN_REFN   : self.__family_refn,
             # TYPE should be below REFN, but will work here anyway
             TOKEN_TYPE   : self.__family_cust_attr,
             # +1 RIN <AUTOMATED_RECORD_ID>  {0:1}
@@ -2433,7 +2434,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_RNOTE  : self.__source_note,
             TOKEN_TEXT   : self.__source_text,
             TOKEN_ABBR   : self.__source_abbr,
-            TOKEN_REFN   : self.__source_attr,
+            TOKEN_REFN   : self.__source_refn,
             TOKEN_RIN    : self.__source_attr,
             TOKEN_REPO   : self.__source_repo,
             TOKEN_OBJE   : self.__source_object,
@@ -3671,6 +3672,15 @@ class GedcomParser(UpdateCallback):
         """
         citation_handle = self.handle_source(line, state.level, state)
         state.person.add_citation(citation_handle)
+
+    def __person_refn(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.__do_refn(line, state, state.person)
 
     def __person_attr(self, line, state):
         """
@@ -5075,7 +5085,7 @@ class GedcomParser(UpdateCallback):
         event.set_type(cust_type)
         # in case a description ever shows up
         if line.data and line.data != 'Y':
-            event.set_description(line.data)
+            event.set_description(str(line.data))
         self.dbase.add_event(event, self.trans)
 
         sub_state = CurrentState()
@@ -5263,6 +5273,15 @@ class GedcomParser(UpdateCallback):
         self.__parse_level(sub_state, self.person_attr_parse_tbl,
                            self.__ignore)
         state.msg += sub_state.msg
+
+    def __family_refn(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.__do_refn(line, state, state.family)
 
     def __family_cust_attr(self, line, state):
         """
@@ -6453,6 +6472,15 @@ class GedcomParser(UpdateCallback):
                           state, state.source)
         self.dbase.commit_source(state.source, self.trans, state.source.change)
 
+    def __source_refn(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.__do_refn(line, state, state.source)
+
     def __source_attr(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -6813,19 +6841,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        attr = Attribute()
-        attr.set_type(line.token_text)          # Atrribute : REFN
-        attr.set_value(line.data)
-        # if there is a subsequent TYPE, we add it as a note to the attribute
-        line = self.__chk_subordinate(state.level + 1, state, TOKEN_TYPE)
-        if line:
-            new_note = Note(line.data)
-            new_note.set_gramps_id(self.nid_map[""])
-            new_note.set_handle(create_id())
-            new_note.set_type('REFN-TYPE')
-            self.dbase.commit_note(new_note, self.trans, new_note.change)
-            attr.add_note(new_note.get_handle())
-        state.media.attribute_list.append(attr)
+        self.__do_refn(line, state, state.media)
 
     def __obje_type(self, line, state):
         """
@@ -7796,6 +7812,29 @@ class GedcomParser(UpdateCallback):
                 # library; for Unix, it is typically in 2038." If the time is
                 # too far in the future, this gives OverflowError.
                 pass
+
+    def __do_refn(self, line, state, obj):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        @param obj: The object to attach the attribute
+        @type obj: Gramps primary object
+        """
+        attr = Attribute()
+        attr.set_type(line.token_text)          # Atrribute : REFN
+        attr.set_value(line.data)
+        # if there is a subsequent TYPE, we add it as a note to the attribute
+        line = self.__chk_subordinate(state.level + 1, state, TOKEN_TYPE)
+        if line:
+            new_note = Note(line.data)
+            new_note.set_gramps_id(self.nid_map[""])
+            new_note.set_handle(create_id())
+            new_note.set_type('REFN-TYPE')
+            self.dbase.commit_note(new_note, self.trans, new_note.change)
+            attr.add_note(new_note.get_handle())
+        obj.attribute_list.append(attr)
 
     def __build_event_pair(self, state, event_type, event_map, description):
         """
