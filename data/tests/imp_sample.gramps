@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2019-03-05" version="5.0.2"/>
+    <created date="2019-07-31" version="5.0.2"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
       <resaddr>Not Provided</resaddr>
@@ -617,7 +617,8 @@
       <gender>F</gender>
       <name type="Birth Name">
         <first>Anna</first>
-        <surname prefix="Vrow">Smith</surname>
+        <surname prefix="Vrow">Hansdotter</surname>
+        <surname prim="0">Smith</surname>
         <noteref hlink="_0000001100000011"/>
       </name>
       <name alt="1" type="Also Known As">
@@ -1704,7 +1705,7 @@ Unknown tag                                                         Line  1109: 
         <range start="0" end="163"/>
       </style>
     </note>
-    <note handle="_000000f9000000f9" change="1551800790" id="N0036" type="General">
+    <note handle="_000000f9000000f9" change="1564588949" id="N0036" type="General">
       <text>Objects referenced by this note were missing in a file imported on 12/25/1999 12:00:00 AM.</text>
     </note>
   </notes>

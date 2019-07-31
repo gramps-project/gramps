@@ -4318,11 +4318,12 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
+        spfx = line.data.strip().split(", ")[0]
         if state.name.get_surname_list():
-            state.name.get_surname_list()[0].set_prefix(line.data.strip())
+            state.name.get_surname_list()[0].set_prefix(spfx)
         else:
             surn = Surname()
-            surn.set_prefix(line.data.strip())
+            surn.set_prefix(spfx)
             surn.set_primary()
             state.name.set_surname_list([surn])
         self.__skip_subordinate_levels(state.level + 1, state)
@@ -4334,13 +4335,17 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        if state.name.get_surname_list():
-            state.name.get_surname_list()[0].set_surname(line.data.strip())
-        else:
-            surn = Surname()
-            surn.set_surname(line.data.strip())
-            surn.set_primary()
-            state.name.set_surname_list([surn])
+        names = line.data.strip().split(", ")
+        overwrite = bool(state.name.get_surname_list())
+        for name in names:
+            if overwrite:
+                state.name.get_surname_list()[0].set_surname(name)
+                overwrite = False
+            else:
+                surn = Surname()
+                surn.set_surname(name)
+                surn.set_primary(primary=not state.name.get_surname_list())
+                state.name.get_surname_list().append(surn)
         self.__skip_subordinate_levels(state.level + 1, state)
 
     def __name_marnm(self, line, state):
