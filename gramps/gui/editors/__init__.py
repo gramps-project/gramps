@@ -85,7 +85,7 @@ def EditObject(dbstate, uistate, track, obj_class, prop=None, value=None, callba
     LOG = logging.getLogger(".Edit")
     if obj_class in EDITORS.keys():
         if value is None:
-            obj = CLASSES[obj_class]
+            obj = CLASSES[obj_class]()
             try:
                 EDITORS[obj_class](dbstate, uistate, track, obj, callback=callback)
             except Exception as msg:
