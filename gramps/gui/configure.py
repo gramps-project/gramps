@@ -1550,13 +1550,6 @@ class GrampsPreferences(ConfigureDialog):
                       justify=Gtk.Justification.CENTER, align=Gtk.Align.CENTER)
 
         current_line = 1
-        if win():
-            self.add_checkbox(
-                grid, _('Use alternate Font handler for GUI and Reports '
-                        '(requires restart)'),
-                current_line, 'preferences.alternate-fonthandler', stop=3,
-                tooltip=_("Can help to fix problems with fonts."))
-            current_line += 1
 
         self.add_checkbox(grid, _('Add default source on GEDCOM import'),
                           current_line, 'preferences.default-source', stop=3)
