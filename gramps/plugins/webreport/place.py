@@ -64,7 +64,7 @@ from gramps.plugins.webreport.common import (get_first_letters, first_letter,
                                              primary_difference, _KEYPLACE,
                                              get_index_letter, FULLCLEAR,
                                              MARKER_PATH, OSM_MARKERS, MARKERS,
-                                             html_escape)
+                                             html_escape, sort_places)
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
@@ -181,21 +181,15 @@ class PlacePages(BasePage):
                     ]
                 )
 
-                # bug 9495 : incomplete display of place hierarchy labels
-                def sort_by_place_name(obj):
-                    """ sort by lower case place name. """
-                    name = self.report.obj_dict[Place][obj][1]
-                    return name.lower()
-
-                handle_list = sorted(place_handles,
-                                     key=lambda x: sort_by_place_name(x))
+                handle_list = sort_places(self.r_db, place_handles,
+                                          self.rlocale)
                 first = True
 
                 # begin table body
                 tbody = Html("tbody")
                 table += tbody
 
-                for place_handle in handle_list:
+                for (dummy_pname, place_handle) in handle_list:
                     place = self.r_db.get_place_from_handle(place_handle)
                     if place:
                         if place.get_change_time() > ldatec:
