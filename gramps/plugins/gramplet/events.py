@@ -84,13 +84,13 @@ class Events(Gramplet, DbGUIElement):
         titles = [('', NOSORT, 50,),
                   (_('Type'), 1, 100),
                   (_('Description'), 2, 150),
-                  (_('Date'), 3, 100),
+                  (_('Date'), 4, 100),
                   ('', NOSORT, 50),
-                  (_('Age'), 4, 100),
+                  (_('Age'), 6, 100),
                   ('', NOSORT, 50),
-                  (_('Place'), 5, 400),
-                  (_('Main Participants'), 6, 200),
-                  (_('Role'), 7, 100)]
+                  (_('Place'), 7, 400),
+                  (_('Main Participants'), 8, 200),
+                  (_('Role'), 9, 100)]
         self.model = ListModel(top, titles, event_func=self.edit_event)
         return top
 
