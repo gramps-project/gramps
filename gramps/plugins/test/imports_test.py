@@ -51,7 +51,11 @@ TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
 # ------------------------------------------------------------------
 
 # These tests assume a US date and time format.
-locale.setlocale(locale.LC_ALL, 'en_US.utf8')
+try:
+    locale.setlocale(locale.LC_ALL, 'en_US.utf8')
+except locale.Error:     # seems to fail on Windows system for some reason
+    locale.setlocale(locale.LC_ALL, 'English_United States')
+
 
 def mock_time(*args):
     """
