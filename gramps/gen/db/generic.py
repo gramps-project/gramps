@@ -57,6 +57,7 @@ from ..lib.researcher import Researcher
 from ..lib import (Tag, Media, Person, Family, Source, Citation, Event,
                    Place, Repository, Note, NameOriginType)
 from ..lib.genderstats import GenderStats
+from ..lib.serialize import from_json
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -1258,7 +1259,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             raise HandleError('Handle is empty')
         data = self._get_raw_data(obj_key, handle)
         if data:
-            return obj_class.create(data)
+            return from_json(data)
         else:
             raise HandleError('Handle %s not found' % handle)
 
@@ -1300,39 +1301,48 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def get_person_from_gramps_id(self, gramps_id):
         data = self._get_raw_person_from_id_data(gramps_id)
-        return Person.create(data)
+        if data:
+            return from_json(data)
 
     def get_family_from_gramps_id(self, gramps_id):
         data = self._get_raw_family_from_id_data(gramps_id)
-        return Family.create(data)
+        if data:
+            return from_json(data)
 
     def get_citation_from_gramps_id(self, gramps_id):
         data = self._get_raw_citation_from_id_data(gramps_id)
-        return Citation.create(data)
+        if data:
+            return from_json(data)
 
     def get_source_from_gramps_id(self, gramps_id):
         data = self._get_raw_source_from_id_data(gramps_id)
-        return Source.create(data)
+        if data:
+            return from_json(data)
 
     def get_event_from_gramps_id(self, gramps_id):
         data = self._get_raw_event_from_id_data(gramps_id)
-        return Event.create(data)
+        if data:
+            return from_json(data)
 
     def get_media_from_gramps_id(self, gramps_id):
         data = self._get_raw_media_from_id_data(gramps_id)
-        return Media.create(data)
+        if data:
+            return from_json(data)
 
     def get_place_from_gramps_id(self, gramps_id):
         data = self._get_raw_place_from_id_data(gramps_id)
-        return Place.create(data)
+        if data:
+            return from_json(data)
 
     def get_repository_from_gramps_id(self, gramps_id):
         data = self._get_raw_repository_from_id_data(gramps_id)
-        return Repository.create(data)
+        if data:
+            return from_json(data)
 
     def get_note_from_gramps_id(self, gramps_id):
         data = self._get_raw_note_from_id_data(gramps_id)
-        return Note.create(data)
+        if data:
+            return from_json(data)
 
     ################################################################
     #
@@ -1533,7 +1543,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         cursor = self._get_table_func(class_.__name__, "cursor_func")
         for data in cursor():
-            yield class_.create(data[1])
+            yield from_json(data[1])
 
     def iter_people(self):
         return self._iter_objects(Person)
@@ -1648,7 +1658,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def _get_raw_data(self, obj_key, handle):
         """
-        Return raw (serialized and pickled) object from handle.
+        Return raw json object from handle.
         """
         raise NotImplementedError
 
@@ -1807,7 +1817,7 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         old_data = self._commit_base(person, PERSON_KEY, trans, change_time)
 
         if old_data:
-            old_person = Person(old_data)
+            old_person = from_json(old_data)
             # Update gender statistics if necessary
             if (old_person.gender != person.gender
                     or (old_person.primary_name.first_name !=

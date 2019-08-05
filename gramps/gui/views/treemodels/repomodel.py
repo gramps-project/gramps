@@ -117,123 +117,103 @@ class RepositoryModel(FlatBaseModel):
         return len(self.fmap)+1
 
     def column_id(self,data):
-        return data[1]
+        return data['gramps_id']
 
     def column_type(self,data):
-        return str(RepositoryType(data[2]))
+        return str(RepositoryType(data['type']))
 
     def column_name(self,data):
-        return data[3]
+        return data['name']
 
     def column_city(self,data):
         try:
-            if data[5]:
-                addr = Address()
-                addr.unserialize(data[5][0])
-                return addr.get_city()
+            if data['address_list']:
+                return data['address_list'][0]['city']
         except:
             pass
         return ''
 
     def column_street(self,data):
         try:
-            if data[5]:
-                addr = Address()
-                addr.unserialize(data[5][0])
-                return addr.get_street()
+            if data['address_list']:
+                return data['address_list'][0]['street']
         except:
             pass
         return ''
 
     def column_locality(self,data):
         try:
-            if data[5]:
-                addr = Address()
-                addr.unserialize(data[5][0])
-                return addr.get_locality()
+            if data['address_list']:
+                return data['address_list'][0]['locality']
         except:
             pass
         return ''
 
     def column_state(self,data):
         try:
-            if data[5]:
-                addr = Address()
-                addr.unserialize(data[5][0])
-                return addr.get_state()
+            if data['address_list']:
+                return data['address_list'][0]['state']
         except:
             pass
         return ''
 
     def column_country(self,data):
         try:
-            if data[5]:
-                addr = Address()
-                addr.unserialize(data[5][0])
-                return addr.get_country()
+            if data['address_list']:
+                return data['address_list'][0]['country']
         except:
             pass
         return ''
 
     def column_postal_code(self,data):
         try:
-            if data[5]:
-                addr = Address()
-                addr.unserialize(data[5][0])
-                return addr.get_postal_code()
+            if data['address_list']:
+                return data['address_list'][0]['postal']
         except:
             pass
         return ''
 
     def column_phone(self,data):
         try:
-            if data[5]:
-                addr = Address()
-                addr.unserialize(data[5][0])
-                return addr.get_phone()
+            if data['address_list']:
+                return data['address_list'][0]['phone']
         except:
             pass
         return ''
 
     def column_email(self,data):
-        if data[6]:
-            for i in data[6]:
-                url = Url()
-                url.unserialize(i)
-                if url.get_type() == UrlType.EMAIL:
-                    return url.path
+        if data['urls']:
+            for url in data['urls']:
+                if url['type']['string'] == str(UrlType(UrlType.EMAIL)):
+                    return url['path']
         return ''
 
     def column_search_url(self,data):
-        if data[6]:
-            for i in data[6]:
-                url = Url()
-                url.unserialize(i)
-                if url.get_type() == UrlType.WEB_SEARCH:
-                    return url.path
+        if data['urls']:
+            for url in data['urls']:
+                if url['type']['string'] == str(UrlType(UrlType.WEB_SEARCH)):
+                    return url['path']
         return ''
 
     def column_home_url(self,data):
-        if data[6]:
-            for i in data[6]:
-                url = Url()
-                url.unserialize(i)
-                if url.get_type() == UrlType.WEB_HOME:
-                    return url.path
-        return ""
+        if data['urls']:
+            for url in data['urls']:
+                if url['type']['string'] == str(UrlType(UrlType.WEB_HOME)):
+                    return url['path']
+        return ''
 
     def column_private(self, data):
-        if data[9]:
+        if data['private']:
             return 'gramps-lock'
         else:
             # There is a problem returning None here.
             return ''
 
     def sort_change(self,data):
-        return "%012x" % data[7]
+        return "%012x" % data['change']
 
     def column_change(self,data):
-        return format_time(data[7])
+        return format_time(data['change'])
 
     def get_tag_name(self, tag_handle):
         """
@@ -250,12 +230,12 @@ class RepositoryModel(FlatBaseModel):
         """
         Return the tag color.
         """
-        tag_handle = data[0]
+        tag_handle = data['handle']
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
             tag_priority = None
-            for handle in data[8]:
+            for handle in data['tag_list']:
                 tag = self.db.get_tag_from_handle(handle)
                 this_priority = tag.get_priority()
                 if tag_priority is None or this_priority < tag_priority:
@@ -268,6 +248,6 @@ class RepositoryModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[8]))
+        tag_list = list(map(self.get_tag_name, data['tag_list']))
         # TODO for Arabic, should the next line's comma be translated?
         return ', '.join(sorted(tag_list, key=glocale.sort_key))

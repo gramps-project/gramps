@@ -70,18 +70,18 @@ from gramps.gen.config import config
 # COLUMN constants; positions in raw data structure
 #
 #-------------------------------------------------------------------------
-COLUMN_ID = 1
-COLUMN_GENDER = 2
-COLUMN_NAME = 3
-COLUMN_DEATH = 5
-COLUMN_BIRTH = 6
-COLUMN_EVENT = 7
-COLUMN_FAMILY = 8
-COLUMN_PARENT = 9
-COLUMN_NOTES = 16
-COLUMN_CHANGE = 17
-COLUMN_TAGS = 18
-COLUMN_PRIV = 19
+COLUMN_ID     = 'gramps_id'
+COLUMN_GENDER = 'gender'
+COLUMN_NAME   = 'primary_name'
+COLUMN_DEATH  = 'death_ref_index'
+COLUMN_BIRTH  = 'birth_ref_index'
+COLUMN_EVENT  = 'event_ref_list'
+COLUMN_FAMILY = 'family_list'
+COLUMN_PARENT = 'parent_family_list'
+COLUMN_NOTES  = 'note_list'
+COLUMN_CHANGE = 'change'
+COLUMN_TAGS   = 'tag_list'
+COLUMN_PRIV   = 'private'
 
 invalid_date_format = config.get('preferences.invalid-date-format')
 
@@ -164,7 +164,7 @@ class PeopleBaseModel(BaseModel):
         return len(self.fmap)+1
 
     def sort_name(self, data):
-        handle = data[0]
+        handle = data['handle']
         cached, name = self.get_cached_value(handle, "SORT_NAME")
         if not cached:
             name = name_displayer.raw_sorted_name(data[COLUMN_NAME])
@@ -172,7 +172,7 @@ class PeopleBaseModel(BaseModel):
         return name
 
     def column_name(self, data):
-        handle = data[0]
+        handle = data['handle']
         cached, name = self.get_cached_value(handle, "NAME")
         if not cached:
             name = name_displayer.raw_display_name(data[COLUMN_NAME])
@@ -180,7 +180,7 @@ class PeopleBaseModel(BaseModel):
         return name
 
     def column_spouse(self, data):
-        handle = data[0]
+        handle = data['handle']
         cached, value = self.get_cached_value(handle, "SPOUSE")
         if not cached:
             value = self._get_spouse_data(data)
@@ -202,7 +202,7 @@ class PeopleBaseModel(BaseModel):
                               family.get_mother_handle()]:
                 if not spouse_id:
                     continue
-                if spouse_id == data[0]:
+                if spouse_id == data['handle']:
                     continue
                 spouse = self.db.get_person_from_handle(spouse_id)
                 if spouses_names:
@@ -223,7 +223,7 @@ class PeopleBaseModel(BaseModel):
         return PeopleBaseModel._GENDER[data[COLUMN_GENDER]]
 
     def column_birth_day(self, data):
-        handle = data[0]
+        handle = data['handle']
         cached, value = self.get_cached_value(handle, "BIRTH_DAY")
         if not cached:
             value = self._get_birth_data(data, False)
@@ -231,7 +231,7 @@ class PeopleBaseModel(BaseModel):
         return value
 
     def sort_birth_day(self, data):
-        handle = data[0]
+        handle = data['handle']
         cached, value = self.get_cached_value(handle, "SORT_BIRTH_DAY")
         if not cached:
             value = self._get_birth_data(data, True)
@@ -243,9 +243,7 @@ class PeopleBaseModel(BaseModel):
         if index != -1:
             try:
                 local = data[COLUMN_EVENT][index]
-                b = EventRef()
-                b.unserialize(local)
-                birth = self.db.get_event_from_handle(b.ref)
+                birth = self.db.get_event_from_handle(local['ref'])
                 if sort_mode:
                     retval = "%09d" % birth.get_date_object().get_sort_value()
                 else:
@@ -260,14 +258,11 @@ class PeopleBaseModel(BaseModel):
                 return ''
 
         for event_ref in data[COLUMN_EVENT]:
-            er = EventRef()
-            er.unserialize(event_ref)
-            event = self.db.get_event_from_handle(er.ref)
+            event = self.db.get_event_from_handle(event_ref['ref'])
             etype = event.get_type()
             date_str = get_date(event)
-            if (etype in [EventType.BAPTISM, EventType.CHRISTEN]
-                and er.get_role() == EventRoleType.PRIMARY
-                and date_str != ""):
+            if(etype in [EventType.BAPTISM, EventType.CHRISTEN] and
+               event_ref['role'] == EventRoleType.PRIMARY and date_str != ""):
                 if sort_mode:
                     retval = "%09d" % event.get_date_object().get_sort_value()
                 else:
@@ -280,7 +275,7 @@ class PeopleBaseModel(BaseModel):
         return ""
 
     def column_death_day(self, data):
-        handle = data[0]
+        handle = data['handle']
         cached, value = self.get_cached_value(handle, "DEATH_DAY")
         if not cached:
             value = self._get_death_data(data, False)
@@ -288,7 +283,7 @@ class PeopleBaseModel(BaseModel):
         return value
 
     def sort_death_day(self, data):
-        handle = data[0]
+        handle = data['handle']
         cached, value = self.get_cached_value(handle, "SORT_DEATH_DAY")
         if not cached:
             value = self._get_death_data(data, True)
@@ -300,9 +295,7 @@ class PeopleBaseModel(BaseModel):
         if index != -1:
             try:
                 local = data[COLUMN_EVENT][index]
-                ref = EventRef()
-                ref.unserialize(local)
-                event = self.db.get_event_from_handle(ref.ref)
+                event = self.db.get_event_from_handle(local['ref'])
                 if sort_mode:
                     retval = "%09d" % event.get_date_object().get_sort_value()
                 else:
@@ -317,16 +310,13 @@ class PeopleBaseModel(BaseModel):
                 return ''
 
         for event_ref in data[COLUMN_EVENT]:
-            er = EventRef()
-            er.unserialize(event_ref)
-            event = self.db.get_event_from_handle(er.ref)
+            event = self.db.get_event_from_handle(event_ref['ref'])
             etype = event.get_type()
             date_str = get_date(event)
-            if (etype in [EventType.BURIAL,
-                          EventType.CREMATION,
-                          EventType.CAUSE_DEATH]
-                and er.get_role() == EventRoleType.PRIMARY
-                and date_str):
+            if(etype in [EventType.BURIAL,
+                         EventType.CREMATION,
+                         EventType.CAUSE_DEATH] and
+               event_ref['role'] == EventRoleType.PRIMARY and date_str):
                 if sort_mode:
                     retval = "%09d" % event.get_date_object().get_sort_value()
                 else:
@@ -338,7 +328,7 @@ class PeopleBaseModel(BaseModel):
         return ""
 
     def column_birth_place(self, data):
-        handle = data[0]
+        handle = data['handle']
         cached, value = self.get_cached_value(handle, "BIRTH_PLACE")
         if cached:
             return value
@@ -347,9 +337,7 @@ class PeopleBaseModel(BaseModel):
             if index != -1:
                 try:
                     local = data[COLUMN_EVENT][index]
-                    br = EventRef()
-                    br.unserialize(local)
-                    event = self.db.get_event_from_handle(br.ref)
+                    event = self.db.get_event_from_handle(local['ref'])
                     if event:
                         place_title = place_displayer.display_event(self.db, event)
                         if place_title:
@@ -362,23 +350,21 @@ class PeopleBaseModel(BaseModel):
                     return value
 
             for event_ref in data[COLUMN_EVENT]:
-                er = EventRef()
-                er.unserialize(event_ref)
-                event = self.db.get_event_from_handle(er.ref)
+                event = self.db.get_event_from_handle(event_ref['ref'])
                 etype = event.get_type()
-                if (etype in [EventType.BAPTISM, EventType.CHRISTEN] and
-                    er.get_role() == EventRoleType.PRIMARY):
-                        place_title = place_displayer.display_event(self.db, event)
-                        if place_title:
-                            value = "<i>%s</i>" % escape(place_title)
-                            self.set_cached_value(handle, "BIRTH_PLACE", value)
-                            return value
+                if(etype in [EventType.BAPTISM, EventType.CHRISTEN] and
+                   event_ref['role'] == EventRoleType.PRIMARY):
+                    place_title = place_displayer.display_event(self.db, event)
+                    if place_title:
+                        value = "<i>%s</i>" % escape(place_title)
+                        self.set_cached_value(handle, "BIRTH_PLACE", value)
+                        return value
             value = ""
             self.set_cached_value(handle, "BIRTH_PLACE", value)
             return value
 
     def column_death_place(self, data):
-        handle = data[0]
+        handle = data['handle']
         cached, value = self.get_cached_value(handle, "DEATH_PLACE")
         if cached:
             return value
@@ -387,9 +373,7 @@ class PeopleBaseModel(BaseModel):
             if index != -1:
                 try:
                     local = data[COLUMN_EVENT][index]
-                    dr = EventRef()
-                    dr.unserialize(local)
-                    event = self.db.get_event_from_handle(dr.ref)
+                    event = self.db.get_event_from_handle(local['ref'])
                     if event:
                         place_title = place_displayer.display_event(self.db, event)
                         if place_title:
@@ -402,19 +386,17 @@ class PeopleBaseModel(BaseModel):
                     return value
 
             for event_ref in data[COLUMN_EVENT]:
-                er = EventRef()
-                er.unserialize(event_ref)
-                event = self.db.get_event_from_handle(er.ref)
+                event = self.db.get_event_from_handle(event_ref['ref'])
                 etype = event.get_type()
-                if (etype in [EventType.BURIAL, EventType.CREMATION,
-                              EventType.CAUSE_DEATH]
-                    and er.get_role() == EventRoleType.PRIMARY):
+                if(etype in [EventType.BURIAL, EventType.CREMATION,
+                             EventType.CAUSE_DEATH] and
+                   event_ref['role'] == EventRoleType.PRIMARY):
 
-                        place_title = place_displayer.display_event(self.db, event)
-                        if place_title:
-                            value = "<i>%s</i>" % escape(place_title)
-                            self.set_cached_value(handle, "DEATH_PLACE", value)
-                            return value
+                    place_title = place_displayer.display_event(self.db, event)
+                    if place_title:
+                        value = "<i>%s</i>" % escape(place_title)
+                        self.set_cached_value(handle, "DEATH_PLACE", value)
+                        return value
             value = ""
             self.set_cached_value(handle, "DEATH_PLACE", value)
             return value
@@ -456,7 +438,7 @@ class PeopleBaseModel(BaseModel):
         return todo
 
     def column_parents(self, data):
-        handle = data[0]
+        handle = data['handle']
         cached, value = self.get_cached_value(handle, "PARENTS")
         if not cached:
             value = self._get_parents_data(data)
@@ -464,7 +446,7 @@ class PeopleBaseModel(BaseModel):
         return str(value)
 
     def sort_parents(self, data):
-        handle = data[0]
+        handle = data['handle']
         cached, value = self.get_cached_value(handle, "SORT_PARENTS")
         if not cached:
             value = self._get_parents_data(data)
@@ -472,7 +454,7 @@ class PeopleBaseModel(BaseModel):
         return '%06d' % value
 
     def column_marriages(self, data):
-        handle = data[0]
+        handle = data['handle']
         cached, value = self.get_cached_value(handle, "MARRIAGES")
         if not cached:
             value = self._get_marriages_data(data)
@@ -480,7 +462,7 @@ class PeopleBaseModel(BaseModel):
         return str(value)
 
     def sort_marriages(self, data):
-        handle = data[0]
+        handle = data['handle']
         cached, value = self.get_cached_value(handle, "SORT_MARRIAGES")
         if not cached:
             value = self._get_marriages_data(data)
@@ -488,7 +470,7 @@ class PeopleBaseModel(BaseModel):
         return '%06d' % value
 
     def column_children(self, data):
-        handle = data[0]
+        handle = data['handle']
         cached, value = self.get_cached_value(handle, "CHILDREN")
         if not cached:
             value = self._get_children_data(data)
@@ -496,7 +478,7 @@ class PeopleBaseModel(BaseModel):
         return str(value)
 
     def sort_children(self, data):
-        handle = data[0]
+        handle = data['handle']
         cached, value = self.get_cached_value(handle, "SORT_CHILDREN")
         if not cached:
             value = self._get_children_data(data)
@@ -504,7 +486,7 @@ class PeopleBaseModel(BaseModel):
         return '%06d' % value
 
     def column_todo(self, data):
-        handle = data[0]
+        handle = data['handle']
         cached, value = self.get_cached_value(handle, "TODO")
         if not cached:
             value = self._get_todo_data(data)
@@ -512,7 +494,7 @@ class PeopleBaseModel(BaseModel):
         return str(value)
 
     def sort_todo(self, data):
-        handle = data[0]
+        handle = data['handle']
         cached, value = self.get_cached_value(handle, "SORT_TODO")
         if not cached:
             value = self._get_todo_data(data)
@@ -535,7 +517,7 @@ class PeopleBaseModel(BaseModel):
         """
         Return the tag color.
         """
-        tag_handle = data[0]
+        tag_handle = data['handle']
         cached, value = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
@@ -555,7 +537,7 @@ class PeopleBaseModel(BaseModel):
         """
         Return the sorted list of tags.
         """
-        handle = data[0]
+        handle = data['handle']
         cached, value = self.get_cached_value(handle, "TAGS")
         if not cached:
             tag_list = list(map(self.get_tag_name, data[COLUMN_TAGS]))

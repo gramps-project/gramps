@@ -24,6 +24,7 @@
 #
 #-------------------------------------------------------------------------
 from html import escape
+import json
 import logging
 log = logging.getLogger(".")
 
@@ -40,7 +41,8 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
-from gramps.gen.lib import Event, EventType
+from gramps.gen.lib import EventType
+from gramps.gen.lib.serialize import from_json
 from gramps.gen.utils.db import get_participant_from_event
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
@@ -52,15 +54,15 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 # Positions in raw data structure
 #
 #-------------------------------------------------------------------------
-COLUMN_HANDLE = 0
-COLUMN_ID = 1
-COLUMN_TYPE = 2
-COLUMN_DATE = 3
-COLUMN_DESCRIPTION = 4
-COLUMN_PLACE = 5
-COLUMN_CHANGE = 10
-COLUMN_TAGS = 11
-COLUMN_PRIV = 12
+COLUMN_HANDLE      = 'handle'
+COLUMN_ID          = 'gramps_id'
+COLUMN_TYPE        = 'type'
+COLUMN_DATE        = 'date'
+COLUMN_DESCRIPTION = 'description'
+COLUMN_PLACE       = 'place'
+COLUMN_CHANGE      = 'change'
+COLUMN_TAGS        = 'tag_list'
+COLUMN_PRIV        = 'private'
 
 INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 
@@ -127,7 +129,7 @@ class EventModel(FlatBaseModel):
         return data[COLUMN_DESCRIPTION]
 
     def column_participant(self,data):
-        handle = data[0]
+        handle = data['handle']
         cached, value = self.get_cached_value(handle, "PARTICIPANT")
         if not cached:
             value = get_participant_from_event(self.db, data[COLUMN_HANDLE])
@@ -136,12 +138,11 @@ class EventModel(FlatBaseModel):
 
     def column_place(self,data):
         if data[COLUMN_PLACE]:
-            cached, value = self.get_cached_value(data[0], "PLACE")
+            cached, value = self.get_cached_value(data['handle'], "PLACE")
             if not cached:
-                event = Event()
-                event.unserialize(data)
+                event = from_json(json.dumps(data))
                 value = place_displayer.display_event(self.db, event)
-                self.set_cached_value(data[0], "PLACE", value)
+                self.set_cached_value(data['handle'], "PLACE", value)
             return value
         else:
             return ''
@@ -154,9 +155,9 @@ class EventModel(FlatBaseModel):
 
     def column_date(self,data):
         if data[COLUMN_DATE]:
-            event = Event()
-            event.unserialize(data)
+            event = from_json(json.dumps(data))
             date_str = get_date(event)
+            retval = ""
             if date_str != "":
                 retval = escape(date_str)
             if not get_date_valid(event):
@@ -167,8 +168,7 @@ class EventModel(FlatBaseModel):
 
     def sort_date(self,data):
         if data[COLUMN_DATE]:
-            event = Event()
-            event.unserialize(data)
+            event = from_json(json.dumps(data))
             retval = "%09d" % event.get_date_object().get_sort_value()
             if not get_date_valid(event):
                 return INVALID_DATE_FORMAT % retval
@@ -205,7 +205,7 @@ class EventModel(FlatBaseModel):
         """
         Return the tag color.
         """
-        tag_handle = data[0]
+        tag_handle = data['handle']
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""

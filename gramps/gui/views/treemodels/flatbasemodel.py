@@ -54,6 +54,7 @@ It keeps a FlatNodeMap, and obtains data from database as needed
 import logging
 import bisect
 from time import perf_counter
+import json
 
 _LOG = logging.getLogger(".gui.basetreemodel")
 
@@ -568,7 +569,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         # use cursor as a context manager
         with self.gen_cursor() as cursor:
             #loop over database and store the sort field, and the handle
-            srt_keys=[(self.sort_func(data), key)
+            srt_keys=[(self.sort_func(json.loads(data)), key)
                       for key, data in cursor]
             srt_keys.sort()
             return srt_keys
@@ -642,7 +643,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         assert isinstance(handle, str)
         if self.node_map.get_path_from_handle(handle) is not None:
             return # row is already displayed
-        data = self.map(handle)
+        data = json.loads(self.map(handle))
         insert_val = (self.sort_func(data), handle)
         if not self.search or \
                 (self.search and self.search.match(handle, self.db)):
@@ -677,7 +678,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
             return # row is not currently displayed
         self.clear_cache(handle)
         oldsortkey = self.node_map.get_sortkey(handle)
-        newsortkey = self.sort_func(self.map(handle))
+        newsortkey = self.sort_func(json.loads(self.map(handle)))
         if oldsortkey is None or oldsortkey != newsortkey:
             #or the changed object is not present in the view due to filtering
             #or the order of the object must change.
@@ -773,7 +774,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         if handle != self.prev_handle:
             cached, data = self.get_cached_value(handle, col)
             if not cached:
-                data = self.map(handle)
+                data = json.loads(self.map(handle))
                 self.set_cached_value(handle, col, data)
             if data is None:
                 #object is no longer present

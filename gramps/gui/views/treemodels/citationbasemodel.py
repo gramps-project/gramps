@@ -29,6 +29,7 @@ CitationBaseModel classes for Gramps.
 #
 #-------------------------------------------------------------------------
 from html import escape
+import json
 import logging
 log = logging.getLogger(".")
 LOG = logging.getLogger(".citation")
@@ -41,7 +42,7 @@ LOG = logging.getLogger(".citation")
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
-from gramps.gen.lib import Citation
+from gramps.gen.lib.serialize import from_json
 from gramps.gen.utils.string import conf_strings
 from gramps.gen.config import config
 
@@ -52,26 +53,26 @@ from gramps.gen.config import config
 #-------------------------------------------------------------------------
 # These are the column numbers in the serialize/unserialize interfaces in
 # the Citation object
-COLUMN_HANDLE = 0
-COLUMN_ID = 1
-COLUMN_DATE = 2
-COLUMN_PAGE = 3
-COLUMN_CONFIDENCE = 4
-COLUMN_SOURCE = 5
-COLUMN_CHANGE = 9
-COLUMN_TAGS = 10
-COLUMN_PRIV = 11
+COLUMN_HANDLE      = 'handle'
+COLUMN_ID          = 'gramps_id'
+COLUMN_DATE        = 'date'
+COLUMN_PAGE        = 'page'
+COLUMN_CONFIDENCE  = 'confidence'
+COLUMN_SOURCE      = 'source_handle'
+COLUMN_CHANGE      = 'change'
+COLUMN_TAGS        = 'tag_list'
+COLUMN_PRIV        = 'private'
 
 # Data for the Source object
-COLUMN2_HANDLE = 0
-COLUMN2_ID = 1
-COLUMN2_TITLE = 2
-COLUMN2_AUTHOR = 3
-COLUMN2_PUBINFO = 4
-COLUMN2_ABBREV = 7
-COLUMN2_CHANGE = 8
-COLUMN2_TAGS = 11
-COLUMN2_PRIV = 12
+COLUMN2_HANDLE     = 'handle'
+COLUMN2_ID         = 'gramps_id'
+COLUMN2_TITLE      = 'title'
+COLUMN2_AUTHOR     = 'author'
+COLUMN2_PUBINFO    = 'pubinfo'
+COLUMN2_ABBREV     = 'abbrev'
+COLUMN2_CHANGE     = 'change'
+COLUMN2_TAGS       = 'tag_list'
+COLUMN2_PRIV       = 'private'
 
 INVALID_DATE_FORMAT = config.get('preferences.invalid-date-format')
 
@@ -86,9 +87,9 @@ class CitationBaseModel:
 
     def citation_date(self, data):
         if data[COLUMN_DATE]:
-            citation = Citation()
-            citation.unserialize(data)
+            citation = from_json(json.dumps(data))
             date_str = get_date(citation)
+            retval = ""
             if date_str != "":
                 retval = escape(date_str)
             if not get_date_valid(citation):
@@ -99,8 +100,7 @@ class CitationBaseModel:
 
     def citation_sort_date(self, data):
         if data[COLUMN_DATE]:
-            citation = Citation()
-            citation.unserialize(data)
+            citation = from_json(json.dumps(data))
             retval = "%09d" % citation.get_date_object().get_sort_value()
             if not get_date_valid(citation):
                 return INVALID_DATE_FORMAT % retval
@@ -141,7 +141,7 @@ class CitationBaseModel:
         """
         Return the tag color.
         """
-        tag_handle = data[0]
+        tag_handle = data['handle']
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""
@@ -314,7 +314,7 @@ class CitationBaseModel:
         """
         Return the tag color.
         """
-        tag_handle = data[0]
+        tag_handle = data['handle']
         cached, tag_color = self.get_cached_value(tag_handle, "TAG_COLOR")
         if not cached:
             tag_color = ""

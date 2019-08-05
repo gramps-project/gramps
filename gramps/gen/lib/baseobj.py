@@ -185,11 +185,3 @@ class BaseObject(metaclass=ABCMeta):
         :type acquisition: BaseObject
         """
         pass
-
-    @classmethod
-    def create(cls, data):
-        """
-        Create a new instance from serialized data.
-        """
-        if data:
-            return cls().unserialize(data)
