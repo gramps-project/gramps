@@ -36,6 +36,7 @@ import json
 #------------------------------------------------------------------------
 import gramps.gen.lib as lib
 
+
 def __default(obj):
     obj_dict = {'_class': obj.__class__.__name__}
     if isinstance(obj, lib.GrampsType):
@@ -52,19 +53,37 @@ def __default(obj):
                 obj_dict[key] = getattr(obj, key)
     return obj_dict
 
+
 def __object_hook(obj_dict):
-    obj = getattr(lib, obj_dict['_class'])()
-    for key, value in obj_dict.items():
-        if key != '_class':
-            if key in ('dateval', 'rect') and value is not None:
-                value = tuple(value)
-            if key == 'ranges':
-                value = [tuple(item) for item in value]
-            setattr(obj, key, value)
+    g_class = obj_dict.pop('_class')
+    objcl = getattr(lib, g_class)
+    obj = objcl.__new__(objcl)  # now we have instance, but NOT initialized
+    if isinstance(obj, lib.GrampsType):
+        obj.set(obj_dict['string'])
+    else:
+        if 'dateval' in obj_dict:  # fix up tuple
+            value = obj_dict['dateval']
+            if value is not None:
+                obj_dict['dateval'] = tuple(value)
+        elif 'rect' in obj_dict:  # fix up tuple
+            value = obj_dict['rect']
+            if value is not None:
+                obj_dict['rect'] = tuple(value)
+        elif 'ranges' in obj_dict:  # fix up tuple
+            value = obj_dict['ranges']
+            obj_dict['ranges'] = [tuple(item) for item in value]
+        elif g_class == 'EventRef' and 'role' in obj_dict:
+            # This is a property we need to bypass it.
+            value = obj_dict.pop('role')
+            obj.__dict__['_EventRef__role'] = value
+
+        # now we can merge the json dict with the object, loading everything
+        obj.__dict__.update(obj_dict)
     #if obj_dict['_class'] == 'Date':
         #if obj.is_empty() and not obj.text:
             #return None
     return obj
+
 
 def to_json(obj):
     """
@@ -76,6 +95,7 @@ def to_json(obj):
     :rtype: str
     """
     return json.dumps(obj, default=__default, ensure_ascii=False)
+
 
 def from_json(data):
     """

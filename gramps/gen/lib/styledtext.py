@@ -85,20 +85,20 @@ class StyledText:
 
     def __init__(self, text="", tags=None):
         """Setup initial instance variable values."""
-        self._string = text
+        self.string = text
 
         if tags:
-            self._tags = tags
+            self.tags = tags
         else:
-            self._tags = []
+            self.tags = []
 
     # special methods
 
     def __str__(self):
-        return self._string.__str__()
+        return self.string.__str__()
 
     def __repr__(self):
-        return self._string.__repr__()
+        return self.string.__repr__()
 
     def __add__(self, other):
         """Implement '+' operation on the class.
@@ -109,7 +109,7 @@ class StyledText:
         :rtype: :py:class:`StyledText`
 
         """
-        offset = len(self._string)
+        offset = len(self.string)
 
         if isinstance(other, StyledText):
             # need to join strings and merge tags
@@ -117,23 +117,23 @@ class StyledText:
                 tag.ranges = [(start + offset, end + offset)
                               for (start, end) in tag.ranges]
 
-            return self.__class__("".join([self._string, other.string]),
-                                  self._tags + other.tags)
+            return self.__class__("".join([self.string, other.string]),
+                                  self.tags + other.tags)
         elif isinstance(other, str):
             # tags remain the same, only text becomes longer
-            return self.__class__("".join([self._string, other]), self._tags)
+            return self.__class__("".join([self.string, other]), self.tags)
         else:
-            return self.__class__("".join([self._string, str(other)]),
-                                  self._tags)
+            return self.__class__("".join([self.string, str(other)]),
+                                  self.tags)
 
     def __eq__(self, other):
-        return self._string == other.string and self._tags == other.tags
+        return self.string == other.string and self.tags == other.tags
 
     def __ne__(self, other):
-        return self._string != other.string or self._tags != other.tags
+        return self.string != other.string or self.tags != other.tags
 
     def __lt__(self, other):
-        return self._string < other.string
+        return self.string < other.string
 
     def __le__(self, other):
         return self.__lt__(other) or self.__eq__(other)
@@ -148,9 +148,9 @@ class StyledText:
         """Implement '%' operation on the class."""
 
         # This will raise an exception if the formatting operation is invalid
-        self._string % other
+        self.string % other
 
-        result = self.__class__(self._string, self._tags)
+        result = self.__class__(self.string, self.tags)
 
         start = 0
         while True:
@@ -198,12 +198,12 @@ class StyledText:
         :return: joined strings
         :rtype: :py:class:`StyledText`
         """
-        new_string = self._string.join([str(string) for string in seq])
+        new_string = self.string.join([str(string) for string in seq])
 
         offset = 0
         not_first = False
         new_tags = []
-        self_len = len(self._string)
+        self_len = len(self.string)
 
         for text in seq:
             if not_first:  # if not first time through...
@@ -259,19 +259,19 @@ class StyledText:
         # split the clear text first
         if sep is not None:
             sep = str(sep)
-        string_list = self._string.split(sep, maxsplit)
+        string_list = self.string.split(sep, maxsplit)
 
         # then split the tags too
         end_string = 0
         styledtext_list = []
 
         for string in string_list:
-            start_string = self._string.find(string, end_string)
+            start_string = self.string.find(string, end_string)
             end_string = start_string + len(string)
 
             new_tags = []
 
-            for tag in self._tags:
+            for tag in self.tags:
                 new_tag = StyledTextTag(int(tag.name), tag.value)
                 for (start_tag, end_tag) in tag.ranges:
                     start = max(start_string, start_tag)
@@ -297,12 +297,12 @@ class StyledText:
         :return: Serialized format of the instance.
         :rtype: tuple
         """
-        if self._tags:
-            the_tags = [tag.serialize() for tag in self._tags]
+        if self.tags:
+            the_tags = [tag.serialize() for tag in self.tags]
         else:
             the_tags = []
 
-        return (self._string, the_tags)
+        return (self.string, the_tags)
 
     @classmethod
     def get_schema(cls):
@@ -332,14 +332,14 @@ class StyledText:
         :param data: Serialized format of instance variables.
         :type data: tuple
         """
-        (self._string, the_tags) = data
+        (self.string, the_tags) = data
 
         # I really wonder why this doesn't work... it does for all other types
-        #self._tags = [StyledTextTag().unserialize(tag) for tag in the_tags]
+        #self.tags = [StyledTextTag().unserialize(tag) for tag in the_tags]
         for tag in the_tags:
             stt = StyledTextTag()
             stt.unserialize(tag)
-            self._tags.append(stt)
+            self.tags.append(stt)
         return self
 
     def get_tags(self):
@@ -349,7 +349,7 @@ class StyledText:
         :return: The formatting tags applied on the text.
         :rtype: list of 0 or more :py:class:`.StyledTextTag` instances.
         """
-        return self._tags
+        return self.tags
 
     def set_tags(self, tags):
         """
@@ -358,22 +358,22 @@ class StyledText:
         :param tags: The formatting tags applied on the text.
         :type tags: list of 0 or more :py:class:`.StyledTextTag` instances.
         """
-        self._tags = tags
+        self.tags = tags
 
     def get_string(self):
         """
         Accessor for the associated string.
         """
-        return self._string
+        return self.string
 
     def set_string(self, string):
         """
         Setter for the associated string.
         """
-        self._string = string
+        self.string = string
 
-    tags = property(get_tags, set_tags)
-    string = property(get_string, set_string)
+    # tags = property(get_tags, set_tags)
+    # string = property(get_string, set_string)
 
 if __name__ == '__main__':
     from .styledtexttagtype import StyledTextTagType
