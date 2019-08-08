@@ -1,3 +1,62 @@
+2018-08-08
+Version 5.0.2
+Update translations: cs, da, de, fi, fr, hr, it, ru, sl, sv
+* Fix some Gramplets not updating during tree changes after db change.
+* Fix Events Grampslet for bad sort order on dates/ages
+* Fix References Tab to update on Deletes of items when editor is open
+* Fix GEDCOM import for better support of TMG
+* Fix Edit Link 'New' button to work
+* Fix GEDCOM importer to properly handle multiple surnames per 5.5.1
+* Narrative web: Sort problem with places.
+* Fix Navigator sidebar so can change view type with proper resize
+* Fix crash when using sidebar filter and merging in another view
+* Fix AncestorTree so add siblings to center person works
+* Fix graphs on Windows for font selection not working
+* Fix dbapi reindex_reference_maps tool to properly close transaction
+* Fix zoom via mouse wheel in media event editor selectionwidget, also fixes
+  zooming with scroll bars always present
+* Fix metadata viewer so that metadata is actually detected and displayed
+* Avoid comma in a lat/lon entry field.
+* Avoid invalid characters and leading or trailing spaces in the entry field
+* Fix crash for multiple deletes in one transaction
+* Adjust translation strings for unmarried partners to give correct text in English
+* Fix failure after Gedcom import if missing objects were found
+* Mac: Fix none type has no len() error.
+  Set correct font resolution when drawing text directly to cairo.
+* Fix Gedcom import so it doesn't create completely empty Birth events
+* Fix Relationship view so ages are according to Preferences
+* Fix Person Editor Events to properly update during external changes like
+  Event delete or update.
+* Gedcom import/export fixes for mime and finding media
+* Fix Unhandled exception in Geography editor
+* Fix relationship path between filter rule when parent is missing
+* Fix Graphs that use graphdoc pdf via Ghostscript with multi-page for poor
+  font rendering of some characters
+* Fix finddupes tool when run from Match Threshold screen again after merge.
+* Fix Gedcom import for multiple notes on OBJE (MULTIMEDIA_LINK)
+* Deal with SQLite db corrupted by None name mapping
+* Fix XML import to add tags to Events, Sources, Places, Repos, Cits when
+  requested.
+* Fix for delete of a referenced primary obj while editing an added obj.
+  Also fixed to update the referenced obj on changes from outside the editor.
+* Fix Place Tree view when using enclosed by sidebar filter
+* Fix EditFamily for adding a child to single parent family with Surname
+  guessing set to combination.
+* Fix Descendent Tree report for crash when person has multiple families
+  and one of them doesn't have a spouse.
+* Fix Name editor crash after clearing a group_as name on dbapi dbs
+* When we merge two objects:
+    We should stay on the selected row in list views.
+    In case we select the first family and select the gramps_id of the second
+    family, the new gramps_id is ignored
+* Fix Relationship Graph; extra people when using filters & subgraphs
+* Fix Place Format Editor file save/load for difficult names
+* Fix Not all place types appears on family lines Graph
+* Remember location of Sort Events Tool
+* Fix Media editor when using double click the preview of added media
+* Avoid leading and trailing spaces when copy/paste coordinates from a
+  map provider.
+
 2018-12-20
 Version 5.0.1
 * Media Manager: add help button and remove '...'
