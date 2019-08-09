@@ -1548,7 +1548,6 @@ class GrampsPreferences(ConfigureDialog):
         self.add_text(grid, _("General Gramps settings"), 0,
                       line_wrap=True, start=1, stop=3, bold=True,
                       justify=Gtk.Justification.CENTER, align=Gtk.Align.CENTER)
-
         current_line = 1
 
         self.add_checkbox(grid, _('Add default source on GEDCOM import'),

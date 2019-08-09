@@ -55,6 +55,7 @@ class BackRefModel(Gtk.ListStore):
         self.sref_list = sref_list
         self.count = 0
         self.loading = False
+        self.hndl_iter = {}
         self.idle = GLib.idle_add(self.load_model().__next__)
 
     def destroy(self):
@@ -145,7 +146,17 @@ class BackRefModel(Gtk.ListStore):
             # We need to use localized string in the model.
             # we also need to keep class names to get the object type,
             # but we don't need to show that in the view.
-            self.append(row=[_(dtype), gid, name, handle, dtype])
+
+            self.hndl_iter[ref[1]] = self.append(
+                row=[_(dtype), gid, name, handle, dtype])
             yield True
         self.loading = False
         yield False
+
+    def delete_row(self, hndl_list):
+        """ Remove rows of the model based on the handles """
+        for hndl in hndl_list:
+            miter = self.hndl_iter.get(hndl, None)
+            if miter is not None:
+                self.remove(miter)
+                del self.hndl_iter[hndl]

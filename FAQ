@@ -133,7 +133,7 @@ Gramps is a [http://en.wikipedia.org/wiki/Gtk GTK] application. Gramps needs to 
 
 The Linux Genealogy CD can function as a live CD that you boot directly from. You can then run Linux and Gramps off the CD, even if your computer is entirely Windows.
 
-An experimental Windows installer is available, however we do not have the manpower to offer support for Windows. A windows mailing list is available however and we do do our best to solve windows related problems.
+An Windows installer is available for 32 and 64 bit versions of windows from Windows versions 7 through 10. As with all other support, we do do our best to solve windows related problems.
 
 
 8. Does it work with the Mac?
@@ -145,7 +145,7 @@ This present version of Gramps (2.2.x) does not appear to have been ported by th
 
 9. What are the Minimum Specs to run Gramps?
 
-We would recommend at least an 800x600 video display. For Gramps 2.0, the memory requirements have been reduced, and Gramps can run quite efficiently on a 256MB system, holding considerably more people. A system with 512MB should be able to hold around 200,000 people. Disk space requirements for databases are however considerably larger, with a typical database being several megabytes in size. For 120.000 people you must consider already 530Mb for the database. Pictures are stored on disk separately, so a large harddisk is necessary.
+We would recommend at least an 800x600 video display. For Gramps 5.x, Gramps can run quite efficiently on a 3GB memory system. A system with that much RAM should be able to hold more than 200,000 people. Disk space requirements for databases are however considerably larger, with a typical database being several megabytes in size. For 120.000 people you must consider already 530Mb for the database. Pictures are stored on disk separately, so a large harddisk is necessary.
 
 
 ==Preferences==
@@ -181,7 +181,7 @@ The nice thing about standards is that there never is a shortage of them. Gramps
 
 15. How do I import data from another genealogy program into Gramps?
 
-The best way is to create a new gramps database file (.grdb), and select the import option in the file menu. Here you select the GEDCOM you generated with the other program, and import it. 
+The best way is to create a new gramps database file, and select the import option in the file menu. Here you select the GEDCOM you generated with the other program, and import it. 
 
 
 16. Can I install Gramps on a Linux Web Server and use it via a web browser? This would enable my relations worldwide to access and update it.
@@ -315,7 +315,7 @@ gramps-devel@lists.sf.net :-)
 The next best thing would be to submit a good bug report. This can be done in
 one of the two ways: (1) send your report to gramps-bugs@lists.sf.net
 or (2) file your report with the bug tracker system at 
-http://bugs.gramps-project.org (this function is also 
+https://gramps-project.org/bugs/ (this function is also 
 available by selecting "Help->Report a bug" from gramps main menu). 
 
 A good bug report would include: 

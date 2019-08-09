@@ -1290,15 +1290,17 @@ class GedcomWriter(UpdateCallback):
 
         firstname = name.get_first_name().strip()
         surns = []
-        surprefs = []
+        surprefix = ''
         for surn in name.get_surname_list():
             surns.append(surn.get_surname().replace('/', '?'))
             if surn.get_connector():
                 #we store connector with the surname
                 surns[-1] = surns[-1] + ' ' + surn.get_connector()
-            surprefs.append(surn.get_prefix().replace('/', '?'))
         surname = ', '.join(surns)
-        surprefix = ', '.join(surprefs)
+        if name.get_surname_list():
+            # GEDCOM only supports a single surname prefix
+            surn = name.get_surname_list()[0]
+            surprefix = surn.get_prefix().replace('/', '?')
         suffix = name.get_suffix()
         title = name.get_title()
         nick = name.get_nick_name()

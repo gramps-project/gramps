@@ -67,6 +67,12 @@ class BackRefList(EmbeddedList):
                               _('_References'), refmodel)
         self._callback = callback
         self.connectid = self.model.connect('row-inserted', self.update_label)
+        self.db_connect = []
+        for item in ['person', 'family', 'source', 'citation', 'event',
+                     'media', 'place', 'repository', 'note']:
+            self.db_connect.append(self.dbstate.db.connect(
+                '%s-delete' % item, self.model.delete_row))
+        self.tree.set_reorderable(False)
         self.track_ref_for_deletion("model")
 
     def update_label(self, *obj):
@@ -80,6 +86,8 @@ class BackRefList(EmbeddedList):
 
     def _cleanup_local_connects(self):
         self.model.disconnect(self.connectid)
+        for item in self.db_connect:
+            self.dbstate.db.disconnect(item)
 
     def _cleanup_on_exit(self):
         # model may be destroyed already in closing managedwindow
