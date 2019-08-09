@@ -280,7 +280,7 @@ class GrampsWindowManager:
         return func
 
     def generate_id(self, item):
-        return 'wm/' + str(item.window_id)
+        return 'wm/' + str(item.window_id).replace(' ', '_')
 
     def display_menu_list(self, data, action_data, mlist):
         menuitem = ('<item>\n'

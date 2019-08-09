@@ -65,7 +65,8 @@ from gramps.plugins.webreport.common import (get_first_letters, first_letter,
                                              get_index_letter, FULLCLEAR,
                                              MARKER_PATH, OPENLAYER,
                                              OSM_MARKERS, STAMEN_MARKERS,
-                                             MARKERS, html_escape)
+                                             MARKERS, html_escape,
+                                             sort_places)
 
 _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
@@ -197,21 +198,15 @@ class PlacePages(BasePage):
                         ]
                     )
 
-                # bug 9495 : incomplete display of place hierarchy labels
-                def sort_by_place_name(obj):
-                    """ sort by lower case place name. """
-                    name = self.report.obj_dict[Place][obj][1]
-                    return name.lower()
-
-                handle_list = sorted(place_handles,
-                                     key=lambda x: sort_by_place_name(x))
+                handle_list = sort_places(self.r_db, place_handles,
+                                          self.rlocale)
                 first = True
 
                 # begin table body
                 tbody = Html("tbody")
                 table += tbody
 
-                for place_handle in handle_list:
+                for (dummy_pname, place_handle) in handle_list:
                     place = self.r_db.get_place_from_handle(place_handle)
                     if place:
                         if place.get_change_time() > ldatec:
@@ -392,12 +387,10 @@ class PlacePages(BasePage):
                                    "jquery.min.js")
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
-                        src_js = self.secure_mode
-                        src_js += "openlayers.org/en/latest/build/ol.js"
+                        src_js = "https://openlayers.org/en/latest/build/ol.js"
                         head += Html("script", type="text/javascript",
                                      src=src_js, inline=True)
-                        url = self.secure_mode
-                        url += "openlayers.org/en/latest/css/ol.css"
+                        url = "https://openlayers.org/en/latest/css/ol.css"
                         head += Html("link", href=url, type="text/javascript",
                                      rel="stylesheet")
                         src_js = self.secure_mode

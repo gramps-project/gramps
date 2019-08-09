@@ -744,12 +744,10 @@ class PersonPages(BasePage):
             src_js += "ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
-            src_js = self.secure_mode
-            src_js += "openlayers.org/en/latest/build/ol.js"
+            src_js = "https://openlayers.org/en/latest/build/ol.js"
             head += Html("script", type="text/javascript",
                          src=src_js, inline=True)
-            url = self.secure_mode
-            url += "openlayers.org/en/latest/css/ol.css"
+            url = "https://openlayers.org/en/latest/css/ol.css"
             head += Html("link", href=url, type="text/javascript",
                          rel="stylesheet")
             src_js = self.secure_mode

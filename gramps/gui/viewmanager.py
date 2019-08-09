@@ -278,7 +278,7 @@ class ViewManager(CLIManager):
 
         self.navigator = Navigator(self)
         self.ebox.add(self.navigator.get_top())
-        hpane.add1(self.ebox)
+        hpane.pack1(self.ebox, False, False)
         hpane.show()
 
         self.notebook = Gtk.Notebook()
@@ -353,7 +353,7 @@ class ViewManager(CLIManager):
         Initialize the actions lists for the UIManager
         """
         self._app_actionlist = [
-            ('quit', self.quit, "<PRIMARY>q"),
+            ('quit', self.quit, None if is_quartz() else "<PRIMARY>q"),
             ('preferences', self.preferences_activate),
             ('about', self.display_about_box), ]
 

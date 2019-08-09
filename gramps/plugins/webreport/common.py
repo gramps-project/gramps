@@ -424,6 +424,29 @@ def sort_people(dbase, handle_list, rlocale=glocale):
 
     return sorted_lists
 
+def sort_places(dbase, handle_list, rlocale=glocale):
+    """
+    will sort the database place
+    """
+    pname_sub = defaultdict(list)
+    sortnames = {}
+
+    for place_handle in handle_list:
+        place = dbase.get_place_from_handle(place_handle)
+        pname = _pd.display(dbase, place)
+        sortnames[place_handle] = pname
+        pname_sub[pname].append(place_handle)
+
+    sorted_lists = []
+    temp_list = sorted(pname_sub, key=rlocale.sort_key)
+
+    for name in temp_list:
+        if isinstance(name, bytes):
+            name = name.decode('utf-8')
+        sorted_lists.append((name, pname_sub[name][0]))
+
+    return sorted_lists
+
 def sort_event_types(dbase, event_types, event_handle_list, rlocale):
     """
     sort a list of event types and their associated event handles
@@ -603,36 +626,24 @@ def first_letter(string, rlocale=glocale):
     # no special case
     return norm_unicode[0].upper()
 
-try:
-    import PyICU # pylint : disable=wrong-import-position
-    PRIM_COLL = PyICU.Collator.createInstance(PyICU.Locale(COLLATE_LANG))
-    PRIM_COLL.setStrength(PRIM_COLL.PRIMARY)
-
-    def primary_difference(prev_key, new_key, rlocale=glocale):
-        """
-        Try to use the PyICU collation.
-        """
         dummy_rlocale = rlocale
+def primary_difference(prev_key, new_key, rlocale=glocale):
+    """
+    The PyICU collation doesn't work if you want to sort in another language
+    So we use this method to do the work correctly.
 
-        return PRIM_COLL.compare(prev_key, new_key) != 0
+    Returns true if there is a primary difference between the two parameters
+    See http://www.gramps-project.org/bugs/view.php?id=2933#c9317 if
+    letter[i]+'a' < letter[i+1]+'b' and letter[i+1]+'a' < letter[i]+'b' is
+    true then the letters should be grouped together
 
-except:
-    def primary_difference(prev_key, new_key, rlocale=glocale):
-        """
-        The PyICU collation is not available.
+    The test characters here must not be any that are used in contractions.
+    """
 
-        Returns true if there is a primary difference between the two parameters
-        See http://www.gramps-project.org/bugs/view.php?id=2933#c9317 if
-        letter[i]+'a' < letter[i+1]+'b' and letter[i+1]+'a' < letter[i]+'b' is
-        true then the letters should be grouped together
-
-        The test characters here must not be any that are used in contractions.
-        """
-
-        return rlocale.sort_key(prev_key + "e") >= \
-                   rlocale.sort_key(new_key + "f") or \
-                   rlocale.sort_key(new_key + "e") >= \
-                   rlocale.sort_key(prev_key + "f")
+    return rlocale.sort_key(prev_key + "e") >= \
+               rlocale.sort_key(new_key + "f") or \
+               rlocale.sort_key(new_key + "e") >= \
+               rlocale.sort_key(prev_key + "f")
 
 def get_first_letters(dbase, handle_list, key, rlocale=glocale):
     """
@@ -676,12 +687,12 @@ def get_first_letters(dbase, handle_list, key, rlocale=glocale):
     index_list.sort(key=rlocale.sort_key)
     first = True
     prev_index = None
-    for key in index_list[:]:   #iterate over a slice copy of the list
-        if first or primary_difference(prev_index, key, rlocale):
+    for nkey in index_list[:]:   #iterate over a slice copy of the list
+        if first or primary_difference(prev_index, nkey, rlocale):
             first = False
-            prev_index = key
+            prev_index = nkey
         else:
-            index_list.remove(key)
+            index_list.remove(nkey)
 
     # return menu set letters for alphabet_navigation
     return index_list

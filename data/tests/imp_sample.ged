@@ -50,9 +50,9 @@
 0 @I0@ INDI
 1 NAME Anna /Hansdotter/
 2 GIVN Anna
+2 SURN Hansdotter, Smith
+2 SPFX Vrow, huh
 2 SURN Hansdotter
-2 SPFX Vrow
-2 SURN Smith
 2 _AKA Anna Smith
 2 _AKA Hanna
 2 NOTE Hans daughter? N0000

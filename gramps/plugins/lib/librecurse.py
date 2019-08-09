@@ -524,7 +524,9 @@ class AscendPerson(_StopRecurse, _PersonSeen):
         """
         A simple header to make sure we pass in the correct information
         """
-        return self.__iterate(1, 1, person_handle, None)
+        person = self.database.get_person_from_handle(person_handle)
+        return self.__iterate(1, 1, person_handle,
+                              person.get_main_parents_family_handle())
 
 
 #------------

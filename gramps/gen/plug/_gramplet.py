@@ -33,8 +33,10 @@ LOG = logging.getLogger(".Gramplets")
 # Gramps modules
 #
 #------------------------------------------------------------------------
+from ...gui.dbguielement import DbGUIElement
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+
 
 class Gramplet:
     """
@@ -397,6 +399,13 @@ class Gramplet:
             if hasattr(self.gui, 'navtypes') and 'Person' in self.gui.navtypes:
                 self.connect_signal('Person', self._active_changed)
             self.db_changed()
+        # Some Gramplets use DbGUIElement; and DbGUIElement needs to know if
+        # db is changed.  However, at initialization, DbGUIElement is not yet
+        # initialized when _db_changed is called, thus the test for callman
+        if hasattr(self, "callman") and isinstance(self, DbGUIElement):
+            # get DbGUIElement informed if in use
+            self._change_db(db)       # DbGUIElement method
+
         self.update()
 
     def _no_db(self):
