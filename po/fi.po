@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-12 09:25+0300\n"
-"PO-Revision-Date: 2019-06-12 09:47+0300\n"
+"POT-Creation-Date: 2019-08-07 15:40-0500\n"
+"PO-Revision-Date: 2019-08-09 13:23+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -1182,7 +1182,7 @@ msgstr "Gramps Sukupuut:"
 #: ../gramps/cli/arghandler.py:443 ../gramps/cli/arghandler.py:444
 #: ../gramps/cli/arghandler.py:446 ../gramps/cli/clidbman.py:69
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
-#: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1583
+#: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1576
 msgid "Family Tree"
 msgstr "Sukupuu"
 
@@ -1680,8 +1680,8 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../gramps/cli/clidbman.py:535 ../gramps/gui/configure.py:1424
-#: ../gramps/gui/configure.py:1571
+#: ../gramps/cli/clidbman.py:535 ../gramps/gui/configure.py:1417
+#: ../gramps/gui/configure.py:1564
 msgid "Never"
 msgstr "Ei koskaan"
 
@@ -2064,27 +2064,27 @@ msgstr ""
 "%(gramps_bugtracker_url)s\n"
 "\n"
 
-#: ../gramps/gen/config.py:242
+#: ../gramps/gen/config.py:241
 msgid "Imported %Y/%m/%d %H:%M:%S"
 msgstr "Tuotu %Y/%m/%d %H:%M:%S"
 
-#: ../gramps/gen/config.py:253
+#: ../gramps/gen/config.py:252
 msgid "Missing Given Name"
 msgstr "Etunimi puuttuu"
 
-#: ../gramps/gen/config.py:254
+#: ../gramps/gen/config.py:253
 msgid "Missing Record"
 msgstr "Tietue puuttuu"
 
-#: ../gramps/gen/config.py:255
+#: ../gramps/gen/config.py:254
 msgid "Missing Surname"
 msgstr "Sukunimi puuttuu"
 
-#: ../gramps/gen/config.py:262 ../gramps/gen/config.py:264
+#: ../gramps/gen/config.py:261 ../gramps/gen/config.py:263
 msgid "[Living]"
 msgstr "[Elossa]"
 
-#: ../gramps/gen/config.py:263
+#: ../gramps/gen/config.py:262
 msgid "Private Record"
 msgstr "Yksityinen tietue"
 
@@ -2094,7 +2094,7 @@ msgstr "Yksityinen tietue"
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
-#: ../gramps/gen/config.py:306 ../gramps/gen/datehandler/_datestrings.py:79
+#: ../gramps/gen/config.py:305 ../gramps/gen/datehandler/_datestrings.py:79
 msgid "localized lexeme inflections||January"
 msgstr ""
 "N=tammikuu|G=tammikuun|IN=tammikuussa|P=tammikuuta|IL=tammikuuhun|"
@@ -6469,8 +6469,8 @@ msgstr "Poimii lähteet, jotka on merkitty yksityisiksi"
 #: ../gramps/gui/configure.py:546 ../gramps/gui/editors/editaddress.py:167
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
 #: ../gramps/plugins/gramplet/repositorydetails.py:136
-#: ../gramps/plugins/lib/libgedcom.py:5596
-#: ../gramps/plugins/lib/libgedcom.py:5763
+#: ../gramps/plugins/lib/libgedcom.py:5601
+#: ../gramps/plugins/lib/libgedcom.py:5768
 #: ../gramps/plugins/textreport/familygroup.py:352
 #: ../gramps/plugins/webreport/addressbooklist.py:112
 msgid "Address"
@@ -6734,7 +6734,7 @@ msgstr "Postinumero"
 #: ../gramps/plugins/export/exportgedcom.py:1161
 #: ../gramps/plugins/gramplet/repositorydetails.py:124
 #: ../gramps/plugins/lib/libgedcom.py:4129
-#: ../gramps/plugins/lib/libgedcom.py:5860
+#: ../gramps/plugins/lib/libgedcom.py:5865
 #: ../gramps/plugins/webreport/basepage.py:1108
 msgid "Phone"
 msgstr "Puhelin"
@@ -7082,8 +7082,8 @@ msgstr "Tagit"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
-#: ../gramps/plugins/lib/libgedcom.py:5393
-#: ../gramps/plugins/lib/libgedcom.py:6704
+#: ../gramps/plugins/lib/libgedcom.py:5398
+#: ../gramps/plugins/lib/libgedcom.py:6709
 #: ../gramps/plugins/textreport/indivcomplete.py:663
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
 #: ../gramps/plugins/view/relview.py:646
@@ -8344,7 +8344,7 @@ msgstr "Lisätieto"
 msgid "Format"
 msgstr "Muotoilu"
 
-#: ../gramps/gen/lib/notetype.py:75 ../gramps/gui/configure.py:1469
+#: ../gramps/gen/lib/notetype.py:75 ../gramps/gui/configure.py:1462
 #: ../gramps/gui/editors/editeventref.py:89
 #: ../gramps/gui/editors/editmediaref.py:107
 #: ../gramps/gui/editors/editplaceref.py:71
@@ -8614,7 +8614,7 @@ msgstr "Leveysaste"
 #: ../gramps/plugins/webreport/basepage.py:1544
 #: ../gramps/plugins/webreport/basepage.py:1610
 #: ../gramps/plugins/webreport/place.py:138
-#: ../gramps/plugins/webreport/place.py:292
+#: ../gramps/plugins/webreport/place.py:286
 msgid "Places"
 msgstr "Paikat"
 
@@ -9238,7 +9238,7 @@ msgstr "Tiedosto %s on jo käytössä, sulje se ensin."
 #: ../gramps/plugins/export/exportcsv.py:261
 #: ../gramps/plugins/export/exportcsv.py:265
 #: ../gramps/plugins/export/exportftree.py:135
-#: ../gramps/plugins/export/exportgedcom.py:1600
+#: ../gramps/plugins/export/exportgedcom.py:1602
 #: ../gramps/plugins/export/exportgeneweb.py:108
 #: ../gramps/plugins/export/exportgeneweb.py:112
 #: ../gramps/plugins/export/exportvcalendar.py:119
@@ -9654,7 +9654,7 @@ msgid "Not shown"
 msgstr "Ei näytetä"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74 ../gramps/gui/configure.py:96
-#: ../gramps/gui/configure.py:162 ../gramps/gui/configure.py:1724
+#: ../gramps/gui/configure.py:162 ../gramps/gui/configure.py:1717
 #: ../gramps/gui/views/pageview.py:606
 msgid "Preferences"
 msgstr "Asetukset"
@@ -11130,8 +11130,8 @@ msgstr "Puunäkymä: ensimmäistä saraketta \"%s\" ei voi vaihtaa"
 msgid "Drag and drop the columns to change the order"
 msgstr "Raahaa ja pudota sarakkeita järjestyksen muuttamiseksi"
 
-#: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1624
-#: ../gramps/gui/configure.py:1646 ../gramps/gui/configure.py:1669
+#: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1617
+#: ../gramps/gui/configure.py:1639 ../gramps/gui/configure.py:1662
 #: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:2010
 #: ../gramps/plugins/lib/maps/geography.py:998
 #: ../gramps/plugins/lib/maps/geography.py:1264
@@ -11268,8 +11268,8 @@ msgstr "Viallinen tai puutteellinen muotoilumääritelmä."
 #: ../gramps/gui/configure.py:1081 ../gramps/gui/configure.py:1116
 #: ../gramps/gui/configure.py:1130 ../gramps/gui/configure.py:1143
 #: ../gramps/gui/configure.py:1156 ../gramps/gui/configure.py:1180
-#: ../gramps/gui/configure.py:1433 ../gramps/gui/configure.py:1451
-#: ../gramps/gui/configure.py:1524 ../gramps/gui/configure.py:1579
+#: ../gramps/gui/configure.py:1426 ../gramps/gui/configure.py:1444
+#: ../gramps/gui/configure.py:1517 ../gramps/gui/configure.py:1572
 #: ../gramps/gui/views/navigationview.py:358
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:90
 #, python-format
@@ -11728,25 +11728,19 @@ msgstr ""
 msgid "Dates"
 msgstr "Päivämäärät"
 
-#: ../gramps/gui/configure.py:1364
-msgid "Use alternate Font handler for GUI and Reports (requires restart)"
-msgstr ""
-"Käytä vaihtoehtoista fonttien käsittelijää käyttöliittymää ja raportteja "
-"varten (vaatii uudelleenkäynnistyksen)"
-
-#: ../gramps/gui/configure.py:1370
+#: ../gramps/gui/configure.py:1363
 msgid "Add default source on GEDCOM import"
 msgstr "Lisää oletuslähde GEDCOM-tuonnissa"
 
-#: ../gramps/gui/configure.py:1374
+#: ../gramps/gui/configure.py:1367
 msgid "Add tag on import"
 msgstr "Lisää oletustagi tuonnissa"
 
-#: ../gramps/gui/configure.py:1385
+#: ../gramps/gui/configure.py:1378
 msgid "Enable spelling checker"
 msgstr "Aktivoi oikoluku"
 
-#: ../gramps/gui/configure.py:1394
+#: ../gramps/gui/configure.py:1387
 #, python-format
 msgid ""
 "GtkSpell not loaded. Spell checking will not be available.\n"
@@ -11755,151 +11749,151 @@ msgstr ""
 "GtkSpell ohjelma asentamatta. Oikeellisuustarkistukset eivät toimi.\n"
 "Katso miten saat sen mukaan Grampsiin %(gramps_wiki_build_spell_url)s"
 
-#: ../gramps/gui/configure.py:1401
+#: ../gramps/gui/configure.py:1394
 msgid "Display Tip of the Day"
 msgstr "Näytä päivän vihje"
 
-#: ../gramps/gui/configure.py:1406
+#: ../gramps/gui/configure.py:1399
 msgid "Remember last view displayed"
 msgstr "Muista viimeisin näytetty näkymä"
 
-#: ../gramps/gui/configure.py:1411
+#: ../gramps/gui/configure.py:1404
 msgid "Max generations for relationships"
 msgstr "Suurin sukupolvimäärä sukulaisuussuhteelle"
 
-#: ../gramps/gui/configure.py:1417
+#: ../gramps/gui/configure.py:1410
 msgid "Base path for relative media paths"
 msgstr "Peruspolku suhteellisille mediatiedostojen poluille"
 
-#: ../gramps/gui/configure.py:1425
+#: ../gramps/gui/configure.py:1418
 msgid "Once a month"
 msgstr "Kuukausittain"
 
-#: ../gramps/gui/configure.py:1426
+#: ../gramps/gui/configure.py:1419
 msgid "Once a week"
 msgstr "Viikoittain"
 
-#: ../gramps/gui/configure.py:1427
+#: ../gramps/gui/configure.py:1420
 msgid "Once a day"
 msgstr "Päivittäin"
 
-#: ../gramps/gui/configure.py:1428
+#: ../gramps/gui/configure.py:1421
 msgid "Always"
 msgstr "Aina"
 
-#: ../gramps/gui/configure.py:1433
+#: ../gramps/gui/configure.py:1426
 msgid "Check for addon updates"
 msgstr "Laajennusten päivityksien tarkistus"
 
-#: ../gramps/gui/configure.py:1439
+#: ../gramps/gui/configure.py:1432
 msgid "Updated addons only"
 msgstr "Vain päivitetyt laajennukset"
 
-#: ../gramps/gui/configure.py:1440
+#: ../gramps/gui/configure.py:1433
 msgid "New addons only"
 msgstr "Vain uudet laajennukset"
 
-#: ../gramps/gui/configure.py:1441
+#: ../gramps/gui/configure.py:1434
 msgid "New and updated addons"
 msgstr "Uudet ja päivitetyt laajennukset"
 
-#: ../gramps/gui/configure.py:1451
+#: ../gramps/gui/configure.py:1444
 msgid "What to check"
 msgstr "Mitä tarkistetaan"
 
-#: ../gramps/gui/configure.py:1456
+#: ../gramps/gui/configure.py:1449
 msgid "Where to check"
 msgstr "Mistä tarkistetaan"
 
-#: ../gramps/gui/configure.py:1460
+#: ../gramps/gui/configure.py:1453
 msgid "Do not ask about previously notified addons"
 msgstr "Älä kysy aikaisemmin ilmoitetuista laajennuksista"
 
-#: ../gramps/gui/configure.py:1465
+#: ../gramps/gui/configure.py:1458
 msgid "Check for updated addons now"
 msgstr "Tarkista laajennusten päivitykset nyt"
 
-#: ../gramps/gui/configure.py:1475
+#: ../gramps/gui/configure.py:1468
 msgid "Checking Addons Failed"
 msgstr "Laajennusten tarkistus epäonnistui"
 
-#: ../gramps/gui/configure.py:1476
+#: ../gramps/gui/configure.py:1469
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr "Laajennukset eivät näytä olevan saatavilla. Yritä myöhemmin."
 
-#: ../gramps/gui/configure.py:1489
+#: ../gramps/gui/configure.py:1482
 msgid "There are no available addons of this type"
 msgstr "Tämäntyyppisiä laajennuksia ei ole saatavilla"
 
-#: ../gramps/gui/configure.py:1490
+#: ../gramps/gui/configure.py:1483
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Tarkistettu '%s'"
 
-#: ../gramps/gui/configure.py:1491
+#: ../gramps/gui/configure.py:1484
 msgid "' and '"
 msgstr "' ja '"
 
 #. List of translated strings used here
 #. Dead code for l10n
-#: ../gramps/gui/configure.py:1496
+#: ../gramps/gui/configure.py:1489
 msgid "new"
 msgstr "uusi"
 
-#: ../gramps/gui/configure.py:1496
+#: ../gramps/gui/configure.py:1489
 msgid "update"
 msgstr "päivitä"
 
-#: ../gramps/gui/configure.py:1524
+#: ../gramps/gui/configure.py:1517
 msgid "Database backend"
 msgstr "Tietokantaohjelmisto"
 
-#: ../gramps/gui/configure.py:1531
+#: ../gramps/gui/configure.py:1524
 msgid "Host"
 msgstr "Isäntäkone"
 
-#: ../gramps/gui/configure.py:1535
+#: ../gramps/gui/configure.py:1528
 msgid "Port"
 msgstr "Portti"
 
-#: ../gramps/gui/configure.py:1543
+#: ../gramps/gui/configure.py:1536
 msgid "Family Tree Database path"
 msgstr "Sukukannan tietokantapolku"
 
-#: ../gramps/gui/configure.py:1552
+#: ../gramps/gui/configure.py:1545
 msgid "Automatically load last Family Tree"
 msgstr "Lataa automaattisesti viimeisin sukupuu"
 
-#: ../gramps/gui/configure.py:1558
+#: ../gramps/gui/configure.py:1551
 msgid "Backup path"
 msgstr "Varmuuskopion polku"
 
-#: ../gramps/gui/configure.py:1565
+#: ../gramps/gui/configure.py:1558
 msgid "Backup on exit"
 msgstr "Varmuuskopio poistuttaessa"
 
-#: ../gramps/gui/configure.py:1572
+#: ../gramps/gui/configure.py:1565
 msgid "Every 15 minutes"
 msgstr "15 min. välein"
 
-#: ../gramps/gui/configure.py:1573
+#: ../gramps/gui/configure.py:1566
 msgid "Every 30 minutes"
 msgstr "30 min. välein"
 
-#: ../gramps/gui/configure.py:1574
+#: ../gramps/gui/configure.py:1567
 msgid "Every hour"
 msgstr "Tunnin välein"
 
-#: ../gramps/gui/configure.py:1579
+#: ../gramps/gui/configure.py:1572
 msgid "Autobackup"
 msgstr "Automaattinen varmuuskopio"
 
-#: ../gramps/gui/configure.py:1619
+#: ../gramps/gui/configure.py:1612
 msgid "Select media directory"
 msgstr "Valitse mediatiedostojen hakemisto"
 
-#: ../gramps/gui/configure.py:1622 ../gramps/gui/configure.py:1645
-#: ../gramps/gui/configure.py:1667 ../gramps/gui/dbloader.py:401
+#: ../gramps/gui/configure.py:1615 ../gramps/gui/configure.py:1638
+#: ../gramps/gui/configure.py:1660 ../gramps/gui/dbloader.py:401
 #: ../gramps/gui/dbloader.py:435 ../gramps/gui/editors/edittaglist.py:119
 #: ../gramps/gui/glade/addmedia.glade:22
 #: ../gramps/gui/glade/baseselector.glade:24
@@ -11957,11 +11951,11 @@ msgstr "Valitse mediatiedostojen hakemisto"
 msgid "_Cancel"
 msgstr "_Peru"
 
-#: ../gramps/gui/configure.py:1642
+#: ../gramps/gui/configure.py:1635
 msgid "Select database directory"
 msgstr "Valitse tietokannan hakemisto"
 
-#: ../gramps/gui/configure.py:1664 ../gramps/gui/viewmanager.py:2005
+#: ../gramps/gui/configure.py:1657 ../gramps/gui/viewmanager.py:2005
 msgid "Select backup directory"
 msgstr "Valitse varmuuskopion hakemisto"
 
@@ -21484,7 +21478,7 @@ msgid "Sorted by %s"
 msgstr "Lajitteluperuste %s"
 
 #: ../gramps/plugins/drawreport/timeline.py:312
-#: ../gramps/plugins/lib/libgedcom.py:7832
+#: ../gramps/plugins/lib/libgedcom.py:7837
 msgid "No Date Information"
 msgstr "Päivämäärätietoa ei ole"
 
@@ -21745,8 +21739,8 @@ msgstr "Kirjoitetaan henkilöitä"
 #: ../gramps/plugins/export/exportgedcom.py:1072
 #: ../gramps/plugins/export/exportgedcom.py:1163
 #: ../gramps/plugins/lib/libgedcom.py:4144
-#: ../gramps/plugins/lib/libgedcom.py:5872
-#: ../gramps/plugins/lib/libgedcom.py:7017
+#: ../gramps/plugins/lib/libgedcom.py:5877
+#: ../gramps/plugins/lib/libgedcom.py:7022
 msgid "FAX"
 msgstr "FAX"
 
@@ -21768,20 +21762,20 @@ msgid "Writing repositories"
 msgstr "Luodaan arkistot"
 
 #: ../gramps/plugins/export/exportgedcom.py:1165
-#: ../gramps/plugins/lib/libgedcom.py:5884
+#: ../gramps/plugins/lib/libgedcom.py:5889
 msgid "EMAIL"
 msgstr "EMAIL"
 
 #: ../gramps/plugins/export/exportgedcom.py:1167
-#: ../gramps/plugins/lib/libgedcom.py:5896
+#: ../gramps/plugins/lib/libgedcom.py:5901
 msgid "WWW"
 msgstr "WWW"
 
-#: ../gramps/plugins/export/exportgedcom.py:1429
+#: ../gramps/plugins/export/exportgedcom.py:1431
 msgid "Writing media"
 msgstr "Kirjoitetaan media"
 
-#: ../gramps/plugins/export/exportgedcom.py:1603
+#: ../gramps/plugins/export/exportgedcom.py:1605
 msgid "GEDCOM Export failed"
 msgstr "GEDCOM vienti epäonnistui"
 
@@ -25381,7 +25375,7 @@ msgid "(Submitter):"
 msgstr "(Luovuttaja):"
 
 #: ../gramps/plugins/lib/libgedcom.py:3499
-#: ../gramps/plugins/lib/libgedcom.py:7273
+#: ../gramps/plugins/lib/libgedcom.py:7278
 msgid "GEDCOM data"
 msgstr "GEDCOM data"
 
@@ -25405,139 +25399,139 @@ msgstr "INDI (henkilö) Gramps ID %s"
 msgid "Empty Alias <NAME PERSONAL> ignored"
 msgstr "Tyhjä Alias <NAME PERSONAL> ohitettu"
 
-#: ../gramps/plugins/lib/libgedcom.py:4973
+#: ../gramps/plugins/lib/libgedcom.py:4978
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (perhe) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5335
-#: ../gramps/plugins/lib/libgedcom.py:6694
+#: ../gramps/plugins/lib/libgedcom.py:5340
+#: ../gramps/plugins/lib/libgedcom.py:6699
 msgid "Filename omitted"
 msgstr "Tiedostonimi ohitettu"
 
-#: ../gramps/plugins/lib/libgedcom.py:5369
-#: ../gramps/plugins/lib/libgedcom.py:6747
+#: ../gramps/plugins/lib/libgedcom.py:5374
+#: ../gramps/plugins/lib/libgedcom.py:6752
 #, python-format
 msgid "Could not import %s"
 msgstr "Ei voitu tuoda %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5435
-#: ../gramps/plugins/lib/libgedcom.py:6846
+#: ../gramps/plugins/lib/libgedcom.py:5440
+#: ../gramps/plugins/lib/libgedcom.py:6851
 msgid "Media-Type"
 msgstr "Media-Tyyppi"
 
-#: ../gramps/plugins/lib/libgedcom.py:5459
-#: ../gramps/plugins/lib/libgedcom.py:6736
+#: ../gramps/plugins/lib/libgedcom.py:5464
+#: ../gramps/plugins/lib/libgedcom.py:6741
 msgid "Multiple FILE in a single OBJE ignored"
 msgstr "Kerrannais FILE yksittäis OBJE jätetty huomiotta"
 
 #. We have previously found a PLAC
-#: ../gramps/plugins/lib/libgedcom.py:5598
+#: ../gramps/plugins/lib/libgedcom.py:5603
 msgid "A second PLAC ignored"
 msgstr "Muu kuin 1. PLAC ohitetaan"
 
 #. For RootsMagic etc. Place Details e.g. address, hospital, ...
-#: ../gramps/plugins/lib/libgedcom.py:5737
+#: ../gramps/plugins/lib/libgedcom.py:5742
 msgid "Detail"
 msgstr "Tarkennus"
 
 #. We have perviously found an ADDR, or have populated
 #. location from PLAC title
-#: ../gramps/plugins/lib/libgedcom.py:5750
+#: ../gramps/plugins/lib/libgedcom.py:5755
 msgid "Location already populated; ADDR ignored"
 msgstr "Sijainti-tieto on hyödynnetty; ADDR ohitetaan"
 
-#: ../gramps/plugins/lib/libgedcom.py:6155
-#: ../gramps/plugins/lib/libgedcom.py:7054
+#: ../gramps/plugins/lib/libgedcom.py:6160
+#: ../gramps/plugins/lib/libgedcom.py:7059
 msgid "Warn: ADDR overwritten"
 msgstr "Varoitus: ADDR kirjoitettu yli"
 
-#: ../gramps/plugins/lib/libgedcom.py:6320
+#: ../gramps/plugins/lib/libgedcom.py:6325
 msgid "Citation Justification"
 msgstr "Lainauksen perustelu"
 
-#: ../gramps/plugins/lib/libgedcom.py:6347
+#: ../gramps/plugins/lib/libgedcom.py:6352
 msgid "REFN ignored"
 msgstr "REFN ohitettu"
 
 #. SOURce with the given gramps_id had no title
-#: ../gramps/plugins/lib/libgedcom.py:6446
+#: ../gramps/plugins/lib/libgedcom.py:6451
 #, python-format
 msgid "No title - ID %s"
 msgstr "Lähteen nimike puuttuu - ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6451
+#: ../gramps/plugins/lib/libgedcom.py:6456
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (lähde) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6712
+#: ../gramps/plugins/lib/libgedcom.py:6717
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (multi-media object) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6942
+#: ../gramps/plugins/lib/libgedcom.py:6947
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (arkisto) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7003
-#: ../gramps/plugins/lib/libgedcom.py:7991
+#: ../gramps/plugins/lib/libgedcom.py:7008
+#: ../gramps/plugins/lib/libgedcom.py:7996
 msgid "Only one phone number supported"
 msgstr "Tukee vain yhtä puhelinnumeroa"
 
-#: ../gramps/plugins/lib/libgedcom.py:7189
+#: ../gramps/plugins/lib/libgedcom.py:7194
 msgid "HEAD (header)"
 msgstr "Head (ylätunniste)"
 
-#: ../gramps/plugins/lib/libgedcom.py:7210
+#: ../gramps/plugins/lib/libgedcom.py:7215
 msgid "Approved system identification"
 msgstr "Hyväksytty järjestelmän tunnistus"
 
-#: ../gramps/plugins/lib/libgedcom.py:7222
+#: ../gramps/plugins/lib/libgedcom.py:7227
 msgid "Generated By"
 msgstr "Tuotettu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7238
+#: ../gramps/plugins/lib/libgedcom.py:7243
 msgid "Name of software product"
 msgstr "Sovellustuotteen nimi"
 
-#: ../gramps/plugins/lib/libgedcom.py:7252
+#: ../gramps/plugins/lib/libgedcom.py:7257
 msgid "Version number of software product"
 msgstr "Sovellustuotteen versio"
 
-#: ../gramps/plugins/lib/libgedcom.py:7270
+#: ../gramps/plugins/lib/libgedcom.py:7275
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Sovellustuotteen valmistaja: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7292
+#: ../gramps/plugins/lib/libgedcom.py:7297
 msgid "Name of source data"
 msgstr "Lähdeaineiston nimi"
 
-#: ../gramps/plugins/lib/libgedcom.py:7309
+#: ../gramps/plugins/lib/libgedcom.py:7314
 msgid "Copyright of source data"
 msgstr "Lähdeaineiston copyright"
 
-#: ../gramps/plugins/lib/libgedcom.py:7326
+#: ../gramps/plugins/lib/libgedcom.py:7331
 msgid "Publication date of source data"
 msgstr "Lähdeaineiston julkaisupäivä"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/lib/libgedcom.py:7340
+#: ../gramps/plugins/lib/libgedcom.py:7345
 #, python-format
 msgid "Import from %s"
 msgstr "Tuonti paikasta %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7379
+#: ../gramps/plugins/lib/libgedcom.py:7384
 msgid "Submission record identifier"
 msgstr "Luovutuksen tietuetunniste"
 
-#: ../gramps/plugins/lib/libgedcom.py:7392
+#: ../gramps/plugins/lib/libgedcom.py:7397
 msgid "Language of GEDCOM text"
 msgstr "GEDCOM tekstin kieli"
 
-#: ../gramps/plugins/lib/libgedcom.py:7414
+#: ../gramps/plugins/lib/libgedcom.py:7419
 #, python-format
 msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
@@ -25546,89 +25540,89 @@ msgstr ""
 "GEDCOM tiedoston %(filename)s, jossa DEST=%(by)s, tuonti saattaisi aiheuttaa "
 "virheitä syntyvään tietokantaan!"
 
-#: ../gramps/plugins/lib/libgedcom.py:7417
+#: ../gramps/plugins/lib/libgedcom.py:7422
 msgid "Look for nameless events."
 msgstr "Etsitään nimettömiä tapahtumia."
 
-#: ../gramps/plugins/lib/libgedcom.py:7440
+#: ../gramps/plugins/lib/libgedcom.py:7445
 msgid "Character set"
 msgstr "Merkistön koodaus"
 
-#: ../gramps/plugins/lib/libgedcom.py:7445
+#: ../gramps/plugins/lib/libgedcom.py:7450
 msgid "Character set and version"
 msgstr "Merkistön koodaus ja versio"
 
-#: ../gramps/plugins/lib/libgedcom.py:7462
+#: ../gramps/plugins/lib/libgedcom.py:7467
 msgid "GEDCOM version not supported"
 msgstr "GEDCOM versio ei ole tuettu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7466
+#: ../gramps/plugins/lib/libgedcom.py:7471
 msgid "GEDCOM version"
 msgstr "GEDCOM versio"
 
 #. Allow Lineage-Linked etc. though it should be in
 #. uppercase  (Note: Gramps is not a validator! prc)
-#: ../gramps/plugins/lib/libgedcom.py:7475
+#: ../gramps/plugins/lib/libgedcom.py:7480
 msgid "GEDCOM FORM should be in uppercase"
 msgstr "GEDCOM FORM pitäisi olla isoilla kirjaimilla"
 
-#: ../gramps/plugins/lib/libgedcom.py:7478
+#: ../gramps/plugins/lib/libgedcom.py:7483
 msgid "GEDCOM FORM not supported"
 msgstr "GEDCOM FORM ei ole tuettu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7481
+#: ../gramps/plugins/lib/libgedcom.py:7486
 msgid "GEDCOM form"
 msgstr "GEDCOM muoto"
 
-#: ../gramps/plugins/lib/libgedcom.py:7532
+#: ../gramps/plugins/lib/libgedcom.py:7537
 msgid "Creation date of GEDCOM"
 msgstr "GEDCOM luontipäivä"
 
-#: ../gramps/plugins/lib/libgedcom.py:7537
+#: ../gramps/plugins/lib/libgedcom.py:7542
 msgid "Creation date and time of GEDCOM"
 msgstr "GEDCOMin luontipäivä ja kellonaika"
 
-#: ../gramps/plugins/lib/libgedcom.py:7578
-#: ../gramps/plugins/lib/libgedcom.py:7620
+#: ../gramps/plugins/lib/libgedcom.py:7583
+#: ../gramps/plugins/lib/libgedcom.py:7625
 msgid "Empty note ignored"
 msgstr "Tyhjä lisätieto jätettiin huomiotta"
 
-#: ../gramps/plugins/lib/libgedcom.py:7637
+#: ../gramps/plugins/lib/libgedcom.py:7642
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "LISÄTIEDOT Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7688
+#: ../gramps/plugins/lib/libgedcom.py:7693
 msgid "Submission: Submitter"
 msgstr "Luovuttaja"
 
-#: ../gramps/plugins/lib/libgedcom.py:7690
+#: ../gramps/plugins/lib/libgedcom.py:7695
 msgid "Submission: Family file"
 msgstr "Sukupuu"
 
-#: ../gramps/plugins/lib/libgedcom.py:7692
+#: ../gramps/plugins/lib/libgedcom.py:7697
 msgid "Submission: Temple code"
 msgstr "Temppelikoodi"
 
-#: ../gramps/plugins/lib/libgedcom.py:7694
+#: ../gramps/plugins/lib/libgedcom.py:7699
 msgid "Submission: Generations of ancestors"
 msgstr "Esivanhempien sukupolvet"
 
-#: ../gramps/plugins/lib/libgedcom.py:7696
+#: ../gramps/plugins/lib/libgedcom.py:7701
 msgid "Submission: Generations of descendants"
 msgstr "Jälkeläisten sukupolvet"
 
-#: ../gramps/plugins/lib/libgedcom.py:7698
+#: ../gramps/plugins/lib/libgedcom.py:7703
 msgid "Submission: Ordinance process flag"
 msgstr "Sijaistoimituksen tila"
 
 #. Okay we have no clue which temple this is.
 #. We should tell the user and store it anyway.
-#: ../gramps/plugins/lib/libgedcom.py:7929
+#: ../gramps/plugins/lib/libgedcom.py:7934
 msgid "Invalid temple code"
 msgstr "Virheellinen temppelikoodi"
 
-#: ../gramps/plugins/lib/libgedcom.py:8025
+#: ../gramps/plugins/lib/libgedcom.py:8030
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -25636,7 +25630,7 @@ msgstr ""
 "GEDCOM tiedostosi on viallinen. Tiedosto näyttäisi käyttävän UTF16-"
 "merkkikoodausta, mutta siitä puuttuu vaadittu BOM-merkintä."
 
-#: ../gramps/plugins/lib/libgedcom.py:8028
+#: ../gramps/plugins/lib/libgedcom.py:8033
 msgid "Your GEDCOM file is empty."
 msgstr "GEDCOM tiedostosi on tyhjä."
 
@@ -36323,13 +36317,13 @@ msgstr ""
 msgid "Place Name | Name"
 msgstr "Paikka"
 
-#: ../gramps/plugins/webreport/place.py:224
+#: ../gramps/plugins/webreport/place.py:218
 #, python-format
 msgid "Places beginning with letter %s"
 msgstr "Kirjaimella %s alkavat paikat"
 
 #. section title
-#: ../gramps/plugins/webreport/place.py:392
+#: ../gramps/plugins/webreport/place.py:386
 msgid "Place Map"
 msgstr "Paikkakartta"
 
@@ -36788,6 +36782,11 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:143
 msgid "No style sheet"
 msgstr "Ei tyylitiedostoa"
+
+#~ msgid "Use alternate Font handler for GUI and Reports (requires restart)"
+#~ msgstr ""
+#~ "Käytä vaihtoehtoista fonttien käsittelijää käyttöliittymää ja raportteja "
+#~ "varten (vaatii uudelleenkäynnistyksen)"
 
 #~ msgid "unmarried|husband"
 #~ msgstr "avomies"
