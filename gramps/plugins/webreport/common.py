@@ -177,6 +177,9 @@ OSM_MARKERS = """
     var tracelife = %s;
     var iconStyle = new ol.style.Style({
       image: new ol.style.Icon(({
+        anchor: [0.2, 48],
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'pixels',
         opacity: 1.0,
         src: marker_png
       }))
