@@ -517,7 +517,6 @@ def first_letter(string, rlocale=glocale):
     # no special case
     return norm_unicode[0].upper()
 
-        dummy_rlocale = rlocale
 def primary_difference(prev_key, new_key, rlocale=glocale):
     """
     The PyICU collation doesn't work if you want to sort in another language
