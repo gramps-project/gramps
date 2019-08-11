@@ -2265,7 +2265,7 @@ class BasePage: # pylint: disable=C1001
                     if conf == conf_strings[Citation.CONF_NORMAL]:
                         conf = None
                     else:
-                        conf = _(conf)
+                        conf = self._(conf)
                     for (label, data) in [[self._("Date"),
                                            self.rlocale.get_date(sref.date)],
                                           [self._("Page"), sref.page],
