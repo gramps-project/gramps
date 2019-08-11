@@ -21,11 +21,10 @@ Build-Depends-Indep:
  python3-nose-exclude
 Build-Depends:
  debhelper (>= 11)
-Standards-Version: 4.1.3
+Standards-Version: 4.4.0
 Vcs-Git: https://github.com/gramps-project/gramps.git
 Vcs-browser: https://github.com/gramps-project/gramps/tree/maintenance/gramps50
 Homepage: https://www.gramps-project.org/
-X-Python3-Version: >= 3.2
 
 Package: gramps
 Architecture: all

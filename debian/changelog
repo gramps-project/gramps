@@ -1,3 +1,11 @@
+gramps (5.0.2-1) unstable; urgency=medium
+
+  * New release
+  * Remove ancient python version field from debian/control
+  * Bump standards version, no changes required
+
+ -- Ross Gammon <rossgammon@debian.org>  Sun, 11 Aug 2019 14:11:35 +0200
+
 gramps (5.0.1-1) unstable; urgency=medium
 
   * New release
