@@ -352,7 +352,7 @@ class MakeAncestorTree(AscendPerson):
             mee = self.add_person((1, 1, move+rrr), kid, self.center_family)
             line.add_from(mee)
             #mee.level = (0, 1, level - (len(mykids)//2)+rrr)
-
+        mee.line_to = line
 
     def start(self, person_id):
         """ go ahead and make it happen """

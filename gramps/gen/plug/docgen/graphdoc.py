@@ -65,7 +65,7 @@ LOG = logging.getLogger(".graphdoc")
 # Private Constants
 #
 #-------------------------------------------------------------------------
-_FONTS = [{'name' : _("Default"), 'value' : ""},
+_FONTS = [{'name' : _("Default"), 'value' : "serif"},
           {'name' : _("PostScript / Helvetica"), 'value' : "Helvetica"},
           {'name' : _("TrueType / FreeSans"), 'value' : "FreeSans"}]
 

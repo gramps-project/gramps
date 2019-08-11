@@ -278,7 +278,7 @@ class ViewManager(CLIManager):
 
         self.navigator = Navigator(self)
         self.ebox.add(self.navigator.get_top())
-        hpane.add1(self.ebox)
+        hpane.pack1(self.ebox, False, False)
         hpane.show()
 
         self.notebook = Gtk.Notebook()

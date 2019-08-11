@@ -787,6 +787,7 @@ class DBAPI(DbGeneric):
         Reindex all primary records in the database.
         """
         callback(4)
+        self._txn_begin()
         self.dbapi.execute("DELETE FROM reference")
         primary_table = (
             (self.get_person_cursor, Person),
@@ -818,6 +819,7 @@ class DBAPI(DbGeneric):
                              obj.__class__.__name__,
                              ref_handle,
                              ref_class_name])
+        self._txn_commit()
         callback(5)
 
     def rebuild_secondary(self, callback=None):
