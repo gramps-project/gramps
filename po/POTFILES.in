@@ -369,6 +369,7 @@ gramps/gen/utils/keyword.py
 gramps/gen/utils/lds.py
 gramps/gen/utils/place.py
 gramps/gen/utils/string.py
+gramps/gen/utils/symbols.py
 gramps/gen/utils/unknown.py
 gramps/grampsapp.py
 gramps/gui/aboutdialog.py
@@ -737,6 +738,7 @@ gramps/plugins/tool/rebuildgenderstat.py
 gramps/plugins/tool/rebuildrefmap.py
 gramps/plugins/tool/relcalc.glade
 gramps/plugins/tool/relcalc.py
+gramps/plugins/tool/removespaces.py
 gramps/plugins/tool/removeunused.glade
 gramps/plugins/tool/removeunused.py
 gramps/plugins/tool/reorderids.glade

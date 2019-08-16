@@ -621,3 +621,4 @@ gramps/test/test/test_util_test.py
 #
 gramps/gui/glade/gramps.glade
 gramps/plugins/tool/check.glade
+gramps/plugins/tool/removespaces.glade
