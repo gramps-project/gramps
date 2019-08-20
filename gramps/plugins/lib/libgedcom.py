@@ -2438,7 +2438,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_RNOTE  : self.__source_note,
             TOKEN_TEXT   : self.__source_text,
             TOKEN_ABBR   : self.__source_abbr,
-            TOKEN_REFN   : self.__source_refn,
+            TOKEN_REFN   : self.__source_attr,
             TOKEN_RIN    : self.__source_attr,
             TOKEN_REPO   : self.__source_repo,
             TOKEN_OBJE   : self.__source_object,
@@ -6509,15 +6509,6 @@ class GedcomParser(UpdateCallback):
                           state, state.source)
         self.dbase.commit_source(state.source, self.trans, state.source.change)
 
-    def __source_refn(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        self.__do_refn(line, state, state.source)
-
     def __source_attr(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -6529,6 +6520,7 @@ class GedcomParser(UpdateCallback):
         sattr.set_type(line.token_text)
         sattr.set_value(line.data)
         state.source.add_attribute(sattr)
+        self.__skip_subordinate_levels(state.level + 1, state)
 
     def __source_object(self, line, state):
         """
