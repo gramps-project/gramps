@@ -415,6 +415,7 @@ class FlatNodeMap:
             for indx in range(len(self._fullhndl)):
                 if self._fullhndl[indx][1] == handle:
                     del self._fullhndl[indx]
+                    break
         #now remove it from the index maps
         try:
             index = self._hndl2index[handle]
