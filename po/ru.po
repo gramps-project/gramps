@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps51\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-18 08:37+0300\n"
-"PO-Revision-Date: 2019-07-18 08:39+0300\n"
+"POT-Creation-Date: 2019-08-22 13:33+0300\n"
+"PO-Revision-Date: 2019-08-22 14:05+0300\n"
 "Last-Translator: Ivan Komaritsyn <vantu5z@mail.ru>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -1194,7 +1194,7 @@ msgstr "Семейные древа Gramps:"
 #: ../gramps/cli/arghandler.py:444 ../gramps/cli/arghandler.py:445
 #: ../gramps/cli/arghandler.py:447 ../gramps/cli/clidbman.py:69
 #: ../gramps/cli/clidbman.py:169 ../gramps/cli/clidbman.py:197
-#: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1798
+#: ../gramps/gui/clipboard.py:916 ../gramps/gui/configure.py:1790
 msgid "Family Tree"
 msgstr "Семейное древо"
 
@@ -1724,8 +1724,8 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../gramps/cli/clidbman.py:535 ../gramps/gui/configure.py:1633
-#: ../gramps/gui/configure.py:1786
+#: ../gramps/cli/clidbman.py:535 ../gramps/gui/configure.py:1625
+#: ../gramps/gui/configure.py:1778
 msgid "Never"
 msgstr "Никогда"
 
@@ -2109,27 +2109,27 @@ msgstr ""
 "сообщение об ошибке на странице %(gramps_bugtracker_url)s\n"
 "\n"
 
-#: ../gramps/gen/config.py:247
+#: ../gramps/gen/config.py:246
 msgid "Imported %Y/%m/%d %H:%M:%S"
 msgstr "Импортировано %Y/%m/%d %H:%M:%S"
 
-#: ../gramps/gen/config.py:258
+#: ../gramps/gen/config.py:257
 msgid "Missing Given Name"
 msgstr "Имя отсутствует"
 
-#: ../gramps/gen/config.py:259
+#: ../gramps/gen/config.py:258
 msgid "Missing Record"
 msgstr "Запись отсутствует"
 
-#: ../gramps/gen/config.py:260
+#: ../gramps/gen/config.py:259
 msgid "Missing Surname"
 msgstr "Фамилия отсутствует"
 
-#: ../gramps/gen/config.py:267 ../gramps/gen/config.py:269
+#: ../gramps/gen/config.py:266 ../gramps/gen/config.py:268
 msgid "[Living]"
 msgstr "[Живой]"
 
-#: ../gramps/gen/config.py:268
+#: ../gramps/gen/config.py:267
 msgid "Private Record"
 msgstr "Приватная запись"
 
@@ -2138,7 +2138,7 @@ msgstr "Приватная запись"
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
 #. DateDisplayer code!
-#: ../gramps/gen/config.py:320 ../gramps/gen/datehandler/_datestrings.py:79
+#: ../gramps/gen/config.py:319 ../gramps/gen/datehandler/_datestrings.py:79
 msgid "localized lexeme inflections||January"
 msgstr "И=январь|Р=января|Т=январём|П=январе"
 
@@ -3379,8 +3379,10 @@ msgstr "титул"
 msgid "given"
 msgstr "имя"
 
+#. 2=double underline
 #: ../gramps/gen/display/name.py:606 ../gramps/gen/display/name.py:706
 #: ../gramps/plugins/importer/importcsv.py:159
+#: ../gramps/plugins/tool/removespaces.py:123
 msgid "surname"
 msgstr "фамилия"
 
@@ -6471,8 +6473,8 @@ msgstr "Выбирает источники, помеченные как лич�
 #: ../gramps/gui/configure.py:610 ../gramps/gui/editors/editaddress.py:167
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
 #: ../gramps/plugins/gramplet/repositorydetails.py:136
-#: ../gramps/plugins/lib/libgedcom.py:5596
-#: ../gramps/plugins/lib/libgedcom.py:5763
+#: ../gramps/plugins/lib/libgedcom.py:5656
+#: ../gramps/plugins/lib/libgedcom.py:5823
 #: ../gramps/plugins/textreport/familygroup.py:352
 #: ../gramps/plugins/webreport/addressbooklist.py:113
 msgid "Address"
@@ -6742,8 +6744,8 @@ msgstr "Индекс/Почтовый код"
 #: ../gramps/gui/configure.py:626 ../gramps/plugins/export/exportgedcom.py:788
 #: ../gramps/plugins/export/exportgedcom.py:1161
 #: ../gramps/plugins/gramplet/repositorydetails.py:124
-#: ../gramps/plugins/lib/libgedcom.py:4129
-#: ../gramps/plugins/lib/libgedcom.py:5860
+#: ../gramps/plugins/lib/libgedcom.py:4143
+#: ../gramps/plugins/lib/libgedcom.py:5920
 #: ../gramps/plugins/webreport/basepage.py:1135
 msgid "Phone"
 msgstr "Телефон"
@@ -6904,7 +6906,7 @@ msgid "None"
 msgstr "Нет"
 
 #: ../gramps/gen/lib/childreftype.py:68 ../gramps/gen/lib/eventtype.py:165
-#: ../gramps/gui/merge/mergeperson.py:189
+#: ../gramps/gen/utils/symbols.py:72 ../gramps/gui/merge/mergeperson.py:189
 #: ../gramps/plugins/export/exportvcalendar.py:156
 #: ../gramps/plugins/export/exportvcalendar.py:161
 #: ../gramps/plugins/gramplet/ancestor.py:64
@@ -7110,8 +7112,8 @@ msgstr "Метки"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:94
 #: ../gramps/gui/merge/mergeperson.py:64
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
-#: ../gramps/plugins/lib/libgedcom.py:5393
-#: ../gramps/plugins/lib/libgedcom.py:6704
+#: ../gramps/plugins/lib/libgedcom.py:5453
+#: ../gramps/plugins/lib/libgedcom.py:6761
 #: ../gramps/plugins/textreport/indivcomplete.py:663
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
 #: ../gramps/plugins/view/relview.py:775
@@ -7328,6 +7330,7 @@ msgstr "Событие"
 #: ../gramps/plugins/quickview/references.py:92
 #: ../gramps/plugins/textreport/indivcomplete.py:510
 #: ../gramps/plugins/textreport/indivcomplete.py:709
+#: ../gramps/plugins/tool/removespaces.py:160
 #: ../gramps/plugins/tool/reorderids.glade:799
 #: ../gramps/plugins/tool/sortevents.py:58
 #: ../gramps/plugins/view/eventview.py:82
@@ -7596,7 +7599,7 @@ msgstr "Завещание"
 
 #. feature requests 2356, 1657: avoid genitive form
 #: ../gramps/gen/lib/eventtype.py:198 ../gramps/gen/plug/docgen/treedoc.py:150
-#: ../gramps/gui/merge/mergeperson.py:258
+#: ../gramps/gen/utils/symbols.py:75 ../gramps/gui/merge/mergeperson.py:258
 #: ../gramps/plugins/export/exportcsv.py:465
 #: ../gramps/plugins/export/exportvcalendar.py:136
 #: ../gramps/plugins/importer/importcsv.py:235
@@ -7627,7 +7630,8 @@ msgstr "Объявления о браке"
 msgid "Engagement"
 msgstr "Помолвка"
 
-#: ../gramps/gen/lib/eventtype.py:204 ../gramps/plugins/webreport/family.py:191
+#: ../gramps/gen/lib/eventtype.py:204 ../gramps/gen/utils/symbols.py:76
+#: ../gramps/plugins/webreport/family.py:191
 msgid "Divorce"
 msgstr "Развод"
 
@@ -8402,7 +8406,7 @@ msgstr "Заметка"
 msgid "Format"
 msgstr "Формат"
 
-#: ../gramps/gen/lib/notetype.py:75 ../gramps/gui/configure.py:1681
+#: ../gramps/gen/lib/notetype.py:75 ../gramps/gui/configure.py:1673
 #: ../gramps/gui/editors/editeventref.py:89
 #: ../gramps/gui/editors/editmediaref.py:107
 #: ../gramps/gui/editors/editplaceref.py:71
@@ -8556,6 +8560,7 @@ msgstr "Заметка о ссылке на ребёнка"
 #: ../gramps/plugins/textreport/placereport.py:302
 #: ../gramps/plugins/textreport/placereport.py:458
 #: ../gramps/plugins/tool/eventcmp.py:253
+#: ../gramps/plugins/tool/removespaces.py:111
 #: ../gramps/plugins/tool/reorderids.glade:761
 #: ../gramps/plugins/webreport/event.py:180
 #: ../gramps/plugins/webreport/family.py:188
@@ -8673,7 +8678,7 @@ msgstr "Широта"
 #: ../gramps/plugins/webreport/basepage.py:1586
 #: ../gramps/plugins/webreport/basepage.py:1651
 #: ../gramps/plugins/webreport/place.py:141
-#: ../gramps/plugins/webreport/place.py:308
+#: ../gramps/plugins/webreport/place.py:302
 msgid "Places"
 msgstr "Места"
 
@@ -9126,7 +9131,7 @@ msgstr "Объединение хранилищ"
 msgid "Merge Source"
 msgstr "Объединение источников"
 
-#: ../gramps/gen/plug/_gramplet.py:345
+#: ../gramps/gen/plug/_gramplet.py:347
 #, python-format
 msgid "Gramplet %s caused an error"
 msgstr "Грамплет «%s» вызвал ошибку"
@@ -9300,7 +9305,7 @@ msgstr "Файл %s уже открыт, сначала закройте его.
 #: ../gramps/plugins/export/exportcsv.py:261
 #: ../gramps/plugins/export/exportcsv.py:265
 #: ../gramps/plugins/export/exportftree.py:135
-#: ../gramps/plugins/export/exportgedcom.py:1600
+#: ../gramps/plugins/export/exportgedcom.py:1602
 #: ../gramps/plugins/export/exportgeneweb.py:108
 #: ../gramps/plugins/export/exportgeneweb.py:112
 #: ../gramps/plugins/export/exportvcalendar.py:120
@@ -9725,7 +9730,7 @@ msgid "Not shown"
 msgstr "Не показывать"
 
 #: ../gramps/gen/plug/docgen/treedoc.py:74 ../gramps/gui/configure.py:99
-#: ../gramps/gui/configure.py:166 ../gramps/gui/configure.py:1946
+#: ../gramps/gui/configure.py:166 ../gramps/gui/configure.py:1938
 #: ../gramps/gui/views/pageview.py:591
 msgid "Preferences"
 msgstr "Настройки"
@@ -11049,6 +11054,152 @@ msgstr ""
 "Данные можно восстановить командой «Правка / Вернуть» или выходом с отменой "
 "изменений."
 
+#. Name                     UNICODE       SUBSTITUTION
+#: ../gramps/gen/utils/symbols.py:61
+#: ../gramps/plugins/graph/gvfamilylines.py:83
+#: ../gramps/plugins/textreport/indivcomplete.py:938
+#: ../gramps/plugins/tool/dumpgenderstats.py:73
+#: ../gramps/plugins/tool/dumpgenderstats.py:97
+#: ../gramps/plugins/tool/dumpgenderstats.py:99
+msgid "Female"
+msgstr "Женский"
+
+#: ../gramps/gen/utils/symbols.py:62
+#: ../gramps/plugins/graph/gvfamilylines.py:84
+#: ../gramps/plugins/textreport/indivcomplete.py:936
+#: ../gramps/plugins/tool/dumpgenderstats.py:72
+#: ../gramps/plugins/tool/dumpgenderstats.py:96
+#: ../gramps/plugins/tool/dumpgenderstats.py:99
+msgid "Male"
+msgstr "Мужской"
+
+#: ../gramps/gen/utils/symbols.py:63
+msgid "Asexuality, sexless, genderless"
+msgstr "Асексуальность, фригидность"
+
+#: ../gramps/gen/utils/symbols.py:64
+msgid "Lesbianism"
+msgstr "Лесбиянство"
+
+#: ../gramps/gen/utils/symbols.py:65
+msgid "Male homosexuality"
+msgstr "Гомосексуализм"
+
+#: ../gramps/gen/utils/symbols.py:66
+msgid "Heterosexuality"
+msgstr "Гетеросексуализм"
+
+#: ../gramps/gen/utils/symbols.py:67
+msgid "Transgender, hermaphrodite (in entomology)"
+msgstr "Трансгендер, гермафродит"
+
+#: ../gramps/gen/utils/symbols.py:68
+msgid "Transgender"
+msgstr "Трансгендер"
+
+#: ../gramps/gen/utils/symbols.py:69
+msgid "Neuter"
+msgstr "Кастрированный"
+
+#: ../gramps/gen/utils/symbols.py:71
+msgid "Illegitimate"
+msgstr "Незаконный"
+
+#: ../gramps/gen/utils/symbols.py:73
+msgid "Baptism/Christening"
+msgstr "Крещение"
+
+#: ../gramps/gen/utils/symbols.py:74
+msgid "Engaged"
+msgstr "Помолвка"
+
+#: ../gramps/gen/utils/symbols.py:77
+msgid "Unmarried partnership"
+msgstr "Гражданский союз"
+
+#: ../gramps/gen/utils/symbols.py:78
+msgid "Buried"
+msgstr "Захоронение"
+
+#: ../gramps/gen/utils/symbols.py:79
+msgid "Cremated/Funeral urn"
+msgstr "Кремация"
+
+#: ../gramps/gen/utils/symbols.py:80
+msgid "Killed in action"
+msgstr "Убит в сражении"
+
+#: ../gramps/gen/utils/symbols.py:81
+msgid "Extinct"
+msgstr "Умерший"
+
+#. The following is used in the global preferences in the display tab.
+#. Name
+#. UNICODE    SUBSTITUTION
+#: ../gramps/gen/utils/symbols.py:106
+msgid "Nothing"
+msgstr "Ничего"
+
+#: ../gramps/gen/utils/symbols.py:108
+msgid "Skull and crossbones"
+msgstr "Череп и кости"
+
+#: ../gramps/gen/utils/symbols.py:109
+msgid "Ankh"
+msgstr "Египетский крест"
+
+#: ../gramps/gen/utils/symbols.py:110
+msgid "Orthodox cross"
+msgstr "Православный крест"
+
+#: ../gramps/gen/utils/symbols.py:111
+msgid "Chi rho"
+msgstr "Хризма"
+
+#: ../gramps/gen/utils/symbols.py:112
+msgid "Cross of Lorraine"
+msgstr "Лотарингский крест"
+
+#: ../gramps/gen/utils/symbols.py:113
+msgid "Cross of Jerusalem"
+msgstr "Крест крестоносцев"
+
+#: ../gramps/gen/utils/symbols.py:114
+msgid "Star and crescent"
+msgstr "Звезда и полумесяц"
+
+#: ../gramps/gen/utils/symbols.py:115
+msgid "West Syriac cross"
+msgstr ""
+
+#: ../gramps/gen/utils/symbols.py:116
+msgid "East Syriac cross"
+msgstr ""
+
+#: ../gramps/gen/utils/symbols.py:117
+msgid "Heavy Greek cross"
+msgstr ""
+
+#: ../gramps/gen/utils/symbols.py:118
+msgid "Latin cross"
+msgstr "Латинский крест"
+
+#: ../gramps/gen/utils/symbols.py:119
+msgid "Shadowed White Latin cross"
+msgstr ""
+
+#: ../gramps/gen/utils/symbols.py:120
+msgid "Maltese cross"
+msgstr "Мальтийский крест"
+
+#: ../gramps/gen/utils/symbols.py:121
+msgid "Star of David"
+msgstr "Звезда Давида"
+
+#: ../gramps/gen/utils/symbols.py:122
+msgid "Dead"
+msgstr "Умерший"
+
 #: ../gramps/gen/utils/unknown.py:140
 msgid "Unknown, created to replace a missing note object."
 msgstr "Неизвестно. Создано вместо отсутствующей заметки."
@@ -11080,7 +11231,7 @@ msgstr ""
 "Gramps сейчас завершит работу."
 
 #: ../gramps/grampsapp.py:428 ../gramps/grampsapp.py:435
-#: ../gramps/grampsapp.py:491
+#: ../gramps/grampsapp.py:488
 msgid "Configuration error:"
 msgstr "Ошибка конфигурации:"
 
@@ -11205,8 +11356,8 @@ msgstr ""
 msgid "Drag and drop the columns to change the order"
 msgstr "Перетаскивайте столбцы с помощью мыши, чтобы изменить порядок"
 
-#: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1842
-#: ../gramps/gui/configure.py:1866 ../gramps/gui/configure.py:1892
+#: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1834
+#: ../gramps/gui/configure.py:1858 ../gramps/gui/configure.py:1884
 #: ../gramps/gui/plug/_dialogs.py:130 ../gramps/gui/viewmanager.py:1794
 #: ../gramps/plugins/lib/maps/geography.py:997
 #: ../gramps/plugins/lib/maps/geography.py:1294
@@ -11345,8 +11496,8 @@ msgstr "Недопустимое или неполное определение 
 #: ../gramps/gui/configure.py:1240 ../gramps/gui/configure.py:1267
 #: ../gramps/gui/configure.py:1281 ../gramps/gui/configure.py:1294
 #: ../gramps/gui/configure.py:1307 ../gramps/gui/configure.py:1332
-#: ../gramps/gui/configure.py:1642 ../gramps/gui/configure.py:1660
-#: ../gramps/gui/configure.py:1743 ../gramps/gui/configure.py:1794
+#: ../gramps/gui/configure.py:1634 ../gramps/gui/configure.py:1652
+#: ../gramps/gui/configure.py:1735 ../gramps/gui/configure.py:1786
 #: ../gramps/gui/views/navigationview.py:343
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:90
 #, python-format
@@ -11862,24 +12013,15 @@ msgstr "Даты"
 msgid "General Gramps settings"
 msgstr "Основные настройки Gramps"
 
-#: ../gramps/gui/configure.py:1555
-msgid "Use alternate Font handler for GUI and Reports (requires restart)"
-msgstr ""
-"Использовать другой шрифт для интерфейса и отчётов (необходим перезапуск)"
-
-#: ../gramps/gui/configure.py:1558
-msgid "Can help to fix problems with fonts."
-msgstr "Может помочь при проблемах со шрифтами."
-
-#: ../gramps/gui/configure.py:1561
+#: ../gramps/gui/configure.py:1553
 msgid "Add default source on GEDCOM import"
 msgstr "Добавлять источник по умолчанию при импорте из GEDCOM"
 
-#: ../gramps/gui/configure.py:1580
+#: ../gramps/gui/configure.py:1572
 msgid "Add tag on import"
 msgstr "Добавлять метку при импорте"
 
-#: ../gramps/gui/configure.py:1583
+#: ../gramps/gui/configure.py:1575
 msgid ""
 "Specifed tag will be added on import.\n"
 "Clear to set default value."
@@ -11887,11 +12029,11 @@ msgstr ""
 "Указанная метка будет добавлена при импорте.\n"
 "Очистите поле, чтобы установить значение по умолчанию."
 
-#: ../gramps/gui/configure.py:1588
+#: ../gramps/gui/configure.py:1580
 msgid "Enable spelling checker"
 msgstr "Включить проверку правописания"
 
-#: ../gramps/gui/configure.py:1597
+#: ../gramps/gui/configure.py:1589
 #, python-format
 msgid ""
 "GtkSpell not loaded. Spell checking will not be available.\n"
@@ -11900,143 +12042,143 @@ msgstr ""
 "Не загружен GtkSpell. Проверка правописания недоступна.\n"
 "Для его сборки для Gramps см. %(gramps_wiki_build_spell_url)s"
 
-#: ../gramps/gui/configure.py:1603
+#: ../gramps/gui/configure.py:1595
 msgid "Display Tip of the Day"
 msgstr "Показывать совет дня"
 
-#: ../gramps/gui/configure.py:1605
+#: ../gramps/gui/configure.py:1597
 msgid "Show useful information about using Gramps on startup."
 msgstr ""
 "При запуске Gramps будет показываться полезная информация по работе с "
 "программой."
 
-#: ../gramps/gui/configure.py:1608
+#: ../gramps/gui/configure.py:1600
 msgid "Remember last view displayed"
 msgstr "Запоминать последний открытый вид"
 
-#: ../gramps/gui/configure.py:1610
+#: ../gramps/gui/configure.py:1602
 msgid "Remember last view displayed and open it next time."
 msgstr ""
 "Запоминать последний открытый вид и отрывать его при следующем запуске."
 
-#: ../gramps/gui/configure.py:1613
+#: ../gramps/gui/configure.py:1605
 msgid "Max generations for relationships"
 msgstr "Максимальное число поколений для определения родства"
 
-#: ../gramps/gui/configure.py:1619
+#: ../gramps/gui/configure.py:1611
 msgid "Base path for relative media paths"
 msgstr "Базовый каталог документов"
 
-#: ../gramps/gui/configure.py:1625
+#: ../gramps/gui/configure.py:1617
 msgid "Third party addons management"
 msgstr "Управление дополнениями"
 
-#: ../gramps/gui/configure.py:1634
+#: ../gramps/gui/configure.py:1626
 msgid "Once a month"
 msgstr "Раз в месяц"
 
-#: ../gramps/gui/configure.py:1635
+#: ../gramps/gui/configure.py:1627
 msgid "Once a week"
 msgstr "Раз в неделю"
 
-#: ../gramps/gui/configure.py:1636
+#: ../gramps/gui/configure.py:1628
 msgid "Once a day"
 msgstr "Раз в день"
 
-#: ../gramps/gui/configure.py:1637
+#: ../gramps/gui/configure.py:1629
 msgid "Always"
 msgstr "Всегда"
 
-#: ../gramps/gui/configure.py:1642
+#: ../gramps/gui/configure.py:1634
 msgid "Check for addon updates"
 msgstr "Проверять дополнения на наличие обновлений"
 
-#: ../gramps/gui/configure.py:1648
+#: ../gramps/gui/configure.py:1640
 msgid "Updated addons only"
 msgstr "Только обновленные дополнения"
 
-#: ../gramps/gui/configure.py:1649
+#: ../gramps/gui/configure.py:1641
 msgid "New addons only"
 msgstr "Только новые дополнения"
 
-#: ../gramps/gui/configure.py:1650
+#: ../gramps/gui/configure.py:1642
 msgid "New and updated addons"
 msgstr "Новые и обновленные дополнения"
 
-#: ../gramps/gui/configure.py:1660
+#: ../gramps/gui/configure.py:1652
 msgid "What to check"
 msgstr "Что проверять"
 
-#: ../gramps/gui/configure.py:1665
+#: ../gramps/gui/configure.py:1657
 msgid "Where to check"
 msgstr "Где проверять"
 
-#: ../gramps/gui/configure.py:1670
+#: ../gramps/gui/configure.py:1662
 msgid "Do not ask about previously notified addons"
 msgstr "Не спрашивать снова об уже показанных ранее дополнениях"
 
-#: ../gramps/gui/configure.py:1675
+#: ../gramps/gui/configure.py:1667
 msgid "Check for updated addons now"
 msgstr "Проверить дополнения на наличие обновлений"
 
-#: ../gramps/gui/configure.py:1687
+#: ../gramps/gui/configure.py:1679
 msgid "Checking Addons Failed"
 msgstr "Не удалось проверить дополнения"
 
-#: ../gramps/gui/configure.py:1688
+#: ../gramps/gui/configure.py:1680
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
 "Сервер с дополнениями временно недоступен. Пожалуйста, попробуйте ещё раз "
 "через некоторое время."
 
-#: ../gramps/gui/configure.py:1701
+#: ../gramps/gui/configure.py:1693
 msgid "There are no available addons of this type"
 msgstr "Нет дополнений этого типа"
 
-#: ../gramps/gui/configure.py:1702
+#: ../gramps/gui/configure.py:1694
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Проверялись '%s'"
 
-#: ../gramps/gui/configure.py:1703
+#: ../gramps/gui/configure.py:1695
 msgid "' and '"
 msgstr "' и '"
 
 #. List of translated strings used here
 #. Dead code for l10n
-#: ../gramps/gui/configure.py:1708
+#: ../gramps/gui/configure.py:1700
 msgid "new"
 msgstr "новые"
 
-#: ../gramps/gui/configure.py:1708
+#: ../gramps/gui/configure.py:1700
 msgid "update"
 msgstr "обновлённые"
 
-#: ../gramps/gui/configure.py:1737
+#: ../gramps/gui/configure.py:1729
 msgid "Family tree database settings and Backup management"
 msgstr "Настройки семейного древа и резервного копирования"
 
-#: ../gramps/gui/configure.py:1743
+#: ../gramps/gui/configure.py:1735
 msgid "Database backend"
 msgstr "База данных"
 
-#: ../gramps/gui/configure.py:1750
+#: ../gramps/gui/configure.py:1742
 msgid "Host"
 msgstr "Хост"
 
-#: ../gramps/gui/configure.py:1755
+#: ../gramps/gui/configure.py:1747
 msgid "Port"
 msgstr "Порт"
 
-#: ../gramps/gui/configure.py:1763
+#: ../gramps/gui/configure.py:1755
 msgid "Family Tree Database path"
 msgstr "Путь к базе данных с семейным древом"
 
-#: ../gramps/gui/configure.py:1767
+#: ../gramps/gui/configure.py:1759
 msgid "Automatically load last Family Tree"
 msgstr "Автоматически загружать последнее семейное древо"
 
-#: ../gramps/gui/configure.py:1769
+#: ../gramps/gui/configure.py:1761
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
@@ -12044,40 +12186,40 @@ msgstr ""
 "Не открывать диалог для выбора семейного древа при запуске, а загружать "
 "древо открытое в прошлый раз."
 
-#: ../gramps/gui/configure.py:1774
+#: ../gramps/gui/configure.py:1766
 msgid "Backup path"
 msgstr "Каталог для резервного копирования"
 
-#: ../gramps/gui/configure.py:1779
+#: ../gramps/gui/configure.py:1771
 msgid "Backup on exit"
 msgstr "Делать резервную копию при выходе"
 
-#: ../gramps/gui/configure.py:1781
+#: ../gramps/gui/configure.py:1773
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr "Делать резервную копию древа при выходе в каталог указанный выше."
 
-#: ../gramps/gui/configure.py:1787
+#: ../gramps/gui/configure.py:1779
 msgid "Every 15 minutes"
 msgstr "Каждые 15 минут"
 
-#: ../gramps/gui/configure.py:1788
+#: ../gramps/gui/configure.py:1780
 msgid "Every 30 minutes"
 msgstr "Каждые 30 минут"
 
-#: ../gramps/gui/configure.py:1789
+#: ../gramps/gui/configure.py:1781
 msgid "Every hour"
 msgstr "Каждый час"
 
-#: ../gramps/gui/configure.py:1794
+#: ../gramps/gui/configure.py:1786
 msgid "Autobackup"
 msgstr "Автоматическое резервное копирование"
 
-#: ../gramps/gui/configure.py:1837
+#: ../gramps/gui/configure.py:1829
 msgid "Select media directory"
 msgstr "Выбрать каталог документов"
 
-#: ../gramps/gui/configure.py:1840 ../gramps/gui/configure.py:1865
-#: ../gramps/gui/configure.py:1890 ../gramps/gui/dbloader.py:401
+#: ../gramps/gui/configure.py:1832 ../gramps/gui/configure.py:1857
+#: ../gramps/gui/configure.py:1882 ../gramps/gui/dbloader.py:401
 #: ../gramps/gui/dbloader.py:435 ../gramps/gui/editors/edittaglist.py:119
 #: ../gramps/gui/glade/addmedia.glade:22
 #: ../gramps/gui/glade/baseselector.glade:24
@@ -12136,15 +12278,15 @@ msgstr "Выбрать каталог документов"
 msgid "_Cancel"
 msgstr "_Отменить"
 
-#: ../gramps/gui/configure.py:1862
+#: ../gramps/gui/configure.py:1854
 msgid "Select database directory"
 msgstr "Выбрать каталог базы данных"
 
-#: ../gramps/gui/configure.py:1887 ../gramps/gui/viewmanager.py:1789
+#: ../gramps/gui/configure.py:1879 ../gramps/gui/viewmanager.py:1789
 msgid "Select backup directory"
 msgstr "Выберите каталог для резервного копирования"
 
-#: ../gramps/gui/configure.py:1954
+#: ../gramps/gui/configure.py:1946
 msgid ""
 "This tab gives you the possibility to use one font which is able to show all "
 "genealogical symbols\n"
@@ -12158,7 +12300,7 @@ msgstr ""
 "При выборе \"использовать символы\" Gramps будет использовать выбранный "
 "шрифт, если он существует."
 
-#: ../gramps/gui/configure.py:1960
+#: ../gramps/gui/configure.py:1952
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
@@ -12167,11 +12309,11 @@ msgstr ""
 "указать произношение имени или если используется несколько языков, например "
 "греческий и русский."
 
-#: ../gramps/gui/configure.py:1967
+#: ../gramps/gui/configure.py:1959
 msgid "Use symbols"
 msgstr "Использовать символы"
 
-#: ../gramps/gui/configure.py:1972
+#: ../gramps/gui/configure.py:1964
 msgid ""
 "Be careful, if you click on the \"Try to find\" button, it can take a while "
 "before you can continue (10 minutes or more). \n"
@@ -12181,7 +12323,7 @@ msgstr ""
 "некоторое время (10 минут или больше) прежде чем Вы сможете продолжить.\n"
 "При отмене процесса, ничего не будет изменено."
 
-#: ../gramps/gui/configure.py:1982
+#: ../gramps/gui/configure.py:1974
 msgid ""
 "You have already run the tool to search for genealogy fonts.\n"
 "Run it again only if you added fonts on your system."
@@ -12189,27 +12331,27 @@ msgstr ""
 "Вы уже запускали инструмент поиска шрифтов.\n"
 "Запустите его снова только, если были добавлены шрифты в систему."
 
-#: ../gramps/gui/configure.py:1987
+#: ../gramps/gui/configure.py:1979
 msgid "Try to find"
 msgstr "Пробовать найти"
 
-#: ../gramps/gui/configure.py:1998 ../gramps/gui/configure.py:2099
+#: ../gramps/gui/configure.py:1990 ../gramps/gui/configure.py:2091
 msgid "Choose font"
 msgstr "Выбрать шрифт"
 
-#: ../gramps/gui/configure.py:2011 ../gramps/gui/configure.py:2116
+#: ../gramps/gui/configure.py:2003 ../gramps/gui/configure.py:2108
 msgid "Select default death symbol"
 msgstr "Выбрать символ для умерших"
 
-#: ../gramps/gui/configure.py:2020
+#: ../gramps/gui/configure.py:2012
 msgid "Genealogical Symbols"
 msgstr "Генеалогические символы"
 
-#: ../gramps/gui/configure.py:2029
+#: ../gramps/gui/configure.py:2021
 msgid "Cannot look for genealogical fonts"
 msgstr "Не удалось найти генеалогические шрифты"
 
-#: ../gramps/gui/configure.py:2030
+#: ../gramps/gui/configure.py:2022
 msgid ""
 "I am not able to select genealogical fonts. Please, install the module "
 "fontconfig for python 3."
@@ -12217,15 +12359,15 @@ msgstr ""
 "Невозможно выбрать генеалогические шрифты. Необходимо установить модуль "
 "fontconfig для python 3."
 
-#: ../gramps/gui/configure.py:2047
+#: ../gramps/gui/configure.py:2039
 msgid "Checking available genealogical fonts"
 msgstr "Проверка доступных генеалогических шрифтов"
 
-#: ../gramps/gui/configure.py:2051
+#: ../gramps/gui/configure.py:2043
 msgid "Looking for all fonts with genealogical symbols."
 msgstr "Поиск всех шрифтов содержащих генеалогические символы."
 
-#: ../gramps/gui/configure.py:2124
+#: ../gramps/gui/configure.py:2116
 msgid ""
 "You have no font with genealogical symbols on your system. Gramps will not "
 "be able to use symbols."
@@ -12233,7 +12375,7 @@ msgstr ""
 "В Вашей системе отсутствуют шрифты с генеалогическими символами. Gramps не "
 "сможет использовать символы."
 
-#: ../gramps/gui/configure.py:2162
+#: ../gramps/gui/configure.py:2154
 msgid "What you will see"
 msgstr "Как это будет выглядеть"
 
@@ -12941,7 +13083,7 @@ msgstr "ID"
 msgid "_References"
 msgstr "Ссылки"
 
-#: ../gramps/gui/editors/displaytabs/backreflist.py:99
+#: ../gramps/gui/editors/displaytabs/backreflist.py:107
 msgid "Edit reference"
 msgstr "Редактировать ссылку"
 
@@ -21815,7 +21957,7 @@ msgid "Sorted by %s"
 msgstr "Отсортировано по %s"
 
 #: ../gramps/plugins/drawreport/timeline.py:312
-#: ../gramps/plugins/lib/libgedcom.py:7832
+#: ../gramps/plugins/lib/libgedcom.py:7900
 msgid "No Date Information"
 msgstr "Нет данных о дате"
 
@@ -22076,9 +22218,9 @@ msgstr "Запись людей"
 #: ../gramps/plugins/export/exportgedcom.py:790
 #: ../gramps/plugins/export/exportgedcom.py:1072
 #: ../gramps/plugins/export/exportgedcom.py:1163
-#: ../gramps/plugins/lib/libgedcom.py:4144
-#: ../gramps/plugins/lib/libgedcom.py:5872
-#: ../gramps/plugins/lib/libgedcom.py:7017
+#: ../gramps/plugins/lib/libgedcom.py:4158
+#: ../gramps/plugins/lib/libgedcom.py:5932
+#: ../gramps/plugins/lib/libgedcom.py:7062
 msgid "FAX"
 msgstr "Факс"
 
@@ -22100,20 +22242,20 @@ msgid "Writing repositories"
 msgstr "Запись хранилищ"
 
 #: ../gramps/plugins/export/exportgedcom.py:1165
-#: ../gramps/plugins/lib/libgedcom.py:5884
+#: ../gramps/plugins/lib/libgedcom.py:5944
 msgid "EMAIL"
 msgstr "Эл. почта"
 
 #: ../gramps/plugins/export/exportgedcom.py:1167
-#: ../gramps/plugins/lib/libgedcom.py:5896
+#: ../gramps/plugins/lib/libgedcom.py:5956
 msgid "WWW"
 msgstr "Веб-страница"
 
-#: ../gramps/plugins/export/exportgedcom.py:1429
+#: ../gramps/plugins/export/exportgedcom.py:1431
 msgid "Writing media"
 msgstr "Запись документов"
 
-#: ../gramps/plugins/export/exportgedcom.py:1603
+#: ../gramps/plugins/export/exportgedcom.py:1605
 msgid "GEDCOM Export failed"
 msgstr "Экспорт в GEDCOM не удался"
 
@@ -24082,22 +24224,6 @@ msgstr "Потомки <-> Предки"
 msgid "Descendants - Ancestors"
 msgstr "Потомки - Предки"
 
-#: ../gramps/plugins/graph/gvfamilylines.py:83
-#: ../gramps/plugins/textreport/indivcomplete.py:938
-#: ../gramps/plugins/tool/dumpgenderstats.py:73
-#: ../gramps/plugins/tool/dumpgenderstats.py:97
-#: ../gramps/plugins/tool/dumpgenderstats.py:99
-msgid "Female"
-msgstr "Женский"
-
-#: ../gramps/plugins/graph/gvfamilylines.py:84
-#: ../gramps/plugins/textreport/indivcomplete.py:936
-#: ../gramps/plugins/tool/dumpgenderstats.py:72
-#: ../gramps/plugins/tool/dumpgenderstats.py:96
-#: ../gramps/plugins/tool/dumpgenderstats.py:99
-msgid "Male"
-msgstr "Мужской"
-
 #. ---------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:124
 msgid "Follow parents to determine \"family lines\""
@@ -24930,7 +25056,9 @@ msgstr "место"
 msgid "place id"
 msgstr "место (id)"
 
+#. 2=double underline
 #: ../gramps/plugins/importer/importcsv.py:239
+#: ../gramps/plugins/tool/removespaces.py:168
 msgid "name"
 msgstr "имя"
 
@@ -24938,11 +25066,15 @@ msgstr "имя"
 msgid "type"
 msgstr "тип"
 
+#. 2=double underline
 #: ../gramps/plugins/importer/importcsv.py:241
+#: ../gramps/plugins/tool/removespaces.py:172
 msgid "latitude"
 msgstr "широта"
 
+#. 2=double underline
 #: ../gramps/plugins/importer/importcsv.py:242
+#: ../gramps/plugins/tool/removespaces.py:176
 msgid "longitude"
 msgstr "долгота"
 
@@ -25989,54 +26121,54 @@ msgid "Line ignored "
 msgstr "Строка проигнорирована "
 
 #. e.g. Illegal character (oxAB) (0xCB)... 1 NOTE xyz?pqr?lmn
-#: ../gramps/plugins/lib/libgedcom.py:1539
+#: ../gramps/plugins/lib/libgedcom.py:1540
 #, python-format
 msgid "Illegal character%s"
 msgstr "Недопустимый символ %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:1819
+#: ../gramps/plugins/lib/libgedcom.py:1820
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "Ваш файл GEDCOM сломан. Похоже, что он записан не до конца."
 
-#: ../gramps/plugins/lib/libgedcom.py:1903
+#: ../gramps/plugins/lib/libgedcom.py:1904
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Импорт из GEDCOM (%s)"
 
-#: ../gramps/plugins/lib/libgedcom.py:2736
-#: ../gramps/plugins/lib/libgedcom.py:3193
+#: ../gramps/plugins/lib/libgedcom.py:2741
+#: ../gramps/plugins/lib/libgedcom.py:3198
 msgid "GEDCOM import"
 msgstr "Импорт GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:2764
+#: ../gramps/plugins/lib/libgedcom.py:2769
 msgid "GEDCOM import report: No errors detected"
 msgstr "Отчёт импорта GEDCOM: ошибок не обнаружено"
 
-#: ../gramps/plugins/lib/libgedcom.py:2766
+#: ../gramps/plugins/lib/libgedcom.py:2771
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "Отчёт импорта GEDCOM: обнаружены ошибки %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:3086
-#: ../gramps/plugins/lib/libgedcom.py:3111
-#: ../gramps/plugins/lib/libgedcom.py:3124
+#: ../gramps/plugins/lib/libgedcom.py:3091
+#: ../gramps/plugins/lib/libgedcom.py:3116
+#: ../gramps/plugins/lib/libgedcom.py:3129
 msgid "Line ignored as not understood"
 msgstr "Строка не распознана и будет проигнорирована"
 
-#: ../gramps/plugins/lib/libgedcom.py:3113
+#: ../gramps/plugins/lib/libgedcom.py:3118
 msgid "Tag recognized but not supported"
 msgstr "Метка распознана, но не поддерживается"
 
 # FIXME: is it correct term?
-#: ../gramps/plugins/lib/libgedcom.py:3149
+#: ../gramps/plugins/lib/libgedcom.py:3154
 msgid "Skipped subordinate line"
 msgstr "Пропущена зависимая строка"
 
-#: ../gramps/plugins/lib/libgedcom.py:3182
+#: ../gramps/plugins/lib/libgedcom.py:3187
 msgid "Records not imported into "
 msgstr "Записи не импортированы в "
 
-#: ../gramps/plugins/lib/libgedcom.py:3220
+#: ../gramps/plugins/lib/libgedcom.py:3225
 #, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -26045,7 +26177,7 @@ msgstr ""
 "Ошибка: %(msg)s  '%(gramps_id)s' (введена как @%(xref)s@) не ввод GEDCOM. "
 "Запись синтезирована"
 
-#: ../gramps/plugins/lib/libgedcom.py:3229
+#: ../gramps/plugins/lib/libgedcom.py:3234
 #, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -26054,7 +26186,7 @@ msgstr ""
 "Ошибка: %(msg)s '%(gramps_id)s' (введена как @%(xref)s@) не ввод GEDCOM. "
 "Запись создана с атрибутом 'Неизвестный'"
 
-#: ../gramps/plugins/lib/libgedcom.py:3273
+#: ../gramps/plugins/lib/libgedcom.py:3278
 #, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
@@ -26065,7 +26197,7 @@ msgstr ""
 "(введено как %(orig_person)s) не является членом семьи. Ссылка на семью "
 "удалена из лица"
 
-#: ../gramps/plugins/lib/libgedcom.py:3351
+#: ../gramps/plugins/lib/libgedcom.py:3356
 #, python-format
 msgid ""
 "\n"
@@ -26085,177 +26217,177 @@ msgstr ""
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
 #. truncated for output
-#: ../gramps/plugins/lib/libgedcom.py:3425
+#: ../gramps/plugins/lib/libgedcom.py:3430
 #, python-format
 msgid "ADDR element ignored '%s'"
 msgstr "Элемент ADDR проигнорирован '%s'"
 
-#: ../gramps/plugins/lib/libgedcom.py:3446
+#: ../gramps/plugins/lib/libgedcom.py:3451
 msgid "TRLR (trailer)"
 msgstr "TRLR (трейлер)"
 
-#: ../gramps/plugins/lib/libgedcom.py:3475
+#: ../gramps/plugins/lib/libgedcom.py:3480
 msgid "(Submitter):"
 msgstr "(Исследователь):"
 
-#: ../gramps/plugins/lib/libgedcom.py:3499
-#: ../gramps/plugins/lib/libgedcom.py:7273
+#: ../gramps/plugins/lib/libgedcom.py:3504
+#: ../gramps/plugins/lib/libgedcom.py:7318
 msgid "GEDCOM data"
 msgstr "Данные GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:3544
+#: ../gramps/plugins/lib/libgedcom.py:3549
 msgid "Unknown tag"
 msgstr "Неизвестная метка"
 
-#: ../gramps/plugins/lib/libgedcom.py:3546
-#: ../gramps/plugins/lib/libgedcom.py:3560
-#: ../gramps/plugins/lib/libgedcom.py:3564
-#: ../gramps/plugins/lib/libgedcom.py:3585
+#: ../gramps/plugins/lib/libgedcom.py:3551
+#: ../gramps/plugins/lib/libgedcom.py:3565
+#: ../gramps/plugins/lib/libgedcom.py:3569
+#: ../gramps/plugins/lib/libgedcom.py:3590
 msgid "Top Level"
 msgstr "Высший уровень"
 
-#: ../gramps/plugins/lib/libgedcom.py:3660
+#: ../gramps/plugins/lib/libgedcom.py:3665
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (лицо) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:3779
+#: ../gramps/plugins/lib/libgedcom.py:3793
 msgid "Empty Alias <NAME PERSONAL> ignored"
 msgstr "Пустой Alias <NAME PERSONAL> проигнорирован"
 
-#: ../gramps/plugins/lib/libgedcom.py:4973
+#: ../gramps/plugins/lib/libgedcom.py:5024
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (семья) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5335
-#: ../gramps/plugins/lib/libgedcom.py:6694
+#: ../gramps/plugins/lib/libgedcom.py:5395
+#: ../gramps/plugins/lib/libgedcom.py:6751
 msgid "Filename omitted"
 msgstr "Имя файла опущено"
 
-#: ../gramps/plugins/lib/libgedcom.py:5369
-#: ../gramps/plugins/lib/libgedcom.py:6747
+#: ../gramps/plugins/lib/libgedcom.py:5429
+#: ../gramps/plugins/lib/libgedcom.py:6804
 #, python-format
 msgid "Could not import %s"
 msgstr "Не удалось импортировать %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5435
-#: ../gramps/plugins/lib/libgedcom.py:6846
+#: ../gramps/plugins/lib/libgedcom.py:5495
+#: ../gramps/plugins/lib/libgedcom.py:6891
 msgid "Media-Type"
 msgstr "Тип документа"
 
-#: ../gramps/plugins/lib/libgedcom.py:5459
-#: ../gramps/plugins/lib/libgedcom.py:6736
+#: ../gramps/plugins/lib/libgedcom.py:5519
+#: ../gramps/plugins/lib/libgedcom.py:6793
 msgid "Multiple FILE in a single OBJE ignored"
 msgstr "Несколько файлов для одного объекта проигнорировано"
 
 #. We have previously found a PLAC
-#: ../gramps/plugins/lib/libgedcom.py:5598
+#: ../gramps/plugins/lib/libgedcom.py:5658
 msgid "A second PLAC ignored"
 msgstr "Второй PLAC проигнорирован"
 
 #. For RootsMagic etc. Place Details e.g. address, hospital, ...
-#: ../gramps/plugins/lib/libgedcom.py:5737
+#: ../gramps/plugins/lib/libgedcom.py:5797
 msgid "Detail"
 msgstr "Подробности"
 
 #. We have perviously found an ADDR, or have populated
 #. location from PLAC title
-#: ../gramps/plugins/lib/libgedcom.py:5750
+#: ../gramps/plugins/lib/libgedcom.py:5810
 msgid "Location already populated; ADDR ignored"
 msgstr "Местоположение уже указано; ADDR проигнорирован"
 
-#: ../gramps/plugins/lib/libgedcom.py:6155
-#: ../gramps/plugins/lib/libgedcom.py:7054
+#: ../gramps/plugins/lib/libgedcom.py:6211
+#: ../gramps/plugins/lib/libgedcom.py:7099
 msgid "Warn: ADDR overwritten"
 msgstr "Внимание: ADDR перезаписан"
 
-#: ../gramps/plugins/lib/libgedcom.py:6320
+#: ../gramps/plugins/lib/libgedcom.py:6376
 msgid "Citation Justification"
 msgstr "Достоверность цитаты"
 
-#: ../gramps/plugins/lib/libgedcom.py:6347
+#: ../gramps/plugins/lib/libgedcom.py:6403
 msgid "REFN ignored"
 msgstr "REFN проигнорирован"
 
 #. SOURce with the given gramps_id had no title
-#: ../gramps/plugins/lib/libgedcom.py:6446
+#: ../gramps/plugins/lib/libgedcom.py:6502
 #, python-format
 msgid "No title - ID %s"
 msgstr "Нет названия - ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6451
+#: ../gramps/plugins/lib/libgedcom.py:6507
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (источник) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6712
+#: ../gramps/plugins/lib/libgedcom.py:6769
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (документ) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6942
+#: ../gramps/plugins/lib/libgedcom.py:6987
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (хранилище) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7003
-#: ../gramps/plugins/lib/libgedcom.py:7991
+#: ../gramps/plugins/lib/libgedcom.py:7048
+#: ../gramps/plugins/lib/libgedcom.py:8059
 msgid "Only one phone number supported"
 msgstr "Поддерживается только один телефонный номер"
 
-#: ../gramps/plugins/lib/libgedcom.py:7189
+#: ../gramps/plugins/lib/libgedcom.py:7234
 msgid "HEAD (header)"
 msgstr "HEAD (заголовок)"
 
-#: ../gramps/plugins/lib/libgedcom.py:7210
+#: ../gramps/plugins/lib/libgedcom.py:7255
 msgid "Approved system identification"
 msgstr "Система идентифицирована"
 
-#: ../gramps/plugins/lib/libgedcom.py:7222
+#: ../gramps/plugins/lib/libgedcom.py:7267
 msgid "Generated By"
 msgstr "Создано с помощью"
 
-#: ../gramps/plugins/lib/libgedcom.py:7238
+#: ../gramps/plugins/lib/libgedcom.py:7283
 msgid "Name of software product"
 msgstr "Название продукта"
 
-#: ../gramps/plugins/lib/libgedcom.py:7252
+#: ../gramps/plugins/lib/libgedcom.py:7297
 msgid "Version number of software product"
 msgstr "Номер версии продукта"
 
-#: ../gramps/plugins/lib/libgedcom.py:7270
+#: ../gramps/plugins/lib/libgedcom.py:7315
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Продукт предоставлен: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7292
+#: ../gramps/plugins/lib/libgedcom.py:7337
 msgid "Name of source data"
 msgstr "Название источника данных"
 
-#: ../gramps/plugins/lib/libgedcom.py:7309
+#: ../gramps/plugins/lib/libgedcom.py:7354
 msgid "Copyright of source data"
 msgstr "Авторство источника данных"
 
-#: ../gramps/plugins/lib/libgedcom.py:7326
+#: ../gramps/plugins/lib/libgedcom.py:7371
 msgid "Publication date of source data"
 msgstr "Дата публикации источника данных"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/lib/libgedcom.py:7340
+#: ../gramps/plugins/lib/libgedcom.py:7385
 #, python-format
 msgid "Import from %s"
 msgstr "Импорт из %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7379
+#: ../gramps/plugins/lib/libgedcom.py:7424
 msgid "Submission record identifier"
 msgstr "Идентификатор подтверждения записи"
 
-#: ../gramps/plugins/lib/libgedcom.py:7392
+#: ../gramps/plugins/lib/libgedcom.py:7437
 msgid "Language of GEDCOM text"
 msgstr "Язык текста GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7414
+#: ../gramps/plugins/lib/libgedcom.py:7459
 #, python-format
 msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
@@ -26264,89 +26396,89 @@ msgstr ""
 "Импорт файла GEDCOM %(filename)s с DEST=%(by)s, может вызвать ошибки в "
 "полученной базе данных!"
 
-#: ../gramps/plugins/lib/libgedcom.py:7417
+#: ../gramps/plugins/lib/libgedcom.py:7462
 msgid "Look for nameless events."
 msgstr "Искать безымянные события."
 
-#: ../gramps/plugins/lib/libgedcom.py:7440
+#: ../gramps/plugins/lib/libgedcom.py:7485
 msgid "Character set"
 msgstr "Кодировка символов"
 
-#: ../gramps/plugins/lib/libgedcom.py:7445
+#: ../gramps/plugins/lib/libgedcom.py:7490
 msgid "Character set and version"
 msgstr "Кодировка символов и её версия"
 
-#: ../gramps/plugins/lib/libgedcom.py:7462
+#: ../gramps/plugins/lib/libgedcom.py:7507
 msgid "GEDCOM version not supported"
 msgstr "Версия GEDCOM не поддерживается"
 
-#: ../gramps/plugins/lib/libgedcom.py:7466
+#: ../gramps/plugins/lib/libgedcom.py:7511
 msgid "GEDCOM version"
 msgstr "Версия GEDCOM"
 
 #. Allow Lineage-Linked etc. though it should be in
 #. uppercase  (Note: Gramps is not a validator! prc)
-#: ../gramps/plugins/lib/libgedcom.py:7475
+#: ../gramps/plugins/lib/libgedcom.py:7520
 msgid "GEDCOM FORM should be in uppercase"
 msgstr "Форма GEDCOM должна быть в верхнем регистре"
 
-#: ../gramps/plugins/lib/libgedcom.py:7478
+#: ../gramps/plugins/lib/libgedcom.py:7523
 msgid "GEDCOM FORM not supported"
 msgstr "Форма GEDCOM не поддерживается"
 
-#: ../gramps/plugins/lib/libgedcom.py:7481
+#: ../gramps/plugins/lib/libgedcom.py:7526
 msgid "GEDCOM form"
 msgstr "Форма GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7532
+#: ../gramps/plugins/lib/libgedcom.py:7577
 msgid "Creation date of GEDCOM"
 msgstr "Дата создания GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7537
+#: ../gramps/plugins/lib/libgedcom.py:7582
 msgid "Creation date and time of GEDCOM"
 msgstr "Дата и время создания GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7578
-#: ../gramps/plugins/lib/libgedcom.py:7620
+#: ../gramps/plugins/lib/libgedcom.py:7623
+#: ../gramps/plugins/lib/libgedcom.py:7665
 msgid "Empty note ignored"
 msgstr "Пустая заметка была проигнорирована"
 
-#: ../gramps/plugins/lib/libgedcom.py:7637
+#: ../gramps/plugins/lib/libgedcom.py:7682
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "ID заметки Gramps %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7688
+#: ../gramps/plugins/lib/libgedcom.py:7733
 msgid "Submission: Submitter"
 msgstr "Подтверждение: Исследователь"
 
-#: ../gramps/plugins/lib/libgedcom.py:7690
+#: ../gramps/plugins/lib/libgedcom.py:7735
 msgid "Submission: Family file"
 msgstr "Подтверждение: Семейный файл"
 
-#: ../gramps/plugins/lib/libgedcom.py:7692
+#: ../gramps/plugins/lib/libgedcom.py:7737
 msgid "Submission: Temple code"
 msgstr "Подтверждение: Код церкви"
 
-#: ../gramps/plugins/lib/libgedcom.py:7694
+#: ../gramps/plugins/lib/libgedcom.py:7739
 msgid "Submission: Generations of ancestors"
 msgstr "Подтверждение: Поколения предка"
 
-#: ../gramps/plugins/lib/libgedcom.py:7696
+#: ../gramps/plugins/lib/libgedcom.py:7741
 msgid "Submission: Generations of descendants"
 msgstr "Подтверждение: Поколения потомка"
 
-#: ../gramps/plugins/lib/libgedcom.py:7698
+#: ../gramps/plugins/lib/libgedcom.py:7743
 msgid "Submission: Ordinance process flag"
 msgstr "Подтверждение: Флаг обработки"
 
 #. Okay we have no clue which temple this is.
 #. We should tell the user and store it anyway.
-#: ../gramps/plugins/lib/libgedcom.py:7929
+#: ../gramps/plugins/lib/libgedcom.py:7997
 msgid "Invalid temple code"
 msgstr "Неверный код церкви"
 
-#: ../gramps/plugins/lib/libgedcom.py:8025
+#: ../gramps/plugins/lib/libgedcom.py:8093
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
@@ -26354,7 +26486,7 @@ msgstr ""
 "Файл GEDCOM поврежден. Похоже что файл использует набор символов UTF16, но в "
 "нем отсутствует пометка BOM."
 
-#: ../gramps/plugins/lib/libgedcom.py:8028
+#: ../gramps/plugins/lib/libgedcom.py:8096
 msgid "Your GEDCOM file is empty."
 msgstr "Файл GEDCOM пуст."
 
@@ -33963,6 +34095,7 @@ msgstr "Поиск цикла в базе данных"
 #: ../gramps/plugins/tool/findloop.py:93
 #: ../gramps/plugins/tool/notrelated.py:112
 #: ../gramps/plugins/tool/notrelated.py:257
+#: ../gramps/plugins/tool/removespaces.py:94
 msgid "Starting"
 msgstr "Начинаю"
 
@@ -34484,6 +34617,50 @@ msgstr "Их общие предки - %(ancestor1)s и %(ancestor2)s."
 msgid "Their common ancestors are: "
 msgstr "Их общие предки: "
 
+#: ../gramps/plugins/tool/removespaces.py:54
+msgid "manual|Remove_leading_and_trailing_spaces"
+msgstr ""
+
+#: ../gramps/plugins/tool/removespaces.py:71
+#: ../gramps/plugins/tool/tools.gpr.py:489
+msgid "Clean input data"
+msgstr "Очистить введённые данные"
+
+#: ../gramps/plugins/tool/removespaces.py:88
+msgid ""
+"Search leading and/or trailing spaces for persons and places. Search comma "
+"in coordinates fields.\n"
+"Double click on a row to edit its content."
+msgstr ""
+"Производит поиск лишних пробелов для мест и лиц. Поиск "
+"запятых в координатах мест.\n"
+"Двойной щелчок по строке для перехода в редактор."
+
+#: ../gramps/plugins/tool/removespaces.py:97
+msgid "Looking for possible fields with leading or trailing spaces"
+msgstr "Поиск лишних пробелов"
+
+#: ../gramps/plugins/tool/removespaces.py:114
+#: ../gramps/plugins/tool/removespaces.py:163
+msgid "handle"
+msgstr "указатель"
+
+#. 2=double underline
+#: ../gramps/plugins/tool/removespaces.py:119
+
+msgid "firstname"
+msgstr "имя"
+
+#. 2=double underline
+#: ../gramps/plugins/tool/removespaces.py:127
+msgid "alternate name"
+msgstr "альтернативное имя"
+
+#. 2=double underline
+#: ../gramps/plugins/tool/removespaces.py:131
+msgid "group as"
+msgstr "группировать как"
+
 #: ../gramps/plugins/tool/removeunused.glade:92
 msgid "Search for events"
 msgstr "Искать события"
@@ -34966,10 +35143,6 @@ msgid "Searches the entire database, looking for a possible loop."
 msgstr ""
 "Просматривает всю базу данных в поиске записей, которые могут представлять "
 "цикл."
-
-#: ../gramps/plugins/tool/tools.gpr.py:489
-msgid "Clean input data"
-msgstr "Очистить введённые данные"
 
 #: ../gramps/plugins/tool/tools.gpr.py:490
 msgid ""
@@ -37749,13 +37922,13 @@ msgstr ""
 msgid "Place Name | Name"
 msgstr "Название"
 
-#: ../gramps/plugins/webreport/place.py:239
+#: ../gramps/plugins/webreport/place.py:233
 #, python-format
 msgid "Places beginning with letter %s"
 msgstr "Места на букву %s"
 
 #. section title
-#: ../gramps/plugins/webreport/place.py:406
+#: ../gramps/plugins/webreport/place.py:400
 msgid "Place Map"
 msgstr "Карта места"
 
@@ -38238,6 +38411,13 @@ msgstr "Небраска"
 #: ../gramps/plugins/webstuff/webstuff.py:143
 msgid "No style sheet"
 msgstr "Без стилевого листа"
+
+#~ msgid "Use alternate Font handler for GUI and Reports (requires restart)"
+#~ msgstr ""
+#~ "Использовать другой шрифт для интерфейса и отчётов (необходим перезапуск)"
+
+#~ msgid "Can help to fix problems with fonts."
+#~ msgstr "Может помочь при проблемах со шрифтами."
 
 #~ msgid "unmarried|husband"
 #~ msgstr "гражданский муж"
@@ -42156,4 +42336,3 @@ msgstr "Без стилевого листа"
 #~ "Используйте https://gramps-project.org/bugs/ чтобы сообщить об ошибке в "
 #~ "официально поддерживаемых  видах, или свяжитесь с автором "
 #~ "(%(firstauthoremail)s) в противном случае. "
-
