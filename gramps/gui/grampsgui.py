@@ -37,6 +37,7 @@ LOG = logging.getLogger(".grampsgui")
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
+from gramps.version import VERSION_TUPLE, VERSION, DEV_VERSION
 from gramps.gen.config import config
 from gramps.gen.const import DATA_DIR, IMAGE_DIR, GTK_GETTEXT_DOMAIN
 from gramps.gen.constfunc import has_display, lin
@@ -490,7 +491,7 @@ def _display_welcome_message(parent=None):
     Display a welcome message to the user.
     (This docstring seems very legacy/historical, not accurate.)
     """
-    _display_generic_message("master", 'behavior.betawarn', parent=parent)
+    _display_generic_message(VERSION, 'behavior.betawarn', parent=parent)
 
 def _display_generic_message(warning_type, config_key, parent=None):
     """
@@ -502,7 +503,7 @@ def _display_generic_message(warning_type, config_key, parent=None):
     :param config_key: name of gramps.ini config key, e.g. "behavior.betawarn"
     :type config_key: str
     """
-    if not config.get(config_key):
+    if DEV_VERSION and config.get(config_key) != VERSION_TUPLE:
         from .dialog import WarningDialog
         WarningDialog(
             _('Danger: This is unstable code!'),
@@ -527,7 +528,7 @@ def _display_generic_message(warning_type, config_key, parent=None):
                   'bold_end'   : '</b>'},
             parent=parent)
         config.set('behavior.autoload', False)
-        config.set(config_key, True)
+        config.set(config_key, VERSION_TUPLE)
 
 def _display_gtk_gettext_message(parent=None):
     """
