@@ -19,6 +19,7 @@
 #
 
 VERSION_TUPLE = (5, 1, 2)
+DEV_VERSION = True  # True for development, False for a maintenance release
 VERSION_QUALIFIER = ""
-VERSION = '.'.join(map(str,VERSION_TUPLE)) + VERSION_QUALIFIER
+VERSION = '.'.join(map(str, VERSION_TUPLE)) + VERSION_QUALIFIER
 major_version = "%s.%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])

@@ -37,6 +37,7 @@ LOG = logging.getLogger(".grampsgui")
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
+from gramps.version import VERSION_TUPLE, DEV_VERSION, VERSION_QUALIFIER
 from gramps.gen.config import config
 from gramps.gen.const import DATA_DIR, IMAGE_DIR, GTK_GETTEXT_DOMAIN
 from gramps.gen.constfunc import has_display, lin
@@ -485,29 +486,19 @@ except ImportError:
 #
 #-------------------------------------------------------------------------
 
+
 def _display_welcome_message(parent=None):
     """
     Display a welcome message to the user.
     (This docstring seems very legacy/historical, not accurate.)
     """
-    _display_generic_message("master", 'behavior.betawarn', parent=parent)
-
-def _display_generic_message(warning_type, config_key, parent=None):
-    """
-    Display a generic warning message to the user, with the
-    warning_type in it -- if the config_key key is not set
-
-    :param warning_type: the general name of the warning, e.g. "master"
-    :type warning_type: str
-    :param config_key: name of gramps.ini config key, e.g. "behavior.betawarn"
-    :type config_key: str
-    """
-    if not config.get(config_key):
+    this_version = '.'.join(map(str, VERSION_TUPLE)) + VERSION_QUALIFIER
+    if DEV_VERSION and config.get('behavior.betawarn') != this_version:
         from .dialog import WarningDialog
         WarningDialog(
             _('Danger: This is unstable code!'),
             _("This Gramps ('%s') is a development release.\n"
-             ) % warning_type +
+              ) % this_version +
             _("This version is not meant for normal usage. Use "
               "at your own risk.\n"
               "\n"
@@ -523,11 +514,12 @@ def _display_generic_message(warning_type, config_key, parent=None):
               "your existing databases before opening "
               "them with this version, and make sure to export your "
               "data to XML every now and then."
-             ) % {'bold_start' : '<b>',
-                  'bold_end'   : '</b>'},
+              ) % {'bold_start' : '<b>',
+                   'bold_end'   : '</b>'},
             parent=parent)
         config.set('behavior.autoload', False)
-        config.set(config_key, True)
+        config.set('behavior.betawarn', this_version)
+
 
 def _display_gtk_gettext_message(parent=None):
     """
