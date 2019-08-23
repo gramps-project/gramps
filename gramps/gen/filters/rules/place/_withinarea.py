@@ -1,3 +1,6 @@
+"""
+ WithinArea : used to verify if a place is contained in a specific area
+"""
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -25,17 +28,19 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
+
 from math import pi, cos, hypot
-from ....const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from ....const import GRAMPS_LOCALE as glocale
 from .. import Rule
-from ....utils.location import located_in
+from ....utils.place import conv_lat_lon
+
+_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
@@ -51,6 +56,10 @@ class WithinArea(Rule):
     name = _('Places within an area')
     description = _('Matches places within a given distance of another place')
     category = _('Position filters')
+    handle = None
+    radius = None
+    latitude = None
+    longitude = None
 
     def prepare(self, db, user):
         ref_place = db.get_place_from_gramps_id(self.list[0])
@@ -60,13 +69,16 @@ class WithinArea(Rule):
         self.longitude = None
         if ref_place:
             self.handle = ref_place.handle
-            self.latitude = ref_place.get_latitude()
-            if self.latitude == "":
-                self.latitude = None
+            latitude = ref_place.get_latitude()
+            if latitude == "":
+                latitude = None
                 return
-            self.longitude = ref_place.get_longitude()
-            value = self.list[1]
-            unit = self.list[2]
+            longitude = ref_place.get_longitude()
+            self.latitude, self.longitude = conv_lat_lon(latitude,
+                                                         longitude,
+                                                         "D.D8")
+            value = int(self.list[1])
+            unit = int(self.list[2])
             # earth perimeter in kilometers for latitude
             # 2 * pi * (6371 * cos(latitude/180*pi))
             # so 1 degree correspond to the result above / 360
@@ -79,7 +91,7 @@ class WithinArea(Rule):
                 self.radius = float(value)
             self.radius = self.radius/2
 
-    def apply(self, db, place):
+    def apply(self, dummy_db, place):
         if self.handle is None:
             return False
         if self.latitude is None:
@@ -90,7 +102,9 @@ class WithinArea(Rule):
             lat = place.get_latitude()
             lon = place.get_longitude()
         if lat and lon:
-            if (hypot(float(self.latitude)-float(lat),
-                     float(self.longitude)-float(lon)) <= self.radius) == True:
+            latit, longit = conv_lat_lon(lat, lon, "D.D8")
+            if (hypot(float(self.latitude)-float(latit),
+                      float(self.longitude)-float(longit))
+                    <= self.radius):
                 return True
         return False
