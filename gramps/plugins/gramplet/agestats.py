@@ -44,7 +44,7 @@ class AgeStatsGramplet(Gramplet):
 
     def init(self):
         self.max_age = 110
-        self.max_mother_diff = 40
+        self.max_mother_diff = 55
         self.max_father_diff = 60
         self.chart_width = 60
 
