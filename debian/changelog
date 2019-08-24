@@ -1,3 +1,12 @@
+gramps (5.1.0-1) unstable; urgency=medium
+
+  * New release
+  * Update copyrights
+  * Bump gtk+ version to 3.12
+  * Add new geocode-glib dependency
+
+ -- Ross Gammon <rossgammon@debian.org>  Sat, 24 Aug 2019 19:49:27 +0200
+
 gramps (5.0.2-1) unstable; urgency=medium
 
   * New release
