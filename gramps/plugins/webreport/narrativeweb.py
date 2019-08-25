@@ -1797,8 +1797,15 @@ class NavWebOptions(MenuReportOptions):
         self.__graphgens.set_help(_("The number of generations to include in "
                                     "the ancestor graph"))
         addopt("graphgens", self.__graphgens)
-
         self.__graph_changed()
+
+        notes = BooleanOption(
+            _('Include narrative notes just after name, gender'), True)
+        notes.set_help(
+            _('Include narrative notes just after name, gender and'
+              ' age at death (default) or include them just before'
+              ' attributes.'))
+        addopt("notes", notes)
 
     def __add_page_generation_options(self, menu):
         """
