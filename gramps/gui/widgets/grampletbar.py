@@ -403,7 +403,8 @@ class GrampletBar(Gtk.Notebook):
         """
         for gramplet in self.get_children():
             tablabel = self.get_tab_label(gramplet)
-            tablabel.use_close(config.get('interface.grampletbar-close'))
+            if not isinstance(tablabel, Gtk.Label):
+                tablabel.use_close(config.get('interface.grampletbar-close'))
 
     def __delete_clicked(self, button, gramplet):
         """

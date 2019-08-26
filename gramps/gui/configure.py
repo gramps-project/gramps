@@ -1137,7 +1137,7 @@ class GrampsPreferences(ConfigureDialog):
         self.dbstate.db.name_formats = _nd.get_name_format(only_custom=True,
                                                            only_active=False)
 
-    def cb_grampletbar_close(self, obj, state):
+    def cb_grampletbar_close(self, obj):
         """
         Gramplet bar close button preference callback
         """
