@@ -119,11 +119,12 @@ def create_web_connect_menu(dbstate, uistate, nav_group, handle, prefix):
         ofile.write(MENUITEM.format(prefix=prefix, action=action,
                                     label=connect.name))
         callback = connect(dbstate, uistate, nav_group, handle)
-        actions.append((action,
-                        lambda x, y: callback(x)))
+        actions.append((action, make_web_connect_callback(callback)))
     ofile.write('</submenu></placeholder>\n')
     return (ofile.getvalue(), actions)
 
+def make_web_connect_callback(func):
+    return lambda x, y: func(x)
 
 def create_quickreport_menu(category, dbstate, uistate, handle, prefix, track=[]):
     """ This functions querries the registered quick reports with
