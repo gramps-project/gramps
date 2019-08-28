@@ -30,6 +30,7 @@
 #-------------------------------------------------------------------------
 
 from math import pi, cos, hypot
+import re
 
 #-------------------------------------------------------------------------
 #
@@ -77,7 +78,10 @@ class WithinArea(Rule):
             self.latitude, self.longitude = conv_lat_lon(latitude,
                                                          longitude,
                                                          "D.D8")
-            value = int(self.list[1])
+            val = self.list[1]
+            if isinstance(val, str):
+               val = re.sub("\D", "", val) # suppress all alpha characters
+            value = int(val)
             unit = int(self.list[2])
             # earth perimeter in kilometers for latitude
             # 2 * pi * (6371 * cos(latitude/180*pi))
