@@ -774,7 +774,8 @@ class StyledTextEditor(Gtk.TextView):
         for style, style_value in changed_styles.items():
             if style in types:
                 action = self.uimanager.get_action(
-                    self.action_group, str(StyledTextTagType(style)).upper())
+                    self.action_group,
+                    StyledTextTagType(style).xml_str().upper())
                 action.change_state(Variant.new_boolean(style_value))
             elif (style == StyledTextTagType.FONTFACE):
                 self.fontface.set_text(style_value)
