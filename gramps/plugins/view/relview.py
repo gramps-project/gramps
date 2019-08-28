@@ -891,7 +891,7 @@ class RelationshipView(NavigationView):
             else:
                 symbol = self.homof
             if markup:
-                msg = '<span size="24000" >%s</span>' % symbol
+                msg = '<span size="12000" >%s</span>' % symbol
             else:
                 msg = symbol
         else:
