@@ -189,6 +189,8 @@ class RelationshipView(NavigationView):
             self.male = gsfs(self.symbols.SYMBOL_MALE)
             self.female = gsfs(self.symbols.SYMBOL_FEMALE)
             self.bth = gsfs(self.symbols.SYMBOL_BIRTH)
+            self.bptsm = gsfs(self.symbols.SYMBOL_BAPTISM)
+            self.marriage = gsfs(self.symbols.SYMBOL_MARRIAGE)
             self.marr = gsfs(self.symbols.SYMBOL_HETEROSEXUAL)
             self.homom = gsfs(self.symbols.SYMBOL_MALE_HOMOSEXUAL)
             self.homof = gsfs(self.symbols.SYMBOL_LESBIAN)
@@ -196,11 +198,15 @@ class RelationshipView(NavigationView):
             self.unmarr = gsfs(self.symbols.SYMBOL_UNMARRIED_PARTNERSHIP)
             death_idx = self.uistate.death_symbol
             self.dth = self.symbols.get_death_symbol_for_char(death_idx)
+            self.burial = gsfs(self.symbols.SYMBOL_BURIED)
+            self.cremation = gsfs(self.symbols.SYMBOL_CREMATED)
         else:
             gsf = self.symbols.get_symbol_fallback
             self.male = gsf(self.symbols.SYMBOL_MALE)
             self.female = gsf(self.symbols.SYMBOL_FEMALE)
             self.bth = gsf(self.symbols.SYMBOL_BIRTH)
+            self.bptsm = gsf(self.symbols.SYMBOL_BAPTISM)
+            self.marriage = gsf(self.symbols.SYMBOL_MARRIAGE)
             self.marr = gsf(self.symbols.SYMBOL_HETEROSEXUAL)
             self.homom = gsf(self.symbols.SYMBOL_MALE_HOMOSEXUAL)
             self.homof = gsf(self.symbols.SYMBOL_LESBIAN)
@@ -208,6 +214,8 @@ class RelationshipView(NavigationView):
             self.unmarr = gsf(self.symbols.SYMBOL_UNMARRIED_PARTNERSHIP)
             death_idx = self.symbols.DEATH_SYMBOL_LATIN_CROSS
             self.dth = self.symbols.get_death_symbol_fallback(death_idx)
+            self.burial = gsf(self.symbols.SYMBOL_BURIED)
+            self.cremation = gsf(self.symbols.SYMBOL_CREMATED)
 
     def font_changed(self):
         self.reload_symbols()
@@ -1353,6 +1361,11 @@ class RelationshipView(NavigationView):
             return None
 
         birth = get_birth_or_fallback(self.dbstate.db, person)
+        if birth:
+            if birth.get_type() == EventType.BAPTISM:
+                s_birth = self.bptsm
+            else:
+                s_birth = self.bth
         if birth and birth.get_type() != EventType.BIRTH:
             sdate = get_date(birth)
             if sdate:
@@ -1365,6 +1378,13 @@ class RelationshipView(NavigationView):
             bdate = ""
 
         death = get_death_or_fallback(self.dbstate.db, person)
+        if death:
+            if death.get_type() == EventType.BURIAL:
+                s_death = self.burial
+            elif death.get_type() == EventType.CREMATION:
+                s_death = self.cremation
+            else:
+                s_death = self.dth
         if death and death.get_type() != EventType.DEATH:
             sdate = get_date(death)
             if sdate:
@@ -1378,15 +1398,15 @@ class RelationshipView(NavigationView):
 
         if bdate and ddate:
             value = _("%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s") % {
-                'birthabbrev': self.bth,
-                'deathabbrev': self.dth,
+                'birthabbrev': s_birth,
+                'deathabbrev': s_death,
                 'birthdate' : bdate,
                 'deathdate' : ddate
                 }
         elif bdate:
-            value = _("%(event)s %(date)s") % {'event': self.bth, 'date': bdate}
+            value = _("%(event)s %(date)s") % {'event': s_birth, 'date': bdate}
         elif ddate:
-            value = _("%(event)s %(date)s") % {'event': self.dth, 'date': ddate}
+            value = _("%(event)s %(date)s") % {'event': s_death, 'date': ddate}
         else:
             value = ""
         return value
@@ -1457,10 +1477,7 @@ class RelationshipView(NavigationView):
                 (event_ref.get_role() == EventRoleType.FAMILY or
                  event_ref.get_role() == EventRoleType.PRIMARY)):
                 if event.get_type() ==  EventType.MARRIAGE:
-                    msg = self.marriage_symbol(family, markup=False)
-                    etype = msg
-                elif event.get_type() ==  EventType.DIVORCE:
-                    etype = self.divorce
+                    etype = self.marriage
                 elif event.get_type() ==  EventType.DIVORCE:
                     etype = self.divorce
                 else:
@@ -1492,19 +1509,19 @@ class RelationshipView(NavigationView):
         if dobj:
             if pname:
                 self.write_data(
-                    vbox, _('%(event_type)s: %(date)s in %(place)s') %
+                    vbox, _('%(event_type)s %(date)s in %(place)s') %
                     value, start_col, stop_col, True)
             else:
                 self.write_data(
-                    vbox, _('%(event_type)s: %(date)s') % value,
+                    vbox, _('%(event_type)s %(date)s') % value,
                     start_col, stop_col)
         elif pname:
             self.write_data(
-                vbox, _('%(event_type)s: %(place)s') % value,
+                vbox, _('%(event_type)s %(place)s') % value,
                 start_col, stop_col)
         else:
             self.write_data(
-                vbox, '%(event_type)s:' % value, start_col, stop_col)
+                vbox, '%(event_type)s' % value, start_col, stop_col)
 
     def write_family(self, family_handle, person = None):
         family = self.dbstate.db.get_family_from_handle(family_handle)
