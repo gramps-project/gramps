@@ -53,6 +53,22 @@ _ = glocale.translation.sgettext
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Remove_leading_and_trailing_spaces')
 
+def validate_lat_lon(field):
+    """
+    Return True if some characters are found in the field
+    # hyphen (u+2010)
+    # non-breaking hyphen (u+2011)
+    # figure dash (u+2012)
+    # en dash (u+2013)
+    # em dash (u+2014)
+    # horizontal bar (u+2015)
+    """
+    for char in (',', '\u2010', '\u2011', '\u2012',
+                 '\u2013', '\u2014', '\u2015'):
+        if field.find(char) != -1:
+            return True
+    return False
+
 #------------------------------------------------------------------------
 #
 # RemoveSpaces class
@@ -214,12 +230,12 @@ class RemoveSpaces(ManagedWindow):
             plat = place.get_latitude()
             if plat != plat.strip():
                 found = True
-            if plat.find(',') != -1:
+            if validate_lat_lon(plat):
                 found = True
             plon = place.get_longitude()
             if plon != plon.strip():
                 found = True
-            if plon.find(',') != -1:
+            if validate_lat_lon(plon):
                 found = True
             if found:
                 value = (place_handle, pname, plat, plon)
