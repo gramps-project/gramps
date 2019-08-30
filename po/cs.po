@@ -38,7 +38,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-13 17:22-0500\n"
-"PO-Revision-Date: 2019-08-29 12:22+0200\n"
+"PO-Revision-Date: 2019-08-30 12:52+0200\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -1323,7 +1323,6 @@ msgid "Unknown action: %s."
 msgstr "Neznámá akce: %s."
 
 #: ../gramps/cli/argparser.py:56
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -1402,6 +1401,18 @@ msgstr ""
 "  -q, --quiet                            Potlačit výpis průběhové indikace "
 "(non GUI režim)\n"
 "  -v, --version                          Zobrazit verze\n"
+" -S, --safe                             Spustit Gramps v 'Safe mode'\n"
+"                                          (dočasně použít výchozí "
+"nastavení)\n"
+"  -D, --default=[APXFE]                  Resetovat nastavení na výchozí "
+"hodnoty\n"
+"                 A - vyčistit moduly\n"
+"                 P - Předvolby na výchozí\n"
+"                 X - Knihy jsou vyčištěny, nastavení zpráv a nástrojů na "
+"výchozí hodnoty\n"
+"                 F - vyčistit filtry\n"
+"                 E - Vše vyčistit nebo nastavit na výchozi hodnoty\n"
+"\n"
 
 #: ../gramps/cli/argparser.py:95
 msgid ""
@@ -11458,9 +11469,8 @@ msgid "Background for Unmarried"
 msgstr "Pozadí pro svobodné"
 
 #: ../gramps/gui/configure.py:734
-#, fuzzy
 msgid "Background for Civil union"
-msgstr "Barva pozadí"
+msgstr "Barva pozadí pro Lidové milice"
 
 #: ../gramps/gui/configure.py:736
 msgid "Background for Unknown"
@@ -11497,24 +11507,20 @@ msgid "Warnings and Error dialogs"
 msgstr "Varování a chybové dialogy"
 
 #: ../gramps/gui/configure.py:800
-#, fuzzy
 msgid "Suppress warning when adding parents to a child"
-msgstr "Potlačit upozornění při přidávání rodičů k dítěti."
+msgstr "Potlačit upozornění při přidávání rodičů k dítěti"
 
 #: ../gramps/gui/configure.py:804
-#, fuzzy
 msgid "Suppress warning when canceling with changed data"
-msgstr "Potlačit upozornění při odvolání se změněnými daty."
+msgstr "Potlačit upozornění při odvolání se změněnými daty"
 
 #: ../gramps/gui/configure.py:808
-#, fuzzy
 msgid "Suppress warning about missing researcher when exporting to GEDCOM"
-msgstr "Potlačit hlášení o chybějícím badateli při exportu do GEDCOM."
+msgstr "Potlačit hlášení o chybějícím badateli při exportu do GEDCOM"
 
 #: ../gramps/gui/configure.py:813
-#, fuzzy
 msgid "Show plugin status dialog on plugin load error"
-msgstr "Při chybě v nahrávání zásuvného modulu zobrazit stavový dialog."
+msgstr "Při chybě v nahrávání zásuvného modulu zobrazit stavový dialog"
 
 #: ../gramps/gui/configure.py:816
 msgid "Warnings"
@@ -11986,6 +11992,7 @@ msgstr "Zálohovat při ukončení"
 #: ../gramps/gui/configure.py:1781
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr ""
+"Zálohovat váš rodokmen při ukončení programu do adresáře zadaného výše."
 
 #: ../gramps/gui/configure.py:1787
 msgid "Every 15 minutes"
@@ -23985,12 +23992,10 @@ msgstr ""
 "není pohlaví osoby známo, bude zobrazena šedě."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:159
-#, fuzzy
 msgid "Rounded corners"
-msgstr "Použít zaoblené rohy"
+msgstr "Zaoblené rohy"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:162
-#, fuzzy
 msgid "Use rounded corners e.g. to differentiate between women and men."
 msgstr "Použít zaoblené rohy pro odlišení mužů a žen."
 
@@ -24312,9 +24317,8 @@ msgid "Use hexagons"
 msgstr "Použít šestiúhelníky"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:834
-#, fuzzy
 msgid "Use hexagons to differentiate those of unknown gender."
-msgstr "Použít zaoblené rohy pro odlišení mužů a žen."
+msgstr "Použít šestiúhelníky pro odlišení jedinců neznámého pohlaví."
 
 #. ###############################
 #: ../gramps/plugins/graph/gvrelgraph.py:862
@@ -30000,7 +30004,7 @@ msgstr "Svatba"
 
 #: ../gramps/plugins/lib/libprogen.py:1829
 msgid "future"
-msgstr ""
+msgstr "budoucí"
 
 #. We have seen some case insensitivity in DEF files ...
 #. F13: Father
@@ -30308,12 +30312,17 @@ msgid ""
 "In the following table you may have :\n"
 " - a green row related to a selected place."
 msgstr ""
+"\n"
+"V následující tabulce můžete najít:\n"
+" - zelený řádek související se zvoleným místem."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:128
 msgid ""
 "\n"
 " - a red row related to a geocoding result."
 msgstr ""
+"\n"
+" - červený řádek související s výsledkem geokódování."
 
 #: ../gramps/plugins/lib/maps/placeselection.py:165
 msgid "The green values in the row correspond to the current place values."
@@ -36868,15 +36877,15 @@ msgstr "Zda zobrazit potomky seřazené podle narození nebo pořadí záznamů?
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1784
 msgid "Do we display coordinates in the places list?"
-msgstr ""
+msgstr "Budou v seznamu míst zobrazeny souřadnice?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1786
 msgid "Whether to display latitude/longitude in the places list?"
-msgstr ""
+msgstr "Zda zobrazit zeměpisnou šířku/délku v seznamu míst?"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1790
 msgid "Sort places references either by date or by name"
-msgstr ""
+msgstr "Třídit odkazy na místa podle data nebo jména"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1792
 msgid "Sort the places references by date or by name. Not set means by date."
