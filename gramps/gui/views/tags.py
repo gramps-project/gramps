@@ -241,7 +241,7 @@ class Tags(DbGUIElement):
         tag_menu = ''
         menuitem = '''
         <item>
-          <attribute name="action">win.TAG_%s</attribute>
+          <attribute name="action">win.TAG-%s</attribute>
           <attribute name="label">%s</attribute>
         </item>'''
 

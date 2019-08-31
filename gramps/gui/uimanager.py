@@ -364,6 +364,8 @@ class UIManager():
             else:
                 window_group = group.act_group = self.app.window
             for item in group.actionlist:
+                if not Gio.action_name_is_valid(item[ACTION_NAME]):
+                    LOG.warning('**Invalid action name %s', item[ACTION_NAME])
                 # deal with accelerator overrides from a file
                 accel = self.accel_dict.get(group.prefix + item[ACTION_NAME])
                 if accel:
@@ -526,3 +528,17 @@ class UIManager():
         with open(filename, 'r') as hndl:
             accels = hndl.read()
             self.accel_dict = ast.literal_eval(accels)
+
+
+INVALID_CHARS = [' ', '_', '(', ')', ',', "'"]
+
+
+def valid_action_name(text):
+    """ This function cleans up action names to avoid some illegal
+    characters.  It does NOT clean up non-ASCII characters.
+    This is used for plugin IDs to clean them up.  It would be better if we
+    made all plugin ids:
+    ASCII Alphanumeric and the '.' or '-' characters."""
+    for char in INVALID_CHARS:
+        text = text.replace(char, '-')
+    return text
