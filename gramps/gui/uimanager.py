@@ -213,8 +213,17 @@ class UIManager():
         # need to copy the tree so we can preserve original for later edits.
         editable = copy.deepcopy(self.et_xml)
         iterator(editable)  # clean up tree to builder specifications
-        xml_str = ET.tostring(editable, encoding="unicode")
-        #print(xml_str)
+        # The following should work, but seems to have a Gtk bug
+        # xml_str = ET.tostring(editable, encoding="unicode")
+
+        xml_str = ET.tostring(editable).decode(encoding='ascii')
+
+        # debugging
+        # with open('try.xml', 'w', encoding='utf8') as file:
+        #     file.write(xml_str)
+        # with open('try.xml', encoding='utf8') as file:
+        #     xml_str = file.read()
+        # print(xml_str)
         self.builder = Gtk.Builder()
         self.builder.set_translation_domain(glocale.get_localedomain())
         self.builder.add_from_string(xml_str)

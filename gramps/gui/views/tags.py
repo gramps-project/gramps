@@ -246,8 +246,8 @@ class Tags(DbGUIElement):
         </item>'''
 
         for tag_name, handle in self.__tag_list:
-            tag_menu += menuitem % (handle, tag_name)
-            actions.append(('TAG_%s' % handle,
+            tag_menu += menuitem % (handle, escape(tag_name))
+            actions.append(('TAG-%s' % handle,
                             make_callback(self.tag_selected_rows, handle)))
         tag_menu = TAG_MENU % tag_menu
 
