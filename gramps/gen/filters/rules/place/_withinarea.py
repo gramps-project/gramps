@@ -40,6 +40,7 @@ import re
 from ....const import GRAMPS_LOCALE as glocale
 from .. import Rule
 from ....utils.place import conv_lat_lon
+from gramps.gen.errors import FilterError
 
 _ = glocale.translation.sgettext
 
@@ -78,6 +79,12 @@ class WithinArea(Rule):
             self.latitude, self.longitude = conv_lat_lon(latitude,
                                                          longitude,
                                                          "D.D8")
+            if self.latitude is None or self.longitude is None:
+                raise FilterError(_("Cannot use the filter 'within area'"),
+                    _("The place you selected contains bad coordinates. "
+                      "Please, run the tool 'clean input data'"))
+                return
+
             val = self.list[1]
             if isinstance(val, str):
                val = re.sub("\D", "", val) # suppress all alpha characters
@@ -107,6 +114,8 @@ class WithinArea(Rule):
             lon = place.get_longitude()
         if lat and lon:
             latit, longit = conv_lat_lon(lat, lon, "D.D8")
+            if latit is None or longit is None:
+                return False
             if (hypot(float(self.latitude)-float(latit),
                       float(self.longitude)-float(longit))
                     <= self.radius):
