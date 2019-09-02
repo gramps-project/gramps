@@ -736,20 +736,28 @@ class RelationshipView(NavigationView):
         # Birth event.
         birth = get_birth_or_fallback(self.dbstate.db, person)
         if birth:
-            birth_title = birth.get_type()
+            if birth.get_type() == EventType.BAPTISM:
+                birth_title = self.bptsm
+            else:
+                birth_title = self.bth
         else:
-            birth_title = _("Birth")
+            birth_title = self.bth
 
-        subgrid.attach(widgets.BasicLabel(_("%s:") % birth_title), 1, 1, 1, 1)
+        subgrid.attach(widgets.BasicLabel(_("%s") % birth_title), 1, 1, 1, 1)
         birthwidget = widgets.BasicLabel(self.format_event(birth))
         birthwidget.set_selectable(True)
         subgrid.attach(birthwidget, 2, 1, 1, 1)
 
         death = get_death_or_fallback(self.dbstate.db, person)
         if death:
-            death_title = death.get_type()
+            if death.get_type() == EventType.BURIAL:
+                death_title = self.burial
+            elif death.get_type() == EventType.CREMATION:
+                death_title = self.cremation
+            else:
+                death_title = self.dth
         else:
-            death_title = _("Death")
+            death_title = self.dth
 
         showed_death = False
         if birth:
@@ -761,7 +769,7 @@ class RelationshipView(NavigationView):
                         age = (death_date - birth_date).format(
                             precision=self.age_precision)
                         subgrid.attach(widgets.BasicLabel(
-                            _("%s:") % death_title), 1, 2, 1, 1)
+                            _("%s") % death_title), 1, 2, 1, 1)
                         deathwidget = widgets.BasicLabel(
                             "%s (%s)" % (self.format_event(death), age),
                             Pango.EllipsizeMode.END)
@@ -778,14 +786,14 @@ class RelationshipView(NavigationView):
                             "(%s)" % age, Pango.EllipsizeMode.END), 2, 2, 1, 1)
                     else:
                         subgrid.attach(widgets.BasicLabel(
-                            _("%s:") % _("Death")), 1, 2, 1, 1)
+                            _("%s") % self.dth), 1, 2, 1, 1)
                         subgrid.attach(widgets.BasicLabel(
                             "%s (%s)" % (_("unknown"), age),
                             Pango.EllipsizeMode.END), 2, 2, 1, 1)
                     showed_death = True
 
         if not showed_death:
-            subgrid.attach(widgets.BasicLabel(_("%s:") % death_title),
+            subgrid.attach(widgets.BasicLabel(_("%s") % death_title),
                           1, 2, 1, 1)
             deathwidget = widgets.BasicLabel(self.format_event(death))
             deathwidget.set_selectable(True)
