@@ -115,6 +115,11 @@ The following packages are optional:
  ArchLinux           : geocode-glib
  ...
 
+* **fontconfig**
+
+ Python bindings of fontconfig are required for displaying
+ genealogical symbols
+
 Optional packages required by Third-party Addons
 ------------------------------------------------
 
