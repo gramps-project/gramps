@@ -732,7 +732,8 @@ class ListView(NavigationView):
                                           [self.drag_list_info().target()],
                                           Gdk.DragAction.COPY)
 
-        self.uistate.modify_statusbar(self.dbstate)
+        if self.uistate.viewmanager.active_page == self:
+            self.uistate.modify_statusbar(self.dbstate)
 
     def row_add(self, handle_list):
         """
