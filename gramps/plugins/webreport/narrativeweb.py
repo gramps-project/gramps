@@ -80,7 +80,6 @@ from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
 from gramps.plugins.lib.libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 from gramps.gen.relationship import get_relationship_calculator
-from gramps.gen.filters import reload_custom_filters
 
 #------------------------------------------------
 # specific narrative web import
@@ -2180,7 +2179,6 @@ class NavWebOptions(MenuReportOptions):
         Update the filter list based on the selected person
         """
         gid = self.__pid.get_value()
-        reload_custom_filters()
         person = self.__db.get_person_from_gramps_id(gid)
         filter_list = utils.get_person_filters(person, include_single=False)
         self.__filter.set_filters(filter_list)
