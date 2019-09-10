@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-10 17:16+0100\n"
-"PO-Revision-Date: 2019-08-25 11:46+0200\n"
+"PO-Revision-Date: 2019-09-10 19:50+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -6297,13 +6297,15 @@ msgstr "Liefer Orte innerhalb einer bestimmten Distanz zu einem anderen Ort"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:83
 msgid "Cannot use the filter 'within area'"
-msgstr ""
+msgstr "Kann den Filter 'innerhalb eines Bereichs' nicht verwenden"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:84
 msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
+"Der Ort, den du gewählt hast, enthält ungültige Koordinaten, verwende das"
+" Werkzeug 'Eingabedaten säubern'"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
@@ -36732,9 +36734,9 @@ msgstr "Bearbeitet die aktive Person"
 
 #: ../gramps/plugins/view/relview.py:746 ../gramps/plugins/view/relview.py:772
 #: ../gramps/plugins/view/relview.py:789 ../gramps/plugins/view/relview.py:796
-#, fuzzy, python-format
+#, python-format
 msgid "%s"
-msgstr "%s:"
+msgstr "%s"
 
 #: ../gramps/plugins/view/relview.py:784
 msgid "Alive"
@@ -36817,19 +36819,19 @@ msgid "Relationship type: %s"
 msgstr "Beziehungsart: %s"
 
 #: ../gramps/plugins/view/relview.py:1520
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s in %(place)s"
-msgstr "%(event_type)s: %(date)s, in %(place)s"
+msgstr "%(event_type)s %(date)s in %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1524
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s"
-msgstr "%(event_type)s: %(date)s"
+msgstr "%(event_type)s %(date)s"
 
 #: ../gramps/plugins/view/relview.py:1528
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(place)s"
-msgstr "%(event_type)s: %(place)s"
+msgstr "%(event_type)s %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1539
 msgid "Broken family detected"
