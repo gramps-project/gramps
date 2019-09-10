@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-10 17:16+0100\n"
-"PO-Revision-Date: 2019-08-22 12:02+0200\n"
+"PO-Revision-Date: 2019-09-10 20:12+0200\n"
 "Last-Translator: Pär Ekholm <pehlm@pekholm.se>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -6157,13 +6157,15 @@ msgstr "Matchar platser inom ett givet avstånd från en annan plats"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:83
 msgid "Cannot use the filter 'within area'"
-msgstr ""
+msgstr "Kan inte använda filtret 'inom området'"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:84
 msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
+"Platsen som valdes innehåller dåliga koordinater. Var vänlig kör verktyget "
+"'ren indata'"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
@@ -36277,9 +36279,9 @@ msgstr "Redigera den aktiva personen"
 
 #: ../gramps/plugins/view/relview.py:746 ../gramps/plugins/view/relview.py:772
 #: ../gramps/plugins/view/relview.py:789 ../gramps/plugins/view/relview.py:796
-#, fuzzy, python-format
+#, python-format
 msgid "%s"
-msgstr "%s:"
+msgstr "%s"
 
 #: ../gramps/plugins/view/relview.py:784
 msgid "Alive"
@@ -36362,19 +36364,19 @@ msgid "Relationship type: %s"
 msgstr "Typ av släktskap: %s"
 
 #: ../gramps/plugins/view/relview.py:1520
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s in %(place)s"
-msgstr "%(event_type)s: %(date)s i %(place)s"
+msgstr "%(event_type)s %(date)s i %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1524
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s"
-msgstr "%(event_type)s: %(date)s"
+msgstr "%(event_type)s %(date)s"
 
 #: ../gramps/plugins/view/relview.py:1528
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(place)s"
-msgstr "%(event_type)s: %(place)s"
+msgstr "%(event_type)s %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1539
 msgid "Broken family detected"
@@ -37119,13 +37121,15 @@ msgstr "Antal generationer som skall tas med i förfädersdiagrammet"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1803
 msgid "Include narrative notes just after name, gender"
-msgstr ""
+msgstr "Inkludera noteringar alldeles efter namn, kön"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1805
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
+"Inkludera noteringar alldeles efter namn, kön och ålder vid död (standard) "
+"eller inkludera dem innan attribut."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1814
 msgid "Page Generation"
