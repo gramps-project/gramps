@@ -6706,13 +6706,15 @@ msgstr "Correspond aux lieux à une certaine distance d'un autre lieu"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:83
 msgid "Cannot use the filter 'within area'"
-msgstr ""
+msgstr "Impossible d'utiliser le filtre 'lieux dans une aire'"
 
 #: ../gramps/gen/filters/rules/place/_withinarea.py:84
 msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
+"Le lieu sélectionné contient des coordonnées inexactes. Veuillez, utiliser "
+"l'outil de 'nettoyage des données saisies'"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
@@ -38949,9 +38951,8 @@ msgstr "Éditer l'individu actif"
 
 #: ../gramps/plugins/view/relview.py:746 ../gramps/plugins/view/relview.py:772
 #: ../gramps/plugins/view/relview.py:789 ../gramps/plugins/view/relview.py:796
-#, fuzzy, python-format
 msgid "%s"
-msgstr "%s :"
+msgstr "%s"
 
 #: ../gramps/plugins/view/relview.py:784
 msgid "Alive"
@@ -39852,13 +39853,15 @@ msgstr "Le nombre de générations à inclure dans l'arbre des ascendants"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1803
 msgid "Include narrative notes just after name, gender"
-msgstr ""
+msgstr "Inclure les notes narratives tout de suite après nom, genre"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1805
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
+"Inclure les notes narratives après nom, genre et âge au décès (défaut) "
+"ou les inclure tout de suite après les attributs."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1814
 msgid "Page Generation"
