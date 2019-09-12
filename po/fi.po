@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-10 17:16+0100\n"
-"PO-Revision-Date: 2019-09-12 07:51+0300\n"
+"PO-Revision-Date: 2019-09-12 21:14+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -6238,7 +6238,7 @@ msgid ""
 "input data'"
 msgstr ""
 "Valitsemasi paikka sisältää virheellisiä koordinaatteja. Suorita työkalu "
-"'clean input data'"
+"\"Puhdista tuontitiedot\""
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
@@ -9226,7 +9226,6 @@ msgstr "gramplet"
 msgid "Sidebar"
 msgstr "Sivupalkki"
 
-# 15052019
 #: ../gramps/gen/plug/_pluginreg.py:92
 msgid "Rule"
 msgstr "Sääntö"
@@ -10406,32 +10405,26 @@ msgstr "ent. vaimo"
 msgid "gender unknown|ex-spouse"
 msgstr "ent. puoliso"
 
-# 20190612
 #: ../gramps/gen/relationship.py:2184
 msgid "male,unmarried|partner"
 msgstr "avomies"
 
-# 20190612
 #: ../gramps/gen/relationship.py:2186
 msgid "female,unmarried|partner"
 msgstr "avovaimo"
 
-# 20190612
 #: ../gramps/gen/relationship.py:2188
 msgid "gender unknown,unmarried|partner"
 msgstr "avopuoliso"
 
-# 20190612
 #: ../gramps/gen/relationship.py:2191
 msgid "male,unmarried|ex-partner"
 msgstr "ent. avomies"
 
-# 20190612
 #: ../gramps/gen/relationship.py:2193
 msgid "female,unmarried|ex-partner"
 msgstr "ent. avovaimo"
 
-# 20190612
 #: ../gramps/gen/relationship.py:2195
 msgid "gender unknown,unmarried|ex-partner"
 msgstr "ent. avopuoliso"
@@ -11604,12 +11597,10 @@ msgstr "%s: "
 msgid "_Help"
 msgstr "_Ohjeet"
 
-# 15052019
 #: ../gramps/gui/configure.py:597
 msgid "Researcher information"
 msgstr "Tutkijan tiedot"
 
-# 15052019
 #: ../gramps/gui/configure.py:602
 msgid ""
 "Enter information about yourself so people can contact you when you "
@@ -11637,7 +11628,6 @@ msgstr "Sähköposti"
 msgid "Researcher"
 msgstr "Tutkija"
 
-# 15052019
 #: ../gramps/gui/configure.py:638
 msgid "Gramps ID format settings"
 msgstr "Gramps ID -muodon asetukset"
@@ -11651,7 +11641,6 @@ msgstr "Mediatiedosto"
 msgid "ID Formats"
 msgstr "ID muodot"
 
-# 15052019
 #: ../gramps/gui/configure.py:677
 msgid "Colors used for boxes in the graphical views"
 msgstr "Värit, joita käytetään graafisten näkymien laatikoissa"
@@ -11676,7 +11665,6 @@ msgstr "Palauta oletusasetukset"
 msgid "Restore colors for current theme to default."
 msgstr "Palauta nykyisen teeman värit oletusasetuksiksi."
 
-# 15052019
 #: ../gramps/gui/configure.py:701
 msgid "Colors for Male persons"
 msgstr "Mieshenkilöiden värit"
@@ -11685,83 +11673,67 @@ msgstr "Mieshenkilöiden värit"
 msgid "Colors for Female persons"
 msgstr "Naishenkilöiden värit"
 
-# 15052019
 #: ../gramps/gui/configure.py:703
 msgid "Colors for Unknown persons"
 msgstr "Värit määrittämättömille henkilöille"
 
-# 15052019
 #: ../gramps/gui/configure.py:704
 msgid "Colors for Family nodes"
 msgstr "Värit perhesoluille"
 
-# 15052019
 #: ../gramps/gui/configure.py:705
 msgid "Other colors"
 msgstr "Muut värit"
 
-# 15052019
 #: ../gramps/gui/configure.py:707
 msgid "Background for Alive"
 msgstr "Taustaväri elossaolevat"
 
-# 15052019
 #: ../gramps/gui/configure.py:708
 msgid "Background for Dead"
 msgstr "Taustaväri kuolleet"
 
-# 15052019
 #: ../gramps/gui/configure.py:709
 msgid "Border for Alive"
 msgstr "Reunaviiva elossaolevat"
 
-# 15052019
 #: ../gramps/gui/configure.py:710
 msgid "Border for Dead"
 msgstr "Reunaviiva kuolleet"
 
-# 15052019
 #. for family
 #: ../gramps/gui/configure.py:730
 msgid "Default background"
 msgstr "Oletus tausta"
 
-# 15052019
 #: ../gramps/gui/configure.py:731
 msgid "Background for Married"
 msgstr "Taustaväri aviossa"
 
-# 15052019
 #: ../gramps/gui/configure.py:732
 msgid "Background for Unmarried"
 msgstr "Taustaväri naimaton"
 
-# 15052019
 #: ../gramps/gui/configure.py:734
 msgid "Background for Civil union"
 msgstr "Taustaväri parisuhteessa"
 
-# 15052019
 #: ../gramps/gui/configure.py:736
 msgid "Background for Unknown"
 msgstr "Taustaväri parisuhde tuntematon"
 
-# 15052019
 #: ../gramps/gui/configure.py:737
 msgid "Background for Divorced"
 msgstr "Taustaväri eronneet"
 
-# 15052019
 #: ../gramps/gui/configure.py:738
 msgid "Default border"
 msgstr "Oletus reunaviiva"
 
-# 15052019
 #: ../gramps/gui/configure.py:739
 msgid "Border for Divorced"
 msgstr "Eronneiden reunaviiva"
 
-# 15052019
 #. for other
 #: ../gramps/gui/configure.py:742
 msgid "Background for Home Person"
@@ -11780,23 +11752,19 @@ msgstr "Värit"
 msgid "Warnings and Error dialogs"
 msgstr "Varoitukset ja virheikkunat"
 
-# 15052019
 #: ../gramps/gui/configure.py:800
 msgid "Suppress warning when adding parents to a child"
 msgstr "Älä näytä varoitusta lisättäessä vanhempia lapselle"
 
-# 15052019
 #: ../gramps/gui/configure.py:804
 msgid "Suppress warning when canceling with changed data"
 msgstr "Älä näytä varoitusta perumisesta kun tietoja on muutettu"
 
-# 15052019
 #: ../gramps/gui/configure.py:808
 msgid "Suppress warning about missing researcher when exporting to GEDCOM"
 msgstr ""
 "Älä näytä varoitusta puuttuvista tutkijan tiedoista GEDCOMiin vietäessä"
 
-# 15052019
 #: ../gramps/gui/configure.py:813
 msgid "Show plugin status dialog on plugin load error"
 msgstr "Näytä laajennusten tilaikkuna kun lataaminen epäonnistuu"
@@ -11876,10 +11844,9 @@ msgstr "_Muokkaa"
 msgid "_Remove"
 msgstr "_Poista"
 
-# 15052019
 #: ../gramps/gui/configure.py:1153
 msgid "Appearance and format settings"
-msgstr "Ulkoasu ja muotoasetukset"
+msgstr "Ulkoasu ja muotoiluasetukset"
 
 #: ../gramps/gui/configure.py:1198 ../gramps/gui/configure.py:1237
 #: ../gramps/gui/editors/displaytabs/buttontab.py:71
@@ -11899,12 +11866,10 @@ msgid "Consider single pa/matronymic as surname"
 msgstr ""
 "Harkitse sukunimeksi isäpuoleista patronyymiä tai äidinpuolesta matronyymiä"
 
-# 15052019
 #: ../gramps/gui/configure.py:1240
 msgid "Place format (auto place title)"
 msgstr "Paikkamuoto (automaattinen paikan nimi)"
 
-# 15052019
 #: ../gramps/gui/configure.py:1243
 msgid "Enables automatic place title generation using specifed format."
 msgstr ""
@@ -11962,7 +11927,6 @@ msgstr ""
 "Näytä teksti sivupalkin painikkeissa (tulee voimaan uudelleen "
 "käynnistettäessä)"
 
-# 15052019
 #: ../gramps/gui/configure.py:1342
 msgid ""
 "Show or hide text beside Navigator buttons (People, Families, Events...).\n"
@@ -11976,14 +11940,13 @@ msgstr ""
 msgid "Show close button in gramplet bar tabs"
 msgstr "Näytä suljepainike gramplet-palkin kielekkäänä"
 
-# 15052019
+# 20190911
 #: ../gramps/gui/configure.py:1351
 msgid "Show close button to simplify removing gramplets from bars."
 msgstr ""
-"Näytä sulkemispainike, jos haluat yksinkertaistaa gramplettien poistamista "
+"Näytä sulkemispainike, jos haluat helpottaa gramplettien poistamista "
 "palkista."
 
-# 15052019
 #: ../gramps/gui/configure.py:1370
 msgid "Default text used for conditions"
 msgstr "Oletuksena käytettävä teksti"
@@ -12140,7 +12103,6 @@ msgstr "Näytä hyödyllisiä tietoja Grampsin käytöstä käynnistyksen yhteyd
 msgid "Remember last view displayed"
 msgstr "Muista viimeisin näytetty näkymä"
 
-# 15052019
 #: ../gramps/gui/configure.py:1602
 msgid "Remember last view displayed and open it next time."
 msgstr "Muista viimeinen näkymä ja avaa se seuraavan kerran."
@@ -12153,10 +12115,10 @@ msgstr "Suurin sukupolvimäärä sukulaisuussuhteelle"
 msgid "Base path for relative media paths"
 msgstr "Peruspolku suhteellisille mediatiedostojen poluille"
 
-# 15052019
+# 20190911
 #: ../gramps/gui/configure.py:1617
 msgid "Third party addons management"
-msgstr "Kolmannen osapuolen laajennusten hallinta"
+msgstr "Kolmansien osapuolien laajennusten hallinta"
 
 #: ../gramps/gui/configure.py:1626
 msgid "Once a month"
@@ -12237,7 +12199,6 @@ msgstr "uusi"
 msgid "update"
 msgstr "päivitä"
 
-# 15052019
 #: ../gramps/gui/configure.py:1729
 msgid "Family tree database settings and Backup management"
 msgstr "Sukupuun tietokannan asetukset ja varmuuskopiointi"
@@ -12262,14 +12223,13 @@ msgstr "Sukukannan tietokantapolku"
 msgid "Automatically load last Family Tree"
 msgstr "Lataa automaattisesti viimeisin sukupuu"
 
-# 15052019
 #: ../gramps/gui/configure.py:1761
 msgid ""
 "Don't open dialog to choose family tree to load on startup, just load last "
 "used."
 msgstr ""
-"Älä avaa valintaikkunaa, kun haluat valita käynnistettävän sukupuun, vain "
-"viimeksi käytetty käytössä."
+"Älä avaa valintaikkunaa valitaksesi sukupuun ladattavaksi käynnistyksen "
+"yhteydessä, lataa vain viimeksi käytetty."
 
 #: ../gramps/gui/configure.py:1766
 msgid "Backup path"
@@ -12279,7 +12239,6 @@ msgstr "Varmuuskopion polku"
 msgid "Backup on exit"
 msgstr "Varmuuskopio poistuttaessa"
 
-# 15052019
 #: ../gramps/gui/configure.py:1773
 msgid "Backup Your family tree on exit to Backup path specified above."
 msgstr ""
@@ -12389,22 +12348,20 @@ msgstr ""
 "Jos valitset \"Käytä symboleja\" valintaruudun, Gramps käyttää valittua "
 "kirjasinta, jos se on olemassa."
 
-# 15052019
+# 20190911
 #: ../gramps/gui/configure.py:1952
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
 "pronounce a name or if you mix multiple languages like greek and russian."
 msgstr ""
-"Tämä voi olla hyödyllistä, jos haluat lisätä foneettisen muistiinpanon, "
-"jossa näytetään, miten nimi lausutaan tai jos sekoitat useita kieliä, kuten "
+"Tästä voi olla hyötyä, jos haluat lisätä foneettisia muistiinpanoja "
+"osoittamaan kuinka nimi äännetään tai jos sekoitat useita kieliä, kuten "
 "kreikkaa ja venäjää."
 
-# 15052019
 #: ../gramps/gui/configure.py:1959
 msgid "Use symbols"
 msgstr "Käytä symboleja"
 
-# 15052019
 #: ../gramps/gui/configure.py:1964
 msgid ""
 "Be careful, if you click on the \"Try to find\" button, it can take a while "
@@ -12415,7 +12372,6 @@ msgstr ""
 "jonkin aikaa, ennen kuin voit jatkaa (10 minuuttia tai enemmän).\n"
 "Jos peruutat prosessin, mitään ei muuteta."
 
-# 15052019
 #: ../gramps/gui/configure.py:1974
 msgid ""
 "You have already run the tool to search for genealogy fonts.\n"
@@ -12429,27 +12385,22 @@ msgstr ""
 msgid "Try to find"
 msgstr "Yritä löytää"
 
-# 15052019
 #: ../gramps/gui/configure.py:1990 ../gramps/gui/configure.py:2091
 msgid "Choose font"
 msgstr "Valitse kirjasintyyppi"
 
-# 15052019
 #: ../gramps/gui/configure.py:2003 ../gramps/gui/configure.py:2108
 msgid "Select default death symbol"
 msgstr "Aseta oletus symboli kuolemalle"
 
-# 15052019
 #: ../gramps/gui/configure.py:2012
 msgid "Genealogical Symbols"
 msgstr "Sukututkimuksen symbolit"
 
-# 15052019
 #: ../gramps/gui/configure.py:2021
 msgid "Cannot look for genealogical fonts"
 msgstr "Genealogisia kirjasimia ei voi näyttää"
 
-# 15052019
 #: ../gramps/gui/configure.py:2022
 msgid ""
 "I am not able to select genealogical fonts. Please, install the module "
@@ -12458,17 +12409,14 @@ msgstr ""
 "Genealogisia kirjasimia ei voi valita. Asenna moduuli fontconfig python 3:"
 "lle."
 
-# 15052019
 #: ../gramps/gui/configure.py:2039
 msgid "Checking available genealogical fonts"
 msgstr "Käytettävissä olevien genealogisten kirjasimien tarkistaminen"
 
-# 15052019
 #: ../gramps/gui/configure.py:2043
 msgid "Looking for all fonts with genealogical symbols."
 msgstr "Etsi kaikki kirjasimet, joissa on sukututkimussymboleja."
 
-# 15052019
 #: ../gramps/gui/configure.py:2116
 msgid ""
 "You have no font with genealogical symbols on your system. Gramps will not "
@@ -12477,7 +12425,6 @@ msgstr ""
 "Sinulla ei ole kirjasinta, jossa on sukututkimussymboleja. Gramps ei voi "
 "käyttää symboleja."
 
-# 15052019
 #: ../gramps/gui/configure.py:2154
 msgid "What you will see"
 msgstr "Mitä haluat nähdä"
@@ -13235,12 +13182,10 @@ msgstr "Siirrä ylös"
 msgid "Move Down"
 msgstr "Siirrä alas"
 
-# 15052019
 #: ../gramps/gui/editors/displaytabs/buttontab.py:76
 msgid "Move Left"
 msgstr "Siirrä vasemmalle"
 
-# 15052019
 #: ../gramps/gui/editors/displaytabs/buttontab.py:77
 msgid "Move right"
 msgstr "Siirrä oikealle"
@@ -19603,12 +19548,10 @@ msgstr "Tuonti tilastot"
 msgid "Read Only"
 msgstr "Kirjoitussuojattu"
 
-# 15052019
 #: ../gramps/gui/viewmanager.py:1023
 msgid "Gramps had a problem the last time it was run."
-msgstr "Grampsissa oli ongelma viimeksi, kun sitä ajettiin."
+msgstr "Grampsissa oli ongelma viimeksi käytettäessä."
 
-# 15052019
 #: ../gramps/gui/viewmanager.py:1024
 msgid "Would you like to run the Check and Repair tool?"
 msgstr "Haluatko suorittaa Tarkista ja korjaa työkalun?"
@@ -19857,7 +19800,6 @@ msgstr "Kirjanmerkin asetus epäonnistui, koska mitään ei ollut valittuna."
 msgid "No Home Person"
 msgstr "Kotihenkilöä ei ole asetettu"
 
-# 20190612
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
 "You need to set a 'default person' to go to. Select the People View, select "
@@ -20071,7 +20013,6 @@ msgstr "Lisää henkilö"
 msgid "Add Child to Family"
 msgstr "Lisää perheeseen lapsi"
 
-# 15052019
 #: ../gramps/gui/widgets/grampletbar.py:118
 msgid "Gramplet Bar Menu"
 msgstr "Gramplet-palkkivalikko"
@@ -24650,12 +24591,10 @@ msgstr "Käytä pyöristettyjä kulmia erilaistamaan naiset miehistä."
 msgid "Graph Style"
 msgstr "Kaaviotyyli"
 
-# 15052019
 #: ../gramps/plugins/graph/gvhourglass.py:436
 msgid "Force Ahnentafel order"
-msgstr "Pakota Ahnentafelin järjestys"
+msgstr "Pakota Ahnentafel järjestys"
 
-# 15052019
 #: ../gramps/plugins/graph/gvhourglass.py:438
 msgid ""
 "Force Sosa / Sosa-Stradonitz / Ahnentafel layout order for all ancestors, so "
@@ -24665,12 +24604,11 @@ msgstr ""
 "Force Sosa / Sosa-Stradonitz / Ahnentafel -järjestys kaikille esi-isille, "
 "jotta isät ovat aina vasemmalla puolella ja äidit ovat oikeassa haarassa."
 
-# 15052019
 #: ../gramps/plugins/graph/gvhourglass.py:441
 msgid "Ahnentafel number visible"
-msgstr "Ahnentafelin numero näkyvä"
+msgstr "Ahnentafel numero näkyvä"
 
-# 15052019
+# 20190911
 #: ../gramps/plugins/graph/gvhourglass.py:443
 msgid ""
 "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
@@ -25002,122 +24940,98 @@ msgstr "kuolinsyy"
 msgid "person"
 msgstr "henkilö"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:210
 msgid "Occupation description"
 msgstr "Ammatin kuvaus"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:210
 msgid "occupationdescr"
-msgstr "ammattikuvaus"
+msgstr "ammatin kuvaus"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:211
 msgid "Occupation date"
-msgstr "Ammatin päiväys"
+msgstr "Ammattipäivämäärä"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:211
 msgid "occupationdate"
 msgstr "ammattipäiväys"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:212
 msgid "Occupation place"
-msgstr "Ammatin paikka"
+msgstr "Ammattipaikka"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:212
 msgid "occupationplace"
 msgstr "ammattipaikka"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:213
 msgid "Occupation place id"
-msgstr "Ammatin paikan ID"
+msgstr "Ammattipaikan ID"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:213
 msgid "occupationplace_id"
 msgstr "ammattipaikka_ID"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:214
 msgid "Occupation source"
 msgstr "Ammatin lähde"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:214
 msgid "occupationsource"
-msgstr "ammatinlähde"
+msgstr "ammatin lähde"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:216
 msgid "residence date"
 msgstr "Asuinpaikan päiväys"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:216
 msgid "residencedate"
 msgstr "asuinpaikkapäiväys"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:217
 msgid "residence place"
 msgstr "Asuinpaikka"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:217
 msgid "residenceplace"
 msgstr "asuinpaikka"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:218
 msgid "residence place id"
 msgstr "Asuinpaikan ID"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:218
 msgid "residenceplace_id"
 msgstr "asuinpaikka_ID"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:219
 msgid "residence source"
 msgstr "Asuinpaikan lähde"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:219
 msgid "residencesource"
-msgstr "asuinpaikkalähde"
+msgstr "asuinpaikan lähde"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:221
 msgid "attribute type"
-msgstr "Ominaisuuden tyyppi"
+msgstr "ominaisuuden tyyppi"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:221
 msgid "attributetype"
 msgstr "ominaisuustyyppi"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:222
 msgid "attribute value"
-msgstr "Ominaisuuden arvo"
+msgstr "ominaisuuden arvo"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:222
 msgid "attributevalue"
 msgstr "ominaisuustyyppi"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:223
 msgid "attribute source"
-msgstr "Ominaisuuden lähde"
+msgstr "ominaisuuden lähde"
 
-# 15052019
 #: ../gramps/plugins/importer/importcsv.py:223
 msgid "attributesource"
 msgstr "ominaisuuslähde"
@@ -34602,7 +34516,6 @@ msgstr "Heidän yhteiset esivanhempansa ovat: "
 msgid "manual|Remove_leading_and_trailing_spaces"
 msgstr "Poista_edessä_ja_perässä_olevat_välilyönnit"
 
-# 15052019
 #: ../gramps/plugins/tool/removespaces.py:87
 #: ../gramps/plugins/tool/tools.gpr.py:489
 msgid "Clean input data"
@@ -35140,8 +35053,8 @@ msgid ""
 "Searches the entire database, looking for trailing or leading spaces for "
 "places and people. Search comma in coordinates fields in places."
 msgstr ""
-"Etsii koko tietokannasta, etsii paikat ja henkilöt. Etsii pilkku "
-"koordinaatit paikkojen kentissä."
+"Etsii koko tietokannan paikka- ja henkilökenttien alussa ja lopussa olevat "
+"välilyönnit. Etsii pilkut paikkojen koordinaateista."
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:64
 msgid "Dump Gender Statistics"
@@ -35948,7 +35861,6 @@ msgstr "keskenjäänyt tai viittaamatta oleva tapahtuma ?"
 msgid "Selecting all events"
 msgstr "Valitaan kaikki tapahtumat"
 
-# 15052019
 #: ../gramps/plugins/view/geoevents.py:368
 msgid ""
 "Right click on the map and select 'show all events' to show all known events "
@@ -37317,12 +37229,10 @@ msgstr "Lisää kaavio esivanhemmista"
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Lisätäänkö kaavio esivanhemmista jokaiselle henkilösivulle"
 
-# 15052019
 #: ../gramps/plugins/webreport/narrativeweb.py:1731
 msgid "Add previous/next"
 msgstr "Lisää edellinen/seuraava"
 
-# 15052019
 #: ../gramps/plugins/webreport/narrativeweb.py:1732
 msgid "Add previous/next to the navigation bar."
 msgstr "Lisää edellinen/seuraava navigointipalkkiin."
@@ -37371,12 +37281,10 @@ msgstr "Näytetäänkö koordinaatit paikkaluettelossa?"
 msgid "Whether to display latitude/longitude in the places list?"
 msgstr "Näytetäänkö leveysaste/pituusaste paikkaluettelossa?"
 
-# 15052019
 #: ../gramps/plugins/webreport/narrativeweb.py:1790
 msgid "Sort places references either by date or by name"
 msgstr "Lajittele viittaukset joko päivämäärän tai nimen mukaan"
 
-# 15052019
 #: ../gramps/plugins/webreport/narrativeweb.py:1792
 msgid "Sort the places references by date or by name. Not set means by date."
 msgstr ""
@@ -38290,12 +38198,10 @@ msgstr "Ota kalenteriin mukaan syntymäpäivät"
 msgid "Include anniversaries in the calendar"
 msgstr "Ota kalenteriin mukaan vuosipäivät"
 
-# 15052019
 #: ../gramps/plugins/webreport/webcal.py:1890
 msgid "Include death dates"
 msgstr "Sisällytä kuolinpäivä"
 
-# 15052019
 #: ../gramps/plugins/webreport/webcal.py:1891
 msgid "Include death anniversaries in the calendar"
 msgstr "Sisällytä kuolinpäivät kalenteriin"
@@ -38308,12 +38214,12 @@ msgstr "Linkki Kertova-nettisivusto raporttiin"
 msgid "Whether to link data to web report or not"
 msgstr "Linkittäänkö tiedot Kertova-nettisivusto raporttiin vai ei"
 
-# 15052019
+# 20190911
 #: ../gramps/plugins/webreport/webcal.py:1901
 msgid "Show data only after year"
 msgstr "Näytä vasta vuoden jälkeiset tapahtumat"
 
-# 15052019
+# 20190911
 #: ../gramps/plugins/webreport/webcal.py:1904
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
@@ -38336,13 +38242,11 @@ msgstr "Etuliite linkeissä joilla siirryt Kertova-nettisivusto raporttiin"
 msgid "%s old"
 msgstr "%s vanha"
 
-# 15052019
 #: ../gramps/plugins/webreport/webcal.py:2102
 #, python-format
 msgid "%s since death"
 msgstr "%s kuoleman jälkeen"
 
-# 15052019
 #: ../gramps/plugins/webreport/webcal.py:2103
 msgid "death"
 msgstr "kuolema"
