@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-10 17:16+0100\n"
-"PO-Revision-Date: 2019-08-13 20:19+0300\n"
+"PO-Revision-Date: 2019-09-12 07:51+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -2201,7 +2201,7 @@ msgstr "{long_month} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:189
-#, fuzzy, python-brace-format
+#, python-format
 msgid "from|{long_month} {year}"
 msgstr "{long_month.f[E]} {year}"
 
@@ -2213,7 +2213,7 @@ msgstr "{long_month.f[E]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:197
-#, fuzzy, python-brace-format
+#, python-format
 msgid "to|{long_month} {year}"
 msgstr "{long_month.f[IL]} {year}"
 
@@ -2225,7 +2225,7 @@ msgstr "{long_month.f[IL]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:205
-#, fuzzy, python-brace-format
+#, python-format
 msgid "between|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -2237,7 +2237,7 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:213
-#, fuzzy, python-brace-format
+#, python-format
 msgid "and|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -2248,7 +2248,7 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:220
-#, fuzzy, python-brace-format
+#, python-format
 msgid "before|{long_month} {year}"
 msgstr "{long_month.f[P]} {year}"
 
@@ -2259,7 +2259,7 @@ msgstr "{long_month.f[P]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:227
-#, fuzzy, python-brace-format
+#, python-format
 msgid "after|{long_month} {year}"
 msgstr "{long_month.f[G]} {year}"
 
@@ -2270,7 +2270,7 @@ msgstr "{long_month.f[G]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:234
-#, fuzzy, python-brace-format
+#, python-format
 msgid "about|{long_month} {year}"
 msgstr "{long_month.f[IN]} {year}"
 
@@ -2281,7 +2281,7 @@ msgstr "{long_month.f[IN]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:241
-#, fuzzy, python-brace-format
+#, python-format
 msgid "estimated|{long_month} {year}"
 msgstr "{long_month.f[IN]} {year}"
 
@@ -2292,7 +2292,7 @@ msgstr "{long_month.f[IN]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:248
-#, fuzzy, python-brace-format
+#, python-format
 msgid "calculated|{long_month} {year}"
 msgstr "{long_month.f[IN]} {year}"
 
@@ -6226,15 +6226,19 @@ msgstr "Paikat alueella"
 msgid "Matches places within a given distance of another place"
 msgstr "Poimii paikat tietyllä etäisyydellä toiseen paikkaan"
 
+# 20190911
 #: ../gramps/gen/filters/rules/place/_withinarea.py:83
 msgid "Cannot use the filter 'within area'"
-msgstr ""
+msgstr "Suodatinta ei voi käyttää alueella"
 
+# 20190911
 #: ../gramps/gen/filters/rules/place/_withinarea.py:84
 msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
 "input data'"
 msgstr ""
+"Valitsemasi paikka sisältää virheellisiä koordinaatteja. Suorita työkalu "
+"'clean input data'"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
@@ -11087,144 +11091,163 @@ msgstr "Nainen"
 msgid "Male"
 msgstr "Mies"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:63
 msgid "Asexuality, sexless, genderless"
-msgstr ""
+msgstr "Aseksuaalisuus, seksitön, sukupuoleton"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:64
 msgid "Lesbianism"
-msgstr ""
+msgstr "Lespolaisuus"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:65
 msgid "Male homosexuality"
-msgstr ""
+msgstr "Mies homoseksualisuus"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:66
 msgid "Heterosexuality"
-msgstr ""
+msgstr "Heteroseksuaalisuus"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:67
 msgid "Transgender, hermaphrodite (in entomology)"
-msgstr ""
+msgstr "Transsukupuoliset, hermafrodiitti (entomologiassa)"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:68
-#, fuzzy
 msgid "Transgender"
-msgstr "sukupuoli"
+msgstr "Transsukupuolinen"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:69
 msgid "Neuter"
-msgstr ""
+msgstr "Steriloitu"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:71
-#, fuzzy
 msgid "Illegitimate"
-msgstr "arvioitu"
+msgstr "Avioton"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:73
-#, fuzzy
 msgid "Baptism/Christening"
-msgstr "Ristiäiset"
+msgstr "Kaste/ristiäiset"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:74
-#, fuzzy
 msgid "Engaged"
-msgstr "Kihlaus"
+msgstr "Kihloissa"
 
-# 20190612
+# 20190911
 #: ../gramps/gen/utils/symbols.py:77
-#, fuzzy
 msgid "Unmarried partnership"
-msgstr "avomies"
+msgstr "Naimaton parisuhde (Avoliitto)"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:78
-#, fuzzy
 msgid "Buried"
-msgstr "Hautaus"
+msgstr "Haudattu"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:79
 msgid "Cremated/Funeral urn"
-msgstr ""
+msgstr "Tuhkattu/tuhkauurna"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:80
-#, fuzzy
 msgid "Killed in action"
-msgstr "Kokoelma"
+msgstr "Kaatui taistelussa"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:81
 msgid "Extinct"
-msgstr ""
+msgstr "Kadonnut"
 
+# 20190911
 #. The following is used in the global preferences in the display tab.
 #. Name
 #. UNICODE    SUBSTITUTION
 #: ../gramps/gen/utils/symbols.py:106
-#, fuzzy
 msgid "Nothing"
-msgstr "sisällä"
+msgstr "Ei mitään"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:108
 msgid "Skull and crossbones"
-msgstr ""
+msgstr "Kallo ja sääriluut"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:109
 msgid "Ankh"
-msgstr ""
+msgstr "Ankh"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:110
 msgid "Orthodox cross"
-msgstr ""
+msgstr "Ortodoksinen risti"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:111
 msgid "Chi rho"
-msgstr ""
+msgstr "Khii Rhoo"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:112
 msgid "Cross of Lorraine"
-msgstr ""
+msgstr "Lorrainen risti"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:113
 msgid "Cross of Jerusalem"
-msgstr ""
+msgstr "Jerusalemin risti"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:114
-#, fuzzy
 msgid "Star and crescent"
-msgstr "Aloita päivämäärä testi?"
+msgstr "Tähti ja puolikuu"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:115
 msgid "West Syriac cross"
-msgstr ""
+msgstr "Länsi-Syyrian risti"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:116
-#, fuzzy
 msgid "East Syriac cross"
-msgstr "Käytetty viimeksi"
+msgstr "Itä-Syyrian risti"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:117
 msgid "Heavy Greek cross"
-msgstr ""
+msgstr "Vahvennettu Kreikkalainen risti"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:118
 msgid "Latin cross"
-msgstr ""
+msgstr "Latinalainen risti"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:119
 msgid "Shadowed White Latin cross"
-msgstr ""
+msgstr "Varjostettu valkoinen latinalainen risti"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:120
 msgid "Maltese cross"
-msgstr ""
+msgstr "Maltanristi"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:121
 msgid "Star of David"
-msgstr ""
+msgstr "Daavidin tähti"
 
+# 20190911
 #: ../gramps/gen/utils/symbols.py:122
-#, fuzzy
 msgid "Dead"
-msgstr "Kuollut mies"
+msgstr "Kuollut"
 
 #: ../gramps/gen/utils/unknown.py:140
 msgid "Unknown, created to replace a missing note object."
@@ -18383,7 +18406,7 @@ msgstr "Info"
 #. id_col
 #: ../gramps/gui/plug/_windows.py:147 ../gramps/gui/plug/_windows.py:201
 msgid "Hide/Unhide"
-msgstr "Kätke/Näkyviin"
+msgstr "Piilotettu/Näkyvä"
 
 #. id_col
 #: ../gramps/gui/plug/_windows.py:155 ../gramps/gui/plug/_windows.py:210
@@ -34574,9 +34597,10 @@ msgstr "Heidän yhteiset esivanhempansa ovat %(ancestor1)s ja %(ancestor2)s."
 msgid "Their common ancestors are: "
 msgstr "Heidän yhteiset esivanhempansa ovat: "
 
+# 20190911
 #: ../gramps/plugins/tool/removespaces.py:54
 msgid "manual|Remove_leading_and_trailing_spaces"
-msgstr ""
+msgstr "Poista_edessä_ja_perässä_olevat_välilyönnit"
 
 # 15052019
 #: ../gramps/plugins/tool/removespaces.py:87
@@ -34584,45 +34608,45 @@ msgstr ""
 msgid "Clean input data"
 msgstr "Puhdista tuontitiedot"
 
-# 15052019
+# 20190911
 #: ../gramps/plugins/tool/removespaces.py:104
-#, fuzzy
 msgid ""
 "Search leading and/or trailing spaces for persons and places. Search comma "
 "in coordinates fields.\n"
 "Double click on a row to edit its content."
 msgstr ""
-"Etsii koko tietokannasta, etsii paikat ja henkilöt. Etsii pilkku "
-"koordinaatit paikkojen kentissä."
+"Etsi edeltävät ja/tai jäljessä olevat välilyönnit henkilöistä ja paikoista. "
+"Etsi pilkku koordinaattikentistä. Kaksoisnapsauta riviä muokataksesi sen "
+"sisältöä."
 
+# 20190911
 #: ../gramps/plugins/tool/removespaces.py:113
-#, fuzzy
 msgid "Looking for possible fields with leading or trailing spaces"
-msgstr "Haetaan mahdollinen silmukka jokaiselle henkilölle"
+msgstr "Etsitään kenttiä, joissa on alussa tai lopussa välilyöntejä"
 
+# 20190911
 #: ../gramps/plugins/tool/removespaces.py:130
 #: ../gramps/plugins/tool/removespaces.py:179
-#, fuzzy
 msgid "handle"
-msgstr "Painike"
+msgstr "käsitellään"
 
+# 20190911
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:135
-#, fuzzy
 msgid "firstname"
-msgstr "etunimi tuntematon"
+msgstr "etunimi"
 
+# 20190911
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:143
-#, fuzzy
 msgid "alternate name"
-msgstr "Vaihtoehtoiset nimet"
+msgstr "vaihtoehtoinen nimi"
 
+# 20190911
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:147
-#, fuzzy
 msgid "group as"
-msgstr "Ryhmittele"
+msgstr "ryhmässä"
 
 #: ../gramps/plugins/tool/removeunused.glade:92
 msgid "Search for events"
@@ -36516,11 +36540,12 @@ msgstr "Muuta vanhempien ja perheiden järjestystä"
 msgid "Edit the active person"
 msgstr "Muokkaa aktiivista henkilöä"
 
+# 20190911
 #: ../gramps/plugins/view/relview.py:746 ../gramps/plugins/view/relview.py:772
 #: ../gramps/plugins/view/relview.py:789 ../gramps/plugins/view/relview.py:796
-#, fuzzy, python-format
+#, python-format
 msgid "%s"
-msgstr "%s:"
+msgstr "%s"
 
 #: ../gramps/plugins/view/relview.py:784
 msgid "Alive"
@@ -36602,20 +36627,23 @@ msgstr "%(event)s: %(date)s"
 msgid "Relationship type: %s"
 msgstr "Suhdetyyppi: %s"
 
+# 20190911
 #: ../gramps/plugins/view/relview.py:1520
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s in %(place)s"
-msgstr "%(event_type)s: %(date)s, %(place)s"
+msgstr "%(event_type)s %(date)s %(place)s"
 
+# 20190911
 #: ../gramps/plugins/view/relview.py:1524
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s"
-msgstr "%(event_type)s: %(date)s"
+msgstr "%(event_type)s %(date)s"
 
+# 20190911
 #: ../gramps/plugins/view/relview.py:1528
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(place)s"
-msgstr "%(event_type)s: %(place)s"
+msgstr "%(event_type)s %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1539
 msgid "Broken family detected"
@@ -37363,15 +37391,19 @@ msgstr "Kaavion sukupolvet"
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Montako sukupolvea tulee esivanhempien kaavioon"
 
+# 20190911
 #: ../gramps/plugins/webreport/narrativeweb.py:1803
 msgid "Include narrative notes just after name, gender"
-msgstr ""
+msgstr "Lisää lisätiedot sukunimen ja sukupuolen jälkeen"
 
+# 20190911
 #: ../gramps/plugins/webreport/narrativeweb.py:1805
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
 "or include them just before attributes."
 msgstr ""
+"Lisää lisätiedot sukunimen, sukupuolen ja kuoliniän jälkeen (oletus) tai "
+"lisää ne ennen ominaisuuksia."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1814
 msgid "Page Generation"
@@ -38395,256 +38427,11 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Ei tyylitiedostoa"
 
-#~ msgid "Use alternate Font handler for GUI and Reports (requires restart)"
-#~ msgstr ""
-#~ "Käytä vaihtoehtoista fonttien käsittelijää käyttöliittymää ja raportteja "
-#~ "varten (vaatii uudelleenkäynnistyksen)"
+#~ msgid "%(event_type)s: %(date)s in %(place)s"
+#~ msgstr "%(event_type)s: %(date)s, %(place)s"
 
-#~ msgid "Can help to fix problems with fonts."
-#~ msgstr "Voi auttaa korjaamaan fonttien ongelmia."
+#~ msgid "%(event_type)s: %(date)s"
+#~ msgstr "%(event_type)s: %(date)s"
 
-#~ msgid "unmarried|husband"
-#~ msgstr "avomies"
-
-#~ msgid "unmarried|wife"
-#~ msgstr "avovaimo"
-
-#~ msgid "gender unknown,unmarried|spouse"
-#~ msgstr "avopuoliso"
-
-#~ msgid "unmarried|ex-husband"
-#~ msgstr "ent. avomies"
-
-#~ msgid "unmarried|ex-wife"
-#~ msgstr "ent. avovaimo"
-
-#~ msgid "gender unknown,unmarried|ex-spouse"
-#~ msgstr "ent. avopuoliso"
-
-#~ msgid ""
-#~ "You need to set a 'default person' to go to. Select the People View, "
-#~ "select the person you want as 'Home Person', then confirm your choice via "
-#~ "the menu Edit ->Set Home Person."
-#~ msgstr ""
-#~ "Lähtöhenkilö on valittava. Avaa Henkilöt näkymä ja valitse hänet. "
-#~ "Vahvista valintasi Muokkaa->Aseta kotihenkilö-valinnalla."
-
-#~ msgid "_Print..."
-#~ msgstr "_Tulosta..."
-
-#~ msgid "Size  proportional to number of descendants"
-#~ msgstr "Kokoon suhteutettu määrä jälkeläisiä"
-
-#~ msgid "Male Alive"
-#~ msgstr "Elävä mies"
-
-#~ msgid "Female Alive"
-#~ msgstr "Elävä nainen"
-
-#~ msgid "Female Dead"
-#~ msgstr "Kuollut nainen"
-
-#~ msgid "Unknown Alive"
-#~ msgstr "Elossa sukupuoli tuntematon"
-
-#~ msgid "Unknown Dead"
-#~ msgstr "Kuollut sukupuoli tuntematon"
-
-#~ msgid "Family Node"
-#~ msgstr "Perhe liitossa"
-
-#~ msgid "Family Divorced"
-#~ msgstr "Perhe eronnut"
-
-#~ msgid "Home Person"
-#~ msgstr "Kotihenkilö"
-
-#~ msgid "Border Female Alive"
-#~ msgstr "Elävän naisen reunaviiva"
-
-#~ msgid "Border Female Dead"
-#~ msgstr "Kuolleen naisen reunaviiva"
-
-#~ msgid "Border Unknown Alive"
-#~ msgstr "Elossa sukup. tuntem. reunaviiva"
-
-#~ msgid "Border Unknown Dead"
-#~ msgstr "Kuollut sukup. tuntem. reunaviiva"
-
-#~ msgid "Border Family"
-#~ msgstr "Perheen reunaviiva"
-
-#~ msgid "Marriage of %s"
-#~ msgstr "Avioliitto %s"
-
-#~ msgid "Birth of %s"
-#~ msgstr "Syntymä %s"
-
-#~ msgid "Death of %s"
-#~ msgstr "Kuolema %s"
-
-#~ msgid "Anniversary: %s"
-#~ msgstr "Vuosipäivä: %s"
-
-#~ msgid "Suppress Gramps ID"
-#~ msgstr "Jätä pois Gramps ID"
-
-#~ msgid "Whether to include the Gramps ID of objects"
-#~ msgstr "Lisätäänkö kohteiden Gramps ID"
-
-#~ msgid "Thumbnail Preview"
-#~ msgstr "Pikkukuvien esikatselu"
-
-#~ msgid ""
-#~ "\n"
-#~ "Usage: gramps.py [OPTION...]\n"
-#~ "  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load\n"
-#~ "\n"
-#~ "Help options\n"
-#~ "  -?, --help                             Show this help message\n"
-#~ "  --usage                                Display brief usage message\n"
-#~ "\n"
-#~ "Application options\n"
-#~ "  -O, --open=FAMILY_TREE                 Open Family Tree\n"
-#~ "  -U, --username=USERNAME                Database username\n"
-#~ "  -P, --password=PASSWORD                Database password\n"
-#~ "  -C, --create=FAMILY_TREE               Create on open if new Family "
-#~ "Tree\n"
-#~ "  -i, --import=FILENAME                  Import file\n"
-#~ "  -e, --export=FILENAME                  Export file\n"
-#~ "  -r, --remove=FAMILY_TREE_PATTERN       Remove matching Family Tree(s) "
-#~ "(use regular expressions)\n"
-#~ "  -f, --format=FORMAT                    Specify Family Tree format\n"
-#~ "  -a, --action=ACTION                    Specify action\n"
-#~ "  -p, --options=OPTIONS_STRING           Specify options\n"
-#~ "  -d, --debug=LOGGER_NAME                Enable debug logs\n"
-#~ "  -l [FAMILY_TREE_PATTERN...]            List Family Trees\n"
-#~ "  -L [FAMILY_TREE_PATTERN...]            List Family Trees in Detail\n"
-#~ "  -t [FAMILY_TREE_PATTERN...]            List Family Trees, tab "
-#~ "delimited\n"
-#~ "  -u, --force-unlock                     Force unlock of Family Tree\n"
-#~ "  -s, --show                             Show config settings\n"
-#~ "  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
-#~ "Gramps\n"
-#~ "  -y, --yes                              Don't ask to confirm dangerous "
-#~ "actions (non-GUI mode only)\n"
-#~ "  -q, --quiet                            Suppress progress indication "
-#~ "output (non-GUI mode only)\n"
-#~ "  -v, --version                          Show versions\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Käyttö: gramps.py [OPTION...]\n"
-#~ "  --load-modules=MODULE1,MODULE2,...     Dynaamiset moduulit "
-#~ "ladattavaksi\n"
-#~ "\n"
-#~ "Ohjeiden optiot\n"
-#~ "  -?, --help                             Näytä tämä ohjeilmoitus\n"
-#~ "  --usage                                Näytä lyhyt käyttöviesti\n"
-#~ "\n"
-#~ "Sovelluksen optiot\n"
-#~ "  -O, --open=FAMILY_TREE                 Avaa sukupuu\n"
-#~ "  -U, --username=USERNAME                Tietokannan käyttäjätunnus\n"
-#~ "  -P, --password=PASSWORD                Tietokannan salasana\n"
-#~ "  -C, --create=FAMILY_TREE               Luo avatessa jos uusi sukupuu\n"
-#~ "  -i, --import=FILENAME                  Tuo tiedosto\n"
-#~ "  -e, --export=FILENAME                  Vie tiedosto\n"
-#~ "  -r, --remove=FAMILY_TREE_PATTERN       Poista vastaava Sukupuu(t)(käytä "
-#~ "säännöllisiä lausekkeita)\n"
-#~ "  -f, --format=FORMAT                    Määritä sukupuun muoto\n"
-#~ "  -a, --action=ACTION                    Määritä toiminto\n"
-#~ "  -p, --option=OPTIONS_STRING            Määritä optiot\n"
-#~ "  -d, --debug=LOGGER_NAME                Virheenkorjaus lokit käyttöön\n"
-#~ "  -l  [FAMILY_TREE_PATTERN...]           Listaa sukupuut\n"
-#~ "  -L  [FAMILY_TREE_PATTERN...]           Listaa sukupuut tarkemmilla "
-#~ "tiedoilla\n"
-#~ "  -t  [FAMILY_TREE_PATTERN...]           Listaa sukupuut, "
-#~ "sarkainerotettuna\n"
-#~ "  -u, --force-unlock                     Pakota sukupuu avautumaan\n"
-#~ "  -s, --show                             Näytä asetukset\n"
-#~ "  -c, --config=[config.setting[:value]]  Anna asetukset ja käynnistä "
-#~ "Gramps\n"
-#~ "  -y, --yes                              Älä kysy vahvistusta, "
-#~ "vaarallisia toimia (non-GUI tilassa)\n"
-#~ "  -q, --quiet                            Jätä pois edistys merkinnän "
-#~ "lähtö (non-GUI tila)\n"
-#~ "  -v, --version                          Näytä versiot\n"
-
-#~ msgid "Web Connect"
-#~ msgstr "Nettiyhteys"
-
-#~ msgid "Open an existing database"
-#~ msgstr "Avaa olemassa oleva tietokanta"
-
-#~ msgid "Close the current database"
-#~ msgstr "Sulje nykyinen tietokanta"
-
-#~ msgid "Make a Gramps XML backup of the database"
-#~ msgstr "Tee Gramps XML varmuuskopio"
-
-#~ msgid "Undo History..."
-#~ msgstr "Muokkaushistoria..."
-
-#~ msgid "Key %s is not bound"
-#~ msgstr "Näppäintä %s ei ole sidottu mihinkään"
-
-#~ msgid "_Delete Item"
-#~ msgstr "_Poista tietue"
-
-#~ msgid "%(title)s..."
-#~ msgstr "%(title)s..."
-
-#~ msgid "%(genders)s born %(year_from)04d-%(year_to)04d"
-#~ msgstr "%(genders)s syntyi %(year_from)04d-%(year_to)04d"
-
-#~ msgid "Persons born %(year_from)04d-%(year_to)04d"
-#~ msgstr "Syntyneet välillä %(year_from)04d-%(year_to)04d"
-
-#~ msgid "%d. Partner: "
-#~ msgstr "%d. Kumppani: "
-
-#~ msgid "Not a Pro-Gen file"
-#~ msgstr "Ei Pro-Gen tiedosto"
-
-#~ msgid "Cannot find DEF file: %(dname)s"
-#~ msgstr "DEF tiedostoa ei löydy: %(dname)s"
-
-#~ msgid "Cannot find father for I%(person)s (Father=%(id)d)"
-#~ msgstr "Isää ei löydy I%(person)s (isä=%(id)d)"
-
-#~ msgid "Cannot find mother for I%(person)s (Mother=%(mother)d)"
-#~ msgstr "Äitiä ei löydy I%(person)s (äiti=%(mother)d)"
-
-#~ msgid "Loading..."
-#~ msgstr "Ladataan..."
-
-#~ msgid ""
-#~ "Attempt to see this location with a Map Service (OpenstreetMap, Google "
-#~ "Maps, ...)"
-#~ msgstr ""
-#~ "Yrittää näyttää valitun paikan karttapalvelussa (OpenStreetMap, Google "
-#~ "kartat, ...)"
-
-#~ msgid "Map Menu"
-#~ msgstr "Karttavalikko"
-
-#~ msgid "%(person)s, birth%(relation)s"
-#~ msgstr "%(person)s, syntymä%(relation)s"
-
-#~ msgid "{person}, {age}{relation}"
-#~ msgid_plural "{person}, {age}{relation}"
-#~ msgstr[0] "{person}, {age}{relation}"
-#~ msgstr[1] "{person}, {age}{relation}"
-
-#~ msgid ""
-#~ "Geography functionality will not be available.\n"
-#~ "To build it for Gramps see %(gramps_wiki_build_osmgps_url)s"
-#~ msgstr ""
-#~ "OsmGpsMap moduulia ei ole ladattu. Karttatoiminnallisuutta ei ole "
-#~ "käytettävissä.\n"
-#~ "Saadaksesi sen Grampsiin katso %(gramps_wiki_build_osmgps_url)s"
-
-#~ msgid "Open the folder containing the media file"
-#~ msgstr "Avaa mediatiedoston sisältämä hakemisto"
-
-#~ msgid " (%s) "
-#~ msgstr " (%s) "
+#~ msgid "%(event_type)s: %(place)s"
+#~ msgstr "%(event_type)s: %(place)s"
