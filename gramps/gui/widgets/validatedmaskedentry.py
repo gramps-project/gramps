@@ -942,6 +942,8 @@ VALIDATION_ICON_WIDTH = 16
 MANDATORY_ICON = 'dialog-information'
 ERROR_ICON = 'process-stop'
 DELAY_TIME = 2500
+READWRITE = (GObject.PARAM_READWRITE if GLib.check_version(2, 42, 0) else
+             GObject.ParamFlags.READWRITE)
 
 class ValidatableMaskedEntry(MaskedEntry):
     """
@@ -971,12 +973,12 @@ class ValidatableMaskedEntry(MaskedEntry):
         'data-type': (GObject.TYPE_PYOBJECT,
                        'Data Type of the widget',
                        'Type object',
-                       GObject.PARAM_READWRITE),
+                       READWRITE),
         'mandatory': (GObject.TYPE_BOOLEAN,
                       'Mandatory',
                       'Mandatory',
                       False,
-                      GObject.PARAM_READWRITE),
+                      READWRITE),
     }
 
     # FIXME put the data type support back
