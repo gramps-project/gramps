@@ -138,7 +138,10 @@ class LinkLabel(Gtk.EventBox):
             self.connect('realize', realize_cb)
 
     def set_padding(self, x, y):
-        self.label.set_padding(x, y)
+        self.label.set_margin_start(x)
+        self.label.set_margin_end(x)
+        self.label.set_margin_top(x)
+        self.label.set_margin_bottom(x)
 
     def enter_text(self, obj, event, handle):
         if self.emph:

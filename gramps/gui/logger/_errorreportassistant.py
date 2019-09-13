@@ -284,7 +284,8 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
                             "information included in the error please remove "
                             "it."))
         label.set_halign(Gtk.Align.START)
-        label.set_padding(0, 4)
+        label.set_margin_top(4)
+        label.set_margin_bottom(4)
         label.set_line_wrap(True)
 
         swin = Gtk.ScrolledWindow()
@@ -364,7 +365,8 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
                             "remove anything that you would rather not have "
                             "included in the bug report."))
         label.set_halign(Gtk.Align.START)
-        label.set_padding(0, 4)
+        label.set_margin_top(4)
+        label.set_margin_bottom(4)
         label.set_line_wrap(True)
 
         swin = Gtk.ScrolledWindow()
@@ -441,7 +443,8 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
                              "can about what you were doing when the error "
                              "occurred."))
         label.set_halign(Gtk.Align.START)
-        label.set_padding(0, 4)
+        label.set_margin_top(4)
+        label.set_margin_bottom(4)
         label.set_line_wrap(True)
 
         swin = Gtk.ScrolledWindow()
@@ -514,7 +517,8 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
                             "that it does not contain anything that you do not "
                             "want to be sent to the developers."))
         label.set_halign(Gtk.Align.START)
-        label.set_padding(0, 4)
+        label.set_margin_top(4)
+        label.set_margin_bottom(4)
         label.set_line_wrap(True)
 
         swin = Gtk.ScrolledWindow()
@@ -580,7 +584,8 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
                "clipboard and then open a webbrowser to file a bug report at "),
                URL_BUGTRACKER))
         label.set_halign(Gtk.Align.START)
-        label.set_padding(0, 4)
+        label.set_margin_top(4)
+        label.set_margin_bottom(4)
         label.set_line_wrap(True)
         label.set_use_markup(True)
 
@@ -589,7 +594,8 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
                                 "and file a bug report on the Gramps bug "
                                 "tracking system."))
         url_label.set_halign(Gtk.Align.START)
-        url_label.set_padding(0, 4)
+        url_label.set_margin_top(4)
+        url_label.set_margin_bottom(4)
         url_label.set_line_wrap(True)
         url_label.set_size_request(200, -1)
 
@@ -613,7 +619,8 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
                                  "the button below, paste the report and click "
                                  "submit report"))
         clip_label.set_halign(Gtk.Align.START)
-        clip_label.set_padding(0, 4)
+        clip_label.set_margin_top(4)
+        clip_label.set_margin_bottom(4)
         clip_label.set_line_wrap(True)
         clip_label.set_size_request(200, -1)
 
