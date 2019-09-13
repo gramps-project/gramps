@@ -588,6 +588,47 @@ class TreeDocBase(BaseDoc, TreeDoc):
 
 #------------------------------------------------------------------------------
 #
+# TreeGraphDoc
+#
+#------------------------------------------------------------------------------
+class TreeGraphDoc(TreeDocBase):
+    """
+    TreeGraphDoc implementation that generates a .graph file.
+    """
+
+    def write_start(self):
+        """
+        Write the start of the document - nothing for a graph file.
+        """
+        pass
+
+    def start_tree(self, option_list):
+        """
+        Write the start of a tree - nothing for a graph file.
+        """
+        pass
+
+    def end_tree(self):
+        """
+        Write the end of a tree - nothing for a graph file.
+        """
+        pass
+
+    def write_end(self):
+        """
+        Write the end of the document - nothing for a graph file.
+        """
+        pass
+
+    def close(self):
+        """ Implements TreeDocBase.close() """
+        TreeDocBase.close(self)
+
+        with open(self._filename, 'w', encoding='utf-8') as texfile:
+            texfile.write(self._tex.getvalue())
+
+#------------------------------------------------------------------------------
+#
 # TreeTexDoc
 #
 #------------------------------------------------------------------------------
@@ -652,6 +693,11 @@ if _LATEX_FOUND:
                  'descr': _("PDF"),
                  'mime' : "application/pdf",
                  'class': TreePdfDoc}]
+
+FORMATS += [{'type' : "graph",
+             'ext'  : "graph",
+             'descr': _("Graph File for genealogytree"),
+             'class': TreeGraphDoc}]
 
 FORMATS += [{'type' : "tex",
              'ext'  : "tex",
