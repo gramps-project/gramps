@@ -2162,11 +2162,9 @@ class GrampsPreferences(ConfigureDialog):
         scrollw.set_size_request(600, 100)
         text = Gtk.Label()
         text.set_line_wrap(True)
-        font_description = Pango.font_description_from_string(font)
-        text.modify_font(font_description)
         self.activate_change_font()
         text.set_halign(Gtk.Align.START)
-        text.set_text(my_characters)
+        text.set_markup("<span font='%s'>%s</span>" % (font, my_characters))
         scrollw.add(text)
         scrollw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.grid.attach(scrollw, 1, 7, 8, 1)
@@ -2179,12 +2177,9 @@ class GrampsPreferences(ConfigureDialog):
         my_characters += symbols.get_death_symbol_for_char(death_symbl)
         text = Gtk.Label()
         text.set_line_wrap(True)
-        font_description = Pango.font_description_from_string(font)
-        text.modify_font(font_description)
         text.set_halign(Gtk.Align.START)
-        text.set_markup("<big><big><big><big>" +
-                        my_characters +
-                        "</big></big></big></big>")
+        text.set_markup("<big><big><big><big><span font='%s'>%s</span>"
+                        "</big></big></big></big>" % (font, my_characters))
         self.grid.attach(text, 1, 8, 8, 1)
         scrollw.show_all()
         text.show_all()

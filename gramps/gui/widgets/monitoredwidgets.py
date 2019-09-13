@@ -183,36 +183,8 @@ class MonitoredEntryIndicator(MonitoredEntry):
                  autolist=None, changed=None):
         MonitoredEntry.__init__(self, obj, set_val, get_val, read_only,
                                 autolist, changed)
-        self.origcolor = obj.get_style_context().get_color(Gtk.StateType.NORMAL)
-        if get_val():
-            self.indicatorshown = False
-        else:
-            self.indicatorshown = True
-            self.indicator = indicator
-            self.obj.set_text(indicator)
-            rgba = Gdk.RGBA()
-            Gdk.RGBA.parse(rgba, 'grey')
-            self.obj.override_color(Gtk.StateType.NORMAL, rgba)
-            self.obj.override_font(Pango.FontDescription('sans italic'))
-            self.fockey = self.obj.connect('focus-in-event',
-                                               self._obj_focus)
+        self.obj.set_placeholder_text(indicator)
 
-    def _on_change(self, obj):
-        if not self.indicatorshown:
-            self.set_val(str(obj.get_text()))
-            if self.changed:
-                self.changed(obj)
-
-    def _obj_focus(self, widg, eve):
-        """
-        callback for when prefix obtains focus
-        """
-        self.set_text('')
-        self.obj.override_color(Gtk.StateType.NORMAL, self.origcolor)
-        self.obj.override_font(Pango.FontDescription('normal'))
-        self.obj.disconnect(self.fockey)
-        self.indicatorshown = False
-        return False
 
 #-------------------------------------------------------------------------
 #

@@ -18,7 +18,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-__all__ = ["LinkLabel", "EditLabel", "BasicLabel", "GenderLabel",
+__all__ = ["LinkLabel", "EditLabel", "BasicLabel",
            "MarkupLabel", "DualMarkupLabel"]
 
 #-------------------------------------------------------------------------
@@ -127,7 +127,7 @@ class LinkLabel(Gtk.EventBox):
         hbox = Gtk.Box()
         hbox.pack_start(self.label, False, False, 0)
         if label[1]:
-            hbox.pack_start(GenderLabel(label[1]), False, False, 0)
+            hbox.pack_start(Gtk.Label(label=label[1]), False, False, 0)
             hbox.set_spacing(4)
         self.add(hbox)
 
@@ -205,20 +205,6 @@ class BasicLabel(Gtk.Label):
         self.set_ellipsize(ellipsize)
         self.show()
 
-#-------------------------------------------------------------------------
-#
-# GenderLabel class
-#
-#-------------------------------------------------------------------------
-class GenderLabel(Gtk.Label):
-
-    def __init__(self, text):
-        Gtk.Label.__init__(self, label=text)
-        self.set_halign(Gtk.Align.START)
-        if win():
-            pangoFont = Pango.FontDescription('Arial')
-            self.override_font(pangoFont)
-        self.show()
 
 #-------------------------------------------------------------------------
 #
@@ -247,7 +233,6 @@ class DualMarkupLabel(Gtk.Box):
         label.set_use_markup(True)
 
         self.pack_start(label, False, False, 0)
-        b = GenderLabel(alt)
-        b.set_use_markup(True)
+        b = Gtk.Label(label=alt)
         self.pack_start(b, False, False, 4)
         self.show()
