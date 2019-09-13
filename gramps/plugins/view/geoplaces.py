@@ -480,7 +480,6 @@ class GeoPlaces(GeoGraphyView):
     def bubble_message(self, event, lat, lon, marks):
         self.menu = Gtk.Menu()
         menu = self.menu
-        menu.set_title("places")
         message = ""
         prevmark = None
         for mark in marks:
@@ -490,7 +489,6 @@ class GeoPlaces(GeoGraphyView):
                 menu.append(add_item)
                 self.itemoption = Gtk.Menu()
                 itemoption = self.itemoption
-                itemoption.set_title(message)
                 itemoption.show()
                 add_item.set_submenu(itemoption)
                 modify = Gtk.MenuItem(label=_("Edit Place"))
@@ -516,7 +514,6 @@ class GeoPlaces(GeoGraphyView):
         menu.append(add_item)
         self.itemoption = Gtk.Menu()
         itemoption = self.itemoption
-        itemoption.set_title(message)
         itemoption.show()
         add_item.set_submenu(itemoption)
         modify = Gtk.MenuItem(label=_("Edit Place"))
@@ -553,7 +550,6 @@ class GeoPlaces(GeoGraphyView):
         menu.append(add_item)
         self.itemoption = Gtk.Menu()
         itemoption = self.itemoption
-        itemoption.set_title(_("Centering on Place"))
         itemoption.show()
         add_item.set_submenu(itemoption)
         oldplace = ""

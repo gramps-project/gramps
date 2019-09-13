@@ -640,7 +640,6 @@ class EditPerson(EditPrimary):
         """
         self.imgmenu = Gtk.Menu()
         menu = self.imgmenu
-        menu.set_title(_("Media Object"))
         obj = self.db.get_media_from_handle(photo.get_reference_handle())
         if obj:
             add_menuitem(menu, _("View"), photo,

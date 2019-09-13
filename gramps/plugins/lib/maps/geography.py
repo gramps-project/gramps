@@ -405,7 +405,6 @@ class GeoGraphyView(OsmGps, NavigationView):
 
         self.changemap = Gtk.Menu()
         changemap = self.changemap
-        changemap.set_title(title)
         changemap.show()
         add_item.set_submenu(changemap)
         # show in the map menu all available providers
@@ -885,7 +884,6 @@ class GeoGraphyView(OsmGps, NavigationView):
         menu.append(add_item)
         self.itemoption = Gtk.Menu()
         itemoption = self.itemoption
-        itemoption.set_title(message)
         itemoption.show()
         add_item.set_submenu(itemoption)
         modify = Gtk.MenuItem(label=_("Edit Place"))
