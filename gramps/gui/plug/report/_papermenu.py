@@ -175,7 +175,8 @@ class PaperFrame(Gtk.Box):
 
         self.paper_grid.show_all()
         # Shift the grid from glade toplevel window to this box
-        self.paper_grid.reparent(self)
+        self.paper_grid.get_parent().remove(self.paper_grid)
+        self.add(self.paper_grid)
         # need to get rid of glade toplevel now that we are done with it.
         self.top.destroy()
 

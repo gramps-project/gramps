@@ -246,7 +246,8 @@ class GrampletWindow(ManagedWindow):
         # add gramplet:
         if self.gramplet.pui:
             self.gramplet.pui.active = True
-        self.gramplet.mainframe.reparent(self.window.vbox)
+        self.gramplet.mainframe.get_parent().remove(self.gramplet.mainframe)
+        self.window.vbox.add(self.gramplet.mainframe)
         self.window.connect('response', self.handle_response)
         self.show()
         # After we show, then we hide:
@@ -310,7 +311,8 @@ class GrampletWindow(ManagedWindow):
         expand = self.gramplet.gstate == "maximized" and self.gramplet.expand
         column = pane.columns[col]
         parent = self.gramplet.pane.get_column_frame(self.gramplet.column)
-        self.gramplet.mainframe.reparent(parent)
+        self.gramplet.mainframe.get_parent().remove(self.gramplet.mainframe)
+        parent.add(self.gramplet.mainframe)
         if self.gramplet.pui:
             self.gramplet.pui.active = self.gramplet.pane.pageview.active
         for gframe in stack:

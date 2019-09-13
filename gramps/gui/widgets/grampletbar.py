@@ -701,7 +701,8 @@ class DetachedWindow(ManagedWindow):
         self.gramplet.detached_width = size[0]
         self.gramplet.detached_height = size[1]
         self.gramplet.detached_window = None
-        self.gramplet.reparent(self.grampletbar)
+        self.notebook.remove(self.gramplet)
+        self.grampletbar.add(self.gramplet)
         ManagedWindow.close(self, *args)
 
 #-------------------------------------------------------------------------
