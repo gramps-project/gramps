@@ -272,7 +272,7 @@ class TestcaseGenerator(tool.BatchTool):
 
     def init_gui(self, uistate):
         title = "%s - Gramps" % _("Generate testcases")
-        self.top = Gtk.Dialog(title, parent=uistate.window)
+        self.top = Gtk.Dialog(title=title, transient_for=uistate.window)
         self.window = uistate.window
         self.top.set_default_size(400, 150)
         self.top.vbox.set_spacing(5)

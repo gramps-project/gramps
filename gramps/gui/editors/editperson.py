@@ -1087,9 +1087,9 @@ class EditPerson(EditPrimary):
 class GenderDialog(Gtk.MessageDialog):
     def __init__(self, parent=None):
         Gtk.MessageDialog.__init__(self,
-                                parent,
-                                flags=Gtk.DialogFlags.MODAL,
-                                type=Gtk.MessageType.QUESTION,
+                                   transient_for=parent,
+                                   modal=True,
+                                   message_type=Gtk.MessageType.QUESTION,
                                    )
         self.set_icon(ICON)
         self.set_title('')

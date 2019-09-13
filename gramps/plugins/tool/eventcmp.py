@@ -393,12 +393,10 @@ class EventComparisonResults(ManagedWindow):
 
     def on_write_table(self, obj):
         f = Gtk.FileChooserDialog(_("Select filename"),
-                                  parent=self.window,
-                                  action=Gtk.FileChooserAction.SAVE,
-                                  buttons=(_('_Cancel'),
-                                           Gtk.ResponseType.CANCEL,
-                                           _('_Save'),
-                                           Gtk.ResponseType.OK))
+                                  transient_for=self.window,
+                                  action=Gtk.FileChooserAction.SAVE)
+        f.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                      _('_Save'), Gtk.ResponseType.OK)
 
         f.set_current_folder(get_curr_dir())
         status = f.run()

@@ -380,7 +380,7 @@ class GrampsLoginDialog(ManagedWindow):
         self.title = _("Login")
         ManagedWindow.__init__(self, uistate, [], self.__class__, modal=True)
 
-        dialog = Gtk.Dialog(parent=uistate.window)
+        dialog = Gtk.Dialog(transient_for=uistate.window)
         grid = Gtk.Grid()
         grid.set_border_width(6)
         grid.set_row_spacing(6)

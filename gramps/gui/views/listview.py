@@ -1059,11 +1059,11 @@ class ListView(NavigationView):
     ####################################################################
     def export(self, *obj):
         chooser = Gtk.FileChooserDialog(
-            _("Export View as Spreadsheet"),
-            self.uistate.window,
-            Gtk.FileChooserAction.SAVE,
-            (_('_Cancel'), Gtk.ResponseType.CANCEL,
-             _('_Save'), Gtk.ResponseType.OK))
+            title=_("Export View as Spreadsheet"),
+            transient_for=self.uistate.window,
+            action=Gtk.FileChooserAction.SAVE)
+        chooser.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                            _('_Save'), Gtk.ResponseType.OK)
         chooser.set_do_overwrite_confirmation(True)
 
         combobox = Gtk.ComboBoxText()

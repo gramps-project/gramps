@@ -775,10 +775,10 @@ class CheckIntegrity:
                                     'kept')
 
             fs_top = Gtk.FileChooserDialog(
-                "%s - Gramps" % _("Select file"),
-                parent=self.parent_window,
-                buttons=(_('_Cancel'), Gtk.ResponseType.CANCEL,
-                         _('_OK'), Gtk.ResponseType.OK))
+                title="%s - Gramps" % _("Select file"),
+                transient_for=self.parent_window)
+            fs_top.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                               _('_OK'), Gtk.ResponseType.OK)
             fs_top.set_current_folder(self.last_img_dir)
             response = fs_top.run()
             if response == Gtk.ResponseType.OK:

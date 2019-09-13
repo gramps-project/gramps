@@ -164,9 +164,9 @@ class WriterOptionBox:
         full_database_row.pack_start(label, True, True, 0)
         people_count = len(self.dbstate.db.get_person_handles())
         # translators: leave all/any {...} untranslated
-        button = Gtk.Button(ngettext("{number_of} Person",
-                                     "{number_of} People", people_count
-                                    ).format(number_of=people_count) )
+        button = Gtk.Button(label=ngettext("{number_of} Person",
+                                           "{number_of} People", people_count
+                                           ).format(number_of=people_count))
         button.set_tooltip_text(_("Click to see preview of unfiltered data"))
         button.set_size_request(107, -1)
         button.connect("clicked", self.show_preview_data)
@@ -271,9 +271,9 @@ class WriterOptionBox:
         from gi.repository import Gtk
         from ...widgets import SimpleButton
         # translators: leave all/any {...} untranslated
-        button = Gtk.Button(ngettext("{number_of} Person",
-                                     "{number_of} People", 0
-                                    ).format(number_of=0) )
+        button = Gtk.Button(label=ngettext("{number_of} Person",
+                                           "{number_of} People", 0
+                                           ).format(number_of=0))
         button.set_size_request(107, -1)
         button.connect("clicked", self.show_preview_data)
         button.proxy_name = proxy_name

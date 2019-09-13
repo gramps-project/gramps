@@ -301,9 +301,9 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
         sw_frame = Gtk.Frame()
         sw_frame.add(swin)
 
-        reset = Gtk.Button("Reset")
+        reset = Gtk.Button(label="Reset")
         reset.connect('clicked', self._reset_error_details)
-        clear = Gtk.Button("Clear")
+        clear = Gtk.Button(label="Clear")
         clear.connect('clicked', self._clear_error_details)
 
         button_box = Gtk.ButtonBox()
@@ -382,9 +382,9 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
         sw_frame = Gtk.Frame()
         sw_frame.add(swin)
 
-        reset = Gtk.Button("Reset")
+        reset = Gtk.Button(label="Reset")
         reset.connect('clicked', self._reset_sys_information)
-        clear = Gtk.Button("Clear")
+        clear = Gtk.Button(label="Clear")
         clear.connect('clicked', self._clear_sys_information)
 
 
@@ -459,7 +459,7 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
         sw_frame = Gtk.Frame()
         sw_frame.add(swin)
 
-        clear = Gtk.Button("Clear")
+        clear = Gtk.Button(label="Clear")
         clear.connect('clicked', self._clear_user_information)
 
         button_box = Gtk.ButtonBox()
@@ -599,7 +599,7 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
         url_label.set_line_wrap(True)
         url_label.set_size_request(200, -1)
 
-        url_button = Gtk.Button("File bug report")
+        url_button = Gtk.Button(label="File bug report")
         url_button.connect('clicked', self._start_gramps_bts_in_browser)
         url_button_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         url_button_vbox.pack_start(url_button, True, False, 0)
@@ -624,7 +624,7 @@ class ErrorReportAssistant(ManagedWindow, Gtk.Assistant):
         clip_label.set_line_wrap(True)
         clip_label.set_size_request(200, -1)
 
-        clip_button = Gtk.Button("Copy to clipboard")
+        clip_button = Gtk.Button(label="Copy to clipboard")
         clip_button.connect('clicked', self._copy_to_clipboard)
         clip_button_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         clip_button_vbox.pack_start(clip_button, True, False, 0)

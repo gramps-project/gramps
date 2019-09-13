@@ -573,9 +573,9 @@ class CairoPrintSave():
            (typically evince not installed)!
         """
         dummy_preview = preview
-        dlg = Gtk.MessageDialog(parent,
-                                flags=Gtk.DialogFlags.MODAL,
-                                type=Gtk.MessageType.WARNING,
+        dlg = Gtk.MessageDialog(transient_for=parent,
+                                modal=True,
+                                message_type=Gtk.MessageType.WARNING,
                                 buttons=Gtk.ButtonsType.CLOSE,
                                 message_format=_('No preview available'))
         self.preview = dlg
