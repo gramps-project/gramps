@@ -1,1671 +1,277 @@
-2019-08-21  Paul Culley <paulr2787@gmail.com>
+2019-09-14  SNoiraud <Serge.Noiraud@free.fr>
 
-	* gramps/plugins/importer/importcsv.py: Fix CSV import for multiple
-	place enclosed by on multiple imports (#869) Fixes #11259
+	* gramps/gen/filters/rules/place/_withinarea.py: Fix deprecation
+	warning in withinarea rule
 
-2019-08-21  Paul Culley <paulr2787@gmail.com>
+2019-09-14  Nick Hall <nick-h@gramps-project.org>
 
-	* gramps/gui/views/treemodels/flatbasemodel.py: Fix exception when
-	merging with active sidebar filter (#870) Fixes #11262
+	* gramps/gui/grampsgui.py: Disable development warning message
 
-2019-08-21  Paul Culley <paulr2787@gmail.com>
+2019-09-13  Jonas Hahnfeld <hahnjo@hahnjo.de>
 
-	* gramps/plugins/lib/libgedcom.py: Fix GEDCOM importer for SOUR/REFN
-	combinations (#871) Fixes #11251
+	* gramps/gen/plug/docgen/treedoc.py: Add options to sandclock in
+	tree document generator This works and is actually needed to style the root node.
 
-2019-08-18  Paul Culley <paulr2787@gmail.com>
+2019-09-11  SNoiraud <Serge.Noiraud@free.fr>
 
-	* data/tests/exp_sample.gramps, data/tests/exp_sample_ged.ged,
-	data/tests/imp_sample.ged, data/tests/imp_sample.gramps,
-	gramps/plugins/export/exportgedcom.py,
-	gramps/plugins/lib/libgedcom.py,
-	gramps/plugins/test/imports_test.py: Add support for GEDCOM import
-	_FREL/_MREL tags in INDI/FAMC (#866) Improve support for GEDCOM export of _FREL/_MREL in INDI/FAMC Fixes #10750
+	* gramps/gui/filters/sidebar/_personsidebarfilter.py: Using regex in
+	the sidebar gives different result from previous gramps release.  Fixes #11321
 
-2019-08-13  niememat <niememat@gmail.com>
+2019-09-12  Jérôme Rapinat <romjerome@yahoo.fr>
 
-	* po/fi.po: Fix translation in Finnish
+	* po/fr.po: Add missing French translation strings
 
-2019-08-11  Serge Noiraud <Serge.Noiraud@laposte.net>
+2019-09-10  Gil da Costa <gdacosta@sommier-colas.fr>
 
-	* gramps/plugins/webreport/basepage.py,
-	gramps/plugins/webreport/person.py: Narrative web: some strings not
-	translated (#838) * Narrative web: some strings not translated The confidence and the date are not translated in the family map
-	page.  The date doesn't use the specified date format.  Fixes #11207 * Narrative web: another string to translate
+	* po/fr.po: Update French translation
 
-2019-08-11  Serge Noiraud <Serge.Noiraud@laposte.net>
+2019-09-09  prculley <paulr2787@gmail.com>
 
-	* data/css/Web_Basic-Cypress.css,
-	gramps/plugins/webreport/common.py: Narrative web: markers
-	incorrectly placed. (#839) * Narrative web: markers incorrectly placed.  In the map pages, the markers are not placed where it should be.
-	reproducible when zoom in/zoom out.  Fixes #11208 * Narrative web: background not correctly set.  If you use the Web_Basic-Cypress.css, the foreground and background
-	use the same color, so you see nothing.  you must hover the fields
-	to see the text
+	* gramps/plugins/docgen/odfdoc.py: Fix odt output when db owner has
+	XML unfriendly chars ('&') Fixes #11327
 
-2019-08-11  Serge Noiraud <Serge.Noiraud@laposte.net>
+2019-09-11  John Bickmore <johnbickmore@users.noreply.github.com>
 
-	* gramps/plugins/webreport/common.py: Narrative web: Sort problem
-	with places. (#856) * Narrative web: Sort problem with places.  Fixes #10868.  Places list is not sorted depending on the selected language.  If you start gramps in english or another language then try to
-	generated a narrative web report in another language, the navigation
-	alphabet is incorrect. This is true for the place list and the
-	person list.  The problem was related to pyICU.  * Narrative web: some pylint improvement.
+	* README.md: Bump required Python version to 3.3 on Readme As mentioned on the release announcement
 
-2019-08-08  prculley <paulr2787@gmail.com>
+	https://gramps-project.org/introduction-WP/2019/08/gramps-5-1-0-released/
 
-	* gramps/version.py: Bump to v5.0.3
+2019-09-08  SNoiraud <Serge.Noiraud@free.fr>
 
-2019-07-31  Paul Culley <paulr2787@gmail.com>
+	* gramps/plugins/webreport/narrativeweb.py: Remove
+	reload_custom_filters to conform to PR894
 
-	* gramps/gui/configure.py: Fix Preferences dialog so General tab
-	appears first, not Symbols (#844) Fixes #11210
+2019-09-07  prculley <paulr2787@gmail.com>
 
-2019-07-31  Paul Culley <paulr2787@gmail.com>
+	* gramps/cli/grampscli.py: Fix CLI crash when generating reports Fixes #11318, #11213
 
-	* gramps/gen/config.py, gramps/gen/plug/docgen/graphdoc.py,
-	gramps/grampsapp.py, gramps/gui/configure.py: Fix graphs on Windows
-	for font selection not working (#850) Fixes #11212
+2019-09-06  prculley <paulr2787@gmail.com>
 
-2019-07-20  niememat <niememat@gmail.com>
+	* gramps/gui/views/listview.py: Fix Statusbar HandleError on merge
+	families Fixes #11320, #11294, #11279
 
-	* po/fi.po: Update finnish translation
+2019-09-12  Avi Markovitz <avi.markovitz@gmail.com>
 
-2019-07-18  vantu5z <vantu5z@mail.ru>
+	* po/he.po: Update Hebrew translation
 
-	* po/ru.po: update Russian translation
-
-2019-07-10  Paul Culley <paulr2787@gmail.com>
-
-	* gramps/gui/managedwindow.py: Fix crash when addon/plugin contains
-	an id with space (#836) The updated uimanager and managedwindow uses the plugin id to create
-	actions for plugins that make a window to support the menus. If the
-	plugin id contains a space, Gramps crashes.  Fixes #11202
-
-2019-07-11  Lajos Nemeséri <nemeseril@gmail.com>
-
-	* po/hu.po: Update Hungarian (hu) translation (#845)
-
-2019-07-09  Leonhaeuser <mirko@leonhaeuser.de>
-
-	* po/de.po: update German translation
-
-2019-07-05  Serge Noiraud <Serge.Noiraud@laposte.net>
-
-	* gramps/plugins/lib/maps/markerlayer.py: Geography: pins very big
-	when related to 2 places (#830) Fixes #10644
-
-2019-07-05  Serge Noiraud <Serge.Noiraud@laposte.net>
-
-	* gramps/plugins/webreport/person.py,
-	gramps/plugins/webreport/place.py: OSM forward all http resquest to
-	https. (#829) After asking the OSM support, I was told OSM forward all http
-	request to https when we use .org url.  So it should work in all
-	cases.  This has an energy cost, so it would be good for the planet to
-	change http to https.
-
-2019-07-04  Paul Culley <paulr2787@gmail.com>
-
-	* gramps/gui/viewmanager.py, gramps/plugins/lib/maps/geography.py,
-	gramps/plugins/view/fanchart2wayview.py,
-	gramps/plugins/view/fanchartdescview.py,
-	gramps/plugins/view/fanchartview.py,
-	gramps/plugins/view/geoclose.py, gramps/plugins/view/geoevents.py,
-	gramps/plugins/view/geofamclose.py,
-	gramps/plugins/view/geofamily.py, gramps/plugins/view/geomoves.py,
-	gramps/plugins/view/geoperson.py, gramps/plugins/view/geoplaces.py: 
-	Fix duplicated accelerators (#831) Fixes #11186
-
-2019-06-21  vantu5z <vantu5z@mail.ru>
-
-	* po/ru.po: update Russian translation
-
-2019-06-20  Leonhaeuser <mirko@leonhaeuser.de>
-
-	* po/de.po: Update German translation
-
-2019-06-16  pehlm <par.ekholm@pekholm.org>
-
-	* po/sv.po: Update Swedish translation with the new gramps.pot
-
-2019-06-16  prculley <paulr2787@gmail.com>
-
-	* gramps/plugins/view/citationlistview.py: Fix typo in 'Fix some XML
-	fragments to aboid double translations' commit
-
-2019-06-16  niememat <niememat@gmail.com>
+2019-09-12  Matti Niemelä <matti.u.niemela@gmail.com>
 
 	* po/fi.po: Fix translation in Finnish
 
-2019-06-15  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/gen/config.py: Change default database backend to SQLite
-
-2019-06-13  prculley <paulr2787@gmail.com>
-
-	* gramps/gui/displaystate.py,
-	gramps/gui/plug/quick/_quickreports.py, gramps/gui/viewmanager.py,
-	gramps/gui/views/bookmarks.py, gramps/gui/views/navigationview.py,
-	gramps/gui/views/tags.py, gramps/gui/widgets/grampletpane.py,
-	gramps/plugins/lib/libpersonview.py,
-	gramps/plugins/lib/libplaceview.py,
-	gramps/plugins/view/citationlistview.py,
-	gramps/plugins/view/citationtreeview.py,
-	gramps/plugins/view/eventview.py,
-	gramps/plugins/view/familyview.py,
-	gramps/plugins/view/geofamily.py, gramps/plugins/view/mediaview.py,
-	gramps/plugins/view/noteview.py, gramps/plugins/view/repoview.py,
-	gramps/plugins/view/sourceview.py, po/gramps.pot: Fix some XML
-	fragments to aboid double translations
-
-2019-06-13  prculley <paulr2787@gmail.com>
-
-	* po/update_po.py: Fix Language updoate_po.py to scan for XML
-	fragments in Python files Fixes #11151
-
-2019-06-04  prculley <paulr2787@gmail.com>
-
-	* gramps/cli/arghandler.py: Fix CLI import so that different db
-	types can be used Fixes #11171
-
-2019-06-14  Mattkmmr <49940207+Mattkmmr@users.noreply.github.com>
-
-	* gramps/plugins/gramplet/metadataviewer.py: Fix metadataviewer.py
-	(#823) Fix so that metadata is actually detected and displayed (signal was
-	not getting detected).
-
-2019-06-12  SNoiraud <serge.noiraud@laposte.net>
-
-	* gramps/gen/utils/libformatting.py: Problem during merge: One line
-	disappeared.
-
-2019-06-11  SNoiraud <serge.noiraud@laposte.net>
-
-	* gramps/plugins/view/fanchart2wayview.py,
-	gramps/plugins/view/fanchartdescview.py,
-	gramps/plugins/view/fanchartview.py,
-	gramps/plugins/view/pedigreeview.py,
-	gramps/plugins/webreport/narrativeweb.py: Solves several problems
-	following merge of PRs
-
-2019-06-10  prculley <paulr2787@gmail.com>
-
-	* gramps/gui/grampsgui.py: Fix _Manage Family Trees... string to add
-	... back in
-
-2019-06-10  Mattkmmr <49940207+Mattkmmr@users.noreply.github.com>
-
-	* gramps/gen/filters/rules/_hasattributebase.py: Fix
-	'_hasattributebase.py' (#820) Check all values of an attribute type and not only the first one.  Check all values of an attribute type. If a person has several
-	attributes with the same type/key the current behaviour is that only
-	the first value is checked.  Example Person X Atrributes:     (Key=occupation: Value=farmer)     (Key=occupation: Value=soldier)     (Key=occupation: Value=smith) => Currently: Filter 'persons with attribut' (Key=occupation,
-	Value=farmer) returns Person X, but no return of Perrson X for
-	(Key=occupation, Value=soldier) or (Key=occupation: Value=smith).  => After fix: Person X is returned for all three filter searches.
-
-2019-06-09  Paul Culley <paulr2787@gmail.com>
-
-	* gramps/gui/uimanager.py: Fix uimanager, menu translations (#816) Fixes #11151
-
-2019-06-10  Mattkmmr <49940207+Mattkmmr@users.noreply.github.com>
-
-	* gramps/gen/filters/rules/person/_havechildren.py,
-	gramps/gen/filters/rules/test/person_rules_test.py: Fix
-	'_havechildren.py' person filter (#819) * Fix '_havechildren.py' person filter Check all families of a person for children and not only the first
-	family * Update 'person_rule_test.py' and '_havechildren.py' Correct number for persons who have children is 905
-
-2019-06-04  niememat <niememat@gmail.com>
+2019-09-12  Matti Niemelä <matti.u.niemela@gmail.com>
 
 	* po/fi.po: Update finnish translation
 
-2019-05-26  Leonhaeuser <mirko@leonhaeuser.de>
-
-	* po/de.po: update German translation
-
-2019-05-18  Ed Bennett <e.j.bennett@swansea.ac.uk>
-
-	* gramps/plugins/graph/gvrelgraph.py: Allow an option to not use
-	hexagons for those of unknown gender Fixes #11112
-
-2019-05-14  SNoiraud <serge.noiraud@laposte.net>
-
-	* gramps/gui/editors/editlink.py: Add a mailto choice to Internet
-	Address Fixes #11149
-
-2019-05-20  Serge Noiraud <Serge.Noiraud@laposte.net>
-
-	* gramps/gui/widgets/fanchart.py,
-	gramps/gui/widgets/fanchart2way.py,
-	gramps/gui/widgets/fanchartdesc.py,
-	gramps/plugins/gramplet/fanchart2waygramplet.py,
-	gramps/plugins/gramplet/fanchartdescgramplet.py,
-	gramps/plugins/gramplet/fanchartgramplet.py,
-	gramps/plugins/view/fanchart2wayview.py,
-	gramps/plugins/view/fanchartdescview.py,
-	gramps/plugins/view/fanchartview.py: Add option to show the Gramps
-	ID in parenthesis in the fan chart Add option to show gramps id.  Improve pylint score for the modified
-	files.  Fixes #11045
-
-2019-05-19  Leonhaeuser <mirko@leonhaeuser.de>
-
-	* po/de.po: update German translation
-
-2019-05-18  niememat <niememat@gmail.com>
-
-	* po/fi.po: Update finnish translation
-
-2019-05-16  vantu5z <vantu5z@mail.ru>
+2019-09-11  vantu5z <vantu5z@mail.ru>
 
 	* po/ru.po: update Russian translation
 
-2019-05-15  pehlm <par.ekholm@pekholm.org>
+2019-09-10  pehlm <par.ekholm@pekholm.org>
 
 	* po/sv.po: Update Swedish translation
 
-2019-02-03  SNoiraud <serge.noiraud@laposte.net>
+2019-09-10  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* gramps/plugins/tool/removespaces.glade,
-	gramps/plugins/tool/removespaces.py,
-	gramps/plugins/tool/tools.gpr.py: New tool to suppress leading and
-	trailing spaces.  This tool is looking for place names with leading or/and trailing
-	spaces.  It also looks for in the first name and surname.  For each entry which contains leading or trailing spaces, a row is
-	added in a treeview.  You can see where the spaces are for each row
-	as the name is underlined.  If you double click on the row, you can edit the Place or the
-	Person.  Fixes #10824
+	* po/de.po: Update German translation
 
-2019-04-14  matt <matt32106@users.noreply.github.com>
+2019-09-10  Nick Hall <nick-h@gramps-project.org>
 
-	* gramps/plugins/importer/importcsv.py: Add occupation and residence
-	events and attributes in the import User can now add the following columns in the csv import file for a
-	person: - Occupation description - Occupation date - Occupation place - Occupation source - Residence date - Residence place - Residence source - Attribute type - Attribute value - Attribute source the corresponding events will be added to the
-	person.  The user can put several lines for the same person if two
-	occupations are known, one event per line will be created.
+	* po/ar.po, po/bg.po, po/br.po, po/ca.po, po/cs.po, po/da.po,
+	po/de.po, po/el.po, po/en_GB.po, po/eo.po, po/es.po, po/fi.po,
+	po/fr.po, po/ga.po, po/he.po, po/hr.po, po/hu.po, po/is.po,
+	po/it.po, po/ja.po, po/lt.po, po/mk.po, po/nb.po, po/nl.po,
+	po/nn.po, po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ro.po, po/ru.po,
+	po/sk.po, po/sl.po, po/sq.po, po/sr.po, po/sr_Latn.po, po/sv.po,
+	po/ta.po, po/tr.po, po/uk.po, po/vi.po, po/zh_CN.po, po/zh_HK.po,
+	po/zh_TW.po: Merge po files and new template
 
-2018-12-02  prculley <paulr2787@gmail.com>
-
-	* gramps/gen/filters/rules/_rule.py,
-	gramps/gui/editors/filtereditor.py: New feature to allow added rules
-	to define their own GUI elements
-
-2018-12-02  prculley <paulr2787@gmail.com>
-
-	* gramps/gen/plug/_manager.py, gramps/gen/plug/_pluginreg.py: New
-	feature to allow new rules in their own catagory in addons
-
-2018-11-07  prculley <paulr2787@gmail.com>
-
-	* gramps/gen/filters/__init__.py,
-	gramps/gen/filters/rules/test/person_rules_test.py,
-	gramps/gui/viewmanager.py, gramps/test/test_util.py: Allow
-	filters/rules via plugin without fail on restart
-
-2019-02-12  prculley <paulr2787@gmail.com>
-
-	* gramps/gen/filters/rules/test/person_rules_test.py,
-	gramps/gui/views/listview.py,
-	gramps/gui/views/treemodels/flatbasemodel.py,
-	gramps/gui/views/treemodels/treebasemodel.py: Fix Python time.clock
-	deprecation
-
-2019-02-13  prculley <paulr2787@gmail.com>
-
-	* gramps/gen/filters/_filterlist.py, gramps/gen/updatecallback.py,
-	gramps/gui/configure.py, gramps/gui/makefilter.py,
-	gramps/gui/plug/quick/_quickreports.py,
-	gramps/plugins/export/exportcsv.py,
-	gramps/plugins/export/exportftree.py,
-	gramps/plugins/export/exportgeneweb.py,
-	gramps/plugins/export/exportvcalendar.py,
-	gramps/plugins/export/exportvcard.py,
-	gramps/plugins/importer/importxml.py: Fix PythonDeprecationWarning
-	for collections.abc
-
-2019-02-13  prculley <paulr2787@gmail.com>
-
-	* gramps/grampsapp.py: Bump required Python version to 3.3
-
-2018-12-06  Keepun <keepun@gmail.com>
-
-	* gramps/plugins/graph/gvrelgraph.py: Relationship Graph: Father and
-	Mother are connected by an invisible line.
-
-2019-05-13  SNoiraud <Serge.Noiraud@free.fr>
-
-	* data/css/Web_Basic-Ash.css, data/css/Web_Basic-Blue.css,
-	data/css/Web_Basic-Cypress.css, data/css/Web_Basic-Lilac.css,
-	data/css/Web_Basic-Peach.css, data/css/Web_Basic-Spruce.css,
-	data/css/Web_Mainz.css, data/css/Web_Nebraska.css,
-	gramps/plugins/webreport/addressbook.py,
-	gramps/plugins/webreport/addressbooklist.py,
-	gramps/plugins/webreport/basepage.py,
-	gramps/plugins/webreport/citation.py,
-	gramps/plugins/webreport/common.py,
-	gramps/plugins/webreport/contact.py,
-	gramps/plugins/webreport/download.py,
-	gramps/plugins/webreport/event.py,
-	gramps/plugins/webreport/family.py,
-	gramps/plugins/webreport/home.py,
-	gramps/plugins/webreport/introduction.py,
-	gramps/plugins/webreport/layout.py,
-	gramps/plugins/webreport/media.py,
-	gramps/plugins/webreport/narrativeweb.py,
-	gramps/plugins/webreport/person.py,
-	gramps/plugins/webreport/place.py,
-	gramps/plugins/webreport/repository.py,
-	gramps/plugins/webreport/source.py,
-	gramps/plugins/webreport/statistics.py,
-	gramps/plugins/webreport/surname.py,
-	gramps/plugins/webreport/surnamelist.py,
-	gramps/plugins/webreport/thumbnail.py,
-	gramps/plugins/webstuff/webstuff.py: Have a better narrative web
-	site 10341: When we are on a mobile phone or a small device, we suppress
-	the navigation tab.  In place, we have a new icon on the upper left
-	which is used to show the dropdown menu.  Thanks to Theo van Rijn
-	for showing me the way to do that.  10962: For Home, Introduction and Contact, If we have an image and
-	this image contains regions, show the regions. We can go directly to
-	the person page associated to this region.  If we click on the
-	image, we go directly to the associated media page. This will be
-	true only if we selected "include images and media objects" and
-	"create and only use thumbnail" is unselected 11018: The first line identifying a family will be more legible.
-	The link is not useful in the parents and pedigree section for the
-	current person.  Adapt some css files.  11029: sort the place references either by date or by name.  Resolves #10341, #10962, #11018, #11029
-
-2019-05-13  SNoiraud <Serge.Noiraud@free.fr>
-
-	* gramps/gen/config.py, gramps/gen/utils/libformatting.py,
-	gramps/gen/utils/symbols.py, gramps/gui/configure.py,
-	gramps/gui/displaystate.py, gramps/gui/viewmanager.py,
-	gramps/gui/views/pageview.py, gramps/gui/widgets/fanchart.py,
-	gramps/plugins/lib/maps/datelayer.py,
-	gramps/plugins/lib/maps/geography.py,
-	gramps/plugins/lib/maps/messagelayer.py,
-	gramps/plugins/view/fanchart2wayview.py,
-	gramps/plugins/view/fanchartdescview.py,
-	gramps/plugins/view/fanchartview.py,
-	gramps/plugins/view/geoclose.py, gramps/plugins/view/geoevents.py,
-	gramps/plugins/view/geofamclose.py,
-	gramps/plugins/view/geofamily.py, gramps/plugins/view/geomoves.py,
-	gramps/plugins/view/geoperson.py,
-	gramps/plugins/view/pedigreeview.py, gramps/plugins/view/relview.py: 
-	GEPS 039: Genealogical symbols in gramps Gramps should be able to use genealogy symbols everywhere.  Several kinds of use for the genealogical symbols :     The graphical interface (GUI, editors, graphical views, ...)     The Web reports (webcal, narrativeweb, ...)     The Text reports (odf, rtf, pdf, ...)     The graphical reports (odf, rtf, svg, ...) Resolves #9098
-
-2019-01-17  vantu5z <vantu5z@mail.ru>
-
-	* gramps/gen/config.py, gramps/gui/configure.py,
-	gramps/gui/utils.py: Enhance layout of the preferences dialog
-
-2018-10-02  khrys63 <khrys63@gmail.com>
-
-	* gramps/gen/plug/docgen/graphdoc.py,
-	gramps/plugins/graph/gvhourglass.py: Add Ahnentafel option on
-	hourglass
-
-2019-03-10  SNoiraud <serge.noiraud@laposte.net>
-
-	* gramps/plugins/webreport/webcal.py: Webcal: better help msg for
-	the after year option.
-
-2019-03-10  SNoiraud <serge.noiraud@laposte.net>
-
-	* gramps/plugins/webreport/webcal.py: Webcal: Include only events
-	after year
-
-2019-03-09  SNoiraud <serge.noiraud@laposte.net>
-
-	* gramps/plugins/webreport/webcal.py: Better quality code for codacy
-	and pylint
-
-2019-03-09  SNoiraud <serge.noiraud@laposte.net>
-
-	* gramps/plugins/webreport/webcal.py: Webcal: add death event Fixes #5025 add some cleanup use html_escape instead of _escape
-
-2019-03-13  jose1711 <jose1711@gmail.com>
-
-	* po/sk.po: Fix typo in Slovak translation
-
-2019-01-30  prculley <paulr2787@gmail.com>
-
-	* gramps/gui/editors/displaytabs/buttontab.py,
-	gramps/gui/editors/displaytabs/gallerytab.py: Add buttons for
-	arrangement of GalleryTab media order
-
-2019-01-25  prculley <paulr2787@gmail.com>
-
-	* gramps/gen/config.py, gramps/grampsapp.py,
-	gramps/gui/viewmanager.py: On restart after crash, offer to run
-	Check & Repair
-
-2019-01-12  Sam Manzi <manzi.sam@gmail.com>
-
-	* gramps/gui/widgets/grampletbar.py: Add tooltip for Gramplet Bar To improve discoverability of the Gramplet Bar Menu (Currently a
-	nameless down arrow at end of each Gramplet bar title tab) add a
-	tooltip.  Issue #9042
-
-2018-12-30  SNoiraud <serge.noiraud@laposte.net>
-
-	* gramps/plugins/webreport/basepage.py: extrapage can now point to
-	joomla, drupal, ...
-
-2019-05-12  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/gen/filters/rules/_haseventbase.py,
-	gramps/gen/filters/rules/event/_hascitation.py,
-	gramps/gen/filters/rules/family/_hascitation.py,
-	gramps/gen/filters/rules/family/_hasevent.py,
-	gramps/gen/filters/rules/media/_hascitation.py,
-	gramps/gen/filters/rules/person/_hasassociation.py,
-	gramps/gen/filters/rules/person/_hascitation.py,
-	gramps/gen/filters/rules/person/_hasevent.py,
-	gramps/gen/filters/rules/person/_hasfamilyevent.py,
-	gramps/gen/filters/rules/person/_hasnameof.py,
-	gramps/gen/filters/rules/person/_hassoundexname.py,
-	gramps/gen/filters/rules/person/_isancestoroffiltermatch.py,
-	gramps/gen/filters/rules/person/_probablyalive.py,
-	gramps/gen/filters/rules/place/_hascitation.py,
-	gramps/gen/utils/db.py, gramps/gen/utils/maclocale.py,
-	gramps/gen/utils/test/place_test.py,
-	gramps/gen/utils/thumbnails.py, gramps/grampsapp.py,
-	gramps/gui/columnorder.py, gramps/gui/editors/addmedia.py,
-	gramps/gui/editors/displaytabs/gallerytab.py,
-	gramps/gui/editors/editeventref.py,
-	gramps/gui/editors/editmediaref.py, gramps/gui/editors/editname.py,
-	gramps/gui/editors/editnote.py, gramps/gui/editors/editplaceref.py,
-	gramps/gui/editors/editreporef.py,
-	gramps/gui/filters/_searchbar.py, gramps/gui/plug/_windows.py,
-	gramps/gui/plug/export/_exportassistant.py,
-	gramps/gui/plug/quick/_quickreports.py,
-	gramps/gui/plug/report/_papermenu.py,
-	gramps/gui/plug/report/_styleeditor.py,
-	gramps/gui/selectors/baseselector.py, gramps/gui/undohistory.py,
-	gramps/gui/views/listview.py,
-	gramps/gui/views/treemodels/citationbasemodel.py,
-	gramps/gui/views/treemodels/eventmodel.py,
-	gramps/gui/widgets/fanchart.py,
-	gramps/plugins/db/bsddb/bsddb.gpr.py,
-	gramps/plugins/docgen/docgen.gpr.py,
-	gramps/plugins/drawreport/drawplugins.gpr.py,
-	gramps/plugins/export/export.gpr.py,
-	gramps/plugins/graph/graphplugins.gpr.py,
-	gramps/plugins/importer/import.gpr.py,
-	gramps/plugins/importer/importgeneweb.py,
-	gramps/plugins/lib/libholiday.py,
-	gramps/plugins/lib/libplugins.gpr.py,
-	gramps/plugins/mapservices/eniroswedenmap.py,
-	gramps/plugins/mapservices/mapservice.gpr.py,
-	gramps/plugins/quickview/quickview.gpr.py,
-	gramps/plugins/rel/rel_ru.py, gramps/plugins/rel/rel_sk.py,
-	gramps/plugins/rel/rel_sv.py, gramps/plugins/rel/relplugins.gpr.py,
-	gramps/plugins/sidebar/sidebar.gpr.py,
-	gramps/plugins/textreport/birthdayreport.py,
-	gramps/plugins/textreport/textplugins.gpr.py,
-	gramps/plugins/tool/mediamanager.py,
-	gramps/plugins/tool/tools.gpr.py,
-	gramps/plugins/tool/toolsdebug.gpr.py,
-	gramps/plugins/view/citationlistview.py,
-	gramps/plugins/view/citationtreeview.py,
-	gramps/plugins/view/fanchart2wayview.py,
-	gramps/plugins/view/fanchartdescview.py,
-	gramps/plugins/view/fanchartview.py,
-	gramps/plugins/view/view.gpr.py,
-	gramps/plugins/webreport/webplugins.gpr.py,
-	gramps/plugins/webstuff/webstuff.gpr.py, gramps/test/regrtest.py,
-	gramps/test/test_util.py: Remove extraneous whitespace after
-	assignment
-
-2019-01-07  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/gen/datehandler/_date_de.py,
-	gramps/gen/datehandler/_date_hu.py,
-	gramps/gen/datehandler/_date_nl.py,
-	gramps/gen/datehandler/_date_pl.py,
-	gramps/gen/datehandler/_date_sr.py,
-	gramps/gen/datehandler/_dateparser.py, gramps/gen/db/dbconst.py,
-	gramps/gen/db/txn.py, gramps/gen/display/name.py,
-	gramps/gen/filters/rules/_changedsincebase.py,
-	gramps/gen/filters/rules/_everything.py,
-	gramps/gen/filters/rules/_hasattributebase.py,
-	gramps/gen/filters/rules/_hascitationbase.py,
-	gramps/gen/filters/rules/_haseventbase.py,
-	gramps/gen/filters/rules/_hasgallerybase.py,
-	gramps/gen/filters/rules/_hasgrampsid.py,
-	gramps/gen/filters/rules/_hasldsbase.py,
-	gramps/gen/filters/rules/_hasnotebase.py,
-	gramps/gen/filters/rules/_hasnoteregexbase.py,
-	gramps/gen/filters/rules/_hasnotesubstrbase.py,
-	gramps/gen/filters/rules/_hasreferencecountbase.py,
-	gramps/gen/filters/rules/_hassourcebase.py,
-	gramps/gen/filters/rules/_hassourcecountbase.py,
-	gramps/gen/filters/rules/_hassourceofbase.py,
-	gramps/gen/filters/rules/_hastagbase.py,
-	gramps/gen/filters/rules/_hastextmatchingsubstringof.py,
-	gramps/gen/filters/rules/_isprivate.py,
-	gramps/gen/filters/rules/_ispublic.py,
-	gramps/gen/filters/rules/_matcheseventfilterbase.py,
-	gramps/gen/filters/rules/_matchesfilterbase.py,
-	gramps/gen/filters/rules/_matchessourceconfidencebase.py,
-	gramps/gen/filters/rules/_matchessourcefilterbase.py,
-	gramps/gen/filters/rules/_regexpidbase.py,
-	gramps/gen/filters/rules/_rule.py,
-	gramps/gen/filters/rules/citation/_allcitations.py,
-	gramps/gen/filters/rules/citation/_changedsince.py,
-	gramps/gen/filters/rules/citation/_citationprivate.py,
-	gramps/gen/filters/rules/citation/_hascitation.py,
-	gramps/gen/filters/rules/citation/_hasgallery.py,
-	gramps/gen/filters/rules/citation/_hasidof.py,
-	gramps/gen/filters/rules/citation/_hasnote.py,
-	gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py,
-	gramps/gen/filters/rules/citation/_hasnoteregexp.py,
-	gramps/gen/filters/rules/citation/_hasreferencecountof.py,
-	gramps/gen/filters/rules/citation/_hassource.py,
-	gramps/gen/filters/rules/citation/_hassourceidof.py,
-	gramps/gen/filters/rules/citation/_hassourcenoteregexp.py,
-	gramps/gen/filters/rules/citation/_hastag.py,
-	gramps/gen/filters/rules/citation/_matchesfilter.py,
-	gramps/gen/filters/rules/citation/_matchespagesubstringof.py,
-	gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py,
-	gramps/gen/filters/rules/citation/_matchessourcefilter.py,
-	gramps/gen/filters/rules/citation/_regexpidof.py,
-	gramps/gen/filters/rules/citation/_regexpsourceidof.py,
-	gramps/gen/filters/rules/event/_allevents.py,
-	gramps/gen/filters/rules/event/_changedsince.py,
-	gramps/gen/filters/rules/event/_eventprivate.py,
-	gramps/gen/filters/rules/event/_hasattribute.py,
-	gramps/gen/filters/rules/event/_hascitation.py,
-	gramps/gen/filters/rules/event/_hasdata.py,
-	gramps/gen/filters/rules/event/_hasdayofweek.py,
-	gramps/gen/filters/rules/event/_hasgallery.py,
-	gramps/gen/filters/rules/event/_hasidof.py,
-	gramps/gen/filters/rules/event/_hasnote.py,
-	gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py,
-	gramps/gen/filters/rules/event/_hasnoteregexp.py,
-	gramps/gen/filters/rules/event/_hasreferencecountof.py,
-	gramps/gen/filters/rules/event/_hassourcecount.py,
-	gramps/gen/filters/rules/event/_hastag.py,
-	gramps/gen/filters/rules/event/_hastype.py,
-	gramps/gen/filters/rules/event/_matchesfilter.py,
-	gramps/gen/filters/rules/event/_matchespersonfilter.py,
-	gramps/gen/filters/rules/event/_matchesplacefilter.py,
-	gramps/gen/filters/rules/event/_matchessourceconfidence.py,
-	gramps/gen/filters/rules/event/_matchessourcefilter.py,
-	gramps/gen/filters/rules/event/_regexpidof.py,
-	gramps/gen/filters/rules/family/_allfamilies.py,
-	gramps/gen/filters/rules/family/_changedsince.py,
-	gramps/gen/filters/rules/family/_childhasidof.py,
-	gramps/gen/filters/rules/family/_childhasnameof.py,
-	gramps/gen/filters/rules/family/_familyprivate.py,
-	gramps/gen/filters/rules/family/_fatherhasidof.py,
-	gramps/gen/filters/rules/family/_fatherhasnameof.py,
-	gramps/gen/filters/rules/family/_hasattribute.py,
-	gramps/gen/filters/rules/family/_hascitation.py,
-	gramps/gen/filters/rules/family/_hasevent.py,
-	gramps/gen/filters/rules/family/_hasgallery.py,
-	gramps/gen/filters/rules/family/_hasidof.py,
-	gramps/gen/filters/rules/family/_haslds.py,
-	gramps/gen/filters/rules/family/_hasnote.py,
-	gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py,
-	gramps/gen/filters/rules/family/_hasnoteregexp.py,
-	gramps/gen/filters/rules/family/_hasreferencecountof.py,
-	gramps/gen/filters/rules/family/_hasreltype.py,
-	gramps/gen/filters/rules/family/_hassourcecount.py,
-	gramps/gen/filters/rules/family/_hassourceof.py,
-	gramps/gen/filters/rules/family/_hastag.py,
-	gramps/gen/filters/rules/family/_hastwins.py,
-	gramps/gen/filters/rules/family/_isbookmarked.py,
-	gramps/gen/filters/rules/family/_matchesfilter.py,
-	gramps/gen/filters/rules/family/_matchessourceconfidence.py,
-	gramps/gen/filters/rules/family/_motherhasidof.py,
-	gramps/gen/filters/rules/family/_motherhasnameof.py,
-	gramps/gen/filters/rules/family/_regexpchildname.py,
-	gramps/gen/filters/rules/family/_regexpfathername.py,
-	gramps/gen/filters/rules/family/_regexpidof.py,
-	gramps/gen/filters/rules/family/_regexpmothername.py,
-	gramps/gen/filters/rules/family/_searchchildname.py,
-	gramps/gen/filters/rules/family/_searchfathername.py,
-	gramps/gen/filters/rules/family/_searchmothername.py,
-	gramps/gen/filters/rules/media/_allmedia.py,
-	gramps/gen/filters/rules/media/_changedsince.py,
-	gramps/gen/filters/rules/media/_hasattribute.py,
-	gramps/gen/filters/rules/media/_hascitation.py,
-	gramps/gen/filters/rules/media/_hasidof.py,
-	gramps/gen/filters/rules/media/_hasmedia.py,
-	gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py,
-	gramps/gen/filters/rules/media/_hasnoteregexp.py,
-	gramps/gen/filters/rules/media/_hasreferencecountof.py,
-	gramps/gen/filters/rules/media/_hassourcecount.py,
-	gramps/gen/filters/rules/media/_hassourceof.py,
-	gramps/gen/filters/rules/media/_hastag.py,
-	gramps/gen/filters/rules/media/_matchesfilter.py,
-	gramps/gen/filters/rules/media/_matchessourceconfidence.py,
-	gramps/gen/filters/rules/media/_mediaprivate.py,
-	gramps/gen/filters/rules/media/_regexpidof.py,
-	gramps/gen/filters/rules/note/_allnotes.py,
-	gramps/gen/filters/rules/note/_changedsince.py,
-	gramps/gen/filters/rules/note/_hasidof.py,
-	gramps/gen/filters/rules/note/_hasnote.py,
-	gramps/gen/filters/rules/note/_hasreferencecountof.py,
-	gramps/gen/filters/rules/note/_hastag.py,
-	gramps/gen/filters/rules/note/_hastype.py,
-	gramps/gen/filters/rules/note/_matchesfilter.py,
-	gramps/gen/filters/rules/note/_matchesregexpof.py,
-	gramps/gen/filters/rules/note/_matchessubstringof.py,
-	gramps/gen/filters/rules/note/_noteprivate.py,
-	gramps/gen/filters/rules/note/_regexpidof.py,
-	gramps/gen/filters/rules/person/_changedsince.py,
-	gramps/gen/filters/rules/person/_disconnected.py,
-	gramps/gen/filters/rules/person/_everyone.py,
-	gramps/gen/filters/rules/person/_familywithincompleteevent.py,
-	gramps/gen/filters/rules/person/_hasaddress.py,
-	gramps/gen/filters/rules/person/_hasalternatename.py,
-	gramps/gen/filters/rules/person/_hasassociation.py,
-	gramps/gen/filters/rules/person/_hasattribute.py,
-	gramps/gen/filters/rules/person/_hasbirth.py,
-	gramps/gen/filters/rules/person/_hascitation.py,
-	gramps/gen/filters/rules/person/_hascommonancestorwith.py,
-	gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.p
-	y, gramps/gen/filters/rules/person/_hasdeath.py,
-	gramps/gen/filters/rules/person/_hasevent.py,
-	gramps/gen/filters/rules/person/_hasfamilyattribute.py,
-	gramps/gen/filters/rules/person/_hasfamilyevent.py,
-	gramps/gen/filters/rules/person/_hasgallery.py,
-	gramps/gen/filters/rules/person/_hasidof.py,
-	gramps/gen/filters/rules/person/_haslds.py,
-	gramps/gen/filters/rules/person/_hasnameof.py,
-	gramps/gen/filters/rules/person/_hasnameorigintype.py,
-	gramps/gen/filters/rules/person/_hasnametype.py,
-	gramps/gen/filters/rules/person/_hasnickname.py,
-	gramps/gen/filters/rules/person/_hasnote.py,
-	gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py,
-	gramps/gen/filters/rules/person/_hasnoteregexp.py,
-	gramps/gen/filters/rules/person/_hasrelationship.py,
-	gramps/gen/filters/rules/person/_hassoundexname.py,
-	gramps/gen/filters/rules/person/_hassourcecount.py,
-	gramps/gen/filters/rules/person/_hassourceof.py,
-	gramps/gen/filters/rules/person/_hastag.py,
-	gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py,
-	gramps/gen/filters/rules/person/_hasunknowngender.py,
-	gramps/gen/filters/rules/person/_havealtfamilies.py,
-	gramps/gen/filters/rules/person/_havechildren.py,
-	gramps/gen/filters/rules/person/_incompletenames.py,
-	gramps/gen/filters/rules/person/_isancestorof.py,
-	gramps/gen/filters/rules/person/_isancestoroffiltermatch.py,
-	gramps/gen/filters/rules/person/_isbookmarked.py,
-	gramps/gen/filters/rules/person/_ischildoffiltermatch.py,
-	gramps/gen/filters/rules/person/_isdefaultperson.py,
-	gramps/gen/filters/rules/person/_isdescendantfamilyof.py,
-	gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py
-	, gramps/gen/filters/rules/person/_isdescendantof.py,
-	gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py,
-	gramps/gen/filters/rules/person/_isduplicatedancestorof.py,
-	gramps/gen/filters/rules/person/_isfemale.py,
-	gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.
-	py,
-	gramps/gen/filters/rules/person/_islessthannthgenerationancestorofb
-	ookmarked.py,
-	gramps/gen/filters/rules/person/_islessthannthgenerationancestorofd
-	efaultperson.py,
-	gramps/gen/filters/rules/person/_islessthannthgenerationdescendanto
-	f.py, gramps/gen/filters/rules/person/_ismale.py,
-	gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.
-	py,
-	gramps/gen/filters/rules/person/_ismorethannthgenerationdescendanto
-	f.py, gramps/gen/filters/rules/person/_isparentoffiltermatch.py,
-	gramps/gen/filters/rules/person/_isrelatedwith.py,
-	gramps/gen/filters/rules/person/_issiblingoffiltermatch.py,
-	gramps/gen/filters/rules/person/_isspouseoffiltermatch.py,
-	gramps/gen/filters/rules/person/_iswitness.py,
-	gramps/gen/filters/rules/person/_matcheseventfilter.py,
-	gramps/gen/filters/rules/person/_matchesfilter.py,
-	gramps/gen/filters/rules/person/_matchessourceconfidence.py,
-	gramps/gen/filters/rules/person/_matchidof.py,
-	gramps/gen/filters/rules/person/_missingparent.py,
-	gramps/gen/filters/rules/person/_multiplemarriages.py,
-	gramps/gen/filters/rules/person/_nevermarried.py,
-	gramps/gen/filters/rules/person/_nobirthdate.py,
-	gramps/gen/filters/rules/person/_nodeathdate.py,
-	gramps/gen/filters/rules/person/_peopleprivate.py,
-	gramps/gen/filters/rules/person/_peoplepublic.py,
-	gramps/gen/filters/rules/person/_personwithincompleteevent.py,
-	gramps/gen/filters/rules/person/_probablyalive.py,
-	gramps/gen/filters/rules/person/_regexpidof.py,
-	gramps/gen/filters/rules/person/_regexpname.py,
-	gramps/gen/filters/rules/person/_relationshippathbetween.py,
-	gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.p
-	y, gramps/gen/filters/rules/person/_searchname.py,
-	gramps/gen/filters/rules/place/_allplaces.py,
-	gramps/gen/filters/rules/place/_changedsince.py,
-	gramps/gen/filters/rules/place/_hascitation.py,
-	gramps/gen/filters/rules/place/_hasdata.py,
-	gramps/gen/filters/rules/place/_hasgallery.py,
-	gramps/gen/filters/rules/place/_hasidof.py,
-	gramps/gen/filters/rules/place/_hasnolatorlon.py,
-	gramps/gen/filters/rules/place/_hasnote.py,
-	gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py,
-	gramps/gen/filters/rules/place/_hasnoteregexp.py,
-	gramps/gen/filters/rules/place/_hasplace.py,
-	gramps/gen/filters/rules/place/_hasreferencecountof.py,
-	gramps/gen/filters/rules/place/_hassourcecount.py,
-	gramps/gen/filters/rules/place/_hassourceof.py,
-	gramps/gen/filters/rules/place/_hastag.py,
-	gramps/gen/filters/rules/place/_hastitle.py,
-	gramps/gen/filters/rules/place/_inlatlonneighborhood.py,
-	gramps/gen/filters/rules/place/_isenclosedby.py,
-	gramps/gen/filters/rules/place/_matcheseventfilter.py,
-	gramps/gen/filters/rules/place/_matchesfilter.py,
-	gramps/gen/filters/rules/place/_matchessourceconfidence.py,
-	gramps/gen/filters/rules/place/_placeprivate.py,
-	gramps/gen/filters/rules/place/_regexpidof.py,
-	gramps/gen/filters/rules/place/_withinarea.py,
-	gramps/gen/filters/rules/repository/_allrepos.py,
-	gramps/gen/filters/rules/repository/_changedsince.py,
-	gramps/gen/filters/rules/repository/_hasidof.py,
-	gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py,
-	gramps/gen/filters/rules/repository/_hasnoteregexp.py,
-	gramps/gen/filters/rules/repository/_hasreferencecountof.py,
-	gramps/gen/filters/rules/repository/_hasrepo.py,
-	gramps/gen/filters/rules/repository/_hastag.py,
-	gramps/gen/filters/rules/repository/_matchesfilter.py,
-	gramps/gen/filters/rules/repository/_matchesnamesubstringof.py,
-	gramps/gen/filters/rules/repository/_regexpidof.py,
-	gramps/gen/filters/rules/repository/_repoprivate.py,
-	gramps/gen/filters/rules/source/_allsources.py,
-	gramps/gen/filters/rules/source/_changedsince.py,
-	gramps/gen/filters/rules/source/_hasgallery.py,
-	gramps/gen/filters/rules/source/_hasidof.py,
-	gramps/gen/filters/rules/source/_hasnote.py,
-	gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py,
-	gramps/gen/filters/rules/source/_hasnoteregexp.py,
-	gramps/gen/filters/rules/source/_hasreferencecountof.py,
-	gramps/gen/filters/rules/source/_hasrepository.py,
-	gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py,
-	gramps/gen/filters/rules/source/_hastag.py,
-	gramps/gen/filters/rules/source/_matchesfilter.py,
-	gramps/gen/filters/rules/source/_matchesrepositoryfilter.py,
-	gramps/gen/filters/rules/source/_matchestitlesubstringof.py,
-	gramps/gen/filters/rules/source/_regexpidof.py,
-	gramps/gen/filters/rules/source/_sourceprivate.py,
-	gramps/gen/lib/date.py, gramps/gen/lib/test/grampstype_test.py,
-	gramps/gen/plug/_manager.py, gramps/gen/plug/_pluginreg.py,
-	gramps/gen/plug/docbackend/docbackend.py,
-	gramps/gen/plug/docgen/fontstyle.py,
-	gramps/gen/plug/docgen/graphicstyle.py,
-	gramps/gen/plug/docgen/paperstyle.py,
-	gramps/gen/plug/docgen/paragraphstyle.py,
-	gramps/gen/plug/docgen/tablestyle.py, gramps/gen/proxy/living.py,
-	gramps/gen/utils/alive.py, gramps/gen/utils/config.py,
-	gramps/gui/configure.py, gramps/gui/ddtargets.py,
-	gramps/gui/editors/addmedia.py,
-	gramps/gui/editors/displaytabs/addrembedlist.py,
-	gramps/gui/editors/displaytabs/attrembedlist.py,
-	gramps/gui/editors/displaytabs/buttontab.py,
-	gramps/gui/editors/displaytabs/embeddedlist.py,
-	gramps/gui/editors/displaytabs/eventembedlist.py,
-	gramps/gui/editors/displaytabs/eventrefmodel.py,
-	gramps/gui/editors/displaytabs/familyldsembedlist.py,
-	gramps/gui/editors/displaytabs/gallerytab.py,
-	gramps/gui/editors/displaytabs/ldsembedlist.py,
-	gramps/gui/editors/displaytabs/locationembedlist.py,
-	gramps/gui/editors/displaytabs/nameembedlist.py,
-	gramps/gui/editors/displaytabs/personrefembedlist.py,
-	gramps/gui/editors/displaytabs/placenameembedlist.py,
-	gramps/gui/editors/displaytabs/placerefembedlist.py,
-	gramps/gui/editors/displaytabs/srcattrembedlist.py,
-	gramps/gui/editors/displaytabs/surnametab.py,
-	gramps/gui/editors/displaytabs/webembedlist.py,
-	gramps/gui/editors/editfamily.py,
-	gramps/gui/editors/editlocation.py,
-	gramps/gui/editors/editplace.py, gramps/gui/editors/editprimary.py,
-	gramps/gui/editors/editurl.py, gramps/gui/editors/filtereditor.py,
-	gramps/gui/listmodel.py, gramps/gui/plug/_dialogs.py,
-	gramps/gui/plug/export/_exportoptions.py,
-	gramps/gui/plug/report/_papermenu.py,
-	gramps/gui/selectors/baseselector.py,
-	gramps/gui/views/treemodels/basemodel.py,
-	gramps/gui/views/treemodels/citationbasemodel.py,
-	gramps/gui/views/treemodels/eventmodel.py,
-	gramps/gui/views/treemodels/peoplemodel.py,
-	gramps/gui/widgets/fanchartdesc.py,
-	gramps/gui/widgets/grampletpane.py,
-	gramps/plugins/db/bsddb/bsddb.gpr.py,
-	gramps/plugins/db/bsddb/cursor.py, gramps/plugins/db/bsddb/read.py,
-	gramps/plugins/db/bsddb/test/cursor_test.py,
-	gramps/plugins/db/bsddb/undoredo.py,
-	gramps/plugins/db/bsddb/write.py,
-	gramps/plugins/docgen/docgen.gpr.py,
-	gramps/plugins/drawreport/drawplugins.gpr.py,
-	gramps/plugins/export/export.gpr.py,
-	gramps/plugins/export/exportcsv.py,
-	gramps/plugins/graph/graphplugins.gpr.py,
-	gramps/plugins/importer/import.gpr.py,
-	gramps/plugins/importer/importcsv.py,
-	gramps/plugins/importer/importxml.py,
-	gramps/plugins/lib/libpersonview.py,
-	gramps/plugins/lib/libplaceview.py,
-	gramps/plugins/lib/libplugins.gpr.py,
-	gramps/plugins/lib/libsubstkeyword.py,
-	gramps/plugins/lib/libtreebase.py,
-	gramps/plugins/lib/maps/constants.py,
-	gramps/plugins/mapservices/mapservice.gpr.py,
-	gramps/plugins/quickview/all_relations.py,
-	gramps/plugins/quickview/lineage.py,
-	gramps/plugins/quickview/quickview.gpr.py,
-	gramps/plugins/quickview/references.py,
-	gramps/plugins/quickview/samesurnames.py,
-	gramps/plugins/rel/rel_ca.py, gramps/plugins/rel/relplugins.gpr.py,
-	gramps/plugins/sidebar/sidebar.gpr.py,
-	gramps/plugins/textreport/textplugins.gpr.py,
-	gramps/plugins/tool/mediamanager.py,
-	gramps/plugins/tool/notrelated.py,
-	gramps/plugins/tool/patchnames.py,
-	gramps/plugins/tool/tools.gpr.py,
-	gramps/plugins/tool/toolsdebug.gpr.py,
-	gramps/plugins/view/citationlistview.py,
-	gramps/plugins/view/citationtreeview.py,
-	gramps/plugins/view/eventview.py,
-	gramps/plugins/view/familyview.py,
-	gramps/plugins/view/geoplaces.py, gramps/plugins/view/mediaview.py,
-	gramps/plugins/view/noteview.py, gramps/plugins/view/relview.py,
-	gramps/plugins/view/view.gpr.py,
-	gramps/plugins/webreport/webplugins.gpr.py,
-	gramps/plugins/webstuff/webstuff.gpr.py, gramps/version.py: Remove
-	extraneous whitespace before assignment
-
-2019-02-27  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/gui/widgets/validatedmaskedentry.py: Use theme settings for
-	the error state of entry widgets Use the current Gtk theme settings for the appearance of the
-	ValidatableMaskedEntry widget in its error state.  This avoids
-	problems with dark themes.  Fixes #11046.
-
-2019-01-07  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/gen/datehandler/_dateutils.py,
-	gramps/gen/filters/rules/event/_matchespersonfilter.py,
-	gramps/gen/filters/rules/place/_hasnolatorlon.py,
-	gramps/gen/filters/rules/place/_inlatlonneighborhood.py,
-	gramps/gen/utils/maclocale.py, gramps/gui/editors/editprimary.py,
-	gramps/gui/plug/export/_exportassistant.py,
-	gramps/gui/widgets/styledtexteditor.py,
-	gramps/plugins/importer/importxml.py,
-	gramps/plugins/lib/libcairodoc.py,
-	gramps/plugins/quickview/all_events.py,
-	gramps/plugins/quickview/all_relations.py,
-	gramps/plugins/quickview/lineage.py, gramps/plugins/rel/rel_ca.py,
-	gramps/plugins/tool/notrelated.py: Remove extraneous whitespace
-	before colon
-
-2019-01-07  Nick Hall <nick-h@gramps-project.org>
-
-	* .pylintrc: Allow _T_ as a valid function name This is used for deferred translations.
-
-2019-01-07  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/gui/clipboard.py, gramps/gui/dbman.py,
-	gramps/gui/editors/displaytabs/buttontab.py,
-	gramps/gui/editors/displaytabs/gallerytab.py,
-	gramps/gui/editors/editmedia.py,
-	gramps/gui/editors/editmediaref.py,
-	gramps/gui/editors/editperson.py,
-	gramps/gui/editors/filtereditor.py, gramps/gui/listmodel.py,
-	gramps/gui/plug/_windows.py, gramps/gui/plug/report/_bookdialog.py,
-	gramps/gui/plug/report/_styleeditor.py,
-	gramps/gui/views/listview.py, gramps/gui/widgets/grampletpane.py,
-	gramps/gui/widgets/photo.py, gramps/plugins/gramplet/leak.py,
-	gramps/plugins/tool/removeunused.py, gramps/plugins/tool/verify.py,
-	gramps/plugins/view/pedigreeview.py: Replace _2BUTTON_PRESS by
-	DOUBLE_BUTTON_PRESS
-
-2019-01-05  Piotr Kasprzyk <ciri@ciri.pl>
-
-	* po/pl.po: Adjust - Polish translation
-
-2018-12-25  Balló György <ballogyor@gmail.com>
-
-	* data/gramps.appdata.xml.in: Fix AppStream metadata validation
-
-2018-12-09  Keepun <keepun@gmail.com>
-
-	* gramps/plugins/export/exportvcalendar.py: vCalendar: Convenient
-	display on mobile devices.
-
-2018-12-09  Jonas Hahnfeld <hahnjo@hahnjo.de>
-
-	* gramps/gen/lib/attrtype.py, gramps/gen/plug/docgen/treedoc.py: Add
-	first class support for Occupation attribute This was already used in PersonDetails and (incorrectly) in TreeDoc.
-	Add it to the list in AttributeType, provide translations and fix
-	usage in TreeDoc in case the user is not running with English
-	translation.
-
-2018-11-14  Richard Clay <richard.clay@gmail.com>
-
-	* gramps/plugins/drawreport/statisticschart.py: Some pylint
-	improvements
-
-2018-11-14  Richard Clay <richard.clay@gmail.com>
-
-	* gramps/plugins/drawreport/statisticschart.py: Add option to hide
-	empty information on statistics chart
-
-2018-11-10  prculley <paulr2787@gmail.com>
-
-	* gramps/cli/argparser.py, gramps/gen/const.py, gramps/grampsapp.py: 
-	New CLI commands; 'safe' mode and 'default'
-
-2018-11-10  prculley <paulr2787@gmail.com>
-
-	* gramps/gen/utils/configmanager.py: Fix config file load for
-	bad/old style Python syntax
-
-2018-11-07  prculley <paulr2787@gmail.com>
-
-	* gramps/gui/editors/filtereditor.py: Filter Rule editor, save pane
-	position
-
-2018-10-27  prculley <paulr2787@gmail.com>
-
-	* gramps/gui/clipboard.py, gramps/gui/dbman.py,
-	gramps/gui/editors/displaytabs/embeddedlist.py,
-	gramps/gui/editors/displaytabs/gallerytab.py,
-	gramps/gui/editors/editchildref.py,
-	gramps/gui/editors/editfamily.py, gramps/gui/editors/editperson.py,
-	gramps/gui/editors/editpersonref.py,
-	gramps/gui/editors/objectentries.py,
-	gramps/gui/plug/quick/_quicktable.py, gramps/gui/views/listview.py,
-	gramps/gui/widgets/fanchart.py, gramps/gui/widgets/grampletpane.py,
-	gramps/plugins/view/relview.py: Remove old Gtk drag/drop bug fix, no
-	longer needed
-
-2018-10-25  prculley <paulr2787@gmail.com>
-
-	* gramps/gui/clipboard.py, gramps/gui/views/pageview.py: Drag/drop
-	only one type of source
-
-2017-11-29  prculley <paulr2787@gmail.com>
-
-	* gramps/gui/views/treemodels/flatbasemodel.py,
-	gramps/gui/views/treemodels/treebasemodel.py: Filters optimization;
-	Use cache proxy with filters in views
-
-2017-11-28  prculley <paulr2787@gmail.com>
-
-	* gramps/gen/filters/rules/person/_deeprelationshippathbetween.py,
-	gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.p
-	y, gramps/gen/filters/rules/person/_isancestoroffiltermatch.py,
-	gramps/gen/filters/rules/person/_ischildoffiltermatch.py,
-	gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py
-	, gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py,
-	gramps/gen/filters/rules/person/_isparentoffiltermatch.py,
-	gramps/gen/filters/rules/person/_issiblingoffiltermatch.py: Filter
-	fixes to prevent MatchesFilter types from running multiple times
-
-2018-10-17  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/cli/arghandler.py, gramps/gen/plug/report/_book.py,
-	gramps/gen/relationship.py, gramps/gui/plug/_dialogs.py,
-	gramps/gui/plug/quick/_quickreports.py,
-	gramps/plugins/lib/libplaceview.py: Replace eval with getattr when
-	loading plugin classes
-
-2018-10-15  SNoiraud <serge.noiraud@laposte.net>
-
-	* gramps/plugins/view/geoplaces.py: Geography places: add color for
-	custom places name Fixes #10785
-
-2018-10-15  SNoiraud <serge.noiraud@laposte.net>
-
-	* gramps/plugins/webreport/basepage.py: NarrativeWeb: add enclosed
-	by and encloses (place) Fixes #10743 includes the problem with private places (see PR 679)
-
-2018-10-05  prculley <paulr2787@gmail.com>
-
-	* gramps/gui/dialog.py, gramps/gui/glade/dialog.glade,
-	gramps/gui/views/listview.py: Fix Delete dialogs to all canceling
-	multiple deletes more easily Fixes #10796
-
-2018-04-17  Alois Poettker <alois.poettker@gmx.de>
-
-	* gramps/plugins/textreport/detancestralreport.py,
-	gramps/plugins/textreport/detdescendantreport.py: Show death/burial
-	information only if person is proabably dead
-
-2018-02-16  Paul D.Smith <paul_d_smith@hotmail.com>
-
-	* gramps/plugins/webreport/buchheim.py,
-	gramps/plugins/webreport/layout.py,
-	gramps/plugins/webreport/media.py,
-	gramps/plugins/webreport/narrativeweb.py,
-	gramps/plugins/webreport/person.py, po/POTFILES.in: Add compact
-	Ancestry trees using Buchheim/Walker algorithm This enhancement adds a new 'compact' field to the Narrated Web
-	Report. A compact tree is one that is not a simple binary layout but
-	uses the algorithm of Buchheim/Walker to create a layout that is
-	sensible but also compact.  Creating a compact layout is slower than a simple binary tree but
-	the results are significantly improved and do not leave large areas
-	of whitespace where there are no nodes to be shown.
-
-2018-12-26  prculley <paulr2787@gmail.com>
-
-	* po/cs.po, po/da.po, po/de.po, po/eo.po, po/fi.po, po/fr.po,
-	po/hr.po, po/hu.po, po/nn.po, po/pt_PT.po, po/ru.po, po/sl.po,
-	po/sv.po: fixup some merge issues in po files
-
-2018-11-27  Paul Culley <paulr2787@gmail.com>
-
-	* gramps/gui/filters/sidebar/_personsidebarfilter.py: Fix Person
-	Sidebarfilter when using 'Event' and Reg expressions (#717) Fixes #10659
-
-2018-11-27  Paul Culley <paulr2787@gmail.com>
-
-	* gramps/plugins/tool/finddupes.py: Fix Find Duplicate People;
-	exception when deleting someone shown (#705) outside of the tool Fixes #10875
-
-2018-10-03  Richard Clay <richard.clay@gmail.com>
-
-	* gramps/gui/filters/sidebar/_personsidebarfilter.py: In
-	personsidebarfilter, search on each part of name Instead of requiring that the entire search string matches a single
-	one of the Person's names, the function will require that each word
-	in the search string matches any of the Person's name fields.  Fixes #7950
-
-2018-09-21  Malte Renken <malte.renken@fu-berlin.de>
-
-	* gramps/plugins/graph/gvrelgraph.py: RelGraphReport: Add an option
-	to omit "irrelevant" family nodes
-
-2018-07-26  MJBMZ <mjbmz@mainzonline.de>
-
-	* gramps/plugins/graph/gvfamilylines.py: Replace rounded corners
-	checkbox by dropdown It now allows rounded corners to be set more explicitly for
-	different genders (None/Male/Female/Both).
-
-2018-05-14  jose1711 <jose1711@gmail.com>
-
-	* gramps/plugins/graph/gvhourglass.py: Do not use hyphen for living
-	persons in hourglass graph
-
-2018-03-06  Jgon6 <1jgon6@mail.com>
-
-	* gramps/plugins/textreport/birthdayreport.py: Include death
-	anniversaries as an option in the birthdays report Added the optional ability to list the anniversry of peoples deaths
-	in the birthday and anniversary report Resolves #3540
-
-2018-03-05  Jgon6 <1jgon6@mail.com>
-
-	* gramps/plugins/textreport/birthdayreport.py: Add an option to show
-	years in the birthday report Added an option to the birthday report that allows for the year of
-	birth (or in the case of a wedding it's year) to be printed in the
-	report.  Resolves #5948
-
-2018-03-05  Jgon6 <1jgon6@mail.com>
-
-	* gramps/plugins/textreport/birthdayreport.py: Added symbols to the
-	birthdays report showing the type of event Issue #3540
-
-2018-03-05  Jgon6 <1jgon6@mail.com>
-
-	* gramps/plugins/textreport/birthdayreport.py: Birthday report dead
-	indicator now user defineable Fixed the birthday report so the dead icon is able to be set within
-	the options window
-
-2018-03-05  Jgon6 <1jgon6@mail.com>
-
-	* gramps/plugins/textreport/birthdayreport.py: Indicate if a person
-	is dead in the birthdays report Added a text option to have a string that will show after a persons
-	name in the birthday and anniversary report. This works for both
-	birthdays and anniversaries.  Issue #3540
-
-2018-03-03  SNoiraud <serge.noiraud@laposte.net>
-
-	* gramps/plugins/webreport/narrativeweb.py,
-	gramps/plugins/webreport/person.py: Make relationships optional in
-	narrative web Fixes #10454
-
-2018-10-07  Paul Franklin <pf.98052@gmail.com>
-
-	* gramps/plugins/drawreport/statisticschart.py: Setting the year as
-	an ordinal number in Croatian With this commit, the "master" version of the Statistics Chart
-	report will show a year as an ordinal number in Croatian.  So our translators will have until 5.1.0 is released to translate
-	the two new strings, in all the supported gramps languages.  Issue #10822
-
-2018-08-06  prculley <paulr2787@gmail.com>
-
-	* gramps/gui/grampsgui.py, gramps/gui/uimanager.py,
-	gramps/gui/viewmanager.py: Disable OSX specific menu items, added in
-	'Gramps' menu
-
-2018-07-09  prculley <paulr2787@gmail.com>
-
-	* gramps/gen/config.py, gramps/gui/uimanager.py: Add config option
-	to use Toolbar Text
-
-2018-06-22  prculley <paulr2787@gmail.com>
-
-	* README.md, gramps/grampsapp.py, gramps/gui/actiongroup.py,
-	gramps/gui/displaystate.py, gramps/gui/editors/editnote.py,
-	gramps/gui/editors/editperson.py,
-	gramps/gui/editors/editprimary.py, gramps/gui/grampsgui.py,
-	gramps/gui/managedwindow.py, gramps/gui/navigator.py,
-	gramps/gui/plug/quick/_quickreports.py, gramps/gui/uimanager.py,
-	gramps/gui/viewmanager.py, gramps/gui/views/bookmarks.py,
-	gramps/gui/views/listview.py, gramps/gui/views/navigationview.py,
-	gramps/gui/views/pageview.py, gramps/gui/views/tags.py,
-	gramps/gui/widgets/__init__.py, gramps/gui/widgets/grampletpane.py,
-	gramps/gui/widgets/shortlistcomboentry.py,
-	gramps/gui/widgets/springseparator.py,
-	gramps/gui/widgets/styledtexteditor.py,
-	gramps/gui/widgets/toolcomboentry.py,
-	gramps/gui/widgets/validatedcomboentry.py,
-	gramps/gui/widgets/valueaction.py,
-	gramps/gui/widgets/valuetoolitem.py,
-	gramps/plugins/lib/libpersonview.py,
-	gramps/plugins/lib/libplaceview.py,
-	gramps/plugins/lib/maps/geography.py,
-	gramps/plugins/sidebar/categorysidebar.py,
-	gramps/plugins/view/citationlistview.py,
-	gramps/plugins/view/citationtreeview.py,
-	gramps/plugins/view/dashboardview.py,
-	gramps/plugins/view/eventview.py,
-	gramps/plugins/view/familyview.py,
-	gramps/plugins/view/fanchart2wayview.py,
-	gramps/plugins/view/fanchartdescview.py,
-	gramps/plugins/view/fanchartview.py,
-	gramps/plugins/view/geoclose.py, gramps/plugins/view/geoevents.py,
-	gramps/plugins/view/geofamclose.py,
-	gramps/plugins/view/geofamily.py, gramps/plugins/view/geomoves.py,
-	gramps/plugins/view/geoperson.py, gramps/plugins/view/geoplaces.py,
-	gramps/plugins/view/mediaview.py, gramps/plugins/view/noteview.py,
-	gramps/plugins/view/pedigreeview.py,
-	gramps/plugins/view/persontreeview.py,
-	gramps/plugins/view/placetreeview.py,
-	gramps/plugins/view/relview.py, gramps/plugins/view/repoview.py,
-	gramps/plugins/view/sourceview.py, mac/gramps.accel,
-	po/POTFILES.skip: Geps044 - Replace deprecated Gtk.UIManager,
-	Gtk.Actions etc.
-
-2018-09-28  milotype <43657314+milotype@users.noreply.github.com>
-
-	* gramps/plugins/graph/gvfamilylines.py,
-	gramps/plugins/graph/gvhourglass.py,
-	gramps/plugins/graph/gvrelgraph.py: Better typography in graph
-	reports Replace hyphen with en-dash.
-
-2018-09-27  Robin van der Vliet <info@robinvandervliet.com>
-
-	* po/eo.po: Esperanto Translation Update eo.po (#660) Made a lot of corrections and other stylistic improvements to the
-	Esperanto file.
-
-2018-08-09  prculley <paulr2787@gmail.com>
-
-	* po/da.po, po/is.po, po/vi.po: Fix up bad translation files after
-	merge
-
-2018-08-08  Leonhaeuser <mirko@leonhaeuser.de>
-
-	* po/de.po: Reviewed German translation Thanks to bmendl
-
-2018-08-08  niememat <niememat@gmail.com>
-
-	* po/fi.po: Fix translation in Finnish
-
-2018-08-05  John Ralls <jralls@ceridwen.us>
-
-	* mac/gramps.bundle: File copy doesn't work if the glob can match
-	directories.
-
-2018-08-04  John Ralls <jralls@ceridwen.us>
-
-	* mac/gramps.bundle: Install the docs/gramps directory in the
-	bundle.  Fixes bug #10705.
-
-2018-08-05  niememat <niememat@gmail.com>
-
-	* po/fi.po: Fix and updated translation in Finnish
-
-2018-07-25  Ross Gammon <rossgammon@mail.dk>
-
-	* debian/changelog: Update the Debian changelog after the 5.0.0
-	release
-
-2018-07-25  John Ralls <jralls@ceridwen.us>
-
-	* mac/Info.plist, mac/gramps.modules: Release Gramps-5.0.0 on Mac.
-
-2018-07-24  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/gen/const.py: Bump to 5.0.1
-
-2018-07-24  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/gen/const.py: Release Gramps 5.0.0
-
-2018-07-24  Nick Hall <nick-h@gramps-project.org>
-
-	* ChangeLog, NEWS, po/ChangeLog: Update Changelog and NEWS files
-
-2018-07-24  Nick Hall <nick-h@gramps-project.org>
+2019-09-10  Nick Hall <nick-h@gramps-project.org>
 
 	* po/gramps.pot: Update translation template for new release
 
-2018-07-22  niememat <niememat@gmail.com>
+2019-08-27  Avi Markovitz <avi.markovitz@gmail.com>
 
-	* po/fi.po: Fix translation in Finnish
+	* po/he.po: Update Hebrew translation
 
-2018-07-01  John Ralls <jralls@ceridwen.us>
+2019-07-11  Pedro Albuquerque <palbuquerque73@gmail.com>
 
-	* gramps/gui/clipboard.py,
-	gramps/gui/editors/displaytabs/buttontab.py,
-	gramps/gui/editors/displaytabs/surnametab.py,
-	gramps/gui/filters/_searchbar.py,
-	gramps/gui/filters/sidebar/_sidebarfilter.py, gramps/gui/utils.py,
-	gramps/gui/views/navigationview.py,
-	gramps/gui/widgets/grampletpane.py,
-	gramps/gui/widgets/interactivesearchbox.py,
-	gramps/gui/widgets/multitreeview.py,
-	gramps/gui/widgets/styledtexteditor.py: Correct binary test logic
-	for primary mask.  state & get_primary_mask(another) tested (state & (primary |
-	other)), which will be true if state matches *either* primary *or*
-	other, but what is wanted in a not-negated test is state matching
-	all bits of (primary | other). match_primary_mask does that.  On the other hand there are also cases of "not state & (primary |
-	other)".  no_match_primary_mask handles that, returning true if
-	 state matches none of the bits in (primary | other).  Fixes #10646.
+	* po/pt_PT.po: Update Portuguese (Europe) translation
 
-2018-06-21  prculley <paulr2787@gmail.com>
+2019-06-24  Milo Ivir <mail@milotype.de>
 
-	* gramps/gui/glade/baseselector.glade,
-	gramps/gui/selectors/baseselector.py: Fix BaseSelector to avoid long
-	delay before display on large trees Fixes #10634
+	* po/hr.po: Update croatian translation - update with newest/current .pot file - translation is complete - corrections in wording and some missing accelerators
 
-2018-05-06  SNoiraud <serge.noiraud@laposte.net>
+2019-09-02  prculley <paulr2787@gmail.com>
 
-	* gramps/gui/plug/export/_exportoptions.py: Export options > Gui
-	alignment issue Fixes #10576
+	* gramps/gui/widgets/styledtexteditor.py: Fix missing tooltip
+	translations in the Note editor toolbar Fixes #11289
 
-2018-07-22  niememat <niememat@gmail.com>
+2019-09-01  SNoiraud <Serge.Noiraud@free.fr>
 
-	* po/fi.po: New fix translation in Finnish
+	* gramps/gen/filters/rules/place/_withinarea.py: Avoid bad
+	coordinates in the ref place
 
-2018-07-22  Espen Berg <espenbe@gmail.com>
+2019-08-28  SNoiraud <Serge.Noiraud@free.fr>
 
-	* po/nb.po: Revised Norwegian bokmÃ¥l
+	* gramps/gen/filters/rules/place/_withinarea.py: Avoid alphabetic
+	characters in filter rules
 
-2018-07-22  Espen Berg <espenbe@gmail.com>
+2019-08-23  SNoiraud <Serge.Noiraud@free.fr>
 
-	* po/nb.po: Revised Norwegian bokmÃ¥l
+	* gramps/gen/filters/rules/place/_withinarea.py: Could not convert
+	string to float by using withinarea filter rule + difference between sidebar filter
+	and filter rule + some pylint improvements
 
-2018-07-22  niememat <niememat@gmail.com>
+2019-08-31  prculley <paulr2787@gmail.com>
 
-	* po/fi.po: Fix translation in Finnish
+	* gramps/gen/plug/docgen/graphdoc.py: Fix Graph outputs for multiple
+	page PDF Postscript Fixes #11305
 
-2018-07-21  Nick Hall <nick-h@gramps-project.org>
+2019-08-31  prculley <paulr2787@gmail.com>
 
-	* gramps/gui/glade/editplace.glade,
-	gramps/gui/glade/editplaceref.glade: Fix dialog button order on
-	non-Mac systems Resolves #10585.
+	* gramps/gen/plug/_pluginreg.py, gramps/gui/managedwindow.py,
+	gramps/gui/plug/quick/_quickreports.py, gramps/gui/uimanager.py,
+	gramps/gui/viewmanager.py, gramps/gui/views/tags.py,
+	gramps/gui/widgets/grampletpane.py: Fix to make Gtk 'action names'
+	always valid Fixes #11291
 
-2018-07-21  De Tran <trande@gmail.com>
+2019-08-31  prculley <paulr2787@gmail.com>
 
-	* po/vi.po: Fix and update Vietnamese translation Resolves #10681.
+	* gramps/gui/uimanager.py, gramps/gui/views/tags.py: Fix missing
+	menus/buttons when operating in non-English languages Fixes #11292
 
-2018-07-21  Sveinn í Felli <sv1@fellsnet.is>
+2019-08-31  SNoiraud <Serge.Noiraud@free.fr>
 
-	* po/is.po: Update Icelandic translation
+	* gramps/gui/widgets/validatedmaskedentry.py: Cursor position error
+	in lat and long fields Fixes #11310
 
-2018-05-10  jose1711 <jose1711@gmail.com>
+2019-08-30  SNoiraud <Serge.Noiraud@free.fr>
 
-	* po/sk.po: Fix and update Slovak translation
+	* gramps/plugins/tool/removespaces.py: Avoid all characters looking
+	like a dash   hyphen   non breaking hyphen   figure dash   em dash   horizontal bar Fixes #11308
 
-2018-05-11  jose1711 <jose1711@gmail.com>
+2019-08-30  SNoiraud <Serge.Noiraud@free.fr>
 
-	* gramps/plugins/rel/rel_cs.py: Fix typo in translation
+	* data/css/Web_Mainz.css: Narrative web: Mainz Style sheet weird
+	looking Fixes #11282
 
-2018-07-20  niememat <niememat@gmail.com>
+2019-09-02  SNoiraud <Serge.Noiraud@free.fr>
 
-	* po/fi.po: Fix translation in Finnish
+	* gramps/plugins/view/relview.py: Set symbols for the active person
 
-2018-07-20  niememat <niememat@gmail.com>
+2019-08-28  SNoiraud <Serge.Noiraud@free.fr>
 
-	* po/fi.po: Fix translation in Finnish
+	* gramps/plugins/view/relview.py: Set good symbols for marriage,
+	baptism, cremation and burial
 
-2018-07-18  niememat <niememat@gmail.com>
+2019-08-28  SNoiraud <Serge.Noiraud@free.fr>
 
-	* po/fi.po: Fix translation in Finnish
+	* gramps/plugins/view/relview.py: Reduce the size of the sexuality
+	symbol in relview Fixes #11295
 
-2018-07-15  Luigi Toscano <luigi.toscano@tiscali.it>
+2019-08-28  prculley <paulr2787@gmail.com>
 
-	* po/it.po: Update Italian translation
+	* gramps/gui/widgets/styledtexteditor.py: Fix exception when editing
+	Note with italics/bold etc. in non English Fixes #11284
 
-2018-07-13  Nick Hall <nick-h@gramps-project.org>
+2019-08-27  Nick Hall <nick-h@gramps-project.org>
 
-	* po/en_GB.po: Update English (British) translation
+	* gramps/gui/views/pageview.py: Restore keybindings for gramplet
+	bars Resolves #11297.
 
-2018-07-13  De Tran <trande@gmail.com>
+2019-08-27  Nick Hall <nick-h@gramps-project.org>
 
-	* po/vi.po: Update Vietnamese translation
+	* gramps/gui/plug/quick/_quickreports.py: Fix bug in web connection
+	menu launching incorrect web site Resolves #11280.
 
-2018-07-13  Kaj Mikkelsen <kmi@vgdata.dk>
+2019-08-26  SNoiraud <Serge.Noiraud@free.fr>
 
-	* po/da.po: Update Danish translation
+	* gramps/gui/autocomp.py: Translation problem when creating event
+	filter If you create a filter with the rule name:     "Events with a particular type" or     "Events with <data>" The menu "Travel", "Academic"... are not
+	translated Fixes #11293
 
-2018-07-13  Lajos Nemeséri <nemeseril@gmail.com>
+2019-08-26  SNoiraud <Serge.Noiraud@free.fr>
 
-	* po/hu.po: Update Hungarian translation
+	* gramps/gui/configure.py, gramps/gui/widgets/grampletbar.py: Error
+	when checking option to add Quit to Taskbar Fixes #11290
 
-2018-08-09  John Ralls <jralls@ceridwen.us>
-
-	* mac/gramps.modules: Switch included moduleset to gitlab.gnome.org.  Fixes bug #10733.
-
-2018-07-12  prculley <paulr2787@gmail.com>
-
-	* po/ar.po, po/bg.po, po/ca.po, po/cs.po, po/da.po, po/de.po,
-	po/el.po, po/en_GB.po, po/eo.po, po/es.po, po/fi.po, po/fr.po,
-	po/he.po, po/hr.po, po/hu.po, po/is.po, po/it.po, po/ja.po,
-	po/lt.po, po/nb.po, po/nl.po, po/nn.po, po/pl.po, po/pt_BR.po,
-	po/pt_PT.po, po/ru.po, po/sk.po, po/sl.po, po/sq.po, po/sr.po,
-	po/sv.po, po/ta.po, po/tr.po, po/uk.po, po/vi.po, po/zh_CN.po,
-	po/zh_HK.po, po/zh_TW.po: Use msgcat merged po files instead of git
-	merge versions
-
-2018-05-17  Espen Berg <espenbe@gmail.com>
-
-	* po/nn.po: Received revised Norsk Nynorsk from Sigmund Lorentsen
-	2018-05-01
-
-2018-05-17  Espen Berg <espenbe@gmail.com>
-
-	* po/nb.po: revised Norwegian bokmÃ¥l
-
-2018-05-12  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/gui/editors/displaytabs/eventbackreflist.py,
-	gramps/gui/editors/editevent.py,
-	gramps/gui/editors/editeventref.py,
-	gramps/plugins/view/eventview.py,
-	images/hicolor/scalable/actions/gramps-clone.svg: Revert "Clone
-	event w/o references (2nd pass, part B)" This reverts commit 208feceb0398d6c6b4e397563b9aa2eda2573590.  Changes requested in the PR not made.  Such a change requires
-	discussion on the list first.
-
-2018-05-12  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/gui/editors/displaytabs/backreflist.py,
-	gramps/gui/editors/displaytabs/buttontab.py,
-	gramps/gui/editors/displaytabs/embeddedlist.py,
-	gramps/gui/editors/displaytabs/eventembedlist.py,
-	gramps/gui/editors/displaytabs/groupembeddedlist.py,
-	gramps/gui/editors/displaytabs/personeventembedlist.py: Revert
-	"Embedded Clone Event w. references (2nd pass, part A)" This reverts commit ae322dbdc829726923b10ba0cb0d5a511cad4aae.  Changes requested in the PR not made.  Such a change requires
-	discussion on the list first.
-
-2018-04-23  Alois Poettker <alois.poettker@gmx.de>
-
-	* gramps/gui/editors/displaytabs/backreflist.py,
-	gramps/gui/editors/displaytabs/buttontab.py,
-	gramps/gui/editors/displaytabs/embeddedlist.py,
-	gramps/gui/editors/displaytabs/eventembedlist.py,
-	gramps/gui/editors/displaytabs/groupembeddedlist.py,
-	gramps/gui/editors/displaytabs/personeventembedlist.py: Embedded
-	Clone Event w. references (2nd pass, part A)
-
-2018-04-18  Alois Poettker <alois.poettker@gmx.de>
-
-	* gramps/gui/editors/displaytabs/eventbackreflist.py,
-	gramps/gui/editors/editevent.py,
-	gramps/gui/editors/editeventref.py,
-	gramps/plugins/view/eventview.py,
-	images/hicolor/scalable/actions/gramps-clone.svg: Clone event w/o
-	references (2nd pass, part B) Feature request #9604 This functionality in the Event list doubles an event with all the
-	tags, citations, media, attributes and notes, but without the
-	references. Its like an event addition, but with default values.
-
-2018-03-14  Paulo Henrique Moraes <paulohpmoraes@users.noreply.github.com>
-
-	* po/pt_BR.po: [pt_BR]Translation updates and corrections (#582) - Portuguese (Brazil)
-
-2018-02-23  Jgon6 <1jgon6@mail.com>
-
-	* gramps/plugins/mapservices/googlemap.py,
-	gramps/plugins/mapservices/openstreetmap.py: Changed behavior of
-	"Look up with Map Services" Removed the section that looked up by city, and country from the Map
-	Services lookup for Google and Open Street Map.  Resolves #9486
-
-2018-02-23  Paulo Henrique Moraes <paulohpmoraes@users.noreply.github.com>
-
-	* po/pt_BR.po: Brazilian portuguese update
-
-2018-02-20  niememat <niememat@gmail.com>
-
-	* po/fi.po: Update finnish translation
-
-2018-01-18  Serge Noiraud <Serge.Noiraud@laposte.net>
-
-	* README.md, gramps/plugins/lib/maps/geography.py,
-	gramps/plugins/lib/maps/placeselection.py,
-	gramps/plugins/view/geography.gpr.py: Geocoding: associate a lat/lon
-	to a place name (#515) * Geocoding: associate a lat/lon to a place name Fixes #09642 * Some cleanup * update README.md * Remove url from message dialog
-
-2018-01-07  prculley <paulr2787@gmail.com>
-
-	* gramps/plugins/gramplet/leak.py: Leak (Uncollected Objects); allow
-	user to cancel long screen update
-
-2018-01-06  mb06cs <mb06cs@gmail.com>
-
-	* gramps/plugins/textreport/endoflinereport.py: endoflinereport.py:
-	sort generation during output
-
-2017-12-27  PaweÅ‚ Tomkiel <pawel.tomkiel@oktawave.com>
-
-	* po/pl.po: fixing polish places translations
-
-2018-01-04  Nick Hall <nick-h@gramps-project.org>
-
-	* po/gramps.pot: new gramps.pot translation template
-
-2017-11-25  niememat <niememat@gmail.com>
-
-	* po/fi.po: Update finnish translation
-
-2017-11-23  Serge Noiraud <Serge.Noiraud@laposte.net>
-
-	* gramps/plugins/webreport/basepage.py,
-	gramps/plugins/webreport/narrativeweb.py,
-	gramps/plugins/webreport/person.py: Various Feature Requests in
-	Narrative Web (#468) Issue #06772
-
-2017-11-23  Serge Noiraud <Serge.Noiraud@laposte.net>
-
-	* gramps/plugins/webreport/basepage.py,
-	gramps/plugins/webreport/person.py,
-	gramps/plugins/webreport/surname.py,
-	gramps/plugins/webreport/surnamelist.py: Narrative Web Feature
-	requests : (#466) Sort "Surname" web page by given name and birth date.  Surname list
-	doesn't use default name format Fixes #05315, #08067
-
-2017-11-23  Serge Noiraud <Serge.Noiraud@laposte.net>
+2019-08-25  SNoiraud <Serge.Noiraud@free.fr>
 
 	* gramps/plugins/webreport/narrativeweb.py,
-	gramps/plugins/webreport/place.py: Display Lat/Lon optionally on
-	places list page (#467) Fixes #05382
+	gramps/plugins/webreport/person.py: Make the narratives notes
+	placement an option From 5.1 the narrative notes are placed just after the name, gender
+	and age at death. This follow the feature request #6772.  Some
+	people want to have this placement an option to have the same
+	functionality as before Fixes #11283
 
-2017-11-23  Serge Noiraud <Serge.Noiraud@laposte.net>
+2019-08-24  Ross Gammon <rossgammon@mail.dk>
 
-	* gramps/gen/config.py, gramps/plugins/webreport/basepage.py,
-	gramps/plugins/webreport/narrativeweb.py: Add extra page to
-	narrativeweb. (#465) Fixes #02630
+	* debian/changelog: Finalise Debian changelog for 5.1.0 release
 
-2017-10-05  Leonhaeuser <mirko@leonhaeuser.de>
+2019-08-24  Ross Gammon <rossgammon@mail.dk>
 
-	* gramps/gen/datehandler/_date_de.py: updated German date handler:
-	added some missing Latin month names and some old German month names
+	* debian/control: Bump gtk+ version to 3.12 & add
+	gir1.2-geocodeglib-1.0 dependency
 
-2017-09-23  Sam Manzi <manzi.sam@gmail.com>
+2019-08-24  Ross Gammon <rossgammon@mail.dk>
 
-	* gramps/gen/utils/unknown.py,
-	gramps/plugins/importer/importprogen.py,
-	gramps/plugins/test/imports_test.py: Revert "Tidy up mocking code
-	(#438)[First commit]" This reverts commit 8ebb4d35fabe295729a5605677de87e352cee4eb.
+	* debian/copyright: Update copyrights
 
-2017-09-17  Jonathan Biegert <azrdev@qrdn.de>
+2019-08-24  Ross Gammon <rossgammon@mail.dk>
 
-	* gramps/gen/plug/docgen/graphdoc.py: enable Graphviz node port
-	selection, optionable (p.r. 456) This enables the headport and tailport attributes for all edges in
-	the Graphviz file. The default (off) value makes the arrows between
-	persons and/or family nodes attach their ends to the respective node
-	at any position. When this option is selected, the position facing
-	the node on the other side of the arrow is always chosen.
+	* debian/changelog, debian/control: Merge last 5.0.2 debian release
+	information into 51 maintenance branch
 
-2017-09-17  Nick Hall <nick-h@gramps-project.org>
+2019-08-23  Sebastian Schubert <schubert.seb@gmail.com>
 
-	* gramps/gen/utils/unknown.py,
-	gramps/plugins/importer/importprogen.py,
-	gramps/plugins/test/imports_test.py: Tidy up mocking code
-	(#438)[First commit]
+	* README.md: Add optional fontconfig package to README.md
 
-2017-09-12  Serge Noiraud <Serge.Noiraud@laposte.net>
+2019-08-23  Sebastian Schubert <schubert.seb@gmail.com>
 
-	* gramps/gui/views/pageview.py,
-	gramps/plugins/view/dashboardview.py: Gramps 'Views' are not named
-	in the window header (#448) Resolves #001675
+	* NEWS: Fix typo in NEWS
 
-2017-09-01  Serge Noiraud <Serge.Noiraud@laposte.net>
+2019-08-30  ZdenÄ›k HataÅ¡ <zdenek.hatas@gmail.com>
 
-	* gramps/plugins/view/pedigreeview.py,
-	gramps/plugins/view/relview.py: Allow Home person to be set in
-	Relationship and Pedigree view (#446) Resolves #0001970
+	* po/cs.po: Update Czech translation
 
-2017-08-08  Sebastian Schubert <schubert.seb@gmail.com>
+2019-08-29  ZdenÄ›k HataÅ¡ <zdenek.hatas@gmail.com>
 
-	* example/gramps/example.gramps: example.gramps: add some
-	non-primary participants to events The following additional participants were added: Death of Garner,
-	Anderson: * Page, Elizabeth (Witness) * Farmer, Miranda Keziah (Witness) * Page, David (Informant) Birth of Thornton, James Arthur: * Jankowski, Margaret Jane "Maggie" (Witness) * Garner, Raymond E. (Informant) Marriage of Garner, Lewis Anderson and Martel, Luella Jacques: * Garner, Robert W. (Witness) * Martel, Henry (Witness) * Page, Robert (Clergy) * Blanco, L. J. (Clergy)
+	* po/cs.po: Update Czech translation
 
-2017-08-03  Leonhaeuser <mirko@leonhaeuser.de>
+2019-08-25  Mirko Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/de.po: synced with gramps 50
+	* po/de.po: German translation updated
 
-2017-08-01  romjerome <romjerome@users.noreply.github.com>
+2019-08-24  John Ralls <jralls@ceridwen.us>
 
-	* po/fr.po: update french translation
+	* mac/Info.plist, mac/gramps.modules: Release Gramps-5.1.0 on Mac.
 
-2017-08-01  romjerome <romjerome@users.noreply.github.com>
+2019-08-16  John Ralls <jralls@ceridwen.us>
 
-	* MANIFEST.in, NEWS: merge forward (working release steps on
-	gramps42)
+	* mac/release.entitlements.plist: An entitlements plist for
+	codesigning Gramps.  Python is an interpreter and therefore needs to create executable
+	memory. Since it doesn't know how to sign that memory it requires
+	the allow-unsigned-executable-memory entitlement to run in a
+	hardened runtime. One must apply this entitlement to both Gramps.app
+	and Gramps.app/Contents/MacOS/dot when codesigning them.
 
-2017-07-18  Alois Poettker <alois.poettker@gmx.de>
+2019-06-11  John Ralls <jralls@ceridwen.us>
 
-	* data/tests/SAMPLE.gramps,
-	gramps/plugins/importer/importprogen.glade,
-	gramps/plugins/importer/importprogen.py,
-	gramps/plugins/lib/libprogen.py: Extend Pro-Gen importer II Adapted to Pro-Gen test fix, expanded functionality and fixed minor
-	bugs.
+	* mac/gramps.modules: Fix graphviz and exiv2 download URLs.
 
-2017-07-27  schoonc <schoonc@users.noreply.github.com>
+2019-06-11  John Ralls <jralls@ceridwen.us>
 
-	* .gitignore: Add `pycharm` dir to .gitignore
+	* mac/gramps.modules: Update dependency versions and download paths.
 
-2017-07-27  Nick Hall <nick-h@gramps-project.org>
+2019-08-22  vantu5z <vantu5z@mail.ru>
 
-	* gramps/plugins/gramplet/leak.py: Fix permissions on leak gramplet
+	* po/ru.po: update Russian translation
 
-2017-07-27  niememat <niememat@gmail.com>
+2019-08-22  pehlm <par.ekholm@pekholm.org>
 
-	* po/fi.po: Update finnish translation
+	* po/sv.po: Update Swedish translation with the new gramps.pot
 
-2017-07-26  Paul Culley <paulr2787@gmail.com>
+2019-08-21  prculley <paulr2787@gmail.com>
 
-	* gramps/gen/db/dummydb.py,
-	gramps/plugins/gramplet/gramplet.gpr.py,
-	gramps/plugins/gramplet/leak.py: An improved Leak (Uncollected
-	Objects) Gramplet (#345) * Improved leak detector (debugging tool) * Fix DummyDb so it garbage collector can reclaim it after close * Fix leak gramplet so pop-ups use correct transient parent
-
-2017-07-18  Alois Poettker <alois.poettker@gmx.de>
-
-	* gramps/plugins/view/eventview.py: Tidy up code
-
-2017-06-13  Alois Poettker <alois.poettker@gmx.de>
-
-	* gramps/plugins/view/eventview.py: Delete multiple events
-
-2017-07-18  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/plugins/test/imports_test.py: Revert "Simplify import
-	plugin unit tests" This works with python 3.6 but not with 3.4.  This reverts commit b43d94ab16555f0bba21e717bf06bfd3f7ee3575.
-
-2017-07-18  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/plugins/test/imports_test.py: Simplify import plugin unit
-	tests
-
-2017-07-18  Nick Hall <nick-h@gramps-project.org>
-
-	* data/tests/SAMPLE.gramps,
-	gramps/plugins/importer/importprogen.py,
-	gramps/plugins/test/imports_test.py: Fix Pro-Gen unit test
-
-2017-07-15  Leonhaeuser <mirko@leonhaeuser.de>
-
-	* po/de.po: update German translation Fix #0010131
-
-2017-07-08  Lajos Nemeséri <nemeseril@gmail.com>
-
-	* po/hu.po: Update Hungarian translation
-
-2017-07-03  Alois Poettker <apoettker@users.noreply.github.com>
-
-	* data/tests/SAMPLE.gramps,
-	gramps/plugins/importer/importprogen.glade,
-	gramps/plugins/importer/importprogen.py,
-	gramps/plugins/lib/libplugins.gpr.py,
-	gramps/plugins/lib/libprogen.py, po/POTFILES.in: Extend Pro-Gen
-	importer functionality
-
-2017-07-02  Paul Franklin <pf.98052@gmail.com>
-
-	* gramps/plugins/tool/verify.py: add verify.py rules: match same
-	birth or death date as marriage date Issue #2583
-
-2017-07-02  Fedik <getthesite@gmail.com>
-
-	* po/uk.po: Update Ukrainian translation
-
-2017-06-30  romjerome <romjerome@users.noreply.github.com>
-
-	* po/fr.po: update french translation
-
-2017-06-26  arnaullv <arnaullv@gmail.com>
-
-	* po/ca.po: Updated catalan translation to latest template
-
-2017-06-24  niememat <niememat@gmail.com>
-
-	* po/fi.po: Update fix finnish translation
-
-2017-06-05  ZdenÄ›k HataÅ¡ <zdenek.hatas@gmail.com>
-
-	* po/cs.po: czech translation update
-
-2017-06-02  Serge Noiraud <Serge.Noiraud@laposte.net>
-
-	* gramps/plugins/gramplet/relativegramplet.py: 8200: Person
-	Relatives Tab should use the type from the relationship (#396) * 8200: Person Relatives Tab should use the type from the
-	relationship * 8200: Flag variables as there are now two variables.
-
-2017-06-02  Serge Noiraud <Serge.Noiraud@laposte.net>
-
-	* gramps/plugins/webreport/narrativeweb.py: 10049: tabs
-	reorganization in narrative web. (#406)
-
-2017-05-23  Nick Hall <nick-h@gramps-project.org>
-
-	* .travis.yml: Remove trailing whitespace
-
-2017-05-23  Nick Hall <nick-h@gramps-project.org>
-
-	* .travis.yml: Update Travis for gramps51
-
-2017-05-23  Nick Hall <nick-h@gramps-project.org>
-
-	* gramps/plugins/db/bsddb/bsddb.gpr.py,
-	gramps/plugins/db/dbapi/dbapi.gpr.py,
-	gramps/plugins/db/dbapi/inmemorydb.gpr.py,
-	gramps/plugins/view/geography.gpr.py: Update a few missed version
-	numbers
-
-2017-05-23  Nick Hall <nick-h@gramps-project.org>
-
-	* Bump all version numbers to 5.1
+	* Bump to 5.1.1
 
