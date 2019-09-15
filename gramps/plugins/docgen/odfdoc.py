@@ -1710,7 +1710,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         """
         self.meta = StringIO()
         generator = PROGRAM_NAME + ' ' + VERSION
-        creator = self.get_creator()
+        creator = escape(self.get_creator(), ESC_MAP)
         date = self.time
         lang = self.lang
         gramps_home_url = URL_HOMEPAGE

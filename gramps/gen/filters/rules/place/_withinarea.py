@@ -87,7 +87,7 @@ class WithinArea(Rule):
 
             val = self.list[1]
             if isinstance(val, str):
-               val = re.sub("\D", "", val) # suppress all alpha characters
+               val = re.sub(r"\D", "", val) # suppress all alpha characters
             value = int(val)
             unit = int(self.list[2])
             # earth perimeter in kilometers for latitude
