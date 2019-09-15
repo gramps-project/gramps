@@ -74,6 +74,9 @@ class RemoveSpaces(ManagedWindow):
         self.dbstate = dbstate
         self.uistate = uistate
         self.db = dbstate.db
+        self.tooltip = ""
+        self.f_lat = False
+        self.f_lon = False
 
         top_dialog = Glade()
 
@@ -207,19 +210,19 @@ class RemoveSpaces(ManagedWindow):
 
         self.show()
 
-    def add_text_to_tip(self, ll, mess):
+    def add_text_to_tip(self, nll, mess):
         """
         Add a text to tooltip for places.
-        ll: 0: name
-            1: latitude
-            2: longitude
+        nll: 0: name
+             1: latitude
+             2: longitude
         mess: text to add
         """
-        if ll == 0:
+        if nll == 0:
             self.tooltip = _("Name:")
             self.tooltip += " "
             self.tooltip += mess
-        elif ll == 1:
+        elif nll == 1:
             if not self.f_lat:
                 if self.tooltip != "":
                     self.tooltip += "\n"
@@ -229,7 +232,7 @@ class RemoveSpaces(ManagedWindow):
             else:
                 self.tooltip += ", "
             self.tooltip += mess
-        elif ll == 2:
+        elif nll == 2:
             if not self.f_lon:
                 if self.tooltip != "":
                     self.tooltip += "\n"
@@ -279,7 +282,7 @@ class RemoveSpaces(ManagedWindow):
                 found = True
             if found:
                 value = (place_handle, pname, plat, plon, self.tooltip)
-                treeiter = self.model_2.append(value)
+                self.model_2.append(value)
         return True
 
     def people(self):
