@@ -23,6 +23,7 @@
 #    python modules
 #------------------------------------------------
 import os
+import re
 from gramps.gen.const import VERSION_DIR, IMAGE_DIR, DATA_DIR, USER_CSS
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
@@ -171,10 +172,30 @@ def load_on_reg(dbstate, uistate, plugin):
     if os.path.exists(USER_CSS):
         list_files = os.listdir(USER_CSS)
         for cssfile in list_files:
-            CSS_FILES.append([cssfile, 1, cssfile.replace('.css', ''),
-                              os.path.join(USER_CSS,cssfile),
-                              None, [], [] ])
+            if cssfile.endswith(".css"):
+                CSS_FILES.append([cssfile, 1, cssfile.replace('.css', ''),
+                                  os.path.join(USER_CSS,cssfile), None,
+                                  looking_for_urls_in_user_css(cssfile),
+                                  [] ])
     return CSS_FILES
+
+def looking_for_urls_in_user_css(css_file):
+    """
+    """
+    images = []
+    cssfile = os.path.join(USER_CSS, css_file)
+    with open(cssfile) as css:
+        data = css.readlines()
+        for line in data:
+            if "url" in line:
+                url = re.match(r".*url\((.*)\)", line)
+                if url.group(1)[0:3] != "http":
+                    img = url.group(1).replace("../images/","")
+                    img = os.path.join(USER_CSS, img)
+                    if img not in images:
+                        images.append('%s' % img)
+    return images
+
 
 def process_list(data):
     """
