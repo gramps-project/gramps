@@ -58,7 +58,7 @@ def load_on_reg(dbstate, uistate, plugin):
 
         # default style sheet in the options
         # Basic Ash style sheet
-        ["default",       1, _("Basic-Ash"),
+        ["Basic-Ash",       1, _("Basic-Ash"),
          path_css('Web_Basic-Ash.css'),     None, [], [] ],
 
         # Basic Blue style sheet with navigation menus
@@ -173,7 +173,8 @@ def load_on_reg(dbstate, uistate, plugin):
         list_files = os.listdir(USER_CSS)
         for cssfile in list_files:
             if cssfile.endswith(".css"):
-                CSS_FILES.append([cssfile, 1, cssfile.replace('.css', ''),
+                css_f = cssfile.replace('.css', '')
+                CSS_FILES.append(["UsEr_" + css_f, 1, css_f,
                                   os.path.join(USER_CSS,cssfile), None,
                                   looking_for_urls_in_user_css(cssfile),
                                   [] ])
