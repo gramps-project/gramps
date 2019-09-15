@@ -348,6 +348,20 @@ class WebCalReport(Report):
         """
         Copies all the necessary stylesheets and images for these calendars
         """
+        imgs = []
+
+        # copy all screen style sheet
+        for css_f in CSS:
+            already_done = False
+            for css_fn in ("UsEr_", "Basic", "Mainz", "Nebraska", "Vis"):
+                if css_fn in css_f and not already_done:
+                    already_done = True
+                    fname = CSS[css_f]["filename"]
+                    # add images for this css
+                    imgs += CSS[css_f]["images"]
+                    css_f = css_f.replace("UsEr_","")
+                    self.copy_file(fname, css_f + ".css", "css")
+
         # Copy the screen stylesheet
         if self.css and self.css != 'No style sheet':
             fname = CSS[self.css]["filename"]
@@ -363,8 +377,6 @@ class WebCalReport(Report):
         # copy print stylesheet
         fname = CSS["Print-Default"]["filename"]
         self.copy_file(fname, _CALENDARPRINT, "css")
-
-        imgs = []
 
         # Mainz stylesheet graphics
         # will only be used if Mainz is slected as the stylesheet
@@ -457,7 +469,20 @@ class WebCalReport(Report):
         links = Html("link", rel='shortcut icon',
                      href=fname1, type="image/x-icon") + (
                          Html("link", href=fname2, type="text/css",
+                              title=self._("Default"),
                               media="screen", rel="stylesheet", indent=False))
+        # create all alternate stylesheets
+        # Cannot use it on local files (file://)
+        for css_f in CSS:
+            already_done = False
+            for css_fn in ("UsEr_", "Basic", "Mainz", "Nebraska"):
+                if css_fn in css_f and not already_done:
+                    css_f = css_f.replace("UsEr_","")
+                    fname = "/".join(subdirs + ["css", css_f + ".css"])
+                    links += Html("link", rel="alternate stylesheet",
+                                  title=css_f, indent=False,
+                                  media="screen", type="text/css",
+                                  href=fname)
 
         # add horizontal menu if css == Blue or Visually because
         # there is no menus?
