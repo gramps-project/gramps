@@ -434,19 +434,15 @@ class NavigationView(PageView):
         hobj = self.get_history()
         menu_len = min(len(items) - 1, MRU_SIZE)
 
-        for index in range(0, menu_len):
-            name, obj = navigation_label(self.dbstate.db, nav_type,
-                                         items[index])
-            menus += menuitem % (nav_type, index, html.escape(name))
-        self.mru_ui = [MRU_TOP + menus + MRU_BTM]
-
-        mitems = items[-MRU_SIZE - 1:-1] # Ignore current handle
-        mitems.reverse()
         data = []
-        for index, handle in enumerate(mitems):
-            data.append(('%s%02d'%(nav_type, index),
-                         make_callback(hobj.push, handle),
-                         "%s%d" % (mod_key(), index)))
+        for index in range(menu_len - 1, -1, -1):
+            name, _obj = navigation_label(self.dbstate.db, nav_type,
+                                          items[index])
+            menus += menuitem % (nav_type, index, html.escape(name))
+            data.append(('%s%02d' % (nav_type, index),
+                         make_callback(hobj.push, items[index]),
+                         "%s%d" % (mod_key(), menu_len - 1 - index)))
+        self.mru_ui = [MRU_TOP + menus + MRU_BTM]
 
         self.mru_action = ActionGroup(name=self.title + '/MRU')
         self.mru_action.add_actions(data)
