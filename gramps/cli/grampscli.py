@@ -64,6 +64,7 @@ from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.utils.config import get_researcher
 from gramps.gen.recentfiles import recent_files
+from gramps.gen.filters import reload_custom_filters
 
 #-------------------------------------------------------------------------
 #
@@ -373,6 +374,7 @@ def startcli(errors, argparser):
 
     #load the plugins
     climanager.do_reg_plugins(dbstate, uistate=None)
+    reload_custom_filters()
     # handle the arguments
     from .arghandler import ArgHandler
     handler = ArgHandler(dbstate, argparser, climanager)

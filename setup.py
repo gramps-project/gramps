@@ -494,7 +494,7 @@ setup(name = 'gramps',
       data_files = data_files,
       scripts = ['scripts/gramps'],
       classifiers = [
-          "Development Status :: 1 - Planning",
+          "Development Status :: 5 - Production/Stable",
           "Environment :: Console",
           "Environment :: MacOS X",
           "Environment :: Plugins",

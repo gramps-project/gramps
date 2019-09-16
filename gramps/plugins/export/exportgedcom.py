@@ -735,14 +735,14 @@ class GedcomWriter(UpdateCallback):
                                 child.mrel == ChildRefType.FOSTER:
                             self._writeln(2, 'PEDI foster')
                         elif child.frel == child.mrel:
-                            self._writeln(2, 'PEDI Unknown')
+                            self._writeln(2, 'PEDI %s' % str(child.frel))
                         else:
                             self._writeln(2, '_FREL %s' %
                                           PEDIGREE_TYPES.get(child.frel.value,
-                                                             "Unknown"))
+                                                             str(child.frel)))
                             self._writeln(2, '_MREL %s' %
                                           PEDIGREE_TYPES.get(child.mrel.value,
-                                                             "Unknown"))
+                                                             str(child.mrel)))
 
     def _parent_families(self, person):
         """

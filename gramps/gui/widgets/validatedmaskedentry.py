@@ -1193,12 +1193,16 @@ class ValidatableMaskedEntry(MaskedEntry):
         # If content isn't empty set_text emitts changed twice.
         # Protect content-changed from being updated and issue
         # a manual emission afterwards
+        pos = self.get_position()
         self._block_changed = True
         MaskedEntry.set_text(self, text)
         self._block_changed = False
         self.emit('content-changed')
 
-        self.set_position(-1)
+        if pos < len(text):
+            self.set_position(pos)
+        else:
+            self.set_position(-1)
 
     # Private
 

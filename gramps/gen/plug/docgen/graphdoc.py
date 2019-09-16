@@ -1038,7 +1038,7 @@ class GVPdfGsDoc(GVDocBase):
             # Generate Ghostscript code
             command = '%s -q -dBATCH -dNOPAUSE -dSAFER '\
                 '-dDEVICEWIDTHPOINTS=%d -dDEVICEHEIGHTPOINTS=%d '\
-                '-sOutputFile="%s" -sDEVICE=pdfwrite '\
+                '-dFIXEDMEDIA -sOutputFile="%s" -sDEVICE=pdfwrite '\
                 '-c "<</.HWMargins [%d %d %d %d] /PageOffset [%d %d]>> '\
                 'setpagedevice" -f "%s"' % (
                     _GS_CMD, width_pt + 10, height_pt + 10, tmp_pdf_piece,

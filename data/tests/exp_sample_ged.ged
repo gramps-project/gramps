@@ -2,8 +2,8 @@
 1 SOUR Gramps
 2 VERS 5.0.2
 2 NAME Gramps
-1 DATE 31 JUL 2019
-2 TIME 10:58:33
+1 DATE 4 AUG 2019
+2 TIME 15:26:44
 1 SUBM @SUBM@
 1 FILE C:\Users\prc\AppData\Roaming\gramps\temp\exp_sample_ged.ged
 1 COPR Copyright (c) 2019 Alex Roitman,,,.
@@ -629,8 +629,12 @@
 2 TYPE Birth of Lloyd Smith
 2 DATE 13 MAR 1935
 2 PLAC San Francisco, San Francisco Co., CA
+1 ADOP Y
+2 FAMC @F0009@
+3 ADOP HUSB
 1 FAMC @F0009@
-2 PEDI birth
+2 _FREL Adopted
+2 _MREL Foster
 1 FAMS @F0008@
 1 CHAN
 2 DATE 4 SEP 2016
@@ -1040,7 +1044,7 @@
 2 SURN Tester
 1 SEX M
 1 FAMC @F0016@
-2 PEDI Unknown
+2 PEDI Sponsored
 1 CHAN
 2 DATE 29 OCT 2016
 3 TIME 16:27:59

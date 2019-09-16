@@ -213,8 +213,17 @@ class UIManager():
         # need to copy the tree so we can preserve original for later edits.
         editable = copy.deepcopy(self.et_xml)
         iterator(editable)  # clean up tree to builder specifications
-        xml_str = ET.tostring(editable, encoding="unicode")
-        #print(xml_str)
+        # The following should work, but seems to have a Gtk bug
+        # xml_str = ET.tostring(editable, encoding="unicode")
+
+        xml_str = ET.tostring(editable).decode(encoding='ascii')
+
+        # debugging
+        # with open('try.xml', 'w', encoding='utf8') as file:
+        #     file.write(xml_str)
+        # with open('try.xml', encoding='utf8') as file:
+        #     xml_str = file.read()
+        # print(xml_str)
         self.builder = Gtk.Builder()
         self.builder.set_translation_domain(glocale.get_localedomain())
         self.builder.add_from_string(xml_str)
@@ -355,6 +364,8 @@ class UIManager():
             else:
                 window_group = group.act_group = self.app.window
             for item in group.actionlist:
+                if not Gio.action_name_is_valid(item[ACTION_NAME]):
+                    LOG.warning('**Invalid action name %s', item[ACTION_NAME])
                 # deal with accelerator overrides from a file
                 accel = self.accel_dict.get(group.prefix + item[ACTION_NAME])
                 if accel:
@@ -517,3 +528,17 @@ class UIManager():
         with open(filename, 'r') as hndl:
             accels = hndl.read()
             self.accel_dict = ast.literal_eval(accels)
+
+
+INVALID_CHARS = [' ', '_', '(', ')', ',', "'"]
+
+
+def valid_action_name(text):
+    """ This function cleans up action names to avoid some illegal
+    characters.  It does NOT clean up non-ASCII characters.
+    This is used for plugin IDs to clean them up.  It would be better if we
+    made all plugin ids:
+    ASCII Alphanumeric and the '.' or '-' characters."""
+    for char in INVALID_CHARS:
+        text = text.replace(char, '-')
+    return text

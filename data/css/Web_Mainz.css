@@ -71,9 +71,7 @@ body {
 body > div {
     width: 85%;
     margin: 0px auto;
-    background: url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
     overflow: hidden;
-    padding: 0px 1.5em;
 }
 #outerwrapper {
     margin: 5px auto;
@@ -84,6 +82,7 @@ body > div {
 }
 .content {
     padding: 1.5em 1.5em;
+    background: url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
 }
 #ThumbnailPreview div.snapshot {
     float: right;
@@ -692,22 +691,31 @@ div.grampsstylednote p {
 -----------------------------------------------------------------*/
 #footer {
     clear: both;
+    overflow: hidden;
+    width: 100%;
     background: url(../images/Web_Mainz_MidLight.png) #FFF2C6;
-    border-top: dashed 1px #7D5925;
     font-family: sans-serif;
 }
 #footer p#createdate {
     float: left;
     width: 50%;
     text-align: left;
+    margin-left: 10px;
 }
 #footer p#copyright {
     float: right;
     width: 40%;
     text-align: right;
 }
+#footer p#copyright img {
+    float: right;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    vertical-align: middle;
+}
 #footer > * {
     font-size: 80%;
+    background: url(../images/Web_Mainz_MidLight.png) #FFF2C6;
 }
 
 /* Overwritten

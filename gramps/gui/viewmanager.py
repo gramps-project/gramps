@@ -92,7 +92,7 @@ from .configure import GrampsPreferences
 from .aboutdialog import GrampsAboutDialog
 from .navigator import Navigator
 from .views.tags import Tags
-from .uimanager import ActionGroup
+from .uimanager import ActionGroup, valid_action_name
 from gramps.gen.lib import (Person, Surname, Family, Media, Note, Place,
                             Source, Repository, Citation, Event, EventType,
                             ChildRef)
@@ -1429,7 +1429,7 @@ class ViewManager(CLIManager):
             pdatas = hash_data[key]
             pdatas.sort(key=lambda x: x.name)
             for pdata in pdatas:
-                new_key = pdata.id.replace(' ', '-')
+                new_key = valid_action_name(pdata.id)
                 ofile.write(menuitem % (new_key, pdata.name))
                 actions.append((new_key, func(pdata, self.dbstate,
                                 self.uistate)))

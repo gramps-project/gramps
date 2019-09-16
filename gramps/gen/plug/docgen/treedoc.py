@@ -409,10 +409,7 @@ class TreeDocBase(BaseDoc, TreeDoc):
         options = ['id=%s' % family.gramps_id]
         if option_list:
             options.extend(option_list)
-        if subgraph_type == 'sandclock':
-            self.write(level, 'sandclock{\n')
-        else:
-            self.write(level, '%s[%s]{\n' % (subgraph_type, ','.join(options)))
+        self.write(level, '%s[%s]{\n' % (subgraph_type, ','.join(options)))
 
     def end_subgraph(self, level):
         self.write(level, '}\n')

@@ -434,10 +434,10 @@ class PageView(DbGUIElement, metaclass=ABCMeta):
         View. The user typically defines self.action_list and
         self.action_toggle_list in this function.
         """
-        self._add_toggle_action('Sidebar', self.__sidebar_toggled, '',
-             self.sidebar.get_property('visible'))
-        self._add_toggle_action('Bottombar', self.__bottombar_toggled, '',
-             self.bottombar.get_property('visible'))
+        self._add_toggle_action('Sidebar', self.__sidebar_toggled,
+            '<shift><PRIMARY>R', self.sidebar.get_property('visible'))
+        self._add_toggle_action('Bottombar', self.__bottombar_toggled,
+            '<shift><PRIMARY>B', self.bottombar.get_property('visible'))
 
     def __build_action_group(self):
         """

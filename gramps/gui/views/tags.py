@@ -241,13 +241,13 @@ class Tags(DbGUIElement):
         tag_menu = ''
         menuitem = '''
         <item>
-          <attribute name="action">win.TAG_%s</attribute>
+          <attribute name="action">win.TAG-%s</attribute>
           <attribute name="label">%s</attribute>
         </item>'''
 
         for tag_name, handle in self.__tag_list:
-            tag_menu += menuitem % (handle, tag_name)
-            actions.append(('TAG_%s' % handle,
+            tag_menu += menuitem % (handle, escape(tag_name))
+            actions.append(('TAG-%s' % handle,
                             make_callback(self.tag_selected_rows, handle)))
         tag_menu = TAG_MENU % tag_menu
 

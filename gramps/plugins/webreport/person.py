@@ -493,11 +493,12 @@ class PersonPages(BasePage):
                 individualdetail += thumbnail
             individualdetail += (name, summary)
 
-            # display Narrative Notes
-            notelist = person.get_note_list()
-            sect8 = self.display_note_list(notelist)
-            if sect8 is not None:
-                individualdetail += sect8
+            if self.report.options['notes']:
+                # display Narrative Notes
+                notelist = person.get_note_list()
+                sect8 = self.display_note_list(notelist)
+                if sect8 is not None:
+                    individualdetail += sect8
 
             # display a person's events
             sect2 = self.display_ind_events(place_lat_long)
@@ -559,6 +560,13 @@ class PersonPages(BasePage):
             sect7 = self.disp_add_img_as_gallery(media_list, person)
             if sect7 is not None:
                 individualdetail += sect7
+
+            if not self.report.options['notes']:
+                # display Narrative Notes
+                notelist = person.get_note_list()
+                sect8 = self.display_note_list(notelist)
+                if sect8 is not None:
+                    individualdetail += sect8
 
             # display attributes
             attrlist = person.get_attribute_list()
@@ -1022,11 +1030,11 @@ class PersonPages(BasePage):
                         trow.extend(
                             Html("td", data, class_=colclass, inline=True)
                             for data, colclass in [
-                                (date, "ColumnDate"),
+                                (self.rlocale.get_date(date), "ColumnDate"),
                                 (self.place_link(handle, placetitle,
                                                  uplink=True),
                                  "ColumnPlace"),
-                                (str(event.get_type()), "ColumnType")
+                                (self._(str(event.get_type())), "ColumnType")
                             ]
                         )
 

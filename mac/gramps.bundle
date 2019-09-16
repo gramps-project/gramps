@@ -13,7 +13,7 @@
 
   <plist>${project}/Info.plist</plist>
   <!-- Build gramps-launcher with:
-          gcc -L$PREFIX `python-config --cflags --ldflags` \
+          gcc -L$PREFIX/lib `python-config -\-cflags -\-ldflags` \
               -o $PREFIX/bin/gramps-launcher \
 	      path/to/gtk-mac-bundler/examples/python-launcher.c
        with the obvious substitution.
@@ -41,7 +41,7 @@
   </binary>
 
   <binary recurse="True">
-    ${prefix}/lib/python3.4/*.so
+    ${prefix}/lib/python3.6/*.so
   </binary>
 
   <binary>
@@ -69,7 +69,7 @@
   </binary>
 
   <binary>
-     ${prefix}/lib/libosmgpsmap-1.0.0.dylib
+     ${prefix}/lib/libosmgpsmap-1.0.1.dylib
   </binary>
 
   <binary>
@@ -77,7 +77,7 @@
   </binary>
 
   <binary>
-    ${prefix}/lib/libhunspell-1.3.0.dylib
+    ${prefix}/lib/libhunspell-1.6.0.dylib
   </binary>
 
   <binary>
@@ -95,6 +95,10 @@
   <binary>
     ${prefix}/lib/libgexiv2.dylib
   </binary>
+
+  <gir>
+    ${prefix}/share/gir-1.0/*.gir
+  </gir>
 
 <!-- Translation filenames, one for each program or library that you
        want to copy in to the bundle. The "dest" attribute is
@@ -133,35 +137,32 @@
     ${project}/gramps_launcher.py
   </data>
 
-  <!-- We have to pull in the python modules, which are mixed python
-       and loadable modules.  -->
   <data>
     ${prefix}/share/glib-2.0/schemas
   </data>
 
+  <!-- We have to pull in the python modules, which are mixed python
+       and loadable modules.  -->
   <data recurse="True">
-    ${prefix}/lib/python3.4/*.py
+    ${prefix}/lib/python3.6/*.py
   </data>
 
   <data>
-    ${prefix}/lib/python3.4/config-3.4m/
+    ${prefix}/lib/python3.6/config-3.6m-darwin/
   </data>
 
   <data>
-    ${prefix}/lib/python3.4/site-packages/gramps/gen/utils/resource-path
+    ${prefix}/lib/python3.6/site-packages/gramps/gen/utils/resource-path
   </data>
 
   <data>
-    ${prefix}/include/python3.4m/pyconfig.h
+    ${prefix}/include/python3.6m/pyconfig.h
   </data>
+
 
   <data>
-    ${prefix}/lib/girepository-1.0/
+    ${prefix}/share/xml/iso-codes
   </data>
-
- <!--data>
-    ${prefix}/share/webkit-1.0/
-  </data-->
 
   <data>
     ${prefix}/share/enchant/
@@ -172,7 +173,7 @@
   </data>
 
   <data recurse="True">
-    ${prefix}/lib/python3.4/site-packages/gramps/*.glade
+    ${prefix}/lib/python3.6/site-packages/gramps/*.glade
   </data>
 
   <data>
@@ -204,7 +205,6 @@
   <data>
     ${prefix}/share/icons
   </data>
-
   <!-- Copy icons. Note that the .icns file is an Apple format which
        contains up to 4 sizes of icon. You can use
        /Developer/Applications/Utilities/Icon Composer.app to import
