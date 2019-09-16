@@ -1425,7 +1425,8 @@ class WebCalReport(Report):
                         if father_handle == person.handle:
                             spouse_handle = mother_handle
                         else:
-                            spouse_handle = father_handle
+                            continue # with next person if this was
+                                     # the marriage event
                         if spouse_handle:
                             spouse = db.get_person_from_handle(spouse_handle)
                             if spouse:
