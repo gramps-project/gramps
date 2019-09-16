@@ -359,7 +359,7 @@ class WebCalReport(Report):
                     fname = CSS[css_f]["filename"]
                     # add images for this css
                     imgs += CSS[css_f]["images"]
-                    css_f = css_f.replace("UsEr_","")
+                    css_f = css_f.replace("UsEr_", "")
                     self.copy_file(fname, css_f + ".css", "css")
 
         # Copy the screen stylesheet
@@ -477,7 +477,7 @@ class WebCalReport(Report):
             already_done = False
             for css_fn in ("UsEr_", "Basic", "Mainz", "Nebraska"):
                 if css_fn in css_f and not already_done:
-                    css_f = css_f.replace("UsEr_","")
+                    css_f = css_f.replace("UsEr_", "")
                     fname = "/".join(subdirs + ["css", css_f + ".css"])
                     links += Html("link", rel="alternate stylesheet",
                                   title=css_f, indent=False,
@@ -1415,9 +1415,6 @@ class WebCalReport(Report):
                             text = short_name
                         self.add_day_item(text, year, month, day, 'Death',
                                           age_at_death, death_date)
-                        #print('Death date for %s %s/%s/%s' % (short_name, day,
-                        #                                      month, year),
-                        #      age_at_death)
 
                 # add anniversary if requested
                 if self.anniv:
@@ -1428,8 +1425,7 @@ class WebCalReport(Report):
                         if father_handle == person.handle:
                             spouse_handle = mother_handle
                         else:
-                            continue # with next person if this was
-                                     # the marriage event
+                            spouse_handle = father_handle
                         if spouse_handle:
                             spouse = db.get_person_from_handle(spouse_handle)
                             if spouse:
@@ -1473,6 +1469,18 @@ class WebCalReport(Report):
                                         wedding_age = first_died - event_date
                                         wedding_age = wedding_age.format(
                                             dlocale=self.rlocale)
+                                    divorce_event = get_divorce_event(db, fam)
+                                    if divorce_event:
+                                        d_date = divorce_event.get_date_object()
+                                        if (d_date is not Date() and
+                                                d_date.is_valid()):
+                                            d_date = gregorian(d_date)
+                                            if d_date != Date():
+                                                w_age = d_date - event_date
+                                                w_age = w_age.format(
+                                                    dlocale=self.rlocale)
+                                                wedding_age = w_age
+                                                first_died = d_date
 
                                     if self.link_to_narweb:
                                         prefx = self.narweb_prefix
@@ -1492,8 +1500,8 @@ class WebCalReport(Report):
                                                             prob_alive_date)
                                     if first_died == Date():
                                         first_died = Date(0, 0, 0)
-                                    if ((self.alive and alive1
-                                         and alive2) or not self.alive):
+                                    if ((self.alive and (alive1 or alive2))
+                                            or not self.alive):
 
                                         spse = self._('%(spouse)s and'
                                                       ' %(person)s')
@@ -2015,13 +2023,28 @@ def get_marriage_event(db, family):
     for event_ref in family.get_event_ref_list():
 
         event = db.get_event_from_handle(event_ref.ref)
-        if event.type.is_marriage:
+        if event.type.is_marriage():
             marriage_event = event
-        elif event.type.is_divorce:
-            continue
+            break
 
     # return the marriage event or False to it caller
     return marriage_event
+
+def get_divorce_event(db, family):
+    """
+    divorce will either be the divorce event or False
+    """
+
+    divorce_event = False
+    for event_ref in family.get_event_ref_list():
+
+        event = db.get_event_from_handle(event_ref.ref)
+        if event.type.is_divorce():
+            divorce_event = event
+            break
+
+    # return the divorce event or False to it caller
+    return divorce_event
 
 def get_first_day_of_month(year, month):
     """
