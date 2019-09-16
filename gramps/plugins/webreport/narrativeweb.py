@@ -1017,7 +1017,7 @@ class NavWebReport(Report):
                     fname = CSS[css_f]["filename"]
                     # add images for this css
                     imgs += CSS[css_f]["images"]
-                    css_f = css_f.replace("UsEr_","")
+                    css_f = css_f.replace("UsEr_", "")
                     self.copy_file(fname, css_f + ".css", "css")
 
         # copy screen style sheet
@@ -1695,13 +1695,15 @@ class NavWebOptions(MenuReportOptions):
         cright.set_help(_("The copyright to be used for the web files"))
         addopt("cright", cright)
 
-        self.__css = EnumeratedListOption(('StyleSheet'), CSS["Basic-Ash"]["id"])
+        self.__css = EnumeratedListOption(('StyleSheet'),
+                                          CSS["Basic-Ash"]["id"])
         for (dummy_fname, gid) in sorted(
                 [(CSS[key]["translation"], CSS[key]["id"])
                  for key in list(CSS.keys())]):
             if CSS[gid]["user"]:
                 self.__css.add_item(CSS[gid]["id"], CSS[gid]["translation"])
-        self.__css.set_help(_('The default stylesheet to be used for the pages'))
+        self.__css.set_help(_('The default stylesheet to be used for'
+                              ' the pages'))
         addopt("css", self.__css)
         self.__css.connect("value-changed", self.__stylesheet_changed)
 

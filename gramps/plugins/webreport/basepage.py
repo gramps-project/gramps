@@ -752,7 +752,6 @@ class BasePage: # pylint: disable=C1001
             if latitude and longitude:
                 latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                 if latitude is not None:
-                    etype = event.get_type()
                     place_lat_long.append([latitude, longitude, placetitle,
                                            place_handle, event])
 
@@ -1431,7 +1430,7 @@ class BasePage: # pylint: disable=C1001
             already_done = False
             for css_fn in ("UsEr_", "Basic", "Mainz", "Nebraska"):
                 if css_fn in css_f and not already_done:
-                    css_f = css_f.replace("UsEr_","")
+                    css_f = css_f.replace("UsEr_", "")
                     fname = "/".join(["css", css_f + ".css"])
                     urlx = self.report.build_url_fname(fname, None,
                                                        self.uplink)
@@ -2992,4 +2991,3 @@ class BasePage: # pylint: disable=C1001
 
         # closes the file
         self.report.close_file(output_file, sio, date)
-
