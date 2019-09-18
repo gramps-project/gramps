@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-10 17:16+0100\n"
-"PO-Revision-Date: 2019-09-10 20:12+0200\n"
+"PO-Revision-Date: 2019-09-18 12:33+0200\n"
 "Last-Translator: Pär Ekholm <pehlm@pekholm.se>\n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -11103,15 +11103,15 @@ msgstr "Stjärna och halvmåne"
 
 #: ../gramps/gen/utils/symbols.py:115
 msgid "West Syriac cross"
-msgstr "West Syriac cross"
+msgstr "Västsyriskt kors"
 
 #: ../gramps/gen/utils/symbols.py:116
 msgid "East Syriac cross"
-msgstr "East Syriac cross"
+msgstr "Östsyriskt kors"
 
 #: ../gramps/gen/utils/symbols.py:117
 msgid "Heavy Greek cross"
-msgstr "Heavy Greek cross"
+msgstr "Kraftigt grekiskt kors"
 
 #: ../gramps/gen/utils/symbols.py:118
 msgid "Latin cross"
@@ -11119,7 +11119,7 @@ msgstr "Latinskt kors"
 
 #: ../gramps/gen/utils/symbols.py:119
 msgid "Shadowed White Latin cross"
-msgstr "Shadowed White Latin cross"
+msgstr "Skuggat vitt latinskt kors"
 
 #: ../gramps/gen/utils/symbols.py:120
 msgid "Maltese cross"
