@@ -38,7 +38,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-10 17:16+0100\n"
-"PO-Revision-Date: 2019-08-30 12:52+0200\n"
+"PO-Revision-Date: 2019-09-20 13:16+0200\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -11004,37 +11004,35 @@ msgstr "Muž"
 
 #: ../gramps/gen/utils/symbols.py:63
 msgid "Asexuality, sexless, genderless"
-msgstr ""
+msgstr "Asexualita, bezpohlavní"
 
 #: ../gramps/gen/utils/symbols.py:64
 msgid "Lesbianism"
-msgstr ""
+msgstr "Lesbismus"
 
 #: ../gramps/gen/utils/symbols.py:65
 msgid "Male homosexuality"
-msgstr ""
+msgstr "Mužská homosexualita"
 
 #: ../gramps/gen/utils/symbols.py:66
 msgid "Heterosexuality"
-msgstr ""
+msgstr "Heterosexualita"
 
 #: ../gramps/gen/utils/symbols.py:67
 msgid "Transgender, hermaphrodite (in entomology)"
-msgstr ""
+msgstr "Transgender, hermafrodit (v entomologii)"
 
 #: ../gramps/gen/utils/symbols.py:68
-#, fuzzy
 msgid "Transgender"
-msgstr "pohlaví"
+msgstr "Transgender"
 
 #: ../gramps/gen/utils/symbols.py:69
 msgid "Neuter"
-msgstr ""
+msgstr "Kastrát"
 
 #: ../gramps/gen/utils/symbols.py:71
-#, fuzzy
 msgid "Illegitimate"
-msgstr "odhadem"
+msgstr "Nelegitimní"
 
 #: ../gramps/gen/utils/symbols.py:73
 #, fuzzy
@@ -11047,35 +11045,31 @@ msgid "Engaged"
 msgstr "Zasnoubení"
 
 #: ../gramps/gen/utils/symbols.py:77
-#, fuzzy
 msgid "Unmarried partnership"
-msgstr "druh"
+msgstr "Nesezdané partnerství"
 
 #: ../gramps/gen/utils/symbols.py:78
-#, fuzzy
 msgid "Buried"
-msgstr "Pohřeb"
+msgstr "Pohřben"
 
 #: ../gramps/gen/utils/symbols.py:79
 msgid "Cremated/Funeral urn"
 msgstr ""
 
 #: ../gramps/gen/utils/symbols.py:80
-#, fuzzy
 msgid "Killed in action"
-msgstr "Umístění souboru"
+msgstr "Zabit v akci"
 
 #: ../gramps/gen/utils/symbols.py:81
 msgid "Extinct"
-msgstr ""
+msgstr "Vyhynulý"
 
 #. The following is used in the global preferences in the display tab.
 #. Name
 #. UNICODE    SUBSTITUTION
 #: ../gramps/gen/utils/symbols.py:106
-#, fuzzy
 msgid "Nothing"
-msgstr "V rozmezí"
+msgstr "Nic"
 
 #: ../gramps/gen/utils/symbols.py:108
 msgid "Skull and crossbones"
@@ -11102,9 +11096,8 @@ msgid "Cross of Jerusalem"
 msgstr ""
 
 #: ../gramps/gen/utils/symbols.py:114
-#, fuzzy
 msgid "Star and crescent"
-msgstr "Spustit datumový test?"
+msgstr "Hvězda a půlměsíc"
 
 #: ../gramps/gen/utils/symbols.py:115
 msgid "West Syriac cross"
@@ -11136,9 +11129,8 @@ msgid "Star of David"
 msgstr ""
 
 #: ../gramps/gen/utils/symbols.py:122
-#, fuzzy
 msgid "Dead"
-msgstr "Muž zesnulý"
+msgstr "Zesnulý"
 
 #: ../gramps/gen/utils/unknown.py:140
 msgid "Unknown, created to replace a missing note object."
@@ -11561,7 +11553,7 @@ msgstr "Obnovit výchozí nastavení"
 
 #: ../gramps/gui/configure.py:695
 msgid "Restore colors for current theme to default."
-msgstr ""
+msgstr "Obnovit výchozí barvy aktuálního motivu."
 
 #: ../gramps/gui/configure.py:701
 msgid "Colors for Male persons"
@@ -11764,14 +11756,12 @@ msgid "Consider single pa/matronymic as surname"
 msgstr "Zvážit samotné příjmení po otci/matce"
 
 #: ../gramps/gui/configure.py:1240
-#, fuzzy
 msgid "Place format (auto place title)"
-msgstr "Místa s vyhovujícím názvem"
+msgstr "Formát místa (automatický titulek místa)"
 
 #: ../gramps/gui/configure.py:1243
-#, fuzzy
 msgid "Enables automatic place title generation using specifed format."
-msgstr "Povolit automatické vytváření titulku místa"
+msgstr "Povolit automatické vytváření titulku místa dle daného formátu"
 
 #: ../gramps/gui/configure.py:1254
 msgid "Years"
@@ -11879,7 +11869,7 @@ msgstr "Změna formátu data se neprojeví dokud nebude Gramps znovu nastartová
 
 #: ../gramps/gui/configure.py:1487
 msgid "Dates settings used for calculation operations"
-msgstr ""
+msgstr "Nastavení data pro výpočetní operace."
 
 #: ../gramps/gui/configure.py:1493
 msgid "Date about range"
@@ -11965,6 +11955,8 @@ msgid ""
 "Specifed tag will be added on import.\n"
 "Clear to set default value."
 msgstr ""
+"Zadaný štítek bude přídán při importu.\n"
+"Smazat nastaví výchozí hodnotu."
 
 #: ../gramps/gui/configure.py:1580
 msgid "Enable spelling checker"
@@ -11985,16 +11977,15 @@ msgstr "Zobrazit tip dne"
 
 #: ../gramps/gui/configure.py:1597
 msgid "Show useful information about using Gramps on startup."
-msgstr ""
+msgstr "Zobrazit užitečné informace o používání Gramps při startu."
 
 #: ../gramps/gui/configure.py:1600
 msgid "Remember last view displayed"
 msgstr "Zapamatovat poslední zobrazený pohled"
 
 #: ../gramps/gui/configure.py:1602
-#, fuzzy
 msgid "Remember last view displayed and open it next time."
-msgstr "Zapamatovat poslední zobrazený pohled"
+msgstr "Zapamatovat poslední zobrazený pohled a zobrazit jej příště."
 
 #: ../gramps/gui/configure.py:1605
 msgid "Max generations for relationships"
@@ -23347,7 +23338,7 @@ msgstr "Aktualizovat"
 
 #: ../gramps/plugins/gramplet/leak.py:122
 msgid "Press Refresh to see initial results"
-msgstr ""
+msgstr "Stiskněte Obnovit pro zobrazení počátečních výsledků"
 
 #: ../gramps/plugins/gramplet/leak.py:158
 #, python-format
@@ -23541,9 +23532,9 @@ msgid "Active person: %s"
 msgstr "Aktivní osoba: %s"
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:88
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)d. %(relation)s: "
-msgstr "%(person)s, narozen(a)%(relation)s"
+msgstr "%(count)d. %(relation)s: "
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:94
 #, python-format
@@ -24833,9 +24824,8 @@ msgid "residencesource"
 msgstr "Bydliště"
 
 #: ../gramps/plugins/importer/importcsv.py:221
-#, fuzzy
 msgid "attribute type"
-msgstr "Poznámka k atributu"
+msgstr "typ atributu"
 
 #: ../gramps/plugins/importer/importcsv.py:221
 #, fuzzy
@@ -25357,18 +25347,20 @@ msgid "Event date"
 msgstr "Datum události"
 
 #: ../gramps/plugins/importer/importprogen.glade:1476
-#, fuzzy
 msgid ""
 "Store birth date in\n"
 "event description."
-msgstr "Získat popis události"
+msgstr ""
+"Uložit datum narození\n"
+"v popisu události"
 
 #: ../gramps/plugins/importer/importprogen.glade:1495
-#, fuzzy
 msgid ""
 "Store death date in\n"
 "event description."
-msgstr "Získat popis události"
+msgstr ""
+"Uložit datum úmrtí\n"
+"v popisu události"
 
 #: ../gramps/plugins/importer/importprogen.glade:1515
 msgid "Diverse"
@@ -34300,9 +34292,8 @@ msgstr "Hledá se možné zacyklení pro každou osobu"
 
 #: ../gramps/plugins/tool/removespaces.py:130
 #: ../gramps/plugins/tool/removespaces.py:179
-#, fuzzy
 msgid "handle"
-msgstr "Ukazatel"
+msgstr "ukazatel"
 
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:135
@@ -34312,15 +34303,13 @@ msgstr "neznámé jméno"
 
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:143
-#, fuzzy
 msgid "alternate name"
-msgstr "Alternativní jména"
+msgstr "alternativní jméno"
 
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:147
-#, fuzzy
 msgid "group as"
-msgstr "Seskupit jako"
+msgstr "seskupit jako"
 
 #: ../gramps/plugins/tool/removeunused.glade:92
 msgid "Search for events"
@@ -36218,9 +36207,9 @@ msgstr "Upravit zvolenou osobu"
 
 #: ../gramps/plugins/view/relview.py:746 ../gramps/plugins/view/relview.py:772
 #: ../gramps/plugins/view/relview.py:789 ../gramps/plugins/view/relview.py:796
-#, fuzzy, python-format
+#, python-format
 msgid "%s"
-msgstr "%s:"
+msgstr "%s"
 
 #: ../gramps/plugins/view/relview.py:784
 msgid "Alive"
@@ -36907,9 +36896,8 @@ msgstr ""
 "Vyberte filtr pro omezení osob, které se objeví v na webových stránkách"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1650
-#, fuzzy
 msgid "Show the relationship between the current person and the active person"
-msgstr "Zobrazit všechny vztahy mezi osobou a výchozí osobou."
+msgstr "Zobrazit  vztah mezi aktivní a výchozí osobou"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1653
 #, fuzzy
