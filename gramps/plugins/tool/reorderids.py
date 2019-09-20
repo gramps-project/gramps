@@ -66,6 +66,9 @@ WIKI_HELP_SEC = _('manual|Reorder_Gramps_ID')
 PREFIXES = {'person': 'i', 'family': 'f', 'event': 'e', 'place': 'p',
             'source': 's', 'citation': 'c', 'repository': 'r',
             'media': 'o', 'note': 'n'}
+DB_INDXES = {'person': 'p', 'family': 'f', 'event': 'e', 'place': 'l',
+             'source': 's', 'citation': 'c', 'repository': 'r',
+             'media': 'o', 'note': 'n'}
 #-------------------------------------------------------------------------
 #
 # Actual tool
@@ -548,6 +551,9 @@ class ReorderIds(tool.BatchTool, ManagedWindow, UpdateCallback):
                         self.progress.set_pass(
                             _('Reorder %s IDs ...') % _(prim_objs.title()),
                             self.obj_values[prim_obj].quant_id)
+                    # reset the db next_id index to zero so we restart new IDs
+                    # at lowest possible position
+                    setattr(self.db, DB_INDXES[prim_obj] + 'map_index', 0)
                     # Process reordering
                     self._reorder(prim_obj)
 
