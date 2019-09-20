@@ -1489,6 +1489,26 @@ class GrampsPreferences(ConfigureDialog):
             align=Gtk.Align.CENTER, bold=True)
 
         row = 1
+        self.add_pos_int_entry(
+            grid, _('Markup for invalid date format'),
+            row, 'preferences.invalid-date-format',
+            self.update_markup_entry,
+            helptext=_(
+                'Convenience markups are:\n'
+                '<b>&lt;b&gt;Bold&lt;/b&gt;</b>\n'
+                '<big>&lt;big&gt;'
+                'Makes font relatively larger&lt;/big&gt;</big>\n'
+                '<i>&lt;i&gt;Italic&lt;/i&gt;</i>\n'
+                '<s>&lt;s&gt;Strikethrough&lt;/s&gt;</s>\n'
+                '<sub>&lt;sub&gt;Subscript&lt;/sub&gt;</sub>\n'
+                '<sup>&lt;sup&gt;Superscript&lt;/sup&gt;</sup>\n'
+                '<small>&lt;small&gt;'
+                'Makes font relatively smaller&lt;/small&gt;</small>\n'
+                '<tt>&lt;tt&gt;Monospace font&lt;/tt&gt;</tt>\n'
+                '<u>&lt;u&gt;Underline&lt;/u&gt;</u>\n\n'
+                'For example: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n'
+                'will display <u><b>Underlined bold date</b></u>.\n'))
+        row += 1
         self.add_spinner(
             grid, _('Date about range'),
             row, 'behavior.date-about-range', (1, 9999))
@@ -1516,26 +1536,6 @@ class GrampsPreferences(ConfigureDialog):
         self.add_spinner(
             grid, _('Average years between generations'),
             row, 'behavior.avg-generation-gap', (10, 30))
-        row += 1
-        self.add_pos_int_entry(
-            grid, _('Markup for invalid date format'),
-            row, 'preferences.invalid-date-format',
-            self.update_markup_entry,
-            helptext=_(
-                'Convenience markups are:\n'
-                '<b>&lt;b&gt;Bold&lt;/b&gt;</b>\n'
-                '<big>&lt;big&gt;'
-                'Makes font relatively larger&lt;/big&gt;</big>\n'
-                '<i>&lt;i&gt;Italic&lt;/i&gt;</i>\n'
-                '<s>&lt;s&gt;Strikethrough&lt;/s&gt;</s>\n'
-                '<sub>&lt;sub&gt;Subscript&lt;/sub&gt;</sub>\n'
-                '<sup>&lt;sup&gt;Superscript&lt;/sup&gt;</sup>\n'
-                '<small>&lt;small&gt;'
-                'Makes font relatively smaller&lt;/small&gt;</small>\n'
-                '<tt>&lt;tt&gt;Monospace font&lt;/tt&gt;</tt>\n'
-                '<u>&lt;u&gt;Underline&lt;/u&gt;</u>\n\n'
-                'For example: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n'
-                'will display <u><b>Underlined bold date</b></u>.\n'))
 
         return _('Dates'), grid
 
