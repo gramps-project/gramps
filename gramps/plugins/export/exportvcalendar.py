@@ -30,7 +30,7 @@
 #-------------------------------------------------------------------------
 import os
 import sys
-from time import localtime
+import time
 
 #------------------------------------------------------------------------
 #
@@ -51,9 +51,9 @@ _ = glocale.translation.gettext
 from gramps.gui.plug.export import WriterOptionBox
 from gramps.gen.utils.db import family_name
 from gramps.gen.lib import Date, EventType
-from gramps.gui.glade import Glade
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.display.place import displayer as _pd
+
 
 class CalendarWriter:
     def __init__(self, database, filename, user, option_box=None):
@@ -95,24 +95,27 @@ class CalendarWriter:
 
     def export_data(self, filename):
 
-        self.dirname = os.path.dirname (filename)
+        self.dirname = os.path.dirname(filename)
         try:
-            with open(filename,"w") as self.g:
+            with open(filename, "w", encoding='utf8',
+                      newline='\r\n') as self.g:
                 self.writeln("BEGIN:VCALENDAR")
                 self.writeln("PRODID:-//GNU//Gramps//EN")
-                self.writeln("VERSION:1.0")
+                self.writeln("VERSION:2.0")
 
-                self.total = (len([x for x in self.db.iter_person_handles()]) +
-                              len([x for x in self.db.iter_family_handles()]))
-                for key in self.db.iter_person_handles():
+                p_hndls = self.db.get_person_handles()
+                p_hndls.sort()
+                f_hndls = self.db.get_family_handles()
+                f_hndls.sort()
+                self.total = len(p_hndls) + len(f_hndls)
+                for key in p_hndls:
                     self.write_person(key)
                     self.update()
 
-                for key in self.db.iter_family_handles():
+                for key in f_hndls:
                     self.write_family(key)
                     self.update()
 
-                self.writeln("")
                 self.writeln("END:VCALENDAR")
 
             return True
@@ -129,16 +132,11 @@ class CalendarWriter:
         if family:
             for event_ref in family.get_event_ref_list():
                 event = self.db.get_event_from_handle(event_ref.ref)
-                if event.get_type() == EventType.MARRIAGE:
-                    m_date = event.get_date_object()
-                    place_handle = event.get_place_handle()
+                if event and event.get_type() == EventType.MARRIAGE:
                     # feature requests 2356, 1657: avoid genitive form
-                    text = "%s - %s" % (family_name(family, self.db), _("Marriage"))
-                    if place_handle:
-                        place_title = _pd.display_event(self.db, event)
-                        self.write_vevent( text, m_date, place_title)
-                    else:
-                        self.write_vevent( text, m_date)
+                    text = "%s - %s" % (family_name(family, self.db),
+                                        _("Marriage"))
+                    self.write_vevent(text, event)
 
     def write_person(self, person_handle):
         person = self.db.get_person_from_handle(person_handle)
@@ -147,45 +145,26 @@ class CalendarWriter:
             if birth_ref:
                 birth = self.db.get_event_from_handle(birth_ref.ref)
                 if birth:
-                    b_date = birth.get_date_object()
-                    place_handle = birth.get_place_handle()
-                    if place_handle:
-                        # feature requests 2356, 1657: avoid genitive form
-                        place_title = _pd.display_event(self.db, birth)
-                        self.write_vevent("%s - %s" %
-                            (name_displayer.display(person), _("Birth")),
-                            b_date, place_title)
-                    else:
-                        # feature requests 2356, 1657: avoid genitive form
-                        self.write_vevent("%s - %s" %
-                            (name_displayer.display(person), _("Birth")),
-                            b_date)
+                    # feature requests 2356, 1657: avoid genitive form
+                    self.write_vevent("%s - %s" %
+                                      (name_displayer.display(person),
+                                       _("Birth")), birth)
 
             death_ref = person.get_death_ref()
             if death_ref:
                 death = self.db.get_event_from_handle(death_ref.ref)
                 if death:
-                    d_date = death.get_date_object()
-                    place_handle = death.get_place_handle()
-                    if place_handle:
-                        # feature requests 2356, 1657: avoid genitive form
-                        place_title = _pd.display_event(self.db, death)
-                        self.write_vevent("%s - %s" %
-                            (name_displayer.display(person), _("Death")),
-                            d_date, place_title)
-                    else:
-                        # feature requests 2356, 1657: avoid genitive form
-                        self.write_vevent("%s - %s" %
-                            (name_displayer.display(person), _("Death")),
-                            d_date)
-
+                    # feature requests 2356, 1657: avoid genitive form
+                    self.write_vevent("%s - %s" %
+                                      (name_displayer.display(person),
+                                       _("Death")), death)
 
     def format_single_date(self, subdate, thisyear, cal):
         retval = ""
         (day, month, year, sl) = subdate
 
         if thisyear:
-            year = localtime().tm_year
+            year = time.localtime().tm_year
 
         if not cal == Date.CAL_GREGORIAN:
             return ""
@@ -195,7 +174,6 @@ class CalendarWriter:
                 if day > 0:
                     retval = "%s%02d%02d" % (year, month, day)
         return retval
-
 
     def format_date(self, date, thisyear=0):
         retval = ""
@@ -220,23 +198,43 @@ class CalendarWriter:
                                                                      start)
         return retval
 
-    def write_vevent(self, event_text, date, location=""):
-        date_string = self.format_date(date, 1)
+    def write_vevent(self, event_text, event):
+        date = event.get_date_object()
+        place_handle = event.get_place_handle()
+        date_string = self.format_date(date, 0)
         if date_string is not "":
-            self.writeln("")
+            # self.writeln("")
             self.writeln("BEGIN:VEVENT")
-            self.writeln("SUMMARY:%s %s" % (date.get_year(), event_text))
-            if location:
-                self.writeln("LOCATION:%s" % location)
+            time_s = time.gmtime(event.change)
+            self.writeln("DTSTAMP:%04d%02d%02dT%02d%02d%02dZ" % time_s[0:6])
+            self.writeln("UID:%s@gramps.com" % event.handle)
+            self.writeln(fold("SUMMARY:%s %s" % (date.get_year(), event_text)))
+            if place_handle:
+                location = _pd.display_event(self.db, event)
+                if location:
+                    self.writeln("LOCATION:%s" % location)
             self.writeln("RRULE:FREQ=YEARLY")
             self.writeln(date_string)
             self.writeln("END:VEVENT")
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
+
+def fold(txt):
+    """ Limit line length to 75 octets (per RFC 5545) """
+    l_len = 0
+    text = ''
+    for char in txt:
+        c_len = len(char.encode('utf8'))
+        if c_len + l_len > 75:
+            l_len = 1
+            text += '\n ' + char
+        else:
+            l_len += c_len
+            text += char
+    return text
+
+
 def exportData(database, filename, user, option_box=None):
     cw = CalendarWriter(database, filename, user, option_box)
     return cw.export_data(filename)
