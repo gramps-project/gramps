@@ -126,7 +126,7 @@ class WebCalReport(Report):
         self._ = self.rlocale.translation.sgettext
 
         self.html_dir = mgobn('target')
-        self.title_text = mgobn('title')
+        self.title_text = html_escape(mgobn('title'))
         filter_option = options.menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
         self.name_format = mgobn('name_format')
@@ -1598,7 +1598,7 @@ class WebCalReport(Report):
         output_file = self.create_file('index', "")
 
         # page title
-        title = self._("My Family Calendar")
+        title = self.title_text
 
         nr_up = 0
 
