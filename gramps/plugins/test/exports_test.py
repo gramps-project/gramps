@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 import unittest
 import os
 import difflib
+from unittest.mock import patch
+from time import localtime, strptime
 
 from gramps.test.test_util import Gramps
 from gramps.gen.const import TEMP_DIR, DATA_DIR
@@ -31,6 +33,13 @@ from gramps.gen.utils.config import config
 
 TREE_NAME = "Test_exporttest"
 TEST_DIR = os.path.abspath(os.path.join(DATA_DIR, "tests"))
+
+
+def mock_localtime(*args):
+    """
+    Mock up a dummy to replace the varying 'time string results'
+    """
+    return strptime("25 Dec 1999", "%d %b %Y")
 
 
 def call(*args):
@@ -84,6 +93,8 @@ def compare(expect_file, result_file, dfilter=None):
             msg += line
             if dfilter:
                 fail += dfilter(line)
+            else:
+                fail = True
         return msg if fail else ""
 
 
@@ -184,6 +195,9 @@ class ExportControl(unittest.TestCase):
     export dates, file names etc. that don't count as differences.
     """
     def setUp(self):
+        config.set('behavior.date-before-range', 50)
+        config.set('behavior.date-after-range', 50)
+        config.set('behavior.date-about-range', 10)
         self.tearDown()  # removes it if it existed
 
 #        out, err = self.call("-C", TREE_NAME,
@@ -195,6 +209,17 @@ class ExportControl(unittest.TestCase):
     def test_csv(self):
         """ Run a csv export test """
         set_format(0)   # Use ISO date for test
+        config.set('database.backend', 'bsddb')
+        src_file = 'exp_sample_csv.gramps'
+        tst_file = 'exp_sample_csv.csv'
+        msg = do_it(src_file, tst_file)
+        if msg:
+            self.fail(tst_file + ': ' + msg)
+
+    def test_csv_sq(self):
+        """ Run a csv export test """
+        set_format(0)   # Use ISO date for test
+        config.set('database.backend', 'sqlite')
         src_file = 'exp_sample_csv.gramps'
         tst_file = 'exp_sample_csv.csv'
         msg = do_it(src_file, tst_file)
@@ -204,6 +229,17 @@ class ExportControl(unittest.TestCase):
     def test_ged(self):
         """ Run a Gedcom export test """
         config.set('preferences.place-auto', True)
+        config.set('database.backend', 'bsddb')
+        src_file = 'exp_sample.gramps'
+        tst_file = 'exp_sample_ged.ged'
+        msg = do_it(src_file, tst_file, gedfilt)
+        if msg:
+            self.fail(tst_file + ': ' + msg)
+
+    def test_ged_sq(self):
+        """ Run a Gedcom export test """
+        config.set('preferences.place-auto', True)
+        config.set('database.backend', 'sqlite')
         src_file = 'exp_sample.gramps'
         tst_file = 'exp_sample_ged.ged'
         msg = do_it(src_file, tst_file, gedfilt)
@@ -213,15 +249,39 @@ class ExportControl(unittest.TestCase):
     def test_vcard(self):
         """ Run a vcard export test """
         config.set('preferences.place-auto', True)
+        config.set('database.backend', 'bsddb')
         src_file = 'exp_sample.gramps'
         tst_file = 'exp_sample.vcf'
         msg = do_it(src_file, tst_file, vcffilt)
         if msg:
             self.fail(tst_file + ': ' + msg)
 
+    def test_vcard_sq(self):
+        """ Run a vcard export test """
+        config.set('preferences.place-auto', True)
+        config.set('database.backend', 'sqlite')
+        src_file = 'exp_sample.gramps'
+        tst_file = 'exp_sample.vcf'
+        msg = do_it(src_file, tst_file, vcffilt)
+        if msg:
+            self.fail(tst_file + ': ' + msg)
+
+    @patch('gramps.plugins.export.exportvcalendar.time.localtime', mock_localtime)
     def test_vcs(self):
         """ Run a Vcalandar export test """
         config.set('preferences.place-auto', True)
+        config.set('database.backend', 'bsddb')
+        src_file = 'exp_sample.gramps'
+        tst_file = 'exp_sample.vcs'
+        msg = do_it(src_file, tst_file)
+        if msg:
+            self.fail(tst_file + ': ' + msg)
+
+    @patch('gramps.plugins.export.exportvcalendar.time.localtime', mock_localtime)
+    def test_vcs_sq(self):
+        """ Run a Vcalandar export test """
+        config.set('preferences.place-auto', True)
+        config.set('database.backend', 'sqlite')
         src_file = 'exp_sample.gramps'
         tst_file = 'exp_sample.vcs'
         msg = do_it(src_file, tst_file)
@@ -231,6 +291,17 @@ class ExportControl(unittest.TestCase):
     def test_gw(self):
         """ Run a Geneweb export test """
         config.set('preferences.place-auto', True)
+        config.set('database.backend', 'bsddb')
+        src_file = 'exp_sample.gramps'
+        tst_file = 'exp_sample.gw'
+        msg = do_it(src_file, tst_file)
+        if msg:
+            self.fail(tst_file + ': ' + msg)
+
+    def test_gw_sq(self):
+        """ Run a Geneweb export test """
+        config.set('preferences.place-auto', True)
+        config.set('database.backend', 'sqlite')
         src_file = 'exp_sample.gramps'
         tst_file = 'exp_sample.gw'
         msg = do_it(src_file, tst_file)
@@ -241,6 +312,18 @@ class ExportControl(unittest.TestCase):
         """ Run a Web Family Tree export test """
         set_format(0)   # Use ISO date for test
         config.set('preferences.place-auto', True)
+        config.set('database.backend', 'bsddb')
+        src_file = 'exp_sample.gramps'
+        tst_file = 'exp_sample.wft'
+        msg = do_it(src_file, tst_file)
+        if msg:
+            self.fail(tst_file + ': ' + msg)
+
+    def test_wft_sq(self):
+        """ Run a Web Family Tree export test """
+        set_format(0)   # Use ISO date for test
+        config.set('preferences.place-auto', True)
+        config.set('database.backend', 'sqlite')
         src_file = 'exp_sample.gramps'
         tst_file = 'exp_sample.wft'
         msg = do_it(src_file, tst_file)
