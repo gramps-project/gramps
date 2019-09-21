@@ -201,7 +201,7 @@ class CalendarWriter:
     def write_vevent(self, event_text, event):
         date = event.get_date_object()
         place_handle = event.get_place_handle()
-        date_string = self.format_date(date, 0)
+        date_string = self.format_date(date, 1)
         if date_string is not "":
             # self.writeln("")
             self.writeln("BEGIN:VEVENT")
