@@ -82,6 +82,7 @@ body > div {
 }
 .content {
     padding: 1.5em 1.5em;
+    overflow: auto;
     background: url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
 }
 #ThumbnailPreview div.snapshot {
