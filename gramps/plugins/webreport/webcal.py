@@ -1633,7 +1633,8 @@ class WebCalOptions(MenuReportOptions):
         self.__filter = None
         self.__links = None
         self.__prefix = None
-        MenuReportOptions.__init__(self, name, dbase)
+        db_options = name + ' ' + dbase.get_dbname()
+        MenuReportOptions.__init__(self, db_options, dbase)
         self.__multiyear = None
         self.__start_year = None
         self.__end_year = None
