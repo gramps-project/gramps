@@ -17,6 +17,7 @@ gramps/gen/db/base.py
 gramps/gen/db/exceptions.py
 gramps/gen/db/generic.py
 gramps/gen/display/name.py
+gramps/gen/display/place.py
 gramps/gen/filters/_filterparser.py
 gramps/gen/filters/_genericfilter.py
 gramps/gen/filters/rules/_changedsincebase.py
