@@ -24,7 +24,6 @@
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
-
 #-------------------------------------------------------------------------
 #
 # Gramps classes
@@ -40,12 +39,13 @@ from gi.repository import Gtk
 class AttrModel(Gtk.ListStore):
 
     def __init__(self, attr_list, db):
-        Gtk.ListStore.__init__(self, str, str, bool, object)
+        Gtk.ListStore.__init__(self, str, str, bool, bool, object)
         self.db = db
         for attr in attr_list:
             self.append(row=[
                 str(attr.get_type()),
                 attr.get_value(),
+                attr.has_citations(),
                 attr.get_privacy(),
                 attr,
                 ])

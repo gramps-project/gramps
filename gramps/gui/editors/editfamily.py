@@ -105,7 +105,7 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
     is contained here instead of in displaytabs.
     """
 
-    _HANDLE_COL = 14
+    _HANDLE_COL = 15
     _DND_TYPE = DdTargets.CHILDREF
     _DND_EXTRA = DdTargets.PERSON_LINK
 
@@ -133,7 +133,8 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
         None,
         None,
         None,
-        (_('Private'), 13,  30, ICON_COL, -1, 'gramps-lock')
+        (_('Source'), 13,  30, ICON_COL, -1, 'gramps-source'),
+        (_('Private'), 14,  30, ICON_COL, -1, 'gramps-lock'),
         ]
 
     def __init__(self, dbstate, uistate, track, family):
@@ -216,7 +217,7 @@ class ChildEmbedList(DbGUIElement, EmbeddedList):
         return prefs
 
     def column_order(self):
-        return [(1, 13), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6),
+        return [(1, 13), (1, 14), (1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6),
                 (0, 8), (0, 9)]
 
     def add_button_clicked(self, obj=None):
