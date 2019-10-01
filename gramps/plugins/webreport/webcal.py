@@ -152,7 +152,6 @@ class WebCalReport(Report):
         self.birthday = mgobn('birthdays')
         self.anniv = mgobn('anniversaries')
         self.death_anniv = mgobn('death_anniv')
-        self.home_link = mgobn('home_link')
         self.event_list = []
 
         self.month_notes = [mgobn('note_' + month)
@@ -188,6 +187,10 @@ class WebCalReport(Report):
         self.holidays = {}
 
         calendar.setfirstweekday(DOW_GRAMPS2ISO[self.start_dow])
+        self.head = []
+        # An optional link to a home page
+        self.head.append((self.narweb_prefix, self._('NarrativeWeb Home'),
+                          self.link_to_narweb))
 
     def get_note_format(self, note):
         """
@@ -522,6 +525,17 @@ class WebCalReport(Report):
                   role="subnavigation") as submenu:
             unordered = Html("ul")
 
+            (url, nav_text, disp) = self.head[0]
+            if disp:
+                if url[:1] == '/':
+                    url = url + "index" + self.ext
+                else:
+                    url_up = ['..'] * nr_up
+                    url_up.append(url)
+                    url = '/'.join(url_up) + "index" + self.ext
+                hyper = Html("a", nav_text, href=url, name=url, title=nav_text)
+                unordered.extend(Html("li", hyper, inline=True))
+
             for cal_year in range(self.start_year,
                                   (self.start_year + num_years)):
                 url = ''
@@ -571,15 +585,20 @@ class WebCalReport(Report):
         """
         navs = []
 
-        # An optional link to a home page
-        if self.home_link:
-            navs.append((self.home_link, self._('Home'), add_home))
+        if not self.multiyear:
+            (url, nav_text, disp) = self.head[0]
+            if url[:1] == '/':
+                url = url + "index" + self.ext
+            else:
+                url = "../" + url + "index" + self.ext
+            navs.append((url, nav_text, disp))
+
         navs.extend((self.rlocale.date_displayer.long_months[int(month)],
                      self.rlocale.date_displayer.short_months[int(month)], True)
                     for month in range(1, 13))
 
         # Add a link for year_glance() if requested
-        navs.append(('fullyearlinked', self._('Year Glance'), self.fullyear))
+        navs.append(('fullyearlinked', self._('Full year at a Glance'), self.fullyear))
 
         # remove menu items if they are not True
         navs = [(u, n) for u, n, c in navs if c]
@@ -596,7 +615,8 @@ class WebCalReport(Report):
                     # Note. We use '/' here because it is a URL, not a OS
                     # dependent pathname need to leave home link alone,
                     # so look for it ...
-                    url_fname = url_fname.lower()
+                    if nav_text != self._("NarrativeWeb Home"):
+                        url_fname = url_fname.lower()
                     url = url_fname
                     add_subdirs = False
                     if not (url.startswith('http:') or url.startswith('/')):
@@ -619,9 +639,7 @@ class WebCalReport(Report):
                     else:
                         check_cs = False
 
-                    if url == self.home_link:
-                        mytitle = self._("NarrativeWeb Home")
-                    elif url_fname == 'fullyearlinked':
+                    if url_fname == 'fullyearlinked':
                         mytitle = self._('Full year at a Glance')
                     else:
                         mytitle = self._(url_fname)
@@ -1347,7 +1365,10 @@ class WebCalReport(Report):
 
                         # add link to NarrativeWeb
                         if self.link_to_narweb:
-                            prfx = self.narweb_prefix
+                            if self.narweb_prefix[:1] != '/':
+                                prfx = "../" + self.narweb_prefix
+                            else:
+                                prfx = self.narweb_prefix
                             text = str(Html("a", short_name,
                                             href=self.build_url_fname_html(
                                                 person.handle,
@@ -1381,7 +1402,10 @@ class WebCalReport(Report):
                     if (self.alive and alive) or not self.alive:
                         # add link to NarrativeWeb
                         if self.link_to_narweb:
-                            prfx = self.narweb_prefix
+                            if self.narweb_prefix[:1] != '/':
+                                prfx = "../" + self.narweb_prefix
+                            else:
+                                prfx = self.narweb_prefix
                             navpfx = self.build_url_fname_html(person.handle,
                                                                "ppl",
                                                                prefix=prfx)
@@ -1390,9 +1414,6 @@ class WebCalReport(Report):
                             text = short_name
                         self.add_day_item(text, year, month, day, 'Death',
                                           age_at_death, death_date)
-                        #print('Death date for %s %s/%s/%s' % (short_name, day,
-                        #                                      month, year),
-                        #      age_at_death)
 
                 # add anniversary if requested
                 if self.anniv:
@@ -1450,7 +1471,10 @@ class WebCalReport(Report):
                                             dlocale=self.rlocale)
 
                                     if self.link_to_narweb:
-                                        prefx = self.narweb_prefix
+                                        if self.narweb_prefix[:1] != '/':
+                                            prefx = "../" + self.narweb_prefix
+                                        else:
+                                            prefx = self.narweb_prefix
                                         reference = self.build_url_fname_html(
                                             spouse_handle, 'ppl',
                                             prefix=prefx)
@@ -1567,8 +1591,7 @@ class WebCalReport(Report):
                 if self.fullyear:
                     self.year_glance(cal_year)
 
-                if self.home_link:
-                    self.create_page_index()
+                self.create_page_index()
 
         # a single year
         else:
@@ -1588,7 +1611,7 @@ class WebCalReport(Report):
             if self.fullyear:
                 self.year_glance(cal_year)
 
-            if self.home_link:
+            if self.link_to_narweb:
                 self.create_page_index()
 
     def create_page_index(self):
@@ -1797,13 +1820,6 @@ class WebCalOptions(MenuReportOptions):
         maiden_name.add_item("own", _("Wives use their own surname"))
         maiden_name.set_help(_("Select married women's displayed surname"))
         menu.add_option(category_name, "maiden_name", maiden_name)
-
-        dbname = self.__db.get_dbname()
-        default_link = '../../' + dbname + "_NAVWEB/index.html"
-        home_link = StringOption(_('Home link'), default_link)
-        home_link.set_help(_("The link to be included to direct the user to "
-                             "the main page of the web site"))
-        menu.add_option(category_name, "home_link", home_link)
 
     def __add_notes_options(self, menu):
         """
