@@ -492,12 +492,12 @@ class WebCalReport(Report):
                 bemail = '<a href="mailto:' + self.email + '?subject='
                 eemail = '">' + self.author + '</a>'
                 msg = self._('the "WebCal" will be the potential-email Subject|'
-                             'Created for %(html_email_author_start)s'
+                             'Created by %(html_email_author_start)s'
                              'WebCal%(html_email_author_end)s') % {
                                  'html_email_author_start' : bemail,
                                  'html_email_author_end' : eemail}
             elif self.author:
-                msg = self._('Created for %(author)s') % {
+                msg = self._('Created by %(author)s') % {
                     'author' : self.author}
 
             if msg:
@@ -749,53 +749,50 @@ class WebCalReport(Report):
                     full_month_name = date_displayer.long_months[month-1]
                     url = full_month_name.lower() + self.ext
                     prevm = Date(int(year), int(month-1), 0)
-                    my_title = Html("a", html_escape("<"), href=url,
+                    my_title = Html("a", "\u276e", href=url, close=True,
                                     title=date_displayer.display(prevm))
                 elif self.multiyear and year > self.start_year:
                     full_month_name = date_displayer.long_months[12]
                     url = full_month_name.lower() + self.ext
                     dest = os.path.join("../", str(year-1), url)
                     prevm = Date(int(year-1), 12, 0)
-                    my_title = Html("a", html_escape("<"), href=dest,
+                    my_title = Html("a", "\u276e", href=dest, close=True,
                                     title=date_displayer.display(prevm))
                 else:
                     full_month_name = date_displayer.long_months[12]
                     url = full_month_name.lower() + self.ext
                     dest = os.path.join("../", str(self.end_year), url)
                     prevy = Date(self.end_year, 12, 0)
-                    my_title = Html("a", html_escape("<"), href=dest,
+                    my_title = Html("a", "\u276e", href=dest, close=True,
                                     title=date_displayer.display(prevy))
-                my_title += Html("</a>&nbsp;")
+                my_title += Html("</a>&nbsp;" + month_name + "&nbsp;") 
                 if month < 12:
                     full_month_name = date_displayer.long_months[month+1]
                     url = full_month_name.lower() + self.ext
                     nextd = Date(int(year), int(month+1), 0)
-                    my_title += Html("a", html_escape(">"), href=url,
+                    my_title += Html("a", "\u276f", href=url, close=True,
                                      title=date_displayer.display(nextd))
                 elif self.multiyear and year < self.end_year:
                     full_month_name = date_displayer.long_months[1]
                     url = full_month_name.lower() + self.ext
                     dest = os.path.join("../", str(year+1), url)
                     nextd = Date(int(year+1), 1, 0)
-                    my_title += Html("a", html_escape(">"), href=dest,
+                    my_title += Html("a", "\u276f", href=dest, close=True,
                                      title=date_displayer.display(nextd))
                 else:
                     full_month_name = date_displayer.long_months[1]
                     url = full_month_name.lower() + self.ext
                     dest = os.path.join("../", str(self.start_year), url)
                     nexty = Date(self.start_year, 1, 0)
-                    my_title += Html("a", html_escape(">"), href=dest,
+                    my_title += Html("a", "\u276f", href=dest, close=True,
                                      title=date_displayer.display(nexty))
-                my_title += Html("</a>")
                 trow = Html("tr") + (
                     Html("th", my_title, class_='monthName',
                          colspan=7, inline=True)
                     )
                 thead += trow
-            trow = Html("tr") + (
-                Html("th", linkable, class_='monthName', colspan=7, inline=True)
-                )
-            thead += trow
+                trow = Html("tr") + (Html("th", "", colspan=7, inline=True))
+                thead += trow
 
             # Calendar weekday names header
             trow = Html("tr")
@@ -1181,7 +1178,7 @@ class WebCalReport(Report):
             url = event[1] + self.ext
             prevd = Date(int(event[1][:4]), int(event[1][4:6]),
                          int(event[1][6:]))
-            my_title = Html("a", html_escape("<"), href=url,
+            my_title = Html("a", "\u276e", href=url,
                             title=self.rlocale.get_date(prevd))
         else:
             my_title = Html('<em>&nbsp;&nbsp;</em>')
@@ -1190,7 +1187,7 @@ class WebCalReport(Report):
             url = event[2] + self.ext
             nextd = Date(int(event[2][:4]), int(event[2][4:6]),
                          int(event[2][6:]))
-            my_title += Html("a", html_escape(">"), href=url,
+            my_title += Html("a", "\u276f", href=url,
                              title=self.rlocale.get_date(nextd))
         else:
             my_title += Html('<b>&nbsp;&nbsp;</b>')

@@ -747,7 +747,9 @@ table.calendar {
 .calendar thead th.monthName {
     font-size: xx-large;
     color: #767D25;
-    border-bottom-color: #7D5925;
+    vertical-align: top;
+    height: 2em;
+    border-bottom-style: none;
 }
 .calendar thead th abbr {
     border-bottom-style: none;

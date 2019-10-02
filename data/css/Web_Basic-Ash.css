@@ -755,6 +755,9 @@ table.calendar {
     background-color: white;
     border-bottom-style: none;
     padding-top: 1em;
+    vertical-align: top;
+    height: 2em;
+
 }
 .calendar thead th abbr {
     border-bottom-style: none;
