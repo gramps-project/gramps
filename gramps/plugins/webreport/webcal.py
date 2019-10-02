@@ -483,6 +483,18 @@ class WebCalReport(Report):
         head += (meta, links)
 
         # start header section and page title...
+        script = """
+<script type="text/javascript">
+function currentmonth(y) {
+var date = new Date();
+var month = date.getMonth() + 1;
+var url = y + "/" + month + "%s";
+window.location.href = url;
+return false;
+}
+</script>
+""" % self.ext
+        body += script
         with Html("div", id="header", role="Title-n-Navigation") as header:
             header += Html("h1", title, id="SiteTitle", inline=True)
 
@@ -544,17 +556,12 @@ class WebCalReport(Report):
                 subdirs = ['..'] * nr_up
                 subdirs.append(str(cal_year))
 
-                # each year will link to current month.
-                # this will always need an extension added
-                month = int(self.today.get_month())
-                full_month_name = self.rlocale.date_displayer.long_months[month]
-                full_month_name = full_month_name.lower()
-
                 # Note. We use '/' here because it is a URL, not a OS dependent
                 # pathname.
-                url = '/'.join(subdirs + [full_month_name]) + self.ext
+                url = '/'.join(subdirs)
+                onclic = "return currentmonth('" + url + "');"
                 hyper = Html("a", self.rlocale.get_date(Date(cal_year)),
-                             href=url, title=str(cal_year))
+                             href="#", onclick=onclic, title=str(cal_year))
 
                 # Figure out if we need <li class="CurrentSection">
                 # or just plain <li>
@@ -593,7 +600,7 @@ class WebCalReport(Report):
                 url = "../" + url + "index" + self.ext
             navs.append((url, nav_text, disp))
 
-        navs.extend((self.rlocale.date_displayer.long_months[int(month)],
+        navs.extend((str(month),
                      self.rlocale.date_displayer.short_months[int(month)], True)
                     for month in range(1, 13))
 
@@ -746,20 +753,20 @@ class WebCalReport(Report):
                 if not self.multiyear:
                     self.end_year = self.start_year
                 if month > 1:
-                    full_month_name = date_displayer.long_months[month-1]
+                    full_month_name = str(month-1)
                     url = full_month_name.lower() + self.ext
                     prevm = Date(int(year), int(month-1), 0)
                     my_title = Html("a", "\u276e", href=url, close=True,
                                     title=date_displayer.display(prevm))
                 elif self.multiyear and year > self.start_year:
-                    full_month_name = date_displayer.long_months[12]
+                    full_month_name = str(12)
                     url = full_month_name.lower() + self.ext
                     dest = os.path.join("../", str(year-1), url)
                     prevm = Date(int(year-1), 12, 0)
                     my_title = Html("a", "\u276e", href=dest, close=True,
                                     title=date_displayer.display(prevm))
                 else:
-                    full_month_name = date_displayer.long_months[12]
+                    full_month_name = str(12)
                     url = full_month_name.lower() + self.ext
                     dest = os.path.join("../", str(self.end_year), url)
                     prevy = Date(self.end_year, 12, 0)
@@ -767,20 +774,20 @@ class WebCalReport(Report):
                                     title=date_displayer.display(prevy))
                 my_title += Html("</a>&nbsp;" + month_name + "&nbsp;") 
                 if month < 12:
-                    full_month_name = date_displayer.long_months[month+1]
+                    full_month_name = str(month+1)
                     url = full_month_name.lower() + self.ext
                     nextd = Date(int(year), int(month+1), 0)
                     my_title += Html("a", "\u276f", href=url, close=True,
                                      title=date_displayer.display(nextd))
                 elif self.multiyear and year < self.end_year:
-                    full_month_name = date_displayer.long_months[1]
+                    full_month_name = str(1)
                     url = full_month_name.lower() + self.ext
                     dest = os.path.join("../", str(year+1), url)
                     nextd = Date(int(year+1), 1, 0)
                     my_title += Html("a", "\u276f", href=dest, close=True,
                                      title=date_displayer.display(nextd))
                 else:
-                    full_month_name = date_displayer.long_months[1]
+                    full_month_name = str(1)
                     url = full_month_name.lower() + self.ext
                     dest = os.path.join("../", str(self.start_year), url)
                     nexty = Date(self.start_year, 1, 0)
@@ -991,8 +998,7 @@ class WebCalReport(Report):
                                  _('Formatting months ...'), 12) as step:
 
             for month in range(1, 13):
-                cal_fname = self.rlocale.date_displayer.long_months[int(month)]
-                cal_fname = cal_fname.lower()
+                cal_fname = str(month)
                 open_file = self.create_file(cal_fname, str(year))
 
                 # Add xml, doctype, meta and stylesheets
