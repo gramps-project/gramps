@@ -772,7 +772,7 @@ return false;
                     prevy = Date(self.end_year, 12, 0)
                     my_title = Html("a", "\u276e", href=dest, close=True,
                                     title=date_displayer.display(prevy))
-                my_title += Html("</a>&nbsp;" + month_name + "&nbsp;") 
+                my_title += Html("</a>&nbsp;" + month_name + "&nbsp;")
                 if month < 12:
                     full_month_name = str(month+1)
                     url = full_month_name.lower() + self.ext
