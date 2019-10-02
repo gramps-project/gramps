@@ -1182,7 +1182,10 @@ class WebCalReport(Report):
                             title=self.rlocale.get_date(prevd))
         else:
             my_title = Html('<em>&nbsp;&nbsp;</em>')
-        my_title += Html("</a>&nbsp;")
+        my_title += Html("</a>")
+        my_title += "&nbsp;&nbsp;"
+        my_title += self.rlocale.date_displayer.display(event_date)
+        my_title += "&nbsp;&nbsp;"
         if found[2] is not None:
             url = event[2] + self.ext
             nextd = Date(int(event[2][:4]), int(event[2][4:6]),
@@ -1191,11 +1194,6 @@ class WebCalReport(Report):
                              title=self.rlocale.get_date(nextd))
         else:
             my_title += Html('<b>&nbsp;&nbsp;</b>')
-        my_title += Html("</a>")
-        content += Html("h3", my_title, inline=True)
-        my_title = Html("span", " ")
-        my_title += self.rlocale.date_displayer.display(event_date)
-        my_title += Html("span", " ")
         content += Html("h3", my_title, inline=True)
 
         # list the events

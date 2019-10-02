@@ -913,3 +913,8 @@ body#fullyearlinked table.calendar tbody td {
 body#OneDay div.content {
     overflow: hidden;
 }
+body#OneDay h3 {
+    font-size: xx-large;
+    vertical-align: top;
+    height: 2em;
+}

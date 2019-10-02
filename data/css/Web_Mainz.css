@@ -844,3 +844,9 @@ body#fullyearlinked table.calendar thead th.monthName {
 body#fullyearlinked table.calendar tbody td {
     height: 3em;
 }
+body#OneDay h3 {
+    font-size: xx-large;
+    vertical-align: top;
+    height: 2em;
+    text-align: center;
+}
