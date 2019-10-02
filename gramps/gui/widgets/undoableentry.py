@@ -47,6 +47,11 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from .undoablebuffer import Stack
 
+
+# table for skipping illegal control chars
+INVISIBLE = dict.fromkeys(list(range(32)))
+
+
 class UndoableInsertEntry:
     """something that has been inserted into our Gtk.editable"""
     def __init__(self, text, length, position):
@@ -156,6 +161,7 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
                 return False
             return True
 
+        text = text.translate(INVISIBLE)
         if not self.undo_in_progress:
             self.__empty_redo_stack()
         while not self.not_undoable_action:
