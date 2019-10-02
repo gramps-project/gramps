@@ -49,7 +49,6 @@ import logging
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import Date, Name, NameType, Person
 from gramps.gen.lib.date import Today
-from gramps.plugins.webreport.common import html_escape
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
 from gramps.version import VERSION
 from gramps.gen.constfunc import win
@@ -580,15 +579,13 @@ return false;
             submenu += unordered
         return submenu
 
-    def month_navigation(self, nr_up, year, currentsection, add_home):
+    def month_navigation(self, nr_up, year, currentsection):
         """
         Will create and display the navigation menu bar
 
         nr_up = number of directories up to reach root directory
         year = year being created
         currentsection = month name being created for proper CSS styling
-        add_home = if creating a link to home
-            -- a link to root directory of website
         """
         navs = []
 
@@ -605,7 +602,8 @@ return false;
                     for month in range(1, 13))
 
         # Add a link for year_glance() if requested
-        navs.append(('fullyearlinked', self._('Full year at a Glance'), self.fullyear))
+        navs.append(('fullyearlinked', self._('Full year at a Glance'),
+                     self.fullyear))
 
         # remove menu items if they are not True
         navs = [(u, n) for u, n, c in navs if c]
@@ -745,11 +743,14 @@ return false;
             table += thead
 
             if clickable:
-                name = th_txt + self.ext
-                url = name.lower()
-                linkable = Html("a", th_txt, href=url, name=url, title=th_txt)
+                name = str(month) + self.ext
+                linkable = Html("a", th_txt, href=name, name=name, title=th_txt)
+                trow = Html("tr") + (
+                    Html("th", linkable, class_='monthName',
+                         colspan=7, inline=True)
+                    )
+                thead += trow
             else:
-                linkable = th_txt
                 if not self.multiyear:
                     self.end_year = self.start_year
                 if month > 1:
@@ -1012,7 +1013,7 @@ return false;
                 # Create Month Navigation Menu
                 # identify currentsection for proper highlighting
                 currentsection = _dd.long_months[month]
-                body += self.month_navigation(nr_up, year, currentsection, True)
+                body += self.month_navigation(nr_up, year, currentsection)
 
                 # build the calendar
                 content = Html("div", class_="content", id="WebCal")
@@ -1099,7 +1100,7 @@ return false;
 
             # Create Month Navigation Menu
             # identify currentsection for proper highlighting
-            body += self.month_navigation(nr_up, year, "fullyearlinked", True)
+            body += self.month_navigation(nr_up, year, "fullyearlinked")
 
             msg = (self._('This calendar is meant to give you access '
                           'to all your data at a glance compressed into one '
@@ -1167,7 +1168,7 @@ return false;
         # Create Month Navigation Menu
         # identify currentsection for proper highlighting
         currentsection = _dd.long_months[month]
-        body += self.month_navigation(nr_up, year, currentsection, True)
+        body += self.month_navigation(nr_up, year, currentsection)
 
         # set date display as in user preferences
         content = Html("div", class_="content", id="OneDay")
