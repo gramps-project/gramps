@@ -784,6 +784,8 @@ class PedigreeView(NavigationView):
         Connect database signals.
         """
         self._add_db_signal('person-add', self.person_rebuild)
+        # Adding or deleting events will indirectly trigger a person update event
+        # and should therefore not be needed.
         self._add_db_signal('person-update', self.person_rebuild)
         self._add_db_signal('person-delete', self.person_rebuild)
         self._add_db_signal('person-rebuild', self.person_rebuild_bm)
@@ -791,6 +793,7 @@ class PedigreeView(NavigationView):
         self._add_db_signal('family-add', self.person_rebuild)
         self._add_db_signal('family-delete', self.person_rebuild)
         self._add_db_signal('family-rebuild', self.person_rebuild)
+        self._add_db_signal('event-update', self.person_rebuild)
 
     def change_db(self, db):
         """
