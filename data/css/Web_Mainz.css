@@ -69,7 +69,6 @@ body {
     background: url(../images/Web_Mainz_Bkgd.png) black repeat;
 }
 body > div {
-    width: 85%;
     margin: 0px auto;
     overflow: hidden;
 }
