@@ -752,7 +752,6 @@ class BasePage: # pylint: disable=C1001
             if latitude and longitude:
                 latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                 if latitude is not None:
-                    etype = event.get_type()
                     place_lat_long.append([latitude, longitude, placetitle,
                                            place_handle, event])
 
@@ -1422,8 +1421,23 @@ class BasePage: # pylint: disable=C1001
                          Html("link", type="text/css", href=url3,
                               media='print', rel="stylesheet", indent=False),
                          Html("link", type="text/css", href=url2,
-                              media="screen", rel="stylesheet", indent=False),
+                              media="screen", title=self._("Default"),
+                              rel="stylesheet", indent=False),
                          )
+        # create all alternate stylesheets
+        # Cannot use it on local files (file://)
+        for css_f in CSS:
+            already_done = False
+            for css_fn in ("UsEr_", "Basic", "Mainz", "Nebraska"):
+                if css_fn in css_f and not already_done:
+                    css_f = css_f.replace("UsEr_", "")
+                    fname = "/".join(["css", css_f + ".css"])
+                    urlx = self.report.build_url_fname(fname, None,
+                                                       self.uplink)
+                    links += Html("link", rel="alternate stylesheet",
+                                  title=css_f, indent=False,
+                                  media="screen", type="text/css",
+                                  href=urlx)
 
         # Link to Navigation Menus stylesheet
         if CSS[self.report.css]["navigation"]:
@@ -2977,4 +2991,3 @@ class BasePage: # pylint: disable=C1001
 
         # closes the file
         self.report.close_file(output_file, sio, date)
-
