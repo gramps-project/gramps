@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-10 17:16+0100\n"
-"PO-Revision-Date: 2019-09-12 21:14+0300\n"
+"PO-Revision-Date: 2019-10-04 19:52+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -21523,9 +21523,10 @@ msgstr "Tuottaa graafisen kaavion jälkeläisistä"
 msgid "Descendant Tree"
 msgstr "Jälkeläispuu"
 
+# 20191004
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:114
 msgid "Produces a graphical descendant tree"
-msgstr "Tuottaa graafisen kaavion jälkeläisistä"
+msgstr "Tuottaa graafisen puun jälkeläisistä"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:135
 msgid "Family Descendant Chart"
@@ -21539,9 +21540,10 @@ msgstr "Tuottaa graafisen kaavion perheen jälkeläisistä"
 msgid "Family Descendant Tree"
 msgstr "Perheen jälkeläispuu"
 
+# 20191004
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:153
 msgid "Produces a graphical descendant tree around a family"
-msgstr "Tuottaa graafisen kaavion perheen jälkeläisistä"
+msgstr "Tuottaa graafisen puun perheen jälkeläisistä"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:175
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:121
@@ -23492,7 +23494,7 @@ msgstr "Gramplet näyttää aktiivisen paikan ympäröimät paikat"
 #: ../gramps/plugins/webreport/basepage.py:2673
 #: ../gramps/plugins/webreport/basepage.py:2736
 msgid "Place Encloses"
-msgstr "Paikka ympäröi"
+msgstr "Ympäröi"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1309
 msgid "Gramplet showing the places that the active place encloses"
@@ -37221,9 +37223,10 @@ msgid ""
 msgstr ""
 "Määritä oletusasetelma käytettäväksi lähdesivun lainausviitteet osiossa"
 
+# 20191004
 #: ../gramps/plugins/webreport/narrativeweb.py:1725
 msgid "Include ancestor's tree"
-msgstr "Lisää kaavio esivanhemmista"
+msgstr "Lisää esivanhempien sukupuu"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1726
 msgid "Whether to include an ancestor graph on each individual page"
