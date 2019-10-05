@@ -690,7 +690,7 @@ class GrampsPreferences(ConfigureDialog):
         hbox.pack_start(lwidget, False, False, 0)
         hbox.pack_start(self.color_scheme_box, False, False, 0)
 
-        restore_btn = Gtk.Button(_('Restore to defaults'))
+        restore_btn = Gtk.Button(label=_('Restore to defaults'))
         restore_btn.set_tooltip_text(
             _('Restore colors for current theme to default.'))
         restore_btn.connect('clicked', self.restore_colors)
@@ -1827,12 +1827,10 @@ class GrampsPreferences(ConfigureDialog):
         Show dialog to choose media directory.
         """
         f = Gtk.FileChooserDialog(title=_("Select media directory"),
-                                  parent=self.window,
-                                  action=Gtk.FileChooserAction.SELECT_FOLDER,
-                                  buttons=(_('_Cancel'),
-                                           Gtk.ResponseType.CANCEL,
-                                           _('_Apply'),
-                                           Gtk.ResponseType.OK))
+                                  transient_for=self.window,
+                                  action=Gtk.FileChooserAction.SELECT_FOLDER)
+        f.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                      _('_Apply'),  Gtk.ResponseType.OK)
         mpath = media_path(self.dbstate.db)
         f.set_current_folder(os.path.dirname(mpath))
 
@@ -1877,12 +1875,10 @@ class GrampsPreferences(ConfigureDialog):
         Show dialog to choose backup directory.
         """
         f = Gtk.FileChooserDialog(title=_("Select backup directory"),
-                                  parent=self.window,
-                                  action=Gtk.FileChooserAction.SELECT_FOLDER,
-                                  buttons=(_('_Cancel'),
-                                           Gtk.ResponseType.CANCEL,
-                                           _('_Apply'),
-                                           Gtk.ResponseType.OK))
+                                  transient_for=self.window,
+                                  action=Gtk.FileChooserAction.SELECT_FOLDER)
+        f.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                      _('_Apply'),  Gtk.ResponseType.OK)
         backup_path = config.get('database.backup-path')
         if not backup_path:
             backup_path = config.get('database.path')
@@ -2162,11 +2158,9 @@ class GrampsPreferences(ConfigureDialog):
         scrollw.set_size_request(600, 100)
         text = Gtk.Label()
         text.set_line_wrap(True)
-        font_description = Pango.font_description_from_string(font)
-        text.modify_font(font_description)
         self.activate_change_font()
         text.set_halign(Gtk.Align.START)
-        text.set_text(my_characters)
+        text.set_markup("<span font='%s'>%s</span>" % (font, my_characters))
         scrollw.add(text)
         scrollw.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.grid.attach(scrollw, 1, 7, 8, 1)
@@ -2179,12 +2173,9 @@ class GrampsPreferences(ConfigureDialog):
         my_characters += symbols.get_death_symbol_for_char(death_symbl)
         text = Gtk.Label()
         text.set_line_wrap(True)
-        font_description = Pango.font_description_from_string(font)
-        text.modify_font(font_description)
         text.set_halign(Gtk.Align.START)
-        text.set_markup("<big><big><big><big>" +
-                        my_characters +
-                        "</big></big></big></big>")
+        text.set_markup("<big><big><big><big><span font='%s'>%s</span>"
+                        "</big></big></big></big>" % (font, my_characters))
         self.grid.attach(text, 1, 8, 8, 1)
         scrollw.show_all()
         text.show_all()

@@ -36,7 +36,7 @@ from hashlib import md5
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
+from gi.repository import GLib
 from gi.repository import GdkPixbuf
 
 try:
@@ -98,7 +98,7 @@ def __get_gconf_string(key):
     """
     try:
         val = CLIENT.get_string(key)
-    except GObject.GError:
+    except GLib.GError:
         val = None
     return str(val)
 
@@ -119,7 +119,7 @@ def __get_gconf_bool(key):
     """
     try:
         val = CLIENT.get_bool(key)
-    except GObject.GError:
+    except GLib.GError:
         val = None
     return val
 
@@ -318,7 +318,7 @@ def get_thumbnail_image(src_file, mtype=None, rectangle=None, size=SIZE_NORMAL):
     try:
         filename = get_thumbnail_path(src_file, mtype, rectangle, size)
         return GdkPixbuf.Pixbuf.new_from_file(filename)
-    except (GObject.GError, OSError):
+    except (GLib.GError, OSError):
         if mtype:
             return find_mime_type_pixbuf(mtype)
         else:

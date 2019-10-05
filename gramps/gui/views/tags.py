@@ -459,7 +459,7 @@ class OrganizeTagsDialog(ManagedWindow):
         Create a dialog box to organize tags.
         """
         # pylint: disable-msg=E1101
-        top = Gtk.Dialog(parent=self.parent_window)
+        top = Gtk.Dialog(transient_for=self.parent_window)
         top.vbox.set_spacing(5)
         label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>'
                           % _("Organize Tags"))
@@ -688,7 +688,7 @@ class EditTag(ManagedWindow):
         Create a dialog box to enter a new tag.
         """
         # pylint: disable-msg=E1101
-        top = Gtk.Dialog(parent=self.parent_window)
+        top = Gtk.Dialog(transient_for=self.parent_window)
         top.vbox.set_spacing(5)
 
         hbox = Gtk.Box()

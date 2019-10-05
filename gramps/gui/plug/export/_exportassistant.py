@@ -286,7 +286,7 @@ class ExportAssistant(ManagedWindow, Gtk.Assistant):
         self.set_page_complete(vbox, True)
 
     def create_page_fileselect(self):
-        self.chooser = Gtk.FileChooserWidget(Gtk.FileChooserAction.SAVE)
+        self.chooser = Gtk.FileChooserWidget(action=Gtk.FileChooserAction.SAVE)
         self.chooser.set_homogeneous(False) # Fix for bug #8350.
         #add border
         self.chooser.set_border_width(12)
