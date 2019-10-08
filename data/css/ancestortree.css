@@ -64,7 +64,7 @@ Females     Web_Gender_Female.png
     text-align:center;
     text-decoration:none;
     color: #00029D;
-    width:200px;
+    width:240px;
     min-height: 70px;
     padding:5px 20px 7px 20px;
     margin-left:16px;
@@ -77,7 +77,6 @@ Females     Web_Gender_Female.png
 #treeContainer div.AncCol4 span.unlinked {
     margin-top:10px;
     float: right;
-    padding-left: 10px;
 }
 #treeContainer div.boxbg a:hover {
     position:relative;
@@ -151,16 +150,10 @@ Females     Web_Gender_Female.png
 }
 #treeContainer div.male a,
 #treeContainer div.male span.unlinked {
-    float: right;
-    margin-top: 10px;
-    padding-left: 60px;
     background:url(../images/Web_Gender_Male.png) #BCEAF6 no-repeat top right;
 }
 #treeContainer div.female a,
 #treeContainer div.female span.unlinked {
-    float: right;
-    margin-top: 10px;
-    padding-left: 60px;
     background:url(../images/Web_Gender_Female.png) #FFC0CB no-repeat top right;
 }
 #treeContainer div.unknown a,
