@@ -9,7 +9,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -34,7 +34,6 @@ Unknown     #000
 Males       Web_Gender_Male.png
 Females     Web_Gender_Female.png
 # ------------------------------------------------------------------------------------------------- */
-
 /* Subsections : Ancestors Tree
 ----------------------------------------------------- */
 #tree {
@@ -61,41 +60,44 @@ Females     Web_Gender_Female.png
     position:relative;
     z-index:10;
     display:block;
-    font:normal .7em/1.4em sans-serif;
+    font:normal 1.1em/1.4em sans-serif;
     text-align:center;
     text-decoration:none;
     color: #00029D;
-    width:118px;
+    width:200px;
+    min-height: 70px;
     padding:5px 20px 7px 20px;
     margin-left:16px;
     background-color: #FFF;
     border: solid 1px #000;
+    border-radius: 10px;
 }
 #treeContainer div.boxbg a.noThumb,
-#treeContainer div.AncCol3 a, 
-#treeContainer div.AncCol4 a, 
-#treeContainer div.AncCol3 span.unlinked, 
+#treeContainer div.AncCol4 a,
 #treeContainer div.AncCol4 span.unlinked {
     margin-top:10px;
+    float: right;
+    padding-left: 10px;
 }
 #treeContainer div.boxbg a:hover {
     position:relative;
     z-index:999;
-    font-size:1em;
+    font-size:1.2em;
     text-decoration:none;
     color: #00029D;
-    width:190px;
+    width:280px;
     margin-left:-20px;
     padding:10px 25px 12px 25px;
     border: solid 2px #000;
+    padding-left: 75px;
 }
-#treeContainer div.boxbg a:hover, 
-#treeContainer div.AncCol3 a:hover, 
+#treeContainer div.boxbg a:hover,
 #treeContainer div.AncCol4 a:hover {
     margin-top:-44px;
 }
 #treeContainer div.boxbg a.noThumb:hover {
     margin-top:0;
+    padding-left: 10px;
 }
 #treeContainer div.AncCol0 a:hover {
     margin-left:12px;
@@ -105,49 +107,60 @@ Females     Web_Gender_Female.png
 }
 #treeContainer div.boxbg span.thumbnail {
     display:block;
-    max-width:80px;
-    max-height:65px;
-    margin:0 auto;
-    padding:4px 0;
+    position: absolute;
+    max-width:85px;
+    max-height:75px;
+    left: 3px;
+    top: 3px;
 }
 #treeContainer div.boxbg span.thumbnail img {
-    max-width:80px;
-    max-height:65px;
-    margin:0 auto;
+    max-width:70px;
+    max-height:70px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 5px;
 }
 #treeContainer div.boxbg a:hover span.thumbnail, #treeContainer div.boxbg a:hover span.thumbnail img {
-    height:80px;
+    max-width:110px;
+    max-height:110px;
 }
-#treeContainer div.AncCol3 span.thumbnail, #treeContainer div.AncCol4 span.thumbnail {
+#treeContainer #treeContainer div.AncCol4 span.thumbnail {
     display:none;
 }
 #treeContainer div.boxbg a:hover span.thumbnail {
     display:block;
 }
-
 #treeContainer div.boxbg span.fullname {
     display: none;
 }
-
 #treeContainer div.boxbg span.shortname {
     display: inline;
 }
-
 #treeContainer div.boxbg a:hover span.fullname {
     display: inline;
 }
-
 #treeContainer div.boxbg a:hover span.shortname {
     display: none;
 }
-
-
+#treeContainer div.boxbg a:hover {
+    float: right;
+    margin-top: 10px;
+    padding-left: 95px;
+    border: solid 4px #000;
+}
 #treeContainer div.male a,
 #treeContainer div.male span.unlinked {
+    float: right;
+    margin-top: 10px;
+    padding-left: 60px;
     background:url(../images/Web_Gender_Male.png) #BCEAF6 no-repeat top right;
 }
-#treeContainer div.female a, 
+#treeContainer div.female a,
 #treeContainer div.female span.unlinked {
+    float: right;
+    margin-top: 10px;
+    padding-left: 60px;
     background:url(../images/Web_Gender_Female.png) #FFC0CB no-repeat top right;
 }
 #treeContainer div.unknown a,

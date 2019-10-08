@@ -84,8 +84,8 @@ _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
 
-_WIDTH = 160
-_HEIGHT = 120
+_WIDTH = 280
+_HEIGHT = 140
 _VGAP = 10
 _HGAP = 30
 _SHADOW = 5
@@ -1028,7 +1028,7 @@ class PersonPages(BasePage):
                     Html("img", src=thumbnail_url, alt="Image: " + person_name))
                 boxbg += Html("a", href=url) + thumb + value
         shadow = Html(
-            "div", class_="shadow", inline=True,
+            "div", "", class_="shadow", inline=True,
             style="top: %dpx; left: %dpx;" % (top + _SHADOW, xoff + _SHADOW))
 
         return [boxbg, shadow]
@@ -1175,16 +1175,18 @@ class PersonPages(BasePage):
 
         # We now apply the Buchheim algorith to this tree, and it assigns X
         # and Y positions to all elements in the tree.
-        l_tree = buchheim(layout_tree, _WIDTH, _HGAP, _HEIGHT, _VGAP)
+        l_tree, top, height = buchheim(layout_tree, _WIDTH, _HGAP,
+                                       _HEIGHT, _VGAP)
 
+        top = abs(top)
         # We know the height in 'pixels' where every Ancestor will sit
         # precisely on an integer unit boundary.
         with Html("div", id="tree", class_="subsection") as tree:
             tree += Html("h4", _('Ancestors'), inline=True)
             with Html("div", id="treeContainer",
-                      style="width:%dpx; height:%dpx;" % (
-                          l_tree.width + _XOFFSET + _WIDTH,
-                          l_tree.height + _HEIGHT + _VGAP)
+                      style="width:%dpx; height:%dpx; top: %dpx" % (
+                          l_tree.width + _XOFFSET* (generations + 1) + _WIDTH,
+                          height + top + _HEIGHT + _VGAP, top)
                      ) as container:
                 tree += container
                 container += self.draw_tree(l_tree, 1, None)
