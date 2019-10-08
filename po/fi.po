@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-10 17:16+0100\n"
-"PO-Revision-Date: 2019-10-04 19:52+0300\n"
+"PO-Revision-Date: 2019-10-08 12:38+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -97,17 +97,18 @@ msgstr "GeneWeb"
 msgid "GeneWeb source file"
 msgstr "GeneWeb lähdetiedosto"
 
+# Kalenteri valikko älä käännä kielivalintoja
 #: ../data/holidays.xml.in.h:1
 msgid "Bulgaria"
 msgstr "Bulgaria"
 
 #: ../data/holidays.xml.in.h:2
 msgid "Canada"
-msgstr "Kanada"
+msgstr "Canada"
 
 #: ../data/holidays.xml.in.h:3
 msgid "Czech Republic"
-msgstr "Tsekin tasavalta"
+msgstr "Czech Republic"
 
 #: ../data/holidays.xml.in.h:4
 msgid "Chile"
@@ -115,31 +116,31 @@ msgstr "Chile"
 
 #: ../data/holidays.xml.in.h:5
 msgid "China"
-msgstr "Kiina"
+msgstr "China"
 
 #: ../data/holidays.xml.in.h:6
 msgid "Croatia"
-msgstr "Kroatia"
+msgstr "Croatia"
 
 #: ../data/holidays.xml.in.h:7
 msgid "England"
-msgstr "Englanti"
+msgstr "England"
 
 #: ../data/holidays.xml.in.h:8
 msgid "Finland"
-msgstr "Suomi"
+msgstr "Finland"
 
 #: ../data/holidays.xml.in.h:9
 msgid "France"
-msgstr "Ranska"
+msgstr "France"
 
 #: ../data/holidays.xml.in.h:10
 msgid "Germany"
-msgstr "Saksa"
+msgstr "Germany"
 
 #: ../data/holidays.xml.in.h:11
 msgid "Japan"
-msgstr "Japani"
+msgstr "Japan"
 
 #: ../data/holidays.xml.in.h:12
 msgid "Slovakia"
@@ -149,15 +150,15 @@ msgstr "Slovakia"
 #: ../data/holidays.xml.in.h:13
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:47
 msgid "Sweden"
-msgstr "Ruotsi"
+msgstr "Sweden"
 
 #: ../data/holidays.xml.in.h:14
 msgid "United States of America"
-msgstr "Pohjois-Amerikan Yhdysvallat"
+msgstr "United States of America"
 
 #: ../data/holidays.xml.in.h:15
 msgid "Jewish Holidays"
-msgstr "Juutalaiset juhlapäivät"
+msgstr "Jewish Holidays"
 
 #: ../data/holidays.xml.in.h:16
 msgid "Purim"
@@ -169,27 +170,27 @@ msgstr "Passover"
 
 #: ../data/holidays.xml.in.h:18
 msgid "2 of Passover"
-msgstr "2. Passover"
+msgstr "2 of Passover"
 
 #: ../data/holidays.xml.in.h:19
 msgid "3 of Passover"
-msgstr "3. Passover"
+msgstr "3 of Passover"
 
 #: ../data/holidays.xml.in.h:20
 msgid "4 of Passover"
-msgstr "4. Passover"
+msgstr "4 of Passover"
 
 #: ../data/holidays.xml.in.h:21
 msgid "5 of Passover"
-msgstr "5. Passover"
+msgstr "5 of Passover"
 
 #: ../data/holidays.xml.in.h:22
 msgid "6 of Passover"
-msgstr "6. Passover"
+msgstr "6 of Passover"
 
 #: ../data/holidays.xml.in.h:23
 msgid "7 of Passover"
-msgstr "7. Passover"
+msgstr "7 of Passover"
 
 #: ../data/holidays.xml.in.h:24
 msgid "Shavuot"
@@ -273,16 +274,17 @@ msgstr "8. Hanuka"
 
 #: ../data/holidays.xml.in.h:44
 msgid "New Zealand"
-msgstr "Uusi Seelanti"
+msgstr "New Zealand"
 
 #: ../data/holidays.xml.in.h:45
 msgid "Ukraine"
-msgstr "Ukraina"
+msgstr "Ukraine"
 
 #: ../data/holidays.xml.in.h:46
 msgid "Serbia"
 msgstr "Serbia"
 
+# Älä käännä tänne asti
 #: ../data/holidays.xml.in.h:47
 msgid "Serbia (Latin)"
 msgstr "Serbia (Latin)"
