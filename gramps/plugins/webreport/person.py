@@ -1020,13 +1020,18 @@ class PersonPages(BasePage):
                 death = self.rlocale.get_date(dd_event.get_date_object())
             if death == "":
                 death = "..."
-            value = person_name + "<br/>*", birth, "<br/>+", death
+            value = person_name + "<br/>*"+ birth+ "<br/>+"+ death
+            tdval = Html("td", value, class_="name")
+            table = Html("table", class_="table")
             if thumbnail_url is None:
                 boxbg += Html("a", href=url, class_="noThumb") + value
             else:
-                thumb = Html("span", class_="thumbnail") + (
-                    Html("img", src=thumbnail_url, alt="Image: " + person_name))
-                boxbg += Html("a", href=url) + thumb + value
+                trow = Html("tr")
+                img = Html("img", src=thumbnail_url, alt="Img: " + person_name)
+                trow += Html("td", img, class_="img")
+                trow += tdval
+                table += trow
+                boxbg += Html("a", table, href=url, class_="thumbnail")
         shadow = Html(
             "div", "", class_="shadow", inline=True,
             style="top: %dpx; left: %dpx;" % (top + _SHADOW, xoff + _SHADOW))

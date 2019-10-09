@@ -20,10 +20,10 @@
 #
 # $Id: $
 #
-**************************************************************************************************
+*******************************************************************************
 GRAMPS Cascading Style Sheet
 Style Name: Combined Ancestor Tree Style Sheet
-***************************************************************************************************
+*******************************************************************************
 #
 ===== Ancestor Graph Color Scheme =====
 Males       #BCEAF6
@@ -33,9 +33,8 @@ Unknown     #000
 ===== Web Graphics =====
 Males       Web_Gender_Male.png
 Females     Web_Gender_Female.png
-# ------------------------------------------------------------------------------------------------- */
-/* Subsections : Ancestors Tree
------------------------------------------------------ */
+# -------------------------------------------------------------------------- #
+/* Subsections : Ancestors Tree -------------------------------------------- */
 #tree {
     page-break-before:always;
     margin:0;
@@ -51,8 +50,8 @@ Females     Web_Gender_Female.png
 }
 #treeContainer div.boxbg {
     position:absolute;
-    margin:0;
-    padding:0;
+    margin:0px;
+    padding:0px;
     background:none;
 }
 #treeContainer div.boxbg a,
@@ -62,14 +61,14 @@ Females     Web_Gender_Female.png
     display:block;
     font:normal 1.1em/1.4em sans-serif;
     text-align:center;
+    word-break:break-word;
+    word-wrap:break-word;
     text-decoration:none;
     color: #00029D;
-    width:240px;
+    width:280px;
     min-height: 70px;
-    padding:5px 20px 7px 20px;
     margin-left:16px;
-    background-color: #FFF;
-    border: solid 1px #000;
+    border: solid 2px #000;
     border-radius: 10px;
 }
 #treeContainer div.boxbg a.noThumb,
@@ -81,14 +80,14 @@ Females     Web_Gender_Female.png
 #treeContainer div.boxbg a:hover {
     position:relative;
     z-index:999;
-    font-size:1.2em;
+    font-size:1.3em;
+    word-break:break-word;
+    word-wrap:break-word;
     text-decoration:none;
     color: #00029D;
-    width:280px;
+    width:400px;
     margin-left:-20px;
-    padding:10px 25px 12px 25px;
-    border: solid 2px #000;
-    padding-left: 75px;
+    padding:0px 0px 0px 30px;
 }
 #treeContainer div.boxbg a:hover,
 #treeContainer div.AncCol4 a:hover {
@@ -112,17 +111,33 @@ Females     Web_Gender_Female.png
     left: 3px;
     top: 3px;
 }
-#treeContainer div.boxbg span.thumbnail img {
-    max-width:70px;
-    max-height:70px;
-    position: absolute;
-    left: 0;
-    top: 0;
+#treeContainer div.boxbg a.thumbnail table td.name {
+    padding-top:20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 90%;
+}
+#treeContainer div.boxbg a.thumbnail:hover table td.name {
+    padding-top:20px;
+    padding-left: 40px;
+    padding-right: 10px;
+}
+#treeContainer div.boxbg a.thumbnail img {
+    margin-left:0px;
+    padding-left: 0px;
     border-radius: 5px;
 }
-#treeContainer div.boxbg a:hover span.thumbnail, #treeContainer div.boxbg a:hover span.thumbnail img {
-    max-width:110px;
-    max-height:110px;
+#treeContainer div.boxbg a.thumbnail:hover img {
+    max-height:90%;
+    margin-left:5px;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    border-radius: 5px;
+}
+#treeContainer div.boxbg table td:first-child, table th:first-child {
+    padding-left: 5px;
+    padding-top: 5px;
 }
 #treeContainer #treeContainer div.AncCol4 span.thumbnail {
     display:none;
@@ -145,7 +160,6 @@ Females     Web_Gender_Female.png
 #treeContainer div.boxbg a:hover {
     float: right;
     margin-top: 10px;
-    padding-left: 95px;
     border: solid 4px #000;
 }
 #treeContainer div.male a,
