@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-10 17:16+0100\n"
-"PO-Revision-Date: 2019-10-08 12:38+0300\n"
+"PO-Revision-Date: 2019-10-09 10:06+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -29805,42 +29805,42 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:1329
 #, python-format
 msgid "This person had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Puoliso: %(spouse)s%(endnotes)s."
+msgstr "Suhde: %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1330
 #, python-format
 msgid "He had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Puoliso: %(spouse)s%(endnotes)s."
+msgstr "Suhde: %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1331
 #, python-format
 msgid "She had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Puoliso: %(spouse)s%(endnotes)s."
+msgstr "Suhde: %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1332
 #, python-format
 msgid "Relationship with %(spouse)s%(endnotes)s."
-msgstr "Puoliso: %(spouse)s%(endnotes)s."
+msgstr "Suhde: %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1336
 #, python-format
 msgid "This person also had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Uusi puoliso: %(spouse)s%(endnotes)s."
+msgstr "Uusi suhde: %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1337
 #, python-format
 msgid "He also had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Uusi puoliso: %(spouse)s%(endnotes)s."
+msgstr "Uusi suhde: %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1338
 #, python-format
 msgid "She also had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Uusi puoliso: %(spouse)s%(endnotes)s."
+msgstr "Uusi suhde: %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1339
 #, python-format
 msgid "Also relationship with %(spouse)s%(endnotes)s."
-msgstr "Uusi puoliso: %(spouse)s%(endnotes)s."
+msgstr "Uusi suhde: %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libpersonview.py:106
 msgid "Number of Parents"
