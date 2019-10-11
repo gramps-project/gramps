@@ -87,7 +87,7 @@ Females     Web_Gender_Female.png
     color: #00029D;
     width:400px;
     margin-left:-20px;
-    padding:0px 0px 0px 30px;
+    padding: 0px 0px 0px 40px;
 }
 #treeContainer div.boxbg a:hover,
 #treeContainer div.AncCol4 a:hover {
@@ -111,16 +111,17 @@ Females     Web_Gender_Female.png
     left: 3px;
     top: 3px;
 }
-#treeContainer div.boxbg a.thumbnail table td.name {
-    padding-top:20px;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 90%;
+#treeContainer div.boxbg a.thumbnail table td.img {
+    padding-right: 5px;
 }
-#treeContainer div.boxbg a.thumbnail:hover table td.name {
-    padding-top:20px;
-    padding-left: 40px;
-    padding-right: 10px;
+#treeContainer div.boxbg a.thumbnail:hover table td.img {
+    padding-right: 9px;
+}
+#treeContainer div.boxbg a.thumbnail table td.name {
+    padding-top:3px;
+    padding-left: 2px;
+    padding-right: 23px;
+    width: 90%;
 }
 #treeContainer div.boxbg a.thumbnail img {
     margin-left:0px;
@@ -131,11 +132,15 @@ Females     Web_Gender_Female.png
     max-height:90%;
     margin-left:5px;
     position: absolute;
-    left: 5px;
-    top: 5px;
+    left: 0px;
+    top: 4px;
     border-radius: 5px;
 }
 #treeContainer div.boxbg table td:first-child, table th:first-child {
+    padding-left: 5px;
+    padding-top: 5px;
+}
+#IndividualDetail div.subsection table tr td:first-child {
     padding-left: 5px;
     padding-top: 5px;
 }
