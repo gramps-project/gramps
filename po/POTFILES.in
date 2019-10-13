@@ -739,6 +739,7 @@ gramps/plugins/tool/rebuildgenderstat.py
 gramps/plugins/tool/rebuildrefmap.py
 gramps/plugins/tool/relcalc.glade
 gramps/plugins/tool/relcalc.py
+gramps/plugins/tool/removespaces.glade
 gramps/plugins/tool/removespaces.py
 gramps/plugins/tool/removeunused.glade
 gramps/plugins/tool/removeunused.py
