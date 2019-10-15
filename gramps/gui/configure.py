@@ -2093,9 +2093,9 @@ class GrampsPreferences(ConfigureDialog):
                 self.all_avail_fonts, callback=self.utf8_update_font,
                 valueactive=True, setactive=active_val)
             if len(available_fonts) == 1:
-                single_font = self.all_avail_fonts[choosefont.get_active()][1]
+                single_font = self.all_avail_fonts[choosefont.get_active()][0]
                 config.set('utf8.selected-font',
-                           self.all_avail_fonts[single_font])
+                           self.all_avail_fonts[single_font][1])
                 self.utf8_show_example()
             symbols = Symbols()
             all_sbls = symbols.get_death_symbols()
