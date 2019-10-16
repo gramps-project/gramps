@@ -115,10 +115,10 @@ class PlaceSelection(ManagedWindow, OsmGps):
         self.selection_layer = layer
         self.layer = layer
         self.warning = False
-        self.set_window(
-            Gtk.Dialog(_('Place Selection in a region'), uistate.window,
-                       buttons=(_('_Close'), Gtk.ResponseType.CLOSE)),
-            None, _('Place Selection in a region'), None)
+        dlg = Gtk.Dialog(title=_('Place Selection in a region'),
+                         transient_for=uistate.window)
+        dlg.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
+        self.set_window(dlg, None, _('Place Selection in a region'), None)
         mylabel = _('Choose the radius of the selection.\n'
                     'On the map you should see a circle or an'
                     ' oval depending on the latitude.')
@@ -139,11 +139,11 @@ class PlaceSelection(ManagedWindow, OsmGps):
         slider.connect('value-changed', self.slider_change, self.lat, self.lon)
         self.window.vbox.pack_start(slider, False, True, 0)
         self.vadjust = Gtk.Adjustment(page_size=15)
-        self.scroll = Gtk.ScrolledWindow(self.vadjust)
+        self.scroll = Gtk.ScrolledWindow(vadjustment=self.vadjust)
         self.scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.scroll.set_shadow_type(Gtk.ShadowType.IN)
         self.plist = Gtk.ListStore(str, str, str, str, str)
-        self.choices = Gtk.TreeView(self.plist)
+        self.choices = Gtk.TreeView(model=self.plist)
         self.scroll.add(self.choices)
         self.renderer = Gtk.CellRendererText()
         self.tvcol1 = Gtk.TreeViewColumn(_('Country'), self.renderer, markup=0)

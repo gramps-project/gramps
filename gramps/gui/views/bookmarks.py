@@ -269,7 +269,7 @@ class BookmarksDialog(ManagedWindow):
 
     def draw_window(self):
         """Draw the bookmark dialog box."""
-        self.top = Gtk.Dialog(parent=self.parent_window)
+        self.top = Gtk.Dialog(transient_for=self.parent_window)
         self.top.vbox.set_spacing(5)
         label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>'
                           % _("Organize Bookmarks"))

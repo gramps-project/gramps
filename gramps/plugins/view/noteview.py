@@ -382,6 +382,14 @@ class NoteView(ListView):
         note.add_tag(tag_handle)
         self.dbstate.db.commit_note(note, transaction)
 
+    def remove_tag(self, transaction, note_handle, tag_handle):
+        """
+        Remove the given tag from the given note.
+        """
+        note = self.dbstate.db.get_note_from_handle(note_handle)
+        note.remove_tag(tag_handle)
+        self.dbstate.db.commit_note(note, transaction)
+
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

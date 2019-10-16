@@ -191,7 +191,7 @@ class MaskedEntry(UndoableEntry):
         :param mask: the mask to set
         """
         if not mask:
-            self.override_font(Pango.FontDescription("sans"))
+            # self.override_font(Pango.FontDescription("sans"))
             self._mask = mask
             return
 
@@ -221,7 +221,9 @@ class MaskedEntry(UndoableEntry):
             pos += 1
 
         self._mask_fields.append((field_begin, field_end))
-        self.override_font(Pango.FontDescription("monospace"))
+        # The set_mask function doesn't seem to be used, except for the test
+        # so removing the monospace doesn't change visible functionality
+        # self.override_font(Pango.FontDescription("monospace"))
 
         self._really_delete_text(0, -1)
         self._insert_mask(0, input_length)
@@ -940,6 +942,8 @@ VALIDATION_ICON_WIDTH = 16
 MANDATORY_ICON = 'dialog-information'
 ERROR_ICON = 'process-stop'
 DELAY_TIME = 2500
+READWRITE = (GObject.PARAM_READWRITE if GLib.check_version(2, 42, 0) else
+             GObject.ParamFlags.READWRITE)
 
 class ValidatableMaskedEntry(MaskedEntry):
     """
@@ -969,12 +973,12 @@ class ValidatableMaskedEntry(MaskedEntry):
         'data-type': (GObject.TYPE_PYOBJECT,
                        'Data Type of the widget',
                        'Type object',
-                       GObject.PARAM_READWRITE),
+                       READWRITE),
         'mandatory': (GObject.TYPE_BOOLEAN,
                       'Mandatory',
                       'Mandatory',
                       False,
-                      GObject.PARAM_READWRITE),
+                      READWRITE),
     }
 
     # FIXME put the data type support back

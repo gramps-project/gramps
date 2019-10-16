@@ -47,6 +47,7 @@ gramps/gen/filters/rules/_rule.py
 gramps/gen/filters/rules/citation/_allcitations.py
 gramps/gen/filters/rules/citation/_changedsince.py
 gramps/gen/filters/rules/citation/_citationprivate.py
+gramps/gen/filters/rules/citation/_hasattribute.py
 gramps/gen/filters/rules/citation/_hascitation.py
 gramps/gen/filters/rules/citation/_hasgallery.py
 gramps/gen/filters/rules/citation/_hasidof.py
@@ -156,6 +157,7 @@ gramps/gen/filters/rules/person/_disconnected.py
 gramps/gen/filters/rules/person/_everyone.py
 gramps/gen/filters/rules/person/_familywithincompleteevent.py
 gramps/gen/filters/rules/person/_hasaddress.py
+gramps/gen/filters/rules/person/_hasaddresstext.py
 gramps/gen/filters/rules/person/_hasalternatename.py
 gramps/gen/filters/rules/person/_hasassociation.py
 gramps/gen/filters/rules/person/_hasattribute.py
@@ -254,6 +256,7 @@ gramps/gen/filters/rules/place/_regexpidof.py
 gramps/gen/filters/rules/place/_withinarea.py
 gramps/gen/filters/rules/repository/_allrepos.py
 gramps/gen/filters/rules/repository/_changedsince.py
+gramps/gen/filters/rules/repository/_hasattribute.py
 gramps/gen/filters/rules/repository/_hasidof.py
 gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py
 gramps/gen/filters/rules/repository/_hasnoteregexp.py
@@ -266,6 +269,7 @@ gramps/gen/filters/rules/repository/_regexpidof.py
 gramps/gen/filters/rules/repository/_repoprivate.py
 gramps/gen/filters/rules/source/_allsources.py
 gramps/gen/filters/rules/source/_changedsince.py
+gramps/gen/filters/rules/source/_hasattribute.py
 gramps/gen/filters/rules/source/_hasgallery.py
 gramps/gen/filters/rules/source/_hasidof.py
 gramps/gen/filters/rules/source/_hasnote.py

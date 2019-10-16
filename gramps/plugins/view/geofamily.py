@@ -494,7 +494,6 @@ class GeoFamily(GeoGraphyView):
         """
         self.menu = Gtk.Menu()
         menu = self.menu
-        menu.set_title("family")
         message = ""
         oldplace = ""
         prevmark = None

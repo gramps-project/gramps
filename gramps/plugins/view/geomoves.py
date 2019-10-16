@@ -637,7 +637,6 @@ class GeoMoves(GeoGraphyView):
         """
         self.menu = Gtk.Menu()
         menu = self.menu
-        menu.set_title("descendance")
         events = []
         message = ""
         oldplace = ""
@@ -680,7 +679,6 @@ class GeoMoves(GeoGraphyView):
             menu.append(add_item)
             self.itemoption = Gtk.Menu()
             itemoption = self.itemoption
-            itemoption.set_title(message)
             itemoption.show()
             add_item.set_submenu(itemoption)
             modify = Gtk.MenuItem(label=_("Edit Event"))

@@ -290,7 +290,8 @@ class DateDisplayDE(DateDisplay):
 
     formats = (
         "JJJJ-MM-DD (ISO)", "Numerisch", "Monat Tag Jahr",
-        "MONAT Tag Jahr", "Tag. Monat Jahr", "Tag. MONAT Jahr"
+        "MONAT Tag Jahr", "Tag. Monat Jahr", "Tag. MONAT Jahr",
+        "Numerisch mit führenden Nullen"
         )
         # this definition must agree with its "_display_gregorian" method
 
@@ -343,6 +344,18 @@ class DateDisplayDE(DateDisplay):
             else:
                 value = "%d. %s %s" % (date_val[0],
                                        self.long_months[date_val[1]], year)
+        elif self.format == 6:
+            # day.month_number.year with leading zeros
+            if date_val[3]:
+                return self.display_iso(date_val)
+            else:
+                if date_val[0] == date_val[1] == 0:
+                    value = str(date_val[2])
+                else:
+                    value = self.dhformat.replace('%m', str(date_val[1])
+                                                  .zfill(2))
+                    value = value.replace('%d', str(date_val[0]).zfill(2))
+                    value = value.replace('%Y', str(date_val[2]))
         else:
             # day. month_abbreviation year
             if date_val[0] == 0:

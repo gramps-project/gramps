@@ -468,6 +468,14 @@ class EventView(ListView):
         event.add_tag(tag_handle)
         self.dbstate.db.commit_event(event, transaction)
 
+    def remove_tag(self, transaction, event_handle, tag_handle):
+        """
+        Remove the given tag from the given event.
+        """
+        event = self.dbstate.db.get_event_from_handle(event_handle)
+        event.remove_tag(tag_handle)
+        self.dbstate.db.commit_event(event, transaction)
+
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

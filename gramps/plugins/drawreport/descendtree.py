@@ -1814,30 +1814,31 @@ class DescendTreeOptions(MenuReportOptions):
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Normal")
         graph_style.set_fill_color((255, 255, 255))
+        graph_style.set_description(_("The style for the marriage box."))
         default_style.add_draw_style("CG2-fam-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Normal")
         graph_style.set_shadow(1, box_shadow)
         graph_style.set_fill_color((255, 255, 255))
+        graph_style.set_description(_("The style for the spouse box."))
         default_style.add_draw_style("CG2-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Bold")
         graph_style.set_shadow(1, box_shadow)
         graph_style.set_fill_color((255, 255, 255))
+        graph_style.set_description(
+            _("The style for the direct descendant box."))
         default_style.add_draw_style("CG2b-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Note")
         graph_style.set_fill_color((255, 255, 255))
+        graph_style.set_description(_("The style for the note box."))
         default_style.add_draw_style("CG2-note-box", graph_style)
 
         graph_style = GraphicsStyle()
+        graph_style.set_description(
+            _("The style for the connection lines and report border."))
         default_style.add_draw_style("CG2-line", graph_style)
-
-#=====================================
-#So do not fear, for I am with you; do not be dismayed,
-#for I am your God.  I will strengthen you and help you;
-#I will uphold you with my righteous right hand.
-#Isaiah 41:10
