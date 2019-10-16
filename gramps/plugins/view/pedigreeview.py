@@ -791,6 +791,7 @@ class PedigreeView(NavigationView):
         self._add_db_signal('family-add', self.person_rebuild)
         self._add_db_signal('family-delete', self.person_rebuild)
         self._add_db_signal('family-rebuild', self.person_rebuild)
+        self._add_db_signal('event-update', self.person_rebuild)
 
     def change_db(self, db):
         """
