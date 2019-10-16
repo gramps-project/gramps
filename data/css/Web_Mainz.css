@@ -58,7 +58,7 @@ Middle Light            images/Web_Mainz_MidLight.png
 
 
  NarrativeWeb Styles
--------------------------------------------------------------------------------------------- 
+----------------------------------------------------------------------------
 
 General Elements
 -----------------------------------------------------------------*/
@@ -158,7 +158,7 @@ a[href]:hover, a[href]:active {
 /* Navigation
 -----------------------------------------------------------------*/
 div#nav, #subnavigation {
-    background: url(../images/Web_Mainz_MidLight.png) #FFF2C6 repeat;
+    background: url(../images/Web_Mainz_Mid.png) repeat-x top left;
 }
 div#nav ul, #subnavigation ul {
     list-style-type: none;
@@ -418,9 +418,57 @@ table#SortByCount thead th.ColumnQuantity a:after {
 #EventDetail td.ColumnPerson span.mother:last-child:after {
     content: "";
 }
-
-table.eventlist tbody tr td.ColumnSources {
+#attributes table.infolist td.ColumnType {
+    width: 10%;
+    padding-left: 15px;
+}
+#attributes table.infolist td.ColumnValue {
+    width: 15%;
+}
+#attributes table.infolist td.ColumnSources {
     width: 5%;
+    padding-left: 5px;
+}
+#WebLinks table.infolist td.ColumnType {
+    width: 10%;
+    padding-left: 15px;
+}
+#events table.eventlist td.ColumnDate {
+    width: 15%;
+    padding-left: 10px;
+}
+#families table.eventlist th.ColumnDate {
+    width: 15%;
+    padding-left: 25px;
+}
+#families table.eventlist td.ColumnDate {
+    width: 15%;
+    padding-left: 20px;
+}
+#families table.eventlist tbody tr td:first-child,
+#families table.eventlist thead tr th:first-child {
+    width: 10%;
+    padding-left: 0px;
+}
+#families table.eventlist tbody tr td.ColumnDate,
+#families table.eventlist tbody tr td.ColumnNotes {
+    padding-left: 25px;
+}
+#IndividualDetail div table.eventlist td.ColumnEvent {
+    padding-right: 0px;
+    width: 8%;
+}
+#IndividualDetail div table.eventlist td.ColumnSources {
+    width: 5%;
+}
+#IndividualDetail div table.eventlist td.ColumnDate {
+    padding-right: 0px;
+    width: 15%;
+}
+#IndividualDetail div table.eventlist td.ColumnEvent,
+#IndividualDetail div table.eventlist td.ColumnDate,
+#IndividualDetail div table.eventlist td.ColumnPlace {
+    font-weight: bold;
 }
 
 /* Gallery
@@ -566,9 +614,6 @@ div#families .infolist h4 {
 #gallery {
     background-color: green;
 }
-#indivgallery {
-    background-color: white;
-}
 #gallery .gallerycell {
     float: left;
     width: 130px;
@@ -593,7 +638,6 @@ div#families .infolist h4 {
     font-size: smaller;
     text-align: center;
     margin: 0.5em;
-    background-color: white;
 }
 #indivgallery img {
     border: solid 1px #7D5925;

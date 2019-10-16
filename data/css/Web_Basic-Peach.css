@@ -1,14 +1,15 @@
 /*
-**************************************************************************************************
+*******************************************************************************
 Copyright Holder and License
-**************************************************************************************************
+*******************************************************************************
 GRAMPS Cascading Style Sheet
 Style Name: Basic-Peach Stylesheet
 Style Author: Jason M. Simanek (2008)
-Note: Adapted from GRAMPS original Modern Style stylesheet with a new orange color scheme.
-**************************************************************************************************
+Note: Adapted from GRAMPS original Modern Style stylesheet with a new orange
+      color scheme.
+*******************************************************************************
 This website was created with GRAMPS <http://www.gramps-project.org/>
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 GRAMPS is a Free Software Project for Genealogy, offering a professional
 
 genealogy program, and a wiki open to all. It is a community project, created,
@@ -16,7 +17,7 @@ developed and governed by genealogists.
 
 Go to <http://gramps-project.org/> to learn more!
 
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Copyright 2008 Jason M. Simanek
 Copyright 2009 Stephane Charette
 Copyright (C) 2008-2011 Rob G. Healey <robhealey1@gmail.com>
@@ -36,10 +37,10 @@ A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
 GRAMPS. If not, see <http://www.gnu.org/licenses/>.
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 Color Palette
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 black                   #36220B
 brown                   #8C581C
@@ -47,14 +48,14 @@ orange dark             #EA8414
 orange                  #FFC35E
 orange light            #FFE09F
 yellow light            #FFFBE7
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Characteristic of this style is that it uses the full width of the browser
 window and that horizontal highlighting bars extend over the full width of
 the page.
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
  NarrativeWeb Styles
------------------------------------------------------------------------------------------------- 
+-------------------------------------------------------------------------------
 
  General Elements
 ----------------------------------------------------- */
@@ -472,9 +473,56 @@ table.IndividualList td.ColumnSurname {
 #EventDetail td.ColumnPerson span.mother:last-child:after {
     content: "";
 }
-
+#attributes table.infolist td.ColumnType {
+    width: 10%;
+    padding-left: 15px;
+}
+#attributes table.infolist td.ColumnValue {
+    width: 15%;
+}
+#attributes table.infolist td.ColumnSources {
+    width: 5%;
+    padding-left: 5px;
+}
+#WebLinks table.infolist td.ColumnType {
+    width: 10%;
+    padding-left: 15px;
+}
+#events table.eventlist td.ColumnDate {
+    width: 15%;
+    padding-left: 10px;
+}
+#families table.eventlist th.ColumnDate {
+    width: 15%;
+    padding-left: 20px;
+}
+#families table.eventlist td.ColumnDate {
+    width: 15%;
+    padding-left: 10px;
+}
+#families table.eventlist tbody tr td:first-child,
+#families table.eventlist thead tr th:first-child {
+    width: 10%;
+    padding-left: 0px;
+}
+#families table.eventlist tbody tr td.ColumnDate,
+#families table.eventlist tbody tr td.ColumnNotes {
+    padding-left: 20px;
+}
+table.eventlist tbody tr td:first-child,
+table.eventlist thead tr th:first-child {
+    padding-left: 10px;
+}
 table.eventlist tbody tr td.ColumnSources {
     width: 5%;
+}
+table.eventlist th.ColumnDate {
+    width: 15%;
+}
+table.eventlist td.ColumnEvent,
+table.eventlist td.ColumnDate,
+table.eventlist td.ColumnPlace {
+    font-weight: bold;
 }
 
 /* Gallery

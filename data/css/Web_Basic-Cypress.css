@@ -1,14 +1,15 @@
 /*
-**************************************************************************************************
+*******************************************************************************
 Copyright Holder and License
-**************************************************************************************************
+*******************************************************************************
 GRAMPS Cascading Style Sheet
 Style Name: Basic - Cypress
 Style Author: Jason Simanek (2008)
-Note: Adapted from GRAMPS original Modern Style stylesheet with colors from the original 'Tranquil' stylesheet
-**************************************************************************************************
+Note: Adapted from GRAMPS original Modern Style stylesheet with colors from the
+      original 'Tranquil' stylesheet
+*******************************************************************************
 This website was created with GRAMPS <http://www.gramps-project.org/>
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 GRAMPS is a Free Software Project for Genealogy, offering a professional
 
 genealogy program, and a wiki open to all. It is a community project, created,
@@ -16,7 +17,7 @@ developed and governed by genealogists.
 
 Go to <http://gramps-project.org/> to learn more!
 
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Copyright 2008 Jason M. Simanek
 Copyright 2009 Stephane Charette
 Copyright (C) 2008-2011 Rob G. Healey <robhealey1@gmail.com>
@@ -36,10 +37,10 @@ A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
 GRAMPS. If not, see <http://www.gnu.org/licenses/>.
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 Color Palette
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 black                   #000
 slate dark              #454
@@ -47,14 +48,14 @@ slate                   #7C8F7C
 slate light             #9DBF9D
 slate very light        #E0E6E0
 white                   #FFF
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Characteristic of this style is that it uses the full width of the browser
 window and that horizontal highlighting bars extend over the full width of
 the page.
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
  NarrativeWeb Styles
------------------------------------------------------------------------------------------------- 
+-------------------------------------------------------------------------------
 
  General Elements
 ----------------------------------------------------- */
@@ -369,9 +370,6 @@ td.ColumnLetter, td.ColumnRowLabel {
 td.ColumnEvent, td.ColumnDate {
     white-space: nowrap;
 }
-td.ColumnPlace, td.ColumnDescription {
-    width: 20%
-}
 /* end of customizations by Stephane */
 td.ColumnBirth, td.ColumnDeath, td.ColumnPartner, td.ColumnParents {
     font-size: 90%;
@@ -484,9 +482,48 @@ table.IndividualList td.ColumnSurname {
 #EventDetail td.ColumnPerson span.mother:last-child:after {
     content: "";
 }
-
+table.eventlist tbody tr td:first-child,
+table.eventlist thead tr th:first-child {
+    padding-left: 15px;
+}
+#attributes table.infolist td.ColumnType {
+    width: 10%;
+    padding-left: 15px;
+}
+#attributes table.infolist td.ColumnValue {
+    width: 15%;
+}
+#attributes table.infolist td.ColumnSources {
+    width: 5%;
+    padding-left: 5px;
+}
+#WebLinks table.infolist td.ColumnType {
+    width: 10%;
+    padding-left: 15px;
+}
+#events table.eventlist td.ColumnDate {
+    padding-left: 15px;
+}
+#families table.eventlist tbody tr td:first-child,
+#families table.eventlist thead tr th:first-child {
+    width: 10%;
+    padding-left: 0px;
+}
+#families table.eventlist tbody tr td.ColumnDate,
+#families table.eventlist tbody tr td.ColumnNotes {
+    padding-left: 15px;
+}
 table.eventlist tbody tr td.ColumnSources {
     width: 5%;
+}
+table.eventlist th.ColumnDate {
+    padding-left: 15px;
+    width: 15%;
+}
+table.eventlist td.ColumnEvent,
+table.eventlist td.ColumnDate,
+table.eventlist td.ColumnPlace {
+    font-weight: bold;
 }
 
 /* Gallery

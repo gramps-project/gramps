@@ -471,17 +471,6 @@ class PersonPages(BasePage):
         result = self.write_header(self.sort_name)
         indivdetpage, head, dummy_body, outerwrapper = result
 
-        # attach the ancestortree style sheet if ancestor
-        # graph is being created?
-        if self.report.options["ancestortree"]:
-            if self.usecms:
-                fname = "/".join([self.target_uri, "css", "ancestortree.css"])
-            else:
-                fname = "/".join(["css", "ancestortree.css"])
-            url = self.report.build_url_fname(fname, None, self.uplink)
-            head += Html("link", href=url, type="text/css", media="screen",
-                         rel="stylesheet")
-
         # begin individualdetail division
         with Html("div", class_="content",
                   id='IndividualDetail') as individualdetail:

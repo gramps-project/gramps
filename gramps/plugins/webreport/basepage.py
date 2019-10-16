@@ -351,10 +351,9 @@ class BasePage: # pylint: disable=C1001
         if family_events:
             trow = Html("tr") + (
                 Html("td", "&nbsp;", class_="ColumnType", inline=True),
-                Html("td", "&nbsp;", class_="ColumnAttribute", inline=True),
                 Html("td", self.format_family_events(family_events,
                                                      place_lat_long),
-                     class_="ColumnValue")
+                     class_="ColumnValue", colspan=2)
             )
             table = trow
 
@@ -682,7 +681,7 @@ class BasePage: # pylint: disable=C1001
                                       etype,
                                       event_gid,
                                       uplink) if hyperlink else etype
-        trow += Html("td", event_hyper, class_="ColumnEvent")
+        trow += Html("td", event_hyper, class_="ColumnEvent", rowspan=2)
 
         # get event data
         event_data = self.get_event_data(event, event_ref, uplink)
@@ -694,7 +693,6 @@ class BasePage: # pylint: disable=C1001
         )
 
         trow2 = Html("tr")
-        trow2 += Html("td", "", class_="ColumnEvent")
         # get event source references
         srcrefs = self.get_citation_links(event.get_citation_list()) or "&nbsp;"
         trow += Html("td", srcrefs, class_="ColumnSources", rowspan=2)
@@ -1418,12 +1416,21 @@ class BasePage: # pylint: disable=C1001
 
         # create stylesheet and favicon links
         links = Html("link", type="image/x-icon",
-                     href=url4, rel="shortcut icon") + (
-                         Html("link", type="text/css", href=url3,
-                              media='print', rel="stylesheet", indent=False),
-                         Html("link", type="text/css", href=url2,
-                              media="screen", rel="stylesheet", indent=False),
-                         )
+                     href=url4, rel="shortcut icon")
+        # attach the ancestortree style sheet if ancestor
+        # graph is being created?
+        if self.report.options["ancestortree"]:
+            if self.usecms:
+                fname = "/".join([self.target_uri, "css", "ancestortree.css"])
+            else:
+                fname = "/".join(["css", "ancestortree.css"])
+            url5 = self.report.build_url_fname(fname, None, self.uplink)
+            links += Html("link", type="text/css", href=url5,
+                          media="screen", rel="stylesheet", indent=False)
+        links += Html("link", type="text/css", href=url3,
+                      media='print', rel="stylesheet", indent=False)
+        links += Html("link", type="text/css", href=url2,
+                      media="screen", rel="stylesheet", indent=False)
 
         # Link to Navigation Menus stylesheet
         if CSS[self.report.css]["navigation"]:

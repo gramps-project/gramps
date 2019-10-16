@@ -1,14 +1,14 @@
 /*
-**************************************************************************************************
+*******************************************************************************
 Copyright Holder and License
-**************************************************************************************************
+*******************************************************************************
 GRAMPS Cascading Style Sheet
 Style Name: Basic-Ash Stylesheet
 Style Author: Jason M. Simanek (2008)
 Note: Adapted from GRAMPS original Modern Style stylesheet
-**************************************************************************************************
+*******************************************************************************
 This website was created with GRAMPS <http://www.gramps-project.org/>
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 GRAMPS is a Free Software Project for Genealogy, offering a professional
 
 genealogy program, and a wiki open to all. It is a community project, created,
@@ -16,7 +16,7 @@ developed and governed by genealogists.
 
 Go to <http://gramps-project.org/> to learn more!
 
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Copyright 2008 Jason M. Simanek
 Copyright 2009 Stephane Charette
 Copyright (C) 2008-2011 Rob G. Healey <robhealey1@gmail.com>
@@ -36,10 +36,10 @@ A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
 GRAMPS. If not, see <http://www.gnu.org/licenses/>.
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 Color Palette
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 black                   #000
 gray dark               #555
@@ -47,14 +47,14 @@ gray                    #999
 gray light              #CCC
 gray very light         #EEE
 white                   #FFF
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Characteristic of this style is that it uses the full width of the browser
 window and that horizontal highlighting bars extend over the full width of
 the page.
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
  NarrativeWeb Styles
------------------------------------------------------------------------------------------------- 
+-------------------------------------------------------------------------------
 
  General Elements
 ----------------------------------------------------- */
@@ -436,9 +436,35 @@ table.IndividualList td.ColumnSurname {
 #EventDetail td.ColumnPerson span.mother:last-child:after {
     content: "";
 }
-
+table.eventlist tbody tr td:first-child,
+table.eventlist thead tr th:first-child {
+    padding-left: 10px;
+}
 table.eventlist tbody tr td.ColumnSources {
     width: 5%;
+}
+table.eventlist tbody tr td.ColumnDate {
+    width: 15%;
+}
+table.eventlist td.ColumnEvent,
+table.eventlist td.ColumnDate,
+table.eventlist td.ColumnPlace {
+    font-weight: bold;
+}
+#attributes table.infolist td.ColumnType {
+    width: 10%;
+    padding-left: 15px;
+}
+#attributes table.infolist td.ColumnSources {
+    width: 5%;
+    padding-left: 5px;
+}
+#WebLinks table.infolist td.ColumnType {
+    width: 10%;
+    padding-left: 15px;
+}
+#families table.infolist td.ColumnAttribute {
+    padding-left: 20px;
 }
 
 /* Gallery

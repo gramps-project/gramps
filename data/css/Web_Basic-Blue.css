@@ -11,7 +11,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -524,7 +524,7 @@ table.infolist tr td.ColumnPartner {
 table.infolist tr td.ColumnParents {
     width: 30%;
 }
-table.infolist tbody tr td.ColumnParents span.father, 
+table.infolist tbody tr td.ColumnParents span.father,
 table.infolist tbody tr td.ColumnParents span.mother {
     display: block;
 }
@@ -592,11 +592,11 @@ div#IndividualDetail table.infolist tbody tr td.ColumnAttribute {
     margin: 0;
     padding: 0;
 }
-table.surnamelist thead tr th.ColumnSurname, 
+table.surnamelist thead tr th.ColumnSurname,
 #Surnames table.surnamelist tbody tr td.ColumnSurname {
     width: 50%;
 }
-table#SortByName thead tr th.ColumnSurname, 
+table#SortByName thead tr th.ColumnSurname,
 table#SortByCount thead tr th.ColumnQuantity {
     background-color: #00029D;
     color: #FFF;
@@ -607,7 +607,7 @@ table.surnamelist thead tr th.ColumnSurname a {
 table.surnamelist thead tr th.ColumnSurname a:hover {
     color: #000;
 }
-table#SortByName thead tr th.ColumnSurname a:after, 
+table#SortByName thead tr th.ColumnSurname a:after,
 table#SortByCount thead tr th.ColumnQuantity a:after {
     content: " ↓";
 }
@@ -662,7 +662,6 @@ div#PlaceDetail h5 {
     text-align: center;
     border-bottom: double 4px #13A926;
 }
-    
 
 /* EventList and EventDetail
 ------------------------------------------------------ */
@@ -673,17 +672,38 @@ div#EventList, div#EventDetail {
 table.eventlist tbody tr td.ColumnEvent {
     width: 10%;
 }
-table.eventlist tbody tr td.ColumnPlace {
-    width: 25%;
-}
-table.eventlist tbody tr td.ColumnNotes {
-    width: 20%;
-}
 table.eventlist tbody tr td.ColumnSources {
+    vertical-align: top;
     width: 5%;
 }
 table.eventlist tbody tr td.ColumnPerson {
     width: 35%;
+}
+table.eventlist th.ColumnDate {
+    width: 15%;
+}
+table.eventlist td.ColumnEvent,
+table.eventlist td.ColumnDate,
+table.eventlist td.ColumnPlace {
+    font-weight: bold;
+}
+#attributes table.infolist td.ColumnType {
+    width: 10%;
+    padding-left: 15px;
+}
+#attributes table.infolist td.ColumnSources {
+    width: 5%;
+    padding-left: 5px;
+}
+#WebLinks table.infolist td.ColumnType {
+    width: 10%;
+    padding-left: 15px;
+}
+#families table.infolist th.ColumnEvent {
+    padding-left: 0px;
+}
+#families table.infolist td.ColumnAttribute {
+    padding-left: 0px;
 }
 div#IndividualDetail div#families table.eventlist tr td {
     border-bottom: dashed 1px #000;
@@ -716,7 +736,7 @@ div#EventList table.alphaevent tbody tr td.ColumnGRAMPSID {
 div#EventList table.alphaevent tbody tr td.ColumnPerson {
     width: 50%;
 }
-div#EventList table.alphaevent tbody tr td.ColumnPerson span.father, 
+div#EventList table.alphaevent tbody tr td.ColumnPerson span.father,
 div#EventList table.alphaevent tbody tr td.ColumnPerson span.mother {
     display:block;
 }
@@ -741,14 +761,14 @@ div#EventDetail table.eventlist tbody tr td.ColumnAttribute {
 div#EventDetail table.eventlist tbody tr td.ColumnDate {
     border-top: solid 1px #000;
 }
-    
+
 /* Events
 ----------------------------------------------------- */
 #EventList table.infolist tr td a,
 #EventDetail table.infolist tr td a {
     display: inline;
 }
-#EventList table.infolist tr td span.father, 
+#EventList table.infolist tr td span.father,
 #EventList table.infolist tr td span.mother,
 #EventDetail table.infolist tr td span.father,
 #EventDetail table.infolist tr td span.mother {
@@ -947,9 +967,9 @@ body#ThumbnailPreview div#references table.infolist tbody tr td.ColumnName {
     text-decoration: none;
 }
 
-/* Download 
+/* Download
 ----------------------------------------------------- */
-div#Download { 
+div#Download {
     margin: 0;
     width: 100%;
 }
@@ -963,7 +983,7 @@ div#Download table.download {
 div#Download table.download tbody tr#Row02 {
     border-bottom: solid 2px #000;
 }
-div#Download table.download tbody tr td { 
+div#Download table.download tbody tr td {
     border: solid 1px #000;
     text-align: left;
 }
@@ -1096,7 +1116,8 @@ div#events h4 {
     width: 100%;
 }
 table.eventlist tbody tr td.ColumnEvent {
-    width: 12%;
+    vertical-align: top;
+    width: 8%;
 }
 #IndividualDetail div#events table.infolist tbody tr td {
     padding-top: .4em;
@@ -1183,6 +1204,7 @@ div#Families table.infolist tbody tr td.ColumnAttribute {
     }
 div#families table.infolist tbody tr td.ColumnValue p {
     margin-top: 0;
+    margin-left: 0;
 }
 div#families table.infolist tbody tr td.ColumnValue ol {
     margin: 0;
@@ -1213,17 +1235,14 @@ SourcesType {
 div#families table.infolist tbody tr td.Value {
     width: 15%;
 }
-div#families table.infolist tr td.Notes {
-    width: 40%;
-}
 div#families table.infolist tbody tr td.Sources {
-    width: 15%;
+    width: 5%;
 }
 
 /* Subsection: Families: LDS Ordinance
 ------------------------------------------------------ */
 div#families table.infolist {
-    font: normal .8em sans;
+    font: normal .9em sans;
 }
 div#families table.infolist tbody tr.BeginOrdinance {
     border-top: solid 1px #000;
@@ -1480,7 +1499,7 @@ table.WebLinks tbody tr td.ColumnPath {
     width: 50%;
 }
 table.weblinks tbody tr td.ColumnDescription {
-    width: 30%;
+    width: 80%;
 }
 
 /* Subsections : Pedigree
@@ -1575,7 +1594,7 @@ div#pedigree {
 #CreatorInfo a:hover {
     color: #FFF;
 }
-.calendar thead tr th.weekend, 
+.calendar thead tr th.weekend,
 .calendar thead tr th.weekday {
     font-style:italic;
     color: #000;
@@ -1659,9 +1678,9 @@ div#pedigree {
 }
 
 /* Calendar : Previous-Next Month */
-.calendar tbody tr td.previous, 
-.calendar tbody tr td.next, 
-.calendar tbody tr td.previous div.date, 
+.calendar tbody tr td.previous,
+.calendar tbody tr td.next,
+.calendar tbody tr td.previous div.date,
 .calendar tbody tr td.next div.date {
     color: #333;
     background-color: #D8F3D6;
