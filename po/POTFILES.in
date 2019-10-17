@@ -17,6 +17,7 @@ gramps/gen/db/base.py
 gramps/gen/db/exceptions.py
 gramps/gen/db/generic.py
 gramps/gen/display/name.py
+gramps/gen/display/place.py
 gramps/gen/filters/_filterparser.py
 gramps/gen/filters/_genericfilter.py
 gramps/gen/filters/rules/_changedsincebase.py
@@ -738,6 +739,7 @@ gramps/plugins/tool/rebuildgenderstat.py
 gramps/plugins/tool/rebuildrefmap.py
 gramps/plugins/tool/relcalc.glade
 gramps/plugins/tool/relcalc.py
+gramps/plugins/tool/removespaces.glade
 gramps/plugins/tool/removespaces.py
 gramps/plugins/tool/removeunused.glade
 gramps/plugins/tool/removeunused.py
