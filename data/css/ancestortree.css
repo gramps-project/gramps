@@ -37,6 +37,12 @@ Females     Web_Gender_Female.png
 
 /* Subsections : Ancestors Tree
 ----------------------------------------------------- */
+div.subsection {
+    overflow:auto;
+}
+div.subsection #tree {
+    overflow:auto;
+}
 #tree {
     page-break-before:always;
     margin:0;
