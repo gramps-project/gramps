@@ -1414,7 +1414,7 @@ class BasePage: # pylint: disable=C1001
                                            "images", self.uplink)
 
         # create stylesheet and favicon links
-        links = Html("link", type="image/x-icon"
+        links = Html("link", type="image/x-icon",
                      href=url4, rel="shortcut icon")
         # attach the ancestortree style sheet if ancestor
         # graph is being created?
