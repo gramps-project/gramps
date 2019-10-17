@@ -1436,7 +1436,7 @@ class BasePage: # pylint: disable=C1001
             already_done = False
             for css_fn in ("UsEr_", "Basic", "Mainz", "Nebraska"):
                 if css_fn in css_f and not already_done:
-                    css_f = css_f.replace("UsEr_", "")
+                    css_f = self._(css_f.replace("UsEr_", ""))
                     fname = "/".join(["css", css_f + ".css"])
                     urlx = self.report.build_url_fname(fname, None,
                                                        self.uplink)
