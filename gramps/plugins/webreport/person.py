@@ -772,7 +772,8 @@ class PersonPages(BasePage):
                     if bkref_list:
                         for ref in bkref_list:
                             (bkref_class, bkref_hdle, role) = ref
-                            if role == "Primary":
+                            ppl_lnk = ""
+                            if bkref_class == Person and role == "Primary":
                                 url = url_fct(bkref_hdle,
                                               "ppl", self.uplink)
                                 ppl_fct = self.r_db.get_person_from_handle
@@ -813,7 +814,8 @@ class PersonPages(BasePage):
                         if bkref_list:
                             for ref in bkref_list:
                                 (bkref_class, bkref_hdle, role) = ref
-                                if role == "Primary":
+                                ppl_lnk = ""
+                                if bkref_class == Person and role == "Primary":
                                     url = url_fct(bkref_hdle,
                                                   "ppl", self.uplink)
                                     ppl_fct = self.r_db.get_person_from_handle
@@ -844,7 +846,8 @@ class PersonPages(BasePage):
                     if bkref_list:
                         for ref in bkref_list:
                             (bkref_class, bkref_hdle, role) = ref
-                            if role == "Primary":
+                            ppl_lnk = ""
+                            if bkref_class == Person and role == "Primary":
                                 url = url_fct(bkref_hdle,
                                               "ppl", self.uplink)
                                 ppl_fct = self.r_db.get_person_from_handle
