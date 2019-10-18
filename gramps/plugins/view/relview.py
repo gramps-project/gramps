@@ -393,6 +393,10 @@ class RelationshipView(NavigationView):
         '''
       <placeholder id='otheredit'>
         <item>
+          <attribute name="action">win.AddNewPerson</attribute>
+          <attribute name="label" translatable="yes">Add new Person...</attribute>
+        </item>
+        <item>
           <attribute name="action">win.Edit</attribute>
           <attribute name="label" translatable="yes">Edit...</attribute>
         </item>
@@ -480,6 +484,18 @@ class RelationshipView(NavigationView):
     <placeholder id='BarCommonEdit'>
     <child groups='RW'>
       <object class="GtkToolButton">
+        <property name="icon-name">gramps-person</property>
+        <property name="action-name">win.AddNewPerson</property>
+        <property name="tooltip_text" translatable="yes">'''
+        '''Add a new Person</property>
+        <property name="label" translatable="yes">Add new Person...</property>
+      </object>
+      <packing>
+        <property name="homogeneous">False</property>
+      </packing>
+    </child>
+    <child groups='RW'>
+      <object class="GtkToolButton">
         <property name="icon-name">gtk-edit</property>
         <property name="action-name">win.Edit</property>
         <property name="tooltip_text" translatable="yes">'''
@@ -551,6 +567,7 @@ class RelationshipView(NavigationView):
 
         self.family_action = ActionGroup(name=self.title + '/Family')
         self.family_action.add_actions([
+            ('AddNewPerson', self.add_new_person),
             ('Edit', self.edit_active, "<PRIMARY>Return"),
             ('AddSpouse', self.add_spouse),
             ('AddParents', self.add_parents),
@@ -1666,6 +1683,20 @@ class RelationshipView(NavigationView):
                 EditFamily(self.dbstate, self.uistate, [], family)
             except WindowActiveError:
                 pass
+
+    def add_new_person(self, obj, event):
+        """
+        Add a new person to the database.
+        """
+        person = Person()
+        #the editor requires a surname
+        person.primary_name.add_surname(Surname())
+        person.primary_name.set_primary_surname(0)
+
+        try:
+            EditPerson(self.dbstate, self.uistate, [], person)
+        except WindowActiveError:
+            pass
 
     def add_family(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
