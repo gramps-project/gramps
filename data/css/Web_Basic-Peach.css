@@ -826,7 +826,7 @@ a.familymap {
 ----------------------------------------------------- */
 button#drop {
     background-color: #FFE09F;
-    border: solid 1px #EA8414 ! important;
+    border: solid 1px #EA8414 !important;
 }
 button#drop:hover {
     background-color: #FFC35E;

@@ -768,10 +768,10 @@ button#drop {
     font-style: italic;
     color: #FFF2C6;
     background: url(../images/Web_Mainz_Bkgd.png) #7D5925 repeat;
-    border: outset 3px black ! important;
+    border: outset 3px black !important;
 }
 div#map_canvas {
-    border-color: #7D5925 ! important;
+    border-color: #7D5925 !important;
 }
 
 /* Calendar Styles

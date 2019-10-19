@@ -29,8 +29,9 @@ Style Name: Web_Navigation-Vertical.css Stylesheet
 
  Body Element
 ----------------------------------------------------- */
-body { background: -webkit-gradient
-           (linear, left top, left bottom, from(#ccc), to(#fff));
+body {
+    background: -webkit-gradient (linear, left top, left bottom,
+                                  from(#ccc), to(#fff));
     color: #000;
     padding: 60px 0px 0px 146px;
 }
