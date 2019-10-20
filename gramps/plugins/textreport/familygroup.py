@@ -399,11 +399,11 @@ class FamilyGroup(Report):
             self.doc.start_row()
             self.doc.start_cell('FGR-ParentHead', 3)
             self.doc.start_paragraph('FGR-ParentName')
-            header = self._("Marriage")
+            relationship_type = self._get_type(family.get_relationship())
+            header = self._("Relationship: %s") % self._(relationship_type)
             if self.gramps_ids:
                 header += " (%s)" % family.get_gramps_id()
-            # Translators: needed for French, ignore otherwise
-            self.doc.write_text(self._("%s:") % header)
+            self.doc.write_text(header)
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.end_row()
