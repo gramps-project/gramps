@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Gramps_5_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-17 11:43+1100\n"
-"PO-Revision-Date: 2019-10-18 05:46+0300\n"
+"PO-Revision-Date: 2019-10-21 12:12+0300\n"
 "Last-Translator: Matti Niemelä <niememat@gmail.com>\n"
 "Language-Team: suomi <niememat@gmail.com>\n"
 "Language: fi\n"
@@ -6242,12 +6242,10 @@ msgstr "Paikat alueella"
 msgid "Matches places within a given distance of another place"
 msgstr "Poimii paikat tietyllä etäisyydellä toiseen paikkaan"
 
-# 20190911
 #: ../gramps/gen/filters/rules/place/_withinarea.py:83
 msgid "Cannot use the filter 'within area'"
-msgstr "Suodatinta ei voi käyttää alueella"
+msgstr "Suodatinta ei voi käyttää \"alueen sisällä\""
 
-# 20190911
 #: ../gramps/gen/filters/rules/place/_withinarea.py:84
 msgid ""
 "The place you selected contains bad coordinates. Please, run the tool 'clean "
@@ -11086,82 +11084,66 @@ msgstr "Nainen"
 msgid "Male"
 msgstr "Mies"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:63
 msgid "Asexuality, sexless, genderless"
 msgstr "Aseksuaalisuus, seksitön, sukupuoleton"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:64
 msgid "Lesbianism"
 msgstr "Lespolaisuus"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:65
 msgid "Male homosexuality"
 msgstr "Mies homoseksualisuus"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:66
 msgid "Heterosexuality"
 msgstr "Heteroseksuaalisuus"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:67
 msgid "Transgender, hermaphrodite (in entomology)"
 msgstr "Transsukupuoliset, hermafrodiitti (entomologiassa)"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:68
 msgid "Transgender"
 msgstr "Transsukupuolinen"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:69
 msgid "Neuter"
-msgstr "Steriloitu"
+msgstr "Neutrisukuinen"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:71
 msgid "Illegitimate"
 msgstr "Avioton"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:73
 msgid "Baptism/Christening"
 msgstr "Kaste/ristiäiset"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:74
 msgid "Engaged"
 msgstr "Kihloissa"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:77
 msgid "Unmarried partnership"
 msgstr "Naimaton parisuhde (Avoliitto)"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:78
 msgid "Buried"
 msgstr "Haudattu"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:79
 msgid "Cremated/Funeral urn"
 msgstr "Tuhkattu/tuhkauurna"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:80
 msgid "Killed in action"
 msgstr "Kaatui taistelussa"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:81
 msgid "Extinct"
 msgstr "Kadonnut"
 
-# 20190911
 #. The following is used in the global preferences in the display tab.
 #. Name
 #. UNICODE    SUBSTITUTION
@@ -11169,77 +11151,62 @@ msgstr "Kadonnut"
 msgid "Nothing"
 msgstr "Ei mitään"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:108
 msgid "Skull and crossbones"
 msgstr "Kallo ja sääriluut"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:109
 msgid "Ankh"
 msgstr "Ankh"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:110
 msgid "Orthodox cross"
 msgstr "Ortodoksinen risti"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:111
 msgid "Chi rho"
 msgstr "Khii Rhoo"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:112
 msgid "Cross of Lorraine"
 msgstr "Lorrainen risti"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:113
 msgid "Cross of Jerusalem"
 msgstr "Jerusalemin risti"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:114
 msgid "Star and crescent"
 msgstr "Tähti ja puolikuu"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:115
 msgid "West Syriac cross"
 msgstr "Länsi-Syyrian risti"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:116
 msgid "East Syriac cross"
 msgstr "Itä-Syyrian risti"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:117
 msgid "Heavy Greek cross"
 msgstr "Vahvennettu Kreikkalainen risti"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:118
 msgid "Latin cross"
 msgstr "Latinalainen risti"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:119
 msgid "Shadowed White Latin cross"
 msgstr "Varjostettu valkoinen latinalainen risti"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:120
 msgid "Maltese cross"
 msgstr "Maltanristi"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:121
 msgid "Star of David"
 msgstr "Daavidin tähti"
 
-# 20190911
 #: ../gramps/gen/utils/symbols.py:122
 msgid "Dead"
 msgstr "Kuollut"
@@ -11942,7 +11909,6 @@ msgstr ""
 msgid "Show close button in gramplet bar tabs"
 msgstr "Näytä suljepainike gramplet-palkin kielekkäänä"
 
-# 20190911
 #: ../gramps/gui/configure.py:1351
 msgid "Show close button to simplify removing gramplets from bars."
 msgstr ""
@@ -12117,7 +12083,6 @@ msgstr "Suurin sukupolvimäärä sukulaisuussuhteelle"
 msgid "Base path for relative media paths"
 msgstr "Peruspolku suhteellisille mediatiedostojen poluille"
 
-# 20190911
 #: ../gramps/gui/configure.py:1617
 msgid "Third party addons management"
 msgstr "Kolmansien osapuolien laajennusten hallinta"
@@ -12335,7 +12300,6 @@ msgstr "Valitse tietokannan hakemisto"
 msgid "Select backup directory"
 msgstr "Valitse varmuuskopion hakemisto"
 
-# 15052019
 #: ../gramps/gui/configure.py:1946
 msgid ""
 "This tab gives you the possibility to use one font which is able to show all "
@@ -12350,7 +12314,6 @@ msgstr ""
 "Jos valitset \"Käytä symboleja\" valintaruudun, Gramps käyttää valittua "
 "kirjasinta, jos se on olemassa."
 
-# 20190911
 #: ../gramps/gui/configure.py:1952
 msgid ""
 "This can be useful if you want to add phonetic in a note to show how to "
@@ -12382,7 +12345,6 @@ msgstr ""
 "Olet jo suorittanut työkalun etsi sukututkimus kirjasimia.\n"
 "Suorita se uudelleen vain, jos olet lisännyt fontteja järjestelmään."
 
-# 15052019
 #: ../gramps/gui/configure.py:1979
 msgid "Try to find"
 msgstr "Yritä löytää"
@@ -15243,7 +15205,7 @@ msgstr "Kuolinaika"
 
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:112
 msgid "Within"
-msgstr "sisällä"
+msgstr "Sisällä"
 
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:107
 msgid "URL"
@@ -21527,7 +21489,6 @@ msgstr "Tuottaa graafisen kaavion jälkeläisistä"
 msgid "Descendant Tree"
 msgstr "Jälkeläispuu"
 
-# 20191004
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:114
 msgid "Produces a graphical descendant tree"
 msgstr "Tuottaa graafisen puun jälkeläisistä"
@@ -21544,7 +21505,6 @@ msgstr "Tuottaa graafisen kaavion perheen jälkeläisistä"
 msgid "Family Descendant Tree"
 msgstr "Perheen jälkeläispuu"
 
-# 20191004
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:153
 msgid "Produces a graphical descendant tree around a family"
 msgstr "Tuottaa graafisen puun perheen jälkeläisistä"
@@ -23498,7 +23458,7 @@ msgstr "Gramplet näyttää aktiivisen paikan ympäröimät paikat"
 #: ../gramps/plugins/webreport/basepage.py:2673
 #: ../gramps/plugins/webreport/basepage.py:2736
 msgid "Place Encloses"
-msgstr "Ympäröi"
+msgstr "Paikka ympäröi"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1309
 msgid "Gramplet showing the places that the active place encloses"
@@ -24614,7 +24574,6 @@ msgstr ""
 msgid "Ahnentafel number visible"
 msgstr "Ahnentafel numero näkyvä"
 
-# 20190911
 #: ../gramps/plugins/graph/gvhourglass.py:445
 msgid ""
 "Show Sosa / Sosa-Stradonitz / Ahnentafel number under all others "
@@ -29804,49 +29763,41 @@ msgstr ""
 "Puoliso: %(spouse)s, uusi parisuhde rekisteröitiin paikassa %(place)s"
 "%(endnotes)s."
 
-# 20191010
 #: ../gramps/plugins/lib/libnarrate.py:1329
 #, python-format
 msgid "This person had a relationship with %(spouse)s%(endnotes)s."
 msgstr "Suhde: %(spouse)s%(endnotes)s."
 
-# 20191010
 #: ../gramps/plugins/lib/libnarrate.py:1330
 #, python-format
 msgid "He had a relationship with %(spouse)s%(endnotes)s."
 msgstr "Suhde: %(spouse)s%(endnotes)s."
 
-# 20191010
 #: ../gramps/plugins/lib/libnarrate.py:1331
 #, python-format
 msgid "She had a relationship with %(spouse)s%(endnotes)s."
 msgstr "Suhde: %(spouse)s%(endnotes)s."
 
-# 20191010
 #: ../gramps/plugins/lib/libnarrate.py:1332
 #, python-format
 msgid "Relationship with %(spouse)s%(endnotes)s."
 msgstr "Suhde: %(spouse)s%(endnotes)s."
 
-# 20191010
 #: ../gramps/plugins/lib/libnarrate.py:1336
 #, python-format
 msgid "This person also had a relationship with %(spouse)s%(endnotes)s."
 msgstr "Uusi suhde: %(spouse)s%(endnotes)s."
 
-# 20191010
 #: ../gramps/plugins/lib/libnarrate.py:1337
 #, python-format
 msgid "He also had a relationship with %(spouse)s%(endnotes)s."
 msgstr "Uusi suhde: %(spouse)s%(endnotes)s."
 
-# 20191010
 #: ../gramps/plugins/lib/libnarrate.py:1338
 #, python-format
 msgid "She also had a relationship with %(spouse)s%(endnotes)s."
 msgstr "Uusi suhde: %(spouse)s%(endnotes)s."
 
-# 20191010
 #: ../gramps/plugins/lib/libnarrate.py:1339
 #, python-format
 msgid "Also relationship with %(spouse)s%(endnotes)s."
@@ -34525,7 +34476,6 @@ msgstr "Heidän yhteiset esivanhempansa ovat %(ancestor1)s ja %(ancestor2)s."
 msgid "Their common ancestors are: "
 msgstr "Heidän yhteiset esivanhempansa ovat: "
 
-# 20190911
 #: ../gramps/plugins/tool/removespaces.py:54
 msgid "manual|Remove_leading_and_trailing_spaces"
 msgstr "Poista_edessä_ja_perässä_olevat_välilyönnit"
@@ -34535,7 +34485,6 @@ msgstr "Poista_edessä_ja_perässä_olevat_välilyönnit"
 msgid "Clean input data"
 msgstr "Puhdista tuontitiedot"
 
-# 20190911
 #: ../gramps/plugins/tool/removespaces.py:104
 msgid ""
 "Search leading and/or trailing spaces for persons and places. Search comma "
@@ -34546,30 +34495,25 @@ msgstr ""
 "Etsi pilkku koordinaattikentistä. Kaksoisnapsauta riviä muokataksesi sen "
 "sisältöä."
 
-# 20190911
 #: ../gramps/plugins/tool/removespaces.py:113
 msgid "Looking for possible fields with leading or trailing spaces"
 msgstr "Etsitään kenttiä, joissa on alussa tai lopussa välilyöntejä"
 
-# 20190911
 #: ../gramps/plugins/tool/removespaces.py:130
 #: ../gramps/plugins/tool/removespaces.py:179
 msgid "handle"
 msgstr "käsitellään"
 
-# 20190911
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:135
 msgid "firstname"
 msgstr "etunimi"
 
-# 20190911
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:143
 msgid "alternate name"
 msgstr "vaihtoehtoinen nimi"
 
-# 20190911
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:147
 msgid "group as"
@@ -35061,7 +35005,6 @@ msgstr ""
 msgid "Searches the entire database, looking for a possible loop."
 msgstr "Etsii koko tietokannasta, etsii mahdollista silmukkaa."
 
-# 15052019
 #: ../gramps/plugins/tool/tools.gpr.py:490
 msgid ""
 "Searches the entire database, looking for trailing or leading spaces for "
@@ -36466,7 +36409,6 @@ msgstr "Muuta vanhempien ja perheiden järjestystä"
 msgid "Edit the active person"
 msgstr "Muokkaa aktiivista henkilöä"
 
-# 20190911
 #: ../gramps/plugins/view/relview.py:746 ../gramps/plugins/view/relview.py:772
 #: ../gramps/plugins/view/relview.py:789 ../gramps/plugins/view/relview.py:796
 #, python-format
@@ -36553,19 +36495,16 @@ msgstr "%(event)s: %(date)s"
 msgid "Relationship type: %s"
 msgstr "Suhdetyyppi: %s"
 
-# 20190911
 #: ../gramps/plugins/view/relview.py:1520
 #, python-format
 msgid "%(event_type)s %(date)s in %(place)s"
 msgstr "%(event_type)s %(date)s %(place)s"
 
-# 20190911
 #: ../gramps/plugins/view/relview.py:1524
 #, python-format
 msgid "%(event_type)s %(date)s"
 msgstr "%(event_type)s %(date)s"
 
-# 20190911
 #: ../gramps/plugins/view/relview.py:1528
 #, python-format
 msgid "%(event_type)s %(place)s"
@@ -36915,12 +36854,10 @@ msgstr "Seurakunta"
 msgid "Locations"
 msgstr "Sijainnit"
 
-# 20191017
 #: ../gramps/plugins/webreport/basepage.py:2943
 msgid "circa"
 msgstr "noin"
 
-# 20191017
 #: ../gramps/plugins/webreport/basepage.py:2945
 msgid "around"
 msgstr "suunnilleen"
@@ -37249,7 +37186,6 @@ msgid ""
 msgstr ""
 "Määritä oletusasetelma käytettäväksi lähdesivun lainausviitteet osiossa"
 
-# 20191004
 #: ../gramps/plugins/webreport/narrativeweb.py:1729
 msgid "Include ancestor's tree"
 msgstr "Lisää esivanhempien sukupuu"
@@ -37328,12 +37264,10 @@ msgstr "Kaavion sukupolvet"
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Montako sukupolvea tulee esivanhempien kaavioon"
 
-# 20190911
 #: ../gramps/plugins/webreport/narrativeweb.py:1807
 msgid "Include narrative notes just after name, gender"
 msgstr "Lisää lisätiedot sukunimen ja sukupuolen jälkeen"
 
-# 20190911
 #: ../gramps/plugins/webreport/narrativeweb.py:1809
 msgid ""
 "Include narrative notes just after name, gender and age at death (default) "
@@ -38241,12 +38175,10 @@ msgstr "Linkki Kertova-nettisivusto raporttiin"
 msgid "Whether to link data to web report or not"
 msgstr "Linkittäänkö tiedot Kertova-nettisivusto raporttiin vai ei"
 
-# 20190911
 #: ../gramps/plugins/webreport/webcal.py:1902
 msgid "Show data only after year"
 msgstr "Näytä vasta vuoden jälkeiset tapahtumat"
 
-# 20190911
 #: ../gramps/plugins/webreport/webcal.py:1905
 msgid ""
 "Show data only after this year. Default is current year -  'maximum age "
