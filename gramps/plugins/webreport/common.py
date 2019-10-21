@@ -305,7 +305,7 @@ OPENLAYER = """
       positioning: 'bottom-center',
       autoPan: true,
       autoPanAnimation: { duration: 500 },
-      stopEvent: false
+      stopEvent: true
     });
     map.addOverlay(popup);
 
