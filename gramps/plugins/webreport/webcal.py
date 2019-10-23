@@ -843,6 +843,8 @@ return false;
 
                     # add calendar date division
                     datediv = Html("div", day, class_="date", inline=True)
+                    clickable = Html("div", datediv, class_="clickable",
+                                     inline=True)
 
                     ### a day in the previous or next month ###
                     if day == 0:
@@ -929,11 +931,11 @@ return false;
                                 # WebCal
                                 else:
                                     # add date to table cell
-                                    tcell += datediv
+                                    tcell += clickable
 
                                     # list the events
                                     unordered = Html("ul")
-                                    tcell += unordered
+                                    clickable += unordered
 
                                     for (dummy_nyears, dummy_date, text,
                                          event, dummy_notused,
@@ -945,11 +947,15 @@ return false;
                                                           else True)
                             # no events for this day
                             else:
+                                # adds date division
+                                date = Html("div", day, class_="date",
+                                     inline=True)
                                 # create empty day with date
                                 tcell = Html("td", class_=dayclass,
                                              inline=True) + (
                                                  # adds date division
-                                                 Html("div", day, class_="date",
+                                                 Html("div", date,
+                                                      class_="empty",
                                                       inline=True))
                         # nothing for this month
                         else:

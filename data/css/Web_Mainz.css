@@ -770,6 +770,7 @@ table.calendar {
     font-size: large;
     font-style: italic;
     text-align: center;
+    margin-top: 1px;
     background: url(../images/Web_Mainz_MidLight.png) #FFF2C6 repeat;
 }
 
@@ -813,10 +814,11 @@ table.calendar {
     color: #767D25;
 }
 .calendar td ul li span.yearsmarried em {
-    color: black;
+    color: #767D25;
 }
 .calendar td.highlight div.date {
     color: #767D25;
+    margin-top: 1px;
     background-image: none;
     background-color: #FFFFE7;
 }
@@ -848,4 +850,37 @@ body#OneDay h3 {
     vertical-align: top;
     height: 2em;
     text-align: center;
+}
+#WebCal table.calendar tfoot {
+    display: none;
+}
+#WebCal table.calendar tr td {
+    word-wrap: break-word;
+    padding: 2px;
+}
+#WebCal .calendar tr td .empty {
+    border: 5px solid rgba(255,255,255,.0);
+}
+#WebCal .calendar tr td .clickable {
+    border: 5px solid rgba(255,255,255,.0);
+}
+#WebCal .calendar tr td .clickable:hover {
+    display: block;
+    overflow:auto;
+    word-wrap: break-word;
+    cursor: text;
+    border-radius: 10px 0px 10px 10px;
+    border: 5px solid #7D5925;
+    padding: 0px;
+}
+body#fullyearlinked #YearGlance tbody td:hover .date {
+    border-radius: 10px;
+    border: 5px solid;
+    z-index: 100;
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    transform: scale(1.1);
+    -webkit-transition: all .1s;
+    -moz-transition: all .1s;
+    transition: all .1s;
 }
