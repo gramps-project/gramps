@@ -949,7 +949,7 @@ return false;
                             else:
                                 # adds date division
                                 date = Html("div", day, class_="date",
-                                     inline=True)
+                                            inline=True)
                                 # create empty day with date
                                 tcell = Html("td", class_=dayclass,
                                              inline=True) + (
