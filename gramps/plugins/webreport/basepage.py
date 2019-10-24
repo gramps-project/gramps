@@ -376,13 +376,13 @@ class BasePage: # pylint: disable=C1001
         childlist = family.get_child_ref_list()
         if childlist:
             trow = Html("tr") + (
-                Html("td", "&nbsp;", class_="ColumnType", inline=True),
                 Html("td", self._("Children"), class_="ColumnAttribute",
                      inline=True)
             )
             table = table + trow if table is not None else trow
 
-            tcell = Html("td", class_="ColumnValue", close=False)
+            tcell = Html("td", class_="ColumnValue Child", close=False,
+                         colspan=2)
             trow += tcell
 
             with Html("table", class_="infolist eventlist") as table2:
@@ -2746,7 +2746,7 @@ class BasePage: # pylint: disable=C1001
                 else:
                     place_hyper = place_name
                 trow = Html("tr") + (
-                    Html("td", place_hyper, class_="ColumnValue",
+                    Html("td", place_hyper, class_="ColumnPlace",
                          inline=True))
                 tbody += trow
 
@@ -2772,7 +2772,7 @@ class BasePage: # pylint: disable=C1001
                         place_hyper = place_name
                     trow = Html("tr") + (
                         Html("td", place_hyper,
-                             class_="ColumnValue", inline=True))
+                             class_="ColumnPlace", inline=True))
             tbody += trow
 
         # return place table to its callers

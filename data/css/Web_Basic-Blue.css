@@ -129,7 +129,6 @@ h1 {
 h2 {
     font: bold 1em sans-serif;
     text-align: center;
-    float: center;
 }
 h3 {
     font: bold italic 1.6em serif;
@@ -503,13 +502,12 @@ table.infolist tr td.ColumnRowLabel a {
 }
 table.infolist tr td.ColumnType {
     width: 6%;
-    padding-left: 20px;
 }
 table.infolist tr td.ColumnAttribute {
     width: 10%;
 }
 table.infolist tr td.ColumnValue {
-    width: 40%;
+    width: 30%;
 }
 table.infolist tr td.ColumnName {
     width: 30%;
@@ -658,7 +656,6 @@ div#Places table.infolist tbody tr td.ColumnLongitude {
 }
 div#PlaceDetail h5 {
     font: bold .7cm serif;
-    float: center;
     text-align: center;
     border-bottom: double 4px #13A926;
 }
@@ -700,6 +697,7 @@ table.eventlist td.ColumnPlace {
     padding-left: 15px;
 }
 #families table.infolist th.ColumnEvent {
+    width: 10%;
     padding-left: 0px;
 }
 #families table.infolist td.ColumnAttribute {
@@ -881,7 +879,6 @@ div#EventDetail table.eventlist tbody tr td.ColumnDate {
 }
 #GalleryDetail div#summaryarea table.gallery {
     padding-bottom: 0;
-    margin: 1 .5em 0 0;
     border-style: solid;
     border-width: 2px 0 1px 0;
     border-color: #000;
@@ -1007,6 +1004,9 @@ div#Download table.download td.ColumnModified {
     margin: 0;
     padding: 0;
 }
+#Sources table.infolist tr td.ColumnName {
+    width: 70%;
+}
 div#SourceDetail {
     min-height: 900px
 }
@@ -1115,9 +1115,14 @@ div#events h4 {
 #IndividualDetail div#events table.eventtable {
     width: 100%;
 }
-table.eventlist tbody tr td.ColumnEvent {
+#families table.eventlist tbody tr td.ColumnEvent {
     vertical-align: top;
     width: 8%;
+}
+div#RelationshipDetail table.infolist tbody tr td.ColumnAttribute,
+div#IndividualDetail table.infolist tbody tr td.ColumnAttribute {
+    vertical-align: top;
+    width: 10%;
 }
 #IndividualDetail div#events table.infolist tbody tr td {
     padding-top: .4em;
@@ -1206,6 +1211,9 @@ div#families table.infolist tbody tr td.ColumnValue p {
     margin-top: 0;
     margin-left: 0;
 }
+div#families table.infolist tbody tr td.ColumnValue {
+    width: 70%;
+}
 div#families table.infolist tbody tr td.ColumnValue ol {
     margin: 0;
     padding-top: 0;
@@ -1218,6 +1226,22 @@ div#families table.infolist tbody tr td.ColumnValue ol li a {
 }
 div#families table.fixed_subtables table.eventlist {
     table-layout:fixed;
+}
+div#families table.fixed_subtables table.eventlist th.ColumnDate {
+    width: 12%;
+}
+div#families table.fixed_subtables table.eventlist th.ColumnSources {
+     width: 5em;
+ }
+div#families table.fixed_subtables .Child table.eventlist .ColumnName {
+    width: 60%;
+}
+div#families table.fixed_subtables .Child table.eventlist .ColumnDate {
+    width: 20%;
+}
+div#families table.fixed_subtables .BeginFamily .ColumnType {
+    width: 7em;
+    vertical-align: top;
 }
 
 /* Subsection: Families: Attributes
@@ -1469,6 +1493,9 @@ div#summaryarea table.infolist {
 div#summaryarea table.infolist tr td, div#summaryarea table.infolist tr td p {
     font: normal .9em/1.2em sans-serif;
     vertical-align: top;
+}
+div#summaryarea table.infolist tr td.ColumnValue {
+    width: 70%;
 }
 div#summaryarea table.infolist tr td a, div#summaryarea table.infolist tr td p a {
     display:inline;

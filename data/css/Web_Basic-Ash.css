@@ -463,9 +463,6 @@ table.eventlist td.ColumnPlace {
     width: 10%;
     padding-left: 15px;
 }
-#families table.infolist td.ColumnAttribute {
-    padding-left: 20px;
-}
 
 /* Gallery
 ----------------------------------------------------- */
@@ -593,11 +590,20 @@ div#families table.fixed_subtables table.eventlist {
 div#families table.fixed_subtables table.eventlist th:first-child {
     width: 9em;
 }
-div#families table.fixed_subtables table.eventlist th:last-child {
+div#families table.fixed_subtables table.eventlist th.ColumnDate {
+    width: 12%;
+}
+div#families table.fixed_subtables table.eventlist th.ColumnSources {
     width: 5em;
 }
 div#families table.attrlist td.ColumnType {
     color: black;
+}
+div#families table.fixed_subtables .Child table.eventlist .ColumnName {
+    width: 60%;
+}
+div#families table.fixed_subtables .Child table.eventlist .ColumnDate {
+    width: 20%;
 }
 
 /* Subsection : Gallery
