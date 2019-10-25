@@ -768,7 +768,7 @@ class ToolManagedWindowBase(ManagedWindow):
 
         self.notebook = Gtk.Notebook()
         self.notebook.set_border_width(6)
-        self.window.get_content_area().add(self.notebook)
+        self.window.get_content_area().pack_start(self.notebook, True, True, 0)
 
         self.results_text = Gtk.TextView()
         self.results_text.connect('button-press-event',
