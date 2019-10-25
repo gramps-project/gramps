@@ -2685,47 +2685,6 @@ class BasePage: # pylint: disable=C1001
                         tbody += trow
                 tbody += Html("tr") + Html("td", "&nbsp;", colspan=2)
 
-            # encloses
-            with Html("div", class_='subsection encloses') as encloses:
-                tbody += encloses
-                encloses += Html("h4", self._("Place Encloses"), inline=True)
-                with Html("table", class_="infolist place") as table:
-                    encloses += table
-                    visited = [place.handle]
-                    for link in self.r_db.find_backlink_handles(
-                            place.handle, include_classes=['Place']):
-                        if link[1] in visited:
-                            continue
-                        visited.append(link[1])
-                        c_place = self.r_db.get_place_from_handle(link[1])
-                        placeref = None
-                        for placeref in c_place.get_placeref_list():
-                            if placeref.ref == place.handle:
-                                gpfh = self.r_db.get_place_from_handle
-                                eplace = gpfh(placeref.ref)
-                                if not eplace:
-                                    continue
-                                place_name = c_place.get_name().get_value()
-                                table += Html("tr") + Html("td", place_name)
-
-            # enclosed by
-            with Html("div", class_='subsection encloses') as encloses:
-                tbody += encloses
-                encloses += Html("h4", self._("Enclosed By"), inline=True)
-                with Html("table", class_="infolist place") as table:
-                    encloses += table
-                    visited = [place.handle]
-                    placeref = None
-                    for placeref in place.get_placeref_list():
-                        if placeref.ref in visited:
-                            continue
-                        visited.append(placeref.ref)
-                        pplace = self.r_db.get_place_from_handle(placeref.ref)
-                        if not pplace:
-                            continue
-                        place_name = pplace.get_name().get_value()
-                        table += Html("tr") + Html("td", place_name)
-
         # enclosed by
         tbody += Html("tr") + Html("td", "&nbsp;")
         trow = Html("tr") + (
