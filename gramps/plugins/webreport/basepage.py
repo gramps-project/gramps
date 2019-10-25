@@ -1469,13 +1469,11 @@ class BasePage: # pylint: disable=C1001
         body += outerwrapperdiv
 
         # begin header section
-        #headerdiv = Html("div", id='header') + (
         headerdiv = Html("div", id='header') + (
-            Html("<a href=\"javascript:void(0);\" class=\"navIcon\""
-                 " onclick=\"navFunction()\">&#8801;</a>")) + (
-                     Html("h1", html_escape(self.title_str),
+            Html("<button href=\"javascript:void(0);\" class=\"navIcon\""
+                 " onclick=\"navFunction()\">&#8801;</button>"))
+        headerdiv += Html("h1", html_escape(self.title_str),
                           id="SiteTitle", inline=True)
-                     )
         outerwrapperdiv += headerdiv
 
         header_note = self.report.options['headernote']

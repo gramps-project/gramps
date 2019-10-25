@@ -338,7 +338,7 @@ div#footer p#copyright img {
 }
 
 /* Responsive navigation */
-a.navIcon {
+button.navIcon {
     display: none;
 }
 
@@ -426,11 +426,14 @@ div#nav::after {
     .nav li {display: none;}
     .nav ul {display: none;}
 
-    a.navIcon {
-        font-size:1.3em;
+    button.navIcon {
         display: block;
-        margin: 0.1em 0.4em 0.4em 0.4em;
         float: left;
+        font-size:2.9em;
+        line-height: 60px;
+        border: 0px;
+        color: #FFF;
+        background-color: #00029D;
     }
 
     .nav.responsive {position: absolute; display: block; z-index: 100;}

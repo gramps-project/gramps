@@ -229,7 +229,7 @@ div#alphanav ul li a:hover {
 }
 
 /* Responsive navigation */
-a.navIcon {
+button.navIcon {
     display: none;
 }
 
@@ -281,11 +281,14 @@ div#nav::after {
     .nav li {display: none;}
     .nav ul {display: none;}
 
-    a.navIcon {
-        font-size:1.3em;
+    button.navIcon {
         display: block;
-        margin: 0.1em 0.4em 0.4em 0.4em;
         float: left;
+        font-size:2.9em;
+        line-height: 35px;
+        border: 0px;
+        color: #204D91;
+        background-color: #EAEEF4;
     }
 
     .nav.responsive {position: absolute; display: block; z-index: 100;}

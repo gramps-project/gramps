@@ -224,7 +224,7 @@ div#alphanav ul li a:hover {
 }
 
 /* Responsive navigation */
-a.navIcon {
+button.navIcon {
     display: none;
 }
 
@@ -276,11 +276,14 @@ div#nav::after {
     .nav li {display: none;}
     .nav ul {display: none;}
 
-    a.navIcon {
-        font-size:1.3em;
+    button.navIcon {
         display: block;
-        margin: 0.1em 0.4em 0.4em 0.4em;
         float: left;
+        font-size:2.9em;
+        line-height: 80px;
+        border: 0px;
+        color: #7D5925;
+        background: url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
     }
 
     .nav.responsive {position: absolute; display: block; z-index: 100;}

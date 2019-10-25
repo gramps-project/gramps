@@ -274,7 +274,7 @@ div#subnavigation ul li.CurrentSection a {
 }
 
 /* Responsive navigation */
-a.navIcon {
+button.navIcon {
     display: none;
     color: #FFF;
 }
@@ -327,12 +327,14 @@ div#nav::after {
     .nav li {display: none;}
     .nav ul {display: none;}
 
-    a.navIcon {
-        font-size:1.3em;
+    button.navIcon {
         display: block;
-        margin: 0.1em 0.4em 0.4em 0.4em;
         float: left;
-    color: #FFF;
+        font-size:2.9em;
+        line-height: 70px;
+        border: 0px;
+        background-color: #542;
+        color: #FFF;
     }
 
     .nav.responsive {position: absolute; display: block; z-index: 100;}
@@ -563,6 +565,7 @@ table.IndividualList tbody tr td.ColumnName a:hover {
     color:#696969;
 }
 #IndividualDetail div.subsection table tr td:first-child {
+    color:#696969;
     padding-left:20px;
 }
 #familymap a.familymap {
