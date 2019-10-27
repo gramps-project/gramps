@@ -67,7 +67,7 @@ from .editplacetype import EditPlaceType
 from ..widgets import MonitoredEntry, PrivacyButton, MonitoredTagList, MonitoredDataType
 from ..widgets.placetypeselector import PlaceTypeSelector
 from gramps.gen.errors import ValidationError, WindowActiveError
-from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.utils.place import conv_lat_lon, translate_en_loc
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
 from ..dialog import ErrorDialog
@@ -81,7 +81,7 @@ from gramps.gen.const import URL_MANUAL_SECT2
 # -------------------------------------------------------------------------
 
 WIKI_HELP_PAGE = URL_MANUAL_SECT2
-IKI_HELP_SEC = _("Place_Editor_dialog", "manual")
+WIKI_HELP_SEC = _("Place_Editor_dialog", "manual")
 
 
 # -------------------------------------------------------------------------
@@ -206,6 +206,12 @@ class EditPlace(EditPrimary):
 
         entry = self.top.get_object("lon_entry")
         entry.set_ltr_mode()
+        # get E,W translated to local
+        self.obj.set_longitude(
+            self.obj.get_longitude()
+            .replace("E", translate_en_loc["E"])
+            .replace("W", translate_en_loc["W"])
+        )
         self.longitude = MonitoredEntry(
             entry, self.obj.set_longitude, self.obj.get_longitude, self.db.readonly
         )
@@ -215,6 +221,12 @@ class EditPlace(EditPrimary):
 
         entry = self.top.get_object("lat_entry")
         entry.set_ltr_mode()
+        # get N,S translated to local
+        self.obj.set_latitude(
+            self.obj.get_latitude()
+            .replace("N", translate_en_loc["N"])
+            .replace("S", translate_en_loc["S"])
+        )
         self.latitude = MonitoredEntry(
             entry, self.obj.set_latitude, self.obj.get_latitude, self.db.readonly
         )
@@ -517,6 +529,19 @@ class EditPlace(EditPrimary):
             return
 
         place_title = place_displayer.display(self.db, self.obj, fmt=0)
+        # get localized E,W translated to English
+        self.obj.set_longitude(
+            self.obj.get_longitude()
+            .replace(translate_en_loc["E"], "E")
+            .replace(translate_en_loc["W"], "W")
+        )
+        # get localized N,S translated to English
+        self.obj.set_latitude(
+            self.obj.get_latitude()
+            .replace(translate_en_loc["N"], "N")
+            .replace(translate_en_loc["S"], "S")
+        )
+
         if not self.obj.handle:
             with DbTxn(_("Add Place (%s)") % place_title, self.db) as trans:
                 self.db.add_place(self.obj, trans)

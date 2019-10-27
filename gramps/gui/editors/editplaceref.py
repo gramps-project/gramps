@@ -54,7 +54,7 @@ from .editplacetype import EditPlaceType
 from gramps.gen.lib import NoteType, PlaceType, PlaceName, PlaceGroupType
 from gramps.gen.db import DbTxn
 from gramps.gen.errors import ValidationError, WindowActiveError
-from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.utils.place import conv_lat_lon, translate_en_loc
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
 from ..dialog import ErrorDialog
@@ -221,6 +221,12 @@ class EditPlaceRef(EditReference):
 
         entry = self.top.get_object("lon_entry")
         entry.set_ltr_mode()
+        # get E,W translated to local
+        self.source.set_longitude(
+            self.source.get_longitude()
+            .replace("E", translate_en_loc["E"])
+            .replace("W", translate_en_loc["W"])
+        )
         self.longitude = MonitoredEntry(
             entry,
             self.source.set_longitude,
@@ -233,6 +239,12 @@ class EditPlaceRef(EditReference):
 
         entry = self.top.get_object("lat_entry")
         entry.set_ltr_mode()
+        # get N,S translated to local
+        self.source.set_latitude(
+            self.source.get_latitude()
+            .replace("N", translate_en_loc["N"])
+            .replace("S", translate_en_loc["S"])
+        )
         self.latitude = MonitoredEntry(
             entry, self.source.set_latitude, self.source.get_latitude, self.db.readonly
         )
@@ -510,6 +522,18 @@ class EditPlaceRef(EditReference):
             self.db.placegroup_types.add(PlaceGroupType(str(htype)))
 
         place_title = place_displayer.display(self.db, self.source, fmt=0)
+        # get localized E,W translated to English
+        self.source.set_longitude(
+            self.source.get_longitude()
+            .replace(translate_en_loc["E"], "E")
+            .replace(translate_en_loc["W"], "W")
+        )
+        # get localized N,S translated to English
+        self.source.set_latitude(
+            self.source.get_latitude()
+            .replace(translate_en_loc["N"], "N")
+            .replace(translate_en_loc["S"], "S")
+        )
         if self.source.handle:
             # only commit if it has changed
             if self.source.serialize() != self.original:

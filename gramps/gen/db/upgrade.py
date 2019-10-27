@@ -62,6 +62,7 @@ from .dbconst import (
     NOTE_KEY,
     TAG_KEY,
 )
+from ..utils.place import translate_en_loc
 from ..const import GRAMPS_LOCALE as glocale
 from .conversion_tools import convert_21
 
@@ -160,6 +161,18 @@ def gramps_upgrade_22(self):
             data["attribute_list"] = [code_attr]
         else:
             data["attribute_list"] = []
+        # get longitude localized E,W translated to English
+        data["long"] = (
+            data["long"]
+            .replace(translate_en_loc["E"], "E")
+            .replace(translate_en_loc["W"], "W")
+        )
+        # get latitude localized N,S translated to English
+        data["lat"] = (
+            data["lat"]
+            .replace(translate_en_loc["N"], "N")
+            .replace(translate_en_loc["S"], "S")
+        )
         self._commit_raw(data, PLACE_KEY)
         self.update()
     self.set_serializer("blob")
