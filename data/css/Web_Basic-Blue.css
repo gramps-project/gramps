@@ -158,7 +158,7 @@ p#description {
     text-indent: 30px;
 }
 p#description:first-letter {
-    color: #000290;
+    color: #903;
     font-size: 36px;
     font-weight: bold;
     font-style: italic;
@@ -1602,7 +1602,6 @@ div#pedigree {
     text-align:center;
     border: 5px solid rgba(0,0,0,.0);
     color: #542;
-    margin:0 0 0 .5em;
     padding:.2em 0;
     background-color: #D8F3D6;
 }
@@ -1683,7 +1682,7 @@ body#fullyearlinked div.content {
 }
 body#fullyearlinked table.calendar {
     float:left;
-    width:320px;
+    width:33.3%;
     height:18em;
     border:solid 1px #000;
 }
@@ -1698,10 +1697,8 @@ body#fullyearlinked table.calendar thead tr th.monthName {
     padding:2px 0;
     border-bottom: solid 1px #000;
 }
-body#fullyearlinked table.calendar tbody tr td {
-    height:3em;
-}
 body#fullyearlinked table.calendar tbody tr td.emptyDays {
+    height:52px;
     background-color: #FFF;
 }
 body#fullyearlinked table.calendar tbody tr td.saturday {
@@ -1761,14 +1758,21 @@ table.oneday tbody tr td.ColumnEvent {
     border: 5px solid #000290;
     padding: 0px;
 }
+body#fullyearlinked #YearGlance tbody td {
+    height:48px;
+    vertical-align: middle;
+    text-align: center;
+    padding-left: 3px;
+}
+body#fullyearlinked #YearGlance tbody td .date {
+    font-size: 30px;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 45px;
+    float: none;
+    border: 5px solid rgba(0,0,0,.0);
+}
 body#fullyearlinked #YearGlance tbody td:hover .date {
-    border-radius: 10px;
+    border-radius: 45px;
     border: 5px solid;
-    z-index: 100;
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    transform: scale(1.1);
-    -webkit-transition: all .1s;
-    -moz-transition: all .1s;
-    transition: all .1s;
 }

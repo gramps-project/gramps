@@ -829,7 +829,7 @@ table.calendar {
 
 /* Calendar : Date Container */
 .calendar td {
-    padding: 0px 0px 0px 1ex;
+    padding: 0px 5px 0px 1ex;
     border-width: 1px 0px 0px 1px;
     border-style: solid;
     border-color: #BFD0EA;
@@ -837,7 +837,7 @@ table.calendar {
 }
 .calendar td:first-child {
     border-left-style: none;
-    padding: 0px 0px 0px 1ex;
+    padding: 0px 5px 0px 1ex;
 }
 .calendar tbody tr:first-child td {
     border-top-style: none;
@@ -933,14 +933,21 @@ body#OneDay h3 {
     border: 5px solid #204D91;
     padding: 0px;
 }
+body#fullyearlinked #YearGlance tbody td {
+    height:48px;
+    vertical-align: middle;
+    text-align: center;
+    padding-left: 6px;
+}
+body#fullyearlinked #YearGlance tbody td .date {
+    font-size: 30px;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 45px;
+    float: none;
+    border: 5px solid rgba(0,0,0,.0);
+}
 body#fullyearlinked #YearGlance tbody td:hover .date {
-    border-radius: 10px;
+    border-radius: 45px;
     border: 5px solid;
-    z-index: 100;
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    transform: scale(1.1);
-    -webkit-transition: all .1s;
-    -moz-transition: all .1s;
-    transition: all .1s;
 }

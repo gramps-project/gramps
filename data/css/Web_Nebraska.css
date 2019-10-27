@@ -1364,14 +1364,12 @@ body#WebCal {
 
 /* Calendar : Date Numeral */
 .calendar tbody tr td div.date {
-    float:right;
+    float:none;
     display:block;
-    width:1.8em;
     font-size:1.2em;
     line-height:100%;
     text-align:center;
     color:#542;
-    margin:0 0 0 .5em;
     padding:.2em 0;
     background-color:#F6F2EE;
 }
@@ -1449,13 +1447,12 @@ body#WebCal {
 
 /* Calendar : Full Year */
 body#fullyearlinked div.content {
-    width:963px;
     margin:0 auto;
-    padding:15px 0 2px 2px;
+    padding:5px 0 2px 2px;
 }
 body#fullyearlinked table.calendar {
     float:left;
-    width:320px;
+    width:33.3%;
     height:18em;
     border:solid 1px #7D5925;
 }
@@ -1479,7 +1476,9 @@ body#OneDay h3 {
 }
 #WebCal table.calendar tr td {
     word-wrap: break-word;
-    padding: 2px;
+    border-bottom:solid 1px #7D5925;
+    border-right:solid 1px #7D5925;
+    padding-left: 0px;
 }
 #WebCal .calendar tr td .empty {
     border: 5px solid rgba(255,255,255,.0);
@@ -1496,14 +1495,30 @@ body#OneDay h3 {
     border: 5px solid #453619;
     padding: 0px;
 }
+body#fullyearlinked #YearGlance tbody td {
+    height:48px;
+    vertical-align: middle;
+    text-align: center;
+}
+body#fullyearlinked #YearGlance tbody td.previous {
+    border-width:0px 1px 1px 0px;
+    border-color:#C1B398;
+}
+body#fullyearlinked #YearGlance tbody td.next {
+    border-width:1px 0px 0px 1px;
+    border-color:#C1B398;
+}
+body#fullyearlinked #YearGlance tbody td .date {
+    font-size: 30px;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 45px;
+    margin-left: 5px;
+    margin-right: 5px;
+    float: none;
+    border: 5px solid rgba(0,0,0,.0);
+}
 body#fullyearlinked #YearGlance tbody td:hover .date {
-    border-radius: 10px;
+    border-radius: 45px;
     border: 5px solid;
-    z-index: 100;
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    transform: scale(1.1);
-    -webkit-transition: all .1s;
-    -moz-transition: all .1s;
-    transition: all .1s;
 }
