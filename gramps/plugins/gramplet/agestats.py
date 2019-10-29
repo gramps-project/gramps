@@ -51,13 +51,13 @@ class AgeStatsGramplet(Gramplet):
     def build_options(self):
         from gramps.gen.plug.menu import NumberOption
         self.add_option(NumberOption(_("Max age"),
-                                     self.max_age, 1, 150))
+                                     self.max_age, 5, 150, 5))
         self.add_option(NumberOption(_("Max age of Mother at birth"),
-                                     self.max_mother_diff, 1, 150))
+                                     self.max_mother_diff, 5, 150, 5))
         self.add_option(NumberOption(_("Max age of Father at birth"),
-                                     self.max_father_diff, 1, 150))
+                                     self.max_father_diff, 5, 150, 5))
         self.add_option(NumberOption(_("Chart width"),
-                                     self.chart_width, 1, 150))
+                                     self.chart_width, 45, 150))
 
     def save_options(self):
         self.max_age = int(self.get_option(_("Max age")).get_value())
