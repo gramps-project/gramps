@@ -1256,14 +1256,15 @@ class GrampsPreferences(ConfigureDialog):
                          _("Years, Months, Days")]
         list(map(obox.append_text, age_precision))
         # Combo_box active index is from 0 to 2, we need values from 1 to 3
-        constant = 'preferences.age-display-precision'
-        active = config.get(constant) - 1
+        active = config.get('preferences.age-display-precision') - 1
         if active >= 0 and active <= 2:
             obox.set_active(active)
         else:
             obox.set_active(0)
-        obox.connect('changed',
-                     lambda obj: config.set(constant, obj.get_active() + 1))
+        obox.connect(
+            'changed',
+            lambda obj: config.set('preferences.age-display-precision',
+                                   obj.get_active() + 1))
         lwidget = BasicLabel(_("%s: ")
                              % _('Age display precision (requires restart)'))
         grid.attach(lwidget, 0, row, 1, 1)
@@ -1300,10 +1301,10 @@ class GrampsPreferences(ConfigureDialog):
         obox = Gtk.ComboBoxText()
         formats = FamilyRelType().get_standard_names()
         list(map(obox.append_text, formats))
-        constant = 'preferences.family-relation-type'
-        obox.set_active(config.get(constant))
+        obox.set_active(config.get('preferences.family-relation-type'))
         obox.connect('changed',
-                     lambda obj: config.set(constant, obj.get_active()))
+                     lambda obj: config.set('preferences.family-relation-type',
+                                            obj.get_active()))
         lwidget = BasicLabel(_("%s: ") % _('Default family relationship'))
         grid.attach(lwidget, 0, row, 1, 1)
         grid.attach(obox, 1, row, 2, 1)
