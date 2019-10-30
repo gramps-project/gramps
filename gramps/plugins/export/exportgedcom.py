@@ -596,7 +596,7 @@ class GedcomWriter(UpdateCallback):
             if val.strip():
                 self._writeln(2, 'TYPE', val)
             else:
-                self._writeln(2, 'TYPE', str(event.get_type()))
+                self._writeln(2, 'TYPE', event.get_type().xml_str())
         self._dump_event_stats(event, event_ref)
         if etype == EventType.ADOPT and not adop_written:
             adop_written = True
@@ -656,7 +656,7 @@ class GedcomWriter(UpdateCallback):
 
             attr_type = int(attr.get_type())
             name = libgedcom.PERSONALCONSTANTATTRIBUTES.get(attr_type)
-            key = str(attr.get_type())
+            key = attr.get_type().xml_str()
             value = attr.get_value().strip().replace('\r', ' ')
 
             if key in ("AFN", "RFN", "REFN", "_UID", "_FSFTID"):
@@ -735,14 +735,14 @@ class GedcomWriter(UpdateCallback):
                                 child.mrel == ChildRefType.FOSTER:
                             self._writeln(2, 'PEDI foster')
                         elif child.frel == child.mrel:
-                            self._writeln(2, 'PEDI %s' % str(child.frel))
+                            self._writeln(2, 'PEDI %s' % child.frel.xml_str())
                         else:
-                            self._writeln(2, '_FREL %s' %
-                                          PEDIGREE_TYPES.get(child.frel.value,
-                                                             str(child.frel)))
-                            self._writeln(2, '_MREL %s' %
-                                          PEDIGREE_TYPES.get(child.mrel.value,
-                                                             str(child.mrel)))
+                            self._writeln(
+                                2, '_FREL %s' % PEDIGREE_TYPES.get(
+                                    child.frel.value, child.frel.xml_str()))
+                            self._writeln(
+                                2, '_MREL %s' % PEDIGREE_TYPES.get(
+                                    child.mrel.value, child.mrel.xml_str()))
 
     def _parent_families(self, person):
         """
@@ -910,9 +910,9 @@ class GedcomWriter(UpdateCallback):
                 self._writeln(1, 'EVEN', descr)
             else:
                 self._writeln(1, 'EVEN')
-            the_type = str(event.get_type())
+            the_type = event.get_type()
             if the_type:
-                self._writeln(2, 'TYPE', the_type)
+                self._writeln(2, 'TYPE', the_type.xml_str())
 
     def _family_event_attrs(self, attr_list, level):
         """
@@ -946,7 +946,7 @@ class GedcomWriter(UpdateCallback):
 
             attr_type = int(attr.get_type())
             name = libgedcom.FAMILYCONSTANTATTRIBUTES.get(attr_type)
-            key = str(attr.get_type())
+            key = attr.get_type().xml_str()
             value = attr.get_value().replace('\r', ' ')
 
             if key in ("AFN", "RFN", "REFN", "_UID"):
@@ -1097,7 +1097,8 @@ class GedcomWriter(UpdateCallback):
         if reporef.get_call_number():
             self._writeln(level + 1, 'CALN', reporef.get_call_number())
             if reporef.get_media_type():
-                self._writeln(level + 2, 'MEDI', str(reporef.get_media_type()))
+                self._writeln(level + 2, 'MEDI',
+                              reporef.get_media_type().xml_str())
 
     def _person_event_ref(self, key, event_ref):
         """
