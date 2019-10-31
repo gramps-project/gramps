@@ -1573,7 +1573,6 @@ class NavWebOptions(MenuReportOptions):
         self.__calendar_uri = None
         self.__create_thumbs_only = None
         self.__mapservice = None
-        self.__maxinitialimageheight = None
         self.__maxinitialimagewidth = None
         self.__citationreferents = None
         self.__incdownload = None
@@ -1903,13 +1902,6 @@ class NavWebOptions(MenuReportOptions):
             _("This allows you to set the maximum width "
               "of the image shown on the media page. Set to 0 for no limit."))
         addopt("maxinitialimagewidth", self.__maxinitialimagewidth)
-
-        self.__maxinitialimageheight = NumberOption(
-            _("Max height of initial image"), _DEFAULT_MAX_IMG_HEIGHT, 0, 2000)
-        self.__maxinitialimageheight.set_help(
-            _("This allows you to set the maximum height "
-              "of the image shown on the media page. Set to 0 for no limit."))
-        addopt("maxinitialimageheight", self.__maxinitialimageheight)
 
         self.__gallery_changed()
 
@@ -2252,23 +2244,19 @@ class NavWebOptions(MenuReportOptions):
         if _gallery_option:
             self.__create_thumbs_only.set_available(True)
             self.__maxinitialimagewidth.set_available(True)
-            self.__maxinitialimageheight.set_available(True)
 
             # thumbnail-sized images only...
             if _create_thumbs_only_option:
                 self.__maxinitialimagewidth.set_available(False)
-                self.__maxinitialimageheight.set_available(False)
 
             # full- sized images and Media Pages will be created...
             else:
                 self.__maxinitialimagewidth.set_available(True)
-                self.__maxinitialimageheight.set_available(True)
 
         # no images or media objects are to be used...
         else:
             self.__create_thumbs_only.set_available(False)
             self.__maxinitialimagewidth.set_available(False)
-            self.__maxinitialimageheight.set_available(False)
 
     def __download_changed(self):
         """
