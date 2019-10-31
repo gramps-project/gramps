@@ -402,6 +402,31 @@ class NavWebReport(Report):
 
         #################################################
         #
+        # Add images for home, contact and introduction pages
+        # if they are not associated to any used objects.
+        #
+        #################################################
+        if self.use_home:
+            img = self.options['homeimg']
+            if img:
+                media = self._db.get_media_from_gramps_id(img)
+                if media:
+                    self._add_media(media.handle, Media, media.handle)
+        if self.inc_contact:
+            img = self.options['contactimg']
+            if img:
+                media = self._db.get_media_from_gramps_id(img)
+                if media:
+                    self._add_media(media.handle, Media, media.handle)
+        if self.use_intro:
+            img = self.options['introimg']
+            if img:
+                media = self._db.get_media_from_gramps_id(img)
+                if media:
+                    self._add_media(media.handle, Media, media.handle)
+
+        #################################################
+        #
         # Pass 2 Generate the web pages
         #
         #################################################
