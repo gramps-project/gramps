@@ -1,7 +1,7 @@
 # Ukrainian translation for Gramps
 # This file is distributed under the same license as the Gramps package.
-# Copyright (c) 2018 Gramps
-# Fedir Zinchuk <fedikw@gmail.com>, 2011-2018.
+# Copyright (c) 2019 Gramps
+# Fedir Zinchuk <fedikw@gmail.com>, 2011-2019.
 # Oleh Petriv, 2013.
 #
 msgid ""
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-17 11:43+1100\n"
-"PO-Revision-Date: 2018-07-07 17:30+0300\n"
+"PO-Revision-Date: 2019-11-02 16:47+0200\n"
 "Last-Translator: Fedir Zinchuk <fedikw@gmail.com>\n"
 "Language-Team: Ukrainian <fedikw@gmail.com>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -10992,37 +10992,35 @@ msgstr "Чоловік"
 
 #: ../gramps/gen/utils/symbols.py:63
 msgid "Asexuality, sexless, genderless"
-msgstr ""
+msgstr "Асексуальність, без статi"
 
 #: ../gramps/gen/utils/symbols.py:64
 msgid "Lesbianism"
-msgstr ""
+msgstr "Лесбійство"
 
 #: ../gramps/gen/utils/symbols.py:65
 msgid "Male homosexuality"
-msgstr ""
+msgstr "Чоловіча гомосексуальність"
 
 #: ../gramps/gen/utils/symbols.py:66
 msgid "Heterosexuality"
-msgstr ""
+msgstr "Гетеросексуальність"
 
 #: ../gramps/gen/utils/symbols.py:67
 msgid "Transgender, hermaphrodite (in entomology)"
-msgstr ""
+msgstr "Трансгендер, гермафродит (в ентомології)"
 
 #: ../gramps/gen/utils/symbols.py:68
-#, fuzzy
 msgid "Transgender"
-msgstr "стать"
+msgstr "Трансгендер"
 
 #: ../gramps/gen/utils/symbols.py:69
 msgid "Neuter"
-msgstr ""
+msgstr "Нейтер"
 
 #: ../gramps/gen/utils/symbols.py:71
-#, fuzzy
 msgid "Illegitimate"
-msgstr "оцінка"
+msgstr "Незаконний"
 
 #: ../gramps/gen/utils/symbols.py:73
 #, fuzzy
@@ -11035,9 +11033,8 @@ msgid "Engaged"
 msgstr "Заручини"
 
 #: ../gramps/gen/utils/symbols.py:77
-#, fuzzy
 msgid "Unmarried partnership"
-msgstr "партнер"
+msgstr "Нешлюбне партнерство"
 
 #: ../gramps/gen/utils/symbols.py:78
 #, fuzzy
@@ -11046,7 +11043,7 @@ msgstr "Поховання"
 
 #: ../gramps/gen/utils/symbols.py:79
 msgid "Cremated/Funeral urn"
-msgstr ""
+msgstr "Кремовано / Похоронна урна"
 
 #: ../gramps/gen/utils/symbols.py:80
 #, fuzzy
@@ -11067,36 +11064,35 @@ msgstr "У межах"
 
 #: ../gramps/gen/utils/symbols.py:108
 msgid "Skull and crossbones"
-msgstr ""
+msgstr "Череп і  кістки"
 
 #: ../gramps/gen/utils/symbols.py:109
 msgid "Ankh"
-msgstr ""
+msgstr "Анкх"
 
 #: ../gramps/gen/utils/symbols.py:110
 msgid "Orthodox cross"
-msgstr ""
+msgstr "Православний хрест"
 
 #: ../gramps/gen/utils/symbols.py:111
 msgid "Chi rho"
-msgstr ""
+msgstr "Хризма"
 
 #: ../gramps/gen/utils/symbols.py:112
 msgid "Cross of Lorraine"
-msgstr ""
+msgstr "Лотаринзький хрест"
 
 #: ../gramps/gen/utils/symbols.py:113
 msgid "Cross of Jerusalem"
-msgstr ""
+msgstr "Єрусалимський хрест"
 
 #: ../gramps/gen/utils/symbols.py:114
-#, fuzzy
 msgid "Star and crescent"
-msgstr "Розпочати тест дат?"
+msgstr "Зірка і півмісяць"
 
 #: ../gramps/gen/utils/symbols.py:115
 msgid "West Syriac cross"
-msgstr ""
+msgstr "Сирійська хрест"
 
 #: ../gramps/gen/utils/symbols.py:116
 #, fuzzy
@@ -11105,7 +11101,7 @@ msgstr "Останній доступ"
 
 #: ../gramps/gen/utils/symbols.py:117
 msgid "Heavy Greek cross"
-msgstr ""
+msgstr "Грецький хрест"
 
 #: ../gramps/gen/utils/symbols.py:118
 #, fuzzy
@@ -11114,7 +11110,7 @@ msgstr "Латинська"
 
 #: ../gramps/gen/utils/symbols.py:119
 msgid "Shadowed White Latin cross"
-msgstr ""
+msgstr "Затінений білий латинський хрест"
 
 #: ../gramps/gen/utils/symbols.py:120
 #, fuzzy
@@ -11123,7 +11119,7 @@ msgstr "Мальтійська"
 
 #: ../gramps/gen/utils/symbols.py:121
 msgid "Star of David"
-msgstr ""
+msgstr "Зірка Давида"
 
 #: ../gramps/gen/utils/symbols.py:122
 #, fuzzy
@@ -11555,7 +11551,7 @@ msgstr "Обнулити до стандартних"
 
 #: ../gramps/gui/configure.py:695
 msgid "Restore colors for current theme to default."
-msgstr ""
+msgstr "Скинути кольори поточної теми до стандартних."
 
 #: ../gramps/gui/configure.py:701
 #, fuzzy
@@ -11564,7 +11560,7 @@ msgstr "Колір для дублікатів"
 
 #: ../gramps/gui/configure.py:702
 msgid "Colors for Female persons"
-msgstr ""
+msgstr "Колір осіб жіночої статі"
 
 #: ../gramps/gui/configure.py:703
 #, fuzzy
@@ -11659,29 +11655,25 @@ msgstr "Кольори"
 
 #: ../gramps/gui/configure.py:794
 msgid "Warnings and Error dialogs"
-msgstr ""
+msgstr "Діалог помилок та попереджень"
 
 #: ../gramps/gui/configure.py:800
-#, fuzzy
 msgid "Suppress warning when adding parents to a child"
-msgstr "Приховувати попередження при додаванні батьків до дитини."
+msgstr "Приховувати попередження при додаванні батьків до дитини"
 
 #: ../gramps/gui/configure.py:804
-#, fuzzy
 msgid "Suppress warning when canceling with changed data"
-msgstr "Приховувати попередження при відміні змінених даних."
+msgstr "Приховувати попередження при відміні змінених даних"
 
 #: ../gramps/gui/configure.py:808
-#, fuzzy
 msgid "Suppress warning about missing researcher when exporting to GEDCOM"
 msgstr ""
 "Приховувати попередження про відсутність інформації про дослідника, при "
-"експорті в GEDCOM."
+"експорті в GEDCOM"
 
 #: ../gramps/gui/configure.py:813
-#, fuzzy
 msgid "Show plugin status dialog on plugin load error"
-msgstr "Показувати статус додатків при помилках їх старту."
+msgstr "Показувати статус додатків при помилках завантаження"
 
 #: ../gramps/gui/configure.py:816
 msgid "Warnings"
@@ -11786,9 +11778,10 @@ msgid "Place format (auto place title)"
 msgstr "Місця, що збігаються з назвою"
 
 #: ../gramps/gui/configure.py:1243
-#, fuzzy
 msgid "Enables automatic place title generation using specifed format."
-msgstr "Увімкнути автоматичне генерування назви місця"
+msgstr ""
+"Увімкнути автоматичне генерування назви місця з використанням вказаного "
+"формату"
 
 #: ../gramps/gui/configure.py:1254
 msgid "Years"
@@ -11851,14 +11844,12 @@ msgid "Show close button in gramplet bar tabs"
 msgstr "Показувати кнопку \"закрити\" на панелі ґрамплет"
 
 #: ../gramps/gui/configure.py:1351
-#, fuzzy
 msgid "Show close button to simplify removing gramplets from bars."
-msgstr "Показувати кнопку \"закрити\" на панелі ґрамплет"
+msgstr "Показувати кнопку Закрити на панелі ґрамплет"
 
 #: ../gramps/gui/configure.py:1370
-#, fuzzy
 msgid "Default text used for conditions"
-msgstr "Стиль для детальної інформації."
+msgstr "Стандартний текст, який використовується для умов"
 
 #: ../gramps/gui/configure.py:1375
 msgid "Missing surname"
@@ -11896,7 +11887,7 @@ msgstr "Зміна формату даних вступить в дію лише
 
 #: ../gramps/gui/configure.py:1487
 msgid "Dates settings used for calculation operations"
-msgstr ""
+msgstr "Налаштування дат для розрахунків"
 
 #: ../gramps/gui/configure.py:1493
 msgid "Markup for invalid date format"
@@ -11967,7 +11958,7 @@ msgstr "Дати"
 
 #: ../gramps/gui/configure.py:1548
 msgid "General Gramps settings"
-msgstr ""
+msgstr "Загальні налаштування Gramps"
 
 #: ../gramps/gui/configure.py:1553
 msgid "Add default source on GEDCOM import"
@@ -12270,11 +12261,11 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1979
 msgid "Try to find"
-msgstr ""
+msgstr "Спробувати знайти"
 
 #: ../gramps/gui/configure.py:1990 ../gramps/gui/configure.py:2091
 msgid "Choose font"
-msgstr ""
+msgstr "Оберіть шрифт"
 
 #: ../gramps/gui/configure.py:2003 ../gramps/gui/configure.py:2108
 #, fuzzy
@@ -12312,7 +12303,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:2154
 msgid "What you will see"
-msgstr ""
+msgstr "Що ви побачите"
 
 #: ../gramps/gui/dbloader.py:120 ../gramps/gui/plug/tool.py:109
 msgid "Undo history warning"
@@ -19033,9 +19024,8 @@ msgid "Document Styles"
 msgstr "Стилі документа"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:108
-#, fuzzy
 msgid "manual|Document_Styles_dialog"
-msgstr "Стилі документа"
+msgstr ""
 
 #: ../gramps/gui/plug/report/_styleeditor.py:147
 msgid "New Style"
@@ -19214,9 +19204,8 @@ msgid "Select Repository"
 msgstr "Оберіть сховище"
 
 #: ../gramps/gui/selectors/selectrepository.py:75
-#, fuzzy
 msgid "manual|Select_Repository_selector"
-msgstr "Оберіть сховище"
+msgstr ""
 
 #: ../gramps/gui/selectors/selectsource.py:59
 msgid "Select Source"
@@ -19406,9 +19395,8 @@ msgid "Gramps had a problem the last time it was run."
 msgstr ""
 
 #: ../gramps/gui/viewmanager.py:1024
-#, fuzzy
 msgid "Would you like to run the Check and Repair tool?"
-msgstr "Будь ласка, запустіть інструмент Перевірка та Відновлення бази"
+msgstr "Бажаєте запустити інструмент Перевірка та Відновлення бази?"
 
 #: ../gramps/gui/viewmanager.py:1189
 msgid "Autobackup..."
@@ -19992,9 +19980,8 @@ msgid "Progress Information"
 msgstr "Інформація про просування"
 
 #: ../gramps/gui/widgets/reorderfam.py:63
-#, fuzzy
 msgid "manual|Reorder_Relationships_dialog"
-msgstr "Впорядкувати відносини"
+msgstr ""
 
 #: ../gramps/gui/widgets/reorderfam.py:91
 msgid "Reorder Relationships"
@@ -21678,7 +21665,7 @@ msgstr "(Живі: %(option_name)s)"
 #: ../gramps/plugins/drawreport/statisticschart.py:801
 #, python-format
 msgid "%s born"
-msgstr ""
+msgstr "%s народження"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:803
 #, fuzzy
@@ -23381,7 +23368,7 @@ msgstr "Оновити"
 
 #: ../gramps/plugins/gramplet/leak.py:122
 msgid "Press Refresh to see initial results"
-msgstr ""
+msgstr "Натисніть Оновити щоб побачити попередній результат"
 
 #: ../gramps/plugins/gramplet/leak.py:158
 #, python-format
@@ -23576,9 +23563,9 @@ msgid "Active person: %s"
 msgstr "Активна особа: %s"
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:88
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)d. %(relation)s: "
-msgstr "%(person)s, народження%(relation)s"
+msgstr "%(count)d. %(relation)s: "
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:94
 #, python-format
@@ -23781,9 +23768,8 @@ msgid "Add a new To Do note"
 msgstr "Додати нову примітку завдань"
 
 #: ../gramps/plugins/gramplet/todo.py:201
-#, fuzzy
 msgid "First select the object to which you want to attach a note"
-msgstr "Оберіть місце, для якого хочете переглянути інформацію."
+msgstr "Оберіть об'єкт, для якого хочете додати примітку"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:149
 msgid "Unattached"
@@ -24800,9 +24786,8 @@ msgid "Occupation description"
 msgstr "Опис версії"
 
 #: ../gramps/plugins/importer/importcsv.py:210
-#, fuzzy
 msgid "occupationdescr"
-msgstr "Професія"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:211
 #, fuzzy
@@ -24810,9 +24795,8 @@ msgid "Occupation date"
 msgstr "Професія"
 
 #: ../gramps/plugins/importer/importcsv.py:211
-#, fuzzy
 msgid "occupationdate"
-msgstr "Професія"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:212
 #, fuzzy
@@ -24820,9 +24804,8 @@ msgid "Occupation place"
 msgstr "Професія"
 
 #: ../gramps/plugins/importer/importcsv.py:212
-#, fuzzy
 msgid "occupationplace"
-msgstr "Професія"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:213
 #, fuzzy
@@ -24830,9 +24813,8 @@ msgid "Occupation place id"
 msgstr "Професія"
 
 #: ../gramps/plugins/importer/importcsv.py:213
-#, fuzzy
 msgid "occupationplace_id"
-msgstr "Професія"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:214
 #, fuzzy
@@ -24840,29 +24822,24 @@ msgid "Occupation source"
 msgstr "Професія"
 
 #: ../gramps/plugins/importer/importcsv.py:214
-#, fuzzy
 msgid "occupationsource"
-msgstr "Професія"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:216
-#, fuzzy
 msgid "residence date"
-msgstr "Проживання"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:216
-#, fuzzy
 msgid "residencedate"
-msgstr "Проживання"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:217
-#, fuzzy
 msgid "residence place"
-msgstr "Проживання"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:217
-#, fuzzy
 msgid "residenceplace"
-msgstr "Проживання"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:218
 #, fuzzy
@@ -24870,49 +24847,40 @@ msgid "residence place id"
 msgstr "місце смерті ID"
 
 #: ../gramps/plugins/importer/importcsv.py:218
-#, fuzzy
 msgid "residenceplace_id"
-msgstr "Проживання"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:219
-#, fuzzy
 msgid "residence source"
-msgstr "Джерела з посиланнями"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:219
-#, fuzzy
 msgid "residencesource"
-msgstr "Проживання"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:221
-#, fuzzy
 msgid "attribute type"
-msgstr "Примітка до атрибуту"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:221
-#, fuzzy
 msgid "attributetype"
-msgstr "Примітка до атрибуту"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:222
-#, fuzzy
 msgid "attribute value"
-msgstr "Ґрамплет Атрибути"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:222
-#, fuzzy
 msgid "attributevalue"
-msgstr "Атрибут"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:223
-#, fuzzy
 msgid "attribute source"
-msgstr "Примітка до атрибуту"
+msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:223
-#, fuzzy
 msgid "attributesource"
-msgstr "Атрибути"
+msgstr ""
 
 #. ----------------------------------
 #: ../gramps/plugins/importer/importcsv.py:226
@@ -25282,7 +25250,6 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:190
 #: ../gramps/plugins/importer/importprogen.glade:207
-#, fuzzy
 msgid "Citation reference."
 msgstr "Посилання на цитату"
 
@@ -25316,9 +25283,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:443
-#, fuzzy
 msgid "Import Filename."
-msgstr "Імпорт сімейного дерева"
+msgstr "Імпорт файлу"
 
 #: ../gramps/plugins/importer/importprogen.glade:492
 msgid "Default (System-)Date."
@@ -25353,9 +25319,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
-#, fuzzy
 msgid "  Objects"
-msgstr "Об'єкт"
+msgstr "Об'єкти"
 
 #: ../gramps/plugins/importer/importprogen.glade:1168
 msgid ""
@@ -25419,18 +25384,20 @@ msgid "Event date"
 msgstr "Дата події"
 
 #: ../gramps/plugins/importer/importprogen.glade:1476
-#, fuzzy
 msgid ""
 "Store birth date in\n"
 "event description."
-msgstr "Витягнення Опису Події"
+msgstr ""
+"Зберігати дату народження в\n"
+"опис події"
 
 #: ../gramps/plugins/importer/importprogen.glade:1495
-#, fuzzy
 msgid ""
 "Store death date in\n"
 "event description."
-msgstr "Витягнення Опису Події"
+msgstr ""
+"Зберігати дату смерті в\n"
+"опис події"
 
 #: ../gramps/plugins/importer/importprogen.glade:1515
 msgid "Diverse"
@@ -25454,9 +25421,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1598
-#, fuzzy
 msgid "(-cause)"
-msgstr "Причина"
+msgstr "(-причина)"
 
 #: ../gramps/plugins/importer/importprogen.glade:1610
 #, fuzzy
@@ -30192,9 +30158,8 @@ msgid "Provides the Base needed for the List People views."
 msgstr "Надає базовий функціонал, що потрібен для показу списку осіб."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:247
-#, fuzzy
 msgid "Provides common functionality for Pro-Gen import"
-msgstr "Надає загальні функції для імпорту/експорту Gramps XML."
+msgstr "Надає загальні функції для імпорту Pro-Gen"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:265
 msgid "Provides the Base needed for the List Place views."
@@ -30269,14 +30234,12 @@ msgid "Importing persons."
 msgstr "Сортування особистих подій..."
 
 #: ../gramps/plugins/lib/libprogen.py:1412
-#, fuzzy
 msgid "see address on "
-msgstr "_Веб адреси:"
+msgstr "дивитись адресу на "
 
 #: ../gramps/plugins/lib/libprogen.py:1415
-#, fuzzy
 msgid "see also address"
-msgstr "_Веб адреси:"
+msgstr "також дивитись адресу"
 
 #: ../gramps/plugins/lib/libprogen.py:1515
 msgid "Death cause"
@@ -30284,9 +30247,8 @@ msgstr "Причина смерті"
 
 #. start feedback about import progress (GUI/TXT)
 #: ../gramps/plugins/lib/libprogen.py:1584
-#, fuzzy
 msgid "Importing families."
-msgstr "Імпортую сім'ї"
+msgstr "Імпортую сім'ї."
 
 #: ../gramps/plugins/lib/libprogen.py:1689
 #, fuzzy
@@ -30294,9 +30256,8 @@ msgid "Civil union"
 msgstr "Цивільний союз"
 
 #: ../gramps/plugins/lib/libprogen.py:1794
-#, fuzzy
 msgid "Wedding"
-msgstr "Відступ:"
+msgstr "Весілля"
 
 #: ../gramps/plugins/lib/libprogen.py:1829
 msgid "future"
@@ -30307,9 +30268,8 @@ msgstr ""
 #. F14: Mother
 #. start feedback about import progress (GUI/TXT)
 #: ../gramps/plugins/lib/libprogen.py:1901
-#, fuzzy
 msgid "Adding children."
-msgstr "Додаю дітей"
+msgstr "Додаю дітей."
 
 #: ../gramps/plugins/lib/libprogen.py:1927
 #, fuzzy
@@ -31625,7 +31585,7 @@ msgstr "Звіт Днів народженнь"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:68
 msgid "✝"
-msgstr ""
+msgstr "✝"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/birthdayreport.py:221
@@ -31729,9 +31689,8 @@ msgid "This will show after name to indicate that person is dead"
 msgstr "Мітка, яка означає, що дослідження особи закінчено"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:519
-#, fuzzy
 msgid "Show event year"
-msgstr "Новий тип події:"
+msgstr "Показати рік події"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:520
 #, fuzzy
@@ -31837,7 +31796,7 @@ msgstr "Звичайна нумерація"
 #: ../gramps/plugins/textreport/descendreport.py:529
 #: ../gramps/plugins/textreport/detdescendantreport.py:1015
 msgid "d'Aboville numbering"
-msgstr "Нумерація d'Aboville"
+msgstr "нумерація d'Aboville"
 
 #: ../gramps/plugins/textreport/descendreport.py:530
 #: ../gramps/plugins/textreport/detdescendantreport.py:1013
@@ -31851,7 +31810,7 @@ msgstr "Модифікована нумерація Henry"
 
 #: ../gramps/plugins/textreport/descendreport.py:532
 msgid "de Villiers/Pama numbering"
-msgstr "Нумерація Вільє/Пама"
+msgstr "нумерація Вільє/Пама"
 
 #: ../gramps/plugins/textreport/descendreport.py:533
 msgid "Meurgey de Tupigny numbering"
@@ -34180,7 +34139,7 @@ msgstr "_Мітка"
 
 #: ../gramps/plugins/tool/notrelated.py:60
 msgid "manual|Not_Related"
-msgstr "Не пов'язано"
+msgstr ""
 
 #: ../gramps/plugins/tool/notrelated.py:80
 #, python-format
@@ -34469,15 +34428,13 @@ msgstr "ім'я невідоме"
 
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:143
-#, fuzzy
 msgid "alternate name"
-msgstr "Альтернативні імена"
+msgstr "альтернативне ім'я"
 
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:147
-#, fuzzy
 msgid "group as"
-msgstr "Групувати як"
+msgstr "групувати як"
 
 #: ../gramps/plugins/tool/removeunused.glade:92
 msgid "Search for events"
@@ -35666,7 +35623,7 @@ msgstr "Виберіть особу для відліку способів жи�
 
 #: ../gramps/plugins/view/geoclose.py:111
 msgid "reference _Person"
-msgstr "Посилання _Особи"
+msgstr "посилання _Особи"
 
 #: ../gramps/plugins/view/geoclose.py:167
 #: ../gramps/plugins/view/geoevents.py:129
@@ -36309,9 +36266,8 @@ msgid "Expand this Entire Group"
 msgstr "Розгорнути цілу цю групу"
 
 #: ../gramps/plugins/view/relview.py:372
-#, fuzzy
 msgid "Organize Bookmarks..."
-msgstr "Впорядкувати закладки"
+msgstr "Впорядкувати закладки..."
 
 #: ../gramps/plugins/view/relview.py:393
 msgid "Add Existing Parents..."
@@ -36347,9 +36303,9 @@ msgstr "Редагувати активну особу"
 
 #: ../gramps/plugins/view/relview.py:746 ../gramps/plugins/view/relview.py:772
 #: ../gramps/plugins/view/relview.py:789 ../gramps/plugins/view/relview.py:796
-#, fuzzy, python-format
+#, python-format
 msgid "%s"
-msgstr "%s:"
+msgstr "%s"
 
 #: ../gramps/plugins/view/relview.py:784
 msgid "Alive"
@@ -36404,7 +36360,7 @@ msgstr " (1 брат/сестра)"
 #: ../gramps/plugins/view/relview.py:1057
 #: ../gramps/plugins/view/relview.py:1112
 msgid " (only child)"
-msgstr "(єдина дитина)"
+msgstr " (єдина дитина)"
 
 #: ../gramps/plugins/view/relview.py:1125
 #: ../gramps/plugins/view/relview.py:1626
@@ -36461,9 +36417,9 @@ msgstr "Будь ласка, запустіть інструмент Перев�
 #, python-brace-format
 msgid " ({number_of} child)"
 msgid_plural " ({number_of} children)"
-msgstr[0] "({number_of} дитина)"
-msgstr[1] "({number_of} дітей)"
-msgstr[2] "({number_of} дітей)"
+msgstr[0] " ({number_of} дитина)"
+msgstr[1] " ({number_of} дітей)"
+msgstr[2] " ({number_of} дітей)"
 
 #: ../gramps/plugins/view/relview.py:1567
 #: ../gramps/plugins/view/relview.py:1613
@@ -36705,7 +36661,7 @@ msgstr "Остання зміна була %(date)s"
 #: ../gramps/plugins/webreport/basepage.py:1319
 #, python-format
 msgid " on %(date)s"
-msgstr "на %(date)s"
+msgstr " на %(date)s"
 
 #: ../gramps/plugins/webreport/basepage.py:1340
 #: ../gramps/plugins/webreport/basepage.py:1345
@@ -36798,9 +36754,8 @@ msgid "circa"
 msgstr ""
 
 #: ../gramps/plugins/webreport/basepage.py:2945
-#, fuzzy
 msgid "around"
-msgstr "Тло"
+msgstr "навколо"
 
 #: ../gramps/plugins/webreport/download.py:101
 msgid ""
@@ -37044,9 +36999,8 @@ msgid "Select filter to restrict people that appear on web site"
 msgstr "Оберіть фільтр для відбору осіб для сайту"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1654
-#, fuzzy
 msgid "Show the relationship between the current person and the active person"
-msgstr "Показує всі відносини між поточною та базовою особою."
+msgstr "Показує відносини між поточною та активною особою"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1657
 #, fuzzy
@@ -38135,12 +38089,11 @@ msgstr "%s старий"
 #: ../gramps/plugins/webreport/webcal.py:2103
 #, python-format
 msgid "%s since death"
-msgstr ""
+msgstr "%s з дати смерті"
 
 #: ../gramps/plugins/webreport/webcal.py:2104
-#, fuzzy
 msgid "death"
-msgstr "Смерть"
+msgstr "смерть"
 
 #: ../gramps/plugins/webreport/webcal.py:2111
 #, python-format
