@@ -78,9 +78,20 @@ class PersonBox(BoxBase):
         self.boxstr = "AC2-box"
         #self.level = (level[0]-1, level[1])
         self.level = level
+        self.idx = 0
 
     def __lt__(self, other):
         return self.level[LVL_Y] < other.level[LVL_Y]
+
+    def display(self):
+        BoxBase.display(self)
+        if (self.idx > 0):
+            doc = self.page.canvas.doc
+            style_sheet = doc.get_style_sheet()
+            yoff = PT2CM(style_sheet.get_paragraph_style("AC2-Normal").get_font().get_size())
+            xbegin = self.x_cm - self.page.page_x_offset
+            ybegin = self.y_cm - self.page.page_y_offset - yoff
+            doc.draw_text(self.boxstr, "%d" % self.idx, xbegin, ybegin)
 
 
 class FamilyBox(BoxBase):
@@ -217,6 +228,10 @@ class MakeAncestorTree(AscendPerson):
         self.compress_tree = _gui.compress_tree()
         self.center_family = None
         self.lines = [None] * (_gui.maxgen() + 1)
+        if _gui.get_val("show_idx"):
+            self.start_idx = _gui.get_val("start_idx")
+        else:
+            self.start_idx = -1
 
         self.max_generation = 0
 
@@ -238,6 +253,10 @@ class MakeAncestorTree(AscendPerson):
                                                   indi_handle, fams_handle)
         # myself.text[0] = myself.text[0] + ' ' + repr(index) # for debugging
 
+        if self.start_idx >= 0:
+            genIdx  = self.start_idx * (2**(index[LVL_GEN]-1))
+            genOff = index[LVL_INDX] - (2**(index[LVL_GEN]-1))
+            myself.idx = genIdx + genOff
         if indi_handle is not None:  # None is legal for an empty box
             myself.add_mark(self.database,
                             self.database.get_person_from_handle(indi_handle))
@@ -829,6 +848,16 @@ class AncestorTreeOptions(MenuReportOptions):
               "aside for people that are unknown"))
         menu.add_option(category_name, "compress_tree", compress)
 
+        self.show_idx = BooleanOption(_('Show Index'), False)
+        self.show_idx.set_help(
+            _("Display index of each person"))
+        menu.add_option(category_name, "show_idx", self.show_idx)
+        self.show_idx.connect('value-changed', self._showidx_changed)
+
+        self.start_idx = NumberOption(_("Start Index"), 1, 1, 50)
+        self.start_idx.set_help(_("The start index"))
+        menu.add_option(category_name, "start_idx", self.start_idx)
+
         #better to 'Show siblings of\nthe center person
         #Spouse_disp = EnumeratedListOption(_("Show spouses of\nthe center "
         #                                     "person"), 0)
@@ -1016,6 +1045,13 @@ class AncestorTreeOptions(MenuReportOptions):
         """
         value = self.usenote.get_value()
         self.notelocal.set_available(value)
+
+    def _showidx_changed(self):
+        """
+        If Show Index box is enabled, enable Start Index field
+        """
+        value = self.show_idx.get_value()
+        self.start_idx.set_available(value)
 
     def __check_blank(self):
         if self.__onepage:
