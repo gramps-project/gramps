@@ -130,6 +130,8 @@ class BasePage: # pylint: disable=C1001
         self.create_media = report.options['gallery']
         self.create_unused_media = report.options['unused']
         self.create_thumbs_only = report.options['create_thumbs_only']
+        self.create_images_index = report.options['create_images_index']
+        self.create_thumbs_index = report.options['create_thumbs_index']
         self.inc_families = report.options['inc_families']
         self.inc_events = report.options['inc_events']
         self.usecms = report.options['usecms']
@@ -1548,8 +1550,8 @@ class BasePage: # pylint: disable=C1001
             ('places', self._("Places"), self.report.inc_places),
             ('sources', self._("Sources"), self.report.inc_sources),
             ('repositories', self._("Repositories"), inc_repos),
-            ('media', self._("Media"), _create_media_link),
-            ('thumbnails', self._("Thumbnails"), self.create_media),
+            ('media', self._("Media"), self.create_images_index),
+            ('thumbnails', self._("Thumbnails"), self.create_thumbs_index),
             ('download', self._("Download"), self.report.inc_download),
             ("addressbook", self._("Address Book"),
              self.report.inc_addressbook),
@@ -2013,10 +2015,12 @@ class BasePage: # pylint: disable=C1001
 
                             # Begin hyperlink. Description is given only for
                             # the purpose of the alt tag in img element
-                            snapshot += self.media_link(photo_handle, newpath,
-                                                        descr,
-                                                        uplink=self.uplink,
-                                                        usedescr=False)
+                            if self.create_images_index:
+                                snapshot += self.media_link(photo_handle,
+                                                            newpath,
+                                                            descr,
+                                                            uplink=self.uplink,
+                                                            usedescr=False)
 
                         except (IOError, OSError) as msg:
                             self.r_user.warn(_("Could not add photo to page"),

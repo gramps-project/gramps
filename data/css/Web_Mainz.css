@@ -651,7 +651,6 @@ div#families .infolist h4 {
 }
 #gallery div.indexno {
     float: right;
-    width: 1.8em;
     font-size: large;
     text-align: center;
     background-color: #CCC;

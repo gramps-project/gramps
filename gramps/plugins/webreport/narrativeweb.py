@@ -163,6 +163,8 @@ class NavWebReport(Report):
         self.inc_gallery = self.options['gallery']
         self.inc_unused_gallery = self.options['unused']
         self.create_thumbs_only = self.options['create_thumbs_only']
+        self.create_thumbs_index = self.options['create_thumbs_index']
+        self.create_images_index = self.options['create_images_index']
 
         self.opts = self.options
         self.inc_contact = self.opts['contactnote'] or self.opts['contactimg']
@@ -1904,6 +1906,14 @@ class NavWebOptions(MenuReportOptions):
         addopt("gallery", self.__gallery)
         self.__gallery.connect('value-changed', self.__gallery_changed)
 
+        self.__create_images_index = BooleanOption(
+            _("Create the images index"), False)
+        self.__create_images_index.set_help(
+            _("This option allows you to create the images index"))
+        addopt("create_images_index", self.__create_images_index)
+        self.__create_images_index.connect("value-changed",
+                                          self.__gallery_changed)
+
         self.__unused = BooleanOption(
             _("Include unused images and media objects"), True)
         self.__unused.set_help(_('Whether to include unused or unreferenced'
@@ -1919,6 +1929,14 @@ class NavWebOptions(MenuReportOptions):
               "smaller total upload size to your web hosting site."))
         addopt("create_thumbs_only", self.__create_thumbs_only)
         self.__create_thumbs_only.connect("value-changed",
+                                          self.__gallery_changed)
+
+        self.__create_thumbs_index = BooleanOption(
+            _("Create the thumbnail index"), False)
+        self.__create_thumbs_index.set_help(
+            _("This option allows you to create the thumbnail index"))
+        addopt("create_thumbs_index", self.__create_thumbs_index)
+        self.__create_thumbs_index.connect("value-changed",
                                           self.__gallery_changed)
 
         self.__maxinitialimagewidth = NumberOption(
@@ -2269,6 +2287,9 @@ class NavWebOptions(MenuReportOptions):
         if _gallery_option:
             self.__create_thumbs_only.set_available(True)
             self.__maxinitialimagewidth.set_available(True)
+            self.__create_images_index.set_available(True)
+            self.__create_thumbs_index.set_available(True)
+            self.__unused.set_available(True)
 
             # thumbnail-sized images only...
             if _create_thumbs_only_option:
@@ -2282,6 +2303,9 @@ class NavWebOptions(MenuReportOptions):
         else:
             self.__create_thumbs_only.set_available(False)
             self.__maxinitialimagewidth.set_available(False)
+            self.__create_images_index.set_available(False)
+            self.__create_thumbs_index.set_available(False)
+            self.__unused.set_available(False)
 
     def __download_changed(self):
         """

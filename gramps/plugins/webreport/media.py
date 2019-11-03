@@ -97,6 +97,7 @@ class MediaPages(BasePage):
         self.media_dict = defaultdict(set)
         self.unused_media_handles = []
         self.cur_fname = None
+        self.create_images_index = self.report.options['create_images_index']
 
     def display_pages(self, title):
         """
@@ -190,7 +191,8 @@ class MediaPages(BasePage):
         """
         BasePage.__init__(self, report, title)
 
-        output_file, sio = self.report.create_file("media")
+        if self.create_images_index:
+            output_file, sio = self.report.create_file("media")
         # save the media file name in case we create unused media pages
         self.cur_fname = self.report.cur_fname
         result = self.write_header(self._('Media'))
@@ -314,7 +316,8 @@ class MediaPages(BasePage):
         # send page out for processing
         # and close the file
         self.report.cur_fname = self.cur_fname
-        self.xhtml_writer(medialistpage, output_file, sio, ldatec)
+        if self.create_images_index:
+            self.xhtml_writer(medialistpage, output_file, sio, ldatec)
 
     def media_ref_link(self, handle, name, uplink=False):
         """

@@ -647,7 +647,6 @@ div#families table.fixed_subtables .Child table.eventlist .ColumnDate {
 }
 #gallery div.indexno {
     float: right;
-    width: 1.8em;
     font-size: large;
     text-align: center;
     background-color: #CCC;
