@@ -68,3 +68,26 @@ plg.category = CATEGORY_WEB
 plg.reportclass = 'WebCalReport'
 plg.optionclass = 'WebCalOptions'
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
+
+#------------------------------------------------------------------------
+#
+# Web Relations Tree
+#
+#------------------------------------------------------------------------
+
+PLG = newplugin()
+PLG.id = 'WebRelationsTree'
+PLG.name = _("Web Relations Tree")
+PLG.description = _("Produces web (HTML) interactive relations tree.")
+PLG.version = '0.1'
+PLG.gramps_target_version = MODULE_VERSION
+PLG.status = STABLE
+PLG.fname = 'webreltree.py'
+PLG.ptype = REPORT
+PLG.authors = ["Aleksey Morarash"]
+PLG.authors_email = ["tuxofil@gmail.com"]
+PLG.category = CATEGORY_WEB
+PLG.reportclass = 'WebRelTreeReport'
+PLG.optionclass = 'WebRelTreeOptions'
+PLG.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI]
+PLG.require_active = True
