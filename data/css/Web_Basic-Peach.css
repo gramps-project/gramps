@@ -96,6 +96,16 @@ body > div {
     .content {
         padding: 0em 0.5em;
     }
+    body#fullyearlinked table.calendar {
+        float: none;
+        width: 100%;
+    }
+}
+@media only screen and (width > 1080px) {
+    body#fullyearlinked table.calendar {
+        float: left;
+        width: 33.3%;
+    }
 }
 
 /* General Text
@@ -253,11 +263,6 @@ div#nav::after {
 
     .nav {
         background: none; /* Works in IE too. */
-/*
-        width: 200px;
-        position: absolute;
-        z-index: 10;
-*/
     }
 
     /* Undo some of the #nav styles  - to enable the class .nav */
@@ -294,7 +299,6 @@ div#nav::after {
         margin-right: 10px;
     }
     .nav.responsive li {
-        /* float: left; */
         display: block;
         text-align: left;
         background-color: #FFC35E;
@@ -812,15 +816,6 @@ table.calendar {
 .calendar thead th abbr {
     border-bottom-style: none;
 }
-#CreatorInfo {
-    float: right;
-    margin: -1em 15px 0px 0px;
-    font-weight: bold;
-    color: #8C581C;
-}
-#CreatorInfo a[href]:hover {
-    background-color: #FFC35E;
-}
 .calendar tfoot tr td {
     border-top: solid 4px #8C581C;
     vertical-align: middle;
@@ -898,8 +893,6 @@ body#fullyearlinked div.content {
     overflow: hidden;
 }
 body#fullyearlinked table.calendar {
-    float: left;
-    width: 33.3%;
     height: 18em;
     border: solid 1px #36220B;
 }

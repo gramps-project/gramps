@@ -71,6 +71,7 @@ import gramps.plugins.lib.libholiday as libholiday
 from gramps.plugins.lib.libhtml import Html, xml_lang
 from gramps.plugins.lib.libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 from gramps.gui.pluginmanager import GuiPluginManager
+from gramps.plugins.webreport.common import html_escape
 
 from gramps.gen.lib.date import gregorian
 
@@ -445,6 +446,30 @@ class WebCalReport(Report):
                                      self.encoding,
                                      xmllang)
 
+        # Add the script to control the menu
+        menuscript = Html("<script>function navFunction() { "
+                          "var x = document.getElementById(\"dropmenu\"); "
+                          "if (x.className === \"nav\") { x.className += \""
+                          " responsive\"; } else { x.className = \"nav\"; }"
+                          " }</script>")
+        if self.multiyear:
+            head += menuscript
+
+        # begin header section
+        if self.multiyear:
+            headerdiv = Html("div", id='header') + (
+                Html("<a href=\"javascript:void(0);\" class=\"navIcon\""
+                     " onclick=\"navFunction()\">&#8801;</a>")) + (
+                         Html("h1", html_escape(title),
+                              id="SiteTitle", inline=True)
+                             )
+        else:
+            headerdiv = Html("div", id='header') + (
+                             Html("h1", html_escape(title),
+                                  id="SiteTitle", inline=True)
+                             )
+        body += headerdiv
+
         # add body id tag if not None
         if body_id is not None:
             body.attr = "id = '%(idtag)s'" % {'idtag' : body_id}
@@ -494,27 +519,6 @@ return false;
 </script>
 """ % self.ext
         body += script
-        with Html("div", id="header", role="Title-n-Navigation") as header:
-            header += Html("h1", title, id="SiteTitle", inline=True)
-
-            # Created for ?
-            msg = None
-            if self.author and self.email:
-                bemail = '<a href="mailto:' + self.email + '?subject='
-                eemail = '">' + self.author + '</a>'
-                msg = self._('the "WebCal" will be the potential-email Subject|'
-                             'Created by %(html_email_author_start)s'
-                             'WebCal%(html_email_author_end)s') % {
-                                 'html_email_author_start' : bemail,
-                                 'html_email_author_end' : eemail}
-            elif self.author:
-                msg = self._('Created by %(author)s') % {
-                    'author' : self.author}
-
-            if msg:
-                header += Html("p", msg, id="CreatorInfo")
-
-            body += header
         return page, body
 
     def year_navigation(self, nr_up, currentsection):
@@ -532,52 +536,56 @@ return false;
         self.end_year = (self.start_year + 17) if nyears > 18 else self.end_year
 
         # begin year division and begin unordered list
-        with Html("div", id="subnavigation",
-                  role="subnavigation") as submenu:
-            unordered = Html("ul")
+        with Html("div", class_="wrappernav",
+                  id="nav", role="navigation") as navigation:
+            with Html("div", class_="container") as container:
 
-            (url, nav_text, disp) = self.head[0]
-            if disp:
-                if url[:1] == '/':
-                    url = url + "index" + self.ext
-                else:
-                    url_up = ['..'] * nr_up
-                    url_up.append(url)
-                    url = '/'.join(url_up) + "index" + self.ext
-                hyper = Html("a", nav_text, href=url, name=url, title=nav_text)
-                unordered.extend(Html("li", hyper, inline=True))
+                unordered = Html("ul", class_="nav", id="dropmenu")
 
-            for cal_year in range(self.start_year,
-                                  (self.start_year + num_years)):
-                url = ''
+                (url, nav_text, disp) = self.head[0]
+                if disp:
+                    if url[:1] == '/':
+                        url = url + "index" + self.ext
+                    else:
+                        url_up = ['..'] * nr_up
+                        url_up.append(url)
+                        url = '/'.join(url_up) + "index" + self.ext
+                    hyper = Html("a", nav_text, href=url, name=url,
+                                 title=nav_text)
+                    unordered.extend(Html("li", hyper, inline=True))
 
-                # begin subdir level
-                subdirs = ['..'] * nr_up
-                subdirs.append(str(cal_year))
+                for cal_year in range(self.start_year,
+                                      (self.start_year + num_years)):
+                    url = ''
 
-                # Note. We use '/' here because it is a URL, not a OS dependent
-                # pathname.
-                url = '/'.join(subdirs)
-                onclic = "return currentmonth('" + url + "');"
-                hyper = Html("a", self.rlocale.get_date(Date(cal_year)),
-                             href="#", onclick=onclic, title=str(cal_year))
+                    # begin subdir level
+                    subdirs = ['..'] * nr_up
+                    subdirs.append(str(cal_year))
 
-                # Figure out if we need <li class="CurrentSection">
-                # or just plain <li>
-                if str(cal_year) == currentsection:
-                    check_cs = 'class = "CurrentSection"'
-                else:
-                    check_cs = False
-                if check_cs:
-                    unordered.extend(
-                        Html("li", hyper, attr=check_cs, inline=True)
-                    )
-                else:
-                    unordered.extend(
-                        Html("li", hyper, inline=True)
-                    )
-            submenu += unordered
-        return submenu
+                    # Note. We use '/' here because it is a URL,
+                    # not a OS dependent pathname.
+                    url = '/'.join(subdirs)
+                    onclic = "return currentmonth('" + url + "');"
+                    hyper = Html("a", self.rlocale.get_date(Date(cal_year)),
+                                 href="#", onclick=onclic, title=str(cal_year))
+
+                    # Figure out if we need <li class="CurrentSection">
+                    # or just plain <li>
+                    if str(cal_year) == currentsection:
+                        check_cs = 'class = "CurrentSection"'
+                    else:
+                        check_cs = False
+                    if check_cs:
+                        unordered.extend(
+                            Html("li", hyper, attr=check_cs, inline=True)
+                        )
+                    else:
+                        unordered.extend(
+                            Html("li", hyper, inline=True)
+                        )
+                container += unordered
+            navigation += container
+        return navigation
 
     def month_navigation(self, nr_up, year, currentsection):
         """
@@ -1522,6 +1530,19 @@ return false;
         # begin calendar footer
         with Html("div", id="footer", role="Footer-End") as footer:
 
+            amsg = None
+            if self.author and self.email:
+                bemail = '<a href="mailto:' + self.email + '?subject='
+                eemail = '">' + self.author + '</a>'
+                amsg = self._('the "WebCal" will be the potential-email Subject|'
+                             '%(html_email_author_start)s'
+                             'WebCal%(html_email_author_end)s') % {
+                                 'html_email_author_start' : bemail,
+                                 'html_email_author_end' : eemail}
+            elif self.author:
+                amsg = '%(author)s' % {
+                    'author' : self.author}
+
             # Display date as user set in preferences
             date = self.rlocale.date_displayer.display(Today())
             bhtml = '<a href="' + URL_HOMEPAGE + '">'
@@ -1530,21 +1551,20 @@ return false;
                              'gramps_home_html_start' : bhtml,
                              'html_end' : '</a>',
                              'date' : date}
-            footer += Html("p", msg, id='createdate')
-
             copy_nr = self.copy
-            text = ''
             if copy_nr == 0:
                 if self.author:
-                    text = "&copy; %s %s" % (self.today.get_year(), self.author)
-            elif 0 < copy_nr < len(_CC):
+                    amsg = "&copy; %s" % amsg
+            msg += " (%s)" % amsg
+            footer += Html("p", msg, id='createdate')
+
+            text = ''
+            if 0 < copy_nr < len(_CC):
                 subdirs = ['..'] * nr_up
                 # Note. We use '/' here because it is a URL,
                 # not a OS dependent pathname
                 fname = '/'.join(subdirs + ['images'] + ['somerights20.gif'])
                 text = _CC[copy_nr] % {'gif_fname' : fname}
-            else:
-                text = "&copy; %s %s" % (self.today.get_year(), self.author)
 
             footer += Html("p", text, id='copyright')
 

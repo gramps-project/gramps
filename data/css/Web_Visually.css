@@ -1489,17 +1489,6 @@ body#WebCal {
     vertical-align: top;
     height: 2em;
 }
-#CreatorInfo {
-    float:right;
-    color: #FFF;
-    margin:-24px 10px 0 0;
-}
-#CreatorInfo a {
-    color: #FFF;
-}
-#CreatorInfo a:hover {
-    color: #FFF;
-}
 .calendar thead tr th.weekend, 
 .calendar thead tr th.weekday {
     font-style:italic;

@@ -719,10 +719,6 @@ body#WebCal h1#SiteTitle {
     padding:5pt;
     border-width:0;
 }
-#CreatorInfo {
-    float:right;
-    margin:0 10px 0 0;
-}
 body#WebCal a {
     text-decoration:none;
     color:#000;

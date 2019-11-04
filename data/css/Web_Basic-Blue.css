@@ -119,6 +119,16 @@ img {
     .content {
         padding: 0em 0.5em;
     }
+    body#fullyearlinked table.calendar {
+        float: none;
+        width: 100%;
+    }
+}
+@media only screen and (width > 1080px) {
+    body#fullyearlinked table.calendar {
+        float: left;
+        width: 33.3%;
+    }
 }
 
 /* General Text
@@ -401,11 +411,6 @@ div#nav::after {
 
     .nav {
         background: none; /* Works in IE too. */
-/*
-        width: 200px;
-        position: absolute;
-        z-index: 10;
-*/
     }
 
     /* Undo some of the #nav styles  - to enable the class .nav */
@@ -436,13 +441,11 @@ div#nav::after {
 
     .nav.responsive {position: absolute; display: block; z-index: 100;}
     .nav.responsive a.icon {
-        /* position: absolute; */
         right: 0;
         top: 0;
         margin-right: 10px;
     }
     .nav.responsive li {
-        /* float: left; */
         display: block;
         text-align: left;
         background-color: #13A926;
@@ -1566,17 +1569,6 @@ div#pedigree {
     vertical-align: top;
     height: 2em;
 }
-#CreatorInfo {
-    float:right;
-    color: #FFF;
-    margin:-24px 10px 0 0;
-}
-#CreatorInfo a {
-    color: #FFF;
-}
-#CreatorInfo a:hover {
-    color: #FFF;
-}
 .calendar thead tr th.weekend, 
 .calendar thead tr th.weekday {
     font-style:italic;
@@ -1681,8 +1673,6 @@ body#fullyearlinked div.content {
     padding:15px 0 2px 2px;
 }
 body#fullyearlinked table.calendar {
-    float:left;
-    width:33.3%;
     height:18em;
     border:solid 1px #000;
 }

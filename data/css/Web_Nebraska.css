@@ -118,6 +118,16 @@ img {
     .content {
         padding: 0em 0.5em;
     }
+    body#fullyearlinked table.calendar {
+        float: none;
+        width: 100%;
+    }
+}
+@media only screen and (width > 1080px) {
+    body#fullyearlinked table.calendar {
+        float: left;
+        width: 33.3%;
+    }
 }
 .fullclear {
     width:100%;
@@ -301,11 +311,6 @@ div#nav::after {
 
     .nav {
         background: none; /* Works in IE too. */
-/*
-        width: 200px;
-        position: absolute;
-        z-index: 10;
-*/
     }
 
     /* Undo some of the #nav styles  - to enable the class .nav */
@@ -348,7 +353,6 @@ div#nav::after {
         background-color: #A97;
     }
     .nav.responsive li {
-        /* float: left; */
         display: block;
         text-align: left;
         background-color: #A97;
@@ -1340,11 +1344,6 @@ body#WebCal {
     vertical-align: top;
     height: 2em;
 }
-#CreatorInfo {
-    float:right;
-    color:#FFF;
-    margin:-24px 10px 0 0;
-}
 .calendar thead tr th.weekend, 
 .calendar thead tr th.weekday {
     color:#542;
@@ -1451,8 +1450,6 @@ body#fullyearlinked div.content {
     padding:5px 0 2px 2px;
 }
 body#fullyearlinked table.calendar {
-    float:left;
-    width:33.3%;
     height:18em;
     border:solid 1px #7D5925;
 }
