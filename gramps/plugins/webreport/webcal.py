@@ -461,13 +461,11 @@ class WebCalReport(Report):
                 Html("<a href=\"javascript:void(0);\" class=\"navIcon\""
                      " onclick=\"navFunction()\">&#8801;</a>")) + (
                          Html("h1", html_escape(title),
-                              id="SiteTitle", inline=True)
-                             )
+                              id="SiteTitle", inline=True))
         else:
             headerdiv = Html("div", id='header') + (
-                             Html("h1", html_escape(title),
-                                  id="SiteTitle", inline=True)
-                             )
+                Html("h1", html_escape(title),
+                     id="SiteTitle", inline=True))
         body += headerdiv
 
         # add body id tag if not None
@@ -1534,11 +1532,12 @@ return false;
             if self.author and self.email:
                 bemail = '<a href="mailto:' + self.email + '?subject='
                 eemail = '">' + self.author + '</a>'
-                amsg = self._('the "WebCal" will be the potential-email Subject|'
-                             '%(html_email_author_start)s'
-                             'WebCal%(html_email_author_end)s') % {
-                                 'html_email_author_start' : bemail,
-                                 'html_email_author_end' : eemail}
+                amsg = self._('the "WebCal" will be the potential-email'
+                              ' Subject|'
+                              '%(html_email_author_start)s'
+                              'WebCal%(html_email_author_end)s') % {
+                                  'html_email_author_start' : bemail,
+                                  'html_email_author_end' : eemail}
             elif self.author:
                 amsg = '%(author)s' % {
                     'author' : self.author}
