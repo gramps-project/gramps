@@ -512,11 +512,10 @@ table.eventlist tbody tr td.ColumnSources {
     margin: 0px auto;
     display: block;
     border: solid 1px #EA8414;
-    max-width: 800px;
     height: auto;
 }
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1600px) {
     #GalleryDisplay img {
         max-width: 100%;
     }
