@@ -27070,7 +27070,7 @@ msgstr "Han døde %(death_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:308
 #, python-format
 msgid "He died %(death_date)s at the age of %(age)s."
-msgstr "Han døde døde %(death_date)s, i en alder av %(age)s."
+msgstr "Han døde %(death_date)s, i en alder av %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:311
 #, python-format
