@@ -529,7 +529,8 @@ class EditPerson(EditPrimary):
                                      self.uistate,
                                      self.track,
                                      self.obj.get_lds_ord_list())
-        self._add_tab(notebook, self.lds_list)
+        if not (config.get('interface.hide-lds') and self.lds_list.is_empty()):
+            self._add_tab(notebook, self.lds_list)
         self.track_ref_for_deletion("lds_list")
 
         self.backref_tab = PersonBackRefList(self.dbstate,

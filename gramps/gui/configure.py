@@ -1375,6 +1375,11 @@ class GrampsPreferences(ConfigureDialog):
         grid.attach(obox, 2, row, 2, 1)
 
         row += 1
+        self.add_checkbox(grid,
+            _('Hide LDS tab in person and family editors'),
+            row, 'interface.hide-lds')
+
+        row += 1
         label = self.add_text(
             grid, _("* Requires Restart"), row,
             line_wrap=True, bold=True, start=0, stop=3)

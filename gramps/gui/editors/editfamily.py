@@ -793,7 +793,8 @@ class EditFamily(EditPrimary):
                                             self.uistate,
                                             self.track,
                                             self.obj.get_lds_ord_list())
-        self._add_tab(notebook, self.lds_embed)
+        if not (config.get('interface.hide-lds') and self.lds_embed.is_empty()):
+            self._add_tab(notebook, self.lds_embed)
         self.track_ref_for_deletion("lds_embed")
 
         self._setup_notebook_tabs( notebook)
