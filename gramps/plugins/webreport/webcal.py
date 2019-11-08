@@ -126,7 +126,7 @@ class WebCalReport(Report):
         self._ = self.rlocale.translation.sgettext
 
         self.html_dir = mgobn('target')
-        self.title_text = mgobn('title')
+        self.title_text = html_escape(mgobn('title'))
         filter_option = options.menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
         self.name_format = mgobn('name_format')
@@ -621,7 +621,8 @@ class WebCalReport(Report):
                     # Note. We use '/' here because it is a URL, not a OS
                     # dependent pathname need to leave home link alone,
                     # so look for it ...
-                    url_fname = url_fname.lower()
+                    if nav_text != _("Home"):
+                        url_fname = url_fname.lower()
                     url = url_fname
                     add_subdirs = False
                     if not (url.startswith('http:') or url.startswith('/')):
@@ -1632,7 +1633,7 @@ class WebCalReport(Report):
         output_file = self.create_file('index', "")
 
         # page title
-        title = self._("My Family Calendar")
+        title = self.title_text
 
         nr_up = 0
 

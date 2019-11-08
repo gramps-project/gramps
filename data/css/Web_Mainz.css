@@ -82,6 +82,7 @@ body > div {
 }
 .content {
     padding: 1.5em 1.5em;
+    overflow: auto;
     background: url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
 }
 #ThumbnailPreview div.snapshot {
@@ -467,11 +468,10 @@ table.eventlist tbody tr td.ColumnSources {
     margin: 0px auto;
     display:block;
     border: solid 1px #7D5925;
-    max-width: 800px;
     height: auto;
 }
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1600px) {
     #GalleryDisplay img {
         max-width: 100%;
     }

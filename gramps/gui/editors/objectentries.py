@@ -311,7 +311,10 @@ class PlaceEntry(ObjEntry):
 
     def get_label(self, place):
         place_title = place_displayer.display(self.db, place)
-        return "%s [%s]" % (place_title, place.gramps_id)
+        # When part of the place title contains RTL text, the gramps_id gets
+        # messed up; so use Unicode FSI/PDI and LRM chars to isolate it.
+        # see bug 10124 and PR924
+        return "%s \u2068[%s]\u200e\u2069" % (place_title, place.gramps_id)
 
     def call_editor(self, obj=None):
         if obj is None:
@@ -356,7 +359,7 @@ class SourceEntry(ObjEntry):
         return self.db.get_source_from_handle(handle)
 
     def get_label(self, source):
-        return "%s [%s]" % (source.get_title(), source.gramps_id)
+        return "%s \u2068[%s]\u200e\u2069" % (source.get_title(), source.gramps_id)
 
     def call_editor(self, obj=None):
         if obj is None:
@@ -402,7 +405,8 @@ class MediaEntry(ObjEntry):
         return self.db.get_media_from_handle(handle)
 
     def get_label(self, object):
-        return "%s [%s]" % (object.get_description(), object.gramps_id)
+        return "%s \u2068[%s]\u200e\u2069" % (object.get_description(),
+                                              object.gramps_id)
 
     def call_editor(self, obj=None):
         if obj is None:
@@ -462,7 +466,7 @@ class NoteEntry(ObjEntry):
         txt = " ".join(note.get().split())
         if len(txt) > 35:
             txt = txt[:35] + "..."
-        return "%s [%s]" % (txt, note.gramps_id)
+        return "%s \u2068[%s]\u200e\u2069" % (txt, note.gramps_id)
 
     def call_editor(self, obj=None):
         if obj is None:

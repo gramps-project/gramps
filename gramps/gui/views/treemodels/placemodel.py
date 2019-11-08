@@ -143,7 +143,7 @@ class PlaceBaseModel:
         value = conv_lat_lon('0', data[3], format='DEG')[1]
         if not value:
             return _("Error in format")
-        return value
+        return ("\u202d" + value + "\u202e") if glocale.rtl_locale else value
 
     def column_latitude(self, data):
         if not data[4]:
@@ -151,7 +151,7 @@ class PlaceBaseModel:
         value = conv_lat_lon(data[4], '0', format='DEG')[0]
         if not value:
             return _("Error in format")
-        return value
+        return ("\u202d" + value + "\u202e") if glocale.rtl_locale else value
 
     def sort_longitude(self, data):
         if not data[3]:

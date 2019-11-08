@@ -551,16 +551,17 @@ def color_graph_box(alive=False, gender=Person.MALE):
 
 def hex_to_rgb_float(value):
     """
-    Convert a hexademical value #FF00FF to rgb. Returns tuple of float between
-    0 and 1
+    Convert a 6 or 12 digit hexademical value to rgb. Returns tuple of floats
+    between 0 and 1.
     """
     value = value.lstrip('#')
     lenv = len(value)
-    return tuple(int(value[i:i+lenv//3], 16)/256.0 for i in range(0, lenv, lenv//3))
+    return tuple(int(value[i:i+lenv//3], 16)/16.0**(lenv//3)
+                 for i in range(0, lenv, lenv//3))
 
 def hex_to_rgb(value):
     """
-    Convert a hexadecimal value #FF00FF to rgb. Returns tuple of integers
+    Convert a 6 or 12 digit hexadecimal value to rgb. Returns tuple of integers.
     """
     value = value.lstrip('#')
     lenv = len(value)

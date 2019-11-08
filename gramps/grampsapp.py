@@ -212,7 +212,7 @@ def show_settings():
                         Gtk.get_minor_version(), Gtk.get_micro_version())
         except:  # any failure to 'get' the version
             gtkver_str = 'unknown version'
-    except ImportError:
+    except (ImportError, ValueError):
         gtkver_str = 'not found'
     # no DISPLAY is a RuntimeError in an older pygtk (e.g. 2.17 in Fedora 14)
     except RuntimeError:
