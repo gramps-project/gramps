@@ -9,6 +9,7 @@
 # Copyright (C) 2010       Nick Hall
 # Copyright (C) 2011       Tim G L Lyons
 # Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
+# Copyright (C) 2017       Paul Culley
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -223,6 +224,45 @@ def event_has_subordinate_data(event, event_ref):
 
 # -------------------------------------------------------------------------
 #
+# GedcomWriter Options
+#
+# -------------------------------------------------------------------------
+class GedcomWriterOptionBox(WriterOptionBox):
+    """
+    Create a VBox with the option widgets and define methods to retrieve
+    the options.
+
+    """
+
+    def __init__(self, person, dbstate, uistate, track=[], window=None):
+        WriterOptionBox.__init__(
+            self, person, dbstate, uistate, track=track, window=window
+        )
+        self.include_ext_places = 0
+        self.include_ext_places_chk = None
+
+    def get_option_box(self):
+        from gi.repository import Gtk
+
+        option_box = WriterOptionBox.get_option_box(self)
+        self.include_ext_places_chk = Gtk.CheckButton(
+            label=_(
+                "Include extended place information as defined by " "GEDCOM L group"
+            )
+        )
+        self.include_ext_places_chk.set_active(1)
+        option_box.pack_start(self.include_ext_places_chk, False, True, 0)
+
+        return option_box
+
+    def parse_options(self):
+        WriterOptionBox.parse_options(self)
+        if self.include_ext_places_chk:
+            self.include_ext_places = self.include_ext_places_chk.get_active()
+
+
+# -------------------------------------------------------------------------
+#
 # GedcomWriter class
 #
 # -------------------------------------------------------------------------
@@ -239,6 +279,7 @@ class GedcomWriter(UpdateCallback):
         self.dirname = None
         self.gedcom_file = None
         self.progress_cnt = 0
+        self.include_ext_places = 1
         self.setup(option_box)
 
     def setup(self, option_box):
@@ -250,6 +291,7 @@ class GedcomWriter(UpdateCallback):
         if option_box:
             option_box.parse_options()
             self.dbase = option_box.get_filtered_database(self.dbase, self)
+            self.include_ext_places = option_box.include_ext_places
 
     def write_gedcom_file(self, filename):
         """
@@ -263,7 +305,10 @@ class GedcomWriter(UpdateCallback):
             source_len = self.dbase.get_number_of_sources()
             repo_len = self.dbase.get_number_of_repositories()
             note_len = self.dbase.get_number_of_notes() / NOTES_PER_PERSON
-            place_len = self.dbase.get_number_of_places()
+            if self.include_ext_places:
+                place_len = self.dbase.get_number_of_places()
+            else:
+                place_len = 0
 
             total_steps = (
                 person_len + family_len + source_len + repo_len + note_len + place_len
@@ -273,7 +318,8 @@ class GedcomWriter(UpdateCallback):
             self._submitter()
             self._individuals()
             self._families()
-            self._places()
+            if self.include_ext_places:
+                self._places()
             self._sources()
             self._repos()
             self._notes()
@@ -1778,13 +1824,15 @@ class GedcomWriter(UpdateCallback):
             self._writeln(level + 1, "MAP")
             self._writeln(level + 2, "LATI", latitude)
             self._writeln(level + 2, "LONG", longitude)
-        # cross ref to Gedcom L _LOC record
-        self._writeln(level + 1, "_LOC", "@%s@" % place.gramps_id)
-        # See if this is a normal Gramps ID (if not, GOV ID)
-        if not (
-            self._gramps_id.match(place.gramps_id) or place.gramps_id.startswith("GEO")
-        ):
-            self._writeln(level + 1, "_GOV", place.gramps_id)
+        if self.include_ext_places:
+            # cross ref to Gedcom L _LOC record
+            self._writeln(level + 1, "_LOC", "@%s@" % place.gramps_id)
+            # See if this is a normal Gramps ID (if not, GOV ID)
+            if not (
+                self._gramps_id.match(place.gramps_id)
+                or place.gramps_id.startswith("GEO")
+            ):
+                self._writeln(level + 1, "_GOV", place.gramps_id)
         self._note_references(place.get_note_list(), level + 1)
 
     def __write_addr(self, level, addr):

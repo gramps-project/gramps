@@ -22,7 +22,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 _ = glocale.translation.gettext
 
-ODULE_VERSION = "6.0"
+MODULE_VERSION = "6.0"
 
 # ------------------------------------------------------------------------
 #
@@ -34,7 +34,7 @@ plg = newplugin()
 plg.id = "ex_csv"
 plg.name = _("Comma Separated Values Spreadsheet (CSV)")
 plg.name_accell = _("Comma _Separated Values Spreadsheet (CSV)")
-lg.description = _(
+plg.description = _(
     "CSV is a common spreadsheet format."
     "\nYou can change this behavior in the 'Configure active"
     " view' of any list-based view"
@@ -90,7 +90,7 @@ plg.status = STABLE
 plg.fname = "exportgedcom.py"
 plg.ptype = EXPORT
 plg.export_function = "export_data"
-plg.export_options = "WriterOptionBox"
+plg.export_options = "GedcomWriterOptionBox"
 plg.export_options_title = _("GEDCOM export options")
 plg.extension = "ged"
 
