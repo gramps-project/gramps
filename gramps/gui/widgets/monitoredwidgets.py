@@ -64,8 +64,6 @@ from gramps.gen.errors import ValidationError
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 
-# table for skipping illegal control chars
-INVISIBLE = dict.fromkeys(list(range(32)))
 
 #-------------------------------------------------------------------------
 #
@@ -141,14 +139,10 @@ class MonitoredEntry:
         self.obj.connect(signal, callback, *data)
 
     def _on_quit(self, obj, event):
-        text = obj.get_text().translate(INVISIBLE).strip()
-        self.set_val(text)
-        obj.set_text(text)
+        self.set_val(obj.get_text().strip())
 
     def _on_change(self, obj):
-        new_text = obj.get_text().translate(INVISIBLE)
-        self.set_val(new_text)
-        obj.set_text(new_text)
+        self.set_val(obj.get_text())
         if self.changed:
             self.changed(obj)
 

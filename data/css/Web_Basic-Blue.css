@@ -859,11 +859,10 @@ div#EventDetail table.eventlist tbody tr td.ColumnDate {
 }
 #GalleryDisplay img {
     margin: 0 auto;
-    max-width: 800px;
     height: auto;
 }
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1600px) {
     #GalleryDisplay img {
         max-width: 100%;
     }

@@ -132,7 +132,6 @@ class DrawTree(object):
         """
         return self.tree.handle
 
-
 def buchheim(tree, node_width, h_separation, node_height, v_separation):
     """
     Calculate the position of elements of the graph given a minimum
@@ -142,9 +141,30 @@ def buchheim(tree, node_width, h_separation, node_height, v_separation):
     min_x = second_walk(draw_tree, 0, node_width+h_separation, 0)
     if min_x < 0:
         third_walk(draw_tree, 0 - min_x)
+    top = get_min_coord_y(draw_tree)
+    height = get_max_coord_y(draw_tree)
 
-    return draw_tree
+    return (draw_tree, top, height)
 
+def get_min_coord_y(tree, min_value=100.0):
+    """ Get the minimum coord_y """
+    if tree.coord_y < min_value:
+        min_value = tree.coord_y
+    for child in tree.children:
+        min_v = get_min_coord_y(child, min_value)
+        if min_value > min_v:
+            min_value = min_v
+    return min_value
+
+def get_max_coord_y(tree, max_value=0.0):
+    """ Get the maximum coord_y """
+    if tree.coord_y > max_value:
+        max_value = tree.coord_y
+    for child in tree.children:
+        max_v = get_max_coord_y(child, max_value)
+        if max_value < max_v:
+            max_value = max_v
+    return max_value
 
 def third_walk(tree, adjust):
     """
@@ -155,7 +175,6 @@ def third_walk(tree, adjust):
     tree.width = max(tree.width, tree.coord_x)
     for child in tree.children:
         third_walk(child, adjust)
-
 
 def firstwalk(tree, node_height, v_separation):
     """
@@ -188,7 +207,6 @@ def firstwalk(tree, node_height, v_separation):
     assert tree.width >= tree.coord_x
     tree.height = max(tree.height, tree.coord_y)
     return tree
-
 
 def apportion(tree, default_ancestor, v_separation):
     """
@@ -262,7 +280,6 @@ def execute_shifts(tree):
         shift += child.shift + change
         child.height = max(child.height, child.coord_y)
         tree.height = max(tree.height, child.height)
-
 
 def ancestor(vil, tree, default_ancestor):
     """

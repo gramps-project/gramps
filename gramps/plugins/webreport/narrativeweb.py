@@ -873,7 +873,12 @@ class NavWebReport(Report):
             if self.reference_sort:
                 role_or_date = name
             else:
-                role_or_date = str(event.get_date_object())
+                date = event.get_date_object()
+                # calendar is the original date calendar
+                calendar = str(date.get_calendar())
+                # convert date to gregorian for a correct sort
+                _date = str(date.to_calendar("gregorian"))
+                role_or_date = calendar + ":" + _date
         else:
             role_or_date = ""
         place_fname = self.build_url_fname(place_handle, "plc",

@@ -475,8 +475,11 @@ class MediaPages(BasePage):
                                 if orig_image_path != newpath:
                                     url = self.report.build_url_fname(
                                         newpath, None, self.uplink)
+                                s_width = 'width: %dpx;' % max_width
                                 mediadisplay += Html("a", href=url) + (
-                                    Html("img", src=url, alt=esc_page_title)
+                                    Html("img", src=url,
+                                         style=s_width,
+                                         alt=esc_page_title)
                                 )
                     else:
                         dirname = tempfile.mkdtemp()
@@ -510,9 +513,11 @@ class MediaPages(BasePage):
                                 url = self.report.build_url_fname(newpath,
                                                                   None,
                                                                   self.uplink)
+                                s_width = 'width: 48px;'
                                 hyper = Html("a", href=url,
                                              title=esc_page_title) + (
                                                  Html("img", src=img_url,
+                                                      style=s_width,
                                                       alt=esc_page_title)
                                                  )
                                 mediadisplay += hyper
@@ -524,7 +529,9 @@ class MediaPages(BasePage):
                         summaryarea += mediadisplay
                         url = self.report.build_url_image("document.png",
                                                           "images", self.uplink)
+                        s_width = 'width: 48px;'
                         mediadisplay += Html("img", src=url,
+                                             style=s_width,
                                              alt=esc_page_title,
                                              title=esc_page_title)
 

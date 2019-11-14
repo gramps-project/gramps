@@ -46,6 +46,11 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from .undoablebuffer import Stack
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+
+# table for skipping illegal control chars
+INVISIBLE = dict.fromkeys(list(range(32)) + [0x202d, 0x202e])
+
 
 class UndoableInsertEntry:
     """something that has been inserted into our Gtk.editable"""
@@ -84,6 +89,10 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
 
     Additional features:
       - Undo and Redo on CTRL-Z/CTRL-SHIFT-Z
+
+      - ltr_mode (forces the field to always be left to right, useful for GPS
+        coordinates and similar numbers that might contain RTL characters.
+        See set_ltr_mode.
     """
     __gtype_name__ = 'UndoableEntry'
 
@@ -94,12 +103,12 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
     undo_stack_size = 50
 
     def __init__(self):
-        Gtk.Entry.__init__(self)
         self.undo_stack = Stack(self.undo_stack_size)
         self.redo_stack = []
         self.not_undoable_action = False
         self.undo_in_progress = False
-
+        self.ltr_mode = False
+        Gtk.Entry.__init__(self)
         self.connect('delete-text', self._on_delete_text)
         self.connect('key-press-event', self._on_key_press_event)
 
@@ -156,10 +165,17 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
                 return False
             return True
 
+        text = text.translate(INVISIBLE)
+        if self.ltr_mode:
+            if position == 0:
+                position = 1
+            elif position >= self.get_text_length():
+                position -= 1
+
         if not self.undo_in_progress:
             self.__empty_redo_stack()
         while not self.not_undoable_action:
-            undo_action = self.insertclass(text, length, self.get_position())
+            undo_action = self.insertclass(text, length, position)
             try:
                 prev_insert = self.undo_stack.pop()
             except IndexError:
@@ -179,6 +195,7 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
             break
         self.get_buffer().insert_text(position, text, len(text))
         return position + len(text)
+
 
     def _on_delete_text(self, editable, start, end):
         def can_be_merged(prev, cur):
@@ -206,32 +223,49 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
                 return False
             return True
 
-        if not self.undo_in_progress:
-            self.__empty_redo_stack()
-        if self.not_undoable_action:
-            return
-        undo_action = self.deleteclass(editable, start, end)
-        try:
-            prev_delete = self.undo_stack.pop()
-        except IndexError:
-            self.undo_stack.append(undo_action)
-            return
-        if not isinstance(prev_delete, self.deleteclass):
-            self.undo_stack.append(prev_delete)
-            self.undo_stack.append(undo_action)
-            return
-        if can_be_merged(prev_delete, undo_action):
-            if prev_delete.start == undo_action.start: # delete key used
-                prev_delete.text += undo_action.text
-                prev_delete.end += (undo_action.end - undo_action.start)
-            else: # Backspace used
-                prev_delete.text = "%s%s" % (undo_action.text,
-                                                     prev_delete.text)
-                prev_delete.start = undo_action.start
-            self.undo_stack.append(prev_delete)
-        else:
-            self.undo_stack.append(prev_delete)
-            self.undo_stack.append(undo_action)
+        if self.ltr_mode:  # limit deletes to area between LRO/PDF
+            if start == 0:
+                start = 1
+            elif start > self.get_text_length() - 1:
+                start -= 1
+            if end == 0:
+                end = 1
+            elif end > self.get_text_length() - 1:
+                end -= 1
+            elif end < 0:
+                end = self.get_text_length() - 1
+
+        while True:
+            if not self.undo_in_progress:
+                self.__empty_redo_stack()
+            if self.not_undoable_action:
+                break
+            undo_action = self.deleteclass(self, start, end)
+            try:
+                prev_delete = self.undo_stack.pop()
+            except IndexError:
+                self.undo_stack.append(undo_action)
+                break
+            if not isinstance(prev_delete, self.deleteclass):
+                self.undo_stack.append(prev_delete)
+                self.undo_stack.append(undo_action)
+                break
+            if can_be_merged(prev_delete, undo_action):
+                if prev_delete.start == undo_action.start:  # delete key used
+                    prev_delete.text += undo_action.text
+                    prev_delete.end += (undo_action.end - undo_action.start)
+                else:  # Backspace used
+                    prev_delete.text = "%s%s" % (undo_action.text,
+                                                 prev_delete.text)
+                    prev_delete.start = undo_action.start
+                self.undo_stack.append(prev_delete)
+            else:
+                self.undo_stack.append(prev_delete)
+                self.undo_stack.append(undo_action)
+            break
+        self.get_buffer().delete_text(start, end - start)
+        self.stop_emission_by_name('delete-text')
+        return True
 
     def begin_not_undoable_action(self):
         """don't record the next actions
@@ -323,3 +357,40 @@ class UndoableEntry(Gtk.Entry, Gtk.Editable):
 
     def _handle_redo(self, redo_action):
         raise NotImplementedError
+
+    def set_ltr_mode(self):
+        """ sets up the Entry to always be in LTR left to right even if some
+        characters are RTL.
+        This works by inserting the LRO/PDF Unicode Explicit Directional
+        Override characters around the entry text.  These characters are then
+        protected agains insert/delete operations.
+
+        This call must be made before other text is inserted to the Entry.
+
+        Note: we only enable this during rtl_local languages because it has a
+        minor consequence; if cutting a field from this Entry with this mode
+        enabled, the LRO/PDF characters may end up in the clipboard.  If pasted
+        back into another UndoableEntry, this is ignored, but if pasted in
+        another app it may be noticable.
+        """
+        if glocale.rtl_locale:
+            self.get_buffer().set_text("\u202d\u202e", -1)
+            self.ltr_mode = True
+
+    def do_set_position(self, position):
+        """ In ltr_mode, this ensures that the cursor cannot be put outside
+        the LRO/PDF characters on the ends of the buffer. """
+        if position < 0:
+            position = self.get_text_length()
+        if self.ltr_mode:
+            if position == 0:
+                position = 1
+            elif position == self.get_text_length():
+                position -= 1
+        Gtk.Editable.select_region(self, position, position)
+
+    def get_text(self):
+        """ Used to remove the LRO/PDF characters when in ltr_mode.
+        """
+        text = Gtk.Entry.get_text(self)
+        return text[1:-1] if self.ltr_mode else text

@@ -225,7 +225,10 @@ class TitleDPY(DescendantTitleBase):
 
         center = self.database.get_person_from_gramps_id(person_id)
         family2_h = center.get_main_parents_family_handle()
-        family2 = self.database.get_family_from_handle(family2_h)
+        if family2_h:
+            family2 = self.database.get_family_from_handle(family2_h)
+        else:
+            family2 = None
 
         person_list = None
         if family2:
@@ -270,8 +273,11 @@ class TitleDFY(DescendantTitleBase):
 
         parent_list = None
         family_h = person.get_main_parents_family_handle()
-        family = self.database.get_family_from_handle(family_h)
-        if family: #family = fathers parents
+        if family_h:
+            family = self.database.get_family_from_handle(family_h)
+        else:
+            family = None
+        if family:  # family = fathers parents
             father_h = family.get_father_handle()
             mother_h = family.get_mother_handle()
             parent_list = [self.database.get_person_from_handle(handle)
