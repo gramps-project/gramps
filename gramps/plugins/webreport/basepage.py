@@ -59,7 +59,8 @@ import logging
 #------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import (FamilyRelType, NoteType, NameType, Person,
-                            UrlType, Name, PlaceType, EventRoleType,
+                            UrlType, Name, PlaceType, EventRoleType, Source,
+                            Source, Attribute, Media, Repository, Event,
                             Family, Citation, Place)
 from gramps.gen.lib.date import Today
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
@@ -518,7 +519,8 @@ class BasePage: # pylint: disable=C1001
             for (data, colclass) in [
                 (str(attr.get_type()), "ColumnType"),
                 (attr.get_value(), "ColumnValue"),
-                (self.dump_notes(attr.get_note_list()), "ColumnNotes"),
+                (self.dump_notes(attr.get_note_list(), Attribute),
+                 "ColumnNotes"),
                 (self.get_citation_links(attr.get_citation_list()),
                  "ColumnSources")
             ]
@@ -611,7 +613,7 @@ class BasePage: # pylint: disable=C1001
                 htmllist.extend(Html('p') + linelist)
         return htmllist
 
-    def dump_notes(self, notelist):
+    def dump_notes(self, notelist, parent=None):
         """
         dump out of list of notes with very little elements of its own
 
@@ -622,11 +624,24 @@ class BasePage: # pylint: disable=C1001
 
         # begin unordered list
         notesection = Html("div")
+        idx = 0
         for notehandle in notelist:
             this_note = self.r_db.get_note_from_handle(notehandle)
+            title = self._(this_note.type.xml_str())
             if this_note is not None:
-                notesection.extend(Html("i", self._(this_note.type.xml_str()),
-                                        class_="NoteType"))
+                idx += 1
+                if len(notelist) > 1:
+                    if self.default_note(parent, int(this_note.type)):
+                        title_text = self._("Note: %s") % str(idx)
+                    else:
+                        title = " (" + title + ")"
+                        title_text = self._("Note: %s") % str(idx) + title
+                else:
+                    if self.default_note(parent, int(this_note.type)):
+                        title_text = self._("Note")
+                    else:
+                        title_text = title
+                notesection.extend(Html("i", title_text, class_="NoteType"))
                 notesection.extend(self.get_note_format(this_note, True))
         return notesection
 
@@ -703,7 +718,7 @@ class BasePage: # pylint: disable=C1001
         notelist = event.get_note_list()[:]  # we don't want to modify
                                              # cached original
         notelist.extend(event_ref.get_note_list())
-        htmllist = self.dump_notes(notelist)
+        htmllist = self.dump_notes(notelist, Event)
 
         # if the event or event reference has an attribute attached to it,
         # get the text and format it correctly?
@@ -720,7 +735,7 @@ class BasePage: # pylint: disable=C1001
             #also output notes attached to the attributes
             notelist = attr.get_note_list()
             if notelist:
-                htmllist.extend(self.dump_notes(notelist))
+                htmllist.extend(self.dump_notes(notelist, Event))
 
         trow2 += Html("td", htmllist, class_="ColumnNotes", colspan=3)
 
@@ -2107,11 +2122,39 @@ class BasePage: # pylint: disable=C1001
         # return indivgallery division to its caller
         return section
 
-    def display_note_list(self, notelist=None):
+    def default_note(self, parent, notetype):
+        """
+        return true if the notetype is the same as the parent
+
+        @param: parent -- The object (Person, Family, Media,...)
+        @param: notetype -- The type for the current note
+        """
+        if parent == Person and notetype == NoteType.PERSON:
+            return True
+        elif parent == Family and notetype == NoteType.FAMILY:
+            return True
+        elif parent == Media and notetype == NoteType.MEDIA:
+            return True
+        elif parent == Repository and notetype == NoteType.REPO:
+            return True
+        elif parent == Source and notetype == NoteType.SOURCE:
+            return True
+        elif parent == Event and notetype == NoteType.EVENT:
+            return True
+        elif parent == Place and notetype == NoteType.PLACE:
+            return True
+        elif parent == Citation and notetype == NoteType.CITATION:
+            return True
+        elif parent == Attribute and notetype == NoteType.ATTRIBUTE:
+            return True
+        return False
+
+    def display_note_list(self, notelist=None, parent=None):
         """
         Display note list
 
         @param: notelist -- The list of notes
+        @param: parent -- The parent associated to these notes
         """
         if not notelist:
             return None
@@ -2119,14 +2162,27 @@ class BasePage: # pylint: disable=C1001
         # begin narrative division
         with Html("div", class_="subsection narrative") as section:
 
+            idx = 0
             for notehandle in notelist:
                 note = self.r_db.get_note_from_handle(notehandle)
+                title = self._(note.type.xml_str())
 
                 if note:
                     note_text = self.get_note_format(note, True)
-
+                    idx += 1
+                    if len(notelist) > 1:
+                        if self.default_note(parent, int(note.type)):
+                            title_text = self._("Note: %s") % str(idx)
+                        else:
+                            title = " (" + title + ")"
+                            title_text = self._("Note: %s") % str(idx) + title
+                    else:
+                        if self.default_note(parent, int(note.type)):
+                            title_text = self._("Note")
+                        else:
+                            title_text = title
                     # add section title
-                    section += Html("h4", self._("Narrative"), inline=True)
+                    section += Html("h4", title_text, inline=True)
 
                     # attach note
                     section += note_text

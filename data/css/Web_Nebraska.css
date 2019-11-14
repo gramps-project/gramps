@@ -1212,8 +1212,15 @@ div.snapshot div.thumbnail {
 div.narrative {
     padding-bottom:0;
 }
+i.NoteType {
+    font-weight: bold;
+    font-size: .8em;
+}
 i + div.grampsstylednote p {
     margin: 0.1em 0 0.2em 0;
+}
+div.grampsstylednote p {
+    padding-bottom: 0.6em;
 }
 .narrative p {
     margin: 0.1em 0 0.2em 0;

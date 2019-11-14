@@ -367,7 +367,7 @@ class FamilyPages(BasePage):
             # Narrative subsection
             notelist = family.get_note_list()
             if notelist:
-                relationshipdetail += self.display_note_list(notelist)
+                relationshipdetail += self.display_note_list(notelist, Family)
 
             # display family LDS ordinance...
             family_lds_ordinance_list = family.get_lds_ord_list()

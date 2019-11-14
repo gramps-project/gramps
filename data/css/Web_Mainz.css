@@ -692,11 +692,15 @@ h4 + div.grampsstylednote, a.familymap {
     margin-left: 10px;
     margin-right: 10px;
 }
+i.NoteType {
+    font-weight: bold;
+    font-size: .8em;
+}
 i + div.grampsstylednote p {
     margin: 0 0 0.3em 0;
 }
 div.grampsstylednote p {
-    margin-bottom: 0.5em;
+    padding-bottom: 0.6em;
 }
 
 /* SubSection : Source References

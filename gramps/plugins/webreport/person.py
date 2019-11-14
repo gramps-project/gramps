@@ -485,7 +485,7 @@ class PersonPages(BasePage):
             if self.report.options['notes']:
                 # display Narrative Notes
                 notelist = person.get_note_list()
-                sect8 = self.display_note_list(notelist)
+                sect8 = self.display_note_list(notelist, Person)
                 if sect8 is not None:
                     individualdetail += sect8
 
@@ -553,7 +553,7 @@ class PersonPages(BasePage):
             if not self.report.options['notes']:
                 # display Narrative Notes
                 notelist = person.get_note_list()
-                sect8 = self.display_note_list(notelist)
+                sect8 = self.display_note_list(notelist, Person)
                 if sect8 is not None:
                     individualdetail += sect8
 
@@ -1417,7 +1417,7 @@ class PersonPages(BasePage):
                     for data in [
                             person_lnk,
                             person_ref.get_relation(),
-                            self.dump_notes(person_ref.get_note_list()),
+                            self.dump_notes(person_ref.get_note_list(), Person),
                             self.get_citation_links(
                                 person_ref.get_citation_list()),
                         ]:

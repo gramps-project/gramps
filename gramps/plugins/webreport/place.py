@@ -341,7 +341,7 @@ class PlacePages(BasePage):
                     placedetail += placegallery
 
             # place notes
-            notelist = self.display_note_list(place.get_note_list())
+            notelist = self.display_note_list(place.get_note_list(), Place)
             if notelist is not None:
                 placedetail += notelist
 

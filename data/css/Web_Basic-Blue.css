@@ -1454,8 +1454,15 @@ div.narrative {
     font: normal .9em/1.4em sans-serif;
     margin: 0.1em 0 0.2em 0;
 }
+i.NoteType {
+    font-weight: bold;
+    font-size: .8em;
+}
 i + div.grampsstylednote p {
     margin: 0.1em 0 0.2em 0;
+}
+div.grampsstylednote p {
+    padding-bottom: 0.6em;
 }
 
 /* Subsections : References

@@ -573,7 +573,7 @@ class MediaPages(BasePage):
                         table += trow
 
             # get media notes
-            notelist = self.display_note_list(media.get_note_list())
+            notelist = self.display_note_list(media.get_note_list(), Media)
             if notelist is not None:
                 mediadetail += notelist
 
