@@ -710,6 +710,12 @@ a.familymap {
     display: block;
 }
 
+/* Subsection : References
+----------------------------------------------------- */
+#references ol {
+    margin-left: 2em;
+}
+
 /* Subsection : Source References
 ----------------------------------------------------- */
 #sourcerefs ol li ol {

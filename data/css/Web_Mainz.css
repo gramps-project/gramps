@@ -703,6 +703,12 @@ div.grampsstylednote p {
     padding-bottom: 0.6em;
 }
 
+/* Subsection : References
+----------------------------------------------------- */
+#references ol {
+    margin-left: 2em;
+}
+
 /* SubSection : Source References
 -----------------------------------------------------------------*/
 #sourcerefs ol li ol {

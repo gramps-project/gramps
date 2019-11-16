@@ -758,6 +758,12 @@ div.grampsstylednote p {
     padding-bottom: 0.6em;
 }
 
+/* Subsection : References
+----------------------------------------------------- */
+#references ol {
+    margin-left: 2em;
+}
+
 /* Subsection : Family Map
 ----------------------------------------------------- */
 a.familymap {

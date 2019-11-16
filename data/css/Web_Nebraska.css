@@ -1226,8 +1226,11 @@ div.grampsstylednote p {
     font:normal .9em/1.4em sans-serif;
 }
 
-/* Subsections : References
+/* Subsection : References
 ----------------------------------------------------- */
+#references ol {
+    margin-left: 3em;
+}
 
 /* Subsections : Source References
 ----------------------------------------------------- */
