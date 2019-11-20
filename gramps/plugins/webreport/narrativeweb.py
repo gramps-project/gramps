@@ -1453,7 +1453,7 @@ class NavWebReport(Report):
             output_file.close()
         else:
             output_file.close()
-            if date > 0:
+            if date is not None and date > 0:
                 os.utime(output_file.name, (date, date))
 
     def prepare_copy_media(self, photo):
