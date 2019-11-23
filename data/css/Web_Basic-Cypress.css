@@ -431,11 +431,30 @@ table.surname td.ColumnName {
 table.surname td.ColumnName > a {
     padding-left: 15px;
 }
+table#SortByName tr:hover td.ColumnSurname,
+table#SortByCount tr:hover td.ColumnQuantity {
+    background-color: #9DBF9D;
+}
+table#SortByName tr:hover,
+table#SortByCount tr:hover,
+table#SortByName tr:hover td.ColumnQuantity,
+table#SortByCount tr:hover td.ColumnSurname {
+    background-color: #9DBF9D;
+}
+table.surname tr:hover,
+table.surname tr:hover td.ColumnName {
+    background-color: #9DBF9D;
+}
 
 /* Individuals
 ----------------------------------------------------- */
 table.IndividualList td.ColumnSurname {
     background-color: #E0E6E0;
+}
+#parents table.infolist tr:hover,
+table.IndividualList tr:hover,
+table.IndividualList tr:hover td.ColumnSurname {
+    background-color: #9DBF9D;
 }
 
 /* Places
@@ -449,6 +468,10 @@ table.IndividualList td.ColumnSurname {
 }
 #Places table.infolist td.ColumnName > a {
     padding-left: 1ex;
+}
+#Places table.infolist tr:hover,
+#Places table.infolist tr:hover td.ColumnName {
+    background-color: #9DBF9D;
 }
 
 /* Events
@@ -464,6 +487,10 @@ table.IndividualList td.ColumnSurname {
 }
 #EventList td.ColumnPerson a {
     display: inline;
+}
+#EventList table.infolist tr:hover,
+#EventList table.infolist tr:hover td.ColumnType {
+    background-color: #9DBF9D;
 }
 #EventList td.ColumnPerson span.person:after,
 #EventList td.ColumnPerson span.father:after,
@@ -582,6 +609,10 @@ table.eventlist td.ColumnPlace {
 div#SourceDetail {
     margin: 0 auto;
 }
+#Sources table.infolist tr:hover,
+#Sources table.infolist tr:hover td.ColumnType {
+    background-color: #9DBF9D;
+}
 
 /* Contact
 ----------------------------------------------------- */
@@ -651,6 +682,10 @@ div#SourceDetail {
 
 /* Subsection : Families
 ----------------------------------------------------- */
+#families table.infolist td.ColumnValue.Child table.infolist tr:hover,
+table.relationships tr:hover {
+    background-color: #9DBF9D;
+}
 div#families table.fixed_subtables table.eventlist {
     table-layout: fixed;
 }

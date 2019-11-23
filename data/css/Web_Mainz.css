@@ -142,7 +142,8 @@ a {
     word-wrap: break-word;
 }
 a[href]:hover, a[href]:active {
-    background-color: #FFFFE7;
+    background-color: #D8C19F;
+    font-style: italic;
 }
 .grampsid {
     font-family: monospace;
@@ -380,12 +381,40 @@ table#SortByName thead th.ColumnSurname a:after,
 table#SortByCount thead th.ColumnQuantity a:after {
     content: " \2193";
 }
+table#SortByName tr:hover td.ColumnSurname,
+table#SortByCount tr:hover td.ColumnQuantity {
+    background-color: #D8C19F;
+}
+table#SortByName tbody tr:hover,
+table#SortByCount tbody tr:hover,
+table#SortByName tr:hover td.ColumnQuantity,
+table#SortByCount tr:hover td.ColumnSurname {
+    background-color: #D8C19F;
+}
+table.surname tbody tr:hover,
+table.surname tr:hover td.ColumnName {
+    background-color: #D8C19F;
+}
 #SurnameDetail h3 {
     border-bottom-width: 0px;
     padding-bottom: 0px;
     margin: 0px;
 }
 
+/* Individuals
+----------------------------------------------------- */
+#parents table.infolist tbody tr:hover,
+table.IndividualList tbody tr:hover,
+table.IndividualList tr:hover td.ColumnSurname {
+    background-color: #D8C19F;
+}
+
+/* Places
+----------------------------------------------------- */
+#Places table.infolist tbody tr:hover,
+#Places table.infolist tr:hover td.ColumnName {
+    background-color: #D8C19F;
+}
 /* Events
 -----------------------------------------------------------------*/
 #EventList tr.BeginType td {
@@ -398,6 +427,10 @@ table#SortByCount thead th.ColumnQuantity a:after {
    names*/
 #EventList td.ColumnPerson a {
     display: inline;
+}
+#EventList table.infolist tbody tr:hover,
+#EventList table.infolist tr:hover td.ColumnType {
+    background-color: #D8C19F;
 }
 /* Family events, put mother on next line */
 #EventList td.ColumnPerson span.father,
@@ -533,6 +566,10 @@ table#SortByCount thead th.ColumnQuantity a:after {
 div#SourceDetail {
     margin: 0 auto;
 }
+#Sources table.infolist tbody tr:hover,
+#Sources table.infolist tr:hover td.ColumnType {
+    background-color: #D8C19F;
+}
 
 /* Contact
 -----------------------------------------------------------------*/
@@ -599,6 +636,10 @@ div#SourceDetail {
 
 /* SubSection : Families
 -----------------------------------------------------------------*/
+#families table.infolist td.ColumnValue.Child table.infolist tbody tr:hover,
+table.relationships tr:hover td {
+    background-color: #D8C19F;
+}
 div#families table.fixed_subtables table.eventlist {
     table-layout: fixed;
 }

@@ -392,17 +392,40 @@ table#SortByCount thead th.ColumnQuantity a:after {
 table.surname td.ColumnName {
     background-color: #EEE;
 }
+table#SortByName tr:hover td.ColumnSurname,
+table#SortByCount tr:hover td.ColumnQuantity {
+    background-color: #DDE;
+}
+table#SortByName tr:hover,
+table#SortByCount tr:hover,
+table#SortByName tr:hover td.ColumnQuantity,
+table#SortByCount tr:hover td.ColumnSurname {
+    background-color: #DDE;
+}
+table.surname tr:hover,
+table.surname tr:hover td.ColumnName {
+    background-color: #DDE;
+}
 
 /* Individuals
 ----------------------------------------------------- */
 table.IndividualList td.ColumnSurname {
     background-color: #EEE;
 }
+#parents table.infolist tr:hover,
+table.IndividualList tr:hover,
+table.IndividualList tr:hover td.ColumnSurname {
+    background-color: #DDE;
+}
 
 /* Places
 ----------------------------------------------------- */
 #Places table.infolist td.ColumnName {
     background-color: #EEE;
+}
+#Places table.infolist tr:hover,
+#Places table.infolist tr:hover td.ColumnName {
+    background-color: #DDE;
 }
 
 /* Events
@@ -418,6 +441,10 @@ table.IndividualList td.ColumnSurname {
 }
 #EventList td.ColumnPerson a {
     display: inline;
+}
+#EventList table.infolist tr:hover,
+#EventList table.infolist tr:hover td.ColumnType {
+    background-color: #DDE;
 }
 #EventList td.ColumnPerson span.person:after,
 #EventList td.ColumnPerson span.father:after,
@@ -517,6 +544,10 @@ table.eventlist td.ColumnPlace {
 div#SourceDetail {
     margin: 0 auto;
 }
+#Sources table.infolist tr:hover,
+#Sources table.infolist tr:hover td.ColumnType {
+    background-color: #DDE;
+}
 
 /* Contact
 ----------------------------------------------------- */
@@ -586,6 +617,11 @@ div#SourceDetail {
 
 /* Subsection : Families
 ----------------------------------------------------- */
+#families table.infolist td.ColumnValue.Child table.infolist tr:hover,
+table.relationships tr:hover {
+    background-color: #DDE;
+}
+
 div#families table.fixed_subtables table.eventlist {
     table-layout: fixed;
 }

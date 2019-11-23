@@ -454,6 +454,20 @@ table.surnamelist tr th a, table.surnamelist tr th a:visited {
 table.surnamelist tr th:hover {
     background-color:#C1B398;
 }
+table#SortByName tr:hover td.ColumnSurname,
+table#SortByCount tr:hover td.ColumnQuantity {
+    background-color:#C1B398;
+}
+table#SortByName tr:hover,
+table#SortByCount tr:hover,
+table#SortByName tr:hover td.ColumnQuantity,
+table#SortByCount tr:hover td.ColumnSurname {
+    background-color:#C1B398;
+}
+table.surname tr:hover,
+table.surname tr:hover td.ColumnName {
+    background-color:#C1B398;
+}
 table.surnamelist thead tr th.ColumnLetter {
     padding-left:20px;
     padding-right:10px;
@@ -509,6 +523,11 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
 
 /* Individuals
 ----------------------------------------------------- */
+#parents table.infolist tr:hover,
+table.IndividualList tr:hover,
+table.IndividualList tr:hover td.ColumnSurname {
+    background-color:#C1B398;
+}
 #Individuals {  }
 #Individuals table.IndividualList {
     border-bottom:solid 1px #A97;
@@ -603,6 +622,10 @@ table.attrlist tbody tr td.ColumnSources {
 
 /* Sources
 ----------------------------------------------------- */
+#Sources table.infolist tr:hover,
+#Sources table.infolist tr:hover td.ColumnType {
+    background-color:#C1B398;
+}
 #Sources {  }
 #Sources table.infolist tbody tr td.ColumnRowLabel {
     padding-bottom:0;
@@ -651,6 +674,10 @@ table.relationships tbody tr td.ColumnPartner a:hover {
 #Places table.infolist tbody tr td.ColumnName {
     padding:0;
 }
+#Places table.infolist tr:hover,
+#Places table.infolist tr:hover td.ColumnName {
+    background-color:#C1B398;
+}
 #Places table.infolist tbody tr td.ColumnName a {
     padding:.1em 10px .3em 10px;
 }
@@ -669,6 +696,10 @@ table.relationships tbody tr td.ColumnPartner a:hover {
 #EventList table.infolist tr td a,
 #EventDetail table.infolist tr td a {
     display: inline;
+}
+#EventList table.infolist tr:hover,
+#EventList table.infolist tr:hover td.ColumnType {
+    background-color:#C1B398;
 }
 #EventList table.infolist tr td span.father,
 #EventList table.infolist tr td span.mother,
@@ -1071,6 +1102,10 @@ div#parents table.infolist tbody tr td.ColumnValue ol li {
 
 /* Subsections : Families
 ----------------------------------------------------- */
+#families table.infolist td.ColumnValue.Child table.infolist tr:hover,
+table.relationships tr:hover {
+    background-color:#C1B398;
+}
 div#families table.infolist {
     margin-top:.5em;
 }
