@@ -1054,13 +1054,13 @@ def sanitize_place(db, place):
         n_name = PlaceName(name)
         n_name.citation_list = []
         copy_citation_ref_list(db, name, n_name)
-        new_place.name_list.append(n_name)
+        new_place.add_name(n_name)
     # Copy type list
     for ptype in place.get_types():
         n_type = PlaceType(ptype)
         n_type.citation_list = []
         copy_citation_ref_list(db, ptype, n_type)
-        new_place.type_list.append(n_type)
+        new_place.add_type(n_type)
     # Copy placeref list
     for pref in place.placeref_list:
         n_pref = PlaceRef(pref)
