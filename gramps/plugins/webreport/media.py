@@ -652,7 +652,9 @@ class MediaPages(BasePage):
         try:
             mtime = os.stat(fullpath).st_mtime
             if self.report.archive:
-                self.report.archive.add(fullpath, str(newpath))
+                if str(newpath) not in self.report.archive.getnames():
+                    # The current file not already archived.
+                    self.report.archive.add(fullpath, str(newpath))
             else:
                 to_dir = os.path.join(self.html_dir, to_dir)
                 if not os.path.isdir(to_dir):

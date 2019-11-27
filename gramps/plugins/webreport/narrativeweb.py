@@ -1481,15 +1481,17 @@ class NavWebReport(Report):
                                when we use rsync.
         """
         if self.archive:
-            output_file.flush()
-            tarinfo = tarfile.TarInfo(self.cur_fname)
-            tarinfo.size = len(string_io.getvalue())
-            tarinfo.mtime = date if date != 0 else time.time()
-            if not win():
-                tarinfo.uid = os.getuid()
-                tarinfo.gid = os.getgid()
-            string_io.seek(0)
-            self.archive.addfile(tarinfo, string_io)
+            if self.cur_fname not in self.archive.getnames():
+                # The current file not already archived.
+                output_file.flush()
+                tarinfo = tarfile.TarInfo(self.cur_fname)
+                tarinfo.size = len(string_io.getvalue())
+                tarinfo.mtime = date if date != 0 else time.time()
+                if not win():
+                    tarinfo.uid = os.getuid()
+                    tarinfo.gid = os.getgid()
+                string_io.seek(0)
+                self.archive.addfile(tarinfo, string_io)
             output_file.close()
         else:
             output_file.close()
@@ -1540,7 +1542,9 @@ class NavWebReport(Report):
                 return tarinfo
 
             dest = os.path.join(to_dir, to_fname)
-            self.archive.add(from_fname, dest, filter=set_mtime)
+            if dest not in self.archive.getnames():
+                # The current file not already archived.
+                self.archive.add(from_fname, dest, filter=set_mtime)
         else:
             dest = os.path.join(self.html_dir, to_dir, to_fname)
 
