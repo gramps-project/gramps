@@ -769,6 +769,7 @@ def sanitize_citation(db, citation):
     new_citation.set_gramps_id(citation.get_gramps_id())
     new_citation.set_handle(citation.get_handle())
     new_citation.set_change_time(citation.get_change_time())
+    new_citation.set_tag_list(citation.get_tag_list())
     copy_srcattributes(db, citation, new_citation)
     copy_notes(db, citation, new_citation)
     copy_media_ref_list(db, citation, new_citation)
@@ -914,6 +915,7 @@ def sanitize_source(db, source):
     new_source.set_gramps_id(source.get_gramps_id())
     new_source.set_handle(source.get_handle())
     new_source.set_change_time(source.get_change_time())
+    new_source.set_tag_list(source.get_tag_list())
 
     for repo_ref in source.get_reporef_list():
         if repo_ref and not repo_ref.get_privacy():
@@ -987,6 +989,7 @@ def sanitize_place(db, place):
     new_place.set_type(place.get_type())
     new_place.set_code(place.get_code())
     new_place.set_placeref_list(place.get_placeref_list())
+    new_place.set_tag_list(place.get_tag_list())
 
     copy_citation_ref_list(db, place, new_place)
     copy_notes(db, place, new_place)
@@ -1017,6 +1020,7 @@ def sanitize_event(db, event):
     new_event.set_handle(event.get_handle())
     new_event.set_date_object(event.get_date_object())
     new_event.set_change_time(event.get_change_time())
+    new_event.set_tag_list(event.get_tag_list())
 
     copy_citation_ref_list(db, event, new_event)
     copy_notes(db, event, new_event)
@@ -1120,6 +1124,7 @@ def sanitize_repository(db, repository):
     new_repository.set_gramps_id(repository.get_gramps_id())
     new_repository.set_handle(repository.get_handle())
     new_repository.set_change_time(repository.get_change_time())
+    new_repository.set_tag_list(repository.get_tag_list())
 
     copy_notes(db, repository, new_repository)
     copy_addresses(db, repository, new_repository)
