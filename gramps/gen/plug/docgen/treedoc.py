@@ -43,8 +43,9 @@ from ...display.place import displayer as _pd
 from ...utils.file import media_path_full
 from . import BaseDoc, PAPER_PORTRAIT
 from ..menu import NumberOption, TextOption, EnumeratedListOption
-from ...constfunc import win
+from ...constfunc import win, lin
 from ...config import config
+from ...const import USER_HOME
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -674,10 +675,12 @@ class TreePdfDoc(TreeDocBase):
             if win():
                 proc = Popen(args, stdin=PIPE, stdout=PIPE, stderr=PIPE,
                              creationflags=DETACHED_PROCESS)
-            else:
                 proc = Popen(args, stdin=PIPE, stdout=PIPE, stderr=PIPE)
             proc.communicate(input=self._tex.getvalue().encode('utf-8'))
-            shutil.copy(os.path.join(tmpdir, basename), self._filename)
+            if win():
+                shutil.copy(os.path.join(tmpdir, basename), self._filename)
+            elif lin():
+                shutil.copy(basename, self._filename)
 
 
 #------------------------------------------------------------------------------
