@@ -815,6 +815,12 @@ div.grampsstylednote p {
     background: url(../images/Web_Mainz_MidLight.png) #FFF2C6;
 }
 
+/* Updates
+----------------------------------------------------- */
+#Updates table.list td.date {
+    width: 20%;
+}
+
 /* Overwritten
 -----------------------------------------------------------------*/
 button#drop {

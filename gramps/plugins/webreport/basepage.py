@@ -1571,6 +1571,7 @@ class BasePage: # pylint: disable=C1001
             ("addressbook", self._("Address Book"),
              self.report.inc_addressbook),
             ('contact', self._("Contact"), self.report.use_contact),
+            ('updates', self._("Updates"), self.report.inc_updates),
             ('statistics', self._("Statistics"), self.report.inc_stats),
             (self.target_cal_uri, self._("Web Calendar"), self.usecal)
         ]

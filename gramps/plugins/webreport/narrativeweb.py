@@ -97,6 +97,7 @@ from gramps.plugins.webreport.surnamelist import SurnameListPage
 from gramps.plugins.webreport.surname import SurnamePage
 from gramps.plugins.webreport.thumbnail import ThumbnailPreviewPage
 from gramps.plugins.webreport.statistics import StatisticsPage
+from gramps.plugins.webreport.updates import UpdatesPage
 from gramps.plugins.webreport.home import HomePage
 from gramps.plugins.webreport.contact import ContactPage
 from gramps.plugins.webreport.download import DownloadPage
@@ -204,6 +205,7 @@ class NavWebReport(Report):
         self.use_home = self.options['homenote'] or self.options['homeimg']
         self.use_contact = self.opts['contactnote'] or self.opts['contactimg']
         self.inc_stats = self.opts['inc_stats']
+        self.inc_updates = self.opts['updates']
         self.create_unused_media = self.opts['unused']
 
         # Do we need to include this in a cms ?
@@ -219,6 +221,9 @@ class NavWebReport(Report):
         # Do we need to include web calendar ?
         self.usecal = self.options['usecal']
         self.target_cal_uri = self.options['caluri']
+
+        # Do we need to include news and updates page ?
+        self.inc_updates = self.options['updates']
 
         # either include the gender graphics or not?
         self.ancestortree = self.options['ancestortree']
@@ -477,6 +482,10 @@ class NavWebReport(Report):
         # build classes StatisticsPage
         if self.inc_stats:
             self.statistics_preview_page(self.title)
+
+        # build classes Updates
+        if self.inc_updates:
+            self.updates_preview_page(self.title)
 
         # copy all of the neccessary files
         self.copy_narrated_files()
@@ -1220,6 +1229,15 @@ class NavWebReport(Report):
                                 1) as step:
             StatisticsPage(self, title, step)
 
+    def updates_preview_page(self, title):
+        """
+        creates the statistics preview page
+        """
+        with self.user.progress(_("Narrated Web Site Report"),
+                                _("Creating updates page..."),
+                                1) as step:
+            UpdatesPage(self, title)
+
     def addressbook_pages(self, ind_list):
         """
         Create a webpage with a list of address availability for each person
@@ -1268,7 +1286,7 @@ class NavWebReport(Report):
 
     def base_pages(self):
         """
-        creates HomePage, ContactPage, DownloadPage, and IntroductionPage
+        creates HomePage, ContactPage, DownloadPage and IntroductionPage
         if requested by options in plugin
         """
         if self.use_home:
@@ -2203,6 +2221,36 @@ class NavWebOptions(MenuReportOptions):
         addopt("caluri", self.__calendar_uri)
 
         self.__calendar_uri_changed()
+        self.__graph_changed()
+
+        self.__updates = BooleanOption(_("Include the news and updates page"),
+                                       True)
+        self.__updates.set_help(_('Whether to include '
+                                  'a page with the last updates'))
+        self.__updates.connect('value-changed', self.__updates_changed)
+        addopt("updates", self.__updates)
+
+        self.__maxdays = NumberOption(_("Max days for updates"), 1, 1, 300)
+        self.__maxdays.set_help(_("You want to see the last updates on how"
+                                    " many days ?"))
+        addopt("maxdays", self.__maxdays)
+
+        self.__maxupdates = NumberOption(_("Max number of updates per object to show"), 1, 1, 100)
+        self.__maxupdates.set_help(_("How many updates do you want to see max"
+                                    ))
+        addopt("maxupdates", self.__maxupdates)
+
+    def __updates_changed(self):
+        """
+        Update the change of storage: archive or directory
+        """
+        _updates_option = self.__updates.get_value()
+        if _updates_option:
+            self.__maxupdates.set_available(True)
+            self.__maxdays.set_available(True)
+        else:
+            self.__maxupdates.set_available(False)
+            self.__maxdays.set_available(False)
 
     def __cms_uri_changed(self):
         """

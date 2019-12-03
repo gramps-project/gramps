@@ -812,6 +812,12 @@ a.familymap {
     padding-right: 15px;
 }
 
+/* Updates
+----------------------------------------------------- */
+#Updates table.list td.date {
+    width: 20%;
+}
+
 /* Overwritten
 ----------------------------------------------------- */
 body#FamilyMap {

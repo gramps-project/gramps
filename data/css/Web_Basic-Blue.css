@@ -348,6 +348,12 @@ div#header::after {
     display: table;
 }
 
+/* Updates
+----------------------------------------------------- */
+#Updates table.list td.date {
+    width: 20%;
+}
+
 /* Alphabet Navigation
 ----------------------------------------------------- */
 div#alphanav {

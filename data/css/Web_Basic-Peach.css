@@ -868,6 +868,12 @@ a.familymap {
     background-color: #FFC35E;
 }
 
+/* Updates
+----------------------------------------------------- */
+#Updates table.list td.date {
+    width: 20%;
+}
+
 /* Overwritten
 ----------------------------------------------------- */
 button#drop {
