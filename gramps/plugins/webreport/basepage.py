@@ -1565,8 +1565,10 @@ class BasePage: # pylint: disable=C1001
             ('places', self._("Places"), self.report.inc_places),
             ('sources', self._("Sources"), self.report.inc_sources),
             ('repositories', self._("Repositories"), inc_repos),
-            ('media', self._("Media"), self.create_images_index),
-            ('thumbnails', self._("Thumbnails"), self.create_thumbs_index),
+            ('media', self._("Media"), self.create_images_index and
+             self.report.inc_gallery and not self.report.create_thumbs_only),
+            ('thumbnails', self._("Thumbnails"), self.create_thumbs_index and
+             self.report.inc_gallery),
             ('download', self._("Download"), self.report.inc_download),
             ("addressbook", self._("Address Book"),
              self.report.inc_addressbook),

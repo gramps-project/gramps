@@ -32,7 +32,7 @@ Classe:
 #------------------------------------------------
 from decimal import getcontext
 import logging
-from time import (strftime, gmtime, time, localtime)
+from time import (strftime, time, localtime)
 
 #------------------------------------------------
 # Gramps module
@@ -44,7 +44,6 @@ from gramps.plugins.lib.libhtml import Html
 # specific narrative web import
 #------------------------------------------------
 from gramps.plugins.webreport.basepage import BasePage
-from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.plugins.webreport.common import (FULLCLEAR, _EVENTMAP)
 from gramps.gen.lib import (Person, Family, Event, Place, Source, Repository,
@@ -70,9 +69,9 @@ class UpdatesPage(BasePage):
 
         output_file, sio = self.report.create_file("updates")
         result = self.write_header(self._('New and updated objects'))
-        homepage, head, dummy_body, outerwrapper = result
+        homepage, dummy_head, dummy_body, outerwrapper = result
         self.days = self.report.options['maxdays']
-        self.nb = self.report.options['maxupdates']
+        self.nbr = self.report.options['maxupdates']
         cur_time = int(time())
         self.maxdays = cur_time - (86400 * self.days)
 
@@ -83,7 +82,7 @@ class UpdatesPage(BasePage):
                            " database in the last %(days)d days and for a "
                            "maximum of %(nb)d objects per object type." % {
                                'days' : self.days,
-                               'nb' : self.nb
+                               'nb' : self.nbr
                                }
                           )
             section += Html("p", description)
@@ -130,7 +129,7 @@ class UpdatesPage(BasePage):
                     section += repos
 
             if (self.report.options['gallery'] and not
-                self.report.options['create_thumbs_only']):
+                    self.report.options['create_thumbs_only']):
                 header = self._("Media")
                 section += Html("h4", header)
                 media = self.list_people_changed(Media)
@@ -147,9 +146,13 @@ class UpdatesPage(BasePage):
         self.xhtml_writer(homepage, output_file, sio, ldatec)
 
     def list_people_changed(self, object_type):
+        """
+        List all records with last change date
+        """
         nb_items = 0
 
         def sort_on_change(handle):
+            """ sort records based on the last change time """
             obj = fct(handle)
             timestamp = obj.get_change_time()
             return timestamp
@@ -189,7 +192,6 @@ class UpdatesPage(BasePage):
                     name = fct_link(handle, name)
                 elif object_type == Event:
                     otype = obj.get_type()
-                    ogid = obj.get_gramps_id()
                     date = obj.get_date_object()
                     if int(otype) in _EVENTMAP:
                         handle_list = set(
@@ -205,12 +207,12 @@ class UpdatesPage(BasePage):
                         name = Html("span", self._(otype.xml_str())+" ")
                         for obj_t, r_handle in handle_list:
                             if obj_t == 'Person':
-                                pers = self.report.database.get_person_from_handle(r_handle)
                                 name += self.new_person_link(r_handle)
                             else:
-                                fam = self.report.database.get_family_from_handle(r_handle)
-                                name += self.family_link(r_handle,
-                                    self.report.get_family_name(fam))
+                                srbd = self.report.database
+                                fam = srbd.get_family_from_handle(r_handle)
+                                srgfn = self.report.get_family_name
+                                name += self.family_link(r_handle, srgfn(fam))
                 elif object_type == Place:
                     name = _pd.display(self.report.database, obj)
                     name = fct_link(handle, name)
@@ -228,13 +230,12 @@ class UpdatesPage(BasePage):
                     timestamp = obj.get_change_time()
                     if timestamp - self.maxdays > 0:
                         nb_items += 1
-                        if nb_items > self.nb:
-                            break;
-                        t = localtime(timestamp)
-                        d = Date(t.tm_year, t.tm_mon, t.tm_mday)
-                        date = self.rlocale.date_displayer.display(d)
-                        date += strftime(' %X', t)
+                        if nb_items > self.nbr:
+                            break
+                        tims = localtime(timestamp)
+                        odat = Date(tims.tm_year, tims.tm_mon, tims.tm_mday)
+                        date = self.rlocale.date_displayer.display(odat)
+                        date += strftime(' %X', tims)
                         row += Html("td", date, class_="date")
                         row += Html("td", name)
         return section
-

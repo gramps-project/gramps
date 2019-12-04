@@ -1235,7 +1235,7 @@ class NavWebReport(Report):
         """
         with self.user.progress(_("Narrated Web Site Report"),
                                 _("Creating updates page..."),
-                                1) as step:
+                                1):
             UpdatesPage(self, title)
 
     def addressbook_pages(self, ind_list):
@@ -1626,12 +1626,15 @@ class NavWebOptions(MenuReportOptions):
         self.__usecal = None
         self.__calendar_uri = None
         self.__create_thumbs_only = None
+        self.__create_images_index = None
+        self.__create_thumbs_index = None
         self.__mapservice = None
         self.__maxinitialimagewidth = None
         self.__citationreferents = None
         self.__incdownload = None
         self.__placemappages = None
         self.__familymappages = None
+        self.__stamenopts = None
         self.__googleopts = None
         self.__googlemapkey = None
         self.__ancestortree = None
@@ -1640,6 +1643,9 @@ class NavWebOptions(MenuReportOptions):
         self.__dl_descr2 = None
         self.__down_fname2 = None
         self.__gallery = None
+        self.__updates = None
+        self.__maxdays = None
+        self.__maxupdates = None
         self.__unused = None
         self.__down_fname1 = None
         self.__navigation = None
@@ -1939,7 +1945,7 @@ class NavWebOptions(MenuReportOptions):
             _("This option allows you to create the images index"))
         addopt("create_images_index", self.__create_images_index)
         self.__create_images_index.connect("value-changed",
-                                          self.__gallery_changed)
+                                           self.__gallery_changed)
 
         self.__unused = BooleanOption(
             _("Include unused images and media objects"), True)
@@ -1964,7 +1970,7 @@ class NavWebOptions(MenuReportOptions):
             _("This option allows you to create the thumbnail index"))
         addopt("create_thumbs_index", self.__create_thumbs_index)
         self.__create_thumbs_index.connect("value-changed",
-                                          self.__gallery_changed)
+                                           self.__gallery_changed)
 
         self.__maxinitialimagewidth = NumberOption(
             _("Max width of initial image"), _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
@@ -2232,10 +2238,11 @@ class NavWebOptions(MenuReportOptions):
 
         self.__maxdays = NumberOption(_("Max days for updates"), 1, 1, 300)
         self.__maxdays.set_help(_("You want to see the last updates on how"
-                                    " many days ?"))
+                                  " many days ?"))
         addopt("maxdays", self.__maxdays)
 
-        self.__maxupdates = NumberOption(_("Max number of updates per object to show"), 1, 1, 100)
+        self.__maxupdates = NumberOption(_("Max number of updates per object"
+                                           " to show"), 1, 1, 100)
         self.__maxupdates.set_help(_("How many updates do you want to see max"
                                     ))
         addopt("maxupdates", self.__maxupdates)
