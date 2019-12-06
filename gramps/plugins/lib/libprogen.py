@@ -1332,9 +1332,10 @@ class ProgenParser(UpdateCallback):
                     if attr:
                         person.add_attribute(attr)
                 else:
-                    self.__add_name(person, citation.handle, NameType.AKA,
-                        ' '.join(alias_text[0:-1]),
-                        '', alias_text[-1].split(), '')
+                    self.__add_name(
+                        person, citation.handle if citation else None,
+                        NameType.AKA, ' '.join(alias_text[0:-1]),
+                        '', alias_text[-1], '')
 
             # process F09 Person Code
             refn_code = recflds[person_ix[9]]   # F09: INDI REFN/INDI CODE
