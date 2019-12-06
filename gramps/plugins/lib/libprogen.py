@@ -729,7 +729,8 @@ class ProgenParser(UpdateCallback):
 
         # provide feedback about import progress (GUI / TXT)
         if self.uistate:
-            self.progress = ProgressMeter(_("Import from Pro-Gen"), '')
+            self.progress = ProgressMeter(_("Import from Pro-Gen"), '',
+                                          parent=self.uistate.window)
         else:
             UpdateCallback.__init__(self, user.callback)
 
