@@ -448,6 +448,7 @@ class GrampsImportFileDialog(ManagedWindow):
             file_filter.set_name(name)
             file_filter.add_pattern("*.%s" % plugin.get_extension())
             file_filter.add_pattern(plugin.get_extension().capitalize())
+            file_filter.add_pattern("*.%s" % plugin.get_extension().upper())
             import_dialog.add_filter(file_filter)
 
         (box, type_selector) = format_maker()
