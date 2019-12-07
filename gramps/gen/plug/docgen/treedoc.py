@@ -347,7 +347,7 @@ class TreeDocBase(BaseDoc, TreeDoc):
         trans = glocale.language[0][:2]
         lang_en = _locale._get_language_string(trans).lower()
         if lang_en in LANG_SUPPORT:
-            self.write(0, '\\gtrset{language=%s}\n' % lang_en.lower())
+            self.write(0, '\\gtrset{language=%s}\n' % lang_en)
         self.write(0, '\\begin{document}\n')
 
         if self.nodecolor == 'preferences':
