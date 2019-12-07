@@ -50,8 +50,8 @@ _ = glocale.translation.gettext
 from ...utils.grampslocale import GrampsLocale
 _locale = GrampsLocale(lang='en')
 
-LANG_SUPPORT = ['danish', 'dutch', 'english', 'french', 'german', 'italian',
-                'spanish', 'swedish']
+LATIN = ['french', 'italian', 'spanish']
+LANG_SUPPORT = ['danish', 'dutch', 'german', 'swedish'] + LATIN
 
 #-------------------------------------------------------------------------
 #
@@ -348,6 +348,7 @@ class TreeDocBase(BaseDoc, TreeDoc):
         lang_en = _locale._get_language_string(trans).lower()
         if lang_en in LANG_SUPPORT:
             self.write(0, '\\gtrset{language=%s}\n' % lang_en)
+        if lang_en in LATIN:
             self.write(0, '\\usepackage{lmodern}\n')
         self.write(0, '\\begin{document}\n')
 
