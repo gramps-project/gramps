@@ -344,6 +344,7 @@ class TreeDocBase(BaseDoc, TreeDoc):
         self.write(0, '\\usepackage[%s,%s]{geometry}\n' % (paper, margin))
         self.write(0, '\\usepackage[all]{genealogytree}\n')
         self.write(0, '\\usepackage{color}\n')
+        self.write(0, '\\usepackage{lmodern}\n')
         trans = glocale.language[0][:2]
         lang_en = _locale._get_language_string(trans).lower()
         if lang_en in LANG_SUPPORT:
