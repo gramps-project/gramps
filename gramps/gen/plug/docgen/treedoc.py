@@ -302,7 +302,7 @@ class TreeDocBase(BaseDoc, TreeDoc):
         name = paper_size.get_name().lower()
         if name == 'custom size':
             width = str(paper_size.get_width())
-            height = str(paper_size.get_width())
+            height = str(paper_size.get_height())
             paper = 'papersize={%scm,%scm}' % (width, height)
         elif name in ('a', 'b', 'c', 'd', 'e'):
             paper = 'ansi' + name + 'paper'
