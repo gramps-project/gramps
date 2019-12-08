@@ -931,82 +931,6 @@ class PersonPages(BasePage):
             with Html("div", id="map_canvas") as canvas:
                 mapdetail += canvas
 
-                # begin javascript inline code...
-                with Html("script", deter="deter",
-                          style='width =100%; height =100%;',
-                          type="text/javascript", indent=False) as jsc:
-                    head += jsc
-
-                    # Link to Gramps marker
-                    fname = "/".join(['images', 'marker.png'])
-                    marker_path = self.report.build_url_image("marker.png",
-                                                              "images",
-                                                              self.uplink)
-
-                    jsc += MARKER_PATH % marker_path
-                    # are we using Google?
-                    if self.mapservice == "Google":
-
-                        # are we creating Family Links?
-                        if self.googleopts == "FamilyLinks":
-                            if midy_ is None:
-                                jsc += FAMILYLINKS % (tracelife, latitude,
-                                                      longitude, int(10))
-                            else:
-                                jsc += FAMILYLINKS % (tracelife, midx_, midy_,
-                                                      zoomlevel)
-
-                        # are we creating Drop Markers?
-                        elif self.googleopts == "Drop":
-                            if midy_ is None:
-                                jsc += DROPMASTERS % (tracelife, latitude,
-                                                      longitude, int(10))
-                            else:
-                                jsc += DROPMASTERS % (tracelife, midx_, midy_,
-                                                      zoomlevel)
-
-                        # we are creating Markers only...
-                        else:
-                            if midy_ is None:
-                                jsc += MARKERS % (tracelife, latitude,
-                                                  longitude, int(10))
-                            else:
-                                jsc += MARKERS % (tracelife, midx_, midy_,
-                                                  zoomlevel)
-
-                    # we are using OpenStreetMap
-                    elif self.mapservice == "OpenStreetMap":
-                        if midy_ is None:
-                            jsc += OSM_MARKERS % (tracelife,
-                                                  longitude,
-                                                  latitude, 10)
-                        else:
-                            jsc += OSM_MARKERS % (tracelife, midy_, midx_,
-                                                  zoomlevel)
-                        jsc += OPENLAYER
-                    # we are using StamenMap
-                    elif self.mapservice == "StamenMap":
-                        if midy_ is None:
-                            jsc += STAMEN_MARKERS % (tracelife,
-                                                     self.stamenopts,
-                                                     longitude,
-                                                     latitude,
-                                                     10,
-                                                    )
-                        else:
-                            jsc += STAMEN_MARKERS % (tracelife,
-                                                     self.stamenopts,
-                                                     midy_, midx_,
-                                                     zoomlevel,
-                                                    )
-                        jsc += OPENLAYER
-
-            # if Google and Drop Markers are selected,
-            # then add "Drop Markers" button?
-            if self.mapservice == "Google" and self.googleopts == "Drop":
-                mapdetail += Html("button", _("Drop Markers"),
-                                  id="drop", onclick="drop()", inline=True)
-
             # add div for popups.
             if self.mapservice == "Google":
                 with Html("div", id="popup", inline=True) as popup:
@@ -1070,8 +994,84 @@ class PersonPages(BasePage):
                             ]
                         )
 
+            # begin javascript inline code...
+            with Html("script", deter="deter",
+                      style='width =100%; height =100%;',
+                      type="text/javascript", indent=False) as jsc:
+                mapdetail += jsc
+
+                # Link to Gramps marker
+                fname = "/".join(['images', 'marker.png'])
+                marker_path = self.report.build_url_image("marker.png",
+                                                          "images",
+                                                          self.uplink)
+
+                jsc += MARKER_PATH % marker_path
+                # are we using Google?
+                if self.mapservice == "Google":
+
+                    # are we creating Family Links?
+                    if self.googleopts == "FamilyLinks":
+                        if midy_ is None:
+                            jsc += FAMILYLINKS % (tracelife, latitude,
+                                                  longitude, int(10))
+                        else:
+                            jsc += FAMILYLINKS % (tracelife, midx_, midy_,
+                                                  zoomlevel)
+
+                    # are we creating Drop Markers?
+                    elif self.googleopts == "Drop":
+                        if midy_ is None:
+                            jsc += DROPMASTERS % (tracelife, latitude,
+                                                  longitude, int(10))
+                        else:
+                            jsc += DROPMASTERS % (tracelife, midx_, midy_,
+                                                  zoomlevel)
+
+                    # we are creating Markers only...
+                    else:
+                        if midy_ is None:
+                            jsc += MARKERS % (tracelife, latitude,
+                                              longitude, int(10))
+                        else:
+                            jsc += MARKERS % (tracelife, midx_, midy_,
+                                              zoomlevel)
+
+                # we are using OpenStreetMap
+                elif self.mapservice == "OpenStreetMap":
+                    if midy_ is None:
+                        jsc += OSM_MARKERS % (tracelife,
+                                              longitude,
+                                              latitude, 10)
+                    else:
+                        jsc += OSM_MARKERS % (tracelife, midy_, midx_,
+                                              zoomlevel)
+                    jsc += OPENLAYER
+                # we are using StamenMap
+                elif self.mapservice == "StamenMap":
+                    if midy_ is None:
+                        jsc += STAMEN_MARKERS % (tracelife,
+                                                 self.stamenopts,
+                                                 longitude,
+                                                 latitude,
+                                                 10,
+                                                )
+                    else:
+                        jsc += STAMEN_MARKERS % (tracelife,
+                                                 self.stamenopts,
+                                                 midy_, midx_,
+                                                 zoomlevel,
+                                                )
+                    jsc += OPENLAYER
+
+            # if Google and Drop Markers are selected,
+            # then add "Drop Markers" button?
+            if self.mapservice == "Google" and self.googleopts == "Drop":
+                mapdetail += Html("button", _("Drop Markers"),
+                                  id="drop", onclick="drop()", inline=True)
+
         # add body id for this page...
-        body.attr = 'id ="FamilyMap" onload ="initialize()"'
+        body.attr = 'id ="FamilyMap"'
 
         # add clearline for proper styling
         # add footer section

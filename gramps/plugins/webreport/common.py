@@ -57,14 +57,14 @@ HTTPS = "https://"
 GOOGLE_MAPS = 'https://maps.googleapis.com/maps/'
 # javascript code for marker path
 MARKER_PATH = """
-  var marker_png = '%s'
+  var marker_png = '%s';
 """
 
 # javascript code for Google's FamilyLinks...
 FAMILYLINKS = """
-  var tracelife = %s
+  var tracelife = %s;
 
-  function initialize() {
+  window.addEventListener("load", function() {
     var myLatLng = new google.maps.LatLng(%s, %s);
 
     var mapOptions = {
@@ -86,18 +86,19 @@ FAMILYLINKS = """
     });
 
    flightPath.setMap(map);
-  }"""
+  });
+"""
 
 # javascript for Google's Drop Markers...
 DROPMASTERS = """
   var markers = [];
   var iterator = 0;
 
-  var tracelife = %s
+  var tracelife = %s;
   var map;
   var myLatLng = new google.maps.LatLng(%s, %s);
 
-  function initialize() {
+  window.addEventListener("load", function() {
     var mapOptions = {
       scaleControl: true,
       zoomControl:  true,
@@ -107,7 +108,7 @@ DROPMASTERS = """
     };
     map = new google.maps.Map(document.getElementById("map_canvas"),
                               mapOptions);
-  };
+  });
 
   function drop() {
     for (var i = 0; i < tracelife.length; i++) {
@@ -144,11 +145,11 @@ DROPMASTERS = """
 
 # javascript for Google's Markers...
 MARKERS = """
-  var tracelife = %s
+  var tracelife = %s;
   var map;
   var myLatLng = new google.maps.LatLng(%s, %s);
 
-  function initialize() {
+  window.addEventListener("load", function() {
     var mapOptions = {
       scaleControl:    true,
       panControl:      true,
@@ -160,7 +161,7 @@ MARKERS = """
     map = new google.maps.Map(document.getElementById("map_canvas"),
                               mapOptions);
     addMarkers();
-  }
+  });
 
   function addMarkers() {
     var bounds = new google.maps.LatLngBounds();
@@ -189,7 +190,6 @@ MARKERS = """
               infoWindow.open(map, marker);
           });
   }
-
 """
 
 # javascript for OpenStreetMap's markers...
@@ -198,9 +198,9 @@ https://openlayers.org/en/latest/examples/
 """
 
 OSM_MARKERS = """
-  function initialize(){
+  window.addEventListener("load", function() {
     var map;
-    var tracelife = %s
+    var tracelife = %s;
     var iconStyle = new ol.style.Style({
       image: new ol.style.Icon(({
         anchor: [0.2, 48],
@@ -241,9 +241,9 @@ OSM_MARKERS = """
 """
 
 STAMEN_MARKERS = """
-  function initialize(){
+  window.addEventListener("load", function() {
     var map;
-    var tracelife = %s
+    var tracelife = %s;
     var layer = '%s';
     var iconStyle = new ol.style.Style({
       image: new ol.style.Icon(({
@@ -292,14 +292,12 @@ OPENLAYER = """
     var closer = document.getElementById('popup-closer');
     var tip = document.getElementById('tooltip');
     var tipcontent = document.getElementById('tooltip-content');
-
     var tooltip = new ol.Overlay({
       element: tip,
       positioning: 'bottom-center',
       offset: [10, 0],
     });
     map.addOverlay(tooltip);
-
     var popup = new ol.Overlay({
       element: element,
       positioning: 'bottom-center',
@@ -308,7 +306,6 @@ OPENLAYER = """
       stopEvent: true
     });
     map.addOverlay(popup);
-
     /**
      * Add a click handler to hide the popup.
      * @return {boolean} Don't follow the href.
@@ -318,7 +315,6 @@ OPENLAYER = """
       closer.blur();
       return false;
       };
-
     map.on('pointermove', function(evt) {
       evt.preventDefault()
       var feature = this.forEachFeatureAtPixel(evt.pixel,
@@ -338,7 +334,6 @@ OPENLAYER = """
       } else {
         tooltip.setPosition(undefined);
       }
-
     });
     map.on('singleclick', function(evt) {
       evt.preventDefault()
@@ -355,8 +350,7 @@ OPENLAYER = """
         popup.setPosition(undefined);
       }
       });
-
-  };
+  });
 """
 
 # variables for alphabet_navigation()

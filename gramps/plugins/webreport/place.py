@@ -406,49 +406,21 @@ class PlacePages(BasePage):
                     with Html("div", id="map_canvas", inline=True) as canvas:
                         placedetail += canvas
 
-                        # Begin inline javascript code because jsc is a
-                        # docstring, it does NOT have to be properly indented
-                        if self.mapservice == "Google":
-                            with Html("script", type="text/javascript",
-                                      indent=False) as jsc:
-                                head += jsc
-
-                                # Google adds Latitude/ Longitude to its maps...
-                                plce = placetitle.replace("'", "\\'")
-                                jsc += MARKER_PATH % marker_path
-                                jsc += MARKERS % ([[plce,
-                                                    latitude,
-                                                    longitude,
-                                                    1,""]],
-                                                  latitude, longitude,
-                                                  10)
-
-                        elif self.mapservice == "OpenStreetMap":
-                            with Html("script", type="text/javascript") as jsc:
-                                canvas += jsc
-                                jsc += MARKER_PATH % marker_path
-                                jsc += OSM_MARKERS % ([[float(longitude),
-                                                        float(latitude),
-                                                        placetitle,""]],
-                                                      longitude, latitude, 10)
-                                jsc += OPENLAYER
-                        else: # STAMEN
-                            with Html("script", type="text/javascript") as jsc:
-                                canvas += jsc
-                                jsc += MARKER_PATH % marker_path
-                                jsc += STAMEN_MARKERS % ([[float(longitude),
-                                                        float(latitude),
-                                                        placetitle,""]],
-                                                      self.stamenopts,
-                                                      longitude, latitude, 10)
-                                jsc += OPENLAYER
-
-            # add javascript function call to body element
-            body.attr += ' onload = "initialize();" '
-
             # add div for popups.
-            with Html("div", id="popup", inline=True) as popup:
-                placedetail += popup
+            if self.mapservice == "Google":
+                with Html("div", id="popup", inline=True) as popup:
+                    placedetail += popup
+            else:
+                with Html("div", id="popup", class_="ol-popup",
+                          inline=True) as popup:
+                    placedetail += popup
+                    popup += Html("a", href="#", id="popup-closer",
+                                  class_="ol-popup-closer")
+                    popup += Html("div", id="popup-content")
+                with Html("div", id="tooltip", class_="ol-popup",
+                          inline=True) as tooltip:
+                    placedetail += tooltip
+                    tooltip += Html("div", id="tooltip-content")
 
             # source references
             srcrefs = self.display_ind_sources(place)
@@ -459,6 +431,43 @@ class PlacePages(BasePage):
             ref_list = self.display_bkref_list(Place, place_handle)
             if ref_list is not None:
                 placedetail += ref_list
+
+            # Begin inline javascript code because jsc is a
+            # docstring, it does NOT have to be properly indented
+            if self.mapservice == "Google":
+                with Html("script", type="text/javascript",
+                          indent=False) as jsc:
+                    placedetail += jsc
+
+                    # Google adds Latitude/ Longitude to its maps...
+                    plce = placetitle.replace("'", "\\'")
+                    jsc += MARKER_PATH % marker_path
+                    jsc += MARKERS % ([[plce,
+                                        latitude,
+                                        longitude,
+                                        1,""]],
+                                      latitude, longitude,
+                                      10)
+
+            elif self.mapservice == "OpenStreetMap":
+                with Html("script", type="text/javascript") as jsc:
+                    canvas += jsc
+                    jsc += MARKER_PATH % marker_path
+                    jsc += OSM_MARKERS % ([[float(longitude),
+                                            float(latitude),
+                                            placetitle,""]],
+                                          longitude, latitude, 10)
+                    jsc += OPENLAYER
+            else: # STAMEN
+                with Html("script", type="text/javascript") as jsc:
+                    canvas += jsc
+                    jsc += MARKER_PATH % marker_path
+                    jsc += STAMEN_MARKERS % ([[float(longitude),
+                                            float(latitude),
+                                            placetitle,""]],
+                                          self.stamenopts,
+                                          longitude, latitude, 10)
+                    jsc += OPENLAYER
 
         # add clearline for proper styling
         # add footer section
