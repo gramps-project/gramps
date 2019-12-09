@@ -469,7 +469,7 @@ class PersonPages(BasePage):
         output_file, sio = self.report.create_file(person.get_handle(), "ppl")
         self.uplink = True
         result = self.write_header(self.sort_name)
-        indivdetpage, head, dummy_body, outerwrapper = result
+        indivdetpage, dummy_head, dummy_body, outerwrapper = result
 
         # begin individualdetail division
         with Html("div", class_="content",
@@ -641,7 +641,7 @@ class PersonPages(BasePage):
         else:
             tracelife += """
     [%f, %f, \'%s\', %s],""" % (float(longitude), float(latitude),
-                            placetitle.replace("'", "\\'"), links)
+                                placetitle.replace("'", "\\'"), links)
         return tracelife
 
     def __create_family_map(self, person, place_lat_long):
@@ -758,7 +758,6 @@ class PersonPages(BasePage):
             seq_ = 0
 
             old_place_title = ""
-            oldevent = None
             links = ""
             ln_str = "<a href='%s' title='%s' target='_self'>%s</a>"
             ppl_lnk = ""
@@ -808,8 +807,8 @@ class PersonPages(BasePage):
                         break
                     continue
                 elif old_place_title != "" and index != 0:
-                    (lat, lng, plcetitle, handle_,
-                     event_) = place_lat_long[index-1]
+                    (lat, lng, plcetitle, dummy_handle,
+                     dummy_event) = place_lat_long[index-1]
                     tracelife = self._create_family_tracelife(tracelife,
                                                               plcetitle,
                                                               lat,
@@ -849,8 +848,7 @@ class PersonPages(BasePage):
                         evt_lnk = ln_str % (url, date, evt_type)
                         evt_lnk += " (" + date + ")"
 
-                        links = '"</br>%s"' % (ppl_lnk + self._(":") +
-                                                 evt_lnk)
+                        links = '"</br>%s"' % (ppl_lnk + self._(":") + evt_lnk)
                 elif index == number_markers-1:
                     tracelife = self._create_family_tracelife(tracelife,
                                                               placetitle,
@@ -896,8 +894,8 @@ class PersonPages(BasePage):
                     old_place_title = placetitle
                 seq_ += 1
 
-        (lat, lng, plcetitle, handle_,
-         event_) = place_lat_long[number_markers-1]
+        (lat, lng, plcetitle, dummy_handle,
+         dummy_event) = place_lat_long[number_markers-1]
         tracelife = self._create_family_tracelife(tracelife,
                                                   plcetitle,
                                                   lat,
@@ -976,7 +974,7 @@ class PersonPages(BasePage):
                     # being sorted by date
                     place_lat_long = sorted(place_lat_long,
                                             key=lambda evt:
-                                                       evt[4].get_date_object())
+                                            evt[4].get_date_object())
                     for (latitude, longitude, placetitle, handle,
                          event) in place_lat_long:
                         trow = Html("tr")

@@ -101,6 +101,7 @@ class PlacePages(BasePage):
         self.person = None
         self.familymappages = None
         self.googlemapkey = None
+        self.stamenopts = None
 
         # Place needs to display coordinates?
         self.display_coordinates = report.options["coordinates"]
@@ -301,7 +302,8 @@ class PlacePages(BasePage):
         output_file, sio = self.report.create_file(place_handle, "plc")
         self.uplink = True
         self.page_title = place_name
-        placepage, head, body, outerwrapper = self.write_header(_("Places"))
+        (placepage, head, dummy_body,
+         outerwrapper) = self.write_header(_("Places"))
 
         self.placemappages = self.report.options['placemappages']
         self.mapservice = self.report.options['mapservice']
@@ -447,7 +449,7 @@ class PlacePages(BasePage):
                             jsc += MARKERS % ([[plce,
                                                 latitude,
                                                 longitude,
-                                                1,""]],
+                                                1, ""]],
                                               latitude, longitude,
                                               10)
                     elif self.mapservice == "OpenStreetMap":
@@ -456,7 +458,7 @@ class PlacePages(BasePage):
                             jsc += MARKER_PATH % marker_path
                             jsc += OSM_MARKERS % ([[float(longitude),
                                                     float(latitude),
-                                                    placetitle,""]],
+                                                    placetitle, ""]],
                                                   longitude, latitude, 10)
                             jsc += OPENLAYER
                     else: # STAMEN
@@ -464,10 +466,10 @@ class PlacePages(BasePage):
                             scripts += jsc
                             jsc += MARKER_PATH % marker_path
                             jsc += STAMEN_MARKERS % ([[float(longitude),
-                                                    float(latitude),
-                                                    placetitle,""]],
-                                                  self.stamenopts,
-                                                  longitude, latitude, 10)
+                                                       float(latitude),
+                                                       placetitle, ""]],
+                                                     self.stamenopts,
+                                                     longitude, latitude, 10)
                             jsc += OPENLAYER
                     placedetail += scripts
 
