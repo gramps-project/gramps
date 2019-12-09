@@ -111,6 +111,10 @@ div#FamilyMapDetail div#references table.infolist tbody tr td.ColumnPlace {
 #map_canvas .ol-popup-closer:after {
   content: "✖";
 }
+#popup-content {
+  max-height: 250px;
+  overflow-y: auto;
+}
 #map_canvas .ol-control {
   position: absolute;
   background-color: rgba(255,255,255,0.1);

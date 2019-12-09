@@ -336,7 +336,7 @@ OPENLAYER = """
       }
     });
     map.on('singleclick', function(evt) {
-      evt.preventDefault()
+      evt.preventDefault();
       var feature = map.forEachFeatureAtPixel(evt.pixel,
                                               function(feature, layer) {
         return feature;
