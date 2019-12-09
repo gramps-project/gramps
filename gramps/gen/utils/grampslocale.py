@@ -117,7 +117,7 @@ _LOCALE_NAMES = {
 _RTL_LOCALES = ('ar', 'he')
 
 # locales with less than 70% currently translated
-INCOMPLETE_TRANSLATIONS = ('ar', 'bg', 'he', 'sq', 'ta', 'tr')
+INCOMPLETE_TRANSLATIONS = ('ar', 'bg', 'sq', 'ta', 'tr', 'zh_HK', 'zh_TW')
 
 def _check_mswin_locale(locale):
     msloc = None
