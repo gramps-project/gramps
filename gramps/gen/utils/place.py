@@ -691,6 +691,38 @@ def __conv_SWED_RT90_WGS84(X, Y):
     return LAT, LON
 
 
+def translate_lat_to_en(latitude):
+    """ Translate the localized NS portion of a latitude to the English 'N'
+    and 'S' characters. """
+    if 'N' not in latitude and 'S' not in latitude:
+        # entry is not in english, convert to english
+        latitude = latitude.replace(North, 'N')
+        latitude = latitude.replace(South, 'S')
+        if glocale.rtl_locale:
+            # since Gtk.Entry doesn't handle mixed bidi strings like lat/long
+            # well, we always force ltr.  So depending on wether user makes it
+            # look right, or enters blindly, the translated NSEW could be
+            # normal or reversed, so,
+            # we also allow user to use reversed string
+            latitude = latitude.replace(North_, 'N')
+            latitude = latitude.replace(South_, 'S')
+    return latitude
+
+
+def translate_long_to_en(longitude):
+    """ Translate the localized EW portion of a latitude to the English 'E'
+    and 'W' characters. """
+    if 'E' not in longitude and 'W' not in longitude:
+        # entry is not in english, convert to english
+        longitude = longitude.replace(West, 'W')
+        longitude = longitude.replace(East, 'E')
+        if glocale.rtl_locale:
+            # we also allow user to use reversed string
+            longitude = longitude.replace(West_, 'W')
+            longitude = longitude.replace(East_, 'E')
+    return longitude
+
+
 #-------------------------------------------------------------------------
 #
 # For Testing the convert function in this module, apply it as a script:
