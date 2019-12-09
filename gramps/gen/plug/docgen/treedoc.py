@@ -345,10 +345,10 @@ class TreeDocBase(BaseDoc, TreeDoc):
         self.write(0, '\\usepackage[all]{genealogytree}\n')
         self.write(0, '\\usepackage{color}\n')
         trans = glocale.language[0][:2]
-        lang_en = _locale._get_language_string(trans).lower()
-        if lang_en in LANG_SUPPORT:
-            self.write(0, '\\gtrset{language=%s}\n' % lang_en)
-        if lang_en in LATIN:
+        lang = _locale._get_language_string(trans).lower()
+        if lang in LANG_SUPPORT:
+            self.write(0, '\\gtrset{language=%s}\n' % lang)
+        if lang in LATIN:
             self.write(0, '\\usepackage{lmodern}\n')
         self.write(0, '\\begin{document}\n')
 
