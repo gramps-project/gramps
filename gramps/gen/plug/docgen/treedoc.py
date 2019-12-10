@@ -69,6 +69,12 @@ _MARRIAGE = [{'name': _("Default"), 'value': ""},
              {'name': _("Below"), 'value': "marriage below"},
              {'name': _("Not shown"), 'value': "no marriage"}]
 
+_OCCUPATION = [{'name': _("Do not include"), 'value': "no"},
+              {'name': _("Only description"), 'value': "basic"},
+              {'name': _("Use date"), 'value': "date"},
+              {'name': _("Use place"), 'value': "place"},
+              {'name': _("Use date and place"), 'value': "date place"}]
+
 _COLOR = [{'name': _("None"), 'value': "none"},
           {'name': _("Default"), 'value': "default"},
           {'name': _("Preferences"), 'value': "preferences"}]
@@ -152,6 +158,12 @@ class TreeOptions:
             marriage.add_item(item["value"], item["name"])
         marriage.set_help(_("Position of marriage information."))
         menu.add_option(category, "marriage", marriage)
+        
+        occupation = EnumeratedListOption(_("Occupation"), "")
+        for item in _OCCUPATION:
+            occupation.add_item(item["value"], item["name"])
+        occupation.set_help(_("Details of occupation information."))
+        menu.add_option(category, "occupation", occupation)
 
         nodesize = NumberOption(_("Node size"), 25, 5, 100, 5)
         nodesize.set_help(_("One dimension of a node, in mm. If the timeflow "
@@ -282,6 +294,7 @@ class TreeDocBase(BaseDoc, TreeDoc):
 
         self.detail = get_option('detail').get_value()
         self.marriage = get_option('marriage').get_value()
+        self.occupation = get_option('occupation').get_value()
         self.nodesize = get_option('nodesize').get_value()
         self.levelsize = get_option('levelsize').get_value()
         self.nodecolor = get_option('nodecolor').get_value()
@@ -449,8 +462,9 @@ class TreeDocBase(BaseDoc, TreeDoc):
             # Comparison with 'Occupation' for backwards compatibility with Gramps 5.0
             attr_type = str(attr.get_type())
             if attr_type in ('Occupation', _('Occupation')):
-                self.write(level+1, 'profession = {%s},\n' %
-                           escape(attr.get_value()))
+                if self.occupation != "no":
+                    self.write(level+1, 'profession = {%s},\n' %
+                               escape(attr.get_value()))
             if attr_type == 'Comment':
                 self.write(level+1, 'comment = {%s},\n' %
                            escape(attr.get_value()))
@@ -494,6 +508,8 @@ class TreeDocBase(BaseDoc, TreeDoc):
         elif event.type == EventType.CREMATION:
             event_type = 'burial'
             modifier = 'cremated'
+        elif event.type == EventType.OCCUPATION:
+            event_type = 'occupation'
         else:
             return
 
@@ -519,6 +535,17 @@ class TreeDocBase(BaseDoc, TreeDoc):
             date_str = date_str + '/' + stop_date
 
         place = escape(_pd.display_event(db, event))
+        
+        if event_type == 'occupation' and self.occupation != "no":
+            description = escape(event.description)
+            self.write(level, 'profession = {%s}' % description)
+            if self.occupation == "date":
+                self.write(level+1, '{%s}' % date_str)
+            if self.occupation == "place":
+                self.write(level+1, '{%s}' %  place)
+            if self.occupation == "date place":
+                self.write(level+1, '{%s}\, {%s}' % (date_str, place))
+            self.write(level, ',\n')
 
         if modifier:
             event_type += '+'
