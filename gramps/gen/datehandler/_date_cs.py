@@ -50,6 +50,15 @@ class DateParserCZ(DateParser):
     Converts a text string into a Date object
     """
 
+    quality_to_int = {
+        'přibližně'  : Date.QUAL_ESTIMATED,
+        'odhadem'    : Date.QUAL_ESTIMATED,
+        'odh.'       : Date.QUAL_ESTIMATED,
+        'vypočteno'  : Date.QUAL_CALCULATED,
+        'vypočtené'  : Date.QUAL_CALCULATED,
+        'vyp.'       : Date.QUAL_CALCULATED,
+        }
+
     bce = ["před naším letopočtem", "před Kristem",
            "př. n. l.", "př. Kr."] + DateParser.bce
 
@@ -57,6 +66,17 @@ class DateParserCZ(DateParser):
         """ Allow overriding so a subclass can modify it """
         # bug 9739 grampslocale.py gets '%-d.%-m.%Y' -- makes it be '%/d.%/m.%Y'
         self.dhformat = self.dhformat.replace('/', '') # so counteract that
+
+    def init_strings(self):
+        DateParser.init_strings(self)
+        self._text2 = re.compile('(\d+)?\.?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$'
+                                         % self._mon_str, re.IGNORECASE)
+        self._span  = re.compile(
+            "(od)\s+(?P<start>.+)\s+(do)\s+(?P<stop>.+)",
+            re.IGNORECASE)
+        self._range = re.compile(
+            "(mezi)\s+(?P<start>.+)\s+(a)\s+(?P<stop>.+)",
+            re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
