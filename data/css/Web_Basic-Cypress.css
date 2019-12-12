@@ -524,11 +524,10 @@ table.eventlist tbody tr td.ColumnSources {
     margin: 0px auto;
     display: block;
     border: solid 1px #7C8F7C;
-    max-width: 800px;
     height: auto;
 }
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1600px) {
     #GalleryDisplay img {
         max-width: 100%;
     }
@@ -791,7 +790,7 @@ a.familymap {
 /* Overwritten
 ----------------------------------------------------- */
 body#FamilyMap {
-    background-color: #E0E6E0 ! important;
+    background-color: #454 ! important;
 }
 
 /* Calendar Styles

@@ -483,6 +483,14 @@ class FamilyView(ListView):
         family.add_tag(tag_handle)
         self.dbstate.db.commit_family(family, transaction)
 
+    def remove_tag(self, transaction, family_handle, tag_handle):
+        """
+        Remove the given tag from the given family.
+        """
+        family = self.dbstate.db.get_family_from_handle(family_handle)
+        family.remove_tag(tag_handle)
+        self.dbstate.db.commit_family(family, transaction)
+
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

@@ -40,6 +40,7 @@ Create a relationship graph using Graphviz
 #
 #------------------------------------------------------------------------
 from functools import partial
+import html
 
 #------------------------------------------------------------------------
 #
@@ -616,8 +617,7 @@ class RelGraphReport(Report):
 
         # at the very least, the label must have the person's name
         p_name = self._name_display.display(person)
-        p_name = p_name.replace('"', '&#34;')
-        label += p_name.replace('<', '&#60;').replace('>', '&#62;')
+        label += html.escape(p_name)
         p_id = person.get_gramps_id()
         if self.includeid == 1: # same line
             label += " (%s)" % p_id
@@ -751,10 +751,10 @@ class RelGraphReport(Report):
             event_date = event.get_date_object()
             if event_date.get_year_valid():
                 if self.event_choice in [4, 5]:
-                    return self._get_date( # localized year
+                    return self.get_date( # localized year
                         Date(event_date.get_year()))
                 elif self.event_choice in [1, 2, 3, 7]:
-                    return self._get_date(event_date)
+                    return self.get_date(event_date)
         return ''
 
     def get_place_string(self, event):
@@ -768,8 +768,11 @@ class RelGraphReport(Report):
         """
         if event and self.event_choice in [2, 3, 5, 6, 7]:
             place = _pd.display_event(self._db, event)
-            return place.replace('<', '&#60;').replace('>', '&#62;')
+            return html.escape(place)
         return ''
+    def get_date(self, date):
+        """ return a formatted date """
+        return html.escape(self._get_date(date))
 
 #------------------------------------------------------------------------
 #

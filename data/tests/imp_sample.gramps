@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2019-07-31" version="5.0.2"/>
+    <created date="2019-08-04" version="5.0.2"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
       <resaddr>Not Provided</resaddr>
@@ -1134,7 +1134,7 @@
       <mother hlink="_000000b6000000b6"/>
       <eventref hlink="_000000e3000000e3" role="Family"/>
       <childref hlink="_0000004800000048" mrel="Adopted" frel="Adopted"/>
-      <childref hlink="_0000001900000019"/>
+      <childref hlink="_0000001900000019" mrel="Foster" frel="Adopted"/>
       <childref hlink="_0000007b0000007b" mrel="Adopted" frel="Adopted"/>
       <noteref hlink="_000000e4000000e4"/>
     </family>
@@ -1566,8 +1566,8 @@ Filename omitted                                                    Line    48: 
     <note handle="_0000003d0000003d" change="1" id="N0012" type="GEDCOM import">
       <text>Records not imported into INDI (individual) Gramps ID I0016:
 
-Warn: ADDR overwritten                                              Line   204: 3 ADR1 456 Main St again
-ADDR element ignored '459 Main St.'                                 Line   202: 2 ADDR 459 Main St., The Village, San Francisco, CA, USA
+Warn: ADDR overwritten                                              Line   206: 3 ADR1 456 Main St again
+ADDR element ignored '459 Main St.'                                 Line   204: 2 ADDR 459 Main St., The Village, San Francisco, CA, USA
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="304"/>
@@ -1579,7 +1579,7 @@ ADDR element ignored '459 Main St.'                                 Line   202: 
     <note handle="_0000004700000047" change="1" id="N0014" type="GEDCOM import">
       <text>Records not imported into INDI (individual) Gramps ID I0018:
 
-Tag recognized but not supported                                    Line   245: 2 TYPE first generaton
+Tag recognized but not supported                                    Line   247: 2 TYPE first generaton
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="165"/>
@@ -1611,7 +1611,7 @@ Company. He enlisted in the army at Sparks 7 December 1917 and served as a Corpo
     <note handle="_000000cf000000cf" change="1" id="N0021" type="GEDCOM import">
       <text>Records not imported into FAM (family) Gramps ID F0010:
 
-Tag recognized but not supported                                    Line   863: 2 _STAT 
+Tag recognized but not supported                                    Line   865: 2 _STAT 
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="146"/>
@@ -1620,8 +1620,8 @@ Tag recognized but not supported                                    Line   863: 
     <note handle="_000000d4000000d4" change="1" id="N0022" type="GEDCOM import">
       <text>Records not imported into FAM (family) Gramps ID F0011:
 
-Could not import Magnes&amp;Anna_smiths_marr_cert.jpg                   Line   878: 3 OBJE 
-Could not import Magnes&amp;Anna_smiths_marr_cert.jpg                   Line   881: 2 OBJE 
+Could not import Magnes&amp;Anna_smiths_marr_cert.jpg                   Line   880: 3 OBJE 
+Could not import Magnes&amp;Anna_smiths_marr_cert.jpg                   Line   883: 2 OBJE 
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="233"/>
@@ -1630,7 +1630,7 @@ Could not import Magnes&amp;Anna_smiths_marr_cert.jpg                   Line   8
     <note handle="_000000d9000000d9" change="1" id="N0023" type="GEDCOM import">
       <text>Records not imported into FAM (family) Gramps ID F0012:
 
-Could not import John&amp;Alice_smiths_marr_cert.jpg                    Line   905: 1 OBJE 
+Could not import John&amp;Alice_smiths_marr_cert.jpg                    Line   907: 1 OBJE 
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="145"/>
@@ -1639,7 +1639,7 @@ Could not import John&amp;Alice_smiths_marr_cert.jpg                    Line   9
     <note handle="_000000e4000000e4" change="1" id="N0024" type="GEDCOM import">
       <text>Records not imported into FAM (family) Gramps ID F0008:
 
-Tag recognized but not supported                                    Line  1005: 1 ADDR 123 Main st, Grantville, Virginia, USA
+Tag recognized but not supported                                    Line  1007: 1 ADDR 123 Main st, Grantville, Virginia, USA
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="183"/>
@@ -1663,8 +1663,8 @@ Tag recognized but not supported                                    Line  1005: 
     <note handle="_000000ee000000ee" change="1" id="N0030" type="GEDCOM import">
       <text>Records not imported into SOUR (source) Gramps ID S0003:
 
-Tag recognized but not supported                                    Line  1045: 1 DATA 
-Skipped subordinate line                                            Line  1046: 2 AGNC NYC Public Library
+Tag recognized but not supported                                    Line  1047: 1 DATA 
+Skipped subordinate line                                            Line  1048: 2 AGNC NYC Public Library
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="252"/>
@@ -1679,9 +1679,9 @@ Skipped subordinate line                                            Line  1046: 
     <note handle="_000000f5000000f5" change="1" id="N0033" type="GEDCOM import">
       <text>Records not imported into REPO (repository) Gramps ID R0003:
 
-REFN ignored                                                        Line  1075: 3 REFN blah blah
-Skipped subordinate line                                            Line  1076: 4 TYPE who knows
-Could not import Attic_photo.jpg                                    Line  1079: 3 OBJE 
+REFN ignored                                                        Line  1077: 3 REFN blah blah
+Skipped subordinate line                                            Line  1078: 4 TYPE who knows
+Could not import Attic_photo.jpg                                    Line  1081: 3 OBJE 
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="344"/>
@@ -1690,7 +1690,7 @@ Could not import Attic_photo.jpg                                    Line  1079: 
     <note handle="_000000f6000000f6" change="1" id="N0034" type="GEDCOM import">
       <text>Records not imported into Top Level:
 
-Unknown tag                                                         Line  1106: 0 XXX an unknown token at level 0
+Unknown tag                                                         Line  1108: 0 XXX an unknown token at level 0
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="152"/>
@@ -1699,13 +1699,13 @@ Unknown tag                                                         Line  1106: 
     <note handle="_000000f8000000f8" change="1" id="N0035" type="GEDCOM import">
       <text>Records not imported into Top Level:
 
-Unknown tag                                                         Line  1109: 1 @X1@ XXX and unknown token xref definition
+Unknown tag                                                         Line  1111: 1 @X1@ XXX and unknown token xref definition
 </text>
       <style name="fontface" value="Monospace">
         <range start="0" end="163"/>
       </style>
     </note>
-    <note handle="_000000f9000000f9" change="1564588949" id="N0036" type="General">
+    <note handle="_000000f9000000f9" change="1564950708" id="N0036" type="General">
       <text>Objects referenced by this note were missing in a file imported on 12/25/1999 12:00:00 AM.</text>
     </note>
   </notes>

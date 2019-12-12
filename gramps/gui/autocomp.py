@@ -171,7 +171,7 @@ class StandardCustomSelector:
             if self.active_key in items:
                 parent = None
             else:
-                parent = store.append(None, row=[None, heading, False])
+                parent = store.append(None, row=[None, _(heading), False])
             for item in items:
                 store.append(parent, row=[item, self.mapping[item], True])
 

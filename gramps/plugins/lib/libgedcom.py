@@ -528,7 +528,7 @@ RELATION_TYPES = (
 PEDIGREE_TYPES = {
     'birth'  : ChildRefType(),
     'natural': ChildRefType(),
-    'step'   : TYPE_ADOPT,
+    'step'   : ChildRefType(ChildRefType.STEPCHILD),
     'adopted': TYPE_ADOPT,
     'foster' : TYPE_FOSTER, }
 
@@ -2226,8 +2226,12 @@ class GedcomParser(UpdateCallback):
 
         self.famc_parse_tbl = {
             # n FAMC @<XREF:FAM>@ {1:1}
-            # +1 PEDI <PEDIGREE_LINKAGE_TYPE> {0:M} p.*
+            # +1 PEDI <PEDIGREE_LINKAGE_TYPE> {0:1} p.*
             TOKEN_PEDI   : self.__person_famc_pedi,
+            # +1 _FREL <Father PEDIGREE_LINKAGE_TYPE> {0:1}  non-standard
+            TOKEN__FREL  : self.__person_famc_frel,
+            # +1 _MREL <Mother PEDIGREE_LINKAGE_TYPE> {0:1}  non-standard
+            TOKEN__MREL  : self.__person_famc_mrel,
             # +1 <<NOTE_STRUCTURE>> {0:M} p.*
             TOKEN_NOTE   : self.__person_famc_note,
             TOKEN_RNOTE  : self.__person_famc_note,
@@ -2434,7 +2438,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_RNOTE  : self.__source_note,
             TOKEN_TEXT   : self.__source_text,
             TOKEN_ABBR   : self.__source_abbr,
-            TOKEN_REFN   : self.__source_refn,
+            TOKEN_REFN   : self.__source_attr,
             TOKEN_RIN    : self.__source_attr,
             TOKEN_REPO   : self.__source_repo,
             TOKEN_OBJE   : self.__source_object,
@@ -4717,7 +4721,9 @@ class GedcomParser(UpdateCallback):
         person is a child of.
 
         n FAMC @<XREF:FAM>@ {1:1}
-        +1 PEDI <PEDIGREE_LINKAGE_TYPE> {0:M} p.*
+        +1 PEDI <PEDIGREE_LINKAGE_TYPE> {0:1} p.*
+        +1 _FREL <Father relationship type> {0:1}   non-standard Extension
+        +1 _MREL <Mother relationship type> {0:1}   non-standard Extension
         +1 <<NOTE_STRUCTURE>> {0:M} p.*
 
         @param line: The current line in GedLine format
@@ -4744,15 +4750,9 @@ class GedcomParser(UpdateCallback):
         # if the handle is not already in the person's parent family list, we
         # need to add it to thie list.
 
-        flist = [fam[0] for fam in
-                 state.person.get_parent_family_handle_list()]
+        flist = state.person.get_parent_family_handle_list()
         if handle not in flist:
-            if sub_state.ftype and int(sub_state.ftype) in RELATION_TYPES:
-                state.person.add_parent_family_handle(handle)
-            else:
-                if state.person.get_main_parents_family_handle() == handle:
-                    state.person.set_main_parent_family_handle(None)
-                state.person.add_parent_family_handle(handle)
+            state.person.add_parent_family_handle(handle)
 
             # search childrefs
             family, _new = self.dbase.find_family_from_handle(handle,
@@ -4761,17 +4761,19 @@ class GedcomParser(UpdateCallback):
 
             for ref in family.get_child_ref_list():
                 if ref.ref == state.person.handle:
-                    if sub_state.ftype:
-                        ref.set_mother_relation(sub_state.ftype)
-                        ref.set_father_relation(sub_state.ftype)
                     break
             else:
                 ref = ChildRef()
                 ref.ref = state.person.handle
-                if sub_state.ftype:
-                    ref.set_mother_relation(sub_state.ftype)
-                    ref.set_father_relation(sub_state.ftype)
                 family.add_child_ref(ref)
+            if sub_state.ftype:
+                ref.set_mother_relation(sub_state.ftype)
+                ref.set_father_relation(sub_state.ftype)
+            else:
+                if sub_state.frel:
+                    ref.set_father_relation(sub_state.frel)
+                if sub_state.mrel:
+                    ref.set_mother_relation(sub_state.mrel)
             self.dbase.commit_family(family, self.trans)
 
     def __person_famc_pedi(self, line, state):
@@ -4789,6 +4791,40 @@ class GedcomParser(UpdateCallback):
         """
         state.ftype = PEDIGREE_TYPES.get(line.data.lower(),
                                          ChildRefType.UNKNOWN)
+
+    def __person_famc_frel(self, line, state):
+        """
+        Parses the _FREL tag attached to a INDI.FAMC record. No values are set
+        at this point, because we have to do some post processing. Instead, we
+        assign the frel field of the state variable. We convert the text from
+        the line to an index into the PEDIGREE_TYPES dictionary, which will map
+        to the correct ChildTypeRef.
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.frel = PEDIGREE_TYPES.get(line.data.lower().strip(), None)
+        if state.frel is None:
+            state.frel = ChildRefType(line.data.capitalize().strip())
+
+    def __person_famc_mrel(self, line, state):
+        """
+        Parses the _MREL tag attached to a INDI.FAMC record. No values are set
+        at this point, because we have to do some post processing. Instead, we
+        assign the mrel field of the state variable. We convert the text from
+        the line to an index into the PEDIGREE_TYPES dictionary, which will map
+        to the correct ChildTypeRef.
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.mrel = PEDIGREE_TYPES.get(line.data.lower().strip(), None)
+        if state.mrel is None:
+            state.mrel = ChildRefType(line.data.capitalize().strip())
 
     def __person_famc_note(self, line, state):
         """
@@ -6090,8 +6126,6 @@ class GedcomParser(UpdateCallback):
                 int(sub_state.frel) == ChildRefType.BIRTH):
             sub_state.mrel = sub_state.frel = TYPE_ADOPT
 
-        if state.person.get_main_parents_family_handle() == handle:
-            state.person.set_main_parent_family_handle(None)
         state.person.add_parent_family_handle(handle)
 
         reflist = [ref for ref in family.get_child_ref_list()
@@ -6132,8 +6166,6 @@ class GedcomParser(UpdateCallback):
         """
         handle = self.__find_family_handle(self.fid_map[line.data])
 
-        if state.person.get_main_parents_family_handle() == handle:
-            state.person.set_main_parent_family_handle(None)
         state.person.add_parent_family_handle(handle)
 
         frel = mrel = ChildRefType.BIRTH
@@ -6477,15 +6509,6 @@ class GedcomParser(UpdateCallback):
                           state, state.source)
         self.dbase.commit_source(state.source, self.trans, state.source.change)
 
-    def __source_refn(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        self.__do_refn(line, state, state.source)
-
     def __source_attr(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -6497,6 +6520,7 @@ class GedcomParser(UpdateCallback):
         sattr.set_type(line.token_text)
         sattr.set_value(line.data)
         state.source.add_attribute(sattr)
+        self.__skip_subordinate_levels(state.level + 1, state)
 
     def __source_object(self, line, state):
         """

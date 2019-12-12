@@ -25,6 +25,7 @@ Package providing filter rules for Gramps.
 from ._allrepos import AllRepos
 from ._hasidof import HasIdOf
 from ._regexpidof import RegExpIdOf
+from ._hasattribute import HasAttribute
 from ._hasnoteregexp import HasNoteRegexp
 from ._hasnotematchingsubstringof import HasNoteMatchingSubstringOf
 from ._hasreferencecountof import HasReferenceCountOf
@@ -37,6 +38,7 @@ from ._hastag import HasTag
 
 editor_rule_list = [
     AllRepos,
+    HasAttribute,
     HasIdOf,
     RegExpIdOf,
     HasNoteRegexp,

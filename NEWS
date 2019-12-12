@@ -1,4 +1,218 @@
-2018-08-08
+2019-09-14
+Version 5.1.1
+* Update translations: cs, de, fi, fr, he, hr, pt_PT, ru, sv
+* Disable development warning message
+* Add options to sandclock in tree document generator
+* Using regex in the sidebar gives different result from previous gramps release
+* Fix odt output when db owner has XML unfriendly chars
+* Update README
+  - Bump required Python version to 3.3
+  - Add optional fontconfig package
+* Fix CLI crash when generating reports
+* Fix Statusbar HandleError on merge families
+* Fix missing tooltip translations in the Note editor toolbar
+* Fix bugs in withinarea filter rule
+  - Avoid bad coordinates in the ref place
+  - Avoid alphabetic characters in filter rules
+  - Could not convert string to float by using withinarea filter rule
+  - Difference between sidebar filter and filter rule
+* Fix Graph outputs for multiple page PDF Postscript
+* Fix to make Gtk 'action names' always valid
+* Fix missing menus/buttons when operating in non-English languages
+* Fix ursor position error in lat and long fields
+* Avoid all characters looking like a dash in 'Clean input data' tool
+* Mainz Style sheet weird looking
+* Fix bugs in relationship view
+  - Set symbols for the active person
+  - Set good symbols for marriage, baptism, cremation and burial
+  - Reduce the size of the sexuality symbol
+* Fix exception when editing Note with italics/bold etc. in non English
+* Restore keybindings for gramplet bars
+* Fix bug in web connection menu launching incorrect web site
+* Fix translation problem when creating event filter
+* Error when checking option to add Quit to Taskbar
+* Make the narratives notes placement an option
+
+2019-08-21
+Version 5.1.0
+* Bump required Python version to 3.3, Gtk version 3.12
+* Update translations: ca, cs, da, de, en_GB, eo, fi, fr, hr, hu, is, it,
+  nb, nn, pl, po, pt_BR, ru, sl, sv, uk, vi
+* Change default database backend to SQLite
+* New feature to allow Filter Rules to be added via addons.
+* New feature to use Genealogical symbols.  Includes support for views and
+  reports.  Edit/Preferences/Genealogical Symbols to enable.
+* New: On restart after crash, offer to run Check & Repair
+* New CLI commands; 'safe' mode and 'default' to help user with debugging
+  Gramps
+* Narrative web fix:
+  - some strings not translated
+  - The confidence and the date are not translated in the family map page.
+  - The date doesn't use the specified date format.
+  - Markers incorrectly placed.  In the map pages, the markers are not placed
+    where it should be. Reproducible when zoom in/zoom out.
+  - Background not correctly set.  If you use the Web_Basic-Cypress.css,
+    the foreground and background use the same color, so you see nothing.
+    You must hover the fields to see the text
+  - Places list is not sorted depending on the selected language.  If you
+    start gramps in english or another language then try to generate a
+    narrative web report in another language, the navigation alphabet is
+    incorrect. This is true for the place list and the person list.
+  - OSM forward all http resquest to https.
+  - When we are on a mobile phone or a small device, we suppress the
+    navigation tab.  In place, we have a new icon on the upper left
+    which is used to show the dropdown menu.
+  - For Home, Introduction and Contact, If we have an image and this image
+    contains regions, show the regions. We can go directly to the person page
+    associated to this region.  If we click on the image, we go directly to
+    the associated media page. This will be true only if we selected
+    "include images and media objects" and "create and only use thumbnail"
+    is unselected
+  - The first line identifying a family will be more legible.
+    The link is not useful in the parents and pedigree section for the
+    current person.
+  - Adapt some css files.
+  - sort the place references either by date or by name.
+  - Add extra page to narrativeweb.
+  - extrapage can now point to joomla, drupal, ...
+  - add enclosed by and encloses (place)
+  - Add compact Ancestry trees using Buchheim/Walker algorithm
+    This enhancement adds a new 'compact' field to the Narrated Web Report.
+    A compact tree is one that is not a simple binary layout but uses the
+    algorithm of Buchheim/Walker to create a layout that is sensible but also
+    compact.  Creating a compact layout is slower than a simple binary tree
+    but the results are significantly improved and do not leave large areas
+    of whitespace where there are no nodes to be shown.
+  - Make relationships optional in narrative web
+  - Option to have Places and Sources pages
+  - Narrative should come first right after the name, gender and parent
+    information in individual page
+  - References section at the bottom of each place with people related to this
+    place have birth year behind it in parenthesis
+  - Sort "Surname" web page by given name and birth date.
+  - Surname list doesn't use default name format
+  - Display Lat/Lon optionally on places list page
+* Update the uimanager to avoid deprecated Gtk warnings (changes things not
+  visible to the user):
+  - Add config option to use Toolbar Text
+  - Fix duplicated accelerators in charts <ctrl>P for print is now
+    <ctrl><shift>P
+* Geography:
+  - fix pins very big when related to 2 places
+  - add color for custom places name
+* fan charts view: Add option to show the Gramps ID in parenthesis in the fan
+  chart.
+* Gramps 'Views' are now named in the window header
+* Allow Home person to be set in Relationship and Charts/Pedigree view
+* Filter Rule editor, save pane position
+* Person Sidebarfilter:
+  - Fix Person Sidebarfilter when using 'Event' and Reg expressions
+  - In personsidebarfilter, search on each part of name Instead of requiring
+    that the entire search string matches a single one of the Person's names,
+    the function will require that each word in the search string matches any
+    of the Person's name fields.
+* filters rule has attribute: Check all values of an attribute type and not
+  only the first one.
+* filters rule have children person filter: Check all families of a person
+  for children and not only the first
+* Graph reports:
+  - Better typography in graph reports Replace hyphen with en-dash.
+  - enable Graphviz node port selection, optionable. This enables the
+    headport and tailport attributes for all edges in the Graphviz file.
+    The default (off) value makes the arrows between persons and/or family
+    nodes attach their ends to the respective node at any position. When this
+    option is selected, the position facing the node on the other side of the
+    arrow is always chosen.
+  - Fix graphs on Windows for font selection not working
+* relationship graph:
+  - Allow an option to not use hexagons for those of unknown gender
+  - Father and Mother are connected by an invisible line.
+  - Add an option to omit "irrelevant" family nodes
+* Family lines graph: Replace rounded corners checkbox by dropdown
+  It now allows rounded corners to be set more explicitly for different
+  genders (None/Male/Female/Both).
+* Hourglass graph:
+  - Add Ahnentafel option on hourglass
+  - Do not use hyphen for living persons in hourglass graph
+* edit link: Add a mailto choice to Internet Address
+* New Clean input data tool: New tool to suppress leading and trailing spaces.
+  This tool is looking for people and place names with leading or/and trailing
+  spaces.  For each entry which contains leading or trailing spaces, a row is
+  added in a table.  You can see where the spaces are for each row as the name
+  is underlined.  If you double click on the row, you can edit the Place or
+  the Person.
+* CSV import: Add occupation and residence events and attributes in the import
+  User can now add the following columns in the csv import file for a person:
+  - Occupation description
+  - Occupation date
+  - Occupation place
+  - Occupation source
+  - Residence date
+  - Residence place
+  - Residence source
+  - Attribute type
+  - Attribute value
+  - Attribute source
+  the corresponding events will be added to the person.  The user can put
+  several lines for the same person if two occupations are known, one event
+  per line will be created.
+  - Fix CSV import for multiple place enclosed by on multiple imports
+* Pro-Gen import: expanded functionality and fixed minor bugs.
+* Enhance layout of the preferences dialog
+* Webcal:
+  - better help msg for the after year option.
+  - Include only events after year
+  - add death event
+* Edit Person/Family/etc. Gallery Tab: Add buttons for arrangement of
+  GalleryTab media order
+* Add tooltip for Gramplet Bar To improve discoverability of the Gramplet Bar
+  Menu (Currently a nameless down arrow at end of each Gramplet bar title tab)
+* Use theme settings for the error state of entry widgets.  This avoids
+  problems with dark themes.
+* vCalendar export: Convenient display on mobile devices.
+* Add first class support for Occupation attribute
+* Statistics chart:
+  - Add option to hide empty information on statistics chart
+  - the Statistics Chart report will show a year as an ordinal number in
+    Croatian.
+* Detailed descendant report: Show death/burial information only if person
+  is probably dead
+* Birthday report:
+  - Include death anniversaries as an option in the birthdays and anniversary
+    reports.
+  - Added an option to the birthday report that allows for the year of birth
+    (or in the case of a wedding it's year) to be printed in the report.
+  - Added symbols to the birthdays report showing the type of event
+  - Fixed the birthday report so the dead icon is able to be set within the
+    options window
+  - Added a text option to have a string that will show after a persons name
+    in the birthday and anniversary report. This works for both birthdays and
+    anniversaries.
+* Selection Dialogs: fix to avoid long delay before display on large trees
+* Geography Maps:
+  - Changed behavior of "Look up with Map Services" Removed the section that
+    looked up by city, and country from the Map Services lookup for Google and
+    Open Street Map.
+  - Geocoding: associate a lat/lon to a place name
+* End of Line Report: sort generation during output
+* update the German date handler: added some missing Latin month names and
+  some old German month names
+* Relative Gramplet: Person Relatives Tab should use the type from the
+  relationship
+* Fix crash when addon/plugin contains an id with space
+* Fix Delete dialogs: to support canceling the multiple deletes operation
+  more easily
+* Fix Find Duplicate People; exception when deleting someone shown outside
+  of the tool
+* Fix CLI import so that different db types can be used
+* MetaData Viewer Gramplet: Fix so that metadata is actually detected and
+  displayed
+* Fix exception when merging with active sidebar filter
+* Fix GEDCOM importer for SOUR/REFN combinations
+* Add support for GEDCOM import _FREL/_MREL tags in INDI/FAMC
+* Improve support for GEDCOM export of _FREL/_MREL in INDI/FAMC
+
+2019-08-08
 Version 5.0.2
 Update translations: cs, da, de, fi, fr, hr, it, ru, sl, sv
 * Fix some Gramplets not updating during tree changes after db change.
@@ -72,7 +286,7 @@ Version 5.0.1
 * Fix help URLs when they contain illegal characters and to match
   wiki section targetID algorithm Issue
 * Update translations: hu, hr, de, ru, fi, pt_PT, fr, sv, sl
-* Fix contents of enclosed_by secondary	dbapi column
+* Fix contents of enclosed_by secondary dbapi column
   (fixes scrambled places in tree view)
 * Google maps URL problem
 * Fix ODT reports with links when run in non-English languages
@@ -224,7 +438,7 @@ Version 5.0.0-rc1
 * Fix Tag editor for multiple tag removes
 * In Narweb, Relationship to Center person reversed
 * Fix Citation Tree view for crash after plugin reload
-* Fix 'References' Gramplet for issue when activated during an import 
+* Fix 'References' Gramplet for issue when activated during an import
 * disable Application Menu during import
 * Fix Person/Family/Event view updates on various associated changes
   * Fix Event view for changes in Main Participants
@@ -253,11 +467,11 @@ Version 5.0.0-rc1
 * Fix confidence level sort in list views -based on the date-sort code.
 * Fix confidence level tooltip -Stop run on text.
 * Fix error in place displayer when offset is outside valid range
-* Fix places in example.gramps 
+* Fix places in example.gramps
   - Moved Greek places into top level Greece entry & added English names.
   - Removed Puerto Rico as a country as part of USA
 * Use sgettext for Name Format dialog
-* Enable copying the birth & death fields for relationship view 
+* Enable copying the birth & death fields for relationship view
 * Allow Copying of text fields for Details tabs in selected views with
   Details gramplets.
   - Person Details
@@ -991,8 +1205,8 @@ Version 3.4.4 of Gramps! "The Ministry of Silly Names", a maintenance release.
 * fix annoying errors on navigation related to citations gramplet and tag object.
 * listing the Family Trees can corrupt them.
 * various fix around handling Gedcom file format
-* fix citations and sources import on ProGen format 
-* better date handling and better alternate translation support on some textual reports according to locale under windows 
+* fix citations and sources import on ProGen format
+* better date handling and better alternate translation support on some textual reports according to locale under windows
 * avoid Errors when setting wrong value as markup for invalid dates (Preferences)
 * fix paragraph layout on PDF format or print output
 * New: New-Zealand holidays
@@ -1010,7 +1224,7 @@ Version 3.4.3 of Gramps! "Whenever life gets you down, Mrs. Brown", a maintenanc
 * Sorting (both in the main display window, and particularly in Narrative Web output) now uses PyICU (if that module is available). Inclusion of PyICU is 'strongly recommended'. This resolves a number of bugs particularly related to sorting of non-Latin characters, and sorting on MS Windows and Mac OS X. Some changes have been made in Narrative Web to support contractions for alphabetic indices.
 * The automatic Addon checking and download now works once again (the location used in Gramps 3.4.2 and before had been changed, so the the automatic process was no longer working).
 * Import from Pro-Gen has been updated (at last) to take account of the change to Citations (in 3.4.0)
-* Import and Export of address fields in GEDCOM has been improved so that the round-trip works properly. 
+* Import and Export of address fields in GEDCOM has been improved so that the round-trip works properly.
 * GEDCOM Repositories not imported correctly from FTM for Windows and Heredis.
 * Fixes to a number of errors in filtering notes.
 * Fix some errors in determining whether someone is alive (e.g. for filtering out alive people).
@@ -1019,7 +1233,7 @@ Version 3.4.3 of Gramps! "Whenever life gets you down, Mrs. Brown", a maintenanc
 * Fixed update problems with citation bottombar gramplet (bug #6336)
 * Fixed Open Document Text output in Book report (bug #6457)
 * A number of changes to Narrative Web:
-** Media objects attached to Marriage events and Sources are not included in Narrative Web Site 
+** Media objects attached to Marriage events and Sources are not included in Narrative Web Site
 ** restructure the families index so families are indexed under both spouses, and the family name is normalised
 ** separate out Families section in individual and families pages so individual page links to the family page and family page links to both people
 ** normalise links to families so the link is only displayed if the family page is present, and the gid is included when appropriate
@@ -1037,7 +1251,7 @@ Version 3.4.3 of Gramps! "Whenever life gets you down, Mrs. Brown", a maintenanc
 ** Implemented a generalised back reference function to display the 'References' section of all pages. This recursively displays references till one is found for which a page exists.
 ** Removed list of people and families from heading of the event pages as these are now in the 'References' section.
 ** Fixed bug "0005968: Narrated Web Site not copying Source Citations files such as jpg or pdf docs to web site
-** Fixed bug "0005946 GRAMPS failed to insert jpeg image into proper place for an event" by displaying a thumbnail for citation media in the 'Source References' section (with a link to the media page) 
+** Fixed bug "0005946 GRAMPS failed to insert jpeg image into proper place for an event" by displaying a thumbnail for citation media in the 'Source References' section (with a link to the media page)
 ** Tidy up media pages - remove unused parameters, use list of media items generated in first pass. Should fix bugs 2365, 5905 and 6009.
 ** Tidy up sources pages - fix numbering of repositories, remove unused parameters, fix title of individual source pages
 ** Bug: reset NarrWeb navigation menu layout when style sheet doesn't support it
@@ -1045,7 +1259,7 @@ Version 3.4.3 of Gramps! "Whenever life gets you down, Mrs. Brown", a maintenanc
 ** Fix option to suppress Gramps ID (bug #6237)
 * a number of technical changes to Narrative Web
 ** Removed a lot of redundant code and parameters (mainly connected with the old way of determining the objects to be included in the report).
-** Movement of some large chunks of code within the source file and some initial work towards GEPS 022: Narrative Website Refactor. Functionality should be unchanged. 
+** Movement of some large chunks of code within the source file and some initial work towards GEPS 022: Narrative Website Refactor. Functionality should be unchanged.
 ** Moved routines for calculating objects to be output so they can be part of default list building classes.
 * Various updated translations: da, de, es, fr, it, nb, nl, pt_BR, pt_PT, sv, uk
 
@@ -1237,7 +1451,7 @@ Version 3.1.3 -- the "What name?" release.
 2009-06-06
 Version 3.1.2 -- the "Skip the impersonations" release.
 * Contains translation updates and small bug fixes.  No new features.
-* ca, cs, de, fr, he, it, nb, nl, pl, pt_br, ru, sk, sv, 
+* ca, cs, de, fr, he, it, nb, nl, pl, pt_br, ru, sk, sv,
 * fixes a failure in 'Check & Repair Database'
 * fixes to Gramplets
 * fixes to CLI regressions
@@ -1350,7 +1564,7 @@ Version 2.2.5 -- the "Now go away or I shall taunt you a second time" release
 
 Version 2.2.4 -- the "When you're chewing on life's gristle, Don't grumble, give a whistle" release
 * Improved handling of readonly files
-* Enhanced parsing of longitute and latitude and mapping 
+* Enhanced parsing of longitute and latitude and mapping
   (Benny Malengier/Zsolt Foldvari)
 * Check and repair improvements
 * Reference map rebuild tool

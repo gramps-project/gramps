@@ -435,12 +435,10 @@ class PluginStatus(ManagedWindow):
         """
         Select a file from the file system.
         """
-        fcd = Gtk.FileChooserDialog(_("Load Addon"),
-                                    parent=self.__uistate.window,
-                                    buttons=(_('_Cancel'),
-                                             Gtk.ResponseType.CANCEL,
-                                             _('_Open'),
-                                             Gtk.ResponseType.OK))
+        fcd = Gtk.FileChooserDialog(title=_("Load Addon"),
+                                    transient_for=self.__uistate.window)
+        fcd.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                        _('_Open'), Gtk.ResponseType.OK)
         name = self.install_addon_path.get_text()
         dir = os.path.dirname(name)
         if not os.path.isdir(dir):
@@ -688,10 +686,10 @@ class PluginTrace(ManagedWindow):
                  ) % {'str1': _("Plugin Error"), 'str2': name}
         ManagedWindow.__init__(self, uistate, track, self)
 
-        self.set_window(Gtk.Dialog("", uistate.window,
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                   (_('_Close'), Gtk.ResponseType.CLOSE)),
-                        None, title)
+        dlg = Gtk.Dialog(title="", transient_for=uistate.window,
+                         destroy_with_parent=True)
+        dlg.add_button(_('_Close'), Gtk.ResponseType.CLOSE),
+        self.set_window(dlg, None, title)
         self.setup_configs('interface.plugintrace', 600, 400)
         self.window.connect('response', self.close)
 
@@ -742,7 +740,7 @@ class ToolManagedWindowBase(ManagedWindow):
         self.format_menu = None
         self.style_button = None
 
-        window = Gtk.Dialog('Tool')
+        window = Gtk.Dialog(title='Tool')
         self.set_window(window, None, self.get_title())
 
         #self.window.connect('response', self.close)
@@ -768,7 +766,7 @@ class ToolManagedWindowBase(ManagedWindow):
 
         self.notebook = Gtk.Notebook()
         self.notebook.set_border_width(6)
-        self.window.get_content_area().add(self.notebook)
+        self.window.get_content_area().pack_start(self.notebook, True, True, 0)
 
         self.results_text = Gtk.TextView()
         self.results_text.connect('button-press-event',

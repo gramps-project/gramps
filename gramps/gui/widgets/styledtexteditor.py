@@ -531,7 +531,9 @@ class StyledTextEditor(Gtk.TextView):
         """
         self.uimanager = uimanager
         # build the toolbar
-        builder = Gtk.Builder.new_from_string(FORMAT_TOOLBAR, -1)
+        builder = Gtk.Builder()
+        builder.set_translation_domain(glocale.get_localedomain())
+        builder.add_from_string(FORMAT_TOOLBAR)
         # define the actions...
         _actions = [
             ('ITALIC', self._on_toggle_action_activate, '<PRIMARY>i', False),
@@ -774,7 +776,8 @@ class StyledTextEditor(Gtk.TextView):
         for style, style_value in changed_styles.items():
             if style in types:
                 action = self.uimanager.get_action(
-                    self.action_group, str(StyledTextTagType(style)).upper())
+                    self.action_group,
+                    StyledTextTagType(style).xml_str().upper())
                 action.change_state(Variant.new_boolean(style_value))
             elif (style == StyledTextTagType.FONTFACE):
                 self.fontface.set_text(style_value)

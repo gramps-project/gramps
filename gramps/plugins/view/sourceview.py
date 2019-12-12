@@ -380,6 +380,14 @@ class SourceView(ListView):
         source.add_tag(tag_handle)
         self.dbstate.db.commit_source(source, transaction)
 
+    def remove_tag(self, transaction, source_handle, tag_handle):
+        """
+        Remove the given tag from the given source.
+        """
+        source = self.dbstate.db.get_source_from_handle(source_handle)
+        source.remove_tag(tag_handle)
+        self.dbstate.db.commit_source(source, transaction)
+
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

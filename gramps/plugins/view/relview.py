@@ -189,6 +189,8 @@ class RelationshipView(NavigationView):
             self.male = gsfs(self.symbols.SYMBOL_MALE)
             self.female = gsfs(self.symbols.SYMBOL_FEMALE)
             self.bth = gsfs(self.symbols.SYMBOL_BIRTH)
+            self.bptsm = gsfs(self.symbols.SYMBOL_BAPTISM)
+            self.marriage = gsfs(self.symbols.SYMBOL_MARRIAGE)
             self.marr = gsfs(self.symbols.SYMBOL_HETEROSEXUAL)
             self.homom = gsfs(self.symbols.SYMBOL_MALE_HOMOSEXUAL)
             self.homof = gsfs(self.symbols.SYMBOL_LESBIAN)
@@ -196,11 +198,15 @@ class RelationshipView(NavigationView):
             self.unmarr = gsfs(self.symbols.SYMBOL_UNMARRIED_PARTNERSHIP)
             death_idx = self.uistate.death_symbol
             self.dth = self.symbols.get_death_symbol_for_char(death_idx)
+            self.burial = gsfs(self.symbols.SYMBOL_BURIED)
+            self.cremation = gsfs(self.symbols.SYMBOL_CREMATED)
         else:
             gsf = self.symbols.get_symbol_fallback
             self.male = gsf(self.symbols.SYMBOL_MALE)
             self.female = gsf(self.symbols.SYMBOL_FEMALE)
             self.bth = gsf(self.symbols.SYMBOL_BIRTH)
+            self.bptsm = gsf(self.symbols.SYMBOL_BAPTISM)
+            self.marriage = gsf(self.symbols.SYMBOL_MARRIAGE)
             self.marr = gsf(self.symbols.SYMBOL_HETEROSEXUAL)
             self.homom = gsf(self.symbols.SYMBOL_MALE_HOMOSEXUAL)
             self.homof = gsf(self.symbols.SYMBOL_LESBIAN)
@@ -208,6 +214,8 @@ class RelationshipView(NavigationView):
             self.unmarr = gsf(self.symbols.SYMBOL_UNMARRIED_PARTNERSHIP)
             death_idx = self.symbols.DEATH_SYMBOL_LATIN_CROSS
             self.dth = self.symbols.get_death_symbol_fallback(death_idx)
+            self.burial = gsf(self.symbols.SYMBOL_BURIED)
+            self.cremation = gsf(self.symbols.SYMBOL_CREMATED)
 
     def font_changed(self):
         self.reload_symbols()
@@ -728,20 +736,28 @@ class RelationshipView(NavigationView):
         # Birth event.
         birth = get_birth_or_fallback(self.dbstate.db, person)
         if birth:
-            birth_title = birth.get_type()
+            if birth.get_type() == EventType.BAPTISM:
+                birth_title = self.bptsm
+            else:
+                birth_title = self.bth
         else:
-            birth_title = _("Birth")
+            birth_title = self.bth
 
-        subgrid.attach(widgets.BasicLabel(_("%s:") % birth_title), 1, 1, 1, 1)
+        subgrid.attach(widgets.BasicLabel(_("%s") % birth_title), 1, 1, 1, 1)
         birthwidget = widgets.BasicLabel(self.format_event(birth))
         birthwidget.set_selectable(True)
         subgrid.attach(birthwidget, 2, 1, 1, 1)
 
         death = get_death_or_fallback(self.dbstate.db, person)
         if death:
-            death_title = death.get_type()
+            if death.get_type() == EventType.BURIAL:
+                death_title = self.burial
+            elif death.get_type() == EventType.CREMATION:
+                death_title = self.cremation
+            else:
+                death_title = self.dth
         else:
-            death_title = _("Death")
+            death_title = self.dth
 
         showed_death = False
         if birth:
@@ -753,7 +769,7 @@ class RelationshipView(NavigationView):
                         age = (death_date - birth_date).format(
                             precision=self.age_precision)
                         subgrid.attach(widgets.BasicLabel(
-                            _("%s:") % death_title), 1, 2, 1, 1)
+                            _("%s") % death_title), 1, 2, 1, 1)
                         deathwidget = widgets.BasicLabel(
                             "%s (%s)" % (self.format_event(death), age),
                             Pango.EllipsizeMode.END)
@@ -770,14 +786,14 @@ class RelationshipView(NavigationView):
                             "(%s)" % age, Pango.EllipsizeMode.END), 2, 2, 1, 1)
                     else:
                         subgrid.attach(widgets.BasicLabel(
-                            _("%s:") % _("Death")), 1, 2, 1, 1)
+                            _("%s") % self.dth), 1, 2, 1, 1)
                         subgrid.attach(widgets.BasicLabel(
                             "%s (%s)" % (_("unknown"), age),
                             Pango.EllipsizeMode.END), 2, 2, 1, 1)
                     showed_death = True
 
         if not showed_death:
-            subgrid.attach(widgets.BasicLabel(_("%s:") % death_title),
+            subgrid.attach(widgets.BasicLabel(_("%s") % death_title),
                           1, 2, 1, 1)
             deathwidget = widgets.BasicLabel(self.format_event(death))
             deathwidget.set_selectable(True)
@@ -891,7 +907,7 @@ class RelationshipView(NavigationView):
             else:
                 symbol = self.homof
             if markup:
-                msg = '<span size="24000" >%s</span>' % symbol
+                msg = '<span size="12000" >%s</span>' % symbol
             else:
                 msg = symbol
         else:
@@ -1180,7 +1196,7 @@ class RelationshipView(NavigationView):
         label = widgets.MarkupLabel(format % escape(title),
                                     halign=Gtk.Align.END)
         if self._config.get('preferences.releditbtn'):
-            label.set_padding(0, 5)
+            label.set_margin_end(5)
 
         eventbox = Gtk.EventBox()
         if handle is not None:
@@ -1270,7 +1286,7 @@ class RelationshipView(NavigationView):
         lbl = widgets.MarkupLabel(format % escape(title),
                                   halign=Gtk.Align.END)
         if self._config.get('preferences.releditbtn'):
-            lbl.set_padding(0, 5)
+            lbl.set_margin_end(5)
         return lbl
 
     def write_child(self, vbox, handle, index, child_should_be_linked):
@@ -1317,6 +1333,7 @@ class RelationshipView(NavigationView):
         link_label = widgets.LinkLabel(name, link_func, handle, emph,
                                        theme=self.theme)
         link_label.set_padding(3, 0)
+
         if child_should_be_linked and self._config.get(
             'preferences.releditbtn'):
             button = widgets.IconButton(self.edit_button_press, handle)
@@ -1338,7 +1355,7 @@ class RelationshipView(NavigationView):
             value = self.info_string(handle)
             if value:
                 l = widgets.MarkupLabel(value)
-                l.set_padding(48, 0)
+                l.set_margin_start(48)
                 vbox.add(l)
 
     def write_data(self, box, title, start_col=_SDATA_START,
@@ -1353,6 +1370,11 @@ class RelationshipView(NavigationView):
             return None
 
         birth = get_birth_or_fallback(self.dbstate.db, person)
+        if birth:
+            if birth.get_type() == EventType.BAPTISM:
+                s_birth = self.bptsm
+            else:
+                s_birth = self.bth
         if birth and birth.get_type() != EventType.BIRTH:
             sdate = get_date(birth)
             if sdate:
@@ -1365,6 +1387,13 @@ class RelationshipView(NavigationView):
             bdate = ""
 
         death = get_death_or_fallback(self.dbstate.db, person)
+        if death:
+            if death.get_type() == EventType.BURIAL:
+                s_death = self.burial
+            elif death.get_type() == EventType.CREMATION:
+                s_death = self.cremation
+            else:
+                s_death = self.dth
         if death and death.get_type() != EventType.DEATH:
             sdate = get_date(death)
             if sdate:
@@ -1378,15 +1407,15 @@ class RelationshipView(NavigationView):
 
         if bdate and ddate:
             value = _("%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s") % {
-                'birthabbrev': self.bth,
-                'deathabbrev': self.dth,
+                'birthabbrev': s_birth,
+                'deathabbrev': s_death,
                 'birthdate' : bdate,
                 'deathdate' : ddate
                 }
         elif bdate:
-            value = _("%(event)s %(date)s") % {'event': self.bth, 'date': bdate}
+            value = _("%(event)s %(date)s") % {'event': s_birth, 'date': bdate}
         elif ddate:
-            value = _("%(event)s %(date)s") % {'event': self.dth, 'date': ddate}
+            value = _("%(event)s %(date)s") % {'event': s_death, 'date': ddate}
         else:
             value = ""
         return value
@@ -1457,10 +1486,7 @@ class RelationshipView(NavigationView):
                 (event_ref.get_role() == EventRoleType.FAMILY or
                  event_ref.get_role() == EventRoleType.PRIMARY)):
                 if event.get_type() ==  EventType.MARRIAGE:
-                    msg = self.marriage_symbol(family, markup=False)
-                    etype = msg
-                elif event.get_type() ==  EventType.DIVORCE:
-                    etype = self.divorce
+                    etype = self.marriage
                 elif event.get_type() ==  EventType.DIVORCE:
                     etype = self.divorce
                 else:
@@ -1492,19 +1518,19 @@ class RelationshipView(NavigationView):
         if dobj:
             if pname:
                 self.write_data(
-                    vbox, _('%(event_type)s: %(date)s in %(place)s') %
+                    vbox, _('%(event_type)s %(date)s in %(place)s') %
                     value, start_col, stop_col, True)
             else:
                 self.write_data(
-                    vbox, _('%(event_type)s: %(date)s') % value,
+                    vbox, _('%(event_type)s %(date)s') % value,
                     start_col, stop_col)
         elif pname:
             self.write_data(
-                vbox, _('%(event_type)s: %(place)s') % value,
+                vbox, _('%(event_type)s %(place)s') % value,
                 start_col, stop_col)
         else:
             self.write_data(
-                vbox, '%(event_type)s:' % value, start_col, stop_col)
+                vbox, '%(event_type)s' % value, start_col, stop_col)
 
     def write_family(self, family_handle, person = None):
         family = self.dbstate.db.get_family_from_handle(family_handle)

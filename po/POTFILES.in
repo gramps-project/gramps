@@ -17,6 +17,7 @@ gramps/gen/db/base.py
 gramps/gen/db/exceptions.py
 gramps/gen/db/generic.py
 gramps/gen/display/name.py
+gramps/gen/display/place.py
 gramps/gen/filters/_filterparser.py
 gramps/gen/filters/_genericfilter.py
 gramps/gen/filters/rules/_changedsincebase.py
@@ -47,6 +48,7 @@ gramps/gen/filters/rules/_rule.py
 gramps/gen/filters/rules/citation/_allcitations.py
 gramps/gen/filters/rules/citation/_changedsince.py
 gramps/gen/filters/rules/citation/_citationprivate.py
+gramps/gen/filters/rules/citation/_hasattribute.py
 gramps/gen/filters/rules/citation/_hascitation.py
 gramps/gen/filters/rules/citation/_hasgallery.py
 gramps/gen/filters/rules/citation/_hasidof.py
@@ -156,6 +158,7 @@ gramps/gen/filters/rules/person/_disconnected.py
 gramps/gen/filters/rules/person/_everyone.py
 gramps/gen/filters/rules/person/_familywithincompleteevent.py
 gramps/gen/filters/rules/person/_hasaddress.py
+gramps/gen/filters/rules/person/_hasaddresstext.py
 gramps/gen/filters/rules/person/_hasalternatename.py
 gramps/gen/filters/rules/person/_hasassociation.py
 gramps/gen/filters/rules/person/_hasattribute.py
@@ -254,6 +257,7 @@ gramps/gen/filters/rules/place/_regexpidof.py
 gramps/gen/filters/rules/place/_withinarea.py
 gramps/gen/filters/rules/repository/_allrepos.py
 gramps/gen/filters/rules/repository/_changedsince.py
+gramps/gen/filters/rules/repository/_hasattribute.py
 gramps/gen/filters/rules/repository/_hasidof.py
 gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py
 gramps/gen/filters/rules/repository/_hasnoteregexp.py
@@ -266,6 +270,7 @@ gramps/gen/filters/rules/repository/_regexpidof.py
 gramps/gen/filters/rules/repository/_repoprivate.py
 gramps/gen/filters/rules/source/_allsources.py
 gramps/gen/filters/rules/source/_changedsince.py
+gramps/gen/filters/rules/source/_hasattribute.py
 gramps/gen/filters/rules/source/_hasgallery.py
 gramps/gen/filters/rules/source/_hasidof.py
 gramps/gen/filters/rules/source/_hasnote.py
@@ -369,6 +374,7 @@ gramps/gen/utils/keyword.py
 gramps/gen/utils/lds.py
 gramps/gen/utils/place.py
 gramps/gen/utils/string.py
+gramps/gen/utils/symbols.py
 gramps/gen/utils/unknown.py
 gramps/grampsapp.py
 gramps/gui/aboutdialog.py
@@ -737,6 +743,8 @@ gramps/plugins/tool/rebuildgenderstat.py
 gramps/plugins/tool/rebuildrefmap.py
 gramps/plugins/tool/relcalc.glade
 gramps/plugins/tool/relcalc.py
+gramps/plugins/tool/removespaces.glade
+gramps/plugins/tool/removespaces.py
 gramps/plugins/tool/removeunused.glade
 gramps/plugins/tool/removeunused.py
 gramps/plugins/tool/reorderids.glade

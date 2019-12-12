@@ -414,7 +414,7 @@ class StyleEditor(ManagedWindow):
             spin.set_value(t.get_column_width(i))
             self.column.append(spin)
             hbox.pack_start(spin, False, False, 6)
-            hbox.pack_start(Gtk.Label('%'), False, False, 6)
+            hbox.pack_start(Gtk.Label(label='%'), False, False, 6)
             hbox.show_all()
             self.vbox.pack_start(hbox, False, False, 3)
 

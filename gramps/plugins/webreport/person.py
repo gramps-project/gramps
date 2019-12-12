@@ -85,8 +85,8 @@ _ = glocale.translation.sgettext
 LOG = logging.getLogger(".NarrativeWeb")
 getcontext().prec = 8
 
-_WIDTH = 160
-_HEIGHT = 120
+_WIDTH = 280
+_HEIGHT = 140
 _VGAP = 10
 _HGAP = 30
 _SHADOW = 5
@@ -493,11 +493,12 @@ class PersonPages(BasePage):
                 individualdetail += thumbnail
             individualdetail += (name, summary)
 
-            # display Narrative Notes
-            notelist = person.get_note_list()
-            sect8 = self.display_note_list(notelist)
-            if sect8 is not None:
-                individualdetail += sect8
+            if self.report.options['notes']:
+                # display Narrative Notes
+                notelist = person.get_note_list()
+                sect8 = self.display_note_list(notelist)
+                if sect8 is not None:
+                    individualdetail += sect8
 
             # display a person's events
             sect2 = self.display_ind_events(place_lat_long)
@@ -559,6 +560,13 @@ class PersonPages(BasePage):
             sect7 = self.disp_add_img_as_gallery(media_list, person)
             if sect7 is not None:
                 individualdetail += sect7
+
+            if not self.report.options['notes']:
+                # display Narrative Notes
+                notelist = person.get_note_list()
+                sect8 = self.display_note_list(notelist)
+                if sect8 is not None:
+                    individualdetail += sect8
 
             # display attributes
             attrlist = person.get_attribute_list()
@@ -1022,11 +1030,11 @@ class PersonPages(BasePage):
                         trow.extend(
                             Html("td", data, class_=colclass, inline=True)
                             for data, colclass in [
-                                (date, "ColumnDate"),
+                                (self.rlocale.get_date(date), "ColumnDate"),
                                 (self.place_link(handle, placetitle,
                                                  uplink=True),
                                  "ColumnPlace"),
-                                (str(event.get_type()), "ColumnType")
+                                (self._(str(event.get_type())), "ColumnType")
                             ]
                         )
 
@@ -1130,15 +1138,20 @@ class PersonPages(BasePage):
                 death = self.rlocale.get_date(dd_event.get_date_object())
             if death == "":
                 death = "..."
-            value = person_name + "<br/>*", birth, "<br/>+", death
+            value = person_name + "<br/>*"+ birth+ "<br/>+"+ death
+            tdval = Html("td", value, class_="name")
+            table = Html("table", class_="table")
             if thumbnail_url is None:
                 boxbg += Html("a", href=url, class_="noThumb") + value
             else:
-                thumb = Html("span", class_="thumbnail") + (
-                    Html("img", src=thumbnail_url, alt="Image: " + person_name))
-                boxbg += Html("a", href=url) + thumb + value
+                trow = Html("tr")
+                img = Html("img", src=thumbnail_url, alt="Img: " + person_name)
+                trow += Html("td", img, class_="img")
+                trow += tdval
+                table += trow
+                boxbg += Html("a", table, href=url, class_="thumbnail")
         shadow = Html(
-            "div", class_="shadow", inline=True,
+            "div", "", class_="shadow", inline=True,
             style="top: %dpx; left: %dpx;" % (top + _SHADOW, xoff + _SHADOW))
 
         return [boxbg, shadow]
@@ -1285,16 +1298,18 @@ class PersonPages(BasePage):
 
         # We now apply the Buchheim algorith to this tree, and it assigns X
         # and Y positions to all elements in the tree.
-        l_tree = buchheim(layout_tree, _WIDTH, _HGAP, _HEIGHT, _VGAP)
+        l_tree, top, height = buchheim(layout_tree, _WIDTH, _HGAP,
+                                       _HEIGHT, _VGAP)
 
+        top = abs(top)
         # We know the height in 'pixels' where every Ancestor will sit
         # precisely on an integer unit boundary.
         with Html("div", id="tree", class_="subsection") as tree:
             tree += Html("h4", _('Ancestors'), inline=True)
             with Html("div", id="treeContainer",
-                      style="width:%dpx; height:%dpx;" % (
-                          l_tree.width + _XOFFSET + _WIDTH,
-                          l_tree.height + _HEIGHT + _VGAP)
+                      style="width:%dpx; height:%dpx; top: %dpx" % (
+                          l_tree.width + _XOFFSET* (generations + 1) + _WIDTH,
+                          height + top + _HEIGHT + _VGAP, top)
                      ) as container:
                 tree += container
                 container += self.draw_tree(l_tree, 1, None)

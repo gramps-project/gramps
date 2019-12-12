@@ -80,7 +80,6 @@ from gramps.gen.display.place import displayer as _pd
 from gramps.gen.proxy import CacheProxyDb
 from gramps.plugins.lib.libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 from gramps.gen.relationship import get_relationship_calculator
-from gramps.gen.filters import reload_custom_filters
 
 #------------------------------------------------
 # specific narrative web import
@@ -847,7 +846,12 @@ class NavWebReport(Report):
             if self.reference_sort:
                 role_or_date = name
             else:
-                role_or_date = str(event.get_date_object())
+                date = event.get_date_object()
+                # calendar is the original date calendar
+                calendar = str(date.get_calendar())
+                # convert date to gregorian for a correct sort
+                _date = str(date.to_calendar("gregorian"))
+                role_or_date = calendar + ":" + _date
         else:
             role_or_date = ""
         place_fname = self.build_url_fname(place_handle, "plc",
@@ -1008,6 +1012,18 @@ class NavWebReport(Report):
         Copy all of the CSS, image, and javascript files for Narrated Web
         """
         imgs = []
+
+        # copy all screen style sheet
+        for css_f in CSS:
+            already_done = False
+            for css_fn in ("UsEr_", "Basic", "Mainz", "Nebraska", "Vis"):
+                if css_fn in css_f and not already_done:
+                    already_done = True
+                    fname = CSS[css_f]["filename"]
+                    # add images for this css
+                    imgs += CSS[css_f]["images"]
+                    css_f = css_f.replace("UsEr_", "")
+                    self.copy_file(fname, css_f + ".css", "css")
 
         # copy screen style sheet
         if CSS[self.css]["filename"]:
@@ -1684,13 +1700,15 @@ class NavWebOptions(MenuReportOptions):
         cright.set_help(_("The copyright to be used for the web files"))
         addopt("cright", cright)
 
-        self.__css = EnumeratedListOption(('StyleSheet'), CSS["default"]["id"])
+        self.__css = EnumeratedListOption(('StyleSheet'),
+                                          CSS["Basic-Ash"]["id"])
         for (dummy_fname, gid) in sorted(
                 [(CSS[key]["translation"], CSS[key]["id"])
                  for key in list(CSS.keys())]):
             if CSS[gid]["user"]:
                 self.__css.add_item(CSS[gid]["id"], CSS[gid]["translation"])
-        self.__css.set_help(_('The stylesheet to be used for the web pages'))
+        self.__css.set_help(_('The default stylesheet to be used for'
+                              ' the pages'))
         addopt("css", self.__css)
         self.__css.connect("value-changed", self.__stylesheet_changed)
 
@@ -1798,8 +1816,15 @@ class NavWebOptions(MenuReportOptions):
         self.__graphgens.set_help(_("The number of generations to include in "
                                     "the ancestor graph"))
         addopt("graphgens", self.__graphgens)
-
         self.__graph_changed()
+
+        notes = BooleanOption(
+            _('Include narrative notes just after name, gender'), True)
+        notes.set_help(
+            _('Include narrative notes just after name, gender and'
+              ' age at death (default) or include them just before'
+              ' attributes.'))
+        addopt("notes", notes)
 
     def __add_page_generation_options(self, menu):
         """
@@ -2188,7 +2213,6 @@ class NavWebOptions(MenuReportOptions):
         Update the filter list based on the selected person
         """
         gid = self.__pid.get_value()
-        reload_custom_filters()
         person = self.__db.get_person_from_gramps_id(gid)
         filter_list = utils.get_person_filters(person, include_single=False)
         self.__filter.set_filters(filter_list)

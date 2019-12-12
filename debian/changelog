@@ -1,3 +1,27 @@
+gramps (5.1.1-1) unstable; urgency=medium
+
+  * New release
+  * Add python3-fontconfig to recommends
+
+ -- Ross Gammon <rossgammon@debian.org>  Tue, 17 Sep 2019 15:21:43 +0200
+
+gramps (5.1.0-1) unstable; urgency=medium
+
+  * New release
+  * Update copyrights
+  * Bump gtk+ version to 3.12
+  * Add new geocode-glib dependency
+
+ -- Ross Gammon <rossgammon@debian.org>  Sat, 24 Aug 2019 19:49:27 +0200
+
+gramps (5.0.2-1) unstable; urgency=medium
+
+  * New release
+  * Remove ancient python version field from debian/control
+  * Bump standards version, no changes required
+
+ -- Ross Gammon <rossgammon@debian.org>  Sun, 11 Aug 2019 14:11:35 +0200
+
 gramps (5.0.1-1) unstable; urgency=medium
 
   * New release

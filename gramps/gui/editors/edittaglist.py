@@ -101,7 +101,7 @@ class EditTagList(ManagedWindow):
         Create a dialog box to select tags.
         """
         # pylint: disable-msg=E1101
-        top = Gtk.Dialog(parent=self.uistate.window)
+        top = Gtk.Dialog(transient_for=self.uistate.window)
         top.vbox.set_spacing(5)
 
         columns = [('', -1, 300),

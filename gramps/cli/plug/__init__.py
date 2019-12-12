@@ -88,9 +88,9 @@ def _convert_str_to_match_type(str_val, type_val):
             return str(str_val)
 
     elif ret_type == int:
-        if str_val.isdigit():
+        try:
             return int(str_val)
-        else:
+        except ValueError:
             print("'%s' is not an integer number" % str_val)
             return 0
 

@@ -877,13 +877,17 @@ class CSVParser:
         if place_enclosed_by_id is not None:
             place_enclosed_by = self.lookup("place", place_enclosed_by_id)
             if place_enclosed_by is None:
-                raise Exception("cannot enclose %s in %s as it doesn't exist" % (place.gramps_id, place_enclosed_by_id))
-            if not place_enclosed_by.handle in place.placeref_list:
+                raise Exception("cannot enclose %s in %s as it doesn't exist" %
+                                (place.gramps_id, place_enclosed_by_id))
+            for placeref in place.placeref_list:
+                if place_enclosed_by.handle == placeref.ref:
+                    break
+            else:
                 placeref = PlaceRef()
                 placeref.ref = place_enclosed_by.handle
-                if place_date:
-                    placeref.date = _dp.parse(place_date)
                 place.placeref_list.append(placeref)
+            if place_date:
+                placeref.date = _dp.parse(place_date)
         #########################################################
         self.db.commit_place(place, self.trans)
 
