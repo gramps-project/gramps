@@ -453,6 +453,14 @@ class CitationListView(ListView):
         citation.add_tag(tag_handle)
         self.dbstate.db.commit_citation(citation, transaction)
 
+    def remove_tag(self, transaction, citation_handle, tag_handle):
+        """
+        Remove the given tag from the given citation.
+        """
+        citation = self.dbstate.db.get_citation_from_handle(citation_handle)
+        citation.remove_tag(tag_handle)
+        self.dbstate.db.commit_citation(citation, transaction)
+
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

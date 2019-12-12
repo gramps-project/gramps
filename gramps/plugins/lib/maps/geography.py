@@ -405,7 +405,6 @@ class GeoGraphyView(OsmGps, NavigationView):
 
         self.changemap = Gtk.Menu()
         changemap = self.changemap
-        changemap.set_title(title)
         changemap.show()
         add_item.set_submenu(changemap)
         # show in the map menu all available providers
@@ -885,7 +884,6 @@ class GeoGraphyView(OsmGps, NavigationView):
         menu.append(add_item)
         self.itemoption = Gtk.Menu()
         itemoption = self.itemoption
-        itemoption.set_title(message)
         itemoption.show()
         add_item.set_submenu(itemoption)
         modify = Gtk.MenuItem(label=_("Edit Place"))
@@ -990,11 +988,11 @@ class GeoGraphyView(OsmGps, NavigationView):
         filtering = Gtk.FileFilter()
         filtering.add_pattern("*.kml")
         kml = Gtk.FileChooserDialog(
-            _("Select a kml file used to add places"),
+            title=_("Select a kml file used to add places"),
             action=Gtk.FileChooserAction.OPEN,
-            parent=self.uistate.window,
-            buttons=(_('_Cancel'), Gtk.ResponseType.CANCEL,
-                     _('_Apply'), Gtk.ResponseType.OK))
+            transient_for=self.uistate.window)
+        kml.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                        _('_Apply'), Gtk.ResponseType.OK)
         mpath = HOME_DIR
         kml.set_current_folder(os.path.dirname(mpath))
         kml.set_filter(filtering)
@@ -1286,13 +1284,11 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         dummy_obj = obj
         selected_dir = Gtk.FileChooserDialog(
-            _("Select tile cache directory for offline mode"),
+            title=_("Select tile cache directory for offline mode"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
-            parent=self.uistate.window,
-            buttons=(_('_Cancel'),
-                     Gtk.ResponseType.CANCEL,
-                     _('_Apply'),
-                     Gtk.ResponseType.OK))
+            transient_for=self.uistate.window)
+        selected_dir.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                                 _('_Apply'), Gtk.ResponseType.OK)
         mpath = config.get('geography.path')
         if not mpath:
             mpath = HOME_DIR

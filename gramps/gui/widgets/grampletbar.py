@@ -630,13 +630,11 @@ class DetachedWindow(ManagedWindow):
         self.grampletbar = grampletbar
         self.gramplet = gramplet
 
-        ManagedWindow.__init__(self, gramplet.uistate, [],
-                                             self.title)
-        self.set_window(Gtk.Dialog("", gramplet.uistate.window,
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                   (_('_Close'), Gtk.ResponseType.CLOSE)),
-                        None,
-                        self.title)
+        ManagedWindow.__init__(self, gramplet.uistate, [], self.title)
+        dlg = Gtk.Dialog(transient_for=gramplet.uistate.window,
+                         destroy_with_parent = True)
+        dlg.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
+        self.set_window(dlg, None, self.title)
         self.window.move(x_pos, y_pos)
         self.window.set_default_size(gramplet.detached_width,
                                      gramplet.detached_height)
@@ -701,7 +699,8 @@ class DetachedWindow(ManagedWindow):
         self.gramplet.detached_width = size[0]
         self.gramplet.detached_height = size[1]
         self.gramplet.detached_window = None
-        self.gramplet.reparent(self.grampletbar)
+        self.notebook.remove(self.gramplet)
+        self.grampletbar.add(self.gramplet)
         ManagedWindow.close(self, *args)
 
 #-------------------------------------------------------------------------

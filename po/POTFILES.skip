@@ -85,7 +85,6 @@ gramps/gen/db/utils.py
 # gen.display package
 #
 gramps/gen/display/__init__.py
-gramps/gen/display/place.py
 #
 # gen.filters package
 #

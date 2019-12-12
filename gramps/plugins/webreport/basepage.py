@@ -60,7 +60,7 @@ import logging
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import (FamilyRelType, NoteType, NameType, Person,
                             UrlType, Name, PlaceType, EventRoleType,
-                            Family, Citation, Place)
+                            Family, Citation, Place, Date)
 from gramps.gen.lib.date import Today
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
 from gramps.version import VERSION
@@ -752,7 +752,6 @@ class BasePage: # pylint: disable=C1001
             if latitude and longitude:
                 latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                 if latitude is not None:
-                    etype = event.get_type()
                     place_lat_long.append([latitude, longitude, placetitle,
                                            place_handle, event])
 
@@ -1422,8 +1421,23 @@ class BasePage: # pylint: disable=C1001
                          Html("link", type="text/css", href=url3,
                               media='print', rel="stylesheet", indent=False),
                          Html("link", type="text/css", href=url2,
-                              media="screen", rel="stylesheet", indent=False),
+                              media="screen", title=self._("Default"),
+                              rel="stylesheet", indent=False),
                          )
+        # create all alternate stylesheets
+        # Cannot use it on local files (file://)
+        for css_f in CSS:
+            already_done = False
+            for css_fn in ("UsEr_", "Basic", "Mainz", "Nebraska"):
+                if css_fn in css_f and not already_done:
+                    css_f = css_f.replace("UsEr_", "")
+                    fname = "/".join(["css", css_f + ".css"])
+                    urlx = self.report.build_url_fname(fname, None,
+                                                       self.uplink)
+                    links += Html("link", rel="alternate stylesheet",
+                                  title=css_f, indent=False,
+                                  media="screen", type="text/css",
+                                  href=urlx)
 
         # Link to Navigation Menus stylesheet
         if CSS[self.report.css]["navigation"]:
@@ -2902,7 +2916,11 @@ class BasePage: # pylint: disable=C1001
                 if self.reference_sort:
                     role = obj[2] # name
                 elif len(obj[2].split('-')) > 1:
-                    role = obj[2] # date in ISO format
+                    dummy_cal, role = obj[2].split(':') # date in ISO format
+                    # dummy_cal is the original calendar. remove it.
+                    if len(role.split(' ')) == 2:
+                        # for sort, remove the modifier before, after...
+                        (dummy_modifier, role) = role.split(' ')
                 else:
                     role = "3"
             return role
@@ -2917,15 +2935,34 @@ class BasePage: # pylint: disable=C1001
             if role != "":
                 if self.reference_sort:
                     role = ""
-                elif len(role.split('-')) > 1:
+                elif role[1:2] == ':':
+                    # cal is the original calendar
+                    cal, role = role.split(':')
                     # conver ISO date to Date for translation.
+                    # all modifiers are in english, so convert them
+                    # to the local language
                     if len(role.split(' - ')) > 1:
                         (date1, date2) = role.split(' - ')
                         role = self._("between") + " " + date1 + " "
                         role += self._("and") + " " + date2
+                    elif len(role.split(' ')) == 2:
+                        (pref, date) = role.split(' ')
+                        if "aft" in pref:
+                            role = self._("after") + " " + date
+                        if "bef" in pref:
+                            role = self._("before") + " " + date
+                        if pref in ("abt", "about"):
+                            role = self._("about") + " " + date
+                        if "c" in pref:
+                            role = self._("circa") + " " + date
+                        if "around" in pref:
+                            role = self._("around") + " " + date
+                    # parse is done in the default language
                     date = _dp.parse(role)
-                    date = self.rlocale.get_date(date)
-                    role = " (%s) " % date
+                    # reset the date to the original calendar
+                    cdate = date.to_calendar(Date.calendar_names[int(cal)])
+                    ldate = self.rlocale.get_date(cdate)
+                    role = " (%s) " % ldate
                 else:
                     role = " (%s) " % self._(role)
             ordered += list_html
@@ -2977,4 +3014,3 @@ class BasePage: # pylint: disable=C1001
 
         # closes the file
         self.report.close_file(output_file, sio, date)
-

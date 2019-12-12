@@ -1649,9 +1649,9 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
         self.user = user
 
         ManagedWindow.__init__(self, uistate, [], self.__class__)
-        window = Gtk.Dialog('',
-                            self.uistate.window,
-                            Gtk.DialogFlags.DESTROY_WITH_PARENT, None)
+        window = Gtk.Dialog(title='',
+                            transient_for=self.uistate.window,
+                            destroy_with_parent=True)
         self.set_window(window, None, _("Gramps XML Backup"))
         self.setup_configs('interface.quick-backup', 500, 150)
         close_button = window.add_button(_('_Close'),
@@ -1787,12 +1787,10 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
         """
         fdialog = Gtk.FileChooserDialog(
             title=_("Select backup directory"),
-            parent=self.window,
-            action=Gtk.FileChooserAction.SELECT_FOLDER,
-            buttons=(_('_Cancel'),
-                     Gtk.ResponseType.CANCEL,
-                     _('_Apply'),
-                     Gtk.ResponseType.OK))
+            transient_for=self.window,
+            action=Gtk.FileChooserAction.SELECT_FOLDER)
+        fdialog.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                            _('_Apply'), Gtk.ResponseType.OK)
         mpath = path_entry.get_text()
         if not mpath:
             mpath = HOME_DIR

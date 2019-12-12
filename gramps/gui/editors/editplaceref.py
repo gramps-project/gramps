@@ -151,24 +151,30 @@ class EditPlaceRef(EditReference):
             self.source.set_code, self.source.get_code,
             self.db.readonly)
 
+        entry = self.top.get_object("lon_entry")
+        entry.set_ltr_mode()
         self.longitude = MonitoredEntry(
-            self.top.get_object("lon_entry"),
+            entry,
             self.source.set_longitude, self.source.get_longitude,
             self.db.readonly)
         self.longitude.connect("validate", self._validate_coordinate, "lon")
         #force validation now with initial entry
-        self.top.get_object("lon_entry").validate(force=True)
+        entry.validate(force=True)
 
+        entry = self.top.get_object("lat_entry")
+        entry.set_ltr_mode()
         self.latitude = MonitoredEntry(
-            self.top.get_object("lat_entry"),
+            entry,
             self.source.set_latitude, self.source.get_latitude,
             self.db.readonly)
         self.latitude.connect("validate", self._validate_coordinate, "lat")
         #force validation now with initial entry
-        self.top.get_object("lat_entry").validate(force=True)
+        entry.validate(force=True)
 
+        entry = self.top.get_object("latlon_entry")
+        entry.set_ltr_mode()
         self.latlon = MonitoredEntry(
-            self.top.get_object("latlon_entry"),
+            entry,
             self.set_latlongitude, self.get_latlongitude,
             self.db.readonly)
 

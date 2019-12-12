@@ -595,6 +595,14 @@ class PlaceBaseView(ListView):
         place.add_tag(tag_handle)
         self.dbstate.db.commit_place(place, transaction)
 
+    def remove_tag(self, transaction, place_handle, tag_handle):
+        """
+        Remove the given tag from the given place.
+        """
+        place = self.dbstate.db.get_place_from_handle(place_handle)
+        place.remove_tag(tag_handle)
+        self.dbstate.db.commit_place(place, transaction)
+
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

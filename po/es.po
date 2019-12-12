@@ -7406,24 +7406,24 @@ msgstr "más de como"
 #, python-brace-format
 msgid "{number_of} year"
 msgid_plural "{number_of} years"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number_of} año"
+msgstr[1] "{number_of} años"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:443
 #, python-brace-format
 msgid "{number_of} month"
 msgid_plural "{number_of} months"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number_of} mes"
+msgstr[1] "{number_of} meses"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:454
 #, python-brace-format
 msgid "{number_of} day"
 msgid_plural "{number_of} days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number_of} día"
+msgstr[1] "{number_of} días"
 
 #: ../gramps/gen/lib/date.py:461
 msgid "0 days"

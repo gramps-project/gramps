@@ -1196,7 +1196,7 @@ class RelationshipView(NavigationView):
         label = widgets.MarkupLabel(format % escape(title),
                                     halign=Gtk.Align.END)
         if self._config.get('preferences.releditbtn'):
-            label.set_padding(0, 5)
+            label.set_margin_end(5)
 
         eventbox = Gtk.EventBox()
         if handle is not None:
@@ -1286,7 +1286,7 @@ class RelationshipView(NavigationView):
         lbl = widgets.MarkupLabel(format % escape(title),
                                   halign=Gtk.Align.END)
         if self._config.get('preferences.releditbtn'):
-            lbl.set_padding(0, 5)
+            lbl.set_margin_end(5)
         return lbl
 
     def write_child(self, vbox, handle, index, child_should_be_linked):
@@ -1333,6 +1333,7 @@ class RelationshipView(NavigationView):
         link_label = widgets.LinkLabel(name, link_func, handle, emph,
                                        theme=self.theme)
         link_label.set_padding(3, 0)
+
         if child_should_be_linked and self._config.get(
             'preferences.releditbtn'):
             button = widgets.IconButton(self.edit_button_press, handle)
@@ -1354,7 +1355,7 @@ class RelationshipView(NavigationView):
             value = self.info_string(handle)
             if value:
                 l = widgets.MarkupLabel(value)
-                l.set_padding(48, 0)
+                l.set_margin_start(48)
                 vbox.add(l)
 
     def write_data(self, box, title, start_col=_SDATA_START,

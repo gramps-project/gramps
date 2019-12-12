@@ -196,10 +196,10 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         if tags and person:
             for tag_handle in person.get_tag_list():
                 # For the complete tag, don't modify the default color
-                # which is black (#000000000000)
+                # which is black
                 tag = dbstate.db.get_tag_from_handle(tag_handle)
-                if tag.get_color() != "#000000000000": # only if the color
-                    self.bgcolor = tag.get_color()     # is not black
+                if tag.get_color() not in ("#000000", "#000000000000"):
+                    self.bgcolor = tag.get_color()
         self.bgcolor = hex_to_rgb_float(self.bgcolor)
         self.bordercolor = hex_to_rgb_float(self.bordercolor)
 
@@ -791,6 +791,7 @@ class PedigreeView(NavigationView):
         self._add_db_signal('family-add', self.person_rebuild)
         self._add_db_signal('family-delete', self.person_rebuild)
         self._add_db_signal('family-rebuild', self.person_rebuild)
+        self._add_db_signal('event-update', self.person_rebuild)
 
     def change_db(self, db):
         """
