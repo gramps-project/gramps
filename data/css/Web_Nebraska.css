@@ -118,6 +118,16 @@ img {
     .content {
         padding: 0em 0.5em;
     }
+    body#fullyearlinked table.calendar {
+        float: none;
+        width: 100%;
+    }
+}
+@media only screen and (width > 1080px) {
+    body#fullyearlinked table.calendar {
+        float: left;
+        width: 33.3%;
+    }
 }
 .fullclear {
     width:100%;
@@ -301,11 +311,6 @@ div#nav::after {
 
     .nav {
         background: none; /* Works in IE too. */
-/*
-        width: 200px;
-        position: absolute;
-        z-index: 10;
-*/
     }
 
     /* Undo some of the #nav styles  - to enable the class .nav */
@@ -348,7 +353,6 @@ div#nav::after {
         background-color: #A97;
     }
     .nav.responsive li {
-        /* float: left; */
         display: block;
         text-align: left;
         background-color: #A97;
@@ -1336,11 +1340,8 @@ body#WebCal {
     color:#542;
     padding:.3em 0 .2em 0;
     background-color:#FFF;
-}
-#CreatorInfo {
-    float:right;
-    color:#FFF;
-    margin:-24px 10px 0 0;
+    vertical-align: top;
+    height: 2em;
 }
 .calendar thead tr th.weekend, 
 .calendar thead tr th.weekday {
@@ -1361,14 +1362,12 @@ body#WebCal {
 
 /* Calendar : Date Numeral */
 .calendar tbody tr td div.date {
-    float:right;
+    float:none;
     display:block;
-    width:1.8em;
     font-size:1.2em;
     line-height:100%;
     text-align:center;
     color:#542;
-    margin:0 0 0 .5em;
     padding:.2em 0;
     background-color:#F6F2EE;
 }
@@ -1431,6 +1430,7 @@ body#WebCal {
 .calendar tbody tr td.highlight div.date {
     color:#0A65B5;
     background-color:#C2E1FE;
+    border: 5px solid rgba(255,255,255,.0);
 }
 
 /* Calendar : Previous-Next Month */
@@ -1440,17 +1440,15 @@ body#WebCal {
 .calendar tbody tr td.next div.date {
     color:#A97;
     background-color:#F6F2EE;
+    border: 5px solid rgba(255,255,255,.0);
 }
 
 /* Calendar : Full Year */
 body#fullyearlinked div.content {
-    width:963px;
     margin:0 auto;
-    padding:15px 0 2px 2px;
+    padding:5px 0 2px 2px;
 }
 body#fullyearlinked table.calendar {
-    float:left;
-    width:320px;
     height:18em;
     border:solid 1px #7D5925;
 }
@@ -1463,4 +1461,60 @@ body#fullyearlinked table.calendar thead tr th.monthName {
 }
 body#fullyearlinked table.calendar tbody tr td {
     height:3em;
+}
+body#OneDay h3 {
+    font-size: xx-large;
+    vertical-align: top;
+    height: 2em;
+}
+#WebCal table.calendar tfoot {
+    display: none;
+}
+#WebCal table.calendar tr td {
+    word-wrap: break-word;
+    border-bottom:solid 1px #7D5925;
+    border-right:solid 1px #7D5925;
+    padding-left: 0px;
+}
+#WebCal .calendar tr td .empty {
+    border: 5px solid rgba(255,255,255,.0);
+}
+#WebCal .calendar tr td .clickable {
+    border: 5px solid rgba(255,255,255,.0);
+}
+#WebCal .calendar tr td .clickable:hover {
+    display: block;
+    overflow:auto;
+    word-wrap: break-word;
+    cursor: text;
+    border-radius: 10px 0px 10px 10px;
+    border: 5px solid #453619;
+    padding: 0px;
+}
+body#fullyearlinked #YearGlance tbody td {
+    height:48px;
+    vertical-align: middle;
+    text-align: center;
+}
+body#fullyearlinked #YearGlance tbody td.previous {
+    border-width:0px 1px 1px 0px;
+    border-color:#C1B398;
+}
+body#fullyearlinked #YearGlance tbody td.next {
+    border-width:1px 0px 0px 1px;
+    border-color:#C1B398;
+}
+body#fullyearlinked #YearGlance tbody td .date {
+    font-size: 30px;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 45px;
+    margin-left: 5px;
+    margin-right: 5px;
+    float: none;
+    border: 5px solid rgba(0,0,0,.0);
+}
+body#fullyearlinked #YearGlance tbody td:hover .date {
+    border-radius: 45px;
+    border: 5px solid;
 }

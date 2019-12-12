@@ -69,7 +69,6 @@ body {
     background: url(../images/Web_Mainz_Bkgd.png) black repeat;
 }
 body > div {
-    width: 85%;
     margin: 0px auto;
     overflow: hidden;
 }
@@ -100,8 +99,17 @@ div.snapshot a {
     .content {
         padding: 0em 0.5em;
     }
+    body#fullyearlinked table.calendar {
+        float: none;
+        width: 100%;
+    }
 }
-
+@media only screen and (width > 1080px) {
+    body#fullyearlinked table.calendar {
+        float: left;
+        width: 33.3%;
+    }
+}
 
 /* General Text
 -----------------------------------------------------------------*/
@@ -251,11 +259,6 @@ div#nav::after {
 
     .nav {
         background: none; /* Works in IE too. */
-/*
-        width: 200px;
-        position: absolute;
-        z-index: 10;
-*/
     }
 
     /* Undo some of the #nav styles  - to enable the class .nav */
@@ -292,8 +295,8 @@ div#nav::after {
         margin-right: 10px;
     }
     .nav.responsive li {
-        /* float: left; */
         display: block;
+        height:1.4em;
         text-align: left;
         background-color: #D8C19F;
         /* required by IE */
@@ -747,16 +750,12 @@ table.calendar {
 .calendar thead th.monthName {
     font-size: xx-large;
     color: #767D25;
-    border-bottom-color: #7D5925;
+    vertical-align: top;
+    height: 2em;
+    border-bottom-style: none;
 }
 .calendar thead th abbr {
     border-bottom-style: none;
-}
-#CreatorInfo {
-    float: right;
-    margin: -1em 0px 0px 0px;
-    font-weight: bold;
-    font-style: italic;
 }
 .calendar tfoot td {
     border-top: double 4px #7D5925;
@@ -764,11 +763,11 @@ table.calendar {
 
 /* Calendar : Date Numeral */
 .calendar div.date {
-    float: right;
-    width: 1.8em;
+    width: 1.5em;
     font-size: large;
     font-style: italic;
     text-align: center;
+    margin-top: 1px;
     background: url(../images/Web_Mainz_MidLight.png) #FFF2C6 repeat;
 }
 
@@ -812,10 +811,11 @@ table.calendar {
     color: #767D25;
 }
 .calendar td ul li span.yearsmarried em {
-    color: black;
+    color: #767D25;
 }
 .calendar td.highlight div.date {
     color: #767D25;
+    margin-top: 1px;
     background-image: none;
     background-color: #FFFFE7;
 }
@@ -828,8 +828,6 @@ table.calendar {
 
 /* Calendar : Full Year */
 body#fullyearlinked table.calendar {
-    float: left;
-    width: 315px;
     height: 18em;
     border: solid 1px #7D5925;
 }
@@ -841,4 +839,59 @@ body#fullyearlinked table.calendar thead th.monthName {
 }
 body#fullyearlinked table.calendar tbody td {
     height: 3em;
+}
+body#OneDay h3 {
+    font-size: xx-large;
+    vertical-align: top;
+    height: 2em;
+    text-align: center;
+}
+#WebCal table.calendar tfoot {
+    display: none;
+}
+#WebCal table.calendar tr td {
+    word-wrap: break-word;
+    padding: 2px;
+}
+#WebCal .calendar tr td .empty {
+    border: 5px solid rgba(255,255,255,.0);
+}
+#WebCal .calendar tr td .clickable {
+    border: 5px solid rgba(255,255,255,.0);
+}
+#WebCal .calendar tr td .clickable:hover {
+    display: block;
+    overflow:auto;
+    word-wrap: break-word;
+    cursor: text;
+    border-radius: 10px 0px 10px 10px;
+    border: 5px solid #7D5925;
+    padding: 0px;
+}
+body#fullyearlinked #YearGlance tbody td {
+    vertical-align: middle;
+    text-align: center;
+    padding-left: 8px;
+}
+body#fullyearlinked #YearGlance tbody td .date {
+    font-size: 30px;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 45px;
+    float: none;
+    border: 5px solid rgba(0,0,0,.0);
+}
+body#fullyearlinked #YearGlance tbody td.previous .date:hover,
+body#fullyearlinked #YearGlance tbody td.next .date:hover {
+    border-radius: 10px;
+    border: 5px solid;
+}
+body#fullyearlinked #YearGlance tbody td div.empty .date:hover {
+    border-radius: 10px;
+    border: 5px solid;
+}
+body#fullyearlinked #YearGlance tbody td.highlight .date:hover {
+    border-radius: 45px;
+    border: 5px solid;
+    background: url(../images/Web_Mainz_Bkgd.png) black repeat;
 }

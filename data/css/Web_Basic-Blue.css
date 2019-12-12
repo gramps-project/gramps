@@ -119,6 +119,16 @@ img {
     .content {
         padding: 0em 0.5em;
     }
+    body#fullyearlinked table.calendar {
+        float: none;
+        width: 100%;
+    }
+}
+@media only screen and (width > 1080px) {
+    body#fullyearlinked table.calendar {
+        float: left;
+        width: 33.3%;
+    }
 }
 
 /* General Text
@@ -401,11 +411,6 @@ div#nav::after {
 
     .nav {
         background: none; /* Works in IE too. */
-/*
-        width: 200px;
-        position: absolute;
-        z-index: 10;
-*/
     }
 
     /* Undo some of the #nav styles  - to enable the class .nav */
@@ -436,13 +441,11 @@ div#nav::after {
 
     .nav.responsive {position: absolute; display: block; z-index: 100;}
     .nav.responsive a.icon {
-        /* position: absolute; */
         right: 0;
         top: 0;
         margin-right: 10px;
     }
     .nav.responsive li {
-        /* float: left; */
         display: block;
         text-align: left;
         background-color: #13A926;
@@ -741,7 +744,7 @@ div#EventDetail table.eventlist tbody tr td.ColumnAttribute {
 div#EventDetail table.eventlist tbody tr td.ColumnDate {
     border-top: solid 1px #000;
 }
-    
+
 /* Events
 ----------------------------------------------------- */
 #EventList table.infolist tr td a,
@@ -1533,7 +1536,7 @@ div#pedigree {
 /* Calendar Styles
 -------------------------------------------------------------------------------------------- */
 #OneDay, #WebCal, #YearGlance {
-    width: 95%
+    width: 100%
 }
 /* Calendar : General */
 .calendar {
@@ -1562,17 +1565,8 @@ div#pedigree {
     color: #542;
     padding:.3em 0 .2em 0;
     background-color: #FFF;
-}
-#CreatorInfo {
-    float:right;
-    color: #FFF;
-    margin:-24px 10px 0 0;
-}
-#CreatorInfo a {
-    color: #FFF;
-}
-#CreatorInfo a:hover {
-    color: #FFF;
+    vertical-align: top;
+    height: 2em;
 }
 .calendar thead tr th.weekend, 
 .calendar thead tr th.weekday {
@@ -1597,8 +1591,8 @@ div#pedigree {
     font-size:1.2em;
     line-height:100%;
     text-align:center;
+    border: 5px solid rgba(0,0,0,.0);
     color: #542;
-    margin:0 0 0 .5em;
     padding:.2em 0;
     background-color: #D8F3D6;
 }
@@ -1638,8 +1632,11 @@ div#pedigree {
     display:block;
     width:92%;
     margin:0 4%;
-    padding:.2em 0 .3em 0;
+    padding:.6em 0 .3em 0;
     border-top: dashed 1px #000;
+}
+.calendar tbody tr td ul li:first-child {
+    border-top: 10px;
 }
 
 /* Calendar : Birthday, Anniversary, Highlight */
@@ -1671,13 +1668,10 @@ body#fullyearlinked {
     background-color: #FFF;
 }
 body#fullyearlinked div.content {
-    width:963px;
     margin:0 auto;
     padding:15px 0 2px 2px;
 }
 body#fullyearlinked table.calendar {
-    float:left;
-    width:320px;
     height:18em;
     border:solid 1px #000;
 }
@@ -1692,10 +1686,8 @@ body#fullyearlinked table.calendar thead tr th.monthName {
     padding:2px 0;
     border-bottom: solid 1px #000;
 }
-body#fullyearlinked table.calendar tbody tr td {
-    height:3em;
-}
 body#fullyearlinked table.calendar tbody tr td.emptyDays {
+    height:52px;
     background-color: #FFF;
 }
 body#fullyearlinked table.calendar tbody tr td.saturday {
@@ -1732,4 +1724,44 @@ table.oneday tbody tr td.ColumnText {
 }
 table.oneday tbody tr td.ColumnEvent {
     width: 10%;
+}
+#WebCal table.calendar tfoot {
+    display: none;
+}
+#WebCal table.calendar tr td {
+    word-wrap: break-word;
+    padding: 2px;
+}
+#WebCal .calendar tr td .empty {
+    border: 5px solid rgba(255,255,255,.0);
+}
+#WebCal .calendar tr td .clickable {
+    border: 5px solid rgba(255,255,255,.0);
+}
+#WebCal .calendar tr td .clickable:hover {
+    display: block;
+    overflow:auto;
+    word-wrap: break-word;
+    cursor: text;
+    border-radius: 10px 0px 10px 10px;
+    border: 5px solid #000290;
+    padding: 0px;
+}
+body#fullyearlinked #YearGlance tbody td {
+    height:48px;
+    vertical-align: middle;
+    text-align: center;
+    padding-left: 3px;
+}
+body#fullyearlinked #YearGlance tbody td .date {
+    font-size: 30px;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 45px;
+    float: none;
+    border: 5px solid rgba(0,0,0,.0);
+}
+body#fullyearlinked #YearGlance tbody td:hover .date {
+    border-radius: 45px;
+    border: 5px solid;
 }

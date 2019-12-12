@@ -1486,17 +1486,8 @@ body#WebCal {
     color: #542;
     padding:.3em 0 .2em 0;
     background-color: #FFF;
-}
-#CreatorInfo {
-    float:right;
-    color: #FFF;
-    margin:-24px 10px 0 0;
-}
-#CreatorInfo a {
-    color: #FFF;
-}
-#CreatorInfo a:hover {
-    color: #FFF;
+    vertical-align: top;
+    height: 2em;
 }
 .calendar thead tr th.weekend, 
 .calendar thead tr th.weekday {
@@ -1658,7 +1649,7 @@ table.oneday tbody tr td.ColumnText {
     width: 85%;
 }
 table.oneday tbody tr td.ColumnEvent {
-    width; 10%;
+    width: 10%;
 }
 
 /* PlaceMaps

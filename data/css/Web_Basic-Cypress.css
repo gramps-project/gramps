@@ -96,6 +96,16 @@ body > div {
     .content {
         padding: 0em 0.5em;
     }
+    body#fullyearlinked table.calendar {
+        float: none;
+        width: 100%;
+    }
+}
+@media only screen and (width > 1080px) {
+    body#fullyearlinked table.calendar {
+        float: left;
+        width: 33.3%;
+    }
 }
 
 /* General Text
@@ -255,11 +265,6 @@ div#nav::after {
 
     .nav {
         background: none; /* Works in IE too. */
-/*
-        width: 200px;
-        position: absolute;
-        z-index: 10;
-*/
     }
 
     /* Undo some of the #nav styles  - to enable the class .nav */
@@ -296,11 +301,10 @@ div#nav::after {
         margin-right: 10px;
     }
     .nav.responsive li {
-        /* float: left; */
         display: block;
         text-align: left;
         color: #454;
-        background-color: #E0E6E0;
+        background-color: #454;
         /* required by IE */
         float: left;
         clear: both;
@@ -809,15 +813,11 @@ table.calendar {
     background-color: white;
     border-bottom-style: none;
     padding-top: 1em;
+    vertical-align: top;
+    height: 2em;
 }
 .calendar thead th abbr {
     border-bottom-style: none;
-}
-#CreatorInfo {
-    float: right;
-    margin: -1em 15px 0px 0px;
-    font-weight: bold;
-    color: #7C8F7C;
 }
 .calendar tfoot tr td {
     border-top: solid 4px #7C8F7C;
@@ -836,7 +836,7 @@ table.calendar {
 
 /* Calendar : Date Container */
 .calendar td {
-    padding: 0px 0px 0px 1ex;
+    padding: 0px 5px 0px 1ex;
     border-width: 1px 0px 0px 1px;
     border-style: solid;
     border-color: #9DBF9D;
@@ -844,7 +844,7 @@ table.calendar {
 }
 .calendar td:first-child {
     border-left-style: none;
-    padding: 0px 0px 0px 1ex;
+    padding: 0px 5px 0px 1ex;
 }
 .calendar tbody tr:first-child td {
     border-top-style: none;
@@ -892,8 +892,6 @@ body#fullyearlinked div.content {
     overflow: hidden;
 }
 body#fullyearlinked table.calendar {
-    float: left;
-    width: 33.3%;
     height: 18em;
     border: solid 1px black;
 }
@@ -909,4 +907,48 @@ body#fullyearlinked table.calendar tbody td {
 }
 body#OneDay div.content {
     overflow: hidden;
+}
+body#OneDay h3 {
+    font-size: xx-large;
+    vertical-align: top;
+    height: 2em;
+}
+#WebCal table.calendar tfoot {
+    display: none;
+}
+#WebCal table.calendar tr td {
+    word-wrap: break-word;
+    padding: 2px;
+}
+#WebCal .calendar tr td .empty {
+    border: 5px solid rgba(255,255,255,.0);
+}
+#WebCal .calendar tr td .clickable {
+    border: 5px solid rgba(255,255,255,.0);
+}
+#WebCal .calendar tr td .clickable:hover {
+    display: block;
+    overflow:auto;
+    word-wrap: break-word;
+    cursor: text;
+    border-radius: 10px 0px 10px 10px;
+    border: 5px solid #454;
+}
+body#fullyearlinked #YearGlance tbody td {
+    height:48px;
+    vertical-align: middle;
+    text-align: center;
+    padding-left: 6px;
+}
+body#fullyearlinked #YearGlance tbody td .date {
+    font-size: 30px;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 45px;
+    float: none;
+    border: 5px solid rgba(0,0,0,.0);
+}
+body#fullyearlinked #YearGlance tbody td:hover .date {
+    border-radius: 45px;
+    border: 5px solid;
 }
