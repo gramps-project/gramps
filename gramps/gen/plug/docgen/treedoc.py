@@ -519,7 +519,7 @@ class TreeDocBase(BaseDoc, TreeDoc):
             date_str = date_str + '/' + stop_date
 
         place = escape(_pd.display_event(db, event))
-        place = place.replace("-","\--")
+        place = place.replace("-", "\--")
 
         if modifier:
             event_type += '+'
