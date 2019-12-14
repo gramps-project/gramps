@@ -535,7 +535,7 @@ class TreeDocBase(BaseDoc, TreeDoc):
             date_str = date_str + '/' + stop_date
 
         place = escape(_pd.display_event(db, event))
-        
+
         if event_type == 'occupation' and self.occupation != "no":
             description = escape(event.description)
             self.write(level, 'profession = {%s}' % description)
