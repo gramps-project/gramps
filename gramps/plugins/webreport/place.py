@@ -415,6 +415,8 @@ class PlacePages(BasePage):
                     placedetail += popup
                     popup += Html("a", href="#", id="popup-closer",
                                   class_="ol-popup-closer")
+                    popup += Html("div", id="popup-title",
+                                  class_="ol-popup-title")
                     popup += Html("div", id="popup-content")
                 with Html("div", id="tooltip", class_="ol-popup",
                           inline=True) as tooltip:

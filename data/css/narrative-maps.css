@@ -118,7 +118,6 @@ div#FamilyMapDetail div#references table.infolist tbody tr td.ColumnPlace {
   max-height: 200px;
   overflow-y: auto;
   padding: 0 0.5em 15px 0.5em;
-  max-height: 250px;
 }
 #map_canvas .ol-popup-content a {
   color: #111;
