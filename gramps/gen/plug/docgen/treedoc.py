@@ -46,9 +46,9 @@ from ..menu import NumberOption, TextOption, EnumeratedListOption
 from ...constfunc import win
 from ...config import config
 from ...const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from ...utils.grampslocale import GrampsLocale
-_locale = GrampsLocale(lang='en')
+_ = glocale.translation.gettext
+locale = GrampsLocale(lang='en')
 
 LATIN = ['french', 'italian', 'spanish']
 LANG_SUPPORT = ['danish', 'dutch', 'german', 'swedish'] + LATIN
@@ -345,7 +345,7 @@ class TreeDocBase(BaseDoc, TreeDoc):
         self.write(0, '\\usepackage[all]{genealogytree}\n')
         self.write(0, '\\usepackage{color}\n')
         trans = glocale.language[0][:2]
-        lang = _locale._get_language_string(trans).lower()
+        lang = locale._get_language_string(trans).lower()
         if lang in LANG_SUPPORT:
             self.write(0, '\\gtrset{language=%s}\n' % lang)
         if lang in LATIN:
