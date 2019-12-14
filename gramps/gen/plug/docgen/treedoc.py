@@ -70,10 +70,10 @@ _MARRIAGE = [{'name': _("Default"), 'value': ""},
              {'name': _("Not shown"), 'value': "no marriage"}]
 
 _OCCUPATION = [{'name': _("Do not include"), 'value': "no"},
-              {'name': _("Only description"), 'value': "basic"},
-              {'name': _("Use date"), 'value': "date"},
-              {'name': _("Use place"), 'value': "place"},
-              {'name': _("Use date and place"), 'value': "date place"}]
+               {'name': _("Only description"), 'value': "basic"},
+               {'name': _("Use date"), 'value': "date"},
+               {'name': _("Use place"), 'value': "place"},
+               {'name': _("Use date and place"), 'value': "date place"}]
 
 _COLOR = [{'name': _("None"), 'value': "none"},
           {'name': _("Default"), 'value': "default"},
