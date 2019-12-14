@@ -70,7 +70,7 @@ class DateParserCZ(DateParser):
     def init_strings(self):
         DateParser.init_strings(self)
         self._text2 = re.compile(r'(\d+)?\.?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$'
-                                         % self._mon_str, re.IGNORECASE)
+                                 % self._mon_str, re.IGNORECASE)
         self._span = re.compile(
             r"(od)\s+(?P<start>.+)\s+(do)\s+(?P<stop>.+)",
             re.IGNORECASE)
