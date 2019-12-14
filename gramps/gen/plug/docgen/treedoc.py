@@ -350,7 +350,9 @@ class TreeDocBase(BaseDoc, TreeDoc):
         if lang in LANG_SUPPORT:
             self.write(0, '\\gtrset{language=%s}\n' % lang)
         if lang in LATIN:
-            self.write(0, '\\usepackage{lmodern}\n')
+            self.write(0, '\\IfFileExists{lmodern.sty}{\n')
+            self.write(0, '    \\usepackage{lmodern}\n')
+            self.write(0, '}{}\n')
         self.write(0, '\\begin{document}\n')
 
         if self.nodecolor == 'preferences':
