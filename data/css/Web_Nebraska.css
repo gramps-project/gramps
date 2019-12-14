@@ -1,21 +1,21 @@
 /*
-**************************************************************************************************
+*******************************************************************************
 Copyright Holder and License
-**************************************************************************************************
+*******************************************************************************
 GRAMPS Cascading Style Sheet
 Style Name: Nebraska Default Stylesheet
 Style Author: Jason M. Simanek (2008)
 
-**************************************************************************************************
+*******************************************************************************
 This website was created with GRAMPS <http://www.gramps-project.org/>
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 GRAMPS is a Free Software Project for Genealogy, offering a professional
 genealogy program, and a wiki open to all. It is a community project, created,
 developed and governed by genealogists.
 
 Go to <http://gramps-project.org/> to learn more!
 
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Copyright 2008 Jason M. Simanek
 Copyright 2009 Stephane Charette
 Copyright (C) 2008-2011 Rob G. Healey <robhealey1@gmail.com>
@@ -34,10 +34,10 @@ A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
 GRAMPS. If not, see <http://www.gnu.org/licenses/>.
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 Color Palette
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 brown darkest       #453619
 brown dark          #542
 brown               #A97
@@ -45,14 +45,14 @@ brown light         #C1B398
 brown lightest      #F6F2EE
 gray                #696969
 green               #5D835F
---------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 
  NarrativeWeb Styles
--------------------------------------------------------------------------------------------- 
+-------------------------------------------------------------------------------
 
  General Elements
------------------------------------------------------ */
+---------------------------------------------------------------------------- */
 
 body {
     color:#000;
@@ -172,7 +172,7 @@ p#description {
     background-color:#FFF;
 }
 p a {
-    color:#FFF;
+    color:#542;
     text-decoration:underline;
 }
 sup {
@@ -284,7 +284,7 @@ div#subnavigation ul li.CurrentSection a {
 }
 
 /* Responsive navigation */
-a.navIcon {
+button.navIcon {
     display: none;
     color: #FFF;
 }
@@ -332,12 +332,14 @@ div#nav::after {
     .nav li {display: none;}
     .nav ul {display: none;}
 
-    a.navIcon {
-        font-size:1.3em;
+    button.navIcon {
         display: block;
-        margin: 0.1em 0.4em 0.4em 0.4em;
         float: left;
-    color: #FFF;
+        font-size:2.9em;
+        line-height: 70px;
+        border: 0px;
+        background-color: #542;
+        color: #FFF;
     }
 
     .nav.responsive {position: absolute; display: block; z-index: 100;}
@@ -456,6 +458,20 @@ table.surnamelist tr th a, table.surnamelist tr th a:visited {
 table.surnamelist tr th:hover {
     background-color:#C1B398;
 }
+table#SortByName tr:hover td.ColumnSurname,
+table#SortByCount tr:hover td.ColumnQuantity {
+    background-color:#C1B398;
+}
+table#SortByName tr:hover,
+table#SortByCount tr:hover,
+table#SortByName tr:hover td.ColumnQuantity,
+table#SortByCount tr:hover td.ColumnSurname {
+    background-color:#C1B398;
+}
+table.surname tr:hover,
+table.surname tr:hover td.ColumnName {
+    background-color:#C1B398;
+}
 table.surnamelist thead tr th.ColumnLetter {
     padding-left:20px;
     padding-right:10px;
@@ -511,6 +527,11 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
 
 /* Individuals
 ----------------------------------------------------- */
+#parents table.infolist tr:hover,
+table.IndividualList tr:hover,
+table.IndividualList tr:hover td.ColumnSurname {
+    background-color:#C1B398;
+}
 #Individuals {  }
 #Individuals table.IndividualList {
     border-bottom:solid 1px #A97;
@@ -554,6 +575,7 @@ table.IndividualList tbody tr td.ColumnName a:hover {
 #IndividualDetail div table.infolist tr td {
     font:normal .9em/1.2em sans-serif;
     vertical-align:top;
+    padding-left: 5px;
 }
 #IndividualDetail div table.infolist tr td a {
     display:inline;
@@ -566,6 +588,7 @@ table.IndividualList tbody tr td.ColumnName a:hover {
     color:#696969;
 }
 #IndividualDetail div.subsection table tr td:first-child {
+    color:#696969;
     padding-left:20px;
 }
 #familymap a.familymap {
@@ -603,6 +626,10 @@ table.attrlist tbody tr td.ColumnSources {
 
 /* Sources
 ----------------------------------------------------- */
+#Sources table.infolist tr:hover,
+#Sources table.infolist tr:hover td.ColumnType {
+    background-color:#C1B398;
+}
 #Sources {  }
 #Sources table.infolist tbody tr td.ColumnRowLabel {
     padding-bottom:0;
@@ -651,6 +678,10 @@ table.relationships tbody tr td.ColumnPartner a:hover {
 #Places table.infolist tbody tr td.ColumnName {
     padding:0;
 }
+#Places table.infolist tr:hover,
+#Places table.infolist tr:hover td.ColumnName {
+    background-color:#C1B398;
+}
 #Places table.infolist tbody tr td.ColumnName a {
     padding:.1em 10px .3em 10px;
 }
@@ -670,7 +701,11 @@ table.relationships tbody tr td.ColumnPartner a:hover {
 #EventDetail table.infolist tr td a {
     display: inline;
 }
-#EventList table.infolist tr td span.father, 
+#EventList table.infolist tr:hover,
+#EventList table.infolist tr:hover td.ColumnType {
+    background-color:#C1B398;
+}
+#EventList table.infolist tr td span.father,
 #EventList table.infolist tr td span.mother,
 #EventDetail table.infolist tr td span.father,
 #EventDetail table.infolist tr td span.mother {
@@ -692,9 +727,26 @@ table.relationships tbody tr td.ColumnPartner a:hover {
 #EventDetail table.infolist tr td span.mother:last-child:after {
     content: "";
 }
-
-table.eventlist tbody tr td.ColumnSources {
+#IndividualDetail div table.eventlist tbody tr td:first-child,
+#IndividualDetail div table.eventlist thead tr th:first-child {
+    padding-left: 10px;
+}
+#IndividualDetail div table.eventlist tbody tr td.ColumnSources {
+    padding-left: 5px;
     width: 5%;
+}
+#IndividualDetail div table.eventlist tbody tr td.ColumnEvent {
+    padding-right: 0px;
+    width: 8%;
+}
+#IndividualDetail div table.eventlist tbody tr td.ColumnDate {
+    padding-left: 10px;
+    width: 15%;
+}
+#IndividualDetail div table.eventlist td.ColumnEvent,
+#IndividualDetail div table.eventlist td.ColumnDate,
+#IndividualDetail div table.eventlist td.ColumnPlace {
+    font-weight: bold;
 }
 
 /* Gallery
@@ -847,9 +899,9 @@ body#ThumbnailPreview div#references table.infolist tbody tr td.ColumnName {
     text-decoration:underline;
 }
 
-/* Download 
+/* Download
 ----------------------------------------------------- */
-#Download { 
+#Download {
     padding:1cm;
     height:396px;
 }
@@ -869,7 +921,7 @@ table.download thead tr th {
 table.download tbody tr#Row02 {
     border-bottom:solid 2px #000;
 }
-table.download thead tr th, table.download tbody tr td { 
+table.download thead tr th, table.download tbody tr td {
     padding-left:10px;
     padding-top:20px;
     border-style:solid;
@@ -972,9 +1024,6 @@ div#events h4 {
     padding-bottom:4px;
     background-color:#A97;
 }
-#IndividualDetail div#events table.infolist thead tr th:first-child {
-    padding-left:20px;
-}
 #IndividualDetail div#events table.infolist tbody tr td {
     padding-top:.4em;
     padding-bottom:.8em;
@@ -989,6 +1038,51 @@ table.infolist tbody tr td.ColumnValue p {
     font-family:sans-serif;
     color:#696969;
     margin:.2em 0 0 2em;
+}
+#attributes table.infolist td.ColumnType {
+    width: 10%;
+    padding-left: 15px;
+}
+#attributes table.infolist td.ColumnValue {
+    width: 15%;
+}
+#attributes table.infolist td.ColumnSources {
+    width: 5%;
+    padding-left: 5px;
+}
+#WebLinks table.weblinks tbody tr td:first-child {
+    vertical-align:middle;
+}
+#WebLinks table.weblinks td.ColumnType,
+#WebLinks table.weblinks td.ColumnDescription {
+}
+#events table.eventlist td.ColumnDate {
+    width: 15%;
+    padding-left: 10px;
+}
+#families table.eventlist th.ColumnDate {
+    width: 15%;
+    padding-left: 10px;
+}
+#families table.eventlist td.ColumnEvent,
+#families table.eventlist td.ColumnDate,
+#families table.eventlist td.ColumnPlace,
+#families table.eventlist td.ColumnDescription,
+#families table.eventlist td.ColumnSources {
+    padding-top:.4em;
+    padding-bottom:.8em;
+}
+#families table.eventlist td.ColumnDate {
+    width: 15%;
+    padding-left: 20px;
+}
+#families table.eventlist td.ColumnNotes {
+    font:normal 1.1em/1.4em sans-serif;
+}
+#families table.eventlist tbody tr td:first-child,
+#families table.eventlist thead tr th:first-child {
+    width: 10%;
+    padding-left: 0px;
 }
 
 /* Subsections : Attributes
@@ -1012,10 +1106,15 @@ div#parents table.infolist tbody tr td.ColumnValue ol li {
 
 /* Subsections : Families
 ----------------------------------------------------- */
+#families table.infolist td.ColumnValue.Child table.infolist tr:hover,
+table.relationships tr:hover {
+    background-color:#C1B398;
+}
 div#families table.infolist {
     margin-top:.5em;
 }
 div#families table.infolist tbody tr td.ColumnValue p {
+    margin-left:0;
     margin-top:0;
 }
 div#families table.infolist tbody tr td.ColumnValue ol {
@@ -1063,9 +1162,6 @@ div#Addresses table.infolist tr td a, div#Addresses table.infolist tr td p a {
 #gallery {
     background-color: green;
 }
-#indivgallery {
-    background-color: white;
-}
 #gallery .gallerycell {
     float: left;
     width: 130px;
@@ -1088,11 +1184,10 @@ div#Addresses table.infolist tr td a, div#Addresses table.infolist tr td p a {
     float:left;
     width:130px;
     text-align:center;
-    background-color: white;
+    background-color: #F6F2EE;
 }
 #gallery div.indexno {
     float: right;
-    width: 1.8em;
     font-size: large;
     text-align: center;
     background-color: #CCC;
@@ -1155,16 +1250,26 @@ div.snapshot div.thumbnail {
 div.narrative {
     padding-bottom:0;
 }
+i.NoteType {
+    font-weight: bold;
+    font-size: .8em;
+}
 i + div.grampsstylednote p {
     margin: 0.1em 0 0.2em 0;
+}
+div.grampsstylednote p {
+    padding-bottom: 0.6em;
 }
 .narrative p {
     margin: 0.1em 0 0.2em 0;
     font:normal .9em/1.4em sans-serif;
 }
 
-/* Subsections : References
+/* Subsection : References
 ----------------------------------------------------- */
+#references ol {
+    margin-left: 3em;
+}
 
 /* Subsections : Source References
 ----------------------------------------------------- */
@@ -1306,6 +1411,12 @@ div#pedigree {
     padding: 0;
 }
 
+/* Updates
+----------------------------------------------------- */
+#Updates table.list td.date {
+    width: 20%;
+}
+
 /* Calendar Styles
 -------------------------------------------------------------------------------------------- */
 /* Calendar : General */
@@ -1343,12 +1454,12 @@ body#WebCal {
     vertical-align: top;
     height: 2em;
 }
-.calendar thead tr th.weekend, 
+.calendar thead tr th.weekend,
 .calendar thead tr th.weekday {
     color:#542;
     background-color:#A97;
 }
-.calendar thead tr th.saturday, 
+.calendar thead tr th.saturday,
 .calendar thead tr th.sunday { }
 .calendar tfoot tr td {
     padding:.7em 5% 1em 5%;
@@ -1434,9 +1545,9 @@ body#WebCal {
 }
 
 /* Calendar : Previous-Next Month */
-.calendar tbody tr td.previous, 
-.calendar tbody tr td.next, 
-.calendar tbody tr td.previous div.date, 
+.calendar tbody tr td.previous,
+.calendar tbody tr td.next,
+.calendar tbody tr td.previous div.date,
 .calendar tbody tr td.next div.date {
     color:#A97;
     background-color:#F6F2EE;

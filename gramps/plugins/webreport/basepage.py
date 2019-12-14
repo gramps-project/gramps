@@ -60,6 +60,7 @@ import logging
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.lib import (FamilyRelType, NoteType, NameType, Person,
                             UrlType, Name, PlaceType, EventRoleType,
+                            Source, Attribute, Media, Repository, Event,
                             Family, Citation, Place, Date)
 from gramps.gen.lib.date import Today
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
@@ -130,6 +131,8 @@ class BasePage: # pylint: disable=C1001
         self.create_media = report.options['gallery']
         self.create_unused_media = report.options['unused']
         self.create_thumbs_only = report.options['create_thumbs_only']
+        self.create_images_index = report.options['create_images_index']
+        self.create_thumbs_index = report.options['create_thumbs_index']
         self.inc_families = report.options['inc_families']
         self.inc_events = report.options['inc_events']
         self.usecms = report.options['usecms']
@@ -351,10 +354,9 @@ class BasePage: # pylint: disable=C1001
         if family_events:
             trow = Html("tr") + (
                 Html("td", "&nbsp;", class_="ColumnType", inline=True),
-                Html("td", "&nbsp;", class_="ColumnAttribute", inline=True),
                 Html("td", self.format_family_events(family_events,
                                                      place_lat_long),
-                     class_="ColumnValue")
+                     class_="ColumnValue", colspan=2)
             )
             table = trow
 
@@ -377,13 +379,13 @@ class BasePage: # pylint: disable=C1001
         childlist = family.get_child_ref_list()
         if childlist:
             trow = Html("tr") + (
-                Html("td", "&nbsp;", class_="ColumnType", inline=True),
                 Html("td", self._("Children"), class_="ColumnAttribute",
                      inline=True)
             )
             table = table + trow if table is not None else trow
 
-            tcell = Html("td", class_="ColumnValue", close=False)
+            tcell = Html("td", class_="ColumnValue Child", close=False,
+                         colspan=2)
             trow += tcell
 
             with Html("table", class_="infolist eventlist") as table2:
@@ -517,7 +519,8 @@ class BasePage: # pylint: disable=C1001
             for (data, colclass) in [
                 (str(attr.get_type()), "ColumnType"),
                 (attr.get_value(), "ColumnValue"),
-                (self.dump_notes(attr.get_note_list()), "ColumnNotes"),
+                (self.dump_notes(attr.get_note_list(), Attribute),
+                 "ColumnNotes"),
                 (self.get_citation_links(attr.get_citation_list()),
                  "ColumnSources")
             ]
@@ -610,7 +613,7 @@ class BasePage: # pylint: disable=C1001
                 htmllist.extend(Html('p') + linelist)
         return htmllist
 
-    def dump_notes(self, notelist):
+    def dump_notes(self, notelist, parent=None):
         """
         dump out of list of notes with very little elements of its own
 
@@ -621,11 +624,24 @@ class BasePage: # pylint: disable=C1001
 
         # begin unordered list
         notesection = Html("div")
+        idx = 0
         for notehandle in notelist:
             this_note = self.r_db.get_note_from_handle(notehandle)
+            title = self._(this_note.type.xml_str())
             if this_note is not None:
-                notesection.extend(Html("i", self._(this_note.type.xml_str()),
-                                        class_="NoteType"))
+                idx += 1
+                if len(notelist) > 1:
+                    if self.default_note(parent, int(this_note.type)):
+                        title_text = self._("Note: %s") % str(idx)
+                    else:
+                        title = " (" + title + ")"
+                        title_text = self._("Note: %s") % str(idx) + title
+                else:
+                    if self.default_note(parent, int(this_note.type)):
+                        title_text = self._("Note")
+                    else:
+                        title_text = title
+                notesection.extend(Html("i", title_text, class_="NoteType"))
                 notesection.extend(self.get_note_format(this_note, True))
         return notesection
 
@@ -682,7 +698,7 @@ class BasePage: # pylint: disable=C1001
                                       etype,
                                       event_gid,
                                       uplink) if hyperlink else etype
-        trow += Html("td", event_hyper, class_="ColumnEvent")
+        trow += Html("td", event_hyper, class_="ColumnEvent", rowspan=2)
 
         # get event data
         event_data = self.get_event_data(event, event_ref, uplink)
@@ -694,7 +710,6 @@ class BasePage: # pylint: disable=C1001
         )
 
         trow2 = Html("tr")
-        trow2 += Html("td", "", class_="ColumnEvent")
         # get event source references
         srcrefs = self.get_citation_links(event.get_citation_list()) or "&nbsp;"
         trow += Html("td", srcrefs, class_="ColumnSources", rowspan=2)
@@ -703,7 +718,7 @@ class BasePage: # pylint: disable=C1001
         notelist = event.get_note_list()[:]  # we don't want to modify
                                              # cached original
         notelist.extend(event_ref.get_note_list())
-        htmllist = self.dump_notes(notelist)
+        htmllist = self.dump_notes(notelist, Event)
 
         # if the event or event reference has an attribute attached to it,
         # get the text and format it correctly?
@@ -720,7 +735,7 @@ class BasePage: # pylint: disable=C1001
             #also output notes attached to the attributes
             notelist = attr.get_note_list()
             if notelist:
-                htmllist.extend(self.dump_notes(notelist))
+                htmllist.extend(self.dump_notes(notelist, Event))
 
         trow2 += Html("td", htmllist, class_="ColumnNotes", colspan=3)
 
@@ -1387,9 +1402,9 @@ class BasePage: # pylint: disable=C1001
             del page[0]
 
         # Header constants
-        _meta1 = 'name ="viewport" content="width=device-width; '
-        _meta1 += 'height=device-height; initial-scale=1.0; '
-        _meta1 += 'minimum-scale=0.5; maximum-scale=10.0; user-scalable=yes"'
+        _meta1 = 'name ="viewport" content="width=device-width, '
+        _meta1 += 'height=device-height, initial-scale=1.0, '
+        _meta1 += 'minimum-scale=0.5, maximum-scale=10.0, user-scalable=yes"'
         _meta2 = 'name ="apple-mobile-web-app-capable" content="yes"'
         _meta3 = 'name="generator" content="%s %s %s"' % (
             PROGRAM_NAME, VERSION, URL_HOMEPAGE)
@@ -1417,13 +1432,21 @@ class BasePage: # pylint: disable=C1001
 
         # create stylesheet and favicon links
         links = Html("link", type="image/x-icon",
-                     href=url4, rel="shortcut icon") + (
-                         Html("link", type="text/css", href=url3,
-                              media='print', rel="stylesheet", indent=False),
-                         Html("link", type="text/css", href=url2,
-                              media="screen", title=self._("Default"),
-                              rel="stylesheet", indent=False),
-                         )
+                     href=url4, rel="shortcut icon")
+        # attach the ancestortree style sheet if ancestor
+        # graph is being created?
+        if self.report.options["ancestortree"]:
+            if self.usecms:
+                fname = "/".join([self.target_uri, "css", "ancestortree.css"])
+            else:
+                fname = "/".join(["css", "ancestortree.css"])
+            url5 = self.report.build_url_fname(fname, None, self.uplink)
+            links += Html("link", type="text/css", href=url5,
+                          media="screen", rel="stylesheet", indent=False)
+        links += Html("link", type="text/css", href=url3,
+                      media='print', rel="stylesheet", indent=False)
+        links += Html("link", type="text/css", href=url2,
+                      media="screen", rel="stylesheet", indent=False)
         # create all alternate stylesheets
         # Cannot use it on local files (file://)
         for css_f in CSS:
@@ -1435,7 +1458,7 @@ class BasePage: # pylint: disable=C1001
                     urlx = self.report.build_url_fname(fname, None,
                                                        self.uplink)
                     links += Html("link", rel="alternate stylesheet",
-                                  title=css_f, indent=False,
+                                  title=self._(css_f), indent=False,
                                   media="screen", type="text/css",
                                   href=urlx)
 
@@ -1463,13 +1486,11 @@ class BasePage: # pylint: disable=C1001
         body += outerwrapperdiv
 
         # begin header section
-        #headerdiv = Html("div", id='header') + (
         headerdiv = Html("div", id='header') + (
-            Html("<a href=\"javascript:void(0);\" class=\"navIcon\""
-                 " onclick=\"navFunction()\">&#8801;</a>")) + (
-                     Html("h1", html_escape(self.title_str),
+            Html("<button href=\"javascript:void(0);\" class=\"navIcon\""
+                 " onclick=\"navFunction()\">&#8801;</button>"))
+        headerdiv += Html("h1", html_escape(self.title_str),
                           id="SiteTitle", inline=True)
-                     )
         outerwrapperdiv += headerdiv
 
         header_note = self.report.options['headernote']
@@ -1544,12 +1565,15 @@ class BasePage: # pylint: disable=C1001
             ('places', self._("Places"), self.report.inc_places),
             ('sources', self._("Sources"), self.report.inc_sources),
             ('repositories', self._("Repositories"), inc_repos),
-            ('media', self._("Media"), _create_media_link),
-            ('thumbnails', self._("Thumbnails"), self.create_media),
+            ('media', self._("Media"), self.create_images_index and
+             self.report.inc_gallery and not self.report.create_thumbs_only),
+            ('thumbnails', self._("Thumbnails"), self.create_thumbs_index and
+             self.report.inc_gallery),
             ('download', self._("Download"), self.report.inc_download),
             ("addressbook", self._("Address Book"),
              self.report.inc_addressbook),
             ('contact', self._("Contact"), self.report.use_contact),
+            ('updates', self._("Updates"), self.report.inc_updates),
             ('statistics', self._("Statistics"), self.report.inc_stats),
             (self.target_cal_uri, self._("Web Calendar"), self.usecal)
         ]
@@ -2009,10 +2033,12 @@ class BasePage: # pylint: disable=C1001
 
                             # Begin hyperlink. Description is given only for
                             # the purpose of the alt tag in img element
-                            snapshot += self.media_link(photo_handle, newpath,
-                                                        descr,
-                                                        uplink=self.uplink,
-                                                        usedescr=False)
+                            if self.create_images_index:
+                                snapshot += self.media_link(photo_handle,
+                                                            newpath,
+                                                            descr,
+                                                            uplink=self.uplink,
+                                                            usedescr=False)
 
                         except (IOError, OSError) as msg:
                             self.r_user.warn(_("Could not add photo to page"),
@@ -2099,11 +2125,39 @@ class BasePage: # pylint: disable=C1001
         # return indivgallery division to its caller
         return section
 
-    def display_note_list(self, notelist=None):
+    def default_note(self, parent, notetype):
+        """
+        return true if the notetype is the same as the parent
+
+        @param: parent -- The object (Person, Family, Media,...)
+        @param: notetype -- The type for the current note
+        """
+        if parent == Person and notetype == NoteType.PERSON:
+            return True
+        elif parent == Family and notetype == NoteType.FAMILY:
+            return True
+        elif parent == Media and notetype == NoteType.MEDIA:
+            return True
+        elif parent == Repository and notetype == NoteType.REPO:
+            return True
+        elif parent == Source and notetype == NoteType.SOURCE:
+            return True
+        elif parent == Event and notetype == NoteType.EVENT:
+            return True
+        elif parent == Place and notetype == NoteType.PLACE:
+            return True
+        elif parent == Citation and notetype == NoteType.CITATION:
+            return True
+        elif parent == Attribute and notetype == NoteType.ATTRIBUTE:
+            return True
+        return False
+
+    def display_note_list(self, notelist=None, parent=None):
         """
         Display note list
 
         @param: notelist -- The list of notes
+        @param: parent -- The parent associated to these notes
         """
         if not notelist:
             return None
@@ -2111,14 +2165,27 @@ class BasePage: # pylint: disable=C1001
         # begin narrative division
         with Html("div", class_="subsection narrative") as section:
 
+            idx = 0
             for notehandle in notelist:
                 note = self.r_db.get_note_from_handle(notehandle)
+                title = self._(note.type.xml_str())
 
                 if note:
                     note_text = self.get_note_format(note, True)
-
+                    idx += 1
+                    if len(notelist) > 1:
+                        if self.default_note(parent, int(note.type)):
+                            title_text = self._("Note: %s") % str(idx)
+                        else:
+                            title = " (" + title + ")"
+                            title_text = self._("Note: %s") % str(idx) + title
+                    else:
+                        if self.default_note(parent, int(note.type)):
+                            title_text = self._("Note")
+                        else:
+                            title_text = title
                     # add section title
-                    section += Html("h4", self._("Narrative"), inline=True)
+                    section += Html("h4", title_text, inline=True)
 
                     # attach note
                     section += note_text
@@ -2681,47 +2748,6 @@ class BasePage: # pylint: disable=C1001
                         tbody += trow
                 tbody += Html("tr") + Html("td", "&nbsp;", colspan=2)
 
-            # encloses
-            with Html("div", class_='subsection encloses') as encloses:
-                tbody += encloses
-                encloses += Html("h4", self._("Place Encloses"), inline=True)
-                with Html("table", class_="infolist place") as table:
-                    encloses += table
-                    visited = [place.handle]
-                    for link in self.r_db.find_backlink_handles(
-                            place.handle, include_classes=['Place']):
-                        if link[1] in visited:
-                            continue
-                        visited.append(link[1])
-                        c_place = self.r_db.get_place_from_handle(link[1])
-                        placeref = None
-                        for placeref in c_place.get_placeref_list():
-                            if placeref.ref == place.handle:
-                                gpfh = self.r_db.get_place_from_handle
-                                eplace = gpfh(placeref.ref)
-                                if not eplace:
-                                    continue
-                                place_name = c_place.get_name().get_value()
-                                table += Html("tr") + Html("td", place_name)
-
-            # enclosed by
-            with Html("div", class_='subsection encloses') as encloses:
-                tbody += encloses
-                encloses += Html("h4", self._("Enclosed By"), inline=True)
-                with Html("table", class_="infolist place") as table:
-                    encloses += table
-                    visited = [place.handle]
-                    placeref = None
-                    for placeref in place.get_placeref_list():
-                        if placeref.ref in visited:
-                            continue
-                        visited.append(placeref.ref)
-                        pplace = self.r_db.get_place_from_handle(placeref.ref)
-                        if not pplace:
-                            continue
-                        place_name = pplace.get_name().get_value()
-                        table += Html("tr") + Html("td", place_name)
-
         # enclosed by
         tbody += Html("tr") + Html("td", "&nbsp;")
         trow = Html("tr") + (
@@ -2740,7 +2766,7 @@ class BasePage: # pylint: disable=C1001
                 else:
                     place_hyper = place_name
                 trow = Html("tr") + (
-                    Html("td", place_hyper, class_="ColumnValue",
+                    Html("td", place_hyper, class_="ColumnPlace",
                          inline=True))
                 tbody += trow
 
@@ -2766,7 +2792,7 @@ class BasePage: # pylint: disable=C1001
                         place_hyper = place_name
                     trow = Html("tr") + (
                         Html("td", place_hyper,
-                             class_="ColumnValue", inline=True))
+                             class_="ColumnPlace", inline=True))
             tbody += trow
 
         # return place table to its callers

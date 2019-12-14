@@ -64,13 +64,13 @@ div#FamilyMapDetail div#references table.infolist {
     width: 100%;
 }
 div#FamilyMapDetail div#references table.infolist tbody tr td.ColumnPlace {
-    width: 40%;
+    width: 70%;
 }
 
 
 /*    Subsection: popup
 ------------------------------------------------------ */
-.ol-popup {
+#map_canvas .ol-popup {
   position: absolute;
   background-color: white;
   -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
@@ -82,7 +82,7 @@ div#FamilyMapDetail div#references table.infolist tbody tr td.ColumnPlace {
   left: -50px;
   min-width: 450px;
 }
-.ol-popup:after, .ol-popup:before {
+#map_canvas .ol-popup:after, #map_canvas .ol-popup:before {
   top: 100%;
   border: solid transparent;
   height: 0;
@@ -90,24 +90,64 @@ div#FamilyMapDetail div#references table.infolist tbody tr td.ColumnPlace {
   position: absolute;
   pointer-events: none;
 }
-.ol-popup:after {
+#map_canvas .ol-popup:after {
   border-top-color: white;
   border-width: 10px;
   left: 48px;
   margin-left: -10px;
 }
-.ol-popup:before {
+#map_canvas .ol-popup:before {
   border-top-color: #cccccc;
   border-width: 11px;
   left: 48px;
   margin-left: -11px;
 }
-.ol-popup-closer {
+#map_canvas .ol-popup-closer {
   text-decoration: none;
   position: absolute;
   top: 2px;
   right: 8px;
 }
-.ol-popup-closer:after {
+#map_canvas .ol-popup-closer:after {
   content: "✖";
+}
+#popup-content {
+  max-height: 250px;
+  overflow-y: auto;
+}
+#map_canvas .ol-control {
+  position: absolute;
+  background-color: rgba(255,255,255,0.1);
+  bottom: .1em;
+  left: .1em;
+  height: 4%;
+  width: 100%;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  padding-left: 1px;
+}
+#map_canvas .ol-rotate {
+  display: none;
+}
+#map_canvas .ol-zoom, #map_canvas .ol-zoom-in, #map_canvas .ol-zoom-out {
+  top: .5em;
+  left: .5em;
+  border-left-width: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+#map_canvas .ol-attribution ul {
+  list-style-type: none;
+  font-size:0.8em;
+  float: left;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  padding-left: 5px;
+}
+#map_canvas .ol-attribution li {
+  float: left;
+  padding-left: 5px;
+}
+#map_canvas .ol-attribution button {
+    display: none;
 }
