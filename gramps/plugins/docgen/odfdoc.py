@@ -1541,7 +1541,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         Insert a mark at this point in the document.
         """
         if mark:
-            key = escape(mark.key, ESC_MAP)
+            key = escape(mark.key)
             key = key.replace('"', '&quot;')
             if mark.type == INDEX_TYPE_ALP:
                 self.cntnt.write(
@@ -1710,7 +1710,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         """
         self.meta = StringIO()
         generator = PROGRAM_NAME + ' ' + VERSION
-        creator = self.get_creator()
+        creator = escape(self.get_creator(), ESC_MAP)
         date = self.time
         lang = self.lang
         gramps_home_url = URL_HOMEPAGE

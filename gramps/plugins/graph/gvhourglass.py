@@ -32,6 +32,7 @@ Generate an hourglass graph using the Graphviz generator.
 # python modules
 #
 #------------------------------------------------------------------------
+import html
 
 #------------------------------------------------------------------------
 #
@@ -251,18 +252,17 @@ class HourGlassReport(Report):
         """
         p_id = person.get_gramps_id()
         name = self._name_display.display(person)
-        name = name.replace('"', '&#34;')
-        name = name.replace('<', '&#60;').replace('>', '&#62;')
+        name = html.escape(name)
 
         birth_evt = get_birth_or_fallback(self.__db, person)
         if birth_evt:
-            birth = self._get_date(birth_evt.get_date_object())
+            birth = self.get_date(birth_evt.get_date_object())
         else:
             birth = ""
 
         death_evt = get_death_or_fallback(self.__db, person)
         if death_evt:
-            death = self._get_date(death_evt.get_date_object())
+            death = self.get_date(death_evt.get_date_object())
         else:
             death = ""
 
@@ -295,7 +295,7 @@ class HourGlassReport(Report):
         label = ""
         marriage = utils.find_marriage(self.__db, family)
         if marriage:
-            label = self._get_date(marriage.get_date_object())
+            label = self.get_date(marriage.get_date_object())
         if self.includeid == 1 and label: # same line
             label = "%s (%s)" % (label, family_id)
         elif self.includeid == 1 and not label:
@@ -343,7 +343,9 @@ class HourGlassReport(Report):
             else:
                 fill = self.colors['unknown']
         return(shape, style, color, fill)
-
+    def get_date(self, date):
+        """ return a formatted date """
+        return html.escape(self._get_date(date))
 
 #------------------------------------------------------------------------
 #

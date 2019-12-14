@@ -49,7 +49,7 @@ from gramps.gen.const import GLADE_FILE, ICON
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.config import config
 from gramps.gen.constfunc import is_quartz
-from .uimanager import ActionGroup
+from .uimanager import ActionGroup, valid_action_name
 from .glade import Glade
 
 #-------------------------------------------------------------------------
@@ -280,7 +280,7 @@ class GrampsWindowManager:
         return func
 
     def generate_id(self, item):
-        return 'wm/' + str(item.window_id)
+        return valid_action_name('wm-' + str(item.window_id))
 
     def display_menu_list(self, data, action_data, mlist):
         menuitem = ('<item>\n'

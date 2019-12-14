@@ -161,12 +161,12 @@ def image_size(source):
     :returns: a tuple consisting of the width and height
     """
     from gi.repository import GdkPixbuf
-    from gi.repository import GObject
+    from gi.repository import GLib
     try:
         img = GdkPixbuf.Pixbuf.new_from_file(source)
         width = img.get_width()
         height = img.get_height()
-    except GObject.GError:
+    except GLib.GError:
         width = 0
         height = 0
     return (width, height)

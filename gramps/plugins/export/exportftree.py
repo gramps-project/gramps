@@ -82,7 +82,8 @@ class FtreeWriter:
             self.option_box.parse_options()
             self.db = option_box.get_filtered_database(self.db)
 
-        self.plist = [x for x in self.db.iter_person_handles()]
+        self.plist = self.db.get_person_handles()
+        self.plist.sort()
         # the following are used to update the progress meter
         self.total = 2 * len(self.plist)
         self.count = 0

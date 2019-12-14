@@ -64,6 +64,7 @@ from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.utils.config import get_researcher
 from gramps.gen.recentfiles import recent_files
+from gramps.gen.filters import reload_custom_filters
 
 #-------------------------------------------------------------------------
 #
@@ -279,7 +280,7 @@ class CLIManager:
             # Attempt to figure out the database title
             path = os.path.join(filename, "name.txt")
             try:
-                with open(path) as ifile:
+                with open(path, encoding='utf8') as ifile:
                     title = ifile.readline().strip()
             except:
                 title = filename
@@ -373,6 +374,7 @@ def startcli(errors, argparser):
 
     #load the plugins
     climanager.do_reg_plugins(dbstate, uistate=None)
+    reload_custom_filters()
     # handle the arguments
     from .arghandler import ArgHandler
     handler = ArgHandler(dbstate, argparser, climanager)

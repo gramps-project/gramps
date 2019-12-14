@@ -135,7 +135,7 @@ class FanChart2WayView(fanchart2way.FanChart2WayGrampsGUI, NavigationView):
         self.scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
                                        Gtk.PolicyType.AUTOMATIC)
         self.fan.show_all()
-        self.scrolledwindow.add_with_viewport(self.fan)
+        self.scrolledwindow.add(self.fan)
 
         return self.scrolledwindow
 
@@ -157,7 +157,7 @@ class FanChart2WayView(fanchart2way.FanChart2WayGrampsGUI, NavigationView):
         """
         NavigationView.define_actions(self)
 
-        self._add_action('PrintView', self.printview, "<PRIMARY>P")
+        self._add_action('PrintView', self.printview, "<PRIMARY><SHIFT>P")
         self._add_action('PRIMARY-J', self.jump, '<PRIMARY>J')
 
     def build_tree(self):
@@ -573,9 +573,9 @@ class CairoPrintSave():
            (typically evince not installed)!
         """
         dummy_preview = preview
-        dlg = Gtk.MessageDialog(parent,
-                                flags=Gtk.DialogFlags.MODAL,
-                                type=Gtk.MessageType.WARNING,
+        dlg = Gtk.MessageDialog(transient_for=parent,
+                                modal=True,
+                                message_type=Gtk.MessageType.WARNING,
                                 buttons=Gtk.ButtonsType.CLOSE,
                                 message_format=_('No preview available'))
         self.preview = dlg

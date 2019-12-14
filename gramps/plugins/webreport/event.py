@@ -413,7 +413,7 @@ class EventPages(BasePage):
 
             # Narrative subsection
             notelist = event.get_note_list()
-            notelist = self.display_note_list(notelist)
+            notelist = self.display_note_list(notelist, Event)
             if notelist is not None:
                 eventdetail += notelist
 

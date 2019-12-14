@@ -76,6 +76,7 @@ class ThumbnailPreviewPage(BasePage):
         """
         BasePage.__init__(self, report, title)
         self.create_thumbs_only = report.options['create_thumbs_only']
+        self.create_thumbs_index = self.report.options['create_thumbs_index']
         # bug 8950 : it seems it's better to sort on desc + gid.
         def sort_by_desc_and_gid(obj):
             """
@@ -108,7 +109,8 @@ class ThumbnailPreviewPage(BasePage):
         media_list.sort(key=lambda x: self.rlocale.sort_key(x[0]))
 
         # Create thumbnail preview page...
-        output_file, sio = self.report.create_file("thumbnails")
+        if self.create_thumbs_index:
+            output_file, sio = self.report.create_file("thumbnails")
         result = self.write_header(self._("Thumbnails"))
         thumbnailpage, dummy_head, body, outerwrapper = result
 
@@ -197,7 +199,8 @@ class ThumbnailPreviewPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.xhtml_writer(thumbnailpage, output_file, sio, 0)
+        if self.create_thumbs_index:
+            self.xhtml_writer(thumbnailpage, output_file, sio, 0)
 
 
     def thumbnail_link(self, name, index):

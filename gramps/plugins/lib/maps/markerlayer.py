@@ -117,9 +117,9 @@ class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         max_interval = self.max_value - self.nb_ref_by_places
         min_interval = self.nb_ref_by_places - self.min_value
-        if max_interval == 0: # This to avoid divide by zero
+        if max_interval <= 0: # This to avoid divide by zero
             max_interval = 0.01
-        if min_interval == 0: # This to avoid divide by zero
+        if min_interval <= 0: # This to avoid divide by zero
             min_interval = 0.01
         _LOG.debug("%s", time.strftime("start drawing   : "
                    "%a %d %b %Y %H:%M:%S", time.gmtime()))
@@ -127,13 +127,13 @@ class MarkerLayer(GObject.GObject, osmgpsmap.MapLayer):
             # the icon size in 48, so the standard icon size is 0.6 * 48 = 28.8
             size = 0.6
             mark = float(marker[2])
-            if mark > self.nb_ref_by_places:
-                # at maximum, we'll have an icon size = (0.6 + 0.3) * 48 = 43.2
-                size += (0.3 * ((mark - self.nb_ref_by_places)
+            if mark > self.nb_ref_by_places or max_interval > 3:
+                # at maximum, we'll have an icon size = (0.6 + 0.2) * 48 = 38.4
+                size += (0.2 * ((mark - self.nb_ref_by_places)
                                  / max_interval))
             else:
-                # at minimum, we'll have an icon size = (0.6 - 0.3) * 48 = 14.4
-                size -= (0.3 * ((self.nb_ref_by_places - mark)
+                # at minimum, we'll have an icon size = (0.6 - 0.2) * 48 = 19.2
+                size -= (0.2 * ((self.nb_ref_by_places - mark)
                                  / min_interval))
 
             conv_pt = osmgpsmap.MapPoint.new_degrees(float(marker[0][0]),

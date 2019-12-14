@@ -50,9 +50,9 @@
 0 @I0@ INDI
 1 NAME Anna /Hansdotter/
 2 GIVN Anna
+2 SURN Hansdotter, Smith
+2 SPFX Vrow, huh
 2 SURN Hansdotter
-2 SPFX Vrow
-2 SURN Smith
 2 _AKA Anna Smith
 2 _AKA Hanna
 2 NOTE Hans daughter? N0000
@@ -83,6 +83,8 @@
 2 DATE 11 AUG 1966
 2 PLAC San Francisco, San Francisco Co., CA
 1 FAMC @F8@
+2 _FREL Adopted
+2 _MREL Foster
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26

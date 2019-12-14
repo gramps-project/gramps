@@ -219,7 +219,10 @@ class Navigator:
         Add a page to the sidebar for a plugin.
         """
         self.pages.append((title, sidebar))
-        index = self.notebook.append_page(sidebar.get_top(), Gtk.Label(label=title))
+        page = sidebar.get_top()
+        # hide for now so notebook is only size of active page
+        page.get_child().hide()
+        index = self.notebook.append_page(page, Gtk.Label(label=title))
 
         menu_item = Gtk.MenuItem(label=title)
         if order == START:
@@ -294,9 +297,15 @@ class Navigator:
         old_page = notebook.get_current_page()
         if old_page != -1:
             self.pages[old_page][1].inactive()
+            # hide so notebook is only size of active page
+            notebook.get_nth_page(old_page).get_child().hide()
+
         self.pages[index][1].active(self.active_cat, self.active_view)
+        notebook.get_nth_page(index).get_child().show()
+        notebook.queue_resize()
         if self.active_view is not None:
-            self.pages[index][1].view_changed(self.active_cat, self.active_view)
+            self.pages[index][1].view_changed(self.active_cat,
+                                              self.active_view)
         self.title_label.set_text(self.pages[index][0])
 
     def cb_close_clicked(self, button):

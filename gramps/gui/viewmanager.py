@@ -92,7 +92,7 @@ from .configure import GrampsPreferences
 from .aboutdialog import GrampsAboutDialog
 from .navigator import Navigator
 from .views.tags import Tags
-from .uimanager import ActionGroup
+from .uimanager import ActionGroup, valid_action_name
 from gramps.gen.lib import (Person, Surname, Family, Media, Note, Place,
                             Source, Repository, Citation, Event, EventType,
                             ChildRef)
@@ -278,7 +278,7 @@ class ViewManager(CLIManager):
 
         self.navigator = Navigator(self)
         self.ebox.add(self.navigator.get_top())
-        hpane.add1(self.ebox)
+        hpane.pack1(self.ebox, False, False)
         hpane.show()
 
         self.notebook = Gtk.Notebook()
@@ -353,7 +353,7 @@ class ViewManager(CLIManager):
         Initialize the actions lists for the UIManager
         """
         self._app_actionlist = [
-            ('quit', self.quit, "<PRIMARY>q"),
+            ('quit', self.quit, None if is_quartz() else "<PRIMARY>q"),
             ('preferences', self.preferences_activate),
             ('about', self.display_about_box), ]
 
@@ -1429,7 +1429,7 @@ class ViewManager(CLIManager):
             pdatas = hash_data[key]
             pdatas.sort(key=lambda x: x.name)
             for pdata in pdatas:
-                new_key = pdata.id.replace(' ', '-')
+                new_key = valid_action_name(pdata.id)
                 ofile.write(menuitem % (new_key, pdata.name))
                 actions.append((new_key, func(pdata, self.dbstate,
                                 self.uistate)))
@@ -1649,9 +1649,9 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
         self.user = user
 
         ManagedWindow.__init__(self, uistate, [], self.__class__)
-        window = Gtk.Dialog('',
-                            self.uistate.window,
-                            Gtk.DialogFlags.DESTROY_WITH_PARENT, None)
+        window = Gtk.Dialog(title='',
+                            transient_for=self.uistate.window,
+                            destroy_with_parent=True)
         self.set_window(window, None, _("Gramps XML Backup"))
         self.setup_configs('interface.quick-backup', 500, 150)
         close_button = window.add_button(_('_Close'),
@@ -1787,12 +1787,10 @@ class QuickBackup(ManagedWindow): # TODO move this class into its own module
         """
         fdialog = Gtk.FileChooserDialog(
             title=_("Select backup directory"),
-            parent=self.window,
-            action=Gtk.FileChooserAction.SELECT_FOLDER,
-            buttons=(_('_Cancel'),
-                     Gtk.ResponseType.CANCEL,
-                     _('_Apply'),
-                     Gtk.ResponseType.OK))
+            transient_for=self.window,
+            action=Gtk.FileChooserAction.SELECT_FOLDER)
+        fdialog.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                            _('_Apply'), Gtk.ResponseType.OK)
         mpath = path_entry.get_text()
         if not mpath:
             mpath = HOME_DIR

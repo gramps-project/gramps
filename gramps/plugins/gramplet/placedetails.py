@@ -23,7 +23,7 @@
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
-from gi.repository import Pango
+from gi.repository.GLib import markup_escape_text
 
 #-------------------------------------------------------------------------
 #
@@ -55,7 +55,6 @@ class PlaceDetails(Gramplet):
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.photo = Photo(self.uistate.screen_height() < 1000)
         self.title = Gtk.Label(halign=Gtk.Align.START)
-        self.title.override_font(Pango.FontDescription('sans bold 12'))
         self.title.set_selectable(True)
         vbox.pack_start(self.title, False, True, 7)
         self.grid = Gtk.Grid(orientation=Gtk.Orientation.VERTICAL)
@@ -119,7 +118,8 @@ class PlaceDetails(Gramplet):
         """
         self.load_place_image(place)
         title = place_displayer.display(self.dbstate.db, place)
-        self.title.set_text(title)
+        self.title.set_markup("<span size='large' weight='bold'>%s</span>" %
+                              markup_escape_text(title))
 
         self.clear_grid()
         self.add_row(_('Name'), place.get_name().get_value())
@@ -158,8 +158,8 @@ class PlaceDetails(Gramplet):
         """
         Display an empty row to separate groupd of entries.
         """
-        label = Gtk.Label(label='')
-        label.override_font(Pango.FontDescription('sans 4'))
+        label = Gtk.Label()
+        label.set_markup("<span font='sans 4'> </span>")
         label.set_selectable(True)
         label.show()
         self.grid.add(label)

@@ -396,6 +396,14 @@ class RepositoryView(ListView):
         repo.add_tag(tag_handle)
         self.dbstate.db.commit_repository(repo, transaction)
 
+    def remove_tag(self, transaction, repo_handle, tag_handle):
+        """
+        Remove the given tag from the given repository.
+        """
+        repo = self.dbstate.db.get_repository_from_handle(repo_handle)
+        repo.remove_tag(tag_handle)
+        self.dbstate.db.commit_repository(repo, transaction)
+
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.

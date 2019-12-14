@@ -1,22 +1,22 @@
 /*
-**************************************************************************************************
+*******************************************************************************
 Copyright Holder and License
-**************************************************************************************************
+*******************************************************************************
 GRAMPS Cascading Style Sheet
 Style Name: Print Style Sheet
 Style Author: Jason M. Simanek (2008)
 Modified by Rob G. Healey, July 2008
 
-**************************************************************************************************
+*******************************************************************************
 This website was created with GRAMPS <http://www.gramps-project.org/>
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 GRAMPS is a Free Software Project for Genealogy, offering a professional
 genealogy program, and a wiki open to all. It is a community project, created,
 developed and governed by genealogists.
 
 'Go to <http://gramps-project.org/> to learn more!
 
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Copyright (C) 2008-2011 Rob G. Healey <robhealey1@gmail.com>
 
 This file is part of the GRAMPS program.
@@ -31,21 +31,21 @@ A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
 GRAMPS. If not, see <http://www.gnu.org/licenses/>.
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 Color Palette
---------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 gray            #A7A7A7
 red             #520
 black           #000
 white           #FFF
----------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 
  NarrativeWeb Styles
--------------------------------------------------------------------------------------------- 
+-------------------------------------------------------------------------------
 
- General Elements 
+ General Elements
 ----------------------------------------------------- */
 
 body {
@@ -419,7 +419,7 @@ body#ThumbnailPreview div#references table.infolist tbody tr td.ColumnName {
     width: 90%;
 }
 
-/* Contact 
+/* Contact
 ----------------------------------------------------- */
 #researcher {
     margin:16pt 0 0 0;
@@ -456,13 +456,13 @@ body#ThumbnailPreview div#references table.infolist tbody tr td.ColumnName {
     clear:left;
 }
 
-/* Subsections 
+/* Subsections
 ----------------------------------------------------- */
 #Home, #Introduction, #Download, #Contact {
     padding:3em 20px;
 }
 
-/* Subsections : Events 
+/* Subsections : Events
 ----------------------------------------------------- */
 #IndividualDetail .ColumnValue {
     padding:4pt 0;
@@ -472,7 +472,7 @@ body#ThumbnailPreview div#references table.infolist tbody tr td.ColumnName {
     margin:1pt 0 0 18pt;
 }
 
-/* Subsections : Gallery 
+/* Subsections : Gallery
 ----------------------------------------------------- */
 #indivgallery h4 {
     margin-bottom:1em;
@@ -532,7 +532,7 @@ table.attrlist tbody tr td.ColumnSources {
     width: 10%;
 }
 
-/* Subsections : Pedigree 
+/* Subsections : Pedigree
 ----------------------------------------------------- */
 #pedigree a {
     text-decoration:none;
@@ -574,7 +574,7 @@ table.attrlist tbody tr td.ColumnSources {
     font-weight:bold;
 }
 
-/* Subsections : Ancestors Tree 
+/* Subsections : Ancestors Tree
 ----------------------------------------------------- */
 #tree {
     page-break-before:always;
@@ -674,7 +674,7 @@ p#createdate {
     display: none;
 }
 
-/* Calendar Styles 
+/* Calendar Styles
 -------------------------------------------------------------------------------------------- */
 /* Calendar : General */
 body#WebCal h1#SiteTitle {
@@ -718,10 +718,6 @@ body#WebCal h1#SiteTitle {
     text-transform:none;
     padding:5pt;
     border-width:0;
-}
-#CreatorInfo {
-    float:right;
-    margin:0 10px 0 0;
 }
 body#WebCal a {
     text-decoration:none;
@@ -795,9 +791,9 @@ body#WebCal a {
 }
 
 /* Calendar : Previous-Next Month */
-.calendar tbody tr td.previous, 
-.calendar tbody tr td.next, 
-.calendar tbody tr td.previous div.date, 
+.calendar tbody tr td.previous,
+.calendar tbody tr td.next,
+.calendar tbody tr td.previous div.date,
 .calendar tbody tr td.next div.date {
     font-weight:normal;
     font-size:12pt;

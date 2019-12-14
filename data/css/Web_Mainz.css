@@ -58,7 +58,7 @@ Middle Light            images/Web_Mainz_MidLight.png
 
 
  NarrativeWeb Styles
--------------------------------------------------------------------------------------------- 
+----------------------------------------------------------------------------
 
 General Elements
 -----------------------------------------------------------------*/
@@ -69,11 +69,8 @@ body {
     background: url(../images/Web_Mainz_Bkgd.png) black repeat;
 }
 body > div {
-    width: 85%;
     margin: 0px auto;
-    background: url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
     overflow: hidden;
-    padding: 0px 1.5em;
 }
 #outerwrapper {
     margin: 5px auto;
@@ -84,6 +81,8 @@ body > div {
 }
 .content {
     padding: 1.5em 1.5em;
+    overflow: auto;
+    background: url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
 }
 #ThumbnailPreview div.snapshot {
     float: right;
@@ -100,8 +99,17 @@ div.snapshot a {
     .content {
         padding: 0em 0.5em;
     }
+    body#fullyearlinked table.calendar {
+        float: none;
+        width: 100%;
+    }
 }
-
+@media only screen and (width > 1080px) {
+    body#fullyearlinked table.calendar {
+        float: left;
+        width: 33.3%;
+    }
+}
 
 /* General Text
 -----------------------------------------------------------------*/
@@ -142,7 +150,8 @@ a {
     word-wrap: break-word;
 }
 a[href]:hover, a[href]:active {
-    background-color: #FFFFE7;
+    background-color: #D8C19F;
+    font-style: italic;
 }
 .grampsid {
     font-family: monospace;
@@ -159,7 +168,7 @@ a[href]:hover, a[href]:active {
 /* Navigation
 -----------------------------------------------------------------*/
 div#nav, #subnavigation {
-    background: url(../images/Web_Mainz_MidLight.png) #FFF2C6 repeat;
+    background: url(../images/Web_Mainz_Mid.png) repeat-x top left;
 }
 div#nav ul, #subnavigation ul {
     list-style-type: none;
@@ -225,7 +234,7 @@ div#alphanav ul li a:hover {
 }
 
 /* Responsive navigation */
-a.navIcon {
+button.navIcon {
     display: none;
 }
 
@@ -251,11 +260,6 @@ div#nav::after {
 
     .nav {
         background: none; /* Works in IE too. */
-/*
-        width: 200px;
-        position: absolute;
-        z-index: 10;
-*/
     }
 
     /* Undo some of the #nav styles  - to enable the class .nav */
@@ -277,11 +281,14 @@ div#nav::after {
     .nav li {display: none;}
     .nav ul {display: none;}
 
-    a.navIcon {
-        font-size:1.3em;
+    button.navIcon {
         display: block;
-        margin: 0.1em 0.4em 0.4em 0.4em;
         float: left;
+        font-size:2.9em;
+        line-height: 80px;
+        border: 0px;
+        color: #7D5925;
+        background: url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
     }
 
     .nav.responsive {position: absolute; display: block; z-index: 100;}
@@ -292,8 +299,8 @@ div#nav::after {
         margin-right: 10px;
     }
     .nav.responsive li {
-        /* float: left; */
         display: block;
+        height:1.4em;
         text-align: left;
         background-color: #D8C19F;
         /* required by IE */
@@ -377,12 +384,40 @@ table#SortByName thead th.ColumnSurname a:after,
 table#SortByCount thead th.ColumnQuantity a:after {
     content: " \2193";
 }
+table#SortByName tr:hover td.ColumnSurname,
+table#SortByCount tr:hover td.ColumnQuantity {
+    background-color: #D8C19F;
+}
+table#SortByName tbody tr:hover,
+table#SortByCount tbody tr:hover,
+table#SortByName tr:hover td.ColumnQuantity,
+table#SortByCount tr:hover td.ColumnSurname {
+    background-color: #D8C19F;
+}
+table.surname tbody tr:hover,
+table.surname tr:hover td.ColumnName {
+    background-color: #D8C19F;
+}
 #SurnameDetail h3 {
     border-bottom-width: 0px;
     padding-bottom: 0px;
     margin: 0px;
 }
 
+/* Individuals
+----------------------------------------------------- */
+#parents table.infolist tbody tr:hover,
+table.IndividualList tbody tr:hover,
+table.IndividualList tr:hover td.ColumnSurname {
+    background-color: #D8C19F;
+}
+
+/* Places
+----------------------------------------------------- */
+#Places table.infolist tbody tr:hover,
+#Places table.infolist tr:hover td.ColumnName {
+    background-color: #D8C19F;
+}
 /* Events
 -----------------------------------------------------------------*/
 #EventList tr.BeginType td {
@@ -395,6 +430,10 @@ table#SortByCount thead th.ColumnQuantity a:after {
    names*/
 #EventList td.ColumnPerson a {
     display: inline;
+}
+#EventList table.infolist tbody tr:hover,
+#EventList table.infolist tr:hover td.ColumnType {
+    background-color: #D8C19F;
 }
 /* Family events, put mother on next line */
 #EventList td.ColumnPerson span.father,
@@ -419,9 +458,57 @@ table#SortByCount thead th.ColumnQuantity a:after {
 #EventDetail td.ColumnPerson span.mother:last-child:after {
     content: "";
 }
-
-table.eventlist tbody tr td.ColumnSources {
+#attributes table.infolist td.ColumnType {
+    width: 10%;
+    padding-left: 15px;
+}
+#attributes table.infolist td.ColumnValue {
+    width: 15%;
+}
+#attributes table.infolist td.ColumnSources {
     width: 5%;
+    padding-left: 5px;
+}
+#WebLinks table.infolist td.ColumnType {
+    width: 10%;
+    padding-left: 15px;
+}
+#events table.eventlist td.ColumnDate {
+    width: 15%;
+    padding-left: 10px;
+}
+#families table.eventlist th.ColumnDate {
+    width: 15%;
+    padding-left: 25px;
+}
+#families table.eventlist td.ColumnDate {
+    width: 15%;
+    padding-left: 20px;
+}
+#families table.eventlist tbody tr td:first-child,
+#families table.eventlist thead tr th:first-child {
+    width: 10%;
+    padding-left: 0px;
+}
+#families table.eventlist tbody tr td.ColumnDate,
+#families table.eventlist tbody tr td.ColumnNotes {
+    padding-left: 25px;
+}
+#IndividualDetail div table.eventlist td.ColumnEvent {
+    padding-right: 0px;
+    width: 8%;
+}
+#IndividualDetail div table.eventlist td.ColumnSources {
+    width: 5%;
+}
+#IndividualDetail div table.eventlist td.ColumnDate {
+    padding-right: 0px;
+    width: 15%;
+}
+#IndividualDetail div table.eventlist td.ColumnEvent,
+#IndividualDetail div table.eventlist td.ColumnDate,
+#IndividualDetail div table.eventlist td.ColumnPlace {
+    font-weight: bold;
 }
 
 /* Gallery
@@ -468,11 +555,10 @@ table.eventlist tbody tr td.ColumnSources {
     margin: 0px auto;
     display:block;
     border: solid 1px #7D5925;
-    max-width: 800px;
     height: auto;
 }
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1600px) {
     #GalleryDisplay img {
         max-width: 100%;
     }
@@ -482,6 +568,10 @@ table.eventlist tbody tr td.ColumnSources {
 ------------------------------------------------------ */
 div#SourceDetail {
     margin: 0 auto;
+}
+#Sources table.infolist tbody tr:hover,
+#Sources table.infolist tr:hover td.ColumnType {
+    background-color: #D8C19F;
 }
 
 /* Contact
@@ -549,6 +639,10 @@ div#SourceDetail {
 
 /* SubSection : Families
 -----------------------------------------------------------------*/
+#families table.infolist td.ColumnValue.Child table.infolist tbody tr:hover,
+table.relationships tr:hover td {
+    background-color: #D8C19F;
+}
 div#families table.fixed_subtables table.eventlist {
     table-layout: fixed;
 }
@@ -566,9 +660,6 @@ div#families .infolist h4 {
 -----------------------------------------------------------------*/
 #gallery {
     background-color: green;
-}
-#indivgallery {
-    background-color: white;
 }
 #gallery .gallerycell {
     float: left;
@@ -594,7 +685,6 @@ div#families .infolist h4 {
     font-size: smaller;
     text-align: center;
     margin: 0.5em;
-    background-color: white;
 }
 #indivgallery img {
     border: solid 1px #7D5925;
@@ -605,7 +695,6 @@ div#families .infolist h4 {
 }
 #gallery div.indexno {
     float: right;
-    width: 1.8em;
     font-size: large;
     text-align: center;
     background-color: #CCC;
@@ -647,11 +736,21 @@ h4 + div.grampsstylednote, a.familymap {
     margin-left: 10px;
     margin-right: 10px;
 }
+i.NoteType {
+    font-weight: bold;
+    font-size: .8em;
+}
 i + div.grampsstylednote p {
     margin: 0 0 0.3em 0;
 }
 div.grampsstylednote p {
-    margin-bottom: 0.5em;
+    padding-bottom: 0.6em;
+}
+
+/* Subsection : References
+----------------------------------------------------- */
+#references ol {
+    margin-left: 2em;
 }
 
 /* SubSection : Source References
@@ -692,22 +791,37 @@ div.grampsstylednote p {
 -----------------------------------------------------------------*/
 #footer {
     clear: both;
+    overflow: hidden;
+    width: 100%;
     background: url(../images/Web_Mainz_MidLight.png) #FFF2C6;
-    border-top: dashed 1px #7D5925;
     font-family: sans-serif;
 }
 #footer p#createdate {
     float: left;
     width: 50%;
     text-align: left;
+    margin-left: 10px;
 }
 #footer p#copyright {
     float: right;
     width: 40%;
     text-align: right;
 }
+#footer p#copyright img {
+    float: right;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    vertical-align: middle;
+}
 #footer > * {
     font-size: 80%;
+    background: url(../images/Web_Mainz_MidLight.png) #FFF2C6;
+}
+
+/* Updates
+----------------------------------------------------- */
+#Updates table.list td.date {
+    width: 20%;
 }
 
 /* Overwritten
@@ -716,10 +830,10 @@ button#drop {
     font-style: italic;
     color: #FFF2C6;
     background: url(../images/Web_Mainz_Bkgd.png) #7D5925 repeat;
-    border: outset 3px black ! important;
+    border: outset 3px black !important;
 }
 div#map_canvas {
-    border-color: #7D5925 ! important;
+    border-color: #7D5925 !important;
 }
 
 /* Calendar Styles
@@ -739,16 +853,12 @@ table.calendar {
 .calendar thead th.monthName {
     font-size: xx-large;
     color: #767D25;
-    border-bottom-color: #7D5925;
+    vertical-align: top;
+    height: 2em;
+    border-bottom-style: none;
 }
 .calendar thead th abbr {
     border-bottom-style: none;
-}
-#CreatorInfo {
-    float: right;
-    margin: -1em 0px 0px 0px;
-    font-weight: bold;
-    font-style: italic;
 }
 .calendar tfoot td {
     border-top: double 4px #7D5925;
@@ -756,11 +866,11 @@ table.calendar {
 
 /* Calendar : Date Numeral */
 .calendar div.date {
-    float: right;
-    width: 1.8em;
+    width: 1.5em;
     font-size: large;
     font-style: italic;
     text-align: center;
+    margin-top: 1px;
     background: url(../images/Web_Mainz_MidLight.png) #FFF2C6 repeat;
 }
 
@@ -804,10 +914,11 @@ table.calendar {
     color: #767D25;
 }
 .calendar td ul li span.yearsmarried em {
-    color: black;
+    color: #767D25;
 }
 .calendar td.highlight div.date {
     color: #767D25;
+    margin-top: 1px;
     background-image: none;
     background-color: #FFFFE7;
 }
@@ -820,8 +931,6 @@ table.calendar {
 
 /* Calendar : Full Year */
 body#fullyearlinked table.calendar {
-    float: left;
-    width: 315px;
     height: 18em;
     border: solid 1px #7D5925;
 }
@@ -833,4 +942,59 @@ body#fullyearlinked table.calendar thead th.monthName {
 }
 body#fullyearlinked table.calendar tbody td {
     height: 3em;
+}
+body#OneDay h3 {
+    font-size: xx-large;
+    vertical-align: top;
+    height: 2em;
+    text-align: center;
+}
+#WebCal table.calendar tfoot {
+    display: none;
+}
+#WebCal table.calendar tr td {
+    word-wrap: break-word;
+    padding: 2px;
+}
+#WebCal .calendar tr td .empty {
+    border: 5px solid rgba(255,255,255,.0);
+}
+#WebCal .calendar tr td .clickable {
+    border: 5px solid rgba(255,255,255,.0);
+}
+#WebCal .calendar tr td .clickable:hover {
+    display: block;
+    overflow:auto;
+    word-wrap: break-word;
+    cursor: text;
+    border-radius: 10px 0px 10px 10px;
+    border: 5px solid #7D5925;
+    padding: 0px;
+}
+body#fullyearlinked #YearGlance tbody td {
+    vertical-align: middle;
+    text-align: center;
+    padding-left: 8px;
+}
+body#fullyearlinked #YearGlance tbody td .date {
+    font-size: 30px;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 45px;
+    float: none;
+    border: 5px solid rgba(0,0,0,.0);
+}
+body#fullyearlinked #YearGlance tbody td.previous .date:hover,
+body#fullyearlinked #YearGlance tbody td.next .date:hover {
+    border-radius: 10px;
+    border: 5px solid;
+}
+body#fullyearlinked #YearGlance tbody td div.empty .date:hover {
+    border-radius: 10px;
+    border: 5px solid;
+}
+body#fullyearlinked #YearGlance tbody td.highlight .date:hover {
+    border-radius: 45px;
+    border: 5px solid;
+    background: url(../images/Web_Mainz_Bkgd.png) black repeat;
 }

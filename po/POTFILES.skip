@@ -85,7 +85,6 @@ gramps/gen/db/utils.py
 # gen.display package
 #
 gramps/gen/display/__init__.py
-gramps/gen/display/place.py
 #
 # gen.filters package
 #
@@ -621,3 +620,4 @@ gramps/test/test/test_util_test.py
 #
 gramps/gui/glade/gramps.glade
 gramps/plugins/tool/check.glade
+gramps/plugins/tool/removespaces.glade

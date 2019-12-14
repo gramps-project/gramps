@@ -64,8 +64,6 @@ from gramps.gen.errors import ValidationError
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 
-# table for skipping illegal control chars
-INVISIBLE = dict.fromkeys(list(range(32)))
 
 #-------------------------------------------------------------------------
 #
@@ -141,14 +139,10 @@ class MonitoredEntry:
         self.obj.connect(signal, callback, *data)
 
     def _on_quit(self, obj, event):
-        text = obj.get_text().translate(INVISIBLE).strip()
-        self.set_val(text)
-        obj.set_text(text)
+        self.set_val(obj.get_text().strip())
 
     def _on_change(self, obj):
-        new_text = obj.get_text().translate(INVISIBLE)
-        self.set_val(new_text)
-        obj.set_text(new_text)
+        self.set_val(obj.get_text())
         if self.changed:
             self.changed(obj)
 
@@ -183,36 +177,8 @@ class MonitoredEntryIndicator(MonitoredEntry):
                  autolist=None, changed=None):
         MonitoredEntry.__init__(self, obj, set_val, get_val, read_only,
                                 autolist, changed)
-        self.origcolor = obj.get_style_context().get_color(Gtk.StateType.NORMAL)
-        if get_val():
-            self.indicatorshown = False
-        else:
-            self.indicatorshown = True
-            self.indicator = indicator
-            self.obj.set_text(indicator)
-            rgba = Gdk.RGBA()
-            Gdk.RGBA.parse(rgba, 'grey')
-            self.obj.override_color(Gtk.StateType.NORMAL, rgba)
-            self.obj.override_font(Pango.FontDescription('sans italic'))
-            self.fockey = self.obj.connect('focus-in-event',
-                                               self._obj_focus)
+        self.obj.set_placeholder_text(indicator)
 
-    def _on_change(self, obj):
-        if not self.indicatorshown:
-            self.set_val(str(obj.get_text()))
-            if self.changed:
-                self.changed(obj)
-
-    def _obj_focus(self, widg, eve):
-        """
-        callback for when prefix obtains focus
-        """
-        self.set_text('')
-        self.obj.override_color(Gtk.StateType.NORMAL, self.origcolor)
-        self.obj.override_font(Pango.FontDescription('normal'))
-        self.obj.disconnect(self.fockey)
-        self.indicatorshown = False
-        return False
 
 #-------------------------------------------------------------------------
 #

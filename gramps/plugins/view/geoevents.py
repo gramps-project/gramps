@@ -82,7 +82,7 @@ _UI_DEF = ['''
       <section id='CommonEdit' groups='RW'>
         <item>
           <attribute name="action">win.PrintView</attribute>
-          <attribute name="label" translatable="yes">_Print...</attribute>
+          <attribute name="label" translatable="yes">Print...</attribute>
         </item>
       </section>
     ''',
@@ -133,7 +133,7 @@ _UI_DEF = ['''
         <property name="icon-name">document-print</property>
         <property name="action-name">win.PrintView</property>
         <property name="tooltip_text" translatable="yes">Print or save the Map</property>
-        <property name="label" translatable="yes">_Print...</property>
+        <property name="label" translatable="yes">Print...</property>
         <property name="use-underline">True</property>
        </object>
       <packing>
@@ -379,7 +379,6 @@ class GeoEvents(GeoGraphyView):
     def bubble_message(self, event, lat, lon, marks):
         self.menu = Gtk.Menu()
         menu = self.menu
-        menu.set_title("events")
         message = ""
         oldplace = ""
         prevmark = None
@@ -390,7 +389,6 @@ class GeoEvents(GeoGraphyView):
                 menu.append(add_item)
                 self.itemoption = Gtk.Menu()
                 itemoption = self.itemoption
-                itemoption.set_title(message)
                 itemoption.show()
                 add_item.set_submenu(itemoption)
                 modify = Gtk.MenuItem(label=_("Edit Event"))
@@ -424,7 +422,6 @@ class GeoEvents(GeoGraphyView):
         menu.append(add_item)
         self.itemoption = Gtk.Menu()
         itemoption = self.itemoption
-        itemoption.set_title(message)
         itemoption.show()
         add_item.set_submenu(itemoption)
         modify = Gtk.MenuItem(label=_("Edit Event"))
@@ -461,7 +458,6 @@ class GeoEvents(GeoGraphyView):
         menu.append(add_item)
         self.itemoption = Gtk.Menu()
         itemoption = self.itemoption
-        itemoption.set_title(_("Centering on Place"))
         itemoption.show()
         add_item.set_submenu(itemoption)
         oldplace = ""

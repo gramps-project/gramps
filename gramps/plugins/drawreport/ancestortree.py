@@ -42,7 +42,6 @@ from gramps.gen.plug.menu import (TextOption, NumberOption, BooleanOption,
                                   EnumeratedListOption, StringOption,
                                   PersonOption)
 from gramps.gen.plug.report import Report, MenuReportOptions, stdoptions
-from gramps.gen.plug.report import utils
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                                     FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 from gramps.plugins.lib.libtreebase import *
@@ -64,6 +63,7 @@ _MARR = _("marriage abbreviation|m."),
 
 LVL_GEN, LVL_INDX, LVL_Y = range(3)
 
+
 #------------------------------------------------------------------------
 #
 # Box classes
@@ -81,6 +81,7 @@ class PersonBox(BoxBase):
 
     def __lt__(self, other):
         return self.level[LVL_Y] < other.level[LVL_Y]
+
 
 class FamilyBox(BoxBase):
     """
@@ -113,6 +114,7 @@ class TitleN(TitleNoDisplay):
         #we want no text, but need a text for the TOC in a book!
         self.mark_text = self._("Ancestor Graph")
         self.text = ''
+
 
 class TitleA(TitleBox):
     """Title class for the report """
@@ -172,30 +174,31 @@ class CalcItems:
     def calc_person(self, index, indi_handle, fams_handle):
         working_lines = ""
         if index[1] % 2 == 0 or (index[1] == 1 and self.center_use == 0):
-            if indi_handle == fams_handle == None:
+            if indi_handle == fams_handle is None:
                 working_lines = self.__calc_l.calc_lines(
                     None, None, self._gui.get_val("father_disp"))
             else:
                 working_lines = self.disp_father
         else:
-            if indi_handle == fams_handle == None:
+            if indi_handle == fams_handle is None:
                 working_lines = self.__calc_l.calc_lines(
                     None, None, self._gui.get_val("mother_disp"))
             else:
                 working_lines = self.disp_mother
 
-        if indi_handle == fams_handle == None:
+        if indi_handle == fams_handle is None:
             return working_lines
         else:
             return self.__calc_l.calc_lines(indi_handle, fams_handle,
                                             working_lines)
 
     def calc_marriage(self, indi_handle, fams_handle):
-        if indi_handle == fams_handle == None:
+        if indi_handle == fams_handle is None:
             return self.__blank_marriage
         else:
             return self.__calc_l.calc_lines(indi_handle, fams_handle,
                                             self.disp_marr)
+
 
 class MakeAncestorTree(AscendPerson):
     """
@@ -223,9 +226,9 @@ class MakeAncestorTree(AscendPerson):
         """ Makes a person box and add that person into the Canvas. """
 
         #print str(index) + " add_person " + str(indi_handle)
-        myself = PersonBox((index[0]-1,) + index[1:])
+        myself = PersonBox((index[0] - 1,) + index[1:])
 
-        if index[LVL_GEN] == 1:  #Center Person
+        if index[LVL_GEN] == 1:  # Center Person
             self.center_family = fams_handle
 
         if index[LVL_GEN] > self.max_generation:
@@ -235,7 +238,7 @@ class MakeAncestorTree(AscendPerson):
                                                   indi_handle, fams_handle)
         # myself.text[0] = myself.text[0] + ' ' + repr(index) # for debugging
 
-        if indi_handle is not None: # None is legal for an empty box
+        if indi_handle is not None:  # None is legal for an empty box
             myself.add_mark(self.database,
                             self.database.get_person_from_handle(indi_handle))
 
@@ -245,12 +248,12 @@ class MakeAncestorTree(AscendPerson):
         indx = index[LVL_GEN]
         self.lines[indx] = myself
         if indx > 1:
-            if self.lines[indx-1].line_to is None:
-                line = LineBase(self.lines[indx-1])
-                self.lines[indx-1].line_to = line
+            if self.lines[indx - 1].line_to is None:
+                line = LineBase(self.lines[indx - 1])
+                self.lines[indx - 1].line_to = line
                 self.canvas.add_line(line)
             else:
-                line = self.lines[indx-1].line_to
+                line = self.lines[indx - 1].line_to
             line.add_to(myself)
 
         return myself
@@ -264,7 +267,7 @@ class MakeAncestorTree(AscendPerson):
         if not self.inlc_marr:
             return
 
-        myself = FamilyBox((index[0]-1,) + index[1:])
+        myself = FamilyBox((index[0] - 1,) + index[1:])
 
         #calculate the text.
         myself.text = self.calc_items.calc_marriage(indi_handle, fams_handle)
@@ -280,7 +283,7 @@ class MakeAncestorTree(AscendPerson):
         tmp_y = index - (2**x_level)
         #Calculate which row in the table (yes table) of people.
         delta = (2**self.max_generation) // (2**(x_level))
-        return int((delta/2) + (tmp_y*delta)) -1
+        return int((delta / 2) + (tmp_y * delta)) - 1
 
     def do_y_indx(self):
         ''' Make the y_index for all boxes
@@ -292,8 +295,8 @@ class MakeAncestorTree(AscendPerson):
         for box in self.canvas.boxes:
             if "fam" in box.boxstr:
                 box.level = box.level + \
-                    (self.y_index(box.level[LVL_GEN]-1,
-                                  int(box.level[LVL_INDX]/2)),)
+                    (self.y_index(box.level[LVL_GEN] - 1,
+                                  int(box.level[LVL_INDX] / 2)),)
             else:
                 box.level = box.level + \
                     (self.y_index(box.level[LVL_GEN], box.level[LVL_INDX]),)
@@ -304,10 +307,10 @@ class MakeAncestorTree(AscendPerson):
         #Then there could be a gap.  Remove this gap
         if min_y > 0:
             for box in self.canvas.boxes:
-                box.level = box.level[:LVL_Y] + (box.level[LVL_Y]-min_y,)
+                box.level = box.level[:LVL_Y] + (box.level[LVL_Y] - min_y,)
 
         #Now that we have y_index, lets see if we need to squish the tree
-        self.canvas.boxes.sort()  #Sort them on the y_index
+        self.canvas.boxes.sort()  # Sort them on the y_index
         if not self.compress_tree:
             return
         #boxes are already in top down [LVL_Y] form so lets
@@ -336,23 +339,22 @@ class MakeAncestorTree(AscendPerson):
         line = center.line_to
         level = center.level[LVL_Y]
 
-        move = level - (len(mykids)//2) + ((len(mykids)+1)%2)
+        move = level - (len(mykids) // 2) + ((len(mykids) + 1) % 2)
 
         if move < 0:
             # more kids than parents.  ran off the page.  Move them all down
             for box in self.canvas.boxes:
-                box.level = (box.level[0], box.level[1], box.level[2]-move)
+                box.level = (box.level[0], box.level[1], box.level[2] - move)
             move = 0
-
 
         line.start = []
         rrr = -1  # if len(mykids)%2 == 1 else 0
         for kid in mykids:
             rrr += 1
-            mee = self.add_person((1, 1, move+rrr), kid, self.center_family)
+            mee = self.add_person((1, 1, move + rrr), kid, self.center_family)
             line.add_from(mee)
             #mee.level = (0, 1, level - (len(mykids)//2)+rrr)
-
+        mee.line_to = line
 
     def start(self, person_id):
         """ go ahead and make it happen """
@@ -387,7 +389,8 @@ class LRTransform:
     def __init__(self, canvas, max_generations):
         self.canvas = canvas
         self.rept_opts = canvas.report_opts
-        self.y_offset = self.rept_opts.littleoffset*2 + self.canvas.title.height
+        self.y_offset = (self.rept_opts.littleoffset * 2 +
+                         self.canvas.title.height)
 
     def _place(self, box):
         """ put the box in it's correct spot """
@@ -409,6 +412,7 @@ class LRTransform:
         #go
         for box in self.canvas.boxes:
             self._place(box)
+
 
 #------------------------------------------------------------------------
 #
@@ -441,7 +445,7 @@ class MakeReport:
         self.canvas.set_box_height_width(box)
 
         if box.width > self.canvas.report_opts.max_box_width:
-            self.canvas.report_opts.max_box_width = box.width #+ box.shadow
+            self.canvas.report_opts.max_box_width = box.width  # + box.shadow
 
         if box.level[LVL_Y] > 0:
             if box.level[LVL_INDX] % 2 == 0 and box.height > self.father_ht:
@@ -456,7 +460,7 @@ class MakeReport:
         return self.max_generations
 
     def start(self):
-        ## __gui = GUIConnect()
+        # __gui = GUIConnect()
         # 1.
         #set the sizes for each box and get the max_generations.
         self.father_ht = 0.0
@@ -466,10 +470,10 @@ class MakeReport:
 
         if self.compress_tree and not self.inlc_marr:
             self.canvas.report_opts.max_box_height = \
-                        min(self.father_ht, self.mother_ht)
+                min(self.father_ht, self.mother_ht)
         else:
             self.canvas.report_opts.max_box_height = \
-                        max(self.father_ht, self.mother_ht)
+                max(self.father_ht, self.mother_ht)
 
         #At this point we know everything we need to make the report.
         #Size of each column of people - self.rept_opt.box_width
@@ -492,7 +496,8 @@ class GUIConnect:
     """
 
     __shared_state = {}
-    def __init__(self):  #We are BORG!
+
+    def __init__(self):  # We are BORG!
         self.__dict__ = self.__shared_state
 
     def set__opts(self, options, locale, name_displayer):
@@ -532,6 +537,7 @@ class GUIConnect:
 
     def compress_tree(self):
         return self.get_val("compress_tree")
+
 
 #------------------------------------------------------------------------
 #
@@ -600,7 +606,7 @@ class AncestorTree(Report):
                              ReportOptions(self.doc, font_normal, 'AC2-line'))
 
         self.canvas.report_opts.box_shadow *= \
-                        self.connect.get_val('shadowscale')
+            self.connect.get_val('shadowscale')
         self.canvas.report_opts.box_pgap *= self.connect.get_val('box_Yscale')
         self.canvas.report_opts.box_mgap *= self.connect.get_val('box_Yscale')
 
@@ -608,7 +614,7 @@ class AncestorTree(Report):
                                  _('Making the Tree...'), 4) as step:
 
             #make the tree onto the canvas
-            ## inlc_marr = self.connect.get_val("inc_marr")
+            # inlc_marr = self.connect.get_val("inc_marr")
             self.max_generations = self.connect.get_val('maxgen')
             tree = MakeAncestorTree(database, self.canvas)
             tree.start(self.connect.get_val('pid'))
@@ -626,7 +632,7 @@ class AncestorTree(Report):
             #make the report as big as it wants to be.
             report = MakeReport(database, self.doc, self.canvas, font_normal)
             report.start()
-            self.max_generations = report.get_generations()  #already know
+            self.max_generations = report.get_generations()  # already know
             report = None
 
             step()
@@ -670,8 +676,9 @@ class AncestorTree(Report):
 
         colsperpage = self.doc.get_usable_width()
         colsperpage += self.canvas.report_opts.col_width
-        colsperpage = int(colsperpage / (self.canvas.report_opts.max_box_width +
-                                         self.canvas.report_opts.col_width))
+        colsperpage = int(
+            colsperpage / (self.canvas.report_opts.max_box_width +
+                           self.canvas.report_opts.col_width))
         colsperpage = colsperpage or 1
 
         #####################
@@ -760,6 +767,7 @@ class AncestorTree(Report):
         style_sheet.add_draw_style("AC2-line", graph_style)
 
         self.doc.set_style_sheet(style_sheet)
+
 
 #------------------------------------------------------------------------
 #
@@ -853,8 +861,7 @@ class AncestorTreeOptions(MenuReportOptions):
         self.scale.add_item(1, _("Scale tree to fit page width only"))
         self.scale.add_item(2, _("Scale tree to fit the size of the page"))
         self.scale.set_help(
-            _("Whether to scale the tree to fit a specific paper size")
-            )
+            _("Whether to scale the tree to fit a specific paper size"))
         menu.add_option(category_name, "scale_tree", self.scale)
         self.scale.connect('value-changed', self.__check_blank)
 
@@ -863,7 +870,7 @@ class AncestorTreeOptions(MenuReportOptions):
                 _("Resize Page to Fit Tree size\n"
                   "\n"
                   "Note: Overrides options in the 'Paper Option' tab"
-                 ),
+                  ),
                 False)
             self.__onepage.set_help(
                 _("Whether to resize the page to fit the size \n"
@@ -880,7 +887,7 @@ class AncestorTreeOptions(MenuReportOptions):
                   "\n"
                   "With 'Scale tree to fit the size of the page' the page\n"
                   "  is resized to remove any gap in either height or width"
-                 ))
+                  ))
             menu.add_option(category_name, "resize_page", self.__onepage)
             self.__onepage.connect('value-changed', self.__check_blank)
         else:
@@ -910,8 +917,8 @@ class AncestorTreeOptions(MenuReportOptions):
 
         disp = TextOption(_("Father\nDisplay Format"),
                           ["$n",
-                           "%s $b" %_BORN,
-                           "-{%s $d}" %_DIED])
+                           "%s $b" % _BORN,
+                           "-{%s $d}" % _DIED])
         disp.set_help(_("Display format for the fathers box."))
         menu.add_option(category_name, "father_disp", disp)
 
@@ -925,9 +932,9 @@ class AncestorTreeOptions(MenuReportOptions):
 
         disp_mom = TextOption(_("Mother\nDisplay Format"),
                               ["$n",
-                               "%s $b" %_BORN,
-                               "%s $m" %_MARR,
-                               "-{%s $d}" %_DIED])
+                               "%s $b" % _BORN,
+                               "%s $m" % _MARR,
+                               "-{%s $d}" % _DIED])
         disp_mom.set_help(_("Display format for the mothers box."))
         menu.add_option(category_name, "mother_disp", disp_mom)
 
@@ -945,7 +952,7 @@ class AncestorTreeOptions(MenuReportOptions):
         self.incmarr.connect('value-changed', self._incmarr_changed)
 
         self.marrdisp = StringOption(_("Marriage\nDisplay Format"),
-                                       "%s $m" % _MARR)
+                                     "%s $m" % _MARR)
         self.marrdisp.set_help(_("Display format for the marital box."))
         menu.add_option(category_name, "marr_disp", self.marrdisp)
         self._incmarr_changed()
@@ -964,7 +971,8 @@ class AncestorTreeOptions(MenuReportOptions):
         #                       _('Include thumbnail images of people'), False)
         # self.__include_images.set_help(
         #                       _("Whether to include thumbnails of people."))
-        # menu.add_option(category_name, "includeImages", self.__include_images)
+        # menu.add_option(category_name, "includeImages",
+        #                 self.__include_images)
 
         self.usenote = BooleanOption(_('Include a note'), False)
         self.usenote.set_help(_("Whether to include a note on the report."))
@@ -991,7 +999,7 @@ class AncestorTreeOptions(MenuReportOptions):
         menu.add_option(category_name, "box_Yscale", self.box_Y_sf)
 
         self.box_shadow_sf = NumberOption(_("box shadow scale factor"),
-                                          1.00, 0.00, 2.00, 0.01) # down to 0
+                                          1.00, 0.00, 2.00, 0.01)  # down to 0
         self.box_shadow_sf.set_help(_("Make the box shadow bigger or smaller"))
         menu.add_option(category_name, "shadowscale", self.box_shadow_sf)
 
@@ -1033,13 +1041,13 @@ class AncestorTreeOptions(MenuReportOptions):
             for itr in range(2, max_gen))
 
         self.fillout.set_items(item_list)
-        if old_val+2 > len(item_list):
-            self.fillout.set_value(len(item_list) -2)
+        if old_val + 2 > len(item_list):
+            self.fillout.set_value(len(item_list) - 2)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Ancestor Tree."""
 
-        ## Paragraph Styles:
+        # Paragraph Styles:
         font = FontStyle()
         font.set_size(9)
         font.set_type_face(FONT_SANS_SERIF)
@@ -1068,16 +1076,16 @@ class AncestorTreeOptions(MenuReportOptions):
         para_style.set_description(_('The style used for the title.'))
         default_style.add_paragraph_style("AC2-Title", para_style)
 
-        ## Draw styles
+        # Draw styles
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("AC2-Normal")
-        graph_style.set_shadow(1, box_shadow)  #shadow set by text size
+        graph_style.set_shadow(1, box_shadow)  # shadow set by text size
         graph_style.set_fill_color((255, 255, 255))
         default_style.add_draw_style("AC2-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("AC2-Normal")
-        #graph_style.set_shadow(0, PT2CM(9))  #shadow set by text size
+        #graph_style.set_shadow(0, PT2CM(9))  # shadow set by text size
         graph_style.set_fill_color((255, 255, 255))
         default_style.add_draw_style("AC2-fam-box", graph_style)
 

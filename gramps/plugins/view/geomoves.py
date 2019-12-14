@@ -89,7 +89,7 @@ _UI_DEF = [
       <section id='CommonEdit' groups='RW'>
         <item>
           <attribute name="action">win.PrintView</attribute>
-          <attribute name="label" translatable="yes">_Print...</attribute>
+          <attribute name="label" translatable="yes">Print...</attribute>
         </item>
       </section>
 ''',
@@ -156,7 +156,7 @@ _UI_DEF = [
         <property name="action-name">win.PrintView</property>
         <property name="tooltip_text" translatable="yes">'''
     '''Print or save the Map</property>
-        <property name="label" translatable="yes">_Print...</property>
+        <property name="label" translatable="yes">Print...</property>
         <property name="use-underline">True</property>
       </object>
       <packing>
@@ -637,7 +637,6 @@ class GeoMoves(GeoGraphyView):
         """
         self.menu = Gtk.Menu()
         menu = self.menu
-        menu.set_title("descendance")
         events = []
         message = ""
         oldplace = ""
@@ -680,7 +679,6 @@ class GeoMoves(GeoGraphyView):
             menu.append(add_item)
             self.itemoption = Gtk.Menu()
             itemoption = self.itemoption
-            itemoption.set_title(message)
             itemoption.show()
             add_item.set_submenu(itemoption)
             modify = Gtk.MenuItem(label=_("Edit Event"))

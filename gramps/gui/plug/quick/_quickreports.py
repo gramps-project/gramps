@@ -55,6 +55,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from ...pluginmanager import GuiPluginManager
+from ...uimanager import valid_action_name
 from gramps.gen.plug import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY, CATEGORY_QR_MEDIA,
                       CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, CATEGORY_QR_MISC,
                       CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY,
@@ -97,11 +98,9 @@ def create_web_connect_menu(dbstate, uistate, nav_group, handle, prefix):
     top = ("<placeholder id='WebConnect'><submenu>\n"
            '<attribute name="label" translatable="yes">'
            'Web Connection</attribute>\n')
-    actions = []
     ofile = StringIO()
     ofile.write(top)
     #select the web connects to show
-    showlst = []
     pmgr = GuiPluginManager.get_instance()
     plugins = pmgr.process_plugin_data('WebConnect')
     try:
@@ -114,16 +113,19 @@ def create_web_connect_menu(dbstate, uistate, nav_group, handle, prefix):
     connections = flatten(connections)
     connections.sort(key=lambda plug: plug.name)
     actions = []
-    for connect in connections:
-        action = connect.key.replace(' ', '-')
+    for indx, connect in enumerate(connections):
+        # action would be better with "connect.key", but it seems to be
+        # non-ASCII sometimes.  So we use an action number instead.
+        action = "web-con-%d" % indx
         ofile.write(MENUITEM.format(prefix=prefix, action=action,
                                     label=connect.name))
         callback = connect(dbstate, uistate, nav_group, handle)
-        actions.append((action,
-                        lambda x, y: callback(x)))
+        actions.append((action, make_web_connect_callback(callback)))
     ofile.write('</submenu></placeholder>\n')
     return (ofile.getvalue(), actions)
 
+def make_web_connect_callback(func):
+    return lambda x, y: func(x)
 
 def create_quickreport_menu(category, dbstate, uistate, handle, prefix, track=[]):
     """ This functions querries the registered quick reports with
@@ -155,7 +157,7 @@ def create_quickreport_menu(category, dbstate, uistate, handle, prefix, track=[]
 
     showlst.sort(key=lambda x: x.name)
     for pdata in showlst:
-        new_key = pdata.id.replace(' ', '-')
+        new_key = valid_action_name("qr-%s" % pdata.id)
         ofile.write(MENUITEM.format(prefix=prefix, action=new_key,
                                     label=pdata.name))
         actions.append((new_key, make_quick_report_callback(

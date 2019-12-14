@@ -57,14 +57,14 @@ HTTPS = "https://"
 GOOGLE_MAPS = 'https://maps.googleapis.com/maps/'
 # javascript code for marker path
 MARKER_PATH = """
-  var marker_png = '%s'
+  var marker_png = '%s';
 """
 
 # javascript code for Google's FamilyLinks...
 FAMILYLINKS = """
-  var tracelife = %s
+  var tracelife = %s;
 
-  function initialize() {
+  window.addEventListener("load", function() {
     var myLatLng = new google.maps.LatLng(%s, %s);
 
     var mapOptions = {
@@ -86,18 +86,19 @@ FAMILYLINKS = """
     });
 
    flightPath.setMap(map);
-  }"""
+  });
+"""
 
 # javascript for Google's Drop Markers...
 DROPMASTERS = """
   var markers = [];
   var iterator = 0;
 
-  var tracelife = %s
+  var tracelife = %s;
   var map;
   var myLatLng = new google.maps.LatLng(%s, %s);
 
-  function initialize() {
+  window.addEventListener("load", function() {
     var mapOptions = {
       scaleControl: true,
       zoomControl:  true,
@@ -107,7 +108,7 @@ DROPMASTERS = """
     };
     map = new google.maps.Map(document.getElementById("map_canvas"),
                               mapOptions);
-  };
+  });
 
   function drop() {
     for (var i = 0; i < tracelife.length; i++) {
@@ -144,11 +145,11 @@ DROPMASTERS = """
 
 # javascript for Google's Markers...
 MARKERS = """
-  var tracelife = %s
+  var tracelife = %s;
   var map;
   var myLatLng = new google.maps.LatLng(%s, %s);
 
-  function initialize() {
+  window.addEventListener("load", function() {
     var mapOptions = {
       scaleControl:    true,
       panControl:      true,
@@ -160,7 +161,7 @@ MARKERS = """
     map = new google.maps.Map(document.getElementById("map_canvas"),
                               mapOptions);
     addMarkers();
-  }
+  });
 
   function addMarkers() {
     var bounds = new google.maps.LatLngBounds();
@@ -189,7 +190,6 @@ MARKERS = """
               infoWindow.open(map, marker);
           });
   }
-
 """
 
 # javascript for OpenStreetMap's markers...
@@ -198,11 +198,14 @@ https://openlayers.org/en/latest/examples/
 """
 
 OSM_MARKERS = """
-  function initialize(){
+  window.addEventListener("load", function() {
     var map;
-    var tracelife = %s
+    var tracelife = %s;
     var iconStyle = new ol.style.Style({
       image: new ol.style.Icon(({
+        anchor: [0.2, 48],
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'pixels',
         opacity: 1.0,
         src: marker_png
       }))
@@ -238,9 +241,9 @@ OSM_MARKERS = """
 """
 
 STAMEN_MARKERS = """
-  function initialize(){
+  window.addEventListener("load", function() {
     var map;
-    var tracelife = %s
+    var tracelife = %s;
     var layer = '%s';
     var iconStyle = new ol.style.Style({
       image: new ol.style.Icon(({
@@ -290,23 +293,20 @@ OPENLAYER = """
     var closer = document.getElementById('popup-closer');
     var tip = document.getElementById('tooltip');
     var tipcontent = document.getElementById('tooltip-content');
-
     var tooltip = new ol.Overlay({
       element: tip,
       positioning: 'bottom-center',
       offset: [10, 0],
     });
     map.addOverlay(tooltip);
-
     var popup = new ol.Overlay({
       element: element,
       positioning: 'bottom-center',
       autoPan: true,
       autoPanAnimation: { duration: 500 },
-      stopEvent: false
+      stopEvent: true
     });
     map.addOverlay(popup);
-
     /**
      * Add a click handler to hide the popup.
      * @return {boolean} Don't follow the href.
@@ -316,7 +316,6 @@ OPENLAYER = """
       closer.blur();
       return false;
     };
-
     map.on('pointermove', function(evt) {
       evt.preventDefault()
       var feature = this.forEachFeatureAtPixel(evt.pixel,
@@ -335,10 +334,9 @@ OPENLAYER = """
       } else {
         tooltip.setPosition(undefined);
       }
-
     });
     map.on('singleclick', function(evt) {
-      evt.preventDefault()
+      evt.preventDefault();
       var feature = map.forEachFeatureAtPixel(evt.pixel,
                                               function(feature, layer) {
         return feature;
@@ -351,8 +349,7 @@ OPENLAYER = """
       popup.setPosition(coordinate);
       }
       });
-
-  };
+  });
 """
 
 # variables for alphabet_navigation()
@@ -420,6 +417,29 @@ def sort_people(dbase, handle_list, rlocale=glocale):
                        key=lambda x: rlocale.sort_key(x[0]))
         entries = [x[1] for x in slist]
         sorted_lists.append((name, entries))
+
+    return sorted_lists
+
+def sort_places(dbase, handle_list, rlocale=glocale):
+    """
+    will sort the database place
+    """
+    pname_sub = defaultdict(list)
+    sortnames = {}
+
+    for place_handle in handle_list:
+        place = dbase.get_place_from_handle(place_handle)
+        pname = _pd.display(dbase, place)
+        sortnames[place_handle] = pname
+        pname_sub[pname].append(place_handle)
+
+    sorted_lists = []
+    temp_list = sorted(pname_sub, key=rlocale.sort_key)
+
+    for name in temp_list:
+        if isinstance(name, bytes):
+            name = name.decode('utf-8')
+        sorted_lists.append((name, pname_sub[name][0]))
 
     return sorted_lists
 
@@ -602,36 +622,23 @@ def first_letter(string, rlocale=glocale):
     # no special case
     return norm_unicode[0].upper()
 
-try:
-    import PyICU # pylint : disable=wrong-import-position
-    PRIM_COLL = PyICU.Collator.createInstance(PyICU.Locale(COLLATE_LANG))
-    PRIM_COLL.setStrength(PRIM_COLL.PRIMARY)
+def primary_difference(prev_key, new_key, rlocale=glocale):
+    """
+    The PyICU collation doesn't work if you want to sort in another language
+    So we use this method to do the work correctly.
 
-    def primary_difference(prev_key, new_key, rlocale=glocale):
-        """
-        Try to use the PyICU collation.
-        """
-        dummy_rlocale = rlocale
+    Returns true if there is a primary difference between the two parameters
+    See http://www.gramps-project.org/bugs/view.php?id=2933#c9317 if
+    letter[i]+'a' < letter[i+1]+'b' and letter[i+1]+'a' < letter[i]+'b' is
+    true then the letters should be grouped together
 
-        return PRIM_COLL.compare(prev_key, new_key) != 0
+    The test characters here must not be any that are used in contractions.
+    """
 
-except:
-    def primary_difference(prev_key, new_key, rlocale=glocale):
-        """
-        The PyICU collation is not available.
-
-        Returns true if there is a primary difference between the two parameters
-        See http://www.gramps-project.org/bugs/view.php?id=2933#c9317 if
-        letter[i]+'a' < letter[i+1]+'b' and letter[i+1]+'a' < letter[i]+'b' is
-        true then the letters should be grouped together
-
-        The test characters here must not be any that are used in contractions.
-        """
-
-        return rlocale.sort_key(prev_key + "e") >= \
-                   rlocale.sort_key(new_key + "f") or \
-                   rlocale.sort_key(new_key + "e") >= \
-                   rlocale.sort_key(prev_key + "f")
+    return rlocale.sort_key(prev_key + "e") >= \
+               rlocale.sort_key(new_key + "f") or \
+               rlocale.sort_key(new_key + "e") >= \
+               rlocale.sort_key(prev_key + "f")
 
 def get_first_letters(dbase, handle_list, key, rlocale=glocale):
     """
@@ -675,12 +682,12 @@ def get_first_letters(dbase, handle_list, key, rlocale=glocale):
     index_list.sort(key=rlocale.sort_key)
     first = True
     prev_index = None
-    for key in index_list[:]:   #iterate over a slice copy of the list
-        if first or primary_difference(prev_index, key, rlocale):
+    for nkey in index_list[:]:   #iterate over a slice copy of the list
+        if first or primary_difference(prev_index, nkey, rlocale):
             first = False
-            prev_index = key
+            prev_index = nkey
         else:
-            index_list.remove(key)
+            index_list.remove(nkey)
 
     # return menu set letters for alphabet_navigation
     return index_list

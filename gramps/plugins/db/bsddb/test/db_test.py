@@ -81,6 +81,7 @@ class DbTest(unittest.TestCase):
         "get_number_of_places",
         "get_number_of_repositories",
         "get_number_of_sources",
+        "get_number_of_citations",
         "get_number_of_tags",
         "get_media_from_gramps_id",
         "get_media_from_handle",

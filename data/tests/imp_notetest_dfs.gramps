@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.7.1/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.7.1/">
   <header>
-    <created date="2016-10-23" version="5.0.0-alpha1"/>
+    <created date="2019-07-30" version="5.0.2"/>
     <researcher>
       <resname>John A. Tester</resname>
     </researcher>
@@ -26,27 +26,23 @@
       <type>Death</type>
       <noteref hlink="_0000001600000016"/>
     </event>
-    <event handle="_0000001e0000001e" change="1" id="E0003">
-      <type>Who knows OBJE REFN TYPE</type>
-      <description>REFN</description>
-    </event>
-    <event handle="_0000002700000027" change="1" id="E0004">
+    <event handle="_0000002700000027" change="1" id="E0003">
       <type>Birth</type>
       <dateval val="1901-06-15"/>
     </event>
-    <event handle="_0000002800000028" change="1" id="E0005">
+    <event handle="_0000002800000028" change="1" id="E0004">
       <type>Death</type>
       <dateval val="1975-07-05"/>
     </event>
-    <event handle="_0000002e0000002e" change="1" id="E0006">
+    <event handle="_0000002e0000002e" change="1" id="E0005">
       <type>Birth</type>
       <dateval val="1922-06-15"/>
     </event>
-    <event handle="_0000002f0000002f" change="1" id="E0007">
+    <event handle="_0000002f0000002f" change="1" id="E0006">
       <type>Death</type>
       <dateval val="1994-07-05"/>
     </event>
-    <event handle="_0000003b0000003b" change="1" id="E0008">
+    <event handle="_0000003b0000003b" change="1" id="E0007">
       <type>TEST</type>
       <description>family</description>
     </event>
@@ -61,10 +57,11 @@
       <eventref hlink="_0000000f0000000f" role="Primary"/>
       <eventref hlink="_0000001000000010" role="Primary"/>
       <eventref hlink="_0000001500000015" role="Primary"/>
-      <eventref hlink="_0000001e0000001e" role="Primary"/>
       <objref hlink="_0000001f0000001f"/>
       <attribute type="RIN" value="123456 Person"/>
-      <attribute type="REFN" value="98765 for PERSON"/>
+      <attribute type="REFN" value="98765 for PERSON">
+        <noteref hlink="_0000001e0000001e"/>
+      </attribute>
       <url  href="http://homepages.rootsweb.com/~pmcbride/gedcom/55gctoc.htm" type="Web Home" description="GEDCOM 5.5 documentation web site"/>
       <parentin hlink="_0000001700000017"/>
       <noteref hlink="_0000001800000018"/>
@@ -270,7 +267,8 @@
 
 Line ignored as not understood                                      Line    18: 2 TEST Header Note
 Empty note ignored                                                  Line    19: 1 NOTE 
-Skipped subordinate line                                            Line    20: 2 TEST Empty Note</text>
+Skipped subordinate line                                            Line    20: 2 TEST Empty Note
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="327"/>
       </style>
@@ -288,7 +286,8 @@ Skipped subordinate line                                            Line    20: 
 Line ignored as not understood                                      Line    26: 2 TEST Submission Note
 Empty note ignored                                                  Line    27: 1 NOTE 
 Skipped subordinate line                                            Line    28: 2 TEST Empty Note
-Line ignored as not understood                                      Line    29: 1 TEST submission</text>
+Line ignored as not understood                                      Line    29: 1 TEST submission
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="425"/>
       </style>
@@ -300,7 +299,8 @@ Tag recognized but not supported                                    Line    32: 
 Tag recognized but not supported                                    Line    33: 1 REFN Submission Note REFN
 Skipped subordinate line                                            Line    34: 2 TYPE Submission Note REFN TYPE
 Tag recognized but not supported                                    Line    35: 1 SOUR Submission note source
-Line ignored as not understood                                      Line    39: 1 TEST on XREF Note</text>
+Line ignored as not understood                                      Line    39: 1 TEST on XREF Note
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="586"/>
       </style>
@@ -318,7 +318,8 @@ Line ignored as not understood                                      Line    39: 
 Line ignored as not understood                                      Line    43: 2 TEST Submitter Note
 Empty note ignored                                                  Line    44: 1 NOTE 
 Skipped subordinate line                                            Line    45: 2 TEST Empty Note
-Line ignored as not understood                                      Line    46: 1 TEST Submitter</text>
+Line ignored as not understood                                      Line    46: 1 TEST Submitter
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="460"/>
       </style>
@@ -360,7 +361,10 @@ Line ignored as not understood                                      Line    46: 
     <note handle="_0000001d0000001d" change="979250406" id="N0018" type="Media Note">
       <text>Media xref note</text>
     </note>
-    <note handle="_0000002100000021" change="1" id="N0019" type="GEDCOM import">
+    <note handle="_0000001e0000001e" change="1" id="N0019" type="REFN-TYPE">
+      <text>Who knows OBJE REFN TYPE</text>
+    </note>
+    <note handle="_0000002100000021" change="1" id="N0020" type="GEDCOM import">
       <text>Records not imported into INDI (individual) Gramps ID I0001:
 
 Empty note ignored                                                  Line    54: 2 NOTE 
@@ -382,12 +386,14 @@ Empty note ignored                                                  Line    85: 
 Skipped subordinate line                                            Line    86: 3 TEST Empty Note
 Line ignored as not understood                                      Line    88: 3 TEST 123456 Note
 Empty note ignored                                                  Line    90: 2 NOTE 
-Skipped subordinate line                                            Line    91: 3 TEST Empty Note</text>
+Skipped subordinate line                                            Line    91: 3 TEST Empty Note
+Line ignored as not understood                                      Line    94: 2 TEST REFN
+</text>
       <style name="fontface" value="Monospace">
-        <range start="0" end="2009"/>
+        <range start="0" end="2101"/>
       </style>
     </note>
-    <note handle="_0000002200000022" change="1" id="N0020" type="GEDCOM import">
+    <note handle="_0000002200000022" change="1" id="N0021" type="GEDCOM import">
       <text>Records not imported into NOTE Gramps ID N0018:
 
 Tag recognized but not supported                                    Line   103: 1 RIN 123456
@@ -396,85 +402,89 @@ Skipped subordinate line                                            Line   105: 
 Tag recognized but not supported                                    Line   109: 2 NOTE Note on a change on a note!!!
 Skipped subordinate line                                            Line   110: 3 CHAN 
 Skipped subordinate line                                            Line   111: 4 DATE 2001-01-11
-Skipped subordinate line                                            Line   112: 5 TIME 16:00:06</text>
+Skipped subordinate line                                            Line   112: 5 TIME 16:00:06
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="741"/>
       </style>
     </note>
-    <note handle="_0000002300000023" change="1" id="N0021" type="REFN-TYPE">
+    <note handle="_0000002300000023" change="1" id="N0022" type="REFN-TYPE">
       <text>Who knows REFN TYPE</text>
     </note>
-    <note handle="_0000002500000025" change="1" id="N0022" type="GEDCOM import">
+    <note handle="_0000002500000025" change="1" id="N0023" type="GEDCOM import">
       <text>Records not imported into OBJE (multi-media object) Gramps ID M1:
 
-Could not import photo.jpg                                          Line   114: 1 FILE photo.jpg</text>
+Could not import photo.jpg                                          Line   114: 1 FILE photo.jpg
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="164"/>
       </style>
     </note>
-    <note handle="_0000002900000029" change="979250406" id="N0023" type="Person Note">
+    <note handle="_0000002900000029" change="979250406" id="N0024" type="Person Note">
       <text>Family Spouse reference Note</text>
       <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000002b0000002b" change="1" id="N0024" type="GEDCOM import">
+    <note handle="_0000002b0000002b" change="1" id="N0025" type="GEDCOM import">
       <text>Records not imported into INDI (individual) Gramps ID I0002:
 
 Empty note ignored                                                  Line   132: 2 NOTE 
-Skipped subordinate line                                            Line   133: 3 TEST Empty Note</text>
+Skipped subordinate line                                            Line   133: 3 TEST Empty Note
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="248"/>
       </style>
     </note>
-    <note handle="_0000002d0000002d" change="979250406" id="N0025" type="General">
+    <note handle="_0000002d0000002d" change="979250406" id="N0026" type="General">
       <text>Name note</text>
       <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000003100000031" change="1" id="N0026" type="LDS Note">
+    <note handle="_0000003100000031" change="1" id="N0027" type="LDS Note">
       <text>Place note</text>
       <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000003400000034" change="1" id="N0027" type="LDS Note">
+    <note handle="_0000003400000034" change="1" id="N0028" type="LDS Note">
       <text>LDS xref note</text>
     </note>
-    <note handle="_0000003600000036" change="979250406" id="N0028" type="Association Note">
+    <note handle="_0000003600000036" change="979250406" id="N0029" type="Association Note">
       <text>Association link note</text>
       <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000003800000038" change="1" id="N0029" type="GEDCOM import">
+    <note handle="_0000003800000038" change="1" id="N0030" type="GEDCOM import">
       <text>Records not imported into INDI (individual) Gramps ID I0003:
 
 Empty note ignored                                                  Line   141: 2 NOTE 
 Skipped subordinate line                                            Line   142: 3 TEST Empty Note
 Line ignored as not understood                                      Line   163: 3 TEST Accociation note
 Empty note ignored                                                  Line   167: 2 NOTE 
-Skipped subordinate line                                            Line   168: 3 TEST Empty Note</text>
+Skipped subordinate line                                            Line   168: 3 TEST Empty Note
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="538"/>
       </style>
     </note>
-    <note handle="_0000003900000039" change="979250406" id="N0030" type="General">
+    <note handle="_0000003900000039" change="979250406" id="N0031" type="General">
       <text>Just for association</text>
       <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000003e0000003e" change="1" id="N0031" type="Family Note">
+    <note handle="_0000003e0000003e" change="1" id="N0032" type="Family Note">
       <text>Family xref note</text>
     </note>
-    <note handle="_0000003f0000003f" change="979250406" id="N0032" type="Family Note">
+    <note handle="_0000003f0000003f" change="979250406" id="N0033" type="Family Note">
       <text>Family note</text>
       <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000004000000040" change="1" id="N0033" type="Citation">
+    <note handle="_0000004000000040" change="1" id="N0034" type="Citation">
       <text>Citation Data Note</text>
       <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000004100000041" change="1" id="N0034" type="Source text">
+    <note handle="_0000004100000041" change="1" id="N0035" type="Source text">
       <text>A sample text from a source of this family</text>
     </note>
-    <note handle="_0000004200000042" change="979250406" id="N0035" type="Citation">
+    <note handle="_0000004200000042" change="979250406" id="N0036" type="Citation">
       <text>A note this citation is on the FAMILY record.</text>
       <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000004400000044" change="1" id="N0036" type="GEDCOM import">
+    <note handle="_0000004400000044" change="1" id="N0037" type="GEDCOM import">
       <text>Records not imported into FAM (family) Gramps ID F0001:
 
 Line ignored as not understood                                      Line   183: 2 TEST Family Note
@@ -482,41 +492,44 @@ Empty note ignored                                                  Line   187: 
 Skipped subordinate line                                            Line   188: 2 TEST Empty Note
 Line ignored as not understood                                      Line   190: 2 TEST citation
 Line ignored as not understood                                      Line   194: 3 TEST Citation Data
-Line ignored as not understood                                      Line   196: 4 TEST Citation Data Note</text>
+Line ignored as not understood                                      Line   196: 4 TEST Citation Data Note
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="645"/>
       </style>
     </note>
-    <note handle="_0000004600000046" change="979250406" id="N0037" type="Repository Reference Note">
+    <note handle="_0000004600000046" change="979250406" id="N0038" type="Repository Reference Note">
       <text>A short note about the repository link.</text>
       <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000004700000047" change="979250406" id="N0038" type="Source Note">
+    <note handle="_0000004700000047" change="979250406" id="N0039" type="Source Note">
       <text>note embedded in the SOURCE Record</text>
       <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000004800000048" change="1" id="N0039" type="GEDCOM import">
+    <note handle="_0000004800000048" change="1" id="N0040" type="GEDCOM import">
       <text>Records not imported into SOUR (source) Gramps ID S0001:
 
 Line ignored as not understood                                      Line   206: 1 TEST source
 Empty note ignored                                                  Line   208: 2 NOTE 
 Skipped subordinate line                                            Line   209: 3 TEST Empty Note
 Empty note ignored                                                  Line   214: 1 NOTE 
-Skipped subordinate line                                            Line   215: 2 TEST Empty Note</text>
+Skipped subordinate line                                            Line   215: 2 TEST Empty Note
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="524"/>
       </style>
     </note>
-    <note handle="_0000004900000049" change="1" id="N0040" type="Repository Note">
+    <note handle="_0000004900000049" change="1" id="N0041" type="Repository Note">
       <text>Repository Note</text>
       <tagref hlink="_0000000500000005"/>
     </note>
-    <note handle="_0000004a0000004a" change="1" id="N0041" type="GEDCOM import">
+    <note handle="_0000004a0000004a" change="1" id="N0042" type="GEDCOM import">
       <text>Records not imported into REPO (repository) Gramps ID R0002:
 
 Line ignored as not understood                                      Line   223: 1 TEST Repo
 Empty note ignored                                                  Line   224: 1 NOTE 
-Skipped subordinate line                                            Line   225: 2 TEST Empty Note</text>
+Skipped subordinate line                                            Line   225: 2 TEST Empty Note
+</text>
       <style name="fontface" value="Monospace">
         <range start="0" end="340"/>
       </style>

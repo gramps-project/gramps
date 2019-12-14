@@ -273,7 +273,7 @@ class SourcePages(BasePage):
                         tbody += trow
 
             # Source notes
-            notelist = self.display_note_list(source.get_note_list())
+            notelist = self.display_note_list(source.get_note_list(), Source)
             if notelist is not None:
                 sourcedetail += notelist
 

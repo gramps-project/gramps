@@ -271,7 +271,7 @@ class RepositoryPages(BasePage):
                 repositorydetail += urllist
 
             # reposity: notelist
-            notelist = self.display_note_list(repo.get_note_list())
+            notelist = self.display_note_list(repo.get_note_list(), Repository)
             if notelist is not None:
                 repositorydetail += notelist
 

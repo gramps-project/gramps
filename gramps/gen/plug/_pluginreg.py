@@ -193,7 +193,7 @@ class PluginData:
 
     .. attribute:: id
        A unique identifier for the plugin. This is eg used to store the plugin
-       settings.
+       settings.  MUST be in ASCII, with only "_- ().,'" special characters.
     .. attribute:: name
        A friendly name to call this plugin (normally translated)
     .. attribute:: name_accell

@@ -528,7 +528,7 @@ RELATION_TYPES = (
 PEDIGREE_TYPES = {
     'birth'  : ChildRefType(),
     'natural': ChildRefType(),
-    'step'   : TYPE_ADOPT,
+    'step'   : ChildRefType(ChildRefType.STEPCHILD),
     'adopted': TYPE_ADOPT,
     'foster' : TYPE_FOSTER, }
 
@@ -1128,6 +1128,7 @@ class GedLine:
         Converts the data field to a Date object
         """
         self.data = self.__extract_date(self.data)
+        self.token = TOKEN_DATE
 
     def calc_unknown(self):
         """
@@ -2062,7 +2063,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_RFN   : self.__person_attr,
             # +1 REFN <USER_REFERENCE_NUMBER> {0:M}
             # +2 TYPE <USER_REFERENCE_TYPE> {0:1}
-            TOKEN_REFN  : self.__person_attr,
+            TOKEN_REFN  : self.__person_refn,
             # TYPE should be below REFN, but will work here anyway
             TOKEN_TYPE  : self.__person_attr,
             # +1 RIN <AUTOMATED_RECORD_ID> {0:1}
@@ -2225,8 +2226,12 @@ class GedcomParser(UpdateCallback):
 
         self.famc_parse_tbl = {
             # n FAMC @<XREF:FAM>@ {1:1}
-            # +1 PEDI <PEDIGREE_LINKAGE_TYPE> {0:M} p.*
+            # +1 PEDI <PEDIGREE_LINKAGE_TYPE> {0:1} p.*
             TOKEN_PEDI   : self.__person_famc_pedi,
+            # +1 _FREL <Father PEDIGREE_LINKAGE_TYPE> {0:1}  non-standard
+            TOKEN__FREL  : self.__person_famc_frel,
+            # +1 _MREL <Mother PEDIGREE_LINKAGE_TYPE> {0:1}  non-standard
+            TOKEN__MREL  : self.__person_famc_mrel,
             # +1 <<NOTE_STRUCTURE>> {0:M} p.*
             TOKEN_NOTE   : self.__person_famc_note,
             TOKEN_RNOTE  : self.__person_famc_note,
@@ -2374,7 +2379,7 @@ class GedcomParser(UpdateCallback):
             TOKEN_NOTE   : self.__family_note,
             TOKEN_RNOTE  : self.__family_note,
             # +1 REFN <USER_REFERENCE_NUMBER>  {0:M}
-            TOKEN_REFN   : self.__family_cust_attr,
+            TOKEN_REFN   : self.__family_refn,
             # TYPE should be below REFN, but will work here anyway
             TOKEN_TYPE   : self.__family_cust_attr,
             # +1 RIN <AUTOMATED_RECORD_ID>  {0:1}
@@ -3672,6 +3677,15 @@ class GedcomParser(UpdateCallback):
         citation_handle = self.handle_source(line, state.level, state)
         state.person.add_citation(citation_handle)
 
+    def __person_refn(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.__do_refn(line, state, state.person)
+
     def __person_attr(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -4318,11 +4332,12 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
+        spfx = line.data.strip().split(", ")[0]
         if state.name.get_surname_list():
-            state.name.get_surname_list()[0].set_prefix(line.data.strip())
+            state.name.get_surname_list()[0].set_prefix(spfx)
         else:
             surn = Surname()
-            surn.set_prefix(line.data.strip())
+            surn.set_prefix(spfx)
             surn.set_primary()
             state.name.set_surname_list([surn])
         self.__skip_subordinate_levels(state.level + 1, state)
@@ -4334,13 +4349,17 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        if state.name.get_surname_list():
-            state.name.get_surname_list()[0].set_surname(line.data.strip())
-        else:
-            surn = Surname()
-            surn.set_surname(line.data.strip())
-            surn.set_primary()
-            state.name.set_surname_list([surn])
+        names = line.data.strip().split(", ")
+        overwrite = bool(state.name.get_surname_list())
+        for name in names:
+            if overwrite:
+                state.name.get_surname_list()[0].set_surname(name)
+                overwrite = False
+            else:
+                surn = Surname()
+                surn.set_surname(name)
+                surn.set_primary(primary=not state.name.get_surname_list())
+                state.name.get_surname_list().append(surn)
         self.__skip_subordinate_levels(state.level + 1, state)
 
     def __name_marnm(self, line, state):
@@ -4702,7 +4721,9 @@ class GedcomParser(UpdateCallback):
         person is a child of.
 
         n FAMC @<XREF:FAM>@ {1:1}
-        +1 PEDI <PEDIGREE_LINKAGE_TYPE> {0:M} p.*
+        +1 PEDI <PEDIGREE_LINKAGE_TYPE> {0:1} p.*
+        +1 _FREL <Father relationship type> {0:1}   non-standard Extension
+        +1 _MREL <Mother relationship type> {0:1}   non-standard Extension
         +1 <<NOTE_STRUCTURE>> {0:M} p.*
 
         @param line: The current line in GedLine format
@@ -4729,15 +4750,9 @@ class GedcomParser(UpdateCallback):
         # if the handle is not already in the person's parent family list, we
         # need to add it to thie list.
 
-        flist = [fam[0] for fam in
-                 state.person.get_parent_family_handle_list()]
+        flist = state.person.get_parent_family_handle_list()
         if handle not in flist:
-            if sub_state.ftype and int(sub_state.ftype) in RELATION_TYPES:
-                state.person.add_parent_family_handle(handle)
-            else:
-                if state.person.get_main_parents_family_handle() == handle:
-                    state.person.set_main_parent_family_handle(None)
-                state.person.add_parent_family_handle(handle)
+            state.person.add_parent_family_handle(handle)
 
             # search childrefs
             family, _new = self.dbase.find_family_from_handle(handle,
@@ -4746,17 +4761,19 @@ class GedcomParser(UpdateCallback):
 
             for ref in family.get_child_ref_list():
                 if ref.ref == state.person.handle:
-                    if sub_state.ftype:
-                        ref.set_mother_relation(sub_state.ftype)
-                        ref.set_father_relation(sub_state.ftype)
                     break
             else:
                 ref = ChildRef()
                 ref.ref = state.person.handle
-                if sub_state.ftype:
-                    ref.set_mother_relation(sub_state.ftype)
-                    ref.set_father_relation(sub_state.ftype)
                 family.add_child_ref(ref)
+            if sub_state.ftype:
+                ref.set_mother_relation(sub_state.ftype)
+                ref.set_father_relation(sub_state.ftype)
+            else:
+                if sub_state.frel:
+                    ref.set_father_relation(sub_state.frel)
+                if sub_state.mrel:
+                    ref.set_mother_relation(sub_state.mrel)
             self.dbase.commit_family(family, self.trans)
 
     def __person_famc_pedi(self, line, state):
@@ -4774,6 +4791,40 @@ class GedcomParser(UpdateCallback):
         """
         state.ftype = PEDIGREE_TYPES.get(line.data.lower(),
                                          ChildRefType.UNKNOWN)
+
+    def __person_famc_frel(self, line, state):
+        """
+        Parses the _FREL tag attached to a INDI.FAMC record. No values are set
+        at this point, because we have to do some post processing. Instead, we
+        assign the frel field of the state variable. We convert the text from
+        the line to an index into the PEDIGREE_TYPES dictionary, which will map
+        to the correct ChildTypeRef.
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.frel = PEDIGREE_TYPES.get(line.data.lower().strip(), None)
+        if state.frel is None:
+            state.frel = ChildRefType(line.data.capitalize().strip())
+
+    def __person_famc_mrel(self, line, state):
+        """
+        Parses the _MREL tag attached to a INDI.FAMC record. No values are set
+        at this point, because we have to do some post processing. Instead, we
+        assign the mrel field of the state variable. We convert the text from
+        the line to an index into the PEDIGREE_TYPES dictionary, which will map
+        to the correct ChildTypeRef.
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.mrel = PEDIGREE_TYPES.get(line.data.lower().strip(), None)
+        if state.mrel is None:
+            state.mrel = ChildRefType(line.data.capitalize().strip())
 
     def __person_famc_note(self, line, state):
         """
@@ -5075,7 +5126,7 @@ class GedcomParser(UpdateCallback):
         event.set_type(cust_type)
         # in case a description ever shows up
         if line.data and line.data != 'Y':
-            event.set_description(line.data)
+            event.set_description(str(line.data))
         self.dbase.add_event(event, self.trans)
 
         sub_state = CurrentState()
@@ -5263,6 +5314,15 @@ class GedcomParser(UpdateCallback):
         self.__parse_level(sub_state, self.person_attr_parse_tbl,
                            self.__ignore)
         state.msg += sub_state.msg
+
+    def __family_refn(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.__do_refn(line, state, state.family)
 
     def __family_cust_attr(self, line, state):
         """
@@ -6066,8 +6126,6 @@ class GedcomParser(UpdateCallback):
                 int(sub_state.frel) == ChildRefType.BIRTH):
             sub_state.mrel = sub_state.frel = TYPE_ADOPT
 
-        if state.person.get_main_parents_family_handle() == handle:
-            state.person.set_main_parent_family_handle(None)
         state.person.add_parent_family_handle(handle)
 
         reflist = [ref for ref in family.get_child_ref_list()
@@ -6108,8 +6166,6 @@ class GedcomParser(UpdateCallback):
         """
         handle = self.__find_family_handle(self.fid_map[line.data])
 
-        if state.person.get_main_parents_family_handle() == handle:
-            state.person.set_main_parent_family_handle(None)
         state.person.add_parent_family_handle(handle)
 
         frel = mrel = ChildRefType.BIRTH
@@ -6464,6 +6520,7 @@ class GedcomParser(UpdateCallback):
         sattr.set_type(line.token_text)
         sattr.set_value(line.data)
         state.source.add_attribute(sattr)
+        self.__skip_subordinate_levels(state.level + 1, state)
 
     def __source_object(self, line, state):
         """
@@ -6813,19 +6870,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        attr = Attribute()
-        attr.set_type(line.token_text)          # Atrribute : REFN
-        attr.set_value(line.data)
-        # if there is a subsequent TYPE, we add it as a note to the attribute
-        line = self.__chk_subordinate(state.level + 1, state, TOKEN_TYPE)
-        if line:
-            new_note = Note(line.data)
-            new_note.set_gramps_id(self.nid_map[""])
-            new_note.set_handle(create_id())
-            new_note.set_type('REFN-TYPE')
-            self.dbase.commit_note(new_note, self.trans, new_note.change)
-            attr.add_note(new_note.get_handle())
-        state.media.attribute_list.append(attr)
+        self.__do_refn(line, state, state.media)
 
     def __obje_type(self, line, state):
         """
@@ -7796,6 +7841,29 @@ class GedcomParser(UpdateCallback):
                 # library; for Unix, it is typically in 2038." If the time is
                 # too far in the future, this gives OverflowError.
                 pass
+
+    def __do_refn(self, line, state, obj):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        @param obj: The object to attach the attribute
+        @type obj: Gramps primary object
+        """
+        attr = Attribute()
+        attr.set_type(line.token_text)          # Atrribute : REFN
+        attr.set_value(line.data)
+        # if there is a subsequent TYPE, we add it as a note to the attribute
+        line = self.__chk_subordinate(state.level + 1, state, TOKEN_TYPE)
+        if line:
+            new_note = Note(line.data)
+            new_note.set_gramps_id(self.nid_map[""])
+            new_note.set_handle(create_id())
+            new_note.set_type('REFN-TYPE')
+            self.dbase.commit_note(new_note, self.trans, new_note.change)
+            attr.add_note(new_note.get_handle())
+        obj.attribute_list.append(attr)
 
     def __build_event_pair(self, state, event_type, event_map, description):
         """

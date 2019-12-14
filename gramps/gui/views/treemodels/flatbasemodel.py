@@ -397,9 +397,9 @@ class FlatNodeMap:
             self.__corr = (len(self._index2hndl) - 1, -1)
         return Gtk.TreePath((self.real_path(insert_pos),))
 
-    def delete(self, srtkey_hndl):
+    def delete(self, handle):
         """
-        Delete the row with the given (sortkey, handle).
+        Delete the row with the given (handle).
         This then rebuilds the hndl2index, subtracting one from each item
         greater than the deleted index.
         path of deleted row is returned
@@ -412,14 +412,11 @@ class FlatNodeMap:
         """
         #remove it from the full list first
         if not self._identical:
-            del_pos = bisect.bisect_left(self._fullhndl, srtkey_hndl)
-            #check that indeed this is correct:
-            if not self._fullhndl[del_pos][1] == srtkey_hndl[1]:
-                raise KeyError('Handle %s not in list of all handles' %  \
-                                                srtkey_hndl[1])
-            del self._fullhndl[del_pos]
+            for indx in range(len(self._fullhndl)):
+                if self._fullhndl[indx][1] == handle:
+                    del self._fullhndl[indx]
+                    break
         #now remove it from the index maps
-        handle = srtkey_hndl[1]
         try:
             index = self._hndl2index[handle]
         except KeyError:
@@ -432,9 +429,10 @@ class FlatNodeMap:
         if self._reverse:
             self.__corr = (len(self._index2hndl) - 1, -1)
         #update the handle2path map so it remains correct
-        for srt_key,hndl in self._index2hndl[index:]:
+        for dummy_srt_key, hndl in self._index2hndl[index:]:
             self._hndl2index[hndl] -= 1
         return Gtk.TreePath((delpath,))
+
 
 #-------------------------------------------------------------------------
 #
@@ -659,14 +657,10 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel, BaseModel):
         """
         Delete a row, called after the object with handle is deleted
         """
-        assert isinstance(handle, str)
-        if self.node_map.get_path_from_handle(handle) is None:
-            return # row is not currently displayed
-        self.clear_cache(handle)
-        delete_val = (self.node_map.get_sortkey(handle), handle)
-        delete_path = self.node_map.delete(delete_val)
+        delete_path = self.node_map.delete(handle)
         #delete_path is an integer from 0 to n-1
         if delete_path is not None:
+            self.clear_cache(handle)
             self.row_deleted(delete_path)
 
     def update_row_by_handle(self, handle):

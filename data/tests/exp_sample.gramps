@@ -1278,7 +1278,7 @@
       <rel type="Unknown"/>
       <father hlink="_0000000b0000000b"/>
       <mother hlink="_0000002600000026"/>
-      <childref hlink="_0000006f0000006f"/>
+      <childref hlink="_0000006f0000006f" frel="Adopted" mrel="Foster"/>
     </family>
     <family handle="_0000001000000010" change="1198222526" id="F0014">
       <rel type="Unknown"/>

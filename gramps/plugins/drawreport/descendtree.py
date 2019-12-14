@@ -225,7 +225,10 @@ class TitleDPY(DescendantTitleBase):
 
         center = self.database.get_person_from_gramps_id(person_id)
         family2_h = center.get_main_parents_family_handle()
-        family2 = self.database.get_family_from_handle(family2_h)
+        if family2_h:
+            family2 = self.database.get_family_from_handle(family2_h)
+        else:
+            family2 = None
 
         person_list = None
         if family2:
@@ -270,8 +273,11 @@ class TitleDFY(DescendantTitleBase):
 
         parent_list = None
         family_h = person.get_main_parents_family_handle()
-        family = self.database.get_family_from_handle(family_h)
-        if family: #family = fathers parents
+        if family_h:
+            family = self.database.get_family_from_handle(family_h)
+        else:
+            family = None
+        if family:  # family = fathers parents
             father_h = family.get_father_handle()
             mother_h = family.get_mother_handle()
             parent_list = [self.database.get_person_from_handle(handle)
@@ -1814,30 +1820,31 @@ class DescendTreeOptions(MenuReportOptions):
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Normal")
         graph_style.set_fill_color((255, 255, 255))
+        graph_style.set_description(_("The style for the marriage box."))
         default_style.add_draw_style("CG2-fam-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Normal")
         graph_style.set_shadow(1, box_shadow)
         graph_style.set_fill_color((255, 255, 255))
+        graph_style.set_description(_("The style for the spouse box."))
         default_style.add_draw_style("CG2-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Bold")
         graph_style.set_shadow(1, box_shadow)
         graph_style.set_fill_color((255, 255, 255))
+        graph_style.set_description(
+            _("The style for the direct descendant box."))
         default_style.add_draw_style("CG2b-box", graph_style)
 
         graph_style = GraphicsStyle()
         graph_style.set_paragraph_style("CG2-Note")
         graph_style.set_fill_color((255, 255, 255))
+        graph_style.set_description(_("The style for the note box."))
         default_style.add_draw_style("CG2-note-box", graph_style)
 
         graph_style = GraphicsStyle()
+        graph_style.set_description(
+            _("The style for the connection lines and report border."))
         default_style.add_draw_style("CG2-line", graph_style)
-
-#=====================================
-#So do not fear, for I am with you; do not be dismayed,
-#for I am your God.  I will strengthen you and help you;
-#I will uphold you with my righteous right hand.
-#Isaiah 41:10

@@ -31,6 +31,7 @@ GrampletView interface.
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
+from xml.sax.saxutils import escape
 import time
 import os
 import configparser
@@ -49,7 +50,7 @@ from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR, COLON
 from ..editors import EditPerson, EditFamily
 from ..managedwindow import ManagedWindow
 from ..utils import is_right_click, match_primary_mask, get_link_color
-from ..uimanager import ActionGroup
+from ..uimanager import ActionGroup, valid_action_name
 from ..plug import make_gui_option
 from ..plug.quick import run_quick_report_by_name
 from ..display import display_help, display_url
@@ -232,12 +233,11 @@ class GrampletWindow(ManagedWindow):
         self.docked_state = gramplet.gstate
         # Now detach it
         self.gramplet.set_state("detached")
-        ManagedWindow.__init__(self, gramplet.uistate, [],
-                                             self.title)
-        self.set_window(Gtk.Dialog("", gramplet.uistate.window,
-                                   Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                   (_('_Close'), Gtk.ResponseType.CLOSE)),
-                        None, self.title)
+        ManagedWindow.__init__(self, gramplet.uistate, [], self.title)
+        dlg = Gtk.Dialog(transient_for=gramplet.uistate.window,
+                         destroy_with_parent=True)
+        dlg.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
+        self.set_window(dlg, None, self.title)
         cfg_name = gramplet.gname.replace(' ', '').lower() + '-gramplet'
         self.setup_configs('interface.' + cfg_name,
                            gramplet.detached_width, gramplet.detached_height)
@@ -245,7 +245,8 @@ class GrampletWindow(ManagedWindow):
         # add gramplet:
         if self.gramplet.pui:
             self.gramplet.pui.active = True
-        self.gramplet.mainframe.reparent(self.window.vbox)
+        self.gramplet.mainframe.get_parent().remove(self.gramplet.mainframe)
+        self.window.vbox.add(self.gramplet.mainframe)
         self.window.connect('response', self.handle_response)
         self.show()
         # After we show, then we hide:
@@ -309,7 +310,8 @@ class GrampletWindow(ManagedWindow):
         expand = self.gramplet.gstate == "maximized" and self.gramplet.expand
         column = pane.columns[col]
         parent = self.gramplet.pane.get_column_frame(self.gramplet.column)
-        self.gramplet.mainframe.reparent(parent)
+        self.gramplet.mainframe.get_parent().remove(self.gramplet.mainframe)
+        parent.add(self.gramplet.mainframe)
         if self.gramplet.pui:
             self.gramplet.pui.active = self.gramplet.pane.pageview.active
         for gframe in stack:
@@ -971,8 +973,11 @@ class GridGramplet(GuiGramplet):
 
     def set_title(self, new_title, set_override=True):
         # can't do it if already titled that way
-        if self.title == new_title: return True
-        if new_title in self.pane.gramplet_map: return False
+        if self.title == new_title:
+            return True
+        if(new_title in self.pane.gramplet_map or
+           new_title != escape(new_title)):  # avoid XML specific characters
+            return False
         if set_override:
             self.title_override = True
         del self.pane.gramplet_map[self.title]
@@ -1464,21 +1469,22 @@ class GrampletPane(Gtk.ScrolledWindow):
             actions = []
             r_menuitems = ''
             a_menuitems = ''
-            names = [gplug.name for gplug in PLUGMAN.get_reg_gramplets()
-                     if gplug.navtypes == []
-                        or 'Dashboard' in gplug.navtypes]
-            names.sort()
-            for name in names:
-                action_name = name.replace(' ', '-')
-                a_menuitems += menuitem % (action_name, name)
+            plugs = [gplug for gplug in PLUGMAN.get_reg_gramplets() if
+                     gplug.navtypes == [] or 'Dashboard' in gplug.navtypes]
+            plugs.sort(key=lambda x: x.name)
+            for plug in plugs:
+                action_name = valid_action_name(plug.id)
+                a_menuitems += menuitem % (action_name, plug.name)
                 actions.append((action_name,
-                                make_callback(self.add_gramplet, name)))
+                                make_callback(self.add_gramplet, plug.name)))
             names = [gramplet.title for gramplet in self.closed_gramplets]
             names.extend(opts["title"] for opts in self.closed_opts)
             names.sort()
             if len(names) > 0:
                 for name in names:
-                    action_name = name.replace(' ', '-')
+                    # 'name' could be non-ASCII when in non-English language
+                    # action names must be in ASCII, so use 'id' instead.
+                    action_name = valid_action_name(str(id(name)))
                     r_menuitems += menuitem % (action_name, name)
                     actions.append((action_name,
                                     make_callback(self.restore_gramplet,

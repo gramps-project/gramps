@@ -26,7 +26,7 @@
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GdkPixbuf
-from gi.repository import GObject
+from gi.repository import GLib, GObject
 
 #-------------------------------------------------------------------------
 #
@@ -297,7 +297,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
             self.original_image_size = (self.pixbuf.get_width(),
                                         self.pixbuf.get_height())
 
-            viewport_size = self.viewport.get_allocation()
+            viewport_size = self.get_allocation()
             self.old_viewport_size = viewport_size
             self.scale = scale_to_fit(self.pixbuf.get_width(),
                                       self.pixbuf.get_height(),
@@ -305,7 +305,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
                                       viewport_size.height)
             self._rescale()
             self.loaded = True
-        except (GObject.GError, OSError):
+        except (GLib.GError, OSError):
             self.show_missing()
 
     def show_missing(self):
@@ -321,7 +321,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
         Handles size-allocate' events from Gtk.
         """
         if self.pixbuf:
-            viewport_size = self.viewport.get_allocation()
+            viewport_size = self.get_allocation()
             if viewport_size.height != self.old_viewport_size.height or \
                     viewport_size.width != self.old_viewport_size.width or \
                     not self.image.get_pixbuf():
@@ -495,7 +495,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
         Translates image coordinates to viewport coordinates using the current
         scale and viewport size.
         """
-        viewport_rect = self.viewport.get_allocation()
+        viewport_rect = self.get_allocation()
         image_rect = self.scaled_size
         if image_rect[0] < viewport_rect.width:
             offset_x = (image_rect[0] - viewport_rect.width) / 2
@@ -513,7 +513,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
         Translates viewport coordinates to original (unscaled) image coordinates
         using the current scale and viewport size.
         """
-        viewport_rect = self.viewport.get_allocation()
+        viewport_rect = self.get_allocation()
         image_rect = self.scaled_size
         if image_rect[0] < viewport_rect.width:
             offset_x = (image_rect[0] - viewport_rect.width) / 2
@@ -606,7 +606,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
         cr.set_source_rgba(1.0, 1.0, 1.0, SHADING_OPACITY)
         cr.rectangle(offset_x, offset_y, x1 - offset_x, y1 - offset_y)
         cr.rectangle(offset_x, y1, x1 - offset_x, y2 - y1)
-        cr.rectangle(offset_x, y2, x1 - offset_x, h - y2 + offset_y)
+        cr.rectangle(offset_x, y2, x1 - offset_x, h - y2 + offset_y + 1)
         cr.rectangle(x1, y2 + 1, x2 - x1 + 1, h - y2 + offset_y)
         cr.rectangle(x2 + 1, y2 + 1, w - x2 + offset_x, h - y2 + offset_y)
         cr.rectangle(x2 + 1, y1, w - x2 + offset_x, y2 - y1 + 1)
@@ -818,6 +818,11 @@ class SelectionWidget(Gtk.ScrolledWindow):
             self.zoom_in()
         elif event.direction == Gdk.ScrollDirection.DOWN:
             self.zoom_out()
+        elif event.direction == Gdk.ScrollDirection.SMOOTH:
+            if event.delta_y < 0:
+                self.zoom_in()
+            else:
+                self.zoom_out()
 
     # ======================================================
     # helpers for mouse event handlers
