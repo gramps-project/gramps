@@ -764,7 +764,6 @@ class PersonPages(BasePage):
                 (latitude, longitude, placetitle, handle,
                  event) = place_lat_long[index]
                 # Do we have several events for this place?
-                srbufh = self.report.build_url_fname_html
                 if placetitle == old_place_title:
                     evthdle = event.get_handle()
                     bkref_list = self.report.bkref_dict[Event][evthdle]
