@@ -59,6 +59,8 @@ Specific symbols for parts of a name are defined:
 #-------------------------------------------------------------------------
 import re
 import logging
+from functools import cmp_to_key
+
 LOG = logging.getLogger(".gramps.gen")
 
 #-------------------------------------------------------------------------
@@ -495,7 +497,7 @@ class NameDisplay:
         """
         the_list = []
 
-        keys = sorted(self.name_formats, key=self.cmp_to_key(self._sort_name_format))
+        keys = self.sort_by_ascending_positives_followed_by_negatives_in_reverse_order(self.name_formats)
 
         for num in keys:
             if ((also_default or num) and
@@ -505,40 +507,17 @@ class NameDisplay:
 
         return the_list
 
-    def cmp_to_key(self, mycmp):
+    def sort_by_ascending_positives_followed_by_negatives_in_reverse_order(self, iterable):
         """
-        python 2 to 3 conversion, python recipe http://code.activestate.com/recipes/576653/
-        Convert a :func:`cmp` function into a :func:`key` function
-        We use this in Gramps as understanding the old compare function is
-        not trivial. This should be replaced by a proper key function
+        Sorts the iterable with positive keys first,
+        and negative keys last.
+        The positives will be in ascending order and
+        the negatives in the reverse of their original order
+        in the iterable.
+        E.g. [-3, -1, -2, 1, 0, 2, 3] => [0, 1, 2, 3, -2, -1, -3]
         """
-        class K:
-            def __init__(self, obj, *args):
-                self.obj = obj
-            def __lt__(self, other):
-                return mycmp(self.obj, other.obj) < 0
-            def __gt__(self, other):
-                return mycmp(self.obj, other.obj) > 0
-            def __eq__(self, other):
-                return mycmp(self.obj, other.obj) == 0
-            def __le__(self, other):
-                return mycmp(self.obj, other.obj) <= 0
-            def __ge__(self, other):
-                return mycmp(self.obj, other.obj) >= 0
-            def __ne__(self, other):
-                return mycmp(self.obj, other.obj) != 0
-        return K
-    def _sort_name_format(self, x, y):
-        if x < 0:
-            if y < 0:
-                return x+y
-            else:
-                return -x+y
-        else:
-            if y < 0:
-                return -x+y
-            else:
-                return x-y
+        key_function = cmp_to_key(lambda x, y: x - y if x >= 0 and y >= 0 else y)
+        return sorted(iterable, key=key_function)
 
     def _is_format_valid(self, num):
         try:
