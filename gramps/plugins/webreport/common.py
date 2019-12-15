@@ -289,6 +289,7 @@ STAMEN_MARKERS = """
 OPENLAYER = """
     var element = document.getElementById('popup');
     var content = document.getElementById('popup-content');
+    var ptitle = document.getElementById('popup-title');
     var closer = document.getElementById('popup-closer');
     var tip = document.getElementById('tooltip');
     var tipcontent = document.getElementById('tooltip-content');
@@ -314,7 +315,7 @@ OPENLAYER = """
       popup.setPosition(undefined);
       closer.blur();
       return false;
-      };
+    };
     map.on('pointermove', function(evt) {
       evt.preventDefault()
       var feature = this.forEachFeatureAtPixel(evt.pixel,
@@ -323,7 +324,6 @@ OPENLAYER = """
       });
       map.getTargetElement().style.cursor = feature ? 'pointer' : '';
       if (evt.dragging) {
-        popup.setPosition(undefined);
         tooltip.setPosition(undefined);
         return;
       }
@@ -344,10 +344,9 @@ OPENLAYER = """
       if (feature) {
       var coordinate = evt.coordinate;
       var title = '<h2>' + feature.get('name') + '</h2>';
-      content.innerHTML = title + feature.get('data');
+      ptitle.innerHTML = title;
+      content.innerHTML = feature.get('data');
       popup.setPosition(coordinate);
-      } else {
-        popup.setPosition(undefined);
       }
       });
   });

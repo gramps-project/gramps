@@ -975,7 +975,6 @@ table.calendar {
 .calendar td.highlight div.date {
     color: #36220B;
     background-color: #FFC35E;
-    vertical-align: middle;
 }
 
 /* Calendar : Previous-Next Month */
@@ -985,7 +984,6 @@ table.calendar {
 .calendar td.next div.date {
     color: #FFC35E;
     background-color: #FFFBE7;
-    vertical-align: middle;
 }
 
 /* Calendar : Full Year */

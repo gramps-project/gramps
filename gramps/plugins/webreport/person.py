@@ -756,7 +756,6 @@ class PersonPages(BasePage):
         if number_markers > 0:
             tracelife = "["
             seq_ = 0
-
             old_place_title = ""
             links = ""
             ln_str = "<a href='%s' title='%s' target='_self'>%s</a>"
@@ -939,7 +938,10 @@ class PersonPages(BasePage):
                     mapdetail += popup
                     popup += Html("a", href="#", id="popup-closer",
                                   class_="ol-popup-closer")
-                    popup += Html("div", id="popup-content")
+                    popup += Html("div", id="popup-title",
+                                  class_="ol-popup-title")
+                    popup += Html("div", id="popup-content",
+                                  class_="ol-popup-content")
                 with Html("div", id="tooltip", class_="ol-popup",
                           inline=True) as tooltip:
                     mapdetail += tooltip
