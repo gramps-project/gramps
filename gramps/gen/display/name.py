@@ -495,29 +495,32 @@ class NameDisplay:
         """
         Get a list of tuples (num, name,fmt_str,act)
         """
-        the_list = []
 
-        keys = self.sort_by_ascending_positives_followed_by_negatives_in_reverse_order(self.name_formats)
+        formats = [
+            (index, name, format_string, active)
+            for index, (name, format_string, active, *_) in self.name_formats.items()
+            if (also_default or index) and
+               (not only_custom or index < 0) and
+               (not only_active or active)
+        ]
 
-        for num in keys:
-            if ((also_default or num) and
-                (not only_custom or (num < 0)) and
-                (not only_active or self.name_formats[num][_F_ACT])):
-                the_list.append((num,) + self.name_formats[num][_F_NAME:_F_FN])
+        return self.sort_by_ascending_positives_followed_by_negatives_in_reverse_order(formats)
 
-        return the_list
 
-    def sort_by_ascending_positives_followed_by_negatives_in_reverse_order(self, iterable):
+    def sort_by_ascending_positives_followed_by_negatives_in_reverse_order(self, formats):
         """
-        Sorts the iterable with positive keys first,
+        Sorts the formats with positive keys first,
         and negative keys last.
         The positives will be in ascending order and
         the negatives in the reverse of their original order
         in the iterable.
-        E.g. [-3, -1, -2, 1, 0, 2, 3] => [0, 1, 2, 3, -2, -1, -3]
+        E.g. key ordering: -3, -1, -2, 1, 0, 2, 3 => 0, 1, 2, 3, -2, -1, -3
         """
-        key_function = cmp_to_key(lambda x, y: x - y if x >= 0 and y >= 0 else y)
-        return sorted(iterable, key=key_function)
+        def compare_function(t, k):
+            x, y = t[0], k[0]
+            return x - y if x >= 0 and y >= 0 else y
+
+        return sorted(formats, key=cmp_to_key(compare_function))
 
     def _is_format_valid(self, num):
         try:
