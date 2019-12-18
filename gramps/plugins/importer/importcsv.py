@@ -377,6 +377,7 @@ class CSVParser:
             LOG.debug(msg)
             LOG.debug("New Families: %d" % self.fam_count)
             LOG.debug("New Individuals: %d" % self.indi_count)
+            LOG.debug("New Places: %d" % self.place_count)
         return err_msg
 
     def _check_refs(self):
@@ -1073,6 +1074,7 @@ class CSVParser:
         place.set_title(place_name)
         place.name = PlaceName(value=place_name)
         self.db.add_place(place, self.trans)
+        self.place_count += 1
         return (1, place)
 
     def get_or_create_source(self, source_text):
