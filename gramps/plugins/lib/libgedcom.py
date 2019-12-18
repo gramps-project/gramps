@@ -3222,6 +3222,7 @@ class GedcomParser(UpdateCallback):
                         make_unknown(gramps_id, self.explanation.handle,
                                      class_func, commit_func, self.trans,
                                      db=self.dbase)
+                        self.missing_references += 1
                         self.__add_msg(_("Error: %(msg)s  '%(gramps_id)s'"
                                          " (input as @%(xref)s@) not in input"
                                          " GEDCOM. Record synthesised") %
