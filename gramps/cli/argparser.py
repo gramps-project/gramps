@@ -242,24 +242,25 @@ class ArgParser:
         try:
             options, leftargs = getopt.getopt(self.args[1:],
                                               SHORTOPTS, LONGOPTS)
-        except getopt.GetoptError as msg:
+        except getopt.GetoptError as error:
             # Extract the arguments in the list.
+            cli_args = "[ %s ]" % " ".join(self.args[1:])
+
             # The % operator replaces the list elements
             # with repr() of the list elements
             # which is OK for latin characters,
             # but not for non latin characters in list elements
-            cliargs = "[ "
-            for arg in range(len(self.args) - 1):
-                cliargs += self.args[arg + 1] + " "
-            cliargs += "]"
-            # Must first do str() of the msg object.
-            msg = str(msg)
-            self.errors += [(_('Error parsing the arguments'),
-                             msg + '\n' +
-                             _("Error parsing the arguments: %s \n"
-                               "Type gramps --help for an overview of "
-                               "commands, or read the manual pages."
-                              ) % cliargs)]
+            translated_error_message = _(
+                "Error parsing the arguments: %s \n"
+                "Type gramps --help for an overview of "
+                "commands, or read the manual pages."
+            ) % cli_args
+
+            self.errors += [(
+                _('Error parsing the arguments'),
+                str(error) + '\n' + translated_error_message
+            )]
+
             return
 
         # Some args can work on a list of databases:
