@@ -242,24 +242,14 @@ class ArgParser:
         try:
             options, leftargs = getopt.getopt(self.args[1:],
                                               SHORTOPTS, LONGOPTS)
-        except getopt.GetoptError as error:
-            # Extract the arguments in the list.
-            cli_args = "[ %s ]" % " ".join(self.args[1:])
-
-            # The % operator replaces the list elements
-            # with repr() of the list elements
-            # which is OK for latin characters,
-            # but not for non latin characters in list elements
-            translated_error_message = _(
-                "Error parsing the arguments: %s \n"
-                "Type gramps --help for an overview of "
-                "commands, or read the manual pages."
-            ) % cli_args
-
-            self.errors += [(
-                _('Error parsing the arguments'),
-                str(error) + '\n' + translated_error_message
-            )]
+        except getopt.GetoptError as getopt_error:
+            self.errors.append(
+                self.construct_error(
+                    "Type gramps --help for an overview of "
+                    "commands, or read the manual pages.",
+                    error=getopt_error
+                )
+            )
 
             return
 
@@ -460,21 +450,32 @@ class ArgParser:
                          or self.list_more
                          or self.list_table
                          or self.help)):
-            # Extract and convert to unicode the arguments in the list.
-            # The % operator replaces the list elements with repr() of
-            # the list elements, which is OK for latin characters
-            # but not for non-latin characters in list elements
-            cliargs = "[ "
-            for arg in range(len(self.args) - 1):
-                cliargs += self.args[arg + 1] + ' '
-            cliargs += "]"
-            self.errors += [(_('Error parsing the arguments'),
-                             _("Error parsing the arguments: %s \n"
-                               "To use in the command-line mode, supply at "
-                               "least one input file to process."
-                              ) % cliargs)]
+            self.errors.append(
+                self.construct_error(
+                    "To use in the command-line mode, supply at "
+                    "least one input file to process."
+                )
+            )
+
         if need_to_quit:
             sys.exit(0)
+
+    def construct_error(self, suggestion_message, error=None):
+        # Extract the arguments in the list.
+        cli_args = "[ %s ]" % " ".join(self.args[1:])
+
+        # The % operator replaces the list elements
+        # with repr() of the list elements
+        # which is OK for latin characters,
+        # but not for non latin characters in list elements
+        error_message = "Error parsing the arguments: %s \n"
+        translated_message = _(error_message + suggestion_message) % cli_args
+
+        if error:
+            translated_message = str(error) + '\n' + translated_message
+
+        return _('Error parsing the arguments'), translated_message
+
 
     #-------------------------------------------------------------------------
     # Determine the need for GUI
