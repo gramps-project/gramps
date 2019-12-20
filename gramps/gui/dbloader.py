@@ -317,6 +317,13 @@ def add_all_files_filter(chooser):
     mime_filter.add_pattern('*')
     chooser.add_filter(mime_filter)
 
+
+def icase(ext):
+    """
+    Return a glob reresenting a case insensitive file extension.
+    """
+    return ''.join(['[{}{}]'.format(s.lower(), s.upper()) for s in ext])
+
 #-------------------------------------------------------------------------
 #
 # Format selectors: explictly set the format of the file
@@ -446,9 +453,7 @@ class GrampsImportFileDialog(ManagedWindow):
             file_filter = Gtk.FileFilter()
             name = "%s (.%s)" % (plugin.get_name(), plugin.get_extension())
             file_filter.set_name(name)
-            file_filter.add_pattern("*.%s" % plugin.get_extension())
-            file_filter.add_pattern(plugin.get_extension().capitalize())
-            file_filter.add_pattern("*.%s" % plugin.get_extension().upper())
+            file_filter.add_pattern("*.%s" % icase(plugin.get_extension()))
             import_dialog.add_filter(file_filter)
 
         (box, type_selector) = format_maker()
