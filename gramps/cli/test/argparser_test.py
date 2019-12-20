@@ -41,9 +41,21 @@ class TestArgParser(unittest.TestCase):
         assert bad, ap.__dict__
 
     def test_y_shortopt_sets_auto_accept(self):
-        bad,ap = self.triggers_option_error('-y')
-        assert not bad, ap.errors
-        assert ap.auto_accept
+        bad, ap = self.triggers_option_error('-y')
+
+        self.assertFalse(bad)
+
+        expected_errors = [(
+            'Error parsing the arguments',
+            'Error parsing the arguments: [ -y ] \n' +
+            'To use in the command-line mode, supply at least one input file to process.'
+        )]
+        self.assertEqual(
+            expected_errors,
+            ap.errors
+        )
+
+        self.assertTrue(ap.auto_accept)
 
     def test_yes_longopt_sets_auto_accept(self):
         bad,ap = self.triggers_option_error('--yes')
