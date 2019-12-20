@@ -68,5 +68,20 @@ class TestArgParser(unittest.TestCase):
         ap = self.create_parser()
         assert not ap.auto_accept
 
+    def test_exception(self):
+        argument_parser = self.create_parser("-O")
+
+        expected_errors = [(
+            'Error parsing the arguments',
+            'option -O requires argument\n'
+            'Error parsing the arguments: [ -O ] \n'
+            'Type gramps --help for an overview of commands, or read the manual pages.'
+        )]
+        self.assertEqual(
+            expected_errors,
+            argument_parser.errors
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
