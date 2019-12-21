@@ -147,6 +147,15 @@ class OsmGps:
         """
         Change the current map
         """
+        if map_type == constants.PERSONAL:
+            map_source = config.get('geography.personal-map')
+            if map_source == "":
+                return
+            name = constants.TILES_PATH[map_type]
+            self.change_new_map(name, map_source)
+            config.set("geography.map_service", map_type)
+            self.current_map = map_type
+            return
         if obj is not None:
             self.osm.layer_remove_all()
             self.osm.image_remove_all()
@@ -277,8 +286,12 @@ class OsmGps:
         pt2 = bbox[1]
         self.zoom = config.get("geography.zoom")
         tile_size = float(256)
-        # get the file extension depending on the map provider
-        img_format = self.osm.source_get_image_format(map_idx)
+        if map_idx != constants.PERSONAL:
+            # get the file extension depending on the map provider
+            img_format = self.osm.source_get_image_format(map_idx)
+        else:
+            filename = config.get("geography.personal-map")
+            img_format = os.path.splitext(filename)[1]
         # calculate the number of images to download in rows and columns
         pt1_x = floor(lon2pixel(self.zoom, pt1.rlon, tile_size) / tile_size)
         pt1_y = floor(lat2pixel(self.zoom, pt1.rlat, tile_size) / tile_size)

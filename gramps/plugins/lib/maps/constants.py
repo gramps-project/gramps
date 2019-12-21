@@ -64,6 +64,7 @@ VIRTUAL_EARTH_HYBRID = 13
 YAHOO_STREET = 14
 YAHOO_SATELLITE = 15
 YAHOO_HYBRID = 16
+PERSONAL = 30
 
 TILES_PATH = {
     OPENSTREETMAP           : "openstreetmap",
@@ -82,6 +83,7 @@ TILES_PATH = {
     YAHOO_STREET            : "yahoostreet",
     YAHOO_SATELLITE         : "yahoosat",
     YAHOO_HYBRID            : "yahoohybrid",
+    PERSONAL                : "personal",
 }
 
 MAP_TITLE = {
@@ -101,6 +103,7 @@ MAP_TITLE = {
     YAHOO_STREET            : "Yahoo street",
     YAHOO_SATELLITE         : "Yahoo sat",
     YAHOO_HYBRID            : "Yahoo hybrid",
+    PERSONAL                : "Personal map",
 }
 
 MAP_TYPE = {
@@ -114,5 +117,6 @@ MAP_TYPE = {
     VIRTUAL_EARTH_STREET    : osmgpsmap.MapSource_t.VIRTUAL_EARTH_STREET,
     VIRTUAL_EARTH_SATELLITE : osmgpsmap.MapSource_t.VIRTUAL_EARTH_SATELLITE,
     VIRTUAL_EARTH_HYBRID    : osmgpsmap.MapSource_t.VIRTUAL_EARTH_HYBRID,
+    PERSONAL                : None,
 }
 

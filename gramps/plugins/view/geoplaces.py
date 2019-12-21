@@ -176,6 +176,7 @@ class GeoPlaces(GeoGraphyView):
         ('geography.map_service', constants.OPENSTREETMAP),
         ('geography.max_places', 5000),
         ('geography.use-keypad', True),
+        ('geography.personal-map', ""),
 
         # specific to geoplaces :
 
