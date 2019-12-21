@@ -184,7 +184,7 @@ class CairoDocgen(libcairodoc.CairoDoc):
                     body_pages = body_pages[:index_page] + index_pages + \
                                  body_pages[index_page+1:]
                 self._pages = body_pages
-                for page_nr in range(len(self._pages)):
+                for page_nr in enumerate(self._pages):
                     cr.save()
                     cr.translate(left_margin, top_margin)
                     self.draw_page(page_nr, cr, layout,

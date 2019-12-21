@@ -497,7 +497,7 @@ class OptionListCollection(_options.OptionListCollection):
                                % (size[0], size[1]))
                 if option_list.get_margins():
                     margins = option_list.get_margins()
-                    for pos in range(len(margins)):
+                    for pos in enumerate(margins):
                         file.write('  <margin number="%s" value="%f"/>\n'
                                    % (pos, margins[pos]))
 

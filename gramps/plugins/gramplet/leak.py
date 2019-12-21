@@ -144,8 +144,8 @@ class Leak(Gramplet):
                 try:
                     if referrer is not self.junk:
                         match = "**** "
-                        for indx in range(len(self.junk)):
-                            if referrer is self.junk[indx]:
+                        for indx, junk in enumerate(self.junk):
+                            if referrer is junk:
                                 match = str(indx) + ": "
                                 break
                         match += str(referrer) + '\n'
@@ -167,8 +167,8 @@ class Leak(Gramplet):
                 match = ""
                 try:
                     match = "****: "
-                    for indx in range(len(self.junk)):
-                        if referent is self.junk[indx]:
+                    for indx, junk in enumerate(self.junk):
+                        if referent is junk:
                             match = str(indx) + ': '
                             break
                     match += str(referent) + '\n'

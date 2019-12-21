@@ -53,8 +53,8 @@ class ParamFilter(GenericFilter):
             # Need to change existing params one by one to keep
             # the correct number of arguments
             new_list = rule.list[:]
-            for ix in range(len(self.param_list)):
-                new_list[ix] = self.param_list[ix]
+            for index, param in enumerate(self.param_list):
+                new_list[index] = param
             rule.set_list(new_list)
         for rule in self.flist:
             if rule.nrprepare > 0:

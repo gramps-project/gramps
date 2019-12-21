@@ -1066,8 +1066,8 @@ class MakeReport:
     def __reverse_family_group(self):
         """ go through the n-1 to 0 cols of boxes looking for families
         (parents with children) that may need to be moved. """
-        for x_col in range(len(self.cols)-1, -1, -1):
-            box = self.cols[x_col][0]   #The first person in this col
+        for col in reversed(self.cols):
+            box = col[0]   #The first person in this col
             while box:
                 left_group, right_group = self.__next_family_group(box)
                 if not left_group:

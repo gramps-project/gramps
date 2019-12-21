@@ -516,10 +516,9 @@ class BookList:
                                       'length="%d">\n' % (
                                           escape(option_name),
                                           len(options[option_name])))
-                            for list_index in range(len(option_value)):
-                                option_type = type_name(
-                                    option_value[list_index])
-                                value = escape(str(option_value[list_index]))
+                            for list_index, v in enumerate(option_value):
+                                option_type = type_name(v)
+                                value = escape(str(v))
                                 value = value.replace('"', '&quot;')
                                 b_f.write('        <listitem number="%d" '
                                           'type="%s" value="%s"/>\n' % (
@@ -557,7 +556,7 @@ class BookList:
                     b_f.write('    <size value="%f %f"/>'
                               '\n' % (size[0], size[1]))
                 if book.get_margins():
-                    for pos in range(len(book.get_margins())):
+                    for pos in enumerate(book.get_margins()):
                         b_f.write('    <margin number="%s" '
                                   'value="%f"/>\n' % (
                                       pos, book.get_margin(pos)))

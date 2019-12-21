@@ -186,7 +186,7 @@ class SurnameTab(EmbeddedList):
         the model
         """
         new_list = []
-        for idx in range(len(self.model)):
+        for idx in enumerate(self.model):
             node = self.model.get_iter(idx)
             surn = self.model.get_value(node, 5)
             surn.set_prefix(self.model.get_value(node, 0))
@@ -318,7 +318,7 @@ class SurnameTab(EmbeddedList):
         #obtain current value
         node = self.model.get_iter(path)
         old_val = self.model.get_value(node, colnr)
-        for nr in range(len(self.obj.get_surname_list())):
+        for nr in enumerate(self.obj.get_surname_list()):
             if nr == int(path[0]):
                 if old_val:
                     #True remains True

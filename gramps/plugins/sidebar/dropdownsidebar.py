@@ -92,15 +92,15 @@ class DropdownSidebar(BaseSidebar):
         """
         Block signals to the buttons to prevent spurious events.
         """
-        for idx in range(len(self.buttons)):
-            self.buttons[idx].handler_block(self.button_handlers[idx])
+        for idx, button in enumerate(self.buttons):
+            button.handler_block(self.button_handlers[idx])
 
     def __handlers_unblock(self):
         """
         Unblock signals to the buttons.
         """
-        for idx in range(len(self.buttons)):
-            self.buttons[idx].handler_unblock(self.button_handlers[idx])
+        for idx, button in enumerate(self.buttons):
+            button.handler_unblock(self.button_handlers[idx])
 
     def cb_view_clicked(self, radioaction, current, cat_num):
         """

@@ -255,8 +255,7 @@ class ArgParser:
 
         # Some args can work on a list of databases:
         if leftargs:
-            for opt_ix in range(len(options)):
-                option, value = options[opt_ix]
+            for option, value in options:
                 if option in ['-L', '-l', '-t']:
                     self.database_names = leftargs
                     leftargs = []
@@ -269,8 +268,7 @@ class ArgParser:
                    ) % leftargs[0],
                   file=sys.stderr)
             #see if force open is on
-            for opt_ix in range(len(options)):
-                option, value = options[opt_ix]
+            for option, value in options:
                 if option in ('-u', '--force-unlock'):
                     self.force_unlock = True
                     break
@@ -279,8 +277,7 @@ class ArgParser:
         # Go over all given option and place them into appropriate lists
         cleandbg = []
         need_to_quit = False
-        for opt_ix in range(len(options)):
-            option, value = options[opt_ix]
+        for opt_ix, (option, value) in enumerate(options):
             if option in ['-O', '--open']:
                 self.open = value
             elif option in ['-C', '--create']:
@@ -345,10 +342,9 @@ class ArgParser:
                 from gramps.gen.config import config
                 print(_("Gramps config settings from %s:"
                        ) % config.filename)
-                for sect in config.data:
-                    for setting in config.data[sect]:
-                        print("%s.%s=%s" % (sect, setting,
-                                            repr(config.data[sect][setting])))
+                for sect, settings in config.data.items():
+                    for setting, value in settings.items():
+                        print("%s.%s=%s" % (sect, setting, repr(value)))
                     print()
                 sys.exit(0)
             elif option in ['-c', '--config']:
@@ -438,8 +434,7 @@ class ArgParser:
                 sys.exit(0)  # Done with Default
 
         #clean options list
-        cleandbg.reverse()
-        for ind in cleandbg:
+        for ind in reversed(cleandbg):
             del options[ind]
 
         if (len(options) > 0

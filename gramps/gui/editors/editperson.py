@@ -988,8 +988,7 @@ class EditPerson(EditPrimary):
         inorder = True
         prev_date = 0
         handle_list = [ref.ref for ref in child_ref_list]
-        for i in range(len(handle_list)):
-            child_handle = handle_list[i]
+        for child_handle in handle_list:
             child = self.db.get_person_from_handle(child_handle)
             if child.get_birth_ref():
                 event_handle = child.get_birth_ref().ref

@@ -114,7 +114,7 @@ class ShortlistComboEntry(ValidatedComboEntry):
 
             # remove the existing shortlist from the model
             iter = model.get_iter_first()
-            for n in range(len(self._shortlist)):
+            for n in self._shortlist:
                 model.remove(iter)
 
             # update shortlist

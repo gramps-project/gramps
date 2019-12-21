@@ -70,7 +70,7 @@ class SimpleTable:
         Set the columns
         """
         self._columns = [str(col) for col in cols]
-        self._sort_vals = [[] for i in range(len(self._columns))]
+        self._sort_vals = [[] for i in self._columns]
 
     def row_sort_val(self, col, val):
         """
@@ -93,8 +93,7 @@ class SimpleTable:
         retval = []
         row = len(self._rows)
         self._raw_data.append([])
-        for col in range(len(data)):
-            item = data[col]
+        for col, item in enumerate(data):
             self._raw_data[-1].append(item)
             # FIXME: add better text representations of these objects
             if item is None:

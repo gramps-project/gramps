@@ -101,8 +101,8 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     def get_direct_ancestor(self, person, rel_string):
         result = []
-        for ix in range(len(rel_string)):
-            if rel_string[ix] == 'f':
+        for rel in rel_string:
+            if rel == 'f':
                 result.append('far')
             else:
                 result.append('mor')

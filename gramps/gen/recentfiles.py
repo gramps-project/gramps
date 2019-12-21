@@ -151,45 +151,25 @@ class RecentFiles:
         """
         Rename a file in the recent files list.
         """
-        # First we need to walk the existing items to see
-        # if our item is already there
-        found = False
-        for index in range(len(self.gramps_recent_files)):
-            if self.gramps_recent_files[index].get_name() == filename:
-                # Found it -- break here and change that item
-                found = True
+        for recent_file in self.gramps_recent_files:
+            if recent_file.get_name() == filename:
+                recent_file.set_name(new_filename)
                 break
-        if found:
-            self.gramps_recent_files[index].set_name(new_filename)
 
     def remove_filename(self, filename):
         """
         Remove a file from the recent files list.
         """
-        # First we need to walk the existing items to see
-        # if our item is already there
-        found = False
-        for index in range(len(self.gramps_recent_files)):
-            if self.gramps_recent_files[index].get_name() == filename:
-                # Found it -- break here and pop that item
-                found = True
+        for index, recent_file in enumerate(self.gramps_recent_files):
+            if recent_file.get_name() == filename:
+                self.gramps_recent_files.pop(index)
                 break
-        if found:
-            self.gramps_recent_files.pop(index)
 
     def check_if_recent(self, filename):
         """
         Check if a file is present in the recent files list.
         """
-        # First we need to walk the existing items to see
-        # if our item is already there
-        found = False
-        for index in range(len(self.gramps_recent_files)):
-            if self.gramps_recent_files[index].get_name() == filename:
-                # Found it -- break here and pop that item
-                found = True
-                break
-        return found
+        return any(filename == recent_file.get_name() for recent_file in self.gramps_recent_files)
 
     def save(self):
         """
@@ -213,9 +193,7 @@ class RecentFiles:
                 fcntl.lockf(xml_file, fcntl.LOCK_EX)
             xml_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
             xml_file.write('<RecentFiles>\n')
-            index = 0
-            for item in self.gramps_recent_files:
-                index += 1
+            for index, item in enumerate(self.gramps_recent_files):
                 if index > MAX_GRAMPS_ITEMS:
                     break
                 xml_file.write('  <RecentItem>\n')
