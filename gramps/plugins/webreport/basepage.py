@@ -2761,7 +2761,7 @@ class BasePage: # pylint: disable=C1001
             Sort by enclosed by
             """
             place_name = ""
-            parent_place = self.r_db.get_place_from_handle(placeref.ref)
+            parent_place = self.r_db.get_place_from_handle(obj.ref)
             if parent_place:
                 place_name = parent_place.get_name().get_value()
             return place_name
@@ -2772,8 +2772,8 @@ class BasePage: # pylint: disable=C1001
             """
             return obj[0]
 
-        for placeref in sorted(place.get_placeref_list(), key=lambda x:
-                               sort_by_enclosed_by(x)):
+        for placeref in sorted(place.get_placeref_list(),
+                               key=sort_by_enclosed_by):
             parent_place = self.r_db.get_place_from_handle(placeref.ref)
             if parent_place:
                 place_name = parent_place.get_name().get_value()
@@ -2799,7 +2799,6 @@ class BasePage: # pylint: disable=C1001
         for link in self.r_db.find_backlink_handles(
                 place.handle, include_classes=['Place']):
             child_place = self.r_db.get_place_from_handle(link[1])
-            plce_name = place.get_name().get_value()
             placeref = None
             for placeref in child_place.get_placeref_list():
                 if placeref.ref == place.handle:
