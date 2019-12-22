@@ -1269,26 +1269,26 @@ class GeoGraphyView(OsmGps, NavigationView):
                                     'from the keyboard.'),
                                   5, 'geography.use-keypad',
                                   extra_callback=self.update_shortcuts)
-        label = configdialog.add_text(grid,
-                              _('If you want to use a specific map provider,'
-                                ' You can set the following field to the'
-                                ' provider\'s url.\ni.e:\n'
-                                'http://tile.stamen.com/toner/#Z/#X/#Y.png\n'
-                                'http://tile.stamen.com/terrain/#Z/#X/#Y.jpg\n'
-                                'http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg'
-                                '\nhttp://tile.xn--pnvkarte-m4a.de/tilegen/#Z/'
-                                '#X/#Y.png\n',
-                                ),
-                              6, line_wrap=False)
+        label = configdialog.add_text(
+            grid,
+            _('If you want to use a specific map provider,'
+              ' You can set the following field to the'
+              ' provider\'s url.\ni.e:\n'
+              'http://tile.stamen.com/toner/#Z/#X/#Y.png\n'
+              'http://tile.stamen.com/terrain/#Z/#X/#Y.jpg\n'
+              'http://tile.stamen.com/watercolor/#Z/#X/#Y.jpg\n'
+              'http://tile.xn--pnvkarte-m4a.de/tilegen/#Z/#X/#Y.png\n'
+             ),
+            6, line_wrap=False)
         # set the possibility to copy/paste the urls
         label.set_selectable(True)
         start = label.get_text().find("http")
         end = label.get_text().find("http", start + 1)
-        label.select_region(start,end)
+        label.select_region(start, end)
         url = configdialog.add_entry(grid, _("Personal map"),
-                              7, 'geography.personal-map',
-                              self.choosen_map,
-                              )
+                                     7, 'geography.personal-map',
+                                     self.choosen_map,
+                                    )
         if config.get('geography.personal-map') != "":
             url.set_text(config.get('geography.personal-map'))
         return _('The map'), grid
