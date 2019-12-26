@@ -522,6 +522,8 @@ class RelGraphReport(Report):
                                   "invis",
                                   "none",
                                   "none")
+                self.doc.add_samerank(first.get_gramps_id(),
+                                      second.get_gramps_id())
             if f_handle in self.persons:
                 father = self._db.get_person_from_handle(f_handle)
                 self.doc.add_link(father.get_gramps_id(),
