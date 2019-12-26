@@ -464,20 +464,14 @@ class WebCalReport(Report):
                           "if (x.className === \"nav\") { x.className += \""
                           " responsive\"; } else { x.className = \"nav\"; }"
                           " }</script>")
-        if self.multiyear:
-            head += menuscript
+        head += menuscript
 
         # begin header section
-        if self.multiyear:
-            headerdiv = Html("div", id='header') + (
-                Html("<a href=\"javascript:void(0);\" class=\"navIcon\""
-                     " onclick=\"navFunction()\">&#8801;</a>")) + (
-                         Html("h1", html_escape(title),
-                              id="SiteTitle", inline=True))
-        else:
-            headerdiv = Html("div", id='header') + (
-                Html("h1", html_escape(title),
-                     id="SiteTitle", inline=True))
+        headerdiv = Html("div", id='header') + (
+            Html("<button href=\"javascript:void(0);\" class=\"navIcon\""
+                 " onclick=\"navFunction()\">&#8801;</button>")) + (
+                     Html("h1", self.title_text,
+                          id="SiteTitle", inline=True))
         body += headerdiv
 
         # add body id tag if not None
