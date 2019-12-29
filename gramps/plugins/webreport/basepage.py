@@ -1840,7 +1840,7 @@ class BasePage: # pylint: disable=C1001
                         _linkurl = self.report.build_url_fname_html(_obj.handle,
                                                                     "ppl",
                                                                     linkurl)
-            elif classname == "Family":
+            elif classname == "Family" and self.inc_families:
                 _obj = self.r_db.get_family_from_handle(newhandle)
                 partner1_handle = _obj.get_father_handle()
                 partner2_handle = _obj.get_mother_handle()
@@ -1866,7 +1866,7 @@ class BasePage: # pylint: disable=C1001
                                                                 "ppl", True)
                 if not _name:
                     _name = self._("Unknown")
-            elif classname == "Event":
+            elif classname == "Event" and self.inc_events:
                 _obj = self.r_db.get_event_from_handle(newhandle)
                 _name = _obj.get_description()
                 if not _name:
