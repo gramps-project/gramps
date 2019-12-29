@@ -158,7 +158,7 @@ class TreeOptions:
             marriage.add_item(item["value"], item["name"])
         marriage.set_help(_("Position of marriage information."))
         menu.add_option(category, "marriage", marriage)
-        
+
         occupation = EnumeratedListOption(_("Occupation"), "")
         for item in _OCCUPATION:
             occupation.add_item(item["value"], item["name"])
