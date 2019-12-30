@@ -145,7 +145,7 @@ class UpdatesPage(BasePage):
 
             header = self._("Notes")
             section += Html("h4", header)
-            events = self.list_notes(Note)
+            events = self.list_notes()
             if events is not None:
                 section += events
 
@@ -158,12 +158,11 @@ class UpdatesPage(BasePage):
         # and close the file
         self.xhtml_writer(homepage, output_file, sio, ldatec)
 
-    def list_notes(self, object_type):
+    def list_notes(self):
         """
         List all notes with last change date
         """
         nb_items = 0
-        dummy_obj_t = object_type
         section = ""
 
         def sort_on_change(handle):
