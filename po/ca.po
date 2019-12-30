@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-17 11:43+1100\n"
-"PO-Revision-Date: 2019-12-21 18:20+0100\n"
+"PO-Revision-Date: 2019-12-30 17:49+0100\n"
 "Last-Translator: Joan Creus <joan.creusandreu at gmail dot com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -25637,9 +25637,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/importer/importprogen.glade:1164
-#, fuzzy
 msgid "  Objects"
-msgstr "Objecte"
+msgstr " Objectes"
 
 #: ../gramps/plugins/importer/importprogen.glade:1168
 msgid ""
@@ -25791,9 +25790,8 @@ msgstr "Error de dades Pro-Gen"
 
 #: ../gramps/plugins/importer/importprogen.py:457
 #: ../gramps/plugins/importer/importprogen.py:465
-#, fuzzy
 msgid "Import Pro-Gen"
-msgstr "Importa des de Pro-Gen (%s)"
+msgstr "Importa Pro-Gen"
 
 #: ../gramps/plugins/importer/importvcard.py:228
 #, python-format
@@ -30333,9 +30331,8 @@ msgstr "Editar..."
 #: ../gramps/plugins/view/noteview.py:279
 #: ../gramps/plugins/view/repoview.py:292
 #: ../gramps/plugins/view/sourceview.py:278
-#, fuzzy
 msgid "Forward"
-msgstr "En_davant"
+msgstr "Endavant"
 
 #: ../gramps/plugins/lib/libpersonview.py:454
 msgid "_Delete Person"
@@ -30492,10 +30489,8 @@ msgid "Provides the Base needed for the List People views."
 msgstr "Proporciona la Base que cal per les vistes de Llistar Persones."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:247
-#, fuzzy
 msgid "Provides common functionality for Pro-Gen import"
-msgstr ""
-"Proporciona funcions comunes per a la importació/exportació de Gramps XML."
+msgstr "Proporciona funcions comunes per a la importació de Pro-Gen"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:265
 msgid "Provides the Base needed for the List Place views."
@@ -30518,21 +30513,19 @@ msgid "Field '%(fldname)s' not found"
 msgstr "Camp '%(fldname)s' no trobat"
 
 #: ../gramps/plugins/lib/libprogen.py:491
-#, fuzzy, python-format
+#, python-format
 msgid "Not a (right) DEF file: %(dname)s"
-msgstr "No s'ha pogut trobar el fitxer DEF: %(dname)s"
+msgstr "No és un fitxer DEF (correcte): %(dname)s"
 
 #: ../gramps/plugins/lib/libprogen.py:498
 #: ../gramps/plugins/lib/libprogen.py:732
-#, fuzzy
 msgid "Import from Pro-Gen"
-msgstr "Importa des de Pro-Gen (%s)"
+msgstr "Importa des de Pro-Gen"
 
 #. start feedback about import progress (GUI / TXT)
 #: ../gramps/plugins/lib/libprogen.py:498
-#, fuzzy
 msgid "Initializing."
-msgstr "S'està instal·lant..."
+msgstr "Inicialitzant."
 
 #. Raise a error message
 #: ../gramps/plugins/lib/libprogen.py:515
@@ -30549,7 +30542,6 @@ msgid "Saving."
 msgstr "S'està buscant..."
 
 #: ../gramps/plugins/lib/libprogen.py:928
-#, fuzzy
 msgid "Pro-Gen Import"
 msgstr "Importació Pro-Gen"
 
@@ -30566,9 +30558,8 @@ msgstr "Viu: %s"
 
 #. start feedback about import progress (GUI/TXT)
 #: ../gramps/plugins/lib/libprogen.py:1206
-#, fuzzy
 msgid "Importing persons."
-msgstr "Ordenant esdeveniments personals..."
+msgstr "Important persones."
 
 #: ../gramps/plugins/lib/libprogen.py:1412
 #, fuzzy
@@ -30592,27 +30583,24 @@ msgid "Importing families."
 msgstr "Escrivint famílies"
 
 #: ../gramps/plugins/lib/libprogen.py:1689
-#, fuzzy
 msgid "Civil union"
-msgstr "Unió Civil"
+msgstr "Unió civil"
 
 #: ../gramps/plugins/lib/libprogen.py:1794
-#, fuzzy
 msgid "Wedding"
-msgstr "Farciment:"
+msgstr "Casament"
 
 #: ../gramps/plugins/lib/libprogen.py:1829
 msgid "future"
-msgstr ""
+msgstr "futur"
 
 #. We have seen some case insensitivity in DEF files ...
 #. F13: Father
 #. F14: Mother
 #. start feedback about import progress (GUI/TXT)
 #: ../gramps/plugins/lib/libprogen.py:1901
-#, fuzzy
 msgid "Adding children."
-msgstr " (sense fills)"
+msgstr "Afegint fills."
 
 #: ../gramps/plugins/lib/libprogen.py:1927
 #, fuzzy
@@ -31938,7 +31926,7 @@ msgstr "Informe d'Aniversari"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:68
 msgid "✝"
-msgstr ""
+msgstr "✝"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/birthdayreport.py:221
@@ -31947,30 +31935,30 @@ msgid "Relationships shown are to %s"
 msgstr "Les relacions mostrades són amb %s"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:333
-#, fuzzy, python-format
+#, python-format
 msgid "* %(person)s, birth%(relation)s"
-msgstr "%(person)s, naixement%(relation)s"
+msgstr "* %(person)s, naixement%(relation)s"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:338
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "* {year}{person}{dead}, {age}{relation}"
 msgid_plural "* {year}{person}{dead}, {age}{relation}"
-msgstr[0] "{person}, {age}{relation}"
-msgstr[1] "{person}, {age}{relation}"
+msgstr[0] "* {year}{person}{dead}, {age}{relation}"
+msgstr[1] "* {year}{person}{dead}, {age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:402
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "⚭ %(spouse)s and\n"
 " %(person)s, wedding"
 msgstr ""
-"%(spouse)s i\n"
+"⚭ %(spouse)s i\n"
 " %(person)s, casament"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:407
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
@@ -31978,23 +31966,23 @@ msgid_plural ""
 "⚭ {year}{spouse}{deadtxt2} and\n"
 " {person}{deadtxt1}, {nyears}"
 msgstr[0] ""
-"{spouse} i\n"
-" {person}, {nyears}"
+"⚭ {year}{spouse}{deadtxt2} i\n"
+" {person}{deadtxt1}, {nyears}"
 msgstr[1] ""
-"{spouse} i\n"
-" {person}, {nyears}"
+"⚭ {year}{spouse}{deadtxt2} i\n"
+" {person}{deadtxt1}, {nyears}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:442
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "✝ {person}, death {relation}"
-msgstr "{person}, {age}{relation}"
+msgstr "✝ {person}, mort {relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:444
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "✝ {year}{person}, {age}{relation}"
 msgid_plural "✝ {year}{person}, {age}{relation}"
-msgstr[0] "{person}, {age}{relation}"
-msgstr[1] "{person}, {age}{relation}"
+msgstr[0] "✝ {year}{person}, {age}{relation}"
+msgstr[1] "✝ {year}{person}, {age}{relation}"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:475
 #: ../gramps/plugins/textreport/familygroup.py:716
@@ -32027,24 +32015,20 @@ msgid "Include only living people in the report"
 msgstr "Incloure només persones vives a l'informe"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:511
-#, fuzzy
 msgid "Dead Symbol"
-msgstr "Mare morta"
+msgstr "Símbol de Defunció"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:512
-#, fuzzy
 msgid "This will show after name to indicate that person is dead"
-msgstr "Etiqueta per indicar que una persona és completa"
+msgstr "Això es mostrarà després del nom per indicar que la persona és morta"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:519
-#, fuzzy
 msgid "Show event year"
-msgstr "Tipus d'esdeveniment nou:"
+msgstr "Mostrar any de l'esdeveniment"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:520
-#, fuzzy
 msgid "Prints the year the event took place in the report"
-msgstr "Determina quines persones s'inclouen a l'informe"
+msgstr "Mostra a l'informe l'any que va tenir lloc l'esdeveniment"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:525
 #: ../gramps/plugins/textreport/birthdayreport.py:527
@@ -32052,14 +32036,12 @@ msgid "Year of report"
 msgstr "Any de l'informe"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:563
-#, fuzzy
 msgid "Include death anniversaries"
-msgstr "Incloure aniversaris"
+msgstr "Incloure aniversaris de mort"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:564
-#, fuzzy
 msgid "Whether to include anniversaries of death"
-msgstr "Si s'han d'incloure els aniversaris"
+msgstr "Si s'han d'incloure els aniversaris de mort"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:570
 #: ../gramps/plugins/textreport/indivcomplete.py:1147
@@ -34238,9 +34220,8 @@ msgid "Media Manager"
 msgstr "Gestor de Medis Audiovisuals"
 
 #: ../gramps/plugins/tool/mediamanager.py:91
-#, fuzzy
 msgid "Help"
-msgstr "Aj_uda"
+msgstr "Ajuda"
 
 #: ../gramps/plugins/tool/mediamanager.py:101
 #: ../gramps/plugins/webreport/basepage.py:1523
@@ -34760,9 +34741,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/tool/removespaces.py:113
-#, fuzzy
 msgid "Looking for possible fields with leading or trailing spaces"
-msgstr "Buscant possibles bucles en cada persona"
+msgstr "Buscant possibles camps amb espais al principi o al final"
 
 #: ../gramps/plugins/tool/removespaces.py:130
 #: ../gramps/plugins/tool/removespaces.py:179
@@ -34778,15 +34758,13 @@ msgstr "nom desconegut"
 
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:143
-#, fuzzy
 msgid "alternate name"
-msgstr "Noms alternatius"
+msgstr "nom alternatiu"
 
 #. 2=double underline
 #: ../gramps/plugins/tool/removespaces.py:147
-#, fuzzy
 msgid "group as"
-msgstr "Agrupar com"
+msgstr "agrupar com a"
 
 #: ../gramps/plugins/tool/removeunused.glade:92
 msgid "Search for events"
@@ -35278,13 +35256,12 @@ msgid "Searches the entire database, looking for a possible loop."
 msgstr "Busca tota la base de dades, buscant un possible bucle."
 
 #: ../gramps/plugins/tool/tools.gpr.py:490
-#, fuzzy
 msgid ""
 "Searches the entire database, looking for trailing or leading spaces for"
 " places and people. Search comma in coordinates fields in places."
 msgstr ""
-"Busca tota la base de dades, buscant cites que tinguin els mateixos"
-" Volum/Pàgina, Data i Confiança."
+"Cerca tota la base de dades, buscant espais en blanc al principi o al final"
+" per a llocs i persones. Cerca comes en camps de coordenades de llocs."
 
 #: ../gramps/plugins/tool/toolsdebug.gpr.py:64
 msgid "Dump Gender Statistics"
@@ -35915,7 +35892,6 @@ msgstr "Distribució homogènia dels fills"
 
 #: ../gramps/plugins/view/fanchart2wayview.py:329
 #: ../gramps/plugins/view/fanchartdescview.py:328
-#, fuzzy
 msgid "Size proportional to number of descendants"
 msgstr "Mida proporcional al nombre de descendents"
 
@@ -35935,9 +35911,8 @@ msgstr "Dóna la volta al nom a l'esquerra del ventall"
 
 #. Show gramps id
 #: ../gramps/plugins/view/fanchart2wayview.py:343
-#, fuzzy
 msgid "Show the gramps id"
-msgstr "Mostra l'última pàgina"
+msgstr "Mostra l'ID Gramps"
 
 #. options we don't show on the dialog
 #. #configdialog.add_checkbox(table,
@@ -35982,9 +35957,8 @@ msgstr "Quadrant"
 #. Show the gramps_id
 #: ../gramps/plugins/view/fanchartdescview.py:342
 #: ../gramps/plugins/view/fanchartview.py:430
-#, fuzzy
 msgid "Show gramps id"
-msgstr "Mostra Etiquetes"
+msgstr "Mostra l'ID Gramps"
 
 #: ../gramps/plugins/view/fanchartview.py:227
 msgid "Print or save the Fan Chart View"
@@ -36249,6 +36223,14 @@ msgid ""
 "To build it for Gramps see the Wiki (<F1>)\n"
 " and search for 'build from source'"
 msgstr ""
+"La funcionalitat de Geografia no estarà disponible.\n"
+"Proveu d'instal·lar:\n"
+" gir1.2-osmgpsmap-1.0 (debian, ubuntu, ...)\n"
+" osm-gps-map-gobject-1.0.1 per a fedora, ...\n"
+" typelib-1_0-OsmGpsMap-1_0 per a openSuse\n"
+" ...\n"
+"Per construir-la per a Gramps vegeu la Wiki (<F1>)\n"
+"i cerqueu 'build from source'"
 
 #: ../gramps/plugins/view/geography.gpr.py:87
 msgid "All known places for one Person"
@@ -36663,9 +36645,8 @@ msgid "Expand this Entire Group"
 msgstr "Expandir aquest Grup Sencer"
 
 #: ../gramps/plugins/view/relview.py:372
-#, fuzzy
 msgid "Organize Bookmarks..."
-msgstr "Endreçar Punts d'interès"
+msgstr "Endreçar Punts d'interès..."
 
 #: ../gramps/plugins/view/relview.py:393
 msgid "Add Existing Parents..."
@@ -36701,9 +36682,9 @@ msgstr "Editar la persona activa"
 
 #: ../gramps/plugins/view/relview.py:746 ../gramps/plugins/view/relview.py:772
 #: ../gramps/plugins/view/relview.py:789 ../gramps/plugins/view/relview.py:796
-#, fuzzy, python-format
+#, python-format
 msgid "%s"
-msgstr "%s:"
+msgstr "%s"
 
 #: ../gramps/plugins/view/relview.py:784
 msgid "Alive"
@@ -36786,19 +36767,19 @@ msgid "Relationship type: %s"
 msgstr "Tipus de relació: %s"
 
 #: ../gramps/plugins/view/relview.py:1520
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s in %(place)s"
-msgstr "%(event_type)s: %(date)s a %(place)s"
+msgstr "%(event_type)s %(date)s a %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1524
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(date)s"
-msgstr "%(event_type)s: %(date)s"
+msgstr "%(event_type)s %(date)s"
 
 #: ../gramps/plugins/view/relview.py:1528
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_type)s %(place)s"
-msgstr "%(event_type)s: %(place)s"
+msgstr "%(event_type)s %(place)s"
 
 #: ../gramps/plugins/view/relview.py:1539
 msgid "Broken family detected"
@@ -37408,16 +37389,16 @@ msgid "Select filter to restrict people that appear on web site"
 msgstr "Selecciona el filtre per restringir les persones que apareixen al web"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1654
-#, fuzzy
 msgid "Show the relationship between the current person and the active person"
-msgstr "Mostrar totes les relacions entre persona i la persona base."
+msgstr "Mostrar la relació entre la persona actual i la persona activa"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1657
-#, fuzzy
 msgid ""
 "For each person page, show the relationship between this person and the"
 " active person."
-msgstr "Mostrar totes les relacions entre persona i la persona base."
+msgstr ""
+"Per a cada pàgina de persona, mostra la relació entre aquesta persona i la"
+" persona activa."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1675
 msgid "Html options"
@@ -37835,24 +37816,20 @@ msgstr ""
 "Afegeix una llista completa d'esdeveniments i les pàgines rellevants o no"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2009
-#, fuzzy
 msgid "Include places pages"
-msgstr "Incloure llocs"
+msgstr "Incloure pàgines de llocs"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2011
-#, fuzzy
 msgid "Whether or not to include the places Pages."
-msgstr "Si s'han d'incloure les Pàgines de Repositori o no."
+msgstr "Si s'han d'incloure les Pàgines de llocs o no."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2014
-#, fuzzy
 msgid "Include sources pages"
-msgstr "Incloure notes de fonts"
+msgstr "Incloure pàgines de fonts"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2016
-#, fuzzy
 msgid "Whether or not to include the sources Pages."
-msgstr "Si s'han d'incloure les Pàgines de Repositori o no."
+msgstr "Si s'han d'incloure les Pàgines de fonts o no."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2019
 msgid "Include repository pages"
