@@ -66,6 +66,12 @@ class UpdatesPage(BasePage):
         """
         BasePage.__init__(self, report, title)
         ldatec = 0
+        self.inc_repository = self.report.options['inc_repository']
+        self.inc_families = self.report.options['inc_families']
+        self.inc_events = self.report.options['inc_events']
+        self.inc_places = self.report.options['inc_places']
+        self.inc_sources = self.report.options['inc_sources']
+        self.inc_gallery = False
 
         output_file, sio = self.report.create_file("updates")
         result = self.write_header(self._('New and updated objects'))
@@ -93,45 +99,44 @@ class UpdatesPage(BasePage):
             if people is not None:
                 section += people
 
-            if self.report.options['inc_families']:
+            if self.inc_families:
                 header = self._("Families")
                 section += Html("h4", header)
                 families = self.list_people_changed(Family)
                 if families is not None:
                     section += families
 
-            if self.report.options['inc_events']:
+            if self.inc_events:
                 header = self._("Events")
                 section += Html("h4", header)
                 events = self.list_people_changed(Event)
                 if events is not None:
                     section += events
 
-            if self.report.options['inc_places']:
+            if self.inc_places:
                 header = self._("Places")
                 section += Html("h4", header)
                 places = self.list_people_changed(Place)
                 if places is not None:
                     section += places
 
-            if self.report.options['inc_sources']:
+            if self.inc_sources:
                 header = self._("Sources")
                 section += Html("h4", header)
                 sources = self.list_people_changed(Source)
                 if sources is not None:
                     section += sources
 
-            if self.report.options['inc_repository']:
+            if self.inc_repository:
                 header = self._("Repositories")
                 section += Html("h4", header)
                 repos = self.list_people_changed(Repository)
                 if repos is not None:
                     section += repos
 
-            self.gallery = False
             if (self.report.options['gallery'] and not
                     self.report.options['create_thumbs_only']):
-                self.gallery = True
+                self.inc_gallery = True
                 header = self._("Media")
                 section += Html("h4", header)
                 media = self.list_people_changed(Media)
@@ -158,6 +163,7 @@ class UpdatesPage(BasePage):
         List all notes with last change date
         """
         nb_items = 0
+        dummy_obj_t = object_type
         section = ""
 
         def sort_on_change(handle):
@@ -189,7 +195,6 @@ class UpdatesPage(BasePage):
                         odat = Date(tims.tm_year, tims.tm_mon, tims.tm_mday)
                         date = self.rlocale.date_displayer.display(odat)
                         date += strftime(' %X', tims)
-                        otype = obj.get_type()
                         if handle_list:
                             srbd = self.report.database
                             srbkref = self.report.bkref_dict
@@ -204,16 +209,16 @@ class UpdatesPage(BasePage):
                                             r_handle)
                                         fam = self._("Family")
                                         name = self.family_link(r_handle, fam)
-                                        if self.report.options['inc_families']:
+                                        if self.inc_families:
                                             show = True
                                 elif obj_t == 'Place':
                                     if r_handle in srbkref[Place]:
                                         plc = srbd.get_place_from_handle(
                                             r_handle)
-                                        plcn = _pd.display(srbd, plc)
-                                        name = self.place_link(r_handle,
-                                                               self._("Place"))
-                                        if self.report.options['inc_places']:
+                                        plcn = _pd.display(self.report.database,
+                                                           plc)
+                                        name = self.place_link(r_handle, plcn)
+                                        if self.inc_places:
                                             show = True
                                 elif obj_t == 'Event':
                                     if r_handle in srbkref[Event]:
@@ -221,7 +226,7 @@ class UpdatesPage(BasePage):
                                             r_handle)
                                         evtn = self._(evt.get_type().xml_str())
                                         name = self.event_link(r_handle, evtn)
-                                        if self.report.options['inc_events']:
+                                        if self.inc_events:
                                             show = True
                                 elif obj_t == 'Media':
                                     if r_handle in srbkref[Media]:
@@ -231,7 +236,7 @@ class UpdatesPage(BasePage):
                                         name = self.media_link(r_handle, evtn,
                                                                evtn,
                                                                usedescr=False)
-                                        if self.gallery:
+                                        if self.inc_gallery:
                                             show = True
                                 elif obj_t == 'Citation':
                                     if r_handle in srbkref[Citation]:
@@ -240,7 +245,7 @@ class UpdatesPage(BasePage):
                                         citsrc = cit.source_handle
                                         evtn = self._("Citation")
                                         name = self.source_link(citsrc, evtn)
-                                        if self.report.options['inc_sources']:
+                                        if self.inc_sources:
                                             show = True
                                 elif obj_t == 'Source':
                                     if r_handle in srbkref[Source]:
@@ -248,7 +253,7 @@ class UpdatesPage(BasePage):
                                             r_handle)
                                         evtn = src.get_title()
                                         name = self.source_link(r_handle, evtn)
-                                        if self.report.options['inc_sources']:
+                                        if self.inc_sources:
                                             show = True
                                 elif obj_t == 'Repository':
                                     if r_handle in srbkref[Repository]:
@@ -257,7 +262,7 @@ class UpdatesPage(BasePage):
                                         evtn = rep.get_name()
                                         name = self.repository_link(r_handle,
                                                                     evtn)
-                                        if self.report.options['inc_repository']:
+                                        if self.inc_repository:
                                             show = True
                         if show:
                             row = Html("tr")
