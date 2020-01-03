@@ -1952,57 +1952,16 @@ class BasePage: # pylint: disable=C1001
                     # make a thumbnail of this region
                     newpath = self.copy_thumbnail(photo_handle, photo, region)
                     newpath = self.report.build_url_fname(newpath, uplink=True)
-
                     snapshot += self.media_link(photo_handle, newpath, descr,
                                                 uplink=self.uplink,
                                                 usedescr=False)
                 else:
-
                     dummy_rpath, newpath = self.report.prepare_copy_media(photo)
                     newpath = self.report.build_url_fname(newpath, uplink=True)
-
-                    # FIXME: There doesn't seem to be any point in highlighting
-                    # a sub-region in the thumbnail and linking back to the
-                    # person or whatever. First it is confusing when the link
-                    # probably has nothing to do with the page on which the
-                    # thumbnail is displayed, and second on a thumbnail it is
-                    # probably too small to see, and third, on the thumbnail,
-                    # the link is shown above the image (which is pretty
-                    # useless!)
-                    _region_items = self.media_ref_rect_regions(photo_handle,
-                                                                linkurl=False)
-                    if _region_items:
-                        with Html("div", id="GalleryDisplay") as mediadisplay:
-                            snapshot += mediadisplay
-
-                            ordered = Html("ol", class_="RegionBox")
-                            mediadisplay += ordered
-                            while _region_items:
-                                (name, coord_x, coord_y,
-                                 width, height, linkurl) = _region_items.pop()
-                                ordered += Html("li",
-                                                style="left:%d%%; top:%d%%; "
-                                                "width:%d%%; height:%d%%;" % (
-                                                    coord_x, coord_y,
-                                                    width, height))
-                                ordered += Html("a", name, href=linkurl)
-                            # Need to add link to mediadisplay to get the links:
-                            mediadisplay += self.media_link(photo_handle,
-                                                            newpath, descr,
-                                                            self.uplink, False)
-                    else:
-                        try:
-
-                            # Begin hyperlink. Description is given only for
-                            # the purpose of the alt tag in img element
-                            snapshot += self.media_link(photo_handle, newpath,
-                                                        descr,
-                                                        uplink=self.uplink,
-                                                        usedescr=False)
-
-                        except (IOError, OSError) as msg:
-                            self.r_user.warn(_("Could not add photo to page"),
-                                             str(msg))
+                    snapshot += self.media_link(photo_handle, newpath,
+                                                descr,
+                                                uplink=self.uplink,
+                                                usedescr=False)
             else:
                 # begin hyperlink
                 snapshot += self.doc_link(photo_handle, descr,
