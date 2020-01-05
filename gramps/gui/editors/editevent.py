@@ -74,7 +74,7 @@ class EditEvent(EditPrimary):
 
         EditPrimary.__init__(self, dbstate, uistate, track,
                              event, dbstate.db.get_event_from_handle,
-                             dbstate.db.get_event_from_gramps_id)
+                             dbstate.db.get_event_from_gramps_id, callback)
 
         self._init_event()
 
