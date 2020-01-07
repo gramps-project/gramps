@@ -2960,7 +2960,7 @@ class BasePage: # pylint: disable=C1001
             gid = self.report.obj_dict[bkref_class][bkref_handle][2]
             if role != "":
                 if self.reference_sort:
-                    role = ""
+                    role = self.birth_death_dates(gid, role)
                 elif role[1:2] == ':':
                     # cal is the original calendar
                     cal, role = role.split(':')
@@ -2988,7 +2988,10 @@ class BasePage: # pylint: disable=C1001
                     # reset the date to the original calendar
                     cdate = date.to_calendar(Date.calendar_names[int(cal)])
                     ldate = self.rlocale.get_date(cdate)
-                    role = " (%s) " % ldate
+                    evtype = self.event_for_date(gid, cdate)
+                    if evtype:
+                        evtype = " " + evtype
+                    role = " (%s) " % (ldate + evtype)
                 else:
                     role = " (%s) " % self._(role)
             ordered += list_html
@@ -3006,6 +3009,41 @@ class BasePage: # pylint: disable=C1001
                     gid_html = ""
                 list_html += Html("a", href=url) + name + role + gid_html
         return ordered
+
+    def event_for_date(self, gid, date):
+        """
+        return the event type
+        """
+        pers = self.r_db.get_person_from_gramps_id(gid)
+        if pers:
+            evt_ref_list = pers.get_event_ref_list()
+            if evt_ref_list:
+                for evt_ref in evt_ref_list:
+                    evt = self.r_db.get_event_from_handle(evt_ref.ref)
+                    if evt:
+                        evdate = evt.get_date_object()
+                        # convert date to gregorian
+                        _date = str(evdate.to_calendar("gregorian"))
+                        if _date == str(date):
+                            return self._(str(evt.get_type()))
+        return ""
+
+    def birth_death_dates(self, gid, role):
+        """
+        return the birth and death date for the person
+        """
+        pers = self.r_db.get_person_from_gramps_id(gid)
+        if pers:
+            birth = death = ""
+            evt_birth = get_birth_or_fallback(self.r_db, pers)
+            if evt_birth:
+                birth = evt_birth.get_date_object().get_year()
+            evt_death = get_death_or_fallback(self.r_db, pers)
+            if evt_death:
+                death = evt_death.get_date_object().get_year()
+            return "(%s-%s)" % (birth, death)
+        else:
+            return ""
 
     def display_bkref_list(self, obj_class, obj_handle):
         """
