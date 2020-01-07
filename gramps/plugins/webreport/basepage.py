@@ -3037,10 +3037,14 @@ class BasePage: # pylint: disable=C1001
             birth = death = ""
             evt_birth = get_birth_or_fallback(self.r_db, pers)
             if evt_birth:
-                birth = evt_birth.get_date_object().get_year()
+                birthd = evt_birth.get_date_object()
+                # convert date to gregorian to avoid strange years
+                birth = str(birthd.to_calendar("gregorian").get_year())
             evt_death = get_death_or_fallback(self.r_db, pers)
             if evt_death:
-                death = evt_death.get_date_object().get_year()
+                deathd = evt_death.get_date_object()
+                # convert date to gregorian to avoid strange years
+                death = str(deathd.to_calendar("gregorian").get_year())
             return "(%s-%s)" % (birth, death)
         else:
             return ""
