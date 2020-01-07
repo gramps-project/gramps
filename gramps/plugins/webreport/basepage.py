@@ -2960,7 +2960,7 @@ class BasePage: # pylint: disable=C1001
             gid = self.report.obj_dict[bkref_class][bkref_handle][2]
             if role != "":
                 if self.reference_sort:
-                    role = self.birth_death_dates(gid, role)
+                    role = self.birth_death_dates(gid)
                 elif role[1:2] == ':':
                     # cal is the original calendar
                     cal, role = role.split(':')
@@ -3028,7 +3028,7 @@ class BasePage: # pylint: disable=C1001
                             return self._(str(evt.get_type()))
         return ""
 
-    def birth_death_dates(self, gid, role):
+    def birth_death_dates(self, gid):
         """
         return the birth and death date for the person
         """
