@@ -32,6 +32,14 @@ the create/deletion of dialog windows.
 import os
 from io import StringIO
 import html
+import logging
+
+#-------------------------------------------------------------------------
+#
+# Set up logging
+#
+#-------------------------------------------------------------------------
+_LOG = logging.getLogger(".")
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK
@@ -575,6 +583,9 @@ class ManagedWindow:
 
         Takes care of closing children and removing itself from menu.
         """
+        if hasattr(self, 'opened') and not self.opened:
+            _LOG.warning("Tried to close a ManagedWindow more than once.")
+            return  # in case close somehow gets called again
         self.opened = False
         self._save_position(save_config=False)  # the next line will save it
         self._save_size()
