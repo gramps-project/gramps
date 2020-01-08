@@ -346,9 +346,9 @@ class EditNote(EditPrimary):
                         self.obj.set_gramps_id(self.db.find_next_note_gramps_id())
                     self.db.commit_note(self.obj, trans)
 
+        self._do_close()
         if self.callback:
             self.callback(self.obj.get_handle())
-        self._do_close()
 
 class DeleteNoteQuery:
     def __init__(self, dbstate, uistate, note, the_lists):

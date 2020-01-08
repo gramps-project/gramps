@@ -334,9 +334,9 @@ class EditMedia(EditPrimary):
                         self.obj.set_gramps_id(self.db.find_next_media_gramps_id())
                     self.db.commit_media(self.obj, trans)
 
+        self._do_close()
         if self.callback:
             self.callback(self.obj)
-        self._do_close()
 
     def data_has_changed(self):
         """

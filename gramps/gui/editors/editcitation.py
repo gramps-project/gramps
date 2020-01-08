@@ -341,9 +341,9 @@ class EditCitation(EditPrimary):
                         self.obj.set_gramps_id(self.db.find_next_citation_gramps_id())
                     self.db.commit_citation(self.obj, trans)
 
+        self._do_close()
         if self.callback:
             self.callback(self.obj.get_handle())
-        self._do_close()
 
     def data_has_changed(self):
         """
