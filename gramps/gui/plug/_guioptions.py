@@ -1756,7 +1756,8 @@ class GuiDestinationOption(Gtk.Box):
                     name = get_curr_dir
             fcd.set_current_folder(name)
         else:
-            fcd.set_current_name(name)
+            fcd.set_current_name(os.path.basename(name))
+            fcd.set_current_folder(os.path.dirname(name))
 
         status = fcd.run()
         if status == Gtk.ResponseType.OK:
