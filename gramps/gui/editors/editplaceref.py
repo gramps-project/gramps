@@ -34,8 +34,7 @@ from .displaytabs import (PlaceRefEmbedList, PlaceNameEmbedList,
 from gramps.gen.lib import NoteType
 from gramps.gen.db import DbTxn
 from gramps.gen.errors import ValidationError, WindowActiveError
-from gramps.gen.utils.place import (conv_lat_lon, North, South, East, West,
-                                    translate_lat_to_en, translate_long_to_en)
+from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
 from ..dialog import ErrorDialog
@@ -154,9 +153,6 @@ class EditPlaceRef(EditReference):
 
         entry = self.top.get_object("lon_entry")
         entry.set_ltr_mode()
-        # get E,W translated to local
-        self.source.set_longitude(self.source.get_longitude().replace(
-            'E', East).replace('W', West))
         self.longitude = MonitoredEntry(
             entry,
             self.source.set_longitude, self.source.get_longitude,
@@ -167,9 +163,6 @@ class EditPlaceRef(EditReference):
 
         entry = self.top.get_object("lat_entry")
         entry.set_ltr_mode()
-        # get N,S translated to local
-        self.source.set_latitude(self.source.get_latitude().replace(
-            'N', North).replace('S', South))
         self.latitude = MonitoredEntry(
             entry,
             self.source.set_latitude, self.source.get_latitude,
@@ -317,13 +310,6 @@ class EditPlaceRef(EditReference):
             ErrorDialog(msg1, msg2, parent=self.window)
             self.ok_button.set_sensitive(True)
             return
-
-        # get localized E,W translated to English
-        self.source.set_longitude(translate_long_to_en(
-            self.source.get_longitude()))
-        # get localized N,S translated to English
-        self.source.set_latitude(translate_lat_to_en(
-            self.source.get_latitude()))
 
         if self.source.handle:
             with DbTxn(_("Modify Place"), self.db) as trans:

@@ -57,25 +57,19 @@ South = South.replace("1", " ").strip()
 East = East.replace("1", " ").strip()
 West = West.replace("1", " ").strip()
 
+# build dictionary with translation en to local language
+translate_en_loc = {}
+translate_en_loc['N'] = North
+translate_en_loc['S'] = South
+translate_en_loc['E'] = East
+translate_en_loc['W'] = West
+
 # keep translation only if it does not conflict with english
 if 'N' == South or 'S' == North or 'E' == West or 'W' == East:
-    North = 'N'
-    South = 'S'
-    East = 'E'
-    West = 'W'
-# for rtl locales the lat/long strings are always displayed ltr, so we need to
-# reverse the translated NSEW strings to make them correctly display rtl
-# we keep both normal/reversed for comparison on input
-if glocale.rtl_locale:
-    North_ = North
-    North = North[::-1]
-    South_ = South
-    South = South[::-1]
-    East_ = East
-    East = East[::-1]
-    West_ = West
-    West = West[::-1]
-
+    translate_en_loc['N'] = 'N'
+    translate_en_loc['S'] = 'S'
+    translate_en_loc['E'] = 'E'
+    translate_en_loc['W'] = 'W'
 # end localisation part
 
 
@@ -362,26 +356,14 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
     """
 
     # we start the function changing latitude/longitude in english
-    if 'N' not in latitude and 'S' not in latitude:
+    if latitude.find('N') == -1 and latitude.find('S') == -1:
         # entry is not in english, convert to english
-        latitude = latitude.replace(North, 'N')
-        latitude = latitude.replace(South, 'S')
-        if glocale.rtl_locale:
-            # since Gtk.Entry doesn't handle mixed bidi strings like lat/long
-            # well, we always force ltr.  So depending on wether user makes it
-            # look right, or enters blindly, the translated NSEW could be
-            # normal or reversed, so,
-            # we also allow user to use reversed string
-            latitude = latitude.replace(North_, 'N')
-            latitude = latitude.replace(South_, 'S')
-    if 'E' not in longitude and 'W' not in longitude:
+        latitude = latitude.replace(translate_en_loc['N'], 'N')
+        latitude = latitude.replace(translate_en_loc['S'], 'S')
+    if longitude.find('E') == -1 and longitude.find('W') == -1:
         # entry is not in english, convert to english
-        longitude = longitude.replace(West, 'W')
-        longitude = longitude.replace(East, 'E')
-        if glocale.rtl_locale:
-            # we also allow user to use reversed string
-            longitude = longitude.replace(West_, 'W')
-            longitude = longitude.replace(East_, 'E')
+        longitude = longitude.replace(translate_en_loc['W'], 'W')
+        longitude = longitude.replace(translate_en_loc['E'], 'E')
 
     # take away leading spaces
     latitude = latitude.lstrip()
@@ -472,16 +454,16 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
     sign_lat = "+"
     dir_lat = ""
     if lat_float >= 0.:
-        dir_lat = North
+        dir_lat = translate_en_loc['N']
     else:
-        dir_lat = South
+        dir_lat = translate_en_loc['S']
         sign_lat = "-"
     sign_lon = "+"
     dir_lon = ""
     if lon_float >= 0.:
-        dir_lon = East
+        dir_lon = translate_en_loc['E']
     else:
-        dir_lon = West
+        dir_lon = translate_en_loc['W']
         sign_lon = "-"
 
     if format == "DEG":
@@ -497,7 +479,8 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
         if str_lon[-6-len(dir_lon)] == '6':
             if min_lon == 59:
                 if deg_lon == 179 and sign_lon == "+":
-                    str_lon = ("%d°%02d'%05.2f\"" % (180, 0, 0.)) + West
+                    str_lon = ("%d°%02d'%05.2f\"" % (180, 0, 0.)) \
+                              + translate_en_loc['W']
                 else:
                     str_lon = ("%d°%02d'%05.2f\"" % (deg_lon+1, 0, 0.)) \
                               + dir_lon
@@ -689,38 +672,6 @@ def __conv_SWED_RT90_WGS84(X, Y):
     LAT = math.degrees(LAT)
     LON = math.degrees(LON)
     return LAT, LON
-
-
-def translate_lat_to_en(latitude):
-    """ Translate the localized NS portion of a latitude to the English 'N'
-    and 'S' characters. """
-    if 'N' not in latitude and 'S' not in latitude:
-        # entry is not in english, convert to english
-        latitude = latitude.replace(North, 'N')
-        latitude = latitude.replace(South, 'S')
-        if glocale.rtl_locale:
-            # since Gtk.Entry doesn't handle mixed bidi strings like lat/long
-            # well, we always force ltr.  So depending on wether user makes it
-            # look right, or enters blindly, the translated NSEW could be
-            # normal or reversed, so,
-            # we also allow user to use reversed string
-            latitude = latitude.replace(North_, 'N')
-            latitude = latitude.replace(South_, 'S')
-    return latitude
-
-
-def translate_long_to_en(longitude):
-    """ Translate the localized EW portion of a latitude to the English 'E'
-    and 'W' characters. """
-    if 'E' not in longitude and 'W' not in longitude:
-        # entry is not in english, convert to english
-        longitude = longitude.replace(West, 'W')
-        longitude = longitude.replace(East, 'E')
-        if glocale.rtl_locale:
-            # we also allow user to use reversed string
-            longitude = longitude.replace(West_, 'W')
-            longitude = longitude.replace(East_, 'E')
-    return longitude
 
 
 #-------------------------------------------------------------------------

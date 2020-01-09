@@ -52,8 +52,7 @@ from .displaytabs import (PlaceRefEmbedList, PlaceNameEmbedList,
 from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredTagList,
                        MonitoredDataType)
 from gramps.gen.errors import ValidationError, WindowActiveError
-from gramps.gen.utils.place import (conv_lat_lon, North, South, East, West,
-                                    translate_lat_to_en, translate_long_to_en)
+from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
 from ..dialog import ErrorDialog
@@ -161,9 +160,6 @@ class EditPlace(EditPrimary):
 
         entry = self.top.get_object("lon_entry")
         entry.set_ltr_mode()
-        # get E,W translated to local
-        self.obj.set_longitude(self.obj.get_longitude().replace(
-            'E', East).replace('W', West))
         self.longitude = MonitoredEntry(
             entry,
             self.obj.set_longitude, self.obj.get_longitude,
@@ -174,9 +170,6 @@ class EditPlace(EditPrimary):
 
         entry = self.top.get_object("lat_entry")
         entry.set_ltr_mode()
-        # get N,S translated to local
-        self.obj.set_latitude(self.obj.get_latitude().replace(
-            'N', North).replace('S', South))
         self.latitude = MonitoredEntry(
             entry,
             self.obj.set_latitude, self.obj.get_latitude,
@@ -338,11 +331,6 @@ class EditPlace(EditPrimary):
             return
 
         place_title = place_displayer.display(self.db, self.obj)
-        # get localized E,W translated to English
-        self.obj.set_longitude(translate_long_to_en(self.obj.get_longitude()))
-        # get localized N,S translated to English
-        self.obj.set_latitude(translate_lat_to_en(self.obj.get_latitude()))
-
         if not self.obj.handle:
             with DbTxn(_("Add Place (%s)") % place_title,
                        self.db) as trans:
