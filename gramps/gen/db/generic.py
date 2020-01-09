@@ -47,6 +47,7 @@ from . import (DbReadBase, DbWriteBase, DbUndo, DBLOGNAME, DBUNDOFN,
                REPOSITORY_KEY, NOTE_KEY, TAG_KEY, TXNADD, TXNUPD, TXNDEL,
                KEY_TO_NAME_MAP, DBMODE_R, DBMODE_W)
 from .utils import write_lock_file, clear_lock_file
+from .exceptions import DbVersionError
 from ..errors import HandleError
 from ..utils.callback import Callback
 from ..updatecallback import UpdateCallback
@@ -658,6 +659,12 @@ class DbGeneric(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.nmap_index = self._get_metadata('nmap_index', 0)
 
         self.db_is_open = True
+
+        # Check on db version to see if too new
+        dbversion = int(self._get_metadata('version', default='0'))
+        if dbversion > self.VERSION[0]:
+            self.close()
+            raise DbVersionError(dbversion, 18, self.VERSION[0])
 
     def _close(self):
         """
