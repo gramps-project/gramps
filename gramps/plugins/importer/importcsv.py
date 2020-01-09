@@ -60,6 +60,7 @@ from gramps.gen.datehandler import parser as _dp
 from gramps.gen.utils.string import gender as gender_map
 from gramps.gen.utils.id import create_id
 from gramps.gen.utils.location import located_in
+from gramps.gen.utils.unknown import create_explanation_note
 from gramps.gen.lib.eventroletype import EventRoleType
 from gramps.gen.config import config
 from gramps.gen.display.place import displayer as place_displayer
@@ -119,7 +120,9 @@ def importData(dbase, filename, user):
                 filehandle.seek(0)
                 filehandle = TextIOWrapper(filehandle,
                                            errors='replace', newline='')
-            parser.parse(filehandle)
+            msg = parser.parse(filehandle)
+            if msg:
+                user.notify_error(_("Bad references"), msg)
     except EnvironmentError as err:
         user.notify_error(_("%s could not be opened\n") % filename, str(err))
         return
@@ -270,7 +273,7 @@ class CSVParser:
             data = [[r.strip() for r in row] for row in csv.reader(filehandle)]
         except csv.Error as err:
             self.user.notify_error(_('format error: line %(line)d: %(zero)s') % {
-                        'line' : reader.line_num, 'zero' : err } )
+                        'line' : csv.reader.line_num, 'zero' : err } )
             return None
         return data
 
@@ -363,6 +366,7 @@ class CSVParser:
                 if self.default_tag and self.default_tag.handle is None:
                     self.db.add_tag(self.default_tag, self.trans)
                 self._parse_csv_data(data, step)
+                err_msg = self._check_refs()
             self.db.enable_signals()
             self.db.request_rebuild()
             tym = time.time() - tym
@@ -373,6 +377,25 @@ class CSVParser:
             LOG.debug(msg)
             LOG.debug("New Families: %d" % self.fam_count)
             LOG.debug("New Individuals: %d" % self.indi_count)
+            LOG.debug("New Places: %d" % self.place_count)
+        return err_msg
+
+    def _check_refs(self):
+        """ Check that forward cross references were satisfied """
+        txt = ''
+        expl_note = create_explanation_note(self.db)
+        for key in self.placeref:
+            place = self.placeref[key]
+            if place.name.value == _("Unknown"):
+                txt = (', ' + key) if txt else key
+                place.add_note(expl_note.handle)
+                self.db.commit_place(place, self.trans)
+        if txt:
+            self.db.commit_note(expl_note, self.trans, time.time())
+            return _("The following IDs were referenced but not found:\n" +
+                     txt)
+        else:
+            return None
 
     def _parse_csv_data(self, data, step):
         """Parse each line of the input data and act accordingly."""
@@ -877,8 +900,14 @@ class CSVParser:
         if place_enclosed_by_id is not None:
             place_enclosed_by = self.lookup("place", place_enclosed_by_id)
             if place_enclosed_by is None:
-                raise Exception("cannot enclose %s in %s as it doesn't exist" %
-                                (place.gramps_id, place_enclosed_by_id))
+                # Not yet found in import, so store for later
+                place_enclosed_by = self.create_place()
+                place_enclosed_by.name.set_value(_('Unknown'))
+                if(place_enclosed_by_id.startswith("[") and
+                   place_enclosed_by_id.endswith("]")):
+                    place_enclosed_by.gramps_id = self.db.pid2user_format(
+                        place_enclosed_by_id[1:-1])
+                self.storeup("place", place_enclosed_by_id, place_enclosed_by)
             for placeref in place.placeref_list:
                 if place_enclosed_by.handle == placeref.ref:
                     break
@@ -1045,6 +1074,7 @@ class CSVParser:
         place.set_title(place_name)
         place.name = PlaceName(value=place_name)
         self.db.add_place(place, self.trans)
+        self.place_count += 1
         return (1, place)
 
     def get_or_create_source(self, source_text):
