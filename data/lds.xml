@@ -20,12 +20,18 @@
     <code>SAMOA</code>
     <code>AP</code>
   </temple>
+  <temple name="Arequipa Peru Temple">
+    <code>AREQU</code>
+  </temple>
   <temple name="Asuncion, Paraguay">
     <code>ASUNC</code>
   </temple>
   <temple name="Atlanta, Georgia">
     <code>ATLAN</code>
     <code>AT</code>
+  </temple>
+  <temple name="Barranquilla Colombia Temple">
+    <code>BARRA</code>
   </temple>
   <temple name="Baton Rouge, Louisiana">
     <code>BROUG</code>
@@ -57,6 +63,9 @@
   <temple name="Bountiful, Utah">
     <code>BOUNT</code>
   </temple>
+  <temple name="Brigham City Utah Temple">
+    <code>BRIGH</code>
+  </temple>
   <temple name="Brisbane, Australia">
     <code>BRISB</code>
   </temple>
@@ -79,7 +88,11 @@
     <code>ALBR</code>
   </temple>
   <temple name="Cebu, Philippines">
+    <code>CEBUP</code>
     <code>CEBU</code>
+  </temple>
+  <temple name="Cedar City Utah">
+    <code>CEDAR</code>
   </temple>
   <temple name="Chicago, Illinois">
     <code>CHICA</code>
@@ -94,14 +107,17 @@
   <temple name="Colonia Juarez, Chihuahua, Mexico">
     <code>COLJU</code>
   </temple>
-  <temple name="Columbia, South Carolina">
-    <code>COLSC</code>
-  </temple>
   <temple name="Columbia River, Washington">
     <code>CRIVE</code>
   </temple>
+  <temple name="Columbia, South Carolina">
+    <code>COLSC</code>
+  </temple>
   <temple name="Columbus, Ohio">
     <code>COLUM</code>
+  </temple>
+  <temple name="Concepción Chile">
+    <code>CONCE</code>
   </temple>
   <temple name="Copenhagen, Denmark">
     <code>COPEN</code>
@@ -128,6 +144,19 @@
   </temple>
   <temple name="Edmonton, Alberta">
     <code>EDMON</code>
+  </temple>
+  <temple name="Endowment House">
+    <code>EHOUS</code>
+    <code>EH</code>
+  </temple>
+  <temple name="Fort Collins Colorado">
+    <code>FORTC</code>
+  </temple>
+  <temple name="Fort Lauderdale Florida">
+    <code>FORTL</code>
+  </temple>
+  <temple name="Fortaleza Brazil">
+    <code>FORTA</code>
   </temple>
   <temple name="Frankfurt, Germany">
     <code>FRANK</code>
@@ -191,6 +220,9 @@
     <code>IFALL</code>
     <code>IF</code>
   </temple>
+  <temple name="Indianapolis Indiana">
+    <code>INDIA</code>
+  </temple>
   <temple name="Johannesburg, South Africa">
     <code>JOHAN</code>
     <code>JO</code>
@@ -202,10 +234,14 @@
   <temple name="Kansas City, Missouri">
     <code>KANSA</code>
   </temple>
+  <temple name="Kinshasa Democratic Republic of the Congo">
+    <code>KINSH</code>
+  </temple>
   <temple name="Kona, Hawaii">
     <code>KONA</code>
   </temple>
   <temple name="Kiev, Ukraine">
+    <code>KYIV</code>
     <code>KIEV</code>
   </temple>
   <temple name="Kirtland, Ohio">
@@ -222,6 +258,9 @@
   <temple name="Lima, Peru">
     <code>LIMA</code>
     <code>LI</code>
+  </temple>
+  <temple name="Lisbon Portugal">
+    <code>LISBO</code>
   </temple>
   <temple name="Logan, Utah">
     <code>LOGAN</code>
@@ -269,6 +308,9 @@
   </temple>
   <temple name="Merida, Mexico">
     <code>MERID</code>
+  </temple>
+  <temple name="Meridian Idaho">
+    <code>MIDAH</code>
   </temple>
   <temple name="Mesa, Arizona">
     <code>ARIZO</code>
@@ -325,6 +367,7 @@
     <code>OKLAH</code>
   </temple>
   <temple name="Oquirrh Mountain, Utah">
+    <code>OQUIR</code>
     <code>OMOUN</code>
   </temple>
   <temple name="Orlando, Florida">
@@ -340,6 +383,12 @@
     <code>PAPEE</code>
     <code>TA</code>
   </temple>
+  <temple name="Paris France">
+    <code>PARIS</code>
+  </temple>
+  <temple name="Payson Utah">
+    <code>PAYSO</code>
+  </temple>
   <temple name="Perth, Australia">
     <code>PERTH</code>
   </temple>
@@ -348,6 +397,9 @@
   </temple>
   <temple name="Phoenix, Arizona">
     <code>PHOEN</code>
+  </temple>
+  <temple name="Port-au-Prince Haiti">
+    <code>PORTA</code>
   </temple>
   <temple name="Portland, Oregon">
     <code>PORTL</code>
@@ -358,6 +410,9 @@
   </temple>
   <temple name="Preston, England">
     <code>PREST</code>
+  </temple>
+  <temple name="Provo City Center, Utah">
+    <code>PROCC</code>
   </temple>
   <temple name="Provo, Utah">
     <code>PROVO</code>
@@ -385,6 +440,7 @@
     <code>REXBU</code>
   </temple>
   <temple name="Rome, Italy">
+    <code>ROMEI</code>
     <code>ROME</code>
   </temple>
   <temple name="Sacramento, California">
@@ -393,12 +449,6 @@
   <temple name="St. George, Utah">
     <code>SGEOR</code>
     <code>SG</code>
-  </temple>
-  <temple name="St. Louis, Missouri">
-    <code>SLOUI</code>
-  </temple>
-  <temple name="St. Paul, Minnesota">
-    <code>SPMIN</code>
   </temple>
   <temple name="Salt Lake City, Utah">
     <code>SLAKE</code>
@@ -415,6 +465,7 @@
     <code>SJOSE</code>
   </temple>
   <temple name="San Salvador, El Salvador">
+    <code>SANSA</code>
     <code>SSALV</code>
   </temple>
   <temple name="Santiago, Chile">
@@ -427,6 +478,9 @@
   <temple name="Sao Paulo, Brazil">
     <code>SPAUL</code>
     <code>SP</code>
+  </temple>
+  <temple name="Sapporo Japan">
+    <code>SAPPO</code>
   </temple>
   <temple name="Seattle, Washington">
     <code>SEATT</code>
@@ -441,6 +495,15 @@
   </temple>
   <temple name="Spokane, Washington">
     <code>SPOKA</code>
+  </temple>
+  <temple name="St. Louis, Missouri">
+    <code>SLOUI</code>
+  </temple>
+  <temple name="St. Paul, Minnesota">
+    <code>SPMIN</code>
+  </temple>
+  <temple name="Star Valley Wyoming">
+    <code>STARV</code>
   </temple>
   <temple name="Stockholm, Sweden">
     <code>STOCK</code>
@@ -463,8 +526,14 @@
   <temple name="Tegucigalpa, Honduras">
     <code>TEGUC</code>
   </temple>
+  <temple name="The Gila Valley Arizona">
+    <code>GILAV</code>
+  </temple>
   <temple name="The Hague, Netherlands">
     <code>HAGUE</code>
+  </temple>
+  <temple name="Tijuana Mexico">
+    <code>TIJUA</code>
   </temple>
   <temple name="Tokyo, Japan">
     <code>TOKYO</code>
@@ -474,16 +543,19 @@
     <code>TORON</code>
     <code>TORNO</code>
     <code>TR</code>
+  </temple>
   <temple name="Trujillo, Peru">
     <code>TRUJI</code>
   </temple>
+  <temple name="Tucson Arizona">
+    <code>TUCSO</code>
   </temple>
   <temple name="Tuxtla Gutierrez, Mexico">
     <code>TGUTI</code>
   </temple>
   <temple name="Twin Falls, Idaho">
-    <code>TFALL</code>
     <code>TWINF</code>
+    <code>TFALL</code>
   </temple>
   <temple name="Vancouver, British Columbia">
     <code>VANCO</code>
@@ -504,10 +576,6 @@
   <temple name="Winter Quarters, Nebraska">
     <code>WINTE</code>
     <code>WQUAR</code>
-  </temple>
-  <temple name="Endowment House">
-    <code>EHOUS</code>
-    <code>EH</code>
   </temple>
   <temple name="President's Office">
     <code>POFFI</code>
