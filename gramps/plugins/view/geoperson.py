@@ -191,6 +191,7 @@ class GeoPerson(GeoGraphyView):
         ('geography.center-lat', 0.0),
         ('geography.center-lon', 0.0),
         ('geography.use-keypad', True),
+        ('geography.personal-map', ""),
 
         #('geography.gps_mode', GPS_DISABLED),
         #('geography.gps_update_rate', float(1.0)),
