@@ -490,7 +490,7 @@ def _display_welcome_message(parent=None):
     Display a welcome message to the user.
     (This docstring seems very legacy/historical, not accurate.)
     """
-    _display_generic_message("master", 'behavior.betawarn', parent=parent)
+    #_display_generic_message("master", 'behavior.betawarn', parent=parent)
 
 def _display_generic_message(warning_type, config_key, parent=None):
     """
