@@ -2755,7 +2755,25 @@ class BasePage: # pylint: disable=C1001
                  class_="ColumnAttribute", inline=True),
         )
         tbody += trow
-        for placeref in place.get_placeref_list():
+
+        def sort_by_enclosed_by(obj):
+            """
+            Sort by enclosed by
+            """
+            place_name = ""
+            parent_place = self.r_db.get_place_from_handle(obj.ref)
+            if parent_place:
+                place_name = parent_place.get_name().get_value()
+            return place_name
+
+        def sort_by_encl(obj):
+            """
+            Sort by encloses
+            """
+            return obj[0]
+
+        for placeref in sorted(place.get_placeref_list(),
+                               key=sort_by_enclosed_by):
             parent_place = self.r_db.get_place_from_handle(placeref.ref)
             if parent_place:
                 place_name = parent_place.get_name().get_value()
@@ -2777,6 +2795,7 @@ class BasePage: # pylint: disable=C1001
                  class_="ColumnAttribute", inline=True),
         )
         tbody += trow
+        encloses = []
         for link in self.r_db.find_backlink_handles(
                 place.handle, include_classes=['Place']):
             child_place = self.r_db.get_place_from_handle(link[1])
@@ -2784,15 +2803,20 @@ class BasePage: # pylint: disable=C1001
             for placeref in child_place.get_placeref_list():
                 if placeref.ref == place.handle:
                     place_name = child_place.get_name().get_value()
-                    if child_place.handle in self.report.obj_dict[Place]:
-                        place_hyper = self.place_link(child_place.handle,
-                                                      place_name,
-                                                      uplink=self.uplink)
+                    if link[1] in self.report.obj_dict[Place]:
+                        encloses.append((place_name, link[1]))
                     else:
-                        place_hyper = place_name
-                    trow = Html("tr") + (
-                        Html("td", place_hyper,
-                             class_="ColumnPlace", inline=True))
+                        encloses.append((place_name, ""))
+        for (name, handle) in sorted(encloses, key=sort_by_encl):
+            place_name = child_place.get_name().get_value()
+            if handle and handle in self.report.obj_dict[Place]:
+                place_hyper = self.place_link(handle, name,
+                                              uplink=self.uplink)
+            else:
+                place_hyper = name
+            trow = Html("tr") + (
+                Html("td", place_hyper,
+                     class_="ColumnPlace", inline=True))
             tbody += trow
 
         # return place table to its callers
