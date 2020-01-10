@@ -1,3 +1,72 @@
+2020-01-14
+Version 5.1.2
+* Narweb: Private notes for home, intro and contact. If the notes are private,
+  we can't use them in these pages.
+  * Referenced regions problems.  When image width > 800, the referenced
+    regions are incorrectly placed
+  * Ancestor's tree display looks weird Solves the following:
+    - Person boxes overlap
+    - Some person boxes partially visible or hidden
+  * some cleanup in ancestortree.css
+  * ancestor tree and long names.
+  * Adapt ancestor tree css file for all themes
+  * dates not localised in place pages
+  * Mainz problem with short text in one note, Issue occurs on the homepage
+    and introduction page.
+  * bad event links on media pages
+  * Navweb: Don't use media regions in some case:
+    - If we don't show families
+    - If we don't show events
+    - Don't show the media regions for a thumbnail
+* WEBCAL: home link translated to lowercase
+  * Wrong web calendar title on home page.  This solves the possibility to
+    have ">", "<" in the title
+* Update LDS Temple list
+* Make GuiDestinationOption Folder Icon start in users directory
+* Allow import file filter to accept case insensitive extensions
+* Fix db to warn/prevent opening newer schema versions
+* Fix Progen import dialog and progress meter for correct parent window
+* Fix Progen import to correctly handle AKA surnames
+* Fix ExportPkg so errors are not lost, and has progress bar for media
+* Fix Export Assistant so error messages get correct parent window
+* Fix GEDCOM import when family is missing; import created a missing note
+* Fix Dashboard for adding Gramplet crash in Slovenian
+* Update cs, ca, fr, uk, he, fi, hr, de, sv translation
+* Update date parsing for czech locale
+* Fix Spanish translation for dates
+* fix private proxy tagref support.  Add missing code for event, repository,
+  source, citation and place
+* [Tree doc Tex] fix "-" char on place name "-" can lead to confusion,
+  generating text out of the box with PDF file format
+* [Tree doc Tex] fix typo on custom size
+* Fix duplicated "døde døde" Norwegion Translation for libnarrate
+* Fix up Event Editors Place display for bidi text with Gramps ID
+* Fix issues with RTL languages and LAT/LONG 
+  * Fix display of GPS coordinates in Places view for RTL languages
+  * Fix place editor lat/long entry for RTL languages
+* Fix GEDCOM export to avoid translated GrampsType strings
+* Allow Tools with Notbook tabs to expand to fill the window
+* Limit Age Stats gramplet settings to appropriate values.
+  * Max ages should be divisible by 5 to avoid out of range errors.
+  * The chart width should be greater than 45 to look right and
+    avoid division by zero errors.
+* Fix the Preferences 'Age display precision' value getting lost
+* Fix Window family tree title for non-ASCII chars on Windows
+* Fix Preferences/Genealogical Symbols when only one font is present
+* Fix various Entry fields so Undo/Redo works
+* Fix tag colors on PedigreeView
+* Fix Gramps -v error when Gtk is not present
+* Fix for PedigreeView not reflecting changes to birthday or death
+* ODF DOC - Fix improper escaping in odt output for TOC/Bookmark etc.
+* Fix CLI parser to accept negative integers as valid
+* Fix Descendant Tree report for HandleError when no parents on family
+* Fix Reorder ID tool so subsequent db additions used next possible ID
+* Upgrade export VCalendar to v2.0, so can export all utf8 characters
+* Fix Preferences so <ctrl>PageUp/PageDn doesn't stick on Dates tab
+* Graphs: Escape for name, dates and places in graph reports with XML
+  illegal characters
+* Fix 'Go' menu direct object selection, goes to wrong place
+
 2019-09-14
 Version 5.1.1
 * Update translations: cs, de, fi, fr, he, hr, pt_PT, ru, sv

@@ -1,75 +1,85 @@
-2019-09-12  J�r�me Rapinat <romjerome@yahoo.fr>
+2020-01-07  Zdeněk Hataš <zdenek.hatas@gmail.com>
 
-	* po/fr.po: Add missing French translation strings
+	* po/cs.po: Update Czech translation
 
-2019-09-10  Gil da Costa <gdacosta@sommier-colas.fr>
+2019-12-30  Joan Creus <joan.creusandreu@gmail.com>
 
-	* po/fr.po: Update French translation
+	* po/ca.po: Updating Catalan translation
 
-2019-09-12  Avi Markovitz <avi.markovitz@gmail.com>
+2019-12-21  Joan Creus <joan.creusandreu@gmail.com>
 
-	* po/he.po: Update Hebrew translation
+	* po/ca.po: Updating Catalan translation
 
-2019-09-12  Matti Niemel� <matti.u.niemela@gmail.com>
+2019-12-15  romjerome <romjerome@users.noreply.github.com>
+
+	* po/fr.po: update french translation (#969)
+
+2019-11-10  Paul Culley <paulr2787@gmail.com>
+
+	* po/nb.po: Fix duplicated "døde døde" Norwegion Translation for
+	libnarrate (#950) Fixes #11429
+
+2019-11-02  Fedik <getthesite@gmail.com>
+
+	* po/uk.po: Ukrainian translation update
+
+2019-11-02  Fedik <getthesite@gmail.com>
+
+	* po/uk.po: Ukrainian translation update
+
+2019-10-25  Paul Culley <paulr2787@gmail.com>
+
+	* po/es.po: Fix Spanish translation for dates (#943) Fixes #10836
+
+2019-10-24  avma <avi.markovitz@gmail.com>
+
+	* po/he.po: Hebrew translation-current version 5.12 (#939) ...I've completed all strings (using the recent .POT)...
+
+2019-10-21  niememat <niememat@gmail.com>
 
 	* po/fi.po: Fix translation in Finnish
 
-2019-09-12  Matti Niemel� <matti.u.niemela@gmail.com>
+2019-10-18  Milo Ivir <mail@milotype.de>
 
-	* po/fi.po: Update finnish translation
+	* po/hr.po: Update Croatian translation
 
-2019-09-11  vantu5z <vantu5z@mail.ru>
+2019-10-19  Leonhaeuser <mirko@leonhaeuser.de>
 
-	* po/ru.po: update Russian translation
+	* po/de.po: update German translation
 
-2019-09-10  pehlm <par.ekholm@pekholm.org>
+2019-10-18  Zdeněk Hataš <zdenek.hatas@gmail.com>
+
+	* po/cs.po: Update Czech translation
+
+2019-10-18  niememat <niememat@gmail.com>
+
+	* po/fi.po: Fix translation in Finnish
+
+2019-10-17  pehlm <par.ekholm@pekholm.org>
 
 	* po/sv.po: Update Swedish translation
 
-2019-09-10  Mirko Leonhaeuser <mirko@leonhaeuser.de>
+2019-10-17  niememat <niememat@gmail.com>
 
-	* po/de.po: Update German translation
+	* po/fi.po: Update finnish translation
 
-2019-09-10  Nick Hall <nick-h@gramps-project.org>
+2019-10-10  niememat <niememat@gmail.com>
 
-	* po/ar.po, po/bg.po, po/br.po, po/ca.po, po/cs.po, po/da.po,
-	po/de.po, po/el.po, po/en_GB.po, po/eo.po, po/es.po, po/fi.po,
-	po/fr.po, po/ga.po, po/he.po, po/hr.po, po/hu.po, po/is.po,
-	po/it.po, po/ja.po, po/lt.po, po/mk.po, po/nb.po, po/nl.po,
-	po/nn.po, po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ro.po, po/ru.po,
-	po/sk.po, po/sl.po, po/sq.po, po/sr.po, po/sr_Latn.po, po/sv.po,
-	po/ta.po, po/tr.po, po/uk.po, po/vi.po, po/zh_CN.po, po/zh_HK.po,
-	po/zh_TW.po: Merge po files and new template
+	* po/fi.po: Fix translation in Finnish
 
-2019-08-27  Avi Markovitz <avi.markovitz@gmail.com>
+2019-10-08  niememat <niememat@gmail.com>
 
-	* po/he.po: Update Hebrew translation
+	* po/fi.po: Fix translation in Finnish
 
-2019-07-11  Pedro Albuquerque <palbuquerque73@gmail.com>
+2019-10-05  niememat <niememat@gmail.com>
 
-	* po/pt_PT.po: Update Portuguese (Europe) translation
+	* po/fi.po: Fix translation in Finnish
 
-2019-06-24  Milo Ivir <mail@milotype.de>
-
-	* po/hr.po: Update croatian translation - update with newest/current .pot file - translation is complete - corrections in wording and some missing accelerators
-
-2019-08-30  Zdeněk Hataš <zdenek.hatas@gmail.com>
+2019-09-20  Zdeněk Hataš <zdenek.hatas@gmail.com>
 
 	* po/cs.po: Update Czech translation
 
-2019-08-29  Zdeněk Hataš <zdenek.hatas@gmail.com>
+2019-09-18  pehlm <par.ekholm@pekholm.org>
 
-	* po/cs.po: Update Czech translation
-
-2019-08-25  Mirko Leonhaeuser <mirko@leonhaeuser.de>
-
-	* po/de.po: German translation updated
-
-2019-08-22  vantu5z <vantu5z@mail.ru>
-
-	* po/ru.po: update Russian translation
-
-2019-08-22  pehlm <par.ekholm@pekholm.org>
-
-	* Update Swedish translation with the new gramps.pot
+	* Swedish translation, some changes
 
