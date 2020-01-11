@@ -30601,7 +30601,7 @@ msgstr "Defineşte Persoana Implicită (Acasă)"
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
 #, fuzzy
-msgid "Go to the default person"
+msgid "Go to the home person"
 msgstr "Se potriveşte cu filtrul numit"
 
 #: ../gramps/plugins/lib/libpersonview.py:260

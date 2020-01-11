@@ -23879,7 +23879,7 @@ msgid "Set _Home Person"
 msgstr "Välj _hemperson"
 
 #: ../gramps/plugins/lib/libpersonview.py:260 ../gramps/plugins/view/fanchartview.py:184 ../gramps/plugins/view/geoclose.py:111 ../gramps/plugins/view/geofamclose.py:109 ../gramps/plugins/view/geomoves.py:108 ../gramps/plugins/view/geoperson.py:109 ../gramps/plugins/view/pedigreeview.py:693 ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
+msgid "Go to the home person"
 msgstr "Gå till standardpersonen"
 
 #: ../gramps/plugins/lib/libpersonview.py:260 ../gramps/plugins/lib/libplaceview.py:332 ../gramps/plugins/view/citationlistview.py:224 ../gramps/plugins/view/citationtreeview.py:374 ../gramps/plugins/view/eventview.py:238 ../gramps/plugins/view/familyview.py:197 ../gramps/plugins/view/fanchartview.py:184 ../gramps/plugins/view/geoclose.py:111 ../gramps/plugins/view/geoevents.py:101 ../gramps/plugins/view/geofamclose.py:109 ../gramps/plugins/view/geofamily.py:101 ../gramps/plugins/view/geomoves.py:108 ../gramps/plugins/view/geoperson.py:109 ../gramps/plugins/view/geoplaces.py:104 ../gramps/plugins/view/mediaview.py:297

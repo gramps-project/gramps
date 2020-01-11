@@ -26102,7 +26102,7 @@ msgstr "הגדרת _אדם ה'בית'"
 #: ../gramps/plugins/view/geoclose.py:111 ../gramps/plugins/view/geofamclose.py:109
 #: ../gramps/plugins/view/geomoves.py:108 ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693 ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
+msgid "Go to the home person"
 msgstr "מעבר לאדם ברירת המחדל"
 
 #: ../gramps/plugins/lib/libpersonview.py:260 ../gramps/plugins/lib/libplaceview.py:332

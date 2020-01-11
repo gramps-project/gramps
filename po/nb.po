@@ -30029,7 +30029,7 @@ msgstr "Angi som startperson"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
+msgid "Go to the home person"
 msgstr "Gå til standardpersonen"
 
 #: ../gramps/plugins/lib/libpersonview.py:260

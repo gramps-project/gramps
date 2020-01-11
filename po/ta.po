@@ -29372,7 +29372,7 @@ msgstr "நடுவில் உள்ள நபர்"
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
 #, fuzzy
-msgid "Go to the default person"
+msgid "Go to the home person"
 msgstr "இயல்பிருப்பு நபருடன் பொருந்துகிறது"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
