@@ -5342,12 +5342,12 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
 #, fuzzy
-msgid "Default person"
+msgid "Home Person"
 msgstr "_Persoana Implicită"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
 #, fuzzy
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "Se potriveşte cu filtrul numit"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -5459,12 +5459,12 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
+msgid "Ancestors of the Home Person not more than <N> generations away"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid ""
-"Matches ancestors of the default person not more than N generations away"
+"Matches ancestors of the Home Person not more than N generations away"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:46
@@ -20187,7 +20187,7 @@ msgstr "Doar numele persoanei active"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
+"You need to set a 'Home Person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
 msgstr ""
@@ -30601,7 +30601,7 @@ msgstr "Defineşte Persoana Implicită (Acasă)"
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
 #, fuzzy
-msgid "Go to the default person"
+msgid "Go to the home person"
 msgstr "Se potriveşte cu filtrul numit"
 
 #: ../gramps/plugins/lib/libpersonview.py:260

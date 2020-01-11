@@ -5511,11 +5511,11 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "Estrae le persone figlie di qualcuno corrispondente ad un filtro"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "Persona predefinita"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "Estrae la persona predefinita"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -5626,12 +5626,12 @@ msgstr ""
 "Estrae gli ascendenti da non più di N generazioni di persone nei segnalibri"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
+msgid "Ancestors of the Home Person not more than <N> generations away"
 msgstr "Ascendenti da non più di <N> generazioni della persona predefinita"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid ""
-"Matches ancestors of the default person not more than N generations away"
+"Matches ancestors of the Home Person not more than N generations away"
 msgstr ""
 "Estrae gli ascendenti da non più di N generazioni della persona predefinita"
 
@@ -19780,7 +19780,7 @@ msgstr "Persona principale non impostata"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
+"You need to set a 'Home Person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
 msgstr ""
@@ -30190,7 +30190,7 @@ msgstr "_Imposta persona principale"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
+msgid "Go to the home person"
 msgstr "Va alla persona predefinita"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
@@ -40738,7 +40738,7 @@ msgstr "Nessun foglio di stile"
 #~ msgstr "Colore"
 
 #, fuzzy
-#~ msgid "You need to set a 'default person' to go to."
+#~ msgid "You need to set a 'Home Person' to go to."
 #~ msgstr "Bisogna impostare una «persona predefinita» dove andare."
 
 #~ msgid "Report a bug: Step 1 of 5"

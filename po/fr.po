@@ -5975,12 +5975,12 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "Correspond aux enfants de tout individu issu d'un filtrage"
 
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:44
-msgid "Default person"
+msgid "Home Person"
 msgstr "Individu par défaut"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_isdefaultperson.py:46
-msgid "Matches the default person"
+msgid "Matches the Home Person"
 msgstr "Correspond à l'individu par défaut"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
@@ -6094,13 +6094,13 @@ msgstr ""
 "Correspond aux ascendants d'individus marqués sur moins de N générations"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
-msgid "Ancestors of the default person not more than <N> generations away"
+msgid "Ancestors of the Home Person not more than <N> generations away"
 msgstr "Ascendants de l'individu de référence sur moins de <N> générations"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:50
 msgid ""
-"Matches ancestors of the default person not more than N generations away"
+"Matches ancestors of the Home Person not more than N generations away"
 msgstr ""
 "Correspond aux ascendants de l'individu de référence sur moins de N "
 "générations"
@@ -21190,7 +21190,7 @@ msgstr "Individu souche non défini"
 
 #: ../gramps/gui/views/navigationview.py:324
 msgid ""
-"You need to set a 'default person' to go to. Select the People View, select "
+"You need to set a 'Home Person' to go to. Select the People View, select "
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit -> Set Home Person."
 msgstr ""
@@ -32140,7 +32140,7 @@ msgstr "Définir comme s_ouche"
 #: ../gramps/plugins/view/geoperson.py:109
 #: ../gramps/plugins/view/pedigreeview.py:693
 #: ../gramps/plugins/view/relview.py:436
-msgid "Go to the default person"
+msgid "Go to the home person"
 msgstr "Aller à l'individu par défaut"
 
 #: ../gramps/plugins/lib/libpersonview.py:260
@@ -40999,7 +40999,7 @@ msgstr "Aucune feuille de style"
 #~ "rapports (nécessite un redémarrage)"
 
 #~ msgid ""
-#~ "You need to set a 'default person' to go to. Select the People View, "
+#~ "You need to set a 'Home Person' to go to. Select the People View, "
 #~ "select the person you want as 'Home Person', then confirm your choice via "
 #~ "the menu Edit ->Set Home Person."
 #~ msgstr ""
